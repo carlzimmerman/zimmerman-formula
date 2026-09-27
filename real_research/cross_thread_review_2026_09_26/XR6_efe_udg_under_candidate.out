@@ -1,0 +1,192 @@
+XR6_efe_udg_under_candidate.py -- the construction the parallel threads converged on (2026-09-26, evening) scored
+against the galaxy-environment liabilities that no thread owns: the two 09-03 external-field (EFE) samples and the
+Coma ultra-diffuse galaxies.  (The Local Group zero-velocity radius is XR6_lg_zero_velocity_mond_sector.py.)
+Independent cross-thread review.  Read-only on every committed file: the loaders of hunt_2026/k_contrarian_clusterbtfr.py
+and k_contrarian_dwarfefe.py are IMPORTED (their main() is never called); L23's Coma pipeline, L340's nu_mono and the
+switch are REIMPLEMENTED here, each with a control that reproduces the committed numbers.
+
+THE CANDIDATE (C-H/K branch; every definition read from the code):
+  kernel   nu_mono (L340_filtered_khronon_completion.py:103-117) = nu_RAR for y <= 2.3374 (XC4), region-local per
+           L361_bound_region_kernel.py:16-32: (lap - M^2) w = 4 pi G f rho_b, M^2 = m^2 (1 - f), 1/m <= 0.5 Mpc (L361 R4):
+           a region's kernel reads ITS OWN baryons; fields from outside are screened across the inactive web; in-region
+           baryons feel their region's phantom; the carrier is Newtonian only (L353).  Inside a region the EFE is
+           ordinary QUMOND sourced by the in-region BARYONS: e_N = G M_b(<r)/r^2 (XR4's reading, XR4:9-24).
+  switch   the MOND-sector reading as the particle-mesh track implements it (L395_two_switch_branches.py:22-25 and its
+           phantom_sw, cell 'msc'): x = 1.5 Omega_m(z) (rho_b + max(rho_ph,all, 0))/rho_bar_m (absolute; the
+           untruncated phantom of ALL baryons), ON where x >= x_c,eff(z) max(1, v_loc^2/v_cap^2),
+           x_c,eff = x_c0 [Omega_L0/Omega_L(z)]^p = x_c0 E(z)^(2p), p = 1, x_c0 = 2.5; v_loc^2 = |g_ms|^2/(-div g_ms) of
+           the MOND-sector field g_ms = g_N,b + g_ph (0 where -div g_ms <= 0, as L395 does); v_cap = 325 km/s (MS3 K1).
+           Equivalent form (derived in the README, checked here as K0): ON <=> 4 pi G rho_ms >= max(x_c,eff H^2,
+           sqrt(x_c,eff) H |g_ms|/v_cap).  So the cap binds only where the MOND-sector field is strong and the density
+           is near the web's: the outskirts of hosts with v_loc > v_cap.  In deep MOND v_loc^2 = v_f(r)^2/(1 + s/2),
+           s = dlnM_b/dlnr, and the capped edge is r_cap = (1 + s/2) v_cap/(H sqrt(x_c,eff)) -- the SAME for every host
+           above v_cap (MS3's 1.75 Mpc at z = 0.5; ~3.6 Mpc at z = 0.02-0.06).
+  carrier  kernel-invisible, cleared by a density trigger (kick 575-650 km/s); retention by host mass from L388.
+THE MECHANISM, computed per galaxy (not assumed):
+  (a) inside the host's MOND region -> the in-region EFE from the host's baryons;
+  (b) beyond it, in its own region -> no EFE except what the screened gap transmits (L361 R1's Yukawa law);
+  (c) no region at its disc, or a region smaller than the radius its kinematics sample -> Newtonian with the carrier
+      cleared: a NEW failure if it happens (reported as plainly as a rescue).
+  The galaxy's own region is found with the same switch: the host's local MOND-sector density and field plus the
+  galaxy's own phantom in the host's external field (scalar-sum form, XR4's committed form); its edge is where the
+  capped threshold wins.  The 1-D form drops the positive lobes of the true 3-D EFE phantom, so it UNDER-estimates the
+  galaxy's region: conservative for the case-(c) check.
+
+======================================================================================================================
+K0/K5  THE KERNEL AND THE SWITCH: nu_mono against XC4; the cap's equivalent form; MS3's design target
+======================================================================================================================
+    nu_mono: phantom peak y_p = 2.5396; max |nu_mono/nu_RAR - 1| for y <= 2.337: 4.9e-09; max |dlog| over 1e-3..1e4: 0.01037 dex
+  [PASS] K0 the kernel is L340's nu_mono (= nu_RAR to 1e-6 for y <= 2.337; max |dlog nu| = 0.0104 dex, XC4's 0.01037), and the capped switch x >= x_c max(1, v_loc^2/v_cap^2) equals 4 pi G rho >= max(x_c H^2, sqrt(x_c) H |g|/v_cap) on 20000 random draws
+         measured: 4.9e-09; 0.01037 dex; equivalence holds
+    local-form edges at z = 0.5 (canonical): host above v_cap, 3e12: 1.730 Mpc, host above v_cap, 1e13: 1.694 Mpc, KiDS lens 3e11: 1.351 Mpc, KiDS lens 3e11, no cap: 1.351 Mpc;  v_cap/(H sqrt(x_c,eff)) = 1.748 Mpc; MS3 K1: r_cap = 1.75 Mpc (v_cap = 325.3 km/s)
+  [PASS] K5 the local cap reproduces MS3's design target: deep-MOND hosts above v_cap end at MS3's 1.75 Mpc at z = 0.5 (within the kernel's non-deep correction, <= 3%), and a KiDS lens (M_b = 3e11, v_f = 247 km/s) keeps its uncapped edge
+         measured: 3e12: 1.730, 1e13: 1.694 Mpc vs 1.75; KiDS lens 1.351 vs uncapped 1.351 Mpc
+
+======================================================================================================================
+PART A -- the cluster-infall BTFR (k_contrarian_clusterbtfr, N = 314) under the candidate
+======================================================================================================================
+  members N = 314 in 21 PSZ2 clusters (committed 314)
+
+  THE SWITCH ON THE 21 CLUSTERS (committed geometry, f_b(R500) = 0.13, extended baryons):
+    canonical: region edge capped 3.53-3.72 Mpc; uncapped MOND-sector 9.9-15.8 Mpc; XR4's on-branch 6.7-10.7 Mpc; v_loc at the region edge 822-1220 km/s (v_cap 325)
+               classification of the 314 members: {'a': 188, 'a (merged)': 14, 'b': 112}  (a = inside the cluster's region, b = own region beyond it)
+    alt      : region edge capped 3.53-3.73 Mpc; uncapped MOND-sector 10.4-16.6 Mpc; XR4's on-branch 7.0-11.2 Mpc; v_loc at the region edge 859-1273 km/s (v_cap 325)
+               classification of the 314 members: {'a': 189, 'a (merged)': 13, 'b': 112}  (a = inside the cluster's region, b = own region beyond it)
+  [PASS] C1 CONTROL: with XR4's switch and no cap (S0) XR4's committed cluster numbers are reproduced -- every f_b(R500), both forms, the zero point, both footings
+         measured: max |diff| = 0.0e+00
+
+  PREDICTED SLOPE d Delta/d log g_e (sigma from the observed) and the zero point, f_b(R500) = 0.13; ranges over f_b in the JSON
+   canonical r = R_proj     baryons extended observed +0.0033 +/- 0.0304; members beyond the capped edge: 112/314
+      S0 XR4 switch, no cap (nu_RAR)                 scalar -0.0779 (2.66s)  subtract -0.1135 (3.83s)  zero point -0.0389 vs -0.0119 +/- 0.0092 (2.94s)
+      S1 MOND-sector switch, no cap                  scalar -0.0779 (2.66s)  subtract -0.1135 (3.83s)  zero point -0.0389 vs -0.0119 +/- 0.0092 (2.94s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0902 (3.07s)  subtract -0.1648 (5.52s)  zero point -0.0272 vs -0.0119 +/- 0.0092 (1.66s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0891 (3.03s)  subtract -0.1541 (5.17s)  zero point -0.0287 vs -0.0119 +/- 0.0092 (1.83s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0879 (3.00s)  subtract -0.1450 (4.87s)  zero point -0.0307 vs -0.0119 +/- 0.0092 (2.04s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0779 (2.66s)  subtract -0.1135 (3.83s)  zero point -0.0389 vs -0.0119 +/- 0.0092 (2.94s)
+   canonical r = R_proj     baryons r200     observed +0.0033 +/- 0.0304; members beyond the capped edge: 179/314
+      S1 MOND-sector switch, no cap                  scalar -0.0852 (2.90s)  subtract -0.1375 (4.62s)  zero point -0.0282 vs -0.0119 +/- 0.0092 (1.77s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0911 (3.10s)  subtract -0.1876 (6.27s)  zero point -0.0179 vs -0.0119 +/- 0.0092 (0.65s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0904 (3.08s)  subtract -0.1772 (5.93s)  zero point -0.0189 vs -0.0119 +/- 0.0092 (0.76s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0902 (3.07s)  subtract -0.1676 (5.61s)  zero point -0.0205 vs -0.0119 +/- 0.0092 (0.94s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0852 (2.90s)  subtract -0.1375 (4.62s)  zero point -0.0282 vs -0.0119 +/- 0.0092 (1.77s)
+   canonical r = 1.3 R_proj baryons extended observed +0.0023 +/- 0.0289; members beyond the capped edge: 190/314
+      S0 XR4 switch, no cap (nu_RAR)                 scalar -0.0670 (2.40s)  subtract -0.1066 (3.77s)  zero point -0.0295 vs -0.0119 +/- 0.0092 (1.92s)
+      S1 MOND-sector switch, no cap                  scalar -0.0670 (2.40s)  subtract -0.1066 (3.77s)  zero point -0.0295 vs -0.0119 +/- 0.0092 (1.92s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0782 (2.78s)  subtract -0.1734 (6.08s)  zero point -0.0163 vs -0.0119 +/- 0.0092 (0.48s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0776 (2.76s)  subtract -0.1638 (5.75s)  zero point -0.0173 vs -0.0119 +/- 0.0092 (0.58s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0768 (2.74s)  subtract -0.1529 (5.37s)  zero point -0.0187 vs -0.0119 +/- 0.0092 (0.74s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0670 (2.40s)  subtract -0.1066 (3.77s)  zero point -0.0295 vs -0.0119 +/- 0.0092 (1.92s)
+   canonical r = 1.3 R_proj baryons r200     observed +0.0023 +/- 0.0289; members beyond the capped edge: 238/314
+      S1 MOND-sector switch, no cap                  scalar -0.0680 (2.43s)  subtract -0.1224 (4.31s)  zero point -0.0194 vs -0.0119 +/- 0.0092 (0.81s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0669 (2.39s)  subtract -0.1523 (5.35s)  zero point -0.0102 vs -0.0119 +/- 0.0092 (0.19s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0677 (2.42s)  subtract -0.1551 (5.44s)  zero point -0.0106 vs -0.0119 +/- 0.0092 (0.14s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0693 (2.48s)  subtract -0.1530 (5.37s)  zero point -0.0118 vs -0.0119 +/- 0.0092 (0.01s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0680 (2.43s)  subtract -0.1224 (4.31s)  zero point -0.0194 vs -0.0119 +/- 0.0092 (0.81s)
+   alt       r = R_proj     baryons extended observed +0.0033 +/- 0.0304; members beyond the capped edge: 112/314
+      S0 XR4 switch, no cap (nu_RAR)                 scalar -0.0789 (2.70s)  subtract -0.1158 (3.91s)  zero point -0.0393 vs -0.0119 +/- 0.0092 (2.99s)
+      S1 MOND-sector switch, no cap                  scalar -0.0789 (2.70s)  subtract -0.1158 (3.91s)  zero point -0.0393 vs -0.0119 +/- 0.0092 (2.99s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0914 (3.11s)  subtract -0.1676 (5.61s)  zero point -0.0275 vs -0.0119 +/- 0.0092 (1.70s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0902 (3.07s)  subtract -0.1566 (5.25s)  zero point -0.0291 vs -0.0119 +/- 0.0092 (1.87s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0890 (3.03s)  subtract -0.1475 (4.95s)  zero point -0.0311 vs -0.0119 +/- 0.0092 (2.09s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0789 (2.70s)  subtract -0.1158 (3.91s)  zero point -0.0393 vs -0.0119 +/- 0.0092 (2.99s)
+   alt       r = R_proj     baryons r200     observed +0.0033 +/- 0.0304; members beyond the capped edge: 178/314
+      S1 MOND-sector switch, no cap                  scalar -0.0862 (2.94s)  subtract -0.1400 (4.71s)  zero point -0.0285 vs -0.0119 +/- 0.0092 (1.81s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0922 (3.13s)  subtract -0.1902 (6.35s)  zero point -0.0181 vs -0.0119 +/- 0.0092 (0.68s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0916 (3.12s)  subtract -0.1801 (6.02s)  zero point -0.0192 vs -0.0119 +/- 0.0092 (0.79s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0913 (3.11s)  subtract -0.1704 (5.71s)  zero point -0.0208 vs -0.0119 +/- 0.0092 (0.97s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0862 (2.94s)  subtract -0.1400 (4.71s)  zero point -0.0285 vs -0.0119 +/- 0.0092 (1.81s)
+   alt       r = 1.3 R_proj baryons extended observed +0.0023 +/- 0.0289; members beyond the capped edge: 189/314
+      S0 XR4 switch, no cap (nu_RAR)                 scalar -0.0679 (2.43s)  subtract -0.1086 (3.83s)  zero point -0.0298 vs -0.0119 +/- 0.0092 (1.95s)
+      S1 MOND-sector switch, no cap                  scalar -0.0679 (2.43s)  subtract -0.1086 (3.83s)  zero point -0.0298 vs -0.0119 +/- 0.0092 (1.95s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0791 (2.81s)  subtract -0.1755 (6.15s)  zero point -0.0165 vs -0.0119 +/- 0.0092 (0.50s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0785 (2.79s)  subtract -0.1663 (5.83s)  zero point -0.0175 vs -0.0119 +/- 0.0092 (0.61s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0778 (2.77s)  subtract -0.1553 (5.45s)  zero point -0.0190 vs -0.0119 +/- 0.0092 (0.77s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0679 (2.43s)  subtract -0.1086 (3.83s)  zero point -0.0298 vs -0.0119 +/- 0.0092 (1.95s)
+   alt       r = 1.3 R_proj baryons r200     observed +0.0023 +/- 0.0289; members beyond the capped edge: 238/314
+      S1 MOND-sector switch, no cap                  scalar -0.0689 (2.46s)  subtract -0.1245 (4.39s)  zero point -0.0196 vs -0.0119 +/- 0.0092 (0.84s)
+      S2 capped, operator A, gap Dirichlet           scalar -0.0678 (2.42s)  subtract -0.1547 (5.43s)  zero point -0.0103 vs -0.0119 +/- 0.0092 (0.18s)
+      S3 capped, operator A, gap 1/m=0.2             scalar -0.0686 (2.45s)  subtract -0.1577 (5.53s)  zero point -0.0108 vs -0.0119 +/- 0.0092 (0.12s)
+      S4 capped, operator A, gap 1/m=0.5             scalar -0.0702 (2.51s)  subtract -0.1555 (5.46s)  zero point -0.0120 vs -0.0119 +/- 0.0092 (0.01s)
+      S5 capped, operator B (PM: all baryons in nu)  scalar -0.0689 (2.46s)  subtract -0.1245 (4.39s)  zero point -0.0196 vs -0.0119 +/- 0.0092 (0.84s)
+  [PASS] K1 THE CAP MOVES CLUSTER MEMBERS OUT OF THEIR CLUSTER'S MOND REGION: >= 10% of the 314 members lie beyond the capped edge (committed geometry, every f_b(R500), both footings) -- MUTATE (no cap) must fail this
+         measured: fraction beyond: 0.357-0.357
+  [PASS] (reported) N1 NO NEW FAILURE (pre-declared): every member beyond the cap keeps its disc switched on and its own MOND region out to at least R_HI, so none is Newtonian with its carrier cleared (every variant, both footings)
+         measured: none fail; min R_e/R_HI over all beyond-cap members and variants = 3.9; median R_e 100-172 kpc
+  [FAIL] (reported) V1 THE CAP RESCUES THE CLUSTER SLOPE (pre-declared): every operator-A variant < 3 sigma from the observed slope
+         measured: operator-A sigma range 2.18-6.63 (f_b x form x gap x geometry x extent x footing): scalar form 2.18-3.37 (uncapped 2.21-3.16), subtract form 4.56-6.63 (uncapped 3.52-4.91)
+  [FAIL] (reported) V2 THE CAP MAKES THE SLOPE WORSE (pre-declared): every operator-A variant sits further from the observed slope than the same variant uncapped (S1) -- members beyond the cap lose their deficit, the members inside keep it, and the predicted contrast between low and high external field grows
+         measured: change in sigma, capped - uncapped: -0.05 to +2.32
+  [PASS] (reported) V2b (reported, POST-HOC: written after V2 failed, to describe its exception) no operator-A variant moves toward the data by more than 0.1 sigma, and every subtract-form variant moves away by more than 0.5 sigma
+         measured: largest improvement 0.05 sigma (only in: alt/1.3 R_proj/0.1/r200, alt/1.3 R_proj/0.13/r200, alt/1.3 R_proj/0.157/r200, canonical/1.3 R_proj/0.1/r200, canonical/1.3 R_proj/0.13/r200, canonical/1.3 R_proj/0.157/r200); subtract-form change +0.94 to +2.32 sigma
+  [PASS] (reported) V3 (reported) THE ZERO POINT (members - field) UNDER THE CAP: operator-A sigma range against the uncapped range
+         measured: capped 0.01-2.17 sigma; uncapped (S1) 0.65-3.08 sigma
+    (the kernel's argument at the members stays below y = 0.50 < 2.337: nu_mono = nu_RAR there)
+
+======================================================================================================================
+PART B -- the Local Volume dwarfs (k_contrarian_dwarfefe, N = 92) under the candidate
+======================================================================================================================
+  canonical host baryons x1.0: MOND-sector edges MW 1.57 / M31 1.87 Mpc; max v_loc in the hosts' deep-MOND zones 194 / 230 km/s; switch margin x/thr at the dwarfs >= 1; dwarfs outside 0 -> predicted -0.1006 vs observed +0.0800 +/- 0.0467 (3.87 sigma)
+  canonical host baryons x1.5: MOND-sector edges MW 1.74 / M31 2.07 Mpc; max v_loc in the hosts' deep-MOND zones 214 / 255 km/s; switch margin x/thr at the dwarfs >= 2; dwarfs outside 0 -> predicted -0.1161 vs observed +0.0800 +/- 0.0467 (4.20 sigma)
+  canonical host baryons x2.0: MOND-sector edges MW 1.87 / M31 2.23 Mpc; max v_loc in the hosts' deep-MOND zones 230 / 274 km/s; switch margin x/thr at the dwarfs >= 2; dwarfs outside 0 -> predicted -0.1269 vs observed +0.0800 +/- 0.0467 (4.43 sigma)
+  alt       host baryons x1.0: MOND-sector edges MW 1.65 / M31 1.96 Mpc; max v_loc in the hosts' deep-MOND zones 203 / 241 km/s; switch margin x/thr at the dwarfs >= 1; dwarfs outside 0 -> predicted -0.1026 vs observed +0.0803 +/- 0.0469 (3.90 sigma)
+  alt       host baryons x1.5: MOND-sector edges MW 1.83 / M31 2.17 Mpc; max v_loc in the hosts' deep-MOND zones 224 / 267 km/s; switch margin x/thr at the dwarfs >= 2; dwarfs outside 0 -> predicted -0.1184 vs observed +0.0803 +/- 0.0469 (4.24 sigma)
+  alt       host baryons x2.0: MOND-sector edges MW 1.96 / M31 2.33 Mpc; max v_loc in the hosts' deep-MOND zones 241 / 287 km/s; switch margin x/thr at the dwarfs >= 2; dwarfs outside 0 -> predicted -0.1296 vs observed +0.0803 +/- 0.0469 (4.48 sigma)
+  [PASS] C2 CONTROL: XR4's committed dwarf numbers reproduced (statistic C; host baryons x1/x1.5/x2, with and without the 1.2 Mpc screen; both footings)
+         measured: max |diff| = 0.0e+00
+  [PASS] D1 THE CAP BINDS NOWHERE IN THE LOCAL GROUP'S HOST REGIONS: v_loc < v_cap in every host's deep-MOND zone (hosts x1-x2), and every dwarf's position is switched ON (x above the capped threshold) inside its host's MOND-sector region
+         measured: max v_loc (deep zone) 287 km/s vs 325; min x/threshold at the dwarfs 1.35; dwarfs outside their host's region: canonical/1.0: 0, canonical/1.5: 0, canonical/2.0: 0, alt/1.0: 0, alt/1.5: 0, alt/2.0: 0
+  [PASS] (reported) D2 THE DWARF LIABILITY STANDS under the candidate (pre-declared: every variant >= 3 sigma) -- the MOND-sector reading and the cap leave the in-region EFE of the MW and M31 baryons exactly as XR4 scored it
+         measured: sigma range 3.87-4.48
+  [PASS] (reported) D3 (reported) THE TWO EFE SAMPLES IN QUADRATURE (XR4's convention: cluster slope (+) dwarf statistic, independent samples)
+         measured: canonical: capped operator A 4.4-7.9 sigma, uncapped 4.5-6.5 sigma; alt: capped operator A 4.5-8.0 sigma, uncapped 4.5-6.6 sigma
+
+======================================================================================================================
+PART C -- the eleven Coma ultra-diffuse galaxies (L23's pipeline, rebuilt) under the candidate
+======================================================================================================================
+  [PASS] C3 CONTROL: L23's committed Coma numbers are reproduced -- +1.159 / +1.112 dex (beta-model, Einasto 3-D, closure-inverted field, isotropic coupling), systematic floor 0.227 dex, 4.9 / 4.7 sigma, DF44 alone +0.938 +- 0.139, first infall at 9 Mpc +0.635
+         measured: +1.1595 / +1.1121; floor 0.2271; 4.93 / 4.73 sigma; DF44 +0.9377 +- 0.1389; 9 Mpc +0.6350
+  Coma's MOND-sector region at z = 0.0231 (capped): edge 3.71-4.37 Mpc over 3 mass models x 3 f_b x 2 footings (uncapped: 16.3-30.5 Mpc); the UDGs' farthest position (projected or Einasto 3-D) 2.34 Mpc
+  [PASS] U1 ALL ELEVEN COMA UDGs LIE INSIDE COMA'S (CAPPED) MOND REGION -- at the projected and at the Einasto 3-D positions, for every Coma mass model, f_b and footing -- so under the candidate the EFE acts on them (case a)
+         measured: nearest edge 3.71 Mpc vs farthest UDG 2.34 Mpc
+  the external field in nu's argument, candidate (host baryons, Newtonian) / L23 (closure-inverted total field), per UDG: 0.50, 0.43, 0.28, 0.28, 0.28, 0.27, 0.26, 0.25, 0.34, 0.27, 0.34
+  arm                                                                      offset  sigma
+  L23 (committed): closure-inverted total field, beta-model, Einasto 3-D, canonical   +1.159   4.93
+  L23 (committed), alt                                                     +1.112   4.73
+  candidate (in-region baryons, f_b(R500) = 0.1), beta-model, Einasto 3-D, canonical   +0.950   4.20
+  candidate (in-region baryons, f_b(R500) = 0.1), beta-model, Einasto 3-D, alt   +0.916   4.05
+  candidate (in-region baryons, f_b(R500) = 0.13), beta-model, Einasto 3-D, canonical   +0.982   4.35
+  candidate (in-region baryons, f_b(R500) = 0.13), beta-model, Einasto 3-D, alt   +0.949   4.20
+  candidate (in-region baryons, f_b(R500) = 0.157), beta-model, Einasto 3-D, canonical   +1.006   4.45
+  candidate (in-region baryons, f_b(R500) = 0.157), beta-model, Einasto 3-D, alt   +0.973   4.30
+  candidate, canonical, f_b = 0.13, by mass model / position: h9 NFW (R200 2900 kpc)/dproj: +1.024; h9 NFW (R200 2900 kpc)/dmean: +0.936; NFW self-consistent (R200 2292 kpc)/dproj: +1.069; NFW self-consistent (R200 2292 kpc)/dmean: +0.973; Freundlich+2022 beta-model/dproj: +1.051; Freundlich+2022 beta-model/dmean: +0.982
+  candidate systematic budget (L23's entries recomputed on this arm): stellar M/L and IMF 0.146; sigma -> acceleration estimator 0.047; aperture + orbital anisotropy 0.120; instrumental (9 of 11) 0.052; Coma mass model + 3-D position 0.066; distance to Coma (+-5%) 0.021; a0 footing 0.034; f_b(R500) template 0.10-0.157 (new) 0.028  -> floor 0.218 dex (L23: 0.227)
+  candidate: DF44 alone +0.820 +- 0.139; the EFE term alone (offset minus isolated) +0.586 dex; isolated offset (no EFE at all) +0.396 / +0.358 dex = 1.75 sigma
+  the EFE term alone (the SEP violation itself; g_obs cancels): candidate +0.586 dex with its own floor 0.099 -> 5.0 sigma (L23: +0.763 dex, 6.0 sigma)
+  [FAIL] (reported) U2 THE UDG LIABILITY FLIPS under the candidate (pre-declared: the central arm -- beta-model, Einasto 3-D, f_b(R500) = 0.13 -- is < 3 sigma on both footings with the systematic floor recomputed on the candidate's arm)
+         measured: offset +0.982 / +0.949 dex = 4.35 / 4.20 sigma (L23: +1.159 / +1.112 = 4.93 / 4.73); over f_b and footing 4.05-4.45 sigma
+  first-infall radius 9 Mpc: beyond Coma's capped edge in 18/18 cases; canonical beta f_b 0.13 offsets by gap: Dirichlet: +0.396, 1/m=0.2: +0.396, 1/m=0.5: +0.397 (max transmitted fraction 9.1e-05); L23 at 9 Mpc +0.635, 2.7 sigma
+  [PASS] U3 THE CAP REMOVES COMA'S FIELD AT THE FIRST-INFALL RADIUS: 9 Mpc lies beyond Coma's capped edge for every mass model, f_b and footing, so a UDG observed there would be isolated -- MUTATE (no cap) must fail this
+         measured: 18/18 cases beyond the edge
+  [FAIL] (reported) U4 (reported, pre-declared bound 0.01 dex) Coma's retained carrier (L388: up to 0.85 of it kept in >= 2.5e14 hosts) inside a UDG's r_1/2 lowers the offset by < 0.01 dex: a 575-650 km/s kick leaves no UDG-bound carrier, and the cluster's smooth carrier is ~uniform across a UDG (its isotropic tidal compression, (4 pi/3) G rho_car r)
+         measured: largest shift 0.020 dex (at the Einasto 3-D radius, f_b floor 0.10), against the candidate's +0.982 dex offset
+  re-equilibration: at <= 3000 km/s a UDG needs >= 3.5-17.9 of its own dynamical times (r_1/2/sigma) to fall from Coma's capped edge (4.35 Mpc) to its Einasto 3-D radius -- a first-infall reading needs it to still carry its isolated dispersion after that
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  CLUSTER-INFALL BTFR (N = 314).  The capped MOND-sector edge sits at 3.53-3.72 Mpc for EVERY cluster (v_loc at the edge 822-1220 km/s).
+  112 of 314 members lie beyond it (committed geometry); each keeps its own region (>= 3.9 R_HI): no Newtonian member.
+  Canonical, f_b 0.13, committed geometry -- slope, scalar / subtract form: uncapped -0.0779 (2.66s) / -0.1135 (3.83s);
+  capped, Dirichlet gap -0.0902 (3.07s) / -0.1648 (5.52s); capped, 1/m = 0.5 -0.0879 (3.00s) / -0.1450 (4.87s).
+  Over every operator-A variant: slope 2.18-6.63 sigma (change vs uncapped -0.05 to +2.32); zero point 0.01-2.17 sigma
+  (uncapped 0.65-3.08).  The cap turns the external-field effect into a STEP at r_cap: members inside keep the
+  deficit, members beyond lose it, so the predicted slope steepens while the mean offset shrinks.  Operator B (the PM phantom,
+  all baryons in nu) screens nothing: its numbers are the uncapped ones.
+  LOCAL VOLUME DWARFS (N = 92): the cap binds nowhere in the MW/M31 regions; statistic C unchanged, 3.87-4.48 sigma.
+  EFE samples combined (quadrature, XR4's convention): canonical 4.4-7.9, alt 4.5-8.0 sigma capped (uncapped 4.5-6.5, 4.5-6.6).
+  COMA UDGs: inside Coma's capped region at every measured position; the candidate's EFE reads Coma's baryons only (L361), not
+  L23's closure-inverted total field (0.25-0.50 of it): +0.982 / +0.949 dex = 4.35 / 4.20 sigma (L23 +1.159 / +1.112 = 4.93 / 4.73);
+  the EFE term alone +0.586 dex, 5.0 sigma (L23 6.0).  At the first-infall radius (9 Mpc) the cap removes Coma's field
+  entirely (isolated, +0.396 dex, 1.8 sigma) -- a hypothesis about the sample, not a repair.
+
+  14/18 checks pass; load-bearing failures: 0; wrote XR6_efe_udg_under_candidate_results.json   [9s]

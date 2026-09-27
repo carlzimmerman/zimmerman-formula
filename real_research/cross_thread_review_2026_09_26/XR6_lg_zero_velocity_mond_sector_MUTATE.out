@@ -1,0 +1,92 @@
+XR6_lg_zero_velocity_mond_sector.py -- the Local Group's zero-velocity radius under the candidate the threads converged
+on (2026-09-26, evening): does the MOND-sector switch reading, with MS3's local cap, move the region edge that XR4 scored
+on the on-branch closed form, and can anything in the candidate bring R_0 to the measured 0.96 +- 0.03 Mpc?
+Independent cross-thread review.  New code; no committed script is run or edited (XR4's LG model is reimplemented line
+for line and checked against its committed JSON).
+
+THE MODEL: XR4's (k02's) point-mass + Lambda shell model (XR4_lg_zero_velocity_construction.py:60-137, integrate and
+run_cells, reproduced exactly), in which the phantom exists only inside the region edge r_e(z) and a shell beyond it feels
+the Newtonian gravity of baryons + carrier.  The ONE changed input is the edge:
+  'xr4'     r_e = v_f/(H sqrt(x_c,eff + 1.5 Om(z)))            XR4's on-branch edge (host in vacuum, matter subtracted; XR4:88)
+  'ms_abs'  r_e = v_f/(H sqrt(x_c,eff - 1.5 Om(z) f_b))        the candidate: L395's 'msc' reading (absolute; the ambient
+                                                                 baryons count in x, L395_two_switch_branches.py:22-25)
+  'ms_con'  r_e = v_f/(H sqrt(x_c,eff))                          MS2's contrast reading (= MS3's 'door' in the mean density)
+  'ms_num'  the capped switch itself (L395's form, v_cap = 325 km/s) solved on the point mass's MOND-sector profile with
+            nu_mono at each epoch and tabulated -- no closed form assumed.
+  x_c,eff = x_c0 [Omega_L0/Omega_L(z)]^p = x_c0 E^(2p); the candidate cell p = 1, x_c0 = 2.5; the DE2 window x_c0 = 2-2.97
+  reported beside it.  v_f = (G M_b a0)^(1/4): 195 / 204 km/s (M_b = 1.145e11) and 216 / 226 km/s (1.72e11) < v_cap, so the
+  cap cannot bind in the deep-MOND zone (v_loc = v_f there); checked, not assumed (S1).
+MEASURED: 0.96 +- 0.03 Mpc (as the repo quotes it); PRE-DECLARED band |log10(R_0/0.96)| <= 0.10 (XR4's).
+
+  *** MUTATE=1: the candidate's reading is replaced by XR4's on-branch edge and the cap removed; S2 must FAIL ***
+
+======================================================================================================================
+C1-C2  CONTROLS: k02's isolated R_0, the Newtonian inversion, and XR4's 204 committed cells with XR4's edge
+======================================================================================================================
+  [PASS] C1 CONTROL: k02's isolated-MOND R_0 = 1.929 / 2.021 Mpc and the Newtonian 3.178e12 Msun inversion 1.176 Mpc are reproduced (XR4's C1, C2)
+         measured: 1.9290 / 2.0214 / 1.1758 Mpc (XR4: 1.9290 / 2.0214 / 1.1758)
+  [PASS] C2 CONTROL: every one of XR4's 204 committed cells and 19 mutation cells is reproduced with XR4's on-branch edge
+         measured: max relative difference 0.0e+00 (cells), 0.0e+00 (mutations)
+  [PASS] C3 CONTROL: converged in the step count (n = 2000 vs 4000, 0.3%)
+         measured: 1.92900 vs 1.92900
+
+======================================================================================================================
+S1-S2  THE CANDIDATE'S SWITCH ON THE LOCAL GROUP: does the cap bind, and where does the MOND-sector reading put the edge?
+======================================================================================================================
+  canonical M_b 1.145e+11 (v_f 194 km/s): z=0: capped 1.852 | uncapped 1.852 | ms_abs 1.850 | xr4 1.672 Mpc; z=0.5: capped 1.063 | uncapped 1.063 | ms_abs 1.062 | xr4 0.950 Mpc; z=1: capped 0.577 | uncapped 0.577 | ms_abs 0.577 | xr4 0.533 Mpc
+  canonical M_b 1.718e+11 (v_f 215 km/s): z=0: capped 2.050 | uncapped 2.050 | ms_abs 2.047 | xr4 1.850 Mpc; z=0.5: capped 1.177 | uncapped 1.177 | ms_abs 1.176 | xr4 1.052 Mpc; z=1: capped 0.639 | uncapped 0.639 | ms_abs 0.639 | xr4 0.590 Mpc
+  alt       M_b 1.145e+11 (v_f 204 km/s): z=0: capped 1.939 | uncapped 1.939 | ms_abs 1.939 | xr4 1.753 Mpc; z=0.5: capped 1.113 | uncapped 1.113 | ms_abs 1.114 | xr4 0.996 Mpc; z=1: capped 0.606 | uncapped 0.606 | ms_abs 0.605 | xr4 0.558 Mpc
+  alt       M_b 1.718e+11 (v_f 225 km/s): z=0: capped 2.145 | uncapped 2.145 | ms_abs 2.146 | xr4 1.940 Mpc; z=0.5: capped 1.232 | uncapped 1.232 | ms_abs 1.232 | xr4 1.102 Mpc; z=1: capped 0.670 | uncapped 0.670 | ms_abs 0.670 | xr4 0.618 Mpc
+  [PASS] S1a THE CAP DOES NOT BIND IN THE LG's MOND ZONE: v_loc < v_cap wherever y < 0.1 inside the region (every epoch z = 0-5, both M_b, both footings), and the capped and uncapped edge tables agree at every epoch whose edge lies in the MOND regime (y_edge < 1)
+         measured: max v_loc (deep zone) 264 km/s; tables agree in the MOND regime: True; the cap binds only at z >= canonical 6.7, alt 7.0 (edge inside the point mass's Newtonian zone, phantom-free)
+  [PASS] S1b THE CAP DOES NOT MOVE R_0: R_0 on the capped numerical edge table equals R_0 on the uncapped table to 0.1%, and equals R_0 on the ms_abs closed form to 1% (candidate cell, M_b = 1.145e11, no carrier, both footings)
+         measured: capped/uncapped - 1 = 0.0e+00; numerical/closed - 1 = 4.7e-04 (1.4132 / 1.4132 / 1.4132 Mpc canonical)
+  [FAIL] (reported) S1c (reported) the closed form r_e = v_f/(H sqrt(x_c,eff - 1.5 Om f_b)) against the numerical uncapped edge for z <= 5 (the closed form is deep-MOND; its first formulation demanded 1%)
+         measured: worst 0.0115
+  [FAIL] S2 THE MOND-SECTOR READING MOVES THE LG's EDGE OUTWARD: r_e(run's reading)/r_e(xr4) > 1 at every epoch -- the switch no longer subtracts the matter background (XR4's vacuum branch), it reads baryons + phantom and counts the ambient baryons -- MUTATE (XR4's reading) must fail this
+         measured: edge ratio 1.0000-1.0000 over z = 0-5 (z = 0: 1.0000); ms_abs/xr4 itself 1.0050-1.1178
+
+======================================================================================================================
+Z1-Z3  R_0 ON THE MOND-SECTOR READING (the candidate cell p = 1, x_c0 = 2.5; the DE2 window beside it)
+======================================================================================================================
+  R_0 [Mpc] at p = 1 (x_c0 = 2.0 / 2.5 / 2.97); measured 0.96, band [0.76, 1.21]; XR4's on-branch edge beside it
+  canonical M_b 1.14e+11 none  | MOND-sector (abs) 1.398 / 1.334 / 1.281 | contrast 1.398 / 1.334 / 1.281 | XR4 1.398 / 1.334 / 1.281 | candidate cell +0.143 dex (XR4 +0.143)
+  canonical M_b 1.14e+11 decay | MOND-sector (abs) 1.423 / 1.357 / 1.301 | contrast 1.423 / 1.357 / 1.301 | XR4 1.423 / 1.357 / 1.301 | candidate cell +0.150 dex (XR4 +0.150)
+  canonical M_b 1.14e+11 full  | MOND-sector (abs) 1.437 / 1.371 / 1.315 | contrast 1.437 / 1.371 / 1.315 | XR4 1.437 / 1.371 / 1.315 | candidate cell +0.155 dex (XR4 +0.155)
+  canonical M_b 1.72e+11 none  | MOND-sector (abs) 1.548 / 1.477 / 1.418 | contrast 1.548 / 1.477 / 1.418 | XR4 1.548 / 1.477 / 1.418 | candidate cell +0.187 dex (XR4 +0.187)
+  canonical M_b 1.72e+11 decay | MOND-sector (abs) 1.578 / 1.505 / 1.443 | contrast 1.578 / 1.505 / 1.443 | XR4 1.578 / 1.505 / 1.443 | candidate cell +0.195 dex (XR4 +0.195)
+  canonical M_b 1.72e+11 full  | MOND-sector (abs) 1.596 / 1.522 / 1.459 | contrast 1.596 / 1.522 / 1.459 | XR4 1.596 / 1.522 / 1.459 | candidate cell +0.200 dex (XR4 +0.200)
+  alt       M_b 1.14e+11 none  | MOND-sector (abs) 1.464 / 1.398 / 1.342 | contrast 1.464 / 1.398 / 1.342 | XR4 1.464 / 1.398 / 1.342 | candidate cell +0.163 dex (XR4 +0.163)
+  alt       M_b 1.14e+11 decay | MOND-sector (abs) 1.487 / 1.419 / 1.361 | contrast 1.487 / 1.419 / 1.361 | XR4 1.487 / 1.419 / 1.361 | candidate cell +0.170 dex (XR4 +0.170)
+  alt       M_b 1.14e+11 full  | MOND-sector (abs) 1.501 / 1.432 / 1.373 | contrast 1.501 / 1.432 / 1.373 | XR4 1.501 / 1.432 / 1.373 | candidate cell +0.174 dex (XR4 +0.174)
+  alt       M_b 1.72e+11 none  | MOND-sector (abs) 1.621 / 1.548 / 1.485 | contrast 1.621 / 1.548 / 1.485 | XR4 1.621 / 1.548 / 1.485 | candidate cell +0.207 dex (XR4 +0.207)
+  alt       M_b 1.72e+11 decay | MOND-sector (abs) 1.649 / 1.573 / 1.509 | contrast 1.649 / 1.573 / 1.509 | XR4 1.649 / 1.573 / 1.509 | candidate cell +0.214 dex (XR4 +0.214)
+  alt       M_b 1.72e+11 full  | MOND-sector (abs) 1.666 / 1.589 / 1.523 | contrast 1.666 / 1.589 / 1.523 | XR4 1.666 / 1.589 / 1.523 | candidate cell +0.219 dex (XR4 +0.219)
+  [PASS] (reported) Z1 (reported) R_0 at the candidate cell on the candidate's reading, over M_b = 1.145-1.72e11, three carrier histories, both footings
+         measured: +0.143 to +0.219 dex from 0.96 (1.33-1.59 Mpc); XR4 at the same cell +0.143 to +0.219 dex
+  [FAIL] (reported) Z2 THE LG LIABILITY FLIPS (pre-declared): some M_b and carrier history lands inside +-0.10 dex on BOTH footings at the candidate cell
+         measured: best |dex| 0.143
+  [FAIL] (reported) Z3 THE MOND-SECTOR READING MAKES THE LG WORSE (pre-declared): R_0 on the candidate's reading exceeds R_0 on XR4's edge for every M_b, carrier and footing at the candidate cell
+         measured: shift +0.0000 to +0.0000 dex
+
+======================================================================================================================
+E1  THE PINCER: which external field would bring R_0 to 0.96, and who could supply it
+======================================================================================================================
+  canonical: e_N needed for R_0 = 0.96 at the candidate cell: 1.75e-03 a0.  R_0 at the largest KiDS-passing transmitted field (1.0e-04 a0): 1.238 Mpc; at a merged neighbour's baryons (1.7e-05 a0): 1.312; at operator B's web field (2.1e-03 a0, KiDS +233): 0.942 Mpc
+  alt      : e_N needed for R_0 = 0.96 at the candidate cell: 1.91e-03 a0.  R_0 at the largest KiDS-passing transmitted field (8.6e-05 a0): 1.289 Mpc; at a merged neighbour's baryons (1.4e-05 a0): 1.372; at operator B's web field (1.7e-03 a0, KiDS +233): 0.974 Mpc
+  [PASS] (reported) E1 (reported) THE PINCER: the external field the LG needs at the candidate cell exceeds by > 10x both what a KiDS-passing region kernel can transmit (L361 R3, 1/m = 0.5) and what a merged neighbour group's baryons supply; only the unscreened web field of operator B (which fails KiDS by +233) is of the needed size
+         measured: canonical: needed 1.7e-03 vs KiDS-max 1.0e-04, neighbour 1.7e-05, web(B) 2.1e-03 a0; alt: needed 1.9e-03 vs KiDS-max 8.6e-05, neighbour 1.4e-05, web(B) 1.7e-03 a0
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  The Local Group's own v_f (195-226 km/s) is below v_cap, so MS3's local cap does not bind in its MOND zone (S1a: it acts only
+  at z >~ 7, inside the point mass's phantom-free Newtonian zone) and moves R_0 by 0e+00 (S1b).
+  What changes is the READING: the MOND-sector switch counts baryons + phantom (and the ambient baryons) instead of
+  subtracting the full matter background, so the edge moves OUT by a factor 1.000-1.000 (S2), and R_0 rises:
+  candidate cell, M_b = 1.145e11, no carrier: 1.334 / 1.398 Mpc (canonical / alt) against XR4's
+  1.334 / 1.398 and the measured 0.96 -> +0.143 / +0.163 dex.
+  The external field that would rescue it (~2e-03 a0) is ~17x what a KiDS-passing kernel lets through: the LG and
+  KiDS pull the screening in opposite directions.
+
+  7/11 checks pass; load-bearing failures: 1; wrote XR6_lg_zero_velocity_mond_sector_results_MUTATE.json   [33s]

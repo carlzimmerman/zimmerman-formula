@@ -1,14 +1,15 @@
 # STANDING
 
-**Acceleration-triggered carrier — 2026-09-26, AT1–AT3.**
+**Acceleration-triggered carrier — 2026-09-26, AT1–AT4.**
 [The lanes](real_research/acceleration_trigger_2026/README.md) build a carrier that converts where the MOND
 kernel's own argument, the baryonic acceleration, exceeds a threshold. It is the first carrier on the record to
 keep the flat-a₀ flagship at every redshift from 0.5 to 2.5 (within 0.074 dex), and it selects massive hosts
-with no resolution scale. On the forest's own flux its high-z clearing costs at most 1.7% (AT2). L319's matter
-proxy, which charges any such clearing T² ≤ 0.84, is the wrong yardstick for it. With L372's uniform mode it
-passes every gate on the record except cosmic shear, on the alternative set, at the common kernel cell
-p = 1, x_c0 = 2.5 (AT3). Cosmic shear blocks it at 1.54–1.58 against 1.2. A faster kick buys cosmic shear and
-costs Harvey; the next door is an intermediate kick with a switch cell near the window's top. It is a
+with no resolution scale. Its high-z clearing costs at most 1.7% of the forest's own flux (AT2). L319's matter
+proxy is the wrong yardstick for it. With L372's uniform mode it passes every gate on the record except cosmic
+shear, on the alternative set, at the common kernel cell p = 1, x_c0 = 2.5 (AT3). On the resolution-free halo
+model (MS3's machinery, AT4) cosmic shear fails at every KiDS-safe region cap for every kick Harvey allows (best
+1.26 against 1.2), so the mock-based corner rescue does not survive. Cosmic shear needs groups and clusters
+cleared (MS3). This trigger's slow kicks leave them, and a fast kick hollows group cores (Harvey). It is a
 construction; the carrier's mass is still required.
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**

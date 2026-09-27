@@ -1,0 +1,211 @@
+XR7 -- ONE NUMBER FOR THE KICK AND THE CAP?  The carrier's retention transition against MS3's MOND-region cap.
+
+THE CLAIM UNDER TEST (a parallel session's synthesis, 2026-09-26; not committed anywhere): the carrier converts at shell
+crossing with a kick v_k ~ 600 km/s (L388's pooled window 575-650 km/s); every system whose escape speed is below what the
+kick needs to unbind the daughters loses its carrier, deeper wells keep most of it; cosmic shear scored resolution-free
+(MS3 K1) needs MOND regions capped at ~1.75 Mpc at z = 0.5, v_cap ~ 325 km/s (M_b ~ 9e11 Msun via v^4 = G M a0); the cap,
+~250-325 km/s, is about half the kick speed and EQUALS the escape speed of the systems the kick empties, so one number
+would set both.
+
+REVIEWED (read-only; nothing is imported or executed from them, and no simulation is run):
+  real_research/dark_sector_2026/L388_linear_gate_pooled_results.json            per-halo retention, p = 1, x_c0 = 2.5
+  real_research/dark_sector_2026/L380_pooled_window_fixed_cell_clearing_results.json   the same at p = 2, x_c0 = 2
+  real_research/dark_sector_2026/L366_triggered_carrier_cluster_retention_results.json Newtonian, one box, 550-850 km/s
+  real_research/dark_sector_2026/L375_..._results.json, L376_..._results.json (+ their host constants, read as text)
+  real_research/dark_sector_2026/L321_carrier_z0_retention_gate.py (its unbinding criterion, read as text; L371's S2 shape)
+  real_research/mond_sector_gate_2026/MS3_cosmic_shear_bound_mond_sector_results.json    K1 rows, K1_design, U1
+  real_research/generated_phantom_2026/GP0_bound_baryon_census.py  (M_bound 'observed', re-implemented, checked on MS3 U1)
+  fable_independent_2026/lean_2026/I27_kick_escape.lean  (kick_unbinds' hypothesis, read as text)
+
+WHAT IS COMPUTED
+  T  THE RETENTION TRANSITION in L388's per-halo data (40 peaks x 3 boxes; eps = carrier mass within 1 Mpc/h over LCDM's,
+     z = 0, M = LCDM mass within 1 Mpc/h in Msun/h): the mass where the retention crosses 50% and the X-COP floor
+     (canonical 0.286, alt 0.220: L354's rows via L366's eps_bounds), for each kick 575-650 km/s.  Three estimators: the
+     lanes' own binned medians (L371's bins, as L388 and MS3 use them), a 3-parameter logistic in ln v_c, and isotonic
+     regression; a halo bootstrap (1000) and per-box values.  Halos below 6e13 (two peaks) are outside L371's bins and are
+     reported, not fitted.  L380 (the p = 2 cell) is scored separately (cells are never pooled); L366 gives the kick
+     scaling over 550-850 km/s (Newtonian, one box, same peaks as L388's box 7).
+  V  EACH CROSSING AS VELOCITIES, in the lanes' conventions: v_c = sqrt(G M/R) at R = 1 Mpc/h (model-free; the mesh's
+     81-cell sphere, R_eff = 1.048 Mpc/h, as a systematic); NFW with Dutton-Maccio 2014 c(M) (L321/L375/MS3), M200c, v200,
+     v_max; escape speeds with Phi(inf) = 0 (I27's definition) and with Phi(2 r200) (L371-S3's marginally-bound
+     reference) at 1 Mpc/h, r200, the trigger radius (NFW density = rho_bar + (10/3) rho_c, i.e. x~ = 5, I27's
+     self_limiting_trigger) and the centre; the baryons' deep-MOND flat speed (G M_b a0)^(1/4) -- v_cap's own velocity
+     type -- for cosmic f_b and GP0's observed bound baryons, both footings.
+  K  THE KICK PHYSICS: the exact isotropic-kick unbound fraction; what I27's v_k > |v_o| + v_esc is; three orbit classes;
+     and an idealised STATIC single-halo model (NFW, isotropic Jeans, all carrier inside r200 decays at once in the
+     pre-decay potential, no assembly) -- the picture in which "half the kick" appears.
+  G  THE EMPTIED END: L375's decayed-daughter retention around the KiDS hosts and L376's emptied interiors, with host v200.
+  S  MS3's OWN K1 ROWS as the one-number test: its committed 'cleared<1e13' scenario is a retention step at M200 = 1e13
+     Msun, v200(z = 0.5) = 337 km/s -- a transition AT the cap scale.
+
+  *** MUTATE=1: the retention-mass pairing is scrambled after C1 -- T0 must FAIL ***
+
+====================================================================================================================
+C1  CONTROL: the committed retention numbers, reproduced EXACTLY from the per-halo lists
+====================================================================================================================
+    L388: 32 committed medians, max |diff| = 0.0e+00, count mismatches 0;  e.g. pooled v600 X-COP median 0.5260238895580642 (n = 71)
+    L380: 32 committed medians, max |diff| = 0.0e+00, count mismatches 0
+    L366: 5 cluster medians, max |diff| = 0.0e+00;  L366's 40 peaks are L388's box-7 peaks (max |dM| = 0.0e+00)
+  [PASS] C1 CONTROL: L388/L380 pooled + per-box X-COP medians and counts, L371-bin medians and counts, and L366's cluster medians reproduced EXACTLY from the per-halo lists
+         measured: L388 32 numbers max |diff| 0.0e+00; L380 32 numbers 0.0e+00; L366 0.0e+00; count mismatches 0
+
+====================================================================================================================
+C2  CONTROL: MS3's cap in velocity and baryonic mass, and GP0's bound baryons, reproduced
+====================================================================================================================
+    H(0.5) = 88.9868 km/s/Mpc, x_lin = 4.363022; r_cap = 1.75 Mpc -> v_cap = 325.2801 km/s (MS3 325.2801); M_b,cap canonical 9.0083e+11 (MS3 9.0083e+11), alt 7.4772e+11 Msun
+    KiDS lenses' v_f canonical / alt: M_b 3e+10: 139.0 / 145.6, M_b 1e+11: 187.8 / 196.7, M_b 3e+11: 247.1 / 258.9 km/s
+    GP0 observed bound baryons at z = 0.5 (MS3 U1): 1e12.0: 4.7444e+10 (MS3 4.7444e+10), 1e13.0: 5.0025e+11 (MS3 5.0025e+11), 1e14.0: 8.6341e+12 (MS3 8.6341e+12)
+  [PASS] C2 CONTROL: MS3's v_cap, M_b,cap and KiDS v_f reproduced from r_cap, H(0.5), x_lin, a0; GP0's observed bound baryons re-implemented and reproduced on MS3's U1
+         measured: v_cap rel. diff 0.0e+00, M_b,cap 0.0e+00, KiDS v_f 0.0e+00, M_bound 0.0e+00
+    MS3 K1, L388 retention: largest passing grid cap 1.75 Mpc (325 km/s); interpolated R = 1.2 edge canonical 1.944 / alt 1.833 Mpc (361 / 341 km/s)
+    MS3 K1, intact        : largest passing grid cap 1.00 Mpc (186 km/s); interpolated R = 1.2 edge canonical 1.082 / alt 1.033 Mpc (201 / 192 km/s)
+    MS3 K1, cleared<1e13  : largest passing grid cap 1.00 Mpc (186 km/s); interpolated R = 1.2 edge canonical 1.164 / alt 1.106 Mpc (216 / 206 km/s)
+    THE CAP BAND: 247 km/s (largest KiDS lens v_f, canonical; alt 259) to 325 (MS3's grid) / 341 (alt-limited interpolated edge) / 361 km/s (canonical edge)
+
+====================================================================================================================
+C3  CONTROL: the isotropic-kick unbound fraction, and what I27's hypothesis is
+====================================================================================================================
+    I27 kick_unbinds hypothesis (read from the Lean file): vk > ‖vo‖ + vesc;  L321's retained() (L371's S2 shape) counts a daughter as kept iff E < 0 in the post-decay potential
+  [PASS] C3 CONTROL: the closed form f = clip(((v_o + v_k)^2 - v_esc^2)/(4 v_o v_k), 0, 1) matches a Monte Carlo over kick directions, and I27's v_k > |v_o| + v_esc is exactly its f = 1 edge (every direction unbinds)
+         measured: max |closed form - MC| = 0.0011 (4e5 directions); f = 1 <=> v_k >= v_o + v_esc on 64000 bound grid points: True
+
+====================================================================================================================
+T  THE RETENTION TRANSITION in L388's per-halo data (and L380's cell, L366's kick scaling)
+====================================================================================================================
+    L388: 120 peaks, 118 at M(<1 Mpc/h) >= 6e13 Msun/h (fitted); below 6e13 (outside L371's bins, not fitted): box 7 M 3.54e+13, v_c 390 km/s, eps 0.95/0.91/0.89/0.87; box 17 M 3.74e+13, v_c 401 km/s, eps 0.70/0.64/0.61/0.53
+    the mesh sphere: 81 cells of 0.3906 Mpc/h -> R_eff = 1.0485 Mpc/h (v_c lower by 2.3%)
+
+    v575: Spearman rho(log M, eps) = -0.042 (p = 6.5e-01; permutation p = 6.7e-01, null max +0.320); L371-bin medians 1e13.94: 0.513 (n=47), 1e14.06: 0.538 (n=38), 1e14.24: 0.449 (n=26), 1e14.51: 0.420 (n=7); logistic A 0.74, log10 M_h 12.00, width 3.00 dex
+      50% retention                v_c(1 Mpc/h), km/s: binned 573~ [68% 590-1478; 95% 531-1478; 59% censored] | logistic 849 [68% 582-1342; 95% 531-1478; 24% censored] | isotonic 784 [68% 640-893; 95% 582-1478; 10% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/574; box 17: <545/>1227/1009; box 29: 702/692/705
+      X-COP floor canonical (0.286) v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 93% censored] | logistic <531 [68% 531-531; 95% 531-535; 97% censored] | isotonic <531 [68% 1478-1478; 95% 546-1478; 84% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/583; box 29: 644/604/616
+      X-COP floor alt (0.220)      v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 96% censored] | logistic <531 [68% 531-531; 95% 531-531; 98% censored] | isotonic <531 [68% 1478-1478; 95% 547-1478; 90% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/563; box 29: 627~/586/603
+      (~ = binned value extrapolated past the lowest/highest bin centre but inside the data; <x / >x = outside the data, censored at its edge in every interval)
+
+    v600: Spearman rho(log M, eps) = -0.044 (p = 6.4e-01; permutation p = 6.9e-01, null max +0.310); L371-bin medians 1e13.94: 0.435 (n=47), 1e14.06: 0.427 (n=38), 1e14.24: 0.386 (n=26), 1e14.51: 0.326 (n=7); logistic A 0.65, log10 M_h 12.00, width 3.00 dex
+      50% retention                v_c(1 Mpc/h), km/s: binned >1478 [68% 1198-1478; 95% 748-1478; 81% censored] | logistic >1478 [68% 1424-1478; 95% 838-1478; 83% censored] | isotonic 1218 [68% 857-1478; 95% 760-1478; 32% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/>1478/1076; box 17: >1227/>1227/>1227; box 29: >1097/>1097/796
+      X-COP floor canonical (0.286) v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 86% censored] | logistic <531 [68% 531-531; 95% 531-547; 94% censored] | isotonic <531 [68% 560-1478; 95% 545-1478; 67% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/598; box 29: 656/616/624
+      X-COP floor alt (0.220)      v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 93% censored] | logistic <531 [68% 531-531; 95% 531-531; 98% censored] | isotonic <531 [68% 1478-1478; 95% 546-1478; 85% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/576; box 29: 638~/594/611
+      (~ = binned value extrapolated past the lowest/highest bin centre but inside the data; <x / >x = outside the data, censored at its edge in every interval)
+
+    v625: Spearman rho(log M, eps) = -0.050 (p = 5.9e-01; permutation p = 7.0e-01, null max +0.286); L371-bin medians 1e13.94: 0.348 (n=47), 1e14.06: 0.344 (n=38), 1e14.24: 0.310 (n=26), 1e14.51: 0.250 (n=7); logistic A 0.56, log10 M_h 12.00, width 3.00 dex
+      50% retention                v_c(1 Mpc/h), km/s: binned >1478 [68% 1478-1478; 95% 952-1478; 86% censored] | logistic >1478 [68% 1478-1478; 95% 1071-1478; 92% censored] | isotonic >1478 [68% 1009-1478; 95% 851-1478; 54% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/>1478/>1478; box 17: >1227/>1227/>1227; box 29: >1097/>1097/>1097
+      X-COP floor canonical (0.286) v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 78% censored] | logistic <531 [68% 531-531; 95% 531-570; 90% censored] | isotonic <531 [68% 566-1478; 95% 548-1478; 48% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/567; box 29: 681/639/635
+      X-COP floor alt (0.220)      v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 88% censored] | logistic <531 [68% 531-531; 95% 531-544; 96% censored] | isotonic <531 [68% 565-1478; 95% 541-1478; 76% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/560; box 29: 657/610/619
+      (~ = binned value extrapolated past the lowest/highest bin centre but inside the data; <x / >x = outside the data, censored at its edge in every interval)
+
+    v650: Spearman rho(log M, eps) = -0.056 (p = 5.5e-01; permutation p = 7.3e-01, null max +0.245); L371-bin medians 1e13.94: 0.262 (n=47), 1e14.06: 0.270 (n=38), 1e14.24: 0.230 (n=26), 1e14.51: 0.204 (n=7); logistic A 0.48, log10 M_h 12.00, width 3.00 dex
+      50% retention                v_c(1 Mpc/h), km/s: binned >1478 [68% 1478-1478; 95% 1059-1478; 90% censored] | logistic >1478 [68% 1478-1478; 95% 1478-1478; 99% censored] | isotonic >1478 [68% 1478-1478; 95% 991-1478; 88% censored]
+                                   per box (binned/logistic/isotonic): box 7: >1478/>1478/>1478; box 17: >1227/>1227/>1227; box 29: >1097/>1097/>1097
+      X-COP floor canonical (0.286) v_c(1 Mpc/h), km/s: binned >1478 [68% 696-1478; 95% 638-1478; 55% censored] | logistic <531 [68% 531-581; 95% 531-928; 75% censored] | isotonic 593 [68% 582-1478; 95% 557-1478; 18% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: >1227/<545/634; box 29: 707/664/705
+      X-COP floor alt (0.220)      v_c(1 Mpc/h), km/s: binned <531 [68% 531-1478; 95% 531-1478; 74% censored] | logistic <531 [68% 531-531; 95% 531-553; 94% censored] | isotonic <531 [68% 565-1478; 95% 549-1478; 60% censored]
+                                   per box (binned/logistic/isotonic): box 7: <531/<531/<531; box 17: <545/<545/603; box 29: 677/626/639
+      (~ = binned value extrapolated past the lowest/highest bin centre but inside the data; <x / >x = outside the data, censored at its edge in every interval)
+
+    SENSITIVITY, all 120 peaks (the two sub-6e13 peaks included), logistic 50% crossing v_c(1 Mpc/h): v575: 751; v600: above data; v625: above data; v650: none
+  [FAIL] T0 THE TRANSITION EXISTS: for every L388 kick the >= 6e13 retention rises with mass (Spearman rho > 0, p < 1e-3), the L371-bin medians cross 50% inside the bins, and the logistic 50% point lies inside the data
+         measured: v575: rho -0.04 p 6e-01, binned extrap, logistic in; v600: rho -0.04 p 6e-01, binned above data, logistic above data; v625: rho -0.05 p 6e-01, binned above data, logistic above data; v650: rho -0.06 p 5e-01, binned above data, logistic none
+         reading:  the committed retention has a mass transition to locate; a scrambled pairing has none
+
+    L380 (p = 2, x_c0 = 2 cell, pooled 3 boxes): 50% retention at v_c(1 Mpc/h), binned/logistic/isotonic: v600: >1478/>1478/1384; v625: >1478/>1478/>1478; v650: >1478/>1478/>1478; v675: >1478/>1478/>1478
+
+    L380 (p = 2, x_c0 = 2 cell, pooled 3 boxes): X-COP floor canonical (0.286) at v_c(1 Mpc/h), binned/logistic/isotonic: v600: <531/<531/<531; v625: <531/<531/<531; v650: >1478/<531/604; v675: >1478/1103/762
+
+    L366 (Newtonian, box 7 only): 50% retention at v_c(1 Mpc/h), binned/logistic/isotonic: v550: <531/<531/551; v600: >1478/>1478/>1478; v650: >1478/>1478/>1478; v700: >1478/>1478/>1478; v850: >1478/>1478/>1478
+
+    L366 (Newtonian, box 7 only): X-COP floor canonical (0.286) at v_c(1 Mpc/h), binned/logistic/isotonic: v550: <531/<531/<531; v600: <531/<531/<531; v650: <531/606/>1478; v700: >1478/>1478/>1478; v850: >1478/>1478/>1478
+
+    KICK SCALING of the 50% crossing, v_c,50 ~ v_k^alpha (crossings inside the data only): L388: binned nan (n=1), logistic nan (n=1), isotonic 10.36 (n=2); L380: binned nan (n=0), logistic nan (n=0), isotonic nan (n=1); L366: binned nan (n=0), logistic nan (n=0), isotonic nan (n=1)
+
+====================================================================================================================
+V  THE CROSSINGS AS VELOCITIES (lanes' conventions, z = 0) AGAINST THE CAP AND THE KICK
+====================================================================================================================
+    conventions: v_c at 1 Mpc/h and at the mesh sphere's R_eff; NFW (Dutton-Maccio 2014, M200c) v200, v_max; baryons' deep-MOND flat speed (G M_b a0)^1/4 with cosmic f_b (PM) or GP0's observed bound baryons; escape speeds Phi(inf) = 0 / Phi(2 r200)
+
+    v575  (v_k/2 = 288 km/s)
+      50% retention (binned, extrap): M(<1 Mpc/h) 7.63e+13 Msun/h -> M200 8.35e+13 Msun, c 5.35, r_trig 2.51 r200
+        circular: v_c_1Mpc_h 573, v_c_Reff 559, v200 623, v_max 668, v_f_cosmic_canonical 635, v_f_cosmic_alt 666, v_f_observed_canonical 542, v_f_observed_alt 568  [x v_cap: 1.76 (v_c), 1.92 (v200), 1.67-2.05 (v_f)]
+        escape:   vesc_inf_1Mpc_h 1043, vesc_inf_r200 1195, vesc_inf_r_trig 907, vesc_inf_centre 2032, vesc_2r200_1Mpc_h 371, vesc_2r200_r200 691, vesc_2r200_centre 1783  [x v_k/2: 3.6 at 1 Mpc/h, 3.2 at r_trig; Phi(2 r200) at 1 Mpc/h 1.3]
+        baryons: cosmic 1.31e+13, observed bound 6.95e+12 Msun = x8 (canonical) / x9 (alt) M_b,cap
+        estimator spread v_c(1 Mpc/h) 573-849; lowest plausible (bootstrap 2.5% / in-data per-box minimum, = the data edge): v_c 531, v200 585, v_max 630, v_f 513 km/s
+      X-COP floor canonical (0.286): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+      X-COP floor alt (0.220): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+
+    v600  (v_k/2 = 300 km/s)
+      50% retention (isotonic, in): M(<1 Mpc/h) 3.45e+14 Msun/h -> M200 5.90e+14 Msun, c 4.39, r_trig 2.61 r200
+        circular: v_c_1Mpc_h 1218, v_c_Reff 1190, v200 1195, v_max 1249, v_f_cosmic_canonical 1036, v_f_cosmic_alt 1085, v_f_observed_canonical 975, v_f_observed_alt 1021  [x v_cap: 3.74 (v_c), 3.68 (v200), 3.00-3.34 (v_f)]
+        escape:   vesc_inf_1Mpc_h 2461, vesc_inf_r200 2352, vesc_inf_r_trig 1782, vesc_inf_centre 3798, vesc_2r200_1Mpc_h 1520, vesc_2r200_r200 1337, vesc_2r200_centre 3267  [x v_k/2: 8.2 at 1 Mpc/h, 5.9 at r_trig; Phi(2 r200) at 1 Mpc/h 5.1]
+        baryons: cosmic 9.27e+13, observed bound 7.27e+13 Msun = x81 (canonical) / x97 (alt) M_b,cap
+        estimator spread v_c(1 Mpc/h) 1218-1218; lowest plausible (bootstrap 2.5% / in-data per-box minimum): v_c 748, v200 777, v_max 826, v_f 662 km/s
+      X-COP floor canonical (0.286): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+      X-COP floor alt (0.220): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+
+    v625  (v_k/2 = 312 km/s)
+      50% retention: NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+      X-COP floor canonical (0.286): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+      X-COP floor alt (0.220): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+
+    v650  (v_k/2 = 325 km/s)
+      50% retention: NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+      X-COP floor canonical (0.286) (isotonic, in): M(<1 Mpc/h) 8.17e+13 Msun/h -> M200 9.08e+13 Msun, c 5.30, r_trig 2.51 r200
+        circular: v_c_1Mpc_h 593, v_c_Reff 579, v200 641, v_max 686, v_f_cosmic_canonical 649, v_f_cosmic_alt 680, v_f_observed_canonical 556, v_f_observed_alt 582  [x v_cap: 1.82 (v_c), 1.97 (v200), 1.71-2.09 (v_f)]
+        escape:   vesc_inf_1Mpc_h 1083, vesc_inf_r200 1230, vesc_inf_r_trig 933, vesc_inf_centre 2087, vesc_2r200_1Mpc_h 407, vesc_2r200_r200 711, vesc_2r200_centre 1830  [x v_k/2: 3.3 at 1 Mpc/h, 2.9 at r_trig; Phi(2 r200) at 1 Mpc/h 1.3]
+        baryons: cosmic 1.43e+13, observed bound 7.69e+12 Msun = x9 (canonical) / x10 (alt) M_b,cap
+        estimator spread v_c(1 Mpc/h) 593-593; lowest plausible (bootstrap 2.5% / in-data per-box minimum, = the data edge): v_c 531, v200 585, v_max 630, v_f 513 km/s
+      X-COP floor alt (0.220): NOT MEASURED -- every estimator puts it below the data (v_c < 531, v200 < 585 km/s)
+
+    MOST FAVOURABLE TO THE CLAIM (lowest plausible crossing over kicks 575-650, three estimators, bootstrap 2.5%, in-range per-box minima, every circular convention incl. both footings' v_f): 50% at 513 km/s; canonical floor 513; alt floor 513  -- against the cap band's top 361 km/s
+  [PASS] V1 (reported either way) THE CLAIM: the 50% retention transition, in some circular-speed convention, touches the cap band (247-361 km/s)
+         measured: lowest plausible 50% crossing 513 km/s = 1.42 x the band's top; point estimates v575: v_c 573 (1.76 v_cap), v600: v_c 1218 (3.74 v_cap)
+         reading:  NOT EVALUATED: T0 failed, there is no retention transition in these data
+
+====================================================================================================================
+K  THE KICK PHYSICS: the unbinding relation, I27, and an idealised static single-halo model
+====================================================================================================================
+    exact, isotropic kick: f_unbound = clip(((v_o + v_k)^2 - v_esc^2) / (4 v_o v_k), 0, 1).  f = 1 (every direction) iff v_k >= v_o + v_esc (I27's hypothesis); f = 1/2 iff v_k^2 = v_esc^2 - v_o^2 (the kick supplies the binding energy); f = 0 iff v_k <= v_esc - v_o
+    at rest (v_o = 0)                           : every daughter unbound for v_esc <= 1.000 v_k (575-650 km/s); half at v_esc = 1.000 v_k; none for v_esc >= 1.000 v_k
+    circular, point mass (v_o = v_esc/sqrt2)    : every daughter unbound for v_esc <= 0.586 v_k (337-381 km/s); half at v_esc = 1.414 v_k; none for v_esc >= 3.414 v_k
+    marginally bound infall (v_o = v_esc)       : every daughter unbound for v_esc <= 0.500 v_k (288-325 km/s); half at v_esc = never below half (f >= 1/2 + v_k/(4 v_esc)); none for v_esc >= never
+    => v_esc = v_k/2 is the every-direction (I27) edge ONLY for daughters moving at the escape speed; the half-unbinding point is set by the binding energy, v_k = sqrt(v_esc^2 - v_o^2), which for bound orbits means v_esc >= v_k
+    static model, v_k 575: 50% retained at v200 = 264 km/s (Phi(inf)) / 356 km/s (Phi(2 r200)) = 0.46 / 0.62 v_k;  canonical floor at v200 218 / 270
+    static model, v_k 600: 50% retained at v200 = 275 km/s (Phi(inf)) / 372 km/s (Phi(2 r200)) = 0.46 / 0.62 v_k;  canonical floor at v200 227 / 283
+    static model, v_k 625: 50% retained at v200 = 287 km/s (Phi(inf)) / 388 km/s (Phi(2 r200)) = 0.46 / 0.62 v_k;  canonical floor at v200 237 / 295
+    static model, v_k 650: 50% retained at v200 = 298 km/s (Phi(inf)) / 404 km/s (Phi(2 r200)) = 0.46 / 0.62 v_k;  canonical floor at v200 247 / 307
+    => the idealised static halo puts half-retention at v200 = 264-404 km/s (overlapping the cap band 247-361)
+
+====================================================================================================================
+G  THE EMPTIED END: galaxy hosts (L375 resolved shell model, L376 interiors)
+====================================================================================================================
+    L375 KiDS host M200 4.17e+11 (z = 0.25): v200 111 km/s, pre-decay v_esc(r200) 203, centre 391;  S(<0.5 Mpc/h) 600/650/700: 0.262/0.258/0.253, of which undecayed 0.182/0.184/0.185 -> decayed daughters kept 0.10/0.09/0.08
+    L375 KiDS host M200 8.97e+11 (z = 0.25): v200 144 km/s, pre-decay v_esc(r200) 264, centre 498;  S(<0.5 Mpc/h) 600/650/700: 0.253/0.247/0.244, of which undecayed 0.172/0.172/0.175 -> decayed daughters kept 0.10/0.09/0.08
+    L375 KiDS host M200 1.91e+12 (z = 0.25): v200 185 km/s, pre-decay v_esc(r200) 343, centre 632;  S(<0.5 Mpc/h) 600/650/700: 0.235/0.232/0.226, of which undecayed 0.155/0.156/0.157 -> decayed daughters kept 0.10/0.09/0.08
+    L375 KiDS host M200 5.55e+12 (z = 0.25): v200 264 km/s, pre-decay v_esc(r200) 494, centre 886;  S(<0.5 Mpc/h) 600/650/700: 0.359/0.350/0.341, of which undecayed 0.227/0.227/0.231 -> decayed daughters kept 0.17/0.16/0.14
+    L376 dwarf     M200 1e+11 (z = 0): v200 66 km/s, pre-decay v_esc(r200) 118, centre 245; carrier's RAR shift at 2-8 R_d 0.0e+00 dex (decay off 0.19) at v_k = 650: EMPTIED
+    L376 milky_way M200 1e+12 (z = 0): v200 143 km/s, pre-decay v_esc(r200) 260, centre 503; carrier's RAR shift at 2-8 R_d 7.2e-05 dex (decay off 0.20) at v_k = 650: EMPTIED
+    L376 massive   M200 5e+12 (z = 0): v200 244 km/s, pre-decay v_esc(r200) 452, centre 833; carrier's RAR shift at 2-8 R_d 1.2e-04 dex (decay off 0.26) at v_k = 650: EMPTIED
+    L376 RC100: carrier inside R_e / LCDM's at z = 1, 2 = 3e-41, 4e-04
+    => the committed runs show emptying up to v200 ~ 264 km/s, and 0.26-0.51 kept (median of L371's lowest bin over the kicks) from v_c(1 Mpc/h) ~ 531 km/s up; the cap band (247-361) overlaps the UNMEASURED gap between them.  The only committed peaks in the gap (v_c 390-401 km/s) keep 0.53-0.95.
+
+====================================================================================================================
+S  MS3's OWN K1 ROWS AS THE ONE-NUMBER TEST: a retention step AT the cap scale
+====================================================================================================================
+    'cleared<1e13' = carrier removed below M200 = 1e13 Msun, kept above: v200(z = 0.5) = 337 km/s, bound baryons 5.00e+11 Msun -> v_f 281 / 294 km/s (canonical/alt): a transition AT the cap scale (325 km/s)
+    at MS3's 1.75 Mpc cap: worst R with L388's retention 1.047/1.121 (pass); with the step at the cap scale 1.644/1.742 (FAIL, gate 1.2)
+    with the step at the cap scale the largest passing cap is 1.00 Mpc on MS3's grid (186 km/s), 1.11 Mpc interpolated (206 km/s) = 0.61 x the step's own v200
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  T0 FAILED: the retention does not rise with host mass in these data (MUTATE scrambles the pairing), so there is no
+  transition to compare with the cap and no verdict is drawn from this run.
+
+  4/5 checks pass; load-bearing failures: 1; wrote XR7_kick_escape_vs_cap_results_MUTATE.json   [26s]

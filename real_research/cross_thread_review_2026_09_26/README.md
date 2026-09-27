@@ -115,6 +115,40 @@ declared input; no new dark-matter particle species; the dark mass is still requ
   - Open: an action for the cap and for the trigger; the carrier as a state of the framework's own field; the Local
     Group zero-velocity radius and the EFE samples (XR4); Harvey's perpendicular orientation.
 
+### Night: the converged model's scorecard (XR6, XR7 and the lanes since)
+
+The model: the MOND-sector switch, read from constrained fields only (CV3): C[∇²(u−v) + ∇·((ν−1)∇Sw)]. It uses the
+linear vacuum gate at p = 1, x_c0 = 2.5, with transition width w ≲ 0.25 (DE9). MOND regions are capped by MS3's
+local rule, threshold × max(1, v_loc²/v_cap²) with v_cap ≈ 325 km/s. The dark carrier is density-triggered and
+kicked at 575–650 km/s (L388).
+
+| Gate | Status | Evidence |
+|---|---|---|
+| Flat-a₀ flagship, z = 2.5 | passes with no CGM | MS2 |
+| KiDS-1000, carrier lensing included | passes: −37.0/−34.0 (hard), −32.3/−29.3 (w = 0.25) | DE10 `dabce1b73` |
+| Cosmic shear, resolution-free | passes only with the cap: 1.049/1.124 (w 0.25), 1.025/1.096 (w 0.5, x_c0 3.0) | MS3, MS4 `969a15e7f` |
+| RAR, RC100 | pass | L391 |
+| Harvey | knife-edge, provisional: S2 passes only at 575 km/s; S1 at 575–625 | L389 |
+| S₈, forest, clearing, X-COP | running | L395 → L396 (575 km/s) → L397 (Harvey at its own epoch) |
+| EFE, cluster-infall BTFR | **worse**: 3.0–3.1σ (scalar), 4.9–5.5σ (subtract); the zero point improves to 0.0–2.2σ | XR6 |
+| EFE, Local Volume dwarfs | **stands**: 3.9–4.5σ | XR6 |
+| Local Group zero-velocity radius | **worse**: 1.41/1.48 Mpc, +0.17/+0.19 dex | XR6 |
+| Coma UDGs | **stands**, weaker: 4.35/4.20σ, from 4.9/4.7σ | XR6 |
+
+- **XR6's pincer.** The Local Group's R₀ needs an external field of about 2e-3 a₀ inside its region. That is about 20×
+  what a KiDS-passing kernel transmits.
+- **The EFE operator split.** On the EFE beyond the cap, the particle-mesh operator (all baryons) and the action's
+  operator (screened) disagree.
+- **XR7: the cap and the kick are two scales, not one.** The kick's 50% retention transition is at
+  v_c ≈ 700–850 km/s, 2.2–2.6× v_cap. "v_cap ≈ v_k/2" is arithmetic between two hand-set numbers. MS3's
+  step-at-the-cap row fails shear (1.64/1.74), so the two scales must stay separate.
+- **Still posited, with no action:** the cap, the trigger and the kick. The author's direction (09-26):
+  > we need to find out what the "Fluid" is.. which is not particles
+  - XR8 runs the inverse specification and the shell-crossing test on non-particle continua.
+  - Astra's new-sector conversion (Ψ, χ, s) is parked.
+  - V0 bounds the search: CV4 finds the khronon's leaves are CMC inside bound regions, so the fluid cannot be the
+    clock's own flow, and a wave-type fluid cannot take its phase from τ.
+
 **Follow-up for the checker:** XR1's registry tracks the cell, footing, kernel and operator. It should also track the switch branch (upper/lower, contrast/absolute) and σ, so that pooling across either is flagged automatically.
 
 ## Files
