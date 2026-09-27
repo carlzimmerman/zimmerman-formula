@@ -1,6 +1,6 @@
 # The first-principles derivation chain -- status ledger
 
-Assembled by `run_chain.py` on 2026-09-27 11:42. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
+Assembled by `run_chain.py` on 2026-09-27 11:59. A lane counts only if its main run has a verdict and its MUTATE control flips (rc = 1). Status meanings: DERIVED (varied out of the chain above it, with a script), TIED (an input implemented as an exact action-level relation, coupling chosen), POSTULATED (an input), FITTED (a constant set by data), CONSTRAINT (a derived requirement on a lower link), OPEN (owed), FAILS (derived and contradicted by data).
 
 ## Lanes
 
@@ -27,6 +27,7 @@ Assembled by `run_chain.py` on 2026-09-27 11:42. A lane counts only if its main 
 | FP18_kids_vs_hubble_flow_data | 20/20 | 0 | 0 | 1 | ok |
 | FP19_hs_repair | 24/24 | 0 | 0 | 1 | ok |
 | FP20_esd_projection_fix | 12/12 | 0 | 0 | 1 | ok |
+| FP20b_rescore_fp15_fp16_fp19 | 5/5 | 0 | 0 | 1 | ok |
 | FP21_isolated_spiral_lensing | 18/19 | 0 | 0 | 1 | ok |
 | FP22_who_feels_mond | 24/24 | 0 | 0 | 1 | ok |
 
@@ -360,6 +361,12 @@ Assembled by `run_chain.py` on 2026-09-27 11:42. A lane counts only if its main 
 | FP20 | F20n | OPEN | the P2 lanes downstream of DE8 (DE10's converged model, the hub's XR9 and XR14 ON-M* KiDS pass) carry the carrier-template error (V1b) and must be re-scored with the corrected projection; so must FP15/FP16 (uncommitted, kids_switched) | V4, V1b, R9, H |
 | FP20 | F20o | CONSTRAINT | the isolated-P2 KiDS base itself: P1 lanes +112.3/+105.6 -> +141.6/+134.9 (the lead grade flattered the inner phantom); P2 lanes (nu_mono, 2-halo) +174.3/+166.9 -> +159.9/+153.0 -- every gate here is a difference to its lane's base | R1, R9 |
 | FP20 | F20p | OPEN | the P1 lanes score point values at the bin centres, not B21's annulus averages (a ~1-2% convention, unchanged here); the 2-halo templates keep their own inner-disc approximation (V5) | scope |
+| FP20b | F20b-a | DERIVED | FP16's G4 KiDS pass with the modelled re-accretion, every kick, both footings: -18.6..-11.0 -> -15.9..-7.5 (gate <= +4) | corrected by FP20b (R1: FP16's KiDS hosts re-run by its own code; FP20's projector) |
+| FP20b | F20b-b | CONSTRAINT | FP16 G11: KiDS in XR19's nominal web (reported) -10.8..-5.6 -> -8.9..-2.8 | corrected by FP20b (R1) |
+| FP20b | F20b-c | DERIVED | FP15's T5 yield-onset cell passes KiDS: in place -6.0..-0.5 -> -4.1..+0.1, optimistic -6.1..-1.0 -> -4.2..-0.4 (gate <= +4); its other KiDS entries are FP10 B4's text | corrected by FP20b (R2) |
+| FP20b | F20b-d | DERIVED | FP19's H_K1 passes KiDS at z = 0.25 (-10.7..-7.8 -> -9.7..-8.8) and 0.4 (-5.3..+0.0 -> +0.1..+2.1) | corrected by FP20b (R3: FP19's main re-run whole) |
+| FP20b | F20b-e | CONSTRAINT | FP19's headline prediction: KiDS for lenses at z = 0.7 +467.2..+495.8 -> +500.1..+524.0 (the yield switches the phantom off beyond ~0.1-0.3 Mpc) | corrected by FP20b (R3) |
+| FP20b | F20b-f | CONSTRAINT | FP19's L_Lambda window: [2.65, 4.6] -> [2.8, 4.6] Mpc (lower edge from KiDS at z = 0.4); the declared L_Lambda = 2.9 Mpc stays inside | corrected by FP20b (R3) |
 | FP21 | F21a | CONSTRAINT | the like-for-like lens sample exists and is small: 2M++ (spectroscopic, K <= 12.5, complete in both KiDS regions) holds 2,036 galaxies in the KiDS-1000 footprint (z >= 0.01), 621 at 10.4 <= log M_gal <= 10.8 with the LV centrals' own mass mapping (0.6 L_K + Boselli gas; UNGC L_K reproduced to -0.008 dex), 227 LATE-labelled; only 108 are the brightest within 3 Mpc / +-500 km/s, 52 of them LATE (the primary) | K4, S, T1 |
 | FP21 | F21b | CONSTRAINT | the pipeline (exact spherical geometry, c, m = B21's 1+K, dilution model, randoms, jackknife) reproduces B21's published bins 2 / 3 from the record's photometric reconstruction at A = 0.91 +- 0.10 / 1.15 +- 0.09 with B21's convention (no boost); applying the boost measured against uniform randoms gives 1.00 / 1.28 (K6 as first declared FAILS for bin 3) -- that boost is confounded by the lens samples' mask selection, and is inactive for the 2M++ lenses (B <= 1 in the band); cross-shear and random nulls pass | K1, K5, K6, K6b |
 | FP21 | F21c | CONSTRAINT | the measurement: the primary sample's Delta Sigma over 0.26-1.62 Mpc is 5.60 +- 3.73 Msun/pc^2 (S/N 1.5), A = 2.19 +- 1.46 of B21's mixed-type isolated lenses at the same mass; all types isolated A = 2.37 +- 1.18; group centrals (1 Mpc) A = 1.18 +- 0.78 | D1, D2, D3, C1 |
@@ -384,4 +391,4 @@ Assembled by `run_chain.py` on 2026-09-27 11:42. A lane counts only if its main 
 | FP22 | L22l | OPEN | KiDS: the isolated-lens term is reading-independent; the web's external field in the kernel (omitted by the committed KiDS models) is a risk in both readings (~+200 (b), ~+600 (a) with H_Y/H_K1; uniform-rms estimate) | D1, D2 (FP18's projection) |
 | FP22 | L22m | DERIVED | the PM forest codes' kernel argument is (1+z) x physical (MOND 1.9-2.5x too weak at z = 2-3); FP9/FP13's linear proxies are physical | E1-E2 |
 
-Totals: DERIVED 133, TIED 2, POSTULATED 30, FITTED 15, CONSTRAINT 42, OPEN 47, FAILS 80
+Totals: DERIVED 136, TIED 2, POSTULATED 30, FITTED 15, CONSTRAINT 45, OPEN 47, FAILS 80

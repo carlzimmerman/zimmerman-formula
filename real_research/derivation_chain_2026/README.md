@@ -60,7 +60,7 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
 | core | c_2 | ELIMINATED on Minkowski and FRW (c_2 -> infinity: a multiplier). At black holes the limit is not uniform: at c_2 = infinity with alpha_c > 0 the multiplier diverges logarithmically at the universal horizon (r = 3M/2), a curvature singularity at O(alpha_c); finite c_2 is regular. OPEN (XR25) | FP14, XR25 |
 | core | alpha_c | REGULATOR (every observable moves <= 1.6e-9) | FP14 |
 | core | xi (heat filter) | KNOB: irreducible by a threshold-mass theorem. MEASURABLE by Gaia DR4 wide binaries with a separation-resolved statistic: sigma(ln xi) ~ 0.20/0.15 at the floor, 91% of the information at 5-30 kAU. The frozen pre-registered statistic can only kill the chain from above (gamma_hat >~ 1.157/1.174); a Newtonian result only bounds xi > 0.036/0.047 pc (the hub's XR22, 661ea3cff, re-run pending) | FP17, XR22 |
-| separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc, inside the window 2.65-4.6 (sigma_8 <= 1.02 needs <= 3.0); zero modes alone cannot give it (FP19) | FP19 |
+| separator | L_Lambda | DECLARED in H_K1: 2.9 Mpc, inside the window 2.8-4.6 with the exact KiDS projector (FP20b; 2.65-4.6 before) (sigma_8 <= 1.02 needs <= 3.0); zero modes alone cannot give it (FP19) | FP19, FP20b |
 | separator | n = 2, the q = 0 ramp, c_y = 2 | natural choices in H_K1 (c_y chosen after scoring: the only one of four natural normalizations passing both yardsticks); H_Y's y_Lambda and p' are gone | FP13, FP19 |
 | dark | eps | IRREDUCIBLE (the only Z4-odd term; a khronon-frame coupling only relabels it) and FITTED (the flagship sets the window's lower end, Harvey its upper) | FP10, FP15 |
 | dark | zeta (lambda_0), q, m | FITTED BY DATA: zeta's band is x1.16 wide at the mass floor; sharing q with the separator FAILS the web; m is pinned on the canonical footing, bounded on alt. The yield-onset trigger removes q but keeps zeta and adds a postulated gate form | FP15 |
@@ -104,7 +104,7 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
   particle-mesh run (XR21 stage 3) could overturn it.
 - The small-scale (sub-L) power boost and its cosmic-shear cost need the particle-mesh run (the hub's XR21). Under H_K1 the
   per-mode boost at z = 0 is +0.03/+0.14/+1.34 at k = 0.3/0.5/1 h/Mpc (FP19).
-- H_K1's prices (FP19): KiDS for lenses at z = 0.7 comes out at +496, a sharp prediction the data can test; the Local
+- H_K1's prices (FP19): KiDS for lenses at z = 0.7 comes out at +500/+524 with the exact projector (FP20b; +467/+496 before), a sharp prediction the data can test; the Local
   Group R0 still fails (1.41/1.46 Mpc). All of FP19's numbers are in the all-matter reading and use FP6's projection, so
   they are provisional until FP20 and FP22.
 - Strong lensing (the hub's XR33, 92fe59705): SLACS ellipticals from baryons plus the phantom need a stellar IMF
@@ -127,7 +127,8 @@ merger/offset gates (Harvey, the Bullet cluster) must score it (OPEN).
   35 kpc). With the exact projector (< 0.04%) none of the chain's deciding KiDS verdicts flips: FP6, FP9 (z = 0.25),
   FP11, FP12 K7 and FP13 (z = 0.25, 0.4) still pass; FP9 at z = 0.4 still fails; the KiDS-LG pincer stands. What flips:
   L360's passing pairs (70 -> 35 of 96), FP13's A3 window edges, FP11 P1's band edge (now passes). FP15/FP16 (L352's
-  projector) and FP19 (the old one) were committed before the fix; FP20b re-scores them.
+  projector) and FP19 (the old one) were committed before the fix; FP20b (3924bb8c2) re-scored them: no headline verdict
+  flips (FP16's KiDS passes hold at every kick; H_K1 passes at z = 0.25 and 0.4; its L_Lambda window narrows to 2.8-4.6).
 - **The dark lanes' "Newtonian-only" dark component had no action on this root** (found by FP22): FP4, FP8, FP10, FP15
   and FP16 used the L353 kernel-invisible pair, which subtracts from C-H's field u, removed by FP7. Their dynamics are
   realised by the Einstein-frame coupling FP22 identified, now adopted (see "Who feels MOND"). FP7's sigma_8 failure used
