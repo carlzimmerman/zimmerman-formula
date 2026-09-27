@@ -70,6 +70,9 @@ below (switch reading, cap form, cell, kernel, carrier, operator, footing).
 - The withdrawn cap form fails shear (MS5). "One number sets the cap and the kick" is false (XR7).
 - GP4's window is withdrawn (PAPER34 v3: P34c/P34d). L373 at p = 2 has no window. Astra's w = 1 gate has no window
   (DE9).
+- The acceleration-triggered carrier (AT) fails halo-model cosmic shear at every KiDS-safe cap and every kick Harvey
+  allows: the best is 1.26 against 1.2 (AT4 b844a87b3). AT5, a two-sided trigger, is being tested as a labelled
+  alternative.
 - L374's shell-crossing runaway is not the kick: it tracks the host and leaves a warm fluid. Every mock-based
   cosmic-shear pass is not established (MS3, DE5b).
 
@@ -98,5 +101,5 @@ below (switch reading, cap form, cell, kernel, carrier, operator, footing).
     - the A = 1 control, a baryon-only reading;
     - the gate potential's shift of the flagship zero point.
   - It is an obstruction only if Γ ≫ H on real transitions with real gas.
-- AT4 (the acceleration-trigger carrier on the halo model), a labelled alternative. L393, the curvature comparison.
+- AT5 (a two-sided acceleration trigger), a labelled alternative. L393, the curvature comparison.
 - PAPER34 v3: the source is ready; the upload waits for the author's go.

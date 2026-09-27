@@ -58,3 +58,41 @@ Format: `lane | commit | MODEL TAG | gate(s) | verdict + numbers | scope | contr
   box. FGPA.
 - **Controls:** C1 reproduces L347 exactly; C2 (never on) is ΛCDM exactly. MUTATE (L358's matter-reading cell)
   reproduces L358's 0.174 and fails, rc = 1.
+
+## Advancement thread
+
+**AT4 | b844a87b3**
+- **Model tag:**
+  - The switch is the MOND-sector door on MS3's halo model, with both edge conventions (door and upper).
+  - The cap is MS3's fixed radius (∞, 2, 1.75, 1.5, 1.2 and 1 Mpc at z = 0.5). That is the radius the κ form gives
+    at z = 0.5, not the κ term itself.
+  - p = 1, x_c0 = 2.5, plus DE5's corner. Hard switch. ν_mono.
+  - The carrier is the ACCELERATION-TRIGGERED one, a labelled alternative and not M*'s.
+  - The operator is L363's region phantom. Both footings.
+- **Gate:** cosmic shear, R ≤ 1.2.
+- **Verdict: FAILS** at every KiDS-safe cap (≥ 1.75 Mpc), for every kick Harvey allows (≤ 800 km/s). The best is
+  1.26 against 1.2. The carrier keeps 61–95% of itself in 1e13–1e14.5 halos, which is where the phantom's k = 1 power
+  lives.
+- **Scope:** the halo model with isolated regions, at one lens epoch.
+- **Controls:** C1 reproduces MS3's K1 exactly. MUTATE (L388's retention) fails H1, rc = 1.
+- **Next:** AT5, a two-sided acceleration trigger that also converts in the deep-MOND outskirts. Its first look is
+  1.01/1.08 at the 1.75 Mpc cap, but it is unscored on Harvey, X-COP, KiDS, S₈, the forest and high z. It is a
+  labelled alternative.
+
+**L361 | 65add0e46** (the region kernel of record)
+- **Model tag:**
+  - The switch is L359's vacuum-gated f, prescribed. The kernel is region-local QUMOND.
+  - The carrier couples to φ only.
+  - The operator: (∇² − M²)w = 4πG f ρ_b and (∇² − M²)P = ∇·[f(ν−1)∇w] + M²w, with M² = m²(1 − f).
+- **Checks:** 6/6.
+  - R0: the action's Euler–Lagrange equations have zero residual.
+  - R1: transmission through the gap is 9.5e-5.
+  - R2: the Sun keeps the Galaxy's field to 3.7e-12.
+  - R3: KiDS +0.0/+0.0 against isolated MOND.
+  - R4: 1/m ≤ 0.5 Mpc.
+  - R5: the phantom's monopole is zero beyond the edge.
+- **Scope:** non-relativistic, with f prescribed. σ = 1 (later found negligible for KiDS and Harvey: DE8, XR5). The
+  relativistic embedding is not redone.
+- **Liabilities (XR4/XR6):** LG, EFE, Coma UDGs, scored with the withdrawn cap form; the κ-form re-score is pending
+  in XR9. Filament gas at z ≲ 0.5 is open.
+- **Controls:** MUTATE fails R1 and R3, rc = 1.
