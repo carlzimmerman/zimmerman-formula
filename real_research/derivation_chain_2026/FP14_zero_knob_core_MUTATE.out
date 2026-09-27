@@ -1,0 +1,259 @@
+FP14 -- ELIMINATE THE GRAVITY CORE'S KNOBS: which of the root's constants beyond (kappa, G, Lambda) can be derived,
+eliminated or shown observably irrelevant -- and which cannot.  kappa = 1/2 is the one accepted fitted input.
+
+WHY.  The chain's gravity core (FP7's repaired root, with FP9's separator above it) carries four constants beyond
+(kappa, G, Lambda): the heat-filter length xi, the khronon's alpha_c, the leaf-averaged khronon coupling c_2 and the MOND
+scalar's inertia lambda.  The goal is ZERO KNOBS.  This lane takes them one at a time and derives, from the action's own
+variation, whether each is fixed, removable by a limit, unobservable, or a genuine knob -- verifying a fail as hard as a win.
+
+THE GRAVITY CORE (FP7's repaired root; per 1/16 pi G, c = 1, alpha = a0/c^2, a0 = kappa c sqrt(G rho_DE), kappa = 1/2):
+  R - 2 Lambda + alpha_c a^2 - c_2 (K - <K>_h)^2 + (2 - alpha_c) h^mn (2 a_m - D_m chi) D_n chi
+    - 2 alpha^2 J_P2(h^mn D_m phi D_n phi / alpha^2) + 2 lambda (n^m d_m phi)^2 + heat pair (W_0 = phi, chi = W_b = S_h phi,
+    b = xi^2/2) + S_m[g],     J_P2(Y) = -(1/4) ln(1 - 2 sqrt Y) - sqrt(Y)/2 - Y/2   (the framework's own law P2).
+  FP9's separator (H_Y: band-pass L_Lambda, n; yield y_Lambda, p') sits above the core; its four constants are that lane's.
+
+  *** MUTATE=1: the leaf-averaged -c_2 (K - <K>_h)^2 is replaced by the plain -c_2 K^2 -- C1b must FAIL ***
+
+  inputs: a0 = 9.3603e-11 / 1.1312e-10 m/s^2 (FP0); FP7's AQUAL Solar-System xi floors 0.0243 / 0.0268 pc; galaxy ceiling ~100 pc; alpha_c <= 3.2e-09; c_2 tracking floor 7.2888e-03; ephemeris gate 3.662e-14 m/s^2
+
+====================================================================================================================
+K  CONTROLS: the reused and re-derived machinery reproduces the record
+====================================================================================================================
+    [c2  ] dL/dn   : 2*k**2*(A_n*alpha_c - A_phi*alpha_c*sigma + 2*A_phi*sigma - 2*A_psi)
+    [mult] dL/dn   : 2*k**2*(A_n*alpha_c - A_phi*alpha_c*sigma + 2*A_phi*sigma - 2*A_psi)
+    [c2  ] dL/dpsi : 2*I*(3*A_B*c_2*k**2*omega + 2*A_B*k**2*omega + 2*I*A_n*k**2 + 9*I*A_psi*c_2*omega**2 - 2*I*A_psi*k**2 + 6*I*A_psi*omega**2)
+    [mult] dL/dpsi : 2*I*(2*A_B*k**2*omega + 3*A_mu*omega + 2*I*A_n*k**2 - 2*I*A_psi*k**2 + 6*I*A_psi*omega**2)
+    [c2  ] dL/dB   : -2*k**2*(A_B*c_2*k**2 + 3*I*A_psi*c_2*omega + 2*I*A_psi*omega)
+    [mult] dL/dB   : -2*k**2*(A_mu + 2*I*A_psi*omega)
+    [c2  ] dL/dphi : -2*(A_n*alpha_c*k**2*sigma - 2*A_n*k**2*sigma + 2*A_phi*C_phi*k**2 - A_phi*alpha_c*k**2*sigma**2 + 2*A_phi*k**2*sigma**2 - 2*A_phi*lambda*omega**2)
+    [mult] dL/dphi : -2*(A_n*alpha_c*k**2*sigma - 2*A_n*k**2*sigma + 2*A_phi*C_phi*k**2 - A_phi*alpha_c*k**2*sigma**2 + 2*A_phi*k**2*sigma**2 - 2*A_phi*lambda*omega**2)
+    [mult] dL/dmu  : -2*(A_B*k**2 + 3*I*A_psi*omega)
+    det M (this lane) = 64*k**6*(C_phi*alpha_c*c_2*k**4 + 3*C_phi*alpha_c*c_2*k**2*omega**2 + 2*C_phi*alpha_c*k**2*omega**2 - 2*C_phi*c_2*k**4 - alpha_c*c_2*k**2*lambda*omega**2 - 3*alpha_c*c_2*k**2*omega**2*sigma**2 - 3*alpha_c*c_2*lambda*omega**4 - 2*alpha_c*k**2*omega**2*sigma**2 - 2*alpha_c*lambda*omega**4 + 2*c_2*k**2*lambda*omega**2 + 6*c_2*k**2*omega**2*sigma**2 + 4*k**2*omega**2*sigma**2)
+    reduced (psi, phi) after the lapse and shift: T = Matrix([[12 + 8/c_2, 0], [0, 4*lambda]]), Hermitian True, exactly quadratic in omega True
+  [PASS] K1 CONTROL: this lane's own second variation of the root about Minkowski (unitary gauge) reproduces FP7's committed det M EXACTLY and FP7 C1's reduced kinetic and restoring matrices T = diag(12 + 8/c_2, 4 lambda), V (after the lapse and shift constraints); the block is Hermitian and exactly quadratic in omega
+         measured: det == FP7: True; T, V == FP7 C1: True; Hermitian True; quadratic True; (2.9 s)
+    (H_Y) headline via FP9's machinery: sigma_8/LCDM ('canonical', 'rms'): 1.01277, ('canonical', 'permode'): 1.01585, ('alt', 'rms'): 1.01484, ('alt', 'permode'): 1.01798; forest proxy max 2.78e-07
+  [PASS] K2 CONTROL: FP9's committed machinery (exec'd read-only up to its CONTROLS banner) reproduces FP9's committed (H_Y) headline sigma_8 on both footings and both yardstick modes, and its forest proxy (<= 3e-7)
+         measured: max |sigma_8 - committed| = 0.0e+00; forest max 2.78e-07
+    FP2's leaf system: G_eff/G = -2/(alpha_c - 2), slip 1; khronon equation's c_2-part / Q = -(-3*Lambda*a(t)**2 + 2*k**2 + 9*Derivative(a(t), t)**2)*a(t)  (4.2 s)
+  [PASS] K3 CONTROL: FP2's committed FRW machinery (exec'd read-only) reproduces FP2 D2/D3 on the leaf-averaged term: the khronon equation's c_2-part is c_2 Q (3 Lambda a^2 - 2k^2 - 9 adot^2) a and the quasi-static coupling is G_eff/G = 2/(2 - alpha_c), no slip
+         measured: G_eff/G -2/(alpha_c - 2), slip 1, c_2-part/Q -(-3*Lambda*a(t)**2 + 2*k**2 + 9*Derivative(a(t), t)**2)*a(t)
+  [PASS] K4 CONTROL: the direct QUMOND quadrupole (f28's integral, FP1 D0's copy) reproduces FP1's committed strict Cassini numbers -- P2 canonical 3.99 / 4.93 (g_ext 2.00 / 2.64e-10) and nu_RAR 6.231 / 6.834 (canonical / alt, 2.32e-10)
+         measured: P2 3.9926 / 4.9324 (committed 3.9926 / 4.9324); nu_RAR 6.2314 / 6.8338
+  [PASS] K5 CONTROL: FP1's SPARC statistic (P2 at the committed script's a0 and Upsilon = 0.70: 0.108 dex; 175 galaxies) and FP1 E's copy of L355's KiDS-1000 machinery (P2 isolated-lens chi^2 110.6 / 102.4) are reproduced
+         measured: SPARC 0.1083 dex (175 galaxies); profiled P2: canonical 0.1083 (Upsilon 0.70), alt 0.1035 (0.65); KiDS P2 110.6 / 102.4
+  [PASS] K6 CONTROL: XC1's committed strong-coupling scale of the UV khronon is reproduced (Guemruekcueoglu+18 eq. 15 with the full BPS speed, as XC1 A4)
+         measured: k_sc = 8.4799e+08 GeV vs committed 8.4799e+08 GeV
+    [10 s]
+
+====================================================================================================================
+L  lambda (phi's inertia): ELIMINATED at lambda = 0 -- a gauge symmetry, one healthy mode, every gate re-scored
+====================================================================================================================
+    generic ADM metric, unitary gauge: h^mn d_n f(tau) = [0, 0, 0, 0];  n^m d_m f(tau) = Derivative(f(t), t)/Nl(t, x, y, z)
+    FRW: phibar's equation = -4*lambda*((a(t)*Derivative(phibar(t), (t, 2)) + 3*Derivative(a(t), t)*Derivative(phibar(t), t))*N(t) - a(t)*Derivative(N(t), t)*Derivative(phibar(t), t))*a(t)**2/N(t)**2  (identically 0 at lambda = 0: phibar(t) is pure gauge)
+  [PASS] L1 AT lambda = 0 THE ACTION HAS AN EXACT GAUGE SYMMETRY phi -> phi + f(tau): the chassis and J see phi only through h^mn D_n (h^mn d_n f(tau) = 0 identically for a generic lapse, shift and leaf metric), the heat pair is shift-covariant (Delta_h f(tau) = 0, W -> W + f, chi -> chi + f), and only 2 lambda (n.dphi)^2 breaks it (n.df = f'/N).  On FRW phibar's equation vanishes identically at lambda = 0: FP7's declared datum 'phibar-dot = 0' is not data but gauge
+         measured: h.df = 0: True; n.df = f'/N: True; FRW phibar equation at lambda = 0 identically zero: True
+    lambda = 0: phi auxiliary (T_22 = 4 lambda = 0); V_eff = det V / V_22 = -4*C_phi*k**2*(alpha_c - 2)/(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2);  omega^2 = -C_phi*c_2*k**2*(alpha_c - 2)/((3*c_2 + 2)*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)) (c_2), -C_phi*k**2*(alpha_c - 2)/(3*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)) (c_2 -> oo)
+    deg_omega det at lambda = 0: {'c2': 2, 'mult': 2} (one scalar: N = 2 tensor + 1)
+  [PASS] L2 HEALTH AND COUNT AT lambda = 0: phi becomes auxiliary (T_22 = 4 lambda = 0) and the one remaining scalar has omega^2 = det V/(V_22 T_11) = C_phi c_2 (2 - alpha_c) k^2/((2 + 3c_2)(alpha_c C_phi + (2 - alpha_c) sigma^2)) >= 0 iff C_phi >= 0 (0 < alpha_c < 2): no ghost, no gradient instability, marginal only at zero field (FP7 C3's tracking root); deg_omega det = 2 with either c_2 form: N = 3
+         measured: omega^2/k^2 == FP7 C3 root: True; V_eff > 0 on the grid: True; deg {'c2': 2, 'mult': 2}
+    lambda = 0, phi's constraint: A_phi = -A_n*sigma*(alpha_c - 2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2);  at C_phi = 0: A_n/sigma (1/sigma = e^(+xi^2 k^2/2): backward heat); C_phi -> oo (inside FP9's yield): 0
+  [PASS] L3 THE EXACT-ZERO-FIELD AUXILIARY (FP7 E1 / FP9 Y3, re-derived): at lambda = 0 phi's own equation gives A_phi = A_n sigma (2 - alpha_c)/(2 C_phi + (2 - alpha_c) sigma^2) -- bounded at every C_phi > 0, the inverse heat filter A_n/sigma only at exactly zero field, and 0 inside the yield (C_phi -> oo): lambda = 0 is admissible WITH FP9's yield, which freezes phi on exactly the regions where it would need S^-1
+         measured: C_phi = 0: A_n/sigma; yield: 0
+         reading:  a CONSTRAINT on lambda's elimination: on the bare root (no yield) an exact zero-field region at lambda = 0 needs the backward heat operator; the chain's separator removes it
+    ok   statics / Solar System / SPARC / KiDS / flagship (FP7 A1-A4, FP9 H2): lambda-free: at omega = 0 the (psi, n, phi) block carries no lambda (and no c_2), B and mu decouple
+    ok   FRW background (FP7 B1): GR exactly; phibar gauge (L1); no kination term
+    ok   zero-field well-posedness (FP7 B3, FP9 Y3): with the yield phi is frozen at zero field (L3)
+    ok   sigma_8 (H_Y, physical amplitude, per-mode canonical): lambda = 0: 1.01585, 1: 1.01585, 100: 1.01580 (band 0.922-1.05; <= 1.02)
+    ok   forest proxy (H_Y): 2.8e-07 at lambda = 0
+    ok   health (FP7 C1): one scalar, omega^2 >= 0 iff C_phi >= 0 (L2)
+    ok   tracking (FP7 C3): c_s = sqrt(C_phi/lambda_eff): at C_phi = 0.01, c_2 floor: lambda = 0: 1800 km/s, 1: 1797, 100: 1543 (target 1800): lambda = 0 is the best
+    ok   PPN alpha_1, alpha_2 (FP7 D2): alpha_1 lambda-free; alpha_2's lambda-part lambda*sigma**2/(C_phi*(C_phi + sigma**2)): outskirts (C^Q = 100, 620 km/s) alpha_2 v^2 = 0.117 (lambda = 0), 0.118 (1), 0.16 (100)
+    ok   c_T (FP7 D1): lambda-free: (n.dphi)^2 is a scalar, zero on transverse-traceless modes
+    ok   mode count (FP7 E1): N = 3 (L2): the fourth mode is gone
+    ok   causality (L318 criterion B, the chain's): the MOND enhancement of chi's response (-sigma**2/(4*C_phi*k**2)) arrives only through the pole; at lambda = 0 chi gains an equal-time part -sigma**2*(alpha_c - 2)/(4*k**2*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)) (zero at lambda > 0) -- Newtonian-strength, on the preferred leaves, EFE-blind to O(alpha_c C_phi): True (criterion B admits it; the York kill needs EFE dependence)
+    ok   the sigma_8-vs-tracking pincer (FP7 T): lambda_eff = (2 + 3c_2)/c_2 at lambda = 0: 277 (c_2 floor) -- inside tracking; sigma_8 is the separator's (FP9)
+  [PASS] L4 EVERY GATE FP7 AND FP9 SCORED PASSES AT lambda = 0: statics, the Solar System, SPARC, KiDS, the flagship (lambda-free), FRW (GR, phibar gauge), zero-field well-posedness (with the yield), sigma_8 and the forest under (H_Y) (FP9's headline IS lambda = 0), health (one scalar), tracking (best at lambda = 0), PPN (alpha_2's inertia lag vanishes), c_T, the count, and causality on the preferred leaves (lambda = 0 gives chi an equal-time part, Newtonian-strength and EFE-blind -- reported, not hidden)
+         measured: 12/12 gate rows pass; sigma_8 (can/per-mode) 1.0159
+    [15 s]
+
+====================================================================================================================
+A  alpha_c (the khronon's BPS alpha): a REGULATOR -- no scored observable depends on its value, but alpha_c -> 0+ is singular
+====================================================================================================================
+    G_N/G - 1 = alpha_c/(2 - alpha_c) = 1.60e-09 at alpha_c = 3.2e-09 (the MOND scalar's source uses G: the galaxy law moves by the same 1.6e-9); linear growth G_eff/G = 2/(2 - alpha_c) (K3): d sigma_8 ~ 6e-9 (FP2 D3)
+    tracking speed: max |c_s^2(alpha_c = 3.2e-9)/c_s^2(0) - 1| over C_phi = 1e-4..1, c_2 = floor..1e6: 1.6e-09
+    PPN, filtered (Solar System, sigma -> 0): alpha_1 = -4*alpha_c; alpha_2 - Yagi+14 = 0; both -> 0 as alpha_c -> 0 (alpha_2 -> -alpha_c/2); MOND regime: alpha_1(alpha_c -> 0) = -8*sigma**2/(C_phi + sigma**2), alpha_2(alpha_c -> 0) - FP7's committed MOND form = 0
+    E_AQUAL - 2 = 2*C_phi*(alpha_c - 2)/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2);  E_AQUAL - alpha_c = sigma**2*(alpha_c - 2)**2/(2*C_phi - alpha_c*sigma**2 + 2*sigma**2);  E = 2 only at C_phi in [0]
+  [PASS] A1 NO SCORED OBSERVABLE DEPENDS ON alpha_c beyond O(alpha_c): G_N/G - 1 = alpha_c/(2 - alpha_c) <= 1.6e-09 (FP1's 2e-7 was the C-H core's (1 + C) alpha_c/2; the AQUAL root has no C factor), the linear growth 2/(2 - alpha_c), the tracking speed (2e-09 relative over the MOND range), the MOND-regime alpha_1, alpha_2 (finite alpha_c -> 0 limits = FP7's committed forms); the Solar-System PPN alpha_1 = -4 alpha_c and alpha_2 -> -alpha_c/2 VANISH as alpha_c -> 0; and FP5's y* = (alpha_c/2)^2 does not exist on the AQUAL root: E - 2 = -2 C_phi (2 - alpha_c)/((2 - alpha_c) sigma^2 + 2 C_phi) < 0 at every nonzero field
+         measured: G_N 1.6e-09; tracking 1.6e-09; alpha_1 filtered -4*alpha_c; alpha_2 - Yagi 0; E = 2 only at C_phi = [0]
+         reading:  alpha_c's only observable handles are the PPN alphas it can only worsen (they are zero at alpha_c = 0); near its cap alpha_2 ~ 1.6e-9 is at the current solar-spin bound, far below it nothing sees alpha_c
+    lambda > 0: slow root (alpha_c -> 0) omega^2/k^2 = C_phi*c_2/(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2) (finite: the MOND mode); fast root x alpha_c -> 2*(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)/(lambda*(3*c_2 + 2)) (omega^2 ~ 1/alpha_c: the UV khronon); deg_omega det at alpha_c = 0: 2 (4 at alpha_c > 0: one mode lost)
+    lambda = 0: the UV (filtered, sigma -> 0) speed c_s^2 = -c_2*(alpha_c - 2)/(alpha_c*(3*c_2 + 2)) -> oo as alpha_c -> 0; the lapse equation at alpha_c = 0: 4*k**2*(A_phi*sigma - A_psi) (a multiplier: E = alpha_c -> 0 is FP5 B4's rank change)
+  [PASS] A2 THE CLASSICAL alpha_c -> 0+ LIMIT IS SINGULAR IN THE UV ONLY: the MOND (slow) mode has a finite limit, omega^2 = C_phi c_2 k^2/(c_2 lambda + (2 + 3c_2) sigma^2), but the khronon's UV mode has omega^2 ~ k^2/alpha_c (at lambda = 0 the filtered speed c_s^2 = c_2 (2 - alpha_c)/((2 + 3c_2) alpha_c) -> oo) and at alpha_c = 0 the lapse loses its own equation (a multiplier, E = 0: FP5 B4's rank change; deg_omega det 4 -> 2): the UV scalar becomes instantaneous
+         measured: slow C_phi*c_2/(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2); fast x alpha_c 2*(c_2*lambda + 3*c_2*sigma**2 + 2*sigma**2)/(lambda*(3*c_2 + 2)); deg at alpha_c = 0: 2; UV speed^2 as alpha_c -> 0+ (c_2 > 0): oo; lapse free of A_n at alpha_c = 0: True
+    k_sc(alpha_c) at the c_2 floor [GeV]: 3e-09: 3.56e+12, 1e-12: 8.36e+09, 1e-16: 8.36e+06, 1e-24: 8.36e+00, 1e-40: 8.36e-12;  d ln k_sc / d ln alpha_c = 0.750 (3/4)
+    alpha_c floors: c_2 floor, XC1 gate: 1.8e-16; c_2 floor, torsion balance: 3.5e-41; c_2 oo, XC1 gate: 8.2e-16; c_2 oo, torsion balance: 1.6e-40
+  [PASS] A3 THE alpha_c -> 0+ LIMIT FAILS AS A QUANTUM EFT (XC1): alpha_c is the UV khronon's only kinetic coefficient and its strong-coupling momentum scales as k_sc ~ alpha_c^(3/4) M_P -> 0, so alpha_c = 0 is excluded and alpha_c has a floor: XC1's own gate (>= 1e3 x the LHC) needs alpha_c >= 1.8e-16 (c_2 floor) / 8.2e-16 (c_2 -> oo); merely clearing the shortest gravity probe (52 um) needs 3e-41 -- all far below the PPN cap 3.2e-9, so the window is non-empty but excludes 0
+         measured: floor/XC1 gate: 1.8e-16; floor/torsion balance: 3.5e-41; oo/XC1 gate: 8.2e-16; oo/torsion balance: 1.6e-40; exponent 0.750
+         reading:  alpha_c is a REGULATOR: required to be nonzero (UV hyperbolicity and strong coupling), its value unobservable in the window -- not a knob anything is fitted to, and not eliminable
+    L340 H4's scaling alpha_min = |lambda0| xi^2/20, lambda0 = 16 pi G rho_ph/c^2: Solar lobe -1e-2 at xi = 0.02428 pc: 7.1e-19; Solar lobe -1e-2 at xi = 100 pc: 1.2e-11; group lobe -5e-2 at xi = 0.02428 pc: 3.5e-18; group lobe -5e-2 at xi = 100 pc: 6.0e-11
+  [PASS] A4 (reported) the L340 H4 negative-phantom-lobe floor on alpha_c (O(Phi/c^2) clock inertia) was derived for the C-H core and is NOT re-derived for the AQUAL root (FP7 left it OPEN); L340's scaling puts it at 7e-19..6e-11 over the xi window -- inside (alpha_sc, 3.2e-9) if it carries over
+         measured: Solar lobe -1e-2 at xi = 0.02428 pc: 7.1e-19; Solar lobe -1e-2 at xi = 100 pc: 1.2e-11; group lobe -5e-2 at xi = 0.02428 pc: 3.5e-18; group lobe -5e-2 at xi = 100 pc: 6.0e-11
+    [15 s]
+
+====================================================================================================================
+C  c_2 -> oo: the leaf-averaged term becomes the CMC constraint K = <K>_h -- a REGULAR limit; c_2 ELIMINATED
+====================================================================================================================
+    multiplier block: dL/dmu -> A_B = -3*I*A_psi*omega/k**2 (the CMC condition), dL/dB -> A_mu = -2*I*A_psi*omega (finite)
+    det (c_2 -> oo form) = 128*k**6*(C_phi*alpha_c*k**4 + 3*C_phi*alpha_c*k**2*omega**2 - 2*C_phi*k**4 - alpha_c*k**2*lambda*omega**2 - 3*alpha_c*k**2*omega**2*sigma**2 - 3*alpha_c*lambda*omega**4 + 2*k**2*lambda*omega**2 + 6*k**2*omega**2*sigma**2);  / lim_(c_2->oo) det/c_2 = 2;  deg_omega = 4
+    reduced T: finite c_2 Matrix([[12 + 8/c_2, 0], [0, 4*lambda]]) -> limit Matrix([[12, 0], [0, 4*lambda]]); multiplier form Matrix([[12, 0], [0, 4*lambda]]); V identical: True
+    UV khronon speed^2: c_2 (2 - alpha_c)/(alpha_c (2 + 3c_2)) -> -(alpha_c - 2)/(3*alpha_c) (finite);  trace Legendre map: K = -3*mu/2 - 3*p/4, d(K - <K>)/d mu = -3/2 != 0 -> (mu, pi_mu; K - <K>) second class: metric + lapse/shift + multiplier 22 - 2x6 (first class) - 4 (second class: pi_N, H_perp, pi_mu, K - <K>) = 6 -> 3 modes (+1 for phi at lambda > 0; the heat pair second class as in FP5 G-2b)
+  [PASS] C1 (a) THE LIMIT IS REGULAR ON MINKOWSKI: with -c_2 (K - <K>)^2 -> -2 mu (K - <K>) the block is Hermitian and exactly quadratic, mu's equation is the CMC condition (A_B = -3i omega A_psi/k^2), B's gives a FINITE multiplier (A_mu = -2i omega A_psi), det = 2 x lim det/c_2 (the limits commute), deg_omega det = 4 (same count: 2 tensor + khronon + phi; 3 at lambda = 0), T -> diag(12, 4 lambda) > 0 and V unchanged (health exactly as FP7 C1), the UV khronon speed -> (2 - alpha_c)/(3 alpha_c) finite; in the Hamiltonian the pair (pi_mu, K - <K>) is second class (d(K - <K>)/d mu != 0), so the Dirac count is unchanged
+         measured: det ratio 2; deg 4; T, V limit True; CMC True; mu finite True; bracket -3/2
+         reading:  the original Legendre map degenerates (FP5 A2's trace eigenvalue 2(1 - 3(1 + c_2)) -> -oo), which is why the regular variables are the multiplier's: mu = c_2 (K - <K>) stays finite
+    [plain] the multiplier's background equation dL1/dmu = -6*a(t)**2*Derivative(a(t), t)  (forces adot = 0: no expanding FRW)
+    plain finite-c_2 Friedmann: 8 pi G rho a^2 = (-2*Lambda*a(t)**2 + 9*c_2*Derivative(a(t), t)**2 + 6*Derivative(a(t), t)**2)/2  -> H^2 = (Lambda + 8 pi G rho)/(3 + 9 c_2/2) -> 0 as c_2 -> oo
+  [FAIL] C1b (a) THE LIMIT IS REGULAR ON FRW (FP2's machinery + the multiplier): the leaf-averaged term vanishes on FRW so the multiplier's background equation is empty and Friedmann is GR; at quadratic order L2's c_2-dependence is EXACTLY -c_2 a^3 Q1^2 and L2(mu) = L2(0) - 2 a^3 mu Q1 (Hubbard-Stratonovich: L2(c_2) = min_mu [L2(mu) + a^3 mu^2/c_2]); mu's equation is Q = 0 (CMC leaves), the khronon's equation fixes mu = -alpha_c(...)/(a (2k^2 + 24 pi G rho a^2)) FINITE, the dust equations are unchanged and the growth coupling stays G_eff/G = 2/(2 - alpha_c) with no slip
+         measured: background False
+         reading:  MUTATE: the plain K^2 term's limit freezes the expansion -- the leaf average is what makes c_2 -> oo admissible
+    (3.9 s) [19 s]
+    chi/J response (from L4): static (omega -> 0) -sigma**2/(4*C_phi*k**2) (the MOND enhancement 1/C_phi, both forms, any lambda);  equal-time (omega -> oo) at lambda = 0: finite c_2 -sigma**2*(alpha_c - 2)/(4*k**2*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)), c_2 -> oo -sigma**2*(alpha_c - 2)/(4*k**2*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)) (identical: True; d/dC_phi -> 0 as alpha_c -> 0: True); at lambda > 0: 0 / 0
+    the MOND sector's scale              | c_2 -> oo root: a0 = kappa c sqrt(G rho_DE) (P1), independent of K: a0(z) flat
+                                         | York/CMC:        a0 proportional to c|K| (tied to York time): a0(z) ~ H(z) (the rival footing FP5 D4 / L37 kill)
+    degrees of freedom                   | c_2 -> oo root: 2 tensor + 1 scalar: the lapse keeps its own alpha_c equation, the CMC pair (pi_mu, K - <K>) is second class (C1); UV speed^2 (2 - alpha_c)/(3 alpha_c), MOND-regime speed^2 C_phi/(lambda + 3 sigma^2)
+                                         | York/CMC:        2 + 0: the CMC condition is second class with H_perp and fixes the lapse (elliptic, instantaneous)
+    how the MOND field reaches a region  | c_2 -> oo root: the MOND enhancement (1/C_phi) only through the pole omega^2 = -C_phi*k**2*(alpha_c - 2)/(3*(C_phi*alpha_c - alpha_c*sigma**2 + 2*sigma**2)); the equal-time part is c_2-independent, Newtonian-strength and EFE-blind to O(alpha_c C_phi) (the elliptic lapse every khronometric theory has, FP5 C5)
+                                         | York/CMC:        equal-time 1/k^2 (no omega): instantaneous EFE signaling across spacelike separation -- the kill
+    static G_eff                         | c_2 -> oo root: G_N = G/(1 - alpha_c/2): the c_2 term is static-inert (K = 0 on static slices)
+                                         | York/CMC:        2G (a two-potential artefact)
+    Cassini                              | c_2 -> oo root: unchanged (static-inert): FP7's AQUAL floors 0.0243 / 0.0268 pc
+                                         | York/CMC:        mu_2 kernel 3.9 sigma
+  [PASS] C2 (b) THE YORK/CMC KILL IS NOT REPRODUCED: at c_2 -> oo the CMC condition sits on the khronon's own leaves, but (i) a0 is P1's constant, not proportional to c|K| (no H(z) footing), (ii) the lapse keeps alpha_c's own equation, so the CMC constraint pairs with the multiplier and the scalar PROPAGATES (UV speed^2 (2 - alpha_c)/(3 alpha_c), MOND-regime C_phi/(lambda + 3 sigma^2)), (iii) the response of chi to a source: its MOND enhancement -sigma^2/(4 C_phi k^2) is the omega -> 0 limit and reaches a region only through that pole, while its equal-time (omega -> oo) part is IDENTICAL at finite c_2 and at c_2 -> oo, Newtonian-strength and EFE-blind to O(alpha_c C_phi) (zero at lambda > 0): the limit adds no instantaneous channel, and the one that exists is the elliptic lapse of every khronometric theory (FP5 C5, L318 criterion B), (iv) G_eff = G_N and Cassini are untouched (static-inert).  The York-like limit is the DOUBLE limit c_2 -> oo, alpha_c -> 0 (UV speed -> oo), which A3's strong coupling excludes
+         measured: UV speed^2 at c_2 = oo: -(alpha_c - 2)/(3*alpha_c); double limit (alpha_c -> 0): oo; static MOND response both forms: True; equal-time part c_2-independent: True, EFE-blind at O(alpha_c): True, zero at lambda > 0: True; static block c_2/mu-blind: True
+         reading:  the leaf-wise heat filter is the root's only equal-time nonlocality and it is c_2-independent (Gaussian tails on each leaf, FP1/XC1's criterion-B causality) -- the limit adds none
+    tracking speed at C_phi = 0.01 (C^Q = 100), lambda = 0 [km/s]: c_2 floor: 1800, c_2 1: 13407, c_2 10: 16759, c_2 oo: 17309 (target 1800);  c_2 -> oo reach: C^Q <= 9246
+    outskirts alpha_2 v^2 (C^Q = 100, 620 km/s, lambda = 0): c_2 floor: 1.17e-01, c_2 1: 2.11e-03, c_2 10: 1.35e-03, c_2 oo: 1.27e-03;  Solar-System (khronometric) alpha_2 -> -alpha_c*(2*alpha_c - 1)/(alpha_c - 2) (~ -alpha_c/2)
+    (H_Y) sigma_8 at c_2 floor vs c_2 -> oo: ('canonical', 'rms'): 1.012768 / 1.012773, ('canonical', 'permode'): 1.015850 / 1.015851, ('alt', 'rms'): 1.014837 / 1.014844, ('alt', 'permode'): 1.017979 / 1.017980;  max |d| = 6.6e-06;  forest 2.8e-07 / 2.8e-07;  control c_2 = 1e-12: 1.00000 (the weight is live)
+  [PASS] C3 (c) TRACKING, PPN, GROWTH AND c_T IN THE LIMIT: the tracking speed rises monotonically to c_s^2 = C_phi/(lambda + 3 sigma^2) (17,309 km/s at C^Q = 100: 9.6x the 3 x 600 km/s target, reach C^Q <= 9,246); the outskirts alpha_2 v^2 saturates (11.7% at the floor -> 0.21% at c_2 = 1 -> 0.13%); the Solar-System alpha_2 -> alpha_c (2 alpha_c - 1)/(2 - alpha_c) finite; the (H_Y) sigma_8 and forest are unchanged (the tracking weight is already saturated); c_T = 1 (delta K = 0 on TT modes: neither c_2 (K - <K>)^2 nor mu (K - <K>) reaches the tensor sector)
+         measured: c_s 1800 -> 17309 km/s; alpha_2 v^2 0.117 -> 0.0013; d sigma_8 6.6e-06; forest 2.8e-07
+  [PASS] C4 STRONG COUPLING IN THE LIMIT: XC1's scale with the exact limit speed stays finite (the c_2 cubic vertex c_2 dK1 dK2 = mu1 dK2 on shell: no c_2-enhanced vertex survives), k_sc = 4.7e+08 GeV at XC1's lowest alpha_c (>= 1e3 x the LHC); the limit only moves the alpha_c floor by an O(1) factor (A3)
+         measured: alpha_c 9.62e-14: 4.66e+08 GeV; alpha_c 3.20e-09: 1.15e+12 GeV
+         reading:  XC1's power counting is the decoupling-limit one with the full-block speed (its convention at every c_2); a cubic analysis with the metric mixing at c_2 -> oo is OPEN
+    [20 s]
+
+====================================================================================================================
+X  xi (the heat filter's length): not derivable, no field-dependent form survives, and the filter cannot be dropped -- a KNOB
+====================================================================================================================
+    exponents of (a0, c, G, Lambda) for a length: {e_G: 0, e_a: -2*e_L - 1, e_c: 4*e_L + 2} (G's exponent 0: no mass, no G);  length = (c^2/a0) (Lambda c^4/a0^2)^e_L, Lambda c^4/a0^2 = 8 pi/kappa^2 = 100.531
+    c^2/a0 = 3.112e+10 pc (canonical) / 2.575e+10 pc (alt); the window [0.0243, 100] pc needs (8 pi/kappa^2)^e_L in [7.8e-13, 3.2e-09]: e_L in [-6.05, -4.24]
+    integer-power hits (NUMEROLOGY -- no mechanism, flagged, not derivations): (c^2/a0)(8 pi/kappa^2)^-5 = 3.03 pc; (c^2/a0)(8 pi/kappa^2)^-6 = 0.0301 pc; (c^2/a0) Z^-12 = 22 pc; (c^2/a0) Z^-13 = 3.8 pc; (c^2/a0) Z^-14 = 0.656 pc; (c^2/a0) Z^-15 = 0.113 pc
+  [PASS] X1 (i) NO CONSTANT LENGTH FROM (a0, Lambda, G, c) WITH AN O(1) COEFFICIENT LANDS IN THE WINDOW: G cannot enter without a mass, so every such length is (c^2/a0) (8 pi/kappa^2)^e_L with e_L free -- c^2/a0 = 31 Gpc; the window [0.024 pc, 100 pc] needs a pure number 7.8e-13 .. 3.2e-09, i.e. e_L in [-6.05, -4.24].  Integer powers do land there ((c^2/a0)(8 pi/kappa^2)^-5 = 3.03 pc, (c^2/a0)(8 pi/kappa^2)^-6 = 0.0301 pc, (c^2/a0) Z^-12 = 22 pc, (c^2/a0) Z^-13 = 3.8 pc, (c^2/a0) Z^-14 = 0.656 pc, (c^2/a0) Z^-15 = 0.113 pc) -- NUMEROLOGY with no mechanism in the action, flagged and NOT counted as a derivation
+         measured: G exponent 0; c^2/a0 3.11e+10 pc; e_L window [-6.05, -4.24]; 6 numerology hits
+         reading:  FP9 V1's Mpc statement, confirmed for the parsec window: the hierarchy of 9-12 decades is not in the action
+    xi(g) = (c^2/g)(a0/g)^s [pc] at galaxy fields: s = 0.0: y=100 3.1e+08, y=1 3.1e+10, y=0.01 3.1e+12; s = 0.5: y=100 3.1e+07, y=1 3.1e+10, y=0.01 3.1e+13; s = 1.0: y=100 3.1e+06, y=1 3.1e+10, y=0.01 3.1e+14; s = 2.0: y=100 3.1e+04, y=1 3.1e+10, y=0.01 3.1e+16; s = 3.0: y=100 3.1e+02, y=1 3.1e+10, y=0.01 3.1e+18
+    SPARC rms (Upsilon profiled on the chain's grid 0.30-1.20): P2 canonical 0.1083, alt 0.1035; with the filter (MOND off where xi(g) > R): can s=0.0: 0.2755 (U 1.20), can s=0.5: 0.2755 (U 1.20), can s=1.0: 0.2755 (U 1.20), can s=2.0: 0.2755 (U 1.20), can s=3.0: 0.2755 (U 1.20), alt s=0.0: 0.2755 (U 1.20), alt s=0.5: 0.2755 (U 1.20), alt s=1.0: 0.2755 (U 1.20), alt s=2.0: 0.2755 (U 1.20), alt s=3.0: 0.2755 (U 1.20); Newtonian: canonical 0.2755, alt 0.2755
+    KiDS isolated chi^2 (lenses at y ~ 1e-4..1e-1, xi >= Gpc: MOND off): 1230.3 / 1230.3 vs P2 110.6 / 102.4 (d chi^2 +1120 / +1128)
+  [PASS] X2 (ii) A FIELD-DEPENDENT LENGTH xi(g) = (c^2/g)(a0/g)^s FAILS GALAXIES FOR EVERY s: at g = a0 it is c^2/a0 = 31 Gpc whatever s (the galaxy ceiling ~100 pc is violated by 3e+08 at y = 1, more below), so the filter erases the MOND source of every galaxy: SPARC rises from 0.108 / 0.104 to 0.275 dex (Newtonian) and KiDS's isolated-lens chi^2 from 111 / 102 to 1230 / 1230.  Generally, any length from (c, a0, g) is (c^2/a0) F(g/a0), and the ceiling needs F(y) <= 3.2e-09 y on y = 0.01-100: a new tiny number
+         measured: xi(y = 1) = 3.1e+10 pc (every s); SPARC 0.275-0.275 dex; KiDS d chi^2 +1120 / +1128
+         reading:  the Newtonian fit pins Upsilon at the grid's 1.2 edge; a larger Upsilon cannot rescue the gas-dominated outskirts
+    readout identity: heat residual 0; d_x chi - (d_x W)|_b = L0*Derivative(b(x), x)  (exactly b'(x) Delta chi = xi xi' Delta chi); E_chi on shell: chi-flux + lapse-flux = 0 -> E_chi = -16 pi G rho (vanishes in vacuum)
+    the Galaxy's phantom at the Sun: coarse-grained rho_b/mu_T = 0.0193 Msun/pc^3 (mu_T(x_e) = 3.11-5.18, rho_b = 0.1 Msun/pc^3, the repo's Oort-limit input); vacuum lower bound (mu_s gradient only, |dln y/dln R| = 1, R0 = 8.178 kpc) 0.0026-0.0032; SCORED with 0.0026 Msun/pc^3
+    s = 0.0: Mercury xi 7.36e+01 pc, dg 2.6e-05 m/s^2 = 7.1e+08x; Earth xi 4.91e+02 pc, dg 4.5e-04 m/s^2 = 1.2e+10x; Mars xi 1.14e+03 pc, dg 1.6e-03 m/s^2 = 4.4e+10x; Jupiter xi 1.33e+04 pc, dg 6.4e-02 m/s^2 = 1.7e+12x; Saturn xi 4.47e+04 pc, dg 3.9e-01 m/s^2 = 1.1e+13x
+    s = 0.5: Mercury xi 3.58e-03 pc, dg 9.3e-14 m/s^2 = 2.5e+00x; Earth xi 6.17e-02 pc, dg 1.1e-11 m/s^2 = 2.9e+02x; Mars xi 2.18e-01 pc, dg 8.8e-11 m/s^2 = 2.4e+03x; Jupiter xi 8.69e+00 pc, dg 4.1e-08 m/s^2 = 1.1e+06x; Saturn xi 5.36e+01 pc, dg 8.5e-07 m/s^2 = 2.3e+07x
+    s = 1.0: Mercury xi 1.74e-07 pc, dg 2.9e-22 m/s^2 = 8.0e-09x; Earth xi 7.75e-06 pc, dg 2.3e-19 m/s^2 = 6.1e-06x; Mars xi 4.18e-05 pc, dg 4.3e-18 m/s^2 = 1.2e-04x; Jupiter xi 5.68e-03 pc, dg 2.3e-14 m/s^2 = 6.3e-01x; Saturn xi 6.42e-02 pc, dg 1.6e-12 m/s^2 = 4.4e+01x
+    s = 0.00: FAILS -- readout-gradient force 1.1e+13x the gate at Saturn
+    s = 0.25: FAILS -- readout-gradient force 1.6e+10x the gate at Saturn
+    s = 0.50: FAILS -- readout-gradient force 2.3e+07x the gate at Saturn
+    s = 0.75: FAILS -- readout-gradient force 3.2e+04x the gate at Saturn
+    s = 1.00: FAILS -- readout-gradient force 4.4e+01x the gate at Saturn
+    s = 1.25: FAILS -- xi <= 2.2e-03 pc at every planet: below FP7's failing 0.010 pc row (Q2 3.4x, monopole 6.5x): the strict-law leak
+    s = 1.50: FAILS -- xi <= 7.7e-05 pc at every planet: below FP7's failing 0.010 pc row (Q2 3.4x, monopole 6.5x): the strict-law leak
+    s = 2.00: FAILS -- xi <= 9.2e-08 pc at every planet: below FP7's failing 0.010 pc row (Q2 3.4x, monopole 6.5x): the strict-law leak
+    s = 3.00: FAILS -- xi <= 1.3e-13 pc at every planet: below FP7's failing 0.010 pc row (Q2 3.4x, monopole 6.5x): the strict-law leak
+    ephemeris requirement at 1 AU with xi at the floor: |d ln xi/d ln g| <= 3.3e-02
+  [PASS] X3 (ii) THE SAME FILTER FAILS THE SOLAR SYSTEM, FROM THE ACTION'S STATIC VARIATION: a field-dependent xi makes the heat branch's readout depth b(x) = xi(g(x))^2/2, so chi(x) = W(b(x), x) and grad chi = S grad phi + xi grad xi (S Delta phi) EXACTLY (the heat identity); the lapse back-reaction is E_chi Delta chi b' with E_chi = -16 pi G rho (zero in vacuum).  The new force xi|grad xi| x 4 pi G rho_ph from the Galaxy's own phantom (scored with the vacuum lower bound 0.0026 Msun/pc^3, 7x below the coarse-grained rho_b/mu_T) is sunward and grows as r^(4s+3): for the lead (s = 1/2, xi = 0.062 pc at 1 AU) 3x the ephemeris gate at Mercury, 2.9e+02x at the Earth, 2e+07x at Saturn.  Every s on the grid 0-3 fails: s <~ 1 by this force (at the outer planets), larger s because xi(g) then falls below FP7's failing 0.010 pc row at every planet (the strict-law leak).  The ephemerides allow |d ln xi/d ln g| <~ 3e-02: xi must be CONSTANT across the Solar System
+         measured: s = 1/2: Mercury 2.5e+00x, Earth 2.9e+02x, Mars 2.4e+03x, Jupiter 1.1e+06x, Saturn 2.3e+07x; per s: 0.0: FAILS; 0.25: FAILS; 0.5: FAILS; 0.75: FAILS; 1.0: FAILS; 1.25: FAILS; 1.5: FAILS; 2.0: FAILS; 3.0: FAILS; |dln xi/dln g| <= 3.3e-02
+         reading:  a lower bound: the Sun's own (unfiltered-source) phantom adds a same-sign term ~ a0 grad xi, larger still; the two scale differently with r, so they cannot cancel at every planet
+    readout response delta chi = K (a_hat.grad) delta n, K = Delta chi xi dxi/d|a|: V_11 = -4*k**2*(alpha_c - 2)*(K**2*k**2 + 1)/(K**2*alpha_c*k**2 - 2*K**2*k**2 + alpha_c);  det V = -16*C_phi*k**4*(alpha_c - 2)*(K**2*k**2 + 1)/(K**2*alpha_c*k**2 - 2*K**2*k**2 + alpha_c)
+    K at 1 AU (s = 1/2, rho_ph above) = 135 m;  unstable below the wavelength 2 pi K sqrt((2 - alpha_c)/alpha_c) = 2.12e+04 km (alpha_c = 3.2e-09), 8.93e+07 km (alpha_c = 1.8e-16)
+  [PASS] X3b (ii) ITS SECOND VARIATION IS FC-KH-UNSTABLE: because the readout depth depends on the lapse gradient, delta chi gains K (a_hat.grad) delta n and the reduced block becomes V_11 = 4k^2 (2 - alpha_c)(1 + K^2 k^2)/(alpha_c - (2 - alpha_c) K^2 k^2), det V likewise: a gradient instability of the khronon for K^2 k^2 > alpha_c/(2 - alpha_c) -- alpha_c (<= 3.2e-9) is the lapse's only stiffness; the lead's K = 135 m at 1 AU is unstable at every wavelength below 2.1e+04 km (alpha_c at its cap) to 0.6 AU (at XC1's floor).  Control: K = 0 returns FP7's healthy V
+         measured: V_11 form True; Hermitian True; quadratic True; K(1 AU) 135 m; critical wavelengths 2.1e+04 km, 8.9e+07 km
+         reading:  the FC-KH lesson in a new place: nothing on the lapse may vary faster than alpha_c allows; c_T = 1 is untouched (b depends on the scalar |a|, the TT sector does not see it)
+  [PASS] X4 (reported) |Phi|-BASED LENGTHS xi = (c^2/g)(|Phi|/c^2)^m FAIL TOO: MOND potentials grow as ln r without bound, so |Phi| needs a declared zero point (a new datum: gauge-ambiguous), and even granting the Galaxy's depth at the Sun (|Phi| >= v_c^2) the Solar-System floor needs m <= 0.69 while the galaxy ceiling at g = a0 needs m >= 1.42 -- no window (their readout gradient is small, since the Galaxy's potential dominates |Phi| across the Solar System: the pincer, not X3, kills them)
+         measured: m <= 0.69 (Solar System) vs m >= 1.42 (galaxies)
+    [25 s]
+    P2                       Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 3.99/4.48/4.93, alt 4.53/5.13/5.68;  monotone phantom (healthy): True;  SPARC can 0.1083, alt 0.1035
+    nu_RAR (exp tail)        Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 5.37/6.23/7.03, alt 5.82/6.84/7.81;  monotone phantom (healthy): False;  SPARC can 0.0999, alt 0.0989
+    P2, tail cut y_c = 1e3   Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 3.99/4.48/4.93, alt 4.54/5.13/5.68;  monotone phantom (healthy): False;  SPARC can 0.1083, alt 0.1035
+    P2, tail cut y_c = 20    Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 4.04/4.55/5.02, alt 4.57/5.19/5.76;  monotone phantom (healthy): False;  SPARC can 0.1081, alt 0.1035
+    P2, tail cut y_c = 5     Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 4.37/5.01/5.63, alt 4.85/5.59/6.30;  monotone phantom (healthy): False;  SPARC can 0.1062, alt 0.1021
+    P2_n n = 2               Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 1.79/1.72/1.65, alt 2.46/2.40/2.33;  monotone phantom (healthy): False;  SPARC can 0.1181, alt 0.1107
+    P2_n n = 3               Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 0.86/0.72/0.61, alt 1.41/1.20/1.03;  monotone phantom (healthy): False;  SPARC can 0.1223, alt 0.1142
+    P2_n n = 4               Q2/ceiling (g_ext 2.00/2.32/2.64) canonical 0.46/0.34/0.26, alt 0.88/0.67/0.52;  monotone phantom (healthy): False;  SPARC can 0.1244, alt 0.1159
+    health theorem: d[(nu - 1) y]/dy - C_L = 0 -> healthy (C_L >= 0) <=> the phantom h(y) = (nu - 1) y is non-decreasing; SPARC's h at y = 0.3-1 (median, Upsilon 0.5/0.7/0.9): 0.58, 0.37, 0.26 -> every healthy kernel leaves >= 0.26 a0 at the planets = 671x the ephemeris gate
+  [PASS] X5 (iii) THE FILTER CANNOT BE DROPPED BY CHANGING THE KERNEL -- it is a health + EFE statement, not a tail statement: (a) health (C_L >= 0) is exactly a non-decreasing phantom h(y) = (nu - 1) y, so every healthy kernel keeps at the planets at least the phantom SPARC measures at y = 0.3-1 (>= 0.26 a0): >= 671x the ephemeris gate, whatever its tail; (b) Cassini Q2 at xi = 0 is set at y ~ g_ext/a0 = 2-3: cutting P2's tail above y_c = 20 moves Q2 by < 3% (4.0-5.8x the ceiling), nu_RAR's exponentially fast tail fails worse (5.4-7.8x); only a sharper transition passes (P2_n n = 4 on both footings), and every such kernel is non-monotone (unhealthy: FP7 C1's tachyon), is not the framework's P2 and costs SPARC +0.012..+0.016 dex
+         measured: tail-cut Q2 change < 3%: True; kernels passing Q2: ['P2_n n = 4'] (healthy: [False]); healthy tail floor 671x
+    [39 s]
+
+====================================================================================================================
+F  THE GRAVITY CORE'S CONSTANTS AFTER FP14
+====================================================================================================================
+    G                                          | before: measured                                     | after: measured  [-]
+    Lambda                                     | before: measured                                     | after: measured  [-]
+    kappa = 1/2 (a0 = kappa c sqrt(G rho_DE))  | before: FITTED (accepted)                            | after: FITTED (accepted)  [FP0 L0c]
+    xi (heat-filter length)                    | before: bounded knob [0.0243/0.0268 pc, ~100 pc]     | after: KNOB: bounded, not derivable (X1), no field-dependent form survives (X2-X3b), not removable (X5)  [X1-X5]
+    alpha_c (BPS alpha)                        | before: bounded knob (0, 3.2e-9]                     | after: REGULATOR: value unobservable (A1), must be > 0 (A2, A3); floor 3e-41..8e-16 by the probe criterion  [A1-A4]
+    c_2 (leaf-averaged lambda-term)            | before: bounded below (>= 7.29e-3), no ceiling       | after: ELIMINATED: c_2 -> oo is regular; the term is the CMC constraint -2 mu (K - <K>_h), mu a multiplier  [C1-C4]
+    lambda (phi's inertia)                     | before: 0 allowed (FP9)                              | after: ELIMINATED: lambda = 0 (needs FP9's yield at exact zero field)  [L1-L4]
+    phibar-dot (declared datum)                | before: declared = 0 (FP7 F)                         | after: ELIMINATED: gauge at lambda = 0  [L1]
+    outside the gravity core (unchanged here): FP9's separator (L_Lambda, n, y_Lambda, p': 4 declared) and the declared dark mass
+  [PASS] F (reported) THE NEW COUNT: beyond (kappa, G, Lambda) the gravity core had 4 constants + 1 declared datum; it now has ONE knob (xi) and ONE regulator (alpha_c: required nonzero, value unobservable); c_2, lambda and phibar-dot are eliminated
+         measured: knobs 4 -> 1; regulators 0 -> 1; eliminated 3 (c_2, lambda, phibar-dot)
+
+====================================================================================================================
+W  THE LEDGER: FP14
+====================================================================================================================
+    F14a   DERIVED     lambda = 0 passes every gate FP7/FP9 scored: statics, Solar System, SPARC, KiDS, flagship, FRW, sigma_8 and forest (H_Y), health (one scalar), tracking (best), PPN (alpha_2's lag gone), c_T, N = 3  --  L2, L4 (this lane's block; FP9's machinery)
+    F14b   DERIVED     at lambda = 0 the action has the exact gauge symmetry phi -> phi + f(tau): FRW's phibar is gauge, FP7's declared 'phibar-dot = 0' is eliminated  --  L1 (generic ADM metric, FRW minisuperspace)
+    F14c   CONSTRAINT  lambda = 0 needs FP9's yield at exact zero field (else phi = A_n/sigma: the backward heat operator)  --  L3
+    F14c'  DERIVED     at lambda = 0 the chassis field chi gains an equal-time response (zero at lambda > 0): Newtonian-strength, EFE-blind to O(alpha_c C_phi); the MOND enhancement still arrives only through the propagating pole  --  L4 (source response of the block; L318 criterion B admits it)
+    F14d   DERIVED     no scored observable depends on alpha_c beyond O(alpha_c) <= 1.6e-09; the Solar-System alphas vanish as alpha_c -> 0; FP5's y* does not exist on the AQUAL root  --  A1
+    F14e   FAILS       alpha_c -> 0+: the UV khronon becomes instantaneous (rank change) and strongly coupled, k_sc ~ alpha_c^(3/4): alpha_c = 0 excluded  --  A2, A3 (XC1's formula, reproduced)
+    F14f   POSTULATED  alpha_c is a REGULATOR in [alpha_sc, 3.2e-9] (alpha_sc = 3e-41 .. 8e-16 by the probe criterion): nonzero, value unobservable  --  A (verdict): a UV requirement, not a fitted constant
+    F14g   OPEN        the L340 H4 O(Phi/c^2) lobe floor on alpha_c for the AQUAL root  --  A4 (L340's scaling: 7e-19..6e-11 over the xi window, inside it)
+    F14h   DERIVED     c_2 -> oo is regular: -c_2 (K - <K>_h)^2 -> -2 mu (K - <K>_h); Minkowski (det = 2 lim det/c_2, T -> diag(12, 4 lambda), V unchanged, same count, second-class multiplier pair) and FRW (HS identity, Q = 0, mu finite, dust unchanged, G_eff = 1/(1 - alpha_c/2))  --  C1, C1b (the MUTATE plain K^2 freezes the expansion)
+    F14i   DERIVED     c_2 -> oo does NOT reproduce the York/CMC kill: a0 not tied to K, the scalar propagates (alpha_c keeps the lapse dynamical), the response's equal-time part is c_2-independent (no new instantaneous channel) and EFE-blind, G_eff = G_N, Cassini unchanged; the York-like limit is the double limit alpha_c -> 0, excluded by strong coupling  --  C2
+    F14j   DERIVED     in the limit: tracking 1,800 -> 17,309 km/s (C^Q = 100), outskirts alpha_2 v^2 11.7% -> 0.13%, sigma_8/forest (H_Y) unchanged (<= 7e-06), c_T = 1, k_sc finite  --  C3, C4 (the cubic mixing analysis at c_2 -> oo is OPEN)
+    F14k   POSTULATED  the c_2 term replaced by the CMC constraint (c_2 eliminated)  --  C (verdict): the zero-knob choice of a regular limit
+    F14k'  OPEN        not covered for the c_2 -> oo root: nonlinear well-posedness, the cubic strong-coupling analysis with metric mixing, and the khronon's binary-pulsar radiation at lambda_BPS -> oo (only the PPN bounds were scored)  --  scope; the same items are open at finite c_2
+    F14l   FAILS       xi from (a0, Lambda, G, c): only (c^2/a0)(8 pi/kappa^2)^e_L; O(1) coefficient = 31 Gpc; 6 integer-power hits in the window are numerology  --  X1 (sympy nullspace)
+    F14m   FAILS       field-dependent xi(g) = (c^2/g)(a0/g)^s: galaxies (SPARC 0.275 dex, KiDS +1120), Solar System (readout-gradient force 3e+02x the ephemeris gate at the Earth for the lead; every s fails), FC-KH-type gradient instability  --  X2, X3, X3b
+    F14n   FAILS       |Phi|-based xi: gauge-ambiguous and a floor/ceiling pincer (m <= 0.69 vs >= 1.42)  --  X4 (reported)
+    F14o   FAILS       dropping the filter by a kernel change: healthy kernels keep >= 0.26 a0 at the planets (671x); Cassini Q2 is an EFE/transition statement (tail cuts < 3%); only unhealthy sharp kernels (P2_n n = 4) pass  --  X5 (theorem + FP1's Q2 integral)
+    F14p   CONSTRAINT  xi is the gravity core's one remaining knob, bounded to [0.0243/0.0268 pc, ~100 pc]  --  X (verdict); FP7 A4 floors
+    F14q   DERIVED     the core's count beyond (kappa, G, Lambda): 1 knob (xi) + 1 regulator (alpha_c); eliminated c_2, lambda, phibar-dot  --  F
+  [PASS] W (reported) the ledger of this lane
+         measured: 19 links
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  lambda   ELIMINATED.  At lambda = 0 the root gains an exact gauge symmetry phi -> phi + f(tau) (so FP7's declared phibar-dot is gauge
+           too), keeps one healthy scalar (omega^2 >= 0 iff C_phi >= 0) and passes every gate FP7 and FP9 scored; the price is FP9's
+           yield at exact zero field, which the chain already carries.
+  alpha_c  a REGULATOR, not a knob and not removable.  Nothing scored moves by more than 1.6e-9 across its window, and the
+           Solar-System alphas vanish as alpha_c -> 0 -- but the limit is singular: the UV khronon becomes instantaneous and
+           k_sc ~ alpha_c^(3/4) -> 0.  It must be nonzero (>= 3e-41 .. 8e-16 by the probe criterion); its value is unobservable.
+  c_2      ELIMINATED.  c_2 -> oo is regular on Minkowski and FRW: the term becomes the CMC constraint -2 mu (K - <K>_h) with a finite
+           multiplier, the count and health are unchanged, tracking and alpha_2 saturate at their best values, sigma_8 is
+           untouched.  It does NOT reproduce the York/CMC kill: a0 stays P1's constant and alpha_c keeps the scalar propagating.
+           (MUTATE: without the leaf average the same limit freezes the expansion.)
+  xi       a KNOB.  No length from (a0, Lambda, G, c) with an O(1) coefficient reaches the parsec window (integer-power hits are
+           numerology); a field-dependent xi(g) fails galaxies (xi(a0) = c^2/a0), the ephemerides (the readout-gradient force) and
+           FC-KH stability; and the filter cannot be dropped: every healthy kernel keeps a planetary anomaly >= 671x the gate,
+           and Cassini's Q2 is set at the EFE transition, not by the tail.
+  COUNT    beyond (kappa, G, Lambda): 1 knob (xi) + 1 regulator (alpha_c).  Not 'zero knobs': xi is the one that remains.
+  Time 39 s.
+
+  26/27 checks pass; load-bearing failures: 1; wrote FP14_zero_knob_core_results_MUTATE.json
+rc=1
