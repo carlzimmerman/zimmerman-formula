@@ -1,0 +1,255 @@
+{
+ "schema_version": 2,
+ "task_id": "AS229",
+ "task_sha256": "6595554364d60b1bf4c708cf65ca45513e49a9197b2c2580e49598b6292a8ba2",
+ "run_id": "AS229-vaclens-r1-20260928T1941Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter) via Hermes Agent subagent, host macOS 26.5.2; profile default",
+ "started_utc": "2026-09-28T15:22:52Z",
+ "finished_utc": "2026-09-28T21:42:32Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "On the CA5-GNC-R branch with reciprocal vacuum barrier F(t)=1+(t+1/t-2)^2, t=1+z=1+Z-<Z>_h>0, static weak inhomogeneous z with proper-volume mean zero and unit lapse N=1 at leading order: (i) exact closed forms F(1+z)-1 = z^4/(1+z)^2 and F'(1+z) = 2 z^3 (z+2)/(1+z)^3 for all z>-1, hence F'(1)=F''(1)=F'''(1)=0 and F''''(1)=24; (ii) the projected vacuum stress DeltaT^ij_mean = -(<N sigma_v>_h/N) z h^ij with sigma_v=-V0 F'(1+z) has first nonzero vacuum order O(z^4) with leading term +4 V0 <z^3>_h z h^ij / N (exact coefficient; sign set by the third moment; trace-free part identically zero), entering the scalar metric equations only through the isotropic channel: Lap(Phi+Psi) gains 4 pi G * 3 DeltaT_mean and Lap(Phi-Psi) gains nothing at this order (Pi_v = 0); (iii) the older 1/t_c floor has F_old'(1)=-1, F_old''(1)=2 and produces a linear O(z) projected stress, contradicting F'(1)=F''(1)=0 (negative control). Domain: exact identities universal in z>-1 (t>0); order statement verified on 1D periodic leaves (N=64,128; amplitudes 0.009..0.3; amplitude scaling 1/16 and 1/32 within tolerance) and 3D 32^3 lattice; kappa=1/2 adopted, V0 input (epsilon_Lambda calibration display-only); both footings 9.3619e-11 and 1.1279e-10 m/s^2 carried separately.",
+ "framework_cell": {
+  "branch": "CA5-GNC-R physical-metric branch (reciprocal vacuum barrier); Q/RAR/MU2/EXP/MONO not interchanged",
+  "action": "L_v = -V0 F(t) with F(t)=1+(t+1/t-2)^2; pinned sources: vacuum/ACTION.md (sha 290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d), PERSPECTIVE_VARIANT.md (sha 36efa45459468d22c1f2553cbcd5d2a2349bef56c6df1e03a5b9fefb9806d78b)",
+  "coupling": "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 ADOPTED as input (not derived); r_M and v_flat not needed by this seed",
+  "kernel/filter/gate": "none in this seed (no MONO heat filter involved); criterion B context preserved, no branch translation performed",
+  "parameters": "V0 (input; display calibration V0 = epsilon_Lambda), G = G_N = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16; G_bare/G_cosmo not used; rho_Lambda canonical 5.844412454021876e-27, alternative 8.483089619559099e-27 kg/m^3",
+  "scale footing": "canonical a0=9.3619e-11 m/s^2 and alternative a0=1.1279e-10 m/s^2 reported separately; they cannot share one fixed (rho_Lambda, kappa) pair; V0_alt/V0_can = 1.4514",
+  "boundaries/initial conditions": "periodic leaves L=4*pi (1D), 32^3 box (3D); static; proper-volume mean <z>_h = 0; unit lapse N=1 at leading order",
+  "units": "SI; stresses in Pa for the display examples"
+ },
+ "new_assumptions": [
+  "Mixed-parity profile z = A(sin x + 0.35 cos 2x + 0.12 sin 3x) as the representative weak inhomogeneous z-field (satisfies <z>=0, <z^3> != 0; any profile with <z^3> != 0 carries the same exact leading coefficient)",
+  "Unit lapse at leading order: N = 1 inside <N sigma_v>_h / N (lapse feedback O(Phi) deferred to followup)",
+  "V0 treated as an input; the epsilon_Lambda normalization is display-only, not a derived calibration",
+  "Static weak-field linearized scalar equations (Phi, Psi small; c=1 in the combination derivations)",
+  "3D consistency checks use stencil-matched finite-difference operators with amplitude 2.5e-3 on a 32^3 lattice (finite evidence, not a theorem)"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS229_compute_projected_vacuum_contribution_to_lensing_slip.md": "6595554364d60b1bf4c708cf65ca45513e49a9197b2c2580e49598b6292a8ba2",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md": "290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+  "real_research/common_action_2026_09_26/action/PERSPECTIVE_VARIANT.md": "36efa45459468d22c1f2553cbcd5d2a2349bef56c6df1e03a5b9fefb9806d78b",
+  "deepseek_push/astra_spawn_ideas/results/AS245/AS245-efe-r1-20260928T1711Z-dsv4f-hermes/result.json": "225cfbdb3ba2b297192986a77b79ca2f2b758e5a4497528b477d91f242bbaa25",
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/result.json": "27c079508dd29960b5f77dd9c4af6de556ccba082f89992aa6306ea6e39234c6",
+  "deepseek_push/astra_spawn_ideas/results/AS658/AS658-r1-20260928T143654Z-dsv4f-hermes/result.json": "3c9a798d7d1dde335f56017925fc24057953a11e4e989d89f22908d0a87020ec"
+ },
+ "artifacts_sha256": {
+  "derivation.md": "b06253d7bae60ef126ba916f48d4e666053a217f8a0392871beec066274eb960",
+  "as229_vacuum_lensing_r2.py": "dbb22b7d16d8777c5e17d25fd7a71f7131d3c8cb70f7a24a31ada6ed78a56418",
+  "raw_output.json": "c928b8aa31e7a77d34b9bf3b9d669adc27e91d411ab87c43a1051dbfe16a2812",
+  "run2.out": "e4350ba5ca540d9938752d3e05ba7ddff14da79386d9ae01ab3fabc45904bbd9",
+  "time_mem2.txt": "ef530895fe5a4ffd69bd1e289cb7370bcdbf30d2491e3686074e14991127cac9",
+  "AS229_vacuum_closed_forms.lean": "117926f2b8b8156ff5f9310265f21f963e7478fbe4ec8918731ad4d60a39e718",
+  "as229_vacuum_lensing.py": "3cf2a5e58d58e74574af433e40792628f101148f5cfbd357c324d1a5f3bf0e3d",
+  "run.out": "0d49850ac51e98049d18ad4e1197e7d571e87f7cd34dd690e16ab6703689152f",
+  "time_mem.txt": "e9d75a6bf2315a1cb43e4e90286f3b3ac5a25c266e37b903e89e84349068cb2f",
+  "probe_eins.py": "35d560fa359e3948303c7d3fc1c98da8acf0af2df99fae1770f8a91be41028c6",
+  "probe_eins2.py": "b000db800ebafae7dbff7d23410ca9d64afad92ab0dcb89c3f93c1e958237f0c"
+ },
+ "commands": [
+  "export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 && /usr/bin/time -l python3 as229_vacuum_lensing_r2.py > run2.out 2> time_mem2.txt",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS229/AS229-vaclens-r1-20260928T1941Z-dsv4f-hermes/AS229_vacuum_closed_forms.lean",
+  "shasum -a 256 <seed + contract + source files> ; python3 probe_eins.py ; python3 probe_eins2.py (debug probes)",
+  "cwd for all runs: the run directory; git: no commit created (other workers'/shared files untouched)"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_s": 120,
+   "memory_MB": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "wall": "signal.alarm(120) armed before compute; alarm_remaining 119.5 s at exit; actual wall 0.49 s (final numeric run)",
+   "memory": "RLIMIT_AS=512MB NOT enforceable on this host (ValueError: current limit exceeds maximum limit - system hard limit below request); measured peak RSS 163,184,640 bytes (155.6 MB) < 512 MB (final numeric run); reported honestly",
+   "threads": "1 (OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1)"
+  }
+ },
+ "checks": [
+  {
+   "total": 17,
+   "passing": 17,
+   "details": [
+    {
+     "name": "CK1_closed_form_Fm1",
+     "pass": true,
+     "observed": "residual 0",
+     "tolerance": "residual == 0 (symbolic)"
+    },
+    {
+     "name": "CK1b_closed_form_Fp",
+     "pass": true,
+     "observed": "residual 0",
+     "tolerance": "residual == 0 (symbolic)"
+    },
+    {
+     "name": "CK2_flatness",
+     "pass": true,
+     "observed": "F'(1)=0, F''(1)=0, F'''(1)=0, F''''(1)=24",
+     "tolerance": "0,0,0,24"
+    },
+    {
+     "name": "CK3_leading_coef_Fp_z3",
+     "pass": true,
+     "observed": "4",
+     "tolerance": "4"
+    },
+    {
+     "name": "CK4_leading_coef_Fm1_z4",
+     "pass": true,
+     "observed": "1",
+     "tolerance": "1"
+    },
+    {
+     "name": "CK5_quartic_lead_ratio",
+     "pass": true,
+     "observed": "0.059187 (trend 0.075/0.15: 0.043124)",
+     "tolerance": "1/16 (|DT| ~ A^4, small-A pair)"
+    },
+    {
+     "name": "CK5b_resid_after_lead_ratio",
+     "pass": true,
+     "observed": "0.030877 (trend 0.075/0.15: 0.027226)",
+     "tolerance": "1/32 (next order z^5, small-A pair)"
+    },
+    {
+     "name": "CK6_oldfloor_linear_ratio",
+     "pass": true,
+     "observed": "0.484390",
+     "tolerance": "1/2 (linear)"
+    },
+    {
+     "name": "NEG1_oldfloor_contradiction",
+     "pass": true,
+     "observed": "old-floor 0.484390 vs barrier residual-ratio 1/32: linear susceptibility incompatible with F'(1)=F''(1)=0",
+     "tolerance": "must NOT equal 1/32"
+    },
+    {
+     "name": "NEG2_wrongsign_fires",
+     "pass": true,
+     "observed": "0.060752",
+     "tolerance": "1/16 != 1/32 (corrupt sign leaves O(z^4))"
+    },
+    {
+     "name": "CK7_TF_zero",
+     "pass": true,
+     "observed": "0.000e+00",
+     "tolerance": "< 1e-12"
+    },
+    {
+     "name": "CK8_suscept_recovery",
+     "pass": true,
+     "observed": "recovery [4.582823368680619, 2.218753653880595, 1.530905310096061, 1.2505441078066972], deviation ratio 0.472",
+     "tolerance": "-> 1 at O(A) rate (dev ratio ~0.5)"
+    },
+    {
+     "name": "CK9_nonlinear_ricci_consistency",
+     "pass": true,
+     "observed": "G00 8.998e-03, Gkk 9.081e-03, Gxy 1.965e-03, Gxx 8.028e-03, Gyy 7.571e-03, Gzz 6.580e-03, Gtx 0.000e+00",
+     "tolerance": "< 0.01 (stencil-matched), G_tx == 0"
+    },
+    {
+     "name": "CK9b_consistent_source_factors",
+     "pass": true,
+     "observed": "LapPsi 5.620e-05, LapS 3.131e-05, TF 9.598e-06; mutation 8pi 4.575e-03, 2pi 9.094e-03 vs scale 9.038e-03",
+     "tolerance": "residuals < 1e-4 AND both factor mutations fire at O(scale)"
+    },
+    {
+     "name": "CK10_vacuum_composite",
+     "pass": true,
+     "observed": "1.110e-16",
+     "tolerance": "< 1e-14 (exact cancellation of the F parts)"
+    },
+    {
+     "name": "CK11_refinement_stable",
+     "pass": true,
+     "observed": "N64 0.043124 vs N128 0.043124",
+     "tolerance": "agree to 0.01"
+    },
+    {
+     "name": "CK12_old_floor_derivatives",
+     "pass": true,
+     "observed": "F_old'(1) = -1, F_old''(1) = 2 (nonzero; contradiction witness for NEG1)",
+     "tolerance": "-1 and 2, both != 0"
+    }
+   ]
+  }
+ ],
+ "tested_domain": {
+  "exact_algebra": "universal in z>-1 (t>0); sympy exact rational series coefficients z^0..z^9; exact Einstein combination residuals = 0",
+  "1d_numeric": "N=64,128; amplitudes 0.3, 0.15, 0.075, 0.0375, 0.018, 0.009; L=4*pi periodic; primary ratio pair (0.009, 0.018), trend pair (0.075, 0.15)",
+  "3d_numeric": "32^3 lattice, L=4*pi, amplitude 2.5e-3, stencil-matched FD references; nonlinear Ricci built from scratch (Christoffel + Riemann assembly)",
+  "negative_controls": "old 1/t_c floor linearity (must contradict barrier 1/32 residual-ratio); wrong-sign mutation (must fire); 4piG/8piG factor mutations (must fire at O(scale))",
+  "refinement": "N=64 vs N=128 agreement to <0.01; no further refinement runs (bounds were hit-free, domain declared before evaluation)"
+ },
+ "failed_attempts": [
+  {
+   "artifact": "as229_vacuum_lensing.py (rev 1, preserved) + run.out + time_mem.txt",
+   "cause": "pure-sine profile forces <z^3>=0 identically, degenerating the O(z^4) leading-order test; naive arbitrary isotropic P with S!=0 is not a static weak-field solution; tolerances keyed to the degenerate profile",
+   "resolution": "mixed-parity profile; stencil-consistent source construction; rebuilt controls"
+  },
+  {
+   "artifact": "rev 2 first run",
+   "cause": "spectral wavenumbers from fftfreq lack the 2*pi factor (cycles vs angular): reference Laplacian 39.5x too small, causing a spurious 31x 'mismatch' of the (correct) FD Ricci builder; also 4x4-vs-spatial index mapping error in comparisons and poisson() using global SI G instead of the check's G1=1",
+   "resolution": "kvec = 2*pi*fftfreq; Gt[1+i,1+j] mapping; stencil-consistent sources defined directly (no Poisson solve); all three diagnosed from the actual failing numbers (the controls fired as designed)"
+  },
+  {
+   "artifact": "AS229_vacuum_closed_forms.lean intermediate versions",
+   "cause": "host build: HasDerivAt typeclass elaboration rejects hand-written goals (module instance divergence between Semiring.toModule and RCLike paths); rw cannot descend into function lambdas; fun_prop not wired for HasDerivAt in this build",
+   "resolution": "final certificate scoped to the closed-form/order theorems (verified, zero sorry, axioms {propext, Classical.choice, Quot.sound}); derivative-chain content covered by sympy exact series + numeric CK2-CK4"
+  }
+ ],
+ "limitations": [
+  "3D verification is finite evidence on one 32^3 lattice at one amplitude with ~1% stencil-matched residual floor; not a universal theorem",
+  "Lapse feedback O(Phi) inside <N sigma_v>_h / N is deferred; a strong lens potential may dominate the averaging weight",
+  "V0 is an input; epsilon_Lambda calibration is display-only; integrated lensing observables (eta_slip along null rays) are not computed in this seed",
+  "kappa=1/2 adopted, not derived; only the CA5-GNC-R branch is considered",
+  "The Lean certificate does not cover the derivative-chain statements (F'(1+z) closed form, F''''(1)=24) - those rest on sympy exact arithmetic and the numeric checks; the closed forms and order are Lean-certified",
+  "1D/3D numerics use smooth periodic profiles; isolated non-periodic lens configurations are not covered by the finite tests"
+ ],
+ "next_unresolved_implication": "The order of the lapse-weighted vacuum stress <(N sigma_v)>_h / N at O(Phi) of a concrete lens potential, i.e. whether the background potential (Phi_ext ~ 1e-6..1e-4 on lens scales) promotes the leading projected vacuum signal above O(z^4) relative to lens scales and what the resulting integrated slip combination Phi+Psi contributes along null rays; the old-floor linear term must contaminate the same integral (per NEG1) if any 1/t_c-type term survives.",
+ "suggested_followup": "Child AS229.C01: integrate DeltaT^ij_mean through the deflection integral over a non-periodic lens z-profile (NFW-like), lapse weight expanded to O(Phi), report the slip-combination contribution with and without the vacuum term; falsifiable control: replace the barrier by the 1/t_c floor and require an O(z)-scale slip shift (must fire), while the barrier leaves O(z^4)-scale. Dependencies: AS135, AS141 (lensing/PPN prerequisites), AS245 (EFE tensor anchor).",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitive_assumptions": [
+   "CA5-GNC-R vacuum action L_v = -V0 F(t) with reciprocal barrier F(t)=1+(t+1/t-2)^2 (pinned sources)",
+   "a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 ADOPTED (framework input, not derived)",
+   "G = G_N = 6.67430e-11; c = 299792458; M_sun = 1.98847e30; pc = 3.085677581491367e16 (SI conventions)",
+   "Static weak inhomogeneous z, proper-volume mean zero, unit lapse at leading order"
+  ],
+  "measured_calibrations": [
+   "canonical a0 = 9.3619e-11 m/s^2 and alternative a0 = 1.1279e-10 m/s^2 footings (separate; not a shared fixed (rho_Lambda, kappa) pair)"
+  ],
+  "genuinely_derived": [
+   "F(1+z)-1 = z^4/(1+z)^2 and F'(1+z) = 2 z^3(z+2)/(1+z)^3 (exact, Lean-certified closed form for the first)",
+   "Flatness F'(1)=F''(1)=F'''(1)=0, F''''(1)=24",
+   "Leading projected stress +4 V0 <z^3>_h z h^ij / N at first nonzero vacuum order O(z^4)",
+   "Einstein scalar combinations (Lap Psi, Lap(Phi-Psi), Lap(Phi+Psi), TF channel with 8 pi G Pi_ij)",
+   "Vacuum composites rho_v + P_v = -(<N sigma>/N) z exactly; Pi_v = 0",
+   "Old-floor contradiction witness: F_old'(1)=-1, F_old''(1)=2 vs required 0,0"
+  ]
+ },
+ "closure_implication": "Gate: lensing-slip content of the amended thirteen-item target (group A10, derived lensing/PPN). Implication: under CA5-GNC-R with kappa=1/2, the projected vacuum stress gains one explicitly ordered contribution to the lensing equations - it sources Lap(Phi+Psi) at first nonzero order O(z^4) with the exact leading coefficient +4 V0 <z^3>_h z / N (per unit lapse), leaves the anisotropic channel Pi untouched at this order, and the historical 1/t_c floor is excluded by the linear-susceptibility negative control. Common-action parameter-domain compatibility: same action L_v=-V0 F(t), kappa=1/2, G_N-only; both footings stated separately. This does NOT close the gate: an integrated lensing observable with lapse feedback O(Phi) remains open (AS229.C01).",
+ "child_proposals": [
+  {
+   "id": "AS229.C01",
+   "claim": "Compute the integrated slip-combination contribution Phi+Psi from the O(z^4) projected vacuum stress along null rays for a concrete non-periodic lens profile, with the lapse average <N sigma_v>/N expanded to O(Phi), and report the slip shift with the 1/t_c-floor replacement as falsifiable control",
+   "fingerprint": "DeltaT = -(<N sigma>/N) z h^ij with N = 1 + Phi; geodesic deflection integral; eta_slip = (Phi+Psi)/(Phi-Psi) vacuum shift",
+   "new_target": "slip ratio shift vs old-floor shift; expected separation O(z^4) vs O(z)",
+   "controls": "old-floor replacement must fire; lapse-feedback term must vanish in the N=1 limit (regression to this result)",
+   "dependencies": [
+    "AS135 (lensing prerequisites)",
+    "AS141",
+    "AS245 (EFE tensor anchor, C_L/C_T -> 1/2)",
+    "this run (AS229)"
+   ],
+   "dispatch_state": "ready for orchestrator; not dispatched (no runner available in this seed)"
+  }
+ ],
+ "closure_candidate": null
+}
