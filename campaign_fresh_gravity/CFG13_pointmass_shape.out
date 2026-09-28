@@ -1,0 +1,59 @@
+CFG13 -- CFG9's PRINCIPLE ON ITS OWN TERMS: is the transition shape P2's (beta = 1) where the baryons look like a point mass?
+
+WHY.  CFG9 proved that a cold component locally virialized around a POINT mass makes the law exactly P2 (beta = 1 in the family
+nu_beta = (1 + y^-beta)^(1/2beta)).  CFG4's committed shape bootstrap, applied to every SPARC point, excludes beta = 1 (best 0.48
+[0.40, 0.59] canonical, 0.55 [0.45, 0.77] alt; P2 loses in 1000/1000 resamples).  But the theorem fixes the shape only where the
+baryons are interior.  This lane splits SPARC's points by how much baryonic mass lies outside them and repeats CFG4's bootstrap
+on each part.
+
+THE SPLIT (declared; the selection uses Upsilon_disk = 0.5, bulge 0.7, fixed before any fit).  Spherical-equivalent baryonic mass
+M_b(R) = V_bar(R)^2 R / G.  A point at R_i is in the POINT-MASS regime if the galaxy's measured baryonic mass beyond it is at most
+10%: M_b(R_last) / M_b(R_i) <= 1.10.  It is EMBEDDED if M_b(R_last) / M_b(R_i) >= 1.5.
+
+THE STATISTIC.  CFG4 H2/H3's exactly (the record's weighted rms of log g_obs/g_pred; one global Upsilon profiled on 0.30-1.20;
+beta on CFG4's 49-point grid; the galaxy bootstrap with CFG4's seed, 1000 resamples) restricted to the subset's points.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  with every point kept, CFG4 H3's committed best beta, U, rms(beta = 1), 95% interval and P2-worse fraction are
+      reproduced exactly (both footings).
+  C2  POWER  synthetic nu_mono data (CFG4's nu_mono best Upsilon; a per-galaxy offset N(0, 0.08 dex) and per-point N(0, 0.05 dex),
+      seed 13) restricted to the POINT-MASS subset give a 95% interval that EXCLUDES beta = 1 (both footings).  If this fails the
+      subset cannot tell P2 from the record's kernel and H1 is reported as NO POWER.
+  C3  BIAS  synthetic P2 data (P2's best Upsilon, the same noise) in the point-mass subset give an interval CONTAINING beta = 1.
+  H1  [HEADLINE; MUTATE must fail] CFG9's principle is NOT falsified: the real point-mass subset's 95% interval contains beta = 1,
+      both footings.  Outcome labels: SUPPORTED if it contains 1 and excludes the full-sample best beta (0.48 / 0.55); NO POWER if it
+      contains both (or C2 failed); FALSIFIED if it excludes 1.
+  H2  the shape preference lives inside the baryons: the EMBEDDED subset's 95% interval excludes beta = 1, both footings.
+  R1  (reported) subset sizes, their median g_bar/a0, and the best beta and rms per subset.
+MUTATE=1: the real g_obs of the point-mass subset are replaced by the synthetic nu_mono data for H1 -- H1 must FAIL (rc = 1) if the
+subset has power.
+
+======================================================================================================================
+C1  CONTROL: CFG4 H3's committed shape bootstrap, every point kept
+======================================================================================================================
+    canonical: best beta 0.4847 (CFG4 0.4847), U 0.44 (0.44), rms(1) 0.1083251385 (0.1083251385), 95% [0.3974, 0.5912] ([0.3974, 0.5912]), P2 worse 1.0 (1.0)
+    alt      : best beta 0.5533 (CFG4 0.5533), U 0.46 (0.46), rms(1) 0.1035865330 (0.1035865330), 95% [0.4537, 0.7705] ([0.4537, 0.7705]), P2 worse 1.0 (1.0)
+  [PASS] C1 CONTROL: CFG4 H3's committed best beta, Upsilon, rms(beta = 1), 95% interval and P2-worse fraction reproduced exactly
+         canonical: best 0.4847, 95% [0.3974, 0.5912]; alt: best 0.5533, 95% [0.4537, 0.7705]
+
+  the split (Upsilon 0.5 for selection): point-mass 878 points in 175 galaxies; embedded 1863 points in 172 galaxies; rest 649
+    canonical C2  :  878 pts / 175 gal: best beta 0.48 (U 0.40, rms 0.0857); 95% [0.40, 0.67]; rms(beta=1) 0.0892; P2 worse in 1.000
+    canonical C3  :  878 pts / 175 gal: best beta 0.59 (U 0.46, rms 0.0850); 95% [0.45, 0.77]; rms(beta=1) 0.0871; P2 worse in 1.000
+    canonical PM  :  878 pts / 175 gal: best beta 0.72 (U 0.66, rms 0.0936); 95% [0.48, 6.00]; rms(beta=1) 0.0941; P2 worse in 0.981
+    canonical EMB : 1863 pts / 172 gal: best beta 0.48 (U 0.40, rms 0.1122); 95% [0.37, 0.72]; rms(beta=1) 0.1184; P2 worse in 0.998
+    alt       C2  :  878 pts / 175 gal: best beta 0.52 (U 0.40, rms 0.0859); 95% [0.40, 0.67]; rms(beta=1) 0.0892; P2 worse in 0.999
+    alt       C3  :  878 pts / 175 gal: best beta 0.55 (U 0.40, rms 0.0848); 95% [0.42, 0.77]; rms(beta=1) 0.0871; P2 worse in 0.998
+    alt       PM  :  878 pts / 175 gal: best beta 0.88 (U 0.67, rms 0.0934); 95% [0.63, 6.00]; rms(beta=1) 0.0934; P2 worse in 0.952
+    alt       EMB : 1863 pts / 172 gal: best beta 0.59 (U 0.44, rms 0.1110); 95% [0.42, 1.07]; rms(beta=1) 0.1136; P2 worse in 0.992
+  [PASS] C2 POWER: synthetic nu_mono data in the point-mass subset exclude beta = 1 at 95% (both footings)
+         canonical: [0.40, 0.67]; alt: [0.40, 0.67]
+  [FAIL] C3 BIAS: synthetic P2 data in the point-mass subset contain beta = 1 at 95% (both footings)
+         canonical: [0.45, 0.77]; alt: [0.42, 0.77]
+  [PASS] H1 [HEADLINE] CFG9's principle is not falsified: the point-mass subset's 95% interval contains beta = 1 (both footings)
+         canonical: [0.48, 6.00] -> NO POWER; alt: [0.63, 6.00] -> SUPPORTED
+  [FAIL] H2 the shape preference lives inside the baryons: the embedded subset's 95% interval excludes beta = 1 (both footings)
+         canonical: [0.37, 0.72]; alt: [0.42, 1.07]
+  [PASS] (reported) R1 (reported) the subsets' median g_bar/a0 (at P2's best Upsilon)
+         point-mass can: 0.163; point-mass alt: 0.127; embedded can: 0.469; embedded alt: 0.362
+
+  4/6 checks pass; load-bearing failures: 2   (9 s)
