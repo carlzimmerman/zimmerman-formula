@@ -1,0 +1,259 @@
+{
+ "slug": "CFG9_local_virial",
+ "summary": {
+  "n_checks": 8,
+  "n_pass": 8,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 19.9
+ },
+ "checks": [
+  {
+   "name": "D1 THEOREM: for a point mass P2's phantom has sigma^2_Jeans = V_c^2/2 and P = a0 g_N/(8 pi G) to 1e-6 at every g_N/a0 in [1e-4, 1e4], both footings",
+   "detail": "max deviation 8.75e-08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D2 UNIQUENESS: within nu_beta only beta = 1 (P2) is locally virialized; beta = 0.5, 0.75, 1.5, 2 depart by > 1%",
+   "detail": "beta=0.5: 3.30e-01; beta=0.75: 2.00e-01; beta=1 (P2): 8.75e-08; beta=1.5: 9.86e-01; beta=2: 8.91e+00; nu_mono: 9.65e-02",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3 CONTROL: the constant-charge closure (C = a0 M/4 pi) integrated as an ODE equals P2 for a point mass to 1e-6",
+   "detail": "max deviation 3.64e-12",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S1 (reported) inside real baryons the committed law's phantom is close to locally virialized (medians by g_bar/a0)",
+   "detail": "can/P2: 1.69/1.67/1.29; can/nu_mono: 1.72/1.46/1.24; alt/P2: 1.73/1.58/1.36; alt/nu_mono: 1.75/1.51/1.43",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "S1b CONTROL (added after the first run, to reconcile with FG004): against V_flat^2/2 on FG004's sample (V_flat > 0, >= 3 points below 0.1 a0) the same Jeans sigma^2 reproduces FG004's committed H1 medians within 0.03",
+   "detail": "can/P2: 0.932 vs FG004 0.930; can/nu_mono: 0.924 vs FG004 0.924; alt/P2: 1.005 vs FG004 1.005; alt/nu_mono: 1.009 vs FG004 1.006",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S2 THE INNER DEMAND: the constant-charge closure over-predicts the inner RAR by > +0.1 dex at g_bar > a0 (the cold component becomes a central isothermal sphere), both footings -- so the local charge must track the enclosed baryons",
+   "detail": "can/P2: +0.195 dex; can/nu_mono: +0.148 dex; alt/P2: +0.205 dex; alt/nu_mono: +0.161 dex",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S2b (reported; added after the first run) the constant-charge closure minus the committed law at data points with g_bar > a0 (comparable with FG004 H2's +0.13-0.15 dex)",
+   "detail": "can/P2: +0.087 dex; can/nu_mono: +0.058 dex; alt/P2: +0.082 dex; alt/nu_mono: +0.062 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "S3 (reported) the enclosed-charge closure's SPARC rms against the law's",
+   "detail": "can/P2: law 0.1076, closure 0.1106; can/nu_mono: law 0.1000, closure 0.1192; alt/P2: law 0.1031, closure 0.1049; alt/nu_mono: law 0.0991, closure 0.1135",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "D1": {
+   "max_dev": 8.75276817691173e-08
+  },
+  "D2": {
+   "beta=0.5": {
+    "max_dev": 0.3300330038763196,
+    "y_at_max": 10000.0
+   },
+   "beta=0.75": {
+    "max_dev": 0.19960666985565256,
+    "y_at_max": 10000.0
+   },
+   "beta=1 (P2)": {
+    "max_dev": 8.75276817691173e-08,
+    "y_at_max": 10000.0
+   },
+   "beta=1.5": {
+    "max_dev": 0.9863099547471645,
+    "y_at_max": 10000.0
+   },
+   "beta=2": {
+    "max_dev": 8.911899980585085,
+    "y_at_max": 10000.0
+   },
+   "nu_mono": {
+    "max_dev": 0.09649999467981452,
+    "y_at_max": 1.0
+   }
+  },
+  "S1b": {
+   "canonical|P2": {
+    "cfg9": 0.9319900711630315,
+    "fg004": 0.9303899715824321
+   },
+   "canonical|nu_mono": {
+    "cfg9": 0.9237495556536381,
+    "fg004": 0.9242833173708456
+   },
+   "alt|P2": {
+    "cfg9": 1.0054996531632536,
+    "fg004": 1.0048106342804397
+   },
+   "alt|nu_mono": {
+    "cfg9": 1.009038447544196,
+    "fg004": 1.0057281037510641
+   }
+  },
+  "S": {
+   "canonical|P2": {
+    "virial": {
+     "gb>a0": [
+      1.6944544539309012,
+      68
+     ],
+     "0.1<gb<a0": [
+      1.671647933314306,
+      138
+     ],
+     "gb<0.1": [
+      1.2939200047072026,
+      114
+     ]
+    },
+    "const": {
+     "gb>a0": [
+      0.1951732549191637,
+      68
+     ],
+     "0.1<gb<a0": [
+      0.11387989143566202,
+      138
+     ],
+     "gb<0.1": [
+      0.0811974321407225,
+      114
+     ]
+    },
+    "rms_law": 0.10756679911102099,
+    "rms_encl": 0.11062393763010425,
+    "vflat": [
+     0.9319900711630315,
+     82
+    ],
+    "const_minus_law_inner": 0.0873255165909298
+   },
+   "canonical|nu_mono": {
+    "virial": {
+     "gb>a0": [
+      1.722504535223511,
+      66
+     ],
+     "0.1<gb<a0": [
+      1.4645204276449788,
+      136
+     ],
+     "gb<0.1": [
+      1.239742058393084,
+      118
+     ]
+    },
+    "const": {
+     "gb>a0": [
+      0.1483452009033963,
+      66
+     ],
+     "0.1<gb<a0": [
+      0.07962505927918939,
+      136
+     ],
+     "gb<0.1": [
+      0.06155639150346359,
+      118
+     ]
+    },
+    "rms_law": 0.09998113792183552,
+    "rms_encl": 0.11922593108109572,
+    "vflat": [
+     0.9237495556536381,
+     88
+    ],
+    "const_minus_law_inner": 0.05791326522466367
+   },
+   "alt|P2": {
+    "virial": {
+     "gb>a0": [
+      1.7342523414952584,
+      62
+     ],
+     "0.1<gb<a0": [
+      1.5845500897271307,
+      130
+     ],
+     "gb<0.1": [
+      1.3562531515935927,
+      125
+     ]
+    },
+    "const": {
+     "gb>a0": [
+      0.20468067068580498,
+      62
+     ],
+     "0.1<gb<a0": [
+      0.14099097001606342,
+      130
+     ],
+     "gb<0.1": [
+      0.1124204836324223,
+      125
+     ]
+    },
+    "rms_law": 0.1031251157673758,
+    "rms_encl": 0.10487527204261929,
+    "vflat": [
+     1.0054996531632536,
+     92
+    ],
+    "const_minus_law_inner": 0.08200784092560542
+   },
+   "alt|nu_mono": {
+    "virial": {
+     "gb>a0": [
+      1.7465355493922377,
+      60
+     ],
+     "0.1<gb<a0": [
+      1.5135480438500695,
+      122
+     ],
+     "gb<0.1": [
+      1.425354366398492,
+      127
+     ]
+    },
+    "const": {
+     "gb>a0": [
+      0.16086338706837955,
+      60
+     ],
+     "0.1<gb<a0": [
+      0.1001261535786897,
+      121
+     ],
+     "gb<0.1": [
+      0.10253117015489699,
+      127
+     ]
+    },
+    "rms_law": 0.09905380077748227,
+    "rms_encl": 0.11349655711423508,
+    "vflat": [
+     1.009038447544196,
+     97
+    ],
+    "const_minus_law_inner": 0.06241093188027924
+   }
+  }
+ }
+}

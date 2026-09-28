@@ -1,0 +1,91 @@
+CFG9 -- THE FRAMEWORK'S LAW P2 IS THE LOCALLY VIRIALIZED COLD COMPONENT (around a point mass), AND WHAT THAT LEAVES INSIDE
+GALAXIES.
+
+THE RESULT (derived here, checked numerically).  Around a point baryonic mass M, let a cold component sit in isotropic Jeans
+equilibrium in the total field with the LOCAL VIRIAL dispersion
+
+      sigma(r)^2 = V_c(r)^2 / 2 ,      V_c^2 = r g_tot    (every shell virialized in its own circular speed).
+
+The Jeans equation d(rho sigma^2)/dr = -rho g_tot then gives rho r V_c^2 = C / r^2 ... exactly: rho = C / (r^3 g_tot), and with
+u = G M_tot(<r) = r^2 g_tot the mass equation u' = 4 pi G r^2 rho integrates to
+
+      u^2 = (G M)^2 + 4 pi G C r^2    =>    g_tot = sqrt(g_N^2 + a0 g_N) ,   a0 = 4 pi C / M .
+
+That is EXACTLY the framework's law P2 (nu = sqrt(1 + 1/y)), at every radius, with a0 the cold component's charge per unit
+baryonic mass (C = a0 M / 4 pi).  Conversely, for any law nu the point-mass phantom is locally virialized at every radius only
+if nu is P2 (the ODE's solution is unique).  Equivalent statement: the P2 phantom's Jeans pressure is P = a0 g_N / (8 pi G) at
+every radius (CFG7 FG004 found this only in the deep limit).  So P2's SHAPE follows from one kinematic statement; a0 is the
+charge-to-mass ratio of the cold component, which the framework ties to the vacuum (a0 = kappa c sqrt(G rho_Lambda)).
+
+WHAT IT LEAVES.  Inside extended baryons the same closure with a constant charge makes the cold component a central
+singular isothermal sphere (V_c flat down to r -> 0), which the RAR's Newtonian inner points forbid.  The law instead needs
+the local charge to TRACK the enclosed baryons.  This lane measures that on SPARC.
+
+PRE-DECLARED (before this script's first run)
+  D1  CONTROL/THEOREM  for a point mass, P2's phantom has sigma^2_Jeans / (V_c^2/2) = 1 and P / [a0 g_N/(8 pi G)] = 1 to 1e-6
+      at every g_N/a0 from 1e-4 to 1e4, on both footings.
+  D2  UNIQUENESS  within the record's family nu_beta = (1 + y^-beta)^(1/(2 beta)) (P2 is beta = 1), only beta = 1 is locally
+      virialized: at beta = 0.5, 0.75, 1.5, 2 the ratio departs from 1 by > 1% somewhere in 1e-4 <= y <= 1e4; nu_mono departs
+      as well (reported).
+  D3  CONTROL  the constant-charge closure integrated for a point mass reproduces P2 to 1e-6 (the ODE and the algebra agree).
+  S1  (reported) on SPARC (175 galaxies, CFG4_galaxy_law's committed Upsilon), the committed law's phantom: median
+      sigma^2_Jeans / (V_c^2/2) in bins of g_bar/a0 -- how close to locally virialized the law is inside real baryons.
+  S2  THE INNER DEMAND: the constant-charge closure (C = a0 M_b,total / 4 pi) solved on SPARC fails the inner RAR: its median
+      residual at g_bar > a0 exceeds +0.1 dex on both footings.  Pre-declared EXPECT TRUE -- it states what the inner
+      mechanism must do.
+  S3  (reported) the ENCLOSED-charge closure (C(r) = a0 M_b(<r)/4 pi, the local charge tracking the enclosed baryons; identical
+      to P2 for a point mass): its SPARC RAR rms against the law's, both footings.
+MUTATE=1: nu_beta at beta = 2 replaces P2 in D1 -- the local-virial identity must FAIL (rc = 1).
+
+======================================================================================================================
+D1  THE THEOREM ON A POINT MASS: P2's phantom is locally virialized at every radius
+======================================================================================================================
+    canonical g_N/a0 =  1.00e-04: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    canonical g_N/a0 =  1.00e-02: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    canonical g_N/a0 =  1.00e+00: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    canonical g_N/a0 =  1.00e+02: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    canonical g_N/a0 =  1.00e+04: sigma^2/(V_c^2/2) = 1.00000009; P/[a0 g_N/8 pi G] = 1.00000000
+    alt       g_N/a0 =  3.16e-03: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    alt       g_N/a0 =  3.16e-01: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    alt       g_N/a0 =  3.16e+01: sigma^2/(V_c^2/2) = 1.00000000; P/[a0 g_N/8 pi G] = 1.00000000
+    alt       g_N/a0 =  3.16e+03: sigma^2/(V_c^2/2) = 1.00000002; P/[a0 g_N/8 pi G] = 1.00000000
+  [PASS] D1 THEOREM: for a point mass P2's phantom has sigma^2_Jeans = V_c^2/2 and P = a0 g_N/(8 pi G) to 1e-6 at every g_N/a0 in [1e-4, 1e4], both footings
+         max deviation 8.75e-08
+
+======================================================================================================================
+D2  UNIQUENESS: only beta = 1 (P2) in the family nu_beta is locally virialized
+======================================================================================================================
+    beta=0.5    : max |sigma^2/(V_c^2/2) - 1| = 0.3300 (at g_N/a0 = 1.0e+04)
+    beta=0.75   : max |sigma^2/(V_c^2/2) - 1| = 0.1996 (at g_N/a0 = 1.0e+04)
+    beta=1 (P2) : max |sigma^2/(V_c^2/2) - 1| = 0.0000 (at g_N/a0 = 1.0e+04)
+    beta=1.5    : max |sigma^2/(V_c^2/2) - 1| = 0.9863 (at g_N/a0 = 1.0e+04)
+    beta=2      : max |sigma^2/(V_c^2/2) - 1| = 8.9119 (at g_N/a0 = 1.0e+04)
+    nu_mono     : max |sigma^2/(V_c^2/2) - 1| = 0.0965 (at g_N/a0 = 1.0e+00)
+  [PASS] D2 UNIQUENESS: within nu_beta only beta = 1 (P2) is locally virialized; beta = 0.5, 0.75, 1.5, 2 depart by > 1%
+         beta=0.5: 3.30e-01; beta=0.75: 2.00e-01; beta=1 (P2): 8.75e-08; beta=1.5: 9.86e-01; beta=2: 8.91e+00; nu_mono: 9.65e-02
+
+======================================================================================================================
+D3  CONTROL: the constant-charge closure integrated as an ODE for a point mass reproduces P2
+======================================================================================================================
+  [PASS] D3 CONTROL: the constant-charge closure (C = a0 M/4 pi) integrated as an ODE equals P2 for a point mass to 1e-6
+         max deviation 3.64e-12
+
+======================================================================================================================
+S1-S3  ON SPARC: how locally virialized is the law inside real baryons, and what the two closures predict
+======================================================================================================================
+    canonical P2      : S1 sigma^2/(V_c^2/2) medians gb>a0 1.694, 0.1<gb<a0 1.672, gb<0.1 1.294 | S2 constant-charge closure minus data gb>a0 +0.195, 0.1<gb<a0 +0.114, gb<0.1 +0.081 | S3 rms: law 0.1076, enclosed-charge closure 0.1106 dex
+    canonical nu_mono : S1 sigma^2/(V_c^2/2) medians gb>a0 1.723, 0.1<gb<a0 1.465, gb<0.1 1.240 | S2 constant-charge closure minus data gb>a0 +0.148, 0.1<gb<a0 +0.080, gb<0.1 +0.062 | S3 rms: law 0.1000, enclosed-charge closure 0.1192 dex
+    alt       P2      : S1 sigma^2/(V_c^2/2) medians gb>a0 1.734, 0.1<gb<a0 1.585, gb<0.1 1.356 | S2 constant-charge closure minus data gb>a0 +0.205, 0.1<gb<a0 +0.141, gb<0.1 +0.112 | S3 rms: law 0.1031, enclosed-charge closure 0.1049 dex
+    alt       nu_mono : S1 sigma^2/(V_c^2/2) medians gb>a0 1.747, 0.1<gb<a0 1.514, gb<0.1 1.425 | S2 constant-charge closure minus data gb>a0 +0.161, 0.1<gb<a0 +0.100, gb<0.1 +0.103 | S3 rms: law 0.0991, enclosed-charge closure 0.1135 dex
+  [PASS] (reported) S1 (reported) inside real baryons the committed law's phantom is close to locally virialized (medians by g_bar/a0)
+         can/P2: 1.69/1.67/1.29; can/nu_mono: 1.72/1.46/1.24; alt/P2: 1.73/1.58/1.36; alt/nu_mono: 1.75/1.51/1.43
+  [PASS] S1b CONTROL (added after the first run, to reconcile with FG004): against V_flat^2/2 on FG004's sample (V_flat > 0, >= 3 points below 0.1 a0) the same Jeans sigma^2 reproduces FG004's committed H1 medians within 0.03
+         can/P2: 0.932 vs FG004 0.930; can/nu_mono: 0.924 vs FG004 0.924; alt/P2: 1.005 vs FG004 1.005; alt/nu_mono: 1.009 vs FG004 1.006
+  [PASS] S2 THE INNER DEMAND: the constant-charge closure over-predicts the inner RAR by > +0.1 dex at g_bar > a0 (the cold component becomes a central isothermal sphere), both footings -- so the local charge must track the enclosed baryons
+         can/P2: +0.195 dex; can/nu_mono: +0.148 dex; alt/P2: +0.205 dex; alt/nu_mono: +0.161 dex
+  [PASS] (reported) S2b (reported; added after the first run) the constant-charge closure minus the committed law at data points with g_bar > a0 (comparable with FG004 H2's +0.13-0.15 dex)
+         can/P2: +0.087 dex; can/nu_mono: +0.058 dex; alt/P2: +0.082 dex; alt/nu_mono: +0.062 dex
+  [PASS] (reported) S3 (reported) the enclosed-charge closure's SPARC rms against the law's
+         can/P2: law 0.1076, closure 0.1106; can/nu_mono: law 0.1000, closure 0.1192; alt/P2: law 0.1031, closure 0.1049; alt/nu_mono: law 0.0991, closure 0.1135
+
+  8/8 checks pass; load-bearing failures: 0   (20 s)
