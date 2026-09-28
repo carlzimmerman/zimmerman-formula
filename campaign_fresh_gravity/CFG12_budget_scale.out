@@ -1,0 +1,77 @@
+CFG12 -- THE TURNED-AROUND SHARE AT THE BUDGET'S OWN SCALE.  CFG4's strict cold budget sums the phantoms of every galaxy down to
+M_* = 1e7 Msun, but compares the sum with the cold matter turned around at ONE scale: the Press-Schechter share at k = 1 h/Mpc
+(Lagrangian mass 5.45e11 Msun, f_ta = 0.602).  Every budgeted system lives inside a turned-around region at least as massive as
+its own turnaround mass, so the global necessary condition pairs the sum with the share above the SMALLEST budgeted system's
+turnaround mass.  Is CFG4's strict closure a scale mismatch -- and does the mass-resolved form of the budget bind instead?
+
+THE QUANTITIES (all CFG4's, none new).  Per system: CFG4_target's law profile, turnaround radius r_ta (Delta_ta(0) = 11.81) and
+phantom inside x r_ta; the turnaround mass M_ta = the law's enclosed mass at r_ta (CFG4's own convention for r_ta).  The share:
+f_ta(M) = erfc(delta_lin,ta / (sqrt 2 sigma(M))), delta_lin,ta(0) = 1.2761 (CFG4_switch D1), sigma from CLASS at the Lagrangian
+radius of M (CFG7_common's engine; control C1 against CFG4_switch's committed sigma).  KiDS floors with the 2-halo term and FG001's
+grouping ratio R(x) (the most conservative committed sample, D <= 15 Mpc) are read from CFG4_switch and CFG11.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG7_common's sigma reproduces CFG4_switch's committed sigma at k = 0.1/0.3/1 h/Mpc (z = 0) within 0.3%, and f_ta at
+      k = 1 h/Mpc within 0.003.
+  C2  CONTROL  with CFG4's share (0.6023) the strict edges (every galaxy) reproduce CFG4_target's committed 0.280/0.278/0.243/0.241
+      exactly (this lane's copy of the budget; CFG11 C1 verified the same copy).
+  D1  (derived, reported) the smallest budgeted system's turnaround mass M_ta,min (M_* = 1e7 and its SPARC gas) and f_ta(M_ta,min),
+      both footings, both kernels; bracket: M_ta,min halved (a truncated phantom encloses less).
+  H1  [HEADLINE; MUTATE must fail] with the share taken at M_ta,min (CFG4's convention) the strict edge, every galaxy its own system,
+      reaches the KiDS floor (2-halo) for both footings and both kernels.  Declared EXPECTATION: canonical yes, alt uncertain.
+  H2  the same with FG001's grouping (CFG11's committed D <= 15 Mpc ratio, applied above its mass limit): both footings, both
+      kernels.  EXPECTATION: pass.
+  H3  (reported, the stronger necessary condition) THE MASS-RESOLVED BUDGET: at every threshold M, the phantoms of systems with
+      M_ta >= M (at x = the KiDS floor) fit into the cold matter turned around above M:  SUM_{M_ta >= M} Omega_ph <= Omega_c f_ta(M).
+      Reported: the largest ratio LHS/RHS over thresholds and where it binds, every galaxy and FG001-scaled (a uniform R above the
+      limit -- an approximation: grouping also moves mass to larger M_ta), with M_ta and M_ta/2.
+MUTATE=1: the share is held at CFG4's k = 1 h/Mpc value (0.6023) in H1 -- the edges return to CFG4's and H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: sigma(M) and the turned-around share against CFG4_switch
+======================================================================================================================
+    k = 0.1 h/Mpc, M = 5.451e+14: sigma 0.6916 (CFG4_switch 0.6923), f_ta 0.0650 (0.0653)
+    k = 0.3 h/Mpc, M = 2.019e+13: sigma 1.3873 (CFG4_switch 1.3896), f_ta 0.3577 (0.3585)
+    k = 1.0 h/Mpc, M = 5.451e+11: sigma 2.4437 (CFG4_switch 2.4491), f_ta 0.6015 (0.6023)
+  [PASS] C1 CONTROL: CFG7_common's sigma(M) reproduces CFG4_switch's committed sigma within 0.3% and f_ta within 0.003 (z = 0)
+         max sigma deviation 0.22%, max f_ta deviation 0.0008
+  [PASS] C2 CONTROL: with CFG4's share (0.6023) this lane's strict edges reproduce CFG4_target's committed ones (every galaxy)
+         max |d x| 0.0000 (CFG4 on a coarser x grid; tolerance 0.003)
+
+======================================================================================================================
+D1  THE SMALLEST BUDGETED SYSTEM'S TURNAROUND MASS AND ITS SHARE
+======================================================================================================================
+    canonical P2      : M_* = 1.08e+07, M_b = 1.15e+08 -> M_ta,min 1.049e+11 Msun (sigma 3.014); f_ta 0.6720 (at M_ta/2: 0.6963) vs CFG4's 0.6023
+    canonical nu_mono : M_* = 1.08e+07, M_b = 1.15e+08 -> M_ta,min 1.050e+11 Msun (sigma 3.014); f_ta 0.6720 (at M_ta/2: 0.6962) vs CFG4's 0.6023
+    alt       P2      : M_* = 1.08e+07, M_b = 1.15e+08 -> M_ta,min 1.209e+11 Msun (sigma 2.963); f_ta 0.6667 (at M_ta/2: 0.6915) vs CFG4's 0.6023
+    alt       nu_mono : M_* = 1.08e+07, M_b = 1.15e+08 -> M_ta,min 1.210e+11 Msun (sigma 2.963); f_ta 0.6667 (at M_ta/2: 0.6915) vs CFG4's 0.6023
+  [PASS] (reported) D1 (reported) the smallest budgeted system's turnaround mass and the turned-around share above it
+         can/P2: M_ta,min 1.05e+11, f_ta 0.672 (0.696 at half); can/nu_mono: M_ta,min 1.05e+11, f_ta 0.672 (0.696 at half); alt/P2: M_ta,min 1.21e+11, f_ta 0.667 (0.692 at half); alt/nu_mono: M_ta,min 1.21e+11, f_ta 0.667 (0.691 at half)
+
+======================================================================================================================
+H1 / H2  THE STRICT EDGE WITH THE SHARE AT THE BUDGET'S OWN SCALE
+======================================================================================================================
+    canonical P2      : share 0.6720 -> strict edge every galaxy 0.312 (M_ta/2: 0.323); FG001 0.341 (0.353); KiDS floor 0.309; CFG4 0.280
+    canonical nu_mono : share 0.6720 -> strict edge every galaxy 0.309 (M_ta/2: 0.320); FG001 0.338 (0.350); KiDS floor 0.303; CFG4 0.278
+    alt       P2      : share 0.6667 -> strict edge every galaxy 0.268 (M_ta/2: 0.278); FG001 0.293 (0.304); KiDS floor 0.310; CFG4 0.243
+    alt       nu_mono : share 0.6667 -> strict edge every galaxy 0.266 (M_ta/2: 0.276); FG001 0.291 (0.302); KiDS floor 0.306; CFG4 0.241
+  [FAIL] H1 [HEADLINE] with the share at the smallest budgeted system's turnaround scale, the strict edge (every galaxy) reaches the KiDS floor on both footings and both kernels
+         can/P2: 0.312 vs 0.309; can/nu_mono: 0.309 vs 0.303; alt/P2: 0.268 vs 0.310; alt/nu_mono: 0.266 vs 0.306
+  [FAIL] H2 the same with FG001's grouping (CFG11, D <= 15 Mpc, the most conservative committed sample)
+         can/P2: 0.341 vs 0.309; can/nu_mono: 0.338 vs 0.303; alt/P2: 0.293 vs 0.310; alt/nu_mono: 0.291 vs 0.306
+
+======================================================================================================================
+H3  THE MASS-RESOLVED BUDGET (reported): at every threshold M, the phantoms above M against the share above M
+======================================================================================================================
+    canonical P2       M_ta   : at x = 0.309 the largest (phantoms above M)/(share above M) = 0.992 at M = 1.05e+11 (f_ta 0.672); FG001-scaled 0.907 at 1.05e+11
+    canonical P2       M_ta/2 : at x = 0.309 the largest (phantoms above M)/(share above M) = 0.958 at M = 5.25e+10 (f_ta 0.696); FG001-scaled 0.876 at 5.25e+10
+    canonical nu_mono  M_ta   : at x = 0.303 the largest (phantoms above M)/(share above M) = 0.980 at M = 1.05e+11 (f_ta 0.672); FG001-scaled 0.897 at 1.05e+11
+    canonical nu_mono  M_ta/2 : at x = 0.303 the largest (phantoms above M)/(share above M) = 0.946 at M = 5.25e+10 (f_ta 0.696); FG001-scaled 0.865 at 5.25e+10
+    alt       P2       M_ta   : at x = 0.310 the largest (phantoms above M)/(share above M) = 1.157 at M = 1.21e+11 (f_ta 0.667); FG001-scaled 1.058 at 1.21e+11
+    alt       P2       M_ta/2 : at x = 0.310 the largest (phantoms above M)/(share above M) = 1.116 at M = 6.05e+10 (f_ta 0.692); FG001-scaled 1.020 at 6.05e+10
+    alt       nu_mono  M_ta   : at x = 0.306 the largest (phantoms above M)/(share above M) = 1.151 at M = 1.21e+11 (f_ta 0.667); FG001-scaled 1.053 at 1.21e+11
+    alt       nu_mono  M_ta/2 : at x = 0.306 the largest (phantoms above M)/(share above M) = 1.110 at M = 6.05e+10 (f_ta 0.691); FG001-scaled 1.016 at 6.05e+10
+  [PASS] (reported) H3 (reported) the mass-resolved budget at the KiDS floor: largest ratio over thresholds (<= 1 means it holds at every scale)
+         can/P2/M_ta: 0.99 (FG001 0.91) at 1.0e+11; can/P2/M_ta/2: 0.96 (FG001 0.88) at 5.2e+10; can/nu_mono/M_ta: 0.98 (FG001 0.90) at 1.1e+11; can/nu_mono/M_ta/2: 0.95 (FG001 0.87) at 5.3e+10; alt/P2/M_ta: 1.16 (FG001 1.06) at 1.2e+11; alt/P2/M_ta/2: 1.12 (FG001 1.02) at 6.0e+10; alt/nu_mono/M_ta: 1.15 (FG001 1.05) at 1.2e+11; alt/nu_mono/M_ta/2: 1.11 (FG001 1.02) at 6.1e+10
+
+  4/6 checks pass; load-bearing failures: 2   (3 s)
