@@ -14,7 +14,7 @@ Mixing them overstates or understates the damage.
 
 ## Bottom line
 
-1. **The largest standing failure of the current version is the Milky Way's ultra-faint dwarfs, at 7.5–8.0σ.** The other scored one is Chae et al.'s external-field signal: 4.1–4.3σ in their fits, 1.7–2.2σ refit under the framework's own law.
+1. **The largest standing failure of the current version is the Milky Way's ultra-faint dwarfs: real, and 3.5–3.8σ once refereed** (CFG28), not the first-quoted 7.5–8.0σ. The other scored one is Chae et al.'s external-field signal: 4.1–4.3σ in their fits, 1.7–2.2σ refit under the framework's own law.
 2. **The biggest unscored risk is binary galaxies.** Isolated pairs move 1.5–1.8× faster than the framework's isolated two-body law predicts (5.4σ in the strictest-isolation shell), while ΛCDM lands on its own prediction. It has not been recomputed under ownership.
 3. **The dark sector carries 5–7σ tensions** (the cold budget against KiDS lensing; KiDS against the Local Group). They are real in the programme's machinery but not decisive: standard ΛCDM halos fail the same machinery by as much or more.
 4. **The largest numbers in the record killed earlier constructions, not the current one:** 43,479σ, 21σ, 15.6σ, 13–34σ, 9σ and 8.5σ.
@@ -24,7 +24,7 @@ Mixing them overstates or understates the damage.
 
 | # | failure | significance | status | source |
 |---|---|---|---|---|
-| A1 | Milky Way ultra-faint dwarf satellites | **7.97σ / 7.52σ** (canonical / alt); 7.4σ with infall gas | **standing**; the external-field reading fails them at 13σ | `campaign_fresh_gravity/CFG7_hierarchy_fg001*`, `CFG18_satellite_infall_gas*` |
+| A1 | Milky Way ultra-faint dwarf satellites | **3.8σ / 3.5σ** after the adversarial referee (CFG28: the 9 dropped upper limits restored, a systematic floor added); first quoted as 7.97 / 7.52σ, statistical only | **standing, real, but overstated before**: tides and noise do not explain it, and binaries remain the one escape; the external-field reading fails them at 13σ | `CFG7_hierarchy_fg001*`, `CFG18_satellite_infall_gas*`, `CFG28_ufd_referee*` |
 | A2 | cold budget vs KiDS-1000 lensing (the phantom's edge) | **5.4–5.7σ** canonical, **6.7–7.0σ** alt (Δχ² 29.4–49.3 against KiDS's own best) | **not decidable** with this machinery: it misfits standard ΛCDM halos by Δχ² ≥ 50 | `CFG24_budget_associations*`, `CFG27_edge_thread_closure*` |
 | A3 | a universal phantom edge vs KiDS + the Local Group's zero-velocity radius | **5.1–7.1σ** (sharp edge), 5.5–7.4σ (soft edge) | **not framework-specific**: standard ΛCDM halos in the same test score T = 24.5–72.5 against the framework's 26–28 | `CFG21_kids_lg_joint*`, `CFG22_soft_edge*`, `CFG23_lcdm_control*` |
 | A4 | Chae et al.'s external-field signal (D1 / D2) | **4.08σ / 4.29σ** in their fits; **1.7–2.2σ** canonical (2.7–3.0σ alt) refit under the framework's own law | **standing, reduced** | `CFG7_hierarchy_fg001*`, `CFG8_chae_kernel*` |
@@ -77,6 +77,7 @@ These come from the 2026-09-03 sweep (`predictions_2026/SECOND_LAW_HUNT_2026.md`
 
 | number as once stated | correct reading | source |
 |---|---|---|
+| MW ultra-faints "7.97σ" | **3.8 / 3.5σ**: 9 upper limits had been dropped and no systematic floor applied (CFG28); the failure itself stands | `campaign_fresh_gravity/CFG28_ufd_referee*` |
 | Lyman-α forest "6–8σ exclusion" | **0.4–0.9σ**: the kernel was evaluated at the wrong acceleration | `RETRACTIONS.md`, `EMPIRICAL_TESTS.md` (A9) |
 | Coma UDGs "19.4σ" | **4.9σ / 4.7σ** (equilibrium), 2.7σ (first infall); the amplitude stands | `fable_independent_2026/L23_udg_verify.out` |
 | MUSE-DARK III: a₀ rising, "12–16σ" against the flat law at face value | **non-diagnostic**: ΛCDM simulations produce the same apparent rise, and it is method-localised | `real_research/A0Z_MUSE_DARK_III_CONFRONTATION.md` |
