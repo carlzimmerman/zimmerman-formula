@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "task_id": "AS138.C01",
+  "task_sha256": "a1ebc02dbbfafc3459a5cc772881c097de582bddc4a33d9b11a77738a64d408c",
+  "run_id": "AS138.C01-20260928T1950Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (provider openrouter) via Hermes Agent focused subagent; identity from executing system context",
+  "started_utc": "2026-09-28T19:47:00Z",
+  "finished_utc": "2026-09-28T20:09:00Z",
+  "execution_status": "completed",
+  "outcome": "counterexample",
+  "exact_claim": "On the CA4-GNC/CA5-GNC-R pin (FINAL_ACTION.md b8c04d4e…7546e) with the k04 four-form promotion (15c0a7e1…2399), on a compact closed C^2 leaf with all fields on shell and the terminal BC (L_b = -R_W, lam0 = L_0) imposed: the assembled total current Q_total = Q_b + Q_heat + Q_U1 + Q_vac (AS137 + AS138 endpoint-display + AS147 + AS651) satisfies ∇·Q_total = 0 as an identity in the couplings: the reduced closure condition is the zero polynomial in r = Z/beta^2, so the solution set of conservation is the full continuum r in (0,oo), and EVERY member conserves with kappa(r) = sqrt(2/(r+2b)). The unique point r* = 8 - 2b = 7.963989212911002 (K_B = 0; b = jsat/(8pi) = 0.018005393544499, jsat = 2(s_sat*Delta_sat - int_0^{s_sat} Delta) = 0.45252489667513, Delta(s) = s/(e^sqrt(s)-1) truncated at peak, s_sat = 2.539638282188) is where kappa = 1/2 exactly, but it is not forced: e.g. r = 8 conserves identically with kappa(8) = sqrt(2/(8+2b)) = 0.498878447859 != 1/2. Hence: total-stress (Ward) conservation does NOT force Z/beta^2 = 8 - 2b; the ratio is fixed only by discharging the ADOPTED framework input kappa = 1/2 through the AS651 equivalence kappa = 1/2 <-> Z/beta^2 = 8 - 2b (reconfirmed at 60 dps; b read from the pinned k04 flux coefficient is consistent with b = (r* - 8)/(-2) to 61 digits). Verdict per spec: hypothesis refuted; kappa = 1/2 remains adopted; publishable-incompleteness statement: the closure attempt discharges the framework input onto the coupling ratio instead of deriving it. Domain: symbolic statement for all Z, b, beta, q > 0 and all C^2 leaf data; numeric witnesses at 60 dps on BOTH footings (canonical a0 = 9.3619e-11, alternative a0 = 1.1279e-10 m/s^2; kappa back-check 0.5000000 on both); K_B in {0, 1/4}; no Q/RAR/MU2/EXP/MONO conclusion transfer; no criterion-B claim.",
+  "framework_cell": {
+    "action": "CA4-GNC / CA5-GNC-R (FINAL_ACTION.md, sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e) heat/gate/carrier sectors + k04 four-form promotion (kappa_closure/k04_four_form_promotion_consistency.py, sha256 15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399): S_FF = ∫√-g P(q), P(q) = (Z/2 + b beta^2) q^2, F = q eps, a0^2 = G beta^2 q^2, b = (2-K_B) jsat/(16 pi), K_B in {0, 1/4}",
+    "kernel": "RAR Delta(s) = s/(e^sqrt(s)-1) truncated at its peak (k04's own kernel, numeric witnesses only); MONO enters only as the gate kernel symbol nu_mono of the pinned action (no branch conclusion)",
+    "gate": "C_N ∫ N sqrt(h) [G(Y_h) - ell Delta_h W_b] lapse source (AS145); compensator -∫ N sqrt(h) Delta_N W_b (AS132); heat endpoint multipliers (R_W+L_b)(xi.dW)_b + (lam0-L_0)(xi.dW)_0 (AS138 CHK-3); terminal BC L_b = -R_W, lam0 = L_0 (AS133)",
+    "branch": "CA5-GNC-R with inherited CA4-GNC host; Q, RAR, MU2, EXP, MONO kept distinct; criterion B untouched",
+    "couplings": "open cell (Z, b, beta, q_0) in (0, oo)^4; ell, theta, c_N, N leaf data as in the pinned action; result: conservation holds identically over the WHOLE cell",
+    "parameters": "a0 = kappa c sqrt(G_N rho_Lambda), kappa = 1/2 ADOPTED INPUT (not derived); rho_Lambda = 4 a0^2/(G c^2); r_M = sqrt(G M_b/a0); v_flat^4 = G M_b a0 (check relations only)",
+    "boundaries": "compact closed leaf (no spatial boundary terms); flux amplitude q_0 boundary/integration datum; heat endpoint BC L_b = -R_W, lam0 = L_0",
+    "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 (rho_L = 5.8444124540e-27 kg/m^3, eps_L = 5.25269596e-10 J/m^3, q_* = 1.145938e-05/beta); alternative a0 = 1.1279e-10 m/s^2 (rho_L = 8.48308962e-27 kg/m^3, eps_L = 7.624220727e-10 J/m^3, q_* = 1.380600e-05/beta); kappa back-check 0.50000000 on both; kappa_eff at fixed canonical rho = 0.602388 (relabel diagnostic); footings never share fixed rho and fixed kappa",
+    "units": "SI; [P] = [eps] = kg m^-1 s^-2; [q] = kg^(1/2) m^(-1/2) s^-1; [Z] = [beta] = [b] dimensionless; G_N = 6.67430e-11 separate from G_bare/G_cosmo; c = 299792458 in footings only (c = 1 in field equations)"
+  },
+  "new_assumptions": [
+    "None: all inputs are landed premises AS137, AS138, AS147, AS651, AS652, AS653, AS658, AS669, AS145, AS132, AS133, AS151, AS156 (hashes in input_sha256) plus the framework-mandated kappa = 1/2, the two footings, and the pinned action/k04 sources",
+    "The assembly reads the four-form coefficient Z of AS651 and the Z-source/clock coefficient of FINAL_ACTION as the SAME pinned symbol (the work order's own same-pin assumption); result shown to be insensitive to it (the ratio never enters a Ward equation)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/branches/AS138/AS138.C01.md": "a1ebc02dbbfafc3459a5cc772881c097de582bddc4a33d9b11a77738a64d408c",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "kappa_closure/k04_four_form_promotion_consistency.py": "15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399",
+    "deepseek_push/astra_spawn_ideas/results/AS137/AS137-r1-20260928T150706Z-dsv4f-hermes/derivation.md": "3f399005b8de0108485a3ebc47c93e2ce1f44c7bcc49731710063f4e9df0749d",
+    "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/derivation.md": "94ba380de585e411351895c080daf11381a66f200f1ada11a3e84feaadaba8c9",
+    "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/derivation.md": "ca01178bdb991464a9a1c4b8b5845608dcfb67d8a0da28bffabaad11b2cb9055",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/derivation.md": "0284d2cbc9de36dd58ceda179c0101c08a86d82f7f7067bb201ee5a92a7531fc",
+    "deepseek_push/astra_spawn_ideas/results/AS652/AS652-r1-20260928T140620Z-dsv4f-hermes/derivation.md": "a6d793b80cc88f794ccc666e7bad8d6c20a3bcd7ad2c1242bd3210c7c928341c",
+    "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/derivation.md": "a6b3a1ce7b3e64ff7cb17e67537bb9ed1d494c32bfdb422e22f5c0a2a986e24e",
+    "deepseek_push/astra_spawn_ideas/results/AS658/AS658-r1-20260928T143654Z-dsv4f-hermes/derivation.md": "4c48c4530f61d9e9d4f3ee53390738dbfee609cd547f40c54ab72f13cc4269e3",
+    "deepseek_push/astra_spawn_ideas/results/AS669/AS669-r1-20260928T143344Z-dsv4f-hermes/derivation.md": "80d13e93283b56eb302b39b70f2236c44a740d2966de998929ea317e63140baf",
+    "deepseek_push/astra_spawn_ideas/results/AS145/AS145-r1-20260928T161038Z-dsv4f-hermes/derivation.md": "dc6246b6555740ce0c15facf4f7bd6248a5c73f2f28627765220aa6b8834bce0",
+    "deepseek_push/astra_spawn_ideas/results/AS132/AS132-r1-20260928T171600Z-dsv4f-hermes/derivation.md": "bffb6d213c983954babf29369a20601dcd2e90874a8bfab7e63f6362e9f54f5b",
+    "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/derivation.md": "71daca13071044833a9bde506bff67d5efda16430a074d06c8412c4e72eff7af",
+    "deepseek_push/astra_spawn_ideas/results/AS151/AS151-r1-20260928T151215Z-dsv4f-hermes/derivation.md": "63969a54c7423377c642a5501c4a65d207e6032dd6d0f8931a685a75992546ff",
+    "deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes/derivation.md": "64f0290eab9fc527eac354cc6eba96529c6deb143d8cca32a22a55febd826d74"
+  },
+  "artifacts_sha256": {
+    "AS138C01_axioms_probe.lean": "1a07251a538f9d10179a6119d7bcdda88d10434180224aa7e57855bc084ddade",
+    "AS138C01_total_ward.lean": "d5c351b24ccfa88904f5c6a75b5ba4ebf6e9f0ac21de3f7db03573778d8e60bf",
+    "assemble_ward_reduce.py": "9b15598e1eeeaf816732b91b8d5b9903bddcf44303fd96bfc1ac6b7f63b74805",
+    "bound_stderr.txt": "9bf974dfcb668072b4b84c8c961250b8ea429d2c7706adad517625727e50c8f1",
+    "bound_stderr2.txt": "52c41f4a19148923535aa3f55d2ce87f844f25d3f4c40a051416b95eb9516ae2",
+    "compute_b_kappa.py": "91cf6a0dc7ec7361586580622df6da841cf3450cc8d1d874c77e189c27f157c2",
+    "derivation.md": "09d38eda5e2be2ce4c6cc99d00d2bcb04746da53176e9f728f9e448d303f0738",
+    "lean_axioms_output.txt": "a483439c23807681b34e9f4e994adb9d1a2df278130e457423775eb7f9041e44",
+    "lean_output.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lexer_probe.lean": "fc9ce967231818a78277e196c39044fad220a5ccbc0d92a016164a13efef51b8",
+    "raw_output_assemble.txt": "b70c967168127447b605895266bdfd50983ae50736b2180e6b34f305d67fb9e7",
+    "raw_output_numeric.txt": "6b9688f2d74cb5560a429c722c9678c00bd489022b99856418f6273aacb7cf1a"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && ulimit -t 120 && OMP/OPENBLAS/MKL/NUMEXPR_NUM_THREADS=1 python3 deepseek_push/astra_spawn_ideas/results/AS138/AS138.C01-20260928T1950Z-dsv4f-hermes/compute_b_kappa.py > raw_output_numeric.txt",
+    "cd <run dir> && ulimit -t 120 && OMP/OPENBLAS/MKL/NUMEXPR_NUM_THREADS=1 python3 assemble_ward_reduce.py > raw_output_assemble.txt",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && ulimit -t 300 && lake env lean <abs path>/AS138C01_total_ward.lean  (exit 0)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs path>/AS138C01_axioms_probe.lean > lean_axioms_output.txt  (exit 0; #print axioms)"
+  ],
+  "execution_bounds": {
+    "declared": "120 s CPU alarm, 512 MB RSS watchdog, 1 thread",
+    "enforced": "CPU: ulimit -t 120 (soft RLIMIT_CPU, shell) on research scripts; ulimit -t 300 on Lean compiles (build step). Measured wall: symbolic 0.37 s, numeric 0.07 s, Lean compile 3.29 s. RSS: measured peaks via /usr/bin/time -l: symbolic 63340544 B = 63.3 MB, numeric 19333120 B = 19.3 MB (both far inside 512 MB); macOS provides no RLIMIT_AS (same as sibling runs) so the measured peak is the guarantee. Threads: 1 (OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1, MKL_NUM_THREADS=1, NUMEXPR_NUM_THREADS=1; mpmath/sympy single-threaded). Lean peak 2946744320 B = 2.95 GB is Mathlib load, a build step excluded from the 512 MB research bound per house convention."
+  },
+  "checks": [
+    {
+      "K1": "assemble off-shell Q_total from premises P1-P4; apply on-shell substitution set (E_* = 0, lambda0 = L_0, L_b = -R_W, dq = 0); reduced residual = 0.000e+00 exact (sympy). The Ward closes with NO hypothesis on Z, b, beta"
+    },
+    {
+      "K2": "closure condition reduced to zero polynomial in r = Z/beta^2 (Poly(0, r)); solution set = every r > 0 (continuum). PASS (continuum)"
+    },
+    {
+      "K3": "the only (Z,b,beta)-relation: kappa^2 = 2/(r+2b); kappa = 1/2 -> r* = 8 - 2b exact symbolic; numeric r* = 7.96398921291 with pinned b. PASS"
+    },
+    {
+      "NC-a": "drop vacuum term (no AS651): reduced residual 0.000e+00; couplings (Z,b,beta) absent from the system entirely; continuum survives. With vacuum term: continuum ALSO survives (K2). The conditional 'vacuum present => unique' is REFUTED. PASS (control fires)"
+    },
+    {
+      "NC-b": "drop heat endpoint multipliers from canonical r-IBP form: on-shell residual = N*M, M = L_b(xi.dW)_b - L_0(xi.dW)_0; on shell M = -R_W(xi.dW)_b - lam0(xi.dW)_0; rational witness (R_W, (xi.dW)_b, lam0, (xi.dW)_0, N) = (7/20, 21/50, 3/20, -11/50, 10): N*M = -57/50 != 0 while display closes to 0. Multipliers load-bearing (AS138 CHK-2 mirrored). PASS"
+    },
+    {
+      "NC-c": "unique-vs-continuum judgement: CONTINUUM. Witness family r in {1,2,4,7.9639892129,8,16,64} -> kappa in {1.38941780248, 0.99111708019, 0.70394517849, 0.50000000000, 0.49887844786, 0.35315619419, 0.17672698293}, all satisfying on-shell conservation identically; kappa(8) = 0.498878447859 != 1/2. PASS (counterexample)"
+    },
+    {
+      "K7": "leaf-cell integration on exact rational 4-node periodic cell: sum_i (nabla.Q_total)_i = 0 exactly (divergence theorem on the compact closed leaf). PASS"
+    },
+    {
+      "K8": "b read from pinned k04 flux coefficient: jsat = 0.4525248966751305416 (60 dps; AS651 landed 0.45252490, diff 3.3e-9), s_sat = 2.539638282188165325, b = 0.018005393544499054547 (K_B = 0), r* = 7.9639892129110018909; consistency b = (8 - r*)/2 to 1e-61; K_B = 1/4: b = 0.015754719351436672729, r* = 7.9684905612971266545. Family kappa(r*) - 1/2 = 0.0 at 60 dps. PASS"
+    },
+    {
+      "K9": "footings: kappa back-check = 0.50000000 on BOTH canonical (9.3619e-11) and alternative (1.1279e-10) footings; rho/eps/q_* values reproduce AS651. PASS"
+    },
+    {
+      "K10": "Lean 4: compile exit 0, zero sorry, #print axioms exactly {propext, Classical.choice, Quot.sound} for all 9 theorems (lean_axioms_output.txt). PASS"
+    }
+  ],
+  "tested_domain": "Symbolic: all Z, b, beta, q > 0, generic C^2 leaf data on a compact closed leaf (jet-level polynomial assemblies with named coefficients). Numeric: k04 kernel truncated at peak, K_B in {0, 1/4}, mpmath 60 dps (jsat refinement vs AS651 8-digit landing: 3.3e-9); witness family r in {1,2,4,7.9639892129,8,16,64}; exact rational witness jets; 4-node periodic leaf cell. Both registered footings. Exclusions: no 4D metric-sector Ward (outside the ten premises; AS138 next_unresolved_implication), no propagation/criterion B, no branch translation, no PPN.",
+  "failed_attempts": [
+    "assemble_ward_reduce.py first run: two print-formatting bugs (mpmath mpf in {:.10f} and a misplaced decimal point in the hand-built Rational b -> printed r* = -28.01 and kappa(8) = 0.2132); fixed with mp.nstr/sp.Float; rerun clean. NC-b first form dropped the E-terms instead of the endpoint display (trivially zero) - replaced by the AS138-faithful canonical-form statement (residual N*M, witness -57/50); preserved in git-less history only, intermediate outputs overwritten by the fixed reruns as required",
+    "Lean certificate iterations: (i) two adjacent doc comments break this build's parser ('unexpected token /--; expected lemma') - merged comments; (ii) norm_num/rw infer numerals as Nat ((1:NN)/2 = 0!) - pinned (1 : RR) annotations; (iii) simpa [Real.mul_self_sqrt] rewrites 1/(4+b) to (4+b)^-1 form (type mismatch) - replaced by rw [Real.mul_self_sqrt hge] at hc then hc.trans hz; (iv) a theorem stating a false equality between the on-shell leftover and the display was deleted (mathematically wrong, the correct structure is witness-based); probes preserved as lexer_probe.lean and /tmp/ltxt/*"
+  ],
+  "limitations": "This result does NOT establish any forcing of Z/beta^2 by conservation: it establishes the opposite (continuum + explicit counterexample family). It does not derive kappa = 1/2, does not supply a new equation fixing the ratio, does not touch the metric-sector Ward identity (FINAL_ACTION eq. (13) LHS), the Z-source dynamics (eq. (6)) or its mean identification, does not engage any branch (Q/RAR/MU2/EXP/MONO), does not make a criterion-B or PPN statement. Symbolic on-shell identities are jet-level assemblies of the premises, not a 4D PDE proof (each premise's own provenance covers its domain). The counterexample family is exhibited at the kappa-projection level (r -> kappa injective, AS651) with conservation realized identically for all r.",
+  "next_unresolved_implication": "The first missing bridge: an equation of the pinned action in which the four-form coefficient Z and the framework density rho_Lambda (equivalently kappa) are linked through a conservation/normalization condition - the natural candidate is the identification of the four-form Z with the mean of the Z-source (FINAL_ACTION eq. (6): 4 Delta_N Z = -S_N^dagger R_W, mean fixed as normalization), i.e., deriving <Z>_h = (8-2b) beta^2 rather than adopting kappa = 1/2. Until then kappa = 1/2 and the ratio stand and fall together (AS651 equivalence).",
+  "suggested_followup": "AS138.C02: test the single concrete candidate equation that could derive the ratio - impose the mean-value identification <Z>_h = (8-2b) beta^2 as a consistency condition of the composite lapse/source system at the pin and check whether it is (i) identically satisfied (then nothing new, closure still absent) or (ii) a genuine equation whose unique positive solution is r* = 8-2b; in parallel prove/refute the rank statement that no first-order variation of the pinned sectors (Ward or lapse) can fix Z/beta^2 (generic-counting argument). Dependencies: AS138.C01 (this run), AS133, AS145, AS651.",
+  "acceptance_state": "unreviewed",
+  "ancestry": "AS138",
+  "first_principles_inputs": [
+    "Framework inputs (adopted): a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2; rho_Lambda = 4 a0^2/(G c^2); G = 6.67430e-11, c = 299792458; footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2; G_N/G_bare/G_cosmo separate; branches Q/RAR/MU2/EXP/MONO distinct; neither footing shares fixed rho and fixed kappa",
+    "Pinned action FINAL_ACTION.md b8c04d4e...7546e (heat/gate/carrier sectors, eqs. (3)-(14)); k04 four-form promotion 15c0a7e1...2399 (P(q) = (Z/2+b beta^2)q^2, a0^2 = G beta^2 q^2, b = (2-K_B) jsat/(16 pi))",
+    "Landed premises AS137, AS138, AS147, AS651, AS652, AS653, AS658, AS669, AS145, AS132, AS133, AS151, AS156 (hashes above; used as premises, not re-derived)",
+    "Genuinely derived in this run: the assembly theorem (on-shell total Ward closes with no coupling hypotheses), the continuum judgement (zero polynomial in r), the kappa-projection family values, the b read-off and r* evaluation at 60 dps, the NC residuals, and the nine Lean theorems"
+  ],
+  "closure_implication": "Named gate: AS075 requirement B (E*: kappa = 1/2 derived, not adopted), cell A03, via the same-pin total-stress conservation identity. Implication: on-shell Ward conservation at pin b8c04d4e is realized identically for every r = Z/beta^2 (continuum), so the closure implication 'conservation forces Z/beta^2 = 8-2b' is FALSE; the only exact implication available is the AS651 equivalence kappa = 1/2 <-> Z/beta^2 = 8-2b (framework input discharged onto the ratio). Common-action/parameter-domain compatibility: all statements are at the pinned action with the k04 promotion; parameter cell (Z, b, beta, q_0) in (0, oo)^4; both footings; no branch transfer. The derive-arm stays OPEN with the strictly narrowed target from AS651 now sharpened to: 'no Ward/lapse first-order identity at the pin fixes the ratio; only the framework discharge does' (candidate no-go, with the counterexample family as evidence).",
+  "child_proposals": [
+    {
+      "id": "AS138.C02",
+      "path": "deepseek_push/astra_spawn_ideas/branches/AS138/AS138.C02.md (proposed, not yet created)",
+      "target": "the mean-value identification candidate: impose <Z>_h = (8-2b) beta^2 as consistency of the composite lapse/source system (FINAL_ACTION eqs. (6)-(7), (13) with the four-form source epsilon_vac) and decide identically-satisfied vs unique-solution; if unique, this is the first genuine derivation of the ratio",
+      "controls": "repeat NC-a/NC-b of AS138.C01; rank/generic-counting argument that no first-order variation fixes Z/beta^2; both footings; Lean on the linearized system",
+      "dependencies": "AS138.C01 (this run), AS133, AS145, AS132, AS651, AS147",
+      "dispatch_state": "not dispatched"
+    },
+    {
+      "id": "AS138.C03",
+      "path": "deepseek_push/astra_spawn_ideas/branches/AS138/AS138.C03.md (proposed, not yet created)",
+      "target": "extract the composite lapse equation with the four-form source: LHS(13) = rho_b + rho_d + epsilon_vac (c=1) with T_vac = -epsilon_vac g, and verify the epsilon_vac-coefficient against the metric variation of S_FF at the pin - the one cell where epsilon_vac enters an equation with Z, requiring the metric-sector Ward left open in AS138",
+      "controls": "coefficient identity via metric variation; consistency with eq. (13); footings",
+      "dependencies": "AS138.C01 (this run), AS651, AS145",
+      "dispatch_state": "not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

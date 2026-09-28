@@ -1,0 +1,40 @@
+====================================================================================================
+AS138.C01 -- total-Ward assembly and reduction at pin b8c04d4e...7546e (CA4-GNC/CA5-GNC-R + k04)
+====================================================================================================
+
+[K1] assembled off-shell total Ward Q_total = -(xi.dW)_0*L_0*N + (xi.dW)_0*N*lam0 + (xi.dW)_b*L_b*N + (xi.dW)_b*N*R_W + E_L0*N*dL0 + E_L1*N*dL1 + E_L2*N*dL2 + E_L3*N*dL3 + E_U*N*dU + E_W0*N*dW0 + E_W1*N*dW1 + E_W2*N*dW2 + E_W3*N*dW3 + E_b*dpsi + E_lam0*N*dlam0 - Z*dq*g_metric_factor*q - 2*b*beta**2*dq*g_metric_factor*q
+[K1] ON-SHELL reduction (P1-P5 substitutions): R_total = 0
+[K1] residual = 0.000e+00  (exact)  -- the total Ward closes with NO hypothesis on Z, b, beta
+
+[K2] closure condition 'nabla.Q_total = 0' reduced:  0  (a polynomial in r: Poly(0, r, domain='ZZ'))
+[K2] solution set of the closure condition in r = Z/beta^2 : []  --> the reduced polynomial does not contain r at all: EVERY r > 0 solves it (continuum).
+[K2] judgement unique-vs-continuum: CONTINUUM
+
+[K3] the only (Z,b,beta)-relation in the landing is the AS651 framework identity kappa^2 = 2/(r+2b); kappa = 1/2  ==>  r* = 8 - 2*b (exact, symbolic)
+[K3] r* == 8 - 2b  (symbolic identity holds);  numeric evaluation with pinned b: r* = 7.96398921291
+
+[K4] NC-a: drop the vacuum term (AS651) -> R = 0 ; residual = 0.000e+00 (exact)
+[K4] NC-a: the couplings (Z, b, beta) do not even appear -> continuum of ratios survives TRIVIALLY; WITH the vacuum term the continuum ALSO survives (K2) -- the conditional 'vacuum term removes the continuum' is REFUTED.
+
+[K5] NC-b: omit the r-endpoint multipliers from the canonical heat Ward -> on-shell residual = N*M
+[K5] NC-b: M = L_b(xi.dW)_b - L_0(xi.dW)_0 = -(xi.dW)_0*L_0 + (xi.dW)_b*L_b;  on-shell M = -(xi.dW)_0*lam0 - (xi.dW)_b*R_W
+[K5] NC-b: the endpoint-multiplier display closes it: (R_W+L_b)(xi.dW)_b + (lam0-L_0)(xi.dW)_0 |_shell = 0
+[K5] NC-b numeric witness: N*M = -57/50 = -1.140000000 != 0 ; display = 0 (load-bearing multipliers)
+
+[K6] counterexample family: for EVERY r > 0 the on-shell Ward system holds (K2),
+[K6] with kappa(r) = sqrt(2/(r+2b)):  distinct r -> distinct kappa; the tuned point r* = 8-2b
+[K6] gives kappa = 1/2 (exact), but e.g. r = 8 gives kappa = 0.498878447859 != 1/2.
+[K6] conservation is satisfied identically at BOTH -- conservation does not select kappa.
+
+[K7] exact rational leaf-cell (4-node periodic): pointwise charges = [('0',), ('0',), ('0',), ('0',)]
+[K7] integrated closure  sum_i (nabla.Q_total)_i = 0  (exact 0, divergence theorem on the closed leaf)
+[K7] (lapse-source channel is NOT a Ward divergence; its content is the pinned eq-(13) source G(Y_h) - ell DhW_b, balanced by geometry+matter via the action's own lapse equation; not re-derived here.)
+
+wall_time_seconds = 0.136
+
+OUTCOME: on-shell total-Ward conservation is an IDENTITY in the couplings: the reduced closure
+condition is the zero polynomial in r = Z/beta^2, so the solution set is the full
+continuum (0, oo).  The single pinning equation Z/beta^2 = 8 - 2b is the AS651 framework
+identity kappa^2 = 2/(r + 2b) evaluated at the ADOPTED input kappa = 1/2 -- a discharge,
+not a conservation-forcing.  Hypothesis (conservation forces the ratio): REFUTED.
+kappa = 1/2 remains adopted; publishable-incompleteness verdict.

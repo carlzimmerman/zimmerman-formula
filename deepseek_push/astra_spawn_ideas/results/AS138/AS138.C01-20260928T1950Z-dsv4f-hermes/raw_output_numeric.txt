@@ -1,0 +1,38 @@
+====================================================================================================
+AS138.C01 -- b from the pinned k04 flux coefficient; ratio Z/beta^2 = 8 - 2b
+====================================================================================================
+kernel Delta(s) = s/(e^sqrt(s) - 1), truncated at its peak (k04)
+  s_sat                 = 2.539638282188165325
+  Delta_sat             = 0.64761023789191485965
+  int_0^{s_sat} Delta ds = 1.4184333037497264759
+  jsat = I_rar = 2(s*D - int) = 0.4525248966751305416
+  (AS651 landed value: 0.45252490; jsat - landed = -3.3249e-9)
+
+b = (2 - K_B) I/(16 pi)  [K_B in {0, 1/4}]
+  K_B = 0   : b  = 0.018005393544499054547
+             8 - 2b = 7.9639892129110018909
+  K_B = 1/4 : b  = 0.015754719351436672729
+             8 - 2b = 7.9684905612971266545
+  (AS651 landed r* = 7.96398921 at K_B=0: residual 2.911e-9)
+
+consistency  b = (8 - (8-2b))/2  :  K_B=0: 0.018005393544499054547 -> b - b_check = 1.39e-61
+                                        K_B=1/4: 0.015754719351436672729 -> b - b_check = -1.51e-61
+
+kappa(r) = sqrt(2/(r + 2b)); on-shell total-Ward conservation holds for EVERY r (assembly theorem).
+  r values in the witness family (K_B = 0, b = 0.01800539354):
+    r =                1  kappa = 1.38941780248
+    r =                2  kappa = 0.991117080193
+    r =                4  kappa = 0.703945178488
+    r =   7.963989212911  kappa = 0.5  <-- r* = 8-2b (tuned: kappa = 1/2)
+    r =                8  kappa = 0.498878447859
+    r =               16  kappa = 0.353156194191
+    r =               64  kappa = 0.176726982931
+  kappa(r*) - 1/2 = 0.0  (exact 0 at 60 dps)
+
+Footings (kappa = 1/2 adopted; distinct densities, never both fixed):
+  canonical a0 = 9.3619e-11 m/s^2 | rho_L = 5.844412454e-27 kg/m^3 | eps_L = 5.25269596e-10 J/m^3 | Lambda = 1.0908e-52 m^-2 | q_* = 1.145938e-5 (beta=1) | kappa back-check = 0.5
+  alt       a0 = 1.1279e-10 m/s^2 | rho_L = 8.48308962e-27 kg/m^3 | eps_L = 7.624220727e-10 J/m^3 | Lambda = 1.58328e-52 m^-2 | q_* = 1.3805996e-5 (beta=1) | kappa back-check = 0.5
+
+counterexample family member: r = 8  -> kappa(8) = 0.498878447859 != 1/2 (diff = -0.001122); conservation holds identically at r = 8 (assembly theorem).
+
+JSON: {"s_sat": "2.539638282188165325", "Delta_sat": "0.64761023789191485965", "jsat": "0.4525248966751305416", "b_K0": "0.018005393544499054547", "rstar_K0": "7.9639892129110018909", "b_K025": "0.015754719351436672729", "rstar_K025": "7.9684905612971266545", "kappa_at_rstar": "0.5", "kappa_at_8": "0.498878447859"}
