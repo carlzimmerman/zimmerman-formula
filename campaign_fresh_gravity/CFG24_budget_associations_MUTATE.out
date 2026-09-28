@@ -1,0 +1,105 @@
+CFG24 -- THE COLD BUDGET WITH TURNED-AROUND ASSOCIATIONS AS THE TOP-LEVEL SYSTEMS (FG001 applied at T3's own level).
+
+WHY.  CFG23's diagnostics (V4): against KiDS's own best edge (x_e ~ 0.62, CFG21), the cold budget's edge (CFG17: 0.348 canonical
+P2) costs 40.9-62.0 in chi^2 (6.4-7.9 sigma).  The budget's FG001 grouping (CFG11) used Kourkchi & Tully 2017's groups, whose
+members lie inside the group's SECOND-turnaround radius.  But T3 switches the law ON inside top-level systems that have TURNED
+AROUND (Delta >= Delta_ta), and FG001 gives the phantom to the outermost such system -- so the owning system is the turned-around
+association, one level above KT2017's groups (CFG12's standing named this the untested next step).  The phantom is sublinear in
+the baryons (~M_b^3/4), so owning at the association level can only lower the phantom sum.
+
+THE ASSOCIATIONS (no new constant).  In CFG11's volume-limited D <= 15 Mpc sample (the one CFG17 uses), KT2017's groups -- their
+sample members' baryons summed with CFG17's xGASS gas -- are linked friends-of-friends in redshift space: two systems join when
+        s_proj^2 + (dV / 75 km/s/Mpc)^2  <  r_link(M_1 + M_2)^2 ,
+s_proj their projected separation at the pair's mean distance (the catalogue's V/75 convention, CFG11), dV their heliocentric
+velocity difference, and r_link the self-consistent turnaround radius of the combined system at the edge being tested: the law's
+profile cut at x r_ta (CFG4's density edge, enclosed mass constant beyond), where its mean density falls to Delta_ta(0) rho_m
+(CFG16's r_bound convention, at z = 0).  Merged systems take the baryon-weighted mean direction and velocity; linking repeats until
+nothing joins.  Redshift space compresses infalling pairs, so every turned-around pair inside r_link in projection is linked; a
+Hubble-flow pair at a true separation < r_link that has not turned around may be linked too, and the law's turnaround radius is
+itself larger than the LG's observed zero-velocity radius (CFG20).  Both make the linking GENEROUS to the budget: a closure here
+is robust, an opening is not.
+
+THE BUDGET is CFG17's exact machinery (exec'd read-only): the GAMA SMF with xGASS gas (non-detections at their limits), CFG12's
+share at the budget's own scale, the FG001 reduction applied only above the sample's mass limit -- with CFG11's grouping ratio
+replaced by the associations' R(x), recomputed at every x (the linking depends on x).  THE KiDS COST is CFG23_diagnostics' V4:
+KiDS's chi^2 at the new edge (CFG16's self-consistent caps) against KiDS's own best (CFG21).
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG17's committed edge_A (four rows) reproduced exactly by the exec'd machinery; with the linking switched off, this
+      lane's R equals CFG17's R (x = 0.31, 0.40) to 1e-12 and its edge function reproduces edge_A to 1e-12; the tabulated linking
+      radius matches the direct computation to 1e-4.
+  C2  CONTROL  the finder conserves the sample: every KT2017 group lies in exactly one association, and the associations' baryons
+      sum to the sample's.
+  H0  [MUTATE must fail] association ownership lowers the phantom sum below the group level at x = 0.35 (canonical P2).
+  H1  [HEADLINE] with turned-around associations, the canonical budget edge moves far enough that KiDS's cost against its own best
+      is <= 9, both kernels.  Declared EXPECTATION: FAIL (it needs R ~ 0.6 against the groups' 0.89).
+  R1  (reported) R(x) for groups and associations; the association statistics; all four rows' edges and KiDS costs; the most
+      generous variant (linking at the law's untruncated r_ta); the largest association removed.
+MUTATE=1: the linking is switched off (associations = KT2017 groups) -- H0 must FAIL (rc = 1).
+
+REVISION (after the first -- MUTATE -- run, before any main run; disclosed).  That run showed that the D <= 15 Mpc sample (CFG11's,
+inherited by CFG12 and CFG17) contains the Milky Way's own group (KT2017 group 5064336: the MW, the LMC, the SMC, Sgr dSph) at a
+V/75 distance of 0.12 Mpc, where the MW's integrated K magnitude seen from inside (Ks = -8.4) becomes L_K = 7e12 Lsun and M_b =
+4.4e12 Msun -- 47% of the sample's baryons.  The V/75 convention fails inside the Local Group.  The OPERATIVE sample drops galaxies
+whose group V/75 distance is < 1 Mpc (exactly those 4 members).  On the committed group-level budget this is an erratum for
+CFG11/12/17: R(0.31) 0.889 -> 0.870 and the canonical P2 edge 0.3483 -> 0.3542 (alt 0.2998 -> 0.3049) -- small.  In the association
+finder the bogus entry would link every system within a few hundred km/s of the MW's velocity into one spurious association, so
+H0 and H1 are scored on the operative sample; the first-written versions (CFG11's sample) are still computed, reported, and marked
+as contaminated.  C1 still reproduces CFG17 on CFG11's sample.  Added (reported): the group-level edge and KiDS cost on the
+operative sample (the erratum's size), and a 2-Mpc cut.
+
+  *** MUTATE=1: the linking switched off -- H0 must FAIL ***
+
+    CFG11's D <= 15 sample: 458 galaxies in 306 KT2017 groups; baryons 9.422e+12 Msun; largest group 5064336 with 4.41e+12 (0.47); finite: True
+
+    operative (group V/75 >= 1 Mpc): 454 galaxies in 305 KT2017 groups; baryons 5.007e+12 Msun; largest group 42407 with 2.22e+11 (0.04); finite: True
+    log M_* limit 8.74
+
+======================================================================================================================
+C1  CONTROL: CFG17 reproduced; the lane's R and edge with the linking off; the tabulated linking radius
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG17's edge_A reproduced; with the linking off the lane's R equals CFG17's and its edge function reproduces edge_A; the tabulated linking radius matches the direct one
+         |d edge_A| 0.0e+00; |d R| 0.0e+00; |d edge| 0.0e+00; link table 3.2e-07
+
+======================================================================================================================
+THE ASSOCIATIONS: R(x) at the turned-around level
+======================================================================================================================
+    canonical P2       [operative]: R_groups(0.35) 0.8697; R_assoc x = 0.30 / 0.35 / 0.45 / 0.625: 0.8694 / 0.8697 / 0.8700 / 0.8703; generous (law's r_ta): 0.8694 / 0.8697 / 0.8700 / 0.8703
+    canonical nu_mono  [operative]: R_groups(0.35) 0.8705; R_assoc x = 0.30 / 0.35 / 0.45 / 0.625: 0.8704 / 0.8705 / 0.8706 / 0.8708; generous (law's r_ta): 0.8704 / 0.8705 / 0.8706 / 0.8708
+    alt       P2       [operative]: R_groups(0.35) 0.8698; R_assoc x = 0.30 / 0.35 / 0.45 / 0.625: 0.8696 / 0.8698 / 0.8701 / 0.8704; generous (law's r_ta): 0.8696 / 0.8698 / 0.8701 / 0.8704
+    alt       nu_mono  [operative]: R_groups(0.35) 0.8706; R_assoc x = 0.30 / 0.35 / 0.45 / 0.625: 0.8705 / 0.8706 / 0.8707 / 0.8708; generous (law's r_ta): 0.8705 / 0.8706 / 0.8707 / 0.8708
+    canonical P2 [CFG11's sample (contaminated)]: R_groups(0.35) 0.8893; R_assoc 0.35 / 0.625: 0.8893 / 0.8901
+    canonical P2 [2-Mpc cut]: R_groups(0.35) 0.8693; R_assoc 0.35 / 0.625: 0.8693 / 0.8700
+    can/P2 x 0.35: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8712
+    can/P2 x 0.625: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8718
+    can/nu_mono x 0.35: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8720
+    can/nu_mono x 0.625: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8723
+    alt/P2 x 0.35: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8714
+    alt/P2 x 0.625: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8719
+    alt/nu_mono x 0.35: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8721
+    alt/nu_mono x 0.625: 305 groups -> 305 associations (0 multi-group, holding 0.00 of the baryons); largest: 1 groups, 6 galaxies, M_b 2.22e+11 (0.04 of the sample); R without it 0.8723
+  [PASS] C2 CONTROL: the finder conserves the sample (every group in one association; baryons summed exactly)
+         conserved: True
+  [FAIL] H0 association ownership lowers the phantom sum below the group level at x = 0.35 (canonical P2, operative sample)  [MUTATE: linking off]
+         R_assoc 0.8697 vs R_groups 0.8697
+  [FAIL] (reported) H0 (first-written, CFG11's sample -- CONTAMINATED by the MW entry, see REVISION; not a result)
+         R_assoc 0.8893 vs R_groups 0.8893
+
+======================================================================================================================
+THE BUDGET EDGE WITH ASSOCIATIONS, AND KiDS's COST THERE AGAINST ITS OWN BEST (CFG23_diagnostics V4)
+======================================================================================================================
+    [op] canonical P2      : budget edge groups 0.3542 (CFG17 committed: 0.3483) -> KiDS cost 38.6; associations 0.3542 -> 38.6; generous 0.3542 -> 38.6  (KiDS best 104.69)
+    [op] canonical nu_mono : budget edge groups 0.3517 (CFG17 committed: 0.3458) -> KiDS cost 45.7; associations 0.3517 -> 45.7; generous 0.3517 -> 45.7  (KiDS best 124.34)
+    [op] alt       P2      : budget edge groups 0.3049 (CFG17 committed: 0.2998) -> KiDS cost 53.7; associations 0.3049 -> 53.7; generous 0.3049 -> 53.7  (KiDS best 99.23)
+    [op] alt       nu_mono : budget edge groups 0.3028 (CFG17 committed: 0.2976) -> KiDS cost 59.9; associations 0.3028 -> 59.9; generous 0.3028 -> 59.9  (KiDS best 117.79)
+    [fw] canonical P2      : budget edge groups 0.3483 (CFG17 committed: 0.3483) -> KiDS cost 40.9; associations 0.3483 -> 40.9; generous 0.3483 -> 40.9  (KiDS best 104.69)
+    [d2] canonical P2      : budget edge groups 0.3543 (CFG17 committed: 0.3483) -> KiDS cost 38.6; associations 0.3543 -> 38.6; generous 0.3543 -> 38.6  (KiDS best 104.69)
+  [FAIL] H1 [HEADLINE] with turned-around associations the canonical budget edge moves far enough that KiDS's cost against its own best is <= 9, both kernels (operative sample) [declared expectation: FAIL]
+         P2: edge 0.3542, cost 38.6; nu_mono: edge 0.3517, cost 45.7
+  [FAIL] (reported) H1 (first-written, CFG11's sample -- CONTAMINATED by the MW entry, see REVISION; not a result)
+         P2: edge 0.3483, cost 40.9
+  [PASS] (reported) R1 (reported) every row's edges and KiDS costs (groups = the CFG11/12/17 erratum on the operative sample); the generous variant
+         [op] can/P2: groups 0.3542 (38.6), assoc 0.3542 (38.6), generous 0.3542 (38.6); [op] can/nu_mono: groups 0.3517 (45.7), assoc 0.3517 (45.7), generous 0.3517 (45.7); [op] alt/P2: groups 0.3049 (53.7), assoc 0.3049 (53.7), generous 0.3049 (53.7); [op] alt/nu_mono: groups 0.3028 (59.9), assoc 0.3028 (59.9), generous 0.3028 (59.9); [fw] can/P2: groups 0.3483 (40.9), assoc 0.3483 (40.9), generous 0.3483 (40.9); [d2] can/P2: groups 0.3543 (38.6), assoc 0.3543 (38.6), generous 0.3543 (38.6)
+    (321 s)
+
+  3/7 checks pass; load-bearing failures: 2   (321 s)

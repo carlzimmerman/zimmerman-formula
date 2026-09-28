@@ -75,3 +75,7 @@ The pre-declared reading (f) is void because the baseline control fails KiDS. Th
 - Whether the framework's own surroundings can supply that signal inside its cold budget is the open question the next lane has to face.
 
 Nothing here says the theory is closed.
+
+## Update (CFG24, 2026-09-28)
+
+V4's costs used CFG17's committed budget edges, which carry the Milky-Way-entry erratum found in CFG24. Corrected, they are 38.6 / 45.7 / 53.7 / 59.9. With turned-around associations as the owners (the framework's own T3 level) they fall to 29.4 / 32.9 / 45.4 / 49.3, and to 20.8–35.3 with the most generous linking. See CFG24_README.md.
