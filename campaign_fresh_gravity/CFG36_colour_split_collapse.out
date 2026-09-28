@@ -1,0 +1,64 @@
+CFG36 -- CFG35's conservation rule with MEASURED, colour-split collapse masses: can it fit the X-ray ellipticals AND leave the massive
+spirals alone?
+
+WHY.  CFG35 derived T5's conservation form from T4 (the cold mass is fixed at collapse; the leftover after the law's phantom stays as
+collapse debris).  With a colour-blind stellar-to-halo relation (Moster+13) it closed the X-ray ellipticals (0.1 sigma) but broke the most
+massive SPARC spirals (+0.30 dex in v at R_HI), because it put every log M_* ~ 11.4 galaxy in a ~1e14 Msun collapse.  Weak lensing
+measures the collapse mass separately by colour: Mandelbaum+2016 (MNRAS 457, 3200, Table 3; real_research/data/
+mandelbaum2016_lbg_halo_mass.tsv) find passive centrals in halos 3-7x more massive than star-forming ones at the same stellar mass.
+That is measured, not fitted, and it is the one input CFG35 said was missing.
+
+THE METHOD (declared before this script's first run).  CFG35's machinery exec'd read-only (the conservation form, the edge at x_e =
+0.40, h10's ellipticals, h48's Dutton-Maccio NFW, SPARC from the master table with M_* = 0.61 L_3.6 + 1.33 M_HI).  Collapse mass:
+Mandelbaum's <M_200m> (h^-1 Msun, h = 0.673) interpolated in log M_* (clamped at the table's ends), converted to M_200c on the same
+NFW (Dutton-Maccio c) by solving for the mass inside 200 x the mean density.  Colour: the seven X-ray ellipticals take the RED relation;
+SPARC late types (T >= 1) take the BLUE relation and its S0s (T = 0) the RED.  Stellar masses: Humphrey's Kroupa and SPARC's 3.6-micron
+masses stand in for Mandelbaum's Chabrier masses (declared).
+
+PRE-DECLARED
+  C1  CONTROL  the table reproduced: 14 rows; the red-blue gap at log M_* = 11.29 / 11.28 is 13.25 - 12.69 = 0.56 dex.
+  C2  CONTROL  the 200m -> 200c conversion: the NFW mass inside the solved R_200m equals the target to 1e-6.
+  H1  THE ELLIPTICALS STAY CLOSED with the red relation: the conservation form fits the seven at better than 1 sigma (CFG35's error
+      model), both footings.
+  H2  [HEADLINE; MUTATE must fail] THE SPIRALS ARE LEFT ALONE with the blue relation: over SPARC the leftover is zero in >= 90% of
+      galaxies and raises v_c at R_HI by < 0.03 dex in every galaxy (canonical, x_e = 0.40).
+  R1-R3 (reported): the edge window's ends; H2 with every blue halo mass at its +1 sigma bound; the largest SPARC leftovers.
+  READING (declared): H1 and H2 PASS -> with measured colour-split collapse masses, B's derived conservation rule fits massive
+  ellipticals and massive spirals together; B adopts it.  H2 FAIL -> even the measured split cannot keep the spirals clean.  H1 FAIL
+  -> the red relation's collapse masses do not supply the ellipticals.
+CHANGED AFTER THE FIRST MUTATE RUN, BEFORE THE MAIN RUN (disclosed): clamping the table at its low end gave dwarfs (log M_* ~ 7) the
+  collapse mass of a log M_* = 10.2 galaxy (~1e12 Msun) and would decide H2 by an artefact.  H2 is evaluated only over SPARC galaxies
+  inside the table's measured range (log M_* >= 10.0); below it CFG35's colour-blind SHMR already gave f_ex = 0 for every dwarf.
+MUTATE=1: the colours swapped (ellipticals blue, spirals red) -- H2 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: the table
+======================================================================================================================
+  [PASS] C1 CONTROL: Mandelbaum+2016 Table 3 as transcribed: 14 rows; red - blue at log M_* ~ 11.29 = 0.56 dex
+         14 rows; gap 0.56 dex
+
+======================================================================================================================
+C2  CONTROL: the 200m -> 200c conversion
+======================================================================================================================
+  [PASS] C2 CONTROL: the NFW mass inside the solved R_200m equals the target
+         max relative error 2.9e-15; M200c/M200m at 1e12 / 1e13 / 1e14: 0.776, 0.755, 0.731
+
+======================================================================================================================
+H1  THE ELLIPTICALS with the red relation
+======================================================================================================================
+    canonical: NGC720 +0.57 (f_ex 0.00, M200c 2.8e+12), NGC1407 +0.02 (f_ex 0.67, M200c 6.0e+13), NGC4125 -0.07 (f_ex 0.35, M200c 2.0e+13), NGC4261 -0.10 (f_ex 0.59, M200c 4.2e+13), NGC4472 +0.17 (f_ex 0.55, M200c 3.6e+13), NGC4649 +0.38 (f_ex 0.57, M200c 3.9e+13), NGC6482 -0.09 (f_ex 0.66, M200c 5.8e+13);  mean +0.125 +- 0.120 -> +1.04 sigma
+    alt      : NGC720 +0.54 (f_ex 0.00, M200c 2.8e+12), NGC1407 +0.03 (f_ex 0.62, M200c 6.0e+13), NGC4125 -0.07 (f_ex 0.25, M200c 2.0e+13), NGC4261 -0.10 (f_ex 0.52, M200c 4.2e+13), NGC4472 +0.17 (f_ex 0.48, M200c 3.6e+13), NGC4649 +0.38 (f_ex 0.50, M200c 3.9e+13), NGC6482 -0.09 (f_ex 0.61, M200c 5.8e+13);  mean +0.122 +- 0.118 -> +1.03 sigma
+  [FAIL] H1 THE ELLIPTICALS STAY CLOSED with the red relation: better than 1 sigma, both footings
+         canonical: +0.125 +- 0.120 (+1.04 sigma); alt: +0.122 +- 0.118 (+1.03 sigma)
+
+======================================================================================================================
+H2  THE SPIRALS with the blue relation
+======================================================================================================================
+  [FAIL] H2 [HEADLINE] THE SPIRALS ARE LEFT ALONE with the blue relation: f_ex = 0 in >= 90% of SPARC and d log v at R_HI < 0.03 dex in every galaxy
+         61 galaxies; f_ex = 0 in 98%; max d log v +0.139 dex; largest: UGC02487 (T 0, log M_* 11.5, f_ex 0.58, +0.139), ESO079-G014 (T 4, log M_* 10.5, f_ex 0.00, +0.000), ESO563-G021 (T 4, log M_* 11.3, f_ex 0.00, +0.000), IC4202 (T 4, log M_* 11.0, f_ex 0.00, +0.000), NGC0289 (T 4, log M_* 10.6, f_ex 0.00, +0.000)
+  [PASS] (reported) R1 (reported) H2 with every halo mass at its +1 sigma bound; the edge window's ends for the ellipticals
+         +1 sigma: f_ex = 0 in 98%, max d log v +0.146; ellipticals x_e 0.31 / 0.48: canonical +0.102 / +0.145; alt +0.099 / +0.146
+
+    READING (declared): even the measured split cannot keep the spirals clean
+
+  3/5 checks pass; load-bearing failures: 2   (4 s)
