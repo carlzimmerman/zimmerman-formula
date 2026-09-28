@@ -1,0 +1,53 @@
+CFG22 -- A SOFT EDGE: can one phantom SHAPE satisfy KiDS and the Local Group together?
+
+WHY.  CFG21 excluded a universal SHARP edge at 5-7 sigma: KiDS's isolated lenses want the phantom to run to x_e ~ 0.62 r_ta, the
+LG's zero-velocity radius wants it to stop near 0.1 r_ta.  A sharp edge makes the enclosed mass jump from 'growing like r' to
+'constant', so KiDS's large-radius signal can only be bought with a long phantom, which overloads the LG.  Collapsed matter does not
+stop dead: its density steepens.  The soft edge keeps the law's phantom (rho ~ r^-2) inside r_s = x_s r_ta and continues it as
+rho = rho_s (r_s/r)^3 -- continuous at r_s, no new amplitude -- out to r_ta (CFG4's convention for r_ta), constant enclosed mass beyond:
+      M(r) = M_law(r)                                       r <= r_s
+           = M_law(r_s) + r_s M_law'(r_s) ln(r / r_s)       r_s < r <= r_ta
+           = M(r_ta)                                        r > r_ta
+The shape is the one change; x_s replaces x_e as the one declared number.
+
+THE TESTS (exactly CFG21's, with the soft profile).  KiDS: CFG16's machinery (CFG4_switch's KiDS slices exec'd read-only), the 2-halo
+cap of each lens bin at the peak-background bias of the SOFT profile's own turnaround mass (self-consistent, as CFG16).  LG: CFG20's
+shell integrator (FP1's, exec'd read-only) with r_s(t) = x_s r_ta(t) and the tail to r_ta(t).  Joint: T = [chi2_KiDS - min chi2_KiDS]
++ [(R0 - 0.93)/0.12]^2, minimised over x_s.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  with the tail switched off (rho = 0 beyond r_s) the lane reproduces CFG21's committed sharp-edge KiDS numbers (its own
+      best x_e and minimum) and CFG20's committed R0 at x_e = 0.2 and 0.34 (canonical P2, 1.145e11) exactly.
+  H0  [MUTATE must fail] the soft tail lowers the joint minimum T_min below the sharp edge's by more than 3, on the canonical footing.
+  H1  [HEADLINE] one soft edge is jointly acceptable: T_min <= 9 on the canonical footing, both kernels, LG M_b 1.145e11.
+      Expectation: uncertain.
+  R1  (reported) every case (both footings, both kernels, both LG masses): x_s at the joint minimum, KiDS's and the LG's own best x_s,
+      the R0 there, and the soft profile's mass at r_ta relative to the sharp edge's at KiDS's sharp best (the budget direction).
+MUTATE=1: the tail is switched off (the sharp edge) -- H0 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: tail off = the sharp edge (CFG21's KiDS, CFG20's LG)
+======================================================================================================================
+    sharp KiDS best x 0.62 (-35.114) vs CFG21 0.62 (-35.114); LG R0 at 0.2 / 0.34: 1.0762 / 1.2835 vs CFG20 1.0762 / 1.2835
+  [PASS] C1 CONTROL: with the tail off the lane reproduces CFG21's sharp-edge KiDS best and minimum and CFG20's R0 at 0.2 / 0.34
+         KiDS max |d| 0.0e+00; LG max |d R0| 0.0e+00 Mpc
+
+======================================================================================================================
+THE SOFT EDGE: KiDS and the LG against x_s
+======================================================================================================================
+    canonical P2       LG 1.14e+11: KiDS best x_s 0.40; LG best 0.04; joint x_s 0.26: KiDS excess 5.9, R0 1.516 -> T_min 29.8 (~5.5 sigma); sharp edge T_min 26.2
+    canonical P2       LG 1.72e+11: KiDS best x_s 0.40; LG best 0.03; joint x_s 0.24: KiDS excess 8.7, R0 1.650 -> T_min 44.7 (~6.7 sigma); sharp edge T_min 41.0
+    canonical nu_mono  LG 1.14e+11: KiDS best x_s 0.42; LG best 0.03; joint x_s 0.26: KiDS excess 6.4, R0 1.523 -> T_min 30.8 (~5.6 sigma); sharp edge T_min 27.8
+    canonical nu_mono  LG 1.72e+11: KiDS best x_s 0.42; LG best 0.02; joint x_s 0.24: KiDS excess 9.1, R0 1.658 -> T_min 45.9 (~6.8 sigma); sharp edge T_min 42.7
+    alt       P2       LG 1.14e+11: KiDS best x_s 0.38; LG best 0.03; joint x_s 0.24: KiDS excess 7.4, R0 1.562 -> T_min 35.2 (~5.9 sigma); sharp edge T_min 31.9
+    alt       P2       LG 1.72e+11: KiDS best x_s 0.38; LG best 0.02; joint x_s 0.24: KiDS excess 7.4, R0 1.730 -> T_min 51.8 (~7.2 sigma); sharp edge T_min 48.3
+    alt       nu_mono  LG 1.14e+11: KiDS best x_s 0.40; LG best 0.03; joint x_s 0.26: KiDS excess 6.2, R0 1.595 -> T_min 36.9 (~6.1 sigma); sharp edge T_min 33.4
+    alt       nu_mono  LG 1.72e+11: KiDS best x_s 0.40; LG best 0.02; joint x_s 0.24: KiDS excess 8.8, R0 1.737 -> T_min 54.0 (~7.4 sigma); sharp edge T_min 50.6
+  [FAIL] H0 the soft tail lowers the joint minimum below the sharp edge's by more than 3 (canonical)
+         P2/1.14e+11: 29.8 vs sharp 26.2; P2/1.72e+11: 44.7 vs sharp 41.0; nu_mono/1.14e+11: 30.8 vs sharp 27.8; nu_mono/1.72e+11: 45.9 vs sharp 42.7
+  [FAIL] H1 [HEADLINE] one soft edge is jointly acceptable (T_min <= 9) on the canonical footing, both kernels, LG M_b 1.145e11
+         P2: T_min 29.8 at x_s 0.26; nu_mono: T_min 30.8 at x_s 0.26
+  [PASS] (reported) R1 (reported) every case
+         can/P2/1.14e+11: T 29.8 at 0.26 (KiDS 0.40, LG 0.04); can/P2/1.72e+11: T 44.7 at 0.24 (KiDS 0.40, LG 0.03); can/nu_mono/1.14e+11: T 30.8 at 0.26 (KiDS 0.42, LG 0.03); can/nu_mono/1.72e+11: T 45.9 at 0.24 (KiDS 0.42, LG 0.02); alt/P2/1.14e+11: T 35.2 at 0.24 (KiDS 0.38, LG 0.03); alt/P2/1.72e+11: T 51.8 at 0.24 (KiDS 0.38, LG 0.02); alt/nu_mono/1.14e+11: T 36.9 at 0.26 (KiDS 0.40, LG 0.03); alt/nu_mono/1.72e+11: T 54.0 at 0.24 (KiDS 0.40, LG 0.02)
+
+  2/4 checks pass; load-bearing failures: 2   (174 s)
