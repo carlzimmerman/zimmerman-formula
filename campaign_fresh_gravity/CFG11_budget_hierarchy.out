@@ -1,0 +1,86 @@
+CFG11 -- THE COLD BUDGET UNDER FG001's OWN HIERARCHY.  Does CFG4's minimal conflict (KiDS's reach against the turned-around cold
+matter, 'strict' reading: closed) survive when the phantom is owned only by TOP-LEVEL bound systems?
+
+WHY.  CFG4_target's budget let EVERY galaxy carry its own isolated phantom out to x r_ta (it says so: 'an upper bound:
+satellites share their host's phantom').  Under FG001 (CFG7) only the outermost bound system owns a phantom: a group's cold
+component is ONE phantom sourced by the group's total baryons, and its members' own cold components are lumps inside it -- never
+added on top (T5: the cold matter in a bound region IS the phantom; counting a satellite's cold mass again would count it twice).
+The per-system phantom within x r_ta grows SUBLINEARLY with the baryonic mass (~ M_b^(3/4) in the deep regime), so grouping can
+only LOWER the sum.  CFG4's only hierarchical variant was a proxy (galaxies below 10^9 Msun carry no phantom).  Here the grouping
+is measured: the Kourkchi & Tully 2017 catalogue (ApJ 843, 16; galaxy groups within 3500 km/s, VizieR J/ApJ/843/16, committed in
+real_research/data/kt2017_*.tsv) assigns every local galaxy to its bound group (membership inside the group's second-turnaround
+radius).
+
+THE MEASUREMENT.  In volume-limited samples (D <= D_max, K_s <= 11.75 at D_max -- the 2MRS limit the catalogue is complete to),
+with CFG4's own per-system phantom (the law's isolated profile, the turnaround contrast Delta_ta(0) = 11.81, the phantom out to
+x r_ta; the same function CFG4 integrates over the GAMA stellar mass function) and CFG4's own baryons (M_* = Upsilon_K L_K with
+Upsilon_K = 0.6 declared; SPARC's gas fraction fit, CFG4's):
+      R(x) = SUM over groups of M_ph(SUM of the members' M_b; x)  /  SUM over galaxies of M_ph(M_b; x)
+The FG001 budget: Omega_ph,FG001(x) = Omega_ph(x; all galaxies) - [1 - R(x)] * Omega_ph(x; galaxies above the sample's mass
+limit) -- the reduction is applied ONLY above the limit (dwarfs below keep their own phantoms: conservative).  The strict edge:
+Omega_ph,FG001(x_b) = Omega_c x f_ta (z = 0, the turned-around share 0.602, CFG4's).
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG4_target's committed Omega_ph(x) (every galaxy, all four footing/kernel rows, z = 0 and 0.25, M_* cuts 1e7/1e9/
+      1e10, x = 0.2-1.0) and its strict and lenient budget edges reproduced to 1e-9 (relative) by this lane's copy of the function.
+  C2  CONTROL  the catalogue join: every galaxy's group exists in the group table; the summed member K luminosities reproduce the
+      catalogue's group logK (median |d| <= 0.1 dex over groups with Nm >= 3 whose members are all in the galaxy table).
+  H0  [MUTATE must fail] grouping lowers the phantom sum in every sample: R(0.31) < 1 (a theorem of the sublinear phantom; a check
+      of the join and the arithmetic).
+  H1  [HEADLINE] under FG001's hierarchy the strict budget edge reaches the KiDS floor with the 2-halo term (x_b >= CFG4's floor,
+      0.303-0.310) for both footings and both kernels, in every declared sample (D_max = 15, 25, 35 Mpc) at Upsilon_K = 0.6.
+      Declared EXPECTATION: uncertain (the canonical rows need R <~ 0.90, the alt rows R <~ 0.78).
+  R1  (reported) R(x) per sample, with and without the largest group (the Virgo cluster where it is inside D_max); Upsilon_K 0.4 /
+      0.8; a deeper K_s limit (13.0); the satellite fraction by stellar mass.
+MUTATE=1: every group is split into its galaxies (each its own system) -- R = 1, so H0 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: CFG4_target's committed budget, reproduced
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG4_target's committed Omega_ph(x), budget edges, Omega_c and turned-around share reproduced to 1e-9
+         192 Omega_ph values + edges: max relative deviation 0.0e+00
+    strict edges (every galaxy, z = 0, turned-around share 0.602): can/P2 0.280; can/nu_mono 0.278; alt/P2 0.243; alt/nu_mono 0.241  | KiDS floors (2-halo): canonical|P2 0.309; canonical|nu_mono 0.303; alt|P2 0.310; alt|nu_mono 0.306
+
+  KT2017: 15004 galaxies in 8826 groups; galaxies whose group is missing from the group table: 0; with a K_s magnitude and a group distance: 14935
+  [PASS] C2 CONTROL: the join -- every galaxy's group is in the group table, and summed member K luminosities reproduce the catalogue's group logK in its own distance convention (median |d| <= 0.1 dex, groups with Nm >= 3 fully present) [convention fixed after the first run; the 'Dist' column's value is printed]
+         missing groups 0; V/75: 659 groups, median d +0.026 dex, median |d| 0.058; 'Dist': 448 groups, median |d| 0.151
+
+======================================================================================================================
+THE SAMPLES: R(x) and the FG001 strict budget edge
+======================================================================================================================
+    D<=15           : 458 galaxies above log M_* = 8.74 (152 satellites, 0.33); can/P2: R(0.31) 0.891, edge 0.306 (floor 0.309); can/nu_mono: R(0.31) 0.892, edge 0.303 (floor 0.303); alt/P2: R(0.31) 0.891, edge 0.265 (floor 0.310); alt/nu_mono: R(0.31) 0.892, edge 0.263 (floor 0.306)
+    D<=25           : 1458 galaxies above log M_* = 9.19 (665 satellites, 0.46); can/P2: R(0.31) 0.766, edge 0.336 (floor 0.309); can/nu_mono: R(0.31) 0.768, edge 0.333 (floor 0.303); alt/P2: R(0.31) 0.767, edge 0.292 (floor 0.310); alt/nu_mono: R(0.31) 0.769, edge 0.289 (floor 0.306)
+    D<=35           : 2123 galaxies above log M_* = 9.48 (823 satellites, 0.39); can/P2: R(0.31) 0.806, edge 0.322 (floor 0.309); can/nu_mono: R(0.31) 0.808, edge 0.319 (floor 0.303); alt/P2: R(0.31) 0.806, edge 0.279 (floor 0.310); alt/nu_mono: R(0.31) 0.808, edge 0.277 (floor 0.306)
+    D<=25 no-largest: 1288 galaxies above log M_* = 9.19 (496 satellites, 0.39); can/P2: R(0.31) 0.837, edge 0.317 (floor 0.309); can/nu_mono: R(0.31) 0.839, edge 0.314 (floor 0.303); alt/P2: R(0.31) 0.838, edge 0.275 (floor 0.310); alt/nu_mono: R(0.31) 0.839, edge 0.273 (floor 0.306)
+    D<=35 no-largest: 1992 galaxies above log M_* = 9.48 (693 satellites, 0.35); can/P2: R(0.31) 0.844, edge 0.313 (floor 0.309); can/nu_mono: R(0.31) 0.845, edge 0.310 (floor 0.303); alt/P2: R(0.31) 0.844, edge 0.271 (floor 0.310); alt/nu_mono: R(0.31) 0.845, edge 0.269 (floor 0.306)
+  [PASS] H0 grouping lowers the phantom sum in every declared sample: R(0.31) < 1 (the sublinear phantom)
+         D<=15: 0.891/0.892/0.891/0.892; D<=25: 0.766/0.768/0.767/0.769; D<=35: 0.806/0.808/0.806/0.808
+  [FAIL] H1 [HEADLINE] under FG001's hierarchy the strict budget edge reaches the KiDS floor (2-halo) for both footings and both kernels in every declared sample (D_max = 15, 25, 35 Mpc; Upsilon_K = 0.6)
+         D15 can/P2: 0.306 vs 0.309; D15 can/nu_mono: 0.303 vs 0.303; D15 alt/P2: 0.265 vs 0.310; D15 alt/nu_mono: 0.263 vs 0.306; D25 can/P2: 0.336 vs 0.309; D25 can/nu_mono: 0.333 vs 0.303; D25 alt/P2: 0.292 vs 0.310; D25 alt/nu_mono: 0.289 vs 0.306; D35 can/P2: 0.322 vs 0.309; D35 can/nu_mono: 0.319 vs 0.303; D35 alt/P2: 0.279 vs 0.310; D35 alt/nu_mono: 0.277 vs 0.306
+
+======================================================================================================================
+R1  ROBUSTNESS (reported): Upsilon_K, a deeper K limit, the largest group removed, the satellite fraction
+======================================================================================================================
+    D<=25 U_K 0.4      canonical P2: R(0.31) 0.766, FG001 strict edge 0.339
+    D<=25 U_K 0.4      alt       P2: R(0.31) 0.766, FG001 strict edge 0.294
+    D<=25 U_K 0.8      canonical P2: R(0.31) 0.766, FG001 strict edge 0.334
+    D<=25 U_K 0.8      alt       P2: R(0.31) 0.767, FG001 strict edge 0.290
+    D<=25 Ks<=13       canonical P2: R(0.31) 0.750, FG001 strict edge 0.348
+    D<=25 Ks<=13       alt       P2: R(0.31) 0.751, FG001 strict edge 0.302
+    D<=25 'Dist'       canonical P2: R(0.31) 0.719, FG001 strict edge 0.350
+    D<=25 'Dist'       alt       P2: R(0.31) 0.720, FG001 strict edge 0.304
+    D<=35 U_K 0.4      canonical P2: R(0.31) 0.806, FG001 strict edge 0.324
+    D<=35 U_K 0.4      alt       P2: R(0.31) 0.806, FG001 strict edge 0.281
+    D<=35 U_K 0.8      canonical P2: R(0.31) 0.806, FG001 strict edge 0.320
+    D<=35 U_K 0.8      alt       P2: R(0.31) 0.806, FG001 strict edge 0.278
+    D<=35 Ks<=13       canonical P2: R(0.31) 0.790, FG001 strict edge 0.332
+    D<=35 Ks<=13       alt       P2: R(0.31) 0.791, FG001 strict edge 0.288
+    D<=35 'Dist'       canonical P2: R(0.31) 0.746, FG001 strict edge 0.337
+    D<=35 'Dist'       alt       P2: R(0.31) 0.746, FG001 strict edge 0.293
+    D<=25 no-largest  : can/P2 R(0.31) 0.837, edge 0.317; can/nu_mono R(0.31) 0.839, edge 0.314; alt/P2 R(0.31) 0.838, edge 0.275; alt/nu_mono R(0.31) 0.839, edge 0.273
+    D<=35 no-largest  : can/P2 R(0.31) 0.844, edge 0.313; can/nu_mono R(0.31) 0.845, edge 0.310; alt/P2 R(0.31) 0.844, edge 0.271; alt/nu_mono R(0.31) 0.845, edge 0.269
+    satellite fraction by log M_* (D <= 35, Upsilon_K 0.6): [8.5, 9.5): 0.33 (N 48), [9.5, 10.0): 0.42 (N 953), [10.0, 10.5): 0.40 (N 746), [10.5, 11.0): 0.31 (N 331), [11.0, 12.5): 0.23 (N 44)
+  [PASS] (reported) R1 (reported) robustness: Upsilon_K 0.4/0.8, K_s <= 13, the largest group removed, the satellite fraction
+         D<=25 U_K 0.4 can: edge 0.339; D<=25 U_K 0.4 alt: edge 0.294; D<=25 U_K 0.8 can: edge 0.334; D<=25 U_K 0.8 alt: edge 0.290; D<=25 Ks<=13 can: edge 0.348; D<=25 Ks<=13 alt: edge 0.302; D<=25 'Dist' can: edge 0.350; D<=25 'Dist' alt: edge 0.304; D<=35 U_K 0.4 can: edge 0.324; D<=35 U_K 0.4 alt: edge 0.281; D<=35 U_K 0.8 can: edge 0.320; D<=35 U_K 0.8 alt: edge 0.278; D<=35 Ks<=13 can: edge 0.332; D<=35 Ks<=13 alt: edge 0.288; D<=35 'Dist' can: edge 0.337; D<=35 'Dist' alt: edge 0.293
+
+  4/5 checks pass; load-bearing failures: 1   (10 s)
