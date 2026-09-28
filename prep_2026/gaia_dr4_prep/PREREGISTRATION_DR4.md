@@ -1385,6 +1385,146 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > Filed on the owner's explicit instruction, 2026-09-27.
 >
 
+> ### 🚨 AMENDMENT 14 — 2026-09-28, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THIS AMENDMENT (a) CORRECTS THE RECORD ON AMENDMENT 11(f)'S VARIANT B′, WHICH IS UNSTABLE ON THE
+> BAND WHERE IT WAS MEANT TO BE READ, AND (b) REGISTERS THE DERIVATION CHAIN'S LAW AS A READING WITH
+> A CEILING, TOGETHER WITH A SEPARATION-RESOLVED STATISTIC THAT MEASURES ITS FILTER LENGTH ξ.  IT
+> ADDS; IT MOVES NOTHING.**  Arms A, B and C, the estimator and every frozen number are untouched.
+>
+> **(a) Variant B′ is withdrawn as an interpretive aid.**
+> - Amendment 11(f) recorded, without registering it, the four-form promotion of a₀
+>   (`kappa_closure/k04`): a₀_loc = a₀(1 − g_N/155a₀), which depresses the boost below 4 kAU
+>   (Δγ_v = −0.019 / −0.015 at 2 kAU). It was listed "so that a radius-dependent depression of the
+>   boost below 4 kAU is interpretable".
+> - Review lane XR31 and the correction note `kappa_closure/k04_F6_CORRECTION_2026-09-27.md` show
+>   that k04's stability check F6 cannot fail, so it does not test stability.
+> - On k04's own kernel and couplings the slaved scalar force folds at g_N = 2.385 a₀ and falls to
+>   zero at 155.2 a₀. On 2.39 < g_N/a₀ < 155 the static scalar equation is not elliptic
+>   (C_L,eff = −238.6 on the saturated branch), and longitudinal perturbations grow at a rate
+>   proportional to k. Three independent routes agree on the fold to about 1e-12.
+> - That band is a shell from about 640 to 5150 AU around a solar-mass star. It contains the
+>   separations where B′'s depression was computed. **B′'s 2 kAU shift is computed on an unstable
+>   static solution and is not a prediction.**
+> - A radius-dependent depression of the boost below 4 kAU is therefore **not** to be read as B′.
+>   B′ stays unregistered and is now also withdrawn as an interpretive aid.
+>
+> **(b) The derivation chain's law — registered as a reading with a ceiling.**
+> - **The law.** At z = 0 it is a two-field AQUAL with the kernel J_P2 and a heat filter of length
+>   ξ applied to both the source and the output (lane FP7, where the double filter is forced).
+>   Lane FP14 leaves ξ as the gravity core's one knob, bounded to [0.0243 pc canonical /
+>   0.0268 pc alt, ~100 pc]. The lower bound is the Solar-System floor.
+> - **Per pair** it boosts a wide binary only beyond s ≈ 2ξ (5 kAU ≈ 0.024 pc). It is not Arm B,
+>   which is a different structure (Amendment 12(e): the carrier, ξ ≥ 4 pc).
+> - **With the frozen estimator.** Review lane XR22 solves the law in 3-D and puts it through the
+>   registered pipeline's own estimator at the pre-registration's primary Galactic field
+>   (1.778 × 10⁻¹⁰ m s⁻²). Its two paths from force law to γ̂ agree to one grid step, and the
+>   nuisance κ stays inside the frozen window. The law returns a **ceiling**, reached at the floor:
+>
+> | ξ | canonical γ̂ | alt γ̂ |
+> |---|---|---|
+> | floor (0.0243 / 0.0268 pc) | **1.0725** | **1.0900** |
+> | 0.03 pc | 1.0650 | 1.0875 |
+> | 0.04 pc | 1.0500 | 1.0675 |
+> | 0.05 pc | 1.0400 | 1.0525 |
+> | 0.07 pc | 1.0250 | 1.0300 |
+> | 0.10 pc | 1.0125 | 1.0150 |
+> | 0.15 pc | 1.0050 | 1.0050 |
+> | ≥ 0.3 pc (to 100 pc) | 1.0000 | 1.0000 |
+>
+> - The chain's reading is **1.000 ≤ γ_v ≤ 1.0725 (canonical) / 1.0900 (alt)**. γ̂ falls
+>   monotonically as ξ grows, so the ceiling is the value at the floor.
+> - The ceiling depends on the Galactic field. At the canonical floor it is 1.0575 at the
+>   pre-registration's alt field (2.078 × 10⁻¹⁰) and 1.0500 at the chain's own field
+>   (2.32 × 10⁻¹⁰). The primary field decides, as §1 states.
+>
+> **(c) The separation-resolved statistic — registered as the measurement of ξ.**
+> - **Definition**, as coded in XR22's `sepbins` (`XR22_prereg_statistic.py`). Use the frozen cut
+>   table and the frozen ṽ = v⊥/√(GM/s_proj), in the projected-separation bins
+>   s_proj = [2, 3, 5, 7, 10, 15, 20, 30] kAU. The boost per bin is
+>   r_b = median(ṽ, DR4) / median(ṽ, the frozen Newtonian model population with the same cuts) − 1,
+>   with its error from a bootstrap over pairs.
+> - **The reading.** ξ̂ minimises Σ_b [(r_b − r_b^chain(ξ)) / σ_b]², where r_b^chain(ξ) is the
+>   chain's committed separation-binned boost (XR22's PHYS path, `sepbins` at each ξ). It is a
+>   measurement conditional on the chain's law, **not** a verdict statistic.
+> - **The forecast** (N = 30,000, statistical error only):
+>
+> | ξ | σ(ln ξ), canonical | σ(ln ξ), alt |
+> |---|---|---|
+> | ≤ 0.04 pc | 0.20 | 0.15–0.16 |
+> | 0.05 pc | 0.23 | 0.17 |
+> | 0.07 pc | 0.32 | 0.24 |
+> | 0.10 pc | 0.54 | 0.44 |
+>
+> - The 5–30 kAU bins carry 91% of the information at the floor. The frozen number is a poor
+>   ξ-meter by comparison: σ(ln ξ) ≈ 0.8 (canonical) / 1.2 (alt) with σ_tot at the floor.
+> - **Its signatures.**
+>   - r_b rising from about zero below 5 kAU toward the ceiling's boost at 20–30 kAU measures ξ.
+>   - r_b flat at zero across 5–30 kAU is Newton's signature and Arm C's. For the chain it only
+>     bounds ξ from below.
+>
+> **(d) Decision rows — readings ADDED to the section-1 table (existing rows unchanged).**
+> Distances are in σ_tot = 0.028, the table's convention; the alt edges are in brackets.
+>
+> | γ̂ lands in | the chain's reading | added note |
+> |---|---|---|
+> | ≤ 1.0725 (≤ 1.0900) | **consistent**, at or below the ceiling | ξ is reported from the monotone map in (b) and from (c) with its σ(ln ξ); no verdict word. In 1.056 – 1.0725 the chain is consistent while Arm C is 2–3σ_tot disfavored |
+> | 1.0725 – 1.157 (1.0900 – 1.174) | above the ceiling, within 3σ_tot: **not a kill** | reported with the z-table. In 1.084 – 1.157, Arms B and C are killed from above (Amendments 12(d), 13(d)) while the chain is not |
+> | ≥ 1.157 (≥ 1.174) | **falsified at every allowed ξ**, **if** the frozen stability requirements pass: every ladder variant within 1σ_fit, κ ∈ [0.95, 1.05], and the NSS-off probe moving γ̂ toward the verdict value. Otherwise "systematic-limited, no verdict" | an Arm-A-band result kills the chain |
+> | > 1.23 | **no verdict**, the frozen guard-zone rule | unchanged |
+>
+> **(e) Stated against interest.**
+> - **The frozen statistic cannot confirm the chain or fix ξ.**
+>   - A Newtonian result only bounds ξ from below. By the monotone map in (b), γ̂ within 2σ_tot of 1
+>     implies ξ ≳ 0.036 pc (canonical) or ≳ 0.047 pc (alt). The chain stays alive because ξ can grow.
+>   - A result between 1.00 and 1.07 maps onto a broad range of ξ.
+> - **The chain is separated from Newton, Arm B and Arm C only if ξ sits near its floor.** At
+>   larger ξ the chain's value falls onto theirs.
+> - **The separation-resolved error is statistical only.**
+>   - Hidden triples inflate ṽ at wide separations and can mimic the filter's transition. That
+>     systematic is not in σ(ln ξ).
+>   - A rise of r_b at 20–30 kAU is to be read as ξ only if the frozen contamination probes (the NSS
+>     screen, the strictness ladder) leave it in place.
+> - **DR4 does not separate the heat filter from the Riemann-coupled Galileon variant.** XR22's
+>   estimate for FP17's variant spans 1.000–1.085 (canonical), overlapping the chain's range. A
+>   separation × mass resolved statistic separates the two by at most 0.85σ at N = 30,000. A ξ
+>   read from (c) is a ξ for the heat filter only.
+> - **A blind spot of the frozen estimator, recorded.**
+>   - The anchored κ absorbs any boost that is the same at every acceleration. A y-flat law returns
+>     γ̂ ≈ 1.00 with κ = 1.06–1.09: "systematic-limited, no verdict".
+>   - The chain's filtered law is not y-flat, so its numbers are unaffected.
+> - Registering the chain's wide-binary reading does not certify the chain's law. Its open
+>   liabilities are recorded in the chain's own handoff.
+>
+> **(f) Unchanged.**
+> - Arm A (1.1614–1.1814 / 1.1917–1.2267).
+> - Arm B: 1.0000 ± 0.0025, not a testable arm, kill-from-above 1.084 (Amendment 12).
+> - Arm C: 1.000 (Amendment 13).
+> - Amendment 12(e)'s CARRIER declaration.
+> - The estimator, the 16-row cut table, the error model, the strictness ladder and the NSS screen.
+> - The frozen N = 30,000, both a₀ footings, the κ window [0.95, 1.05], the no-verdict edge 1.23
+>   and the no-EFE benchmark 1.33.
+> - Amendment 7(e)'s reporting rule is **extended**, not weakened: the raw γ̂ with σ_fit and its
+>   distances to the chain's ceilings (1.0725 / 1.0900) are also reported, never a verdict word.
+> - No pipeline file changes. The separation-resolved statistic is defined here and implemented in
+>   XR22's committed `sepbins`.
+>
+> **κ = ½ FITTED, NOT DERIVED.**  ξ is a free knob that no chain link fixes.
+>
+> **(g) Provenance.**
+> - (a): `real_research/cross_thread_review_2026_09_26/XR31_k04_f6_stability.py` and its README, with
+>   `kappa_closure/k04_F6_CORRECTION_2026-09-27.md` (commit c1932dcf8). The hub has re-run XR31 and
+>   it matched.
+> - (b)–(e): `real_research/cross_thread_review_2026_09_26/XR22_force_law.py`,
+>   `XR22_prereg_statistic.py`, `XR22_common.py` and `XR22_README.md` (commit 661ea3cff). The hub
+>   re-ran both scripts in both modes on 2026-09-28, and they matched exactly (commit bfa3207e1,
+>   recorded in `REPRO_PENDING.md`). That re-run clears XR22's one known risk: its common file was
+>   edited during a main run.
+> - The chain's law: `real_research/derivation_chain_2026/`, lanes FP7, FP14 and FP17.
+>
+> Filed on the owner's explicit instruction, 2026-09-28.
+>
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)

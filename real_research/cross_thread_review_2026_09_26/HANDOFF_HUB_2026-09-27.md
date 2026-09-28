@@ -216,3 +216,9 @@ The DR4 preregistration's Amendment 13 was filed on the owner's instruction as *
 The item planned above as "Amendment 13(a)/(b)" was never filed. It covers the four-form variant's instability and a
 separation-resolved statistic for the chain's law. It takes the next free number, 14, if it is filed. XR22 must be
 re-run first.
+
+## Update 2026-09-28: the program's standing
+
+Read `campaign_fresh_gravity/STANDING_2026-09-28.md` first. It has the bottom line, what CFG23–CFG27 closed, and the two data tests that decide the rest: Gaia DR4 on 2 December 2026, whose pipeline is ready and whose Amendment 14 is filed; and a₀ at z ≈ 2.5.
+
+The framework's failures, ranked by σ and sorted by what they hit (the current version, unscored liabilities, dead constructions, withdrawn numbers), are in `FAILURES_EXECUTIVE_SUMMARY_2026-09-28.md` at the repository root.

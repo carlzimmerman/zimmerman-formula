@@ -67,3 +67,17 @@ The **alt** footing is closed, about 12% short.
 The gas-fraction systematic that CFG4 flagged, "stars-only relaxes by ~30%", turns out to be small once the gas is measured: the budget edge moves by about +0.008.
 
 Nothing here says the theory is closed.
+
+## Update (CFG23 diagnostics, 2026-09-28)
+
+This window was judged with CFG4's KiDS tolerance, +9 against the untruncated law. KiDS's own best edge (x_e ≈ 0.62, CFG21) beats that reference by 35–38. Against KiDS's own best, the budget's edge costs 40.9 (canonical P2), 47.8 (canonical ν_mono), 55.4 (alt P2) and 62.0 (alt ν_mono), which is 6.4–7.9σ (CFG23_diagnostics V4). The window is open only under the lenient tolerance. The caveat is the linear 2-halo template: it also makes Duffy-c NFW halos miss KiDS at R ≥ 0.6 Mpc. See CFG23_README.md.
+
+## Erratum (CFG24, 2026-09-28)
+
+The D ≤ 15 / 25 / 35 Mpc samples contain the Milky Way's own group (KT2017 group 5064336: the MW, the LMC, the SMC and Sgr dSph). It sits at a V/75 distance of 0.12 Mpc, where the MW's integrated K magnitude seen from inside (Ks = −8.4) becomes L_K = 7e12 L☉ and M_b = 4.4e12 M☉. In the D ≤ 15 sample that is 47% of the baryons. The V/75 convention fails inside the Local Group.
+
+Dropping the group (galaxies whose group V/75 distance is below 1 Mpc):
+- R(0.31) moves from 0.889 to 0.870 (D ≤ 15, canonical P2).
+- With CFG17's xGASS gas, the FG001 strict edges move up by about 0.006: canonical P2 0.3483 → 0.3542; ν_mono 0.3458 → 0.3517; alt 0.2998 → 0.3049 and 0.2976 → 0.3028.
+
+The corrected numbers are in CFG24_README.md. The D ≤ 25 / 35 rows and the SPARC-gas edges were not recomputed. The direction of every conclusion is unchanged.

@@ -126,3 +126,15 @@ word applies (Amendment 7(e)).
 This is a DR3 validation of machinery. Every DR3 number here is contaminated
 (no DR4 epoch or NSS screen) and NON-SCORING. It tests the chain, not
 gravity.
+
+## DR4 table structure (checked 2026-09-28, before release)
+
+ESA's DR4 content page shows that DR4 does not keep DR3's single-table layout.
+- `gaia_source` is a curated subset of about 2 billion high-quality sources, with consolidated best-model parameters.
+- `all_source_astrometry`, `all_source_photometry`, `all_source_rvs` and `all_source_flags` cover all ~2.8 billion sources.
+- Non-single-star solutions are in `nss_*` tables, and epoch data come via DataLink.
+- The data model is published only at release.
+
+`fetch_extract.py` currently pulls every column from `gaia{release}.gaia_source`. So on release day some of `COLS` may need to come from the `all_source_*` tables through a `source_id` join (probably RUWE, ipd_frac_multi_peak and the RVs). The NSS screen must also read the `nss_*` tables, because DR4 may have no single `non_single_star` column.
+
+Which table is the base is a sample-definition choice. `../AMENDMENT15_DRAFT_NOT_FILED.md` fixes it before the data exist: the curated `gaia_source` as primary, and the `all_source_*` base as a reported variant. It must be filed before 2 December to count.

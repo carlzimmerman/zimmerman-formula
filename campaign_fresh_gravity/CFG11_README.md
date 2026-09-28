@@ -88,3 +88,13 @@ The lane was switched to that convention before the main run, with "Dist" kept a
 - It needs its own declared association criterion. The framework's own r_ta is the natural one.
 
 Nothing here says the theory is closed.
+
+## Erratum (CFG24, 2026-09-28)
+
+The D ≤ 15 / 25 / 35 Mpc samples contain the Milky Way's own group (KT2017 group 5064336: the MW, the LMC, the SMC and Sgr dSph). It sits at a V/75 distance of 0.12 Mpc, where the MW's integrated K magnitude seen from inside (Ks = −8.4) becomes L_K = 7e12 L☉ and M_b = 4.4e12 M☉. In the D ≤ 15 sample that is 47% of the baryons. The V/75 convention fails inside the Local Group.
+
+Dropping the group (galaxies whose group V/75 distance is below 1 Mpc):
+- R(0.31) moves from 0.889 to 0.870 (D ≤ 15, canonical P2).
+- With CFG17's xGASS gas, the FG001 strict edges move up by about 0.006: canonical P2 0.3483 → 0.3542; ν_mono 0.3458 → 0.3517; alt 0.2998 → 0.3049 and 0.2976 → 0.3028.
+
+The corrected numbers are in CFG24_README.md. The D ≤ 25 / 35 rows and the SPARC-gas edges were not recomputed. The direction of every conclusion is unchanged.

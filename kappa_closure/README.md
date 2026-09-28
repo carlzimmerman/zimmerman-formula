@@ -52,3 +52,21 @@ Promote the MOND scale to a conserved four-form flux, a₀ = β√G|q|, with vac
 | F6 stability | Z_eff > 0 everywhere |
 
 **Standing.** The construction reverses the sign and turns the seesaw form into structure, at the price of an environmental a₀ that is invisible in galaxies and a 1σ effect for DR4. The coefficient is untouched: "why 32π" has become "why Z = 8β²". Not a derivation; the cleanest statement of the open problem so far.
+
+## k05 — is 32π special? (`k05_is_32pi_special.py`; the main run exits 1 because H1 and H2 failed as declared; MUTATE flips the sign of Λ and H0 fails)
+
+The question asked of the number itself, not of an action.
+
+| test | result |
+|---|---|
+| S1 convention vs content (sympy, exact) | a₀ = κc√(Gρ_Λ) ⟺ Λℓ₀² = 8π/κ² ⟺ ρ_Λc² = a₀²/(κ²G). **Every π in "32π" is Einstein's 8π.** The only convention-free content is 1/κ² = 4: the vacuum energy density is exactly 4a₀²/G. The rewritings 8 × 4π/3 (Friedmann) and 2 × 16π (Einstein–Hilbert) are the same 4 in other conventions. |
+| S2 the horizon reading (Schwarzschild–de Sitter, exact) | a₀ = c²/(2R*) with R* = √(8π/Λ) reads as a horizon's surface gravity, and its area gives AΛ = 32π², the Chern–Gauss–Bonnet constant. That horizon needs AΛ = 316. Every SdS horizon has AΛ ≤ 12π = 37.7, and black holes ≤ 4π (also the positive-Λ area bounds under the dominant energy condition). A horizon at R* would need M√Λ = −18.5. **H1 FAILED.** The SdS black hole whose surface gravity *is* a₀ is a near-Nariai hole (r√Λ = 0.905, 98.7% of the Nariai mass, AΛ = 10.3). |
+| S3 the look-elsewhere census | k03's two measurements combine to κ = 0.530 ± 0.037. That is 0.8σ from ½ and 0.9σ from 1/√π, which is equally simple (Λℓ₀² = 8π²). 1/√3 (24π), √2/3 (36π) and √π/3 (72) lie within 1.6σ; 104 simple constants lie within 1σ. **H2 FAILED:** the data do not single out ½. |
+| R2 the natural constructions on the vacuum | κ = 2.894 (the de Sitter horizon's surface gravity cH_Λ; its ratio to ½ is exactly Z = 5.789), 1.447 (the Hubble sphere as its own Schwarzschild radius), 0.461 (Gibbons–Hawking as Unruh, k03), 4.19 and 8.38 (a Newtonian ball of vacuum). **None gives ½**; the nearest is 0.461, 8% away. |
+
+**Standing.**
+- 32π has no geometric content beyond the integer 4.
+- ½ is not the output of any natural geometric construction on the vacuum, and the data cannot select it among simple constants.
+- The one-half can only come from dynamics, and k01–k04 show the present action class does not supply it.
+- **κ = ½ stays FITTED.**
+- One exact identity worth keeping: a₀ = c H_Λ / Z, with Z = 2√(8π/3) the ratio of the de Sitter horizon's surface gravity to a₀.
