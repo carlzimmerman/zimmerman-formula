@@ -1,0 +1,49 @@
+CFG16 -- THE SELF-CONSISTENT KiDS FLOOR: the lens bias taken from the TRUNCATED profile's own turnaround mass.
+
+WHY.  CFG15 found CFG12's canonical window open at the framework's peak-background lens bias (1.1-1.6) and closed for unbiased lenses.
+But that bias was computed at the law's UNTRUNCATED turnaround mass.  With the phantom cut at x r_ta (CFG4's density edge), the
+system's actual enclosed mass beyond the edge stays M_e = M_law(x r_ta), so its actual turnaround mass is smaller and its bias lower.
+The floor depends on the bias and the bias on x: the zero-parameter closure is the self-consistent floor, where at every x the 2-halo
+cap of each lens bin is the peak-background bias of that bin's truncated turnaround mass.  The bias used is an UPPER estimate (KiDS's
+isolation criterion selects low-density environments and lowers it), so a closed window here is robust; an open one is not.
+
+THE CLOSURE (CFG4's conventions throughout).  At each x: the truncated profile (CFG4_switch's M_trunc_xta, exec'd read-only) -> its
+turnaround radius with CFG4_switch's r_bound at Delta_ta(0.25) = 8.89 -> M_ta'(x) = the truncated profile's enclosed mass there ->
+sigma(M_ta') at z_l = 0.25 (CLASS via CFG7_common) -> b = max of the collapse (1.686) and turnaround (1.208) peak-background biases.
+The floor is the smallest x with d chi^2 <= +9 against the untruncated law (CFG4's KIDS_TOL) with those caps.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG15's committed floors at scalar caps (0, 1, 2) and at its untruncated-mass bias are reproduced exactly.
+  D1  (reported) the truncated turnaround masses and biases per bin at x = 0.30 / 0.34, against CFG15's untruncated ones.
+  H1  [HEADLINE; MUTATE must fail] the self-consistent canonical floor stays at or below CFG12's canonical budget edge (0.341 P2 /
+      0.338 nu_mono): the canonical window survives self-consistently.  Expectation: uncertain (a rough estimate puts it at the edge).
+  R1  (reported) the alt footing's self-consistent floor against its edge (0.293 / 0.291).
+MUTATE=1: caps held at 0 (no 2-halo) -- the floor returns to 0.47 and H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: CFG15's committed floors
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG15's committed floors at caps 0 / 1 / 2 and at its untruncated-mass bias reproduced exactly
+         max |d x| 0.0e+00
+
+======================================================================================================================
+D1  THE TRUNCATED TURNAROUND MASSES AND THEIR BIAS
+======================================================================================================================
+    canonical P2: bias per bin untruncated [1.11, 1.35, 1.44, 1.57]; truncated at x = 0.30 [0.89, 1.04, 1.09, 1.17]; at x = 0.34 [0.91, 1.06, 1.12, 1.21]
+    alt       P2: bias per bin untruncated [1.14, 1.39, 1.49, 1.63]; truncated at x = 0.30 [0.91, 1.07, 1.13, 1.21]; at x = 0.34 [0.93, 1.1, 1.16, 1.25]
+  [PASS] (reported) D1 (reported) the truncated turnaround masses' bias against CFG15's untruncated one (canonical and alt, P2)
+         printed above
+
+======================================================================================================================
+H1  THE SELF-CONSISTENT FLOOR
+======================================================================================================================
+    canonical P2      : self-consistent floor 0.341 (CFG15 untruncated-bias floor 0.317, unbiased 0.350); CFG12 budget edge 0.341
+    canonical nu_mono : self-consistent floor 0.348 (CFG15 untruncated-bias floor 0.322, unbiased 0.360); CFG12 budget edge 0.338
+    alt       P2      : self-consistent floor 0.340 (CFG15 untruncated-bias floor 0.318, unbiased 0.351); CFG12 budget edge 0.293
+    alt       nu_mono : self-consistent floor 0.345 (CFG15 untruncated-bias floor 0.317, unbiased 0.358); CFG12 budget edge 0.291
+  [FAIL] H1 [HEADLINE] the self-consistent canonical floor stays at or below CFG12's canonical budget edge -- the window survives self-consistently
+         P2: floor 0.341 vs edge 0.341; nu_mono: floor 0.348 vs edge 0.338
+  [PASS] (reported) R1 (reported) the alt footing's self-consistent floor against its budget edge
+         P2: floor 0.340 vs edge 0.293; nu_mono: floor 0.345 vs edge 0.291
+
+  3/4 checks pass; load-bearing failures: 1   (5 s)

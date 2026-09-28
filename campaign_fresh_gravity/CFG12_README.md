@@ -72,3 +72,9 @@ The canonical window depends on the KiDS 2-halo amplitude, which is the lens bia
 - With unbiased lenses (A ≤ 1) it closes by 0.01–0.02.
 
 **"Resolved" is downgraded to marginal and bias-dependent.**
+
+**Further (CFG16):** with the lens bias taken self-consistently from the truncated profile's own turnaround mass, the canonical window **closes**.
+- P2's floor is 0.0003 above the edge.
+- ν_mono's floor is 0.010 above it.
+
+This bias is an upper estimate, since it ignores KiDS's isolation cut. The minimal conflict stands at about 3% (canonical) and about 15% (alt).

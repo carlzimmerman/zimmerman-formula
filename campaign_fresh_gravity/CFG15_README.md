@@ -66,3 +66,5 @@ On the alt footing the floor at the framework's own bias is 0.317–0.318, again
 Both effects lower the true bias, so the window's survival is not established.
 
 Nothing here says the theory is closed.
+
+**Completed by CFG16.** Taken self-consistently from the truncated profile's turnaround mass, the bias drops to 0.9–1.2, and the canonical window closes: P2 +0.0003, ν_mono +0.010.
