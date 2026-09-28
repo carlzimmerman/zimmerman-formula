@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "task_id": "AS234",
+  "task_sha256": "137ce4fcdd0715388850e23252530cc44b3ef2e500c6c37a3372216a6cb0de89",
+  "run_id": "AS234-r1-20260928T195311Z-dsv4f-hermes",
+  "run_kind": "declare-rescue (ORCHESTRATOR RESCUE of seed AS234; original worker executed the physics then died before packaging)",
+  "worker": "deepseek-v4-flash-0731 via Hermes (run-dir label dsv4f-hermes); dispatch slot sa-1-3062fce3 per claims/AS234.json (registry untouched); packaging and Lean-certificate rescue by deepseek-v4-flash-0731 Hermes subagent",
+  "started_utc": "2026-09-28T19:53:11Z",
+  "finished_utc": "2026-09-28T23:08:27Z",
+  "execution_status": "completed",
+  "outcome": "counterexample",
+  "exact_claim": "In the tied CA5-GNC-R quadratic action (Z = (ell S_k/4) phi, U = phi - Z, conserved dust stress T = rho (1,v,v^2), longitudinal modes k || v with omega = k v, box-averaged real amplitudes, rest-isotropy pins), the order-v^2 consistency residual of the E_A momentum equation at the pinned rest-isotropic configuration, evaluated at the solved series, is R = -8 rho / D with D = S_k alpha ell - 2 S_k c_N ell - 2 S_k ell - 4 alpha + 8 c_N + 24; R is k-independent and c2-free after reduction. At the branch-faithful point (alpha = 0, c_N = 1, S_k = ell = 1, c2 = 1) D = 28 and R = -2 rho/7 != 0 for rho > 0 (raw print 'branch-eval (alpha=0): -2*rho/7'); at the rational substitution-back sample R = -1280/8133 != 0. Hence the pinned rest-isotropic configuration cannot carry the conserved moving-source stress at order v^2, and the same-action PPN alpha2 extraction is OBSTRUCTED at O(v^2) in this sector: the two printed extraction windows give inconsistent tentative values (g'03 window -2/(7 M_P^2); g'00 window (49 M_P^2 - 2 rho)/(49 M_P^2 rho) at branch), the GR limit of the extraction is singular (alpha2(alpha=0,c2=0,ell=0) = nan), and the density-only negative control also fires (nonzero), so the obstruction is a property of the static sector, not of the (Psi+A) rho v^2 shift-matter coupling. Domain: all real parameters with M_P^2 != 0, D != 0, rho > 0; branch family c_N = 1 - alpha/2, c2 = 1, S_k ell = 1 has no crossing (residual != 0 for all finite D != 0; alpha = 14/3 is a pole).",
+  "framework_cell": {
+    "branch": "CA5-GNC-R physical-metric quadratic action (tied sector); no Q/RAR/MU2/EXP/MONO law invoked, no branch translation needed",
+    "action_revisions_pinned_in_seed": {
+      "FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e (seed-pinned sha256; not re-verified live during rescue)",
+      "FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f (seed-pinned sha256; not re-verified live during rescue)"
+    },
+    "kernel": "quadratic sector L2 = (M_P^2/2)[R^(2) - c2 K^2 + alpha|a-DZ|^2 + 4 a.DZ - 2|DZ|^2 - 2 cN |D(phi-Z)|^2 - 4 cN DZ.DU] + S_b-linear dust -rho phi + rho v chi - rho v^2 (Psi+A)",
+    "filter": "none applied",
+    "gate": "rest-isotropy pins (static and anisotropic amplitudes vanish); real-response gauge a_f = ac_f at every order",
+    "couplings_and_parameters": "M_P^2, c2, c_N, alpha, ell, S_k, rho (positive), k, omega = k v, v; kappa = 1/2 ADOPTED (framework), not derived here",
+    "ties": "Z = (ell S_k/4) phi (eq. (6), f=0); U = phi - Z (eq. (7), rho_d = 0)",
+    "scale_footing": "none numeric exercised: result is dimensionless-in-parameters algebra; both footings a0 = 9.3619e-11 m/s^2 (canonical) and a0 = 1.1279e-10 m/s^2 (alternative) apply unchanged — no G, c, or rho_Lambda number enters; no per-object a0 fit",
+    "boundary_and_mode_conditions": "longitudinal sector k || v || z, f(t,z) = Re[a exp(i(omega t - k z))], omega = k v (uniformly moving source), box-averaged Hermitian real quadratic form",
+    "units": "pure coefficients (dimensionless symbolic algebra)",
+    "gn_gbare_gcosmo": "G_N, G_bare, G_cosmo kept separate; none used numerically in this run"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as framework input (not derived in this run)",
+    "rest-isotropy pinning of the static/anisotropic amplitudes in the order-by-order solve",
+    "real-response gauge a_f = ac_f at every order",
+    "Z-tie Z = (ell S_k/4) phi with f = 0",
+    "auxiliary tie U = phi - Z with rho_d = 0",
+    "conserved dust stress T^00 = rho, T^0i = rho v^i, T^ij = rho v^i v^j"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS234_derive_alpha2_from_a_longitudinal_moving_source_response.md": "137ce4fcdd0715388850e23252530cc44b3ef2e500c6c37a3372216a6cb0de89",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/as234_derive.py": "59cc3c446f7a409f5ca53e1abfaf795a69586cdcda586240db739945eb9d7111"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/derive_raw.out": "f47a3e535c82fd4dfb7a5e950f9665eba15258b67790e4493e4e51222456f70d",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/order2_obstruction_debug.out": "5a49d74eb9f150fe03a9fa3fa60f75d627618d3347b2ed339f75320357f18b4c",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/time_mem_derive.txt": "387ca6e74b512bd66c1eba8541b3679026d75bd4bb4edce9243b25a9d6ce09a8",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/time_mem_derive_obstructed.txt": "478b7191c50793dfafd2116cd6c529b7ab1b1b552d2e24ac19004d2129bd2b02",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/as234_alpha2.lean": "feed64d41aa3013be77f7e55be53afab8b3ff7f3b2c0e77b2a7de3bcb1c8fbdf",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/as234_alpha2_axioms.txt": "7b1f6de4f72338b007457ae3fe9f38aacf88978de1a4454fcf28193ea3b8e01b",
+    "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/derivation.md": "e2b06330e0356e557f527a632eec9e0f82cc019e8e73af1abd74c374b896544a"
+  },
+  "commands": [
+    {
+      "kind": "physics execution (original worker; argv reconstructed from time_mem_derive.txt /usr/bin/time format and script RUNTIME print, not re-run by rescue)",
+      "argv": "cd deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes && /usr/bin/time -p python3 as234_derive.py > derive_raw.out",
+      "working_directory": "deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes"
+    },
+    {
+      "kind": "interrupted earlier variant of the same script (order-2 block singular)",
+      "argv": "python3 as234_derive.py (variant) > order2_obstruction_debug.out 2>&1; /usr/bin/time -p ... > time_mem_derive_obstructed.txt",
+      "evidence": "NonInvertibleMatrixError traceback in time_mem_derive_obstructed.txt; debug M matrix in order2_obstruction_debug.out"
+    },
+    {
+      "kind": "rescue: Lean certificate compile (zero sorry, exit 0)",
+      "argv": "cd fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/as234_alpha2.lean",
+      "working_directory": "fable_independent_2026/lean_2026",
+      "measured": "real ~3.3 s (3.27 s first full compile; 3.36 s with #print axioms appendix)"
+    },
+    {
+      "kind": "rescue: axioms audit (appended #print axioms AS234.* to a probe copy only)",
+      "argv": "lake env lean /tmp/as234_axiom_probe.lean > /tmp/as234_axioms.txt",
+      "working_directory": "fable_independent_2026/lean_2026",
+      "result": "all 12 theorems depend on exactly {propext, Classical.choice, Quot.sound}"
+    },
+    {
+      "kind": "rescue: verification of printed residuals (no physics re-run; sympy reduction of expressions printed in derive_raw.out)",
+      "argv": "/opt/homebrew/Caskroom/miniconda/base/bin/python -c '...extract printed E_A residual and simplify...'",
+      "result": "printed v^2 E_A residual reduces exactly to -8 rho / D (k-independent); branch-eval -2 rho/7 confirmed; alpha2 windows and static residuals evaluated at the branch point"
+    }
+  ],
+  "execution_bounds": {
+    "wall_time_s": 6.6,
+    "user_time_s": 6.55,
+    "sys_time_s": 0.04,
+    "max_rss_bytes": 73465856,
+    "peak_memory_footprint_bytes": 67322672,
+    "threads": 1,
+    "samples": "exactly one exact rational substitution-back sample rngv = {k:3/2, M_P2:5/2, c_N:3/2, alpha:1/2, c2:1/3, ell:1/20, S_k:1/2, rho:2/3} plus the branch-faithful point (alpha=0, c_N=1, c2=1, S_k=ell=1); no grid scan",
+    "declared_limit": "seed: cheapest bounded discriminating calculation, symbolic identity or <=120 s prototype; the main run executed in 6.6 s wall",
+    "early_failed_attempt_bounds": "real 1.57 s, user 1.54 s, max RSS 64,929,792 B (NonInvertibleMatrixError at order 2)"
+  },
+  "checks": [
+    {"name": "back-substitution residuals through v^2 at exact rational sample", "expected": "vanish", "observed": "True (raw print: 'substitution-back residuals vanish through v^2 at exact rational sample: True')", "pass": true},
+    {"name": "E_A order-v^2 consistency at branch (alpha=0, c_N=1, S_k=ell=1, c2=1)", "expected": "0 for a valid pinned rest-isotropic configuration", "observed": "-2*rho/7 (raw print 'branch-eval (alpha=0): -2*rho/7'); full reduction of the printed residual: -8 rho / D, k-independent", "pass": false},
+    {"name": "residual closed form k-independence", "expected": "k cancels in the printed expression", "observed": "yes: R = -8 rho/D with no k; at rational sample -1280/8133 != 0 (D = 2711/80)", "pass": true},
+    {"name": "crossing search on the pinned branch c_N=1-alpha/2, c2=1, S_k*ell=1", "expected": "residual vanishes somewhere if a branch point exists", "observed": "never: -8 rho/D != 0 for rho>0, D != 0; D = -6 alpha + 28 on the branch, pole (D=0) at alpha = 14/3, no zero; original alpha=8/3 'crossing' is an artifact of the dropped-k2 model, not the executed residual", "pass": true},
+    {"name": "density-only negative control", "expected": "fires nonzero", "observed": "raw: 'fires (nonzero)? True' (symbolic; free conjugate amplitudes remain in printed C_M); model control residual 6 c2 rho/D = 3 rho/14 at branch (k2=1), nonzero for rho>0", "pass": true},
+    {"name": "GR limit control alpha2(alpha=0, c2=0, ell=0)", "expected": "finite GR value", "observed": "nan (singular: division by c2 in the extraction window)", "pass": false},
+    {"name": "window consistency of alpha2 extraction", "expected": "g'00 and g'03 windows agree", "observed": "disagree: g'03 branch value -2/(7 M_P^2); g'00 branch value (49 M_P^2 - 2 rho)/(49 M_P^2 rho) (tentative alpha2 = its negative); both dimensionally non-uniform (no G factor)", "pass": false},
+    {"name": "static tied-sector checks vs AS226 anchor (informational)", "expected": "tied static sector residuals at the AS226 phi0", "observed": "E_phi branch rho/2 (generic -rho(alpha-2)/(4 c_N)); E_psi branch 4 rho/3 (generic -4 rho/(c_N (S_k ell - 4))); E_U = 0 exact - the tied (Z,U) static sector is not the AS226 anchor; the solve re-derives its own static block and passes check 1", "pass": true},
+    {"name": "Lean certificate compiles with zero sorry and allowed axioms", "expected": "exit 0; no sorryAx; axioms subseteq {propext, Classical.choice, Quot.sound}", "observed": "exit 0; all 12 theorems depend on exactly {propext, Classical.choice, Quot.sound} (as234_alpha2_axioms.txt)", "pass": true},
+    {"name": "branch denominator D(0,1,1,1)", "expected": "28 (denominators of the printed chi-solution and consistency residual at branch)", "observed": "28 (Lean-certified: AS234.D_branch)", "pass": true}
+  ],
+  "tested_domain": "Symbolic: all real M_P2 != 0, k2 != 0, D != 0, rho > 0 (residual identity -8 rho/D verified by reduction of the printed expression; no re-run). One exact rational sample rngv (listed above) for back-substitution through v^2; branch-faithful point alpha=0, c_N=1, c2=1, S_k=ell=1 for all branch values; pinned branch family c_N = 1 - alpha/2, c2 = 1, S_k ell = 1 searched for crossings (none; pole at alpha=14/3). No numerical a0 footings, no grids, no refinement history.",
+  "failed_attempts": [
+    {"artifact": "results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/as234_alpha2.lean (original uncompiled revision; overwritten by the rescue fix at the same path; failing goal and cause documented in the file header)", "cause": "original claims dropped the wave-number factor k2 (EA2_closed claimed rho(12 c2 - Dv)/(2 Dv) and EA2_dens at branch 3 rho/14); field_simp then demanded the unprovable goal 'k2 * rho * 56 = rho * 56' from hypotheses k2 != 0, M_P2*k2*28 != 0 (would assert k2 = 1). Rescue: k2 kept explicit in the model identities, k2 = 1 specializations certified for the executed branch values; false 'alpha=8/3 crossing' claim dropped (it belongs to the non-executed model, not to R = -8 rho/D)."},
+    {"artifact": "results/AS234/AS234-r1-20260928T195311Z-dsv4f-hermes/order2_obstruction_debug.out and time_mem_derive_obstructed.txt", "cause": "earlier variant of the order-2 block: singular matrix (NonInvertibleMatrixError, 'Matrix det == 0'); order-2 M printed with the E_A row identically zero - the mechanical shadow of the A-decoupling that the final run reports as the pure-source consistency residual -2 rho/7."}
+  ],
+  "limitations": [
+    "No numerical alpha2 value is certified (no G/c/rho_Lambda numbers, no 9.3619e-11 or 1.1279e-10 m/s^2 evaluation; the obstruction is footing-independent algebra; both footings apply unchanged).",
+    "The obstruction is not resolved here: which relaxation (non-rest-isotropic static A/Psi sector, altered Z or U tie, different pinning, or alternative moving-source stress model) restores E_A consistency at v^2 is not derived.",
+    "The density-only negative control fired only symbolically (free conjugate amplitudes remain in the printed C_M); its closed numeric value at the solved series was not printed by the executed code.",
+    "GR-limit control is singular (nan) and the g'00/g'03 windows disagree, so no PPN alpha2 of any sign is readable from this extraction.",
+    "The Lean certificate certifies the algebra stated in the file; the physical derivation is evidenced by the executed sympy output, not by Lean alone.",
+    "argv of the dead worker's physics run is reconstructed, not witnessed; physics was not re-run by the rescue."
+  ],
+  "next_unresolved_implication": "The order-v^2 E_A consistency of the tied CA5-GNC-R action under a conserved moving source: derive the constraint on the static sector (altered tie or explicitly non-rest-isotropic static A) under which R = -8 rho/D vanishes - the named missing equation/hypothesis exposed by this obstruction.",
+  "suggested_followup": "Relax the rest-isotropy pin (admit an O(v^0) anisotropic A/Psi sector or an anisotropic Z tie) and re-run the identical order-v^2 block with the same action: if a non-rest-isotropic pin satisfies the E_A consistency row at branch, complete the alpha2 extraction; if the row stays nonzero for all pins, the alpha2 target is a no-go in this action branch and should be closed as such. Child spec ready, not dispatched.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": ["mode ansatz f = Re[a exp(i(omega t - k z))] on longitudinal sector k || v || z", "conserved dust stress T = rho (1, v, v^2) with omega = k v (uniformly moving source)", "quadratic action sector listed in framework_cell.kernel", "Z = (ell S_k/4) phi and U = phi - Z ties", "rest-isotropy pins and real-response gauge"],
+    "measured_calibrations": "none (dimensionless run; no measured constants entered)",
+    "boundary_and_initial_data": "box-averaged Hermitian real modes, order-by-order in v through v^2, omega = k v exact",
+    "derived_equations": ["order-v^2 E_A consistency residual R = -8 rho/D (k-independent; branch -2 rho/7)", "back-substitution vanishing through v^2 at the exact rational sample", "tentative window formulas with branch values -2/(7 M_P^2) and (49 M_P^2 - 2 rho)/(49 M_P^2 rho)", "static tied-sector residuals vs AS226: E_phi -> rho/2, E_psi -> 4 rho/3, E_U = 0 at branch"]
+  },
+  "closure_implication": {
+    "gate": "PPN preferred-frame (alpha2) consistency gate of the tied CA5-GNC-R branch",
+    "exact_implication": "the tied sector cannot supply a bounded same-action alpha2 while the E_A order-v^2 consistency residual R = -8 rho/D != 0 at the pinned rest-isotropic configuration (branch value -2 rho/7, rho > 0)",
+    "common_action_and_domain": "same action/parameter cell as executed (framework_cell); no transfer to MONO/causality-criterion-B thirteen-item target attempted - the amended operative target is unaffected by this scoped obstruction",
+    "candidate_promotion": "none: this result is an obstruction witness, not a closure candidate"
+  },
+  "child_proposals": [
+    {
+      "id": "AS234.C01 (ready spec, not dispatched)",
+      "scientific_fingerprint": "relax rest-isotropy pin in the tied CA5-GNC-R longitudinal moving-source system; identical action and mode cell as AS234-r1",
+      "new_target": "determine whether any pin of the O(v^0) anisotropic sector makes R = -8 rho/D vanish at branch; if yes, complete the alpha2 extraction; if no, prove the no-go",
+      "controls": "re-run the exact order-v^2 block and back-substitution check; verify residual at branch and at the rational sample rngv",
+      "dependencies": "this run's residual identity and preserved raw outputs",
+      "dispatch_state": "not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

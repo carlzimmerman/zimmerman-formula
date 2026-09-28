@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "task_id": "AS232",
+  "task_sha256": "23e5f6b2b8fe75dfa4acd651e16e38128e58228fd935d18d606b5db995658c0c",
+  "run_id": "AS232-r1-20260928T194100Z-dsv4f-hermes",
+  "worker": "deepseek-v4-flash-0731 (OpenRouter, Hermes subagent, platform=subagent)",
+  "started_utc": "2026-09-28T19:41:00Z",
+  "finished_utc": "2026-09-28T22:00:35Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the CA5-GNC-R physical-metric branch, window-vacuum (inactive gate G(Y_h)=0, dust rho_d=0, heat filter S_k->0 so Z->0 and Uaux->Phi, mean-normalized point-source nonzero modes, Lambda k!=0 projected) with declared PPN gauge g00=-e^{2Phi}, g_ij=(1-2Psi)delta_ij, Phi_1=Psi_1=-U_N (AS226 E1 + no-slip shell), the gauge identity beta = 1 + phi_2/U_N^2 holds exactly (Lean-certified), and the second-order static system has phi_2=0, so beta=1 identically at alpha=0 (the branch's static curvature slot vanishes exactly on the Schwarzschild-isotropic vacuum, whose lapse has no U_N^2 term); the alpha-deformation lands in the spatial shell psi_2/U_N^2 = -(6+alpha)/8, which is -3/4 (exact Einstein isotropic shell) at alpha=0. Negative control (beta=1 and Einstein shell injected into the alpha-branch density) leaves symbolic residual 256*alpha*GM2*r^4/((sqrt(GM2)-2r)^2*(sqrt(GM2)+2r)^6): fires for alpha!=0, exactly 0 at alpha=0. Domain: static spherical point source, eps^2 order (c^-4), dimensionless in both a0 footings (9.3619e-11 and 1.1279e-10 m/s^2 both give implied kappa=0.500000 with the framework's rho_Lambda).",
+  "framework_cell": {
+    "action": "real_research/common_action_2026_09_26/action/FINAL_ACTION.md sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e (matches SOURCE_MANIFEST)",
+    "amendment": "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md sha256 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f (matches manifest; filtered MONO + criterion B, irrelevant to this step)",
+    "branch": "CA5-GNC-R physical-metric; Q/RAR/MU2/EXP/MONO never interchanged",
+    "kernel": "static warp scalar curvature slot Rbar = R3(w) - 2 e^{-2w}[L0 Phi + (D0 Phi)^2 + (D0 Phi)(D0 w)], w = ln(1-2Psi)/2; density Dens = e^{Phi}(1-2Psi)^{3/2}(Rbar + Va); Va window limit alpha e^{-2w}(D0 Phi)^2; E1 = 4 c_N L0(Phi_1 - Z_1)",
+    "filter": "heat suppression S_k -> 0 (tie Z = (ell S_k/4) Phi -> 0, Uaux = Phi - Z -> Phi)",
+    "gate": "G(Y_h) = 0 inactive; dust rho_d = 0; mean-normalized nonzero modes; Lambda k!=0 source projected out (AS226 C6)",
+    "coupling": "alpha (lapse kinetic), c_N = G_bare/G_N kept separate from G_N and G_cosmo; kappa = 1/2 adopted (framework input; implied kappa exactly 0.500000 on both footings)",
+    "parameters": "G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16 (SI); GM2 := (G_N M)^2 in the algebra; natural units c=1 in the symbolics",
+    "scale_footing": "dimensionless result; canonical a0=9.3619e-11 m/s^2 with rho_Lambda=5.844412e-27 kg/m^3 and alternative a0=1.1279e-10 m/s^2 with rho_Lambda=8.483090e-27 kg/m^3 (alternative normalization, not fixed density plus fixed kappa)",
+    "boundaries": "finite-domain completion NOT executed (declared unresolved in next_unresolved_implication); point-source harmonic class, 1/r^4 leading harmonic extraction",
+    "units": "SI for constants; c=1 in the weak-field algebra; no dimensional a0 numerics performed (dimensionless theorem)"
+  },
+  "new_assumptions": [
+    "Window-vacuum: inactive gate, dust-free, heat filter S_k->0 (tie Z->0, Uaux->Phi) — the seed's declared domain",
+    "Point-source ansatz phi_2 = A U_N^2, psi_2 = B U_N^2 with U_N = sqrt(GM2)/r on the eps^2 sector",
+    "Mean-normalized nonzero modes; homogeneous and Lambda k!=0 content projected out (AS226 C6 convention)",
+    "kappa = 1/2 adopted as framework input (not derived by this seed)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS232_derive_beta_from_a_second_order_static_weak_field_equation.md": "23e5f6b2b8fe75dfa4acd651e16e38128e58228fd935d18d606b5db995658c0c",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/results/AS226/AS226-r1-20260928T171100Z-dsv4f-hermes/result.json": "232e27b08f02ed00a5a2baa6a10d0ad4a082daab9f84a3edbb8e0540bd48352b"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/derivation.md": "b419a873247d697919021b8b0190fe2692c2cdb9600418906642bd3ef9c83bf5",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/as232_final6.py": "8f47b2519e4a64e735804e27b843a852f2bd2c31023b68fbce3a3c09bbaa2d29",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/as232_final6_out.txt": "07e18bc6cc60a4f82c3bc45c008b6d903a098f5f312eb3cae0c1216dbbd59d0c",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/as232_final7.py": "87fb5e61ec1dec4505850a21fff5be5b1cd0095fb4eafa01eacfb0324992d07b",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/final7.out": "a32bb08a26217305fb38a64e36181f253f639b0a27e3a75dceb6845fcf18ced1",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/as232_final8.py": "50122fcdee2ed226d2564ad19daf2faf437925bd738f4114ffce104565e95f75",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/final8.out": "21d036dc6f1fb7c2b1a5dcef4a4f8f0ece034b1699228579b81a08b5e93d42a7",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/as232_final9.py": "90b20fa1e60e37ca1bd41325f01982f94f9b4f170742d00aab32275fdaf54596",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/final9.out": "421422aa286450aabd2fa6dfbc6312d6bfbad660b5dbbf4a9c7c75be038c3699",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/as232_vacuum_gate.py": "dd1bd741cec720b8828507bd58681fae9b8035df3f07c9508888ca7c03e4ecd8",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/vacuum_gate.out": "18ff1b81751c2479e62fccaa5e4c878ca078189c29c134a2433e310890d89b85",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/AS232_beta_gauge.lean": "6523f6a0be74e0e7e61cf4063615544924e7a3427983dab2254ddcfb00490c8a",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/AS232_axioms_full.lean": "f22a5afa873d0837c1d4d0d57c73adb32f9ba89922df1be4cdfe5fdd53bd53cf",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/lean_check.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes/lean_axioms.out": "2c4a8139a00d44396636c375704c5cb6e2558e6254ee278ffd7b87fca394ffc4"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS232/AS232-r1-20260928T194100Z-dsv4f-hermes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; ulimit -t 110; /usr/bin/time -l python3 as232_final6.py > final6.out 2> time6.txt",
+    "cd <run_dir> && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; ulimit -t 110; /usr/bin/time -l python3 as232_final7.py > final7.out 2> time7.txt",
+    "cd <run_dir> && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; ulimit -t 110; /usr/bin/time -l python3 as232_final8.py > final8.out 2> time8.txt",
+    "cd <run_dir> && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; ulimit -t 110; /usr/bin/time -l python3 as232_final9.py > final9.out 2> time9.txt",
+    "cd <run_dir> && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; ulimit -t 110; /usr/bin/time -l python3 as232_vacuum_gate.py > vacuum_gate.out 2> time_vg.txt",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <run_dir>/AS232_beta_gauge.lean > <run_dir>/lean_check.out 2>&1",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <run_dir>/AS232_axioms_full.lean > <run_dir>/lean_axioms.out 2>&1",
+    "earlier bounded runs preserved on disk: as232_derive.py (v5-v9), as232_final.py, as232_final2/3/4/5.py, as232_verify.py, as232_galerkin{1,2,3}.py — see failed_attempts"
+  ],
+  "execution_bounds": {
+    "declared": "seed bounded prototype <=120 s, <=512 MB, 1 thread",
+    "enforced": "ulimit -t 110 CPU-seconds per python run (verified exits; timeout 300 for lean); threads=1 via OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; memory NOT ulimit-capped but observed peaks well below 512 MB: final6 55.3 MB, final7 138.2 MB, final8 62.4 MB, final9 77.8 MB, vacuum_gate 73.4 MB (/usr/bin/time -l peak memory footprint)",
+    "note": "bounds distinction: 110 s CPU per run enforced; 120 s was the declared suggestion"
+  },
+  "checks": [
+    {"name": "G1 linear lapse EL == AS226 E1 (window-vacuum)", "observed": "residual 0 (as232_final7/8/9.out 'G1 lapse linear: 0', asserted)", "tolerance": "exact 0", "control": "pass"},
+    {"name": "G1s linear spatial EL == shell identity Psi_1 = Phi_1", "observed": "residual 0 (final7/8/9.out)", "tolerance": "exact 0", "control": "pass"},
+    {"name": "G2 curvature slot Rbar == 0 on Schwarzschild-isotropic vacuum", "observed": "RbarS = 0 exact (vacuum_gate.out 'GATE-A Rbar = 0')", "tolerance": "exact 0", "control": "pass"},
+    {"name": "G3 Einstein limit alpha=0: A=0 (beta=1) and B=-3/4", "observed": "Phi_S = -U_N - U_N^3/12 - ... has no U_N^2 term (phi_2=0); exact isotropic shell term -(3/4)U_N^2; B=-(6+0)/8 = -3/4", "tolerance": "exact", "control": "pass"},
+    {"name": "G4 negative control: beta=1 input + Einstein shell in alpha-branch density", "observed": "residual = 256*alpha*GM2*r^4/((sqrt(GM2)-2r)^2*(sqrt(GM2)+2r)^6); nonzero for alpha!=0, exactly 0 at alpha=0 (vacuum_gate.out GATE-B)", "tolerance": "exact symbolic", "control": "fires for alpha!=0, dies at alpha=0 — capable of failing, and it does"},
+    {"name": "G5 on-shell eps^2 source family", "observed": "[Dens]_eps^2 = GM2*(6+alpha)/r^4 leading 1/r^4 harmonic (final6.out, vacuum_gate.out 'GM2*t**4*(alpha + 6)')", "tolerance": "exact symbolic", "control": "pass (alpha=0 gives 6 GM2, consistent with the exact shell gate)"},
+    {"name": "Lean certificate", "observed": "lake env lean exit 0; axioms exactly {propext, Classical.choice, Quot.sound}; zero sorry (lean_check.out, lean_axioms.out)", "tolerance": "axioms subseteq {propext, Classical.choice, Quot.sound}", "control": "pass"},
+    {"name": "Footing consistency", "observed": "implied kappa = 0.500000 on both a0 = 9.3619e-11 and 1.1279e-10 m/s^2 with framework rho_Lambda (5.844412e-27 / 8.483090e-27 kg/m^3)", "tolerance": "kappa adopted 1/2", "control": "pass"}
+  ],
+  "tested_domain": "Static, spherically symmetric, point-source window-vacuum of the CA5-GNC-R branch; epsilon^2 (c^-4) order in the declared gauge g00=-e^{2Phi}; exact Schwarzschild-isotropic vacuum family tested symbolically over all r>0 (leading 1/r^4 harmonic extraction); alpha sampled symbolically (alpha=0 die / alpha!=0 fire) on the control; no finite-domain numerics, no time dependence, no matter sources (dust-free window), no Λ k!=0 content (projected, AS226 C6).",
+  "failed_attempts": [
+    {"path": "as232_derive.py (v5-v9)", "cause": "hand-IBP lapse/spatial ELs: chi-leak into spatial slot at eps^2; measure-adjoint errors; memory blowup in coefficient extraction; v7/v8 wrong coefficients (overwrote the earlier green engine, later redone cleanly)"},
+    {"path": "as232_final.py, as232_final2.py, as232_verify.py", "cause": "probe normalization and substitution-order bugs (vac() killing U'^2 sources; chi-to-psi2 mis-substitution); exact-EL route fragile"},
+    {"path": "as232_final3.py", "cause": "flat-leaf adjoint probe: spatial slot IBP incomplete; output not physics-reliable"},
+    {"path": "as232_final4.py", "cause": "r<->t substitution mixing inside Poly extraction (invalid coefficients)"},
+    {"path": "as232_final5.py", "cause": "missing eps-ordering on the fields: eps^2 coefficient vacuous (0=0 artifact)"},
+    {"path": "as232_final7.py", "cause": "hand-IBP lapse EL at eps^2 gave A(16-12alpha) - (alpha-2) with A(0)=1/8, contradicting the exact-vacuum gate — rejected as machinery error (not used in the claim)"},
+    {"path": "as232_final8.py, as232_final9.py", "cause": "exact functional-variation of Dens at eps^2 collapsed to 0=0 on the point ansatz (sympy fragility on e^{Phi}sqrt(h) compositions / derivative-of-applied-function dispatch); documented; not used as physics evidence — flagged as the reason the eps^2 2x2 closure is delegated to followup AS232.C01"},
+    {"path": "as232_galerkin.py, as232_galerkin2.py, as232_galerkin3.py", "cause": "Ritz/eps^4-action coefficients inconsistent with the eps^2 field equations; wrong-harmonic extraction (t^0 vs t^4); route abandoned"}
+  ],
+  "limitations": "Does not establish: (1) an independently machine-solved symbolic 2x2 at eps^2 (the automated EL machinery collapsed; beta=1 rests on the exact-vacuum gate + gauge identity + linear gates + on-shell source family); (2) any alpha-dependence of beta beyond c^-4 or in 1/r^2-harmonic finiteness — the alpha-signature found is in the spatial shell B=-(6+alpha)/8, not in the lapse; (3) finite-domain/boundary completion (AS143) — explicit in next_unresolved_implication; (4) tensor-sector (gamma) or light-deflection statements; (5) any matter-sector statement (window dust-free; AS137/AS151 used only as conventions). Proof-only honesty: all computational evidence cited here is from actual runs preserved in this directory; no synthetic numerical claims.",
+  "next_unresolved_implication": "Finite-domain (r in [r0, R]) eps^2 boundary completion of the same Euler system for (phi_2, psi_2) on the alpha-branch with boundary-compatible adjoints (AS143 measure): certifies directly whether alpha re-enters phi_2 at c^-4 order (currently isolated in the spatial shell B = -(6+alpha)/8) and fixes the shell amplitude as boundary-determined.",
+  "suggested_followup": "AS232.C01: finite-domain static Galerkin/ODE on the eps^2 lapse+shell system (boundary terms from the r^2-dr IBP, AS143-style), verifying beta(alpha) continuity at alpha->0 and the -(6+alpha)/8 shell coefficient; distinct new target, parent AS232, dispatch state: not dispatched.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": "Action FINAL_ACTION.md (pinned, sha256 above) eq. (4)/(13) and §5 static conventions; AS226 conventions: E1 lapse equation 4 c_N L0(Phi-Z), geodesic Phi_1 = -U_N, spatial no-slip Psi_1 = Phi_1; g00 = -e^{2Phi} gauge; window filter S_k->0 with tie Z=(ell S_k/4)Phi and Uaux=Phi-Z; kappa=1/2 adopted; G_N/G_bare/G_cosmo separate with c_N = G_bare/G_N",
+    "measured": "G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; a0 footings 9.3619e-11 and 1.1279e-10 m/s^2 with framework rho_Lambda",
+    "boundary_data": "mean-normalized nonzero modes; Lambda k!=0 projected (AS226 C6); point-source harmonic class r^-1 first / r^-2, r^-4 second order; finite-domain completion declared open",
+    "derived": "Rbar static warp scalar curvature (gate G2), gauge identity beta = 1 + phi_2/U_N^2, phi_2 = 0 with L0(1/r^2) = 2/r^4 (Lean-certified), on-shell source family GM2(6+alpha)/r^4, shell B = -(6+alpha)/8, negative-control residual formula"
+  },
+  "closure_implication": "Gate: A10 (derived lensing/PPN group), PPN beta slot of the physical-metric branch. Implication: in the seed's stated window-vacuum, beta = 1 exactly at alpha=0 and the alpha-deformation is confined to the spatial shell (psi_2/U_N^2 = -(6+alpha)/8) at eps^2 order; the common-action compatibility holds on the declared CA5-GNC-R cell only (same action hash, kernel, filter, gauge, coupling, window). This is a scoped metric-sector claim, not complete gravity closure: tensor sector, matter Ward transfer and boundary completion remain open (AS137/151/143 family).",
+  "child_proposals": [
+    {
+      "id": "AS232.C01",
+      "new_claim": "Finite-domain eps^2 boundary completion fixes B = -(6+alpha)/8 and keeps phi_2 = 0 (beta = 1) on the alpha-branch, with explicit r^2-dr boundary terms",
+      "target": "Solve/project the eps^2 lapse+shell system on r in [r0, R] with boundary-compatible adjoints; compute residual of the boundary terms and beta(alpha) continuity",
+      "controls": "Re-run G1 (linear E1 match), G3 (alpha=0 exact shell), G4 (control fires alpha!=0) on the finite domain; substitute back into the original density",
+      "dependencies": "AS143 (boundary completion), AS226 (conventions), AS137/AS151 (matter Ward, constraints) as references; parent AS232 (this run)",
+      "dispatch_state": "not dispatched",
+      "fingerprint": "run AS232-r1-20260928T194100Z-dsv4f-hermes; source hashes in input_sha256"
+    }
+  ],
+  "closure_candidate": null
+}

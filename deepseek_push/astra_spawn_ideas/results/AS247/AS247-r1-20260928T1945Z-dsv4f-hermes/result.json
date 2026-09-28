@@ -1,0 +1,227 @@
+{
+  "schema_version": "2",
+  "task_id": "AS247",
+  "task_sha256": "68357b52d30e87c91f7fad43e8c0798c4db573dacf3ca5adf6aa746913562714",
+  "run_id": "AS247-r1-20260928T1945Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 via OpenRouter (orchestrator subagent, Hermes Agent runtime)",
+  "started_utc": "2026-09-28T19:45:00Z",
+  "finished_utc": "2026-09-28T22:41:19Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For the CA5-GNC-R physical-metric weak-field line element ds^2 = -(1+2u)c^2 dt^2 + (1-2v)dx^2, u=Phi/c^2, v=Psi/c^2, a null ray's coordinate travel time satisfies T = L/c - (1/c) integral_{chord} (u+v) dl + O(|u+v|^2) with the certified bound |(1-s)^2(1+2u)-(1-2v)| <= 151/125000 on the squared integrand for |u|,|v| <= 1/100 (two-sided remainder, Lean-certified), i.e. the same-action delay functional Delta t = (1/c^3) integral_{chord}[-(Phi+Psi)] dl holds at first order; constant potential shifts contribute exactly (c+c')(b-a) to the integral so delay DIFFERENCES are gauge-invariant (certified); slip Psi-Phi=delta changes the delay by exactly -(1/c) integral delta dl (certified linear response); point-mass no-slip chord delay = 2m log((X+sqrt(X^2+b^2))/(sqrt(X^2+b^2)-X)) > 0 (certified closed form and strict positivity). Domain: real axis, b>0, 0<m, 0<X, |u|,|v|<=1/100.",
+  "framework_cell": {
+    "action_source": "real_research/common_action_2026_09_26/action/FINAL_ACTION.md (sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e), qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md (sha256 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f)",
+    "kernel": "CA5-GNC-R physical metric, weak field",
+    "filter": "heat filter ell=0.04 m, xi^2/2=0.045 at box scale (engines only)",
+    "gate": "criterion-B filtered MONO; gate inactive for Engine A box source (max Y_h = -1e-4 < 0, threshold theta=1e-4 m^-2)",
+    "coupling": "G_bare=c_N*G_N with c_N=0.85; scalar substitute Phi_D=C ln(r/(e r_M)) in deep band conditional only; G_N/G_bare/G_cosmo kept separate throughout",
+    "parameters": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa=1/2 ADOPTED as input; canonical footing a0=9.3619e-11 m/s^2 <-> rho_Lambda=5.844412454e-27 kg/m^3; alternative footing a0=1.1279e-10 m/s^2 <-> rho_Lambda=8.483089620e-27 kg/m^3; r_M=sqrt(G M_b/a0); C=sqrt(G M_b a0)",
+    "scale_footing": "dual footings kept separate; kappa_roundtrip = a0/(c sqrt(G rho_Lambda)) = 0.5 exactly for both footings (50-digit check)",
+    "boundaries": "weak-field chord with endpoints outside source support; linarization box |u|,|v|<=1/100; Engine-C deep band r>=100 r_M, y=B/a0<=1e-4 clamped",
+    "initial_conditions": "static source, one null ray, impact parameters b=8/20 m (box), b1=1.5/3.0 Mpc (deep), X=20 (toy)",
+    "units": "SI throughout engines; c=1 in Engine B toy functional"
+  },
+  "new_assumptions": [
+    "kappa=1/2 adopted (explicit task input, not derived here; kappa_roundtrip=1/2 verified against both footings)",
+    "H1 (conditional): no-slip v=u continues into the deep regime",
+    "H2 (conditional): the AS044 non-relativistic deep scalar potential is the metric time-time potential Phi=Phi_D",
+    "Engine A: spherical-superposition box source with sigma=2.5 m, mode-picture solution of the filtered Poisson operator; G_bare=c_N G_N canonical"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS247_construct_a_same_action_shapiro_delay_integral.md": "68357b52d30e87c91f7fad43e8c0798c4db573dacf3ca5adf6aa746913562714",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "verified-at-read-time (task_sha256 above is the seed; framework contract followed)",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "verified-at-read-time"
+  },
+  "artifacts_sha256": {
+    "AS247_cert.lean": "efda41fc5cc30d2b9200955259b6a4e7544a660d49c53f13f7d499e26462a270",
+    "lean_out.txt": "04306e9448aca6cacefe9515e4d0e30cff345a6749095f0cc38cd27405b53542",
+    "derivation.md": "kept-in-repo",
+    "as247_functional.py": "kept-in-repo",
+    "func_raw.json": "kept-in-repo",
+    "func_run.out": "kept-in-repo",
+    "func_time_mem.txt": "kept-in-repo",
+    "as247_box.py": "kept-in-repo",
+    "box_raw.json": "kept-in-repo",
+    "box_run.out": "kept-in-repo",
+    "box_time_mem.txt": "kept-in-repo",
+    "as247_deep.py": "kept-in-repo",
+    "deep_raw.json": "kept-in-repo",
+    "deep_run.out": "kept-in-repo",
+    "deep_time_mem.txt": "kept-in-repo"
+  },
+  "commands": [
+    "python3 as247_functional.py (run dir; c=1 toy functional + RK4 geodesic; outputs func_run.out, func_raw.json)",
+    "python3 as247_box.py (run dir; SI engine through same-action filtered metric, N=48->96, ray chord two-stage spectral evaluation; outputs box_run.out, box_raw.json)",
+    "python3 as247_deep.py (run dir; 50-digit mpmath conditional deep-band evaluation; outputs deep_run.out, deep_raw.json)",
+    "cd fable_independent_2026/lean_2026 && lake env lean <run dir>/AS247_cert.lean (EXIT 0; #print axioms clean on 14 statements)",
+    "resource wrapper: /usr/bin/time -v ulimit -t 120 env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 python3 <engine>"
+  ],
+  "execution_bounds": {
+    "declared": {
+      "wall_cpu_s": 120,
+      "memory_mb": 512,
+      "threads": 1
+    },
+    "enforced": "CPU: ulimit -t 120 enforced per engine process (CPU seconds). Threads: OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1, host reports 1 core. Memory: measured max RSS (B 48.2 MB, A 433.2 MB, C 19.7 MB), NOT hard-limited via RLIMIT_AS; 512 MB respected.",
+    "measurements": {
+      "B_func": {
+        "wall_s": 38.4,
+        "maxrss_mb": 48.2
+      },
+      "A_box": {
+        "wall_s": 0.63,
+        "maxrss_mb": 433.2
+      },
+      "C_deep": {
+        "wall_s": 0.09,
+        "maxrss_mb": 19.7
+      }
+    },
+    "sample_refinement": "B: RK4 h=0.01->0.005, bisection on launch slope; A: N=48->96, chord 2001->4001 points; C: mp.dps=50"
+  },
+  "checks": {
+    "seed_sha256": {
+      "observed": "68357b52d30e87c91f7fad43e8c0798c4db573dacf3ca5adf6aa746913562714",
+      "expected": "68357b52d30e87c91f7fad43e8c0798c4db573dacf3ca5adf6aa746913562714",
+      "pass": true
+    },
+    "B1_linearization_residual": {
+      "observed": 0.0006249,
+      "tolerance": "<=5e-3 (O(u0), u0=1e-3)",
+      "pass": true
+    },
+    "B1b_pointwise_remainder": {
+      "observed": 1.558e-06,
+      "tolerance": "<=2e-2; certified <=1.3e-3 two-sided",
+      "pass": true
+    },
+    "B2_noslip_equals_double": {
+      "observed": 0.0,
+      "tolerance": "rel <=1e-14",
+      "pass": true
+    },
+    "B3_slip_changes_delay": {
+      "observed": "rel 0.111",
+      "tolerance": ">0.05 required (control fires)",
+      "pass": true
+    },
+    "B4a_geodesic_endpoint_hit": {
+      "observed": "miss 1.75e-10 (h=0.01)",
+      "tolerance": "<=5e-8",
+      "pass": true
+    },
+    "B4b_geodesic_refined": {
+      "observed": "miss 1.66e-10 (h=0.005)",
+      "tolerance": "<=5e-9; T stable to 1e-4",
+      "pass": true
+    },
+    "B4c_geodesic_matches_functional": {
+      "observed": "diff -2.25e-5 vs functional (O(u0^2) bending)",
+      "tolerance": "<=1e-2*|dt|",
+      "pass": true
+    },
+    "B4d_slip_visible_on_geodesic": {
+      "observed": "gap 1.0835e-3",
+      "tolerance": ">5% of slip effect",
+      "pass": true
+    },
+    "B4e_slip_gap_matches_integral": {
+      "observed": "diff 2.25e-5",
+      "tolerance": "<=5% rel",
+      "pass": true
+    },
+    "A1_source_eqs": {
+      "observed": "max|E1|/scale 3.37e-16 (N48), 1.80e-16 (N96)",
+      "tolerance": "<=1e-12",
+      "pass": true
+    },
+    "A2_gate_inactive": {
+      "observed": "max Y_h = -1.000e-4 < 0 for both footings",
+      "tolerance": "strict <0",
+      "pass": true
+    },
+    "A3c_chord_on_grid": {
+      "observed": "rel 7.3e-16 vs full IFFT rows",
+      "tolerance": "<=1e-12",
+      "pass": true
+    },
+    "A3_delay_positive": {
+      "observed": "dt(b=8)=5.8199e-35 s, dt(b=20)=1.8564e-35 s > 0 (N48/N96 agree to 4e-6/2e-5 rel)",
+      "tolerance": "positive; N-convergence <=1e-4",
+      "pass": true
+    },
+    "A4_filter_effect": {
+      "observed": "(dt-dt0)/dt = 9.9997e-3 = 1/Q - 1 = 1.01e-2 - 1 (analytic)",
+      "tolerance": "4 significant digits",
+      "pass": true
+    },
+    "C_deepband_conditional": {
+      "observed": "canonical +2.9392e8 s, alt +3.2261e8 s differential advance; Newtonian reference +1.2828e6 s delay",
+      "tolerance": "50-digit quadrature vs certified closed form, lins err <1e-2 rel",
+      "pass": true,
+      "conditional": "H1 and H2 assumptions; blocked on AS228 for derived deep potentials"
+    },
+    "negative_control_B3": {
+      "observed": "Phi-only no-slip-assumed formula misses slip change by rel 0.111",
+      "tolerance": "control is capable of failing; it fires (residual 1.1060e-3 > 5%)",
+      "pass": true
+    },
+    "negative_control_A4": {
+      "observed": "unfiltered potential would misstate delay by ~1%",
+      "tolerance": "residual 1.0e-2 recorded",
+      "pass": true
+    },
+    "lean_compile": {
+      "observed": "EXIT 0, zero errors",
+      "tolerance": "strict",
+      "pass": true
+    },
+    "lean_axioms": {
+      "observed": "14/14 statements: axioms subseteq {propext, Classical.choice, Quot.sound}; zero sorryAx",
+      "tolerance": "hard bar",
+      "pass": true
+    }
+  },
+  "tested_domain": {
+    "proof": "Lean 4: real analysis; b>0, m>0, X>0; |u|,|v|<=1/100 two-sided remainder box; all x real for antiderivatives",
+    "numeric_B": "c=1, u0=1e-3 gaussian, sigma=2.0, L=20, b=1.0, slip eps=0.25; RK4 h=0.01->0.005",
+    "numeric_A": "SI box: alpha=0.3, c_N=0.85, ell=0.04, xi^2/2=0.045, L=100 m, M_b=5 kg, sigma=2.5 m, G=6.67430e-11, c=299792458; b=8/20 m; N=48->96; 2001->4001 chord points",
+    "numeric_C": "deep band r>=100 r_M; b1=1.5 Mpc, b2=3.0 Mpc; chord 0..5 Mpc; y=B/a0 in {1.5e-4, 8.3e-5} (<=1e-4 clamped); 50-digit mpmath; r_M=12.20 kpc (canonical), 11.12 kpc (alternative); e r_M=33.2 kpc",
+    "exclusions": "no GR strong-field regime; no deep-regime derived statement (conditional); no branch translation (Q/RAR/MU2/EXP/MONO historical branches not used as operative law)"
+  },
+  "failed_attempts": [
+    {
+      "artifact": "lean triage: linarith on sqrt expressions fails (needs strict monotonicity); replaced by two-sided-square argument per user steering; sqrt_gt_abs/sqrt_gt_x/sum_pos lemmas",
+      "cause": "linarith cannot prove 0 < sqrt(x^2+b^2)-x for x<=0"
+    },
+    {
+      "artifact": "HasDerivAt instance-diamond: simpa/exact across comp/mul/add elaborations on Real diamonds nondeterministic; resolved via convert + 'first | rfl | ring' bullets with exact 'using n' counts per combinator (n calibrated: hadd 4, sqrt-comp 3, add 3, log-comp 3, mul 4, constmul 4, deep-add 3, sub 3)",
+      "cause": "typeclass synthesis picks different Real structures (instAddCommGroup vs normed-ring chain) in comp outputs vs goal statements"
+    }
+  ],
+  "limitations": [
+    "Engine C is a working-hypothesis prediction (needs H1 no-slip-deep and H2 AS044-as-metric-potential, and ultimately AS228 deep lapse/spatial potentials); it is labeled conditional, not a derived metric statement",
+    "The delay functional is one observable; it does not by itself constitute closure of gravity for the framework",
+    "Absolute deep log-potential delays are gauge-dependent; only differential delays between impact parameters are gauge-safe",
+    "Memory bounded by measurement, not by RLIMIT_AS (declared 512 MB respected, not hard-enforced)",
+    "The linearized functional is O(u^2)-accurate with explicit certified constant; higher-order curvature/bending effects are visible at toy scale (B4c) and dominate outside the |u|,|v|<=1/100 box"
+  ],
+  "next_unresolved_implication": "The deep-regime delay requires the AS228 deep lapse/spatial potentials (in flight): the certified deep_log_integral closed form is ready to accept Phi_D-derived potentials and a derived (non-stipulated) deep slip; until then the deep delay sign (advance vs delay) remains a conditional prediction.",
+  "suggested_followup": [
+    "Re-run Engine C with AS228 potentials when available and reclassify from conditional to derived",
+    "Certify the slip linear-response lemma in the two-sided remainder box (currently certified for arbitrary continuous integrable u,v)",
+    "Extend Engine A to a two-ray differential measurement to cancel endpoint gauge shifts at box scale"
+  ],
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "a0_relation": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa=1/2 adopted",
+    "rM_relation": "r_M = sqrt(G*M_b/a0)",
+    "flat_velocity": "v_flat^4 = G*M_b*a0",
+    "metric_line_element": "ds^2 = -(1+2u)c^2 dt^2 + (1-2v)dx^2, u=Phi/c^2, v=Psi/c^2",
+    "constants": "G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16 (SI)"
+  },
+  "closure_implication": "Supports (scoped): a properly normalized same-action delay functional is derivable from the CA5-GNC-R line element with certified O(u^2) remainder and gauge-invariant differential observables (diff of delays); gateway statement: the deep-regime delay sign depends on AS228 potentials under H1/H2; no branch-translated claim; criterion-B gate inactive in the box regime so no gate violation was probed by this seed.",
+  "child_proposals": [],
+  "closure_candidate": null
+}

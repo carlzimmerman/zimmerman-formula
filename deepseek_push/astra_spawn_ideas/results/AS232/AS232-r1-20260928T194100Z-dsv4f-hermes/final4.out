@@ -1,0 +1,14 @@
+lapse_OP = cN*(-4*A*GM2*Sk*ell/r**3 + 6*A*GM2*(Sk*ell - 4)/r**3 + 16*A*GM2/r**3)/r
+spat_OP = 4*(4*A*GM2/r**3 - 4*B*GM2/r**3 + r*(-6*A*GM2/r**4 + 6*B*GM2/r**4))/r
+src = GM2*alpha/r**4 + 6*GM2/(8*GM2**(3/2)*r + 12*GM2*r**2 + r**4) + 2*GM2/(4*GM2*r**2 + r**4) - 2*GM2/r**4
+
+truncated lapse OP: -4*A*GM2*Sk*cN*ell/(r**3*t**3) + 6*A*GM2*Sk*cN*ell/(r**4*t**4) + 16*A*GM2*cN/(r**3*t**3) - 24*A*GM2*cN/(r**4*t**4)  | spatial OP: 16*A*GM2/(r**3*t**3) - 24*A*GM2/(r**4*t**4) - 16*B*GM2/(r**3*t**3) + 24*B*GM2/(r**4*t**4)  | source: -80*GM2**2*t**2 + GM2*alpha + 6*GM2
+lapse eq: -4*A*GM2*Sk*cN*ell/(r**3*t**3) + 6*A*GM2*Sk*cN*ell/(r**4*t**4) + 16*A*GM2*cN/(r**3*t**3) - 24*A*GM2*cN/(r**4*t**4) - 80*GM2**2*t**2 + GM2*alpha + 6*GM2
+spatial eq: 16*A*GM2/(r**3*t**3) - 24*A*GM2/(r**4*t**4) - 16*B*GM2/(r**3*t**3) + 24*B*GM2/(r**4*t**4) - 80*GM2**2*t**2 + GM2*alpha + 6*GM2
+solution: [{A: (alpha*r**4*t**4 - 80*r**4*t**6 + 6*r**4*t**4)/(4*Sk*cN*ell*r*t - 6*Sk*cN*ell - 16*cN*r*t + 24*cN), B: (Sk*alpha*cN*ell*r**4*t**4 - 80*Sk*cN*ell*r**4*t**6 + 6*Sk*cN*ell*r**4*t**4 - 4*alpha*cN*r**4*t**4 + 4*alpha*r**4*t**4 + 320*cN*r**4*t**6 - 24*cN*r**4*t**4 - 320*r**4*t**6 + 24*r**4*t**4)/(16*Sk*cN*ell*r*t - 24*Sk*cN*ell - 64*cN*r*t + 96*cN)}]
+A = phi2/U_N^2 = r**4*t**4*(alpha - 80*t**2 + 6)/(2*cN*(2*Sk*ell*r*t - 3*Sk*ell - 8*r*t + 12))   B = psi2/U_N^2 = r**4*t**4*(Sk*alpha*cN*ell - 80*Sk*cN*ell*t**2 + 6*Sk*cN*ell - 4*alpha*cN + 4*alpha + 320*cN*t**2 - 24*cN - 320*t**2 + 24)/(8*cN*(2*Sk*ell*r*t - 3*Sk*ell - 8*r*t + 12))
+BETA = 1 + phi2/U_N^2 = (cN*(2*Sk*ell*r*t - 3*Sk*ell - 8*r*t + 12) + r**4*t**4*(alpha - 80*t**2 + 6)/2)/(cN*(2*Sk*ell*r*t - 3*Sk*ell - 8*r*t + 12))
+G3 alpha=0: A0 = r**4*t**4*(3 - 40*t**2)/(cN*(2*Sk*ell*r*t - 3*Sk*ell - 8*r*t + 12))  B0 = r**4*t**4*(-40*Sk*cN*ell*t**2 + 3*Sk*cN*ell + 160*cN*t**2 - 12*cN - 160*t**2 + 12)/(4*cN*(2*Sk*ell*r*t - 3*Sk*ell - 8*r*t + 12))  [expect 0, -3/4]
+residuals: 0 0
+NEG CONTROL (A=0, B=-3/4): lapse resid GM2*(alpha - 80*t**2 + 6)  spatial resid GM2*(r**4*t**4*(alpha - 80*t**2 + 6) + 12*r*t - 18)/(r**4*t**4)
+   at alpha=0: 2*GM2*(3 - 40*t**2) -80*GM2*t**2 + 6*GM2 + 12*GM2/(r**3*t**3) - 18*GM2/(r**4*t**4)
