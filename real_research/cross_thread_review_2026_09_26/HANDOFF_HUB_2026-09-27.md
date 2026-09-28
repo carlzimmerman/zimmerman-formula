@@ -180,3 +180,30 @@ Keep the machine's load in mind. Twice today swap nearly filled when about 15 la
 4. **Re-run XR22, then draft and file the DR4 amendments.** The author has approved them.
 5. **The PAPER6 v2 deposit.** The author has approved it; it needs the permission.
 6. **The owed re-runs:** `REPRO_PENDING.md`, CFG0, CFG1, CFG4, CFG6.
+
+## Addendum: the crispiest of astra's 2,000 seeded ideas (`deepseek_push/astra_spawn_ideas/`)
+
+The seeds are AS001–AS2000: 20 groups of 100, of which 423 are P0. All are "proposed; not dispatched". The hub's
+pick, in light of today's results, is below.
+
+1. **AS1526, a splashback-like caustic of a derived carrier orbit family.**
+   - **The idea.** Derive the first-apocenter (splashback) surface from the dynamics instead of prescribing an edge.
+   - **Why it ranks first.** CFG4 found exactly one missing ingredient: a phantom edge at the bound system's own
+     shell-crossing radius, carried by the top-level system. If that edge is DERIVED as the first-apocenter caustic,
+     the target law loses its declared edge x_e and may resolve its one conflict, KiDS's reach against Planck's Ω_c.
+     The KiDS reach has to be checked with FP23's web-field machinery.
+   - **Tests already built.** The same edge meets three pieces of existing machinery at once:
+     - XR28's splashback data (DES/ACT/redMaPPer);
+     - KiDS, via FP23 with the exact projector;
+     - CMB lensing, via XR26.
+   - **Adapt, don't run as written.** Apply it to the cold component plus baryons in the adopted reading, or in
+     CFG2/CFG5's no-MOND form. Keep its control that bars cold-particle splashback formulas in the coherent-wave
+     regime.
+2. **Runner-up: AS378, the gas-rich BTFR zero point with separate mass accounting.** It is the cleanest standalone
+   measurement of the framework's one fitted number. It is cheap and uses SPARC on disk. Its reach is capped by the
+   distance scale: a₀ ∝ D⁻², so the result maps onto the H0 tension, as PAPER6 notes.
+3. **Third: AS411 and AS414, the precision and likelihood design for a₀(z).** These design the decisive flat-a₀ test,
+   and they feed the z ≈ 2.5 JWST/ALMA measurement.
+
+**Why AS440 does not rank.** AS440 (filter-length transfer from galaxies to binaries) is weak. Galaxies do not
+constrain ξ: the heat filter moves forces by less than 1e-3 at 0.1–30 kpc (XR29). Gaia DR4 measures ξ directly (XR22).
