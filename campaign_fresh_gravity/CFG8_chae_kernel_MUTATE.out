@@ -1,0 +1,135 @@
+CFG8 -- FG001'S ONE COST: IS CHAE'S EXTERNAL-FIELD SIGNAL THE KERNEL AND THE a0 OF THE FIT?
+
+FG001 (hierarchical ownership, CFG7) predicts NO external-field effect on a top-level galaxy.  Its registered cost is Chae
+et al.'s detection in SPARC rotation curves (2020, ApJ 904, 51; 2021, ApJ 921, 104): 4.1 / 4.3 sigma against FG001's zero
+(CFG7_hierarchy_fg001 H7).  Chae's fits use one specific law: the external-field function of his eq. 6, the 1-D AQUAL
+solution built on the SIMPLE interpolating function, at a0 = 1.2e-10 m/s^2.  At low acceleration that function carries a
++1/2 tail (nu_simple -> 1/sqrt(z) + 1/2) that the framework's own law P2 does not (nu_P2 -> 1/sqrt(z) + sqrt(z)/2), and the
+framework's canonical a0 (9.3603e-11) lies 22% below 1.2e-10 (-0.054 dex in the deep regime).  A fit forced into the
+simple-function shape at the higher a0 can register "an external field" of the size Chae reports simply to lower the boost.
+
+THE TEST.  Refit all 153 SPARC galaxies of Chae's sample (inclination >= 30 deg, quality Q <= 2) with Chae's exact priors
+(his Table 1) and his likelihood (his eqs. 2, 3, 8, 9), under seven laws:
+   V1 simple  @ 1.2e-10 (Chae's own: the CONTROL)      V2 nu_RAR  @ 1.2e-10 (kernel changed, a0 kept)
+   V3 simple  @ canonical (a0 changed, kernel kept)     V4 P2 @ canonical      V5 P2 @ alt
+   V6 nu_mono @ canonical                               V7 nu_mono @ alt
+The external-field function for every base law is the same 1-D AQUAL construction Chae's eq. 6 is (checked in C0):
+   nu_e(z; e) = [ F(z + z_e) - e ] / z ,   F(Z) = nu(Z) Z ,   e = F(z_e)   (e = the external field in units of that law's a0).
+Posteriors by an affine-invariant ensemble sampler (Goodman & Weare 2010, the algorithm of emcee; written here).
+HISTORY (disclosed): a smoke run on Chae's four showcase galaxies (not committed) reproduced his published values under V1
+(NGC 5055 +0.053 vs 0.054, NGC 5033 +0.103 vs 0.104, NGC 6674 -0.030 vs -0.015, NGC 1090 +0.060 vs 0.061) and showed the two
+strong ones persist under V6 (+0.057, +0.115); it also showed C0 failing at 4.5e-5 because the simple function's inverse went
+through the interpolation table -- the exact inverse z_e = e^2/(1+e) is used instead.  Nothing else was changed.
+
+PRE-DECLARED (before this script's first full run)
+  C0  CONTROL  the general construction with the simple function equals Chae's eq. 6 for e in [0, 0.5] to 1e-12.
+  C1  CONTROL  the sampler recovers a known e injected into a synthetic galaxy (bias < 0.25 sigma, 3 cases).
+  C2  CONTROL  V1 reproduces Chae 2020: the median fitted e of the galaxies with <x0> < -10.3 within 0.02 of his 0.052
+      (his bootstrap error 0.011); the -10.3 < <x0> < -9 galaxies consistent with zero (|median| < 0.04); NGC 5055 within
+      0.015 of his 0.054 and NGC 5033 within 0.03 of his 0.104.
+  H1  [FG001's cost as the fit's law]  under the framework's own law at its own a0 (V4-V7), the median fitted e of the
+      <x0> < -10.3 galaxies is within 2 sigma (bootstrap) of zero.  Pre-declared UNCERTAIN.
+  H2  [the discriminant]  a real external field makes the fitted e TRACK the independent environmental field galaxy by
+      galaxy; a kernel artefact does not.  Under V4-V7 the fitted e is uncorrelated with Chae's environmental field (his
+      2021 Table 3; Spearman p > 0.05), as FG001 predicts.  The correlation is reported for all seven laws.
+  R1  (reported) the decomposition: a0 alone (V3) and kernel alone (V2) against both (V4/V6).
+  R2  (reported) the RAR's low-acceleration orthogonal residual (x0 < -11.3 and < -10.3) at SPARC's nominal mass models, per
+      law at e = 0 -- Chae's "downward trend" re-measured against each law.
+MUTATE=1: a pure external field e = 0.05 is injected into every galaxy's velocities under V6's law (the prior-mean mass
+model -- Upsilon_disk 0.5, Upsilon_bulge 0.7, Upsilon_gas = X^-1, the SPARC distance and inclination -- plus noise at the
+reported errors) and the refit must find it -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: a pure external field e = 0.05 is injected under V6's law; the refit must find it (H1 FAILS) ***
+
+======================================================================================================================
+C0  CONTROL: the general 1-D construction with the simple function equals Chae's eq. 6
+======================================================================================================================
+  [PASS] C0 CONTROL: nu_e = [F(z + z_e) - e]/z with the simple function equals Chae et al. 2020 eq. 6 for e in [0, 0.5]
+         max relative deviation 3.5e-13
+
+  Chae's sample: 153 SPARC galaxies with inclination >= 30 deg and Q <= 2
+  [PASS] C2a CONTROL: the sample has Chae's 153 galaxies
+         153
+
+======================================================================================================================
+C1  CONTROL: the sampler recovers a known external field from synthetic galaxies (V6's law)
+======================================================================================================================
+    NGC5055 : injected e = 0.050 -> recovered +0.0436 (+0.0051/-0.0051); bias -1.26 sigma; acceptance 0.49
+    DDO154  : injected e = 0.030 -> recovered +0.0324 (+0.0107/-0.0104); bias +0.23 sigma; acceptance 0.50
+    NGC3198 : injected e = 0.000 -> recovered +0.0002 (+0.0132/-0.0131); bias +0.02 sigma; acceptance 0.50
+  [FAIL] C1 CONTROL: the sampler recovers the injected e with bias < 0.25 sigma in each synthetic galaxy
+         NGC5055: -1.26 sigma; DDO154: +0.23 sigma; NGC3198: +0.02 sigma
+    noiseless NGC5055 : injected 0.050 -> +0.0504 +- 0.0049 (+0.08 sigma)
+    noiseless DDO154  : injected 0.030 -> +0.0306 +- 0.0103 (+0.06 sigma)
+    noiseless NGC3198 : injected 0.000 -> +0.0000 +- 0.0135 (+0.00 sigma)
+  [PASS] (reported) C1b (reported; added after the MUTATE run) on NOISELESS injections the sampler returns the injected e within 0.25 sigma
+         NGC5055: +0.08 sigma; DDO154: +0.06 sigma; NGC3198: +0.00 sigma
+
+======================================================================================================================
+THE FITS: 153 galaxies x 7 laws (process pool)
+======================================================================================================================
+    150/1071 fits done (24 s)
+    300/1071 fits done (42 s)
+    450/1071 fits done (59 s)
+    600/1071 fits done (73 s)
+    750/1071 fits done (91 s)
+    900/1071 fits done (118 s)
+    1050/1071 fits done (145 s)
+
+======================================================================================================================
+THE MEDIAN FITTED EXTERNAL FIELD, by law (Chae's <x0> bins)
+======================================================================================================================
+    V1 simple   @ chae     : <x0> < -10.3 (N = 117): median e = +0.0408 +- 0.0133 (+3.1 sigma), 77/117 positive (+3.4 sigma sign test); -10.3..-9 (N = 36): -0.0033 +- 0.0190; < -11.3 (N = 26): +0.0147; acceptance 0.49; half-chain drift 0.05 sigma
+    V2 rar      @ chae     : <x0> < -10.3 (N = 116): median e = +0.0418 +- 0.0131 (+3.2 sigma), 77/116 positive (+3.5 sigma sign test); -10.3..-9 (N = 37): -0.0042 +- 0.0196; < -11.3 (N = 27): +0.0167; acceptance 0.49; half-chain drift 0.05 sigma
+    V3 simple   @ canonical: <x0> < -10.3 (N = 116): median e = +0.0336 +- 0.0150 (+2.2 sigma), 70/116 positive (+2.2 sigma sign test); -10.3..-9 (N = 37): -0.0347 +- 0.0212; < -11.3 (N = 26): -0.0013; acceptance 0.50; half-chain drift 0.06 sigma
+    V4 P2       @ canonical: <x0> < -10.3 (N = 115): median e = +0.0214 +- 0.0123 (+1.7 sigma), 66/115 positive (+1.6 sigma sign test); -10.3..-9 (N = 38): -0.0303 +- 0.0243; < -11.3 (N = 24): -0.0132; acceptance 0.50; half-chain drift 0.05 sigma
+    V5 P2       @ alt      : <x0> < -10.3 (N = 115): median e = +0.0321 +- 0.0119 (+2.7 sigma), 71/115 positive (+2.5 sigma sign test); -10.3..-9 (N = 38): -0.0120 +- 0.0212; < -11.3 (N = 24): +0.0006; acceptance 0.50; half-chain drift 0.05 sigma
+    V6 nu_mono  @ canonical: <x0> < -10.3 (N = 115): median e = +0.0568 +- 0.0045 (+12.6 sigma), 109/115 positive (+9.6 sigma sign test); -10.3..-9 (N = 38): +0.0459 +- 0.0068; < -11.3 (N = 32): +0.0436; acceptance 0.50; half-chain drift 0.05 sigma
+    V7 nu_mono  @ alt      : <x0> < -10.3 (N = 116): median e = +0.0405 +- 0.0137 (+3.0 sigma), 77/116 positive (+3.5 sigma sign test); -10.3..-9 (N = 37): -0.0101 +- 0.0205; < -11.3 (N = 26): +0.0108; acceptance 0.49; half-chain drift 0.05 sigma
+    V1 individual: NGC5055 e = +0.0534 (Chae 0.054 +- 0.005), NGC5033 +0.1036 (Chae 0.104), NGC6674 -0.0303 (Chae -0.015), NGC1090 +0.0589 (Chae 0.061)
+  [PASS] C2 CONTROL: Chae's own law (V1) reproduces his 2020 numbers -- low-acceleration median 0.052 within 0.02, the high-acceleration galaxies consistent with zero, NGC 5055 within 0.015 of 0.054, NGC 5033 within 0.03 of 0.104
+         median +0.0408 (N = 117), high -0.0033, NGC5055 +0.0534, NGC5033 +0.1036
+  [FAIL] H1 [FG001's cost as the fit's law] under the framework's own law at its own a0 the low-acceleration median fitted e is within 2 sigma of zero (V4-V7)
+         V4 P2@canonical: +0.0214 (+1.7 sigma); V5 P2@alt: +0.0321 (+2.7 sigma); V6 nu_mono@canonical: +0.0568 (+12.6 sigma); V7 nu_mono@alt: +0.0405 (+3.0 sigma)
+
+======================================================================================================================
+H2  THE DISCRIMINANT: does the fitted e track Chae's independent environmental field, galaxy by galaxy?
+======================================================================================================================
+    V1 simple   @ chae     : N = 94: Spearman rho = +0.059 (p = 0.572); weighted fit e_fit = -0.0022 (+-0.0107) + +0.677 (+-0.246) e_env; median e_env 0.0431
+    V2 rar      @ chae     : N = 94: Spearman rho = +0.056 (p = 0.592); weighted fit e_fit = +0.0067 (+-0.0108) + +0.553 (+-0.249) e_env; median e_env 0.0431
+    V3 simple   @ canonical: N = 94: Spearman rho = +0.043 (p = 0.678); weighted fit e_fit = -0.0202 (+-0.0121) + +0.874 (+-0.245) e_env; median e_env 0.0490
+    V4 P2       @ canonical: N = 94: Spearman rho = +0.017 (p = 0.874); weighted fit e_fit = +0.0024 (+-0.0114) + +0.711 (+-0.237) e_env; median e_env 0.0479
+    V5 P2       @ alt      : N = 94: Spearman rho = +0.031 (p = 0.764); weighted fit e_fit = +0.0124 (+-0.0105) + +0.596 (+-0.241) e_env; median e_env 0.0435
+    V6 nu_mono  @ canonical: N = 94: Spearman rho = -0.184 (p = 0.075); weighted fit e_fit = +0.0550 (+-0.0122) + -0.127 (+-0.245) e_env; median e_env 0.0490
+    V7 nu_mono  @ alt      : N = 94: Spearman rho = +0.049 (p = 0.641); weighted fit e_fit = +0.0052 (+-0.0112) + +0.567 (+-0.248) e_env; median e_env 0.0444
+  [PASS] H2 [the discriminant] under the framework's own law the fitted e is uncorrelated with Chae's independent environmental field (Spearman p > 0.05, V4-V7), as FG001 predicts
+         V1: rho +0.06, p 0.572, slope +0.68 +- 0.25; V2: rho +0.06, p 0.592, slope +0.55 +- 0.25; V3: rho +0.04, p 0.678, slope +0.87 +- 0.24; V4: rho +0.02, p 0.874, slope +0.71 +- 0.24; V5: rho +0.03, p 0.764, slope +0.60 +- 0.24; V6: rho -0.18, p 0.075, slope -0.13 +- 0.25; V7: rho +0.05, p 0.641, slope +0.57 +- 0.25
+
+======================================================================================================================
+R1  (reported) THE DECOMPOSITION: a0 alone, kernel alone, both
+======================================================================================================================
+    V1 simple   @ chae     : low-acceleration median e +0.0408 +- 0.0133
+    V3 simple   @ canonical: low-acceleration median e +0.0336 +- 0.0150
+    V2 rar      @ chae     : low-acceleration median e +0.0418 +- 0.0131
+    V4 P2       @ canonical: low-acceleration median e +0.0214 +- 0.0123
+    V6 nu_mono  @ canonical: low-acceleration median e +0.0568 +- 0.0045
+
+======================================================================================================================
+R2  (reported) THE LOW-ACCELERATION RAR RESIDUAL AT SPARC'S NOMINAL MASS MODELS, per law at e = 0
+======================================================================================================================
+    V1 simple   @ chae     : orthogonal residual median  x0 < -11.3: -0.076 +- 0.007 (N 588); x0 < -10.3: -0.025 +- 0.003; -10.3..-9: -0.007
+    V2 rar      @ chae     : orthogonal residual median  x0 < -11.3: -0.076 +- 0.006 (N 587); x0 < -10.3: -0.024 +- 0.003; -10.3..-9: +0.004
+    V3 simple   @ canonical: orthogonal residual median  x0 < -11.3: -0.036 +- 0.007 (N 546); x0 < -10.3: +0.014 +- 0.003; -10.3..-9: +0.013
+    V4 P2       @ canonical: orthogonal residual median  x0 < -11.3: -0.007 +- 0.007 (N 524); x0 < -10.3: +0.054 +- 0.003; -10.3..-9: +0.055
+    V5 P2       @ alt      : orthogonal residual median  x0 < -11.3: -0.042 +- 0.007 (N 544); x0 < -10.3: +0.022 +- 0.003; -10.3..-9: +0.039
+    V6 nu_mono  @ canonical: orthogonal residual median  x0 < -11.3: -0.036 +- 0.007 (N 546); x0 < -10.3: +0.015 +- 0.003; -10.3..-9: +0.023
+    V7 nu_mono  @ alt      : orthogonal residual median  x0 < -11.3: -0.066 +- 0.006 (N 575); x0 < -10.3: -0.014 +- 0.003; -10.3..-9: +0.007
+  [PASS] (reported) R2 (reported) Chae's low-acceleration downturn at SPARC's nominal mass models is re-measured against every law
+         V1: -0.076; V2: -0.076; V3: -0.036; V4: -0.007; V5: -0.042; V6: -0.036; V7: -0.066
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    V1 (simple@chae): e +0.041 (+3.1 sigma), env rho +0.06 (p 0.57); V2 (rar@chae): e +0.042 (+3.2 sigma), env rho +0.06 (p 0.59); V3 (simple@canonical): e +0.034 (+2.2 sigma), env rho +0.04 (p 0.68); V4 (P2@canonical): e +0.021 (+1.7 sigma), env rho +0.02 (p 0.87); V5 (P2@alt): e +0.032 (+2.7 sigma), env rho +0.03 (p 0.76); V6 (nu_mono@canonical): e +0.057 (+12.6 sigma), env rho -0.18 (p 0.08); V7 (nu_mono@alt): e +0.041 (+3.0 sigma), env rho +0.05 (p 0.64)
+
+  6/8 checks pass; load-bearing failures: 2   (151 s)
