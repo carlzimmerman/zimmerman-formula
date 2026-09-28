@@ -1,0 +1,62 @@
+CFG18 -- FG001's SATELLITES WITH THEIR INFALL BARYONS, done properly.  A robustness test of FG001's exploratory H8 (NOT blind: H8's
+outcome is known and is reproduced below as a control).
+
+WHY.  FG001's class A says an accreted satellite KEEPS THE COLD COMPONENT IT CARRIED AT INFALL.  Its committed H4 nonetheless scored
+the satellites with their CURRENT baryons (stars only -- ram pressure has since removed their gas), and the M31 LVD dwarfs sat
++0.116 / +0.096 dex above the isolated law (2.6 / 2.2 sigma): FG001's one failed satellite gate.  The FG001-consistent prediction
+uses the baryons at infall.  FG001's H8 (exploratory) estimated the infall gas from a log-linear fit to the Local Volume field dwarfs
+WITH HI DETECTIONS ONLY (32) and extrapolated it to every mass -- biased gas-rich (non-detections dropped) and extrapolated below the
+calibrated range.  This lane removes both biases and propagates the spread.
+
+THE METHOD (declared before the first run).  Calibration set: every LVD field dwarf with M_V and HI information -- detections
+(mass_HI) and non-detections (mass_HI_ul) -- M_* = 2.0 L_V (FG001's Upsilon_V), gas = 1.33 M_HI.  For each satellite inside the
+calibrated stellar-mass range, its infall gas-to-star ratio is drawn from its k = 5 nearest calibration dwarfs in log M_* (uniformly);
+non-detections count as ZERO gas (the conservative bracket for FG001, headline) or AT THEIR UPPER LIMIT (reported).  Satellites below
+the calibrated range get no infall gas (reionisation-era fossils; declared), with the nearest-neighbour draw reported.  Infall
+baryons = M_* + max(current gas, the drawn gas).  2000 realisations (seed 18); per realisation the sample's median offset
+log10(sigma_obs / sigma_isolated-law) and FG001's error of the median, 1.2533 rms / sqrt(n).  FG001's committed machinery is exec'd
+read-only.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  FG001's committed H4 isolated medians (current stars) and H8 exploratory offsets reproduced exactly (both footings).
+  H1  [HEADLINE; MUTATE must fail] with the infall gas drawn from field dwarfs at similar stellar mass (non-detections as zero), the
+      MW classical dSphs and the M31 LVD dwarfs sit within 2 sigma of zero on both footings (the mean over realisations of the median
+      offset, against the mean error of the median).
+  H2  (reported) the same for M31 Collins+13 and the MW ultra-faints; the upper-limit bracket; the spread over realisations.
+MUTATE=1: no infall gas (current baryons, FG001's H4) -- the M31 LVD offset returns to 2.6 sigma and H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: FG001's committed H4 and H8 reproduced
+======================================================================================================================
+  [PASS] C1 CONTROL: FG001's committed H4 isolated medians and H8 exploratory offsets reproduced exactly
+         max |d| 0.0e+00
+
+  calibration set: 42 LVD field dwarfs (32 HI detections, 10 upper limits); log M_* 4.98-9.65; detections' median gas/star 0.57
+
+======================================================================================================================
+H1 / H2  THE SATELLITES WITH THEIR INFALL BARYONS
+======================================================================================================================
+    MW classical dSph  (14/14 in range) zero             canonical: median offset +0.025 (68% of realisations -0.005..+0.053) +- 0.066 -> 0.4 sigma (stars only +0.067)
+    MW classical dSph  (14/14 in range) zero             alt      : median offset +0.005 (68% of realisations -0.024..+0.033) +- 0.066 -> 0.1 sigma (stars only +0.047)
+    MW classical dSph  (14/14 in range) limit            canonical: median offset +0.009 (68% of realisations -0.012..+0.033) +- 0.062 -> 0.1 sigma (stars only +0.067)
+    MW classical dSph  (14/14 in range) limit            alt      : median offset -0.010 (68% of realisations -0.032..+0.013) +- 0.061 -> 0.2 sigma (stars only +0.047)
+    M31 LVD            (29/34 in range) zero             canonical: median offset +0.078 (68% of realisations +0.062..+0.093) +- 0.048 -> 1.6 sigma (stars only +0.116)
+    M31 LVD            (29/34 in range) zero             alt      : median offset +0.060 (68% of realisations +0.043..+0.073) +- 0.048 -> 1.2 sigma (stars only +0.096)
+    M31 LVD            (29/34 in range) limit            canonical: median offset +0.059 (68% of realisations +0.045..+0.074) +- 0.048 -> 1.2 sigma (stars only +0.116)
+    M31 LVD            (29/34 in range) limit            alt      : median offset +0.040 (68% of realisations +0.025..+0.055) +- 0.047 -> 0.8 sigma (stars only +0.096)
+    M31 Collins+2013   (12/14 in range) zero             canonical: median offset +0.125 (68% of realisations +0.061..+0.183) +- 0.087 -> 1.4 sigma (stars only +0.226)
+    M31 Collins+2013   (12/14 in range) zero             alt      : median offset +0.105 (68% of realisations +0.041..+0.164) +- 0.087 -> 1.2 sigma (stars only +0.207)
+    M31 Collins+2013   (12/14 in range) limit            canonical: median offset +0.102 (68% of realisations +0.045..+0.152) +- 0.083 -> 1.2 sigma (stars only +0.226)
+    M31 Collins+2013   (12/14 in range) limit            alt      : median offset +0.082 (68% of realisations +0.025..+0.132) +- 0.083 -> 1.0 sigma (stars only +0.207)
+    MW ultra-faint     (1/31 in range) zero             canonical: median offset +0.339 (68% of realisations +0.329..+0.355) +- 0.046 -> 7.4 sigma (stars only +0.355)
+    MW ultra-faint     (1/31 in range) zero             alt      : median offset +0.319 (68% of realisations +0.309..+0.334) +- 0.046 -> 6.9 sigma (stars only +0.334)
+    MW ultra-faint     (1/31 in range) limit            canonical: median offset +0.329 (68% of realisations +0.329..+0.329) +- 0.046 -> 7.1 sigma (stars only +0.355)
+    MW ultra-faint     (1/31 in range) limit            alt      : median offset +0.309 (68% of realisations +0.309..+0.309) +- 0.046 -> 6.7 sigma (stars only +0.334)
+    MW ultra-faint     (1/31 in range) zero+draw-below  canonical: median offset +0.224 (68% of realisations +0.187..+0.268) +- 0.062 -> 3.6 sigma (stars only +0.355)
+    MW ultra-faint     (1/31 in range) zero+draw-below  alt      : median offset +0.204 (68% of realisations +0.167..+0.248) +- 0.061 -> 3.3 sigma (stars only +0.334)
+  [PASS] H1 [HEADLINE] with the infall gas drawn from field dwarfs at similar stellar mass (non-detections as zero), the MW classical dSphs and the M31 LVD dwarfs sit within 2 sigma of zero on both footings
+         MW classical dSph can: +0.025 (0.4 sigma); MW classical dSph alt: +0.005 (0.1 sigma); M31 LVD can: +0.078 (1.6 sigma); M31 LVD alt: +0.060 (1.2 sigma)
+  [PASS] (reported) H2 (reported) M31 Collins+13 and the MW ultra-faints; the upper-limit bracket
+         MW classical dSph limit can: +0.009 (0.1 sigma); MW classical dSph limit alt: -0.010 (0.2 sigma); M31 LVD limit can: +0.059 (1.2 sigma); M31 LVD limit alt: +0.040 (0.8 sigma); M31 Collins+2013 zero can: +0.125 (1.4 sigma); M31 Collins+2013 zero alt: +0.105 (1.2 sigma); M31 Collins+2013 limit can: +0.102 (1.2 sigma); M31 Collins+2013 limit alt: +0.082 (1.0 sigma); MW ultra-faint zero can: +0.339 (7.4 sigma); MW ultra-faint zero alt: +0.319 (6.9 sigma); MW ultra-faint limit can: +0.329 (7.1 sigma); MW ultra-faint limit alt: +0.309 (6.7 sigma); MW ultra-faint zero+draw-below can: +0.224 (3.6 sigma); MW ultra-faint zero+draw-below alt: +0.204 (3.3 sigma)
+
+  3/3 checks pass; load-bearing failures: 0   (1 s)
