@@ -1,0 +1,330 @@
+{
+ "schema_version": 2,
+ "task_id": "AS031",
+ "task_sha256": "c898cbe489844e63fe0d0c8732fec490d709828a691ac1ec118e0fcbc996675a",
+ "run_id": "AS031-r1-20260928T021426Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent; identity taken from the executing agent's own system context, not guessed from the deepseek_push destination folder",
+ "started_utc": "2026-09-28T02:14:26Z",
+ "finished_utc": "2026-09-28T03:30:58Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "EXP-branch diagnostic theorem (retired comparison branch, never the operative target). Let x = g/a0 >= 0, y = B/a0 >= 0 on the historical EXP AQUAL branch mu_EXP(x) = 1 - exp(-x), y = x(1 - exp(-x)). Then: (i) dy/dx = 1 + (x-1)exp(-x), strictly positive for all x > 0 (zero only at x = 0, quadratic contact); equivalently the AQUAL strong-ellipticity function mu(T)+2T mu'(T) at T = x^2 is strictly positive away from x = 0; (ii) y is a C^inf bijection [0,inf) -> [0,inf): the EXP inverse x(y) exists, is unique, is strictly increasing (Lean-certified StrictMonoOn yExp (Ici 0), injectivity corollary); (iii) exact inverse in the mu-parametrization: x(mu) = -ln(1-mu), y(mu) = -mu*ln(1-mu), mu in [0,1), both strictly increasing in mu; no elementary/Lambert-W closed form x(y) exists (sympy NotImplementedError; x ~ sqrt(y) deep is incompatible with any W-branch); (iv) universal inversion bracket sqrt(y) <= x(y) <= (y + sqrt(y^2+4y))/2 for every y > 0 (from the Lean-certified pair x^2/(1+x) <= y(x) <= x^2); (v) asymptotics with exact leading neglected terms: deep x = sqrt(y) + y/4 + (7/96)y^(3/2) + (1/48)y^2 + (491/92160)y^(5/2) + O(y^3) (leading neglected term after sqrt(y)+y/4 is +(7/96)y^(3/2); domain y << 1; sympy-exact through O(s^7), checked at y=1e-10: x/sqrt(y)-1 = 2.5000073e-6 vs sqrt(y)/4 = 2.5e-6 and (x-sqrt(y)-y/4)/y^(3/2) = 0.072916875 vs 7/96 = 0.07291667 with difference a3*sqrt(y) = 2.083e-7); Newtonian x = y + y*exp(-y) - y(y-1)*exp(-2y) + O(y^2 exp(-3y)) (leading neglected term -y(y-1)exp(-2y); domain y >> 1; ratio (x-y)/(y*exp(-y)) = 0.999999960838/0.9999999999973/0.9999999999999998/0.9999999999999999999999995 at y = 20/30/40/60); (vi) exact landmarks: y(1) = 1 - 1/e = 0.6321205588 (x=1 pivot; an early draft claimed y=1/e there and the identity check rejected it), x(1/e) = 0.71807796, and at the framework scale y = 1 (B = a0 at r = r_M): x = 1.34997649, mu = 0.7407536, g = 1.26383e-10 m/s^2 (canonical footing) and 1.52264e-10 m/s^2 (alternative footing); (vii) conditioning dx/dy = 1/(1+(x-1)exp(-x)) in [1/(1+exp(-2)), inf), analytic minimum = 1/(1+e^-2) = 0.880797 at x = 2 (grid-nearest point: 0.88172), slope maximum dy/dx(2) = 1+e^-2 = 1.135335, d2y/dx2 = exp(-x)(2-x), deep dx/dy = 50000.25 at y=1e-10 (vs 1/(2 sqrt(y)) = 50000.0: ill-conditioned deep inversion, generic to all y ~ x^2 MOND-family kernels, diagnostic only); (viii) Q-type deviation is exact and nonzero: x^2 - y^2 = x^2(2exp(-x) - exp(-2x)) > 0 for all x > 0 (branch never lies on the Q hyperbola; deep ~ x^2, Newtonian ~ 2x^2 e^-x -> 0). Domain: x in [0,inf), y in [0,inf); theorem dimensionless, both a0 footings apply without refitting; kappa = 1/2 remains an adopted input. Negative control (capable of failing, reported): the RAR relation x_RAR(y) = y/(1-exp(-sqrt(y))) taken as a candidate EXP inverse gives forward-law residual r(y) = y(x_RAR(y)) - y, which is PROVED strictly positive for all y > 0 (chain: x_RAR > x_EXP <=> x > sqrt(y), true by the lower bracket; r(0) = 0, r -> 0 as y -> inf) and measured: max |r| = 0.5805687 at y = 10^0.6 = 3.98107 (r/y = 0.1458), r(1) = +0.256772 (x_RAR(1) = 1.581977 vs x_EXP(1) = 1.349976), r >= 0 on all 181 grid points, the apparent zero at y = 10^4.6 is an 80-dps floor artifact (at 120 dps r = 8.8483e-83 > 0 matching the leading term y(exp(-sqrt(y)) - exp(-y)) to 80 digits), fine scan 850 points: 687 strictly positive + 163 floor-zero at y > 3.4e4, adaptive-dps tail (0.5*sqrt(y)+30 dps, up to 5030 dps): r > 0 at y in {1e5,1e6,1e7,1e8} each matching y(exp(-sqrt(y))-exp(-y)) to full precision (e.g. r(1e5) = 4.6135e-133 vs predicted 4.6135e-133). The control fails the RAR-as-EXP-inverse candidate as required. Lean certificate: 13 theorems (A-G plus corollaries), lake env lean exit 0, zero sorry, #print axioms for all 13 exactly [propext, Classical.choice, Quot.sound].",
+ "framework_cell": {
+  "action": "none: constitutive/kinematic audit of the RETIRED EXP AQUAL branch y = x(1 - exp(-x)) with a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 adopted (framework input, not derived). No EXP action is imported; the operative target (filtered MONO, causality criterion B) is NOT concluded on. Q/RAR/MU2/MONO used only as labelled comparison curves; transfer to the operative branch requires the explicit bridge in child AS031.C01 (no EXP result is promoted by this run).",
+  "source_hashes": {
+   "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+   "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+   "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+   "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+   "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+  },
+  "kernel": "EXP: y = x*(1 - exp(-x)), x = g/a0, y = B/a0 (mu_EXP(x) = 1 - exp(-x), retired comparison). Q: y = (sqrt(1+4x^2)-1)/2; RAR: x = y/(1-exp(-sqrt(y))); MU2: x*[1-(1+x/2)^-2] = y (bisection); MONO: contract splice y* = 2.337412, y_p = 2.539638, h_p = 0.647610, delta = 0.05 (RAR segment below y*, continuation above). Comparison-only, never silently identified; all branch rows computed in this run.",
+  "filter": "heat filter S = exp((xi^2/2) Delta) NOT exercised: the task object is the pointwise algebraic inverse of the RETIRED EXP branch. The filter's role is named in the transfer limitation (AS031.C01 bridge requirement: strong-ellipticity modulus of the FILTERED MONO equation benchmarked against the EXP audit table).",
+  "gate": "A02 constitutive kernels and branch fidelity (requirement-1 content-ish for the historical branch). Causality criterion B not exercised (statics/algebra only). Operative target: filtered MONO with criterion B -- this result is an EXP-branch diagnostic theorem on a retired branch with explicit conditional notes; a completed task is not closure of gravity.",
+  "coupling": "single Newton coupling G = 6.67430e-11 SI throughout; G_N/G_bare/G_cosmo separation irrelevant here: the EXP inverse is dimensionless, a0 cancels from every theorem, and a0 carries G via a0 = kappa c sqrt(G rho_Lambda) at the framework level (kappa = 1/2).",
+  "parameters": {
+   "kappa": "1/2 ADOPTED as input (not derived); the dimensionless inverse is kappa-independent and cannot remove the normalization freedom (stated in limitations)",
+   "a0_footings": [
+    "9.3619e-11 m/s^2 (canonical) -> rho_Lambda = 4a0^2/(G c^2) = 5.8444125e-27 kg/m^3; at y=1 (B = a0, r = r_M): x = 1.34997649, g = 1.26383e-10 m/s^2",
+    "1.1279e-10 m/s^2 (alternative) -> rho_Lambda = 8.4830896e-27 kg/m^3; at y=1: g = 1.52264e-10 m/s^2",
+    "separate footings: ratio a0_alt/a0_can = 1.204776808127; fixed-rho effective kappa = 1.204776808127; fixed-kappa rho ratio = 1.451487157400 (never share fixed rho AND fixed kappa)"
+   ],
+   "expansion_coefficients": "deep (y->0): x = sqrt(y) + y/4 + (7/96)y^(3/2) + (1/48)y^2 + (491/92160)y^(5/2) + O(y^3) (sympy-exact through O(s^7), remainder O(s^7) verified); Newtonian (y->inf): x = y + y*exp(-y) - y(y-1)*exp(-2y) + O(y^2*exp(-3y))"
+  },
+  "scale_footing_note": "The theorem is dimensionless (a0 cancels); both footings apply with the SI values listed. No per-object a0 fitting was performed.",
+  "boundaries": "x in [0,inf), y >= 0; boundary cases computed exactly: y(0) = 0 (mu(0) = 0, quadratic contact y ~ x^2), dy/dx(0) = 0; y = 1 at r = r_M (B = a0) with x = 1.34997649 on both footings; inflection of y at x = 2 (slope maximum 1 + e^-2). Grid: y = 10^k, k = -10..8 step 0.1 (181 points, mandated).",
+  "initial_conditions": "none (static algebraic identities; no evolution).",
+  "units": "SI: m/s^2 for a0, g, B; kg/m^3 for rho_Lambda; kg for masses; dimensionless x = g/a0, y = B/a0, mu."
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/AS031_historical_exponential_aqual_inversion.md": "c898cbe489844e63fe0d0c8732fec490d709828a691ac1ec118e0fcbc996675a",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/compute_as031.py": "4c572db8dec39b6c7d0662a9a8458478cdadcd387ca03a99403b8a53e32f6a34",
+  "deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/raw_output.json": "4c4a2098af467ecba5a2302a389e73d659b9bfc09379cc5ec708fac78645a649",
+  "deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/raw_output.stderr": "a6b89d389a0a5c56cd2e1964997302576c0d7ce5f8cc40098627ad3d7d72879b",
+  "deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/derivation.md": "62671a7bf8137f7483e24d965b6ce4891f5ca37f6878b61128df1a0df6094769",
+  "deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/AS031_exp_inverse_certificates.lean": "7ba436639a8b2a80e8bcdb7bcad82a4e4e57529d37a0d3320b9b46cd1a5064bb",
+  "deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/lean_compile_out.txt": "96633798cc15b6568aa9aec1cad7ab9bea32dfad3cc6e3d20f1042a61ad82ce2"
+ },
+ "commands": [
+  "python3 deepseek_push/astra_spawn_ideas/results/AS031/AS031-r1-20260928T021426Z-dsv4f-hermes/compute_as031.py > .../raw_output.json 2> .../raw_output.stderr   (cwd: repo root; multiple rounds; final exit 0; 181-pt grid; elapsed ~1.6 s; alarm(120) enforced)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs run-dir>/AS031_exp_inverse_certificates.lean > lean_compile_out.txt 2>&1   (final: exit 0, empty error log, 5-10 s; earlier rounds had tactic-level errors, all fixed)",
+  "cat >> AS031_exp_inverse_certificates.lean (axioms audit: #print axioms for all 13 theorems); lake env lean recompile   (exit 0; 13/13 theorems print [propext, Classical.choice, Quot.sound]; zero sorry)",
+  "hash verification of all task sources vs SOURCE_MANIFEST.json pins (shasum -a 256; all pinned files match exactly)"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_clock_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "precision_dps": 80,
+   "grid": "y = 10^k, k = -10..8 step 0.1 -> 181 points (mandated by the work order)"
+  },
+  "enforced": {
+   "wall_clock_s": "ENFORCED via signal.alarm(120); observed elapsed 1.62 s (compute; /usr/bin/time real 1.62 s, user 1.70 s) + 5-10 s (Lean compiles)",
+   "memory_MB": "NOT ENFORCEABLE on this macOS host: resource.setrlimit(RLIMIT_AS, 512MB) rejected ('current limit exceeds maximum limit'); recorded honestly. Observed peak RSS: in-script macOS ru_maxrss = 60.95 MB (bytes -> MB), /usr/bin/time -l maximum resident set size ~64 MB (63.9 MB); far below the 512 MB declaration.",
+   "threads": "ENFORCED: single process, single thread, no subprocesses (mpmath/sympy serial; bisection loops inline)",
+   "precision_dps": "mpmath mp.dps = 80 base; 120 dps for the NC floor refinement; adaptive dps = int(0.5*sqrt(y)) + 30 (up to 5030 dps) for the NC tail check; sympy exact for the deep series coefficients"
+  },
+  "scale_note": "Cheapest bounded discriminating calculation (~1.6 s): the object is exact algebra plus the mandated diagnostic grid and bounded branch comparison; the mpmath 80-dps floor forced the documented adaptive-precision tail design instead of any larger fixed precision."
+ },
+ "checks": [
+  {
+   "name": "CK1_self_residual_grid",
+   "result": "PASS",
+   "observed": "max |y(x(y)) - y| = 4.2e-81 over the 181-point grid y = 10^k (k = -10..8 step 0.1)",
+   "tolerance": "< 1e-60 (80-dps roundoff floor)"
+  },
+  {
+   "name": "CK2_mu_route_cross_check",
+   "result": "PASS",
+   "observed": "independent representation (invert mu |-> -mu ln(1-mu) for y <= 10, x = -ln(1-mu)): max |x_diff| = 1.6e-72",
+   "tolerance": "< 1e-60"
+  },
+  {
+   "name": "CK3_monotone_grid",
+   "result": "PASS",
+   "observed": "dy/dx > 0 at all 181 grid points (min 2.0e-5 at deepest point; -> 0 only at x = 0); Lean-certified StrictMonoOn (Ici 0)",
+   "tolerance": "181/181 + Lean theorem"
+  },
+  {
+   "name": "CK4_deep_limit",
+   "result": "PASS",
+   "observed": "at y=1e-10: x/sqrt(y) - 1 = 2.5000073e-6 vs sqrt(y)/4 = 2.5e-6; (x - sqrt(y) - y/4)/y^(3/2) = 0.072916875 vs 7/96 = 0.07291667 (difference = a3*sqrt(y) = 2.083e-7)",
+   "tolerance": "exact leading terms (sympy)"
+  },
+  {
+   "name": "CK5_newtonian_limit_moderate_y",
+   "result": "PASS",
+   "observed": "(x-y)/(y*exp(-y)) at y = 20/30/40/60: 0.999999961 / 0.9999999999973 / 0.9999999999999998 / 0.9999999999999999999999995; second-order ratio vs -y(y-1)exp(-2y) -> 1 at the same points; y=1e8 unusable (correction ~10^-43429440 below any fixed precision -- documented, not a failure)",
+   "tolerance": "leading + next term"
+  },
+  {
+   "name": "CK6_stability_identity",
+   "result": "PASS",
+   "observed": "mu(T) + 2T*mu'(T) vs dy/dx at T = x^2, x in {0.01, 1, 2, 3, 10}: max |diff| 1.318e-82 (at x = 0.01)",
+   "tolerance": "< 1e-60"
+  },
+  {
+   "name": "CK7_Q_deviation_identity",
+   "result": "PASS",
+   "observed": "x^2 - y^2 vs x^2*(2exp(-x) - exp(-2x)) at x in {1e-3, 0.1, 1, 2, 10}: max |diff| 3.2e-80",
+   "tolerance": "< 1e-60"
+  },
+  {
+   "name": "CK8_pivot_identity",
+   "result": "PASS",
+   "observed": "y(1) - (1 - 1/e) = 0 exactly; x(1 - 1/e) - 1 = 0 exactly (rejects the early-draft wrong landmark y(1) = 1/e)",
+   "tolerance": "exact"
+  },
+  {
+   "name": "CK9_derivative_landmarks",
+   "result": "PASS",
+   "observed": "d2y/dx2 = 0 at x = 2, > 0 at x = 1, < 0 at x = 3; dy/dx(2) = 1 + e^-2 = 1.135335 (exact); slope grid max 1.13414 at grid x = 1.87274 (grid-adjacent to the true maximum)",
+   "tolerance": "exact landmarks"
+  },
+  {
+   "name": "CK10_grid_arithmetic",
+   "result": "PASS",
+   "observed": "grid span [1e-10, 1e8], 181 points (range(-100, 81) / 10)",
+   "tolerance": "181/181"
+  },
+  {
+   "name": "SYMPY_inverse_probe",
+   "result": "PASS",
+   "observed": "sympy.solve(x*(1-exp(-x)) - y, x) raises NotImplementedError ('multiple generators [x, exp(x)]'): no elementary/Lambert-W closed form -- deep branch x ~ sqrt(y) incompatible with any W branch; recorded as a result, not a failure",
+   "tolerance": "expected absence"
+  },
+  {
+   "name": "NC_RAR_as_EXP_inverse",
+   "result": "PASS",
+   "observed": "r(y) = y(x_RAR(y)) - y, x_RAR = y/(1-exp(-sqrt(y))): PROVED > 0 for all y > 0 (x_RAR > x_EXP <=> x > sqrt(y), certified lower bracket); measured max |r| = 0.5805687 at y = 3.98107 (r/y = 0.1458), r(1) = +0.256772, r >= 0 on all 181 grid points; apparent zero at y = 10^4.6 is an 80-dps floor artifact (120 dps: r = 8.8483e-83 > 0 matching y(exp(-sqrt(y))-exp(-y)) to 80 digits)",
+   "tolerance": "must be > 0 everywhere (control fails the candidate)"
+  },
+  {
+   "name": "NC_fine_scan",
+   "result": "PASS",
+   "observed": "850-point multiplicative scan (x1.05): 687 strictly positive, 163 zero at 80-dps floor (all at y > 3.4e4 where both exponentials underflow); never negative",
+   "tolerance": "no nonpositive residual (else -1 returned)"
+  },
+  {
+   "name": "NC_tail_adaptive_dps",
+   "result": "PASS",
+   "observed": "adaptive dps = int(0.5*sqrt(y)) + 30 (up to 5030): r > 0 at y in {1e5, 1e6, 1e7, 1e8}, each matching y(exp(-sqrt(y)) - exp(-y)) to full precision (e.g. y=1e5, 188 dps: r = 4.6135e-133 vs predicted 4.6135e-133)",
+   "tolerance": "> 0 and leading-term match"
+  },
+  {
+   "name": "LEAN_compile_exit0",
+   "result": "PASS",
+   "observed": "lake env lean exit 0 on the run-dir certificate; clean error log (0 lines)",
+   "tolerance": "exit 0"
+  },
+  {
+   "name": "LEAN_axioms_unfiltered",
+   "result": "PASS",
+   "observed": "13/13 theorems: 'depends on axioms: [propext, Classical.choice, Quot.sound]'; zero sorry in file",
+   "tolerance": "axioms subseteq {propext, Classical.choice, Quot.sound}; zero sorry"
+  },
+  {
+   "name": "SOURCE_HASH_MATCH",
+   "result": "PASS",
+   "observed": "README.md, FRIED_CHICKEN_SPEC.md, peer_review README, STANDING.md, SOURCE_MANIFEST.json all match SOURCE_MANIFEST.json pins exactly",
+   "tolerance": "exact byte match"
+  }
+ ],
+ "tested_domain": "Exact algebraic domain: x >= 0 (g >= 0), y >= 0; proofs in Lean 4 (Real, Mathlib) and sympy. Mandated diagnostic grid: y = 10^k, k = -10..8 step 0.1, 181 points, mpmath 80 dps; branch table at y in {1e-4, 1e-2, 1e-1, 1/e, 1, 2.3374 (y*), 10, 1e2, 1e4}; approach rates at y = 1e-10 (x/sqrt(y)-1: Q 5.000e-11, RAR 5.000e-6, MU2 3.750e-6, EXP 2.500e-6, MONO 5.000e-6); Newtonian checks at y in {20, 30, 40, 60}; NC fine scan 850 points y = 1e-10*1.05^n; NC tail y in {1e5, 1e6, 1e7, 1e8} at adaptive dps. No random sampling, no seeds, no refinement history (single bounded prototype + honest debug iterations recorded in failed_attempts).",
+ "failed_attempts": [
+  {
+   "artifact": "compute_as031.py round 1: sympy.solve raised NotImplementedError (exit 1)",
+   "cause": "no algorithm for x*(1-exp(-x)) - y (multiple generators [x, exp(x)])",
+   "resolution": "try/except records 'no closed form found (implicit inverse)' as the scientific result; exact inverse supplied via the mu-parametrization and bracketed monotone inversion"
+  },
+  {
+   "artifact": "compute_as031.py round 1: dead draft loop in the sympy coefficient block",
+   "cause": "stale scaffolding",
+   "resolution": "removed; the sequential fixvar code is the real logic"
+  },
+  {
+   "artifact": "compute_as031.py round 2: deep-series coefficient order wrong (a3 appeared at s^4 instead of s^5)",
+   "cause": "coefficients fixed one pass too early",
+   "resolution": "sequential fixvar(a1,3), fixvar(a2,4), fixvar(a3,5), fixvar(a4,6) with full resubstitution; remainder O(s^7) verified, confirming the ansatz order"
+  },
+  {
+   "artifact": "compute_as031.py round 4: wrong landmark claimed (y = 1/e <-> x = 1)",
+   "cause": "sign slip: y(1) = 1*(1 - 1/e) = 1 - 1/e, not 1/e",
+   "resolution": "corrected to y = 1 - 1/e = 0.6321205588 <-> x = 1 (x = 0.71807796 at y = 1/e); the identity check rejected the wrong landmark"
+  },
+  {
+   "artifact": "compute_as031.py round 4: Newtonian check at y = 1e8 returned the trivial x = y",
+   "cause": "correction y*exp(-y) ~ 10^-43429440 below ANY fixed precision (80 or 120 dps)",
+   "resolution": "Newtonian checks moved to moderate y in {20,30,40,60} with ratio diagnostics; y=1e8 behavior documented as a precision statement"
+  },
+  {
+   "artifact": "compute_as031.py round: r_floor referenced loop variable y instead of y_floor",
+   "cause": "stale variable name",
+   "resolution": "r_floor = y_of_x(x_RAR(y_floor)) - y_floor"
+  },
+  {
+   "artifact": "compute_as031.py round: neg_loc forward reference to out['negative_control_signed_detail']['y_of_min'] before it existed",
+   "cause": "out-of-order dict access in the signing summary",
+   "resolution": "use locally computed ys_grid[i_min]"
+  },
+  {
+   "artifact": "compute_as031.py round: apparent NC residual zero at y = 10^4.6 at 80 dps (and later at 120 dps for the tail)",
+   "cause": "mpmath fixed-precision floor: both exp(-sqrt(y)) and exp(-y) underflow below ~1e-80",
+   "resolution": "floor point rechecked at 120 dps: r = 8.8483e-83 > 0 matching leading term to 80 digits; fine scan extended (850 pts); tail moved to adaptive dps = int(0.5*sqrt(y)) + 30 up to 5030"
+  },
+  {
+   "artifact": "macOS RSS units: in-script ru_maxrss misreported",
+   "cause": "macOS reports ru_maxrss in BYTES, not KB",
+   "resolution": "peak_rss_MB = ru_maxrss/1024.0/1024.0 = 60.95 MB (vs /usr/bin/time -l ~63.9 MB; consistent)"
+  },
+  {
+   "artifact": "Lean rounds 1-3: tactic-level failures on derivative statements",
+   "cause": "simpa/convert with extra lemmas rewrites inside lambdas asymmetrically; convert <;> ring spawns function-equality goals when one side is a def symbol; HasDerivAt instance paths differ between rule-chain terms and fresh goals",
+   "resolution": "AS026 pattern: manual HasDerivAt composition ((hasDerivAt_id x).neg).exp for exp(-t), (hasDerivAt_const x 1).sub hE kept as a two-step have with raw derivative shapes, standalone hslope : ... := by ring then rw [hslope] at hd, change to the explicit lambda before exact; derivative-side (1 - 0) shapes kept until the closing ring equality"
+  },
+  {
+   "artifact": "Lean: simpa [yExp] failed to unfold the unapplied def in the goal function slot",
+   "cause": "simp cannot unfold a bare (unapplied) def symbol",
+   "resolution": "change HasDerivAt (fun t : ℝ => ...) ... x; exact hd"
+  },
+  {
+   "artifact": "Lean: strictMono_of_deriv_pos is global-all-ℝ in this Mathlib (y' > 0 only on x > 0)",
+   "cause": "API detail",
+   "resolution": "strictMonoOn_of_deriv_pos with Convex (Ici 0), ContinuousOn, positivity on interior_Ici (probed before writing)"
+  }
+ ],
+ "limitations": [
+  "EXP branch is RETIRED: all conclusions are diagnostic for the historical branch; NO operative-branch (filtered MONO, criterion B) conclusion is claimed. Branch transfer requires the explicit bridge in child AS031.C01; silent identification with Q/RAR/MU2/MONO is exactly what this run's branch table (3.7-16% finite-y disagreement at y in {0.1, 1, 2.3374}) forbids.",
+  "kappa = 1/2 remains adopted, not derived; the inverse is dimensionless (scale-free) so it cannot fix kappa's normalization freedom.",
+  "Constitutive/kinematic audit: no dynamics, no stability of the full theory, no lensing, no PPN content; the heat filter S = exp((xi^2/2) Delta) is not exercised. The ellipticity statement is for the RETIRED EXP equation only (mu(T)+2T mu'(T) = dy/dx > 0), and does NOT certify the operative filtered MONO operator.",
+  "Grid/numeric values are finite consistency checks of exact identities (the identities are the Lean and sympy certificates); NC tail values are precision-limited by documented adaptive floors, not by mathematics.",
+  "The y = 1e8 Newtonian row is a precision statement (correction ~10^-43429440), not a mathematical one.",
+  "No closed-form x(y) exists (sympy + asymptotic argument); the exact inverse is supplied in the mu-parametrization and numerically by bracketed monotone inversion -- not a limitation of method but of the objective function.",
+  "MONO rows use the contract-rounded splice landmarks (2.337412, 2.539638, delta = 0.05); sub-splice details do not affect any EXP statement."
+ ],
+ "next_unresolved_implication": "Bridge requirement to the operative target: derive the strong-ellipticity modulus of the operative FILTERED MONO equation (Delta Phi = 4 pi G rho_b + S* div[(nu_mono(|grad S u|/a0) - 1) grad S u], S = exp((xi^2/2) Delta, preferred foliation leaf, declared Sobolev domain) near the zero-field limit, and benchmark its deep conditioning against this run's EXP audit numbers (dx/dy ~ 1/(2 sqrt(y)) = 5.0000e4 at y = 1e-10; min dx/dy = 1/(1+e^-2) = 0.880797 at x = 2; max slope 1 + e^-2 at x = 2): does the filter remove the quadratic-contact degeneracy the EXP audit exhibits (ellipticity constant ~ 2x -> 0)? This is the missing bridge between the retired-branch audit (and its siblings AS026/AS027/AS030/AS046) and requirement 9 (controlled zero-field limit) of the amended thirteen-item target.",
+ "suggested_followup": "Dispatch ready child AS031.C01 (spec in derivation.md sect. 10): strong-ellipticity modulus of the filtered MONO equation vs the EXP audit table, with controls (i) S -> id recovers the EXP-style dy/dx numbers (control can fail if xi-dependence persists), (ii) filter-width sweep xi must move the modulus, (iii) deep limit y -> 0 of the filtered modulus computed, not assumed, (iv) zero-sorry Lean for the cleared algebraic form. Duplicate check performed against AS/MY manifests and claims/results dirs: closest seeds AS033 (splice location), AS034 (MONO continuation by integration), AS036 (physical vs phantom monotonicity), AS046 (inverse conditioning), AS047 (force vs derivative error control), AS577/AS578 (MONO convexity/monotonicity modulus), AS026.C01 (Q-vs-MONO mass-profile band) -- none derives the FILTERED ellipticity modulus against an EXP benchmark; fingerprint distinct.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": [
+   "G = 6.67430e-11 m^3 kg^-1 s^-2",
+   "c = 299792458 m/s",
+   "M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m, k_B = 1.380649e-23 J/K",
+   "kappa = 1/2 ADOPTED (not derived)",
+   "a0 = 9.3619e-11 m/s^2 (canonical) and 1.1279e-10 m/s^2 (alternative), separate footings"
+  ],
+  "definitions": [
+   "a0 = kappa*c*sqrt(G*rho_Lambda), rho_Lambda = 4 a0^2/(G c^2) (kappa = 1/2 per footing)",
+   "EXP branch (retired): mu_EXP(x) = 1 - exp(-x), y = x*(1 - exp(-x)), x = g/a0, y = B/a0",
+   "Q-type deviation: x^2 - y^2 = x^2*(2exp(-x) - exp(-2x))",
+   "labelled comparison branches: Q y = (sqrt(1+4x^2)-1)/2, RAR x = y/(1-exp(-sqrt(y))), MU2 x*[1-(1+x/2)^-2] = y, MONO (contract splice y*=2.337412, y_p=2.539638, h_p=0.647610, delta=0.05)"
+  ],
+  "conditional_inputs_task_declared": [
+   "the EXP branch law y = x(1 - exp(-x)) as the task's declared audit object",
+   "the mandated diagnostic grid y = 10^k, k = -10..8 step 0.1",
+   "the framework normalization a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 adopted"
+  ],
+  "genuinely_derived_here": [
+   "dy/dx = 1 + (x-1)exp(-x), d2y/dx2 = exp(-x)(2-x); strict positivity on x > 0; slope maximum 1+e^-2 at x = 2 (Lean A, B, E, F)",
+   "strict monotonicity and bijectivity y : [0,inf) -> [0,inf); unique inverse (Lean C + corollaries)",
+   "exact inverse in the mu-parametrization x(mu) = -ln(1-mu), y(mu) = -mu ln(1-mu) (Lean G)",
+   "universal inversion bracket sqrt(y) <= x(y) <= (y+sqrt(y^2+4y))/2 from x^2/(1+x) <= y <= x^2 (Lean D)",
+   "no-elementary-closed-form x(y) (sympy NotImplementedError + W-branch asymptotic argument)",
+   "deep series with exact coefficients and leading neglected term (sympy-exact, O(s^7) remainder verified); Newtonian expansion y exp(-y) - y(y-1)exp(-2y) verified at y = 20..60",
+   "exact landmarks y(1) = 1 - 1/e; x(1/e) = 0.718078; y = 1 <-> x = 1.34997649 with g on both footings",
+   "conditioning dx/dy in [1/(1+e^-2), inf); deep dx/dy ~ 1/(2 sqrt(y))",
+   "stability function mu(T) + 2T mu'(T) = dy/dx > 0 (retired EXP equation only)",
+   "Q-deviation identity, branch table, negative-control positivity (proved + measured)"
+  ],
+  "measured_calibrations": [],
+  "not_derived": [
+   "kappa = 1/2",
+   "the constitutive dynamics behind the EXP line (no action, no field equation)",
+   "any MONO/operative-branch statement; the filtered-equation ellipticity modulus (bridge AS031.C01)",
+   "any empirical test or fit; no dataset used"
+  ]
+ },
+ "closure_implication": {
+  "gate": "A02 constitutive kernels and branch fidelity, feeding requirement 9 (controlled zero-field limit) of the amended thirteen-item target (filtered MONO, criterion B): the RETIRED EXP branch's inverse structure is fully pinned (unique monotone inverse, exact mu-parametrization, universal bracket, exact asymptotics, conditioning), and the audit proves the quadratic-contact deep degeneracy (ellipticity constant mu + 2T mu' ~ 2x -> 0, dx/dy ~ 1/(2 sqrt(y))) is generic to y ~ x^2 kernels; the gap to the operative filtered MONO target is a single well-posed bridge (filtered ellipticity modulus) with the EXP table as its benchmark.",
+  "implication": "No EXP-branch result is imported into the operative weak-field equations: the EXP branch is retired, and its audit transfers ONLY through the explicit AS031.C01 bridge. Same-action/parameter-domain compatibility: the theorem is dimensionless and a0-footing independent; the code's mu_EXP branch is a comparison curve, never a substitute for nu_mono; no other branch was imported to construct the result.",
+  "breaking_requirements": [
+   "filtered MONO strong-ellipticity modulus near the zero-field limit (AS031.C01), benchmarked against the EXP audit table",
+   "declared measure/domain/boundary conditions for S = exp((xi^2/2) Delta) on the preferred foliation leaf"
+  ]
+ },
+ "child_proposals": [
+  {
+   "id": "AS031.C01",
+   "title": "Operative-gate bridge: strong-ellipticity modulus of the filtered MONO equation vs the EXP audit",
+   "claim": "On the preferred foliation leaf with S = exp((xi^2/2) Delta ) acting on a declared Sobolev domain, the linearized filtered MONO operator of Delta Phi = 4 pi G rho_b + S* div[(nu_mono(|grad S u|/a0) - 1) grad S u] has a strong-ellipticity constant bounded below by a computable function of y whose deep modulus (y -> 0) is O(1) if the filter removes the quadratic-contact degeneracy, or O(x)-like if not; benchmark the modulus pointwise against this run's EXP audit table (dx/dy | y=1e-10 = 5.0000e4, min dx/dy = 1/(1+e^-2) = 0.880797 at x = 2, max slope 1+e^-2 at x = 2).",
+   "parent": "AS031 run AS031-r1-20260928T021426Z-dsv4f-hermes (task c898cbe4..., derivation b0a04218..., lean 7ba43663...)",
+   "controls": [
+    "S -> id constant-field limit: must recover the EXP-style dy/dx numbers (control can fail if xi-dependence persists)",
+    "filter-width sweep: varying xi must move the modulus",
+    "deep limit y -> 0 of the filtered modulus computed, not assumed",
+    "zero-sorry Lean certificate for the cleared algebraic form"
+   ],
+   "dependencies": [
+    "FRAMEWORK_CONTRACT MONO definitions, splice parameters, and S definition",
+    "FRIED_CHICKEN_SPEC requirement-9 amendment (pinned hash)",
+    "this run's EXP audit table and Lean certificate"
+   ],
+   "duplicate_check": "AS/MY manifests, claims/ and results/ dirs scanned: no task targets the FILTERED ellipticity modulus benchmarked against an EXP branch table; closest seeds AS033 (splice location), AS034 (MONO continuation integration), AS036 (physical vs phantom monotonicity), AS046 (inverse conditioning), AS047 (force vs derivative error control), AS577/AS578 (MONO convexity/monotonicity modulus), AS026.C01 (Q-vs-MONO mass-profile band) are distinct fingerprints.",
+   "dispatch_state": "NOT DISPATCHED -- no subagent spawn mechanism available to this worker; ready spec returned for the orchestrator per FIRST_PRINCIPLES_AND_BRANCHING.md"
+  }
+ ],
+ "closure_candidate": null
+}

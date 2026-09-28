@@ -1,0 +1,102 @@
+{
+ "pass": 16,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "S1 [removal identity, exact] the boundary condition J(Y_ref)=0 with kernel J'=mu_n fixes J(0)=-int_0^Y_ref mu_n dY; the n=2 integral evaluates to the closed form -lam^2/(1+lam)",
+   "measured": "J0(lam) = -lambda**2/(lambda + 1); general n: Piecewise(((-lambda*(n - 1) - (lambda + 1)**(1 - n) + 1)/(n - 1), (n > 1) | (n < 1)), (-lambda + log(lambda + 1), True))",
+   "pass": true,
+   "reading": "FTC + elementary quadrature, exact. The additive constant is determined by the reference position."
+  },
+  {
+   "name": "S2 [FTC consistency by direct differentiation] d/dlam[J(0)] = -J'(lam) = -mu_n(lam), symbolic, for n=2 (closed form) and n in {1,3,5/2,4}",
+   "measured": "n=2 residual: 0; general-n residuals: [True, True, True, True]",
+   "pass": true,
+   "reading": "the closed form is the exact primitive of the kernel; differentiation returns the kernel's negative exactly (no numerics involved)."
+  },
+  {
+   "name": "S3 [kernel limiting regimes, exact] mu_n'(0) = n (PD01 channel-count slope) and mu_n(inf) = 1 (L230 saturation), symbolic",
+   "measured": "mu_n'(0) = n; mu_n(inf) = 1",
+   "pass": true,
+   "reading": "the kernel's Newtonian slope is the channel count and the deep saturation is unity: the boundary position is the ONLY freedom the static kernel leaves for the primitive."
+  },
+  {
+   "name": "S4 [diagnostic counterexamples, exact fractions] at lambda = 1/2, 1, 2 the determined constants are J(0) = -1/6, -1/2, -4/3 (exact rationals)",
+   "measured": " -1/6, -1/2, -4/3",
+   "pass": true,
+   "reading": "three distinct, exactly equal to the closed form. These are the diagnostic counterexamples at lambda=1/2,1,2: the vacuum prediction changes with the reference and is negative at all three."
+  },
+  {
+   "name": "N1 [FTC residual, 60-digit] quad(int_0^lam mu_2) vs closed form lam^2/(1+lam) at lam=0.5",
+   "measured": "quad = 0.1666666666666666666666667, closed = 0.1666666666666666666666667, rel resid = 0.0",
+   "pass": true,
+   "reading": "numerical integration of the actual kernel reproduces the closed form: the removal identity is an exact identity, not a fit."
+  },
+  {
+   "name": "N1 [FTC residual, 60-digit] quad(int_0^lam mu_2) vs closed form lam^2/(1+lam) at lam=1.0",
+   "measured": "quad = 0.5, closed = 0.5, rel resid = 0.0",
+   "pass": true,
+   "reading": "numerical integration of the actual kernel reproduces the closed form: the removal identity is an exact identity, not a fit."
+  },
+  {
+   "name": "N1 [FTC residual, 60-digit] quad(int_0^lam mu_2) vs closed form lam^2/(1+lam) at lam=2.0",
+   "measured": "quad = 1.333333333333333333333333, closed = 1.333333333333333333333333, rel resid = 0.0",
+   "pass": true,
+   "reading": "numerical integration of the actual kernel reproduces the closed form: the removal identity is an exact identity, not a fit."
+  },
+  {
+   "name": "N2 [general-n FTC residual] int_0^lam (1-(1+t)^(-n)) dt vs closed form at n=1.0, lam=1.0; J(0) = -<that integral>",
+   "measured": "rel resid 3.8894e-62 (J(0) = -0.30685281944)",
+   "pass": true,
+   "reading": "the general-n closed form (n != 1) and the n=1 log form are exact primitives of the kernel for every n >= 1 sampled."
+  },
+  {
+   "name": "N2 [general-n FTC residual] int_0^lam (1-(1+t)^(-n)) dt vs closed form at n=3.0, lam=0.5; J(0) = -<that integral>",
+   "measured": "rel resid 0.0 (J(0) = -0.222222222222)",
+   "pass": true,
+   "reading": "the general-n closed form (n != 1) and the n=1 log form are exact primitives of the kernel for every n >= 1 sampled."
+  },
+  {
+   "name": "N2 [general-n FTC residual] int_0^lam (1-(1+t)^(-n)) dt vs closed form at n=2.5, lam=2.0; J(0) = -<that integral>",
+   "measured": "rel resid 0.0 (J(0) = -1.46163339315)",
+   "pass": true,
+   "reading": "the general-n closed form (n != 1) and the n=1 log form are exact primitives of the kernel for every n >= 1 sampled."
+  },
+  {
+   "name": "N2 [general-n FTC residual] int_0^lam (1-(1+t)^(-n)) dt vs closed form at n=4.0, lam=1.0; J(0) = -<that integral>",
+   "measured": "rel resid 7.7788e-62 (J(0) = -0.708333333333)",
+   "pass": true,
+   "reading": "the general-n closed form (n != 1) and the n=1 log form are exact primitives of the kernel for every n >= 1 sampled."
+  },
+  {
+   "name": "N3 [Newtonian and deep asymptotics on the kernel] (mu_2(Y)-2Y)/(-3Y^2) -> 1 at Y=1e-8 and (1-mu_2(Y))*Y^2 - 1 -> -2/Y at Y=1e6",
+   "measured": "lin ratio-1 = 1.3333e-8 (expected ~ (4/3)Y = 1.3e-8); deep resid = 3.0e-12 (expected ~3/Y^2 = 3e-12)",
+   "pass": true,
+   "reading": "the stated leading neglected terms (domain: |Y| << 1 and Y >> 1) describe the kernel; the regulator question is about the PRIMITIVE, not the kernel."
+  },
+  {
+   "name": "N4 [primitive limiting regimes] Y_ref->0+: J(0) = -Y_ref^2 + O(Y_ref^3) -> 0- ; Y_ref->inf: J(0) = -Y_ref + 1 - 1/(1+Y_ref) -> -inf (no finite reference in the deep limit)",
+   "measured": "at lam=1e-10: R = -3.576e-5 (->0-, no information); at lam=1e12: J(0) = -1.0e+12, agrees with -lam+1-1/(1+lam) to rel 0.0",
+   "pass": true,
+   "reading": "the Newtonian end (Y_ref->0) leaves the constant trivially undetermined (vacuum -> 0); the deep end (Y_ref->inf) diverges because mu_n -> 1: k01's convergent class had Delta -> 0 there; for the MU_n kernel no boundary at infinity exists."
+  },
+  {
+   "name": "C1 [negative control: changed vacuum prediction under Y_ref variation] with the SAME static kernel J'=mu_2, moving the boundary from 1e-4 to 100 changes J(0) monotonically and strictly (dG0/dlam = (lam^2+2lam)/(1+lam)^2 > 0), so the vacuum prediction is a continuous one-parameter family, not a determined constant",
+   "measured": "monotone-strict: True, distinct values: True; ranges J(0) in [-1e-8 ... -99.0]",
+   "pass": true,
+   "reading": "the control is capable of failing: had the zero mode been removed WITHOUT residue, every Y_ref would give the same J(0)/vacuum prediction; they differ at every sampled reference. The freedom is relocated to Y_ref, not removed: one real dimensionless datum enters, fixed by no equation of the action (consistent with k01's no-second-scale theorem)."
+  },
+  {
+   "name": "C2 [magnitude fine-tune cannot fix the sign] the boundary position that matches |rho_vac/rho_Lambda| = 1 at K_B=0.00 sits at Y_ref* ~ 1.67224e-8 and still gives R < 0",
+   "measured": "Y_ref* = 1.67224239883e-8; R = -1.0 < 0",
+   "pass": true,
+   "reading": "an adopted (fitted) reference position can reach the SIZE but never the SIGN of the positive vacuum density: the sign obstruction is unconditional in this action class."
+  },
+  {
+   "name": "C2 [magnitude fine-tune cannot fix the sign] the boundary position that matches |rho_vac/rho_Lambda| = 1 at K_B=0.25 sits at Y_ref* ~ 1.7877e-8 and still gives R < 0",
+   "measured": "Y_ref* = 1.78770232219e-8; R = -1.0 < 0",
+   "pass": true,
+   "reading": "an adopted (fitted) reference position can reach the SIZE but never the SIGN of the positive vacuum density: the sign obstruction is unconditional in this action class."
+  }
+ ]
+}

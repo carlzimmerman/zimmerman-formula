@@ -1,0 +1,110 @@
+{
+ "acceptance_state": "unreviewed; only a separate orchestrator review may accept a scoped claim",
+ "ancestry": null,
+ "artifacts_sha256": {
+  "AS008_deep_temperature_certificates.lean": "5b09fed9d1eb3b6dbee4c6e2ccc1bcb3ed1339a4e4a8d30f0075843669d3ceee",
+  "as008_probe.out": "505599cdbff2f46b58a2a2137b80a7e563fd1acbf0dfe08ae37b49ab939871f6",
+  "as008_probe.py": "9d790453dd8435af6c9df8d7e1b546af5654844939f789ea0f68f8d7c36b90e1",
+  "as008_probe_raw.json": "4f2e4bf70fc964d57bf6110a543dbea9e10108c31bc56c9313ba5b9f79b8ea11",
+  "derivation.md": "161100821d34b7f1a70fd16cd8488867609d96838811c88094e2402c8ef8cef2",
+  "lean.out": "c107d99ad4fb14534be4a59277ea2afd5b640dfd9c4257fde79c50cb2adaa451",
+  "lean_compile2.out": "3e112b777eea01c8d981a396bc397ba5facadb6022d6e90e6e98278718d8e427"
+ },
+ "checks": [
+  {
+   "name": "symbolic_hydrostatic_residual",
+   "pass": true,
+   "tolerance": "0",
+   "value": "0.0"
+  },
+  {
+   "name": "high_precision_residuals (5 radii x 2 footings)",
+   "pass": true,
+   "tolerance": "1e-40",
+   "value": "0.0 @ 60dps"
+  },
+  {
+   "name": "degeneracy_identical_configuration_maxdiff",
+   "pass": true,
+   "tolerance": "1e-40",
+   "value": "0.0"
+  },
+  {
+   "name": "sis_relation v_flat^2-2 sigma^2",
+   "pass": true,
+   "tolerance": "0",
+   "value": "0.0"
+  },
+  {
+   "name": "wrong-normalization control (sigma^2=C)",
+   "pass": true,
+   "value": "mutation check differs (expected)"
+  },
+  {
+   "name": "Lean compile",
+   "pass": true,
+   "value": "exit 0, 0 errors, 0 sorry"
+  },
+  {
+   "name": "Lean axioms",
+   "pass": true,
+   "value": "all 9 theorems: {propext, Classical.choice, Quot.sound} exactly"
+  }
+ ],
+ "child_proposals": [
+  {
+   "id": "AS008.C01",
+   "status": "ready-not-dispatched",
+   "title": "equilibrium formation of sigma^2=C/2 from a slab/disc action"
+  }
+ ],
+ "closure_candidate": null,
+ "closure_implication": "gate 13 (a0-vacuum relation preserved as input): temperature map is a conditional consequence of the CORE identities only; no gate closed by this run",
+ "commands": [
+  "python3 as008_probe.py (probe, 21.4s)",
+  "lake env lean <abs>/AS008_deep_temperature_certificates.lean (exit 0)"
+ ],
+ "exact_claim": "Given conditional deep-equilibrium inputs sigma^2=C/2, rho_ph=C/(4pi G r^2), P=sigma^2 rho_ph and adopted kappa=1/2: (a) k_B*T=m*sigma^2 implies T=m*C/(2*k_B) exactly for all m, C, k_B>0, both footings; (b) the map (m,T)->(lambda m, lambda T) leaves sigma^2 invariant (measured sigma fixes only T/m, never m); (c) dP/dr=-rho_ph*g identically for r!=0, G!=0; (d) hydrostatic ODE d sigma^2/dr=(2 sigma^2-C)/r has general solution (C+K r^2)/2; (e) v_flat^2=2*sigma^2; (f) negative control: wrong normalization sigma^2=C breaks balance (residual factor 2, Lean-inequality). Numerics 27/27 checks pass at 50-60 dps on both footings.",
+ "execution_bounds": {
+  "cap_mb": 512,
+  "cap_s": 120,
+  "note": "macOS refused RLIMIT_AS lowering; peak measured and reported",
+  "peak_rss_mb": 63.9,
+  "threads": 1,
+  "wall_s": 21.38
+ },
+ "execution_status": "completed",
+ "failed_attempts": [
+  {
+   "artifact": "as008_probe.out (Lean T0/T2/T5 transient failures)",
+   "cause": "house-build deriv/convert and mul_right_cancel\u2080 direction traps; fixed via hasDerivAt_pow + const_mul + cleared-algebra control"
+  }
+ ],
+ "finished_utc": "2026-09-27T22:20:29.624244+00:00",
+ "first_principles_inputs": [
+  "adopted: kappa=1/2",
+  "adopted: sigma^2=C/2, rho_ph=C/(4pi G r^2), P=sigma^2 rho_ph (task-declared)",
+  "derived: T=m C/(2 k_B); degeneracy; hydrostatic identity; ODE family; SIS pairing; wrong-normalization discrimination"
+ ],
+ "framework_cell": "CORE scale identities; kappa=1/2 adopted; both a0 footings (9.3619e-11, 1.1279e-10 m/s^2); conditional deep-equilibrium targets per FRAMEWORK_CONTRACT; no branch law (Q/RAR/MU2/EXP/MONO) used; SI; no filter/gate; r>0, G>0, M_b>0 domain",
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS008_deep_temperature_as_a_velocity_scale.md": "43bd9a4d542815725b8c3db4fe53d0c3be87fcf62a7b9342d88a266460fa36a2",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517"
+ },
+ "limitations": "Conditional on task-declared equilibrium inputs and adopted kappa=1/2; no action/dynamics derivation, no branch-law content, no equilibrium formation, no observations; single-CORE-identity result, unreviewed",
+ "new_assumptions": [
+  "sigma^2=C/2, rho_ph=C/(4pi G r^2), P=sigma^2 rho_ph adopted as task-declared conditional inputs (not derived)",
+  "kappa=1/2 adopted (no derivation)"
+ ],
+ "next_unresolved_implication": "Derive sigma^2=C/2 and rho_ph=C/(4pi G r^2) from operative dynamics (equilibrium formation, finite boundaries, normalization, log-well double counting); nearest seeds AS087/AS097",
+ "outcome": "supports_scoped_claim",
+ "run_id": "AS008-r1-20260927T200612-8f9004",
+ "schema_version": 2,
+ "started_utc": "2026-09-27T20:06:12Z",
+ "suggested_followup": "AS087/AS097 equilibrium-statistical continuation; or branch transfer of the temperature map to filtered MONO state",
+ "task_id": "AS008",
+ "task_sha256": "43bd9a4d542815725b8c3db4fe53d0c3be87fcf62a7b9342d88a266460fa36a2",
+ "tested_domain": "r in (0,inf), M_b in [1e-3,1e6] M_sun sweep at y(r_M)=1; y=(r_M/r)^2 in [0.01,100]; both footings; exact real algebra (no limiting expansion)",
+ "worker": "sa-7-b5e2ed7b (subagent, deepseek-v4-flash via openrouter) + orchestrator completion of Lean cert + deliverables"
+}

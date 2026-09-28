@@ -1,0 +1,56 @@
+=== AS010 bounded computation (enforced: 1 thread, <=120 s wall, <=512 MB AS) ===
+elapsed_s = 0.121
+mem_enforced = not enforceable: current limit exceeds maximum limit
+observed_max_rss_bytes = 57327616  (~54 MB)
+footing_note: a0_alt/a0_canon = 1.20477680813; if rho_Lambda held fixed at the canonical value, the alternative footing implies effective kappa = 0.602388404063 != 1/2; if kappa held fixed at 1/2, the alternative footing implies rho_Lambda x 1.4514871574.
+--- footing canonical ---
+  rho_Lambda      = 5.84441245402e-27 kg/m^3
+  epsilon_Lambda  = 5.25269595973e-10 J/m^3
+  Lambda(=32 pi a0^2/c^4) = 1.09079976328e-52 1/m^2
+  rho_L from Lambda       = 5.84441245402e-27 kg/m^3
+  r_M(M_sun)      = 1.190639769e+15 m  = 0.0385860070457 pc
+  C = v_flat^2    = 111466.504534 (m/s)^2 ;  v_flat = 333.865997871 m/s
+  sigma^2 = C/2   = 55733.2522671 (m/s)^2 ;  sigma = 236.078911102 m/s
+  rho_ph(r_M)     = 9.37492982806e-17 kg/m^3
+  P(r_M) direct   = 5.22495329093e-12 Pa
+  P(r_M) claimed  = 5.22495329093e-12 Pa  = a0^2/(8 pi G)
+  P/eps_L         = 0.00994718394324  (1/(32 pi) = 0.00994718394324 )
+  P/rho_L (c^2 DROPPED comparison) = 8.94008308284e+14  (units m^2/s^2)
+  kappa recovered = 0.5
+--- footing alternative ---
+  rho_Lambda      = 8.48308961956e-27 kg/m^3
+  epsilon_Lambda  = 7.62422072727e-10 J/m^3
+  Lambda(=32 pi a0^2/c^4) = 1.5832818477e-52 1/m^2
+  rho_L from Lambda       = 8.48308961956e-27 kg/m^3
+  r_M(M_sun)      = 1.08474357159e+15 m  = 0.0351541450116 pc
+  C = v_flat^2    = 122348.227439 (m/s)^2 ;  v_flat = 349.783114857 m/s
+  sigma^2 = C/2   = 61174.1137197 (m/s)^2 ;  sigma = 247.33401246 m/s
+  rho_ph(r_M)     = 1.23973232118e-16 kg/m^3
+  P(r_M) direct   = 7.5839525998e-12 Pa
+  P(r_M) claimed  = 7.5839525998e-12 Pa  = a0^2/(8 pi G)
+  P/eps_L         = 0.00994718394324  (1/(32 pi) = 0.00994718394324 )
+  P/rho_L (c^2 DROPPED comparison) = 8.94008308284e+14  (units m^2/s^2)
+  kappa recovered = 0.5
+--- checks ---
+  [PASS] CK-SYM_exact_identity_residual         tol=exactly 0 (sympy simplify)   obs=0
+  [PASS] CK-SYM_eta_generalization              tol=exactly 0 (sympy simplify)   obs=0
+  [PASS] CK-SYM_normalization_law               tol=exactly 0 (sympy simplify)   obs=0
+  [PASS] CK-HP_canonical_P_residual             tol=< 1.0e-50                    obs=1.08322488434e-61
+  [PASS] CK-HP_alternative_P_residual           tol=< 1.0e-50                    obs=1.49257246793e-61
+  [PASS] CK-MBSWEEP_canonical                   tol=< 1.0e-50                    obs=max rel dev = 3.24967465303e-61
+  [PASS] CK-MBSWEEP_alternative                 tol=< 1.0e-50                    obs=max rel dev = 2.98514493586e-61
+  [PASS] CK-NORM_canonical                      tol=< 1.0e-50                    obs=max rel dev = 2.77305570392e-59
+  [PASS] CK-NORM_alternative                    tol=< 1.0e-50                    obs=max rel dev = 9.55246379474e-60
+  [PASS] CK-EPS_canonical                       tol=< 1.0e-50                    obs=P/eps_L = 0.0099471839432434584856, 1/(32 pi) = 0.0099471839432434584856, rel dev 0.0
+  [PASS] CK-EPS_alternative                     tol=< 1.0e-50                    obs=P/eps_L = 0.0099471839432434584856, 1/(32 pi) = 0.0099471839432434584856, rel dev 0.0
+  [PASS] CK-SIGMA_canonical                     tol=< 1.0e-50                    obs=sigma = 236.0789111019595155, v_flat/sqrt2 = 236.0789111019595155, rel dev 0.0
+  [PASS] CK-SIGMA_alternative                   tol=< 1.0e-50                    obs=sigma = 247.33401246024612116, v_flat/sqrt2 = 247.33401246024612116, rel dev 0.0
+  [PASS] CK-RHOL_canonical                      tol=< 1.0e-50                    obs=rel dev 0.0
+  [PASS] CK-RHOL_alternative                    tol=< 1.0e-50                    obs=rel dev 0.0
+  [PASS] CK-DIM_P_vs_a02G                       tol=equal by hand-table evaluation obs={'M': 1, 'L': -1, 'T': -2} vs {'M': 1, 'L': -1, 'T': -2}
+  [PASS] CK-DIM_P_vs_rhoL_mismatch              tol=must differ by exactly c^2   obs={'M': 1, 'L': -1, 'T': -2} vs {'M': 1, 'L': -3, 'T': 0} (differs by +2 L, -2 T => missing factor c^2)
+  [PASS] NC1_canonical                          tol=< 1.0e-50                    obs=P/rho_L = 894008308283777.70262 vs c^2/(32 pi) = 894008308283777.70262, rel dev 0.0
+  [PASS] NC1_alternative                        tol=< 1.0e-50                    obs=P/rho_L = 894008308283777.70262 vs c^2/(32 pi) = 894008308283777.70262, rel dev 9.79645862447e-62
+  [PASS] NC1_verdict_dropped_c2_rejected        tol=control must fail against the c^2-dropped claim obs=the c^2-free comparison is dimensionally illegal (control FAILS as designed)
+  [PASS] NC2_no_regime_limit_in_claim           tol=qualitative                  obs=claim is an algebraic identity in (a0, G, M_b, r) with no small/large parameter or expansion; CK-SYM is the ex
+TOTAL: pass=21 fail=0

@@ -1,0 +1,108 @@
+{
+ "pass": 16,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [S1: statics] EL(J + lam*C) == EL(J) exactly for lam in {1/2, 1, 2} and symbolic lam",
+   "measured": "{'1/2': ['0', '0'], '1': ['0', '0'], '2': ['0', '0'], 'symbolic': ['0', '0']}",
+   "pass": true,
+   "reading": "the reduced static field equations contain J only through J' (see EL forms below); any additive constant in the MOND primitive is invisible in the statics"
+  },
+  {
+   "name": "A2 [S4: tightness] a Y-dependent shift J -> J + lam*C*w(Y) with w' != 0 changes the equations (residual != 0)",
+   "measured": "['2*C*alpha*lambda*(3*Derivative(phi(x), x)**2 - 1)*Derivative(phi(x), (x, 2))/(Derivative(phi(x), x)**6 + 3*Derivative(phi(x), x)**4 + 3*Derivative(phi(x), x)**2 + 1)', '0']",
+   "pass": true,
+   "reading": "the invariant subspace of J -> J + shift is EXACTLY the constants: the additive zero mode is the only invisible direction.  A would-be counterexample with a field-dependent 'constant' fails, so the S1 claim is tight"
+  },
+  {
+   "name": "A3 [independent representation] finite-difference gradient of the discretized static action is unchanged under J -> J + C",
+   "measured": "max |d| = 6.661e-10, rel = 7.322e-10",
+   "pass": true,
+   "reading": "same statement as A1 in an entirely different representation (discrete action gradient by central differences): the invariance is not a symbolic artifact"
+  },
+  {
+   "name": "B1 [S2: background] Lambda_eff = Lambda + (2-K_B) J(0)/2 + K(Q0)/2 exactly",
+   "measured": "J_0*alpha/2 + K_0/2 + Lambda",
+   "pass": true,
+   "reading": "signs: the action's constant density is -2*Lambda - alpha*J(0) - K(Q0) (all three terms negative with the corpus's conventions); matching -2*Lambda_eff fixes Lambda_eff = Lambda + alpha J0/2 + K0/2.  On Y = 0 the whole J(0)/K(Q0) sector is dimensionless L^-2 in c = 1 units (acceleration-squared / c^4 in SI)"
+  },
+  {
+   "name": "B2 [S2: linearity] Delta Lambda_eff = lam*alpha*C/2, linear in lam (1/2, 1, 2)",
+   "measured": "C*alpha*lambda/2",
+   "pass": true,
+   "reading": "the background shift is exactly linear in the added constant's coefficient lam"
+  },
+  {
+   "name": "B3 [S2: rank] (Lambda, J(0), K(Q0)) enter Lambda_eff only through ONE combination (Jacobian rank 1; two independent null directions)",
+   "measured": "singular values [1.41972709]",
+   "pass": true,
+   "reading": "two independent zero directions: (dLambda = -alpha*dJ0/2, dK0 = 0) and (dLambda = -dK0/2, dJ0 = 0): a TWO-dimensional vacuum zero-mode degeneracy collapses onto the single observable Lambda_eff"
+  },
+  {
+   "name": "C1 [S3: exact] the compensated pair leaves the action density pointwise unchanged (-2*(-lam*alpha*C/2) - alpha*(lam*C) = 0 identically)",
+   "measured": "0",
+   "pass": true,
+   "reading": "this is an EXACT symmetry of the full action, not an asymptotic statement: J(0) is a pure Lambda-gauge degree of freedom within the action class"
+  },
+  {
+   "name": "C2 [numeric] action densities of the compensated pair agree to machine precision on a nontrivial static profile (lam in {1/2, 1, 2}, two C values)",
+   "measured": "max |Delta| < 1e-14 on all four samples",
+   "pass": true,
+   "reading": "S3 is not only symbolic: the pointwise identity holds to 1e-15 on numerical profiles"
+  },
+  {
+   "name": "D1 [MU_n] deep-MOND slope mu_n'(0) = n (symbolic), Newtonian saturation mu_n -> 1; verified at n = 1..6",
+   "measured": "mu_n'(0) = n, mu_n(inf) = 1",
+   "pass": true,
+   "reading": "the response family of the seed: deep slope = the channel count n; both limits constrain ONLY J' (through mu), never J(0) -- the zero mode survives both limits"
+  },
+  {
+   "name": "D2 [a0-line chain] mu_n ~ n g/s gives the a0-line with a0 = s/n, kappa_n = 1/n (symbolic n)",
+   "measured": "a0 = s_N/n, kappa = 1/n",
+   "pass": true,
+   "reading": "canonical n = 2 gives kappa = 1/2 = the ADOPTED value (consistency, not a derivation: the adopted one-half normalization still carries no independent freedom-removing argument beyond the count)"
+  },
+  {
+   "name": "D3 [footings] canonical a0 = 9.3619e-11 m/s^2 has kappa = 1/2, n = 2 exactly; alternative a0 = 1.1279e-10 has kappa_eff = 0.60238 (n = 1.6601, not a channel count) at fixed rho_L, or n = 2 with rho_L' = 8.4837e-27 kg/m^3 at fixed kappa",
+   "measured": "{'canonical': {'kappa_eff': 0.5, 'n_eff': 2.0}, 'alt': {'kappa_eff': 0.6023884040632778, 'n_eff': 1.660058515825871}}",
+   "pass": true,
+   "reading": "both footings stated separately; the alternative footing is an alternative NORMALIZATION, not the same rho_L with the same kappa"
+  },
+  {
+   "name": "D4 [S6a: sign] under the saturation/truncated-end fixing (J(sat) = 0), J(0) = -I_n a0^2 < 0 for every n = 1..6 and every truncation: rho_vac < 0",
+   "measured": "['z_t**2 - 2*z_t + 2*log(z_t + 1)', '((z_t + 1)*(z_t**2 - 2*log(z_t + 1) + 2) - 2)/(z_t + 1)', 'z_t**3*(z_t + 2)/(z_t**2 + 2*z_t + 1)', 'z_t**3*(z_t**2 + 3*z_t + 8/3)/(z_t**3 + 3*z_t**2 + 3*z_t + 1)', 'z_t**3*(6*z_t**3 + 24*z_t**2 + 35*z_t + 20)/(6*(z_t**4 + 4*z_t**3 + 6*z_t**2 + 4*z_t + 1))', 'z_t**3*(10*z_t**4 + 50*z_t**3 + 99*z_t**2 + 95*z_t + 40)/(10*(z_t**5 + 5*z_t**4 + 10*z_t**3 + 10*z_t**2 + 5*z_t + 1))']",
+   "pass": true,
+   "reading": "mathematically forced: mu_n > 0 on (0, inf) => I_n = 2*int z mu_n dz > 0, so the primitive descends toward Y = 0 and its vacuum zero is NEGATIVE (attractive-sign scalar kinetic).  The Lambda-free repair of k01 K3 fails on sign for the whole MU_n family, n-independent (k01 established this for the nu_RAR/exp carriers)"
+  },
+  {
+   "name": "D5 [S6b: ill-posed fixing] the k01-style primitive span I_n(Z) = 2*int_0^Z z mu_n dz grows ~ Z^2 for every n (no saturation point in the MU_n family): the 'empty Newtonian vacuum' fixing is ill-posed on the untruncated carrier",
+   "measured": "log-log slopes ~ 2.0 for n = 1..4",
+   "pass": true,
+   "reading": "the MU_n branch has mu_n -> 1 only at Y -> infinity; unlike the corpus's saturated nu_RAR/MONO kernels (bounded Delta, k01 I_rar = 2.54...) the MU_n primitive's span does not converge -- the fixing depends on an arbitrary truncation (functional freedom), which is itself part of the audit: J(0) is not fixed by the action"
+  },
+  {
+   "name": "D6 [S6c: size] at the explicit mu = 0.99 truncation, |rho_vac|/rho_Lambda spans [0.011, 1.129] across n x K_B x footings and varies by a factor > 5 within this one truncation choice",
+   "measured": "min 0.0109, max 1.1290",
+   "pass": true,
+   "reading": "the SIGN is convention-independent (D4), the SIZE is not: changing n, K_B, the footing or the truncation moves the ratio over two orders of magnitude, i.e. the magnitude of the primitive's vacuum energy carries no fixed meaning until a principle fixes the primitive's zero -- the audit conclusion (S5) is independent of which kernel family is used"
+  },
+  {
+   "name": "E1 [control 1: statics] the static observable g(r) is bitwise identical under J -> J + lam*C (equation unchanged; substituted residual max < 1e-12), while a nonconstant shift changes g(r) by O(0.01-0.1) relative (probe capable of failing, and it does fail for nonconstant w)",
+   "measured": "residuals < 1e-12 (constant) vs > 1e-3 (nonconstant)",
+   "pass": true,
+   "reading": "the static sector is exactly invariant under the constant zero-mode shift and exactly sensitive to any nonconstant perturbation: the control is discriminating"
+  },
+  {
+   "name": "E2 [control 2: background] compensating Lambda -> Lambda - lam*alpha*C/2 restores IDENTICAL Friedmann evolution (exact identity, C1); leaving the shift uncompensated changes rho_Lambda by 0.4-2% depending on lam and K_B -- the control is capable of failing and the numbers show the shift is observable unless Lambda is adjusted",
+   "measured": "Delta rho_Lambda/rho_Lambda in [4.352e-03, 1.989e-02] uncompensated; 0 compensated",
+   "pass": true,
+   "reading": "this is the seed's control in executable form: fix Lambda to compensate C and the observables are unchanged despite a changed primitive zero"
+  }
+ ],
+ "lambda_eff_formula": "J_0*alpha/2 + K_0/2 + Lambda",
+ "s": 1.87238e-10,
+ "rho_Lambda_can": 5.844412454021876e-27,
+ "kappa_alt_eff": 0.6023884040632778,
+ "rho_Lambda_alt_fixed_kappa": 8.483089619559099e-27,
+ "wall_s": 1.366
+}

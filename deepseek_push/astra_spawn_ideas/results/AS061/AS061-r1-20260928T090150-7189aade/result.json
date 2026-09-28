@@ -1,0 +1,194 @@
+{
+  "schema_version": 2,
+  "task_id": "AS061",
+  "task_sha256": "f374623b861fd37caa88a60abdb5ebf6afab59ec121b970aea88b6223691fc6f",
+  "run_id": "AS061-r1-20260928T090150-7189aade",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter) via Hermes agent subagent, macOS host",
+  "started_utc": "2026-09-28T09:01:50Z",
+  "finished_utc": "2026-09-28T10:52:14Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "In the PD08 static scalar-kinetic class S = (1/8 pi G) INT s^2 K(|grad Phi|^2/s^2) d^3x - INT rho_b Phi d^3x with K(X) = C0 + eps*X + alpha*X^(3/2), alpha > 0, s = c*sqrt(G*rho_Lambda), Y = g/s: (S1) the EL equation div(mu grad Phi) = 4 pi G rho_b with mu(Y) = K'(Y^2) = eps + (3/2)alpha*Y is exactly invariant under C0 -> C0 + Delta for every Delta (vacuum energy is a null direction of the response; dimensionless, holds on both registered footings); (S2) the zero-gradient linear-response tensor is chi_ij(0) = eps*delta_ij exactly (limit probe dPhi = t*n, t->0, every direction, every alpha>0, any C0), so eps>0 gives a quasi-Newtonian Poisson operator eps*grad^2 dPhi = 4 pi G drho with bare coupling G/eps and eps=0 gives the exactly degenerate susceptibility with deep wedge mu ~ (3/2)alpha*Y and a_deep-line g^2 = (2s/3alpha)*g_N = a_deep*g_N; (S3) negative controls: C0=0, eps=1 gives K(0)=0 AND mu(0)=1 != 0; eps=0, C0=1 gives mu(0)=0 with rho_vac = C0*s^2/(8 pi G) != 0 \u2014 zero vacuum energy does not force zero susceptibility and degenerate susceptibility does not force zero vacuum energy; (S4) matching the adopted kappa = 1/2 (a_deep = s/2) pins alpha = 4/3 only; eps and C0 are unpinned by this calculation. Domain: positive-finite dimensionless parameters, alpha > 0, Y >= 0, eps = lambda in {1/2, 1, 2} for the diagnostic counterexamples; validity window of the Taylor truncation Y << 1 (leading neglected term 2*(3alpha/(2s))^2*g_N^3/eps^5, relative size (3 alpha/eps)*Y).",
+  "framework_cell": "Action: PD08 particle-free static scalar-kinetic, deepseek_push/PD08_particle_free_derivation.py (sha256 83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb); kernel K(X) = C0 + eps*X + alpha*X*X^(1/2); filter: full branch (no filter; operative filtered-MONO splice outside lane, filter-S specification open); gate: CORE coefficient, group A03; coupling: mu(Y) = K'(Y^2), constitutive law g*mu(g/s) = g_N = GM_b/r^2 on the spherical first integral; parameters: C0 (vacuum energy, J/m^3 via C0*s^2/(8 pi G)), eps (linear susceptibility, dimensionless), alpha (deep coefficient, dimensionless), kappa = 1/2 ADOPTED as input (a0 = (c/2)*sqrt(G*rho_Lambda)), s = c*sqrt(G*rho_Lambda); scale footing: canonical a0 = 9.3619e-11 m/s^2 -> s = 1.872380e-10 m/s^2, rho_L = 4*a0^2/(G*c^2) = 5.84441245e-27 kg/m^3, eps_vac(C0=1) = 2.089981e-11 J/m^3; alternative a0 = 1.1279e-10 m/s^2 -> s = 2.255800e-10 m/s^2, rho_L = 8.48308961e-27 kg/m^3, eps_vac(C0=1) = 3.033581e-11 J/m^3; the two footings cannot share fixed rho_Lambda and fixed kappa (kappa_eff = a0_alt/s_can = 112790/187238 = 0.602376... != 1/2 at the canonical density); boundaries: isolated static point mass, Y >= 0 axis, zero-gradient limit Y -> 0; initial conditions: n/a (static); units: SI (m, kg, s), accelerations m/s^2, [mu] = 1, [K] = 1.",
+  "new_assumptions": [
+    "kappa = 1/2 adopted as framework input (a0 = (c/2)*sqrt(G*rho_Lambda)); not derived here \u2014 the pinning alpha = 4/3 removes the freedom of the deep coefficient, not the freedom of kappa",
+    "K(X) = C0 + eps*X + alpha*X^(3/2) with alpha > 0, truncated Taylor shape in X (validity Y << 1)",
+    "eps = lambda in {1/2, 1, 2} used only as diagnostic counterexamples, not as observational preference",
+    "spherical point-mass first integral g*mu(g/s) = GM_b/r^2 used for the residual reassembly of the constitutive law",
+    "MU2 and EXP branch laws evaluated by implicit solves (scipy.optimize.brentq) at the deep end; their exact zero-field limits are finite-numerical consistency, not proofs (AS030 note)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS061_vacuum_energy_does_not_fix_linear_susceptibility.md": "f374623b861fd37caa88a60abdb5ebf6afab59ec121b970aea88b6223691fc6f",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "required-read; contents recorded in derivation.md (framework base satisfied, kappa=1/2 adopted)",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "schema_version 2; all required fields filled in this file"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/checks_AS061.py": "7f82f6cf72fe4a92fe68b00c33923d6248bf204a318a722350b52a232aa0aa35",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/result_checks_raw.txt": "fcdae50f37eaa64d13e768d1374397a494383ae61030efd2f9b2b3dafe39a8ca",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/stderr_time.txt": "fab27d95ebe1d22f4e01a4097f7d1d3a1b97cb05f888f1871d6411bee8d5d02d",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/AS061_vacuum_energy_susceptibility.lean": "3c3593fcbf7cbdf351ba364afca1c17537664d0f9d6162d74a5fcaf396d2f3bc",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/lean_compile.txt": "f109d7f6b34d6dc11ca536917fa41e680380125d7168675dd1525f2650bd9846",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/axioms_check.lean": "9b1ee6c008205e10c485537f215ef0d28902b83d3e21086b94a10608a46eedb9",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/axioms_out.txt": "1e4492121dca585c2894d7e9ea5c43fd8236ba7c4a1c221dc9b34555d03b3b76",
+    "deepseek_push/astra_spawn_ideas/results/AS061/AS061-r1-20260928T090150-7189aade/derivation.md": "1a877e7410f2f1e604cc361c98c1dad6d8b15d0a0603046cb261842a7ae234e1"
+  },
+  "commands": [
+    "shasum -a 256 deepseek_push/astra_spawn_ideas/AS061_vacuum_energy_does_not_fix_linear_susceptibility.md  (verified f374623b...1fc6f; cwd: /Users/carlzimmerman/new_physics/zimmerman-formula)",
+    "python3 checks_AS061.py > result_checks_raw.txt 2> stderr_time.txt  (cwd: run dir; wrapper: /usr/bin/time -p; exit 0; 22/22 PASS, 0.40 s wall, peak RSS 111984640 bytes)"
+  ],
+  "execution_bounds": "declared: wall <= 120 s, memory <= 512 MB, threads = 1; enforced: SIGALRM 120 s (alarm firing raises TimeoutError; observed run 0.40 s wall), single thread by construction (no threading/subprocess; OMP/MKL/OPENBLAS_NUM_THREADS=1), RLIMIT_AS attempt REFUSED by macOS (ValueError: current limit exceeds maximum limit) \u2014 recorded limitation; measured peak RSS 111984640 bytes (~106.8 MB) via resource.getrusage, far below the declared bound; sampling bounds: 10 log-spaced radii per lambda in [1e-3, 1e6] pc, branch grids y in [1e-12, 1e-8], lambda in {1/2,1,2}, 60-digit mpmath working precision for C5a/C6, float64 for C8b.",
+  "checks": [
+    {
+      "name": "C1a variation",
+      "tol_set_before": "exact (sympy simplify == 0)",
+      "measured": "mu(Y) = 3*alpha*g/(2*s) + eps; mu - (eps + 3al/2*sqrt(g^2/s^2)) = 0 exactly",
+      "pass": true
+    },
+    {
+      "name": "C1b C0-invariance (k01 K1 mirror)",
+      "tol_set_before": "exact 0",
+      "measured": "d(K+7C0)/dX at Y = 3*alpha*g/(2*s) + eps; difference = 0",
+      "pass": true
+    },
+    {
+      "name": "C2a zero-gradient tensor chi_ij(0) = eps*delta_ij",
+      "tol_set_before": "exact limits",
+      "measured": "chi_11 -> eps, chi_22 -> eps, chi_12 -> 0 (t->0, every direction); direct d/dt route = eps*n1",
+      "pass": true
+    },
+    {
+      "name": "C2b longitudinal/transverse decomposition",
+      "tol_set_before": "exact limits",
+      "measured": "chi_L = eps + 3al*Y, chi_T = eps + (3al/2)*Y; both -> eps at Y->0",
+      "pass": true
+    },
+    {
+      "name": "C2c linearised operator",
+      "tol_set_before": "exact (formal)",
+      "measured": "eps*grad^2 dPhi = 4piG drho (eps>0); eps=0 -> 0 (degenerate)",
+      "pass": true
+    },
+    {
+      "name": "C3a Newtonian limit series (substitution check)",
+      "tol_set_before": "exact (series residual 0)",
+      "measured": "g = gN/eps - (3al/(2s))gN^2/eps^3 + 2(3al/(2s))^2 gN^3/eps^5 + ...; substitute-back residual through O(gN^2): 0",
+      "pass": true
+    },
+    {
+      "name": "C3b deep limit exact identity",
+      "tol_set_before": "exact identity",
+      "measured": "g^2/g_N = 2*s/(3*alpha) = a_deep for eps=0, every radius",
+      "pass": true
+    },
+    {
+      "name": "C3c scale domino kappa=1/2 pins alpha=4/3",
+      "tol_set_before": "exact",
+      "measured": "kappa_model = 2/(3alpha); al(kappa=1/2) = 4/3; eps and C0 absent",
+      "pass": true
+    },
+    {
+      "name": "C4a NEGATIVE CONTROL (mandated): C0=0, eps=1",
+      "tol_set_before": "exact: K(0)=0 AND mu(0)=1",
+      "measured": "K(0)=0; mu(0)=1; 1 != 0 \u2014 control capable of failing and survives",
+      "pass": true
+    },
+    {
+      "name": "C4b negative control (reverse): eps=0, C0=1",
+      "tol_set_before": "exact: mu(0)=0 with C0=1",
+      "measured": "mu(0)=0; rho_vac = C0*s^2/(8piG) = 2.089981e-11 J/m^3 != 0 (canonical)",
+      "pass": true
+    },
+    {
+      "name": "C5a 60-digit closed-form residual (lambda=1/2,1,2)",
+      "tol_set_before": "1e-20 relative",
+      "measured": "max|r^2 g mu - GM|/GM over r in [1e-3,1e6] pc: 8.346e-28 (0.5), 2.049e-27 (1.0), 2.786e-27 (2.0) \u2014 actual numbers",
+      "pass": true
+    },
+    {
+      "name": "C5b linear-plateau / deep-window / eps->0 continuity",
+      "tol_set_before": "(i) 1e-9; (ii) > 1e-9; (iii) 1e-20",
+      "measured": "(i) |eps*g/g_N - 1| = 1.0e-12 all lambdas at g_N = eps^2*a0*1e-12; (ii) deep-law error at g_N=a0: 0.3904/0.618/0.8284 (deep window closed by eps>0); (iii) eps=1e-25: 1.0e-25 all lambdas",
+      "pass": true
+    },
+    {
+      "name": "C5d susceptibility independent of alpha",
+      "tol_set_before": "exact rational arithmetic",
+      "measured": "mu(0)=0 for alpha=1/2,1,2 while kappa_model = 4/3, 2/3, 1/3",
+      "pass": true
+    },
+    {
+      "name": "C6a canonical footing",
+      "tol_set_before": "1e-33 (vs committed AS002 density)",
+      "measured": "s=1.872380e-10, rho_L=5.844412e-27 kg/m^3, eps_vac(C0=1)=2.089981e-11 J/m^3",
+      "pass": true
+    },
+    {
+      "name": "C6b alternative footing; footings cannot share fixed rho_L and kappa",
+      "tol_set_before": "1e-33 / 1e-12 (kappa_alt = 112790/187238 exact)",
+      "measured": "s=2.255800e-10, rho_L=8.483090e-27 kg/m^3, kappa_eff@rho_L^can = 0.602388 (exact fraction 112790/187238)",
+      "pass": true
+    },
+    {
+      "name": "C6c dimensionless theorem on both footings",
+      "tol_set_before": "n/a (reporting)",
+      "measured": "canonical eps_vac=2.089981e-11, alternative eps_vac=3.033581e-11 J/m^3",
+      "pass": true
+    },
+    {
+      "name": "C7a branch survey Q/RAR/MU2/EXP/MONO: mu(0)=0",
+      "tol_set_before": "1e-3 at deep window [1e-12,1e-8]",
+      "measured": "max mu(y): Q 1.00e-04, RAR 1.00e-04, MU2 2.24e-05, EXP 3.16e-05, MONO 1.00e-04 (MU2/EXP implicit via brentq)",
+      "pass": true
+    },
+    {
+      "name": "C7b mu_n family",
+      "tol_set_before": "exact",
+      "measured": "lim_{Y->0} mu_n = 0; deep-MOND slope at origin = n for every n>=1",
+      "pass": true
+    },
+    {
+      "name": "C8a finite-difference derivative",
+      "tol_set_before": "1e-6 (h = 1e-6*X, O(h^2))",
+      "measured": "max relative residual 7.62e-11",
+      "pass": true
+    },
+    {
+      "name": "C8b float64 cross-representation (lambda 0.5/1.0/2.0)",
+      "tol_set_before": "1e-9 (float64 noise floor; exactness symbolically + 60 digits)",
+      "measured": "max relative residuals 1.78e-13 / 4.54e-14 / 1.01e-12",
+      "pass": true
+    },
+    {
+      "name": "Lean 4 certificate compile + axioms",
+      "tol_set_before": "zero sorry; axioms subset {propext, Classical.choice, Quot.sound}",
+      "measured": "lake env lean EXIT 0; every one of the 12 statements: axioms exactly [propext, Classical.choice, Quot.sound]",
+      "pass": true
+    }
+  ],
+  "tested_domain": "dimensionless positive finite parameters alpha > 0, eps = lambda in {1/2, 1, 2}, C0 in {0, 1, 7} (invariance probes), Y >= 0 (drive axis), radii r in [1e-3, 1e6] pc (10 log-spaced per lambda), branch grids y in [1e-12, 1e-8], X in [1e-8, 1] (finite differences); exact symbolic algebra (sympy) and 60-digit arithmetic (mpmath) with a float64 cross-representation; Lean 4 (Mathlib) for the closed-form statements. Exclusions: time-dependent dynamics, pressure/velocity dispersions, filter-S spliced operative MONO (outside lane), cosmology, psi- or phi-specific channel count n beyond the mu_n family identities.",
+  "failed_attempts": [
+    "Lean certificate iterations (all preserved in this run dir): 7 compile-fix cycles against the derivative composition \u2014 resolved via rw-normalised derivative pre-lemmas, convert using 3, and order-proof all_goals first | simp | rfl | ring_nf closures; final compile EXIT 0. Intermediate diagnostics: scratch_variants.lean, scratch2.lean, scratch3.lean, scratch4.lean (removed after success), lean_compile.txt holds the final clean log.",
+    "RLIMIT_AS memory bound refused by macOS (ValueError) \u2014 recorded as environment limitation; RSS measured instead (111984640 bytes)."
+  ],
+  "limitations": "This result does not (i) derive kappa = 1/2 (adopted input; the pinning alpha = 4/3 only removes the deep-coefficient freedom); (ii) fix the linear susceptibility eps \u2014 it is unpinned by this calculation (S4); (iii) establish any finite branch law for the operative filtered MONO target (its exact zero-field limit requires the filter-S specification, outside this lane; the deep-end survey is finite numerical consistency, not a proof); (iv) cover dynamics, cosmology, or the channel-count mechanics beyond the mu_n identities; (v) constitute a full-theory closure witness (open dependencies in next_unresolved_implication).",
+  "next_unresolved_implication": "The linear susceptibility eps of the truncated scalar-kinetic model is left free by AS061: matching kappa = 1/2 pins only alpha = 4/3. The first missing bridge is an independent mechanism (physically identified, not a channel count or adopted normalization) that fixes eps > 0, without which the quasi-Newtonian plateau of this class cannot be transferred to the operative filtered-MONO branch of the amended thirteen-item target; the second bridge is the explicit filter-S specification of operative MONO's zero-field limit.",
+  "suggested_followup": "AS061 child (strengthening, branch 1 of the seed): derive a bound or physical mechanism for eps in the same action class \u2014 e.g., require the stress-energy of the kinetic field to satisfy a positivity/causality criterion (criterion B, causal branch) at the crossover Y* = 2eps/(3alpha) and test whether that pins eps relative to alpha and C0 without invoking observational preference. Controls: recompute the C4 negative controls and the C3b deep identity after each assumption change; state the new target equation and why AS061 does not already answer it.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": "Primitive inputs (measured/adopted, not derived here): G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m, canonical a0 = 9.3619e-11 m/s^2, alternative a0 = 1.1279e-10 m/s^2, kappa = 1/2 (adopted), shape K(X) = C0 + eps*X + alpha*X^(3/2), alpha > 0. Derived (from the action and the EL variation): mu(Y) = K'(Y^2) = eps + (3 alpha/2) Y; chi_ij(0) = eps delta_ij; g^2 = (2s/(3 alpha)) g_N at eps = 0; series g = gN/eps - (3alpha/(2s)) gN^2/eps^3 + ...; a_deep = 2s/(3alpha); rho_Lambda = 4 a0^2/(G c^2) per footing; eps_vac(C0) = C0 s^2/(8 pi G); kappa_eff(a0_alt at rho_L^can) = 112790/187238.",
+  "closure_implication": "Gate: CORE coefficient, group A03 (coefficient mechanisms and their missing premises). Exact implication: AS061 establishes S1-S4 (C0 null direction; chi_ij(0) = eps delta_ij; both negative controls; kappa=1/2 -> alpha=4/3 pinning) in the static scalar-kinetic class with shared coupling mu(Y) = K'(Y^2) and the a_deep-line. Common-action/parameter-domain compatibility: compatible in parameter domain alpha > 0, Y in [0, 1) (truncation validity), both registered footings; NOT a closure witness for the operative filtered-MONO target because (a) eps is unpinned, (b) the filter-S splice of operative MONO is unspecified, and (c) no branch-translation of the linear plateau to the spliced MONO shape is proved \u2014 these are open dependencies, not passes.",
+  "child_proposals": [
+    {
+      "child_id": "AS061.C01 (specification, not dispatched)",
+      "claim": "In the AS061 action class with K = C0 + eps*X + alpha*X^(3/2), causality criterion B (causal response at the crossover scale) bounds or fixes eps relative to alpha and s in the regime Y* = 2eps/(3alpha) <= 1/2",
+      "new_target": "prove eps <= (3/4) alpha (equivalently Y* <= 1/2) from criterion B or a positivity condition, or exhibit a criterion-B counterexample with eps larger",
+      "controls": "re-run C4 negative controls and C3b deep identity under the added premise; check both footings; state why AS061 S1-S4 do not already answer it",
+      "dependencies": "AS061 run AS061-r1-20260928T090150-7189aade (seed sha256 f374623b...1fc6f); framework contract; criterion B text in the amended thirteen-item target",
+      "dispatch_state": "not dispatched (no worker executed this child; awaiting orchestrator)"
+    }
+  ],
+  "closure_candidate": null
+}

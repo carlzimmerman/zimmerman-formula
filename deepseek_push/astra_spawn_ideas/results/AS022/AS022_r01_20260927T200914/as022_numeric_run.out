@@ -1,0 +1,76 @@
+==============================================================================
+STEP 2 — constraint rank and solution-set parameterization
+F1 = 4*a0^2 - G*c^2*rho_L = 0   (this is a0 = (c/2)*sqrt(G*rho_L), squared; encodes kappa = 1/2)
+F2 = Lambda - 8*pi*G*rho_L/c^2 = 0
+Jacobian J(F1,F2)/d(a0, rho_L, Lambda) =
+Matrix([[8*a0, -G*c**2, 0], [0, -8*pi*G/c**2, 1]])
+rank(J) = 2  (rows independent for a0 > 0: row1 has dF1/da0 = 8*a0 != 0, row2 has dF2/dLambda = 1)
+rank < number of variables (3)  =>  solution set is a 1-parameter family:
+  (rho_L, a0, Lambda) = (lambda, (c/2)*sqrt(G*lambda), 8*pi*G*lambda/c^2),  lambda > 0
+
+CONTROL 1 — rearranged copies of F1 treated as new equations
+Jacobian of the 5-copy system w.r.t. (a0, rho_L), evaluated OFF the curve (generic point):
+rank (generic) = 2   [copies are not idempotent as functions; the test is the solution set]
+After substituting the on-curve relations (4a0^2 = G c^2 rho, sqrt(G rho) = 2 a0/c):
+rank (on the solution curve) = 1
+
+Full copy system {F1a..F1e, F2, F2b} w.r.t. (a0, rho, Lambda), on the curve:
+rank = 2  (still 2: 7 written equations, 2 constraint directions, 1-dim family — no new constraint created by rewriting)
+
+==============================================================================
+STEP 3 — intermediate algebra with units (SI), both footings separately
+kappa = 1/2 adopted; the two footings are SEPARATE normalization choices: they may not share a fixed rho_Lambda AND a fixed kappa simultaneously (FRAMEWORK_CONTRACT).
+
+--- footing 'canonical': a0 = 9.3619E-11 m/s^2 (kappa = 1/2 adopted) ---
+rho_Lambda = 4*a0^2/(G c^2)          = 5.84441245402187536367003343359949077994317546338637205749734E-27 kg/m^3
+epsilon_Lambda = rho_Lambda c^2      = 5.25269595972611359992808234571415728990306099516054118034850E-10 J/m^3
+Lambda (via F2, 8 pi G rho/c^2)      = 1.09079976328073494774949343574689071775517809579642161791658E-52 m^-2
+Lambda (closed form, 32 pi a0^2/c^4) = 1.09079976328073494774949343574689071775517809579642161791658E-52 m^-2
+a0 reconstructed c^2 sqrt(Lambda/32pi)= 9.36189999999999999999999999999999999999999999999999999999996E-11 m/s^2
+  cross-route Lambda residual (F2 route vs closed form): 0E-111  (rel 0.0e+1)
+  F1 residual after back-substitution: 0E-79  (rel 0.0e-48)
+  F2 residual after back-substitution: 0E-111
+  [float64] F1 residual: 0.000e+00  F2 residual: 1.855e-68
+  Lambda l0 = c^2/a0 = 960013649725822365118191820.036531046048344887255792093485297 m  (length scale);  Lambda*l0^2 = 100.530964914873379711934830993413925170898437500000000000000  (should be 32*pi = 100.530964914873379711934830993413925170898437500000)
+  M_b = 1e11 M_sun: r_M = sqrt(G M_b/a0) = 376513354282223900901.372561076000169150226385738572542404174 m = 12201.9668075706015462027341143802470597273849515842168212948 pc;  v_flat = (G M_b a0)^(1/4) = 187746.647678587111912590186874293049630071192151578223682444 m/s = 187.746648 km/s
+  M_b = 1 M_sun: r_M = sqrt(G M_b/a0) = 1190639769001739.04402116791783882682103942777767252442567701 m = 0.0385860070456965911624497734179063033769717793454130651332244 pc;  v_flat = (G M_b a0)^(1/4) = 333.865997870663384453857680917873082038073178219190359616878 m/s = 0.333866 km/s
+
+--- footing 'alt': a0 = 1.1279E-10 m/s^2 (kappa = 1/2 adopted) ---
+rho_Lambda = 4*a0^2/(G c^2)          = 8.48308961955909742997038270906612098699520132966811392422151E-27 kg/m^3
+epsilon_Lambda = rho_Lambda c^2      = 7.62422072726727896558440585529568643902731372578397734593890E-10 J/m^3
+Lambda (via F2, 8 pi G rho/c^2)      = 1.58328184769652270267307728935736823750762022795154340977208E-52 m^-2
+Lambda (closed form, 32 pi a0^2/c^4) = 1.58328184769652270267307728935736823750762022795154340977208E-52 m^-2
+a0 reconstructed c^2 sqrt(Lambda/32pi)= 1.12790000000000000000000000000000000000000000000000000000000E-10 m/s^2
+  cross-route Lambda residual (F2 route vs closed form): 0E-111  (rel 0.0e+1)
+  F1 residual after back-substitution: 0E-79  (rel 0.0e-50)
+  F2 residual after back-substitution: 0E-111
+  [float64] F1 residual: 0.000e+00  F2 residual: 0.000e+00
+  Lambda l0 = c^2/a0 = 796839417268213174926855217.661140172001063924106747052043621 m  (length scale);  Lambda*l0^2 = 100.530964914873379711934830993413925170898437500000000000000  (should be 32*pi = 100.530964914873379711934830993413925170898437500000)
+  M_b = 1e11 M_sun: r_M = sqrt(G M_b/a0) = 343026036344286575901.008545700162963233388354228379552676483 m = 11116.7167432475408175581323579364624164914233450606951319247 pc;  v_flat = (G M_b a0)^(1/4) = 196697.500338138722610955803049231605299317792544511138069841 m/s = 196.697500 km/s
+  M_b = 1 M_sun: r_M = sqrt(G M_b/a0) = 1084743571587644.00246753284813585788357053566183887605826306 m = 0.0351541450115914795165511539871983136645882421483814368247122 pc;  v_flat = (G M_b a0)^(1/4) = 349.783114857436145849962736810680975406211694052532173109444 m/s = 0.349783 km/s
+
+Limiting regimes (Q branch used only as the composition law inside this audit):
+deep limit  B/a0 = 0.1:  exact g = 0.331662479035539984911493273667068668392708854558935359705868;  2nd-order expansion = 0.331643869610158782443383960472381356223838345236732114716680;  rel err = 5.61e-5  (leading neglected term = +B/(2 a0) ~ 5%)
+deep limit  B/a0 = 0.5:  exact g = 0.866025403784438646763723170752936183471402626905190314027903;  2nd-order expansion = 0.861786389571104795363529066315284766628393799057827732092039;  rel err = 4.89e-3
+Newtonian   B/a0 = 10:  exact g = 10.4880884817015154699145351367993759847527185768150398487576;  2nd-order expansion = 10.48750;  rel err = 5.61e-5
+middle-boundary check B = a0:  g = sqrt(2) a0 exactly (0.5 < B/a0 < 1 belongs to neither expansion; expansions hold for B/a0 < 1 (deep) and B/a0 > 1 (Newtonian) respectively)
+
+==============================================================================
+STEP 4 — independent checks (different representation: substitution + cross-route)
+footing 'canonical': substitution residuals F1 = 0E-79, F2 = 0E-111  (exact identity at 50-digit precision; pass=True)
+footing 'alt': substitution residuals F1 = 0E-79, F2 = 0E-111  (exact identity at 50-digit precision; pass=True)
+independent-check aggregate PASS = True
+
+==============================================================================
+STEP 5 — negative control: 'F1 ^ F2 fix all three magnitudes' must FAIL
+  member 1 (lambda): rho_L = 5.844E-27 kg/m^3 -> a0 = 9.36156964844914798808662274051148195852000459718692472719660E-11 m/s^2, Lambda = 1.09072278295928001201737471395989643527442157981227140056338E-52 m^-2; F1 ok=True, F2 ok=True
+  member 2 (4*lambda): rho_L = 2.3376E-26 kg/m^3 -> a0 = 1.87231392968982959761732454810229639170400091943738494543932E-10 m/s^2, Lambda = 4.36289113183712004806949885583958574109768631924908560225352E-52 m^-2; F1 ok=True, F2 ok=True
+Both members satisfy F1 ^ F2 exactly with DIFFERENT magnitudes: the two constraints determine only relations (a0^2/rho_L = G c^2/4, Lambda/rho_L = 8 pi G/c^2), never an absolute scale.  An external datum (measured rho_L, or measured a0, or measured Lambda) is required; kappa = 1/2 selects the family member only with such a datum.
+
+==============================================================================
+SUMMARY
+1. rank(F1,F2 Jacobian) = 2 on 3 variables  ->  1-parameter family; one independent datum required
+2. rearranged-copy control: rank of 5 F1 copies on the curve = 1; full 7-equation copy system rank = 2
+3. per-footing numeric consequences (SI): see table above; cross-route residuals ~ 0
+4. independent substitution residual: ~ 1e-50 (50-digit); float64 ~ 1e-16 relative
+5. negative control passes: two distinct exact members of the family exist -> no absolute derivation

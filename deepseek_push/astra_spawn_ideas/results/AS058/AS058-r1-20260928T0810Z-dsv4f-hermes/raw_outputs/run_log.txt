@@ -1,0 +1,97 @@
+====================================================================================================
+AS058 -- Field redefinition and the channel slope
+====================================================================================================
+RLIMIT_AS set failed (ValueError('current limit exceeds maximum limit')); enforcement probed externally via peak RSS
+symbolic: sympy 1.13.1; python 3.13.9
+
+STEP 1 -- objects, dictionary, boundary conditions, assumptions
+
+  s  = c*sqrt(G*rho_L)                    [m/s^2]  vacuum's own rate (fixed
+                                                  independently of a0; a0 an
+                                                  OUTPUT on the one-scale
+                                                  reading, PD08)
+  Y  = |grad Phi|/s                       [-]      dimensionless drive
+  mu_n(Y) = 1 - (1+Y)^(-n)                [-]      MU_n family (n = channel
+                                                  count, slope at origin)
+  field equation (static, PD08 convention):  div(mu(Y) grad Phi) = 4 pi G rho
+  deep: mu ~ n Y  =>  g^2 = (s/n) g_N  =>  a0 = s/n, kappa = a0/s = 1/n
+  redefinition: Phi' = lambda*Phi, lambda > 0, source coupling kept as the
+  action's rho*Phi = rho*Phi'/lambda  (field-equation source lambda*rho)
+  ASSUMPTIONS: static spherical sector; point source or spherically symmetric
+  (Gauss-law) extended source; Y in (0, inf); n >= 1 real symbolic
+  FRAMEWORK INPUTS (not derived here): kappa = 1/2 adopted (contract);
+  the OR-identification (PD01 D1 premise); the fraction identity p'(0) = 1
+  (PD08 step 3 premise, backed by k01's zero-mode theorem)
+
+  [PASS] S1 [slope of mu_n at the origin] the deep-MOND slope of the corpus family mu_n(Y) = 1-(1+Y)^(-n) at Y = 0 equals the exponent n
+         measured: d mu_n/dY|_0 = n
+         reading : the slope is the channel count for the corpus member (PD01 A2); kappa = a0/s = 1/n follows from the matching (S4)
+  [PASS] S2 [completion independence] the OR composition 1-(1-p)^n over the generic per-channel engagement p = Y + c2 Y^2 + c3 Y^3 (p(0)=0, p'(0)=1) has deep-MOND slope n for EVERY completion
+         measured: d/dY [1-(1-p)^n]|_0 = n
+         reading : PD01 A1 re-derived symbolically: the slope is the count regardless of the unknown c2, c3 (the completion stays empirical)
+
+STEP 2 -- kinetic and source coefficients under Phi' = lambda*Phi
+
+  action           S = (s^2/8piG) INT K(|gradPhi|/s) - INT rho Phi
+  relabel          Phi = Phi'/lambda   =>   S = (s^2/8piG) INT K(|gradPhi'|/(lambda*s))
+                                                - INT (rho/lambda) Phi'
+  kinetic scale    s  ->  lambda s  (pattern match inside K)
+  source coeff.    rho ->  rho/lambda   in the action
+                   (equivalently 4pi G rho -> 4pi G lambda rho in the field
+                    equation; checked by direct substitution below)
+  field equation (direct substitution of Phi = Phi'/lambda into
+                  div(mu(Y) grad Phi) = 4 pi G rho):
+        div( mu(|gradPhi'|/(lambda*s)) gradPhi' ) = 4 pi G (lambda rho)
+  invariant argument:  Y' = |gradPhi'|/(lambda*s) = Y   (the response's
+  argument is the ratio of the PHYSICAL gradient to the FIXED vacuum rate)
+
+  [PASS] S3 [slope under renormalized argument] the slope of the response measured against the PHYSICAL ratio Y = g/s is n (invariant), while the slope measured against the primed field's gradient in FIXED-s units Z' = |gradPhi'|/s = lambda*Y is n/lambda
+         measured: d mu_n/dY = n (invariant); d mu_n/dZ'|_0 = n/lambda
+         reading : a slope claim survives a normalization change IFF the slope is measured against the physical acceleration in fixed vacuum units; in floating units the count is not an invariant (the seed's diagnostic: lambda in {1/2, 1, 2} gives n/lambda in {2n, n, n/2})
+
+STEP 3 -- the deep-MOND matching under the compensated redefinition
+  [PASS] S4 [compensated redefinition leaves the physical a0-line exactly invariant] deep matching in the primed variables gives g'^2 = (lambda^2 s/n) g_N; with the physical acceleration g = g'/lambda this is g^2 = (s/n) g_N: a0 = s/n and kappa = a0/s = 1/n in every lambda copy of the same theory
+         measured: g'^2 = G*M*lambda**2*s/(n*r**2);  g^2 = g'^2/lambda^2 = G*M*s/(n*r**2);  residual = 0
+         reading : the same-theory redefinition (coupling rescaled with the field) is a pure relabelling: every physical quantity -- g, g_N, a0, kappa -- is invariant. Only the representation (kinetic scale lambda*s, source coefficient lambda*rho in the field equation) changes.
+
+NEGATIVE CONTROL -- rescale the field, keep the matter coupling unchanged (capable of failing)
+  [PASS] S5 [NEGATIVE CONTROL: uncontrolled rescale changes the theory] with the source coupling UNCHANGED (rho' = rho), the rescaled-field theory has deep law g_c^2 = (lambda s/n) g_N: a0_c = lambda s/n and kappa_c = lambda/n; at lambda in {1/2, 1, 2} (n = 2): kappa_c = {1/4, 1/2, 1} -- the derived coefficient is normalization-dependent when the coupling is not rescaled
+         measured: g_c^2 = G*M*lambda*s/(n*r**2);  kappa_c(lambda) = lambda/n;  diagnostics: {'0.5': 1/4, '1.0': 1/2, '2.0': 1}
+         reading : the flag: kappa = 1/2 survives ONLY the compensated redefinition; the uncompensated rescale moves the derived coefficient across the whole measured band (kappa_meas ~ 0.465 +/- 0.076, 0.551 +/- 0.043). The physical identification (metric potential normalization h_00 = -2 Phi and the matter coupling) fixes the freedom -- the slope claim is a property of that fixed normalization, not of the bare field variable.
+
+STEP 3b -- leading neglected terms in both limiting regimes
+  [PASS] S6 [leading neglected terms stated] deep regime: g*mu_n(g/s) = (n/s) g^2 (1 - ((n+1)/2)(g/s) + O((g/s)^2)); Newtonian regime: mu_n = 1 - (1+Y)^(-n) = 1 - Y^(-n) + O(Y^(-n-1))
+         measured: mu_n = Y**3*n*(-n - 2)*(-n - 1)/6 + Y**2*n*(-n - 1)/2 + Y*n + O(Y^4);  relative deep correction -g*(n + 1)/(2*s);  Newtonian neglected term Y**(-n)
+         reading : domain: the linear correction dominates for u = g/s < 0.03 (n=2: 4.5% at u=0.03, 1.5% at u=0.01); the Newtonian tail term Y^(-n) is 1% at Y = 10 (n = 2). Both limits are shared by every lambda copy of the same theory (S4) and differ in the changed theory only in the deep coefficient (S5).
+
+STEP 4 -- independent check in a different representation: bounded high-precision numeric roots
+  [PASS] N1 [compensated redefinition: physical roots identical across lambda] for yN in [1e-4, 30], lambda in {1/2, 1, 2}, n in {2, 3}: the physical root u_phys = u'/lambda of u'*mu_n(u'/lambda) = lambda*yN satisfies u_phys*mu_n(u_phys) = yN to root-finder precision
+         measured: max relative deviation across grid = 0.000e+00; max absolute equation residual |u*mu(u) - target| over all roots = 4.441e-16
+         reading : exact identity (S4) confirmed numerically; the residual is bisection convergence noise, not model deviation
+  [PASS] N2 [changed theory: deep ratio sqrt(lambda), Newtonian ratio 1] u_c/u_ref for the unchanged-coupling rescale at the deep and Newtonian ends of the grid, scored against the analytic expectation including each regime's leading tail correction
+         measured: deep, n=2, lambda=0.5: ratio 0.708666 (raw limit 0.707107, corrected 0.708668) ; newton, n=2, lambda=0.5: ratio 0.999230 (raw limit 1.000000, corrected 0.999167) ; deep, n=2, lambda=1.0: ratio 1.000000 (raw limit 1.000000, corrected 1.000000) ; newton, n=2, lambda=1.0: ratio 1.000000 (raw limit 1.000000, corrected 1.000000) ; deep, n=2, lambda=2.0: ratio 1.412014 (raw limit 1.414214, corrected 1.412005) ; newton, n=2, lambda=2.0: ratio 1.002850 (raw limit 1.000000, corrected 1.003333) ; deep, n=3, lambda=0.5: ratio 0.708808 (raw limit 0.707107, corrected 0.708808) ; newton, n=3, lambda=0.5: ratio 0.999971 (raw limit 1.000000, corrected 0.999968) ; deep, n=3, lambda=1.0: ratio 1.000000 (raw limit 1.000000, corrected 1.000000) ; newton, n=3, lambda=1.0: ratio 1.000000 (raw limit 1.000000, corrected 1.000000) ; deep, n=3, lambda=2.0: ratio 1.411816 (raw limit 1.414214, corrected 1.411808) ; newton, n=3, lambda=2.0: ratio 1.000210 (raw limit 1.000000, corrected 1.000259)
+         reading : the uncompensated rescale is physically visible: sqrt(lambda) in the deep regime (1.414 at lambda = 2), unity in the Newtonian regime -- the same signature as S5's a0_c = lambda s/n; the raw-limit expectations carry finite-grid tail corrections (S6), which the corrected expectations absorb; a 2e-3 tolerance separates the signature from the identical-theory null robustly
+  [PASS] N3 [deep-law recovery with stated correction] at the deepest grid point (yN = 1e-4) the physical root obeys u^2*n/yN = 1 + ((n+1)/2)u + O(u^2): the a0-line g^2 = (s/n) g_N is the yN -> 0 limit, with the S6 correction quantified
+         measured: max |u^2*n/yN - (1 + (n+1)*u/2)| at yN = 1e-4 = 2.242e-05
+         reading : at finite depth the recovered coefficient carries the O(u) S6 correction ((n+1)u/2 = 5.3e-3 at n = 2, yN = 1e-4); the O(u^2) deviation from the corrected form scales as (n^2-1)u^2/12 (= 1.3e-5 here, n = 2) and vanishes in the limit -- the deep law is recovered exactly only at yN = 0, as the expansion states
+  [PASS] N4 [leading deep correction quantified] on the deep subgrid (yN <= 0.03) the measured relative deviation (g*mu - n g^2/s)/g_N matches the expansion -(n+1)/2 * (g/s) to 10% relative accuracy
+         measured: max |(meas - pred)/pred| over deep subgrid = 3.499e-02
+         reading : the leading neglected term of the deep law is -((n+1)/2)(g/s): at u = 0.03 (n = 2) it is 4.5%; the next term is O((n+1)(n+2)/3 * u^2)and the relative discrepancy of the linear prediction grows as (n-1)u/6 at fixed yN; the deep-linear approximation's domain is u < 0.1 for better-than-15% accuracy
+
+STEP 5 -- both footings (dimensional examples kept separate)
+  [PASS] F1 [footings kept separate] canonical: a0 = 9.3619e-11 m/s^2 with s = 2 a0 = 1.87238e-10 (kappa = 1/2 enforced); alternative a0 = 1.1279e-10 m/s^2: (i) rho_L fixed -> effective kappa = a0_alt/s = 0.6024; (ii) kappa = 1/2 fixed -> s_alt = 2.255800e-10 and rho_L scaled by (a0_alt/a0_can)^2 -- the two footings never share both fixed density and fixed kappa
+         measured: rho_L(canonical) = 5.8444e-27 kg/m^3; kappa_eff(alt, rho fixed) = 0.6024; s_alt = 2.255800e-10 m/s^2; rho_L(alt) = 8.4831e-27 kg/m^3 (factor 1.4515 over canonical)
+         reading : the derived statement is dimensionless (kappa = a0/s = 1/n at n = 2 for both footings); it applies to the alternative footing with that footing's own s; under the same-theory redefinition each footing transforms as a whole (S4) -- normalization changes act inside one footing, never between footings
+
+BOUNDS AND ENVIRONMENT
+  [PASS] B1 [wall-time bound] prototype budget 120 s, hard-exit deadline enforced at every checkpoint
+         measured: elapsed = 0.22 s
+         reading : checkpointed after every block; hard deadline exit(127) armed
+  [PASS] B2 [memory bound] RLIMIT_AS = 512 MiB requested (platform enforcement probe; macOS malloc behaviour per AS054) plus in-process peak-RSS via resource.getrusage and an external /usr/bin/time -l probe
+         measured: RLIMIT_AS set failed (ValueError('current limit exceeds maximum limit')); enforcement probed externally via peak RSS; in-process peak RSS = 55.1 MiB
+         reading : RLIMIT_AS refused by this macOS build (ValueError: current limit exceeds maximum limit) -- the retrospective limits in the result file record the actual enforced bound: in-process peak RSS (ru_maxrss, bytes on macOS) plus the external /usr/bin/time -l figure, both measured, both far below 512 MiB
+  [PASS] B3 [thread bound] 1 thread: single process, no threading/process primitives, pure stdlib + sympy
+         measured: pid = 35808; threads used = 1
+         reading : enforced by construction (no thread/process APIs imported)
+
+AS058 COMPUTE COMPLETE: 14/14 checks PASS (ALL CHECKS PASS)

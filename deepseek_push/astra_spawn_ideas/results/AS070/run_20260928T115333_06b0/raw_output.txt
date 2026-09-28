@@ -1,0 +1,102 @@
+====================================================================================================
+AS070 bounded prototype — normalization constraint coupling analysis
+====================================================================================================
+mpmath dps = 60; all numeric residuals at ~1e-60 precision; tolerance pre-set: rel 1.0e-30
+footings: rho_Lambda(canonical) = 5.8444124540218753636700334336e-27 kg/m^3
+          rho_Lambda(alt)       = 8.48308961955909742997038270907e-27 kg/m^3
+          ratio = 1.451487157399611143279499  (a0 ratio^2 = 1.451487157399611143279499)
+          kappa_eff (fixed canonical rho) = 0.602388404063277753447484
+lambda diagnostics: {
+ "lambda_0.5": {
+  "canonical": {
+   "s_m_s2": "1.3239725949580678537e-10",
+   "kappa": "0.7071067811865475244",
+   "resid_s": "1.81114e-71",
+   "resid_kappa": "7.77877e-62"
+  },
+  "alternative": {
+   "s_m_s2": "1.5950914770006139055e-10",
+   "kappa": "0.7071067811865475244",
+   "resid_s": "0.0",
+   "resid_kappa": "7.77877e-62"
+  },
+  "Y_at_g_a0can": "0.707106781186548",
+  "mu1": "0.4142135624",
+  "mu2": "0.6568542495",
+  "mu3": "0.7989898732"
+ },
+ "lambda_1.0": {
+  "canonical": {
+   "s_m_s2": "1.87238e-10",
+   "kappa": "0.5",
+   "resid_s": "1.81114e-71",
+   "resid_kappa": "7.77877e-62"
+  },
+  "alternative": {
+   "s_m_s2": "2.2558e-10",
+   "kappa": "0.5",
+   "resid_s": "1.81114e-71",
+   "resid_kappa": "7.77877e-62"
+  },
+  "Y_at_g_a0can": "0.5",
+  "mu1": "0.3333333333",
+  "mu2": "0.5555555556",
+  "mu3": "0.7037037037"
+ },
+ "lambda_2.0": {
+  "canonical": {
+   "s_m_s2": "2.6479451899161357075e-10",
+   "kappa": "0.3535533905932737622",
+   "resid_s": "3.62227e-71",
+   "resid_kappa": "3.88938e-62"
+  },
+  "alternative": {
+   "s_m_s2": "3.1901829540012278111e-10",
+   "kappa": "0.3535533905932737622",
+   "resid_s": "0.0",
+   "resid_kappa": "3.88938e-62"
+  },
+  "Y_at_g_a0can": "0.353553390593274",
+  "mu1": "0.261203875",
+  "mu2": "0.4541802856",
+  "mu3": "0.5967505101"
+ }
+}
+C3 exact identity: 0 (sympy)
+C6 dF/dlambda numeric vs -4a0^2: rel resid 8.51979154524745196262905205807658162808684886714249425121719e-74
+C7 Dirac matrix rank = 4; nullspace = ['Matrix([[G*c**2/(8*a0), 1, 0, 0, 0]])']
+NC1 stress ratios: {
+ "lambda_0.5": {
+  "Teta_00": "-2.62634797986306e-10",
+  "Tvac_00": "-2.62634797986306e-10",
+  "ratio_abs": "1.0"
+ },
+ "lambda_1.0": {
+  "Teta_00": "0.0",
+  "Tvac_00": "-5.25269595972611e-10",
+  "ratio_abs": "0.0"
+ },
+ "lambda_2.0": {
+  "Teta_00": "5.25269595972611e-10",
+  "Tvac_00": "-1.05053919194522e-9",
+  "ratio_abs": "0.5"
+ }
+}; worst |T^eta|/|T^vac| = 1.0
+NC2 sign flip: F(1-eps)=3.50580686440000000000000000000000000000000000000008198869581e-32, F(1+eps)=-3.50580686440000000000000000000000000000000000000008198869581e-32, flips=True
+checks passed 12/12
+  [PASS] C1_F_residual_canonical_footing: 0.0  (4 a0^2 - G c^2 rho_Lambda(canonical) = 0, kappa=1/2 held)
+  [PASS] C2_F_residual_alternative_footing: 4.21687917729220928973942962050800760308398455294740302003111e-81  (4 a0^2 - G c^2 rho_Lambda(alternative) = 0, kappa=1/2 held)
+  [PASS] C3_F_equals_4a0sq_one_minus_lambda: 0  (sympy expand of F(rho_L=lambda*4a0^2/(Gc^2)) - 4a0^2(1-lambda) == 0 (exact))
+  [PASS] C4_scale_identity_s_grid: 3.62227163153068494700364771635511671227301247925565527583305e-71  (c sqrt(G rho_L) = 2 a0 sqrt(lambda), lambda in {1/2,1,2} x both footings)
+  [PASS] C5_kappa_1_over_2sqrtlambda: 7.7787690973264271339300800672251553007378152109014589163764e-62  (a0/(c sqrt(G rho_L)) = 1/(2 sqrt(lambda)) on the grid + footings)
+  [PASS] C6_direct_differentiation_dFdlambda: 8.51979154524745196262905205807658162808684886714249425121719e-74  (central difference step 1e-8 at lambda=1 vs -4 a0^2 (exact))
+  [PASS] C7_dirac_rank_4: 4  (constraints {pi_a0, pi_rho, pi_eta, F, eta}: 4 second-class + 1 first-class)
+  [PASS] C7_dirac_nullvector_family_gauge: Matrix([[G*c**2/(8*a0), 1, 0, 0, 0]])  (null direction = (G c^2/(8 a0), 1, 0, 0, 0): family/gauge direction chi)
+  [PASS] C8_MU2_cell_mapping_lambda1: 0.0  (mu2(g/(2a0)) = 1-(1+g/(2a0))^(-2) == MU2 cell 1-(1+x/2)^(-2), x=g/a0)
+  [PASS] NC1_stress_omission_is_O1_offshell: 1.0  (control CAPABLE OF FAILING and fails as designed: |T^eta|/|T^vac| = 1.0 at lambda=1/2, 0.5 at lambda=2; ignoring T^eta while enforcing F=0 with eta!=0 misstates the vacuum stress by O(1))
+  [PASS] NC2_sign_flip_across_lambda1: 3.50580686440000000000000000000000000000000000000008198869581e-32  (F changes sign at the adopted point (constraint sensitivity))
+  [PASS] NC2_vacuity_witness_all_EOMs: 8.43375835458441857947885924101601520616796910589480604006221e-81  ((alpha, rho_L, eta)=(a0*sqrt(lambda), lambda rho_Lambda, 0) satisfies F=0 to rel resid 8.434e-81 (< tolerance) and eta=0 exactly, for lambda=1/2,1,2: the constraint does not select the family member (exact in R; ~1e-75 in mpmath))
+ALL CHECKS PASSED (including both negative controls, which failed their false claims as designed)
+peak RSS (ru_maxrss, bytes on macOS) = 54165504  (54.17 MB)
+memory bound: 512 MB declared, measured peak below; bound ENFORCED by measurement
+wrote residuals.json

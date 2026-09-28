@@ -1,0 +1,116 @@
+============================================================================================
+AS083 -- VIRIAL SURFACE TERM WITH BOTH BOUNDARIES
+============================================================================================
+  [PASS] C1 [IBP core, symbolic] d/dr(r^3 P) = 3 r^2 P + r^3 P'  =>  [r^3 P]_{r_in}^R = 3∫r^2P dr + ∫r^3P' dr,  exact for any P(r)
+         measured: sympy anti-derivative difference = 0 (0 = exact)
+  [PASS] C2a [phantom, log well, closed form] 3∫P dV = 12πσ²A(R−r_in); B = 4π(R³P(R)−r_in³P(r_in)) = 4πσ²A(R−r_in); Q = C·M_shell; identity holds EXACTLY at sigma^2 = C/2 (both boundaries)
+         measured: vol3 = 12*pi*A*sigma^2*(R - r_in); B = 4*pi*A*sigma^2*(R - r_in); Q = 4*pi*A*C*(R - r_in); residual = 4*pi*A*(-C + 2*sigma^2)*(R - r_in) -> 0 at σ²=C/2: True
+  [PASS] C2b [phantom hydrostatic] P' = −ρΦ' in the log well holds iff 2σ² = C, the SAME condition the two-boundary virial imposes (virial reading and hydrostatic balance coincide; G091 V3 point generalized to the two-surfaces shell)
+         measured: P' r³/A + 2σ² = 0; ρΦ' r³/A = C; condition 2σ² = C
+  [PASS] C3 [one-boundary limit] omitting the inner surface term at finite r_in misbooks by exactly Δ = 4π·r_in³·P(r_in) = σ²·M_ph(<r_in): residual + Δ = 4πA(R−r_in)(2σ²−C) GENERALLY, and residual + Δ = 0 EXACTLY at the framework value σ² = C/2; r_in→0 recovers the one-boundary formula with leading neglected term Δ (linear in r_in for the isothermal phantom: r³P = σ²A·r)
+         measured: res_1b = 4*pi*A*(-C*(R - r_in) - R*sigma^2 + 3*sigma^2*(R - r_in));  Δ = 4*pi*A*r_in*sigma^2;  res_1b+Δ = 4*pi*A*(-C*R + C*r_in + 2*R*sigma^2 - 2*r_in*sigma^2) = 4πA(R−r_in)(2σ²−C): True;  at σ²=C/2: 0: True
+
+--- framework numbers [canonical] a0 = 9.3619e-11 m/s^2 ---
+    rho_Lambda = 5.844412e-27 kg/m^3   (kappa = 1/2 held; own density per footing)
+    C = v_flat^2 = 2.841849e+10 m^2/s^2   sigma = 119.203 km/s
+    r_M = 9.8375 kpc   A = 3.388328e+19 kg/m
+    P(r_M) = a0^2/(8πG) = 5.224953e-12 Pa
+
+--- framework numbers [alt] a0 = 1.1279e-10 m/s^2 ---
+    rho_Lambda = 8.483090e-27 kg/m^3   (kappa = 1/2 held; own density per footing)
+    C = v_flat^2 = 3.119280e+10 m^2/s^2   sigma = 124.886 km/s
+    r_M = 8.9626 kpc   A = 3.719108e+19 kg/m
+    P(r_M) = a0^2/(8πG) = 7.583953e-12 Pa
+    [phantom canonical] identity residual max over 10 shells = 1.652e-51
+  [PASS] N1 [phantom | canonical | both-boundary identity 3∫PdV = B + Q, 10 shells: 6 diagnostics (r_in/R, R/r_M) in {0.01,0.1,0.5}×{0.62,1} + 4 deep shells (r_in/r_M, R/r_in) in {10,100}×{2,10}]
+         measured: max |rel residual| = 1.652e-51
+         tolerance: 1e-40 (set before evaluation)
+    [phantom alt] identity residual max over 10 shells = 1.6933e-51
+  [PASS] N1 [phantom | alt | both-boundary identity 3∫PdV = B + Q, 10 shells: 6 diagnostics (r_in/R, R/r_M) in {0.01,0.1,0.5}×{0.62,1} + 4 deep shells (r_in/r_M, R/r_in) in {10,100}×{2,10}]
+         measured: max |rel residual| = 1.6933e-51
+         tolerance: 1e-40 (set before evaluation)
+    [newtonian canonical] R/r_M = 0.01; truncated-envelope (P(R)=0) identity relres = 0.0, balance FD relres = 3.323e-18, balance exact relres = 1.622e-51; infinite envelope: B = 0.0 (exact 0), identity relres = 1.5711e-51
+  [PASS] N2 [newtonian regime | canonical] two representations: (a) truncated envelope P(R)=0 from the balance integral P(r) = (GAM_b/3)(1/r³−1/R³) + 4πGA²[(1/2)(1/r²−1/R²) − (r_in/3)(1/r³−1/R³)]: balance holds (finite-difference AND exact derivative) AND virial identity holds; (b) infinite point-mass envelope P = GAM_b/(3r³): boundary contribution 4π(R³P(R)−r_in³P(r_in)) = 0 EXACTLY (r³P = const; the two surfaces cancel in the 1/r well), identity 3∫PdV = Q holds
+         measured: (a) balance FD relres = 3.323e-18, balance exact relres = 1.622e-51, identity relres = 0.0; (b) B = 0.0, identity relres = 1.5711e-51
+    [newtonian alt] R/r_M = 0.01; truncated-envelope (P(R)=0) identity relres = 1.4282e-51, balance FD relres = 3.323e-18, balance exact relres = 2.036e-51; infinite envelope: B = 0.0 (exact 0), identity relres = 1.4314e-51
+  [PASS] N2 [newtonian regime | alt] two representations: (a) truncated envelope P(R)=0 from the balance integral P(r) = (GAM_b/3)(1/r³−1/R³) + 4πGA²[(1/2)(1/r²−1/R²) − (r_in/3)(1/r³−1/R³)]: balance holds (finite-difference AND exact derivative) AND virial identity holds; (b) infinite point-mass envelope P = GAM_b/(3r³): boundary contribution 4π(R³P(R)−r_in³P(r_in)) = 0 EXACTLY (r³P = const; the two surfaces cancel in the 1/r well), identity 3∫PdV = Q holds
+         measured: (a) balance FD relres = 3.323e-18, balance exact relres = 2.036e-51, identity relres = 1.4282e-51; (b) B = 0.0, identity relres = 1.4314e-51
+    [const-density canonical] identity relres = 0.0
+  [PASS] N3 [constant-density shell | canonical] rho = const, P from balance with P(R)=0: identity holds
+         measured: relres = 0.0
+    [const-density alt] identity relres = 0.0
+  [PASS] N3 [constant-density shell | alt] rho = const, P from balance with P(R)=0: identity holds
+         measured: relres = 0.0
+
+--- NEGATIVE CONTROL (must be capable of failing) ---
+  [PASS] NC1 [NEGATIVE CONTROL | canonical|rinR=0.01|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.13866e+49 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.13866e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | canonical|rinR=0.1|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.13866e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.13866e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | canonical|rinR=0.5|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -5.69331e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 5.69331e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | canonical|rinR=0.01|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.83655e+49 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.83655e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | canonical|rinR=0.1|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.83655e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.83655e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | canonical|rinR=0.5|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -9.18276e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 9.18276e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | alt|rinR=0.01|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.24982e+49 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.24982e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | alt|rinR=0.1|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.24982e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.24982e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | alt|rinR=0.5|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -6.24911e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 6.24911e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | alt|rinR=0.01|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -2.01584e+49 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 2.01584e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | alt|rinR=0.1|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -2.01584e+50 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 2.01584e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] NC1 [NEGATIVE CONTROL | alt|rinR=0.5|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form
+         measured: residual = -1.00792e+51 J (= −Δ, one-boundary form overshoots); predicted inner term 4πr_in³P(r_in) = 1.00792e+51 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)
+         tolerance: rel 1e-40; ratio = −1; |resid|/outer = r_in/R
+  [PASS] V1 [G091 cross-check | canonical] 4πR³P(R) at R = 0.62 r_M equals G091's 3 P_s V = σ² M_T (phantom surface pressure at the cap)
+         measured: 4πR³P(R) = 1.1386629e+51 J vs σ²M_T = 1.1386629e+51 J; rel = 1.756e-51
+  [PASS] V2 [equipartition + a0-only pressure | canonical] at R = r_M the outer surface term is σ²M_b; P(r_M) = a0²/(8πG) (no M_b, no r)
+         measured: 4πr_M³P(r_M) = 1.836553e+51 J = σ²M_b; P(r_M) = 5.2249533e-12 vs a0²/(8πG) = 5.2249533e-12 Pa; rel = 3.722e-51
+  [PASS] V1 [G091 cross-check | alt] 4πR³P(R) at R = 0.62 r_M equals G091's 3 P_s V = σ² M_T (phantom surface pressure at the cap)
+         measured: 4πR³P(R) = 1.2498228e+51 J vs σ²M_T = 1.2498228e+51 J; rel = 1.6e-51
+  [PASS] V2 [equipartition + a0-only pressure | alt] at R = r_M the outer surface term is σ²M_b; P(r_M) = a0²/(8πG) (no M_b, no r)
+         measured: 4πr_M³P(r_M) = 2.0158433e+51 J = σ²M_b; P(r_M) = 7.5839526e-12 vs a0²/(8πG) = 7.5839526e-12 Pa; rel = 0.0
+  [PASS] V3 [both footings separate] canonical rho_Lambda = 5.844412454022e-27 kg/m^3 vs alternative rho_Lambda = 8.483089619559e-27 kg/m^3 at the SAME kappa = 1/2; fixed-density leg gives kappa_eff = 0.602388404 (accounting only; the two footings do not share both fixed density and fixed kappa)
+         measured: rho_L ratio = 1.451487157; kappa_eff = 0.602388404
+
+--- consequence: one-boundary misreading of sigma^2 (log well) ---
+    r_in/R = 0.01: sigma^2_mis = 0.5025 × C  (exact two-boundary value is C/2 = 0.5000 × C)
+    r_in/R =  0.1: sigma^2_mis = 0.5294 × C  (exact two-boundary value is C/2 = 0.5000 × C)
+    r_in/R =  0.5: sigma^2_mis = 1.0000 × C  (exact two-boundary value is C/2 = 0.5000 × C)
+    r_in/R = 0.01: sigma^2_mis = 0.5025 × C  (exact two-boundary value is C/2 = 0.5000 × C)
+    r_in/R =  0.1: sigma^2_mis = 0.5294 × C  (exact two-boundary value is C/2 = 0.5000 × C)
+    r_in/R =  0.5: sigma^2_mis = 1.0000 × C  (exact two-boundary value is C/2 = 0.5000 × C)
+
+--- dimensional surface terms (equilibrium phantom, both footings) ---
+    [canonical | rinR=0.01|RrM=0.62] R = 6.0993 kpc, B = 1.1273e+51 J, outer = 1.1387e+51 J, inner = 1.1387e+49 J, inner/outer = 0.0100, P(R) = 1.3592e-11 Pa, P(r_in) = 1.3592e-07 Pa
+    [canonical | rinR=0.1|RrM=0.62] R = 6.0993 kpc, B = 1.0248e+51 J, outer = 1.1387e+51 J, inner = 1.1387e+50 J, inner/outer = 0.1000, P(R) = 1.3592e-11 Pa, P(r_in) = 1.3592e-09 Pa
+    [canonical | rinR=0.5|RrM=0.62] R = 6.0993 kpc, B = 5.6933e+50 J, outer = 1.1387e+51 J, inner = 5.6933e+50 J, inner/outer = 0.5000, P(R) = 1.3592e-11 Pa, P(r_in) = 5.4370e-11 Pa
+    [canonical | rinR=0.01|RrM=1.0] R = 9.8375 kpc, B = 1.8182e+51 J, outer = 1.8366e+51 J, inner = 1.8366e+49 J, inner/outer = 0.0100, P(R) = 5.2250e-12 Pa, P(r_in) = 5.2250e-08 Pa
+    [canonical | rinR=0.1|RrM=1.0] R = 9.8375 kpc, B = 1.6529e+51 J, outer = 1.8366e+51 J, inner = 1.8366e+50 J, inner/outer = 0.1000, P(R) = 5.2250e-12 Pa, P(r_in) = 5.2250e-10 Pa
+    [canonical | rinR=0.5|RrM=1.0] R = 9.8375 kpc, B = 9.1828e+50 J, outer = 1.8366e+51 J, inner = 9.1828e+50 J, inner/outer = 0.5000, P(R) = 5.2250e-12 Pa, P(r_in) = 2.0900e-11 Pa
+    [alt | rinR=0.01|RrM=0.62] R = 5.5568 kpc, B = 1.2373e+51 J, outer = 1.2498e+51 J, inner = 1.2498e+49 J, inner/outer = 0.0100, P(R) = 1.9729e-11 Pa, P(r_in) = 1.9729e-07 Pa
+    [alt | rinR=0.1|RrM=0.62] R = 5.5568 kpc, B = 1.1248e+51 J, outer = 1.2498e+51 J, inner = 1.2498e+50 J, inner/outer = 0.1000, P(R) = 1.9729e-11 Pa, P(r_in) = 1.9729e-09 Pa
+    [alt | rinR=0.5|RrM=0.62] R = 5.5568 kpc, B = 6.2491e+50 J, outer = 1.2498e+51 J, inner = 6.2491e+50 J, inner/outer = 0.5000, P(R) = 1.9729e-11 Pa, P(r_in) = 7.8917e-11 Pa
+    [alt | rinR=0.01|RrM=1.0] R = 8.9626 kpc, B = 1.9957e+51 J, outer = 2.0158e+51 J, inner = 2.0158e+49 J, inner/outer = 0.0100, P(R) = 7.5840e-12 Pa, P(r_in) = 7.5840e-08 Pa
+    [alt | rinR=0.1|RrM=1.0] R = 8.9626 kpc, B = 1.8143e+51 J, outer = 2.0158e+51 J, inner = 2.0158e+50 J, inner/outer = 0.1000, P(R) = 7.5840e-12 Pa, P(r_in) = 7.5840e-10 Pa
+    [alt | rinR=0.5|RrM=1.0] R = 8.9626 kpc, B = 1.0079e+51 J, outer = 2.0158e+51 J, inner = 1.0079e+51 J, inner/outer = 0.5000, P(R) = 7.5840e-12 Pa, P(r_in) = 3.0336e-11 Pa
+
+[written] /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_checks_raw.json
+27/27 checks PASS.

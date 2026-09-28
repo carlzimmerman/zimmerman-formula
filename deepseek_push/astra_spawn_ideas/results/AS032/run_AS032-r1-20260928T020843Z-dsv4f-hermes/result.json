@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "task_id": "AS032",
+  "task_sha256": "c7ea12d6434d56edb53af4cd42debda6f9ef3776e68220d81cc7b67ea7eb18dc",
+  "run_id": "run_AS032-r1-20260928T020843Z-dsv4f-hermes",
+  "worker": "Hermes subagent (platform=subagent; actual model deepseek/deepseek-v4-flash-0731 via openrouter; no separate sa id available in session)",
+  "started_utc": "2026-09-28T02:08:43+00:00",
+  "finished_utc": "2026-09-28T02:52:01+00:00",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the RAR branch nu_RAR(y)=1/(1-exp(-sqrt(y))) with phantom excess h_RAR(y)=y*(nu-1)=y/(exp(sqrt(y))-1), y=B/a0>0: (C1) h has a unique global maximum on (0,inf) at the unique root t_p=sqrt(y_p) in (1,2) of the peak equation e^t(2-t)=2 (exact form, t=0 is the rejected boundary solution), y_p=2.5396382821881653250, and exactly h_p := h(y_p) = t_p*(2-t_p) = sqrt(y_p)*(2-sqrt(y_p)) = 0.64761023789191485965 (units of a0); (C2) concavity h''(y_p)=(1-t_p)(2-t_p)/(2 t_p^3) = -0.02980242621668928589 a0 < 0; (C3) branch ordering of phantom maxima: max_y h_RAR = 0.64761024 a0 > a0/2 = max_x h_MU2 (attained exactly at x=2, i.e. g=2a0) = sup_y h_Q (strict asymptotic cap, h_Q(y)<a0/2 for every finite y, attained nowhere); ratio h_p/(a0/2)=1.29522048, excess h_p-a0/2=0.14761024 a0; (C4) boundary regimes: h/a0 = sqrt(y) - y/2 + y^(3/2)/12 + O(y^2) as y->0+ (leading h~sqrt(a0 B), leading neglected term -B/2 relative) and h/a0 = y*exp(-sqrt(y))*(1+O(exp(-sqrt(y)))) as y->inf. The landmark reproduces the contract rounded values (|y_p-2.53964|=1.72e-6, |h_p-0.647610|=2.38e-7) and AS028's rounded y_p=2.539638282 to 1e-9. Domain: y in (0,inf) as a dimensionless theorem; dimensional values stated for both footings a0=9.3619e-11 (h_p=6.0628622861e-11 m/s^2) and a0=1.1279e-10 (h_p=7.3043958732e-11 m/s^2) with kappa=1/2 fixed so rho_Lambda changes (ratio (a0_alt/a0_can)^2=1.4514872); kappa=1/2 remains an adopted framework input. RAR-branch conclusions only; MONO (operative law) referenced as comparison landmark only (splice owned by AS033).",
+  "framework_cell": {
+    "action_source": "task AS032 (sha256 c7ea12d6434d56edb53af4cd42debda6f9ef3776e68220d81cc7b67ea7eb18dc); framework base FRAMEWORK_CONTRACT.md (sha256 ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9); sources pinned and verified against SOURCE_MANIFEST.json: README.md 91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed (match), qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f (match; amended 2026-09-26: nu_RAR up to y*=2.3374, h'=max(h'_RAR, delta*h_p/(y+y_p)), delta=0.05), real_research/peer_review_2026_09_26/README.md 521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac (match); amendment overrides: operative target filtered nu_mono, causality criterion B",
+    "kernel": "RAR branch: nu_RAR(y)=1/(1-exp(-sqrt(y))), g=B*nu_RAR(B/a0), spherical unfiltered algebraic response; phantom h_RAR(y)=y(nu-1)=y/(exp(sqrt(y))-1). Q branch (comparison): g^2=B^2+a0*B. MU2 branch (comparison): mu2(x)=1-(1+x/2)^(-2), mu2(x)*g=B, x=g/a0. MONO (comparison only): h'_mono=max(h'_RAR, 0.05*h_p/(y+y_p)), spliced AT y* approx 2.3374 (below the RAR peak); no RAR conclusion transferred to MONO.",
+    "filter": "none; unfiltered spherical algebraic branch responses only; heat-filtered MONO field equation (S=exp[(xi^2/2)Delta]) outside scope, recorded as comparison",
+    "gate": "A02 constitutive kernels and branch fidelity; criterion B branch distinctness (Q, RAR, MU2, EXP historical, MONO operative kept separate)",
+    "coupling": "G_N=6.67430e-11 m^3 kg^-1 s^-2 (SI) used for rho_Lambda footings and B=G_N*M_b/r^2 context; G_bare, G_cosmo kept separate (no relation derived, none used); c=299792458 m/s",
+    "parameters": "kappa=1/2 ADOPTED input (not derived); delta=0.05 (MONO comparison); G, c fixed SI; no fits",
+    "scale_footing": "dimensionless theorem applied to both footings separately: canonical a0=9.3619e-11 m/s^2 (h_p=6.0628622861e-11 m/s^2, rho_Lambda=5.8444124540e-27 kg/m^3) and alternative a0=1.1279e-10 m/s^2 (h_p=7.3043958732e-11 m/s^2, rho_Lambda=8.4830896196e-27 kg/m^3); kappa fixed so rho_Lambda changes with ratio (a0_alt/a0_can)^2=1.45148716; if rho_Lambda fixed instead, effective kappa=0.6023884 (recorded, not used)",
+    "boundaries": "y=B/a0 in (0,inf); static spherical idealisation for the branch response; no EFE, no filter, no time dependence; exact identities are boundary-independent; dimensional boundary regimes separately checked at y=1e-6 and y=1e8",
+    "initial_conditions": "none (static algebraic response; no evolution)",
+    "units": "SI for dimensional statements; h, y, t dimensionless in the derived identities; h'' carries a0 per unit y^2"
+  },
+  "new_assumptions": [],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS032_rar_phantom_acceleration_maximum.md": "c7ea12d6434d56edb53af4cd42debda6f9ef3776e68220d81cc7b67ea7eb18dc",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "not hashed at read time; read for branching authority only",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/AS032_compute.py": "d19952b7106a2eb50bdb9c140d7632b0a9a15685bb77c7271d75691d6325bb7f",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/raw_output.json": "4790e6bc5bbd8a7bb57e095868a7ec4c298aaebae96b9a69cbed77a422304248",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/AS032_verify.py": "0b07bd6d9a1303a7bda14a44f27c8d6d3092481dc76931e04d2aa46b89c6896b",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/verify.log": "dca9e3fee219294a497f80a8a5bcbdf2ef3986a6ad4895a78740ee006c14c959",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/AS032_rar_phantom_maximum.lean": "37baa0aff28e5b6b3117629eb543ddffb62f53709dde7d50eabac7bb8a085ecb",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/lean_check.out": "2333047513fd7580f34ea263b985ddf3e33203141d017820d3a07731a6d9333c",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/failed_attempt_hpp_formula.json": "622aa11e0c5f4174a8df17e78cef709e5a4f383aa98dda4a242adab51c560358",
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/derivation.md": "aded1316396ccac1a62aad8ff1453e552b7b158300c773fd5646ec66e5e919a1"
+  },
+  "commands": [
+    "python3 AS032_compute.py  (cwd: deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes; mpmath dps=50; wall 0.023 s, one extra bounded run for RSS: /usr/bin/time -l -> 0.05 s wall, max RSS 20004864 bytes)",
+    "cd fable_independent_2026/lean_2026 && lake env lean <abs>/AS032_rar_phantom_maximum.lean (exit 0; #print axioms output in lean_check.out)",
+    "python3 AS032_verify.py  (cwd: run dir; exit 0; 12/12 PASS in verify.log)"
+  ],
+  "execution_bounds": {
+    "wall_time_declared_s": 120,
+    "wall_time_enforced_s": "120 via RLIMIT_CPU (setrlimit succeeded) AND signal.alarm(120) SIGALRM watchdog; actual wall 0.023 s (compute), <1 s (verify)",
+    "memory_declared_bytes": 536870912,
+    "memory_enforced_bytes": "512 MiB REQUESTED via RLIMIT_AS then RLIMIT_DATA; macOS (Python 3.13, Anaconda) rejected both setrlimit calls with ValueError('current limit exceeds maximum limit') - recorded in raw_output.json bounds.enforced; realized peak RSS measured instead: 20004864 bytes (19.1 MiB) via /usr/bin/time -l",
+    "threads": "1 (scalar mpmath/python; no thread pools, no numpy)",
+    "grid": "181 points y=10^k, k=-10..8 step 0.1 (fixed, enforced by construction); 50 digits mpmath",
+    "samples": "Q sample grid y in {1e-2,1,1e2,1e6,1e12}; MU2 sample grid x in {1e-2,1,2,3,1e2}; FD steps 1e-10,1e-12,1e-14"
+  },
+  "checks": [
+    {"name": "peak equation residual F(t_p) at 50 digits", "observed": "0.0", "tolerance_predeclared": "1e-45 (50-digit residual)", "result": "pass"},
+    {"name": "contract landmarks", "observed": "|y_p-2.53964|=1.7178e-6; |h_p-0.647610|=2.3789e-7; bracket [2.5,2.6] true", "tolerance_predeclared": "y_p within 1e-5, h_p within 1e-6 of contract rounded values", "result": "pass"},
+    {"name": "h_p exact vs direct evaluation", "observed": "difference 0.0 at 50 digits; 3e-16 in fp64", "tolerance_predeclared": "1e-14", "result": "pass"},
+    {"name": "h'(y_p) residual", "observed": "0.0 (exact form, 50 digits); five-point numeric 7.4e-13 / -1.0e-11 (fp64)", "tolerance_predeclared": "1e-9", "result": "pass"},
+    {"name": "h''(y_p) closed form vs independent exact form F'(t)/(4t(e^t-1)^2)", "observed": "difference 4.2e-53 (50 digits)", "tolerance_predeclared": "1e-25", "result": "pass"},
+    {"name": "h''(y_p) closed form vs finite differences (3 steps)", "observed": "agree to 1.7e-25 (step 1e-12); fp64 second-difference within 2.4e-5 = documented fp64 cancellation floor", "tolerance_predeclared": "1e-20 (50-digit FD), 5e-5 (fp64 stencil)", "result": "pass"},
+    {"name": "NEGATIVE CONTROL: t=0 boundary root of peak equation is not the peak", "observed": "F(0)=0 but h'(0+)=4.9999995e7>0 and dh/dt(0)=1!=0; h(0)=0<h_p", "tolerance_predeclared": "reject t=0 (classification must fail for it)", "result": "pass (rejected)"},
+    {"name": "NEGATIVE CONTROL: wrong extrema t=1 and t=2 rejected", "observed": "F(1)=e-2=0.7182818!=0, h'(1)=0.1216399!=0, h(1)=0.58198<h_p; F(2)=-2, h'(4)=-0.0244978<0", "tolerance_predeclared": "both nonzero / negative", "result": "pass"},
+    {"name": "NEGATIVE CONTROL: uniqueness", "observed": "F'=(1-t)e^t<0 on (1,2), F(1)>0>F(2); exactly 1 sign change of h' on 181-point grid", "tolerance_predeclared": "exactly 1 positive root", "result": "pass"},
+    {"name": "NEGATIVE CONTROL: wrong h'' formula (2t^4 chain slip) rejected by FD", "observed": "-0.0187010 vs FD -0.0298024 (rel 0.594) -> formula corrected; preserved in failed_attempt_hpp_formula.json", "tolerance_predeclared": "FD must reject wrong formula (it did)", "result": "pass (control caught real error)"},
+    {"name": "Newtonian regime y=1e-6: 5-term series vs exact", "observed": "remainder 1.3875e-15 (exact leading-neglected-term order y^2/720*... consistent)", "tolerance_predeclared": "remainder < 1e-12", "result": "pass"},
+    {"name": "Tail y=1e8: h/(y e^{-sqrt(y)})", "observed": "1.0 (50 digits) -> leading tail term exact to 50 digits", "tolerance_predeclared": "1 + O(e^{-sqrt y})", "result": "pass"},
+    {"name": "Q identity h_Q = 1/(1+sqrt(1+1/y))", "observed": "equal at all 5 sample points incl. y=1e12 (50 digits); naive form cancellation shown and avoided in fp64 verify", "tolerance_predeclared": "exact identity", "result": "pass"},
+    {"name": "Q strict cap h_Q < 1/2", "observed": "sup on grid 0.49999999875 with stable form; deficits 4.1e-1 .. 1.25e-13", "tolerance_predeclared": "strict inequality for all finite y", "result": "pass"},
+    {"name": "MU2 max = 1/2 iff x=2", "observed": "h_MU2(2)=0.5 exactly; deficit identity (1-x/2)^2/(2(1+x/2)^2) >= 0; derivative sign + at 1.9, - at 2.1", "tolerance_predeclared": "exact identity", "result": "pass"},
+    {"name": "MONO landmark consistency (comparison only)", "observed": "h'_RAR(y*=2.337412405)=0.00663936342199 vs delta*h_p/(y*+y_p)=0.00663936341274, diff 9.25e-12", "tolerance_predeclared": "consistent to AS028's rounding of y* (1e-9)", "result": "pass"},
+    {"name": "Lean certificate", "observed": "lake env lean exit 0; 9 theorems; #print axioms subset {propext, Classical.choice, Quot.sound}, no sorry", "tolerance_predeclared": "exit 0, zero sorry", "result": "pass"}
+  ],
+  "tested_domain": "y=B/a0 in [1e-10, 1e8] sampled on the 181-point log grid 10^k (k=-10..8 step 0.1) for the sup/sign-change checks; exact identities and the peak landmark derived on the full open domain y in (0,inf) (the root bracketing + monotonicity argument is analytic: F strictly monotone on (1,2) with F(1)>0>F(2)); fixed-point and FD cross-checks at the peak; boundary regimes at y=1e-6 and y=1e8; Q samples y in {1e-2,1,1e2,1e6,1e12}; MU2 samples x in {1e-2,1,2,3,1e2}; mpmath 50 digits for all definitive values; fp64 independent rerun for representation diversity",
+  "failed_attempts": [
+    "deepseek_push/astra_spawn_ideas/results/AS032/run_AS032-r1-20260928T020843Z-dsv4f-hermes/failed_attempt_hpp_formula.json -- first-attempt h''(y_p)=(1-t)(2-t)/(2t^4) from a chain-rule slip (h_yy=h_tt/(4t^3) instead of h_tt/(4t^2) at h_t=0); failed the finite-difference control at the 5th significant digit (exact -0.0187010 vs FD -0.0298024, relative 0.594); corrected to (1-t)(2-t)/(2t^3), which passes all three FD steps and the second independent exact form to 4.2e-53"
+  ],
+  "limitations": "Spherical unfiltered algebraic RAR branch only: no field equation, no heat filter (S=exp((xi^2/2)Delta)), no relativistic content; kappa=1/2 remains an adopted framework input (not derived); the peak LOCATION y_p is transcendental (no elementary closed form; exact value law h_p=sqrt(y_p)(2-sqrt(y_p)) is certified, location is analytic/numerical); exp-t and IVT/monotonicity argument is analytic but the theorem's global-maximality statement is backed by the sign argument F>0 on (0,t_p), F<0 on (t_p,inf) plus computed F at sampled points (not a full formal real-analysis certificate); no RAR result transferred to MONO (branch distinctness, criterion B); fp64 second-difference accuracy limited to its cancellation floor 2.4e-5 (50-digit controls give 1e-25); Q/MU2 comparisons are dimensionless-max statements, not claims about their filtered field equations",
+  "next_unresolved_implication": "The operative-law transfer is blocked at the splice: exact solution y* of h'_RAR(y*) = delta*h_p/(y*+y_p) (delta=0.05) and the logarithmic MONO continuation on (y*,inf) need their own derivation (AS033/AS034), and the heat-filtered MONO field equation (S=exp[(xi^2/2)Delta]) needs a proof that the RAR phantom extremum leaves no spurious stationary point in the filtered map - the RAR peak is a landmark for that construction, not its law",
+  "suggested_followup": "Child AS032.C01 (ready spec, not dispatched - no spawn mechanism in this session): 'peak-to-splice transfer check' - prove uniqueness of the crossing h'_RAR(y) = delta*h_p/(y+y_p) on (y*, y_p) and certify the splice residual with AS033's exact y* to 1e-12; joint check that h_mono(y) has no interior extremum on (y*,inf) (h'_mono = delta*h_p/(y+y_p) > 0 there) - prerequisite for the filtered field equation's monotone phantom response",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "Branch equations as framework inputs: nu_RAR(y)=1/(1-exp(-sqrt(y))), Q g^2=B^2+a0B, MU2 mu2(x)=1-(1+x/2)^(-2), MONO derivative rule with delta=0.05 (contract); kappa=1/2 ADOPTED (contract); G=6.67430e-11, c=299792458 (SI conventions); both a0 footings 9.3619e-11 and 1.1279e-10 m/s^2; spherical static idealisation; open domain y>0",
+    "measured_calibrations": "none used (no observational data in this derivation)",
+    "boundary_initial_data": "h(0+)=0 and h(inf)=0 limits (derived from the branch equation, verified numerically at 1e-6 and 1e8); no time evolution",
+    "genuinely_derived_equations": "h_RAR=y/(e^sqrt(y)-1); h'(y)=F(t)/(2(e^t-1)^2), F(t)=(2-t)e^t-2; peak equation e^t(2-t)=2; exact peak value h_p=t_p(2-t_p)=sqrt(y_p)(2-sqrt(y_p)); h''(y_p)=(1-t_p)(2-t_p)/(2 t_p^3); Q rationalized identity 1/(1+sqrt(1+1/y)); Q strict cap; MU2 deficit identity (1-x/2)^2/(2(1+x/2)^2) and iff-x=2 maximum; boundary expansions with leading neglected terms"
+  },
+  "closure_implication": {
+    "named_gate": "A02 constitutive kernels and branch fidelity, criterion B: 'a constitutive response, its inverse and its filtered field equation must agree on their declared branch; matching one asymptote does not make two kernels equivalent'",
+    "exact_implication": "The RAR phantom maximum h_p=0.64761024 a0 at y_p=2.53963828 with concavity (1-t_p)(2-t_p)/(2t_p^3)<0 is an exact, controlled landmark of the RAR branch alone; it exceeds the Q strict cap and the MU2 maximum (both a0/2), so no branch sharing only the deep asymptote (Q, MU2, RAR all give h~sqrt(a0 B) deep) reproduces RAR's finite peak structure - quantitative branch-distinctness evidence for A02; the landmark feeds the operative MONO derivative rule (delta*h_p/(y+y_p)) and thus the filtered field equation's splice, but the transfer is a separate gate (AS033/AS034) not established here",
+    "common_action_parameter_domain_compatibility": "Not claimed: this result is dimensionless-branch algebra; no common-action witness supplied; compatibility with the filtered MONO action is the open implication above"
+  },
+  "child_proposals": [
+    {
+      "id": "AS032.C01 (ready specification, NOT dispatched - no runner available in this session)",
+      "parent": "run_AS032-r1-20260928T020843Z-dsv4f-hermes (task_sha256 c7ea12d6..., artifacts_sha256 d19952b7.../4790e6bc.../37baa0af...)",
+      "new_claim": "The crossing y* of h'_RAR(y)=delta*h_p/(y+y_p), delta=0.05, is unique on (y*,y_p) and h_mono(y)=h_RAR(y*)+delta*h_p*ln((y+y_p)/(y*+y_p)) is strictly increasing on (y*,inf) with no interior extremum; splice residual |h'_RAR(y*)-delta*h_p/(y*+y_p)|<1e-12",
+      "first_principles_premise": "MONO derivative rule from the amended contract (FRIED_CHICKEN_SPEC 98d9149f...); landmarks from AS032/AS028",
+      "controls": "negative control: reject the crossing at y=y_p (h'_RAR(y_p)=0 < delta*h_p/(2y_p)>0 -> no crossing at the peak); uniqueness by monotonicity of h'_RAR on (0,y_p)",
+      "dependency": "AS032 (this result: h_p, y_p exact-value law), AS028 (rounded y*); near-duplicate check: AS033 'MONO splice location from its derivative rule' is the SAME target - AS032.C01 should be merged into AS033 rather than dispatched separately; do not dispatch a duplicate",
+      "dispatch_state": "not dispatched; no subagent spawn mechanism available in this session; registered for the orchestrator"
+    }
+  ],
+  "closure_candidate": null
+}

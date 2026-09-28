@@ -1,0 +1,104 @@
+{
+ "pass": 15,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [closure: OR class closed under coarse graining, exact] the response of k groups of m channels is compared symbolically with the (k*m)-channel response for the corpus member p = Y/(1+Y)",
+   "measured": "residue = 0  (must be identically 0 for symbolic k, m)",
+   "pass": true,
+   "reading": "1 - p_G = (1-p)^m and ((1-p)^m)^k = (1-p)^(km) by associativity: the composed response is a member of the SAME class at the total count n = k*m.  The product identity is a pure algebraic fact -- it holds for any completion p and any positive integers k, m"
+  },
+  {
+   "name": "A2 [closure for a generic completion p, exact] same identity with p(Y) arbitrary (no shape assumed)",
+   "measured": "residue = 0",
+   "pass": true,
+   "reading": "closure does not use the shape of p at all: 1 - p_G = (1-p)^m by definition of the OR over m equal channels; only power associativity is used"
+  },
+  {
+   "name": "A3 [survival products preserve under grouping, unequal channels] q_total = prod q_i is regrouped as prod_groups prod_members and compared",
+   "measured": "q1*q2*q3*q4 = 5/231;  (q1*q2)*(q3*q4) = 5/231; residue = 0",
+   "pass": true,
+   "reading": "grouping invariance needs ONLY independence (products factor), not equal channels and not any completion regularity -- the seed's boxed identity, verified exactly"
+  },
+  {
+   "name": "B1 [the deep-MOND slope equals the total channel count, every completion] mu_n'(0) is computed for 4 counts x 3 completions",
+   "measured": "12 (completion, count, slope) triples; slopes = ['1', '2', '3', '4', '1', '2']...",
+   "pass": true,
+   "reading": "chain rule: mu_n'(0) = n*(1-p(0))^(n-1)*p'(0) = n.  Grouping-invariant in the vacuum unit s: the count reading is the TOTAL n for any grouping"
+  },
+  {
+   "name": "B2 [NEGATIVE CONTROL: the normalized group drive slope does NOT remain one] the group engagement 1-(1-p)^2 is differentiated at the origin in the vacuum unit s and compared with 1",
+   "measured": "p_G'(0) = 2  (claim 'remains one' requires 1)",
+   "pass": true,
+   "reading": "CAUTION: this check is DESIGNED to fail the 'remains one' claim -- the control is live (it has content).  p_G'(0) = m = 2: a group of two unit-slope channels has slope 2 in the vacuum unit.  'Slope one after grouping' survives only after a hand renormalization of the drive unit (Part D), which is a physical scale-selection, not a product identity"
+  },
+  {
+   "name": "B3 [the count conversion kappa = a0/s = 1/(slope) is grouping-covariant] the deep-MOND matching with slope mu'(0) = n in unit s is re-derived for n = 1, 2, 3 and converted to kappa",
+   "measured": "deep-MOND: (n g/s) g = g_N  ->  g^2 = (s/n) g_N  ->  a0 = s/n  ->  kappa = a0/s = 1/n: {1: 1, 2: 1/2, 3: 1/3}",
+   "pass": true,
+   "reading": "the framework's L230 chain (PD01 A4) with the slope = count result (B1): kappa = 1/(total count).  Regrouping does not change n (B1), so kappa is grouping-invariant on the fixed vacuum footing"
+  },
+  {
+   "name": "C1 [deep-limit leading neglected term, derived] mu_n(Y) is expanded at the origin for the corpus member (n = 2) and for a generic completion p = Y + c2 Y^2 + ...",
+   "measured": "corpus member: 1-(1+Y)^-2 = 6*Y**5 - 5*Y**4 + 4*Y**3 - 3*Y**2 + 2*Y -> leading neglected term -3 Y^2 (domain |Y| < 1); generic completion: mu_2 = -Y**4*c2**2 - 2*Y**3*c2 + 2*Y**2*c2 - Y**2 + 2*Y, Y^2 coefficient = 2*c2 - 1",
+   "pass": true,
+   "reading": "the slope nY carries the testable content; the next term is completion-dependent (c2) and vanishes from the slope -- restating B1 at order one"
+  },
+  {
+   "name": "C2 [Newtonian limit: mu -> 1 at Y -> oo] saturation checked for the n = 2 response for every completion",
+   "measured": "limits: {'p = Y/(1+Y)': 1, 'p = 1-exp(-Y)': 1, 'p = tanh(Y)': 1}",
+   "pass": true,
+   "reading": "boundary case at the other end: the response saturates at one (L230 normalization), where g = g_N and the a0-line hands over to Newton"
+  },
+  {
+   "name": "D1 [NEGATIVE CONTROL: renormalize the group slope by hand, then read the count] the grouped two-channel response is re-read as one unit-slope channel in the renormalized unit s/2, and the matching is re-done for group sizes m = 1, 2, 3",
+   "measured": "unit s_G = s/m: kappa readings = 1/m = 1, 1/2, 1/3 for m = 1, 2, 3",
+   "pass": true,
+   "reading": "the count interpretation CHANGES: 2 physical channels -> 1 renormalized group channel (count reading 1 at unit s/2), and the SAME procedure at m = 3 reads count 1 at unit s/3 and would 'derive' kappa = 1/3.  The coarse-graining product identity is consistent with EVERY kappa = 1/m: closure does not select 1/2.  kappa = 1/2 is anchored by (i) the L230 unit anchor at the vacuum rate s (the action's one scale; k01 zero-mode) and (ii) the count 2 of the metric's computed static channels (PD01 B1) -- both scale-selection/physical premises, NOT the product identity"
+  },
+  {
+   "name": "E1 [diagnostic counterexamples at lambda = 1/2, 1, 2: the count reading is scale-covariant, the kappa ratio is protected only by carrying the unit] the n = 2 response is read in units s_lam = lam*s; the chain-rule slope reading, the covariant matched kappa, and the unit-confused kappa are computed exactly for the three values",
+   "measured": "n_lam = ['1/2 -> 1', '1 -> 2', '2 -> 4']; covariant kappa = ['1/2 -> 1/2', '1 -> 1/2', '2 -> 1/2']; unit-confused kappa = ['1/2 -> 1', '1 -> 1/2', '2 -> 1/4']",
+   "pass": true,
+   "reading": "the lambda-diagnostics: (i) closure is scale-covariant -- carrying the unit explicitly, the matched scale a0_lam/s = 1/2 is IDENTICAL for all lambda (the algebra cannot move the landing); (ii) the COUNT READING is covariant: n_lam = 2*lam in {1, 2, 4} -- at lam = 1/2 the same response reads as ONE channel; (iii) a unit-confused fit that mistakes s_lam for the vacuum rate reads kappa = 1/(2 lam) in {1, 1/2, 1/4}.  Hence: kappa = 1/2 is attached when the drive is measured in the vacuum's own rate s (L230 anchor, one-scale action, k01), and the count 2 is the computed channel count (PD01 B1); neither is selected by the product identity.  No observational preference is used anywhere in this part"
+  },
+  {
+   "name": "E2 [the diagnostics distinguish identity from scale-selection] the three lambda values' readings are scored against the claim 'the OR algebra alone fixes the count and kappa'",
+   "measured": "algebra gives: response identity (lambda-invariant), count reading (covariant, not invariant), kappa ratio (invariant ONLY under correct unit bookkeeping)",
+   "pass": true,
+   "reading": "the product identity is a mathematical theorem; the unit at which the slope is a count is a physical scale-selection.  The diagnostics prove the count reading is convention-dependent -- the seed's 'distinguish a mathematical product identity from a physical scale-selection principle', executed"
+  },
+  {
+   "name": "F1 [independent representation: 80-digit arithmetic] the closure identity is recomputed numerically at 18 (grouping, Y) points and the slope at the origin by direct finite difference, with the ACTUAL residuals kept",
+   "measured": "max |closure residual| = 2.1084e-81 (80-digit mpmath); numeric slopes = ['n=1: 1.0', 'n=2: 2.0', 'n=3: 3.0', 'n=4: 4.0']",
+   "pass": true,
+   "reading": "an EXACT identity is tested at finite precision: the residuals are machine-limited, not reported as booleans.  The continuation (finite numeric consistency at |Y| up to 1e3) does not replace the exact proof of Part A"
+  },
+  {
+   "name": "G1 [both footings carry kappa = 1/2 with their own densities] canonical a0 = 9.3619e-11 and alternative a0 = 1.1279e-10 m/s^2 are each written as a0 = s/2 and the vacuum density is computed for each",
+   "measured": "canonical: rho_L = 5.84441245402e-27 kg/m^3, s = 1.87238e-10 m/s^2, kappa = 0.5; alternative: rho_L = 8.48308961956e-27 kg/m^3, s = 2.2558e-10, kappa = 0.5; density ratio = 1.4514871574; fixed-density leg kappa_eff = a0_alt/s_can = 0.602388404063",
+   "pass": true,
+   "reading": "tolerance 1e-12 (relative): the identity s = 2 a0 is exact algebraically; the input literals a0, G, c carry ~1e-16 arithmetic roundoff, so 1e-12 is 4 orders above the numerical noise, and 8 orders below any discriminating physics.  the two footings do NOT share both fixed rho_Lambda and fixed kappa: the alternative footing holds kappa = 1/2 and scales the density by (a0_alt/a0_can)^2 = 1.45149; the fixed-density leg gives kappa_eff = 0.60234, recorded for accounting, not used as a value"
+  },
+  {
+   "name": "G2 [the closure theorem is dimensionless and applies to both footings] the identities of Parts A-F are stated in Y = g/s only, and the two footings enter only through the adopted pair (s, a0 = s/2)",
+   "measured": "all symbolic identities in dimensionless Y; footing conversion kappa = 1/2 kept on both, with densities 5.84441e-27 / 8.48309e-27 kg/m^3",
+   "pass": true,
+   "reading": "a dimensionless theorem is proved once and states its applicability: both registered footings are n = 2 responses at their own densities (PD01 C2: 0.00%/0.29% registration arms)"
+  },
+  {
+   "name": "H1 [substitution into the original equation] the full nonlinear response equation mu_2(g/s) g = g_N is solved at 80 digits across the deep-transition-Newtonian span r = 1e17..1e12 m and each solution is compared with the deep-MOND asymptote g = sqrt((s/2) g_N) and with g_N",
+   "measured": "[{\"r\": \"100000000000000000.0\", \"Y\": \"0.005188\", \"gN\": \"1.0e-14\", \"g_sol\": \"9.7132963232e-13\", \"g_deep\": \"9.67569118978e-13\", \"eq_resid\": \"6.59e-94\", \"dev_deep\": \"0.003887\", \"dev_newt\": \"96.13\"}, {\"r\": \"1000000000000000.0\", \"Y\": \"0.7803\", \"gN\": \"1.0e-10\", \"g_sol\": \"1.46096424516e-10\", \"g_deep\": \"9.67569118978e-11\", \"eq_resid\": \"1.23e-91\", \"dev_deep\": \"0.5099\", \"dev_newt\": \"0.461\"}, {\"r\": \"10000000000000.0\", \"Y\": \"5341.0\", \"gN\": \"1.0e-6\", \"g_sol\": \"1.00000003504e-6\", \"g_deep\": \"9.67569118978e-9\", \"eq_resid\": \"0.0\", \"dev_deep\": \"102.4\", \"dev_newt\": \"3.504e-8\"}, {\"r\": \"1000000000000.0\", \"Y\": \"5.341e+5\", \"gN\": \"0.0001\", \"g_sol\": \"0.0001\", \"g_deep\": \"9.67569118978e-8\", \"eq_resid\": \"0.0\", \"dev_deep\": \"1033.0\", \"dev_newt\": \"3.506e-12\"}]",
+   "pass": true,
+   "reading": "the matching g^2 = (s/2) g_N is the deep asymptote of the ACTUAL response solution, not a separate law; the actual residuals are kept.  Regimes: Y << 1 (deep, a0-line, threshold dev_deep < 1e-2 at r = 1e17), Y ~ 0.5 (transition, no asymptote threshold), Y >> 1 (Newtonian, threshold dev_newt < 1e-6 at r = 1e13 and < 1e-8 at r = 1e12).  Domain of the deep asymptote: |Y| << 1; leading neglected term -3 Y^2 for the corpus member (Part C1)"
+  }
+ ],
+ "bounds": {
+  "wall_s": 0.2,
+  "rss_mib": 80.1,
+  "rlimit_cpu_s": 110,
+  "rlimit_as_mib": 512,
+  "threads": 1,
+  "rlimit_as_in_process": "refused by host, supervisor-enforced"
+ }
+}

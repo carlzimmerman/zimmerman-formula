@@ -1,0 +1,78 @@
+== AS018 bounded audit; bounds: CPU<=120s (RLIMIT_CPU), AS<=512MB (RLIMIT_AS not enforceable here: current limit exceeds maximum limit), 1 thread ==
+mpmath dps = 60 | numpy 1.26.4 | sympy 1.13.1
+
+[A] symbolic identities (sympy, exact algebra)
+   symbolic: d_dr_Phi_minus_C_over_r                True
+   symbolic: r_ref_shift_is_constant                True
+   symbolic: gauge_shift_derivative_invariant       True
+   symbolic: gauge_shift_force_still_C_over_r       True
+   f(z)=z/(1-e^{-z}) = z**10/47900160 - z**8/1209600 + z**6/30240 - z**4/720 + z**2/12 + z/2 + 1
+   odd coefficients z^3,z^5,z^7 vanish (Bernoulli): True ; coef(z^4)=-1/720: True ; coef(z^6)=1/30240: True
+
+[B] footing constants (both a0 footings, separately; M_b = M_sun)
+   canonical   a0= 9.361900e-11 rho_L=5.8444124540e-27 kg/m^3 C=1.1146650453e+05 m^2/s^2 r_M=1.1906397690e+15 m v_flat=333.865998 m/s
+       v_flat^4 - G M a0 = -1.336e-51 ; r_M^2 - G M/a0 =  0.000e+00
+   alternative a0= 1.127900e-10 rho_L=8.4830896196e-27 kg/m^3 C=1.2234822744e+05 m^2/s^2 r_M=1.0847435716e+15 m v_flat=349.783115 m/s
+       v_flat^4 - G M a0 = -1.336e-51 ; r_M^2 - G M/a0 =  0.000e+00
+
+[C] high-precision identity residuals (mpmath mp.diff, 60 digits)
+   max rel residual  d/dr[C ln(r/r_ref)] vs C/r :  1.402e-52
+   max rel residual  gauge shift Phi->Phi+K (force unchanged) :  1.402e-52
+   max rel residual  re-reference Phi(.;r_ref)-Phi(.;r_ref0) = C ln(r_ref0/r_ref) :  2.927e-60
+
+[D] deep expansion: g = (C/r)[1 + z/2 + y/12 - y^2/720 + y^3/30240 + O(y^5)], z=sqrt y = r_M/r
+   y          exact q=g*r/C-1      pred(q)           remainder
+    1.0e-01    1.664334e-01    1.664333e-01    3.299e-08
+    1.0e-02    5.083319e-02    5.083319e-02    3.306e-11
+    1.0e-03    1.589472e-02    1.589472e-02    3.307e-14
+    1.0e-04    5.008333e-03    5.008333e-03    3.307e-17
+    1.0e-05    1.581972e-03    1.581972e-03    3.307e-20
+    1.0e-06    5.000833e-04    5.000833e-04    3.307e-23
+    1.0e-07    1.581222e-04    1.581222e-04    3.307e-26
+    1.0e-08    5.000083e-05    5.000083e-05    3.307e-29
+   log-log slope of |remainder| vs y = 3.0000  (expect 3.0: leading remainder y^3/30240)
+   remainder/y^3 at y=1e-8 = 3.306878e-05  (expect 1/30240 = 3.3069e-5)
+
+[E] MONO construction (framework def): h_RAR(y)=y(nu_RAR(y)-1), peak y_p, h_p, splice y*, delta=0.05
+   y_p    = 2.53963828   (landmark 2.5396; h_p = 0.647610 ; README saturation 's=2.540, Delta=0.6476' = same object)
+   y*     = 2.33741241   (landmark 2.3374)
+   h continuity at y* :  6.639e-17 ;  C^1 (|h'_RAR(y*) - floor(y*)|) :  1.641e-62
+   max |log10(nu_mono/nu_RAR)| = 0.010369 dex at y=14.1254 (spec bound 0.0104)
+
+[F] radial-grid independent check (float64): shell source, Green(erf) g_N, Phi by quadrature, gauge & energy checks, phantom mass, regimes
+   deep_g_times_r_over_C                 1.000250e+00
+   deep_leading_correction_pred_1_plus   1.000250e+00
+   deep_in_band                         True
+   grad_of_Phi_vs_g_max_rel              1.620641e-07
+   gauge_grad_diff_smallK_max_abs        2.168404e-19
+   gauge_grad_diff_hugeK_max_abs         3.814717e-06
+   hugeK_rounding_bound_pred             1.774131e-05
+   hugeK_diff_within_rounding_bound     True
+   E0_J                                  6.942380e-10
+   E_K_J                                 3.141579e+04
+   dE_over_dK                            9.999966e-01
+   M_b_by_quad                           9.999966e-01
+   energy_shift_identity_rel_err         1.158010e-16
+   mass_quad_vs_exact                    3.391891e-06
+   Mph_identity_max_rel                  1.432600e-14
+   v2_minus_C_relative                   2.500208e-04
+   v2_lead_pred_relative                 2.500000e-04
+
+[G] S = exp[(xi^2/2) Laplacian]: periodic / Dirichlet / lapse-weighted adjoint
+   S_periodic_symmetric                   8.938809365316844e-17
+   S_periodic_ones_eigen_max_abs          2.886579864025407e-15
+   periodic_spectrum_min_lambda           -4.000000000000001
+   periodic_zero_mode_dist                1.15052186064745e-16
+   S_Dirichlet_constant_not_preserved     0.3263299770566508
+   Dirichlet_zero_mode_dist               0.002335546335346623
+   lapse_adjoint_identity_residual        8.5433605004200745e-16
+   S_star_N_minus_S_norm_ratio            0.013978573713262644
+   S_star_N_ne_S                          True
+
+[H] NEGATIVE CONTROL: 'potential zero = measured extra vacuum density' -> REJECTED
+   naive rho-estimator slope d(rho)/dK =  1.8484e-20 kg/m^3 per (m^2/s^2) of gauge; range over K-scan =  3.6968e-16 kg/m^3
+   contrived K matching rho_Lambda(can) =  3.1619e-07 ; rho_total(alt) =  4.5894e-07 ; rho_Lambda/2 =  1.5809e-07  m^2/s^2
+   -> ANY alleged vacuum density is 'explained' by SOME potential-zero choice, while every force/gradient observable is K-invariant (small-K gauge gradient difference =  2.168e-19 m/s^2; huge-K difference  3.815e-06 bounded by float rounding  1.774e-05)
+   framework rho_Lambda (both footings) =  5.844412e-27 /  8.483090e-27 kg/m^3 : K-invariant, unaffected by the gauge
+wall time 0.395 s ; maxrss 96.250 MB (ru_maxrss 100925440 bytes)
+residuals.json written; run completed

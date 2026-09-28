@@ -1,0 +1,397 @@
+{
+ "pass": 19,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [OR slope = channel count] mu(Y) = 1-(1-p1)(1-p2) with p_i(0)=0, p_i'(0)=1: mu'(0) = p1'(0)(1-p2(0)) + p2'(0)(1-p1(0)) = 2 exactly, independent of the completion",
+   "measured": "mu'(0) = -p1'*p2p0 + p1' - p1p0*p2' + p2' -> at the boundary values p_i(0)=0, p_i'(0)=1: 2; on the generic 2-jet p = Y + c2 Y^2: mu_jet = -Y**4*c2a**2 - 2*Y**3*c2a + 2*Y**2*c2a - Y**2 + 2*Y, linear coefficient = 2",
+   "pass": true,
+   "reading": "the deep slope is the sum of the per-channel slopes through the OR composition (product rule; the (1-p_j(0)) factors are unity at the vacuum boundary); the completion leaves the slope untouched",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A2 [corrected quadratic coefficient] the exact expansion of the OR composition on the generic 2-jet",
+   "measured": "mu = 2Y + (2*c2a - 1) Y^2 - 2 c2a Y^3 - c2a^2 Y^4 ; residual of the claimed polynomial = 0. [PD08 docstring prints (2c2+1) for the quadratic coefficient; the true coefficient is (2c2-1); the origin slope 2 is unaffected and PD08's checks only tested the slope]",
+   "pass": true,
+   "reading": "sign recorded so no later factor adopts the docstring's quadratic coefficient; slope claim unaffected",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A3 [unequal-channel OR: slope = SUM of per-channel slopes] mu = 1-(1-p1)(1-p2) with p_i = b_i Y + c_i Y^2: mu'(0) = b1 + b2",
+   "measured": "mu'(0) = b1 + b2 (generic 2-jets with slopes b1, b2); unit slopes b1 = b2 = 1 land on 2",
+   "pass": true,
+   "reading": "unit slopes on BOTH channels give total slope 2; a single unit-slope channel would give 1 (this is the A1-removal lane)",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A4 [the L230 chain, explicit premises] deep-MOND Gauss flux with mu ~ 2 g/s: 2 (g/s) g = B has g^2 = (s/2) B; a0 := s/2; kappa = a0/s = 1/2",
+   "measured": "g^2 = G*M*s/(2*r**2) = (s/2) B ; a0 = s/2 ; kappa = 1/2",
+   "pass": true,
+   "reading": "every scale factor and the 1/2 enter through the channel count; s entered only as the argument's unit and the matching's rate",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A5 [normalization and saturation of the response] corpus member p = Y/(1+Y): mu(0) = ? and mu(inf) = ?",
+   "measured": "mu(Y) = 1 - 1/(Y + 1)**2 ; mu(0) = 0 ; mu(inf) = 1 ; series = 6*Y**5 - 5*Y**4 + 4*Y**3 - 3*Y**2 + 2*Y",
+   "pass": true,
+   "reading": "zero drive, zero response (A3 lower bound); full drive, full saturation (L230 normalization); the Newtonian regime g -> B is the mu -> 1 limit checked numerically in D3",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A6 [leading neglected term, stated] on p_i = Y + c2_i Y^2: mu = 2Y (1 + alpha Y + O(Y^2)), alpha = (c2_1 + c2_2 - 1)/2; solution of Y mu(Y) = B/s: g^2 = (s/2) B (1 - alpha u + O(u^2)), u = sqrt(B/(2s)) = g_asym/s",
+   "measured": "alpha = (c2_1 + c2_2 - 1)/2 ; corpus member: alpha = -3/2 (mu = 2Y - 3Y^2 + 4Y^3 - 5Y^4 + 6Y^5 - ...: series = 6*Y**5 - 5*Y**4 + 4*Y**3 - 3*Y**2 + 2*Y)",
+   "pass": true,
+   "reading": "the a0-line is an asymptotic statement of the truncated equation; the correction is O(g/s) with completion-dependent coefficient; domain Y << 1 (deep regime). Verified numerically in D1/D2",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A7 [deep law in v_flat form] v^2 = g r with g = sqrt((s/2) G M)/r gives v_flat^4 = G M (s/2) = G M a0, the framework deep law",
+   "measured": "v_flat^4 = (s/2) G M_b = a0 G M_b with a0 = s/2",
+   "pass": true,
+   "reading": "the framework relation v_flat^4 = G M_b a0 is the theorem's deep law in velocity form",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "A8 [units] [g^2] = m^2 s^-4 ; [s][B] = (m s^-2)(m s^-2) = m^2 s^-4",
+   "measured": "dimensions of both sides of g^2 = (s/2) B agree in SI",
+   "pass": true,
+   "reading": "no hidden scale factor; s and B both accelerations",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "B1 [A1 load-bearing: n is an INPUT, not a conclusion] the same OR algebra with n = 1 or n = 3 channels changes the inferred kappa",
+   "measured": "kappa(n=1) = 1, kappa(n=2) = 1/2, kappa(n=3) = 1/3",
+   "pass": true,
+   "reading": "the channel count is a premise (carrier count, PD01-B1/AS056); the algebra converts count -> kappa, it does not select the count",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "B2 [A2 load-bearing: saturation does NOT select OR] average composition (p+p)/2 and the AND composition p^2 both saturate at 1 with p -> 1, yet have different deep laws",
+   "measured": "mu_avg'(0) = 1 -> kappa = 1 ; AND: mu'(0) = 0 -> g ~ (B s^2)^{1/3} (no MOND sqrt law); real-exponent family mu_lam = 1-(1-p)^lam: kappa = {'1/2': 2, '1': 1, '2': 1/2}",
+   "pass": true,
+   "reading": "every saturating composition gives SOME kappa; only the OR over two unit-slope channels gives exactly 1/2; lambda = 2 reproduces 1/2 without two channels (the composition premise is real, AS054)",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "B3 [A3 load-bearing: p'(0) = 1 is a premise (AS053)] the family p = lam Y/(1 + lam Y) has p(0) = 0, p(inf) = 1, monotone, for every lam > 0, but p'(0) = lam; the inferred kappa = 1/(2 lam) varies",
+   "measured": "lambda in {1/2, 1, 2} -> kappa in {1, 1/2, 1/4}",
+   "pass": true,
+   "reading": "the unit slope is the s-units fraction identity (L230 principle, k01 no-go), NOT a theorem of the algebra: removing it shifts kappa continuously",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "B4 [A4 load-bearing: the source coupling must be the measured G] with B from coupling G_c = xi G_N on the source side and s from the measured G_N, the inferred kappa_eff = xi/2",
+   "measured": "xi = G_c/G_N in {1/2, 1, 2} -> kappa_eff in {1/4, 1/2, 1}",
+   "pass": true,
+   "reading": "G_N, G_bare, G_cosmo are separate symbols (framework rule); a hidden coupling ratio xi != 1 shifts kappa away from 1/2; only xi = 1 ('measured source coupling' premise) lands on one half",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "B5 [A5 load-bearing: the response scale must be the vacuum scale] with s = xi c sqrt(G rho_Lambda), a0 = s/2 gives kappa = xi/2 in the framework convention a0 = kappa c sqrt(G rho_Lambda)",
+   "measured": "xi = s/(c sqrt(G rho_L)) in {1/2, 1, 2} -> kappa in {1/4, 1/2, 1}",
+   "pass": true,
+   "reading": "the identification s = c sqrt(G rho_Lambda) is the physical premise tying the response scale to the vacuum density; the theorem converts that identification + the count into a0 = (c/2) sqrt(G rho_Lambda)",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "C1 [NEGATIVE CONTROL] claim tested: 'the five assumptions follow from the certified algebra alone (dropping any of them leaves kappa = 1/2)'. Control passes only if it FIRES: every premise must be load-bearing (kappa changes under its removal).",
+   "measured": "A1 (n): {'n=1': '1', 'n=2': '1/2', 'n=3': '1/3'}; A2 (composition): {'avg': '1', 'OR': '1/2', 'lam=1/2': '2'}; A3 (slope): {'lam=1/2': '1', 'lam=1': '1/2', 'lam=2': '1/4'}; A4 (coupling): {'xi=1/2': '1/4', 'xi=1': '1/2', 'xi=2': '1'}; A5 (vacuum scale): {'xi=1/2': '1/4', 'xi=1': '1/2', 'xi=2': '1'} ; premises whose parameter variation changes kappa: ['A1 (n)', 'A2 (composition)', 'A3 (slope)', 'A4 (coupling)', 'A5 (vacuum scale)']",
+   "pass": true,
+   "reading": "CONTROL FIRED (PASS as designed): every premise is load-bearing; the algebra alone certifies none of the five. kappa = 1/2 is a conditional consequence of the five explicit premises, not an unconditional conclusion. The control was capable of failing: if any premise were a redundant theorem, its variant table would collapse to a single kappa.",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "D1 [deep-regime residuals and the a0-line as an ASYMPTOTE] the exact implicit equation Y mu(Y) = B/s is solved to 60 digits for q = B/s in 10^-2 .. 10^-12 and every grid point; the relative deviation gamma = g^2/((s/2)B) - 1 is measured, not asserted",
+   "measured": "max |Y mu - q| over 3 completions x 6 decades = 3.65e-63 (threshold 1e-55); corpus gamma at q = 1e-12: 1.06066085928012512e-6 vs predicted -alpha*u = 1.06066017177982129e-6",
+   "pass": true,
+   "reading": "the equation is solved to the working precision; the a0-line is NOT an exact identity (gamma != 0), it is the leading asymptotic term",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "D2 [leading neglected term, measured coefficient] gamma/u with u = sqrt(q/2) converges to -alpha = +3/2 (corpus member, alpha = -3/2)",
+   "measured": "gamma/u at q = 1e-8, 1e-10, 1e-12: ['1.500097231', '1.500009723', '1.500000972'] (target 1.5; threshold |ratio - 1.5| < 1e-3 at q = 1e-12)",
+   "pass": true,
+   "reading": "the leading neglected term stated in A6 is reproduced by independent numeric solution: coefficient -alpha = (1 - c2_1 - c2_2)/2 = 3/2 for the corpus member; domain Y << 1",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "D3 [Newtonian limit: g -> B with measured rate] for q = B/s = 1e2, 1e6 and all three completions, the solved g/B - 1 matches its asymptotic prediction (corpus: 1/q^2 - 2/q^3 + O(q^-4); exp/tanh: exponentially small) to the pre-set tolerance",
+   "measured": "corpus,q=1e2: measured 9.802018724e-5 vs pred 9.8e-5 (tol 1.0e-7); corpus,q=1e6: measured 9.99998e-13 vs pred 9.99998e-13 (tol 1.0e-23); exp,q=1e2: measured 0.0 vs pred 0.0 (tol 1.0e-40); exp,q=1e6: measured 0.0 vs pred 0.0 (tol 1.0e-40); tanh,q=1e2: measured 0.0 vs pred 0.0 (tol 1.0e-40); tanh,q=1e6: measured 0.0 vs pred 0.0 (tol 1.0e-40)",
+   "pass": true,
+   "reading": "the Newtonian regime is an EXACT LIMIT (y/q -> 1 as q -> inf) but not an exact identity at finite q: the algebraic completion carries an O(1/q^2) deficit (mu's deficit is 1/(1+y)^2), the exponential ones decay as e^-2q/e^-4q. This distinguishes an exact identity from a finite numerical check (seed control 2)",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "D4 [lambda-family diagnostic slopes at lambda = 1/2, 1, 2] (mu(h)-mu(0))/h at h = 1e-24 for p = lam Y/(1+lam Y): slope = 2 lam -> kappa = 1/(2 lam)",
+   "measured": "lam = 0.5: FD slope = 1.0 (exact 1.0), kappa = 1.0; lam = 1.0: FD slope = 2.0 (exact 2.0), kappa = 0.5; lam = 2.0: FD slope = 4.0 (exact 4.0), kappa = 0.25",
+   "pass": true,
+   "reading": "the diagnostic counterexample family realizes kappa in {1, 1/2, 1/4} as lambda varies in {1/2, 1, 2} -- the unit-slope premise is the discriminator",
+   "tolerances_pre_set": false
+  },
+  {
+   "name": "D5 [both footings carried separately] canonical a0 = 9.3619e-11 and alternative a0 = 1.1279e-10 m/s^2 each carry kappa = 1/2 EXACTLY (a0/s = 1/2 by construction), with SEPARATE vacuum densities; the fixed-density relabeling is recorded as a diagnostic only",
+   "measured": "canonical: {'a0': '9.3619e-11', 's = 2 a0': '1.87238e-10', 'rho_Lambda': '5.844412454021876e-27', 'r_M(M_sun)': '1190639769001739.0', 'r_M_kpc': '0.0385860070457', 'v_flat(M_sun)': '333.865997871', 'epsilon_Lambda = rho c^2': '5.2526959597261e-10', 'Lambda = 32 pi a0^2/c^4 (same-G convention)': '1.0907997632807e-52', 'kappa = a0/s': '0.5'} ; alternative: {'a0': '1.1279e-10', 's = 2 a0': '2.2558e-10', 'rho_Lambda': '8.483089619559099e-27', 'r_M(M_sun)': '1084743571587644.0', 'r_M_kpc': '0.0351541450116', 'v_flat(M_sun)': '349.783114857', 'epsilon_Lambda = rho c^2': '7.6242207272673e-10', 'Lambda = 32 pi a0^2/c^4 (same-G convention)': '1.5832818476965e-52', 'kappa = a0/s': '0.5'} ; fixed-density kappa_eff = a0_alt/s_canon = 0.602388404063 != 1/2",
+   "pass": true,
+   "reading": "the theorem is dimensionless (kappa = 1/2 in the s-normalization); applying it to a footing means adopting the footing's DENSITY at kappa = 1/2 -- the two footings do NOT share both a fixed density and a fixed kappa (framework rule)",
+   "tolerances_pre_set": false
+  }
+ ],
+ "residuals": {
+  "corpus": {
+   "2": "1.215e-63",
+   "4": "5.982e-64",
+   "6": "9.139e-65",
+   "8": "2.835e-66",
+   "10": "1.133e-66",
+   "12": "2.738e-68"
+  },
+  "exp": {
+   "2": "3.646e-63",
+   "4": "1.899e-65",
+   "6": "1.929e-66",
+   "8": "2.481e-67",
+   "10": "7.054e-69",
+   "12": "2.187e-68"
+  },
+  "tanh": {
+   "2": "1.215e-63",
+   "4": "0.0",
+   "6": "1.484e-67",
+   "8": "0.0",
+   "10": "0.0",
+   "12": "0.0"
+  }
+ },
+ "deviation_from_asym_line": {
+  "corpus": {
+   "2": {
+    "q": "0.01",
+    "y": "0.0746073927700335044",
+    "residual_eq": "-1.21543e-63",
+    "gamma_rel_dev_from_asym_line": "0.113252611188409524",
+    "predicted_-alpha*u": "0.106066017177982129"
+   },
+   "4": {
+    "q": "0.0001",
+    "y": "0.0071087117550706288",
+    "residual_eq": "-5.98221e-64",
+    "gamma_rel_dev_from_asym_line": "0.0106756563335867912",
+    "predicted_-alpha*u": "0.0106066017177982129"
+   },
+   "6": {
+    "q": "1.0e-6",
+    "y": "0.000707481924848858908",
+    "residual_eq": "9.13948e-65",
+    "gamma_rel_dev_from_asym_line": "0.00106134797569288739",
+    "predicted_-alpha*u": "0.00106066017177982129"
+   },
+   "8": {
+    "q": "1.0e-8",
+    "y": "0.0000707144282622889423",
+    "residual_eq": "-2.83522e-66",
+    "gamma_rel_dev_from_asym_line": "0.000106072892481824886",
+    "predicted_-alpha*u": "0.000106066017177982129"
+   },
+   "10": {
+    "q": "1.0e-10",
+    "y": "7.07110531200910662e-6",
+    "residual_eq": "-1.13305e-66",
+    "gamma_rel_dev_from_asym_line": "0.0000106066704681020486",
+    "predicted_-alpha*u": "0.0000106066017177982129"
+   },
+   "12": {
+    "q": "1.0e-12",
+    "y": "7.07107156186691155e-7",
+    "residual_eq": "2.73766e-68",
+    "gamma_rel_dev_from_asym_line": "1.06066085928012512e-6",
+    "predicted_-alpha*u": "1.06066017177982129e-6"
+   }
+  },
+  "exp": {
+   "2": {
+    "q": "0.01",
+    "y": "0.0733181193996822066",
+    "residual_eq": "-3.6463e-63",
+    "gamma_rel_dev_from_asym_line": "0.0751093264612112674",
+    "predicted_-alpha*u": null
+   },
+   "4": {
+    "q": "0.0001",
+    "y": "0.0070961713497821328",
+    "residual_eq": "-1.89911e-65",
+    "gamma_rel_dev_from_asym_line": "0.00711295650937553112",
+    "predicted_-alpha*u": null
+   },
+   "6": {
+    "q": "1.0e-6",
+    "y": "0.000707356884347968187",
+    "residual_eq": "-1.92879e-66",
+    "gamma_rel_dev_from_asym_line": "0.000707523668929682923",
+    "predicted_-alpha*u": null
+   },
+   "8": {
+    "q": "1.0e-8",
+    "y": "0.0000707131782217786582",
+    "residual_eq": "2.48053e-67",
+    "gamma_rel_dev_from_asym_line": "0.0000707148450063028442",
+    "predicted_-alpha*u": null
+   },
+   "10": {
+    "q": "1.0e-10",
+    "y": "7.0710928119685954e-6",
+    "residual_eq": "-7.05437e-69",
+    "gamma_rel_dev_from_asym_line": "7.07110947875311384e-6",
+    "predicted_-alpha*u": null
+   },
+   "12": {
+    "q": "1.0e-12",
+    "y": "7.07107031186650644e-7",
+    "residual_eq": "2.18661e-68",
+    "gamma_rel_dev_from_asym_line": "7.07107197853435162e-7",
+    "predicted_-alpha*u": null
+   }
+  },
+  "tanh": {
+   "2": {
+    "q": "0.01",
+    "y": "0.0720803890946109372",
+    "residual_eq": "-1.21543e-63",
+    "gamma_rel_dev_from_asym_line": "0.0391164984061014647",
+    "predicted_-alpha*u": null
+   },
+   "4": {
+    "q": "0.0001",
+    "y": "0.00708368250417558186",
+    "residual_eq": "0.0",
+    "gamma_rel_dev_from_asym_line": "0.00357115639926484602",
+    "predicted_-alpha*u": null
+   },
+   "6": {
+    "q": "1.0e-6",
+    "y": "0.000707231895406945038",
+    "residual_eq": "1.48368e-67",
+    "gamma_rel_dev_from_asym_line": "0.000353907761800092543",
+    "predicted_-alpha*u": null
+   },
+   "8": {
+    "q": "1.0e-8",
+    "y": "0.0000707119282328282435",
+    "residual_eq": "0.0",
+    "gamma_rel_dev_from_asym_line": "0.0000353588809304062991",
+    "predicted_-alpha*u": null
+   },
+   "10": {
+    "q": "1.0e-10",
+    "y": "7.07108031197964405e-6",
+    "residual_eq": "0.0",
+    "gamma_rel_dev_from_asym_line": "3.53556932280380376e-6",
+    "predicted_-alpha*u": null
+   },
+   "12": {
+    "q": "1.0e-12",
+    "y": "7.07106906186661693e-7",
+    "residual_eq": "0.0",
+    "gamma_rel_dev_from_asym_line": "3.53553744760144827e-7",
+    "predicted_-alpha*u": null
+   }
+  }
+ },
+ "newtonian_recovery": {
+  "corpus_1e2": {
+   "y/q - 1 (measured)": "9.802018724006957e-5",
+   "asymptotic prediction": "9.8e-5",
+   "tol": "1.0e-7",
+   "residual_eq": "0.0"
+  },
+  "corpus_1e6": {
+   "y/q - 1 (measured)": "9.99998000002e-13",
+   "asymptotic prediction": "9.99998e-13",
+   "tol": "1.0e-23",
+   "residual_eq": "0.0"
+  },
+  "exp_1e2": {
+   "y/q - 1 (measured)": "0.0",
+   "asymptotic prediction": "0.0",
+   "tol": "1.0e-40",
+   "residual_eq": "0.0"
+  },
+  "exp_1e6": {
+   "y/q - 1 (measured)": "0.0",
+   "asymptotic prediction": "0.0",
+   "tol": "1.0e-40",
+   "residual_eq": "0.0"
+  },
+  "tanh_1e2": {
+   "y/q - 1 (measured)": "0.0",
+   "asymptotic prediction": "0.0",
+   "tol": "1.0e-40",
+   "residual_eq": "0.0"
+  },
+  "tanh_1e6": {
+   "y/q - 1 (measured)": "0.0",
+   "asymptotic prediction": "0.0",
+   "tol": "1.0e-40",
+   "residual_eq": "0.0"
+  }
+ },
+ "lambda_family": {
+  "0.5": {
+   "finite_difference_slope": "1.0",
+   "exact_2lam": "1.0",
+   "kappa_inferred": "1.0"
+  },
+  "1.0": {
+   "finite_difference_slope": "2.0",
+   "exact_2lam": "2.0",
+   "kappa_inferred": "0.5"
+  },
+  "2.0": {
+   "finite_difference_slope": "4.0",
+   "exact_2lam": "4.0",
+   "kappa_inferred": "0.25"
+  }
+ },
+ "footings": {
+  "canonical": {
+   "a0": "9.3619e-11",
+   "s = 2 a0": "1.87238e-10",
+   "rho_Lambda": "5.844412454021876e-27",
+   "r_M(M_sun)": "1190639769001739.0",
+   "r_M_kpc": "0.0385860070457",
+   "v_flat(M_sun)": "333.865997871",
+   "epsilon_Lambda = rho c^2": "5.2526959597261e-10",
+   "Lambda = 32 pi a0^2/c^4 (same-G convention)": "1.0907997632807e-52",
+   "kappa = a0/s": "0.5"
+  },
+  "alternative": {
+   "a0": "1.1279e-10",
+   "s = 2 a0": "2.2558e-10",
+   "rho_Lambda": "8.483089619559099e-27",
+   "r_M(M_sun)": "1084743571587644.0",
+   "r_M_kpc": "0.0351541450116",
+   "v_flat(M_sun)": "349.783114857",
+   "epsilon_Lambda = rho c^2": "7.6242207272673e-10",
+   "Lambda = 32 pi a0^2/c^4 (same-G convention)": "1.5832818476965e-52",
+   "kappa = a0/s": "0.5"
+  }
+ },
+ "negative_control": {
+  "fired": true,
+  "claim_tested": "the five assumptions follow from the certified algebra alone",
+  "premises_load_bearing": [
+   "A1 (n)",
+   "A2 (composition)",
+   "A3 (slope)",
+   "A4 (coupling)",
+   "A5 (vacuum scale)",
+   "claim_refuted",
+   "premises_load_bearing"
+  ]
+ },
+ "bounds": {
+  "wall_s": 0.16934787505306304,
+  "peak_rss_mib": 57.0625,
+  "deadline_s": 115.0,
+  "threads": 1
+ }
+}

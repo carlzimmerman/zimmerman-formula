@@ -1,0 +1,151 @@
+{
+ "pass": 20,
+ "fail": 0,
+ "bounds": {
+  "wall_s": 120,
+  "mem_mb": 512,
+  "threads": 1
+ },
+ "checks": [
+  {
+   "name": "A1 [generic composition: mu = 1-(1-p)^2 with p = lam*Y + c2*Y^2 + c3*Y^3] exact polynomial coefficients at Y^1, Y^2, Y^3",
+   "measured": "coeff(Y) = 2*lambda (expected 2*lambda), coeff(Y^2) = 2*c2 - lambda**2 (expected 2*c2 - lambda^2), coeff(Y^3) = -2*c2*lambda + 2*c3 (expected 2*c3 - 2*lambda*c2)",
+   "threshold": "symbolic identity, residual == 0",
+   "pass": true,
+   "reading": "chain rule: mu'(0) = 2*(1-p(0))*p'(0) = 2*lambda. The quadratic coefficient is 2*c2 - lambda^2; the PD08 text's (2c2+1) is the lambda=1 special case only if the minus sign is dropped."
+  },
+  {
+   "name": "A2 [seed object at lambda=1] the remainder of 1-(1-p)^2 - [2Y + (2c2-1)Y^2 + (2c3-2c2)Y^3] is O(Y^4): every monomial in it has total degree >= 4 exactly",
+   "measured": "remainder = -Y**6*c3**2 - 2*Y**5*c2*c3 - Y**4*c2**2 - 2*Y**4*c3 - 2*Y**3*c2 + 2*Y**3*c3 - Y**3*(-2*c2 + 2*c3) + 2*Y**2*c2 - Y**2*(2*c2 - 1) - Y**2; all monomials of degree >= 4: True",
+   "threshold": "min monomial total degree >= 4 (this is the exact meaning of O(Y^4); nonzero higher terms are unavoidable since p^2 contains c2^2 Y^4)",
+   "pass": true,
+   "reading": "the seed's identity holds at the level of coefficients Y^1..Y^3 (A1 proves the coefficients); the O(Y^3)-notation in the seed stands for 'coefficients through Y^3 agree', which A1/A2 state exactly."
+  },
+  {
+   "name": "A3 [slope at the origin is exactly 2, independent of c2, c3] mu'(0) = limit of the derivative of the lambda=1 composition",
+   "measured": "mu'(0) = 2",
+   "threshold": "symbolic limit == 2",
+   "pass": true,
+   "reading": "the deep-MOND slope is the channel count 2; the completion coefficients (c2, c3, ...) drop out of the SLOPE only -- they survive in the quadratic and cubic terms."
+  },
+  {
+   "name": "A3b [diagnostic counterexamples at lambda = 1/2, 1, 2] composite slope mu'(0) = 2*lambda and matched kappa = a0/s = 1/(2*lambda) per row",
+   "measured": "lambda -> (mu'(0), kappa): {'1/2': ('1', '1'), '1': ('2', '1/2'), '2': ('4', '1/4')}",
+   "threshold": "expected (1, 1), (2, 1/2), (4, 1/4)",
+   "pass": true,
+   "reading": "kappa = 1/2 is NOT protected against a non-unit per-channel slope: the premise p'(0) = 1 (fraction identity) is load-bearing. Only the completion-independence (freedom from c2, c3, ...) is a theorem at this stage. This is the seed's own warning that the unit slope is a premise, not a conclusion."
+  },
+  {
+   "name": "A4 [conditional MU_n statistical response] the OR composition at the member engagement p = Y/(1+Y) equals mu_n(Y) = 1-(1+Y)^(-n) EXACTLY for symbolic n >= 1",
+   "measured": "1-(1-p)^n = 1 - 1/(Y + 1)**n; target family = 1 - 1/(Y + 1)**n",
+   "threshold": "symbolic difference == 0",
+   "pass": true,
+   "reading": "the OR algebra at the member IS the committed MU_n family (PD01 A2). n=2 is MU2 with Y = g/s = g/(2 a0) = x/2 on the adopted footing -- the framework contract's MU2 cell, exactly."
+  },
+  {
+   "name": "A5 [quadratic coefficient of the mu_n member] coefficient of Y^2 in mu_n = -n(n+1)/2; at n=2 it is -3 = 2*c2-1 with the member's c2 = -1",
+   "measured": "series mu_n = defaultdict(<class 'int'>, {Y*n: 1, Y**2*n*(-n - 1): 1/2, Y**3*n*(-n - 2)*(-n - 1): 1/6, O(Y**4): 1}) ; coeff(Y^2) = -n*(n + 1)/2 ; at n=2: -3",
+   "threshold": "coeff == -n(n+1)/2 and == -3 at n=2",
+   "pass": true,
+   "reading": "generic formula consistency: 2*c2 - lambda^2 at (lambda,c2) = (1,-1) gives -3; the member's quadratic coefficient is -3, the PD08 text-printed (2c2+1) = -1 would overstate the response at finite Y by +2*Y^2 at the member."
+  },
+  {
+   "name": "B1 [occurrences of the quadratic coefficient in PD08] every line of the pinned PD08 source that writes the coefficient is listed",
+   "measured": "2 occurrences: L54: ...: mu = 1 - (1-p)^2 = 2Y + (2c2+1)Y^2 + ...: the slope is exactly 2; L214: INDEPENDENT of the completion (the expansion mu = 2Y + (2c2+1)Y^2 + ..",
+   "threshold": ">= 1 occurrence of the (2c2+1) form exists (documented typo)",
+   "pass": true,
+   "reading": "lines 54 and 214 of the EXPLANATORY text print mu = 2Y + (2c2+1)Y^2 + ... ; the executable ansatz p = Y + c2*Y**2 and mu_exp = expand(1-(1-p)**2) compute the CORRECT coefficient 2c2-1. The typo is confined to prose."
+  },
+  {
+   "name": "B2 [executable expression of PD08 reproduces the correct coefficient] mu_exp = expand(1-(1-p)**2) with p = Y + c2*Y**2 gives coefficient of Y^2 equal to 2*c2 - 1",
+   "measured": "mu_exp = -Y**4*c2**2 - 2*Y**3*c2 + 2*Y**2*c2 - Y**2 + 2*Y; c2 coefficient = 2*c2 - 1",
+   "threshold": "coeff == 2*c2 - 1 (NOT 2*c2+1)",
+   "pass": true,
+   "reading": "the executable expression is CORRECT; the discrepancy is prose-only. PD01 contains no explicit (2c2+/-1) text (grep verified)."
+  },
+  {
+   "name": "C1 [independent high-precision check at Y=0.1, member c2=-1] residual of the true quadratic truncation vs the exact MU2 value, and the offset between the text and true truncations (50-digit mpmath)",
+   "measured": "exact = 0.173553719008; true-trunc = 0.17 -> residual 0.003553719008 (leading term 4Y^3 = 0.004, next 5Y^4 = 0.0005); text-trunc = 0.19 -> residual -0.01644628099; text-trunc - true-trunc = 0.02",
+   "threshold": "|res_true - 4Y^3| < 1e-3 (O(Y^4) tail ~5Y^4=5e-4) AND text-trunc - true-trunc == +2Y^2 to 1e-40",
+   "pass": true,
+   "reading": "exact MU2 value via mpmath; the true quadratic truncation's residual is the O(Y^3) tail (4Y^3 - 5Y^4 = 0.004 - 0.0005, hence |res - 4Y^3| ~ 5e-4 < 1e-3); the TEXT truncation sits exactly +2Y^2 above the true one -- the (2c2+1)-(2c2-1) discrepancy. Actual residuals, not booleans."
+  },
+  {
+   "name": "C1b [O(Y^3) character of the true truncation at Y=0.01] residual vs 4Y^3 - 5Y^4 model",
+   "measured": "residual = 3.9505930791099e-6; 4Y^3 - 5Y^4 = 3.95e-6; difference = 5.93079e-10",
+   "threshold": "|residual - (4Y^3 - 5Y^4)| < 7e-10 (remaining term 6Y^5 = 6e-10)",
+   "pass": true,
+   "reading": "the exact residual of the true quadratic truncation is 4Y^3 - 5Y^4 + O(Y^5), confirming the expansion's coefficient structure at the member by a different representation (exact closed form vs Taylor tail)."
+  },
+  {
+   "name": "C2 [NEGATIVE CONTROL: text coefficient 2*c2+1 evaluated at c2=0 shows an explicit nonzero residual] claimed text mu vs true mu at Y=0.05, c2=0",
+   "measured": "text mu = 0.1025; true mu = 0.0975; residual = 0.005 (exactly 2*Y^2 = 0.005)",
+   "threshold": "residual nonzero AND == 2*Y^2 to 1e-20",
+   "pass": true,
+   "reading": "the control is capable of failing and DOES fail the text coefficient: at c2=0 the printed (2c2+1)=+1 contradicts the true 2c2-1=-1, residual 2Y^2 > 0. The executable expression passes the same control trivially (it computes the true one)."
+  },
+  {
+   "name": "C2b [coefficient-form sensitivity] (2c2+1)-(2c2-1) at c2 = -0.5",
+   "measured": "difference = 2.0 (identically 2 for every c2; the forms never coincide -- initial expectation of a hiding value at c2=-1/2 was REFUTED by this control)",
+   "threshold": "difference == 2 exactly at every sample",
+   "pass": true,
+   "reading": "the typo changes the quadratic contribution by +2*Y^2 for EVERY completion c2; there is no completion at which the printed and true coefficients agree. The control is capable of failing (it refuted this script's own initial expectation) and it fails PD08's printed coefficient at every c2."
+  },
+  {
+   "name": "C2b [coefficient-form sensitivity] (2c2+1)-(2c2-1) at c2 = 0.0",
+   "measured": "difference = 2.0 (identically 2 for every c2; the forms never coincide -- initial expectation of a hiding value at c2=-1/2 was REFUTED by this control)",
+   "threshold": "difference == 2 exactly at every sample",
+   "pass": true,
+   "reading": "the typo changes the quadratic contribution by +2*Y^2 for EVERY completion c2; there is no completion at which the printed and true coefficients agree. The control is capable of failing (it refuted this script's own initial expectation) and it fails PD08's printed coefficient at every c2."
+  },
+  {
+   "name": "C2b [coefficient-form sensitivity] (2c2+1)-(2c2-1) at c2 = 1.0",
+   "measured": "difference = 2.0 (identically 2 for every c2; the forms never coincide -- initial expectation of a hiding value at c2=-1/2 was REFUTED by this control)",
+   "threshold": "difference == 2 exactly at every sample",
+   "pass": true,
+   "reading": "the typo changes the quadratic contribution by +2*Y^2 for EVERY completion c2; there is no completion at which the printed and true coefficients agree. The control is capable of failing (it refuted this script's own initial expectation) and it fails PD08's printed coefficient at every c2."
+  },
+  {
+   "name": "C3 [finite-difference derivative of the exact MU2 member at Y=0.1] forward difference vs exact derivative",
+   "measured": "FD slope = 1.50262755277; exact = 1.5026296018; relative residual = 1.36363e-6",
+   "threshold": "relative residual < 1e-4 (FD truncation error ~ h)",
+   "pass": true,
+   "reading": "independent representation: numerical differentiation of the closed MU2 member confirms the analytic derivative; the slope at Y=0 is 2 (limit of the exact derivative 2(1+Y)^-3 as Y->0)."
+  },
+  {
+   "name": "D1 [deep spherical matching with mu ~ 2g/s gives a0 = s/2, kappa = 1/2] point-source deep Poisson (1/r^2) d/dr[r^2 (2g/s) g] = 4 pi G rho integrated once gives 2 g^2 r^2 / s = G M, i.e. g^2 = (s/2) g_N; matching g^2 = a0 g_N",
+   "measured": "g^2 = gN*s/2; a0 = s/2; kappa = a0/s = 1/2",
+   "threshold": "kappa == 1/2 symbolically",
+   "pass": true,
+   "reading": "the leading kappa implication uses ONLY the slope mu'(0)=2; the quadratic coefficient (true 2c2-1, printed 2c2+1) does not enter the deep matching at all. The discrepancy found in B does NOT affect the leading kappa implication."
+  },
+  {
+   "name": "D2 [Newtonian saturation and vacuum normalization of the MU2 member] mu(inf) = 1 and mu(0) = 0",
+   "measured": "mu(inf) = 1; mu(0) = 0",
+   "threshold": "mu(inf)==1, mu(0)==0 (symbolic limits)",
+   "pass": true,
+   "reading": "normalization and boundary case of the exact member; the O(Y^3) statement of C1 is a finite numerical consistency check, while A2 is the exact polynomial identity -- the two are distinguished here, as required."
+  },
+  {
+   "name": "D3 [both footings carried separately; kappa=1/2 adopted] canonical a0=9.3619e-11 -> s=1.87238e-10, rho_L=4a0^2/(G c^2); alternative a0=1.1279e-10 -> its own density; fixed-density reading kappa_eff; r_M and v_flat at M_b = 1e11 M_sun for each footing",
+   "measured": "canonical: s = 1.872380e-10 m/s^2, rho_L = 5.844412e-27 kg/m^3, r_M = 12201.9668 pc, v_flat = 187746.6477 km/s; alternative: s = 2.255800e-10 m/s^2, rho_L = 8.483090e-27 kg/m^3, r_M = 11116.7167 pc, v_flat = 196697.5003 km/s; density ratio = 1.451487157 = (a0_alt/a0_can)^2 = 1.451487157; kappa_eff at fixed canonical rho_L = 0.602388",
+   "threshold": "rho ratio == (a0 ratio)^2 to 1e-9; kappa_eff == 0.60239",
+   "pass": true,
+   "reading": "the two footings do NOT share a fixed (kappa, rho_L) pair: kappa=1/2 fixed forces rho_L_alt = 1.4515 x rho_L_can; rho_L fixed forces kappa_eff = 0.60239 = a0_alt/(2 a0_can). s = 2 a0 = c*sqrt(G rho_L) on each footing, so Y = g/s is the same dimensionless drive."
+  },
+  {
+   "name": "D4 [leading neglected term of the deep expansion] stated explicitly with its domain",
+   "measured": "mu(Y) = 2Y + (2c2-1)Y^2 + (2c3-2c2)Y^3 + O(Y^4); neglected term at order Y^3 has coefficient (2c3-2c2) = 4 at the member (c2=-1, c3=1); domain |Y| << 1 (g << s), the deep-MOND regime; the matching to kappa uses only the Y^1 term",
+   "threshold": "statement with explicit coefficient and domain",
+   "pass": true,
+   "reading": "the expansion is asymptotic at Y->0; the slope statement and the kappa matching are unaffected by any coefficient c2, c3, ... ."
+  },
+  {
+   "name": "D5 [branch discipline] the OR/MU2 response is not the operative MONO kernel; no transfer of finite-Y results to the filtered nu_mono target",
+   "measured": "declared branch: CORE coefficient (A03); conditional MU_n statistical response. MONO (operative target) uses nu_RAR up to y* and the heat-filtered monotone continuation; this run makes no MONO claim.",
+   "threshold": "no branch translation claimed",
+   "pass": true,
+   "reading": "per FRAMEWORK_CONTRACT: only this task's declared branch may be used for conclusions; historical branches are comparison lemmas until an explicit bridge is proved."
+  }
+ ]
+}

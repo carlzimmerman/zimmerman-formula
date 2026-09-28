@@ -1,0 +1,51 @@
+WARN RLIMIT_AS: current limit exceeds maximum limit (macOS hard-cap refusal; measured maxrss reported instead)
+STEP1 peak: y_p = 2.539638282188165324998881789774365902369
+STEP1 peak: s_p = 1.593624260040040092323041875875160241789
+STEP1 peak: h_p = 0.647610237891914859647201961975954581209  (= h_RAR(y_p) = 0.647610237891914859647201961975954581209 ; diff = 0.0 )
+STEP1 peak: h'(y_p) residual = 0.0
+STEP1 landmarks vs task: |y_p - 2.5396| = 3.8282e-5  |h_p - 0.647610| = 2.3789e-7
+STEP2 unicity bracketing: s0 (psi' root) = 1.1461932206205825852 ; psi(s0) = 0.53596235 > 0 ; psi(s_p) = 0.47300701 > 0
+STEP2 F(0+)=+inf (h'->+inf), F(y_p) = -0.0063750244 < 0  => unique root in (0,y_p) by strict monotonicity
+STEP2 y_star = 2.337412405266329455558123303201198860792
+STEP2 |y_star - 2.3374| = 1.2405e-5
+STEP2 F(y_star) = -3.89e-62  (absolute residual of the crossing equation)
+STEP2 h'_RAR(y_star) = 0.006639363412377466431940200374843020181706
+STEP2 DELTA*h_p/(y_star+y_p) = 0.006639363412377466431940200374843020181706
+STEP3 h_mono(y_star) - h_RAR(y_star) = 0.0  (exact log(1)=0 term: delta*h_p*log(1) = 0.0 )
+STEP3 h' jump at y_star = |h'_RAR - delta*h_p/(y*+y_p)| = 3.89e-62
+STEP3 h'' jump at y_star (RAR-side - continuation-side) = 0.034744714  ; hpp_RAR(y_star) = -0.036106062
+STEP4a symbolic residual simplify(dh - closedform) = 0
+STEP4b numeric d/dy vs closed form at y=0.2: residual = 7.25e-33
+STEP4b numeric d/dy vs closed form at y=1.0: residual = -2.23e-32
+STEP4b numeric d/dy vs closed form at y=2.33741: residual = 6.08e-33
+STEP4b numeric d/dy vs closed form at y=2.53964: residual = 3.89e-32
+STEP4b numeric d/dy vs closed form at y=5.0: residual = 2.88e-32
+STEP4c substitution residual |lhs-rhs| = 3.89e-62
+
+=== NEGATIVE CONTROLS ===
+NC1 [y_p' = y_p + 0.25 (mislocated peak)]: h' discontinuity at OLD y_star = 0.00033216655 (relative to true delta*h_p/(y+p) = 0.05003)
+NC1 [y_p' = 2.0 (arbitrary peak)]: h' discontinuity at OLD y_star = 0.00076615103 (relative to true delta*h_p/(y+p) = 0.1154)
+NC1 [h_p' = 0.5*h_p (peak value halved)]: h' discontinuity at OLD y_star = 0.0033196817 (relative to true delta*h_p/(y+p) = 0.5)
+NC2 [y_star 0.01 shifted -> y=2.3474124]: |h'_RAR - delta*h_p/(y+y_p)| = 0.0003457316
+NC2 [y_star 0.05 shifted -> y=2.3874124]: |h'_RAR - delta*h_p/(y+y_p)| = 0.0016950248
+NC2 [y_star -0.05 shifted -> y=2.2874124]: |h'_RAR - delta*h_p/(y+y_p)| = 0.0017811813
+NC3 deep y->0: g/B = nu_RAR(y); nu*sqrt(y) - 1 at y=1e-10 = 5.0000083e-6  (h'_mono follows RAR since max picks h'_RAR: h'_RAR(y)->+inf)
+NC3 deep: max(h'_RAR, delta*h_p/(y+y_p)) picks RAR? h'_RAR = 49999.5 vs RHS = 0.012750049
+NC3 Newtonian y->inf: nu_mono(y)-1 at y=1e6 = 1.0430055e-6 -> 0 like delta*h_p*ln(y)/y; h_RAR(1e6) = 5.07596e-429
+NC3 Newtonian: g/B = 1 + h_mono/y = 1.00000104301 -> 1
+NC3 sanity: h_mono(y_p) = 0.6482759304 > h_p = 0.6476102379  (continuation rises above the RAR peak: phantom growth)
+NC4 [delta'=0.07]: new crossing y_star' = 2.262643737; |h'_RAR - delta'*h_p/(y+y_p)| at OLD y_star = 0.0026557454
+NC4 [delta'=0.03]: new crossing y_star' = 2.415579119; |h'_RAR - delta'*h_p/(y+y_p)| at OLD y_star = 0.0026557454
+
+FOOTINGS rho_Lambda(canonical) = 5.84441245402e-27 kg/m^3 ; rho_Lambda(alternative) = 8.48308961956e-27 kg/m^3 ; ratio = 1.451487157
+FOOTINGS B_star = y_star*a0: canonical = 2.18826212e-10 m/s^2 ; alternative = 2.636367452e-10 m/s^2
+FOOTINGS kappa_eff if rho fixed at canonical and a0=alternative = 0.6023884041
+FOOTINGS rho ratio if kappa fixed (rho_alt/rho_can) = 1.451487157
+HEAT-A xi=0.01 (global domain): raw ||h''_mono||_inf = 3.751e+05; after S_xi = 3.647e+03 (singular h''~-1/(4 y^(3/2)) at y->0 is regularized)
+HEAT-A xi=0.05 (global domain): raw ||h''_mono||_inf = 3.751e+05; after S_xi = 7.433e+02 (singular h''~-1/(4 y^(3/2)) at y->0 is regularized)
+HEAT-A input: h''_mono ||.||_inf on [0,10] = 3.751e+05 (y->0 divergence, not the splice)
+HEAT-B xi=0.01 (splice window |y-y*|<=0.5): S_xi deviation 1.485e-02; h'' at splice raw -0.00664 -> filtered -0.04186 (raw step amplitude 0.03474)
+HEAT-B xi=0.05 (splice window |y-y*|<=0.5): S_xi deviation 1.543e-02; h'' at splice raw -0.00664 -> filtered -0.04244 (raw step amplitude 0.03474)
+
+BOUNDS wall=0.46s (alarm 120s) maxrss=114.25 MB (cap 512 MB) threads=1 (OMP_NUM_THREADS=1, pure python)
+landmarks.json written.

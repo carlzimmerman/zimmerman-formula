@@ -1,0 +1,797 @@
+{
+ "schema_version": "v2",
+ "task_id": "AS040",
+ "task_sha256": "99fa799f08e1c2862ef88b3587e861080bb58733cee60fa692b8d1273fab4317",
+ "run_id": "AS040-r1-20260928T034359Z-dsv4f-hermes",
+ "worker": "dsv4f-hermes (deepseek/deepseek-v4-flash-0731 via openrouter, Hermes Agent focused subagent)",
+ "execution_status": "executed-verified",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "For spherical static mass distributions, the AQUAL relation x\u00b7mu(x)=y and the QUMOND relation x=y\u00b7nu(y) (x=g/a0, y=g_N/a0) are algebraic inverses: at matched arguments x(y)=y\u00b7nu(y) and y(x)=x\u00b7mu(x), mu(x)\u00b7nu(y)=1 exactly on y in (0,inf), provided w(x)=x\u00b7mu(x) is strictly increasing (unique inversion). Same-argument products mu(y)\u00b7nu(y) are NOT 1 (NC1). The correspondence breaks exactly at: (a) non-spherical sources \u2014 linearized ell=2 response differs by 52\u201360% of peak (Q 0.581, EXP 0.583, MU2 0.549, MONO 0.525 at N512, mesh-stable); (b) non-monotone mu \u2014 y=x\u00b7mu(x) multi-valued (certified counterexample w=x^2+x^3-x^4/2 has two roots for every y0 in (0,4), e.g. y0=3/2: {1.0,2.5987}); (c) the operative heat filter S=exp((xi^2/2)Delta) \u2014 point-mass force deviates from the algebraic core nu(gN)\u00b7gN by at most 6.0%/0.75%/0.08% for xi/r0 = 0.3/0.1/0.03, confined to r in (1\u20138)xi. Spherical equivalence measured at 1.92e-11 (telescoped) / 1.11e-4 (FD envelope); matched identities <= 9.4e-51 on the 181-point grid; monotonicity d[x\u00b7mu]/dx > 0 (min 6.32e-5) for all five cells Q/RAR/MU2/EXP/MONO.",
+ "framework_cell": {
+  "action": {
+   "type": "none varied (static algebraic/elliptic analysis; no action or coupling manipulation)"
+  },
+  "kernel": "Q, RAR, MU2, EXP (historical), MONO (operative), separate: generic correspondence proved; Q instantiated closed-form (muQ(x), nuQ(y), xQ(y)=sqrt(y^2+y); matched identity exact); RAR/MU2/EXP/MONO matched by bracketed bisection of x\u00b7mu(x)=y and y\u00b7nu(y)=x (50-digit mpmath)",
+  "filter": "heat S=exp((xi^2/2)Delta) on L^2(R^3), radial kernel K~xi^{-1} r'^2/(r r') (e^{-(r-r')^2/2xi^2} - e^{-(r+r')^2/2xi^2}), exercised on the operative MONO branch; S* self-adjoint per declared Euclidean measure; criterion B (causality) NOT exercised (statics only)",
+  "gate": "A02 constitutive kernels and branch fidelity; operative target (filtered MONO, criterion B) NOT concluded \u2014 quantified deviation band delivered instead",
+  "coupling": "single Newtonian G = 6.67430e-11 SI; G_N/G_bare/G_cosmo kept separate symbols (no ratio needed: dimensionless theorem)",
+  "parameters": {
+   "kappa": "1/2 adopted (framework input, not derived)",
+   "delta": 0.05,
+   "Y_STAR": "2.3374124052663294449505036467",
+   "Y_P": "2.53963828218816532499888178977",
+   "H_P": "0.647610237891914859647201961976"
+  },
+  "footings": {
+   "canonical": {
+    "rho_Lambda_kg_m3": 5.844412454021876e-27,
+    "a0_m_s2": 9.3619e-11
+   },
+   "alternative": {
+    "rho_Lambda_kg_m3": 8.483089619559099e-27,
+    "a0_m_s2": 1.1279e-10
+   },
+   "a0_alt_over_a0_can": 1.2047768081265555,
+   "fix_rho_eff_kappa": 1.2047768081265555,
+   "fix_kappa_rho_ratio": 1.451487157399611,
+   "note": "both footings carried separately; all theorem statements dimensionless (footing-independent)"
+  },
+  "boundaries": {
+   "x": "(0, inf)",
+   "y": "(0, inf)",
+   "r": "[1e-3, 1e3] code units (BVP), filter probe r in [0.02 xi, 500 xi]",
+   "initial_conditions": "none (statics)"
+  },
+  "units": "SI (m/s2, kg, m, kg/m3) for dimensional examples; theorems dimensionless"
+ },
+ "mono_landmarks": {
+  "Y_STAR": "2.3374124052663294449505036467",
+  "Y_P": "2.53963828218816532499888178977",
+  "H_P": "0.647610237891914859647201961976",
+  "DELTA": 0.05,
+  "check": "match AS026/AS040 spec values exactly"
+ },
+ "new_assumptions": [
+  "mu_bad(x) = x + x^2 - x^3/2 is a demonstrator counterexample kernel (not a physical branch): shows structural non-monotone failure mode only",
+  "The heat filter is exercised on the Euclidean measure of R^3 (contract-declared point-mass probe domain), not derived from the amended action",
+  "The ell=2 probe source is a compact-support quadrupole bump (finite multipole moments)",
+  "The nominal kernel is the algebraic pair (mu, nu); SPARSE/IS has no counterpart in this task (no kernels passed)"
+ ],
+ "input_sha256": {
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/AS040_aqual_and_qumond_spherical_correspondence.md": "99fa799f08e1c2862ef88b3587e861080bb58733cee60fa692b8d1273fab4317",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3"
+ },
+ "artifacts_sha256": {
+  "compute_as040.py": "6016c471f1ac84b7f83245096d20aa33f60786521e83e45bc3751c2703b8a75f",
+  "raw_output.json": "16d200f8a482afbf092d3d4e05b8b85aa4fd01643ff67cb4b9d9571aca8fc9c0",
+  "raw_output.stderr": "0675df42c04b508899502bae72ff381068ffca93b9ea43dbce5ae627f84a5d97",
+  "AS040_aqual_qumond_correspondence.lean": "185e71e7a51c192a0e40b5d6e273c028970822f173fdd3c4705168fb4c5bc9db",
+  "AS040_aqual_qumond_correspondence_axioms.lean": "8017b5e7dd921fbb3503ac4c78d42c3f26135b0def7a5e1398ef90306bbc7830",
+  "lean_compile_out.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "lean_axioms_out.txt": "56250535cb9e0ea9d07fff6a986dcb1f88521187119fdf5dde3dfa388f6ea932",
+  "derivation.md": "2fe14211cd757d48df717ad949b2fbea841e18007e4e0d8ae450e06786c6c25e"
+ },
+ "commands": [
+  "shasum -a 256 <pinned sources>  (all matched SOURCE_MANIFEST pins)",
+  "python3 /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS040/AS040-r1-20260928T034359Z-dsv4f-hermes/compute_as040.py > raw_output.json 2> raw_output.stderr  (final solver run; bounded prototype)",
+  "cd fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS040/AS040-r1-20260928T034359Z-dsv4f-hermes/AS040_aqual_qumond_correspondence.lean > /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS040/AS040-r1-20260928T034359Z-dsv4f-hermes/lean_compile_out.txt 2>&1  (exit 0)",
+  "cd fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS040/AS040-r1-20260928T034359Z-dsv4f-hermes/AS040_aqual_qumond_correspondence_axioms.lean > /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS040/AS040-r1-20260928T034359Z-dsv4f-hermes/lean_axioms_out.txt 2>&1  (axiom audit: [propext, Classical.choice, Quot.sound], 0 sorry)"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "grid_cells_max": 512,
+   "refinements": 2
+  },
+  "enforced": {
+   "wall_s": "signal.alarm(120) in-process; single python process, no subprocesses",
+   "memory_MB": "NOT ENFORCEABLE on this host: current limit exceeds maximum limit",
+   "threads": "1 (no threading/parallel libs used)",
+   "grid_cells": "mandated 181-pt diagnostic grid; radial PDE grids <= 512 (with N=256 convergence pass)",
+   "refinements": "160-iteration bisection (mpmath 50 dps) on matched inverses; BVP N=512 vs N=256; filter N=512 linear"
+  },
+  "observed_wall_s": 19.653,
+  "observed_peak_RSS_MB": "measured by /usr/bin/time -l (reported in stderr)"
+ },
+ "checks": [
+  {
+   "id": "CK1",
+   "name": "matched identity mu(x(y))\u00b7nu(y)=1 per cell",
+   "result": "PASS",
+   "detail": "Q 3.49e-42, RAR 1.80e-44, MU2 1.76e-45, EXP 3.42e-45, MONO 9.35e-51 (50-dps roundoff); inverse-equation residuals same order"
+  },
+  {
+   "id": "CK2",
+   "name": "NC1 same-argument product must NOT be 1",
+   "result": "PASS (discriminating)",
+   "detail": "max |mu(y)\u00b7nu(y)-1| = 0.99999 over grid; RAR variable-argument variant -0.1923"
+  },
+  {
+   "id": "CK3",
+   "name": "monotonicity d[x\u00b7mu]/dx > 0 all cells",
+   "result": "PASS",
+   "detail": "min 6.32e-5 on 181-pt grid; deep slopes shared (correct common limit)"
+  },
+  {
+   "id": "CK4",
+   "name": "3D reduction identity d[r^2 g_N]/dr = 4 pi rho r^2",
+   "result": "PASS",
+   "detail": "1.46e-3 (N512) / 5.88e-3 (N256); ratio 3.98 = 2nd-order FD envelope; analytic identity exact"
+  },
+  {
+   "id": "CK5",
+   "name": "NC3 wrong-1D reduction must fail",
+   "result": "PASS (fails as designed)",
+   "detail": "residual 2.2e8 > 1e-6 tolerance"
+  },
+  {
+   "id": "CK6",
+   "name": "NC3c spherical AQUAL<->QUMOND equivalence",
+   "result": "PASS",
+   "detail": "max_rel |gQ - gA|/g = 1.92e-11 (telescoped) / 1.11e-4 (FD path)"
+  },
+  {
+   "id": "CK7",
+   "name": "Q-cell phantom-mass divergence",
+   "result": "PASS",
+   "detail": "r^2(nu-1)gN / r -> 0.999 at r_max: phantom mass ~ (a0/2) r, not enclosed at any finite radius"
+  },
+  {
+   "id": "CK8",
+   "name": "ell=2 Newtonian control (mu=nu=1)",
+   "result": "PASS",
+   "detail": "RA == RQ to 0.0 (identical solves)"
+  },
+  {
+   "id": "CK9",
+   "name": "ell=2 breakage must be nonzero",
+   "result": "PASS",
+   "detail": "RA/RQ at peak: Q 0.943, EXP 0.940, MU2 0.940, MONO 1.000; max|RA-RQ|/peak: Q 0.581, EXP 0.583, MU2 0.549, MONO 0.525 (N512); N256 within 3%"
+  },
+  {
+   "id": "CK10",
+   "name": "filter xi=0 control",
+   "result": "PASS",
+   "detail": "3.15e-16 (telescoped identity g = nu gN when S=I)"
+  },
+  {
+   "id": "CK11",
+   "name": "filter deviation confined + quantified",
+   "result": "PASS",
+   "detail": "max 6.02% at r=2.46 xi (xi/r0=0.3); 0.75% (0.1); 0.08% (0.03); -> 0 as r/xi -> 0.2 and r/xi -> 30"
+  },
+  {
+   "id": "CK12",
+   "name": "non-monotone mu multi-valued",
+   "result": "PASS (Lean-certified)",
+   "detail": "w=x^2+x^3-x^4/2: w(1)=1.5<w(2)=4>w(2.5)=2.34375; two positive roots for y0=1.5 at x=1.0 and x=2.5987; w'=x(2-x)(2x+1) exact"
+  },
+  {
+   "id": "LEAN_compile_exit0",
+   "name": "Lean certificate compiles",
+   "result": "PASS",
+   "detail": "lake env lean exit 0; 6 theorems"
+  },
+  {
+   "id": "LEAN_axioms_unfiltered",
+   "name": "axiom audit",
+   "result": "PASS",
+   "detail": "generic_correspondence, xQ_eq_sqrt, q_pair_forward, q_correspondence, wBad_nonmonotone, two_roots: axioms = {propext, Classical.choice, Quot.sound}; 0 sorry"
+  },
+  {
+   "id": "SOURCE_HASH_MATCH",
+   "name": "pinned source hashes",
+   "result": "PASS",
+   "detail": "all 9 pinned files recomputed and match SOURCE_MANIFEST pins (incl. AS040 task 99fa799f...)"
+  }
+ ],
+ "tested_domain": {
+  "grid": "y = 10^k, k = -10..8 step 0.1 (181 points), x matched by bracketed bisection (explicit brackets, mpmath 50 dps)",
+  "spherical": "Plummer G=M=b=1, a0=1 code units; r in [1e-3, 1e3] geomspace N512 (N256 convergence pair); QUMOND phantom cumulant telescoped exactly",
+  "nonspherical": "linearized ell=2 BVP on Plummer background, compact bump source rho2 = eps*(8/(pi r_c^3))*(1-(r/r_c)^2)^2, r_c=2, eps=1e-3; N=512 and N=256",
+  "filter": "unit point mass, grid r in [0.02 xi, 500 xi], N=1024; xi/r0 in {0.3, 0.1, 0.03}; baseline = algebraic core nu(gN)\u00b7gN",
+  "counterexample": "w(x)=x^2+x^3-x^4/2 on (0, inf); roots bisected; y0=1.5: {1.0, 2.5987}",
+  "refinements": "N512/N256 mesh pair (3% agreement); filter N1024 single-level with analytic small-w branch (mpmath, w<0.25)",
+  "random_sampling": "none (deterministic grid and BVP)"
+ },
+ "failed_attempts": [
+  "Run 1: numpy 1.26.4 has no np.trapezoid (stub false positive; used np.trapz); RAR nested-bisection cost ~115s too close to the 120s wall; filter grid instability at tiny r; selector-implied BC contamination in the ell=2 BVP -> full solver rewrite",
+  "Precision loss: 1 - exp(-t) catastrophic at tiny t in RAR parametrization -> mp.expm1; y_p root equation mis-derived (t=2(1-e^-t) vs t(1-e^-t)=2) -> wrong MONO landmarks until corrected",
+  "invert_y_nu bracket [x^2/4, x] invalid for x>4 (produced 1e251 garbage) -> deep/Newtonian hybrid bracket [min(x^2/2, x/2), x] with fallback doubling",
+  "psi = r^2 gA mislabeled (AQUAL spherical reduction involves r^2\u00b7mu\u00b7g = r^2 gN); Q-cell phantom mass r^2(nu-1)gN genuinely diverges at constant qi (recorded physics finding, not bug)",
+  "ell=2 source rho2 = eps rho0 (r/b)^2 has divergent quadrupole moments -> unphysical peak at r~29; replaced by compact bump",
+  "Filter kernel: denominator used source radius r_j instead of field radius r_i; and dense-matrix quadrature missing dr weight (Spsi = K@psi off by 1/dr ~ 6.8); both corrected",
+  "g_tilde_N small-w catastrophic cancellation: naive sqrt(2/pi) e^{-w^2} form missing the w factor; exact bracket erf(w) - (2/sqrt(pi)) w e^{-w^2} -> mpmath branch for w<0.25",
+  "MU2 cell loop never included MU2 (cells list stale) -> added",
+  "Lean: HasDerivAt-based derivative certificate hit Mathlib API friction (convert/simpa/unfold issues); replaced with fully algebraic non-monotonicity certificate (wBad_nonmonotone) + IVT two_roots; derivative factorization carried numerically with exact statement"
+ ],
+ "limitations": [
+  "Operative target (filtered MONO, criterion B causality) NOT concluded: statics only; S4 is a point-mass deviation band",
+  "Filter band tested on point mass only; extended sources and the S-term's action on smoother profiles may differ (open implication)",
+  "ell=2 result is a linearized response measurement about the Plummer background, not a closed-form transfer mapping (child spec AS040.C01)",
+  "Monotonicity/identity for RAR/MU2/EXP/MONO is grid-verified (181 pts) with bracketed bisection inversion, not abstract proof; Q-cell and the generic duality are Lean-certified",
+  "mu_bad is a demonstrator, not a physical branch",
+  "Heat filter measure (Euclidean R^3) declared, not derived from the amended action"
+ ],
+ "next_unresolved_implication": "The aspherical transfer: the exact linearized response ratio R_A/R_Q(y) and the filter-band formula |g_filt - nu(gN) gN|/(nu gN) = F(xi/r0, r/xi) for extended sources are not closed-form theorems; the Q-cell exact inverse makes the spherical static content exact, the aspherical content remains a measurement (52-60% at ell=2, <=6% filter band) until transferred",
+ "suggested_followup": "AS040.C01: closed-form / precisely bounded ell=2 transfer kernel R_A/R_Q(y) for the operative MONO branch and the extended-source filter band; needs AS034 (inverse-Q-line tools) + AS041 (which depends on AS040); branch spec written (branches/AS040/AS040.C01.md), NOT dispatched (no spawn mechanism for this worker)",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": {
+   "G": "6.67430e-11 SI (assumed)",
+   "c": "299792458 SI (assumed)",
+   "M_sun": "1.98847e30 kg (assumed)",
+   "pc": "3.085677581491367e16 m (assumed)"
+  },
+  "definitions": {
+   "a0": "kappa*c*sqrt(G*rho_Lambda), kappa=1/2 (framework input)",
+   "r_M": "sqrt(G M_b / a0)",
+   "v_flat": "(G M_b a0)^(1/4)",
+   "x": "g/a0",
+   "y": "g_N/a0",
+   "cell laws": "five declared mu/nu kernels (Q, RAR, MU2, EXP, MONO)"
+  },
+  "conditional": {
+   "sphere statics reduction": "div[mu g] = 4 pi G rho -> d[r^2 mu g]/dr = 4 pi G rho r^2 (task-declared)",
+   "QUMOND phantom form": "task-declared",
+   "heat filter": "S = exp((xi^2/2) Delta) on L^2(R^3) with radial kernel (declared for the probe)"
+  },
+  "genuinely_derived": [
+   "correspondence condition mu(x(y))\u00b7nu(y) = 1 (exact, Lean)",
+   "Q-cell pair xQ(y) = sqrt(y^2+y), muQ(xQ(y))\u00b7nuQ(y) = 1 (exact, Lean)",
+   "telescoped phantom cumulant: r^2(nu-1)gN = [s^2(nu-1)gN]_0^r (exact endpoint decay)",
+   "ell=2 breakage quantification 0.52-0.60 of peak (measured, mesh-stable)",
+   "filter deviation band <= 6.0% / 0.75% / 0.08% for xi/r0 = 0.3/0.1/0.03 (measured profile)",
+   "non-monotone multi-valued counterexample (Lean-certified)"
+  ],
+  "measured_calibrations": [],
+  "not_derived": [
+   "kappa = 1/2",
+   "dynamics origin of the interpolating laws (phenomenological)",
+   "criterion B/causality pass for filtered MONO (operative target)",
+   "heat-filter measure derivation",
+   "G_N/G_bare/G_cosmo identity"
+  ]
+ },
+ "closure_implication": {
+  "gate": "A02 constitutive kernels and branch fidelity",
+  "result": "The spherical-static correspondence between AQUAL and QUMOND formulations is exact and closed: any use of the Q/RAR/MU2/EXP/MONO pair inside its domain is internally consistent iff (i) the matched pair mu(x(y)), nu(y) is used (never same-argument products) and (ii) w(x)=x\u00b7mu(x) is monotone. Transfer to aspherical sources is blocked at linear order (ell=2 response differs 52-60% of peak) and to the operative filtered MONO branch is bounded (<=6% point-mass deviation for xi <= 0.3 r0): both are quantified inputs to AS041 and the operative-target gate opens only with the transfer kernels of AS040.C01"
+ },
+ "child_proposals": [
+  {
+   "spec": "branches/AS040/AS040.C01.md",
+   "title": "ell=2 transfer kernel and extended-source filter band for MONO",
+   "dependency": [
+    "AS034",
+    "AS041"
+   ],
+   "dispatched": false,
+   "note": "no subagent spawn mechanism available to this worker; spec written for the orchestrator"
+  }
+ ],
+ "closure_candidate": null,
+ "meta": {
+  "mono_landmarks": {
+   "y_p": "2.53963828218816532499888178977",
+   "h_p": "0.647610237891914859647201961976",
+   "y_star": "2.3374124052663294449505036467",
+   "delta": 0.05,
+   "crosscheck": "AS026 recorded y*=2.337412, y_p=2.539638, h_p=0.647610"
+  },
+  "mono_dex_check": {
+   "max_dex_vs_nu_RAR": "0.010370137497409080833",
+   "at_y": "14.328310492896212991",
+   "spec": "<= 0.0104 dex, most at y = 14.35"
+  },
+  "monotonicity": {
+   "Q": {
+    "min_d[xmu]_dx": "6.324586934e-5",
+    "min_d[ynu]_dy": "1.0"
+   },
+   "RAR": {
+    "min_d[xmu]_dx": "6.324386945e-5",
+    "min_d[ynu]_dy": "0.9676194271"
+   },
+   "MU2": {
+    "min_d[xmu]_dx": "6.324436943e-5",
+    "min_d[ynu]_dy": "0.9646912693"
+   },
+   "EXP": {
+    "min_d[xmu]_dx": "6.324486942e-5",
+    "min_d[ynu]_dy": "0.8817238704"
+   },
+   "MONO": {
+    "min_d[xmu]_dx": "6.324386945e-5",
+    "min_d[ynu]_dy": "1.0"
+   }
+  },
+  "duplicate_search": "manifest + results scanned for AQUAL/QUMOND/correspondence/inverse/monotone objects: AS026 (inverse of the algebraic a0 line; sibling: single-pair forward law, not the mu<->nu duality), AS032 (RAR phantom maximum; MONO landmarks cross-checked), AS041 (nonspherical obstruction to an algebraic vector law; declared successor, depends_on AS040), AS615 (order preservation for filtered phantom; monotonicity-adjacent, different object). No completed seed carries this task's object: the AQUAL<->QUMOND correspondence condition with exact domain and breakage analysis.",
+  "task_sha256": "99fa799f08e1c2862ef88b3587e861080bb58733cee60fa692b8d1273fab4317"
+ },
+ "controls": [
+  {
+   "name": "NC1_same_argument_negctrl_Q",
+   "discriminating": true,
+   "observed": "max |mu(y)nu(y)-1| = 0.99999 over 181-pt grid",
+   "tolerance": "> 1e-3 (same-argument product must NOT be 1 outside matched arguments)",
+   "note": ""
+  },
+  {
+   "name": "NC2_matched_identity_Q",
+   "discriminating": true,
+   "observed": "max |mu(x(y))nu(y)-1| = 3.49118e-42 over 181-pt grid",
+   "tolerance": "< 1e-30 (50-dps arithmetic)",
+   "note": ""
+  },
+  {
+   "name": "NC1_same_argument_negctrl_RAR",
+   "discriminating": false,
+   "observed": "mu(y)*nu(y)-1 = 0 by construction for the parametric pair (degenerate)",
+   "tolerance": "documented degeneracy; discriminating variant below",
+   "note": "RAR parametric pair is defined with the SAME u=sqrt(y): mu*nu=1 identically. The capable-of-failing check for RAR: mu_RAR(x)*nu_RAR(x) at one AQUAL argument x must differ from 1 (see NC1b)."
+  },
+  {
+   "name": "NC1b_aqual_var_negctrl_RAR",
+   "discriminating": true,
+   "observed": "-0.1922572",
+   "tolerance": "|mu_RAR(x) nu_RAR(x) - 1| at x=1 must be > 0.05",
+   "note": ""
+  },
+  {
+   "name": "NC2_matched_identity_RAR",
+   "discriminating": true,
+   "observed": "max |mu(x(y))nu(y)-1| = 1.80461e-44 over 181-pt grid",
+   "tolerance": "< 1e-30 (50-dps arithmetic)",
+   "note": ""
+  },
+  {
+   "name": "NC1_same_argument_negctrl_MU2",
+   "discriminating": true,
+   "observed": "max |mu(y)nu(y)-1| = 0.99999 over 181-pt grid",
+   "tolerance": "> 1e-3 (same-argument product must NOT be 1 outside matched arguments)",
+   "note": ""
+  },
+  {
+   "name": "NC2_matched_identity_MU2",
+   "discriminating": true,
+   "observed": "max |mu(x(y))nu(y)-1| = 1.7567e-45 over 181-pt grid",
+   "tolerance": "< 1e-30 (50-dps arithmetic)",
+   "note": ""
+  },
+  {
+   "name": "NC1_same_argument_negctrl_EXP",
+   "discriminating": true,
+   "observed": "max |mu(y)nu(y)-1| = 0.99999 over 181-pt grid",
+   "tolerance": "> 1e-3 (same-argument product must NOT be 1 outside matched arguments)",
+   "note": ""
+  },
+  {
+   "name": "NC2_matched_identity_EXP",
+   "discriminating": true,
+   "observed": "max |mu(x(y))nu(y)-1| = 3.42114e-45 over 181-pt grid",
+   "tolerance": "< 1e-30 (50-dps arithmetic)",
+   "note": ""
+  },
+  {
+   "name": "NC1_same_argument_negctrl_MONO",
+   "discriminating": true,
+   "observed": "max |mu(y)nu(y)-1| = 0.99999 over 181-pt grid",
+   "tolerance": "> 1e-3 (same-argument product must NOT be 1 outside matched arguments)",
+   "note": ""
+  },
+  {
+   "name": "NC2_matched_identity_MONO",
+   "discriminating": true,
+   "observed": "max |mu(x(y))nu(y)-1| = 9.35468e-51 over 181-pt grid",
+   "tolerance": "< 1e-30 (50-dps arithmetic)",
+   "note": ""
+  },
+  {
+   "name": "NC6_monotone_xmu_Q",
+   "discriminating": true,
+   "observed": "min d[x mu]/dx on grid = 6.32459e-5",
+   "tolerance": "> 0 (strict monotonicity is the correspondence domain)",
+   "note": ""
+  },
+  {
+   "name": "NC6_monotone_xmu_RAR",
+   "discriminating": true,
+   "observed": "min d[x mu]/dx on grid = 6.32439e-5",
+   "tolerance": "> 0 (strict monotonicity is the correspondence domain)",
+   "note": ""
+  },
+  {
+   "name": "NC6_monotone_xmu_MU2",
+   "discriminating": true,
+   "observed": "min d[x mu]/dx on grid = 6.32444e-5",
+   "tolerance": "> 0 (strict monotonicity is the correspondence domain)",
+   "note": ""
+  },
+  {
+   "name": "NC6_monotone_xmu_EXP",
+   "discriminating": true,
+   "observed": "min d[x mu]/dx on grid = 6.32449e-5",
+   "tolerance": "> 0 (strict monotonicity is the correspondence domain)",
+   "note": ""
+  },
+  {
+   "name": "NC6_monotone_xmu_MONO",
+   "discriminating": true,
+   "observed": "min d[x mu]/dx on grid = 6.32439e-5",
+   "tolerance": "> 0 (strict monotonicity is the correspondence domain)",
+   "note": ""
+  },
+  {
+   "name": "NC3_wrong_1D_reduction",
+   "discriminating": true,
+   "observed": "max rel residual of d[mu g]/dr = 4 pi G rho: 2.224e+08",
+   "tolerance": "> 1e-6 (missing 2/r term must show up)",
+   "note": ""
+  },
+  {
+   "name": "NC3b_3D_reduction_identity",
+   "discriminating": true,
+   "observed": "max rel residual of d[r^2 mu g]/dr = 4 pi G rho r^2: 1.462e-03 (N256: 5.876e-03, ratio ~4 = 2nd-order FD)",
+   "tolerance": "< 5e-3 (2nd-order FD envelope on log grid; analytic identity exact)",
+   "note": ""
+  },
+  {
+   "name": "NC3c_spherical_PDE_equivalence",
+   "discriminating": true,
+   "observed": "max rel |g_QUMOND - g_AQUAL|/g = 1.915e-11 (telescoped cumulant; FD path differs at 1.109e-04)",
+   "tolerance": "< 1e-8 (both PDE representations reduce to the same algebraic core)",
+   "note": ""
+  },
+  {
+   "name": "NC4_newtonian_l2_control",
+   "discriminating": true,
+   "observed": "max |RA-RQ|/peak with mu=nu=1: 0.000e+00",
+   "tolerance": "< 1e-8",
+   "note": ""
+  },
+  {
+   "name": "NC5_filter_xi0_control",
+   "discriminating": true,
+   "observed": "max rel = 3.154e-16",
+   "tolerance": "< 1e-6",
+   "note": ""
+  }
+ ],
+ "spherical_pde": {
+  "N512": {
+   "N": 512,
+   "max_rel_3D_reduction_residual": 0.001462264240251542,
+   "max_rel_wrong_1D_control": 222367775.7379863,
+   "max_rel_QUMOND_phantom_vs_algebraic": 2.694004259162417e-16,
+   "max_rel_QUMOND_vs_AQUAL": 1.9148769127151525e-11,
+   "max_rel_FD_vs_telescoped_phantom": 0.00011086373711097351,
+   "Qcell_phantom_M_r_over_r_at_r_max": 0.9989997514994042,
+   "note": "Q-cell phantom mass diverges: r^2(nu-1)gN ~ (a0/2) r; telescoped cumulant is exact, FD path limited to 2nd order"
+  },
+  "N256": {
+   "N": 256,
+   "max_rel_3D_reduction_residual": 0.005876322149172007,
+   "max_rel_wrong_1D_control": 148324231.1040114,
+   "max_rel_QUMOND_phantom_vs_algebraic": 2.9680049024297184e-16,
+   "max_rel_QUMOND_vs_AQUAL": 1.988214663137409e-11,
+   "max_rel_FD_vs_telescoped_phantom": 0.00044403980110415726,
+   "Qcell_phantom_M_r_over_r_at_r_max": 0.9989997514994042,
+   "note": "Q-cell phantom mass diverges: r^2(nu-1)gN ~ (a0/2) r; telescoped cumulant is exact, FD path limited to 2nd order"
+  }
+ },
+ "nonspherical": {
+  "Q_N512": {
+   "N": 512,
+   "cell": "Q",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.5806763871552655,
+   "RA_over_RQ_at_Q_peak": 0.9399600753172426,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2928435951949584,
+   "mask_r_min": 0.05
+  },
+  "Q_N256": {
+   "N": 256,
+   "cell": "Q",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.600258703118294,
+   "RA_over_RQ_at_Q_peak": 0.9375639267541984,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2760930781150919,
+   "mask_r_min": 0.05
+  },
+  "EXP_N512": {
+   "N": 512,
+   "cell": "EXP",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.583484678623804,
+   "RA_over_RQ_at_Q_peak": 0.9321660197516947,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2928435951949584,
+   "mask_r_min": 0.05
+  },
+  "EXP_N256": {
+   "N": 256,
+   "cell": "EXP",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.6049174465539356,
+   "RA_over_RQ_at_Q_peak": 0.9296938170579182,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2760930781150919,
+   "mask_r_min": 0.05
+  },
+  "MU2_N512": {
+   "N": 512,
+   "cell": "MU2",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.5486410355820523,
+   "RA_over_RQ_at_Q_peak": 0.9372641135892572,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2928435951949584,
+   "mask_r_min": 0.05
+  },
+  "MU2_N256": {
+   "N": 256,
+   "cell": "MU2",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.5683627751093338,
+   "RA_over_RQ_at_Q_peak": 0.9353590719182888,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2760930781150919,
+   "mask_r_min": 0.05
+  },
+  "MONO_N512": {
+   "N": 512,
+   "cell": "MONO",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.5249227848192275,
+   "RA_over_RQ_at_Q_peak": 1.0031095424140328,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2928435951949584,
+   "mask_r_min": 0.05
+  },
+  "MONO_N256": {
+   "N": 256,
+   "cell": "MONO",
+   "eps": 0.001,
+   "max_abs_RA_minus_RQ_over_peak": 0.5435942004202049,
+   "RA_over_RQ_at_Q_peak": 1.043699532519687,
+   "control_newtonian_max_abs_diff_over_peak": 0.0,
+   "r_of_peak": 1.2760930781150919,
+   "mask_r_min": 0.05
+  }
+ },
+ "filter": {
+  "xi_over_r0=0.3": {
+   "xi_over_r0": 0.3,
+   "N": 1024,
+   "rel_dev_at": {
+    "r/xi=0.2": 3.294368960904446e-05,
+    "r/xi=0.5": 0.012863092623911856,
+    "r/xi=1.0": 0.03296419122062758,
+    "r/xi=3.0": 0.05767211027073159,
+    "r/xi=10.0": 0.010312477081235056,
+    "r/xi=30.0": 0.0017251205592558102
+   },
+   "max_rel_deviation_within_r_le_60xi": 0.060185073734354125,
+   "r_of_max_rel_deviation_over_xi": 2.4636950146627568,
+   "max_abs_mu_impl_minus_mu_mono_within_window": 0.06186123161427792
+  },
+  "xi_over_r0=0.1": {
+   "xi_over_r0": 0.1,
+   "N": 1024,
+   "rel_dev_at": {
+    "r/xi=0.2": 3.9470891873868795e-06,
+    "r/xi=0.5": 0.0016031456198946504,
+    "r/xi=1.0": 0.004277549182711539,
+    "r/xi=3.0": 0.007149616742174403,
+    "r/xi=10.0": 0.006029805626469366,
+    "r/xi=30.0": 0.0011164496276896308
+   },
+   "max_rel_deviation_within_r_le_60xi": 0.007531554364632213,
+   "r_of_max_rel_deviation_over_xi": 7.35108504398827,
+   "max_abs_mu_impl_minus_mu_mono_within_window": 0.007476249760206888
+  },
+  "xi_over_r0=0.03": {
+   "xi_over_r0": 0.03,
+   "N": 1024,
+   "rel_dev_at": {
+    "r/xi=0.2": 3.8394050830673887e-07,
+    "r/xi=0.5": 0.00016137029487871138,
+    "r/xi=1.0": 0.0004422751574652984,
+    "r/xi=3.0": 0.0007709025179709863,
+    "r/xi=10.0": 0.0006101173891895004,
+    "r/xi=30.0": 0.0006048499489084053
+   },
+   "max_rel_deviation_within_r_le_60xi": 0.0007960450262329562,
+   "r_of_max_rel_deviation_over_xi": 2.4636950146627568,
+   "max_abs_mu_impl_minus_mu_mono_within_window": 0.0007965401930164484
+  },
+  "control_xi0_unfiltered_phantom": {
+   "max_rel": 3.154060132968639e-16,
+   "profile": "Plummer",
+   "note": "exact telescoped cumulant; identity gN + (nu-1) gN = nu gN is analytic",
+   "tolerance": "<1e-8 (roundoff-limited)"
+  }
+ },
+ "asymptotics": {
+  "Q": {
+   "deep_nu*sqrt(y)-1": {
+    "1.0e-8": "4.999999987e-9",
+    "0.0001": "4.999875006e-5",
+    "0.01": "0.004987562112"
+   },
+   "newtonian_1-mu(x)": {
+    "100.0": "0.004987500078",
+    "1.0e+4": "4.999875e-5",
+    "1.0e+8": "4.999999987e-9"
+   },
+   "nu(y)-1_at_y=1e6": "4.99999875e-7"
+  },
+  "RAR": {
+   "deep_nu*sqrt(y)-1": {
+    "1.0e-8": "5.000083333e-5",
+    "0.0001": "0.005008333319",
+    "0.01": "0.05083319448"
+   },
+   "newtonian_1-mu(x)": {
+    "100.0": "4.541023916e-5",
+    "1.0e+4": "3.720075935e-44",
+    "1.0e+8": "0.0"
+   },
+   "nu(y)-1_at_y=1e6": "0.0"
+  },
+  "MU2": {
+   "deep_nu*sqrt(y)-1": {
+    "1.0e-8": "3.750101564e-5",
+    "0.0001": "0.003760171862",
+    "0.01": "0.03853110994"
+   },
+   "newtonian_1-mu(x)": {
+    "100.0": "0.0003844675125",
+    "1.0e+4": "3.99840048e-8",
+    "1.0e+8": "3.99999984e-16"
+   },
+   "nu(y)-1_at_y=1e6": "3.999984e-12"
+  },
+  "EXP": {
+   "deep_nu*sqrt(y)-1": {
+    "1.0e-8": "2.500072919e-5",
+    "0.0001": "0.002507312553",
+    "0.01": "0.02575054322"
+   },
+   "newtonian_1-mu(x)": {
+    "100.0": "3.720075935e-44",
+    "1.0e+4": "0.0",
+    "1.0e+8": "0.0"
+   },
+   "nu(y)-1_at_y=1e6": "3.421138829e-46"
+  },
+  "MONO": {
+   "deep_nu*sqrt(y)-1": {
+    "1.0e-8": "5.000083333e-5",
+    "0.0001": "0.005008333319",
+    "0.01": "0.05083319448"
+   },
+   "newtonian_1-mu(x)": {
+    "100.0": "0.007453457495",
+    "1.0e+4": "8.938929959e-5",
+    "1.0e+8": "1.192123204e-8"
+   },
+   "nu(y)-1_at_y=1e6": "1.043005518e-6"
+  }
+ },
+ "counterexample": {
+  "wBad": {
+   "def": "y = x*mu_bad = x^2 + x^3 - x^4/2  (mu_bad = x + x^2 - x^3/2)",
+   "deriv_min_on_grid": -71.95124147560705,
+   "deriv_at_1": 3.009331019320868,
+   "deriv_at_2p5": -7.7384654051300785,
+   "w(2)": 4.0,
+   "w(5/2)": 2.34375,
+   "w_10": -3900.0
+  },
+  "two_positive_roots_y0=1.5": {
+   "x1": 1.0,
+   "x2": 2.5986745078815536,
+   "w(x1)": 1.5,
+   "w(x2)": 1.5000000000000036
+  },
+  "two_positive_roots_y0=3.0": {
+   "x1": 1.4691276606455848,
+   "x2": 2.3991367161445165,
+   "w(x1)": 3.0,
+   "w(x2)": 3.0
+  },
+  "statement": "mu_bad(x)=x+x^2-x^3/2 gives y=x*mu non-monotone on (0,oo): for y0 in (0,4) there are two positive roots of x*mu(x)=y0 -> the spherical AQUAL relation mu(g/a0) g = g_N is multi-valued and the matched QUMOND nu(y)=x/y is not single-valued: the correspondence (as a function) fails. Exact derivative signs (Lean-certified): d[x mu]/dx at x=1 equals 3 > 0; at x=5/2 equals -15/2 < 0."
+ },
+ "footings": {
+  "a0_canonical": 9.3619e-11,
+  "a0_alternative": 1.1279e-10,
+  "rho_Lambda_canonical_kg_m3": 5.844412454021876e-27,
+  "rho_Lambda_alternative_kg_m3": 8.483089619559099e-27,
+  "kappa_adopted": 0.5,
+  "a0_alt_over_can": 1.2047768081265555,
+  "fixed_rho_Lambda_effective_kappa": 1.2047768081265555,
+  "fixed_kappa_rho_density_ratio": 1.451487157399611,
+  "note": "The two footings never share both fixed rho_Lambda and fixed kappa. The correspondence theorem is dimensionless; both footings apply unchanged.",
+  "M=1e+09_Msun": {
+   "canonical": {
+    "r_M_kpc": 1.22019668075706,
+    "v_flat_km_s": 59.37070297254995,
+    "knee_y_eq_1_at_r_M": true
+   },
+   "alternative": {
+    "r_M_kpc": 1.111671674324754,
+    "v_flat_km_s": 62.201211113025835,
+    "knee_y_eq_1_at_r_M": true
+   }
+  },
+  "M=1e+11_Msun": {
+   "canonical": {
+    "r_M_kpc": 12.2019668075706,
+    "v_flat_km_s": 187.7466476785871,
+    "knee_y_eq_1_at_r_M": true
+   },
+   "alternative": {
+    "r_M_kpc": 11.11671674324754,
+    "v_flat_km_s": 196.69750033813872,
+    "knee_y_eq_1_at_r_M": true
+   }
+  }
+ },
+ "r_M_and_v_flat": {
+  "M=1e+09_Msun": {
+   "canonical": {
+    "r_M_kpc": 1.22019668075706,
+    "v_flat_km_s": 59.37070297254995,
+    "knee_y_eq_1_at_r_M": true
+   },
+   "alternative": {
+    "r_M_kpc": 1.111671674324754,
+    "v_flat_km_s": 62.201211113025835,
+    "knee_y_eq_1_at_r_M": true
+   }
+  },
+  "M=1e+11_Msun": {
+   "canonical": {
+    "r_M_kpc": 12.2019668075706,
+    "v_flat_km_s": 187.7466476785871,
+    "knee_y_eq_1_at_r_M": true
+   },
+   "alternative": {
+    "r_M_kpc": 11.11671674324754,
+    "v_flat_km_s": 196.69750033813872,
+    "knee_y_eq_1_at_r_M": true
+   }
+  }
+ },
+ "bounds": {
+  "declared": {
+   "wall_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "grid_cells_max": 512,
+   "refinements": 2
+  },
+  "enforced": {
+   "wall_s": "signal.alarm(120) in-process; single python process, no subprocesses",
+   "memory_MB": "NOT ENFORCEABLE on this host: current limit exceeds maximum limit",
+   "threads": "1 (no threading/parallel libs used)",
+   "grid_cells": "mandated 181-pt diagnostic grid; radial PDE grids <= 512 (with N=256 convergence pass)",
+   "refinements": "160-iteration bisection (mpmath 50 dps) on matched inverses; BVP N=512 vs N=256; filter N=512 linear"
+  },
+  "observed_wall_s": 19.653,
+  "observed_peak_RSS_MB": "measured by /usr/bin/time -l (reported in stderr)"
+ }
+}

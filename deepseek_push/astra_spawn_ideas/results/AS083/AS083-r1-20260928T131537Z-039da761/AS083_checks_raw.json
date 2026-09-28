@@ -1,0 +1,450 @@
+{
+ "lane": "AS083_virial_surface_term_with_both_boundaries",
+ "claim": "The pressure boundary contribution is 4*pi*(R^3*P(R) - r_in^3*P(r_in)).",
+ "framework": {
+  "a0": "kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED",
+  "canonical": {
+   "Mb": "129250549999999998481519848980480000000000.0",
+   "C": "28418494086.586542168280645326042858452228749790664",
+   "rM": "303554770789973639511.61355675876232001027854542184",
+   "A": "33883282210179686711.132498951860611287090179789954",
+   "sig2": "14209247043.293271084140322663021429226114374895332",
+   "sigma_kms": "119.2025462953424962790355692347766219988877205272",
+   "rho_L": "5.844412454021875911913128207296967245039205260621e-27",
+   "s": "0.00000000018723800000000000007143946858503748970070645896158"
+  },
+  "alt": {
+   "Mb": "129250549999999998481519848980480000000000.0",
+   "C": "31192799958.341884082995292632316169869648423004116",
+   "rM": "276556431938486413380.47437565118764192652808329733",
+   "A": "37191078481988959317.062790486471243860587757439404",
+   "sig2": "15596399979.170942041497646316158084934824211502058",
+   "sigma_kms": "124.8855475192023251975130149594253157510132506371",
+   "rho_L": "8.4830896195590990448227888117507248585201939560983e-27",
+   "s": "0.00000000022558000000000001097650542541148219882751746467875"
+  },
+  "kappa_eff_fixed_density_accounting_only": 0.6023884040632778,
+  "G": 6.6743e-11,
+  "c": 299792458.0,
+  "M_sun": 1.98847e+30,
+  "pc": 3.085677581491367e+16,
+  "M_b_anchor_Msun": 65000000000.0
+ },
+ "symbolic": {
+  "ibp_antiderivative_zero": true,
+  "phantom_vol3": "3.0237649129917490509267526016564964646935038273551e+51",
+  "phantom_B": "4*pi*A*sigma^2*(R - r_in)",
+  "phantom_Q": "4*pi*A*C*(R - r_in)",
+  "phantom_residual": "4*pi*A*(-C + 2*sigma^2)*(R - r_in)",
+  "one_boundary_residual": "4*pi*A*(-C*(R - r_in) - R*sigma^2 + 3*sigma^2*(R - r_in))",
+  "inner_term": "4*pi*A*r_in*sigma^2"
+ },
+ "numeric": {
+  "dps": 50,
+  "worst_relres_phantom_canonical": "1.6520482020510207154185328597620193216493576643223e-51",
+  "worst_relres_phantom_alt": "1.6932533273343035009235006028751868462381744351223e-51",
+  "negative_control": {
+   "canonical|rinR=0.01|RrM=0.62": {
+    "resid_J": "-11386628571675479879405698524280705810700586684044.0",
+    "inner_J": "11386628571675479879405698524280705810700586684050.0",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999949",
+    "absresid_over_outer": "0.0099999999999999997202058909714827247036646836597436",
+    "predicted_rin_over_R": 0.01
+   },
+   "canonical|rinR=0.1|RrM=0.62": {
+    "resid_J": "-1.1386628571675480197996858129340629892826743133849e+50",
+    "inner_J": "1.1386628571675480197996858129340629892826743133849e+50",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999998",
+    "absresid_over_outer": "0.099999999999999999999999999999999999999999999999998",
+    "predicted_rin_over_R": 0.1
+   },
+   "canonical|rinR=0.5|RrM=0.62": {
+    "resid_J": "-5.6933142858377400989984290646703149464133715669247e+50",
+    "inner_J": "5.6933142858377400989984290646703149464133715669247e+50",
+    "ratio_resid_over_inner": "-1.0",
+    "absresid_over_outer": "0.5",
+    "predicted_rin_over_R": 0.5
+   },
+   "canonical|rinR=0.01|RrM=1.0": {
+    "resid_J": "-18365529954315291155787125378065409637020805780088.0",
+    "inner_J": "18365529954315291155787125378065409637020805780079.0",
+    "ratio_resid_over_inner": "-1.0000000000000000000000000000000000000000000000005",
+    "absresid_over_outer": "0.010000000000000000208166817117216851329430937767034",
+    "predicted_rin_over_R": 0.01
+   },
+   "canonical|rinR=0.1|RrM=1.0": {
+    "resid_J": "-1.8365529954315291792969444588185257801273118679678e+50",
+    "inner_J": "1.8365529954315291792969444588185257801273118679678e+50",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999998",
+    "absresid_over_outer": "0.1000000000000000055511151231257827021181583404541",
+    "predicted_rin_over_R": 0.1
+   },
+   "canonical|rinR=0.5|RrM=1.0": {
+    "resid_J": "-9.1827649771576453867388669259967503692347090201597e+50",
+    "inner_J": "9.1827649771576453867388669259967503692347090201597e+50",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999999",
+    "absresid_over_outer": "0.5",
+    "predicted_rin_over_R": 0.5
+   },
+   "alt|rinR=0.01|RrM=0.62": {
+    "resid_J": "-12498228307032562791818502756579835556896926263780.0",
+    "inner_J": "12498228307032562791818502756579835556896926263790.0",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999923",
+    "absresid_over_outer": "0.0099999999999999997202058909714827247036646836597411",
+    "predicted_rin_over_R": 0.01
+   },
+   "alt|rinR=0.1|RrM=0.62": {
+    "resid_J": "-1.2498228307032563141511568116696821108253785316041e+50",
+    "inner_J": "1.2498228307032563141511568116696821108253785316042e+50",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999995",
+    "absresid_over_outer": "0.099999999999999999999999999999999999999999999999995",
+    "predicted_rin_over_R": 0.1
+   },
+   "alt|rinR=0.5|RrM=0.62": {
+    "resid_J": "-6.2491141535162815707557840583484105541268926580209e+50",
+    "inner_J": "6.2491141535162815707557840583484105541268926580209e+50",
+    "ratio_resid_over_inner": "-1.0",
+    "absresid_over_outer": "0.5",
+    "predicted_rin_over_R": 0.5
+   },
+   "alt|rinR=0.01|RrM=1.0": {
+    "resid_J": "-20158432753278328211620376575506139773565555432728.0",
+    "inner_J": "20158432753278328211620376575506139773565555432732.0",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999979",
+    "absresid_over_outer": "0.010000000000000000208166817117216851329430937767027",
+    "predicted_rin_over_R": 0.01
+   },
+   "alt|rinR=0.1|RrM=1.0": {
+    "resid_J": "-2.0158432753278328911006507295740110876279273537236e+50",
+    "inner_J": "2.0158432753278328911006507295740110876279273537236e+50",
+    "ratio_resid_over_inner": "-0.99999999999999999999999999999999999999999999999998",
+    "absresid_over_outer": "0.1000000000000000055511151231257827021181583404541",
+    "predicted_rin_over_R": 0.1
+   },
+   "alt|rinR=0.5|RrM=1.0": {
+    "resid_J": "-1.0079216376639163895994349071682878555968662285015e+51",
+    "inner_J": "1.0079216376639163895994349071682878555968662285015e+51",
+    "ratio_resid_over_inner": "-1.0",
+    "absresid_over_outer": "0.5",
+    "predicted_rin_over_R": 0.5
+   }
+  },
+  "worst_inner_term_relerr": "7.7260950614628916119817862758120404360249587473855e-49"
+ },
+ "dimensional_tables": {
+  "canonical": {
+   "rinR=0.01|RrM=0.62": {
+    "R_kpc": "6.0992748892067030246328594329762915733835613952799",
+    "rin_kpc": "0.060992748892067031515995234738887737341404018813793",
+    "vol3_J": "3.3818286857876174862644781427425881614518946670164e+51",
+    "B_J": "1.1272762285958724954214927142475293871506315556721e+51",
+    "outer_J": "1.1386628571675479754126510474683777371010413249109e+51",
+    "inner_J": "11386628571675479991158333220848349950409769238804.0",
+    "Q_J": "2.2545524571917449908429854284950587743012631113443e+51",
+    "P_R_Pa": "0.000000000013592490351021693790913864489718572447586181382656",
+    "P_rin_Pa": "0.00000013592490351021693225012773875985067102733084060532",
+    "inner_over_outer": "0.010000000000000000208166817117216851329430937767029"
+   },
+   "rinR=0.1|RrM=0.62": {
+    "R_kpc": "6.0992748892067030246328594329762915733835613952799",
+    "rin_kpc": "0.60992748892067033632106302087429106687351360248782",
+    "vol3_J": "3.074389714352379514651612008471454083820863098084e+51",
+    "B_J": "1.0247965714507931715505373361571513612736210326947e+51",
+    "outer_J": "1.1386628571675479754126510474683777371010413249109e+51",
+    "inner_J": "1.1386628571675480386211371131122637582742029221627e+50",
+    "Q_J": "2.0495931429015863431010746723143027225472420653893e+51",
+    "P_R_Pa": "0.000000000013592490351021693790913864489718572447586181382656",
+    "P_rin_Pa": "0.0000000013592490351021692281844289519762636729197146005403",
+    "inner_over_outer": "0.1000000000000000055511151231257827021181583404541"
+   },
+   "rinR=0.5|RrM=0.62": {
+    "R_kpc": "6.0992748892067030246328594329762915733835613952799",
+    "rin_kpc": "3.04963744460335151231642971648814578669178069764",
+    "vol3_J": "1.7079942857513219631189765712025666056515619873664e+51",
+    "B_J": "5.6933142858377398770632552373418886855052066245547e+50",
+    "outer_J": "1.1386628571675479754126510474683777371010413249109e+51",
+    "inner_J": "5.6933142858377398770632552373418886855052066245547e+50",
+    "Q_J": "1.1386628571675479754126510474683777371010413249109e+51",
+    "P_R_Pa": "0.000000000013592490351021693790913864489718572447586181382656",
+    "P_rin_Pa": "0.000000000054369961404086775163655457958874289790344725530624",
+    "inner_over_outer": "0.5"
+   },
+   "rinR=0.01|RrM=1.0": {
+    "R_kpc": "9.8375401438817791424521189139090283484318538285822",
+    "rin_kpc": "0.098375401438817793472370609153807752358264849775245",
+    "vol3_J": "5.4545623964316411459477438545717796127609141095634e+51",
+    "B_J": "1.8181874654772137153159146181905932042536380365211e+51",
+    "outer_J": "1.8365529954315290057557818279966314123728408189044e+51",
+    "inner_J": "18365529954315290439867209806038208119202782383252.0",
+    "Q_J": "3.6363749309544274306318292363811864085072760730422e+51",
+    "P_R_Pa": "0.0000000000052249532909327390183774385913379988727825470699009",
+    "P_rin_Pa": "0.000000052249532909327388008450593594188425344720619401524",
+    "inner_over_outer": "0.010000000000000000208166817117216851329430937767029"
+   },
+   "rinR=0.1|RrM=1.0": {
+    "R_kpc": "9.8375401438817791424521189139090283484318538285822",
+    "rin_kpc": "0.98375401438817796885452975845003533814842035590951",
+    "vol3_J": "4.9586930876651282849558596135051532937687202755051e+51",
+    "B_J": "1.6528976958883760949852865378350510979229067585017e+51",
+    "outer_J": "1.8365529954315290057557818279966314123728408189044e+51",
+    "inner_J": "1.8365529954315291077049529016158031444993406040266e+50",
+    "Q_J": "3.3057953917767521899705730756701021958458135170034e+51",
+    "P_R_Pa": "0.0000000000052249532909327390183774385913379988727825470699009",
+    "P_rin_Pa": "0.00000000052249532909327384382910939728869454926365898198868",
+    "inner_over_outer": "0.1000000000000000055511151231257827021181583404541"
+   },
+   "rinR=0.5|RrM=1.0": {
+    "R_kpc": "9.8375401438817791424521189139090283484318538285822",
+    "rin_kpc": "4.9187700719408895712260594569545141742159269142911",
+    "vol3_J": "2.7548294931472935086336727419949471185592612283566e+51",
+    "B_J": "9.1827649771576450287789091399831570618642040945219e+50",
+    "outer_J": "1.8365529954315290057557818279966314123728408189044e+51",
+    "inner_J": "9.1827649771576450287789091399831570618642040945219e+50",
+    "Q_J": "1.8365529954315290057557818279966314123728408189044e+51",
+    "P_R_Pa": "0.0000000000052249532909327390183774385913379988727825470699009",
+    "P_rin_Pa": "0.000000000020899813163730956073509754365351995491130188279604",
+    "inner_over_outer": "0.5"
+   }
+  },
+  "alt": {
+   "rinR=0.01|RrM=0.62": {
+    "R_kpc": "5.5568018133310370060753928439126874243583498084471",
+    "rin_kpc": "0.055568018133310371217495675271427827127844099194148",
+    "vol3_J": "3.7119738071886711075493034264493203753233739353073e+51",
+    "B_J": "1.2373246023962237025164344754831067917744579784358e+51",
+    "outer_J": "1.249822830703256265430915268799024057595142288262e+51",
+    "inner_J": "12498228307032562914480793315917265820684309826261.0",
+    "Q_J": "2.4746492047924474050328689509662135835489159568715e+51",
+    "P_R_Pa": "0.000000000019729325181586122880050163308531556618647895612518",
+    "P_rin_Pa": "0.00000019729325181586122058651997924263664676645366377907",
+    "inner_over_outer": "0.010000000000000000208166817117216851329430937767029"
+   },
+   "rinR=0.1|RrM=0.62": {
+    "R_kpc": "5.5568018133310370060753928439126874243583498084471",
+    "rin_kpc": "0.5556801813331037314539858665859608193494510104361",
+    "vol3_J": "3.3745216428987918958497399755232029359282532228162e+51",
+    "B_J": "1.1248405476329306319499133251744009786427510742721e+51",
+    "outer_J": "1.249822830703256265430915268799024057595142288262e+51",
+    "inner_J": "1.2498228307032563348100194362462307895239121398995e+50",
+    "Q_J": "2.2496810952658612638998266503488019572855021485441e+51",
+    "P_R_Pa": "0.000000000019729325181586122880050163308531556618647895612518",
+    "P_rin_Pa": "0.0000000019729325181586120689655055617150625431868933629771",
+    "inner_over_outer": "0.1000000000000000055511151231257827021181583404541"
+   },
+   "rinR=0.5|RrM=0.62": {
+    "R_kpc": "5.5568018133310370060753928439126874243583498084471",
+    "rin_kpc": "2.7784009066655185030376964219563437121791749042236",
+    "vol3_J": "1.874734246054884398146372903198536086392713432393e+51",
+    "B_J": "6.2491141535162813271545763439951202879757114413101e+50",
+    "outer_J": "1.249822830703256265430915268799024057595142288262e+51",
+    "inner_J": "6.2491141535162813271545763439951202879757114413101e+50",
+    "Q_J": "1.249822830703256265430915268799024057595142288262e+51",
+    "P_R_Pa": "0.000000000019729325181586122880050163308531556618647895612518",
+    "P_rin_Pa": "0.000000000078917300726344491520200653234126226474591582450072",
+    "inner_over_outer": "0.5"
+   },
+   "rinR=0.01|RrM=1.0": {
+    "R_kpc": "8.9625835698887694288342893573923518246328418481943",
+    "rin_kpc": "0.08962583569888769615405538846473152013292273742413",
+    "vol3_J": "5.987054527723663119576075115983441901182144552485e+51",
+    "B_J": "1.9956848425745543731920250386611473003940481841617e+51",
+    "outer_J": "2.0158432753278327006178350677709976431290025515701e+51",
+    "inner_J": "20158432753278327425810029109850342734954367408424.0",
+    "Q_J": "3.9913696851491087463840500773222946007880963683233e+51",
+    "P_R_Pa": "0.0000000000075839525998017055264476854343070275200396041155449",
+    "P_rin_Pa": "0.000000075839525998017052107022306605944543807322036263637",
+    "inner_over_outer": "0.010000000000000000208166817117216851329430937767029"
+   },
+   "rinR=0.1|RrM=1.0": {
+    "R_kpc": "8.9625835698887694288342893573923518246328418481943",
+    "rin_kpc": "0.89625835698887699263576213282744856610579935661109",
+    "vol3_J": "5.4427768433851482580976204084104643321551595378214e+51",
+    "B_J": "1.8142589477950494193658734694701547773850531792738e+51",
+    "outer_J": "2.0158432753278327006178350677709976431290025515701e+51",
+    "inner_J": "2.0158432753278328125196159830084286574394937229629e+50",
+    "Q_J": "3.6285178955900988387317469389403095547701063585476e+51",
+    "P_R_Pa": "0.0000000000075839525998017055264476854343070275200396041155449",
+    "P_rin_Pa": "0.00000000075839525998017046844598060377402096337040957923184",
+    "inner_over_outer": "0.1000000000000000055511151231257827021181583404541"
+   },
+   "rinR=0.5|RrM=1.0": {
+    "R_kpc": "8.9625835698887694288342893573923518246328418481943",
+    "rin_kpc": "4.4812917849443847144171446786961759123164209240971",
+    "vol3_J": "3.0237649129917490509267526016564964646935038273551e+51",
+    "B_J": "1.007921637663916350308917533885498821564501275785e+51",
+    "outer_J": "2.0158432753278327006178350677709976431290025515701e+51",
+    "inner_J": "1.007921637663916350308917533885498821564501275785e+51",
+    "Q_J": "2.0158432753278327006178350677709976431290025515701e+51",
+    "P_R_Pa": "0.0000000000075839525998017055264476854343070275200396041155449",
+    "P_rin_Pa": "0.00000000003033581039920682210579074173722811008015841646218",
+    "inner_over_outer": "0.5"
+   }
+  }
+ },
+ "checks": [
+  {
+   "name": "C1 [IBP core, symbolic] d/dr(r^3 P) = 3 r^2 P + r^3 P'  =>  [r^3 P]_{r_in}^R = 3\u222br^2P dr + \u222br^3P' dr,  exact for any P(r)",
+   "result": "PASS",
+   "measured": "sympy anti-derivative difference = 0 (0 = exact)",
+   "tolerance": ""
+  },
+  {
+   "name": "C2a [phantom, log well, closed form] 3\u222bP dV = 12\u03c0\u03c3\u00b2A(R\u2212r_in); B = 4\u03c0(R\u00b3P(R)\u2212r_in\u00b3P(r_in)) = 4\u03c0\u03c3\u00b2A(R\u2212r_in); Q = C\u00b7M_shell; identity holds EXACTLY at sigma^2 = C/2 (both boundaries)",
+   "result": "PASS",
+   "measured": "vol3 = 12*pi*A*sigma^2*(R - r_in); B = 4*pi*A*sigma^2*(R - r_in); Q = 4*pi*A*C*(R - r_in); residual = 4*pi*A*(-C + 2*sigma^2)*(R - r_in) -> 0 at \u03c3\u00b2=C/2: True",
+   "tolerance": ""
+  },
+  {
+   "name": "C2b [phantom hydrostatic] P' = \u2212\u03c1\u03a6' in the log well holds iff 2\u03c3\u00b2 = C, the SAME condition the two-boundary virial imposes (virial reading and hydrostatic balance coincide; G091 V3 point generalized to the two-surfaces shell)",
+   "result": "PASS",
+   "measured": "P' r\u00b3/A + 2\u03c3\u00b2 = 0; \u03c1\u03a6' r\u00b3/A = C; condition 2\u03c3\u00b2 = C",
+   "tolerance": ""
+  },
+  {
+   "name": "C3 [one-boundary limit] omitting the inner surface term at finite r_in misbooks by exactly \u0394 = 4\u03c0\u00b7r_in\u00b3\u00b7P(r_in) = \u03c3\u00b2\u00b7M_ph(<r_in): residual + \u0394 = 4\u03c0A(R\u2212r_in)(2\u03c3\u00b2\u2212C) GENERALLY, and residual + \u0394 = 0 EXACTLY at the framework value \u03c3\u00b2 = C/2; r_in\u21920 recovers the one-boundary formula with leading neglected term \u0394 (linear in r_in for the isothermal phantom: r\u00b3P = \u03c3\u00b2A\u00b7r)",
+   "result": "PASS",
+   "measured": "res_1b = 4*pi*A*(-C*(R - r_in) - R*sigma^2 + 3*sigma^2*(R - r_in));  \u0394 = 4*pi*A*r_in*sigma^2;  res_1b+\u0394 = 4*pi*A*(-C*R + C*r_in + 2*R*sigma^2 - 2*r_in*sigma^2) = 4\u03c0A(R\u2212r_in)(2\u03c3\u00b2\u2212C): True;  at \u03c3\u00b2=C/2: 0: True",
+   "tolerance": ""
+  },
+  {
+   "name": "N1 [phantom | canonical | both-boundary identity 3\u222bPdV = B + Q, 10 shells: 6 diagnostics (r_in/R, R/r_M) in {0.01,0.1,0.5}\u00d7{0.62,1} + 4 deep shells (r_in/r_M, R/r_in) in {10,100}\u00d7{2,10}]",
+   "result": "PASS",
+   "measured": "max |rel residual| = 1.652e-51",
+   "tolerance": "1e-40 (set before evaluation)"
+  },
+  {
+   "name": "N1 [phantom | alt | both-boundary identity 3\u222bPdV = B + Q, 10 shells: 6 diagnostics (r_in/R, R/r_M) in {0.01,0.1,0.5}\u00d7{0.62,1} + 4 deep shells (r_in/r_M, R/r_in) in {10,100}\u00d7{2,10}]",
+   "result": "PASS",
+   "measured": "max |rel residual| = 1.6933e-51",
+   "tolerance": "1e-40 (set before evaluation)"
+  },
+  {
+   "name": "N2 [newtonian regime | canonical] two representations: (a) truncated envelope P(R)=0 from the balance integral P(r) = (GAM_b/3)(1/r\u00b3\u22121/R\u00b3) + 4\u03c0GA\u00b2[(1/2)(1/r\u00b2\u22121/R\u00b2) \u2212 (r_in/3)(1/r\u00b3\u22121/R\u00b3)]: balance holds (finite-difference AND exact derivative) AND virial identity holds; (b) infinite point-mass envelope P = GAM_b/(3r\u00b3): boundary contribution 4\u03c0(R\u00b3P(R)\u2212r_in\u00b3P(r_in)) = 0 EXACTLY (r\u00b3P = const; the two surfaces cancel in the 1/r well), identity 3\u222bPdV = Q holds",
+   "result": "PASS",
+   "measured": "(a) balance FD relres = 3.323e-18, balance exact relres = 1.622e-51, identity relres = 0.0; (b) B = 0.0, identity relres = 1.5711e-51",
+   "tolerance": ""
+  },
+  {
+   "name": "N2 [newtonian regime | alt] two representations: (a) truncated envelope P(R)=0 from the balance integral P(r) = (GAM_b/3)(1/r\u00b3\u22121/R\u00b3) + 4\u03c0GA\u00b2[(1/2)(1/r\u00b2\u22121/R\u00b2) \u2212 (r_in/3)(1/r\u00b3\u22121/R\u00b3)]: balance holds (finite-difference AND exact derivative) AND virial identity holds; (b) infinite point-mass envelope P = GAM_b/(3r\u00b3): boundary contribution 4\u03c0(R\u00b3P(R)\u2212r_in\u00b3P(r_in)) = 0 EXACTLY (r\u00b3P = const; the two surfaces cancel in the 1/r well), identity 3\u222bPdV = Q holds",
+   "result": "PASS",
+   "measured": "(a) balance FD relres = 3.323e-18, balance exact relres = 2.036e-51, identity relres = 1.4282e-51; (b) B = 0.0, identity relres = 1.4314e-51",
+   "tolerance": ""
+  },
+  {
+   "name": "N3 [constant-density shell | canonical] rho = const, P from balance with P(R)=0: identity holds",
+   "result": "PASS",
+   "measured": "relres = 0.0",
+   "tolerance": ""
+  },
+  {
+   "name": "N3 [constant-density shell | alt] rho = const, P from balance with P(R)=0: identity holds",
+   "result": "PASS",
+   "measured": "relres = 0.0",
+   "tolerance": ""
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | canonical|rinR=0.01|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.13866e+49 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.13866e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | canonical|rinR=0.1|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.13866e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.13866e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | canonical|rinR=0.5|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -5.69331e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 5.69331e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | canonical|rinR=0.01|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.83655e+49 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.83655e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | canonical|rinR=0.1|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.83655e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.83655e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | canonical|rinR=0.5|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -9.18276e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 9.18276e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | alt|rinR=0.01|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.24982e+49 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.24982e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | alt|rinR=0.1|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.24982e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.24982e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | alt|rinR=0.5|RrM=0.62] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -6.24911e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 6.24911e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | alt|rinR=0.01|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -2.01584e+49 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 2.01584e+49 J; ratio = -1.000000000000; |residual|/outer surface = 0.010000000000 (= r_in/R = 0.01)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | alt|rinR=0.1|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -2.01584e+50 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 2.01584e+50 J; ratio = -1.000000000000; |residual|/outer surface = 0.100000000000 (= r_in/R = 0.1)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "NC1 [NEGATIVE CONTROL | alt|rinR=0.5|RrM=1.0] retain finite r_in but omit the inner pressure term: measured residual of the one-boundary form",
+   "result": "PASS",
+   "measured": "residual = -1.00792e+51 J (= \u2212\u0394, one-boundary form overshoots); predicted inner term 4\u03c0r_in\u00b3P(r_in) = 1.00792e+51 J; ratio = -1.000000000000; |residual|/outer surface = 0.500000000000 (= r_in/R = 0.5)",
+   "tolerance": "rel 1e-40; ratio = \u22121; |resid|/outer = r_in/R"
+  },
+  {
+   "name": "V1 [G091 cross-check | canonical] 4\u03c0R\u00b3P(R) at R = 0.62 r_M equals G091's 3 P_s V = \u03c3\u00b2 M_T (phantom surface pressure at the cap)",
+   "result": "PASS",
+   "measured": "4\u03c0R\u00b3P(R) = 1.1386629e+51 J vs \u03c3\u00b2M_T = 1.1386629e+51 J; rel = 1.756e-51",
+   "tolerance": ""
+  },
+  {
+   "name": "V2 [equipartition + a0-only pressure | canonical] at R = r_M the outer surface term is \u03c3\u00b2M_b; P(r_M) = a0\u00b2/(8\u03c0G) (no M_b, no r)",
+   "result": "PASS",
+   "measured": "4\u03c0r_M\u00b3P(r_M) = 1.836553e+51 J = \u03c3\u00b2M_b; P(r_M) = 5.2249533e-12 vs a0\u00b2/(8\u03c0G) = 5.2249533e-12 Pa; rel = 3.722e-51",
+   "tolerance": ""
+  },
+  {
+   "name": "V1 [G091 cross-check | alt] 4\u03c0R\u00b3P(R) at R = 0.62 r_M equals G091's 3 P_s V = \u03c3\u00b2 M_T (phantom surface pressure at the cap)",
+   "result": "PASS",
+   "measured": "4\u03c0R\u00b3P(R) = 1.2498228e+51 J vs \u03c3\u00b2M_T = 1.2498228e+51 J; rel = 1.6e-51",
+   "tolerance": ""
+  },
+  {
+   "name": "V2 [equipartition + a0-only pressure | alt] at R = r_M the outer surface term is \u03c3\u00b2M_b; P(r_M) = a0\u00b2/(8\u03c0G) (no M_b, no r)",
+   "result": "PASS",
+   "measured": "4\u03c0r_M\u00b3P(r_M) = 2.0158433e+51 J = \u03c3\u00b2M_b; P(r_M) = 7.5839526e-12 vs a0\u00b2/(8\u03c0G) = 7.5839526e-12 Pa; rel = 0.0",
+   "tolerance": ""
+  },
+  {
+   "name": "V3 [both footings separate] canonical rho_Lambda = 5.844412454022e-27 kg/m^3 vs alternative rho_Lambda = 8.483089619559e-27 kg/m^3 at the SAME kappa = 1/2; fixed-density leg gives kappa_eff = 0.602388404 (accounting only; the two footings do not share both fixed density and fixed kappa)",
+   "result": "PASS",
+   "measured": "rho_L ratio = 1.451487157; kappa_eff = 0.602388404",
+   "tolerance": ""
+  }
+ ],
+ "n_pass": 27,
+ "n_total": 27
+}

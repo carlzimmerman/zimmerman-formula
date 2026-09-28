@@ -1,0 +1,100 @@
+{
+ "checks": {
+  "C1_kernel_form_periodic1D": {
+   "residual_max": 4.440892098500626e-16,
+   "method": "FFT symbol exp(-xi^2 k^2/2) vs direct periodized Gaussian convolution",
+   "threshold": 1e-08,
+   "pass": true,
+   "kernel": "G_xi(r) = (2 pi xi^2)^(-3/2) exp(-|r|^2/(2 xi^2)) in 3D; (2 pi xi^2)^(-1/2) exp(-r^2/(2 xi^2)) in 1D"
+  },
+  "C2_1D_norm": {
+   "integral": 1.0000000000000002,
+   "expected": 1.0,
+   "thresh": 1e-06,
+   "pass": true
+  },
+  "C2_variance": {
+   "variance_formula": "int x^2 G_xi dx = xi^2",
+   "value_xi": 0.05,
+   "expected_xi2": 0.0025000000000000005,
+   "analytic": true,
+   "note": "var of N(0, xi^2 I_3) is xi^2 per axis; width = xi std"
+  },
+  "C3_statistical_expectation": {
+   "E[f(x0+xi Z)]_MC": 0.9988981772486375,
+   "(S f)(x0)_FFT": 0.998225037536659,
+   "delta": 0.0006731397119784654,
+   "threshold": 0.003,
+   "pass": true,
+   "note": "statistical reading S f(x) = E[f(x+xi Z)], Z~N(0,I); MC error ~1/sqrt(M)"
+  },
+  "C4_L2_selfadjoint": {
+   "<Su,v>": 0.02673965075115466,
+   "<u,Sv>": 0.026739650751154656,
+   "abs_diff": 3.469446951953614e-18,
+   "threshold": 1e-08,
+   "pass": true,
+   "note": "S* = S in L2(dx): heat semigroup of self-adjoint Laplacian; Gaussian kernel symmetric"
+  },
+  "C5_galactic_adjoint_correct": {
+   "<Su,v>_N": 0.03148219936255736,
+   "<u,N^-1 S N v>_N": 0.03148219936255737,
+   "abs_diff": 6.938893903907228e-18,
+   "threshold": 1e-08,
+   "pass": true,
+   "note": "S*_mu = N^-1 S N in dmu = N dx (lapse-weighted proper volume); matches AS205 identity"
+  },
+  "C5_negative_control_naive_selfadjoint_must_FAIL": {
+   "<Su,v>_N": 0.03148219936255736,
+   "<u,Sv>_N": 0.030279310635711564,
+   "abs_diff": 0.001202888726845798,
+   "threshold_fail_if_below": 0.001,
+   "control_triggered": true,
+   "note": "S* = S in galactic measure is FALSE for nonconstant lapse; control must detect nonzero gap"
+  },
+  "C6_boundary_wrapped_vs_free": {
+   "max_abs_diff": 0.0005425838499461007,
+   "l1_diff": 0.0690375157407748,
+   "threshold_detect_l1": 0.001,
+   "control_triggered": true,
+   "note": "exact kernel on periodic domain is wrapped Gaussian sum of images; free Euclidean Gaussian differs at O(exp(-L^2/8 xi^2)) \u2014 boundary/domain enters the kernel, statistical reading must state domain"
+  },
+  "C1b_3D_kernel_separable": {
+   "residual_max": 4.85722573273506e-17,
+   "threshold": 1e-08,
+   "pass": true,
+   "method": "3D FFT symbol exp(-xi^2 |k|^2/2) vs three sequential 1D Gaussian filters",
+   "note": "3D Gaussian kernel factorizes G_xi(r)=prod_i G_xi(r_i); exact kernel form (2 pi xi^2)^(-3/2) exp(-|r|^2/(2 xi^2))"
+  },
+  "C2b_3D_norm": {
+   "integral": 1.0000000000000007,
+   "expected": 1.0,
+   "thresh": 0.001,
+   "pass": true,
+   "note": "int_{R^3} G_xi = (int_R G_xi)^3 = 1 via product separability (C1b); probability kernel"
+  },
+  "C2c_second_moment": {
+   "int_x2_G": 0.0024999998128233856,
+   "expected_xi2": 0.0025000000000000005,
+   "thresh": 1e-06,
+   "pass": true,
+   "note": "variance of K_xi is xi^2 per axis => std width = xi (the 'width xi' reading)"
+  },
+  "C7_footings": {
+   "a0_canonical": 9.3619e-11,
+   "a0_alternative": 1.1279e-10,
+   "rho_Lambda_canonical_from_4a0^2/Gc^2": 5.844412454021876e-27,
+   "rho_Lambda_alternative_from_4a0^2/Gc^2": 8.483089619559099e-27,
+   "r_M(1e10 Msun)_canonical_m": 1.190639769001739e+20,
+   "r_M(1e10 Msun)_alternative_m": 1.084743571587644e+20,
+   "note": "Audit itself is dimensionless in xi/(L domain); both footings fix a0 only; xi is an independent length. If xi were tied to r_M, footing changes xi by sqrt(1.1279e-10/9.3619e-11)=1.0978."
+  }
+ },
+ "elapsed_s": 0.024280786514282227,
+ "bounds": {
+  "wall_s": 0.02,
+  "threads": 1,
+  "mem_est_MB": "~20 (N=512 grids, 400k MC)",
+  "grid": "512 1D periodic cells"
+ }
+}

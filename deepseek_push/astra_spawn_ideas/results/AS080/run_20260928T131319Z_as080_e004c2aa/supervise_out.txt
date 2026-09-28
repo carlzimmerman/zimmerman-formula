@@ -1,0 +1,18 @@
+{
+ "wall_s": 0.8529150485992432,
+ "wall_limit_s": 120,
+ "max_rss_kb": 86848,
+ "memory_limit_kb": 524288,
+ "poll_interval_s": 0.05,
+ "killed": {
+  "memory": false,
+  "wall": false
+ },
+ "exit_code": 0,
+ "enforced": {
+  "cpu": "RLIMIT_CPU=120 s set inside the payload (OS-enforced SIGXCPU); macOS refuses RLIMIT_AS lowering for the process",
+  "memory": "RSS supervised via `ps -o rss=` every 50 ms + SIGKILL on breach (actual enforcement; sampling interval 50 ms)",
+  "wall": "SIGKILL at 120 s wall by this wrapper",
+  "threads": "OMP/OPENBLAS/MKL/NUMEXPR/VECLIB_MAXIMUM_THREADS=1 set before numpy import; single-threaded CPython"
+ }
+}

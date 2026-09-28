@@ -1,0 +1,37 @@
+
+NC-A -- stochastic modes on two static elliptic equations
+  [PASS] NC-A [two static elliptic equations do NOT imply two stochastic independent modes] the SAME channel structure (two rescaled Laplacians, count 2) is realized with mode correlation 1.000 (shared mode) and with correlation ~0 (independent sources); both configurations satisfy BOTH equations
+         measured: (a) corr(u,v) = 1.0000, max rel residual 1.65e-02; (b) corr(u,v) = -0.4337, max rel residual 1.96e-02 (pre-set tolerances: corr(a) > 0.999, |corr(b)| < 0.5, residuals < 2e-2)
+         reading : UNSUPPORTED INFERENCE MARKED: 'two static Einstein channels' does NOT certify two stochastically independent modes; independence is an extra stipulation.  The OR composition 1-(1-p)^2 needs that stipulation -- it is a premise (PD01 D1), not a consequence of the static count.  This control is exactly the seed's 'two static elliptic equations with two stochastic independent modes' and it fires.
+
+NC-B -- finite-lambda diagnostics (floating re-evaluation)
+    lambda=0.5: Y/(1+Y)=0.5556 1-exp(-Y)=0.6321 tanh(Y)=0.7107 Y/sqrt(1+Y^2)=0.6944  lambda=1.0: Y/(1+Y)=0.7500 1-exp(-Y)=0.8647 tanh(Y)=0.9432 Y/sqrt(1+Y^2)=0.9142  lambda=2.0: Y/(1+Y)=0.8889 1-exp(-Y)=0.9817 tanh(Y)=0.9987 Y/sqrt(1+Y^2)=0.9889
+  [PASS] NC-B [count does not fix the finite response] OR completions of count 2 differ at every finite lambda = 1/2, 1, 2
+         measured: spreads = ['0.1551', '0.1932', '0.1098'] (pre-set threshold 0.10)
+         reading : diagnostic counterexamples evaluated: an observational preference at finite acceleration is NOT a proof of the count; only the origin slope (kappa) is count-locked.
+
+NC-C -- Newtonian limit: FD Laplacian of the exact Newton potential vs 4 pi G rho
+  [PASS] NC-C [Newtonian limit] Delta Psi = 4 pi G rho with G_N = G_bare = 6.67430e-11 (same symbol in this linearized sector, separate symbols elsewhere): FD Laplacian of the shell-theorem-exact Newton potential of a Gaussian source
+         measured: relative L2 residual (trimmed 3|3|3) = 2.035e-03 (pre-set tolerance 5e-3, h = 0.025)
+         reading : the channel coefficient is exactly 4 pi G -- all factors, signs and units of the sourced static channel verified in the Newtonian regime by an independent discretized representation
+
+NC-D -- collapse: Dirichlet Laplace solve with harmonic polynomial boundary data
+  [PASS] NC-D [collapse] two harmonic polynomials v0 = x^2 - y^2 and v1 = 3x^2 z - z^3 (Delta v = 0 exactly) are reproduced from their boundary values by the Dirichlet Laplace solve
+         measured: max relative deviation v0: 2.22e-16 (1 Jacobi iterations); v1: 2.22e-16 (1 iters) (pre-set tolerance 1e-3)
+         reading : the Phi = Psi (gamma = 1) collapse rests on this elliptic uniqueness: a harmonic difference Delta(Phi-Psi) = 0 whose boundary datum vanishes is zero.  Level: exact polynomial identity (Delta v = 0) plus boundary-data propagation exercised by the solver
+
+NC-E -- FD verification of G00 = 2 Delta Psi and sum_i Gii = 2 Delta(Phi-Psi)
+  [PASS] NC-E [independent representation] finite differences on NON-radial anisotropic potentials reproduce both closed forms exactly
+         measured: max relative residual: 00 sector 1.28e-16, trace sector 2.13e-16 (h = 0.050; pre-set tolerance 5e-2, FD accuracy ~1e-3 expected)
+         reading : the two-channel structure is not a symbolic artefact and does not require radial potentials: exact factor 2 and the Phi - Psi difference survive in a completely independent discretized representation
+
+NC-F -- wave-sector counterexample: static rank vs propagating rank
+  [PASS] NC-F1 [massless vector] static channel count 1 (one static operator, Delta A_0); propagating count computed via harmonic gauge + residual gauge on a lightlike plane wave
+         measured: k^T eta k = 0.0e+00 (lightlike); quotient rank = 2 of 2 (pre-set: must equal 2)
+         reading : COUNTEREXAMPLE: the scalar and the vector share static rank 1 yet propagate 1 and 2 modes respectively -- the static Einstein channel count does NOT certify the propagating degree-of-freedom count, even within linearized field theory
+  [PASS] NC-F2 [metric TT count] transverse-traceless spatial perturbation space dimension 2; Hamiltonian count of linearized vacuum GR = 10 - 4 (constraints) - 4 (gauge) = 2 (standard theorem, cited)
+         measured: nullity = 2
+         reading : the metric carrier propagates 2 modes -- established by the wave-sector TT/constraint algebra, NOT derivable from the two static Poisson operators alone (NC-F1 separates the two notions by construction)
+
+AS056 CONTROLS COMPLETE: 7/7 checks PASS.
+wall time: 0.19 s

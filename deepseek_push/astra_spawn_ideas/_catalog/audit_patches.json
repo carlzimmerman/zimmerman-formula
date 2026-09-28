@@ -1,0 +1,744 @@
+{
+  "AS472": {
+    "title": "Nonlinear Fourier aliasing in a filtered source solve",
+    "principle": "Certify the spectral discretization of the operative nonlinear source; multiplication generates modes above the input bandwidth even when the heat filter is diagonal.",
+    "math": "For v=grad(Su), the nonlinear product F(v)=(nu(|v|/a0)-1)v has Fourier convolutions. A discrete N-mode transform folds frequencies k+mN into k. Bound the resulting low-mode source error after S* div and the actual Poisson projection.",
+    "inputs": "Smooth periodic source with two known Fourier modes and a nonzero background gradient; begin at 32/64/128 modes and a fixed physical xi. Keep the operator order exactly as in the operative specification.",
+    "steps": [
+      "Take the correctly ordered operator from AS042 as an input. Derive the first nonzero nonlinear generated harmonics around the nonzero background.",
+      "Compute which harmonics alias into resolved modes for the declared collocation grid; distinguish multiplication aliasing from truncation of the original source.",
+      "Derive an oversampling/truncation criterion with a tail bound for this nonpolynomial constitutive law; a polynomial two-thirds rule is not automatically exact.",
+      "Compare collocation against direct Fourier convolution or oversampled quadrature at fixed source and xi. Return an observable error budget and a resolution criterion."
+    ],
+    "checks": [
+      "Use an intentionally undersampled generated harmonic that folds into a measured low mode and require the certificate to detect it.",
+      "A constant linear constitutive multiplier must remove nonlinear aliasing on the band-limited fixture while leaving any separately introduced source truncation visible."
+    ],
+    "completion": "Deliver a distinct nonlinear-aliasing certificate, with no rederivation of the filter-order law or kernel construction.",
+    "depends_on": [
+      "AS042",
+      "AS471"
+    ],
+    "kind": "derivation",
+    "branch": "Operative filtered MONO on a periodic spectral fixture",
+    "claim_key": "nonlinear_fourier_aliasing_in_a_filtered_source_solve"
+  },
+  "AS500": {
+    "title": "Logical independence and redundancy of the thirteen closure gates",
+    "principle": "Determine whether the operative gate set contains redundant predicates or independent scientific obligations before a final witness is evaluated.",
+    "math": "Let P_1,...,P_13 be the exact amended gate predicates on a common candidate domain. To prove P_j redundant requires (and_{i!=j} P_i)=>P_j; to prove independence requires a valid candidate-domain witness satisfying the others but not P_j. Unknown predicates cannot be treated as true.",
+    "inputs": "Exact amended thirteen-item specification and existing scoped gate results. Start with one proposed implication between two gates; unrestricted impossible-to-build witnesses remain unresolved, not invented.",
+    "steps": [
+      "Translate all thirteen requirements into precise predicates with their common action, parameter and state-domain arguments.",
+      "Select a claimed implication between gates and derive it or construct a valid countermodel in a clearly stated candidate class.",
+      "Separate strict logical redundancy from one gate supplying a computational prerequisite for another. Record which implications are only conditional on extra assumptions.",
+      "Return a minimal proven implication graph and a list of remaining independence questions. Pass it to AS2000; do not assemble or certify the final all-gate witness here."
+    ],
+    "checks": [
+      "An all-green table with unknown predicates hidden as true must fail the logical check.",
+      "A countermodel outside the candidate class or violating a retained hypothesis cannot establish gate independence."
+    ],
+    "completion": "Deliver a scoped gate-implication/independence result with quantified domain and an explicit unresolved list, distinct from constructing the common-theory closure witness.",
+    "kind": "audit",
+    "claim_key": "logical_independence_and_redundancy_of_the_thirteen_closure_gates"
+  },
+  "AS1900": {
+    "title": "Global obstruction to integrating a local nuisance-free statistic",
+    "claim_key": "global_obstruction_to_integrating_a_local_nuisance_free_statistic",
+    "math": "A statistic T(d) invariant under nuisance vector fields X_i requires X_i T=0. Lie brackets [X_i,X_j]T must also vanish; pointwise tangent projection alone need not produce a global invariant.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Starting from a local calibration-canceling contrast, derive the Lie closure of a two-nuisance nonlinear observation map and determine whether a nonconstant invariant retaining the framework gravity signal exists. Construct an explicit noncommuting fixture.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Project away nuisance tangent directions at one point and falsely claim cancellation around a finite closed nuisance loop.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Construct the global invariant on an integrable nuisance distribution and derive its gravity sensitivity.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If bracket closure spans the observation space, prove no such nonconstant smooth statistic exists there and identify an extra measurement that changes the rank."
+    ],
+    "depends_on": [
+      "AS458",
+      "AS460"
+    ]
+  },
+  "AS1938": {
+    "title": "Detector-window completeness of source-radiation energy accounting",
+    "claim_key": "detector_window_completeness_of_source_radiation_energy_accounting",
+    "math": "With a derived source balance Delta E_source+E_boundary=0, a detector captures E_det=int W(omega,n) dE_boundary. E_missing=int(1-W)dE_boundary requires a physical spectrum bound.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use the common-action radiation balance as an input and derive a bound on undetected energy for a finite time/frequency/angular detector window. Determine whether the observed flux can test the source energy change without borrowing an unproved spectral shape.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Equate energy in a narrow detector band with total source energy loss.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Optimize a second observation window to bound the dominant missing spectral contribution.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the unobserved spectrum is unconstrained, return a lower energy bound rather than an exact energy-closure claim."
+    ],
+    "depends_on": [
+      "AS1199"
+    ]
+  },
+  "AS1953": {
+    "title": "Conservative two-source interaction potential from observable work loops",
+    "claim_key": "conservative_two_source_interaction_potential_from_observable_work_loops",
+    "math": "A derived reciprocal force response permits an experimental loop integral W_loop=oint(F_1 dot dx_1+F_2 dot dx_2); time dependence, radiation and external work must be separately bounded.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Take the action-derived two-source balance as input and construct a closed source-configuration loop whose measured work distinguishes a conservative common interaction from independently fitted one-body force rules. Derive the finite-rate correction and observable covariance.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Attribute nonzero loop work to nonreciprocity while omitting independently present radiation or actuator work.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Design two loop orientations that separate an external-work bias from an intrinsic source interaction defect.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If source motion or external work cannot be calibrated, state the missing measurement needed for the loop test."
+    ],
+    "depends_on": [
+      "AS370"
+    ]
+  },
+  "AS1944": {
+    "title": "Overdetermined measured vacuum-conversion loop residual",
+    "claim_key": "overdetermined_measured_vacuum_conversion_loop_residual",
+    "math": "Define measured a_dyn, rho_vac, G_N and a geometric Lambda_eff. The same-action residuals are r1=4*a_dyn^2/(c^2*G_N*rho_vac)-1 and r2=Lambda_eff*c^4/(32*pi*a_dyn^2)-G_E/G_N, with independent calibration provenance.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use the reviewed unit/coupling conversion identities as inputs. Derive the joint residual covariance and rank of this overdetermined loop, checking whether any nominal measurement was already computed from another node.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Claim two independent consistency tests when Lambda_eff and rho_vac were converted from the same datum using the tested identity.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Identify an independent geometric or dynamical measurement that creates a genuinely new loop constraint.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the graph has no independent loop, report zero additional evidence rather than an artificial consistency pass."
+    ],
+    "depends_on": [
+      "AS001",
+      "AS002",
+      "AS498"
+    ]
+  },
+  "AS1960": {
+    "title": "Ordinary-matter Ward identity after eliminating clock variables",
+    "claim_key": "ordinary_matter_ward_identity_after_eliminating_clock_variables",
+    "math": "Baseline S_b[g] has no direct ordinary-matter/clock coupling. After legitimate clock elimination, the effective description must preserve the ordinary-matter conservation identity on the corresponding equations, including induced nonlocal terms.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Derive the identity for a controlled reduction and identify every induced term needed to prevent a spurious ordinary-matter exchange current. Any directly added clock-matter coupling is a new candidate, not an assumed baseline feature.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Discard an induced term during elimination and accept the resulting apparent matter-energy loss as physical.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Construct an effective variable choice in which the preserved identity is explicit and test one matter observable.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the reduction cannot preserve the identity, isolate the invalid elimination or missing boundary term before introducing a new coupling."
+    ],
+    "depends_on": [
+      "AS490"
+    ]
+  },
+  "AS1970": {
+    "title": "Exterior-information identifiability of a nonlocal interior solution",
+    "claim_key": "exterior_information_identifiability_of_a_nonlocal_interior_solution",
+    "math": "Split the filter S into blocks S_II and S_IE for interior/exterior source data. Interior observable uncertainty includes J_O S_IE delta f_E subject to exterior constraints and conserved boundary exchange.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use the derived finite-domain energy and traction identities as inputs. Characterize which exterior source modes are invisible to available boundary measurements but change an interior framework observable, and derive its sharp conditional uncertainty bound.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Set an unmeasured exterior source to zero and treat the resulting interior field as uniquely predicted.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Find the minimum additional exterior or boundary functional needed to remove the dominant interior ambiguity.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the nullspace cannot be removed, retain a set-valued prediction with a stated exterior admissibility class."
+    ],
+    "depends_on": [
+      "AS1161",
+      "AS945"
+    ]
+  },
+  "AS1971": {
+    "title": "Independent active-passive calibration-loop observable",
+    "claim_key": "independent_active_passive_calibration_loop_observable",
+    "math": "Use the action-derived active/passive mass relation from AS1247. Construct dimensionless ratios of source-induced accelerations, independent inertial calibration and swapped source/tracer configurations that should satisfy its predicted relation.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Derive a joint observable and its nuisance covariance that tests the existing mass relation without rederiving it or fitting independent source and tracer normalizations. Identify the source-composition and finite-size corrections actually needed.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Calibrate active and passive masses with the same tested acceleration and then count their agreement as independent evidence.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Optimize a source/tracer interchange measurement that cancels a shared geometry calibration.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If independent inertial or source calibration is missing, report the identified product and the required new measurement."
+    ],
+    "depends_on": [
+      "AS1247"
+    ]
+  },
+  "AS1996": {
+    "title": "Optimal calibration precision allocation for a common closure margin",
+    "claim_key": "optimal_calibration_precision_allocation_for_a_common_closure_margin",
+    "math": "Given reviewed gate margins m_j and input sensitivities J_jk, choose independent calibration improvements sigma_k at cost C_k(sigma_k), subject to a validated worst-case or probabilistic margin bound for every gate.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Take the robust feasible-region certificates as inputs and solve a constrained resource-allocation problem that identifies which calibration precision is mathematically necessary to preserve the same common witness. State cost and error assumptions and derive optimality or an infeasibility certificate.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Allocate precision to an insensitive parameter while ignoring a shared calibration direction that dominates the smallest gate margin.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Replace the linear sensitivity model with a bounded nonlinear response and quantify how the optimal allocation changes.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If no finite calibration improvement repairs a negative structural margin, classify the obstruction as theoretical rather than measurement-limited."
+    ],
+    "depends_on": [
+      "AS493",
+      "AS494"
+    ]
+  },
+  "AS1927": {
+    "math": "A universal physical metric gives a common freely falling point-probe law for ordinary matter. Gas pressure, finite-size response, radiation transfer and tracer selection remain distinct source/observation effects."
+  },
+  "AS1928": {
+    "math": "For a separately conserved homogeneous vacuum component with mass density rho_vac and H!=0, rho_dot+3H(rho+p/c^2)=0; constant rho implies p=-rho*c^2. If exchange is present or H=0 this implication requires separate analysis."
+  },
+  "AS1934": {
+    "math": "The operative constitutive argument is |grad(Su)|/a0. Small physical |grad Phi|, small filtered auxiliary gradient and small tidal curvature are distinct conditions that must be related by the solved candidate, not identified by notation."
+  },
+  "AS1931": {
+    "inputs": "Derive an exact local kinematic identity between proper redshift and circular-orbit speed in a declared static matter metric; the compact-object solution family/EOS problem in AS1233 is an input only if used. Begin with two radii and no assumed field-equation solution."
+  },
+  "AS1963": {
+    "inputs": "Quantum task conditional on an explicitly specified quantization, regulator, field/matter content and renormalization prescription. The classical candidate does not supply those automatically. If unavailable, return the exact quantum-completion prerequisite and valid classical matching only."
+  },
+  "AS1965": {
+    "inputs": "Conditional quantum task: require a declared quantization, regulator, ordinary matter content and symmetry-preserving renormalization prescription. Missing quantum inputs are an open prerequisite, not permission to invent counterterms or claim a completed quantum theory."
+  },
+  "AS1851": {
+    "depends_on": [
+      "AS012"
+    ]
+  },
+  "AS1852": {
+    "depends_on": [
+      "AS014"
+    ]
+  },
+  "AS1853": {
+    "depends_on": [
+      "AS030"
+    ]
+  },
+  "AS1854": {
+    "depends_on": [
+      "AS028"
+    ]
+  },
+  "AS1855": {
+    "depends_on": [
+      "AS029"
+    ]
+  },
+  "AS1856": {
+    "depends_on": [
+      "AS033"
+    ]
+  },
+  "AS1857": {
+    "depends_on": [
+      "AS032",
+      "AS033"
+    ],
+    "inputs": "Treat y_p and h_p as correlated numerical uncertainty in the fixed RAR peak. Independent variations are an explicitly changed tail-prescription candidate and cannot be counted as physical freedom of the operative kernel. Begin with a validated peak/root enclosure and differentiate with the dependence held explicit."
+  },
+  "AS1858": {
+    "depends_on": [
+      "AS034"
+    ]
+  },
+  "AS1859": {
+    "depends_on": [
+      "AS473",
+      "AS1860"
+    ],
+    "title": "Certified precision allocation through the filtered-force pipeline",
+    "claim_key": "certified_precision_allocation_through_the_filtered_force_pipeline",
+    "math": "For stages Poisson solve, heat filter, constitutive evaluation and reconstruction, assume proved amplification L_i and rounding e_i<=C_i*2^(-p_i). Require sum L_i*C_i*2^(-p_i)<=epsilon and minimize a declared cost over integer precisions p_i.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Derive the stagewise error propagation and the minimum-cost admissible precision vector, then verify the final-force enclosure on one fixed source. Amplification and truncation bounds must be supplied or derived; do not infer them from sample agreement.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Give all stages the same low precision when one stage has a large certified amplification and require the final error budget to fail.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Derive a source-dependent precision policy with a proved uniform error bound over an admissible source class.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If a stage amplification is unbounded, identify the missing coercivity or domain restriction instead of assigning an arbitrary precision."
+    ]
+  },
+  "AS1863": {
+    "depends_on": [
+      "AS471"
+    ]
+  },
+  "AS1876": {
+    "depends_on": [
+      "AS460"
+    ]
+  },
+  "AS1901": {
+    "depends_on": [
+      "AS493"
+    ]
+  },
+  "AS1904": {
+    "depends_on": [
+      "AS042"
+    ]
+  },
+  "AS1906": {
+    "depends_on": [
+      "AS080"
+    ]
+  },
+  "AS1908": {
+    "depends_on": [
+      "AS870"
+    ],
+    "title": "Global source-parameter holonomy of a locally integrable response",
+    "claim_key": "global_source_parameter_holonomy_of_a_locally_integrable_response",
+    "math": "On the annulus 1<=J1^2+J2^2<=4, let R=grad W0+alpha*(-J2,J1)/(J1^2+J2^2). The local curl vanishes but the closed-loop period is 2*pi*alpha; a single-valued generating functional requires all noncontractible periods to vanish.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use the local integrability result from AS870 as input. Derive the global period obstruction for actual conjugate source parameters of a candidate and distinguish source-parameter topology from spatial potential circulation.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Conclude that a global action primitive exists from vanishing local mixed-derivative curl on a multiply connected parameter domain.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Construct a period-free global generating functional or a consistent chart/gluing description when permitted by the declared action.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the period is nonzero, classify the candidate response as globally nonintegrable on that domain and identify the physical origin of the topological term."
+    ]
+  },
+  "AS1909": {
+    "depends_on": [
+      "AS002",
+      "AS014"
+    ]
+  },
+  "AS1910": {
+    "depends_on": [
+      "AS025"
+    ]
+  },
+  "AS1923": {
+    "depends_on": [
+      "AS072",
+      "AS655"
+    ],
+    "title": "Compact three-form topology and coefficient selection",
+    "claim_key": "compact_three_form_topology_and_coefficient_selection",
+    "math": "Candidate extension in c=1 units: on a closed four-cycle, compact three-form gauge structure can impose integral F=2*pi*n*f; for constant flux q=2*pi*n*f/Vol. With P=Z*q^2/2 and a0=beta*sqrt(G_N)*|q|, test whether quantization fixes beta^2/Z or only flux magnitude.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Declare the compact gauge group, flux normalization and four-cycle as new candidate premises, count f and volume as inputs, quotient field rescalings and derive whether any invariant coefficient freedom remains. Do not add new particle species or claim the topology follows from the core framework without proof.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Set a unit flux spacing by convention and mistake that field normalization for a physical derivation of one-half.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Derive a genuine independent topological or variational condition selecting the invariant ratio if the candidate admits one.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If quantization leaves beta^2/Z free, prove that residual freedom and preserve the conditional discrete-flux predictions."
+    ]
+  },
+  "AS1925": {
+    "depends_on": [
+      "AS494"
+    ]
+  },
+  "AS1926": {
+    "depends_on": [
+      "AS014",
+      "AS477"
+    ]
+  },
+  "AS1930": {
+    "depends_on": [
+      "AS484"
+    ]
+  },
+  "AS1937": {
+    "depends_on": [
+      "AS019"
+    ]
+  },
+  "AS1942": {
+    "depends_on": [
+      "AS015"
+    ]
+  },
+  "AS1951": {
+    "depends_on": [
+      "AS479"
+    ]
+  },
+  "AS1956": {
+    "depends_on": [
+      "AS478"
+    ]
+  },
+  "AS1957": {
+    "depends_on": [
+      "AS489"
+    ]
+  },
+  "AS1974": {
+    "depends_on": [
+      "AS485"
+    ]
+  },
+  "AS1982": {
+    "depends_on": [
+      "AS486"
+    ]
+  },
+  "AS1984": {
+    "depends_on": [
+      "AS499"
+    ]
+  },
+  "AS1988": {
+    "depends_on": [
+      "AS042"
+    ]
+  },
+  "AS1989": {
+    "depends_on": [
+      "AS034"
+    ]
+  },
+  "AS1990": {
+    "depends_on": [
+      "AS033"
+    ]
+  },
+  "AS1991": {
+    "depends_on": [
+      "AS024"
+    ]
+  },
+  "AS1992": {
+    "depends_on": [
+      "AS020",
+      "AS025",
+      "AS1942"
+    ],
+    "title": "Singular dimensionless chart at zero vacuum",
+    "claim_key": "singular_dimensionless_chart_at_zero_vacuum",
+    "math": "On a0^2=G_N*c^2*rho_Lambda/4 with B,L,c,G_N positive, y=B/a0 diverges as vacuum tends to zero. Construct overlapping dimensionless charts retaining finite invariants such as a0/B and B*L/c^2.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Derive the chart transition and identify the Newtonian boundary in invariant parameter space. Prove which physical source families remain distinguishable there and which information is lost if only y is retained.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Treat divergence of the chosen dimensionless coordinate as proof of a physical singularity without checking finite observables in another chart.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Transport a candidate’s field equation into the regular chart and determine whether the zero-vacuum correspondence is regular.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the equations still diverge in invariant observables, isolate the actual physical singularity rather than a units artifact."
+    ]
+  },
+  "AS1999": {
+    "depends_on": [
+      "AS495",
+      "AS499"
+    ],
+    "math": "Choose an explicit admissible operator basis Delta S=sum_alpha c_alpha O_alpha and a positive cost matrix W. Seek min c^T W c subject to derived gate-repair inequalities and Ward/static-target null constraints; validate nonlinear remainders before treating a linearized repair as physical.",
+    "inputs": "Require a named action, exact obstruction, finite symmetry-allowed operator basis, coefficient units and declared positive cost norm. Begin with at most three deformation coefficients. If the operator basis or norm is not justified, return its definition as a prerequisite."
+  },
+  "AS2000": {
+    "depends_on": [
+      "AS500",
+      "AS494"
+    ]
+  },
+  "AS1782": {
+    "title": "Survey-mask leakage of compensated lensing apertures",
+    "claim_key": "survey_mask_leakage_of_compensated_lensing_apertures",
+    "math": "For a known sky mask M(theta), observed shear is M gamma; the E/B aperture response becomes a matrix mixing physical modes and ambiguous boundary modes even when the full-sky weight is compensated.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use the compensated aperture from AS1579 as input. Derive the mask-induced E/B response matrix and identify which aperture combinations remain estimable on a finite irregular footprint. Quantify leakage into the framework lensing signal.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Apply a full-aperture compensation identity to a masked aperture without boundary correction.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Construct a mask-adapted minimum-leakage weight and derive its retained signal and covariance.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If an ambiguous mode is unidentifiable, project it out and report the lost gravity information instead of assuming zero."
+    ],
+    "depends_on": [
+      "AS1579"
+    ]
+  },
+  "AS1792": {
+    "title": "Upstream accretion-state identifiability from projected shock data",
+    "claim_key": "upstream_accretion_state_identifiability_from_projected_shock_data",
+    "math": "Use the common gas/carrier jump map J(upstream,carrier)->downstream from AS1607. X-ray and SZ measurements project different density/temperature moments of the downstream state.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Derive the inverse-map Jacobian and identify which upstream density, velocity and carrier flux combinations are recoverable from projected observables when geometry and electron-ion equilibration are retained. The jump law itself is a prerequisite, not this task’s output.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Invert projected pressure and brightness as pointwise states without line-of-sight geometry and claim unique upstream energy flux.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Find an additional spectroscopic or geometric measurement that removes a specific upstream-state degeneracy.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the data identify only a flux combination, report that combination and the exact null direction."
+    ],
+    "depends_on": [
+      "AS1607",
+      "AS1788"
+    ]
+  },
+  "AS1884": {
+    "title": "Sharp missing spectral-tail contribution to a gravity statistic",
+    "claim_key": "sharp_missing_spectral_tail_contribution_to_a_gravity_statistic",
+    "math": "Let an unobserved nonnegative tail measure have mass <=epsilon and a bounded p-th moment M_p, p>4. Optimize its allowed fourth-moment contribution; Holder gives a candidate bound epsilon^(1-4/p)*M_p^(4/p), subject to the stated tail support.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Derive the sharp constrained moment bound, its attainability conditions and the resulting interval for a framework velocity-fourth-power statistic. Distinguish measured missing flux from an assumed tail-moment bound.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Set all unobserved flux to zero or apply a p=4 bound as if it supplied a shrinking epsilon factor.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Add an independently measured tail-support or second-moment constraint and derive the improved extremal bound.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If no moment/support control exists, prove why finite observed flux alone cannot bound the missing fourth moment."
+    ],
+    "depends_on": [
+      "AS405"
+    ]
+  },
+  "AS1896": {
+    "title": "Repeated-tracer covariance identification of universal scale scatter",
+    "claim_key": "repeated_tracer_covariance_identification_of_universal_scale_scatter",
+    "math": "For repeated tracer residuals r_it=l_t A_i+m_t U_i+e_it, cross-tracer covariance is l l^T Var(A)+m m^T Var(U)+Cov(e). Distinct loading matrices are required to separate a putative scale variation from source nuisance.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Starting from the random-effects model in AS400, derive an exact rank criterion and a finite-sample estimator for variance components using repeated tracers with independently calibrated loadings. Determine which added tracer actually increases identification.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Add multiple tracers with proportional loadings and claim the extra sample size separates the variance components.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Design a tracer pair whose loading contrast maximizes the smallest identifiable covariance eigenvalue.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If loadings are uncertain enough to destroy rank, derive the necessary independent loading calibration precision."
+    ],
+    "depends_on": [
+      "AS400"
+    ]
+  },
+  "AS1935": {
+    "title": "Cosmological covariance of local boundary multipoles",
+    "claim_key": "cosmological_covariance_of_local_boundary_multipoles",
+    "math": "Given an action-derived linear boundary map b=L delta and joint covariance of exterior perturbations and measured environment z, a conditional Gaussian model gives Cov(b|z)=C_bb-C_bz C_zz^(-1) C_zb on its supported subspace.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use the deterministic patch-matching map from AS1523 as a prerequisite. Derive the boundary-multipole covariance and conditional distribution induced by a stated cosmological ensemble, then propagate it to a local framework observable. Gaussianity and the primordial spectrum remain explicit independent inputs.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Assign independent boundary multipole priors that violate the cosmological correlation structure or invert a singular C_zz without restricting its support.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Determine which environmental measurement most reduces the predicted local-force variance.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the cosmological ensemble is unspecified, return the symbolic covariance map and identify the missing state input."
+    ],
+    "depends_on": [
+      "AS1523"
+    ]
+  },
+  "AS1912": {
+    "title": "Minimum added flux measurements resolving an invisible source basis",
+    "claim_key": "minimum_added_flux_measurements_resolving_an_invisible_source_basis",
+    "math": "Let rho=sum_j a_j phi_j in a declared finite basis and J be the current force-measurement matrix. Extra admissible surface-flux functionals form rows H; injectivity requires ker J intersect ker H={0}, subject to physical positivity and boundary constraints.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Take the source nullspace from AS511/AS534 as input. Derive the minimum number and admissible placements of added flux measurements that remove it, and prove whether the physical measurement family spans the required dual directions.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Add several measurements whose restrictions to ker J are dependent and claim uniqueness from their number alone.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Optimize the chosen placements for the smallest singular value while retaining source and boundary restrictions.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the admissible measurement family cannot see a mode, prove that obstruction and propose a physically different measurement functional."
+    ],
+    "depends_on": [
+      "AS511",
+      "AS534"
+    ]
+  },
+  "AS1985": {
+    "title": "Static-lensing reciprocity across different boundary ensembles",
+    "claim_key": "static_lensing_reciprocity_across_different_boundary_ensembles",
+    "math": "For actual conjugate boundary sources J,K and generating functional W(J,K), transform K to P=partial_K W by a partial Legendre transform when W_KK is invertible. Mixed response at fixed P contains the Schur complement of the fixed-K Hessian.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use local reciprocity from AS516/AS870 as input. Derive the exact ensemble-conversion map before comparing a fixed-source static response with a fixed-flux lensing response; identify boundary terms and singular blocks.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Compare mixed derivatives taken in different boundary ensembles and interpret their difference as a violation of one common action.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Construct an ensemble-invariant observable relation using independently measurable conjugate boundary data.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If the transform is singular, characterize the constrained response and do not apply an ordinary matrix inverse."
+    ],
+    "depends_on": [
+      "AS516",
+      "AS870"
+    ]
+  },
+  "AS1892": {
+    "title": "Recoverability of a gravity likelihood from a published posterior",
+    "claim_key": "recoverability_of_a_gravity_likelihood_from_a_published_posterior",
+    "math": "A published posterior p_ref(theta|d) is proportional to L_ref(d|theta)*pi_ref(theta); dividing by a known nonzero prior recovers a likelihood shape only on retained support and only for the same observation map.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Determine whether stored posterior samples, prior and reference-theory latent variables contain enough information to evaluate a new framework likelihood. Derive an exact reweighting criterion, support condition and failure witness when the forward model changes.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Reweight a reference-theory mass posterior as if it were raw data under a different gravity source-to-observation map.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Specify the smallest additional per-sample likelihood or raw-data sufficient-statistic release that enables valid model transfer.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If required support or detector information was discarded, prove the reconstruction ambiguity and request the missing artifact rather than fabricate a likelihood."
+    ],
+    "depends_on": [
+      "AS425"
+    ]
+  },
+  "AS1945": {
+    "title": "Internal-equation-of-state effacement beyond leading binding corrections",
+    "claim_key": "internal_equation_of_state_effacement_beyond_leading_binding_corrections",
+    "math": "After the leading active/passive binding correction is derived, compare two ordinary composite sources with equal calibrated mass and size but different internal equations of state. Determine the first remaining EOS-dependent multipole or sensitivity in the common exterior response.",
+    "steps": [
+      "Read the reviewed prerequisite result and pin its exact action, branch, domain and source hashes. The new output below must not repeat that result.",
+      "Use AS248’s source/binding relation as input. Derive the next nontrivial internal-structure contribution or prove its cancellation under precise compactness and matter assumptions; an effacement claim must retain finite-size and tidal order.",
+      "Derive the new implication with independent inputs and approximation remainders explicit. Check it in a second representation or controlled limiting case.",
+      "Run both controls and return the exact new claim, quantified domain and the next unresolved first-principles bridge. Preserve any obstruction."
+    ],
+    "checks": [
+      "Infer all-order structure independence from equality of leading monopole masses.",
+      "A result outside the prerequisite’s proved domain cannot be imported; provide a counterexample or an explicit extension theorem before transfer."
+    ],
+    "continuation": [
+      "Construct a source-interchange observable isolating the first surviving EOS-dependent term.",
+      "If the new result survives, use its exact equation in a different unresolved same-action gate after checking the manifest for an existing owner; state the new target and why it is not already proved.",
+      "If no controlled matter model supplies the interior solution, return the needed EOS/regularity prerequisite and the conditional exterior matching statement."
+    ],
+    "depends_on": [
+      "AS248"
+    ]
+  },
+  "AS1905": {
+    "math": "For a declared ordinary-baryon or classical-field ensemble, consider independent box-size L->infinity and interaction screening-regulator mu->0 limits. Fixed-density N scales with volume and is not an independent radius limit. Screening is a mathematical regulator, not an added particle species.",
+    "steps": [
+      "Declare ensemble, conserved quantities, finite-domain action and screening regularization; preserve the core scale relation.",
+      "Derive which framework statistical identity survives each order of the L->infinity and mu->0 limits, retaining surface and long-range energy terms.",
+      "Prove a uniform stability/integrability bound if exchanging limits is claimed; a finite-box fit is insufficient.",
+      "Return commuting-limit conditions, an explicit counterexample, or the exact missing bound; preserve finite-system results if no continuum limit exists."
+    ]
+  },
+  "AS1865": {
+    "math": "A claimed error expansion e(h)=C*h^p+D*h^q+R(h) requires declared compact ranges for p,q, coefficient bounds and a rigorous remainder enclosure. Three mesh values alone cannot identify or certify both unknown orders.",
+    "steps": [
+      "Declare independent order/coefficient/remainder bounds or use a one-term model with a proved remainder; state which are hypotheses rather than measured facts.",
+      "Derive interval feasibility conditions for mesh differences and compute only the order interval consistent with those assumptions and observed values.",
+      "Reject extrapolation when signs/rates violate the declared model; compare against a known solution or independently certified residual-to-error estimate.",
+      "Return a hypothesis-conditioned extrapolation enclosure or an unresolved asymptotic regime; never infer a universal convergence order from three fitted values."
+    ]
+  }
+}

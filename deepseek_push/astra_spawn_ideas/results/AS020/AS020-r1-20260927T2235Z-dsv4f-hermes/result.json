@@ -1,0 +1,223 @@
+{
+  "schema_version": 2,
+  "task_id": "AS020",
+  "task_sha256": "13f0d383e745164a169daa0f51ed98db0719c5553ca916da96b08dab1149dd58",
+  "run_id": "AS020-r1-20260927T2235Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-seed worker",
+  "started_utc": "2026-09-27T22:38:00Z",
+  "finished_utc": "2026-09-27T22:51:57Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For every consistent unit rescaling (L_u, M_u, T_u > 0; value q' = q*L_u^-a*M_u^-b*T_u^-g for q of dimension M^b L^a T^g, i.e. a0'=a0*T_u^2/L_u, G'=G*M_u*T_u^2/L_u^3, rho'=rho*L_u^3/M_u, c'=c*T_u/L_u, M'=M/M_u): (1) the dimensionless ratio Pi = a0/(c*sqrt(G*rho_Lambda)) is EXACTLY invariant, Pi' = Pi, hence a0 = kappa*c*sqrt(G*rho_Lambda) holds with the same kappa (adopted 1/2) in every consistent system (Lean-certified `pi_invariant`, `a0_relation_preserved`, mathlib v4.34.0-rc2, axioms {propext, Classical.choice, Quot.sound}, zero sorry); (2) the derived scales transform covariantly: r_M' = r_M/L_u, v_flat' = v_flat*T_u/L_u, C' = C*T_u^2/L_u^2, sigma'^2 = C'/2, and the normalization rho' = 4*a0'^2/(G'*c'^2) survives (Lean `vflat4_covariant`, `rM2_covariant`, `sigma_sq_preserved`, `rho_norm_covariant`, `footing_ratio_invariant`); (3) numerically, in NINE consistent systems {(m,kg,s),(km,kg,s),(m,g,s),(km,g,s),(m,kg,yr),(km,g,yr),(kpc,s,M_sun),(pc,yr,M_sun),(au,yr,M_sun)} x TWO footings (canonical a0=9.3619e-11 m/s^2 <-> rho_Lambda=5.844412454e-27 kg/m^3; alternative a0=1.1279e-10 m/s^2 <-> rho_total=8.483089620e-27 kg/m^3, kappa=1/2 both, separate hypotheses), all 146 checks pass at 80-digit mpmath precision with worst residual 2.11e-81 (actual values in residuals.json, not booleans); (4) the task-mandated negative control FAILS exactly as required: converting lengths (m->km) while leaving a0 at its SI number gives Pi_bad = 500.0 = kappa*L_u/T_u^2 on BOTH footings (residual vs prediction 2.16e-81/0), Lean `hybrid_detector`; (5) new finding: the hybrid galactic convention (kpc, km/s, M_sun) is NOT a rescaling of base units (G carries kpc*(km)^2, a0 and c carry km): it shifts Pi by exactly (kpc/km)^-1 = 3.24081e-17-ish relative factor and the deep law v^4 = G*M*a0 by (kpc/km)^+1 = 3.0856775814913670e16 (both exponents verified to 1e-55), repaired by re-expressing all of G's length powers in one unit; no formula in the CORE scale cell secretly depends on a unit choice within consistent systems. Domain: the algebraic CORE scale cell (G_N convention); no dynamics, no fit, no branch law (Q/RAR/MU2/EXP/MONO untouched).",
+  "framework_cell": {
+    "action": "none used; CORE scale-identity audit of a0 = kappa*c*sqrt(G*rho_Lambda), rho_Lambda = 4a0^2/(G c^2), r_M = sqrt(G M_b/a0), v_flat^4 = G M_b a0, C = sqrt(G M_b a0), sigma^2 = C/2 (README key equations; FRAMEWORK_CONTRACT 'Mandatory scale and units'; FRIED_CHICKEN_SPEC requirement 13; DERIVATIONS.md used as scope comparison only)",
+    "branch": "CORE scale identities (A01 group, task branch); Q, RAR, MU2, EXP AQUAL and MONO explicitly UNTOUCHED; no branch translation performed or claimed",
+    "kernel": "not applicable (no interpolation kernel involved)",
+    "filter": "not applicable",
+    "gate": "Requirement 13 (cosmological acceleration-scale relation preserved or derived), gate-map cell A01/A03/A11: this run certifies the unit-invariance/consistency leg of the adopted input \u2014 a necessary condition any same-action witness must satisfy; the gate itself stays OPEN (no dynamics, kappa not derived, rho_Lambda not identified physically)",
+    "coupling": "not applicable (no matter coupling varied)",
+    "parameters": "kappa = 1/2 ADOPTED (input, not derived), G = G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured input; G_bare, G_cosmo kept separate, never identified), c = 299792458 m/s (exact), M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m, yr = 31557600 s, k_B = 1.380649e-23 J/K (declared, unused in this cell)",
+    "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844412454e-27 kg/m^3 AND alternative a0 = 1.1279e-10 m/s^2 <-> rho_total = 8.483089620e-27 kg/m^3, each at kappa = 1/2, carried SEPARATELY in every dimensional example (two normalization hypotheses, not unit variants; a fixed (rho, kappa) pair cannot produce both: kappa_eff = 0.602388404063278 at fixed rho_Lambda recorded)",
+    "boundaries": "L_u, M_u, T_u > 0 (per Lean hypotheses of pi_invariant); G > 0, rho > 0, c != 0, a0 != 0 where positivity/nonzero is used; M_b >= 0 physically; dimensionless witnesses use positive variables; no observational fit",
+    "initial_conditions": "none (static algebraic identities; no dynamics)",
+    "units": "SI base throughout; consistent rescalings (m->km, kg->g, s->yr, kpc, pc, au, M_sun) explicitly computed; hybrid (kpc, km/s, M_sun) analysed and flagged as NOT a unit system"
+  },
+  "new_assumptions": [],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS020_scale_relation_invariance_under_unit_changes.md": "13f0d383e745164a169daa0f51ed98db0719c5553ca916da96b08dab1149dd58",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/derivation.md": "5df92ca37229bb3b3afc259dba62730715366ed6d043e10b59c088057c92ce30",
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/compute_AS020_unit_invariance.py": "eb8db657718aafd1226a69b7b71a0a1115e8e00536d9b95cb98a734ab9c5a209",
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/raw_output.txt": "e89451f77b57fc788c3b07492cb737217a037027ba33e6d22efe5bb4f60c558d",
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/residuals.json": "5d2782bdc7561bec282389b2a20a4ec8ac74edcdcc3b3a56cb29777f5d8b1bc4",
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/AS020_scale_relation_invariance_certificates.lean": "6211b732b14be18848be8503d2604668300f8f4d1b99344359a78ca88f42803b",
+    "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes/lean_check.out": "c384271f48a10144b4f38982765e87e2c3d58088f181a91c121136c7627348f8",
+    "deepseek_push/astra_spawn_ideas/branches/AS020/AS020.C01.md": "e44284adb88974bf63a76c182e369c08ee665d45a83b0d1f1a6ae4ad35350046"
+  },
+  "commands": [
+    {
+      "argv": [
+        "mkdir",
+        "-p",
+        "deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes"
+      ],
+      "workdir": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+      "note": "exclusive run directory creation"
+    },
+    {
+      "argv": [
+        "python3",
+        "compute_AS020_unit_invariance.py"
+      ],
+      "workdir": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS020/AS020-r1-20260927T2235Z-dsv4f-hermes",
+      "stdout": "raw_output.txt",
+      "stderr": "err.txt",
+      "note": "146 checks; observed 0.003 s wall (SIGALRM-enforced 120 s limit), max RSS 17760 KiB (raw 18186240 bytes, macOS), 1 thread, mpmath 80 digits; exit 0; residuals.json written"
+    },
+    {
+      "argv": [
+        "lake",
+        "env",
+        "lean",
+        "<abs>/AS020_scale_relation_invariance_certificates.lean"
+      ],
+      "workdir": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "note": "8 theorems compiled, zero sorry; #print axioms output -> lean_check.out; each axiom set exactly {propext, Classical.choice, Quot.sound} (verified programmatically)"
+    },
+    {
+      "argv": [
+        "shasum",
+        "-a",
+        "256",
+        "<inputs and artifacts>"
+      ],
+      "workdir": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+      "note": "source hashes match SOURCE_MANIFEST.json: README 91a5fac4..., FRIED_CHICKEN_SPEC 98d9149f..., DERIVATIONS 8da8176e...; no source drift"
+    }
+  ],
+  "execution_bounds": {
+    "wall_time_s_observed": 0.003,
+    "wall_time_s_enforced": 120,
+    "enforcement_mechanism": "SIGALRM signal alarm raised at 120 s raising TimeoutError; observed via time.monotonic",
+    "memory": "observed max RSS 17760 KiB (17.4 MiB; macOS ru_maxrss raw 18186240 bytes) against the 512 MiB budget; memory not separately capped because measured 35x below budget",
+    "threads": 1,
+    "threads_enforced_by": "single-process single-threaded Python (no threading, no multiprocessing imports)",
+    "precision": "mpmath 80 significant digits (all residuals computed at that precision)",
+    "samples": "9 unit systems x 2 footings x 7 relation checks + controls = 146 checks total (exact count in residuals.json)"
+  },
+  "checks": [
+    {
+      "name": "Pi == kappa in 18 (footing x consistent system) cells",
+      "tolerance": "1e-60",
+      "observed_worst_abs_residual": "2.1084395886461046e-81",
+      "result": "pass"
+    },
+    {
+      "name": "r_M transforms as L^-1 (9 systems x 2 footings)",
+      "tolerance": "1e-60",
+      "observed_worst": "1.6675596879497940e-81",
+      "result": "pass"
+    },
+    {
+      "name": "v_flat^4/(G M a0) = 1 exact (all systems, both footings)",
+      "tolerance": "1e-60",
+      "observed_worst": "0.0",
+      "result": "pass"
+    },
+    {
+      "name": "C = a0*r_M exact (all systems, both footings)",
+      "tolerance": "1e-60",
+      "observed_worst": "0.0",
+      "result": "pass"
+    },
+    {
+      "name": "sigma^2 = C/2 preserved (all systems, both footings)",
+      "tolerance": "1e-60",
+      "observed_worst": "2.1084395886461046e-81",
+      "result": "pass"
+    },
+    {
+      "name": "v_flat^4 matches (GM a0)*T_u^4/L_u^4 (all systems, both footings)",
+      "tolerance": "1e-60",
+      "observed_worst": "1.4265781180172081e-81",
+      "result": "pass"
+    },
+    {
+      "name": "normalization rho' = 4a0'^2/(G'c'^2) (all systems, both footings)",
+      "tolerance": "1e-60",
+      "observed_worst": "1.9537556345056006e-81",
+      "result": "pass"
+    },
+    {
+      "name": "footing ratio a0_alt/a0_can unit-invariant (m->km and pc-Msun-yr)",
+      "tolerance": "1e-60",
+      "observed_worst": "0.0",
+      "result": "pass"
+    },
+    {
+      "name": "NEGATIVE CONTROL A: lengths converted, a0 left in SI -> Pi fails by exactly L_u = 1000 (predict 500.0)",
+      "tolerance": "1e-60 on failure prediction; must be >1e-3 from kappa",
+      "observed": "Pi_bad = 500.0 exactly on both footings (residual vs prediction 2.16e-81 / 0)",
+      "result": "pass (control failed exactly as intended)"
+    },
+    {
+      "name": "NEGATIVE CONTROL B: alternative a0 over canonical rho -> Pi = kappa_eff = 0.602388404063278 != 0.5",
+      "tolerance": "1e-60",
+      "observed_residual_vs_kappa_eff": "0.0",
+      "result": "pass (footings cannot share fixed (rho, kappa))"
+    },
+    {
+      "name": "HYBRID (kpc, km/s, M_sun) detection: Pi_hybrid != kappa",
+      "observed": "Pi_hybrid = 1.62038964472e-17 on both footings",
+      "result": "pass"
+    },
+    {
+      "name": "Pi hybrid mismatch is exactly (kpc/km)^-1",
+      "tolerance": "1e-55 on log-exponent",
+      "observed_exponent": "-1.0",
+      "result": "pass"
+    },
+    {
+      "name": "v^4 hybrid mismatch is exactly (kpc/km)^+1",
+      "tolerance": "1e-55",
+      "observed_exponent": "1.0, factor 3.0856775814913670e16",
+      "result": "pass"
+    },
+    {
+      "name": "repair: consistent (km, s, M_sun) restores Pi and deep law",
+      "tolerance": "1e-60",
+      "observed_residuals": "-1.0542e-81 / -2.6515e-81 (canonical), 0 / 1.1004e-81 (alt)",
+      "result": "pass"
+    },
+    {
+      "name": "rounding covariance: declared 5-sf inputs satisfy identities to same relative precision in all 9 systems",
+      "tolerance": "1e-4",
+      "observed_worst": "2.1084e-81",
+      "result": "pass"
+    },
+    {
+      "name": "Lean certificate: 8 theorems, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound}",
+      "tolerance": "exact",
+      "observed": "all 8 axiom lines verified programmatically",
+      "result": "pass"
+    }
+  ],
+  "tested_domain": "Exact algebraic domain: all L_u, M_u, T_u > 0 (proof, Lean-certified with explicit positivity hypotheses). Numerical box: 9 consistent unit systems (m,km)x(kg,g,M_sun)x(s,yr) + kpc/pc/au, x 2 registered footings, x 7 scale identities and 2 controls + 2 hybrid detections + rounding note = 146 checks; mpmath 80 digits; no random seeds, no sampling, no fits. Hybrid convention (kpc, km/s, M_sun) analysed exactly with both interacting unit assignments. Exclusions: no dynamics, no interpolation branch, no cross-G (G_N/G_bare/G_cosmo) statement, no empirical data used.",
+  "failed_attempts": [
+    {
+      "artifact": "lean compile attempt 1",
+      "cause": "defs with division need `noncomputable` (instDivInvMonoid); Real.sqrt_mul signature is (hx : 0<=x) (y : Real) not (hx)(hy); Real.sqrt_pos is an iff usable by rewrite only; mul_pow needs explicit args; rw chain over powers of quotients fails where plain field_simp closes",
+      "resolution": "all 8 theorems compiled with zero sorry after fixes; final state in lean_check.out"
+    }
+  ],
+  "limitations": "Algebraic scale cell only: (i) kappa = 1/2 remains ADOPTED, not derived \u2014 nothing here removes its freedom; (ii) rho_Lambda is not identified with any physical density; (iii) G_N, G_bare, G_cosmo remain separate symbols \u2014 the identities hold within one G convention; (iv) Q, RAR, MU2, EXP, MONO untouched, and no derivative/stability/regularity statement transfers from the CORE cell; (v) sigma^2 = C/2 is preserved given it holds \u2014 its formation dynamics remain a separate obligation; (vi) 5-significant-figure declared values used as given (rounding is a declaration convention, not a unit change); (vii) k_B unused (no temperature law in this cell); (viii) numerical residual magnitudes (<=2.2e-81) are precision-limited checks of exact identities also proved in Lean.",
+  "next_unresolved_implication": "The first missing bridge to the full theory: identifying the (G, rho_Lambda) pair entering the CORE identities with the measured Newton G_N and a physical vacuum density (one relation rho_Lambda = 4a0^2/(G_N c^2), one adopted kappa); any relativistic action realising the cell must be shown to carry the same quantities with identical unit conventions. Without that, the a0-vacuum clause of requirement 13 stays a postulate; the unit-invariance leg certified here is necessary but not sufficient for the gate.",
+  "suggested_followup": "Dispatch AS020.C01 (spec: branches/AS020/AS020.C01.md, hash e78ad5c6...): unit-homogeneity audit of the repository's quoted hybrid-convention formulas (grep for G = 4.30091e-6/4.301047e-6 etc.), returning per-formula exact (kpc/km)^n mismatch factors with Pi and v^4-balance as automatic detectors, negative control: a deliberately misbalanced transcription must give n != 0 and Pi != 0.5. Not executed here \u2014 no runner spawned; ready child specification written only.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": "Primitives: kappa = 1/2 (adopted framework input), G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured), c = 299792458 m/s (exact), M_sun, pc, yr (unit definitions), the two registered a0 footings (measured/declared inputs), the transformation law of physical quantities under unit rescaling (definitional). Derived: the invariance theorems, covariant transformation laws, negative-control identities (Lean-certified), the hybrid mismatch exponents and all residual values (computed). No additional independent constraint, fit or candidate extension introduced.",
+  "closure_implication": "Gate: Requirement 13 (a0-vacuum relation preserved or derived), cell A01/A03/A11. Exact implication: any common-action closure witness whose static limit reproduces a0 = kappa c sqrt(G_N rho_Lambda) and the derived scales must be unit-consistent in the sense certified here \u2014 its predictions in any consistent unit system coincide exactly (dimensionless combinations invariant), and its published hybrid-convention numbers must carry explicit (kpc/km) bookkeeping where the convention demands it. Parameter-domain compatibility: all positive unit ratios, both footings, single-G convention; cross-G statements excluded. The gate remains OPEN; closure_candidate = null.",
+  "child_proposals": [
+    {
+      "id": "AS020.C01",
+      "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS020/AS020.C01.md",
+      "spec_sha256": "e44284adb88974bf63a76c182e369c08ee665d45a83b0d1f1a6ae4ad35350046",
+      "new_claim": "every audited repository formula quoting the CORE cell in the hybrid (kpc, km/s, M_sun) convention carries an exact (kpc/km)^n bookkeeping factor, n in {-1, 0, +1}, equal to the kpc-kind minus km-kind length-power balance; implicit n != 0 is unit-inconsistency, detected by Pi and v^4-balance",
+      "controls": "negative control: deliberately misbalanced G (all length powers km) vs kpc-kind rho must give n != 0 and Pi != 0.5; bounded first calculation <= 120 s / 512 MB / 1 thread over first <= 10 grep hits",
+      "dependencies": "AS020 (this run, provisional), no external data required",
+      "dispatch_state": "NOT DISPATCHED \u2014 specification written for the orchestrator; no runner spawned; not executed"
+    }
+  ],
+  "closure_candidate": null
+}

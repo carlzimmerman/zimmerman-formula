@@ -1,0 +1,272 @@
+{
+ "pass": 28,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "S1 [claim restated] the OR composition of two quadratics expands and is differentiated at 0",
+   "measured": "mu(Y) = -Y**4*c1*c2 - Y**3*b1*c2 - Y**3*b2*c1 - Y**2*b1*b2 + Y**2*c1 + Y**2*c2 + Y*b1 + Y*b2;  mu'(0) = b1 + b2",
+   "pass": true,
+   "tolerance": "exact symbolic equality",
+   "reading": "chain rule through the OR: mu'(0) = b1 + b2, independent of c1, c2."
+  },
+  {
+   "name": "S1n [OR over 2 channels] generic engagement p_i = b_i Y (linear truncation): the origin slope equals the sum of slopes",
+   "measured": "mu(Y) = -Y**2*b0*b1 + Y*b0 + Y*b1;  mu'(0) = b0 + b1",
+   "pass": true,
+   "tolerance": "exact symbolic equality",
+   "reading": ""
+  },
+  {
+   "name": "S1n [OR over 3 channels] generic engagement p_i = b_i Y (linear truncation): the origin slope equals the sum of slopes",
+   "measured": "mu(Y) = Y**3*b0*b1*b2 - Y**2*b0*b1 - Y**2*b0*b2 - Y**2*b1*b2 + Y*b0 + Y*b1 + Y*b2;  mu'(0) = b0 + b1 + b2",
+   "pass": true,
+   "tolerance": "exact symbolic equality",
+   "reading": ""
+  },
+  {
+   "name": "S1n [OR over 5 channels] generic engagement p_i = b_i Y (linear truncation): the origin slope equals the sum of slopes",
+   "measured": "mu(Y) = Y**5*b0*b1*b2*b3*b4 - Y**4*b0*b1*b2*b3 - Y**4*b0*b1*b2*b4 - Y**4*b0*b1*b3*b4 - Y**4*b0*b2*b3*b4 - Y**4*b1*b2*b3*b4 + Y**3*b0*b1*b2 + Y**3*b0*b1*b3 + Y**3*b0*b1*b4 + Y**3*b0*b2*b3 + Y**3*b0*b2*b4 + Y**3*b0*b3*b4 + Y**3*b1*b2*b3 + Y**3*b1*b2*b4 + Y**3*b1*b3*b4 + Y**3*b2*b3*b4 - Y**2*b0*b1 - Y**2*b0*b2 - Y**2*b0*b3 - Y**2*b0*b4 - Y**2*b1*b2 - Y**2*b1*b3 - Y**2*b1*b4 - Y**2*b2*b3 - Y**2*b2*b4 - Y**2*b3*b4 + Y*b0 + Y*b1 + Y*b2 + Y*b3 + Y*b4;  mu'(0) = b0 + b1 + b2 + b3 + b4",
+   "pass": true,
+   "tolerance": "exact symbolic equality",
+   "reading": ""
+  },
+  {
+   "name": "S2 [quadratic coefficient for two channels]",
+   "measured": "mu(Y) = (b1+b2) Y + (c1 + c2 - b1*b2) Y^2 - (b1*c2 + c1*b2) Y^3 - c1*c2 Y^4 (exact polynomial identity)",
+   "pass": true,
+   "tolerance": "exact; quadratic coefficient is c1 + c2 - b1*b2 (cross term SUBTRACTS b1*b2; sign is negative from the OR p1*p2 term)",
+   "reading": "linear term: sum of slopes; quadratic: sum of per-channel quadratic coefficients MINUS the cross product of the two linear slopes.  The leading neglected term is O(Y^3), valid on any neighborhood of Y = 0 where p1, p2 are C^3; on Y in (0, Y0) with Y0 < 1/max(b1,b2) the remainder is bounded by the third-derivative norms (finite, dimensionless)."
+  },
+  {
+   "name": "S3 [closed-form family] the unequal-slope OR member p_i = b_i Y/(1+b_i Y) is expanded",
+   "measured": "mu(Y) = ((Y*b1 + 1)*(Y*b2 + 1) - 1)/((Y*b1 + 1)*(Y*b2 + 1)) = Y*(Y**2*(b1**3 + b1**2*b2 + b1*b2**2 + b2**3) - Y*(b1**2 + b1*b2 + b2**2) + b1 + b2) + O(Y^4)",
+   "pass": true,
+   "tolerance": "exact closed form; slope at 0 = b1 + b2; quad coeff = -(b1^2 + b1 b2 + b2^2), matching S2 with c_i = -b_i^2",
+   "reading": "At b1 = b2 = 1: mu(Y) = 1 - (1+Y)^(-2) -- EXACTLY the framework MU2 branch (mu2(x) = 1 - (1 + x/2)^(-2) with Y = x/2, s = 2 a0), so the family is the committed branch's unequal-slope generalization."
+  },
+  {
+   "name": "S3b [normalization] the family saturates at one for ALL b1, b2 > 0",
+   "measured": "mu(oo) = 1",
+   "pass": true,
+   "tolerance": "exact limit",
+   "reading": "any saturating completion (p_i(oo)=1) would do; the corpus member p = Y/(1+Y) saturates ONLY at b = 1 -- unequal slopes require their own saturating completion, an extra premise per channel."
+  },
+  {
+   "name": "S3c [deep matching algebra] k g^2 r^2/s = G M with g_N = G M/r^2 gives the a0-line with a0 = s/k and kappa = 1/k, k = b1 + b2",
+   "measured": "g^2 = (s/(b1+b2)) g_N;  a0 = s/(b1+b2);  kappa = 1/(b1 + b2)",
+   "pass": true,
+   "tolerance": "exact",
+   "reading": "scale factors: s [m s^-2] enters as argument unit AND as the matched rate; kappa dimensionless; all signs positive (attractive deep law).  Leading neglected term in the deep regime: with mu = k Y + q2 Y^2 the first correction to g^2 = (s/k) g_N is (q2/k^2)(s/k) g_N^2/s + O(g_N^3) -- relative O(g/s) = O(sqrt(g_N/s)); quoted as the S6 ladder check."
+  },
+  {
+   "name": "S4a [different representation] finite-difference slope of the closed form at Y = 1e-40 (b1, b2) = (1, 0.5) vs symbolic b1+b2",
+   "measured": "FD slope = 1.5, b1+b2 = 1.5, rel err = 1.21e-40",
+   "pass": true,
+   "tolerance": "< 1e-25 relative at eps = 1e-40 (dps 80)",
+   "reading": "direct differentiation and difference quotient agree: the slope is the exact sum of slopes, not a count."
+  },
+  {
+   "name": "S4a [different representation] finite-difference slope of the closed form at Y = 1e-40 (b1, b2) = (1, 1) vs symbolic b1+b2",
+   "measured": "FD slope = 2.0, b1+b2 = 2, rel err = 1.56e-40",
+   "pass": true,
+   "tolerance": "< 1e-25 relative at eps = 1e-40 (dps 80)",
+   "reading": "direct differentiation and difference quotient agree: the slope is the exact sum of slopes, not a count."
+  },
+  {
+   "name": "S4a [different representation] finite-difference slope of the closed form at Y = 1e-40 (b1, b2) = (1, 2) vs symbolic b1+b2",
+   "measured": "FD slope = 3.0, b1+b2 = 3, rel err = 2.37e-40",
+   "pass": true,
+   "tolerance": "< 1e-25 relative at eps = 1e-40 (dps 80)",
+   "reading": "direct differentiation and difference quotient agree: the slope is the exact sum of slopes, not a count."
+  },
+  {
+   "name": "S4b [deep ladder, (b1,b2) = (1,0.5)] kappa_fit -> 1/(b1+b2) = 0.66666666666666666667",
+   "measured": "deepest (B/s = 1e-14): kappa_fit = 0.6666667301719598129, rel err = 9.53e-8; max residual/B on ladder = 2.98e-45",
+   "pass": true,
+   "tolerance": "|kappa_fit - 1/(b1+b2)| < 1e-6 at B/s = 1e-14",
+   "reading": "ACTUAL residual quoted (not a Boolean): solve-response residuals at 50 digits are ~1e-48, far below the 1e-6 fitting tolerance; the identity kappa = 1/(sum b_i) is exact, the ladder is finite consistency evidence (not an exact identity)."
+  },
+  {
+   "name": "S4b [deep ladder, (b1,b2) = (1,1)] kappa_fit -> 1/(b1+b2) = 0.5",
+   "measured": "deepest (B/s = 1e-14): kappa_fit = 0.50000005303301202649, rel err = 1.06e-7; max residual/B on ladder = 4.28e-46",
+   "pass": true,
+   "tolerance": "|kappa_fit - 1/(b1+b2)| < 1e-6 at B/s = 1e-14",
+   "reading": "ACTUAL residual quoted (not a Boolean): solve-response residuals at 50 digits are ~1e-48, far below the 1e-6 fitting tolerance; the identity kappa = 1/(sum b_i) is exact, the ladder is finite consistency evidence (not an exact identity)."
+  },
+  {
+   "name": "S4b [deep ladder, (b1,b2) = (1,2)] kappa_fit -> 1/(b1+b2) = 0.3333333333333333",
+   "measured": "deepest (B/s = 1e-14): kappa_fit = 0.33333337823835778882, rel err = 1.35e-7; max residual/B on ladder = 1.03e-44",
+   "pass": true,
+   "tolerance": "|kappa_fit - 1/(b1+b2)| < 1e-6 at B/s = 1e-14",
+   "reading": "ACTUAL residual quoted (not a Boolean): solve-response residuals at 50 digits are ~1e-48, far below the 1e-6 fitting tolerance; the identity kappa = 1/(sum b_i) is exact, the ladder is finite consistency evidence (not an exact identity)."
+  },
+  {
+   "name": "S4c [whole ladder] the three fits approach distinct limits {2/3, 1/2, 1/3} monotonically on B/s in [1e-1, 1e-14]",
+   "measured": "limits: (1,0.5) -> 0.6666667302; (1,1) -> 0.500000053; (1,2) -> 0.3333333782",
+   "pass": true,
+   "tolerance": "each within 1e-6 at the deepest point",
+   "reading": ""
+  },
+  {
+   "name": "E1 [NEGATIVE CONTROL, must be capable of failing] set b1 = 1, b2 = 2 and show two channels alone do NOT force kappa = 1/2",
+   "measured": "mu'(0) = 1+2 = 3; kappa_deep-fit -> 0.333333378238 = 1/3, NOT 1/2 (claim 'count 2 => kappa 1/2' REFUTED)",
+   "pass": true,
+   "tolerance": "claim fails iff |kappa_fit - 1/2| > 1e-3 at B/s = 1e-14",
+   "reading": "The control is capable of failing: if the count alone fixed kappa, this ladder would converge to 1/2 and the check would FAIL.  It converges to 1/3: the OR composition inherits the SLOPE SUM, and the sum is an independent freedom.  The kappa = 1/2 landing needs b1 + b2 = 2 -- supplied only by the unit-slope fraction identity, not by the composition."
+  },
+  {
+   "name": "E2 [lambda diagnostics] kappa = 1/(1 + lambda) at lambda in {1/2, 1, 2} gives exactly {2/3, 1/2, 1/3}; kappa = 1/2 only at lambda = 1",
+   "measured": "lambda=0.5 -> kappa=0.66666666666666666666666666666666666666666666666667 (fit 0.66666673); lambda=1.0 -> kappa=0.5 (fit 0.50000005); lambda=2.0 -> kappa=0.33333333333333333333333333333333333333333333333333 (fit 0.33333338)",
+   "pass": true,
+   "tolerance": "exact rationals at dps 50 (mpf comparisons, no string round-trip); only lambda = 1 lands on kappa = 1/2",
+   "reading": "observational preference is NOT a mathematical proof: the algebra selects lambda = 1 iff b1 + b2 = 2 is imposed; the deep slope alone cannot distinguish (b1,b2) = (1,1) from (1/2,3/2) (same sum; E3)."
+  },
+  {
+   "name": "E3 [identifiability] the deep regime measures the slope SUM, not the count: (b1,b2) = (1,1) and (1/2,3/2) share mu'(0) = 2 and kappa = 1/2",
+   "measured": "(1,1): sum 2 -> kappa 1/2; (1/2,3/2): sum 2 -> kappa 1/2; the count n = 2 is not identifiable from the deep response",
+   "pass": true,
+   "tolerance": "n/a (structural statement)",
+   "reading": "a slope pair summing to the count masquerades as the count; any kappa observed in (1/3, 2/3) is compatible with SOME unequal-slope two-channel OR member.  The equal-slope reading is selected only by the independent one-scale premise, not by the composition."
+  },
+  {
+   "name": "E4 [Newtonian] (b1,b2) = (1,0.5) at B/s = 1e16: g -> B (mu -> 1)",
+   "measured": "g/B - 1 = 2.0e-32; residual/B = 0.0",
+   "pass": true,
+   "tolerance": "|g/B - 1| < 1e-14",
+   "reading": "the OR normalization mu(oo) = 1 recovers Newton exactly for every slope pair -- Newtonian and deep limits each hold; the slope freedom lives only in the deep-matching constant."
+  },
+  {
+   "name": "E4 [Newtonian] (b1,b2) = (1,1) at B/s = 1e16: g -> B (mu -> 1)",
+   "measured": "g/B - 1 = 1.0e-32; residual/B = 0.0",
+   "pass": true,
+   "tolerance": "|g/B - 1| < 1e-14",
+   "reading": "the OR normalization mu(oo) = 1 recovers Newton exactly for every slope pair -- Newtonian and deep limits each hold; the slope freedom lives only in the deep-matching constant."
+  },
+  {
+   "name": "E4 [Newtonian] (b1,b2) = (1,2) at B/s = 1e16: g -> B (mu -> 1)",
+   "measured": "g/B - 1 = 5.0e-33; residual/B = 0.0",
+   "pass": true,
+   "tolerance": "|g/B - 1| < 1e-14",
+   "reading": "the OR normalization mu(oo) = 1 recovers Newton exactly for every slope pair -- Newtonian and deep limits each hold; the slope freedom lives only in the deep-matching constant."
+  },
+  {
+   "name": "E5 [boundary case] (b1,b2) = (1,0.5): mu(Y)/((b1+b2) Y) -> 1 as Y -> 0",
+   "measured": "at Y = 1e-30: ratio - 1 = -1.17e-30",
+   "pass": true,
+   "tolerance": "< 1e-25 (dps 80)",
+   "reading": "exact-identity check at a boundary point (finite numerical consistency, not an exact identity)."
+  },
+  {
+   "name": "E5 [boundary case] (b1,b2) = (1,1): mu(Y)/((b1+b2) Y) -> 1 as Y -> 0",
+   "measured": "at Y = 1e-30: ratio - 1 = -1.5e-30",
+   "pass": true,
+   "tolerance": "< 1e-25 (dps 80)",
+   "reading": "exact-identity check at a boundary point (finite numerical consistency, not an exact identity)."
+  },
+  {
+   "name": "E5 [boundary case] (b1,b2) = (1,2): mu(Y)/((b1+b2) Y) -> 1 as Y -> 0",
+   "measured": "at Y = 1e-30: ratio - 1 = -2.33e-30",
+   "pass": true,
+   "tolerance": "< 1e-25 (dps 80)",
+   "reading": "exact-identity check at a boundary point (finite numerical consistency, not an exact identity)."
+  },
+  {
+   "name": "F1 [footing discipline] the counterexample family predicts a0 = s/(sum b_i) on each footing; a measured footing alone cannot select the slope pair",
+   "measured": "sum=1.5: can 1.248253333e-10, alt 1.503866667e-10; sum=2: can 9.3619e-11, alt 1.1279e-10; sum=3: can 6.241266667e-11, alt 7.519333333e-11",
+   "pass": true,
+   "tolerance": "formula applied on each footing with its OWN rho_L (mpf comparisons, no string round-trip); ratio column 1.3333 / 1.0 / 0.66667 states the distance from the measured footings",
+   "reading": "kappa = 1/2 footing requires sum b_i = 2 on BOTH densities; the alternative footing is NOT the same kappa with the same density -- each rho_L fixes s and the predicted a0 is s/(sum b_i).  G_N/G_bare/G_cosmo: this lane uses one G in s and one G in B; the ratio G_E/G_N carrying Lambda_eff is out of scope (limitation L3)."
+  },
+  {
+   "name": "B1 [MU2] the equal-unit-slope member b1 = b2 = 1 is EXACTLY the framework MU2 branch mu_n(Y) = 1 - (1+Y)^(-n) at n = 2, Y = g/s",
+   "measured": "mu(1,1;Y) = 1 - 1/(1+Y)^2",
+   "pass": true,
+   "tolerance": "exact symbolic equality (cancel before simplify; quotient form)",
+   "reading": "framework mu2(x) = 1 - (1 + x/2)^(-2) with x = g/a0, Y = x/2, s = 2 a0 (kappa = 1/2 adopted): same function, argument rescaling documented."
+  },
+  {
+   "name": "B2 [RAR/EXP/Q deep slopes] on the adopted footing (s fixed, kappa = 1/2) the independent branches' deep slope in Y = g/s is 2 within numerics; they are the equal-slope members' comparisons, NOT unequal-slope counterexamples",
+   "measured": "RAR: mu/Y at Y in {1e-6, 1e-8, 1e-10} = 1.999996, 2.0, 2.0; EXP mu(x)=1-e^-x slope 2 exact (x = 2Y); Q g^2 = B^2 + a0 B deep slope 1/kappa = 2 exact",
+   "pass": true,
+   "tolerance": "RAR within 1e-3 numerically on the three deep points; EXP/Q exact",
+   "reading": "branch audit: this seed's conclusions live in the CORE coefficient cell (conditional MU_n statistical response); RAR/EXP/Q agree in the deep limit with the adopted kappa = 1/2; MONO is NOT used -- no bridge from the spherical OR cell to the filtered nu_mono continuation is derived here (limitation L1)."
+  },
+  {
+   "name": "S5",
+   "measured": "worst residual/B = 1.03e-44",
+   "pass": true,
+   "tolerance": "< 1e-30",
+   "reading": "actual residual from the solved responses -- the numerics are self-consistent at the stated precision."
+  }
+ ],
+ "wall_s": 0.22543875011615455,
+ "rss_mib": 56.40625,
+ "lambda_scan": [
+  {
+   "lambda": "0.5",
+   "b1": 1,
+   "b2": "0.5",
+   "mu_prime_0": "1.5",
+   "kappa_pred": "0.66666666666666666666666666666666666666666666666667",
+   "kappa_pred_mpf": "0.66666666666666666666666666666666666666666666666667",
+   "kappa_fit_deepest": "0.6666667301719598128973391058883272615491396609709",
+   "matches_1over2": false
+  },
+  {
+   "lambda": "1.0",
+   "b1": 1,
+   "b2": "1.0",
+   "mu_prime_0": "2.0",
+   "kappa_pred": "0.5",
+   "kappa_pred_mpf": "0.5",
+   "kappa_fit_deepest": "0.50000005303301202649121624753975395516373637153047",
+   "matches_1over2": true
+  },
+  {
+   "lambda": "2.0",
+   "b1": 1,
+   "b2": "2.0",
+   "mu_prime_0": "3.0",
+   "kappa_pred": "0.33333333333333333333333333333333333333333333333333",
+   "kappa_pred_mpf": "0.33333333333333333333333333333333333333333333333333",
+   "kappa_fit_deepest": "0.3333333782383577888229272964038880363942249181391",
+   "matches_1over2": false
+  }
+ ],
+ "footings": [
+  {
+   "b1": 1,
+   "b2": "0.5",
+   "sum": "1.5",
+   "a0_pred_canonical_rhoL": "1.248253333e-10",
+   "a0_pred_alt_rhoL": "1.503866667e-10",
+   "a0_pred_canonical_mpf": "0.00000000012482533333333333338095964572335832646713763930772",
+   "a0_pred_alt_mpf": "0.00000000015038666666666667398433695027432146588501164311917",
+   "ratio_vs_measured_can": "1.33333",
+   "ratio_vs_measured_alt": "1.33333"
+  },
+  {
+   "b1": 1,
+   "b2": "1",
+   "sum": "2",
+   "a0_pred_canonical_rhoL": "9.3619e-11",
+   "a0_pred_alt_rhoL": "1.1279e-10",
+   "a0_pred_canonical_mpf": "0.000000000093619000000000000035719734292518744850353229480788",
+   "a0_pred_alt_mpf": "0.00000000011279000000000000548825271270574109941375873233937",
+   "ratio_vs_measured_can": "1.0",
+   "ratio_vs_measured_alt": "1.0"
+  },
+  {
+   "b1": 1,
+   "b2": "2",
+   "sum": "3",
+   "a0_pred_canonical_rhoL": "6.241266667e-11",
+   "a0_pred_alt_rhoL": "7.519333333e-11",
+   "a0_pred_canonical_mpf": "0.000000000062412666666666666690479822861679163233568819653859",
+   "a0_pred_alt_mpf": "0.000000000075193333333333336992168475137160732942505821559583",
+   "ratio_vs_measured_can": "0.666667",
+   "ratio_vs_measured_alt": "0.666667"
+  }
+ ],
+ "worst_residual_over_B": "1.0334666378976453187310709258493246446850871609826e-44"
+}

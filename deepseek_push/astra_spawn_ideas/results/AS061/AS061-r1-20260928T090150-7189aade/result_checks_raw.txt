@@ -1,0 +1,116 @@
+====================================================================================================
+AS061 -- vacuum energy does not fix linear susceptibility (bounded prototype)
+====================================================================================================
+footings: canonical a0=9.361900e-11  alternative a0=1.127900e-10
+  canonical  : s = 2*a0 = 1.872380e-10 m/s^2 | rho_L = 5.844412e-27 kg/m^3 | eps_vac(C0=1) = 2.089981e-11 J/m^3
+  alternative: s = 2*a0 = 2.255800e-10 m/s^2 | rho_L = 8.483090e-27 kg/m^3 | eps_vac(C0=1) = 3.033581e-11 J/m^3
+  kappa_eff of the alternative footing at the CANONICAL fixed density = 0.602388 (not 1/2): the two footings cannot share fixed rho_L AND fixed kappa -- quantified
+
+C1 -- Euler-Lagrange variation of the static functional (full scale factors)
+   dK/dX          = 3*sqrt(X)*alpha/2 + eps
+   mu(Y)          = 3*alpha*g/(2*s) + eps
+   eps + 3al/2*Y  = 3*alpha*g/(2*s) + eps   |  difference = 0
+  [PASS] C1a [variation] the EL equation of S with K(X)=C0+eps*X+al*X^(3/2) is div(mu grad Phi)=4piG rho_b with mu(Y)=K'(Y^2); the closed form reduces to eps + (3al/2)Y on the positive drive axis (Y=g/s>0)
+         tol(set-before): exact (sympy simplify == 0)
+         measured       : mu(Y) = 3*alpha*g/(2*s) + eps; mu - (eps + 3al/2*sqrt(g^2/s^2)) = 0  (exact 0)
+         note           : X^(3/2) = Y^3 on Y>0 via sqrt(g^2/s^2)=g/s: exact reduction, no limits taken
+  [PASS] C1b [variation] adding any multiple of C0 (vacuum renormalisation K -> K + C) leaves the flux and thus the EL equation identical: the field equations cannot see the vacuum energy
+         tol(set-before): exact 0
+         measured       : d(K+7C0)/dX at Y = 3*alpha*g/(2*s) + eps; difference = 0
+         note           : mirrors k01 K1 (J enters only through J'); C0 is a null direction of the response
+
+C2 -- zero-gradient linear-response tensor
+  [PASS] C2a [tensor] chi_ij(grad=0) = dJ_i/d(d_j Phi)|_0 = eps*delta_ij exactly: with the scaling probe dPhi = t*n (unit directions n1,n2) the closed-form entries chi_ij(t) = mu(t/s) delta_ij + (3al/2) t n_i n_j are taken to t->0: diagonals -> eps, off-diagonal -> 0, for every direction and every alpha>0, C0 (the naively singular term (mu'/sY) d_i Phi d_j Phi is analysed by limit, not by point substitution)
+         tol(set-before): exact limits
+         measured       : chi_11 -> eps, chi_22 -> eps, chi_12 -> 0; direct d/dt route = eps*n1 = eps*n1 (diagonal)
+         note           : chi_ij = mu delta_ij + (mu'/sY) d_i Phi d_j Phi; the second term carries the field components and vanishes in the limit; the tensor is isotropic eps delta_ij at zero gradient; for eps=0 the tensor vanishes identically (degenerate susceptibility)
+  [PASS] C2b [tensor] longitudinal/transverse decomposition: chi_L = mu + Y mu' = eps + 3al Y, chi_T = mu = eps + (3al/2)Y; both -> eps at Y->0
+         tol(set-before): exact limits
+         measured       : chi_L = 3*Y*alpha + eps, chi_T = 3*Y*alpha/2 + eps; limits = eps, eps
+  [PASS] C2c [tensor] for eps>0 the linearisation around zero field is eps*grad^2 dPhi = 4piG drho: a Poisson operator with bare coupling G/eps (quasi-Newtonian linear response); for eps=0 the grad^2 term drops out and the leading response is the deep-MOND wedge
+         tol(set-before): exact (formal)
+         measured       : linearised operator: eps*Derivative(dPhi(r), (r, 2)) = 4piG drho  (eps>0);  eps=0 -> 0 (degenerate)
+
+C3 -- limiting regimes with the exact point-mass solution
+   eps=0 deep law: g^2 = a_deep g_N with a_deep = 2s/(3al) = 2*s/(3*alpha)
+   exact root    : g = (-eps*s + sqrt(s)*sqrt(6*alpha*gN + eps**2*s))/(3*alpha)
+   small-g_N     : 9*alpha**2*gN**3/(2*eps**5*s**2) - 3*alpha*gN**2/(2*eps**3*s) + gN/eps   (linear regime g ~ g_N/eps)
+   substitution of the truncated series into the constitutive law, through O(g_N^2): 0  (remainder is O(g_N^3))
+  [PASS] C3a [Newtonian limit, eps>0] the exact positive root of the quadratic constitutive law expands as g = g_N/eps - (3al/(2s)) g_N^2/eps^3 + 2(3al/(2s))^2 g_N^3/eps^5 + ...: substitution of the truncated series back into (3al/2s)g^2 + eps g - g_N cancels through O(g_N^2) identically; the leading neglected term is 2(3al/(2s))^2 g_N^3/eps^5 (relative size (3al/eps)Y at Y << 2eps/(3al))
+         tol(set-before): exact (sympy series, order-3 residual 0)
+         measured       : series: 9*alpha**2*gN**3/(2*eps**5*s**2) - 3*alpha*gN**2/(2*eps**3*s) + gN/eps; substitute-back residual through O(g_N^2): 0
+  [PASS] C3b [deep limit, eps=0] with eps=0 the law is EXACTLY g^2 = (2s/(3al)) g_N for every radius (algebraic identity, not an asymptotic limit): the X^(3/2) coefficient alone sets the a0-line; the C0 and X coefficients are absent
+         tol(set-before): exact identity
+         measured       : g^2/g_N = 2*s/(3*alpha) vs a_deep = 2*s/(3*alpha)
+  [PASS] C3c [scale domino] in the degenerate branch the model's own scale is a_deep = 2s/(3al), kappa_model = 2/(3al): matching the adopted footing kappa=1/2 pins al = 4/3; the susceptibility eps and the vacuum energy C0 play no role in this pinning
+         tol(set-before): exact
+         measured       : kappa_model = 2/(3*alpha); al(kappa=1/2) = 4/3
+         note           : the adopted kappa=1/2 is an INPUT here; the pinning shows which coefficient carries the scale (al), not that kappa is derived
+
+C4 -- NEGATIVE CONTROL: C0=0, eps=1 (task-mandated)
+  [PASS] C4a [negative control, mandated] set C0=0, eps=1, al>0: the vacuum primitive vanishes, K(0)=0 and rho_vac=0, but the linear Newtonian response remains nonzero: mu(0)=K'(0)=1 != 0 -- the control is CAPABLE of failing (it fails iff zero vacuum energy forced zero susceptibility)
+         tol(set-before): exact: K(0)=0 AND mu(0)=1
+         measured       : K(0) = 0;  mu(0) = 1;  != 0
+  [PASS] C4b [negative control, reverse direction] set eps=0, C0=1: the susceptibility is degenerate (mu(0)=0) while the vacuum energy is NONZERO: rho_vac = C0 s^2/(8piG) != 0 -- degeneracy is a property of the response, not of the vacuum energy
+         tol(set-before): exact: mu(0)=0 with C0=1
+         measured       : mu(0) = 0;  rho_vac = C0*s^2/(8piG) = 2.089981e-11 J/m^3 at C0=1 (canonical)
+
+C5 -- diagnostic counterexamples at lambda = 1/2, 1, 2
+  [PASS] C5a [counterexample lambda=eps in {1/2,1,2}] with C0=0, alpha=4/3 (the kappa=1/2-matched deep coefficient) and eps=lambda: the exact point-mass solution reassembled in the constitutive equation r^2 g mu(g/s) = GM has residual O(1e-27..1e-28) (60-digit working precision, actual numbers) on 10 log-spaced radii per lambda; each lambda leaves the vacuum energy exactly zero while the linear response mu(0)=lambda is nonzero
+         tol(set-before): 1e-20 relative (set before; 60-digit mpmath closed-form root, rounding-level residuals)
+         measured       : max |r^2 g mu - GM|/(GM) over r in [1e-3,1e6] pc: lambda=0.5: 8.346e-28, lambda=1.0: 2.049e-27, lambda=2.0: 2.786e-27
+         note           : the polynomial constitution is solved in closed form (quadratic root); residuals are actual numbers, not booleans
+   crossover: linear term ~ deep term at Y* = 2eps/(3al) = 2*eps/(3*alpha), g_cross = 2*eps*s/(3*alpha)
+   lambda=0.5: g_cross = 4.681e-11 m/s^2 (= lambda*a0); linear residual |lam*g/g_N - 1| = 1.0e-12; deep-law error at g_N = a0: 0.3904 (relative); deep-law error at eps=1e-25: 1.0e-25
+   lambda=1.0: g_cross = 9.362e-11 m/s^2 (= lambda*a0); linear residual |lam*g/g_N - 1| = 1.0e-12; deep-law error at g_N = a0: 0.618 (relative); deep-law error at eps=1e-25: 1.0e-25
+   lambda=2.0: g_cross = 1.872e-10 m/s^2 (= lambda*a0); linear residual |lam*g/g_N - 1| = 1.0e-12; deep-law error at g_N = a0: 0.8284 (relative); deep-law error at eps=1e-25: 1.0e-25
+   lambda>=1: g_cross = lambda*a0 >= a0 = s/2 (model-validity edge Y < 1/2): the linear plateau spans the whole valid low-field window; the deep regime would need g > lambda*a0 >= a0 -- outside the truncated Taylor model
+  [PASS] C5b [counterexample diagnostics] (i) the linear-plateau residual |eps*g/g_N - 1| at g_N = eps^2*a0*1e-12 is < 1e-9 for every lambda (the plateau is Newtonian and sharpens toward the origin); (ii) for eps>0 the deep law is NOT an interior regime of the truncated model: its relative error at the validity boundary g_N = a0 is nonzero at the recorded level (this check FAILS if eps were irrelevant to the deep window); (iii) the deep law is recovered EXACTLY in the eps->0 limit (residual < 1e-20 at eps=1e-25): the degenerate susceptibility is the deep-MOND input
+         tol(set-before): (i) 1e-9; (ii) > 1e-9 (deep window closed by eps>0); (iii) 1e-20 (set before)
+         measured       : (i) linear: lam=0.5: 1.0e-12, lam=1.0: 1.0e-12, lam=2.0: 1.0e-12; (ii) deep-error at g_N=a0: lam=0.5: 0.39, lam=1.0: 0.618, lam=2.0: 0.828; (iii) eps->0 limit: lam=0.5: 1.0e-25, lam=1.0: 1.0e-25, lam=2.0: 1.0e-25
+  [PASS] C5d [counterexample lambda=alpha in {1/2,1,2}, eps=0, C0=0] the degenerate susceptibility mu(0)=0 holds for EVERY alpha (susceptibility independent of the deep coefficient) while the matched scale moves: kappa_model = 2/(3alpha) = 4/3, 2/3, 1/3.  The X^(3/2) coefficient sets the SCALE; eps sets the SUSCEPTIBILITY; C0 sets the VACUUM ENERGY: three independent Taylor freedoms, no cross-constraint
+         tol(set-before): exact rational arithmetic
+         measured       : mu(0) = 0 for all alpha; kappa_model: al=0.5: 1.3333, al=1.0: 0.66667, al=2.0: 0.33333
+   kappa_model(alpha): al=0.5: 1.3333, al=1.0: 0.66667, al=2.0: 0.33333
+
+C6 -- both registered footings (dimensional examples)
+  [PASS] C6a [footing canonical] a0=9.3619e-11 m/s^2, kappa=1/2 adopted -> s = 1.872380e-10 m/s^2, rho_L = 4a0^2/(Gc^2) = 5.84441245e-27 kg/m^3, eps_vac(C0=1) = s^2/(8piG)
+         tol(set-before): 1e-33 (cross-check with the committed AS002 density)
+         measured       : s=1.872380e-10, rho_L=5.844412e-27 kg/m^3, eps_vac=2.089981e-11 J/m^3 (= 2.325418e-28 kg/m^3)
+  [PASS] C6b [footing alternative] a0=1.1279e-10 m/s^2, kappa=1/2 adopted -> s = 2.255800e-10 m/s^2, rho_L = 8.48308961e-27 kg/m^3 -- DIFFERENT density: the two footings cannot share fixed rho_L and fixed kappa; at the canonical fixed density the alternative footing requires kappa_eff = a0_alt/s_can = 0.602376... != 1/2
+         tol(set-before): 1e-33 / 1e-12 (kappa_alt = a0_alt/s_can = 112790/187238 exactly)
+         measured       : s=2.255800e-10, rho_L=8.483090e-27 kg/m^3, kappa_eff@rho_L^can = 0.602388
+  [PASS] C6c [dimensionless theorem applies to both footings] the independence theorem (C0 vs eps vs alpha) is dimensionless; the dimensional examples above carry each footing separately as required
+         tol(set-before): n/a (reporting)
+         measured       : canonical: s=1.872380e-10, eps_vac(C0=1)=2.089981e-11 J/m^3; alternative: s=2.255800e-10, eps_vac(C0=1)=3.033581e-11 J/m^3
+
+C7 -- framework branches: Q, RAR, MU2, EXP, MONO all satisfy mu(0)=0
+   Q    : max mu(y) at y in [1e-12, 1e-8] = 1.000e-04
+   RAR  : max mu(y) at y in [1e-12, 1e-8] = 1.000e-04
+   MU2  : max mu(y) at y in [1e-12, 1e-8] = 2.236e-05
+   EXP  : max mu(y) at y in [1e-12, 1e-8] = 3.162e-05
+   MONO : max mu(y) at y in [1e-12, 1e-8] = 1.000e-04
+  [PASS] C7a [branches] every operative/historical branch has DEGENERATE linear susceptibility mu(0)=0 at the deep end (Q: sqrt(y/(1+y)); RAR: 1-e^-sqrt(y); MU2 implicit small-B; EXP: 1-e^-x; MONO: y/(y+h_RAR) on the RAR segment below the splice): the degenerate susceptibility is a SHARED boundary condition among all five branches, and none of them derives it from the vacuum energy
+         tol(set-before): 1e-3 at the sampled deep window [1e-12,1e-8]
+         measured       : Q: 1.00e-04, RAR: 1.00e-04, MU2: 2.24e-05, EXP: 3.16e-05, MONO: 1.00e-04
+         note           : finite numerical consistency (a shared deep limit is not a shared finite law -- AS030); the operative filtered MONO's exact zero-field limit needs the filter S specification, outside this lane
+  [PASS] C7b [mu_n family, symbolic n>=1] mu_n(Y) = 1-(1+Y)^(-n): mu_n(0)=0 and the deep-MOND slope is exactly n for every n>=1 -- the channel-count family is built on the DEGENERATE susceptibility, which is the physical boundary condition the vacuum energy cannot supply
+         tol(set-before): exact
+         measured       : lim_{Y->0} mu_n = 0; slope at origin = n
+
+C8 -- independent-representation residuals
+  [PASS] C8a [finite difference] dK/dX at X = Y^2 by central differences vs eps + (3al/2)sqrt(X) over X in [1e-8, 1]: max relative residual 7.62e-11 ~ O(h^2) curvature term
+         tol(set-before): 1e-6 (h=1e-6*X, O(h^2))
+         measured       : 7.620e-11
+  [PASS] C8b [float64 cross-representation] quadratic root reassembled in the constitutive law at float64 for lambda=0.5: max relative residual 1.78e-13 (representation noise of an exact identity)
+         tol(set-before): 1e-9 (float64 noise floor; exactness established symbolically and at 60 digits in C3/C5a)
+         measured       : 1.781e-13
+  [PASS] C8b [float64 cross-representation] quadratic root reassembled in the constitutive law at float64 for lambda=1.0: max relative residual 4.54e-14 (representation noise of an exact identity)
+         tol(set-before): 1e-9 (float64 noise floor; exactness established symbolically and at 60 digits in C3/C5a)
+         measured       : 4.544e-14
+  [PASS] C8b [float64 cross-representation] quadratic root reassembled in the constitutive law at float64 for lambda=2.0: max relative residual 1.01e-12 (representation noise of an exact identity)
+         tol(set-before): 1e-9 (float64 noise floor; exactness established symbolically and at 60 digits in C3/C5a)
+         measured       : 1.013e-12
+
+AS061 PROTOTYPE COMPLETE: 22/22 checks PASS in 0.40s wall; peak RSS 111984640 bytes (macOS ru_maxrss raw); threads: 1 (no threading/subprocess; env OMP/MKL/OPENBLAS=1)
+bounds: declared <=120s/<=512MB/1 thread; enforced: SIGALRM 120s (fired => TimeoutError); RLIMIT_AS attempt refused by macOS (ValueError: current limit exceeds maximum limit) -- measured RSS far below 512MB; single thread by construction

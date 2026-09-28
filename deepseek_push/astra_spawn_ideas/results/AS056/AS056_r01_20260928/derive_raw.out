@@ -1,0 +1,74 @@
+====================================================================================================
+AS056 r01 -- symbolic re-derivation of the static two-channel structure
+====================================================================================================
+
+PART 0 -- framework scale and footings
+  a0 = kappa c sqrt(G rho_Lambda),  kappa = 1/2 ADOPTED (not derived here)
+  rho_Lambda (canonical footing, kappa=1/2) = 5.844412e-27 kg/m^3
+  s = c*sqrt(G*rho_L) = 1.872380e-10 m/s^2  (= 2*a0_canonical = 1.872380e-10)
+  alternative footing 1.127900e-10 m/s^2 at FIXED rho_Lambda: effective kappa = 0.60239
+  alternative footing at FIXED kappa=1/2: changed density rho_Lambda' = 8.483090e-27 kg/m^3
+  [canonical  ] r_M(M_sun) = 1.1906e+15 m = 3.859e-02 pc ; v_flat = (G*M_sun*a0)^(1/4) = 3.3387e+02 m/s
+  [alternative] r_M(M_sun) = 1.0847e+15 m = 3.515e-02 pc ; v_flat = (G*M_sun*a0)^(1/4) = 3.4978e+02 m/s
+  [PASS] F1 [framework bookkeeping] rho_Lambda reproduces the canonical line and the alternative footing is NOT the same (fixed rho_L, fixed kappa) cell
+         measured: rho_L = 5.8444e-27 kg/m^3; kappa_eff(alt, fixed rho_L) = 0.6024; rho_L'(alt, fixed kappa) = 8.4831e-27 kg/m^3
+         reading : kappa = 1/2 is the ADOPTED framework input (FRAMEWORK_CONTRACT); the two footings cannot share both fixed vacuum density and fixed kappa -- shown numerically
+
+PART 1 -- linearized Einstein tensor: seed equations from the metric
+  [PASS] P1a [representation A = representation B] the definitional linearized Ricci (Christoffel -> deltaR) and the explicit per-component closed forms agree on the diagonal/trace sector
+         measured: max |R - R_B| on diagonals = 0; |R_00 - lap Phi| = 0; |sum_i R_ii - (4 lapPsi - lapPhi)| = 0
+         reading : both routes give R^(1)_00 = lap Phi and sum_i R^(1)_ii = 4 lap(Psi) - lap(Phi): per-component R_ii = lap(Psi) + d_i^2 (Psi - Phi) (checked elementwise); factors 2 and signs exact, GENERAL (non-radial) potentials, static sector
+  [PASS] P1b [seed equation 1] G^(1)_00 = 2 Delta(Psi)  [generic non-radial Phi, Psi]
+         measured: symbolic residual G00 - 2 Delta Psi = 0
+         reading : the 00 equation is a rescaled Laplacian acting on Psi with EXACT factor 2 -- no radiality, no smallness, no gauge assumption beyond the two-potential ansatz
+  [PASS] P1c [seed equation 2] sum_i G^(1)_ii = 2 Delta(Phi-Psi)  [generic non-radial]
+         measured: symbolic residual sum_i Gii - 2 Delta(Phi-Psi) = 0
+         reading : the spatial-trace equation is a rescaled Laplacian acting on the DIFFERENCE Phi - Psi with exact factor 2; this is the PPN-gamma content of the sector
+  [PASS] P1d [complete sector] G^(1)_0i = 0 identically (ansatz-restricted static sector)
+         measured: G01 residuals = [0, 0, 0]
+         reading : h_0i = 0 makes the mixed sector vanish identically; the two-potential ansatz carries only the 00 equation and the spatial tensor
+  [PASS] P1e [off-diagonal spatial] G^(1)_ij = -d_i d_j (Phi-Psi) for i != j (representation A matches the direct form)
+         measured: max residual = 0
+         reading : the off-diagonal spatial equations are second mixed derivatives of the difference; in the pressureless vacuum they are implied by the trace channel plus boundary conditions (Part 2, control NC-D)
+  [PASS] P1f [dust collapse] with T_00 = rho, T_ii = p: 2 Delta Psi = 8 pi G rho and 2 Delta(Phi-Psi) = 8 pi G (3 p); for p = 0 with Phi-Psi -> 0 at infinity, Phi = Psi
+         measured: Delta Psi = 4 pi G rho ; Delta(Phi-Psi) = 12 pi G p  (dust: p=0, homogeneous)
+         reading : EXACT identity-level statement: the second static channel is sourced ONLY by isotropic pressure; for dust it is homogeneous and its unique regular solution with vanishing boundary data is zero (maximum principle / Liouville -- standard elliptic uniqueness, numerically exercised in control NC-D).  This is where the GR degeneracy gamma = 1 lives.
+
+PART 1b -- independent representation: harmonic-gauge (trace-subtracted) field
+  [PASS] P1g [harmonic gauge] static vacuum Delta hbar_mn = 0 yields two independent harmonic conditions on (Phi+3Psi) and (Phi-Psi)
+         measured: lap(hbar_00) + Delta(Phi+3Psi) = 0;  lap(hbar_11) + Delta(Phi-Psi) = 0
+         reading : trace-subtracted perturbation: hbar_00 = -Phi - 3 Psi, hbar_ij = -(Phi-Psi) delta_ij (derived, factors checked by the residual); the change of functions (Psi, Phi-Psi) -> (Phi+3Psi, Phi-Psi) has determinant 4 -- the two harmonic conditions are a second independent representation of the SAME rank-2 family
+  [PASS] P1h [rank equivalence] the two representations are linked by an invertible map
+         measured: det = 4
+         reading : the (Psi, Phi-Psi) and (Phi+3Psi, Phi-Psi) function systems carry identical information; the two-channel statement is representation-independent
+
+PART 2 -- OR-class slope algebra (completion-independent origin slope)
+  [PASS] P2a [slope = count] mu_2(Y) = 1-(1-p)^2 has mu'_2(0) = 2 for EVERY completion p with p(0)=0, p'(0)=1 (generic c2, c3)
+         measured: mu_2 = -Y**6*c3**2 - 2*Y**5*c2*c3 - Y**4*c2**2 - 2*Y**4*c3 - 2*Y**3*c2 + 2*Y**3*c3 + 2*Y**2*c2 - Y**2 + 2*Y;  mu'_2(0) = 2
+         reading : chain rule through the OR composition: slope = n * p'(0) * (1-p(0))^(n-1) = 2; the completion's coefficients drop out of the ORIGIN slope -- this is the entire content of 'the slope is the channel count' (PD01 A1, re-derived)
+  [PASS] P2b [SUM excluded] the summed response n*Y/(1+Y) saturates at n, not at 1 (L230 normalisation mu(inf) = 1 preserves only the OR reading)
+         measured: limit = n vs required 1
+         reading : channels as ALTERNATIVE presentations of one capacity: OR; not the sum over shares
+  [PASS] P2c [kappa = 1/n] deep-MOND spherical matching with slope n gives a0 = s/n, kappa = 1/n; at n = 2, kappa = 1/2
+         measured: a0 = s/n; kappa = a0/s = 1/n; at n=2: 1/2
+         reading : RE-STATES the PD08 chain with the general count: a0 = s/n, kappa = 1/n.  Note: this is CONDITIONAL on the OR identification (premise P-OR) and on the one-scale action (premise P-L230); kappa = 1/2 itself remains ADOPTED by this task's framework mandate.
+  diagnostic counterexamples (finite lambda):
+    p = Y/(1+Y)            mu(1/2), mu(1), mu(2) = ['0.55556', '0.75000', '0.88889']
+    p = 1-exp(-Y)          mu(1/2), mu(1), mu(2) = ['0.63212', '0.86466', '0.98168']
+    p = tanh(Y)            mu(1/2), mu(1), mu(2) = ['0.71068', '0.94316', '0.99871']
+    p = Y/sqrt(1+Y^2)      mu(1/2), mu(1), mu(2) = ['0.69443', '0.91421', '0.98885']
+  [PASS] P2d [count does NOT fix the finite response -- diagnostic counterexamples at lambda = 1/2, 1, 2] four completions of the OR class give DIFFERENT mu(lambda) at every finite lambda
+         measured: max spreads: lambda=1/2: 0.1551; lambda=1: 0.1932; lambda=2: 0.1098; (pre-set: spread > 0.10 at every lambda)
+         reading : an observational preference at any finite acceleration would NOT be a proof of the count; the count only pins the ORIGIN SLOPE and hence kappa = 1/2.  The completion (the full shape) is not fixed by the channel count -- recorded as the task's own diagnostic requirement at lambda = 1/2, 1, 2
+
+PART 3 -- spherical matching and the deep law, both footings
+  [canonical  ] r = 1.0e+18 m: g_N = 1.3272e-16 m/s^2; deep g = sqrt(a0 g_N) = 1.1147e-13 m/s^2
+  [canonical  ] r = 1.0e+20 m: g_N = 1.3272e-20 m/s^2; deep g = sqrt(a0 g_N) = 1.1147e-15 m/s^2
+  [alternative] r = 1.0e+18 m: g_N = 1.3272e-16 m/s^2; deep g = sqrt(a0 g_N) = 1.2235e-13 m/s^2
+  [alternative] r = 1.0e+20 m: g_N = 1.3272e-20 m/s^2; deep g = sqrt(a0 g_N) = 1.2235e-15 m/s^2
+  [PASS] P3 [deep law] v_flat^4 = G M_b a0 at both footings with M_b = M_sun: v_flat(canonical) and v_flat(alternative) differ only through the scale
+         measured: v_flat_can = 3.3387e+02 m/s; v_flat_alt = 3.4978e+02 m/s; r_M_can = 3.859e-02 pc
+         reading : framework relations r_M = sqrt(G M_b/a0) and v_flat^4 = G M_b a0 restated; derived from the slope-2 matching as g^2 = a0 g_N (deep).  A change of footing moves BOTH r_M and v_flat in the same direction; no observational preference used.
+
+AS056 DERIVE COMPLETE: 14/14 checks PASS.
+wall time: 0.39 s

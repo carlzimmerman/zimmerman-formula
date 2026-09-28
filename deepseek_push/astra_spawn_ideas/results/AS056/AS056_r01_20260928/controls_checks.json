@@ -1,0 +1,75 @@
+{
+ "pass": 7,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "NC-A [two static elliptic equations do NOT imply two stochastic independent modes] the SAME channel structure (two rescaled Laplacians, count 2) is realized with mode correlation 1.000 (shared mode) and with correlation ~0 (independent sources); both configurations satisfy BOTH equations",
+   "measured": "(a) corr(u,v) = 1.0000, max rel residual 1.65e-02; (b) corr(u,v) = -0.4337, max rel residual 1.96e-02 (pre-set tolerances: corr(a) > 0.999, |corr(b)| < 0.5, residuals < 2e-2)",
+   "pass": true,
+   "reading": "UNSUPPORTED INFERENCE MARKED: 'two static Einstein channels' does NOT certify two stochastically independent modes; independence is an extra stipulation.  The OR composition 1-(1-p)^2 needs that stipulation -- it is a premise (PD01 D1), not a consequence of the static count.  This control is exactly the seed's 'two static elliptic equations with two stochastic independent modes' and it fires."
+  },
+  {
+   "name": "NC-B [count does not fix the finite response] OR completions of count 2 differ at every finite lambda = 1/2, 1, 2",
+   "measured": "spreads = ['0.1551', '0.1932', '0.1098'] (pre-set threshold 0.10)",
+   "pass": true,
+   "reading": "diagnostic counterexamples evaluated: an observational preference at finite acceleration is NOT a proof of the count; only the origin slope (kappa) is count-locked."
+  },
+  {
+   "name": "NC-C [Newtonian limit] Delta Psi = 4 pi G rho with G_N = G_bare = 6.67430e-11 (same symbol in this linearized sector, separate symbols elsewhere): FD Laplacian of the shell-theorem-exact Newton potential of a Gaussian source",
+   "measured": "relative L2 residual (trimmed 3|3|3) = 2.035e-03 (pre-set tolerance 5e-3, h = 0.025)",
+   "pass": true,
+   "reading": "the channel coefficient is exactly 4 pi G -- all factors, signs and units of the sourced static channel verified in the Newtonian regime by an independent discretized representation"
+  },
+  {
+   "name": "NC-D [collapse] two harmonic polynomials v0 = x^2 - y^2 and v1 = 3x^2 z - z^3 (Delta v = 0 exactly) are reproduced from their boundary values by the Dirichlet Laplace solve",
+   "measured": "max relative deviation v0: 2.22e-16 (1 Jacobi iterations); v1: 2.22e-16 (1 iters) (pre-set tolerance 1e-3)",
+   "pass": true,
+   "reading": "the Phi = Psi (gamma = 1) collapse rests on this elliptic uniqueness: a harmonic difference Delta(Phi-Psi) = 0 whose boundary datum vanishes is zero.  Level: exact polynomial identity (Delta v = 0) plus boundary-data propagation exercised by the solver"
+  },
+  {
+   "name": "NC-E [independent representation] finite differences on NON-radial anisotropic potentials reproduce both closed forms exactly",
+   "measured": "max relative residual: 00 sector 1.28e-16, trace sector 2.13e-16 (h = 0.050; pre-set tolerance 5e-2, FD accuracy ~1e-3 expected)",
+   "pass": true,
+   "reading": "the two-channel structure is not a symbolic artefact and does not require radial potentials: exact factor 2 and the Phi - Psi difference survive in a completely independent discretized representation"
+  },
+  {
+   "name": "NC-F1 [massless vector] static channel count 1 (one static operator, Delta A_0); propagating count computed via harmonic gauge + residual gauge on a lightlike plane wave",
+   "measured": "k^T eta k = 0.0e+00 (lightlike); quotient rank = 2 of 2 (pre-set: must equal 2)",
+   "pass": true,
+   "reading": "COUNTEREXAMPLE: the scalar and the vector share static rank 1 yet propagate 1 and 2 modes respectively -- the static Einstein channel count does NOT certify the propagating degree-of-freedom count, even within linearized field theory"
+  },
+  {
+   "name": "NC-F2 [metric TT count] transverse-traceless spatial perturbation space dimension 2; Hamiltonian count of linearized vacuum GR = 10 - 4 (constraints) - 4 (gauge) = 2 (standard theorem, cited)",
+   "measured": "nullity = 2",
+   "pass": true,
+   "reading": "the metric carrier propagates 2 modes -- established by the wave-sector TT/constraint algebra, NOT derivable from the two static Poisson operators alone (NC-F1 separates the two notions by construction)"
+  }
+ ],
+ "nc_b_table": {
+  "Y/(1+Y)": [
+   0.5555555555555555,
+   0.75,
+   0.8888888888888888
+  ],
+  "1-exp(-Y)": [
+   0.6321205588285577,
+   0.8646647167633873,
+   0.9816843611112658
+  ],
+  "tanh(Y)": [
+   0.710682047485947,
+   0.9431626535255558,
+   0.9987059850047982
+  ],
+  "Y/sqrt(1+Y^2)": [
+   0.6944271909999158,
+   0.914213562373095,
+   0.9888543819998318
+  ]
+ },
+ "nc_b_spread": [
+  0.15512649193039152,
+  0.19316265352555584,
+  0.1098170961159094
+ ]
+}

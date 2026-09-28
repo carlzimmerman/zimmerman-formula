@@ -1,0 +1,189 @@
+============================================================================================
+AS078 -- General slope normalizability (bounded prototype, mpmath 50 dps)
+============================================================================================
+
+--- 0. framework inputs (both footings, kappa = 1/2 adopted) ---
+  [canonical] a0 = 9.361900e-11 m/s^2 | rho_Lambda = 5.844412e-27 kg/m^3 (kappa=1/2)
+  [alt      ] a0 = 1.127900e-10 m/s^2 | rho_Lambda = 8.483090e-27 kg/m^3 (kappa=1/2)
+  fixed rho_Lambda(canonical): kappa_eff for a0_alt = 0.60238840 (!= 1/2 -> the two footings cannot share fixed (kappa,rho))
+
+--- 1. closed form vs direct quadrature (mpmath tanh-sinh, 50 dps) ---
+    DIMENSIONLESS identity: I(g; u1, u2) = int_{u1}^{u2} u^{2-g} du
+    = (u2^(3-g) - u1^(3-g))/(3-g) for g != 3, = ln(u2/u1) at g = 3.
+    Exact decimal-string endpoints (u = r/r_M): the physical constants
+    (A, r_M, M_b) only scale the identity and are checked separately.
+  [canonical] u1=0.0062 u2=0.620 gamma= 0.5: dimless resid 0.00e+00 | phys 3.87e-17
+  [canonical] u1=0.0062 u2=0.620 gamma= 1.0: dimless resid 0.00e+00 | phys 1.78e-16
+  [canonical] u1=0.0062 u2=0.620 gamma= 1.5: dimless resid 2.06e-51 | phys 2.59e-18
+  [canonical] u1=0.0062 u2=0.620 gamma= 2.0: dimless resid 0.00e+00 | phys 6.22e-17
+  [canonical] u1=0.0062 u2=0.620 gamma= 2.5: dimless resid 0.00e+00 | phys 4.96e-17
+  [canonical] u1=0.0062 u2=0.620 gamma= 2.9: dimless resid 1.52e-51 | phys 9.22e-17
+  [canonical] u1=0.0062 u2=0.620 gamma= 3.0: dimless resid 0.00e+00 | phys 5.01e-17
+  [canonical] u1=0.0062 u2=0.620 gamma= 3.1: dimless resid 1.74e-51 | phys 5.34e-17
+  [canonical] u1=0.0062 u2=0.620 gamma= 4.0: dimless resid 0.00e+00 | phys 9.97e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 0.5: dimless resid 0.00e+00 | phys 1.66e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 1.0: dimless resid 0.00e+00 | phys 8.34e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 1.5: dimless resid 0.00e+00 | phys 1.09e-16
+  [canonical] u1=0.0100 u2=1.000 gamma= 2.0: dimless resid 0.00e+00 | phys 7.58e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 2.5: dimless resid 0.00e+00 | phys 4.28e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 2.9: dimless resid 0.00e+00 | phys 8.51e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 3.0: dimless resid 0.00e+00 | phys 5.01e-17
+  [canonical] u1=0.0100 u2=1.000 gamma= 3.1: dimless resid 0.00e+00 | phys 2.96e-16
+  [canonical] u1=0.0100 u2=1.000 gamma= 4.0: dimless resid 0.00e+00 | phys 1.10e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 0.5: dimless resid 1.38e-51 | phys 1.28e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 1.0: dimless resid 0.00e+00 | phys 1.99e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 1.5: dimless resid 2.12e-51 | phys 1.76e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 2.0: dimless resid 0.00e+00 | phys 5.11e-17
+  [canonical] u1=0.0620 u2=0.620 gamma= 2.5: dimless resid 0.00e+00 | phys 1.53e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 2.9: dimless resid 1.36e-51 | phys 2.05e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 3.0: dimless resid 0.00e+00 | phys 5.01e-17
+  [canonical] u1=0.0620 u2=0.620 gamma= 3.1: dimless resid 1.97e-51 | phys 5.67e-16
+  [canonical] u1=0.0620 u2=0.620 gamma= 4.0: dimless resid 1.47e-51 | phys 3.65e-17
+  [canonical] u1=0.1000 u2=1.000 gamma= 0.5: dimless resid 0.00e+00 | phys 1.23e-16
+  [canonical] u1=0.1000 u2=1.000 gamma= 1.0: dimless resid 0.00e+00 | phys 1.02e-17
+  [canonical] u1=0.1000 u2=1.000 gamma= 1.5: dimless resid 0.00e+00 | phys 1.33e-17
+  [canonical] u1=0.1000 u2=1.000 gamma= 2.0: dimless resid 0.00e+00 | phys 7.84e-17
+  [canonical] u1=0.1000 u2=1.000 gamma= 2.5: dimless resid 1.95e-51 | phys 5.78e-17
+  [canonical] u1=0.1000 u2=1.000 gamma= 2.9: dimless resid 2.60e-51 | phys 1.43e-16
+  [canonical] u1=0.1000 u2=1.000 gamma= 3.0: dimless resid 0.00e+00 | phys 7.87e-17
+  [canonical] u1=0.1000 u2=1.000 gamma= 3.1: dimless resid 0.00e+00 | phys 1.60e-16
+  [canonical] u1=0.1000 u2=1.000 gamma= 4.0: dimless resid 0.00e+00 | phys 1.11e-17
+  [canonical] u1=0.3100 u2=0.620 gamma= 0.5: dimless resid 1.68e-51 | phys 5.60e-17
+  [canonical] u1=0.3100 u2=0.620 gamma= 1.0: dimless resid 0.00e+00 | phys 1.33e-16
+  [canonical] u1=0.3100 u2=0.620 gamma= 1.5: dimless resid 4.76e-51 | phys 1.69e-16
+  [canonical] u1=0.3100 u2=0.620 gamma= 2.0: dimless resid 0.00e+00 | phys 7.44e-18
+  [canonical] u1=0.3100 u2=0.620 gamma= 2.5: dimless resid 1.45e-51 | phys 2.65e-16
+  [canonical] u1=0.3100 u2=0.620 gamma= 2.9: dimless resid 4.19e-51 | phys 4.30e-16
+  [canonical] u1=0.3100 u2=0.620 gamma= 3.0: dimless resid 0.00e+00 | phys 8.55e-17
+  [canonical] u1=0.3100 u2=0.620 gamma= 3.1: dimless resid 1.78e-50 | phys 1.98e-15
+  [canonical] u1=0.3100 u2=0.620 gamma= 4.0: dimless resid 0.00e+00 | phys 6.38e-17
+  [canonical] u1=0.5000 u2=1.000 gamma= 0.5: dimless resid 2.03e-51 | phys 5.80e-17
+  [canonical] u1=0.5000 u2=1.000 gamma= 1.0: dimless resid 0.00e+00 | phys 3.69e-17
+  [canonical] u1=0.5000 u2=1.000 gamma= 1.5: dimless resid 1.55e-51 | phys 1.73e-16
+  [canonical] u1=0.5000 u2=1.000 gamma= 2.0: dimless resid 0.00e+00 | phys 5.52e-17
+  [canonical] u1=0.5000 u2=1.000 gamma= 2.5: dimless resid 2.28e-51 | phys 1.81e-16
+  [canonical] u1=0.5000 u2=1.000 gamma= 2.9: dimless resid 3.99e-51 | phys 8.83e-17
+  [canonical] u1=0.5000 u2=1.000 gamma= 3.0: dimless resid 0.00e+00 | phys 8.55e-17
+  [canonical] u1=0.5000 u2=1.000 gamma= 3.1: dimless resid 1.68e-50 | phys 1.29e-15
+  [canonical] u1=0.5000 u2=1.000 gamma= 4.0: dimless resid 0.00e+00 | phys 5.90e-17
+  [alt      ] u1=0.0062 u2=0.620 gamma= 0.5: dimless resid 0.00e+00 | phys 1.29e-16
+  [alt      ] u1=0.0062 u2=0.620 gamma= 1.0: dimless resid 0.00e+00 | phys 2.37e-16
+  [alt      ] u1=0.0062 u2=0.620 gamma= 1.5: dimless resid 2.06e-51 | phys 1.02e-16
+  [alt      ] u1=0.0062 u2=0.620 gamma= 2.0: dimless resid 0.00e+00 | phys 4.36e-18
+  [alt      ] u1=0.0062 u2=0.620 gamma= 2.5: dimless resid 0.00e+00 | phys 9.13e-18
+  [alt      ] u1=0.0062 u2=0.620 gamma= 2.9: dimless resid 1.52e-51 | phys 1.10e-16
+  [alt      ] u1=0.0062 u2=0.620 gamma= 3.0: dimless resid 0.00e+00 | phys 1.84e-17
+  [alt      ] u1=0.0062 u2=0.620 gamma= 3.1: dimless resid 1.74e-51 | phys 1.44e-16
+  [alt      ] u1=0.0062 u2=0.620 gamma= 4.0: dimless resid 0.00e+00 | phys 1.83e-16
+  [alt      ] u1=0.0100 u2=1.000 gamma= 0.5: dimless resid 0.00e+00 | phys 7.48e-17
+  [alt      ] u1=0.0100 u2=1.000 gamma= 1.0: dimless resid 0.00e+00 | phys 5.99e-17
+  [alt      ] u1=0.0100 u2=1.000 gamma= 1.5: dimless resid 0.00e+00 | phys 3.36e-17
+  [alt      ] u1=0.0100 u2=1.000 gamma= 2.0: dimless resid 0.00e+00 | phys 3.08e-18
+  [alt      ] u1=0.0100 u2=1.000 gamma= 2.5: dimless resid 0.00e+00 | phys 7.32e-17
+  [alt      ] u1=0.0100 u2=1.000 gamma= 2.9: dimless resid 0.00e+00 | phys 1.01e-16
+  [alt      ] u1=0.0100 u2=1.000 gamma= 3.0: dimless resid 0.00e+00 | phys 1.25e-17
+  [alt      ] u1=0.0100 u2=1.000 gamma= 3.1: dimless resid 0.00e+00 | phys 3.21e-16
+  [alt      ] u1=0.0100 u2=1.000 gamma= 4.0: dimless resid 0.00e+00 | phys 8.44e-17
+  [alt      ] u1=0.0620 u2=0.620 gamma= 0.5: dimless resid 1.38e-51 | phys 1.03e-17
+  [alt      ] u1=0.0620 u2=0.620 gamma= 1.0: dimless resid 0.00e+00 | phys 1.20e-16
+  [alt      ] u1=0.0620 u2=0.620 gamma= 1.5: dimless resid 2.12e-51 | phys 1.27e-16
+  [alt      ] u1=0.0620 u2=0.620 gamma= 2.0: dimless resid 0.00e+00 | phys 3.51e-17
+  [alt      ] u1=0.0620 u2=0.620 gamma= 2.5: dimless resid 0.00e+00 | phys 1.26e-16
+  [alt      ] u1=0.0620 u2=0.620 gamma= 2.9: dimless resid 1.36e-51 | phys 1.78e-18
+  [alt      ] u1=0.0620 u2=0.620 gamma= 3.0: dimless resid 0.00e+00 | phys 1.84e-17
+  [alt      ] u1=0.0620 u2=0.620 gamma= 3.1: dimless resid 1.97e-51 | phys 1.36e-18
+  [alt      ] u1=0.0620 u2=0.620 gamma= 4.0: dimless resid 1.47e-51 | phys 6.64e-17
+  [alt      ] u1=0.1000 u2=1.000 gamma= 0.5: dimless resid 0.00e+00 | phys 4.33e-17
+  [alt      ] u1=0.1000 u2=1.000 gamma= 1.0: dimless resid 0.00e+00 | phys 4.40e-18
+  [alt      ] u1=0.1000 u2=1.000 gamma= 1.5: dimless resid 0.00e+00 | phys 7.41e-17
+  [alt      ] u1=0.1000 u2=1.000 gamma= 2.0: dimless resid 0.00e+00 | phys 2.11e-17
+  [alt      ] u1=0.1000 u2=1.000 gamma= 2.5: dimless resid 1.95e-51 | phys 1.02e-16
+  [alt      ] u1=0.1000 u2=1.000 gamma= 2.9: dimless resid 2.60e-51 | phys 5.63e-18
+  [alt      ] u1=0.1000 u2=1.000 gamma= 3.0: dimless resid 0.00e+00 | phys 1.84e-17
+  [alt      ] u1=0.1000 u2=1.000 gamma= 3.1: dimless resid 0.00e+00 | phys 5.28e-16
+  [alt      ] u1=0.1000 u2=1.000 gamma= 4.0: dimless resid 0.00e+00 | phys 2.32e-17
+  [alt      ] u1=0.3100 u2=0.620 gamma= 0.5: dimless resid 1.68e-51 | phys 1.36e-16
+  [alt      ] u1=0.3100 u2=0.620 gamma= 1.0: dimless resid 0.00e+00 | phys 1.47e-16
+  [alt      ] u1=0.3100 u2=0.620 gamma= 1.5: dimless resid 4.76e-51 | phys 8.49e-17
+  [alt      ] u1=0.3100 u2=0.620 gamma= 2.0: dimless resid 0.00e+00 | phys 6.72e-18
+  [alt      ] u1=0.3100 u2=0.620 gamma= 2.5: dimless resid 1.45e-51 | phys 1.32e-16
+  [alt      ] u1=0.3100 u2=0.620 gamma= 2.9: dimless resid 4.19e-51 | phys 2.10e-16
+  [alt      ] u1=0.3100 u2=0.620 gamma= 3.0: dimless resid 0.00e+00 | phys 4.74e-17
+  [alt      ] u1=0.3100 u2=0.620 gamma= 3.1: dimless resid 1.78e-50 | phys 3.46e-16
+  [alt      ] u1=0.3100 u2=0.620 gamma= 4.0: dimless resid 0.00e+00 | phys 1.85e-17
+  [alt      ] u1=0.5000 u2=1.000 gamma= 0.5: dimless resid 2.03e-51 | phys 3.91e-17
+  [alt      ] u1=0.5000 u2=1.000 gamma= 1.0: dimless resid 0.00e+00 | phys 5.21e-17
+  [alt      ] u1=0.5000 u2=1.000 gamma= 1.5: dimless resid 1.55e-51 | phys 4.19e-18
+  [alt      ] u1=0.5000 u2=1.000 gamma= 2.0: dimless resid 0.00e+00 | phys 2.11e-17
+  [alt      ] u1=0.5000 u2=1.000 gamma= 2.5: dimless resid 2.28e-51 | phys 3.44e-16
+  [alt      ] u1=0.5000 u2=1.000 gamma= 2.9: dimless resid 3.99e-51 | phys 8.89e-16
+  [alt      ] u1=0.5000 u2=1.000 gamma= 3.0: dimless resid 0.00e+00 | phys 4.74e-17
+  [alt      ] u1=0.5000 u2=1.000 gamma= 3.1: dimless resid 1.68e-50 | phys 8.20e-16
+  [alt      ] u1=0.5000 u2=1.000 gamma= 4.0: dimless resid 0.00e+00 | phys 3.20e-17
+  WORST dimensionless rel resid: 1.78e-50 (tolerance 1e-40) -> PASS
+
+--- 2. finite-boundary equipartition normalization (gamma=2) ---
+  [canonical M_b=7.0e+10] R/r_M=0.62: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: 0.00e+00, v_c^2/C = 0.993809, M_ph/M_b = 0.61616
+  [canonical M_b=7.0e+10] R/r_M=1.00: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: 0.00e+00, v_c^2/C = 1.000000, M_ph/M_b = 1.00000
+  [canonical M_b=6.5e+10] R/r_M=0.62: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: 0.00e+00, v_c^2/C = 0.993809, M_ph/M_b = 0.61616
+  [canonical M_b=6.5e+10] R/r_M=1.00: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: 0.00e+00, v_c^2/C = 1.000000, M_ph/M_b = 1.00000
+  [alt       M_b=7.0e+10] R/r_M=0.62: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: -1.11e-16, v_c^2/C = 0.993809, M_ph/M_b = 0.61616
+  [alt       M_b=7.0e+10] R/r_M=1.00: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: -1.11e-16, v_c^2/C = 1.000000, M_ph/M_b = 1.00000
+  [alt       M_b=6.5e+10] R/r_M=0.62: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: 0.00e+00, v_c^2/C = 0.993809, M_ph/M_b = 0.61616
+  [alt       M_b=6.5e+10] R/r_M=1.00: A_ex/A_lim rel diff = 1.010e-02, M(<r_M)=M_b exact: 0.00e+00, v_c^2/C = 1.000000, M_ph/M_b = 1.00000
+
+--- 3. gamma -> 3 limit: (u2^d - u1^d)/d -> ln(u2/u1), d := 3-gamma ---
+    dimensionless, exact decimal endpoints u1 = 0.062, u2 = 0.62
+    (mirrors the fixture r_in/R = 0.1, R/r_M = 0.62)
+    leading neglected term:  d/2 * [(ln u2)^2 - (ln u1)^2] + O(d^2)
+  delta=1e- 4: (u2^d-u1^d)/d - ln(u2/u1) = -3.751e-04  (lead term = -3.752e-04)
+  delta=1e-10: (u2^d-u1^d)/d - ln(u2/u1) = -3.752e-10  (lead term = -3.752e-10)
+  delta=1e-15: (u2^d-u1^d)/d - ln(u2/u1) = -3.752e-15  (lead term = -3.752e-15)
+  delta=1e-20: (u2^d-u1^d)/d - ln(u2/u1) = -3.752e-20  (lead term = -3.752e-20)
+
+--- 4. independent checks: (a) FTC derivative of the closed form,
+        (b) log-trapezoid quadrature, <=512 cells, two refinements ---
+  [canonical] gamma=1.5: dM/dR vs 4 pi R^2 rho(R): rel resid 5.58e-17
+  [canonical] gamma=2.0: dM/dR vs 4 pi R^2 rho(R): rel resid 6.08e-41
+  [canonical] gamma=2.5: dM/dR vs 4 pi R^2 rho(R): rel resid 7.04e-17
+  [alt      ] gamma=1.5: dM/dR vs 4 pi R^2 rho(R): rel resid 1.27e-17
+  [alt      ] gamma=2.0: dM/dR vs 4 pi R^2 rho(R): rel resid 7.43e-41
+  [alt      ] gamma=2.5: dM/dR vs 4 pi R^2 rho(R): rel resid 6.31e-17
+  [canonical] trapezoid n= 128 (cells=127 <= 512): rel resid 1.83e-16
+  [canonical] trapezoid n= 256 (cells=255 <= 512): rel resid 0.00e+00
+  [canonical] trapezoid n= 512 (cells=511 <= 512): rel resid 0.00e+00
+  [alt      ] trapezoid n= 128 (cells=127 <= 512): rel resid 0.00e+00
+  [alt      ] trapezoid n= 256 (cells=255 <= 512): rel resid 1.83e-16
+  [alt      ] trapezoid n= 512 (cells=511 <= 512): rel resid 0.00e+00
+
+--- 5. negative controls (each capable of failing) ---
+  NC1 [alt r_in=0.01 r_M] R/r_M = 1e1: M(R) = 1.3905e+42 kg, M(2R)/M(R) = 2.0010010010 (-> 2)
+  NC1 [alt r_in=0.01 r_M] R/r_M = 1e2: M(R) = 1.3918e+43 kg, M(2R)/M(R) = 2.0001000100 (-> 2)
+  NC1 [alt r_in=0.01 r_M] R/r_M = 1e3: M(R) = 1.3919e+44 kg, M(2R)/M(R) = 2.0000100001 (-> 2)
+  NC1 [alt r_in=0.01 r_M] R/r_M = 1e4: M(R) = 1.3919e+45 kg, M(2R)/M(R) = 2.0000010000 (-> 2)
+  NC1 [alt r_in=0.01 r_M] R/r_M = 1e5: M(R) = 1.3919e+46 kg, M(2R)/M(R) = 2.0000001000 (-> 2)
+  NC1 [alt r_in=0.01 r_M] R/r_M = 1e6: M(R) = 1.3919e+47 kg, M(2R)/M(R) = 2.0000000100 (-> 2)
+  NC2 naive (R^(3-g)-r_in^(3-g))/(3-g) at g=3 -> not evaluable: ZeroDivisionError; log form = 2.0348545100e+21 kg
+  NC3 [canonical] r_in/R = 0.01: v_c^2(0.62 r_M)/C = 0.993809  (flat = 1 exactly only as r_in -> 0)
+  NC3 [canonical] r_in/R = 0.10: v_c^2(0.62 r_M)/C = 0.931900  (flat = 1 exactly only as r_in -> 0)
+  NC3 [canonical] r_in/R = 0.50: v_c^2(0.62 r_M)/C = 0.387097  (flat = 1 exactly only as r_in -> 0)
+  NC3 [alt      ] r_in/R = 0.01: v_c^2(0.62 r_M)/C = 0.993809  (flat = 1 exactly only as r_in -> 0)
+  NC3 [alt      ] r_in/R = 0.10: v_c^2(0.62 r_M)/C = 0.931900  (flat = 1 exactly only as r_in -> 0)
+  NC3 [alt      ] r_in/R = 0.50: v_c^2(0.62 r_M)/C = 0.387097  (flat = 1 exactly only as r_in -> 0)
+  NC4 [canonical] r_in/r_M= 10 R/r_in= 2: M_shell/M_b =     10.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [canonical] r_in/r_M= 10 R/r_in=10: M_shell/M_b =     90.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [canonical] r_in/r_M=100 R/r_in= 2: M_shell/M_b =    100.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [canonical] r_in/r_M=100 R/r_in=10: M_shell/M_b =    900.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [alt      ] r_in/r_M= 10 R/r_in= 2: M_shell/M_b =     10.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [alt      ] r_in/r_M= 10 R/r_in=10: M_shell/M_b =     90.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [alt      ] r_in/r_M=100 R/r_in= 2: M_shell/M_b =    100.0  (= (R-r_in)/r_M exact, dimension-free)
+  NC4 [alt      ] r_in/r_M=100 R/r_in=10: M_shell/M_b =    900.0  (= (R-r_in)/r_M exact, dimension-free)
+
+--- 6. deep-sector checks + boundary fixtures ---
+  [canonical M_b=7.0e+10] r_M=3.1501e+20 m, v_flat=171730.21 m/s, sigma=121.43 km/s, B(r_M)/a0 = 1.000000000000, g(r_M)/a0 = 1.000000000000, P(r_M)/(a0^2/8piG) = -1.11e-16
+  [canonical M_b=6.5e+10] r_M=3.0355e+20 m, v_flat=168577.86 m/s, sigma=119.20 km/s, B(r_M)/a0 = 1.000000000000, g(r_M)/a0 = 1.000000000000, P(r_M)/(a0^2/8piG) = 2.22e-16
+  [alt       M_b=7.0e+10] r_M=2.8700e+20 m, v_flat=179917.48 m/s, sigma=127.22 km/s, B(r_M)/a0 = 1.000000000000, g(r_M)/a0 = 1.000000000000, P(r_M)/(a0^2/8piG) = 2.22e-16
+  [alt       M_b=6.5e+10] r_M=2.7656e+20 m, v_flat=176614.84 m/s, sigma=124.89 km/s, B(r_M)/a0 = 1.000000000000, g(r_M)/a0 = 1.000000000000, P(r_M)/(a0^2/8piG) = 2.22e-16
+
+--- execution bounds: wall 0.143 s (<=120), maxrss 45.1 MB (<=512), 1 thread, dps=50, cells<=512, 2 refinements ---
+wrote as078_residuals.json

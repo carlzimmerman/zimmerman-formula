@@ -1,0 +1,86 @@
+{
+  "schema_version": 2,
+  "task_id": "AS044",
+  "task_sha256": "101062f86bea2fceb66e3caf9d409eed4294aedc5986d6596f7b0be9bbfd4051",
+  "run_id": "run_20260928T0500Z_sa0-75b63916",
+  "worker": "subagent seed sa0-75b63916 (deepseek/deepseek-v4-flash-0731 via openrouter, Hermes subagent)",
+  "started_utc": "2026-09-28T05:00:50Z",
+  "finished_utc": "2026-09-28T05:43:00Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For the deep point-source force g(r)=C/r with C=sqrt(G*M_b*a0), r_M=sqrt(G*M_b/a0), the potential Phi_D(r)=C*ln(r/(e*r_M)) is the unique double-continuous match to a Newtonian interior: force continuity G*M_b/r_t^2=C/r_t forces r_t=r_M exactly, potential continuity forces r_ref=e*r_M and Phi_D(r_M)=-C=Phi_N(r_M); d/dt[Phi_D]=-g pointwise for r>0. Domain of the claim: point source, non-relativistic, y=B/a0 in [1e-10,1e8] (grid 181 pts), deep band y<=1e-4; numerically verified at 50 digits against BOTH footings a0=9.3619e-11 and a0=1.1279e-10 m/s^2: matching residuals <=1.6e-61 (canonical) and 0.0/<=5e-31 (alternative); leading neglected RAR-branch correction (G*M_b/2)(1/r0-1/r) measured at ratio-to-log 1.008416 (10 r_M), 1.0009167 (100 r_M), 1.00025 (500 r_M), r0=1000 r_M; operative MONO splice identical to RAR on all grid points (y<y_star=2.33741240526633, delta=0.05), landmarks y_p=2.53963828218817, h_p=0.647610237891915 reproduced to 12 digits; v_flat(1e11 M_sun)=187.7466 km/s (canonical) and 196.6975 km/s (alternative); r_M(1 M_sun)=0.038586 pc (canonical), 0.035154 pc (alternative). Algebra certified in Lean 4 (7 theorems, axioms subseteq {propext, Classical.choice, Quot.sound}, zero sorry): C/r_M=a0, G*M_b/r_M^2=a0, r_t^2=r_M^2, ln(r_M/(e r_M))=-1, C*ln(r_M/(e r_M))=-C, log law, and the derivative identity.",
+  "framework_cell": "a0=kappa*c*sqrt(G*rho_Lambda), kappa=1/2 ADOPTED as input (not derived); rho_Lambda=4*a0^2/(G*c^2): 5.844412454e-27 kg/m^3 (canonical a0=9.3619e-11), 8.48308962e-27 kg/m^3 (alternative a0=1.1279e-10) — the two footings do not share both fixed vacuum density and fixed kappa. r_M=sqrt(G*M_b/a0), v_flat^4=G*M_b*a0. G_N/G_bare/G_cosmo kept SEPARATE (no mixing). Branches distinct: Q (x^2=1+y), RAR (nu=1/(1-exp(-sqrt(y)))), MU2 (mu=1-(1+x/2)^-2), historical EXP AQUAL (x*(1-exp(-x))=y), operative filtered MONO (h_MONO(y)=h_RAR(y) for y<=y_star, spliced branch h_RAR(y_star)+delta*h_p*ln((y+y_p)/(y_star+y_p)) for y>y_star, delta=0.05, y_p=2.53963828218817, y_star=2.33741240526633, h_p=0.647610237891915; criterion B). Units SI; boundary conditions: r_t, r_ref, Phi(r_M) established, not assumed. Constants: G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16.",
+  "new_assumptions": [
+    "kappa=1/2 adopted per FRAMEWORK_CONTRACT (weakest explicit premise; child C01 targets it)",
+    "Exactly ONE of {fixed rho_Lambda, fixed kappa} can hold across the two footings; the task's two a0 footings are therefore treated as separate scales, never jointly",
+    "Reconciliation note: campaign dispatch titled AS044 'phantom secularity and turnover', but the registered hash-pinned task file is 'AS044_deep_point_source_potential_and_boundary_matching.md' (sha256 101062f8... matches claims/AS044.json pin); the pinned file was executed"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS044_deep_point_source_potential_and_boundary_matching.md": "101062f86bea2fceb66e3caf9d409eed4294aedc5986d6596f7b0be9bbfd4051",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "verified-present, content read (hash-pinned by campaign ledger; no local repin performed)",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "verified-present, content read (schema v2)",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/derivation.md": "2c77576c4e927b58acaac752d25bef9ee8a5a8ea4c97fefde018c7c4e2ed5064",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/derive_as044.py": "f90a5f63ab33e63670d99050e1f33e6b84e9de2465ddfa366add8c28a680a9dc",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/out/residuals.json": "b87df310094bd0b54182825b06defaec53d0ff164d222b33ef41b2b15e971220",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/out/run3.log": "94dc77d17369337ad117f9f257ae2f32fb91c2f70a7278b45cbc26425c87e8d5",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/AS044_matching_cert.lean": "66daf0a506a3f37cd337fa17b56ce831b4b43859da94c979242044990a0bc8ed",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/AS044_axioms.lean": "1655557cafb95ca5ec5eaf5b01bc8f829457ca5a00b5044e8cf551ad93cf8569",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/axioms_check.out": "generated transcript of #print axioms, exit 0",
+    "deepseek_push/astra_spawn_ideas/results/AS044/run_20260928T0500Z_sa0-75b63916/AS044_matching_cert.olean": "compiled artifact for AS044_matching_cert (lean --root -o)"
+  },
+  "commands": [
+    "python3 derive_as044.py  (cwd=<run_dir>; run1 failed, run2 failed, run3 PASS) — invoked via /usr/bin/time -l",
+    "python3 - <<'EOF' ... standalone splice/departure re-derivation (cwd=<run_dir>) — splice and departure tables verified",
+    "cd fable_independent_2026/lean_2026 && lake env lean <abs>/AS044_matching_cert.lean  → exit 0",
+    "LEAN_PATH=<run_dir>:<lake env LEAN_PATH> /opt/homebrew/bin/lean --root=<run_dir> -o <run_dir>/AS044_matching_cert.olean <run_dir>/AS044_matching_cert.lean  → exit 0",
+    "LEAN_PATH=<run_dir>:<lake env LEAN_PATH> /opt/homebrew/bin/lean --root=<run_dir> <run_dir>/AS044_axioms.lean  → exit 0 (axioms transcript)",
+    "shasum -a 256 (task file, script, residuals, logs, certs) — pins verified",
+    "date -u ; ls ; grep of out/run3.log for elapsed_s/maxrss"
+  ],
+  "execution_bounds": "DECLARED: <=120 s wall (internal deadline 100 s), <=512 MB RSS (RLIMIT_AS), 1 thread, mp.dps=50, grid 181 pts, bisection tol 1e-48 / max 250 iter, deep quadrature on [r0=1000 r_M, r] upward with sweep radii {10,100,500} r_M. ENFORCED (as recorded): elapsed 0.561 s (run3), threads 1, mp.dps=50 enforced in-process; RLIMIT_AS 512 MB NOT applied — macOS setrlimit refused ('current limit exceeds maximum limit', recorded in out/run3.log): memory bound fell back to the session default; OS-reported max RSS 1.9251e7 (macOS ru_maxrss bytes ~18.4 MB), far below 512 MB. Lean compiles: exit 0.",
+  "checks": [
+    {"name": "C1_log_to_infinity", "tolerance": "must trigger (unsatisfiable condition)", "observed": "Phi_D(10^k r_M) grows ~ C*k: 3.52e10 (10^0) -> 1.588e12 (10^20 r_M); no finite Phi(inf)=0 exists", "pass": true, "note": "negative control correctly fails the over-determined boundary condition"},
+    {"name": "C2_g_jump_at_r_t", "tolerance": "zero ONLY at r_t=r_M", "observed": "|g_N-g_D|/a0 at r/r_M in {0.25,0.5,0.9,1.0,1.1,2,4} = {9.96,1.66,0.102,0.0,0.069,0.208,0.156}", "pass": true},
+    {"name": "C3_rref_mutation", "tolerance": "residual 0 iff r_ref=e*r_M", "observed": "|Phi_D(r_M)+C| = 3.52488e10 (r_M), 1.08162e10 (2 r_M), 0.0 (e r_M)", "pass": true},
+    {"name": "derivative_identity", "tolerance": "<=1e-45 at dps=50", "observed": "ddr_PhiD residuals {2,5,10,100} r_M <= 3.2e-50; integration identity 0.0 (<=1.9e-40 at 10 r_M)", "pass": true},
+    {"name": "matching_both_footings", "tolerance": "residuals <=1e-30", "observed": "g_N(r_M)-a0 = 1.55575e-61 (can), 0.0 (alt); r_t-r_M = 1.32e-31 (can), 4.95e-31 (alt); Phi_N(r_M)+C = Phi_D(r_M)+C = 0.0 both", "pass": true},
+    {"name": "splice_landmarks", "tolerance": "12 digits vs declared", "observed": "y_p=2.53963828218817, h_p=0.647610237891915, y_star=2.33741240526633; continuity 0.0; derivative-crossing residual 2.8e-50", "pass": true},
+    {"name": "deep_asymptotics_grid", "tolerance": "RAR/MONO must share slope/coef, Q/MU2/EXP must differ", "observed": "slopes {Q:1.5, RAR:1.00001, MU2:1.00002, EXP:1.00002, MONO:1.00001}, coefs {0.5, 0.500118, 0.375143, 0.250103, 0.500118}", "pass": true},
+    {"name": "leading_neglected_term", "tolerance": "ratio -> 1 as r -> oo", "observed": "branch_leading_term ratio = 1.008416 (10 r_M), 1.0009167 (100 r_M), 1.00025 (500 r_M)", "pass": true},
+    {"name": "lean_certificate", "tolerance": "zero sorry; axioms subseteq {propext, Classical.choice, Quot.sound}", "observed": "7 theorems compiled (exit 0); #print axioms = [propext, Classical.choice, Quot.sound] for all 7", "pass": true},
+    {"name": "mono_equals_rar_on_grid", "tolerance": "diff 0 on tested domain y<y_star", "observed": "x_MONO-x_RAR = 0.0 at r/r_M in {1..100}; 1e-53 float dust at 30/100 r_M", "pass": true}
+  ],
+  "tested_domain": "y=B/a0 in [1e-10, 1e8], grid step 0.1 (181 pts), all roots bracketed by sign-change scan + bisection (tol 1e-48, max 250 it); deep band y<=1e-4 (k<=-4); jump scan r/r_M in {0.25..4}; branch-leading checks at r in {10,100,500} r_M with r0=1000 r_M; dimensional masses {1, 6e10, 1e11} M_sun x {canonical, alternative} footings; splice bracket y in [2.0,3.2] (y_p) and [2.0,2.8] (y_star); Lean domain r>0, y>0 (positivity assumptions explicit). Exclusions: no relativistic regime, no rotation-curve data fitting, no exterior beyond the unmatched log band.",
+  "failed_attempts": [
+    {"artifact": "out/run1.log", "cause": "mp.findroot tolerance failure at flat maximum of h_RAR; replaced by bracketed bisection (tol 1e-48)"},
+    {"artifact": "out/run1.log (iter 2)", "cause": "GRID dict unpacking bug (rows[100][idx] indexing)"},
+    {"artifact": "out/run1.log (iter 3)", "cause": "f-string dict keys producing '10.0rM'-style keys; fixed with int(round(...))"},
+    {"artifact": "out/run2.log", "cause": "deadline violation: deep loop at 1000 r_M exceeded 100 s; swept radii capped at 500 r_M"},
+    {"artifact": "out/run2.log", "cause": "integration order [r, r0] sign flip doubling the log term; corrected to upward [r0, r]"},
+    {"artifact": "out/run3.log (early)", "cause": "v_flat used C^0.25 (wrong exponent) and evaluation against the exact log potential (vacuous 1.0); fixed sqrt(C) and RAR-branch integral check"},
+    {"artifact": "probe_t6.lean", "cause": "Lean T6 composition-form derivative resisted hasDerivAt_log comp form; certified difference form + log law instead (cleared algebra)"}
+  ],
+  "limitations": "Numerical checks are finite evidence at 50-digit precision / 181-point grid, not proofs (the algebra is separately proved in Lean). kappa=1/2 is ADOPTED, not derived. The global log potential cannot satisfy Phi(inf)=0 (control C1): outer termination mechanism/radius unresolved. The two footings imply different rho_Lambda (5.844e-27 vs 8.483e-27 kg/m^3) under fixed kappa — they cannot be merged into one vacuum density. MONO=RAR shown on y<=1 grid and landmarks to 12 digits, but exact analytic C^1-ness of the splice at y_star is only certified to residual 2.8e-50, not proven. Point-source, non-relativistic idealization; no data fit performed. The dispatched title 'phantom secularity and turnover' does not exist on disk; this run executed the hash-pinned registered AS044 task (see new_assumptions).",
+  "next_unresolved_implication": "Outer termination scale of the log band: identify the finite radius r_out(M_b, a0) at which Phi_D(r_out) = Phi_ext(r_out) for a matter-normalized exterior with Phi_ext(inf)=0, or prove no such matching exists under the operative filtered MONO + criterion B; the log divergence otherwise blocks the transfer of AS044 into a common-action closure witness.",
+  "suggested_followup": "Child C01 'kappa-identification': fix kappa (or rho_Lambda) from an independent vacuum-density/acceleration measurement so that the canonical and alternative footings reduce to a single scale; discriminates the 187.75 vs 196.70 km/s v_flat split at 1e11 M_sun (lowest-cost discriminating observable pair: {v_flat, r_M} of a single galaxy at known stellar mass, both footings). Route stop if no measurement: derive the kappa-dependence of the splice landmarks y_p, y_star as a strict function of kappa and check against the README s=2.540, Delta=0.6476 pins.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": "G=6.67430e-11 m3/(kg s2); c=299792458 m/s; M_sun=1.98847e30 kg; pc=3.085677581491367e16 m; a0_can=9.3619e-11 m/s2; a0_alt=1.1279e-10 m/s2; framework a0=kappa*c*sqrt(G*rho_Lambda) with kappa=1/2 adopted; r_M=sqrt(G*M_b/a0); v_flat^4=G*M_b*a0; branch kernels Q/RAR/MU2/EXP-AQUAL as declared; MONO splice delta=0.05 with declared landmarks y_p=2.539638282, y_star=2.337412405, h_p=0.647610238 (README sect 1.1: s=2.540, Delta=0.6476). Derived in this run: rho_Lambda = 4 a0^2/(G c^2) (5.844412454e-27 / 8.48308962e-27 kg/m3); C, r_M per mass; r_t=r_M, r_ref=e*r_M, Phi(r_M)=-C (proofs, Lean-certified); leading neglected RAR-branch correction (G*M_b/2)(1/r0-1/r) quantified; deep asymptotes h~c_y*sqrt(y) per branch.",
+  "closure_implication": "Gate: A02 constitutive-kernel branch fidelity (filtered MONO operative, criterion B). Implication: the deep point-source potential Phi_D(r)=C*ln(r/(e r_M)) with double continuity at r_t=r_M is branch-compatible with the operative MONO splice over the tested domain y<=1 (MONO identical to RAR there; deep asymptote h~(1/2)sqrt(y) shared, distinct from Q/MU2/EXP), and its algebra is proof-certified; COMMON-ACTION COMPATIBILITY NOT CLOSED: Phi_D has no finite Phi(inf)=0 limit, so the deep band cannot be the global potential of a common-action witness without an outer termination scale r_out; additionally kappa=1/2 remains an adopted input whose freedom is not removed by this result. Transfer condition: r_out(M_b, a0) must be supplied by the theory, not by this calculation.",
+  "child_proposals": [
+    {
+      "id": "AS044.C01",
+      "name": "kappa-identification from a0 x rho_Lambda cross-footing",
+      "claim": "Determine kappa (or equivalently fix the single vacuum density rho_Lambda) so that canonical a0=9.3619e-11 and alternative a0=1.1279e-10 footings reduce to one scale",
+      "controls": "v_flat(1e11 M_sun) discriminates 187.75 vs 196.70 km/s; r_M(1 M_sun) 0.0386 vs 0.0352 pc; include the splice-landmark pins s=2.540, Delta=0.6476 as function of kappa",
+      "dependencies": "either an independent rho_Lambda measurement or an accepted a0 measurement; none in this run",
+      "dispatch_state": "proposed; not dispatched by this worker (no claims file created)"
+    }
+  ],
+  "closure_candidate": null
+}

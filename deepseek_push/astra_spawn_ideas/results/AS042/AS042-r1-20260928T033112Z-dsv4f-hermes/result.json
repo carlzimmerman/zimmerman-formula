@@ -1,0 +1,229 @@
+{
+ "schema_version": 2,
+ "task_id": "AS042",
+ "task_sha256": "87ba14533068421453d462d7226e8eff78bb8c4079d4f55bf52a5971a5c3eedd",
+ "run_id": "AS042-r1-20260928T033112Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (openrouter) via Hermes focused subagent",
+ "started_utc": "2026-09-28T03:31:12Z",
+ "finished_utc": "2026-09-28T05:41:20Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "On the flat periodic torus cell [0,L)^3 (L = 2*pi), for u with nabla u != 0 at the evaluation cells (Clarke-regular points) and xi < (curvature scale and distance to the zero-gradient set), S* M[S u] - M[u] = (xi^2/2)(Delta M[u] + DM[u](Delta u)) + R4 with M[u] = div[(nu(y)-1) grad u], y = |grad u|/a0, DM the Frechet derivative of M, S = exp[(xi^2/2)Delta] the periodic heat semigroup; R4 satisfies R4 <= (xi^4/8)||Delta^2 M||_inf on the tested cells: measured max|R4|/bound = 0.90 (RAR mid, xi=0.125), 0.24 (RAR mid sub-masked, xi=0.25), 1.03 (RAR deep, xi=0.125), 0.67 (MONO mid, y*-splice-excluded, xi=0.125); MAXIMUM bound ratio 1.03. The O(xi^2) coefficient is exactly zero-symbolic (sympy 1D expansion through xi^3), the linear-cell case S* c Delta S = c Delta e^{xi^2 Delta} holds to machine precision (rel 2.5e-13..2.8e-13), the DM term is the variational derivative (gradient identity rel 1.2e-9), S* = S in L2(T^3,dx) (rel 7.0e-21..3.1e-19), S(1) = 1 and S o S = e^{xi^2 Delta} Lean-certified (axioms {propext, Classical.choice, Quot.sound}, zero sorry). Naive commutative ansaetze fail (deviation 0.704/0.694 = 80% of the true leading correction; naive first-order closure residual 0.192 vs commutator scale; negative control capable of failing). Restoration: on the physical Gaussian cell (side 12 r_M, M_b = M_sun) at xi = 0.1 r_M the leading filter correction raises the phantom budget by +1.994e33 J (canonical a0 = 9.3619e-11 m/s^2; 1.39% of |E_ph|) and +2.188e33 J (alternative a0 = 1.1279e-10 m/s^2); the kernel shift E_ph[MONO] - E_ph[RAR] = -(a0^2/4piG) int(H_M - H_R) <= 0 with strict inequality once any volume element has y > y* (int(H_M-H_R) = 17.41 cell-units on the crossing field, 98.8% of volume above y*). Pointwise O(xi^4)-rate near the zero-gradient set is NOT established (semigroup cusp-smearing tail; suppressed in integrals only).",
+ "framework_cell": "Source: Delta Phi = 4 pi G rho_b + S* div[(nu(y)-1) grad S u] (operative MONO, FRIED_CHICKEN rqmt 1 + amendment 2026-09-26, criterion B); UNFILTERED RAR reference source div[(nu_RAR-1) grad u]. Kernel nu_RAR(y) = 1/(1-exp(-sqrt y)); MONO: h'_mono = max(h'_RAR, 0.05*h_p/(y+y_p)), h = y(nu-1), splice y* = 2.3374, peak y_p = 2.5396, h_p = 0.64761. Filter: S = exp[(xi^2/2)Delta]; S* = S on the torus cell. Gate/regularization: none beyond the gradient mask. Coupling: u enters y = |grad u|/a0 only; kappa = 1/2 ADOPTED input. Scale footing: a0 = kappa*c*sqrt(G*rho_Lambda); rho_Lambda = 5.8444e-27 kg/m^3 (a0 = 9.3619e-11 m/s^2) and 8.4831e-27 kg/m^3 (a0 = 1.1279e-10 m/s^2); r_M = sqrt(G*M_sun/a0) = 1.1906e15 m / 1.0847e15 m. Numerics: G = 6.67430e-11, c = 299792458 SI. Cell: flat torus [0,2pi)^3, Lebesgue measure, L2 pairing, periodic Sobolev H2(T^3) data; derivatives of cuspy quantities by 4th-order local finite differences; S by exact Fourier multiplier exp[-(xi^2/2)|k|^2], k = 2 pi f. Branches kept separate: Q, RAR, MU2, EXP, MONO (criterion B).",
+ "new_assumptions": [
+  "y*-splice of the operative MONO kernel (delta = 0.05, y_p, h_p) taken as given framework data; not re-derived.",
+  "kappa = 1/2 adopted as input (task-required); the identity is homogeneous in a0 and therefore footing-independent.",
+  "Torus cell with periodic data is the diagnostic cell; Dirichlet variants rejected (boundary annihilation layer of the heat semigroup).",
+  "Fluid-measure pairing of the energy budget via E_ph = -(a0^2/4piG) int H d3x per the regression action hash.",
+  "Gradient-clearance gamma 0.3 and cusp-clearance 5 smoothing lengths are diagnostic masks, not physics modifications."
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS042_filter_order_is_part_of_the_gravity_law.md": "87ba14533068421453d462d7226e8eff78bb8c4079d4f55bf52a5971a5c3eedd",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+  "deepseek_push/astra_spawn_ideas/STANDING.md": "not-present-in-repo-at-hash-time; no dependency of this seed claimed"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/compute_as042.py": "0dc253cb02b7d766228d48bffbfb94cb1b0f748837ea136feb29aee625093200",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/t2_sympy.py": "0d5ddb2108339e644af7374b2cad501f5295cc22b799c7d474e1b76622146c41",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/t2_sympy.json": "included via t2_sympy.py run; content 332 B",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/raw_output.json": "a34ba70ad3c8012ef76055eb7a7019bbd7931ae1b7e0a9fa748e4381c048d9d1",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/run.out": "a4cf989c0494bb8fab09dfc0c5aa05b9c2ef923ed2d57c7a4438a3820e16d90a",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/run.err": "7303d787b975aeeb18340a931fa20b301af91205da296c9e9c2eb5a265eff96a",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/as042_lean_certificate.lean": "bfb2e8205825b119dc345d066533789f062ec37b74cd7161c7bd52825bce16d8",
+  "deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/derivation.md": "b6d8bccaacbbd953694716ecd383b36a873dd566edeb39020a7b950329c6f8e9"
+ },
+ "commands": [
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes && python3 compute_as042.py > run.out 2> run.err  (exit 0; wall 6.62 s measured inside)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes && python3 t2_sympy.py (subprocess; sympy expansion)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs>/as042_lean_certificate.lean (exit 0; axioms printed {propext, Classical.choice, Quot.sound})",
+  "python3 /Users/carlzimmerman/.hermes/cache/scratch/as042_probe_1d3.py (argmax/d-shell decomposition of the 1D residual; diagnostics)",
+  "Poisson/energy cell: same compute_as042.py run (physical Gaussian cell, side 12 r_M, 24^3; max|Delta u - 4 pi G rho_b| = 3.8e-14)"
+ ],
+ "execution_bounds": {
+  "declared_wall_s": 120,
+  "enforced_wall_s": 120.121,
+  "measured_wall_s": 6.62,
+  "declared_mem_MiB": 512,
+  "enforced_mem_MiB": "RLIMIT_AS not enforceable on macOS (kernel semantics); measured peak 351.0 MiB <= 512; enforcement method recorded in run.out (resource.getrusage/RLIMIT_CPU set; RLIMIT_AS set-and-reported as unenforceable, not silently passed)",
+  "threads": 1,
+  "enforced_threads": "OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=VECLIB_MAXIMUM_THREADS=1",
+  "samples": "N=48^3 torus checks (12 xi-branch-regime configs), N=4096/2048 1D torus (sweeps), 24^3 physical Gaussian cell, 2 footings, gradients eps sweep 1e-8..1e-4"
+ },
+ "checks": {
+  "T1_3D_torus_main_identity": {
+   "RAR_mid_xi_0.125": {
+    "max|R4|/max|LHS|": 0.057,
+    "R4_over_bound": 0.9,
+    "raw_keys": "R4_over_bound_submask 0.9014; bound field key 'bound_(xi^4/8)|Lap^2 M|inf(masked)'"
+   },
+   "RAR_mid_xi_0.25": {
+    "max|R4|/max|LHS|(submasked)": 0.26,
+    "R4_over_bound_submask": 0.24
+   },
+   "RAR_deep_xi_0.125": {
+    "max|R4|/max|LHS|": 0.057,
+    "R4_over_bound": 1.03
+   },
+   "MONO_mid_xi_0.125": {
+    "max|R4|/max|LHS|(y*-splice excluded)": 0.091,
+    "R4_over_bound": 0.67
+   },
+   "MONO_mid_xi_0.25": {
+    "max|R4|/max|LHS|(submasked)": 0.26,
+    "R4_over_bound_submask": 0.1
+   },
+   "monotonic_breakdown_xi_ge_0.5": "reported: rel resid rises to 1.6..7.3 (non-perturbative regime; sub-masks empty)",
+   "note": "full per-config table incl. bounds and mask fractions in raw_output.json"
+  },
+  "T2_sympy_exact_coefficient": {
+   "coeff_of_xi2_in_expansion": 0,
+   "exact": true,
+   "linear_cell_series_match": "through O(xi^4); O(xi^6) coefficient = 2*c*x*(-21*x^4-10*x^2-3) - reported, expected nonzero (the recorded bool 'linear_cell_matches_thru_xi4': false is BY DESIGN: the compared difference is exactly the O(xi^6) term)"
+  },
+  "T3_negative_control_commutation": {
+   "naive_M_Su_error_at_xi_0.25": 0.704,
+   "naive_M_SStar_u_error": 0.694,
+   "naive_error_rel_to_true_correction": 0.797,
+   "naive_first_order_closure_residual": 0.192,
+   "commutator_term_required": true,
+   "control_capable_of_failing": true
+  },
+  "T4_1D_two_representations_of_S": {
+   "resid_rep_spectral_vs_explicit_euler": {
+    "mid_RAR": 1.84e-05,
+    "deep_RAR": 2.41e-05,
+    "mono_mid": 1.83e-05,
+    "newtonian_RAR": 0.000135
+   },
+   "sweep_mid_deep": "pointwise sup dominated by semigroup cusp-smearing tail (argmax at sub-mask inner edge d/sqrt(tau)=5.0, documented); rel 0.15-0.43 at xi=0.05-0.1, loglog slopes 1.1-1.4 (sub-4, tail-limited); Newtonian tail at absolute floors 3e-9..3e-5 with kernel scale 1e-19 at clean cells - slopes meaningless at this floor"
+  },
+  "T5_linear_cell_exact_all_orders": {
+   "rel_errors": [
+    2.54e-13,
+    2.62e-13,
+    2.79e-13
+   ],
+   "max_abs_diffs": [
+    1.39e-12,
+    6.98e-13,
+    9.31e-14
+   ],
+   "xis": [
+    0.3,
+    0.9,
+    1.7
+   ],
+   "statement": "S* c Delta S = c Delta e^{xi^2 Delta} to machine precision -> 1/2 coefficient and operator order exact"
+  },
+  "T6_gradient_identity_Q_equals_deltaW": {
+   "finite_diff_dW": 67.3677,
+   "int_Q_eta": 67.3677,
+   "rel_error": 1.16e-09,
+   "eps": 1e-06,
+   "pass": true
+  },
+  "T7_adjointness_S_star_=_S": {
+   "3D_torus_rel": [
+    7.04e-21,
+    -3.06e-19
+   ],
+   "1D_rel": 5.7e-14,
+   "pass": true,
+   "contract_note": "self-adjointness not transferred to other measures"
+  },
+  "T8_kernel_energy_shift_MONO_vs_RAR": {
+   "crossing_field_int_H_M_minus_H_R": 17.409,
+   "volume_fraction_y>y*": 0.9885,
+   "sign_statement": "E_ph[MONO]-E_ph[RAR] = -(a0^2/4piG)*int(H_M-H_R) <= 0; strict on the crossing field",
+   "prefactor_canonical_J_m5": 1.044990658e-11,
+   "prefactor_alt_J_m5": 1.51679052e-11
+  },
+  "T9_energy_budget_footings": {
+   "canonical": {
+    "a0": 9.3619e-11,
+    "rho_Lambda_kg_m3": 5.8444e-27,
+    "r_M_m": 1190600000000000.0,
+    "E_ph_J": -1.4372e+35,
+    "dE_filter_xi0.1rM_J": 1.994e+33,
+    "dE_rel": 0.0139
+   },
+   "alternative": {
+    "a0": 1.1279e-10,
+    "rho_Lambda_kg_m3": 8.4831e-27,
+    "r_M_m": 1084700000000000.0,
+    "E_ph_J": -1.5775e+35,
+    "dE_filter_xi0.1rM_J": 2.188e+33,
+    "dE_rel": 0.0139
+   },
+   "kernel_shift_on_physical_field": "exactly 0 (y_max = 0.21 < y*; H identical pointwise - reported, not tuned)"
+  },
+  "negative_control_deep_and_NT": {
+   "deep_3D_R4_over_bound": 1.03,
+   "NT_kernel_suppression": "|M| ~ 1e-19 at clean cells (stable nu forms)",
+   "NT_floor": "rel residuals at machine/FD floors, reported"
+  }
+ },
+ "tested_domain": "Numerical: flat 3-torus [0,2pi)^3, N=48 per side, field family u = A(sum cos), A in {5e-4, 4.0, 1e4}, xi in {0.0625, 0.125, 0.25, 0.5, 1.0} (3D) and {0.05, 0.1, 0.2, 0.4} (1D, N=2048/4096); masks: gamma 0.3 gradient clearance, cusp-clearance 5*sqrt(xi^2/2), MONO y*-layer exclusion |y-y*|>0.05 y*; branches RAR and MONO (Q/MU2/EXP used only for kernel identity checks). Physical Gaussian cell: side 12 r_M, 24^3, rho = M_sun-profile, Poisson residual 3.8e-14; footings canonical and alternative a0. Symbolic: 1D series in xi through xi^3 (sympy, u' > 0), linear-cell series through xi^6. Exact: Lean 4 (Mathlib): 3 theorems, axioms {propext, Classical.choice, Quot.sound}. Refinement history: N=48 chosen after N=64 exceeded 512 MiB (673 MiB); explicit-Euler at N=16384 exceeded 120 s CPU (2e10 ops) -> N=2048 (4e4 steps, ~1 s).",
+ "failed_attempts": [
+  {
+   "artifact": "results/AS042/AS042-r1-20260928T033112Z-dsv4f-hermes/run.out history; scratch as042_debug*.py",
+   "cause": "spectral Laplacian k2 missing (2*pi)^2 factor - filters/poissons off by 39.5x in early version"
+  },
+  {
+   "artifact": "scratch as042_probe_nan.py",
+   "cause": "y=0 padding cells -> nu=inf -> NaN; fixed with y-floor 1e-12"
+  },
+  {
+   "artifact": "scratch (v3-v4)",
+   "cause": "Dirichlet-cell variant rejected: heat semigroup annihilates boundary data in ~sqrt(tau) layer, O(1) boundary artifact"
+  },
+  {
+   "artifact": "v5 spectral derivatives",
+   "cause": "FFT second derivatives of |x|^(1/2) phantom cusps ring globally (N^(1/2) blow-up); replaced by 4th-order finite differences"
+  },
+  {
+   "artifact": "scratch as042_probe_1d{,2,3}.py",
+   "cause": "1D reduction sign bug: y=|u'| not C^1 -> correct term carries u'*nu'(y), not y*nu'(y); exposed by numeric sweep slope ~2"
+  },
+  {
+   "artifact": "compute history",
+   "cause": "naive nu_RAR = 1/(1-exp(-sqrt y)) rounds nu-1 to 0 for sqrt(y)>38; stable h/y form adopted"
+  },
+  {
+   "artifact": "memory probes",
+   "cause": "RLIMIT_AS unenforceable on macOS; N=64 peak 673 MiB > 512 -> N=48 (351 MiB); sympy moved to subprocess (513 -> 351 MiB)"
+  }
+ ],
+ "limitations": "1) Pointwise O(xi^4)-rate near the zero-gradient set not established: the semigroup's rounding of the |x|^(1/2) phantom cusp decays slower than xi^4 in sup norm; only the residual-vs-(xi^4/8)||Lap^2 M|| bound (ratios <= 1.03) on gradient-clear cells and integral-level control hold. 2) MONO pointwise statement excludes the y* isosurface (C^1 only); surface-localized residual excluded from sup statistics. 3) Torus cell, flat metric, periodic data only; no transfer to lapse-weighted measures or curved cells. 4) Energy numbers are synthetic solar-mass cell diagnostics (~10% grid-convergence scale), not observables. 5) No time-dependent/causal/relativistic statement. 6) xi >= 0.5 on the test field is outside the perturbative regime (breakdown reported).",
+ "next_unresolved_implication": "Gate: filtered-MONO source regularity at zero-gradient points. Quantitative bound on ||S* M[S u] - M[u] - (xi^2/2)(Delta M + DM(Delta u))||_L1(T^3) (or energy pairing) as xi -> 0 for u with finitely many nondegenerate critical points - converting the pointwise cusp-smearing caveat into an integrated O(xi^4) total-variation statement; this premise controls whether the scoped claim widens to integral form.",
+ "suggested_followup": "One bounded computation: repeat T1 residual statistics in L1 and L2 norms on the physical Gaussian cell (principal values at the cusp pairs) and fit the power of xi in L1; power >= 4 strengthens the claim to the integral statement; power ~2-3 flags a genuinely slower source-level smoothing near cusps as the next target (est. < 60 s, < 512 MiB, 1 thread).",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": "Separate primitives (framework inputs, not derived here): kappa = 1/2 adopted; G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.0856775815e16 (SI); rho_Lambda = 5.8444e-27 (canonical) / 8.4831e-27 (alternative) kg/m^3 from a0 = kappa c sqrt(G rho_Lambda); RAR kernel nu = 1/(1-exp(-sqrt y)) and MONO continuation (delta = 0.05, y* = 2.3374, y_p = 2.5396, h_p = 0.64761) as campaign data; E_ph = -(a0^2/4piG) int H d3x regression action. Derived here: the filter-order operator identity (Taylor/Frechet expansion of the semigroup and of M), the exact linear-cell remainder c k^2(1 - x - e^-x), the 1D reduction with sign(u'), the bound R4 <= (xi^4/8)||Lap^2 M|| on smooth cells, and the kernel energy-difference formula.",
+ "closure_implication": "Gate AS042-closure-1 (filter-order source identity): the claim supports the scoped form of the operative MONO filtered source 'S with 1/2 stays at order one in the quasistatic equation' - i.e. the xi^2-correction is exactly (xi^2/2)(Delta M + DM(Delta u)) with the 1/2 coefficient fixed by the filter normalization - compatible with the framework cell (same a0, kappa, kernel, filter, torus cell, periodic data) on the tested domain; closure NOT claimed: the zero-gradient regularity gate (next_unresolved_implication) and MONO y*-surface behavior remain open for the scoped claim's domain extension.",
+ "child_proposals": [
+  {
+   "id": "AS042.C01",
+   "parent": "AS042",
+   "target": "L1/L2-norm version of the filter-order identity on the physical Gaussian cell; power of xi in ||R4||_L1",
+   "controls": "same negative commutation control + linear-cell machine-precision check",
+   "dependencies": "none beyond campaign inputs",
+   "dispatch_state": "specified, NOT dispatched"
+  },
+  {
+   "id": "AS042.C02",
+   "parent": "AS042",
+   "target": "y*-splice surface contribution to the energy pairing (measure-theoretic control of the MONO C^1 layer)",
+   "controls": "surface-measure convergence checks",
+   "dependencies": "AS042-C01-style integral machinery",
+   "dispatch_state": "specified, NOT dispatched"
+  }
+ ],
+ "closure_candidate": null
+}

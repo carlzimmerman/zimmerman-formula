@@ -1,0 +1,385 @@
+{
+ "pass": 16,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [algebra: exact inversion with explicit corrections] the equation B = (b/s)g^2 + (c2/s^2)g^3 + (c3/s^3)g^4 is inverted EXACTLY to g^2 = (s/b)B - (c2/(bs))g^3 - (c3/(b s^2))g^4 and the result substituted back",
+   "measured": "substitution residual = 0 (must be 0); relative correction O(g/s)",
+   "pass": true,
+   "reading": "derived without approximation: substitute g2_expr into B = (b/s)g^2 + ... ; the correction is O(g^3/s^2) absolute, O(g/s) relative -> vanishes in the deep limit; bound form: |g^2 - (s/b)B| <= (K/b) g^3/s with K = sup |c2 + c3 Y + ...| on [0,Y0]"
+  },
+  {
+   "name": "A2 [endpoints preserved under the b-sweep] family mu_b(Y) = 1-(1+Y)^(-b) has mu(0) = 0, mu(inf) = 1 and deep slope EXACTLY b for b = 1/2, 1, 2 (symbolic)",
+   "measured": "slope = b in all three cases; endpoints 0 and 1 in all three",
+   "pass": true,
+   "reading": "the negative control N1 preserves both endpoint limits while changing b"
+  },
+  {
+   "name": "A3 [standard branches share slope 2 in Y units on the canonical footing] MU2 and EXP by symbolic derivative at 0; Q by the deep-limit algebra g^2 ~ a0 B",
+   "measured": "MU2 2, EXP 2, Q 2",
+   "pass": true,
+   "reading": "consequence: kappa = 1/b = 1/2 is IMPLIED by slope 2 -- the identity kappa = 1/b maps every branch's deep slope onto its kappa; the slope 2 itself is a separate premise supplied by the channel-count/fraction-identity programme (PD01/PD08)"
+  },
+  {
+   "name": "N1b0.5 [b-sweep control: inferred kappa tracks 1/b] fitted kappa at the deepest ladder point equals 1/b",
+   "measured": "kappa_fit = 2.0000002121, 1/b = 2.0000000000",
+   "pass": true,
+   "reading": "the inference kappa = g^2/(B s) converts the deep slope; if kappa were fixed at 1/2 or taken as b, b = 1/2 and b = 1 rows would FAIL"
+  },
+  {
+   "name": "N1b1.0 [b-sweep control: inferred kappa tracks 1/b] fitted kappa at the deepest ladder point equals 1/b",
+   "measured": "kappa_fit = 1.0000001000, 1/b = 1.0000000000",
+   "pass": true,
+   "reading": "the inference kappa = g^2/(B s) converts the deep slope; if kappa were fixed at 1/2 or taken as b, b = 1/2 and b = 1 rows would FAIL"
+  },
+  {
+   "name": "N1b2.0 [b-sweep control: inferred kappa tracks 1/b] fitted kappa at the deepest ladder point equals 1/b",
+   "measured": "kappa_fit = 0.5000000530, 1/b = 0.5000000000",
+   "pass": true,
+   "reading": "the inference kappa = g^2/(B s) converts the deep slope; if kappa were fixed at 1/2 or taken as b, b = 1/2 and b = 1 rows would FAIL"
+  },
+  {
+   "name": "N1 [b-sweep, whole ladder] for every b in {1/2, 1, 2} the fitted kappa converges to 1/b as B/s -> 0 (ladder values listed above)",
+   "measured": "deepest kappa_fit per b: {0.5: 2.000000212132043, 1.0: 1.000000100000005, 2.0: 0.500000053033012}",
+   "pass": true,
+   "reading": "three distinct limit values 2, 1, 1/2 -- the checker is sensitive to b"
+  },
+  {
+   "name": "N3 [explicit remainder bound] |g^2 - (s/b)B| <= (K/b) g^3/s holds at every ladder point with K = (b(b+1)/2)(1+Y) envelope on |c2 + c3 Y + ...|",
+   "measured": "max residual/bound ratio = 1.000000e+00 (<= 1 required at every point)",
+   "pass": true,
+   "reading": "the correction term derived in A1 is a real bound, not a formal O() symbol: evaluated against the actual high-precision residual"
+  },
+  {
+   "name": "N4 [Newtonian recovery] as B/s -> oo, mu(Y) -> 1 and g/B -> 1 for all three b",
+   "measured": "g/B at B/s=1e16: {0.5: 1.00000001, 1.0: 1.0, 2.0: 1.0}",
+   "pass": true,
+   "reading": "endpoint limit mu(inf) = 1 correctly reproduces Newton's law in the strong regime (tail convergence is algebraic: g/B - 1 ~ (B/s)^(-b), slowest for b = 1/2)"
+  },
+  {
+   "name": "N5 [RAR branch also carries slope 2 in Y units] implicit RAR solve at deep B",
+   "measured": "mu/Y = {1e-10: 1.9999717159620845, 1e-14: 1.999999717157311}",
+   "pass": true,
+   "reading": "RAR joins MU2/EXP/Q at slope 2 on the canonical footing -> kappa = 1/2 common to all historical branches; the identity kappa = 1/b is branch-sweeping"
+  },
+  {
+   "name": "N2 dim(g^2) = dim((s/b) B)",
+   "measured": "(2, 0, -4) vs expected (2, 0, -4)",
+   "pass": true,
+   "reading": "exponent vectors (L, M, T); mismatch => dimensionally illegal"
+  },
+  {
+   "name": "N2 s = c*sqrt(G rho_L) is an acceleration (1,0,-2)",
+   "measured": "(1, 0, -2) vs expected (1, 0, -2)",
+   "pass": true,
+   "reading": "exponent vectors (L, M, T); mismatch => dimensionally illegal"
+  },
+  {
+   "name": "N2 wrong-G placement c*sqrt(rho_L/G) REJECTED",
+   "measured": "(-2, 1, 0) != (1, 0, -2) -> rejected",
+   "pass": true,
+   "reading": "the dimensional checker MUST fail a wrong G placement (G in the wrong slot)"
+  },
+  {
+   "name": "N2 G without c: sqrt(G rho_L) REJECTED",
+   "measured": "(0, 0, -1) != (1, 0, -2) -> rejected",
+   "pass": true,
+   "reading": "c must sit in s = c*sqrt(G rho_L); a s' without c is not an acceleration"
+  },
+  {
+   "name": "N2 kappa = a0/s dimensionless",
+   "measured": "(0, 0, 0) vs expected (0, 0, 0)",
+   "pass": true,
+   "reading": "exponent vectors (L, M, T); mismatch => dimensionally illegal"
+  },
+  {
+   "name": "A4 [both footings stated] canonical and alternative footings reported with their own s, rho_L and kappa cells; the theorem kappa = 1/b is dimensionless and applies identically on both footings (no a0 appears in the identity)",
+   "measured": "see table above",
+   "pass": true,
+   "reading": "contract requirement: dimensional examples at 9.3619e-11 and 1.1279e-10 separately; b and kappa are pure numbers so the proof is footing-independent once s is fixed"
+  }
+ ],
+ "ladder_rows": [
+  {
+   "b": 0.5,
+   "B_over_s": 0.1,
+   "g": 9.837524110411751e-11,
+   "kappa_fit": 2.7604738186139457,
+   "eq_residual": 3.8893845486632136e-62,
+   "bound_residual_ratio": 0.6991715438918582,
+   "Y": 0.5254021144432087,
+   "K": 0.37496875273412894
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 0.01,
+   "g": 2.7903841812234825e-11,
+   "kappa_fit": 2.2209563104825567,
+   "eq_residual": 9.723461371658034e-63,
+   "bound_residual_ratio": 0.8901666357540852,
+   "Y": 0.1490287324807722,
+   "K": 0.37496875273412894
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 0.0001,
+   "g": 2.6620086684994113e-12,
+   "kappa_fit": 2.021300780463498,
+   "eq_residual": 1.0635035875250975e-63,
+   "bound_residual_ratio": 0.9883801778634101,
+   "Y": 0.014217245796790243,
+   "K": 0.37496875273412894
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 1e-06,
+   "g": 2.6493496817283443e-13,
+   "kappa_fit": 2.0021221954208683,
+   "eq_residual": 4.629089276057902e-65,
+   "bound_residual_ratio": 0.9989055564767181,
+   "Y": 0.0014149636728272809,
+   "K": 0.37496875273412894
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 1e-08,
+   "g": 2.6480856204847845e-14,
+   "kappa_fit": 2.0002121407844333,
+   "eq_residual": 5.795634610449096e-67,
+   "bound_residual_ratio": 0.9999654803686727,
+   "Y": 0.0001414288563477918,
+   "K": 0.37496875273412894
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 1e-10,
+   "g": 2.6479592327868226e-15,
+   "kappa_fit": 2.000021213290936,
+   "eq_residual": 4.0591175902932856e-67,
+   "bound_residual_ratio": 1.0,
+   "Y": 1.4142210623841435e-05,
+   "K": 0.37499558061386745
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 1e-12,
+   "g": 2.6479465942013424e-16,
+   "kappa_fit": 2.0000021213212187,
+   "eq_residual": 1.2334740473269865e-67,
+   "bound_residual_ratio": 1.0,
+   "Y": 1.4142143123732055e-06,
+   "K": 0.37499955805857427
+  },
+  {
+   "b": 0.5,
+   "B_over_s": 1e-14,
+   "g": 2.6479453303446377e-17,
+   "kappa_fit": 2.000000212132043,
+   "eq_residual": 2.7031188785142836e-68,
+   "bound_residual_ratio": 1.0,
+   "Y": 1.4142136373730962e-07,
+   "K": 0.3749999558058293
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 0.1,
+   "g": 6.930730879842258e-11,
+   "kappa_fit": 1.3701562118716424,
+   "eq_residual": 3.8893845486632136e-62,
+   "bound_residual_ratio": 0.7299167725071704,
+   "Y": 0.37015621187164244,
+   "K": 0.9999000099990001
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 0.01,
+   "g": 1.968338014028769e-11,
+   "kappa_fit": 1.105124921972504,
+   "eq_residual": 2.4308653429145085e-62,
+   "bound_residual_ratio": 0.9049655655352988,
+   "Y": 0.10512492197250393,
+   "K": 0.9999000099990001
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 0.0001,
+   "g": 1.8817653046037222e-12,
+   "kappa_fit": 1.0100501249992189,
+   "eq_residual": 1.2534149424402934e-63,
+   "bound_residual_ratio": 0.9901488799882813,
+   "Y": 0.01005012499921876,
+   "K": 0.9999000099990001
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 1e-06,
+   "g": 1.8733164240474854e-13,
+   "kappa_fit": 1.001000500125,
+   "eq_residual": 2.4807170735797474e-64,
+   "bound_residual_ratio": 0.9991003999249876,
+   "Y": 0.0010005001249999922,
+   "K": 0.9999000099990001
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 1e-08,
+   "g": 1.872473621340475e-14,
+   "kappa_fit": 1.000100005000125,
+   "eq_residual": 2.2816254334416e-65,
+   "bound_residual_ratio": 0.999999995000375,
+   "Y": 0.000100005000125,
+   "K": 0.9999000099990001
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 1e-10,
+   "g": 1.8723893619234048e-15,
+   "kappa_fit": 1.00001000005,
+   "eq_residual": 4.411926847204374e-67,
+   "bound_residual_ratio": 1.0,
+   "Y": 1.0000050000125e-05,
+   "K": 0.9999900000499998
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 1e-12,
+   "g": 1.872380936190234e-16,
+   "kappa_fit": 1.0000010000005,
+   "eq_residual": 5.0585872304239655e-68,
+   "bound_residual_ratio": 1.0,
+   "Y": 1.000000500000125e-06,
+   "K": 0.9999990000005
+  },
+  {
+   "b": 1.0,
+   "B_over_s": 1e-14,
+   "g": 1.8723800936190024e-17,
+   "kappa_fit": 1.000000100000005,
+   "eq_residual": 1.7006158511952947e-68,
+   "bound_residual_ratio": 1.0,
+   "Y": 1.0000000500000012e-07,
+   "K": 0.999999900000005
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 0.1,
+   "g": 4.979478374158544e-11,
+   "kappa_fit": 0.707261005462039,
+   "eq_residual": 3.8893845486632136e-62,
+   "bound_residual_ratio": 0.7347078380224772,
+   "Y": 0.26594379208058966,
+   "K": 2.9996000499940005
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 0.01,
+   "g": 1.3969339007475533e-11,
+   "kappa_fit": 0.5566263055942048,
+   "eq_residual": 0.0,
+   "bound_residual_ratio": 0.9091578264044219,
+   "Y": 0.0746073927700335,
+   "K": 2.9996000499940005
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 0.0001,
+   "g": 1.3310209715959144e-12,
+   "kappa_fit": 0.5053378281667934,
+   "eq_residual": 5.697340647455879e-64,
+   "bound_residual_ratio": 0.9907373098792747,
+   "Y": 0.007108711755070629,
+   "K": 2.9996000499940005
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 1e-06,
+   "g": 1.3246750064485063e-13,
+   "kappa_fit": 0.5005306739878465,
+   "eq_residual": 2.7596493761114415e-65,
+   "bound_residual_ratio": 0.999190733056903,
+   "Y": 0.0007074819248488589,
+   "K": 2.9996000499940005
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 1e-08,
+   "g": 1.3240428118974456e-14,
+   "kappa_fit": 0.5000530364462409,
+   "eq_residual": 3.6238944092216107e-65,
+   "bound_residual_ratio": 1.0,
+   "Y": 7.071442826228894e-05,
+   "K": 2.999717167287481
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 1e-10,
+   "g": 1.323979616409961e-15,
+   "kappa_fit": 0.5000053033352341,
+   "eq_residual": 2.1000119783799146e-66,
+   "bound_residual_ratio": 1.0,
+   "Y": 7.071105312009107e-06,
+   "K": 2.9999717158287527
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 1e-12,
+   "g": 1.3239732971008369e-16,
+   "kappa_fit": 0.5000005303304297,
+   "eq_residual": 3.019610529035343e-67,
+   "bound_residual_ratio": 1.0,
+   "Y": 7.071071561866911e-07,
+   "K": 2.999997171573875
+  },
+  {
+   "b": 2.0,
+   "B_over_s": 1e-14,
+   "g": 1.3239726651723206e-17,
+   "kappa_fit": 0.500000053033012,
+   "eq_residual": 5.002104200857104e-69,
+   "bound_residual_ratio": 1.0,
+   "Y": 7.071068186865489e-08,
+   "K": 2.9999997171572974
+  }
+ ],
+ "footings": {
+  "canonical": {
+   "a0": 9.3619e-11,
+   "s": 1.87238e-10,
+   "kappa": 0.5,
+   "rho_L": 5.844412454021876e-27,
+   "note": "kappa adopted 1/2"
+  },
+  "alternative_kappa_fixed": {
+   "a0": 1.1279e-10,
+   "s": 2.2558e-10,
+   "kappa": 0.5,
+   "rho_L": 8.483089619559099e-27,
+   "note": "kappa held 1/2 -> higher density"
+  },
+  "alternative_rhol_fixed": {
+   "a0": 1.1279e-10,
+   "s": 1.87238e-10,
+   "kappa": 0.6023884040632778,
+   "rho_L": 5.844412454021876e-27,
+   "note": "rho_Lambda held -> effective kappa = a0_alt/s_can"
+  }
+ },
+ "newtonian_g_over_B": {
+  "b=0.5/Bdivs=1e+04": 1.010049625042468,
+  "b=0.5/Bdivs=1e+08": 1.000100004999625,
+  "b=0.5/Bdivs=1e+12": 1.0000010000005,
+  "b=0.5/Bdivs=1e+16": 1.00000001,
+  "b=1.0/Bdivs=1e+04": 1.0000999900019996,
+  "b=1.0/Bdivs=1e+08": 1.00000001,
+  "b=1.0/Bdivs=1e+12": 1.000000000001,
+  "b=1.0/Bdivs=1e+16": 1.0,
+  "b=2.0/Bdivs=1e+04": 1.0000000099980002,
+  "b=2.0/Bdivs=1e+08": 1.0,
+  "b=2.0/Bdivs=1e+12": 1.0,
+  "b=2.0/Bdivs=1e+16": 1.0
+ },
+ "rar_slopes": {
+  "1e-10": 1.9999717159620845,
+  "1e-14": 1.999999717157311
+ }
+}

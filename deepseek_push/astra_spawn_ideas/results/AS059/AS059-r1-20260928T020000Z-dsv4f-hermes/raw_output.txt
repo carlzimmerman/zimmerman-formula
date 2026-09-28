@@ -1,0 +1,224 @@
+====================================================================================================
+AS059 -- deep coefficient in a general static action
+====================================================================================================
+
+[0] FRAMEWORK FOOTINGS (mass-density convention)
+    rho_Lambda (canonical)   = 5.84441245402e-27 kg/m^3
+    s = c sqrt(G rho_L)      = 1.87238e-10 m/s^2  (= 2*a0_can: 1.0)
+    alternative footing, rho fixed : kappa_alt = a0_alt/s = 0.602388404063  -> deep slope n = 1.660058516 (NOT an integer: not a channel count)
+    alternative footing, kappa fixed: rho' = (a0_alt/a0_can)^2 rho_L = 1.4514871574 * rho_L
+    r_M (1e11 M_sun) canonical    = 12201.9668076 pc  (12.202 kpc)
+    r_M (1e11 M_sun) alternative  = 11116.7167432 pc  (11.1167 kpc)
+
+[1] THE VARIATIONAL DERIVATION (all constants retained)
+    kinetic variation integrand:  A s^2 K'(Y) (grad Phi . grad dPhi)/(s |grad Phi|)
+    |grad Phi| = s Y   =>  flux coefficient = A s^2 K'(Y)/(s^2 Y) = A K'(Y)/Y
+    E-L equation:  div[ A (K'(Y)/Y) grad Phi ] = B rho
+    response after normalization mu(Y) := K'(Y)/(2Y)  ->  E-L: div[ 2A mu(Y) grad Phi ] = B rho
+  [PASS] A1 [E-L from the action, generic K; the s's cancel into A K'/Y = 2A mu]
+         measured: div[A K'(Y)/Y gradPhi] = B rho
+         tolerance: identically (|grad Phi| = s Y)
+
+[2] VACUUM BOUNDARY CONDITIONS -> the CUBIC coefficient leads the deep response
+    K(Y) = k0 + k1Y + k2Y^2 + k3Y^3  ->  mu(Y) = 3*Y*k3/2 + k2 + k1/(2*Y)
+    frozen vacuum (PD08 steps 1-3, restated):  K(0)=0 (no spurious vacuum kinetic),
+    K'(0)=0 (zero drive),  mu(0)=0 (response vanishes at zero drive -> deep regime exists)
+    => k0 = k1 = k2 = 0 ;  mu(Y) = (3 k3 / 2) Y ;  deep slope n = mu'(0) = 3 k3 / 2
+    => k3 = 2 n / 3   (the cubic deep coefficient and the slope are one freedom)
+  [PASS] A2 [vacuum conditions kill the linear and quadratic terms; cubic sets the slope]
+         measured: k3 = 2n/3; mu'(0) = 3k3/2; mu(0) = 3*Y*k3/2
+         tolerance: exact
+
+[3] DEEP MATCHING -> the combination of A, B, k3 that sets kappa
+    flux: 4 pi r^2 (2A mu g) = B M_b ; deep mu = n g/s  =>  g^2 = B M_b s / (8 pi A n r^2)
+    g^2 = a0 g_N  with  a0 = B*s/(8*pi*A*G*n)
+    kappa = a0 / s = B/(8*pi*A*G*n)
+    Newtonian normalization mu(inf)=1 : Lap Phi = (B/2A) rho_b  =  4 pi G rho_b  =>  B = 8 pi A G
+    => on the physical pair:  kappa = 1/n ;  cubic form: kappa = B/(12 pi A G k3)
+  [PASS] A3 [exact combination of A, B and the cubic deep coefficient]
+         measured: kappa = B/(8 pi A G n) = B/(12 pi A G k3); with B = 8 pi A G: kappa = 1/n = 2/(3 k3)
+         tolerance: exact symbolic
+  [PASS] A4 [cubic form] kappa = B/(12 pi A G k3)
+         measured: kappa = B/(12*pi*A*G*k3)
+         tolerance: exact
+
+[4] THE EXACT ACTION FAMILY (conditional MU_n response)
+    mu_n(Y) = 1 - 1/(Yv + 1)**n ;  slope at 0 = n ;  limit at inf = 1
+    K_n(Y) = 2*int_0^Y xi (1-(1+xi)^-n) dxi ;  K_n' = 2*Yv**2*n - Yv**3*n*(n + 1) + O(Yv**4)
+  [PASS] A5 [family reproduces slope n and saturation 1]
+         measured: mu_n'(0) = n ; mu_n(inf) = 1
+         tolerance: exact for all n > 0
+    => cubic coefficient of K_n is 2n/3 (k3 = 2n/3), confirming A2 in the exact family
+
+[5] NUMERICS: full E-L solves on the diagnostic grid (kappa in {1/4,1/2,1,2})
+  [PASS] N1a[0.25|r=10^-7 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 1.6e-13 (dev = 2.56e-54, pred = Y^-n = 2.56e-54, Y = 2.5e+13)
+         tolerance: < 0.001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1a[0.25|r=10^-4 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 1.6e-7 (dev = 2.56e-30, pred = Y^-n = 2.56e-30, Y = 2.5e+7)
+         tolerance: < 0.0001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1b[0.25|r=10^7 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 1.5625e-16 (dev = 6.25e-8, pred2 = 6.25e-8, Y = 2.5e-8)
+         tolerance: < 0.001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N1b[0.25|r=10^15 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 1.5625e-32 (dev = 6.25e-16, pred2 = 6.25e-16, Y = 2.5e-16)
+         tolerance: < 0.000001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N2[0.25] full E-L substitution residual over 301-pt grid (log r/r_M = -15..15)
+         measured: max |mu_n(g/s) g - h|/h = 5.62251e-66
+         tolerance: < 1e-60 (80-dps floor)
+  [PASS] N3a[0.25] leading neglected terms: g^2/g_deep^2 - 1 = ((n+1)/2)Y + ((n+1)(n-1)/12)Y^2, domain Y << 1
+         measured: measured 6.25000000027e-11 vs predicted 6.25000000027e-11 at r = 1e10 r_M (Y = 2.5e-11); c-coeff check (meas-aY)/Y^2 = 1.25 vs c = 1.25
+         tolerance: leading + next order match; c-coefficient verified
+  [PASS] N3b[0.25] corrected a0 recovery from the deep grid = s/n (kappa = a0/s recovered)
+         measured: deepest-point error 9.76562e-48 (Y^3 floor); |err|/Y^3 at r = 1e6 r_M = 0.625
+         tolerance: deepest < 1e-30 (Y^3 drop); next-order coefficient O(1) verified
+  [PASS] N1a[0.5|r=10^-7 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 4.0e-14 (dev = 4.0e-28, pred = Y^-n = 4.0e-28, Y = 5.0e+13)
+         tolerance: < 0.001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1a[0.5|r=10^-15 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 4.14845e-22 (dev = 4.0e-60, pred = Y^-n = 4.0e-60, Y = 5.0e+29)
+         tolerance: < 0.000001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1b[0.5|r=10^7 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 2.08333e-16 (dev = 7.5e-8, pred2 = 7.5e-8, Y = 5.0e-8)
+         tolerance: < 0.001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N1b[0.5|r=10^15 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 2.08333e-32 (dev = 7.5e-16, pred2 = 7.5e-16, Y = 5.0e-16)
+         tolerance: < 0.000001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N2[0.5] full E-L substitution residual over 301-pt grid (log r/r_M = -15..15)
+         measured: max |mu_n(g/s) g - h|/h = 8.81996e-67
+         tolerance: < 1e-60 (80-dps floor)
+  [PASS] N3a[0.5] leading neglected terms: g^2/g_deep^2 - 1 = ((n+1)/2)Y + ((n+1)(n-1)/12)Y^2, domain Y << 1
+         measured: measured 7.50000000034e-11 vs predicted 7.50000000034e-11 at r = 1e10 r_M (Y = 5.0e-11); c-coeff check (meas-aY)/Y^2 = 0.25 vs c = 0.25
+         tolerance: leading + next order match; c-coefficient verified
+  [PASS] N3b[0.5] corrected a0 recovery from the deep grid = s/n (kappa = a0/s recovered)
+         measured: deepest-point error 1.5625e-47 (Y^3 floor); |err|/Y^3 at r = 1e6 r_M = 0.125
+         tolerance: deepest < 1e-30 (Y^3 drop); next-order coefficient O(1) verified
+  [PASS] N1a[1.0|r=10^-7 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 1.6767e-67 (dev = 1.0e-14, pred = Y^-n = 1.0e-14, Y = 1.0e+14)
+         tolerance: < 0.001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1a[1.0|r=10^-15 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 1.69424e-51 (dev = 1.0e-30, pred = Y^-n = 1.0e-30, Y = 1.0e+30)
+         tolerance: < 0.000001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1b[1.0|r=10^7 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 2.66274e-68 (dev = 1.0e-7, pred2 = 1.0e-7, Y = 1.0e-7)
+         tolerance: < 0.001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N1b[1.0|r=10^15 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 4.66939e-53 (dev = 1.0e-15, pred2 = 1.0e-15, Y = 1.0e-15)
+         tolerance: < 0.000001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N2[1.0] full E-L substitution residual over 301-pt grid (log r/r_M = -15..15)
+         measured: max |mu_n(g/s) g - h|/h = 8.8689e-67
+         tolerance: < 1e-60 (80-dps floor)
+  [PASS] N3a[1.0] n = 1 exactness: g^2/g_deep^2 - 1 = Y identically
+         measured: measured 1.00000000005e-10 vs aY = 1.00000000005e-10 at r = 1e10 r_M (Y = 1.0e-10); c = (n+1)(n-1)/12 = 0 exactly
+         tolerance: Y^2 and higher corrections vanish identically for the n = 1 member
+  [PASS] N3b[1.0] corrected a0 recovery from the deep grid = s/n (kappa = a0/s recovered)
+         measured: deepest-point error 4.66939e-68 (Y^3 floor); |err|/Y^3 at r = 1e6 r_M = 8.55142e-58
+         tolerance: deepest < 1e-30 (Y^3 drop); next-order coefficient O(1) verified
+  [PASS] N1a[2.0|r=10^-7 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 7.07107e-8 (dev = 7.07107e-8, pred = Y^-n = 7.07107e-8, Y = 2.0e+14)
+         tolerance: < 0.001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1a[2.0|r=10^-15 r_M] Newtonian approach rate: g/g_N - 1 ~ Y^-n
+         measured: |dev/pred - 1| = 7.07107e-16 (dev = 7.07107e-16, pred = Y^-n = 7.07107e-16, Y = 2.0e+30)
+         tolerance: < 0.0001: exact in the r -> 0 limit (flux identity), finite check at the edge
+  [PASS] N1b[2.0|r=10^7 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 1.66667e-15 (dev = 1.5e-7, pred2 = 1.5e-7, Y = 2.0e-7)
+         tolerance: < 0.001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N1b[2.0|r=10^15 r_M] deep approach rate: g^2/g_deep^2 - 1 = aY + cY^2
+         measured: |dev/pred2 - 1| = 1.66667e-31 (dev = 1.5e-15, pred2 = 1.5e-15, Y = 2.0e-15)
+         tolerance: < 0.000001: exact in the Y -> 0 limit, finite approach rate measured
+  [PASS] N2[2.0] full E-L substitution residual over 301-pt grid (log r/r_M = -15..15)
+         measured: max |mu_n(g/s) g - h|/h = 4.78512e-67
+         tolerance: < 1e-60 (80-dps floor)
+  [PASS] N3a[2.0] leading neglected terms: g^2/g_deep^2 - 1 = ((n+1)/2)Y + ((n+1)(n-1)/12)Y^2, domain Y << 1
+         measured: measured 1.50000000009e-10 vs predicted 1.50000000009e-10 at r = 1e10 r_M (Y = 2.0e-10); c-coeff check (meas-aY)/Y^2 = -0.0625 vs c = -0.0625
+         tolerance: leading + next order match; c-coefficient verified
+  [PASS] N3b[2.0] corrected a0 recovery from the deep grid = s/n (kappa = a0/s recovered)
+         measured: deepest-point error 2.5e-46 (Y^3 floor); |err|/Y^3 at r = 1e6 r_M = 0.0312499
+         tolerance: deepest < 1e-30 (Y^3 drop); next-order coefficient O(1) verified
+  [PASS] A6 [diagnostics are DISTINCT actions, not one law relabelled]
+         measured: kappa in {1/4,1/2,1,2} -> recovered deep coefficients s/n pairwise distinct
+         tolerance: pairwise distinct (1/4 < 1/2 < 1 < 2)
+
+[6] NEGATIVE CONTROL: pre-set A,B vs general variation (lost freedom)
+    pre-set (A0,B0): kappa = 1/n = 0.5
+    general, B' = 2B0, same A0 and n = 2: kappa = B'/(8 pi A0 G n) = 1.0
+    measured kappa (corrected) from the FULL E-L solve (deep radii): 1.0, 1.0
+  [PASS] NC1 [control is capable of failing] the pre-set reading (kappa = 1/2) fails for the perturbed pair; the general combination survives
+         measured: general predicts 1.0; measured (corrected) 1.0; pre-set claim 0.5 is wrong by 0.5
+         tolerance: measured kappa must equal the general formula and contradict the pre-set value
+  [PASS] NC2 [only the ratio B/A (plus n) matters] simultaneous rescale (A,B)->(2A,2B) leaves every field unchanged
+         measured: max |g(2A,2B)/g(A,B) - 1| over the 141-pt grid = 0.0
+         tolerance: exact field identity
+    floor control (k2 = 0.1, n = 2): deep-region log-slope d ln g / d ln r = -2.0 (MOND deep: -1/2)
+  [PASS] NC3 [quadratic floor destroys the deep regime] with k2 != 0 the slope is the floor branch, not -1/2
+         measured: measured -2.0 vs deep -1/2
+         tolerance: floor branch slope ~ -2 (Newtonian-like), deep -1/2 rejected
+    linear-term control (k1 != 0): inferred a0/s at two radii: 0.375 vs 0.25
+  [PASS] NC4 [a linear term in K destroys scale-invariance of the matched coefficient]
+         measured: |kappa_A - kappa_B| = 0.125 >> 0
+         tolerance: inferred coefficient depends on radius (no unique deep scale)
+
+[7] DIMENSIONAL SUBSTITUTION, BOTH FOOTINGS (SI)
+    canonical: on-shell E-L residual worst = 1.04853e-75 over 6 radii; deep-line substitution residual = 7.49995e-6 (O(Y): the deep LINE is an asymptotic solution, expected ~ ((n+1)/2)Y = 7.5e-6)
+  [PASS] A7a [SI substitution into the original E-L, canonical footing]
+         measured: worst |mu g - h|/h = 1.04853e-75 (exact solve) ; deep-line residual 7.49995e-6 with O(Y) prediction 7.5e-6
+         tolerance: exact solve < 1e-60; deep-line residual matches the leading neglected term (aY)
+    alternative (fixed kappa = 1/2): s' = 2.2558e-10 = 2 a0_alt (1.0); on-shell residual = 2.62539e-74; deep-line residual = 7.49995e-6 (pred 7.5e-6)
+  [PASS] A7b [SI substitution into the original E-L, alternative footing, fixed kappa]
+         measured: worst |mu g - h|/h = 2.62539e-74
+         tolerance: < 1e-60 (exact solve); deep-line residual O(Y)
+    alternative (fixed rho): required slope n = 1.660058516 (non-integer); on-shell residual = 6.10053e-74; deep-line residual = 8.01188e-6 (pred 8.01194e-6)
+  [PASS] A7c [SI substitution, alternative footing, fixed density -- action must carry non-integer slope]
+         measured: worst |mu g - h|/h = 6.10053e-74; n_alt = 1.6600585 is not an integer
+         tolerance: < 1e-60 (exact solve); integrality is EXTRA structure, not action-imposed
+
+[8] BRANCH TABLE at fixed y = B/a0 (comparison only; shared deep limit vs distinct finite laws)
+    y = 1.0e-6: Q x=0.0010000005 x/xMU2=0.99962554  RAR x=0.001000500083 x/xMU2=1.0001249  MU2 x=0.001000375102 x/xMU2=1.0  EXP x=0.001000250073 x/xMU2=0.99987502  MONO x=0.001000500083 x/xMU2=1.0001249
+    y = 0.1: Q x=0.331662479 x/xMU2=0.92879189  RAR x=0.3688586158 x/xMU2=1.0329564  MU2 x=0.3570901956 x/xMU2=1.0  EXP x=0.3437598198 x/xMU2=0.96266944  MONO x=0.3688586158 x/xMU2=1.0329564
+    y = 1.0: Q x=1.414213562 x/xMU2=0.94959002  RAR x=1.581976707 x/xMU2=1.0622365  MU2 x=1.489288572 x/xMU2=1.0  EXP x=1.349976485 x/xMU2=0.90645729  MONO x=1.581976707 x/xMU2=1.0622365
+    y = 2.3374: Q x=2.792998167 x/xMU2=0.98942654  RAR x=2.984360287 x/xMU2=1.057217  MU2 x=2.822845415 x/xMU2=1.0  EXP x=2.537967588 x/xMU2=0.89908132  MONO x=2.984360287 x/xMU2=1.057217
+    y = 10.0: Q x=10.48808848 x/xMU2=1.0209561  RAR x=10.44200179 x/xMU2=1.0164698  MU2 x=10.27281058 x/xMU2=1.0  EXP x=10.00045381 x/xMU2=0.97348761  MONO x=10.67753904 x/xMU2=1.039398
+    y = 1000000.0: Q x=1000000.5 x/xMU2=1.0000005  RAR x=1000000.0 x/xMU2=1.0  MU2 x=1000000.0 x/xMU2=1.0  EXP x=1000000.0 x/xMU2=1.0  MONO x=1000001.043 x/xMU2=1.000001
+  [PASS] B1[Q] shared deep limit: x^2/y -> 1 as y -> 0 (rate y)
+         measured: x^2/y - 1 = 1.0e-10
+         tolerance: approach rates: Q ~ y = 1e-10, others ~ sqrt(y) ~ 1e-5
+  [PASS] B1[RAR] shared deep limit: x^2/y -> 1 as y -> 0 (rate sqrt(y))
+         measured: x^2/y - 1 = 1.0000042e-5
+         tolerance: approach rates: Q ~ y = 1e-10, others ~ sqrt(y) ~ 1e-5
+  [PASS] B1[MU2] shared deep limit: x^2/y -> 1 as y -> 0 (rate sqrt(y))
+         measured: x^2/y - 1 = 7.5000344e-6
+         tolerance: approach rates: Q ~ y = 1e-10, others ~ sqrt(y) ~ 1e-5
+  [PASS] B1[EXP] shared deep limit: x^2/y -> 1 as y -> 0 (rate sqrt(y))
+         measured: x^2/y - 1 = 5.0000208e-6
+         tolerance: approach rates: Q ~ y = 1e-10, others ~ sqrt(y) ~ 1e-5
+  [PASS] B1[MONO] shared deep limit: x^2/y -> 1 as y -> 0 (rate sqrt(y))
+         measured: x^2/y - 1 = 1.0000042e-5
+         tolerance: approach rates: Q ~ y = 1e-10, others ~ sqrt(y) ~ 1e-5
+  [PASS] B2[Q] finite-y disagreement is real (not a relabelled law): x/x_MU2 at y = 0.1
+         measured: x/xMU2 = 0.9287918937
+         tolerance: deviates from 1 (3.5-11%); MU2 is the reference by construction
+  [PASS] B2[RAR] finite-y disagreement is real (not a relabelled law): x/x_MU2 at y = 0.1
+         measured: x/xMU2 = 1.032956436
+         tolerance: deviates from 1 (3.5-11%); MU2 is the reference by construction
+  [PASS] B2[EXP] finite-y disagreement is real (not a relabelled law): x/x_MU2 at y = 0.1
+         measured: x/xMU2 = 0.9626694432
+         tolerance: deviates from 1 (3.5-11%); MU2 is the reference by construction
+  [PASS] B2[MONO] finite-y disagreement is real (not a relabelled law): x/x_MU2 at y = 0.1
+         measured: x/xMU2 = 1.032956436
+         tolerance: deviates from 1 (3.5-11%); MU2 is the reference by construction
+
+[9] SIGN LEDGER SUMMARY (units and signs)
+    action:        E[Phi] = A s^2 int K(|grad Phi|/s) dV + B int rho_b Phi dV
+    [A] = kg s^2 / m^3 (with s in m/s^2);  [B] = 1 ;  [s] = m/s^2 ;  [Phi] = m^2/s^2
+    variation:       dE = int -div[ A (K'/Y) grad Phi ] dPhi dV + B int rho_b dPhi dV
+    E-L:             div[ A K'(Y)/Y grad Phi ] = B rho_b     (= div[2A mu grad Phi] = B rho_b)
+    flux balance:    4 pi r^2 (2A mu g) = B M_b
+    Newtonian limit: mu -> 1  =>  Lap Phi = (B/2A) rho_b ;  physical branch (Phi = -GM/r,
+                     attractive, g = |grad Phi|):  B/2A = +4 pi G  =>  B = 8 pi A G
+                     (corpus PD08 uses Phi = +GM/r with B = -1: the SAME physics under Phi -> -Phi)
+    deep:            mu = n Y  =>  g^2 = (B s/(8 pi A G n)) g_N  =>  a0 = B s/(8 pi A G n)
+    kappa:           kappa = a0/s = B/(8 pi A G n) = B/(12 pi A G k3) ;  physical pair: 1/n
+
+
+AS059 COMPUTE COMPLETE: 50/50 checks PASS; elapsed 0.874s (alarm(120) enforced; single thread, no subprocesses)
+WROTE /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS059/AS059-r1-20260928T020000Z-dsv4f-hermes/raw_output.json

@@ -1,0 +1,211 @@
+{
+ "schema_version": 2,
+ "task_id": "AS006",
+ "task_sha256": "4a600837e652d713cfbad387064ab3af3ec23ae87a6bbfbc6855b564c4cd1916",
+ "run_id": "run_20260927T201133_AS006",
+ "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes subagent on macOS; identity from runtime context, not inferred from the deepseek_push path",
+ "started_utc": "2026-09-27T20:11:33+00:00",
+ "finished_utc": "2026-09-27T20:35:34+00:00",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "Fix G=6.67430e-11 m^3 kg^-1 s^-2, a baryon mass M_b>0, an adopted single scale a0>0 on either registered footing (canonical 9.3619e-11, alternative 1.1279e-10 m/s^2, kappa=1/2 adopted, fitted not derived), a spherical point baryon B=G*M_b/r^2, r>0, no external field and no second scale (heat filter xi -> 0, equivalently r >> xi), and any kernel of the form g = B*psi(B/a0) [Q, RAR, MU2, historical EXP, unfiltered MONO on its RAR segment]. Then EXACTLY: B/a0 = x^-2 with x = r/r_M, r_M = sqrt(G*M_b/a0); the reduced profile g/a0 = x^-2 psi(x^-2) is a fixed function of x alone with zero free parameters beyond the adopted footing; deep limit g/a0 = x^-1 = r_M/r so v_flat^4 = G*M_b*a0 (v_flat^2 = C = sqrt(G*M_b*a0)); Newtonian limit g -> B. The scaling exponent 1/2 in r_M is forced by dimensional analysis: the linear candidate r_M' = G*M_b/a0 has units L^2 and is rejected by the (active) negative control. Both footings give the SAME dimensionless function F(x): r_M(alt/can)=0.91106, v_flat(alt/can)=1.04768; rho_Lambda(can)=5.8444e-27, rho_Lambda(alt)=8.4831e-27 kg/m^3; if rho is held at canonical while adopting a0=1.1279e-10 the effective kappa is 0.60239 (footings never share both fixed rho and fixed kappa). Lean-certified (7 theorems, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound}). Scoping conditions are enumerated, not fitted; without them the reduction is not claimed. kappa=1/2 remains adopted (no independent derivation supplied by this task).",
+ "framework_cell": {
+  "action_or_identity": "CORE scale identities of task group A01: a0 = kappa*c*sqrt(G*rho_Lambda), kappa=1/2 adopted; r_M = sqrt(G*M_b/a0); v_flat^4 = G*M_b*a0; B/a0 = x^-2 for the spherical point baryon. No covariant action is varied in this seed (identity-level task).",
+  "branches_distinct": [
+   "Q: g^2 = B^2 + a0*B",
+   "RAR: nu(y) = 1/(1-exp(-sqrt(y)))",
+   "MU2: mu = 1-(1+g/(2a0))^-2 (implicit)",
+   "EXP: historical AQUAL mu = 1-exp(-x) (implicit), comparison branch only",
+   "MONO: operative spliced phantom h'_mono = max(h'_RAR, delta*h_p/(y+y_p)), delta=0.05, y_p=2.53964, h_p=0.647610, y*=2.33741 (root of derivative equality), x*=0.6541; used unfiltered at the algebraic level in this task"
+  ],
+  "filter": "S = exp[(xi^2/2)Delta], xi >= 0.10 pc (canonical) / 0.15 pc (alt) (Cassini floor). Entered only in the gate-transfer section 8 of derivation.md: |grad S u_N|/a0 = x^-2 [erf(z) - (2z/sqrt(pi)) e^-z^2], z = r/(sqrt(2)xi), relative deviation eps = -(2/sqrt(pi)) z e^-z^2 (1+O(z^-2)); log10|eps(r=r_M)| = -3.2e4 to -1e10 for M_b in 1e6..1e12 M_sun on both footings. Exact x-only reduction is a property of the unfiltered point-source law; the operative branch inherits it with exponentially suppressed corrections on r >> xi.",
+  "gate": "A01 scale/units/independent-inputs gate feeding amended requirement 1 (filtered nu_mono deep-MOND clause) and requirement 13 (a0-Lambda, kappa adopted), causality criterion B (not exercised here)",
+  "couplings": "single Newtonian G = 6.67430e-11 m^3 kg^-1 s^-2 for the point baryon; G_N/G_bare/G_cosmo kept separate globally, only the point-source G enters this task; no G_E/G_N vacuum-curvature identity used",
+  "parameters": "a0 footings {9.3619e-11, 1.1279e-10} m/s^2; kappa = 1/2 adopted; M_b in {1e6, 1e9, 1e12} M_sun; delta = 0.05 (MONO)",
+  "scale_footing": "both: canonical (rho_Lambda = rho_DE, 5.8444e-27 kg/m^3) and alternative (rho_total, 8.4831e-27 kg/m^3) carried separately throughout; dimensionless theorem footing-independent by construction",
+  "boundaries": "spherical symmetry; point baryon at origin; r > 0; exterior fall-off; no external field; kernel argument B/a0 only",
+  "initial_conditions": "none (static identity-level task)",
+  "units": "SI (m, kg, s) unless noted; pc = 3.085677581491367e16 m, M_sun = 1.98847e30 kg, c = 299792458 m/s"
+ },
+ "new_assumptions": [
+  "Point-mass spherical baryon with B = G*M_b/r^2 (shape scale absent); the reduction does not extend to extended mass distributions where M(<r) introduces its own scale",
+  "Absence of external fields (no EFE); the local law's argument is the baryonic Newtonian acceleration alone",
+  "Kernel argument is B/a0 only (true by construction for Q, RAR, MU2, EXP, MONO below y*)",
+  "Single adopted scale per profile: a0 fixed within a footing; both footings carried separately, never simultaneously",
+  "Operative filtered-MONO transfer: xi/r_M << 1 (equivalently r >> xi) with exponentially suppressed corrections; exact x-only reduction is the unfiltered limit (no second scale)",
+  "kappa = 1/2 adopted (framework input, fitted not derived); footing densities, G, c, M_sun, pc are framework inputs"
+ ],
+ "input_sha256": {
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889",
+  "deepseek_push/astra_spawn_ideas/AS006_the_mond_radius_as_a_dimensionless_reduction.md": "4a600837e652d713cfbad387064ab3af3ec23ae87a6bbfbc6855b564c4cd1916",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "0c2aa4a230ca086ef09f6c2776f3e1a4bff7f1dd5b5031a5a29ff38a991c7b44",
+  "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "f762494b8f24450320e77f096ae183b7df8892dbb779bf1be7a84f342dafe42c",
+  "deepseek_push/astra_spawn_ideas/AS033_mono_splice_location_from_its_derivative_rule.md": "41b34f5f2822b5b08abe33c43e9fcac45bce38e7f7eb7dd0978abe40b79bed2c",
+  "deepseek_push/astra_spawn_ideas/AS034_constructing_the_mono_continuation_by_integration.md": "31d7c3de6a97a1b2ca4a9b2ffdf726b2a5eb36dc4cdbc0aece2221d38421a6cf"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/compute_AS006_mond_radius_reduction.py": "2f43e155069592af8468a2d7bc649e74257798d0ab75735d91f05d4c349181fd",
+  "deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/AS006_outputs.json": "c4bc472f52f86b1b8973d70aa98a8b8983ec3136d89e7ac53ebf3ea4ae9145e2",
+  "deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/AS006_outputs_summary.txt": "b8393f0da6ccb544c793fe18099cf47ac2a682c00887c475b9f7a845d6575b1f",
+  "deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/AS006_leancert_mond_radius.lean": "92340dd4a69f0c3b294bf6b30bb87c4a61c0bb1b4d4d6af5b5815115cc8eef2d",
+  "deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/AS006_leancert_verify.log": "8c22b3b8bd802f08e239209dce3761bcba4a4bb67b9a07e771b954f1b6595b70",
+  "deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/derivation.md": "c3cd0b613cb940ce993dd19306f3b7aa8e3aeda0119ed2c42cf98c0801786905"
+ },
+ "commands": [
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006 && python3 compute_AS006_mond_radius_reduction.py   [exit 0; wall 0.005 s; RSS 45 MB]",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS006/run_20260927T201133_AS006/AS006_leancert_mond_radius.lean   [exit 0; zero sorry; #print axioms for all 7 theorems = {propext, Classical.choice, Quot.sound}]",
+  "shasum -a 256 <task and source files> (hashes in input_sha256; all pinned hashes match SOURCE_MANIFEST.json)"
+ ],
+ "execution_bounds": {
+  "declared": "prototype: <=120 s wall, <=512 MB RSS, 1 CPU thread, 2001-point grid, no refinement loop",
+  "enforced": "wall asserted < 120 s (measured 0.005 s); RSS asserted < 512 MB via resource.getrusage (measured 45 MB); threads pinned to 1 via OMP_NUM_THREADS/OPENBLAS_NUM_THREADS/MKL_NUM_THREADS/NUMEXPR_NUM_THREADS=1; grid fixed at 2001 log-spaced points x in [3.162e-3, 316]; mpmath spot at 50 dps, 5 points; bisection 200-300 iterations per implicit solve",
+  "note": "no larger calculation was needed or run; scaling was unnecessary after prototype validation"
+ },
+ "checks": [
+  {
+   "name": "C1_seed_identity_B/a0_eq_x^-2",
+   "content": "physical-variable evaluation of B/a0 at r = x*r_M vs x^-2, 6 (footing, mass) combos, 2001 points",
+   "tolerance_set_before": "max relative error <= 1e-9",
+   "observed": 6.643263920121257e-16,
+   "pass": true
+  },
+  {
+   "name": "C2_profile_collapse",
+   "content": "max pairwise |g/a0(M1,x) - g/a0(M2,x)| for M_b in {1e6,1e9,1e12} M_sun, Q branch, both footings",
+   "tolerance_set_before": "<= 1e-9",
+   "observed": 5.820766091346741e-11,
+   "pass": true
+  },
+  {
+   "name": "C3_deep_limits_and_leading_terms",
+   "content": "F*x - 1 at x=1e2,1e3 and leading-correction ratios -> 1: Q: 2x^2(Fx-1)=0.99999975; RAR & MONO: 2x(Fx-1)=1.00017; MU2: (8x/3)(Fx-1)=1.00027; EXP: 4x(Fx-1)=1.00029",
+   "tolerance_set_before": "|ratio - 1| <= 1e-3",
+   "observed": {
+    "Q": 0.99999975,
+    "RAR": 1.00017,
+    "MU2": 1.00027,
+    "EXP": 1.00029,
+    "MONO": 1.00017
+   },
+   "pass": true
+  },
+  {
+   "name": "C4_Newtonian_recovery",
+   "content": "F/x^-2 - 1 at x=3.16e-3: Q 4.99e-6, RAR/EXP < 1e-30, MU2 3.99e-10, MONO 9.67e-6 (delta*h_p*ln(y)/y tail -> 0)",
+   "tolerance_set_before": "behavioral: consistent with branch asymptotics, -> 0 as x -> 0",
+   "observed": {
+    "Q": 4.9928e-06,
+    "RAR": 0.0,
+    "MU2": 3.988e-10,
+    "EXP": 0.0,
+    "MONO": 9.671e-06
+   },
+   "pass": true
+  },
+  {
+   "name": "C5_normalization_at_x_1",
+   "content": "B(r_M)/a0 = 1 exactly; F(1) per branch: Q = sqrt(2) = 1.41421356 (exact), RAR = MONO = 1/(1-e^-1) = 1.58197671 (exact), MU2 = 1.48929, EXP = 1.34998",
+   "tolerance_set_before": "exact where closed-form, else bisection root to 1e-10",
+   "observed": {
+    "Q": 1.4142135623730951,
+    "RAR": 1.5819767068693265,
+    "MU2": 1.4892885718100786,
+    "EXP": 1.3499764854011254,
+    "MONO": 1.5819767068693265
+   },
+   "pass": true
+  },
+  {
+   "name": "C6_MONO_splice_audit",
+   "content": "y_p = 2.53964 (landmark 2.5396, |d|=4e-5), h_p = 0.647610 (README 0.6476), y* = 2.33741 from derivative equality h'_RAR(y*) = delta*h_p/(y*+y_p) (landmark 2.3374, |d|=1.2e-5, root residual 4.3e-18), x* = 0.6541; nu_mono = nu_RAR to 1.4e-16 below y*; continuity at splice 1.7e-10; max-rule transitions at y* +/- 1e-3 have the required signs (+3.48e-5, -3.47e-5)",
+   "tolerance_set_before": "|y_p - 2.5396|, |y* - 2.3374| <= 5e-4; continuity <= 1e-6; max-rule signs as specified",
+   "observed": {
+    "y_p": 2.5396381476219423,
+    "y_star": 2.337412399993833,
+    "cross_residual": 4.3368e-18,
+    "continuity": 1.737e-10,
+    "nu_dev_below": 1.414e-16
+   },
+   "pass": true
+  },
+  {
+   "name": "C7_negative_control_rM_prime_linear",
+   "content": "candidate r_M' = G*M_b/a0: (a) units [L,M,T] = [2,0,0] != [1,0,0], not a length; (b) forward substitution B/a0 = (r/r_M')^-2 off by ~1e36 (mismatch factor carries (G*M_b/a0)^-1, so x' is not dimensionless); (c) same physical radius maps to x' values 1.000e6 apart for M_b = 1e6 vs 1e12 M_sun. Detection tolerance 1e-6 set before evaluation; the wrong candidate is REJECTED, hence the control is active/capable of failing",
+   "tolerance_set_before": "control passes iff units fail AND |B/a0*(r_M'/r)^2 - 1| > 1e-6",
+   "observed": {
+    "is_length": false,
+    "max_|B/a0*(rM'/r)^2-1|": 1.0,
+    "log10_mismatch": 36.15,
+    "x'_separation": 1000000.0
+   },
+   "pass": true
+  },
+  {
+   "name": "C8_mpmath_50dps_spot",
+   "content": "|B/a0 - x^-2| in physical variables at x in {0.01,0.1,1,10,100}, dps = 50",
+   "tolerance_set_before": "abs residual <= 1e-38",
+   "observed": {
+    "0.01": 0.0,
+    "0.1": 1.71e-49,
+    "1.0": 2.67e-51,
+    "10.0": 0.0,
+    "100.0": 3.26e-55
+   },
+   "pass": true
+  },
+  {
+   "name": "C9_translations_consistency",
+   "content": "r_M, v_flat, C for M_b = 1e6/1e9/1e12 M_sun on both footings; v_flat^4 = G*M_b*a0 and v_flat^2 = a0*r_M identities",
+   "tolerance_set_before": "relative error <= 1e-12",
+   "observed": {
+    "vflat4_relerr": 2.67e-16,
+    "vflat2_relerr": 1.34e-16
+   },
+   "pass": true
+  },
+  {
+   "name": "C10_zero_free_parameters",
+   "content": "count of fitted parameters in F(x): 0 by construction (declared constants only; the only carried freedom is the adopted footing kappa = 1/2)",
+   "tolerance_set_before": "0",
+   "observed": 0,
+   "pass": true
+  }
+ ],
+ "tested_domain": "x = r/r_M in [10^-2.5, 10^2.5] (2001 log-spaced points), equivalently y = B/a0 in [1e-5, 1e5]; masses M_b in {1e6, 1e9, 1e12} M_sun; both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2; kernels Q, RAR, MU2, EXP, MONO (splice root y* on [1, 1.2*y_p] with analytic derivatives); MONO audits on y in [1e-5, 1e5]; mpmath 50-digit spot at x in {0.01, 0.1, 1, 10, 100}; filtered-transfer asymptotic cross-check at z = 3, evaluated at z = r_M/(sqrt(2)*xi) in [234, 3.9e5] (both footings). Exclusions: extended mass distributions, external fields (EFE), r < xi interior of the filtered branch, non-spherical geometry, time dependence.",
+ "failed_attempts": [
+  "First bracketing of the MONO splice y* used a reversed bisection branch rule on the numerical log-grid gradient of h_RAR and returned y* = 2*y_p (5.0819) instead of the derivative-equality root; root cause: sign of nu'(y) (nu is decreasing in y) and the bisection invariant; corrected to analytic hp_RAR = (nu-1) - y*e^-sqrt(y)/(2*sqrt(y)*(1-e^-sqrt(y))^2) with a bracketed bisection on [y_p/2, 1.2*y_p] -> y* = 2.3374124 (matches the contract landmark 2.3374 to 1.2e-5). Artifact: intermediate outputs overwritten by the corrected rerun (final outputs in AS006_outputs.json are from the corrected script).",
+  "Implicit-solver clamp for MU2/EXP at small x: initial hi = 40 was insufficient for y = x^-2 up to 1e5, forcing F_MU2/F_EXP to the clamp (F/x^-2 - 1 ~ -0.996 at x = 1e-2); fixed by scaling the bracket hi = max(40, 2*tgt); Newtonian-limit residuals then 4e-10/0.0.",
+  "Lean: (i) 'div_pow' does not exist with the intended hypothesis set in this mathlib snapshot (EuclideanDomain divisibility version only) -> replaced by helper pow_two_div built from div_eq_mul_inv/mul_pow/inv_pow; (ii) rewrite chains ratcheting a0 -> sqrt(a0)^2 inside sqrt radicands (rw applies congruence rewrite inside Real.sqrt) -> replaced by field_simp with Real.mul_self_sqrt; (iii) ff: unused-binder linter warnings silenced by underscore names. All failures preserved in the git-less run dir? No intermediate Lean file versions were committed; final compiles clean with zero sorry."
+ ],
+ "limitations": "Does NOT derive kappa = 1/2 (adopted; zero-mode theorem stands). The reduction is dimensionless: dimensioned observables keep M_b^(1/2) a0^(-1/2) (lengths) and M_b^(1/4) a0^(1/4) (speeds) scalings. No field-equation solution, no EFE, no extended/disk sources; the filtered-MONO transfer is established at the argument level |grad S u|/a0 only (exponentially small xi-corrections), not by solving the operative two-field system. No stability/causality-criterion-B/PPN/matter-conservation/lensing content. The equilibrium relations (sigma^2 = C/2 etc.) are not used. Numerics are finite evidence; the exact identity's proof is the Lean certificate. Landmark y* = 2.3374 corroborated as the derivative-equality root; a residual mismatch between the contract's rounded landmark and a differently-defined splice would be a separate AS033 issue, not imported here.",
+ "next_unresolved_implication": "Transfer of the x-only reduction to the OPERATIVE filtered two-field system itself (del Phi = 4 pi G rho_b + S* div[(nu_mono(|grad S u|/a0)-1) grad S u] with heat filter S, x > xi exterior, spherical point baryon): show the deep branch closes to v_flat^4 = G*M_b*a0 with the same exponentially suppressed xi-corrections, and quantify the S* boundary terms. Secondary: extended-baryon disks break x-purity by introducing a shape scale; the reduction's domain of validity for realistic mass profiles is unquantified.",
+ "suggested_followup": "Child AS006.C01 (spec written, not dispatched - no child runner): 'Filtered-MONO point-source exterior under the operative gate': solve/rigorously bound the spherical filtered system on r >= xi with the analytic monopole argument of this result (|grad S u_N|/a0 formula), verifying the deep flat branch v^4 = G*M_b*a0 to the stated exponentially-suppressed corrections and locating where (if anywhere) the filter breaks the x-reduction; numeric bounded solve (<=120 s prototype) plus an analytic bound on the phantom-density deviation. Distinct from AS033/AS034 (splice location/integration - this is the two-field exterior transfer, not the kernel construction) and from AS010 (pressure at r_M: this is the kinematics/filter transfer).",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": "G = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s; M_sun = 1.98847e30 kg; pc = 3.085677581491367e16 m; kappa = 1/2 ADOPTED (measured 0.551 +/- 0.043 by a distance-free method, fitted not derived); footing densities rho_Lambda = 4 a0^2/(G c^2) = 5.8444e-27 (canonical) and 8.4831e-27 (alternative) kg/m^3; point-baryon Newtonian field B = G*M_b/r^2 (spherical symmetry); kernel argument B/a0; no external field",
+  "derived_here": "r_M = sqrt(G*M_b/a0) with the exponent forced by dimensional analysis (unique length monomial); x = r/r_M; identity B/a0 = x^-2; reduced profiles F_psi(x) = x^-2 psi(x^-2) for Q/RAR/MU2/EXP/MONO; deep limit g/a0 = x^-1 and v_flat^4 = G*M_b*a0; rescaling invariance (M_b, a0) -> (lam M_b, lam a0); collapse to a common profile at equal x; MONO splice root y* = 2.33741, y_p = 2.53964, h_p = 0.647610",
+  "separate": "filtered-MONO argument formula |grad S u_N|/a0 with S the heat kernel of width xi (conditional transfer, exponentially small corrections); effective kappa 0.60239 if rho fixed at canonical while adopting the alternative a0 (footing audit, not a derived kappa)"
+ },
+ "closure_implication": "Gate A01 (scale identities) -> amended requirement 1 (operative filtered nu_mono) deep-MOND clause and requirement 13 (a0-Lambda, kappa adopted): IF (spherical point baryon exterior, no EFE, kernel argument B/a0) AND (filter xi/r_M << 1, r >> xi) THEN the reduced acceleration profile g/a0 = x^-2 psi(x^-2) is a fixed parameter-free function of x = r/r_M, the deep sector satisfies v_flat^4 = G*M_b*a0 = 4 kappa^2 G^2 M_b rho_Lambda/c^2 (kappa = 1/2 adopted on either footing), and all deep dimensionless ratios are constant functions of x. This supplies the scale-identity precondition for the deep-MOND clause of the amended thirteen-item target; it does NOT by itself establish stability, causality criterion B, matter conservation, PPN or lensing (those gates remain open), and no branch-translation beyond the enumerated kernel table is claimed.",
+ "child_proposals": [
+  {
+   "child_id": "AS006.C01",
+   "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS006/AS006.C01.md",
+   "parent": "AS006",
+   "parent_run": "run_20260927T201133_AS006",
+   "parent_evidence_hash": "c3cd0b613cb940ce993dd19306f3b7aa8e3aeda0119ed2c42cf98c0801786905",
+   "parent_outcome": "supports_scoped_claim (unreviewed)",
+   "fingerprint": "(FRIED_CHICKEN_SPEC.md latest filter S + MONO continuation, operative filtered branch, spherical point baryon r >= xi, exact claim: filtered-MONO two-field exterior preserves v^4 = G*M_b*a0 - deep branch - with exponentially suppressed xi-corrections and quantified S* boundary terms; observable/operator: phantom density div[(nu_mono(|grad S u|/a0)-1) grad S u] and flat-speed residue; new input: analytic smoothed-monopole argument from AS006)",
+   "duplicate_check": "compared against seeds AS033 (splice location - kernel construction, different claim), AS034 (continuation by integration - kernel construction, different claim), AS440 (heat filter length transfer galaxies->binaries - different scale transfer), AS629 (heat kernel normalization - different); no completed/running result covers the two-field exterior transfer; closest completed neighbor none (results/AS033, AS034 empty)",
+   "state": "spec_written_not_dispatched_no_runner",
+   "spec_sha256": "0fa6cdcb0b5dea1cc9fd4e5d6198fa4b358e8fbf6bd70accc65b208645952e78"
+  }
+ ],
+ "closure_candidate": null
+}

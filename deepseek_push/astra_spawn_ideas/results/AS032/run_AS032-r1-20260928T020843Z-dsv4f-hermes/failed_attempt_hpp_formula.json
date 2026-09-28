@@ -1,0 +1,12 @@
+{
+  "artifact": "failed first-attempt h''(y_p) formula; preserved per RESULT_CONTRACT failed_attempts",
+  "cause": "chain-rule slip in y-space second derivative: wrote h''(y_p)=h_tt/(4 t^3) instead of h''(y_p)=h_tt/(4 t^2) (t=sqrt(y): h_yy = (h_tt*t - h_t)/(4 t^3), and at the peak h_t=0 cancels one factor t). This produced (1-t)(2-t)/(2 t^4) instead of the correct (1-t)(2-t)/(2 t^3).",
+  "run1_values": {
+    "h''_exact_wrong_formula": "-0.018701036978403237058647780003831082185856355591933",
+    "h''_finite_difference_1e-12": "-0.029802426216689285886344035860205381168085555837867",
+    "relative_agreement": "0.59362426004004009232304215178056029298113069416033",
+    "control_result": "FAIL - finite-difference independent check rejected the wrong-formula value at the 5th significant digit"
+  },
+  "resolution": "correct exact formula h''(y_p) = F'(t_p)/(4 t_p (e^{t_p}-1)^2) = (1-t_p)(2-t_p)/(2 t_p^3) = -0.029802426216689285886344030700488292269603190108711, verified two independent ways (exact forms agree to 1.2e-53... 4.2e-53 residual; FD of h' and second difference of h agree to ~1.7e-25 with the exact value at step 1e-12; three steps 1e-10/1e-12/1e-14 converge).",
+  "y_space_relation": "h'(y) = F(sqrt y)/(2 (e^{sqrt y}-1)^2);  at the peak h''(y_p) = F'(t_p)/(4 t_p (e^{t_p}-1)^2)."
+}

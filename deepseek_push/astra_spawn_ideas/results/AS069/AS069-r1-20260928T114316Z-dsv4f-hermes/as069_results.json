@@ -1,0 +1,150 @@
+{
+ "checks": [
+  {
+   "name": "S0.1/2 [symbolic] J_1/2' = mu_1/2 exactly (the derivative fixes forces); J_1/2(0) is an integration constant, absorbed by the free C(1/2)",
+   "ok": true,
+   "measured": "dJ-diff residual = 0, J(0) = -2 (absorbed into C; no J(0)=0 normalization imposed)",
+   "tol": "exact (symbolic)",
+   "reading": "the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces"
+  },
+  {
+   "name": "S0.1 [symbolic] J_1' = mu_1 exactly (the derivative fixes forces); J_1(0) is an integration constant, absorbed by the free C(1)",
+   "ok": true,
+   "measured": "dJ-diff residual = 0, J(0) = 0 (absorbed into C; no J(0)=0 normalization imposed)",
+   "tol": "exact (symbolic)",
+   "reading": "the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces"
+  },
+  {
+   "name": "S0.2 [symbolic] J_2' = mu_2 exactly (the derivative fixes forces); J_2(0) is an integration constant, absorbed by the free C(2)",
+   "ok": true,
+   "measured": "dJ-diff residual = 0, J(0) = 1 (absorbed into C; no J(0)=0 normalization imposed)",
+   "tol": "exact (symbolic)",
+   "reading": "the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces"
+  },
+  {
+   "name": "S0.3 [symbolic] J_3' = mu_3 exactly (the derivative fixes forces); J_3(0) is an integration constant, absorbed by the free C(3)",
+   "ok": true,
+   "measured": "dJ-diff residual = 0, J(0) = 1/2 (absorbed into C; no J(0)=0 normalization imposed)",
+   "tol": "exact (symbolic)",
+   "reading": "the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces"
+  },
+  {
+   "name": "S3a [symbolic] deep slope mu_lambda'(0) = lambda (a0 = s/lambda, kappa = 1/lambda)",
+   "ok": true,
+   "measured": "limit(mu/Y, Y->0) = lambda",
+   "tol": "exact (symbolic)",
+   "reading": "the dimensionless kernel parameter is the inverse kappa; kappa=1/2 <=> lambda=2, the adopted footing"
+  },
+  {
+   "name": "S3b [symbolic] Newtonian recovery mu_lambda -> 1 (g -> B) for every lambda",
+   "ok": true,
+   "measured": "limit(mu, Y->oo) = 1",
+   "tol": "exact (symbolic)",
+   "reading": "both limiting regimes constrain only J' (through mu), never the additive zero C"
+  },
+  {
+   "name": "S1a [Jacobian, block] d(F1,F2)/dC = 0 to fp; dV/dC = alpha/(64 pi) exactly",
+   "ok": true,
+   "measured": "dF1/dC = 0.000e+00, dF2/dC = 0.000e+00, dV/dC = 9.9471839432e-03 (predicted 9.9471839432e-03)",
+   "tol": "dF/dC < 1e-12, dV/dC within 1e-9 rel",
+   "reading": "block triangular: C(lambda) moves ONLY the vacuum energy; the force corner is exactly zero"
+  },
+  {
+   "name": "S1b [Jacobian, rank] rank(F,V vs lambda,C) = 2 on the MU family (dF/dlambda != 0)",
+   "ok": true,
+   "measured": "singular values = 1.9654e-01, 9.9472e-03 (min/max = 5.061e-02)",
+   "tol": "min singular value > 1e-5",
+   "reading": "two genuinely independent observable directions (lambda-shape and C-shift): the vacuum datum alone leaves lambda free"
+  },
+  {
+   "name": "S1c [rank-reduction] dF/dlambda = 0 exactly forces rank 1 (lambda becomes a pure label; V swept by C)",
+   "ok": true,
+   "measured": "singular values = 2.2243e-02, 0.000e+00",
+   "tol": "second singular value < 1e-12",
+   "reading": "the condition to reduce the Jacobian rank from 2 to 1 is dF/dlambda = 0 -- exactly the case where lambda no longer participates in the force law; no datum can then select lambda"
+  },
+  {
+   "name": "S1d [limit] dF/dlambda -> 0 as B/s -> oo (Newtonian end, ~ ln(q)/q decay): rank reduction is a limit, absent at finite B",
+   "ok": true,
+   "measured": "dF/dlambda at B/s = 1e11: 0.000e+00",
+   "tol": "< 1e-6",
+   "reading": "Newtonian end: all members collapse toward g = B (lambda blind); the discriminating region is deep/transition where the Jacobian is full rank"
+  },
+  {
+   "name": "S2 [calibration] for EVERY lambda the shift C = 64 pi a0^2/alpha reproduces rho_L exactly (rho_vac/rho_L = 1); C is lambda-independent in the J(0)=0 normalization",
+   "ok": true,
+   "measured": "rho_vac/rho_L = 1 + <1e-12 for lambda in {1/2,1,2,3} x alpha in {1.75,2.0}",
+   "tol": "exact: alpha*(64 pi/alpha)/(64 pi) = 1",
+   "reading": "the observed vacuum energy is compatible with every member of the one-parameter family: it selects a curve in (lambda, C), never lambda; identifying rho_L with the shift is bookkeeping (calibration), not a derivation of kappa"
+  },
+  {
+   "name": "E1 [deep limit] g -> sqrt(B*s/lambda) with leading neglected term ((lambda+1)/4) sqrt(B/(s lambda))",
+   "ok": true,
+   "measured": "coeff (g/lead - 1)/sqrt(q/2) -> 0.7503 at q = 1e-6 (predicted 0.75); max err*sqrt(q/2) = 2.987e-04 over q <= 1e-3",
+   "tol": "coeff 0.75 +- 0.02; err*sqrt(q/2) < 1e-2 on the deep window",
+   "reading": "deep limiting regime checked with the explicit leading-order correction derived from mu = lam y - lam(lam+1) y^2/2 + ..."
+  },
+  {
+   "name": "E2 [Newtonian limit] g -> B with leading correction B (B/s)^(-2) at lambda = 2",
+   "ok": true,
+   "measured": "(g-B)/B * (B/s)^2 = 0.9994 (median over B/s in [1e2, 1e5], predicted 1.0); max |coeff-1| = 0.0198",
+   "tol": "|median-1| < 0.02, max |coeff-1| < 0.05",
+   "reading": "the Newtonian end collapses onto the same law for every lambda: no vacuum datum can be read off there"
+  },
+  {
+   "name": "F1 [independent representation] lambda=2 force law solved two ways (bisection vs exact cubic roots) agree; substitution residual = |mu y - q|/q < 1e-12",
+   "ok": true,
+   "measured": "max |y_bisect - y_cubic| = 7.105e-14 over q in [1e-4, 1e2] (50 pts); max substitution residual 2.781e-14",
+   "tol": "1e-10",
+   "reading": "different representation (analytic polynomial inverse of y(y+2)/(1+y)^2 = q) reproduces the same g: the force law is exactly mu_2(g/s) g = B"
+  },
+  {
+   "name": "F2 [substitution] residual of the solved force law on a 200-point Hernquist-type profile: max |mu_2(g/s) g - g_N|/g_N",
+   "ok": true,
+   "measured": "max relative substitution residual = 2.214e-16",
+   "tol": "1e-12",
+   "reading": "the solved g satisfies the original equation to machine precision: the audit's force statements are about the actual law, not an approximation"
+  },
+  {
+   "name": "E3 [ill-posed fixing] primitive span I_n(Z) = 2 int_0^Z y mu_n dy diverges ~ Z^2 for every n: no absolute zero in the family",
+   "ok": true,
+   "measured": "log-log slopes over Z in [1e3,1e6]: n=1..3 -> [2.0003, 2.0, 2.0]",
+   "tol": "0.02",
+   "reading": "the empty-Newtonian-vacuum fixing that would make C(lambda) non-free is undefined for MU_lambda (J_n(oo) diverges); the corpus's saturating carriers give the wrong sign (AS067 S6a, k01 K3); therefore the calibration control could genuinely have failed and does not: no principle of the action fixes C"
+  },
+  {
+   "name": "D1 [footings] both footings stated separately; dimensionless S1-S2 statements hold for both because they never invoke a0's value",
+   "ok": true,
+   "measured": "canonical kappa=1/2, lambda=2 ; fixed-rho_L alt: kappa_eff=0.602388, lambda_eff=1.660059; fixed-kappa alt: rho_L'=8.483090e-27",
+   "tol": "n.a. (record)",
+   "reading": "the alternative footing is an alternative normalization, not the same rho_L with the same kappa; its implied lambda_eff = 1.6601 is an identification constraint (non-integer => not a channel count), not a prediction"
+  }
+ ],
+ "pass": 17,
+ "fail": 0,
+ "wall_s": 0.354,
+ "maxrss_mb": 88.3,
+ "s": 1.87238e-10,
+ "rho_L_can": 5.844412454021876e-27,
+ "kappa_alt_fixed_rho": 0.6023884040632778,
+ "lambda_alt_fixed_rho": 1.660058515825871,
+ "rho_L_alt_fixed_kappa": 8.483089619559099e-27,
+ "C_req_a02_alpha2": 100.53096491487338,
+ "C_req_a02_alpha175": 114.89253133128386,
+ "jacobian_singular_values": [
+  0.1965433743167721,
+  0.009947183943238846
+ ],
+ "jacobian_degenerate_singular_values": [
+  0.022242579481786786,
+  0.0
+ ],
+ "deep_coeff": 0.7502873245418626,
+ "newton_coeff": 0.999363258838714,
+ "truncation_slopes": [
+  2.0002665834437527,
+  2.0000015469901067,
+  2.0000001304579573
+ ],
+ "dVdC_pred": 0.009947183943243459
+}

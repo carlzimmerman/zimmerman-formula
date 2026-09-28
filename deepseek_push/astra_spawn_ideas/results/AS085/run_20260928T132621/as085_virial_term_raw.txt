@@ -1,0 +1,97 @@
+================================================================================================
+AS085 -- EXTERNAL NEWTONIAN BARYON VIRIAL TERM
+started_utc = 2026-09-28T13:37:54Z
+================================================================================================
+
+--- 1a general spherical shell: two representations of W_bar ---
+  [PASS] 1a [general shell] W_work = -int rho r dPhi_b/dr dV equals W_pot = int rho Phi_b dV for ARBITRARY spherical rho on [r_in, R]
+         measured: W_work = -4*pi*G*M_b*Integral(r*rho(r), (r, r_in, R)) ; W_pot = -4*pi*G*M_b*Integral(r*rho(r), (r, r_in, R)) ; difference == 0: True
+         reading : r * dPhi_b/dr = -Phi_b exactly for the 1/r Newtonian well: the virial (force/work) form and the potential form are the same integral; W_bar = -4 pi G M_b int rho(r) r dr, dimension J
+
+--- 1b equilibrium phantom rho = A/r^2: closed form ---
+  [PASS] 1b [closed form] rho = A/r^2 on [r_in, R]: W_bar = -4 pi G M_b A ln(R/r_in) EXACTLY (work form integrated explicit)
+         measured: W_work = log((r_in/R)**(4*pi*A*G*M_b)) ; closed = -log((R/r_in)**(4*pi*A*G*M_b)) ; diff == 0: True
+         reading : log arises from int dr/r: the 1/r well bookkeeping; sign negative (binding)
+  [PASS] 1c [coefficient] with A = C/(4 pi G), C = sqrt(G M_b a0): 4 pi G M_b A = M_b C, so W_bar = -M_b C ln(R/r_in) (the G091 coefficient)
+         measured: W_bar = log((r_in/R)**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; -M_b C ln(R/r_in): diff == 0: True
+         reading : scale factors: 4 pi (solid angle) x G (potential) x M_b (source); units: kg m^2/s^2 = J
+
+--- 1d comparison with G091 V1c (verbatim quote) ---
+  [PASS] 1d [G091 comparison] shell [r_b, r_break]: W_bar = -M_b C ln(r_break/r_b), identical to the logarithmic expression quoted in G091_virial_triad.py (V1c: 'W_bar = -M_b C ln(r_break/r_b)'), domain r >= r_b > 0, r_break > r_b
+         measured: ours = log((a_0*r_b**2/(G*M_b*lambda**2))**(sqrt(G)*M_b**(3/2)*sqrt(a_0)/2)) ; G091 = -log((sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b))**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; diff == 0: True
+         reading : domain r >= r_b stated: the integral is improper at r <= r_b (no baryonic inside edge: NC1 diverges); the log is finite only for 0 < r_b < r_break
+
+--- 1e direct differentiation (independent representation) ---
+  [PASS] 1e [differentiation] dW_bar/dR = 4 pi R^2 rho(R) Phi_b(R) (shell theorem derivative), symbolic
+         measured: dW/dR = -sqrt(G)*M_b**(3/2)*sqrt(a_0)/R ; 4 pi R^2 rho Phi_b = -sqrt(G)*M_b**(3/2)*sqrt(a_0)/R ; diff == 0: True
+         reading : the rate of change of the virial term when the outer edge moves is the surface integrand evaluated at the edge -- exact, coefficient 1
+
+--- 1f thin-shell regime: leading neglected term ---
+  [FAIL] 1f [thin shell] for Delta << r_in (eps = Delta/r_in): W_bar = -M_b C ln(1+eps) = -M_b C (eps - eps^2/2) + O(eps^3); the leading neglected term is -(1/3) M_b C eps^3 (symbolic, exact)
+         measured: series = sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon**2/2 - sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon ; leading neglected = sqrt(G)*M_b**(3/2)*sqrt(a_0)*(-epsilon**2/2 + epsilon - log(epsilon + 1))
+         reading : no limiting regime is needed for the closed form (exact on any finite shell); this expansion is only the finite-consistency check of the Newtonian limit
+
+--- 2 high-precision numeric residuals (mpmath dps=50) ---
+    [canonical] a0 = 9.361900e-11, C = 2.841849e+10 m^2/s^2, r_M = 303554770789973632.000 pc, rho_Lambda = 5.844412e-27 kg/m^3
+    [alt] a0 = 1.127900e-10, C = 3.119280e+10 m^2/s^2, r_M = 276556431938486400.000 pc, rho_Lambda = 8.483090e-27 kg/m^3
+  [FAIL] 2a [interior diagnostics, both footings] 6 shells (r_in/R = 0.01,0.1,0.5 x R/r_M = 0.62,1.0): 50-digit quadrature of the DEFINING work-form integral reproduces -M_b C ln(R/r_in) with rel residual < 1e-45 per shell (threshold set before evaluation)
+         measured: canonical|r_in/R=0.01, R/r_M=0.62: 1.6e-17; canonical|r_in/R=0.1, R/r_M=0.62: 3.7e-17; canonical|r_in/R=0.5, R/r_M=0.62: 3.7e-16; canonical|r_in/R=0.01, R/r_M=1.0: 7.7e-18; canonical|r_in/R=0.1, R/r_M=1.0: 5.5e-17; canonical|r_in/R=0.5, R/r_M=1.0: 1.9e-17; alt|r_in/R=0.01, R/r_M=0.62: 4.8e-17; alt|r_in/R=0.1, R/r_M=0.62: 6.1e-17; alt|r_in/R=0.5, R/r_M=0.62: 3.6e-16; alt|r_in/R=0.01, R/r_M=1.0: 4.8e-17; alt|r_in/R=0.1, R/r_M=1.0: 6.0e-17; alt|r_in/R=0.5, R/r_M=1.0: 3.5e-17
+         reading : the closed form IS the integral evaluated; residuals are actual computed values, not booleans; M_b = 6.5e10 Msun (G031 MW proxy)
+  [FAIL] 2b [deep exterior, both footings] shells r_in/r_M = 10,100 with R/r_in = 2,10: closed form exact to < 1e-45 relative (the quadrature residual is the full-kernel integral ON the shell; the tail beyond R is NC2)
+         measured: canonical|r_in/rM=10,R/r_in=2: 1.9e-17; canonical|r_in/rM=10,R/r_in=10: 1.9e-17; canonical|r_in/rM=100,R/r_in=2: 1.9e-17; canonical|r_in/rM=100,R/r_in=10: 1.9e-17; alt|r_in/rM=10,R/r_in=2: 3.5e-17; alt|r_in/rM=10,R/r_in=10: 2.3e-17; alt|r_in/rM=100,R/r_in=2: 3.5e-17; alt|r_in/rM=100,R/r_in=10: 7.2e-17
+         reading : deep-exterior shells are exact integrals of the same closed form; they do NOT test the deep-MOND kernel -- they test the Newtonian-well bookkeeping on the equilibrium profile extended to r >> r_M (fixture, not transfer)
+  [FAIL] 2c [differentiation, numeric] central finite difference of W_bar(R) matches dW/dR = -M_b C/R = 4 pi R^2 rho(R) Phi_b(R) to < 1e-40 relative (threshold set before evaluation)
+         measured: canonical|R/rM=0.62: 5.0e-07; canonical|R/rM=1.0: 5.0e-07; canonical|R/rM=10.0: 5.0e-07; alt|R/rM=0.62: 5.0e-07; alt|R/rM=1.0: 5.0e-07; alt|R/rM=10.0: 5.0e-07
+         reading : direct differentiation of the closed form reproduces the surface integrand -- independent representation
+  [PASS] 2d [uniform-density case] rho = rho_0 const: W_bar = -2 pi G M_b rho_0 (R^2 - r_in^2) EXACTLY (symbolic residual 0)
+         measured: W_uni = 2*pi*G*M_b*rho_0*(-R**2 + r_in**2) ; closed = -2*pi*G*M_b*rho_0*(R**2 - r_in**2) ; diff == 0: True
+         reading : boundary/normalization case of the general shell formula -- consistency of the general integral, not a fit
+
+--- 3 the virial chain (2T + W_self + W_bar = 3 P_s V, fluid closure) ---
+  [PASS] 3a [virial chain, fluid closure] 2T + W_self + W_bar = 3 P_s V with W_bar = -M_b C ln(r_break/r_b) (this result), W_self = -G M_T^2/r_break, M_T = lam M_b: sigma^2 = (C/2)[1 + (1/lam) ln(r_break/r_b)] (sympy-exact solution of the virial equation; G091 reading B re-solved)
+         measured: sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(lambda + log(sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b)))/(2*lambda) ; matches (C/2)[1 + ln/lam]: True
+         reading : the virial term derived here is the third input of the G091 chain; at r_b = r_break the log vanishes and sigma^2 = C/2 exactly
+  [PASS] 3b [bare reading contrast] WITHOUT the boundary term (collisionless reading 2T + W = 0): sigma^2 = (C/3)[1 + (1/lam) ln(r_break/r_b)] (sympy-exact) -- the two readings differ; the C/2 triad is not the bare virial's answer
+         measured: sigma^2_bare = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(lambda + log(sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b)))/(3*lambda) ; matches (C/3)[1 + ln/lam]: True
+         reading : this is a control that CAN fail: quoting C/2 from the bare virial is a wrong derivation (it gives C/3); the fluid closure (P = sigma^2 rho, surface pressure 3 P_s V = sigma^2 M_T) is what moves C/3 -> C/2
+  [FAIL] 3c [anchor] the fluid-closure sigma at r_b = r_break reproduces the registered MW values 119.2/124.9 km/s (G031) to < 0.05 km/s on both footings (threshold set before evaluation)
+         measured: canonical = 119.203 km/s; alt = 346.051 km/s
+         reading : consistency with the committed chain; the log term at r_b < r_break pulls sigma ABOVE C/2 -- the Newtonian-attractor-dominated domain
+
+--- 4 negative controls ---
+  [FAIL] NC1 [no core] extending the point-source integral to r -> 0 with NO baryonic core diverges logarithmically: |W_bar| grows by exactly M_b C ln(10) per decade of r_in -> 0 (increment constancy measured to 1e-30 relative, threshold before evaluation); sympy flags the improper integral
+         measured: per-decade = 8.457639e+51 J vs M_b C ln10 = 8.457639e+51 J ; sympy: no error (returned something)
+         reading : DIVERGENCE FLAGGED: W_bar ~ -M_b C ln(R/r_in) -> -infinity as r_in -> 0; a finite virial term requires a positive inside edge r_b > 0 (the baryonic core) -- the no-core extension is not integrable
+  [FAIL] NC2 [no outer edge] deep-exterior shells R -> infinity: |W_bar| grows by exactly M_b C ln(10) per decade of R (measured 1e-30 relative); the full-kernel error of any finite-R truncation is M_b C ln(R_max/R) and diverges -- the deep exterior needs a physical outer edge (registered EFE cap lives at 0.62 r_M <= r_M; no cap is registered beyond r_M)
+         measured: per-decade = 8.457639e+51 J vs predicted 8.457639e+51 J
+         reading : the equilibrium profile rho = A/r^2 has unbounded mass at infinity (M_ph(<r) = 4 pi A r): any finite virial bookkeeping on the deep exterior requires an explicit cutoff -- recorded as an open dependency, not a pass
+  [PASS] NC3 [boundary-term bookkeeping] the ratio sigma2_bare/sigma2_fluid = 2/3 EXACTLY at every (footing, lambda, r_b/r_break) (r = (C/3)/(C/2) = 2/3; asserted equal to 2/3 to 1e-12); the code's assert abs(s2B - s2A) > 0 fails the moment the boundary term is dropped, so a C/2-from-bare-virial claim cannot survive this control
+         measured: min |s2A/s2B - 2/3| = 0.00e+00
+         reading : the distinction is exact, not numerical: the 3 P_s V term is half the kinetic bookkeeping that the bare reading omits
+  [PASS] NC4 [boundary case] at r_b = r_break (phantom entirely outside the baryonic inner edge): sigma^2 = C/2 EXACTLY for any lambda, any M_b, both footings (symbolic residual 0)
+         measured: sigma^2(r_b = r_break) - C/2 == 0: True
+         reading : the deep-MOND bookkeeping limit of the virial chain: W_bar = 0, and the self-gravity + kinetic + boundary terms close at the triad
+
+--- 5 limit regimes and the imposed-log-well distinction ---
+  [PASS] 5a [log-well fixture] the imposed-log-well potential energy W_log = int rho (C ln r) dV = C [M(<R)(ln R - 1) - M(<r_in)(ln r_in - 1)] (closed form, symbolic) is a DIFFERENT functional from the Newtonian virial term -M_b C ln(R/r_in) (symbolic difference != 0)
+         measured: W_log closed == symbolic: True ; W_log - W_bar != 0: True
+         reading : the R <= r_M fixtures test the historical imposed-log-well ansatz; the Newtonian-baryon virial term derived here is its bookkeeping partner; the two objects must not be conflated when moving to filtered MONO (domain transfer requires the branch bridge, not stated here)
+  [PASS] 5b [limits] deep: r_b -> r_break: W_bar -> 0 and sigma^2 -> C/2 (NC4); Newtonian: the closed form is EXACT on every finite shell (no limiting regime used -- 1f's expansion is a consistency check); normalization: M_ph(<r_M) = M_b (equipartition) makes W_bar(r_M) = -M_b C ln(r_M/r_b)
+         measured: exact-identity chain: 1b+1c+1d (symbolic), 2a+2b+2c (numeric), 3a, NC4
+         reading : exact identity vs finite consistency check: the closed forms are symbolic identities (residual 0); the residuals 1e-45/1e-40 are finite numerical consistency checks of the SAME identity in a second representation
+
+--- dimensional examples (both footings, M_b = 6.5e10 Msun) ---
+    [canonical] a0 = 9.3619e-11 m/s^2 (kappa = 1/2 adopted -> rho_Lambda = 5.8444e-27 kg/m^3, Lambda = 1.0908e-52 m^-2): C = 2.841849e+10 m^2/s^2, r_M = 9837.540 pc, W_bar(r_b = 0.3 r_break) = -4.422320e+51 J = -3.807e-07 M_b c^2, sigma(r_b=r_break) = 119.2 km/s
+    [alt] a0 = 1.1279e-10 m/s^2 (kappa = 1/2 adopted -> rho_Lambda = 8.4831e-27 kg/m^3, Lambda = 1.5833e-52 m^-2): C = 3.119280e+10 m^2/s^2, r_M = 8962.584 pc, W_bar(r_b = 0.3 r_break) = -4.854041e+51 J = -4.179e-07 M_b c^2, sigma(r_b=r_break) = 124.9 km/s
+
+--- negative-control divergence rates (numerical proof of NC1/NC2) ---
+    NC1 [canonical] per-decade increments: [8.4576390995484e+51, 8.4576390995484e+51, 8.457639099548401e+51]
+    NC1 [alt] per-decade increments: [9.283301351164319e+51, 9.283301351164319e+51, 9.283301351164319e+51]
+    NC2 [canonical] per-decade increments: [8.4576390995484e+51, 8.4576390995484e+51, 8.4576390995484e+51]
+    NC2 [alt] per-decade increments: [9.283301351164319e+51, 9.283301351164319e+51, 9.283301351164319e+51]
+
+wall time: 1.11 s (limit 120 s); enforced bounds: RLIMIT_CPU soft=120s, SIGALRM wall=120s; memory: monitor-and-abort ceiling 512 MB (peak RSS measured 90.9 MB); threads: 1 (single-process, serial, no threading/BLAS)
+================================================================================================
+AS085 COMPLETE: 12/19 checks PASS.
+================================================================================================
+[written] /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/as085_virial_term.json

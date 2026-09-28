@@ -1,0 +1,44 @@
+# FGF-017: Relative aperture-distance and emissivity closure curves
+
+Status: `awaiting_audit`. This is a proposed child task from an actual returned agent result, not an executed result.
+
+Read `../FRAMEWORK_AND_EXECUTION.md` and `../RESULT_CONTRACT.json`. Preserve the core scale, two normalizations and separate gravity branches.
+
+## Dependencies
+
+Required scoped reviews: FGF-012. Verify that they cover this task's premises; a generic PASS is insufficient. Source proposal: `campaign_fresh_gravity_astra/stage_04/cluster_observables/NEXT_TASKS.md`, SHA256 `2955ad11fa5cd6b061c2c5e265ed3d33bcbfea15aff972e49c575cd0ead11d54`.
+
+## Worker proposal, retained with its declared assumptions
+
+1. Bound the missing aperture/distance convention
+
+**Inputs:** this lane's `run_002/gas_comparison.csv`, matched eRASS1 entries in
+`real_research/data/erass1cl_primary_v3.2.fits`, and the A644/ZW1215 gas, stellar
+and M_FORW FITS profiles. Read the current comparison's restrictions first.
+
+**Equation:** introduce the relative distance conversion d=DA_common/DA_eRASS
+and emissivity ratio ell. Translating the SAME eRASS angular aperture under
+fixed counts/shape gives `r'=d R_e` and
+`Me'=d^(5/2) ell^(-1/2) Me`. Compare with original X-COP profiles evaluated at
+r', not each catalogue's separate R500. Then
+
+    eta = Me'/Mx(r'),
+    p_required = eta F(G[Me'+Ms(r')]/r'^2;a)/gH(r').
+
+**Controls:** distinguish a relative catalogue-distance conversion from a
+physical change in all cluster distances and a0. Permit only d for which all
+three X-COP radial supports contain r'; no extrapolation or invented distance
+prior. Keep both normalizations, vacuum/H and Q/R/M distinct. Do not infer a
+distance likelihood from the redshift agreement alone.
+
+**Acceptance:** return p=1 root curves in (d,ell), or a certified no-root result
+within the declared support, plus the smallest independently required distance
+or emissivity bound that would preserve this stage's conditional exclusion.
+If catalogue metadata cannot identify the actual angular convention, retain
+that explicit gap rather than interpreting the curves as observed corrections.
+
+
+
+## Return and limits
+
+Use a unique claimed run directory under `results/FGF-017/`. Each numerical process has a 120-second wall bound and one numerical-library thread, with actual enforcement recorded. Split larger work into separately bounded runs if necessary. Return the result contract, exact derivation, controls, input/output hashes and failed attempts. No automatic theory acceptance follows from a passing finite computation.

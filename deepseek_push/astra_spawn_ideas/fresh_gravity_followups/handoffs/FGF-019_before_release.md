@@ -1,0 +1,44 @@
+# FGF-019: SZ projection nullspace for a local pressure gradient
+
+Status: `awaiting_audit`. This is a proposed child task from an actual returned agent result, not an executed result.
+
+Read `../FRAMEWORK_AND_EXECUTION.md` and `../RESULT_CONTRACT.json`. Preserve the core scale, two normalizations and separate gravity branches.
+
+## Dependencies
+
+Required scoped reviews: FGF-012. Verify that they cover this task's premises; a generic PASS is insufficient. Source proposal: `campaign_fresh_gravity_astra/stage_04/cluster_observables/NEXT_TASKS.md`, SHA256 `2955ad11fa5cd6b061c2c5e265ed3d33bcbfea15aff972e49c575cd0ead11d54`.
+
+## Worker proposal, retained with its declared assumptions
+
+3. Determine what local pressure information is identifiable in the cached SZ map
+
+**Inputs:** `deepseek_push/Z06_data/ilc_actplanck_ymap.fits`, the matched mask,
+`ilc_beam.txt`, source coordinates in `run_002/catalogue_matches.csv`, and
+ZW1215's X-COP radial supports. ZW1215 is the only eRASS-matched target with an
+unmasked map center in the current inventory. A644 center mask=0 is a hard
+warning against treating geometric coverage as usable pressure data.
+
+**Equation:** derive the spherical line-of-sight pressure projection
+`y(theta)=constant integral P_e(sqrt[(DA theta)^2+l^2]) dl`, followed by the
+cached beam and explicit angular binning/mask. Keep pressure-gradient target,
+outer pressure profile, background modes and distance conversion explicit.
+
+**Controls:** inspect masks over entire annuli, not only the center. Do not
+invent noise covariance, use aperture scatter as independent instrument noise,
+or count ACT+Planck and PSZ2 as independent Planck observations. Do not identify
+integrated Y or a fitted SZ mass proxy with a local pressure gradient. The
+original hydrostatic pipeline's shared Planck inputs require a separate
+cross-covariance audit before an independence claim.
+
+**Acceptance:** demonstrate that the desired gradient functional is identifiable
+in a stated finite projection/outer-boundary model, or exhibit an explicit
+projection null mode that changes it. If identifiable, return a deterministic
+estimate with its required missing covariance/response inputs; do not turn it
+into a confidence bound until those inputs exist. This settles whether the
+current map can supply the next constraint, rather than assuming that more
+angular bins create independent information.
+
+
+## Return and limits
+
+Use a unique claimed run directory under `results/FGF-019/`. Each numerical process has a 120-second wall bound and one numerical-library thread, with actual enforcement recorded. Split larger work into separately bounded runs if necessary. Return the result contract, exact derivation, controls, input/output hashes and failed attempts. No automatic theory acceptance follows from a passing finite computation.

@@ -1,0 +1,128 @@
+[
+ {
+  "name": "A1 [s := c sqrt(G rho_L) recovers s = 2 a0 on the canonical footing]",
+  "measured": "1.0",
+  "tol": "1e-30 rel",
+  "pass": true,
+  "note": "kappa = 1/2 adopted; the vacuum rate equals twice the MOND scale"
+ },
+ {
+  "name": "A2 [canonical density: rho_L = 4 a0^2/(G c^2)]",
+  "measured": "5.84441245402187536367003343359949077994317546338637205749734e-27",
+  "tol": "printed",
+  "pass": true,
+  "note": "rho_L = 5.84e-27 kg/m^3 (Planck/DE-scale density)"
+ },
+ {
+  "name": "A3 [alternative footing does not share fixed rho and fixed kappa]",
+  "measured": "kappa_eff(alt|rho fixed) = 0.602388404063  vs 1/2;  rho(alt|kappa fixed) = 8.48308961956e-27 vs 5.84441245402e-27",
+  "tol": "printed",
+  "pass": true,
+  "note": "the two footings are distinct normalizations: kappa_eff = 0.6024 or rho = 8.4831e-27 kg/m^3"
+ },
+ {
+  "name": "B1 [exact MU2 flux identity: g^2 = a0*B*(1+delta), delta=Y(3+2Y)/(2+Y)]",
+  "measured": "symbolic residual = 0",
+  "tol": "== 0 exact",
+  "pass": true,
+  "note": "g^2 - a0 B (1+delta) vanishes as a rational identity for ALL Y>0; the deep law g^2 = a0 B is the Y->0 limit with leading correction (3/2)Y; no 4-pi survives in the deep coefficient"
+ },
+ {
+  "name": "B2 [exact Newtonian-tail identity g/B = 1 + 1/(Y^2+2Y)]",
+  "measured": "symbolic residual = 0",
+  "tol": "== 0 exact",
+  "pass": true,
+  "note": "as Y->oo the field returns to Newton with relative correction 1/Y^2; asymptote g == B (mu -> 1)"
+ },
+ {
+  "name": "B3 [integrated MU2 equation is the exact cubic sY^3+(2s-B)Y^2-2BY-B=0]",
+  "measured": "substituted residual = 0",
+  "tol": "== 0 exact",
+  "pass": true,
+  "note": "cross-check with AS029: with x = g/a0 = 2Y and y = B/a0 = 2u the cubic becomes x^3+(4-y)x^2-4yx-4y = 0, identical to AS029's certified implicit-force cubic (consistency, not a re-derivation)"
+ },
+ {
+  "name": "B4 [diagnostic counterexamples at lambda in {1/2,1,2}: deep ratio g^2/(a0 B) at Y=1e-8, kappa=1/2]",
+  "measured": "{\"1/2\": \"4.00000002999999997500000012499999921875000546874995898831195\", \"1\": \"2.00000002000000000000000000000000000000000000000000000579077\", \"2\": \"1.00000001500000002499999987500000062499999687500001563322341\"}",
+  "tol": "printed",
+  "pass": true,
+  "note": "only lambda = 2 drives the ratio to 1 (n*kappa = 1); lambda = 1 gives 2, lambda = 1/2 gives 4: the Gauss-flux normalization alone does not fix kappa -- the deep identity is a joint condition (n, kappa); pure algebra, no observational preference used"
+ },
+ {
+  "name": "C1 [point-mass flux identity: 4 pi R^2 mu2(Y) g = 4 pi G M_b :: worst relative residual over 12 (M,R) cells]",
+  "measured": "1.176189218630660871245396420984379368117162377666119152148e-58",
+  "tol": "1e-40",
+  "pass": true,
+  "note": "the 4-pi of the sphere area cancels the 4-pi of the source coupling exactly; residuals sit at the bisection floor"
+ },
+ {
+  "name": "C2 [exact deep identity g^2 = a0 B (1+delta), all cells]",
+  "measured": "2.59085056652833338761590555884011987133480010933088441550711e-77",
+  "tol": "1e-40",
+  "pass": true,
+  "note": "the deep coefficient of the integrated equation is a0 with the exact finite-Y correction (3/2)Y+O(Y^2)"
+ },
+ {
+  "name": "C3 [exact Newtonian tail g = B (1+1/(Y^2+2Y)), all cells]",
+  "measured": "1.15912692208981918304116726923363734792736399336180968826657e-69",
+  "tol": "1e-40",
+  "pass": true,
+  "note": "Newtonian recovery g->B retained in the integral"
+ },
+ {
+  "name": "C4 [deep kinematic identity at R=1e4 r_M: sqrt(g R) = (G M a0)^(1/4), rel dev]",
+  "measured": "0.0000187503320328367666193640161990028843686636624050802378629142",
+  "tol": "1e-4",
+  "pass": true,
+  "note": "v_flat = 333.865997871 m/s for M_sun (exact-identity C2 is the primary check; this demonstrates the overflow-clean large-radius kinematic limit)"
+ },
+ {
+  "name": "D1 [divergence-form enclosure: 4 pi R^2 mu2 g = 4 pi G M_encl(R) on a smooth Gaussian profile, worst over 41 radii]",
+  "measured": "4.56088211138666758462103694630412514196672277927279945708306e-61",
+  "tol": "1e-40",
+  "pass": true,
+  "note": "independent representation: enclosed mass by numerical quadrature (cross-checked against the analytic Gaussian profile); the flux identity holds pointwise for every R"
+ },
+ {
+  "name": "D2 [boundary flux at large R: 4 pi R^2 mu2 g -> 4 pi G M_b(total)]",
+  "measured": "1.15479755254200735367697827484093312762436484768130014614489e-61",
+  "tol": "1e-40",
+  "pass": true,
+  "note": "the boundary flux retains the 4 pi G M_b normalization at the Newtonian end; Me_inf/M_b = 1.0"
+ },
+ {
+  "name": "NC-A [DROPPED 4*pi (RHS = G M_b instead of 4 pi G M_b), sphere area kept: exact tampered identity g^2 = a0 B * Y/(2 pi mu2(Y))]",
+  "measured": "measured g^2/(a0 B) = 0.0795791551969860063; exact tamper value = 0.0795791551969860063",
+  "tol": "1e-30 rel",
+  "pass": true,
+  "note": "the tamper is tracked exactly at finite Y"
+ },
+ {
+  "name": "NC-A2 [limit Y->0 detects kappa_eff = kappa/4pi = 1/(8 pi) != 1/2]",
+  "measured": "kappa_eff = 0.039788735773; measured g^2/(a0 B) -> 0.0795774717143 (target 1/(4 pi) = 0.0795774715459)",
+  "tol": "1e-6 rel",
+  "pass": true,
+  "note": "CONTROL FIRED: dropping the source 4*pi while keeping the sphere area divides the deep coefficient by exactly 4*pi; v_flat ratio (1/4pi)^(1/4) = 0.531125966013598457238536524253756769377320656384330787452096"
+ },
+ {
+  "name": "NC-B [coupling multiplier lambda_c in {1/2,2}: deep coefficient tracks the tamper exactly]",
+  "measured": "{\"1/2\": {\"measured_g2_over_a0B\": \"0.500026517363688485460370111313613083303782883633133665931266\", \"predicted_lc\": \"0.5\", \"resid\": \"0.0000265173636884854603701113136130833037828836331336659312657264\"}, \"2\": {\"measured_g2_over_a0B\": \"2.00021214578496364977232386700403572663300922077026277905402\", \"predicted_lc\": \"2.0\", \"resid\": \"0.000106072892481824886161933502017863316504610385131389527011734\"}, \"note\": \"kappa_eff/kappa = 1/lambda_c: lambda_c=1/2 doubles kappa (to 1), lambda_c=2 halves it (to 1/4); at Y ~ 1.4e-5 the finite-Y correction is included in the printed value, the comparison uses the exact tampered identity below\"}",
+  "tol": "1e-30",
+  "pass": true,
+  "note": "each tamper moves kappa by the exact inverse factor: the 4*pi cancellation is the ONLY place the convention lives at deep order"
+ },
+ {
+  "name": "NC-C [exact deep ratio identity holds at EVERY radius; Newtonian boundary R->0 gives g/B -> 1; deep boundary R->oo gives g^2 -> a0 B]",
+  "measured": "[{\"R_over_rM\": \"0.0000000001\", \"Y\": \"50000000000000000000.0000000000000000000199999999999999999992\", \"g_over_B_Newtonian_end\": \"1.00000000000000000000000000000000000000039999999999999999998\", \"g2_over_a0B_deep_end\": \"100000000000000000000.000000000000000000079999999999999999997\", \"exact_ratio_resid\": \"3.44383110592467043350215782389329788423161668347098542432348e-61\"}, {\"R_over_rM\": \"0.00001\", \"Y\": \"5000000000.00000000019999999992000000001600000000319999999584\", \"g_over_B_Newtonian_end\": \"1.00000000000000000003999999998400000000320000000063999999917\", \"g2_over_a0B_deep_end\": \"10000000000.0000000007999999996800000000799999999999999999885\", \"exact_ratio_resid\": \"4.00914706513829346889007293564445204676394169978939286939591e-61\"}, {\"R_over_rM\": \"0.1\", \"Y\": \"50.0192162799353108062346421003652917167589816164861988351247\", \"g_over_B_Newtonian_end\": \"1.00038432559870621612469284200730583433517963232972397670249\", \"g2_over_a0B_deep_end\": \"100.07687989035782531408590623939679995164291461907736769374\", \"exact_ratio_resid\": \"3.9796702117357452171238692224046406592596401231772898553465e-61\"}, {\"R_over_rM\": \"1.0\", \"Y\": \"0.744644285905039381396468265227424620584032919741496557768283\", \"g_over_B_Newtonian_end\": \"1.48928857181007876279293653045484924116806583948299311553657\", \"g2_over_a0B_deep_end\": \"2.2179804501241041277309084305977355432988737715289908681831\", \"exact_ratio_resid\": \"1.40285620585901494659793203501134002905253152447320074908767e-61\"}, {\"R_over_rM\": \"100.0\", \"Y\": \"0.00501880085931170504520189553815434994367471975882833536163958\", \"g_over_B_Newtonian_end\": \"100.376017186234100904037910763086998873494395176566707232791\", \"g2_over_a0B_deep_end\": \"1.00753448261711635913299897383355813137818935299952924970041\", \"exact_ratio_resid\": \"0.0\"}, {\"R_over_rM\": \"1000000.0\", \"Y\": \"0.000000500000187500050781257812499374388916015474915534973170826915\", \"g_over_B_Newtonian_end\": \"1000000.37500010156251562499874877783203094983106994634165383\", \"g2_over_a0B_deep_end\": \"1.00000075000034375010742189453124930572338867143529658126838\", \"exact_ratio_resid\": \"3.11150530530052229789736775458492858380813922138324198530408e-61\"}]",
+  "tol": "exact identity 1e-30; regime cells 1e-6/2e-2",
+  "pass": true,
+  "note": "R->0 with fixed M is the Newtonian/near end (Y -> oo): g/B -> 1 exactly; R->oo is the deep end (Y -> 0): g^2 = a0 B (1 + (3/2)Y) with the exact finite-Y identity verified cell by cell"
+ },
+ {
+  "name": "F1 [exact finite-Y deep ratio for MU_n diagnostics, kappa = 1/2]",
+  "measured": "[{\"lambda_n\": \"1/2\", \"g2_over_a0B_at_Y1e-3\": \"4.00299975012492192964651657540021950605518006243956095910279\", \"deep_limit_1_over_n_kappa\": \"4.0\"}, {\"lambda_n\": \"1\", \"g2_over_a0B_at_Y1e-3\": \"2.00199999999999999999999999999999999999999999999999999999988\", \"deep_limit_1_over_n_kappa\": \"2.0\"}, {\"lambda_n\": \"2\", \"g2_over_a0B_at_Y1e-3\": \"1.00150024987506246876561719140429785107446276861569215392298\", \"deep_limit_1_over_n_kappa\": \"1.0\"}, {\"lambda_n\": \"3\", \"g2_over_a0B_at_Y1e-3\": \"0.668000444222296296271629613176951989026976680993446222628573\", \"deep_limit_1_over_n_kappa\": \"0.666666666666666666666666666666666666666666666666666666666667\"}]",
+  "tol": "printed",
+  "pass": true,
+  "note": "lambda=2 is the unique consistent member of the probed family under kappa=1/2; lambda=1 and 1/2 are explicit counterexamples to an UNQUALIFIED 'flux normalization forces the deep identity' claim"
+ }
+]

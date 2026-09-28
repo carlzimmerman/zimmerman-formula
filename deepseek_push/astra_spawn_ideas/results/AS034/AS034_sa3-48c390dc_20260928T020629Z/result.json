@@ -1,0 +1,108 @@
+{
+  "schema_version": 2,
+  "task_id": "AS034",
+  "task_sha256": "31d7c3de6a97a1b2ca4a9b2ffdf726b2a5eb36dc4cdbc0aece2221d38421a6cf",
+  "run_id": "AS034_sa3-48c390dc_20260928T020629Z",
+  "worker": "hermes-subagent sa-3-48c390dc (deepseek/deepseek-v4-flash-0731 via openrouter); reserved in claims/AS034.json (state=running, dispatched 2026-09-28T01:58:22Z)",
+  "started_utc": "2026-09-28T02:06:29Z",
+  "finished_utc": "2026-09-28T02:55:35Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Let y = B/a0 > 0 (dimensionless), h_RAR(y) = y/(exp(sqrt(y))-1), nu_RAR = 1 + h_RAR/y, P(y) = delta*h_p/(y+y_p) with delta = 0.05, y_p the unique maximum of h_RAR, h_p = h_RAR(y_p), and y_star the unique solution of h'_RAR(y_star) = P(y_star). Claim (scoped to the operative MONO branch, y >= y_star): the max-rule h'_mono = max(h'_RAR, P) is solved exactly by h_mono(y) = h_RAR(y_star) + delta*h_p*ln((y+y_p)/(y_star+y_p)), the antiderivative of P fixed by splice continuity h_mono(y_star) = h_RAR(y_star); h'_mono = P strictly dominates h'_RAR for all y > y_star (no switch-back; y_star is the unique switching point of the max on y > 0); the splice is exactly C^1 and not C^2 (h'' jump = +3.4744713554836107e-2); nu_mono = 1 + h_mono/y obeys nu_mono -> 1 as y -> inf (Newtonian recovery) and stays within 0.01037 dex of nu_RAR on the tested grid (extremal at y ≈ 14.35075, consistent with the amended 0.0104-dex claim). Numerical instances: y_p = 2.5396382821881653..., h_p = 0.6476102378919149..., y_star = 2.3374124052663295... (50-digit roots of the declared equations; all consistent with landmarks 2.5396 / 0.647610 / 2.3374). The statement is dimensionless and applies identically on the canonical (a0 = 9.3619e-11 m/s^2) and alternative (a0 = 1.1279e-10 m/s^2) footings; kappa = 1/2 remains adopted input, not derived.",
+  "framework_cell": "action/source: no action varied in this task (constitutive-function audit on the frozen MONO branch of FRAMEWORK_CONTRACT.md ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9 and FRIED_CHICKEN_SPEC.md 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f); kernel: operative filtered nu_mono constructed here (h_mono continuation), distinct from Q, RAR, MU2, historical EXP; filter: heat filter S = exp((xi^2/2) Delta) NOT exercised (out of scope); gate: requirement-1 constitutive ingredient only; coupling: baryon source not exercised (dimensionless kernel statement); parameters: delta = 0.05, y_p/h_p/y_star from declared equations, kappa = 1/2 adopted, G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s; scale footing: both 9.3619e-11 and 1.1279e-10 m/s^2 reported separately (rho_Lambda = 5.844412e-27 / 8.483090e-27 kg m^-3; kappa_eff = 0.602388404 if rho fixed); boundaries: y > 0, value continuity at y_star fixes the integration constant; initial conditions: none (static constitutive statement); units: all quantities dimensionless.",
+  "new_assumptions": [
+    "delta = 0.05 adopted as framework input (not derived)",
+    "kappa = 1/2 adopted as framework input (consistent with STANDING.md: fitted/measured 0.465 ± 0.076, not derived)",
+    "y_p, h_p, y_star treated as real roots of the declared-branch transcendental equations, carried at 50-digit precision (not Lean-certified values)",
+    "principal branch of ln on y + y_p > 0 (automatic for y > 0)",
+    "no other new assumption; no branch imported for repair"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS034_constructing_the_mono_continuation_by_integration.md": "31d7c3de6a97a1b2ca4a9b2ffdf726b2a5eb36dc4cdbc0aece2221d38421a6cf",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/REUSE_BEFORE_DISPATCH.md": "e9782bd56f82cef8f695bac2a753418b82449ff9bd960bea62e97497c0f8e480",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+    "deepseek_push/astra_spawn_ideas/AS033_mono_splice_location_from_its_derivative_rule.md": "41b34f5f2822b5b08abe33c43e9fcac45bce38e7f7eb7dd0978abe40b79bed2c",
+    "deepseek_push/astra_spawn_ideas/AS048_mono_splice_smoothing_as_a_declared_new_candidate.md": "8a54735e26d0da909364dcd17c2892063859a06d6e4839bd0899ee3b13dcb89f",
+    "deepseek_push/astra_spawn_ideas/AS640_finite_element_conformity_at_a_mono_splice.md": "267eb640591a7c7255031beabe0af1c71f22cf74491bb77a3a434305a49d7920",
+    "deepseek_push/astra_spawn_ideas/claims/AS034.json": "233e45453bf0a0128db1d44e65d54621bfd7762fdcd357d6e9b85f0d29e8b379",
+    "fable_independent_2026/lean_2026/lakefile.toml": "626288bb46bb50ffd062539dd68084b8a909e3beda75a36acfeb68d7217feee7",
+    "fable_independent_2026/lean_2026/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88"
+  },
+  "artifacts_sha256": {
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/AS034_analysis.py": "fa78072a82e548a621260373e7d0a691a2522b9998e4f481156f6dfe52eceb72",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/AS034_supplementary.py": "b70395141620ef0c2fe9668ce1076203ca9655a8220b8c864cf77cc53da6bf0f",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/AS034_certificate.lean": "058c37b59525af4402d12c7185f663f0aea8f07c52ec2dbd6d7001b4346ec058",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/derivation.md": "2cd6ff4d4ad0c73f4d0c131ac571e71c46f5043e824dd6cb8f7837b3959d1320",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/analysis.json": "ed360a90f8ff381e65d4e79f2af7bfcc28025295f8bbb173c320582b6fbafc31",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/supplementary.json": "352ecc098aea3ee4c4230a3beede8d3f63c738e4d577df1f3d16e60af9cf80bc",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/lean_certificate.out": "8325c47a31512850035b49a0d3e03011cda57cf52be6f41bf6eb3d49b6878474",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/run_stdout.log": "4acced516b82119a5b1f11839b88d8508e836a3baa598127d64b28a391c55450",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/supp_stdout.log": "b430c58d2828353e672a6e51a7cd2df0b8ab9579788b9545a7d96ba21eec16cd",
+    "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/lean_attempt1_HasDerivAt_failed.lean": "b157f17863fa0f7e99641bb13a9e2a58e337d6118e6df3ec2cd7dfffe45a0823",
+    "deepseek_push/astra_spawn_ideas/branches/AS034/AS034.C01.md": "586ea835102081ae76ac8841bd68ed1c66f21b0d3edc339d8d01f230a59d5f7a"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && sha256sum README.md qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md real_research/peer_review_2026_09_26/README.md deepseek_push/astra_spawn_ideas/AS034_constructing_the_mono_continuation_by_integration.md (hash verification vs SOURCE_MANIFEST)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS034/AS034_sa3-48c390dc_20260928T020629Z && /usr/bin/time -p python3 AS034_analysis.py > raw_outputs/run_stdout.log 2>&1  (exit 0; real 4.29 s)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS034/AS034_sa3-48c390dc_20260928T020629Z && python3 AS034_supplementary.py > raw_outputs/supp_stdout.log 2>&1  (exit 0; real 0.81 s)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS034/AS034_sa3-48c390dc_20260928T020629Z/AS034_certificate.lean > raw_outputs/lean_certificate.out 2>&1  (exit 0; no warnings; axioms {propext, Classical.choice, Quot.sound} for all four theorems)",
+    "python3 (inline) sha256 over artifacts for artifacts_sha256"
+  ],
+  "execution_bounds": {
+    "declared": "<=120 s wall per prototype, <=512 MB peak memory, 1 CPU thread",
+    "enforced": "OMP_NUM_THREADS=MKL_NUM_THREADS=OPENBLAS_NUM_THREADS=NUMEXPR_NUM_THREADS=1 set at import; mpmath 50 dps; main run: wall 4.23 s (time.monotonic), user+sys 4.0+0.04 s (/usr/bin/time -p real 4.29), peak RSS 20.86 MB (resource.getrusage ru_maxrss=2085 * 1024 bytes on macOS) -- recorded in raw_outputs/analysis.json 'bounds'; supplementary run: wall 0.77 s, peak RSS 18.27 MB -- recorded in raw_outputs/supplementary.json 'bounds'; grid cells: 181 diagnostic points (y=10^k, k=-10..8 step 0.1) + 4000-pt continuation scan + 2x1e5 fine linear scans + 20001-pt dense dex scan; bisection to 1e-48; no refinement beyond the declared grids",
+    "note": "these are the actually enforced limits (thread env vars, mpmath precision, recorded wall/RSS); the 120 s / 512 MB figures are the orchestrator planning bounds"
+  },
+  "checks": {
+    "C1_splice_value_continuity": {"result": "pass", "observed": "0.0 (50-digit)", "tolerance_set_before": "< 1e-40"},
+    "C2_derivative_identity_hmono_eq_P": {"result": "pass", "observed": "0.0 at y in {2.5,3,10,100,1e4,1e8}", "tolerance_set_before": "< 1e-40"},
+    "C3_independent_quadrature_FTC": {"result": "pass", "observed": "residuals -2.09e-53, -8.35e-53, 0.0, 0.0 (mp.quad vs closed form at y=3,10,100,1e4)", "tolerance_set_before": "< 1e-45"},
+    "C6_representation_hRAR_eq_y_nu_minus_1": {"result": "pass", "observed": "max residual 9.3e-48 over 182 points", "tolerance_set_before": "< 1e-40"},
+    "C7_landmarks": {"result": "pass", "observed": "y_p=2.5396382821881653 (vs 2.5396), h_p=0.6476102378919149 (vs 0.647610), y_star=2.3374124052663295 (vs 2.3374), dex_max=0.01037014956 at y=14.35075 (< 0.0104)", "tolerance_set_before": "|y_p-2.5396|<1e-3, |h_p-0.647610|<1e-5, |y_star-2.3374|<1e-3, dex<0.0104"},
+    "N1_negative_control_omit_constant": {"result": "pass (jump detected as required)", "observed": "h_jump=0.64696037, force ratio g+/g- = 0.78321731 -> -21.6783 % acceleration jump at the splice", "tolerance_set_before": "jump must be nonzero (>= 1e-3 relative) for the control to register"},
+    "N2_negative_control_switch_back": {"result": "pass (no switch-back)", "observed": "D = P - h'_RAR: 0 adjacent-pair sign changes on 4001-pt log scan (y_star(1+1e-13)..1e8) and 2x1e5-pt linear scans; min D = 8.12e-15 at splice touch point, interior min 7.03e-8 at y=2.3374144; exact D > 0 on (y_p, inf) via sign structure; D_alt = h'_RAR - P > 0 on (0, y_star): min 0.01422528 at y≈1.995 (104/104 grid points positive)", "tolerance_set_before": "zero sign changes within the continuation; if any change, locate the switch point"},
+    "C8_limits": {"result": "pass", "observed": "deep: h_RAR(1e-10)/sqrt(1e-10)=0.99999500000833 matches sqrt(y) - y/2 + y^{3/2}/12 series to ~1e-17; Newtonian: nu_mono - 1 = 1.1921232e-8 at y=1e8 (h_mono/y -> 0)", "tolerance_set_before": "series match to < 1e-10 relative"},
+    "lean_certificate": {"result": "pass", "observed": "lake env lean exit 0; four theorems; axioms printed = [propext, Classical.choice, Quot.sound] for all", "tolerance_set_before": "exit 0, zero sorry, axioms subset of {propext, Classical.choice, Quot.sound}"},
+    "source_hash_verification": {"result": "pass", "observed": "README/FRIED_CHICKEN_SPEC/peer_review README byte-hashes match SOURCE_MANIFEST pins exactly", "tolerance_set_before": "exact match"}
+  },
+  "tested_domain": "y = B/a0 in (0, inf): diagnostic grid y = 10^k, k = -10..8 step 0.1 (181 pts) plus y = 14.35; roots bracketed and bisected at 50 digits (y_p on [1.5,1.7], y_star on [2.30,2.40], sign changes verified before bisection); continuation scan y_star(1+1e-13)..1e8 (4001 log pts); fine scans (y_star, y_p) and (y_p, 5) at 1e5 pts each; dense dex scan y in [12,17] at 20001 pts; quadrature endpoints y in {3,10,100,1e4}; derivative samples y in {2.5,3,10,100,1e4,1e8}. Exact (proof) parts: antiderivative identity and continuity at the splice (Lean), sign structure of h'_RAR ((0,y_p) > 0, (y_p,inf) < 0) and strict dominance of P over h'_RAR on (y_p, inf), deep and Newtonian asymptotics. Numerically bracketed parts: uniqueness of the crossing on (0, y_star), global dex extremum location/value.",
+  "failed_attempts": [
+    {
+      "artifact": "results/AS034/AS034_sa3-48c390dc_20260928T020629Z/raw_outputs/lean_attempt1_HasDerivAt_failed.lean",
+      "cause": "HasDerivAt-stated theorems re-elaborate competing ℝ-over-ℝ normed module instances per declaration site (Semiring.toModule vs (NormedAlgebra.toNormedSpace ℝ).toModule); simpa/convert on the theorem statement failed instance unification. Also: rw deriv_add_const stuck on NontriviallyNormedField metavariable; rw deriv_id pattern mismatch on (fun y => y); deriv_add_const pattern mismatch on left-constant functions; one_div direction mismatch. Resolved by deriv-based statements (final AS034_certificate.lean)."
+    }
+  ],
+  "limitations": "No statement about the filtered field equation, heat filter S, well-posedness, criterion B, stability, or the thirteen-item target (separate gates; the C^1-kink impact on the filtered source is the proposed child AS034.C01, spec only, not run). 'Within 0.0104 dex' is numerically supported on the tested grids, not an exact global inequality. y_p/h_p/y_star are 50-digit numerical roots, not exact closed forms; crossing uniqueness on (0, y_star) is numerically bracketed, not proved. AS033/AS032 executed results absent from results/ at run time (prerequisite gap); the crossing and peak were re-derived here from the declared equations as controls. Splice regularity is for the unfiltered kernel. No branch other than MONO is used or transferred. kappa = 1/2 adopted, not derived.",
+  "next_unresolved_implication": "The constitutive function of the operative branch is now pinned (integrated form, derivative rule, C^1\\C^2 splice, no switch-back), but the transfer to the full theory is missing the regularity/ellipticity analysis of the static filtered operator across the splice: distributional class of S* div[(nu_mono(|grad S u|/a0)-1) grad S u] when |grad S u|/a0 crosses y_star (no δ expected from a C^1 kink, but the second-order coefficient's discontinuity and the ellipticity ratio Lambda_min/Lambda_max across the kink are unquantified), plus the exact global 0.0104-dex extremum bound.",
+  "suggested_followup": "Dispatch AS034.C01 (ready spec at deepseek_push/astra_spawn_ideas/branches/AS034/AS034.C01.md; parent evidence must be reviewed first): closed-form h'' jump J, distributional classification with a mutated-jump control, ellipticity-ratio bound across the splice, Sobolev regularity of the fixed-point map u -> Phi on a declared bounded leaf.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "nu_RAR(y) = 1/(1 - exp(-sqrt(y))) (framework RAR branch, frozen); max-rule h'_mono = max(h'_RAR, delta*h_p/(y+y_p)) (framework operative MONO derivative rule); delta = 0.05 (framework input); splice continuity h_mono(y_star) = h_RAR(y_star) (framework contract: 'joined continuously from the RAR segment'); kappa = 1/2 adopted (framework/STANDING input, measured 0.465 ± 0.076, not derived); a0 = kappa c sqrt(G rho_Lambda) (framework input relation)",
+    "measured_calibrations": "G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, a0 canonical 9.3619e-11 and alternative 1.1279e-10 m/s^2 (framework conventions; G_N/G_bare/G_cosmo kept separate; rho_Lambda derived from a0 and kappa for the footing table only)",
+    "boundary_initial_data": "y > 0; value continuity at y_star",
+    "derived_equations": "h_RAR(y) = y/(e^{sqrt(y)} - 1); h'_RAR(y) = [2(e^s - 1) - s e^s]/[2(e^s - 1)^2]; h_mono(y) = h_RAR(y_star) + delta*h_p*ln[(y+y_p)/(y_star+y_p)] with constant fixed by continuity; nu_mono = 1 + h_mono/y; splice class C^1\\C^2 with jump J = h''_mono(y_star+) - h''_RAR(y_star-) = +3.4744713554836107e-2"
+  },
+  "closure_implication": "Gate: requirement 1 (operative filtered nu_mono) and requirement 12 (RAR segment + MONO continuation preserved) constitutive ingredient. Implication: the operative kernel's continuation is exactly the integrated log form, its derivative rule is certified (Lean), the max-rule never reverts on y > y_star, and the splice regularity class is C^1\\C^2 — a necessary input for any same-action well-posedness/stability argument in the requirement-1 cell, but NOT sufficient: the filtered static operator regularity/ellipticity across the splice (AS034.C01), the action derivation of the max-rule, criterion B and the global extremum bound remain open. No common-action/parameter-domain compatibility claim beyond the dimensionless MONO constitutive cell is made.",
+  "child_proposals": [
+    {
+      "id": "AS034.C01",
+      "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS034/AS034.C01.md",
+      "spec_sha256": "586ea835102081ae76ac8841bd68ed1c66f21b0d3edc339d8d01f230a59d5f7a",
+      "scientific_fingerprint": "(MONO frozen branch, C^1\\C^2 splice analysis, closed-form J, distributional class of S*div[(nu_mono-1)grad Su], ellipticity ratio across splice, bounded-leaf Sobolev regularity)",
+      "new_target": "exact second-derivative jump formula and distributional/ellipticity classification of the filtered static operator across the splice",
+      "controls": "mutated-jump kernel must create a measure term; ellipticity ratio -> 1 on the Newtonian tail; deep tail matches RAR-side ratio on both footings",
+      "dependencies": "AS034 result (parent, unreviewed); FRAMEWORK_CONTRACT MONO cell; FRIED_CHICKEN requirement-1 text",
+      "dispatch_state": "spec-written, not dispatched (no child runner in parent wave)"
+    }
+  ],
+  "closure_candidate": null
+}

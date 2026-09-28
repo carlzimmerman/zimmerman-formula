@@ -1,0 +1,151 @@
+{
+ "landmarks": {
+  "y_p": "2.5396382821881653249988817897743659023689841775413",
+  "h_p": "0.64761023789191485964720196197595458120902067209651",
+  "y_star": "2.3374124052663294555581233032011988607921527655904",
+  "phi(y_star)=h'_RAR(y_star)": "0.0066393634123774664319402003748430201817060453966306",
+  "splice_residual |h'_RAR(y_star)-phi(y_star)|": "1.7e-51",
+  "C2_jump_hpp_RAR_minus_phi_p_at_y_star": "-0.03474471355483611",
+  "phi_p(y_star)": "-0.001361348043697037",
+  "hpp_RAR(y_star)": "-0.03610606159853314",
+  "AS033_crosscheck_J2_printed": "0.0347447135548 (matches: AS033 label 'RAR-side - continuation-side'; its code line computes -phi'-hpp=0.0374674 which CONTRADICTS its own label -- we report the labeled jump)",
+  "B_star_canonical_m_s2": "2.18826211969e-10",
+  "B_star_alternative_m_s2": "2.6363674519e-10"
+ },
+ "mono_vs_rar_dex": {
+  "max_dex_grid": "0.0103227758456",
+  "at_y_grid": "15.8489319246",
+  "max_dex_fine_scan_[10,30]": "0.0103701495511",
+  "at_y_fine": "14.35",
+  "dex_at_exact_y=14.35": "0.0103701495511",
+  "spec_claim": "0.0104 dex most at y=14.35 (FRIED_CHICKEN rqmt 1)"
+ },
+ "exact_sign_checks": {
+  "MU2_dhdx_at_x_1.9_2.0_2.1": [
+   "0.0067432020094741988233",
+   "0.0",
+   "-0.0058037463182484293612"
+  ],
+  "MU2_y_at_x=2": "1.5",
+  "EXP_dhdx_at_x_0.9_1.0_1.1": [
+   "0.040656965974059911188",
+   "0.0",
+   "-0.033287108369807955329"
+  ],
+  "EXP_y_at_x=1": "0.6321205588285576784044762298385391325542",
+  "MU2_dydx_min_over_grid": "1.99999999977e-10",
+  "EXP_dydx_min_over_grid": "1.99999999985e-10"
+ },
+ "asymptotics": {
+  "Q_deep_x_minus_asym@1e-4": "3.91e-20",
+  "Q_deep_leading_neglected": "-5/128 y^(9/2) (domain 0<y<1)",
+  "Q_Newton_h_minus_asym@100": "3.88e-8",
+  "Q_Newton_leading_neglected": "+1/(16 y^2) then -5/(128 y^3) (domain y>1)",
+  "RAR_deep_h_minus_asym@1e-4": "3.31e-19",
+  "RAR_deep_leading_neglected": "-s^7/30240 + ..., s=sqrt y (domain 0<y<4 pi^2; stated 0<y<1)",
+  "RAR_Newton_h@100": "0.00454019910097",
+  "RAR_Newton_leading_term": "y e^{-sqrt y} (1 + e^{-sqrt y} + ...), superpolynomial; domain sqrt y > 1",
+  "MONO_cont_dgdB_minus_1@1e8": "3.23805110722e-10",
+  "MONO_cont_leading_neglected": "-delta h_p y_p/(y+y_p)^2 ~ -delta h_p y_p/y^2"
+ },
+ "NC1_RAR_phantom_negative_but_physical_monotone": {
+  "h'_RAR_min_over_grid (y>y_p)": "-0.0323805594859473",
+  "at_y": "6.309573445",
+  "min(1+h'_RAR)_dense_scan_(y_p,100]": "0.967552546340681",
+  "verdict": "h'<0 with |h'|<1 does NOT imply dg/dB<=0: 1+h'_RAR>0 everywhere (exact proof: 2(e^s-1)>s); naive noninvertibility claim REJECTED"
+ },
+ "NC2_counterexample_kernel_h=-y*tanh(y)": {
+  "dgdB_values": {
+   "0.5": "0.144658976257027",
+   "0.7": "-0.0486854901048845",
+   "1.0": "-0.181568497569791",
+   "2.0": "-0.105329229782146",
+   "5.0": "-0.000817120417314165",
+   "10.0": "-7.83238373212936e-8"
+  },
+  "root_bracket": "(0.5, 1.0): dg/dB(0.5)>0, dg/dB(1)<0",
+  "exact_sign_for_y>=1": "1+e^{-2y}-2y < 0 strictly for y>=1 (decreasing, -1.865e-1... e^{-2}-1<0 at y=1) => dg/dB<0 on [1,infty)",
+  "x=y+h=y(1-tanh y)>0": "x>0 for all y>0 (tanh y<1)",
+  "phantom_h'=-tanh y - y sech^2 y": "h'<0 everywhere (phantom decreasing)",
+  "verdict": "physical non-invertibility is REAL here (h'<-1 near y=1: h'(1)=-1.18159 < -1 => dg/dB(1)=-0.18159<0); the sharp criterion is h'<-1, not h'<0"
+ },
+ "NC3_impossibility": {
+  "statement": "x=y+h(y), y>0: h'(y)>0 for all y => dg/dB=1+h'(y)>1 for all y. No kernel in the declared class can be phantom-monotone and physical-nonmonotone.",
+  "search": "grid scan for h'_Q, h'_RAR (y<y_p), h'_mono, phi: all >0; min h' over all monotone branches = floor phi at y=1e8 ~ 3.2e-10 >0 -> no counterexample found because provably none exists (algebraic implication)"
+ },
+ "NC4_shared_asymptote_not_equivalence": {
+  "deep_y=1e-6": {
+   "h_RAR": "0.000999500083333",
+   "h_Q": "0.0009990005",
+   "h'_RAR": "499.50012",
+   "h'_Q": "499.00075",
+   "note": "both h ~ sqrt(y): leading 1/(2 sqrt y) but h_RAR - h_Q = y/2 - ... differ at O(y)"
+  },
+  "y=14.35": {
+   "h'_RAR": "-0.0217245861863",
+   "phi": "0.0019171820825",
+   "h'_mono": "0.0019171820825",
+   "dex": "0.0103701495511",
+   "note": "RAR phantom is DECREASING here, MONO phantom is INCREASING: same deep law, opposite phantom slope"
+  },
+  "y=y_p": {
+   "h'_RAR": "-3.82e-51",
+   "h'_mono": "0.0063750243729"
+  }
+ },
+ "NC5_MU2_EXP_physical_vs_phantom": {
+  "MU2": {
+   "dydx_root": "none (dydx>0 all x>0; exact: *(1+x/2)^3 gives (1+x/2)^3-(1+x/2)+x = (1+x/2)(x/2)(2+x/2)+x>0)",
+   "phantom_root_x": "x=2 exactly (dh/dx=(1-x/2)(1+x/2)^-3); y(2)=3/2: phantom monotone iff y<3/2"
+  },
+  "EXP": {
+   "dydx_root": "none (dydx=1-e^-x(1-x)>0 all x>0; exact)",
+   "phantom_root_x": "x=1 exactly (dh/dx=(1-x)e^-x); y(1)=1-1/e: phantom monotone iff y<1-1/e"
+  }
+ },
+ "footings": {
+  "kappa_adopted": "1/2",
+  "rho_Lambda_canonical_kg_m3": "5.84441245402e-27",
+  "rho_Lambda_alternative_kg_m3": "8.48308961956e-27",
+  "rho_alt_over_can": "1.4514871574",
+  "B_star= y_star*a0 canonical (m/s^2)": "2.18826211969e-10",
+  "B_star= y_star*a0 alternative (m/s^2)": "2.6363674519e-10",
+  "B_p = y_p*a0 canonical (m/s^2)": "2.3775839634e-10",
+  "B_p = y_p*a0 alternative (m/s^2)": "2.86445801848e-10",
+  "note": "all monotonicity statements dimensionless in y; both footings apply unchanged"
+ },
+ "max_residuals_50dps": {
+  "Q_forward": "2.41e-35",
+  "Q_forward_rel": "2.61e-51",
+  "Q_substitution": "1.79e-43",
+  "RAR_representation": "2.67e-51",
+  "MONO_derivative_rule": "0.0",
+  "MONO_continuity": "0.0",
+  "Q_hprime_vs_deriv": "1.09e-47",
+  "RAR_hprime_vs_deriv": "8.76e-47",
+  "MU2_forward": "1.79e-43",
+  "EXP_forward": "1.71e-49"
+ },
+ "min_margins": {
+  "dgdB_Q_minus_1": "1.2499999875e-17",
+  "dgdBRAR_minus_0": "0.967619440514",
+  "hprime_mono_minus_floor": "0.0",
+  "MU2_dydx": "1.99999999977e-10",
+  "EXP_dydx": "1.99999999985e-10"
+ },
+ "bounds": {
+  "wall_time_s": 0.134,
+  "alarm_s": "120 (RLIMIT_CPU soft=120 hard=121, enforced)",
+  "memory_cap": "512 MiB (RLIMIT_AS=512*1024*1024, enforced)",
+  "ru_maxrss_bytes_macos": 20365312,
+  "threads": "1 (mpmath scalar; OMP_NUM_THREADS=1)",
+  "grid": "y=10^k, k=-10..8 step 0.1, 181 points; x-grid identical for MU2/EXP",
+  "mp_dps": 50,
+  "memory": {
+   "cap_bytes": 536870912,
+   "enforced": false,
+   "measured_ru_maxrss_bytes_macos": 20365312,
+   "macos_note": "RLIMIT_AS lowering rejected by macOS kernel; cap enforced by measured ru_maxrss assertion (ru_maxrss is bytes on macOS)"
+  }
+ }
+}

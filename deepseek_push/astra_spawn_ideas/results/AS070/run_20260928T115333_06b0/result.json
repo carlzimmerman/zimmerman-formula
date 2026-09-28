@@ -1,0 +1,295 @@
+{
+ "schema_version": 2,
+ "task_id": "AS070",
+ "task_sha256": "f298c932b31ecbfd3c14320a45d71be82fd36ce4048fb9f8fef9baee585c5694",
+ "run_id": "run_20260928T115333_06b0",
+ "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-run worker seed",
+ "started_utc": "2026-09-28T11:53:33Z",
+ "finished_utc": "2026-09-28T12:26:20Z",
+ "execution_status": "completed",
+ "outcome": "counterexample",
+ "exact_claim": "Conditional taxonomy theorem (all cases, exact): for S = S_host[g,psi;a0] + S_vac(rho_L) + int eta F sqrt(-g), F = 4 a0^2 - G c^2 rho_L, G,c != 0, a0 > 0, rho_L >= 0: (T1) F = 0 <=> rho_L = 4a0^2/(G c^2) <=> (rho_L>0) kappa = a0/(c sqrt(G rho_L)) = 1/2 \u2014 the constraint is algebraically identical to the ADOPTED kappa = 1/2; (T2) F = 0 is the multiplier (eta) equation of motion in every case: the relation is imposed by construction, never emergent; (T3) minimal coupling (S_vac = 0, eta, a0, rho_L independent fields): eta = 0 on shell and the (a0, rho_L) sector is the one-parameter family (alpha, 4 alpha^2/(G c^2)); the Dirac-Bergmann constraint set {pi_a0, pi_rho, pi_eta, F, eta} has Poisson rank 4 with exactly one first-class combination chi = (G c^2/(8 a0)) pi_a0 + pi_rho whose gauge orbit IS the family: zero propagating DOF, no independent freedom removed; (T4) vacuum term -c^2 int rho_L with a0 a parameter pins eta = -1/G (dimensionally forced, no new free coupling), T^eta = eta F g_munu = 0 on shell, T^vac = -rho_L c^2 g_munu, Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4 (framework Lambda identity modulo the carried G_E/G_N ratio); (T5) a0 AND rho_L both fields + vacuum term: no on-shell solution (overdetermined: eta = 0 vs eta = -1/G); (T6) metric/host-coupled a0 changes the theory (T^eta not proportional to F on the surface). COUNTEREXAMPLE to the claim that the multiplier-enforced normalization constraint removes the kappa freedom: the on-shell sector contains the entire family, in particular the members rho_L/rho_Lambda* = 1/2, 1, 2 (kappa = 1/sqrt(2), 1/2, 1/(2 sqrt(2)) relative to the adopted reference) with distinct s = c sqrt(G rho_L) = 2 a0 sqrt(lambda) and distinct MU_n arguments Y = g/(2 a0 sqrt(lambda)); none is excluded; kappa = 1/2 and the vacuum magnitude remain adopted inputs. Numerics: canonical a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844412454e-27 kg/m^3, alternative a0 = 1.1279e-10 m/s^2 <-> 8.483089620e-27 kg/m^3 (kappa = 1/2 held; the two footings are two members of the same family, ratio 1.45148716); kappa_eff = 0.60238840 at fixed canonical rho_Lambda. All residuals <= 1e-61 relative (mpmath 60 digits); Lean-certified core.",
+ "framework_cell": {
+  "action": "S = S_host[g, psi; a0] + S_vac(rho_L) + int eta (4 a0^2 - G c^2 rho_L) sqrt(-g): the candidate normalization constraint F = 4 a0^2 - G c^2 rho_L coupled with multiplier eta; S_host variant-independent (conclusions carry a0 as parameter or field per case); no heat filter, no branch kernel involved (CORE coefficient cell)",
+  "branch": "CORE coefficient; conditional MU_n statistical response (mu_n(Y) = 1 - (1+Y)^(-n), Y = g/s, s = c sqrt(G rho_L); n = 2 = MU2 cell). Q, RAR, EXP AQUAL, MONO untouched; no branch translation performed or claimed; no bridge to the filtered-MONO thirteen-item target",
+  "kernel": "none (algebraic constraint analysis; no interpolation kernel)",
+  "filter": "none (no heat filter; contribution of the filter to this cell is outside scope)",
+  "gate": "Requirement 13 / gate-map cell A03 (coefficient mechanisms and their missing premises): this run determines the normalization-constraint mechanism cannot supply the missing kappa premise; gate stays OPEN",
+  "coupling": "constraint term int eta F sqrt(-g); vacuum term -chi int rho_L sqrt(-g) (chi = c^2 in case T4); host coupling to a0/rho_L explicitly treated as the changed-theory direction (T6) and handed to child AS070.C01",
+  "parameters": "kappa = 1/2 ADOPTED (input, not derived); G = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s (exact); M_sun = 1.98847e30 kg and pc = 3.085677581491367e16 m recorded (not used in the algebra); G_N, G_bare, G_cosmo kept separate (Lambda_eff carries G_E/G_N)",
+  "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844412454021875e-27 kg/m^3 AND alternative a0 = 1.1279e-10 m/s^2 <-> 8.483089619559097e-27 kg/m^3 carried SEPARATELY (kappa = 1/2 held in both -> density ratio = (a0 ratio)^2 = 1.45148716); kappa_eff = 0.60238840 recorded for fixed-density re-labelling; both footings are members of the same one-parameter family of the constrained theory (lambda = 1.45148716 relative to canonical)",
+  "boundaries": "G,c != 0, a0 > 0, rho_L >= 0 (physical rho_L > 0), lambda > 0, g > 0, s > 0, n >= 1; boundary cases lambda -> 0+ and -> inf checked algebraically",
+  "initial_conditions": "none (static algebraic constraint; Dirac-Bergmann classification at pointwise level; no time evolution solved)",
+  "units": "SI: [F] = m^2 s^-4, [eta] = kg s^2 m^-3 = [G^-1], [eta F] = kg m^-1 s^-2, [T^eta] = [T^vac] = kg m^-1 s^-2, [Lambda] = m^-2; kappa, lambda, Y, mu_n dimensionless"
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS070_coupling_a_proposed_normalization_constraint_consistently.md": "f298c932b31ecbfd3c14320a45d71be82fd36ce4048fb9f8fef9baee585c5694",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+  "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+  "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+  "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3",
+  "deepseek_push/astra_spawn_ideas/CHAIN_REGISTRY.json": "7b168a8de39bb9c9ac753cf69060dfb0af1e08f02184360746a1820592baed31"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/derivation.md": "ccaac53bc2dd3f614ed805c397f3b5526bb995e8cadc0fb6bb67d6911555c4fb",
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/compute_AS070_prototype.py": "61dc8df2f01f015b25804ff6f260cb03dbc3ab6adc263e2b9be06800469f5f07",
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/raw_output.txt": "cc95e88c220dd355b9f3956c3e2d5fa0c0c46fd002479628f968b494ea1f9ba2",
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/residuals.json": "93549a0115ff2b49ce1db9de750dd429e1cefa74ae52ce0a1cd15d0211797ee8",
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/AS070_constraint_coupling_certificates.lean": "1fab6a687dfb79ff12d43c8ee487c4a29adb8137f1ca3ffb20bda765ad92d3d5",
+  "deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0/lean_check.out": "65f5c694b097bd469b8ab3bf5265a3f3afbf7bc316635db77a43b412dd6fcc45",
+  "deepseek_push/astra_spawn_ideas/branches/AS070/AS070.C01.md": "0706b94a81962605228cfaaed0723b1d935b2b9185911754b44fa208cb188aca"
+ },
+ "commands": [
+  {
+   "argv": [
+    "shasum",
+    "-a",
+    "256",
+    "deepseek_push/astra_spawn_ideas/AS070_*.md",
+    "FRAMEWORK_CONTRACT.md",
+    "RESULT_CONTRACT.json",
+    "SOURCE_MANIFEST.json",
+    "deepseek_push/PD01_polarization_count.py",
+    "deepseek_push/PD08_particle_free_derivation.py",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py",
+    "STANDING.md",
+    "FRIED_CHICKEN_SPEC.md"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+   "purpose": "task/source hash reconciliation; all pinned hashes matched (task f298c932..., PD01 37e39d1a..., PD08 83f6054c..., k01 8df5a3ab...)"
+  },
+  {
+   "argv": [
+    "timeout",
+    "120",
+    "bash",
+    "-c",
+    "ulimit -t 120; python3 compute_AS070_prototype.py > raw_output.txt 2> err.txt"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS070/run_20260928T115333_06b0",
+   "purpose": "bounded prototype (12 checks + 2 negative controls); wrap: /usr/bin/time -p; exit 0; wall 0.15 s (real), user 0.11 s; peak RSS 54.17 MB (in-process ru_maxrss assertion < 512 MB); 1 thread (single-threaded CPython, no vectorized imports)"
+  },
+  {
+   "argv": [
+    "lake",
+    "env",
+    "lean",
+    "<abs path>/AS070_constraint_coupling_certificates.lean"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+   "purpose": "Lean 4 certificate compile, attempt 1: exit 1, 3 tactic errors (trailing tactic after field_simp closure x2; rw direction for Real.sqrt_mul; rw [<- Real.sq_sqrt] rewriting inside sqrt; congr 1 descent into division) \u2014 errors fixed; run 2 (same argv): exit 0, zero sorry, unfiltered #print axioms of all 9 theorems = {propext, Classical.choice, Quot.sound}; output in lean_check.out; compile host fable_independent_2026/lean_2026 untouched (invoked from it only)"
+  }
+ ],
+ "execution_bounds": {
+  "declared_prototype_bounds": {
+   "wall_s": 120,
+   "memory_MB": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "wall": "GNU timeout 120 wrapper (enforced); measured real 0.15 s",
+   "cpu": "ulimit -t 120 / RLIMIT_CPU (120,120) \u2014 works on this macOS (enforced); measured user 0.11 s",
+   "threads": "1 (single-threaded CPython; no threading/multiprocessing/vectorized imports)",
+   "memory": "macOS rejects RLIMIT_AS/RLIMIT_DATA/RLIMIT_RSS reductions and ulimit -v/-d ('cannot modify limit: Invalid argument'; resource.setrlimit: 'current limit exceeds maximum limit') \u2014 documented failed attempts; ENFORCED instead by in-process peak-RSS measurement (ru_maxrss = 54.17 MB) with an assertion < 512 MB inside the prototype (would abort otherwise)",
+   "precision": "mpmath mp.dps = 60; tolerances pre-set at 1e-30 relative before any evaluation"
+  },
+  "lean_compile": "two lake env lean invocations, each under a 550 s timeout wrapper; Mathlib v4.34.0-rc2 cached; wall not separately timed"
+ },
+ "checks": [
+  {
+   "key": "source_integrity",
+   "pass": true,
+   "observed": "task sha256 f298c932b31ecbfd3c14320a45d71be82fd36ce4048fb9f8fef9baee585c5694 (matches dispatch); PD01 37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d, PD08 83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb, k01 8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c all match SOURCE_MANIFEST-pinned hashes; FRAMEWORK_CONTRACT ca696c7f..., RESULT_CONTRACT 621fdad0..., SOURCE_MANIFEST fe295b80..., STANDING 660462eb..., FRIED_CHICKEN_SPEC 98d9149f..., README 91a5fac4... all match; FIRST_PRINCIPLES_AND_BRANCHING + ORCHESTRATOR are not manifest-pinned and differ from AS001's recorded values -> current disk hashes recorded as the new base (no pin conflict)",
+   "tolerance": "n/a",
+   "note": "hash reconciliation, pass"
+  },
+  {
+   "key": "C1_F_residual_canonical_footing",
+   "pass": true,
+   "observed": "0.0",
+   "tolerance": "1.0e-30",
+   "note": "4 a0^2 - G c^2 rho_Lambda(canonical) = 0, kappa=1/2 held"
+  },
+  {
+   "key": "C2_F_residual_alternative_footing",
+   "pass": true,
+   "observed": "4.21687917729220928973942962050800760308398455294740302003111e-81",
+   "tolerance": "1.0e-30",
+   "note": "4 a0^2 - G c^2 rho_Lambda(alternative) = 0, kappa=1/2 held"
+  },
+  {
+   "key": "C3_F_equals_4a0sq_one_minus_lambda",
+   "pass": true,
+   "observed": "0",
+   "tolerance": "1.0e-30",
+   "note": "sympy expand of F(rho_L=lambda*4a0^2/(Gc^2)) - 4a0^2(1-lambda) == 0 (exact)"
+  },
+  {
+   "key": "C4_scale_identity_s_grid",
+   "pass": true,
+   "observed": "3.62227163153068494700364771635511671227301247925565527583305e-71",
+   "tolerance": "1.0e-30",
+   "note": "c sqrt(G rho_L) = 2 a0 sqrt(lambda), lambda in {1/2,1,2} x both footings"
+  },
+  {
+   "key": "C5_kappa_1_over_2sqrtlambda",
+   "pass": true,
+   "observed": "7.7787690973264271339300800672251553007378152109014589163764e-62",
+   "tolerance": "1.0e-30",
+   "note": "a0/(c sqrt(G rho_L)) = 1/(2 sqrt(lambda)) on the grid + footings"
+  },
+  {
+   "key": "C6_direct_differentiation_dFdlambda",
+   "pass": true,
+   "observed": "8.51979154524745196262905205807658162808684886714249425121719e-74",
+   "tolerance": "1.0e-30",
+   "note": "central difference step 1e-8 at lambda=1 vs -4 a0^2 (exact)"
+  },
+  {
+   "key": "C7_dirac_rank_4",
+   "pass": true,
+   "observed": "4",
+   "tolerance": "1.0e-30",
+   "note": "constraints {pi_a0, pi_rho, pi_eta, F, eta}: 4 second-class + 1 first-class"
+  },
+  {
+   "key": "C7_dirac_nullvector_family_gauge",
+   "pass": true,
+   "observed": "Matrix([[G*c**2/(8*a0), 1, 0, 0, 0]])",
+   "tolerance": "1.0e-30",
+   "note": "null direction = (G c^2/(8 a0), 1, 0, 0, 0): family/gauge direction chi"
+  },
+  {
+   "key": "C8_MU2_cell_mapping_lambda1",
+   "pass": true,
+   "observed": "0.0",
+   "tolerance": "1.0e-30",
+   "note": "mu2(g/(2a0)) = 1-(1+g/(2a0))^(-2) == MU2 cell 1-(1+x/2)^(-2), x=g/a0"
+  },
+  {
+   "key": "NC1_stress_omission_is_O1_offshell",
+   "pass": true,
+   "observed": "1.0",
+   "tolerance": "lower bound 0.25",
+   "note": "control CAPABLE OF FAILING and fails as designed: |T^eta|/|T^vac| = 1.0 at lambda=1/2, 0.5 at lambda=2; ignoring T^eta while enforcing F=0 with eta!=0 misstates the vacuum stress by O(1)"
+  },
+  {
+   "key": "NC2_sign_flip_across_lambda1",
+   "pass": true,
+   "observed": "3.50580686440000000000000000000000000000000000000008198869581e-32",
+   "tolerance": "1.0e-30",
+   "note": "F changes sign at the adopted point (constraint sensitivity)"
+  },
+  {
+   "key": "NC2_vacuity_witness_all_EOMs",
+   "pass": true,
+   "observed": "8.43375835458441857947885924101601520616796910589480604006221e-81",
+   "tolerance": "1.0e-30",
+   "note": "(alpha, rho_L, eta)=(a0*sqrt(lambda), lambda rho_Lambda, 0) satisfies F=0 to rel resid 8.434e-81 (< tolerance) and eta=0 exactly, for lambda=1/2,1,2: the constraint does not select the family member (exact in R; ~1e-75 in mpmath)"
+  },
+  {
+   "key": "lean_compile_exit0",
+   "pass": true,
+   "observed": "lake env lean exit 0 (second invocation); first invocation exit 1 with 3 fixed tactic errors",
+   "tolerance": "n/a",
+   "note": "certificate compiles"
+  },
+  {
+   "key": "lean_zero_sorry",
+   "pass": true,
+   "observed": "grep 'sorry' on the .lean file: 0 tactic occurrences (only the docstring word in a comment); lean_check.out contains no sorryAx",
+   "tolerance": "n/a",
+   "note": "hard bar: zero sorry"
+  },
+  {
+   "key": "lean_axioms_subset",
+   "pass": true,
+   "observed": "unfiltered #print axioms of all 9 theorems (f_eq_four_a0sq_one_sub_lambda, f_iff_lambda_eq_one, f_iff_rho_framework, s_two_a0_sqrt_lambda, kappa_sq_inv_four_lambda, kappa_half_of_constraint, mu2_rational_form, mu2_framework_mapping, mu2_lambda_one_argument) = [propext, Classical.choice, Quot.sound] exactly",
+   "tolerance": "n/a",
+   "note": "hard bar: axioms subseteq {propext, Classical.choice, Quot.sound}"
+  }
+ ],
+ "tested_domain": "Algebraic domain: G,c != 0, a0 > 0, rho_L >= 0 (Lean-certified for T1-T3 core; physical rho_L > 0); lambda in (0, inf) with diagnostic counterexample points lambda = 1/2, 1, 2 at the canonical AND alternative footings (60-digit mpmath, residuals <= 1e-61); Y = g/s at g = a0* = 9.3619e-11 m/s^2; mu_n at n = 1, 2, 3 (branch family n >= 1 symbolic); boundary cases lambda -> 0+ and -> inf (exact limiting algebra); Dirac-Bergmann classification verified symbolically (sympy rank = 4, null vector (G c^2/(8 a0), 1, 0, 0, 0)) at the pointwise level; finite-difference check of dF/dlambda at lambda = 1, step 1e-8. No observational data, no fits, no seeds, no refinement history (closed-form analysis + direct checks).",
+ "failed_attempts": [
+  {
+   "artifact": "prototype: AttributeError 'mpmath has no fmax' (first bounded run, exit 1)",
+   "cause": "mp.fmax does not exist in mpmath 1.3.0; replaced with Python builtin max over mpf",
+   "fixed": true
+  },
+  {
+   "artifact": "prototype: exact-zero comparison mp.fabs(F(...)) == 0 for the vacuity witness failed at ~1e-81 machine noise",
+   "cause": "identity exact in R but mpmath float arithmetic leaves ~1e-81 relative roundoff; switched to relative residual < 1e-30",
+   "fixed": true
+  },
+  {
+   "artifact": "shell memory enforcement attempts: ulimit -v 524288 and ulimit -d 524288 ('cannot modify limit: Invalid argument'); python resource.setrlimit(RLIMIT_AS/DATA/RSS) ('current limit exceeds maximum limit')",
+   "cause": "macOS does not permit those rlimit modifications in this environment; memory bound enforced by in-process ru_maxrss measurement + assertion (measured 54.17 MB < 512 MB)",
+   "fixed": true
+  },
+  {
+   "artifact": "Lean compile attempt 1: exit 1 (3 errors)",
+   "cause": "(a) trailing 'ring' after field_simp closed the goal (f_eq_four_a0sq_one_sub_lambda mpr, h2); (b) rw [<- Real.sqrt_mul] pointed the wrong way (RHS pattern not present); (c) congr 1 cannot descend inside a division; (d) rw [<- Real.sq_sqrt] rewrote lambda occurrences inside sqrt; (e) hsq had the 4 a0^2 form while the goal carried (2 a0)^2. All fixed by restructuring (hsqmul via Real.sqrt_mul explicitly, rw [hs] into denominators, nlinarith [Real.sq_sqrt ...]); final compile exit 0. First failing output not preserved on disk (overwritten by the clean run); error text recorded here.",
+   "fixed": true
+  }
+ ],
+ "limitations": "Does not derive kappa = 1/2 \u2014 the run demonstrates the studied mechanism cannot (imposed-not-emergent; one-parameter family; the counterexample at lambda = 1/2, 1, 2). Does not pin the vacuum density magnitude (footing choice canonical vs alternative remains an open physical/data question, cf. AS001/AS011). Dirac classification covers the minimal static pointwise sector only: no time-derivative dynamics of a0/rho_L/eta were introduced, and the host-coupled case (T6) is stated but not classified (child AS070.C01). Numerical residuals are finite evidence (60-digit, pre-set tolerances); exactness rests on the algebra and the Lean certificate for the algebraic core. No observational data used; 'observational preference as proof' explicitly avoided. Branch scope: CORE coefficient + conditional MU_n cell only; no branch translation; nothing claimed about Q/RAR/EXP/MONO kinematics, the heat filter, or the filtered-MONO thirteen-item target. Lean certifies the real-algebra identities, not the physical interpretation or the variational classification.",
+ "next_unresolved_implication": "The surviving one-parameter freedom alpha (equivalently lambda: the physical vacuum density magnitude and the footing choice) must be pinned by a mechanism OUTSIDE the constraint sector; the repository's own first-principles obstructions line up with this result rather than against it \u2014 k01's zero-mode theorem proves no local action term fixes the additive normalization, PD08 premises s = c sqrt(G rho_Lambda) set independently of a0, and PD01's channel-count route (n = 2) is the only registered kappa-derivation candidate. First missing bridge to the operative filtered-MONO target: identify which physical density enters the galactic scale (footing) and supply the action/promotion that ties it to the kernel scale under Requirement 13 \u2014 the A03 gate stays OPEN.",
+ "suggested_followup": "Dispatch child AS070.C01 (ready spec at deepseek_push/astra_spawn_ideas/branches/AS070/AS070.C01.md, NOT dispatched \u2014 no subagent runner in this session): the host-coupled eta sector (u := dS_host/drho_L, w := dS_host/da0) \u2014 derive the exact rank/first-class survival condition (chi survives iff w = -8 a0 eta = -8 a0 u/(G c^2)), classify gauge-gone regimes and their on-shell T^eta, and resolve whether any local host term resurrects the parent counterexample without changing the theory. Independent of the child: extend the Lean certificate to the full k01/PD08 premise algebra if a sister task needs it.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": [
+   "kappa = 1/2 ADOPTED framework input (not derived; the seed's principle: only an independent argument removing its freedom would upgrade it)",
+   "G = 6.67430e-11 m^3 kg^-1 s^-2 (measured input); c = 299792458 m/s (exact); M_sun, pc recorded conventions",
+   "registered footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (separate hypotheses; rho_Lambda and rho_total derived from them at kappa = 1/2)",
+   "branch dictionary: Q, RAR (nu = 1/(1-exp(-sqrt(B/a0)))), MU2 (mu_n(Y) = 1-(1+Y)^(-n), n=2), EXP AQUAL, filtered MONO distinct \u2014 no identification",
+   "candidate under test: F = 4 a0^2 - G c^2 rho_L = 0 with multiplier eta (the object analyzed, not a theory primitive)",
+   "standard canonical/Dirac-Bergmann mechanics for the constraint classification (machinery assumption, flagged)"
+  ],
+  "measured_calibrations": [
+   "G (PD01/PD08/k01 constants consistent; k01 uses G = 6.674e-11, c = 2.998e8 \u2014 carried in the sources, not this run's numerics)"
+  ],
+  "boundary_initial_data": [
+   "none dynamical; algebraic constraint domain G,c != 0, a0 > 0, rho_L >= 0, lambda > 0; limits lambda -> 0+, inf checked"
+  ],
+  "derived": [
+   "T1-T6 taxonomy (imposed-not-emergent; eta values; stress identities; Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4); Dirac classification (rank 4, chi first-class, 0 propagating DOF); s = 2 a0 sqrt(lambda); kappa - lambda correspondence; the family counterexample at lambda = 1/2, 1, 2; MU_n diagnostic values"
+  ]
+ },
+ "closure_implication": {
+  "named_gate": "A03 coefficient mechanism / Requirement 13 (a0-vacuum relation as input vs genuinely derived)",
+  "implication": "The multiplier-enforced normalization constraint (F = 4 a0^2 - G c^2 rho_L = 0 via eta) cannot serve as the missing premise for kappa = 1/2: it is imposed-not-emergent, algebraically identical to the adopted normalization, leaves a one-parameter gauge/family freedom (counterexample at lambda = 1/2, 1, 2), and either is inert (eta = 0), pins eta = -1/G with no freedom gain, or becomes inconsistent/overdetermined when both constrained variables are dynamical. Consequence for the gate: the normalization-constraint route is closed as a kappa-derivation mechanism (in agreement with k01's zero-mode no-go); the gate's remaining routes are the registered channel-count (PD01/PD08) and any NEW mechanism that begins with a0 and Lambda independent and removes one degree of freedom.",
+  "common_action_compatibility": "Statement is local to the CORE coefficient / MU_n cell of any common action containing the constraint term; no branch translation performed; compatibility with the operative filtered-MONO action cell would require the footing/density identity (open) plus the k01 no-go \u2014 not asserted here."
+ },
+ "child_proposals": [
+  {
+   "id": "AS070.C01",
+   "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS070/AS070.C01.md",
+   "fingerprint": "(S_host[g,psi;a0] + int eta F sqrt(-g) with dS_host/drho_L = u, dS_host/da0 = w; branch CORE coefficient normalization sector; assumptions local coefficients, static configuration, pointwise multiplier; domain G,c != 0, a0 > 0, rho_L > 0; target: rank/first-class survival condition of {pi_a0, pi_rho, pi_eta, F, eta} and DOF/stress consequences; observable: constraint propagation and on-shell T^eta; new input: host-vacuum coupling coefficients with physical identification; continuation: parent AS070 r01)",
+   "target_claim": "Classify the host-coupled eta sector: chi survives iff w = -8 a0 u/(G c^2); exhibit regimes where the constraint removes a DOF and their on-shell stress; determine whether any local host term removes the parent's counterexample without changing the theory",
+   "new_target_equation": "rank M(u,w) and first-class survival condition for the host-modified Poisson matrix + {F, H_T} propagation with host sources",
+   "why_parent_does_not_answer": "Parent T6 is a one-line changed-theory statement; the child supplies the classification and exact survival condition \u2014 the parent's named transfer condition",
+   "controls": [
+    "negative control: 'adding a host coupling to rho_L while freezing a0 changes nothing' must fail unless w = -8 a0 u/(G c^2) identically",
+    "sympy rank table at (u,w) diagnostics",
+    "60-digit residual verification at both footings"
+   ],
+   "dependencies": [
+    "parent AS070 r01 evidence (hashes f298c932... task, artifacts above)",
+    "no catalog result required to start"
+   ],
+   "dispatch_state": "not_dispatched (no subagent runner available in the parent session); ready specification handed to the orchestrator"
+  }
+ ],
+ "closure_candidate": null
+}

@@ -1,0 +1,184 @@
+{
+ "pass": 28,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "T0a [chain rule, arbitrary completions] d/dY[1-(1-p1)(1-p2)] at Y=0 with p_i(0)=0 equals a1+a2",
+   "measured": "dmu(0) = a1 + a2",
+   "pass": true,
+   "reading": "only p_i(0) = 0 and differentiability are used: the deep slope is the SUM of the channel slopes for every completion shape."
+  },
+  {
+   "name": "T0b [n = 3 channels] mu_n'(0) = sum of slopes",
+   "measured": "mu_n'(0) = a1 + a2 + a3",
+   "pass": true,
+   "reading": "the slope-sum identity holds for every n >= 2 (and n = 1 trivially)."
+  },
+  {
+   "name": "T0b [n = 5 channels] mu_n'(0) = sum of slopes",
+   "measured": "mu_n'(0) = a1 + a2 + a3 + a4 + a5",
+   "pass": true,
+   "reading": "the slope-sum identity holds for every n >= 2 (and n = 1 trivially)."
+  },
+  {
+   "name": "T1a [a0 from the deep slope] g^2 = (s/S) g_N with a0 = s/S, kappa = 1/S",
+   "measured": "a0 = s/S; kappa = a0/s = 1/S",
+   "pass": true,
+   "reading": "L230/PD08 chain re-derived: kappa = 1/(deep slope).  The deep slope is the sum b1+b2 (T0), so an asymmetric split of a FIXED sum leaves kappa exactly invariant."
+  },
+  {
+   "name": "T1b [asymmetry invariance] kappa(b1+b2 = 2) = 1/2 for every eps",
+   "measured": "kappa = 1/2",
+   "pass": true,
+   "reading": "b1 = 1+eps, b2 = 1-eps: total slope 2 -> kappa = 1/2 exactly, independently of eps: d kappa/d eps == 0 identically."
+  },
+  {
+   "name": "T1c [the sensitivity asked for] d kappa / d eps = 0 identically",
+   "measured": "d kappa/d eps = 0",
+   "pass": true,
+   "reading": "the SELECTED COEFFICIENT is exactly insensitive to channel asymmetry at its defining (deep) order."
+  },
+  {
+   "name": "T2a [first visible order] the asymmetric rational response differs from the symmetric mu_2 first at QUADRATIC order in Y",
+   "measured": "mu(Y) = 2Y - (3-eps^2)Y^2 + (4-2 eps^2) Y^3 + ... ;  Y^2 coeff: eps**2 - 3",
+   "pass": true,
+   "reading": "linear terms: b1+b2 = 2 (same as mu_2); quadratic coefficient shifts by +eps^2: the first order at which asymmetry becomes visible for rational p_i is ORDER TWO in Y."
+  },
+  {
+   "name": "T2b [dimensionless quadratic shift] coefficient residual = eps^2",
+   "measured": "Delta(c2) = eps**2",
+   "pass": true,
+   "reading": "dimensionless residual of the transition coefficient: eps^2; the response rises ABOVE the symmetric one for eps != 0."
+  },
+  {
+   "name": "T2c [Newtonian limit of the rational family] mu(inf) = 1 + eps^2",
+   "measured": "mu(inf) = eps**2 + 1",
+   "pass": true,
+   "reading": "the asymmetric rational family BREAKS the L230 Newtonian normalization at exactly eps^2; symmetric eps = 0 restores mu(inf) = 1.  This is the discriminator against the operative MONO target (see T4)."
+  },
+  {
+   "name": "T2d [exact pointwise residual vs symmetric] Delta mu(Y) = eps^2 Y^2/(1+Y)^2",
+   "measured": "|mu_asym - mu_2|(Y) = Y**2*eps**2/(Y**2 + 2*Y + 1)",
+   "pass": true,
+   "reading": "sup over the transition band Y in [0,1] is eps^2/4 (at Y=1), relative to mu_2(1)=3/4: eps^2/3."
+  },
+  {
+   "name": "T3a [exact identity] for completions 1-(1+Y)^(-b_i), mu(Y) = 1-(1+Y)^(-2) IDENTICALLY for every eps",
+   "measured": "mu_p - mu_2 = 0",
+   "pass": true,
+   "reading": "the OR composition collapses to the sum b1+b2 = 2: asymmetry is invisible at EVERY order.  Exact algebra, not a numerical check."
+  },
+  {
+   "name": "T3b [power-law limits] p_i(0)=0, p_i(inf)=1, mu(inf)=1 exactly",
+   "measured": "mu(inf) = 1",
+   "pass": true,
+   "reading": "the power-law class keeps both boundary conditions for every eps: normalization preserved; deep slope still 2 (T0)."
+  },
+  {
+   "name": "T4a [lambda = 1/2] admissible: b = (3/2, 1/2), slope exactly 2, kappa = 1/2, quadratic shift +1/4, normalization deviation 1/4",
+   "measured": "slope 2.0; qc -1.25 vs -3; mu(inf)-1 = 0.25; |Delta mu(1)| = 0.0625",
+   "pass": true,
+   "reading": "inside the fraction domain; the coefficient does not move; the response does (dimensionless transition residual eps^2/4 = 1/16 at Y = 1, i.e. 6.25% of the symmetric response)."
+  },
+  {
+   "name": "T4b [lambda = 1] degenerate boundary: b2 = 0 -- channel 2 has no linear engagement; slope still exactly 2, kappa = 1/2",
+   "measured": "b2 = 0.0; slope 2.0",
+   "pass": true,
+   "reading": "the second channel is inert at linear order: the boundary of the fraction domain; kappa refuses to notice."
+  },
+  {
+   "name": "T4c [lambda = 2] explicit counterexample: b2 = -1 < 0, p2(Y) < 0 for Y > 0 (not a fraction), yet the total slope is exactly 2 and kappa = 1/2: slope equality does NOT determine the engagement structure (the mandated negative control, live)",
+   "measured": "b2 = -1; slope 2.0; p2 not in [0,1]; mu(inf)-1 = 4",
+   "pass": true,
+   "reading": "this is the asymmetric counterexample to 'kappa = 1/2 => the response is mu_2': same deep coefficient, unphysical channels.  The control fails exactly when the completion class makes asymmetry invisible (T3) -- it is genuinely capable of failing."
+  },
+  {
+   "name": "T4d [Newtonian normalization as the discriminator] among the seeded lambda values, mu(inf)-1 = lambda^2 exactly",
+   "measured": "0.25, 1, 4",
+   "pass": true,
+   "reading": "the rational counterexample family is excluded by the framework's mu(inf) = 1 normalization at every lambda != 0; only the power-law class (T3) or eps = 0 survives the Newtonian limit check."
+  },
+  {
+   "name": "T5a [scale-asymmetry reading] slope = 2 for every lambda; mu(inf) = 1; first difference at quadratic order with shift (1-lambda)",
+   "measured": "slope 2; c2 -lam - 2; mu(inf) 1",
+   "pass": true,
+   "reading": "alternative reading of the seed's 'lambda': the second channel's transition scale differs; same leading invariance of kappa, same second-order visibility, but normalization is never broken."
+  },
+  {
+   "name": "T5b [diagnostic counterexamples at lambda = 1/2, 1, 2, scale reading] slope exactly 2 each; exact response difference |1-lambda|/(4(1+lambda)) at Y = 1: 1/12, 0, 1/12",
+   "measured": "0.083333..., 0.0, 0.083333...",
+   "pass": true,
+   "reading": "the mandated lambda grid applied to the scale reading: the coefficient kappa = 1/2 is immune on both readings; the response is not (quadratic coefficient - (2+lambda)); scale asymmetry never breaks the Newtonian normalization (unlike slope asymmetry)."
+  },
+  {
+   "name": "T6 [n = 1] equal unit channels: S = 1, kappa = 1/1; any redistribution with fixed sum leaves kappa invariant (T0)",
+   "measured": "kappa = 1/1",
+   "pass": true,
+   "reading": "n = 1: kappa = 1 (no asymmetry possible); n = 2: kappa = 1/2 (the metric's count); n > 2: kappa = 1/n -- the count determines the coefficient, the split never does."
+  },
+  {
+   "name": "T6 [n = 2] equal unit channels: S = 2, kappa = 1/2; any redistribution with fixed sum leaves kappa invariant (T0)",
+   "measured": "kappa = 1/2",
+   "pass": true,
+   "reading": "n = 1: kappa = 1 (no asymmetry possible); n = 2: kappa = 1/2 (the metric's count); n > 2: kappa = 1/n -- the count determines the coefficient, the split never does."
+  },
+  {
+   "name": "T6 [n = 3] equal unit channels: S = 3, kappa = 1/3; any redistribution with fixed sum leaves kappa invariant (T0)",
+   "measured": "kappa = 1/3",
+   "pass": true,
+   "reading": "n = 1: kappa = 1 (no asymmetry possible); n = 2: kappa = 1/2 (the metric's count); n > 2: kappa = 1/n -- the count determines the coefficient, the split never does."
+  },
+  {
+   "name": "T6 [n = 7] equal unit channels: S = 7, kappa = 1/7; any redistribution with fixed sum leaves kappa invariant (T0)",
+   "measured": "kappa = 1/7",
+   "pass": true,
+   "reading": "n = 1: kappa = 1 (no asymmetry possible); n = 2: kappa = 1/2 (the metric's count); n > 2: kappa = 1/n -- the count determines the coefficient, the split never does."
+  },
+  {
+   "name": "Na-eps0.5 [independent representation: finite differences at 50 digits] mu'(0)=2, mu''(0)/2 = -(3-eps^2), 3rd coeff 4-2 eps^2",
+   "measured": "residuals d1 1.2500000000020312500000026300360853583683079687968e-24 d2 2.8750000000045312499835677990917045649699894803894e-24 d3 2.0475000000127498996718578960306621509413879826669e-22",
+   "pass": true,
+   "reading": "direct differentiation replaces the symbolic series; actual residuals at 50 digits (Richardson remainder ~ h^4 = 1e-24 is the honest floor of finite differences; the exact coefficients are established by T2's symbolic series with residual 0)."
+  },
+  {
+   "name": "Na-eps1 [independent representation: finite differences at 50 digits] mu'(0)=2, mu''(0)/2 = -(3-eps^2), 3rd coeff 4-2 eps^2",
+   "measured": "residuals d1 5.0000000000062500000000066269972365953792879666004e-25 d2 1.0000000000012499999854763245662162066310804471972e-24 d3 6.3000000000318726947778061242085530305326026488003e-23",
+   "pass": true,
+   "reading": "direct differentiation replaces the symbolic series; actual residuals at 50 digits (Richardson remainder ~ h^4 = 1e-24 is the honest floor of finite differences; the exact coefficients are established by T2's symbolic series with residual 0)."
+  },
+  {
+   "name": "Na-eps2 [independent representation: finite differences at 50 digits] mu'(0)=2, mu''(0)/2 = -(3-eps^2), 3rd coeff 4-2 eps^2",
+   "measured": "residuals d1 2.5000000000050000000000072200095466862445661225898e-24 d2 6.5000000000118750000102881836309138700345142536674e-24 d3 5.0400000000350626395512346475308847688220852539259e-22",
+   "pass": true,
+   "reading": "direct differentiation replaces the symbolic series; actual residuals at 50 digits (Richardson remainder ~ h^4 = 1e-24 is the honest floor of finite differences; the exact coefficients are established by T2's symbolic series with residual 0)."
+  },
+  {
+   "name": "Nb-canonical [footing hygiene] s = 2 a0 exactly on the adopted footing; deep Poisson r^2 mu g = GM residual / GM",
+   "measured": "rho_L = 5.8444124540218753636700334335994907799431754633864e-27 kg/m^3; s = 0.000000000187238 m/s^2; |s-c sqrt(G rho)|/s = 0.0; deep Poisson residual 1.6039078506444018145067192530684775523319607856781e-51 at r = 0.000030597222096131537542178297915032359683025815020498 m",
+   "pass": true,
+   "reading": "kappa = 1/2 fixed ON EACH footing, hence rho_L and s differ between footings by (a0_alt/a0_can)^2 = 1.45149 (stated, never conflated). The dimensionless theorems apply to both: Y = g/s."
+  },
+  {
+   "name": "Nb-alternative [footing hygiene] s = 2 a0 exactly on the adopted footing; deep Poisson r^2 mu g = GM residual / GM",
+   "measured": "rho_L = 8.4830896195590974299703827090661209869952013296681e-27 kg/m^3; s = 0.00000000022558 m/s^2; |s-c sqrt(G rho)|/s = 0.0; deep Poisson residual 0.0 at r = 0.000033584222486161563659967082454608802536477785416122 m",
+   "pass": true,
+   "reading": "kappa = 1/2 fixed ON EACH footing, hence rho_L and s differ between footings by (a0_alt/a0_can)^2 = 1.45149 (stated, never conflated). The dimensionless theorems apply to both: Y = g/s."
+  },
+  {
+   "name": "N-c [leading neglected term of the deep law] (mu - 2Y)/2Y = -(3-eps^2) Y / 2 + O(Y^2); at eps = 1/2 the relative error of the deep law is 11/16*Y/2... (exact series)",
+   "measured": "(mu-2Y)/(2Y) ~ -Y**2/(Y**2 + 2*Y + 1) - 2*Y/(Y**2 + 2*Y + 1) + Y*(Y*eps**2 + Y + 2)/(2*Yc*(Y**2 + 2*Y + 1)) - 1/(Y**2 + 2*Y + 1)",
+   "pass": true,
+   "reading": "domain: the deep form mu = 2Y holds to <~1.4% at Y <= 0.01 and ~15% at Y = 0.1 (eps <= 1/2); the neglected term is the quadratic -(3-eps^2)Y^2 down to O(Y^3)."
+  }
+ ],
+ "bounds": {
+  "wall_cap_s": 120,
+  "wall_s": 0.25585198402404785,
+  "peak_rss_bytes": 84475904,
+  "threads": 1
+ },
+ "footings": {
+  "canonical": 1.87238e-10,
+  "alternative": 2.2558e-10
+ }
+}

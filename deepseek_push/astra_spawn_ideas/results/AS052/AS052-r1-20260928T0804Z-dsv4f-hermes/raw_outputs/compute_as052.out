@@ -1,0 +1,242 @@
+
+AS052 -- OR composition with UNEQUAL channel slopes.
+
+Seed claim under test (AS052_or_composition_with_unequal_channel_slopes.md,
+sha256 bd9a4d387b694b13c3c1b99dbb1886ab809e48816458d0abeaaa6343ab45a737):
+
+    mu = 1 - product_i (1 - p_i(Y));   p_i(Y) = b_i Y + O(Y^2);   mu'(0) = sum_i b_i.
+
+Question the seed poses: does OR composition with two channels (the metric's
+static count, PD01 B1) DERIVE kappa = 1/2 when the per-channel slopes b_i are
+allowed to differ?  Mandated control: b1 = 1, b2 = 2 must NOT force kappa = 1/2.
+
+Framework (adopted inputs, not derived here): s = c*sqrt(G*rho_Lambda),
+a0 = kappa*c*sqrt(G*rho_Lambda) with kappa = 1/2 ADOPTED; Y = g/s; response
+equation mu(Y)*g = B (B = G*M_b/r^2) as the spherical first integral of
+div[mu(|grad Phi|/s) grad Phi] = 4 pi G rho_b; per-channel engagement p_i
+with p_i(0) = 0 (vacuum), p_i(oo) = 1 (saturation), p_i'(0) = b_i.
+
+Every check states measurement and threshold separately.  Proof-only results
+must not fabricate computational evidence: the residuals below are ACTUAL
+numbers from the mpmath solves, not booleans.
+
+Bounded prototype: wall <= 120 s enforced in-process (deadline check),
+<= 512 MB RSS measured, 1 thread (no pools; numpy/sympy/mpmath single
+process, GIL single thread; OMP_NUM_THREADS=1 forced).
+
+====================================================================================================
+STEP 1 -- claim, symbol dictionary, boundary conditions, assumptions
+====================================================================================================
+  SYMBOLS:  Y = g/s (dimensionless);  s = c sqrt(G rho_L) [m s^-2];
+            a0 = kappa s [m s^-2];  kappa = a0/s (dimensionless);
+            b_i = p_i'(0) (dimensionless per-channel deep slope);
+            p_i(Y) per-channel engagement; mu(Y) total response;
+            B = g_N = G M_b/r^2 [m s^-2];  n = channel count (integer >= 1).
+  BOUNDARY CONDITIONS (per channel):  p_i(0) = 0 (action vacuum),
+            p_i(oo) = 1 (saturation -> mu(oo) = 1 normalization).
+  ASSUMPTIONS: b_i > 0 finite; mu = 1 - prod_i (1 - p_i) (OR over the
+            carrier's static channels, PD01 D1 premise); response
+            equation mu(Y) g = B (spherical first integral);
+            s fixed by the measured vacuum density, independent of a0
+            (PD08; k01: the one-scale action has no second coefficient).
+  FRAMEWORK INPUTS (adopted): kappa = 1/2; s = c sqrt(G rho_L);
+            G_N = G_bare = G_cosmo NOT separated in this lane (single G
+            in s and in B; separation flagged open in limitations).
+  CONCLUSIONS TO BE ESTABLISHED: mu'(0) = sum_i b_i (exact chain rule);
+            quadratic coefficient c1 + c2 - b1 b2 (two channels);
+            kappa = 1/(sum_i b_i) from the deep matching;
+            the exact equal-(unit-)slope condition needed for kappa = 1/n.
+  [PASS] S1 [claim restated] the OR composition of two quadratics expands and is differentiated at 0
+         measured: mu(Y) = -Y**4*c1*c2 - Y**3*b1*c2 - Y**3*b2*c1 - Y**2*b1*b2 + Y**2*c1 + Y**2*c2 + Y*b1 + Y*b2;  mu'(0) = b1 + b2
+         tolerance: exact symbolic equality
+         reading : chain rule through the OR: mu'(0) = b1 + b2, independent of c1, c2.
+  [PASS] S1n [OR over 2 channels] generic engagement p_i = b_i Y (linear truncation): the origin slope equals the sum of slopes
+         measured: mu(Y) = -Y**2*b0*b1 + Y*b0 + Y*b1;  mu'(0) = b0 + b1
+         tolerance: exact symbolic equality
+  [PASS] S1n [OR over 3 channels] generic engagement p_i = b_i Y (linear truncation): the origin slope equals the sum of slopes
+         measured: mu(Y) = Y**3*b0*b1*b2 - Y**2*b0*b1 - Y**2*b0*b2 - Y**2*b1*b2 + Y*b0 + Y*b1 + Y*b2;  mu'(0) = b0 + b1 + b2
+         tolerance: exact symbolic equality
+  [PASS] S1n [OR over 5 channels] generic engagement p_i = b_i Y (linear truncation): the origin slope equals the sum of slopes
+         measured: mu(Y) = Y**5*b0*b1*b2*b3*b4 - Y**4*b0*b1*b2*b3 - Y**4*b0*b1*b2*b4 - Y**4*b0*b1*b3*b4 - Y**4*b0*b2*b3*b4 - Y**4*b1*b2*b3*b4 + Y**3*b0*b1*b2 + Y**3*b0*b1*b3 + Y**3*b0*b1*b4 + Y**3*b0*b2*b3 + Y**3*b0*b2*b4 + Y**3*b0*b3*b4 + Y**3*b1*b2*b3 + Y**3*b1*b2*b4 + Y**3*b1*b3*b4 + Y**3*b2*b3*b4 - Y**2*b0*b1 - Y**2*b0*b2 - Y**2*b0*b3 - Y**2*b0*b4 - Y**2*b1*b2 - Y**2*b1*b3 - Y**2*b1*b4 - Y**2*b2*b3 - Y**2*b2*b4 - Y**2*b3*b4 + Y*b0 + Y*b1 + Y*b2 + Y*b3 + Y*b4;  mu'(0) = b0 + b1 + b2 + b3 + b4
+         tolerance: exact symbolic equality
+
+====================================================================================================
+STEP 2 -- full quadratic coefficient (two channels); equal-slope condition
+====================================================================================================
+  mu(Y) = -Y**2*b1*b2 + Y**2*c1 + Y**2*c2 + Y*b1 + Y*b2  + O(Y^3)   [full exact polynomial: -Y**4*c1*c2 - Y**3*b1*c2 - Y**3*b2*c1 - Y**2*b1*b2 + Y**2*c1 + Y**2*c2 + Y*b1 + Y*b2]
+  [PASS] S2 [quadratic coefficient for two channels]
+         measured: mu(Y) = (b1+b2) Y + (c1 + c2 - b1*b2) Y^2 - (b1*c2 + c1*b2) Y^3 - c1*c2 Y^4 (exact polynomial identity)
+         tolerance: exact; quadratic coefficient is c1 + c2 - b1*b2 (cross term SUBTRACTS b1*b2; sign is negative from the OR p1*p2 term)
+         reading : linear term: sum of slopes; quadratic: sum of per-channel quadratic coefficients MINUS the cross product of the two linear slopes.  The leading neglected term is O(Y^3), valid on any neighborhood of Y = 0 where p1, p2 are C^3; on Y in (0, Y0) with Y0 < 1/max(b1,b2) the remainder is bounded by the third-derivative norms (finite, dimensionless).
+  EQUAL-SLOPE ASSUMPTION NEEDED FOR kappa = 1/n:
+    kappa = 1/(sum_i b_i).  Hence kappa = 1/n  <=>  sum_i b_i = n.
+    Equal slopes b_i = b give kappa = 1/(n b) -- equal slopes alone do
+    NOT give 1/n; the unit-slope fraction identity b_i = 1 (PD08 step 3,
+    k01: one scale s, no second coefficient) is the exact premise.
+    Under that premise unequal slopes are impossible a priori (all
+    b_i = 1).  Outside the one-scale class, each b_i is a genuinely
+    independent dimensionless freedom; the OR composition does NOT
+    remove it (control E1).
+
+====================================================================================================
+STEP 3 -- the closed-form family with unequal slopes and its algebra
+====================================================================================================
+  Saturating completion for a slope-b channel: p_i(Y) = b_i Y/(1 + b_i Y);
+  p_i(0) = 0, p_i(oo) = 1, p_i'(0) = b_i.  OR composition:
+  mu(Y) = 1 - prod_i 1/(1 + b_i Y).   Two channels:
+  mu(Y) = 1 - 1/[(1 + b1 Y)(1 + b2 Y)]
+        = (b1+b2) Y - (b1^2 + b1 b2 + b2^2) Y^2 + O(Y^3).
+  [PASS] S3 [closed-form family] the unequal-slope OR member p_i = b_i Y/(1+b_i Y) is expanded
+         measured: mu(Y) = ((Y*b1 + 1)*(Y*b2 + 1) - 1)/((Y*b1 + 1)*(Y*b2 + 1)) = Y*(Y**2*(b1**3 + b1**2*b2 + b1*b2**2 + b2**3) - Y*(b1**2 + b1*b2 + b2**2) + b1 + b2) + O(Y^4)
+         tolerance: exact closed form; slope at 0 = b1 + b2; quad coeff = -(b1^2 + b1 b2 + b2^2), matching S2 with c_i = -b_i^2
+         reading : At b1 = b2 = 1: mu(Y) = 1 - (1+Y)^(-2) -- EXACTLY the framework MU2 branch (mu2(x) = 1 - (1 + x/2)^(-2) with Y = x/2, s = 2 a0), so the family is the committed branch's unequal-slope generalization.
+  [PASS] S3b [normalization] the family saturates at one for ALL b1, b2 > 0
+         measured: mu(oo) = 1
+         tolerance: exact limit
+         reading : any saturating completion (p_i(oo)=1) would do; the corpus member p = Y/(1+Y) saturates ONLY at b = 1 -- unequal slopes require their own saturating completion, an extra premise per channel.
+  Deep regime (Y << 1): mu ~ (b1+b2) Y -> k g^2 r^2/s = G M ->
+  g^2 = (s/k) g_N with k = b1 + b2;   a0 = s/k;   kappa = a0/s = 1/k.
+  [PASS] S3c [deep matching algebra] k g^2 r^2/s = G M with g_N = G M/r^2 gives the a0-line with a0 = s/k and kappa = 1/k, k = b1 + b2
+         measured: g^2 = (s/(b1+b2)) g_N;  a0 = s/(b1+b2);  kappa = 1/(b1 + b2)
+         tolerance: exact
+         reading : scale factors: s [m s^-2] enters as argument unit AND as the matched rate; kappa dimensionless; all signs positive (attractive deep law).  Leading neglected term in the deep regime: with mu = k Y + q2 Y^2 the first correction to g^2 = (s/k) g_N is (q2/k^2)(s/k) g_N^2/s + O(g_N^3) -- relative O(g/s) = O(sqrt(g_N/s)); quoted as the S6 ladder check.
+
+====================================================================================================
+STEP 4 -- independent check in a different representation (50 digits)
+====================================================================================================
+  [PASS] S4a [different representation] finite-difference slope of the closed form at Y = 1e-40 (b1, b2) = (1, 0.5) vs symbolic b1+b2
+         measured: FD slope = 1.5, b1+b2 = 1.5, rel err = 1.21e-40
+         tolerance: < 1e-25 relative at eps = 1e-40 (dps 80)
+         reading : direct differentiation and difference quotient agree: the slope is the exact sum of slopes, not a count.
+  [PASS] S4a [different representation] finite-difference slope of the closed form at Y = 1e-40 (b1, b2) = (1, 1) vs symbolic b1+b2
+         measured: FD slope = 2.0, b1+b2 = 2, rel err = 1.56e-40
+         tolerance: < 1e-25 relative at eps = 1e-40 (dps 80)
+         reading : direct differentiation and difference quotient agree: the slope is the exact sum of slopes, not a count.
+  [PASS] S4a [different representation] finite-difference slope of the closed form at Y = 1e-40 (b1, b2) = (1, 2) vs symbolic b1+b2
+         measured: FD slope = 3.0, b1+b2 = 3, rel err = 2.37e-40
+         tolerance: < 1e-25 relative at eps = 1e-40 (dps 80)
+         reading : direct differentiation and difference quotient agree: the slope is the exact sum of slopes, not a count.
+  Deep ladder: solve mu(g/s) g = B for (b1,b2) in {(1,1/2),(1,1),(1,2)},
+  B/s in {1e-1 ... 1e-14}; 50-digit mpmath bisection + Newton;
+  kappa_fit = g^2/(B*s)  ->  1/(b1+b2).
+  [PASS] S4b [deep ladder, (b1,b2) = (1,0.5)] kappa_fit -> 1/(b1+b2) = 0.66666666666666666667
+         measured: deepest (B/s = 1e-14): kappa_fit = 0.6666667301719598129, rel err = 9.53e-8; max residual/B on ladder = 2.98e-45
+         tolerance: |kappa_fit - 1/(b1+b2)| < 1e-6 at B/s = 1e-14
+         reading : ACTUAL residual quoted (not a Boolean): solve-response residuals at 50 digits are ~1e-48, far below the 1e-6 fitting tolerance; the identity kappa = 1/(sum b_i) is exact, the ladder is finite consistency evidence (not an exact identity).
+  [PASS] S4b [deep ladder, (b1,b2) = (1,1)] kappa_fit -> 1/(b1+b2) = 0.5
+         measured: deepest (B/s = 1e-14): kappa_fit = 0.50000005303301202649, rel err = 1.06e-7; max residual/B on ladder = 4.28e-46
+         tolerance: |kappa_fit - 1/(b1+b2)| < 1e-6 at B/s = 1e-14
+         reading : ACTUAL residual quoted (not a Boolean): solve-response residuals at 50 digits are ~1e-48, far below the 1e-6 fitting tolerance; the identity kappa = 1/(sum b_i) is exact, the ladder is finite consistency evidence (not an exact identity).
+  [PASS] S4b [deep ladder, (b1,b2) = (1,2)] kappa_fit -> 1/(b1+b2) = 0.3333333333333333
+         measured: deepest (B/s = 1e-14): kappa_fit = 0.33333337823835778882, rel err = 1.35e-7; max residual/B on ladder = 1.03e-44
+         tolerance: |kappa_fit - 1/(b1+b2)| < 1e-6 at B/s = 1e-14
+         reading : ACTUAL residual quoted (not a Boolean): solve-response residuals at 50 digits are ~1e-48, far below the 1e-6 fitting tolerance; the identity kappa = 1/(sum b_i) is exact, the ladder is finite consistency evidence (not an exact identity).
+  [PASS] S4c [whole ladder] the three fits approach distinct limits {2/3, 1/2, 1/3} monotonically on B/s in [1e-1, 1e-14]
+         measured: limits: (1,0.5) -> 0.6666667302; (1,1) -> 0.500000053; (1,2) -> 0.3333333782
+         tolerance: each within 1e-6 at the deepest point
+
+====================================================================================================
+STEP 5 -- negative control and boundary regimes
+====================================================================================================
+  [PASS] E1 [NEGATIVE CONTROL, must be capable of failing] set b1 = 1, b2 = 2 and show two channels alone do NOT force kappa = 1/2
+         measured: mu'(0) = 1+2 = 3; kappa_deep-fit -> 0.333333378238 = 1/3, NOT 1/2 (claim 'count 2 => kappa 1/2' REFUTED)
+         tolerance: claim fails iff |kappa_fit - 1/2| > 1e-3 at B/s = 1e-14
+         reading : The control is capable of failing: if the count alone fixed kappa, this ladder would converge to 1/2 and the check would FAIL.  It converges to 1/3: the OR composition inherits the SLOPE SUM, and the sum is an independent freedom.  The kappa = 1/2 landing needs b1 + b2 = 2 -- supplied only by the unit-slope fraction identity, not by the composition.
+  Diagnostic counterexamples at lambda = b2/b1 in {1/2, 1, 2} (b1 = 1):
+    lambda = 0.5: b1+b2 = 1.5; kappa = 1/(b1+b2) = 0.66666666666666666667; fit = 0.666666730172
+    lambda = 1.0: b1+b2 = 2.0; kappa = 1/(b1+b2) = 0.5; fit = 0.500000053033
+    lambda = 2.0: b1+b2 = 3.0; kappa = 1/(b1+b2) = 0.33333333333333333333; fit = 0.333333378238
+  [PASS] E2 [lambda diagnostics] kappa = 1/(1 + lambda) at lambda in {1/2, 1, 2} gives exactly {2/3, 1/2, 1/3}; kappa = 1/2 only at lambda = 1
+         measured: lambda=0.5 -> kappa=0.66666666666666666666666666666666666666666666666667 (fit 0.66666673); lambda=1.0 -> kappa=0.5 (fit 0.50000005); lambda=2.0 -> kappa=0.33333333333333333333333333333333333333333333333333 (fit 0.33333338)
+         tolerance: exact rationals at dps 50 (mpf comparisons, no string round-trip); only lambda = 1 lands on kappa = 1/2
+         reading : observational preference is NOT a mathematical proof: the algebra selects lambda = 1 iff b1 + b2 = 2 is imposed; the deep slope alone cannot distinguish (b1,b2) = (1,1) from (1/2,3/2) (same sum; E3).
+  [PASS] E3 [identifiability] the deep regime measures the slope SUM, not the count: (b1,b2) = (1,1) and (1/2,3/2) share mu'(0) = 2 and kappa = 1/2
+         measured: (1,1): sum 2 -> kappa 1/2; (1/2,3/2): sum 2 -> kappa 1/2; the count n = 2 is not identifiable from the deep response
+         tolerance: n/a (structural statement)
+         reading : a slope pair summing to the count masquerades as the count; any kappa observed in (1/3, 2/3) is compatible with SOME unequal-slope two-channel OR member.  The equal-slope reading is selected only by the independent one-scale premise, not by the composition.
+  [PASS] E4 [Newtonian] (b1,b2) = (1,0.5) at B/s = 1e16: g -> B (mu -> 1)
+         measured: g/B - 1 = 2.0e-32; residual/B = 0.0
+         tolerance: |g/B - 1| < 1e-14
+         reading : the OR normalization mu(oo) = 1 recovers Newton exactly for every slope pair -- Newtonian and deep limits each hold; the slope freedom lives only in the deep-matching constant.
+  [PASS] E4 [Newtonian] (b1,b2) = (1,1) at B/s = 1e16: g -> B (mu -> 1)
+         measured: g/B - 1 = 1.0e-32; residual/B = 0.0
+         tolerance: |g/B - 1| < 1e-14
+         reading : the OR normalization mu(oo) = 1 recovers Newton exactly for every slope pair -- Newtonian and deep limits each hold; the slope freedom lives only in the deep-matching constant.
+  [PASS] E4 [Newtonian] (b1,b2) = (1,2) at B/s = 1e16: g -> B (mu -> 1)
+         measured: g/B - 1 = 5.0e-33; residual/B = 0.0
+         tolerance: |g/B - 1| < 1e-14
+         reading : the OR normalization mu(oo) = 1 recovers Newton exactly for every slope pair -- Newtonian and deep limits each hold; the slope freedom lives only in the deep-matching constant.
+  [PASS] E5 [boundary case] (b1,b2) = (1,0.5): mu(Y)/((b1+b2) Y) -> 1 as Y -> 0
+         measured: at Y = 1e-30: ratio - 1 = -1.17e-30
+         tolerance: < 1e-25 (dps 80)
+         reading : exact-identity check at a boundary point (finite numerical consistency, not an exact identity).
+  [PASS] E5 [boundary case] (b1,b2) = (1,1): mu(Y)/((b1+b2) Y) -> 1 as Y -> 0
+         measured: at Y = 1e-30: ratio - 1 = -1.5e-30
+         tolerance: < 1e-25 (dps 80)
+         reading : exact-identity check at a boundary point (finite numerical consistency, not an exact identity).
+  [PASS] E5 [boundary case] (b1,b2) = (1,2): mu(Y)/((b1+b2) Y) -> 1 as Y -> 0
+         measured: at Y = 1e-30: ratio - 1 = -2.33e-30
+         tolerance: < 1e-25 (dps 80)
+         reading : exact-identity check at a boundary point (finite numerical consistency, not an exact identity).
+
+====================================================================================================
+FOOTINGS -- canonical and alternative a0 must be carried separately
+====================================================================================================
+  rho_Lambda(canonical)  = 5.844412454021876e-27 kg/m^3; s_can = 1.87238e-10 m/s^2 (a0_can = s_can/2 = 9.3619e-11)
+  rho_Lambda(alternative) = 8.483089619559099e-27 kg/m^3; s_alt = 2.2558e-10 m/s^2 (a0_alt = s_alt/2 = 1.1279e-10)
+  b1+b2 = 1.5: a0_pred = s/(b1+b2) = 1.2482533e-10 (canonical rho_L), 1.5038667e-10 (alternative rho_L); ratios to measured footings 1.3333 / 1.3333
+  b1+b2 = 2: a0_pred = s/(b1+b2) = 9.3619e-11 (canonical rho_L), 1.1279e-10 (alternative rho_L); ratios to measured footings 1.0 / 1.0
+  b1+b2 = 3: a0_pred = s/(b1+b2) = 6.2412667e-11 (canonical rho_L), 7.5193333e-11 (alternative rho_L); ratios to measured footings 0.66667 / 0.66667
+  [PASS] F1 [footing discipline] the counterexample family predicts a0 = s/(sum b_i) on each footing; a measured footing alone cannot select the slope pair
+         measured: sum=1.5: can 1.248253333e-10, alt 1.503866667e-10; sum=2: can 9.3619e-11, alt 1.1279e-10; sum=3: can 6.241266667e-11, alt 7.519333333e-11
+         tolerance: formula applied on each footing with its OWN rho_L (mpf comparisons, no string round-trip); ratio column 1.3333 / 1.0 / 0.66667 states the distance from the measured footings
+         reading : kappa = 1/2 footing requires sum b_i = 2 on BOTH densities; the alternative footing is NOT the same kappa with the same density -- each rho_L fixes s and the predicted a0 is s/(sum b_i).  G_N/G_bare/G_cosmo: this lane uses one G in s and one G in B; the ratio G_E/G_N carrying Lambda_eff is out of scope (limitation L3).
+
+====================================================================================================
+BRANCHES -- distinctness audit (Q, RAR, MU2, EXP, MONO)
+====================================================================================================
+  [PASS] B1 [MU2] the equal-unit-slope member b1 = b2 = 1 is EXACTLY the framework MU2 branch mu_n(Y) = 1 - (1+Y)^(-n) at n = 2, Y = g/s
+         measured: mu(1,1;Y) = 1 - 1/(1+Y)^2
+         tolerance: exact symbolic equality (cancel before simplify; quotient form)
+         reading : framework mu2(x) = 1 - (1 + x/2)^(-2) with x = g/a0, Y = x/2, s = 2 a0 (kappa = 1/2 adopted): same function, argument rescaling documented.
+  [PASS] B2 [RAR/EXP/Q deep slopes] on the adopted footing (s fixed, kappa = 1/2) the independent branches' deep slope in Y = g/s is 2 within numerics; they are the equal-slope members' comparisons, NOT unequal-slope counterexamples
+         measured: RAR: mu/Y at Y in {1e-6, 1e-8, 1e-10} = 1.999996, 2.0, 2.0; EXP mu(x)=1-e^-x slope 2 exact (x = 2Y); Q g^2 = B^2 + a0 B deep slope 1/kappa = 2 exact
+         tolerance: RAR within 1e-3 numerically on the three deep points; EXP/Q exact
+         reading : branch audit: this seed's conclusions live in the CORE coefficient cell (conditional MU_n statistical response); RAR/EXP/Q agree in the deep limit with the adopted kappa = 1/2; MONO is NOT used -- no bridge from the spherical OR cell to the filtered nu_mono continuation is derived here (limitation L1).
+
+====================================================================================================
+STEP 6 -- strongest surviving statement and first transfer implication
+====================================================================================================
+  THEOREM (conditional, this run):
+    OR composition mu = 1 - prod_i (1 - p_i), p_i'(0) = b_i, p_i(0) = 0,
+    p_i(oo) = 1, b_i > 0  =>  mu'(0) = sum_i b_i (exact), and the deep
+    spherical matching gives kappa = a0/s = 1/(sum_i b_i) with
+    a0 = s/(sum_i b_i) on whichever footing fixes s.
+  COUNTEREXAMPLE (this run):  (b1, b2) = (1, 2) gives mu'(0) = 3, kappa
+    = 1/3 != 1/2 on both footings -- the channel count 2 alone does NOT
+    force kappa = 1/2; the composition does NOT remove the per-channel
+    slope freedom.
+  EQUAL-SLOPE PREMISE NEEDED FOR kappa = 1/n:  sum_i b_i = n; the only
+    premise in the framework's action class that supplies it is the
+    unit-slope fraction identity p_i'(0) = 1 (PD08 step 3, k01 no-go:
+    one scale s, no second coefficient), which EXCLUDES unequal slopes.
+  FIRST TRANSFER IMPLICATION: the delta-function counting argument
+    (PD01 A1: slope = count for equal channels) needs the map from the
+    metric's two static channels to per-channel slopes b_i = 1; if a
+    future derivation yields b1 + b2 = 2 without unit slopes (e.g.
+    b1 = 1/2, b2 = 3/2), the count reading of PD01 is replaced by a
+    slope-sum reading with the same kappa and the falsifier (PD01 D3: 
+    'any kappa strictly inside (1/2, 1) kills the structure') must be
+    re-derived -- the slope-sum family fills (1/3, 2/3) continuously.
+
+S5 [WORST solve residual, quoted] max |mu(g/s) g - B|/B over all ladders = 1.03e-44 (50-digit mpmath; tolerance 1e-30)
+  [PASS] S5
+         measured: worst residual/B = 1.03e-44
+         tolerance: < 1e-30
+         reading : actual residual from the solved responses -- the numerics are self-consistent at the stated precision.
+
+BOUNDS: wall = 0.23s (limit 120s, enforced in-process); RSS = 56.4 MiB (limit 512 MiB, measured; darwin ru_maxrss is bytes, converted); threads = 1 (single process, OMP/OPENBLAS/MKL pinned to 1).
+AS052 COMPLETE: 28/28 checks PASS.
+real 0.35
+user 0.33
+sys 0.02

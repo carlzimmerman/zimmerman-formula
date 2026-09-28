@@ -1,0 +1,49 @@
+=== A. FOOTINGS (SI) ===
+canonical  a0=0.000000000093619 m/s²  rho_Lambda=5.8444124540218753636700334335994907799431754633864e-27 kg/m³  eps=0.00000000052526959597261135999280823457141572899030609951605 J/m³  Lambda=1.0907997632807349902707425571445273327195468607681e-52 m⁻²  l0=960013649725822365118191820.03653104604834488725579 m
+alternative a0=0.00000000011279 m/s²  rho=8.4830896195590974299703827090661209869952013296681e-27 kg/m³  eps=0.0000000007624220727267278965584405855295686439027313725784 J/m³  Lambda=1.5832818476965227643921243056555366493554632339606e-52 m⁻²
+fixed-kappa=1/2 -> density ratio (a0_alt/a0_can)^2 = 1.4514871573996111432794991363472327166568942268285
+fixed-rho (canonical) -> kappa_eff = a0_alt/(2*a0_can) = 0.60238840406327775344748395090740127538213396853203  (=0.60238840 to 8 digits, L180 'alt kappa=0.6')
+
+=== B. SIGN / DOMAIN OF a0 = kappa*c*sqrt(G*rho_L) ===
+rho>0 : a0 = 0.000000000093619  (real, >0)  [=0.000000000093619 7-digit]
+rho=0 : a0 = 0.0  (slack vacuum -> vanishing scale)
+rho<0 : a0 = None  (no real solution; identity undefined in R)
+squared identity at rho<0: a0^2 = kappa^2 c^2 G rho = -8.764517161e-21 < 0 -> contradicts a0^2 >= 0
+analytic continuation to complex branch: a0 = i*kappa*c*sqrt(G|rho|) = (0.0 + 0.000000000093619j)  [EXCLUDED: framework convention a0 real positive]
+|rho| repair at rho<0: a0_rep = 0.000000000093619; (a0_rep)^2 - kappa^2 c^2 G rho = 1.7529034322e-20 != 0
+|rho| repair symmetry: a0_rep(-rho) - a0_rep(+rho) = 0.0  (Z2: repair maps rho and -rho to the SAME scale)
+d(a0_rep^2)/drho at 0+: +kappa^2 c^2 G = 1499640.422360785493663  ; at 0-: -kappa^2 c^2 G = -1499640.422360785493663
+kappa<0 with rho>0: a0 = -0.000000000093619 < 0 -> violates 'a0 positive by definition'; convention fixes kappa>0
+G<0 with rho>0: radicand G*rho < 0 -> no real a0; framework pins G>0 (attractive leg)
+
+=== C. a0 -> 0 LIMITS (B = g_N = 1 m/s^2 fixed) ===
+MONO landmarks: y_p = 2.539638282188165324998881789774365902368984177662 (≈2.5396), h_p = 0.64761023789191485964720196197595458120902067209651, y_star = 2.3374124052663294555581233032011988607921527653896 (≈2.3374), delta = 0.05
+      a0 |            Q |          RAR |          MU2 |          EXP |         MONO
+   1e-02 | 1.004987562112e+00 | 1.000045401991e+00 | 1.000384325599e+00 | 1.000000000000e+00 | 1.007455819783e+00
+   1e-03 | 1.000499875062e+00 | 1.000000000000e+00 | 1.000003984032e+00 | 1.000000000000e+00 | 1.000819410914e+00
+   1e-04 | 1.000049998750e+00 | 1.000000000000e+00 | 1.000000039984e+00 | 1.000000000000e+00 | 1.000089389589e+00
+   1e-05 | 1.000004999988e+00 | 1.000000000000e+00 | 1.000000000400e+00 | 1.000000000000e+00 | 1.000009684474e+00
+   1e-06 | 1.000000500000e+00 | 1.000000000000e+00 | 1.000000000004e+00 | 1.000000000000e+00 | 1.000001043006e+00
+
+=== D. DEEP LIMIT B -> 0 at fixed a0 = a0_can: g/sqrt(a0*B) -> 1 ===
+B/a0 = 1e-1: Q=1.048808848170 RAR=1.166433360439 MU2=1.129218348341 EXP=1.087063998672 MONO=1.166433360439
+B/a0 = 1e-3: Q=1.000499875062 RAR=1.015894720245 MU2=1.011960596534 EXP=1.007979274986 MONO=1.015894720245
+B/a0 = 1e-6: Q=1.000000500000 RAR=1.000500083333 MU2=1.000375101578 EXP=1.000250072938 MONO=1.000500083333
+B/a0 = 1e-9: Q=1.000000000500 RAR=1.000015811472 MU2=1.000011858643 EXP=1.000007905767 MONO=1.000015811472
+
+=== E. r_M = sqrt(G M/a0), C = sqrt(G M a0), v_flat = (G M a0)^(1/4), M = M_sun ===
+a0=   1e-08: r_M=1.152026e+14 m  C=1.152026e+06 (m^3 s^-1)^(1/2)  v_flat=1.073325e+03 m/s  vf^4-GMa0=5.88e-39
+a0=   1e-09: r_M=3.643027e+14 m  C=3.643027e+05 (m^3 s^-1)^(1/2)  v_flat=6.035749e+02 m/s  vf^4-GMa0=-1.84e-40 rM UP vf DOWN
+a0=   1e-10: r_M=1.152026e+15 m  C=1.152026e+05 (m^3 s^-1)^(1/2)  v_flat=3.394151e+02 m/s  vf^4-GMa0=0.00e+00 rM UP vf DOWN
+a0=   1e-11: r_M=3.643027e+15 m  C=3.643027e+04 (m^3 s^-1)^(1/2)  v_flat=1.908672e+02 m/s  vf^4-GMa0=2.87e-42 rM UP vf DOWN
+a0=   1e-12: r_M=1.152026e+16 m  C=1.152026e+04 (m^3 s^-1)^(1/2)  v_flat=1.073325e+02 m/s  vf^4-GMa0=-1.79e-43 rM UP vf DOWN
+
+=== F. DIMENSIONAL LEDGER (M, L, T) ===
+sqrt(G rho) : (0, 0, -1) (s^-1);  c*sqrt(G rho): (0, 1, -2) == a0: (0, 1, -2) accepted
+rho = 4a0^2/(G c^2): (1, -3, 0) == rho: (1, -3, 0) accepted
+eps = rho c^2   : (1, -1, -2) == J/m^3 (M L^-1 T^-2) accepted
+Lambda = 32pi a0^2/c^4: (0, -2, 0) == L^-2 accepted
+v_flat^4 = G M a0: (0, 4, -4) == L^4 T^-4 -> v_flat = L T^-1 accepted
+
+wall_s=0.051  peak_rss_MB=18.5  threads=1  dps=50
+residuals.json written.

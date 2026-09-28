@@ -1,0 +1,28 @@
+AS077.amp_identity_sqrt (G M_b a0 : ℝ) (hG : 0 < G) (hMb : 0 < M_b) (ha0 : 0 < a0) :
+  M_b / AS077.rMdef G M_b a0 = AS077.Cdef G M_b a0 / G
+AS077.amp_identity_hyp {C G M_b a0 rM : ℝ} (hC : C ^ 2 = G * M_b * a0) (hrM : rM ^ 2 = G * M_b / a0) (hG : 0 < G)
+  (hMb : 0 < M_b) (ha0 : 0 < a0) (hCpos : 0 < C) (hrMpos : 0 < rM) : M_b / rM = C / G
+AS077.amp_equal_iff (M M_b G a0 C rM R r_in : ℝ) (hC : C ^ 2 = G * M_b * a0) (hrM : rM ^ 2 = G * M_b / a0) (hG : 0 < G)
+  (hMb : 0 < M_b) (ha0 : 0 < a0) (hCpos : 0 < C) (hrMpos : 0 < rM) (_hrin : 0 < r_in) (hR : r_in < R) :
+  M / (R - r_in) = C / G ↔ M * rM = M_b * (R - r_in)
+AS077.matching_radius_given_Mb (M M_b G a0 C rM R r_in : ℝ) (hC : C ^ 2 = G * M_b * a0) (hrM : rM ^ 2 = G * M_b / a0)
+  (hM : M = M_b) (hG : 0 < G) (hMb : 0 < M_b) (ha0 : 0 < a0) (hCpos : 0 < C) (hrMpos : 0 < rM) (hrin : 0 < r_in)
+  (hR : r_in < R) : M / (R - r_in) = C / G ↔ R - r_in = rM
+AS077.deficit_identity {M R r_in : ℝ} (hRne : R ≠ 0) :
+  4 * Real.pi * (M / (4 * Real.pi * R)) * (R - r_in) = M * (1 - r_in / R)
+AS077.deficit_pos {M R r_in : ℝ} (hM : 0 < M) (hrin : 0 < r_in) (hRpos : 0 < R) : 0 < M * r_in / R
+AS077.deep_force_at_rM {C G M_b a0 rM : ℝ} (hC : C ^ 2 = G * M_b * a0) (hrM : rM ^ 2 = G * M_b / a0) (hCpos : 0 < C)
+  (hrMpos : 0 < rM) (ha0 : 0 < a0) : C / rM = a0
+AS077.shell_field_below_logwell {C R r_in : ℝ} (hC : 0 < C) (hrin : 0 < r_in) (hRpos : 0 < R) (hR : r_in < R) :
+  C * (1 - r_in / R) / R < C / R
+AS077.equipartition_mass {A C G M_b rM : ℝ} (hA : A = C / (4 * Real.pi * G)) (hCG : C / G = M_b / rM) (hGne : G ≠ 0)
+  (hrMne : rM ≠ 0) : 4 * Real.pi * A * rM = M_b
+'AS077.amp_identity_sqrt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.amp_identity_hyp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.amp_equal_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.matching_radius_given_Mb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.deficit_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.deficit_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.deep_force_at_rM' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.shell_field_below_logwell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS077.equipartition_mass' depends on axioms: [propext, Classical.choice, Quot.sound]

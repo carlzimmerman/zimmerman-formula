@@ -1,0 +1,106 @@
+====================================================================================================
+T0 -- the OR chain rule: mu'(0) = b1 + b2 for ANY completions
+====================================================================================================
+[PASS] T0a [chain rule, arbitrary completions] d/dY[1-(1-p1)(1-p2)] at Y=0 with p_i(0)=0 equals a1+a2
+       measured: dmu(0) = a1 + a2
+[PASS] T0b [n = 3 channels] mu_n'(0) = sum of slopes
+       measured: mu_n'(0) = a1 + a2 + a3
+[PASS] T0b [n = 5 channels] mu_n'(0) = sum of slopes
+       measured: mu_n'(0) = a1 + a2 + a3 + a4 + a5
+
+====================================================================================================
+T1 -- spherical deep-MOND matching: a0 = s/(b1+b2), kappa = 1/S
+====================================================================================================
+[PASS] T1a [a0 from the deep slope] g^2 = (s/S) g_N with a0 = s/S, kappa = 1/S
+       measured: a0 = s/S; kappa = a0/s = 1/S
+[PASS] T1b [asymmetry invariance] kappa(b1+b2 = 2) = 1/2 for every eps
+       measured: kappa = 1/2
+[PASS] T1c [the sensitivity asked for] d kappa / d eps = 0 identically
+       measured: d kappa/d eps = 0
+
+====================================================================================================
+T2 -- rational completions p_i = b_i Y/(1+Y): first visible order
+====================================================================================================
+    mu_r(Y) = Y*(Y*eps**2 + Y + 2)/(Y**2 + 2*Y + 1)
+    series  = Y**4*(3*eps**2 - 5) + Y**3*(4 - 2*eps**2) + Y**2*(eps**2 - 3) + 2*Y
+[PASS] T2a [first visible order] the asymmetric rational response differs from the symmetric mu_2 first at QUADRATIC order in Y
+       measured: mu(Y) = 2Y - (3-eps^2)Y^2 + (4-2 eps^2) Y^3 + ... ;  Y^2 coeff: eps**2 - 3
+[PASS] T2b [dimensionless quadratic shift] coefficient residual = eps^2
+       measured: Delta(c2) = eps**2
+[PASS] T2c [Newtonian limit of the rational family] mu(inf) = 1 + eps^2
+       measured: mu(inf) = eps**2 + 1
+[PASS] T2d [exact pointwise residual vs symmetric] Delta mu(Y) = eps^2 Y^2/(1+Y)^2
+       measured: |mu_asym - mu_2|(Y) = Y**2*eps**2/(Y**2 + 2*Y + 1)
+
+====================================================================================================
+T3 -- power-law completions p_i = 1-(1+Y)^(-b_i): EXACT invisibility
+====================================================================================================
+[PASS] T3a [exact identity] for completions 1-(1+Y)^(-b_i), mu(Y) = 1-(1+Y)^(-2) IDENTICALLY for every eps
+       measured: mu_p - mu_2 = 0
+[PASS] T3b [power-law limits] p_i(0)=0, p_i(inf)=1, mu(inf)=1 exactly
+       measured: mu(inf) = 1
+
+====================================================================================================
+T4 -- admissibility domain and the seeded diagnostic counterexamples
+====================================================================================================
+    admissible eps (scan, step 1e-3): ( -0.9990999099909992 , 0.9990999099909974 )  [sympy solveset refused: ValueError ]
+    lambda = 0.5: b1 = 1.5, b2 = 0.5, slope = 2.0, Y^2 coeff = -2.75, mu(inf)-1 = 0.25, |Delta mu(1)| = 0.0625
+[PASS] T4a [lambda = 1/2] admissible: b = (3/2, 1/2), slope exactly 2, kappa = 1/2, quadratic shift +1/4, normalization deviation 1/4
+       measured: slope 2.0; qc -1.25 vs -3; mu(inf)-1 = 0.25; |Delta mu(1)| = 0.0625
+    lambda = 1: b1 = 2.0, b2 = 0.0, slope = 2.0, Y^2 coeff = -2.0, mu(inf)-1 = 1.0, |Delta mu(1)| = 0.25
+[PASS] T4b [lambda = 1] degenerate boundary: b2 = 0 -- channel 2 has no linear engagement; slope still exactly 2, kappa = 1/2
+       measured: b2 = 0.0; slope 2.0
+    lambda = 2: b1 = 3.0, b2 = -1.0, slope = 2.0, Y^2 coeff = 1.0, mu(inf)-1 = 4.0, |Delta mu(1)| = 1.0
+[PASS] T4c [lambda = 2] explicit counterexample: b2 = -1 < 0, p2(Y) < 0 for Y > 0 (not a fraction), yet the total slope is exactly 2 and kappa = 1/2: slope equality does NOT determine the engagement structure (the mandated negative control, live)
+       measured: b2 = -1; slope 2.0; p2 not in [0,1]; mu(inf)-1 = 4
+[PASS] T4d [Newtonian normalization as the discriminator] among the seeded lambda values, mu(inf)-1 = lambda^2 exactly
+       measured: 0.25, 1, 4
+
+====================================================================================================
+SECONDARY READING -- scale asymmetry p2(Y) = Y/(1+lambda Y)
+====================================================================================================
+    mu_l series: Y**3*(lam*(-lam - 1) - 2*lam + 2*(lam + 1)**2) + Y**2*(-lam - 2) + 2*Y
+[PASS] T5a [scale-asymmetry reading] slope = 2 for every lambda; mu(inf) = 1; first difference at quadratic order with shift (1-lambda)
+       measured: slope 2; c2 -lam - 2; mu(inf) 1
+    lambda = 0.5: slope 2.0, |Delta mu(1) vs lambda=1| = 0.083333333333333333333333333333333333333333333333334
+    lambda = 1: slope 2.0, |Delta mu(1) vs lambda=1| = 0.0
+    lambda = 2: slope 2.0, |Delta mu(1) vs lambda=1| = 0.083333333333333333333333333333333333333333333333332
+[PASS] T5b [diagnostic counterexamples at lambda = 1/2, 1, 2, scale reading] slope exactly 2 each; exact response difference |1-lambda|/(4(1+lambda)) at Y = 1: 1/12, 0, 1/12
+       measured: 0.083333..., 0.0, 0.083333...
+
+====================================================================================================
+GENERAL n >= 1 -- kappa = 1/S under asymmetric redistribution
+====================================================================================================
+[PASS] T6 [n = 1] equal unit channels: S = 1, kappa = 1/1; any redistribution with fixed sum leaves kappa invariant (T0)
+       measured: kappa = 1/1
+[PASS] T6 [n = 2] equal unit channels: S = 2, kappa = 1/2; any redistribution with fixed sum leaves kappa invariant (T0)
+       measured: kappa = 1/2
+[PASS] T6 [n = 3] equal unit channels: S = 3, kappa = 1/3; any redistribution with fixed sum leaves kappa invariant (T0)
+       measured: kappa = 1/3
+[PASS] T6 [n = 7] equal unit channels: S = 7, kappa = 1/7; any redistribution with fixed sum leaves kappa invariant (T0)
+       measured: kappa = 1/7
+
+====================================================================================================
+NUMERICAL WITNESSES (mpmath, 50 digits) AND INDEPENDENT REPRESENTATIONS
+====================================================================================================
+[PASS] Na-eps0.5 [independent representation: finite differences at 50 digits] mu'(0)=2, mu''(0)/2 = -(3-eps^2), 3rd coeff 4-2 eps^2
+       measured: residuals d1 1.2500000000020312500000026300360853583683079687968e-24 d2 2.8750000000045312499835677990917045649699894803894e-24 d3 2.0475000000127498996718578960306621509413879826669e-22
+[PASS] Na-eps1 [independent representation: finite differences at 50 digits] mu'(0)=2, mu''(0)/2 = -(3-eps^2), 3rd coeff 4-2 eps^2
+       measured: residuals d1 5.0000000000062500000000066269972365953792879666004e-25 d2 1.0000000000012499999854763245662162066310804471972e-24 d3 6.3000000000318726947778061242085530305326026488003e-23
+[PASS] Na-eps2 [independent representation: finite differences at 50 digits] mu'(0)=2, mu''(0)/2 = -(3-eps^2), 3rd coeff 4-2 eps^2
+       measured: residuals d1 2.5000000000050000000000072200095466862445661225898e-24 d2 6.5000000000118750000102881836309138700345142536674e-24 d3 5.0400000000350626395512346475308847688220852539259e-22
+[PASS] Nb-canonical [footing hygiene] s = 2 a0 exactly on the adopted footing; deep Poisson r^2 mu g = GM residual / GM
+       measured: rho_L = 5.8444124540218753636700334335994907799431754633864e-27 kg/m^3; s = 0.000000000187238 m/s^2; |s-c sqrt(G rho)|/s = 0.0; deep Poisson residual 1.6039078506444018145067192530684775523319607856781e-51 at r = 0.000030597222096131537542178297915032359683025815020498 m
+[PASS] Nb-alternative [footing hygiene] s = 2 a0 exactly on the adopted footing; deep Poisson r^2 mu g = GM residual / GM
+       measured: rho_L = 8.4830896195590974299703827090661209869952013296681e-27 kg/m^3; s = 0.00000000022558 m/s^2; |s-c sqrt(G rho)|/s = 0.0; deep Poisson residual 0.0 at r = 0.000033584222486161563659967082454608802536477785416122 m
+    canonical    footing: s = 1.872380e-10 m/s^2; deep-valid band g <= s/10 = 1.872380e-11 m/s^2; transition band g in [1.872e-11, 1.872e-10] m/s^2
+    alternative  footing: s = 2.255800e-10 m/s^2; deep-valid band g <= s/10 = 2.255800e-11 m/s^2; transition band g in [2.256e-11, 2.256e-10] m/s^2
+[PASS] N-c [leading neglected term of the deep law] (mu - 2Y)/2Y = -(3-eps^2) Y / 2 + O(Y^2); at eps = 1/2 the relative error of the deep law is 11/16*Y/2... (exact series)
+       measured: (mu-2Y)/(2Y) ~ -Y**2/(Y**2 + 2*Y + 1) - 2*Y/(Y**2 + 2*Y + 1) + Y*(Y*eps**2 + Y + 2)/(2*Yc*(Y**2 + 2*Y + 1)) - 1/(Y**2 + 2*Y + 1)
+
+====================================================================================================
+BOUNDS AND TIMING
+====================================================================================================
+    wall 0.256 s (SIGALRM cap 120 s enforced); peak RSS 84475904 bytes (ru_maxrss, macOS); active threads 1
+
+AS064 COMPLETE: 28/28 checks PASS, 0 FAIL.

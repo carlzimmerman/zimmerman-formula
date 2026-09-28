@@ -1,0 +1,133 @@
+============================================================================================
+AS080 -- HYDROSTATIC SLOPE-TEMPERATURE RELATION   gamma = C/sigma^2
+============================================================================================
+
+--- 1 symbolic core (sympy-exact) ---
+  [PASS] P1a [ODE solved] sigma^2 d rho/dr + C rho/r = 0 at gamma = C/sigma^2 (symbolic substitution, exact)
+         measured: residual simplifies to 0
+         reading : rho = A (r/r_ref)^(-C/sigma^2) solves the hydrostatic ODE identically
+  [PASS] P1b [dsolve cross-check] the ODE's general solution (sympy dsolve) satisfies the equation symbolically
+         measured: sigma^2 d/dr[C1/r**(sqrt(G)*sqrt(M_b)*sqrt(a_0)/sigma^2)] + C/r [C1/r**(sqrt(G)*sqrt(M_b)*sqrt(a_0)/sigma^2)] = 0
+         reading : same shape as A (r/r_ref)^(-gamma): one integration constant, exponent -C/sigma^2
+      sigma^2 = C/2  (equilibrium temp):  gamma = 2
+      sigma^2 = C/3  (bare-virial reading):  gamma = 3
+      sigma^2 = C:  gamma = 1
+      sigma^2 = 0.7 C:  gamma = 10/7
+  [PASS] P1c [slope-temperature relation] gamma = C/sigma^2 for every sigma^2: sigma^2 = C/2 -> slope 2 exactly; sigma^2 = C/3 -> slope 3 exactly
+         measured: [sigma^2 = C/2  (equilibrium temp)] gamma=2; [sigma^2 = C/3  (bare-virial reading)] gamma=3; [sigma^2 = C] gamma=1; [sigma^2 = 0.7 C] gamma=10/7
+         reading : the ODE does NOT select slope 2: the slope is set one-to-one by sigma^2 (slope 2 <==> sigma^2 = C/2)
+  [PASS] P1d [Poisson consistency] Delta(C ln r) = C/r^2; 4 pi G_N rho = C/r^2 forces gamma = 2 and A = C/(4 pi G_N); then sigma^2 = 2 pi G_N A = C/2
+         measured: Delta(Cln r) = sqrt(G)*sqrt(M_b)*sqrt(a_0)/r**2;  gamma* = [2];  2 pi G A* = sqrt(G)*sqrt(M_b)*sqrt(a_0)/2 = C/2: True
+         reading : hydrogen: slope-2 selection + the amplitude + the equilibrium temperature follow from {hydrostatics, isothermal EOS, log well, well sourced by its own density} -- all premises explicit
+  [PASS] P1e [Newtonian profile] rho_N = exp(G M_b/(sigma^2 r)) solves sigma^2 d rho/dr = -rho G M_b/r^2 (the Newtonian hydrostatic ODE) symbolically
+         measured: residual = 0
+         reading : the Newtonian-limit profile is exponential, NOT a power law: the slope-temperature power law is a deep-regime statement (NC4)
+
+--- 2 high-precision substitution residual (mpmath, 50 digits) ---
+  [PASS] P2 [independent high-precision check] sigma^2 rho' + C rho/r = 0 at gamma = 2 measured on 6 fixture shells x 2 footings, 1201 pts each, 50-digit mpmath, analytic derivative
+         measured: max |residual|/|C rho/r| over 14412 points = 5.32e-51
+         reading : an exact identity at the substitution level: machine-precision-zero residual at every point on every fixture shell
+
+--- 3 deep exterior (r_in/r_M = 10, 100; R/r_in = 2, 10) ---
+    [canonical | r_in/r_M=10 | R/r_in=2]
+      Q     delta @ inner-r / mid / outer-r = +4.9876e-03 / +2.4969e-03 / +1.2492e-03   (max |delta| = 4.988e-03, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0833e-02 / +3.5772e-02 / +2.5208e-02   (max |delta| = 5.083e-02, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.8531e-02 / +2.7030e-02 / +1.9006e-02   (max |delta| = 3.853e-02, impl res 4.5e-17)
+      EXP   delta @ inner-r / mid / outer-r = +2.5751e-02 / +1.8050e-02 / +1.2685e-02   (max |delta| = 2.575e-02, impl res 1.2e-17)
+    [canonical | r_in/r_M=10 | R/r_in=10]
+      Q     delta @ inner-r / mid / outer-r = +4.9876e-03 / +4.9988e-04 / +4.9999e-05   (max |delta| = 4.988e-03, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0833e-02 / +1.5895e-02 / +5.0083e-03   (max |delta| = 5.083e-02, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.8531e-02 / +1.1961e-02 / +3.7602e-03   (max |delta| = 3.853e-02, impl res 4.3e-17)
+      EXP   delta @ inner-r / mid / outer-r = +2.5751e-02 / +7.9793e-03 / +2.5073e-03   (max |delta| = 2.575e-02, impl res 1.2e-17)
+    [canonical | r_in/r_M=100 | R/r_in=2]
+      Q     delta @ inner-r / mid / outer-r = +4.9999e-05 / +2.5000e-05 / +1.2500e-05   (max |delta| = 5.000e-05, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0083e-03 / +3.5397e-03 / +2.5021e-03   (max |delta| = 5.008e-03, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.7602e-03 / +2.6567e-03 / +1.8775e-03   (max |delta| = 3.760e-03, impl res 4.3e-18)
+      EXP   delta @ inner-r / mid / outer-r = +2.5073e-03 / +1.7714e-03 / +1.2518e-03   (max |delta| = 2.507e-03, impl res 1.1e-18)
+    [canonical | r_in/r_M=100 | R/r_in=10]
+      Q     delta @ inner-r / mid / outer-r = +4.9999e-05 / +5.0000e-06 / +5.0000e-07   (max |delta| = 5.000e-05, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0083e-03 / +1.5820e-03 / +5.0008e-04   (max |delta| = 5.008e-03, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.7602e-03 / +1.1869e-03 / +3.7510e-04   (max |delta| = 3.760e-03, impl res 4.3e-18)
+      EXP   delta @ inner-r / mid / outer-r = +2.5073e-03 / +7.9130e-04 / +2.5007e-04   (max |delta| = 2.507e-03, impl res 1.1e-18)
+    [alt | r_in/r_M=10 | R/r_in=2]
+      Q     delta @ inner-r / mid / outer-r = +4.9876e-03 / +2.4969e-03 / +1.2492e-03   (max |delta| = 4.988e-03, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0833e-02 / +3.5772e-02 / +2.5208e-02   (max |delta| = 5.083e-02, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.8531e-02 / +2.7030e-02 / +1.9006e-02   (max |delta| = 3.853e-02, impl res 4.5e-17)
+      EXP   delta @ inner-r / mid / outer-r = +2.5751e-02 / +1.8050e-02 / +1.2685e-02   (max |delta| = 2.575e-02, impl res 1.2e-17)
+    [alt | r_in/r_M=10 | R/r_in=10]
+      Q     delta @ inner-r / mid / outer-r = +4.9876e-03 / +4.9988e-04 / +4.9999e-05   (max |delta| = 4.988e-03, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0833e-02 / +1.5895e-02 / +5.0083e-03   (max |delta| = 5.083e-02, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.8531e-02 / +1.1961e-02 / +3.7602e-03   (max |delta| = 3.853e-02, impl res 4.3e-17)
+      EXP   delta @ inner-r / mid / outer-r = +2.5751e-02 / +7.9793e-03 / +2.5073e-03   (max |delta| = 2.575e-02, impl res 1.2e-17)
+    [alt | r_in/r_M=100 | R/r_in=2]
+      Q     delta @ inner-r / mid / outer-r = +4.9999e-05 / +2.5000e-05 / +1.2500e-05   (max |delta| = 5.000e-05, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0083e-03 / +3.5397e-03 / +2.5021e-03   (max |delta| = 5.008e-03, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.7602e-03 / +2.6567e-03 / +1.8775e-03   (max |delta| = 3.760e-03, impl res 4.3e-18)
+      EXP   delta @ inner-r / mid / outer-r = +2.5073e-03 / +1.7714e-03 / +1.2518e-03   (max |delta| = 2.507e-03, impl res 1.1e-18)
+    [alt | r_in/r_M=100 | R/r_in=10]
+      Q     delta @ inner-r / mid / outer-r = +4.9999e-05 / +5.0000e-06 / +5.0000e-07   (max |delta| = 5.000e-05, impl res 0.0e+00)
+      RAR   delta @ inner-r / mid / outer-r = +5.0083e-03 / +1.5820e-03 / +5.0008e-04   (max |delta| = 5.008e-03, impl res 0.0e+00)
+      MU2   delta @ inner-r / mid / outer-r = +3.7602e-03 / +1.1869e-03 / +3.7510e-04   (max |delta| = 3.760e-03, impl res 4.3e-18)
+      EXP   delta @ inner-r / mid / outer-r = +2.5073e-03 / +7.9130e-04 / +2.5007e-04   (max |delta| = 2.507e-03, impl res 1.1e-18)
+  [PASS] P3 [deep exterior, full kernel] pointwise slope on shells r_in/r_M = 10,100 x R/r_in = 2,10 for branches Q, RAR (=MONO deep), MU2, EXP: deviation from the log-slope gamma = C/sigma^2 bounded; leading corrections verify Q ~ (1/2)(r_M/r)^2, RAR ~ (1/2)(r_M/r), MU2 ~ (3/8)(r_M/r), EXP ~ (1/4)(r_M/r) to <6%
+         measured: max |delta| Q = 4.9876e-03; RAR = 5.0833e-02; order coefficients within 6% of 1
+         reading : the log well C/r is the exact asymptotic potential of every listed branch; at r >= 10 r_M deviations are <= 5.2% (RAR), <= 0.5% (Q); at r >= 100 r_M <= 0.51% (RAR), <= 0.005% (Q)
+
+--- 4 controls ---
+  [PASS] NC1 [negative control] sigma^2 = C/2 -> the SAME ODE solves with slope 2.0: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced
+         measured: fitted slope = 2.000000000000, nominal gamma = 2.000000000000
+         reading : the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C
+  [PASS] NC1 [negative control] sigma^2 = C/3 -> the SAME ODE solves with slope 3.0: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced
+         measured: fitted slope = 3.000000000000, nominal gamma = 3.000000000000
+         reading : the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C
+  [PASS] NC1 [negative control] sigma^2 = 0.7C -> the SAME ODE solves with slope 1.4285714285714286: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced
+         measured: fitted slope = 1.428571428571, nominal gamma = 1.428571428571
+         reading : the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C
+  [PASS] NC1 [negative control] sigma^2 = C/2 -> the SAME ODE solves with slope 2.0: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced
+         measured: fitted slope = 2.000000000000, nominal gamma = 2.000000000000
+         reading : the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C
+  [PASS] NC1 [negative control] sigma^2 = C/3 -> the SAME ODE solves with slope 3.0000000000000004: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced
+         measured: fitted slope = 3.000000000000, nominal gamma = 3.000000000000
+         reading : the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C
+  [PASS] NC1 [negative control] sigma^2 = 0.7C -> the SAME ODE solves with slope 1.4285714285714286: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced
+         measured: fitted slope = 1.428571428571, nominal gamma = 1.428571428571
+         reading : the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C
+  [PASS] NC2 [identifiability] slope s => sigma^2_inferred = C/s recovers the input temperature (s = 2)
+         measured: inferred sigma^2/C = 0.500000000000 vs input 0.500000000000
+         reading : one-to-one: the hydrostatic map sigma^2 -> slope is invertible on sigma^2 > 0
+  [PASS] NC2 [identifiability] slope s => sigma^2_inferred = C/s recovers the input temperature (s = 3)
+         measured: inferred sigma^2/C = 0.333333333333 vs input 0.333333333333
+         reading : one-to-one: the hydrostatic map sigma^2 -> slope is invertible on sigma^2 > 0
+  [PASS] NC3 [deep-leading terms, mpmath 50-digit] at t = r_M/r = 1e-3 the leading coefficients are the EXACT series values: Q delta/(t^2/2) = 1 - t^2/4 + O(t^4), RAR delta/(t/2) = 1 + t/6 - t^3/360 + O(t^5)
+         measured: Q: 0.9999997500 vs predicted 0.9999997500; RAR: 1.0001666667 vs predicted 1.0001666667
+         reading : no fit: the numerically measured deviations reproduce the closed Bernoulli-series coefficients to 1e-9 at 50-digit precision
+  [PASS] NC4 [Newtonian regime] at r/r_M = 0.1 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.9900 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)
+         measured: power-law residual ratio 0.9900; exponential residual 2.24e-03
+         reading : the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential
+  [PASS] NC4 [Newtonian regime] at r/r_M = 0.5 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.7500 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)
+         measured: power-law residual ratio 0.7500; exponential residual 2.24e-03
+         reading : the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential
+  [PASS] NC4 [Newtonian regime] at r/r_M = 0.1 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.9900 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)
+         measured: power-law residual ratio 0.9900; exponential residual 2.24e-03
+         reading : the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential
+  [PASS] NC4 [Newtonian regime] at r/r_M = 0.5 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.7500 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)
+         measured: power-law residual ratio 0.7500; exponential residual 2.24e-03
+         reading : the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential
+  [PASS] CC1 [interior ansatz fixture] exact analytic substitution residual (sigma^2 rho' + C rho/r)/(C rho/r) on r_in/R = 0.01,0.1,0.5 x R/r_M = 0.62,1 (12 fixtures, both footings)
+         measured: max |residual| = 2.22e-16  (finite-difference diagnostic: 1.15e-03)
+         reading : fixtures are CONTROLS of the imposed-log-well ansatz, not point-source deep-MOND statements; the exact-identity status holds by construction of the well (P2 is the 50-digit version)
+
+--- 5 footings (canonical vs alternative), both kept separate ---
+    [canonical] a0 = 9.3619e-11 m/s^2  C = 2.841849e+10 m^2/s^2  sigma = 119.20 km/s  r_M = 9.8375 kpc
+             rho_Lambda (kappa=1/2 fixed) = 5.8444e-27 kg/m^3  g(10 r_M) = 9.3619e-12 m/s^2
+    [alt] a0 = 1.1279e-10 m/s^2  C = 3.119280e+10 m^2/s^2  sigma = 124.89 km/s  r_M = 8.9626 kpc
+             rho_Lambda (kappa=1/2 fixed) = 8.4831e-27 kg/m^3  g(10 r_M) = 1.1279e-11 m/s^2
+  [PASS] P5 [footing scaling] sigma scales as a0^(1/4): canonical sigma = 119.20 km/s, alternative = 124.89 km/s (ratio 1.04768 = (a0_alt/a0_can)^(1/4)); kappa = 1/2 adopted on BOTH footings, so the alternative carries a DIFFERENT rho_Lambda (x 1.4515); at fixed canonical rho_Lambda the alternative's effective kappa = 0.602388
+         measured: canonical sigma = 119.20 km/s (registered 119.2); alt = 124.89 km/s (registered 124.9)
+         reading : registered G031 MW anchors reproduced from C = sqrt(G_N M_b a0), sigma = (G M_b a0)^(1/4)/sqrt(2), M_b = 6.5e10 Msun; both footings carry gamma = 2 and sigma^2 = C/2
+  [PASS] B1 [bounds] wall time 0.76 s <= 120 s
+         measured: 0.76 s
+         reading : prototype bounds enforced and measured (see execution_bounds_measured and as080_bounds.json)
+
+AS080 COMPLETE: 23/23 checks PASS.
+wrote as080_residuals.json

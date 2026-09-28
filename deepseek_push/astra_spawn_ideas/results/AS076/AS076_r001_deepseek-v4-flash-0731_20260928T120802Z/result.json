@@ -1,0 +1,210 @@
+{
+ "schema_version": 2,
+ "task_id": "AS076",
+ "task_sha256": "614a07d8f39fb2160d2f0a4b1b19bf56ac61409f1924910fabb5992473d84474",
+ "run_id": "AS076_r001_deepseek-v4-flash-0731_20260928T120802Z",
+ "worker": "deepseek-v4-flash-0731 (deepseek/deepseek-v4-flash-0731 via openrouter, Hermes subagent, actual runtime identity)",
+ "started_utc": "2026-09-28T12:08:55Z",
+ "finished_utc": "2026-09-28T13:07:01Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "Conditional theorem (audit): in the fixed baryon well Phi = C ln(r/r_ref), C = sqrt(G_N M_b a0), on 0 < r_in <= r <= R (R <= r_M interior fixtures; r >= 10 r_M deep exterior shells), at FIXED potential and sigma, the unique maximum-entropy profile of S - alpha M - beta E (S = -int rho ln(rho/rho_ref) dV, E = int rho (3 sigma^2/2 + Phi) dV) is rho = A r^{-gamma}, gamma = beta*C, with beta = 1/sigma^2 an EXTRA independent thermal (Boltzmann) input, NOT derived from the variation (sigma-variation gives beta = 0 for the seed S, beta = -1/sigma^2 for G084's sigma^3 S; verified symbolically). With the G091 virial input sigma^2 = C/2 (hash-verified, not re-derived), gamma = 2 EXACTLY (Lean-certified), rho = A/r^2, A = M_b/(4 pi (R - r_in)) -> C/(4 pi G) in the equipartition limit; EL residual zero to 50-digit precision (1e-49) at (2, C/2) and nonzero at every other (gamma, sigma^2) with spread = |beta C - gamma| ln(R/r_in). NEGATIVE CONTROL (capable of failing, failed as required): including rho-dependent self-gravity in E while keeping the fixed-well variation drops the term beta*Phi_self(r) = -4 pi G_N beta A [(1 - r_in/r) + ln(R/r)]; the r^-2 profile is NOT a stationary point of the self-gravitating energy (self-consistent EL residual spread 0.77-11.78, exactly |beta*4pi G_N A| [ln(R/r_in) - (1 - r_in/R)]; double-counted exponent gamma_eff = beta(C + 4 pi G_N A (1 - r_in/R)) = 4.00-5.23); the fixed-well r^-2 reading survives only as the baryon-well max-entropy state with the phantom's self-gravity as the posterior consistency check (Phi_self = C ln r + const at equipartition 4 pi G_N A = C; sigma^2_virial = C/2 = 2 pi G A_hydro to machine precision). Deep exterior full-kernel (RAR = MONO for y < y_star) error bound: |g - C/r|/(C/r) = (r_M/r)/2 + (r_M/r)^2/12 + O((r_M/r)^3), measured 5.083% at 10 r_M and 0.501% at 100 r_M (both footings); r^-2 EL residual vs full RAR potential = -r_M/r + O((r_M/r)^2). Domain: both a0 footings give the identical dimensionless structure (gamma = 2 both); dimensional scales carried separately. Newtonian regime excluded (residual spread 310 vs Phi_N on [0.0062, 0.62] r_M).",
+ "framework_cell": "Action/source: no common action used in this audit; inputs G_N = 6.67430e-11 (G_bare, G_cosmo NOT set equal; only G_N enters), M_b = 7e10 M_sun (MW proxy, G233 register), c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m. Kernel: none (equilibrium-sector profile; branches Q/RAR/MU2/EXP/MONO all share the deep limit g -> C/r; MONO = RAR for y < y_star ~ 2.3374, which covers every deep shell used; no branch-transfer claim). Filter: S = exp[(xi^2/2) Delta] referenced; xi NOT in the task's parameter cell (open dependency). Gate: conditional deep-equilibrium sector (max-entropy profile, not the thirteen-item static target; NOT filtered-MONO field equations). Vacuum: a0 = kappa c sqrt(G_N rho_Lambda), kappa = 1/2 ADOPTED (input); rho_Lambda = 4 a0^2/(G c^2): canonical 5.844412e-27 kg/m^3, alt 8.483090e-27 kg/m^3; alt footing with rho_Lambda fixed implies kappa_eff = 0.6024 (footings are alternatives per contract; C0 PASS). Well: Phi = C ln(r/r_ref), C = v_flat^2 = 2.949127e10 (canonical) / 3.237030e10 (alt) m^2/s^2. Parameters: sigma^2 = C/2 (G091 input), beta = 1/sigma^2 (thermal input), gamma = 2. Boundaries: r_in/R in {0.01, 0.1, 0.5}, R/r_M in {0.62, 1.0} (interior fixtures, historical imposed-log-well ansatz); r_in/r_M in {10, 100}, R/r_in in {2, 10} (deep exterior shells); r_in > 0 always. Initial conditions: none (static problem). Units: SI throughout.",
+ "new_assumptions": [
+  "beta = 1/sigma^2 is an extra independent input (Boltzmann/thermal identification), not derived from the variation - explicitly checked (C1b): sigma-variation cannot produce it.",
+  "sigma^2 = C/2 is taken from G091 (virial + fluid closure, pinned source hash 8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5): cited input, not re-derived in this run.",
+  "rho_ref = 1 Msun/pc^3 and r_ref = r_M (or 1 m) are reference scales entering only the amplitude A, not the exponent (shown in the derivation).",
+  "The phantom's self-gravity is EXCLUDED from the varied energy (it is the posterior consistency check, C4b); including it while keeping the fixed-well variation is the negative control, and fails as required (C4).",
+  "M_b = 7e10 M_sun MW proxy adopted for dimensional examples (G233 register); dimensionless statements do not depend on it.",
+  "Filter scale xi for S = exp[(xi^2/2) Delta] is missing from the task's parameter cell; all deep-shell bounds are branch-kernel bounds only (RAR expansion), the filter contribution is an open dependency."
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS076_fixed_well_euler_lagrange_density.md": "614a07d8f39fb2160d2f0a4b1b19bf56ac61409f1924910fabb5992473d84474",
+  "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+  "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+  "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/AS076_audit.py": "b2a734ff70a0083b4dfb0b3de186c03b53ba42049fa77dad9333ef7b6a4e0137",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/AS076_audit_results.json": "ad621b4cf3797c7ba5432a11117f4fea53174c67b8de9d2635468a96df8a1197",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/AS076_axioms_check.lean": "32f502485053a37493420d7b0438038e904b020d1d30e76745406034a76dd604",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/AS076_fixed_well_el.lean": "24080f76dfdd88eca6d2263d0c15c05de8808dc2716c6cc2a9e089479c2778f4",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/audit_run.log": "644fea3d51439f19f60ee8b85d69dca5abce19ce42a4642435a6eb1bf728ac81",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/derivation.md": "3767228ef0b3eb699e7d5ea738bfb9d81f9d2498d08253191c07fd6abcdf5993",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/lean_axioms_out.txt": "b59f3b09346105c3e8f93904f47a9d2a37e498abe5162bf9103d8f908fe20882",
+  "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/lean_compile_out.txt": "4556e92e6081794cb63a581d129a9d2eeba177fdb52b83402e3dcd909c834180"
+ },
+ "commands": [
+  "shasum -a 256 deepseek_push/astra_spawn_ideas/AS076_fixed_well_euler_lagrange_density.md deepseek_push/G084_maxentropy_law.py deepseek_push/G091_virial_triad.py deepseek_push/G233_eos_noscalar.py   (cwd: /Users/carlzimmerman/new_physics/zimmerman-formula; hashes matched SOURCE_MANIFEST.json)",
+  "/usr/bin/time -l python3 deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/AS076_audit.py > .../audit_run.log 2>&1   (cwd: repo root; exit 0; 23/23 checks PASS; wall 0.24 s, max RSS 85 MB, 1 thread)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs path>/AS076_fixed_well_el.lean   (exit 0; zero sorry; only 2 unused-variable lint warnings)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs path>/AS076_axioms_check.lean   (exit 0; axioms of all 6 theorems: {propext, Classical.choice, Quot.sound})"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_s": 120,
+   "mem_mb": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "wall_s": "script self-timed: 0.24 s total (massively under 120 s); /usr/bin/time -l cross-check 0.28 s real",
+   "mem_mb": "max RSS 84.3 MB (macOS ru_maxrss bytes/1024^2) vs 512 MB cap; no large allocations",
+   "threads": "OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=NUMEXPR_NUM_THREADS=1 set in-process before numpy import; no multiprocessing/threading",
+   "grid_points": "4001 per shell (6 interior fixtures x 2 footings + 4 exterior shells x 2 footings)"
+  },
+  "measured": {
+   "wall_s": 0.2378,
+   "maxrss_mb": 84.3,
+   "threads": 1
+  }
+ },
+ "checks": [
+  {
+   "name": "C0 footings distinct (kappa_eff alt = 0.6024 at fixed rho_Lambda; rho_Lambda x 1.4515 at fixed kappa)",
+   "observed": "kappa_eff(alt) = 0.6024",
+   "tolerance": "|kappa_eff - 1/2| > 1e-3",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C1a symbolic EL identity (sympy simplifies residual to 0)",
+   "observed": "0",
+   "tolerance": "== 0",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C1b extra condition beta=1/sigma^2 not from variation (seed S -> beta=0; G084 S -> beta=-1/sigma^2)",
+   "observed": "beta_seed = 0; beta_G084 = -1/sigma^2 (residual 0)",
+   "tolerance": "exact",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C1c EL residual spread: exactly 0 at (2, C/2), nonzero at (2, 0.9 C/2) and (2.3, C/2), matching |beta C - gamma| ln(R/r_in)",
+   "observed": "spread(2,C/2) = 1.421e-14 (all 12 fixture-footing rows); (2,0.9 C/2): 0.154-1.023; (2.3,C/2): 0.208-1.382; all match the analytic closed form",
+   "tolerance": "< 1e-9 at star; > 1e-3 off-star",
+   "negative_control": true,
+   "pass": true
+  },
+  {
+   "name": "C1d 50-digit mpmath EL residual spread at (2, C/2)",
+   "observed": "1.7e-49",
+   "tolerance": "< 1e-40",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C1e direct differentiation dF/dr = (beta C - gamma)/r = 0 at the star",
+   "observed": "max |dF/dr| = 1.1e-27",
+   "tolerance": "< 1e-8",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C2 normalization int rho dV = M_b to 1e-10 (12 fixture-footing rows)",
+   "observed": "all rows < 1e-10 rel",
+   "tolerance": "< 1e-10",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C3 second variation delta^2 S = -int (drho)^2/rho < 0; central differences match the analytic form to 5% on M,E-preserving modes",
+   "observed": "8 modes, all negative, match to <5%",
+   "tolerance": "< 5%",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C4 NEGATIVE CONTROL self-gravity missing term: Phi_self closed form verified by independent trapezoid quadrature (5e-9..2.2e-7) and 50-digit mpmath radial quadrature (3e-51); self-consistent EL residual spread 0.77-11.78 matching |beta*4piGA|*[ln(R/r_in)-(1-r_in/R)]; double-counted gamma_eff = 4.00-5.23",
+   "observed": "spreads: (0.01,0.62): 11.7796; (0.01,1.0): 7.3034; (0.1,0.62): 5.0272; (0.1,1.0): 3.1169; (0.5,0.62): 1.2461; (0.5,1.0): 0.7726 (identical both footings); gamma_eff(R) = 5.2258 / 4.0000",
+   "tolerance": "spread > 1e-2; quadrature < 1e-2 (float) and < 1e-40 (mpmath)",
+   "negative_control": true,
+   "pass": true
+  },
+  {
+   "name": "C4b consistency: 4 pi G A_eq = C; sigma^2_virial = C/2 = 2 pi G A_hydro to machine precision",
+   "observed": "rel diff 0.00e+00",
+   "tolerance": "< 1e-12",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C5 deep exterior full-kernel error bound (RAR = MONO deep): |g - C/r|/(C/r) = (r_M/r)/2 + (r_M/r)^2/12 + ...; EL residual -r_M/r + O((r_M/r)^2)",
+   "observed": "5.083% at 10 r_M, 0.501% at 100 r_M (both footings); residual spreads 0.0506/0.0908/0.0050/0.0090 vs r_M(1/r_in - 1/R) = 0.0500/0.0900/0.0050/0.0090",
+   "tolerance": "relerr < 6% and spread matches the analytic value",
+   "negative_control": false,
+   "pass": true
+  },
+  {
+   "name": "C5b Newtonian-regime boundary: the r^-2 profile is massively non-stationary vs Phi_N (the log well is a deep-exterior object)",
+   "observed": "residual spread 310.1 on [0.0062, 0.62] r_M",
+   "tolerance": "> 1.0",
+   "negative_control": true,
+   "pass": true
+  }
+ ],
+ "tested_domain": "Interior fixtures (historical imposed-log-well ansatz): r_in/R in {0.01, 0.1, 0.5} x R/r_M in {0.62, 1.0}, both footings (12 rows). Deep exterior shells: r_in/r_M in {10, 100} x R/r_in in {2, 10}, both footings. M_b = 7e10 M_sun fixed. Grid: 4001 log-spaced points per shell. mpmath dps = 50 spot checks. Exact (proof) statements: EL identity, gamma = 2, normalization integral, self-potential closed form, missing-term spread and its nonzero instance (Lean 4, all theorems). Refinement history: initial run 20/23 -> fixed mpf-input precision issue (C1d), gauge-constant cancellation (C5b), gradient-vs-trapezoid quadrature bias (C4) -> 23/23; every fixed check reports the honest residual level (1e-49, 310.1, 2.2e-7, 3e-51).",
+ "failed_attempts": [
+  {
+   "path": "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/audit_run.log (first 3 runs)",
+   "cause": "audit-code bugs, not physics: (a) C1d passed float64 constants into mpmath so cancellation stopped at 1e-16; (b) C5b Newtonian residual drowned by the -G M_b/r gauge constant in float64 (spread reported 0.0); (c) C4 quadrature used np.gradient cumulative sums (systematic bias, rel err 4.65) instead of trapezoid segments; (d) Lean: wrong sign in the first missing_term_spread draft (corrected to +4 pi G beta A (...); cross-checked against the numeric audit, which had the same sign), FTC lemma integration, uIcc membership handling, trailing rings after field_simp"
+  },
+  {
+   "path": "deepseek_push/astra_spawn_ideas/results/AS076/AS076_r001_deepseek-v4-flash-0731_20260928T120802Z/AS076_axioms.lean",
+   "cause": "attempted import of an absolute path (invalid); replaced by AS076_axioms_check.lean (certificate + #print axioms compiled together)"
+  }
+ ],
+ "limitations": "1) Conditional theorem: fixed baryon log well, fixed sigma, beta = 1/sigma^2 (thermal identification) and sigma^2 = C/2 (G091) are inputs; in particular G091's virial derivation is cited (pinned hash) and not re-derived here, and kappa = 1/2 remains adopted (no independent derivation supplied by this task). 2) No dynamics: max-entropy extremum is not a dynamical attractor (G081 omega^2 = 0 marginal, G035 Newtonian-attractor kill cited, not re-derived). 3) Filtered-MONO transfer bounded for the branch kernel only (RAR deep expansion; MONO = RAR for y < y_star covers all deep shells); the heat-filter contribution needs xi, absent from the task's parameter cell - open dependency, not a pass. 4) R <= r_M fixtures test the historical imposed-log-well ansatz, not a controlled point-source deep-MOND domain (per the seed). 5) M_b = 7e10 M_sun is a proxy; dimensionless results are M_b-independent; dimensional values quoted per footing. 6) Finite-grid numbers are numerical consistency checks; exact statements are the sympy/analytic/Lean ones. 7) The LBW (self-gravitating) entropy-maximum non-existence is cited from the literature/G084, not re-derived. 8) Only G_N enters; G_bare/G_cosmo relations untouched.",
+ "next_unresolved_implication": "Attainment/dynamics: no mechanism in or cited by this result drives the baryonic dust to sigma^2 = C/2 (G035 kill stands); the equilibrium energy surface is derived, the approach to it is not. Second: the heat-filter scale xi of S = exp[(xi^2/2) Delta] is not in the task's parameter cell, so the filtered-MONO full-kernel bound (C5) covers the branch part only. Third: the self-consistent (self-gravitating) finite-domain entropy-extremum status - the LBW gravothermal non-existence on [r_in, R] - remains cited rather than derived in this run.",
+ "suggested_followup": "One continuation: AS076.C01 - 'self-consistent singular isothermal sphere on the truncated domain [r_in, R]: configurational-heat-capacity sign and entropy-extremum curvature with the C4 closed form 4 pi G A (1 - r_in/r + ln(R/r))' - target: decide whether the finite inner boundary r_in > 0 restores a (local) entropy extremum for the self-gravitating problem (gravothermal stabilization), discriminating observable: sign of d W/d sigma^2; success criterion: exact (sympy/Lean) curvature statement plus bounded numerics; it changes a named hypothesis (self-gravity in the varied energy) versus this seed and explains why the present fixed-well result cannot answer it. No runner/spawn mechanism available in this subagent execution: child NOT dispatched; specification recorded for the orchestrator.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": [
+   "G_N = 6.67430e-11 (measured Newton constant; G_bare, G_cosmo unused and not set equal)",
+   "M_b baryon mass (7e10 M_sun proxy for dimensional examples)",
+   "a0 = kappa c sqrt(G_N rho_Lambda), kappa = 1/2 ADOPTED (framework input, both footings)",
+   "rho_Lambda = 4 a0^2/(G_N c^2) mass density",
+   "r_M = sqrt(G_N M_b/a0), C = sqrt(G_N M_b a0) = v_flat^2",
+   "sigma^2 = C/2 (G091 virial + fluid closure; pinned hash, cited input)",
+   "beta = 1/sigma^2 (thermal/Boltzmann identification; extra condition, checked not derivable)",
+   "shell [r_in, R] with r_in > 0; fixed potential and fixed sigma during the variation (the seed's own specification)"
+  ],
+  "derived_here": [
+   "rho(r) = A r^(-beta C) as the unique EL stationary profile (sympy + Lean)",
+   "gamma = 2 exact pinning from beta = 1/sigma^2 and sigma^2 = C/2 (Lean)",
+   "A = M_b/(4 pi (R - r_in)) normalization (numerics to 1e-10 + Lean integral identity)",
+   "Phi_self(r) = -4 pi G_N A [(1 - r_in/r) + ln(R/r)] closed form (quadrature 3e-51 + Lean)",
+   "missing-term residual spread and double-counted exponent gamma_eff (quantified)",
+   "deep exterior kernel error bound (r_M/r)/2 + (r_M/r)^2/12 + O((r_M/r)^3), measured 5.083% / 0.501%"
+  ],
+  "not_derived": [
+   "kappa = 1/2 (adopted)",
+   "sigma^2 = C/2 (G091)",
+   "beta = 1/sigma^2 (thermal input)",
+   "dynamical attainment",
+   "filter scale xi",
+   "LBW non-existence theorem"
+  ]
+ },
+ "closure_implication": "Gate affected: nothing in the operative thirteen-item target is claimed. The result is a scoped equilibrium-sector lemma: the fixed-well r^-2 max-entropy profile is exact only as the baryon-well state with the phantom self-gravity as the posterior consistency check (equipartition), and the variation cannot be the vehicle for virial balance (double counting quantified: gamma would jump to 4.0-5.2). Common-action compatibility: the statement is dimensionless and independent of the action sector, so it survives any common action whose deep-static sector produces the baryon log well; the filter scale xi and the attainment mechanism remain the missing pieces before this lemma can feed the equilibrium gate of the common-action witness. closure_candidate = null.",
+ "child_proposals": [
+  {
+   "id": "AS076.C01 (ready specification, NOT dispatched - no spawn mechanism in this subagent)",
+   "new_claim": "On the truncated domain [r_in, R] with r_in > 0 and the C4b closed form 4 pi G A (1 - r_in/r + ln(R/r)), decide the sign of the configurational heat capacity and the strict concavity/local-extremum status of S for the SELF-GRAVITATING isothermal sphere (no imposed well): does the finite inner boundary r_in > 0 remove the LBW global non-existence?",
+   "target_equation": "delta^2 S[rho] = -int (delta rho)^2/rho dV over M,E-conserving modes with E = int rho (3 sigma^2/2 + (1/2) Phi_self[rho]) dV",
+   "why_not_answered_here": "this seed keeps the well fixed (seed step-2 wording) and the control only EXPOSES the missing term; it does not solve the self-consistent variational problem",
+   "controls": "sign of the numerical spectrum on >= 8 M,E-preserving modes at r_in/R in {0.01, 0.1, 0.5} x R/r_M in {0.62, 1.0}, both footings; cross-check with a closed-form curvature expression (sympy); negative control: the same operator with r_in -> 0 must reproduce the known LBW divergence",
+   "dependencies": [
+    "parent AS076 result (this run, task sha 614a07d8..., artifact hashes above)",
+    "G084 second-variation machinery (pinned hash 752999fd...)"
+   ],
+   "duplicate_check": "no existing AS076 run; no AS-series seed with this target found in manifest.json or results/ (AS071-AS074 neighbors inspected; FGF queue checked for presence)"
+  }
+ ],
+ "closure_candidate": null
+}

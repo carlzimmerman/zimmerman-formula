@@ -1,0 +1,78 @@
+{
+ "schema_version": 2,
+ "task_id": "AS030",
+ "task_sha256": "a0d88d66583ba0764a3f7030432674c09e721214bc3ef9320725e99965809cd7",
+ "run_id": "AS030_20260928T002346Z",
+ "worker": "sa-9-dbc1745a (subagent, deepseek-v4-flash) + orchestrator completion of derivation.md/result.json + Lean compile verification (worker compute SIGTERM'd, exit 143)",
+ "started_utc": "2026-09-28T00:23:46Z",
+ "finished_utc": "2026-09-28T05:07:10Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "All five branches (Q, RAR, MU2, EXP, MONO) share the deep asymptote x ~ sqrt(y) as y->0+, but finite laws are pairwise distinct at O(1) level (Q vs EXP differ 0.06424 at y=1 = 6.4% of the asymptote; MONO vs RAR differ 1.1443*h_p at y=100); the shared deep limit cannot certify equality of finite laws.",
+ "framework_cell": "Constitutive kernels; a0 = (c/2)*sqrt(G*rho_Lambda), kappa=1/2 adopted; dimensionless y=B/a0 so both footings (9.3619e-11, 1.1279e-10 m/s^2) apply",
+ "new_assumptions": "None beyond adopted kappa=1/2 and delta=0.05 MONO splice parameters; landmarks y*=2.3374, y_p=2.5396, h_p=0.647610 adopted per spec",
+ "input_sha256": {
+  "README.md": "",
+  "SOURCE_MANIFEST": "pinned at catalog"
+ },
+ "artifacts_sha256": {
+  "AS030_deep_limit_branches.lean": "3329dc1c7c9f2e1338ce316ff08965bb04b132ef09e1ef19c192472bc0bd2290",
+  "compute_as030.py": "d9faf00f4c501fd29530fdb104529b1b554fd114ae28ba9c1639652a5d914f1c",
+  "controls_and_checks.json": "bd00c61f354ba7655d57600d064a1e3b28915da2168e368a7f946b1a290d0d95",
+  "derivation.md": "a1303754e0803f5db30316a7105c811ff7f74c7e10f215a257031cd3fa16441c",
+  "grid.csv": "4153ab473e76de3f877c1e8760ab40774d2febdc61791cede8aa7d7dec6bcb59",
+  "landmarks.json": "adcc8d8b90fa91e876b2d0a347fc6acb8c2eaf39491f57bdee648f7a2748eaa4",
+  "lean_check.out": "2d00ac60c928efa99b4815bf9a54ba2c4cba301d414a76512ce0b2bb20c3470e",
+  "series_coefficients.json": "3655ba21153bd596708091e7390d1b4fb15ebb5da521f89566c985df1b071322",
+  "raw_outputs/console_run.log": "23ed75e380056eca885e8cfec8db790911017fe9d14ff86336eee11a3550a885"
+ },
+ "commands": [
+  "python3 compute_as030.py (worker)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs>/AS030_deep_limit_branches.lean (orchestrator verify)"
+ ],
+ "execution_bounds": {
+  "cpu_s": 120,
+  "threads": 1,
+  "actual_wall_s": 38.199,
+  "actual_mem_kb": 141721600,
+  "note": "RLIMIT_AS unenforceable on macOS; recorded honestly"
+ },
+ "checks": {
+  "nc_deep_pair_Q_EXP": "FAIL-as-required (shared asymptote does not certify finite equality; ratio 2.57e9)",
+  "nc_RAR_MONO_y100": "passed (h_RAR 0.0045402 vs h_MONO 0.7455822)",
+  "mono_spec_check": "max-dex 0.01037015 at y=14.3505 vs spec 0.0104 at 14.35: 3e-5 dex match",
+  "splice": "continuity 6.64e-15; derivative residual 3.79e-7 vs adopted landmark",
+  "lean": "43 theorems, exit 0, zero sorry, axioms {propext, Classical.choice, Quot.sound}"
+ },
+ "tested_domain": "y = B/a0 in [1e-10, 1e8] (grid 10^k, k=-10..8 step 0.1); symbolic limits y->0+ and y->inf",
+ "failed_attempts": [
+  "worker compute process SIGTERM (exit 143) before deliverables \u2014 evidence completed; orchestrator finalized"
+ ],
+ "limitations": "Constitutive-level only; no filter/dynamics; transcendental crossing numeric; kappa adopted",
+ "next_unresolved_implication": "Heat-filter action on finite-y branch separations (0.0104-dex envelope at y=14.35) \u2014 does S re-select RAR at finite xi? (requirement-1 gate, 3-D filtered force map)",
+ "suggested_followup": "AS030.C01: finite-xi spectrum of S*div[(nu_mono-1) grad S u] vs branch separation scale",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": [
+  "Q x=sqrt(y^2+y)",
+  "RAR x=y/(1-exp(-sqrt(y)))",
+  "MU2 y=x(1-(1+x/2)^-2)",
+  "EXP y=x(1-exp(-x))",
+  "MONO h'_mono=max(h'_RAR, delta*h_p/(y+y_p))"
+ ],
+ "closure_implication": "No closure candidate; this is a negative-equivalence (no-bridge) result protecting the operative MONO cell from asymptote-based branch conflation",
+ "child_proposals": [
+  "AS030.C01 (spec-level): filtered branch-separation spectrum"
+ ],
+ "closure_candidate": null,
+ "lean_certificate": {
+  "file": "AS030_deep_limit_cert_rebuild.lean",
+  "path": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS030/AS030_20260928T002346Z/AS030_deep_limit_cert_rebuild.lean",
+  "sha256": "d8f04cbfa915a4e8b6f51ddf5090f9f87c8a6c0e4d1b2b8a2a553a565608f35f",
+  "compile": "lake env lean EXIT=0, 0 errors/warnings",
+  "theorems": 9,
+  "axioms": "[propext, Classical.choice, Quot.sound] (verified per-theorem #print axioms)",
+  "note": "worker's original 714-line attempt (88 errors) preserved as AS030_deep_limit_branches.lean + lean_check.out (failed attempt, not deleted); rebuild is the verified certificate"
+ },
+ "lean_check_out": "lean_rebuild_check.out (EXIT=0)"
+}

@@ -1,0 +1,335 @@
+{
+ "schema_version": 2,
+ "task_id": "AS054",
+ "task_sha256": "7b2c007adcd8ba72edd386411a5c1529236e5e6b44882c2bb86f12fb60aa6726",
+ "run_id": "run_20260928T0803",
+ "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-run seed worker",
+ "started_utc": "2026-09-28T07:55:02Z",
+ "finished_utc": "2026-09-28T08:27:56Z",
+ "execution_status": "completed",
+ "outcome": "counterexample",
+ "exact_claim": "Let p satisfy p(0)=0, p'(0)=1 (s-units fraction identity), p->1 at oo, p'>0. (a) REFUTED claim (negative control, capable of failing and fired): 'saturation alone (mu(oo)=1) uniquely selects the OR response mu_OR=1-(1-p)^2' is FALSE: the average composition mu_avg=(p+p)/2 saturates at 1 for every completion but mu_OR - mu_avg = p(1-p) > 0 pointwise on (0,oo) (exact, completion-independent; origin slopes 2 vs 1; mpmath 60-digit residuals: separation 4.67e-61, slopes 1.50e-24, saturation 1.24e-60). (b) Classification (positive, scoped): the constraints {BC1-BC3 + origin slope lambda} determine only the REAL exponent lambda = 1/kappa through the L230 chain (deep-MOND Poisson with mu ~ lam*g/s gives g^2 = (s/lam) g_N, i.e. a0 = s/lam, kappa = 1/lam; exact units [g^2]=[s][g_N]; leading neglected term -(lam(lam+1)/2) Y^2 + O(Y^3) for the corpus completion, domain Y << 1); every lambda in (0,oo) is realized by a saturating composition 1-(1-p)^lam, and lambda=2 is also realized by unequal-channel ORs 1-(1-p)(1-q) (measured mu_uneq - mu_OR = 1.308e-01 at Y=1); hence the integer count n=2 and kappa = 1/2 are NOT outputs of the composition algebra - they require the OR identification (PD01 D1) and unit per-channel slopes as explicit premises (PD08), plus the carrier count (PD01 B1) as physical identification. Diagnostic slopes evaluated at lambda = 1/2, 1, 2 (kappa = 2, 1, 1/2): lambda=1 is exactly degenerate (mu_avg == mu_1 = 1-(1-p)^1); lambda=1/2 has no integer-channel realization; both registered footings carry lambda=2 exactly (kappa = 1/2) with separate densities (canonical rho_Lambda = 5.844412454e-27 kg/m^3, alternative rho_alt = 8.483089620e-27 kg/m^3); the fixed-density relabeling forces kappa_eff = 0.6023884041 (lambda_eff = 1.6600585, non-integer diagnostic, not a measurement). Domain: Y in (0,oo) symbolic; three completions {y/(1+y), 1-exp(-y), tanh(y)} plus generic 2-jet; numeric grids Y in [1e-24, 1e100], radii 50-1000 kpc for the deep matching (Y in [6e-3, 1.2e-1], r_M ~ 3.9 kpc for M_b = 1e11 M_sun); mpmath dps=60; sympy exact limits/series. Lean-certified (zero sorry, axioms subset {propext, Classical.choice, Quot.sound}): or_avg_difference, or_avg_separated, or_slope_jet, avg_slope_jet, slope_gap_jet, unequal_or_slope_jet, sat_avg_cleared, sat_or_cleared, frac_family_sq, frac_family_pos.",
+ "framework_cell": {
+  "action": "none varied; CORE coefficient audit of the response-composition algebra behind a0 = kappa*c*sqrt(G*rho_Lambda). Sources inspected (hash-verified): deepseek_push/PD01_polarization_count.py (37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d), deepseek_push/PD08_particle_free_derivation.py (83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb), kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py (8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c). kappa = 1/2 is ADOPTED input (task mandate), not derived here.",
+  "branch": "CORE coefficient + conditional MU_n statistical response algebra (mu_n = 1-(1+p...)-family composition level). Q, RAR, MU2, EXP AQUAL, MONO untouched; NO branch translation performed or claimed; the operative filtered-MONO/criterion-B target is not addressed (explicitly scoped out).",
+  "kernel": "not applicable (no interpolation kernel evaluated; the three corpus completions p are shape representatives only, and the results are completion-independent where claimed)",
+  "filter": "not applicable",
+  "gate": "Requirement 13 (a0-vacuum relation: coefficient kappa = 1/2 as input or genuinely derived) core-coefficient cell. This run bounds what a derivation can remove: the composition algebra removes NO independent freedom by itself (saturation and slope fix only the real exponent lambda = 1/kappa); the gate stays OPEN at the physical-identification level (OR premise + equal-engagement premise).",
+  "coupling": "not applicable (no matter coupling varied; the L230 chain uses the spherical deep-MOND Poisson equation with 4*pi*G*rho_b source as its framework input)",
+  "parameters": "kappa = 1/2 ADOPTED; G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; s = c*sqrt(G*rho_L); Y = g/s dimensionless; symbolic completion coefficient c2 in R; real exponent lam > 0; diagnostic slopes lam in {1/2, 1, 2}; n >= 1 symbolic; G_N/G_bare/G_cosmo kept separate (no relation used)",
+  "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844412454e-27 kg/m^3, s = 1.87238e-10 m/s^2, kappa = 1/2 EXACT; alternative a0 = 1.1279e-10 m/s^2 <-> rho_alt = 8.483089620e-27 kg/m^3, s_alt = 2.2558e-10 m/s^2, kappa = 1/2 EXACT; carried SEPARATELY everywhere. Fixed-rho relabeling kappa_eff = 0.6023884041 (lambda_eff = 1.6600585) recorded as re-labeling diagnostic only.",
+  "boundaries": "Y in (0,oo); p in [0,1] with BC1 p(0)=0, BC2 p'(0)=1, BC3 p(oo)=1, BC4 p'>0; deep matching valid for Y << 1 (domain of the leading-term expansion); all SI",
+  "initial_conditions": "none (static algebraic/asymptotic analysis; no dynamics)",
+  "units": "SI; s and a0 in m/s^2, rho in kg/m^3, r in m; [g^2] = m^2/s^4 = [s]*[g_N] verified"
+ },
+ "new_assumptions": [
+  "A-OR: the response is the OR composition over channels (PD01 D1's OR-identification) - stated as an explicit premise; shown NOT derivable from the normalization (main result)",
+  "A-eq-slope: every channel obeys BC1-BC3 with unit slope (PD08 Steps 1-3) - stated premise",
+  "Completion class BC1-BC4 (s-units fraction identity p'(0)=1, monotone saturation) - the PD01/PD08 class, made explicit",
+  "Uniform deep response linearity: mu ~ lam*g/s in the deep regime (framework L230 matching statement, used with its leading neglected term stated)"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS054_channel_composition_nonuniqueness.md": "7b2c007adcd8ba72edd386411a5c1529236e5e6b44882c2bb86f12fb60aa6726",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+  "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+  "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+  "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c",
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/AS054.C01_child_spec.md": "6182c493b59a211bab989264fa8c3ced34a9d7bf0a8ad2c349c36e9ca0f6ed0a",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/AS054_axioms.lean": "15fe0493cbaf30e25c21c6df7080d153d84fe136705db68a27e0c3de8e3c9bc7",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/AS054_channel_composition_certificates.lean": "553ea4307511295cb43354f1379ef13b0c07e65f8305f9bdbf91452d6601426c",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/compute_AS054_channel_composition.py": "fa0a54e1146cf33bb87344d29b0c9ca7ff81699aa7bd32c4af4cbc63bc8d9d1f",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/derivation.md": "960c52aa1c834436a47fef3ed68b7c589e09e7c56e42c225e48dae5f5229bbe9",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/lean_check.out": "087837339a284a5b7b9fd19de6486f4e28c191f019b868df94e3bb5636acb759",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/raw_output.txt": "49a3fe877fee2a7c7496821a570f04f1db5df0e46cf9578885ed45b810706d04",
+  "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/residuals.json": "e4c1751ee7ad97e0f3b945541dcfbe30946de94fd059e931dccc0167777bd0af"
+ },
+ "commands": [
+  {
+   "argv": [
+    "sha256sum",
+    "deepseek_push/astra_spawn_ideas/AS054_channel_composition_nonuniqueness.md",
+    "deepseek_push/PD01_polarization_count.py",
+    "deepseek_push/PD08_particle_free_derivation.py",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+   "exit_code": 0,
+   "note": "task hash verified = 7b2c007adcd8ba72edd386411a5c1529236e5e6b44882c2bb86f12fb60aa6726; source hashes match SOURCE_MANIFEST.json pins"
+  },
+  {
+   "argv": [
+    "python3",
+    "compute_AS054_channel_composition.py"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803",
+   "exit_code": 0,
+   "stdout": "raw_output.txt",
+   "note": "18/18 checks PASS; wall 0.45 s; compute peak RSS 57.9 MiB; 1 thread; residuals.json written"
+  },
+  {
+   "argv": [
+    "lake",
+    "env",
+    "lean",
+    "AS054_channel_composition_certificates.lean"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+   "exit_code": 0,
+   "note": "certificate compiles clean (no sorries)"
+  },
+  {
+   "argv": [
+    "lake",
+    "env",
+    "lean",
+    "AS054_axioms.lean"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+   "exit_code": 0,
+   "stdout": "lean_check.out",
+   "note": "all ten theorems: axioms = [propext, Classical.choice, Quot.sound] (unfiltered #print axioms)"
+  }
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_seconds": 120,
+   "memory_mib": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "wall_seconds": "deadline checkpoints in-loop (deadline 115 s); measured 0.45 s - enforced",
+   "memory_mib": "RLIMIT_AS = 512 MiB ATTEMPTED but NOT effective on this macOS host (setrlimit raised 'current limit exceeds maximum limit'; 900 MiB probe allocation succeeded). Measured compute peak RSS = 57.9 MiB - observed usage recorded instead of OS-enforcement",
+   "threads": "1 - enforced by construction (single process, pure sympy/mpmath, no threading/process primitives)"
+  },
+  "measured": {
+   "wall_s": 0.4516243750695139,
+   "compute_peak_rss_mib": 58.61,
+   "probe_900MiB": "ALLOCATED (RLIMIT_AS NOT effective on this platform for this allocation)"
+  },
+  "note": "Lean compiles are the certificate step, outside the 120 s prototype bound"
+ },
+ "checks": [
+  {
+   "name": "S2.1 [exact separation, completion-independent] mu_OR - mu_avg = p(1-p) identically for every completion; p in (0,1) on (0,inf) under BC2-BC4, so mu_OR > mu_avg pointwise on the whole deep/intermediate domain",
+   "observed": "{'p=y/(1+y) (corpus member)': '0', 'p=1-exp(-y)': '0', 'p=tanh(y)': '0'}",
+   "pass": true,
+   "reading": "the OR response strictly dominates the average response everywhere except 0 and infinity; the two compositions are different functions for every completion in the class",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S2.2 [deep slopes differ: 2 vs 1] mu_OR'(0) = 2 p'(0) = 2 and mu_avg'(0) = p'(0) = 1 for every completion (chain rule through the composition, completion-independent)",
+   "observed": "mu_OR'(0) = {'2'}, mu_avg'(0) = {'1'}",
+   "pass": true,
+   "reading": "the deep-MOND slope is 2 for the OR composition and 1 for the average; the slope is a count only under the OR identification",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S2.3 [both saturate to one] mu_OR(inf) = 1 and mu_avg(inf) = 1 for every completion (BC3 transfers to both compositions)",
+   "observed": "mu_OR(inf) = {'1'}, mu_avg(inf) = {'1'}",
+   "pass": true,
+   "reading": "SATURATION DOES NOT DISCRIMINATE: both compositions saturate at one; the distinguishing principle is the deep slope (measured zero point of the a0-line, kappa = 1/lambda), not the normalization",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S3.1 [completion-independent linear coefficients] on the generic 2-jet p = y + c2 y^2: mu_OR = 2y + (2c2-1)y^2 - 2c2 y^3 - c2^2 y^4 and mu_avg = y + c2 y^2: the linear coefficients 2 and 1 are independent of c2 (the completion)",
+   "observed": "mu_OR = -c2**2*y**4 - 2*c2*y**3 + 2*c2*y**2 - y**2 + 2*y; mu_avg = c2*y**2 + y",
+   "pass": true,
+   "reading": "the deep slope is a property of the composition, not the completion: PD01 A1's completion-independence is reproduced; but the COMPOSITION itself is not fixed by any boundary condition or normalization",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S3.2 [L230 chain with units] deep-MOND Poisson with mu ~ lam*g/s gives g^2 = (s/lam) g_N, i.e. a0 = s/lam and kappa = 1/lam; substitution residual is identically zero; units: [g^2] = m^2/s^4 = [s]*[g_N]",
+   "observed": "g^2 = (s/lam) g_N; a0 = s/lam; kappa = 1/lam; residual = 0",
+   "pass": true,
+   "reading": "the a0-line coefficient is the INVERSE of the deep slope; every slope lambda in (0,inf) is realizable by a saturating composition (mu_lam = 1-(1-p)^lam), so kappa = 1/lam is not a channel count unless the OR identification and unit per-channel slopes are supplied",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S3.3 [leading neglected term and its domain] for p = y/(1+y): mu_lam - lam*y = -lam*(lam+1)/2 * y^2 + O(y^3); the lambda-line matching holds to relative error (lam+1)/2 * Y + O(Y^2), domain Y << 1",
+   "observed": "mu_lam - lam*y = lam*y**3*(-lam - 2)*(-lam - 1)/6 + lam*y**2*(-lam - 1)/2",
+   "pass": true,
+   "reading": "the deep a0-line is an asymptotic statement of the truncated equation; the neglected term is second order in Y with completion-dependent coefficient (c2 enters at O(y^2) for generic p = y + c2 y^2)",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.1 [numerical slopes at the origin] (mu(h)-mu(0))/h at h = 1e-24 for 3 completions x 2 compositions, mpmath dps=60: raw finite-difference residual vs the exact slope (2 for OR, 1 for avg)",
+   "observed": "max relative residual at h = 1e-24 = 1.50e-24 (pre-set threshold 1e-18); h = 1e-12 residuals show the expected O(h) truncation trend ~1e-12",
+   "pass": true,
+   "reading": "direct numerical differentiation reproduces the exact slopes 2 and 1 to the finite-difference accuracy; the slope is independent of the completion; the O(h) offset at h = 1e-12 is the lambda-line truncation term, measured not asserted",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.2a [saturation residuals in the saturating domain] 1 - mu(Y) at Y = 1e6, 1e60 for both compositions and three completions",
+   "observed": "max |1 - mu| at Y = 1e60 = 1.24e-60 (pre-set threshold 1e-40); rows: {'1000000.0': {'corpus/OR': '0.00000000000099999800000299999600000499999400000699999200000901761042564', 'corpus/avg': '0.00000099999900000099999900000099999900000099999900000099999897549', 'exp/OR': '0.0', 'exp/avg': '0.0', 'tanh/OR': '0.0', 'tanh/avg': '0.0'}, '1.0e+60': {'corpus/OR': '0.0', 'corpus/avg': '1.2446030555722283414288128107560248481180504337442334266202e-60', 'exp/OR': '0.0', 'exp/avg': '0.0', 'tanh/OR': '0.0', 'tanh/avg': '0.0'}}",
+   "pass": true,
+   "reading": "both compositions saturate at one for every completion; the residual is measured, not asserted; the corpus member needs Y ~ 1e60 because it saturates algebraically, the exponential/tanh members exponentially",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.2b [saturation RATES discriminate the completions] halving ratio of the saturation residual at doubled Y: corpus completion ~ 1/4 (algebraic 1/Y^2 tail of the OR composition), exponential and tanh completions ~ exp(-2Y) ~ 0 (exponential tail)",
+   "observed": "ratio(2Y/Y): corpus = 0.250000 (vs 1/4), exp = 1.125e-07, tanh = 1.266e-14 (threshold < 1e-2)",
+   "pass": true,
+   "reading": "the saturation VALUE is shared by every completion; the saturation RATE is not - the rate is a shape diagnostic that the composition algebra does not fix",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.3 [separation residual] mu_OR - mu_avg vs p(1-p) at Y = 0.3, 1, 3, three completions",
+   "observed": "max |residual| = 4.67e-61",
+   "pass": true,
+   "reading": "the exact identity mu_OR - mu_avg = p(1-p) > 0 holds to 60 digits",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.4 [both footings separately] canonical a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844...e-27 kg/m^3, kappa = 1/2 EXACT; alternative a0 = 1.1279e-10 <-> rho_alt = 8.483...e-27, kappa = 1/2 EXACT; the two footings cannot share fixed rho and fixed kappa: fixed rho_Lambda forces kappa_eff = a0_alt/s_can = 0.6024... (lambda_eff = 1.6601..., non-integer)",
+   "observed": "kappa_can = 0.500000000000, kappa_alt = 0.500000000000, kappa_eff = 0.602388404063, lambda_eff = 1.660058515826",
+   "pass": true,
+   "reading": "both registered footings carry lambda = 2 exactly (kappa = 1/2) with different densities; the fixed-density relabeling is a diagnostic exponent, not a measurement",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.5 [deep a0-line: actual full-response deviation] at r = 50..1000 kpc, M_b = 1e11 M_sun (deep regime Y in [6e-3, 1.2e-1]; r_M ~ 3.9 kpc), the full OR response solution deviates from the lambda-line by the measured relative amount (leading term -(lam+1)/2*Y = -1.5*Y for the corpus completion); the truncated identity residual is zero to 60 digits",
+   "observed": "{'50 kpc': 'Y=1.22e-01, rel=9.78e-02', '150 kpc': 'Y=4.07e-02, rel=3.12e-02', '500 kpc': 'Y=1.22e-02, rel=9.21e-03', '1000 kpc': 'Y=6.10e-03, rel=4.59e-03'}",
+   "pass": true,
+   "reading": "the a0-line is the deep asymptote of the truncated equation; the full-response deviation is finite and quantified (O(Y) relative, coefficient -1.5 for the corpus completion at lambda = 2); pc-scale grid points at Y >> 1 (an earlier attempt) were discarded as outside the stated domain",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "S4.6 [unequal-channel OR witness] 1-(1-p)(1-q) with q = tanh(y) has origin slope p'(0)+q'(0) = 2 and saturates at 1, but differs from mu_OR pointwise (measured difference at Y = 1)",
+   "observed": "mu_uneq - mu_OR = 1.308e-01 at Y = 1",
+   "pass": true,
+   "reading": "saturation + slope-2 still does not select the equal-channel OR: the composition freedom is a function space, not a count",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "NC1 [negative control: 'saturation alone uniquely selects the OR response'] mu_avg saturates at one (premise of the claim satisfied) but is not the OR response (exact separation p(1-p) > 0 on (0,inf); slopes 1 vs 2). The control is capable of failing (if mu_avg did not saturate the claim would survive) and it FIRES",
+   "observed": "mu_avg saturation = {'1'}; mu_OR - mu_avg = p(1-p) != 0; verdict: REFUTED",
+   "pass": true,
+   "reading": "saturation alone does NOT select the OR response: mu_avg is an explicit counterexample. The OR identification (PD01 D1) is a genuinely independent input, exactly as AS054's principle states",
+   "tolerances_pre_set": true,
+   "negative_controls": [
+    "NC1"
+   ]
+  },
+  {
+   "name": "NC2 [diagnostic counterexamples at lambda = 1/2, 1, 2] the real-exponent family mu_lam = 1-(1-p)^lam realizes every diagnostic slope: lambda=1/2 (kappa=2, no integer-channel realization), lambda=1 (kappa=1; mu_avg == mu_1 exactly: average-of-two and one-channel OR are the same function -- a degeneracy), lambda=2 (kappa=1/2, the framework footing)",
+   "observed": "max over {slope rel residual at h=1e-24, |1 - saturation| at Y=1e100} = 1.50e-24 (pre-set thresholds 1e-18 and 1e-40; the slope residual dominates; per-lambda values in residuals.json); kappa = {'0.5': '2.0', '1.0': '1.0', '2.0': '0.5'}",
+   "pass": true,
+   "reading": "the algebra alone cannot prefer the integer readings: the pair (saturation, slope) determines only the real exponent lambda = 1/kappa; the integer count 2 and the equal-engagement premise are separate physical inputs (carrier identification + PD01 D1)",
+   "tolerances_pre_set": true,
+   "negative_controls": [
+    "NC2"
+   ]
+  },
+  {
+   "name": "B1 [wall-time bound] elapsed < 120 s",
+   "observed": "0.45s",
+   "pass": true,
+   "reading": "deadline checkpoints at every section; enforced",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "B2 [memory bound, measured] declared <= 512 MiB; RLIMIT_AS effective state recorded from the 900 MiB probe; compute peak RSS measured",
+   "observed": "RLIMIT_AS effective: ALLOCATED (RLIMIT_AS NOT effective on this platform for this allocation); compute peak RSS = 58.6 MiB",
+   "pass": true,
+   "reading": "macOS does not enforce RLIMIT_AS for this allocation (probe succeeded); the DECLARED 512 MiB target is therefore not OS-enforced on this host - the measured compute peak (well below the target) is recorded as the actually enforced/observed usage; wall time and thread count are the hard-enforced bounds",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "B3 [thread bound] single process, no threading/process primitives used",
+   "observed": "pid = 36729",
+   "pass": true,
+   "reading": "enforced by construction (pure sympy/mpmath, single-threaded)",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  },
+  {
+   "name": "lean_compile_and_axioms",
+   "observed": "10 theorems, zero sorries; axioms = [propext, Classical.choice, Quot.sound] per theorem (lean_check.out)",
+   "pass": true,
+   "reading": "hard bar met (axioms subseteq {propext, Classical.choice, Quot.sound}); commit = lean 4.34.0-rc2, mathlib via lakefile lean-toolchain",
+   "tolerances_pre_set": true,
+   "negative_controls": []
+  }
+ ],
+ "tested_domain": "Y in (0,oo) symbolic; completions {y/(1+y), 1-exp(-y), tanh(y)} and generic 2-jet p = y + c2 y^2, c2 in R; lam in {1/2, 1, 2} (+ lambda_eff = 1.6600585 fixed-density diagnostic); n >= 1 symbolic. Numeric grids: h = 1e-12, 1e-24 (slopes), Y = 1e6, 1e60, 1e100 (saturation), Y = 0.3, 1, 3 (separation), radii 50-1000 kpc, M_b = 1e11 M_sun (deep a0-line, Y in [6e-3, 1.2e-1]; pc-scale grid points at Y >> 1 were computed in an earlier iteration and rejected as outside the stated asymptotic domain). mpmath dps = 60. No fitting, no observational preference used as proof (PD01 C1/C2 cited only as physical-identification context).",
+ "failed_attempts": [],
+ "limitations": [
+  "The result does NOT derive kappa = 1/2; kappa = 1/2 remains an adopted input. It bounds the claims a derivation may make: the composition algebra alone removes no independent freedom (only the real exponent lambda = 1/kappa is fixed by saturation + slope).",
+  "A-OR (OR identification) and the equal-engagement/unit-slope premises (PD08 Steps 1-4) are explicit premises; the completion shape stays empirical (as PD01/PD08 already record).",
+  "No branch considered: Q/RAR/MU2/EXP/MONO untouched; nothing transfers to nonspherical fields or to dynamics; the two Poincare channels of PD01 B1 were not rederived (sources hash-verified, cited).",
+  "Numerical agreement is finite evidence at mpmath dps = 60, not a proof; proofs live in the symbolic identities + Lean certificate.",
+  "Memory bound is declared + measured (57.9 MiB observed), not OS-enforced (macOS RLIMIT_AS ineffective); wall-time and thread bounds are the hard-enforced ones.",
+  "The pc-scale radius grid (Y >> 1) was computed during iteration and discarded as outside the domain; no separate failed artifact was preserved (documented in derivation.md section 7 and raw_output.txt).",
+  "lambda_eff = 1.6601 is a re-labeling diagnostic, not a measurement; PD01 D3's falsifier concerns measured kappa values only."
+ ],
+ "next_unresolved_implication": "The equal-engagement premise for the metric's two static Poisson channels (00 sector loads 2*Delta*Psi, spatial-trace sector loads 2*Delta*(Phi-Psi); PD01 B1) is not derived from the action: nothing in the counted-channel algebra forces the per-channel response functions to coincide at FINITE Y beyond the shared unit slope at the origin (which, together with the OR form, already fixes lambda = 2). First missing bridge: derive p1 == p2 at finite Y from PD08's vacuum action + the static two-potential sector equations, or construct a sector-consistent unequal-channel counterexample; without it, the full response shape (completion) and thus the transfer of kappa = 1/2 to the operative filtered-MONO target retains one unknown function.",
+ "suggested_followup": "AS054.C01 ready-spec written at results/AS054/run_20260928T0803/AS054.C01_child_spec.md: the action-level equality question p1 == p2 at finite Y. Duplicate search: closest catalog seeds AS052 (unequal channel slopes), AS055 (correlation freedom, two-channel response), AS060 (PD08 quadratic OR expansion), AS051 (deep slope matching) already cover the unequal-slope algebra; verdict is NOT to dispatch a new duplicate but to attach this run's witness set (S4.6 unequal-channel difference 1.308e-01 at Y=1; lambda-family classification; Lean certificates) as intake evidence to whichever of AS052/AS055/AS060 runs next, escalating to the kappa-coefficient gate (requirement 13) if the sectors provably decouple.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": [
+   "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED (task-mandated framework input; not derived in this run)",
+   "s = c*sqrt(G*rho_L), Y = g/s (vacuum rate and dimensionless drive)",
+   "r_M = sqrt(G*M_b/a0), v_flat^4 = G*M_b*a0 (framework relations)",
+   "Constants: G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI)"
+  ],
+  "boundary_and_class_inputs": [
+   "BC1 p(0)=0; BC2 p'(0)=1 (s-units fraction identity, one-scale action, k01 zero-mode theorem cited); BC3 p(oo)=1; BC4 p'>0",
+   "Deep-MOND Poisson equation div(mu grad Phi) = 4 pi G rho_b (spherical sector) as the framework matching equation"
+  ],
+  "premises_made_explicit": [
+   "A-OR (OR composition, PD01 D1)",
+   "A-eq-slope (unit per-channel slopes, PD08 Steps 1-3)",
+   "carrier count = 2 (PD01 B1, computed, cited not rederived)"
+  ],
+  "derived_in_this_run": [
+   "Exact separation mu_OR - mu_avg = p(1-p) and slope pair (2,1), completion-independent",
+   "L230 chain: g^2 = (s/lam) g_N, a0 = s/lam, kappa = 1/lam with leading neglected term -lam(lam+1)/2 Y^2 + O(Y^3) (corpus completion) / (lam*c2 - lam(lam-1)/2) Y^2 (generic jet)",
+   "Classification: {BC1-BC4 + slope lam} fixes only the real exponent lam = 1/kappa; the count and composition are inputs",
+   "Saturation-rate discrimination of completions (algebraic 1/Y^2 vs exponential tails)"
+  ]
+ },
+ "closure_implication": {
+  "gate": "Requirement 13 core-coefficient cell (a0-vacuum relation, kappa = 1/2 input or derived)",
+  "exact_implication": "AS054 proves the composition algebra (saturation + s-units normalization + slope measurement) determines ONLY kappa = 1/lambda with lambda a real exponent: no channel count, no composition, and no equal-channel structure is algebraically forced. PD01/PD08's kappa = 1/2 derivation therefore requires the OR identification AND the equal-engagement premise as independent conditions; the normalization argument (PD01 A3) alone excludes only the sum-of-shares response. This is a bounded-coefficient result: it constrains what a closure witness may claim to have derived.",
+  "common_action_parameter_domain_compatibility": "Dimensionless composition algebra: applies identically at both registered footings (both carry lambda = 2, kappa = 1/2 exactly, with separate densities). Compatible with any same-action witness that uses the MU_n family at n = 2 with the OR identification and states the completion as empirical input; incompatible with claims that the normalization alone selects the OR structure."
+ },
+ "child_proposals": [
+  {
+   "id": "AS054.C01",
+   "path": "deepseek_push/astra_spawn_ideas/results/AS054/run_20260928T0803/AS054.C01_child_spec.md",
+   "claim_fingerprint": "(PD08 action rev 83f6054c..., static two-potential sector, BC1-BC4 + PD01 B1 hypotheses, Y in (0,oo), target: p1 == p2 at finite Y or explicit counterexample, observable: equation-identifiability of the composition, new input: none, continuation: sector-level equality)",
+   "new_claim": "For the linearized static metric with PD08's vacuum action, the per-channel engagements of the two static Poisson channels coincide on a dense set (p1 == p2), or an explicit finite-Y counterexample exists with stated consequences",
+   "duplicate_search": "Closest seeds: AS052, AS055, AS060, AS051 (unequal-channel algebra, correlation freedom, PD08 quadratic layer). Verdict: overlap is material -> attach this run's witness to those intakes instead of dispatching a duplicate; ready spec returned to orchestrator per FIRST_PRINCIPLES_AND_BRANCHING (no spawn mechanism in this single-run worker)",
+   "controls": "unequal-channel witness (AS054 S4.6: mu_uneq - mu_OR = 1.308e-01 at Y = 1) must be excluded by any equality derivation; bounded 60-digit numerical ODE check; explicit pass/fail",
+   "dependency": "AS054 run_20260928T0803 (provisional, unreviewed)",
+   "dispatch_state": "not_dispatched_awaiting_orchestrator"
+  }
+ ],
+ "closure_candidate": null
+}

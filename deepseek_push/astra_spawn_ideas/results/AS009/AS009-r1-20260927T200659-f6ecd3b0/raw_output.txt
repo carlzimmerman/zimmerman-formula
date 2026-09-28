@@ -1,0 +1,107 @@
+
+==== A. THE a0/G SURFACE-DENSITY FAMILY (kg/m^2 and Msun/pc^2) ====
+members: Sigma0 = a0/G (no pi); Sigma_pi = a0/(pi G); Sigma_half = a0/(2 pi G); Sigma_quad = a0/(4 pi G). Every member has units [a0/G] = (m/s^2)/(m^3 s^-2/kg) = kg/m^2.
+  canonical a0=9.3619e-11:
+      a0                                 9.361900000e-11
+      rho_Lambda [kg/m^3]                5.844412454e-27
+      Sigma0=a0/G [kg/m^2]               1.402678933e+00
+      Sigma_pi=a0/(piG) [kg/m^2]         4.464865714e-01
+      Sigma_half=a0/(2piG) [kg/m^2]      2.232432857e-01
+      Sigma_quad=a0/(4piG) [kg/m^2]      1.116216428e-01
+      Sigma0 [Msun/pc^2]                 6.716458281e+02
+      Sigma_pi [Msun/pc^2]               2.137915071e+02
+      Sigma_half [Msun/pc^2]             1.068957535e+02
+      Sigma_quad [Msun/pc^2]             5.344787677e+01
+
+[PASS] A1 [canonical a0=9.3619e-11] Sigma_quad = Sigma_half/2 exactly (coefficient 1/2 bookkeeping)  --  rel residual 0.00e+00
+[PASS] A2 [canonical a0=9.3619e-11] Sigma_half = Sigma_pi/2 exactly (Milgrom slab vs projected disk)  --  rel residual 0.00e+00
+[PASS] A3 [canonical a0=9.3619e-11] Sigma_pi = Sigma0/pi exactly (pi is the projected-disk convention)  --  rel residual 0.00e+00
+  alternative a0=1.1279e-10:
+      a0                                 1.127900000e-10
+      rho_Lambda [kg/m^3]                8.483089620e-27
+      Sigma0=a0/G [kg/m^2]               1.689915047e+00
+      Sigma_pi=a0/(piG) [kg/m^2]         5.379166664e-01
+      Sigma_half=a0/(2piG) [kg/m^2]      2.689583332e-01
+      Sigma_quad=a0/(4piG) [kg/m^2]      1.344791666e-01
+      Sigma0 [Msun/pc^2]                 8.091833169e+02
+      Sigma_pi [Msun/pc^2]               2.575710495e+02
+      Sigma_half [Msun/pc^2]             1.287855248e+02
+      Sigma_quad [Msun/pc^2]             6.439276238e+01
+
+[PASS] A1 [alternative a0=1.1279e-10] Sigma_quad = Sigma_half/2 exactly (coefficient 1/2 bookkeeping)  --  rel residual 0.00e+00
+[PASS] A2 [alternative a0=1.1279e-10] Sigma_half = Sigma_pi/2 exactly (Milgrom slab vs projected disk)  --  rel residual 0.00e+00
+[PASS] A3 [alternative a0=1.1279e-10] Sigma_pi = Sigma0/pi exactly (pi is the projected-disk convention)  --  rel residual 0.00e+00
+  ZD07 legacy a0=1.2e-10 (not registered):
+      a0                                 1.200000000e-10
+      rho_Lambda [kg/m^3]                9.602301849e-27
+      Sigma0=a0/G [kg/m^2]               1.797941357e+00
+      Sigma_pi=a0/(piG) [kg/m^2]         5.723025088e-01
+      Sigma_half=a0/(2piG) [kg/m^2]      2.861512544e-01
+      Sigma_quad=a0/(4piG) [kg/m^2]      1.430756272e-01
+      Sigma0 [Msun/pc^2]                 8.609096376e+02
+      Sigma_pi [Msun/pc^2]               2.740360488e+02
+      Sigma_half [Msun/pc^2]             1.370180244e+02
+      Sigma_quad [Msun/pc^2]             6.850901219e+01
+
+[PASS] A1 [ZD07 legacy a0=1.2e-10 (not registered)] Sigma_quad = Sigma_half/2 exactly (coefficient 1/2 bookkeeping)  --  rel residual 0.00e+00
+[PASS] A2 [ZD07 legacy a0=1.2e-10 (not registered)] Sigma_half = Sigma_pi/2 exactly (Milgrom slab vs projected disk)  --  rel residual 0.00e+00
+[PASS] A3 [ZD07 legacy a0=1.2e-10 (not registered)] Sigma_pi = Sigma0/pi exactly (pi is the projected-disk convention)  --  rel residual 0.00e+00
+
+ZD07_halo_saturation.py quotes the slab ceiling as 68.4 Msun/pc^2 but codes A0 = 1.2e-10,
+which is neither registered footing. On the registered footings:
+   canonical:   53.45 Msun/pc^2
+   alternative: 64.39 Msun/pc^2
+   ZD07 1.2e-10: 68.51 Msun/pc^2
+[PASS] A4 [footing audit] ZD07's 68.4 Msun/pc^2 disagrees with BOTH registered footings (canonical 53.45, alt 64.39) by more than 1%  --  rel vs canonical +28.2%; vs alternative +6.4%
+[PASS] A5 [footing audit] quoted '68.4' is the a0=1.2e-10 footing to <0.5%  --  a0/(4 pi G)|_1.2e-10 = 68.509 Msun/pc^2
+
+==== B. WHICH GEOMETRY FIXES WHICH pi (phantom of a point mass) ====
+conditional equilibrium target rho_ph = C/(4 pi G r^2); C = sqrt(G M_b a0). M_ph(r) = Int_0^r rho_ph 4 pi r'^2 dr' = C r/G  (4 pi from spherical shells). Amplitude law: M_ph(r)/M_b = r/r_M.  Projected: Sigma_proj(r) = M_ph(r)/(pi r^2); at r = r_M: Sigma_proj(r_M) = a0/(pi G), independent of M_b.
+[PASS] B1 [canonical] M_ph(r) = Int rho_ph 4 pi r'^2 dr' = C r/G exactly (shell integral, residual over [1e-12 rM, 10 rM] with the analytic tip term)  --  max relative residual 1.22e-16
+[PASS] B2 [canonical] amplitude law at r_M: M_ph(r_M)/M_b = 1 (r/r_M = 1)  --  residual 0.00e+00
+[PASS] B3 [canonical] Sigma_proj(r_M) = a0/(pi G) exactly (M_b cancels)  --  rel residual 1.24e-16
+[PASS] B4 [canonical] mass-independence of the fixed-r_M projected density: Sigma_proj(2 r_M) is exactly HALF of Sigma_proj(r_M) -- universality is a bookkeeping convention at one chosen radius, not a law  --  Sigma_proj(2 r_M) = 106.90 Msun/pc^2 = Sigma_proj(r_M)/2 (213.79)
+[PASS] B5 [canonical] NEGATIVE CONTROL (must reject): rho_ph(r_M) =/ Sigma0; the units of rho_ph/Sigma0 are [1/m^2]; ratio = 1/(4 pi r_M^2) = 5.6134e-42 1/m^2 (~41 orders from unity) so the naive equality fails identically on dimensions  --  rho_ph(r_M)/Sigma0 = 1/(4 pi r_M^2) = 5.6134e-42 1/m^2 (dimensionless value would need to be 1)
+[PASS] B6 [canonical] correct dimensionless pairing: rho_ph(r) (4 pi r^2)/Sigma0 = r_M exactly (units [kg/m^3][m^2]/[kg/m^2] = [m])  --  rho_ph 4 pi r_M^2 / Sigma0 = 1.000000000000000 r_M
+[PASS] B1 [alternative] M_ph(r) = Int rho_ph 4 pi r'^2 dr' = C r/G exactly (shell integral, residual over [1e-12 rM, 10 rM] with the analytic tip term)  --  max relative residual 0.00e+00
+[PASS] B2 [alternative] amplitude law at r_M: M_ph(r_M)/M_b = 1 (r/r_M = 1)  --  residual 0.00e+00
+[PASS] B3 [alternative] Sigma_proj(r_M) = a0/(pi G) exactly (M_b cancels)  --  rel residual 0.00e+00
+[PASS] B4 [alternative] mass-independence of the fixed-r_M projected density: Sigma_proj(2 r_M) is exactly HALF of Sigma_proj(r_M) -- universality is a bookkeeping convention at one chosen radius, not a law  --  Sigma_proj(2 r_M) = 128.79 Msun/pc^2 = Sigma_proj(r_M)/2 (257.57)
+[PASS] B5 [alternative] NEGATIVE CONTROL (must reject): rho_ph(r_M) =/ Sigma0; the units of rho_ph/Sigma0 are [1/m^2]; ratio = 1/(4 pi r_M^2) = 6.7629e-42 1/m^2 (~41 orders from unity) so the naive equality fails identically on dimensions  --  rho_ph(r_M)/Sigma0 = 1/(4 pi r_M^2) = 6.7629e-42 1/m^2 (dimensionless value would need to be 1)
+[PASS] B6 [alternative] correct dimensionless pairing: rho_ph(r) (4 pi r^2)/Sigma0 = r_M exactly (units [kg/m^3][m^2]/[kg/m^2] = [m])  --  rho_ph 4 pi r_M^2 / Sigma0 = 1.000000000000000 r_M
+
+==== C. BRANCH AUDIT OF 'g_phi < a0/2' (ZD01 premise of the ZD07 slab ceiling) ====
+g_phi := g - B. Q: g^2 = B^2 + a0 B. RAR: g = B nu_RAR(y), y = B/a0, g_phi = a0 h_RAR(y), h_RAR(y) = y/(e^sqrt(y) - 1).  EXP (historical): g_phi = a0 x e^-x with x = g/a0 implicit.  MONO (operative filtered): g_phi = a0 h_mono(y), h_mono = h_RAR(y*) + delta h_p ln[(y+y_p)/(y*+y_p)] for y >= y*, h'_mono = max(h'_RAR, delta h_p/(y+y_p)), delta = 0.05.
+[PASS] C1 [Q branch] g_phi/a0 = sqrt(y^2+y) - y is strictly below 1/2 at every sampled y and rises monotonically toward 1/2 (sup, never attained)  --  y=10^1: 0.488088; y=10^2: 0.498756; y=10^3: 0.499875; y=10^4: 0.499988; y=10^6: 0.500000; y=10^8: 0.500000
+[PASS] C2 [Q branch] leading gap term: (1/2 - g_phi/a0)*8y -> 1 as y -> oo (neglected term a0^2/(8B) relative to the cap; asymptotic regime y >= 1e2)  --  y=10^1: 0.952921; y=10^2: 0.995031; y=10^3: 0.999500; y=10^4: 0.999950; y=10^6: 1.000000; y=10^8: 1.000000
+[PASS] C3 [RAR branch] h_RAR peaks at y_p = 2.5396 (stationarity e^sqrt(y) (2-sqrt(y)) = 2)  --  y_p = 2.539638 (README landmark 2.5396; 2.540 quoted in the bounded-boost lane)
+[PASS] C4 [RAR branch] Delta_max = h_RAR(y_p) = 0.6476 reproduces the bounded-boost value  --  Delta_max = 0.647610
+[PASS] C5 [RAR branch] NEGATIVE CONTROL FOR THE CAP: the RAR peak EXCEEDS a0/2 (0.6476 > 0.5), so 'g_phi < a0/2' is FALSE on the RAR branch (pointwise law)  --  Delta_max = 0.647610 a0 vs cap 0.5 a0; exceedance +29.5%
+[PASS] C6 [EXP historical] g_phi = a0 x e^-x maxes at x = 1 with value a0/e = 0.3679 a0 < a0/2 (cap holds on the retired exponential branch)  --  a0/e = 0.367879 a0
+[PASS] C7 [MONO branch] splice location y* = 2.3374 reproduces the contract landmark (h'_RAR(y*) = delta h_p/(y*+y_p))  --  y* = 2.337412
+[PASS] C8 [MONO branch] pointwise halo boost g_phi = a0 h_mono(y) is ALREADY above a0/2 at the splice (h_RAR(y*) = 0.647a0 > 0.5a0) and GROWS logarithmically: h_mono(1e6) > h_mono(1e4)  --  y=2.33741: h=0.6470; y=10: h=0.6775; y=100: h=0.7456; y=1000: h=0.8194; y=10000: h=0.8939; y=1e+06: h=1.0430
+[PASS] C9 [MONO branch] NEGATIVE CONTROL FOR THE CAP: the operative continuation is NOT bounded by a0/2 pointwise; the ZD07 slab ceiling's premise therefore does not transfer to the operative branch without a filtered-operator argument  --  h_mono(1e4) = 0.8939 > 0.5
+[PASS] C10 [MW anchor, footing audit] the registered solar-circle saturation fraction g_phi(R0)/a0 (Vbar = 120 km/s, R0 = 8.2 kpc) sits ABOVE 1/2 on BOTH registered footings (0.531 alt, 0.640 canonical); '99.4% of the cap' holds only on the unregistered a0 = 1.2e-10 footing  --  canonical: 0.637; alternative: 0.528; ZD07 1.2e-10: 0.497
+
+==== D. DEEP AND NEWTONIAN LIMITS (leading neglected terms) ====
+
+  RAR deep expansion: nu(y) = y**(7/2)/256 + y**(5/2)/64 + y**(3/2)/16 + sqrt(y)/4 + y**3/128 + y**2/32 + y/8 + 1/2 + 1/sqrt(y) + O(y^2)
+  so g = B nu = sqrt(a0 B)(1 + sqrt(y)/2 + y/12 + ...); leading neglected term B/2, relative size sqrt(y)/2.
+  sympy residual after subtracting y^-1/2 + 1/2 + y^1/2/12: y**(7/2)/256 + y**(5/2)/64 + y**(3/2)/16 + sqrt(y)/6 + y**3/128 + y**2/32 + y/8
+[PASS] D1 [canonical] deep limit g_ptr -> C/r: relative residual r g_RAR/C - 1 -> 0 as r/r_M grows and matches the leading correction sqrt(y)/2 to 10% relative for r >= 5 r_M (asymptotic; 0.17% agreement at r = 100 r_M)  --  r/rM=2: rel residual +2.7075e-01 (pred sqrt(y)/2 = +2.5000e-01); r/rM=5: rel residual +1.0333e-01 (pred sqrt(y)/2 = +1.0000e-01); r/rM=10: rel residual +5.0833e-02 (pred sqrt(y)/2 = +5.0000e-02); r/rM=100: rel residual +5.0083e-03 (pred sqrt(y)/2 = +5.0000e-03); r/rM=1000: rel residual +5.0008e-04 (pred sqrt(y)/2 = +5.0000e-04)
+[PASS] D2 [canonical] Newtonian limit: nu_RAR - 1 ~ exp(-sqrt(y)) exactly to leading order (ratio -> 1)  --  y=100: (nu-1)/e^-sqrt(y) = 1.00004540; y=10000: (nu-1)/e^-sqrt(y) = 1.00000002
+[PASS] D3 [canonical] MONO high-field recovery: nu_mono -> 1 as y -> oo (boost is a0 h_mono, growing only logarithmically, so g_phi/B -> 0)  --  y=100: nu_mono-1 = 7.4558e-03; y=10000: nu_mono-1 = 8.9390e-05; y=1e+06: nu_mono-1 = 1.0430e-06
+[PASS] D1 [alternative] deep limit g_ptr -> C/r: relative residual r g_RAR/C - 1 -> 0 as r/r_M grows and matches the leading correction sqrt(y)/2 to 10% relative for r >= 5 r_M (asymptotic; 0.17% agreement at r = 100 r_M)  --  r/rM=2: rel residual +2.7075e-01 (pred sqrt(y)/2 = +2.5000e-01); r/rM=5: rel residual +1.0333e-01 (pred sqrt(y)/2 = +1.0000e-01); r/rM=10: rel residual +5.0833e-02 (pred sqrt(y)/2 = +5.0000e-02); r/rM=100: rel residual +5.0083e-03 (pred sqrt(y)/2 = +5.0000e-03); r/rM=1000: rel residual +5.0008e-04 (pred sqrt(y)/2 = +5.0000e-04)
+[PASS] D2 [alternative] Newtonian limit: nu_RAR - 1 ~ exp(-sqrt(y)) exactly to leading order (ratio -> 1)  --  y=100: (nu-1)/e^-sqrt(y) = 1.00004540; y=10000: (nu-1)/e^-sqrt(y) = 1.00000002
+[PASS] D3 [alternative] MONO high-field recovery: nu_mono -> 1 as y -> oo (boost is a0 h_mono, growing only logarithmically, so g_phi/B -> 0)  --  y=100: nu_mono-1 = 7.4558e-03; y=10000: nu_mono-1 = 8.9390e-05; y=1e+06: nu_mono-1 = 1.0430e-06
+
+==== E. UNIT BLACKBOARD ====
+
+  [a0]   = m s^-2
+  [G]    = m^3 kg^-1 s^-2
+  [a0/G] = kg m^-2                                      -> Sigma0, Sigma_pi, ... are SURFACE densities
+  [rho_Lambda] = kg m^-3  (4 a0^2/(G c^2))              -> a VOLUME density, 3 powers of length apart
+  rho_ph(r) (4 pi r^2)/Sigma0 = r_M  [m]  check B6
+  kappa = 1/2 remains an adopted input; nothing in A-E derives it.
+
+AS009 COMPLETE: 39/39 checks PASS.

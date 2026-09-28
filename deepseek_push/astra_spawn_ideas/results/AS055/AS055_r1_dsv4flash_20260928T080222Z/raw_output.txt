@@ -1,0 +1,27 @@
+====================================================================================================
+AS055 correlation-freedom audit -- bounded prototype complete
+  checks: 17 PASS / 0 FAIL (out of 17)
+  wall: 0.034 s (limit 120.0 s); ru_maxrss = 19841024 KB (limit 512 MB)
+  kappa_canonical = 0.500000000000 (adopted 1/2); kappa_alternative = 0.602388404063
+  s = 1.872380000000e-10 m/s^2 = 2*a0_canonical (verified)
+  alpha_alt (fixed rho_Lambda) = 0.339941;  lambda_alt (fixed kappa) = 1.451487
+====================================================================================================
+  [PASS] SCALES [s = c*sqrt(G*rho_Lambda) on the canonical footing equals 2*a0]
+  [PASS] A1 [independent OR == MU2] |(2p-p^2) - (1-(1+Y)^-2)| over 34-point log grid, p = Y/(1+Y)
+  [PASS] A2 [alpha-family closed form] max |U_alpha(Y) - (Y^2+(2-alpha)Y)/(1+Y)^2| over alpha in {0,1/3,0.33986,1} x 34-point grid
+  [PASS] A3 [independence class, general n] |(1-(1-p)^n) - (1-(1+Y)^-n)|, n in {1,2,3,5}, p = Y/(1+Y)
+  [PASS] A4 [alpha-family C within Frechet bounds] C_alpha(p) in [max(0,2p-1)-p^2, p-p^2] for p in {0,1/8,...,1}, alpha in {0,1/3,1}
+  [PASS] A4b [U(p=1) = 1 normalization] U_alpha(1) for alpha in {0,1/3,1}
+  [PASS] B1 [linear-term slope theorem] (U(eps)-U(0))/eps -> 2 - alpha at eps = 1e-6..1e-12 for alpha in {0,1/3,0.33986,1}
+  [PASS] B2 [NEGATIVE CONTROL: perfect correlation => slope 1, not 2] U = p (C(p) = p-p^2): (U(eps)-U(0))/eps at eps = 1e-6,1e-9,1e-12
+  [PASS] B3 [mutual-exclusion extremum] P(AnB) = 0: U = 2p (tight upper, Frechet), and U > 2p - p^2 for p in {0.10, 0.30, 0.49}
+  [PASS] B4 [sharp union bounds] 2000 seeded samples of arbitrary admissible C: p <= P(A u B) <= min(2p, 1)
+  [PASS] B5 [quadratic correlation term] C(p) = alpha(p-p^2) + beta p^2 (1-p), beta = 0.3: slope still 2 - alpha
+  [PASS] C1 [deep x-slope diagnostics at lambda = 1/2, 1, 2] sigma_x = (2-alpha)/(2 sqrt(lambda)) matched numerically (symmetric estimator, O(eps^2) floor ~1e-25, tolerance 1e-20); identical two-channel model gives DIFFERENT deep x-slopes: lambda=1/2,alpha=0 -> sqrt(2); lambda=1,alpha=0 -> 1; lambda=2,alpha=0 -> 1/sqrt(2); lambda=1,alpha=1 -> 1/2
+  [PASS] C2 [two-footing decomposition] alternative footing a0_A = 1.1279e-10 as (a) fixed rho_Lambda, effective kappa = kappa_A = 0.6024 (correlation alpha = 2 - 1/kappa_A = 0.3399); (b) fixed kappa = 1/2, changed density lambda = (a0_A/a0_C)^2 = 1.4516. Unit x'-slope consistency: (2-alpha_alt)*a0_A/s = 1
+  [PASS] C3 [footing separation] canonical x'-slopes: alpha=0 -> 1, alpha=1/3 -> 2/3, alpha=1 -> 1/2; alternative footing x'-slopes: alpha=0 -> 1.2048 (NOT unit), alpha=0.3399 -> 1 (the alternative footing is the correlated two-channel model)
+  [PASS] D1 [Newtonian limit] exact identity (1 - U_alpha(Y)) = (1+alpha Y)/(1+Y)^2 verified at Y = 1e8 for alpha in {0,1/3,1}; U -> 1 as Y -> inf (subleading O(1/Y) for alpha>0, O(1/Y^2) for alpha=0)
+  [PASS] D2 [deep gate: unit x-slope preserved] (mu2(1e-12) - mu2(0))/1e-12 = 1 for the canonical footing; the audit's alpha/lambda re-parameterization keeps (2-alpha)*(a0/s) = 1 identically in the observed deep law
+  [PASS] D3 [independent class slope = n for integer n >= 1] (1-(1-ep)^n)/ep at ep = 1e-30 for n = 1,2,3,5; fractional n = 1/2 gives 0.5 with NO channel-count (OR) reading
+
+RESULT: 0 FAIL

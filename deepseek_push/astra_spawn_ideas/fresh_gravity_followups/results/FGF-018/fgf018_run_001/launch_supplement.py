@@ -1,0 +1,8 @@
+from pathlib import Path
+import json,sys,subprocess
+R=Path.cwd();D=Path('deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-018/fgf018_run_001');O=D/'numeric_002'
+c=json.loads((D/'contract.json').read_text());inputs=c['execution_artifacts']+[str(D/'supplement.py'),str(D/'SUPPLEMENT_DERIVATION.md'),str(D/'numeric_001/manifest.json'),str(D/'numeric_001/profile_box_audit.json')];c['claim_id']='FGF018_MONOTONE_SUPPORT_AND_ADVERSARIAL_MARGIN';c['execution_artifacts']=inputs;c['mathematics']['inputs']=inputs;c['mathematics']['assertion_tested']='Locate global versus tested-support monotone feasibility and exact rectangular gas-error scale at slope one; rational counterwitness control';c['mathematics']['bounds']={'clusters':7,'profiles':21,'gas_intervals':189,'radial_domain_kpc':[100,1000],'synthetic_control_knots':4};(D/'supplement_contract.json').write_text(json.dumps(c,indent=2)+'\n')
+cmd=[sys.executable,'/Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py','--root',str(R),'--contract',str(D/'supplement_contract.json'),'--output',str(O),'--timeout','120','--max-cpu-seconds','110','--max-threads','1','--max-output-bytes','1048576']
+for p in inputs:cmd+=['--input',p]
+for p in ['checks.json','monotone_support_audit.json','slope_error_margins.json']:cmd+=['--result',str(O/p)]
+cmd+=['--','/opt/homebrew/Caskroom/miniconda/base/bin/python',str(D/'supplement.py'),'--out',str(O)];(D/'supplement_argv.json').write_text(json.dumps(cmd,indent=2)+'\n');raise SystemExit(subprocess.run(cmd).returncode)

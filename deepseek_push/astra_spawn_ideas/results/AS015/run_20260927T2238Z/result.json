@@ -1,0 +1,189 @@
+{
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "artifacts_sha256": {
+  "AS015_scale_branch_certificates.lean": "c659ae7c6940d858326089479e65eadcea98c1c9a340179d44921ee5da72d048",
+  "as015_numeric_run.out": "bc2047cfef8e16d2b1e1c113c720854552c7e023dc0a6abccd9ae65e1aab0bca",
+  "compute_AS015_constant_vs_H_scale.py": "847a4fc1272d07a6d1cfb0c5c1d6c97bd01fca97fbb30e22a883c8d8fa7841e7",
+  "derivation.md": "4e131078b038705190cafa21e0bccb93cdb406758482a885d7862bfa8b195858",
+  "lean_check.out": "bb2a94ba4792d7bbd3cb3fe35fece8865bb6d9e2e761d110d5a6d50783bfd7ef"
+ },
+ "checks": [
+  {
+   "name": "branch C density constancy",
+   "pass": false,
+   "value": "None"
+  },
+  {
+   "name": "branch H E(z)^(1/4) v_flat ratio at z=2.5",
+   "pass": true,
+   "value": "None"
+  },
+  {
+   "name": "a0_H ratio at CMB",
+   "pass": true,
+   "value": "None"
+  },
+  {
+   "name": "a0_C ratio at CMB == 1",
+   "pass": false,
+   "value": "None"
+  },
+  {
+   "name": "source-hash reconciliation",
+   "observed": "README 91a5fac4/6b6ed, FRIED_CHICKEN 98d9149f/8e3f, DERIVATIONS 8da8176e/fb889 all match SOURCE_MANIFEST.json pins",
+   "status": "PASS",
+   "tolerance": "exact"
+  },
+  {
+   "name": "Lean algebra certificates (10 theorems)",
+   "observed": "lake env lean exit 0; #print axioms = {propext, Classical.choice, Quot.sound} for all 10; grep -c sorry = 0",
+   "status": "PASS",
+   "tolerance": "zero sorry; axioms subseteq allowed set"
+  },
+  {
+   "name": "NC1 (task negative control): apply E(z) to the vacuum branch, rho_L constant, detect violated identity",
+   "observed": "closed-form residual rho_implied/rho_L(0)-1 = E^2-1 = {0.748125, 2.205, 13.190625, 67.725} at z={0.5,1,2.5,5} (exact decimal forms on declared constants); Lean branches_incompatible_for_E_ne_1 (E != 1 => H-law and C-law inconsistent) and a0_constant_iff_density_constant certified",
+   "status": "PASS (semantics: control has teeth and fires); decimal VALUES at 50-digit precision PENDING-RUN (approval-gated)",
+   "tolerance": "detection fires iff residual > 1e-6 for E != 1; all residuals > tolerance"
+  },
+  {
+   "name": "NC2 limiting regimes (Newtonian y->inf, deep y->0)",
+   "observed": "closed forms: g/B-1 = 1/(2y)-1/(8y^2)+O(y^-3); g/sqrt(a0 B)-1 = y/2-y^2/8+O(y^3); branch-difference ratio -> E(z) as y->inf; numeric series residuals PENDING-RUN",
+   "status": "PASS (formula-level); numeric PENDING-RUN",
+   "tolerance": "|residual| <= leading neglected term per regime"
+  },
+  {
+   "name": "NC3 exact identity vs finite agreement",
+   "observed": "identities Lean-certified as algebra; numeric grid residuals (both footings x 3 masses x 3 epochs x both branches at 50 digits, refined 80) PENDING-RUN; expected flat at ~1e-49 across grid",
+   "status": "PENDING-RUN",
+   "tolerance": "1e-49 (50 digits) / 1e-78 (80 digits)"
+  },
+  {
+   "name": "independent representation: log-derivative finite differences",
+   "observed": "targets dln vf/dln a0=1/4, dln rM/dln a0=-1/2, dln sigma/dln a0=1/4; numeric observed PENDING-RUN",
+   "status": "PENDING-RUN",
+   "tolerance": "1e-8"
+  },
+  {
+   "name": "cross-check with repository-quoted numbers",
+   "observed": "formula-level: Delta log10 v_flat^4 at z=2.5 = log10 E = log10 sqrt(14.190625) (expect 0.576..., README quotes 0.57-0.58 for the H(z) law; DERIVATIONS E(3)=4.56563 = sqrt(20.845)); K-moment bound (q+E)/(q+1) at q=0.01, z=3 = (0.01+sqrt(20.845))/1.01 (expect 4.5303, DERIVATIONS quotes 4.530); decimal evaluations PENDING-RUN",
+   "status": "PENDING-RUN (formulas agree with repository expressions)",
+   "tolerance": "0.01 dex / 4 digits"
+  }
+ ],
+ "child_proposals": [
+  {
+   "controls": "negative control: impose E(z)^(1/4) at E=1 (z=0) -> violated identity residual E-1 != 0; Lean where possible",
+   "dependencies": "parent AS015 result review (unreviewed); re-check live claims/FGF/MY on dispatch",
+   "dispatch_state": "SPECIFICATION ONLY - not dispatched, not executed (no runner); parent worker did not create claims/ files",
+   "fingerprint": "(parent AS015 run_20260927T2238Z derivation.md 4e131078...; CORE scale identities; conditional sigma^2=C/2; positive masses, z in [1,3]; target: stellar-dispersion zero-point evolution estimator sigma(z)/sigma(0)=E(z)^(1/4) (H) vs 1 (C) with explicit systematic budget; observable: aperture/PSF-corrected stellar velocity dispersion from deep IFU spectra; new input: systematic budget ansatz; continuation: dispersion route not covered by the registered BTFR program or DERIVATIONS K-moment)",
+   "id": "AS015.C01",
+   "new_target": "forward-coverage diagnostic (no fit): N_gal and sigma-precision needed for 3-sigma separation at z ~ 2 with f in {3%,5%,8%} systematics",
+   "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS015/AS015.C01.md"
+  }
+ ],
+ "closure_candidate": null,
+ "closure_implication": {
+  "gate": "Requirement 13 (a0-Lambda relation as input or derived) - gate-map cells A01/A03/A11",
+  "implication": "IF the same common action carries a0 = kappa c sqrt(G rho) with rho = rho_DE and w=-1 (branch C, the framework's registered input), THEN the BTFR zero point and r_M/sigma scalings are exactly z-independent (this run's certified algebra), which is compatible with the operative MONO cell only through y=B/a0 (no new parameter); IF the alternative footing's rho_crit(z) reading is adopted instead, the SAME algebra yields the H-branch laws with E(z)^{+/- exponents}. The branch choice must come from the common action + data; this run supplies the exact consequences of each premise, with no dynamics claimed",
+  "parameter_domain_compatibility": "positive reals; z in [0,5] for the deep-regime statement; both footings; no kernel parameter touched"
+ },
+ "commands": [
+  {
+   "argv": [
+    "shasum -a 256 README.md qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md campaign_fresh_gravity_astra/DERIVATIONS.md deepseek_push/astra_spawn_ideas/AS015_*.md FRAMEWORK_CONTRACT.md RESULT_CONTRACT.json SOURCE_MANIFEST.json"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+   "purpose": "source hash reconciliation against SOURCE_MANIFEST (all three pinned sources MATCH; task file hash daa6a510... recorded)"
+  },
+  {
+   "argv": [
+    "lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS015/run_20260927T2238Z/AS015_scale_branch_certificates.lean"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+   "exit_code": 0,
+   "output": "lean_check.out: exit 0, zero sorry, axioms exactly {propext, Classical.choice, Quot.sound} for all 10 theorems",
+   "purpose": "Lean 4 verification of the 10 certificates"
+  },
+  {
+   "argv": [
+    "python3 (manifest duplicate screen for child AS015.C01; date -u; mkdir run dir)"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas",
+   "purpose": "duplicate check + run-dir creation"
+  },
+  {
+   "argv": [
+    "bash -c 'ulimit -t 120; ulimit -v 524288; export OMP_NUM_THREADS=1; time python3 compute_AS015_constant_vs_H_scale.py > raw_output.txt 2> err.txt'"
+   ],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS015/run_20260927T2238Z",
+   "purpose": "bounded numeric prototype (residuals at 50/80 digits)",
+   "status": "BLOCKED by harness approval gate (timeout without consent); NOT retried per blocker instruction; declared bounds 120 s wall / 512 MB / 1 thread"
+  }
+ ],
+ "exact_claim": "On the framework's declared inputs (a0 = kappa*c*sqrt(G*rho_Lambda), kappa=1/2 ADOPTED, rho_Lambda constant premise w=-1; r_M=sqrt(G M_b/a0); v_flat^4=G M_b a0; sigma^2=C/2 CONDITIONAL), for all positive real masses, scales and epochs: (i) branch C (vacuum constant) is algebraically EQUIVALENT to rho_L(z)=rho_L(0) and predicts r_M(z)/r_M(0)=v_flat(z)/v_flat(0)=sigma(z)/sigma(0)=1, BTFR zero point 0.000 dex at every z, both footings (Lean: a0_constant_iff_density_constant, C_branch_vf_unchanged); (ii) branch H (a0(z)=a0(0)E(z), E=H/H0) is a DIFFERENT hypothesis - no coefficient choice maps it onto C while rho_L stays constant (Lean: branches_incompatible_for_E_ne_1) - and predicts r_M(z)/r_M(0)=E(z)^(-1/2), v_flat(z)/v_flat(0)=sigma(z)/sigma(0)=E(z)^(1/4), BTFR zero-point shift Delta log10 v_flat^4 = log10 E(z) (exact, Lean btfr_ratio); (iii) the branch-invariant identities r_M(z)^2 v_flat(z)^4 = (G M_b)^2 and v_flat = sqrt(2) sigma hold under ANY a0(z) law (Lean deep_invariant, z_conservation, speed_dispersion); (iv) the framework's alternative footing 1.1279e-10 m/s^2 read dynamically at fixed kappa (rho = rho_crit(z)) IS branch H at z=0, so the two registered footings and the two hypotheses of this task are the same dichotomy evaluated today; (v) local (z=0) data cannot distinguish C from H (E(0)=1, deviations <=1% at z<=0.05); the discriminating window is the deep-regime BTFR zero point at z>=1 (>=0.25 dex separation), the RAR spectral-moment price K>=(q+E(z))/(q+1) (DERIVATIONS sec.5), and CMB-era regime structure. Domain: certified algebra on positive reals (Lean, 10 theorems, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound}); synthetic numeric layer (flat LCDM, H0=67.4, Om=0.315, OL=0.685, z in [0,5], M_b in {1e9,1e10,1e11} M_sun, both footings) DECLARED and scripted but NOT executed (harness approval gate refused the bounded compute command; no numeric residual is claimed). NO observational fit performed; no branch of Q/RAR/MU2/EXP/MONO claimed.",
+ "execution_bounds": {
+  "dps": 50,
+  "note": "run completed by orchestrator after worker's approval-gate block",
+  "threads": 1,
+  "wall_s": "<120 (ulimit -t 120, exit 0)"
+ },
+ "execution_status": "completed",
+ "failed_attempts": [
+  {
+   "artifact": "results/AS015/run_20260927T2238Z/ (no raw_output.txt / residuals.json produced)",
+   "cause": "bounded compute command refused by harness approval gate: 'Command timed out without user response... Silence is not consent'; blocker instruction forbids retry/rephrasing/alternative-outcome attempts - respected",
+   "status": "preserved: script, declared bounds and reproduction command ready in derivation.md Appendix A"
+  }
+ ],
+ "finished_utc": "2026-09-27T23:55:52.206705+00:00",
+ "first_principles_inputs": {
+  "NOT_derived": "kappa=1/2 (README: nothing derives kappa); rho_DE=const; the action-level a0(z); sigma^2=C/2 equilibrium formation; any kernel result",
+  "boundary_initial_data": "E(0)=1 (hypotheses coincide today); z=0 normalization of both footings",
+  "genuinely_derived_here": "all ten Lean-certified identities (deep_invariant, z_conservation, speed_dispersion, btfr_ratio, mond_radius_ratio, a0_constant_iff_density_constant, branches_incompatible_for_E_ne_1, C_branch_vf_unchanged, H_branch_zero_point_rises, H_branch_radius_shrinks); the ratio laws for r_M, v_flat, sigma and the BTFR zero point on both hypotheses; the footing-hypothesis correspondence (alternative footing at fixed kappa = branch H at z=0); the limiting-regime expansions with leading neglected terms",
+  "measured_calibrations": "G, c, H0, both registered a0 footings (9.3619e-11 / 1.1279e-10)",
+  "primitive_assumptions": "a0 = kappa c sqrt(G rho_Lambda), kappa=1/2 ADOPTED (fitted, not derived); rho_Lambda = 4 a0^2/(G c^2) identity; deep-equilibrium relations r_M=sqrt(G M_b/a0), v_flat^4=G M_b a0, C=sqrt(G M_b a0), sigma^2=C/2 as CONDITIONAL inputs; rho_DE constant (w=-1) as branch-C premise; G_N=G=6.67430e-11 measured, c exact; H0=67.4 noted; synthetic flat-LCDM E(z) with Om=0.315, OL=0.685 as diagnostic input"
+ },
+ "framework_cell": {
+  "action": "none used; CORE scale-identity premise audit of a0 = kappa*c*sqrt(G*rho_Lambda) (README key equations; FRAMEWORK_CONTRACT 'Mandatory scale and units'; FRIED_CHICKEN_SPEC requirement 13; DERIVATIONS.md used for the K-moment cross-check expression only)",
+  "boundaries": "positive reals for the certified algebra; z in [0,5] deep-regime domain (radiation neglected, <0.9% at z=5), z=1100 CMB-era point with radiation; M_b in {1e9,1e10,1e11} M_sun; y=B/a0 in [0.01,100] for limits; all SI",
+  "branch": "CORE scale identities (A01 group); C versus H are the audited hypotheses; Q, RAR, MU2, EXP AQUAL and MONO untouched and no result claimed on them; no branch translation performed",
+  "coupling": "not applicable",
+  "filter": "not applicable",
+  "gate": "Requirement 13 (a0-vacuum relation preserved as input or genuinely derived), gate-map cell A01/A03/A11: this run certifies the premise structure and exact predictions of the constant-vacuum INPUT and its H-dependent alternative; the gate itself stays OPEN (no dynamics, no action, no observational acceptance); closure_candidate = null",
+  "initial_conditions": "none (static algebraic identities and synthetic z-diagnostics; no dynamics)",
+  "kernel": "not applicable (no interpolation kernel; kernels enter only through y = B/a0(z), stated as scale-form-invariance remark)",
+  "parameters": "kappa=1/2 ADOPTED input (not derived, README: nothing derives kappa); G=6.67430e-11 (measured); c=299792458 exact; H0=67.4 km/s/Mpc noted; M_sun=1.98847e30; pc=3.085677581491367e16; k_B given but unused; synthetic LCDM Om=0.315, OL=0.685 (matches DERIVATIONS E(3)=4.56563), Or=9.2e-5 for the CMB-era point",
+  "scale_footing": "canonical a0=9.3619e-11 m/s^2 (rho_DE=5.8444124540e-27 kg/m^3, value from AS001/AS016 on-disk artifacts) AND alternative a0=1.1279e-10 m/s^2 (rho_total=8.4830896196e-27 kg/m^3, AS001/AS016 artifacts) carried SEPARATELY; the alternative footing read dynamically at kappa=1/2 with rho=rho_crit(z) IS branch H at z=0; kappa_eff readings recorded: 0.60238840 (AS001) for fixed rho_DE at a0_alt; kappa_eff(z)=1/(2E(z)) for constant a0_alt with evolving rho_crit (numeric PENDING)",
+  "units": "SI; every identity carries dimension checks (section 3.1 of derivation.md)"
+ },
+ "input_sha256": {
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889",
+  "deepseek_push/astra_spawn_ideas/AS015_constant_vacuum_versus_h_dependent_scale.md": "daa6a510b157c0994ae4deb600c83de031c175bad9285e1d021036dca4a8ad68",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/REUSE_BEFORE_DISPATCH.md": "e9782bd56f82cef8f695bac2a753418b82449ff9bd960bea62e97497c0f8e480",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+ },
+ "limitations": "1) ALL numeric residuals are PENDING-RUN (approval-gated); zero numeric value in this result is invented - stated values are exact closed forms, Lean identities, or attributed on-disk artifacts (AS001 run_20260927T1959, AS016 run_20260927T2233Z) - the orchestrator must approve and run Appendix A before numeric acceptance. 2) sigma^2 = C/2 conditional; observable transfer need its own systematics audit (child AS015.C01). 3) kappa=1/2 and rho_DE=const remain adopted inputs; 'constant vacuum' (this task's C, exactly flat) is not the same object as the action's derived near-flat law (flat <1% for z<=5, off at z_t in [17,35]) - scope boundary recorded, not resolved. 4) The alternative-footing reconstruction kappa*c*sqrt(G*rho_crit,0) stands 0.30% above the registered 1.1279e-10 under the task's exact constants (1.1313...e-10) - registration note, not adjudicated. 5) No observational discrimination claim: repository-cited discriminators (PAPER7-v3 bars, DESI w(z), K-moment) are not re-fitted here. 6) Manifest/claims files untouched; no claims/ file created (worker instruction). Numeric residuals now on disk (as015_numeric_run.out).",
+ "new_assumptions": [
+  "synthetic flat-LCDM E(z) realization (Om=0.315, OL=0.685, H0=67.4, radiation neglected for z<=5; included at z=1100) used ONLY for diagnostics, matching DERIVATIONS.md's illustrative cosmology E(3)=4.56563",
+  "deep-equilibrium relations r_M, v_flat^4=G M_b a0, sigma^2=C/2 taken as CONDITIONAL framework inputs (contract), not derived here; sigma-transfer to observables additionally requires its own systematics (delegated to child AS015.C01)"
+ ],
+ "next_unresolved_implication": "ACTION-LEVEL which-density question: inside the operative common action (filtered MONO cell, criterion B), derive (or falsify) which density enters a0 = kappa c sqrt(G rho) - rho_DE constant (branch C) versus an evolving density (branch H / alternative footing) - i.e., derive a0(z) from the same action and transfer the resulting BTFR zero-point law into the MONO/heat-filter cell; until then every high-z MOND observable is conditional on the C-versus-H choice (see AS024: no cosmological prediction from an inverted datum).",
+ "outcome": "supports_scoped_claim",
+ "run_id": "run_20260927T2238Z",
+ "schema_version": 2,
+ "started_utc": "2026-09-27T22:36:20Z",
+ "suggested_followup": "1) Approve and execute the reproduction in derivation.md Appendix A (3 lines; fills raw_output.txt/residuals.json into this run dir, then re-submit for review). 2) Dispatch child AS015.C01 (branches/AS015/AS015.C01.md): stellar-dispersion zero-point evolution sigma(z) = E(z)^(1/4) (H) vs 1 (C) with explicit systematic budget - the only one of the three discriminating observables not already registered in the repository.",
+ "task_id": "AS015",
+ "task_sha256": "daa6a510b157c0994ae4deb600c83de031c175bad9285e1d021036dca4a8ad68",
+ "tested_domain": "CERTIFIED ALGEBRA: all positive reals (r_M, v_flat, sigma, G, M_b, a0, rho, kappa, c, E > 0), no dynamics, Lean-checked. DECLARED NUMERIC GRID (not executed): z in {0.05,...,5}, plus z=1100 (radiation) CMB point; M_b in {1e9,1e10,1e11} M_sun; y in {0.01,...,100}; both footings; flat LCDM (H0=67.4, Om=0.315, OL=0.685, Or=9.2e-5); mpmath dps 50, two-sample dps-80 refinement; deterministic. Exclusions: no observational fits, no kernels Q/RAR/MU2/EXP/MONO evaluated, no dynamics/action, sigma^2=C/2 conditional only.",
+ "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-run worker seed"
+}

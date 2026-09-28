@@ -1,0 +1,77 @@
+{
+  "schema_version": 2,
+  "task_id": "AS050",
+  "task_sha256": "db6efad6ff61cc21a73a9ca913dad9a3190881b9f2bebee1f65f4d69da37c717",
+  "run_id": "run_AS050-r2-20260928T070836Z-dsv4f-hermes",
+  "worker": "dsv4f-hermes (Hermes subagent; model deepseek/deepseek-v4-flash-0731 via openrouter)",
+  "started_utc": "2026-09-28T07:08:36Z",
+  "finished_utc": "2026-09-28T08:14:40Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For every branch b in {Q, RAR, MU2, EXP, MONO} of the framework dictionary, if F_b'(X) = mu_b(sqrt X) on X in (0, inf) (X = x^2, x = g/a0, y = B/a0), then for every C in R the shifted primitive F_b + C satisfies (F_b + C)'(X) = mu_b(sqrt X) identically on the branch domain; the static constitutive observables (x(y), y(x), mu(y)) and the static filtered field equation contain F_b nowhere, so F_b(0) is a normalization, not a derivable coefficient. Domain: y in [1e-10, 1e8] on the grid 10^k, k = -10..8 step 0.1 (181 points); X > 0; C sampled in {-2, 0, 3, 1e7}; both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 carried separately.",
+  "framework_cell": "Gate: A02 constitutive kernels and branch fidelity (seed AS050); kernel: static constitutive response + filtered ELE (field) residual; filter: five-branch dictionary Q/RAR/MU2/EXP/MONO kept distinct (criterion B); coupling: additive constant C on the primitive F, kappa = 1/2 adopted input (a0 = kappa*c*sqrt(G*rho_Lambda)); parameters: G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; footings: canonical a0 = 9.3619e-11 m/s^2 (rho_Lambda = 5.844412e-27 kg/m^3, eps = 5.252696e-10 J/m^3, lambda = 1.0907998e-52 m^-2, r_M = 12202 pc at 1e11 Msun, v_flat = 187.75 km/s) and alternative a0 = 1.1279e-10 m/s^2 (rho_Lambda = 8.483090e-27 kg/m^3, eps = 7.624221e-10 J/m^3, lambda = 1.5832818e-52 m^-2, r_M = 11117 pc, v_flat = 196.70 km/s); rho_ratio(alt/can) = 1.45149, kappa_eff_alt_at_rho_can = 0.60239 (footings cannot share both fixed density and fixed kappa); boundaries: X -> 0+ excluded from the algebraic derivative theorems (bars at 1/s, 1/w; X = 0 treated only for the conventions-differ theorems), grid edges 1e-10 and 1e8; initial conditions: F(0) = C free (the claim's subject); units: SI throughout, dimensionless y, x, X outside the cell.",
+  "new_assumptions": [
+    "kappa = 1/2 in a0 = kappa*c*sqrt(G*rho_Lambda) adopted as framework input (explicitly not derived in this task)",
+    "C (additive constant on F) is constant in spacetime at the static level and enters a dynamical sector only through the vacuum-energy offset Delta_eps = [a0^2/(8*pi*G)]*C",
+    "RAR and MONO are treated as non-elementary in X: their primitives are defined via the y-parametrized quadrature F(X(y)) = integral_0^y mu(y')*2*x(y')*x'(y') dy', which is the derived form of dF/dX = mu (chain rule)",
+    "Static observables are x(y), y(x), mu(y) and the static filtered field residual; no dynamical probe is used in this task",
+    "Within-quadrature integrands use the response form mu = y/x(y) with the branch law for x(y); MONO includes the DELTA*h_p/(y+y_p) bump with crossing at y_star > 0 (bracket [1, y_p], bisec)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS050_a_branch_specific_primitive_cannot_fix_its_zero.md": "db6efad6ff61cc21a73a9ca913dad9a3190881b9f2bebee1f65f4d69da37c717",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r2-20260928T070836Z-dsv4f-hermes/AS050_compute.py": "073fce467ec1af380dab6350df3401331a958abf5c17b632d89cd5bca4469ddf",
+    "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r2-20260928T070836Z-dsv4f-hermes/raw_output.json": "ded85ef8964914f43c68c29f85ac8d23571a607a7f6964602cb98baa350af909",
+    "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r2-20260928T070836Z-dsv4f-hermes/run.log": "f7d73cb9983f86d8fc741ef9609be18ac278bef14526a0f181fcd898f9748de1",
+    "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r2-20260928T070836Z-dsv4f-hermes/AS050_primitive_zero_invariance.lean": "d3d90ada6747b9abd97df6c1a4efae183f4f385868bcc16ddba14f7dadce2035",
+    "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r2-20260928T070836Z-dsv4f-hermes/AS050_axiomcheck.lean": "86fd686d624c9f2a142109fa661449c13768982364bca031fded0640b9211e02",
+    "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r2-20260928T070836Z-dsv4f-hermes/derivation.md": "01a943eb1ff0fc2dbd30ef9e2394faf0132d4a0235dd6f271fe77ffc37403ec9"
+  },
+  "commands": [
+    {"argv": ["python3", "AS050_compute.py"], "workdir": "<run_dir>", "exit": 0, "wall_s": 12.30, "note": "bounded prototype; wall deadline 120 s self-enforced inside script"},
+    {"argv": ["timeout", "580", "lake", "env", "lean", "<abs>/AS050_primitive_zero_invariance.lean"], "workdir": "fable_independent_2026/lean_2026", "exit": 0, "note": "certificate compile: zero errors"},
+    {"argv": ["timeout", "580", "lake", "env", "lean", "<abs>/AS050_axiomcheck.lean"], "workdir": "fable_independent_2026/lean_2026", "exit": 0, "note": "#print axioms on all six theorems -> [propext, Classical.choice, Quot.sound] only"}
+  ],
+  "execution_bounds": "Declared: <=120 s wall, <=512 MB, 1 thread, stdlib only. Enforced: wall 120 s hard self-deadline (check_wall before each of 8 phases; observed 12.30 s) - ENFORCED; memory 512 MB RLIMIT_AS attempted but REFUSED by macOS (ValueError: current limit exceeds maximum limit) - NOT ENFORCED, observed peak RSS 15.3 MB (15632 KB, ru_maxrss bytes on macOS); threads 1 - enforced by construction (single-threaded stdlib); grid n = 181, Simpson n = 20000/40000 refinements, bisec maxit 200/300, Decimal precision 60 - recorded in raw_output.json.",
+  "checks": {
+    "response_consistency": {"tol_rel": 1e-12, "passed": true, "max_all_branches": 5.551115123125783e-17},
+    "decimal60_deep_response": {"tol": 1e-16, "passed": true, "worst": "7.5920189688305015163986108932588960631755484332092324E-17"},
+    "closed_form_derivative_identity": {"tol_dec_rel": 1e-10, "passed": true, "max_dec_rel": 5.2843357675428046e-14},
+    "quadrature_primitive_consistency": {"tol": 0.001, "passed": true, "max_all": 3.3966123299026906e-05},
+    "shift_invariance": {"tol": 1e-20, "passed": true, "max_diff": 2.752721e-37, "C_set": [-2.0, 0.0, 3.0, 10000000.0]},
+    "ELE_shift_invariance": {"tol_rel": 1e-10, "passed": true, "max_rel": 6.243326191543566e-14},
+    "C_not_derivable_negative_control": {"tol": 1e-20, "passed": true, "observed_max_column_variance": 0.0, "note": "negative control 1: F(0) = chosen number rejected as derivable coefficient; capable of failing"},
+    "deep_limit_Q_exact": {"tol": 1e-10, "passed": true, "observed": 3.156267155803333e-16},
+    "deep_leading_slope": {"tol": 0.02, "passed": true, "observed": {"RAR": 0.5003497253644199, "MU2": 0.5003849477489268, "EXP": 0.5003501590505204, "MONO": 0.5003497255069942}, "leading_c_measured": {"RAR": 1.000416750064792, "MU2": 0.7503438573424059, "EXP": 0.5002084115253158}},
+    "newton_tail_Q_half": {"tol": 0.02, "passed": true, "observed": 0.5},
+    "newton_tail_exp_decay": {"tol": 1e-06, "passed": true, "observed": 0.0},
+    "lean_certificate": {"passed": true, "no_sorry": true, "axioms": ["propext", "Classical.choice", "Quot.sound"], "theorems": ["shift_invariant_derivative", "exp_primitive_deriv", "mu2_primitive_deriv", "q_primitive_deriv", "exp_zero_conventions_differ", "exp_zero_conventions_same_derivative"]}
+  },
+  "tested_domain": "y = B/a0 in [1e-10, 1e8] on log grid 10^k, k = -10..8 step 0.1 (181 pts); X = x^2 in (0, 1e16]; C in {-2, 0, 3, 1e7}; branches Q, RAR, MU2, EXP, MONO; algebraic theorems on X > 0 (X = 0 used only for the conventions-differ/derivative-same pair); exact-vs-numeric distinction: Q deep relation x^2 = y + y^2 is an exact identity (Lean-certified derivative algebra), everything else on finite grid + quadrature residuals; root landmarks (y_p = 2.53964, h_p = 0.64761, y_star = 2.33741, h_star = 0.64696, delta = 0.05) obtained by explicit bracketing/bisection (brackets [1.5, 4], [1, y_p]), not by grid proof.",
+  "failed_attempts": [
+    {"path": "results/AS050/run_AS050-r1-*/", "cause": "superseded run executed AS028's text (wrong seed, task_sha256 mismatch); preserved, not authoritative"},
+    {"cause": "fp64 artifacts in deep-end (F(X) ~ 1e-15 floor) and catastrophic cancellation at C = 1e7 in the F+C invariance check -> reworked in Decimal(60), observed 2.75e-37"},
+    {"cause": "Decimal(float) TypeError in derivative/invariance/derive-C sites -> fixed with Dc(repr(X)) (Decimal cannot take bare floats)"},
+    {"cause": "fp64 underflow made root-bracket sign exactly 0.0 at large y -> bracket assertion relaxed to qlo <= 0 < qhi with comment"},
+    {"cause": "Lean first-pass compile errors (function-notation folding and typeclass-instance mismatch on Real between dot-lemma results and stated goals) -> converted to pointwise helper lemmas (add_deriv_pw/sub_deriv_pw/mul_deriv_pw) with convert+funext+rfl bullet pattern; final compile exit 0 (probe1..probe9 in run dir document the iteration, deleted after success)"},
+    {"cause": "nlinarith could not refute the clearing-denominator contradiction inside the Q branch in isolation -> placed ambient positivity facts (h2w, hpos) in theorem context; nlinarith [hvv2, hww2] then closes (probe9 verified)"}
+  ],
+  "limitations": "Static only: no dynamical metric coupling is executed here (the extra vacuum condition Delta_rho_vac = C*a0^2/(8*pi*G*c^2) is derived and quantified, not evolved). Algebraic derivative theorems certified for X > 0 only; X = 0 is a limit point treated by the conventions theorems (values differ, derivatives agree). MONO newt_tail at 1e8 is 1.19 by construction (logarithmic continuation of the operative filter beyond the bump) - it is not a Newton-limit failure of MONO but a design property; Newton controls apply to the pure branches. Quadrature branches (RAR, MONO) earn 1e-5..1e-3-class residuals, not the closed-form 1e-14 class. kappa = 1/2 remains adopted input; neither footing's density is derived here (footings kept separate: rho_ratio 1.45149, kappa_eff_alt_at_rho_can 0.60239). Numerical agreement is finite evidence; finite grid is not a proof on the full continuum (bracketed roots and certified algebra cover the structural claims).",
+  "next_unresolved_implication": "The dynamical coupling: the field-equation sector with F_b + C and the Friedmann filter must determine C from expansion/vacuum history (Delta_rho_vac = C*a0^2/(8*pi*G*c^2) enters the RHS of the G_00 constraint), i.e. the first missing bridge is a dynamical (time-domain, not static) observable that F_b records - without it, C is fixed only as an external normalization.",
+  "suggested_followup": "Child AS050.C01 (proposed, not dispatched): insert Delta_rho_vac(C) into the operative MONO filtered Friedmann constraint with measured Omega_Lambda at z = 0 and solve for C; one discriminating number (C vs Omega_Lambda consistency) with the per-unit-C densities 5.2250e-12 J/m^3 (canonical) / 7.5840e-12 J/m^3 (alternative) from vacuum_constant_content; controls: exact static invariance re-check under the solved C, both footings.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": "Separate primitive inputs (listed, none claimed derived): kappa = 1/2 (adopted), G, c, M_sun, pc, the five branch response laws from FRAMEWORK_CONTRACT (Q: x^2 = y^2 + y; RAR: x = y/(1-exp(-sqrt y)); MU2: y = x*mu2(x), mu2 = 1-(1+x/2)^-2; EXP: y = x(1-exp(-x)); MONO: nu = 1 + h_mono/y, h'_RAR(y) = delta*h_p/(y+y_p) with crossing y_star), grid and bracket conventions from the seed. Genuinely derived in this task: the three closed-form primitives F_Q, F_EXP, F_MU2 with their full derivative algebra; F-RAR/F-MONO as y-parametrized quadrature with dF/dX = mu (chain rule); the vacuum-energy content of C (Delta_eps = a0^2*C/(8*pi*G)); the invariance and underdetermination statements; the zero-convention theorems.",
+  "closure_implication": "Named gate: A02 constitutive kernels -> common-action closure. Exact implication: for the common-action closure witness to fix F fully, the action must depend on F through more than F' (implementation of the filtered field kernel) - the static response and static filter leave the one-parameter family F + C intact; a complete same-action witness must include the dynamical vacuum constraint Delta_rho_vac(C) = C*a0^2/(8*pi*G*c^2) evaluated at the operative MONO/ELE parameters. Compatibility: any common-action candidate that pins F(0) from static data alone is incompatible; candidates that pin C via the expansion history are compatible with this run's residuals.",
+  "child_proposals": [
+    {"id": "AS050.C01", "name": "dynamical C from Friedmann/Omega_Lambda", "new_target": "solve C in Delta_rho_vac(C) = C*a0^2/(8*pi*G*c^2) against the operative MONO filtered Friedmann constraint at z = 0 with Omega_Lambda measured", "scientific_fingerprint": "Delta_eps per unit C = 5.224953290932738e-12 J/m^3 (canonical), 7.583952599801705e-12 J/m^3 (alternative); EXP/Spec C=-2 shift = -1.0449906581865477e-11 J/m^3; eps_Lambda = 5.252696e-10 / 7.624221e-10 J/m^3", "controls": "static invariance re-check at solved C (tol 1e-20), both footings, MONO branch only", "dependencies": ["operative MONO Friedmann filter implementation", "Omega_Lambda measurement input"], "dispatch_state": "proposed; not dispatched"}
+  ],
+  "closure_candidate": null
+}

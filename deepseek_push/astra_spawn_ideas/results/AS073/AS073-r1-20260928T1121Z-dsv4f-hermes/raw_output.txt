@@ -1,0 +1,47 @@
+  [PASS] S0_footings
+         measured  : rho_L(can) = 5.844412e-27 kg/m^3; s(can) = 1.872380e-10; s(alt) = 2.255800e-10; kappa_eff(alt, rho fixed) = 0.602388 (slope 1.660059); rho(alt, kappa=1/2 fixed) = 8.483090e-27
+         tolerance : s_can == 2*a0_can (kappa=1/2) to 1e-15 rel
+  [PASS] S1a_EL_covariance_generic
+         measured  : EL[mu(Y/l)] - l^-q EL[mu](Y/l) = 0
+         tolerance : identically 0 for generic phi, mu, q>0
+  [PASS] S1a2_EL_covariance_numeric
+         measured  : EL(nu) - l^-q EL(mu)(Y/l) at Y=1.3, l=0.7, phi=1+mu^2, mu=tanh, q=2: 1.735e-08 (FD h=1e-4)
+         tolerance : < 1e-4 (finite-difference accuracy at h=1e-4)
+  [PASS] S1b_total_derivative
+         measured  : d/dY[Phi(mu)] - phi(mu)*mu' = 0 for Phi'=phi (concrete Phi=mu+mu^2/2); generic factor = -mu(Y) + Derivative(Phi(mu(Y)), mu(Y)) - 1; EL[phi(mu)*mu'] = 0
+         tolerance : phi(mu)*mu' = d/dY[Phi(mu)] with Phi' = phi; q=1 EL vanishes identically: every admissible mu stationary
+  [PASS] S1c_well_first_integral
+         measured  : d/dY[(mu')^2/2 - V(mu)] = (-4*mu(Y)**3 + 6*mu(Y)**2 - 2*mu(Y) + Derivative(mu(Y), (Y, 2)))*Derivative(mu(Y), Y); + mu'*ELw = 0
+         tolerance : d/dY[E] + mu'*EL == 0 identically (EL = V' - mu'')
+  [PASS] S1d_kappa_chain
+         measured  : g = sqrt(gN)*sqrt(s)/sqrt(n); a0 = g^2/gN = s/n; kappa = a0/s = 1/n
+         tolerance : kappa = 1/n exactly (n = deep slope)
+  [PASS] S1e_series
+         measured  : deep: Y*n + Y**2*n*(-n - 1)/2 + Y**3*n*(-n - 2)*(-n - 1)/6 + O(Y**4); Newtonian tail: 1 - mu_n(Y) = (1+Y)^(-n) exactly (verified numerically at Y=1e8)
+         tolerance : mu ~ n*Y - n(n+1)Y^2/2 + ... (domain Y<1); 1 - mu_n(Y) = (1+Y)^(-n) -> Y^-n exactly
+  [PASS] S2a_diagnostic_slopes
+         measured  : central-FD slopes at n=1/2,1,2: {'0.5': {'OR_family_mu_n': 0.5000000000003125, 'rescaled_D_n': 0.500000000000125}, '1.0': {'OR_family_mu_n': 1.000000000001, 'rescaled_D_n': 1.000000000001}, '2.0': {'OR_family_mu_n': 2.000000000004, 'rescaled_D_n': 2.000000000008}}; residuals {'0.5': {'OR_family_mu_n': 3.125000000002461e-13, 'rescaled_D_n': 1.2500000000003125e-13}, '1.0': {'OR_family_mu_n': 1.000000000001e-12, 'rescaled_D_n': 1.000000000001e-12}, '2.0': {'OR_family_mu_n': 4.000000000006e-12, 'rescaled_D_n': 8.000000000032e-12}} (h=1e-6, dps 50)
+         tolerance : < 1e-8 each (h^2*|mu'''|/6 ~ 4e-12 at n=2): both families realise slopes 1/2, 1, 2
+  [PASS] S2a2_endpoints
+         measured  : mu_n(0) = 0 for all n (by definition); 1 - mu_n(1e8) = {'0.5': 9.999999950000001e-05, '1': 9.9999999e-09, '2': 9.999999800000003e-17} (tail approach rate)
+         tolerance : 1 - mu_n(Ymax) = (1+Ymax)^{-n} exactly
+  [PASS] S2b_rescaling_family
+         measured  : D_n(Y) = mu_1(n*Y) by construction (self-consistency residual 0.00e+00); OR family vs rescaling of mu_1 differ by O(1): {'n=0.5,Y=0.01': -0.0, 'n=0.5,Y=1.0': -0.0404, 'n=0.5,Y=100.0': -0.0799, 'n=1,Y=0.01': 0.0, 'n=1,Y=1.0': 0.0, 'n=1,Y=100.0': 0.0, 'n=2,Y=0.01': 0.0001, 'n=2,Y=1.0': 0.0833, 'n=2,Y=100.0': 0.0049}
+         tolerance : rescaling is exact for D_n; the OR completions mu_n are genuinely different kernels (count, not scale)
+  [PASS] S2c_q1_action_constant
+         measured  : I[m_u_n] (quad on [0,1e8] + analytic tail) = {'0.5': 1.5, '1': 1.5, '2': 1.5} vs Phi(1)-Phi(0) = 1.5
+         tolerance : < 1e-20 abs (exact fundamental theorem)
+  [PASS] S2d_kinetic_selects_nothing
+         measured  : I_kin[m_u_n] (Ymax=1e6, piecewise quad) = {'0.5': 0.124999999999875, '1': 0.3333333333333333, '2': 0.8}; exact n^2/(2n+1) = {'0.5': 0.125, '1': 0.3333333333333333, '2': 0.8} (neglected tail {'0.5': 1.24999750000375e-13, '1': 3.3333233333533333e-19, '2': 7.99996000012e-31}); decreasing toward inf 0 as n->0, and D_2 is the LARGEST, not selected
+         tolerance : ranking contradicts target (n=2 worst); inf = 0 unattained: no admissible minimizer
+  [PASS] S2e_well_no_go
+         measured  : IVP (0,0): max|mu| = 0.00e+00 on [0,12] (only the trivial solution); IVP (0,0.1): E=0.005>0 -> crosses mu=1 at t=4.513925614699125, escapes mu->inf (no admissible solution); IVP (0,1.0): crosses at t=1.0099009900990104; energy-invariant drift (mu<1.5) 1.07e-13/2.44e-13
+         tolerance : trivial solution only; every nonzero-slope start escapes: no admissible stationary point
+  [PASS] S2f_reverse_engineering
+         measured  : I_alpha[mu_alpha] = {'0.5': 0.0, '1': 0.0, '2': 0.0} (EL residual = 0 by construction: target inside the integral); cross-terms {'alpha=0.5,beta=1': 0.736165, 'alpha=0.5,beta=2': 1.467742, 'alpha=1,beta=0.5': 0.736165, 'alpha=1,beta=2': 0.157054, 'alpha=2,beta=0.5': 1.467742, 'alpha=2,beta=1': 0.157054} > 0; perturbation growth I(e) = 2.500e-07, 1.000e-06, ratio 4.0000 vs 4; exact e^2/2*int psi^2 = 2.500e-07
+         tolerance : minimizer is the inserted target; quadratic growth; cross-objectives penalize other kernels
+
+====================================================================================================
+WALL 0.673 s (alarm 120 s enforced); max RSS 112.6 MB; threads: single process (OMP_NUM_THREADS=1, scipy serial); RLIMIT_AS rejected: current limit exceeds maximum limit
+
+AS073 PROTOTYPE: 14/14 checks PASS (ledger above; raw_output.json is the machine structure)

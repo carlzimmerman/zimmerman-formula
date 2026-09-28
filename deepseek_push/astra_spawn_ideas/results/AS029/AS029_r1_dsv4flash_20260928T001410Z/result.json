@@ -1,0 +1,171 @@
+{
+  "schema_version": 2,
+  "task_id": "AS029",
+  "task_sha256": "127783c7c036db5927e1c968b089102d1c67432d1a73b9fabbe01de88ff808b3",
+  "run_id": "AS029_r1_dsv4flash_20260928T001410Z",
+  "worker": "DeepSeek-V4-Flash-0731 (openrouter deepseek/deepseek-v4-flash-0731) via Hermes Agent subagent on macOS; actual identity of this worker",
+  "started_utc": "2026-09-28T00:14:10Z",
+  "finished_utc": "2026-09-28T01:52:00Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For all y>0, the MU2 implicit response y = x*mu2(x), mu2(x)=1-(1+x/2)^(-2), x=g/a0>0, is exactly equivalent to the cubic P_y(x) = x^3 + (4-y)x^2 - 4yx - 4y = 0, which has exactly three distinct real roots: exactly one positive root x*(y) in the explicit bracket y < x*(y) < y+4, and two negative roots in (-(y+4),-2) and (-2,0). Discriminant Δ_x = 16y(2y^2+13y+64) > 0 for all y>0 (dimensional Δ_g = 16 B a0^3 (2B^2+13Ba0+64a0^2)). Forward map exact: y = x^2(x+4)/(x+2)^2, i.e. B = a0*x^2(x+4)/(x+2)^2; x-y = 4x/(x+2)^2; dy/dx = x(x^2+6x+16)/(x+2)^3 > 0; dmu2/dx = 8/(x+2)^3 > 0; 0 < mu2 < 1; mu2 and yFwd strictly increasing on x>0, so g(B) is strictly increasing on (0,oo). Deep: x/y = 1/sqrt(y) + 3/8 + ...; near-Newtonian: g = B + 4a0^2/B + ... Proof domain: dimensionless x>0, y>0 (all real y>0, not a finite grid); both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 apply by rescaling (kappa=1/2 adopted framework input, not derived). Scope: MU2 comparison branch only; no transfer to operative filtered-MONO/RAR/Q/EXP claimed.",
+  "framework_cell": {
+    "action_source_hash": "127783c7c036db5927e1c968b089102d1c67432d1a73b9fabbe01de88ff808b3 (AS029 task; README 91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed, FRIED_CHICKEN_SPEC 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f, peer review 521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac)",
+    "kernel": "MU2: mu2(x) = 1-(1+x/2)^(-2); implicit response mu2(x)*g = B (comparison branch)",
+    "filter": "none in this task (3-D filtered field NOT solved; explicit open bridge)",
+    "gate": "A02 constitutive kernels and branch fidelity; operative target filtered nu_mono + causality criterion B (amended 13-item) NOT claimed",
+    "coupling": "none beyond the constitutive response; no field equation solved here",
+    "parameters": "kappa = 1/2 ADOPTED (framework input, not derived); G = 6.67430e-11, c = 299792458 (SI)",
+    "scale_footing": "a0 = kappa*c*sqrt(G*rho_Lambda); canonical a0 = 9.3619e-11 m/s^2 (rho_Lambda = 5.8444e-27 kg/m^3, Lambda = 1.0908e-52 m^-2) and alternative a0 = 1.1279e-10 m/s^2 (rho_Lambda = 8.4831e-27 kg/m^3, Lambda = 1.5833e-52 m^-2); kappa_eff(alt at canonical rho) = 0.60239; the two footings do not share both fixed rho_Lambda and fixed kappa",
+    "boundaries": "x > 0, y > 0; limits y->0+ (deep) and y->oo (near-Newtonian) derived from the same exact identity",
+    "initial_conditions": "none (static constitutive law)",
+    "units": "dimensionless theorem in x,y; dimensional cubic in g: g^3 + 4a0 g^2 - B g^2 - 4B a0 g - 4B a0^2 = 0; Delta_g in m^12 s^-6"
+  },
+  "new_assumptions": [
+    "None introduced. kappa = 1/2 is a framework input (adopted), explicitly not derived; no free parameters, no fitted per-object factors.",
+    "Root-count result uses only the real algebra of the cubic plus the IVT (continuity of a polynomial), no transcendental machinery."
+  ],
+  "input_sha256": {
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+    "deepseek_push/astra_spawn_ideas/AS029_mu2_implicit_force_cubic.md": "127783c7c036db5927e1c968b089102d1c67432d1a73b9fabbe01de88ff808b3",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/AS029_analysis.py": "70bf79ef98fe72905d7550bdfc8af55fa95303eaf8c2eaf442d4dae4da72e263",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/AS029_mu2_implicit_cubic.lean": "91818f4bc0519f6ea7f21651da35d195413a694b5265c4e7499bf5c554a5cd0b",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_certificate.out": "81cd90f396e6ee5c9e2dc4f8c29fcebf9ae53133527d29e717ef332987572c41",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe.lean": "e2dbc4cfc6d697a3e2de667c9a149d2622c58e5190fac81c6c84dc8aee9a6c09",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe2.lean": "94ef4a309d393d50b3a17dd25ad22ccd8f56713f74d73fee354f27ea88a5959a",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe3.lean": "e5e3eefd368c0c6822099be2c920478b797582d60c62754d1f784a175dc442e8",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe4.lean": "c768f064c9f2074135c066f06db2c295a6c813068ec33ee7e1d52f56061289e8",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe5.lean": "f3e5aeb6bcdf2ec38970a4ed7537e2d92e57feeee0e990df742b7ebaae268fcb",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe6.lean": "b376bcadc3932f8bec187e0d44a83478b58eccc420d8076edb9bdd96f1fbf08c",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/lean_probe7.lean": "90482f355684b9b1b2caa6b1356bdb344c7d4f5ec018ba628274346077d83181",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/derivative_checks.json": "6f5c7c64be17434a4da333abed35a0c2c76e4657495fbb6e15321f6ca60bf4ad",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/derivative_hp_fd.json": "22f9149df57e5b88bd0c03f3c65c76fe6d65d987d7557de48ce74b70b92ddd58",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/footings.json": "51cf60515923105bd4e9fbd55eb6ee594b7005bc269ac74f3415e9e86b7a166e",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/grid_results.json": "2ca2e38564cb4b0aad06ecaac9f86a353f0df3fa32219915202bad5fc979a172",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/high_precision.json": "afe9ee06ada282f299f318c6402426b04706ab93954178cf3526eb6e67314220",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/negative_control.json": "15beaf4c74c9ac7461b89b0f92beef638d44b2200e92fb4c34a7e6396b57c9cf",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/summary.json": "35fd664af4d64d8184f7df3cb48d115139ed96f1dc5a0427975c60b0f7603441",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/symbolic.json": "0c5b5f6e99a2c6da6d2415681361b4c82386e37ad4707e6eea8d238ae5e81e7a",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/raw_outputs/run_stdout.log": "648af67b8d04a314d4eee8a55e0ebbadb04a22d61c207921ba8471c139874faf",
+    "deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z/derivation.md": "3cf37e5955da207e771f7065a1c22166b67c51585f8932e404388dd28b1b273b"
+  },
+  "commands": [
+    {
+      "argv": "python3 AS029_analysis.py",
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS029/AS029_r1_dsv4flash_20260928T001410Z",
+      "exit_code": 0,
+      "note": "final run 2026-09-28; 29/29 PASS; stdout in raw_outputs/run_stdout.log"
+    },
+    {
+      "argv": "lake env lean AS029_mu2_implicit_cubic.lean",
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "exit_code": 0,
+      "note": "Lean 4.34.0-rc2 + mathlib4; output lean_certificate.out; #print axioms on all 14 declarations = [propext, Classical.choice, Quot.sound]; zero sorryAx"
+    }
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s; RLIMIT_AS 512 MB if settable (recorded); 1 thread",
+    "enforced": {
+      "wall_s": {"limit": 120.0, "actual": 0.4702320098876953},
+      "memory": "RLIMIT_AS 536870912 bytes declared but NOT enforceable on this macOS host: setrlimit refused ('current limit exceeds maximum limit'); actual peak RSS 90849280 bytes recorded",
+      "threads": 1,
+      "note": "single process; OMP/OPENBLAS/MKL/NUMEXPR threads pinned to 1"
+    }
+  },
+  "checks": {
+    "tolerances_preset": true,
+    "n_passed": 29,
+    "n_failed": 0,
+    "list": [
+      "symbolic exact: y(x)=x*mu2 clears to cubic; Delta_x = 16y(2y^2+13y+64); Delta_g = 16 B a0^3(2B^2+13Ba0+64a0^2); dy/dx = x(x^2+6x+16)/(x+2)^3; dmu2/dx = 8/(x+2)^3; P(y)=-4y<0; P(y+4)=4y^2+44y+128>0; P(-2)=8>0; P(-(y+4))=-2y(y^2+6y+10)<0 (9 checks)",
+      "grid y=10^k, k=-10..8 step 0.1 (181 pts): exactly one positive real root each; exactly 2 negative roots per case; root intervals (-(y+4),-2), (-2,0), (y,y+4)",
+      "relative residuals (tolerance 1e-12 preset): max rel |P(x*)|/scale = 2.44e-14; max rel |y - x*mu2(x*)| = 4.88e-14",
+      "bracket via exact identity x-y=4x/(x+2)^2 (tolerance 1e-14 preset): min low margin 4.00e-8, min high margin 3.50",
+      "mu2(x*) in (0,1): observed [9.99996e-6, 1.0]",
+      "limits: deep x* vs sqrt(y)(1+(3/8)sqrt(y)) at y=1e-10 rel dev 1.01e-11 (tol 1e-5); near-Newtonian x*-y* ~ 4/y at y=1e8: 4.000000e-8 = 4.000000e-8 (tol 1e-3 rel)",
+      "high precision mpmath dps=50: max implicit residual 1.04e-52 (tol 1e-45); hp vs numpy lane max |dx| 2.51e-8 (tol 1e-7, float64 companion floor ~5 eps |x|)",
+      "derivatives: dy/dx vs central FD max rel err 1.70e-10 (tol 1e-6); mu2'=(y'-mu2)/x vs 8/(x+2)^3 on x<=1e3 max 5.25e-6 (tol 1e-4); hp FD dmu2/dx full range max 2.00e-12 (tol 1e-10, truncation bound 2h^2/(x+2)^2 <= 2e-12); dy/dx>0 on grid",
+      "negative controls (capable of failing): NC1 negative root rejected 19/19 (0 wrong acceptances; mu2(x_neg)<0, x<0); NC2 planted complex root rejected 19/19; NC3 fake deep coefficient 6/8 vs 3/8 at y=1e-6 deviates 3.748e-4 >> 1e-5 (power analysis: at y=1e-10 deviation 3.75e-6 would be below threshold; control placed at y=1e-6)",
+      "footing spot checks both a0 footings: g ~ B + 4a0^2/B at B=1: g=1.0000000000000000 vs lead 1.0 (tol 1e-4 rel)"
+    ]
+  },
+  "tested_domain": {
+    "proof": "all real y > 0, x > 0 (exact, Lean-certified root-count/bracketing/monotonicity statements)",
+    "grid": "y = 10^k for k = -10..8 in steps of 0.1, 181 points; full 3-root enumeration per point via np.roots (companion) and mpmath dps=50 cross-lane on 8 sample points",
+    "exclusions": "x <= 0 excluded from the physical claim (roots there are two negative ones, characterized exactly); grid is diagnostic, the theorem is the proof",
+    "refinement_history": "initial float64 lanes failed on cancellation at y=1e8 and deep end; replaced by exact-identity and relative-residual formulations; hp lane added as trusted digit setter; NC3 relocated to y=1e-6 after power analysis"
+  },
+  "failed_attempts": [
+    {
+      "artifact": "AS029_analysis.py earlier revisions (same path, git-less history preserved in run log)",
+      "cause": "float64 cancellation in absolute residuals at y=1e8 and in 1-(1+x/2)^(-2) at small x; identity-route derivative check floor-limited beyond x=1e3; NC3 had no power at y=1e-10; np.roots accuracy floor ~5 eps |x| invalidated 1e-25 cross-lane tolerance"
+    },
+    {
+      "artifact": "lean_probe1..7.lean",
+      "cause": "probe-only files; pinned lemma names/signatures for this mathlib snapshot (ENat vs WithBot ℕ distinction, Set.mem_uIcc disjunctive form, zpow numeral handling, coeff_mul_X/(p,n,d) signatures)"
+    }
+  ],
+  "limitations": [
+    "MU2 is a comparison branch; nothing here transfers to operative filtered nu_mono / criterion B without a proved bridge (none exists yet).",
+    "Surjectivity of B -> g onto (0,oo) is established by the numeric lane (strict increase certified in Lean; unboundedness of yFwd supported by the exact near-Newtonian and deep asymptotics) — not as a Lean lemma.",
+    "No 3-D field equation (div[mu2(|grad Phi|/a0) grad Phi] = 4 pi G rho_b) solved; no inversion to Phi.",
+    "The exact inverse x*(y) is characterized as the unique root in (y, y+4); a Cardano radical closed form was not pursued (branch selection case split).",
+    "kappa = 1/2 remains adopted, not derived.",
+    "RLIMIT_AS 512 MB undeclared-enforceable on this host (macOS limit refusal); peak RSS 90.8 MB recorded.",
+    "Numerical residuals are finite evidence; the theorem stands on the exact algebraic proof and Lean certificate."
+  ],
+  "next_unresolved_implication": "Bridge to the operative branch: quantify how replacing nu_mono by mu2 changes static solutions of the filtered field equation, or prove an entry/coupling bound between MU2 and MONO — required before any MU2-derived observable can be transferred to the amended thirteen-item target. Closer to this task: the 3-D inversion of the MU2 filtered field equation (kernel argument g = |grad Phi| as a field).",
+  "suggested_followup": "AS029.1: derive the 3-D static MU2 field equation div[mu2(|grad Phi|/a0) grad Phi] = 4 pi G rho_b in spherical symmetry, using the exact forward map B = a0 x^2(x+4)/(x+2)^2 and the certified bracket to control the kernel argument; target: existence/uniqueness of Phi for compactly supported rho_b with the branch-consistent kernel — the first same-action (filtered field) gate this task's constitutive result can feed.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "MU2 branch definition mu2(x) = 1-(1+x/2)^(-2), response mu2(x) g = B (task-specified branch equation; comparison branch)",
+      "a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 ADOPTED as framework input (not derived)",
+      "Real arithmetic of the cubic, continuity (IVT), field axioms of the real numbers (Lean: propext, Classical.choice, Quot.sound)"
+    ],
+    "measured_calibrations": "G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s (framework convention); footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (task-stated)",
+    "boundary_data": "x > 0, y > 0; limits deep (y->0+) and near-Newtonian (y->oo)",
+    "derived_equations": [
+      "y = x^2(x+4)/(x+2)^2 (exact forward map)",
+      "x^3 + (4-y)x^2 - 4yx - 4y = 0 (cubic)",
+      "x - y = 4x/(x+2)^2; dy/dx = x(x^2+6x+16)/(x+2)^3; dmu2/dx = 8/(x+2)^3",
+      "Delta_x = 16y(2y^2+13y+64); Delta_g = 16 B a0^3 (2B^2 + 13Ba0 + 64a0^2)",
+      "deep x/y = 1/sqrt(y) + 3/8 + ...; near-Newtonian g = B + 4a0^2/B + ...",
+      "branch distinctness nu_MU2 = 1/sqrt(y)+3/8, nu_RAR = 1/sqrt(y)+1/2, nu_Q = 1/sqrt(y)+sqrt(y)/2"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "A02 constitutive kernels and branch fidelity (comparison-branch certificate)",
+    "implication": "MU2 constitutive response is exactly a cubic in normalized g with certified root structure, exact forward map and monotone inverse; the branch-specific deep correction is 3/8 (not 1/2 RAR, not sqrt(y)/2 Q), so any closure witness must use the branch-consistent kernel argument and cannot identify MU2 with MONO/RAR/Q/EXP",
+    "common_action_parameter_domain": "implicit-force (mu2(x) g = B) at fixed kappa = 1/2, x>0, y>0, both a0 footings; NOT the filtered field equation",
+    "compatibility": "compatible with the operative MONO target only via an unproved branch bridge; flagged as the first open dependency"
+  },
+  "child_proposals": [
+    {
+      "id": "AS029.1",
+      "target": "3-D MU2 filtered field equation in spherical symmetry: div[mu2(|grad Phi|/a0) grad Phi] = 4 pi G rho_b, existence/uniqueness of Phi for compactly supported rho_b using the certified bracket y < x*(y) < y+4 and exact forward map",
+      "scientific_fingerprint": "first same-action gate fed by this constitutive result; branch-consistent kernel argument",
+      "controls": "recover the point-mass deep MOND limit g = sqrt(G M_b a0)/r and Newtonian limit; negative control: kernel argument below a0 must produce the mu2 deep asymptote 3/8 correction",
+      "dependencies": "none beyond this run's artifacts",
+      "dispatch_state": "proposed; not dispatched (no runner spawned in this session)"
+    },
+    {
+      "id": "AS029.2",
+      "target": "Exact closed-form Cardano inverse x*(y) with explicit branch selection (real root in (y, y+4)) and validated error-free evaluation for y in [1e-10, 1e8]",
+      "scientific_fingerprint": "completes the exact-inverse deliverable requested by the task with a controlled-error formula",
+      "controls": "cross-check against mpmath dps=50 root on the diagnostic grid; branch-selection must select the unique positive root",
+      "dependencies": "none",
+      "dispatch_state": "proposed; not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

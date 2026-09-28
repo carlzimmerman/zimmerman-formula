@@ -1,0 +1,110 @@
+{
+  "schema_version": 2,
+  "task_id": "AS058",
+  "task_sha256": "1d5455bde1c9a6843a40845cf27525fb40fc9f768bb479af85845c54acbed1f0",
+  "run_id": "AS058-r1-20260928T0810Z-dsv4f-hermes",
+  "worker": "deepseek-v4-flash-0731 (openrouter) / Hermes subagent dsv4f-hermes",
+  "started_utc": "2026-09-28T08:10:00Z",
+  "finished_utc": "2026-09-28T09:57:43Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Theorem (dimensionless, both footings apply with their own s): let s>0, n>=1, Y=|grad Phi|/s, mu_n(Y)=1-(1+Y)^(-n), and per-channel engagement p with p(0)=0, p'(0)=1 (PD08 step 3; k01). In the static spherical sector the deep matching g*mu_n(g/s)=g_N implies g^2=(s/n)*g_N, i.e. a0=s/n and kappa=a0/s=1/n; at the adopted n=2, kappa=1/2. This is invariant under the same-theory redefinition Phi'=lambda*Phi with matter coupling rho*Phi=rho*Phi'/lambda: g'^2=lambda^2*(s/n)*g_N and g=g'/lambda imply exactly g^2=(s/n)*g_N for every lambda>0 (residual 0, verified numerically to 4.4e-16 on the root grid). Slope measured against the primed gradient in fixed-s units Z'=lambda*Y is n/lambda, so the slope claim survives redefinitions ONLY in the physical variable Y=g/s. Negative control: with the coupling UNCHANGED (rho'=rho), a0_c=lambda*s/n, kappa_c=lambda/n (n=2, lambda in {1/2,1,2}: kappa_c={1/4,1/2,1}); deep root ratio sqrt(lambda), Newtonian ratio 1. Domain: yN=g_N/s^2 in [1e-4,30], lambda in {1/2,1,2}, n in {2,3} numerically; symbolic n>=1 analytically; deep limit exact at yN=0.",
+  "framework_cell": {
+    "action": "S = (s^2/8piG) INT K(|grad Phi|/s) - INT rho Phi (PD08 convention); field equation div(mu(Y) grad Phi) = 4 pi G rho",
+    "kernel": "mu_n(Y) = 1 - (1+Y)^(-n), MU_n family (MU2 at n=2); OR composition 1-(1-p)^n over per-channel engagement p, p(0)=0, p'(0)=1",
+    "filter_gate": "CORE coefficient; conditional MU_n statistical response; no branch import used for conclusions (Q, RAR, EXP, MONO listed as distinct; not used)",
+    "coupling": "matter coupling rho*Phi = rho*Phi'/lambda under Phi'=lambda*Phi (field-equation source 4pi G rho -> 4pi G lambda rho); negative control: rho'=rho unchanged",
+    "parameters": "s = c*sqrt(G*rho_L), kappa = a0/s adopted 1/2 (contract input, not derived), n >= 1 symbolic (n=2 adopted at close), lambda in {1/2,1,2} diagnostics",
+    "scale_footing": "canonical 9.3619e-11 m/s^2 (s = 2 a0 = 1.87238e-10, kappa=1/2 enforced, rho_L = 5.8444e-27 kg/m^3) and alternative 1.1279e-10 m/s^2 (i: rho_L fixed -> kappa_eff = 0.6024; ii: kappa fixed -> s_alt = 2.255800e-10, rho_L scaled by (a0_alt/a0_can)^2 = factor 1.4515) -- footings never share both fixed density and fixed kappa; result dimensionless",
+    "boundaries": "static spherical sector; Gauss-law source (point or spherically symmetric); Y in (0,oo); r>0; all masses/accelerations positive",
+    "units": "SI: G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16 (only for footing examples); kappa dimensionless",
+    "source_hashes": {
+      "PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+      "PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+      "k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c"
+    }
+  },
+  "new_assumptions": [
+    "Physical normalization assertion (open premise, NOT derived here): the observational normalization of the potential (h_00 = -2 Phi) with matter coupling rho*Phi is the normalization in which the channel slope is measured; the lane proves invariance within that class and failure outside it",
+    "Remainder/neglected-term bounds beyond the leading term: deep expansion g*mu_n(g/s) = (n/s) g^2 (1 - ((n+1)/2)(g/s) + O((g/s)^2)) with domain u = g/s < 0.1 for better-than-15% accuracy (N4 scored at 10% relative accuracy)",
+    "Numeric grids: n in {2,3}, lambda in {1/2,1,2}, yN in [1e-4,30] with deep subgrid yN <= 3e-2 (finite-box consistency evidence; exact identities established symbolically)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS058_field_redefinition_and_the_channel_slope.md": "1d5455bde1c9a6843a40845cf27525fb40fc9f768bb479af85845c54acbed1f0",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/derivation.md": "6d755b1f63d174558fb03e3e6db1cd9821f29443c61e87817c19cb4c8ff19b77",
+    "deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/compute_as058.py": "f66eef5050f7e27cf9dda0c6ad5e9d6ac9138a268ef6d7c114c7e7da949a8776",
+    "deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/AS058_field_redefinition_invariance.lean": "311629290f31f517df584e1f679b90e07481138d4b3290e630a0fe1994d8eae3",
+    "deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/raw_outputs/checks.json": "513fb8317eea447e1584b251d2f406b4b99c6ea5ebe4524ae2a406fa128084f3",
+    "deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/raw_outputs/run_log.txt": "5b0796e83683ac113ea4c54f4f6905c52d29711a91e1c6f8a9790d36db506c11",
+    "deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/raw_outputs/time_err.txt": "022f2b443871ad86d7652675d2aac146c6fa14e097726352026c8e3c52d35f04"
+  },
+  "commands": [
+    "workdir=deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes; OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l python3 compute_as058.py > raw_outputs/run_log.txt 2> raw_outputs/time_err.txt (exit 0; 14/14 checks; independently re-run from a /tmp clone: exit 0, identical check cells except environmental pid/elapsed/RSS)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS058/AS058-r1-20260928T0810Z-dsv4f-hermes/AS058_field_redefinition_invariance.lean (zero errors; linter warning on <;> in T1 only)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <scratch copy with appended '#print axioms' for all seven theorems: [propext, Classical.choice, Quot.sound] each"
+  ],
+  "execution_bounds": {
+    "declared": "prototype budget 120 s wall (seed instruction); memory 512 MiB target; 1 thread (seed/campaign bound); hard-exit deadline armed in-script at every checkpoint",
+    "enforced": "wall: in-script hard deadline with exit(127); measured elapsed 0.22 s (compute), /usr/bin/time real 0.28 s; Lean verification runs under timeout 500 s each, all completed",
+    "memory": "RLIMIT_AS = 512 MiB requested but REFUSED by this macOS build (ValueError: current limit exceeds maximum limit) -- enforcement probed externally; actually measured peak RSS: in-process ru_maxrss 55.1 MiB and /usr/bin/time -l 57835520 bytes (55.2 MiB), peak memory footprint 51397112; both recorded, both far below 512 MiB",
+    "threads": "1 -- enforced by construction (single process, no thread/process APIs imported) plus OPENBLAS/OMP/MKL_NUM_THREADS=1; threads used = 1, pid recorded",
+    "grid_bounds": "n in {2,3} x lambda in {1/2,1,2} x yN grid [1e-4,30] (~2000 roots per cell via safe universal brackets); root bracketing lo0=1e-300, hi0=max(1e3, 4(1+lambda)yN, 100 sqrt((1+lambda)yN))"
+  },
+  "checks": [
+    {"id": "S1", "name": "slope of mu_n at the origin equals n", "measured": "d mu_n/dY|_0 = n (symbolic)", "threshold": "exact symbolic equality", "passed": true},
+    {"id": "S2", "name": "completion independence of the OR slope", "measured": "d/dY[1-(1-p)^n]|_0 = n for p = Y + c2 Y^2 + c3 Y^3, every c2,c3", "threshold": "exact symbolic equality", "passed": true},
+    {"id": "S3", "name": "slope invariance vs renormalization", "measured": "d mu_n/dY = n invariant; d mu_n/dZ'|_0 = n/lambda (lambda in {1/2,1,2}: {2n,n,n/2})", "threshold": "exact symbolic equality both readings", "passed": true},
+    {"id": "S4", "name": "compensated redefinition leaves the physical a0-line invariant", "measured": "g'^2 = G M lambda^2 s/(n r^2); g^2 = g'^2/lambda^2 = G M s/(n r^2); residual = 0 (exact symbolic identity)", "threshold": "symbolic residual 0", "passed": true},
+    {"id": "S5", "name": "NEGATIVE CONTROL: unchanged coupling flags changed theory", "measured": "g_c^2 = G M lambda s/(n r^2); kappa_c(lambda) = lambda/n; diagnostics n=2: {'0.5': 1/4, '1.0': 1/2, '2.0': 1}", "threshold": "exact symbolic kappa_c = lambda/n", "passed": true},
+    {"id": "S6", "name": "leading neglected terms stated", "measured": "deep: (n/s) g^2 (1 - ((n+1)/2)(g/s) + O((g/s)^2)), Y^2 coefficient -n(n+1)/2; Newtonian: 1 - Y^(-n) + O(Y^(-n-1))", "threshold": "exact series coefficients", "passed": true},
+    {"id": "N1", "name": "compensated redefinition: physical roots identical across lambda", "measured": "max relative deviation across grid = 0.000e+00; max absolute equation residual |u*mu(u)-target| over all roots = 4.441e-16", "threshold": "inv_max < 1e-12 (set before evaluation)", "passed": true},
+    {"id": "N2", "name": "changed theory: deep ratio sqrt(lambda), Newtonian ratio 1", "measured": "deep n=2 lambda=2: ratio 1.412014 (raw 1.414214, corrected 1.412005); newton n=2 lambda=2: 1.002850 (corrected 1.003333); all 12 cells consistent", "threshold": "|ratio - expectation| < 2e-3 with per-regime leading tail corrections (set before evaluation)", "passed": true},
+    {"id": "N3", "name": "deep-law recovery with stated correction", "measured": "max |u^2 n/yN - (1 + (n+1)u/2)| at yN=1e-4 = 2.242e-05", "threshold": "< 1e-4 (set before evaluation)", "passed": true},
+    {"id": "N4", "name": "leading deep correction quantified", "measured": "max |(meas-pred)/pred| on deep subgrid (yN <= 0.03) = 3.499e-02", "threshold": "< 0.1 relative (set before evaluation; absolute 1e-3 known to fail at large yN and rejected)", "passed": true},
+    {"id": "F1", "name": "footings kept separate", "measured": "canonical a0=9.3619e-11 (s=1.87238e-10, kappa=1/2, rho_L=5.8444e-27); alt a0=1.1279e-10: kappa_eff=0.6024 (rho fixed) or s_alt=2.255800e-10 with rho_L scaled 1.4515 (kappa fixed)", "threshold": "each footing carries its own s; never both fixed density and fixed kappa", "passed": true},
+    {"id": "B1", "name": "wall-time bound", "measured": "elapsed = 0.22 s (in-script checkpoint; hard deadline exit(127) armed)", "threshold": "120 s declared budget", "passed": true},
+    {"id": "B2", "name": "memory bound", "measured": "RLIMIT_AS 512 MiB refused by macOS (ValueError); in-process peak RSS = 55.1 MiB; /usr/bin/time -l 57835520 bytes (55.2 MiB)", "threshold": "peak RSS < 512 MiB (measured, since RLIMIT_AS unenforceable on this build)", "passed": true},
+    {"id": "B3", "name": "thread bound", "measured": "threads used = 1; pid = 35808", "threshold": "1 thread by construction", "passed": true},
+    {"id": "L1", "name": "Lean certificate compiles and proves the algebraic core", "measured": "lake env lean: 0 errors, 0 sorry; 7 theorems; #print axioms each = {propext, Classical.choice, Quot.sound}", "threshold": "zero sorry; axioms subseteq {propext, Classical.choice, Quot.sound}", "passed": true}
+  ],
+  "tested_domain": "Symbolic: n >= 1 real, lambda > 0 (diagnostics 1/2, 1, 2), Y in (0, oo); deep limit exact at yN = 0. Numeric: n in {2, 3}, lambda in {1/2, 1, 2}, yN grid from 1e-4 to 30 (deep subgrid yN <= 3e-2 for the leading-correction check N4), root solves on safe universal brackets with bisection tolerance ~1e-15. Static spherical sector only; no dynamics, no rotation, no external field, no time dependence. Lean: n = 2 (adopted count), arbitrary lambda (T4), generic completion p (T2). Excluded: full 3-D solutions, MONO/Q/RAR/EXP branches, time-dependent redefinitions, quantum/field-theoretic normalization flow.",
+  "failed_attempts": [
+    "compute_as058.py first numeric run: root bracket bug for lambda=0.5 (root below lo=yN) crashed STEP 4; fixed with safe universal brackets lo0=1e-300, hi0=max(1e3, 4(1+lambda)yN, 100 sqrt((1+lambda)yN)); all intermediate edits are in-place history of compute_as058.py (final hash above)",
+    "Lean certificate earlier versions (in-place rewrites of AS058_field_redefinition_invariance.lean): T1-T4 failed on use of HasDerivAt.comp argument order and convert-generated instance goals; resolved by adopting the house congr_deriv + Pi-form idiom (see derivation.md section 7); scratch API probes preserved at ~/.hermes/cache/scratch/as058_probe.lean (run, not part of result fingerprint)"
+  ],
+  "limitations": "Does NOT derive kappa = 1/2 from first principles (adopted per contract; the lane shows 1/n for the physical normalization and flags that the uncompensated normalization gives n/lambda-dependent coefficients). Does NOT prove which potential normalization is realized observationally (open premise, see new_assumptions). Numeric checks are finite-grid consistency evidence; exact identities are established symbolically (S4 residual 0) and by the Lean certificate (n=2 core). No dynamics, rotation, EFE, or time evolution tested. The MU2 conclusion is not transferred to MONO/the thirteen-item target (no branch bridge proved). Footing examples use literature constants (G, c, M_sun, pc); the dimensionless result does not depend on them.",
+  "next_unresolved_implication": "The physical identification of the normalization: an independent argument that the observational normalization of the potential (h_00 = -2 Phi, matter coupling rho Phi) selects the response slope n (i.e. that the adopted kappa = 1/2 is the one the channel count produces in the realized normalization class). Without it, the slope claim is invariant within a normalization class (S4) but class-dependent across classes (S5).",
+  "suggested_followup": "A distinct observable probe of the normalization class: compute the predicted deep-Newtonian transition shape of mu_n in the compensated normalization and compare against a high-quality rotation-curve/E-Galactic sample in the same footing (discriminates kappa_c = lambda*n shifted copies if the class were uncompensated); alternatively, a k01-type zero-mode argument extended to the potential normalization (showing the action cannot fix the class, making the physical identification premise the weakest link).",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "Static spherical sector; single scale s = c sqrt(G rho_L) in the kinetic term (one-scale action); OR-composition of n identical per-channel engagements; p(0)=0, p'(0)=1; kappa = 1/2 adopted (contract), not derived",
+    "measured_calibrations": "a0 canonical 9.3619e-11 m/s^2 and alternative 1.1279e-10 m/s^2 (footing examples only; SI constants G=6.67430e-11, c=299792458 used only there)",
+    "derived_equations": "deep law g^2 = (s/n) g_N; kappa = 1/n; redefinition algebra (S3-S5); leading neglected terms (S6); negative-control changed-theory law g_c^2 = (lambda s/n) g_N; Lean-certified identities T1-T7"
+  },
+  "closure_implication": "Gate: CORE coefficient cell (kappa = a0/s in the amended thirteen-item target, filtered MONO, causality criterion B). Implication: a0 = s/n at n = 2 (kappa = 1/2) holds in the compensated normalization for the MU2-family response; uncompensated normalizations are excluded by control S5/N2. Compatibility: MU2 branch deep behavior transfers to the MONO target ONLY after an explicit branch bridge is proved (none imported here); the physical-normalization premise (new_assumptions[0]) must be supplied by a separate lane before the gate can close. Common-action/parameter-domain compatibility: s = c sqrt(G rho_L) shared across branches; the adopted footing pair (9.3619e-11 / 1.1279e-10) transforms as a whole under redefinitions, so both footings remain compatible with the same kappa.",
+  "child_proposals": [
+    {
+      "id": "AS058.C01",
+      "claim": "Extend the slope-invariance theorem from the deep limit to the full MU_n transition: the response mu_n(Y) = 1-(1+Y)^(-n) is the unique positive concave completion with slope n at 0, saturation 1 at oo and the S6 deep correction; test whether any other response with the same two-slope data survives the compensated redefinition with a different kappa",
+      "dependency": "This AS058 run (symbolic S-facts, numeric N-facts, Lean T1-T7)",
+      "controls": "re-run S4/S5 algebra for the new response family; deep and Newtonian limits; residual-based numeric check",
+      "dispatch_state": "not dispatched (specification only)"
+    },
+    {
+      "id": "AS058.C02",
+      "claim": "A k01-style zero-mode extension: show the vacuum action (single scale s) cannot fix the potential normalization class (the rho*Phi coupling coefficient), making the physical-identification premise in this result's new_assumptions the weakest premise",
+      "dependency": "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py (hash 8df5a3ab...) and this run's S3/S5 coefficient tracking",
+      "controls": "symbolic rescale analysis as S3-S5; boundary case lambda -> 0/large; no observations used as proof",
+      "dispatch_state": "not dispatched (specification only)"
+    }
+  ],
+  "closure_candidate": null
+}

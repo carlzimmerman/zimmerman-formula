@@ -1,0 +1,163 @@
+{
+ "pass": 16,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [deep slope = n*lambda, endpoints] mu(Y)=1-(1+lam*Y)^(-n): mu'(0), mu(0), mu(oo)",
+   "measured": "mu'(0) = lam*n; mu(0) = 0; mu(oo) = 1",
+   "pass": true,
+   "tolerance": "exact symbolic equality (n>0, lam>0)",
+   "reading": "the deep slope of the response family is the PRODUCT n*lambda, not n and not lambda separately"
+  },
+  {
+   "name": "A2 [OR identification with per-channel slope lam] the family is the OR over n equal channels with engagement p_lam(Y)=1-(1+lam*Y)^(-1), p_lam(0)=0, p_lam'(0)=lam, p_lam(oo)=1",
+   "measured": "1-(1-p_lam)^n - (1-(1+lam*Y)^(-n)) = 0; p_lam'(0) = lam",
+   "pass": true,
+   "tolerance": "exact symbolic equality",
+   "reading": "per-channel deep slope is lambda; the composed response slope is then n*lambda = (channel count) x (per-channel slope)"
+  },
+  {
+   "name": "A3 [the slope is the product for EVERY completion, at the diagnostic lambda values] for p in {lam*Y/(1+lam*Y), 1-exp(-lam*Y), tanh(lam*Y)}, n in {1,2,3}, lam in {1/2,1,2}: slope of 1-(1-p)^n at 0",
+   "measured": "27 (completion, n, lam) triples; all slopes equal n*lam exactly: True",
+   "pass": true,
+   "tolerance": "exact symbolic slopes (sy.limit of derivative)",
+   "reading": "completion-independence of the product slope: mu'(0) = n*lambda is robust to the unknown shape of p (PD01 A1 generalised to per-channel slope lambda)"
+  },
+  {
+   "name": "A4 [curvature ratio |c2|/c1^2 = (n+1)/(2n) is lambda-free] Taylor coefficients of mu at 0: c1 = n*lam, c2 = -n(n+1)lam^2/2, c3 = n(n+1)(n+2)lam^3/6",
+   "measured": "c1 = lam*n; c2 = -lam**2*n*(n + 1)/2; |c2|/c1^2 = (n + 1)/(2*n)",
+   "pass": true,
+   "tolerance": "exact symbolic; lambda absent from the ratio",
+   "reading": "the second-order shape coefficient normalized by the slope square depends only on n -- the transition curvature is (in principle) the observable that separates n from lambda; nothing here claims current data measure it"
+  },
+  {
+   "name": "A5 [spherical deep matching: a0 = s/(n*lam), kappa = 1/(n*lam)] the deep Poisson first integral is integrated and matched to the a0-line g^2 = a0*g_N",
+   "measured": "g^2 = G*M*s/(lam*n*r**2) = (s/(n*lam)) * (G M/r^2); a0 = s/(lam*n); kappa = a0/s = 1/(lam*n)",
+   "pass": true,
+   "tolerance": "exact symbolic (n>0, lam>0, s>0)",
+   "reading": "the deep observable is kappa = 1/(n*lambda): only the product enters (equivalently v_flat^4 = G M a0 = G M s/(n*lam))"
+  },
+  {
+   "name": "A6 [rank of the deep Jacobian = 1; curvature restores rank 2] J1 = d(n*lam)/d(n,lam); J2 = d(n*lam, |c2|)/d(n,lam)",
+   "measured": "J1 = [[lam, n]], rank(J1) = 1, nullspace = [Matrix([\n[-n/lam],\n[     1]])], J1 . (n, -lam) = Matrix([[0]]); J2 = [[lam, n], [lam**2*n/2 + lam**2*(n + 1)/2, lam*n*(n + 1)]], det(J2) = lam**2*n/2 > 0, rank(J2) = 2",
+   "pass": true,
+   "tolerance": "exact symbolic ranks; det(J2) = n*lam^2/2 > 0 for n>=1, lam>0",
+   "reading": "deep data identify the product only (rank 1, kernel direction (dn,dlam)~(n,-lam) preserves n*lam); adding the second-order shape coefficient makes the pair (slope, curvature) identify (n, lam) jointly -- in principle -- via the lambda-free ratio (n+1)/(2n)"
+  },
+  {
+   "name": "A7 [the three diagnostic triples are deep-equivalent yet shape-distinct] products n*lambda = 2 at lambda in {1/2,1,2}",
+   "measured": "deep slopes all 2 (['2', '2', '2']); curvatures |c2| = ['5/2', '3', '4'] (all distinct); ratios ['5/8', '3/4', '1'] (distinct, lambda-free)",
+   "pass": true,
+   "tolerance": "exact rational arithmetic",
+   "reading": "ALL three pairs are valid integer-channel configurations with the same deep behaviour: observational preference for (2,1) over (4,1/2) is not a mathematical proof -- deep data cannot distinguish them"
+  },
+  {
+   "name": "A8 [both footings carried separately] canonical (kappa=1/2 adopted, product 2) and alternative (fixed-rho_Lambda effective kappa vs fixed-kappa changed density)",
+   "measured": "kappa_alt_rhoL-fixed = 0.602388; product_alt_rhoL-fixed = 1.660059; rho_Lambda_alt_kappa-fixed = 8.483090e-27 kg/m^3",
+   "pass": true,
+   "tolerance": "s_can == 2*a0_can to <1e-12 relative; positivity of the alternative cells",
+   "reading": "the identifiability theorem is dimensionless: it applies identically to both footings; the canonical product is 2, the fixed-rho_Lambda alternative product is 1/kappa_eff, the fixed-kappa alternative product is 2 again -- in every cell deep data fix only the product"
+  },
+  {
+   "name": "B1 [deep limit: slope law with explicit leading correction] mu(Y)/(n*lam*Y) -> 1 and the quadratic remainder equals |c2|*Y^2 at leading order",
+   "measured": "max |mu/(n lam Y) - 1| at Y=1e-14 = -1.250e-14; remainder/|c2|Y^2 -> 1 (values within 1e-4 of 1 at Y=1e-10)",
+   "pass": true,
+   "tolerance": "|mu/(n lam Y)-1| < 1e-6 at Y=1e-14; |remainder ratio - 1| < 1e-3 deep in",
+   "reading": "finite consistency of the exact deep limit and of the leading neglected term -n(n+1)lam^2 Y^2/2 (A4) with its O(Y^3) domain; the deep regime relative error is (n+1)lam*Y/2*(1+O(Y))"
+  },
+  {
+   "name": "B2 [Newtonian recovery mu -> 1 with n-dependent tail] g/B -> 1 at large B/s, leading correction (lam*B/s)^(-n)",
+   "measured": "max |g/B - 1| at B/s=1e18 = 5.000e-19; tail slopes [-4.000000000002246, -2.0, -1.0] vs exact -n in [-4, -2, -1]",
+   "pass": true,
+   "tolerance": "|g/B - 1| < 1e-6 at B/s = 1e18; |slope - (-n)| < 0.02 on the last two resolved rungs",
+   "reading": "exact Newtonian recovery of the family; the tail exponent is n -- in principle another shape channel, still degenerate with lambda at fixed product whenever only the product is fixed by the deep law"
+  },
+  {
+   "name": "B3 [the matched a0-line holds in the first integral] g^2 = a0*g_N with a0 = s/(n*lam) to the stated precision",
+   "measured": "max |g^2/(a0 g_N) - 1| = 1.414e-07 at B/s = 1e-14",
+   "pass": true,
+   "tolerance": "< 1e-6 relative at the deepest rung (mpmath dps=50)",
+   "reading": "finite consistency of the exact matching identity A5 inside the exact response equation (not just in the slope approximation)"
+  },
+  {
+   "name": "C1 [DEEP data fix the product only] fitting n with lambda silently fixed at 1/2, 1, 2 on identical deep data",
+   "measured": "n_hat = [4, 2, 1]; n_hat*lam = [2.0, 2.0, 2.0]; RMS = [4.2428045529815406e-05, 0.0, 8.484541960383176e-05]",
+   "pass": true,
+   "tolerance": "|n_hat*lam - 2|/2 < 1e-3 for all three; every RMS < 1e-3 (deep-plateau level, far below the ~0.11-dex observational scatter; the residual differences between fits are the neglected O(Y^2) completion terms only)",
+   "reading": "the 'channel count selected by deep data' is exactly product/lambda: n_hat = 4, 2, 1 for lambda = 1/2, 1, 2. The conditional assumption that turns the fitted product into a channel count is lambda = 1 -- the one-scale fraction identity (PD08 steps 1-3, k01 no-go) -- which deep data cannot certify"
+  },
+  {
+   "name": "C2 [the same procedure FAILS when the window is not deep: the control is capable of failing] transition-inclusive data with lambda_fixed in {1/2,1,2}",
+   "measured": "best (lam=1, n=2, the truth) RMS = 0.000e+00; wrong-lambda fits n_hat = [4, 1] with RMS [0.02892696990570519, 0.05445849729435578]; excess over best = truth-exact (abs criterion)",
+   "pass": true,
+   "tolerance": "wrong-lambda RMS exceeds the best-model RMS by > 10x (or > 1e-3 absolute when the truth model is exact to working precision)",
+   "reading": "silently fixing lambda while fitting n is valid ONLY on a genuinely deep window; as soon as the window reaches the transition the wrong lambda choices produce residuals orders of magnitude above the plateau, so the control would have FAILED had the deep-law degeneracy not been real. The window condition is an identified, tested assumption"
+  },
+  {
+   "name": "C3 [transition-shape observable separates the triples in principle] mu(1) and mu'(1) for the three equal-product configurations",
+   "measured": "mu(1) = [0.8024691358024691, 0.75, 0.6666666666666666], mu'(1) = [0.26337448559670784, 0.25, 0.2222222222222222]; min pairwise |d mu(1)| = 0.052469",
+   "pass": true,
+   "tolerance": "pairwise curvature/value separations > 1e-3 (orders above the deep ambiguity level)",
+   "reading": "a measurement of the response curvature at the transition WOULD break the deep degeneracy and pin n via |c2|/c1^2 = (n+1)/(2n); this states the identifiability criterion, not a claim that current data deliver it"
+  },
+  {
+   "name": "D1 [exact identities vs finite consistency, distinguished] what is an exact identity and what is a finite number",
+   "measured": "EXACT (symbolic): A1-A8 slopes, endpoints, OR identification, Taylor coefficients, ratio (n+1)/2n, spherical matching a0=s/(n lam), kappa=1/(n lam), Jacobian ranks, deep/Newtonian limits, footings algebra. FINITE consistency (mpmath 80 digits): B1-B3 ladders and the C1-C3 fits/separations",
+   "pass": true,
+   "tolerance": "n/a (classification)",
+   "reading": "the limits are exact symbolic statements; the ladders verify them to finite precision -- a finite consistency check never upgrades to an exact identity by grid density"
+  },
+  {
+   "name": "D2 [bounds actually enforced]",
+   "measured": "wall: hard deadline 120 s (budget() at every part), elapsed = 2.5 s; memory: RLIMIT_AS hard cap NOT SETTABLE on this host (CPython ValueError on macOS 26.5.2; shell ulimit -v refused) -- enforced instead by in-process RSS watchdog checked after every part (abort if peak RSS > 512 MB); measured peak RSS = 79.8 MB; threads: 1 (single process, no pools; OMP_NUM_THREADS=1)",
+   "pass": true,
+   "tolerance": "elapsed < 120 s; peak RSS <= 512 MB (hard cap or watchdog); single thread",
+   "reading": "budget() checks the deadline inside every part; the watchdog aborts the run on a memory breach (checked after each part); the numeric work is one sequential process"
+  }
+ ],
+ "elapsed_s": 2.47,
+ "rss_mb": 79.8,
+ "rlimit_as_set": false,
+ "slope_formula": "lam*n",
+ "kappa_formula": "1/(lam*n)",
+ "ratio_formula": "(n + 1)/(2*n)",
+ "fits_deep": [
+  [
+   4,
+   0.5,
+   4.2428045529815406e-05
+  ],
+  [
+   2,
+   1.0,
+   0.0
+  ],
+  [
+   1,
+   2.0,
+   8.484541960383176e-05
+  ]
+ ],
+ "fits_transition": [
+  [
+   4,
+   0.5,
+   0.02892696990570519
+  ],
+  [
+   2,
+   1.0,
+   0.0
+  ],
+  [
+   1,
+   2.0,
+   0.05445849729435578
+  ]
+ ],
+ "separations": {
+  "d12": 0.05246913580246915,
+  "d23": 0.08333333333333337,
+  "d13": 0.13580246913580252
+ }
+}

@@ -1,0 +1,56 @@
+# FGF-015: Global modes of a supported hydrostatic slab
+
+Status: `awaiting_audit`. This is a proposed child task from an actual returned agent result, not an executed result.
+
+Read `../FRAMEWORK_AND_EXECUTION.md` and `../RESULT_CONTRACT.json`. Preserve the core scale, two normalizations and separate gravity branches.
+
+## Dependencies
+
+Required scoped reviews: FGF-011. Verify that they cover this task's premises; a generic PASS is insufficient. Source proposal: `campaign_fresh_gravity_astra/stage_04/matter_stability/FOLLOWUP_TASKS.md`, SHA256 `f7612247c4867fd8f96ae25a85e6d16717975cff4816676abf85b3f86500a2c4`.
+
+Additional prerequisite: independently audit the exact wall support and boundary quadratic form from F1 in the same source before executing its F2 eigenproblem. The FGF-011 audit must explicitly cover this or retain it as an unclosed dependency. Do not assume an equilibrium audit also proves a boundary energy identity.
+
+## Worker proposal, retained with its declared assumptions
+
+F2 — coupled eigenproblem on one accepted slab
+
+**Depends on:** a recorded MS1 background confirmed by F1, with rho>0 and g>0.
+Use its actual rho(x), A(x)=b'(g(x)); do not replace them by constants.
+Let displacement xi vanish at the two impermeable walls, and scalar
+perturbation psi obey homogeneous Dirichlet data. Define
+
+    delta rho = −(rho xi)',
+    xi_tt = −[cs² delta rho/rho + psi]',
+    (K/c²) psi_tt −(A psi')' = −4 pi G delta rho.
+
+Derive the discrete equations from the quadratic form rather than discretizing
+the products independently:
+
+    E2 = integral [rho xi_t²/2 + cs²(delta rho)²/(2rho)
+                  +(K/c²)psi_t²/(8piG)
+                  +A psi'²/(8piG)+delta rho psi] dx.
+
+Test K in {2,8} at a declared fixed cs/c, or equivalently the scalar inertia
+eta=K cs²/c² in {.01,.04}; never interchange these without recording units.
+Use grids of 64,128,256 interior nodes and at most one Q and one R background.
+Solve the symmetric generalized eigenproblem. Return the smallest ten
+omega² values, eigenfunction samples, mass-matrix signs and convergence.
+
+**Decisive controls:** remove the cross term and recover two positive
+Dirichlet sectors; as a separate periodic-boundary control use constant rho,A
+in the supported/subtracted problem and recover MS1's dispersion with xi sine
+and psi cosine;
+check Rayleigh quotients and the discrete quadratic energy. For the actual
+slab, show whether a negative eigenvalue converges or disappears on refinement.
+Changing K should change rates, while any zero-frequency crossing under a
+separate static parameter continuation should not depend on K.
+
+**Pass criterion:** sign-stable converged low eigenvalues with a symmetric
+positive kinetic matrix and correct boundary treatment. A negative mode is
+a conditional finite-slab result, not proof that every observed system collapses.
+
+
+
+## Return and limits
+
+Use a unique claimed run directory under `results/FGF-015/`. Each numerical process has a 120-second wall bound and one numerical-library thread, with actual enforcement recorded. Split larger work into separately bounded runs if necessary. Return the result contract, exact derivation, controls, input/output hashes and failed attempts. No automatic theory acceptance follows from a passing finite computation.

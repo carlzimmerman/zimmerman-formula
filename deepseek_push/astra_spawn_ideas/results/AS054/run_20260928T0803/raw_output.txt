@@ -1,0 +1,106 @@
+====================================================================================================
+AS054 -- Channel-composition nonuniqueness
+====================================================================================================
+
+STEP 1 -- objects, boundary conditions, assumptions
+  s = c*sqrt(G*rho_L) [m/s^2]; Y = g/s dimensionless;
+  p: [0,inf)->[0,1], p(0)=0, p'(0)=1 (BC1,BC2: s-units fraction identity),
+  p(inf)=1 (BC3: channel saturation), p'>0 (BC4: monotone engagement).
+  mu_OR = 1-(1-p)^2   (two-channel OR composition, PD01/PD08)
+  mu_avg = (p+p)/2    (equal-weight average composition)
+  mu_lam = 1-(1-p)^lam (real-exponent OR family, lam>0)
+  A-OR: response is the OR over channels (PD01 D1 premise, NOT derived here)
+  A-eq-slope: every channel obeys BC1-BC3 with unit slope (PD08 Step 3)
+
+STEP 2 -- positivity, monotonicity, exact separation
+    p=y/(1+y) (corpus member): mu_OR - mu_avg - p(1-p) = 0
+    p=1-exp(-y): mu_OR - mu_avg - p(1-p) = 0
+    p=tanh(y): mu_OR - mu_avg - p(1-p) = 0
+  [PASS] S2.1 [exact separation, completion-independent] mu_OR - mu_avg = p(1-p) identically for every completion; p in (0,1) on (0,inf) under BC2-BC4, so mu_OR > mu_avg pointwise on the whole deep/intermediate domain
+         measured: {'p=y/(1+y) (corpus member)': '0', 'p=1-exp(-y)': '0', 'p=tanh(y)': '0'}
+         reading : the OR response strictly dominates the average response everywhere except 0 and infinity; the two compositions are different functions for every completion in the class
+    origin slopes: mu_OR'(0) = {'p=y/(1+y) (corpus member)': 2, 'p=1-exp(-y)': 2, 'p=tanh(y)': 2}
+    origin slopes: mu_avg'(0) = {'p=y/(1+y) (corpus member)': 1, 'p=1-exp(-y)': 1, 'p=tanh(y)': 1}
+  [PASS] S2.2 [deep slopes differ: 2 vs 1] mu_OR'(0) = 2 p'(0) = 2 and mu_avg'(0) = p'(0) = 1 for every completion (chain rule through the composition, completion-independent)
+         measured: mu_OR'(0) = {'2'}, mu_avg'(0) = {'1'}
+         reading : the deep-MOND slope is 2 for the OR composition and 1 for the average; the slope is a count only under the OR identification
+    saturation: mu_OR(inf) = {'p=y/(1+y) (corpus member)': 1, 'p=1-exp(-y)': 1, 'p=tanh(y)': 1}
+    saturation: mu_avg(inf) = {'p=y/(1+y) (corpus member)': 1, 'p=1-exp(-y)': 1, 'p=tanh(y)': 1}
+  [PASS] S2.3 [both saturate to one] mu_OR(inf) = 1 and mu_avg(inf) = 1 for every completion (BC3 transfers to both compositions)
+         measured: mu_OR(inf) = {'1'}, mu_avg(inf) = {'1'}
+         reading : SATURATION DOES NOT DISCRIMINATE: both compositions saturate at one; the distinguishing principle is the deep slope (measured zero point of the a0-line, kappa = 1/lambda), not the normalization
+
+STEP 3 -- intermediate algebra with scale factors, signs, units
+  generic 2-jet p = y + c2*y^2 + ... (c2 = unknown completion):
+    mu_OR = -c2**2*y**4 - 2*c2*y**3 + 2*c2*y**2 - y**2 + 2*y
+    mu_avg = c2*y**2 + y
+    mu_OR - mu_avg = -c2**2*y**4 - 2*c2*y**3 + c2*y**2 - y**2 + y
+    mu_lam(2-jet) = lam*y + y**2*(c2*lam - lam*(lam - 1)/2)
+  [PASS] S3.1 [completion-independent linear coefficients] on the generic 2-jet p = y + c2 y^2: mu_OR = 2y + (2c2-1)y^2 - 2c2 y^3 - c2^2 y^4 and mu_avg = y + c2 y^2: the linear coefficients 2 and 1 are independent of c2 (the completion)
+         measured: mu_OR = -c2**2*y**4 - 2*c2*y**3 + 2*c2*y**2 - y**2 + 2*y; mu_avg = c2*y**2 + y
+         reading : the deep slope is a property of the composition, not the completion: PD01 A1's completion-independence is reproduced; but the COMPOSITION itself is not fixed by any boundary condition or normalization
+    deep matching: g_deep(r) = sqrt(s*G*M/lam)/r;  lam*(g_deep/s)*g_deep - G*M/r^2 = 0
+    a0 = s/lam ;  kappa = a0/s = 1/lam
+  [PASS] S3.2 [L230 chain with units] deep-MOND Poisson with mu ~ lam*g/s gives g^2 = (s/lam) g_N, i.e. a0 = s/lam and kappa = 1/lam; substitution residual is identically zero; units: [g^2] = m^2/s^4 = [s]*[g_N]
+         measured: g^2 = (s/lam) g_N; a0 = s/lam; kappa = 1/lam; residual = 0
+         reading : the a0-line coefficient is the INVERSE of the deep slope; every slope lambda in (0,inf) is realizable by a saturating composition (mu_lam = 1-(1-p)^lam), so kappa = 1/lam is not a channel count unless the OR identification and unit per-channel slopes are supplied
+    leading neglected term (corpus completion): mu_lam - lam*y = lam*y**3*(-lam - 2)*(-lam - 1)/6 + lam*y**2*(-lam - 1)/2
+  [PASS] S3.3 [leading neglected term and its domain] for p = y/(1+y): mu_lam - lam*y = -lam*(lam+1)/2 * y^2 + O(y^3); the lambda-line matching holds to relative error (lam+1)/2 * Y + O(Y^2), domain Y << 1
+         measured: mu_lam - lam*y = lam*y**3*(-lam - 2)*(-lam - 1)/6 + lam*y**2*(-lam - 1)/2
+         reading : the deep a0-line is an asymptotic statement of the truncated equation; the neglected term is second order in Y with completion-dependent coefficient (c2 enters at O(y^2) for generic p = y + c2 y^2)
+
+STEP 4 -- independent checks (different representations, actual residuals)
+  [PASS] S4.1 [numerical slopes at the origin] (mu(h)-mu(0))/h at h = 1e-24 for 3 completions x 2 compositions, mpmath dps=60: raw finite-difference residual vs the exact slope (2 for OR, 1 for avg)
+         measured: max relative residual at h = 1e-24 = 1.50e-24 (pre-set threshold 1e-18); h = 1e-12 residuals show the expected O(h) truncation trend ~1e-12
+         reading : direct numerical differentiation reproduces the exact slopes 2 and 1 to the finite-difference accuracy; the slope is independent of the completion; the O(h) offset at h = 1e-12 is the lambda-line truncation term, measured not asserted
+  [PASS] S4.2a [saturation residuals in the saturating domain] 1 - mu(Y) at Y = 1e6, 1e60 for both compositions and three completions
+         measured: max |1 - mu| at Y = 1e60 = 1.24e-60 (pre-set threshold 1e-40); rows: {'1000000.0': {'corpus/OR': '0.00000000000099999800000299999600000499999400000699999200000901761042564', 'corpus/avg': '0.00000099999900000099999900000099999900000099999900000099999897549', 'exp/OR': '0.0', 'exp/avg': '0.0', 'tanh/OR': '0.0', 'tanh/avg': '0.0'}, '1.0e+60': {'corpus/OR': '0.0', 'corpus/avg': '1.2446030555722283414288128107560248481180504337442334266202e-60', 'exp/OR': '0.0', 'exp/avg': '0.0', 'tanh/OR': '0.0', 'tanh/avg': '0.0'}}
+         reading : both compositions saturate at one for every completion; the residual is measured, not asserted; the corpus member needs Y ~ 1e60 because it saturates algebraically, the exponential/tanh members exponentially
+  [PASS] S4.2b [saturation RATES discriminate the completions] halving ratio of the saturation residual at doubled Y: corpus completion ~ 1/4 (algebraic 1/Y^2 tail of the OR composition), exponential and tanh completions ~ exp(-2Y) ~ 0 (exponential tail)
+         measured: ratio(2Y/Y): corpus = 0.250000 (vs 1/4), exp = 1.125e-07, tanh = 1.266e-14 (threshold < 1e-2)
+         reading : the saturation VALUE is shared by every completion; the saturation RATE is not - the rate is a shape diagnostic that the composition algebra does not fix
+  [PASS] S4.3 [separation residual] mu_OR - mu_avg vs p(1-p) at Y = 0.3, 1, 3, three completions
+         measured: max |residual| = 4.67e-61
+         reading : the exact identity mu_OR - mu_avg = p(1-p) > 0 holds to 60 digits
+    canonical footing: rho_Lambda = 5.8444124540e-27 kg/m^3, s = 1.8723800000e-10 m/s^2, kappa = 0.5000000000
+    alternative footing: rho_alt = 8.4830896196e-27 kg/m^3, s_alt = 2.2558000000e-10 m/s^2, kappa = 0.5000000000
+    fixed-rho relabeling: kappa_eff = 0.6023884041, lambda_eff = 1.6600585158 (non-integer diagnostic)
+  [PASS] S4.4 [both footings separately] canonical a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844...e-27 kg/m^3, kappa = 1/2 EXACT; alternative a0 = 1.1279e-10 <-> rho_alt = 8.483...e-27, kappa = 1/2 EXACT; the two footings cannot share fixed rho and fixed kappa: fixed rho_Lambda forces kappa_eff = a0_alt/s_can = 0.6024... (lambda_eff = 1.6601..., non-integer)
+         measured: kappa_can = 0.500000000000, kappa_alt = 0.500000000000, kappa_eff = 0.602388404063, lambda_eff = 1.660058515826
+         reading : both registered footings carry lambda = 2 exactly (kappa = 1/2) with different densities; the fixed-density relabeling is a diagnostic exponent, not a measurement
+    r =   50 kpc: Y = 1.220e-01, |g_full - g_line|/g_line = 9.778e-02, truncated residual = 0.00e+00
+    r =  150 kpc: Y = 4.067e-02, |g_full - g_line|/g_line = 3.119e-02, truncated residual = 0.00e+00
+    r =  500 kpc: Y = 1.220e-02, |g_full - g_line|/g_line = 9.212e-03, truncated residual = 0.00e+00
+    r = 1000 kpc: Y = 6.101e-03, |g_full - g_line|/g_line = 4.591e-03, truncated residual = 0.00e+00
+  [PASS] S4.5 [deep a0-line: actual full-response deviation] at r = 50..1000 kpc, M_b = 1e11 M_sun (deep regime Y in [6e-3, 1.2e-1]; r_M ~ 3.9 kpc), the full OR response solution deviates from the lambda-line by the measured relative amount (leading term -(lam+1)/2*Y = -1.5*Y for the corpus completion); the truncated identity residual is zero to 60 digits
+         measured: {'50 kpc': 'Y=1.22e-01, rel=9.78e-02', '150 kpc': 'Y=4.07e-02, rel=3.12e-02', '500 kpc': 'Y=1.22e-02, rel=9.21e-03', '1000 kpc': 'Y=6.10e-03, rel=4.59e-03'}
+         reading : the a0-line is the deep asymptote of the truncated equation; the full-response deviation is finite and quantified (O(Y) relative, coefficient -1.5 for the corpus completion at lambda = 2); pc-scale grid points at Y >> 1 (an earlier attempt) were discarded as outside the stated domain
+    at Y = 1: mu_OR(p) = 0.7500000000, mu_uneq = 1-(1-p)(1-q) = 0.8807970780, diff = 1.308e-01
+  [PASS] S4.6 [unequal-channel OR witness] 1-(1-p)(1-q) with q = tanh(y) has origin slope p'(0)+q'(0) = 2 and saturates at 1, but differs from mu_OR pointwise (measured difference at Y = 1)
+         measured: mu_uneq - mu_OR = 1.308e-01 at Y = 1
+         reading : saturation + slope-2 still does not select the equal-channel OR: the composition freedom is a function space, not a count
+
+STEP 5 -- negative control (capable of failing)
+  [PASS] NC1 [negative control: 'saturation alone uniquely selects the OR response'] mu_avg saturates at one (premise of the claim satisfied) but is not the OR response (exact separation p(1-p) > 0 on (0,inf); slopes 1 vs 2). The control is capable of failing (if mu_avg did not saturate the claim would survive) and it FIRES
+         measured: mu_avg saturation = {'1'}; mu_OR - mu_avg = p(1-p) != 0; verdict: REFUTED
+         reading : saturation alone does NOT select the OR response: mu_avg is an explicit counterexample. The OR identification (PD01 D1) is a genuinely independent input, exactly as AS054's principle states
+    lambda = 0.5: mu_lam slope = 0.500000, saturation = 1.0000000000, kappa = 1/lam = 2.0000
+    lambda = 1.0: mu_lam slope = 1.000000, saturation = 1.0000000000, kappa = 1/lam = 1.0000
+    lambda = 2.0: mu_lam slope = 2.000000, saturation = 1.0000000000, kappa = 1/lam = 0.5000
+  [PASS] NC2 [diagnostic counterexamples at lambda = 1/2, 1, 2] the real-exponent family mu_lam = 1-(1-p)^lam realizes every diagnostic slope: lambda=1/2 (kappa=2, no integer-channel realization), lambda=1 (kappa=1; mu_avg == mu_1 exactly: average-of-two and one-channel OR are the same function -- a degeneracy), lambda=2 (kappa=1/2, the framework footing)
+         measured: max over {slope rel residual at h=1e-24, |1 - saturation| at Y=1e100} = 1.50e-24 (pre-set thresholds 1e-18 and 1e-40; the slope residual dominates; per-lambda values in residuals.json); kappa = {'0.5': '2.0', '1.0': '1.0', '2.0': '0.5'}
+         reading : the algebra alone cannot prefer the integer readings: the pair (saturation, slope) determines only the real exponent lambda = 1/kappa; the integer count 2 and the equal-engagement premise are separate physical inputs (carrier identification + PD01 D1)
+
+BOUNDS: wall = 0.45s (deadline 115.0s); RLIMIT_AS setrlimit: False (current limit exceeds maximum limit); lim = (9223372036854775807, 9223372036854775807); probe: ALLOCATED (RLIMIT_AS NOT effective on this platform for this allocation); compute peak RSS = 58.6 MiB (probe-peak 958.6 MiB); threads = 1 (single process, no threading)
+  [PASS] B1 [wall-time bound] elapsed < 120 s
+         measured: 0.45s
+         reading : deadline checkpoints at every section; enforced
+  [PASS] B2 [memory bound, measured] declared <= 512 MiB; RLIMIT_AS effective state recorded from the 900 MiB probe; compute peak RSS measured
+         measured: RLIMIT_AS effective: ALLOCATED (RLIMIT_AS NOT effective on this platform for this allocation); compute peak RSS = 58.6 MiB
+         reading : macOS does not enforce RLIMIT_AS for this allocation (probe succeeded); the DECLARED 512 MiB target is therefore not OS-enforced on this host - the measured compute peak (well below the target) is recorded as the actually enforced/observed usage; wall time and thread count are the hard-enforced bounds
+  [PASS] B3 [thread bound] single process, no threading/process primitives used
+         measured: pid = 36729
+         reading : enforced by construction (pure sympy/mpmath, single-threaded)
+
+AS054 COMPUTE COMPLETE: residuals.json written.
+checks: 18/18 PASS

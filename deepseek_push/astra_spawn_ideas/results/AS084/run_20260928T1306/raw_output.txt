@@ -1,0 +1,36 @@
+====================================================================================================
+AS084 -- SELF-GRAVITATIONAL VIRIAL ENERGY WITH A CENTRAL MASS
+====================================================================================================
+symbolic: closed form verified = True;  separation = True;  singular limit = True;  sigma2->C/2 = True
+primitive: G*m_s**2*r + G*m_s*(M_in - m_s*r_in)*log(r)
+W_cent = -G*M_in*m_s*log(R/r_in)
+W_self = -G*m_s**2*(R - r_in*log(R/r_in) - r_in)
+sigma^2(M_in, r_in) = G*(R*m_s - m_s*r_in + log(R**(M_in - m_s*r_in)*r_in**(-M_in + m_s*r_in)))/(2*(R - r_in))
+
+-- footings --
+  canonical a0 = 9.3619e-11  rho_Lambda = 5.844412e-27 kg/m^3  kappa = 0.5 (adopted)
+  alt       a0 = 1.1279e-10  rho_Lambda = 8.483090e-27 kg/m^3  kappa = 0.5 (adopted)
+
+-- table (r_in = 0.1 R, R = 0.62 r_M, M_in = 0.1 M_b) --
+  [canonical | MW_6.5e10         ] C = 2.841849e+10  r_M =    9.838 kpc  v_flat = 168.58 km/s  sigma = 119.20 km/s
+      W_cent = -8.457639e+50 J   W_self = -1.525220e+51 J   W_total = -2.370983e+51 J = -2.0411e-07 M_b c^2
+  [canonical | NGC3198_6.2501e10 ] C = 2.786685e+10  r_M =    9.647 kpc  v_flat = 166.93 km/s  sigma = 118.04 km/s
+      W_cent = -7.974612e+50 J   W_self = -1.438112e+51 J   W_total = -2.235573e+51 J = -2.0014e-07 M_b c^2
+  [alt       | MW_6.5e10         ] C = 3.119280e+10  r_M =    8.963 kpc  v_flat = 176.61 km/s  sigma = 124.89 km/s
+      W_cent = -9.283301e+50 J   W_self = -1.674116e+51 J   W_total = -2.602447e+51 J = -2.2403e-07 M_b c^2
+  [alt       | NGC3198_6.2501e10 ] C = 3.058730e+10  r_M =    8.789 kpc  v_flat = 174.89 km/s  sigma = 123.67 km/s
+      W_cent = -8.753120e+50 J   W_self = -1.578505e+51 J   W_total = -2.453817e+51 J = -2.1968e-07 M_b c^2
+
+-- checks --
+  [PASS] C1_closed_form_vs_mpmath_quad_raw_integrand
+  [PASS] C2_pair_sum_converges_to_closed_form
+  [PASS] C3_dW_dR_finite_difference_vs_-G M(R) m_s/R
+  [PASS] C4_NEGATIVE_CONTROL_naive_-G_M(R)^2_over_R_fails_for_finite_shell
+  [PASS] C4b_naive_form_recovers_exactly_only_in_singular_limit
+  [PASS] C5_thin_shell_boundary_R->r_in
+  [PASS] C6_singular_limit_reproduces_G091_W_self_closed_form
+  [PASS] C7_deep_exterior_shells_and_kernel_error_bound
+  [PASS] C8_both_footings_separate_and_scale_exact
+  [PASS] C9_virial_sigma2_with_central_mass
+
+10/10 checks PASS in 0.6 s; wrote residuals.json

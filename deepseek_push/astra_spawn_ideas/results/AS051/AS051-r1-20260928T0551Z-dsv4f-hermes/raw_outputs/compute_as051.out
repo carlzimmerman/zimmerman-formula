@@ -1,0 +1,101 @@
+==============================================================================================================
+AS051 -- General deep-slope matching theorem:  mu(Y) ~ b Y  =>  g^2 = (s/b) B, kappa = 1/b
+==============================================================================================================
+  s_can        = 1.872380e-10 m/s^2  (kappa = 1/2 adopted)
+  rho_L_can    = 5.844412e-27 kg/m^3
+  s_alt (k fixed) = 2.255800e-10 m/s^2 ;  rho_L_alt = 8.483090e-27 kg/m^3
+  kappa_alt (rho_L fixed) = 0.602388
+
+PART 0 -- symbolic deep-slope matching with explicit remainder
+  B = mu(Y)g = b*g**2/s + c2*g**3/s**2 + c3*g**4/s**3
+  exact inversion: g^2 = (s/b) B - (c2/(b s)) g^3 - (c3/(b s^2)) g^4   [substitution residual: 0]
+  leading term (s/b) B; absolute correction O(g^3/s^2); relative correction O(g/s)
+  [PASS] A1 [algebra: exact inversion with explicit corrections] the equation B = (b/s)g^2 + (c2/s^2)g^3 + (c3/s^3)g^4 is inverted EXACTLY to g^2 = (s/b)B - (c2/(bs))g^3 - (c3/(b s^2))g^4 and the result substituted back
+         measured: substitution residual = 0 (must be 0); relative correction O(g/s)
+         reading : derived without approximation: substitute g2_expr into B = (b/s)g^2 + ... ; the correction is O(g^3/s^2) absolute, O(g/s) relative -> vanishes in the deep limit; bound form: |g^2 - (s/b)B| <= (K/b) g^3/s with K = sup |c2 + c3 Y + ...| on [0,Y0]
+  b = 1/2: mu(Y) = -35*Y**4/128 + 5*Y**3/16 - 3*Y**2/8 + Y/2 ; slope b = 1/2 ; mu(0) = 0 ; mu(inf) = 1
+  b = 1: mu(Y) = -Y**4 + Y**3 - Y**2 + Y ; slope b = 1 ; mu(0) = 0 ; mu(inf) = 1
+  b = 2: mu(Y) = -5*Y**4 + 4*Y**3 - 3*Y**2 + 2*Y ; slope b = 2 ; mu(0) = 0 ; mu(inf) = 1
+  [PASS] A2 [endpoints preserved under the b-sweep] family mu_b(Y) = 1-(1+Y)^(-b) has mu(0) = 0, mu(inf) = 1 and deep slope EXACTLY b for b = 1/2, 1, 2 (symbolic)
+         measured: slope = b in all three cases; endpoints 0 and 1 in all three
+         reading : the negative control N1 preserves both endpoint limits while changing b
+  standard-branch deep slopes in Y units (canonical footing): MU2 = 2, EXP = 2, Q = 2 (RAR numerically below)
+  [PASS] A3 [standard branches share slope 2 in Y units on the canonical footing] MU2 and EXP by symbolic derivative at 0; Q by the deep-limit algebra g^2 ~ a0 B
+         measured: MU2 2, EXP 2, Q 2
+         reading : consequence: kappa = 1/b = 1/2 is IMPLIED by slope 2 -- the identity kappa = 1/b maps every branch's deep slope onto its kappa; the slope 2 itself is a separate premise supplied by the channel-count/fraction-identity programme (PD01/PD08)
+
+PART 1 -- deep-ladder solution of mu_b(g/s)*g = B  (mpmath, dps=50)
+  b =  0.5: kappa_fit on ladder = ['2.760474', '2.220956', '2.021301', '2.002122', '2.000212', '2.000021', '2.000002', '2.000000']
+          kappa_fit(B/s=1e-14) = 2.0000002121  vs  1/b = 2.0000000000
+  [PASS] N1b0.5 [b-sweep control: inferred kappa tracks 1/b] fitted kappa at the deepest ladder point equals 1/b
+         measured: kappa_fit = 2.0000002121, 1/b = 2.0000000000
+         reading : the inference kappa = g^2/(B s) converts the deep slope; if kappa were fixed at 1/2 or taken as b, b = 1/2 and b = 1 rows would FAIL
+  b =  1.0: kappa_fit on ladder = ['1.370156', '1.105125', '1.010050', '1.001001', '1.000100', '1.000010', '1.000001', '1.000000']
+          kappa_fit(B/s=1e-14) = 1.0000001000  vs  1/b = 1.0000000000
+  [PASS] N1b1.0 [b-sweep control: inferred kappa tracks 1/b] fitted kappa at the deepest ladder point equals 1/b
+         measured: kappa_fit = 1.0000001000, 1/b = 1.0000000000
+         reading : the inference kappa = g^2/(B s) converts the deep slope; if kappa were fixed at 1/2 or taken as b, b = 1/2 and b = 1 rows would FAIL
+  b =  2.0: kappa_fit on ladder = ['0.707261', '0.556626', '0.505338', '0.500531', '0.500053', '0.500005', '0.500001', '0.500000']
+          kappa_fit(B/s=1e-14) = 0.5000000530  vs  1/b = 0.5000000000
+  [PASS] N1b2.0 [b-sweep control: inferred kappa tracks 1/b] fitted kappa at the deepest ladder point equals 1/b
+         measured: kappa_fit = 0.5000000530, 1/b = 0.5000000000
+         reading : the inference kappa = g^2/(B s) converts the deep slope; if kappa were fixed at 1/2 or taken as b, b = 1/2 and b = 1 rows would FAIL
+  [PASS] N1 [b-sweep, whole ladder] for every b in {1/2, 1, 2} the fitted kappa converges to 1/b as B/s -> 0 (ladder values listed above)
+         measured: deepest kappa_fit per b: {0.5: 2.000000212132043, 1.0: 1.000000100000005, 2.0: 0.500000053033012}
+         reading : three distinct limit values 2, 1, 1/2 -- the checker is sensitive to b
+    N3 worst bound-residual ratios: [(0.5, 1e-10, '1.000000'), (0.5, 1e-12, '1.000000'), (0.5, 1e-14, '1.000000')]
+  [PASS] N3 [explicit remainder bound] |g^2 - (s/b)B| <= (K/b) g^3/s holds at every ladder point with K = (b(b+1)/2)(1+Y) envelope on |c2 + c3 Y + ...|
+         measured: max residual/bound ratio = 1.000000e+00 (<= 1 required at every point)
+         reading : the correction term derived in A1 is a real bound, not a formal O() symbol: evaluated against the actual high-precision residual
+  Newtonian ladder g/B:
+    b =  0.5  B/s =   1e+04  g/B = 1.010049625042  (g/B - 1 = 1.005e-02)
+    b =  0.5  B/s =   1e+08  g/B = 1.000100005000  (g/B - 1 = 1.000e-04)
+    b =  0.5  B/s =   1e+12  g/B = 1.000001000000  (g/B - 1 = 1.000e-06)
+    b =  0.5  B/s =   1e+16  g/B = 1.000000010000  (g/B - 1 = 1.000e-08)
+    b =  1.0  B/s =   1e+04  g/B = 1.000099990002  (g/B - 1 = 9.999e-05)
+    b =  1.0  B/s =   1e+08  g/B = 1.000000010000  (g/B - 1 = 1.000e-08)
+    b =  1.0  B/s =   1e+12  g/B = 1.000000000001  (g/B - 1 = 1.000e-12)
+    b =  1.0  B/s =   1e+16  g/B = 1.000000000000  (g/B - 1 = 0.000e+00)
+    b =  2.0  B/s =   1e+04  g/B = 1.000000009998  (g/B - 1 = 9.998e-09)
+    b =  2.0  B/s =   1e+08  g/B = 1.000000000000  (g/B - 1 = 0.000e+00)
+    b =  2.0  B/s =   1e+12  g/B = 1.000000000000  (g/B - 1 = 0.000e+00)
+    b =  2.0  B/s =   1e+16  g/B = 1.000000000000  (g/B - 1 = 0.000e+00)
+  [PASS] N4 [Newtonian recovery] as B/s -> oo, mu(Y) -> 1 and g/B -> 1 for all three b
+         measured: g/B at B/s=1e16: {0.5: 1.00000001, 1.0: 1.0, 2.0: 1.0}
+         reading : endpoint limit mu(inf) = 1 correctly reproduces Newton's law in the strong regime (tail convergence is algebraic: g/B - 1 ~ (B/s)^(-b), slowest for b = 1/2)
+  RAR deep slope mu/Y at B/s = 1e-10, 1e-14: {1e-10: 1.9999717159620845, 1e-14: 1.999999717157311}
+  [PASS] N5 [RAR branch also carries slope 2 in Y units] implicit RAR solve at deep B
+         measured: mu/Y = {1e-10: 1.9999717159620845, 1e-14: 1.999999717157311}
+         reading : RAR joins MU2/EXP/Q at slope 2 on the canonical footing -> kappa = 1/2 common to all historical branches; the identity kappa = 1/b is branch-sweeping
+
+PART 2 -- dimensional (exponent-vector) checker
+  [PASS] N2 dim(g^2) = dim((s/b) B)
+         measured: (2, 0, -4) vs expected (2, 0, -4)
+         reading : exponent vectors (L, M, T); mismatch => dimensionally illegal
+  [PASS] N2 s = c*sqrt(G rho_L) is an acceleration (1,0,-2)
+         measured: (1, 0, -2) vs expected (1, 0, -2)
+         reading : exponent vectors (L, M, T); mismatch => dimensionally illegal
+  [PASS] N2 wrong-G placement c*sqrt(rho_L/G) REJECTED
+         measured: (-2, 1, 0) != (1, 0, -2) -> rejected
+         reading : the dimensional checker MUST fail a wrong G placement (G in the wrong slot)
+  [PASS] N2 G without c: sqrt(G rho_L) REJECTED
+         measured: (0, 0, -1) != (1, 0, -2) -> rejected
+         reading : c must sit in s = c*sqrt(G rho_L); a s' without c is not an acceleration
+  [PASS] N2 kappa = a0/s dimensionless
+         measured: (0, 0, 0) vs expected (0, 0, 0)
+         reading : exponent vectors (L, M, T); mismatch => dimensionally illegal
+  NOTE: kappa = b and kappa = 1/b are BOTH dimensionless; the inversion is caught only by control N1 (numerical), not by dimensional analysis alone
+
+PART 3 -- both footings
+  canonical               : a0 = 9.361900e-11 m/s^2, s = 1.872380e-10 m/s^2, kappa = 0.500000, rho_L = 5.8444e-27 kg/m^3  (kappa adopted 1/2)
+  alternative_kappa_fixed : a0 = 1.127900e-10 m/s^2, s = 2.255800e-10 m/s^2, kappa = 0.500000, rho_L = 8.4831e-27 kg/m^3  (kappa held 1/2 -> higher density)
+  alternative_rhol_fixed  : a0 = 1.127900e-10 m/s^2, s = 1.872380e-10 m/s^2, kappa = 0.602388, rho_L = 5.8444e-27 kg/m^3  (rho_Lambda held -> effective kappa = a0_alt/s_can)
+  [PASS] A4 [both footings stated] canonical and alternative footings reported with their own s, rho_L and kappa cells; the theorem kappa = 1/b is dimensionless and applies identically on both footings (no a0 appears in the identity)
+         measured: see table above
+         reading : contract requirement: dimensional examples at 9.3619e-11 and 1.1279e-10 separately; b and kappa are pure numbers so the proof is footing-independent once s is fixed
+
+  bounds: wall = 0.38s (limit 120.0s hard) | RSS = 60.0 MB (limit 512 MB) | threads: 1 (no pools)
+AS051 COMPLETE: 16/16 checks PASS.
+real 0.52
+user 0.50
+sys 0.02

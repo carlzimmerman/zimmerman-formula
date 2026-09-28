@@ -1,0 +1,113 @@
+{
+  "schema_version": 2,
+  "task_id": "AS019",
+  "task_sha256": "7df4433219f25790668c1b20f7814c66358616538a0e4357a715f303a33006e5",
+  "run_id": "run_AS019-r1-20260927T2259",
+  "worker": "sa-8-0915d4c9 (Hermes subagent; model deepseek/deepseek-v4-flash-0731 via openrouter; platform subagent)",
+  "started_utc": "2026-09-27T22:27:04.912325+00:00",
+  "finished_utc": "2026-09-27T23:15:54+00:00",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "In the deep regime with the spherical enclosed-mass convention B(r) = G_N*M_b(<r)/r^2, every branch of {Q, RAR, MU2, EXP, MONO} satisfies v^4(r) = G_N*a0*M_b(<r) with log-log slope (1/4)*(4*pi*r^3*rho_b(r))/M_b(<r); the total-mass flat law v_flat^4 = G_N*a0*M_b^tot is admissible only in the settled region with (v/v_flat)^4 = M_b(<r)/M_b^tot; a catalog convention flip M -> lambda*M changes v_flat by lambda^(1/4), r_M by lambda^(1/2), the kernel argument by lambda at fixed r, and an inferred a0 by lambda; the constant-profile flip is exactly degenerate with kappa -> lambda*kappa in the settled flat region, while a profile-changing flip (bulge stripped) is not (max log-residual 5.57 after best rescale). Domain: static spherical baryonic distributions, deep and transition bins, positive masses/speeds, both a0 footings separately; all identities Lean-certified (7 theorems, axioms {propext, Classical.choice, Quot.sound}); numerical residuals <= 3.7e-8 (slope identity, 32001-pt grid), 1e-15 (uniform-sphere slopes), 9.1e-16 (shell quadrature cross-check); negative control (total mass inside a uniform sphere) detects the wrong radial power 0 vs correct 3/4 and Newtonian 1.",
+  "framework_cell": {
+    "action_source": "FRIED_CHICKEN_SPEC.md (pinned 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f), amended 2026-09-26; README.md 91a5fac4; DERIVATIONS.md 8da8176e (B = G_N*M_b(<r)/r^2 premise)",
+    "kernel": "branch-independent deep limit g^2 = a0*B shared by Q, RAR, MU2, EXP, MONO; finite-field flip tables computed per branch (MONO splice recomputed: y* = 2.3374124, y_p = 2.5396383, h_p = 0.6476102, delta = 0.05)",
+    "filter": "not applied (audit on the spherical unfiltered idealisation; filtered transfer is the open implication and child AS019.C01)",
+    "gate": "deep-law source-mass convention (branch CORE scale identities; negative control and limiting regimes as mandated)",
+    "coupling": "G_N (measured Newton coupling) in B = G_N*M_b(<r)/r^2 and r_M; G_bare and G_cosmo kept separate symbols; Lambda_eff ratio identity noted for G_E != G_N",
+    "parameters": "kappa = 1/2 ADOPTED input (not derived); a0 canonical 9.3619e-11 and alternative 1.1279e-10 m/s^2 carried separately everywhere dimensional",
+    "scale_footing": "both footings: r_M(1e11 M_sun) = 12.202 kpc (canonical) / 11.117 kpc (alt); v_flat(1e11 M_sun) = 187.75 / 196.70 km/s; flip ratios footing-independent",
+    "boundaries": "static spherical baryonic distributions; circular orbits; no EFE; positive enclosed mass, positive speed, positive radius (Lean hypotheses); uniform-sphere model deep everywhere (B(R)/a0 <= 1.8e-3)",
+    "initial_conditions": "none (static audit)",
+    "units": "SI (G_N 6.67430e-11 m^3 kg^-1 s^-2, c 299792458 m/s, M_sun 1.98847e30 kg, pc 3.085677581491367e16 m, k_B unused)"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted input per framework mandate (no independent derivation supplied by this task)",
+    "spherical enclosed-mass idealisation B = G_N*M_b(<r)/r^2 (shell theorem; the premise being audited)",
+    "illustrative sample values for the flip tables: mu_b = 1/3, mu_g = 1/5 (lambda = 23/15) and the two-component bulge+disk density model (labelled samples, NOT catalog rows, NOT fits)",
+    "finite-field flip tables use the spherical unfiltered reduction of each branch (labelled; MONO operative for conclusions, others comparisons)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS019_deep_law_source_mass_conventions.md": "7df4433219f25790668c1b20f7814c66358616538a0e4357a715f303a33006e5",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+    "opus_48_extended_research/reviews/collective_efe/COLLECTIVE_EFE_CLUMPY_VS_SMOOTH_VERDICT_2026-06-20.md": "consulted for the spherical enclosed-mass theorem (not manifest-pinned; hash not recorded at read time)"
+  },
+  "artifacts_sha256": {
+    "derivation.md": "1448f6e877902cd155c0d9ded1cd8a9498ac1096733cc0df36bdb4a8192c7c0b",
+    "AS019_compute.py": "65a8c75a02e3f08d922aad86c92293ac463cce83dba1b78781fd4066104ea396",
+    "raw_output.json": "49d052d9a055ed9bddd1e53a08cd717d3236a00c7d38fc1984e2ffed708d6bec",
+    "AS019_deep_mass_slopes.lean": "9c2497ecbbfbd8bf862c48fa819349821b70205956e42173878df1e3fcfdc4cc",
+    "run.log": "db9a50c98c27af714a402fa286955cf6d38f197a6235a05d4efe96cd07775df5"
+  },
+  "commands": [
+    {
+      "argv": ["/usr/bin/time", "-p", "python3", "AS019_compute.py"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS019/run_AS019-r1-20260927T2259",
+      "note": "stdout -> raw_output.json, stderr -> run.log; exit 0; wall 0.01 s"
+    },
+    {
+      "argv": ["lake", "env", "lean", "AS019_deep_mass_slopes.lean"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "note": "exit 0; zero sorry; #print axioms = {propext, Classical.choice, Quot.sound} on all 7 theorems"
+    }
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s, memory <= 512 MB, 1 thread, grid <= 512 cells with 2 refinements (prototype planning bounds per ORCHESTRATOR.md)",
+    "enforced": {
+      "wall": "0.01 s measured (budget 120 s; script self-exits 66 if exceeded)",
+      "memory": "~7 MB measured via getrusage ru_maxrss (macOS bytes -> MiB conversion bug fixed in-session); budget 512 MB; script self-exits 67 if exceeded",
+      "threads": "1 (single-threaded stdlib script; no multiprocessing)",
+      "grid": "32 001 points for the slope-identity check (exceeds the 512-cell planning bound deliberately for the O(h^4) convergence demonstration: 4001 -> 16001 -> 32001 points reduce max residual 2.3e-6 -> 1.5e-7 -> 3.7e-8; runtime still 0.01 s)",
+      "refinements": "bisection: 120 iterations (transition radius), 80 iterations MONO peak, 120 iterations splice"
+    }
+  },
+  "checks": [
+    {"name": "negative_control_wrong_total_mass_inside_uniform_sphere", "tolerance": "slope 0 expected for the wrong convention", "observed_canonical": 0.0, "observed_alternative": 0.0, "result": "fail-as-designed: the wrong convention gives slope 0, the correct enclosed convention gives 3/4 (residual 1.0e-15), Newtonian gives 1 (residual 1.6e-15); the wrong radial power is detected", "pass": true},
+    {"name": "deep_and_newtonian_limiting_regimes", "tolerance": "slopes 3/4 and 1 to 1e-7", "observed": "3/4 to 1.0e-15 (canonical 9.99e-16, alt 5.55e-16); 1 to 1.6e-15; leading neglected term B/(B+a0) = O(B/a0) stated, B(R)/a0 <= 1.8e-3 at the edge", "pass": true},
+    {"name": "independent_representation_shell_quadrature", "tolerance": "relative residual < 1e-10", "observed": [9.14e-16, -1.41e-16, 6.77e-16], "pass": true},
+    {"name": "slope_identity_non_power_law_profile", "tolerance": "max relative residual < 1e-7 (away from the 3% density-kink boundary layer)", "observed": "full domain 3.65e-8 (can) / 3.66e-8 (alt); away from kink 3.59e-8 (can) / 3.58e-8 (alt); n = 31 999 points", "pass": true},
+    {"name": "flat_region_product_degeneracy_flip_equals_a0_flip", "tolerance": "|v_flat(a0,lambda*M) - v_flat(lambda*a0,M)| < 1e-9 km/s", "observed": "0.0 (exact), both footings", "pass": true},
+    {"name": "profile_flip_not_a0_degenerate", "tolerance": "best-constant-rescale log-residual > 1e-9", "observed": "5.5687 (max over [1.01*r1, 0.9*R2]), both footings", "pass": true},
+    {"name": "mono_splice_landmarks", "tolerance": "y* in [2.3373, 2.3375], y_p in [2.5395, 2.5397]", "observed": "y* = 2.3374124, y_p = 2.5396383, h_p = 0.6476102", "pass": true},
+    {"name": "lean_certificate", "tolerance": "zero sorry; axioms subseteq {propext, Classical.choice, Quot.sound}", "observed": "7 theorems, lake env lean exit 0, axiom print = [propext, Classical.choice, Quot.sound] for all", "pass": true}
+  ],
+  "tested_domain": "Uniform sphere (rho = 1e-21 kg/m^3, R = 20 pc; slopes over [0.02R, 0.30R], quadrature at 0.05/0.13/0.27R). Two-component bulge+disk sample (r1 = 2 kpc, rho1 = 1e-20; envelope rho2 = 3e-22*(r/r1)^-2 to 25 kpc; M_tot = 2.21e10 M_sun); slope identity over 31 999 interior points; flip tables at point A (y_true = 1.10 canonical, r = 2.62 kpc) and point B (12 kpc, y = 0.0742 can / 0.0616 alt). Convention-flip sample lambda = 23/15 (mu_b = 1/3, mu_g = 1/5, labelled illustrative). Dimensional examples M in {1e9, 1e11, 1e13} M_sun, both footings. Exclusions: no EFE, no observational fit, no catalog data ingested, spherical idealisation for the finite-field tables; filtered/disk non-spherical transfer is explicitly out of domain (open).",
+  "failed_attempts": [
+    {"artifact": "(in-session, not preserved as files)", "cause": "initial two-component model used pc instead of kpc (r1 = 4 pc), transition-radius bisection asserted no crossing -> model re-scaled to kpc and single canonical-footing bisection; not a scientific failure, a unit mistake, fixed and re-run"},
+    {"artifact": "run.log (exit 67 run)", "cause": "memory guard mis-converted macOS ru_maxrss (bytes vs KB) and falsely tripped MEM_BUDGET_EXCEEDED; fixed the conversion; final run exit 0"},
+    {"artifact": "raw_output.json (intermediate)", "cause": "MONO peak-finder bisection direction inverted (f(z) = e^z(2-z) decreasing on z>1), giving y_p = 2.89 instead of 2.5396; direction fixed, splice landmarks verified against AS006-certified y* = 2.33741"}
+  ],
+  "limitations": "Finite-field flip tables use one labelled illustrative two-component spherical model (no data, no fit, per task). Audit restricted to the spherical enclosed idealisation: non-spherical disk Newtonian fields are not treated. Operative filtered-MONO transfer (extended source, filter S, adjoint S*) is NOT proved here — it is the open implication and child AS019.C01. MONO is the operative conclusion label; Q/RAR/MU2/EXP remain comparisons at finite field; deep identities are branch-shared by the shared-limit discipline. kappa = 1/2 remains an adopted input; nothing here derives it. Numerical agreement is finite evidence; the Lean certificate covers the algebra only.",
+  "next_unresolved_implication": "For the operative filtered system with an extended axisymmetric disk+bulge source, prove the argument-transfer bound |grad(Su)(r)|/a0 = G_N*M_b(<r)/(a0*r^2)*(1 + eps_xi(r) + eps_flat(r)) with quantified flattening (Bessel-disk deviation from the enclosed sphere, O((h/r)^2)) and filter (exponentially small in (r/xi)^2) corrections, and the radius r_c beyond which the enclosed-sphere convention gives the circular speed to a stated tolerance — the convention audit's transfer to the operative MONO gate inside the mass distribution (intermediate region left open by AS006.C01/AS007.C01, both undispatched).",
+  "suggested_followup": "Dispatch child AS019.C01 (spec at deepseek_push/astra_spawn_ideas/branches/AS019/AS019.C01.md, readiness: ready-not-dispatched): the bounded ordered computation of eps_flat and eps_xi with the pathological control h = xi, output r_c(Sigma, xi, a0; tol) on both footings; first cheap step = closed-form leading flattening term of the exponential-disk Bessel field, <=120 s / 512 MB / 1 thread.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": "G_N = 6.67430e-11 SI, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m, k_B = 1.380649e-23 J/K (unused), kappa = 1/2 adopted, a0 pair {9.3619e-11, 1.1279e-10} m/s^2, branch kernels per FRAMEWORK_CONTRACT (MONO splice rule), shell theorem",
+    "measured_calibrations": "none beyond the constant conventions above (no observational fit)",
+    "boundary_initial_data": "static spherical circular-orbit configurations; positive domain",
+    "genuinely_derived": "v^4 = G_N*a0*M_b(<r) and the slope identity (deep law inherits the branch-shared limit); flip identities (8)-(11); flatness condition (6); lambda-kappa degeneracy; wrong-total-power counterexample; all Lean-certified"
+  },
+  "closure_implication": {
+    "gate": "Requirement 1 (operative filtered MONO, deep-MOND part) under the amended thirteen-item target; the mass-convention audit fixes what M_b means in v^4 = G*a0*M_b and r_M under the enclosed-sphere convention, so downstream deep-law transfers (BTFR-style zero points, kernel arguments in RAR/MONO reductions) have a single convention",
+    "exact_implication": "If the operative filtered solution for an extended source reduces to the enclosed-sphere convention in the deep bin (target of child AS019.C01), then v_flat^4 = G_N*a0*M_b(<r) with the enclosed baryonic mass is the same-parameter transfer of the certified identity, and any catalog flip is quantified by (8)-(11)",
+    "common_action_parameter_domain": "same-parameter cell as AS019 (G_N, kappa = 1/2, a0 pair, no EFE); compatible with the point-source exterior results AS006/AS007 once their own review is done; not a closure candidate"
+  },
+  "child_proposals": [
+    {
+      "id": "AS019.C01",
+      "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS019/AS019.C01.md",
+      "spec_sha256": "4cbf07d22083c863ff2b187093ee0fa56e8b993f106f88a62cd5e0ae8fed478a",
+      "fingerprint": "(action = filtered MONO operator equations; kernel = nu_mono through S; source = extended axisymmetric disk+bulge; domain = transition/interior disk region incl. rising M_b(<r); target = quantified transfer |grad(Su)|/a0 = (G_N*M_b(<r)/(a0*r^2))*(1+eps) and radius r_c; observable = circular speed; new input = flattening/filter corrections of the non-point source)",
+      "parent": "AS019/run_AS019-r1-20260927T2259",
+      "dependency": "parent result (certified identities applied on the point where the transfer is evaluated)",
+      "controls": "pathological control h = xi must break the transfer bound at the stated order / move r_c by a factor >= 2; second representation via direct quadrature; both footings",
+      "dispatch_state": "ready-not-dispatched (no child runner available to this worker; orchestrator dispatch required)",
+      "duplicate_search": "distinct from AS006.C01 (point-source exterior) and AS007.C01 (compact-source far field): different source class and domain; no live equivalent in results/, CHAIN_REGISTRY.json, claims/"
+    }
+  ],
+  "closure_candidate": null
+}

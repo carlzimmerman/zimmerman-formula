@@ -1,0 +1,660 @@
+{
+ "lane": "AS085_external_newtonian_baryon_virial_term",
+ "seed_sha256": "3d50da7fc2ff74c47b6de56ce53b6f2a8d6317d4e69eaaaa7c0d9d964d558e33",
+ "closed_forms": {
+  "general_shell": "W_bar = -int rho r dPhi_b/dr dV = -4 pi G M_b int rho(r) r dr = int rho Phi_b dV (exact, any spherical rho)",
+  "phantom": "rho = A/r^2: W_bar(r_in, R) = -4 pi G M_b A ln(R/r_in)",
+  "coefficient": "A = C/(4 pi G), C = sqrt(G M_b a0): W_bar = -M_b C ln(R/r_in)",
+  "G091_verbatim": "W_bar = -M_b C ln(r_break/r_b) on [r_b, r_break]",
+  "dW_dR": "dW_bar/dR = 4 pi R^2 rho(R) Phi_b(R)",
+  "thin_shell": "W = -M_b C ln(1+eps) = -M_b C (eps - eps^2/2) + O(eps^3); leading neglected term = -(1/3) M_b C eps^3",
+  "log_well_fixture": "W_log = C [M(<R)(ln R - 1) - M(<r_in)(ln r_in - 1)] (distinct functional; R <= r_M fixtures only)"
+ },
+ "virial_chain": {
+  "fluid_closure": "sigma^2 = (C/2)[1 + (1/lam) ln(r_break/r_b)]",
+  "bare_reading": "sigma^2 = (C/3)[1 + (1/lam) ln(r_break/r_b)]",
+  "boundary_case": "r_b = r_break => sigma^2 = C/2 EXACTLY (any lambda)",
+  "no_core": "r_b -> 0 => sigma^2 -> infinity (no finite equilibrium)"
+ },
+ "controls": [
+  {
+   "name": "NC1",
+   "result": "log divergence at r -> 0, per-decade growth = M_b C ln 10 measured"
+  },
+  {
+   "name": "NC2",
+   "result": "log divergence at R -> infinity; full-kernel error unbounded; outer edge = open dependency"
+  },
+  {
+   "name": "NC3",
+   "result": "bare/fluid sigma^2 ratio = 2/3 EXACTLY; C/2 not a bare-virial consequence"
+  },
+  {
+   "name": "NC4",
+   "result": "r_b = r_break: sigma^2 = C/2 exact"
+  }
+ ],
+ "hp_residuals_interior": [
+  {
+   "footing": "canonical",
+   "shell": "r_in/R=0.01, R/r_M=0.62",
+   "r_in_m": 3.035547707899736e+18,
+   "R_m": 1.8820395788978366e+20,
+   "W_num_J": "-1.5159402034806047079974365494015787796999732812331e+52",
+   "W_closed_J": "-1.5159402034806047315283117574771692741040697438947e+52",
+   "rel_residual": "1.5522297748980208787333642137237782393855658347506e-17"
+  },
+  {
+   "footing": "canonical",
+   "shell": "r_in/R=0.1, R/r_M=0.62",
+   "r_in_m": 3.0355477078997365e+19,
+   "R_m": 1.8820395788978366e+20,
+   "W_num_J": "-6.701762935257646956253403110694398948461099264809e+51",
+   "W_closed_J": "-6.7017629352576472074517007783872377922534564912445e+51",
+   "rel_residual": "3.7482420684585972724485652789436994420555176938406e-17"
+  },
+  {
+   "footing": "canonical",
+   "shell": "r_in/R=0.5, R/r_M=0.62",
+   "r_in_m": 1.517773853949868e+20,
+   "R_m": 1.8820395788978366e+20,
+   "W_num_J": "-7.9012689717382018584542316905242683248731399371761e+50",
+   "W_closed_J": "-7.9012689717381989347036424791410316471913774690046e+50",
+   "rel_residual": "3.7003557272499581777490632736867625720040937208621e-16"
+  },
+  {
+   "footing": "canonical",
+   "shell": "r_in/R=0.01, R/r_M=1.0",
+   "r_in_m": 3.035547707899736e+18,
+   "R_m": 3.035547707899736e+20,
+   "W_num_J": "-1.691527819909679945443618945651169765468758016596e+52",
+   "W_closed_J": "-1.6915278199096799584235709523901898341184076058564e+52",
+   "rel_residual": "7.6735078512820981075052631504678680433525753438343e-18"
+  },
+  {
+   "footing": "canonical",
+   "shell": "r_in/R=0.1, R/r_M=1.0",
+   "r_in_m": 3.0355477078997365e+19,
+   "R_m": 3.035547707899736e+20,
+   "W_num_J": "-8.4576390995483993307152270731903088061489466184379e+51",
+   "W_closed_J": "-8.4576390995483997921178547619509491705920380292822e+51",
+   "rel_residual": "5.4554542025019426861552545227646385569217366228125e-17"
+  },
+  {
+   "footing": "canonical",
+   "shell": "r_in/R=0.5, R/r_M=1.0",
+   "r_in_m": 1.517773853949868e+20,
+   "R_m": 3.035547707899736e+20,
+   "W_num_J": "-2.5460030614645725603072471315483366901751613473465e+51",
+   "W_closed_J": "-2.5460030614645726096838357458251166263271154873212e+51",
+   "rel_residual": "1.939376639471643088906713114112145037577125662655e-17"
+  },
+  {
+   "footing": "alt",
+   "shell": "r_in/R=0.01, R/r_M=0.62",
+   "r_in_m": 2.7655643193848643e+18,
+   "R_m": 1.7146498780186155e+20,
+   "W_num_J": "-1.6639312192934835672544320095555020627342325919914e+52",
+   "W_closed_J": "-1.6639312192934834872386841329734604629693468025965e+52",
+   "rel_residual": "4.8088374656830630515285663359076491456726900707203e-17"
+  },
+  {
+   "footing": "alt",
+   "shell": "r_in/R=0.1, R/r_M=0.62",
+   "r_in_m": 2.7655643193848644e+19,
+   "R_m": 1.7146498780186155e+20,
+   "W_num_J": "-7.3560108417705167174477874705749188811901264813608e+51",
+   "W_closed_J": "-7.3560108417705162714761813763123319383813094493719e+51",
+   "rel_residual": "6.0626828275163580508486508160933635129387901560615e-17"
+  },
+  {
+   "footing": "alt",
+   "shell": "r_in/R=0.5, R/r_M=0.62",
+   "r_in_m": 1.382782159692432e+20,
+   "R_m": 1.7146498780186155e+20,
+   "W_num_J": "-8.6726165609462405029779130492889658646554899740876e+50",
+   "W_closed_J": "-8.6726165609462436131631365370435119453931311961743e+50",
+   "rel_residual": "3.5862132283044361986739501870118910859253557166327e-16"
+  },
+  {
+   "footing": "alt",
+   "shell": "r_in/R=0.01, R/r_M=1.0",
+   "r_in_m": 2.7655643193848643e+18,
+   "R_m": 2.765564319384864e+20,
+   "W_num_J": "-1.8566602702328637283215149910184210286168013707831e+52",
+   "W_closed_J": "-1.8566602702328636397861170053887017893664018930733e+52",
+   "rel_residual": "4.7685297846398979183441484744588634930343301584648e-17"
+  },
+  {
+   "footing": "alt",
+   "shell": "r_in/R=0.1, R/r_M=1.0",
+   "r_in_m": 2.7655643193848644e+19,
+   "R_m": 2.765564319384864e+20,
+   "W_num_J": "-9.2833013511643183281186172852041085400158142692772e+51",
+   "W_closed_J": "-9.2833013511643177692277463124317355885905177550154e+51",
+   "rel_residual": "6.0203891894845782620381062812482188086365982841976e-17"
+  },
+  {
+   "footing": "alt",
+   "shell": "r_in/R=0.5, R/r_M=1.0",
+   "r_in_m": 1.382782159692432e+20,
+   "R_m": 2.765564319384864e+20,
+   "W_num_J": "-2.7945521654884256609686211195580862452912367853252e+51",
+   "W_closed_J": "-2.79455216548842556451351334197290178902233281328e+51",
+   "rel_residual": "3.4515407859894780990028733332534370706753737754114e-17"
+  }
+ ],
+ "hp_residuals_deep": [
+  {
+   "footing": "canonical",
+   "r_in/r_M": 10.0,
+   "R/r_in": 2.0,
+   "W_num_J": "-2.5460030614645725603072471315483366901751613473465e+51",
+   "W_closed_J": "-2.5460030614645726096838357458251166263271154873212e+51",
+   "rel_residual": "1.939376639471643088906713114112145037577125662655e-17"
+  },
+  {
+   "footing": "canonical",
+   "r_in/r_M": 10.0,
+   "R/r_in": 10.0,
+   "W_num_J": "-8.4576390995483996280923778144894588062418097340445e+51",
+   "W_closed_J": "-8.4576390995483997921178547619509491705920380292822e+51",
+   "rel_residual": "1.9393766394716430889067131141121452516977033399348e-17"
+  },
+  {
+   "footing": "canonical",
+   "r_in/r_M": 100.0,
+   "R/r_in": 2.0,
+   "W_num_J": "-2.5460030614645725603072471315483366901751613473465e+51",
+   "W_closed_J": "-2.5460030614645726096838357458251166263271154873212e+51",
+   "rel_residual": "1.939376639471643088906713114112145037577125662655e-17"
+  },
+  {
+   "footing": "canonical",
+   "r_in/r_M": 100.0,
+   "R/r_in": 10.0,
+   "W_num_J": "-8.4576390995483996280923778144894588062418097340445e+51",
+   "W_closed_J": "-8.4576390995483997921178547619509491705920380292822e+51",
+   "rel_residual": "1.9393766394716430889067131141121452516977033399348e-17"
+  },
+  {
+   "footing": "alt",
+   "r_in/r_M": 10.0,
+   "R/r_in": 2.0,
+   "W_num_J": "-2.7945521654884256609686211195580862452912367853252e+51",
+   "W_closed_J": "-2.79455216548842556451351334197290178902233281328e+51",
+   "rel_residual": "3.4515407859894780990028733332534370706753737754114e-17"
+  },
+  {
+   "footing": "alt",
+   "r_in/r_M": 10.0,
+   "R/r_in": 10.0,
+   "W_num_J": "-9.2833013511643194172688245040150351161075920834903e+51",
+   "W_closed_J": "-9.2833013511643192015705420274708359361199365246728e+51",
+   "rel_residual": "2.3235083545951155108989429518253289872444400750189e-17"
+  },
+  {
+   "footing": "alt",
+   "r_in/r_M": 100.0,
+   "R/r_in": 2.0,
+   "W_num_J": "-2.7945521654884256609686211195580862452912367853252e+51",
+   "W_closed_J": "-2.79455216548842556451351334197290178902233281328e+51",
+   "rel_residual": "3.4515407859894780990028733332534370706753737754114e-17"
+  },
+  {
+   "footing": "alt",
+   "r_in/r_M": 100.0,
+   "R/r_in": 10.0,
+   "W_num_J": "-9.2833013511643184389444278443111628523491044519159e+51",
+   "W_closed_J": "-9.2833013511643177692277463124317355885905177550154e+51",
+   "rel_residual": "7.2142081377966160713539530599470917585794801492538e-17"
+  }
+ ],
+ "fd_residuals": [
+  {
+   "footing": "canonical",
+   "R/r_M": 0.62,
+   "rel_residual": "0.00000050003752419769419890922305500144105040129463771415"
+  },
+  {
+   "footing": "canonical",
+   "R/r_M": 1.0,
+   "rel_residual": "0.00000050021515994307684959205752834198769138864587975696"
+  },
+  {
+   "footing": "canonical",
+   "R/r_M": 10.0,
+   "rel_residual": "0.00000050003752421484415679798833351805042830186628659764"
+  },
+  {
+   "footing": "alt",
+   "R/r_M": 0.62,
+   "rel_residual": "0.0000004998598885205669137713220120380640191143092117996"
+  },
+  {
+   "footing": "alt",
+   "R/r_M": 1.0,
+   "rel_residual": "0.0000004998598885147493110928668629581552580624557651254"
+  },
+  {
+   "footing": "alt",
+   "R/r_M": 10.0,
+   "rel_residual": "0.00000049985988861743157616811117606412565218189116791104"
+  }
+ ],
+ "virial_table": [
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 1.0,
+   "sigma2_B": 14209247043.29327,
+   "sigma2_A": 9472831362.195513,
+   "sigma_km_s_B": 119.20254629534249
+  },
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.3,
+   "sigma2_B": 41802064801.47684,
+   "sigma2_A": 27868043200.98456,
+   "sigma_km_s_B": 204.4555325773231
+  },
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.1,
+   "sigma2_B": 66980215469.9978,
+   "sigma2_A": 44653476979.998535,
+   "sigma_km_s_B": 258.8053621353271
+  },
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.03,
+   "sigma2_B": 94573033228.18137,
+   "sigma2_A": 63048688818.787575,
+   "sigma_km_s_B": 307.5272885910799
+  },
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.01,
+   "sigma2_B": 119751183896.70233,
+   "sigma2_A": 79834122597.80156,
+   "sigma_km_s_B": 346.05084004623126
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 1.0,
+   "sigma2_B": 14209247043.29327,
+   "sigma2_A": 9472831362.195513,
+   "sigma_km_s_B": 119.20254629534249
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.3,
+   "sigma2_B": 31316794053.36708,
+   "sigma2_A": 20877862702.24472,
+   "sigma_km_s_B": 176.96551656570577
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.1,
+   "sigma2_B": 46927247467.850075,
+   "sigma2_A": 31284831645.233383,
+   "sigma_km_s_B": 216.62697770095505
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.03,
+   "sigma2_B": 64034794477.92389,
+   "sigma2_A": 42689862985.282585,
+   "sigma_km_s_B": 253.0509720944061
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.01,
+   "sigma2_B": 79645247892.40688,
+   "sigma2_A": 53096831928.27125,
+   "sigma_km_s_B": 282.21489665219104
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 1.0,
+   "sigma2_B": 15596399979.170942,
+   "sigma2_A": 10397599986.113962,
+   "sigma_km_s_B": 124.88554751920233
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.3,
+   "sigma2_B": 45882918399.02805,
+   "sigma2_A": 30588612266.018707,
+   "sigma_km_s_B": 214.202984103929
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.1,
+   "sigma2_B": 73519042070.1575,
+   "sigma2_A": 49012694713.43834,
+   "sigma_km_s_B": 271.1439508271529
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.03,
+   "sigma2_B": 103805560490.0146,
+   "sigma2_A": 69203706993.34308,
+   "sigma_km_s_B": 322.18870323152953
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.01,
+   "sigma2_B": 131441684161.14406,
+   "sigma2_A": 87627789440.76271,
+   "sigma_km_s_B": 362.5488714106611
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 1.0,
+   "sigma2_B": 15596399979.170942,
+   "sigma2_A": 10397599986.113962,
+   "sigma_km_s_B": 124.88554751920233
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.3,
+   "sigma2_B": 34374041399.48235,
+   "sigma2_A": 22916027599.6549,
+   "sigma_km_s_B": 185.40237700601992
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.1,
+   "sigma2_B": 51508438075.5826,
+   "sigma2_A": 34338958717.05507,
+   "sigma_km_s_B": 226.9547048985383
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.03,
+   "sigma2_B": 70286079495.89401,
+   "sigma2_A": 46857386330.59601,
+   "sigma_km_s_B": 265.1152192837937
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.01,
+   "sigma2_B": 87420476171.99426,
+   "sigma2_A": 58280317447.99618,
+   "sigma_km_s_B": 295.6695387962619
+  }
+ ],
+ "nc1": [
+  {
+   "footing": "canonical",
+   "per_decade_increments_J": [
+    8.4576390995484e+51,
+    8.4576390995484e+51,
+    8.457639099548401e+51
+   ],
+   "predicted_Mb_C_ln10": 8.457639099548401e+51
+  },
+  {
+   "footing": "alt",
+   "per_decade_increments_J": [
+    9.283301351164319e+51,
+    9.283301351164319e+51,
+    9.283301351164319e+51
+   ],
+   "predicted_Mb_C_ln10": 9.283301351164319e+51
+  }
+ ],
+ "nc2": [
+  {
+   "footing": "canonical",
+   "per_decade_increments_J": [
+    8.4576390995484e+51,
+    8.4576390995484e+51,
+    8.4576390995484e+51
+   ],
+   "predicted_Mb_C_ln10": 8.457639099548401e+51
+  },
+  {
+   "footing": "alt",
+   "per_decade_increments_J": [
+    9.283301351164319e+51,
+    9.283301351164319e+51,
+    9.283301351164319e+51
+   ],
+   "predicted_Mb_C_ln10": 9.283301351164319e+51
+  }
+ ],
+ "nc3": [
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.3,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.1,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "canonical",
+   "lambda": 0.62,
+   "r_b/r_break": 0.01,
+   "s2A_over_s2B": 0.6666666666666667
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.3,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.1,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "canonical",
+   "lambda": 1.0,
+   "r_b/r_break": 0.01,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.3,
+   "s2A_over_s2B": 0.6666666666666667
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.1,
+   "s2A_over_s2B": 0.6666666666666667
+  },
+  {
+   "footing": "alt",
+   "lambda": 0.62,
+   "r_b/r_break": 0.01,
+   "s2A_over_s2B": 0.6666666666666667
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.3,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.1,
+   "s2A_over_s2B": 0.6666666666666666
+  },
+  {
+   "footing": "alt",
+   "lambda": 1.0,
+   "r_b/r_break": 0.01,
+   "s2A_over_s2B": 0.6666666666666667
+  }
+ ],
+ "dimensional": [
+  {
+   "footing": "canonical",
+   "a0": 9.3619e-11,
+   "rho_Lambda": 5.844412454021876e-27,
+   "Lambda_m-2": 1.0907997632807349e-52,
+   "C_vflat2": 28418494086.58654,
+   "r_M_pc": 9837.540143881779,
+   "r_break_pc": 6099.274889206703,
+   "W_bar_J": -4.422319720405792e+51,
+   "W_bar_over_Mb_c2": -3.8069426279397084e-07,
+   "sigma_kms_at_rb_break": 119.20254629534249
+  },
+  {
+   "footing": "alt",
+   "a0": 1.1279e-10,
+   "rho_Lambda": 8.483089619559099e-27,
+   "Lambda_m-2": 1.583281847696523e-52,
+   "C_vflat2": 31192799958.341885,
+   "r_M_pc": 8962.58356988877,
+   "r_break_pc": 5556.801813331036,
+   "W_bar_J": -4.854040962556062e+51,
+   "W_bar_over_Mb_c2": -4.178588755772848e-07,
+   "sigma_kms_at_rb_break": 124.88554751920233
+  }
+ ],
+ "constants": {
+  "G_N": 6.6743e-11,
+  "c": 299792458.0,
+  "M_sun": 1.98847e+30,
+  "pc": 3.085677581491367e+16,
+  "kappa": 0.5,
+  "M_b_Msun": 65000000000.0
+ },
+ "bounds_enforced": {
+  "wall_s": 120,
+  "mem_mb": 512,
+  "threads": 1,
+  "elapsed_s": 1.1099109649658203
+ },
+ "checks": [
+  {
+   "name": "1a [general shell] W_work = -int rho r dPhi_b/dr dV equals W_pot = int rho Phi_b dV for ARBITRARY spherical rho on [r_in, R]",
+   "measured": "W_work = -4*pi*G*M_b*Integral(r*rho(r), (r, r_in, R)) ; W_pot = -4*pi*G*M_b*Integral(r*rho(r), (r, r_in, R)) ; difference == 0: True",
+   "pass": true
+  },
+  {
+   "name": "1b [closed form] rho = A/r^2 on [r_in, R]: W_bar = -4 pi G M_b A ln(R/r_in) EXACTLY (work form integrated explicit)",
+   "measured": "W_work = log((r_in/R)**(4*pi*A*G*M_b)) ; closed = -log((R/r_in)**(4*pi*A*G*M_b)) ; diff == 0: True",
+   "pass": true
+  },
+  {
+   "name": "1c [coefficient] with A = C/(4 pi G), C = sqrt(G M_b a0): 4 pi G M_b A = M_b C, so W_bar = -M_b C ln(R/r_in) (the G091 coefficient)",
+   "measured": "W_bar = log((r_in/R)**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; -M_b C ln(R/r_in): diff == 0: True",
+   "pass": true
+  },
+  {
+   "name": "1d [G091 comparison] shell [r_b, r_break]: W_bar = -M_b C ln(r_break/r_b), identical to the logarithmic expression quoted in G091_virial_triad.py (V1c: 'W_bar = -M_b C ln(r_break/r_b)'), domain r >= r_b > 0, r_break > r_b",
+   "measured": "ours = log((a_0*r_b**2/(G*M_b*lambda**2))**(sqrt(G)*M_b**(3/2)*sqrt(a_0)/2)) ; G091 = -log((sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b))**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; diff == 0: True",
+   "pass": true
+  },
+  {
+   "name": "1e [differentiation] dW_bar/dR = 4 pi R^2 rho(R) Phi_b(R) (shell theorem derivative), symbolic",
+   "measured": "dW/dR = -sqrt(G)*M_b**(3/2)*sqrt(a_0)/R ; 4 pi R^2 rho Phi_b = -sqrt(G)*M_b**(3/2)*sqrt(a_0)/R ; diff == 0: True",
+   "pass": true
+  },
+  {
+   "name": "1f [thin shell] for Delta << r_in (eps = Delta/r_in): W_bar = -M_b C ln(1+eps) = -M_b C (eps - eps^2/2) + O(eps^3); the leading neglected term is -(1/3) M_b C eps^3 (symbolic, exact)",
+   "measured": "series = sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon**2/2 - sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon ; leading neglected = sqrt(G)*M_b**(3/2)*sqrt(a_0)*(-epsilon**2/2 + epsilon - log(epsilon + 1))",
+   "pass": false
+  },
+  {
+   "name": "2a [interior diagnostics, both footings] 6 shells (r_in/R = 0.01,0.1,0.5 x R/r_M = 0.62,1.0): 50-digit quadrature of the DEFINING work-form integral reproduces -M_b C ln(R/r_in) with rel residual < 1e-45 per shell (threshold set before evaluation)",
+   "measured": "canonical|r_in/R=0.01, R/r_M=0.62: 1.6e-17; canonical|r_in/R=0.1, R/r_M=0.62: 3.7e-17; canonical|r_in/R=0.5, R/r_M=0.62: 3.7e-16; canonical|r_in/R=0.01, R/r_M=1.0: 7.7e-18; canonical|r_in/R=0.1, R/r_M=1.0: 5.5e-17; canonical|r_in/R=0.5, R/r_M=1.0: 1.9e-17; alt|r_in/R=0.01, R/r_M=0.62: 4.8e-17; alt|r_in/R=0.1, R/r_M=0.62: 6.1e-17; alt|r_in/R=0.5, R/r_M=0.62: 3.6e-16; alt|r_in/R=0.01, R/r_M=1.0: 4.8e-17; alt|r_in/R=0.1, R/r_M=1.0: 6.0e-17; alt|r_in/R=0.5, R/r_M=1.0: 3.5e-17",
+   "pass": false
+  },
+  {
+   "name": "2b [deep exterior, both footings] shells r_in/r_M = 10,100 with R/r_in = 2,10: closed form exact to < 1e-45 relative (the quadrature residual is the full-kernel integral ON the shell; the tail beyond R is NC2)",
+   "measured": "canonical|r_in/rM=10,R/r_in=2: 1.9e-17; canonical|r_in/rM=10,R/r_in=10: 1.9e-17; canonical|r_in/rM=100,R/r_in=2: 1.9e-17; canonical|r_in/rM=100,R/r_in=10: 1.9e-17; alt|r_in/rM=10,R/r_in=2: 3.5e-17; alt|r_in/rM=10,R/r_in=10: 2.3e-17; alt|r_in/rM=100,R/r_in=2: 3.5e-17; alt|r_in/rM=100,R/r_in=10: 7.2e-17",
+   "pass": false
+  },
+  {
+   "name": "2c [differentiation, numeric] central finite difference of W_bar(R) matches dW/dR = -M_b C/R = 4 pi R^2 rho(R) Phi_b(R) to < 1e-40 relative (threshold set before evaluation)",
+   "measured": "canonical|R/rM=0.62: 5.0e-07; canonical|R/rM=1.0: 5.0e-07; canonical|R/rM=10.0: 5.0e-07; alt|R/rM=0.62: 5.0e-07; alt|R/rM=1.0: 5.0e-07; alt|R/rM=10.0: 5.0e-07",
+   "pass": false
+  },
+  {
+   "name": "2d [uniform-density case] rho = rho_0 const: W_bar = -2 pi G M_b rho_0 (R^2 - r_in^2) EXACTLY (symbolic residual 0)",
+   "measured": "W_uni = 2*pi*G*M_b*rho_0*(-R**2 + r_in**2) ; closed = -2*pi*G*M_b*rho_0*(R**2 - r_in**2) ; diff == 0: True",
+   "pass": true
+  },
+  {
+   "name": "3a [virial chain, fluid closure] 2T + W_self + W_bar = 3 P_s V with W_bar = -M_b C ln(r_break/r_b) (this result), W_self = -G M_T^2/r_break, M_T = lam M_b: sigma^2 = (C/2)[1 + (1/lam) ln(r_break/r_b)] (sympy-exact solution of the virial equation; G091 reading B re-solved)",
+   "measured": "sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(lambda + log(sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b)))/(2*lambda) ; matches (C/2)[1 + ln/lam]: True",
+   "pass": true
+  },
+  {
+   "name": "3b [bare reading contrast] WITHOUT the boundary term (collisionless reading 2T + W = 0): sigma^2 = (C/3)[1 + (1/lam) ln(r_break/r_b)] (sympy-exact) -- the two readings differ; the C/2 triad is not the bare virial's answer",
+   "measured": "sigma^2_bare = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(lambda + log(sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b)))/(3*lambda) ; matches (C/3)[1 + ln/lam]: True",
+   "pass": true
+  },
+  {
+   "name": "3c [anchor] the fluid-closure sigma at r_b = r_break reproduces the registered MW values 119.2/124.9 km/s (G031) to < 0.05 km/s on both footings (threshold set before evaluation)",
+   "measured": "canonical = 119.203 km/s; alt = 346.051 km/s",
+   "pass": false
+  },
+  {
+   "name": "NC1 [no core] extending the point-source integral to r -> 0 with NO baryonic core diverges logarithmically: |W_bar| grows by exactly M_b C ln(10) per decade of r_in -> 0 (increment constancy measured to 1e-30 relative, threshold before evaluation); sympy flags the improper integral",
+   "measured": "per-decade = 8.457639e+51 J vs M_b C ln10 = 8.457639e+51 J ; sympy: no error (returned something)",
+   "pass": false
+  },
+  {
+   "name": "NC2 [no outer edge] deep-exterior shells R -> infinity: |W_bar| grows by exactly M_b C ln(10) per decade of R (measured 1e-30 relative); the full-kernel error of any finite-R truncation is M_b C ln(R_max/R) and diverges -- the deep exterior needs a physical outer edge (registered EFE cap lives at 0.62 r_M <= r_M; no cap is registered beyond r_M)",
+   "measured": "per-decade = 8.457639e+51 J vs predicted 8.457639e+51 J",
+   "pass": false
+  },
+  {
+   "name": "NC3 [boundary-term bookkeeping] the ratio sigma2_bare/sigma2_fluid = 2/3 EXACTLY at every (footing, lambda, r_b/r_break) (r = (C/3)/(C/2) = 2/3; asserted equal to 2/3 to 1e-12); the code's assert abs(s2B - s2A) > 0 fails the moment the boundary term is dropped, so a C/2-from-bare-virial claim cannot survive this control",
+   "measured": "min |s2A/s2B - 2/3| = 0.00e+00",
+   "pass": true
+  },
+  {
+   "name": "NC4 [boundary case] at r_b = r_break (phantom entirely outside the baryonic inner edge): sigma^2 = C/2 EXACTLY for any lambda, any M_b, both footings (symbolic residual 0)",
+   "measured": "sigma^2(r_b = r_break) - C/2 == 0: True",
+   "pass": true
+  },
+  {
+   "name": "5a [log-well fixture] the imposed-log-well potential energy W_log = int rho (C ln r) dV = C [M(<R)(ln R - 1) - M(<r_in)(ln r_in - 1)] (closed form, symbolic) is a DIFFERENT functional from the Newtonian virial term -M_b C ln(R/r_in) (symbolic difference != 0)",
+   "measured": "W_log closed == symbolic: True ; W_log - W_bar != 0: True",
+   "pass": true
+  },
+  {
+   "name": "5b [limits] deep: r_b -> r_break: W_bar -> 0 and sigma^2 -> C/2 (NC4); Newtonian: the closed form is EXACT on every finite shell (no limiting regime used -- 1f's expansion is a consistency check); normalization: M_ph(<r_M) = M_b (equipartition) makes W_bar(r_M) = -M_b C ln(r_M/r_b)",
+   "measured": "exact-identity chain: 1b+1c+1d (symbolic), 2a+2b+2c (numeric), 3a, NC4",
+   "pass": true
+  }
+ ],
+ "n_pass": 12,
+ "n_total": 19
+}

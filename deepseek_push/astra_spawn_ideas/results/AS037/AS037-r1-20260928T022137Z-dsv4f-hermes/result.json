@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "task_id": "AS037",
+  "task_sha256": "892289c1aa25b19d7b3896a0181ccace7b0f0b92aafac5d3d0e49663881f20bd",
+  "run_id": "AS037-r1-20260928T022137Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent (run dir tag dsv4f-hermes); identity taken from the runtime environment of this session",
+  "started_utc": "2026-09-28T02:21:37Z",
+  "finished_utc": "2026-09-28T03:33:10Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Constitutive-Hessian eigenvalue theorem for AQUAL-type branches of the framework (flux A(v) = mu(|v|/a0) v; constitutive matrix N_ij = dA_i/dv_j with L2-adjoint eigenvalues lambda_T = mu and lambda_L = mu + x*mu' = d(x*mu)/dx, x = |v|/a0). (i) MUSICAL/UNIVERSAL: on the physical domain g > 0 (x > 0), ALL FIVE branches RAR, MONO, Q, EXP, MU2 have lambda_T > 0 AND lambda_L > 0, i.e. the constitutive matrix is strictly elliptic on every open set with |grad Phi| >= eps > 0 (well-posedness criterion: no vanishing/negative-eigenvalue surface inside the domain); both eigenvalues vanish EXACTLY at x = 0 (J(0) = 0 degeneracy, quadratic contact B(x) ~ x^2 -> degenerate ellipticity precisely at the zero-field point, a controlled limit, not a sign change). (ii) LIMITS: Newtonian x -> inf: lambda_T,L -> 1 for all five; deep x -> 0: lambda_T/x -> 1 and lambda_L/x -> 2 for all five (Q exact: lambda_L = 2x/sqrt(1+4x^2); RAR and MONO with x ~ sqrt(y) at the deep end). (iii) RANGE CONTRAST: only the historical EXP AQUAL (sup lambda_L = 1 + e^-2 = 1.135335 at x = 2) and the MU2 primitive (sup lambda_L = 28/27 = 1.037037 at x = 4) carry an O(0.1) longitudinal stiffness bump above the Newtonian value; RAR carries only an exponentially small bump (sup over the diagnostic grid 1.00018165 at y = 100, asymptote (sqrt(y)/2)e^{-sqrt(y)}) and is sub-Newtonian through the knee (lambda_L ~ 0.51 at x ~ 0.42); Q and the OPERATIVE MONO branch have 0 < lambda_L < 1 everywhere (MONO: 0 < lambda_L <= 1 for all y > 0, exactly 1/(1+h') with h' >= 0). (iv) OPERATIVE BRANCH: the MONO+heat-filter cell (criterion B operative) is audible in this dimensionless audit: lambda_L is continuous through the splice (h-continuity residual 6.6e-33) but d(lambda_L)/dy jumps by 0.0343 at y* (splice is C^0 in h', not C^1); the kink is measurable but does not threaten ellipticity (lambda_L >= mu > 0). AUDITED CELL: MU2 (algebraic, Lean-certified); Q comparison cell Lean-certified; EXP/RAR/MONO carried numerically at 80 dps (transcendental content). Historical EXP AQUAL = comparison; MONO+heat filter = operative (criterion B); the filtered FIELD equation itself (heat-filter action on the branch) is NOT exercised here - this task audits the pointwise constitutive response only.",
+  "framework_cell": {
+    "action": "none: constitutive/kinematic audit of the eigenvalue content of the five AQUAL-type branches (RAR, MONO, Q, EXP, MU2) as a health check feeding criterion B; no field equation, no time evolution, no action integration, no parameter fit",
+    "audited_cell": "MU2 (algebraic eigenvalue content, Lean-certified mu2_eq_lamT, lamL_eq_mu_plus, positivity, bounds, derivatives); Q comparison cell (Lean-certified yQ_deriv, xmuQ_deriv -> lambda_L = d(x*mu)/dx); EXP/RAR/MONO carried numerically (80 dps mpmath + sympy exact identities) because their eigenvalue content is transcendental (exp, sqrt-composed splines); MONO+heat-filter is the OPERATIVE cell (criterion B) and is audited numerically including the splice kink; historical EXP AQUAL enters only as comparison",
+    "source_hashes": {
+      "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+      "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+      "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+      "deepseek_push/astra_spawn_ideas/AS037_constitutive_hessian_eigenvalues_of_an_aqual_branch.md": "892289c1aa25b19d7b3896a0181ccace7b0f0b92aafac5d3d0e49663881f20bd"
+    },
+    "kernel": "MU2: mu(u) = 1 - (1+u)^(-2), u = x/2; lambda_T = mu = u(2+u)/(1+u)^2; lambda_L = mu + x*mu' = u(4+3u+u^2)/(1+u)^3 = 1 + (u-1)/(1+u)^3; sup lambda_L = 28/27 at u = 2 (x = 4). Q: mu = (sqrt(1+4x^2)-1)/(2x), x*mu = (sqrt(1+4x^2)-1)/2, lambda_L = 2x/sqrt(1+4x^2) < 1. EXP: f(z) = 1 - e^{-sqrt z}, lambda2 = f' + 2z f'' = (sqrt z + e^{sqrt z} - 1) e^{-sqrt z}; sup lambda_L = 1 + e^-2 at x = 2. RAR: mu = 1 - e^{-sqrt y}, x(y) = y/(1 - e^{-sqrt y}); lambda_T = mu, lambda_L = dy/dx = 1/(dx/dy) ((dy/dx)(dx/dy) = 1 verified); sub-Newtonian through the knee (lambda_L ~ 0.51 at x ~ 0.42), exponentially small bump sup = 1.00018165 at y = 100, then 1 from above. MONO (operative): mu = y/(y + h(y)); h'_mono(y) = max(h'_RAR(y), delta*h_p/(y+y_p)) with delta = 0.05, continuous splice at y* (h(y) = h_RAR(y_star) + delta*h_p*ln((y+y_p)/(y_star+y_p)) for y > y*); y_p = 2.5396382822 (h'_RAR = 0), h_p = 0.6476102379, y* = 2.3374124053; x(y) = y + h(y); lambda_T = mu, lambda_L = dy/dx = 1/(1 + h'); h C^0 at y_p (residual 6.6e-33), d(lambda_L)/dy kink jump 0.0343 at y*; lambda_L in (0,1] for all y > 0.",
+    "filter": "heat filter S = exp((xi^2/2) Delta) NOT exercised: the seed's step 5 dependency (filtered field equation from the audited branch) is a declared open dependency; this task audits the pointwise constitutive response lambda_T, lambda_L only. The MONO (operative) branch enters through its spliced kernel, and the splice's C^0-in-h' kink is recorded (ID4) as the branch-level health item for the filtered equation step.",
+    "gate": "A02 constitutive kernels and branch fidelity (requirement-1 content: knee/interpolation forward mapping); criterion B (MONO+heat filter operative) health check. The eigenvalue positivity theorem is the ellipticity/well-posedness gate for the constitutive sector of any field equation built on these branches.",
+    "coupling": "single Newton coupling G = G_N = 6.67430e-11 SI for the a0/rho_Lambda footings; G_N/G_bare/G_cosmo separation is irrelevant here because the eigenvalue theorem is dimensionless (function of x = g/a0, y = B/a0 only); noted in footings that the separation must be re-introduced the moment an absolute acceleration/radius is computed from a bare coupling",
+    "parameters": {
+      "kappa": "1/2 ADOPTED as input (not derived); the eigenvalue theorem is kappa-independent in dimensionless form and cannot remove the normalisation ambiguity",
+      "a0_footings": ["9.3619e-11 m/s^2 (canonical, kappa = 1/2)", "1.1279e-10 m/s^2 (alternative, kappa = 1/2)"],
+      "a0_ratio_alt_over_can": "1.2047768081265555 (the same physical g maps to x_alt = x_can/1.2047768; eigenvalue theorem unchanged)",
+      "rho_Lambda_footings": ["5.844412454e-27 kg/m^3 (canonical)", "8.483089620e-27 kg/m^3 (alternative)", "ratio 1.4514871574"],
+      "kappa_if_rho_fixed_at_canonical": "0.602388404 (i.e., if rho_Lambda were pinned at the canonical value, the alternative a0 footing would force kappa = 0.6024 instead of 1/2)",
+      "critical_points": "EXP: lambda_L' = 0 at x = 2, sup lambda_L = 1 + e^-2 = 1.1353352832, mu(2) = e^-2 = 0.1353352832; MU2: sup lambda_L = 28/27 = 1.0370370370 at x = 4; Q/RAR/MONO: no critical point on (0, inf), lambda_L strictly increasing (Q: sqrt-form, monotone) and < 1",
+      "degeneracy": "lambda_T(0) = lambda_L(0) = 0 for every branch (J(0) = 0, B(x) = x*mu(x) ~ x^2): degenerate ellipticity exactly at grad Phi = 0, strict ellipticity on every set with |grad Phi| >= eps > 0"
+    },
+    "scale_footing_note": "The theorem is dimensionless (a0 cancels); both footings apply with the SI values listed. No per-object a0 fit was performed; footings are computed from the mandated constants G = 6.67430e-11, c = 299792458 with kappa = 1/2.",
+    "boundaries": "x = 0 (g = 0): degenerate point lambda_T = lambda_L = 0 for all five (verified numerically to 1e-50-1e-30 in NC3; Lean: mu2_zero, lamT_zero, lamL_zero); x -> inf: lambda_T -> 1, lambda_L -> 1 for all five (NC2 newtonian_x/y rows; Lean side: lamLQ_lt_one gives lambda_L < 1 from below for Q); the domain y > 0 handled by the y-grid; no other boundary cases exist for these rational/sqrt/spline kernels on x >= 0",
+    "initial_conditions": "none (static algebraic identities; no evolution)",
+    "units": "SI: m/s^2 for a0, g, B; kg/m^3 for rho_Lambda; Hz none; dimensionless x = g/a0, y = B/a0, z = x^2, u = x/2"
+  },
+  "new_assumptions": [],
+  "input_sha256": {
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "seen-in-session (8,901 chars read; not in SOURCE_MANIFEST)",
+    "deepseek_push/astra_spawn_ideas/AS037_constitutive_hessian_eigenvalues_of_an_aqual_branch.md": "892289c1aa25b19d7b3896a0181ccace7b0f0b92aafac5d3d0e49663881f20bd"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/compute_as037.py": "a0b7685c7fe652bcfd4938bdc8f4f6c339222321889df3a614a712411f047158",
+    "deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/raw_output.json": "392ebe576dd53ca66cce6247d32629ff5c86d74b134efe7ecd10577bc8605e99",
+    "deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/raw_output.stderr": "empty (no stderr output on successful run)",
+    "deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/AS037_mu2_q_eigenvalue_algebra.lean": "c605b2cc5fad220cbbff93d1946c54615e1b223789470a02c7c26fdec1f20cb4",
+    "deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/result.json": "written-this-run (unchanged after write)",
+    "lean compile evidence": "lake env lean <run>/AS037_mu2_q_eigenvalue_algebra.lean: exit 0, 0 errors/0 warnings, all 22 theorems, every '#print axioms' line reports exactly [propext, Classical.choice, Quot.sound] (see derivation.md sect. 11; compile transcript kept in /tmp/lean_final.txt this session)"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && git rev-parse HEAD (302ff4bd9cfdffb1ae4e71dca1a96e526423703f)",
+    "python3 deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/compute_as037.py > deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/raw_output.json 2> deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/raw_output.stderr  (exit 0; timing 2.148 s)",
+    "python3 check_json.py (JSON-safety walker: ALL VALUES JSON-SAFE)",
+    "cd fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS037/AS037-r1-20260928T022137Z-dsv4f-hermes/AS037_mu2_q_eigenvalue_algebra.lean (exit 0; 22 theorems; axioms = {propext, Classical.choice, Quot.sound})",
+    "sha256sum over all source pins vs SOURCE_MANIFEST.json: all matched (README 91a5fac..., FRIED_CHICKEN_SPEC 98d9149f..., peer review 521d9ac..., AS037 task 892289c1...)"
+  ],
+  "execution_bounds": {
+    "declared": {
+      "wall_clock_s": 120,
+      "memory_MB": 512,
+      "threads": 1,
+      "precision_dps": 80,
+      "grid": "y = 10^k, k = -10..8 step 0.1 -> 181 points (mandated by the work order)"
+    },
+    "enforced": {
+      "wall_clock_s": "ENFORCED via signal.alarm(120); observed elapsed 2.148 s (compute only; Lean compiles outside the prototype)",
+      "memory_MB": "NOT ENFORCEABLE on this macOS host: resource.setrlimit(RLIMIT_AS, 512MB) rejected ('current limit exceeds maximum limit'); recorded honestly in raw_output.json execution_bounds_recorded.memory_MB; process is a single small python3 (mpmath/sympy), observed RSS well under 512 MB by construction (no large arrays; numpy float64 probe is a 3-vector)",
+      "threads": "ENFORCED: single process, single thread, no subprocesses",
+      "precision_dps": "mpmath mp.dps = 80; sympy exact; numpy float64 used ONLY for the dedicated float64-cancellation control (NC3)",
+      "grid": "ENFORCED as declared"
+    },
+    "scale_note": "Cheapest bounded discriminating calculation (2.1 s): eigenvalue tables + 8 identity checks + 4 negative controls + refined sign probe on 10000x10000 grid all within the 120 s budget at 80 dps."
+  },
+  "checks": [
+    {"name": "ID1 mu + x*mu' = lambda_L", "result": "PASS", "observed": "max abs residual 1.1e-75 (EXP 5.3e-82, MU2 1.7e-81, Q 1.1e-75 at 80 dps)", "tolerance": "1e-60"},
+    {"name": "ID2 finite-difference d(x*mu)/dx = lambda_L", "result": "PASS", "observed": "max abs residual 7.5e-41 (FD-limited at h = 1e-20*x with 80 dps: h^2*f'''/6 ~ 1e-41 predicted)", "tolerance": "1e-30 (FD truncation floor)"},
+    {"name": "ID3 (dy/dx)*(dx/dy) = 1 (RAR analytic; MONO analytic)", "result": "PASS", "observed": "RAR max rel residual 1.05e-81; MONO 0.0 (exact at 80 dps: dy2 = 1/(1+hp), dx2 = 1+hp cancel)", "tolerance": "1e-70"},
+    {"name": "ID4 MONO splice continuity", "result": "PASS", "observed": "h continuity abs residual 6.64e-33 at y_p; d(lambda_L)/dy kink jump 0.0342879 at y* (splice C^0 in h', not C^1)", "tolerance": "1e-25 (continuity); kink recorded, not tolerance-gated"},
+    {"name": "ID5 flux-inverse roundtrip B(x(B)) = B", "result": "PASS", "observed": "max rel residual 1.35e-59 (MONO/RAR) .. 2.46e-65 (EXP/MU2/Q)", "tolerance": "1e-50"},
+    {"name": "ID6 Rayleigh 3-d eigenvalue residuals (q^T N q / |q|^2 - lambda)", "result": "PASS", "observed": "abs residuals 1.05e-81..1.13e-75; rel residuals 2.0e-81..8.0e-77", "tolerance": "1e-60"},
+    {"name": "ID7 spec EXP cross-check (sympy exact)", "result": "PASS", "observed": "G'(z) - (1 - e^{-sqrt z}) = 0 EXACT; lambda2 = f' + 2z f'' = (sqrt z + e^{sqrt z} - 1) e^{-sqrt z} EXACT; exp lamL = spec lam_par, exp lamT = spec lam_perp differences = 0 EXACT", "tolerance": "0 (exact rational/symbolic)"},
+    {"name": "ID8 MU2 primitive f'(z) = mu2(sqrt z)", "result": "PASS", "observed": "max abs residual 4.17e-22 (FD transitive-check limit at h = 1e-16 on z = 1e-8; sympy exact f' identity = 0 separately)", "tolerance": "1e-15"},
+    {"name": "NC1 negative control: drop x*mu' (mu-only response)", "result": "CONTROL FAILS AS REQUIRED", "observed": "at x = 1e-4, mu-only delta-A relative error 0.50024 (deep limit 1/2 exactly, i.e. the mu-only response misses the x*mu' term entirely); full lambda_L prediction relative error 4.997e-4 (finite-epsilon nonlinearity, eps = 1e-7)", "tolerance": "mu-only error must be O(1) at deep x; observed 0.50 = 1/2 analytic"},
+    {"name": "NC2 limits", "result": "PASS", "observed": "deep (x=1e-10): lambda_T/x -> 1 and lambda_L/x -> 2 for all five (Q 1.99999999999999999996; MONO/RAR 1.99997000 = 2(1-1.5*sqrt(y)) with sqrt(y) = 1e-5 exactly); Newtonian (x or y = 1e8): lambda_T -> 1, lambda_L -> 1 with approach rates EXP ~ x e^{-x}, MU2 ~ 4/x^2, Q ~ 1/(8x^2), RAR ~ e^{-sqrt y}, MONO ~ delta h_p/(y+y_p) = 3.24e-10", "tolerance": "relative 1e-6 on limits; approach-rate consistency read off at 6+ digits"},
+    {"name": "NC3 boundary and normalization", "result": "PASS", "observed": "exp lambda_L(2) = 1.1353352832366127 = 1+e^-2 to all 50 digits; mu2 lambda_L(4) = 1.037037037037037 = 28/27; Q lambda_L(1e30) = 0.999999999999999999999999999999999999999999999999999999999999875 (-> 1 from below); mu_Q(1e-50) = 0.0 exactly (J(0) = 0 degeneracy, mu ~ x); (x*mu_Q)/x^2 at x=1e-10 = 0.99999999999999999999 (-> 1: B ~ x^2 quadratic contact)", "tolerance": "1e-40 relative on each"},
+    {"name": "NC4 no-root bracket probe", "result": "PASS", "observed": "for every branch, lambda_L and lambda_T have NO sign-change bracket on (1e-12, 1e8): f(lo) > 0, f(hi) > 0 (f(lo) ~ x ~ 2e-12 deep, f(hi) ~ 1 Newtonian); consistent with the analytic positivity proofs; MONO lambda_T(hi) = 0.9999999881 also > 0", "tolerance": "bracket_exists = false required"},
+    {"name": "refined sign probe", "result": "PASS", "observed": "all five branches: lambda_T, lambda_L strictly positive on 10000 x 10000 log grid over x,y in [1e-12, 1e12]; violations: none", "tolerance": "zero violations"},
+    {"name": "footings", "result": "PASS", "observed": "a0_alt/a0_can = 1.204776808 (both from kappa*c*sqrt(G*rho_Lambda) with kappa = 1/2); rho_Lambda ratio 1.451487157; if rho fixed at canonical, alternative footing implies kappa = 0.602388 (not 1/2) - recorded, eigenvalue theorem identical in both footings", "tolerance": "identity-level (closed-form ratios)"}
+  ],
+  "tested_domain": "x = g/a0 in [1e-10, 1e8] (181 pts log), y = B/a0 in [1e-10, 1e8] (181 pts log) for all five branches (eigenvalue tables, ID1-ID3, ID5); refined sign probe x,y in [1e-12, 1e12] at 10000 pts/axis; boundary x = 1e-50 (Q degeneracy), x = 1e30 (Newtonian side); y = 1e-10 deep-y MONO/RAR asymptotics; proofs: MU2 and Q certified by Lean 4 for all u > 0 / x > 0 (with x = 0 degeneracy theorems); EXP/MU2/Q/RAR positivity analytic by closed form (documented in derivation.md); MONO positivity by h' > -1 argument + numeric probe.",
+  "failed_attempts": [
+    {"artifact": "compute_as037.py", "cause": "SyntaxError line 443: bare dict expression (string-concatenation used as dict key without colon-key form)", "resolution": "patched to proper key: value literal"},
+    {"artifact": "compute_as037.py", "cause": "SyntaxError in NC2 deep_y block (leftover experimental 'if False else' expressions)", "resolution": "replaced with clean dict literals"},
+    {"artifact": "compute_as037.py", "cause": "NC3 used nonexistent mp.limit(...) calls", "resolution": "replaced with direct boundary evaluations (q_mu(1e-50), q_xmu(1e-10)/1e-20, q_lamL(1e30))"},
+    {"artifact": "compute_as037.py", "cause": "json.dumps failed: summary[\"shared_deep_limits\"] was a braced dict used where list belongs (non-serializable)", "resolution": "converted to list of strings; added check_json.py recursive walker"},
+    {"artifact": "compute_as037.py", "cause": "out[\"checks\"] never attached to output dict", "resolution": "added out[\"checks\"] = checks"},
+    {"artifact": "compute_as037.py", "cause": "ID3 RAR dx/dy used reciprocal of dy/dx instead of analytic nu + y*nu'", "resolution": "patched RAR dx = 1/(1-e^{-sqrt y}) + y*nu'(y); MONO dx2 = 1 + hp was correct"},
+    {"artifact": "AS037_mu2_q_eigenvalue_algebra.lean", "cause": "Mathlib API mismatches (iteration 1): HasDerivAt.pow fn/instance elaboration, Real.sqrt_lt' strictness (0 < y not 0 <= y), sq_lt_sq is abs-form iff in this Mathlib version, sub/fn-conversion under HasDerivAt via simpa breaks instance alignment", "resolution": "empirically probed the Mathlib API (5 probe files in fable_independent_2026/lean_2026/, scratch); rewrote using function-power fn shapes, Real.lt_sqrt/Real.sqrt_lt', congr_of_eventuallyEq + Filter.Eventually.of_forall bridges, rw-rate-then-exact pattern from sibling AS026; final compile exit 0"},
+    {"artifact": "AS037_mu2_q_eigenvalue_algebra.lean", "cause": "print axioms is Lean 3 syntax; Lean 4 wants #print axioms", "resolution": "switched to #print axioms"}
+  ],
+  "limitations": [
+    "Eigenvalue/ellipticity audit of the pointwise constitutive response only: the heat-filter action on the branch and the resulting FILTERED FIELD equation (seed step 5 dependency) were NOT derived here - that is the declared next dependency.",
+    "MONO eigenvalue positivity on (0, inf) rests on the closed form lambda_L = 1/(1+h') with h' = max(h'_RAR, delta*h_p/(y+y_p)) >= 0 (so 0 < lambda_L <= 1) plus numeric confirmation (1e-12..1e12), not on a Lean certificate (spliced sqrt-form is transcendental).",
+    "The compute script's own summary string says 'Q, RAR, MONO have lamL < 1 everywhere'; its OWN sampled table shows RAR lamL = 1.00018165 at x ~ 100 (exponentially small bump). We follow the sampled table: the claim in this result.json and derivation.md reflects the table (RAR has a tiny bump).",
+    "RLIMIT_AS 512 MB not enforceable on this macOS host (recorded honestly, not claimed); memory bound argued by construction (no large arrays; observed runtime 2.1 s).",
+    "EXP and RAR eigenvalue positivity are analytic by closed form and verified symbolically/numerically, but not Lean-certified (transcendental exp content).",
+    "Later probe files AS037_api_probe*.lean remain in fable_independent_2026/lean_2026/ as scratch (removal attempt was user-denied); AS037_api_probe2.lean contains an unreachable 'sorry' in an example block - it is NOT part of the certificate and is not compiled by the Lakefile; flag if housekeeping is wanted.",
+    "a0 footings assume G = G_N = 6.67430e-11 exactly; G_N/G_bare/G_cosmo separation not exercised (dimensionless theorem)."
+  ],
+  "next_unresolved_implication": "The constitutive-sector ellipticity gate now passes for all five branches, including the operative MONO cell (with its C^0-in-h' splice kink). The unresolved step is the seed's dependency chain: build the heat-filtered field equation on the MONO branch (filter S = exp((xi^2/2) Delta) applied to the spliced flux) and check whether the filter preserves the strict ellipticity of the pointwise response (kernel modification under the filter at finite xi) - i.e., whether the well-posedness proven here survives the smoothing that makes MONO operative.",
+  "suggested_followup": "Dispatch AS037.C01: assemble the MONO constitutive matrix N_ij(x) (spliced, with kink) into the expectation of the heat-filtered source Div(N grad Phi) under S = exp((xi^2/2) Delta) on the diagnostic grid; verify ellipticity of the filtered operator numerically (Rayleigh quotient at finite xi/lambda scales 1e-3..1e3) and record the kink-induced correction at y*. Requires the seed's step-5 filtered equation conventions, which this task did not modify.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": ["G = 6.67430e-11 m^3 kg^-1 s^-2 (SI)", "c = 299792458 m/s", "kappa = 1/2 (mandated input, not derived)", "a0 footings 9.3619e-11 and 1.1279e-10 m/s^2 (both with kappa = 1/2)"],
+    "definitions": ["a0 = kappa*c*sqrt(G*rho_Lambda)", "rho_Lambda = 4*a0^2/(G*c^2) (from the a0 definition at kappa = 1/2)", "x = g/a0, y = B/a0, z = x^2, u = x/2", "branch kernels: RAR mu(y) = 1-e^{-sqrt y} (nu = 1/mu), x(y) = y/(1-e^{-sqrt y}); MONO mu(y) = y/(y+h(y)) with h'_mono(y) = max(h'_RAR(y), delta*h_p/(y+y_p)), delta = 0.05, splice at y* = 2.3374124053, y_p = 2.5396382822, h_p = 0.6476102379, x(y) = y+h(y); Q mu(x) = (sqrt(1+4x^2)-1)/(2x); EXP f(z) = 1-e^{-sqrt z}, G(z) = z + 2(sqrt z + 1)e^{-sqrt z} - 2; MU2 f_prim(z) = z - 8*ln(sqrt(z)/2 + 1) + 8 - 8/(sqrt(z)/2 + 1) (f' = mu2(sqrt z))"],
+    "conditional_inputs_task_declared": ["the five-branch constitutive set (criterion B: MONO+heat filter OPERATIVE; EXP historical comparison)", "the mandated diagnostic grid y = 10^k, k = -10..8 step 0.1 -> 181 points", "the constitutive-matrix eigenvalue prescription: eigenvalues related to f'(z) and 2z f''(z) + f'(z) (equivalently mu and mu + x mu')", "both a0 footings 9.3619e-11 / 1.1279e-10 m/s^2"],
+    "genuinely_derived_here": ["eigenvalue theorem lambda_T = mu, lambda_L = mu + x*mu' = d(x*mu)/dx for general AQUAL-type flux (transverse/longitudinal decomposition of the constitutive matrix)", "closed eigenvalue forms for all five branches (MU2 rational; Q sqrt; EXP exponential; RAR/MONO analytic-as-written)", "strict positivity of both eigenvalues on x > 0 / y > 0 (Lean-certified for MU2 and Q; analytic + numeric for the rest)", "degeneracy theorem at x = 0 (quadratic contact B ~ x^2)", "range contrast: O(0.1) longitudinal bump only for EXP (sup 1+e^-2 at x=2) and MU2 (sup 28/27 at x=4); RAR exponentially small bump (sup 1.00018165 at y = 100); Q and MONO strictly sub-Newtonian lambda_L in (0,1)", "MONO splice kink characterisation (h C^0 residual 6.6e-33, lambda_L' jump 0.0343)", "deep asymptotics lambda_T/x -> 1, lambda_L/x -> 2; Newtonian lambda -> 1 with per-branch approach rates", "footing conversions for both a0 values (rho_Lambda, cross-ratio, kappa-if-fixed reading)"],
+    "measured_calibrations": [],
+    "not_derived": ["kappa = 1/2 (input)", "the heat-filtered field equation on MONO (open dependency, see next_unresolved_implication)", "any dynamics/action integral (algebraic response only)", "G_N/G_bare/G_cosmo separation (irrelevant at the dimensionless level)"]
+  },
+  "closure_implication": {
+    "gate": "A02 constitutive kernels and branch fidelity, feeding requirement 1 (knee/interpolation content) of the amended closure; criterion B health check for the operative MONO+heat-filter cell.",
+    "implication": "For any field equation built on these branches (filtered or not), the constitutive sector is well-posed on every domain that avoids grad Phi = 0: both eigenvalues are positive on g > 0, bounded, and approach the Newtonian value 1; the zero-field degeneracy lambda = 0 is a quadratic-contact limit, not a crossing. The operative MONO branch is healthy in the same sense, with the splice kink (C^0 in h') as its only constitutive-sector irregularity - a measurable, small (0.0343) jump in the longitudinal stiffness derivative at y* which the heat filter, if applied, would be expected to smooth.",
+    "breaking_requirements": ["filtered-equation ellipticity check at finite xi (AS037.C01) - the filter preserves or improves kink regularity but must not push lambda below 0", "an observable that distinguishes the historical bump branches (EXP/MU2, lambda_L > 1 up to 1.135/1.037) from the monotone sub-Newtonian branches (Q/RAR/MONO, lambda_L in (0,1)) in the same g-range (e.g. disk-stability or wave-speed diagnostics) - this contrast is the sharpest branch discriminator the audit produced"]
+  },
+  "child_proposals": [
+    {
+      "id": "AS037.C01",
+      "title": "Filtered-operator ellipticity on the operative MONO branch (heat filter at finite xi)",
+      "claim": "The heat-filtered constitutive operator built from the spliced MONO flux remains strictly elliptic at finite filter scale xi >= 0 on every domain with eps <= |grad Phi|, with the kink contribution controlled by the filter width",
+      "parent": "AS037",
+      "controls": ["Rayleigh-quotient positivity of the filtered operator on the diagnostic grid at xi/lambda in {0, 1e-3, 1e-1, 1, 10, 1e3}", "kink correction to eigenvalues vs xi (must vanish as xi -> 0 and be O(kink) at xi ~ y*)", "negative control: filter applied to a sign-changing test flux must show the expected smoothing, not sign removal"],
+      "dependencies": ["the seed's step-5 filtered-field-equation conventions (task file, unmodified)", "MONO splice parameters from this run (y_p = 2.53963828, h_p = 0.64761024, y* = 2.33741241)"],
+      "duplicate_check": "no sibling result exercises the filtered field equation (AS026 audited the Q algebraic inverse only)",
+      "dispatch_state": "proposed"
+    }
+  ],
+  "closure_candidate": null
+}

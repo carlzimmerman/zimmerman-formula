@@ -1,0 +1,51 @@
+[PASS] C1 y^2+y=x^2 (rel): residual=2.60963e-51 tol=1.0e-45 
+[PASS] C2 mu_Q(x)*x = y (rel): residual=2.25809e-51 tol=1.0e-45 
+[PASS] C3a x*(1-mu^2) = mu, well-conditioned domain x<=100: residual=2.09812e-49 tol=1.0e-45 
+[PASS] C3b y*(1-mu^2) = mu^2, well-conditioned domain x<=100: residual=2.11148e-49 tol=1.0e-45 
+[C3c] conditioning probe x>100: rel(mu, y/x) = 2.673e-51 ; rel(1-mu^2, y/x^2) = 4.118e-51 ; forward amplification of x*(1-mu^2) is ~x*ulp (kappa ~ x ~ 1/(1-mu))
+[PASS] C4 deep |mu/x-1| <= 1.002 x^2: residual=0.000999001 tol=0.001 n=71
+[PASS] C5a |mu_Q-(1-1/2x)| <= 1.0001/(8x^2): residual=1.24875e-7 tol=1.25e-7 n=51
+[PASS] C5b |(x-y)-1/2| <= 1.02/(8y) (Newton offset a0/2): residual=0.000124938 tol=0.000127 
+[C6] d(1) = mu_EXP(1) - mu_Q(1) = 0.0140865700786628
+[PASS] C6a NC1 fires: |d(1)| = 0.0140866 > 1e-6 (control: kernels differ at finite x=1; a zero difference would FAIL)
+[C6] sign-change brackets on [0.02,5]: [('0.84', '0.85')]
+[C6] bisection roots of d(x)=0: ['0.842568964352']
+[PASS] C6b bracketed root d(0.842569): residual=1.33638e-51 tol=1.0e-47 
+[PASS] C6c d(100) = 0.0049875001 > 0 (asymptotic ~1/(2x))
+[PASS] C7a min mu_Q' over grid = 5.0e-17 > 0 (strictly increasing; closed form (s-1)/(2x^2 s) > 0 for x>0)
+[PASS] C7b max nu_Q' over grid = -5.0e-17 < 0 (strictly decreasing)
+[PASS] C8 Milgrom-1999 mu_hat = mu_Q (rel): residual=3.85388e-47 tol=1.0e-45 
+[PASS] C9a F'(X) = mu_Q(sqrt X) (rel): residual=1.62653e-48 tol=1.0e-45 
+[PASS] C9b F(X) = quad(mu_Q(sqrt s)) (rel): residual=2.48388e-51 tol=1.0e-44 
+[C9c] max |F(X)/X^1.5 - 2/3| on X<=1e-4 = 6.33943e-6 (leading neglected term (2/5)X)
+[PASS] C10a r^2 mu(x) g = G M(<r) (rel): residual=4.5296e-51 tol=1.0e-42 
+[PASS] C10b-i analytic d/dr[G M(<r)] = 4 pi G rho r^2: residual=4.34213e-51 tol=1.0e-42 
+[PASS] C10b-ii fd(Richardson order-4) d/dr[r^2 mu g] = 4 pi G rho r^2: residual=7.28705e-26 tol=1.0e-20 
+[C10b] analytic rel residual: 4.342e-51 ; fd(Richardson) rel residual: 7.287e-26 (raw order-4 at h/4: 1.553e-18; max h-refinement ratio 256.0)
+
+[C11] branch fidelity at selected x = g/a0 (comparison ONLY, no transfer):
+         x         mu_Q   mu_EXP(hist)       mu_RAR       mu_MU2
+       0.1 0.0990195135928 0.09516258196404 0.0909717583168 0.092970521542
+      0.31 0.28484723614 0.26655304377571 0.237751822604 0.250388860778
+       1.0 0.61803398875 0.63212055882856 0.510590826977 0.555555555556
+      3.16 0.85421279308 0.95757425891949 0.795063579417 0.849768643711
+      10.0 0.951249219725 0.99995460007024 0.954473241907 0.972222222222
+[C12] sympy small-x mu_Q: z - z**3 + 2*z**5 - 5*z**7 + O(z**9)
+[C12] sympy small-x mu_EXP: z - z**2/2 + z**3/6 - z**4/24 + z**5/120 + O(z**6)
+[C12] sympy large-x mu_Q: -1/(128*z**4) + 1/(8*z**2) - 1/(2*z) + 1 + O(z**(-5), (z, oo))
+[C12] sympy d(x) = mu_EXP - mu_Q small-x: -z**2/2 + 7*z**3/6 + O(z**4)
+
+[C13] footing examples (a0_can = 9.3619e-11 ; a0_alt = 1.1279e-10 m/s^2):
+  canonical: a0 = 9.3619e-11 m/s^2 ; Newtonian offset a0/2 = 4.68095e-11 m/s^2
+    M_b=1.0e+10 M_sun: r_M = 1.19064e+20 m = 3858.6 pc = 3.8586 kpc ; v_flat = 105578.0 m/s
+    M_b=1.0e+11 M_sun: r_M = 3.76513e+20 m = 12202.0 pc = 12.202 kpc ; v_flat = 187747.0 m/s
+    M_b=1.0e+12 M_sun: r_M = 1.19064e+21 m = 38586.0 pc = 38.586 kpc ; v_flat = 333866.0 m/s
+    g = 1e-10 m/s^2 -> x = g/a0 = 1.06816 -> mu_Q = 0.636039, y = B/a0 = 0.679391
+  alternative: a0 = 1.1279e-10 m/s^2 ; Newtonian offset a0/2 = 5.6395e-11 m/s^2
+    M_b=1.0e+10 M_sun: r_M = 1.08474e+20 m = 3515.41 pc = 3.51541 kpc ; v_flat = 110611.0 m/s
+    M_b=1.0e+11 M_sun: r_M = 3.43026e+20 m = 11116.7 pc = 11.1167 kpc ; v_flat = 196698.0 m/s
+    M_b=1.0e+12 M_sun: r_M = 1.08474e+21 m = 35154.1 pc = 35.1541 kpc ; v_flat = 349783.0 m/s
+    g = 1e-10 m/s^2 -> x = g/a0 = 0.886603 -> mu_Q = 0.584109, y = B/a0 = 0.517873
+
+total wall time: 0.30 s
+ALL CHECKS DONE

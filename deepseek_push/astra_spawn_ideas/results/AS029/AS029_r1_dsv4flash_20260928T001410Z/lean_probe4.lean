@@ -1,0 +1,24 @@
+import Mathlib
+import Mathlib.Data.Real.Basic
+open Polynomial
+noncomputable section
+
+#check Multiset.exists_cons_of_mem
+#check Multiset.le_cons_self
+#check Multiset.card_cons
+#check Multiset.card_eq_zero
+#check Multiset.cons_le_cons
+#check List.nodup_cons
+#check Multiset.coe_card
+#check Multiset.card_coe
+#check Polynomial.degree_add_le
+#check Polynomial.degree_C_mul_X_pow
+#check Polynomial.degree_X_pow_le
+#check Polynomial.degree_le_iff_coeff_eq_zero
+#check Polynomial.degree_X_pow
+#check Polynomial.degree_C_mul_X_pow
+#check Polynomial.natDegree_add_eq_left_of_natDegree_lt
+#check Polynomial.degree_add_eq_left_of_degree_lt
+#check Polynomial.degree_lt_degree_mul_X
+#check ENat.coe_lt_coe
+#check WithTop.coe_lt_coe

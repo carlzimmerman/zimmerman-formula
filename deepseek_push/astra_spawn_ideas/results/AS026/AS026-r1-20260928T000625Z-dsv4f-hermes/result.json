@@ -1,0 +1,333 @@
+{
+ "schema_version": 2,
+ "task_id": "AS026",
+ "task_sha256": "39753bcaee627960aec61effa8ed011953c9fa360efe899320a8058d2348aeb3",
+ "run_id": "AS026-r1-20260928T000625Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent; identity taken from the executing agent's own system context, not guessed from the deepseek_push destination folder",
+ "started_utc": "2026-09-28T00:06:25Z",
+ "finished_utc": "2026-09-28T00:42:10Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "Q-branch exact-inverse theorem (dimensionless, scale-free in a0). Let x = g/a0 >= 0, y = B/a0 > 0 on the Q branch g^2 = B^2 + a0*B. Then: (i) the map x |-> y(x) = (sqrt(1+4x^2)-1)/2 = 2x^2/(sqrt(1+4x^2)+1) is the UNIQUE inverse on the physical domain B >= 0: y satisfies the forward law identically (y^2+y = x^2), it is strictly increasing on [0,inf), bijective [0,inf) -> [0,inf) (Lean: identity, strict_mono, unique_nonneg_root, inverse_composition, surjective_on_nonneg, injective_on_nonneg); (ii) asymptotics with exact leading neglected terms: deep y = x^2 - x^4 + 2x^6 - 5x^8 + 14x^10 + O(x^12) (so B = g^2/a0 - g^4/a0^3 + ...; leading neglected term -x^4, domain x^2 << 1), Newtonian y = x - 1/2 + 1/(8x) - 1/(128x^3) + O(x^-5) (B = g - a0/2 + a0^2/(8g) - ...; leading neglected term +1/(8x), domain 1/x << 1); (iii) knee mapping: y = 1 <-> x^2 = 2, i.e. B = a0 at r = r_M iff g(r_M) = sqrt(2)*a0 = 1.3239725949581e-10 m/s^2 (canonical footing) and 1.5950914770006e-10 m/s^2 (alternative footing); (iv) exact root bracket x^2/(1+x^2) < y(x) < x^2 for all x > 0 (proved from y = x^2/(y+1), verified on all 181 grid points); (v) conditioning dB/dg = 2g/sqrt(a0^2+4g^2) in [0,1), dB/dg(0)=0 (quadratic contact, deep y ~ x^2), dB/dg -> 1 (Newtonian); (vi) root discrimination is NOT automatic: the other algebraic root y_neg = -(1+sqrt(1+4x^2))/2 satisfies the raw quadratic exactly (sympy 0, grid max 1.9e-65, Lean other_root_satisfies_raw_law) and is rejected only by the physical branch (y_neg < 0 always; wrong g=0 boundary B=-a0 vs B=0 by continuity; wrong deep limit -x-1/2); a sign-perturbed mirror inverse is rejected by the forward law itself (max rel residual 2.0 over the 181-pt grid), and a coefficient-perturbed form (4->3) is rejected with max rel residual 0.3333 (knee residual 0.15047) - both controls capable of failing and measured. Domain: g in [0,inf) (x, y as above); both a0 footings carried separately (the theorem is dimensionless; SI knee values quoted for each footing); Lean 4 certificate 18/18 theorems, zero sorry, axioms exactly {propext, Classical.choice, Quot.sound}; 80-dps numeric checks are finite consistency checks of these exact identities (max forward residual 2.1e-81 on the mandated 181-point grid y=10^k, k=-10..8 step 0.1). Float64 demonstration: the subtractive quadratic root loses 100% relative accuracy at x <= 1e-9 while the rationalized form stays ~1e-16 (rationalization is the numerically stable representative of the same exact function; the two agree to 80 dps). Branch fidelity (comparison only, Q is the conclusion branch): all five branches (Q, RAR, MU2, EXP, MONO) share x ~ sqrt(y) as y -> 0 at branch-specific approach rates (Q: 5.0e-11, RAR/MONO: 5.0e-6, MU2: 3.75e-6, EXP: 2.5e-6 at y=1e-10) and differ by 3.5-11% of total acceleration at y=0.1 (x_Q/x_RAR = 0.899159) - identical deep limit is NOT an identical finite law; no branch is silently identified with another. Strongest statement is conditional on the framework inputs listed (kappa=1/2 adopted; a0 footings; Q branch declared).",
+ "framework_cell": {
+  "action": "none: constitutive/kinematic audit of the Q branch g^2 = B^2 + a0*B with a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 adopted (framework input, not derived). No branch action imported; RAR/MU2/EXP/MONO used only as labelled comparison curves (approach rates and finite-y disagreement table). The operative target (filtered MONO, criterion B) is NOT concluded on; transfer requires the branch bridge in child AS026.C01.",
+  "source_hashes": {
+   "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+   "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+   "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac"
+  },
+  "kernel": "Q: y = (sqrt(1+4x^2)-1)/2 = 2x^2/(sqrt(1+4x^2)+1), x = g/a0, y = B/a0 (exact inverse, Lean-certified). RAR: x = y/(1-e^-sqrt(y)); MU2: x*[1-(1+x/2)^-2] = y (bisection); EXP: x*(1-e^-x) = y (bisection); MONO: x = y*nu_mono(y) with contract splice y* = 2.337412, y_p = 2.539638, h_p = 0.647610, delta = 0.05. Comparison-only.",
+  "filter": "heat filter S = exp((xi^2/2) Delta) NOT exercised: the task object is the pointwise algebraic inverse of the Q line; the filter's role is named in the transfer limitation (AS026.C01) and in the operative-gate note.",
+  "gate": "A02 constitutive kernels and branch fidelity (requirement-1 content: knee/interpolation forward mapping). Causality criterion B not exercised (statics/algebra only). Operative target: filtered MONO with criterion B -- this result is a Q-branch theorem with explicit conditional notes; a completed task is not closure of gravity.",
+  "coupling": "single Newton coupling G = 6.67430e-11 SI throughout; G_N/G_bare/G_cosmo separation irrelevant here: g and B are kinematic accelerations and every identity is homogeneous in G-free variables (a0 carries G via a0 = kappa c sqrt(G rho_Lambda) at the framework level).",
+  "parameters": {
+   "kappa": "1/2 ADOPTED as input (not derived); the dimensionless inverse is kappa-independent and cannot remove the normalization freedom (stated in limitations).",
+   "a0_footings": [
+    "9.3619e-11 m/s^2 (canonical) -> knee g = sqrt(2)*a0 = 1.3239725949581e-10 m/s^2; r_M(1e9 M_sun) = 1.2202 kpc, r_M(1e11 M_sun) = 12.202 kpc",
+    "1.1279e-10 m/s^2 (alternative) -> knee g = 1.5950914770006e-10 m/s^2; r_M(1e9 M_sun) = 1.1117 kpc, r_M(1e11 M_sun) = 11.117 kpc",
+    "separate footings: ratio a0_alt/a0_can = 1.204776808127; fixed-rho effective kappa = 1.204776808127; fixed-kappa rho ratio = 1.451487157400 (never share fixed rho AND fixed kappa)"
+   ],
+   "expansion_coefficients": "deep (x->0): [1, -1, 2, -5, 14, ...] (alternating Catalan; sympy O(x^12)); Newtonian (x->inf): x - 1/2 + 1/(8x) - 1/(128x^3) + 1/(1024x^5) + O(x^-6)"
+  },
+  "scale_footing_note": "The theorem is dimensionless (a0 cancels); both footings apply with the SI values listed. No per-object a0 fitting was performed.",
+  "boundaries": "x >= 0 (g >= 0), y > 0; boundary cases computed exactly: y(0) = 0 (physical root, by continuity from g > 0) vs other root y_neg(0) = -1 (B = -a0); y = 1 at r = r_M (knee) with g(r_M) = sqrt(2)*a0 on both footings. Grid: y = 10^k, k = -10..8 step 0.1 (181 points).",
+  "initial_conditions": "none (static algebraic identities; no evolution).",
+  "units": "SI: m/s^2 for a0, g, B; m for r_M; kg for M_b; kg/m^3 for rho_Lambda; dimensionless y = B/a0, x = g/a0."
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/AS026_exact_inverse_of_the_algebraic_a0_line.md": "39753bcaee627960aec61effa8ed011953c9fa360efe899320a8058d2348aeb3",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/compute_as026.py": "95f1bc891cc40b44415e04b14522f91a80fc1ec58b2b1ea5d8c14ca116d8d2c1",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/raw_output.json": "b6b72e328568d20a3c92067c42b3bc8a5a99ffa814d486ca9b3bcee66a0e2a08",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/raw_output.stderr": "33b18e66402e07805b9736c830c6141375362fd3b6ac65de72c6d3a2bd5e6c01",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/derivation.md": "cb235ca31f536a1ec886de3080aa59c07dfbb0e5c5dc5f820358a571af65deff",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/AS026_exact_inverse_qline.lean": "cf8c46252eb1450053830a9e4220903a1e73ed481d9265e8bed2123cdb7c832b",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/AS026_exact_inverse_qline_axioms.lean": "40a17a97b74249e7d86d89ce541cc3285c4809246b690022501554ed4e565871",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/lean_axioms_out.txt": "d8e9b94f11e6e60d0989d9489bf8031e16a61e9ee367ab66845e6805ea844c66",
+  "deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/lean_compile_out.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ "commands": [
+  "python3 deepseek_push/astra_spawn_ideas/results/AS026/AS026-r1-20260928T000625Z-dsv4f-hermes/compute_as026.py > .../raw_output.json 2> .../raw_output.stderr   (cwd: repo root; exit 0; 181-pt grid; elapsed 0.142 s; alarm(120) enforced)",
+  "cd fable_independent_2026/lean_2026 && lake env lean AS026_exact_inverse_qline.lean   (exit 0, 4.5 s; first compile round had 6 errors, all fixed; final clean)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs run-dir>/AS026_exact_inverse_qline.lean > lean_compile_out.txt 2>&1   (exit 0; empty log = clean)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs run-dir>/AS026_exact_inverse_qline_axioms.lean > lean_axioms_out.txt 2>&1   (exit 0; 18 theorems, all axioms [propext, Classical.choice, Quot.sound], zero sorry)",
+  "hash verification of all task sources vs SOURCE_MANIFEST.json pins (hashlib; all 5 pinned files match exactly)"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_clock_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "precision_dps": 80,
+   "grid": "y = 10^k, k = -10..8 step 0.1 -> 181 points (mandated by the work order)"
+  },
+  "enforced": {
+   "wall_clock_s": "ENFORCED via signal.alarm(120); observed elapsed 0.142 s (compute) + 5-9 s (Lean compiles)",
+   "memory_MB": "NOT ENFORCEABLE on this macOS host: resource.setrlimit(RLIMIT_AS, 512MB) rejected ('current limit exceeds maximum limit'); recorded honestly. Observed process is a 0.14 s mpmath/sympy job, peak RSS far below 512 MB.",
+   "threads": "ENFORCED: single process, single thread, no subprocesses (numpy/mpmath/sympy serial; bisection loops inline)",
+   "precision_dps": "mpmath mp.dps = 80; sympy exact; numpy float64 ONLY for the dedicated float64-cancellation control (NC3)"
+  },
+  "scale_note": "Cheapest bounded discriminating calculation (0.14 s): the object is exact algebra plus the mandated diagnostic grid and bounded branch comparison; no larger computation exists or is needed."
+ },
+ "checks": [
+  {
+   "name": "CK1_sympy_forward_identity",
+   "result": "PASS",
+   "observed": "y^2 + y - x^2 simplifies to 0 (exact)",
+   "tolerance": "identically 0"
+  },
+  {
+   "name": "CK2_sympy_rationalized_identity",
+   "result": "PASS",
+   "observed": "2x^2/(sqrt(1+4x^2)+1) - (sqrt(1+4x^2)-1)/2 simplifies to 0 (exact)",
+   "tolerance": "identically 0"
+  },
+  {
+   "name": "CK3_sympy_derivative_identity",
+   "result": "PASS",
+   "observed": "d/dx[(t-1)/2] - 2x/sqrt(1+4x^2) simplifies to 0 (exact)",
+   "tolerance": "identically 0"
+  },
+  {
+   "name": "CK4_grid_forward_residual",
+   "result": "PASS",
+   "observed": "max rel residual 2.108e-81 over 181-point grid y=10^k (k=-10..8 step 0.1)",
+   "tolerance": "< 1e-60 (80-dps roundoff floor)"
+  },
+  {
+   "name": "CK5_grid_roundtrip",
+   "result": "PASS",
+   "observed": "max |y - yQ(x(y))|/y = 3.981e-72 over 181 points",
+   "tolerance": "< 1e-60"
+  },
+  {
+   "name": "CK6_grid_monotone",
+   "result": "PASS",
+   "observed": "x(y) strictly increasing on all 181 grid points",
+   "tolerance": "181/181"
+  },
+  {
+   "name": "CK7_root_bracket",
+   "result": "PASS",
+   "observed": "x^2/(1+x^2) < y(x) < x^2 at all 181 grid points (and proved from y=x^2/(y+1))",
+   "tolerance": "all points; algebraic proof"
+  },
+  {
+   "name": "CK8_deep_limit",
+   "result": "PASS",
+   "observed": "at y=1e-10: y/x^2 - 1 = 1.000e-10 = y/(1+y) exactly (1.000e-10 analytic); x/sqrt(y)-1 = 5.000e-11 = y/2 (leading term)",
+   "tolerance": "exact identity + leading term"
+  },
+  {
+   "name": "CK9_newtonian_limit",
+   "result": "PASS",
+   "observed": "at y=1e8: |(x-y) - 1/2| = 1.250000e-9 vs 1/(8y) - 1/(16y^2) = 1.250000e-9; second-order check |(x-y)-(1/2-1/(8y))| = 6.250e-18 vs 1/(16y^2) = 6.250e-18",
+   "tolerance": "leading + next term"
+  },
+  {
+   "name": "CK10_fd_derivative",
+   "result": "PASS",
+   "observed": "FD (h=1e-40) vs 2x/sqrt(1+4x^2) at x in {1e-4,0.5,1,2,1e2}: max relerr 6.508e-39",
+   "tolerance": "< 1e-30"
+  },
+  {
+   "name": "CK11_knee_mapping",
+   "result": "PASS",
+   "observed": "y(sqrt 2) = 1 (|..-1| = 2.1e-81); x^2 = y^2+y = 2 at knee (4.2e-81); g_knee = 1.3239725949581e-10 (can) / 1.5950914770006e-10 (alt) m/s^2",
+   "tolerance": "< 1e-60 for identities"
+  },
+  {
+   "name": "CK12_dimensional_substitution",
+   "result": "PASS",
+   "observed": "14 (g, footing) SI pairs: max rel residual 2.246e-81",
+   "tolerance": "< 1e-60"
+  },
+  {
+   "name": "CK13_branch_deep_limit_shared",
+   "result": "PASS",
+   "observed": "x/sqrt(y)-1 at y=1e-10: Q 5.000e-11, RAR 5.000e-6, MU2 3.750e-6, EXP 2.500e-6, MONO 5.000e-6 (all -> 0 as y->0; branch-specific rates)",
+   "tolerance": "all -> 0; rates recorded"
+  },
+  {
+   "name": "CK14_finite_branch_disagreement",
+   "result": "PASS",
+   "observed": "at y=0.1: x_Q/x_RAR = 0.899159, x_Q/x_MU2 = 0.928792, x_Q/x_EXP = 0.964809, x_Q/x_MONO = 0.899159 (identical deep limit is not an identical finite law)",
+   "tolerance": "deviations 3.5-11% recorded, not 1"
+  },
+  {
+   "name": "NC1a_sign_perturbation_rejected_by_law",
+   "result": "PASS",
+   "observed": "y_pert = -y_plus: max rel forward residual 2.000 over grid (rejected by the forward law)",
+   "tolerance": "residual >> 1e-3 (must fail)"
+  },
+  {
+   "name": "NC1b_other_root_accepted_by_raw_law_rejected_by_domain",
+   "result": "PASS",
+   "observed": "raw quadratic residual for y_neg = -(1+sqrt(1+4x^2))/2: max 1.899e-65 (raw law CANNOT reject it); y_neg < 0 on all 181 points; y_neg(0) = -1; y_neg ~ -x - 1/2 deep (wrong sign) -- rejection requires the physical branch y>0",
+   "tolerance": "raw residual ~0 recorded; domain rejection 181/181"
+  },
+  {
+   "name": "NC2_coefficient_perturbation_rejected",
+   "result": "PASS",
+   "observed": "discriminant 4->3: max rel residual 0.33333 over grid; knee (x=sqrt2) residual 0.150472 (analytically (y_pert^2+y_pert-2)/2 with y_pert=4/(sqrt7+1))",
+   "tolerance": "residual must exceed 1e-3 (measured 0.15-0.33)"
+  },
+  {
+   "name": "NC3_float64_cancellation_subtractive_root",
+   "result": "PASS",
+   "observed": "subtractive form relerr 6.2e-11 (x=1e-3) -> 8.3e-8 (1e-5) -> 8.0e-4 (1e-7) -> 1.0 (x<=1e-9, 100% wrong); rationalized stays ~1e-16 at all 7 points; both agree to 80 dps at high precision (same function)",
+   "tolerance": "demonstrated divergence; rationalized form stable"
+  },
+  {
+   "name": "LEAN_compile_exit0",
+   "result": "PASS",
+   "observed": "lake env lean exit 0 on the run-dir certificate; clean log (e3b0... empty compile log)",
+   "tolerance": "exit 0"
+  },
+  {
+   "name": "LEAN_axioms_unfiltered",
+   "result": "PASS",
+   "observed": "18/18 theorems: 'depends on axioms: [propext, Classical.choice, Quot.sound]'; zero sorry in file",
+   "tolerance": "axioms subseteq {propext, Classical.choice, Quot.sound}; zero sorry"
+  },
+  {
+   "name": "SOURCE_HASH_MATCH",
+   "result": "PASS",
+   "observed": "README.md, FRIED_CHICKEN_SPEC.md, peer_review README, STANDING.md, SOURCE_MANIFEST.json all match SOURCE_MANIFEST.json pins exactly",
+   "tolerance": "exact byte match"
+  }
+ ],
+ "tested_domain": "Exact algebraic domain: x >= 0 (g >= 0), y > 0; proofs in Lean 4 (Real, Mathlib) and sympy for all real x (nonnegativity strengthened to all-real). Mandated diagnostic grid: y = 10^k, k = -10..8 step 0.1, 181 points, mpmath 80 dps; branch table at y in {1e-4, 1e-2, 1e-1, 1, 2.3374 (y*), 10, 1e2, 1e4}; approach rates at y = 1e-10; finite disagreement at y = 0.1; float64 sweep x = 10^-3..10^-15 (7 points, NC3); dimensional substitution at 14 (g, footing) pairs; r_M at M_b = 1e9 and 1e11 M_sun on both footings. No random sampling, no seeds, no refinement history (single bounded prototype + honest Lean debug iterations recorded in failed_attempts).",
+ "failed_attempts": [
+  {
+   "artifact": "compute_as026.py round 1: diagnostic grid bug -- range(-10,9) produced 19 points over k=-1.0..0.8 instead of the mandated 181 points over k=-10..8 step 0.1",
+   "cause": "range endpoint error",
+   "resolution": "range(-100, 81) -> k/10 -> -10.0..8.0 step 0.1, 181 points; grid_span verified [1e-10, 1e8]"
+  },
+  {
+   "artifact": "compute_as026.py round 1: NC1 tested y_pert = -2x^2/(sqrt+1) = -y_plus (a mirror image, which the law rejects) instead of the TRUE other quadratic root -(1+sqrt(1+4x^2))/2 (which the raw law accepts)",
+   "cause": "mis-identification of the other root's rationalized form (denominator sign)",
+   "resolution": "NC1 split into NC1a (mirror image, law rejects: measured 2.0) and NC1b (true other root: raw law accepts to 1.9e-65, domain rejects: 181/181 negative, Lean E/M theorems)"
+  },
+  {
+   "artifact": "compute_as026.py round 1: NC2 knee formula had precedence error ((4/sqrt7)+1 instead of 4/(sqrt7+1))",
+   "cause": "missing parentheses",
+   "resolution": "knee residual 0.150472 (hand-verified)"
+  },
+  {
+   "artifact": "compute_as026.py round 1: Newtonian-offset reference used 1/(8y) alone at y=6.3 (second-order 1/(16y^2) contamination ~8%)",
+   "cause": "wrong comparison point (broken grid) + missing next order",
+   "resolution": "proper grid endpoint y=1e8: |(x-y)-1/2| = 1.25e-9 with second-order 6.25e-18 matched exactly"
+  },
+  {
+   "artifact": "Lean round 1: forward reference qline_yQ_identity used before its definition in qline_yQ_pos",
+   "cause": "declaration order",
+   "resolution": "identity theorem moved above pos"
+  },
+  {
+   "artifact": "Lean round 1: field_simp on cross-multiplied equalities produced inequality-shaped goals that nlinarith could not close (rationalized_form and friends)",
+   "cause": "field_simp's division-clearing side conditions on this goal shape",
+   "resolution": "pure-ring proofs: eq_div_iff + (t-1)(t+1) = t^2-1 cross-identity; qline_yQ_identity and other_root_satisfies_raw_law built from hfac = ((t-1)/2)^2 + (t-1)/2 = (t^2-1)/4 by ring"
+  },
+  {
+   "artifact": "Lean round 1: HasDerivAt.sqrt expects f x != 0, not 0 < f x; slope normalization 4*(2*x) vs 8*x; Real.eq_sqrt does not exist (sq_norm replaced by norm_num which evaluates sqrt 9 = 3); inverse_composition needed an inner Real.sq_sqrt rewrite",
+   "cause": "Mathlib API detail differences",
+   "resolution": "ne_of_gt harg; slope stated as 4*(2*x) with hslope then normalized; rw [hnine]; norm_num; rw [Real.sq_sqrt hin] before outer rewrite"
+  },
+  {
+   "artifact": "Lean round 1: final simpa [yQ] using hdy failed to unfold yQ definitionally",
+   "cause": "simpa did not unfold the def in the goal",
+   "resolution": "exact hdy (defeq)"
+  }
+ ],
+ "limitations": [
+  "Q-branch theorem only; NO operative-branch (filtered MONO, criterion B) conclusion is claimed. Branch transfer requires the explicit error budget specified in child AS026.C01; silent identification with any other kernel is exactly what this task's measurement (3.5-11% finite-y disagreement) forbids.",
+  "kappa = 1/2 remains adopted, not derived; the inverse is dimensionless (scale-free) so it cannot fix kappa's normalization freedom.",
+  "The raw quadratic accepts both roots (Lean D); any use of 'the inverse' must state the physical branch -- the certificate pins that choice (A, E, F, G).",
+  "Constitutive/kinematic audit: no dynamics, no stability, no lensing, no PPN content; the heat filter is not exercised.",
+  "Grid/numeric values are finite consistency checks of exact identities (the identities are the Lean and sympy certificates); float64 sweep is a numerical-stability demonstration, not evidence about the mathematics.",
+  "The 'identical deep limit across branches' statement is exact for Q (Lean) and stated with exact approach rates for the others (numerical), per the contract's comparison-only rule."
+ ],
+ "next_unresolved_implication": "Branch-transfer lemma to the operative target: for the same measured circular-speed profile, how much do enclosed-mass profiles inferred through the Q-branch inverse deviate from those through the operative MONO branch (nu_mono through the heat filter), i.e. the exact band f_Q_mono(y) over y in (0, inf) and the minimal rotation-curve observable that discriminates the two inverses -- the missing bridge between this Q-branch theorem (and its siblings AS027/AS030/AS045/AS453) and requirement 1 of the amended thirteen-item target.",
+ "suggested_followup": "Dispatch ready child AS026.C01 (spec in derivation.md sect. 10): derive f_Q_mono(y) = M_Q(<r)/M_mono(<r) - 1 for spherical sources under the operative MONO plus heat filter, with controls (deep limit f -> 0, Newtonian limit f -> 0, filter-width sensitivity, full-grid forward-law recheck). Duplicate check performed against AS/MY manifests and FGF queue: closest seeds AS027 (forward Q response mu_Q(x)), AS030 (shared deep limit theorem), AS045 (Newtonian tail ordering), AS046 (inverse conditioning), AS453 (single-point noise bias) -- none is the branch-transfer mass-profile error statement.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": [
+   "G = 6.67430e-11 m^3 kg^-1 s^-2",
+   "c = 299792458 m/s",
+   "M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m",
+   "kappa = 1/2 ADOPTED (not derived)",
+   "a0 = 9.3619e-11 m/s^2 (canonical) and 1.1279e-10 m/s^2 (alternative), separate footings"
+  ],
+  "definitions": [
+   "a0 = kappa*c*sqrt(G*rho_Lambda), rho_Lambda = 4 a0^2/(G c^2)",
+   "r_M = sqrt(G*M_b/a0) (B(r_M) = a0 identically)",
+   "Q branch: g^2 = B^2 + a0*B with B = g_bar = g_N > 0, y = B/a0, x = g/a0",
+   "labelled comparison branches: RAR nu(y)=1/(1-e^-sqrt(y)), MU2 mu2(x)=1-(1+x/2)^-2, EXP mu=1-e^-x, MONO (contract splice y*=2.337412, y_p=2.539638, h_p=0.647610, delta=0.05)"
+  ],
+  "conditional_inputs_task_declared": [
+   "the Q branch as the task's declared conclusion branch",
+   "the mandated diagnostic grid y = 10^k, k = -10..8 step 0.1",
+   "the framework normalization a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 adopted"
+  ],
+  "genuinely_derived_here": [
+   "exact inverse y(x) = (sqrt(1+4x^2)-1)/2 = 2x^2/(sqrt(1+4x^2)+1) and SI form B(g)",
+   "forward-law identity, strict monotonicity, bijectivity on [0,inf) (Lean A-H, K, K', L)",
+   "root discrimination: other root satisfies raw law (Lean D) but is rejected by the physical domain (Lean E, F2, M) -- discarding is not automatic",
+   "asymptotics with leading neglected terms (deep -, x^4; Newtonian +1/(8x), next -1/(128x^3)) and exact series coefficients",
+   "knee mapping B = a0 <-> g = sqrt(2)*a0, both footings (Lean J1, J2)",
+   "exact root bracket x^2/(1+x^2) < y < x^2",
+   "derivative/conditioning dB/dg = 2g/sqrt(a0^2+4g^2) in [0,1) (Lean I)",
+   "branch approach rates and finite-y disagreement table (comparison only)",
+   "float64 cancellation characterization of the subtractive vs rationalized forms"
+  ],
+  "measured_calibrations": [],
+  "not_derived": [
+   "kappa = 1/2",
+   "the constitutive dynamics behind the Q line (no action, no field equation)",
+   "any MONO/operative-branch statement",
+   "any empirical test or fit; no dataset used"
+  ]
+ },
+ "closure_implication": {
+  "gate": "A02 constitutive kernels and branch fidelity, feeding requirement 1 (knee/interpolation content) of the amended thirteen-item target (filtered MONO, criterion B): the exact inverse of the algebraic a0 line is available and pinned (unique physical root, exact knee g(r_M) = sqrt(2)*a0, exact bracket and asymptotics), and the gap to the operative kernel is quantified as a branch-disagreement band (3.5-11% at y = 0.1, shared deep limit).",
+  "implication": "Any same-action inverse used in the operative weak-field quasistatic equations must be the MONO inverse; the Q-branch inverse transfers only with the explicit f_Q_mono(y) band and its observable discriminator (child AS026.C01). Same-action/parameter-domain compatibility: the theorem is dimensionless and a0-footing independent; branch translation is the single remaining bridge, and no other branch was imported to construct the result.",
+  "breaking_requirements": [
+   "explicit MONO-through-heat-filter inverse error budget (AS026.C01)",
+   "rotation-curve observable that discriminates the Q vs MONO inverses at fixed g"
+  ]
+ },
+ "child_proposals": [
+  {
+   "id": "AS026.C01",
+   "title": "Branch-transfer error of the Q-inverse as an enclosed-mass profile estimator against the operative MONO branch",
+   "claim": "For a measured circular-speed profile v(r), the Q-inverse mass profile M_Q(<r) = B(r) r^2/G, B = 2g^2/(sqrt(a0^2+4g^2)+a0), deviates from the operative MONO mass profile M_mono(<r) (nu_mono through the heat filter, spherical source) by a bounded computable factor 1 + f_Q_mono(y); derive the exact band of f_Q_mono over y in (0, inf) from the Q/MONO branch table (0 at the deep line, ~0.11 at y = 0.1, -> 0 Newtonian), and state the minimal rotation-curve observable discriminating the two inverses at fixed g.",
+   "parent": "AS026 run AS026-r1-20260928T000625Z-dsv4f-hermes (task 39753bca..., derivation cb235ca3..., lean cf8c4625...)",
+   "controls": [
+    "deep limit: f_Q_mono -> 0 as y -> 0 on both footings",
+    "Newtonian limit: f_Q_mono -> 0 as y -> inf",
+    "filter-width sensitivity: varying xi must move f (control can fail)",
+    "full-grid re-check of the Q-inverse forward-law residual"
+   ],
+   "dependencies": [
+    "FRAMEWORK_CONTRACT MONO definitions and splice parameters",
+    "FRIED_CHICKEN_SPEC requirement-1 weak-field equations (pinned hash)",
+    "the exact Q-inverse certificate of this run"
+   ],
+   "duplicate_check": "AS/MY manifests, FGF queue and claims/results dirs scanned: no task targets the branch-transfer error of the Q-inverse as a mass-profile estimator; closest seeds AS027 (forward Q response), AS030 (shared deep limit), AS045 (Newtonian tail ordering), AS046 (inverse conditioning), AS453 (single-point noise bias) are distinct fingerprints.",
+   "dispatch_state": "NOT DISPATCHED -- no subagent spawn mechanism available to this worker; ready spec returned for the orchestrator per FIRST_PRINCIPLES_AND_BRANCHING.md"
+  }
+ ],
+ "closure_candidate": null
+}

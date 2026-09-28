@@ -1,0 +1,164 @@
+{
+ "pass": 26,
+ "fail": 0,
+ "wall_s": 1.17,
+ "rss_raw": 171556864,
+ "checks": [
+  {
+   "name": "B1 [G_00 derivation, general d] G_00 - (d-1) Delta(Psi) is identically zero as a polynomial in d",
+   "measured": "0",
+   "pass": true,
+   "reading": "A3-A6 index algebra with the contraction rule sum_i delta_ii = d; no further input"
+  },
+  {
+   "name": "B2 [CLAIM: G_kk trace, general d] G_kk - [(d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta(Psi)] vanishes",
+   "measured": "0",
+   "pass": true,
+   "reading": "the claimed trace formula is derived exactly for all real d > 0 (polynomial identity in d)"
+  },
+  {
+   "name": "B3 [determinant] det N = (d-1)^2 symbolically for all d",
+   "measured": "det N = d**2 - 2*d + 1",
+   "pass": true,
+   "reading": "det is a square: it vanishes iff d = 1 (rank collapse) and nowhere else"
+  },
+  {
+   "name": "B4 [d = 1] N(1) = \\left[\\begin{matrix}0 & 0\\\\0 & 0\\end{matrix}\\right]: det = 0, rank = 0",
+   "measured": "det = 0; rank = 0",
+   "pass": true,
+   "reading": "d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2"
+  },
+  {
+   "name": "B4 [d = 2] N(2) = \\left[\\begin{matrix}1 & 0\\\\1 & 1\\end{matrix}\\right]: det = 1, rank = 2",
+   "measured": "det = 1; rank = 2",
+   "pass": true,
+   "reading": "d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2"
+  },
+  {
+   "name": "B4 [d = 3] N(3) = \\left[\\begin{matrix}2 & 0\\\\0 & 2\\end{matrix}\\right]: det = 4, rank = 2",
+   "measured": "det = 4; rank = 2",
+   "pass": true,
+   "reading": "d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2"
+  },
+  {
+   "name": "B4 [d = 4] N(4) = \\left[\\begin{matrix}3 & 0\\\\-3 & 3\\end{matrix}\\right]: det = 9, rank = 2",
+   "measured": "det = 9; rank = 2",
+   "pass": true,
+   "reading": "d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2"
+  },
+  {
+   "name": "B5 [MU_n slope] d(1-(1+Y)^{-n})/dY at Y=0 equals n for symbolic n >= 1",
+   "measured": "mu_n'(0) = n",
+   "pass": true,
+   "reading": ""
+  },
+  {
+   "name": "C1 [d = 1, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly",
+   "measured": "residuals: G00 0 ; Gkk 0",
+   "pass": true,
+   "reading": "independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions"
+  },
+  {
+   "name": "C1 [d = 2, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly",
+   "measured": "residuals: G00 0 ; Gkk 0",
+   "pass": true,
+   "reading": "independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions"
+  },
+  {
+   "name": "C1 [d = 3, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly",
+   "measured": "residuals: G00 0 ; Gkk 0",
+   "pass": true,
+   "reading": "independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions"
+  },
+  {
+   "name": "C1 [d = 4, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly",
+   "measured": "residuals: G00 0 ; Gkk 0",
+   "pass": true,
+   "reading": "independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions"
+  },
+  {
+   "name": "C1 [d = 5, Christoffel route, monomials] both channel formulas exact",
+   "measured": "residuals: G00 0 ; Gkk 0",
+   "pass": true,
+   "reading": "d=5 extends the verified integer set; sign flip (3-d) < 0 active, formula still exact"
+  },
+  {
+   "name": "D1 [d = 2, numeric Christoffel, grid (121, 121), h = 0.0167] max relative residuals vs closed forms",
+   "measured": "res00 = 1.804e-16, reskk = 4.509e-17  (threshold 1e-2 set before evaluation)",
+   "pass": true,
+   "reading": "independent numeric representation (metric -> Gamma -> R -> G on finite grids); residuals are finite-difference accuracy, the symbolic checks C1 are the exact identity"
+  },
+  {
+   "name": "D1 [d = 3, numeric Christoffel, grid (41, 41, 41), h = 0.0500] max relative residuals vs closed forms",
+   "measured": "res00 = 2.721e-16, reskk = 2.721e-16  (threshold 1e-2 set before evaluation)",
+   "pass": true,
+   "reading": "independent numeric representation (metric -> Gamma -> R -> G on finite grids); residuals are finite-difference accuracy, the symbolic checks C1 are the exact identity"
+  },
+  {
+   "name": "D1 [d = 4, numeric Christoffel, grid (17, 17, 17, 17), h = 0.1250] max relative residuals vs closed forms",
+   "measured": "res00 = 1.600e-16, reskk = 3.199e-16  (threshold 1e-2 set before evaluation)",
+   "pass": true,
+   "reading": "independent numeric representation (metric -> Gamma -> R -> G on finite grids); residuals are finite-difference accuracy, the symbolic checks C1 are the exact identity"
+  },
+  {
+   "name": "NC1 [d=1 extension CONTROL: fails as required] 'rank 2 for all d >= 1' is FALSE; det N(1) = 0, rank 0, both channels identically zero",
+   "measured": "det N(1) = 0; rank = 0; Christoffel residuals at d=1: 0, 0",
+   "pass": true,
+   "reading": "the control is CAPABLE of failing: a wrong coefficient would leave det N(1) != 0 (mutation tests below) -- here the determinant exposes the d=1 exception exactly, and the 2D Einstein tensor vanishes identically (consistent with G_mu nu = 0 in 1+1 dimensions)"
+  },
+  {
+   "name": "NC2 [diagnostic counterexamples at lambda = 1/2, 1, 2] the claim form (evaluated at d = 1+lambda) equals the direct derivation at all three points",
+   "measured": "lambda=1/2 (d=3/2): claim Lphi/2 + Lpsi/4 vs direct Lphi/2 + Lpsi/4; lambda=1 (d=2): 0; lambda=2 (d=3): 0",
+   "pass": true,
+   "reading": "the claim and the direct form are both quadratic in lambda = d-1; three distinct evaluation points pin a degree-<=2 polynomial: the identity holds for ALL real d (including the non-integer regime where no d-dimensional grid exists), not merely at d=3"
+  },
+  {
+   "name": "NC2b [discrimination: wrong coefficients FAIL] mutated forms (d-1)(4-d) and d*Delta(Phi-Psi) are rejected by the same diagnostic grid",
+   "measured": "mutant (4-d): agrees at all three lambda points = False; mutant (d on Phi-Psi): agrees = False",
+   "pass": true,
+   "reading": "the lambda in {1/2,1,2} probe is discriminating: only the claimed coefficient pair survives; the controls are genuinely capable of failing"
+  },
+  {
+   "name": "NC3 [deep limit, d = 2] deep-MOND matching g^2 = g_N*(s/n) holds for every d (sphere constant cancels): a0 = s/n, kappa = 1/n",
+   "measured": "g^2/g_N = s/n; kappa*n = 1",
+   "pass": true,
+   "reading": "with mu ~ n*g/s and the framework Poisson convention 4 pi G, the d-dimensional Gauss sphere S_{d-1} cancels: kappa = 1/n is dimension-invariant; with n = rank(d) = 2 for d >= 2 (B3/B4) the adopted kappa = 1/2 is stable under dimensional continuation"
+  },
+  {
+   "name": "NC3 [deep limit, d = 3] deep-MOND matching g^2 = g_N*(s/n) holds for every d (sphere constant cancels): a0 = s/n, kappa = 1/n",
+   "measured": "g^2/g_N = s/n; kappa*n = 1",
+   "pass": true,
+   "reading": "with mu ~ n*g/s and the framework Poisson convention 4 pi G, the d-dimensional Gauss sphere S_{d-1} cancels: kappa = 1/n is dimension-invariant; with n = rank(d) = 2 for d >= 2 (B3/B4) the adopted kappa = 1/2 is stable under dimensional continuation"
+  },
+  {
+   "name": "NC3 [deep limit, d = 4] deep-MOND matching g^2 = g_N*(s/n) holds for every d (sphere constant cancels): a0 = s/n, kappa = 1/n",
+   "measured": "g^2/g_N = s/n; kappa*n = 1",
+   "pass": true,
+   "reading": "with mu ~ n*g/s and the framework Poisson convention 4 pi G, the d-dimensional Gauss sphere S_{d-1} cancels: kappa = 1/n is dimension-invariant; with n = rank(d) = 2 for d >= 2 (B3/B4) the adopted kappa = 1/2 is stable under dimensional continuation"
+  },
+  {
+   "name": "NC4 [Newtonian boundary, d = 2] Phi = Psi: G_kk = (d-1)(3-d) Delta Phi (G_00 = (d-1) Delta Phi)",
+   "measured": "G_kk = Lphi",
+   "pass": true,
+   "reading": "boundary-case exact values: d=3 -> G_kk = 0 (Newtonian regime loads only the 00 channel: the decoupling again); d=2 -> +Delta Phi; d=4 -> -3 Delta Phi (sign flip for d > 3, (3-d) < 0)"
+  },
+  {
+   "name": "NC4 [Newtonian boundary, d = 3] Phi = Psi: G_kk = (d-1)(3-d) Delta Phi (G_00 = (d-1) Delta Phi)",
+   "measured": "G_kk = 0",
+   "pass": true,
+   "reading": "boundary-case exact values: d=3 -> G_kk = 0 (Newtonian regime loads only the 00 channel: the decoupling again); d=2 -> +Delta Phi; d=4 -> -3 Delta Phi (sign flip for d > 3, (3-d) < 0)"
+  },
+  {
+   "name": "NC4 [Newtonian boundary, d = 4] Phi = Psi: G_kk = (d-1)(3-d) Delta Phi (G_00 = (d-1) Delta Phi)",
+   "measured": "G_kk = -3*Lphi",
+   "pass": true,
+   "reading": "boundary-case exact values: d=3 -> G_kk = 0 (Newtonian regime loads only the 00 channel: the decoupling again); d=2 -> +Delta Phi; d=4 -> -3 Delta Phi (sign flip for d > 3, (3-d) < 0)"
+  },
+  {
+   "name": "F1 [footings] the channel-rank identities (det = (d-1)^2, rank 2 for d>=2, d=3 decoupling) are dimensionless and footing-independent; both a0 footings enter only through s = c sqrt(G rho_Lambda)",
+   "measured": "kappa_eff(alt, fixed rho_Lambda) = 0.60239 (n_eff = 1.66006); rho_Lambda'(alt, fixed kappa) = 8.483e-27 kg/m^3 = 1.4515 x canonical",
+   "pass": true,
+   "reading": "applicability statement: the two footings do not share both fixed vacuum density and fixed kappa; the dimensionless theorem is proved once and applies to both footings unchanged"
+  }
+ ]
+}

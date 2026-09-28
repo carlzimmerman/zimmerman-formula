@@ -1,0 +1,166 @@
+{
+ "schema_version": 2,
+ "task_id": "AS067",
+ "task_sha256": "c7fd82f8402252ef2346ae8c49e30b4d8ff0f6183ed950aa354bb7f396d0a6a8",
+ "run_id": "AS067-r1-20260928T103724Z-dsv4f-hermes",
+ "worker": "deepseek-v4-flash-0731 (OpenRouter) / Hermes subagent; host macOS 26.5.2; cwd /Users/carlzimmerman/new_physics/zimmerman-formula",
+ "started_utc": "2026-09-28T10:37:24Z",
+ "finished_utc": "2026-09-28T11:43:35Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "Within the corpus's local action class (k01 g03t: S = (1/16piG) int sqrt(-g)[R - 2*Lambda - alpha*J(Y) - K(Q) + 2*alpha*J^mu*d_mu*phi], alpha = 2-K_B, K_B in [0,1/4], Y = q^mu nu d_mu phi d_nu phi, static weak-field two-potential sector, FLRW background with Y=0, Q=Q0), the additive vacuum zero mode is an EXACT gauge degeneracy: (1) statics: EL(J + lambda*C) = EL(J) exactly for all lambda in {1/2, 1, 2} and symbolic lambda (J enters only through J'); independent discretized-action check: ||grad S(J+C) - grad S(J)||_inf = 6.7e-10 (finite-difference floor); (2) background: Lambda_eff = Lambda + (2-K_B)*J(0)/2 + K(Q0)/2 exactly, shift Delta(Lambda_eff) = lambda*(2-K_B)*C/2 exactly linear; the map (Lambda, J(0), K(Q0)) -> Lambda_eff has Jacobian rank 1 (two null directions); (3) the compensated pair (J -> J + lambda*C, Lambda -> Lambda - lambda*(2-K_B)*C/2) is an exact pointwise symmetry of the action density (residual 2.2e-16..7.8e-16 numerically), so ALL observables (static g(r) and Friedmann H(a)) are unchanged while the primitive zero J(0) changes; uncompensated shifts change rho_Lambda by 0.44-1.99% (lambda = 1/2..2, K_B = 0..1/4) -- the control is capable of failing and does; (4) tightness: nonconstant shifts J + lambda*C*w(Y), w' != 0, change the equations (symbolic residual nonzero) and change g(r) by 8-33% -- the invariant subspace is exactly the constants; (5) the deep/Newtonian limits pin only J' (mu_n'(0) = n, mu_n(inf) = 1, symbolic n >= 1); (6) hence NO equation of this action class fixes kappa = a0/s: kappa = 1/2 remains the adopted input (framework contract); (7) 'empty Newtonian vacuum' fixing of J(0) gives rho_vac = alpha*J(0)/(16pi*G*c^2) < 0 for every n >= 1 and every truncation (closed forms n = 1..6); the untruncated MU_n span I(Z) ~ Z^2 diverges for all n (log-log slopes 2.000), so the fixing is ill-posed without a truncation whose size freedom spans |rho_vac|/rho_Lambda in [0.011, 1.129] (n = 2..6 x K_B x both footings at mu = 0.99). Domain: dimensionless algebra in c = 1 plus SI numerics; both footings stated separately: a0 = 9.3619e-11 (kappa = 1/2, n = 2, rho_L = 5.844412e-27 kg/m^3) and a0 = 1.1279e-10 (kappa_eff = 0.602388 -> n_eff = 1.660059, not a channel count; or fixed kappa = 1/2 with rho_L' = 8.483090e-27 kg/m^3 = 1.4515 rho_L).",
+ "framework_cell": "Action: k01 g03t class, source SHA256 = 8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c; L = sqrt(-g)[R - 2*Lambda - c1*T1 - c2*T2 - c3*T3 + c4*T4 + 2*alpha*J^mu*d_mu*phi - alpha*J(Y) - K(Q)]/(16pi*G) + L_m, alpha = 2 - K_B retained throughout (K_B audited in {0, 1/4}); reduced static sector L = -2*Psi'^2 + 2*alpha*Psi'*phi' - alpha*J(phi'^2) - rho_b*(Psi + phi); MU_n response mu_n(Y) = 1 - (1+Y)^(-n), Y = g/s, symbolic n >= 1; MOND scale s = c*sqrt(G*rho_Lambda) = 2*a0_can = 1.872380e-10 m/s^2; kappa = 1/2 ADOPTED (never claimed derived); both footings separate: canonical a0 = 9.3619e-11 m/s^2, alternative a0 = 1.1279e-10 m/s^2 (kappa_eff = 0.602388 at fixed rho_L, or fixed kappa with rho_L' = 8.483090e-27 kg/m^3); G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI); G_N/G_bare/G_cosmo kept SEPARATE (none identified; k01 K4 renormalization range cited as recorded context only); boundaries/initial data: FLRW minisuperspace (Y = 0, Q = Q0), static radial/1D sector, 'empty Newtonian vacuum' fixing as the audited repair; units: c = 1 in the algebra, SI restored in footings and rho_vac statements; gate: requirement 13 (cosmological acceleration-scale relation, derive-arm) of the amended thirteen-item target; filtered-MONO kernel and criterion B untouched (no branch transfer: conclusions are MU_n-branch or generic-J, flagged as such).",
+ "new_assumptions": [
+  "None added beyond the seed's declared inputs; audited premises listed in derivation.md A1-A4 (action class, static reduction, FLRW background, truncation conventions for S6)."
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS067_additive_vacuum_zero_mode_in_the_local_action.md": "c7fd82f8402252ef2346ae8c49e30b4d8ff0f6183ed950aa354bb7f396d0a6a8",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+  "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+  "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+ },
+ "artifacts_sha256": {
+  "AS067_zero_mode.lean": "00b25a4ee8618d4056a2eb8b10c68d459e6d4045954310d568f754ecaec429e7",
+  "AS067_zero_mode_compile.out": "4fe1c917aa8f018a828f0927cba9dda6465ec283cfd0e12432a745c8f75b7848",
+  "as067_audit.out": "3df5c10a478f76fd330ad8bbaa9e4f7954b53b251c59fc118051f4f6c3ab6d40",
+  "as067_audit.py": "255561fcab69bd14c1da52601fa58c8e1317c8b4b83aea050c9eaf9188384356",
+  "as067_audit.time": "dec5899bb116c6f6c117b69570abb17cad49cd6b90a86c1deab4fe5461f1b915",
+  "as067_observables.npz": "fb9be09637de2bdf25b51c84793c44c4f79abff52451761e9772f872f3cffe51",
+  "as067_results.json": "3444f5ee3ff44b6732dd5bdaec0396f336a9de89b8664914a47b0ebf130ecaac",
+  "derivation.md": "db991964f88d9b523d8cec0d57fa0de3681347a047a758a395773ff58a7656e2",
+  "run_bounded.py": "1f1406d8fea9d3c1533bbb2d33c1f0c72e03e46a9f9b3e9c22e44832f024f662"
+ },
+ "commands": [
+  "shasum -a 256 deepseek_push/astra_spawn_ideas/AS067_additive_vacuum_zero_mode_in_the_local_action.md  (cwd /Users/carlzimmerman/new_physics/zimmerman-formula)",
+  "shasum -a 256 deepseek_push/PD01_polarization_count.py deepseek_push/PD08_particle_free_derivation.py kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py",
+  "python3 run_bounded.py  (execv python3 as067_audit.py)  under /usr/bin/time -l; cwd = run dir",
+  "lake env lean <run dir>/AS067_zero_mode.lean  (cwd = fable_independent_2026/lean_2026; compile host only, no files written there)"
+ ],
+ "execution_bounds": "Declared: <= 120 s wall/CPU, <= 512 MB memory, 1 thread. Enforced: RLIMIT_CPU = 120 s soft+hard (setrlimit succeeded, recorded in as067_audit.out); threads = 1 via OPENBLAS/OMP/MKL/VECLIB/NUMEXPR_NUM_THREADS = 1; RLIMIT_AS = 512 MB NOT enforceable on this macOS host (kernel refuses finite RLIMIT_AS: 'current limit exceeds maximum limit'; documented in run_bounded.py and as067_audit.out). Measured: wall 1.58 s, max RSS 97,337,344 bytes (97.3 MB), user CPU 1.44 s; script-internal wall 1.366 s. Lean compile: separate bounded invocation (timeout 500 s). All bounds honored or, where unenforceable, measured and recorded.",
+ "checks": [
+  {
+   "name": "A1 [S1: statics] EL(J + lam*C) == EL(J) exactly for lam in {1/2, 1, 2} and symbolic lam",
+   "measured": "{'1/2': ['0', '0'], '1': ['0', '0'], '2': ['0', '0'], 'symbolic': ['0', '0']}",
+   "pass": true,
+   "reading": "the reduced static field equations contain J only through J' (see EL forms below); any additive constant in the MOND primitive is invisible in the statics"
+  },
+  {
+   "name": "A2 [S4: tightness] a Y-dependent shift J -> J + lam*C*w(Y) with w' != 0 changes the equations (residual != 0)",
+   "measured": "['2*C*alpha*lambda*(3*Derivative(phi(x), x)**2 - 1)*Derivative(phi(x), (x, 2))/(Derivative(phi(x), x)**6 + 3*Derivative(phi(x), x)**4 + 3*Derivative(phi(x), x)**2 + 1)', '0']",
+   "pass": true,
+   "reading": "the invariant subspace of J -> J + shift is EXACTLY the constants: the additive zero mode is the only invisible direction.  A would-be counterexample with a field-dependent 'constant' fails, so the S1 claim is tight"
+  },
+  {
+   "name": "A3 [independent representation] finite-difference gradient of the discretized static action is unchanged under J -> J + C",
+   "measured": "max |d| = 6.661e-10, rel = 7.322e-10",
+   "pass": true,
+   "reading": "same statement as A1 in an entirely different representation (discrete action gradient by central differences): the invariance is not a symbolic artifact"
+  },
+  {
+   "name": "B1 [S2: background] Lambda_eff = Lambda + (2-K_B) J(0)/2 + K(Q0)/2 exactly",
+   "measured": "J_0*alpha/2 + K_0/2 + Lambda",
+   "pass": true,
+   "reading": "signs: the action's constant density is -2*Lambda - alpha*J(0) - K(Q0) (all three terms negative with the corpus's conventions); matching -2*Lambda_eff fixes Lambda_eff = Lambda + alpha J0/2 + K0/2.  On Y = 0 the whole J(0)/K(Q0) sector is dimensionless L^-2 in c = 1 units (acceleration-squared / c^4 in SI)"
+  },
+  {
+   "name": "B2 [S2: linearity] Delta Lambda_eff = lam*alpha*C/2, linear in lam (1/2, 1, 2)",
+   "measured": "C*alpha*lambda/2",
+   "pass": true,
+   "reading": "the background shift is exactly linear in the added constant's coefficient lam"
+  },
+  {
+   "name": "B3 [S2: rank] (Lambda, J(0), K(Q0)) enter Lambda_eff only through ONE combination (Jacobian rank 1; two independent null directions)",
+   "measured": "singular values [1.41972709]",
+   "pass": true,
+   "reading": "two independent zero directions: (dLambda = -alpha*dJ0/2, dK0 = 0) and (dLambda = -dK0/2, dJ0 = 0): a TWO-dimensional vacuum zero-mode degeneracy collapses onto the single observable Lambda_eff"
+  },
+  {
+   "name": "C1 [S3: exact] the compensated pair leaves the action density pointwise unchanged (-2*(-lam*alpha*C/2) - alpha*(lam*C) = 0 identically)",
+   "measured": "0",
+   "pass": true,
+   "reading": "this is an EXACT symmetry of the full action, not an asymptotic statement: J(0) is a pure Lambda-gauge degree of freedom within the action class"
+  },
+  {
+   "name": "C2 [numeric] action densities of the compensated pair agree to machine precision on a nontrivial static profile (lam in {1/2, 1, 2}, two C values)",
+   "measured": "max |Delta| < 1e-14 on all four samples",
+   "pass": true,
+   "reading": "S3 is not only symbolic: the pointwise identity holds to 1e-15 on numerical profiles"
+  },
+  {
+   "name": "D1 [MU_n] deep-MOND slope mu_n'(0) = n (symbolic), Newtonian saturation mu_n -> 1; verified at n = 1..6",
+   "measured": "mu_n'(0) = n, mu_n(inf) = 1",
+   "pass": true,
+   "reading": "the response family of the seed: deep slope = the channel count n; both limits constrain ONLY J' (through mu), never J(0) -- the zero mode survives both limits"
+  },
+  {
+   "name": "D2 [a0-line chain] mu_n ~ n g/s gives the a0-line with a0 = s/n, kappa_n = 1/n (symbolic n)",
+   "measured": "a0 = s_N/n, kappa = 1/n",
+   "pass": true,
+   "reading": "canonical n = 2 gives kappa = 1/2 = the ADOPTED value (consistency, not a derivation: the adopted one-half normalization still carries no independent freedom-removing argument beyond the count)"
+  },
+  {
+   "name": "D3 [footings] canonical a0 = 9.3619e-11 m/s^2 has kappa = 1/2, n = 2 exactly; alternative a0 = 1.1279e-10 has kappa_eff = 0.60238 (n = 1.6601, not a channel count) at fixed rho_L, or n = 2 with rho_L' = 8.4837e-27 kg/m^3 at fixed kappa",
+   "measured": "{'canonical': {'kappa_eff': 0.5, 'n_eff': 2.0}, 'alt': {'kappa_eff': 0.6023884040632778, 'n_eff': 1.660058515825871}}",
+   "pass": true,
+   "reading": "both footings stated separately; the alternative footing is an alternative NORMALIZATION, not the same rho_L with the same kappa"
+  },
+  {
+   "name": "D4 [S6a: sign] under the saturation/truncated-end fixing (J(sat) = 0), J(0) = -I_n a0^2 < 0 for every n = 1..6 and every truncation: rho_vac < 0",
+   "measured": "['z_t**2 - 2*z_t + 2*log(z_t + 1)', '((z_t + 1)*(z_t**2 - 2*log(z_t + 1) + 2) - 2)/(z_t + 1)', 'z_t**3*(z_t + 2)/(z_t**2 + 2*z_t + 1)', 'z_t**3*(z_t**2 + 3*z_t + 8/3)/(z_t**3 + 3*z_t**2 + 3*z_t + 1)', 'z_t**3*(6*z_t**3 + 24*z_t**2 + 35*z_t + 20)/(6*(z_t**4 + 4*z_t**3 + 6*z_t**2 + 4*z_t + 1))', 'z_t**3*(10*z_t**4 + 50*z_t**3 + 99*z_t**2 + 95*z_t + 40)/(10*(z_t**5 + 5*z_t**4 + 10*z_t**3 + 10*z_t**2 + 5*z_t + 1))']",
+   "pass": true,
+   "reading": "mathematically forced: mu_n > 0 on (0, inf) => I_n = 2*int z mu_n dz > 0, so the primitive descends toward Y = 0 and its vacuum zero is NEGATIVE (attractive-sign scalar kinetic).  The Lambda-free repair of k01 K3 fails on sign for the whole MU_n family, n-independent (k01 established this for the nu_RAR/exp carriers)"
+  },
+  {
+   "name": "D5 [S6b: ill-posed fixing] the k01-style primitive span I_n(Z) = 2*int_0^Z z mu_n dz grows ~ Z^2 for every n (no saturation point in the MU_n family): the 'empty Newtonian vacuum' fixing is ill-posed on the untruncated carrier",
+   "measured": "log-log slopes ~ 2.0 for n = 1..4",
+   "pass": true,
+   "reading": "the MU_n branch has mu_n -> 1 only at Y -> infinity; unlike the corpus's saturated nu_RAR/MONO kernels (bounded Delta, k01 I_rar = 2.54...) the MU_n primitive's span does not converge -- the fixing depends on an arbitrary truncation (functional freedom), which is itself part of the audit: J(0) is not fixed by the action"
+  },
+  {
+   "name": "D6 [S6c: size] at the explicit mu = 0.99 truncation, |rho_vac|/rho_Lambda spans [0.011, 1.129] across n x K_B x footings and varies by a factor > 5 within this one truncation choice",
+   "measured": "min 0.0109, max 1.1290",
+   "pass": true,
+   "reading": "the SIGN is convention-independent (D4), the SIZE is not: changing n, K_B, the footing or the truncation moves the ratio over two orders of magnitude, i.e. the magnitude of the primitive's vacuum energy carries no fixed meaning until a principle fixes the primitive's zero -- the audit conclusion (S5) is independent of which kernel family is used"
+  },
+  {
+   "name": "E1 [control 1: statics] the static observable g(r) is bitwise identical under J -> J + lam*C (equation unchanged; substituted residual max < 1e-12), while a nonconstant shift changes g(r) by O(0.01-0.1) relative (probe capable of failing, and it does fail for nonconstant w)",
+   "measured": "residuals < 1e-12 (constant) vs > 1e-3 (nonconstant)",
+   "pass": true,
+   "reading": "the static sector is exactly invariant under the constant zero-mode shift and exactly sensitive to any nonconstant perturbation: the control is discriminating"
+  },
+  {
+   "name": "E2 [control 2: background] compensating Lambda -> Lambda - lam*alpha*C/2 restores IDENTICAL Friedmann evolution (exact identity, C1); leaving the shift uncompensated changes rho_Lambda by 0.4-2% depending on lam and K_B -- the control is capable of failing and the numbers show the shift is observable unless Lambda is adjusted",
+   "measured": "Delta rho_Lambda/rho_Lambda in [4.352e-03, 1.989e-02] uncompensated; 0 compensated",
+   "pass": true,
+   "reading": "this is the seed's control in executable form: fix Lambda to compensate C and the observables are unchanged despite a changed primitive zero"
+  }
+ ],
+ "tested_domain": "Symbolic: generic J (Function), symbolic n >= 1 and instances n = 1..6; lambda in {1/2, 1, 2} plus symbolic; K_B in {0, 1/4}; alpha = 2 - K_B retained. Numeric: Hernquist baryon model M = 1e11 M_sun, a_h = 3 kpc, r in [0.1, 100] kpc (200 log-spaced radii), 300-step bisection (substituted residual < 1e-12); action-gradient lattice 401 nodes, eps = 1e-6 central differences; Friedmann H(a) epochs a in [0.01, 1] (Omega_Lam = 1 normalized); footings: canonical and alternative a0; vacuum ratios at truncations z_99 = 100^(1/n) - 1 for n = 2..6; span growth up to Z = 1e6 (log-log slope fit). Deterministic; no seeds; no stochastic sampling.",
+ "failed_attempts": [
+  "Numerics: first run used r = 0.1..100 pc instead of kpc for the galaxy model, placing the nonconstant-shift probe in the Newtonian regime (probe drel = 5e-10); grid corrected to kpc and rerun (probe now 8-33%); final as067_audit.out is the corrected run.",
+  "Lean: three attempts to certify deriv (fun Y => muN n Y) 0 = n (instances n = 2, 3 and generic n) failed on Mathlib v4.34.0-rc2 typeclass-instance mismatches inside HasDerivAt (AddCommGroup/Module instance equality goals) that simpa/convert/fun_prop could not close; documented in the E-note of AS067_zero_mode.lean. Slope = n is carried by the audit's sympy check (generic n) and by the corpus's PD07 certificate (n = 2); the zero-mode algebra itself is fully certified (11 theorems, axioms subseteq {propext, Classical.choice, Quot.sound})."
+ ],
+ "limitations": "No claim about Q/RAR/EXP/MONO kernels beyond their membership in the generic-J zero-mode theorem (kernel-independent statement flagged as such; no branch import into MONO/criterion B). Does not establish any other of the thirteen requirements; no empirical test; alternative-footing n_eff = 1.6601 is an identification constraint, not a fit. S6 sizes are truncation-dependent (recorded freedom); S6 sign and S1-S5 are convention-independent. The no-derivation statement (S5) is scoped to the A1-A4 action class (local, J entering as -alpha*J(Y)*sqrt(-g), metric-independent Y); nonlocal/sequestering/four-form sectors (AS651-AS659, AS068 neighbors) are not audited here. K(Q0) carried symbolically and set to 0 in the E2 numerics (recorded). Memory bound unenforceable on macOS (RLIMIT_AS refusal); measured instead.",
+ "next_unresolved_implication": "The first missing bridge to transfer (or close) the kappa-derivation route: a principle outside the local action class that fixes J(0) ABSOLUTELY (lifting the two-dimensional (J(0), K(Q0))-with-Lambda degeneracy of Lambda_eff) with rho_vac > 0 and |rho_vac|/rho_Lambda = O(1) at the canonical footing. Quantified target: find an extension of the A1-class action such that (i) S1-S4 survive, (ii) a new equation fixes J(0) = -kappa^2*I*a0^2 with kappa = 1/2 and positive vacuum density -- or a no-go for the class. Recorded obstructions all stand: empty-Newtonian fixing (sign fails, this run, n-independent), k02-style sequestering (corpus: misses by ~1e5), truncation freedom (this run).",
+ "suggested_followup": "Dispatch AS067.C01 (ready spec at deepseek_push/astra_spawn_ideas/branches/AS067/AS067.C01.md): construct a canonical action-intrinsic regularization of the MU2 primitive span and prove the regularization-independence theorem for S1-S6 (or the smallest failed implication), computing the regularized rho_vac/rho_Lambda on both footings; if a prescription pins sign AND size, escalate as a candidate contribution to gate 13's derive-arm with the caveat that any fixing is an added axiom (the S3 degeneracy cannot be lifted from inside the action). Duplicate check against AS068/AS651-AS659/fresh_gravity_followups recorded in the child spec.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": "PRIMITIVE/ADOPTED (inputs, not derived): the corpus's local action class k01 g03t with alpha = 2 - K_B, K_B in [0, 1/4]; the static weak-field two-potential reduction (PD01 B1); the FLRW minisuperspace with Y = 0, Q = Q0; the MU_n response family with symbolic n >= 1; s = c*sqrt(G*rho_Lambda) and kappa = 1/2 as ADOPTED framework input; framework numerics G, c, M_sun, pc; both a0 footings; the 'empty Newtonian vacuum' fixing as an audited repair; the mu = 0.99 truncation as an audited size convention. MEASURED CALIBRATIONS: none (no data fitting). DERIVED IN THIS RUN (theorems with checks): S1 static invariance (EL contains J only through J'); S2 Lambda_eff formula + linearity + rank-1 degeneracy; S3 exact compensation symmetry (pointwise identity + machine-precision numeric); S4 tightness (constants = the whole invariant subspace); S5 kappa non-derivability within the class; S6 sign theorem (rho_vac < 0, n-independent), divergence theorem (I(Z) ~ Z^2), truncation-size table. No claim these hold of the world; empirical content belongs to the framework's registered instruments.",
+ "closure_implication": "Gate: requirement 13 (cosmological acceleration-scale relation: preserve or derive a0 ~ c*sqrt(G*rho_Lambda), kappa = 1/2). Exact implication: for ANY kernel of the audited class (including the operative filtered-MONO primitive, by the generic-J theorem), the additive zero mode closes the derive-arm inside the action -- Lambda_eff = Lambda + (2-K_B)*J(0)/2 + K(Q0)/2 is the only invariant and contains no a0; kappa = 1/2 is an adopted boundary condition (preserve-arm consistent, untouched). Common-action compatibility: the statement is kernel-independent and footing-independent (dimensionless); it transfers to a common-action witness only as a CONSTRAINT on any candidate (the candidate must break the degeneracy with an added axiom), not as a positive construction. Branch translation used: none (MU_n branch only; generic-J corollary flagged as generic).",
+ "child_proposals": [
+  {
+   "id": "AS067.C01",
+   "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS067/AS067.C01.md",
+   "fingerprint": "action = k01 g03t class (parent hash 8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c), branch = MU_n (n = 2 operative), assumptions = AS067 A1-A4 + one new regularization axiom, domain = static + FLRW, target = regularization-independence theorem for S1-S6 + regularized rho_vac/rho_Lambda on both footings, observable = rho_vac/rho_Lambda, continuation = construct canonical regularization R",
+   "new_target": "Define a canonical action-intrinsic regularization R of the MU2 primitive span; prove which AS067 statements are regularization-independent vs dependent; compute rho_vac/rho_Lambda under R on both footings for K_B in {0, 1/4}; or isolate the smallest failed implication.",
+   "controls": "Negative control: two distinct prescriptions must disagree on the ratio by >10% (size is prescription-dependent) OR the agreement must be derived from a stated axiom; both readings failing = inconclusive.",
+   "dependencies": "AS067 review evidence; no external data.",
+   "dispatch_state": "spec_written_not_dispatched (no spawn mechanism in seed worker)"
+  }
+ ],
+ "closure_candidate": null
+}

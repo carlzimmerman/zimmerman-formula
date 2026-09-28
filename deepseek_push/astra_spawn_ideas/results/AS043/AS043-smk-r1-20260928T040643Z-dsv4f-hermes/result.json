@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "task_id": "AS043",
+  "task_sha256": "1c12440b793aad3fe780d0c64e3ae8d7229b1ba339483619ba9746f6598b7b4b",
+  "task_sha256_note": "The dispatched file deepseek_push/astra_spawn_ideas/AS043_smoothing_kernel_statistical_interpretation.md does not exist in the repository (verified: current tree, git log --all, git rev-list --all --objects, catalog scans). task_sha256 is the hash of seed_as_dispatched.md, which reproduces the seed text exactly as dispatched. Repo slot AS043 is the different task 'Constant acceleration and the external field', owned by worker sa-4-bd5c1481 (running); that task's files were not touched, no claim file created or modified.",
+  "run_id": "AS043-smk-r1-20260928T040643Z-dsv4f-hermes",
+  "worker": "hermes-agent subagent, model deepseek/deepseek-v4-flash-0731, provider openrouter",
+  "started_utc": "2026-09-28T04:06:43Z",
+  "finished_utc": "2026-09-28T04:48:55Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Let (M=flat Euclidean R^3, measure d^3x) and S = exp[(xi^2/2) Delta]. Then (i) S is convolution with the exact Gaussian probability kernel G_xi(r) = (2 pi xi^2)^(-3/2) exp(-|r|^2/(2 xi^2)), std xi per axis, ∫G_xi = 1 (Lean-certified 1D & 3D; numerics to 1e-16), equivalently (S f)(x) = E[f(x+xi Z)], Z~N(0,I_3) (MC-verified); (ii) in L2(d^3x) S* = S (verified 3.5e-18); (iii) in the GALACTIC measure dmu_N = N sqrt(h) d^3x (lapse-weighted proper-volume measure of the operative action; AS205 pairing) the adjoint is S*_gal = N^{-1} S N (verified 6.9e-18 for nonconstant N), and the naive claim S* = S in the galactic measure FAILS for nonconstant lapse (control gap 1.2e-3), confirming 'self-adjointness in one measure does not imply it in another'; (iv) the statistical reading is an exact, assumption-neutral representation of S on the flat Euclidean cell, adds implicit assumptions (unit lapse, Euclidean measure, fixed domain/BC: on a periodic domain the exact kernel is the wrapped Gaussian, control l1 diff 6.9e-2) when transplanted to the operative galactic context, and subtracts nothing. Domain: xi > 0 finite, scalar functions, flat leaf or flat periodic cell; a0-independent, valid identically on both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2.",
+  "framework_cell": {
+    "action_source": "FRAMEWORK_CONTRACT.md (sha256 ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9) + amendment qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md (sha256 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f); operative target filtered nu_mono, criterion B",
+    "kernel_filter": "S = exp[(xi^2/2) Delta], xi free filter length [m]; scalar filter form as in Delta u = 4pi G rho_b; S* div[(nu_mono(|grad S u|/a0)-1) grad S u] term uses the measure adjoint S* (galactic: N^{-1} S N)",
+    "branch": "MONO (criterion B); branches Q, RAR, MU2, EXP kept distinct; audit itself branch-agnostic",
+    "couplings": "G_N, G_bare, G_cosmo kept separate; no coupling set equal; this audit uses no G constant",
+    "scale_footings": "a0_canonical = 9.3619e-11 m/s^2, a0_alternative = 1.1279e-10 m/s^2; kappa = 1/2 adopted; audit identities contain no a0/G/rho_Lambda/c and hold on both footings",
+    "measure": "Euclidean d^3x (L2 cell) vs galactic dmu_N = N sqrt(h) d^3x with lapse N > 0 (positive, nonconstant in controls) and leaf volume sqrt(h)",
+    "domain_bcs": "flat R^3 unbounded (free kernel exact) and flat periodic cell of side L (wrapped Gaussian exact; free vs wrapped difference control C6); scalar functions; xi > 0",
+    "units": "SI: G=6.67430e-11 m^3 kg^-1 s^-2, c=299792458 m/s, M_sun=1.98847e30 kg; xi in m; kernel [m^-d]; nondimensional r_M anchors: r_M(1e10 Msun) = 1.1906e20 m (canonical), 1.0847e20 m (alternative)"
+  },
+  "new_assumptions": [],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+    "deepseek_push/astra_spawn_ideas/AS043_smoothing_kernel_statistical_interpretation.md": "ABSENT (file does not exist in repo or git history; dispatched seed content reproduced in seed_as_dispatched.md, hashed as task_sha256)"
+  },
+  "artifacts_sha256": {
+    "seed_as_dispatched.md": "1c12440b793aad3fe780d0c64e3ae8d7229b1ba339483619ba9746f6598b7b4b",
+    "derivation.md": "c3582885a947314175cd7943d9322db482df4ea6f6fa7b61fc6b583679a06a20",
+    "audit_smoothing_kernel.py": "2daf13aaa211284cb85d91d6ac73ab97281b13f4e6cb2602ed1c0c6280288fb8",
+    "audit_smoothing_kernel.out": "73f60d874482625dc6c71cbe3d188f07b5cc1ce6642c50ef2c53147f77b6a0ed",
+    "audit_smoothing_kernel.err": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit_smoothing_kernel.time": "29e88cfb1c0c243a72582c29e5395bb868cab74122caad8af585aeee59079fd3",
+    "bounds.time": "e5bce7088001973d7d9e73651392844423d596e08850b82019a4c744bac1ea0a",
+    "as043_gaussian_kernel.lean": "0e10357253811d027011f973644c3ea89392d28747096ec48d6060bae7c39782",
+    "as043_gaussian_kernel.lean.out": "fa88dc903d4196a9cee34c554e50ea4308aaf4458a7a2e50494a3c185f501fb4"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS043/AS043-smk-r1-20260928T040643Z-dsv4f-hermes && OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l python3 audit_smoothing_kernel.py > audit_smoothing_kernel.out 2> audit_smoothing_kernel.time",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && /usr/bin/time -l lake env lean <abs run dir>/as043_gaussian_kernel.lean"
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s, RAM <= 512 MB, 1 thread",
+    "enforced_numeric_prototype": {
+      "threads": "1 (OPENBLAS_NUM_THREADS=1, OMP_NUM_THREADS=1, MKL_NUM_THREADS=1, NUMEXPR_NUM_THREADS=1)",
+      "wall_seconds": 0.08,
+      "peak_rss_bytes": 38781552,
+      "grid": "512 cells 1D periodic; 64^3 3D; 4e5 Monte Carlo samples; full 1D convolution enumeration"
+    },
+    "lean_compile": "lake env lean, 3.7 s wall, process-family peak RSS 5.76 GB (lake+lean toolchain run; compiler-run artifact, not the numeric prototype — recorded separately)",
+    "note": "wall and memory limits enforced for the scientific prototype via /usr/bin/time -l; bounds satisfied"
+  },
+  "checks": {
+    "C1_kernel_form_periodic1D": {"target": "S f via Fourier symbol exp(-xi^2 k^2/2) equals direct Gaussian convolution (periodic)", "tolerance": 1e-8, "observed": 4.440892098500626e-16, "pass": true},
+    "C1b_3D_kernel_separable": {"target": "3D symbol application equals 3 sequential 1D Gaussian filters", "tolerance": 1e-8, "observed": 4.85722573273506e-17, "pass": true},
+    "C2_1D_norm": {"target": "∫ G_xi dx = 1 (probability kernel)", "tolerance": 1e-6, "observed": 1.0000000000000002, "pass": true},
+    "C2b_3D_norm": {"target": "∫_{R^3} G_xi = 1 via product separability", "tolerance": 1e-3, "observed": 1.0000000000000007, "pass": true},
+    "C2c_second_moment": {"target": "∫ x^2 G_xi dx = xi^2 (width xi exact)", "tolerance": 1e-6, "observed": 0.0024999998128233856, "expected": 0.0025, "pass": true},
+    "C3_statistical_expectation": {"target": "E[f(x0+xi Z)] = (S f)(x0), Z~N(0,1)", "tolerance": 3e-3, "observed_delta": 0.0006731397119784654, "pass": true},
+    "C4_L2_selfadjoint": {"target": "⟨Su,v⟩ = ⟨u,Sv⟩ in L2(dx) (S* = S)", "tolerance": 1e-8, "observed_abs_diff": 3.469446951953614e-18, "pass": true},
+    "C5_galactic_adjoint_correct": {"target": "⟨Su,v⟩_N = ⟨u, N^{-1} S (N v)⟩_N, N nonconstant", "tolerance": 1e-8, "observed_abs_diff": 6.938893903907228e-18, "pass": true},
+    "C5_negative_control_naive_selfadjoint_must_FAIL": {"target": "⟨Su,v⟩_N = ⟨u,Sv⟩_N must be FALSE for nonconstant lapse", "tolerance_detect_gap": 1e-3, "observed_abs_diff": 0.001202888726845798, "control_triggered": true, "pass": true},
+    "C6_boundary_wrapped_vs_free_NEGATIVE": {"target": "free Euclidean Gaussian is NOT the exact kernel on a periodic domain (wrapped images matter)", "tolerance_detect_l1": 1e-3, "observed_l1_diff": 0.0690375157407748, "control_triggered": true, "pass": true},
+    "C7_footings": {"target": "audit dimensionless; a0=9.3619e-11 and 1.1279e-10 m/s^2 both apply", "rho_Lambda_canonical": 5.844412454021876e-27, "rho_Lambda_alternative": 8.483089619559099e-27, "r_M_1e10Msun_canonical_m": 1.190639769001739e+20, "r_M_1e10Msun_alternative_m": 1.084743571587644e+20, "pass": true},
+    "LEAN_gaussian_integral_1d": {"theorem": "∫_R exp(-x^2/(2 xi^2)) = sqrt(2 pi) * xi (xi > 0)", "verified": true, "axioms": ["propext", "Classical.choice", "Quot.sound"]},
+    "LEAN_kernel_normalized_1d": {"theorem": "∫_R K xi = 1", "verified": true, "axioms": ["propext", "Classical.choice", "Quot.sound"]},
+    "LEAN_kernel_normalized_3d": {"theorem": "∫_{R^3} K xi x * K xi y * K xi z = 1", "verified": true, "axioms": ["propext", "Classical.choice", "Quot.sound"]}
+  },
+  "tested_domain": "Flat Euclidean 1D cell L=4.0, N=512 periodic grid, xi in {0.05, 0.8, 1.1}; 3D cell L=2.0, 64^3, xi=0.1; lapse N(x)=1+0.3cos(3x)+0.1sin(5x) ∈ (0.6,1.4); f = Gaussian ridge + cos + linear trend; 4e5 MC samples, seed 7; lean: xi > 0 real, all of R and R^3, product measure. Exclusions: curved leaf metrics h != flat (kernel form there is a residue question, not certified); vector adjoint of S* div[...] not re-derived; xi not derived from action/a0.",
+  "failed_attempts": [
+    {"artifact": "none preserved (in-place fix)", "cause": "audit_smoothing_kernel.py first run: 3D separable-filter check failed (residual 0.95) because the 1D multiplier array broadcast along the last axis instead of the chosen axis; fixed apply1d to reshape the multiplier per axis; post-fix residual 4.9e-17"},
+    {"artifact": "none preserved (in-place fix)", "cause": "3D normalization quadrature over [-6xi,6xi]^3 gave 0.985 (crude left-sum peak undershoot); replaced by exact product (∫_1D)^3 using C1b-verified separability; observed 1.0000000000000007"}
+  ],
+  "limitations": "Flat-leaf kernel only: curved-leaf heat kernel of S_h is not the Euclidean Gaussian (stated, not derived; candidate: small-xi heat-kernel expansion). xi remains a free parameter (not derived from a0/action). Scalar S audited; the vector S* acting on div[...] in the MONO equation inherits the same measure weight but was not separately re-derived. Seed file absent from repo; audit executed from dispatch text (documented); repo-AS043 untouched, owned by sa-4-bd5c1481. No claims file created.",
+  "next_unresolved_implication": "The measure-adjoint S*_gal = N^{-1} S N must be inserted into the operative MONO weak-field equation ΔPhi = 4pi G rho_b + S* div[(nu_mono(|grad S u|/a0)-1) grad S u] with the galactic (lapse-weighted) pairing, and the resulting equation's structure (whether S* acts as N^{-1} S N on the dual divergence) checked against how the action's variation is performed — the missing bridge is a consistent variational derivation of the S* placement on a lapse-nonconstant leaf.",
+  "suggested_followup": "AS205-family task: compute, on a flat leaf with nonconstant lapse N, the explicit action variation δ/δPhi of (1/2)⟨grad S u, grad Phi⟩_N and derive the exact vector adjoint S*_vec (dual-divergence) form, verifying whether S*_gal = N^{-1} S N extends componentwise to the divergence term; discriminating check: compare the weak form against a direct finite-difference variation on the 512-cell grid used here.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": ["S = exp[(xi^2/2) Delta] as operative filter definition (FRAMEWORK_CONTRACT)", "flat Euclidean leaf with standard Laplacian for the kernel cell", "galactic measure dmu_N = N sqrt(h) d^3x, N>0, as the operative leaf pairing (AS205)", "kappa = 1/2 adopted, a0 = kappa c sqrt(G rho_Lambda)", "SI constants G=6.67430e-11, c=299792458, M_sun=1.98847e30"],
+    "derived_equations": ["heat-kernel form G_xi(r) = (2 pi xi^2)^(-3/2) exp(-|r|^2/(2 xi^2))", "statistical identity (S f)(x) = E[f(x+xi Z)]", "galactic adjoint S*_gal = N^{-1} S N via ⟨v,Su⟩_N = ⟨Nv,Su⟩_{L2} = ⟨S(Nv),u⟩_{L2} = ⟨N^{-1}S(Nv),u⟩_N", "L2 self-adjointness S* = S from symmetric kernel/self-adjoint Laplacian"],
+    "calibrations": "none (no fits; xi left free)"
+  },
+  "closure_implication": {
+    "gate": "amended-thirteen criteria: self-adjointness-in-measure clause of the framework contract (S and S* definition requirement) + well-posedness of filtered MONO",
+    "implication": "This result supplies the exact measure-dependent adjoint for the smoothing kernel, fixing S* in the MONO source term when the leaf pairing is the lapse-weighted galactic measure; with S* = N^{-1} S N the filtered equation is the well-posed one. It does not by itself close branch dynamics, causality (criterion B) or the two-degree-of-freedom metric sector.",
+    "common_action_parameter_domain": "flat-leaf weak-field cell, xi > 0, lapse N > 0; compatible with MONO branch and both a0 footings"
+  },
+  "child_proposals": [
+    {
+      "id": "AS043.C01",
+      "spec_path": null,
+      "fingerprint": "vector adjoint of S on the MONO divergence term in the galactic measure: derive ⟨S div V, w⟩_N form on 512-cell flat grid with nonconstant N, verifying N^{-1} S N componentwise vs divergence-weight commutation",
+      "new_target": "exact closed form of S*_vec u in ΔPhi = 4pi G rho_b + S* div[...] under dmu_N",
+      "controls": ["weak-form vs direct finite-difference variation", "flat-lapse (N=1) reduction must return S", "machine-precision residual tolerance 1e-8"],
+      "dependencies": ["AS205 (weighted heat adjoint compute)", "this run's S*_gal = N^{-1} S N"],
+      "dispatch_state": "proposed, not dispatched"
+    },
+    {
+      "id": "AS043.C02",
+      "spec_path": null,
+      "fingerprint": "small-xi heat-kernel expansion of S_h on a curved leaf (physics-free audit extension): leading Gaussian + O(xi^2 Ric) correction",
+      "new_target": "quantify how far the exact kernel departs from the Euclidean Gaussian when the leaf metric is not flat",
+      "controls": ["recover flat Gaussian at sqrt(h)=1", "Ricci-dependent leading correction sign", "compare against 1D curved-leaf numeric semigroup"],
+      "dependencies": ["leaf metric from the operative weak-field geometry"],
+      "dispatch_state": "proposed, not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

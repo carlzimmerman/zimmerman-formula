@@ -1,0 +1,13 @@
+from pathlib import Path
+import json,subprocess,sys
+ROOT=Path.cwd();D=Path('deepseek_push/astra_spawn_ideas/fresh_gravity_followups/results/FGF-012/fgf012_audit_001'); RUN=D/'numeric_001'
+inputs=sorted(set([x['path'] for x in json.loads((D/'source_hash_check.json').read_text())['files']]+[str(D/'audit.py'),str(D/'DERIVATION.md'),str(D/'source_hash_check.json'),'deepseek_push/astra_spawn_ideas/fresh_gravity_followups/tasks/FGF-012.md','deepseek_push/astra_spawn_ideas/fresh_gravity_followups/FRAMEWORK_AND_EXECUTION.md','deepseek_push/astra_spawn_ideas/fresh_gravity_followups/RESULT_CONTRACT.json']))
+contract={'claim_id':'FGF012_INDEPENDENT_RAW_CATALOG_AUDIT','mathematics':{'assertion_tested':'Conditional nominal-aperture source/force ceilings from raw files; independent positional matches and positive nonuniform shape control','coefficient_domain':'IEEE binary64','conventions':'Independent haversine and piecewise power-law interpolation; registered M reused; fixed nominal aperture; conditional marginal error box, no confidence interpretation','inputs':inputs,'bounds':{'clusters':7,'matched_objects':2,'branches':['Q','R','M'],'a0_m_s2':[9.3619e-11,1.1279e-10],'scale_histories':['vacuum','H'],'mass_box_corners':16,'root_bisection_steps':100,'root_bracket':[.01,100],'nonuniform_original_outer_mass_fraction':.05,'match_arcmin':5,'match_delta_z':.01},'non_claims':['No pipeline provenance authentication, no likelihood or independent resolved pressure','No cosmology/aperture authentication','M kernel is registered shared implementation','Nonuniform countermodels only close local force at one radius']},'execution_artifacts':inputs,'software':[{'name':'Python','version':'3.13.9 Anaconda Clang 20.1.8'},{'name':'NumPy','version':'1.26.4'},{'name':'SciPy','version':'1.14.1'},{'name':'Astropy','version':'7.2.0'}],'randomness':{'used':False,'generator':'','seed':None}}
+(D/'contract.json').write_text(json.dumps(contract,indent=2)+'\n')
+runner='/Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/3.2.0/skills/computation-audit/scripts/run_experiment.py'
+cmd=[sys.executable,runner,'--root',str(ROOT),'--contract',str(D/'contract.json'),'--output',str(RUN),'--timeout','120','--max-cpu-seconds','110','--max-threads','1','--max-output-bytes','1048576']
+for p in inputs:cmd+=['--input',p]
+for p in ['checks.json','matches.json','masses_and_apertures.json','force_boxes.json','nonuniform_countermodels.json','dependency_diagnostics.json','schema_audit.json']:cmd+=['--result',str(RUN/p)]
+cmd+=['--','/opt/homebrew/Caskroom/miniconda/base/bin/python',str(D/'audit.py'),'--out',str(RUN)]
+(D/'execution_argv.json').write_text(json.dumps(cmd,indent=2)+'\n')
+raise SystemExit(subprocess.run(cmd).returncode)

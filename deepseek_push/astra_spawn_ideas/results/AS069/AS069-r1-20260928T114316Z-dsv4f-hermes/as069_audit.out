@@ -1,0 +1,80 @@
+[bounded-launcher] RLIMIT_CPU=120s ok; RLIMIT_AS NOT enforceable on this macOS host (current limit exceeds maximum limit); memory measured only; threads=1
+================================================================================================================
+AS069 -- dimensionless kernel parameter versus vacuum energy (bounded audit)
+================================================================================================================
+  G=6.6743e-11  c=2.997925e+08  rho_L = 5.844412e-27 kg/m^3  s = c sqrt(G rho_L) = 1.872380e-10 m/s^2  (= 2 a0_can = 1.872380e-10)
+  alpha = 2-K_B in [1.75, 2.0] ; canonical a0 = 9.3619e-11, alternative a0 = 1.1279e-10
+  fp check s == 2*a0_can: True
+  [PASS] S0.1/2 [symbolic] J_1/2' = mu_1/2 exactly (the derivative fixes forces); J_1/2(0) is an integration constant, absorbed by the free C(1/2)
+       measured=dJ-diff residual = 0, J(0) = -2 (absorbed into C; no J(0)=0 normalization imposed)  tol=exact (symbolic)
+       the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces
+  [PASS] S0.1 [symbolic] J_1' = mu_1 exactly (the derivative fixes forces); J_1(0) is an integration constant, absorbed by the free C(1)
+       measured=dJ-diff residual = 0, J(0) = 0 (absorbed into C; no J(0)=0 normalization imposed)  tol=exact (symbolic)
+       the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces
+  [PASS] S0.2 [symbolic] J_2' = mu_2 exactly (the derivative fixes forces); J_2(0) is an integration constant, absorbed by the free C(2)
+       measured=dJ-diff residual = 0, J(0) = 1 (absorbed into C; no J(0)=0 normalization imposed)  tol=exact (symbolic)
+       the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces
+  [PASS] S0.3 [symbolic] J_3' = mu_3 exactly (the derivative fixes forces); J_3(0) is an integration constant, absorbed by the free C(3)
+       measured=dJ-diff residual = 0, J(0) = 1/2 (absorbed into C; no J(0)=0 normalization imposed)  tol=exact (symbolic)
+       the primitive's derivative fixes the force; the integration constant comes out nonzero and is exactly the free remainder C(lambda) that moves the vacuum energy without touching forces
+       J(1/2) = Y - 2*sqrt(Y + 1),  J(1) = Y - log(Y + 1),  J(2) = (Y*(Y + 1) + 1)/(Y + 1),  J(3) = Y + 1/(2*Y**2 + 4*Y + 2)
+  [PASS] S3a [symbolic] deep slope mu_lambda'(0) = lambda (a0 = s/lambda, kappa = 1/lambda)
+       measured=limit(mu/Y, Y->0) = lambda  tol=exact (symbolic)
+       the dimensionless kernel parameter is the inverse kappa; kappa=1/2 <=> lambda=2, the adopted footing
+  [PASS] S3b [symbolic] Newtonian recovery mu_lambda -> 1 (g -> B) for every lambda
+       measured=limit(mu, Y->oo) = 1  tol=exact (symbolic)
+       both limiting regimes constrain only J' (through mu), never the additive zero C
+  --- force responses y = g/s at the two probes (units: y dimensionless; g = y*s m/s^2) ---
+     B/s=0.01  lambda=0.5  y = 1.4902873248e-01   g = 2.790384e-11 m/s^2
+     B/s=0.01  lambda=1.0  y = 1.0512492197e-01   g = 1.968338e-11 m/s^2
+     B/s=0.01  lambda=2.0  y = 7.4607392770e-02   g = 1.396934e-11 m/s^2
+     B/s=0.01  lambda=3.0  y = 6.1234344300e-02   g = 1.146540e-11 m/s^2
+     B/s=1.0   lambda=0.5  y = 2.2469796037e+00   g = 4.207200e-10 m/s^2
+     B/s=1.0   lambda=1.0  y = 1.6180339887e+00   g = 3.029574e-10 m/s^2
+     B/s=1.0   lambda=2.0  y = 1.2469796037e+00   g = 2.334820e-10 m/s^2
+     B/s=1.0   lambda=3.0  y = 1.1176886328e+00   g = 2.092738e-10 m/s^2
+  [PASS] S1a [Jacobian, block] d(F1,F2)/dC = 0 to fp; dV/dC = alpha/(64 pi) exactly
+       measured=dF1/dC = 0.000e+00, dF2/dC = 0.000e+00, dV/dC = 9.9471839432e-03 (predicted 9.9471839432e-03)  tol=dF/dC < 1e-12, dV/dC within 1e-9 rel
+       block triangular: C(lambda) moves ONLY the vacuum energy; the force corner is exactly zero
+  [PASS] S1b [Jacobian, rank] rank(F,V vs lambda,C) = 2 on the MU family (dF/dlambda != 0)
+       measured=singular values = 1.9654e-01, 9.9472e-03 (min/max = 5.061e-02)  tol=min singular value > 1e-5
+       two genuinely independent observable directions (lambda-shape and C-shift): the vacuum datum alone leaves lambda free
+  [PASS] S1c [rank-reduction] dF/dlambda = 0 exactly forces rank 1 (lambda becomes a pure label; V swept by C)
+       measured=singular values = 2.2243e-02, 0.000e+00  tol=second singular value < 1e-12
+       the condition to reduce the Jacobian rank from 2 to 1 is dF/dlambda = 0 -- exactly the case where lambda no longer participates in the force law; no datum can then select lambda
+  [PASS] S1d [limit] dF/dlambda -> 0 as B/s -> oo (Newtonian end, ~ ln(q)/q decay): rank reduction is a limit, absent at finite B
+       measured=dF/dlambda at B/s = 1e11: 0.000e+00  tol=< 1e-6
+       Newtonian end: all members collapse toward g = B (lambda blind); the discriminating region is deep/transition where the Jacobian is full rank
+  [PASS] S2 [calibration] for EVERY lambda the shift C = 64 pi a0^2/alpha reproduces rho_L exactly (rho_vac/rho_L = 1); C is lambda-independent in the J(0)=0 normalization
+       measured=rho_vac/rho_L = 1 + <1e-12 for lambda in {1/2,1,2,3} x alpha in {1.75,2.0}  tol=exact: alpha*(64 pi/alpha)/(64 pi) = 1
+       the observed vacuum energy is compatible with every member of the one-parameter family: it selects a curve in (lambda, C), never lambda; identifying rho_L with the shift is bookkeeping (calibration), not a derivation of kappa
+  [PASS] E1 [deep limit] g -> sqrt(B*s/lambda) with leading neglected term ((lambda+1)/4) sqrt(B/(s lambda))
+       measured=coeff (g/lead - 1)/sqrt(q/2) -> 0.7503 at q = 1e-6 (predicted 0.75); max err*sqrt(q/2) = 2.987e-04 over q <= 1e-3  tol=coeff 0.75 +- 0.02; err*sqrt(q/2) < 1e-2 on the deep window
+       deep limiting regime checked with the explicit leading-order correction derived from mu = lam y - lam(lam+1) y^2/2 + ...
+  [PASS] E2 [Newtonian limit] g -> B with leading correction B (B/s)^(-2) at lambda = 2
+       measured=(g-B)/B * (B/s)^2 = 0.9994 (median over B/s in [1e2, 1e5], predicted 1.0); max |coeff-1| = 0.0198  tol=|median-1| < 0.02, max |coeff-1| < 0.05
+       the Newtonian end collapses onto the same law for every lambda: no vacuum datum can be read off there
+  [PASS] F1 [independent representation] lambda=2 force law solved two ways (bisection vs exact cubic roots) agree; substitution residual = |mu y - q|/q < 1e-12
+       measured=max |y_bisect - y_cubic| = 7.105e-14 over q in [1e-4, 1e2] (50 pts); max substitution residual 2.781e-14  tol=1e-10
+       different representation (analytic polynomial inverse of y(y+2)/(1+y)^2 = q) reproduces the same g: the force law is exactly mu_2(g/s) g = B
+  [PASS] F2 [substitution] residual of the solved force law on a 200-point Hernquist-type profile: max |mu_2(g/s) g - g_N|/g_N
+       measured=max relative substitution residual = 2.214e-16  tol=1e-12
+       the solved g satisfies the original equation to machine precision: the audit's force statements are about the actual law, not an approximation
+  [PASS] E3 [ill-posed fixing] primitive span I_n(Z) = 2 int_0^Z y mu_n dy diverges ~ Z^2 for every n: no absolute zero in the family
+       measured=log-log slopes over Z in [1e3,1e6]: n=1..3 -> [2.0003, 2.0, 2.0]  tol=0.02
+       the empty-Newtonian-vacuum fixing that would make C(lambda) non-free is undefined for MU_lambda (J_n(oo) diverges); the corpus's saturating carriers give the wrong sign (AS067 S6a, k01 K3); therefore the calibration control could genuinely have failed and does not: no principle of the action fixes C
+  footings: canonical kappa = 0.5 (lambda = 2); alternative a0 = 1.1279e-10:
+     fixed rho_L: kappa_eff = 0.602388, lambda_eff = 1.660059 (NOT a channel count)
+     fixed kappa: rho_L' = 8.483090e-27 kg/m^3 = 1.4515 rho_L
+  [PASS] D1 [footings] both footings stated separately; dimensionless S1-S2 statements hold for both because they never invoke a0's value
+       measured=canonical kappa=1/2, lambda=2 ; fixed-rho_L alt: kappa_eff=0.602388, lambda_eff=1.660059; fixed-kappa alt: rho_L'=8.483090e-27  tol=n.a. (record)
+       the alternative footing is an alternative normalization, not the same rho_L with the same kappa; its implied lambda_eff = 1.6601 is an identification constraint (non-integer => not a channel count), not a prediction
+================================================================================================================
+  checks: 17 PASS / 0 FAIL   wall = 0.354 s   max RSS = 88.3 MB
+  OUTCOME: the Jacobian of (force, vacuum) w.r.t. (lambda, C) is block triangular with rank 2 on the MU family;
+           rank 1 iff dF/dlambda = 0.  The observed vacuum energy compensates C(lambda) for every lambda:
+           kappa = 1/lambda is fixed only by the deep-slope identity a0 = s/lambda (adoption at lambda = 2),
+           never by the vacuum datum.  Setting C(lambda) to produce kappa = 1/2 is calibration (control passed,
+           genuinely capable of failing: a principle fixing C absolutely would flip it; the available one is
+           ill-posed for this family and sign-wrong for the corpus saturating carriers).
+wrote as069_results.json, as069_observables.npz

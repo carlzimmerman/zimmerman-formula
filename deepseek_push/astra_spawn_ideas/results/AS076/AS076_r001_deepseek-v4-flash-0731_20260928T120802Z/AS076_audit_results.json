@@ -1,0 +1,559 @@
+{
+ "checks": [
+  {
+   "name": "C0 [footings are distinct] the two a0 footings are alternatives: same rho_Lambda -> kappa_eff = 0.6024 (not 1/2); same kappa -> rho_Lambda x 1.4516",
+   "pass": true,
+   "detail": "kappa_eff(alt) = 0.6024"
+  },
+  {
+   "name": "C1a [symbolic EL] rho(r) = A r^(-beta C) with A = exp(-1-alpha-3 beta sigma^2/2) solves -ln rho - 1 - alpha - beta(3 sigma^2/2 + C ln r) = 0 identically (sympy)",
+   "pass": true,
+   "detail": "residual simplifies to: 0"
+  },
+  {
+   "name": "C1b [extra condition] beta = 1/sigma^2 is NOT obtained from the variation: varying sigma^2 in the seed's S (no sigma-dependence) gives beta = 0 (E-constraint inert); varying G084's S = -int rho ln(rho sigma^3) dV gives beta = -1/sigma^2.  The Boltzmann/thermal identification beta = 1/(k_B T/m) = 1/sigma^2 is an independent physical input (the seed's step-2 wording 'identify the extra condition').  The seed fixes sigma: 'Vary S-alpha*M-beta*E at fixed potential and sigma'.",
+   "pass": true,
+   "detail": "seed-S variation -> beta = 0; sigma^3-S variation -> beta = -1/sigma^2 (residual 0)"
+  },
+  {
+   "name": "C1c [canonical] EL residual spread on (r_in/R, R/r_M) = (0.01, 0.62): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.023e+00 vs pred 1.023e+00 | (2.3, C/2): 1.382e+00 vs pred 1.382e+00"
+  },
+  {
+   "name": "C1c [canonical] EL residual spread on (r_in/R, R/r_M) = (0.01, 1.0): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.023e+00 vs pred 1.023e+00 | (2.3, C/2): 1.382e+00 vs pred 1.382e+00"
+  },
+  {
+   "name": "C1c [canonical] EL residual spread on (r_in/R, R/r_M) = (0.1, 0.62): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 5.117e-01 vs pred 5.117e-01 | (2.3, C/2): 6.908e-01 vs pred 6.908e-01"
+  },
+  {
+   "name": "C1c [canonical] EL residual spread on (r_in/R, R/r_M) = (0.1, 1.0): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 5.117e-01 vs pred 5.117e-01 | (2.3, C/2): 6.908e-01 vs pred 6.908e-01"
+  },
+  {
+   "name": "C1c [canonical] EL residual spread on (r_in/R, R/r_M) = (0.5, 0.62): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.540e-01 vs pred 1.540e-01 | (2.3, C/2): 2.079e-01 vs pred 2.079e-01"
+  },
+  {
+   "name": "C1c [canonical] EL residual spread on (r_in/R, R/r_M) = (0.5, 1.0): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.540e-01 vs pred 1.540e-01 | (2.3, C/2): 2.079e-01 vs pred 2.079e-01"
+  },
+  {
+   "name": "C1c [alt] EL residual spread on (r_in/R, R/r_M) = (0.01, 0.62): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.023e+00 vs pred 1.023e+00 | (2.3, C/2): 1.382e+00 vs pred 1.382e+00"
+  },
+  {
+   "name": "C1c [alt] EL residual spread on (r_in/R, R/r_M) = (0.01, 1.0): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.023e+00 vs pred 1.023e+00 | (2.3, C/2): 1.382e+00 vs pred 1.382e+00"
+  },
+  {
+   "name": "C1c [alt] EL residual spread on (r_in/R, R/r_M) = (0.1, 0.62): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 5.117e-01 vs pred 5.117e-01 | (2.3, C/2): 6.908e-01 vs pred 6.908e-01"
+  },
+  {
+   "name": "C1c [alt] EL residual spread on (r_in/R, R/r_M) = (0.1, 1.0): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 5.117e-01 vs pred 5.117e-01 | (2.3, C/2): 6.908e-01 vs pred 6.908e-01"
+  },
+  {
+   "name": "C1c [alt] EL residual spread on (r_in/R, R/r_M) = (0.5, 0.62): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.540e-01 vs pred 1.540e-01 | (2.3, C/2): 2.079e-01 vs pred 2.079e-01"
+  },
+  {
+   "name": "C1c [alt] EL residual spread on (r_in/R, R/r_M) = (0.5, 1.0): EXACT zero at (gamma, sigma^2) = (2, C/2); nonzero elsewhere; spread = |beta C - gamma| ln(R/r_in) analytically",
+   "pass": true,
+   "detail": "(2, C/2): 1.421e-14 (analytic 0) | (2, 0.9 C/2): 1.540e-01 vs pred 1.540e-01 | (2.3, C/2): 2.079e-01 vs pred 2.079e-01"
+  },
+  {
+   "name": "C1d [high precision] EL residual spread at (2, C/2) at 50-digit precision is zero to 1e-45 (exact identity, not float noise)",
+   "pass": true,
+   "detail": "spread = 1.71057e-49"
+  },
+  {
+   "name": "C1e [direct differentiation] d/dr[ln rho + beta(3 sigma^2/2 + C ln r)] = (beta C - gamma)/r = 0 at (2, C/2); finite-difference derivative confirms",
+   "pass": true,
+   "detail": "max |dF/dr| on grid = 1.111e-27 (should be ~0)"
+  },
+  {
+   "name": "C2 [normalization] rho(r) = A r^-2 with A = M_b/(4 pi (R - r_in)) has int rho dV = M_b to 1e-10 on all 6 fixtures, both footings; A -> C/(4 pi G) in the equipartition limit",
+   "pass": true,
+   "detail": "max rel err 1e-12 bound via all rows"
+  },
+  {
+   "name": "C3 [second variation] delta^2 S = -int (drho)^2/rho < 0 exactly (concavity); central differences on M,E-preserving modes match the analytic form to 5% (strict maximum in the fixed well)",
+   "pass": true,
+   "detail": "k=1: d2S=-2.11e-05 (ana -2.11e-05); k=1: d2S=-1.32e-04 (ana -1.32e-04); k=2: d2S=-2.03e-05 (ana -2.03e-05); k=2: d2S=-1.27e-04 (ana -1.27e-04); k=3: d2S=-1.61e-05 (ana -1.61e-05); k=3: d2S=-1.00e-04 (ana -1.00e-04); k=4: d2S=-1.63e-05 (ana -1.63e-05); k=4: d2S=-1.02e-04 (ana -1.02e-04)"
+  },
+  {
+   "name": "C4 [missing term exposed] including rho-dependent self-gravity in E while keeping the fixed-well variation drops the term beta*Phi_self(r) = -4 pi G beta A [(1 - r_in/r) + ln(R/r)]: the r^-2 profile is NOT a stationary point of the self-gravitating energy (residual spread 0.4-7.2, O(1) not small); an inconsistent fixed-Phi_self variation doubles the exponent to beta(C + 4 pi G A) = 4 at equipartition",
+   "pass": true,
+   "detail": "max residual spread 11.780"
+  },
+  {
+   "name": "C4b [consistency] the coincidence Phi_self = C ln r + const holds exactly at the equipartition amplitude (4 pi G A = C): the two pinnings agree (sigma^2 = C/2 virial = 2 pi G A hydrostatic) to 1e-12 -- the self-gravity is a posterior consistency check, not part of the fixed-well variation",
+   "pass": true,
+   "detail": "2 pi G A_eq / (C/2) - 1 = 0.00e+00"
+  },
+  {
+   "name": "C5 [full-kernel error] deep exterior (r >= 10 r_M): the log-well ansatz underestimates the RAR (= MONO for y < y_star) acceleration by (r_M/r)/2 + (r_M/r)^2/12 + ... (5.0% at 10 r_M, 0.50% at 100 r_M); the r^-2 max-entropy profile is the exact stationary point of the leading log well and has EL residual -r_M/r + O((r_M/r)^2) against the full potential",
+   "pass": true,
+   "detail": "max kernel rel err over shells 5.0833%"
+  },
+  {
+   "name": "C5b [Newtonian regime boundary] in the Newtonian limit the log well is not the potential (g -> B: Phi -> -G M_b/r): the r^-2 profile's EL residual vs the Newtonian potential is O(beta G M_b/r) ~ O(r_M/r) -- the ansatz is a deep-exterior object, as expected; domain boundary stated",
+   "pass": true,
+   "detail": "residual spread vs Phi_N = 310.1 on [0.0062, 0.62] r_M"
+  }
+ ],
+ "fixtures": {
+  "interior": [
+   [
+    0.01,
+    0.62
+   ],
+   [
+    0.01,
+    1.0
+   ],
+   [
+    0.1,
+    0.62
+   ],
+   [
+    0.1,
+    1.0
+   ],
+   [
+    0.5,
+    0.62
+   ],
+   [
+    0.5,
+    1.0
+   ]
+  ],
+  "exterior": [
+   [
+    10.0,
+    2.0
+   ],
+   [
+    10.0,
+    10.0
+   ],
+   [
+    100.0,
+    2.0
+   ],
+   [
+    100.0,
+    10.0
+   ]
+  ]
+ },
+ "footings": {
+  "canonical": {
+   "a0": 9.3619e-11,
+   "C": 29491265051.107746,
+   "sig2": 14745632525.553873,
+   "rM": 3.1501367298419923e+20,
+   "Aeq": 3.5162343698343313e+19,
+   "rhoL": 5.844412454021876e-27,
+   "epsL": 5.252695959726114e-10
+  },
+  "alt": {
+   "a0": 1.1279e-10,
+   "C": 32370298315.414284,
+   "sig2": 16185149157.707142,
+   "rM": 2.8699617266968953e+20,
+   "Aeq": 3.859500611492918e+19,
+   "rhoL": 8.483089619559099e-27,
+   "epsL": 7.624220727267281e-10
+  }
+ },
+ "kappa_eff_alt_fixed_rhoL": 0.6023884040632778,
+ "rhoL_alt_fixed_kappa": 8.483089619559098e-27,
+ "el_spreads": [
+  {
+   "foot": "canonical",
+   "rin_R": 0.01,
+   "R_rM": 0.62,
+   "rel_quad": 2.209124030152925e-07,
+   "rel_mp50": 0.0,
+   "spread_self": 11.779635666302028,
+   "spread_analytic": 11.779635666302026,
+   "gamma_eff_R": 5.225806451612904
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.01,
+   "R_rM": 1.0,
+   "rel_quad": 2.2091240503520253e-07,
+   "rel_mp50": 0.0,
+   "spread_self": 7.303374113107267,
+   "spread_analytic": 7.303374113107255,
+   "gamma_eff_R": 4.0
+  }
+ ],
+ "c4_rows": [
+  {
+   "foot": "canonical",
+   "rin_R": 0.01,
+   "R_rM": 0.62,
+   "rel_quad": 2.209124030152925e-07,
+   "rel_mp50": 0.0,
+   "spread_self": 11.779635666302028,
+   "spread_analytic": 11.779635666302026,
+   "gamma_eff_R": 5.225806451612904
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.01,
+   "R_rM": 1.0,
+   "rel_quad": 2.2091240503520253e-07,
+   "rel_mp50": 0.0,
+   "spread_self": 7.303374113107267,
+   "spread_analytic": 7.303374113107255,
+   "gamma_eff_R": 4.0
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.1,
+   "R_rM": 0.62,
+   "rel_quad": 5.5228101644055794e-08,
+   "rel_mp50": 3.018531246939878e-51,
+   "spread_self": 5.027186713240297,
+   "spread_analytic": 5.027186713240307,
+   "gamma_eff_R": 5.225806451612902
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.1,
+   "R_rM": 1.0,
+   "rel_quad": 5.5228110930626455e-08,
+   "rel_mp50": 0.0,
+   "spread_self": 3.116855762208985,
+   "spread_analytic": 3.1168557622089907,
+   "gamma_eff_R": 4.0
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.5,
+   "R_rM": 0.62,
+   "rel_quad": 5.0047192811018486e-09,
+   "rel_mp50": 0.0,
+   "spread_self": 1.24611084232221,
+   "spread_analytic": 1.2461108423222276,
+   "gamma_eff_R": 5.225806451612903
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.5,
+   "R_rM": 1.0,
+   "rel_quad": 5.004718064386994e-09,
+   "rel_mp50": 0.0,
+   "spread_self": 0.7725887222397887,
+   "spread_analytic": 0.772588722239781,
+   "gamma_eff_R": 4.0
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.01,
+   "R_rM": 0.62,
+   "rel_quad": 2.209124052117705e-07,
+   "rel_mp50": 0.0,
+   "spread_self": 11.779635666302028,
+   "spread_analytic": 11.779635666302028,
+   "gamma_eff_R": 5.225806451612904
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.01,
+   "R_rM": 1.0,
+   "rel_quad": 2.2091240605488435e-07,
+   "rel_mp50": 0.0,
+   "spread_self": 7.303374113107267,
+   "spread_analytic": 7.303374113107254,
+   "gamma_eff_R": 4.0
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.1,
+   "R_rM": 0.62,
+   "rel_quad": 5.5228107408700624e-08,
+   "rel_mp50": 0.0,
+   "spread_self": 5.027186713240312,
+   "spread_analytic": 5.027186713240309,
+   "gamma_eff_R": 5.225806451612904
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.1,
+   "R_rM": 1.0,
+   "rel_quad": 5.522811057406236e-08,
+   "rel_mp50": 0.0,
+   "spread_self": 3.116855762208985,
+   "spread_analytic": 3.1168557622089916,
+   "gamma_eff_R": 4.0
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.5,
+   "R_rM": 0.62,
+   "rel_quad": 5.004712959309009e-09,
+   "rel_mp50": 0.0,
+   "spread_self": 1.2461108423222242,
+   "spread_analytic": 1.246110842322228,
+   "gamma_eff_R": 5.225806451612904
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.5,
+   "R_rM": 1.0,
+   "rel_quad": 5.004721487274673e-09,
+   "rel_mp50": 0.0,
+   "spread_self": 0.7725887222397887,
+   "spread_analytic": 0.7725887222397811,
+   "gamma_eff_R": 4.0
+  }
+ ],
+ "c5_rows": [
+  {
+   "foot": "canonical",
+   "rin_rM": 10.0,
+   "R_rin": 2.0,
+   "max_kernel_relerr": 0.050833194477505735,
+   "an_lead_max": 0.05648148148148147,
+   "residual_spread": 0.05062047099256463,
+   "residual_dev_from_leading": 0.10062047099256463
+  },
+  {
+   "foot": "canonical",
+   "rin_rM": 10.0,
+   "R_rin": 10.0,
+   "max_kernel_relerr": 0.050833194477505735,
+   "an_lead_max": 0.05648148148148147,
+   "residual_spread": 0.09079848056054177,
+   "residual_dev_from_leading": 0.10079880558795862
+  },
+  {
+   "foot": "canonical",
+   "rin_rM": 100.0,
+   "R_rin": 2.0,
+   "max_kernel_relerr": 0.0050083333194499945,
+   "an_lead_max": 0.005058922558922559,
+   "residual_spread": 0.00500579256564105,
+   "residual_dev_from_leading": 0.010005822020397081
+  },
+  {
+   "foot": "canonical",
+   "rin_rM": 100.0,
+   "R_rin": 10.0,
+   "max_kernel_relerr": 0.0050083333194499945,
+   "an_lead_max": 0.005058922558922559,
+   "residual_spread": 0.009005578383030226,
+   "residual_dev_from_leading": 0.010005910781431314
+  },
+  {
+   "foot": "alt",
+   "rin_rM": 10.0,
+   "R_rin": 2.0,
+   "max_kernel_relerr": 0.05083319447750471,
+   "an_lead_max": 0.05648148148148148,
+   "residual_spread": 0.050620470992564955,
+   "residual_dev_from_leading": 0.10062047099256496
+  },
+  {
+   "foot": "alt",
+   "rin_rM": 10.0,
+   "R_rin": 10.0,
+   "max_kernel_relerr": 0.05083319447750471,
+   "an_lead_max": 0.05648148148148148,
+   "residual_spread": 0.09079848056056168,
+   "residual_dev_from_leading": 0.1007988055879776
+  },
+  {
+   "foot": "alt",
+   "rin_rM": 100.0,
+   "R_rin": 2.0,
+   "max_kernel_relerr": 0.005008333319450131,
+   "an_lead_max": 0.005058922558922559,
+   "residual_spread": 0.005005792565658036,
+   "residual_dev_from_leading": 0.01000582202041295
+  },
+  {
+   "foot": "alt",
+   "rin_rM": 100.0,
+   "R_rin": 10.0,
+   "max_kernel_relerr": 0.005008333319450131,
+   "an_lead_max": 0.005058922558922559,
+   "residual_spread": 0.009005578383022716,
+   "residual_dev_from_leading": 0.010005910781425317
+  }
+ ],
+ "energies": [
+  {
+   "foot": "canonical",
+   "rin_R": 0.01,
+   "R_rM": 0.62,
+   "E_J": -2.797618425051312e+51,
+   "S_kg": 2.6463129045115357e+41
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.01,
+   "R_rM": 1.0,
+   "E_J": -8.352935530765497e+50,
+   "S_kg": 4.642488587623903e+41
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.1,
+   "R_rM": 0.62,
+   "E_J": -1.93834048791722e+51,
+   "S_kg": 3.0963817620322265e+41
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.1,
+   "R_rM": 1.0,
+   "E_J": 2.398438405754196e+49,
+   "S_kg": 5.0925574451445924e+41
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.5,
+   "R_rM": 0.62,
+   "E_J": -1.432169145113027e+50,
+   "S_kg": 3.495617858604741e+41
+  },
+  {
+   "foot": "canonical",
+   "rin_R": 0.5,
+   "R_rM": 1.0,
+   "E_J": 1.8191079574634596e+51,
+   "S_kg": 5.491793541717108e+41
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.01,
+   "R_rM": 0.62,
+   "E_J": -3.070731039671315e+51,
+   "S_kg": 2.257350187335228e+41
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.01,
+   "R_rM": 1.0,
+   "E_J": -9.168376279272094e+50,
+   "S_kg": 4.253525870447594e+41
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.1,
+   "R_rM": 0.62,
+   "E_J": -2.127567594065256e+51,
+   "S_kg": 2.707419044855919e+41
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.1,
+   "R_rM": 1.0,
+   "E_J": 2.63258176788499e+49,
+   "S_kg": 4.703594727968285e+41
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.5,
+   "R_rM": 0.62,
+   "E_J": -1.5719821576015794e+50,
+   "S_kg": 3.106655141428433e+41
+  },
+  {
+   "foot": "alt",
+   "rin_R": 0.5,
+   "R_rM": 1.0,
+   "E_J": 1.996695195983948e+51,
+   "S_kg": 5.1028308245408e+41
+  }
+ ],
+ "second_variation": [
+  [
+   1,
+   0.002,
+   -2.114551689157227e-05,
+   -2.1145202162306055e-05
+  ],
+  [
+   1,
+   0.005,
+   -0.00013216981120365602,
+   -0.00013215751351441287
+  ],
+  [
+   2,
+   0.002,
+   -2.0293221852100496e-05,
+   -2.0292929822229318e-05
+  ],
+  [
+   2,
+   0.005,
+   -0.00012684222226327447,
+   -0.00012683081138893326
+  ],
+  [
+   3,
+   0.002,
+   -1.606653169706953e-05,
+   -1.6066419317530583e-05
+  ],
+  [
+   3,
+   0.005,
+   -0.00010041951119931251,
+   -0.00010041512073456616
+  ],
+  [
+   4,
+   0.002,
+   -1.633959873371493e-05,
+   -1.6339506575742265e-05
+  ],
+  [
+   4,
+   0.005,
+   -0.00010212551632444045,
+   -0.00010212191609838917
+  ]
+ ],
+ "bounds": {
+  "wall_s": 0.23775482177734375,
+  "maxrss_mb": 84.265625,
+  "threads": 1,
+  "grid_points": 4001,
+  "declared": {
+   "wall_s": 120,
+   "mem_mb": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "wall_s": "script self-times; total << 120 s",
+   "mem_mb": "single numpy arrays << 512 MB (RSS reported)",
+   "threads": "OMP/OPENBLAS/MKL/NUMEXPR = 1; no multiprocessing"
+  }
+ },
+ "n_pass": 23,
+ "n_total": 23
+}

@@ -1,0 +1,77 @@
+====================================================================================================
+AS024 -- no cosmological prediction from an inverted datum
+====================================================================================================
+  RHO_PLANCK (H0=67.4, OmL=0.685) = 5.84500578716143e-27 kg/m^3
+  A0_FWD = (c/2)*sqrt(G*rho_Planck) = 9.362375204701e-11 m/s^2  (registered canonical 9.3619e-11)
+  rho_Lambda(can) = 4 a0_can^2/(G c^2) = 5.84441245402188e-27 kg/m^3
+  rho_total(alt)  = 4 a0_alt^2/(G c^2) = 8.4830896195591e-27 kg/m^3
+  Z = sqrt(32 pi/3) = 5.78881003647
+
+--- [C1/C2] the inverted chain is an involution: F(R(a)) = a, R(F(rho)) = rho ---
+    a = 9.3619e-11:  F(R(a)) - a = -9.056e-72  (rel 9.673e-62)
+    a = 1.1279e-10:  F(R(a)) - a = -9.056e-72  (rel 8.029e-62)
+    a = 1.1e-10:  F(R(a)) - a = 0.0  (rel 0.0)
+    a = 3.0e-10:  F(R(a)) - a = 0.0  (rel 0.0)
+    a = 1.0e-12:  F(R(a)) - a = 0.0  (rel 0.0)
+    a = 7.3e-11:  F(R(a)) - a = 0.0  (rel 0.0)
+  [PASS] C1 [involution right] F(R(a)) == a to 60 digits for every probe a (incl. fabricated)   (max rel dev = 9.673e-62 (60-digit machine noise; exact identity in Lean))
+  [PASS] C2 [involution left] R(F(rho)) == rho to 60 digits   (max rel dev 8.6e-62)
+
+--- [C3] the Lambda-inversion is the forward residual squared ---
+    max |Lambda_inv(a)/Lambda_Planck - (a/a0_fwd)^2| / (a/a0_fwd)^2 = 2.25402e-61
+  [PASS] C3 [squared-ratio identity] Lambda_inv/Lambda_Planck == (a/a0_fwd)^2 for all probes   (worst rel dev 2.25402e-61  ('factor ~2 in Lambda' = 'factor ~1.4 in a0' squared))
+
+--- [C4 NEGATIVE CONTROL] circular experiment earns no evidence ---
+    fabricated a* = 3.0e-10:  F(R(a*)) - a* = 0.0
+    registered  a  = 9.3619e-11:  F(R(a))  - a  = -9.0556791e-72
+    Omega_inv(a* = 3e-10)    = 7.03333  (nonsense cosmology, same zero residual)
+    Omega_inv(a0_can)        = 0.68493046  (0.685 registered)
+    Omega_inv(a0(kappa_DF))  = 0.82885  (measured kappa reading)
+    Omega_inv(a_gas=1.1e-10) = 0.94559215  (measured gas-slope reading)
+  [PASS] C4 [no evidence from tiny residual] inversion residual at the same noise floor for true and fabricated scales, while the 'derived' Omega_Lambda swings by an order of magnitude   (res(a*=3e-10) ~ 0.0 == res(a0_can) ~ 9.673e-62 == 0 at 60 digits; Omega_inv output is fully input-controlled (0.685 -> 0.83/0.95 -> 7.03 as the input a changes), so a zero self-consistency residual carries zero empirical content)
+
+--- [C5] galaxy datum alone cannot fix H0: the footing choice is a cosmic input ---
+    H_Lambda(a0_can) = 55.7806 km/s/Mpc   (bare same-G reading)
+    H_Lambda(a0_alt) = 67.2032 km/s/Mpc   (bare same-G reading)
+    spread = 20.48% from ONE galaxy datum
+    recovering Planck 67.4 needs Omega_Lambda = 0.685 imported: 67.3966 km/s/Mpc
+  [PASS] C5 [footing-split H] same galaxy datum -> 55.79 vs 67.22 km/s/Mpc (20% split); Planck H0 recovered only by importing Omega_Lambda   (H_can = 55.78059, H_alt = 67.20317, recovered w/ Omega_L: 67.39658)
+
+--- [C6/C7] the legitimate direction: vacuum -> galaxy scale, forward residual ---
+    a0_fwd (Planck rho_L, kappa=1/2) = 9.3623752e-11 m/s^2
+    gas-dominated slope band: [8.4e-11, 1.1e-10, 1.36e-10] m/s^2 -> delta = -14.887% of central
+    a0(kappa_DF = 0.55 +/- 0.17)  = 1.0298613e-10 m/s^2  -> 0.29412 sigma from a0_fwd
+    a0(kappa_BTFR = 0.465 +/- 0.076) = 8.7070089e-11 m/s^2  -> -0.46053 sigma from a0_fwd
+  [PASS] C6 [forward residual nonzero] predicted a0 sits ~15% below the gas-slope central value   (delta = -14.887% (finite, nonzero; inside the corpus +/-16% systematic band))
+  [PASS] C7 [kappa consistency] galaxy kappa measurements agree with 1/2 at <2 sigma (the ONLY licensed cosmological-galaxy cross-check)   (z(kappa_DF) = 0.2941, z(kappa_BTFR) = -0.4605)
+
+--- [C8] deep-law leading neglected term (Q-branch, labeled comparison) ---
+    r_M = sqrt(G M_b / a0_can) = 12201.97 pc for M_b = 1e11 M_sun
+    r = 1.0x r_M: leading correction y = (r_M/r)^2 = 100.0% ; v^4 ratio = 2.0
+    r = 2.0x r_M: leading correction y = (r_M/r)^2 = 25.0% ; v^4 ratio = 1.25
+    r = 3.0x r_M: leading correction y = (r_M/r)^2 = 11.111% ; v^4 ratio = 1.111111111
+  [PASS] C8 [deep-limit correction] v^4 = G M a0 (1 + (r_M/r)^2) on Q, domain y << 1   (correction 100%/25%/11.1% at 1/2/3 r_M; deep law is the y -> 0 limit)
+
+--- [C9] normalization and boundary cases ---
+  [PASS] C9a [boundary] a0(rho -> 0) = 0 exactly   (0.0)
+  [PASS] C9b [homogeneity] a0(lambda rho)/a0(rho) = sqrt(lambda)   (lambda=2: 1.41421356237 vs sqrt2 1.41421356237; lambda=10: 3.16227766017)
+
+--- [C10] the '+0.07% of Planck' is a registration echo, not an agreement ---
+    Omega_inv(a0_can registered)      = 0.68493046  (dev -0.01015%)
+    Omega_inv(a_gas measured 1.1e-10) = 0.94559215  (dev 38.04%)
+    Lambda_inv(a0_can) / Lambda_Planck = 0.99989849
+    Lambda_inv(a_gas) / Lambda_Planck  = 1.3804265  (corpus central estimate; its quoted band is 1.08-2.03)
+  [PASS] C10 [input-controlled output] feeding the registered (convention) a0 returns 0.685 to 0.01%; feeding the measured a0 returns +38%; the 'agreement' is fixed by the input choice, not by data   (Omega_inv(can) = 0.68493, Omega_inv(gas mid) = 0.945592)
+
+--- forward galaxy observables from vacuum inputs (both footings separately) ---
+    [canonical 9.3619e-11] M_b = M_sun: v_flat = (G M_b a0)^(1/4) = 333.866 m/s ; r_M = 0.038586 pc ; v_flat^4 = 1.2425e+10
+    [canonical 9.3619e-11] M_b = 1e11 M_sun: v_flat = (G M_b a0)^(1/4) = 187746.6 m/s ; r_M = 12202.0 pc ; v_flat^4 = 1.2425e+21
+    [alternative 1.1279e-10] M_b = M_sun: v_flat = (G M_b a0)^(1/4) = 349.7831 m/s ; r_M = 0.0351541 pc ; v_flat^4 = 1.4969e+10
+    [alternative 1.1279e-10] M_b = 1e11 M_sun: v_flat = (G M_b a0)^(1/4) = 196697.5 m/s ; r_M = 11116.7 pc ; v_flat^4 = 1.4969e+21
+
+--- G-bookkeeping: Lambda_inv uses the same-G reading G_E = G_N ---
+    Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4 ; if G_E != G_N the inverted Lambda
+    scales by G_E/G_N -- an unresolved coupling ratio the inversion cannot fix.
+
+wall time: 0.0012 s ; checks run: 11 ; failures: 0
+RESULT: ALL CHECKS PASS (exit 0)

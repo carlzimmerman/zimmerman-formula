@@ -1,0 +1,174 @@
+{
+ "schema_version": 2,
+ "task_id": "AS050",
+ "task_sha256": "03ac57f374e3c5b8bda9b455d64d668435e39334d098c013c99924266fdf4578",
+ "run_id": "run_AS050-r1-20260928T0556Z-dsv4f-hermes",
+ "worker": "Hermes subagent (platform=subagent; actual model deepseek/deepseek-v4-flash-0731 via openrouter; no separate sa id available in session; orchestrator reservation claims/AS050.json names sa-1-33f279b2 - not independently verifiable from this session, not claimed)",
+ "started_utc": "2026-09-28T05:56:27+00:00",
+ "finished_utc": "2026-09-28T06:18:20+00:00",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "On the RAR branch (spherical unfiltered algebraic response), x = g/a0 = y*nu_RAR(y) = y/(1-exp(-sqrt(y))), y = B/a0 > 0, s = sqrt(y): (i) the algebraic identity chain x = y/(1-e^-s) = y*e^s/(e^s-1) = -y/(e^-s-1) = y + y/(e^s-1) holds for s != 0 (Lean-certified), and the deep route x/sqrt(y) = 1 + s/2 + s^2/12 - s^4/720 + s^6/30240 - s^8/1209600 + ... carries the exact Bernoulli-family coefficients q_k = B_k/k! (B_1 = +1/2 convention; q = {1, 1/2, 1/12, 0, -1/720, 0, 1/30240, 0, -1/1209600, ...}; x(s) = s + s^2/2 + s^3/12 - s^5/720 + s^7/30240 + ..., odd s-powers >= 5 absent) with radius of convergence |s| < 2*pi <=> y < 4*pi^2 = 39.4784176 (pole at s = 2*pi*i; corroborated: |q_{2n}|*(2*pi)^{2n} -> 2, 120-term error 1.93e-16 on y <= 10, 0.159 at y = 4*pi^2 with |term120| -> 2.000, divergence |term120| = 2.87e6 at y = 50); (ii) in fp64 on the mandated deep range y in [1e-16, 1e-4] (121 grid points, 70-digit Decimal reference, 1e-14 relative bar): the NAIVE form fails at 105/121 points (max rel err 3.571e-9, first failure y = 7.94e-6) and the dispatch's candidate 'multiply by exp(+sqrt(y))' form y*e^s/(e^s-1) FAILS at 118/121 points (max rel err 1.108e-8, fails already at y = 1e-4; median accuracy-gain over naive 0.46x - i.e. multiplication by e^s is algebraically exact but numerically still a cancellation: e^s - 1 evaluated by subtraction carries absolute error ~ulp(1) amplified by 1/s, worst-case guarantee threshold y < 3.08e-5), while the genuinely stable forms -y/expm1(-s) and the expm1-free deep series (8 or 30 exact-Fraction terms) pass at every point (max rel err 2.431e-16 / 2.454e-16, 0 failures; accuracy gain over naive: median 3.3e4x, max 5.09e8x at y = 1e-16); boundary: both cancellation forms divide by zero for s < 2^-53 (y = 1e-32..1e-34, measured inf) while expm1/series stay <= 1.3e-16; (iii) MONO, the operative filtered branch, inherits the deep-x evaluation identically on (0, y*] (contract h_mono = h_RAR there): landmarks re-derived y* = 2.337412405, y_p = 2.539638282, h_p = 0.647610238 (deviations from quoted 4.1e-7/1.7e-6/2.4e-7; splice residual 6.1e-18), the mandated deep range sits 4.37 decades below y*, and independent stable routes (expm1 vs series) agree to max 3.3e-16 on all 121 deep points; naive h-form route degradation (1.1e-8) is an evaluation artifact, not a branch difference. Domain: y in (0, 4*pi^2) for the series; y in [1e-16, 1e8] (plus probes to 1e-34 and 1e10) for the stable evaluation; both a0 footings via g = a0*y*nu (kappa = 1/2 held fixed, rho_Lambda changes; ratio (a0_alt/a0_can)^2 = 1.45149). RAR is the comparison branch of the derivation; MONO inheritance is identity-by-construction on (0, y*] plus measured fp64 residuals; Q, MU2, EXP branches not used (criterion B branch distinctness).",
+ "framework_cell": {
+  "action_source": "FRIED_CHICKEN_SPEC.md pinned 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f (amended 2026-09-26); README.md 91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed; real_research/peer_review_2026_09_26/README.md 521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac; all three hashes match SOURCE_MANIFEST.json; git HEAD bfa3207e13140faee237e1f0e339cad8b6293f62. NOTE: dispatched spec file deepseek_push/astra_spawn_ideas/AS050_stable_evaluation_of_the_rar_deep_x.md does not exist in the repo; catalog AS050 is a different undispatched topic (AS050_a_branch_specific_primitive_cannot_fix_its_zero.md db6efad6ff61cc21a73a9ca913dad9a3190881b9f2bebee1f65f4d69da37c717); executed spec = dispatch text, preserved verbatim in reference/AS050_dispatch_spec.md (hashed as task_sha256)",
+  "kernel": "RAR: nu(y) = 1/(1-exp(-sqrt(y))), x = g/a0 = y*nu(y) = y/(1-exp(-sqrt(y))); comparison branch for the certified identities. MONO (operative filtered target; comparison via contract continuation only): h_mono = h_RAR on (0, y*], h_mono(y) = h_RAR(y*) + 0.05*h_p*ln((y+y_p)/(y*+y_p)) for y > y*, nu_mono = 1 + h_mono/y; landmarks y* = 2.337412, y_p = 2.53964, h_p = 0.647610 re-derived (deviations <= 4.1e-7). Q, MU2, EXP: distinct branches, not used in any conclusion.",
+  "filter": "none - unfiltered spherical algebraic responses only; filtered transfer (S = exp[(xi^2/2) Delta]) is the recorded open implication",
+  "gate": "A02 constitutive kernels and branch fidelity (criterion B branch distinctness; RAR branch for the derivation, MONO inheritance statement, Q/MU2/EXP untouched)",
+  "coupling": "G_N = 6.67430e-11 m^3 kg^-1 s^-2 enters B = G_N*M_b/r^2 and the r_M/v_flat landmarks; G_bare and G_cosmo kept separate (no cosmological relation used); Lambda = 32 pi a0^2/c^4 quoted with the Einstein-G = scale-G caveat",
+  "parameters": "kappa = 1/2 ADOPTED input (not derived); delta = 0.05 (MONO contract); G, c fixed SI constants; M_sun = 1.98847e30 kg; pc = 3.085677581491367e16 m",
+  "scale_footing": "both footings separately: canonical a0 = 9.3619e-11 m/s^2 (rho_Lambda = 5.8444e-27 kg/m^3, eps = 5.2527e-10 J/m^3, Lambda = 1.0908e-52 m^-2, r_M(1e11 Msun) = 12.202 kpc, v_flat = 187.75 km/s) and alternative a0 = 1.1279e-10 m/s^2 (rho_Lambda = 8.4831e-27, eps = 7.6242e-10, Lambda = 1.5833e-52, r_M = 11.117 kpc, v_flat = 196.70 km/s); kappa held fixed so rho_Lambda changes (ratio = (a0_alt/a0_can)^2 = 1.45149); the dimensionless x(y) theorem applies identically to both footings",
+  "boundaries": "y = B/a0 > 0; static spherical idealisation for the branch responses; no EFE; no filter; series domain y < 4*pi^2, stable evaluation domain y in [1e-16, 1e8] (probes 1e-18..1e-34 and 1e10)",
+  "initial_conditions": "none (static evaluation task)",
+  "units": "SI: G_N = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, a0 in m/s^2, rho_Lambda in kg/m^3, eps in J/m^3, Lambda in m^-2, r_M in kpc, v_flat in km/s, g in m/s^2"
+ },
+ "new_assumptions": [
+  "kappa = 1/2 adopted input per framework mandate (no independent derivation in this task)",
+  "RAR as the declared branch for the derivation; MONO enters only via the contract continuation formula with quoted landmarks (re-derived numerically, matching to <= 4.1e-7) for the inheritance statement",
+  "70-digit Decimal arithmetic as the high-precision reference (self-convergence to 50 digits <= 2.8e-43 on the deep grid; 26+ orders below the fp64 statistics)",
+  "series coefficients taken as exact rationals (Bernoulli family, B_1 = +1/2 convention) from the formal reciprocal of (1-e^-s)/s; exponential Taylor coefficients and the radius 2*pi are analytic inputs, not re-proved; numerically corroborated (|q_{2n}|*(2*pi)^{2n} -> 2, tail mean 1.999999999999993)",
+  "platform libm exp/expm1 accuracy (Apple libm on macOS 26; expm1 correctly rounded in practice - the measured 2.4e-16 max error is the operative claim, not an assumed guarantee)"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r1-20260928T0556Z-dsv4f-hermes/reference/AS050_dispatch_spec.md": "03ac57f374e3c5b8bda9b455d64d668435e39334d098c013c99924266fdf4578",
+  "deepseek_push/astra_spawn_ideas/AS028_rar_deep_expansion_with_stable_evaluation.md": "e6411e3f77a13a78d22ce328acbcb07184bee40b672896b7cb266aab32a9025b",
+  "deepseek_push/astra_spawn_ideas/AS050_a_branch_specific_primitive_cannot_fix_its_zero.md": "db6efad6ff61cc21a73a9ca913dad9a3190881b9f2bebee1f65f4d69da37c717",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/claims/AS050.json": "825a530bbb339f7bbc78e906a45417f1b77ce6602362116a5063b6a4c2578333",
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac"
+ },
+ "artifacts_sha256": {
+  "derivation.md": "36eee6a21e31e5d2121255c54d41c191db627afb1e5b6a31fd73d4ce373e4491",
+  "AS050_compute.py": "4c730dce661f922361fdae39fce61a08f4d86f5de53dd139cff7eb20b64e8d76",
+  "AS050_verify.py": "d4b90f267e1ebadc329c7517b1ed3eae6fe3884e025d417573124e449d002a40",
+  "AS050_stable_evaluation_certificates.lean": "c4760111a9d4d753520ef758d6a2e86be0029f70e144f2f43c2cce29f1d4637d",
+  "raw_output.json": "788eba1c116e81834f64d0749e1459fbb578ca51a4a9e502277868bc38f43e6e",
+  "run.log": "5b867813d6e8ba59c9313a1347bbb04bfcf9b5b7e2c5dfc0dddf624571aa716a",
+  "verify.log": "6e9e17ca1364ae634c515ff6e14ba2e7f8db130db19276647db022135bf69057",
+  "lean_check.out": "aa50b8dda99cdafbc5a850ff429b3bb47696a65c089c97f23c6b83b48561e5f5",
+  "reference/AS050_dispatch_spec.md": "03ac57f374e3c5b8bda9b455d64d668435e39334d098c013c99924266fdf4578"
+ },
+ "commands": [
+  {
+   "argv": ["/usr/bin/time", "-p", "python3", "AS050_compute.py"],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS050/run_AS050-r1-20260928T0556Z-dsv4f-hermes",
+   "note": "stdout -> run.log, raw_output.json written; exit 0; wall 0.043 s (budget 120 s), RSS 14.2 MB (budget 512 MB), 1 thread; in-script bounds self-enforced (exit 66/67)"
+  },
+  {
+   "argv": ["/usr/bin/time", "-p", "python3", "AS050_verify.py"],
+   "cwd": "same run directory",
+   "note": "independent representation (Bernoulli B^- route, 50-digit reference, split form x = y + h, Newton landmarks, 1201-point dense rescan, arbitrary points); stdout -> verify.log; exit 0, VERIFY_OK; wall 0.05 s"
+  },
+  {
+   "argv": ["lake", "env", "lean", "<abs>/AS050_stable_evaluation_certificates.lean"],
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+   "note": "exit 0; zero sorry; #print axioms = {propext, Classical.choice, Quot.sound} on all 9 theorems; output -> lean_check.out; compile host only (no files written into fable_independent_2026/lean_2026); wall 3.9 s"
+  }
+ ],
+ "execution_bounds": {
+  "declared": "wall <= 120 s, memory <= 512 MB, 1 thread, prototype bounded per ORCHESTRATOR.md",
+  "enforced": {
+   "wall": "0.043 s (compute), 0.05 s (verify), 3.9 s (lean); budget 120 s; in-script self-exit 66 if exceeded (check_bounds at every phase)",
+   "memory": "14.2 MB RSS (compute) via getrusage ru_maxrss (macOS bytes -> MiB); budget 512 MB; self-exit 67 if exceeded",
+   "threads": "1 by construction (no Thread/Process/OpenMP usage in either script)",
+   "grid": "121 mandated + 241 extended + 9 probe + 1 boundary points (compute); 1201-point dense rescan + 8 arbitrary points + 241-point split-form grid (verify)"
+  }
+ },
+ "checks": [
+  {
+   "name": "C1_negative_control_naive_fails_stable_passes",
+   "tolerance": "on y in [1e-16, 1e-4] (121 pts, 70-digit reference): naive and exp-multiplied forms must fail the 1e-14 relative bar in the deep regime (control capable of failing); expm1 and series forms must pass everywhere (<= 1e-14)",
+   "observed": "naive: max rel err 3.571e-09, fails at 105/121 pts, first failure y = 7.94e-6; exp-multiplied y*e^s/(e^s-1): max rel err 1.108e-08, fails at 118/121 pts INCLUDING y = 1e-4 - the 'stable candidate' of the dispatch is NOT stable in fp64 (median gain over naive 0.46x); expm1 -y/expm1(-s): max 2.431e-16, 0 failures; series (8 and 30 exact-Fraction terms): max 2.454e-16, 0 failures; gain over naive: median 3.34e4x, max 5.09e8x (y = 1e-16)",
+   "pass": true
+  },
+  {
+   "name": "C2_boundary_and_edge_cases",
+   "tolerance": "s < 2^-53 edge: cancellation forms divide by zero; stable forms stay finite and accurate (<= 1e-14); probes 1e-18..1e-34 and 1e8/1e10 recorded; worst-case analytic bound err <= 0.5*ulp(1)/s consistent with measurements",
+   "observed": "x_exp -> inf at y = 1e-32, x_naive -> inf at y = 1e-33, both inf at 1e-34 (e^s-1 == 0 / 1-e^-s == 0 in fp64); expm1/series stay <= 1.3e-16 (y = 1e-34: 3.1e-17/6.9e-17); probes y = 1e-18..1e-31: naive 2.8e-8..5.1e-2, exp 8.2e-8..0.42 (error grows like delta/s as derived), expm1/series <= 1.6e-16; guaranteed-failure threshold y < 3.08e-5 for cancellation forms; large y = 1e8: closed forms exact-consistent (both fp64 and reference truncate to y; e^-10000 < 1e-4300), 8-term series diverges (3.3e15, outside radius - domain statement confirmed)",
+   "pass": true
+  },
+  {
+   "name": "C3_series_coefficients_exact_and_radius",
+   "tolerance": "formal-reciprocal coefficients equal Bernoulli-family values (q_k = B_k/k!, B_1 = +1/2), all 130 orders, independently via two routes; |q_{2n}|*(2*pi)^{2n} -> 2; radius probes: error degrades near y = 4*pi^2, |term120| not decaying AT the radius, divergence beyond",
+   "observed": "two independent routes agree exactly (formal reciprocal = B^- recurrence with sign map, 130/130); q[:12] = [1, 1/2, 1/12, 0, -1/720, 0, 1/30240, 0, -1/1209600, 0, 1/47900160, 0]; tail mean (n = 31..60) 1.999999999999993; 120-term x/s vs reference on y <= 10: max rel err 1.93e-16 (Horner and direct sum agree), substitution |(1-e^-s)*(x_ser/s) - s| max 4.44e-16; probes: y = 19.74 err ~0 (1e-19), 30: 1.4e-8, 39: 7.7e-2, 39.4: 0.141, 4*pi^2: 0.159 with |term120| = 2.000, 40: 0.345 (term 4.40), 50: 1.8e5 (term 2.87e6, divergent)",
+   "pass": true
+  },
+  {
+   "name": "C4_mono_landmarks_and_deep_inheritance",
+   "tolerance": "landmarks vs quoted: y* <= 1e-5, y_p <= 1e-4, h_p <= 1e-5; splice residual <= 1e-9; inheritance on (0, y*]: independent stable routes (expm1 vs series) agree to fp64 level (<= 1e-14) over all 121 deep points; deep domain strictly inside (0, y*)",
+   "observed": "y* = 2.3374124053 (dev 4.1e-7), y_p = 2.5396382822 (1.7e-6), h_p = 0.6476102379 (2.4e-7) [bisection in compute, Newton in verify - identical]; splice residual 6.07e-18; max |nu_mono - nu_RAR| rel over 121 deep pts: 3.28e-16 (stable routes); margin log10(y*/1e-4) = 4.369; naive h-form route diagnostic: 1.1e-8 (= its own cancellation, not a branch difference)",
+   "pass": true
+  },
+  {
+   "name": "C5_verify_script_independent_routes",
+   "tolerance": "VERIFY_OK required on all six independent checks",
+   "observed": "C1 Bernoulli B^- route exact match (130); C2 reference self-convergence 2.81e-43 < 1e-40; C3 split-form identity x = y - y*e^-s/expm1(-s) vs direct expm1 form, 241 pts: max 3.08e-16; C4 Newton landmarks match bisection; C5 dense rescan (1201 pts, k step 0.01): failures at 1e-14 bar: naive 1066, exp-form 1117, expm1 0, series 0; C6 series at arbitrary points: max 1.70e-16; exit 0",
+   "pass": true
+  },
+  {
+   "name": "C6_footings_and_units",
+   "tolerance": "dimensionless claim applies identically to both footings; kappa fixed -> rho_Lambda ratio = (a0_alt/a0_can)^2; all units SI; landmarks reproduce published values at 1e11 Msun",
+   "observed": "canonical: rho_L = 5.8444e-27 kg/m^3, r_M = 12.202 kpc, v_flat = 187.75 km/s; alternative: rho_L = 8.4831e-27, r_M = 11.117 kpc, v_flat = 196.70 km/s; ratio 1.45149; g = a0*x at y in {1e-16, 1e-10, 1e-4, 1, 100} tabulated for both footings (e.g. canonical g(1e-16) = 9.3619e-19 m/s^2, g(1) = 1.4810e-10 m/s^2)",
+   "pass": true
+  },
+  {
+   "name": "lean_certificate",
+   "tolerance": "zero sorry; axioms subseteq {propext, Classical.choice, Quot.sound}",
+   "observed": "lake env lean exit 0; 9 theorems (nu_stable_rearrangement, x_stable_form_exp, x_stable_form_exp_neg, x_deep_rearrangement, deep_x_series_terms, deep_x_over_s_terms, deep_x_series_in_y, deep_x_over_s_in_y, series_core_algebraic_core); #print axioms = [propext, Classical.choice, Quot.sound] on all",
+   "pass": true
+  }
+ ],
+ "tested_domain": "Mandated deep range y = 10^k, k in [-16, -4] step 0.1 (121 points); extended y = 10^k, k in [-16, 8] step 0.1 (241 points); probes y in {1e-18, 1e-20, 1e-30, 1e-31, 1e-32, 1e-33, 1e-34, 1e8, 1e10}; series verified on y <= 10 (261 grid points + 8 arbitrary values), radius probes y in {19.7392, 30, 39, 39.4, 39.4784176, 40, 50}; dense rescan k step 0.01 on the mandated range (1201 points); MONO landmarks by bisection (200 iterations) and Newton; reference convergence on the deep grid (121 points, 70 vs 50 digits). Exclusions: y <= 0 not evaluated (kernel singular at y = 0, limits handled analytically); no EFE; no filter; no non-spherical transfer; Q/MU2/EXP branches not used; no observation/data ingested.",
+ "failed_attempts": [
+  {
+   "artifact": "in-session edit, final file AS050_compute.py lines 85-91",
+   "cause": "math.exp overflow at y = 1e8 (s = 1e4) in the exp-multiplied form; fixed by returning the limit y for s > 700 (e^s/(e^s-1) = 1 to < e^-700)"
+  },
+  {
+   "artifact": "in-session edit, final file evaluate_all()",
+   "cause": "ZeroDivisionError at boundary probes (e^s - 1 == 0 in fp64 for s < 2^-53); caught and recorded as inf - became the C2 boundary finding"
+  },
+  {
+   "artifact": "lean v1 (not preserved); final AS050_stable_evaluation_certificates.lean",
+   "cause": "exponent transposition in the stated x-series (wrote -s^7/720 + s^11/30240 instead of -s^5/720 + s^7/30240 for s*Q_6(s)); ring failed showing the correct normal form; also removed a trailing ring after field_simp had closed the goal and an unused hy hypothesis"
+  },
+  {
+   "artifact": "in-session edit, AS050_compute.py bernoulli_q()",
+   "cause": "Bernoulli cross-check mismatch: raw recurrence gives B_1 = -1/2 (x/(e^x-1) convention) while the series carries B_1 = +1/2 (s/(1-e^-s)); corrected to the second-Bernoulli convention, documented, re-verified exactly on 130 orders and independently via the sign map"
+  },
+  {
+   "artifact": "in-session edit, AS050_verify.py C2",
+   "cause": "verify C2 tolerance initially 1e-47 but the 50-digit reference's deep-end subtraction floor is ~1e-50/s ~ 1e-42; observed 2.8e-43 is genuine convergence; tolerance re-set to 1e-40 with explanation (fp64 claims need only << 1e-16)"
+  }
+ ],
+ "limitations": "No field equation, action, filter, or geometry is touched: the result concerns the spherical unfiltered algebraic RAR response x = y*nu(y) and its fp64 evaluation. The claimed fp64 accuracy of -y/expm1(-s) and of the series is measured on this platform (Apple libm/macOS 26, Python 3.13.9) and validated against a 70-digit Decimal reference; it is an empirical accuracy statement, not a rounding-error theorem (the analytic worst-case bound covers only the cancellation forms: err <= 0.5*ulp(1)/s). The infinite series identity, its radius, and the Bernoulli identification are standard-calculus facts supported by exact rational computation and high-precision numerics; Lean certifies only exact algebraic statements (mathlib v4.34 has no Real.expm1, so the expm1 form is anchored definitionally to e^-s - 1). MONO inheritance is identity-by-construction on (0, y*] plus fp64-level measured residuals; nothing transfers through the heat filter S (metric/measure/domain specification open, as in AS028.C01). The dispatch's cited file was absent; the executed spec is the dispatch text (provenance recorded; orchestrator reconciliation advised). kappa = 1/2 remains an adopted input; no observation fitted; no catalog data ingested.",
+ "next_unresolved_implication": "Transfer to the operative filtered target: the deep-x evaluation and the certified series/remainder live on the unfiltered response; deriving how they enter div[nu_mono(|grad S u|/a0) grad S u] = 4 pi G rho_b with S = exp[(xi^2/2) Delta] requires the metric/measure/domain specification of S (open dependency, shared with AS028.C01). Second, practical: audit the campaign's own evaluation sites - any code evaluating the RAR/MONO kernel via 1/(1-exp(-sqrt(y))) or e^s/(e^s-1) in the deep regime inherits the measured 1e-9..1e-8 relative error envelope (105/121 and 118/121 failures at the 1e-14 bar respectively).",
+ "suggested_followup": "AS050.C01 (ready child spec; not dispatched - no runner spawn in this session): kernel-evaluation audit and crossover spec - scan campaign RAR/MONO evaluation sites (SPARC fit kernels, EFE pipelines, deep-MOND code) for the naive and exp-multiplied patterns, replace with -y/expm1(-sqrt(y)) and the certified series (exact coefficients, y < 4*pi^2, N-term remainder bound), regression-test at y = 1e-16 against the 70-digit reference; new claim: no audited site exceeds 3e-16 relative error in the deep regime after replacement. Duplicate scan: AS028 covers nu-form stability and the same series family (no exp-form failure measurement, no audit); AS028.C01 covers the filtered transfer bound; AS050 catalog file is a different topic; claims/AS050.json is the orchestrator reservation (untouched); no manifest/claims entry found for the audit.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": "G_N = 6.67430e-11, c = 299792458, M_sun, pc (measured/fixed constants); kappa = 1/2 ADOPTED (not derived); RAR kernel equation and MONO continuation formula with quoted landmarks from the framework contract (inputs, not derived here); a0 footings 9.3619e-11 and 1.1279e-10 m/s^2 as declared inputs",
+  "derived_equations": "identity chain x = y/(1-e^-s) = y*e^s/(e^s-1) = -y/(e^-s-1) = y + y/(e^s-1) (Lean-certified); deep-x series x/sqrt(y) = 1 + s/2 + s^2/12 - s^4/720 + s^6/30240 - ... with exact Bernoulli coefficients (verified through 130 orders by two independent routes) and radius |s| < 2*pi (analytic pole argument, numerically corroborated); worst-case cancellation bound err <= 0.5*ulp(1)/s for the naive and exp-multiplied forms; failure threshold y < 3.08e-5; MONO landmarks re-derived (y* = 2.337412405, y_p = 2.539638282, h_p = 0.647610238) and inheritance statement on (0, y*]",
+  "boundary_and_initial": "none (static evaluation); y > 0; fp64 edge s < 2^-53 characterized (cancellation forms divide by zero, stable forms do not)",
+  "open_inputs": "kappa = 1/2; filter S specification; anything needed for the filtered transfer (next_unresolved_implication)"
+ },
+ "closure_implication": {
+  "gate": "A02 constitutive kernels and branch fidelity (criterion B branch distinctness)",
+  "implication": "The RAR deep-x layer now has (a) exact-identity and exact-coefficient deep series with stated radius, remainder behavior, and measured truncation envelope, (b) certified algebra for every evaluation form, (c) the measured fp64 failure envelope of the naive and exp-multiplied forms and the stable evaluation to 2.5e-16, and (d) the operative-branch statement that MONO inherits the deep-x evaluation identically on (0, y*] (deep domain 4.37 decades below the splice). This supplies the numerical evaluation prerequisite for RAR/MONO deep-MOND statements in the campaign; no filtered transfer is claimed.",
+  "compatibility": "dimensionless theorem compatible with both a0 footings (map g = a0*y*nu; kappa = 1/2 shared, rho_Lambda changes); parameter domain (0, 4*pi^2] for the series and [1e-16, 1e8] (probes beyond) for the stable form; static spherical algebraic response only; G_N used, G_bare/G_cosmo separate"
+ },
+ "child_proposals": [
+  {
+   "id": "AS050.C01",
+   "title": "Kernel-evaluation audit and crossover spec for campaign RAR/MONO code",
+   "new_claim": "after replacing naive/exp-multiplied kernel evaluations with -y/expm1(-sqrt(y)) (all y) and the certified series (y < 4*pi^2, N-term remainder-bound), no audited evaluation site exceeds 3e-16 relative error in the deep regime y in [1e-16, 1e-4] on the fp64 grids tested",
+   "parent": "AS050 (run_AS050-r1-20260928T0556Z-dsv4f-hermes)",
+   "dependency": "inventory of campaign kernel-evaluation sites (SPARC fits, EFE pipelines, deep-MOND code); no new physics input",
+   "controls": "negative control: pre-audit sites must reproduce the measured naive-form failures (>= 1e-14 rel err in the deep regime); regression at y = 1e-16 against the 70-digit reference after replacement",
+   "dispatch_state": "not dispatched - spec only (no runner spawn in this session); ready for orchestrator"
+  }
+ ],
+ "closure_candidate": null
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 2,
+  "task_id": "AS074",
+  "task_sha256": "bdd98da0002f21e418cbf719fc234ade0e40bc5ed879cc8b036ed4f04183ff00",
+  "run_id": "AS074-20260928T112432Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes-agent subagent session",
+  "started_utc": "2026-09-28T11:57:29.670176+00:00",
+  "finished_utc": "2026-09-28T11:57:59.755718+00:00",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Let s=c*sqrt(G*rho_L), mu_base(Y)=1-(1+Y)^(-2), Y=g/s, and a C^1 endpoint-preserving deformation f (f(0)=f(inf)=0), mu_eps=mu_base+eps*f, f'(0)=delta, with the MU2-family response law mu_eps(g/s)*g=B (B=G*M_b/r^2). In the deep limit Y->0: g^2=B*s/(2+eps*delta)*(1+O(Y)), hence v_flat^4=G*M_b*s/(2+eps*delta) and, with the framework a0=kappa*s, kappa_eff=1/(2+eps*delta)=1/2-eps*delta/4+O(eps^2). For eps!=0: kappa_eff=1/2 for all small eps  <=>  delta=0. I.e. the adopted one-half survives a small kernel deformation exactly when the deformation is first-order tangent at zero; endpoint preservation alone is NOT sufficient (counterexample fB(Y)=Y/(1+Y)^2, delta=1, eps=1/5: kappa_eff=5/11). Domain: deep regime B/s<<1 (r>>r_M), 2+eps*delta!=0, |eps| small; per-footing constants (canonical a0=9.3619e-11, alternative a0=1.1279e-10 m/s^2 each with its own rho_L and s=2*a0) stated separately. Conditional theorem: all premises listed in derivation.md sec.3; the value 1/2 itself remains an adopted input (not derived).",
+  "framework_cell": {
+    "action_source_hash": "none (algebraic response-level task; sources inspected: deepseek_push/PD01_polarization_count.py 37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d, deepseek_push/PD08_particle_free_derivation.py 83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb, kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py 8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c)",
+    "branch": "CORE coefficient, MU2-family response only (Q/RAR/EXP/MONO distinct, not imported)",
+    "kernel": "mu_base(Y)=1-(1+Y)^(-2) = MU2(2Y); deformed mu_eps(Y)=mu_base(Y)+eps*f(Y), f in C^1([0,inf)), f(0)=f(inf)=0",
+    "filter": "none (algebraic radial response)",
+    "gate": "A03 coefficient gate (CORE); affected closure gates: 13 conditionally informed, all others untouched",
+    "coupling": "response law mu_eps(g/s)*g = B, B = G*M_b/r^2; G_N only, G_bare/G_cosmo not invoked (no action)",
+    "parameters": "eps=0.2 diagnostic; delta=f'(0) in {0,1/2,1,2}; lambda in {1/2,1,2}; B/s in {1e-2,1e-4,1e-6,1e-8} and {1,10,100,1e4}; Y in {1e-2..1e-8}; mpmath dps=50 refined 100",
+    "scale_footing": "canonical a0=9.3619e-11 m/s^2 (rho_L=5.84441e-27 kg/m^3, s=1.87238e-10 m/s^2) and alternative a0=1.1279e-10 m/s^2 (rho_L=8.48309e-27 kg/m^3, s=2.25580e-10 m/s^2) kept separate; kappa=1/2 adopted on each; fixed-canonical-density reading kappa=0.6023884 given as cross-check (matches k01)",
+    "boundaries": "f(0)=f(inf)=0 (endpoint preservation), mu_eps(0)=0, mu_eps(inf)=1, Y in [0,inf)",
+    "initial_conditions": "none (static algebraic response)",
+    "units": "SI: G=6.67430e-11 m^3 kg^-1 s^-2, c=299792458 m/s, M_sun=1.98847e30 kg, pc=3.085677581491367e16 m; accelerations m/s^2, densities kg/m^3"
+  },
+  "new_assumptions": [
+    "f in C^1([0,inf)) with f(0)=f(inf)=0 (seed-specified deformation class)",
+    "response law mu_eps(Y)*g = B algebraic and radial (MU2-family)",
+    "deep limit Y->0 and circular equilibrium v^2=g*r used to convert g^2 to v_flat^4 (framework base v_flat^4=G*M_b*a0)",
+    "2+eps*f'(0) != 0, s != 0, G != 0, M_b != 0, r != 0 (denominators of the coefficient formula)",
+    "|eps| small so f's quadratic-and-higher terms are subordinate (leading-order statement; exact for the linearized kernel)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS074_robustness_of_kappa_under_small_kernel_deformations.md": "bdd98da0002f21e418cbf719fc234ade0e40bc5ed879cc8b036ed4f04183ff00",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/derivation.md": "53f2189841f3944bf97ed8b6ffe11004146fd5b3a070c9e8e222d00df236b3b5",
+    "deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/AS074_prototype.py": "83ff56331a5e5800017095dc61d861b691896685ce4072cc4c7fa4d519bc9002",
+    "deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/raw_output.txt": "da7666be0874925b4fd00a63d0e91db24533e96aec3d394794e3ae1c7fa9cb4d",
+    "deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/AS074_kappa_deformation_certificate.lean": "309e86a0e6ef37a9288e3763f2021a4b3f9e906f3bb072a41ea6337de03fc502",
+    "deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/lean_compile_log.txt": "9b6ccd13dcb0ddf8327629c99528521e6d460fef17b8ef768228b7ecf2ab506d"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && python3 deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/AS074_prototype.py > deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/raw_output.txt 2>&1",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS074/AS074-20260928T112432Z-dsv4f-hermes/AS074_kappa_deformation_certificate.lean (exit 0; #print axioms of all 13 theorems = propext, Classical.choice, Quot.sound; zero sorry)",
+    "shasum -a 256 (all seeds/sources/artifacts; hashes recorded above)"
+  ],
+  "execution_bounds": {
+    "declared": "<=120 s wall, <=512 MB, 1 thread, bounded prototype (per ORCHESTRATOR.md)",
+    "enforced": {
+      "cpu_seconds": "RLIMIT_CPU soft=120 s set in-process; measured cpu=0.196 s, wall=0.086 s",
+      "address_space": "RLIMIT_AS raise refused by macOS ('current limit exceeds maximum limit'; soft remained unlimited; as_error recorded) — cap NOT enforced via rlimit; measured peak RSS 60.0 MiB (macOS ru_maxrss bytes/2^20), well under 512 MB",
+      "threads": "1 (asserted threading.active_count()==1; no threading used)",
+      "grid": "Y grid 4 points, B/s grid 8 points, lambda set 3 points, 2 precision refinements (dps 50 -> 100)",
+      "measured": "wall=0.086 s, cpu=0.196 s, maxrss=60.0 MiB, threads=1 -> bounds_ok=True"
+    }
+  },
+  "checks": [
+    {"name": "mu_base = MU2(2Y) exactly; mu_base != MU2(Y)", "observed": "sympy simplify: mu_base-MU2(2Y)=0; mu_base(1)=3/4 != MU2(1)=5/9; Lean mu2_doubling/mu2_not_same_at_one", "tolerance": "exact", "pass": true},
+    {"name": "mu_base'(0)=2", "observed": "sympy limit 2; Lean slope_mu_base (HasDerivAt, axioms propext/Classical.choice/Quot.sound)", "tolerance": "exact", "pass": true},
+    {"name": "deformed slope mu_eps'(0)=2+eps*f'(0)", "observed": "Lean slope_deformed (generic f with HasDerivAt f delta 0); FD check fA: 1.0e-25~0, fB: 0.99999998~1", "tolerance": "exact (Lean); FD 1e-6", "pass": true},
+    {"name": "kappa_eff = 1/(2+eps*f'(0)): fA->1/2 exactly, fB->1/(2+eps)", "observed": "1/(2+0.2*0)=0.5; 1/2.2=0.4545454545; lambda family 0.4761904762/0.4545454545/0.4166666667 distinct", "tolerance": "exact algebra", "pass": true},
+    {"name": "deep slope estimator convergence (check A)", "observed": "fB kappa_est Y=1e-2..1e-8: residuals 7.038e-3,7.025e-5,7.025e-7,7.025e-9 -> 0 at O(Y) rate (10^2.00 per 2 decades); fA -> 0.5", "tolerance": "residuals recorded, rate ~Y^1", "pass": true},
+    {"name": "implicit response law residual (check B)", "observed": "|mu_eps*Y*s/B - 1| <= 3e-49 at all B/s (bisection); deep kappa_est(B/s=1e-8) residuals 4.95e-5 (fA), 4.74e-5 (fB) vs targets", "tolerance": "law residual 1e-40", "pass": true},
+    {"name": "Newtonian recovery g/B->1 (check C)", "observed": "|g/B-1| = 1.9e-1, 8.2e-3, 1.9e-3, 2.0e-5 at B/s=1,10,100,1e4", "tolerance": "monotone ->0; exact identity mu_eps(inf)=1", "pass": true},
+    {"name": "boundary identities (check D)", "observed": "mu_eps(0)=0 exact; mu_eps(1e6)-1 = -8.0e-13 (fA), 2.0e-7 (fB)", "tolerance": "exact at 0; finite check ->1", "pass": true},
+    {"name": "NEGATIVE CONTROL: 'endpoint preservation => coefficient preservation' (deformation 2 = fB)", "observed": "predicted kappa=1/2; actual kappa_eff=0.4545454545; delta_kappa=0.0454545455 != 0 -> premise REFUTED; control passes on fA (0.5 exactly) so the discriminator is f'(0)=0, not endpoints; Lean control_fB_instance (5/11 != 1/2)", "tolerance": "exact", "pass": true, "control": "capable_of_failing_and_failed_as_designed"},
+    {"name": "footing separateness", "observed": "rho_L: 5.84441e-27 vs 8.48309e-27 kg/m^3; fixed-canonical-rho kappa=0.6023884 (matches k01 0.602); density ratio 1.45149=(a0_alt/a0_can)^2", "tolerance": "10 digits", "pass": true},
+    {"name": "precision refinement", "observed": "dps 100 re-check: fB kappa_est(Y=1e-8) residual 7.0e-9 unchanged (50 vs 100 digits)", "tolerance": "digits stable", "pass": true},
+    {"name": "Lean hard bar", "observed": "exit 0; zero sorry; #print axioms all theorems = {propext, Classical.choice, Quot.sound}", "tolerance": "exact", "pass": true},
+    {"name": "bounded prototype", "observed": "wall=0.086 s <=120, cpu=0.196 s <=120, maxrss=60.0 MiB <=512, threads=1", "tolerance": "hard caps", "pass": true}
+  ],
+  "tested_domain": "Y in [1e-8, 1e6] (slope estimator + boundaries); B/s in {1e-8,...,1e-2} deep and {1,10,100,1e4} Newtonian; eps=0.2 diagnostic; delta in {0,1/2,1,2}; lambda in {1/2,1,2}; exact/symbolic statements over the full function class C^1([0,inf)), f(0)=f(inf)=0, 2+eps*delta!=0. Numerics single-seed deterministic (bisection, mpmath), no randomness; refinement dps 50->100. No Bayesian/optimization sampling performed.",
+  "failed_attempts": [
+    {"artifact": "(first run) raw_output pre-fix: mpf __format__ crash and Newtonian bracket assertion (upper bound Y=10 insufficient for B/s=100,1e4); fixed by mp.nstr formatting and exponential bracket search in solve_Y; preserved in git-less staging, superseded by final raw_output.txt", "cause": "implementation", "resolved": true},
+    {"artifact": "Lean certificate: convert-tactic typeclass noise, ring_nf canonical-form mismatch between separate invocations, pow_two rewrite direction (r*r -> r^2)", "cause": "tactic/API mismatch in mathlib v4.34.0-rc2", "resolved": true, "note": "final proof uses rw+field_simp+linear_combination+mul_left/right_cancel₀; all 13 theorems compile exit 0, axioms subset {propext, Classical.choice, Quot.sound}"}
+  ],
+  "limitations": [
+    "Leading-order statement: exact for the linearized kernel, asymptotic O(Y) otherwise; finite-B corrections measured, not bounded.",
+    "kappa=1/2 itself is NOT derived; the conditional theorem assumes the adopted footing (consistent with k01 audit).",
+    "Deformation is at the response-kernel level; mapping from an action-level kernel change (AQUAL/MONO class) to f(Y) not derived.",
+    "Numerics are finite-precision consistency checks; load-bearing identities are proven exactly (sympy + Lean).",
+    "No claim of robustness for finite-acceleration (non-deep) physics, nonalgebraic response, or nonspherical/vector fields.",
+    "RLIMIT_AS could not be raised on macOS; memory bound enforced by measurement (60.0 MiB) and process size, not by rlimit."
+  ],
+  "next_unresolved_implication": "Second-order sensitivity: which observable probes f''(0) (the Y^2 coefficient of the deformation), given that the deep coefficient v_flat^4 is exactly first-order-tangent-invariant? Plus the action-level bridge: show that a small kernel deformation of the operated action class induces an f(Y) with the stated endpoint/regularity properties, and derive the response law from the action rather than adopting it.",
+  "suggested_followup": "AS074.C01 (ready spec at deepseek_push/astra_spawn_ideas/branches/AS074/AS074.C01.md, NOT dispatched - no spawner in this session): quantitative drift bound |kappa_eff - 1/2| <= eps*|f'(0)|/[2*(2 - eps*|f'(0)|)] for |eps*f'(0)|<2, extension of the premise class from C^1 to locally-Lipschitz f via the a.e. derivative, and the f''(0)-probe observable. Duplicate check performed: distinct from AS075 (constructive missing premise for kappa) and AS672 (kappa rigidity as functional equation).",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": "G=6.67430e-11 m^3 kg^-1 s^-2, c=299792458 m/s, M_sun=1.98847e30 kg, pc=3.085677581491367e16 m, kappa=1/2 (adopted), MU2-family response law, deep framework relations v_flat^4=G*M_b*a0 and r_M=sqrt(G*M_b/a0), circular equilibrium v^2=g*r",
+    "measured_calibrations": "a0 canonical 9.3619e-11 and alternative 1.1279e-10 m/s^2 (footings, per contract); implied rho_L = 4 a0^2/(G c^2)",
+    "derived": "mu_base'(0)=2; mu_eps'(0)=2+eps*f'(0); g^2=B*s/(2+eps*f'(0))*(1+O(Y)); kappa_eff=1/(2+eps*f'(0)); kappa_eff=1/2 <-> f'(0)=0; counterexample family; Newtonian limit; both-footing bookkeeping; 13 Lean-certified theorems"
+  },
+  "closure_implication": "Gate 13 (a0-vacuum relation preserved as input or derived): unaffected (1/2 stays an input). Conditional evidence for the A03 CORE-coefficient layer: the coefficient layer is structurally stable exactly against deformations with f'(0)=0; any action-level mechanism generating a kernel deformation with nonzero slope at zero would shift kappa_eff to 1/(2+eps*f'(0)) and must be counted. Does NOT close gate 1 (filtered MONO from the same action), gate 2 (dof count), or any propagation gate; no common-action witness supplied.",
+  "child_proposals": [
+    {
+      "id": "AS074.C01",
+      "path": "deepseek_push/astra_spawn_ideas/branches/AS074/AS074.C01.md",
+      "claim": "Quantitative robustness: |kappa_eff - 1/2| <= eps*|delta|/(2*(2-eps*|delta|)) for |eps*delta|<2 (delta=f'(0)), with premise class extended from C^1 to locally-Lipschitz f (delta = essential supremum of a.e. derivative); plus identification of the observable that first detects f''(0) (second-order kernel sensitivity).",
+      "parent": "AS074-20260928T112432Z-dsv4f-hermes (task_sha256 bdd98da0...83ff00; certificate 309e86a0...fc502)",
+      "dependency": "none external; uses kappa_eff=1/(2+eps*delta) and existing Lean certificate as lemmas",
+      "controls": "epsilon/2 test at delta=1 (bound sharp at eps->0), Lipschitz counterexample family with a.e.-constant derivative, f''(0)-probe scan over two kernels with equal f'(0), Lean certificate of the bound",
+      "first_principles_bridge": "still within the MU2 CORE coefficient branch; no branch import",
+      "dispatch_state": "not_dispatched (no spawn mechanism available in this worker session; ready for orchestrator dispatch)"
+    }
+  ],
+  "closure_candidate": null
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "task_id": "AS082",
+  "task_sha256": "4b5a3471372f7f5bd8b005c8ff313528b8b9a97d12c3028bf9ff3be5920bae03",
+  "run_id": "run_AS082-r1-20260928T131254Z-dsv4f-hermes",
+  "worker": "dsv4f-hermes (Hermes subagent; model deepseek/deepseek-v4-flash-0731 via openrouter)",
+  "started_utc": "2026-09-28T13:12:54Z",
+  "finished_utc": "2026-09-28T13:39:20Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Conditional theorem (static, spherical, Newtonian shell theorem with coupling G_N): for rho = A/r^2 on [r_in, R] with 0 < r_in <= r <= R <= r_M and interior (boundary) mass M_in, the phantom self-gravity satisfies g_self(r) = G_N*(M_in + 4*pi*A*(r - r_in))/r^2 = C/r for EVERY shell radius (exactly logarithmic well Phi = C ln r + const) IFF A = C/(4*pi*G_N) AND M_in = 4*pi*A*r_in = M_b*r_in/r_M (dimensionless, footing-independent). With M_in = 0 the well is Phi = C ln r + C*r_in/r + const with exact residual g_self - C/r = -C*r_in/r^2 (relative error 1 at r = r_in). The interior ansatz does NOT transfer to the deep exterior: r_in/r_M in {10,100} would demand M_in/M_b in {10,100} against the capped phantom total M_T = lambda*M_b (lambda in {0.62,1}), and the truncated Newtonian model is Keplerian outside the cap with discontinuity factor (1+lambda)/lambda = 2.61; the deep C/r is an asymptotic property of the operative MONO kernel (nu_mono = nu_RAR for y < y* = 2.3374) with leading neglected term B/2, relative r_M/(2r). Domain: r_in/R in {0.01, 0.1, 0.5}, R/r_M in {0.62, 1.0}, deep shells r_in/r_M in {10, 100}, R/r_in in {2, 10}; both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (kappa = 1/2 adopted), M_b = 6.5e10 M_sun MW proxy.",
+  "framework_cell": "Gate: A04 finite-domain equilibrium and virial closure (source normalization; inner boundary bookkeeping). Branch: Conditional deep-equilibrium sector; NO automatic particle ontology; no kernel of filtered MONO used for conclusions (MONO enters only via the deep-exterior transfer control NC4/NC5, where the transfer is shown to fail and the kernel asymptotic bound is computed). Kernel: Newtonian Poisson/shell theorem with G_N = 6.67430e-11 m^3 kg^-1 s^-2 (G_bare, G_cosmo kept separate; G_N = G_cosmo NOT derived - flagged). Filter: none (static); the operative heat filter S = e^((xi^2/2)Delta) of MONO is present only as a named unquantified smoothing error O((xi/r)^2) in NC5. Coupling: baryon mass M_b as framework scale input; a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED (not derived), rho_Lambda = 4*a0^2/(G*c^2) = 5.844412e-27 kg/m^3 (canonical), 8.483090e-27 kg/m^3 (alternative at fixed kappa; kappa_eff = 0.6024 at fixed canonical rho_Lambda). Parameters: G = 6.67430e-11, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; M_b = 6.5e10 M_sun. Boundaries: r_in > 0 finite, R <= r_M (R/r_M in {0.62, 1}), M_in the mass inside r_in (point-mass minimal representation). Units: SI. Both footings carried separately throughout (canonical C = 2.841849e10 m^2/s^2, r_M = 9.8375 kpc; alt C = 3.119280e10 m^2/s^2, r_M = 8.9626 kpc at M_b = 6.5e10 M_sun).",
+  "new_assumptions": [
+    "kappa = 1/2 in a0 = kappa*c*sqrt(G*rho_Lambda) adopted as framework input (explicitly not derived in this task)",
+    "M_in realized as a central point mass (any spherically symmetric distribution of the same total mass gives the same exterior field by the shell theorem); M_in is bookkeeping of the truncation (analytic continuation of M_ph(<r) = M_b*r/r_M), not a new object or free parameter",
+    "M_b = 6.5e10 M_sun MW proxy for the dimensional table only (all ratios and residuals are M_b-independent)",
+    "Deep-exterior kernel bound NC5 evaluated at a point baryon source in the unfiltered nu_RAR == nu_mono branch (y < y*); heat-filter smoothing error O((xi/r)^2) left unquantified",
+    "G_N = G_numeric = 6.67430e-11 for the Poisson sector; G_N = G_cosmo equality (for Lambda = 32*pi*a0^2/c^4) not derived, kept as open dependency"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS082_inner_boundary_mass_and_self_gravity.md": "4b5a3471372f7f5bd8b005c8ff313528b8b9a97d12c3028bf9ff3be5920bae03",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+    "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+    "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/AS082_compute.py": "b6853fa0926e7bbf7bae38f91adc622958114e2afb8ff0509677697979a5bfec",
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/run.log": "4b95086a100623f00635ea2c4f3102bb8b70258d86764853744ed137c79c5ce3",
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/raw_output.json": "866cab79e0e552de7be185e61584a87ced1b24de9cb47b495abaa83770c613b3",
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/AS082_inner_boundary_mass.lean": "b74454b4211f26df43309714519c750066dca034b5bf918e1574769e7894a448",
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/lean_compile_out.txt": "b927ebe673a973c17c4e4e0dc81009f018f6b0cd2bc44da8a2c466ea6d75c83e",
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/lean_probes/probe1.lean": "b6e2315cbcd9aa4c9b1db69ad02c598d2b0e5f45ff6f4f1857ef10285d091c81",
+    "deepseek_push/astra_spawn_ideas/results/AS082/run_AS082-r1-20260928T131254Z-dsv4f-hermes/derivation.md": "31a40ff9d628f467f45fac59f712a29afc233b15ba73cfc29195541569ab5a8d"
+  },
+  "commands": [
+    {
+      "argv": ["python3", "AS082_compute.py"],
+      "workdir": "<run_dir>",
+      "exit": 0,
+      "wall_s": 0.01,
+      "note": "bounded prototype, stdlib only; self-enforced 120 s deadline checked before phases; single-threaded by construction"
+    },
+    {
+      "argv": ["timeout", "400", "lake", "env", "lean", "<abs>/lean_probes/probe1.lean"],
+      "workdir": "fable_independent_2026/lean_2026",
+      "exit": 0,
+      "note": "probe: intervalIntegral.integral_const, smul_eq_mul, mul_left_cancel_0 shapes; one unused-binder warning only"
+    },
+    {
+      "argv": ["timeout", "400", "lake", "env", "lean", "<abs>/AS082_inner_boundary_mass.lean"],
+      "workdir": "fable_independent_2026/lean_2026",
+      "exit": 0,
+      "note": "certificate compile: exit 0, zero errors, zero sorryAx; all #print axioms in {propext, Classical.choice, Quot.sound}; one linter style warning (intro h r)"
+    }
+  ],
+  "execution_bounds": "Declared: <=120 s wall, <=512 MB, 1 thread; bounded prototype stdlib-only. Enforced: wall 120 s HARD self-deadline (observed 0.01 s) - ENFORCED; memory RLIMIT_AS 512 MB ATTEMPTED but REFUSED by macOS (ValueError: current limit exceeds maximum limit) - NOT ENFORCED, observed peak RSS 15.4 MB (15400960 bytes, ru_maxrss); threads 1 - enforced by construction (single-threaded stdlib); grid bounds: 2000 log-points x 6 shells x 2 footings (exact identity), 4000-pt uniform 5-point stencil (potential), Decimal(60) at 3 radii, 500-pt perturbation grids; no refinement loop needed (deadline not approached).",
+  "checks": {
+    "F1_footings_separate": {"pass": true, "measured": "rho_Lambda_can = 5.844412e-27, rho_Lambda_alt = 8.483090e-27 kg/m^3; kappa_eff = 0.6024 at canonical rho; density ratio 1.4515 at fixed kappa"},
+    "C1_residual_decomposition": {"pass": true, "measured": "max rel disagreement (scaled by C/r) = 2.0e-16 over the decomposition grid"},
+    "C2_exact_identity": {"pass": true, "measured": "worst |g-C/r|/(C/r) = 5.73e-16 canonical, 4.19e-16 alternative over 6 shells x 2000 pts x 2 footings; linear mass law M(<r)=M_b*r/r_M to 4.5e-16", "tol": 1e-10},
+    "C3a_potential_integral": {"pass": true, "measured": "max rel |g_pot - C/r| = 2.01e-11 (5-point stencil, uniform 4000-pt, interior)", "tol": 1e-6},
+    "C3b_rho_recovery": {"pass": true, "measured": "max rel |rho_rec - A/r^2| = 2.78e-14 (central difference of M)", "tol": 1e-6},
+    "C3c_decimal60": {"pass": true, "measured": "max rel = 9.55e-17 at 3 radii (floored by float64 input constants; no cancellation)", "tol": 1e-13},
+    "NC1_Min_zero_control": {"pass": true, "measured": "rel err at r_in = 1.000000; at R = r_in/R; residual matches -C*r_in/r^2 analytic form (analytic_form_match true, 6 shells x 2 footings)", "capable_of_failing": true},
+    "NC2_A_perturbation": {"pass": true, "measured": "A x 1.05 -> max rel 0.0500 (predicted |pert-1|); A x 0.9 -> max rel 0.1000"},
+    "NC3_limits": {"pass": true, "measured": "r*/r_in - 1 = -1.11e-16; |g_K(r_in)-C/r_in|/(C/r_in) = 0.0; deep rel err M_in=0: 1.000e-02 (= r_in/R), M_in included: 0.0"},
+    "NC4_deep_exterior_transfer": {"pass": true, "measured": "required M_in/M_b = 10..100 vs phantom total M_T/M_b = 0.62..1.0 (M_in/M_T up to 161.3); cap mismatch factor (1+lambda)/lambda = 2.613 (lambda=0.62), 2.0 (lambda=1)", "capable_of_failing": true},
+    "NC5_kernel_deep_bound": {"pass": true, "measured": "g_ph = B/sqrt(y) + B/2 + B*sqrt(y)/12 + O(B*y^1.5); leading neglected term rel r_M/(2r) = 0.05 at 10 r_M, 0.005 at 100 r_M; next correction y/12 = 8.33e-4 / 8.33e-6", "note": "analytic lane, unfiltered nu_RAR = nu_mono for y < y*"},
+    "lean_certificate": {"pass": true, "measured": "exit 0; 10 theorems; zero sorry; axioms exactly {propext, Classical.choice, Quot.sound} per #print axioms"}
+  },
+  "tested_domain": "Exact identity domain: r in [r_in, R] continuous (algebraic), verified on 2000 log-points per shell; r_in/R in {0.01, 0.1, 0.5} x R/r_M in {0.62, 1.0} = 6 diagnostic shells, x 2 footings; M_b = 6.5e10 M_sun; M_in = M_b*r_in/r_M exact. Controls domain: M_in = 0 (same grid); A x {0.9, 1.05} at r_in = 0.1 r_M, R = r_M (500 pts); deep exterior r_in/r_M in {10, 100}, R/r_in in {2, 10} (parametric, no grid needed - algebraic); kernel bound at r/r_M in {10, 100}, y in {0.01, 1e-4}. Footings: canonical a0 = 9.3619e-11 and alternative 1.1279e-10 m/s^2 with kappa = 1/2 adopted; rho_Lambda fixed by a0 via 4*a0^2/(G*c^2). Exclusions: no r < r_in field (point-mass representation; Keplerian interior stated as limit only); no filtered-MONO field solution executed (kernel bound is asymptotic point-source); no dynamics, no attainment.",
+  "failed_attempts": [
+    {"cause": "check C1 initial scaling divided by |lhs| ~ 0 at the exact point (max rel disagreement 2.48e+276) - re-scaled by C/r; PASS after fix"},
+    {"cause": "check C3a sign: g_num = -dPhi/dr gave rel err 2.00 (sign flip; Phi = C ln r => +dPhi/dr = C/r) - corrected to +dPhi/dr; C3b forgot the dr division in rho = dM/dr/(4 pi r^2) (rel 3.48e+18) - corrected; Decimal tolerances re-set at float64-input floor 1e-13"},
+    {"cause": "NC3 used stale cross-phase variables (alternative-footing A with canonical C, rel 8.79e-02) - phase 6 now recomputes fresh from A0_CAN"},
+    {"cause": "Lean round 1: nlinarith [h1, hA] could not close the mass extraction in as082_forward (sorryAx) - replaced with explicit calc chain + rw [hA]; round 2: dead tactics after closer (ring after rw in as082_boundary_mass_value; exact hA after field_simp in as082_A_ratio) - removed; final compile exit 0, axioms clean"}
+  ],
+  "limitations": "Static conditional-theorem scope: no filtered-MONO field equation solved, no dynamics, no attainment (G035 kill stands), no G_N = G_cosmo relation (vacuum identity Lambda = 32*pi*a0^2/c^4 not derived here); heat-filter smoothing error O((xi/r)^2) of the operative kernel unquantified; NC1-NC5 residuals are finite numerical evidence except the Lean-certified algebra (exact iff, residual decomposition, control negation); M_in is bookkeeping of the truncated profile, not evidence for a new particle or halo; M_b = 6.5e10 M_sun proxy used only for the dimensional table; the deep-exterior kernel bound is for a point source in the unfiltered branch and does not cover finite-source or filter-smoothing corrections.",
+  "next_unresolved_implication": "The inner-edge structure: the exact C/r identity holds only WITH the boundary mass M_in = M_b*r_in/r_M, and the shell field is kinked at r_in (slope discontinuity); the first missing bridge is the microphysical/normalization mechanism that fixes r_in itself (and hence M_in) - the seed's sources do not determine r_in; equivalently, the interior (r < r_in) sector of the framework with the central mass M_in present is not yet a derived equilibrium (what sits inside r_in, and what sets the hole size, is an open dependency).",
+  "suggested_followup": "Child AS082.C01 (ready spec, NOT dispatched - no spawn mechanism in this run): determine r_in from the framework's own finite-domain conditions, e.g. matching the boundary mass M_in = M_b*r_in/r_M to the baryonic inner edge r_b (G091's W_bar log bookkeeping, r_b defined there) and testing the virial closure 2T + W_self + W_bar = 3 P_s V with the boundary mass included at r_b = r_in; discriminating observable: the implied inner-profile slope break at r_in vs the Newtonian bulge contribution in a real rotation curve (e.g. NGC3198 SPARC data); controls: re-check exact C/r residual with the solved r_in on the same 6-shell grid, both footings; duplicates checked: no AS-manifest/FGF child with this fingerprint (inner boundary mass <-> r_in determination)",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": "Separate primitive/adopted inputs (none claimed derived): kappa = 1/2 (adopted framework input for a0 = kappa*c*sqrt(G*rho_Lambda)); G_N = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s; M_sun = 1.98847e30 kg; pc = 3.085677581491367e16 m; M_b = 6.5e10 M_sun (MW proxy for the table; ratios M_b-independent); static spherical Newtonian shell-theorem evaluation; profile ansatz rho = A/r^2 on [r_in, R] with r_in > 0, R <= r_M; equipartition amplitude A = C/(4 pi G_N) (G091 V1a / G084, source-inspected, hashes pinned); equipartition identity M_ph(<r_M) = M_b; truncation lambda = r_break/r_M in {0.62, 1.0} for diagnostics. Genuinely derived in this run (with Lean certificate + numeric residuals): M(r) = M_in + 4*pi*A*(r - r_in); the iff: exact C/r on the shell <=> A = C/(4 pi G_N) and M_in = M_b*r_in/r_M; the residual decomposition g_self - C/r = (G_N M_in - 4 pi G_N A r_in)/r^2 + (4 pi G_N A - C)/r; the M_in = 0 failure (Phi = C ln r + C r_in/r + const); Keplerian join at r* = r_in; linear mass law M(<r) = M_b r/r_M with the boundary mass included; no-transfer result and MONO kernel deep bound (leading neglected term B/2).",
+  "closure_implication": "Named gate: A04 finite-domain equilibrium and virial closure -> source normalization. Exact implication: the equipartition normalization M_ph(<r_M) = M_b of the truncated phantom is exact on the finite domain [r_in, R] IFF the inner boundary mass M_in = M_b*r_in/r_M is included (M(<r) = M_b*r/r_M holds on the whole shell); equivalently (A) is re-derived from self-gravity exactness, giving two independent routes to the same amplitude. Compatibility with a common-action witness: the exact-log (2') and residual (4) identities are parameter-independent (hold at every M_b, both a0 footings, any r_in > 0, any lambda in (0,1]) and couple only through G_N in the Poisson sector, so any witness using the same G_N in its static Poisson sector inherits them; the RAR/MONO field kernel is untouched by this result (it lives at y > y* transfer, excluded). Not closed: what fixes r_in (the boundary mass's seat), G_N = G_cosmo equality, and the filter-smoothing error at deep exterior.",
+  "child_proposals": [
+    {
+      "id": "AS082.C01",
+      "name": "r_in from the baryonic inner edge and the virial with boundary mass",
+      "new_target": "Determine r_in (hence M_in = M_b*r_in/r_M) from framework-internal conditions: match r_in to the baryonic inner edge r_b of G091's W_bar bookkeeping and re-run the closed virial chain 2T + W_self + W_bar = 3 P_s V with the boundary mass included; test against the inner slope break of a real rotation curve",
+      "scientific_fingerprint": "exact C/r residual decomposition (4): intercept term G_N M_in - 4 pi G_N A r_in vanishes only at M_in = M_b r_in/r_M; M_in/M_b = r_in/r_M dimensionless; virial reading B sigma^2 = (C/2)[1 + (1/lambda) ln(r_break/r_b)]",
+      "controls": "re-check exact C/r on the 6-shell grid with the solved r_in (both footings, tol 1e-10); NC1 (M_in = 0) must still fail; verify the virial identity closes at the solved r_b = r_in",
+      "dependencies": "G091 virial closed forms (inspected, hash pinned), FRAMEWORK_CONTRACT kappa = 1/2; no new constants beyond r_b",
+      "dispatch_state": "NOT DISPATCHED - ready spec returned to orchestrator (no spawn mechanism available in this run)",
+      "duplicate_check": "no AS/MY manifest, child registry, claim dir or FGF queue entry with this fingerprint"
+    }
+  ],
+  "closure_candidate": null
+}

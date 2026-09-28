@@ -1,0 +1,17 @@
+================================================================================================
+AS086 -- External logarithmic-well virial term    run: AS086-r1-20260928T133517
+================================================================================================
+
+--- A. footing table (kappa = 1/2 ADOPTED input; rho_Lambda = 4 a0^2/(G c^2)) ---
+  [canonical] a0=9.361900e-11 m/s^2  rho_Lambda=5.844412e-27 kg/m^3  kappa_recovered=0.500000000000000  C=2.949127e+10 m^2/s^2
+        r_M=3.150137e+20 m = 10.2089 kpc   v_flat=171730.2 km/s   sigma=sqrt(C/2)=121.43 km/s   A=C/(4 pi G)=3.516234e+19 kg/m
+  [alt] a0=1.127900e-10 m/s^2  rho_Lambda=8.483090e-27 kg/m^3  kappa_recovered=0.500000000000000  C=3.237030e+10 m^2/s^2
+        r_M=2.869962e+20 m = 9.3009 kpc   v_flat=179917.5 km/s   sigma=sqrt(C/2)=127.22 km/s   A=C/(4 pi G)=3.859501e+19 kg/m
+  [PASS] A1 [adopted footing bookkeeping] kappa = a0/(c sqrt(G rho_Lambda)) = 1/2 on both footings when rho_Lambda = 4 a0^2/(G c^2) (consistency of the ADOPTED input; the two footings carry DIFFERENT rho_Lambda, ratio 1.4514871574)
+        measured: kappa = [0.5, 0.5]
+        tol: 1e-12 rel
+
+--- B. the log-well virial identity W_ext = -int rho*r*dPhi/dr dV = -C*M ---
+    dPhi_ext/dr = C/r (exact derivative of C ln(r/r_ref));  r*dPhi/dr = C constant
+    => W_ext = -C * int rho dV = -C*M  for ANY rho >= 0 on ANY (r_in, R) shell.
+

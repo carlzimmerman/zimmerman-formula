@@ -1,0 +1,117 @@
+{
+  "schema_version": 2,
+  "task_id": "AS033",
+  "task_sha256": "41b34f5f2822b5b08abe33c43e9fcac45bce38e7f7eb7dd0978abe40b79bed2c",
+  "run_id": "AS033-20260927-r01",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter); Hermes Agent subagent; AS033 seed executor (no orchestrator slot id available to this slot)",
+  "started_utc": "2026-09-28T02:07:58Z",
+  "finished_utc": "2026-09-28T02:34:07Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the operative MONO branch with delta=0.05 and y=B/a0>0, define h_RAR(y)=y/(exp(sqrt(y))-1) and h'_mono(y)=max(h'_RAR(y), delta*h_p/(y+y_p)) with h_p=h_RAR(y_p), y_p the unique peak of h_RAR. Then: (1) PEAK closed form: y_p=s_p^2 with s_p the unique root of exp(s)(2-s)=2 on (0,2) and h_p=s_p(2-s_p) exactly; y_p=2.539638282188165324998881789774365902369..., h_p=0.647610237891914859647201961975954581209... (task landmarks 2.5396/0.647610 confirmed to 3.8e-5/2.4e-7). (2) SPLICE: the crossing equation h'_RAR(y_star)=delta*h_p/(y_star+y_p) has EXACTLY ONE root in (0,y_p) (proved: F strictly decreasing via h''_RAR<0, which follows from psi(s)=(3+s)(1-exp(-s))-2s>0 bracketed at its extremal points psi(s0)=0.53596235>0, psi(s_p)=0.47300701>0; F(0+)=+inf, F(y_p)=-0.0063750244<0), numerically y_star=2.337412405266329455558123303201198860792... (landmark 2.3374 confirmed to 1.2e-5), with ACTUAL residual F(y_star)=-3.89e-62 at 60-digit mpmath. (3) JOIN: with the exact continuation h_mono(y)=h_RAR(y_star)+delta*h_p*ln[(y+y_p)/(y_star+y_p)] (y>=y_star), h_mono(y_star)=h_RAR(y_star) exactly (ln 1 = 0; residual 0.0), derivative continuity at y_star holds (residual 3.89e-62; C^1), and d/dy h_mono=delta*h_p/(y+y_p) exactly on the branch (all three statements Lean-certified, axioms subseteq {propext, Classical.choice, Quot.sound}, zero sorry). The join is C^1 but not C^2: h'' jumps by 0.0347447135548... at y_star. (4) LIMITS: deep y->0 the max selects RAR (h'_RAR->+inf), leading g~sqrt(a0*B); Newtonian y->inf, nu_mono=1+h_mono/y -> 1 so g->B with logarithmic correction delta*h_p*ln(y/(y_star+y_p))/y (RAR's exponential tail is NOT the MONO tail). (5) NEGATIVE CONTROLS quantified: changing the peak definition while retaining y_star gives h' discontinuities 3.32e-4 to 3.32e-3 (5%-50% of the branch scale); shifting the splice by +-0.05 gives join residuals 1.70e-3/1.78e-3. Domain: y>0 real, dimensionless; dimensional transfer to BOTH footings via B_star=y_star*a0: canonical 2.18826212e-10 m/s^2 (a0=9.3619e-11), alternative 2.636367452e-10 m/s^2 (a0=1.1279e-10), rho_Lambda 5.84441245402e-27 / 8.48308961956e-27 kg/m^3 (ratio 1.451487157 at fixed kappa=1/2; equivalently kappa_eff=0.6023884041 at fixed rho_canonical).",
+  "framework_cell": {
+    "branch": "operative MONO (filtered nu_mono) ONLY for conclusions; Q, RAR, MU2, EXP appear solely as comparison in controls; no branch translation used",
+    "action": "none needed for this constitutive-kernel derivation; no action revision, no energy primitive claimed",
+    "kernel": "nu_RAR(y)=1/(1-exp(-sqrt(y))), h_RAR=y(nu_RAR-1)=y/(exp(sqrt(y))-1); continuation h_mono(y)=h_RAR(y_star)+delta*h_p*ln[(y+y_p)/(y_star+y_p)]; nu_mono=1+h_mono/y",
+    "filter": "S=exp[(xi^2/2)Delta] is the operative framework filter but its metric/measure/domain are NOT committed in the repo; the heat-action numbers in this run are a LABELED flat-1D periodic model diagnostic (Lebesgue measure, xi in {0.01,0.05}), explicitly not transferable to the committed-cell operator",
+    "gate": "amended requirement 12 (RAR segment and MONO continuation preserved, no hidden kernel substitution) and requirement 1 conduit (constitutive branch fidelity); no claim on gates 2-11 or criterion B",
+    "coupling_symbols": "g=B*nu (total = baryonic x response); G_N, G_bare, G_cosmo kept separate; nothing here needs their ratio",
+    "parameters": "delta=0.05 (declared); y_p, h_p DERIVED here (closed form), not imported (AS032 has no committed result); kappa=1/2 adopted framework input, not derived",
+    "scale_footing": "dimensionless in y=B/a0; both footings a0=9.3619e-11 (canonical) and 1.1279e-10 m/s^2 (alternative) applied separately with their own rho_Lambda; identities and factors reported in exact_claim",
+    "boundaries": "y>0; no inner/outer cutoffs; peak and splice on open domain; heat diagnostic uses periodic box [0,10] and window [1.5,3.5] (model only)",
+    "units": "SI for dimensional transfers (G=6.67430e-11 m^3 kg^-1 s^-2, c=299792458 m/s, a0 in m/s^2, rho in kg/m^3, B_star in m/s^2)"
+  },
+  "new_assumptions": [
+    "delta=0.05 adopted as task-declared kernel parameter (not derived)",
+    "kappa=1/2 adopted framework input (explicit; not claimed as derivation)",
+    "flat-1D heat model diagnostic is a labeled model operator; its numbers are NOT transferable to the framework's metric-dependent S until metric/measure/domain/xi are committed",
+    "task landmarks (y_p~2.5396, h_p~0.647610, y_star~2.3374) treated as rounded consistency checks, not inputs"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS033_mono_splice_location_from_its_derivative_rule.md": "41b34f5f2822b5b08abe33c43e9fcac45bce38e7f7eb7dd0978abe40b79bed2c",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+    "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed (pinned hash VERIFIED against actual)",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f (pinned hash VERIFIED against actual)",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac (pinned hash VERIFIED against actual)"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/as033_splice.py": "7ca99147bb6de80d56ed4cdb672d67e95dddfbfc4372a983dfb0b821c35914a3",
+    "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/as033_splice.out": "3ce83a837a7fded4f94e011ebc89f9e066e91b7192a3955dd8e8e3fb68e2c42e",
+    "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/as033_splice.err": "81173db7c5a720ef22b8fbb14f4571285a81880c723775deb3ec1538a6fd0c3c",
+    "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/landmarks.json": "55c84f2885ac1b4f58be75dbaff8b5bbb0cadd874ae9dd4dfbf9ec89f46255aa",
+    "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/AS033_MONO_SpliceJoin.lean": "6aebd2055779ab73b47c28b21748de851ebf265a92565d0cfb68d751dff8483a",
+    "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/derivation.md": "49135a4848ede8370566efa88081158fc1518a790c152e2e433f9c41fef78ab4"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01 && OMP_NUM_THREADS=1 /usr/bin/time -p python3 as033_splice.py > as033_splice.out 2> as033_splice.err  (EXIT=0; wall 0.51-0.57 s)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs>/results/AS033/AS033-20260927-r01/AS033_MONO_SpliceJoin.lean (EXIT=0; axiom sets printed, zero sorry)",
+    "sha256sum over task/source/artifact files (see hashes above); source pinned hashes verified identical to manifest/task-specified pins"
+  ],
+  "execution_bounds": {
+    "declared": "<=120 s wall, <=512 MB working memory, 1 thread, bounded prototype only",
+    "enforced": "in-process: signal.alarm(120) watchdog + RLIMIT_CPU(115,120) + RLIMIT_AS soft cap 512 MB (macOS refuses hard-cap; soft cap set, measured maxrss reported); OMP_NUM_THREADS=1; pure-python/mpmath + numpy single-threaded FFT",
+    "observed": "wall 0.51 s (script-internal) / 0.57 s (/usr/bin/time real), maxrss 114.25 MB (macOS ru_maxrss bytes/1048576), 1 thread; grid: 2^16 cells x 2 windows for heat diagnostic, 5 sample points for numeric differentiation, 60-digit mpmath refinement",
+    "note": "RLIMIT_AS hard cap refusal is a macOS policy; the measured 114 MB is 4.5x under the 512 MB cap and the alarm/CPU limits were enforced"
+  },
+  "checks": [
+    {"name": "C1 peak closed form vs landmark", "observed": "y_p=2.5396382821881653..., |y_p-2.5396|=3.83e-5; h_p=0.6476102378919149..., |h_p-0.647610|=2.38e-7; h'(y_p)=0.0; h_p==h_RAR(y_p) diff 0.0", "tol": "landmark rounded precision (6 sig)", "pass": true},
+    {"name": "C2 crossing equation at y_star (main residual)", "observed": "F(y_star)=h'_RAR(y_star)-delta*h_p/(y_star+y_p)=-3.89e-62; both sides 0.0066393634123774664319402003748430201817060454...", "tol": "1e-45", "pass": true},
+    {"name": "C3 value continuity join h_mono(y_star)=h_RAR(y_star)", "observed": "residual 0.0 (exact ln(1)=0 term); Lean-certified algebraic identity", "tol": "exact 0", "pass": true},
+    {"name": "C4 derivative continuity at splice (C^1)", "observed": "|h'_RAR(y_star)-delta*h_p/(y_star+y_p)|=3.89e-62", "tol": "1e-45", "pass": true},
+    {"name": "C5 h'' kink at splice (C^1 not C^2)", "observed": "jump J=-delta*h_p/(y_star+y_p)^2 - h''_RAR(y_star)=+0.0347447135548 (h''_RAR(y_star)=-0.0361060619)", "tol": "1e-10", "pass": true},
+    {"name": "C6 independent representation: sympy symbolic derivative", "observed": "simplify(diff(h_RAR) - closed_form) == 0 (exact, no floats)", "tol": "exact 0", "pass": true},
+    {"name": "C7 independent representation: numeric central differences", "observed": "residuals at y in {0.2,1.0,y_star,y_p,5.0}: 7.25e-33, -2.23e-32, 6.08e-33, 3.89e-32, 2.88e-32", "tol": "1e-20", "pass": true},
+    {"name": "C8 NC1 (task control 1): change peak definition, retain old splice -> h' discontinuity", "observed": "jumps 3.3217e-4 (y_p+0.25), 7.6615e-4 (y_p=2.0), 3.3197e-3 (h_p/2) = 5.0%/11.5%/50.0% of true delta*h_p/(y_star+y_p)", "tol": "jump > 1e-6 (nonzero, measurable)", "pass": true},
+    {"name": "C9 NC2: shifted splice violates join", "observed": "|F(y_star+0.05)|=1.695e-3, |F(y_star-0.05)|=1.781e-3, |F(y_star+0.01)|=3.457e-4 (all >> 1e-45)", "tol": "residual > 1e-9", "pass": true},
+    {"name": "C10 NC3 deep limit y->0", "observed": "max picks RAR: h'_RAR(1e-10)=49999.5 vs 0.012750049; nu*sqrt(y)-1=5.0000083e-6 ~ sqrt(y)/2; leading g~sqrt(a0 B)", "tol": "RAR dominance by >10^6x", "pass": true},
+    {"name": "C11 NC3 Newtonian limit y->inf", "observed": "h_RAR(1e6)=5.076e-429; h_mono(1e6)=1.0430055 (log branch); nu_mono-1=h_mono/y=1.0430055e-6 -> 0; g/B -> 1", "tol": "nu-1 -> 0 (measured 1e-6 at y=1e6)", "pass": true},
+    {"name": "C12 NC4 kernel-parameter variation", "observed": "delta'=0.07 -> y_star'=2.262643737, delta'=0.03 -> y_star'=2.415579119; at old y_star residual 2.6557e-3 both ways (nonzero)", "tol": "residual > 1e-8", "pass": true},
+    {"name": "C13 unicity bracket (analytic, not grid)", "observed": "psi(s0)=0.53596235>0, psi(s_p)=0.47300701>0 with psi' unique root s0=1.1461932206205825852 -> h''_RAR<0 on (0,y_p) -> F strictly decreasing -> unique y_star in (0,y_p)", "tol": "strict negativity of psi on bracketed extremes", "pass": true},
+    {"name": "C14 Lean certificate compile", "observed": "lake env lean EXIT=0; axioms per theorem exactly {propext, Classical.choice, Quot.sound}; grep sorry count 0", "tol": "exit 0, no sorryAx, allowed axioms only", "pass": true}
+  ],
+  "tested_domain": "y>0 real, dimensionless. Exact statements: closed-form peak identities (exact), uniqueness theorem on (0,y_p) (analytic with bracketed extremal values), continuation formula (exact, Lean-certified for all positive parameters). Numerical: 60-digit mpmath roots (y_star, y_p, s_p), samples y in {0.2,1.0,2.3374,2.5396,5.0,1e-10,1e6,1e8-style limits}, heat model grids 2^16 cells on [0,10] and [1.5,3.5], xi in {0.01,0.05}. Footings: a0 in {9.3619e-11, 1.1279e-10}. Exclusions: no y<0, no complex, no metric-dependent filter cell, no dynamics.",
+  "failed_attempts": [
+    {"path": "results/AS033/AS033-20260927-r01/as033_splice.py (first run, superseded by the committed version)", "cause": "ZeroDivisionError in heat diagnostic at grid point y=0 (h''_RAR ~ -1/(4 y^(3/2)) diverges; 60-digit mpmath call evaluated exactly at 0 before the midpoint-grid fix). Script was patched to a midpoint grid (y>0) with vectorized numpy; ALL core derivation output (step 1-5, controls) was identical between the first run and the corrected run. No scientific claim changed."}
+  ],
+  "limitations": "Does NOT: make any dynamics/stability/causality (criterion B) or filtered-field statement; commit the metric/measure/domain/xi of the framework's S (heat numbers are a labeled flat-1D model only and do not transfer); derive delta=0.05 or kappa=1/2 (adopted inputs); touch gates 2-11; import or repair any other branch (RAR/Q/MU2/EXP appear only in limits/comparisons); claim the landmark agreement beyond the rounded precision (3.8e-5/2.4e-7/1.2e-5); claim AS032's peak result is 'confirmed' by me as its own result (AS032 has no committed result; y_p/h_p here are independently derived). Numerical agreement is finite evidence, not an empirical test. 'supports_scoped_claim' is provisional until orchestrator review.",
+  "next_unresolved_implication": "The filtered-field consequence at the splice: evaluate the operative equation Delta Phi = 4 pi G rho_b + S* div[(nu_mono(|grad S u|/a0)-1) grad S u] near y_star for a point mass and prove the splice kink of nu_mono-1 produces no discontinuity in the filtered acceleration field. Requires the committed (metric, measure, domain, xi) specification of S, which the campaign has not supplied (AS042/AS048 territory) - a blocking open dependency, not something this task can close.",
+  "suggested_followup": "Dispatch AS033.C01 (committed-cell heat-filter action at the splice; spec and fingerprint in child_proposals) after the filter operator cell is committed, using this run's flat-model numbers (deviation ~1.5e-2 in the splice h'' window at xi=0.01; raw kink amplitude 0.0347447135548) as the model-vs-committed-cell comparison baseline.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "frameworks_primitives": "a0=kappa*c*sqrt(G*rho_Lambda) with kappa=1/2 adopted (input, not derived); rho_Lambda=4 a0^2/(G c^2) restatement; r_M=sqrt(G M_b/a0); v_flat^4=G M_b a0 (not used numerically here; dimensionless proof)",
+    "declared_kernel_parameters": "delta=0.05 (task-declared); RAR kernel nu=1/(1-exp(-sqrt(y))) (framework contract); max rule for h'_mono (task)",
+    "measured_calibrations": "G=6.67430e-11, c=299792458 (SI defaults); a0 footings 9.3619e-11 and 1.1279e-10 m/s^2",
+    "genuinely_derived": "peak equation e^s(2-s)=2 and h_p=s_p(2-s_p) (exact); closed-form h'_RAR and h''_RAR; uniqueness of y_star on (0,y_p); y_star value to 60 digits; continuity join and continuation formula; derivative rule on the branch; h'' kink amplitude; limits g~sqrt(a0 B) (deep) and g->B with log correction (Newtonian)",
+    "not_derived": "kappa, delta, a0 magnitudes, the max rule itself, the filter operator cell"
+  },
+  "closure_implication": "Gate: amended requirement 12 (specified RAR segment and MONO continuation preserved; no hidden kernel substitution) - conditionally supported in stated scope. Exact implication: with delta=0.05 and the derived peak, the MONO splice is NO LONGER a free/hard-coded constant: y_star=2.337412405266329455558123303201198860792... is the unique solution of the derivative-rule crossing, and any splice/peak variation breaks C^1 continuity by measured amounts (NC1/NC2). Common-action/parameter-domain compatibility: the derivation is dimensionless (y=B/a0) and independent of G_N/G_bare/G_cosmo ratios and of the action revision; it feeds the constitutive layer of any common-action witness, and transfers to both a0 footings via B_star=y_star*a0 (2.18826212e-10 / 2.636367452e-10 m/s^2). It does NOT by itself close any gate: the filtered-field equation, kinetic stability, and criterion B remain open (see next_unresolved_implication).",
+  "child_proposals": [
+    {
+      "id": "AS033.C01",
+      "title": "Committed-cell heat-filter action at the MONO splice",
+      "new_claim": "With an explicitly declared (metric, measure, domain, xi) for S=exp[(xi^2/2)Delta] (self-adjoint in that measure), compute S*(nu_mono-1) sampled across y_star and the residual against the flat-1D model baseline of this run (raw h'' kink 0.0347447135548; splice-window deviation ~1.5e-2 at xi=0.01); quantify the kink-removal error as a function of xi",
+      "fingerprint": "(filtered-MONO kernel, committed-cell S operator, splice neighborhood y~2.3374, operator-action residual, xi in {0.01,0.05,0.1})",
+      "parent": "AS033 run AS033-20260927-r01 (task hash 41b34f5f...; derivation.md hash 49135a48...)",
+      "controls": "same-cell comparison flat-model vs committed-cell; xi->0 limit recovers the raw kink; self-adjointness check in the declared measure; negative control: wrong-measure adjoint breaks the identity",
+      "dependencies": "commitment of the filter cell (metric/measure/domain/xi) - currently a blocking open dependency; closest seeds AS042 (filter order as law), AS048 (smoothing as candidate), AS599 (1-D splice transmission) do NOT compute this operator action",
+      "dispatch_state": "not dispatched - no spawn mechanism in this worker slot; ready for orchestrator dispatch"
+    },
+    {
+      "id": "AS033.C02",
+      "title": "Phantom density profile of the MONO log continuation",
+      "new_claim": "Closed-form spherical phantom density generated by the MONO log branch (from div[(nu_mono-1) grad Phi] with nu_mono=1+h_mono/y), including the asymptotic r^-2 ln(r/r_star) form and comparison with the RAR exponential tail and EXP branch",
+      "fingerprint": "(MONO log branch, phantom density profile as closed form, r > r_star, spherical source)",
+      "parent": "AS033 run AS033-20260927-r01 (continuation formula (4) in derivation.md)",
+      "controls": "recover g=B nu in the spherical integral identity; r->inf asymptotic checked against the exact ln form; normalization independence from source profile in the deep regime",
+      "dependencies": "spherical geometry source term conventions (AS062-type source normalization); closest seeds AS582 (phantom monopole from flux at infinity), AS091 (enclosed phantom mass), AS619 (quadrature across splice) - none states THIS branch's profile",
+      "dispatch_state": "not dispatched - no spawn mechanism in this worker slot; ready for orchestrator dispatch"
+    }
+  ],
+  "closure_candidate": null
+}

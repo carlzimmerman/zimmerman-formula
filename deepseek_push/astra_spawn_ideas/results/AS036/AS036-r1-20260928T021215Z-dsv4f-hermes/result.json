@@ -1,0 +1,269 @@
+{
+ "schema_version": 2,
+ "task_id": "AS036",
+ "task_sha256": "d7262be084e2209ac8a63ed4605fe4277aa62294fcc295070310c36b4796dea9",
+ "run_id": "AS036-r1-20260928T021215Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent; orchestrator claim reservation sa-5-d75c87dd (claims/AS036.json state=running, untouched by this worker)",
+ "started_utc": "2026-09-28T02:12:15Z",
+ "finished_utc": "2026-09-28T03:03:30Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "Let x = g/a0 = y + h(y) with y = B/a0 > 0 on the declared branch set (Q, RAR, MU2, historical EXP, operative MONO; kappa=1/2 adopted). (i) dg/dB = 1 + h'(y); physical monotonicity (total-force invertibility) holds iff h'(y) > -1 for all y > 0, phantom monotonicity is h'(y) > 0; PHAN implies PHYS with margin dg/dB > 1, the converse is false, and no kernel of this class is phantom-monotone but physical-nonmonotone (impossibility direction, Lean-certified). (ii) Q: dg/dB = (2y+1)/(2 sqrt(y^2+y)) > 1 and h'_Q > 0 for all y>0, so Q is both physically and phantom monotone (exact algebraic inequality, Lean-certified: axioms {propext, Classical.choice, Quot.sound}); asymptotics h_Q = sqrt(y) + (1/2)y^(3/2) - (1/8)y^(5/2) + O(y^(7/2)) for 0<y<1 and h_Q = 1/2 - 1/(8y) + 1/(16y^2) + O(y^-3) for y>1, with the stated leading neglected terms confirmed at 50 dps (residuals 3.91e-20 and 3.88e-8 equal the predicted leading terms). (iii) MONO (operative): h'_mono = max(h'_RAR, delta h_p/(y+y_p)) >= delta h_p/(y+y_p) > 0, so phantom monotone by construction and physically monotone with dg/dB >= 1 + delta h_p/(y+y_p) > 1 for all y>0; C^1 but not C^2 at y_star = 2.3374124052663294555581233032011988607921527655904 (h'' jump J2 = -0.0347447136, matches AS033 printed landmark 0.0347447135548); nu_mono within 0.01037 dex of nu_RAR, max at y = 14.35 exactly (spec: 0.0104 at 14.35). (iv) RAR: 1 + h'_RAR(y) = e^s(2(e^s-1)-s)/(2(e^s-1)^2) > 0 for all y>0 because 2(e^s-1) > s (e^s >= 1+s), so RAR is physically monotone everywhere, while its phantom is NOT monotone: h'_RAR > 0 on (0,y_p), =0 at y_p = 2.53963828218816532499888178977436590236898418, <0 on (y_p, inf) with |h'| <= 0.03238 (< 1) - the declared negative control: negative h' with |h'|<1 does NOT imply non-invertibility. (v) MU2: dy/dx = 1-(1+x/2)^-2 + x(1+x/2)^-3 > 0 for all x>0 (exact: times (1+x/2)^3 gives (1+x/2)^3-(1+x/2)+x = (1+x/2)(x/2)(2+x/2)+x > 0), so physically monotone everywhere; phantom h' = (1-x/2)(1+x/2)^-3 > 0 iff x < 2 iff y < 3/2 (exact root x=2). (vi) EXP (historical, comparison only): dy/dx = 1 - e^-x(1-x) > 0 for all x>0 (exact), phantom h' = (1-x)e^-x > 0 iff x < 1 (exact). (vii) counterexample kernel h(y) = -y tanh(y): x = y(1-tanh y) > 0 for all y>0 yet dg/dB = 2e^-2y(1+e^-2y-2y)/(1+e^-2y)^2 < 0 for all y >= 1 (exact), root bracketed in (0.5,0.7): real physical non-invertibility requires h' < -1 somewhere (h'(1) = -1.18157), so the criterion h' > -1 is sharp. Domain: y in (0,inf) (x in (0,inf)); all statements dimensionless, both a0 footings (canonical 9.3619e-11, alternative 1.1279e-10 m/s^2) apply unchanged; 50-digit finite checks on the mandated grid y = 10^k, k=-10..8 step 0.1 (181 pts) with max residuals listed in checks; Lean 4 certificate 20/20 theorems, zero sorry, axioms exactly {propext, Classical.choice, Quot.sound}.",
+ "framework_cell": {
+  "action_or_source": "FRIED_CHICKEN_SPEC.md (sha256 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f) requirements 1/7/12 operative text (2026-09-26 amendment): kernel nu_mono through heat filter S=e^((xi^2/2)Delta), causality criterion B; README.md 91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "kernel": "Q: g^2 = B^2 + a0 B; RAR: nu = 1/(1-exp(-sqrt(B/a0))); MU2: mu2 = 1-(1+x/2)^-2, mu2*g = B; EXP (historical): mu = 1-e^-x, mu*g = B; MONO (operative): h'_mono = max(h'_RAR, delta*h_p/(y+y_p)), delta = 0.05, h_mono = h_RAR(y_star) + delta*h_p*ln((y+y_p)/(y_star+y_p)) on continuation",
+  "filter": "S = exp((xi^2/2)Delta) heat filter: NOT applied in this task (local algebraic response only); filter-transfer recorded as next_unresolved_implication",
+  "gate": "A02 kernel fidelity; contributes to closure gates 1 and 12 (operative filtered MONO derived, RAR segment + MONO continuation preserved)",
+  "coupling": "G_N = G_bare = G_cosmo not identified here; no coupling equation used (dimensionless force-law analysis)",
+  "parameters": "kappa = 1/2 adopted (framework input, not derived); delta = 0.05; y_p = 2.53963828218816532499888178977436590236898418; h_p = 0.647610237891914859647201961975954581209020672; y_star = 2.33741240526632945555812330320119886079215277 (reproduced to 50 digits, task landmarks 2.5396/0.647610/2.3374 consistent)",
+  "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 and alternative a0 = 1.1279e-10 m/s^2 carried separately; rho_Lambda(canon) = 5.84441245402e-27 kg/m^3, rho_Lambda(alt) = 8.48308961956e-27 kg/m^3, ratio 1.4514871574 at fixed kappa; B_star = y_star*a0: 2.18826212e-10 (canon), 2.63636745e-10 (alt) m/s^2; B_p = y_p*a0: 2.37758396e-10 (canon), 2.86445802e-10 (alt) m/s^2; all monotonicity theorems dimensionless -> both footings apply unchanged",
+  "boundaries_initial_conditions": "y in (0, inf), x in (0, inf); deep limit h -> sqrt(y) (g^2 -> a0 B) checked per branch; Newtonian dg/dB -> 1 where it exists; no time dependence, no filter, no metric data used",
+  "units": "SI: G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, a0 in m/s^2, B, g in m/s^2; y, x, h, nu, dg/dB dimensionless",
+  "historic_branch_status": "EXP is a comparison branch only (retired operative target); RAR used only on its declared segment (0, y_star) inside MONO; historical claims do not supersede the 2026-09-26 amendment"
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS036_physical_monotonicity_versus_phantom_monotonicity.md": "d7262be084e2209ac8a63ed4605fe4277aa62294fcc295070310c36b4796dea9",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+  "deepseek_push/astra_spawn_ideas/results/AS033/AS033-20260927-r01/landmarks.json": "55c84f2885ac1b4f58be75dbaff8b5bbb0cadd874ae9dd4dfbf9ec89f46255aa"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/derivation.md": "2ed1a20066e4c60152596184698437e6fce9c1ebe24a7878133994f1c21b53cf",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/compute_as036.py": "8845b6572c44f50affe05e3d85469799a8ee80572c6825f914f86eaebdc23221",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/raw_output.json": "164277c630d29d685e0ffdade3ed8094c0f6b0a9d938411a57a9e3daa2d95c7e",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/run.out": "99a6b10566743f9a2289ff2c17c6bde8037d5305b5f423dd16a9c3ccbcb56152",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/run.err": "7303d787b975aeeb18340a931fa20b301af91205da296c9e9c2eb5a265eff96a",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/AS036_physical_vs_phantom_monotonicity.lean": "834f0b101e80dc847e5d933a989e5819649a069f25b1e17d96d09b6658d6fd97",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/AS036_physical_vs_phantom_monotonicity_axioms.lean": "58af10144178f50951564ee8a00858c8f24a13fd633715cdc54da3cb777ddc57",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/lean_compile_out.txt": "988fd8960c9309fb77abafc6d827952e59be2de976df12008393da131e63eb60",
+  "deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes/lean_axioms_out.txt": "4f27cd1de48c8a803e3e46389f0eb721fa56c7ca4bb13f341b9d00b9aebc2119"
+ },
+ "commands": [
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS036/AS036-r1-20260928T021215Z-dsv4f-hermes && python3 compute_as036.py (mpmath 50 dps; RLIMIT_CPU 120s enforced; RLIMIT_AS 512MiB requested but rejected by macOS kernel -> enforced by measured ru_maxrss assertion 20.4 MiB; elapsed 0.134 s)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean AS036_physical_vs_phantom_monotonicity.lean (exit 0, no output; 3 compile-fix iterations before clean)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean -o AS036_physical_vs_phantom_monotonicity.olean AS036_physical_vs_phantom_monotonicity.lean && LEAN_PATH=.:$LEAN_PATH lake env lean AS036_physical_vs_phantom_monotonicity_axioms.lean (20/20 theorems, axioms exactly [propext, Classical.choice, Quot.sound])",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake build Mondlean (2128 jobs, exit 0, unrelated project build to enable import resolution)"
+ ],
+ "execution_bounds": {
+  "declared": "prototype <= 120 s wall, <= 512 MiB, 1 thread; grid y=10^k k=-10..8 step 0.1 (181 pts) + 2001-pt fine dex scan; 2 refinements of bisection roots (tol 1e-48)",
+  "enforced": "RLIMIT_CPU soft=120 hard=121 (enforced, actual 0.134 s); RLIMIT_AS lowering rejected by macOS kernel (EINVAL) -> memory cap enforced by measured ru_maxrss assertion: 20,365,312 bytes (19.4 MiB) <= 512 MiB cap; OMP_NUM_THREADS=1, scalar mpmath, no thread pools; Lean compile 5.3-29.8 s per iteration, no parallel lean jobs",
+  "note": "distinguish suggestion from enforcement: grid and scan sizes are planning bounds actually used; memory bound is measured-assertion-enforced, not kernel-enforced"
+ },
+ "checks": [
+  {
+   "name": "landmark y_p == AS033 (50 digits)",
+   "expected": "2.53963828218816532499888178977436590236898418",
+   "observed": "2.5396382821881653249988817897743659023689841775413",
+   "pass": true
+  },
+  {
+   "name": "landmark h_p == AS033 (50 digits)",
+   "expected": "0.647610237891914859647201961975954581209020672",
+   "observed": "0.64761023789191485964720196197595458120902067209651",
+   "pass": true
+  },
+  {
+   "name": "landmark y_star == AS033 (50 digits)",
+   "expected": "2.33741240526632945555812330320119886079215277",
+   "observed": "2.3374124052663294555581233032011988607921527655904",
+   "pass": true
+  },
+  {
+   "name": "splice equation residual |h'_RAR(y_star) - delta*h_p/(y_star+y_p)|",
+   "tolerance": "1e-40",
+   "observed": "1.7e-51",
+   "pass": true
+  },
+  {
+   "name": "Q forward law residual (relative)",
+   "tolerance": "1e-45",
+   "observed": "2.61e-51 max over 181-pt grid (absolute 2.41e-35 at y=1e8 is cancellation artifact of (y+h)^2-y^2-y form; relative rate correct)",
+   "pass": true
+  },
+  {
+   "name": "Q substitution into differentiated law 2x dx/dy = 2y+1",
+   "tolerance": "1e-40",
+   "observed": "1.79e-43",
+   "pass": true
+  },
+  {
+   "name": "Q h'_Q vs mpmath numerical derivative",
+   "tolerance": "1e-45",
+   "observed": "1.09e-47",
+   "pass": true
+  },
+  {
+   "name": "RAR representation x = y*nu",
+   "tolerance": "1e-45",
+   "observed": "2.67e-51",
+   "pass": true
+  },
+  {
+   "name": "RAR h'_RAR vs mpmath numerical derivative",
+   "tolerance": "1e-45",
+   "observed": "8.76e-47",
+   "pass": true
+  },
+  {
+   "name": "MONO derivative rule h'_mono = max(h'_RAR, phi) on grid",
+   "tolerance": "0",
+   "observed": "0.0 (definitional)",
+   "pass": true
+  },
+  {
+   "name": "MONO continuity at splice",
+   "tolerance": "1e-50",
+   "observed": "0.0 (exact log(1)=0 join)",
+   "pass": true
+  },
+  {
+   "name": "MU2/EXP forward h + y(x) = x",
+   "tolerance": "1e-45",
+   "observed": "1.79e-43 / 1.71e-49",
+   "pass": true
+  },
+  {
+   "name": "min margin 1+h'_RAR over grid",
+   "expected": "> 0",
+   "observed": "0.9675525463 (dense scan min); exact proof 2(e^s-1) > s",
+   "pass": true
+  },
+  {
+   "name": "min margin dg/dB_Q - 1",
+   "expected": "> 0",
+   "observed": "1.25e-17 at y=1e8 (exact asymptote 1/(8y^2))",
+   "pass": true
+  },
+  {
+   "name": "mono vs RAR dex max (fine scan [10,30])",
+   "expected": "0.0104 at y=14.35 (FRIED_CHICKEN rqmt 1)",
+   "observed": "0.0103701495511 at y = 14.35 exactly",
+   "pass": true
+  },
+  {
+   "name": "C^2 jump at y_star",
+   "expected": "match AS033 printed 0.0347447135548",
+   "observed": "-0.0347447136 (= h''_RAR - phi' = -0.0361060616 + 0.0013613480); AS033 code line -phi'-h'' = 0.0374674 contradicts its own label; we report the label-consistent jump",
+   "pass": true
+  },
+  {
+   "name": "NC1 declared: h'<0 with |h'|<1 does not imply noninvertibility",
+   "expected": "reject naive claim",
+   "observed": "RAR on (y_p, 1e8]: h' min -0.03238, |h'|<1, yet 1+h'>0 everywhere; naive claim REJECTED",
+   "pass": true
+  },
+  {
+   "name": "NC2 constructive counterexample h = -y tanh(y): real noninvertibility",
+   "expected": "dg/dB < 0 somewhere with exact sign",
+   "observed": "dg/dB(0.5)=+0.14466 > 0, dg/dB(0.7)=-0.04869 < 0 -> root bracketed (0.5,0.7); dg/dB < 0 on [1, inf) exact; h'(1)=-1.18157<-1 (criterion sharp)",
+   "pass": true
+  },
+  {
+   "name": "NC3 impossibility: no phantom-monotone + physical-nonmonotone kernel",
+   "expected": "none exists",
+   "observed": "algebraic implication h'>0 => dg/dB>1 (Lean phantom_implies_physical); all branches consistent",
+   "pass": true
+  },
+  {
+   "name": "NC4 shared asymptote != equivalent kernel",
+   "expected": "differences despite same deep limit",
+   "observed": "RAR vs MONO opposite h' signs at y=14.35 (-0.02172 vs +0.001917); RAR vs Q h'_RAR-h'_Q = 0.49937 at y=1e-6 (~-1/2 exact limit)",
+   "pass": true
+  },
+  {
+   "name": "NC5 exact algebraic roots MU2/EXP",
+   "expected": "x=2 and x=1",
+   "observed": "dh/dx sign changes at x=2.0 (y(2)=1.5 exact) and x=1.0 (y(1)=1-1/e exact)",
+   "pass": true
+  },
+  {
+   "name": "asymptotic leading neglected terms",
+   "expected": "|x-asym|(y=1e-4)=5/128*(1e-4)^(9/2)=3.9e-20; |h-asym|(y=100)=5/(128*1e6)=3.9e-8; RAR -s^7/30240 = -3.31e-19",
+   "observed": "3.91e-20, 3.88e-8, 3.31e-19",
+   "pass": true
+  },
+  {
+   "name": "Lean certificate",
+   "expected": "compile exit 0, 20 theorems, zero sorry, axioms subset {propext, Classical.choice, Quot.sound}",
+   "observed": "exit 0; axioms output lists exactly [propext, Classical.choice, Quot.sound] for all 20 theorems",
+   "pass": true
+  },
+  {
+   "name": "source hashes vs SOURCE_MANIFEST.json",
+   "expected": "README 91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed; FRIED_CHICKEN 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f; peer_review 521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+   "observed": "all three match exactly",
+   "pass": true
+  }
+ ],
+ "tested_domain": "y in [1e-10, 1e8] on the mandated log grid (181 points: y = 10^k, k = -10..8 step 0.1) for Q/RAR/MONO; x-grid identical for MU2/EXP; fine dex scan 2001 points on y in [10,30]; bisection brackets: y_p in (2.5,2.6), y_star in (2.3,2.4), NC2 root bracketed in (0.5,0.7) - roots BRACKETED, not grid-proved; exact statements cover y in (0, inf) (x in (0,inf) for MU2/EXP) via analytic inequalities; Lean domain: y > 0 (Real), s > 0, x > 0 as declared; exclusions: no time dependence, no heat filter S applied, no non-spherical geometry, no metric/action data",
+ "failed_attempts": [
+  {
+   "artifact": "compute_as036.py initial run: RLIMIT_AS setrlimit raised ValueError 'current limit exceeds maximum limit' on macOS",
+   "cause": "macOS kernel rejects lowering RLIMIT_AS (EINVAL); recovered by measured ru_maxrss assertion fallback, recorded honestly in bounds"
+  },
+  {
+   "artifact": "Lean file compile iteration 1: 12 errors (one_lt_div_iff signature differs in mathlib v4.34; Real.add_one_le_exp is x+1 <= exp x not 1+x; pos_of_mul_pos_right argument order; exp_le_exp is an iff; field_simp closed goals before trailing ring; zpow positivity not auto; mu2 sign iff missing branch domain x>0)",
+   "cause": "mathlib v4.34 API differences and a genuine statement bug (mu2_hprime_pos_iff false for x < -2 without the branch domain x > 0) - fixed by scoping to the declared physical branch x > 0"
+  },
+  {
+   "artifact": "Lean file compile iteration 2: single error at mu2_dydx_pos hprod (ring could not expand let-bound A through zpow)",
+   "cause": "let-abstraction opaque to ring after field_simp; reverted to explicit expression form"
+  },
+  {
+   "artifact": "J2 quantity initially reported as -phi'-h'' = 0.0374674 (following AS033 code line 100)",
+   "cause": "AS033's code formula contradicts its own printed label (0.034744714); corrected to the label-consistent jump h''_RAR - phi' = -0.0347447136, which matches the physics (jump of the piecewise second derivative) and AS033's printed landmark"
+  }
+ ],
+ "limitations": "Local algebraic response only: the heat filter S = exp((xi^2/2)Delta) is NOT applied, so operator-level monotonicity/invertibility of the operative field equation is NOT established; the transcendental root s_p (hence y_p) is bracketed numerically, not proved of an exact algebraic form (sign equivalence 2(e^s-1) > s e^s is Lean-certified, the location of its root is not a formal theorem); 'min 1+h'_RAR = 0.9675525' is a dense-scan value - the exact statement is the inequality 2(e^s-1) > s; no dimensional SI prediction beyond footings; EXP is historical/comparison only; NC2's h = -y tanh(y) kernel is a mathematical control, not a physical law and gives no closure evidence; finite 50-dps residuals are consistency checks of exact identities, not proofs; no claim about stability, PPN, lensing, modes or any relativistic gate",
+ "next_unresolved_implication": "Local monotonicity does not automatically survive the heat filter: prove or refute that the operative quasistatic map u |-> 4pi G rho_b + S* div[(nu_mono(|grad S u|/a0) - 1) grad S u] is monotone/invertible on its function-space domain (first missing bridge between the algebraic dg/dB > 1 of MONO, established here, and the filtered field equation of FRIED_CHICKEN requirement 1); this is also where the C^2 kink at y_star (jump -0.0347447) enters, since second-derivative bounds of the Nemytskii map are needed for the elliptic inversion argument",
+ "suggested_followup": "Dispatch ready child AS036.C01 'Filtered-response monotonicity of the MONO phantom source' (spec in child_proposals; not dispatched - no runner in this wave): construct T(u) = S* div[(nu_mono(|grad S u|/a0)-1) grad S u] on the declared domain, prove/refute coercive monotonicity (T(u)-T(v), u-v) >= c |u-v|^2-type estimate, with the C^2 jump as the obstruction probe; dupe-checked against AS041, AS042, AS1116, AS1117",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "adopted_framework_inputs": [
+   "a0 = kappa*c*sqrt(G*rho_Lambda) with kappa = 1/2 (no independent derivation performed; the one-half normalization is adopted per framework contract)",
+   "branch equations Q, RAR, MU2, EXP, MONO with delta = 0.05 as given in FRIED_CHICKEN_SPEC requirement 1 operative text",
+   "G = 6.67430e-11, c = 299792458 (SI footings only)",
+   "task landmarks y_p ~ 2.5396, y_star ~ 2.3374, h_p ~ 0.647610 (reproduced, not assumed)"
+  ],
+  "measured_calibrations": "none (no data used; dimensionless derivation)",
+  "derived_equations": [
+   "criteria dg/dB = 1 + h'(y) > 0 (PHYS) and h'(y) > 0 (PHAN) with PHAN => PHYS sharp",
+   "Q: h_Q = sqrt(y^2+y) - y, h'_Q = (2y+1)/(2 sqrt(y^2+y)) - 1, dg/dB > 1 (exact, Lean)",
+   "RAR: h'_RAR = (2(e^s-1) - s e^s)/(2(e^s-1)^2), 1+h'_RAR > 0 for all s>0 since 2(e^s-1)>s, sign equivalence 2(e^s-1) > s e^s (exact, Lean)",
+   "MU2: dy/dx > 0 exact, phantom root x = 2 exact (Lean)",
+   "EXP: dy/dx > 0 exact, phantom root x = 1 exact (Lean)",
+   "MONO: h'_mono >= delta h_p/(y+y_p) > 0 and 1 + h'_mono > 1 (exact, Lean); C^1 not C^2 at y_star with J2 = -0.0347447136 (numerical, cross-checked)",
+   "counterexample kernel dg/dB < 0 on [1, inf) exact (NC2)",
+   "asymptotics with stated leading neglected terms (verified numerically)"
+  ]
+ },
+ "closure_implication": "Gate 1 & 12 (A02 kernel fidelity / operative filtered MONO preserved, common-action parameter domain): establishes the local-algebraic monotonicity precondition - the MONO total relation is strictly invertible with dg/dB >= 1 + delta h_p/(y+y_p) > 1 on the declared branch, and the RAR segment (0, y_star) is respected (h'_mono = h'_RAR there, h'_RAR > 0 on (0, y_p)); the C^2 kink limits transfer of second-derivative results until smoothing (AS048). Does NOT close the gate: filter-S operator monotonicity, source coupling and the relativistic action are untouched.",
+ "child_proposals": [
+  {
+   "id": "AS036.C01",
+   "title": "Filtered-response monotonicity of the MONO phantom source",
+   "parent": "AS036 (this run; task_sha256 d7262be084e2209ac8a63ed4605fe4277aa62294fcc295070310c36b4796dea9; run AS036-r1-20260928T021215Z-dsv4f-hermes, unreviewed)",
+   "exact_new_claim": "For the operative equation (FRIED_CHICKEN rqmt 1, xi fixed): the map T: u |-> 4pi G rho_b + S* div[(nu_mono(|grad S u|/a0) - 1) grad S u] is strictly monotone (in a norm to be specified) on a declared function-space domain, or a filtered counterexample pair (u, v) with (T(u)-T(v), u-v) <= 0 exists",
+   "new_inputs": "heat scale xi (declare value), domain (bounded region + boundary conditions for S), norm",
+   "first_principles_premise": "local monotonicity dg/dB >= 1 + delta h_p/(y+y_p) > 1 from AS036; control: log-kernel/negative-mode probe exploiting the C^2 kink J2 = -0.0347447 and the log-growth of h_mono",
+   "duplicate_search": "checked AS041 (nonspherical obstruction - different target), AS042 (filter order changes the law - does not state operator monotonicity), AS1116 (Nemytskii map low-field - no filter), AS1117 (monotone graph closure - different property), MY/AS manifests, FGF queue: no existing statement of filter-transfer of physical monotonicity",
+   "ordered_steps": [
+    "(1) write T in Fourier/leaf coordinates for the declared S",
+    "(2) bound ||S f|| and commutator terms [div, S] on the declared domain",
+    "(3) attempt coercive monotonicity from 1 + h'_mono > 1; if it fails, construct the filtered counterexample pair and isolate the smallest failing term",
+    "(4) negative control: the same argument applied to RAR (h' < 0 on (y_p, inf)) must genuinely fail to give a coercive estimate",
+    "(5) report the actual estimate constant or the counterexample"
+   ],
+   "controls": "one negative control (RAR-based argument must fail); bounds <= 120 s, <= 512 MiB, 1 thread if numerical; otherwise proof-only with Lean opportunity for the algebraic sub-inequalities",
+   "acceptance": "a coercivity constant c(xi, domain) with a proof, or a verified counterexample pair; completion is not closure",
+   "dispatch_state": "not dispatched (no runner/spawn mechanism in this wave); spec returned to orchestrator"
+  }
+ ],
+ "closure_candidate": null
+}

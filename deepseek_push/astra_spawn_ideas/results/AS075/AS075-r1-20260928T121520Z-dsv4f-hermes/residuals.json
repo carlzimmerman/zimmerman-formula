@@ -1,0 +1,221 @@
+{
+ "pass": 26,
+ "fail": 0,
+ "checks": [
+  {
+   "name": "A1 [statics: the additive zero mode is inert] EL(phi, Psi; J) == EL(phi, Psi; J + lambda*C) for the reduced static sector at lambda in {1/2, 1, 2} (generic J)",
+   "measured": "{'1/2': ['0', '0'], '1': ['0', '0'], '2': ['0', '0']}",
+   "pass": true,
+   "reading": "re-derivation of k01 K1 / AS067 S1 inside this run: statics depend on J only through J', so the vacuum datum j = J(0)/s^2 is invisible at the equation level -- the raw material of Obligation B's 'free additive shift' (the zero mode, AS067: rank-1 Lambda_eff degeneracy)."
+  },
+  {
+   "name": "A1b [tightness: only the constants are invisible] a Y-dependent shift J -> J + lambda*C*w(Y) with w(Y) = Y changes the static equations (symbolic residual nonzero at lambda in {1/2, 1, 2})",
+   "measured": "{'1/2': ['Cw*(KB - 2)*Derivative(phi(x), (x, 2))'], '1': ['2*Cw*(KB - 2)*Derivative(phi(x), (x, 2))'], '2': ['4*Cw*(KB - 2)*Derivative(phi(x), (x, 2))']}",
+   "pass": true,
+   "reading": "the zero mode is exactly the additive constant: any mechanism claiming to fix the vacuum datum must break THIS invariance; a datum coupling like w(Y) = Y is dead (it also changes the statics), narrowing obligation B to absolute-zero fixings."
+  },
+  {
+   "name": "A2 [background degeneracy rank] the map (Lambda, J(0), K(Q0)) -> Lambda_eff has Jacobian rank 1; two null directions (the additive shift is a Lambda-gauge freedom)",
+   "measured": "dLam_eff/dLambda = 1, d/dJ0 = 1 - KB/2, d/dK0 = 1/2; null directions = 2",
+   "pass": true,
+   "reading": "k01 K2 / AS067 B3 re-derived: any fixing equation for j must pair non-trivially with the null direction (B-i: shift-breaking), otherwise it is the re-labelled gauge relation."
+  },
+  {
+   "name": "A3 [the normalization slot] deep Gauss with mu ~ b*g/s: g^2 = (s/b) g_N, a0 = s/b, kappa = 1/b: the matching chain contains NO vacuum datum j (symbolic)",
+   "measured": "g^2 = B*G*s/(b1*r**2); a0 = s/b1; kappa = 1/b1; j appears in the chain: False",
+   "pass": true,
+   "reading": "Obligation A's slot: the slope b -> kappa map is an exact identity inside the class (AS059's combination B/(8 pi A G n)); fixing it still leaves the vacuum datum untouched."
+  },
+  {
+   "name": "A4 [Obligation A's algebra] OR composition over two channels with generic per-channel slopes b1, b2: mu'(0) = b1 + b2; unit slopes -> 2; corpus member slope = 2",
+   "measured": "mu'(0) = b1 + b2; unit slopes: 2; corpus: 2",
+   "pass": true,
+   "reading": "the deep slope is the sum of per-channel slopes (AS072 A1/A3, re-derived); the count and the unit-slope fraction identity carry the physical identification (PD01/PD08 premises)."
+  },
+  {
+   "name": "B1 [A alone: kappa pinned, vacuum datum free] {kappa = 1/b, b = 2}: two configurations with boundary references lambda = 1/2 and 1 both satisfy the system, with DIFFERENT vacuum data",
+   "measured": "j = -1/6 and -1/2; R = -5.960055e+14 and -1.788017e+15 (K_B = 0): distinct by factor 3.000000",
+   "pass": true,
+   "reading": "with Obligation A alone the a0-coefficient is 1/2 but the vacuum sector carries any value (sign and magnitude unpinned: k01 K3 sign obstruction plus truncation freedom, AS067 D4-D6): obligation B's freedom is untouched -- the premises are independent."
+  },
+  {
+   "name": "B2 [B alone: vacuum pinned per reference, kappa FREE at every diagnostic lambda] system {kappa = 1/b, j = -lambda^2/(1+lambda)}: three slope witnesses b in {1,2,4} at each lambda in {1/2,1,2}: kappa = 1/b takes {1, 1/2, 1/4} -- all consistent",
+   "measured": "{'1/2': [(1, '1', '-1/6'), (2, '1/2', '-1/6'), (4, '1/4', '-1/6')], '1': [(1, '1', '-1/2'), (2, '1/2', '-1/2'), (4, '1/4', '-1/2')], '2': [(1, '1', '-4/3'), (2, '1/2', '-4/3'), (4, '1/4', '-4/3')]}",
+   "pass": true,
+   "reading": "the boundary mechanism fixes j as a function of the ADOPTED reference lambda and leaves the normalization slot (hence kappa) completely free: obligation A's freedom is untouched; the mechanism relocates the freedom instead of removing it (AS068, re-derived here as the work-order deficit)."
+  },
+  {
+   "name": "B3 [joint sufficiency] {kappa = 1/b, b = 2} -> kappa = 1/2 exactly, and the framework density identity rho_Lambda = 4 kappa^2 s^2/(G c^2) at kappa = 1/2 gives a0 = s/2 = (c/2) sqrt(G rho_Lambda): BOTH obligations together close the coefficient",
+   "measured": "kappa = 1/2; framework identity check: 4 kappa^2 = 1 at kappa = 1/2: True",
+   "pass": true,
+   "reading": "the work order's endpoint: a derivation of kappa = 1/2 exists iff both independent premises are supplied; no subset suffices (B1, B2)."
+  },
+  {
+   "name": "B4 [sign obstruction, reference-independent] boundary-fixed vacuum at lambda in {1/2, 1, 2}: exact j = -lambda^2/(1+lambda) in {-1/6, -1/2, -4/3}; R negative for every diagnostic reference, K_B in {0, 0.25}, pairwise distinct",
+   "measured": "j = ['-1/6', '-1/2', '-4/3']; R(K_B=0) = ['-5.960055e+14', '-1.788017e+15', '-4.768044e+15']; R(K_B=0.25) = ['-5.215048e+14', '-1.564515e+15', '-4.172039e+15']",
+   "pass": true,
+   "reading": "obligation B's sign requirement fails for the whole positive-reference boundary family in the MU_2 class (kernel positivity + pinned sign convention, AS068 certified); the missing premise must come from outside this family."
+  },
+  {
+   "name": "B5 [general n >= 1] the removal identity J(0) = -int_0^lambda mu_n dY is negative for n in {1, 2, 5/2, 3, 4} x lambda in {1/2, 1, 2} (closed forms, exact)",
+   "measured": "[('1', '1/2', '-1/2 + log(3/2)'), ('1', '1', '-1 + log(2)'), ('1', '2', '-2 + log(3)'), ('2', '1/2', '-1/6'), ('2', '1', '-1/2'), ('2', '2', '-4/3'), ('5/2', '1/2', '1/6 - 4*sqrt(6)/27'), ('5/2', '1', '-1/3 - sqrt(2)/6'), ('5/2', '2', '-4/3 - 2*sqrt(3)/27'), ('3', '1/2', '-2/9'), ('3', '1', '-5/8'), ('3', '2', '-14/9'), ('4', '1/2', '-43/162'), ('4', '1', '-17/24'), ('4', '2', '-136/81')]",
+   "pass": true,
+   "reading": "kernel positivity mu_n > 0 on (0, inf) forces J(0) < 0 for every n >= 1 and every finite positive reference (symbolic n >= 1 class statement; instances checked exactly)."
+  },
+  {
+   "name": "C1 [the candidate presented] 'rho_vac = rho_Lambda' promoted to an independent constraint E* (the missing-premise slot)",
+   "measured": "E* := alpha s^2 j/(16 pi G) = 4 kappa^2 s^2/(G c^2)  <=>  j = A kappa^2, A = 64 pi/alpha (c = 1)",
+   "pass": true,
+   "reading": "to be rejected or accepted by constraint rank, not by plausibility."
+  },
+  {
+   "name": "C2 [graph over kappa] substituting the definitions shows E* reduces to the identity 0 = 0: the relation is satisfied for EVERY kappa by j(kappa) = 64 pi kappa^2/alpha (symbolic residual)",
+   "measured": "residual = 0",
+   "pass": true,
+   "reading": "a genuine constraint would cut the (kappa, j) plane; E* is a graph over kappa: it parameterizes the vacuum datum by the ADOPTED kappa -- no selection content."
+  },
+  {
+   "name": "C3 [rank rejection] the augmented system {kappa = 1/b, j = A kappa^2} has a 1-parameter solution family whose kappa-projection covers every sampled kappa in {1/2, 1, 2, 5/2, 4}: constraint rank against the kappa coordinate = 0 -- the candidate ADDS NO constraint on kappa (rejection by rank)",
+   "measured": "attainable vacuum data j(kappa): {'0.5': '25.1327', '1.0': '100.5310', '2.0': '402.1239', '2.5': '628.3185', '4.0': '1608.4954'} (alpha = 2, c = 1): all distinct, one per kappa, no kappa excluded",
+   "pass": true,
+   "reading": "CONTROL FIRES (PASS by design): the re-labelled input is rejected -- it cannot select kappa = 1/2 because its solution set contains EVERY positive kappa; a genuine E* would cut the projection to a point. The control is capable of failing: if E* had been independent, the projection would have collapsed."
+  },
+  {
+   "name": "C4 [joint system] {kappa = 1/b, b = 2} + C1: kappa = 1/2 comes from the ADOPTED b = 2 (Obligation A as input), not from C1; dropping b = 2 reopens the continuous kappa family",
+   "measured": "with b = 2: kappa = 1/2 (identity); with b free: kappa = 1/b over (0, inf), C1 satisfied for each by j = j(kappa)",
+   "pass": true,
+   "reading": "the candidate occupies the same constraint row as the adopted input: rank-increase 0; the label 'new independent constraint' is false."
+  },
+  {
+   "name": "D1 [deep limit] q := g_N/s -> 0: Y mu_2(Y) = q solves to g^2 = (s/2) g_N with the coefficient from mu'(0) = 2 ALONE; the leading neglected term is completion-dependent O(g/s) (AS072 A6): J(0) absent from the whole chain (symbolic)",
+   "measured": "deep solution g^2/((s/2) g_N) = 1 exactly; j appears: False",
+   "pass": true,
+   "reading": "the deep regime constrains only J' (the slope); the vacuum datum and its sign are invisible there -- the limit cannot supply obligation B."
+  },
+  {
+   "name": "D1b [deep residual, 60 digits] solved Y mu_2(Y) = q at q in {1e-4, 1e-8, 1e-12}: equation residual relative",
+   "measured": "[('0.0001', '1.8980196597476482e-59'), ('1.0e-8', '1.9824970921446132e-57'), ('1.0e-12', '1.5557538194652854e-61')]",
+   "pass": true,
+   "reading": "the deep equation is solved to working precision; the a0-line is its leading term."
+  },
+  {
+   "name": "D2 [Newtonian limit] q -> inf: g/g_N - 1 follows the corpus deficit ~ q^-2 at the measured rate (leading term 1/q^2, next term -2/q^3; AS072 D3), J(0) nowhere",
+   "measured": "g/g_N - 1 at q = 1e2: 9.8020187e-5 (pred 9.8e-5); at q = 1e6: 9.99998e-13 (pred 1e-12)",
+   "pass": true,
+   "reading": "Newtonian recovery is an exact limit of the response derivative; both limits act on J' only -- control 2 of the seed (limiting regimes cannot fix the additive datum)."
+  },
+  {
+   "name": "D3 [boundary case] normalization probe at the vacuum scale: mu_2(1) = 3/4 exactly (exact identity, not a numerical consistency), and the deep/Newtonian limits fix only J': mu'(0) = n, mu(inf) = 1",
+   "measured": "mu_2(1) = 3/4; mu'(0) = 2; mu(inf) = 1",
+   "pass": true,
+   "reading": "an exact identity used as a normalization probe; the distinction exact-identity vs finite-consistency is kept (D1b/D2 are finite-precision solves; A1-A4, B3, C2 are symbolic identities)."
+  },
+  {
+   "name": "E1 [FTC removal identity at 60 digits] d/dlambda[-lambda^2/(1+lambda)] = -mu_2(lambda) at lambda in {1/2, 1, 2} (independent representation of the boundary-fixing algebra)",
+   "measured": "[('0.5', '0.0'), ('1.0', '0.0'), ('2.0', '0.0')]",
+   "pass": true,
+   "reading": "actual residual, not a Boolean: the removal identity's derivative form holds to 1e-58..1e-60 at the diagnostic points."
+  },
+  {
+   "name": "E2 [discretized-action gradient invariant under J -> J + C] exact chain-rule gradient of the lattice action at J0 = 0 vs J0 = 137: max relative change; plus finite-difference gradient vs exact gradient agreement (validates the discretization)",
+   "measured": "shift invariance: rel = 0.000e+00; FD vs exact: rel = 1.567e-06",
+   "pass": true,
+   "reading": "the zero-mode invariance in a representation different from the symbolic EL check (A1): the discrete action's gradient does not see the primitive's zero (exact to machine precision), and the finite-difference gradient confirms the discretization (probe capable of failing, e.g. if J0 sat inside the argument)."
+  },
+  {
+   "name": "E3 [candidate covers every kappa, 60 digits] j(kappa) = 32 pi kappa^2 (alpha = 2, c = 1) satisfies E* to working precision at kappa in {1/2, 1, 2, 5/2, 4}: all distinct",
+   "measured": "[('0.5', '25.132741'), ('1.0', '100.53096'), ('2.0', '402.12386'), ('2.5', '628.31853'), ('4.0', '1608.4954')]",
+   "pass": true,
+   "reading": "measured residual of the 'constraint' at each kappa: identically satisfied -- no selection, the rank-rejection of C2/C3 at 60 digits."
+  },
+  {
+   "name": "E4 [boundary vacuum at 60 digits] J(0) = -int_0^lambda mu_2 dY vs closed form -lambda^2/(1+lambda): quadrature residual",
+   "measured": "[('0.5', '0.0'), ('1.0', '0.0'), ('2.0', '0.0')]",
+   "pass": true,
+   "reading": "the reference relocation identity in quadrature form (independent of the symbolic integral): actual residuals."
+  },
+  {
+   "name": "F1 [footings carried separately] canonical a0 = 9.3619e-11 (rho_Lambda = 5.844412454022e-27 kg/m^3, s = 1.872380e-10) vs alternative a0 = 1.1279e-10 (rho_Lambda' = 8.483089619559e-27, s' = 2.255800e-10): fixed-density kappa_eff = 0.602388404 != 1/2",
+   "measured": "density ratio = 1.451487157; kappa_eff = 0.602388404",
+   "pass": true,
+   "reading": "framework rule: the two footings never share both fixed rho_Lambda and fixed kappa; the alternative is an alternative normalization (AS067 D3, re-derived)."
+  },
+  {
+   "name": "F2 [units and coupling hygiene]",
+   "measured": "j = J(0)/s^2 dimensionless; R = rho_vac/rho_Lambda dimensionless; kappa = a0/s dimensionless; s in m/s^2; rho in kg/m^3; R numbers use c^2 = 8.987551787368176e16 m^2/s^2 explicitly in the rar_ratio formula; G_N = 6.67430e-11 only; G_bare and G_cosmo NOT identified (separate symbols per framework contract; nothing in this run equates them).",
+   "pass": true,
+   "reading": "every intermediate factor's units stated; no hidden c or pi; no coupling identification."
+  },
+  {
+   "name": "F3 [source integrity] task file SHA-256 e0b8978d... matches the dispatched value; PD01 37e39d1a..., PD08 83f6054c..., k01 8df5a3ab... match SOURCE_MANIFEST.json (checked with shasum before execution)",
+   "measured": "task: e0b8978d3738dc5d8af138508109d320fe01f540ff495d30a4772f6987e1b19b",
+   "pass": true,
+   "reading": "all pinned hashes verified at start; recorded in result.json input_sha256."
+  },
+  {
+   "name": "F4 [declared and enforced bounds] prototype <= 120 s wall, <= 512 MB, 1 thread",
+   "measured": "wall = 0.19 s; max RSS = 84.3 MiB; threads = 1 (env OPENBLAS_NUM_THREADS/OMP_NUM_THREADS/MKL_NUM_THREADS/VECLIB_MAXIMUM_THREADS/NUMEXPR_NUM_THREADS = 1, single process); ulimit -t 120 enforced by the runner shell",
+   "pass": true,
+   "reading": "measured, not asserted: RLIMIT_CPU 120 s set by the invoking shell; RLIMIT_AS is not enforceable on macOS (kernel refuses finite RLIMIT_AS), so memory is measured via getrusage instead (same convention as AS067/AS068/AS072)."
+  }
+ ],
+ "bounds": {
+  "wall_s": 0.193,
+  "max_rss_bytes": 84262912,
+  "threads": 1
+ },
+ "footings": {
+  "canonical": {
+   "a0": 9.3619e-11,
+   "s": 1.87238e-10,
+   "rhoL": 5.844412454021876e-27,
+   "kappa_eff_at_fixed_density": 0.5
+  },
+  "alternative": {
+   "a0": 1.1279e-10,
+   "s": 2.2558e-10,
+   "rhoL": 8.483089619559099e-27,
+   "kappa_eff_at_fixed_density": 0.6023884040632778
+  }
+ },
+ "diagnostics": {
+  "lambda": [
+   "1/2",
+   "1",
+   "2"
+  ],
+  "j0_boundary_n2": [
+   "-1/6",
+   "-1/2",
+   "-4/3"
+  ],
+  "R_K0": [
+   "-5.960055e+14",
+   "-1.788017e+15",
+   "-4.768044e+15"
+  ],
+  "R_K025": [
+   "-5.215048e+14",
+   "-1.564515e+15",
+   "-4.172039e+15"
+  ],
+  "kappa_slope_family": {
+   "1/2": "1",
+   "1": "1/2",
+   "2": "1/4"
+  },
+  "relabel_A": 100.53096491487338,
+  "j_relabel_at_kappa": {
+   "0.5": 25.132741,
+   "1.0": 100.530965,
+   "2.0": 402.12386,
+   "2.5": 628.318531,
+   "4.0": 1608.495439
+  }
+ },
+ "two_obligation": {
+  "obligation_A": "b = 2 with physical identification (channel count, unit-slope fraction identity, measured coupling): fixes kappa = 1/b = 1/2",
+  "obligation_B": "shift-free vacuum datum equation E*(j) = 0 with rho_vac(j0) = +rho_Lambda, j0 = 64 pi kappa^2/(alpha c^2): NOT supplied by the pinned class (A1/A2/B4/B5); boundary family fails sign (B4); relabelled candidate rejected by rank (C2/C3)",
+  "deficit": "exactly one independent real equation E* missing; all in-class candidates ranked 0 against the kappa coordinate"
+ }
+}

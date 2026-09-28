@@ -1,0 +1,32 @@
+# FGF-013: Scale-field outer-boundary and asymptotic test
+
+Status: `awaiting_audit`. This is a proposed child task from an actual returned agent result, not an executed result.
+
+Read `../FRAMEWORK_AND_EXECUTION.md` and `../RESULT_CONTRACT.json`. Preserve the core scale, two normalizations and separate gravity branches.
+
+## Dependencies
+
+Required scoped reviews: FGF-010. Verify that they cover this task's premises; a generic PASS is insufficient. Source proposal: `campaign_fresh_gravity_astra/stage_04/scale_dynamics/NEXT_TASKS.md`, SHA256 `0dbd930ba232cb8cd118b01bb5efa25d7b7cc491b4f7f83dd19314afbae9068c`.
+
+## Worker proposal, retained with its declared assumptions
+
+SD1-B: outer-boundary test of the spherical backreaction
+
+Input: equation (7), same source B/a_ref=3r/(1+r²)^(3/2), same potential, S=5,20
+and ell=0.2,1. Repeat Q/R solves at outer radii 8,16,32,64, fixing chi=0 at
+each boundary. Compare chi and fractional force correction on r<=4. Derive
+the far-field leading asymptotic chi(r)~sqrt(3)/(S r³), using deep-MOND T and
+the radial scale equation, and test whether r³ chi approaches sqrt(3)/S away
+from the imposed boundary.
+
+Success: quantified interior boundary convergence and matching asymptotic
+coefficient within the declared numerical tolerance. Refutation: the claimed
+size-dependent correction vanishes, changes sign, or fails convergence after
+verified solver convergence. No observational fit or physical length choice is
+authorized by this test.
+
+
+
+## Return and limits
+
+Use a unique claimed run directory under `results/FGF-013/`. Each numerical process has a 120-second wall bound and one numerical-library thread, with actual enforcement recorded. Split larger work into separately bounded runs if necessary. Return the result contract, exact derivation, controls, input/output hashes and failed attempts. No automatic theory acceptance follows from a passing finite computation.

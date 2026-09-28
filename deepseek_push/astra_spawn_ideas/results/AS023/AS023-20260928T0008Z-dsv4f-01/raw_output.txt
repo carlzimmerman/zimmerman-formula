@@ -1,0 +1,92 @@
+q = 1.20477680812655550689496790181
+q^2 = 1.45148715739961114327949913635
+q^(1/4) = 1.04767516634904194723443947638
+q^(-1/2) = 0.91105941513873591269124413854
+kappa_eff (fixed density) = 0.602388404063277753447483950907
+C0a density ratio (a0_alt/a0_can)^2 = 1.45148716: PASS (measured=1.45148715739961; threshold=1.45148716 within 1e-8 rel)
+C0b v_flat ratio (a0_alt/a0_can)^(1/4) = 1.0476752: PASS (measured=1.04767516634904; threshold=1.0476752 within 1e-6 rel (quoted 8 digits))
+C0c r_M ratio (a0_alt/a0_can)^(-1/2) = 0.911059: PASS (measured=0.911059415138736; threshold=0.911059 within 1e-6 rel (quoted 6 digits))
+C0d fixed-density kappa_eff = 0.60238840: PASS (measured=0.602388404063278; threshold=0.60238840 within 1e-8 rel)
+C0e alternative footing NOT same density: rhoL_alt/rhoL_can = q^2: PASS (measured=1.4514871573996111433; threshold=q^2 to 1e-50)
+C1a rho_ph fixed-x form: PASS (measured=0; threshold=sympy simplify exactly 0)
+C1b P fixed-x form: PASS (measured=0; threshold=sympy simplify exactly 0)
+C1c M_ph(<x r_M) = x M_b: PASS (measured=0; threshold=sympy simplify exactly 0)
+C1d y(x) = 1/x^2: PASS (measured=0; threshold=sympy simplify exactly 0)
+C1e rho_ph fixed-r form: PASS (measured=0; threshold=sympy simplify exactly 0)
+C1f P fixed-r form: PASS (measured=0; threshold=sympy simplify exactly 0)
+C1g C^2 = a0^2 r_M^2: PASS (measured=0; threshold=sympy simplify exactly 0)
+C2 mpmath-60 identities (2 footings x 3 masses x 5 x-values x 5 forms; 150 evaluations): PASS (measured=4.15958355588e-61; threshold=max relative residual < 1e-50)
+C3 exponent table (all 22 outputs, both cells' kinetic block; ratio=q^p): PASS (measured=max rel resid 2.582642377e-61; fails []; threshold=< 1e-45)
+
+Exponent table (fixed kappa = 1/2; q = a0_alt/a0_can):
+output             p   ratio_alt/can   delta %
+r_M             -0.5  0.911059415139   -8.8941
+v_flat          0.25   1.04767516635    4.7675
+C_half           0.5   1.09762325418    9.7623
+sigma           0.25   1.04767516635    4.7675
+rhoL             2.0    1.4514871574   45.1487
+epsL             2.0    1.4514871574   45.1487
+Lam              2.0    1.4514871574   45.1487
+rho_fixed_r      0.5   1.09762325418    9.7623
+rho_fixed_x      1.5    1.3223910407   32.2391
+P_fixed_r        1.0   1.20477680813   20.4777
+P_fixed_x        2.0    1.4514871574   45.1487
+Mph_fixed_r      0.5   1.09762325418    9.7623
+Mph_fixed_x      0.0             1.0   -0.0000
+y_fixed_x        0.0             1.0    0.0000
+y_fixed_r       -1.0  0.830029257913  -16.9971
+B_fixed_r        0.0             1.0    0.0000
+gdeep_fixed_x    1.0   1.20477680813   20.4777
+gdeep_fixed_r    0.5   1.09762325418    9.7623
+gQ_fixed_x       1.0   1.20477680813   20.4777
+sig_vflat        0.0             1.0    0.0000
+P_eps            0.0             1.0    0.0000
+v4_norm          0.0             1.0   -0.0000
+C4a fixed-density cell: a0_alt = kappa_eff c sqrt(G rho_Lambda_can): PASS (measured=1.1279e-10; threshold=a0_alt to 1e-45 rel)
+C4b fixed-density cell: rho_Lambda, eps_Lambda, Lambda invariant (ratio 1 by construction): PASS (measured=1.0; threshold=invariant in the fixed-density cell)
+C4c fixed-density cell: kinetic shifts identical to fixed-kappa cell (r_M, v_flat, rho_ph(x r_M), P(r_M)): PASS (measured=ratios q^(-1/2), q^(1/4), q^(3/2), q^2 to 1e-45; threshold=identical shifts)
+C4d bookkeeping control: 32 pi a0_alt^2/c^4 != Lambda_fixed (ratio q^2) -- cell separation: PASS (measured=1.451487157399611; threshold=q^2 = 1.45148716 (formula only valid at kappa=1/2))
+C5a Newtonian limit (Q comparison): g/a0 - y -> 1/2 (leading term a0/2): PASS (measured=0.49999999875; threshold=0.5 to 1e-6 at x=1e-4)
+C5b deep limit (Q comparison): leading neglected term (1/2) x^-3 after a0/x: PASS (measured=0.9999999975; threshold=1 to 1e-6 at x=1e4)
+C5c CORE regime content: P(r) = P(r_M)(r_M/r)^2 across y = (r_M/r)^2 in [1e-2, 1e2]: PASS (measured=max rel dev < 1e-50; threshold=inverse-square law (exact identity))
+C6a fixed-r density ratio = q^(1/2) (NOT fixed-x value): PASS (measured=1.09762325418449; threshold=q^0.5)
+C6b fixed-x density ratio = q^(3/2) (NOT fixed-r value): PASS (measured=1.32239104070188; threshold=q^1.5)
+C6c NEGATIVE CONTROL: conflating fixed-r and fixed-x densities as the same experiment is REJECTED (ratios differ by q): PASS (measured=1.20477680812656; threshold=ratio of ratios = q = 1.2047768 != 1 --> conflation FAILS (as designed))
+C6d liveness probe: at q -> 1 both ratios coincide (control can pass): PASS (measured=1; threshold=ratio of ratios = 1 at q = 1)
+
+Declared yardsticks: Y1(kappa BTFR 1sigma) = 0.16344086 ; Y1b(distance-free) = 0.078039927 ; Y2g(RAR g) = 0.29300439 ; Y2v(RAR v) = 0.13710351
+C7a classification: every a0-dependent dimensional output exceeds the 1sigma kappa-scale yardstick (|q^p-1| > p Y1): PASS (measured=16/16; threshold=all p != 0 outputs)
+C7b classification: the 2-sigma check -- NO output resolved at 2 sigma kappa-scale (footing fork consistent with both footings): PASS (measured=max ratio 0.69059713; threshold=<= 1 (within 2 sigma of the declared scale yardstick))
+C7c classification: vs RAR scatter -- only p >= 3/2 outputs (rho_ph fixed-x, P fixed-x incl. P(r_M)) exceed the g-scatter: PASS (measured=p=1.5: 32.239%, p=2: 45.149%, p=1: 20.478%, p=0.5: 9.7623%, p=0.25: 4.7675%; threshold=only fixed-x density and pressure exceed 29.3% g-scatter; v_flat below 13.7% v-scatter)
+C7d invariant list is exactly the p=0 outputs: PASS (measured=['Mph_fixed_x', 'y_fixed_x', 'B_fixed_r', 'sig_vflat', 'P_eps', 'v4_norm']; threshold=six exactly-invariant channels)
+
+Verdicts:
+  r_M            resolved@1sigma-kappa-scale (shift 8.8941% > -8.172%); below RAR-v scatter
+  v_flat         resolved@1sigma-kappa-scale (shift 4.7675% > 4.086%); below RAR-v scatter
+  C_half         resolved@1sigma-kappa-scale (shift 9.7623% > 8.172%); below RAR-v scatter
+  sigma          resolved@1sigma-kappa-scale (shift 4.7675% > 4.086%); below RAR-v scatter
+  rhoL           resolved@1sigma-kappa-scale (shift 45.149% > 32.69%); resolved@RAR-g-scatter
+  epsL           resolved@1sigma-kappa-scale (shift 45.149% > 32.69%); resolved@RAR-g-scatter
+  Lam            resolved@1sigma-kappa-scale (shift 45.149% > 32.69%); resolved@RAR-g-scatter
+  rho_fixed_r    resolved@1sigma-kappa-scale (shift 9.7623% > 8.172%); below RAR-v scatter
+  rho_fixed_x    resolved@1sigma-kappa-scale (shift 32.239% > 24.52%); resolved@RAR-g-scatter
+  P_fixed_r      resolved@1sigma-kappa-scale (shift 20.478% > 16.34%); between RAR-v and RAR-g scatter
+  P_fixed_x      resolved@1sigma-kappa-scale (shift 45.149% > 32.69%); resolved@RAR-g-scatter
+  Mph_fixed_r    resolved@1sigma-kappa-scale (shift 9.7623% > 8.172%); below RAR-v scatter
+  Mph_fixed_x    footing-invariant (p=0, exact)
+  y_fixed_x      footing-invariant (p=0, exact)
+  y_fixed_r      resolved@1sigma-kappa-scale (shift 16.997% > -16.34%); between RAR-v and RAR-g scatter
+  B_fixed_r      footing-invariant (p=0, exact)
+  gdeep_fixed_x  resolved@1sigma-kappa-scale (shift 20.478% > 16.34%); between RAR-v and RAR-g scatter
+  gdeep_fixed_r  resolved@1sigma-kappa-scale (shift 9.7623% > 8.172%); below RAR-v scatter
+  gQ_fixed_x     resolved@1sigma-kappa-scale (shift 20.478% > 16.34%); between RAR-v and RAR-g scatter
+  sig_vflat      footing-invariant (p=0, exact)
+  P_eps          footing-invariant (p=0, exact)
+  v4_norm        footing-invariant (p=0, exact)
+C8a r_M ~ a0^(-1/2) exact under a0 scaling by 1e-12 / 1e12: PASS (measured=8.156630585e-56; threshold=< 1e-40)
+C8b Newtonian boundary: as a0 -> 0+, phantom content vanishes (v_flat, C, rho_ph(fixed r), P(fixed r) all -> 0; exact power laws): PASS (measured=[1.03352e-15, 1.03352e-15, 1.06816e-30, 3.21484e-8]; threshold=all ratios at a0=1e-40 < 1e-4 (v_flat predicted 3.2e-8, C/rho 3.2e-15))
+C8c boundary: r_M -> infinity as a0 -> 0+: PASS (measured=1.15203e+25; threshold=> 1e20 m)
+C9 enclosed phantom mass within r_M by quadrature = M_b (handoff): PASS (measured=1.0; threshold=M_ph(< r_M) = M_b to 1e-40 rel)
+C10 float64 headline ratios (r_M ratio, v_flat ratio, density ratio, kappa_eff): PASS (measured=q64=1.204776808127; rM=0.911059415; v=1.047675166; q2=1.451487157; keff=0.602388404; threshold=0.911059 / 1.0476752 / 1.45148716 / 0.60238840 at float64 precision)
+
+AS023 COMPLETE: 34/34 checks PASS. wall=0.147s peakRSS=57.0MB

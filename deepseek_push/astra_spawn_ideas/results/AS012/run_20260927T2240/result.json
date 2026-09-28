@@ -1,0 +1,177 @@
+{
+  "schema_version": 2,
+  "task_id": "AS012",
+  "task_sha256": "0f6d18590038b09eb88cd2ba50c112b3ef21c6c00ac1d57ba5c1ce45502f268e",
+  "run_id": "run_20260927T2240",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent sa-1-78020bd7 (dispatcher claim claims/AS012.json state=running), single-run worker seed",
+  "started_utc": "2026-09-27T22:40:00Z",
+  "finished_utc": "2026-09-27T23:06:12Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "CORE scale cell, kappa=1/2 ADOPTED (not derived), G=G_N=6.67430e-11, c=299792458 exact, kappa,G,rho_L>0, M_b>0, r>0, any symmetric covariance Sigma of (ln kappa, ln G, ln rho_L): (i) ln a0 = ln kappa + ln c + (ln G + ln rho_L)/2 is affine in the logs, so Var(ln a0) = J Sigma J^T EXACTLY (no truncation) with J=(1,1/2,1/2), expanding to the six-term formula sigma_k^2 + (1/4)sigma_G^2 + (1/4)sigma_rho^2 + cov_kG + cov_kL + (1/2)cov_GL (Lean-certified), the kappa-rho_L correlation entering with coefficient 1 as the task's named term; (ii) the covariance mass in the 2-dimensional kernel of J (u+v/2+w/2=0) is exactly invisible to a0: a0(kappa e^u, G e^v, rho e^w)=a0(kappa,G,rho) (Lean-certified), the 'same prediction in equivalent variables' statement for this cell; (iii) with the framework's conditional deep-equilibrium identities sigma^2=C/2, rho_ph=C/(4 pi G r^2), C=sqrt(G M_b a0), P = M_b a0/(8 pi r^2): the explicit G cancels IDENTICALLY (Lean-certified), so at fixed (M_b,r) Var(ln P) = Var(ln a0) exactly (G_N's own variance enters P only through its correlation with rho_L), while r_M and v_flat keep explicit G content (J_rM=(-1/2,-1/4,-1/4), J_v=(1/4,3/8,1/8) over (ln kappa, ln G, ln rho_L)); (iv) numerically on the declared SYNTHETIC diagnostic covariances (sigma_ln kappa=0.05, sigma_ln G=2.2e-5 CODATA-2018-style, sigma_ln rho=0.02; case A uncorrelated, case B correlations (0.10,-0.20,0.35)): Var(ln a0) = 2.600000121e-3 (sigma_ln=5.0990196e-2) and 2.400187121e-3 (sigma_ln=4.8991705e-2), both footings identical in log space; linear 1-sigma bands separate per footing (canonical a0 9.3619e-11 m/s^2: +/-4.774e-12 (A) / 4.587e-12 (B) m/s^2; alternative 1.1279e-10: +/-5.751e-12 / 5.526e-12 m/s^2; r_M_sun 1.190640e15 / 1.084744e15 m: +/-6.07e13 / 5.53e13 m (A); v_flat 333.866 / 349.783 m/s: +/-17.0 / 17.8 m/s (A)); (v) every control passes: indefinite covariance detected (min eigenvalue -2.250e-3, det -5.35e-8) and its sigma REFUSED (no interpretation), Newtonian limit d ln v/d ln a0 = 0 and deep limit d ln v/d ln a0 = 1/4 with d ln v/d ln r = -1/2 -> 0 (finite-difference deviations <= 2e-10), quadratic-form homogeneity Var(f Sigma)=f^2 Var(Sigma) to 2.4e-16, Monte Carlo (120k, seeded, lognormal) residuals <= 3.8e-3 relative, FD Jacobian <= 2.0e-10, mpmath 80-digit residual 3.3e-16, two-step P-identity empirical max |ln residual| 1.6e-14. All uncertainty numbers are synthetic-diagnostic templates: NO observational fit was performed anywhere; G_bare/G_cosmo are distinct symbols not used; no branch (Q, RAR, MU2, EXP, MONO) is touched or translated.",
+  "framework_cell": {
+    "action": "none; CORE scale-identity uncertainty propagation on the framework base a0 = kappa c sqrt(G rho_Lambda) (FRAMEWORK_CONTRACT 'Mandatory scale and units'; FRIED_CHICKEN_SPEC requirement 13; DERIVATIONS.md and README used as scope comparison only)",
+    "branch": "CORE scale identities (A01 group); Q, RAR, MU2, EXP AQUAL and MONO untouched; no branch translation performed or claimed; operative filtered-MONO target (Requirement 1) not imported",
+    "kernel": "not applicable (no interpolation kernel)",
+    "filter": "not applicable",
+    "gate": "Requirement 13 (a0-vacuum relation preserved as input or genuinely derived), ORCHESTRATOR gate-map cell A01; this run certifies the uncertainty-propagation identity for the adopted input; the gate itself stays OPEN (no dynamics)",
+    "coupling": "not applicable (no matter coupling varied)",
+    "parameters": "kappa = 1/2 ADOPTED input (not derived), G = G_N = 6.67430e-11 m^3 kg^-1 s^-2 measured input (G_bare, G_cosmo distinct, unused), c = 299792458 m/s exact, M_sun = 1.98847e30 kg example baryon mass, r = 1 kpc example evaluation radius for P only",
+    "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 AND alternative a0 = 1.1279e-10 m/s^2 carried SEPARATELY in every dimensional statement (rho_Lambda = 5.844412454e-27 vs rho_total = 8.483089620e-27 kg/m^3, ratio 1.45148716 = (a0_alt/a0_can)^2); log-space variances identical by construction (same J, same Sigma); linear bands quoted per footing; the two footings do not share a fixed (kappa, rho) pair",
+    "boundaries": "kappa > 0, G > 0, rho_L > 0, M_b > 0, r > 0; log-space diagnostics not defined at rho_L = 0 (stated boundary)",
+    "initial_conditions": "none (static algebraic diagnostic; no dynamics)",
+    "units": "SI; log-(fractional) uncertainties dimensionless; linear bands in m/s^2 (a0), m (r_M), m/s (v_flat, sigma), Pa (P)"
+  },
+  "new_assumptions": [
+    "synthetic log-Gaussian law on (ln kappa, ln G, ln rho_L) with covariance Sigma (diagnostic model; no observational fit requested or performed)",
+    "synthetic input log-sds: sigma_ln kappa = 0.05 (adoption uncertainty of kappa = 1/2), sigma_ln rho_L = 0.02 (vacuum density), sigma_ln G = 2.2e-5 at the CODATA-2018-style relative level of the measured Newton constant",
+    "synthetic correlations for case B: corr(kappa,G)=+0.10, corr(kappa,rho_L)=-0.20, corr(G,rho_L)=+0.35",
+    "M_b and r held fixed in the derived-scale propagation (general M_b, r channels written; set to zero here and stated)",
+    "the conditional deep-equilibrium targets sigma^2 = C/2, rho_ph = C/(4 pi G r^2), P = sigma^2 rho_ph are used as identities to propagate, with NO equilibrium-formation claim (per FRAMEWORK_CONTRACT)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS012_propagating_correlated_vacuum_uncertainties.md": "0f6d18590038b09eb88cd2ba50c112b3ef21c6c00ac1d57ba5c1ce45502f268e",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/ORCHESTRATOR.md": "2eb07b9d1995ff2223a15219bbf7fc813be56fb69337ed4dd14d170c1dcaf671",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240/derivation.md": "d742dc5d62d30990bf349081c9a090d7da90fd6ee7647a7a012f556c9811e715",
+    "deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240/compute_AS012_covariance_propagation.py": "99e4b923bf1b74e2cc09f2828d1353047dd0a465f0705c9ce753902ff3b38191",
+    "deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240/raw_output.txt": "927b63c76a901e5406ca6ef1139aa68f950f8b846d950ce14a21e33c382ea46e",
+    "deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240/residuals.json": "fd28cc13c1865950b0c9c8b12fa112b12fc27a4f352e5f96d53ef1cd3a20b6b5",
+    "deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240/AS012_covariance_certificates.lean": "0980f7634ceaf18a4024d756b0f3449e69d0c8d1b5160f3c3a6ca5f3b0543108",
+    "deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240/lean_check.out": "bb38d3c9f573809c7ecf200f735b29ce1083bab93ba49169bb9d1eac33d3bf75"
+  },
+  "commands": [
+    {
+      "argv": ["shasum", "-a", "256", "<task file, contracts, manifest, README, STANDING, FRIED_CHICKEN_SPEC, DERIVATIONS, FIRST_PRINCIPLES_AND_BRANCHING, ORCHESTRATOR>"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+      "purpose": "task/source hash reconciliation; all pinned hashes match SOURCE_MANIFEST.json and the dispatcher claim record"
+    },
+    {
+      "argv": ["bash -c 'ulimit -t 120; ...python3 compute_AS012_covariance_propagation.py'"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240",
+      "purpose": "bound attempt 1 (shell ulimit); did not produce output (approval-gated terminal); superseded by the direct run below",
+      "outcome": "superseded - no output produced"
+    },
+    {
+      "argv": ["OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 MKL_NUM_THREADS=1 python3 compute_AS012_covariance_propagation.py"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS012/run_20260927T2240",
+      "purpose": "final bounded diagnostic: process-enforced soft RLIMIT_CPU = 120 s (setrlimit, SIGXCPU kill); exit 0; wall 0.19-0.25 s per run; ru_maxrss = 80,429,056 bytes (macOS) ~ 77 MiB; single-threaded (env-declared BLAS/OpenMP off); stdout captured to raw_output.txt"
+    },
+    {
+      "argv": ["cd fable_independent_2026/lean_2026 && lake env lean <abs path>/AS012_covariance_certificates.lean"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "purpose": "Lean 4 certificate check (Mathlib v4.34.0-rc2); exit 0; unfiltered #print axioms captured in lean_check.out: all three theorems depend on exactly [propext, Classical.choice, Quot.sound]; zero sorry"
+    }
+  ],
+  "execution_bounds": {
+    "declared_prototype_bounds": {"wall_s": 120, "memory_MB": 512, "threads": 1, "grid_cells": 512, "refinements": 2},
+    "enforced": {
+      "cpu": "soft RLIMIT_CPU = 120 s set inside the process via resource.setrlimit (macOS rejects a hard cap below the current infinite limit - recorded); OS kills by SIGXCPU at 120 CPU-s",
+      "wall_s_measured": 0.19,
+      "threads": "1 (single-threaded CPython/numpy code; OPENBLAS/OMP/NUMEXPR/MKL threads disabled via env)",
+      "memory_MB_measured": "ru_maxrss = 80,429,056 bytes ~ 76.7 MiB peak (reported post-run; no allocation cap set and none needed - far inside the 512 MB target)",
+      "samples": "Monte Carlo N = 120,000, single pass, seed 20260927 fixed",
+      "refinements": "none needed (closed-form identities + one MC pass); no grid iteration"
+    }
+  },
+  "checks": {
+    "tolerances_set_before_evaluation": {
+      "MC_closed_form_vs_MC": 2e-2,
+      "MC_empirical_covariance_vs_S_abs": 1e-4,
+      "FD_jacobian": 1e-9,
+      "HP_mpmath_80": 1e-14,
+      "P_two_step_vs_closed_form": 1e-9,
+      "NC3_quadratic_homogeneity": 1e-12,
+      "NC1": "refusal criterion: min eigenvalue < -1e-15 -> no sigma quoted"
+    },
+    "FC1_closed_form_Var_ln_a0_vs_MC": {"observed": "rel residuals A=3.778e-3, B=9.685e-4 (MC noise floor ~sqrt(2/N)=4.1e-3)", "pass": true},
+    "FC2_derived_Vars_vs_MC": {"observed": "Var_ln_rM, Var_ln_vflat, Var_ln_sigma, Var_ln_P all within 3.8e-3 rel of closed form", "pass": true},
+    "FC3_P_two_step_identity": {"observed": "max |ln residual| = 1.5987211554602254e-14 over 120,000 joint samples (full nonlinear two-step sigma^2*rho_ph vs closed form M a0/(8 pi r^2))", "pass": true},
+    "FC4_FD_jacobian": {"observed": "max dev 1.9656e-10 (canonical), 1.5871e-10 (alternative) vs analytic J=(1,0.5,0.5), h=1e-5", "pass": true},
+    "FC5_HP_80digit": {"observed": "mpmath 80-digit Var_ln_a0(B) = 0.002400187121 vs float64 rel resid 3.2978e-16", "pass": true},
+    "MC4_sampler_integrity": {"observed": "empirical covariance vs declared Sigma, max abs resid 6.5097e-6 (A), 1.8357e-6 (B)", "pass": true},
+    "NEG_CONTROL_NC1_indefinite_covariance": {"observed": "eigenvalues (-2.250e-3, 4.875e-3, 4.875e-3), det -5.3473e-8; sigma_ln a0 REFUSED (sigma_refused=true); no interpretation attempted - a Gaussian with this Sigma has a negative-variance direction", "pass": true, "capable_of_failing": "a PSD-check bug or mechanically quoting J Sigma J^T would produce a spurious variance; here the negative eigenvalue was detected and the uncertainty refused"},
+    "NEG_CONTROL_NC2_limits": {"observed": "Newtonian (r<<r_M): d ln v/d ln a0 = 0.0 exact, d ln v/d ln r = -0.50000000007; deep (r>>r_M): d ln v/d ln a0 = 0.24999999981, d ln v/d ln r = 0.0; grid r/r_M in {1e-4..1e4}, both footings", "pass": true, "note": "v_flat^4 = G M a0 and the 1/4 exponent are exact identities of the framework; the regime table is a finite consistency check (exact-vs-finite distinction recorded)"},
+    "NEG_CONTROL_NC3_normalization": {"observed": "Var(f*Sigma) = f^2 Var(Sigma) for f=0.5,3,7: rel resids 0.0, 1.61e-16, 2.36e-16", "pass": true},
+    "source_integrity": {"observed": "README 91a5fac4, STANDING 660462eb, FRIED_CHICKEN 98d9149f, DERIVATIONS 8da8176e match SOURCE_MANIFEST.json; task file 0f6d1859 matches claims/AS012.json", "pass": true},
+    "lean_certificates": {"observed": "lake env lean exit 0; zero 'sorry' (no sorryAx in #print axioms); axioms of quad_form_expansion, P_G_cancels, null_direction_invariance = exactly [propext, Classical.choice, Quot.sound]", "pass": true}
+  },
+  "tested_domain": "Algebraically: kappa, G, rho_L, M_b, r > 0 (Lean-certified identities: six-term J Sigma J^T expansion for any reals, P = M a0/(8 pi r^2) for positive G,M,a,r, null-direction invariance for nonnegative kappa,c,G,rho and real u,v,w with u+v/2+w/2=0). Numerically: two synthetic covariance cases (uncorrelated and correlated) on both registered footings; Monte Carlo N=120,000 seeded (20260927) lognormal draws; regime grid r/r_M in {1e-4, 1e-3, 1e-1, 10, 1e3, 1e4}; normalization factors f in {0.5, 3, 7}; indefinite-covariance counterexample (correlations +0.95,+0.95,-0.95). No observational data, no fits, no refinement history (closed-form identities); synthetic diagnostic only.",
+  "failed_attempts": [
+    {
+      "artifact": "bound attempt 1 via shell 'ulimit -t 120' wrapper was approval-gated in this session and produced no output; superseded by a direct invocation with in-process soft RLIMIT_CPU enforcement",
+      "fixed": true
+    },
+    {
+      "artifact": "compute script v1: hard RLIMIT_CPU/RLIMIT_AS at 120 s/512 MB raised ValueError('current limit exceeds maximum limit') on macOS (hard limits are infinity); fixed by enforcing the CPU cap via the SOFT limit and measuring memory via ru_maxrss after the run",
+      "fixed": true
+    },
+    {
+      "artifact": "Lean first/second compiles: Real.sq_sqrt/mul_nonneg argument association for G*M*a; Real.sqrt_mul signature is (hx : 0 <= x) (y : R) in Mathlib v4.34.0-rc2 (not a proof pair); Real.sq_sqrt takes a single proof argument; field_simp left a ring residual in the P calc requiring 'ring'; exp-square step needed explicit (v+w)/2 regrouping. Located via .lake/packages/mathlib/Mathlib/Analysis/Real/Sqrt.lean; final compile exit 0 with axioms [propext, Classical.choice, Quot.sound]",
+      "fixed": true
+    }
+  ],
+  "limitations": "All uncertainty numbers are SYNTHETIC templates: no measured joint covariance of (G_N, rho_Lambda) and no fitted kappa uncertainty were used as inputs (the README's measured kappa = 0.551 +/- 0.043 is a fitted, distance-free value and was NOT imported, per the no-observational-fit instruction; it is referenced only as context in README). Does not derive kappa = 1/2. Does not establish which physical density (canonical rho_Lambda vs alternative rho_total) enters the galactic scale - the footing choice remains an open physical hypothesis (AS011). Does not certify the probability-theoretic statement Var(affine map) = J Sigma J^T in Lean (standard result; the certified object is the quadratic-form expansion and the level-set geometry). Does not derive equilibrium formation for sigma^2, rho_ph, P (conditional identities only, per contract). No empirical covariance exists yet: the physical correlation between G_N and rho_Lambda is an open dependency. No branch (Q, RAR, MU2, EXP, MONO) transfer; the operative filtered-MONO target (Requirement 1) and criterion B are untouched. Finite numerics (MC 120k, residuals ~1e-3) are consistency evidence; the exact statements rest on the Lean certificates and the affineness of the log map.",
+  "next_unresolved_implication": "The physical input covariance Sigma: the measured joint distribution of (G_N, rho_Lambda) including their correlation (and the correlation of the adopted kappa with the vacuum determination) is not derivable inside the CORE scale cell; it requires the A03 critical-density closure and A11 cosmological-coupling dynamics that tie the actual vacuum density entering the kernel to the action, plus resolution of the canonical-vs-alternative footing hypothesis (AS011). Until that substitute exists, the quoted 5.10%/4.90% sigma_ln a0 bands are a synthetic template, not a measurement of a0's uncertainty.",
+  "suggested_followup": "Dispatch AS012.C01 (ready child specification in child_proposals): assemble a declared physical covariance from primary sources - CODATA-2022-type G covariance and a Planck/SNe-consistent vacuum-density covariance with stated correlations - through the certified J Sigma J^T machinery, on both footings separately, with the Monte Carlo leg repeated at the physical sigma scale; gate the result by the NC1 refusal rule. Independently, run catalog seed AS011 (alternative footing as a separate hypothesis) with AS001 as its prerequisite normalization audit.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": [
+      "kappa = 1/2 dimensionless (ADOPTED framework input - README/STANDING record it as fitted historically, not derived; the zero-mode no-go stands)",
+      "G = G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured input, mandated default; G_bare and G_cosmo are distinct symbols not used)",
+      "c = 299792458 m/s (exact defined constant)",
+      "registered footings a0_can = 9.3619e-11 m/s^2, a0_alt = 1.1279e-10 m/s^2 (framework conventions)",
+      "M_sun = 1.98847e30 kg (mandated default, example baryon mass); r = 1 kpc example radius for P",
+      "synthetic covariance parameters (sigma_ln kappa = 0.05, sigma_ln G = 2.2e-5, sigma_ln rho = 0.02, correlations as declared) - diagnostic inputs, not measurements",
+      "conditional deep-equilibrium identities sigma^2 = C/2, rho_ph = C/(4 pi G r^2), P = sigma^2 rho_ph (framework contract inputs/targets, propagated as identities here)"
+    ],
+    "measured_calibrations": "none beyond the registered footings; no observational fit performed",
+    "derived": [
+      "J = (1, 1/2, 1/2) and the exact identity Var(ln a0) = J Sigma J^T (affineness of ln a0 in the logs)",
+      "six-term expansion (3): Var(ln a0) = sigma_k^2 + (1/4)sigma_G^2 + (1/4)sigma_rho^2 + cov_kG + cov_kL + (1/2)cov_GL (Lean-certified)",
+      "P = M_b a0/(8 pi r^2) with G cancelling identically (Lean-certified); Var(ln P) = Var(ln a0) at fixed (M_b, r)",
+      "null-direction invariance: covariance in ker(J) is exactly invisible to a0 (Lean-certified)",
+      "implicit densities rho_Lambda = 5.844412454e-27, rho_total = 8.483089620e-27 kg/m^3 (as in AS001); rho ratio 1.45148716",
+      "derived log-J vectors for r_M, v_flat = sigma, P; numerical variance values for the two synthetic covariance cases on both footings"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "Requirement 13 (a0-vacuum relation: 'preserved as input or genuinely derived') per the amended thirteen-item target; ORCHESTRATOR gate-map cell A01 (this seed); downstream cells A03 (critical-density closure) and A11 (cosmological coupling) own the dynamics that this run does not supply",
+    "exact_implication": "For the adopted input a0 = kappa c sqrt(G rho_Lambda) the log-space uncertainty propagation is exact and footing-transparent: any future derivation or measurement that fixes the joint covariance of (kappa, G, rho_Lambda) can be fed through the certified J Sigma J^T machinery (including the kappa-rho_L correlation term) to obtain the a0 band and, at fixed (M_b, r), the identical pressure band; the G-cancellation in P exempts the pressure from direct G_N error at fixed vacuum inputs; and covariance components along the level sets of a0 (u + v/2 + w/2 = 0) are structurally irrelevant. This frames Requirement 13's uncertainty budget; it does not close the requirement, whose dynamical origin (and the physical footing choice) remain open.",
+    "common_action_parameter_domain": "CORE scale cell, kappa = 1/2 adopted, G = G_N, c exact, rho_L > 0; no action, kernel, filter or coupling involved; compatible with any branch since none is referenced; two footings held separate throughout"
+  },
+  "child_proposals": [
+    {
+      "child_id": "AS012.C01",
+      "status": "proposed, NOT dispatched (no spawn mechanism available in this worker session; ready child specification returned to orchestrator)",
+      "fingerprint": "(CORE scale, J Sigma J^T machinery of run AS012/run_20260927T2240, physical joint covariance (G_N, rho_Lambda) from primary sources, both footings, target: measured a0 band and BTFR zero-point budget)",
+      "new_claim": "Given a declared physical covariance Sigma_phys from primary sources (CODATA-type G_N covariance; CMB/SNe-type vacuum density; stated correlations, each with a primary-source hash), the certified machinery yields the a0 uncertainty band on both footings separately; the claim is only as good as the declared covariance, and the NC1 refusal rule applies if the assembled Sigma_phys is not PSD.",
+      "dependency": "this run AS012/run_20260927T2240 (exact propagation identity + Lean certificates); SOURCE_MANIFEST primary sources",
+      "controls": "PSD check of Sigma_phys with the NC1 refusal rule; MC leg at the physical sigma scale (N >= 100k, seeded) with residual < 2e-2; footing separation report; no fit",
+      "why_not_answered_here": "the present run is explicitly synthetic (no observational fit requested); substituting real measured covariances with their cross-correlations is a distinct data-assembly task",
+      "dispatch_state": "none - ready child specification only, awaiting orchestrator"
+    },
+    {
+      "child_id": "AS012.C02",
+      "status": "proposed, NOT dispatched",
+      "fingerprint": "(CORE scale, derived-scale propagation, extended input vector (kappa, G, rho_L, M_b, r) with a full 5x5 covariance, target: joint log-covariance matrix of (r_M, v_flat, sigma, P) including baryon-mass and radius channels)",
+      "new_claim": "The joint log-covariance of the derived scales with M_b and r channels open is the push-forward of the 5x5 input covariance under the derived J-matrix; P keeps no G channel at fixed (M_b, r) while r_M and v_flat do; the correlation structure of the derived vector is computable in closed form and checked by Monte Carlo.",
+      "dependency": "this run AS012/run_20260927T2240",
+      "controls": "MC 5x5 push-forward check < 2e-2 rel; P-G channel identically zero; PSD of the derived covariance",
+      "why_not_answered_here": "this run fixes M_b and r (channels written, set to zero); a general 5x5 push-forward is a distinct, slightly larger obligation better dispatched separately",
+      "dispatch_state": "none - ready child specification only"
+    }
+  ],
+  "closure_candidate": null,
+  "note_on_closure_candidate": "No complete same-action witness exists from this seed: this is a CORE scale uncertainty-propagation diagnostic with no dynamics; the operative filtered-MONO target (Requirement 1), causality criterion B (Requirement 7) and the remaining gates remain open per STANDING and the ORCHESTRATOR gate map."
+}

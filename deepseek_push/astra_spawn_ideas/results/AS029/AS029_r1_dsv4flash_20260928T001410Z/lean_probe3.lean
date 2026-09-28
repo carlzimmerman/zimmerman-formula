@@ -1,0 +1,22 @@
+import Mathlib
+import Mathlib.Data.Real.Basic
+open Polynomial
+noncomputable section
+
+#check Polynomial.dvd_iff_isRoot
+#check Polynomial.isRoot_iff_dvd
+#check Polynomial.modByMonic_eq_zero_iff_dvd
+#check Polynomial.IsRoot.def
+#check Polynomial.degree_eq_natDegree
+#check Polynomial.degree_eq_natDegree_of_pos
+#check Multiset.toFinset_card_le
+#check Multiset.eq_of_le_of_card_le
+#check Finset.card_insert_of_notMem
+#check Multiset.mem_toFinset
+#check Polynomial.roots.mem_toFinset
+#check Finset.card_le_card
+#check Multiset.card_le_card
+#check Polynomial.roots_nonempty_iff
+#check Polynomial.root_mem_roots
+#check Polynomial.card_roots
+#check Multiset.card_le_card_of_le

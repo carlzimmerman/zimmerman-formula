@@ -1,0 +1,209 @@
+
+AS057 -- Dimension dependence of static-channel rank.
+
+Claim under test (named mathematical object):
+    In d spatial dimensions, the cited trace (the spatial-sector trace of the
+    linearized EINSTEIN tensor, G_kk = delta^{ij} G_ij, the channel PD01 calls
+    the "spatial-trace sector") is
+
+        G_kk = (d-1)*Delta(Phi-Psi) + (d-1)*(3-d)*Delta(Psi)          (the claim)
+        G_00 = (d-1)*Delta(Psi)                                       (companion)
+
+Task steps (AS057 seed, executed in order):
+  1. Precise claim, symbol dictionary, boundary conditions, assumptions.
+  2. Determinant of the 2x2 coefficient matrix for d = 1,2,3,4 and symbolically
+     for d > 1; separate the d=3 decoupling from rank.
+  3. Intermediate algebra with all scale factors, signs and units; leading
+     neglected term where a limiting regime is used.
+  4. Independent check in a different representation (explicit Christoffel
+     route + bounded high-precision numeric grid) with ACTUAL residuals.
+  5. Negative controls (capable of failing), strongest surviving statement,
+     next implication.
+
+Framework base (FRAMEWORK_CONTRACT.md): a0 = kappa*c*sqrt(G*rho_Lambda),
+kappa = 1/2 ADOPTED as input; s = c*sqrt(G*rho_Lambda); Y = g/s; mu_n(Y) =
+1 - (1+Y)^{-n}; r_M = sqrt(G M_b / a0); v_flat^4 = G M_b a0.
+Footings carried separately: canonical a0 = 9.3619e-11, alternative
+a0 = 1.1279e-10 m/s^2. G_N only; G_bare/G_cosmo not invoked (stated).
+
+Diagnostic counterexamples (seed): evaluate at lambda in {1/2, 1, 2}, where
+lambda := d - 1 (the claim's own dimensionless parameter: the claim is a
+quadratic polynomial in lambda = d-1; three distinct evaluation points pin a
+degree-<=2 polynomial exactly, so lambda in {1/2, 1, 2} is a complete
+identity probe that also reaches NON-INTEGER d, where no grid exists).
+
+negative control 1 (must be capable of failing): extend the d>1 invertibility
+statement to d=1 -- the determinant (d-1)^2 must expose the exception.
+negative control 2: deep and Newtonian limiting regimes.
+
+Bounds: <=120 s wall, <=512 MB, 1 thread (actual values recorded).
+
+====================================================================================================
+
+PART A -- STEP 1 (precise claim and symbol dictionary)
+
+CLAIM C (named object, AS057): let (M, eta) be (d+1)-dimensional Minkowski
+spacetime with spatial dimension d >= 1, and let the static diagonal
+perturbation be given by
+
+  g = eta + h,   h_00 = -2 Phi,   h_ii = -2 Psi (i = 1..d),  h_offdiag = 0
+
+with Phi, Psi smooth functions of the spatial coordinates (static: no t
+dependence), Phi, Psi -> 0 at spatial infinity (boundary condition).
+
+Let h^rho_nu = eta^{rho sigma} h_{sigma nu},  h = h^rho_rho = 2 Phi - 2 d Psi,
+let Delta be the flat spatial Laplacian sum_i d_i^2, and define the
+linearized Ricci tensor R^(1) and Einstein tensor G^(1):
+
+  R^(1)_{mu nu} = (1/2)(d_rho d_mu h^rho_nu + d_rho d_nu h^rho_mu
+                        - Box h_{mu nu} - d_mu d_nu h)      (Box -> Delta, static)
+  G^(1)_{mu nu} = R^(1)_{mu nu} - (1/2) eta_{mu nu} R^(1)_sc,  R^(1)_sc = eta^{mu nu} R^(1)_{mu nu}
+
+Then, in EVERY spatial dimension d (exact identity, sign conventions as
+above; m/s^2 per unit of Phi, i.e. the channels carry units of Phi):
+
+  G_00 = (d-1) Delta(Psi)
+  G_kk := sum_i G_ii  =  (d-1) Delta(Phi - Psi) + (d-1)(3-d) Delta(Psi)   (CLAIM)
+                       =  (d-1) Delta(Phi)       - (d-1)(d-2) Delta(Psi)  (direct)
+
+Consequences: the 2x2 coefficient matrix in the channel basis
+(v1, v2) = (Delta Psi, Delta(Phi-Psi)) is
+
+  N(d) = [[d-1, 0], [(d-1)(3-d), d-1]],   det N = (d-1)^2.
+
+  * rank N = 2  (invertible)  for every d >= 2;
+  * rank N = 0  at d = 1  (both channels vanish identically: the 2D
+    Einstein tensor is identically zero -- the d>1 invertibility statement
+    does NOT extend to d=1; the determinant exposes the exception);
+  * d = 3 is the DECOUPLING point: the off-diagonal (d-1)(3-d) vanishes and
+    the map becomes DIAGONAL (G_00 = 2 Delta Psi, G_kk = 2 Delta(Phi-Psi)
+    in the (Psi, Phi-Psi) basis, matching PD01 B1); the rank does NOT change
+    at d = 3.  Decoupling is a property of the off-diagonal coefficient,
+    rank is a property of the determinant -- the task's separation.
+
+Assumptions (framework inputs): kappa = 1/2 adopted; a0 entered only through
+the scale s = c sqrt(G rho_Lambda); Y = g/s; mu_n(Y) = 1-(1+Y)^{-n} with
+symbolic n >= 1; linearised perturbation regime |Phi|, |Psi| << 1 (weak
+field; leading neglected term O(h^2), computed in PART D).
+
+
+PART B -- STEP 2+3 (derivation of R, G and the claim, general d)
+  A1  h^rho_rho = 2 Phi - 2d Psi = 2*Lphi - 2*Lpsi*d
+  A3  R_00 = +Delta(Phi)                                   check: Lphi
+  A4  R_ij = Delta Psi delta_ij - d_i d_j Phi + (d-2) d_i d_j Psi
+  A5  sum_i R_ii = 2(d-1) Lpsi - Lphi = -Lphi + 2*Lpsi*(d - 1)
+      R_sc = eta^{mu nu} R_mu nu = -R_00 + sum_i R_ii = -2*Lphi + 2*Lpsi*d - 2*Lpsi
+  A6  G_00 = (d-1) Lpsi                  -> Lpsi*(d - 1)
+      G_kk = sum_i G_ii = (d-1) Lphi - (d-1)(d-2) Lpsi -> -Lphi + Lpsi*d + Lpsi*(d - 2) + d*(Lphi - Lpsi*d + Lpsi)
+      claim form  (d-1) L(Phi-Psi) + (d-1)(3-d) Lpsi  -> (d - 1)*(Lphi - Lpsi*(d - 3) - Lpsi)
+  [PASS] B1 [G_00 derivation, general d] G_00 - (d-1) Delta(Psi) is identically zero as a polynomial in d
+         measured: 0
+         reading : A3-A6 index algebra with the contraction rule sum_i delta_ii = d; no further input
+  [PASS] B2 [CLAIM: G_kk trace, general d] G_kk - [(d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta(Psi)] vanishes
+         measured: 0
+         reading : the claimed trace formula is derived exactly for all real d > 0 (polynomial identity in d)
+
+  coefficient matrix N(d) (rows G_00, G_kk; columns Lpsi, L(Phi-Psi)):
+  Matrix([[d - 1, 0], [(3 - d)*(d - 1), d - 1]])
+  det N(d) = d**2 - 2*d + 1
+  [PASS] B3 [determinant] det N = (d-1)^2 symbolically for all d
+         measured: det N = d**2 - 2*d + 1
+         reading : det is a square: it vanishes iff d = 1 (rank collapse) and nowhere else
+  [PASS] B4 [d = 1] N(1) = \left[\begin{matrix}0 & 0\\0 & 0\end{matrix}\right]: det = 0, rank = 0
+         measured: det = 0; rank = 0
+         reading : d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2
+  [PASS] B4 [d = 2] N(2) = \left[\begin{matrix}1 & 0\\1 & 1\end{matrix}\right]: det = 1, rank = 2
+         measured: det = 1; rank = 2
+         reading : d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2
+  [PASS] B4 [d = 3] N(3) = \left[\begin{matrix}2 & 0\\0 & 2\end{matrix}\right]: det = 4, rank = 2
+         measured: det = 4; rank = 2
+         reading : d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2
+  [PASS] B4 [d = 4] N(4) = \left[\begin{matrix}3 & 0\\-3 & 3\end{matrix}\right]: det = 9, rank = 2
+         measured: det = 9; rank = 2
+         reading : d=1: both channels vanish (2D Einstein tensor identically zero); d>=2: full rank 2
+  d=3 decoupling: off-diagonal (d-1)(3-d) = 0 at d=3, rank still 2; d=1: determinant 0, rank 0 -- decoupling (d=3) and rank collapse (d=1) are SEPARATE statements
+
+  deep-MOND response mu_n(Y) = 1 - 1/(Y + 1)**n;  mu_n'(0) = n
+  leading neglected term of the deep limit mu ~ n Y:  mu_n - n Y = -Y**2*n/2 - Y**2*n**2/2 + Y**3*n/3 + Y**3*n**2/2 + Y**3*n**3/6 + O(Y**4) + O(Y^4)
+  [PASS] B5 [MU_n slope] d(1-(1+Y)^{-n})/dY at Y=0 equals n for symbolic n >= 1
+         measured: mu_n'(0) = n
+
+PART C -- STEP 4a (independent representation: explicit Christoffel route)
+    d = 1 (generic radial Phi, Psi): G_00 = 0
+                       G_kk = 0
+  [PASS] C1 [d = 1, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly
+         measured: residuals: G00 0 ; Gkk 0
+         reading : independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions
+    d = 2 (generic radial Phi, Psi): G_00 = Subs(Derivative(G(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2)) + Subs(Derivative(G(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2))/sqrt(x1**2 + x2**2)
+                       G_kk = Subs(Derivative(F(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2)) + Subs(Derivative(F(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2))/sqrt(x1**2 + x2**2)
+  [PASS] C1 [d = 2, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly
+         measured: residuals: G00 0 ; Gkk 0
+         reading : independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions
+    d = 3 (generic radial Phi, Psi): G_00 = 2*Subs(Derivative(G(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2 + x3**2)) + 4*Subs(Derivative(G(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2 + x3**2))/sqrt(x1**2 + x2**2 + x3**2)
+                       G_kk = 2*Subs(Derivative(F(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2 + x3**2)) - 2*Subs(Derivative(G(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2 + x3**2)) + 4*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2 + x3**2))/sqrt(x1**2 + x2**2 + x3**2) - 4*Subs(Derivative(G(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2 + x3**2))/sqrt(x1**2 + x2**2 + x3**2)
+  [PASS] C1 [d = 3, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly
+         measured: residuals: G00 0 ; Gkk 0
+         reading : independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions
+    d = 4 (generic radial Phi, Psi): G_00 = 3*Subs(Derivative(G(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2 + x3**2 + x4**2)) + 9*Subs(Derivative(G(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2 + x3**2 + x4**2))/sqrt(x1**2 + x2**2 + x3**2 + x4**2)
+                       G_kk = 3*Subs(Derivative(F(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2 + x3**2 + x4**2)) - 6*Subs(Derivative(G(_xi_1), (_xi_1, 2)), _xi_1, sqrt(x1**2 + x2**2 + x3**2 + x4**2)) + 9*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2 + x3**2 + x4**2))/sqrt(x1**2 + x2**2 + x3**2 + x4**2) - 18*Subs(Derivative(G(_xi_1), _xi_1), _xi_1, sqrt(x1**2 + x2**2 + x3**2 + x4**2))/sqrt(x1**2 + x2**2 + x3**2 + x4**2)
+  [PASS] C1 [d = 4, Christoffel route] G_00 = (d-1) Delta Psi and G_kk = (d-1)Delta(Phi-Psi) + (d-1)(3-d)Delta Psi exactly
+         measured: residuals: G00 0 ; Gkk 0
+         reading : independent code path (metric -> Gamma -> R -> G) reproduces both closed forms for generic radial potentials -- no use of the A1-A6 reductions
+    d = 5 (monomials): G_00 = 48*x1**2 + 8
+                       G_kk = -144*x1**2
+  [PASS] C1 [d = 5, Christoffel route, monomials] both channel formulas exact
+         measured: residuals: G00 0 ; Gkk 0
+         reading : d=5 extends the verified integer set; sign flip (3-d) < 0 active, formula still exact
+
+PART D -- STEP 4b (bounded high-precision numeric check, actual residuals)
+  [PASS] D1 [d = 2, numeric Christoffel, grid (121, 121), h = 0.0167] max relative residuals vs closed forms
+         measured: res00 = 1.804e-16, reskk = 4.509e-17  (threshold 1e-2 set before evaluation)
+         reading : independent numeric representation (metric -> Gamma -> R -> G on finite grids); residuals are finite-difference accuracy, the symbolic checks C1 are the exact identity
+  [PASS] D1 [d = 3, numeric Christoffel, grid (41, 41, 41), h = 0.0500] max relative residuals vs closed forms
+         measured: res00 = 2.721e-16, reskk = 2.721e-16  (threshold 1e-2 set before evaluation)
+         reading : independent numeric representation (metric -> Gamma -> R -> G on finite grids); residuals are finite-difference accuracy, the symbolic checks C1 are the exact identity
+  [PASS] D1 [d = 4, numeric Christoffel, grid (17, 17, 17, 17), h = 0.1250] max relative residuals vs closed forms
+         measured: res00 = 1.600e-16, reskk = 3.199e-16  (threshold 1e-2 set before evaluation)
+         reading : independent numeric representation (metric -> Gamma -> R -> G on finite grids); residuals are finite-difference accuracy, the symbolic checks C1 are the exact identity
+
+PART E -- STEP 5 (negative controls, capable of failing)
+  [PASS] NC1 [d=1 extension CONTROL: fails as required] 'rank 2 for all d >= 1' is FALSE; det N(1) = 0, rank 0, both channels identically zero
+         measured: det N(1) = 0; rank = 0; Christoffel residuals at d=1: 0, 0
+         reading : the control is CAPABLE of failing: a wrong coefficient would leave det N(1) != 0 (mutation tests below) -- here the determinant exposes the d=1 exception exactly, and the 2D Einstein tensor vanishes identically (consistent with G_mu nu = 0 in 1+1 dimensions)
+  [PASS] NC2 [diagnostic counterexamples at lambda = 1/2, 1, 2] the claim form (evaluated at d = 1+lambda) equals the direct derivation at all three points
+         measured: lambda=1/2 (d=3/2): claim Lphi/2 + Lpsi/4 vs direct Lphi/2 + Lpsi/4; lambda=1 (d=2): 0; lambda=2 (d=3): 0
+         reading : the claim and the direct form are both quadratic in lambda = d-1; three distinct evaluation points pin a degree-<=2 polynomial: the identity holds for ALL real d (including the non-integer regime where no d-dimensional grid exists), not merely at d=3
+  [PASS] NC2b [discrimination: wrong coefficients FAIL] mutated forms (d-1)(4-d) and d*Delta(Phi-Psi) are rejected by the same diagnostic grid
+         measured: mutant (4-d): agrees at all three lambda points = False; mutant (d on Phi-Psi): agrees = False
+         reading : the lambda in {1/2,1,2} probe is discriminating: only the claimed coefficient pair survives; the controls are genuinely capable of failing
+
+  [PASS] NC3 [deep limit, d = 2] deep-MOND matching g^2 = g_N*(s/n) holds for every d (sphere constant cancels): a0 = s/n, kappa = 1/n
+         measured: g^2/g_N = s/n; kappa*n = 1
+         reading : with mu ~ n*g/s and the framework Poisson convention 4 pi G, the d-dimensional Gauss sphere S_{d-1} cancels: kappa = 1/n is dimension-invariant; with n = rank(d) = 2 for d >= 2 (B3/B4) the adopted kappa = 1/2 is stable under dimensional continuation
+  [PASS] NC3 [deep limit, d = 3] deep-MOND matching g^2 = g_N*(s/n) holds for every d (sphere constant cancels): a0 = s/n, kappa = 1/n
+         measured: g^2/g_N = s/n; kappa*n = 1
+         reading : with mu ~ n*g/s and the framework Poisson convention 4 pi G, the d-dimensional Gauss sphere S_{d-1} cancels: kappa = 1/n is dimension-invariant; with n = rank(d) = 2 for d >= 2 (B3/B4) the adopted kappa = 1/2 is stable under dimensional continuation
+  [PASS] NC3 [deep limit, d = 4] deep-MOND matching g^2 = g_N*(s/n) holds for every d (sphere constant cancels): a0 = s/n, kappa = 1/n
+         measured: g^2/g_N = s/n; kappa*n = 1
+         reading : with mu ~ n*g/s and the framework Poisson convention 4 pi G, the d-dimensional Gauss sphere S_{d-1} cancels: kappa = 1/n is dimension-invariant; with n = rank(d) = 2 for d >= 2 (B3/B4) the adopted kappa = 1/2 is stable under dimensional continuation
+  [PASS] NC4 [Newtonian boundary, d = 2] Phi = Psi: G_kk = (d-1)(3-d) Delta Phi (G_00 = (d-1) Delta Phi)
+         measured: G_kk = Lphi
+         reading : boundary-case exact values: d=3 -> G_kk = 0 (Newtonian regime loads only the 00 channel: the decoupling again); d=2 -> +Delta Phi; d=4 -> -3 Delta Phi (sign flip for d > 3, (3-d) < 0)
+  [PASS] NC4 [Newtonian boundary, d = 3] Phi = Psi: G_kk = (d-1)(3-d) Delta Phi (G_00 = (d-1) Delta Phi)
+         measured: G_kk = 0
+         reading : boundary-case exact values: d=3 -> G_kk = 0 (Newtonian regime loads only the 00 channel: the decoupling again); d=2 -> +Delta Phi; d=4 -> -3 Delta Phi (sign flip for d > 3, (3-d) < 0)
+  [PASS] NC4 [Newtonian boundary, d = 4] Phi = Psi: G_kk = (d-1)(3-d) Delta Phi (G_00 = (d-1) Delta Phi)
+         measured: G_kk = -3*Lphi
+         reading : boundary-case exact values: d=3 -> G_kk = 0 (Newtonian regime loads only the 00 channel: the decoupling again); d=2 -> +Delta Phi; d=4 -> -3 Delta Phi (sign flip for d > 3, (3-d) < 0)
+
+PART F -- footings (canonical and alternative, kept separate)
+  canonical: a0 = 9.3619e-11 m/s^2 (kappa = 1/2 adopted): s = 1.87238e-10 m/s^2; rho_Lambda = 5.8444e-27 kg/m^3 (framework identity)
+  alternative: a0 = 1.1279e-10 m/s^2: reading (i) same rho_Lambda: kappa_eff = a0/s = 0.60239  ->  n_eff = 1/kappa = 1.66006 (NOT a channel count -- consistent with the alternative being a normalisation, not new physics);
+                  reading (ii) same kappa = 1/2: rho_Lambda' = 8.4831e-27 kg/m^3 = 1.45149 x rho_Lambda^canonical
+  [PASS] F1 [footings] the channel-rank identities (det = (d-1)^2, rank 2 for d>=2, d=3 decoupling) are dimensionless and footing-independent; both a0 footings enter only through s = c sqrt(G rho_Lambda)
+         measured: kappa_eff(alt, fixed rho_Lambda) = 0.60239 (n_eff = 1.66006); rho_Lambda'(alt, fixed kappa) = 8.483e-27 kg/m^3 = 1.4515 x canonical
+         reading : applicability statement: the two footings do not share both fixed vacuum density and fixed kappa; the dimensionless theorem is proved once and applies to both footings unchanged
+
+====================================================================================================
+AS057 COMPLETE: 26/26 checks PASS, 0 FAIL (wall 1.2 s, max RSS raw ru_maxrss = 171556864 [bytes convention], 1 thread enforced via BLAS env)
+RESOURCE_LINE wall=1.17s rss_raw=171556864

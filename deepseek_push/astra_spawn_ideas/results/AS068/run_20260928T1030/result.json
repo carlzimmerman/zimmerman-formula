@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "task_id": "AS068",
+  "task_sha256": "7bc8080a4a28054cb268c261a27d6ee908dfeb7c62c9a9f91420e13897fec576",
+  "run_id": "run_20260928T1030",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-run worker seed",
+  "started_utc": "2026-09-28T10:30:00Z",
+  "finished_utc": "2026-09-28T11:04:16Z",
+  "execution_status": "completed",
+  "outcome": "counterexample",
+  "exact_claim": "For every real n > 0 and every finite positive reference Y_ref, the boundary condition J(Y_ref)=0 with the specified static kernel J'=mu_n(Y)=1-(1+Y)^(-n) determines J(0) = -int_0^{Y_ref} mu_n(Y) dY < 0 (exact removal identity; n=2 closed form J(0) = -Y_ref^2/(1+Y_ref) = -G0(Y_ref)); consequently, in the pinned action's sign convention (k01 K1-K3 structure, rho_vac = (2-K_B) s^2 J(0)/(16 pi G), 2-K_B > 0, s = c sqrt(G rho_L)), the vacuum-to-Lambda ratio rho_vac/rho_Lambda = -(2-K_B) c^2 G0(Y_ref)/(16 pi) is NEGATIVE for every finite positive reference and every n>0, so no positive finite boundary reference reproduces the positive rho_Lambda. Diagnostic counterexamples at lambda = Y_ref in {1/2, 1, 2} (n=2, exact rationals): J(0) = -1/6, -1/2, -4/3, ratios -5.9600554e14, -1.7880166e15, -4.7680443e15 (K_B=0; x0.875 at K_B=0.25) - three distinct, all negative, all changed from each other (negative control 1: varying Y_ref changes the vacuum prediction strictly monotonically, dG0/dlam=(lam^2+2lam)/(1+lam)^2>0, Lean-certified). Magnitude tuning |ratio|=1 would need Y_ref* = 1.6722424e-8 (K_B=0) or 1.7877023e-8 (K_B=0.25), an adopted fitted datum, and still R(Y_ref*) = -1 < 0. Limits: Y_ref->0+ gives J(0) = -Y_ref^2 + O(Y_ref^3) -> 0- (trivial, no information); Y_ref->inf gives J(0) -> -inf (mu_n -> 1; no finite reference in the deep limit - differs from k01's convergent kernel class). Verdict: the boundary condition removes the additive zero mode (exact identity, + Lean certificate) but relocates the freedom into the adopted datum Y_ref (net real DOF 1 -> 1; no equation of the action fixes Y_ref - k01 no-second-scale theorem), and lands the wrong sign for every positive reference: the constructive use of the claim (closing the k01 a0-Lambda gap / deriving kappa) fails in the MU_n class. kappa = 1/2 remains adopted. Domain: MU_n class, all n>0, all Y_ref>0 (algebraic); sampled Y_ref in [1e-10, 1e12], n in {1,2,5/2,3,4}, K_B in {0, 0.25}; both registered footings carried separately.",
+  "framework_cell": {
+    "action": "pinned k01/PD08 action class: S_kin = (1/8 pi G) int s^2 J(Y) d^3x, Y = |grad Phi|/s, statics depend on J only through J' (k01 K1 theorem); vacuum contribution rho_vac = (2-K_B) s^2 J(0)/(16 pi G) (k01 K2/K3 structure, source hash 8df5a3ab...); no action modified",
+    "branch": "CORE coefficient / conditional MU_n statistical response (the seed's declared branch); Q, RAR, EXP, MONO untouched; no branch translation performed; no transfer to filtered-MONO claimed",
+    "kernel": "J'(Y) = mu_n(Y) = 1 - (1+Y)^(-n), n >= 1 real; n=2 is the MU2 member on the adopted footing (Y = g/s, s = 2 a0, kappa = 1/2)",
+    "filter": "none (statics; no heat filter involved)",
+    "gate": "Requirement 13 (a0-vacuum relation preserved as input or genuinely derived), ORCHESTRATOR gate-map cell A03 (coefficient mechanism / kappa missing premise); gate stays OPEN (kappa adopted; counterexample closes the boundary-condition route within MU_n)"
+    ,
+    "coupling": "K_B in [0, 0.25] (k01 band); 2-K_B > 0 everywhere",
+    "parameters": "kappa = 1/2 ADOPTED (input, not derived); G = G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured input); c = 299792458 m/s (exact); G_bare/G_cosmo separate symbols, untouched; s = c*sqrt(G rho_L) as declared by the seed",
+    "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 (kappa=1/2 by construction; rho_Lambda = 5.844412454e-27 kg/m^3; s = 1.87238e-10 m/s^2) AND alternative a0 = 1.1279e-10 m/s^2 carried SEPARATELY (same kappa=1/2: rho_Lambda = 8.483089620e-27 kg/m^3, s = 2.2558e-10; fixed canonical density: kappa_eff = 0.60238840; never both fixed simultaneously)",
+    "boundaries": "J(Y_ref) = 0 with Y_ref finite and positive (the boundary condition under test; Y=0 is the Newtonian end, Y->inf the deep end); physical domain Y >= 0",
+    "initial_conditions": "none (static algebra + one exact quadrature; no dynamics)",
+    "units": "SI; Y = g/s dimensionless; rho in kg/m^3; eps in J/m^3; s in m/s^2; ratio R dimensionless"
+  },
+  "new_assumptions": [
+    "Y_ref is a positive finite real (the boundary position); no equation of the pinned action selects it - this is exactly the external datum whose count this run records (1 real DOF in, 1 out; freedom relocated, not removed)",
+    "vacuum contribution formula rho_vac = (2-K_B) s^2 J(0)/(16 pi G) imported from k01 K2/K3 with its sign conventions (pinned source, hash recorded); a different action normalization rescales the ratio but cannot flip the sign argument",
+    "kernel positivity mu_n(Y) > 0 on (0, inf) for all n > 0 (L230 normalisation, mu_n(inf) = 1 and slope mu_n'(0) = n per PD01/PD08) - within the seed's declared conditional MU_n branch"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS068_can_a_boundary_condition_remove_the_zero_mode.md": "7bc8080a4a28054cb268c261a27d6ee908dfeb7c62c9a9f91420e13897fec576",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/AS067_additive_vacuum_zero_mode_in_the_local_action.md": "c7fd82f8402252ef2346ae8c49e30b4d8ff0f6183ed950aa354bb7f396d0a6a8",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/derivation.md": "37d330b96fc392c65a50f4024347e2568263a97756a8b17ab9c711f59fed9748",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/compute_AS068_boundary_zero_mode.py": "200a50dac4866e4d6c4cc53976dcb4aafe27544849ec0fdc78f8b56f1b0013d0",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/raw_output.txt": "eed3f94ae773fcb1e86bf197b2ccfdeac972ecb3cdfb97bd1b5df5e69cb3e4fc",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/residuals.json": "6e00589b7f9abdecc531869deb31467ef857dfd84b2aa84353ce7d85b7344aa6",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/err_time.txt": "6ddd34a5d83e6f29ff3f5fee9ee9f9bc80ff628bfa13a293a645ea2085541042",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/AS068_boundary_zero_mode_certificates.lean": "d2b76fbedba6bcb7c6ae5ec19e208a7727bf4a69963162d79ce7d6cce57a9d74",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/lean_check.out": "3ee58f3c874a3806e2d421741296f457f3b83ba45fe34e7c774e5480f6942386"
+  },
+  "commands": [
+    {
+      "argv": ["shasum", "-a", "256", "deepseek_push/astra_spawn_ideas/AS068_can_a_boundary_condition_remove_the_zero_mode.md", "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md", "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json", "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json", "deepseek_push/astra_spawn_ideas/AS067_additive_vacuum_zero_mode_in_the_local_action.md", "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md", "deepseek_push/PD01_polarization_count.py", "deepseek_push/PD08_particle_free_derivation.py", "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+      "purpose": "task/source hash reconciliation; task hash matches the dispatched value; all three pinned sources match SOURCE_MANIFEST"
+    },
+    {
+      "argv": ["bash", "-c", "ulimit -t 120 && /usr/bin/time -l python3 compute_AS068_boundary_zero_mode.py > raw_output.txt 2> err_time.txt"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030",
+      "purpose": "bounded symbolic + 60-digit prototype; final run exit 0, 16/16 checks PASS; wall 0.49 s; max RSS 60.6 MiB (recorded by /usr/bin/time -l, err_time.txt)"
+    },
+    {
+      "argv": ["lake", "env", "lean", "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/AS068_boundary_zero_mode_certificates.lean"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "purpose": "Lean 4 certificate check; exit 0; zero sorry; unfiltered #print axioms for all 8 theorems = [propext, Classical.choice, Quot.sound] (lean_check.out)"
+    }
+  ],
+  "execution_bounds": {
+    "declared_prototype_bounds": {"wall_s": 120, "memory_MB": 512, "threads": 1},
+    "enforced": {
+      "cpu": "ulimit -t 120 shell-enforced CPU-second cap on the python process (recorded in the command line)",
+      "wall_s_measured": 0.49,
+      "threads": "1 (single-threaded CPython; sympy/mpmath only, no vectorized/threaded imports)",
+      "memory": "max RSS 63,848,448 bytes = 60.9 MiB worst observed across the 4 prototype runs (final run 60.6 MiB), measured by /usr/bin/time -l; no explicit ulimit -v set, workload far inside the 512 MB budget",
+      "precision": "mpmath mp.dps = 60"
+    },
+    "lean_compile": "single lake env lean invocation; Mathlib v4.34 build cached (lakefile at fable_independent_2026/lean_2026); no separate wall cap; completed within the tool ceiling; compile host only - no files written into fable_independent_2026/lean_2026"
+  },
+  "checks": {
+    "tolerance": "exact-identity numerical checks: 1e-30 relative, set BEFORE evaluation (60-digit arithmetic); asymptotic ratios: 1e-6 / 1e-8; Lean: zero 'sorry' and axioms subset of {propext, Classical.choice, Quot.sound}",
+    "source_integrity": {"observed": "task hash 7bc8080a... exact match; PD01 37e39d1a..., PD08 83f6054c..., k01 8df5a3ab... match SOURCE_MANIFEST.json exactly", "pass": true},
+    "S1_removal_identity_exact": {"observed": "int_0^lambda mu_n closed form: n=2 gives J0 = -lambda^2/(1+lambda) (sympy integral == closed form)", "pass": true},
+    "S2_FTC_by_differentiation": {"observed": "d/dlambda[J0] + mu_2(lambda) = 0 exactly (sympy); per-n checks n in {1,3,5/2,4}: all 0", "pass": true},
+    "S3_kernel_limits_exact": {"observed": "mu_n'(0) = n; mu_n(inf) = 1 (symbolic)", "pass": true},
+    "S4_diagnostic_counterexamples_exact": {"observed": "J(0) = -1/6, -1/2, -4/3 at lambda = 1/2, 1, 2 (exact rationals)", "pass": true},
+    "N1_FTC_residual_60digit": {"observed": "rel resid 0.0, 0.0, 0.0 at lambda = 1/2, 1, 2 (mpmath dps=60 quad vs closed form)", "pass": true},
+    "N2_general_n_FTC_residual": {"observed": "rel resid 3.8894e-62, 0.0, 0.0, 7.7788e-62 at (n,lambda) = (1,1), (3,1/2), (5/2,2), (4,1)", "pass": true},
+    "N3_kernel_asymptotics": {"observed": "(mu2-2Y)/(-3Y^2)-1 = 1.3333e-8 at Y=1e-8 (expected 1.33e-8); (1-mu2)Y^2-1 = -2/Y to 3.0e-12 at Y=1e6", "pass": true},
+    "N4_primitive_limits": {"observed": "lambda=1e-10: R = -3.576e-5 (-> 0-); lambda=1e12: J(0) = -1.0e12 == -lambda+1-1/(1+lambda) to rel 0.0", "pass": true},
+    "NEG_CONTROL_vary_Y_ref": {"observed": "J(0) at Y_ref in {1e-4,1e-2,1/2,1,2,100} = -9.999e-9, -9.901e-5, -1/6, -1/2, -4/3, -99.01; R = -3.576e7, -3.541e11, -5.960e14, -1.788e15, -4.768e15, -3.541e17 (K_B=0): all distinct, strictly monotone", "pass": true, "capable_of_failing": "would fail (strong removal vindicated) only if every Y_ref gave the same vacuum prediction; they differ at every sampled reference - the control can and does discriminate", "passed": true},
+    "NEG_CONTROL_magnitude_tuning": {"observed": "|R|=1 requires Y_ref* = 1.6722424e-8 (K_B=0), 1.7877023e-8 (K_B=0.25); R(Y_ref*) = -1.0 < 0 still", "pass": true, "capable_of_failing": "tuned boundary still negative - sign obstruction unconditional in this class", "passed": true},
+    "footing_separation": {"observed": "canonical rho_Lambda 5.844412454e-27 vs alternative (kappa=1/2) 8.483089620e-27 kg/m^3; kappa_eff 0.60238840 at fixed density; never both fixed", "pass": true},
+    "lean_certificates": {"observed": "exit 0; grep sorry count 0; #print axioms of mu2_closed, g0_pos, j0_negative, g0_deriv_eq_mu2, g0_deriv_pos, g0_strict_mono, ratio_negative, diagnostics_distinct = [propext, Classical.choice, Quot.sound] each", "pass": true}
+  },
+  "tested_domain": "Algebraic (all domains): n > 0 real, Y_ref > 0 finite (Lean-certified for the n=2 core). Numerically sampled: Y_ref in [1e-10, 1e12] (grid lambda = 1e-10, 1e-4, 1e-2, 1/2, 1, 2, 100, 1e12), n in {1, 2, 5/2, 3, 4}, K_B in {0, 0.25}; both footings carried separately (canonical a0 9.3619e-11 and alternative 1.1279e-10 m/s^2). General-n closed forms exact for n != 1 (n=1 log form); sympy Piecewise branch algebra bypassed by per-n symbolic checks. No seeds, no refinement history, no fits, no observational data (the boundary-position fine-tune Y_ref* is reported as a calculation, not as a physical prediction).",
+  "failed_attempts": [
+    {"artifact": "compute script first run: S2 FAIL - sympy returned an unsimplified Piecewise for the general-n FTC derivative; cause: sympy Piecewise branch algebra; fixed by per-n symbolic verification n in {1,3,5/2,4}; rerun PASS. N2 FAIL - sign error in the test harness: quad of the POSITIVE integral was compared against J(0) = -integral; fixed to compare against the positive closed form with J(0) reported separately. N3 FAIL - test metric divided the residual by the leading term itself (ratio ~1 by construction) and a deep-limit expression computed mu_2 instead of 1-mu_2; fixed to ratio-vs-1 checks with explicit expected next terms. All fixed in the final script (exit 0, 16/16).", "fixed": true},
+    {"artifact": "Lean first compiles: (1) mu2_closed stated unrestricted - false at y = -1 under totalized division; fixed by domain hy : 0 < y. (2) simpa/convert/exact attempted for HasDerivAt (fun z => z^2) (2*y) y from (hasDerivAt_id y).pow (2: Nat): elaborator instance-path mismatch and the Pow-instance-opaque function (id ^ 2) blocked all three; fun_prop not registered for HasDerivAt on this build. Fixed by: change to HasDerivAt (id ^ 2), exact .pow, norm_num [pow_one] normalization, rwa. hden via exact const_add. (3) g0_strict_mono: field_simp produced (1+a)*b^2 ordering - hcross restated to match. Final compile exit 0, zero sorry.", "fixed": true}
+  ],
+  "limitations": "Does not derive kappa = 1/2 (adopted input; the boundary-condition route within the MU_n class is now shown to fail on sign and on freedom relocation - that is a no-go for this class, not a derivation). Does not establish that some other boundary family (negative-argument reference outside the physical Y >= 0 domain, sign-reversing/phantom kernel, modified action normalization) fails identically: only the declared class (positive finite references, positive static kernel mu_n, pinned k01 sign convention for rho_vac) is covered. No transfer to the operative filtered-MONO branch (kernel h'_mono > 0 is also positive, but the continuation/crossing structure differs - the MONO analogue is an explicit open step). No dynamics, no causality criterion-B statement, no observational claim. Numerics at 1e-58...1e-62 relative are finite evidence; exactness rests on symbolic identities and the Lean certificate. The deep-end divergence statement is for the MU_n kernel (mu_n -> 1); k01's kernel class converged and is not contradicted. AS067 (the explicit prerequisite) is still running under another worker at finish time; this run uses the pinned sources directly as the seed instructs and records no dependency on AS067's result file.",
+  "next_unresolved_implication": "The first bridge to the operative target: fix or forbid Y_ref physically - i.e., show that no principle inside the pinned action (or a stated extension) selects a positive finite reference that (a) reproduces the positive rho_Lambda (impossible in this class by the sign theorem) or (b) is more than an adopted normalization. Equivalent statement: in the MU_n class the map (kernel, Y_ref) -> (J(0), sign(rho_vac)) has image in R_<0 x R_<0, so Requirement 13's 'genuinely derived' option needs a contribution outside this static-kernel class (sign-reversing term, phantom branch, or an independent principle for Y_ref). Additionally, the analogue of this boundary analysis on the operative filtered-MONO kernel (h'_mono) is unproved and is the branch-native transfer step.",
+  "suggested_followup": "Run catalog seed AS075 (constructive missing-premise work order for kappa, prereqs AS059/AS067/AS072) with this run as evidence: the positive-reference boundary-condition family is a closed dead end within MU_n, so AS075's constructive budget should target the alternatives the counterexample isolates (sign-reversing vacuum contribution, phantom/negative-drive kernel, or an independent Y_ref-fixing principle). Second: dispatch child AS068.C01 (below) for the MONO/RAR-class analogue and the 'smallest failed implication' no-go repair, per the seed's branching rule 3.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": [
+      "kappa = 1/2 dimensionless (ADOPTED framework input; explicitly not derived; a0 = s/2)",
+      "s = c*sqrt(G rho_L) as the vacuum rate (seed-declared unit; s fixed independently of a0 per PD08 C2)",
+      "G = G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured input, mandated default); c = 299792458 m/s (exact)",
+      "registered footings a0_can = 9.3619e-11 m/s^2, a0_alt = 1.1279e-10 m/s^2 (measured conventions)",
+      "K_B in [0, 0.25] (pinned action coupling band, k01)",
+      "kernel class mu_n(Y) = 1 - (1+Y)^(-n), n > 0 (declared branch; L230 normalisation mu_n(inf)=1; slope n at 0)",
+      "boundary condition under test: J(Y_ref) = 0, Y_ref finite positive"
+    ],
+    "measured_calibrations": "none beyond the registered a0 footings above",
+    "derived": [
+      "removal identity J(0) = -int_0^{Y_ref} mu_n dY (exact FTC; Lean-certified primitive fact deriv G0 = mu_2)",
+      "closed forms: n=2: J(0) = -Y_ref^2/(1+Y_ref); general n != 1: J(0) = -(Y_ref - ((1+Y_ref)^(1-n)-1)/(1-n)); n=1: ln(1+Y_ref) - Y_ref",
+      "sign theorem: J(0) < 0 for all n > 0, Y_ref > 0 (kernel positivity + Lean-certified j0_negative)",
+      "vacuum ratio R = rho_vac/rho_Lambda = -(2-K_B) c^2 G0(Y_ref)/(16 pi) (n=2), negative for all positive references (Lean-certified ratio_negative)",
+      "monotonicity dG0/dY_ref = (Y_ref^2+2Y_ref)/(1+Y_ref)^2 > 0 (Lean-certified g0_strict_mono/g0_deriv_pos)",
+      "limits: Y_ref -> 0+: J(0) ~ -Y_ref^2 (leading neglected term -Y_ref^3); Y_ref -> inf: J(0) = -Y_ref + 1 - 1/(1+Y_ref) + O(1/Y_ref)",
+      "magnitude tuning Y_ref* = (w + sqrt(w^2+4w))/2 with w = 16 pi/((2-K_B)c^2): 1.6722424e-8 (K_B=0), 1.7877023e-8 (K_B=0.25); R(Y_ref*) = -1"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "Requirement 13 (a0-vacuum relation: 'preserved as input or genuinely derived') per the amended thirteen-item target; ORCHESTRATOR gate-map cell A03 (coefficient mechanism / missing premise for kappa)",
+    "exact_implication": "Within the pinned action class and the declared MU_n branch, the boundary-condition mechanism 'J(Y_ref) = 0 with static kernel mu_n' cannot supply the missing premise: it relocates the additive zero mode into the adopted datum Y_ref (net freedom unchanged) and produces a sign-definitely negative vacuum density for every finite positive reference, so it can never reproduce the positive rho_Lambda = 4 a0^2/(G c^2). Hence Requirement 13's 'genuinely derived' branch is not reachable through this family, the 'preserved as input' label (kappa = 1/2 adopted) remains the honest status, and any constructive attempt (AS075) must introduce a contribution outside this static-kernel class.",
+    "common_action_parameter_domain": "Same action class as k01/PD08 (pinned hashes recorded): s-units, kappa = 1/2, K_B in [0, 0.25], n > 0, J' = mu_n, boundary at finite positive Y_ref; compatible with both registered footings (dimensionless ratio; footing enters only in absolute conversions) and with any branch only after an explicit bridge (not claimed here)."
+  },
+  "child_proposals": [
+    {
+      "child_id": "AS068.C01",
+      "status": "proposed, NOT dispatched (no spawn mechanism in this subagent run)",
+      "fingerprint": "(action k01/PD08 pinned, MU_n class + MONO/RAR kernels, assumptions: boundary J(Y_ref)=0 with J' in {h'_mono continuation, nu_RAR-related kernel}, domain: Y_ref > 0 finite, target: (i) sign and convergence of J(0) = -int_0^{Y_ref} J' for the MONO continuation and the RAR kernel; (ii) minimal failed implication of AS068 under repair - a sign-flip candidate within the pinned action (e.g., (2-K_B) sign outside the k01 band, phantom branch) with its altered parameter cell recorded)",
+      "new_claim": "If h'_mono (the operative filtered-MONO continuation derivative, h'_mono = max(h'_RAR, delta h_p/(y+y_p)) > 0) admits the same boundary-fixed primitive analysis, then the sign obstruction J(0) < 0 extends to the MONO branch, closing the transfer question; otherwise the difference (rate of h_mono's growth, saturation behaviour) is the exact bridge that AS068 could not supply. The sign-flip repair probe states which modified parameter cell (K_B > 2 or negative-drive kernel) restores rho_vac > 0 and whether it preserves the s-units normalisation p'(0) = 1.",
+      "dependency": "this run AS068 (run_20260928T1030) + pinned sources (PD01 37e39d1a..., PD08 83f6054c..., k01 8df5a3ab...); AS075 catalog seed as the constructive consumer",
+      "controls": "same negative control (vary Y_ref, exhibit changed vacuum prediction); sign check must be capable of failing (a kernel with J' <= 0 on a positive-measure set would reverse the sign); Lean certificate of the MONO-primitive sign lemma, zero sorry",
+      "why_not_answered_here": "the seed's declared branch is the conditional MU_n response; the MONO kernel and the sign-flip parameter cells are outside its scope and are recorded here as the precise continuation (seed branching rule 3: smallest failed implication + target-native repair)",
+      "dispatch_state": "none - ready child specification only"
+    }
+  ],
+  "closure_candidate": null,
+  "note_on_closure_candidate": "No complete same-action witness exists from this seed: the result is a counterexample to one candidate mechanism (boundary-condition removal of the zero mode) within one branch, with kappa = 1/2 remaining adopted; the operative filtered-MONO target (Requirement 1), causality criterion B (Requirement 7) and the remaining gates are untouched and open per STANDING/ORCHESTRATOR."
+}

@@ -1,0 +1,614 @@
+{
+ "checks": [
+  {
+   "name": "P1a [ODE solved] sigma^2 d rho/dr + C rho/r = 0 at gamma = C/sigma^2 (symbolic substitution, exact)",
+   "measured": "residual simplifies to 0",
+   "pass": true,
+   "reading": "rho = A (r/r_ref)^(-C/sigma^2) solves the hydrostatic ODE identically"
+  },
+  {
+   "name": "P1b [dsolve cross-check] the ODE's general solution (sympy dsolve) satisfies the equation symbolically",
+   "measured": "sigma^2 d/dr[C1/r**(sqrt(G)*sqrt(M_b)*sqrt(a_0)/sigma^2)] + C/r [C1/r**(sqrt(G)*sqrt(M_b)*sqrt(a_0)/sigma^2)] = 0",
+   "pass": true,
+   "reading": "same shape as A (r/r_ref)^(-gamma): one integration constant, exponent -C/sigma^2"
+  },
+  {
+   "name": "P1c [slope-temperature relation] gamma = C/sigma^2 for every sigma^2: sigma^2 = C/2 -> slope 2 exactly; sigma^2 = C/3 -> slope 3 exactly",
+   "measured": "[sigma^2 = C/2  (equilibrium temp)] gamma=2; [sigma^2 = C/3  (bare-virial reading)] gamma=3; [sigma^2 = C] gamma=1; [sigma^2 = 0.7 C] gamma=10/7",
+   "pass": true,
+   "reading": "the ODE does NOT select slope 2: the slope is set one-to-one by sigma^2 (slope 2 <==> sigma^2 = C/2)"
+  },
+  {
+   "name": "P1d [Poisson consistency] Delta(C ln r) = C/r^2; 4 pi G_N rho = C/r^2 forces gamma = 2 and A = C/(4 pi G_N); then sigma^2 = 2 pi G_N A = C/2",
+   "measured": "Delta(Cln r) = sqrt(G)*sqrt(M_b)*sqrt(a_0)/r**2;  gamma* = [2];  2 pi G A* = sqrt(G)*sqrt(M_b)*sqrt(a_0)/2 = C/2: True",
+   "pass": true,
+   "reading": "hydrogen: slope-2 selection + the amplitude + the equilibrium temperature follow from {hydrostatics, isothermal EOS, log well, well sourced by its own density} -- all premises explicit"
+  },
+  {
+   "name": "P1e [Newtonian profile] rho_N = exp(G M_b/(sigma^2 r)) solves sigma^2 d rho/dr = -rho G M_b/r^2 (the Newtonian hydrostatic ODE) symbolically",
+   "measured": "residual = 0",
+   "pass": true,
+   "reading": "the Newtonian-limit profile is exponential, NOT a power law: the slope-temperature power law is a deep-regime statement (NC4)"
+  },
+  {
+   "name": "P2 [independent high-precision check] sigma^2 rho' + C rho/r = 0 at gamma = 2 measured on 6 fixture shells x 2 footings, 1201 pts each, 50-digit mpmath, analytic derivative",
+   "measured": "max |residual|/|C rho/r| over 14412 points = 5.32e-51",
+   "pass": true,
+   "reading": "an exact identity at the substitution level: machine-precision-zero residual at every point on every fixture shell"
+  },
+  {
+   "name": "P3 [deep exterior, full kernel] pointwise slope on shells r_in/r_M = 10,100 x R/r_in = 2,10 for branches Q, RAR (=MONO deep), MU2, EXP: deviation from the log-slope gamma = C/sigma^2 bounded; leading corrections verify Q ~ (1/2)(r_M/r)^2, RAR ~ (1/2)(r_M/r), MU2 ~ (3/8)(r_M/r), EXP ~ (1/4)(r_M/r) to <6%",
+   "measured": "max |delta| Q = 4.9876e-03; RAR = 5.0833e-02; order coefficients within 6% of 1",
+   "pass": true,
+   "reading": "the log well C/r is the exact asymptotic potential of every listed branch; at r >= 10 r_M deviations are <= 5.2% (RAR), <= 0.5% (Q); at r >= 100 r_M <= 0.51% (RAR), <= 0.005% (Q)"
+  },
+  {
+   "name": "NC1 [negative control] sigma^2 = C/2 -> the SAME ODE solves with slope 2.0: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced",
+   "measured": "fitted slope = 2.000000000000, nominal gamma = 2.000000000000",
+   "pass": true,
+   "reading": "the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C"
+  },
+  {
+   "name": "NC1 [negative control] sigma^2 = C/3 -> the SAME ODE solves with slope 3.0: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced",
+   "measured": "fitted slope = 3.000000000000, nominal gamma = 3.000000000000",
+   "pass": true,
+   "reading": "the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C"
+  },
+  {
+   "name": "NC1 [negative control] sigma^2 = 0.7C -> the SAME ODE solves with slope 1.4285714285714286: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced",
+   "measured": "fitted slope = 1.428571428571, nominal gamma = 1.428571428571",
+   "pass": true,
+   "reading": "the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C"
+  },
+  {
+   "name": "NC1 [negative control] sigma^2 = C/2 -> the SAME ODE solves with slope 2.0: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced",
+   "measured": "fitted slope = 2.000000000000, nominal gamma = 2.000000000000",
+   "pass": true,
+   "reading": "the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C"
+  },
+  {
+   "name": "NC1 [negative control] sigma^2 = C/3 -> the SAME ODE solves with slope 3.0000000000000004: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced",
+   "measured": "fitted slope = 3.000000000000, nominal gamma = 3.000000000000",
+   "pass": true,
+   "reading": "the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C"
+  },
+  {
+   "name": "NC1 [negative control] sigma^2 = 0.7C -> the SAME ODE solves with slope 1.4285714285714286: log-log fit of u^(-C/sigma^2) on [0.1,1] r_M returns the slope; slope 2 is NOT forced",
+   "measured": "fitted slope = 1.428571428571, nominal gamma = 1.428571428571",
+   "pass": true,
+   "reading": "the control is capable of failing: a solver that forced gamma = 2 would FAIL here for sigma^2 = C/3, 0.7C"
+  },
+  {
+   "name": "NC2 [identifiability] slope s => sigma^2_inferred = C/s recovers the input temperature (s = 2)",
+   "measured": "inferred sigma^2/C = 0.500000000000 vs input 0.500000000000",
+   "pass": true,
+   "reading": "one-to-one: the hydrostatic map sigma^2 -> slope is invertible on sigma^2 > 0"
+  },
+  {
+   "name": "NC2 [identifiability] slope s => sigma^2_inferred = C/s recovers the input temperature (s = 3)",
+   "measured": "inferred sigma^2/C = 0.333333333333 vs input 0.333333333333",
+   "pass": true,
+   "reading": "one-to-one: the hydrostatic map sigma^2 -> slope is invertible on sigma^2 > 0"
+  },
+  {
+   "name": "NC3 [deep-leading terms, mpmath 50-digit] at t = r_M/r = 1e-3 the leading coefficients are the EXACT series values: Q delta/(t^2/2) = 1 - t^2/4 + O(t^4), RAR delta/(t/2) = 1 + t/6 - t^3/360 + O(t^5)",
+   "measured": "Q: 0.9999997500 vs predicted 0.9999997500; RAR: 1.0001666667 vs predicted 1.0001666667",
+   "pass": true,
+   "reading": "no fit: the numerically measured deviations reproduce the closed Bernoulli-series coefficients to 1e-9 at 50-digit precision"
+  },
+  {
+   "name": "NC4 [Newtonian regime] at r/r_M = 0.1 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.9900 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)",
+   "measured": "power-law residual ratio 0.9900; exponential residual 2.24e-03",
+   "pass": true,
+   "reading": "the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential"
+  },
+  {
+   "name": "NC4 [Newtonian regime] at r/r_M = 0.5 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.7500 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)",
+   "measured": "power-law residual ratio 0.7500; exponential residual 2.24e-03",
+   "pass": true,
+   "reading": "the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential"
+  },
+  {
+   "name": "NC4 [Newtonian regime] at r/r_M = 0.1 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.9900 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)",
+   "measured": "power-law residual ratio 0.9900; exponential residual 2.24e-03",
+   "pass": true,
+   "reading": "the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential"
+  },
+  {
+   "name": "NC4 [Newtonian regime] at r/r_M = 0.5 the power law's residual vs the Newtonian hydrostatic ODE is |(r/r_M)^2 - 1| = 0.7500 (O(1): NOT a Newtonian solution); the exponential rho ~ exp(G M_b/(sigma^2 r)) solves it EXACTLY (sympy P1e; finite-difference diagnostic 2.2e-03)",
+   "measured": "power-law residual ratio 0.7500; exponential residual 2.24e-03",
+   "pass": true,
+   "reading": "the slope-temperature power law is a DEEP-regime statement; in the Newtonian limit the profile is exponential"
+  },
+  {
+   "name": "CC1 [interior ansatz fixture] exact analytic substitution residual (sigma^2 rho' + C rho/r)/(C rho/r) on r_in/R = 0.01,0.1,0.5 x R/r_M = 0.62,1 (12 fixtures, both footings)",
+   "measured": "max |residual| = 2.22e-16  (finite-difference diagnostic: 1.15e-03)",
+   "pass": true,
+   "reading": "fixtures are CONTROLS of the imposed-log-well ansatz, not point-source deep-MOND statements; the exact-identity status holds by construction of the well (P2 is the 50-digit version)"
+  },
+  {
+   "name": "P5 [footing scaling] sigma scales as a0^(1/4): canonical sigma = 119.20 km/s, alternative = 124.89 km/s (ratio 1.04768 = (a0_alt/a0_can)^(1/4)); kappa = 1/2 adopted on BOTH footings, so the alternative carries a DIFFERENT rho_Lambda (x 1.4515); at fixed canonical rho_Lambda the alternative's effective kappa = 0.602388",
+   "measured": "canonical sigma = 119.20 km/s (registered 119.2); alt = 124.89 km/s (registered 124.9)",
+   "pass": true,
+   "reading": "registered G031 MW anchors reproduced from C = sqrt(G_N M_b a0), sigma = (G M_b a0)^(1/4)/sqrt(2), M_b = 6.5e10 Msun; both footings carry gamma = 2 and sigma^2 = C/2"
+  },
+  {
+   "name": "B1 [bounds] wall time 0.76 s <= 120 s",
+   "measured": "0.76 s",
+   "pass": true,
+   "reading": "prototype bounds enforced and measured (see execution_bounds_measured and as080_bounds.json)"
+  }
+ ],
+ "parts": {
+  "1_symbolic": {
+   "ode_solution": "rho(r) = A (r/r_ref)^{-C/sigma^2}",
+   "gamma": "C/sigma^2",
+   "slope_two_iff": "sigma^2 = C/2",
+   "poisson_selection": {
+    "gamma": 2,
+    "A": "C/(4 pi G_N)",
+    "sigma2": "C/2"
+   },
+   "slope_table": [
+    [
+     "sigma^2 = C/2  (equilibrium temp)",
+     "1/2",
+     "2"
+    ],
+    [
+     "sigma^2 = C/3  (bare-virial reading)",
+     "1/3",
+     "3"
+    ],
+    [
+     "sigma^2 = C",
+     "1",
+     "1"
+    ],
+    [
+     "sigma^2 = 0.7 C",
+     "7/10",
+     "10/7"
+    ]
+   ]
+  },
+  "2_residual": {
+   "grid_points_per_shell": 1201,
+   "shells": [
+    [
+     0.01,
+     0.62
+    ],
+    [
+     0.1,
+     0.62
+    ],
+    [
+     0.5,
+     0.62
+    ],
+    [
+     0.01,
+     1.0
+    ],
+    [
+     0.1,
+     1.0
+    ],
+    [
+     0.5,
+     1.0
+    ]
+   ],
+   "max_rel_residual": 5.319390278595043e-51,
+   "per_shell": {
+    "canonical|rinR=0.01|RrM=0.62": 4.7423315319437855e-51,
+    "canonical|rinR=0.1|RrM=0.62": 4.772029871194951e-51,
+    "canonical|rinR=0.5|RrM=0.62": 5.319390278595043e-51,
+    "canonical|rinR=0.01|RrM=1.0": 5.165195979464711e-51,
+    "canonical|rinR=0.1|RrM=1.0": 5.301598446451705e-51,
+    "canonical|rinR=0.5|RrM=1.0": 5.315629411792953e-51,
+    "alt|rinR=0.01|RrM=0.62": 5.050394208985196e-51,
+    "alt|rinR=0.1|RrM=0.62": 4.908686886520663e-51,
+    "alt|rinR=0.5|RrM=0.62": 4.924560539683655e-51,
+    "alt|rinR=0.01|RrM=1.0": 4.7633253317552085e-51,
+    "alt|rinR=0.1|RrM=1.0": 4.952451801161991e-51,
+    "alt|rinR=0.5|RrM=1.0": 5.283429245427055e-51
+   }
+  },
+  "3_deep_exterior": [
+   {
+    "footing": "canonical",
+    "r_in/r_M": 10.0,
+    "R/r_in": 2.0,
+    "Q": {
+     "delta_at_inner_r": 0.00498756211208895,
+     "delta_mid": 0.002496882788171062,
+     "delta_at_outer_r": 0.00124921972503933,
+     "max_delta": 0.00498756211208895,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.05083319447750445,
+     "delta_mid": 0.03577197100790541,
+     "delta_at_outer_r": 0.02520832465329459,
+     "max_delta": 0.05083319447750445,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.03853110993596176,
+     "delta_mid": 0.027029807159255403,
+     "delta_at_outer_r": 0.01900585109246533,
+     "max_delta": 0.03853110993596176,
+     "impl_residual": 4.5102810375396984e-17
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.025750543223639344,
+     "delta_mid": 0.0180497535974411,
+     "delta_at_outer_r": 0.012684929457592808,
+     "max_delta": 0.025750543223639344,
+     "impl_residual": 1.214306433183765e-17
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9975124224177898,
+     "RAR: delta/(t/2)": 1.016663889550089,
+     "MU2: delta/(3t/8)": 1.02749626495898,
+     "EXP: delta/(t/4)": 1.0300217289455738
+    }
+   },
+   {
+    "footing": "canonical",
+    "r_in/r_M": 10.0,
+    "R/r_in": 10.0,
+    "Q": {
+     "delta_at_inner_r": 0.00498756211208895,
+     "delta_mid": 0.0004998750624609638,
+     "delta_at_outer_r": 4.9998750062396624e-05,
+     "max_delta": 0.00498756211208895,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.05083319447750445,
+     "delta_mid": 0.015894720245319238,
+     "delta_at_outer_r": 0.005008333319449942,
+     "max_delta": 0.05083319447750445,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.03853110993596176,
+     "delta_mid": 0.011960596533671541,
+     "delta_at_outer_r": 0.0037601718623352376,
+     "max_delta": 0.03853110993596176,
+     "impl_residual": 4.336808689942018e-17
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.025750543223639344,
+     "delta_mid": 0.007979274985610463,
+     "delta_at_outer_r": 0.0025073125533803253,
+     "max_delta": 0.025750543223639344,
+     "impl_residual": 1.214306433183765e-17
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9975124224177898,
+     "RAR: delta/(t/2)": 1.016663889550089,
+     "MU2: delta/(3t/8)": 1.02749626495898,
+     "EXP: delta/(t/4)": 1.0300217289455738
+    }
+   },
+   {
+    "footing": "canonical",
+    "r_in/r_M": 100.0,
+    "R/r_in": 2.0,
+    "Q": {
+     "delta_at_inner_r": 4.9998750062396624e-05,
+     "delta_mid": 2.4999687507909485e-05,
+     "delta_at_outer_r": 1.2499921876019116e-05,
+     "max_delta": 4.9998750062396624e-05,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.005008333319449942,
+     "delta_mid": 0.003539700569121562,
+     "delta_at_outer_r": 0.002502083332466487,
+     "max_delta": 0.005008333319449942,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.0037601718623352376,
+     "delta_mid": 0.0026567340755692115,
+     "delta_at_outer_r": 0.0018775410148612615,
+     "max_delta": 0.0037601718623352376,
+     "impl_residual": 4.296151108473811e-18
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.0025073125533803253,
+     "delta_mid": 0.0017714201653364903,
+     "delta_at_outer_r": 0.0012518255241635856,
+     "max_delta": 0.0025073125533803253,
+     "impl_residual": 1.0977546996415732e-18
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9999750012479325,
+     "RAR: delta/(t/2)": 1.0016666638899885,
+     "MU2: delta/(3t/8)": 1.00271249662273,
+     "EXP: delta/(t/4)": 1.0029250213521301
+    }
+   },
+   {
+    "footing": "canonical",
+    "r_in/r_M": 100.0,
+    "R/r_in": 10.0,
+    "Q": {
+     "delta_at_inner_r": 4.9998750062396624e-05,
+     "delta_mid": 4.999987500031722e-06,
+     "delta_at_outer_r": 4.999998750587764e-07,
+     "max_delta": 4.9998750062396624e-05,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.005008333319449942,
+     "delta_mid": 0.0015819721632801542,
+     "delta_at_outer_r": 0.0005000833333621557,
+     "max_delta": 0.005008333319449942,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.0037601718623352376,
+     "delta_mid": 0.001186870241554061,
+     "delta_at_outer_r": 0.00037510157807441047,
+     "max_delta": 0.0037601718623352376,
+     "impl_residual": 4.269046054161674e-18
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.0025073125533803253,
+     "delta_mid": 0.0007912992410468167,
+     "delta_at_outer_r": 0.00025007293747769666,
+     "max_delta": 0.0025073125533803253,
+     "impl_residual": 1.0570971181733668e-18
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9999750012479325,
+     "RAR: delta/(t/2)": 1.0016666638899885,
+     "MU2: delta/(3t/8)": 1.00271249662273,
+     "EXP: delta/(t/4)": 1.0029250213521301
+    }
+   },
+   {
+    "footing": "alt",
+    "r_in/r_M": 10.0,
+    "R/r_in": 2.0,
+    "Q": {
+     "delta_at_inner_r": 0.00498756211208895,
+     "delta_mid": 0.002496882788171062,
+     "delta_at_outer_r": 0.00124921972503933,
+     "max_delta": 0.00498756211208895,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.05083319447750445,
+     "delta_mid": 0.03577197100790541,
+     "delta_at_outer_r": 0.02520832465329459,
+     "max_delta": 0.05083319447750445,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.03853110993596176,
+     "delta_mid": 0.027029807159255403,
+     "delta_at_outer_r": 0.01900585109246533,
+     "max_delta": 0.03853110993596176,
+     "impl_residual": 4.5102810375396984e-17
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.025750543223639344,
+     "delta_mid": 0.0180497535974411,
+     "delta_at_outer_r": 0.012684929457592808,
+     "max_delta": 0.025750543223639344,
+     "impl_residual": 1.214306433183765e-17
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9975124224177898,
+     "RAR: delta/(t/2)": 1.016663889550089,
+     "MU2: delta/(3t/8)": 1.02749626495898,
+     "EXP: delta/(t/4)": 1.0300217289455738
+    }
+   },
+   {
+    "footing": "alt",
+    "r_in/r_M": 10.0,
+    "R/r_in": 10.0,
+    "Q": {
+     "delta_at_inner_r": 0.00498756211208895,
+     "delta_mid": 0.0004998750624609638,
+     "delta_at_outer_r": 4.9998750062396624e-05,
+     "max_delta": 0.00498756211208895,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.05083319447750445,
+     "delta_mid": 0.015894720245319238,
+     "delta_at_outer_r": 0.005008333319449942,
+     "max_delta": 0.05083319447750445,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.03853110993596176,
+     "delta_mid": 0.011960596533671541,
+     "delta_at_outer_r": 0.0037601718623352376,
+     "max_delta": 0.03853110993596176,
+     "impl_residual": 4.336808689942018e-17
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.025750543223639344,
+     "delta_mid": 0.007979274985610463,
+     "delta_at_outer_r": 0.0025073125533803253,
+     "max_delta": 0.025750543223639344,
+     "impl_residual": 1.214306433183765e-17
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9975124224177898,
+     "RAR: delta/(t/2)": 1.016663889550089,
+     "MU2: delta/(3t/8)": 1.02749626495898,
+     "EXP: delta/(t/4)": 1.0300217289455738
+    }
+   },
+   {
+    "footing": "alt",
+    "r_in/r_M": 100.0,
+    "R/r_in": 2.0,
+    "Q": {
+     "delta_at_inner_r": 4.9998750062396624e-05,
+     "delta_mid": 2.4999687507909485e-05,
+     "delta_at_outer_r": 1.2499921876019116e-05,
+     "max_delta": 4.9998750062396624e-05,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.005008333319449942,
+     "delta_mid": 0.003539700569121562,
+     "delta_at_outer_r": 0.002502083332466487,
+     "max_delta": 0.005008333319449942,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.0037601718623352376,
+     "delta_mid": 0.0026567340755692115,
+     "delta_at_outer_r": 0.0018775410148612615,
+     "max_delta": 0.0037601718623352376,
+     "impl_residual": 4.296151108473811e-18
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.0025073125533803253,
+     "delta_mid": 0.0017714201653364903,
+     "delta_at_outer_r": 0.0012518255241635856,
+     "max_delta": 0.0025073125533803253,
+     "impl_residual": 1.0977546996415732e-18
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9999750012479325,
+     "RAR: delta/(t/2)": 1.0016666638899885,
+     "MU2: delta/(3t/8)": 1.00271249662273,
+     "EXP: delta/(t/4)": 1.0029250213521301
+    }
+   },
+   {
+    "footing": "alt",
+    "r_in/r_M": 100.0,
+    "R/r_in": 10.0,
+    "Q": {
+     "delta_at_inner_r": 4.9998750062396624e-05,
+     "delta_mid": 4.999987500031722e-06,
+     "delta_at_outer_r": 4.999998750587764e-07,
+     "max_delta": 4.9998750062396624e-05,
+     "impl_residual": 0.0
+    },
+    "RAR": {
+     "delta_at_inner_r": 0.005008333319449942,
+     "delta_mid": 0.0015819721632801542,
+     "delta_at_outer_r": 0.0005000833333621557,
+     "max_delta": 0.005008333319449942,
+     "impl_residual": 0.0
+    },
+    "MU2": {
+     "delta_at_inner_r": 0.0037601718623352376,
+     "delta_mid": 0.001186870241554061,
+     "delta_at_outer_r": 0.00037510157807441047,
+     "max_delta": 0.0037601718623352376,
+     "impl_residual": 4.269046054161674e-18
+    },
+    "EXP": {
+     "delta_at_inner_r": 0.0025073125533803253,
+     "delta_mid": 0.0007912992410468167,
+     "delta_at_outer_r": 0.00025007293747769666,
+     "max_delta": 0.0025073125533803253,
+     "impl_residual": 1.0570971181733668e-18
+    },
+    "order_checks": {
+     "Q : delta/(t^2/2)": 0.9999750012479325,
+     "RAR: delta/(t/2)": 1.0016666638899885,
+     "MU2: delta/(3t/8)": 1.00271249662273,
+     "EXP: delta/(t/4)": 1.0029250213521301
+    }
+   }
+  ],
+  "4_controls": {
+   "NC1_slope_table": [
+    [
+     "sigma^2 = C/2  (equilibrium temp)",
+     "1/2",
+     2.0
+    ],
+    [
+     "sigma^2 = C/3  (bare-virial reading)",
+     "1/3",
+     3.0
+    ],
+    [
+     "sigma^2 = C",
+     "1",
+     1.0
+    ],
+    [
+     "sigma^2 = 0.7 C",
+     "7/10",
+     1.4285714285714286
+    ]
+   ],
+   "NC3_spot": {
+    "t": 0.001,
+    "Q_coeff": 0.999999750000125,
+    "RAR_coeff": 1.0001666666638889
+   },
+   "NC4_newtonian": {
+    "powerlaw_fails": true,
+    "exponential_solves": true
+   },
+   "CC1_worst_fixture_residual": 2.220335315207879e-16
+  },
+  "5_footings": {
+   "canonical": {
+    "a0": 9.3619e-11,
+    "C_m2s2": 28418494086.58654,
+    "sigma_km_s": 119.20254629534249,
+    "r_M_kpc": 9.837540143881778,
+    "rho_Lambda_kg_m3": 5.844412454021876e-27,
+    "gamma": 2.0,
+    "sigma2_over_C": 0.5,
+    "g_at_10rM_m_s2": 9.3619e-12,
+    "g_at_100rM_m_s2": 9.3619e-13,
+    "rho_ph_at_10rM_kg_m3": 3.6771500101399836e-24,
+    "rho_ph_at_100rM_kg_m3": 3.6771500101399837e-26,
+    "P_at_10rM_Pa": 5.224953290932739e-14,
+    "P_at_100rM_Pa": 5.224953290932739e-16
+   },
+   "alt": {
+    "a0": 1.1279e-10,
+    "C_m2s2": 31192799958.341885,
+    "sigma_km_s": 124.88554751920233,
+    "r_M_kpc": 8.96258356988877,
+    "rho_Lambda_kg_m3": 8.483089619559099e-27,
+    "gamma": 2.0,
+    "sigma2_over_C": 0.5,
+    "g_at_10rM_m_s2": 1.1279000000000002e-11,
+    "g_at_100rM_m_s2": 1.1279e-12,
+    "rho_ph_at_10rM_kg_m3": 4.86263022872593e-24,
+    "rho_ph_at_100rM_kg_m3": 4.862630228725928e-26,
+    "P_at_10rM_Pa": 7.583952599801709e-14,
+    "P_at_100rM_Pa": 7.583952599801705e-16
+   }
+  },
+  "5_kappa_reading": {
+   "kappa_adopted": 0.5,
+   "alt_fixed_kappa_density_ratio": 1.451487157399611,
+   "kappa_eff_at_fixed_canonical_rho_Lambda": 0.6023884040632778
+  }
+ },
+ "execution_bounds_measured": {
+  "wall_s": 0.7612111568450928,
+  "wall_limit_s": 120,
+  "memory_limit_MB": 512,
+  "threads": 1,
+  "enforced": "RLIMIT_CPU=120 s (OS-enforced; macOS refuses to lower RLIMIT_AS, so the 512 MB bound is enforced by the supervising wrapper as080_supervised.py: RSS polled via ps every 50 ms, SIGKILL on breach, max RSS recorded in as080_bounds.json); OMP/OPENBLAS/MKL/NUMEXPR/VECLIB threads = 1; wall kill at 120 s by the same wrapper"
+ },
+ "n_pass": 23,
+ "n_total": 23
+}

@@ -1,0 +1,153 @@
+{
+ "footings": {
+  "canonical": {
+   "a0": "9.3619e-11",
+   "rho_Lambda": "5.84441245402e-27",
+   "Lambda_eff": "1.09079976328e-52",
+   "H_L": "1.80772595288e-18",
+   "R_dS_m": "1.65839549696e+26",
+   "R_dS_Gpc": "5.37449378027",
+   "Z_H": "5.78881003647",
+   "Omega_Lambda_fw": "0.68493046"
+  },
+  "alternative": {
+   "a0": "1.1279e-10",
+   "rho_Lambda": "8.48308961956e-27",
+   "Lambda_eff": "1.5832818477e-52",
+   "H_L": "2.17790630348e-18",
+   "R_dS_m": "1.37651678367e+26",
+   "R_dS_Gpc": "4.4609870841",
+   "Z_H": "5.78881003647",
+   "Omega_Lambda_fw": "0.99416777"
+  }
+ },
+ "Z_H_half_GE_GN": "5.78881003646614127490411701833",
+ "kappa_forced_by_Z21": "0.137828810392",
+ "C5_cH0_over_a0": "6.99465110072",
+ "C5_diff_from_Z_H": "1.2058411",
+ "C5_kappaZ_H0_minus_sqrt8pi3": "0.60292053",
+ "k03_kappa": "0.460658865962",
+ "symbolic": {
+  "Z_H_symbolic": "2*sqrt(6)*sqrt(pi)*sqrt(G_E)/(3*sqrt(G_N)*k)",
+  "Z_H_target": "2*sqrt(6)*sqrt(pi)*sqrt(G_E)/(3*sqrt(G_N)*k)",
+  "symbolic_diff": "0",
+  "Lambda_eff_from_a0_general": "8*pi*G_E*a0**2/(G_N*c**4*k**2)",
+  "Lambda_eff_at_kappa_half": "32*pi*G_E*a0**2/(G_N*c**4)",
+  "note": "symbolic_diff == 0 => exact identity for all positive variables (G_E, G_N carried separately)."
+ },
+ "checks": {
+  "C1_Z_identity_canonical": {
+   "observed": "5.7888100364661412749",
+   "reference": "5.7888100364661412749",
+   "residual": "1.0691059e-50",
+   "pass": true
+  },
+  "C1_kappaZ_canonical": {
+   "observed": "2.8944050182330706375",
+   "reference": "2.8944050182330706375",
+   "residual": "5.3455294e-51",
+   "pass": true
+  },
+  "C1_Z_identity_alternative": {
+   "observed": "5.7888100364661412749",
+   "reference": "5.7888100364661412749",
+   "residual": "1.0691059e-50",
+   "pass": true
+  },
+  "C1_kappaZ_alternative": {
+   "observed": "2.8944050182330706375",
+   "reference": "2.8944050182330706375",
+   "residual": "5.3455294e-51",
+   "pass": true
+  },
+  "C2_Z_half_sqrt32pi_over_3": {
+   "observed": "5.7888100364661412749",
+   "reference": "5.7888100364661412749",
+   "residual": "0",
+   "pass": true,
+   "note": "exact closed form sqrt(32*pi/3); kappa=1/2 with G_E=G_N"
+  },
+  "C4_redundant_constraint_maxdev": {
+   "observed": "0.0",
+   "reference": "0.0",
+   "residual": "0.0",
+   "pass": true
+  },
+  "C5_negative_control_cH0_ne_Z_H": {
+   "observed_cH0/a0": "6.99465110072",
+   "sqrt(32pi/3)": "5.78881003647",
+   "difference": "1.2058411",
+   "pass": true,
+   "note": "Identity fails when H_L is replaced by H0: Z_H is specific to the framework Lambda-rate."
+  },
+  "C5b_kappa_constraint_fails_for_H0": {
+   "kappa*c*H0/a0 - sqrt(8pi/3)": "0.60292053",
+   "pass": true,
+   "note": "The redundant-constraint curve kappa*Z=sqrt(8pi/3) does NOT contain the H0-based value."
+  },
+  "C5c_k03_kappa_Z_is_2pi": {
+   "observed": "6.2831853071795864769",
+   "reference": "6.2831853071795864769",
+   "residual": "0.0",
+   "pass": true
+  },
+  "C3_RdS_HL_eq_c_canonical": {
+   "observed": "299792458.0",
+   "reference": "299792458.0",
+   "residual": "0.0",
+   "pass": true
+  },
+  "C3_RdS_sqrt3Lam_canonical": {
+   "observed": "1.6583954969644778753e+26",
+   "reference": "1.6583954969644778753e+26",
+   "residual": "0.0",
+   "pass": true
+  },
+  "C3_RdS_HL_eq_c_alternative": {
+   "observed": "299792458.0",
+   "reference": "299792458.0",
+   "residual": "0.0",
+   "pass": true
+  },
+  "C3_RdS_sqrt3Lam_alternative": {
+   "observed": "1.3765167836715795213e+26",
+   "reference": "1.3765167836715795213e+26",
+   "residual": "0.0",
+   "pass": true
+  },
+  "S1_symbolic_Z_H_identity": {
+   "observed": "0",
+   "pass": true,
+   "note": "exact identity, not a numerical coincidence"
+  },
+  "S2_Lambda_eff_from_a0_general": {
+   "observed": "0",
+   "pass": true,
+   "note": "general kappa: Lambda_eff = 8 pi (G_E/G_N) a0^2/(kappa^2 c^4)"
+  },
+  "S3_Lambda_eff_at_kappa_half": {
+   "observed": "0",
+   "pass": true,
+   "note": "kappa=1/2: Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4, matching the framework contract"
+  },
+  "C6_independent_route_residual": {
+   "observed": "5.7888100364661412749",
+   "reference": "5.7888100364661412749",
+   "residual": "1.0691059e-50",
+   "pass": true
+  },
+  "units": {
+   "G": "6.67430e-11 m^3 kg^-1 s^-2 (G_N; G_E ratio carried symbolically)",
+   "c": "299792458 m/s",
+   "H0": "67.4 km/s/Mpc = 2.18428524109e-18 s^-1 (comparison only; NOT used in H_L)",
+   "H_L defined as": "c*sqrt(Lambda_eff/3) with framework rho_Lambda (4 a0^2/(G c^2)), NOT H0, NOT critical-density H_Lambda"
+  }
+ },
+ "bounds": {
+  "wall_s": 0.054,
+  "threads": 1,
+  "mpmath_digits": 50,
+  "memory_peak_kb": 60751872,
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+ }
+}

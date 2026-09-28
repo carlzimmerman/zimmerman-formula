@@ -1,0 +1,182 @@
+{
+ "schema_version": 2,
+ "task_id": "AS039",
+ "task_sha256": "57e18fb2f5b554ba665f3ef204971c91cd6fe30976508c4389dcd4b200cf6220",
+ "run_id": "AS039-r1-20260928T0328Z-dsv4f-hermes",
+ "worker": "sa-0-94583ba2 (Hermes subagent; model deepseek/deepseek-v4-flash-0731 via openrouter)",
+ "started_utc": "2026-09-28T03:28:22Z",
+ "finished_utc": "2026-09-28T03:54:46Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "For each branch in {Q, RAR, MU2, EXP} and for operative MONO on its RAR segment y in (0, y*~2.3374), with F(X)=int_0^X mu(sqrt t) dt, X=|grad Phi|^2/a0^2, mu(g/a0) g = B (spherical): (i) lim_{X->0+} F(lam^2 X)/F(X) = lam^3 for all lam >= 0, i.e. asymptotic homogeneity degree 3/2 in X (degree 3 in |grad Phi|); for the pure deep primitive F0(X)=(2/3) X sqrt(X) the identity F0(lam^2 X)=lam^3 F0(X) holds exactly for all X>=0 (Lean-certified). (ii) F(X) = (2/3) X^(3/2) [1 + c_b X^q + ...] with q=1, c=-3/5 (Q) and q=1/2, c=-3/8 (EXP), -9/16 (MU2), -3/4 (RAR=MONO deep). (iii) mu(0)=F'(0)=0 on all five branches (quadratic energy vanishes), F''(X)=(1/2) X^(-1/2) mu'(sqrt X) ~ (1/2) X^(-1/2) -> inf (Hessian unbounded at zero field; functional C^1 not C^2). (iv) Domain X->0+ (deep g<<a0); numerically verified X in [1e-20,1e-6] with exact series coefficients. (v) Energy content: E_field(R) = (1/3) M_b C ln(R/r_in) + O(M_b C), per e-fold (2/3)*(1/2) M_b v_flat^2 (exact 2/3); phantom-gas energy with conditional inputs sigma^2=C/2, P=sigma^2 rho_ph diverges LINEARLY (E_ph=(1/4) M_b a0 R), so phantom-gas != static field energy at the divergence-class level.",
+ "framework_cell": {
+  "action": "AQUAL-type static scalar energy primitive F(X)=int_0^X mu(sqrt t)dt with L = -(a0^2/8 pi G_N) F(X) + rho Phi; branches per FRAMEWORK_CONTRACT (Q, RAR nu=1/(1-exp(-sqrt y)), MU2 mu2=1-(1+x/2)^(-2), EXP mu=1-e^-x historical, MONO operative filtered with S=exp((xi^2/2)Delta), heat filter only active in field equation; deep statements on RAR segment y<y*)",
+  "kernel": "branchwise (Q algebraic; RAR/MONO exponential; MU2 rational; EXP historical)",
+  "filter": "MONO heat filter S=exp((xi^2/2)Delta) with adjoint S*; not exercised in spherical point-source deep response-function statements (flagged in limitations)",
+  "gate": "no gate action; deep y << 1 exclusively; MONO splice y* ~ 2.3374 excluded by domain",
+  "coupling": "G_N = 6.67430e-11 m^3 kg^-1 s^-2 (G_bare, G_cosmo separate symbols, unused)",
+  "parameters": "a0 = kappa c sqrt(G_N rho_Lambda), kappa = 1/2 ADOPTED input; rho_Lambda = 4 a0^2/(G c^2); r_M = sqrt(G M_b/a0); C = sqrt(G_N M_b a0) = v_flat^2; v_flat^4 = G M_b a0",
+  "scale_footing": "canonical a0=9.3619e-11 m/s^2 and alternative a0=1.1279e-10 m/s^2 carried separately; alt footing keeps kappa=1/2 with its own rho_Lambda (8.4831e-27 vs 5.8444e-27 kg/m^3); kappa_eff at canonical vacuum = 0.6024 reported, not mixed",
+  "boundaries": "spherical point source; energy integrals r in [r_M, R] (X <= 1); deep asymptotics X -> 0+; F(0)=0 normalization",
+  "initial_conditions": "static, time-independent (no dynamics in this task)",
+  "units": "SI (m, s, kg, J); X, mu, F dimensionless; eps [J/m^3]; E [J]"
+ },
+ "new_assumptions": [
+  "kappa = 1/2 adopted framework input (not derived here; independent derivations explicitly out of scope per contract)",
+  "spherical point-source geometry for force and energy integrals",
+  "energy integrals truncated at r = r_M from below (bounded UV/crossover correction, quantified: -8.4% to -1.4% offsets; recorded, not absorbed)",
+  "phantom-gas energy uses the CONTRACT-CONDITIONAL inputs sigma^2 = C/2, P = sigma^2 rho_ph (explicitly labeled conditional; no promotion to an identity)",
+  "MONO deep behavior = RAR behavior by definitional fact (splice at y* leaves deep domain untouched), not by approximation"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS039_deep_homogeneity_of_the_static_energy.md": "57e18fb2f5b554ba665f3ef204971c91cd6fe30976508c4389dcd4b200cf6220",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+  "deepseek_push/astra_spawn_ideas/claims/AS039.json": "8ecefd401a6a42721a949315dd462a65d81230f3eabff4cbe46ea23ebf81fa3a"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/derivation.md": "3e99b630d07fd12c5d6fc79819aaba5f6f757fe429ff08b21e4c329d3dbba2d3",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/compute_as039.py": "e387161e5435e585496e7a65750d768aad3e447e8fd3beb071c545bde007263b",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/raw_output.json": "a18146c74951691b50edad90405f49168c54816044dc53446a610b6a244c1264",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/raw_output.stderr": "20539a127e221bbd6eb7e450a1fe65a9c985c2b40a39f36ffeabf787e593e617",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/AS039_deep_homogeneity_certificates.lean": "8f23f0a011a3f8fb1ac18f8cf43d88aa3fa8ba42849f5c3246821f209999b9dc",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/lean_check.out": "8c1a0117da036b6a9436841db53dc7b3fffd8c7ee7eed7b04025247ba57729cc",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/lean_axioms.out": "caf2c434c187d23988bf88b5db24e0f44deecd4225ea07e9166c15d292b5d3f5",
+  "deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes/AS039_axioms_probe.lean": "654f382b9ba7be795f356e33e8aa21ccca46200373f2defd588342035afdc412"
+ },
+ "commands": [
+  "python3 compute_as039.py > raw_output.json 2> raw_output.stderr   (cwd: deepseek_push/astra_spawn_ideas/results/AS039/AS039-r1-20260928T0328Z-dsv4f-hermes; /usr/bin/time -l wrapper recorded 4.77 s elapsed, 26.7 MB peak RSS)",
+  "lake env lean <abs>/AS039_deep_homogeneity_certificates.lean  (cwd: fable_independent_2026/lean_2026; exit 0; warnings only)",
+  "lake env lean <abs>/AS039_axioms_probe.lean > lean_axioms.out 2>/dev/null  (unfiltered #print axioms: all five theorems depend exactly on [propext, Classical.choice, Quot.sound])"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_time_s": 120,
+   "memory_mb": 512,
+   "threads": 1,
+   "grid": "y=10^k, k=-10..8 step 0.1 (181 pts); log X=10^m, m=-20..8 step 0.2 (141 pts); two refinements (dps 50, quad convergence)"
+  },
+  "enforced": {
+   "wall_time_s_actual": 4.77,
+   "peak_rss_mb_actual": 26.7,
+   "threads_actual": 1,
+   "in_script_deadline": "time.monotonic() < 120 s, abort path exits 3",
+   "grid_actual": "as declared; mpmath dps=50"
+  }
+ },
+ "checks": [
+  {
+   "name": "deep_force_law",
+   "observed": "max |x/sqrt(y)-1| over y<=1e-8: Q 5.0e-9, EXP 2.50e-5, MU2 3.75e-5, RAR 5.00e-5 (predicted O(y)/O(sqrt y) coefficients)",
+   "tolerance": "1e-3",
+   "pass": true
+  },
+  {
+   "name": "newtonian_limit",
+   "observed": "max |x/y-1| over y>=1e4: Q 5.00e-5, MU2 4.0e-8, RAR 3.72e-44, EXP below dps-50 resolution",
+   "tolerance": "1e-3",
+   "pass": true
+  },
+  {
+   "name": "homogeneity_degree_alpha",
+   "observed": "alpha(1e-12) = 1.4999999999994 (Q), 1.4999998125 (EXP), 1.4999997188 (MU2), 1.4999996250 (RAR); -> 3/2",
+   "tolerance": "|alpha-1.5|<1e-6",
+   "pass": true
+  },
+  {
+   "name": "lambda3_scaling_law",
+   "observed": "F(4X)/(8F(X))-1 at X=1e-12: -1.800e-12 (Q), -3.7500e-7 (EXP), -5.6250e-7 (MU2), -7.5000e-7 (RAR); matches predicted c*(sqrt(4X)-sqrt(X)) / c*(3X) forms to 5+ digits",
+   "tolerance": "agreement with analytic coefficient < 1e-5 relative",
+   "pass": true
+  },
+  {
+   "name": "correction_exponent_fit",
+   "observed": "beta = 1.000000 (Q), 0.499995 (EXP), 0.499989 (MU2), 0.499983 (RAR); c = -0.6000, -0.3750, -0.5624, -0.7496 vs predicted -3/5, -3/8, -9/16, -3/4",
+   "tolerance": "beta within 0.001 of prediction",
+   "pass": true
+  },
+  {
+   "name": "second_variation_2sqrtX_Fpp",
+   "observed": "2 sqrt(X) F''(X) at X=1e-12: 0.999999999997 (Q), 0.999999 (EXP), 0.9999985 (MU2), 0.999998 (RAR) -> 1; F'(0+)=mu(0)=0",
+   "tolerance": "1e-3",
+   "pass": true
+  },
+  {
+   "name": "Fprime_vs_mu_residual",
+   "observed": "max relative residual |central-difference F'(X) / mu(sqrt X) - 1| = 3.75e-7 on all branches (scheme-truncation dominated)",
+   "tolerance": "1e-4",
+   "pass": true
+  },
+  {
+   "name": "NC1_F_equals_X_controls",
+   "observed": "F(X)=X => mu=1 => g=B Newtonian: residual x-y == 0.0 exactly on grid; BTFR indicator x^2/y = 1e-10 at y_min (deep law needs 1) — control FAILS as required, proving the 3/2 degree is the discriminating one",
+   "tolerance": "control must fail",
+   "pass": true
+  },
+  {
+   "name": "NC2_limits_controls",
+   "observed": "deep limit g -> sqrt(a0 B) and Newtonian g -> B verified per branch (values above); F(0)=0 exact; F strictly increasing at X=1 (increments 5.1e-7..6.3e-7)",
+   "tolerance": "as above",
+   "pass": true
+  },
+  {
+   "name": "enclosed_energy_vs_deep_law",
+   "observed": "E_Q(R)/((M C/3) ln(R/r_M))-1 = -0.0840, -0.0426, -0.0213, -0.0142 at R=10,100,1e4,1e6 r_M — converges to 0, bounded UV offset",
+   "tolerance": "converging, offset O(1) not O(ln R)",
+   "pass": true
+  },
+  {
+   "name": "virial_2_over_3",
+   "observed": "per-e-fold field energy / ((1/2) M v_flat^2) = 0.666666666667 (exact 2/3, all branches; per-log-decade ratio 1.53505672866 = (2/3) ln 10)",
+   "tolerance": "1e-9",
+   "pass": true
+  },
+  {
+   "name": "phantom_divergence_class",
+   "observed": "E_ph/E_field = 3.26, 16.29, 814.3, 54286.8 at R=10,1e2,1e4,1e6 r_M — linear vs log divergence, ratio -> inf (both footings identical ratios)",
+   "tolerance": "monotone growth ~ (3/4)(R/r_M)/ln(R/r_M)",
+   "pass": true
+  },
+  {
+   "name": "lean_certificates",
+   "observed": "5 theorems, compile exit 0, zero sorry/admit, #print axioms exactly [propext, Classical.choice, Quot.sound] for all 5",
+   "tolerance": "axioms subseteq {propext, Classical.choice, Quot.sound}",
+   "pass": true
+  }
+ ],
+ "tested_domain": "Deep regime: y=B/a0 in [1e-10, 1e-4] for asymptotic statements (grid y=10^k k=-10..8 step 0.1); X in [1e-20, 1e-6] for homogeneity/correction fits; X in [1e-20, 1e8] for slope/F' audits; Newtonian checks y in [1e4, 1e8]. Branches Q, EXP, MU2, RAR computed; MONO identical to RAR on y < y* (definitional). Energy integrals r in [r_M, 10^6 r_M] for M = 1e11 M_sun and M_sun, both footings. Excluded: y > y* MONO continuation, heat-filter configurations, nonspherical sources.",
+ "failed_attempts": [
+  {
+   "artifact": "three crashed prototype iterations (ZeroDivisionError at u=0 / e^{-u} rounding to 1 in RAR quadrature; str/mpf type bug in correction fit); fixed by series guards x(u)=u+u^2/2+u^3/12, x'(u)=1+u+u^2/4 for u<1e-20 and numeric rebuild of delta; recorded in git-less file history, final script clean",
+   "cause": "implementation",
+   "resolution": "fixed; final run exit 0, no failed checks"
+  }
+ ],
+ "limitations": "(1) Point-source spherical statements only; nonspherical and heat-filtered MONO configurations outside this audit (deep response-function statements transfer to MONO only on its RAR segment; filter action unexamined). (2) Energy integrals truncated at r=r_M: bounded branch-dependent UV offset (-8.4%..-1.4%, recorded, not absorbed into the log law). (3) Asymptotic claims: limit statements; numeric support finite on X in [1e-20,1e-6] plus exact analytic series coefficients; grid is evidence, not proof of the limit. (4) No Lean derivative certificate: this lean_2026 build has no Real.hasDerivAt_sqrt; derivative content carried by certified algebra (homogeneity law, energy identity, force law, BTFR, Q-line) plus lane numerics (F' audit 3.75e-7). (5) Phantom-gas energy uses contract-conditional inputs sigma^2=C/2, P=sigma^2 rho_ph; not a derived identity. (6) kappa=1/2 remains adopted input; this task supplies no derivation. (7) Sibling AS038 (AQUAL primitive recovery) had no landed result at execution time; conventions taken from task specs and STANDING rev 7 (F -> (2/3)X^{3/2} deep) instead, independently.",
+ "next_unresolved_implication": "The divergence-class split (field energy log in R, phantom-gas energy linear in R) leaves the finite-domain energy balance of real systems un-derived: the boundary/virial terms of the deep field must be re-derived with the actual branch primitive under the operative filtered-MONO equation (heat-filter measure, finite source profile) before any 'M C ln R' energy budget transfers to galaxy scale; equivalently, no physical mechanism yet maps the deep energy homogeneity degree 3/2 to the phantom thermodynamics (sigma^2 = C/2, P = sigma^2 rho_ph remain conditional inputs).",
+ "suggested_followup": "AS039.C01: finite-domain energy balance for the operative filtered-MONO cell (exp-disc source, heat-filter measure), controls: R_edge -> inf recovers (1/3) M C ln R + bounded remainder; R_edge = halo edge quantifies virial/surface term; discriminates the phantom-gas energy identity. Runner-spawn unavailable in this session -> ready child spec written in result (branching protocol: orchestrator may dispatch).",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": "Framework inputs (adopted, named): a0 = kappa c sqrt(G_N rho_Lambda) with kappa=1/2; G_N=6.67430e-11 SI; c=299792458; rho_Lambda = 4 a0^2/(G c^2) mass density; branch equations Q/RAR/MU2/EXP/MONO per FRAMEWORK_CONTRACT; F(X)=int_0^X mu(sqrt t)dt convention (AS038 spec); spherical point-source geometry. Measured calibrations: none new. Derived here: asymptotic homogeneity degree 3/2 in X (degree 3 in field), branch correction exponents/coefficients (q=1 c=-3/5 Q; q=1/2 c=-3/8,-9/16,-3/4 EXP/MU2/RAR), second-variation divergence class (1/2)X^{-1/2} with vanishing quadratic term, log-vs-linear divergence classes of E_field vs E_ph, exact 2/3 virial coefficient per e-fold. Distinguished: kappa value is input, not derived (task does not supply an independent argument).",
+ "closure_implication": "Supports amended thirteen-item gates: #1 deep-law content (g^2=a0 g_N => v^4 = G a0 M_b) and branch fidelity of the deep RAR segment (MONO inherits); #9 zero-field limit structure (mu(0)=0, degenerate linearization, no quadratic energy at zero field — complements the controlled y->0 requirement); #12 RAR segment preserved by MONO with no hidden kernel substitution in the deep domain. Common-action compatibility: statement is in the static AQUAL-type primitive; operative filtered-MONO transfer is conditional on (a) the heat filter commuting with the deep point-source limit on the declared measure and (b) the same parameter cell (a0, kappa, G_N) — both open. Gates 2-8, 10-11, 13 untouched; kappa=1/2 remains input (gate 13 'preserved or derived': preserved-as-input, stated).",
+ "child_proposals": [
+  {
+   "id": "AS039.C01",
+   "target": "Finite-domain static field energy balance under operative filtered MONO (exp-disc source, heat-filter measure): derive E_field(R_edge) and the boundary/virial term the (1/3) M_b C ln R law omits; control: R_edge -> inf recovers log law with bounded remainder; discriminates whether E_ph (sigma^2=C/2 conditional) can equal E_field at any finite edge.",
+   "deps": "AS039 result + heat-filter measure choice + disc source profile; no catalog equivalent found (verified against manifest, results, claims, FGF queue)",
+   "status": "spec-written, NOT dispatched (no spawn mechanism in this session)"
+  },
+  {
+   "id": "AS039.C02",
+   "target": "First-variation deep perturbation response: quantify O(sqrt(eps)) flux response (peer-review XC2 claim) for each branch as first-variation statement, with Hessian bounds on the Newtonian side X >= X_c; control: linear kernel yields linear response.",
+   "deps": "AS039 second-variation structure",
+   "status": "spec-written, NOT dispatched"
+  }
+ ],
+ "closure_candidate": null
+}

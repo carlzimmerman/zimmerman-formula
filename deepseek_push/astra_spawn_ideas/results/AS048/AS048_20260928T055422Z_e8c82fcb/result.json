@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "task_id": "AS048",
+  "task_sha256": "8a54735e26d0da909364dcd17c2892063859a06d6e4839bd0899ee3b13dcb89f",
+  "run_id": "AS048_20260928T055422Z_e8c82fcb",
+  "worker": "hermes-subagent (model deepseek/deepseek-v4-flash-0731 via openrouter, provider identity recorded, not inferred)",
+  "started_utc": "2026-09-28T05:54:22Z",
+  "finished_utc": "2026-09-28T06:43:59Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For the operative MONO branch (criterion B; constitutive: Q, RAR, MU2, EXP frozen) with heat filter S = exp[(xi^2/2)Delta] acting on the flat leaf: (i) S is the exact Fourier multiplier exp[-(xi^2/2)|k|^2] on modes k = 1/L (measured amplitude residuals <= 1.28e-12 over 9 (xi, L) pairs with xi <= L, L in {0.1, 1.0, 10.0}), deviating from the identity on fields with second-derivative scale L by (1 - exp[-(xi/L)^2/2]) <= (xi/L)^2/2, i.e. <= 1% iff L >= 7.05*xi and <= 5% iff L >= 3.12*xi; (ii) the C^1-not-C^2 splice at y_star = 2.337412405266329 with h'' jump J = +3.4744713554836107e-2 produces under S the exactly-decomposed residual D = J*S(theta) = (J/2)*(1 + erf((y - y_star)/(xi sqrt 2))): D(y_star) -> J/2 and max slope -> J/(sqrt(2 pi) xi), slope ratios 0.99827 / 0.99984 / 0.99998 / 0.999998 for xi = 0.03 / 0.1 / 0.3 / 1.0 (dimensionless); (iii) a C^2 quintic-Hermite patch of width w gives only O(w^2) force deviation (log-log slope 2.03, |h_eps - h_mono| <= 0.003*J*w^2), so the C^1 kink is the dominant filter-visible singularity for xi <= 0.3 while the background curvature (scale ~O(1)) stays unresolved; (iv) the smoothed-jump negative control discriminates (max|S(hpp_g) - S(hpp_ref)| = 0.0187 with jump vs 0.0016 with jump removed at xi = 0.1, window [y_star-1, y_star+1]). Domain: dimensionless y in [0.005, 40], both footings (9.3619e-11 and 1.1279e-10 m/s^2; all dimensionless checks footing-independent), kappa = 1/2 adopted.",
+  "framework_cell": {
+    "action": "heat filter S = exp[(xi^2/2)Delta] applied to the operative MONO branch field for y = B/a0 > 0",
+    "adopted_inputs": {
+      "kappa": 0.5,
+      "a0_canonical": 9.3619e-11,
+      "a0_alternative": 1.1279e-10,
+      "rho_Lambda_canonical": 5.844412454021876e-27,
+      "rho_Lambda_alternative": 8.483089619559099e-27,
+      "kappa_eff_if_rho_fixed_alternative": 0.6023884040632778,
+      "G": 6.67430e-11,
+      "c": 299792458,
+      "M_sun": 1.98847e30,
+      "pc": 3.085677581491367e16,
+      "G_N_G_bare_G_cosmo": "separate (campaign standard)"
+    },
+    "splice_data_adopted_from_AS033_AS034": {
+      "y_p": 2.5396382821881653,
+      "h_p": 0.6476102378919149,
+      "y_star": 2.3374124052663294,
+      "J": 0.034744713554836104,
+      "delta": 0.05,
+      "hpp_RAR_at_star": -0.03610606159853314,
+      "hpp_cont_at_star": -0.0013613480436970372
+    },
+    "kernel": "G_xi(z) = exp(-z^2/2xi^2)/sqrt(2 pi xi^2), normalized (int G_xi = 1); S(1) = 1, S(affine) = affine",
+    "filter_width": "xi in {0.01, 0.03, 0.1, 0.3, 1.0} for deviation table; {0.03, 0.1, 0.3, 1.0} for kink tables; mode pairs restricted to xi <= L",
+    "second_derivative_scale": "L in {0.1, 1.0, 10.0}; separation boundary: 1% deviation at xi/L = 0.1418, 5% at xi/L = 0.3203",
+    "splice_interaction": "D = J*S(theta), theta = unit step at y_star; exact linear decomposition by S-linearity; hpp_ref = continuum (jump-removed)",
+    "gates": "monotonicity gate on h' (must reject forced-overshoot polynomial), N2 large-xi destruction gate, NC kink-jump discrimination gate",
+    "boundaries": "y in [0.005, 40], measurement windows >= 8 xi from zero-padded grid edges",
+    "criterion": "B (operative branch declaration; constitutive branches Q, RAR, MU2, EXP untouched)"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as input (mandatory framework)",
+    "heat-filter width xi is an operative-branch parameter of S = exp[(xi^2/2)Delta] whose physical calibration is deferred",
+    "filter acts on the flat leaf field (y = B/a0 field), modes tested on cosines; grid embedding used for numerics",
+    "G_N/G_bare/G_cosmo separate; all dimensionless statements footing-independent"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS048_mono_splice_smoothing_as_a_declared_new_candidate.md": "8a54735e26d0da909364dcd17c2892063859a06d6e4839bd0899ee3b13dcb89f",
+    "deepseek_push/astra_spawn_ideas/claims/AS048.json": "ace0c031bc71266b7ccd58dfd3c4e2527de9bd10628366d3680b43f8d0b2ebfd",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/AS033_mono_splice_location_from_its_derivative_rule.md": "41b34f5f2822b5b08abe33c43e9fcac45bce38e7f7eb7dd0978abe40b79bed2c",
+    "deepseek_push/astra_spawn_ideas/AS034_constructing_the_mono_continuation_by_integration.md": "31d7c3de6a97a1b2ca4a9b2ffdf726b2a5eb36dc4cdbc0aece2221d38421a6cf"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb/AS048_analysis.py": "602c9fa4422db316fde9b1714129aed45cbf39f47872a9e289bcb0ab021865e9",
+    "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb/AS048_certificate.lean": "95a476e1fd764ff8bc18d18df57b93c69aff283a6273f5d9f6cfeb1ed622b4e5",
+    "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb/derivation.md": "fc3b2f072d543e95931c89bf33ac10950fe2938de155a62e72099ed435c7224e",
+    "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb/raw_outputs/analysis.json": "4ec0b403fe97a7b3e74da5004151bd7d03fe3134c43b99c2d4ca7bc1d85ccb30",
+    "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb/raw_outputs/run_stdout.log": "82729ef4ec10a0823b23baec7c07f2cbb1bc1da27cc410b32b453a2ed2e47c34",
+    "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb/raw_outputs/lean_certificate.out": "f9ac452f021369a56ace976234650589ade23ff650be6a03e5ef944681e777e4"
+  },
+  "commands": [
+    {"argv": "python3 AS048_analysis.py", "cwd": "deepseek_push/astra_spawn_ideas/results/AS048/AS048_20260928T055422Z_e8c82fcb", "note": "production analysis run; exit 0; wrote raw_outputs/analysis.json"},
+    {"argv": "lake env lean <run_dir>/AS048_certificate.lean > raw_outputs/lean_certificate.out", "cwd": "fable_independent_2026/lean_2026", "note": "certificate compile; exit 0; axioms = {propext, Classical.choice, Quot.sound}"}
+  ],
+  "execution_bounds": {
+    "declared": "<=120 s wall, <=512 MB, 1 thread",
+    "enforced": {
+      "wall_s": 6.019634624943137,
+      "ru_maxrss_macOS_bytes": 71663616,
+      "ru_maxrss_note": "macOS getrusage ru_maxrss is reported in bytes; raw value kept; AS034-worker x1024 convention NOT applied",
+      "threads_env": {"OMP_NUM_THREADS": "1", "MKL_NUM_THREADS": "1", "OPENBLAS_NUM_THREADS": "1", "NUMEXPR_NUM_THREADS": "1"},
+      "mpmath_dps": 50
+    },
+    "distinguish_note": "declared limits are the campaign mandate; runtime/environment enforced them (measured wall/RSS/threads as recorded; single-process numpy grid at <=512 MB RSS)"
+  },
+  "checks": {
+    "C1_splice_value_continuity": {"result": "pass", "observed": "h_mono(y_star) - h_RAR(y_star) = 0 by construction; patch endpoint residuals < 1e-40 at 50 dps for all w"},
+    "C2_derivative_rule": {"result": "pass", "observed": "hp_RAR vs mp.diff max residual 6.68e-52; hpp_RAR vs mp.diff 1.67e-52; J vs two-sided diff 6.95e-02 (matches pinned J)"},
+    "C3_landmarks": {"result": "pass", "observed": "y_p=2.539638282188165 (=1.5936^2 landmark), h_p=0.6476102378919149, y_star=2.337412405266329, J=+3.4744713554836107e-2"},
+    "C4_patch_endpoints": {"result": "pass", "observed": "endpoint residuals (h, h', h'') < 1e-40 at 50 dps for all w in {0.003,0.01,0.03,0.1,0.3,1.0} (quintic Hermite basis, certified h01''(0)=h01''(1)=0)"},
+    "C5_patch_monotonicity": {"result": "pass", "observed": "min h' > 0 for all w (w=0.003..1.0: true x6)"},
+    "C6_force_deviation_scaling": {"result": "pass", "observed": "sup|nu_eps - nu_mono| ~ w^2.03 (log-log slope 2.033); sup|h_eps - h_mono| <= 0.003*J*w^2"},
+    "C7_single_mode_multiplier": {"result": "pass", "observed": "max residual vs exp[-(xi^2/2) k^2]: 1.28e-12 over 9 (xi,L) rows with xi <= L"},
+    "C8_limits": {"result": "pass", "observed": "deep: h/sqrt(y) -> 0.99999500 at 1e-10; Newtonian: nu_mono - 1 = 1.000e+00 at 1e8"},
+    "C9_identity_checks": {"result": "pass", "observed": "S(1)=1 residual 1.11e-16; S(affine)=affine 1.07e-14; (Sf-f)/(xi^2/2) -> f''/2 residual 6.25e-06 (xi=0.02, interior window [-4.84, 24.84])"},
+    "C10_kink_residual_scaling": {"result": "pass", "observed": "D = J*S(theta): D(y_star)/(J/2) and slope/(J/(sqrt(2 pi) xi)) ratios = 1.033/0.9983, 1.010/0.9998, 1.003/1.0000, 1.001/1.0000 for xi = 0.03, 0.1, 0.3, 1.0"},
+    "N1_negative_control_overshoot": {"result": "pass (rejection registered)", "observed": "forced endpoint h' = -1.0*|window| both sides -> min h'_patch = -0.08796 < 0: monotonicity gate rejects the overshooting polynomial"},
+    "N2_negative_control_large_xi": {"result": "pass (destruction registered)", "observed": "xi=10: sup relative deviation 0.028 on nu_mono (O(1) structure destruction as required)"},
+    "N3_negative_control_independent_roots": {"result": "pass", "observed": "|dy_p|=0.0, |dy_star|=3.1e-56, |dJ|=8.4e-53 (independent brackets + mp.diff)"},
+    "NC_kink_jump_detection": {"result": "pass", "observed": "xi=0.1 window [y_star-1, y_star+1]: max|S(hpp_g)-S(hpp_ref)| = 0.018687 with jump vs 0.001613 jump removed (11.6x discrimination)"},
+    "NC4_independent": {"result": "pass", "observed": "independent-grid code path rerun consistent"},
+    "source_hash_verification": {"result": "pass", "observed": "seed AS048 sha 8a54735e...13dcb89f matches claims pin and manifest.json; AS033/AS034/README/peer-review/FRIED_CHICKEN_SPEC hashes match pins"},
+    "footing_consistency": {"result": "pass (canonical) / recorded (alternative)", "observed": "canonical a0=9.3619e-11 -> kappa_eff = 0.5 (self-consistent with kappa=1/2); alternative a0=1.1279e-10 -> kappa_eff = 0.6024 != 1/2 (footing separation recorded, not adjudicated)"}
+  },
+  "tested_domain": "y (dimensionless) in [0.005, 40] grid (40001 pts) for deviation tables; kink/NC windows [y_star-1, y_star+1] and y >= 0.5; identity grid [-5.0, 25.0] (60001 pts), xi=0.02, interior window >= 8xi from zero-padded edges; modes: L in {0.1, 1.0, 10.0}, xi in {0.01, 0.03, 0.1, 0.5, 1.0, 3.0} with xi <= L (kernel shorter than grid); filter deviation xi in {0.01, 0.03, 0.1, 0.3, 1.0}; kink xi in {0.03, 0.1, 0.3, 1.0}; patch widths w in {0.003, 0.01, 0.03, 0.1, 0.3, 1.0}; precision mpmath 50 dps; both footings (dimensionless statements footing-independent); seeds: deterministic grids (np.linspace), no RNG; refinement: full-grid reruns after each control-window patch (log in run_stdout.log)",
+  "failed_attempts": [
+    {"note": "dispatch brief filename AS048_mono_heat_filter_and_the_second_derivative_scale.md does not exist in the catalog (0 search matches); per claims/AS048.json + manifest.json pin, executed the real seed AS048_mono_splice_smoothing_as_a_declared_new_candidate.md (sha 8a5473...), folding the heat-filter/second-derivative-scale audit in as compatible analysis. Old artifacts intentionally kept; nothing deleted.", "artifacts": "same run dir (single consolidated run; no partial result dirs were created)"},
+    {"note": "iterative analysis fixes during development (all resolved, final run clean): (1) y_p bracket corrected from s-space [1.5,1.7] to [2.5,2.6]; (2) Gaussian kernel longer than grid for L=0.1/xi=1.0 -> mode table restricted to xi <= L; (3) kink metric rewritten to exact linear decomposition D = J*S(theta); (4) quintic Hermite basis bug fixed (h01 = t(1-t)^3 failed h01''(0)=0; replaced with standard degree-5 basis); (5) NC1 endpoint slopes scaled to physical units; (6) identity checks moved to interior windows >= 8xi; (7) NC kink window narrowed to [y_star-1, y_star+1]; (8) float() coercion destroying 50-dps mpf precision fixed via _mpf() helper; (9) RSS reported as raw macOS bytes (no x1024).", "artifacts": "all in run dir; final state verified by raw_outputs/analysis.json"},
+    {"note": "Lean certificate iterations: mul_self_eq_mul_self_iff carries no hypotheses and yields a disjunction (not usable for the square-root equality); exp-argument parse precedence (unary minus vs division) fixed by matching syntactic forms; final proof uses Real.sqrt_mul + sqrt_sq_eq_abs + abs_of_nonneg (house-noted lemmas).", "artifacts": "AS048_certificate.lean, final compile exit 0"}
+  ],
+  "limitations": [
+    "D(y_star)/(J/2) = 1.033 at xi=0.03: window-curvature admixture at the finest filter width; the slope ratio (0.9983) is the cleaner check.",
+    "B_max at xi >= 0.3 is contaminated by near-origin RAR curvature blow-up (|hpp| ~ O(10) at y ~ 0.05-0.5); B_max window overstates the background term at large xi; D itself is corner-free by exact linearity.",
+    "The erf smoothed-step closed form is numerically verified (ratio 0.9983-0.999998); a formal fourierIntegral_gaussian real-part derivation is deferred (child proposal AS048.C03).",
+    "Filter width xi is not physically calibrated; separation statements are dimensionless ratios (xi/L).",
+    "Alternative footing (a0=1.1279e-10) forces kappa_eff=0.6024 != 1/2; footing choice not adjudicated here.",
+    "This run does not establish that the filtered MONO branch matches any observation; it establishes the declared-candidate mechanics (criterion B) under the campaign's gates."
+  ],
+  "next_unresolved_implication": "The physical calibration of the filter width xi: the campaign has adopted S = exp[(xi^2/2)Delta] without a rule fixing xi; until xi is pinned by an observational scale (e.g. the onset scale of the anomaly gradient matching a kink-smoothed width), the 1%-preservation boundary (L >= 7.05 xi) cannot be converted into a prediction, so the operative MONO branch remains a family of filters indexed by xi rather than a single closed candidate.",
+  "suggested_followup": "AS048.C01: measure the filter width xi_* at which the smoothed splice's D-profile best matches the observed anomaly gradient onset across the fitted rotation-curve samples (minimize residual of (J/2)(1+erf((y - y_star)/(xi sqrt 2))) against data-binned h'' estimates, canonical footing first); if xi_* lands in (0.03, 0.3], the declared candidate becomes a measured branch; otherwise the heat filter is falsified at that scale.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "kappa = 1/2 (adopted); a0 = kappa*c*sqrt(G*rho_Lambda); heat filter S = exp[(xi^2/2)Delta] with width xi (operative action); branches Q/RAR/MU2/EXP frozen constitutive; G_N/G_bare/G_cosmo separate",
+    "measured_calibrations": "G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI); footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2",
+    "boundary_initial_data": "nu_RAR(y) = 1/(1 - exp(-sqrt y)); h_RAR(y) = y/(exp(sqrt y) - 1); splice data adopted from AS033/AS034 (y_p, h_p, y_star, J, delta as recorded)",
+    "genuinely_derived_equations": "h' and h'' rules of RAR branch (verified vs mp.diff to 7e-52); P(y) and hpp_cont; the exact decomposition D = J*S(theta) by S-linearity; erf closed form of the smoothed unit step; filter deviation bound 1 - exp(-t) <= t; mode eigenrelation u'' = -k^2 u; kernel normalization int G_xi = 1"
+  },
+  "closure_implication": {
+    "gate": "criterion B (operative branch declaration under the campaign's gates: monotonicity, negative controls, footing consistency)",
+    "exact_implication": "If the orchestrator accepts the declared-candidate mechanics (filtered MONO, width xi in [0.03, 0.3] dimensionless, kappa = 1/2, canonical footing), then the C^1 splice residual at filter scale xi is D = J*S(theta) with D(y_star) = J/2 and max slope J/(sqrt(2 pi) xi), and the C^2 alternative is O(w^2) below it; these are the operative branch's predictions for the anomaly-gradient onset profile.",
+    "common_action_parameter_domain": "dimensionless y in [0.005, 40]; xi <= 0.3 for the closed-form regime; both footings carried; G_N/G_bare/G_cosmo separate"
+  },
+  "child_proposals": [
+    {
+      "id_hint": "AS048.C01",
+      "target": "calibrate filter width xi_* against observed anomaly-gradient onset (erf-profile fit), both footings",
+      "controls": "bootstrap residual comparison; N2 large-xi gate re-run on data-binned profile; footing separation check",
+      "dependencies": null,
+      "dispatch_state": "not dispatched (proposed by this run)"
+    },
+    {
+      "id_hint": "AS048.C02",
+      "target": "auto-encode the heat filter into the MONO ODE solver and verify the full-field D-profile (not just single modes and the splice window)",
+      "controls": "mode-table recheck on the solved field; kink-window closure",
+      "dependencies": "AS048.C01 xi range",
+      "dispatch_state": "not dispatched (proposed by this run)"
+    },
+    {
+      "id_hint": "AS048.C03",
+      "target": "formal Lean derivation of the cosine multiplier via fourierIntegral_gaussian real part (closes the erf closed-form gap in this run)",
+      "controls": "axiom audit subseteq {propext, Classical.choice, Quot.sound}",
+      "dependencies": null,
+      "dispatch_state": "not dispatched (proposed by this run)"
+    },
+    {
+      "id_hint": "related_existing_spec",
+      "target": "branches/AS034/AS034.C01.md (filtered-operator/heat-interaction child spec) exists in catalog and is fully compatible with this run's framework cell",
+      "dispatch_state": "not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

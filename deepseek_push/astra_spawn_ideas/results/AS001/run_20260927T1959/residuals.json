@@ -1,0 +1,172 @@
+{
+  "alternative": {
+    "a0_reconstructed_energy_form": 1.1279e-10,
+    "a0_reconstructed_mass_form": 1.1279e-10,
+    "eps_J_m3": 7.624220727267278e-10,
+    "rel_resid_energy_vs_registered": 0.0,
+    "rel_resid_mass_minus_energy": 8.028796062440565e-62,
+    "rel_resid_mass_vs_registered": 8.028796062440565e-62,
+    "rho_kg_m3": 8.483089619559098e-27
+  },
+  "boundary_rho0": {
+    "a0_energy(0)": 0.0,
+    "a0_mass(0)": 0.0
+  },
+  "bounds": {
+    "cpu_budget_s": 120,
+    "enforced_cpu_s": "ulimit -t 120 (caller)",
+    "memory_actual": "trivial scalar arithmetic (<10 MB)",
+    "memory_budget_MB": 512,
+    "mpmath_dps": 60,
+    "threads": 1,
+    "wall_s": 0.0006
+  },
+  "canonical": {
+    "a0_reconstructed_energy_form": 9.3619e-11,
+    "a0_reconstructed_mass_form": 9.3619e-11,
+    "eps_J_m3": 5.252695959726113e-10,
+    "rel_resid_energy_vs_registered": 0.0,
+    "rel_resid_mass_minus_energy": 9.6729072932062e-62,
+    "rel_resid_mass_vs_registered": 9.6729072932062e-62,
+    "rho_kg_m3": 5.844412454021875e-27
+  },
+  "checks": {
+    "dimensional": {
+      "passes": true,
+      "results": [
+        {
+          "checker_accepts": true,
+          "expected_accept": true,
+          "exponent_vector_MLT": [
+            0,
+            1,
+            -2
+          ],
+          "passes": true,
+          "test": "1a  CORRECT  a0 = kappa*c*sqrt(G*rho)        [mass density]"
+        },
+        {
+          "checker_accepts": true,
+          "expected_accept": true,
+          "exponent_vector_MLT": [
+            0,
+            1,
+            -2
+          ],
+          "passes": true,
+          "test": "1b  CORRECT  a0 = kappa*sqrt(G*eps)          [energy density]"
+        },
+        {
+          "checker_accepts": false,
+          "expected_accept": false,
+          "exponent_vector_MLT": [
+            0,
+            2,
+            -3
+          ],
+          "passes": true,
+          "test": "2a  WRONG    a0 = kappa*c*sqrt(G*eps)  (c retained, eps substituted)"
+        },
+        {
+          "checker_accepts": false,
+          "expected_accept": false,
+          "exponent_vector_MLT": [
+            0,
+            0,
+            -1
+          ],
+          "passes": true,
+          "test": "2b  WRONG    a0 = kappa*sqrt(G*rho)    (c dropped, rho used)"
+        },
+        {
+          "checker_accepts": false,
+          "expected_accept": false,
+          "exponent_vector_MLT": [
+            0,
+            2,
+            -3
+          ],
+          "passes": true,
+          "test": "2c  WRONG    a0 = kappa*c^2*sqrt(G*rho)      (extra c)"
+        },
+        {
+          "checker_accepts": false,
+          "expected_accept": false,
+          "exponent_vector_MLT": [
+            0,
+            3,
+            -4
+          ],
+          "passes": true,
+          "test": "2d  WRONG    a0 = kappa*sqrt(G*eps)*c^2      (c back in energy form)"
+        },
+        {
+          "checker_accepts": false,
+          "expected_accept": false,
+          "exponent_vector_MLT": [
+            0,
+            2,
+            -3
+          ],
+          "passes": true,
+          "test": "2e  NEG.CONTROL  eps substituted AND mislabelled with kg/m^3 dims: c*sqrt(G*eps_as_rho) (same coefficient kept, no renormalization)"
+        },
+        {
+          "checker_accepts": true,
+          "expected_accept": true,
+          "exponent_vector_MLT": [
+            0,
+            1,
+            -2
+          ],
+          "passes": true,
+          "test": "2e'  (non-vacuity) c*sqrt(G*rho) with rho at its own kg/m^3 dims IS an acceleration -> checker accepts it"
+        }
+      ]
+    },
+    "identity_alternative": 8.028796062440565e-62,
+    "identity_canonical": 9.6729072932062e-62,
+    "identity_grid_worst": 1.496605814544968e-61,
+    "rM_invariant_worst": 8.07390394506936e-62,
+    "vflat_invariant_worst": 1.1929126665285644e-61
+  },
+  "context_crosscheck": {
+    "Omega_L * rho_crit (kg/m^3)": 5.845005787161433e-27,
+    "rel_diff": 0.00010152143508438315,
+    "rho_Lambda (kg/m^3)": 5.844412454021875e-27,
+    "status": "context only; not used in the audited claim"
+  },
+  "footings": {
+    "a0_alt_over_a0_can": 1.2047768081265555,
+    "density_ratio_rho_total_over_rho_Lambda": 1.451487157399611,
+    "kappa_eff_if_rho_held_fixed": 0.6023884040632778,
+    "kappa_eff_over_adopted_kappa": 1.2047768081265555,
+    "note": "kappa=1/2 adopted for BOTH footings; the two footings then carry DIFFERENT densities (ratio 1.4515). Alternatively the density may be held at rho_Lambda and then kappa_eff=0.6024. A single fixed (kappa,rho) pair cannot produce both a0s.",
+    "rel_diff_ratio_squared_vs_density_ratio": 2.143668735247333e-61
+  },
+  "identity_grid": {
+    "rho_grid_decades": "1e-33 .. 1e-12 kg/m^3",
+    "worst_at_log10_rho": -23,
+    "worst_rel_resid": 1.496605814544968e-61
+  },
+  "predictions": {
+    "alternative": {
+      "r_M_energy_form_m": 1084743571587644.0,
+      "r_M_mass_form_m": 1084743571587644.0,
+      "rel_resid_rM": 8.07390394506936e-62,
+      "rel_resid_vflat": 0.0,
+      "v_flat_4th_power_check_m4_s4": 2.6727647100921956e-51,
+      "v_flat_energy_form_m_s": 349.78311485743615,
+      "v_flat_mass_form_m_s": 349.78311485743615
+    },
+    "canonical": {
+      "r_M_energy_form_m": 1190639769001739.0,
+      "r_M_mass_form_m": 1190639769001739.0,
+      "rel_resid_rM": 0.0,
+      "rel_resid_vflat": 1.1929126665285644e-61,
+      "v_flat_4th_power_check_m4_s4": -1.3363823550460978e-51,
+      "v_flat_energy_form_m_s": 333.86599787066336,
+      "v_flat_mass_form_m_s": 333.86599787066336
+    }
+  }
+}

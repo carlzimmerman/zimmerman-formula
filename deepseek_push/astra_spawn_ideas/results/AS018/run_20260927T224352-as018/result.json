@@ -1,0 +1,215 @@
+{
+  "schema_version": 2,
+  "task_id": "AS018",
+  "task_sha256": "4ce68e954be29f7c62eab91023099a734a01df35280677874637d3b8e9d2397d",
+  "run_id": "run_20260927T224352-as018",
+  "worker": "deepseek/deepseek-v4-flash-0731 via openrouter (Hermes Agent bounded subagent; macOS 26.5.2; Python 3.13.9, sympy 1.13.1, mpmath 1.3.0, numpy 1.26.4, Lean 4 lake env lean)",
+  "started_utc": "2026-09-27T22:43:52Z",
+  "finished_utc": "2026-09-27T23:53:45Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Framework cell: kappa=1/2 adopted, a0=kappa*c*sqrt(G*rho_Lambda), C=sqrt(G*M_b*a0) (v_flat^4=G*M_b*a0=C^2), r_M=sqrt(G*M_b/a0); deep potential Phi(r)=C*ln(r/r_ref) on r in (0,infty), r_ref>0. (C1) d/dr[C*ln(r/r_ref)] = C/r identically. (C2) Every gradient observable g=|grad Phi|=C/r is invariant under the two-parameter gauge Phi->Phi+K (any K) and r_ref->r_ref' (constant relocation C*ln(r_ref/r_ref')). (C3) Fixed-well energy at fixed rho_b (fixed M_b): E[Phi+K]=E[Phi]+K*M_b, so the energy requires an explicit boundary convention (reference radius or box zero) while forces do not. (C4) Deep limiting force g=(C/r)[1+z/2+y/12-y^2/720+y^3/30240+O(y^5)], z=sqrt(y)=r_M/r, y=B/a0, all odd z-powers vanish, leading neglected term y^3/30240 (domain 1e-8<=y<=1e-1, remainder/y^3=3.3068783e-5 vs 1/30240, log-log slope 3.0000). (C5) Negative control: any alleged vacuum density extracted from the potential-zero is a gauge artifact (estimator exactly linear in K, slope 1.848e-20 kg/m^3 per unit gauge; contrived K=3.1619e-7/4.5894e-7/1.5809e-7 (m^2/s^2) reproduce rho_Lambda(can)/rho_Lambda(alt)/rho_Lambda/2) - inference REJECTED; framework rho_Lambda=4a0^2/(Gc^2) is K-invariant in both footings (5.844412454e-27 and 8.483089620e-27 kg/m^3). C1-C4 are footing-independent (only C, r_M enter) and hold for both a0=9.3619e-11 and a0=1.1279e-10 m/s^2; numeric invariances verified on grid r in [0.01,2000] r_M, N=65536, to float-rounding bounds (huge-K gradient difference 3.81e-6 <= predicted 4*eps*K0/dx_min=1.77e-5). MONO interpolation cross-check (branch MONO, criterion B only): y_p=2.53963828, h_p=0.647610, y*=2.33741241, C0 join 6.6e-17, C1 join 1.6e-62, max|log10(nu_mono/nu_RAR)|=0.01037 dex <= 0.0104 (pointwise bound only; does not transfer derivative/stability/regularity results). S-operator foundations (metric flat Euclidean; uniform counting measure on 64-site periodic S^1 and Dirichlet chains; lapse-weighted measure N=1+0.3 sin theta): S periodic symmetric 8.9e-17 and S*1=1 at 2.9e-15; Dirichlet S*1=1+0.326 (constant NOT preserved, no zero mode, min|eigenvalue|=2.34e-3); lapse-weighted adjoint S*_N=N^{-1}S^T N != S (norm ratio 0.01398, adjoint identity residual 8.5e-16) - S and S* are boundary/measure dependent and must be varied with the action.",
+  "framework_cell": {
+    "action_or_source_hashes": {
+      "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+      "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+      "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889",
+      "deepseek_push/astra_spawn_ideas/AS018_reference_potential_and_gauge_independent_force.md": "4ce68e954be29f7c62eab91023099a734a01df35280677874637d3b8e9d2397d",
+      "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63"
+    },
+    "kernel": "deep radial potential Phi=C*ln(r/r_ref); interpolants Q, RAR, MU2, EXP, MONO kept distinct; this task uses MONO only as labelled interpolation reference (criterion B)",
+    "filter": "S=exp[(xi^2/2)*Delta]; metric flat Euclidean; uniform counting measure on periodic S^1 (64-site, wrap) and Dirichlet chains; lapse-weighted measure N=1+0.3*sin(theta) for adjoint checks; xi=1.0 on the chain",
+    "gate": "Delta Phi = 4*pi*G*rho_b + S* div[(nu_mono(|grad S u|/a0)-1) grad S u] (stated as operative target of the campaign; filtered gauge orbit NOT solved here - open implication, see next_unresolved_implication)",
+    "coupling": "single Newton constant G=6.67430e-11 used; G_N, G_bare, G_cosmo kept as separate symbols (no identification made); baryonic source rho_b fixed (no back-reaction in this task)",
+    "parameters": "kappa=1/2 (adopted input, not derived); delta=0.05; a0 canonical=9.3619e-11 m/s^2 and alternative=1.1279e-10 m/s^2 (separate footings, never mixed); rho_Lambda=4*a0^2/(G*c^2); M_b=M_sun=1.98847e30 kg in footing table, M_b=1 in grid check",
+    "scale_footing": "canonical: rho_Lambda=5.844412454e-27 kg/m^3, C=1.1146650453e5 m^2/s^2, r_M=1.1906397690e15 m, v_flat=333.866 m/s; alternative: rho_Lambda=8.483089620e-27 kg/m^3, C=1.2234822744e5 m^2/s^2, r_M=1.0847435716e15 m, v_flat=349.783 m/s; v_flat^4-G*M*a0 and r_M^2-G*M/a0 exact to machine precision (residual -1.34e-51 / 0.0)",
+    "boundaries": "potential zero at r_ref (pure convention, gauge); energy requires box/reference convention (log well diverges for non-decaying mass); S: periodic wrap (constant is zero mode) vs zero-Dirichlet (no constant mode) chains; grid [0.01, 2000]*r_M log-spaced N=65536",
+    "initial_conditions": "none (static radial problem; no time evolution)",
+    "units": "SI: G 6.67430e-11 m^3 kg^-1 s^-2, c 299792458 m/s, M_sun 1.98847e30 kg, pc 3.085677581491367e16 m, k_B 1.380649e-23 J/K; Phi, C, E in m^2/s^2, J; g in m/s^2; rho in kg/m^3"
+  },
+  "new_assumptions": [
+    "kappa=1/2 adopted as framework input (per contract; its freedom is NOT removed by this task)",
+    "deep potential functional form Phi=C*ln(r/r_ref) as given by the task's principal test",
+    "baryonic density rho_b fixed under the gauge (no source back-reaction; dynamic/self-coupled sources are an open dependency)",
+    "positive-domain variables r>0, r_ref>0 in the analytical/Lean statements"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS018_reference_potential_and_gauge_independent_force.md": "4ce68e954be29f7c62eab91023099a734a01df35280677874637d3b8e9d2397d",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/derivation.md": "9b19e1e2944e80ec18668cb7f2efa27b3125024660a6a03009859c743c2e8c5e",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/compute_AS018_gauge_audit.py": "dcf8880da13f0b51d5667432cc4360935e95f165b3f7f817acd3a40db33c9a9d",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/raw_output.txt": "06466033ebc8cdd2de40f1250242c9f259de066da4e9f7e928722afe455e9395",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/residuals.json": "40e1bbfeb5574ae5999c4328daf102ee62cb2a25ba412acf6428615ad2e81202",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/AS018_reference_potential_certificates.lean": "52dbab2421f6ef99974b385c9b02634570a870274deb9c80bcab490755e98717",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/probe.lean": "ad266ed049bea4d44a7d737f33acc661d9f1733c4460c2aa889583c9c8c4d74c",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/rss_probe.py": "210dd02734c26dea9047bfb4bd2f44c1fa25de9a596e62d61dd41a8cd68e64bd",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/rerun_output.txt": "0854d4b6b1ed5199e5deec084645a4db17641ba2b8392eb2d57252e61663eb47",
+    "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/rerun_err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "commands": [
+    "cwd=deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018; argv=['python3','compute_AS018_gauge_audit.py'] (bounds enforced inside process: RLIMIT_CPU=(120,120) set and enforced; RLIMIT_AS=(512MB) attempted, NOT enforceable on macOS - recorded verbatim: 'RLIMIT_AS not enforceable here: current limit exceeds maximum limit'; env OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=NUMEXPR_NUM_THREADS=VECLIB_MAXIMUM_THREADS=1; wall 0.362 s; peak RSS 96.516 MB, ru_maxrss 101203968 bytes (macOS bytes; units probed with 80MB rss_probe.py); mpmath dps=60; largest array 65536 floats, BLAS only 64x64 eigensolves)",
+    "cwd=fable_independent_2026/lean_2026; argv=['lake','env','lean','/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/AS018_reference_potential_certificates.lean'] - exit 0, zero sorry, axioms exactly {propext, Classical.choice, Quot.sound} for all 7 theorems (unfiltered #print axioms)",
+    "cwd=repository root; argv=['sha256sum', ...] source-hash verification against SOURCE_MANIFEST.json pins - all matched",
+    "cwd=repository root; argv=['date','-u','+%Y-%m-%dT%H:%M:%SZ'] for started/finished timestamps"
+  ],
+  "execution_bounds": {
+    "declared": "CPU<=120s, memory<=512MB, 1 thread, mpmath 60-digit identity checks, float64 grid check, no BLAS above 64x64",
+    "enforced": "RLIMIT_CPU=(120,120) - enforced (guard at process start); RLIMIT_AS=512MB - ATTEMPTED but NOT enforceable on macOS (Apple max-limit restriction), recorded verbatim in residuals.json meta.rlimit_as_note; single thread via 5 env vars + single-threaded CPython; measured wall=0.362s, peak RSS=96.516MB (macOS ru_maxrss bytes, empirically probed); grid largest array 65536 float64 (512KB)",
+    "note": "memory bound enforced by construction+measurement (no large arrays, no BLAS >64x64), not by RLIMIT_AS; the 96.5MB measured peak is the evidence for the memory envelope"
+  },
+  "checks": {
+    "A_symbolic_sympy_exact": {
+      "d_dr_Phi_minus_C_over_r": "True",
+      "r_ref_shift_is_constant": "True",
+      "gauge_shift_derivative_invariant": "True",
+      "gauge_shift_force_still_C_over_r": "True",
+      "f_series_odd_coefs_vanish(z3,z5,z7)": "True",
+      "coef_z4=-1/720": "True",
+      "coef_z6=+1/30240": "True",
+      "coef_z2=+1/12": "True",
+      "tolerance": "exact algebra (sympy simplify == 0)"
+    },
+    "C_mpmath_60dps_identity_residuals": {
+      "d_dr_C_ln_r_over_rref_vs_C_over_r_max_rel": "1.402e-52",
+      "gauge_shift_Phi_plus_K_force_unchanged_max_rel": "1.402e-52",
+      "rereference_constant_shift_max_rel": "2.927e-60",
+      "box": "r in {1e11,1e14,r_M,1e16,1e17} m x r_ref in {1,r_M/2,1e17} m, K=12345.678",
+      "tolerance": "<=1e-45 (actual ~1e-52) - PASS"
+    },
+    "D_deep_series": {
+      "leading_neglected_term": "y^3/30240 (odd z-powers vanish)",
+      "remainder_over_y3_at_1e-8": "3.306878e-5 vs predicted 1/30240=3.306878e-5",
+      "loglog_slope": "3.0000 (expect 3.0)",
+      "domain": "y in [1e-8,1e-1]",
+      "tolerance": "slope within 1e-3 of 3 and remainder/y^3 within 1e-6 relative - PASS"
+    },
+    "E_MONO_construction": {
+      "y_p": "2.53963828 (landmark 2.5396, err 3.8e-5)",
+      "h_p": "0.647610",
+      "y_star": "2.33741241 (landmark 2.3374, err 1.2e-5)",
+      "C0_join": "6.639e-17",
+      "C1_join": "1.641e-62",
+      "max_dex_vs_RAR": "0.010369 <= 0.0104 spec bound, at y=14.1254",
+      "tolerance": "landmark errors <=5e-4; dex <=0.0104 - PASS"
+    },
+    "F_grid_float64_independent_representation": {
+      "grad_of_Phi_vs_g_max_rel": "1.621e-7 (finite-diff/quadrature scale)",
+      "gauge_grad_diff_smallK(K0=1e-9)_max_abs_m_s2": "2.168e-19",
+      "gauge_grad_diff_hugeK(K0=3.14159e4)_max_abs_m_s2": "3.815e-6",
+      "hugeK_rounding_bound_pred": "1.774e-5 (=4*eps*K0/dx_min)",
+      "hugeK_diff_within_rounding_bound": "True (tolerance 1.6*bound) - PASS",
+      "E0_J": "6.942e-10",
+      "EK_J": "3.1416e4",
+      "energy_shift_identity_rel_err": "1.158e-16 (E[K]-E[0]=K*M_b)",
+      "mass_quad_vs_exact": "3.392e-6 (=0.5*erfc(4.5) Gaussian tail beyond 2000 r_M box, stated as truncation)",
+      "Mph_identity_max_rel": "1.433e-14",
+      "deep_in_band": "True (gr/C=1.000250021 vs 1+z/2=1.000250000, band 1.1% of lead)",
+      "v2_minus_C_relative": "2.5002e-4 vs predicted 2.5000e-4",
+      "newt_formula_matches_direct": "True at 1e-12, newt_dev_lt_1e-3: True",
+      "domain": "r in [0.01,2000] r_M, N=65536, shell source r_s=0.1 r_M, M_b=1"
+    },
+    "G_S_operator_boundary_and_measure": {
+      "S_periodic_symmetric": "8.939e-17",
+      "S_periodic_ones_eigen_max_abs": "2.887e-15 (S*1=1)",
+      "periodic_spectrum_min_lambda": "-4.0 (Nyquist mode, exact chain)",
+      "periodic_zero_mode_dist": "1.151e-16",
+      "S_Dirichlet_constant_not_preserved": "0.3263 (constant NOT preserved - control capable of failing, FAILS for Dirichlet as required)",
+      "Dirichlet_zero_mode_dist": "2.336e-3 > 0",
+      "lapse_adjoint_identity_residual": "8.543e-16",
+      "S_star_N_ne_S": "True (norm ratio 0.01398; self-adjointness is measure-dependent)",
+      "tolerance": "adjoint identity <=1e-12 - PASS; boundary dependence qualitative - PASS"
+    },
+    "H_negative_control_potential_zero_as_vacuum_density_REJECTED": {
+      "density_estimator_slope_drho_dK_kg_m3_per_unit": "1.848e-20",
+      "density_estimator_range_kg_m3": "3.697e-16 over K in [-1e4,1e4]",
+      "contrived_K_matches_rhoL_can": "3.1619e-7 (m^2/s^2)",
+      "contrived_K_matches_rhoL_alt": "4.5894e-7",
+      "contrived_K_matches_rhoL_half": "1.5809e-7",
+      "distinct_K_needed_for_distinct_densities": "True",
+      "gauge_observables_inert_max_abs": "2.168e-19 m/s^2",
+      "rho_Lambda_K_invariant": "5.844412454e-27 / 8.483089620e-27 kg/m^3 (both footings, K-independent)",
+      "verdict": "REJECTED: any density explainable by some K; estimator exactly linear in K with no anchor - control CAPABLE of failing and correctly fails the inference"
+    },
+    "B_footings_self_consistency": {
+      "v_flat4_minus_G_M_a0": "-1.336e-51 (rounding)",
+      "r_M2_minus_G_M_over_a0": "0.0",
+      "both_footings": "PASS"
+    },
+    "R_reproducibility_rerun": {
+      "rerun_exit": "0",
+      "raw_output_byte_identical": "True (deterministic physics outputs)",
+      "residuals_json_differs_only_in": "meta.bounds.wall_s (0.3624 vs 0.3947 s) and maxrss_MB (96.516 vs 96.25) - run bookkeeping only",
+      "rerun_output_path": "deepseek_push/astra_spawn_ideas/results/AS018/run_20260927T224352-as018/rerun_output.txt"
+    }
+  },
+  "tested_domain": "Analytical/Lean: r in (0,infty), r_ref>0, any K (C1-C4). mpmath 60-digit box: r in {1e11,1e14,r_M,1e16,1e17} m, r_ref in {1, r_M/2, 1e17} m. Float64 grid: r in [0.01,2000] r_M log-spaced N=65536, shell source r_s=0.1 r_M width 0.02 r_M, gauge K in {1e-9, 3.14159e4}; deep series y in [1e-8,1e-1]; MONO near y* and y_p and grid y in [1e-6,1e5]; S chains: 64 sites periodic (S^1 wrap) and zero-Dirichlet, lapse N=1+0.3 sin(theta), random u,v seed 7. No observational fitting; M_b=M_sun in footing tables, M_b=1 in grid; no seeds beyond seed 7 (single random draw for adjoint identity).",
+  "failed_attempts": [
+    "compute_AS018_gauge_audit.py v1 (superseded in place, same path now final): (i) q_minus_pred_max_abs tuple-unpacking bug; (ii) mpmath/float type mixing in max-abs normalization; (iii) scalar math.erf on numpy arrays (fixed with np.vectorize); (iv) np.trapezoid absent in numpy 1.26.4 (replaced by np.trapz); (v) conceptual: y_p root-finder converged to the h_RAR inflection instead of the peak (re-anchored to peak, 2.53963828); (vi) conceptual: deep-series check initially expected odd-power slope 2.5; the exact Bernoulli series has even powers only (slope 3.0, leading y^3/30240) - expectation corrected to the actual math and documented; (vii) mis-specified Dirichlet eigencheck and grid-gauge checks (re-specified as zero-mode distance and rounding-bound tests)",
+    "Lean certificate compile iterations (probe.lean preserved): HasDerivAt.comp method-arg order (point x is the first explicit argument); instance alignment of HasDerivAt.add/const_mul results with goal instances (annotated 'have' + exact resolves; simpa/convert alone hit irreducible-instance mismatches Real.instAddCommGroup/Semiring.toModule vs RCLike.toInnerProductSpaceReal.toModule); set-integral lemmas (setIntegral_congr_ae needs MeasurableSet; integral_add/integral_const_mul applied via exact with restricted-measure form, congr 1 for the energy-sum step); rw-based attempts failed on set-integral notation patterns"
+  ],
+  "limitations": "1) Numerical checks are finite float64/sympys/mpmath evidence, not universal theorems; only the exact algebraic layer (C1-C4, truncated inverse) is Lean-certified. 2) The filtered-MONO gauge problem (u->u+K, r_ref shifts under S with S varied together with the action) is NOT solved; only the S/S* boundary-and-measure foundations are exhibited. 3) kappa=1/2 remains adopted, not derived. 4) G_N=G_bare=G_cosmo are not asserted equal; only one G enters. 5) Fixed rho_b (no back-reaction); dynamic/self-coupled sources out of scope. 6) MONO-vs-RAR pointwise dex bound is not a derivative/stability/regularity transfer. 7) Energy statement needs decaying-mass or explicit box normalization.",
+  "next_unresolved_implication": "Filtered gauge orbit in the operative MONO system: prove (or bound the failure of) invariance of the filtered gradient observables grad(S u) and S* div[(nu_mono(|grad S u|/a0)-1) grad S u] under u -> u + K and r_ref relocation, on the operative domain with the operative lapse measure, varying S itself when the action is varied (section G shows S is boundary/measure sensitive: constants preserved on periodic, not on Dirichlet; S*_N != S in lapse-weighted measure). Until proved, the unfiltered gauge results (C1-C4) do not transfer to the filtered gate equation.",
+  "suggested_followup": "Child AS018.C01: 'filtered gauge orbit under S' - construct the action/energy functional of the filtered MONO system with S treated as an operator-valued field dependent on the metric/lapse; compute the gauge variation d/dK and d/d(r_ref) of the filtered observables on periodic vs zero-Dirichlet domains with lapse-weighted measure; target equation: grad(S(u+K)) identically equals grad(S u) (or explicit non-zero remainder), plus the corresponding S* gate-term statement. Controls: numeric adjoint identity on a 128-site chain and symbolic derivative of the S-varied action; dependency: this run's result.json/derivation.md hashes.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_framework_inputs": [
+      "kappa=1/2 adopted",
+      "a0=kappa*c*sqrt(G*rho_Lambda)",
+      "rho_Lambda=4*a0^2/(G*c^2)",
+      "r_M=sqrt(G*M_b/a0)",
+      "C=sqrt(G*M_b*a0), v_flat^4=C^2",
+      "deep potential form Phi=C*ln(r/r_ref) (task principal test)",
+      "MONO definition: h_RAR(y)=y/(1-exp(-sqrt y))-y, h'_mono=max(h'_RAR, delta*h_p/(y+y_p)), delta=0.05, splice at crossing y*, log continuation, nu_mono=1+h_mono/y",
+      "S=exp[(xi^2/2) Delta] with stated metric/measure/domain/boundaries"
+    ],
+    "measured_calibrations": [
+      "G=6.67430e-11 m^3 kg^-1 s^-2",
+      "c=299792458 m/s",
+      "M_sun=1.98847e30 kg",
+      "pc=3.085677581491367e16 m",
+      "k_B=1.380649e-23 J/K",
+      "a0 footings 9.3619e-11 and 1.1279e-10 m/s^2 as separate labels"
+    ],
+    "boundary_conditions": [
+      "r>0, r_ref>0",
+      "potential zero at r_ref is gauge convention",
+      "energy: box/reference convention required (no absolute level)",
+      "S: periodic wrap (constant zero mode) vs zero-Dirichlet (no constant mode); lapse N=1+0.3 sin(theta) for weighted measure"
+    ],
+    "derived_equations": [
+      "C1: d/dr[C ln(r/r_ref)] = C/r (Lean-certified)",
+      "C2: gauge invariance of g (Lean-certified)",
+      "C3: reference shift = constant C ln(r_ref1/r_ref2) (Lean-certified)",
+      "C4: E[K]=E[0]+K*M_b (Lean-certified Bochner statement)",
+      "deep series f(z)=z/(1-e^-z), odd z-powers vanish, leading remainder y^3/30240 (sympy exact + Lean truncated inverse)",
+      "MONO landmarks y_p=2.53963828, h_p=0.647610, y*=2.33741241 (reproduced, not imported)"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "Filtered MONO gate equation: Delta Phi = 4*pi*G*rho_b + S* div[(nu_mono(|grad S u|/a0)-1) grad S u] (causality criterion B, filtered nu_mono)",
+    "exact_implication": "This result proves the unfiltered gauge sector (reference potential is pure gauge; forces gauge-invariant; well-energy reference requires a boundary convention; potential-zero-as-density inference rejected) and supplies the S/S* boundary-and-measure foundations required to pose the filtered gauge problem. It does NOT close the gate: the filtered gauge orbit under S is undetermined and is the next implication.",
+    "common_action_parameter_domain_compatibility": "Both a0 footings covered (dimensionless statements footing-independent; constants supplied per footing). Shared cells with any same-action closure candidate must additionally pin: xi (smoothing scale), the lapse N, the domain (periodic vs Dirichlet) and boundary data - section G shows these change S and S*, so a closure candidate must specify them; varying S with the action is required and is part of the open implication."
+  },
+  "child_proposals": [
+    {
+      "id": "AS018.C01",
+      "new_target": "Filtered gauge orbit: show grad(S(u+K)) = grad(S u) for all K (or quantify the non-zero remainder) and the corresponding invariance of S* div[(nu_mono(|grad S u|/a0)-1) grad S u] under u->u+K and r_ref relocation, with S varied as operator-valued field depending on metric/lapse; state the energy reference convention of the filtered system",
+      "parent": "AS018 / run_20260927T224352-as018",
+      "dependency_hashes": "task_sha256 4ce68e95..., input hashes as in input_sha256, artifacts of this run (computed)",
+      "controls": "numeric adjoint identity (128-site chain, periodic and Dirichlet, lapse-weighted), symbolic derivative of the S-varied action wrt K, negative control: verify the Dirichlet-domain remainder is non-zero and its size vs xi, domain y in [1e-6,1e5], both footings",
+      "dispatch_state": "not dispatched (proposal only, written per branching protocol)"
+    }
+  ],
+  "closure_candidate": null
+}

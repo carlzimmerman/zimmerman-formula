@@ -1,0 +1,204 @@
+{
+ "tolerance_rel": "1.0e-30",
+ "results": {
+  "rho_Lambda_canonical_kg_m3": "5.8444124540218753636700334336e-27",
+  "rho_Lambda_alternative_kg_m3": "8.48308961955909742997038270907e-27",
+  "footing_density_ratio": "1.451487157399611143279499",
+  "footing_a0_ratio_sq": "1.451487157399611143279499",
+  "kappa_eff_fixed_rhoLambda_canonical": "0.602388404063277753447484",
+  "C3_symbolic_identity": "0",
+  "lambda_diagnostics": {
+   "lambda_0.5": {
+    "canonical": {
+     "s_m_s2": "1.3239725949580678537e-10",
+     "kappa": "0.7071067811865475244",
+     "resid_s": "1.81114e-71",
+     "resid_kappa": "7.77877e-62"
+    },
+    "alternative": {
+     "s_m_s2": "1.5950914770006139055e-10",
+     "kappa": "0.7071067811865475244",
+     "resid_s": "0.0",
+     "resid_kappa": "7.77877e-62"
+    },
+    "Y_at_g_a0can": "0.707106781186548",
+    "mu1": "0.4142135624",
+    "mu2": "0.6568542495",
+    "mu3": "0.7989898732"
+   },
+   "lambda_1.0": {
+    "canonical": {
+     "s_m_s2": "1.87238e-10",
+     "kappa": "0.5",
+     "resid_s": "1.81114e-71",
+     "resid_kappa": "7.77877e-62"
+    },
+    "alternative": {
+     "s_m_s2": "2.2558e-10",
+     "kappa": "0.5",
+     "resid_s": "1.81114e-71",
+     "resid_kappa": "7.77877e-62"
+    },
+    "Y_at_g_a0can": "0.5",
+    "mu1": "0.3333333333",
+    "mu2": "0.5555555556",
+    "mu3": "0.7037037037"
+   },
+   "lambda_2.0": {
+    "canonical": {
+     "s_m_s2": "2.6479451899161357075e-10",
+     "kappa": "0.3535533905932737622",
+     "resid_s": "3.62227e-71",
+     "resid_kappa": "3.88938e-62"
+    },
+    "alternative": {
+     "s_m_s2": "3.1901829540012278111e-10",
+     "kappa": "0.3535533905932737622",
+     "resid_s": "0.0",
+     "resid_kappa": "3.88938e-62"
+    },
+    "Y_at_g_a0can": "0.353553390593274",
+    "mu1": "0.261203875",
+    "mu2": "0.4541802856",
+    "mu3": "0.5967505101"
+   }
+  },
+  "C7_dirac_matrix_rank": 4,
+  "C7_dirac_nullspace": [
+   "Matrix([[G*c**2/(8*a0), 1, 0, 0, 0]])"
+  ],
+  "NC1_multiplier_stress_vs_vacuum": {
+   "lambda_0.5": {
+    "Teta_00": "-2.62634797986306e-10",
+    "Tvac_00": "-2.62634797986306e-10",
+    "ratio_abs": "1.0"
+   },
+   "lambda_1.0": {
+    "Teta_00": "0.0",
+    "Tvac_00": "-5.25269595972611e-10",
+    "ratio_abs": "0.0"
+   },
+   "lambda_2.0": {
+    "Teta_00": "5.25269595972611e-10",
+    "Tvac_00": "-1.05053919194522e-9",
+    "ratio_abs": "0.5"
+   }
+  },
+  "NC1_worst_abs_ratio": "1.0",
+  "NC2_sign_flip": {
+   "F(1-1e-12)": "3.50581e-32",
+   "F(1+1e-12)": "-3.50581e-32",
+   "flips": true
+  },
+  "NC2_vacuity_witness_caseII": {
+   "lambda_0.5": {
+    "alpha": "6.61986297479034e-11",
+    "rho_L": "2.92220622701094e-27",
+    "F": "2.10844e-81",
+    "eta": "0.0"
+   },
+   "lambda_1.0": {
+    "alpha": "9.3619e-11",
+    "rho_L": "5.84441245402188e-27",
+    "F": "0.0",
+    "eta": "0.0"
+   },
+   "lambda_2.0": {
+    "alpha": "1.32397259495807e-10",
+    "rho_L": "1.16888249080438e-26",
+    "F": "8.43376e-81",
+    "eta": "0.0"
+   }
+  },
+  "NC2_limits": {
+   "lambda->0+": "s -> 0 (a0 -> 0), kappa -> inf; family degenerates consistently",
+   "lambda->inf": "s -> inf (rho_L -> inf), kappa -> 0; family degenerates consistently"
+  }
+ },
+ "checks": [
+  {
+   "key": "C1_F_residual_canonical_footing",
+   "pass": true,
+   "observed": "0.0",
+   "tolerance": "1.0e-30",
+   "note": "4 a0^2 - G c^2 rho_Lambda(canonical) = 0, kappa=1/2 held"
+  },
+  {
+   "key": "C2_F_residual_alternative_footing",
+   "pass": true,
+   "observed": "4.21687917729220928973942962050800760308398455294740302003111e-81",
+   "tolerance": "1.0e-30",
+   "note": "4 a0^2 - G c^2 rho_Lambda(alternative) = 0, kappa=1/2 held"
+  },
+  {
+   "key": "C3_F_equals_4a0sq_one_minus_lambda",
+   "pass": true,
+   "observed": "0",
+   "tolerance": "1.0e-30",
+   "note": "sympy expand of F(rho_L=lambda*4a0^2/(Gc^2)) - 4a0^2(1-lambda) == 0 (exact)"
+  },
+  {
+   "key": "C4_scale_identity_s_grid",
+   "pass": true,
+   "observed": "3.62227163153068494700364771635511671227301247925565527583305e-71",
+   "tolerance": "1.0e-30",
+   "note": "c sqrt(G rho_L) = 2 a0 sqrt(lambda), lambda in {1/2,1,2} x both footings"
+  },
+  {
+   "key": "C5_kappa_1_over_2sqrtlambda",
+   "pass": true,
+   "observed": "7.7787690973264271339300800672251553007378152109014589163764e-62",
+   "tolerance": "1.0e-30",
+   "note": "a0/(c sqrt(G rho_L)) = 1/(2 sqrt(lambda)) on the grid + footings"
+  },
+  {
+   "key": "C6_direct_differentiation_dFdlambda",
+   "pass": true,
+   "observed": "8.51979154524745196262905205807658162808684886714249425121719e-74",
+   "tolerance": "1.0e-30",
+   "note": "central difference step 1e-8 at lambda=1 vs -4 a0^2 (exact)"
+  },
+  {
+   "key": "C7_dirac_rank_4",
+   "pass": true,
+   "observed": "4",
+   "tolerance": "1.0e-30",
+   "note": "constraints {pi_a0, pi_rho, pi_eta, F, eta}: 4 second-class + 1 first-class"
+  },
+  {
+   "key": "C7_dirac_nullvector_family_gauge",
+   "pass": true,
+   "observed": "Matrix([[G*c**2/(8*a0), 1, 0, 0, 0]])",
+   "tolerance": "1.0e-30",
+   "note": "null direction = (G c^2/(8 a0), 1, 0, 0, 0): family/gauge direction chi"
+  },
+  {
+   "key": "C8_MU2_cell_mapping_lambda1",
+   "pass": true,
+   "observed": "0.0",
+   "tolerance": "1.0e-30",
+   "note": "mu2(g/(2a0)) = 1-(1+g/(2a0))^(-2) == MU2 cell 1-(1+x/2)^(-2), x=g/a0"
+  },
+  {
+   "key": "NC1_stress_omission_is_O1_offshell",
+   "pass": true,
+   "observed": "1.0",
+   "tolerance": "lower bound 0.25",
+   "note": "control CAPABLE OF FAILING and fails as designed: |T^eta|/|T^vac| = 1.0 at lambda=1/2, 0.5 at lambda=2; ignoring T^eta while enforcing F=0 with eta!=0 misstates the vacuum stress by O(1)"
+  },
+  {
+   "key": "NC2_sign_flip_across_lambda1",
+   "pass": true,
+   "observed": "3.50580686440000000000000000000000000000000000000008198869581e-32",
+   "tolerance": "1.0e-30",
+   "note": "F changes sign at the adopted point (constraint sensitivity)"
+  },
+  {
+   "key": "NC2_vacuity_witness_all_EOMs",
+   "pass": true,
+   "observed": "8.43375835458441857947885924101601520616796910589480604006221e-81",
+   "tolerance": "1.0e-30",
+   "note": "(alpha, rho_L, eta)=(a0*sqrt(lambda), lambda rho_Lambda, 0) satisfies F=0 to rel resid 8.434e-81 (< tolerance) and eta=0 exactly, for lambda=1/2,1,2: the constraint does not select the family member (exact in R; ~1e-75 in mpmath)"
+  }
+ ]
+}

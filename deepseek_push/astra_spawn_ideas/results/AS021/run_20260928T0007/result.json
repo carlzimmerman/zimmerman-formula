@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "task_id": "AS021",
+  "task_sha256": "38b39e65189b586e3b2fc8a1b3f3015caf957ba041d441c60c2f945e3777ba51",
+  "run_id": "run_20260928T0007",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-run worker seed",
+  "started_utc": "2026-09-28T00:07:50Z",
+  "finished_utc": "2026-09-28T00:38:03Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Let a0 = kappa*c*sqrt(G*rho_Lambda) be the adopted framework identity with declared signs kappa = 1/2 > 0, c = 299792458 > 0, G = 6.67430e-11 > 0 (G_N leg) and a0 real >= 0 by convention. (1) DOMAIN: the identity has a real solution iff rho_Lambda >= 0; a0 > 0 iff rho_Lambda > 0 and a0 = 0 iff rho_Lambda = 0; at rho_Lambda < 0 no real a0 exists (squared identity kappa^2 c^2 G rho_Lambda < 0 contradicts a0^2 >= 0; the complex continuation a0 = i*kappa*c*sqrt(G|rho_Lambda|) is an unphysical branch excluded by the positive-real convention), and the absolute-value repair a0 = kappa*c*sqrt(G|rho_Lambda|) is a DIFFERENT law (fails the squared identity by exactly +2*kappa^2*c^2*G*|rho_Lambda| = 1.7529034322e-20 at the canonical magnitude; Z2-symmetric rho -> -rho with residual 0.0 at 50 digits; d(a0_rep^2)/drho jumps +-1.499640e6 at 0) and must not be labelled the original theory. (2) NEWTONIAN SURVIVAL: at fixed B = g_N > 0, as a0 -> 0+ every branch Q, RAR, MU2, EXP, MONO gives g -> B (actual residuals recorded, e.g. Q g-B = [4.99e-3..5.00e-7] over a0 in [1e-2,1e-6]); r_M = sqrt(G M_b/a0) -> inf, v_flat^4 = G M_b a0 -> 0, C -> 0: the deep-MOND observables vanish with the vacuum scale and Newtonian gravity survives. Leading a0-corrections are branch-specific: Q: +a0/2 with neglected -a0^2/(8B) (domain 0 < a0 < B; 2nd order +a0^3/16 verified to 1e-2); RAR: +B e^{-sqrt(B/a0)} EXACT closed form (residual 8.3e-53); MU2: +4a0^2/B with neglected -16a0^3/B^2 (verified to 1e-2); EXP: +B e^{-B/a0} (ratio 0.99959 at a0=1e-1, 1.00000002 at 1e-2); MONO: +a0*[h_RAR(y*)+delta*h_p*ln((B/a0+y_p)/(y*+y_p))] EXACT on the continuation y>=y_star (ratio 1.0 to 1e-40; y_p = 2.5396382822, y_star = 2.3374124053 reproduce the framework's rounded landmarks to 1e-3). (3) DEEP LIMIT: at fixed a0, B -> 0: g -> sqrt(a0*B) in all five branches with first coefficients {1/2 in y for Q; 1/2, 3/8, 1/4, 1/2 in sqrt(y) for RAR, MU2, EXP, MONO} all reproduced to 1e-3; |g/sqrt(a0B)-1| <= 1.6e-5 at B/a0 = 1e-9. (4) FOOTINGS (separate, non-sharing rule): canonical a0 = 9.3619e-11 <-> rho_Lambda = 5.844412454021875e-27 kg/m^3, eps = 5.252695959726114e-10 J/m^3, Lambda = 1.090799763280735e-52 m^-2 (kappa = 1/2); alternative a0 = 1.1279e-10 <-> rho = 8.483089619559097e-27 kg/m^3 (kappa = 1/2), or kappa_eff = a0_alt/(2*a0_can) = 0.6023884040632778 at the canonical fixed density (density ratio (a0_alt/a0_can)^2 = 1.451487157399611); matches accepted AS001 values to 3.7e-12/5.2e-11/6.7e-9 relative. The domain/limit theorems are footing-independent (they use only kappa>0, c>0, G>0, a0>=0; both footings satisfy these). Lean-certified: density forcing 0<a0 & kappa,c,G>0 => 0<rho_Lambda; a0=0 <-> rho_Lambda=0; 4a0^2 = G c^2 rho_Lambda at kappa=1/2; Q sandwich B < sqrt(B^2+a0B) < B + a0/2. Domain of the claim: rho_Lambda in [0, inf), a0 in [0, inf), B > 0, kappa,c,G > 0; no dynamics, no action variation, no branch import; operative filtered-MONO/criterion-B target untouched (scale leg only).",
+  "framework_cell": {
+    "action": "none used; CORE scale-identity audit of the framework base a0 = kappa*c*sqrt(G*rho_Lambda) (README key equations; FRAMEWORK_CONTRACT 'Mandatory scale and units'; FRIED_CHICKEN_SPEC amendment consulted only for the operative-target wording: filtered nu_mono + criterion B; DERIVATIONS.md used as scope comparison only)",
+    "branch": "CORE scale identities (A01 group); Q, RAR, MU2, EXP AQUAL and MONO handled as labelled branches for the a0->0 and B->0 limiting-law audit only; no branch translation performed or claimed; the MONO machinery used is the framework-contract rule (delta = 0.05, h'_mono = max(h'_RAR, delta h_p/(y+y_p)), continuation h_mono = h_RAR(y_star) + delta h_p ln((y+y_p)/(y_star+y_p)))",
+    "kernel": "MONO continuation formula used for the operative-branch limit check (landmarks y_p = 2.5396382822, h_p = 0.6476102379, y_star = 2.3374124053 computed and matched to the contract's rounded values); Q/RAR/MU2/EXP kernels used only for their own branch limits",
+    "filter": "not applicable (no heat filter application; delta = 0.05 carried as the contract's parameter value)",
+    "gate": "CORE scale cell A01: sign/domain of the adopted vacuum scale; this audit certifies the domain and limiting-law legs of the adopted input; the operative gates (Requirement 1 filtered MONO, Requirement 7 criterion B, and the remaining amended requirements) stay OPEN (no dynamics here)",
+    "coupling": "not applicable (no matter coupling varied); G_N = 6.67430e-11 used as the scale-leg coupling; G_bare and G_cosmo kept as separate unassigned symbols",
+    "parameters": "kappa = 1/2 ADOPTED (input, not derived), G = 6.67430e-11 m^3 kg^-1 s^-2 (measured input), c = 299792458 m/s (exact), M_sun = 1.98847e30 kg (dimensional examples only), delta = 0.05 (MONO contract parameter), mp.dps = 50",
+    "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 AND alternative a0 = 1.1279e-10 m/s^2 carried SEPARATELY in every dimensional example: rho ratio 1.451487157399611 at fixed kappa = 1/2, or kappa_eff = 0.6023884040632778 at fixed canonical density; the two footings cannot share a fixed (kappa, rho) pair; domain/limit theorems apply to both identically",
+    "boundaries": "rho_Lambda in [0, inf) for the identity (physics domain rho_Lambda > 0); a0 in [0, inf); B = g_N > 0 for limit witnesses; the a0->0 expansions of Q/MU2/EXP have explicit domains (Q: 0 < a0 < B; MU2/EXP: 0 < a0 << B) stated in derivation.md; all SI",
+    "initial_conditions": "none (static algebraic/limiting audit; no dynamics, no initial data)",
+    "units": "SI (M, L, T exponent vectors recorded and machine-checked in Section F: a0 = (0,1,-2), rho = (1,-3,0), eps = (1,-1,-2), Lambda = (0,-2,0), v_flat^4 = (0,4,-4), r_M = (0,1,0))"
+  },
+  "new_assumptions": [],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS021_sign_and_domain_of_the_vacuum_scale.md": "38b39e65189b586e3b2fc8a1b3f3015caf957ba041d441c60c2f945e3777ba51",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "campaign_fresh_gravity_astra/DERIVATIONS.md": "8da8176e3daeaeeaf9e42edb1585f271c92a50c0d9fdd842aa10caee462fb889"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/derivation.md": "16a780a21e815bdf1103d924d6de483dff661fe83435587ad086f298a5684e4b",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/compute_AS021_sign_domain_audit.py": "87e25e0adeca7a4327bc35f9adb9eac5ac9a7c0a034ce211acc76f9ff38ed03a",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/raw_output.txt": "e40e206b4dd662037b3be7133298ba6fb0a1e75c99158c885e782a53e0004400",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/residuals.json": "35e7dfbf823c3cedbad22921fb0e8420dcd3d1c8daad8ed95420b65729134025",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/err.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/AS021_sign_domain_certificates.lean": "1da7dc72106aa9af6629ec7ee61be5ce34e75cf61bd63645683f617b2f8cb236",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/lean_axioms_check.lean": "ac8ccb9ec6accc765127cc25eba4bb7f426e2a92075c72ca04cf2d9f9d874789",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/lean_check.out": "fd08f51e9918c92bd9433d638f5bb0efb8c87ba984d95b9913e7c2e60e3f96a7",
+    "deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/failed_attempts_notes.md": "ae0bbec78a8c26aa9ce3c33a8e0442ccb288406b8c1d33065f6776c0b7b48d54"
+  },
+  "commands": [
+    {
+      "argv": ["shasum", "-a", "256", "README.md", "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md", "campaign_fresh_gravity_astra/DERIVATIONS.md", "deepseek_push/astra_spawn_ideas/AS021_sign_and_domain_of_the_vacuum_scale.md"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+      "purpose": "task/source hash reconciliation; all three pinned sources match SOURCE_MANIFEST.json exactly"
+    },
+    {
+      "argv": ["shasum", "-a", "256", "FRAMEWORK_CONTRACT.md", "RESULT_CONTRACT.json", "SOURCE_MANIFEST.json", "FIRST_PRINCIPLES_AND_BRANCHING.md", "STANDING.md"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula",
+      "purpose": "input hashes for the contract set"
+    },
+    {
+      "argv": ["bash", "-c", "ulimit -t 120 && time python3 compute_AS021_sign_domain_audit.py > raw_output.txt 2> err.txt"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007",
+      "purpose": "bounded sign/domain audit + footing numerics + 5-branch limiting checks + negative controls; final run exit 0, wall 0.051 s, peak RSS 18.5 MB (in-process 512 MB guard armed), threads 1, dps 50",
+      "exit_code": 0
+    },
+    {
+      "argv": ["python3", "-c", "json.load(open('residuals.json')) ... total checks / failed"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007",
+      "purpose": "post-run check aggregation: 48 checks, 0 failed, on the final run"
+    },
+    {
+      "argv": ["lake", "env", "lean", "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/AS021_sign_domain_certificates.lean"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "purpose": "Lean 4 certificate compile; exit 0",
+      "exit_code": 0
+    },
+    {
+      "argv": ["lake", "env", "lean", "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS021/run_20260928T0007/lean_axioms_check.lean"],
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "purpose": "unfiltered #print axioms of all 5 theorems captured in lean_check.out: [propext, Classical.choice, Quot.sound] each; exit 0",
+      "exit_code": 0
+    }
+  ],
+  "execution_bounds": {
+    "declared_prototype_bounds": {"wall_s": 120, "memory_MB": 512, "threads": 1, "precision_digits": 50},
+    "enforced": {
+      "cpu": "RLIMIT_CPU (120,120) set inside the process AND `ulimit -t 120` at the shell; both verified working on this host (probed before the run)",
+      "wall_s_measured": 0.051,
+      "threads": "1 (single-threaded CPython; no threading/multiprocessing imports)",
+      "memory": "OS-level RLIMIT_AS/RLIMIT_DATA lowering is REFUSED by this macOS/Anaconda Python build (ValueError 'current limit exceeds maximum limit'; probed and recorded in the script header), so an in-process RSS guard aborts the run if ru_maxrss > 512 MB after any section; peak RSS measured 18.5 MB, nowhere near the budget",
+      "precision": "mpmath mp.dps = 50 throughout; bisection to width 1e-45; findroot maxsteps = 50",
+      "run_count": "final accepted run + 4 instrumented debug runs (F1-F4 in failed_attempts_notes.md) in the same unique dir; all bounded identically"
+    },
+    "lean_compile": "single lake env lean invocations; no wall cap set; Mathlib v4.34.0-rc2 cached; each completed in ~4-5 s"
+  },
+  "checks": {
+    "tolerance": "all numerical checks with thresholds were set BEFORE evaluation (embedded in the script, section by section); exact-identity residuals at 50 digits distinguish exact identities from finite consistency checks; near-floor values reported as recorded (e.g. RAR g-B = 0.0 at 50-digit floor for a0 <= 1e-5)",
+    "source_integrity": {"observed": "README 91a5fac4.../FRIED_CHICKEN 98d9149f.../DERIVATIONS 8da8176e.../STANDING 660462eb... all match SOURCE_MANIFEST.json exactly; task file 38b39e65...", "pass": true},
+    "NEGCONTROL_negative_density_feed": {"observed": "a0_real(-rhoL) = None (no real solution); squared identity = -8.764517e-21 < 0; complex continuation i*9.3619e-11 recorded and excluded", "pass": true, "capable_of_failing": "would pass if a real a0 existed at rho < 0; it does not — the identity does not extend"},
+    "NEGCONTROL_abs_repair_is_not_original": {"observed": "(a0_rep)^2 - kappa^2 c^2 G rho = +1.7529034322e-20 != 0; Z2 symmetry residual 0.0; d(a0_rep^2)/drho jumps +-1.499640e6 at 0", "pass": true, "capable_of_failing": "repair would be indistinguishable from the identity if the squared identity held at rho < 0; it does not"},
+    "boundary_rho0_scale0": {"observed": "a0(0) = 0.0 exact", "pass": true},
+    "mono_landmarks": {"observed": "y_p = 2.5396382821881653 (vs 2.5396, diff 3.8e-5), h_p = 0.6476102379, y_star = 2.3374124052663295 (vs 2.3374, diff 1.2e-5); tolerance 1e-3 vs the contract's rounded landmarks", "pass": true},
+    "mono_derivative_max_rule": {"observed": "max |h'_mono - max(h'_RAR, delta h_p/(y+y_p))| = 2.97e-50 relative over a 200-point grid off y_star", "pass": true},
+    "mono_continuity_at_y_star": {"observed": "h_cont(y_star) - h_RAR(y_star) = 0.0 (exact, log(1)=0)", "pass": true},
+    "newtonian_limits_5_branches": {"observed": "g-B > 0, strictly decreasing to the 50-digit floor on a0 grid [1e-2..1e-6]: Q [4.99e-3..5.00e-7], RAR [4.54e-5, 1.85e-14, 3.72e-44, 0, 0], MU2 [3.84e-4..4.00e-12], EXP [3.72e-44, 0..0], MONO [7.46e-3..1.04e-6]", "pass": true},
+    "Q_exact_identity": {"observed": "g^2 - (B^2 + a0 B) = -2.6728e-51 (exact identity at 50 digits, distinguished from finite consistency)", "pass": true},
+    "Q_leading_and_neglected": {"observed": "(g - B - a0/2)/(-a0^2/8) = 0.99950031; second-order residual 6.2461e-11 vs +a0^3/16 (agreement 1e-2; domain 0 < a0 < B)", "pass": true},
+    "RAR_exact_closed_form": {"observed": "(g-B) - B e^{-s}/(1-e^{-s}) = 8.2795e-53 (exact; no neglected term)", "pass": true},
+    "MU2_leading_and_neglected": {"observed": "ratio (g-B)/(4a0^2/B) = 0.99999600 at a0=1e-6; residual -1.5997e-11 vs -16a0^3/B^2 (agreement 1e-2)", "pass": true},
+    "EXP_leading": {"observed": "ratio (g-B)/(B e^{-B/a0}) = 0.99959165 (a0=1e-1), 1.00000002 (1e-2)", "pass": true},
+    "MONO_leading_exact": {"observed": "ratio (g-B)/(a0 h_cont(B/a0)) = 1.0 exactly (1e-40 tolerance); log-tail correction a0 ln(1/a0) -> 0", "pass": true},
+    "deep_limit_convergence": {"observed": "|g/sqrt(a0 B) - 1| at B/a0 = 1e-9: Q 5.0e-10, RAR 1.58e-5, MU2 1.19e-5, EXP 7.9e-6, MONO 1.58e-5 (tolerance 1e-4)", "pass": true},
+    "deep_first_coefficients": {"observed": "observed/predicted first corrections: Q 0.499999875 (basis y, pred 1/2), RAR 0.50008333 (pred 1/2), MU2 0.37510158 (pred 3/8), EXP 0.25007294 (pred 1/4), MONO 0.50008333 (pred 1/2), basis sqrt(y); tolerance 1e-3", "pass": true},
+    "derived_scale_trends": {"observed": "r_M: 1.152e14 -> 1.152e16 m and v_flat: 1073 -> 107 m/s as a0: 1e-8 -> 1e-12 s^-2; v_flat^4 - G M a0 = -1.35e-51 relative (exact identity)", "pass": true},
+    "footing_non_sharing": {"observed": "(a0_alt/a0_can)^2 = 1.451487157399611; kappa_eff = 0.6023884040632778; cross-run agreement with accepted AS001 values: 3.7e-12 (canonical rho), 5.2e-11 (alt rho), 6.7e-9 (kappa_eff)", "pass": true},
+    "dimensional_audit": {"observed": "exponent vectors (M,L,T): a0 (0,1,-2), rho (1,-3,0), eps (1,-1,-2), Lambda (0,-2,0), v_flat^4 (0,4,-4), r_M (0,1,0) — all accepted", "pass": true},
+    "lean_certificates": {"observed": "exit 0; zero 'sorry' (grep count 0); #print axioms of all 5 theorems = [propext, Classical.choice, Quot.sound] (unfiltered, lean_check.out)", "pass": true},
+    "bounds_check": {"observed": "wall 0.051 s <= 120 s; peak RSS 18.5 MB <= 512 MB (guard armed); 1 thread; dps 50", "pass": true}
+  },
+  "tested_domain": "rho_Lambda in [0, inf): positive case at the canonical density 5.844412454e-27 kg/m^3, boundary rho = 0, and the negative feed rho = -5.844412454e-27 kg/m^3 (control, no real solution); a0 grid [1e-8, 1e-12] s^-2 for derived scales (M_sun); Newtonian-limit grid B = 1 m/s^2, a0 in [1e-2, 1e-6] (5 points) for all five branches; deep-limit grid B/a0 in [1e-9, 1e-1] (9 points) at a0 = a0_can; MONO machinery verified on y in [0.1, 20] (200-point derivative grid) plus the analytic continuation on y >= y_star for a0 <= 1e-2. Algebraically: all rho >= 0 with kappa, c, G > 0 (Lean-certified); branch expansions carry explicit domains (Q: 0 < a0 < B; MU2/EXP: 0 < a0 << B; RAR/MONO: exact on their definitions). No observational data, no fits, no seeds, no refinement history (closed-form/grid arithmetic; bisection to 1e-45 and findroot maxsteps=50 only).",
+  "failed_attempts": [
+    {"artifact": "failed_attempts_notes.md in this run dir (verbatim causes preserved); intermediate err.txt/raw_output.txt overwritten by succeeding runs in the same unique dir", "items": ["F1 mpmath findroot stall on y_p (flat dhRAR near zero; |f| stuck ~1e-34 vs tol 1e-54) -> replaced by sign-based bisection to width 1e-45", "F2 monotonicity guard wrongly asserted dhRAR decreasing on [1,8] (it has a minimum near y~6.7) -> replaced by single-sign-change verification", "F3 Section D call bug: branch functions hard-coded B=1, small B was passed in the a0 slot (deep ratios ~3.4e10) -> functions now take (a0, B=B1); after fix ratios converge to 1", "F4 check-definition defects (not physics): RAR/EXP monotonicity made floor-aware for the 50-digit zero plateau; Q deep first-coefficient moved to the y-basis (Q is analytic in B/a0, others in sqrt(B/a0))"], "fixed": true}
+  ],
+  "limitations": "Does not derive kappa = 1/2 (adopted input; consistent with the recorded zero-mode no-go). Does not measure rho_Lambda (implied, not measured, by the registered a0). The domain theorem governs the ADOPTED SCALE IDENTITY, not the operative action: the common action's vacuum-term sign convention, the G_E/G_N ratio in Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4, and the filtered-MONO/criterion-B dynamics (Requirement 1, 7) are untouched — an action-level audit is the child spec below. EXP is a comparison branch (retired as operative; this run uses it only for the limiting-law audit), and Q/RAR/MU2 conclusions do not transfer onto the operative MONO target without a derived bridge. No dynamics: r_M = sqrt(G M_b/a0), v_flat^4 = G M_b a0 and the equilibrium relations are scale identities, not solutions of the time-dependent equations. Numerics at 50 digits are finite evidence; exactness rests on the Lean certificates. Negative/complex vacuum cases are excluded by convention (positive-real a0), not by a physical no-go on negative vacuum energy in general relativity.",
+  "next_unresolved_implication": "Transfer the scale-domain result to the operative common action: prove that the action's vacuum contribution enters with positive energy density (epsilon_Lambda = +rho_Lambda c^2, sign +1) and that G_E/G_N > 0 in that action, so that Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4 > 0 inherits the sign and the MONO kernel argument a0 is real positive in the static target (Requirement 1). This is an action-level sign audit of the vacuum term against the September-26 amendment cell; until it is done, the domain statement is a property of the scale identity, not of the field equations. (Secondary open item: the a0 -> 0 Newtonian survival is proved here for the branch force laws; the corresponding statement for the full field equations of the operative action, including the heat-filtered MONO gate, is a separate derivation.)",
+  "suggested_followup": "Dispatch child AS021.C01 (ready specification below): inspect real_research/common_action_2026_09_26/action/FINAL_ACTION.md (pinned b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e) and certify sign(epsilon_Lambda) = +1 and sign(G_E/G_N) > 0 in that action, with the negative control 'a sign-flipped vacuum term produces a different model (different kernel argument)'. Also reusable here: the Lean certificate set (domain forcing, zero equivalence, squared conversion, Q sandwich) is available for any downstream task needing the scale-algebra core.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": [
+      "kappa = 1/2 dimensionless (ADOPTED framework input; not derivable by this task and not claimed)",
+      "G = 6.67430e-11 m^3 kg^-1 s^-2 (measured input, mandated default; G_N leg, G_bare/G_cosmo separate symbols)",
+      "c = 299792458 m/s (exact defined constant)",
+      "registered footings a0_can = 9.3619e-11 m/s^2, a0_alt = 1.1279e-10 m/s^2 (README conventions)",
+      "convention a0 real >= 0 (acceleration magnitude); positive-variable witnesses B > 0, M_b > 0",
+      "MONO contract parameters: delta = 0.05, h'_mono = max(h'_RAR, delta h_p/(y+y_p)), continuation formula (FRAMEWORK_CONTRACT branch dictionary)",
+      "M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m, k_B = 1.380649e-23 J/K (declared defaults; only M_sun used)"
+    ],
+    "measured_calibrations": "none beyond the registered a0 footings and G (no fits, no observational data)",
+    "derived": [
+      "domain theorem: real a0 exists iff rho_Lambda >= 0; a0 > 0 iff rho_Lambda > 0; a0 = 0 iff rho_Lambda = 0 (Lean-certified forcing direction and zero equivalence)",
+      "negative-density classification: squared identity inconsistent at rho < 0; complex continuation excluded; |rho| repair is a different law (violation 2 kappa^2 c^2 G |rho|, Z2 symmetry, non-C1 at 0)",
+      "rho_Lambda = 4 a0^2/(G c^2) at kappa = 1/2 (Lean-certified): canonical 5.844412454021875e-27, alternative 8.483089619559097e-27 kg/m^3; eps and Lambda per footing (Lean-certified squared algebra)",
+      "Newtonian-survival theorem for Q, RAR, MU2, EXP, MONO (g -> B as a0 -> 0+) with branch-specific leading corrections and neglected terms (Section 3 of derivation.md), r_M -> inf, v_flat -> 0, C -> 0",
+      "deep-limit theorem: g -> sqrt(a0 B) as B -> 0 with first coefficients {1/2 (y-basis, Q); 1/2, 3/8, 1/4, 1/2 (sqrt(y)-basis, RAR, MU2, EXP, MONO)}",
+      "MONO landmarks y_p = 2.5396382821881653, h_p = 0.6476102378919149, y_star = 2.3374124052663295 reproducing the contract's rounded values",
+      "footing bookkeeping: density ratio 1.451487157399611 (fixed kappa) and kappa_eff = 0.6023884040632778 (fixed rho)"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "CORE scale cell A01 (sign/domain of the adopted vacuum scale) as a necessary leg of the amended thirteen-item target: the operative gates remain Requirement 1 (filtered nu_mono), Requirement 7 (causality criterion B) and the remaining amended requirements — all OPEN and untouched by this run",
+    "exact_implication": "IF the operative action satisfies sign(epsilon_Lambda) = +1 (vacuum energy positive) and G_E/G_N > 0, THEN Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4 > 0 and the MONO kernel argument a0 is a real positive scale for all admissible vacuum densities; and any candidate with rho_Lambda <= 0 is excluded at the scale level without importing a repair. Additionally, the a0 -> 0 Newtonian survival means the framework's deep-MOND phenomenology is strictly tied to a positive vacuum scale: no vacuum scale, no flat rotation curves on any of the five branches.",
+    "common_action_parameter_domain": "CORE scale cell with kappa = 1/2 adopted, G = G_N = 6.67430e-11, c exact, both footings separate; no action/kernel/coupling referenced (compatible with any branch since the domain/limit statements are branch-invariant at the identity level; the branch-specific corrections are labelled and do not transfer between branches)"
+  },
+  "child_proposals": [
+    {
+      "child_id": "AS021.C01",
+      "status": "proposed, NOT dispatched (no spawn mechanism in this subagent run; ready specification returned to the orchestrator)",
+      "fingerprint": "(action hash b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e, common action CD26-4, sign convention, domain: epsilon_Lambda > 0 AND G_E/G_N > 0, target: Lambda_eff > 0 in the operative parameter cell, new input: none)",
+      "new_claim": "In the operative common action (real_research/common_action_2026_09_26/action/FINAL_ACTION.md, pinned in SOURCE_MANIFEST.json), the vacuum contribution carries energy-density sign +1 (epsilon_Lambda = +rho_Lambda c^2) and G_E/G_N > 0, so Lambda_eff = 32 pi (G_E/G_N) a0^2/c^4 > 0 and the MONO kernel receives a real positive a0 for all admissible densities; a sign-flipped vacuum term defines a different model (different kernel argument) and is excluded.",
+      "dependency": "this run AS021 run_20260928T0007 (domain/limit audit + Lean scale algebra) for the scale-level premises; FINAL_ACTION.md b8c04d4e... for the action text",
+      "controls": "negative control: exhibit the kernel-argument change under a sign flip of the vacuum term (must change the model, not be absorbable into kappa); Lean certificate of the sign arithmetic if possible; zero-sorry bar",
+      "why_not_answered_here": "the present run audits the adopted scale identity and its branches; it does NOT read or vary the common action's vacuum-term sign convention (that is a different document revision and a different scientific question: action-level vs identity-level sign)",
+      "dispatch_state": "none - ready child specification only"
+    }
+  ],
+  "closure_candidate": null,
+  "note_on_closure_candidate": "No complete same-action witness exists from this seed: this is a CORE scale-leg audit with no dynamics; the operative filtered-MONO target (Requirement 1), causality criterion B (Requirement 7) and the remaining amended gates are untouched here and remain open per STANDING/ORCHESTRATOR gate map."
+}

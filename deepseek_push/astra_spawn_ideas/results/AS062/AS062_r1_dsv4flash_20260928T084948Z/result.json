@@ -1,0 +1,186 @@
+{
+  "schema_version": 2,
+  "task_id": "AS062",
+  "task_sha256": "04c065b72a2259e11e4ca87a772fc33a561afa3c70259d95dee02477c67eb2ac",
+  "run_id": "AS062_r1_dsv4flash_20260928T084948Z",
+  "worker": "DeepSeek-V4-Flash-0731 (openrouter deepseek/deepseek-v4-flash-0731) via Hermes Agent subagent on macOS; actual identity of this worker",
+  "started_utc": "2026-09-28T08:49:48Z",
+  "finished_utc": "2026-09-28T09:07:33Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For every Y>0 (not a grid), on the MU2 branch with s := c*sqrt(G*rho_L) = 2*a0 (kappa = 1/2 ADOPTED framework input, not derived), and a spherically symmetric modified-Poisson source div[mu2(|grad Phi|/s) grad Phi] = 4 pi G rho_b, the spherical flux integral is exactly int_sphere mu2(g/s) grad Phi . dS = 4 pi G M_b, equivalently 4 pi R^2 mu2(Y) g = 4 pi G M_b <=> mu2(Y) s Y = B, B = G M_b/R^2, with the exact identities g^2 = a0 B (1 + Y(3+2Y)/(2+Y)) and g = B (1 + 1/(Y^2+2Y)): the 4 pi of the sphere area cancels the 4 pi of the source coupling exactly, so the deep coefficient is 4 pi-clean: v_flat^4 = G M_b a0 (1 + delta), delta = Y(3+2Y)/(2+Y), (3/2)Y < delta < 2Y, leading neglected term (3/2)Y. Joint consistency of the mu_n family (diagnostics at lambda = n in {1/2,1,2}): flux normalization alone fixes only g^2 -> a0 B/(n kappa); the framework deep identity v_flat^4 = G M_b a0 holds iff n*kappa = 1 (lambda=2 under kappa=1/2 is the exact member; lambda=1/2 and 1 are explicit counterexamples to the unqualified claim, factors 4 and 2). Negative control (task-mandated): dropping the source 4 pi while keeping the sphere area gives kappa_eff = kappa/4 pi = 1/(8 pi) = 0.03979 != 1/2, measured g^2/(a0 B) -> 1/(4 pi), v_flat ratio 0.5318: wrong kappa detected. Domain: spherical symmetry, Y>0, both a0 footings by rescaling (canonical rho_L = 5.8444e-27 kg/m^3, kappa_eff(alt) = 0.60239, rho_alt = 8.4831e-27 kg/m^3); no transfer to Q/RAR/EXP/MONO claimed; no claim that the flux normalization derives kappa (it removes no freedom).",
+  "framework_cell": {
+    "action_source_hash": "04c065b72a2259e11e4ca87a772fc33a561afa3c70259d95dee02477c67eb2ac (AS062 seed); sources: PD01 37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d, PD08 83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb, k01 8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c (all match SOURCE_MANIFEST.json)",
+    "kernel": "MU2 response mu2(Y) = 1-(1+Y)^(-2), Y = g/s; implicit response mu2(Y) s Y = B (comparison branch; task-required branch) and general member mu_n(Y) = 1-(1+Y)^(-n), symbolic n >= 1, diagnostics at lambda = n in {1/2,1,2}",
+    "filter": "none in this task: plain-coordinate divergence theorem on a sphere; filtered nu_mono flux accounting explicitly NOT established (open bridge, FIRST missing implication)",
+    "gate": "A03 coefficient mechanisms and missing premises (spherical source normalization); operative amended target filtered nu_mono + criterion B NOT claimed",
+    "coupling": "modified-Poisson source coupling 4 pi G rho_b (Newtonian convention, fixed by Phi -> -G M_b/r at infinity); single G in source term AND in the a0 formula (framework input; G_N/G_bare/G_cosmo equality flagged, not derived)",
+    "parameters": "kappa = 1/2 ADOPTED (framework input, not derived); G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI)",
+    "scale_footing": "a0 = kappa*c*sqrt(G*rho_Lambda); canonical a0 = 9.3619e-11 m/s^2 (rho_L = 5.8444e-27 kg/m^3, s = 1.8724e-10 m/s^2, Lambda = 1.0908e-52 m^-2, r_M(Ms) = 1.1906e15 m, v_flat(Ms) = 333.87 m/s); alternative a0 = 1.1279e-10 m/s^2 (kappa_eff at fixed rho = 0.60239; rho = 8.4831e-27 kg/m^3 at fixed kappa; Lambda = 1.5833e-52 m^-2, r_M(Ms) = 1.0847e15 m, v_flat(Ms) = 349.78 m/s); the two footings do not share both fixed rho_Lambda and fixed kappa",
+    "boundaries": "R -> 0 (Newtonian interior, Y -> oo, g/B -> 1 + 4e-40 verified); R -> oo (deep, Y -> 0, g^2/(a0 B) -> 1 verified); boundary flux 4 pi G M_b retained exactly at both ends",
+    "initial_conditions": "none (static constitutive law; point-mass and smooth-shell source classes)",
+    "units": "dimensionless theorem in Y; B in m/s^2; flux in m^3/s^2 = [G M_b]; all dimensional examples SI"
+  },
+  "new_assumptions": [
+    "No independent coefficient, channel count, fit or per-object factor introduced.",
+    "Assumption (i): the modified-Poisson divergence form with the 4 pi G source coupling is the field equation (task-specified premise; the Newtonian boundary Phi -> -G M_b/r fixes the 4 pi convention - stated, not derived from an action).",
+    "Assumption (ii): kappa = 1/2 is adopted as framework input; the flux normalization is shown NOT to derive it (Section 6 of derivation.md).",
+    "Assumption (iii): spherical symmetry about the baryon centroid (scoped domain, explicitly not the nonspherical field).",
+    "Reading of the task's lambda: lambda is the response-family exponent n of mu_n(Y) (dimensionless), diagnostics at lambda in {1/2,1,2}; the coupling-multiplier reading (NC-B) gives the identical factor structure and is reported alongside."
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS062_spherical_source_normalization_and_gauss_flux.md": "04c065b72a2259e11e4ca87a772fc33a561afa3c70259d95dee02477c67eb2ac",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/AS062_gauss_flux_analysis.py": "630da03af0d9adf6da9c96713616fc67bd3b15943912ecb9a7f203bd7f358c4e",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/AS062_gauss_flux.lean": "70fa894f1512ad53e505ea4f681326f6af7078571c3ee7073580bf4c479fa778",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/AS062_axioms_probe.lean": "41b7bd1402cdd9614a9c21ffa29508556c71be4921dda99461c4b0425d36235f",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/lean_certificate.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/lean_axioms.out": "71a21eeae46cad49f2b5794289e25a01716836b1206a647afa63f3b1d2966987",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/derivation.md": "b0d09e9c47203a4f8386f471f454c992d7c2cbe7b1904ff4ee730096bf2b8d5d",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/footings.json": "260146a6910f031162d2fa7daab99ba7962dff1a7ec8a1c56535a0ee4febf29f",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/lambda_diagnostics.json": "060b376567d9a125cc8f74b0fed9304b85801304d83e46f2a88799951bac46dd",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/symbolic.json": "a03b13788a49818cec492e4843524dbc94dd14fa1829ad97c8093f4497ac7c67",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/point_mass.json": "9470dc20f9b8059c7863dabbff0c17206cc476f4afc16680a33cb78856ab8c6d",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/shell_profile.json": "50dbfd9ff7ef1109bd0d5ce93b20801674e88a9af99c0173edf3cfcfd3ee76a0",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/negative_control.json": "bceb197c8f7977867d5ef5e30d95a341b3c794f75d18525bf0180c264403b14d",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/limits.json": "5500d443308b3676903f6ac9645e351a5812efe4cdf9c00442a54e32e9142f43",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/general_n_table.json": "a01f434b9c1ce91d610045dad73f4f609b6a4908d75cbe356fc573bee064740e",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/bounds.json": "fa1ed2b8bb196a4de50a3d36676ff41454c1e4b634d858b379eb197120c61c03",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/summary.json": "84d462db6457627d5b683f478a5d423ac9d8d4c3b5d8abc7b2a0f3fa11f00ac2",
+    "deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/raw_outputs/run_stdout.log": "7fd5e2005a8c0cdedb1bb1f50775a0a56f7934cb5c7fc8c5ae87701bb7c140de"
+  },
+  "commands": [
+    {
+      "argv": "python3 AS062_gauss_flux_analysis.py",
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z",
+      "exit_code": 0,
+      "note": "final run: 18/18 PASS; stdout raw_outputs/run_stdout.log; wall 1.65 s; peak RSS 81 MiB"
+    },
+    {
+      "argv": "lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/AS062_gauss_flux.lean",
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "exit_code": 0,
+      "note": "Lean 4.34.0-rc2 + mathlib4; clean compile, zero error (lean_certificate.out)"
+    },
+    {
+      "argv": "lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS062/AS062_r1_dsv4flash_20260928T084948Z/AS062_axioms_probe.lean",
+      "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+      "exit_code": 0,
+      "note": "unfiltered #print axioms on flux_ratio, correction_bound, newtonian_tail, wrong_kappa = [propext, Classical.choice, Quot.sound] each; zero sorryAx (lean_axioms.out)"
+    }
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s; memory <= 512 MB; 1 thread",
+    "enforced": {
+      "wall_s": {"limit_s": 120.0, "actual_s": 1.6549, "mechanism": "RLIMIT_CPU hard (SIGXCPU) -- ENFORCED"},
+      "memory_bytes": {"limit": 536870912, "actual_peak_rss": 84967424, "mechanism": "RLIMIT_DATA/RLIMIT_AS requested but REFUSED by macOS host ('current limit exceeds maximum limit'); actual peak RSS 81.0 MiB recorded"},
+      "threads": 1,
+      "note": "single process; OMP/MKL/OPENBLAS/NUMEXPR/VECLIB threads pinned to 1 via environment",
+      "sample_bounds": "12 point-mass cells x (bisection 260 iter) + 41 shell radii x quad + 6 limit cells; mpmath dps=60"
+    }
+  },
+  "checks": {
+    "tolerances_preset": true,
+    "n_passed": 18,
+    "n_failed": 0,
+    "list": [
+      "A1 s = 2 a0 (rel 1.0 within 1e-30); A2/A3 footings (rho_L = 5.8444e-27 kg/m^3; kappa_eff alt = 0.60239 / rho_alt = 8.4831e-27; ratio (1.1279/9.3619)^2 within 1e-12)",
+      "B1 exact flux identity g^2 = a0 B (1+Y(3+2Y)/(2+Y)): sympy residual 0; B2 Newtonian tail residual 0; B3 E1 == cubic sY^3+(2s-B)Y^2-2BY-B residual 0 (matches AS029 g-cubic)",
+      "B4 lambda diagnostics (kappa = 1/2, Y=1e-8): g^2/(a0 B) -> {4.000000030, 2.000000020, 1.000000015} for lambda = {1/2, 1, 2}",
+      "C1 point-mass flux identity 4 pi R^2 mu2 g = 4 pi G M_b: worst rel resid 1.18e-58 over 12 (M,R) cells (tol 1e-40)",
+      "C2 exact deep identity: worst rel resid 2.59e-77 (tol 1e-40)",
+      "C3 exact Newtonian tail: worst rel resid 1.16e-69 (tol 1e-40)",
+      "C4 kinematic sqrt(g R) = (G M a0)^(1/4) at R=1e4 r_M: rel dev 1.87e-5 (tol 1e-4) = exactly delta/4 with delta = Y(3+2Y)/(2+Y)",
+      "D1 independent representation (Gaussian shell, enclosed mass by quadrature, 41 radii): worst flux resid 4.56e-61 (tol 1e-40)",
+      "D2 boundary flux at R=1e3 r_M: 1.15e-61 (tol 1e-40)",
+      "NC-A negative control (drop source 4 pi, keep sphere area): exact tampered identity 1e-30; limit Y->0: g^2/(a0 B) -> 0.0795774717 = 1/(4 pi) within 1.7e-6 (tol 1e-6); kappa_eff = 1/(8 pi) = 0.03979 != 1/2; deep identity broken by factor 4 pi (hard asserts fired)",
+      "NC-B coupling multiplier lambda_c in {1/2,2}: exact tampered identity resid < 1e-30; kappa_eff/kappa = 1/lambda_c",
+      "NC-C regimes: Newtonian end R->0 g/B = 1+4.0e-40 (R=1e-10 r_M), 1+4.0e-17 (R=1e-5 r_M); deep end R->oo g^2/(a0 B) = 1.00753 (100 r_M), 1.00000075 (1e6 r_M); exact ratio identity at every radius resid <= 3.9e-61",
+      "F1 exact finite-Y deep ratio for n in {1/2,1,2,3} at Y=1e-3: 4.0030/2.0020/1.0015/0.6680 vs 1/(n kappa) = 4/2/1/0.6667 within 1e-2",
+      "Lean: flux_ratio, correction_bound, newtonian_tail, wrong_kappa compile clean; axioms exactly [propext, Classical.choice, Quot.sound] (unfiltered #print axioms, zero sorryAx)"
+    ]
+  },
+  "tested_domain": {
+    "proof": "all Y > 0 (exact identities, sympy residual 0; Lean-certified: flux_ratio, correction_bound, newtonian_tail, wrong_kappa)",
+    "grid": "point masses M in {M_sun, 1e6, 1e10 M_sun} x R in {0.1, 1, 10, 1e3} r_M (12 cells); Gaussian shell profile 41 radii; limits R in {1e-10, 1e-5, 0.1, 1, 1e2, 1e6} r_M; lambda diagnostics at Y in {1e-8, 1e-3}; mpmath dps=60 throughout",
+    "exclusions": "nonspherical sources, filtered MONO/RAR/Q/EXP branches, time dependence, negative or zero kappa, Y <= 0",
+    "refinement_history": "initial float64-free all-mpmath lane; NC-A reformulated as exact finite-Y tampered identity + Y->0 limit cell (finite-Y correction at R=1e4 r_M exceeds a 1e-35 tolerance against the pure limit, so the limit is verified at R=1e8 r_M with tol 1e-6); NC-C reformulated to the exact ratio identity at every radius plus the correct regime cells (deep end is R -> oo, Newtonian end R -> 0)"
+  },
+  "failed_attempts": [
+    {
+      "artifact": "AS062_gauss_flux_analysis.py earlier revisions (same path, final log only)",
+      "cause": "(1) mpmath mpf does not accept ':.6f'/'4e' format specs (TypeError) - fixed with mp.nstr helper; (2) string-vs-mpf comparisons in NC-B/NC-C (TypeError in rel) - fixed by keeping mpf values for the assert and strings only in JSON; (3) NC-A compared the exact finite-Y tampered ratio against the Y->0 limit 1/(4 pi) at 1e-35 - finite-Y correction ~ (3/2)Y made it fail by 1.7e-6 relative: reformulated as exact tampered identity + limit cell; (4) NC-C asserted g/B -> 1 at R -> oo which is physically wrong (deep end diverges: g/B = 1/mu2 -> oo): corrected to Newtonian end R -> 0 (g/B -> 1) and deep end R -> oo (g^2 -> a0 B)"
+    },
+    {
+      "artifact": "lean compile round 1 (AS062_gauss_flux.lean)",
+      "cause": "div_lt_iff0 does not exist in this mathlib snapshot (rw failed: 'did not find an occurrence of a / b < c'); the build's inequality-division lemmas are limited - rewritten with div_lt_iff0 (which DOES exist and takes 0 < denom) after converting the goal to division-on-LHS-root form via field_simp identities and div_mul_cancel0"
+    }
+  ],
+  "limitations": [
+    "kappa = 1/2 remains ADOPTED; the flux normalization removes no independent freedom (joint condition n*kappa = 1 is exact; the channel count n = 2 is cited from PD01/PD08, not re-derived here).",
+    "The modified-Poisson divergence form and its 4 pi G source coupling are premises, not derived from an action; the equality of G in the source term and in the a0 formula is the framework's convention, flagged.",
+    "MU2 is a comparison branch: no transfer to operative filtered nu_mono / criterion B; the enclosed-flux accounting for the filtered MONO equation (with S, S* and the heat measure) is unproved and is the first missing bridge.",
+    "Spherical symmetry assumed; no claim about nonspherical fields or the vector/tensor sector.",
+    "The 12-cell / 41-radius numerics are finite high-precision evidence; the algebraic identities carry the claim and are Lean-certified.",
+    "RLIMIT_DATA/RLIMIT_AS could not be enforced on this macOS host (setrlimit refused); RLIMIT_CPU = 120 s was hard-enforced and peak RSS (81 MiB) is far below the 512 MB bound.",
+    "The lambda = n reading of the task's diagnostics is stated explicitly; the coupling-multiplier reading gives the identical factor table (both reported)."
+  ],
+  "next_unresolved_implication": "Enclosed-flux accounting for the operative filtered MONO equation: prove or falsify that for a bounded smooth baryon source the plain-coordinate sphere integral of nu_mono(|grad(S u)|/a0) d_n(S u) equals 4 pi G M_b plus the S*-heat-term contribution, with the measure and boundary conditions making S self-adjoint declared first; the MU2 normalization certified here does not transfer because the kernel argument (grad(S u)), the source term (S* div[...] acting on filtered rho_b) and the measure all differ. Until that bridge exists, the deep-coefficient consistency of this run is not an input to the amended thirteen-item target.",
+  "suggested_followup": "Dispatch AS062.C01 (written child spec in derivation.md Section 7): filtered-MONO enclosed-flux identity with declared S-measure; single discriminating continuation - it passes, fails or blocks independently of the MU2 result. Controls: reduce to the 4 pi-canceled statement as filter width -> 0 on deep pure RAR; negative control: any measure mismatch must move the apparent deep coefficient by an exact factor.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "Modified-Poisson field equation div[mu2(|grad Phi|/s) grad Phi] = 4 pi G rho_b (MU2 member; task-specified source coupling whose 4 pi is fixed by the Newtonian boundary Phi -> -G M_b/r at infinity)",
+      "a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 ADOPTED (framework input, not derived); s := c sqrt(G rho_Lambda) = 2 a0",
+      "Spherical symmetry of Phi about the baryon centroid",
+      "Response family mu_n(Y) = 1-(1+Y)^(-n), symbolic integer n >= 1, Y > 0; diagnostics at lambda = n in {1/2,1,2}",
+      "The 4 pi = sphere-area (unit solid angle) normalization; standard Newtonian convention div(grad Phi) = 4 pi G rho_b",
+      "Real arithmetic of the rational identities (Lean: propext, Classical.choice, Quot.sound)"
+    ],
+    "measured_calibrations": "G = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m (framework convention); footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 (task-stated)",
+    "boundary_data": "Phi -> -G M_b/r as R -> oo (Newtonian matching, fixes the 4 pi source coupling); R -> 0 Newtonian interior recovery; boundary flux 4 pi G M_b retained",
+    "derived_equations": [
+      "4 pi R^2 mu2(Y) g = 4 pi G M_b <=> mu2(Y) s Y = B = G M_b/R^2 (integrated radial equation)",
+      "s Y^3 + (2s - B) Y^2 - 2 B Y - B = 0 (exact cubic in Y; matches AS029's g-cubic under x = 2Y, y = B/a0)",
+      "g^2 = a0 B (1 + Y(3+2Y)/(2+Y)) (exact deep identity; lean flux_ratio)",
+      "(3/2) Y < Y(3+2Y)/(2+Y) < 2 Y (lean correction_bound)",
+      "g = B (1 + 1/(Y^2+2Y)) (exact Newtonian tail; lean newtonian_tail)",
+      "g^2/(a0 B) = Y/(kappa mu_n(Y)) -> 1/(n kappa) (general n; deep identity v_flat^4 = G M_b a0 iff n kappa = 1)",
+      "kappa_eff = kappa/(4 pi lambda_c) under tampered couplings (NC-A: lambda_c = 1/4 pi -> kappa_eff = 1/(8 pi); lean wrong_kappa: 4 pi != 1)"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "A03 coefficient mechanisms and their missing premises - spherical source normalization",
+    "implication": "The 4 pi spherical normalization is exactly convention-consistent with the deep coefficient calculation (PD08 STEP 5): 4 pi (sphere area) cancels 4 pi (source coupling) identically, leaving the deep coefficient a0 with exact finite-Y corrections (3/2)Y < delta < 2Y - provided (i) the Newtonian 4 pi G coupling and (ii) the joint condition n*kappa = 1 (n = 2, MU2, under the adopted kappa = 1/2). The normalization therefore neither supplies nor obstructs kappa: kappa remains the ADOPTED input, and the result is compatible with the operative MONO target only via the unproved filtered-flux bridge (first missing implication).",
+    "common_action_parameter_domain": "modified-Poisson (MU2 member) at fixed kappa = 1/2, spherical symmetry, Y > 0, both a0 footings by rescaling; NOT the filtered field equation, NOT MONO/RAR/Q/EXP",
+    "compatibility": "compatible with the operative filtered nu_mono target only after the enclosed-flux bridge (S-measure, S*-adjoint, heat-filtered source) is proved; flagged as the first open dependency"
+  },
+  "child_proposals": [
+    {
+      "id": "AS062.C01",
+      "target": "Enclosed-flux identity for filtered MONO: for a bounded smooth baryon source, prove or falsify the plain-coordinate sphere integral of nu_mono(|grad(S u)|/a0) d_n(S u) equals 4 pi G M_b + heat-term contribution, with the measure/boundary data making S self-adjoint declared first",
+      "scientific_fingerprint": "operative-branch image of this task's principal test; the exact gate fed by the MU2 normalization result; independent pass/fail",
+      "controls": "reduce to the 4 pi-canceled MU2 statement as filter width -> 0 with deep pure RAR; negative control: any measure mismatch must move the apparent deep coefficient by an exact factor",
+      "dependencies": "none beyond this run's artifacts and the declared S-measure",
+      "dispatch_state": "proposed; NOT dispatched (no runner spawned in this session)"
+    },
+    {
+      "id": "AS062.C02",
+      "target": "Derive the source coupling coefficient of rho_b in the static field equation from a declared action (one independent variation), verifying that the Newtonian boundary Phi -> -G M_b/r reproduces the 4 pi used in the flux integral and the value of G_N vs G_bare vs G_cosmo",
+      "scientific_fingerprint": "turns the source-coupling premise (assumption i) into a derived statement for a declared action; separates G_N/G_bare/G_cosmo",
+      "controls": "Euler-Lagrange variation of the action's source term; boundary-condition matching at infinity; no fitting",
+      "dependencies": "a declared scalar (or tensor-scalar) action",
+      "dispatch_state": "proposed; NOT dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

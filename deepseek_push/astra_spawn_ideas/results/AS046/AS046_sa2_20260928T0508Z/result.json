@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "task_id": "AS046",
+  "task_sha256": "70c19062028c3f3b09fbe4728e629dee1a01a18ad4bc7b172669aa8ed54f4a9d",
+  "run_id": "AS046_sa2_20260928T0508Z",
+  "worker": "deepseek-v4-flash-0731 (openrouter) via Hermes subagent sa-2-0197cc40",
+  "started_utc": "2026-09-28T05:08:00Z",
+  "finished_utc": "2026-09-28T07:53:33Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the declared Q branch, for every y>0: dB/dg = 1/F'(B) exactly and kappa_Q(y) = 2(y+1)/(2y+1) with exact bounds 1 < kappa_Q < 2, kappa_Q(1) = 4/3, deep limit 2, Newtonian limit 1. The same differentiation identity is verified numerically (finite-difference residual <= 4.92e-17 for nu-form branches Q/RAR/MONO, <= 4.63e-32 for explicit-map branches MU2/EXP; empirical perturb-and-invert residual <= 1.19e-7, epsilon-dominated) on RAR, MU2, EXP and MONO across y in [1e-10, 1e8]. The contract MU2 cell satisfies mu2(1) = 5/9 and mu2'(1) = 8/27 (x*mu2'(1) = 8/27); the dispatch-mentioned values 1/sqrt(2) and 2^(-3/2) belong to the different interpolant mu_s(x) = x/sqrt(1+x^2) (mu_s(1) = 1/sqrt(2), mu_s'(1) = 2^(-3/2)), which is NOT the contract MU2 cell. Domain: x = g/a0 > 0, y = B/a0 > 0, dimensionless; exact statements hold for all real x,y with stated nonzero conditions (Lean-certified); numerical statements on y in [1e-10, 1e8] grid plus bracketed limits.",
+  "framework_cell": {
+    "action_source_hash": "70c19062028c3f3b09fbe4728e629dee1a01a18ad4bc7b172669aa8ed54f4a9d (AS046_numerical_inverse_conditioning.md)",
+    "kernel": "branch maps Q (x^2=y^2+y), RAR (nu=1/(1-exp(-sqrt(y)))), MU2 (mu2=1-(1+x/2)^(-2)), EXP (1-exp(-x), historical comparison), MONO (heat-filter splice of RAR, operative)",
+    "filter": "MONO heat filter S = exp((xi^2/2) Delta) not exercised in this pointwise audit; splice continuity checked at y* = 2.3374124052663294",
+    "gate": "pointwise inverse conditioning of constitutive branch maps (static); field-level filtered gate NOT closed",
+    "coupling": "G_N, G_bare, G_cosmo kept separate; no coupling equality asserted",
+    "parameters": "kappa = 1/2 ADOPTED (not derived); G = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s; delta = 0.05 (MONO splice)",
+    "scale_footing": "a0 = kappa*c*sqrt(G*rho_Lambda) with kappa = 1/2; canonical a0 = 9.3619e-11 m/s^2 and alternative a0 = 1.1279e-10 m/s^2 stated separately (dimensionless audit; both footings apply via y = B/a0, x = g/a0)",
+    "boundaries": "y > 0, x > 0; deep regime y -> 0+ (kappa -> 2), Newtonian y -> infinity (kappa -> 1)",
+    "initial_conditions": "none (static map audit)",
+    "units": "dimensionless x,y; SI constants as listed"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as framework input (per task and framework contract; not derived here)",
+    "MU2 contract cell is mu2(x) = 1-(1+x/2)^(-2); the dispatch-mentioned x/sqrt(1+x^2) is treated as a distinct interpolant, not the contract cell"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS046_numerical_inverse_conditioning.md": "70c19062028c3f3b09fbe4728e629dee1a01a18ad4bc7b172669aa8ed54f4a9d",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/derivation.md": "9b2432fe07b228ee9a4301b4213c7a253c8d3d1668809d2f8adc1c1fafd011d5",
+    "deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/as046_inverse_conditioning.py": "719b668ec2277872f55a8314111d07f3e61495b002523e1ecd7070a051f2aef2",
+    "deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/as046_raw.json": "cb14c7971fe48386cff73e86adadd777cd175f661e132292b9cb58060cf3ab3b",
+    "deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/as046_stdout.txt": "46e68f4e8e464d905fba22e03b10982d0a8b34deaaf513bdb7f70026f7d64480",
+    "deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/AS046_mu2_certificates.lean": "8cefe0d5ff81dcf22043c01b96f04e10f02fe2a405bb01b830a83bc42a2825b7",
+    "deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/lean_compile.out": "a93c2e5073372ec7017aac4828271009233bcd96cafdff7d550835f191aa9109"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z && /usr/bin/time -p timeout 300 python3 as046_inverse_conditioning.py as046_raw.json > as046_stdout.txt 2> as046_stderr.txt  (exit 0)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && timeout 550 lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS046/AS046_sa2_20260928T0508Z/AS046_mu2_certificates.lean > lean_compile.out 2>&1  (exit 0, 0 errors)",
+    "shasum -a 256 over seed, contracts and artifacts (hashes recorded above)"
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s, memory <= 512 MB, 1 thread (task brief)",
+    "enforced_python": "timeout 300 s (outer), actual wall 0.496 s, actual peak RSS 18,546,688 bytes (~18.5 MB), threads 1 (recorded in as046_raw.json -> bounds)",
+    "enforced_lean": "timeout 550 s, actual compile exit 0",
+    "note": "actual bounds are the enforced limits; both were far under the caps"
+  },
+  "checks": [
+    {
+      "name": "FD_kappa_all_branches",
+      "tolerance": "1e-14 absolute residual (pre-set)",
+      "observed_max": "4.92e-17 (Q/RAR/MONO nu-form branches, bisection-limited); 4.63e-32 (MU2/EXP explicit-map branches)",
+      "pass": true
+    },
+    {
+      "name": "empirical_perturb_invert",
+      "tolerance": "1e-6 relative residual (pre-set; epsilon = 0.001 perturbation dominates)",
+      "observed_max": "1.19e-7 relative residual (EXP at y=1)",
+      "pass": true
+    },
+    {
+      "name": "substitution_into_forward_law",
+      "tolerance": "bisection residual < 1e-40; explicit inverses exact at 60 dps",
+      "observed": "all solves converged; y_Q(1) = (sqrt(5)-1)/2 = 0.6180339887498949 reproduced",
+      "pass": true
+    },
+    {
+      "name": "MONO_splice_continuity",
+      "tolerance": "jump < 1e-20",
+      "observed": "jump in h at y* = 6.64e-33; h'_mono(y*+eps) = h'_RAR(y*) = 0.006639363412377466",
+      "pass": true
+    },
+    {
+      "name": "NC1_absolute_as_relative",
+      "tolerance": "control must be capable of failing (unit dependence must show)",
+      "observed": "kappa_abs_as_rel = 0.9428 at y=1 vs kappa_rel = 4/3; ratio = y/x = 0.7071 != 1; footing-dependent quotients 0.0021363 (canonical) vs 0.0017732 (alternative) at y=1e-6 -> control FIRES as required",
+      "pass": true
+    },
+    {
+      "name": "NC2_limits",
+      "tolerance": "kappa -> 2 deep, kappa -> 1 Newtonian (residual < 1e-4 at grid ends)",
+      "observed": "deep residuals vs 2: Q 2.0e-10, RAR/MONO 1.0e-5, MU2 7.5e-6, EXP 5.0e-6 at y=1e-10; Newtonian residuals vs 1: Q 5.0e-9, RAR/EXP 0, MU2 8.0e-16, MONO 1.2e-8 at y=1e8",
+      "pass": true
+    },
+    {
+      "name": "lean_certificate",
+      "tolerance": "zero sorry; axioms subseteq {propext, Classical.choice, Quot.sound}",
+      "observed": "23 theorems compile (exit 0); #print axioms shows only {propext, Classical.choice, Quot.sound} for every theorem; 0 sorry occurrences",
+      "pass": true
+    },
+    {
+      "name": "at_x_equal_1_exact_values",
+      "tolerance": "exact rational/radical values",
+      "observed": "mu2(1) = 5/9, mu2'(1) = 8/27, x*mu2'(1) = 8/27, mu_s(1) = 1/sqrt(2) = 0.7071067811865476, mu_s'(1) = 2^(-3/2) = 0.3535533905932738, mu_Q(1) = (sqrt(5)-1)/2, mu_Q'(1) = (sqrt(5)-1)/(2*sqrt(5)) = 0.276393202250021, kappa_Q(1) = 4/3",
+      "pass": true
+    }
+  ],
+  "tested_domain": "y = B/a0 in [1e-10, 1e8] (181-point log grid, k = -10..8 step 0.1), x = g/a0 > 0; bisection brackets [1e-60, 1e20] with tolerance 1e-40; exact statements for all real x,y with nonzero conditions (Lean); mpmath 60 dps; single run, no refinement",
+  "failed_attempts": [
+    {
+      "artifact": "results/AS046/AS046_sa2_20260928T0508Z/lean_probe.lean, lean_probe2.lean, lean_probe3.lean, lean_probe2.out",
+      "cause": "intermediate Lean proof attempts (zpow_neg signature, HasDerivAt.pow slope normalization, fun_prop not configured for HasDerivAt in this Mathlib version); resolved by product-rule construction and exact-slope declarations"
+    },
+    {
+      "artifact": "as046_raw.json (earlier versions, overwritten)",
+      "cause": "finite-difference on bisection-solved inverses collapsed to zero (bisection tolerance 1e-40 vs FD step 1e-45); fixed by differentiating the explicit forward map for MU2/EXP; RAR/MONO bisection lower bound moved to 1e-60 (nu_RAR(0) singular); MU2/EXP empirical check switched to explicit inverses y = x*mu(x)"
+    },
+    {
+      "artifact": "as046_raw.json (earlier version, overwritten)",
+      "cause": "audit table claimed-value bug: (1+1)^(-3)/1 = 0.125 recorded for 2^(-3/2); corrected to (1+1)^(-3/2) = 0.3535533905932738 and re-run"
+    }
+  ],
+  "limitations": "Numerical checks are finite-precision consistency checks, not proofs (exact identities are Lean-certified instead). Pointwise map conditioning does not bound conditioning of the filtered field equation (MONO gate open). Grid is diagnostic, not a universal theorem; roots bracketed. kappa = 1/2 remains adopted, not derived. G_N/G_bare/G_cosmo relation not addressed. MONO filter S and its adjoint not exercised at field level. The 1/sqrt(2) claim is certified as belonging to the non-contract interpolant x/sqrt(1+x^2), not to the contract MU2 cell.",
+  "next_unresolved_implication": "Pointwise kappa_MONO(y) does not imply a bound on ||delta u||/||u|| through the operative filtered field equation Delta Phi = 4 pi G rho_b + S*[div((nu_mono-1) grad S u)]: the first missing bridge is a field-level condition number for the spliced MONO operator (requires the filter S with its metric, measure, domain and boundary conditions, and its adjoint S*).",
+  "suggested_followup": "Child AS046.C01 'filtered-MONO field conditioning': derive a resolvent-style bound for (I - S* div((nu_mono-1) grad S .)) using the certified pointwise kappa_MONO(y) here as input; same negative controls (absolute-as-relative unit dependence; deep/Newtonian limits). Dependencies: this result + explicit S definition from the framework contract.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": "five declared branch laws (Q, RAR, MU2, EXP, MONO) as framework inputs; kappa = 1/2 adopted; G = 6.67430e-11, c = 299792458 (SI)",
+    "measured_calibrations": "none used",
+    "boundary_data": "y > 0, x > 0; deep and Newtonian limits",
+    "derived_equations": "dB/dg = 1/F'(B) (chain rule); kappa_Q(y) = 2(y+1)/(2y+1) with identities and bounds; mu2(1) = 5/9, mu2'(1) = 8/27; mu_s(1) = 1/sqrt(2), mu_s'(1) = 2^(-3/2); mu_Q(1) = (sqrt(5)-1)/2, mu_Q'(1) = (sqrt(5)-1)/(2 sqrt(5)); kappa_RAR(s) = 1/(1 - (s/2) e^{-s}/(1-e^{-s})); kappa_inv * kappa_fwd = 1"
+  },
+  "closure_implication": "Gate: static constitutive inverse conditioning (pointwise branch maps). Implication: on the declared Q branch the inverse problem B = F^{-1}(g) is exactly characterized by kappa_Q = 2(y+1)/(2y+1) in (1,2); MU2/EXP/RAR/MONO verified numerically; contract MU2 cell exact values at x=1 are 5/9 and 8/27, not 1/sqrt(2) and 2^(-3/2) (those belong to the non-contract interpolant). Compatibility: dimensionless in x,y, so applies to both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 via y = B/a0. Does NOT close the operative filtered-MONO field gate.",
+  "child_proposals": [
+    {
+      "id": "AS046.C01",
+      "claim": "Field-level condition number of the operative filtered MONO equation is bounded in terms of pointwise kappa_MONO(y) and the filter S operator norm",
+      "target": "||delta u||/||u|| <= C * kappa_MONO(y*) * ||S|| * ||delta rho_b||/rho_b on the declared domain",
+      "controls": "NC1 absolute-as-relative; NC2 deep/Newtonian limits; resolvent identity check",
+      "dependencies": "this result (pointwise kappa_MONO certified numerically); explicit S metric/measure/domain/boundary conditions from FRAMEWORK_CONTRACT.md",
+      "dispatch_state": "not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

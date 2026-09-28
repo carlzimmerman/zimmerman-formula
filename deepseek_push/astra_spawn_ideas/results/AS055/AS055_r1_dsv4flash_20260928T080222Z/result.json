@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "task_id": "AS055",
+  "task_sha256": "e112db835db90d562d53e8e0c756263460a63623d9cd029edb9d976666784e38",
+  "run_id": "AS055_r1_dsv4flash_20260928T080222Z",
+  "worker": "DeepSeek-V4-Flash-0731 (openrouter deepseek/deepseek-v4-flash-0731) via Hermes Agent subagent on macOS; orchestrator reservation owner id sa-3-ec8731fc, claim deepseek_push/astra_spawn_ideas/claims/AS055.json (state running, left untouched)",
+  "started_utc": "2026-09-28T07:59:15Z",
+  "finished_utc": "2026-09-28T08:16:30Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Conditional theorem (all conditions listed): in the two-channel OR response model with common engagement p(Y)=Y/(1+Y) and correlation correction C(p)=P(A∩B)-p^2, the Fréchet bounds max(0,2p-1)-p^2 <= C(p) <= p-p^2 hold, the union response satisfies the sharp bounds p <= U(p)=2p-p^2-C(p) <= min(2p,1) (U=p iff A=B a.s., U=2p iff mutual exclusion), and if C(p)=theta*p+O(p^2) the deep slope is 2-theta with theta in [0,1]; the family C_alpha(p)=alpha(p-p^2), alpha in [0,1], realizes every deep slope 2-alpha in [1,2] with exact closed form U_alpha(Y)=(Y^2+(2-alpha)Y)/(1+Y)^2; inside the stochastically independent class (C=0) the deep slope equals the channel count n for every integer n>=1 (mu_n=1-(1+Y)^(-n)), confirming PD01 Part A within that class. Gravity mapping (spherical deep matching): kappa_eff = 1/m = 1/(2-theta) in [1/2,1] at fixed vacuum density, deep x-slope (2-alpha)/(2*sqrt(lambda)) at density ratio lambda; canonical footing = independent channels (theta=0, kappa=1/2); alternative footing 1.1279e-10 = correlated channels theta=2-1/kappa_A=0.339941 at fixed rho_Lambda (equivalently lambda=(a0_A/a0_C)^2=1.451487 at fixed kappa=1/2). Audit finding: the two-channel response does NOT remove the kappa freedom — stochastic independence is an adopted, physically unidentified premise (operator decoupling in PD01 part 2 does not imply P(A∩B)=p^2; no probability space is defined in the sources; G009 shot-noise zero), so kappa=1/2 remains an adopted input and the continuum kappa in [1/2,1] (which includes the project's own alternative footing 0.6024) is allowed by the same statistical model. Negative control PASSED: perfect correlation gives deep slope 1, not 2. Domain: p in [0,1], Y in [1e-8,1e8] (34-pt log grid), alpha in {0,1/3,0.33986,1} (continuum analytic), n in {1,2,3,5} integer + 1/2 diagnostic, lambda in {1/2,1,2}, 2000 seeded arbitrary admissible C samples, both footings, eps in {1e-6,1e-9,1e-12}, mpmath dps 80 (200 for the cancellation-sensitive block).",
+  "framework_cell": {
+    "action": "none used — statistical response model (no action, no Hamiltonian); sources inspected at pinned hashes",
+    "source_hashes": {
+      "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+      "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+      "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c"
+    },
+    "kernel": "conditional MU_n statistical response (declared branch: 'CORE coefficient; conditional MU_n statistical response'); MU2 = 1-(1+Y)^(-2) used as the independent two-channel member",
+    "filter": "none",
+    "gate": "amended requirement 13 (a0-vacuum relation preserved as input or genuinely derived) — audit shows the input branch holds; kappa=1/2 not genuinely derived",
+    "coupling": "single common source rho_b shared by both sectors (deterministic functional coupling is the default; stochastic independence un-derived)",
+    "parameters": "kappa=1/2 ADOPTED input; G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16 (SI); a0 canonical 9.3619e-11 m/s^2, alternative 1.1279e-10 m/s^2; s=c*sqrt(G*rho_Lambda)=1.87238e-10=2*a0_canonical; alpha-family parameter alpha in [0,1]; lambda in {1/2,1,2}; n integer >=1",
+    "scale_footing": "both footings carried separately: canonical x'-slope 1 at alpha=0; alternative x'-slope 1 at alpha=0.339941 (equivalent to fixed-kappa density change lambda=1.451487)",
+    "boundaries": "U(0)=0, U(1)=1, U->1 as Y->inf (L230 normalisation), p(0)=0, p'(0)=1 (PD08 Step 3, adopted), p(inf)=1",
+    "initial_conditions": "none (zeroth-order statistical model; no evolution equations)",
+    "units": "all derived statements dimensionless; s in m/s^2 (checked: c*sqrt(G*rho_Lambda) = [m/s]*sqrt([m^3 kg^-1 s^-2][kg m^-3]) = [m/s^2]); kappa dimensionless; both acceleration footings in m/s^2"
+  },
+  "new_assumptions": [
+    "A1: the two-channel response is a Boolean OR of two engagement events with equal marginals p (statistical model — conditional, not asserted to exist in the gravity field)",
+    "A2: per-channel engagement p(Y)=Y/(1+Y) for finite-part checks (slope statements completion-free within the independent OR class)",
+    "A3: C_alpha(p)=alpha(p-p^2) with alpha in [0,1] as the realization family for the correlation freedom (every theta=C'(0) in [0,1] realized)",
+    "A4: spherical deep matching g^2=(s/m)g_N applies for the kappa mapping (PD08 Step 5 generalised to slope m)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS055_correlation_freedom_in_the_two_channel_response.md": "e112db835db90d562d53e8e0c756263460a63623d9cd029edb9d976666784e38",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/derivation.md": "5a14178b0b64ad1502bc5d9a9415b24af2a9991d262f9c4e563390a8d678cfe6",
+    "deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/as055_correlation_audit.py": "b9a5bb411926742dbf9e0856fb07c893adab7f9bae081a5434948b7feec90c0c",
+    "deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/raw_output.txt": "7a6d6aac2701aca3f18741c4ce38fa6b242c0c27207837f0d3c81c5aecc361b5",
+    "deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/raw_numerics.json": "52b41191de779de366ad5cf5f99f52dbf6540feff3be3bc83ea89a97db1c40d9",
+    "deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/AS055_correlation_freedom.lean": "2ebde133a81c1c07e36101e1d20acf5248baa9f88787e0f74efe914f961372a9",
+    "deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/lean_output.txt": "2334f486e8bd82dfd46967ffa3edb613e225da9c4da1ed727a64be13bf6bdba9"
+  },
+  "commands": [
+    ["cd /Users/carlzimmerman/new_physics/zimmerman-formula && shasum -a 256 deepseek_push/astra_spawn_ideas/AS055_correlation_freedom_in_the_two_channel_response.md deepseek_push/PD01_polarization_count.py deepseek_push/PD08_particle_free_derivation.py kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py ; grep AS055|PD01|PD08|k01 deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json", "hash verification against SOURCE_MANIFEST.json: all four match"],
+    ["cd <run_dir> && perl -e 'alarm 125; exec @ARGV' python3 as055_correlation_audit.py > raw_output.txt 2>&1", "bounded prototype; exit 0; 17/17 checks PASS; wall 0.034 s; peak RSS 19841024 B (macOS ru_maxrss reports BYTES ~ 18.9 MiB) under in-process RLIMIT_AS 512 MiB"],
+    ["cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS055/AS055_r1_dsv4flash_20260928T080222Z/AS055_correlation_freedom.lean", "Lean 4.34.0-rc2 (lakefile toolchain leanprover/lean4:v4.34.0-rc2); exit 0; zero sorry; all seven theorems axioms = {propext, Classical.choice, Quot.sound}"]
+  ],
+  "execution_bounds": {
+    "declared_and_enforced_wall_time_s": 120,
+    "actual_wall_seconds": 0.034,
+    "wall_enforced_by": "SIGALRM wrapper (perl alarm 125) + internal deadline() checks inside the script",
+    "declared_memory_mb": 512,
+    "memory_enforced_by": "resource.setrlimit(RLIMIT_AS, 512 MiB) inside the process — macOS bash rejects 'ulimit -v' ('cannot modify limit: Invalid argument'), recorded in raw_numerics.json; RLIMIT_AS set correctly (memory_rlimit_ok=true)",
+    "actual_ru_maxrss": "19841024 bytes on macOS (ru_maxrss unit = bytes on macOS, not KB as on Linux) ~= 18.9 MiB",
+    "threads": 1,
+    "threads_enforced_by": "single-threaded mpmath; no threading/multiprocessing imported",
+    "grid_points": 34,
+    "seeded_samples": 2000,
+    "dps": "mpmath 80 (200 for the cancellation-sensitive general-n block); deterministic seed 5521"
+  },
+  "checks": [
+    {"name": "SCALES", "measured": "s = 1.8723800000e-10 = 2*9.3619e-11", "pass": true, "tolerance": "1e-9 relative (a0 rounding)", "reading": "kappa=1/2 adopted: a0=s/2 on canonical footing"},
+    {"name": "A1 independent OR == MU2", "measured": "max |2p-p^2 - (1-(1+Y)^-2)| < 1e-45 over 34-pt grid", "pass": true, "tolerance": "1e-45", "reading": "mu_2 is exactly the union of two stochastically INDEPENDENT p=Y/(1+Y) channels"},
+    {"name": "A2 alpha-family closed form", "measured": "max residual < 1e-45 over alpha in {0,1/3,0.33986,1} x grid", "pass": true, "tolerance": "1e-45", "reading": "exact rational representation (7)"},
+    {"name": "A3 independence class general n", "measured": "max residual < 1e-45, n in {1,2,3,5}", "pass": true, "tolerance": "1e-45", "reading": "1-(1-p)^n == 1-(1+Y)^(-n)"},
+    {"name": "A4 alpha-family C in Frechet box", "measured": "27/27 C_alpha inside [max(0,2p-1)-p^2, p-p^2] for p in {0,1/8,...,1}", "pass": true, "tolerance": "exact", "reading": "alpha in [0,1] keeps the intersection between the independence level p^2 and the identity level p"},
+    {"name": "A4b U(p=1) = 1 normalisation", "measured": "U_alpha(1) = 1 for alpha in {0, 1/3, 1}", "pass": true, "tolerance": "exact", "reading": "boundary case p=1: both channels certain, union certain; the Fréchet upper bound forces C(1)=0"},
+    {"name": "B1 linear-term slope theorem", "measured": "max |slope - [(2-alpha)-(1-alpha)eps]| < 1e-50", "pass": true, "tolerance": "1e-50", "reading": "finite-eps value (2-alpha)-(1-alpha)eps matched at dps=80; deep slope 2-alpha"},
+    {"name": "B2 NEGATIVE CONTROL perfect correlation", "measured": "slope = 1.0000... to < 1e-30 at eps=1e-6..1e-12; |slope-2| > 0.5", "pass": true, "tolerance": "|slope-1|<1e-30 AND |slope-2|>0.5", "reading": "perfect correlation gives deep slope ONE, not TWO: slope=count claim falsified outside the independent class"},
+    {"name": "B3 mutual exclusion extremum", "measured": "U=2p exactly at p in {0.1,0.3,0.49}; U > 2p-p^2", "pass": true, "tolerance": "exact", "reading": "independent-OR value is interior, not the max; 2p-p^2 is not an upper bound"},
+    {"name": "B4 sharp union bounds", "measured": "2000/2000 seeded admissible C give p<=U<=min(2p,1)", "pass": true, "tolerance": "exact", "reading": "universal bounds for ANY admissible correlation function"},
+    {"name": "B5 quadratic correlation term", "measured": "max residual < 1e-50 vs exact finite-eps polynomial", "pass": true, "tolerance": "1e-50", "reading": "only the linear coefficient of C enters the deep slope"},
+    {"name": "C1 deep x-slope diagnostics lambda in {1/2,1,2}", "measured": "analytic vs numeric rel. err <= 9e-25 (two-point estimator floor); slopes sqrt(2), 1, 1/sqrt(2), 1/2", "pass": true, "tolerance": "1e-20 relative", "reading": "identical two-channel model + different (alpha,lambda) -> different deep x-slopes; slope fixed by the PAIR, never by the channel count"},
+    {"name": "C2 two-footing decomposition", "measured": "kappa_A=0.602388404063; alpha_alt=0.339941; lambda_alt=1.451487; (2-alpha_alt)*a0_A/s=1 to <1e-30", "pass": true, "tolerance": "1e-15/1e-30/1e-12", "reading": "alternative footing = correlated two-channel model at fixed rho_Lambda, or density lambda=1.4515 at fixed kappa=1/2"},
+    {"name": "C3 footing separation", "measured": "canonical x'-slope alpha=0 -> 1; alternative x'-slope alpha=0.3399 -> 1; alpha=0 -> 1.2048", "pass": true, "tolerance": "1e-30", "reading": "both footings carried separately; unit x'-slope law on each footing at its own alpha"},
+    {"name": "D1 Newtonian limit (exact identity)", "measured": "|(1-U) - (1+alpha Y)/(1+Y)^2| < 1e-60 at Y=1e8", "pass": true, "tolerance": "1e-60", "reading": "U->1 for every admissible C; subleading O(1/Y) alpha>0, O(1/Y^2) alpha=0"},
+    {"name": "D2 deep gate unit x-slope", "measured": "mu2'(0) = 1 + O(1e-24)", "pass": true, "tolerance": "1e-20 relative", "reading": "operative deep law g^2=a0 g_N untouched by the audit; freedom acts on the a0 decomposition"},
+    {"name": "D3 independent class slope = n", "measured": "|measured - geometric-sum prediction| < 1e-55 for n in {1,2,3,5} (dps 200); n=1/2 -> 0.5 diagnostic", "pass": true, "tolerance": "1e-55 integer, 1e-44 half-diagnostic", "reading": "PD01 Part A holds for every integer n inside the independent class; fractional n has no OR reading"}
+  ],
+  "tested_domain": "p in [0,1]; Y in [1e-8,1e8] 34-pt log grid (both decades and 2*10^k); alpha in {0, 1/3, 0.33986, 1} with continuum result analytic via (5)-(6); n in {1,2,3,5} integer plus 1/2 diagnostic; lambda in {1/2, 1, 2}; 2000 seeded (seed 5521) arbitrary admissible C samples; eps in {1e-6,1e-9,1e-12}; both footings 9.3619e-11 and 1.1279e-10 m/s^2; mpmath dps 80 (200 for D3). Exclusions: no gravitational dynamics, no action, no observational/data comparison (PD01 part 3 out of scope for the premise audit), no ensemble construction (that is AS055.C01).",
+  "failed_attempts": [
+    {"path": "<run_dir>/as055_correlation_audit.py (iterations 1-5, discarded in place)", "cause": "a stray 'finish' identifier (NameError); mpf `.16e` format unsupported; A4 tuple-arity bug (r[3] on 3-tuple); macOS bash 'ulimit -v' unsupported (replaced by in-process RLIMIT_AS); finite-eps estimator bias miscalibrated in B1/B5/C1/D1/D2/D3 (one-sided estimators carry O(eps) bias; wrong O(1/Y) Newtonian expansion; C(n,2)*eps geometric-sum bias for integer n; dps-80 cancellation floor 1e-50 at eps=1e-30 fixed by dps 200); B5 prediction had beta*eps^3 where beta*eps^2 is exact; Lean: trailing tactic after closing field_simp ('No goals to be solved'), =ᶠ[...] bracket not token-adjacent, doc-comment before #print command rejected ('expected lemma'). All failures preserved in the run directory file history; final artifacts are the corrected versions."}
+  ],
+  "limitations": "Conditional on the statistical OR model; no probability space is asserted or constructed for the gravity field (seed: do not assume statistical events exist). No action, no dynamics, no criterion-B/stability/well-posedness content. Finite grids/residuals are finite evidence; structural identities are additionally Lean-certified. No observational comparison run (PD01 part 3 not re-derived; the audit finding is structural: the channel-count derivation leaves the correlation freedom alive). The kappa mapping kappa=1/(2-theta) holds at fixed vacuum density within the OR model; it is not a claim about other kappa-derivation routes. p'(0)=1 (PD08 Step 3) is used as an adopted normalisation, not re-derived. The binary claim {1/2,1} of PD01 is falsified only within the OR statistical model with free correlation; PD01's own restricted class statement is re-confirmed inside its stated class.",
+  "next_unresolved_implication": "Physical identification or derivation of the correlation structure: a probability space whose events are the two Poisson-sector engagements and an argument fixing P(A∩B)(p) (equivalently theta = C'(0) in [0,1]) from the carrier dynamics — or a no-go proof that no such probability space exists in a deterministic two-Poisson-sector theory. Until then kappa = 1/2 (and alpha = 0) remains an adopted normalisation: the correlation freedom is exactly the kappa/footing freedom re-parameterised (kappa in [1/2,1] continuum at fixed rho_Lambda).",
+  "suggested_followup": "Dispatch AS055.C01 (ready spec in derivation.md): derive P(A∩B)(p) for the two sectors of PD01 part 2 from carrier dynamics, or prove no such probability space exists (G009 shot-noise zero is evidence toward the no-go but not a derivation); control: constructed P must satisfy the Fréchet bounds and differ from p^2 on a nonempty set, or the no-go proof must be complete. Only after C01 may the kappa claim be re-audited.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_inputs": ["kappa = 1/2 ADOPTED (framework input)", "G = 6.67430e-11 m^3 kg^-1 s^-2", "c = 299792458 m/s", "both a0 footings 9.3619e-11 and 1.1279e-10 m/s^2", "rho_Lambda fixed from the canonical footing", "per-channel engagement p(Y) = Y/(1+Y) (corpus member; p(0)=0, p'(0)=1, p(inf)=1)", "Fréchet intersection bounds for two events of equal marginal p", "spherical deep matching g^2 = (s/m) g_N (PD08 Step 5 generalised)"],
+    "derived": ["s = c*sqrt(G*rho_Lambda) = 2*a0_canonical (checked [m/s^2])", "C-bounds and sharp union bounds (4)", "deep-slope theorem (5)-(6) and realization family", "closed form (7)", "kappa mapping (8) and footing decompositions (9)", "Newtonian exact identity 1-U = (1+alpha Y)/(1+Y)^2"],
+    "candidate_extensions": ["C_alpha = alpha(p-p^2) realization family (covers all theta in [0,1]; any measured kappa in [1/2,1] is reached by some alpha at lambda=1)"],
+    "measurements": ["none used (no observational fit or comparison in this audit)"]
+  },
+  "closure_implication": {
+    "gate": "amended requirement 13 (framework a0-vacuum relation explicitly preserved as input or genuinely derived)",
+    "exact_implication": "Two-channel OR (conditional MU_n statistical response) proves the conditional slope lemma but does NOT derive kappa: the correlation freedom theta=C'(0) in [0,1] is a genuinely independent freedom with no physical identification in PD01/PD08/k01; kappa_eff = 1/(2-theta) spans [1/2,1] at fixed rho_Lambda (canonical 1/2 at theta=0; alternative footing 0.6024 at theta=0.3399). Hence the a0-vacuum relation stays in the 'preserved as input' branch; no genuine derivation is supplied; gate 13 remains open for the kappa-derivation route (the input-adoption route is permitted by the spec and remains the status).",
+    "common_action_parameter_domain": "statistical model parameters (p, alpha, lambda, n); compatible with all common-action cells only via the conditional lemma — no common action is varied here; criterion-B and other gates untouched"
+  },
+  "child_proposals": [
+    {"id": "AS055.C01", "new_claim": "P(A∩B)(p) for the two Poisson sectors of PD01 part 2 is either derivable from carrier dynamics (then compute theta) or no such probability space exists (no-go proof)", "status": "spec-only, NOT dispatched (no runner available in this wave); ready spec in derivation.md section 8", "parent": "AS055_r1_dsv4flash_20260928T080222Z", "dependencies": ["PD01 part 2 operator structure at pinned hash", "G009 shot-noise-zero evidence"], "controls": ["constructed P satisfies Fréchet bounds and differs from p^2 on nonempty set, or complete no-go"]},
+    {"id": "AS055.C02", "new_claim": "the deep-law zero point fixes only the product (2-alpha)*a0/s; separate (kappa, rho_Lambda, theta) requires a distinct observable — propose a cross-sector covariance probe under a stochastic-source ensemble with predicted value under the alpha-family", "status": "spec-only, NOT dispatched", "parent": "AS055_r1_dsv4flash_20260928T080222Z", "dependencies": ["C01 result (either branch)"], "controls": ["predicted value differs across (alpha, lambda) cells that share the same deep law"]},
+    {"id": "AS055.C03", "new_claim": "documentation: kappa = 1/2 follows only from (count=2) AND stochastic independence AND spherical matching; re-state as explicit premise with non-circular control set", "status": "spec-only, NOT dispatched (review/cleanup role)", "parent": "AS055_r1_dsv4flash_20260928T080222Z", "dependencies": ["none beyond this run"], "controls": ["every premise either input or derived; no circular use of the slope theorem"]}
+  ],
+  "closure_candidate": null
+}

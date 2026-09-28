@@ -1,0 +1,346 @@
+{
+  "script": "as003_verify.py",
+  "enforced_bounds": {
+    "threads": 1,
+    "wall_cap_s": 120,
+    "cpu_rlimit_s": 120,
+    "cpu_rlimit_enforced": true,
+    "memory_cap_MB": 512,
+    "memory_rlimit_enforced": false,
+    "memory_rlimit_error": "current limit exceeds maximum limit",
+    "actual_wall_s": 0.109,
+    "actual_peak_rss_MB": 55.5,
+    "mpmath_precision_digits": 60
+  },
+  "inputs": {
+    "G_N": "0.000000000066743",
+    "c": "299792458.0",
+    "kappa": "0.5",
+    "a0_canonical": "0.000000000093619",
+    "a0_alternative": "0.00000000011279",
+    "H0_674_km_s_Mpc": "67.4",
+    "H0_730_km_s_Mpc": "73.0",
+    "pc_m": "30856775814913670.0",
+    "Planck_comparison": {
+      "Omega_Lambda": "0.6847",
+      "sigma": "0.0073",
+      "source": "Planck 2018 (Aghanim et al. 2020, arXiv:1807.06209, Table 2); H0 = 67.36 +/- 0.54 km/s/Mpc (67.4 used)"
+    }
+  },
+  "values": {
+    "rho_Lambda_canonical_kg_m3": "5.844412454e-27",
+    "rho_Lambda_alt_kg_m3": "8.48308962e-27",
+    "rho_crit_H0_674_kg_m3": "8.532855164e-27",
+    "rho_crit_H0_730_kg_m3": "1.000968248e-26",
+    "Omega_L_canonical_674": "0.6849304649",
+    "Omega_L_canonical_730": "0.5838759089",
+    "Omega_total_alt_674": "0.9941677735",
+    "Omega_total_alt_730": "0.8474883833",
+    "exclusion_sigma_canonical_vs_Planck": "43.1602",
+    "H0_exact_alt_closure_km_s_Mpc": "67.203167",
+    "kappa_eff_alt_fixed_rho": "0.6023884",
+    "rho_eff_over_rho_Lambda": "1.4514872",
+    "kappa_eff_lock_ratio_730_over_674": "0.92328767",
+    "Lambda_canonical_m^-2": "1.0907998e-52"
+  },
+  "checks": [
+    {
+      "name": "C1 identity canonical H0=67.4 r=1",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.684930464876272747 form=0.684930464876272747",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity canonical H0=67.4 r=1.001",
+      "residual_abs": "-7.7787690973264271339300800672251553007378152109014589163764e-62",
+      "residual_rel": "1.13456744848266737124441860990763488703437446372706473114952e-61",
+      "tol": "1.0e-45",
+      "detail": "direct=0.68561539534114902 form=0.68561539534114902",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity canonical H0=67.4 r=0.99",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.67808116022751002 form=0.67808116022751002",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity canonical H0=73.0 r=1",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.583875908917496113 form=0.583875908917496113",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity canonical H0=73.0 r=1.001",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.584459784826413609 form=0.584459784826413609",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity canonical H0=73.0 r=0.99",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.578037149828321152 form=0.578037149828321152",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity alternative H0=67.4 r=1",
+      "residual_abs": "7.7787690973264271339300800672251553007378152109014589163764e-62",
+      "residual_rel": "7.82440278676525819446714289051096539378881790013891971768998e-62",
+      "tol": "1.0e-45",
+      "detail": "direct=0.994167773479655333 form=0.994167773479655333",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity alternative H0=67.4 r=1.001",
+      "residual_abs": "-7.7787690973264271339300800672251553007378152109014589163764e-62",
+      "residual_rel": "7.81658620056469350096617671379716822556325464549342629139858e-62",
+      "tol": "1.0e-45",
+      "detail": "direct=0.995161941253134988 form=0.995161941253134988",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity alternative H0=67.4 r=0.99",
+      "residual_abs": "7.7787690973264271339300800672251553007378152109014589163764e-62",
+      "residual_rel": "7.90343715834874565097691201061713676140284636377668658352523e-62",
+      "tol": "1.0e-45",
+      "detail": "direct=0.984226095744858779 form=0.984226095744858779",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity alternative H0=73.0 r=1",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.8474883833087707 form=0.8474883833087707",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity alternative H0=73.0 r=1.001",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.84833587169207947 form=0.84833587169207947",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1 identity alternative H0=73.0 r=0.99",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "direct=0.839013499475682993 form=0.839013499475682993",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C1s symbolic identity (sympy, exact)",
+      "residual_abs": "0",
+      "residual_rel": "0",
+      "tol": "0",
+      "detail": "simplify(lhs-rhs) = 0",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 partials canonical H0=67.4",
+      "residual_abs": "0.0",
+      "residual_rel": "9.13310081189489078834916208034282732564677377647450232863086e-62",
+      "tol": "0.000000000001",
+      "detail": "dOm/da0_num=14632296112.5 closed=14632296112.5 dOm/dH0_num=-6.27143792388e+17 closed=-6.27143792388e+17",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 partials canonical H0=73.0",
+      "residual_abs": "0.0",
+      "residual_rel": "1.07138158799029385244020561786550306021827385674859827306029e-61",
+      "tol": "0.000000000001",
+      "detail": "dOm/da0_num=12473448956.2 closed=12473448956.2 dOm/dH0_num=-4.9360350754e+17 closed=-4.9360350754e+17",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 partials alternative H0=67.4",
+      "residual_abs": "0.0",
+      "residual_rel": "1.51614817786822906412706836563456893589808549371356757426029e-61",
+      "tol": "0.000000000001",
+      "detail": "dOm/da0_num=17628651005.9 closed=17628651005.9 dOm/dH0_num=-9.10291160495e+17 closed=-9.10291160495e+17",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 partials alternative H0=73.0",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "0.000000000001",
+      "detail": "dOm/da0_num=15027722019.8 closed=15027722019.8 dOm/dH0_num=-7.16459152041e+17 closed=-7.16459152041e+17",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 null direction t=3.7 canonical",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "Omega(t*a0,t*H0)/Omega(a0,H0) residual",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 null direction t=3.7 alternative",
+      "residual_abs": "2.34732083602957745834014286715328961813664537004167591530699e-61",
+      "residual_rel": "2.34732083602957745834014286715328961813664537004167591530699e-61",
+      "tol": "1.0e-45",
+      "detail": "Omega(t*a0,t*H0)/Omega(a0,H0) residual",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 null direction t=0.31 canonical",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "Omega(t*a0,t*H0)/Omega(a0,H0) residual",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 null direction t=0.31 alternative",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "Omega(t*a0,t*H0)/Omega(a0,H0) residual",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C2 non-null a0-only perturbation",
+      "residual_abs": "0.0",
+      "residual_rel": "0.21",
+      "tol": "0.001",
+      "detail": "Omega(1.1 a0)/Omega(a0) must NOT be 1 (map is not constant in a0)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C3a canonical footing vs strict closure (Omega_L=1)",
+      "residual_abs": "-0.315069535123727252897035135902641643205411816627735636900108",
+      "residual_rel": "0.315069535123727252897035135902641643205411816627735636900108",
+      "tol": "0.001",
+      "detail": "Omega_L(canonical,67.4)=0.684930464876; Planck Omega_Lambda=0.6847+/-0.0073; exclusion (1-Omega)/0.0073 = 43.1602 sigma (comparison)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C3b alternative footing vs critical density",
+      "residual_abs": "-0.00583222652034466741477136370004137369956368784882995306303432",
+      "residual_rel": "0.00583222652034466741477136370004137369956368784882995306303432",
+      "tol": "0.001",
+      "detail": "Omega_total(alternative,67.4)=0.99416777348 (rho_eff/rho_crit); deviation from 1 = 0.00583223",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C3c H0 for exact alt-footing closure",
+      "residual_abs": "-0.196833447727784479303600043936423430069046836370890198530543",
+      "residual_rel": "0.00292037756272677268996439234327037730072769786900430561618016",
+      "tol": "0.01",
+      "detail": "H0_exact = 67.203167 km/s/Mpc (close to 67.4 anchor)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C4 G-ratio linearity r=1.001",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "Omega(L)/Omega(1) == 1.001",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C4 G-ratio linearity r=0.99",
+      "residual_abs": "-7.7787690973264271339300800672251553007378152109014589163764e-62",
+      "residual_rel": "1.14717375346580811981380103890660860800142306887958767260674e-61",
+      "tol": "1.0e-45",
+      "detail": "Omega(L)/Omega(1) == 0.99",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C4 log-sensitivity dlnOmega/dln(Gc/GN)",
+      "residual_abs": "-1.33794828474014546703597377156272671172690421627505093361674e-59",
+      "residual_rel": "1.33794828474014546703597377156272671172690421627505093361674e-59",
+      "tol": "1.0e-45",
+      "detail": "log-sensitivity = 1.0 (must be 1)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C5a roundtrip of an Omega_L-derived a0 (CIRCULARITY CONTROL)",
+      "residual_abs": "7.7787690973264271339300800672251553007378152109014589163764e-62",
+      "residual_rel": "1.13608428469788624710531328570544111300391634451605942987825e-61",
+      "tol": "1.0e-40",
+      "detail": "a0' built from Omega_L=0.6847 gives back Omega=0.6847; agreement by construction => FLAGGED CIRCULAR, not evidence",
+      "verdict": "CIRCULAR-FLAGGED"
+    },
+    {
+      "name": "C5b independent-input consistency (canonical a0 as galaxy datum)",
+      "residual_abs": "0.000230464876272747102964864097358356794588183372264363099892005",
+      "residual_rel": "0.000336592487619026001117079154897556294126162366385808529125172",
+      "tol": "0.001",
+      "detail": "Omega(canonical a0, H0=67.4) = 0.68493046 vs Planck 0.6847: finite residual 0.0003366 (0.03%) \u2014 genuine consistency, not construction; same check with alt a0 gives 0.452 (45%) \u2014 map responds to inputs",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C6a a0->0 boundary",
+      "residual_abs": "0.0",
+      "residual_rel": "7.81481115610166294137243990156822235919846107963213517518597e-41",
+      "tol": "1.0e-30",
+      "detail": "Omega(a0->0): 7.81e-41 -> 0 as expected",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C6b H0->inf boundary",
+      "residual_abs": "7.41841230137484277146347052309527902673512955751558200490608e-68",
+      "residual_rel": "1.08308984368433956014219572879556896392956622904853038394992e-61",
+      "tol": "0.001",
+      "detail": "Omega(H0*1000)=6.8493e-7 vs Omega(0)/1e6=6.8493e-7 (1/H0^2 scaling; 1000x H0 -> 1e-6 x Omega)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C6c units: dimensionless ratio",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "0.0",
+      "detail": "a0^2/(H0 c)^2 has units (m^2 s^-4)/(s^-2 m^2 s^-2) = 1; Gc/GN dimensionless",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C7 k03 H0-lock numerology",
+      "residual_abs": "0.0012876712328767123287671232876712328767123287671232876712328",
+      "residual_rel": "0.00139660654325023029150447211244168424806109410750898879743254",
+      "tol": "0.005",
+      "detail": "kappa_eff(73.0)/kappa_eff(67.4) = 0.92328767 vs README 0.461/0.5=0.922 (exactly H0(67.4)/H0(73.0)=0.92328767; the Jacobian null direction)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C8a kappa_eff at fixed rho_Lambda",
+      "residual_abs": "0.0",
+      "residual_rel": "0.0",
+      "tol": "1.0e-45",
+      "detail": "kappa_eff = 0.6023884 (== (1/2)*(a0_alt/a0_can))",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C8b rho_eff at fixed kappa=1/2",
+      "residual_abs": "1.45148715739961114327949913634723271665689422682847548594126",
+      "residual_rel": "0.451487157399611143279499136347232716656894226828475485941261",
+      "tol": "1.0e-45",
+      "detail": "rho_eff/rho_Lambda(canonical) = (a0_alt/a0_can)^2 = 1.4514872",
+      "verdict": "PASS"
+    },
+    {
+      "name": "C9 Lambda from a0 (same-G)",
+      "residual_abs": "1.09079976328073499027074255714452733271954686076806363211088e-52",
+      "residual_rel": "0.0",
+      "tol": "0.0",
+      "detail": "Lambda = 32 pi a0^2/c^4 = 1.0907998e-52 m^-2 (G_E = G_N footing)",
+      "verdict": "PASS"
+    }
+  ],
+  "n_checks": 37,
+  "n_fail": 0
+}

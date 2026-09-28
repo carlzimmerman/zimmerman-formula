@@ -1,0 +1,98 @@
+{
+  "schema_version": 2,
+  "task_id": "AS043",
+  "task_sha256": "cefd64b32a09fe49cbf37bd17bb42505ac127c765a2cdaea4d59178d67eb4f6b",
+  "run_id": "AS043-efe-r1-20260928T072722Z-dsv4f-hermes",
+  "worker": "deepseek-v4-flash-0731 via hermes-agent subagent (openrouter); run dir results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes",
+  "started_utc": "2026-09-28T07:27:22Z",
+  "finished_utc": "2026-09-28T09:56:33Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On a flat leaf with filter S=exp((xi^2/2)Delta), xi=0.5, and a prescribed constant external vector e = a0*y*e_hat (boundary data), for each of the five criterion-B branches Q (nu=sqrt(1+1/y)), RAR (nu=1/(1-exp(-sqrt y))), EXP (mu=1-exp(-x)), MU2 (mu=1-(1+x/2)^-2), MONO (filtered, spline at y_star=2.3374124053, y_p=2.5396382822): (i) S e = e exactly; (ii) the linearized response about e is J = nu(y) I + y nu'(y) e_hat e_hat^T with eigenvalues alpha_par = nu + y nu' (longitudinal) and beta_perp = nu (transverse), the first-order transverse response being exactly zero (norm stationarity) and the second-order transverse coefficient being nu'(y)/(2y) per unit transverse field; (iii) deep limit y->0: nu(y) = y^(-1/2) + c + o(1) with c = 0, 1/2, 1/4, 3/8 (Q, RAR, EXP, MU2) and the anisotropy ratio alpha_par/beta_perp -> 1/2 for all five branches (MONO follows RAR below y_star); (iv) the five branches are pairwise distinct (min pairwise max-relative deviation 2.3489e-02 on the y = 10^k, k=-10..8 grid), so matching the deep asymptote does not equate kernels; (v) the linearized kernel solves the nonlinear filtered field equation to second order in source amplitude on the validated domain y in [0.05, 10], A <= 1e-3, 8x8 periodic box N=64: physical remainder r2(A/4)/r2(A) = 0.250 (quadratic) with |r2| <= 1.24e-4 (a0-normalized units), cross-checked by an independent real-space sparse-LU periodic Poisson + rational S_m (m=64) solve agreeing with the Fourier closed form to rel 6.35e-4. Dimensional examples (G=6.67430e-11, c=299792458, SI): e = 1e-10 m/s^2 gives alpha/beta = 0.71465 (canonical a0 = 9.3619e-11 m/s^2) and 0.69899 (alternative a0 = 1.1279e-10 m/s^2); e = 2e-11 m/s^2 (canonical) gives 0.60668. Claim is dimensionless in y = B/a0 and therefore holds under both footings.",
+  "framework_cell": "action=AS043_constant_acceleration_and_the_external_field, seed_sha256=cefd64b32a09fe49cbf37bd17bb42505ac127c765a2cdaea4d59178d67eb4f6b; kernel=inverse constitutive responses Q/RAR/EXP/MU2/MONO (criterion B, filtered MONO operative per FRIED_CHICKEN_SPEC amendment, source hash 98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f); filter=S=exp((xi^2/2)Delta), xi=0.5; gate=weak-field EFE linearization / external field effect; coupling=rank-one anisotropic response y nu'(y) e e^T; parameters=kappa=1/2 ADOPTED, a0=(c/2)*sqrt(G*rho_Lambda), xi=0.5, G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16 (SI); scale footing=canonical 9.3619e-11 and alternative 1.1279e-10 m/s^2 carried separately; boundaries=flat periodic leaf (L=8.0, N=64, mean-removed sources), prescribed constant external vector e as boundary data; initial conditions=none (static); units=SI for dimensional examples, dimensionless y=B/a0 elsewhere",
+  "new_assumptions": [
+    "kappa = 1/2 adopted as input (per seed: treated as adopted unless independently derived; no independent derivation performed)",
+    "causality criterion B of the amended thirteen-item target as operative constraint (per FRIED_CHICKEN_SPEC.md)",
+    "filter scale xi = 0.5 (as in the operative closure spec)",
+    "flat/periodic leaf for the filter commutation S e = e and all numeric solves",
+    "external vector e is prescribed boundary data and is not solved for",
+    "no additional radiation or time dependence in the linearized response"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS043_constant_acceleration_and_the_external_field.md": "cefd64b32a09fe49cbf37bd17bb42505ac127c765a2cdaea4d59178d67eb4f6b",
+    "README.md": "91a5fac44ffe30db5f8e95247e5f04e913eccd149f2ff8b683c1f05510a6b6ed",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+    "real_research/peer_review_2026_09_26/README.md": "521d9ac36a93a27dcd6c995f78743ae9b1de4304095911871d81e6a70f9ecaac",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/derivation.md": "74da442e67cf1862bd3598c03ea2411f513ab48557df1a87c368722079fee19d",
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/as043_efe.py": "722abdde8a9ff42f10d04bfe26ab8840d3c4c22caa37e76bd3794f5f7d06b7ee",
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/efe_run.out": "82db3267eb1e412788deee44cea4d409f8c576fd06387fb87fd572a1142000cd",
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/efe_run.time": "7989ead73fcc4bea72277c5933eeddfb0b0d96b90c8708dbb25fa12463336f49",
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/efe_checks.json": "586130e74fb1bbf9011104dfeae2d82411309b7d7e5a1c650abf0a9591da85fc",
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/efe_diagnostic_grid.csv": "c125f84e9c2bfdeed781ad489bc8109a7b831e592844f94bee72c5c288213dae",
+    "deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/AS043_efe_certificates.lean": "1f1651d5d04ed55fd5a15715a99baef0b5154e7f6b4886b5c1ea7e93cd0b6687"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes && OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 /usr/bin/time -l python3 as043_efe.py > efe_run.out 2> efe_run.time",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/AS043_efe_certificates.lean (0 errors; then #print axioms on 7 theorems -> exactly [propext, Classical.choice, Quot.sound])",
+    "shasum -a 256 <seed and sources> (all match SOURCE_MANIFEST.json pins and the task-pinned seed hash)"
+  ],
+  "execution_bounds": {
+    "declared": {"wall_time_s": 120, "memory_mb": 512, "threads": 1, "refinement": "diagnostic grid y=10^k, k=-10..8 step 0.1; deep section mpmath mp.dps=60 at y<=1e-10; C1b composite Simpson n=50000 on 10-sigma window; C6 box L=16,N=64 (bounded prototype)"},
+    "enforced": {"wall_time_s_actual": 1.15, "max_rss_bytes": 75071488, "peak_footprint_bytes": 49398456, "threads": "1 via OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1", "time_source": "/usr/bin/time -l (efe_run.time; final run 1.15 s; identical earlier full run 1.30 s)", "both_runs_under_120s_and_512MB": true}
+  },
+  "checks": [
+    {"id": "C1_S_const_vector_fixed_point", "target": "S e = e", "tol": "1e-12", "observed": 0.0, "pass": true},
+    {"id": "C1b_heat_kernel_preserves_linear_data", "target": "(K_xi * (e x))(x0) = e x0, e=0.37, x0 in {-7.3,0.2,11.9}", "tol": "1e-10", "observed": 1.0260237104375847e-11, "pass": true},
+    {"id": "C2_mag_perp_stationary", "target": "d/deps |e+eps w_perp| = 0 (Q,RAR,EXP,MU2,MONO x y in {0.01,0.1,1,10})", "tol": "1e-12", "observed": 0.0, "pass": true},
+    {"id": "C2b_nu_transverse_deriv_zero", "target": "nu(|e+eps w_perp|/a0) first derivative zero", "tol": "1e-12", "observed": 0.0, "pass": true},
+    {"id": "C2c_nu_nonlinear_2nd_order", "target": "second-order transverse coefficient = nu'(y)/(2y) (per unit transverse field)", "tol": "1e-4 rel", "observed": "e.g. Q y0.01: -49751.828 vs analytic -49751.860; Q y1: -0.353557 vs -0.353553", "pass": true},
+    {"id": "C3_jacobian_eigenvalues", "target": "par=nu+y*nu', perp=nu (all 5 branches, y in {0.01,0.1,1,10})", "tol": "1e-6", "observed": "e.g. Q y0.01 par 5.07469029/5.07468964; Q y10 perp 1.04880885/1.04880885", "pass": true},
+    {"id": "C4_deep_subleading_c", "target": "c in nu=y^-1/2+c+o(1): Q=0, RAR=0.5, EXP=0.25, MU2=0.375 (Richardson-extrapolated, y=1e-20, mp.dps=60)", "tol": "1e-8", "observed": "5e-11, 0.500000000008, 0.250000000007, 0.375000000013", "pass": true},
+    {"id": "C4b_deep_aline", "target": "sqrt(y)*nu -> 1", "tol": "1e-6", "observed": "1.0, 1.00000000005, 1.000000000025, 1.0000000000375", "pass": true},
+    {"id": "C4c_deep_aniso_ratio", "target": "(nu+y*nu')/nu -> 1/2", "tol": "1e-5", "observed": "0.50000000005 .. 0.50000187500", "pass": true},
+    {"id": "C4f_kernel_aniso_ratio", "target": "filtered kernel M_par/M_perp -> 1/2 at k=0.3", "tol": "1e-3", "observed": "0.500000114 .. 0.500002614", "pass": true},
+    {"id": "C5g_branches_pairwise_distinct", "target": "min pairwise max-relative deviation on y-grid > 0", "tol": ">0", "observed": 0.02348881033464027, "pass": true},
+    {"id": "C6_nonlinear_residual", "target": "r2(A/4)/r2(A) ~ 1/4, r2(A) < 1e-2 (RAR,MONO; y in {0.05,0.5,10}, A=1e-3, 8x8 N=64)", "tol": "r2<1e-2, 0.02<ratio<0.5", "observed": "r2=1.241e-04..3.948e-06, ratios 0.250/0.250/0.250", "pass": true},
+    {"id": "C6b_realspace_vs_fourier_linear_solve", "target": "independent real-space sparse-LU periodic Poisson + rational S_m m=64 vs Fourier closed form", "tol": "0.02", "observed": 0.00063538631550139, "pass": true},
+    {"id": "C6c_response_par_perp_kernel", "target": "filtered kernel response vs analytic S^2 form", "tol": "1e-10", "observed": "104.43516018515317 / 157.55875318255482", "pass": true},
+    {"id": "C6_domain_breakdown_deep_large_A", "target": "negative control: linearization must BREACH at y=0.05, A=0.02", "tol": "r2(A=0.02)>5e-2, |ratio-0.25|>0.12", "observed": "r2=1.580e-01, r2(A/4)=7.374e-02, ratio=0.467 (|dev|=0.217)", "pass": true},
+    {"id": "C7_mono_landmarks_and_grid", "target": "y_p=2.5396, y_star=2.3374, max dex diff <= 0.0104 (spec); grid completeness", "tol": "spec intervals", "observed": "y_p=2.5396382822, y_star=2.3374124053, max dex 0.01032 at y=15.85", "pass": true},
+    {"id": "NEG_scalar_magnitude_spurious_transverse", "target": "scalar prescription d/deps nu(|e|+eps|w|) must be NONZERO (control fires)", "tol": ">1e-6", "observed": "497.52, 15.08, 0.354, 0.00477 (Q y=0.01..10); analogous for all branches", "pass": true}
+  ],
+  "tested_domain": "Dimensionless y=B/a0 in grid 10^k, k=-10..8 step 0.1 (all five branches); deep statements at y<=1e-10 with mpmath mp.dps=60 and Richardson extrapolation over y in {1e-8,1e-9,1e-10}; Newtonian checks up to y=1e8. Linearization residuals: 8x8 periodic box, L=16, N=64, h=0.25, xi=0.5, Gaussian source rho=A*exp(-|x-s|^2/(2*0.9^2)) with A in {1e-3, 2.5e-4, 0.02}, y in {0.05, 0.5, 10}; validated linearization domain y>=0.05, A<=1e-3; breakdown demonstrated at y=0.05, A=0.02. Dimensional footings: canonical a0=9.3619e-11 and alternative a0=1.1279e-10 m/s^2 evaluated at e in {1e-10, 2e-11} m/s^2. Excluded: curved leaf, time dependence, radiation, y<1e-20.",
+  "failed_attempts": [
+    {"path": "deepseek_push/astra_spawn_ideas/results/AS043/AS043-smk-r1-20260928T040643Z-dsv4f-hermes/", "cause": "executed a different (wrong) seed text; subperseeded by this authoritative redo"},
+    {"path": "results/AS043/AS043-efe-r1-20260928T072722Z-dsv4f-hermes/efe_run.out (earlier iterations, overwritten)", "cause": "iterative debugging recorded in derivation.md/this history: (1) naive trapezoid C1b quadrature error ~3.5e-4 -> composite Simpson n=50000; (2) tanh-sinh/mp.quad undersamples 10-sigma Gaussian -> fixed; (3) non-wrapping 5-point Laplacian stencil (sp.diags offsets) caused 2x error in real-space Poisson -> wrap terms added and eigen-verified; (4) genuine sign bug in linearized phantom multiplier M (initial minus sign made residual linear in A) -> plus sign; (5) C6b global sign flip of the Poisson source (was -4*pi*G*rho) -> +4*pi*G*rho; (6) y=0.05, A=1e-3 linearization breach initially misread as bug -> recalibrated as domain-boundary control at A=0.02; (7) Lean API traps (HasDerivAt.sqrt needs ne0, hasDerivAt_const point-first, simpa cannot unfold partial applications, nlinarith cannot use a*(a*a+b*b) with a^2+b^2=1, field_simp needs sqrt-argument rewrites) resolved as documented in the certificate file"}
+  ],
+  "limitations": "Flat-leaf (periodic) linearization only; no curved/radial leaf, no time dependence, no retarded radiation beyond criterion B. MONO splice landmarks verified against spec values, not re-derived. No observational data fitted; dimensional examples are kinematic illustrations, not empirical tests. kappa=1/2 is an adopted input, not derived. Full second-order (quadratic) response kernel is not Lean-certified (only leading coefficient). Branch distinctness and deep constants verified numerically on the stated grid and at y=1e-20 with mpmath; these are finite numerical consistency checks, with the algebraic core (stationarity, scalar-control, 1/2 ratio, Jacobian eigenvectors) separately certified in Lean.",
+  "next_unresolved_implication": "Transfer of the flat-leaf EFE result to the full theory: whether S e = e and the rank-one Jacobian J = nu I + y nu' e e^T survive on a curved/radial leaf (filter acting on non-flat derivatives), and which observable geometry (e.g., wide-binary or cluster-core anisotropy, solar-system-boundary test) can separate the two footings, whose EFE anisotropy ratios differ by ~2% at e = 1e-10 m/s^2 (0.71465 canonical vs 0.69899 alternative).",
+  "suggested_followup": "Dispatch child AS043.C01 'radial-leaf external-field kernel': derive the filter commutation S e = e on a spherically symmetric leaf and the anisotropic response to a radial external vector, with the flat-leaf claim (this run, task_sha256 cefd64b3...) as parent; controls: radial analogue of C1/C2/C3 and a curved-leaf residual check. Alternatively, a dedicated observable-mapping work order for the alpha/beta ratio footing discriminator.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": ["five declared criterion-B constitutive kernels Q/RAR/EXP/MU2/MONO (weak-field equations as in the contract)", "filtered field equation Delta Phi = 4*pi*G*rho_b + S*div[(nu(|grad S u|/a0)-1) grad S u] with S=exp((xi^2/2)Delta), xi=0.5", "flat periodic leaf geometry", "external vector e prescribed as boundary data"],
+    "measured_calibrations": ["G = 6.67430e-11 m^3 kg^-1 s^-2", "c = 299792458 m/s", "M_sun = 1.98847e30 kg", "pc = 3.085677581491367e16 m", "canonical a0 = 9.3619e-11 m/s^2, alternative a0 = 1.1279e-10 m/s^2 (framework footings)"],
+    "adopted_constraints": ["kappa = 1/2 (adopted, not derived)", "causality criterion B (operative amendment)"],
+    "derived_equations": ["S e = e for constant e on flat leaf", "linearized phantom multiplier M(k) = 1 + exp(-xi^2 k^2)[nu(y)-1 + y nu'(y) cos^2 theta_k]", "response Jacobian J = nu(y) I + y nu'(y) e_hat e_hat^T with eigenvalues nu + y nu' and nu", "deep asymptote nu(y) = y^-1/2 + c + o(1) with branch constants c (0, 1/2, 1/4, 3/8)", "universal deep anisotropy ratio 1 + y nu'/nu -> 1/2", "second-order transverse coefficient nu'(y)/(2y) per unit transverse field"]
+  },
+  "closure_implication": {
+    "gate": "filtered-MONO external-field effect (weak-field anisotropic linearization) for the two-footing common-action closure",
+    "exact_implication": "The flat-leaf EFE claim supplies the anisotropic response kernel J(y) with quantitative ratio alpha/beta = 0.71465 (canonical) / 0.69899 (alternative) at e = 1e-10 m/s^2 for the operative filtered MONO branch, and proves the five criterion-B branches distinct and sharing the universal 1/2 deep anisotropy ratio; compatible with both a0 footings through the dimensionless variable y = B/a0",
+    "common_action_parameter_domain_compatibility": "Valid on dimensionless flat-leaf domain y in [1e-10, 1e8] with linearization validity y>=0.05, A<=1e-3; the curved-leaf extension is the outstanding same-action gap",
+    "open_gates": "curved-leaf filter commutation; observable mapping of the footing discriminator; time-dependent/retarded response"
+  },
+  "child_proposals": [
+    {
+      "id": "AS043.C01",
+      "title": "radial-leaf external-field kernel (EFE on curved leaf)",
+      "new_target": "Derive S e = e for radial external vector on a spherically symmetric leaf and the transformed anisotropic Jacobian; state the curved-leaf analogue of alpha/beta and its domain",
+      "controls": "radial analogue of C1/C2/C3; curved-leaf residual check; footing separation at e = 1e-10 m/s^2",
+      "parent_hash": "cefd64b32a09fe49cbf37bd17bb42505ac127c765a2cdaea4d59178d67eb4f6b",
+      "dispatch_state": "not dispatched (spec written for orchestrator)"
+    }
+  ],
+  "closure_candidate": null
+}

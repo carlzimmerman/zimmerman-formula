@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "description": "Field contract, not a filled worker result. All required fields must be populated with actual evidence. Paths are repository-relative.",
+  "required_fields": {
+    "task_id": "Exact FGF identifier",
+    "task_sha256": "Hash of executed task Markdown",
+    "run_id": "Unique execution identifier",
+    "worker": "Actual model/agent and execution ID; never infer from task destination",
+    "started_utc": "ISO timestamp",
+    "finished_utc": "ISO timestamp",
+    "outcome": "supports_scoped_claim | counterexample | inconclusive | blocked_on_data | implementation_failure",
+    "exact_claim": "Quantified statement including scope and assumptions",
+    "new_assumptions": "Array; empty only if none were added",
+    "input_sha256": "Mapping of repository-relative paths to actual hashes",
+    "artifacts_sha256": "Mapping of output paths to hashes, excluding this self-referential result file",
+    "commands": "Actual executed argv lists, or empty with reason for proof-only task",
+    "execution_bounds": "Requested and actually enforced wall/CPU/thread/log limits",
+    "checks": "Array of named controls with observed result, tolerance and pass/fail",
+    "tested_domain": "Actual numeric box, samples, units, seed and exclusions; or exact proof domain",
+    "failed_attempts": "Paths and causes; empty if none",
+    "limitations": "What the result does not establish",
+    "next_unresolved_implication": "Specific mathematical or empirical gap",
+    "suggested_followup": "One discriminating next task or an explained route stop"
+  },
+  "orchestrator_review_required": true,
+  "default_acceptance_state": "unreviewed",
+  "proof_only_exception": "Proof-only work may omit computational manifests but must provide raw derivation, source hashes and a separate review. Do not fabricate commands or numeric tests."
+}

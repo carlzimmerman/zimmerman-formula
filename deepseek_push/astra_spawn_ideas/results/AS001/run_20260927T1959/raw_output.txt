@@ -1,0 +1,54 @@
+AS001 mass-density vs energy-density normalization audit
+computed: 2026-09-27T20:07:05.238157Z
+precision: mpmath dps = 60; single thread; wall 0.0006 s
+
+CONSTANTS (inputs): G=6.674300e-11s ; c=2.997925e+08s ; kappa=1/2 ADOPTED ; Msun=1.988470e+30s
+
+DIMENSIONAL CHECKER (exponent vectors (M,L,T); ACCEL=(0,1,-2))
+unit map: G=(-1,3,-2) c=(0,1,-1) rho=(1,-3,0) eps=(1,-1,-2) M=(1,0,0)
+  [PASS] 1a  CORRECT  a0 = kappa*c*sqrt(G*rho)        [mass density]  -> vector [0, 1, -2]
+  [PASS] 1b  CORRECT  a0 = kappa*sqrt(G*eps)          [energy density]  -> vector [0, 1, -2]
+  [PASS] 2a  WRONG    a0 = kappa*c*sqrt(G*eps)  (c retained, eps substituted)  -> vector [0, 2, -3]
+  [PASS] 2b  WRONG    a0 = kappa*sqrt(G*rho)    (c dropped, rho used)  -> vector [0, 0, -1]
+  [PASS] 2c  WRONG    a0 = kappa*c^2*sqrt(G*rho)      (extra c)  -> vector [0, 2, -3]
+  [PASS] 2d  WRONG    a0 = kappa*sqrt(G*eps)*c^2      (c back in energy form)  -> vector [0, 3, -4]
+  [PASS] 2e  NEG.CONTROL  eps substituted AND mislabelled with kg/m^3 dims: c*sqrt(G*eps_as_rho) (same coefficient kept, no renormalization)  -> vector [0, 2, -3]
+  [PASS] 2e'  (non-vacuity) c*sqrt(G*rho) with rho at its own kg/m^3 dims IS an acceleration -> checker accepts it  -> vector [0, 1, -2]
+
+NUMERICAL IDENTITIES (relative residuals, 60-digit arithmetic)
+  canonical: a0(mass form)      = 9.3619000000e-11s
+  canonical: a0(energy form)    = 9.3619000000e-11s
+  canonical: rel resid mass/reg = 9.672907e-62
+  canonical: rel resid ener/reg = 0.000000e+00
+  canonical: rel resid m-e      = 9.672907e-62
+  canonical: rho = 5.844412e-27 kg/m^3 ; eps = 5.252696e-10 J/m^3
+  alternative: a0(mass form)      = 1.1279000000e-10s
+  alternative: a0(energy form)    = 1.1279000000e-10s
+  alternative: rel resid mass/reg = 8.028796e-62
+  alternative: rel resid ener/reg = 0.000000e+00
+  alternative: rel resid m-e      = 8.028796e-62
+  alternative: rho = 8.483090e-27 kg/m^3 ; eps = 7.624221e-10 J/m^3
+  grid rho in 1e-33..1e-12: worst rel resid = 1.496606e-61
+  boundary rho=0: a0_mass(0)=0.000000e+00 a0_energy(0)=0.000000e+00
+
+REPRESENTATION-INVARIANT PREDICTIONS (Msun)
+  canonical: r_M    mass form 1.190640e+15 m | energy form 1.190640e+15 m | rel res 0.000e+00
+  canonical: v_flat mass form 3.338660e+02 m/s | energy form 3.338660e+02 m/s | rel res 1.193e-61
+  canonical: v_flat^4 - G M a0 = -1.336e-51 (m^4 s^-4)
+  alternative: r_M    mass form 1.084744e+15 m | energy form 1.084744e+15 m | rel res 8.074e-62
+  alternative: v_flat mass form 3.497831e+02 m/s | energy form 3.497831e+02 m/s | rel res 0.000e+00
+  alternative: v_flat^4 - G M a0 = 2.673e-51 (m^4 s^-4)
+
+FOOTINGS (kappa=1/2 adopted for both; densities differ)
+  a0_alt/a0_can = 1.20477681
+  rho_total/rho_Lambda = 1.45148716
+  |(ratio)^2 - density_ratio|/density_ratio = 2.144e-61
+  kappa_eff if rho held fixed = 0.60238840 (vs adopted 0.5)
+  kappa=1/2 adopted for BOTH footings; the two footings then carry DIFFERENT densities (ratio 1.4515). Alternatively the density may be held at rho_Lambda and then kappa_eff=0.6024. A single fixed (kappa,rho) pair cannot produce both a0s.
+
+CONTEXT-ONLY cross-check: Omega_L*rho_crit(H0=67.4,Omega_L=0.685)
+  = 5.845006e-27 kg/m^3 vs rho_Lambda = 5.844412e-27 kg/m^3 ; rel diff 1.015e-04
+
+NEGATIVE-CONTROL VERDICT: ALL DIMENSIONAL TESTS PASS (checker accepts both correct forms and rejects every rho<->epsilon substitution)
+bounds: {"cpu_budget_s": 120, "enforced_cpu_s": "ulimit -t 120 (caller)", "wall_s": 0.0006, "threads": 1, "memory_budget_MB": 512, "memory_actual": "trivial scalar arithmetic (<10 MB)", "mpmath_dps": 60}
+

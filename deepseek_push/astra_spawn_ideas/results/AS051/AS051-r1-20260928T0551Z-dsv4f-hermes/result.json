@@ -1,0 +1,122 @@
+{
+  "schema_version": 2,
+  "task_id": "AS051",
+  "task_sha256": "819422a92fcd21e32941091e823a459944739a4927de7900a8a2d4bfe7f49025",
+  "run_id": "AS051-r1-20260928T0551Z-dsv4f-hermes",
+  "worker": "deepseek-v4-flash-0731 (openrouter) / Hermes subagent sa-2-639af781-reservation",
+  "started_utc": "2026-09-28T05:51:20Z",
+  "finished_utc": "2026-09-28T06:28:02Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Spherical static-sector theorem: if s>0, b>0, B>0, g>=0 and mu(Y)=bY+R(Y) with |R(Y)| <= K*Y^2 on [0,Y0], then the response equation mu(g/s)*g = B implies g^2 = (s/b)*B + delta with |delta| <= (K/b)*g^3/s, so the deep a0-line constant is a0 = s/b and kappa := a0/s = 1/b; relative correction O(g/s) vanishes in the deep limit. Domain: spherical sector, deep regime B << b*s, explicit remainder hypotheses; theorem is dimensionless and applies identically to both footings (canonical a0=9.3619e-11 m/s^2 and alternative a0=1.1279e-10 m/s^2) once s = a0/kappa is fixed. The theorem does NOT fix b itself: kappa=1/2 follows only with the additional premise b=2 from the separate channel-count programme (PD01/PD08) or SPARC selection (PD01 C2), which this seed does not re-derive.",
+  "framework_cell": {
+    "branches_tested": ["Q (deep limit)", "RAR (deep limit)", "MU2", "EXP", "MONO (not used - no bridge derived)"],
+    "branch_used": "CORE coefficient cell: general response mu(Y) with deep slope b in the argument Y=g/s, s=c*sqrt(G*rho_Lambda); all standard branches (Q,RAR,MU2,EXP) verified to share deep slope b=2 on the adopted footing, so kappa=1/b=1/2 consistent with the adopted kappa=1/2",
+    "action": "div[ mu(|grad Phi|/s) grad Phi ] = 4 pi G rho_b (spherical first integral is the audited equation mu(Y)*g = B; AQUAL-form response cell, cf. PD08 S_kin with s^2 K(|grad Phi|/s))",
+    "kernel": "generic response mu with quantified quadratic remainder (no completion assumed)",
+    "filter": "none (deep-slope regime only; filtered-MONO explicit bridge NOT derived)",
+    "gate": null,
+    "coupling": "G_N = G_bare = G_cosmo not separated in this seed; s uses G in c*sqrt(G*rho_Lambda), B uses G*M_b/r^2 with the same G (both footings use registered constants); G_N/G_bare/G_cosmo separation flagged as open (see limitations)",
+    "parameters": {
+      "kappa_adopted": 0.5,
+      "a0_canonical_m_s2": 9.3619e-11,
+      "a0_alternative_m_s2": 1.1279e-10,
+      "s_canonical_m_s2": 1.87238e-10,
+      "s_alternative_kappa_fixed_m_s2": 2.2558e-10,
+      "rho_Lambda_canonical_kg_m3": 5.844412e-27,
+      "rho_Lambda_alternative_kappa_fixed_kg_m3": 8.483090e-27,
+      "kappa_alternative_rhol_fixed": 0.602388,
+      "b_values_tested": [0.5, 1.0, 2.0],
+      "K_remainder": "sup |R(Y)|/Y^2 on [1e-4, Y] estimated on 800-point geometric grid at 50 digits",
+      "G_SI": 6.67430e-11,
+      "c_SI": 299792458.0,
+      "M_sun_kg": 1.98847e30,
+      "pc_m": 3.085677581491367e16,
+      "k_B_SI": 1.380649e-23
+    },
+    "boundaries": "spherical sector; deep ladder B/s in [1e-1, 1e-14]; Newtonian ladder B/s in [1e4, 1e16]; Y in (0, ~0.45] on the ladder; explicit quadratic remainder hypothesis on [0, Y0]",
+    "initial_conditions": "mu(0)=0, mu(inf)=1 preserved across the b-sweep (endpoint control); g>0 physical branch",
+    "units": "SI throughout; see exact_claim and derivation.md section 3"
+  },
+  "new_assumptions": [
+    "Quantified remainder hypothesis: |R(Y)| <= K*Y^2 on [0,Y0] (makes the O(Y^2) term a real bound rather than a formal symbol)",
+    "Physical branch g >= 0, B > 0, b > 0, s > 0"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS051_general_deep_slope_matching_theorem.md": "819422a92fcd21e32941091e823a459944739a4927de7900a8a2d4bfe7f49025",
+    "deepseek_push/PD01_polarization_count.py": "37e39d1abb8dfe74763e59282b6137ed6a6b570215da415d197de72c33e2c74d",
+    "deepseek_push/PD08_particle_free_derivation.py": "83f6054cdfb1b45834af1ce702b1a040f00ad1625ffc34799ae367bd367f0cfb",
+    "kappa_closure/k01_zero_mode_theorem_and_lambda_free_vacuum.py": "8df5a3ab5a38d189e0152ab0e54c0fb497056e58373cc0e80db49fca3f35b25c",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "manifest pins match all four hashes above (verified)",
+    "deepseek_push/astra_spawn_ideas/CAMPAIGN_LEDGER.json": "AS051 entry: file+sha match, outcome null before this run"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/derivation.md": "5cb85c34693e44b59eb250f06bb3815438525258f86597d7681391f50de31a6e",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/compute_as051.py": "5bc2ca88103870a6df38a2b562fce72f26a3a20aca63c2f2ac8ec942fbb8ce39",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/AS051_certificate.lean": "50d2c3030048e141024a869b2dc0ea46de599bd106360d9346abf7ffc96f6386",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/raw_outputs/checks.json": "154b6add3baa0c60eb10a84e611522c268f249c1c2e2040704d2e6dd899cb401",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/raw_outputs/compute_as051.out": "5831fca9f231573582ce5388aa8236f6853049f1a4fe367d1230f1b9094681f3",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/raw_outputs/AS051_lean_compile.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/raw_outputs/AS051_axioms.out": "ca25451efda282af0eac3b3960b0cef12714e36eaaa1019955fd56d353863edb",
+    "deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes/raw_outputs/AS051_cert_axioms_probe.lean": "37a903908a4adfbd1cf1d4bb59e625db872a6300d2846d721685be81026f2b52"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS051/AS051-r1-20260928T0551Z-dsv4f-hermes && /usr/bin/time -p python3 compute_as051.py (x3 iterations; final EXIT=0, 16/16 checks)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && timeout 580 lake env lean <abs path>/AS051_certificate.lean (EXIT=0, clean)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && { cat AS051_certificate.lean; #print axioms ...; } > raw_outputs/AS051_cert_axioms_probe.lean && timeout 580 lake env lean AS051_cert_axioms_probe.lean (EXIT=0; axioms = {propext, Classical.choice, Quot.sound}, no sorryAx)",
+    "shasum -a 256 on all artifacts (hashes above)"
+  ],
+  "execution_bounds": {
+    "wall_time_enforced_s": 120,
+    "wall_time_actual_s": 0.38,
+    "memory_limit_mb": 512,
+    "memory_actual_rss_mb": 60.0,
+    "threads_enforced": 1,
+    "threads_actual": 1,
+    "precision": "mpmath dps=50; sympy exact rationals",
+    "note": "wall limit hard-enforced in-process (sys.exit on breach); memory is measured RSS (resource.ru_maxrss), single process no pools; Lean compile capped at 580s via timeout"
+  },
+  "checks": [
+    {"name": "A1", "result": "PASS", "measured": "exact inversion g^2=(s/b)B-(c2/(bs))g^3-(c3/(b s^2))g^4; substitution residual = 0", "tolerance": "residual == 0 exact"},
+    {"name": "A2/A3", "result": "PASS", "measured": "family mu_b(Y)=1-(1+Y)^(-b): slope = b at b=1/2,1,2; endpoints mu(0)=0, mu(inf)=1; standard branches Q,RAR,MU2,EXP deep slope = 2 on canonical footing", "tolerance": "symbolic exact; RAR numeric mu/Y in [1.99997, 2.00000]"},
+    {"name": "N1", "result": "PASS", "measured": "kappa_fit(ladder deepest) = 2.00000021 (b=1/2), 1.00000010 (b=1), 0.50000005 (b=2)", "tolerance": "|kappa_fit - 1/b| < 1e-6 at deepest point"},
+    {"name": "N1b (whole ladder)", "result": "PASS", "measured": "three distinct limits 2, 1, 1/2; monotone approach on B/s in [1e-1, 1e-14]", "tolerance": "each < 1e-6 at B/s=1e-14"},
+    {"name": "N3", "result": "PASS", "measured": "max residual/bound ratio = 1.000000e+00 over 24 ladder points (saturated)", "tolerance": "<= 1 required at every point"},
+    {"name": "N4", "result": "PASS", "measured": "g/B at B/s=1e16: 1.00000001 (b=1/2), 1.0 (b=1), 1.0 (b=2); tail exponent matches (B/s)^(-b)", "tolerance": "|g/B - 1| < 1e-6"},
+    {"name": "N5 (RAR)", "result": "PASS", "measured": "mu/Y at B/s=1e-14: 1.99999972 (slope 2)", "tolerance": "within 1e-4"},
+    {"name": "N2 (dims)", "result": "PASS", "measured": "dim(g^2)=dim((s/b)B)=(2,0,-4); s=(1,0,-2); kappa=(0,0,0); wrong-G s'=(-2,1,0) rejected; c-less s''=(0,0,-1) rejected", "tolerance": "exact vector equality; rejection requires inequality"},
+    {"name": "N2 note", "result": "documented", "measured": "kappa=b vs kappa=1/b both dimensionless; inversion invisible to dimensional analysis, caught only by N1", "tolerance": "n/a"},
+    {"name": "Footings", "result": "PASS", "measured": "canonical kappa=0.5 (adopted); alternative kappa-fixed s=2.2558e-10; alternative rhoL-fixed kappa=0.602388", "tolerance": "kappa_alt_rhol_fixed = a0_alt/s_can within 1e-12"},
+    {"name": "Lean", "result": "PASS", "measured": "9 theorems, 0 sorry, axioms {propext, Classical.choice, Quot.sound}", "tolerance": "zero sorry; axioms subseteq allowed set"}
+  ],
+  "tested_domain": "Spherical static sector. Deep ladder: B/s in {1e-1..1e-14} (8 points) x b in {1/2,1,2} (24 solves, mpmath 50 digits). Newtonian ladder: B/s in {1e4,1e8,1e12,1e16}. Remainder-K grid: 800 geometric points on [1e-4, Y] per ladder point. Symbolic: sympy exact rationals for A1/A2/A3/Q/MU2/EXP slopes. Lean 4 (v4.34.0-rc2, Mathlib): real-algebraic certificates. Excluded: nonspherical geometries, filtered-MONO branch, G_N/G_bare/G_cosmo separation, time-dependent equations.",
+  "failed_attempts": [
+    {"path": "compute_as051.py v1", "cause": "quartic sy.solve for g^2 did not invert cleanly; replaced by exact algebraic inversion + substitution residual"},
+    {"path": "compute_as051.py v2", "cause": "JSON dump failed on tuple keys in newtonian dict (TypeError); keys stringified"},
+    {"path": "AS051_certificate.lean iterations 1-4", "cause": "ring_nf leaves inverse atoms; bare field_simp sometimes closes goal making trailing ring fail ('no goals'); pow_succ/simpa shape mismatch (Y*Y*Y vs Y*(Y*Y)); neg_div pattern mismatch (negation outside fraction); fixed with try-ring idiom, positivity, abs_neg-first ordering"},
+    {"path": "AS051_certificate.lean: as051_mu2_zpow_form", "cause": "zpow_natCast rewrite target mismatch; theorem dropped (closed-form def mu2 used instead)"}
+  ],
+  "limitations": "1) Does not derive b=2 nor therefore kappa=1/2: slope b remains the independent freedom (transfer identity only). 2) Spherical sector only; no bridge to filtered-MONO/criterion-B target derived (the continuation h'_mono differs from RAR's deep slope in the same variable). 3) Single-G treatment: s uses G in c*sqrt(G*rho_Lambda) and B uses G*M/r^2 with the same G; G_N vs G_bare vs G_cosmo separation not performed (flagged open). 4) Remainder bound verified on a finite ladder with numerically estimated K (sup on a grid) rather than a closed-form K for the generic mu; the bound inequality itself is proven for any K satisfying |R| <= K Y^2. 5) kappa = 1/b is a dimensionless identity; the inversion b <-> 1/b is invisible to dimensional analysis (documented; N1 covers it numerically). 6) No claim about the phantom-density content mentioned in the dispatch preamble (that matches no repo file; AS051's pinned content is the deep-slope theorem).",
+  "next_unresolved_implication": "Transfer of the spherical deep-slope matching to the operative filtered-MONO target (criterion B, amended thirteen-item target): derive the deep-slope b in the MONO variable set (where h_mono continuation replaces h_RAR) or prove equivalence to the spherical first integral there; plus independent derivation of b=2 from the action's channel structure (PD01 D1 gap).",
+  "suggested_followup": "Child AS051.C01: derive b=2 from the two-channel OR composition + fraction identity premises as a formal chain (PD01 A1-B4 -> mu'(0)=2 -> kappa=1/2) with the BCs stated as premises, certified in Lean end-to-end, then test whether the same chain survives on the filtered-MONO continuation formula (h'_mono = max(h'_RAR, delta*h_p/(y+y_p))) at the deep end; if the MONO continuation changes the slope, record the exact new kappa per the heat-filter width",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": "Response equation mu(Y)*g = B as the spherical first integral of div[mu grad Phi] = 4 pi G rho_b; mu(0)=0, mu(inf)=1 normalisation; s = c sqrt(G rho_Lambda) measured vacuum scale independent of a0; kappa=1/2 ADOPTED framework input (not derived here)",
+    "measured_calibrations": "a0 canonical 9.3619e-11 m/s^2; a0 alternative 1.1279e-10 m/s^2; registered PD01 C1/C2 zero points restated (not recomputed): kappa=1/2 at 0.46/1.19 sigma, kappa=1 at 7.0/10.4 sigma; SPARC n=2 selection 0.1502/0.1438 dex",
+    "boundary_data": "deep limit Y -> 0; Newtonian limit Y -> oo (g/B -> 1); both exercised numerically",
+    "derived_equations": "g^2 = (s/b) B - (c2/(b s)) g^3 - (c3/(b s^2)) g^4 (exact); |g^2 - (s/b)B| <= (K/b) g^3/s; kappa = 1/b; MU2 slope-2 with |mu2(Y)-2Y| <= 3Y^2"
+  },
+  "closure_implication": "Gate: operative filtered-MONO coefficient / kappa closure gate (thirteen-item target, criterion B). Implication: IF the operative response, written in the argument Y = g/s, has an exact linear deep slope b with quantified quadratic remainder (hypothesis H), THEN kappa = 1/b and the spherical deep a0-line constant is s/b -- an implication that removes the coefficient freedom only conditionally on H; H itself (b = 2) is not supplied by this seed. Common-action/-parameter-domain compatibility: the spherical first integral cell used here is the same cell PD01 B1-B2 computes for the metric's two-channel static response only in the spherical sector; the MONO continuation changes the response formula outside that sector, so the implication does not yet transfer to filtered MONO without a new derivation. closure_candidate: null.",
+  "child_proposals": [
+    {
+      "id": "AS051.C01",
+      "title": "Derive b=2 from the OR/two-channel premises and test on the MONO continuation",
+      "new_target": "Formal chain: two static Poisson channels (PD01 B1) + OR composition mu=1-(1-p)^2 + fraction identity p'(0)=1 (PD08 steps 1-3) => mu'(0)=2 => kappa=1/2 via AS051's kappa=1/b; then evaluate the deep slope of the operative h_mono continuation (h'_mono = max(h'_RAR, delta*h_p/(y+y_p)), y_star approx 2.3374, y_p approx 2.5396, delta=0.05) in the y=B/a0 variable as y -> 0 and report whether slope 2 survives or kappa shifts",
+      "controls": "Lean-certified chain end-to-end; negative control: one-channel composition gives kappa=1; MONO deep slope computed at three filter widths delta in {0.02, 0.05, 0.1}",
+      "dependencies": "AS051 (this run), PD01/PD08 source premises as stated, FRAMEWORK_CONTRACT MONO definitions",
+      "dispatch_state": "not dispatched (ready for orchestrator)"
+    }
+  ],
+  "closure_candidate": null
+}

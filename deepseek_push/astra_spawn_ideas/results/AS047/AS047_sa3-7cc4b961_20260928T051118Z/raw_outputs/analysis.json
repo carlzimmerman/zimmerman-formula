@@ -1,0 +1,183 @@
+{
+ "bounds": {
+  "wall_s": 0.14804545906372368,
+  "peak_rss_mb": 19648.0,
+  "threads": 1,
+  "mp_dps": 50
+ },
+ "landmarks": {
+  "y_p": 2.5396382821881653,
+  "h_p": 0.6476102378919149,
+  "y_star": 2.3374124052663294,
+  "h_star": 0.6469603693249751,
+  "delta": 0.05,
+  "c": 0.032380511894595745
+ },
+ "envelope": {
+  "dex_max": 0.010370149547419268,
+  "y_at_max": 14.351589377477898,
+  "grid_dex_max": 0.010322775845581632,
+  "rel_max": 0.024165517521651303
+ },
+ "splice": {
+  "force_pointwise": 0.0,
+  "dh1_pointwise": 2.0358949940155397e-51,
+  "hpp_cont": -0.0013613480436970372,
+  "hpp_RAR": -0.03610606159853314,
+  "J_jump": 0.034744713554836104
+ },
+ "peak": {
+  "force": 0.00020886117564109785,
+  "dh1": 0.0063750243728993815,
+  "force__dex": 9.069778477145159e-05
+ },
+ "tail": {
+  "force": 1.1921232040763083e-08,
+  "dh1": 3.2380511072247886e-10,
+  "h_growth": 1.1921232040763083,
+  "nu_mono_minus_1": 1.1921232040763083e-08,
+  "nu_RAR_minus_1": 0.0,
+  "tail_ratio_lognorm": 44370990602.661095
+ },
+ "integral_dh": {
+  "100.0": 0.7410417792439832,
+  "10000.0": 0.8938958897206144,
+  "1000000.0": 1.0430055175046185,
+  "100000000.0": 1.1921232040763083
+ },
+ "checks": {
+  "C1_landmarks": {
+   "result": "pass",
+   "observed": {
+    "y_p": 2.5396382821881653,
+    "h_p": 0.6476102378919149,
+    "y_star": 2.3374124052663294
+   },
+   "tolerance": "|y_p-2.5396|<1e-3, |h_p-0.647610|<1e-5, |y_star-2.3374|<1e-3"
+  },
+  "C2_splice_zero_force": {
+   "result": "pass",
+   "observed": 0.0,
+   "tolerance": "<1e-45"
+  },
+  "C3_splice_derivative_jump": {
+   "result": "pass",
+   "observed": 0.034744713554836104,
+   "tolerance": "|J|>1e-6 (C^1 \\ C^2, negative control must see it)"
+  },
+  "C4_force_envelope": {
+   "result": "pass",
+   "observed": 0.010370149547419268,
+   "at_y": 14.351589377477898,
+   "tolerance": "<0.0104 dex (FRIED_CHICKEN req-1)"
+  },
+  "C5_peak_derivative_counterexample": {
+   "result": "pass",
+   "observed": {
+    "force_dex_at_peak": 9.069778477145159e-05,
+    "dh1_at_peak": 0.0063750243728993815
+   },
+   "tolerance": "dh1_at_peak >> force error at same y (ratio expected > 5)"
+  },
+  "C6_maxrule_pointwise": {
+   "result": "pass",
+   "observed": {
+    "ok": true,
+    "min_gap": 0.0
+   },
+   "tolerance": "<1e-45 on grid"
+  },
+  "C7_independent_derivative": {
+   "result": "pass",
+   "observed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "tolerance": "<1e-45"
+  },
+  "C7b_independent_second_derivative": {
+   "result": "pass",
+   "observed": [
+    0.0,
+    3.2626522339992623e-55,
+    5.0978941156238473e-57
+   ],
+   "tolerance": "<1e-45"
+  },
+  "C8_independent_quadrature_FTC": {
+   "result": "pass",
+   "observed": [
+    3.132146144639292e-53,
+    8.352389719038111e-53,
+    0.0,
+    3.3409558876152446e-52
+   ],
+   "tolerance": "<1e-45"
+  },
+  "C9_representation_nu_RAR": {
+   "result": "pass (exact algebraic identity; 50-dps consistency residual)",
+   "observed": 3.0287314683300515e-42,
+   "tolerance": "<1e-38 consistency (mpmath dps=50 dynamic-range floor ~1e-42; identity h_RAR/y = 1/(e^sqrt y - 1) is exact by algebra)"
+  },
+  "N1_hessian_inference": {
+   "result": "inference FAILS (counterexample displayed)",
+   "observed": {
+    "naive_prediction": 0.000872521664197174,
+    "actual_hpp_diff": 0.034744713554836104,
+    "force_pointwise_at_splice": 0.0
+   },
+   "tolerance": "control must be capable of failing: here the naive bound is exceeded"
+  },
+  "N1b_pointwise_zero_force_nonzero_hessian": {
+   "result": "pass",
+   "observed": {
+    "force": 0.0,
+    "J": 0.034744713554836104
+   },
+   "tolerance": "force error ~0 and Hessian jump >1e-6 at the same point"
+  },
+  "N2_deep_regime": {
+   "result": "pass",
+   "observed": {
+    "deep_force": 0.0,
+    "deep_h_over_sqrt": 0.9999950000083333
+   },
+   "tolerance": "force error <1e-40 (MONO==RAR below splice); h_RAR/sqrt(y)->1"
+  },
+  "N2b_newtonian_tail": {
+   "result": "pass",
+   "observed": {
+    "nu_mono_minus_1": 1.1921232040763083e-08,
+    "nu_RAR_minus_1": 0.0,
+    "recovery_ratio": 44370990602.661095
+   },
+   "tolerance": "both nu->1 (Newton recovery); recovery ratio log/y vs exp(-sqrt y) >> 1"
+  }
+ },
+ "footings": {
+  "a0": {
+   "canonical": 9.3619e-11,
+   "alternative": 1.1279e-10,
+   "kappa": 0.5
+  },
+  "rho_Lambda": {
+   "canonical_kgm3": 5.844412454021875e-27,
+   "alternative_kgm3": 8.483089619559098e-27
+  },
+  "kappa_eff_if_rho_fixed": 0.6023884040632778,
+  "example_Mb": 1.98847e+41,
+  "example": {
+   "r_M_canonical_pc": 12201.966807570601,
+   "r_M_alt_pc": 11116.716743247542,
+   "v_flat_canonical_kms": 187.74664767858712,
+   "v_flat_alt_kms": 196.69750033813872,
+   "g_splice_canonical": 2.188262119686285e-10,
+   "g_splice_alt": 2.636367451899893e-10,
+   "C_canonical_m2s2": 35248803714.547516,
+   "C_alt_m2s2": 38689906639.27208
+  }
+ }
+}
