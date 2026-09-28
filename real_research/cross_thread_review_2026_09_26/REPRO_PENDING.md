@@ -33,3 +33,16 @@ All six were re-run in scratch mirrors with `run_repro_lane.sh`, MUTATE first, t
 **The rule for next time:** when a lane reads a sibling part's results file, run the parts in dependency order inside the mirror.
 
 Nothing remains pending from the table above.
+
+## Campaign lanes CFG0, CFG1, CFG4 and CFG6, re-run 2026-09-28: all matched
+
+These were re-run the same way, with `run_repro_cfg.sh`, a mirror of `campaign_fresh_gravity/`. The parts ran in dependency order: CFG4 galaxy_law, switch, clusters, cosmology, target; then CFG6 branches, evidence.
+
+| Lane | Result | Notes |
+|---|---|---|
+| CFG0 | **matched** | JSON identical apart from `runtime_s`. One `.out` ledger line differs because it quotes the chain's README and CHAIN_STATUS, which were updated after CFG0's commit (b5bdb73e8: the L_Λ window's upper edge now reads ≥ 5, not 4.6). That is source evolution, not a change in CFG0's own numbers. |
+| CFG1 | **matched** | The audit's K4 (sources tracked and clean) fails inside a symlink mirror, where git sees type changes. Checked in the real repository: all 47 sources are tracked and clean. Four sources that were "in flight" are now committed (FP24, XR34, XR35, XR24), which is time evolution. Nothing else differs. |
+| CFG4 | **matched** | All five parts: numeric JSON identical apart from `seconds`; `.out` identical. |
+| CFG6 | **matched** | Both parts: JSON identical; the `.out` differs only in timing. |
+
+**The rule for next time:** a lane that audits git state (CFG1's K4) cannot be reproduced inside a symlink mirror. Run that one check in the real tree.
