@@ -1,6 +1,6 @@
 # Pouliasis, Di Matteo & Haywood 2017 — A Milky Way with a massive, centrally concentrated thick disc: new Galactic mass models for orbit computations
 
-**Reference.** Pouliasis, E.; Di Matteo, P.; Haywood, M. (2017). A Milky Way with a massive, centrally concentrated thick disc: new Galactic mass models for orbit computations. *Astronomy &amp; Astrophysics* 598, A66. [doi:10.1051/0004-6361/201527346](https://doi.org/10.1051/0004-6361/201527346)
+**Reference.** Pouliasis, E.; Di Matteo, P.; Haywood, M. (2017). A Milky Way with a massive, centrally concentrated thick disc: new Galactic mass models for orbit computations. *Astronomy & Astrophysics* 598, A66. [doi:10.1051/0004-6361/201527346](https://doi.org/10.1051/0004-6361/201527346)
 
 **BibTeX key:** `Pouliasis2017` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

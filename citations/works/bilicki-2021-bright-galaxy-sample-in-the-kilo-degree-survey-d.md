@@ -1,6 +1,6 @@
 # Bilicki et al. 2021 — Bright galaxy sample in the Kilo-Degree Survey Data Release 4: Selection, photometric redshifts, and physical properties
 
-**Reference.** Bilicki, M.; Dvornik, A.; Hoekstra, H.; Wright, A. H.; Chisari, N. E.; Vakili, M.; Asgari, M.; Giblin, B.; Heymans, C.; Hildebrandt, H.; Holwerda, B. W.; Hopkins, A.; Johnston, H.; Kannawadi, A.; Kuijken, K.; Nakoneczny, S. J.; Shan, H. Y.; Sonnenfeld, A.; Valentijn, E. (2021). Bright galaxy sample in the Kilo-Degree Survey Data Release 4: Selection, photometric redshifts, and physical properties. *Astronomy &amp; Astrophysics* 653, A82. [doi:10.1051/0004-6361/202140352](https://doi.org/10.1051/0004-6361/202140352)
+**Reference.** Bilicki, M.; Dvornik, A.; Hoekstra, H.; Wright, A. H.; Chisari, N. E.; Vakili, M.; Asgari, M.; Giblin, B.; Heymans, C.; Hildebrandt, H.; Holwerda, B. W.; Hopkins, A.; Johnston, H.; Kannawadi, A.; Kuijken, K.; Nakoneczny, S. J.; Shan, H. Y.; Sonnenfeld, A.; Valentijn, E. (2021). Bright galaxy sample in the Kilo-Degree Survey Data Release 4: Selection, photometric redshifts, and physical properties. *Astronomy & Astrophysics* 653, A82. [doi:10.1051/0004-6361/202140352](https://doi.org/10.1051/0004-6361/202140352)
 
 **BibTeX key:** `Bilicki2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

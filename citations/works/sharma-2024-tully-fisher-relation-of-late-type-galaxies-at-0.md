@@ -1,6 +1,6 @@
 # Sharma et al. 2024 — Tully-Fisher relation of late-type galaxies at 0.6 ≤ z ≤ 2.5
 
-**Reference.** Sharma, G.; Upadhyaya, V.; Salucci, P.; Desai, S. (2024). Tully-Fisher relation of late-type galaxies at 0.6 ≤ z ≤ 2.5. *Astronomy &amp; Astrophysics* 689, A318. [doi:10.1051/0004-6361/202348667](https://doi.org/10.1051/0004-6361/202348667) [arXiv:2406.08934](https://arxiv.org/abs/2406.08934)
+**Reference.** Sharma, G.; Upadhyaya, V.; Salucci, P.; Desai, S. (2024). Tully-Fisher relation of late-type galaxies at 0.6 ≤ z ≤ 2.5. *Astronomy & Astrophysics* 689, A318. [doi:10.1051/0004-6361/202348667](https://doi.org/10.1051/0004-6361/202348667) [arXiv:2406.08934](https://arxiv.org/abs/2406.08934)
 
 **BibTeX key:** `Sharma2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

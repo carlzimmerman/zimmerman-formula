@@ -358,7 +358,7 @@
 - Kermaidic, Y. — author of [Abel et al. 2020](../works/abel-2020-measurement-of-the-permanent-electric-dipole-mom.md) · 2 scripts
 - Kermiche, S. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Congedo et al. 2026](../works/congedo-2026-euclid-quick-data-release-q1-lensmc-shear.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md) … · 5 scripts
 - Kern, Nicholas S. — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md), [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md), [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 200 scripts
-- [Kern, Robert](kern-robert.md) — 2 work(s) · 5181 scripts
+- [Kern, Robert](kern-robert.md) — 2 work(s) · 5183 scripts
 - Kernasovskiy, S. A. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
 - [Kerner, Immo O.](kerner-immo-o.md) — 1 work(s) · 12 scripts
 - [Kerp, J.](kerp-j.md) — 2 work(s) · 48 scripts
@@ -887,7 +887,7 @@
 - [Koop, T.](koop-t.md) — 1 work(s) · 1 scripts
 - Koopman, Brian J. — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 27 scripts
 - [Koopmann, Rebecca A.](koopmann-rebecca-a.md) — 3 work(s) · 21 scripts
-- [Koopmans, Léon V. E.](koopmans-leon-v-e.md) — 14 work(s) · 13 scripts
+- [Koopmans, Léon V. E.](koopmans-leon-v-e.md) — 14 work(s) · 14 scripts
 - Kopczuk, K. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
 - Kopec, A. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
 - Kopeliansky, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts

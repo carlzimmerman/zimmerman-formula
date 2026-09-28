@@ -1,6 +1,6 @@
 # Hunter 2007 — Matplotlib: A 2D Graphics Environment
 
-**Reference.** Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. *Computing in Science &amp; Engineering* 9, 90-95. [doi:10.1109/mcse.2007.55](https://doi.org/10.1109/mcse.2007.55)
+**Reference.** Hunter, J. D. (2007). Matplotlib: A 2D Graphics Environment. *Computing in Science & Engineering* 9, 90-95. [doi:10.1109/mcse.2007.55](https://doi.org/10.1109/mcse.2007.55)
 
 **BibTeX key:** `Hunter2007` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

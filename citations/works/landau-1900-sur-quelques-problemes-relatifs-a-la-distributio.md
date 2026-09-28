@@ -1,6 +1,6 @@
 # Landau 1900 — Sur quelques problèmes relatifs à la distribution des nombres premiers
 
-**Reference.** Landau, E. (1900). Sur quelques problèmes relatifs à la distribution des nombres premiers. *Bulletin de la Soci&amp;#233;t&amp;#233; math&amp;#233;matique de France* 2, 25-38. [doi:10.24033/bsmf.619](https://doi.org/10.24033/bsmf.619)
+**Reference.** Landau, E. (1900). Sur quelques problèmes relatifs à la distribution des nombres premiers. *Bulletin de la Société mathématique de France* 2, 25-38. [doi:10.24033/bsmf.619](https://doi.org/10.24033/bsmf.619)
 
 **BibTeX key:** `Landau1900` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

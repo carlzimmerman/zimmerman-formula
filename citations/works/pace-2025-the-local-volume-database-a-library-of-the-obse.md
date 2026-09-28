@@ -8,14 +8,14 @@
 
 ## Used in 41 script(s)
 
-How: cited in 17, data used in 40.
+How: cited in 18, data used in 40.
 
 | script | how | lines |
 |---|---|---|
 | [`campaign_fresh_gravity/CFG18_satellite_infall_gas.py`](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L8) | data used — Local Volume Database | [8](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L8), [14](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L14), [26](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L26), [29](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L29), [53](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L53), [88](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L88), [149](../../campaign_fresh_gravity/CFG18_satellite_infall_gas.py#L149) |
 | [`campaign_fresh_gravity/CFG19_harness_rescore.py`](../../campaign_fresh_gravity/CFG19_harness_rescore.py#L8) | data used — Local Volume Database | [8](../../campaign_fresh_gravity/CFG19_harness_rescore.py#L8), [44](../../campaign_fresh_gravity/CFG19_harness_rescore.py#L44) |
 | [`campaign_fresh_gravity/CFG1_evidence_audit.py`](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L539) | cited, data used | [539](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L539), [570](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L570) |
-| [`campaign_fresh_gravity/CFG28_ufd_referee.py`](../../campaign_fresh_gravity/CFG28_ufd_referee.py#L15) | data used — Local Volume Database | [15](../../campaign_fresh_gravity/CFG28_ufd_referee.py#L15) |
+| [`campaign_fresh_gravity/CFG28_ufd_referee.py`](../../campaign_fresh_gravity/CFG28_ufd_referee.py#L3) | cited, data used | [3](../../campaign_fresh_gravity/CFG28_ufd_referee.py#L3), [15](../../campaign_fresh_gravity/CFG28_ufd_referee.py#L15) |
 | [`campaign_fresh_gravity/CFG29_ufd_binary_audit.py`](../../campaign_fresh_gravity/CFG29_ufd_binary_audit.py#L14) | data used — Local Volume Database | [14](../../campaign_fresh_gravity/CFG29_ufd_binary_audit.py#L14) |
 | [`campaign_fresh_gravity/CFG31_coma_udgs_under_b.py`](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L21) | data used — Local Volume Database | [21](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L21), [37](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L37), [109](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L109), [218](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L218), [225](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L225), [227](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L227) |
 | [`campaign_fresh_gravity/CFG7_hierarchy_fg001.py`](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L22) | data used — Local Volume Database | [22](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L22), [26](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L26), [39](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L39), [193](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L193), [393](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L393), [399](../../campaign_fresh_gravity/CFG7_hierarchy_fg001.py#L399) |

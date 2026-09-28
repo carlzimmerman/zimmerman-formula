@@ -1,6 +1,6 @@
 # van der Burg, Muzzin & Hoekstra 2016 — The abundance and spatial distribution of ultra-diffuse galaxies in nearby galaxy clusters
 
-**Reference.** van der Burg, R. F. J.; Muzzin, A.; Hoekstra, H. (2016). The abundance and spatial distribution of ultra-diffuse galaxies in nearby galaxy clusters. *Astronomy &amp; Astrophysics* 590, A20. [doi:10.1051/0004-6361/201628222](https://doi.org/10.1051/0004-6361/201628222) [arXiv:1602.00002](https://arxiv.org/abs/1602.00002)
+**Reference.** van der Burg, R. F. J.; Muzzin, A.; Hoekstra, H. (2016). The abundance and spatial distribution of ultra-diffuse galaxies in nearby galaxy clusters. *Astronomy & Astrophysics* 590, A20. [doi:10.1051/0004-6361/201628222](https://doi.org/10.1051/0004-6361/201628222) [arXiv:1602.00002](https://arxiv.org/abs/1602.00002)
 
 **BibTeX key:** `vanderBurg2016` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Jeffrey C. Lagarias
 
-Credited in **2** file(s) through **2** work(s) · affiliation on the cited work(s): AT&amp;T Labs–Research, Florham Park, NJ 07932-0971, USA
+Credited in **2** file(s) through **2** work(s) · affiliation on the cited work(s): AT&T Labs–Research, Florham Park, NJ 07932-0971, USA
 
 | work | used in | how |
 |---|---:|---|

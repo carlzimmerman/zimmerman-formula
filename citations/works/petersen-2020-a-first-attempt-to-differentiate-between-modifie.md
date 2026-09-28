@@ -1,6 +1,6 @@
 # Petersen & Lelli 2020 — A first attempt to differentiate between modified gravity and modified inertia with galaxy rotation curves
 
-**Reference.** Petersen, J.; Lelli, F. (2020). A first attempt to differentiate between modified gravity and modified inertia with galaxy rotation curves. *Astronomy &amp; Astrophysics* 636, A56. [doi:10.1051/0004-6361/201936964](https://doi.org/10.1051/0004-6361/201936964)
+**Reference.** Petersen, J.; Lelli, F. (2020). A first attempt to differentiate between modified gravity and modified inertia with galaxy rotation curves. *Astronomy & Astrophysics* 636, A56. [doi:10.1051/0004-6361/201936964](https://doi.org/10.1051/0004-6361/201936964)
 
 **BibTeX key:** `Petersen2020a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

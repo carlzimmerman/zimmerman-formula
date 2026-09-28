@@ -6,7 +6,7 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 
 | # | work | files | how |
 |---:|---|---:|---|
-| 1 | [Harris et al. 2020](works/harris-2020-array-programming-with-numpy.md) — Array programming with NumPy | 5148 | library imported |
+| 1 | [Harris et al. 2020](works/harris-2020-array-programming-with-numpy.md) — Array programming with NumPy | 5150 | library imported |
 | 2 | [Milgrom 1983](works/milgrom-1983-a-modification-of-the-newtonian-dynamics-as-a-po.md) — A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypo | 3502 | cited, named method/model, cited in a paper |
 | 3 | [Milgrom 1983](works/milgrom-1983-a-modification-of-the-newtonian-dynamics-impli.md) — A modification of the Newtonian dynamics - Implications for galaxies | 3273 | named method/model |
 | 4 | [Milgrom 1983](works/milgrom-1983-a-modification-of-the-newtonian-dynamics-impli-2.md) — A Modification of the Newtonian Dynamics - Implications for Galaxy Systems | 3273 | named method/model |
@@ -16,10 +16,10 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 8 | [McGaugh, Lelli & Schombert 2016](works/mcgaugh-2016-radial-acceleration-relation-in-rotationally-sup.md) — Radial Acceleration Relation in Rotationally Supported Galaxies | 1396 | cited, named method/model, cited in a paper |
 | 9 | [Lelli et al. 2017](works/lelli-2017-one-law-to-rule-them-all-the-radial-acceleratio.md) — One Law to Rule Them All: The Radial Acceleration Relation of Galaxies | 1353 | cited, named method/model, cited in a paper |
 | 10 | [Bekenstein & Milgrom 1984](works/bekenstein-1984-does-the-missing-mass-problem-signal-the-breakdo.md) — Does the missing mass problem signal the breakdown of Newtonian gravity? | 1234 | cited, named method/model, cited in a paper |
-| 11 | [Blumenthal et al. 1984](works/blumenthal-1984-formation-of-galaxies-and-large-scale-structure.md) — Formation of galaxies and large-scale structure with cold dark matter | 1217 | named method/model |
-| 12 | [Peebles 1982](works/peebles-1982-large-scale-background-temperature-and-mass-fluc.md) — Large-scale background temperature and mass fluctuations due to scale-invariant primeval p | 1217 | named method/model |
+| 11 | [Blumenthal et al. 1984](works/blumenthal-1984-formation-of-galaxies-and-large-scale-structure.md) — Formation of galaxies and large-scale structure with cold dark matter | 1218 | named method/model |
+| 12 | [Peebles 1982](works/peebles-1982-large-scale-background-temperature-and-mass-fluc.md) — Large-scale background temperature and mass fluctuations due to scale-invariant primeval p | 1218 | named method/model |
 | 13 | [Gauss 1809](works/gauss-1809-theoria-motus-corporum-coelestium-in-sectionibus.md) — Theoria motus corporum coelestium in sectionibus conicis solem ambientium | 1051 | named method/model, algorithm via library call |
-| 14 | [Lelli, McGaugh & Schombert 2016](works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CUR | 1034 | cited, data used, cited in a paper |
+| 14 | [Lelli, McGaugh & Schombert 2016](works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CUR | 1036 | cited, data used, cited in a paper |
 | 15 | [Friedmann 1922](works/friedmann-1922-uber-die-krummung-des-raumes.md) — Über die Krümmung des Raumes | 896 | named method/model |
 | 16 | [Friedmann 1924](works/friedmann-1924-uber-die-moglichkeit-einer-welt-mit-konstanter-n.md) — Über die Möglichkeit einer Welt mit konstanter negativer Krümmung des Raumes | 896 | named method/model |
 | 17 | [O'Neill 2014](works/oneill-2014-pcg-a-family-of-simple-fast-space-efficient-sta.md) — PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Numb | 789 | algorithm via library call |
@@ -42,8 +42,8 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 34 | [Hesse 1844](works/hesse-1844-uber-die-elimination-der-variabeln-aus-drei-alge.md) — Über die Elimination der Variabeln aus drei algebraischen Gleichungen vom zweiten Grade mi | 471 | named method/model |
 | 35 | [Milgrom 2010](works/milgrom-2010-quasi-linear-formulation-of-mond.md) — Quasi-linear formulation of MOND | 444 | cited, named method/model, cited in a paper |
 | 36 | [Hubble 1929](works/hubble-1929-a-relation-between-distance-and-radial-velocity.md) — A relation between distance and radial velocity among extra-galactic nebulae | 440 | named method/model, data used |
-| 37 | [Navarro, Frenk & White 1997](works/navarro-1997-a-universal-density-profile-from-hierarchical-cl.md) — A Universal Density Profile from Hierarchical Clustering | 416 | named method/model, cited in a paper |
-| 38 | [Navarro, Frenk & White 1996](works/navarro-1996-the-structure-of-cold-dark-matter-halos.md) — The Structure of Cold Dark Matter Halos | 413 | named method/model |
+| 37 | [Navarro, Frenk & White 1997](works/navarro-1997-a-universal-density-profile-from-hierarchical-cl.md) — A Universal Density Profile from Hierarchical Clustering | 418 | named method/model, cited in a paper |
+| 38 | [Navarro, Frenk & White 1996](works/navarro-1996-the-structure-of-cold-dark-matter-halos.md) — The Structure of Cold Dark Matter Halos | 415 | named method/model |
 | 39 | [Planck Collaboration et al. 2020](works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md) — Planck 2018 results: VI. Cosmological parameters | 409 | cited, data used |
 | 40 | [Planck 1900](works/planck-1900-ueber-irreversible-strahlungsvorgange.md) — Ueber irreversible Strahlungsvorgänge | 396 | named method/model |
 | 41 | [Deser & Levin 1997](works/deser-1997-accelerated-detectors-and-temperature-in-anti.md) — Accelerated detectors and temperature in (anti-) de Sitter spaces | 389 | cited, named method/model, cited in a paper |
@@ -141,9 +141,9 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 133 | [Euler 1758](works/euler-1758-elementa-doctrinae-solidorum.md) — Elementa doctrinae solidorum | 81 | named method/model |
 | 134 | [Foster & Jacobson 2006](works/foster-2006-post-newtonian-parameters-and-constraints-on-ein.md) — Post-Newtonian parameters and constraints on Einstein-aether theory | 81 | cited, named method/model, cited in a paper |
 | 135 | [Milgrom 2022](works/milgrom-2022-models-of-a-modified-inertia-formulation-of-mond.md) — Models of a modified-inertia formulation of MOND | 81 | cited, named method/model |
-| 136 | [Mistele 2024](works/mistele-2024-new-scale-in-the-quasi-static-limit-of-aether-sc.md) — New scale in the quasi-static limit of aether scalar tensor theory | 80 | cited, named method/model |
-| 137 | [Banik & Zhao 2018](works/banik-2018-testing-gravity-with-wide-binary-stars-like-ce.md) — Testing gravity with wide binary stars like α Centauri | 79 | named method/model, cited in a paper |
-| 138 | [Dutton & Macciò 2014](works/dutton-2014-cold-dark-matter-haloes-in-the-planck-era-evolu.md) — Cold dark matter haloes in the Planck era: evolution of structural parameters for Einasto  | 78 | cited, named method/model, cited in a paper |
+| 136 | [Dutton & Macciò 2014](works/dutton-2014-cold-dark-matter-haloes-in-the-planck-era-evolu.md) — Cold dark matter haloes in the Planck era: evolution of structural parameters for Einasto  | 80 | cited, named method/model, cited in a paper |
+| 137 | [Mistele 2024](works/mistele-2024-new-scale-in-the-quasi-static-limit-of-aether-sc.md) — New scale in the quasi-static limit of aether scalar tensor theory | 80 | cited, named method/model |
+| 138 | [Banik & Zhao 2018](works/banik-2018-testing-gravity-with-wide-binary-stars-like-ce.md) — Testing gravity with wide binary stars like α Centauri | 79 | named method/model, cited in a paper |
 | 139 | [Park et al. 2026](works/park-2026-improved-constraints-on-modified-newtonian-gravi.md) — Improved constraints on modified Newtonian gravity from Cassini radio tracking data | 78 | cited, cited in a paper |
 | 140 | [DES Collaboration: T. M. C. Abbott et al. 2024](works/des-collaboration-t-m-c-abbott-2024-the-dark-energy-survey-cosmology-results-wit.md) — The Dark Energy Survey: Cosmology Results with ∼1500 New High-redshift Type Ia Supernovae  | 76 | data used |
 | 141 | [Compton 1923](works/compton-1923-a-quantum-theory-of-the-scattering-of-x-rays-by.md) — A Quantum Theory of the Scattering of X-rays by Light Elements | 75 | named method/model |
@@ -175,14 +175,14 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 167 | [Milgrom 2020](works/milgrom-2020-the-a-0-cosmology-connection-in-mond.md) — The $a_0$ -- cosmology connection in MOND | 59 | cited, cited in a paper |
 | 168 | [Möbius 1832](works/mobius-1832-uber-eine-besondere-art-von-umkehrung-der-reihen.md) — Über eine besondere Art von Umkehrung der Reihen. | 59 | named method/model |
 | 169 | [Jarlskog 1985](works/jarlskog-1985-commutator-of-the-quark-mass-matrices-in-the-sta.md) — Commutator of the Quark Mass Matrices in the Standard Electroweak Model and a Measure of M | 58 | named method/model |
-| 170 | [Lie 1880](works/lie-1880-theorie-der-transformationsgruppen-i.md) — Theorie der Transformationsgruppen I | 57 | named method/model |
-| 171 | [Mertens 1897](works/mertens-1897-uber-eine-zahlentheoretische-function.md) — Über eine zahlentheoretische Function | 57 | named method/model |
-| 172 | [Odlyzko & te Riele 1985](works/odlyzko-1985-disproof-of-the-mertens-conjecture.md) — Disproof of the Mertens conjecture. | 57 | cited, named method/model |
-| 173 | [Ma & Bertschinger 1995](works/ma-1995-cosmological-perturbation-theory-in-the-synchron.md) — Cosmological Perturbation Theory in the Synchronous and Conformal Newtonian Gauges | 56 | cited, named method/model |
-| 174 | [Riemann 1859](works/riemann-1859-ueber-die-anzahl-der-primzahlen-unter-einer-gege.md) — Ueber die Anzahl der Primzahlen unter einer gegebenen Groesse | 56 | cited, named method/model |
-| 175 | [Rubin et al. 2023](works/rubin-2023-union-through-unity-cosmology-with-2-000-sne-us.md) — Union Through UNITY: Cosmology with 2,000 SNe Using a Unified Bayesian Framework | 56 | cited, data used |
-| 176 | [Desmond, Hees & Famaey 2024](works/desmond-2024-on-the-tension-between-the-radial-acceleration-r.md) — On the tension between the radial acceleration relation and Solar system quadrupole in mod | 55 | cited, named method/model, cited in a paper |
-| 177 | [Moster, Naab & White 2012](works/moster-2012-galactic-star-formation-and-accretion-histories.md) — Galactic star formation and accretion histories from matching galaxies to dark matter halo | 55 | cited, named method/model, cited in a paper |
+| 170 | [Moster, Naab & White 2012](works/moster-2012-galactic-star-formation-and-accretion-histories.md) — Galactic star formation and accretion histories from matching galaxies to dark matter halo | 58 | cited, named method/model, cited in a paper |
+| 171 | [Lie 1880](works/lie-1880-theorie-der-transformationsgruppen-i.md) — Theorie der Transformationsgruppen I | 57 | named method/model |
+| 172 | [Mertens 1897](works/mertens-1897-uber-eine-zahlentheoretische-function.md) — Über eine zahlentheoretische Function | 57 | named method/model |
+| 173 | [Odlyzko & te Riele 1985](works/odlyzko-1985-disproof-of-the-mertens-conjecture.md) — Disproof of the Mertens conjecture. | 57 | cited, named method/model |
+| 174 | [Ma & Bertschinger 1995](works/ma-1995-cosmological-perturbation-theory-in-the-synchron.md) — Cosmological Perturbation Theory in the Synchronous and Conformal Newtonian Gauges | 56 | cited, named method/model |
+| 175 | [Riemann 1859](works/riemann-1859-ueber-die-anzahl-der-primzahlen-unter-einer-gege.md) — Ueber die Anzahl der Primzahlen unter einer gegebenen Groesse | 56 | cited, named method/model |
+| 176 | [Rubin et al. 2023](works/rubin-2023-union-through-unity-cosmology-with-2-000-sne-us.md) — Union Through UNITY: Cosmology with 2,000 SNe Using a Unified Bayesian Framework | 56 | cited, data used |
+| 177 | [Desmond, Hees & Famaey 2024](works/desmond-2024-on-the-tension-between-the-radial-acceleration-r.md) — On the tension between the radial acceleration relation and Solar system quadrupole in mod | 55 | cited, named method/model, cited in a paper |
 | 178 | [Berry & Keating 1999](works/berry-1999-h-xp-and-the-riemann-zeros.md) — H=xp and the Riemann Zeros | 54 | named method/model |
 | 179 | [Berry & Keating 1999](works/berry-1999-the-riemann-zeros-and-eigenvalue-asymptotics.md) — The Riemann Zeros and Eigenvalue Asymptotics | 54 | cited, named method/model |
 | 180 | [Jeans 1922](works/jeans-1922-the-motions-of-stars-in-a-kapteyn-universe.md) — The Motions of Stars in a Kapteyn-Universe | 54 | named method/model |
@@ -266,17 +266,17 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 258 | [Yang & Mills 1954](works/yang-1954-conservation-of-isotopic-spin-and-isotopic-gauge.md) — Conservation of Isotopic Spin and Isotopic Gauge Invariance | 33 | named method/model |
 | 259 | [BICEP/Keck Collaboration et al. 2021](works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md) — Improved Constraints on Primordial Gravitational Waves using Planck , WMAP, and BICEP/ Kec | 32 | cited, data used |
 | 260 | [Casimir 1948](works/casimir-1948-on-the-attraction-between-two-perfectly-conducti.md) — On the attraction between two perfectly conducting plates | 32 | named method/model |
-| 261 | [Chern 1944](works/chern-1944-a-simple-intrinsic-proof-of-the-gauss-bonnet-for.md) — A Simple Intrinsic Proof of the Gauss-Bonnet Formula for Closed Riemannian Manifolds | 32 | named method/model, cited in a paper |
-| 262 | [Fienga et al. 2007](works/fienga-2007-inpop06-a-new-numerical-planetary-ephemeris.md) — INPOP06: a new numerical planetary ephemeris | 32 | data used |
-| 263 | [Keenan, Barger & Cowie 2013](works/keenan-2013-evidence-for-a-300-megaparsec-scale-under-densi.md) — EVIDENCE FOR A ∼300 MEGAPARSEC SCALE UNDER-DENSITY IN THE LOCAL GALAXY DISTRIBUTION | 32 | cited, named method/model |
-| 264 | [Touboul et al. 2022](works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md) — M I C R O S C O P E Mission: Final Results of the Test of the Equivalence Principle | 32 | cited, data used |
-| 265 | [Bohr 1913](works/bohr-1913-i-on-the-constitution-of-atoms-and-molecules.md) — I. On the constitution of atoms and molecules | 31 | named method/model |
-| 266 | [Eisenstein & Hu 1998](works/eisenstein-1998-baryonic-features-in-the-matter-transfer-functio.md) — Baryonic Features in the Matter Transfer Function | 31 | cited, named method/model |
-| 267 | [Euclid c. 300 BCE](works/euclid-c-300-bce-elements-stoicheia-this-ed-euclid.md) — Elements (Στοιχεῖα, Stoicheia); this ed.: Euclid's Elements: All Thirteen Books Complete i | 31 | named method/model |
-| 268 | [Faber & Jackson 1976](works/faber-1976-velocity-dispersions-and-mass-to-light-ratios-fo.md) — Velocity dispersions and mass-to-light ratios for elliptical galaxies | 31 | cited, named method/model |
-| 269 | [Milgrom 2009](works/milgrom-2009-bimetric-mond-gravity.md) — Bimetric MOND gravity | 31 | cited, named method/model, cited in a paper |
-| 270 | [Bonnet 1848](works/bonnet-1848-memoire-sur-la-theorie-generale-des-surfaces.md) — Memoire sur la theorie generale des surfaces | 30 | named method/model |
-| 271 | [Chabrier 2003](works/chabrier-2003-galactic-stellar-and-substellar-initial-mass-fun.md) — Galactic Stellar and Substellar Initial Mass Function | 30 | named method/model, cited in a paper |
+| 261 | [Chabrier 2003](works/chabrier-2003-galactic-stellar-and-substellar-initial-mass-fun.md) — Galactic Stellar and Substellar Initial Mass Function | 32 | named method/model, cited in a paper |
+| 262 | [Chern 1944](works/chern-1944-a-simple-intrinsic-proof-of-the-gauss-bonnet-for.md) — A Simple Intrinsic Proof of the Gauss-Bonnet Formula for Closed Riemannian Manifolds | 32 | named method/model, cited in a paper |
+| 263 | [Fienga et al. 2007](works/fienga-2007-inpop06-a-new-numerical-planetary-ephemeris.md) — INPOP06: a new numerical planetary ephemeris | 32 | data used |
+| 264 | [Keenan, Barger & Cowie 2013](works/keenan-2013-evidence-for-a-300-megaparsec-scale-under-densi.md) — EVIDENCE FOR A ∼300 MEGAPARSEC SCALE UNDER-DENSITY IN THE LOCAL GALAXY DISTRIBUTION | 32 | cited, named method/model |
+| 265 | [Touboul et al. 2022](works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md) — M I C R O S C O P E Mission: Final Results of the Test of the Equivalence Principle | 32 | cited, data used |
+| 266 | [Bohr 1913](works/bohr-1913-i-on-the-constitution-of-atoms-and-molecules.md) — I. On the constitution of atoms and molecules | 31 | named method/model |
+| 267 | [Eisenstein & Hu 1998](works/eisenstein-1998-baryonic-features-in-the-matter-transfer-functio.md) — Baryonic Features in the Matter Transfer Function | 31 | cited, named method/model |
+| 268 | [Euclid c. 300 BCE](works/euclid-c-300-bce-elements-stoicheia-this-ed-euclid.md) — Elements (Στοιχεῖα, Stoicheia); this ed.: Euclid's Elements: All Thirteen Books Complete i | 31 | named method/model |
+| 269 | [Faber & Jackson 1976](works/faber-1976-velocity-dispersions-and-mass-to-light-ratios-fo.md) — Velocity dispersions and mass-to-light ratios for elliptical galaxies | 31 | cited, named method/model |
+| 270 | [Milgrom 2009](works/milgrom-2009-bimetric-mond-gravity.md) — Bimetric MOND gravity | 31 | cited, named method/model, cited in a paper |
+| 271 | [Bonnet 1848](works/bonnet-1848-memoire-sur-la-theorie-generale-des-surfaces.md) — Memoire sur la theorie generale des surfaces | 30 | named method/model |
 | 272 | [Dirichlet 1850](works/dirichlet-1850-uber-einen-neuen-ausdruck-zur-bestimmung-der-dic.md) — Über einen neuen Ausdruck zur Bestimmung der Dichtigkeit einer unendlich dünnen Kugelschal | 30 | named method/model |
 | 273 | [Durakovic & Skordis 2023](works/durakovic-2023-towards-galaxy-cluster-models-in-aether-scalar-t.md) — Towards galaxy cluster models in Aether-Scalar-Tensor theory: isothermal spheres and curio | 30 | cited, named method/model |
 | 274 | [El-Badry, Rix & Heintz 2021](works/el-badry-2021-a-million-binaries-from-gaia-edr3-sample-select.md) — A million binaries from Gaia eDR3: sample selection and validation of Gaia parallax uncert | 29 | cited |
@@ -433,42 +433,42 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 425 | [Hodge 1941](works/hodge-1941-the-theory-and-applications-of-harmonic-integral.md) — The Theory and Applications of Harmonic Integrals | 15 | named method/model |
 | 426 | [Jones et al. 2009](works/jones-2009-the-6df-galaxy-survey-final-redshift-release-d.md) — The 6dF Galaxy Survey: final redshift release (DR3) and southern large-scale structures | 15 | data used |
 | 427 | [Lelli et al. 2015](works/lelli-2015-gas-dynamics-in-tidal-dwarf-galaxies-disc-forma.md) — Gas dynamics in tidal dwarf galaxies: Disc formation atz= 0 | 15 | cited |
-| 428 | [Neumann 1877](works/neumann-1877-untersuchungen-uber-das-logarithmische-und-newto.md) — Untersuchungen über das logarithmische und Newton'sche Potential | 15 | named method/model |
-| 429 | [Newton 1711](works/newton-1711-analysis-per-quantitatum-series-fluxiones-ac-d.md) — Analysis per Quantitatum Series, Fluxiones, ac Differentias: cum Enumeratione Linearum Ter | 15 | named method/model |
-| 430 | [Planck Collaboration et al. 2020](works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md) — Planck 2018 results: VIII. Gravitational lensing | 15 | data used |
-| 431 | [Rahman & Susskind 2023](works/rahman-2023-comments-on-a-paper-by-narovlansky-and-verlinde.md) — Comments on a Paper by Narovlansky and Verlinde | 15 | named method/model |
-| 432 | [Rahman & Susskind 2024](works/rahman-2024-infinite-temperature-is-not-so-infinite-the-man.md) — Infinite Temperature is Not So Infinite: The Many Temperatures of de Sitter Space | 15 | cited, named method/model |
-| 433 | [Tully et al. 2023](works/tully-2023-cosmicflows-4.md) — Cosmicflows-4 | 15 | cited, data used |
-| 434 | [Vlasov 1968](works/vlasov-1968-the-vibrational-properties-of-an-electron-gas.md) — THE VIBRATIONAL PROPERTIES OF AN ELECTRON GAS | 15 | named method/model |
-| 435 | [Weyl 1918](works/weyl-1918-reine-infinitesimalgeometrie.md) — Reine Infinitesimalgeometrie | 15 | named method/model |
-| 436 | [Wilson 1974](works/wilson-1974-confinement-of-quarks.md) — Confinement of quarks | 15 | cited, named method/model, cited in a paper |
-| 437 | [de Graaff et al. 2023](works/de-graaff-2023-ionised-gas-kinematics-and-dynamical-masses-of.md) — Ionised gas kinematics and dynamical masses of $z\gtrsim6$ galaxies from JADES/NIRSpec hig | 15 | cited |
-| 438 | [Ślebodziński 1931](works/slebodzinski-1931-sur-les-equations-canoniques-de-hamilton.md) — Sur les équations canoniques de Hamilton | 15 | named method/model |
-| 439 | [Berkooz et al. 2019](works/berkooz-2019-towards-a-full-solution-of-the-large-n-double-sc.md) — Towards a full solution of the large N double-scaled SYK model | 14 | cited, named method/model |
-| 440 | [Bogolyubov 1947](works/bogolyubov-1947-on-the-theory-of-superfluidity.md) — On the theory of superfluidity | 14 | named method/model |
-| 441 | [Cai & Kim 2005](works/cai-2005-first-law-of-thermodynamics-and-friedmann-equati.md) — First Law of Thermodynamics and Friedmann Equations of Friedmann–Robertson–Walker Universe | 14 | cited, named method/model, cited in a paper |
-| 442 | [Chern 1946](works/chern-1946-characteristic-classes-of-hermitian-manifolds.md) — Characteristic Classes of Hermitian Manifolds | 14 | named method/model |
-| 443 | [Collette & h5py contributors 2013](works/collette-2013-h5py-hdf5-for-python.md) — h5py: HDF5 for Python | 14 | library imported |
-| 444 | [Desmond 2023](works/desmond-2023-the-underlying-radial-acceleration-relation.md) — The underlying radial acceleration relation | 14 | cited |
-| 445 | [Goldstone 1961](works/goldstone-1961-field-theories-with-superconductor-solutions.md) — Field theories with « Superconductor » solutions | 14 | named method/model |
-| 446 | [Goldstone, Salam & Weinberg 1962](works/goldstone-1962-broken-symmetries.md) — Broken Symmetries | 14 | named method/model |
-| 447 | [Hees et al. 2015](works/hees-2015-combined-solar-system-and-rotation-curve-constra.md) — Combined Solar system and rotation curve constraints on MOND | 14 | cited, cited in a paper |
-| 448 | [Jacobson 2016](works/jacobson-2016-entanglement-equilibrium-and-the-einstein-equati.md) — Entanglement Equilibrium and the Einstein Equation | 14 | cited, named method/model |
-| 449 | [Lovisari, Reiprich & Schellenberger 2015](works/lovisari-2015-scaling-properties-of-a-complete-x-ray-selected.md) — Scaling properties of a complete X-ray selected galaxy group sample | 14 | cited |
-| 450 | [Maldacena & Susskind 2013](works/maldacena-2013-cool-horizons-for-entangled-black-holes.md) — Cool horizons for entangled black holes | 14 | cited, named method/model |
-| 451 | [McGaugh et al. 2024](works/mcgaugh-2024-accelerated-structure-formation-the-early-emerg-2.md) — Accelerated Structure Formation: The Early Emergence of Massive Galaxies and Clusters of G | 14 | cited, cited in a paper |
-| 452 | [Press & Schechter 1974](works/press-1974-formation-of-galaxies-and-clusters-of-galaxies-b.md) — Formation of Galaxies and Clusters of Galaxies by Self-Similar Gravitational Condensation | 14 | named method/model |
-| 453 | [Sancisi 2003](works/sancisi-2003-the-visible-matter-dark-matter-coupling.md) — The visible matter - dark matter coupling | 14 | named method/model |
-| 454 | [Schwinger 1948](works/schwinger-1948-on-quantum-electrodynamics-and-the-magnetic-mome.md) — On Quantum-Electrodynamics and the Magnetic Moment of the Electron | 14 | cited, named method/model |
-| 455 | [Viel et al. 2013](works/viel-2013-warm-dark-matter-as-a-solution-to-the-small-scal.md) — Warm dark matter as a solution to the small scale crisis: New constraints from high redshi | 14 | cited |
-| 456 | [Yau 1978](works/yau-1978-on-the-ricci-curvature-of-a-compact-kahler-manif.md) — On the ricci curvature of a compact kähler manifold and the complex monge‐ampére equation, | 14 | named method/model |
-| 457 | [van der Wel et al. 2014](works/van-der-wel-2014-3d-hst-candels-the-evolution-of-the-galaxy-size.md) — 3D-HST+CANDELS: THE EVOLUTION OF THE GALAXY SIZE-MASS DISTRIBUTION SINCE z = 3 | 14 | cited |
-| 458 | [Čerenkov 1937](works/cerenkov-1937-visible-radiation-produced-by-electrons-moving-i.md) — Visible Radiation Produced by Electrons Moving in a Medium with Velocities Exceeding that  | 14 | named method/model |
-| 459 | [Croom et al. 2012](works/croom-2012-the-sydney-aao-multi-object-integral-field-spect.md) — The Sydney-AAO Multi-object Integral field spectrograph: The Sydney-AAO Multi-object IFS | 13 | data used |
-| 460 | [Eling & Jacobson 2006](works/eling-2006-spherical-solutions-in-einstein-aether-theory-s.md) — Spherical solutions in Einstein-aether theory: static aether and stars | 13 | cited, named method/model |
-| 461 | [Feynman & Vernon 1963](works/feynman-1963-the-theory-of-a-general-quantum-system-interacti.md) — The theory of a general quantum system interacting with a linear dissipative system | 13 | cited, named method/model |
-| 462 | [Fierz & Pauli 1939](works/fierz-1939-on-relativistic-wave-equations-for-particles-of.md) — On relativistic wave equations for particles of arbitrary spin in an electromagnetic field | 13 | named method/model |
-| 463 | [Freundlich et al. 2022](works/freundlich-2022-probing-the-radial-acceleration-relation-and-the.md) — Probing the radial acceleration relation and the strong equivalence principle with the Com | 13 | cited, cited in a paper |
+| 428 | [Lovisari, Reiprich & Schellenberger 2015](works/lovisari-2015-scaling-properties-of-a-complete-x-ray-selected.md) — Scaling properties of a complete X-ray selected galaxy group sample | 15 | cited |
+| 429 | [Neumann 1877](works/neumann-1877-untersuchungen-uber-das-logarithmische-und-newto.md) — Untersuchungen über das logarithmische und Newton'sche Potential | 15 | named method/model |
+| 430 | [Newton 1711](works/newton-1711-analysis-per-quantitatum-series-fluxiones-ac-d.md) — Analysis per Quantitatum Series, Fluxiones, ac Differentias: cum Enumeratione Linearum Ter | 15 | named method/model |
+| 431 | [Planck Collaboration et al. 2020](works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md) — Planck 2018 results: VIII. Gravitational lensing | 15 | data used |
+| 432 | [Rahman & Susskind 2023](works/rahman-2023-comments-on-a-paper-by-narovlansky-and-verlinde.md) — Comments on a Paper by Narovlansky and Verlinde | 15 | named method/model |
+| 433 | [Rahman & Susskind 2024](works/rahman-2024-infinite-temperature-is-not-so-infinite-the-man.md) — Infinite Temperature is Not So Infinite: The Many Temperatures of de Sitter Space | 15 | cited, named method/model |
+| 434 | [Tully et al. 2023](works/tully-2023-cosmicflows-4.md) — Cosmicflows-4 | 15 | cited, data used |
+| 435 | [Vlasov 1968](works/vlasov-1968-the-vibrational-properties-of-an-electron-gas.md) — THE VIBRATIONAL PROPERTIES OF AN ELECTRON GAS | 15 | named method/model |
+| 436 | [Weyl 1918](works/weyl-1918-reine-infinitesimalgeometrie.md) — Reine Infinitesimalgeometrie | 15 | named method/model |
+| 437 | [Wilson 1974](works/wilson-1974-confinement-of-quarks.md) — Confinement of quarks | 15 | cited, named method/model, cited in a paper |
+| 438 | [de Graaff et al. 2023](works/de-graaff-2023-ionised-gas-kinematics-and-dynamical-masses-of.md) — Ionised gas kinematics and dynamical masses of $z\gtrsim6$ galaxies from JADES/NIRSpec hig | 15 | cited |
+| 439 | [Ślebodziński 1931](works/slebodzinski-1931-sur-les-equations-canoniques-de-hamilton.md) — Sur les équations canoniques de Hamilton | 15 | named method/model |
+| 440 | [Berkooz et al. 2019](works/berkooz-2019-towards-a-full-solution-of-the-large-n-double-sc.md) — Towards a full solution of the large N double-scaled SYK model | 14 | cited, named method/model |
+| 441 | [Bogolyubov 1947](works/bogolyubov-1947-on-the-theory-of-superfluidity.md) — On the theory of superfluidity | 14 | named method/model |
+| 442 | [Cai & Kim 2005](works/cai-2005-first-law-of-thermodynamics-and-friedmann-equati.md) — First Law of Thermodynamics and Friedmann Equations of Friedmann–Robertson–Walker Universe | 14 | cited, named method/model, cited in a paper |
+| 443 | [Chern 1946](works/chern-1946-characteristic-classes-of-hermitian-manifolds.md) — Characteristic Classes of Hermitian Manifolds | 14 | named method/model |
+| 444 | [Collette & h5py contributors 2013](works/collette-2013-h5py-hdf5-for-python.md) — h5py: HDF5 for Python | 14 | library imported |
+| 445 | [Desmond 2023](works/desmond-2023-the-underlying-radial-acceleration-relation.md) — The underlying radial acceleration relation | 14 | cited |
+| 446 | [Freundlich et al. 2022](works/freundlich-2022-probing-the-radial-acceleration-relation-and-the.md) — Probing the radial acceleration relation and the strong equivalence principle with the Com | 14 | cited, cited in a paper |
+| 447 | [Goldstone 1961](works/goldstone-1961-field-theories-with-superconductor-solutions.md) — Field theories with « Superconductor » solutions | 14 | named method/model |
+| 448 | [Goldstone, Salam & Weinberg 1962](works/goldstone-1962-broken-symmetries.md) — Broken Symmetries | 14 | named method/model |
+| 449 | [Hees et al. 2015](works/hees-2015-combined-solar-system-and-rotation-curve-constra.md) — Combined Solar system and rotation curve constraints on MOND | 14 | cited, cited in a paper |
+| 450 | [Jacobson 2016](works/jacobson-2016-entanglement-equilibrium-and-the-einstein-equati.md) — Entanglement Equilibrium and the Einstein Equation | 14 | cited, named method/model |
+| 451 | [Maldacena & Susskind 2013](works/maldacena-2013-cool-horizons-for-entangled-black-holes.md) — Cool horizons for entangled black holes | 14 | cited, named method/model |
+| 452 | [McGaugh et al. 2024](works/mcgaugh-2024-accelerated-structure-formation-the-early-emerg-2.md) — Accelerated Structure Formation: The Early Emergence of Massive Galaxies and Clusters of G | 14 | cited, cited in a paper |
+| 453 | [Press & Schechter 1974](works/press-1974-formation-of-galaxies-and-clusters-of-galaxies-b.md) — Formation of Galaxies and Clusters of Galaxies by Self-Similar Gravitational Condensation | 14 | named method/model |
+| 454 | [Sancisi 2003](works/sancisi-2003-the-visible-matter-dark-matter-coupling.md) — The visible matter - dark matter coupling | 14 | named method/model |
+| 455 | [Schwinger 1948](works/schwinger-1948-on-quantum-electrodynamics-and-the-magnetic-mome.md) — On Quantum-Electrodynamics and the Magnetic Moment of the Electron | 14 | cited, named method/model |
+| 456 | [Viel et al. 2013](works/viel-2013-warm-dark-matter-as-a-solution-to-the-small-scal.md) — Warm dark matter as a solution to the small scale crisis: New constraints from high redshi | 14 | cited |
+| 457 | [Yau 1978](works/yau-1978-on-the-ricci-curvature-of-a-compact-kahler-manif.md) — On the ricci curvature of a compact kähler manifold and the complex monge‐ampére equation, | 14 | named method/model |
+| 458 | [van der Wel et al. 2014](works/van-der-wel-2014-3d-hst-candels-the-evolution-of-the-galaxy-size.md) — 3D-HST+CANDELS: THE EVOLUTION OF THE GALAXY SIZE-MASS DISTRIBUTION SINCE z = 3 | 14 | cited |
+| 459 | [Čerenkov 1937](works/cerenkov-1937-visible-radiation-produced-by-electrons-moving-i.md) — Visible Radiation Produced by Electrons Moving in a Medium with Velocities Exceeding that  | 14 | named method/model |
+| 460 | [Croom et al. 2012](works/croom-2012-the-sydney-aao-multi-object-integral-field-spect.md) — The Sydney-AAO Multi-object Integral field spectrograph: The Sydney-AAO Multi-object IFS | 13 | data used |
+| 461 | [Eling & Jacobson 2006](works/eling-2006-spherical-solutions-in-einstein-aether-theory-s.md) — Spherical solutions in Einstein-aether theory: static aether and stars | 13 | cited, named method/model |
+| 462 | [Feynman & Vernon 1963](works/feynman-1963-the-theory-of-a-general-quantum-system-interacti.md) — The theory of a general quantum system interacting with a linear dissipative system | 13 | cited, named method/model |
+| 463 | [Fierz & Pauli 1939](works/fierz-1939-on-relativistic-wave-equations-for-particles-of.md) — On relativistic wave equations for particles of arbitrary spin in an electromagnetic field | 13 | named method/model |
 | 464 | [Hamilton 1835](works/hamilton-1835-vii-second-essay-on-a-general-method-in-dynamic.md) — VII. Second essay on a general method in dynamics | 13 | named method/model |
 | 465 | [Hernquist 1990](works/hernquist-1990-an-analytical-model-for-spherical-galaxies-and-b.md) — An analytical model for spherical galaxies and bulges | 13 | cited, named method/model |
 | 466 | [Hosotani 1989](works/hosotani-1989-dynamics-of-non-integrable-phases-and-gauge-symm.md) — Dynamics of non-integrable phases and gauge symmetry breaking | 13 | named method/model |
@@ -775,77 +775,77 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 767 | [Abel 1826](works/abel-1826-auflosung-einer-mechanischen-aufgabe.md) — Auflösung einer mechanischen Aufgabe. | 6 | named method/model |
 | 768 | [Adams et al. 2006](works/adams-2006-causality-analyticity-and-an-ir-obstruction-to.md) — Causality, analyticity and an IR obstruction to UV completion | 6 | cited, named method/model |
 | 769 | [Alves et al. 2020](works/alves-2020-planck-2018-results.md) — Planck 2018 results | 6 | cited in a paper |
-| 770 | [Bailey & Kostelecký 2006](works/bailey-2006-signals-for-lorentz-violation-in-post-newtonian.md) — Signals for Lorentz violation in post-Newtonian gravity | 6 | cited |
-| 771 | [Begeman, Broeils & Sanders 1991](works/begeman-1991-extended-rotation-curves-of-spiral-galaxies-dar.md) — Extended rotation curves of spiral galaxies: dark haloes and modified dynamics | 6 | cited |
-| 772 | [Begum et al. 2008](works/begum-2008-baryonic-tullya-fisher-relation-for-extremely-l.md) — Baryonic TullyâFisher relation for extremely low mass Galaxies | 6 | cited, cited in a paper |
-| 773 | [Bertschinger 1985](works/bertschinger-1985-self-similar-secondary-infall-and-accretion-in-a.md) — Self-similar secondary infall and accretion in an Einstein-de Sitter universe | 6 | cited |
-| 774 | [Biskupek, Müller & Torre 2020](works/biskupek-2020-benefit-of-new-high-precision-llr-data-for-the-d.md) — Benefit of New High-Precision LLR Data for the Determination of Relativistic Parameters | 6 | cited |
-| 775 | [Bruneton & Esposito-Farèse 2007](works/bruneton-2007-field-theoretical-formulations-of-mond-like-grav.md) — Field-theoretical formulations of MOND-like gravity | 6 | cited, named method/model, cited in a paper |
-| 776 | [Burkert 1995](works/burkert-1995-the-structure-of-dark-matter-halos-in-dwarf-gala.md) — The Structure of Dark Matter Halos in Dwarf Galaxies | 6 | named method/model |
-| 777 | [Clebsch 1872](works/clebsch-1872-theorie-der-binaeren-algebraischen-formen.md) — Theorie der binaeren algebraischen Formen | 6 | named method/model |
-| 778 | [Cohen, Kaplan & Nelson 1999](works/cohen-1999-effective-field-theory-black-holes-and-the-cos.md) — Effective Field Theory, Black Holes, and the Cosmological Constant | 6 | cited, named method/model, cited in a paper |
-| 779 | [Conrey & Snaith 2007](works/conrey-2007-applications-of-thel-functions-ratios-conjecture.md) — Applications of theL-functions ratios conjectures | 6 | named method/model |
-| 780 | [Conrey, Farmer & Zirnbauer 2008](works/conrey-2008-autocorrelation-of-ratios-of-l-functions.md) — Autocorrelation of ratios of $L$-functions | 6 | named method/model |
-| 781 | [Cramér 1936](works/cramer-1936-on-the-order-of-magnitude-of-the-difference-betw.md) — On the order of magnitude of the difference between consecutive prime numbers | 6 | named method/model |
-| 782 | [Creminelli, Janssen & Senatore 2022](works/creminelli-2022-positivity-bounds-on-effective-field-theories-wi.md) — Positivity bounds on effective field theories with spontaneously broken Lorentz invariance | 6 | cited, named method/model |
-| 783 | [Danieli et al. 2019](works/danieli-2019-still-missing-dark-matter-kcwi-high-resolution.md) — Still Missing Dark Matter: KCWI High-resolution Stellar Kinematics of NGC1052-DF2 | 6 | cited |
-| 784 | [De Felice, Doll & Mukohyama 2020](works/de-felice-2020-a-theory-of-type-ii-minimally-modified-gravity.md) — A theory of type-II minimally modified gravity | 6 | cited, named method/model |
-| 785 | [Dirichlet 1837](works/dirichlet-1837-beweis-des-satzes-dass-jede-unbegrenzte-arithme.md) — Beweis des Satzes, dass jede unbegrenzte arithmetische Progression, deren erstes Glied und | 6 | named method/model |
-| 786 | [Eckmiller, Hudson & Reiprich 2011](works/eckmiller-2011-testing-the-low-mass-end-of-x-ray-scaling-relati.md) — Testing the low-mass end of X-ray scaling relations with a sample ofChandragalaxy groups | 6 | cited |
-| 787 | [Einstein & Rosen 1935](works/einstein-1935-the-particle-problem-in-the-general-theory-of-re.md) — The Particle Problem in the General Theory of Relativity | 6 | named method/model |
-| 788 | [Emanuel 1986](works/emanuel-1986-an-air-sea-interaction-theory-for-tropical-cyclo.md) — An Air-Sea Interaction Theory for Tropical Cyclones. Part I: Steady-State Maintenance | 6 | cited |
-| 789 | [Fillmore & Goldreich 1984](works/fillmore-1984-self-similar-gravitational-collapse-in-an-expand.md) — Self-similar gravitational collapse in an expanding universe | 6 | cited, named method/model |
-| 790 | [Gaia Collaboration et al. 2018](works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) — Gaia Data Release 2: Summary of the contents and survey properties | 6 | data used |
-| 791 | [Galilei 1632](works/galilei-1632-dialogo-sopra-i-due-massimi-sistemi-del-mondo-t.md) — Dialogo sopra i due massimi sistemi del mondo, tolemaico e copernicano | 6 | named method/model |
-| 792 | [Gannon et al. 2024](works/gannon-2024-a-catalogue-and-analysis-of-ultra-diffuse-galaxy.md) — A Catalogue and Analysis of Ultra-Diffuse Galaxy Spectroscopic Properties | 6 | cited |
-| 793 | [Grall & Melville 2022](works/grall-2022-positivity-bounds-without-boosts-new-constraint.md) — Positivity bounds without boosts: New constraints on low energy effective field theories f | 6 | cited, named method/model |
-| 794 | [Gross 1961](works/gross-1961-structure-of-a-quantized-vortex-in-boson-systems.md) — Structure of a quantized vortex in boson systems | 6 | named method/model |
-| 795 | [Hardy & Littlewood 1923](works/hardy-1923-some-problems-of-partitio-numerorum-iii-on-t.md) — Some problems of ‘Partitio numerorum’; III: On the expression of a number as a sum of prim | 6 | named method/model |
-| 796 | [Harrison et al. 2017](works/harrison-2017-the-kmos-redshift-one-spectroscopic-survey-kros.md) — The KMOS Redshift One Spectroscopic Survey (KROSS): rotational velocities and angular mome | 6 | cited, cited in a paper |
-| 797 | [Hayashi, Chiba & Ishiyama 2020](works/hayashi-2020-diversity-of-dark-matter-density-profiles-in-the.md) — Diversity of Dark Matter Density Profiles in the Galactic Dwarf Spheroidal Satellites | 6 | cited |
-| 798 | [Holevo 1973](works/holevo-1973-some-estimates-for-the-amount-of-information-tra.md) — Some estimates for the amount of information transmittable by a quantum communication chan | 6 | named method/model |
-| 799 | [Huangfu & Hall 2017](works/huangfu-2017-parallelizing-the-dual-revised-simplex-method.md) — Parallelizing the dual revised simplex method | 6 | algorithm via library call |
-| 800 | [Iršič et al. 2024](works/irsic-2024-unveiling-dark-matter-free-streaming-at-the-smal.md) — Unveiling dark matter free streaming at the smallest scales with the high redshift Lyman-a | 6 | cited |
-| 801 | [Jacobson 2008](works/jacobson-2008-einstein-aether-gravity-a-status-report.md) — Einstein-aether gravity: a status report | 6 | cited |
-| 802 | [Kogut & Susskind 1975](works/kogut-1975-hamiltonian-formulation-of-wilsons-lattice-gaug.md) — Hamiltonian formulation of Wilson's lattice gauge theories | 6 | named method/model |
-| 803 | [Kostelecký & Russell 2011](works/kostelecky-2011-data-tables-for-lorentz-and-c-p-t-violation.md) — Data tables for Lorentz and C P T violation | 6 | cited, data used |
-| 804 | [Kramer et al. 2021](works/kramer-2021-strong-field-gravity-tests-with-the-double-pulsa.md) — Strong-Field Gravity Tests with the Double Pulsar | 6 | cited, cited in a paper |
-| 805 | [Lee & Komatsu 2010](works/lee-2010-bullet-cluster-a-challenge-to-cdm-cosmology.md) — BULLET CLUSTER: A CHALLENGE TO ΛCDM COSMOLOGY | 6 | cited |
-| 806 | [Leisman et al. 2017](works/leisman-2017-almost-dark-galaxies-in-the-alfalfa-survey-is.md) — (Almost) Dark Galaxies in the ALFALFA Survey: Isolated H i-bearing Ultra-diffuse Galaxies | 6 | cited |
-| 807 | [Lense & Thirring 1918](works/lense-1918-ueber-den-einfluss-der-eigenrotation-der-zentral.md) — Ueber den Einfluss der Eigenrotation der Zentralkoerper auf die Bewegung der Planeten und  | 6 | named method/model |
-| 808 | [Mach & Salcher 1887](works/mach-1887-photographische-fixirung-der-durch-projectile-in.md) — Photographische Fixirung der durch Projectile in der Luft eingeleiteten Vorgänge | 6 | named method/model |
-| 809 | [Madau & Dickinson 2014](works/madau-2014-cosmic-star-formation-history.md) — Cosmic Star-Formation History | 6 | cited |
-| 810 | [Mashhoon, Hehl & Theiss 1984](works/mashhoon-1984-on-the-gravitational-effects-of-rotating-masses.md) — On the gravitational effects of rotating masses: The Thirring-Lense papers | 6 | named method/model |
-| 811 | [Milgrom 1984](works/milgrom-1984-isothermal-spheres-in-the-modified-dynamics.md) — Isothermal spheres in the modified dynamics | 6 | cited |
-| 812 | [Milgrom 2014](works/milgrom-2014-general-virial-theorem-for-modified-gravity-mond.md) — General virial theorem for modified-gravity MOND | 6 | cited |
-| 813 | [Milgrom 2025](works/milgrom-2025-is-mond-necessarily-nonlinear.md) — Is MOND necessarily nonlinear? | 6 | cited |
-| 814 | [Moore & Nelson 2001](works/moore-2001-lower-bound-on-the-propagation-speed-of-gravity.md) — Lower bound on the propagation speed of gravity from gravitational Cherenkov radiation | 6 | cited, cited in a paper |
-| 815 | [Narovlansky & Verlinde 2023](works/narovlansky-2023-double-scaled-syk-and-de-sitter-holography.md) — Double-scaled SYK and de Sitter Holography | 6 | cited, cited in a paper |
-| 816 | [Owers et al. 2017](works/owers-2017-the-sami-galaxy-survey-the-cluster-redshift-sur.md) — The SAMI Galaxy Survey: the cluster redshift survey, target selection and cluster properti | 6 | cited |
-| 817 | [Pitaevskii 1961](works/pitaevskii-1961-vortex-lines-in-an-imperfect-bose-gas.md) — Vortex Lines in an Imperfect Bose Gas | 6 | named method/model |
-| 818 | [Qin et al. 2021](works/qin-2021-cosmic-flow-measurement-and-mock-sampling-algori.md) — Cosmic Flow Measurement and Mock Sampling Algorithm of Cosmicflows-4 Tully−Fisher Catalog | 6 | cited |
-| 819 | [Rayleigh 1916](works/rayleigh-1916-lix-on-convection-currents-in-a-horizontal-laye.md) — LIX. On convection currents in a horizontal layer of fluid, when the higher temperature is | 6 | named method/model |
-| 820 | [Rudie et al. 2012](works/rudie-2012-the-gaseous-environment-of-high-zgalaxies-preci.md) — THE GASEOUS ENVIRONMENT OF HIGH-zGALAXIES: PRECISION MEASUREMENTS OF NEUTRAL HYDROGEN IN T | 6 | cited |
-| 821 | [Saad & Ting 2026](works/saad-2026-no-gravitational-anomaly-in-wide-binaries-from-f.md) — No Gravitational Anomaly in Wide Binaries from Forward Modeling of 3D Orbits | 6 | cited, named method/model |
-| 822 | [Saha 1920](works/saha-1920-liii-ionization-in-the-solar-chromosphere.md) — LIII. Ionization in the solar chromosphere | 6 | named method/model |
-| 823 | [Schive, Chiueh & Broadhurst 2014](works/schive-2014-cosmic-structure-as-the-quantum-interference-of.md) — Cosmic structure as the quantum interference of a coherent dark wave | 6 | cited |
-| 824 | [Serret 1851](works/serret-1851-sur-quelques-formules-relatives-a-la-theorie-des.md) — Sur quelques formules relatives à la théorie des courbes à double courbure | 6 | named method/model |
-| 825 | [Simpson 1974](works/simpson-1974-the-hurricane-disaster-potential-scale.md) — The Hurricane Disaster—Potential Scale | 6 | data used |
-| 826 | [Soussa & Woodard 2003](works/soussa-2003-a-nonlocal-metric-formulation-of-mond.md) — A nonlocal metric formulation of MOND | 6 | cited, named method/model, cited in a paper |
-| 827 | [Stark & Parker 1995](works/stark-1995-bounded-variable-least-squares-an-algorithm-and.md) — Bounded-variable least-squares: an algorithm and applications | 6 | algorithm via library call |
-| 828 | [The LIGO Scientific Collaboration et al. 2026](works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) — GWTC-4.0: Updating the Gravitational-wave Transient Catalog with Observations from the Fir | 6 | data used |
-| 829 | [Wright et al. 2025](works/wright-2025-kids-legacy-cosmological-constraints-from-cosmi.md) — KiDS-Legacy: Cosmological constraints from cosmic shear with the complete Kilo-Degree Surv | 6 | cited |
-| 830 | [Yagi et al. 2014](works/yagi-2014-constraints-on-einstein-aether-theory-and-horava.md) — Constraints on Einstein-Æther theory and Hořava gravity from binary pulsar observations | 6 | cited |
-| 831 | [van Dokkum et al. 2018](works/van-dokkum-2018-a-galaxy-lacking-dark-matter.md) — A galaxy lacking dark matter | 6 | cited |
-| 832 | [van Dokkum et al. 2019](works/van-dokkum-2019-a-second-galaxy-missing-dark-matter-in-the-ngc-1.md) — A Second Galaxy Missing Dark Matter in the NGC 1052 Group | 6 | cited |
-| 833 | [Abbott et al. 2017](works/abbott-2017-gw170608-observation-of-a-19-solar-mass-binary.md) — GW170608: Observation of a 19 Solar-mass Binary Black Hole Coalescence | 5 | data used |
-| 834 | [Abdullah et al. 2019](works/abdullah-2019-galweight-application-a-publicly-available-cata.md) — GalWeight Application: A Publicly Available Catalog of Dynamical Parameters of 1800 Galaxy | 5 | cited |
-| 835 | [Almeida et al. 2023](works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) — The Eighteenth Data Release of the Sloan Digital Sky Surveys: Targeting and First Spectra  | 5 | data used |
-| 836 | [Amvrosiadis et al. 2023](works/amvrosiadis-2023-the-kinematics-of-massive-high-redshift-dusty-st.md) — The kinematics of massive high-redshift dusty star-forming galaxies | 5 | cited |
-| 837 | [Angus 2008](works/angus-2008-dwarf-spheroidals-in-mond.md) — Dwarf spheroidals in MOND | 5 | cited |
-| 838 | [Arnol'd 1963](works/arnold-1963-proof-of-a-theorem-of-a-n-kolmogorov-on-the-in.md) — PROOF OF A THEOREM OF A. N. KOLMOGOROV ON THE INVARIANCE OF QUASI-PERIODIC MOTIONS UNDER S | 5 | named method/model |
-| 839 | [Asgari et al. 2021](works/asgari-2021-kids-1000-cosmology-cosmic-shear-constraints-an.md) — KiDS-1000 cosmology: Cosmic shear constraints and comparison between two point statistics | 5 | cited |
-| 840 | [Auger et al. 2009](works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 5 | cited |
+| 770 | [Auger et al. 2009](works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 6 | cited |
+| 771 | [Bailey & Kostelecký 2006](works/bailey-2006-signals-for-lorentz-violation-in-post-newtonian.md) — Signals for Lorentz violation in post-Newtonian gravity | 6 | cited |
+| 772 | [Begeman, Broeils & Sanders 1991](works/begeman-1991-extended-rotation-curves-of-spiral-galaxies-dar.md) — Extended rotation curves of spiral galaxies: dark haloes and modified dynamics | 6 | cited |
+| 773 | [Begum et al. 2008](works/begum-2008-baryonic-tullya-fisher-relation-for-extremely-l.md) — Baryonic TullyâFisher relation for extremely low mass Galaxies | 6 | cited, cited in a paper |
+| 774 | [Bertschinger 1985](works/bertschinger-1985-self-similar-secondary-infall-and-accretion-in-a.md) — Self-similar secondary infall and accretion in an Einstein-de Sitter universe | 6 | cited |
+| 775 | [Biskupek, Müller & Torre 2020](works/biskupek-2020-benefit-of-new-high-precision-llr-data-for-the-d.md) — Benefit of New High-Precision LLR Data for the Determination of Relativistic Parameters | 6 | cited |
+| 776 | [Bruneton & Esposito-Farèse 2007](works/bruneton-2007-field-theoretical-formulations-of-mond-like-grav.md) — Field-theoretical formulations of MOND-like gravity | 6 | cited, named method/model, cited in a paper |
+| 777 | [Burkert 1995](works/burkert-1995-the-structure-of-dark-matter-halos-in-dwarf-gala.md) — The Structure of Dark Matter Halos in Dwarf Galaxies | 6 | named method/model |
+| 778 | [Clebsch 1872](works/clebsch-1872-theorie-der-binaeren-algebraischen-formen.md) — Theorie der binaeren algebraischen Formen | 6 | named method/model |
+| 779 | [Cohen, Kaplan & Nelson 1999](works/cohen-1999-effective-field-theory-black-holes-and-the-cos.md) — Effective Field Theory, Black Holes, and the Cosmological Constant | 6 | cited, named method/model, cited in a paper |
+| 780 | [Conrey & Snaith 2007](works/conrey-2007-applications-of-thel-functions-ratios-conjecture.md) — Applications of theL-functions ratios conjectures | 6 | named method/model |
+| 781 | [Conrey, Farmer & Zirnbauer 2008](works/conrey-2008-autocorrelation-of-ratios-of-l-functions.md) — Autocorrelation of ratios of $L$-functions | 6 | named method/model |
+| 782 | [Cramér 1936](works/cramer-1936-on-the-order-of-magnitude-of-the-difference-betw.md) — On the order of magnitude of the difference between consecutive prime numbers | 6 | named method/model |
+| 783 | [Creminelli, Janssen & Senatore 2022](works/creminelli-2022-positivity-bounds-on-effective-field-theories-wi.md) — Positivity bounds on effective field theories with spontaneously broken Lorentz invariance | 6 | cited, named method/model |
+| 784 | [Danieli et al. 2019](works/danieli-2019-still-missing-dark-matter-kcwi-high-resolution.md) — Still Missing Dark Matter: KCWI High-resolution Stellar Kinematics of NGC1052-DF2 | 6 | cited |
+| 785 | [De Felice, Doll & Mukohyama 2020](works/de-felice-2020-a-theory-of-type-ii-minimally-modified-gravity.md) — A theory of type-II minimally modified gravity | 6 | cited, named method/model |
+| 786 | [Dirichlet 1837](works/dirichlet-1837-beweis-des-satzes-dass-jede-unbegrenzte-arithme.md) — Beweis des Satzes, dass jede unbegrenzte arithmetische Progression, deren erstes Glied und | 6 | named method/model |
+| 787 | [Eckmiller, Hudson & Reiprich 2011](works/eckmiller-2011-testing-the-low-mass-end-of-x-ray-scaling-relati.md) — Testing the low-mass end of X-ray scaling relations with a sample ofChandragalaxy groups | 6 | cited |
+| 788 | [Einstein & Rosen 1935](works/einstein-1935-the-particle-problem-in-the-general-theory-of-re.md) — The Particle Problem in the General Theory of Relativity | 6 | named method/model |
+| 789 | [Emanuel 1986](works/emanuel-1986-an-air-sea-interaction-theory-for-tropical-cyclo.md) — An Air-Sea Interaction Theory for Tropical Cyclones. Part I: Steady-State Maintenance | 6 | cited |
+| 790 | [Fillmore & Goldreich 1984](works/fillmore-1984-self-similar-gravitational-collapse-in-an-expand.md) — Self-similar gravitational collapse in an expanding universe | 6 | cited, named method/model |
+| 791 | [Gaia Collaboration et al. 2018](works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) — Gaia Data Release 2: Summary of the contents and survey properties | 6 | data used |
+| 792 | [Galilei 1632](works/galilei-1632-dialogo-sopra-i-due-massimi-sistemi-del-mondo-t.md) — Dialogo sopra i due massimi sistemi del mondo, tolemaico e copernicano | 6 | named method/model |
+| 793 | [Gannon et al. 2024](works/gannon-2024-a-catalogue-and-analysis-of-ultra-diffuse-galaxy.md) — A Catalogue and Analysis of Ultra-Diffuse Galaxy Spectroscopic Properties | 6 | cited |
+| 794 | [Grall & Melville 2022](works/grall-2022-positivity-bounds-without-boosts-new-constraint.md) — Positivity bounds without boosts: New constraints on low energy effective field theories f | 6 | cited, named method/model |
+| 795 | [Gross 1961](works/gross-1961-structure-of-a-quantized-vortex-in-boson-systems.md) — Structure of a quantized vortex in boson systems | 6 | named method/model |
+| 796 | [Hardy & Littlewood 1923](works/hardy-1923-some-problems-of-partitio-numerorum-iii-on-t.md) — Some problems of ‘Partitio numerorum’; III: On the expression of a number as a sum of prim | 6 | named method/model |
+| 797 | [Harrison et al. 2017](works/harrison-2017-the-kmos-redshift-one-spectroscopic-survey-kros.md) — The KMOS Redshift One Spectroscopic Survey (KROSS): rotational velocities and angular mome | 6 | cited, cited in a paper |
+| 798 | [Hayashi, Chiba & Ishiyama 2020](works/hayashi-2020-diversity-of-dark-matter-density-profiles-in-the.md) — Diversity of Dark Matter Density Profiles in the Galactic Dwarf Spheroidal Satellites | 6 | cited |
+| 799 | [Holevo 1973](works/holevo-1973-some-estimates-for-the-amount-of-information-tra.md) — Some estimates for the amount of information transmittable by a quantum communication chan | 6 | named method/model |
+| 800 | [Huangfu & Hall 2017](works/huangfu-2017-parallelizing-the-dual-revised-simplex-method.md) — Parallelizing the dual revised simplex method | 6 | algorithm via library call |
+| 801 | [Iršič et al. 2024](works/irsic-2024-unveiling-dark-matter-free-streaming-at-the-smal.md) — Unveiling dark matter free streaming at the smallest scales with the high redshift Lyman-a | 6 | cited |
+| 802 | [Jacobson 2008](works/jacobson-2008-einstein-aether-gravity-a-status-report.md) — Einstein-aether gravity: a status report | 6 | cited |
+| 803 | [Kogut & Susskind 1975](works/kogut-1975-hamiltonian-formulation-of-wilsons-lattice-gaug.md) — Hamiltonian formulation of Wilson's lattice gauge theories | 6 | named method/model |
+| 804 | [Kostelecký & Russell 2011](works/kostelecky-2011-data-tables-for-lorentz-and-c-p-t-violation.md) — Data tables for Lorentz and C P T violation | 6 | cited, data used |
+| 805 | [Kramer et al. 2021](works/kramer-2021-strong-field-gravity-tests-with-the-double-pulsa.md) — Strong-Field Gravity Tests with the Double Pulsar | 6 | cited, cited in a paper |
+| 806 | [Lee & Komatsu 2010](works/lee-2010-bullet-cluster-a-challenge-to-cdm-cosmology.md) — BULLET CLUSTER: A CHALLENGE TO ΛCDM COSMOLOGY | 6 | cited |
+| 807 | [Leisman et al. 2017](works/leisman-2017-almost-dark-galaxies-in-the-alfalfa-survey-is.md) — (Almost) Dark Galaxies in the ALFALFA Survey: Isolated H i-bearing Ultra-diffuse Galaxies | 6 | cited |
+| 808 | [Lense & Thirring 1918](works/lense-1918-ueber-den-einfluss-der-eigenrotation-der-zentral.md) — Ueber den Einfluss der Eigenrotation der Zentralkoerper auf die Bewegung der Planeten und  | 6 | named method/model |
+| 809 | [Mach & Salcher 1887](works/mach-1887-photographische-fixirung-der-durch-projectile-in.md) — Photographische Fixirung der durch Projectile in der Luft eingeleiteten Vorgänge | 6 | named method/model |
+| 810 | [Madau & Dickinson 2014](works/madau-2014-cosmic-star-formation-history.md) — Cosmic Star-Formation History | 6 | cited |
+| 811 | [Mashhoon, Hehl & Theiss 1984](works/mashhoon-1984-on-the-gravitational-effects-of-rotating-masses.md) — On the gravitational effects of rotating masses: The Thirring-Lense papers | 6 | named method/model |
+| 812 | [Milgrom 1984](works/milgrom-1984-isothermal-spheres-in-the-modified-dynamics.md) — Isothermal spheres in the modified dynamics | 6 | cited |
+| 813 | [Milgrom 2014](works/milgrom-2014-general-virial-theorem-for-modified-gravity-mond.md) — General virial theorem for modified-gravity MOND | 6 | cited |
+| 814 | [Milgrom 2025](works/milgrom-2025-is-mond-necessarily-nonlinear.md) — Is MOND necessarily nonlinear? | 6 | cited |
+| 815 | [Moore & Nelson 2001](works/moore-2001-lower-bound-on-the-propagation-speed-of-gravity.md) — Lower bound on the propagation speed of gravity from gravitational Cherenkov radiation | 6 | cited, cited in a paper |
+| 816 | [Narovlansky & Verlinde 2023](works/narovlansky-2023-double-scaled-syk-and-de-sitter-holography.md) — Double-scaled SYK and de Sitter Holography | 6 | cited, cited in a paper |
+| 817 | [Owers et al. 2017](works/owers-2017-the-sami-galaxy-survey-the-cluster-redshift-sur.md) — The SAMI Galaxy Survey: the cluster redshift survey, target selection and cluster properti | 6 | cited |
+| 818 | [Pitaevskii 1961](works/pitaevskii-1961-vortex-lines-in-an-imperfect-bose-gas.md) — Vortex Lines in an Imperfect Bose Gas | 6 | named method/model |
+| 819 | [Qin et al. 2021](works/qin-2021-cosmic-flow-measurement-and-mock-sampling-algori.md) — Cosmic Flow Measurement and Mock Sampling Algorithm of Cosmicflows-4 Tully−Fisher Catalog | 6 | cited |
+| 820 | [Rayleigh 1916](works/rayleigh-1916-lix-on-convection-currents-in-a-horizontal-laye.md) — LIX. On convection currents in a horizontal layer of fluid, when the higher temperature is | 6 | named method/model |
+| 821 | [Rudie et al. 2012](works/rudie-2012-the-gaseous-environment-of-high-zgalaxies-preci.md) — THE GASEOUS ENVIRONMENT OF HIGH-zGALAXIES: PRECISION MEASUREMENTS OF NEUTRAL HYDROGEN IN T | 6 | cited |
+| 822 | [Saad & Ting 2026](works/saad-2026-no-gravitational-anomaly-in-wide-binaries-from-f.md) — No Gravitational Anomaly in Wide Binaries from Forward Modeling of 3D Orbits | 6 | cited, named method/model |
+| 823 | [Saha 1920](works/saha-1920-liii-ionization-in-the-solar-chromosphere.md) — LIII. Ionization in the solar chromosphere | 6 | named method/model |
+| 824 | [Schive, Chiueh & Broadhurst 2014](works/schive-2014-cosmic-structure-as-the-quantum-interference-of.md) — Cosmic structure as the quantum interference of a coherent dark wave | 6 | cited |
+| 825 | [Serret 1851](works/serret-1851-sur-quelques-formules-relatives-a-la-theorie-des.md) — Sur quelques formules relatives à la théorie des courbes à double courbure | 6 | named method/model |
+| 826 | [Simpson 1974](works/simpson-1974-the-hurricane-disaster-potential-scale.md) — The Hurricane Disaster—Potential Scale | 6 | data used |
+| 827 | [Soussa & Woodard 2003](works/soussa-2003-a-nonlocal-metric-formulation-of-mond.md) — A nonlocal metric formulation of MOND | 6 | cited, named method/model, cited in a paper |
+| 828 | [Stark & Parker 1995](works/stark-1995-bounded-variable-least-squares-an-algorithm-and.md) — Bounded-variable least-squares: an algorithm and applications | 6 | algorithm via library call |
+| 829 | [The LIGO Scientific Collaboration et al. 2026](works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) — GWTC-4.0: Updating the Gravitational-wave Transient Catalog with Observations from the Fir | 6 | data used |
+| 830 | [Wright et al. 2025](works/wright-2025-kids-legacy-cosmological-constraints-from-cosmi.md) — KiDS-Legacy: Cosmological constraints from cosmic shear with the complete Kilo-Degree Surv | 6 | cited |
+| 831 | [Yagi et al. 2014](works/yagi-2014-constraints-on-einstein-aether-theory-and-horava.md) — Constraints on Einstein-Æther theory and Hořava gravity from binary pulsar observations | 6 | cited |
+| 832 | [van Dokkum et al. 2018](works/van-dokkum-2018-a-galaxy-lacking-dark-matter.md) — A galaxy lacking dark matter | 6 | cited |
+| 833 | [van Dokkum et al. 2019](works/van-dokkum-2019-a-second-galaxy-missing-dark-matter-in-the-ngc-1.md) — A Second Galaxy Missing Dark Matter in the NGC 1052 Group | 6 | cited |
+| 834 | [Abbott et al. 2017](works/abbott-2017-gw170608-observation-of-a-19-solar-mass-binary.md) — GW170608: Observation of a 19 Solar-mass Binary Black Hole Coalescence | 5 | data used |
+| 835 | [Abdullah et al. 2019](works/abdullah-2019-galweight-application-a-publicly-available-cata.md) — GalWeight Application: A Publicly Available Catalog of Dynamical Parameters of 1800 Galaxy | 5 | cited |
+| 836 | [Almeida et al. 2023](works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) — The Eighteenth Data Release of the Sloan Digital Sky Surveys: Targeting and First Spectra  | 5 | data used |
+| 837 | [Amvrosiadis et al. 2023](works/amvrosiadis-2023-the-kinematics-of-massive-high-redshift-dusty-st.md) — The kinematics of massive high-redshift dusty star-forming galaxies | 5 | cited |
+| 838 | [Angus 2008](works/angus-2008-dwarf-spheroidals-in-mond.md) — Dwarf spheroidals in MOND | 5 | cited |
+| 839 | [Arnol'd 1963](works/arnold-1963-proof-of-a-theorem-of-a-n-kolmogorov-on-the-in.md) — PROOF OF A THEOREM OF A. N. KOLMOGOROV ON THE INVARIANCE OF QUASI-PERIODIC MOTIONS UNDER S | 5 | named method/model |
+| 840 | [Asgari et al. 2021](works/asgari-2021-kids-1000-cosmology-cosmic-shear-constraints-an.md) — KiDS-1000 cosmology: Cosmic shear constraints and comparison between two point statistics | 5 | cited |
 | 841 | [Baldry et al. 2012](works/baldry-2012-galaxy-and-mass-assembly-gama-the-galaxy-stel.md) — Galaxy And Mass Assembly (GAMA): the galaxy stellar mass function at z < 0.06: GAMA: the g | 5 | cited |
 | 842 | [Bataki, Skordis & Zlosnik 2024](works/bataki-2024-aether-scalar-tensor-theory-hamiltonian-formali.md) — Aether scalar-tensor theory: Hamiltonian formalism | 5 | cited, named method/model |
 | 843 | [Behroozi, Wechsler & Conroy 2013](works/behroozi-2013-the-average-star-formation-histories-of-galaxies.md) — THE AVERAGE STAR FORMATION HISTORIES OF GALAXIES IN DARK MATTER HALOS FROM z = 0-8 | 5 | cited, cited in a paper |
@@ -892,119 +892,119 @@ Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)
 | 884 | [López-Ortega 2006](works/lopez-ortega-2006-quasinormal-modes-of-d-dimensional-de-sitter-spa.md) — Quasinormal modes of D-dimensional de Sitter spacetime | 5 | cited, named method/model |
 | 885 | [Macleod et al. 2021](works/macleod-2021-gwpy-a-python-package-for-gravitational-wave-as.md) — GWpy: A Python package for gravitational-wave astrophysics | 5 | library imported |
 | 886 | [Maldacena & Ludwig 1997](works/maldacena-1997-majorana-fermions-exact-mapping-between-quantum.md) — Majorana fermions, exact mapping between quantum impurity fixed points with four bulk ferm | 5 | cited |
-| 887 | [Moser 1962](works/moser-1962-on-invariant-curves-of-area-preserving-mappings.md) — On invariant curves of area-preserving mappings of an annulus | 5 | named method/model |
-| 888 | [Newman 1976](works/newman-1976-fourier-transforms-with-only-real-zeros.md) — Fourier transforms with only real zeros | 5 | cited, named method/model |
-| 889 | [Oman et al. 2015](works/oman-2015-the-unexpected-diversity-of-dwarf-galaxy-rotatio.md) — The unexpected diversity of dwarf galaxy rotation curves | 5 | cited |
-| 890 | [Palatini 1919](works/palatini-1919-deduzione-invariantiva-delle-equazioni-gravitazi.md) — Deduzione invariantiva delle equazioni gravitazionali dal principio di Hamilton | 5 | named method/model |
-| 891 | [Pitjeva 2013](works/pitjeva-2013-updated-iaa-ras-planetary-ephemerides-epm2011-an.md) — Updated IAA RAS planetary ephemerides-EPM2011 and their use in scientific research | 5 | data used |
-| 892 | [Planck Collaboration et al. 2014](works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md) — Planck 2013 results. XVI. Cosmological parameters | 5 | data used |
-| 893 | [Prša et al. 2016](works/prsa-2016-nominal-values-for-selected-solar-and-planetary.md) — NOMINAL VALUES FOR SELECTED SOLAR AND PLANETARY QUANTITIES: IAU 2015 RESOLUTION B3 * † | 5 | data used |
-| 894 | [Pusz & Woronowicz 1978](works/pusz-1978-passive-states-and-kms-states-for-general-quantu.md) — Passive states and KMS states for general quantum systems | 5 | named method/model |
-| 895 | [Raychaudhuri 1955](works/raychaudhuri-1955-relativistic-cosmology-i.md) — Relativistic Cosmology. I | 5 | named method/model |
-| 896 | [Rayleigh 1880](works/rayleigh-1880-xii-on-the-resultant-of-a-large-number-of-vibra.md) — XII. On the resultant of a large number of vibrations of the same pitch and of arbitrary p | 5 | named method/model |
-| 897 | [Richardson 1920](works/richardson-1920-the-supply-of-energy-from-and-to-atmospheric-edd.md) — The supply of energy from and to atmospheric eddies | 5 | named method/model |
-| 898 | [Schläfli 1901](works/schlafli-1901-theorie-der-vielfachen-kontinuitat.md) — Theorie der vielfachen Kontinuität | 5 | cited in a paper |
-| 899 | [Secrest et al. 2021](works/secrest-2021-a-test-of-the-cosmological-principle-with-quasar.md) — A Test of the Cosmological Principle with Quasars | 5 | cited, cited in a paper |
-| 900 | [Sersic 1963](works/sersic-1963-influence-of-the-atmospheric-and-instrumental-di.md) — Influence of the atmospheric and instrumental dispersion on the brightness distribution in | 5 | named method/model |
-| 901 | [Starobinsky & Yokoyama 1994](works/starobinsky-1994-equilibrium-state-of-a-self-interacting-scalar-f.md) — Equilibrium state of a self-interacting scalar field in the de Sitter background | 5 | cited, named method/model |
-| 902 | [Starobinsky 1980](works/starobinsky-1980-a-new-type-of-isotropic-cosmological-models-with.md) — A new type of isotropic cosmological models without singularity | 5 | named method/model |
-| 903 | [Stieltjes 1894](works/stieltjes-1894-recherches-sur-les-fractions-continues.md) — Recherches sur les fractions continues | 5 | named method/model |
-| 904 | [The & White 1988](works/the-1988-modified-newtonian-dynamics-and-the-coma-cluster.md) — Modified Newtonian dynamics and the Coma cluster | 5 | cited |
-| 905 | [Thomas 1927](works/thomas-1927-the-calculation-of-atomic-fields.md) — The calculation of atomic fields | 5 | named method/model |
-| 906 | [Thomson 1880](works/thomson-1880-1-on-gravitational-oscillations-of-rotating-wat.md) — 1. On Gravitational Oscillations of Rotating Water | 5 | named method/model |
-| 907 | [Treu et al. 2010](works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
-| 908 | [Turner et al. 2017](works/turner-2017-the-kmos-deep-survey-kds-ii-the-evolution-of.md) — The KMOS Deep Survey (KDS) II: The evolution of the stellar-mass Tully-Fisher relation sin | 5 | cited |
-| 909 | [Umetsu et al. 2016](works/umetsu-2016-clash-joint-analysis-of-strong-lensing-weak-le.md) — CLASH: JOINT ANALYSIS OF STRONG-LENSING, WEAK-LENSING SHEAR, AND MAGNIFICATION DATA FOR 20 | 5 | cited |
-| 910 | [Witten 1995](works/witten-1995-string-theory-dynamics-in-various-dimensions.md) — String theory dynamics in various dimensions | 5 | cited in a paper |
-| 911 | [Yagi et al. 2014](works/yagi-2014-strong-binary-pulsar-constraints-on-lorentz-viol.md) — Strong Binary Pulsar Constraints on Lorentz Violation in Gravity | 5 | cited |
-| 912 | [de Bruijn 1950](works/de-bruijn-1950-the-roots-of-trigonometric-integrals.md) — The roots of trigonometric integrals | 5 | named method/model |
-| 913 | [van Eymeren et al. 2011](works/van-eymeren-2011-lopsidedness-in-whisp-galaxies-i-rotation-curv.md) — Lopsidedness in WHISP galaxies: I. Rotation curves and kinematic lopsidedness⋆ | 5 | cited |
-| 914 | [Abbott et al. 2016](works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) — GW151226: Observation of Gravitational Waves from a 22-Solar-Mass Binary Black Hole Coales | 4 | data used |
-| 915 | [Abbott et al. 2020](works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) — GW190425: Observation of a Compact Binary Coalescence with Total Mass ∼ 3.4 M ⊙ | 4 | data used |
-| 916 | [Arkani-Hamed, Dimopoulos & Dvali 1998](works/arkani-hamed-1998-the-hierarchy-problem-and-new-dimensions-at-a-mi.md) — The hierarchy problem and new dimensions at a millimeter | 4 | cited, named method/model |
-| 917 | [Arnold, Puchwein & Springel 2015](works/arnold-2015-the-lyman-forest-in-f-r-modified-gravity.md) — The Lyman α forest in f(R) modified gravity | 4 | cited |
-| 918 | [Asencio, Banik & Kroupa 2020](works/asencio-2020-a-massive-blow-for-cdm-the-high-redshift-mas.md) — A massive blow for ΛCDM – the high redshift, mass, and collision velocity of the interacti | 4 | cited |
-| 919 | [Asencio, Banik & Kroupa 2023](works/asencio-2023-the-el-gordo-galaxy-cluster-challenges-cdm-for.md) — The El Gordo Galaxy Cluster Challenges ΛCDM for Any Plausible Collision Velocity | 4 | cited |
-| 920 | [Auger et al. 2010](works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE E | 4 | cited |
-| 921 | [Aver et al. 2021](works/aver-2021-improving-helium-abundance-determinations-with-l.md) — Improving helium abundance determinations with Leo P as a case study | 4 | cited |
-| 922 | [Aver, Olive & Skillman 2015](works/aver-2015-the-effects-of-he-i-10830-on-helium-abundance-d.md) — The effects of He I λ10830 on helium abundance determinations | 4 | cited |
-| 923 | [Babichev, Deffayet & Esposito-Farèse 2011](works/babichev-2011-improving-relativistic-modified-newtonian-dynami.md) — Improving relativistic modified Newtonian dynamics with Galileonk-mouflage | 4 | cited |
-| 924 | [Banach 1922](works/banach-1922-sur-les-operations-dans-les-ensembles-abstraits.md) — Sur les opérations dans les ensembles abstraits et leur application aux équations intégral | 4 | named method/model |
-| 925 | [Berezhiani, Famaey & Khoury 2018](works/berezhiani-2018-phenomenological-consequences-of-superfluid-dark.md) — Phenomenological consequences of superfluid dark matter with baryon-phonon coupling | 4 | cited |
-| 926 | [Berkooz, Narayan & Simón 2018](works/berkooz-2018-chord-diagrams-exact-correlators-in-spin-glasse.md) — Chord diagrams, exact correlators in spin glasses and black hole bulk reconstruction | 4 | cited |
-| 927 | [Bi et al. 2023](works/bi-2023-accurate-medium-range-global-weather-forecasting.md) — Accurate medium-range global weather forecasting with 3D neural networks | 4 | data used |
-| 928 | [Blanchet & Marsat 2011](works/blanchet-2011-modified-gravity-approach-based-on-a-preferred-t.md) — Modified gravity approach based on a preferred time foliation | 4 | named method/model |
-| 929 | [Blanchet & Novak 2011](works/blanchet-2011-external-field-effect-of-modified-newtonian-dyna.md) — External field effect of modified Newtonian dynamics in the Solar system: MOND effects in  | 4 | cited |
-| 930 | [Bogoljubov 1958](works/bogoljubov-1958-on-a-new-method-in-the-theory-of-superconductivi.md) — On a new method in the theory of superconductivity | 4 | named method/model |
-| 931 | [Bolton 1980](works/bolton-1980-the-computation-of-equivalent-potential-temperat.md) — The Computation of Equivalent Potential Temperature | 4 | cited, named method/model |
-| 932 | [Borel 1899](works/borel-1899-memoire-sur-les-series-divergentes.md) — Mémoire sur les séries divergentes | 4 | named method/model |
-| 933 | [Bowen 1926](works/bowen-1926-the-ratio-of-heat-losses-by-conduction-and-by-ev.md) — The Ratio of Heat Losses by Conduction and by Evaporation from any Water Surface | 4 | named method/model |
-| 934 | [Boyarsky, Ruchayskiy & Iakubovskyi 2009](works/boyarsky-2009-a-lower-bound-on-the-mass-of-dark-matter-particl.md) — A lower bound on the mass of dark matter particles | 4 | cited |
-| 935 | [Brown & Kuchař 1995](works/brown-1995-dust-as-a-standard-of-space-and-time-in-canonica.md) — Dust as a standard of space and time in canonical quantum gravity | 4 | named method/model |
-| 936 | [Brown, Trujillo & Rabinowitz 2004](works/brown-2004-discovery-of-a-candidate-inner-oort-cloud-planet.md) — Discovery of a Candidate Inner Oort Cloud Planetoid | 4 | cited |
-| 937 | [Bulbul et al. 2014](works/bulbul-2014-detection-of-an-unidentified-emission-line-in-th.md) — DETECTION OF AN UNIDENTIFIED EMISSION LINE IN THE STACKED X-RAY SPECTRUM OF GALAXY CLUSTER | 4 | cited |
-| 938 | [Buoninfante, Lambiase & Yamaguchi 2019](works/buoninfante-2019-nonlocal-generalization-of-galilean-theories-and.md) — Nonlocal generalization of Galilean theories and gravity | 4 | named method/model |
-| 939 | [Båth 1965](works/bath-1965-lateral-inhomogeneities-of-the-upper-mantle.md) — Lateral inhomogeneities of the upper mantle | 4 | named method/model |
-| 940 | [Bílek, Renaud & Samurović 2026](works/bilek-2026-deviations-from-the-radial-acceleration-relation.md) — Deviations from the radial acceleration relation in the central galaxies of clusters, subc | 4 | cited |
-| 941 | [Cabass, Ivanov & Philcox 2023](works/cabass-2023-colliders-and-ghosts-constraining-inflation-wit.md) — Colliders and ghosts: Constraining inflation with the parity-odd galaxy four-point functio | 4 | cited |
-| 942 | [Cappellari et al. 2006](works/cappellari-2006-the-sauron-project-iv-the-mass-to-light-ratio.md) — The SAURON project--IV. The mass-to-light ratio, the virial mass estimator and the Fundame | 4 | cited |
-| 943 | [Catinella et al. 2018](works/catinella-2018-xgass-total-cold-gas-scaling-relations-and-mole.md) — xGASS: total cold gas scaling relations and molecular-to-atomic gas ratios of galaxies in  | 4 | cited, data used |
-| 944 | [Chan & Del Popolo 2020](works/chan-2020-the-radial-acceleration-relation-in-galaxy-clust.md) — The radial acceleration relation in galaxy clusters | 4 | cited |
-| 945 | [Chebyshev 1854](works/chebyshev-1854-theorie-des-mecanismes-connus-sous-le-nom-de-par.md) — Théorie des mécanismes connus sous le nom de parallélogrammes | 4 | named method/model |
-| 946 | [Chemin, Carignan & Foster 2009](works/chemin-2009-h-i-kinematics-and-dynamics-of-messier-31.md) — H I KINEMATICS AND DYNAMICS OF MESSIER 31 | 4 | cited |
-| 947 | [Chenciner & Montgomery 2000](works/chenciner-2000-a-remarkable-periodic-solution-of-the-three-body.md) — A Remarkable Periodic Solution of the Three-Body Problem in the Case of Equal Masses | 4 | cited, named method/model |
-| 948 | [Chowla 1965](works/chowla-1965-the-riemann-hypothesis-and-hilberts-tenth-probl.md) — The Riemann Hypothesis and Hilbert's Tenth Problem | 4 | named method/model |
-| 949 | [Clausius 1865](works/clausius-1865-ueber-verschiedene-fur-die-anwendung-bequeme-for.md) — Ueber verschiedene für die Anwendung bequeme Formen der Hauptgleichungen der mechanischen  | 4 | named method/model |
-| 950 | [Cooke, Pettini & Steidel 2018](works/cooke-2018-one-percent-determination-of-the-primordial-deut.md) — One Percent Determination of the Primordial Deuterium Abundance* | 4 | cited |
-| 951 | [Dessert, Rodd & Safdi 2020](works/dessert-2020-the-dark-matter-interpretation-of-the-3-5-kev-li.md) — The dark matter interpretation of the 3.5-keV line is inconsistent with blank-sky observat | 4 | cited |
-| 952 | [Di Teodoro, Fraternali & Miller 2016](works/di-teodoro-2016-flat-rotation-curves-and-low-velocity-dispersion.md) — Flat rotation curves and low velocity dispersions in KMOS star-forming galaxies atz~ 1 | 4 | cited |
-| 953 | [Donahue et al. 2014](works/donahue-2014-clash-x-a-comparison-of-lensing-and-x-ray-techn.md) — CLASH-X: A COMPARISON OF LENSING AND X-RAY TECHNIQUES FOR MEASURING THE MASS PROFILES OF G | 4 | cited |
-| 954 | [Dressler & Shectman 1988](works/dressler-1988-evidence-for-substructure-in-rich-clusters-of-ga.md) — Evidence for substructure in rich clusters of galaxies from radial-velocity measurements | 4 | named method/model |
-| 955 | [Eckert et al. 2022](works/eckert-2022-the-gravitational-field-of-x-cop-galaxy-clusters.md) — The gravitational field of X-COP galaxy clusters | 4 | cited |
-| 956 | [Eisenstein 1847](works/eisenstein-1847-beitrage-zu-theorie-der-elliptischen-functionen.md) — Beiträge zu Theorie der elliptischen Functionen. | 4 | named method/model |
-| 957 | [Eisenstein 1847](works/eisenstein-1847-beitrage-zu-theorie-der-elliptischen-functionen-2.md) — Beiträge zu Theorie der elliptischen Functionen. (Fortsetzung). | 4 | named method/model |
-| 958 | [Emir Gümrükçüoğlu, Saravani & Sotiriou 2018](works/emir-gumrukcuoglu-2018-horava-gravity-after-gw170817.md) — Hořava gravity after GW170817 | 4 | cited |
-| 959 | [Emsellem et al. 2019](works/emsellem-2019-the-ultra-diffuse-galaxy-ngc-1052-df2-with-muse.md) — The ultra-diffuse galaxy NGC 1052-DF2 with MUSE: I. Kinematics of the stellar body | 4 | cited |
-| 960 | [Eyring 1930](works/eyring-1930-reverberation-time-in-dead-rooms.md) — REVERBERATION TIME IN “DEAD” ROOMS | 4 | named method/model |
-| 961 | [FARGUES, FONTAINE & COLMEZ 2018](works/fargues-2018-courbes-et-fibres-vectoriels-en-theorie-de-hodge.md) — Courbes et fibrés vectoriels en théorie de Hodge p-adique | 4 | cited, named method/model, cited in a paper |
-| 962 | [Famaey, McGaugh & Milgrom 2018](works/famaey-2018-mond-and-the-dynamics-of-ngc-1052-df2.md) — MOND and the dynamics of NGC 1052−DF2 | 4 | cited |
-| 963 | [Feynman 1948](works/feynman-1948-space-time-approach-to-non-relativistic-quantum.md) — Space-Time Approach to Non-Relativistic Quantum Mechanics | 4 | named method/model |
-| 964 | [Flanagan 2023](works/flanagan-2023-khronometric-theories-of-modified-newtonian-dyna.md) — Khronometric theories of modified Newtonian dynamics | 4 | cited |
-| 965 | [Foster et al. 2006](works/foster-2006-measurement-of-the-relative-longitudinal-spin-de.md) — Measurement of the relative longitudinal spin-dependent total cross-section difference inn | 4 | cited |
-| 966 | [Franchini, Herrero-Valea & Barausse 2021](works/franchini-2021-relation-between-general-relativity-and-a-class.md) — Relation between general relativity and a class of Hořava gravity theories | 4 | cited, named method/model |
-| 967 | [Gleason 1957](works/gleason-1957-measures-on-the-closed-subspaces-of-a-hilbert-sp.md) — Measures on the Closed Subspaces of a Hilbert Space | 4 | named method/model |
-| 968 | [Granata et al. 2026](works/granata-2026-the-velocity-dispersion-function-of-red-galaxies.md) — The velocity dispersion function of red galaxies in four Hubble Frontier Fields galaxy clu | 4 | cited |
-| 969 | [Grandis et al. 2024](works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md) — The SRG/eROSITA All-Sky Survey: Dark Energy Survey year 3 weak gravitational lensing by eR | 4 | cited |
-| 970 | [Gueorguiev 2024](works/gueorguiev-2024-elucidating-the-z-dependence-of-the-mond-acceler.md) — Elucidating the z-dependence of the MOND acceleration (a0) within the scale invariant vacu | 4 | cited, cited in a paper |
-| 971 | [Halász 1968](works/halasz-1968-uber-die-mittelwerte-multiplikativer-zahlentheor.md) — Über die Mittelwerte multiplikativer zahlentheoretischer Funktionen | 4 | named method/model |
-| 972 | [Hannun et al. 2023](works/hannun-2023-mlx-efficient-and-flexible-machine-learning-on.md) — MLX: Efficient and flexible machine learning on Apple silicon | 4 | library imported |
-| 973 | [Hawking 1974](works/hawking-1974-black-hole-explosions.md) — Black hole explosions? | 4 | cited in a paper |
-| 974 | [Hernandez et al. 2023](works/hernandez-2023-statistical-analysis-of-the-gravitational-anomal.md) — Statistical analysis of the gravitational anomaly in Gaia wide binaries | 4 | cited |
-| 975 | [Heymans et al. 2021](works/heymans-2021-kids-1000-cosmology-multi-probe-weak-gravitatio.md) — KiDS-1000 Cosmology: Multi-probe weak gravitational lensing and spectroscopic galaxy clust | 4 | cited |
-| 976 | [Hirtenstein et al. 2019](works/hirtenstein-2019-the-osiris-lens-amplified-survey-olas-i-dyna.md) — The OSIRIS Lens-amplified Survey (OLAS). I. Dynamical Effects of Stellar Feedback in Low-m | 4 | cited |
-| 977 | [Hoekstra et al. 2015](works/hoekstra-2015-the-canadian-cluster-comparison-project-detaile.md) — The Canadian Cluster Comparison Project: detailed study of systematics and updated weak le | 4 | cited |
-| 978 | [Hooft 1980](works/hooft-1980-naturalness-chiral-symmetry-and-spontaneous-ch.md) — Naturalness, Chiral Symmetry, and Spontaneous Chiral Symmetry Breaking | 4 | named method/model |
-| 979 | [Howlett et al. 2015](works/howlett-2015-the-clustering-of-the-sdss-main-galaxy-sample.md) — The clustering of the SDSS main galaxy sample – II. Mock galaxy catalogues and a measureme | 4 | cited |
-| 980 | [Hubbard 1959](works/hubbard-1959-calculation-of-partition-functions.md) — Calculation of Partition Functions | 4 | named method/model |
-| 981 | [Hwang, Ting & Zakamska 2022](works/hwang-2022-the-eccentricity-distribution-of-wide-binaries-a.md) — The eccentricity distribution of wide binaries and their individual measurements | 4 | cited |
-| 982 | [Jones et al. 2010](works/jones-2010-resolved-spectroscopy-of-gravitationally-lensed.md) — Resolved spectroscopy of gravitationally lensed galaxies: recovering coherent velocity fie | 4 | cited |
-| 983 | [Jordan 1870](works/jordan-1870-traite-des-substitutions-et-des-equations-algebr.md) — Traite des substitutions et des equations algebriques | 4 | named method/model |
-| 984 | [Kelleher & Lelli 2024](works/kelleher-2024-galaxy-clusters-in-milgromian-dynamics-missing.md) — Galaxy clusters in Milgromian dynamics: Missing matter, hydrostatic bias, and the external | 4 | cited, named method/model |
-| 985 | [Kim et al. 2016](works/kim-2016-determining-cosmology-for-a-nonlocal-realization.md) — Determining cosmology for a nonlocal realization of MOND | 4 | cited, cited in a paper |
-| 986 | [Kopp et al. 2018](works/kopp-2018-dark-matter-equation-of-state-through-cosmic-his.md) — Dark Matter Equation of State through Cosmic History | 4 | cited, cited in a paper |
-| 987 | [Kormendy & Ho 2013](works/kormendy-2013-coevolution-or-not-of-supermassive-black-holes.md) — Coevolution (Or Not) of Supermassive Black Holes and Host Galaxies | 4 | cited |
-| 988 | [Kraljic & Sarkar 2015](works/kraljic-2015-how-rare-is-the-bullet-cluster-in-a-cdm-univer.md) — How rare is the Bullet Cluster (in a ΛCDM universe)? | 4 | cited |
-| 989 | [Kutta 1901](works/kutta-1901-beitrag-zur-naherungsweisen-integration-totaler.md) — Beitrag zur näherungsweisen Integration totaler Differentialgleichungen | 4 | named method/model |
-| 990 | [Lam, Pitrou & Seibert 2015](works/lam-2015-numba-a-llvm-based-python-jit-compiler.md) — Numba: a LLVM-based Python JIT compiler | 4 | library imported |
-| 991 | [Landau 1941](works/landau-1941-theory-of-the-superfluidity-of-helium-ii.md) — Theory of the Superfluidity of Helium II | 4 | named method/model |
-| 992 | [Lebesgue 1905](works/lebesgue-1905-recherches-sur-la-convergence-des-series-de-four.md) — Recherches sur la convergence des séries de Fourier | 4 | named method/model |
-| 993 | [Lelli et al. 2023](works/lelli-2023-cold-gas-disks-in-main-sequence-galaxies-at-cosm.md) — Cold gas disks in main-sequence galaxies at cosmic noon: Low turbulence, flat rotation cur | 4 | cited |
-| 994 | [Lelli, McGaugh & Schombert 2016](works/lelli-2016-the-small-scatter-of-the-baryonic-tully-fisher-r.md) — THE SMALL SCATTER OF THE BARYONIC TULLY–FISHER RELATION | 4 | cited |
-| 995 | [Lorenz 1867](works/lorenz-1867-xxxviii-on-the-identity-of-the-vibrations-of-li.md) — XXXVIII. On the identity of the vibrations of light with electrical currents | 4 | named method/model |
-| 996 | [Ludlow et al. 2017](works/ludlow-2017-mass-discrepancy-acceleration-relation-a-natura.md) — Mass-Discrepancy Acceleration Relation: A Natural Outcome of Galaxy Formation in Cold Dark | 4 | cited |
-| 997 | [Lyman 1906](works/lyman-1906-the-spectrum-of-hydrogen-in-the-region-of-extrem.md) — The Spectrum of Hydrogen in the Region of Extremely Short Wave-Lengths | 4 | named method/model |
-| 998 | [Maass 1949](works/maass-1949-uber-eine-neue-art-von-nichtanalytischen-automor.md) — Über eine neue Art von nichtanalytischen automorphen Funktionen und die Bestimmung Dirichl | 4 | named method/model |
-| 999 | [MacDowell & Mansouri 1977](works/macdowell-1977-unified-geometric-theory-of-gravity-and-supergra.md) — Unified Geometric Theory of Gravity and Supergravity | 4 | named method/model |
-| 1000 | [Macquart et al. 2020](works/macquart-2020-a-census-of-baryons-in-the-universe-from-localiz.md) — A census of baryons in the Universe from localized fast radio bursts | 4 | cited, named method/model |
+| 887 | [Mandelbaum et al. 2016](works/mandelbaum-2016-strong-bimodality-in-the-host-halo-mass-of-centr.md) — Strong bimodality in the host halo mass of central galaxies from galaxy–galaxy lensing | 5 | cited |
+| 888 | [Moser 1962](works/moser-1962-on-invariant-curves-of-area-preserving-mappings.md) — On invariant curves of area-preserving mappings of an annulus | 5 | named method/model |
+| 889 | [Newman 1976](works/newman-1976-fourier-transforms-with-only-real-zeros.md) — Fourier transforms with only real zeros | 5 | cited, named method/model |
+| 890 | [Oman et al. 2015](works/oman-2015-the-unexpected-diversity-of-dwarf-galaxy-rotatio.md) — The unexpected diversity of dwarf galaxy rotation curves | 5 | cited |
+| 891 | [Palatini 1919](works/palatini-1919-deduzione-invariantiva-delle-equazioni-gravitazi.md) — Deduzione invariantiva delle equazioni gravitazionali dal principio di Hamilton | 5 | named method/model |
+| 892 | [Pitjeva 2013](works/pitjeva-2013-updated-iaa-ras-planetary-ephemerides-epm2011-an.md) — Updated IAA RAS planetary ephemerides-EPM2011 and their use in scientific research | 5 | data used |
+| 893 | [Planck Collaboration et al. 2014](works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md) — Planck 2013 results. XVI. Cosmological parameters | 5 | data used |
+| 894 | [Prša et al. 2016](works/prsa-2016-nominal-values-for-selected-solar-and-planetary.md) — NOMINAL VALUES FOR SELECTED SOLAR AND PLANETARY QUANTITIES: IAU 2015 RESOLUTION B3 * † | 5 | data used |
+| 895 | [Pusz & Woronowicz 1978](works/pusz-1978-passive-states-and-kms-states-for-general-quantu.md) — Passive states and KMS states for general quantum systems | 5 | named method/model |
+| 896 | [Raychaudhuri 1955](works/raychaudhuri-1955-relativistic-cosmology-i.md) — Relativistic Cosmology. I | 5 | named method/model |
+| 897 | [Rayleigh 1880](works/rayleigh-1880-xii-on-the-resultant-of-a-large-number-of-vibra.md) — XII. On the resultant of a large number of vibrations of the same pitch and of arbitrary p | 5 | named method/model |
+| 898 | [Richardson 1920](works/richardson-1920-the-supply-of-energy-from-and-to-atmospheric-edd.md) — The supply of energy from and to atmospheric eddies | 5 | named method/model |
+| 899 | [Schläfli 1901](works/schlafli-1901-theorie-der-vielfachen-kontinuitat.md) — Theorie der vielfachen Kontinuität | 5 | cited in a paper |
+| 900 | [Secrest et al. 2021](works/secrest-2021-a-test-of-the-cosmological-principle-with-quasar.md) — A Test of the Cosmological Principle with Quasars | 5 | cited, cited in a paper |
+| 901 | [Sersic 1963](works/sersic-1963-influence-of-the-atmospheric-and-instrumental-di.md) — Influence of the atmospheric and instrumental dispersion on the brightness distribution in | 5 | named method/model |
+| 902 | [Starobinsky & Yokoyama 1994](works/starobinsky-1994-equilibrium-state-of-a-self-interacting-scalar-f.md) — Equilibrium state of a self-interacting scalar field in the de Sitter background | 5 | cited, named method/model |
+| 903 | [Starobinsky 1980](works/starobinsky-1980-a-new-type-of-isotropic-cosmological-models-with.md) — A new type of isotropic cosmological models without singularity | 5 | named method/model |
+| 904 | [Stieltjes 1894](works/stieltjes-1894-recherches-sur-les-fractions-continues.md) — Recherches sur les fractions continues | 5 | named method/model |
+| 905 | [The & White 1988](works/the-1988-modified-newtonian-dynamics-and-the-coma-cluster.md) — Modified Newtonian dynamics and the Coma cluster | 5 | cited |
+| 906 | [Thomas 1927](works/thomas-1927-the-calculation-of-atomic-fields.md) — The calculation of atomic fields | 5 | named method/model |
+| 907 | [Thomson 1880](works/thomson-1880-1-on-gravitational-oscillations-of-rotating-wat.md) — 1. On Gravitational Oscillations of Rotating Water | 5 | named method/model |
+| 908 | [Treu et al. 2010](works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
+| 909 | [Turner et al. 2017](works/turner-2017-the-kmos-deep-survey-kds-ii-the-evolution-of.md) — The KMOS Deep Survey (KDS) II: The evolution of the stellar-mass Tully-Fisher relation sin | 5 | cited |
+| 910 | [Umetsu et al. 2016](works/umetsu-2016-clash-joint-analysis-of-strong-lensing-weak-le.md) — CLASH: JOINT ANALYSIS OF STRONG-LENSING, WEAK-LENSING SHEAR, AND MAGNIFICATION DATA FOR 20 | 5 | cited |
+| 911 | [Witten 1995](works/witten-1995-string-theory-dynamics-in-various-dimensions.md) — String theory dynamics in various dimensions | 5 | cited in a paper |
+| 912 | [Yagi et al. 2014](works/yagi-2014-strong-binary-pulsar-constraints-on-lorentz-viol.md) — Strong Binary Pulsar Constraints on Lorentz Violation in Gravity | 5 | cited |
+| 913 | [de Bruijn 1950](works/de-bruijn-1950-the-roots-of-trigonometric-integrals.md) — The roots of trigonometric integrals | 5 | named method/model |
+| 914 | [van Eymeren et al. 2011](works/van-eymeren-2011-lopsidedness-in-whisp-galaxies-i-rotation-curv.md) — Lopsidedness in WHISP galaxies: I. Rotation curves and kinematic lopsidedness⋆ | 5 | cited |
+| 915 | [van der Marel et al. 2012](works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MAS | 5 | cited |
+| 916 | [Abbott et al. 2016](works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) — GW151226: Observation of Gravitational Waves from a 22-Solar-Mass Binary Black Hole Coales | 4 | data used |
+| 917 | [Abbott et al. 2020](works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) — GW190425: Observation of a Compact Binary Coalescence with Total Mass ∼ 3.4 M ⊙ | 4 | data used |
+| 918 | [Arkani-Hamed, Dimopoulos & Dvali 1998](works/arkani-hamed-1998-the-hierarchy-problem-and-new-dimensions-at-a-mi.md) — The hierarchy problem and new dimensions at a millimeter | 4 | cited, named method/model |
+| 919 | [Arnold, Puchwein & Springel 2015](works/arnold-2015-the-lyman-forest-in-f-r-modified-gravity.md) — The Lyman α forest in f(R) modified gravity | 4 | cited |
+| 920 | [Asencio, Banik & Kroupa 2020](works/asencio-2020-a-massive-blow-for-cdm-the-high-redshift-mas.md) — A massive blow for ΛCDM – the high redshift, mass, and collision velocity of the interacti | 4 | cited |
+| 921 | [Asencio, Banik & Kroupa 2023](works/asencio-2023-the-el-gordo-galaxy-cluster-challenges-cdm-for.md) — The El Gordo Galaxy Cluster Challenges ΛCDM for Any Plausible Collision Velocity | 4 | cited |
+| 922 | [Auger et al. 2010](works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE E | 4 | cited |
+| 923 | [Aver et al. 2021](works/aver-2021-improving-helium-abundance-determinations-with-l.md) — Improving helium abundance determinations with Leo P as a case study | 4 | cited |
+| 924 | [Aver, Olive & Skillman 2015](works/aver-2015-the-effects-of-he-i-10830-on-helium-abundance-d.md) — The effects of He I λ10830 on helium abundance determinations | 4 | cited |
+| 925 | [Babichev, Deffayet & Esposito-Farèse 2011](works/babichev-2011-improving-relativistic-modified-newtonian-dynami.md) — Improving relativistic modified Newtonian dynamics with Galileonk-mouflage | 4 | cited |
+| 926 | [Banach 1922](works/banach-1922-sur-les-operations-dans-les-ensembles-abstraits.md) — Sur les opérations dans les ensembles abstraits et leur application aux équations intégral | 4 | named method/model |
+| 927 | [Berezhiani, Famaey & Khoury 2018](works/berezhiani-2018-phenomenological-consequences-of-superfluid-dark.md) — Phenomenological consequences of superfluid dark matter with baryon-phonon coupling | 4 | cited |
+| 928 | [Berkooz, Narayan & Simón 2018](works/berkooz-2018-chord-diagrams-exact-correlators-in-spin-glasse.md) — Chord diagrams, exact correlators in spin glasses and black hole bulk reconstruction | 4 | cited |
+| 929 | [Bi et al. 2023](works/bi-2023-accurate-medium-range-global-weather-forecasting.md) — Accurate medium-range global weather forecasting with 3D neural networks | 4 | data used |
+| 930 | [Blanchet & Marsat 2011](works/blanchet-2011-modified-gravity-approach-based-on-a-preferred-t.md) — Modified gravity approach based on a preferred time foliation | 4 | named method/model |
+| 931 | [Blanchet & Novak 2011](works/blanchet-2011-external-field-effect-of-modified-newtonian-dyna.md) — External field effect of modified Newtonian dynamics in the Solar system: MOND effects in  | 4 | cited |
+| 932 | [Bogoljubov 1958](works/bogoljubov-1958-on-a-new-method-in-the-theory-of-superconductivi.md) — On a new method in the theory of superconductivity | 4 | named method/model |
+| 933 | [Bolton 1980](works/bolton-1980-the-computation-of-equivalent-potential-temperat.md) — The Computation of Equivalent Potential Temperature | 4 | cited, named method/model |
+| 934 | [Borel 1899](works/borel-1899-memoire-sur-les-series-divergentes.md) — Mémoire sur les séries divergentes | 4 | named method/model |
+| 935 | [Bowen 1926](works/bowen-1926-the-ratio-of-heat-losses-by-conduction-and-by-ev.md) — The Ratio of Heat Losses by Conduction and by Evaporation from any Water Surface | 4 | named method/model |
+| 936 | [Boyarsky, Ruchayskiy & Iakubovskyi 2009](works/boyarsky-2009-a-lower-bound-on-the-mass-of-dark-matter-particl.md) — A lower bound on the mass of dark matter particles | 4 | cited |
+| 937 | [Brown & Kuchař 1995](works/brown-1995-dust-as-a-standard-of-space-and-time-in-canonica.md) — Dust as a standard of space and time in canonical quantum gravity | 4 | named method/model |
+| 938 | [Brown, Trujillo & Rabinowitz 2004](works/brown-2004-discovery-of-a-candidate-inner-oort-cloud-planet.md) — Discovery of a Candidate Inner Oort Cloud Planetoid | 4 | cited |
+| 939 | [Bulbul et al. 2014](works/bulbul-2014-detection-of-an-unidentified-emission-line-in-th.md) — DETECTION OF AN UNIDENTIFIED EMISSION LINE IN THE STACKED X-RAY SPECTRUM OF GALAXY CLUSTER | 4 | cited |
+| 940 | [Buoninfante, Lambiase & Yamaguchi 2019](works/buoninfante-2019-nonlocal-generalization-of-galilean-theories-and.md) — Nonlocal generalization of Galilean theories and gravity | 4 | named method/model |
+| 941 | [Båth 1965](works/bath-1965-lateral-inhomogeneities-of-the-upper-mantle.md) — Lateral inhomogeneities of the upper mantle | 4 | named method/model |
+| 942 | [Bílek, Renaud & Samurović 2026](works/bilek-2026-deviations-from-the-radial-acceleration-relation.md) — Deviations from the radial acceleration relation in the central galaxies of clusters, subc | 4 | cited |
+| 943 | [Cabass, Ivanov & Philcox 2023](works/cabass-2023-colliders-and-ghosts-constraining-inflation-wit.md) — Colliders and ghosts: Constraining inflation with the parity-odd galaxy four-point functio | 4 | cited |
+| 944 | [Cappellari et al. 2006](works/cappellari-2006-the-sauron-project-iv-the-mass-to-light-ratio.md) — The SAURON project--IV. The mass-to-light ratio, the virial mass estimator and the Fundame | 4 | cited |
+| 945 | [Catinella et al. 2018](works/catinella-2018-xgass-total-cold-gas-scaling-relations-and-mole.md) — xGASS: total cold gas scaling relations and molecular-to-atomic gas ratios of galaxies in  | 4 | cited, data used |
+| 946 | [Chan & Del Popolo 2020](works/chan-2020-the-radial-acceleration-relation-in-galaxy-clust.md) — The radial acceleration relation in galaxy clusters | 4 | cited |
+| 947 | [Chebyshev 1854](works/chebyshev-1854-theorie-des-mecanismes-connus-sous-le-nom-de-par.md) — Théorie des mécanismes connus sous le nom de parallélogrammes | 4 | named method/model |
+| 948 | [Chemin, Carignan & Foster 2009](works/chemin-2009-h-i-kinematics-and-dynamics-of-messier-31.md) — H I KINEMATICS AND DYNAMICS OF MESSIER 31 | 4 | cited |
+| 949 | [Chenciner & Montgomery 2000](works/chenciner-2000-a-remarkable-periodic-solution-of-the-three-body.md) — A Remarkable Periodic Solution of the Three-Body Problem in the Case of Equal Masses | 4 | cited, named method/model |
+| 950 | [Chowla 1965](works/chowla-1965-the-riemann-hypothesis-and-hilberts-tenth-probl.md) — The Riemann Hypothesis and Hilbert's Tenth Problem | 4 | named method/model |
+| 951 | [Clausius 1865](works/clausius-1865-ueber-verschiedene-fur-die-anwendung-bequeme-for.md) — Ueber verschiedene für die Anwendung bequeme Formen der Hauptgleichungen der mechanischen  | 4 | named method/model |
+| 952 | [Cooke, Pettini & Steidel 2018](works/cooke-2018-one-percent-determination-of-the-primordial-deut.md) — One Percent Determination of the Primordial Deuterium Abundance* | 4 | cited |
+| 953 | [Dessert, Rodd & Safdi 2020](works/dessert-2020-the-dark-matter-interpretation-of-the-3-5-kev-li.md) — The dark matter interpretation of the 3.5-keV line is inconsistent with blank-sky observat | 4 | cited |
+| 954 | [Di Teodoro, Fraternali & Miller 2016](works/di-teodoro-2016-flat-rotation-curves-and-low-velocity-dispersion.md) — Flat rotation curves and low velocity dispersions in KMOS star-forming galaxies atz~ 1 | 4 | cited |
+| 955 | [Donahue et al. 2014](works/donahue-2014-clash-x-a-comparison-of-lensing-and-x-ray-techn.md) — CLASH-X: A COMPARISON OF LENSING AND X-RAY TECHNIQUES FOR MEASURING THE MASS PROFILES OF G | 4 | cited |
+| 956 | [Dressler & Shectman 1988](works/dressler-1988-evidence-for-substructure-in-rich-clusters-of-ga.md) — Evidence for substructure in rich clusters of galaxies from radial-velocity measurements | 4 | named method/model |
+| 957 | [Eckert et al. 2022](works/eckert-2022-the-gravitational-field-of-x-cop-galaxy-clusters.md) — The gravitational field of X-COP galaxy clusters | 4 | cited |
+| 958 | [Eisenstein 1847](works/eisenstein-1847-beitrage-zu-theorie-der-elliptischen-functionen.md) — Beiträge zu Theorie der elliptischen Functionen. | 4 | named method/model |
+| 959 | [Eisenstein 1847](works/eisenstein-1847-beitrage-zu-theorie-der-elliptischen-functionen-2.md) — Beiträge zu Theorie der elliptischen Functionen. (Fortsetzung). | 4 | named method/model |
+| 960 | [Emir Gümrükçüoğlu, Saravani & Sotiriou 2018](works/emir-gumrukcuoglu-2018-horava-gravity-after-gw170817.md) — Hořava gravity after GW170817 | 4 | cited |
+| 961 | [Emsellem et al. 2019](works/emsellem-2019-the-ultra-diffuse-galaxy-ngc-1052-df2-with-muse.md) — The ultra-diffuse galaxy NGC 1052-DF2 with MUSE: I. Kinematics of the stellar body | 4 | cited |
+| 962 | [Eyring 1930](works/eyring-1930-reverberation-time-in-dead-rooms.md) — REVERBERATION TIME IN “DEAD” ROOMS | 4 | named method/model |
+| 963 | [FARGUES, FONTAINE & COLMEZ 2018](works/fargues-2018-courbes-et-fibres-vectoriels-en-theorie-de-hodge.md) — Courbes et fibrés vectoriels en théorie de Hodge p-adique | 4 | cited, named method/model, cited in a paper |
+| 964 | [Famaey, McGaugh & Milgrom 2018](works/famaey-2018-mond-and-the-dynamics-of-ngc-1052-df2.md) — MOND and the dynamics of NGC 1052−DF2 | 4 | cited |
+| 965 | [Feynman 1948](works/feynman-1948-space-time-approach-to-non-relativistic-quantum.md) — Space-Time Approach to Non-Relativistic Quantum Mechanics | 4 | named method/model |
+| 966 | [Flanagan 2023](works/flanagan-2023-khronometric-theories-of-modified-newtonian-dyna.md) — Khronometric theories of modified Newtonian dynamics | 4 | cited |
+| 967 | [Foster et al. 2006](works/foster-2006-measurement-of-the-relative-longitudinal-spin-de.md) — Measurement of the relative longitudinal spin-dependent total cross-section difference inn | 4 | cited |
+| 968 | [Franchini, Herrero-Valea & Barausse 2021](works/franchini-2021-relation-between-general-relativity-and-a-class.md) — Relation between general relativity and a class of Hořava gravity theories | 4 | cited, named method/model |
+| 969 | [Gleason 1957](works/gleason-1957-measures-on-the-closed-subspaces-of-a-hilbert-sp.md) — Measures on the Closed Subspaces of a Hilbert Space | 4 | named method/model |
+| 970 | [Granata et al. 2026](works/granata-2026-the-velocity-dispersion-function-of-red-galaxies.md) — The velocity dispersion function of red galaxies in four Hubble Frontier Fields galaxy clu | 4 | cited |
+| 971 | [Grandis et al. 2024](works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md) — The SRG/eROSITA All-Sky Survey: Dark Energy Survey year 3 weak gravitational lensing by eR | 4 | cited |
+| 972 | [Gueorguiev 2024](works/gueorguiev-2024-elucidating-the-z-dependence-of-the-mond-acceler.md) — Elucidating the z-dependence of the MOND acceleration (a0) within the scale invariant vacu | 4 | cited, cited in a paper |
+| 973 | [Halász 1968](works/halasz-1968-uber-die-mittelwerte-multiplikativer-zahlentheor.md) — Über die Mittelwerte multiplikativer zahlentheoretischer Funktionen | 4 | named method/model |
+| 974 | [Hannun et al. 2023](works/hannun-2023-mlx-efficient-and-flexible-machine-learning-on.md) — MLX: Efficient and flexible machine learning on Apple silicon | 4 | library imported |
+| 975 | [Hawking 1974](works/hawking-1974-black-hole-explosions.md) — Black hole explosions? | 4 | cited in a paper |
+| 976 | [Hernandez et al. 2023](works/hernandez-2023-statistical-analysis-of-the-gravitational-anomal.md) — Statistical analysis of the gravitational anomaly in Gaia wide binaries | 4 | cited |
+| 977 | [Heymans et al. 2021](works/heymans-2021-kids-1000-cosmology-multi-probe-weak-gravitatio.md) — KiDS-1000 Cosmology: Multi-probe weak gravitational lensing and spectroscopic galaxy clust | 4 | cited |
+| 978 | [Hirtenstein et al. 2019](works/hirtenstein-2019-the-osiris-lens-amplified-survey-olas-i-dyna.md) — The OSIRIS Lens-amplified Survey (OLAS). I. Dynamical Effects of Stellar Feedback in Low-m | 4 | cited |
+| 979 | [Hoekstra et al. 2015](works/hoekstra-2015-the-canadian-cluster-comparison-project-detaile.md) — The Canadian Cluster Comparison Project: detailed study of systematics and updated weak le | 4 | cited |
+| 980 | [Hooft 1980](works/hooft-1980-naturalness-chiral-symmetry-and-spontaneous-ch.md) — Naturalness, Chiral Symmetry, and Spontaneous Chiral Symmetry Breaking | 4 | named method/model |
+| 981 | [Howlett et al. 2015](works/howlett-2015-the-clustering-of-the-sdss-main-galaxy-sample.md) — The clustering of the SDSS main galaxy sample – II. Mock galaxy catalogues and a measureme | 4 | cited |
+| 982 | [Hubbard 1959](works/hubbard-1959-calculation-of-partition-functions.md) — Calculation of Partition Functions | 4 | named method/model |
+| 983 | [Humphrey et al. 2006](works/humphrey-2006-achandraview-of-dark-matter-in-early-type-galaxi.md) — AChandraView of Dark Matter in Early‐Type Galaxies | 4 | cited |
+| 984 | [Hwang, Ting & Zakamska 2022](works/hwang-2022-the-eccentricity-distribution-of-wide-binaries-a.md) — The eccentricity distribution of wide binaries and their individual measurements | 4 | cited |
+| 985 | [Jones et al. 2010](works/jones-2010-resolved-spectroscopy-of-gravitationally-lensed.md) — Resolved spectroscopy of gravitationally lensed galaxies: recovering coherent velocity fie | 4 | cited |
+| 986 | [Jordan 1870](works/jordan-1870-traite-des-substitutions-et-des-equations-algebr.md) — Traite des substitutions et des equations algebriques | 4 | named method/model |
+| 987 | [Kelleher & Lelli 2024](works/kelleher-2024-galaxy-clusters-in-milgromian-dynamics-missing.md) — Galaxy clusters in Milgromian dynamics: Missing matter, hydrostatic bias, and the external | 4 | cited, named method/model |
+| 988 | [Kim et al. 2016](works/kim-2016-determining-cosmology-for-a-nonlocal-realization.md) — Determining cosmology for a nonlocal realization of MOND | 4 | cited, cited in a paper |
+| 989 | [Kopp et al. 2018](works/kopp-2018-dark-matter-equation-of-state-through-cosmic-his.md) — Dark Matter Equation of State through Cosmic History | 4 | cited, cited in a paper |
+| 990 | [Kormendy & Ho 2013](works/kormendy-2013-coevolution-or-not-of-supermassive-black-holes.md) — Coevolution (Or Not) of Supermassive Black Holes and Host Galaxies | 4 | cited |
+| 991 | [Kraljic & Sarkar 2015](works/kraljic-2015-how-rare-is-the-bullet-cluster-in-a-cdm-univer.md) — How rare is the Bullet Cluster (in a ΛCDM universe)? | 4 | cited |
+| 992 | [Kutta 1901](works/kutta-1901-beitrag-zur-naherungsweisen-integration-totaler.md) — Beitrag zur näherungsweisen Integration totaler Differentialgleichungen | 4 | named method/model |
+| 993 | [Lam, Pitrou & Seibert 2015](works/lam-2015-numba-a-llvm-based-python-jit-compiler.md) — Numba: a LLVM-based Python JIT compiler | 4 | library imported |
+| 994 | [Landau 1941](works/landau-1941-theory-of-the-superfluidity-of-helium-ii.md) — Theory of the Superfluidity of Helium II | 4 | named method/model |
+| 995 | [Lebesgue 1905](works/lebesgue-1905-recherches-sur-la-convergence-des-series-de-four.md) — Recherches sur la convergence des séries de Fourier | 4 | named method/model |
+| 996 | [Lelli et al. 2023](works/lelli-2023-cold-gas-disks-in-main-sequence-galaxies-at-cosm.md) — Cold gas disks in main-sequence galaxies at cosmic noon: Low turbulence, flat rotation cur | 4 | cited |
+| 997 | [Lelli, McGaugh & Schombert 2016](works/lelli-2016-the-small-scatter-of-the-baryonic-tully-fisher-r.md) — THE SMALL SCATTER OF THE BARYONIC TULLY–FISHER RELATION | 4 | cited |
+| 998 | [Lorenz 1867](works/lorenz-1867-xxxviii-on-the-identity-of-the-vibrations-of-li.md) — XXXVIII. On the identity of the vibrations of light with electrical currents | 4 | named method/model |
+| 999 | [Ludlow et al. 2017](works/ludlow-2017-mass-discrepancy-acceleration-relation-a-natura.md) — Mass-Discrepancy Acceleration Relation: A Natural Outcome of Galaxy Formation in Cold Dark | 4 | cited |
+| 1000 | [Lyman 1906](works/lyman-1906-the-spectrum-of-hydrogen-in-the-region-of-extrem.md) — The Spectrum of Hydrogen in the Region of Extremely Short Wave-Lengths | 4 | named method/model |
 
 Pages: **1** · [2](WORKS-2.md) · [3](WORKS-3.md) · [4](WORKS-4.md)

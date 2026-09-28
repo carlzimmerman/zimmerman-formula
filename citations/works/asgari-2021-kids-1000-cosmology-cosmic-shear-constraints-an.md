@@ -1,6 +1,6 @@
 # Asgari et al. 2021 — KiDS-1000 cosmology: Cosmic shear constraints and comparison between two point statistics
 
-**Reference.** Asgari, M.; Lin, C.-A.; Joachimi, B.; Giblin, B.; Heymans, C.; Hildebrandt, H.; Kannawadi, A.; Stölzner, B.; Tröster, T.; van den Busch, J. L.; Wright, A. H.; Bilicki, M.; Blake, C.; de Jong, J.; Dvornik, A.; Erben, T.; Getman, F.; Hoekstra, H.; Köhlinger, F.; Kuijken, K.; Miller, L.; Radovich, M.; Schneider, P.; Shan, H.; Valentijn, E. (2021). KiDS-1000 cosmology: Cosmic shear constraints and comparison between two point statistics. *Astronomy &amp; Astrophysics* 645, A104. [doi:10.1051/0004-6361/202039070](https://doi.org/10.1051/0004-6361/202039070)
+**Reference.** Asgari, M.; Lin, C.-A.; Joachimi, B.; Giblin, B.; Heymans, C.; Hildebrandt, H.; Kannawadi, A.; Stölzner, B.; Tröster, T.; van den Busch, J. L.; Wright, A. H.; Bilicki, M.; Blake, C.; de Jong, J.; Dvornik, A.; Erben, T.; Getman, F.; Hoekstra, H.; Köhlinger, F.; Kuijken, K.; Miller, L.; Radovich, M.; Schneider, P.; Shan, H.; Valentijn, E. (2021). KiDS-1000 cosmology: Cosmic shear constraints and comparison between two point statistics. *Astronomy & Astrophysics* 645, A104. [doi:10.1051/0004-6361/202039070](https://doi.org/10.1051/0004-6361/202039070)
 
 **BibTeX key:** `Asgari2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

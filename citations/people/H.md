@@ -70,7 +70,7 @@
 - [Halász, G.](halasz-g.md) — 1 work(s) · 4 scripts
 - Halbwachs, J.-L. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
 - Halchenko, Yaroslav O. — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
-- [Haldane, Allan](haldane-allan.md) — 1 work(s) · 5148 scripts
+- [Haldane, Allan](haldane-allan.md) — 1 work(s) · 5150 scripts
 - Halday, Ziyaad — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
 - Haldeman, Merle — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md) · 103 scripts
 - Hale, C. L. — author of [Jarvis et al. 2018](../works/jarvis-2018-the-meerkat-international-ghz-tiered-extragalact.md) · 1 scripts
@@ -243,7 +243,7 @@
 - Harrington, R.d. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Harrington-Taber, T. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
 - Harris, Amy — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
-- [Harris, Charles R.](harris-charles-r.md) — 2 work(s) · 5181 scripts
+- [Harris, Charles R.](harris-charles-r.md) — 2 work(s) · 5183 scripts
 - Harris, Frederick H. — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md), [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md) · 103 scripts
 - [Harris, Hugh](harris-hugh.md) — 2 work(s) · 2 scripts
 - [Harris, J.](harris-j.md) — 1 work(s) · 1 scripts
@@ -495,7 +495,7 @@
 - [Henningson, M](henningson-m.md) — 1 work(s) · 2 scripts
 - Henrichs, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Henriksen, Ian — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
-- [Henriques, Bruno](henriques-bruno.md) — 1 work(s) · 4 scripts
+- [Henriques, Bruno](henriques-bruno.md) — 1 work(s) · 5 scripts
 - Henriques Correia, A.m. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Henrot-Versillé, S.](henrot-versille-s.md) — 5 work(s) · 94 scripts
 - [Henry, Alaina](henry-alaina.md) — 4 work(s) · 13 scripts
@@ -875,7 +875,7 @@
 - [Howlett, Cullan](howlett-cullan.md) — 16 work(s) · 324 scripts
 - Howlett, J. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
 - Hoy, Charlie G. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 23 scripts
-- [Hoyer, Stephan](hoyer-stephan.md) — 2 work(s) · 5148 scripts
+- [Hoyer, Stephan](hoyer-stephan.md) — 2 work(s) · 5150 scripts
 - Hoyland, D. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
 - Hoyle, B — author of [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Amon et al. 2022](../works/amon-2022-dark-energy-survey-year-3-results-cosmology-fro.md), [Secco et al. 2022](../works/secco-2022-dark-energy-survey-year-3-results-cosmology-fro.md) … · 37 scripts
 - [Hoyle, Fred](hoyle-fred.md) — 4 work(s) · 9 scripts
@@ -1016,7 +1016,7 @@
 - [Hummels, Cameron B](hummels-cameron-b.md) — 1 work(s) · 4 scripts
 - Hummensky, B. — author of [Archambault et al. 2017](../works/archambault-2017-dark-matter-constraints-from-a-joint-analysis-of.md) · 1 scripts
 - Humphrey, K. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
-- [Humphrey, Philip J.](humphrey-philip-j.md) — 1 work(s) · 3 scripts
+- [Humphrey, Philip J.](humphrey-philip-j.md) — 1 work(s) · 4 scripts
 - [Hung, Chao-Ling](hung-chao-ling.md) — 1 work(s) · 2 scripts
 - Hunkeler, J. S. — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md) · 199 scripts
 - Hunt, D. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts

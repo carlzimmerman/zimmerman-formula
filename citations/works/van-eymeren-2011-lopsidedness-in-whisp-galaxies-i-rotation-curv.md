@@ -1,6 +1,6 @@
 # van Eymeren et al. 2011 — Lopsidedness in WHISP galaxies: I. Rotation curves and kinematic lopsidedness⋆
 
-**Reference.** van Eymeren, J.; Jütte, E.; Jog, C. J.; Stein, Y.; Dettmar, R.-J. (2011). Lopsidedness in WHISP galaxies: I. Rotation curves and kinematic lopsidedness⋆. *Astronomy &amp; Astrophysics* 530, A29. [doi:10.1051/0004-6361/201016177](https://doi.org/10.1051/0004-6361/201016177) [arXiv:1103.4928](https://arxiv.org/abs/1103.4928)
+**Reference.** van Eymeren, J.; Jütte, E.; Jog, C. J.; Stein, Y.; Dettmar, R.-J. (2011). Lopsidedness in WHISP galaxies: I. Rotation curves and kinematic lopsidedness⋆. *Astronomy & Astrophysics* 530, A29. [doi:10.1051/0004-6361/201016177](https://doi.org/10.1051/0004-6361/201016177) [arXiv:1103.4928](https://arxiv.org/abs/1103.4928)
 
 **BibTeX key:** `vanEymeren2011` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

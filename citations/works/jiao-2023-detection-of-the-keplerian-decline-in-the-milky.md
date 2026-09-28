@@ -1,6 +1,6 @@
 # Jiao et al. 2023 — Detection of the Keplerian decline in the Milky Way rotation curve
 
-**Reference.** Jiao, Y.; Hammer, F.; Wang, H.; Wang, J.; Amram, P.; Chemin, L.; Yang, Y. (2023). Detection of the Keplerian decline in the Milky Way rotation curve. *Astronomy &amp; Astrophysics* 678, A208. [doi:10.1051/0004-6361/202347513](https://doi.org/10.1051/0004-6361/202347513) [arXiv:2309.00048](https://arxiv.org/abs/2309.00048)
+**Reference.** Jiao, Y.; Hammer, F.; Wang, H.; Wang, J.; Amram, P.; Chemin, L.; Yang, Y. (2023). Detection of the Keplerian decline in the Milky Way rotation curve. *Astronomy & Astrophysics* 678, A208. [doi:10.1051/0004-6361/202347513](https://doi.org/10.1051/0004-6361/202347513) [arXiv:2309.00048](https://arxiv.org/abs/2309.00048)
 
 **BibTeX key:** `Jiao2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Taibi et al. 2018 — Stellar chemo-kinematics of the Cetus dwarf spheroidal galaxy
 
-**Reference.** Taibi, S.; Battaglia, G.; Kacharov, N.; Rejkuba, M.; Irwin, M.; Leaman, R.; Zoccali, M.; Tolstoy, E.; Jablonka, P. (2018). Stellar chemo-kinematics of the Cetus dwarf spheroidal galaxy. *Astronomy &amp; Astrophysics* 618, A122. [doi:10.1051/0004-6361/201833414](https://doi.org/10.1051/0004-6361/201833414)
+**Reference.** Taibi, S.; Battaglia, G.; Kacharov, N.; Rejkuba, M.; Irwin, M.; Leaman, R.; Zoccali, M.; Tolstoy, E.; Jablonka, P. (2018). Stellar chemo-kinematics of the Cetus dwarf spheroidal galaxy. *Astronomy & Astrophysics* 618, A122. [doi:10.1051/0004-6361/201833414](https://doi.org/10.1051/0004-6361/201833414)
 
 **BibTeX key:** `Taibi2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

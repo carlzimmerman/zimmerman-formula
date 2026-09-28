@@ -1,6 +1,6 @@
 # Fienga et al. 2009 — INPOP08, a 4-D planetary ephemeris: from asteroid and time-scale computations to ESA Mars Express and Venus Express contributions
 
-**Reference.** Fienga, A.; Laskar, J.; Morley, T.; Manche, H.; Kuchynka, P.; Le Poncin-Lafitte, C.; Budnik, F.; Gastineau, M.; Somenzi, L. (2009). INPOP08, a 4-D planetary ephemeris: from asteroid and time-scale computations to ESA Mars Express and Venus Express contributions. *Astronomy &amp; Astrophysics* 507, 1675-1686. [doi:10.1051/0004-6361/200911755](https://doi.org/10.1051/0004-6361/200911755) [arXiv:0906.2860](https://arxiv.org/abs/0906.2860)
+**Reference.** Fienga, A.; Laskar, J.; Morley, T.; Manche, H.; Kuchynka, P.; Le Poncin-Lafitte, C.; Budnik, F.; Gastineau, M.; Somenzi, L. (2009). INPOP08, a 4-D planetary ephemeris: from asteroid and time-scale computations to ESA Mars Express and Venus Express contributions. *Astronomy & Astrophysics* 507, 1675-1686. [doi:10.1051/0004-6361/200911755](https://doi.org/10.1051/0004-6361/200911755) [arXiv:0906.2860](https://arxiv.org/abs/0906.2860)
 
 **BibTeX key:** `Fienga2009b` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

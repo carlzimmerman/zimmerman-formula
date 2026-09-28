@@ -1,6 +1,6 @@
 # Jerabkova et al. 2021 — The 800 pc long tidal tails of the Hyades star cluster: Possible discovery of candidate epicyclic overdensities from an open star cluster
 
-**Reference.** Jerabkova, T.; Boffin, H. M. J.; Beccari, G.; de Marchi, G.; de Bruijne, J. H. J.; Prusti, T. (2021). The 800 pc long tidal tails of the Hyades star cluster: Possible discovery of candidate epicyclic overdensities from an open star cluster. *Astronomy &amp; Astrophysics* 647, A137. [doi:10.1051/0004-6361/202039949](https://doi.org/10.1051/0004-6361/202039949)
+**Reference.** Jerabkova, T.; Boffin, H. M. J.; Beccari, G.; de Marchi, G.; de Bruijne, J. H. J.; Prusti, T. (2021). The 800 pc long tidal tails of the Hyades star cluster: Possible discovery of candidate epicyclic overdensities from an open star cluster. *Astronomy & Astrophysics* 647, A137. [doi:10.1051/0004-6361/202039949](https://doi.org/10.1051/0004-6361/202039949)
 
 **BibTeX key:** `Jerabkova2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

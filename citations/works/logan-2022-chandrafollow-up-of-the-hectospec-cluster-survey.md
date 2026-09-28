@@ -1,6 +1,6 @@
 # Logan et al. 2022 — Chandrafollow-up of the Hectospec Cluster Survey: Comparison of caustic and hydrostatic masses and constraints on the hydrostatic bias
 
-**Reference.** Logan, C. H. A.; Maughan, B. J.; Diaferio, A.; Duffy, R. T.; Geller, M. J.; Rines, K.; Sohn, J. (2022). Chandrafollow-up of the Hectospec Cluster Survey: Comparison of caustic and hydrostatic masses and constraints on the hydrostatic bias. *Astronomy &amp; Astrophysics* 665, A124. [doi:10.1051/0004-6361/202243347](https://doi.org/10.1051/0004-6361/202243347) [arXiv:2202.08569](https://arxiv.org/abs/2202.08569)
+**Reference.** Logan, C. H. A.; Maughan, B. J.; Diaferio, A.; Duffy, R. T.; Geller, M. J.; Rines, K.; Sohn, J. (2022). Chandrafollow-up of the Hectospec Cluster Survey: Comparison of caustic and hydrostatic masses and constraints on the hydrostatic bias. *Astronomy & Astrophysics* 665, A124. [doi:10.1051/0004-6361/202243347](https://doi.org/10.1051/0004-6361/202243347) [arXiv:2202.08569](https://arxiv.org/abs/2202.08569)
 
 **BibTeX key:** `Logan2022` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

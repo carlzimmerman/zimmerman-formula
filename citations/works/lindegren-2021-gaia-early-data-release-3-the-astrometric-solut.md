@@ -1,6 +1,6 @@
 # Lindegren et al. 2021 — Gaia Early Data Release 3: The astrometric solution
 
-**Reference.** Lindegren, L.; Klioner, S. A.; Hernández, J.; Bombrun, A.; Ramos-Lerate, M.; Steidelmüller, H.; Bastian, U.; Biermann, M.; de Torres, A.; Gerlach, E.; Geyer, R.; Hilger, T.; Hobbs, D.; Lammers, U.; McMillan, P. J.; Stephenson, C. A.; Castañeda, J.; Davidson, M.; Fabricius, C.; Gracia-Abril, G.; Portell, J.; Rowell, N.; Teyssier, D.; Torra, F.; Bartolomé, S.; Clotet, M.; Garralda, N.; González-Vidal, J. J.; Torra, J.; Abbas, U.; et al. (97 authors) (2021). Gaia Early Data Release 3: The astrometric solution. *Astronomy &amp; Astrophysics* 649, A2. [doi:10.1051/0004-6361/202039709](https://doi.org/10.1051/0004-6361/202039709)
+**Reference.** Lindegren, L.; Klioner, S. A.; Hernández, J.; Bombrun, A.; Ramos-Lerate, M.; Steidelmüller, H.; Bastian, U.; Biermann, M.; de Torres, A.; Gerlach, E.; Geyer, R.; Hilger, T.; Hobbs, D.; Lammers, U.; McMillan, P. J.; Stephenson, C. A.; Castañeda, J.; Davidson, M.; Fabricius, C.; Gracia-Abril, G.; Portell, J.; Rowell, N.; Teyssier, D.; Torra, F.; Bartolomé, S.; Clotet, M.; Garralda, N.; González-Vidal, J. J.; Torra, J.; Abbas, U.; et al. (97 authors) (2021). Gaia Early Data Release 3: The astrometric solution. *Astronomy & Astrophysics* 649, A2. [doi:10.1051/0004-6361/202039709](https://doi.org/10.1051/0004-6361/202039709)
 
 **BibTeX key:** `Lindegren2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

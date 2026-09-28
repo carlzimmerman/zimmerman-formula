@@ -1,6 +1,6 @@
 # Gentile et al. 2007 — Tidal dwarf galaxies as a test of fundamental physics
 
-**Reference.** Gentile, G.; Famaey, B.; Combes, F.; Kroupa, P.; Zhao, H. S.; Tiret, O. (2007). Tidal dwarf galaxies as a test of fundamental physics. *Astronomy &amp; Astrophysics* 472, L25-L28. [doi:10.1051/0004-6361:20078081](https://doi.org/10.1051/0004-6361:20078081)
+**Reference.** Gentile, G.; Famaey, B.; Combes, F.; Kroupa, P.; Zhao, H. S.; Tiret, O. (2007). Tidal dwarf galaxies as a test of fundamental physics. *Astronomy & Astrophysics* 472, L25-L28. [doi:10.1051/0004-6361:20078081](https://doi.org/10.1051/0004-6361:20078081)
 
 **BibTeX key:** `Gentile2007` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

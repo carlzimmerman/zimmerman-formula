@@ -1,6 +1,6 @@
 # Slob et al. 2025 — Fast rotators at cosmic noon: Stellar kinematics for 15 quiescent galaxies from JWST-SUSPENSE
 
-**Reference.** Slob, M.; Kriek, M.; de Graaff, A.; Cheng, C. M.; Beverage, A. G.; Bezanson, R.; Förster Schreiber, N. M.; Lorenz, B.; Mancera Piña, P. E.; Marchesini, D.; Muzzin, A.; Newman, A. B.; Price, S. H.; Suess, K. A.; van de Sande, J.; van Dokkum, P.; Weisz, D. R. (2025). Fast rotators at cosmic noon: Stellar kinematics for 15 quiescent galaxies from JWST-SUSPENSE. *Astronomy &amp; Astrophysics* 702, A110. [doi:10.1051/0004-6361/202555812](https://doi.org/10.1051/0004-6361/202555812) [arXiv:2506.04310](https://arxiv.org/abs/2506.04310)
+**Reference.** Slob, M.; Kriek, M.; de Graaff, A.; Cheng, C. M.; Beverage, A. G.; Bezanson, R.; Förster Schreiber, N. M.; Lorenz, B.; Mancera Piña, P. E.; Marchesini, D.; Muzzin, A.; Newman, A. B.; Price, S. H.; Suess, K. A.; van de Sande, J.; van Dokkum, P.; Weisz, D. R. (2025). Fast rotators at cosmic noon: Stellar kinematics for 15 quiescent galaxies from JWST-SUSPENSE. *Astronomy & Astrophysics* 702, A110. [doi:10.1051/0004-6361/202555812](https://doi.org/10.1051/0004-6361/202555812) [arXiv:2506.04310](https://arxiv.org/abs/2506.04310)
 
 **BibTeX key:** `Slob2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

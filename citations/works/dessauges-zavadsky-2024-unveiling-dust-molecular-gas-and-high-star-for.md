@@ -1,6 +1,6 @@
 # Dessauges-Zavadsky et al. 2024 — Unveiling dust, molecular gas, and high star-formation efficiency in extremely UV bright star-forming galaxies at z ∼ 2.1–3.6
 
-**Reference.** Dessauges-Zavadsky, M.; Marques-Chaves, R.; Schaerer, D.; Xiao, M.-Y.; Colina, L.; Alvarez-Marquez, J.; Pérez-Fournon, I. (2024). Unveiling dust, molecular gas, and high star-formation efficiency in extremely UV bright star-forming galaxies at z ∼ 2.1–3.6. *Astronomy &amp; Astrophysics* 693, A17. [doi:10.1051/0004-6361/202451832](https://doi.org/10.1051/0004-6361/202451832)
+**Reference.** Dessauges-Zavadsky, M.; Marques-Chaves, R.; Schaerer, D.; Xiao, M.-Y.; Colina, L.; Alvarez-Marquez, J.; Pérez-Fournon, I. (2024). Unveiling dust, molecular gas, and high star-formation efficiency in extremely UV bright star-forming galaxies at z ∼ 2.1–3.6. *Astronomy & Astrophysics* 693, A17. [doi:10.1051/0004-6361/202451832](https://doi.org/10.1051/0004-6361/202451832)
 
 **BibTeX key:** `DessaugesZavadsky2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,10 +1,10 @@
 # Léon V. E. Koopmans
 
-Credited in **13** file(s) through **14** work(s) · ORCID [0000-0003-1840-0312](https://orcid.org/0000-0003-1840-0312) · affiliation on the cited work(s): Kapteyn Astronomical Institute, University of Groningen, PO Box 800, NL-9700 AV Groningen, the Netherlands
+Credited in **14** file(s) through **14** work(s) · ORCID [0000-0003-1840-0312](https://orcid.org/0000-0003-1840-0312) · affiliation on the cited work(s): Kapteyn Astronomical Institute, University of Groningen, PO Box 800, NL-9700 AV Groningen, the Netherlands
 
 | work | used in | how |
 |---|---:|---|
-| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 5 | cited |
+| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 6 | cited |
 | [Treu et al. 2010](../works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
 | [Auger et al. 2010](../works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE EARLY-TYPE GALAXIES | 4 | cited |
 | [Bolton et al. 2008](../works/bolton-2008-the-sloan-lens-acs-survey-v-the-full-acs-stron.md) — The Sloan Lens ACS Survey. V. The Full ACS Strong‐Lens Sample | 3 | cited |

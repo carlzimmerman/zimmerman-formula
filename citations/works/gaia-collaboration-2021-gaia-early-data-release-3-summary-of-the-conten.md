@@ -1,6 +1,6 @@
 # Gaia Collaboration et al. 2021 — Gaia Early Data Release 3: Summary of the contents and survey properties
 
-**Reference.** Gaia Collaboration; Brown, A. G. A.; Vallenari, A.; Prusti, T.; de Bruijne, J. H. J.; Babusiaux, C.; Biermann, M.; Creevey, O. L.; Evans, D. W.; Eyer, L.; Hutton, A.; Jansen, F.; Jordi, C.; Klioner, S. A.; Lammers, U.; Lindegren, L.; Luri, X.; Mignard, F.; Panem, C.; Pourbaix, D.; Randich, S.; Sartoretti, P.; Soubiran, C.; Walton, N. A.; Arenou, F.; Bailer-Jones, C. A. L.; Bastian, U.; Cropper, M.; Drimmel, R.; Katz, D.; et al. (426 authors) (2021). Gaia Early Data Release 3: Summary of the contents and survey properties. *Astronomy &amp; Astrophysics* 649, A1. [doi:10.1051/0004-6361/202039657](https://doi.org/10.1051/0004-6361/202039657)
+**Reference.** Gaia Collaboration; Brown, A. G. A.; Vallenari, A.; Prusti, T.; de Bruijne, J. H. J.; Babusiaux, C.; Biermann, M.; Creevey, O. L.; Evans, D. W.; Eyer, L.; Hutton, A.; Jansen, F.; Jordi, C.; Klioner, S. A.; Lammers, U.; Lindegren, L.; Luri, X.; Mignard, F.; Panem, C.; Pourbaix, D.; Randich, S.; Sartoretti, P.; Soubiran, C.; Walton, N. A.; Arenou, F.; Bailer-Jones, C. A. L.; Bastian, U.; Cropper, M.; Drimmel, R.; Katz, D.; et al. (426 authors) (2021). Gaia Early Data Release 3: Summary of the contents and survey properties. *Astronomy & Astrophysics* 649, A1. [doi:10.1051/0004-6361/202039657](https://doi.org/10.1051/0004-6361/202039657)
 
 **BibTeX key:** `GaiaCollaboration2021a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

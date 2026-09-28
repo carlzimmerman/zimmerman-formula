@@ -6,11 +6,12 @@
 
 **Authors (2):** [Alan W. McConnachie](../people/mcconnachie-alan-w.md), [Patrick Côté](../people/cote-patrick.md)
 
-## Used in 2 script(s)
+## Used in 3 script(s)
 
-How: cited in 1, cited in a paper in 1.
+How: cited in 2, cited in a paper in 1.
 
 | script | how | lines |
 |---|---|---|
+| [`campaign_fresh_gravity/CFG29_ufd_binary_audit.py`](../../campaign_fresh_gravity/CFG29_ufd_binary_audit.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG29_ufd_binary_audit.py#L3), [59](../../campaign_fresh_gravity/CFG29_ufd_binary_audit.py#L59), [89](../../campaign_fresh_gravity/CFG29_ufd_binary_audit.py#L89) |
 | [`deepseek_push/G070_data/simon_ufds_v8.tex`](../../deepseek_push/G070_data/simon_ufds_v8.tex#L3245) | cited in a paper — mc10 | [3245](../../deepseek_push/G070_data/simon_ufds_v8.tex#L3245) |
 | [`hunt_2026/g05_dsph_prescription_fixed_and_expanded.py`](../../hunt_2026/g05_dsph_prescription_fixed_and_expanded.py#L284) | cited | [284](../../hunt_2026/g05_dsph_prescription_fixed_and_expanded.py#L284), [296](../../hunt_2026/g05_dsph_prescription_fixed_and_expanded.py#L296) |

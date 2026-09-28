@@ -85,8 +85,8 @@ except the curated dictionaries in [`build/registry/`](build/registry/).
 
 ## Scope
 
-Every git-tracked `.py` and `.ipynb` file ({n('n_scripts_scanned')} files at commit `{s['commit']}`), and the
-bibliographies of every tracked `.tex` / `.bib` file, except:
+Every committed `.py` and `.ipynb` file ({n('n_scripts_scanned')} files at commit `{s['commit']}`), and the
+bibliographies of every committed `.tex` / `.bib` file, read as committed (never the working tree), except:
 
 {excl}
 

@@ -1,6 +1,6 @@
 # Verheijen & Sancisi 2001 — The Ursa Major cluster of galaxies: IV. HI synthesis observations
 
-**Reference.** Verheijen, M. A. W.; Sancisi, R. (2001). The Ursa Major cluster of galaxies: IV. HI synthesis observations. *Astronomy &amp; Astrophysics* 370, 765-867. [doi:10.1051/0004-6361:20010090](https://doi.org/10.1051/0004-6361:20010090)
+**Reference.** Verheijen, M. A. W.; Sancisi, R. (2001). The Ursa Major cluster of galaxies: IV. HI synthesis observations. *Astronomy & Astrophysics* 370, 765-867. [doi:10.1051/0004-6361:20010090](https://doi.org/10.1051/0004-6361:20010090)
 
 **BibTeX key:** `Verheijen2001b` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

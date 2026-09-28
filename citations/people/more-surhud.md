@@ -1,6 +1,6 @@
 # Surhud More
 
-Credited in **1803** file(s) through **13** work(s) (41 for the research itself, the rest as software or a numerical method) · ORCID [0000-0002-2986-2371](https://orcid.org/0000-0002-2986-2371) · affiliation on the cited work(s): Kavli Institute for the Physics and Mathematics of the Universe; The University of Tokyo; Inter University Centre for Astronomy and Astrophysics , Ganeshkhind, Pune 411007, India; Kavli Institute for the Physic
+Credited in **1804** file(s) through **13** work(s) (42 for the research itself, the rest as software or a numerical method) · ORCID [0000-0002-2986-2371](https://orcid.org/0000-0002-2986-2371) · affiliation on the cited work(s): Kavli Institute for the Physics and Mathematics of the Universe; The University of Tokyo; Inter University Centre for Astronomy and Astrophysics , Ganeshkhind, Pune 411007, India; Kavli Institute for the Physic
 
 | work | used in | how |
 |---|---:|---|
@@ -8,7 +8,7 @@ Credited in **1803** file(s) through **13** work(s) (41 for the research itself,
 | [Aihara et al. 2017](../works/aihara-2017-the-hyper-suprime-cam-ssp-survey-overview-and-s.md) — The Hyper Suprime-Cam SSP Survey: Overview and survey design | 24 | data used |
 | [Dalal et al. 2023](../works/dalal-2023-hyper-suprime-cam-year-3-results-cosmology-from.md) — Hyper Suprime-Cam Year 3 results: Cosmology from cosmic shear power spectra | 9 | cited, data used |
 | [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) — GWTC-4.0: Updating the Gravitational-wave Transient Catalog with Observations from the First Part of the Fourt | 6 | data used |
-| [Mandelbaum et al. 2016](../works/mandelbaum-2016-strong-bimodality-in-the-host-halo-mass-of-centr.md) — Strong bimodality in the host halo mass of central galaxies from galaxy–galaxy lensing | 4 | cited |
+| [Mandelbaum et al. 2016](../works/mandelbaum-2016-strong-bimodality-in-the-host-halo-mass-of-centr.md) — Strong bimodality in the host halo mass of central galaxies from galaxy–galaxy lensing | 5 | cited |
 | [Li et al. 2023](../works/li-2023-hyper-suprime-cam-year-3-results-cosmology-from.md) — Hyper Suprime-Cam Year 3 results: Cosmology from cosmic shear two-point correlation functions | 3 | cited |
 | [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) — Open Data from the Third Observing Run of LIGO, Virgo, KAGRA, and GEO | 3 | library imported |
 | [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) — THE ELEVENTH AND TWELFTH DATA RELEASES OF THE SLOAN DIGITAL SKY SURVEY: FINAL DATA FROM SDSS-III | 2 | data used |

@@ -1,6 +1,6 @@
 # Nagesh et al. 2024 — Simulations of cluster ultra-diffuse galaxies in MOND
 
-**Reference.** Nagesh, S. T.; Freundlich, J.; Famaey, B.; Bílek, M.; Candlish, G.; Ibata, R.; Müller, O. (2024). Simulations of cluster ultra-diffuse galaxies in MOND. *Astronomy &amp; Astrophysics* 690, A149. [doi:10.1051/0004-6361/202450757](https://doi.org/10.1051/0004-6361/202450757) [arXiv:2407.03413](https://arxiv.org/abs/2407.03413)
+**Reference.** Nagesh, S. T.; Freundlich, J.; Famaey, B.; Bílek, M.; Candlish, G.; Ibata, R.; Müller, O. (2024). Simulations of cluster ultra-diffuse galaxies in MOND. *Astronomy & Astrophysics* 690, A149. [doi:10.1051/0004-6361/202450757](https://doi.org/10.1051/0004-6361/202450757) [arXiv:2407.03413](https://arxiv.org/abs/2407.03413)
 
 **BibTeX key:** `Nagesh2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

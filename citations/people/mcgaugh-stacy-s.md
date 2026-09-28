@@ -1,12 +1,12 @@
 # Stacy S. McGaugh
 
-Credited in **2060** file(s) through **47** work(s) · ORCID [0000-0002-9762-0980](https://orcid.org/0000-0002-9762-0980) · affiliation on the cited work(s): Department of Astronomy, Case Western Reserve University, Cleveland, OH 44106, USA; Department of Astronomy, Case Western Reserve University
+Credited in **2062** file(s) through **47** work(s) · ORCID [0000-0002-9762-0980](https://orcid.org/0000-0002-9762-0980) · affiliation on the cited work(s): Department of Astronomy, Case Western Reserve University, Cleveland, OH 44106, USA; Department of Astronomy, Case Western Reserve University
 
 | work | used in | how |
 |---|---:|---|
 | [McGaugh, Lelli & Schombert 2016](../works/mcgaugh-2016-radial-acceleration-relation-in-rotationally-sup.md) — Radial Acceleration Relation in Rotationally Supported Galaxies | 1396 | cited, named method/model, cited in a paper |
 | [Lelli et al. 2017](../works/lelli-2017-one-law-to-rule-them-all-the-radial-acceleratio.md) — One Law to Rule Them All: The Radial Acceleration Relation of Galaxies | 1353 | cited, named method/model, cited in a paper |
-| [Lelli, McGaugh & Schombert 2016](../works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CURVES | 1034 | cited, data used, cited in a paper |
+| [Lelli, McGaugh & Schombert 2016](../works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CURVES | 1036 | cited, data used, cited in a paper |
 | [McGaugh et al. 2000](../works/mcgaugh-2000-the-baryonic-tully-fisher-relation.md) — The Baryonic Tully-Fisher Relation | 675 | named method/model, cited in a paper |
 | [Mistele, McGaugh & Hossenfelder 2023](../works/mistele-2023-aether-scalar-tensor-theory-confronted-with-weak.md) — Aether scalar tensor theory confronted with weak lensing data at small accelerations | 84 | cited, named method/model, cited in a paper |
 | [Mistele et al. 2024](../works/mistele-2024-radial-acceleration-relation-of-galaxies-with-jo.md) — Radial acceleration relation of galaxies with joint kinematic and weak-lensing data | 83 | cited, named method/model, cited in a paper |

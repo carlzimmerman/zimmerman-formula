@@ -1,6 +1,6 @@
 # Migkas et al. 2024 — The SRG/eROSITA All-Sky Survey: SRG/eROSITA cross-calibration withChandraandXMM-Newtonusing galaxy cluster gas temperatures
 
-**Reference.** Migkas, K.; Kox, D.; Schellenberger, G.; Veronica, A.; Pacaud, F.; Reiprich, T. H.; Bahar, Y. E.; Balzer, F.; Bulbul, E.; Comparat, J.; Dennerl, K.; Freyberg, M.; Garrel, C.; Ghirardini, V.; Grandis, S.; Kluge, M.; Liu, A.; Ramos-Ceja, M. E.; Sanders, J.; Zhang, X. (2024). The SRG/eROSITA All-Sky Survey: SRG/eROSITA cross-calibration withChandraandXMM-Newtonusing galaxy cluster gas temperatures. *Astronomy &amp; Astrophysics* 688, A107. [doi:10.1051/0004-6361/202349006](https://doi.org/10.1051/0004-6361/202349006)
+**Reference.** Migkas, K.; Kox, D.; Schellenberger, G.; Veronica, A.; Pacaud, F.; Reiprich, T. H.; Bahar, Y. E.; Balzer, F.; Bulbul, E.; Comparat, J.; Dennerl, K.; Freyberg, M.; Garrel, C.; Ghirardini, V.; Grandis, S.; Kluge, M.; Liu, A.; Ramos-Ceja, M. E.; Sanders, J.; Zhang, X. (2024). The SRG/eROSITA All-Sky Survey: SRG/eROSITA cross-calibration withChandraandXMM-Newtonusing galaxy cluster gas temperatures. *Astronomy & Astrophysics* 688, A107. [doi:10.1051/0004-6361/202349006](https://doi.org/10.1051/0004-6361/202349006)
 
 **BibTeX key:** `Migkas2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

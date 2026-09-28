@@ -1,6 +1,6 @@
 # Swaters et al. 2008 — The rotation curves shapes of late-type dwarf galaxies
 
-**Reference.** Swaters, R. A.; Sancisi, R.; van Albada, T. S.; van der Hulst, J. M. (2008). The rotation curves shapes of late-type dwarf galaxies. *Astronomy &amp; Astrophysics* 493, 871-892. [doi:10.1051/0004-6361:200810516](https://doi.org/10.1051/0004-6361:200810516)
+**Reference.** Swaters, R. A.; Sancisi, R.; van Albada, T. S.; van der Hulst, J. M. (2008). The rotation curves shapes of late-type dwarf galaxies. *Astronomy & Astrophysics* 493, 871-892. [doi:10.1051/0004-6361:200810516](https://doi.org/10.1051/0004-6361:200810516)
 
 **BibTeX key:** `Swaters2008` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

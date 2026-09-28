@@ -1,6 +1,6 @@
 # Paraficz et al. 2016 — The Bullet cluster at its best: weighing stars, gas, and dark matter
 
-**Reference.** Paraficz, D.; Kneib, J.-P.; Richard, J.; Morandi, A.; Limousin, M.; Jullo, E.; Martinez, J. (2016). The Bullet cluster at its best: weighing stars, gas, and dark matter. *Astronomy &amp; Astrophysics* 594, A121. [doi:10.1051/0004-6361/201527959](https://doi.org/10.1051/0004-6361/201527959) [arXiv:1209.0384](https://arxiv.org/abs/1209.0384)
+**Reference.** Paraficz, D.; Kneib, J.-P.; Richard, J.; Morandi, A.; Limousin, M.; Jullo, E.; Martinez, J. (2016). The Bullet cluster at its best: weighing stars, gas, and dark matter. *Astronomy & Astrophysics* 594, A121. [doi:10.1051/0004-6361/201527959](https://doi.org/10.1051/0004-6361/201527959) [arXiv:1209.0384](https://arxiv.org/abs/1209.0384)
 
 **BibTeX key:** `Paraficz2016` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

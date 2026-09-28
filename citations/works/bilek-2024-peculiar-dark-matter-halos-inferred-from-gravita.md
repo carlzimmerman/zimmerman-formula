@@ -1,6 +1,6 @@
 # Bílek 2024 — Peculiar dark matter halos inferred from gravitational lensing as a manifestation of modified gravity
 
-**Reference.** Bílek, M. (2024). Peculiar dark matter halos inferred from gravitational lensing as a manifestation of modified gravity. *Astronomy &amp; Astrophysics* 690, A364. [doi:10.1051/0004-6361/202450154](https://doi.org/10.1051/0004-6361/202450154)
+**Reference.** Bílek, M. (2024). Peculiar dark matter halos inferred from gravitational lensing as a manifestation of modified gravity. *Astronomy & Astrophysics* 690, A364. [doi:10.1051/0004-6361/202450154](https://doi.org/10.1051/0004-6361/202450154)
 
 **BibTeX key:** `Bilek2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

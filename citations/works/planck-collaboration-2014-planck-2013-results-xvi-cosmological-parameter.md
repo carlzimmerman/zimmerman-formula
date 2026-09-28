@@ -1,6 +1,6 @@
 # Planck Collaboration et al. 2014 — Planck 2013 results. XVI. Cosmological parameters
 
-**Reference.** Planck Collaboration; Ade, P. A. R.; Aghanim, N.; Armitage-Caplan, C.; Arnaud, M.; Ashdown, M.; Atrio-Barandela, F.; Aumont, J.; Baccigalupi, C.; Banday, A. J.; Barreiro, R. B.; Bartlett, J. G.; Battaner, E.; Benabed, K.; Benoît, A.; Benoit-Lévy, A.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bobin, J.; Bock, J. J.; Bonaldi, A.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Bridges, M.; Bucher, M.; Burigana, C.; Butler, R. C.; Calabrese, E.; et al. (265 authors) (2014). Planck 2013 results. XVI. Cosmological parameters. *Astronomy &amp; Astrophysics* 571, A16. [doi:10.1051/0004-6361/201321591](https://doi.org/10.1051/0004-6361/201321591)
+**Reference.** Planck Collaboration; Ade, P. A. R.; Aghanim, N.; Armitage-Caplan, C.; Arnaud, M.; Ashdown, M.; Atrio-Barandela, F.; Aumont, J.; Baccigalupi, C.; Banday, A. J.; Barreiro, R. B.; Bartlett, J. G.; Battaner, E.; Benabed, K.; Benoît, A.; Benoit-Lévy, A.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bobin, J.; Bock, J. J.; Bonaldi, A.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Bridges, M.; Bucher, M.; Burigana, C.; Butler, R. C.; Calabrese, E.; et al. (265 authors) (2014). Planck 2013 results. XVI. Cosmological parameters. *Astronomy & Astrophysics* 571, A16. [doi:10.1051/0004-6361/201321591](https://doi.org/10.1051/0004-6361/201321591)
 
 **BibTeX key:** `PlanckCollaboration2014` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

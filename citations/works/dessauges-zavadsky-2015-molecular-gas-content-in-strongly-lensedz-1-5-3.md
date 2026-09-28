@@ -1,6 +1,6 @@
 # Dessauges-Zavadsky et al. 2015 — Molecular gas content in strongly lensedz~ 1.5−3 star-forming galaxies with low infrared luminosities
 
-**Reference.** Dessauges-Zavadsky, M.; Zamojski, M.; Schaerer, D.; Combes, F.; Egami, E.; Swinbank, A. M.; Richard, J.; Sklias, P.; Rawle, T. D.; Rex, M.; Kneib, J.-P.; Boone, F.; Blain, A. (2015). Molecular gas content in strongly lensedz~ 1.5−3 star-forming galaxies with low infrared luminosities. *Astronomy &amp; Astrophysics* 577, A50. [doi:10.1051/0004-6361/201424661](https://doi.org/10.1051/0004-6361/201424661) [arXiv:1408.0816](https://arxiv.org/abs/1408.0816)
+**Reference.** Dessauges-Zavadsky, M.; Zamojski, M.; Schaerer, D.; Combes, F.; Egami, E.; Swinbank, A. M.; Richard, J.; Sklias, P.; Rawle, T. D.; Rex, M.; Kneib, J.-P.; Boone, F.; Blain, A. (2015). Molecular gas content in strongly lensedz~ 1.5−3 star-forming galaxies with low infrared luminosities. *Astronomy & Astrophysics* 577, A50. [doi:10.1051/0004-6361/201424661](https://doi.org/10.1051/0004-6361/201424661) [arXiv:1408.0816](https://arxiv.org/abs/1408.0816)
 
 **BibTeX key:** `DessaugesZavadsky2015` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

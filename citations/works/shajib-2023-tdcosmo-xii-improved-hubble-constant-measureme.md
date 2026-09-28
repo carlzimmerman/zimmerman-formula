@@ -1,6 +1,6 @@
 # Shajib et al. 2023 — TDCOSMO: XII. Improved Hubble constant measurement from lensing time delays using spatially resolved stellar kinematics of the lens galaxy
 
-**Reference.** Shajib, A. J.; Mozumdar, P.; Chen, G. C.-F.; Treu, T.; Cappellari, M.; Knabel, S.; Suyu, S. H.; Bennert, V. N.; Frieman, J. A.; Sluse, D.; Birrer, S.; Courbin, F.; Fassnacht, C. D.; Villafaña, L.; Williams, P. R. (2023). TDCOSMO: XII. Improved Hubble constant measurement from lensing time delays using spatially resolved stellar kinematics of the lens galaxy. *Astronomy &amp; Astrophysics* 673, A9. [doi:10.1051/0004-6361/202345878](https://doi.org/10.1051/0004-6361/202345878)
+**Reference.** Shajib, A. J.; Mozumdar, P.; Chen, G. C.-F.; Treu, T.; Cappellari, M.; Knabel, S.; Suyu, S. H.; Bennert, V. N.; Frieman, J. A.; Sluse, D.; Birrer, S.; Courbin, F.; Fassnacht, C. D.; Villafaña, L.; Williams, P. R. (2023). TDCOSMO: XII. Improved Hubble constant measurement from lensing time delays using spatially resolved stellar kinematics of the lens galaxy. *Astronomy & Astrophysics* 673, A9. [doi:10.1051/0004-6361/202345878](https://doi.org/10.1051/0004-6361/202345878)
 
 **BibTeX key:** `Shajib2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

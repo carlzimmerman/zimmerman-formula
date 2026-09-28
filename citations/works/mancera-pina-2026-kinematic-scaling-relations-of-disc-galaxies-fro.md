@@ -1,6 +1,6 @@
 # Mancera Piña et al. 2026 — Kinematic scaling relations of disc galaxies from ionised gas at z ∼ 1 and their connection with dark matter haloes
 
-**Reference.** Mancera Piña, P. E.; Di Teodoro, E. M.; Fall, S. M.; Marasco, A.; Kriek, M.; Martorano, M. (2026). Kinematic scaling relations of disc galaxies from ionised gas at z ∼ 1 and their connection with dark matter haloes. *Astronomy &amp; Astrophysics* 705, A180. [doi:10.1051/0004-6361/202557349](https://doi.org/10.1051/0004-6361/202557349)
+**Reference.** Mancera Piña, P. E.; Di Teodoro, E. M.; Fall, S. M.; Marasco, A.; Kriek, M.; Martorano, M. (2026). Kinematic scaling relations of disc galaxies from ionised gas at z ∼ 1 and their connection with dark matter haloes. *Astronomy & Astrophysics* 705, A180. [doi:10.1051/0004-6361/202557349](https://doi.org/10.1051/0004-6361/202557349)
 
 **BibTeX key:** `ManceraPina2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

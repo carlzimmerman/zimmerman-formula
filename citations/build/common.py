@@ -8,6 +8,7 @@ import json
 import os
 import re
 import subprocess
+import threading
 import tokenize
 import unicodedata
 from pathlib import Path
@@ -29,23 +30,54 @@ EXCLUDE_PREFIXES = (
 SCAN_SUFFIXES = (".py", ".ipynb")
 
 
-def tracked_files() -> list[str]:
-    out = subprocess.run(["git", "-C", str(REPO), "ls-files", "-z", "--", "*.py", "*.ipynb"],
-                         capture_output=True, check=True).stdout.decode("utf-8", "replace")
-    return sorted(p for p in out.split("\0") if p and p.endswith(SCAN_SUFFIXES)
-                  and not p.startswith(EXCLUDE_PREFIXES))
+@functools.lru_cache(maxsize=None)
+def build_ref() -> str:
+    """The commit the index is built from. run_all.py pins it once (CITE_REF) so every stage reads the same commit
+    even if HEAD moves during the build. Files are read as committed there, never from the working tree, so
+    uncommitted edits (other sessions' work in progress) never enter the index."""
+    return os.environ.get("CITE_REF") or subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"],
+                                                        capture_output=True, text=True, check=True).stdout.strip()
 
 
 def head_commit() -> str:
-    return subprocess.run(["git", "-C", str(REPO), "rev-parse", "HEAD"],
-                          capture_output=True, text=True, check=True).stdout.strip()
+    return build_ref()
+
+
+def committed_files(suffixes: tuple[str, ...] | None = None) -> list[str]:
+    out = subprocess.run(["git", "-C", str(REPO), "ls-tree", "-r", "-z", "--name-only", build_ref()],
+                         capture_output=True, check=True).stdout.decode("utf-8", "replace")
+    return sorted(p for p in out.split("\0") if p and (suffixes is None or p.endswith(suffixes)))
+
+
+def tracked_files() -> list[str]:
+    return [p for p in committed_files(SCAN_SUFFIXES) if not p.startswith(EXCLUDE_PREFIXES)]
+
+
+_blob_lock = threading.Lock()
+_blob_proc = None
+
+
+def read_committed(path: str) -> bytes | None:
+    """A file's bytes as committed at build_ref(); None when the file is not in that commit."""
+    global _blob_proc
+    with _blob_lock:
+        if _blob_proc is None:
+            _blob_proc = subprocess.Popen(["git", "-C", str(REPO), "cat-file", "--batch"],
+                                          stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+        _blob_proc.stdin.write(f"{build_ref()}:{path}\n".encode("utf-8"))
+        _blob_proc.stdin.flush()
+        head = _blob_proc.stdout.readline().decode("utf-8", "replace").split()
+        if len(head) != 3 or head[1] != "blob":
+            return None
+        data = _blob_proc.stdout.read(int(head[2]))
+        _blob_proc.stdout.read(1)                  # the newline that ends each object
+        return data
 
 
 def read_source(path: str) -> tuple[str | None, list[tuple[int, str]]]:
     """Return (python_code, extra_prose_segments). Notebooks: code cells joined; markdown cells as prose."""
-    try:
-        raw = (REPO / path).read_bytes()
-    except OSError:
+    raw = read_committed(path)
+    if raw is None:
         return None, []
     text = raw.decode("utf-8", "replace")
     if not path.endswith(".ipynb"):

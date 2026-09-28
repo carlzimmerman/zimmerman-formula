@@ -1,6 +1,6 @@
 # Röser & Schilbach 2019 — Praesepe (NGC 2632) and its tidal tails
 
-**Reference.** Röser, S.; Schilbach, E. (2019). Praesepe (NGC 2632) and its tidal tails. *Astronomy &amp; Astrophysics* 627, A4. [doi:10.1051/0004-6361/201935502](https://doi.org/10.1051/0004-6361/201935502) [arXiv:1903.08610](https://arxiv.org/abs/1903.08610)
+**Reference.** Röser, S.; Schilbach, E. (2019). Praesepe (NGC 2632) and its tidal tails. *Astronomy & Astrophysics* 627, A4. [doi:10.1051/0004-6361/201935502](https://doi.org/10.1051/0004-6361/201935502) [arXiv:1903.08610](https://arxiv.org/abs/1903.08610)
 
 **BibTeX key:** `Roser2019b` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

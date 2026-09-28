@@ -1,6 +1,6 @@
 # Massari et al. 2020 — Stellar 3D kinematics in the Draco dwarf spheroidal galaxy
 
-**Reference.** Massari, D.; Helmi, A.; Mucciarelli, A.; Sales, L. V.; Spina, L.; Tolstoy, E. (2020). Stellar 3D kinematics in the Draco dwarf spheroidal galaxy. *Astronomy &amp; Astrophysics* 633, A36. [doi:10.1051/0004-6361/201935613](https://doi.org/10.1051/0004-6361/201935613) [arXiv:1904.04037](https://arxiv.org/abs/1904.04037)
+**Reference.** Massari, D.; Helmi, A.; Mucciarelli, A.; Sales, L. V.; Spina, L.; Tolstoy, E. (2020). Stellar 3D kinematics in the Draco dwarf spheroidal galaxy. *Astronomy & Astrophysics* 633, A36. [doi:10.1051/0004-6361/201935613](https://doi.org/10.1051/0004-6361/201935613) [arXiv:1904.04037](https://arxiv.org/abs/1904.04037)
 
 **BibTeX key:** `Massari2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

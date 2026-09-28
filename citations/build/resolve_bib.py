@@ -19,8 +19,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import apis  # noqa: E402
-from common import DATA, EXCLUDE_PREFIXES, REPO, dump_json, load_json, mentions_own_repository, norm_family, \
-    own_author_families, own_author_given_initials, scrub_text, strip_accents  # noqa: E402
+from common import DATA, EXCLUDE_PREFIXES, REPO, committed_files, dump_json, load_json, mentions_own_repository, norm_family, \
+    own_author_families, own_author_given_initials, read_committed, scrub_text, strip_accents  # noqa: E402
 from extract import ARXIV_NEW, ARXIV_OLD, DOI  # noqa: E402
 
 ACC = {r'\"a': "ä", r'\"o': "ö", r'\"u': "ü", r"\'e": "é", r"\'a": "á", r"\'i": "í", r"\'o": "ó", r"\`e": "è",
@@ -29,9 +29,7 @@ ACC = {r'\"a': "ä", r'\"o': "ö", r'\"u': "ü", r"\'e": "é", r"\'a": "á", r"\
 
 
 def tex_files():
-    out = subprocess.run(["git", "-C", str(REPO), "ls-files", "-z", "--", "*.tex", "*.bib"], capture_output=True,
-                         check=True).stdout.decode("utf-8", "replace")
-    return sorted(p for p in out.split("\0") if p and not p.startswith(EXCLUDE_PREFIXES))
+    return [p for p in committed_files((".tex", ".bib")) if not p.startswith(EXCLUDE_PREFIXES)]
 
 
 def detex(s: str) -> str:
@@ -195,10 +193,10 @@ def main():
     own = own_author_families()
     items = []
     for p in tex_files():
-        try:
-            text = (REPO / p).read_text(encoding="utf-8", errors="replace")
-        except OSError:
+        raw = read_committed(p)
+        if raw is None:
             continue
+        text = raw.decode("utf-8", "replace")
         items += parse_bib(p, text) if p.endswith(".bib") else parse_tex(p, text)
     # the author's own works (and references to this repository) are kept out of the data: only a hash is stored
     own_init = own_author_given_initials()

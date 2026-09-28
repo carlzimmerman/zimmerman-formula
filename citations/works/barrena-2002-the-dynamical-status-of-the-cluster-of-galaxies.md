@@ -1,6 +1,6 @@
 # Barrena et al. 2002 — The dynamical status of the cluster of galaxies 1E0657-56
 
-**Reference.** Barrena, R.; Biviano, A.; Ramella, M.; Falco, E. E.; Seitz, S. (2002). The dynamical status of the cluster of galaxies 1E0657-56. *Astronomy &amp; Astrophysics* 386, 816-828. [doi:10.1051/0004-6361:20020244](https://doi.org/10.1051/0004-6361:20020244)
+**Reference.** Barrena, R.; Biviano, A.; Ramella, M.; Falco, E. E.; Seitz, S. (2002). The dynamical status of the cluster of galaxies 1E0657-56. *Astronomy & Astrophysics* 386, 816-828. [doi:10.1051/0004-6361:20020244](https://doi.org/10.1051/0004-6361:20020244)
 
 **BibTeX key:** `Barrena2002` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

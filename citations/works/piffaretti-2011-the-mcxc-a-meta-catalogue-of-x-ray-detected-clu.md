@@ -1,6 +1,6 @@
 # Piffaretti et al. 2011 — The MCXC: a meta-catalogue of x-ray detected clusters of galaxies
 
-**Reference.** Piffaretti, R.; Arnaud, M.; Pratt, G. W.; Pointecouteau, E.; Melin, J.-B. (2011). The MCXC: a meta-catalogue of x-ray detected clusters of galaxies. *Astronomy &amp; Astrophysics* 534, A109. [doi:10.1051/0004-6361/201015377](https://doi.org/10.1051/0004-6361/201015377)
+**Reference.** Piffaretti, R.; Arnaud, M.; Pratt, G. W.; Pointecouteau, E.; Melin, J.-B. (2011). The MCXC: a meta-catalogue of x-ray detected clusters of galaxies. *Astronomy & Astrophysics* 534, A109. [doi:10.1051/0004-6361/201015377](https://doi.org/10.1051/0004-6361/201015377)
 
 **BibTeX key:** `Piffaretti2011` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

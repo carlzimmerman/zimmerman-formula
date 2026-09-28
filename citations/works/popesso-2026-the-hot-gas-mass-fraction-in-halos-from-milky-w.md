@@ -1,6 +1,6 @@
 # Popesso et al. 2026 — The hot gas mass fraction in halos: From Milky Way-like groups to massive clusters
 
-**Reference.** Popesso, P.; Biviano, A.; Marini, I.; Dolag, K.; Vladutescu-Zopp, S.; Csizi, B.; Biffi, V.; Lamer, G.; Robothan, A.; Bravo, M.; Lovisari, L.; Ettori, S.; Angelinelli, M.; Driver, S.; Toptun, V.; Dev, A.; Mazengo, D.; Merloni, A.; Comparat, J.; Ponti, G.; Mroczkowski, T.; Bulbul, E.; Grandis, S.; Bahar, E. (2026). The hot gas mass fraction in halos: From Milky Way-like groups to massive clusters. *Astronomy &amp; Astrophysics* 707, A362. [doi:10.1051/0004-6361/202453256](https://doi.org/10.1051/0004-6361/202453256) [arXiv:2411.16555](https://arxiv.org/abs/2411.16555)
+**Reference.** Popesso, P.; Biviano, A.; Marini, I.; Dolag, K.; Vladutescu-Zopp, S.; Csizi, B.; Biffi, V.; Lamer, G.; Robothan, A.; Bravo, M.; Lovisari, L.; Ettori, S.; Angelinelli, M.; Driver, S.; Toptun, V.; Dev, A.; Mazengo, D.; Merloni, A.; Comparat, J.; Ponti, G.; Mroczkowski, T.; Bulbul, E.; Grandis, S.; Bahar, E. (2026). The hot gas mass fraction in halos: From Milky Way-like groups to massive clusters. *Astronomy & Astrophysics* 707, A362. [doi:10.1051/0004-6361/202453256](https://doi.org/10.1051/0004-6361/202453256) [arXiv:2411.16555](https://arxiv.org/abs/2411.16555)
 
 **BibTeX key:** `Popesso2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

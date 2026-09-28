@@ -1,10 +1,10 @@
 # Raphaël Gavazzi
 
-Credited in **9** file(s) through **7** work(s)
+Credited in **10** file(s) through **7** work(s)
 
 | work | used in | how |
 |---|---:|---|
-| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 5 | cited |
+| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 6 | cited |
 | [Treu et al. 2010](../works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
 | [Auger et al. 2010](../works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE EARLY-TYPE GALAXIES | 4 | cited |
 | [Bolton et al. 2008](../works/bolton-2008-the-sloan-lens-acs-survey-v-the-full-acs-stron.md) — The Sloan Lens ACS Survey. V. The Full ACS Strong‐Lens Sample | 3 | cited |

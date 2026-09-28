@@ -6,13 +6,14 @@
 
 **Authors (8):** [M. W. Auger](../people/auger-matthew-w.md), [T. Treu](../people/treu-tommaso.md), [A. S. Bolton](../people/bolton-adam-s.md), [R. Gavazzi](../people/gavazzi-raphael.md), [L. V. E. Koopmans](../people/koopmans-leon-v-e.md), [P. J. Marshall](../people/marshall-philip-j.md), [K. Bundy](../people/bundy-kevin.md), [L. A. Moustakas](../people/moustakas-leonidas-a.md)
 
-## Used in 5 script(s)
+## Used in 6 script(s)
 
-How: cited in 5.
+How: cited in 6.
 
 | script | how | lines |
 |---|---|---|
 | [`campaign_fresh_gravity/CFG1_evidence_audit.py`](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L612) | cited | [612](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L612) |
+| [`campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py`](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L3) |
 | [`fable_independent_2026/L62_group_channel.py`](../../fable_independent_2026/L62_group_channel.py#L821) | cited | [821](../../fable_independent_2026/L62_group_channel.py#L821) |
 | [`hunt_2026/h53_h54_slacs_lenses.py`](../../hunt_2026/h53_h54_slacs_lenses.py#L3) | cited | [3](../../hunt_2026/h53_h54_slacs_lenses.py#L3), [70](../../hunt_2026/h53_h54_slacs_lenses.py#L70) |
 | [`real_research/cross_thread_review_2026_09_26/XR33_jeans_lcdm.py`](../../real_research/cross_thread_review_2026_09_26/XR33_jeans_lcdm.py#L3) | cited | [3](../../real_research/cross_thread_review_2026_09_26/XR33_jeans_lcdm.py#L3) |

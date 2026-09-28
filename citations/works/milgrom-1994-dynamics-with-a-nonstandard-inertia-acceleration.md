@@ -8,11 +8,11 @@
 
 ## Used in 136 script(s)
 
-How: cited in 103, named method/model in 132, cited in a paper in 3.
+How: cited in 104, named method/model in 132, cited in a paper in 3.
 
 | script | how | lines |
 |---|---|---|
-| [`campaign_fresh_gravity/CFG31_coma_udgs_under_b.py`](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L39) | named method/model — Milgrom's theorem: modified inertia and modified gravity agree only on circular orbits (MI vs MG) | [39](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L39), [85](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L85), [261](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L261) |
+| [`campaign_fresh_gravity/CFG31_coma_udgs_under_b.py`](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L39) | cited, named method/model | [39](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L39), [85](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L85), [261](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L261) |
 | [`fable_independent_2026/L21_binary_galaxies.py`](../../fable_independent_2026/L21_binary_galaxies.py#L104) | cited, named method/model | [104](../../fable_independent_2026/L21_binary_galaxies.py#L104), [105](../../fable_independent_2026/L21_binary_galaxies.py#L105) |
 | [`fable_independent_2026/L23_udg_verify.py`](../../fable_independent_2026/L23_udg_verify.py#L3) | cited, named method/model | [3](../../fable_independent_2026/L23_udg_verify.py#L3), [47](../../fable_independent_2026/L23_udg_verify.py#L47), [428](../../fable_independent_2026/L23_udg_verify.py#L428), [431](../../fable_independent_2026/L23_udg_verify.py#L431) |
 | [`fable_independent_2026/kappa_slot_2026/IDEAS_100_generator.py`](../../fable_independent_2026/kappa_slot_2026/IDEAS_100_generator.py#L43) | cited, named method/model | [43](../../fable_independent_2026/kappa_slot_2026/IDEAS_100_generator.py#L43) |

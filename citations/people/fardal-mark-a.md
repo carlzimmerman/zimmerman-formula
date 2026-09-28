@@ -1,10 +1,10 @@
 # Mark A. Fardal
 
-Credited in **6** file(s) through **6** work(s) · ORCID [0000-0003-4207-3788](https://orcid.org/0000-0003-4207-3788)
+Credited in **7** file(s) through **6** work(s) · ORCID [0000-0003-4207-3788](https://orcid.org/0000-0003-4207-3788)
 
 | work | used in | how |
 |---|---:|---|
-| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 4 | cited |
+| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 5 | cited |
 | [McConnachie et al. 2009](../works/mcconnachie-2009-the-remnants-of-galaxy-formation-from-a-panorami.md) — The remnants of galaxy formation from a panoramic survey of the region around M31 | 1 | cited in a paper |
 | [Ibata et al. 2013](../works/ibata-2013-a-vast-thin-plane-of-corotating-dwarf-galaxies.md) — A vast, thin plane of corotating dwarf galaxies orbiting the Andromeda galaxy | 1 | cited |
 | [Martin et al. 2009](../works/martin-2009-pandas-cubs-discovery-of-two-new-dwarf-galaxie.md) — PAndAS’ CUBS: DISCOVERY OF TWO NEW DWARF GALAXIES IN THE SURROUNDINGS OF THE ANDROMEDA AND TRIANGULUM GALAXIES | 1 | cited in a paper |

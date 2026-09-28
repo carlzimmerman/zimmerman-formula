@@ -1,6 +1,6 @@
 # Eckmiller, Hudson & Reiprich 2011 — Testing the low-mass end of X-ray scaling relations with a sample ofChandragalaxy groups
 
-**Reference.** Eckmiller, H. J.; Hudson, D. S.; Reiprich, T. H. (2011). Testing the low-mass end of X-ray scaling relations with a sample ofChandragalaxy groups. *Astronomy &amp; Astrophysics* 535, A105. [doi:10.1051/0004-6361/201116734](https://doi.org/10.1051/0004-6361/201116734) [arXiv:1109.6498](https://arxiv.org/abs/1109.6498)
+**Reference.** Eckmiller, H. J.; Hudson, D. S.; Reiprich, T. H. (2011). Testing the low-mass end of X-ray scaling relations with a sample ofChandragalaxy groups. *Astronomy & Astrophysics* 535, A105. [doi:10.1051/0004-6361/201116734](https://doi.org/10.1051/0004-6361/201116734) [arXiv:1109.6498](https://arxiv.org/abs/1109.6498)
 
 **BibTeX key:** `Eckmiller2011` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

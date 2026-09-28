@@ -1,6 +1,6 @@
 # Zhang et al. 2025 — The hot circumgalactic medium in the eROSITA All-Sky Survey: III. Star-forming and quiescent galaxies
 
-**Reference.** Zhang, Y.; Comparat, J.; Ponti, G.; Merloni, A.; Nandra, K.; Haberl, F.; Truong, N.; Pillepich, A.; Popesso, P.; Locatelli, N.; Zhang, X.; Sanders, J.; Zheng, X.; Liu, A.; Liu, T.; Predehl, P.; Salvato, M.; Bruggen, M.; Shreeram, S.; Yeung, M. C. H. (2025). The hot circumgalactic medium in the eROSITA All-Sky Survey: III. Star-forming and quiescent galaxies. *Astronomy &amp; Astrophysics* 693, A197. [doi:10.1051/0004-6361/202452273](https://doi.org/10.1051/0004-6361/202452273) [arXiv:2411.19945](https://arxiv.org/abs/2411.19945)
+**Reference.** Zhang, Y.; Comparat, J.; Ponti, G.; Merloni, A.; Nandra, K.; Haberl, F.; Truong, N.; Pillepich, A.; Popesso, P.; Locatelli, N.; Zhang, X.; Sanders, J.; Zheng, X.; Liu, A.; Liu, T.; Predehl, P.; Salvato, M.; Bruggen, M.; Shreeram, S.; Yeung, M. C. H. (2025). The hot circumgalactic medium in the eROSITA All-Sky Survey: III. Star-forming and quiescent galaxies. *Astronomy & Astrophysics* 693, A197. [doi:10.1051/0004-6361/202452273](https://doi.org/10.1051/0004-6361/202452273) [arXiv:2411.19945](https://arxiv.org/abs/2411.19945)
 
 **BibTeX key:** `Zhang2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

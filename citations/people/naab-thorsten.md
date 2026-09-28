@@ -1,11 +1,11 @@
 # Thorsten Naab
 
-Credited in **164** file(s) through **19** work(s) · ORCID [0000-0002-7314-2558](https://orcid.org/0000-0002-7314-2558) · affiliation on the cited work(s): Max-Planck Institut für Astrophysik
+Credited in **167** file(s) through **19** work(s) · ORCID [0000-0002-7314-2558](https://orcid.org/0000-0002-7314-2558) · affiliation on the cited work(s): Max-Planck Institut für Astrophysik
 
 | work | used in | how |
 |---|---:|---|
 | [Nestor Shachar et al. 2023](../works/nestor-shachar-2023-rc100-rotation-curves-of-100-massive-star-formi.md) — RC100: Rotation Curves of 100 Massive Star-forming Galaxies at z = 0.6–2.5 Reveal Little Dark Matter on Galact | 64 | cited, data used |
-| [Moster, Naab & White 2012](../works/moster-2012-galactic-star-formation-and-accretion-histories.md) — Galactic star formation and accretion histories from matching galaxies to dark matter haloes | 55 | cited, named method/model, cited in a paper |
+| [Moster, Naab & White 2012](../works/moster-2012-galactic-star-formation-and-accretion-histories.md) — Galactic star formation and accretion histories from matching galaxies to dark matter haloes | 58 | cited, named method/model, cited in a paper |
 | [Übler et al. 2017](../works/ubler-2017-the-evolution-of-the-tully-fisher-relation-betwe.md) — The Evolution of the Tully–Fisher Relation between z ∼ 2.3 and z ∼ 0.9 with KMOS3D ∗ | 44 | cited |
 | [Tacconi et al. 2018](../works/tacconi-2018-phibss-unified-scaling-relations-of-gas-depleti.md) — PHIBSS: Unified Scaling Relations of Gas Depletion Time and Molecular Gas Fractions* | 13 | cited, named method/model |
 | [Genzel et al. 2017](../works/genzel-2017-strongly-baryon-dominated-disk-galaxies-at-the-p.md) — Strongly baryon-dominated disk galaxies at the peak of galaxy formation ten billion years ago | 10 | cited |

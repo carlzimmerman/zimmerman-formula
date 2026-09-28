@@ -1,6 +1,6 @@
 # Fienga et al. 2007 — INPOP06: a new numerical planetary ephemeris
 
-**Reference.** Fienga, A.; Manche, H.; Laskar, J.; Gastineau, M. (2007). INPOP06: a new numerical planetary ephemeris. *Astronomy &amp; Astrophysics* 477, 315-327. [doi:10.1051/0004-6361:20066607](https://doi.org/10.1051/0004-6361:20066607)
+**Reference.** Fienga, A.; Manche, H.; Laskar, J.; Gastineau, M. (2007). INPOP06: a new numerical planetary ephemeris. *Astronomy & Astrophysics* 477, 315-327. [doi:10.1051/0004-6361:20066607](https://doi.org/10.1051/0004-6361:20066607)
 
 **BibTeX key:** `Fienga2007` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Begum, Chengalur & Karachentsev 2005 — A dwarf galaxy with a giant HI disk
 
-**Reference.** Begum, A.; Chengalur, J. N.; Karachentsev, I. D. (2005). A dwarf galaxy with a giant HI disk. *Astronomy &amp; Astrophysics* 433, L1-L4. [doi:10.1051/0004-6361:200500026](https://doi.org/10.1051/0004-6361:200500026)
+**Reference.** Begum, A.; Chengalur, J. N.; Karachentsev, I. D. (2005). A dwarf galaxy with a giant HI disk. *Astronomy & Astrophysics* 433, L1-L4. [doi:10.1051/0004-6361:200500026](https://doi.org/10.1051/0004-6361:200500026)
 
 **BibTeX key:** `Begum2005` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

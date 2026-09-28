@@ -1,6 +1,6 @@
 # Feix, Fedeli & Bartelmann 2007 — Asymmetric gravitational lenses in TeVeS and application to the bullet cluster
 
-**Reference.** Feix, M.; Fedeli, C.; Bartelmann, M. (2007). Asymmetric gravitational lenses in TeVeS and application to the bullet cluster. *Astronomy &amp; Astrophysics* 480, 313-325. [doi:10.1051/0004-6361:20078224](https://doi.org/10.1051/0004-6361:20078224)
+**Reference.** Feix, M.; Fedeli, C.; Bartelmann, M. (2007). Asymmetric gravitational lenses in TeVeS and application to the bullet cluster. *Astronomy & Astrophysics* 480, 313-325. [doi:10.1051/0004-6361:20078224](https://doi.org/10.1051/0004-6361:20078224)
 
 **BibTeX key:** `Feix2007` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

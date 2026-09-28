@@ -1,6 +1,6 @@
 # Boselli et al. 2014 — Cold gas properties of the Herschel Reference Survey: III. Molecular gas stripping in cluster galaxies
 
-**Reference.** Boselli, A.; Cortese, L.; Boquien, M.; Boissier, S.; Catinella, B.; Gavazzi, G.; Lagos, C.; Saintonge, A. (2014). Cold gas properties of the Herschel Reference Survey: III. Molecular gas stripping in cluster galaxies. *Astronomy &amp; Astrophysics* 564, A67. [doi:10.1051/0004-6361/201322313](https://doi.org/10.1051/0004-6361/201322313)
+**Reference.** Boselli, A.; Cortese, L.; Boquien, M.; Boissier, S.; Catinella, B.; Gavazzi, G.; Lagos, C.; Saintonge, A. (2014). Cold gas properties of the Herschel Reference Survey: III. Molecular gas stripping in cluster galaxies. *Astronomy & Astrophysics* 564, A67. [doi:10.1051/0004-6361/201322313](https://doi.org/10.1051/0004-6361/201322313)
 
 **BibTeX key:** `Boselli2014` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Lovisari et al. 2020 — Comparing different mass estimators for a large subsample of thePlanck-ESZ clusters
 
-**Reference.** Lovisari, L.; Ettori, S.; Sereno, M.; Schellenberger, G.; Forman, W. R.; Andrade-Santos, F.; Jones, C. (2020). Comparing different mass estimators for a large subsample of thePlanck-ESZ clusters. *Astronomy &amp; Astrophysics* 644, A78. [doi:10.1051/0004-6361/202038718](https://doi.org/10.1051/0004-6361/202038718) [arXiv:2010.03582](https://arxiv.org/abs/2010.03582)
+**Reference.** Lovisari, L.; Ettori, S.; Sereno, M.; Schellenberger, G.; Forman, W. R.; Andrade-Santos, F.; Jones, C. (2020). Comparing different mass estimators for a large subsample of thePlanck-ESZ clusters. *Astronomy & Astrophysics* 644, A78. [doi:10.1051/0004-6361/202038718](https://doi.org/10.1051/0004-6361/202038718) [arXiv:2010.03582](https://arxiv.org/abs/2010.03582)
 
 **BibTeX key:** `Lovisari2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

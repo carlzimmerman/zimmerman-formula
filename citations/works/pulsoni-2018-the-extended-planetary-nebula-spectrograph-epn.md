@@ -1,6 +1,6 @@
 # Pulsoni et al. 2018 — The extended Planetary Nebula Spectrograph (ePN.S) early-type galaxy survey: The kinematic diversity of stellar halos and the relation between halo transition scale and stellar mass
 
-**Reference.** Pulsoni, C.; Gerhard, O.; Arnaboldi, M.; Coccato, L.; Longobardi, A.; Napolitano, N. R.; Moylan, E.; Narayan, C.; Gupta, V.; Burkert, A.; Capaccioli, M.; Chies-Santos, A. L.; Cortesi, A.; Freeman, K. C.; Kuijken, K.; Merrifield, M. R.; Romanowsky, A. J.; Tortora, C. (2018). The extended Planetary Nebula Spectrograph (ePN.S) early-type galaxy survey: The kinematic diversity of stellar halos and the relation between halo transition scale and stellar mass. *Astronomy &amp; Astrophysics* 618, A94. [doi:10.1051/0004-6361/201732473](https://doi.org/10.1051/0004-6361/201732473)
+**Reference.** Pulsoni, C.; Gerhard, O.; Arnaboldi, M.; Coccato, L.; Longobardi, A.; Napolitano, N. R.; Moylan, E.; Narayan, C.; Gupta, V.; Burkert, A.; Capaccioli, M.; Chies-Santos, A. L.; Cortesi, A.; Freeman, K. C.; Kuijken, K.; Merrifield, M. R.; Romanowsky, A. J.; Tortora, C. (2018). The extended Planetary Nebula Spectrograph (ePN.S) early-type galaxy survey: The kinematic diversity of stellar halos and the relation between halo transition scale and stellar mass. *Astronomy & Astrophysics* 618, A94. [doi:10.1051/0004-6361/201732473](https://doi.org/10.1051/0004-6361/201732473)
 
 **BibTeX key:** `Pulsoni2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

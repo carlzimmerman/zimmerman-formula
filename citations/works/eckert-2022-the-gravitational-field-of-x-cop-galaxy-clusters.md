@@ -1,6 +1,6 @@
 # Eckert et al. 2022 — The gravitational field of X-COP galaxy clusters
 
-**Reference.** Eckert, D.; Ettori, S.; Pointecouteau, E.; van der Burg, R. F. J.; Loubser, S. I. (2022). The gravitational field of X-COP galaxy clusters. *Astronomy &amp; Astrophysics* 662, A123. [doi:10.1051/0004-6361/202142507](https://doi.org/10.1051/0004-6361/202142507)
+**Reference.** Eckert, D.; Ettori, S.; Pointecouteau, E.; van der Burg, R. F. J.; Loubser, S. I. (2022). The gravitational field of X-COP galaxy clusters. *Astronomy & Astrophysics* 662, A123. [doi:10.1051/0004-6361/202142507](https://doi.org/10.1051/0004-6361/202142507)
 
 **BibTeX key:** `Eckert2022` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import (DATA, REGISTRY, REPO, dump_json, load_json, norm_family, own_author_families,  # noqa: E402
+from common import (DATA, REGISTRY, REPO, dump_json, load_json, norm_family, own_author_families, read_committed,  # noqa: E402
                     slugify, strip_accents)
 from fetch import classic_record, wid_arxiv, wid_doi  # noqa: E402
 
@@ -338,7 +338,7 @@ def window_text(path, lines, pad=4):
     """The script's own text around the cited lines (for override rules)."""
     if path not in _file_lines:
         try:
-            _file_lines[path] = (REPO / path).read_text(encoding="utf-8", errors="replace").splitlines()
+            _file_lines[path] = (read_committed(path) or b"").decode("utf-8", "replace").splitlines()
         except OSError:
             _file_lines[path] = []
     src = _file_lines[path]

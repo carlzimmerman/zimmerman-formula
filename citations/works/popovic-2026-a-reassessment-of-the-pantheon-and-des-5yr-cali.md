@@ -1,6 +1,6 @@
 # Popovic et al. 2026 — A reassessment of the Pantheon+ and DES 5YR calibration uncertainties: Dovekie
 
-**Reference.** Popovic, B.; Kenworthy, W. D.; Ginolin, M.; Goobar, A.; Shah, P.; Boyd, B. M.; Do, A.; Brout, D.; Scolnic, D.; Vincenzi, M.; Dhawan, S.; Jones, D. O.; Smith, M.; Rigault, M.; Racine, B.; Hayes, E. E.; Chen, R.; Wiseman, P.; Galbany, L.; Grayling, M.; LaCroix, L.; Barjou-Delayre, C.; Kuhn, D.; Lemon, C. (2026). A reassessment of the Pantheon+ and DES 5YR calibration uncertainties: Dovekie. *Astronomy &amp; Astrophysics* 712, A131. [doi:10.1051/0004-6361/202555963](https://doi.org/10.1051/0004-6361/202555963)
+**Reference.** Popovic, B.; Kenworthy, W. D.; Ginolin, M.; Goobar, A.; Shah, P.; Boyd, B. M.; Do, A.; Brout, D.; Scolnic, D.; Vincenzi, M.; Dhawan, S.; Jones, D. O.; Smith, M.; Rigault, M.; Racine, B.; Hayes, E. E.; Chen, R.; Wiseman, P.; Galbany, L.; Grayling, M.; LaCroix, L.; Barjou-Delayre, C.; Kuhn, D.; Lemon, C. (2026). A reassessment of the Pantheon+ and DES 5YR calibration uncertainties: Dovekie. *Astronomy & Astrophysics* 712, A131. [doi:10.1051/0004-6361/202555963](https://doi.org/10.1051/0004-6361/202555963)
 
 **BibTeX key:** `Popovic2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

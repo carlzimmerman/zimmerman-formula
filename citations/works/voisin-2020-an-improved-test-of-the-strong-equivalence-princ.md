@@ -1,6 +1,6 @@
 # Voisin et al. 2020 — An improved test of the strong equivalence principle with the pulsar in a triple star system
 
-**Reference.** Voisin, G.; Cognard, I.; Freire, P. C. C.; Wex, N.; Guillemot, L.; Desvignes, G.; Kramer, M.; Theureau, G. (2020). An improved test of the strong equivalence principle with the pulsar in a triple star system. *Astronomy &amp; Astrophysics* 638, A24. [doi:10.1051/0004-6361/202038104](https://doi.org/10.1051/0004-6361/202038104)
+**Reference.** Voisin, G.; Cognard, I.; Freire, P. C. C.; Wex, N.; Guillemot, L.; Desvignes, G.; Kramer, M.; Theureau, G. (2020). An improved test of the strong equivalence principle with the pulsar in a triple star system. *Astronomy & Astrophysics* 638, A24. [doi:10.1051/0004-6361/202038104](https://doi.org/10.1051/0004-6361/202038104)
 
 **BibTeX key:** `Voisin2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

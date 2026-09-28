@@ -421,7 +421,7 @@
 - Beardsley, Adam P. — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
 - Beas-Gonzalez, J. — author of [DES Collaboration et al. 2026](../works/des-collaboration-2026-dark-energy-survey-year-6-results-cosmological.md) · 1 scripts
 - [Beasley, Michael A](beasley-michael-a.md) — 1 work(s) · 3 scripts
-- [Beaton, Rachael Lynn](beaton-rachael-lynn.md) — 11 work(s) · 18 scripts
+- [Beaton, Rachael Lynn](beaton-rachael-lynn.md) — 11 work(s) · 19 scripts
 - Beattie, K. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
 - Beatty, J J — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
 - Beau, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -619,7 +619,7 @@
 - Beretvas, A. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
 - [Berezhiani, Lasha](berezhiani-lasha.md) — 4 work(s) · 17 scripts
 - [Berg, Danielle A.](berg-danielle-a.md) — 5 work(s) · 8 scripts
-- [Berg, Sebastian](berg-sebastian.md) — 1 work(s) · 5148 scripts
+- [Berg, Sebastian](berg-sebastian.md) — 1 work(s) · 5150 scripts
 - [Berg, Trystyn A. M.](berg-trystyn-a-m.md) — 1 work(s) · 25 scripts
 - Bergamin, Fabio — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
 - [Bergamini, Pietro](bergamini-pietro.md) — 4 work(s) · 7 scripts
@@ -713,7 +713,7 @@
 - Berz, M. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
 - Besana, M.i. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Besjes, G.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Besla, Gurtina](besla-gurtina.md) — 10 work(s) · 13 scripts
+- [Besla, Gurtina](besla-gurtina.md) — 10 work(s) · 14 scripts
 - [Bessel, Friedrich Wilhelm](bessel-friedrich-wilhelm.md) — 1 work(s) · 44 scripts
 - Besser, Felipe — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
 - Besserer, U. — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md) · 13 scripts
@@ -803,7 +803,7 @@
 - [Bigwood, Leah](bigwood-leah.md) — 1 work(s) · 2 scripts
 - Bijaoui, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
 - Bijnens, J. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
-- [Bílek, Michal](bilek-michal.md) — 4 work(s) · 19 scripts
+- [Bílek, Michal](bilek-michal.md) — 4 work(s) · 20 scripts
 - Bilenko, Igor A. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
 - Bilgili, S. A. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md), [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md), [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 10 scripts
 - [Bilicki, Maciej](bilicki-maciej.md) — 15 work(s) · 181 scripts
@@ -945,7 +945,7 @@
 - Blumenfeld, B. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
 - [Blumenfeld, Raphael](blumenfeld-raphael.md) — 1 work(s) · 1 scripts
 - Blumenschein, U. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Blumenthal, George R.](blumenthal-george-r.md) — 2 work(s) · 1217 scripts
+- [Blumenthal, George R.](blumenthal-george-r.md) — 2 work(s) · 1218 scripts
 - Blundell, Ray — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
 - Blundell, Raymond — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
 - [Blyth, Sarah](blyth-sarah.md) — 2 work(s) · 52 scripts
@@ -1032,7 +1032,7 @@
 - Bolliet, Boris — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 19 scripts
 - Bolnet, N.m. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Bolte, Michael](bolte-michael.md) — 2 work(s) · 1 scripts
-- [Bolton, Adam S.](bolton-adam-s.md) — 16 work(s) · 421 scripts
+- [Bolton, Adam S.](bolton-adam-s.md) — 16 work(s) · 422 scripts
 - [Bolton, David](bolton-david.md) — 1 work(s) · 4 scripts
 - [Bolton, James S.](bolton-james-s.md) — 6 work(s) · 30 scripts
 - Bolton, R. J. — author of [Bannister et al. 2019](../works/bannister-2019-a-single-fast-radio-burst-localized-to-a-massive.md) · 1 scripts
@@ -1325,7 +1325,7 @@
 - Bressan, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
 - Bressler, M. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
 - Bressler, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Brett, Matthew](brett-matthew.md) — 2 work(s) · 5181 scripts
+- [Brett, Matthew](brett-matthew.md) — 2 work(s) · 5183 scripts
 - [Breuval, Louise](breuval-louise.md) — 3 work(s) · 117 scripts
 - Brevik, J. A. — author of [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 1 scripts
 - Brew, C. A. J. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
@@ -1351,7 +1351,7 @@
 - Brighenti, F. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
 - Brighenti, F. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 4 scripts
 - Brighenti, F. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
-- [Brighenti, Fabrizio](brighenti-fabrizio.md) — 1 work(s) · 3 scripts
+- [Brighenti, Fabrizio](brighenti-fabrizio.md) — 1 work(s) · 4 scripts
 - Brighenti, Francesco — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md) · 3 scripts
 - Bright, Jonathan — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
 - Brigliadori, L. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
@@ -1446,7 +1446,7 @@
 - Brown, Rebecca — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
 - Brown, S. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
 - [Brown, Thomas M.](brown-thomas-m.md) — 6 work(s) · 2 scripts
-- [Brown, Tom](brown-tom.md) — 1 work(s) · 4 scripts
+- [Brown, Tom](brown-tom.md) — 1 work(s) · 5 scripts
 - Brown, Westley — author of [Sarrouh et al. 2025](../works/sarrouh-2025-canucs-technicolor-data-release-1-imaging-phot.md) · 1 scripts
 - [Brownstein, Joel R.](brownstein-joel-r.md) — 18 work(s) · 442 scripts
 - [Broyden, C. G.](broyden-c-g.md) — 1 work(s) · 7 scripts
@@ -1544,13 +1544,13 @@
 - Bull, Philip — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
 - Bulla, M. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
 - Bullock, E. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
-- [Bullock, James S.](bullock-james-s.md) — 36 work(s) · 58 scripts
+- [Bullock, James S.](bullock-james-s.md) — 36 work(s) · 59 scripts
 - Bulten, Henk J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
 - [Bunch, T. S.](bunch-t-s.md) — 1 work(s) · 41 scripts
 - Buncher, B. — author of [Shipp et al. 2018](../works/shipp-2018-stellar-streams-discovered-in-the-dark-energy-su.md) · 1 scripts
 - Bunclark, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
 - Bundock, A.c. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Bundy, Kevin](bundy-kevin.md) — 11 work(s) · 56 scripts
+- [Bundy, Kevin](bundy-kevin.md) — 11 work(s) · 57 scripts
 - [Bunker, Andrew J.](bunker-andrew-j.md) — 21 work(s) · 78 scripts
 - [Bunney, Cameron R. D.](bunney-cameron-r-d.md) — 1 work(s) · 2 scripts
 - Bunse, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -1558,7 +1558,7 @@
 - Buonanno, Alessandra — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
 - [Buonanno, R.](buonanno-r.md) — 2 work(s) · 257 scripts
 - [Buoninfante, Luca](buoninfante-luca.md) — 2 work(s) · 4 scripts
-- [Buote, David A.](buote-david-a.md) — 3 work(s) · 11 scripts
+- [Buote, David A.](buote-david-a.md) — 3 work(s) · 12 scripts
 - Buran, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Burba, Jacob — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
 - [Burchat, Patricia R.](burchat-patricia-r.md) — 2 work(s) · 4 scripts

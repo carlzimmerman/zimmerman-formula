@@ -1,6 +1,6 @@
 # Ciocan et al. 2026 — MUSE-DARK: III. The evolution of the radial acceleration relation at intermediate redshifts
 
-**Reference.** Ciocan, B. I.; Bouché, N. F.; Fensch, J.; Krajnović, D.; Freundlich, J.; Desmond, H.; Famaey, B.; Techi, R. (2026). MUSE-DARK: III. The evolution of the radial acceleration relation at intermediate redshifts. *Astronomy &amp; Astrophysics* 709, L16. [doi:10.1051/0004-6361/202659230](https://doi.org/10.1051/0004-6361/202659230) [arXiv:2604.22613](https://arxiv.org/abs/2604.22613)
+**Reference.** Ciocan, B. I.; Bouché, N. F.; Fensch, J.; Krajnović, D.; Freundlich, J.; Desmond, H.; Famaey, B.; Techi, R. (2026). MUSE-DARK: III. The evolution of the radial acceleration relation at intermediate redshifts. *Astronomy & Astrophysics* 709, L16. [doi:10.1051/0004-6361/202659230](https://doi.org/10.1051/0004-6361/202659230) [arXiv:2604.22613](https://arxiv.org/abs/2604.22613)
 
 **BibTeX key:** `Ciocan2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -448,7 +448,7 @@ ORCID [0009-0008-3508-7982](https://orcid.org/0009-0008-3508-7982).
 
 **[CITATIONS.md](CITATIONS.md)** indexes everyone whose published work — equations, models, methods, data or
 software — the repository's Python scripts use: **21,118 people** through **3,175 verified
-works**, credited in **7,607 of the 8,141 scanned scripts**, each work linked
+works**, credited in **7,609 of the 8,143 scanned scripts**, each work linked
 to the exact script and line that uses it ([people A–Z](citations/people/README.md) · [works](citations/WORKS.md) ·
 [REFERENCES.bib](citations/REFERENCES.bib)).
 
@@ -459,7 +459,7 @@ to the exact script and line that uses it ([people A–Z](citations/people/READM
   publisher, arXiv or INSPIRE-HEP record first; the people credited are that record's authors.
   14,267 of them are credited as authors of large collaboration papers (Planck, DESI, Gaia,
   LIGO–Virgo–KAGRA …).
-- **Most credited for the research itself** (files citing their work, naming their method or using their data): [Mordehai Milgrom](citations/people/milgrom-mordehai.md) (3,688) · [Stacy S. McGaugh](citations/people/mcgaugh-stacy-s.md) (2,060) · [James M. Schombert](citations/people/schombert-james-m.md) (2,030) · [Isaac Newton](citations/people/newton-isaac.md) (1,859) · [Federico Lelli](citations/people/lelli-federico.md) (1,812) · [Jacob D. Bekenstein](citations/people/bekenstein-jacob-d.md) (1,492) · [Marcel S. Pawlowski](citations/people/pawlowski-marcel-s.md) (1,361) · [Sandra M. Faber](citations/people/faber-sandra-m.md) (1,235) · [P. J. E. Peebles](citations/people/peebles-p-j-e.md) (1,219) · [Joel R. Primack](citations/people/primack-joel-r.md) (1,219) · [George R. Blumenthal](citations/people/blumenthal-george-r.md) (1,217) · [Martin J. Rees](citations/people/rees-martin-j.md) (1,217) · [Martin J. White](citations/people/white-martin-j.md) (947) · [A. Friedmann](citations/people/friedmann-a.md) (896) … [all →](citations/people/README.md)
+- **Most credited for the research itself** (files citing their work, naming their method or using their data): [Mordehai Milgrom](citations/people/milgrom-mordehai.md) (3,688) · [Stacy S. McGaugh](citations/people/mcgaugh-stacy-s.md) (2,062) · [James M. Schombert](citations/people/schombert-james-m.md) (2,032) · [Isaac Newton](citations/people/newton-isaac.md) (1,859) · [Federico Lelli](citations/people/lelli-federico.md) (1,814) · [Jacob D. Bekenstein](citations/people/bekenstein-jacob-d.md) (1,492) · [Marcel S. Pawlowski](citations/people/pawlowski-marcel-s.md) (1,361) · [Sandra M. Faber](citations/people/faber-sandra-m.md) (1,236) · [P. J. E. Peebles](citations/people/peebles-p-j-e.md) (1,220) · [Joel R. Primack](citations/people/primack-joel-r.md) (1,220) · [George R. Blumenthal](citations/people/blumenthal-george-r.md) (1,218) · [Martin J. Rees](citations/people/rees-martin-j.md) (1,218) · [Martin J. White](citations/people/white-martin-j.md) (947) · [A. Friedmann](citations/people/friedmann-a.md) (896) … [all →](citations/people/README.md)
 - **What could not be verified** — 75 identifiers that do not resolve or point to a different paper than the one named, and 59
   author–year citations that match no publication (some scripts were machine-written) — is listed with file and line
   in [citations/UNVERIFIED.md](citations/UNVERIFIED.md), together with the ambiguous citations. None of it is credited.

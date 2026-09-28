@@ -1,6 +1,6 @@
 # Adam S. Bolton
 
-Credited in **421** file(s) through **16** work(s) · ORCID [0000-0002-9836-603X](https://orcid.org/0000-0002-9836-603X) · affiliation on the cited work(s): University of Utah
+Credited in **422** file(s) through **16** work(s) · ORCID [0000-0002-9836-603X](https://orcid.org/0000-0002-9836-603X) · affiliation on the cited work(s): University of Utah
 
 | work | used in | how |
 |---|---:|---|
@@ -8,7 +8,7 @@ Credited in **421** file(s) through **16** work(s) · ORCID [0000-0002-9836-603X
 | [Alam et al. 2017](../works/alam-2017-the-clustering-of-galaxies-in-the-completed-sdss.md) — The clustering of galaxies in the completed SDSS-III Baryon Oscillation Spectroscopic Survey: cosmological ana | 48 | cited, data used |
 | [eBOSS Collaboration et al. 2021](../works/eboss-collaboration-2021-completed-sdss-iv-extended-baryon-oscillation-sp.md) — Completed SDSS-IV extended Baryon Oscillation Spectroscopic Survey: Cosmological implications from two decades | 22 | cited, data used |
 | [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md) — The Seventeenth Data Release of the Sloan Digital Sky Surveys: Complete Release of MaNGA, MaStar, and APOGEE-2 | 7 | cited, data used |
-| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 5 | cited |
+| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 6 | cited |
 | [Treu et al. 2010](../works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
 | [Auger et al. 2010](../works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE EARLY-TYPE GALAXIES | 4 | cited |
 | [Bolton et al. 2008](../works/bolton-2008-the-sloan-lens-acs-survey-v-the-full-acs-stron.md) — The Sloan Lens ACS Survey. V. The Full ACS Strong‐Lens Sample | 3 | cited |

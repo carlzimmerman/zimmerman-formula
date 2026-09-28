@@ -1,6 +1,6 @@
 # Maddox et al. 2021 — MIGHTEE-HI: The H I emission project of the MeerKAT MIGHTEE survey
 
-**Reference.** Maddox, N.; Frank, B. S.; Ponomareva, A. A.; Jarvis, M. J.; Adams, E. A. K.; Davé, R.; Oosterloo, T. A.; Santos, M. G.; Blyth, S. L.; Glowacki, M.; Kraan-Korteweg, R. C.; Mulaudzi, W.; Namumba, B.; Prandoni, I.; Rajohnson, S. H. A.; Spekkens, K.; Adams, N. J.; Bowler, R. A. A.; Collier, J. D.; Heywood, I.; Sekhar, S.; Taylor, A. R. (2021). MIGHTEE-HI: The H I emission project of the MeerKAT MIGHTEE survey. *Astronomy &amp; Astrophysics* 646, A35. [doi:10.1051/0004-6361/202039655](https://doi.org/10.1051/0004-6361/202039655) [arXiv:2011.09470](https://arxiv.org/abs/2011.09470)
+**Reference.** Maddox, N.; Frank, B. S.; Ponomareva, A. A.; Jarvis, M. J.; Adams, E. A. K.; Davé, R.; Oosterloo, T. A.; Santos, M. G.; Blyth, S. L.; Glowacki, M.; Kraan-Korteweg, R. C.; Mulaudzi, W.; Namumba, B.; Prandoni, I.; Rajohnson, S. H. A.; Spekkens, K.; Adams, N. J.; Bowler, R. A. A.; Collier, J. D.; Heywood, I.; Sekhar, S.; Taylor, A. R. (2021). MIGHTEE-HI: The H I emission project of the MeerKAT MIGHTEE survey. *Astronomy & Astrophysics* 646, A35. [doi:10.1051/0004-6361/202039655](https://doi.org/10.1051/0004-6361/202039655) [arXiv:2011.09470](https://arxiv.org/abs/2011.09470)
 
 **BibTeX key:** `Maddox2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

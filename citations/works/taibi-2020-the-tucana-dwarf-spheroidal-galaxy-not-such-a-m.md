@@ -1,6 +1,6 @@
 # Taibi et al. 2020 — The Tucana dwarf spheroidal galaxy: not such a massive failure after all
 
-**Reference.** Taibi, S.; Battaglia, G.; Rejkuba, M.; Leaman, R.; Kacharov, N.; Iorio, G.; Jablonka, P.; Zoccali, M. (2020). The Tucana dwarf spheroidal galaxy: not such a massive failure after all. *Astronomy &amp; Astrophysics* 635, A152. [doi:10.1051/0004-6361/201937240](https://doi.org/10.1051/0004-6361/201937240)
+**Reference.** Taibi, S.; Battaglia, G.; Rejkuba, M.; Leaman, R.; Kacharov, N.; Iorio, G.; Jablonka, P.; Zoccali, M. (2020). The Tucana dwarf spheroidal galaxy: not such a massive failure after all. *Astronomy & Astrophysics* 635, A152. [doi:10.1051/0004-6361/201937240](https://doi.org/10.1051/0004-6361/201937240)
 
 **BibTeX key:** `Taibi2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

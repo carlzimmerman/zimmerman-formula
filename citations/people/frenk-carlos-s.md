@@ -1,11 +1,11 @@
 # Carlos S. Frenk
 
-Credited in **833** file(s) through **27** work(s) · ORCID [0000-0002-2338-716X](https://orcid.org/0000-0002-2338-716X) · affiliation on the cited work(s): Institute for Computational Cosmology; Durham University; Institute of Computational Cosmology, Department of Physics, Durham University, South Road, Durham DH1 3LE, UK
+Credited in **835** file(s) through **27** work(s) · ORCID [0000-0002-2338-716X](https://orcid.org/0000-0002-2338-716X) · affiliation on the cited work(s): Institute for Computational Cosmology; Durham University; Institute of Computational Cosmology, Department of Physics, Durham University, South Road, Durham DH1 3LE, UK
 
 | work | used in | how |
 |---|---:|---|
-| [Navarro, Frenk & White 1997](../works/navarro-1997-a-universal-density-profile-from-hierarchical-cl.md) — A Universal Density Profile from Hierarchical Clustering | 416 | named method/model, cited in a paper |
-| [Navarro, Frenk & White 1996](../works/navarro-1996-the-structure-of-cold-dark-matter-halos.md) — The Structure of Cold Dark Matter Halos | 413 | named method/model |
+| [Navarro, Frenk & White 1997](../works/navarro-1997-a-universal-density-profile-from-hierarchical-cl.md) — A Universal Density Profile from Hierarchical Clustering | 418 | named method/model, cited in a paper |
+| [Navarro, Frenk & White 1996](../works/navarro-1996-the-structure-of-cold-dark-matter-halos.md) — The Structure of Cold Dark Matter Halos | 415 | named method/model |
 | [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) — The DESI Experiment Part I: Science,Targeting, and Survey Design | 381 | cited, data used |
 | [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md) — DESI DR2 results. II. Measurements of baryon acoustic oscillations and cosmological constraints | 164 | cited, data used, cited in a paper |
 | [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md) — DESI 2024 VI: cosmological constraints from the measurements of baryon acoustic oscillations | 103 | cited, data used, cited in a paper |

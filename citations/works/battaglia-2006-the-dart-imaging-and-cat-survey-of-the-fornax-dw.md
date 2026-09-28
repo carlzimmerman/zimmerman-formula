@@ -1,6 +1,6 @@
 # Battaglia et al. 2006 — The DART imaging and CaT survey of the Fornax dwarf spheroidal galaxy
 
-**Reference.** Battaglia, G.; Tolstoy, E.; Helmi, A.; Irwin, M. J.; Letarte, B.; Jablonka, P.; Hill, V.; Venn, K. A.; Shetrone, M. D.; Arimoto, N.; Primas, F.; Kaufer, A.; Francois, P.; Szeifert, T.; Abel, T.; Sadakane, K. (2006). The DART imaging and CaT survey of the Fornax dwarf spheroidal galaxy. *Astronomy &amp; Astrophysics* 459, 423-440. [doi:10.1051/0004-6361:20065720](https://doi.org/10.1051/0004-6361:20065720)
+**Reference.** Battaglia, G.; Tolstoy, E.; Helmi, A.; Irwin, M. J.; Letarte, B.; Jablonka, P.; Hill, V.; Venn, K. A.; Shetrone, M. D.; Arimoto, N.; Primas, F.; Kaufer, A.; Francois, P.; Szeifert, T.; Abel, T.; Sadakane, K. (2006). The DART imaging and CaT survey of the Fornax dwarf spheroidal galaxy. *Astronomy & Astrophysics* 459, 423-440. [doi:10.1051/0004-6361:20065720](https://doi.org/10.1051/0004-6361:20065720)
 
 **BibTeX key:** `Battaglia2006` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

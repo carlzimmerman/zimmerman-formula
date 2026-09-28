@@ -1,6 +1,6 @@
 # Bahar et al. 2022 — The eROSITA Final Equatorial-Depth Survey (eFEDS): X-ray properties and scaling relations of galaxy clusters and groups
 
-**Reference.** Bahar, Y. E.; Bulbul, E.; Clerc, N.; Ghirardini, V.; Liu, A.; Nandra, K.; Pacaud, F.; Chiu, I.-N.; Comparat, J.; Ider-Chitham, J.; Klein, M.; Liu, T.; Merloni, A.; Migkas, K.; Okabe, N.; Ramos-Ceja, M. E.; Reiprich, T. H.; Sanders, J. S.; Schrabback, T. (2022). The eROSITA Final Equatorial-Depth Survey (eFEDS): X-ray properties and scaling relations of galaxy clusters and groups. *Astronomy &amp; Astrophysics* 661, A7. [doi:10.1051/0004-6361/202142462](https://doi.org/10.1051/0004-6361/202142462)
+**Reference.** Bahar, Y. E.; Bulbul, E.; Clerc, N.; Ghirardini, V.; Liu, A.; Nandra, K.; Pacaud, F.; Chiu, I.-N.; Comparat, J.; Ider-Chitham, J.; Klein, M.; Liu, T.; Merloni, A.; Migkas, K.; Okabe, N.; Ramos-Ceja, M. E.; Reiprich, T. H.; Sanders, J. S.; Schrabback, T. (2022). The eROSITA Final Equatorial-Depth Survey (eFEDS): X-ray properties and scaling relations of galaxy clusters and groups. *Astronomy & Astrophysics* 661, A7. [doi:10.1051/0004-6361/202142462](https://doi.org/10.1051/0004-6361/202142462)
 
 **BibTeX key:** `Bahar2022` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

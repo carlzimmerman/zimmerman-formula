@@ -1,12 +1,12 @@
 # Thomas H. Reiprich
 
-Credited in **159** file(s) through **13** work(s) · ORCID [0000-0003-2047-2884](https://orcid.org/0000-0003-2047-2884)
+Credited in **160** file(s) through **13** work(s) · ORCID [0000-0003-2047-2884](https://orcid.org/0000-0003-2047-2884)
 
 | work | used in | how |
 |---|---:|---|
 | [Bulbul et al. 2024](../works/bulbul-2024-the-srg-erosita-all-sky-survey-the-first-catalo.md) — The SRG/eROSITA All-Sky Survey: The first catalog of galaxy clusters and groups in the Western Galactic Hemisp | 147 | cited, data used, cited in a paper |
 | [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md) — The SRG/eROSITA all-sky survey: First X-ray catalogues and data release of the western Galactic hemisphere | 143 | data used |
-| [Lovisari, Reiprich & Schellenberger 2015](../works/lovisari-2015-scaling-properties-of-a-complete-x-ray-selected.md) — Scaling properties of a complete X-ray selected galaxy group sample | 14 | cited |
+| [Lovisari, Reiprich & Schellenberger 2015](../works/lovisari-2015-scaling-properties-of-a-complete-x-ray-selected.md) — Scaling properties of a complete X-ray selected galaxy group sample | 15 | cited |
 | [Ghirardini et al. 2024](../works/ghirardini-2024-the-srg-erosita-all-sky-survey-cosmology-constr.md) — The SRG/eROSITA all-sky survey: Cosmology constraints from cluster abundances in the western Galactic hemisphe | 7 | cited |
 | [Eckmiller, Hudson & Reiprich 2011](../works/eckmiller-2011-testing-the-low-mass-end-of-x-ray-scaling-relati.md) — Testing the low-mass end of X-ray scaling relations with a sample ofChandragalaxy groups | 6 | cited |
 | [Grandis et al. 2024](../works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md) — The SRG/eROSITA All-Sky Survey: Dark Energy Survey year 3 weak gravitational lensing by eRASS1 selected galaxy | 4 | cited |

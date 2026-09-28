@@ -227,7 +227,7 @@
 - Recio-Blanco, Alejandra — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
 - [Reddick, R.](reddick-r.md) — 1 work(s) · 1 scripts
 - [Reddy, Naveen](reddy-naveen.md) — 1 work(s) · 6 scripts
-- [Reddy, Tyler](reddy-tyler.md) — 2 work(s) · 5181 scripts
+- [Reddy, Tyler](reddy-tyler.md) — 2 work(s) · 5183 scripts
 - Redelbach, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Redepenning, J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
 - [Redi, Michele](redi-michele.md) — 1 work(s) · 1 scripts
@@ -239,7 +239,7 @@
 - Reed, C. M. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 18 scripts
 - [Reed, S.](reed-s.md) — 1 work(s) · 1 scripts
 - Rees, L. A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
-- [Rees, Martin J.](rees-martin-j.md) — 1 work(s) · 1217 scripts
+- [Rees, Martin J.](rees-martin-j.md) — 1 work(s) · 1218 scripts
 - [Reese, Erik D.](reese-erik-d.md) — 3 work(s) · 6 scripts
 - Reeves, K. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Refregier, Alexandre](refregier-alexandre.md) — 4 work(s) · 387 scripts
@@ -279,7 +279,7 @@
 - [Reinhold, Timothy A.](reinhold-timothy-a.md) — 1 work(s) · 1 scripts
 - Reinsch, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Reintsema, C. D. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md) · 32 scripts
-- [Reiprich, Thomas H.](reiprich-thomas-h.md) — 13 work(s) · 159 scripts
+- [Reiprich, Thomas H.](reiprich-thomas-h.md) — 13 work(s) · 160 scripts
 - [Reis, Ribamar R. R.](reis-ribamar-r-r.md) — 1 work(s) · 2 scripts
 - [Reischke, Robert](reischke-robert.md) — 2 work(s) · 8 scripts
 - Reisinger, I. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts

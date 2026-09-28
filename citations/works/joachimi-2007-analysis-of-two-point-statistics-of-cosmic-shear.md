@@ -1,6 +1,6 @@
 # Joachimi, Schneider & Eifler 2007 — Analysis of two-point statistics of cosmic shear: III. Covariances of shear measures made easy
 
-**Reference.** Joachimi, B.; Schneider, P.; Eifler, T. (2007). Analysis of two-point statistics of cosmic shear: III. Covariances of shear measures made easy. *Astronomy &amp; Astrophysics* 477, 43-54. [doi:10.1051/0004-6361:20078400](https://doi.org/10.1051/0004-6361:20078400) [arXiv:0708.0387](https://arxiv.org/abs/0708.0387)
+**Reference.** Joachimi, B.; Schneider, P.; Eifler, T. (2007). Analysis of two-point statistics of cosmic shear: III. Covariances of shear measures made easy. *Astronomy & Astrophysics* 477, 43-54. [doi:10.1051/0004-6361:20078400](https://doi.org/10.1051/0004-6361:20078400) [arXiv:0708.0387](https://arxiv.org/abs/0708.0387)
 
 **BibTeX key:** `Joachimi2007` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

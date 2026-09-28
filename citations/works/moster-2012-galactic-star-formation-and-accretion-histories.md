@@ -6,15 +6,18 @@
 
 **Authors (3):** [Benjamin P. Moster](../people/moster-benjamin-p.md), [Thorsten Naab](../people/naab-thorsten.md), [Simon D. M. White](../people/white-simon-d-m.md)
 
-## Used in 55 script(s)
+## Used in 58 script(s)
 
-How: cited in 54, named method/model in 3, cited in a paper in 1.
+How: cited in 57, named method/model in 3, cited in a paper in 1.
 
 | script | how | lines |
 |---|---|---|
 | [`campaign_fresh_gravity/CFG2_A_principle.py`](../../campaign_fresh_gravity/CFG2_A_principle.py#L3) | cited, named method/model | [3](../../campaign_fresh_gravity/CFG2_A_principle.py#L3), [366](../../campaign_fresh_gravity/CFG2_A_principle.py#L366), [371](../../campaign_fresh_gravity/CFG2_A_principle.py#L371), [395](../../campaign_fresh_gravity/CFG2_A_principle.py#L395) |
 | [`campaign_fresh_gravity/CFG2_B_galaxies.py`](../../campaign_fresh_gravity/CFG2_B_galaxies.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG2_B_galaxies.py#L3) |
 | [`campaign_fresh_gravity/CFG2_common.py`](../../campaign_fresh_gravity/CFG2_common.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG2_common.py#L3), [425](../../campaign_fresh_gravity/CFG2_common.py#L425) |
+| [`campaign_fresh_gravity/CFG30_binary_galaxies_referee.py`](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L3) |
+| [`campaign_fresh_gravity/CFG35_cold_mass_conservation.py`](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L3) |
+| [`campaign_fresh_gravity/CFG36_colour_split_collapse.py`](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L3) |
 | [`campaign_fresh_gravity/CFG3_common.py`](../../campaign_fresh_gravity/CFG3_common.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG3_common.py#L3), [374](../../campaign_fresh_gravity/CFG3_common.py#L374) |
 | [`campaign_fresh_gravity/CFG3_kids.py`](../../campaign_fresh_gravity/CFG3_kids.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG3_kids.py#L3) |
 | [`campaign_fresh_gravity/CFG3_sparc.py`](../../campaign_fresh_gravity/CFG3_sparc.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG3_sparc.py#L3), [203](../../campaign_fresh_gravity/CFG3_sparc.py#L203) |

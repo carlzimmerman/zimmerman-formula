@@ -1,6 +1,6 @@
 # Gaia Collaboration et al. 2023 — Gaia Data Release 3: Summary of the content and survey properties
 
-**Reference.** Gaia Collaboration; Vallenari, A.; Brown, A. G. A.; Prusti, T.; de Bruijne, J. H. J.; Arenou, F.; Babusiaux, C.; Biermann, M.; Creevey, O. L.; Ducourant, C.; Evans, D. W.; Eyer, L.; Guerra, R.; Hutton, A.; Jordi, C.; Klioner, S. A.; Lammers, U. L.; Lindegren, L.; Luri, X.; Mignard, F.; Panem, C.; Pourbaix, D.; Randich, S.; Sartoretti, P.; Soubiran, C.; Tanga, P.; Walton, N. A.; Bailer-Jones, C. A. L.; Bastian, U.; Drimmel, R.; et al. (456 authors) (2023). Gaia Data Release 3: Summary of the content and survey properties. *Astronomy &amp; Astrophysics* 674, A1. [doi:10.1051/0004-6361/202243940](https://doi.org/10.1051/0004-6361/202243940)
+**Reference.** Gaia Collaboration; Vallenari, A.; Brown, A. G. A.; Prusti, T.; de Bruijne, J. H. J.; Arenou, F.; Babusiaux, C.; Biermann, M.; Creevey, O. L.; Ducourant, C.; Evans, D. W.; Eyer, L.; Guerra, R.; Hutton, A.; Jordi, C.; Klioner, S. A.; Lammers, U. L.; Lindegren, L.; Luri, X.; Mignard, F.; Panem, C.; Pourbaix, D.; Randich, S.; Sartoretti, P.; Soubiran, C.; Tanga, P.; Walton, N. A.; Bailer-Jones, C. A. L.; Bastian, U.; Drimmel, R.; et al. (456 authors) (2023). Gaia Data Release 3: Summary of the content and survey properties. *Astronomy & Astrophysics* 674, A1. [doi:10.1051/0004-6361/202243940](https://doi.org/10.1051/0004-6361/202243940)
 
 **BibTeX key:** `GaiaCollaboration2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

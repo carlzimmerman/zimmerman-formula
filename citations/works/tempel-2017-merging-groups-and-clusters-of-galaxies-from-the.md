@@ -1,6 +1,6 @@
 # Tempel et al. 2017 — Merging groups and clusters of galaxies from the SDSS data: The catalogue of groups and potentially merging systems⋆
 
-**Reference.** Tempel, E.; Tuvikene, T.; Kipper, R.; Libeskind, N. I. (2017). Merging groups and clusters of galaxies from the SDSS data: The catalogue of groups and potentially merging systems⋆. *Astronomy &amp; Astrophysics* 602, A100. [doi:10.1051/0004-6361/201730499](https://doi.org/10.1051/0004-6361/201730499)
+**Reference.** Tempel, E.; Tuvikene, T.; Kipper, R.; Libeskind, N. I. (2017). Merging groups and clusters of galaxies from the SDSS data: The catalogue of groups and potentially merging systems⋆. *Astronomy & Astrophysics* 602, A100. [doi:10.1051/0004-6361/201730499](https://doi.org/10.1051/0004-6361/201730499)
 
 **BibTeX key:** `Tempel2017` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

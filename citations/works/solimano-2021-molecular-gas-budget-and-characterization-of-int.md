@@ -1,6 +1,6 @@
 # Solimano et al. 2021 — Molecular gas budget and characterization of intermediate-mass star-forming galaxies at z ≈ 2–3
 
-**Reference.** Solimano, M.; González-López, J.; Barrientos, L. F.; Aravena, M.; López, S.; Tejos, N.; Sharon, K.; Dahle, H.; Bayliss, M.; Ledoux, C.; Rigby, J. R.; Gladders, M. (2021). Molecular gas budget and characterization of intermediate-mass star-forming galaxies at z ≈ 2–3. *Astronomy &amp; Astrophysics* 655, A42. [doi:10.1051/0004-6361/202141835](https://doi.org/10.1051/0004-6361/202141835)
+**Reference.** Solimano, M.; González-López, J.; Barrientos, L. F.; Aravena, M.; López, S.; Tejos, N.; Sharon, K.; Dahle, H.; Bayliss, M.; Ledoux, C.; Rigby, J. R.; Gladders, M. (2021). Molecular gas budget and characterization of intermediate-mass star-forming galaxies at z ≈ 2–3. *Astronomy & Astrophysics* 655, A42. [doi:10.1051/0004-6361/202141835](https://doi.org/10.1051/0004-6361/202141835)
 
 **BibTeX key:** `Solimano2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

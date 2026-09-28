@@ -1,6 +1,6 @@
 # Saio et al. 2024 — Linear adiabatic analysis for general-relativistic instability in primordial accreting supermassive stars
 
-**Reference.** Saio, H.; Nandal, D.; Ekström, S.; Meynet, G. (2024). Linear adiabatic analysis for general-relativistic instability in primordial accreting supermassive stars. *Astronomy &amp; Astrophysics* 689, A169. [doi:10.1051/0004-6361/202449971](https://doi.org/10.1051/0004-6361/202449971) [arXiv:2406.18040](https://arxiv.org/abs/2406.18040)
+**Reference.** Saio, H.; Nandal, D.; Ekström, S.; Meynet, G. (2024). Linear adiabatic analysis for general-relativistic instability in primordial accreting supermassive stars. *Astronomy & Astrophysics* 689, A169. [doi:10.1051/0004-6361/202449971](https://doi.org/10.1051/0004-6361/202449971) [arXiv:2406.18040](https://arxiv.org/abs/2406.18040)
 
 **BibTeX key:** `Saio2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

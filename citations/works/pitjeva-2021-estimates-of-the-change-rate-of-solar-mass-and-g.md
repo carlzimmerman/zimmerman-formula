@@ -1,6 +1,6 @@
 # Pitjeva et al. 2021 — Estimates of the change rate of solar mass and gravitational constant based on the dynamics of the Solar System
 
-**Reference.** Pitjeva, E. V.; Pitjev, N. P.; Pavlov, D. A.; Turygin, C. C. (2021). Estimates of the change rate of solar mass and gravitational constant based on the dynamics of the Solar System. *Astronomy &amp; Astrophysics* 647, A141. [doi:10.1051/0004-6361/202039893](https://doi.org/10.1051/0004-6361/202039893)
+**Reference.** Pitjeva, E. V.; Pitjev, N. P.; Pavlov, D. A.; Turygin, C. C. (2021). Estimates of the change rate of solar mass and gravitational constant based on the dynamics of the Solar System. *Astronomy & Astrophysics* 647, A141. [doi:10.1051/0004-6361/202039893](https://doi.org/10.1051/0004-6361/202039893)
 
 **BibTeX key:** `Pitjeva2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

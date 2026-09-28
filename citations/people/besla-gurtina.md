@@ -1,10 +1,10 @@
 # Gurtina Besla
 
-Credited in **13** file(s) through **10** work(s) · ORCID [0000-0003-0715-2173](https://orcid.org/0000-0003-0715-2173)
+Credited in **14** file(s) through **10** work(s) · ORCID [0000-0003-0715-2173](https://orcid.org/0000-0003-0715-2173)
 
 | work | used in | how |
 |---|---:|---|
-| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 4 | cited |
+| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 5 | cited |
 | [Vitral et al. 2024](../works/vitral-2024-hstpromo-internal-proper-motion-kinematics-of-dw.md) — HSTPROMO Internal Proper-motion Kinematics of Dwarf Spheroidal Galaxies. I. Velocity Anisotropy and Dark Matte | 4 | cited |
 | [Kallivayalil et al. 2013](../works/kallivayalil-2013-third-epoch-magellanic-cloud-proper-motions-i-h.md) — THIRD-EPOCH MAGELLANIC CLOUD PROPER MOTIONS. I.HUBBLE SPACE TELESCOPE/WFC3 DATA AND ORBIT IMPLICATIONS | 3 | cited |
 | [Fritz et al. 2018](../works/fritz-2018-gaia-dr2-proper-motions-of-dwarf-galaxies-within.md) — Gaia DR2 proper motions of dwarf galaxies within 420 kpc: Orbits, Milky Way mass, tidal influences, planar ali | 1 | cited in a paper |

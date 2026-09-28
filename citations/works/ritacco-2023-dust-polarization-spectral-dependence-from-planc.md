@@ -1,6 +1,6 @@
 # Ritacco et al. 2023 — Dust polarization spectral dependence from Planck HFI data: Turning point for cosmic microwave background polarization-foreground modeling
 
-**Reference.** Ritacco, A.; Boulanger, F.; Guillet, V.; Delouis, J.-M.; Puget, J.-L.; Aumont, J.; Vacher, L. (2023). Dust polarization spectral dependence from Planck HFI data: Turning point for cosmic microwave background polarization-foreground modeling. *Astronomy &amp; Astrophysics* 670, A163. [doi:10.1051/0004-6361/202244269](https://doi.org/10.1051/0004-6361/202244269)
+**Reference.** Ritacco, A.; Boulanger, F.; Guillet, V.; Delouis, J.-M.; Puget, J.-L.; Aumont, J.; Vacher, L. (2023). Dust polarization spectral dependence from Planck HFI data: Turning point for cosmic microwave background polarization-foreground modeling. *Astronomy & Astrophysics* 670, A163. [doi:10.1051/0004-6361/202244269](https://doi.org/10.1051/0004-6361/202244269)
 
 **BibTeX key:** `Ritacco2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

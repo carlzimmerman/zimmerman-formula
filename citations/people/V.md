@@ -110,7 +110,7 @@
 - [van der Hulst, Thijs](van-der-hulst-thijs.md) — 1 work(s) · 10 scripts
 - van der Kolk, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
 - Van Der Leeuw, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [van der Marel, Roeland P.](van-der-marel-roeland-p.md) — 16 work(s) · 17 scripts
+- [van der Marel, Roeland P.](van-der-marel-roeland-p.md) — 16 work(s) · 18 scripts
 - van der Poel, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Van Der Pyl, Nina](van-der-pyl-nina.md) — 1 work(s) · 1 scripts
 - van der Schaaf, Laura — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
@@ -118,7 +118,7 @@
 - van der Ster, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Van der Swaelmen, Mathieu — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
 - [van der Waerden, B. L.](van-der-waerden-b-l.md) — 1 work(s) · 9 scripts
-- [van der Walt, Stéfan J.](van-der-walt-stefan-j.md) — 2 work(s) · 5181 scripts
+- [van der Walt, Stéfan J.](van-der-walt-stefan-j.md) — 2 work(s) · 5183 scripts
 - van der Wateren, E. — author of [Smarra et al. 2023](../works/smarra-2023-second-data-release-from-the-european-pulsar-tim.md) · 1 scripts
 - [van der Wel, Arjen](van-der-wel-arjen.md) — 7 work(s) · 22 scripts
 - [van der Werf, Paul](van-der-werf-paul.md) — 5 work(s) · 21 scripts
@@ -140,7 +140,7 @@
 - Van Hemelryck, E. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
 - Van Hove, P. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
 - [van Kampen, Eelco](van-kampen-eelco.md) — 2 work(s) · 4 scripts
-- [van Kerkwijk, Marten H.](van-kerkwijk-marten-h.md) — 5 work(s) · 5152 scripts
+- [van Kerkwijk, Marten H.](van-kerkwijk-marten-h.md) — 5 work(s) · 5154 scripts
 - Van Kooten, Samuel J. — author of [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) · 199 scripts
 - Van Lanen, Jeff — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 23 scripts
 - [van Langevelde, Huib Jan](van-langevelde-huib-jan.md) — 3 work(s) · 11 scripts
@@ -414,7 +414,7 @@
 - Virieux, Francoise — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
 - Virot, R. — author of [Abel et al. 2020](../works/abel-2020-measurement-of-the-permanent-electric-dipole-mom.md) · 2 scripts
 - Virtanen, J. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
-- [Virtanen, Pauli](virtanen-pauli.md) — 2 work(s) · 5181 scripts
+- [Virtanen, Pauli](virtanen-pauli.md) — 2 work(s) · 5183 scripts
 - Virtuoso, A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
 - Virzi, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Visser, Manus R.](visser-manus-r.md) — 2 work(s) · 104 scripts

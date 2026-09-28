@@ -1,6 +1,6 @@
 # Corbelli et al. 2014 — Dynamical signatures of a ΛCDM-halo and the distribution of the baryons in M 33
 
-**Reference.** Corbelli, E.; Thilker, D.; Zibetti, S.; Giovanardi, C.; Salucci, P. (2014). Dynamical signatures of a ΛCDM-halo and the distribution of the baryons in M 33. *Astronomy &amp; Astrophysics* 572, A23. [doi:10.1051/0004-6361/201424033](https://doi.org/10.1051/0004-6361/201424033)
+**Reference.** Corbelli, E.; Thilker, D.; Zibetti, S.; Giovanardi, C.; Salucci, P. (2014). Dynamical signatures of a ΛCDM-halo and the distribution of the baryons in M 33. *Astronomy & Astrophysics* 572, A23. [doi:10.1051/0004-6361/201424033](https://doi.org/10.1051/0004-6361/201424033)
 
 **BibTeX key:** `Corbelli2014` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

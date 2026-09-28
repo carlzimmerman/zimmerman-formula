@@ -1,6 +1,6 @@
 # Muñoz-Echeverría et al. 2024 — The hydrostatic-to-lensing mass bias from resolved X-ray and optical-IR data
 
-**Reference.** Muñoz-Echeverría, M.; Macías-Pérez, J. F.; Pratt, G. W.; Pointecouteau, E.; Bartalucci, I.; De Petris, M.; Ferragamo, A.; Hanser, C.; Kéruzoré, F.; Mayet, F.; Moyer-Anin, A.; Paliwal, A.; Perotto, L.; Yepes, G. (2024). The hydrostatic-to-lensing mass bias from resolved X-ray and optical-IR data. *Astronomy &amp; Astrophysics* 682, A147. [doi:10.1051/0004-6361/202347584](https://doi.org/10.1051/0004-6361/202347584) [arXiv:2312.01154](https://arxiv.org/abs/2312.01154)
+**Reference.** Muñoz-Echeverría, M.; Macías-Pérez, J. F.; Pratt, G. W.; Pointecouteau, E.; Bartalucci, I.; De Petris, M.; Ferragamo, A.; Hanser, C.; Kéruzoré, F.; Mayet, F.; Moyer-Anin, A.; Paliwal, A.; Perotto, L.; Yepes, G. (2024). The hydrostatic-to-lensing mass bias from resolved X-ray and optical-IR data. *Astronomy & Astrophysics* 682, A147. [doi:10.1051/0004-6361/202347584](https://doi.org/10.1051/0004-6361/202347584) [arXiv:2312.01154](https://arxiv.org/abs/2312.01154)
 
 **BibTeX key:** `MunozEcheverria2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

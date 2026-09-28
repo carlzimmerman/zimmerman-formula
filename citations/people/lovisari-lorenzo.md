@@ -1,10 +1,10 @@
 # Lorenzo Lovisari
 
-Credited in **25** file(s) through **9** work(s) · ORCID [0000-0002-3754-2415](https://orcid.org/0000-0002-3754-2415) · affiliation on the cited work(s): INAF, Istituto di Astrofisica Spaziale e Fisica Cosmica di Milano; Center for Astrophysics | Harvard & Smithsonian; INAF—Osservatorio di Astrofisica e Scienza dello Spazio di Bologna, via Piero Gobetti 93/3, 40129 Bologna, Italy; Center
+Credited in **26** file(s) through **9** work(s) · ORCID [0000-0002-3754-2415](https://orcid.org/0000-0002-3754-2415) · affiliation on the cited work(s): INAF, Istituto di Astrofisica Spaziale e Fisica Cosmica di Milano; Center for Astrophysics | Harvard & Smithsonian; INAF—Osservatorio di Astrofisica e Scienza dello Spazio di Bologna, via Piero Gobetti 93/3, 40129 Bologna, Italy; Center
 
 | work | used in | how |
 |---|---:|---|
-| [Lovisari, Reiprich & Schellenberger 2015](../works/lovisari-2015-scaling-properties-of-a-complete-x-ray-selected.md) — Scaling properties of a complete X-ray selected galaxy group sample | 14 | cited |
+| [Lovisari, Reiprich & Schellenberger 2015](../works/lovisari-2015-scaling-properties-of-a-complete-x-ray-selected.md) — Scaling properties of a complete X-ray selected galaxy group sample | 15 | cited |
 | [Schellenberger et al. 2015](../works/schellenberger-2015-xmm-newton-and-chandra-cross-calibration-using-h.md) — XMM-Newton and Chandra cross-calibration using HIFLUGCS galaxy clusters: Systematic temperature differences an | 3 | cited |
 | [Popesso et al. 2026](../works/popesso-2026-the-hot-gas-mass-fraction-in-halos-from-milky-w.md) — The hot gas mass fraction in halos: From Milky Way-like groups to massive clusters | 3 | cited |
 | [Lovisari et al. 2017](../works/lovisari-2017-x-ray-morphological-analysis-of-the-planck-esz-c.md) — X-Ray Morphological Analysis of the Planck ESZ Clusters | 2 | cited |

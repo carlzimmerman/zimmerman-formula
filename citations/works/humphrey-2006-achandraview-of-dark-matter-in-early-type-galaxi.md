@@ -6,12 +6,13 @@
 
 **Authors (7):** [Philip J. Humphrey](../people/humphrey-philip-j.md), [David A. Buote](../people/buote-david-a.md), [Fabio Gastaldello](../people/gastaldello-fabio.md), [Luca Zappacosta](../people/zappacosta-luca.md), [James S. Bullock](../people/bullock-james-s.md), [Fabrizio Brighenti](../people/brighenti-fabrizio.md), [William G. Mathews](../people/mathews-william-g.md)
 
-## Used in 3 script(s)
+## Used in 4 script(s)
 
-How: cited in 3.
+How: cited in 4.
 
 | script | how | lines |
 |---|---|---|
+| [`campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py`](../../campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py#L3) |
 | [`hunt_2026/h10_h18_xray_hse.py`](../../hunt_2026/h10_h18_xray_hse.py#L3) | cited | [3](../../hunt_2026/h10_h18_xray_hse.py#L3), [54](../../hunt_2026/h10_h18_xray_hse.py#L54) |
 | [`hunt_2026/u01_cluster_common_currency.py`](../../hunt_2026/u01_cluster_common_currency.py#L3) | cited | [3](../../hunt_2026/u01_cluster_common_currency.py#L3), [131](../../hunt_2026/u01_cluster_common_currency.py#L131) |
 | [`hunt_2026/u02_measurement_method_organiser.py`](../../hunt_2026/u02_measurement_method_organiser.py#L84) | cited | [84](../../hunt_2026/u02_measurement_method_organiser.py#L84) |

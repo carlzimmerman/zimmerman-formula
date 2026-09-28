@@ -1,6 +1,6 @@
 # Biviano et al. 2026 — CLASH-VLT: The variance in the velocity anisotropy profiles of galaxy clusters
 
-**Reference.** Biviano, A.; Maraboli, E. A.; Pizzuti, L.; Rosati, P.; Mercurio, A.; De Lucia, G.; Ragone-Figueroa, C.; Grillo, C.; Granato, G. L.; Girardi, M.; Sartoris, B.; Annunziatella, M. (2026). CLASH-VLT: The variance in the velocity anisotropy profiles of galaxy clusters. *Astronomy &amp; Astrophysics* 707, A153. [doi:10.1051/0004-6361/202555439](https://doi.org/10.1051/0004-6361/202555439) [arXiv:2508.05195](https://arxiv.org/abs/2508.05195)
+**Reference.** Biviano, A.; Maraboli, E. A.; Pizzuti, L.; Rosati, P.; Mercurio, A.; De Lucia, G.; Ragone-Figueroa, C.; Grillo, C.; Granato, G. L.; Girardi, M.; Sartoris, B.; Annunziatella, M. (2026). CLASH-VLT: The variance in the velocity anisotropy profiles of galaxy clusters. *Astronomy & Astrophysics* 707, A153. [doi:10.1051/0004-6361/202555439](https://doi.org/10.1051/0004-6361/202555439) [arXiv:2508.05195](https://arxiv.org/abs/2508.05195)
 
 **BibTeX key:** `Biviano2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

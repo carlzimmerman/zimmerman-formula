@@ -1,10 +1,10 @@
 # Sangmo Tony Sohn
 
-Credited in **12** file(s) through **10** work(s) · ORCID [0000-0001-8368-0221](https://orcid.org/0000-0001-8368-0221) · affiliation on the cited work(s): Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA
+Credited in **13** file(s) through **10** work(s) · ORCID [0000-0001-8368-0221](https://orcid.org/0000-0001-8368-0221) · affiliation on the cited work(s): Space Telescope Science Institute, 3700 San Martin Drive, Baltimore, MD 21218, USA
 
 | work | used in | how |
 |---|---:|---|
-| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 4 | cited |
+| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 5 | cited |
 | [Vitral et al. 2024](../works/vitral-2024-hstpromo-internal-proper-motion-kinematics-of-dw.md) — HSTPROMO Internal Proper-motion Kinematics of Dwarf Spheroidal Galaxies. I. Velocity Anisotropy and Dark Matte | 4 | cited |
 | [Vitral et al. 2026](../works/vitral-2026-hstpromo-internal-proper-motion-kinematics-of-dw.md) — HSTPROMO Internal Proper-motion Kinematics of Dwarf Spheroidal Galaxies. II. Velocity Anisotropy and Dark Matt | 3 | cited |
 | [Fritz et al. 2018](../works/fritz-2018-gaia-dr2-proper-motions-of-dwarf-galaxies-within.md) — Gaia DR2 proper motions of dwarf galaxies within 420 kpc: Orbits, Milky Way mass, tidal influences, planar ali | 1 | cited in a paper |

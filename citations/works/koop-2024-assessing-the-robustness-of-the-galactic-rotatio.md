@@ -1,6 +1,6 @@
 # Koop et al. 2024 — Assessing the robustness of the Galactic rotation curve inferred from the Jeans equations using Gaia DR3 and cosmological simulations
 
-**Reference.** Koop, O.; Antoja, T.; Helmi, A.; Callingham, T. M.; Laporte, C. F. P. (2024). Assessing the robustness of the Galactic rotation curve inferred from the Jeans equations using Gaia DR3 and cosmological simulations. *Astronomy &amp; Astrophysics* 692, A50. [doi:10.1051/0004-6361/202450911](https://doi.org/10.1051/0004-6361/202450911)
+**Reference.** Koop, O.; Antoja, T.; Helmi, A.; Callingham, T. M.; Laporte, C. F. P. (2024). Assessing the robustness of the Galactic rotation curve inferred from the Jeans equations using Gaia DR3 and cosmological simulations. *Astronomy & Astrophysics* 692, A50. [doi:10.1051/0004-6361/202450911](https://doi.org/10.1051/0004-6361/202450911)
 
 **BibTeX key:** `Koop2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

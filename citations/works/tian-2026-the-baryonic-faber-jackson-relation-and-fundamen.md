@@ -1,6 +1,6 @@
 # Tian et al. 2026 — The baryonic Faber-Jackson relation and fundamental plane of galaxy groups, elliptical galaxies, and dwarf galaxies
 
-**Reference.** Tian, Y.; Lelli, F.; Pawlowski, M. S.; McGaugh, S.; Duann, Y.; Chae, K.-H.; Di Teodoro, E.; Haubner, K.; Kuo, M. H.; Ko, C.-M. (2026). The baryonic Faber-Jackson relation and fundamental plane of galaxy groups, elliptical galaxies, and dwarf galaxies. *Astronomy &amp; Astrophysics* 710, L39. [doi:10.1051/0004-6361/202659498](https://doi.org/10.1051/0004-6361/202659498) [arXiv:2605.26965](https://arxiv.org/abs/2605.26965)
+**Reference.** Tian, Y.; Lelli, F.; Pawlowski, M. S.; McGaugh, S.; Duann, Y.; Chae, K.-H.; Di Teodoro, E.; Haubner, K.; Kuo, M. H.; Ko, C.-M. (2026). The baryonic Faber-Jackson relation and fundamental plane of galaxy groups, elliptical galaxies, and dwarf galaxies. *Astronomy & Astrophysics* 710, L39. [doi:10.1051/0004-6361/202659498](https://doi.org/10.1051/0004-6361/202659498) [arXiv:2605.26965](https://arxiv.org/abs/2605.26965)
 
 **BibTeX key:** `Tian2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

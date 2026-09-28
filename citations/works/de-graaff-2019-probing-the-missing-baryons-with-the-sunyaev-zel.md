@@ -1,6 +1,6 @@
 # de Graaff et al. 2019 — Probing the missing baryons with the Sunyaev-Zel’dovich effect from filaments
 
-**Reference.** de Graaff, A.; Cai, Y.-C.; Heymans, C.; Peacock, J. A. (2019). Probing the missing baryons with the Sunyaev-Zel’dovich effect from filaments. *Astronomy &amp; Astrophysics* 624, A48. [doi:10.1051/0004-6361/201935159](https://doi.org/10.1051/0004-6361/201935159)
+**Reference.** de Graaff, A.; Cai, Y.-C.; Heymans, C.; Peacock, J. A. (2019). Probing the missing baryons with the Sunyaev-Zel’dovich effect from filaments. *Astronomy & Astrophysics* 624, A48. [doi:10.1051/0004-6361/201935159](https://doi.org/10.1051/0004-6361/201935159)
 
 **BibTeX key:** `deGraaff2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

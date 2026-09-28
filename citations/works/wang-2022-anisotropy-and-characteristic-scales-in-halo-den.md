@@ -1,6 +1,6 @@
 # Wang, Wang & Mo 2022 — Anisotropy and characteristic scales in halo density gradient profiles
 
-**Reference.** Wang, X.; Wang, H.; Mo, H. J. (2022). Anisotropy and characteristic scales in halo density gradient profiles. *Astronomy &amp; Astrophysics* 667, A99. [doi:10.1051/0004-6361/202244338](https://doi.org/10.1051/0004-6361/202244338)
+**Reference.** Wang, X.; Wang, H.; Mo, H. J. (2022). Anisotropy and characteristic scales in halo density gradient profiles. *Astronomy & Astrophysics* 667, A99. [doi:10.1051/0004-6361/202244338](https://doi.org/10.1051/0004-6361/202244338)
 
 **BibTeX key:** `Wang2022a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

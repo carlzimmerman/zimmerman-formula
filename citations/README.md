@@ -6,8 +6,8 @@ except the curated dictionaries in [`build/registry/`](build/registry/).
 
 ## Scope
 
-Every git-tracked `.py` and `.ipynb` file (8,141 files at commit `c10a155aaf`), and the
-bibliographies of every tracked `.tex` / `.bib` file, except:
+Every committed `.py` and `.ipynb` file (8,143 files at commit `27356de753`), and the
+bibliographies of every committed `.tex` / `.bib` file, read as committed (never the working tree), except:
 
 - `ai_slop/extended_research/`
 - `ai_slop/TruthFlow/hermes_agent/`

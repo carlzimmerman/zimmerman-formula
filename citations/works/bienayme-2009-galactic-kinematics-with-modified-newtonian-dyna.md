@@ -1,6 +1,6 @@
 # Bienaymé et al. 2009 — Galactic kinematics with modified Newtonian dynamics
 
-**Reference.** Bienaymé, O.; Famaey, B.; Wu, X.; Zhao, H. S.; Aubert, D. (2009). Galactic kinematics with modified Newtonian dynamics. *Astronomy &amp; Astrophysics* 500, 801-805. [doi:10.1051/0004-6361/200809978](https://doi.org/10.1051/0004-6361/200809978)
+**Reference.** Bienaymé, O.; Famaey, B.; Wu, X.; Zhao, H. S.; Aubert, D. (2009). Galactic kinematics with modified Newtonian dynamics. *Astronomy & Astrophysics* 500, 801-805. [doi:10.1051/0004-6361/200809978](https://doi.org/10.1051/0004-6361/200809978)
 
 **BibTeX key:** `Bienayme2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

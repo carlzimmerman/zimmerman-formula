@@ -1,6 +1,6 @@
 # Tamm et al. 2012 — Stellar mass map and dark matter distribution in M 31
 
-**Reference.** Tamm, A.; Tempel, E.; Tenjes, P.; Tihhonova, O.; Tuvikene, T. (2012). Stellar mass map and dark matter distribution in M 31. *Astronomy &amp; Astrophysics* 546, A4. [doi:10.1051/0004-6361/201220065](https://doi.org/10.1051/0004-6361/201220065)
+**Reference.** Tamm, A.; Tempel, E.; Tenjes, P.; Tihhonova, O.; Tuvikene, T. (2012). Stellar mass map and dark matter distribution in M 31. *Astronomy & Astrophysics* 546, A4. [doi:10.1051/0004-6361/201220065](https://doi.org/10.1051/0004-6361/201220065)
 
 **BibTeX key:** `Tamm2012` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

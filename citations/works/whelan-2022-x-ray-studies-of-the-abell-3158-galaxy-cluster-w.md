@@ -1,6 +1,6 @@
 # Whelan et al. 2022 — X-ray studies of the Abell 3158 galaxy cluster with eROSITA
 
-**Reference.** Whelan, B.; Veronica, A.; Pacaud, F.; Reiprich, T. H.; Bulbul, E.; Ramos-Ceja, M. E.; Sanders, J. S.; Aschersleben, J.; Iljenkarevic, J.; Migkas, K.; Freyberg, M.; Dennerl, K.; Kara, M.; Liu, A.; Ghirardini, V.; Ota, N. (2022). X-ray studies of the Abell 3158 galaxy cluster with eROSITA. *Astronomy &amp; Astrophysics* 663, A171. [doi:10.1051/0004-6361/202141621](https://doi.org/10.1051/0004-6361/202141621)
+**Reference.** Whelan, B.; Veronica, A.; Pacaud, F.; Reiprich, T. H.; Bulbul, E.; Ramos-Ceja, M. E.; Sanders, J. S.; Aschersleben, J.; Iljenkarevic, J.; Migkas, K.; Freyberg, M.; Dennerl, K.; Kara, M.; Liu, A.; Ghirardini, V.; Ota, N. (2022). X-ray studies of the Abell 3158 galaxy cluster with eROSITA. *Astronomy & Astrophysics* 663, A171. [doi:10.1051/0004-6361/202141621](https://doi.org/10.1051/0004-6361/202141621)
 
 **BibTeX key:** `Whelan2022` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

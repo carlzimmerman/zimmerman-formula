@@ -1,10 +1,10 @@
 # Tommaso Treu
 
-Credited in **29** file(s) through **28** work(s) · ORCID [0000-0002-8460-0390](https://orcid.org/0000-0002-8460-0390) · affiliation on the cited work(s): Department of Physics and Astronomy, University of California, Los Angeles, CA 90095, USA; University of California, Los Angeles
+Credited in **30** file(s) through **28** work(s) · ORCID [0000-0002-8460-0390](https://orcid.org/0000-0002-8460-0390) · affiliation on the cited work(s): Department of Physics and Astronomy, University of California, Los Angeles, CA 90095, USA; University of California, Los Angeles
 
 | work | used in | how |
 |---|---:|---|
-| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 5 | cited |
+| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 6 | cited |
 | [Treu et al. 2010](../works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
 | [Girard et al. 2020](../works/girard-2020-the-kmos-lens-amplified-spectroscopic-survey-kl.md) — The KMOS Lens-Amplified Spectroscopic Survey (KLASS): kinematics and clumpiness of low-mass galaxies at cosmic | 5 | cited |
 | [Auger et al. 2010](../works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE EARLY-TYPE GALAXIES | 4 | cited |

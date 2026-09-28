@@ -1,6 +1,6 @@
 # Verma et al. 2014 — Use of MESSENGER radioscience data to improve planetary ephemeris and to test general relativity
 
-**Reference.** Verma, A. K.; Fienga, A.; Laskar, J.; Manche, H.; Gastineau, M. (2014). Use of MESSENGER radioscience data to improve planetary ephemeris and to test general relativity. *Astronomy &amp; Astrophysics* 561, A115. [doi:10.1051/0004-6361/201322124](https://doi.org/10.1051/0004-6361/201322124)
+**Reference.** Verma, A. K.; Fienga, A.; Laskar, J.; Manche, H.; Gastineau, M. (2014). Use of MESSENGER radioscience data to improve planetary ephemeris and to test general relativity. *Astronomy & Astrophysics* 561, A115. [doi:10.1051/0004-6361/201322124](https://doi.org/10.1051/0004-6361/201322124)
 
 **BibTeX key:** `Verma2014` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

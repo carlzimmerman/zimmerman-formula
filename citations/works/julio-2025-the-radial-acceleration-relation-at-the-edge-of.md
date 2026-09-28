@@ -1,6 +1,6 @@
 # Júlio et al. 2025 — The radial acceleration relation at the EDGE of galaxy formation: Testing its universality in low-mass dwarf galaxies
 
-**Reference.** Júlio, M. P.; Read, J. I.; Pawlowski, M. S.; Li, P.; Vaz, D.; Brinchmann, J.; Rey, M. P.; Agertz, O.; Holmes, T. (2025). The radial acceleration relation at the EDGE of galaxy formation: Testing its universality in low-mass dwarf galaxies. *Astronomy &amp; Astrophysics* 704, A330. [doi:10.1051/0004-6361/202557106](https://doi.org/10.1051/0004-6361/202557106) [arXiv:2510.06905](https://arxiv.org/abs/2510.06905)
+**Reference.** Júlio, M. P.; Read, J. I.; Pawlowski, M. S.; Li, P.; Vaz, D.; Brinchmann, J.; Rey, M. P.; Agertz, O.; Holmes, T. (2025). The radial acceleration relation at the EDGE of galaxy formation: Testing its universality in low-mass dwarf galaxies. *Astronomy & Astrophysics* 704, A330. [doi:10.1051/0004-6361/202557106](https://doi.org/10.1051/0004-6361/202557106) [arXiv:2510.06905](https://arxiv.org/abs/2510.06905)
 
 **BibTeX key:** `Julio2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

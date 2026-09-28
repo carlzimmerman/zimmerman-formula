@@ -1,6 +1,6 @@
 # Alves et al. 2020 — Planck 2018 results
 
-**Reference.** Alves, J.; Forveille, T.; Pentericci, L.; Shore, S. (2020). Planck 2018 results. *Astronomy &amp; Astrophysics* 641, E1. [doi:10.1051/0004-6361/202039265](https://doi.org/10.1051/0004-6361/202039265)
+**Reference.** Alves, J.; Forveille, T.; Pentericci, L.; Shore, S. (2020). Planck 2018 results. *Astronomy & Astrophysics* 641, E1. [doi:10.1051/0004-6361/202039265](https://doi.org/10.1051/0004-6361/202039265)
 
 **BibTeX key:** `Alves2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

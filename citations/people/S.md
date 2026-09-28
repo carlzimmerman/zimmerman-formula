@@ -469,7 +469,7 @@
 - Schegelsky, V.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Scheirich, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Schellart, Pim — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 11 scripts
-- [Schellenberger, Gerrit](schellenberger-gerrit.md) — 5 work(s) · 17 scripts
+- [Schellenberger, Gerrit](schellenberger-gerrit.md) — 5 work(s) · 18 scripts
 - [Scherer, Mateus](scherer-mateus.md) — 1 work(s) · 1 scripts
 - Scherf, S. J. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
 - Schernau, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -596,7 +596,7 @@
 - [Scholz, Paul](scholz-paul.md) — 3 work(s) · 5 scripts
 - Scholz, Ralf-Dieter — author of [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md), [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 7 scripts
 - [Scholze, Peter](scholze-peter.md) — 3 work(s) · 4 scripts
-- [Schombert, James M.](schombert-james-m.md) — 23 work(s) · 2030 scripts
+- [Schombert, James M.](schombert-james-m.md) — 23 work(s) · 2032 scripts
 - [Schombert, Jim](schombert-jim.md) — 2 work(s) · 13 scripts
 - Schönbeck, Axel — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
 - Schönberger, Johannes L. — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
@@ -1027,7 +1027,7 @@
 - Shepard, P. F. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
 - Sheperd, A. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
 - [Shepherd, Paul](shepherd-paul.md) — 1 work(s) · 1 scripts
-- [Sheppard, Kevin](sheppard-kevin.md) — 1 work(s) · 5148 scripts
+- [Sheppard, Kevin](sheppard-kevin.md) — 1 work(s) · 5150 scripts
 - [Sheppard, Scott S.](sheppard-scott-s.md) — 1 work(s) · 1 scripts
 - Sherbert, L. E. — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md) · 199 scripts
 - Sheridan, E. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
@@ -1405,7 +1405,7 @@
 - Smith, N. — author of [Cowperthwaite et al. 2017](../works/cowperthwaite-2017-the-electromagnetic-counterpart-of-the-binary-ne.md) · 1 scripts
 - [Smith, N.](smith-n-3.md) — 1 work(s) · 1 scripts
 - Smith, N. D. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 18 scripts
-- [Smith, Nathaniel J.](smith-nathaniel-j.md) — 2 work(s) · 5181 scripts
+- [Smith, Nathaniel J.](smith-nathaniel-j.md) — 2 work(s) · 5183 scripts
 - [Smith, Nicholas J](smith-nicholas-j.md) — 3 work(s) · 5 scripts
 - [Smith, R. Chris](smith-r-chris.md) — 17 work(s) · 19 scripts
 - Smith, R. J. E. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
@@ -1473,7 +1473,7 @@
 - Sohi, Harkirat — author of [Bond et al. 2010](../works/bond-2010-the-milky-way-tomography-with-sdss-iii-stellar.md) · 1 scripts
 - Sohn, Bong Won — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
 - [Sohn, Jubee](sohn-jubee.md) — 5 work(s) · 13 scripts
-- [Sohn, Sangmo Tony](sohn-sangmo-tony.md) — 10 work(s) · 12 scripts
+- [Sohn, Sangmo Tony](sohn-sangmo-tony.md) — 10 work(s) · 13 scripts
 - [Sohn, Young-Jong](sohn-young-jong.md) — 2 work(s) · 1 scripts
 - Sok, Visal — author of [Sarrouh et al. 2025](../works/sarrouh-2025-canucs-technicolor-data-release-1-imaging-phot.md) · 1 scripts
 - Sokolova-Lapa, E. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md) · 143 scripts

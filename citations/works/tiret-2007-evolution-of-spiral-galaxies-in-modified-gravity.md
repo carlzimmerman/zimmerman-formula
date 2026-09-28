@@ -1,6 +1,6 @@
 # Tiret & Combes 2007 — Evolution of spiral galaxies in modified gravity
 
-**Reference.** Tiret, O.; Combes, F. (2007). Evolution of spiral galaxies in modified gravity. *Astronomy &amp; Astrophysics* 464, 517-528. [doi:10.1051/0004-6361:20066446](https://doi.org/10.1051/0004-6361:20066446)
+**Reference.** Tiret, O.; Combes, F. (2007). Evolution of spiral galaxies in modified gravity. *Astronomy & Astrophysics* 464, 517-528. [doi:10.1051/0004-6361:20066446](https://doi.org/10.1051/0004-6361:20066446)
 
 **BibTeX key:** `Tiret2007` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

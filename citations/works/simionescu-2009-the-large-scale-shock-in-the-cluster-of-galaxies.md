@@ -1,6 +1,6 @@
 # Simionescu et al. 2009 — The large-scale shock in the cluster of galaxies Hydra A
 
-**Reference.** Simionescu, A.; Roediger, E.; Nulsen, P. E. J.; Brüggen, M.; Forman, W. R.; Böhringer, H.; Werner, N.; Finoguenov, A. (2009). The large-scale shock in the cluster of galaxies Hydra A. *Astronomy &amp; Astrophysics* 495, 721-732. [doi:10.1051/0004-6361:200811071](https://doi.org/10.1051/0004-6361:200811071)
+**Reference.** Simionescu, A.; Roediger, E.; Nulsen, P. E. J.; Brüggen, M.; Forman, W. R.; Böhringer, H.; Werner, N.; Finoguenov, A. (2009). The large-scale shock in the cluster of galaxies Hydra A. *Astronomy & Astrophysics* 495, 721-732. [doi:10.1051/0004-6361:200811071](https://doi.org/10.1051/0004-6361:200811071)
 
 **BibTeX key:** `Simionescu2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

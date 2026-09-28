@@ -1,6 +1,6 @@
 # Mancera Piña et al. 2021 — A tight angular-momentum plane for disc galaxies
 
-**Reference.** Mancera Piña, P. E.; Posti, L.; Pezzulli, G.; Fraternali, F.; Fall, S. M.; Oosterloo, T.; Adams, E. A. K. (2021). A tight angular-momentum plane for disc galaxies. *Astronomy &amp; Astrophysics* 651, L15. [doi:10.1051/0004-6361/202141574](https://doi.org/10.1051/0004-6361/202141574)
+**Reference.** Mancera Piña, P. E.; Posti, L.; Pezzulli, G.; Fraternali, F.; Fall, S. M.; Oosterloo, T.; Adams, E. A. K. (2021). A tight angular-momentum plane for disc galaxies. *Astronomy & Astrophysics* 651, L15. [doi:10.1051/0004-6361/202141574](https://doi.org/10.1051/0004-6361/202141574)
 
 **BibTeX key:** `ManceraPina2021a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

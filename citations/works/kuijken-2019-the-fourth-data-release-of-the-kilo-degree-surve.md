@@ -1,6 +1,6 @@
 # Kuijken et al. 2019 — The fourth data release of the Kilo-Degree Survey: ugri imaging and nine-band optical-IR photometry over 1000 square degrees
 
-**Reference.** Kuijken, K.; Heymans, C.; Dvornik, A.; Hildebrandt, H.; de Jong, J. T. A.; Wright, A. H.; Erben, T.; Bilicki, M.; Giblin, B.; Shan, H.-Y.; Getman, F.; Grado, A.; Hoekstra, H.; Miller, L.; Napolitano, N.; Paolilo, M.; Radovich, M.; Schneider, P.; Sutherland, W.; Tewes, M.; Tortora, C.; Valentijn, E. A.; Verdoes Kleijn, G. A. (2019). The fourth data release of the Kilo-Degree Survey: ugri imaging and nine-band optical-IR photometry over 1000 square degrees. *Astronomy &amp; Astrophysics* 625, A2. [doi:10.1051/0004-6361/201834918](https://doi.org/10.1051/0004-6361/201834918)
+**Reference.** Kuijken, K.; Heymans, C.; Dvornik, A.; Hildebrandt, H.; de Jong, J. T. A.; Wright, A. H.; Erben, T.; Bilicki, M.; Giblin, B.; Shan, H.-Y.; Getman, F.; Grado, A.; Hoekstra, H.; Miller, L.; Napolitano, N.; Paolilo, M.; Radovich, M.; Schneider, P.; Sutherland, W.; Tewes, M.; Tortora, C.; Valentijn, E. A.; Verdoes Kleijn, G. A. (2019). The fourth data release of the Kilo-Degree Survey: ugri imaging and nine-band optical-IR photometry over 1000 square degrees. *Astronomy & Astrophysics* 625, A2. [doi:10.1051/0004-6361/201834918](https://doi.org/10.1051/0004-6361/201834918)
 
 **BibTeX key:** `Kuijken2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

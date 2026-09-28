@@ -6,13 +6,14 @@
 
 **Authors (8):** [Roeland P. van der Marel](../people/van-der-marel-roeland-p.md), [Mark Fardal](../people/fardal-mark-a.md), [Gurtina Besla](../people/besla-gurtina.md), [Rachael L. Beaton](../people/beaton-rachael-lynn.md), [Sangmo Tony Sohn](../people/sohn-sangmo-tony.md), [Jay Anderson](../people/anderson-jay.md), [Tom Brown](../people/brown-tom.md), [Puragra Guhathakurta](../people/guhathakurta-puragra.md)
 
-## Used in 4 script(s)
+## Used in 5 script(s)
 
-How: cited in 4.
+How: cited in 5.
 
 | script | how | lines |
 |---|---|---|
 | [`ai_slop/research/comprehensive_validation/validate_all_problems.py`](../../ai_slop/research/comprehensive_validation/validate_all_problems.py#L1251) | cited | [1251](../../ai_slop/research/comprehensive_validation/validate_all_problems.py#L1251) |
+| [`campaign_fresh_gravity/CFG30_binary_galaxies_referee.py`](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L404) | cited | [404](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L404) |
 | [`real_research/cross_thread_review_2026_09_26/XR13_door_local_group.py`](../../real_research/cross_thread_review_2026_09_26/XR13_door_local_group.py#L3) | cited | [3](../../real_research/cross_thread_review_2026_09_26/XR13_door_local_group.py#L3) |
 | [`real_research/cross_thread_review_2026_09_26/XR24_numerical_action.py`](../../real_research/cross_thread_review_2026_09_26/XR24_numerical_action.py#L3) | cited | [3](../../real_research/cross_thread_review_2026_09_26/XR24_numerical_action.py#L3) |
 | [`real_research/derivation_chain_2026/FP11_local_group_flyby.py`](../../real_research/derivation_chain_2026/FP11_local_group_flyby.py#L3) | cited | [3](../../real_research/derivation_chain_2026/FP11_local_group_flyby.py#L3) |

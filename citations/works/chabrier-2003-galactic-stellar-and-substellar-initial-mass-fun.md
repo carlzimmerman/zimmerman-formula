@@ -6,15 +6,17 @@
 
 **Authors (1):** [Gilles Chabrier](../people/chabrier-gilles.md)
 
-## Used in 30 script(s)
+## Used in 32 script(s)
 
-How: named method/model in 29, cited in a paper in 1.
+How: named method/model in 31, cited in a paper in 1.
 
 | script | how | lines |
 |---|---|---|
 | [`ai_slop/research/jwst_analysis/JWST_FIRST_PRINCIPLES.py`](../../ai_slop/research/jwst_analysis/JWST_FIRST_PRINCIPLES.py#L88) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [88](../../ai_slop/research/jwst_analysis/JWST_FIRST_PRINCIPLES.py#L88) |
 | [`campaign_fresh_gravity/CFG1_evidence_audit.py`](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L611) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [611](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L611), [895](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L895), [902](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L902), [904](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L904) |
 | [`campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py`](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L7) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [7](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L7), [37](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L37), [225](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L225), [227](../../campaign_fresh_gravity/CFG33_slacs_lensing_vs_dynamics.py#L227) |
+| [`campaign_fresh_gravity/CFG35_cold_mass_conservation.py`](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L36) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [36](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L36) |
+| [`campaign_fresh_gravity/CFG36_colour_split_collapse.py`](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L19) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [19](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L19) |
 | [`deepseek_push/G070_data/simon_ufds_v8.tex`](../../deepseek_push/G070_data/simon_ufds_v8.tex#L2456) | cited in a paper — chabrier03 | [2456](../../deepseek_push/G070_data/simon_ufds_v8.tex#L2456) |
 | [`deepseek_push/G070_dsph_compendium.py`](../../deepseek_push/G070_dsph_compendium.py#L30) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [30](../../deepseek_push/G070_dsph_compendium.py#L30), [77](../../deepseek_push/G070_dsph_compendium.py#L77), [393](../../deepseek_push/G070_dsph_compendium.py#L393), [440](../../deepseek_push/G070_dsph_compendium.py#L440) |
 | [`deepseek_push/G133_mightee_footing.py`](../../deepseek_push/G133_mightee_footing.py#L33) | named method/model — Chabrier initial mass function (stellar masses on the Chabrier scale) | [33](../../deepseek_push/G133_mightee_footing.py#L33) |

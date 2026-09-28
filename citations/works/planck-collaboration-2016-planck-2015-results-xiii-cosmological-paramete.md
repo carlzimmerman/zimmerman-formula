@@ -1,6 +1,6 @@
 # Planck Collaboration et al. 2016 — Planck 2015 results: XIII. Cosmological parameters
 
-**Reference.** Planck Collaboration; Ade, P. A. R.; Aghanim, N.; Arnaud, M.; Ashdown, M.; Aumont, J.; Baccigalupi, C.; Banday, A. J.; Barreiro, R. B.; Bartlett, J. G.; Bartolo, N.; Battaner, E.; Battye, R.; Benabed, K.; Benoît, A.; Benoit-Lévy, A.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bock, J. J.; Bonaldi, A.; Bonavera, L.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Boulanger, F.; Bucher, M.; Burigana, C.; Butler, R. C.; Calabrese, E.; et al. (262 authors) (2016). Planck 2015 results: XIII. Cosmological parameters. *Astronomy &amp; Astrophysics* 594, A13. [doi:10.1051/0004-6361/201525830](https://doi.org/10.1051/0004-6361/201525830)
+**Reference.** Planck Collaboration; Ade, P. A. R.; Aghanim, N.; Arnaud, M.; Ashdown, M.; Aumont, J.; Baccigalupi, C.; Banday, A. J.; Barreiro, R. B.; Bartlett, J. G.; Bartolo, N.; Battaner, E.; Battye, R.; Benabed, K.; Benoît, A.; Benoit-Lévy, A.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bock, J. J.; Bonaldi, A.; Bonavera, L.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Boulanger, F.; Bucher, M.; Burigana, C.; Butler, R. C.; Calabrese, E.; et al. (262 authors) (2016). Planck 2015 results: XIII. Cosmological parameters. *Astronomy & Astrophysics* 594, A13. [doi:10.1051/0004-6361/201525830](https://doi.org/10.1051/0004-6361/201525830)
 
 **BibTeX key:** `PlanckCollaboration2016a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

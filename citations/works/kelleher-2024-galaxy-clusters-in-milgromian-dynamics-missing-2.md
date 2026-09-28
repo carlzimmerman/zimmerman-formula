@@ -1,6 +1,6 @@
 # Kelleher & Lelli 2024 — Galaxy clusters in Milgromian dynamics: Missing matter, hydrostatic bias, and the external field effect
 
-**Reference.** Kelleher, R.; Lelli, F. (2024). Galaxy clusters in Milgromian dynamics: Missing matter, hydrostatic bias, and the external field effect. *Astronomy &amp; Astrophysics* 688, A78. [doi:10.1051/0004-6361/202449968](https://doi.org/10.1051/0004-6361/202449968)
+**Reference.** Kelleher, R.; Lelli, F. (2024). Galaxy clusters in Milgromian dynamics: Missing matter, hydrostatic bias, and the external field effect. *Astronomy & Astrophysics* 688, A78. [doi:10.1051/0004-6361/202449968](https://doi.org/10.1051/0004-6361/202449968)
 
 **BibTeX key:** `Kelleher2024b` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

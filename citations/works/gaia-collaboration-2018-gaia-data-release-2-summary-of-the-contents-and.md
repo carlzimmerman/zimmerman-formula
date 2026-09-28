@@ -1,6 +1,6 @@
 # Gaia Collaboration et al. 2018 — Gaia Data Release 2: Summary of the contents and survey properties
 
-**Reference.** Gaia Collaboration; Brown, A. G. A.; Vallenari, A.; Prusti, T.; de Bruijne, J. H. J.; Babusiaux, C.; Bailer-Jones, C. A. L.; Biermann, M.; Evans, D. W.; Eyer, L.; Jansen, F.; Jordi, C.; Klioner, S. A.; Lammers, U.; Lindegren, L.; Luri, X.; Mignard, F.; Panem, C.; Pourbaix, D.; Randich, S.; Sartoretti, P.; Siddiqui, H. I.; Soubiran, C.; van Leeuwen, F.; Walton, N. A.; Arenou, F.; Bastian, U.; Cropper, M.; Drimmel, R.; Katz, D.; et al. (454 authors) (2018). Gaia Data Release 2: Summary of the contents and survey properties. *Astronomy &amp; Astrophysics* 616, A1. [doi:10.1051/0004-6361/201833051](https://doi.org/10.1051/0004-6361/201833051)
+**Reference.** Gaia Collaboration; Brown, A. G. A.; Vallenari, A.; Prusti, T.; de Bruijne, J. H. J.; Babusiaux, C.; Bailer-Jones, C. A. L.; Biermann, M.; Evans, D. W.; Eyer, L.; Jansen, F.; Jordi, C.; Klioner, S. A.; Lammers, U.; Lindegren, L.; Luri, X.; Mignard, F.; Panem, C.; Pourbaix, D.; Randich, S.; Sartoretti, P.; Siddiqui, H. I.; Soubiran, C.; van Leeuwen, F.; Walton, N. A.; Arenou, F.; Bastian, U.; Cropper, M.; Drimmel, R.; Katz, D.; et al. (454 authors) (2018). Gaia Data Release 2: Summary of the contents and survey properties. *Astronomy & Astrophysics* 616, A1. [doi:10.1051/0004-6361/201833051](https://doi.org/10.1051/0004-6361/201833051)
 
 **BibTeX key:** `GaiaCollaboration2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

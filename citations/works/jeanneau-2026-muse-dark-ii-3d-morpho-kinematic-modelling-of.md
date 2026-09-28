@@ -1,6 +1,6 @@
 # Jeanneau et al. 2026 — MUSE-DARK: II. 3D morpho-kinematic modelling of lensed galaxies: Tully-Fisher relation of z ∼ 1 star-forming galaxies
 
-**Reference.** Jeanneau, A.; Richard, J.; Bouché, N. F.; Krajnović, D.; Ciocan, B.-I.; Freundlich, J.; Epinat, B.; Contini, T. (2026). MUSE-DARK: II. 3D morpho-kinematic modelling of lensed galaxies: Tully-Fisher relation of z ∼ 1 star-forming galaxies. *Astronomy &amp; Astrophysics* 709, A120. [doi:10.1051/0004-6361/202659953](https://doi.org/10.1051/0004-6361/202659953) [arXiv:2603.28856](https://arxiv.org/abs/2603.28856)
+**Reference.** Jeanneau, A.; Richard, J.; Bouché, N. F.; Krajnović, D.; Ciocan, B.-I.; Freundlich, J.; Epinat, B.; Contini, T. (2026). MUSE-DARK: II. 3D morpho-kinematic modelling of lensed galaxies: Tully-Fisher relation of z ∼ 1 star-forming galaxies. *Astronomy & Astrophysics* 709, A120. [doi:10.1051/0004-6361/202659953](https://doi.org/10.1051/0004-6361/202659953) [arXiv:2603.28856](https://arxiv.org/abs/2603.28856)
 
 **BibTeX key:** `Jeanneau2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

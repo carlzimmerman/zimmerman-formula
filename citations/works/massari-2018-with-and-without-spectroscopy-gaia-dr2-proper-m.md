@@ -1,6 +1,6 @@
 # Massari & Helmi 2018 — With and without spectroscopy: Gaia DR2 proper motions of seven ultra-faint dwarf galaxies
 
-**Reference.** Massari, D.; Helmi, A. (2018). With and without spectroscopy: Gaia DR2 proper motions of seven ultra-faint dwarf galaxies. *Astronomy &amp; Astrophysics* 620, A155. [doi:10.1051/0004-6361/201833367](https://doi.org/10.1051/0004-6361/201833367)
+**Reference.** Massari, D.; Helmi, A. (2018). With and without spectroscopy: Gaia DR2 proper motions of seven ultra-faint dwarf galaxies. *Astronomy & Astrophysics* 620, A155. [doi:10.1051/0004-6361/201833367](https://doi.org/10.1051/0004-6361/201833367)
 
 **BibTeX key:** `Massari2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

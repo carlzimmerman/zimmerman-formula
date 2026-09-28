@@ -12,7 +12,7 @@
 - Abajyan, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Abazajian, Kevork N.](abazajian-kevork-n.md) — 7 work(s) · 16 scripts
 - Abbas, U. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 278 scripts
-- [Abbasi, Hameer](abbasi-hameer.md) — 1 work(s) · 5148 scripts
+- [Abbasi, Hameer](abbasi-hameer.md) — 1 work(s) · 5150 scripts
 - Abbott, B. P. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) … · 332 scripts
 - Abbott, Rich — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
 - Abbott, T. — author of [Bechtol et al. 2015](../works/bechtol-2015-eight-new-milky-way-companions-discovered-in-fir.md) · 1 scripts
@@ -116,7 +116,7 @@
 - [Aeppli, Alexander](aeppli-alexander.md) — 1 work(s) · 2 scripts
 - [Aerts, Conny](aerts-conny.md) — 7 work(s) · 281 scripts
 - Afach, S. — author of [Abel et al. 2020](../works/abel-2020-measurement-of-the-permanent-electric-dipole-mom.md) · 2 scripts
-- [Afanasiev, Anton V.](afanasiev-anton-v.md) — 1 work(s) · 2 scripts
+- [Afanasiev, Anton V.](afanasiev-anton-v.md) — 1 work(s) · 3 scripts
 - Affeldt, Christoph — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
 - [Afonso, C.](afonso-c.md) — 1 work(s) · 4 scripts
 - Afrough, M. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) … · 264 scripts
@@ -432,7 +432,7 @@
 - [Anderson, E.](anderson-e.md) — 1 work(s) · 697 scripts
 - Anderson, J. — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md) · 195 scripts
 - [Anderson, James L.](anderson-james-l.md) — 1 work(s) · 7 scripts
-- [Anderson, Jay](anderson-jay.md) — 4 work(s) · 9 scripts
+- [Anderson, Jay](anderson-jay.md) — 4 work(s) · 10 scripts
 - [Anderson, John D.](anderson-john-d.md) — 2 work(s) · 10 scripts
 - Anderson, K.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Anderson, Kurt S. J. — author of [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md) · 6 scripts
@@ -717,7 +717,7 @@
 - Aufmuth, Peter — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 270 scripts
 - Auge, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Auger, Matt](auger-matt.md) — 2 work(s) · 2 scripts
-- [Auger, Matthew W.](auger-matthew-w.md) — 10 work(s) · 15 scripts
+- [Auger, Matthew W.](auger-matthew-w.md) — 10 work(s) · 16 scripts
 - Augsten, K. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Aulbert, C. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
 - AultONeal, Kellie — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 270 scripts

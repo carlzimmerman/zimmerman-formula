@@ -1,6 +1,6 @@
 # Fraternali et al. 2009 — Life at the periphery of the Local Group: the kinematics of the Tucana dwarf galaxy
 
-**Reference.** Fraternali, F.; Tolstoy, E.; Irwin, M. J.; Cole, A. A. (2009). Life at the periphery of the Local Group: the kinematics of the Tucana dwarf galaxy. *Astronomy &amp; Astrophysics* 499, 121-128. [doi:10.1051/0004-6361/200810830](https://doi.org/10.1051/0004-6361/200810830)
+**Reference.** Fraternali, F.; Tolstoy, E.; Irwin, M. J.; Cole, A. A. (2009). Life at the periphery of the Local Group: the kinematics of the Tucana dwarf galaxy. *Astronomy & Astrophysics* 499, 121-128. [doi:10.1051/0004-6361/200810830](https://doi.org/10.1051/0004-6361/200810830)
 
 **BibTeX key:** `Fraternali2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # The Astropy Collaboration et al. 2013 — Astropy: A community Python package for astronomy
 
-**Reference.** The Astropy Collaboration; Robitaille, T. P.; Tollerud, E. J.; Greenfield, P.; Droettboom, M.; Bray, E.; Aldcroft, T.; Davis, M.; Ginsburg, A.; Price-Whelan, A. M.; Kerzendorf, W. E.; Conley, A.; Crighton, N.; Barbary, K.; Muna, D.; Ferguson, H.; Grollier, F.; Parikh, M. M.; Nair, P. H.; Günther, H. M.; Deil, C.; Woillez, J.; Conseil, S.; Kramer, R.; Turner, J. E. H.; Singer, L.; Fox, R.; Weaver, B. A.; Zabalza, V.; Edwards, Z. I.; et al. (45 authors) (2013). Astropy: A community Python package for astronomy. *Astronomy &amp; Astrophysics* 558, A33. [doi:10.1051/0004-6361/201322068](https://doi.org/10.1051/0004-6361/201322068)
+**Reference.** The Astropy Collaboration; Robitaille, T. P.; Tollerud, E. J.; Greenfield, P.; Droettboom, M.; Bray, E.; Aldcroft, T.; Davis, M.; Ginsburg, A.; Price-Whelan, A. M.; Kerzendorf, W. E.; Conley, A.; Crighton, N.; Barbary, K.; Muna, D.; Ferguson, H.; Grollier, F.; Parikh, M. M.; Nair, P. H.; Günther, H. M.; Deil, C.; Woillez, J.; Conseil, S.; Kramer, R.; Turner, J. E. H.; Singer, L.; Fox, R.; Weaver, B. A.; Zabalza, V.; Edwards, Z. I.; et al. (45 authors) (2013). Astropy: A community Python package for astronomy. *Astronomy & Astrophysics* 558, A33. [doi:10.1051/0004-6361/201322068](https://doi.org/10.1051/0004-6361/201322068)
 
 **BibTeX key:** `TheAstropyCollaboration2013` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

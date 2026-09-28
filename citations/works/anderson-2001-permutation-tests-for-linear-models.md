@@ -1,6 +1,6 @@
 # Anderson & Robinson 2001 — Permutation Tests for Linear Models
 
-**Reference.** Anderson, M. J.; Robinson, J. (2001). Permutation Tests for Linear Models. *Australian &amp; New Zealand Journal of Statistics* 43, 75-88. [doi:10.1111/1467-842x.00156](https://doi.org/10.1111/1467-842x.00156)
+**Reference.** Anderson, M. J.; Robinson, J. (2001). Permutation Tests for Linear Models. *Australian & New Zealand Journal of Statistics* 43, 75-88. [doi:10.1111/1467-842x.00156](https://doi.org/10.1111/1467-842x.00156)
 
 **BibTeX key:** `Anderson2001` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

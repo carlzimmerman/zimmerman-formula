@@ -1,6 +1,6 @@
 # Koch et al. 2013 — Neutron-capture element deficiency of the Hercules dwarf spheroidal galaxy
 
-**Reference.** Koch, A.; Feltzing, S.; Adén, D.; Matteucci, F. (2013). Neutron-capture element deficiency of the Hercules dwarf spheroidal galaxy. *Astronomy &amp; Astrophysics* 554, A5. [doi:10.1051/0004-6361/201220742](https://doi.org/10.1051/0004-6361/201220742)
+**Reference.** Koch, A.; Feltzing, S.; Adén, D.; Matteucci, F. (2013). Neutron-capture element deficiency of the Hercules dwarf spheroidal galaxy. *Astronomy & Astrophysics* 554, A5. [doi:10.1051/0004-6361/201220742](https://doi.org/10.1051/0004-6361/201220742)
 
 **BibTeX key:** `Koch2013b` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -487,7 +487,7 @@
 - Leitner, Daniela — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) · 381 scripts
 - Leitner, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Leja, Joel](leja-joel.md) — 16 work(s) · 35 scripts
-- [Lelli, Federico](lelli-federico.md) — 31 work(s) · 1812 scripts
+- [Lelli, Federico](lelli-federico.md) — 31 work(s) · 1814 scripts
 - Lellouch, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Lellouch, L P](lellouch-l-p.md) — 4 work(s) · 206 scripts
 - Leloudas, G. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md), [Betoule et al. 2014](../works/betoule-2014-improved-cosmological-constraints-from-a-joint-a.md) · 2 scripts
@@ -1100,7 +1100,7 @@
 - Lovelace, Geoffrey — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
 - [Lovell, Mark R.](lovell-mark-r.md) — 2 work(s) · 5 scripts
 - Lovis, Christophe — author of [Murphy et al. 2022](../works/murphy-2022-fundamental-physics-with-espresso-precise-limit.md) · 1 scripts
-- [Lovisari, Lorenzo](lovisari-lorenzo.md) — 9 work(s) · 25 scripts
+- [Lovisari, Lorenzo](lovisari-lorenzo.md) — 9 work(s) · 26 scripts
 - Low, N. K. Y. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
 - Lowe, A.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Lowe, T. B. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts

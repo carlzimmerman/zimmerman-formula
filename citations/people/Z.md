@@ -43,7 +43,7 @@
 - Zanzi, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Zapatero Osorio, Maria-Rosa — author of [Murphy et al. 2022](../works/murphy-2022-fundamental-physics-with-espresso-precise-limit.md) · 1 scripts
 - Zappa, F. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
-- [Zappacosta, Luca](zappacosta-luca.md) — 1 work(s) · 3 scripts
+- [Zappacosta, Luca](zappacosta-luca.md) — 1 work(s) · 4 scripts
 - [Zari, Eleonora](zari-eleonora.md) — 2 work(s) · 6 scripts
 - [Zaritsky, Dennis](zaritsky-dennis.md) — 16 work(s) · 38 scripts
 - [Zaroubi, S](zaroubi-s.md) — 1 work(s) · 1 scripts
@@ -372,7 +372,7 @@
 - Zschocke, S. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
 - Zsigmond, G. — author of [Abel et al. 2020](../works/abel-2020-measurement-of-the-permanent-electric-dipole-mom.md) · 2 scripts
 - Zsoldos, S. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
-- [Zu, Ying](zu-ying.md) — 3 work(s) · 385 scripts
+- [Zu, Ying](zu-ying.md) — 3 work(s) · 386 scripts
 - [Zuber, Maria T.](zuber-maria-t.md) — 2 work(s) · 8 scripts
 - Zucca, E. — author of [López-Sanjuan et al. 2012](../works/lopez-sanjuan-2012-the-dominant-role-of-mergers-in-the-size-evoluti.md), [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Congedo et al. 2026](../works/congedo-2026-euclid-quick-data-release-q1-lensmc-shear.md) … · 7 scripts
 - Zucchelli, S. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts

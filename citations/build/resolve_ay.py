@@ -460,9 +460,13 @@ def main(argv):
     missing = "--missing" in argv
     only = set(a for a in argv[1:] if not a.startswith("--"))
     pth0 = DATA / "ay_resolution.json.gz"
-    have = set(load_json(pth0)) if (missing and pth0.exists()) else set()
+    stored = load_json(pth0) if (missing and pth0.exists()) else {}
     if missing:
-        only = {g.key for g in groups.values()} - have
+        # new keys, and known keys whose citing files or lines changed since their decision (a new or edited
+        # script): a stored decision only covers the files it was made for
+        only = {g.key for g in groups.values()
+                if (stored.get(g.key) or {}).get("files") != {f: sorted(l) for f, l in sorted(g.files.items())}}
+        print(f"incremental: {len(only)} of {len(groups)} keys are new or cited from new/changed places", flush=True)
     todo = [g for g in groups.values() if g.key in only] if (only or missing) else list(groups.values())
     todo.sort(key=lambda g: -len(g.files))
     out = {}

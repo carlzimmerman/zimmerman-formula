@@ -1,6 +1,6 @@
 # Hofmann, Müller & Biskupek 2010 — Lunar laser ranging test of the Nordtvedt parameter and a possible variation in the gravitational constant
 
-**Reference.** Hofmann, F.; Müller, J.; Biskupek, L. (2010). Lunar laser ranging test of the Nordtvedt parameter and a possible variation in the gravitational constant. *Astronomy &amp; Astrophysics* 522, L5. [doi:10.1051/0004-6361/201015659](https://doi.org/10.1051/0004-6361/201015659)
+**Reference.** Hofmann, F.; Müller, J.; Biskupek, L. (2010). Lunar laser ranging test of the Nordtvedt parameter and a possible variation in the gravitational constant. *Astronomy & Astrophysics* 522, L5. [doi:10.1051/0004-6361/201015659](https://doi.org/10.1051/0004-6361/201015659)
 
 **BibTeX key:** `Hofmann2010` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

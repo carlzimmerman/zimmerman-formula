@@ -1,6 +1,6 @@
 # Zhao et al. 2013 — Local Group timing in Milgromian dynamics: A past Milky Way-Andromeda encounter atz> 0.8
 
-**Reference.** Zhao, H.; Famaey, B.; Lüghausen, F.; Kroupa, P. (2013). Local Group timing in Milgromian dynamics: A past Milky Way-Andromeda encounter atz> 0.8. *Astronomy &amp; Astrophysics* 557, L3. [doi:10.1051/0004-6361/201321879](https://doi.org/10.1051/0004-6361/201321879)
+**Reference.** Zhao, H.; Famaey, B.; Lüghausen, F.; Kroupa, P. (2013). Local Group timing in Milgromian dynamics: A past Milky Way-Andromeda encounter atz> 0.8. *Astronomy & Astrophysics* 557, L3. [doi:10.1051/0004-6361/201321879](https://doi.org/10.1051/0004-6361/201321879)
 
 **BibTeX key:** `Zhao2013` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Girard et al. 2019 — Towards sub-kpc scale kinematics of molecular and ionized gas of star-forming galaxies at z ∼ 1
 
-**Reference.** Girard, M.; Dessauges-Zavadsky, M.; Combes, F.; Chisholm, J.; Patrício, V.; Richard, J.; Schaerer, D. (2019). Towards sub-kpc scale kinematics of molecular and ionized gas of star-forming galaxies at z ∼ 1. *Astronomy &amp; Astrophysics* 631, A91. [doi:10.1051/0004-6361/201935896](https://doi.org/10.1051/0004-6361/201935896) [arXiv:1909.07400](https://arxiv.org/abs/1909.07400)
+**Reference.** Girard, M.; Dessauges-Zavadsky, M.; Combes, F.; Chisholm, J.; Patrício, V.; Richard, J.; Schaerer, D. (2019). Towards sub-kpc scale kinematics of molecular and ionized gas of star-forming galaxies at z ∼ 1. *Astronomy & Astrophysics* 631, A91. [doi:10.1051/0004-6361/201935896](https://doi.org/10.1051/0004-6361/201935896) [arXiv:1909.07400](https://arxiv.org/abs/1909.07400)
 
 **BibTeX key:** `Girard2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -6,12 +6,13 @@
 
 **Authors (6):** [Rachel Mandelbaum](../people/mandelbaum-rachel.md), [Wenting Wang](../people/wang-wenting.md), [Ying Zu](../people/zu-ying.md), [Simon White](../people/white-simon-d-m.md), [Bruno Henriques](../people/henriques-bruno.md), [Surhud More](../people/more-surhud.md)
 
-## Used in 4 script(s)
+## Used in 5 script(s)
 
-How: cited in 4.
+How: cited in 5.
 
 | script | how | lines |
 |---|---|---|
+| [`campaign_fresh_gravity/CFG36_colour_split_collapse.py`](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L3), [69](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L69) |
 | [`hunt_2026/h111_h112_kids_ml_machine.py`](../../hunt_2026/h111_h112_kids_ml_machine.py#L399) | cited | [399](../../hunt_2026/h111_h112_kids_ml_machine.py#L399) |
 | [`real_research/reviews/lensing_rar/agentH_perclass_C.py`](../../real_research/reviews/lensing_rar/agentH_perclass_C.py#L2) | cited | [2](../../real_research/reviews/lensing_rar/agentH_perclass_C.py#L2), [165](../../real_research/reviews/lensing_rar/agentH_perclass_C.py#L165) |
 | [`real_research/reviews/toe_law/agentH3_typesplit.py`](../../real_research/reviews/toe_law/agentH3_typesplit.py#L2) | cited | [2](../../real_research/reviews/toe_law/agentH3_typesplit.py#L2) |

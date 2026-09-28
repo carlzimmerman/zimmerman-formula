@@ -1,6 +1,6 @@
 # Sarzi et al. 2018 — Fornax3D project: Overall goals, galaxy sample, MUSE data analysis, and initial results
 
-**Reference.** Sarzi, M.; Iodice, E.; Coccato, L.; Corsini, E. M.; de Zeeuw, P. T.; Falcón-Barroso, J.; Gadotti, D. A.; Lyubenova, M.; McDermid, R. M.; van de Ven, G.; Fahrion, K.; Pizzella, A.; Zhu, L. (2018). Fornax3D project: Overall goals, galaxy sample, MUSE data analysis, and initial results. *Astronomy &amp; Astrophysics* 616, A121. [doi:10.1051/0004-6361/201833137](https://doi.org/10.1051/0004-6361/201833137)
+**Reference.** Sarzi, M.; Iodice, E.; Coccato, L.; Corsini, E. M.; de Zeeuw, P. T.; Falcón-Barroso, J.; Gadotti, D. A.; Lyubenova, M.; McDermid, R. M.; van de Ven, G.; Fahrion, K.; Pizzella, A.; Zhu, L. (2018). Fornax3D project: Overall goals, galaxy sample, MUSE data analysis, and initial results. *Astronomy & Astrophysics* 616, A121. [doi:10.1051/0004-6361/201833137](https://doi.org/10.1051/0004-6361/201833137)
 
 **BibTeX key:** `Sarzi2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

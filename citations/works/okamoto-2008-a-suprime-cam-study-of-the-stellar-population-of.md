@@ -1,6 +1,6 @@
 # Okamoto et al. 2008 — A Suprime-Cam study of the stellar population of the Ursa Major I dwarf spheroidal galaxy
 
-**Reference.** Okamoto, S.; Arimoto, N.; Yamada, Y.; Onodera, M. (2008). A Suprime-Cam study of the stellar population of the Ursa Major I dwarf spheroidal galaxy. *Astronomy &amp; Astrophysics* 487, 103-108. [doi:10.1051/0004-6361:20078232](https://doi.org/10.1051/0004-6361:20078232)
+**Reference.** Okamoto, S.; Arimoto, N.; Yamada, Y.; Onodera, M. (2008). A Suprime-Cam study of the stellar population of the Ursa Major I dwarf spheroidal galaxy. *Astronomy & Astrophysics* 487, 103-108. [doi:10.1051/0004-6361:20078232](https://doi.org/10.1051/0004-6361:20078232)
 
 **BibTeX key:** `Okamoto2008` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

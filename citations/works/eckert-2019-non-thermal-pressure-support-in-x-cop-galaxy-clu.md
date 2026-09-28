@@ -1,6 +1,6 @@
 # Eckert et al. 2019 — Non-thermal pressure support in X-COP galaxy clusters
 
-**Reference.** Eckert, D.; Ghirardini, V.; Ettori, S.; Rasia, E.; Biffi, V.; Pointecouteau, E.; Rossetti, M.; Molendi, S.; Vazza, F.; Gastaldello, F.; Gaspari, M.; De Grandi, S.; Ghizzardi, S.; Bourdin, H.; Tchernin, C.; Roncarelli, M. (2019). Non-thermal pressure support in X-COP galaxy clusters. *Astronomy &amp; Astrophysics* 621, A40. [doi:10.1051/0004-6361/201833324](https://doi.org/10.1051/0004-6361/201833324) [arXiv:1805.00034](https://arxiv.org/abs/1805.00034)
+**Reference.** Eckert, D.; Ghirardini, V.; Ettori, S.; Rasia, E.; Biffi, V.; Pointecouteau, E.; Rossetti, M.; Molendi, S.; Vazza, F.; Gastaldello, F.; Gaspari, M.; De Grandi, S.; Ghizzardi, S.; Bourdin, H.; Tchernin, C.; Roncarelli, M. (2019). Non-thermal pressure support in X-COP galaxy clusters. *Astronomy & Astrophysics* 621, A40. [doi:10.1051/0004-6361/201833324](https://doi.org/10.1051/0004-6361/201833324) [arXiv:1805.00034](https://arxiv.org/abs/1805.00034)
 
 **BibTeX key:** `Eckert2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

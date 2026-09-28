@@ -1,6 +1,6 @@
 # Mucciarelli et al. 2017 — Chemical abundances in the nucleus of the Sagittarius dwarf spheroidal galaxy
 
-**Reference.** Mucciarelli, A.; Bellazzini, M.; Ibata, R.; Romano, D.; Chapman, S. C.; Monaco, L. (2017). Chemical abundances in the nucleus of the Sagittarius dwarf spheroidal galaxy. *Astronomy &amp; Astrophysics* 605, A46. [doi:10.1051/0004-6361/201730707](https://doi.org/10.1051/0004-6361/201730707)
+**Reference.** Mucciarelli, A.; Bellazzini, M.; Ibata, R.; Romano, D.; Chapman, S. C.; Monaco, L. (2017). Chemical abundances in the nucleus of the Sagittarius dwarf spheroidal galaxy. *Astronomy & Astrophysics* 605, A46. [doi:10.1051/0004-6361/201730707](https://doi.org/10.1051/0004-6361/201730707)
 
 **BibTeX key:** `Mucciarelli2017` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -212,7 +212,7 @@
 - [Wang, Weichen](wang-weichen.md) — 1 work(s) · 13 scripts
 - [Wang, Wenbin](wang-wenbin.md) — 1 work(s) · 1 scripts
 - Wang, Wenhui H. — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md), [Lee et al. 2026](../works/lee-2026-the-alpine-cristal-jwst-survey-gas-phase-abunda.md) · 4 scripts
-- [Wang, Wenting](wang-wenting.md) — 3 work(s) · 7 scripts
+- [Wang, Wenting](wang-wenting.md) — 3 work(s) · 8 scripts
 - [Wang, X.](wang-x.md) — 1 work(s) · 2 scripts
 - [Wang, Xin](wang-xin.md) — 8 work(s) · 33 scripts
 - Wang, Y. — author of [Congedo et al. 2026](../works/congedo-2026-euclid-quick-data-release-q1-lensmc-shear.md) · 1 scripts
@@ -327,7 +327,7 @@
 - Webster, R — author of [Koopmans et al. 2015](../works/koopmans-2015-the-cosmic-dawn-and-epoch-of-reionisation-with-s.md) · 1 scripts
 - Webster, S. A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) … · 18 scripts
 - [Wechsler, Risa H.](wechsler-risa-h.md) — 39 work(s) · 451 scripts
-- [Weckesser, Warren](weckesser-warren.md) — 2 work(s) · 5181 scripts
+- [Weckesser, Warren](weckesser-warren.md) — 2 work(s) · 5183 scripts
 - Weeldreyer, L. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md) · 1 scripts
 - [Wegg, Christopher](wegg-christopher.md) — 2 work(s) · 2 scripts
 - [Wehus, I. K.](wehus-i-k.md) — 7 work(s) · 422 scripts
@@ -482,7 +482,7 @@
 - White, R. G. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
 - [White, Richard L.](white-richard-l.md) — 2 work(s) · 1 scripts
 - [White, Russel J.](white-russel-j.md) — 1 work(s) · 3 scripts
-- [White, Simon D. M.](white-simon-d-m.md) — 19 work(s) · 869 scripts
+- [White, Simon D. M.](white-simon-d-m.md) — 19 work(s) · 871 scripts
 - Whitehead, G. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
 - Whitehead, S.r. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Whitehorn, Nathan — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Bocquet et al. 2024](../works/bocquet-2024-spt-clusters-with-des-and-hst-weak-lensing-ii.md), [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md) … · 16 scripts
@@ -513,7 +513,7 @@
 - [Widmark, A](widmark-a.md) — 1 work(s) · 1 scripts
 - [Widrow, Lawrence M.](widrow-lawrence-m.md) — 5 work(s) · 16 scripts
 - Wiebe, D. V. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
-- [Wiebe, Mark](wiebe-mark.md) — 1 work(s) · 5148 scripts
+- [Wiebe, Mark](wiebe-mark.md) — 1 work(s) · 5150 scripts
 - Wiecha, Oliver — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
 - Wieching, Gundolf — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
 - Wiedenmann, W. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -525,7 +525,7 @@
 - Wiencke, L R — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
 - Wienemann, P. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Wiersema, K. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
-- [Wieser, Eric](wieser-eric.md) — 2 work(s) · 5181 scripts
+- [Wieser, Eric](wieser-eric.md) — 2 work(s) · 5183 scripts
 - Wiesinger, Christoph — author of [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
 - Wiesmann, M. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 4 scripts
 - Wiesner, K. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts

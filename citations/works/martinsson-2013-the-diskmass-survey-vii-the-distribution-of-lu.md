@@ -1,6 +1,6 @@
 # Martinsson et al. 2013 — The DiskMass Survey: VII. The distribution of luminous and dark matter in spiral galaxies⋆
 
-**Reference.** Martinsson, T. P. K.; Verheijen, M. A. W.; Westfall, K. B.; Bershady, M. A.; Andersen, D. R.; Swaters, R. A. (2013). The DiskMass Survey: VII. The distribution of luminous and dark matter in spiral galaxies⋆. *Astronomy &amp; Astrophysics* 557, A131. [doi:10.1051/0004-6361/201321390](https://doi.org/10.1051/0004-6361/201321390)
+**Reference.** Martinsson, T. P. K.; Verheijen, M. A. W.; Westfall, K. B.; Bershady, M. A.; Andersen, D. R.; Swaters, R. A. (2013). The DiskMass Survey: VII. The distribution of luminous and dark matter in spiral galaxies⋆. *Astronomy & Astrophysics* 557, A131. [doi:10.1051/0004-6361/201321390](https://doi.org/10.1051/0004-6361/201321390)
 
 **BibTeX key:** `Martinsson2013` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

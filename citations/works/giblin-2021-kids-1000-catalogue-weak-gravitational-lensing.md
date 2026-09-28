@@ -1,6 +1,6 @@
 # Giblin et al. 2021 — KiDS-1000 catalogue: Weak gravitational lensing shear measurements
 
-**Reference.** Giblin, B.; Heymans, C.; Asgari, M.; Hildebrandt, H.; Hoekstra, H.; Joachimi, B.; Kannawadi, A.; Kuijken, K.; Lin, C.-A.; Miller, L.; Tröster, T.; van den Busch, J. L.; Wright, A. H.; Bilicki, M.; Blake, C.; de Jong, J.; Dvornik, A.; Erben, T.; Getman, F.; Napolitano, N. R.; Schneider, P.; Shan, H.; Valentijn, E. (2021). KiDS-1000 catalogue: Weak gravitational lensing shear measurements. *Astronomy &amp; Astrophysics* 645, A105. [doi:10.1051/0004-6361/202038850](https://doi.org/10.1051/0004-6361/202038850)
+**Reference.** Giblin, B.; Heymans, C.; Asgari, M.; Hildebrandt, H.; Hoekstra, H.; Joachimi, B.; Kannawadi, A.; Kuijken, K.; Lin, C.-A.; Miller, L.; Tröster, T.; van den Busch, J. L.; Wright, A. H.; Bilicki, M.; Blake, C.; de Jong, J.; Dvornik, A.; Erben, T.; Getman, F.; Napolitano, N. R.; Schneider, P.; Shan, H.; Valentijn, E. (2021). KiDS-1000 catalogue: Weak gravitational lensing shear measurements. *Astronomy & Astrophysics* 645, A105. [doi:10.1051/0004-6361/202038850](https://doi.org/10.1051/0004-6361/202038850)
 
 **BibTeX key:** `Giblin2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

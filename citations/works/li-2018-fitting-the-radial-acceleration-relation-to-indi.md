@@ -1,6 +1,6 @@
 # Li et al. 2018 — Fitting the radial acceleration relation to individual SPARC galaxies
 
-**Reference.** Li, P.; Lelli, F.; McGaugh, S.; Schombert, J. (2018). Fitting the radial acceleration relation to individual SPARC galaxies. *Astronomy &amp; Astrophysics* 615, A3. [doi:10.1051/0004-6361/201732547](https://doi.org/10.1051/0004-6361/201732547) [arXiv:1803.00022](https://arxiv.org/abs/1803.00022)
+**Reference.** Li, P.; Lelli, F.; McGaugh, S.; Schombert, J. (2018). Fitting the radial acceleration relation to individual SPARC galaxies. *Astronomy & Astrophysics* 615, A3. [doi:10.1051/0004-6361/201732547](https://doi.org/10.1051/0004-6361/201732547) [arXiv:1803.00022](https://arxiv.org/abs/1803.00022)
 
 **BibTeX key:** `Li2018a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

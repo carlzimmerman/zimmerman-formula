@@ -1,6 +1,6 @@
 # Rosselli et al. 2023 — Testing general relativity: New measurements of gravitational redshift in galaxy clusters
 
-**Reference.** Rosselli, D.; Marulli, F.; Veropalumbo, A.; Cimatti, A.; Moscardini, L. (2023). Testing general relativity: New measurements of gravitational redshift in galaxy clusters. *Astronomy &amp; Astrophysics* 669, A29. [doi:10.1051/0004-6361/202244244](https://doi.org/10.1051/0004-6361/202244244) [arXiv:2206.05313](https://arxiv.org/abs/2206.05313)
+**Reference.** Rosselli, D.; Marulli, F.; Veropalumbo, A.; Cimatti, A.; Moscardini, L. (2023). Testing general relativity: New measurements of gravitational redshift in galaxy clusters. *Astronomy & Astrophysics* 669, A29. [doi:10.1051/0004-6361/202244244](https://doi.org/10.1051/0004-6361/202244244) [arXiv:2206.05313](https://arxiv.org/abs/2206.05313)
 
 **BibTeX key:** `Rosselli2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

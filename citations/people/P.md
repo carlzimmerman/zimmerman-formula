@@ -399,7 +399,7 @@
 - [Pedregosa, Fabian](pedregosa-fabian.md) — 3 work(s) · 4134 scripts
 - Pedrosa, R. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
 - Pedurand, R. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 269 scripts
-- [Peebles, P. J. E.](peebles-p-j-e.md) — 3 work(s) · 1219 scripts
+- [Peebles, P. J. E.](peebles-p-j-e.md) — 3 work(s) · 1220 scripts
 - [Peek, J. E. G.](peek-j-e-g.md) — 1 work(s) · 1 scripts
 - Peel, A. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md) · 2 scripts
 - [Peeples, Molly S.](peeples-molly-s.md) — 2 work(s) · 2 scripts
@@ -572,7 +572,7 @@
 - Peterson, J. Matt — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
 - Peterson, John R. — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
 - [Peterson, L. E.](peterson-l-e.md) — 1 work(s) · 2 scripts
-- [Peterson, Pearu](peterson-pearu.md) — 3 work(s) · 5181 scripts
+- [Peterson, Pearu](peterson-pearu.md) — 3 work(s) · 5183 scripts
 - Peterson, R. L. — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md) · 103 scripts
 - Peterson, Stefan — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
 - [Petit, Alexis-Thérèse](petit-alexis-therese.md) — 1 work(s) · 3 scripts
@@ -648,7 +648,7 @@
 - Pickenpack, M. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
 - [Pickering, Timothy E.](pickering-timothy-e.md) — 2 work(s) · 200 scripts
 - Picó, Sergio — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
-- [Picus, Matti](picus-matti.md) — 1 work(s) · 5148 scripts
+- [Picus, Matti](picus-matti.md) — 1 work(s) · 5150 scripts
 - Piec, S.m. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Pied, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
 - Piegaia, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -1046,7 +1046,7 @@
 - Prieur, Pascal — author of [Touboul et al. 2022](../works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md), [Touboul et al. 2017](../works/touboul-2017-microscope-mission-first-results-of-a-space-tes.md) · 32 scripts
 - [Priewe, Jett](priewe-jett.md) — 1 work(s) · 1 scripts
 - Prijatelj, M. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
-- [Primack, Joel R.](primack-joel-r.md) — 4 work(s) · 1219 scripts
+- [Primack, Joel R.](primack-joel-r.md) — 4 work(s) · 1220 scripts
 - [Primas, F.](primas-f.md) — 3 work(s) · 1 scripts
 - Primavera, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Primiani, Rurik A. — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts

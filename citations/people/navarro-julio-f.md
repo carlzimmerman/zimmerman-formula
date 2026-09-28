@@ -1,11 +1,11 @@
 # Julio F. Navarro
 
-Credited in **428** file(s) through **19** work(s) · affiliation on the cited work(s): Department of Physics and Astronomy, University of Victoria, Victoria, BC V8P 5C2, Canada; Department of Physics and Astronomy, University of Victoria, PO Box 3055, STN CSC, Victoria BC V8W 3P6, Canada
+Credited in **430** file(s) through **19** work(s) · affiliation on the cited work(s): Department of Physics and Astronomy, University of Victoria, Victoria, BC V8P 5C2, Canada; Department of Physics and Astronomy, University of Victoria, PO Box 3055, STN CSC, Victoria BC V8W 3P6, Canada
 
 | work | used in | how |
 |---|---:|---|
-| [Navarro, Frenk & White 1997](../works/navarro-1997-a-universal-density-profile-from-hierarchical-cl.md) — A Universal Density Profile from Hierarchical Clustering | 416 | named method/model, cited in a paper |
-| [Navarro, Frenk & White 1996](../works/navarro-1996-the-structure-of-cold-dark-matter-halos.md) — The Structure of Cold Dark Matter Halos | 413 | named method/model |
+| [Navarro, Frenk & White 1997](../works/navarro-1997-a-universal-density-profile-from-hierarchical-cl.md) — A Universal Density Profile from Hierarchical Clustering | 418 | named method/model, cited in a paper |
+| [Navarro, Frenk & White 1996](../works/navarro-1996-the-structure-of-cold-dark-matter-halos.md) — The Structure of Cold Dark Matter Halos | 415 | named method/model |
 | [Oman et al. 2015](../works/oman-2015-the-unexpected-diversity-of-dwarf-galaxy-rotatio.md) — The unexpected diversity of dwarf galaxy rotation curves | 5 | cited |
 | [Ludlow et al. 2017](../works/ludlow-2017-mass-discrepancy-acceleration-relation-a-natura.md) — Mass-Discrepancy Acceleration Relation: A Natural Outcome of Galaxy Formation in Cold Dark Matter Halos | 4 | cited |
 | [Navarro et al. 2017](../works/navarro-2017-the-origin-of-the-mass-discrepancy-acceleration.md) — The origin of the mass discrepancy–acceleration relation in ΛCDM | 3 | cited |

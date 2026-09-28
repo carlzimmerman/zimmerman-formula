@@ -1,6 +1,6 @@
 # Lindegren et al. 2018 — Gaia Data Release 2: The astrometric solution
 
-**Reference.** Lindegren, L.; Hernández, J.; Bombrun, A.; Klioner, S.; Bastian, U.; Ramos-Lerate, M.; de Torres, A.; Steidelmüller, H.; Stephenson, C.; Hobbs, D.; Lammers, U.; Biermann, M.; Geyer, R.; Hilger, T.; Michalik, D.; Stampa, U.; McMillan, P.; Castañeda, J.; Clotet, M.; Comoretto, G.; Davidson, M.; Fabricius, C.; Gracia, G.; Hambly, N.; Hutton, A.; Mora, A.; Portell, J.; van Leeuwen, F.; Abbas, U.; Abreu, A.; et al. (90 authors) (2018). Gaia Data Release 2: The astrometric solution. *Astronomy &amp; Astrophysics* 616, A2. [doi:10.1051/0004-6361/201832727](https://doi.org/10.1051/0004-6361/201832727)
+**Reference.** Lindegren, L.; Hernández, J.; Bombrun, A.; Klioner, S.; Bastian, U.; Ramos-Lerate, M.; de Torres, A.; Steidelmüller, H.; Stephenson, C.; Hobbs, D.; Lammers, U.; Biermann, M.; Geyer, R.; Hilger, T.; Michalik, D.; Stampa, U.; McMillan, P.; Castañeda, J.; Clotet, M.; Comoretto, G.; Davidson, M.; Fabricius, C.; Gracia, G.; Hambly, N.; Hutton, A.; Mora, A.; Portell, J.; van Leeuwen, F.; Abbas, U.; Abreu, A.; et al. (90 authors) (2018). Gaia Data Release 2: The astrometric solution. *Astronomy & Astrophysics* 616, A2. [doi:10.1051/0004-6361/201832727](https://doi.org/10.1051/0004-6361/201832727)
 
 **BibTeX key:** `Lindegren2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -7,6 +7,7 @@ Responses are cached on disk (CITE_CACHE, default: citations/.cache/, git-ignore
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import os
 import re
@@ -98,17 +99,31 @@ def get(service: str, url: str, parse: str = "json", retries: int = 7):
 
 
 # ------------------------------------------------------------------ normalised record
+def unescape(s):
+    """HTML entities out of publisher metadata ("Astronomy &amp; Astrophysics"; some are escaped twice, "&amp;#233;")."""
+    if not isinstance(s, str):
+        return s
+    for _ in range(3):
+        u = html.unescape(s)
+        if u == s:
+            break
+        s = u
+    return s
+
+
 def rec(source, **kw):
     base = {"source": source, "type": None, "title": None, "authors": [], "year": None, "container": None,
             "volume": None, "issue": None, "page": None, "doi": None, "arxiv": None, "url": None,
             "citations": None, "abstract": None, "collaboration": None, "publisher": None}
     base.update(kw)
+    for k in ("title", "container", "publisher", "collaboration"):
+        base[k] = unescape(base[k])
     return base
 
 
 def _person(given, family, orcid=None, affil=None, name=None):
-    return {"given": (given or "").strip(), "family": (family or "").strip(), "orcid": orcid,
-            "affiliation": affil, "name": name}
+    return {"given": unescape((given or "").strip()), "family": unescape((family or "").strip()), "orcid": orcid,
+            "affiliation": unescape(affil), "name": unescape(name)}
 
 
 _PART = {"de", "van", "von", "der", "den", "du", "della", "del", "da", "di", "le", "la", "ten", "ter", "dos", "das"}
@@ -441,8 +456,7 @@ def _oa_norm(w):
 def clean_title(t):
     if not t:
         return t
-    t = re.sub(r"<[^>]+>", "", t)
-    t = t.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
+    t = unescape(re.sub(r"<[^>]+>", "", t))
     return re.sub(r"\s+", " ", t).strip()
 
 

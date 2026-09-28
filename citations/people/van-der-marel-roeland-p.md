@@ -1,10 +1,10 @@
 # Roeland P. van der Marel
 
-Credited in **17** file(s) through **16** work(s) · ORCID [0000-0001-7827-7825](https://orcid.org/0000-0001-7827-7825)
+Credited in **18** file(s) through **16** work(s) · ORCID [0000-0001-7827-7825](https://orcid.org/0000-0001-7827-7825)
 
 | work | used in | how |
 |---|---:|---|
-| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 4 | cited |
+| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 5 | cited |
 | [Vitral et al. 2024](../works/vitral-2024-hstpromo-internal-proper-motion-kinematics-of-dw.md) — HSTPROMO Internal Proper-motion Kinematics of Dwarf Spheroidal Galaxies. I. Velocity Anisotropy and Dark Matte | 4 | cited |
 | [Kallivayalil et al. 2013](../works/kallivayalil-2013-third-epoch-magellanic-cloud-proper-motions-i-h.md) — THIRD-EPOCH MAGELLANIC CLOUD PROPER MOTIONS. I.HUBBLE SPACE TELESCOPE/WFC3 DATA AND ORBIT IMPLICATIONS | 3 | cited |
 | [Vitral et al. 2026](../works/vitral-2026-hstpromo-internal-proper-motion-kinematics-of-dw.md) — HSTPROMO Internal Proper-motion Kinematics of Dwarf Spheroidal Galaxies. II. Velocity Anisotropy and Dark Matt | 3 | cited |

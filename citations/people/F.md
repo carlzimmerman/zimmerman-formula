@@ -8,13 +8,13 @@
 - [Fabello, Silvia](fabello-silvia.md) — 1 work(s) · 4 scripts
 - Faber, Aaron — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
 - [Faber, Jakob](faber-jakob.md) — 1 work(s) · 1 scripts
-- [Faber, Sandra M.](faber-sandra-m.md) — 5 work(s) · 1235 scripts
+- [Faber, Sandra M.](faber-sandra-m.md) — 5 work(s) · 1236 scripts
 - [Fabian, Andrew C.](fabian-andrew-c.md) — 7 work(s) · 13 scripts
 - [Fabian, Andrew C.](fabian-andrew-c-2.md) — 1 work(s) · 1 scripts
 - [Fabinsky, Beth](fabinsky-beth.md) — 1 work(s) · 10 scripts
 - [Fabjan, D.](fabjan-d.md) — 2 work(s) · 2 scripts
 - Fabre, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md) … · 342 scripts
-- [Fabricant, Daniel G.](fabricant-daniel-g.md) — 3 work(s) · 7 scripts
+- [Fabricant, Daniel G.](fabricant-daniel-g.md) — 3 work(s) · 8 scripts
 - Fabricius, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 277 scripts
 - [Fabricius, M.](fabricius-m.md) — 7 work(s) · 80 scripts
 - [Fabris, Agnese](fabris-agnese.md) — 1 work(s) · 1 scripts
@@ -49,7 +49,7 @@
 - [Faltenbacher, A.](faltenbacher-a.md) — 1 work(s) · 1 scripts
 - [Faltings, Gerd](faltings-gerd.md) — 1 work(s) · 1 scripts
 - Falxa, M. — author of [Smarra et al. 2023](../works/smarra-2023-second-data-release-from-the-european-pulsar-tim.md) · 1 scripts
-- [Famaey, Benoit](famaey-benoit.md) — 30 work(s) · 299 scripts
+- [Famaey, Benoit](famaey-benoit.md) — 30 work(s) · 300 scripts
 - Fan, A. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
 - [Fan, Hsin](fan-hsin.md) — 1 work(s) · 1 scripts
 - Fan, P. C. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
@@ -75,7 +75,7 @@
 - Farah, W. — author of [Bannister et al. 2019](../works/bannister-2019-a-single-fast-radio-burst-localized-to-a-massive.md) · 1 scripts
 - [Farahi, Arya](farahi-arya.md) — 7 work(s) · 402 scripts
 - Farbin, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Fardal, Mark A.](fardal-mark-a.md) — 6 work(s) · 6 scripts
+- [Fardal, Mark A.](fardal-mark-a.md) — 6 work(s) · 7 scripts
 - [Fardon, Rob](fardon-rob.md) — 1 work(s) · 9 scripts
 - [FARGUES, Laurent](fargues-laurent.md) — 1 work(s) · 4 scripts
 - Farhang, M. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md) · 416 scripts
@@ -596,12 +596,12 @@
 - [Fremling, Christoffer](fremling-christoffer.md) — 2 work(s) · 2 scripts
 - French, S.t. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Frenet, Frédéric](frenet-frederic.md) — 1 work(s) · 3 scripts
-- [Frenk, Carlos S.](frenk-carlos-s.md) — 27 work(s) · 833 scripts
+- [Frenk, Carlos S.](frenk-carlos-s.md) — 27 work(s) · 835 scripts
 - [Frenkler, Joachim](frenkler-joachim.md) — 2 work(s) · 1 scripts
 - [Freudenthal, Hans](freudenthal-hans.md) — 1 work(s) · 2 scripts
 - Freund, Robert — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
 - Freund, S. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md), [Ramos-Ceja et al. 2026](../works/ramos-ceja-2026-the-srg-erosita-all-sky-survey-dr2-cumulative-x.md), [Salvato et al. 2025](../works/salvato-2025-counterpart-identification-and-classification-fo.md) · 143 scripts
-- [Freundlich, Jonathan](freundlich-jonathan.md) — 6 work(s) · 78 scripts
+- [Freundlich, Jonathan](freundlich-jonathan.md) — 6 work(s) · 79 scripts
 - Freundt, Rodrigo — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 19 scripts
 - Frey, Raymond — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
 - Frey, Steffen — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts

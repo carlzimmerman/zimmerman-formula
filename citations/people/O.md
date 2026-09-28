@@ -164,7 +164,7 @@
 - Olevitch, M. A. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
 - Olias Sanz, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
 - [Oliosi, Michele](oliosi-michele.md) — 3 work(s) · 5 scripts
-- [Oliphant, Travis E.](oliphant-travis-e.md) — 2 work(s) · 5181 scripts
+- [Oliphant, Travis E.](oliphant-travis-e.md) — 2 work(s) · 5183 scripts
 - [Oliva, E.](oliva-e.md) — 1 work(s) · 1 scripts
 - Olivares, Héctor — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
 - Olivares Pino, S.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -235,7 +235,7 @@
 - Oren, Y. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Orestano, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Ori, Fabio](ori-fabio.md) — 1 work(s) · 1 scripts
-- [Oria, Pierre-Antoine](oria-pierre-antoine.md) — 2 work(s) · 14 scripts
+- [Oria, Pierre-Antoine](oria-pierre-antoine.md) — 2 work(s) · 15 scripts
 - [Origlia, L.](origlia-l.md) — 1 work(s) · 1 scripts
 - Orii, A. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
 - [Orkney, Matthew](orkney-matthew.md) — 1 work(s) · 1 scripts

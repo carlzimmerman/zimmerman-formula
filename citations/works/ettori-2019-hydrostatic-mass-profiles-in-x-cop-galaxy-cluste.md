@@ -1,6 +1,6 @@
 # Ettori et al. 2019 — Hydrostatic mass profiles in X-COP galaxy clusters
 
-**Reference.** Ettori, S.; Ghirardini, V.; Eckert, D.; Pointecouteau, E.; Gastaldello, F.; Sereno, M.; Gaspari, M.; Ghizzardi, S.; Roncarelli, M.; Rossetti, M. (2019). Hydrostatic mass profiles in X-COP galaxy clusters. *Astronomy &amp; Astrophysics* 621, A39. [doi:10.1051/0004-6361/201833323](https://doi.org/10.1051/0004-6361/201833323)
+**Reference.** Ettori, S.; Ghirardini, V.; Eckert, D.; Pointecouteau, E.; Gastaldello, F.; Sereno, M.; Gaspari, M.; Ghizzardi, S.; Roncarelli, M.; Rossetti, M. (2019). Hydrostatic mass profiles in X-COP galaxy clusters. *Astronomy & Astrophysics* 621, A39. [doi:10.1051/0004-6361/201833323](https://doi.org/10.1051/0004-6361/201833323)
 
 **BibTeX key:** `Ettori2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

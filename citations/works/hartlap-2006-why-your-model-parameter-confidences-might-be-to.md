@@ -1,6 +1,6 @@
 # Hartlap, Simon & Schneider 2006 — Why your model parameter confidences might be too optimistic. Unbiased estimation of the inverse covariance matrix
 
-**Reference.** Hartlap, J.; Simon, P.; Schneider, P. (2006). Why your model parameter confidences might be too optimistic. Unbiased estimation of the inverse covariance matrix. *Astronomy &amp; Astrophysics* 464, 399-404. [doi:10.1051/0004-6361:20066170](https://doi.org/10.1051/0004-6361:20066170)
+**Reference.** Hartlap, J.; Simon, P.; Schneider, P. (2006). Why your model parameter confidences might be too optimistic. Unbiased estimation of the inverse covariance matrix. *Astronomy & Astrophysics* 464, 399-404. [doi:10.1051/0004-6361:20066170](https://doi.org/10.1051/0004-6361:20066170)
 
 **BibTeX key:** `Hartlap2006` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

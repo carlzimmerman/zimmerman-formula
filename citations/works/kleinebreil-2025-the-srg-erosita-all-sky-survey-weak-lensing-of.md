@@ -1,6 +1,6 @@
 # Kleinebreil et al. 2025 — The SRG/eROSITA All-Sky Survey: Weak lensing of eRASS1 galaxy clusters in KiDS-1000 and consistency checks with DES Y3 and HSC-Y3
 
-**Reference.** Kleinebreil, F.; Grandis, S.; Schrabback, T.; Ghirardini, V.; Chiu, I.; Liu, A.; Kluge, M.; Reiprich, T. H.; Artis, E.; Bahar, Y. E.; Balzer, F.; Bulbul, E.; Clerc, N.; Comparat, J.; Garrel, C.; Gruen, D.; Li, X.; Miyatake, H.; Miyazaki, S.; Ramos-Ceja, M. E.; Sanders, J.; Seppi, R.; Okabe, N.; Zhang, X. (2025). The SRG/eROSITA All-Sky Survey: Weak lensing of eRASS1 galaxy clusters in KiDS-1000 and consistency checks with DES Y3 and HSC-Y3. *Astronomy &amp; Astrophysics* 695, A216. [doi:10.1051/0004-6361/202449599](https://doi.org/10.1051/0004-6361/202449599)
+**Reference.** Kleinebreil, F.; Grandis, S.; Schrabback, T.; Ghirardini, V.; Chiu, I.; Liu, A.; Kluge, M.; Reiprich, T. H.; Artis, E.; Bahar, Y. E.; Balzer, F.; Bulbul, E.; Clerc, N.; Comparat, J.; Garrel, C.; Gruen, D.; Li, X.; Miyatake, H.; Miyazaki, S.; Ramos-Ceja, M. E.; Sanders, J.; Seppi, R.; Okabe, N.; Zhang, X. (2025). The SRG/eROSITA All-Sky Survey: Weak lensing of eRASS1 galaxy clusters in KiDS-1000 and consistency checks with DES Y3 and HSC-Y3. *Astronomy & Astrophysics* 695, A216. [doi:10.1051/0004-6361/202449599](https://doi.org/10.1051/0004-6361/202449599)
 
 **BibTeX key:** `Kleinebreil2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

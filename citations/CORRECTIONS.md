@@ -26,19 +26,19 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | Avi Loeb | 4 | corrected: the scripts credit a different person with this surname | [Abraham Loeb](people/loeb-abraham.md) (2) |  |
 | Avishai Dekel | 5 | confirmed | [Avishai Dekel](people/dekel-avishai.md) — 107 scripts, 12 works |  |
 | Ayesha Begum | 21 | confirmed | [Ayesha Begum](people/begum-ayesha.md) — 8 scripts, 7 works |  |
-| Benoît Famaey | 350 | confirmed | [Benoit Famaey](people/famaey-benoit.md) — 299 scripts, 30 works |  |
+| Benoît Famaey | 350 | confirmed | [Benoit Famaey](people/famaey-benoit.md) — 300 scripts, 30 works |  |
 | Bernhard Riemann | 399 | corrected: the scripts credit a different person with this surname | [B. Riemann](people/riemann-b.md) (79) |  |
 | Brian Schmidt | 81 | confirmed | [Brian Schmidt](people/schmidt-brian.md) — 1 scripts, 2 works |  |
 | Bärbel Koribalski | 8 | confirmed | [Bärbel S. Koribalski](people/koribalski-barbel-s.md) — 72 scripts, 9 works |  |
 | Carl Friedrich Gauss | 534 | confirmed | [Carl Friedrich Gauss](people/gauss-carl-friedrich.md) — 1214 scripts, 4 works |  |
 | Carl Gustav Jacobi | 473 | confirmed | [Carl Gustav Jacob Jacobi](people/jacobi-carl-gustav-jacob.md) — 137 scripts, 1 works |  |
-| Carlos S. Frenk | 22 | confirmed | [Carlos S. Frenk](people/frenk-carlos-s.md) — 833 scripts, 27 works |  |
+| Carlos S. Frenk | 22 | confirmed | [Carlos S. Frenk](people/frenk-carlos-s.md) — 835 scripts, 27 works |  |
 | Chen-Ning Yang | 193 | corrected: the scripts credit a different person with this surname | Qian Yang (381); [Lilan Yang](people/yang-lilan.md) (271); H. Yang (101); Ziyan Yang (85) | the old count merged several researchers named Yang with C.-N. Yang (Yang–Mills) |
 | Claude Shannon | 56 | corrected: the scripts credit a different person with this surname | [C. E. Shannon](people/shannon-c-e.md) (16); [Mark Shannon](people/shannon-mark.md) (10); [Ryan M. Shannon](people/shannon-ryan-m.md) (5) |  |
 | ClearPotential team | 16 | was a paper's short name, not a person | — | 'ClearPotential 2026' is arXiv:2512.09989; its real authors are credited through that paper |
 | Constantinos Skordis | 575 | confirmed | [Constantinos Skordis](people/skordis-constantinos.md) — 758 scripts, 14 works |  |
 | Daniel Eisenstein | 68 | confirmed | [Daniel J. Eisenstein](people/eisenstein-daniel-j.md) — 589 scripts, 31 works |  |
-| David A. Buote | 22 | confirmed | [David A. Buote](people/buote-david-a.md) — 11 scripts, 3 works |  |
+| David A. Buote | 22 | confirmed | [David A. Buote](people/buote-david-a.md) — 12 scripts, 3 works |  |
 | David Boulware | 60 | confirmed | [David G. Boulware](people/boulware-david-g.md) — 28 scripts, 1 works |  |
 | David Hilbert | 642 | confirmed | [David Hilbert](people/hilbert-david.md) — 213 scripts, 3 works |  |
 | David J. Sand | 39 | confirmed | [David J. Sand](people/sand-david-j.md) — 21 scripts, 20 works |  |
@@ -57,8 +57,8 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | Etienne Pointecouteau | 14 | confirmed | [Etienne Pointecouteau](people/pointecouteau-etienne.md) — 284 scripts, 13 works |  |
 | Eugene Wigner | 70 | confirmed | [Eugene P. Wigner](people/wigner-eugene-p.md) — 9 scripts, 4 works |  |
 | Fabian Walter | 37 | confirmed | [Fabian Walter](people/walter-fabian.md) — 61 scripts, 22 works |  |
-| Fabio Gastaldello | 3 | confirmed | [Fabio Gastaldello](people/gastaldello-fabio.md) — 61 scripts, 10 works |  |
-| Federico Lelli | 551 | confirmed | [Federico Lelli](people/lelli-federico.md) — 1812 scripts, 31 works |  |
+| Fabio Gastaldello | 3 | confirmed | [Fabio Gastaldello](people/gastaldello-fabio.md) — 62 scripts, 10 works |  |
+| Federico Lelli | 551 | confirmed | [Federico Lelli](people/lelli-federico.md) — 1814 scripts, 31 works |  |
 | Filippo Fraternali | 12 | confirmed | [Filippo Fraternali](people/fraternali-filippo.md) — 18 scripts, 12 works |  |
 | Fred Hoyle | 25 | confirmed | [Fred Hoyle](people/hoyle-fred.md) — 9 scripts, 4 works |  |
 | Freeman Dyson | 16 | confirmed | [Freeman J. Dyson](people/dyson-freeman-j.md) — 2 scripts, 3 works |  |
@@ -89,7 +89,7 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | James E. Gunn | 116 | confirmed | [James E. Gunn](people/gunn-james-e.md) — 159 scripts, 15 works |  |
 | James Jeans | 487 | confirmed | [James Hopwood Jeans](people/jeans-james-hopwood.md) — 178 scripts, 3 works |  |
 | James Mead | 75 | corrected: the scripts credit a different person with this surname | [R. Mead](people/mead-r.md) (69); [A. Mead](people/mead-a.md) (2) | 'Mead' in the scripts is Alexander J. Mead (HMcode), not 'James Mead' |
-| James Schombert | 325 | confirmed | [James M. Schombert](people/schombert-james-m.md) — 2030 scripts, 23 works |  |
+| James Schombert | 325 | confirmed | [James M. Schombert](people/schombert-james-m.md) — 2032 scripts, 23 works |  |
 | Jean-Pierre Macquart | 9 | corrected: the scripts credit a different person with this surname | [J.-P. Macquart](people/macquart-j-p.md) (4) |  |
 | Jens Gundlach | 11 | corrected: the scripts credit a different person with this surname | [J. H. Gundlach](people/gundlach-j-h.md) (5) |  |
 | Jeremiah P. Ostriker | 25 | confirmed | [Jeremiah P. Ostriker](people/ostriker-jeremiah-p.md) — 111 scripts, 6 works |  |
@@ -104,7 +104,7 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | José Luis Sérsic | 58 | corrected: the scripts credit a different person with this surname | [J. L. Sersic](people/sersic-j-l.md) (5) |  |
 | Juan Maldacena | 66 | confirmed | [Juan M. Maldacena](people/maldacena-juan-m.md) — 30 scripts, 7 works |  |
 | Julianne Dalcanton | 11 | confirmed | [Julianne J. Dalcanton](people/dalcanton-julianne-j.md) — 10 scripts, 8 works |  |
-| Julio F. Navarro | 40 | confirmed | [Julio F. Navarro](people/navarro-julio-f.md) — 428 scripts, 19 works |  |
+| Julio F. Navarro | 40 | confirmed | [Julio F. Navarro](people/navarro-julio-f.md) — 430 scripts, 19 works |  |
 | Julián Merten | 3 | confirmed | [Julian Merten](people/merten-julian.md) — 11 scripts, 5 works |  |
 | Kareem El-Badry | 1 | confirmed | [Kareem El-Badry](people/el-badry-kareem.md) — 35 scripts, 5 works |  |
 | Keiichi Umetsu | 34 | confirmed | [Keiichi Umetsu](people/umetsu-keiichi.md) — 53 scripts, 16 works |  |
@@ -118,7 +118,7 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | Marcel S. Pawlowski | 33 | confirmed | [Marcel S. Pawlowski](people/pawlowski-marcel-s.md) — 1361 scripts, 9 works |  |
 | Margot M. Brouwer | 238 | confirmed | [Margot M. Brouwer](people/brouwer-margot-m.md) — 105 scripts, 4 works |  |
 | Mariangela Lisanti | 19 | confirmed | [Mariangela Lisanti](people/lisanti-mariangela.md) — 8 scripts, 1 works |  |
-| Martin Rees | 14 | confirmed | [Martin J. Rees](people/rees-martin-j.md) — 1217 scripts, 1 works |  |
+| Martin Rees | 14 | confirmed | [Martin J. Rees](people/rees-martin-j.md) — 1218 scripts, 1 works |  |
 | Matteo Murgia | 13 | corrected: the scripts credit a different person with this surname | [Riccardo Murgia](people/murgia-riccardo.md) (7) |  |
 | Matteo Viel | 65 | confirmed | [Matteo Viel](people/viel-matteo.md) — 41 scripts, 16 works |  |
 | Mauro Sereno | 77 | confirmed | [Mauro Sereno](people/sereno-mauro.md) — 79 scripts, 15 works |  |
@@ -157,14 +157,14 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | S. Marongwe | 7 | confirmed | [Stuart Marongwe](people/marongwe-stuart.md) — 2 scripts, 1 works |  |
 | Sabine Hossenfelder | 52 | corrected: the scripts credit a different person with this surname | [S. Hossenfelder](people/hossenfelder-s.md) (85) |  |
 | Samuel C. C. Ting | 41 | corrected: the scripts credit a different person with this surname | [Yuan-Sen Ting](people/ting-yuan-sen.md) (11) | the old count matched 'Ting' in unrelated text; Samuel C. C. Ting is not cited by the scripts |
-| Sandra Faber | 105 | confirmed | [Sandra M. Faber](people/faber-sandra-m.md) — 1235 scripts, 5 works |  |
+| Sandra Faber | 105 | confirmed | [Sandra M. Faber](people/faber-sandra-m.md) — 1236 scripts, 5 works |  |
 | Saul Perlmutter | 19 | confirmed | [Saul Perlmutter](people/perlmutter-saul.md) — 58 scripts, 4 works |  |
 | Scott Dodelson | 19 | confirmed | [Scott Dodelson](people/dodelson-scott.md) — 127 scripts, 23 works |  |
 | Scott Tremaine | 121 | confirmed | [Scott Tremaine](people/tremaine-scott.md) — 22 scripts, 8 works |  |
 | Sean Carroll | 69 | confirmed | [Sean M. Carroll](people/carroll-sean-m.md) — 25 scripts, 4 works |  |
 | Sebastian Limbach | 64 | corrected: the scripts credit a different person with this surname | [Christopher Limbach](people/limbach-christopher.md) (89) |  |
-| Simon D. M. White | 1100 | confirmed | [Simon D. M. White](people/white-simon-d-m.md) — 869 scripts, 19 works | the old count matched the word 'white' (white dwarf, white noise) as well as Simon D. M. White |
-| Stacy McGaugh | 1024 | confirmed | [Stacy S. McGaugh](people/mcgaugh-stacy-s.md) — 2060 scripts, 47 works | old slug was a truncated alias of McGaugh |
+| Simon D. M. White | 1100 | confirmed | [Simon D. M. White](people/white-simon-d-m.md) — 871 scripts, 19 works | the old count matched the word 'white' (white dwarf, white noise) as well as Simon D. M. White |
+| Stacy McGaugh | 1024 | confirmed | [Stacy S. McGaugh](people/mcgaugh-stacy-s.md) — 2062 scripts, 47 works | old slug was a truncated alias of McGaugh |
 | Stanley Deser | 490 | corrected: the scripts credit a different person with this surname | [S Deser](people/deser-s.md) (440) |  |
 | Stefano Ettori | 106 | confirmed | [Stefano Ettori](people/ettori-stefano.md) — 275 scripts, 23 works |  |
 | Stephen A. Fulling | 10 | confirmed | [Stephen A. Fulling](people/fulling-stephen-a.md) — 656 scripts, 1 works |  |
@@ -176,7 +176,7 @@ Removed: 1 entry for the repository's own author (own work is not part of this i
 | Tobias Westmeier | 12 | corrected: the scripts credit a different person with this surname | [T. Westmeier](people/westmeier-t.md) (48) |  |
 | Tom Broadhurst | 4 | confirmed | [Tom Broadhurst](people/broadhurst-tom.md) — 19 scripts, 9 works |  |
 | Tom Złosnik | 329 | confirmed | [Tom Złośnik](people/zlosnik-tom.md) — 746 scripts, 8 works |  |
-| Tommaso Treu | 7 | confirmed | [Tommaso Treu](people/treu-tommaso.md) — 29 scripts, 28 works |  |
+| Tommaso Treu | 7 | confirmed | [Tommaso Treu](people/treu-tommaso.md) — 30 scripts, 28 works |  |
 | Vera Rubin | 166 | corrected: the scripts credit a different person with this surname | [David Rubin](people/rubin-david.md) (95); D. L. Rubin (25); Kate H. R. Rubin (8) | 'Rubin' in the scripts includes David Rubin (Union3) and Donald Rubin (Gelman–Rubin), not only Vera Rubin |
 | Vittorio Ghirardini | 46 | confirmed | [Vittorio Ghirardini](people/ghirardini-vittorio.md) — 367 scripts, 12 works |  |
 | Volker Springel | 26 | confirmed | [Volker Springel](people/springel-volker.md) — 18 scripts, 9 works |  |

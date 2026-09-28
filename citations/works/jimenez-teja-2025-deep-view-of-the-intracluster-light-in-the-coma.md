@@ -1,6 +1,6 @@
 # Jiménez-Teja et al. 2025 — Deep view of the intracluster light in the Coma cluster of galaxies
 
-**Reference.** Jiménez-Teja, Y.; Román, J.; HyeongHan, K.; Vílchez, J. M.; Dupke, R. A.; Lopes, P. A. A.; Rich, R. M.; Caceres, O.; Li, C. (2025). Deep view of the intracluster light in the Coma cluster of galaxies. *Astronomy &amp; Astrophysics* 694, A216. [doi:10.1051/0004-6361/202452384](https://doi.org/10.1051/0004-6361/202452384)
+**Reference.** Jiménez-Teja, Y.; Román, J.; HyeongHan, K.; Vílchez, J. M.; Dupke, R. A.; Lopes, P. A. A.; Rich, R. M.; Caceres, O.; Li, C. (2025). Deep view of the intracluster light in the Coma cluster of galaxies. *Astronomy & Astrophysics* 694, A216. [doi:10.1051/0004-6361/202452384](https://doi.org/10.1051/0004-6361/202452384)
 
 **BibTeX key:** `JimenezTeja2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

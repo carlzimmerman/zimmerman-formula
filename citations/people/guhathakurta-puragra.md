@@ -1,10 +1,10 @@
 # Puragra Guhathakurta
 
-Credited in **12** file(s) through **20** work(s) · ORCID [0000-0001-8867-4234](https://orcid.org/0000-0001-8867-4234)
+Credited in **13** file(s) through **20** work(s) · ORCID [0000-0001-8867-4234](https://orcid.org/0000-0001-8867-4234)
 
 | work | used in | how |
 |---|---:|---|
-| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 4 | cited |
+| [van der Marel et al. 2012](../works/van-der-marel-2012-the-m31-velocity-vector-ii-radial-orbit-toward.md) — THE M31 VELOCITY VECTOR. II. RADIAL ORBIT TOWARD THE MILKY WAY AND IMPLIED LOCAL GROUP MASS | 5 | cited |
 | [Toloba et al. 2014](../works/toloba-2014-stellar-kinematics-and-structural-properties-of.md) — STELLAR KINEMATICS AND STRUCTURAL PROPERTIES OF VIRGO CLUSTER DWARF EARLY-TYPE GALAXIES FROM THE SMAKCED PROJE | 4 | cited |
 | [Feng et al. 2025](../works/feng-2025-kinematics-of-distant-milky-way-halo-rr-lyrae-st.md) — Kinematics of Distant Milky Way Halo RR Lyrae Stars out to 160 kpc | 1 | cited |
 | [Geha et al. 2006](../works/geha-2006-local-group-dwarf-elliptical-galaxies-i-mappin.md) — Local Group Dwarf Elliptical Galaxies. I. Mapping the Dynamics of NGC 205 Beyond the Tidal Radius | 1 | cited |

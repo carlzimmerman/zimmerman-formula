@@ -1,6 +1,6 @@
 # Lelli et al. 2023 — Cold gas disks in main-sequence galaxies at cosmic noon: Low turbulence, flat rotation curves, and disk-halo degeneracy
 
-**Reference.** Lelli, F.; Zhang, Z.-Y.; Bisbas, T. G.; Lin, L.; Papadopoulos, P.; Schombert, J. M.; Di Teodoro, E.; Marasco, A.; McGaugh, S. S. (2023). Cold gas disks in main-sequence galaxies at cosmic noon: Low turbulence, flat rotation curves, and disk-halo degeneracy. *Astronomy &amp; Astrophysics* 672, A106. [doi:10.1051/0004-6361/202245105](https://doi.org/10.1051/0004-6361/202245105) [arXiv:2302.00030](https://arxiv.org/abs/2302.00030)
+**Reference.** Lelli, F.; Zhang, Z.-Y.; Bisbas, T. G.; Lin, L.; Papadopoulos, P.; Schombert, J. M.; Di Teodoro, E.; Marasco, A.; McGaugh, S. S. (2023). Cold gas disks in main-sequence galaxies at cosmic noon: Low turbulence, flat rotation curves, and disk-halo degeneracy. *Astronomy & Astrophysics* 672, A106. [doi:10.1051/0004-6361/202245105](https://doi.org/10.1051/0004-6361/202245105) [arXiv:2302.00030](https://arxiv.org/abs/2302.00030)
 
 **BibTeX key:** `Lelli2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

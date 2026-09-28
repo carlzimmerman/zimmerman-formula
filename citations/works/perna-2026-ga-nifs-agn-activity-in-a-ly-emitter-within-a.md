@@ -1,6 +1,6 @@
 # Perna et al. 2026 — GA-NIFS: AGN activity in a Ly α emitter within a triple-AGN system anchored by a passive galaxy at z = 3
 
-**Reference.** Perna, M.; Arribas, S.; Hamed, M.; D’Eugenio, F.; Lamperti, I.; Bunker, A. J.; Carniani, S.; Charlot, S.; Maiolino, R.; Rodríguez Del Pino, B.; Übler, H.; Böker, T.; Bertola, E.; Cresci, G.; Venturi, G.; Ginolfi, M.; Villar Martín, M.; Zamora, S. (2026). GA-NIFS: AGN activity in a Ly α emitter within a triple-AGN system anchored by a passive galaxy at z = 3. *Astronomy &amp; Astrophysics* 710, A167. [doi:10.1051/0004-6361/202658847](https://doi.org/10.1051/0004-6361/202658847)
+**Reference.** Perna, M.; Arribas, S.; Hamed, M.; D’Eugenio, F.; Lamperti, I.; Bunker, A. J.; Carniani, S.; Charlot, S.; Maiolino, R.; Rodríguez Del Pino, B.; Übler, H.; Böker, T.; Bertola, E.; Cresci, G.; Venturi, G.; Ginolfi, M.; Villar Martín, M.; Zamora, S. (2026). GA-NIFS: AGN activity in a Ly α emitter within a triple-AGN system anchored by a passive galaxy at z = 3. *Astronomy & Astrophysics* 710, A167. [doi:10.1051/0004-6361/202658847](https://doi.org/10.1051/0004-6361/202658847)
 
 **BibTeX key:** `Perna2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

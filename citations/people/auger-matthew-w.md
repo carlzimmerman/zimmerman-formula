@@ -1,10 +1,10 @@
 # Matthew W. Auger
 
-Credited in **15** file(s) through **10** work(s) · affiliation on the cited work(s): Institute of Astronomy, University of Cambridge, Madingley Road, Cambridge CB3 0HA, UK
+Credited in **16** file(s) through **10** work(s) · affiliation on the cited work(s): Institute of Astronomy, University of Cambridge, Madingley Road, Cambridge CB3 0HA, UK
 
 | work | used in | how |
 |---|---:|---|
-| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 5 | cited |
+| [Auger et al. 2009](../works/auger-2009-the-sloan-lens-acs-survey-ix-colors-lensing.md) — THE SLOAN LENS ACS SURVEY. IX. COLORS, LENSING, AND STELLAR MASSES OF EARLY-TYPE GALAXIES | 6 | cited |
 | [Treu et al. 2010](../works/treu-2010-the-initial-mass-function-of-early-type-galaxies.md) — THE INITIAL MASS FUNCTION OF EARLY-TYPE GALAXIES | 5 | cited |
 | [Auger et al. 2010](../works/auger-2010-the-sloan-lens-acs-survey-x-stellar-dynamical.md) — THE SLOAN LENS ACS SURVEY. X. STELLAR, DYNAMICAL, AND TOTAL MASS CORRELATIONS OF MASSIVE EARLY-TYPE GALAXIES | 4 | cited |
 | [Wong et al. 2019](../works/wong-2019-h0licow-xiii-a-2-4-per-cent-measurement-of-h0.md) — H0LiCOW – XIII. A 2.4 per cent measurement of H0 from lensed quasars: 5.3σ tension between early- and late-Uni | 3 | cited |

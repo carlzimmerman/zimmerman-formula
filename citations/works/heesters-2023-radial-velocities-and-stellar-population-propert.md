@@ -1,6 +1,6 @@
 # Heesters et al. 2023 — Radial velocities and stellar population properties of 56 MATLAS dwarf galaxies observed with MUSE
 
-**Reference.** Heesters, N.; Müller, O.; Marleau, F. R.; Duc, P.-A.; Sánchez-Janssen, R.; Poulain, M.; Habas, R.; Lim, S.; Durrell, P. R. (2023). Radial velocities and stellar population properties of 56 MATLAS dwarf galaxies observed with MUSE. *Astronomy &amp; Astrophysics* 676, A33. [doi:10.1051/0004-6361/202346441](https://doi.org/10.1051/0004-6361/202346441)
+**Reference.** Heesters, N.; Müller, O.; Marleau, F. R.; Duc, P.-A.; Sánchez-Janssen, R.; Poulain, M.; Habas, R.; Lim, S.; Durrell, P. R. (2023). Radial velocities and stellar population properties of 56 MATLAS dwarf galaxies observed with MUSE. *Astronomy & Astrophysics* 676, A33. [doi:10.1051/0004-6361/202346441](https://doi.org/10.1051/0004-6361/202346441)
 
 **BibTeX key:** `Heesters2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

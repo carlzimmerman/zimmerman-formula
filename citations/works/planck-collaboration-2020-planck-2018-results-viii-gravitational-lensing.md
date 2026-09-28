@@ -1,6 +1,6 @@
 # Planck Collaboration et al. 2020 — Planck 2018 results: VIII. Gravitational lensing
 
-**Reference.** Planck Collaboration; Aghanim, N.; Akrami, Y.; Ashdown, M.; Aumont, J.; Baccigalupi, C.; Ballardini, M.; Banday, A. J.; Barreiro, R. B.; Bartolo, N.; Basak, S.; Benabed, K.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bock, J. J.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Boulanger, F.; Bucher, M.; Burigana, C.; Calabrese, E.; Cardoso, J.-F.; Carron, J.; Challinor, A.; Chiang, H. C.; Colombo, L. P. L.; Combet, C.; Crill, B. P.; et al. (159 authors) (2020). Planck 2018 results: VIII. Gravitational lensing. *Astronomy &amp; Astrophysics* 641, A8. [doi:10.1051/0004-6361/201833886](https://doi.org/10.1051/0004-6361/201833886)
+**Reference.** Planck Collaboration; Aghanim, N.; Akrami, Y.; Ashdown, M.; Aumont, J.; Baccigalupi, C.; Ballardini, M.; Banday, A. J.; Barreiro, R. B.; Bartolo, N.; Basak, S.; Benabed, K.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bock, J. J.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Boulanger, F.; Bucher, M.; Burigana, C.; Calabrese, E.; Cardoso, J.-F.; Carron, J.; Challinor, A.; Chiang, H. C.; Colombo, L. P. L.; Combet, C.; Crill, B. P.; et al. (159 authors) (2020). Planck 2018 results: VIII. Gravitational lensing. *Astronomy & Astrophysics* 641, A8. [doi:10.1051/0004-6361/201833886](https://doi.org/10.1051/0004-6361/201833886)
 
 **BibTeX key:** `PlanckCollaboration2020c` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

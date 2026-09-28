@@ -3,7 +3,7 @@
 
 Checks
   1. every credited work has a title, a year, at least one author, and a recognised verification source
-  2. no garbled text (U+FFFD) survives in any title or author name
+  2. no garbled text (U+FFFD) or HTML entity survives in any title, journal or author name
   3. every script path in the index is git-tracked, inside the scanned scope, and every cited line exists
   4. every person has at least one work; every person page / work page / letter page that is linked exists
   5. every relative link in the generated markdown resolves to a file in the repository
@@ -27,7 +27,7 @@ import urllib.parse
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import CITE_DIR, DATA, EXCLUDE_PREFIXES, REPO, is_own_author, load_json, norm_family, own_author_families, \
+from common import CITE_DIR, DATA, EXCLUDE_PREFIXES, REPO, committed_files, is_own_author, read_committed, load_json, norm_family, own_author_families, \
     own_author_given_initials, own_leak_patterns, strip_accents  # noqa: E402
 
 fails, warns = [], []
@@ -42,8 +42,7 @@ def main(argv):
     usage = load_json(DATA / "usage.json.gz")
     people = load_json(DATA / "people.json.gz")
     un = load_json(DATA / "unresolved.json.gz")
-    tracked = set(subprocess.run(["git", "-C", str(REPO), "ls-files", "-z"], capture_output=True,
-                                 check=True).stdout.decode("utf-8", "replace").split("\0"))
+    tracked = set(committed_files())                     # as committed at the commit the index was built from
     ok_src = {"crossref", "datacite", "arxiv", "inspire", "openalex", "doi.org", "manual-record"}
     # 1-2
     for wid, w in works.items():
@@ -59,6 +58,8 @@ def main(argv):
                                                  for a in w.get("all_authors") or [])
         if "�" in blob:
             fail(f"work {wid}: garbled characters in title/authors (add a fix to registry/metadata_fixes.yaml)")
+        if re.search(r"&(?:[a-zA-Z]{2,8}|#\d{2,6}|#x[0-9a-fA-F]{2,5});", blob + (w.get("container") or "")):
+            fail(f"work {wid}: an HTML entity in its metadata (apis.unescape should have removed it)")
     # 3
     nlines = {}
     for wid, us in usage.items():
@@ -74,7 +75,7 @@ def main(argv):
             if u["lines"]:
                 if f not in nlines:
                     try:
-                        nlines[f] = (REPO / f).read_bytes().count(b"\n") + 1
+                        nlines[f] = (read_committed(f) or b"").count(b"\n") + 1
                     except OSError:
                         nlines[f] = 0
                 if max(u["lines"]) > nlines[f] and not f.endswith(".ipynb"):

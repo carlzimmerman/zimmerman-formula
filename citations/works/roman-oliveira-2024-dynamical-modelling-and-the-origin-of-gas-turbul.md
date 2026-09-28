@@ -1,6 +1,6 @@
 # Roman-Oliveira, Rizzo & Fraternali 2024 — Dynamical modelling and the origin of gas turbulence in z ∼ 4.5 galaxies
 
-**Reference.** Roman-Oliveira, F.; Rizzo, F.; Fraternali, F. (2024). Dynamical modelling and the origin of gas turbulence in z ∼ 4.5 galaxies. *Astronomy &amp; Astrophysics* 687, A35. [doi:10.1051/0004-6361/202348828](https://doi.org/10.1051/0004-6361/202348828) [arXiv:2403.00904](https://arxiv.org/abs/2403.00904)
+**Reference.** Roman-Oliveira, F.; Rizzo, F.; Fraternali, F. (2024). Dynamical modelling and the origin of gas turbulence in z ∼ 4.5 galaxies. *Astronomy & Astrophysics* 687, A35. [doi:10.1051/0004-6361/202348828](https://doi.org/10.1051/0004-6361/202348828) [arXiv:2403.00904](https://arxiv.org/abs/2403.00904)
 
 **BibTeX key:** `RomanOliveira2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

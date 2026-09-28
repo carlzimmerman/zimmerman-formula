@@ -1,13 +1,13 @@
 # Alan W. McConnachie
 
-Credited in **36** file(s) through **19** work(s) · ORCID [0000-0003-4666-6564](https://orcid.org/0000-0003-4666-6564) · affiliation on the cited work(s): NRC Herzberg Astronomy and Astrophysics, 5071 West Saanich Road, Victoria, BC V9E 2E7, Canada
+Credited in **37** file(s) through **19** work(s) · ORCID [0000-0003-4666-6564](https://orcid.org/0000-0003-4666-6564) · affiliation on the cited work(s): NRC Herzberg Astronomy and Astrophysics, 5071 West Saanich Road, Victoria, BC V9E 2E7, Canada
 
 | work | used in | how |
 |---|---:|---|
 | [McConnachie 2012](../works/mcconnachie-2012-the-observed-properties-of-dwarf-galaxies-in-and.md) — THE OBSERVED PROPERTIES OF DWARF GALAXIES IN AND AROUND THE LOCAL GROUP | 20 | cited, cited in a paper |
 | [Collins et al. 2013](../works/collins-2013-a-kinematic-study-of-the-andromeda-dwarf-spheroi.md) — A KINEMATIC STUDY OF THE ANDROMEDA DWARF SPHEROIDAL SYSTEM | 8 | cited |
+| [McConnachie & Côté 2010](../works/mcconnachie-2010-revisiting-the-influence-of-unidentified-binarie.md) — REVISITING THE INFLUENCE OF UNIDENTIFIED BINARIES ON VELOCITY DISPERSION MEASUREMENTS IN ULTRA-FAINT STELLAR S | 3 | cited, cited in a paper |
 | [Spencer et al. 2017](../works/spencer-2017-the-binary-fraction-of-stars-in-dwarf-galaxies.md) — The Binary Fraction of Stars in Dwarf Galaxies: The Case of Leo II | 3 | cited, cited in a paper |
-| [McConnachie & Côté 2010](../works/mcconnachie-2010-revisiting-the-influence-of-unidentified-binarie.md) — REVISITING THE INFLUENCE OF UNIDENTIFIED BINARIES ON VELOCITY DISPERSION MEASUREMENTS IN ULTRA-FAINT STELLAR S | 2 | cited, cited in a paper |
 | [McConnachie & Venn 2020](../works/mcconnachie-2020-revised-and-new-proper-motions-for-confirmed-and.md) — Revised and New Proper Motions for Confirmed and Candidate Milky Way Dwarf Galaxies | 2 | cited |
 | [McConnachie et al. 2009](../works/mcconnachie-2009-the-remnants-of-galaxy-formation-from-a-panorami.md) — The remnants of galaxy formation from a panoramic survey of the region around M31 | 1 | cited in a paper |
 | [Ibata et al. 2013](../works/ibata-2013-a-vast-thin-plane-of-corotating-dwarf-galaxies.md) — A vast, thin plane of corotating dwarf galaxies orbiting the Andromeda galaxy | 1 | cited |

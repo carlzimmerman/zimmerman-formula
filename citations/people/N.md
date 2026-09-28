@@ -3,7 +3,7 @@
 517 people. [A–Z](README.md)
 
 - [N. Chengalur, Jayaram](n-chengalur-jayaram.md) — 1 work(s) · 10 scripts
-- [Naab, Thorsten](naab-thorsten.md) — 19 work(s) · 164 scripts
+- [Naab, Thorsten](naab-thorsten.md) — 19 work(s) · 167 scripts
 - Nabari, D. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
 - Nachtman, J. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
 - Nackenhorst, O. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
@@ -148,7 +148,7 @@
 - Nava, L. — author of [Pian et al. 2017](../works/pian-2017-spectroscopic-identification-of-r-process-nucleo.md) · 1 scripts
 - Navabi, M. — author of [Tan et al. 2026](../works/tan-2026-ultra-faint-milky-way-satellites-discovered-in-c.md) · 1 scripts
 - Navarro, G. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Navarro, Julio F.](navarro-julio-f.md) — 19 work(s) · 428 scripts
+- [Navarro, Julio F.](navarro-julio-f.md) — 19 work(s) · 430 scripts
 - Navarro, Ramon — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
 - Navarro, Santiago — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
 - Navarro-Alsina, A. — author of [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Grandis et al. 2024](../works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md), [Shin et al. 2021](../works/shin-2021-the-mass-and-galaxy-distribution-around-sz-selec.md) … · 44 scripts

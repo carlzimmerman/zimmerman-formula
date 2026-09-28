@@ -6,9 +6,9 @@
 
 **Authors (26):** [Charles R. Harris](../people/harris-charles-r.md), [K. Jarrod Millman](../people/millman-k-jarrod.md), [Stéfan J. van der Walt](../people/van-der-walt-stefan-j.md), [Ralf Gommers](../people/gommers-ralf.md), [Pauli Virtanen](../people/virtanen-pauli.md), [David Cournapeau](../people/cournapeau-david.md), [Eric Wieser](../people/wieser-eric.md), [Julian Taylor](../people/taylor-julian.md), [Sebastian Berg](../people/berg-sebastian.md), [Nathaniel J. Smith](../people/smith-nathaniel-j.md), [Robert Kern](../people/kern-robert.md), [Matti Picus](../people/picus-matti.md), [Stephan Hoyer](../people/hoyer-stephan.md), [Marten H. van Kerkwijk](../people/van-kerkwijk-marten-h.md), [Matthew Brett](../people/brett-matthew.md), [Allan Haldane](../people/haldane-allan.md), [Jaime Fernández del Río](../people/del-rio-jaime-fernandez.md), [Mark Wiebe](../people/wiebe-mark.md), [Pearu Peterson](../people/peterson-pearu.md), [Pierre Gérard-Marchant](../people/gerard-marchant-pierre.md), [Kevin Sheppard](../people/sheppard-kevin.md), [Tyler Reddy](../people/reddy-tyler.md), [Warren Weckesser](../people/weckesser-warren.md), [Hameer Abbasi](../people/abbasi-hameer.md), [Christoph Gohlke](../people/gohlke-christoph.md), [Travis E. Oliphant](../people/oliphant-travis-e.md)
 
-## Used in 5148 script(s)
+## Used in 5150 script(s)
 
-How: library imported in 5148.
+How: library imported in 5150.
 
 Too many scripts to list here; the complete list is in [harris-2020-array-programming-with-numpy.tsv](harris-2020-array-programming-with-numpy.tsv). By top-level folder:
 
@@ -24,7 +24,7 @@ Too many scripts to list here; the complete list is in [harris-2020-array-progra
 | `fable_independent_2026/` | 200 |
 | `book/` | 96 |
 | `nbody_2026/` | 66 |
-| `campaign_fresh_gravity/` | 57 |
+| `campaign_fresh_gravity/` | 59 |
 | `qwen_36_experiment/` | 42 |
 | `glm53_push/` | 41 |
 | `project_atomos/` | 38 |

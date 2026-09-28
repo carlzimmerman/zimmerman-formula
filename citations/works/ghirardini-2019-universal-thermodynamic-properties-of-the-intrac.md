@@ -1,6 +1,6 @@
 # Ghirardini et al. 2019 — Universal thermodynamic properties of the intracluster medium over two decades in radius in the X-COP sample
 
-**Reference.** Ghirardini, V.; Eckert, D.; Ettori, S.; Pointecouteau, E.; Molendi, S.; Gaspari, M.; Rossetti, M.; De Grandi, S.; Roncarelli, M.; Bourdin, H.; Mazzotta, P.; Rasia, E.; Vazza, F. (2019). Universal thermodynamic properties of the intracluster medium over two decades in radius in the X-COP sample. *Astronomy &amp; Astrophysics* 621, A41. [doi:10.1051/0004-6361/201833325](https://doi.org/10.1051/0004-6361/201833325) [arXiv:1805.00042](https://arxiv.org/abs/1805.00042)
+**Reference.** Ghirardini, V.; Eckert, D.; Ettori, S.; Pointecouteau, E.; Molendi, S.; Gaspari, M.; Rossetti, M.; De Grandi, S.; Roncarelli, M.; Bourdin, H.; Mazzotta, P.; Rasia, E.; Vazza, F. (2019). Universal thermodynamic properties of the intracluster medium over two decades in radius in the X-COP sample. *Astronomy & Astrophysics* 621, A41. [doi:10.1051/0004-6361/201833325](https://doi.org/10.1051/0004-6361/201833325) [arXiv:1805.00042](https://arxiv.org/abs/1805.00042)
 
 **BibTeX key:** `Ghirardini2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

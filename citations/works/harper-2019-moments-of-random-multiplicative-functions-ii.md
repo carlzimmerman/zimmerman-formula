@@ -1,6 +1,6 @@
 # Harper 2019 — Moments of random multiplicative functions, II: High moments
 
-**Reference.** Harper, A. J. (2019). Moments of random multiplicative functions, II: High moments. *Algebra &amp; Number Theory* 13, 2277-2321. [doi:10.2140/ant.2019.13.2277](https://doi.org/10.2140/ant.2019.13.2277)
+**Reference.** Harper, A. J. (2019). Moments of random multiplicative functions, II: High moments. *Algebra & Number Theory* 13, 2277-2321. [doi:10.2140/ant.2019.13.2277](https://doi.org/10.2140/ant.2019.13.2277)
 
 **BibTeX key:** `Harper2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

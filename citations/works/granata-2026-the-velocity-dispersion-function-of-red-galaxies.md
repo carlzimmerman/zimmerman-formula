@@ -1,6 +1,6 @@
 # Granata et al. 2026 — The velocity dispersion function of red galaxies in four Hubble Frontier Fields galaxy clusters
 
-**Reference.** Granata, G.; Tortorelli, L.; Grillo, C.; Rosati, P.; D’Addona, M.; Mercurio, A.; Angora, G.; Bergamini, P.; Caminha, G. B. (2026). The velocity dispersion function of red galaxies in four Hubble Frontier Fields galaxy clusters. *Astronomy &amp; Astrophysics* 709, A254. [doi:10.1051/0004-6361/202558359](https://doi.org/10.1051/0004-6361/202558359) [arXiv:2603.26869](https://arxiv.org/abs/2603.26869)
+**Reference.** Granata, G.; Tortorelli, L.; Grillo, C.; Rosati, P.; D’Addona, M.; Mercurio, A.; Angora, G.; Bergamini, P.; Caminha, G. B. (2026). The velocity dispersion function of red galaxies in four Hubble Frontier Fields galaxy clusters. *Astronomy & Astrophysics* 709, A254. [doi:10.1051/0004-6361/202558359](https://doi.org/10.1051/0004-6361/202558359) [arXiv:2603.26869](https://arxiv.org/abs/2603.26869)
 
 **BibTeX key:** `Granata2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

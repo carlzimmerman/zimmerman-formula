@@ -1,6 +1,6 @@
 # Böhringer, Chon & Collins 2019 — Observational evidence for a local underdensity in the Universe and its effect on the measurement of the Hubble constant
 
-**Reference.** Böhringer, H.; Chon, G.; Collins, C. A. (2019). Observational evidence for a local underdensity in the Universe and its effect on the measurement of the Hubble constant. *Astronomy &amp; Astrophysics* 633, A19. [doi:10.1051/0004-6361/201936400](https://doi.org/10.1051/0004-6361/201936400)
+**Reference.** Böhringer, H.; Chon, G.; Collins, C. A. (2019). Observational evidence for a local underdensity in the Universe and its effect on the measurement of the Hubble constant. *Astronomy & Astrophysics* 633, A19. [doi:10.1051/0004-6361/201936400](https://doi.org/10.1051/0004-6361/201936400)
 
 **BibTeX key:** `Bohringer2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -6,9 +6,9 @@
 
 **Authors (3):** [Julio F. Navarro](../people/navarro-julio-f.md), [Carlos S. Frenk](../people/frenk-carlos-s.md), [Simon D. M. White](../people/white-simon-d-m.md)
 
-## Used in 416 script(s)
+## Used in 418 script(s)
 
-How: named method/model in 413, cited in a paper in 3.
+How: named method/model in 415, cited in a paper in 3.
 
 | script | how | lines |
 |---|---|---|
@@ -42,6 +42,8 @@ How: named method/model in 413, cited in a paper in 3.
 | [`campaign_fresh_gravity/CFG2_common.py`](../../campaign_fresh_gravity/CFG2_common.py#L456) | named method/model — NFW halo profile | [456](../../campaign_fresh_gravity/CFG2_common.py#L456) |
 | [`campaign_fresh_gravity/CFG30_binary_galaxies_referee.py`](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L28) | named method/model — NFW halo profile | [28](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L28), [43](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L43), [62](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L62), [327](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L327), [661](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L661), [672](../../campaign_fresh_gravity/CFG30_binary_galaxies_referee.py#L672) |
 | [`campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py`](../../campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py#L15) | named method/model — NFW halo profile | [15](../../campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py#L15), [20](../../campaign_fresh_gravity/CFG32_xray_ellipticals_under_b.py#L20) |
+| [`campaign_fresh_gravity/CFG35_cold_mass_conservation.py`](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L60) | named method/model — NFW halo profile | [60](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L60) |
+| [`campaign_fresh_gravity/CFG36_colour_split_collapse.py`](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L15) | named method/model — NFW halo profile | [15](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L15), [17](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L17), [23](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L23), [74](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L74), [100](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L100) |
 | [`campaign_fresh_gravity/CFG3_sparc.py`](../../campaign_fresh_gravity/CFG3_sparc.py#L27) | named method/model — NFW halo profile | [27](../../campaign_fresh_gravity/CFG3_sparc.py#L27), [203](../../campaign_fresh_gravity/CFG3_sparc.py#L203) |
 | [`campaign_fresh_gravity/CFG3_web_lensing.py`](../../campaign_fresh_gravity/CFG3_web_lensing.py#L16) | named method/model — NFW halo profile | [16](../../campaign_fresh_gravity/CFG3_web_lensing.py#L16) |
 | [`campaign_fresh_gravity/CFG5_1_principle.py`](../../campaign_fresh_gravity/CFG5_1_principle.py#L61) | named method/model — NFW halo profile | [61](../../campaign_fresh_gravity/CFG5_1_principle.py#L61) |

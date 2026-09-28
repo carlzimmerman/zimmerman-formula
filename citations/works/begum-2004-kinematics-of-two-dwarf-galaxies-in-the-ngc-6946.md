@@ -1,6 +1,6 @@
 # Begum & Chengalur 2004 — Kinematics of two dwarf galaxies in the NGC 6946 group
 
-**Reference.** Begum, A.; Chengalur, J. N. (2004). Kinematics of two dwarf galaxies in the NGC 6946 group. *Astronomy &amp; Astrophysics* 424, 509-517. [doi:10.1051/0004-6361:20041210](https://doi.org/10.1051/0004-6361:20041210)
+**Reference.** Begum, A.; Chengalur, J. N. (2004). Kinematics of two dwarf galaxies in the NGC 6946 group. *Astronomy & Astrophysics* 424, 509-517. [doi:10.1051/0004-6361:20041210](https://doi.org/10.1051/0004-6361:20041210)
 
 **BibTeX key:** `Begum2004` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

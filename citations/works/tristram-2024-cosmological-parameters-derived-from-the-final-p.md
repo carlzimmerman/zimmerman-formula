@@ -1,6 +1,6 @@
 # Tristram et al. 2024 — Cosmological parameters derived from the final Planck data release (PR4)
 
-**Reference.** Tristram, M.; Banday, A. J.; Douspis, M.; Garrido, X.; Górski, K. M.; Henrot-Versillé, S.; Hergt, L. T.; Ilić, S.; Keskitalo, R.; Lagache, G.; Lawrence, C. R.; Partridge, B.; Scott, D. (2024). Cosmological parameters derived from the final Planck data release (PR4). *Astronomy &amp; Astrophysics* 682, A37. [doi:10.1051/0004-6361/202348015](https://doi.org/10.1051/0004-6361/202348015)
+**Reference.** Tristram, M.; Banday, A. J.; Douspis, M.; Garrido, X.; Górski, K. M.; Henrot-Versillé, S.; Hergt, L. T.; Ilić, S.; Keskitalo, R.; Lagache, G.; Lawrence, C. R.; Partridge, B.; Scott, D. (2024). Cosmological parameters derived from the final Planck data release (PR4). *Astronomy & Astrophysics* 682, A37. [doi:10.1051/0004-6361/202348015](https://doi.org/10.1051/0004-6361/202348015)
 
 **BibTeX key:** `Tristram2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

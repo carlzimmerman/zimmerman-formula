@@ -1,6 +1,6 @@
 # Wang et al. 2020 — The mass of our Milky Way
 
-**Reference.** Wang, W.; Han, J.; Cautun, M.; Li, Z.; Ishigaki, M. N. (2020). The mass of our Milky Way. *Science China Physics, Mechanics &amp; Astronomy* 63, 109801. [doi:10.1007/s11433-019-1541-6](https://doi.org/10.1007/s11433-019-1541-6) [arXiv:1912.02599](https://arxiv.org/abs/1912.02599)
+**Reference.** Wang, W.; Han, J.; Cautun, M.; Li, Z.; Ishigaki, M. N. (2020). The mass of our Milky Way. *Science China Physics, Mechanics & Astronomy* 63, 109801. [doi:10.1007/s11433-019-1541-6](https://doi.org/10.1007/s11433-019-1541-6) [arXiv:1912.02599](https://arxiv.org/abs/1912.02599)
 
 **BibTeX key:** `Wang2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Fritz et al. 2018 — Gaia DR2 proper motions of dwarf galaxies within 420 kpc: Orbits, Milky Way mass, tidal influences, planar alignments, and group infall
 
-**Reference.** Fritz, T. K.; Battaglia, G.; Pawlowski, M. S.; Kallivayalil, N.; van der Marel, R.; Sohn, S. T.; Brook, C.; Besla, G. (2018). Gaia DR2 proper motions of dwarf galaxies within 420 kpc: Orbits, Milky Way mass, tidal influences, planar alignments, and group infall. *Astronomy &amp; Astrophysics* 619, A103. [doi:10.1051/0004-6361/201833343](https://doi.org/10.1051/0004-6361/201833343)
+**Reference.** Fritz, T. K.; Battaglia, G.; Pawlowski, M. S.; Kallivayalil, N.; van der Marel, R.; Sohn, S. T.; Brook, C.; Besla, G. (2018). Gaia DR2 proper motions of dwarf galaxies within 420 kpc: Orbits, Milky Way mass, tidal influences, planar alignments, and group infall. *Astronomy & Astrophysics* 619, A103. [doi:10.1051/0004-6361/201833343](https://doi.org/10.1051/0004-6361/201833343)
 
 **BibTeX key:** `Fritz2018a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

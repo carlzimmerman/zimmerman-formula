@@ -414,7 +414,7 @@
 - [Cha, Sangjun](cha-sangjun.md) — 4 work(s) · 6 scripts
 - [Chabanier, Solène](chabanier-solene.md) — 6 work(s) · 123 scripts
 - Chabbra, N. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
-- [Chabrier, Gilles](chabrier-gilles.md) — 1 work(s) · 30 scripts
+- [Chabrier, Gilles](chabrier-gilles.md) — 1 work(s) · 32 scripts
 - [Chadayammuri, Urmila](chadayammuri-urmila.md) — 1 work(s) · 2 scripts
 - [Chae, Kyu-Hyun](chae-kyu-hyun.md) — 12 work(s) · 98 scripts
 - Chael, Andrew — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
@@ -811,7 +811,7 @@
 - [Chilamkurthy, Sasank](chilamkurthy-sasank.md) — 1 work(s) · 23 scripts
 - Childers, J.t. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Childress, Michael — author of [Abbott et al. 2018](../works/abbott-2018-dark-energy-survey-year-1-results-cosmological.md), [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 3 scripts
-- [Chilingarian, Igor V.](chilingarian-igor-v.md) — 2 work(s) · 3 scripts
+- [Chilingarian, Igor V.](chilingarian-igor-v.md) — 2 work(s) · 4 scripts
 - Chilingarov, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Chilingaryan, Suren — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md), [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
 - Chillery, T. — author of [Mossa et al. 2020](../works/mossa-2020-setup-commissioning-for-an-improved-measurement.md) · 1 scripts
@@ -1299,7 +1299,7 @@
 - Costanzo, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Costigan, G. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
 - Côté, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [Côté, Patrick](cote-patrick.md) — 10 work(s) · 15 scripts
+- [Côté, Patrick](cote-patrick.md) — 10 work(s) · 16 scripts
 - [Côté, Stéphanie](cote-stephanie.md) — 1 work(s) · 1 scripts
 - Cotesta, Roberto — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
 - Cothard, Nicholas F. — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 23 scripts
@@ -1326,7 +1326,7 @@
 - Coupechoux, J.-F. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
 - [Coupon, Jean](coupon-jean.md) — 8 work(s) · 30 scripts
 - [Courbin, Frederic](courbin-frederic.md) — 8 work(s) · 10 scripts
-- [Cournapeau, David](cournapeau-david.md) — 3 work(s) · 5183 scripts
+- [Cournapeau, David](cournapeau-david.md) — 3 work(s) · 5185 scripts
 - Courneyea, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - [Courteau, Stéphane](courteau-stephane.md) — 4 work(s) · 10 scripts
 - [Courtois, Hélène M.](courtois-helene-m.md) — 11 work(s) · 68 scripts

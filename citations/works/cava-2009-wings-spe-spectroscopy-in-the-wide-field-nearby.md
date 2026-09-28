@@ -1,6 +1,6 @@
 # Cava et al. 2009 — WINGS-SPE Spectroscopy in the WIde-field Nearby Galaxy-cluster Survey
 
-**Reference.** Cava, A.; Bettoni, D.; Poggianti, B. M.; Couch, W. J.; Moles, M.; Varela, J.; Biviano, A.; D'Onofrio, M.; Dressler, A.; Fasano, G.; Fritz, J.; Kjærgaard, P.; Ramella, M.; Valentinuzzi, T. (2009). WINGS-SPE Spectroscopy in the WIde-field Nearby Galaxy-cluster Survey. *Astronomy &amp; Astrophysics* 495, 707-719. [doi:10.1051/0004-6361:200810997](https://doi.org/10.1051/0004-6361:200810997)
+**Reference.** Cava, A.; Bettoni, D.; Poggianti, B. M.; Couch, W. J.; Moles, M.; Varela, J.; Biviano, A.; D'Onofrio, M.; Dressler, A.; Fasano, G.; Fritz, J.; Kjærgaard, P.; Ramella, M.; Valentinuzzi, T. (2009). WINGS-SPE Spectroscopy in the WIde-field Nearby Galaxy-cluster Survey. *Astronomy & Astrophysics* 495, 707-719. [doi:10.1051/0004-6361:200810997](https://doi.org/10.1051/0004-6361:200810997)
 
 **BibTeX key:** `Cava2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

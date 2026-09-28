@@ -1,6 +1,6 @@
 # Tian et al. 2024 — A distinct radial acceleration relation across the brightest cluster galaxies and galaxy clusters
 
-**Reference.** Tian, Y.; Ko, C.-M.; Li, P.; McGaugh, S.; Poblete, S. L. (2024). A distinct radial acceleration relation across the brightest cluster galaxies and galaxy clusters. *Astronomy &amp; Astrophysics* 684, A180. [doi:10.1051/0004-6361/202347868](https://doi.org/10.1051/0004-6361/202347868) [arXiv:2402.12016](https://arxiv.org/abs/2402.12016)
+**Reference.** Tian, Y.; Ko, C.-M.; Li, P.; McGaugh, S.; Poblete, S. L. (2024). A distinct radial acceleration relation across the brightest cluster galaxies and galaxy clusters. *Astronomy & Astrophysics* 684, A180. [doi:10.1051/0004-6361/202347868](https://doi.org/10.1051/0004-6361/202347868) [arXiv:2402.12016](https://arxiv.org/abs/2402.12016)
 
 **BibTeX key:** `Tian2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

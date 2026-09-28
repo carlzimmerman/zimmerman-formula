@@ -1,6 +1,6 @@
 # Combes, Moiseev & Reshetnikov 2013 — Molecular content of polar-ring galaxies
 
-**Reference.** Combes, F.; Moiseev, A.; Reshetnikov, V. (2013). Molecular content of polar-ring galaxies. *Astronomy &amp; Astrophysics* 554, A11. [doi:10.1051/0004-6361/201321385](https://doi.org/10.1051/0004-6361/201321385)
+**Reference.** Combes, F.; Moiseev, A.; Reshetnikov, V. (2013). Molecular content of polar-ring galaxies. *Astronomy & Astrophysics* 554, A11. [doi:10.1051/0004-6361/201321385](https://doi.org/10.1051/0004-6361/201321385)
 
 **BibTeX key:** `Combes2013` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -23,7 +23,7 @@
 - [Ibarra, Alejandro](ibarra-alejandro.md) — 1 work(s) · 2 scripts
 - [Ibarra-Medel, Hector Javier](ibarra-medel-hector-javier.md) — 3 work(s) · 12 scripts
 - [Ibata, Neil G.](ibata-neil-g.md) — 1 work(s) · 1 scripts
-- [Ibata, Rodrigo A.](ibata-rodrigo-a.md) — 28 work(s) · 65 scripts
+- [Ibata, Rodrigo A.](ibata-rodrigo-a.md) — 28 work(s) · 66 scripts
 - Ibbotson, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Ibragimov, I. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
 - Icardi, V. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts

@@ -1,6 +1,6 @@
 # Mistele, McGaugh & Hossenfelder 2023 — Aether scalar tensor theory confronted with weak lensing data at small accelerations
 
-**Reference.** Mistele, T.; McGaugh, S.; Hossenfelder, S. (2023). Aether scalar tensor theory confronted with weak lensing data at small accelerations. *Astronomy &amp; Astrophysics* 676, A100. [doi:10.1051/0004-6361/202346025](https://doi.org/10.1051/0004-6361/202346025) [arXiv:2301.03499](https://arxiv.org/abs/2301.03499)
+**Reference.** Mistele, T.; McGaugh, S.; Hossenfelder, S. (2023). Aether scalar tensor theory confronted with weak lensing data at small accelerations. *Astronomy & Astrophysics* 676, A100. [doi:10.1051/0004-6361/202346025](https://doi.org/10.1051/0004-6361/202346025) [arXiv:2301.03499](https://arxiv.org/abs/2301.03499)
 
 **BibTeX key:** `Mistele2023a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

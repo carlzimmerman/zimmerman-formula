@@ -1,6 +1,6 @@
 # Jordi, Grebel & Ammon 2006 — Empirical color transformations between SDSS photometry and other photometric systems
 
-**Reference.** Jordi, K.; Grebel, E. K.; Ammon, K. (2006). Empirical color transformations between SDSS photometry and other photometric systems. *Astronomy &amp; Astrophysics* 460, 339-347. [doi:10.1051/0004-6361:20066082](https://doi.org/10.1051/0004-6361:20066082)
+**Reference.** Jordi, K.; Grebel, E. K.; Ammon, K. (2006). Empirical color transformations between SDSS photometry and other photometric systems. *Astronomy & Astrophysics* 460, 339-347. [doi:10.1051/0004-6361:20066082](https://doi.org/10.1051/0004-6361:20066082)
 
 **BibTeX key:** `Jordi2006` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

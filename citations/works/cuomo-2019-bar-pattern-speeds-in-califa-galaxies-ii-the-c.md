@@ -1,6 +1,6 @@
 # Cuomo et al. 2019 — Bar pattern speeds in CALIFA galaxies: II. The case of weakly barred galaxies
 
-**Reference.** Cuomo, V.; Lopez Aguerri, J. A.; Corsini, E. M.; Debattista, V. P.; Méndez-Abreu, J.; Pizzella, A. (2019). Bar pattern speeds in CALIFA galaxies: II. The case of weakly barred galaxies. *Astronomy &amp; Astrophysics* 632, A51. [doi:10.1051/0004-6361/201936415](https://doi.org/10.1051/0004-6361/201936415)
+**Reference.** Cuomo, V.; Lopez Aguerri, J. A.; Corsini, E. M.; Debattista, V. P.; Méndez-Abreu, J.; Pizzella, A. (2019). Bar pattern speeds in CALIFA galaxies: II. The case of weakly barred galaxies. *Astronomy & Astrophysics* 632, A51. [doi:10.1051/0004-6361/201936415](https://doi.org/10.1051/0004-6361/201936415)
 
 **BibTeX key:** `Cuomo2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

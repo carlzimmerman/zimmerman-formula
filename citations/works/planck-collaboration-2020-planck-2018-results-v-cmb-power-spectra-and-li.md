@@ -1,6 +1,6 @@
 # Planck Collaboration et al. 2020 — Planck 2018 results: V. CMB power spectra and likelihoods
 
-**Reference.** Planck Collaboration; Aghanim, N.; Akrami, Y.; Ashdown, M.; Aumont, J.; Baccigalupi, C.; Ballardini, M.; Banday, A. J.; Barreiro, R. B.; Bartolo, N.; Basak, S.; Benabed, K.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bock, J. J.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Boulanger, F.; Bucher, M.; Burigana, C.; Butler, R. C.; Calabrese, E.; Cardoso, J.-F.; Carron, J.; Casaponsa, B.; Challinor, A.; Chiang, H. C.; Colombo, L. P. L.; et al. (168 authors) (2020). Planck 2018 results: V. CMB power spectra and likelihoods. *Astronomy &amp; Astrophysics* 641, A5. [doi:10.1051/0004-6361/201936386](https://doi.org/10.1051/0004-6361/201936386)
+**Reference.** Planck Collaboration; Aghanim, N.; Akrami, Y.; Ashdown, M.; Aumont, J.; Baccigalupi, C.; Ballardini, M.; Banday, A. J.; Barreiro, R. B.; Bartolo, N.; Basak, S.; Benabed, K.; Bernard, J.-P.; Bersanelli, M.; Bielewicz, P.; Bock, J. J.; Bond, J. R.; Borrill, J.; Bouchet, F. R.; Boulanger, F.; Bucher, M.; Burigana, C.; Butler, R. C.; Calabrese, E.; Cardoso, J.-F.; Carron, J.; Casaponsa, B.; Challinor, A.; Chiang, H. C.; Colombo, L. P. L.; et al. (168 authors) (2020). Planck 2018 results: V. CMB power spectra and likelihoods. *Astronomy & Astrophysics* 641, A5. [doi:10.1051/0004-6361/201936386](https://doi.org/10.1051/0004-6361/201936386)
 
 **BibTeX key:** `PlanckCollaboration2020a` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -1,6 +1,6 @@
 # Rihtaršič et al. 2026 — Mapping dark matter in the Bullet Cluster using JWST imaging and spectroscopy
 
-**Reference.** Rihtaršič, G.; Bradač, M.; Desprez, G.; Harshan, A.; Martis, N. S.; Willott, C. J.; Asada, Y.; Sarrouh, G. T. E.; Cornil-Baïotto, C.; Biviano, A.; Clowe, D.; Gonzalez, A. H.; Jones, C.; Judež, J.; Kim, S. Y.; Lemaux, B. C.; Lombardi, M.; Marchesini, D.; Markevitch, M.; Markov, V.; Noirot, G.; Peter, A. H. G.; Randall, S. W.; Robertson, A.; Sawicki, M.; Tripodi, R. (2026). Mapping dark matter in the Bullet Cluster using JWST imaging and spectroscopy. *Astronomy &amp; Astrophysics* 710, A207. [doi:10.1051/0004-6361/202659214](https://doi.org/10.1051/0004-6361/202659214)
+**Reference.** Rihtaršič, G.; Bradač, M.; Desprez, G.; Harshan, A.; Martis, N. S.; Willott, C. J.; Asada, Y.; Sarrouh, G. T. E.; Cornil-Baïotto, C.; Biviano, A.; Clowe, D.; Gonzalez, A. H.; Jones, C.; Judež, J.; Kim, S. Y.; Lemaux, B. C.; Lombardi, M.; Marchesini, D.; Markevitch, M.; Markov, V.; Noirot, G.; Peter, A. H. G.; Randall, S. W.; Robertson, A.; Sawicki, M.; Tripodi, R. (2026). Mapping dark matter in the Bullet Cluster using JWST imaging and spectroscopy. *Astronomy & Astrophysics* 710, A207. [doi:10.1051/0004-6361/202659214](https://doi.org/10.1051/0004-6361/202659214)
 
 **BibTeX key:** `Rihtarsic2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

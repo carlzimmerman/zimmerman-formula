@@ -2,6 +2,6 @@
 
 This page belonged to the previous surname-count index (3 files, 22 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Now:** [Fabio Gastaldello](../people/gastaldello-fabio.md) — 61 scripts, 10 works.
+**Now:** [Fabio Gastaldello](../people/gastaldello-fabio.md) — 62 scripts, 10 works.
 
 [People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

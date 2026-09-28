@@ -6,9 +6,9 @@
 
 **Authors (1):** [P. J. E. Peebles](../people/peebles-p-j-e.md)
 
-## Used in 1217 script(s)
+## Used in 1218 script(s)
 
-How: named method/model in 1217.
+How: named method/model in 1218.
 
 Too many scripts to list here; the complete list is in [peebles-1982-large-scale-background-temperature-and-mass-fluc.tsv](peebles-1982-large-scale-background-temperature-and-mass-fluc.tsv). By top-level folder:
 
@@ -22,7 +22,7 @@ Too many scripts to list here; the complete list is in [peebles-1982-large-scale
 | `prep_2026/` | 68 |
 | `qwen_claude_field_theory/` | 60 |
 | `deepseek_push/` | 46 |
-| `campaign_fresh_gravity/` | 31 |
+| `campaign_fresh_gravity/` | 32 |
 | `nbody_2026/` | 22 |
 | `glm53_push/` | 21 |
 | `hy4_push/` | 14 |

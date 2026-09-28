@@ -1,6 +1,6 @@
 # Di Teodoro, Fraternali & Miller 2016 — Flat rotation curves and low velocity dispersions in KMOS star-forming galaxies atz~ 1
 
-**Reference.** Di Teodoro, E. M.; Fraternali, F.; Miller, S. H. (2016). Flat rotation curves and low velocity dispersions in KMOS star-forming galaxies atz~ 1. *Astronomy &amp; Astrophysics* 594, A77. [doi:10.1051/0004-6361/201628315](https://doi.org/10.1051/0004-6361/201628315)
+**Reference.** Di Teodoro, E. M.; Fraternali, F.; Miller, S. H. (2016). Flat rotation curves and low velocity dispersions in KMOS star-forming galaxies atz~ 1. *Astronomy & Astrophysics* 594, A77. [doi:10.1051/0004-6361/201628315](https://doi.org/10.1051/0004-6361/201628315)
 
 **BibTeX key:** `DiTeodoro2016` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

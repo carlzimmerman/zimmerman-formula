@@ -1,6 +1,6 @@
 # Rizzo et al. 2023 — The ALMA-ALPAKA survey: I. High-resolution CO and [CI] kinematics of star-forming galaxies at z = 0.5–3.5
 
-**Reference.** Rizzo, F.; Roman-Oliveira, F.; Fraternali, F.; Frickmann, D.; Valentino, F. M.; Brammer, G.; Zanella, A.; Kokorev, V.; Popping, G.; Whitaker, K. E.; Kohandel, M.; Magdis, G. E.; Di Mascolo, L.; Ikeda, R.; Jin, S.; Toft, S. (2023). The ALMA-ALPAKA survey: I. High-resolution CO and [CI] kinematics of star-forming galaxies at z = 0.5–3.5. *Astronomy &amp; Astrophysics* 679, A129. [doi:10.1051/0004-6361/202346444](https://doi.org/10.1051/0004-6361/202346444)
+**Reference.** Rizzo, F.; Roman-Oliveira, F.; Fraternali, F.; Frickmann, D.; Valentino, F. M.; Brammer, G.; Zanella, A.; Kokorev, V.; Popping, G.; Whitaker, K. E.; Kohandel, M.; Magdis, G. E.; Di Mascolo, L.; Ikeda, R.; Jin, S.; Toft, S. (2023). The ALMA-ALPAKA survey: I. High-resolution CO and [CI] kinematics of star-forming galaxies at z = 0.5–3.5. *Astronomy & Astrophysics* 679, A129. [doi:10.1051/0004-6361/202346444](https://doi.org/10.1051/0004-6361/202346444)
 
 **BibTeX key:** `Rizzo2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

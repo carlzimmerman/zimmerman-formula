@@ -386,7 +386,7 @@
 - del Pozo, E. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
 - Del Pozzo, Walter — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
 - Del Prete, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
-- [del Río, Jaime Fernández](del-rio-jaime-fernandez.md) — 1 work(s) · 5148 scripts
+- [del Río, Jaime Fernández](del-rio-jaime-fernandez.md) — 1 work(s) · 5150 scripts
 - del Rio, O. M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
 - Delabrouille, J. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 420 scripts
 - [Delange, Hubert](delange-hubert.md) — 1 work(s) · 3 scripts
@@ -966,7 +966,7 @@
 - Dutra-Ferreira, Letícia — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
 - [Dutta Chowdhury, Dhruba](dutta-chowdhury-dhruba.md) — 1 work(s) · 3 scripts
 - Dutta, Rajeshwari — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
-- [Dutton, Aaron A](dutton-aaron-a.md) — 5 work(s) · 105 scripts
+- [Dutton, Aaron A](dutton-aaron-a.md) — 5 work(s) · 107 scripts
 - Duval, H. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
 - [Duval, Valerie](duval-valerie.md) — 1 work(s) · 10 scripts
 - Duverne, P. -A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) … · 18 scripts

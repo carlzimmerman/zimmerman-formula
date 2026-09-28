@@ -224,7 +224,7 @@
 - [Taylor, J. H.](taylor-j-h-3.md) — 1 work(s) · 12 scripts
 - [Taylor, J.c.](taylor-j-c.md) — 1 work(s) · 1 scripts
 - Taylor, Jacob — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
-- [Taylor, Julian](taylor-julian.md) — 1 work(s) · 5148 scripts
+- [Taylor, Julian](taylor-julian.md) — 1 work(s) · 5150 scripts
 - Taylor, M. B. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
 - [Taylor, Peter L.](taylor-peter-l.md) — 6 work(s) · 239 scripts
 - [Taylor, Quinn](taylor-quinn.md) — 1 work(s) · 1 scripts
@@ -682,7 +682,7 @@
 - Trepanier, S. — author of [Archambault et al. 2017](../works/archambault-2017-dark-matter-constraints-from-a-joint-analysis-of.md) · 1 scripts
 - Tresse, Laurence — author of [López-Sanjuan et al. 2012](../works/lopez-sanjuan-2012-the-dominant-role-of-mergers-in-the-size-evoluti.md), [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 3 scripts
 - Treu, Jesse — author of [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md), [Madhavacheril et al. 2024](../works/madhavacheril-2024-the-atacama-cosmology-telescope-dr6-gravitation.md), [Aiola et al. 2020](../works/aiola-2020-the-atacama-cosmology-telescope-dr4-maps-and-co.md) … · 13 scripts
-- [Treu, Tommaso](treu-tommaso.md) — 28 work(s) · 29 scripts
+- [Treu, Tommaso](treu-tommaso.md) — 28 work(s) · 30 scripts
 - [Treu, Tommaso](treu-tommaso-2.md) — 1 work(s) · 2 scripts
 - [Trevisan, M.](trevisan-m.md) — 1 work(s) · 1 scripts
 - Trevor, M. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) … · 18 scripts

@@ -1,17 +1,18 @@
 # Lovisari, Reiprich & Schellenberger 2015 — Scaling properties of a complete X-ray selected galaxy group sample
 
-**Reference.** Lovisari, L.; Reiprich, T. H.; Schellenberger, G. (2015). Scaling properties of a complete X-ray selected galaxy group sample. *Astronomy &amp; Astrophysics* 573, A118. [doi:10.1051/0004-6361/201423954](https://doi.org/10.1051/0004-6361/201423954) [arXiv:1409.3845](https://arxiv.org/abs/1409.3845)
+**Reference.** Lovisari, L.; Reiprich, T. H.; Schellenberger, G. (2015). Scaling properties of a complete X-ray selected galaxy group sample. *Astronomy & Astrophysics* 573, A118. [doi:10.1051/0004-6361/201423954](https://doi.org/10.1051/0004-6361/201423954) [arXiv:1409.3845](https://arxiv.org/abs/1409.3845)
 
 **BibTeX key:** `Lovisari2015` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 
 **Authors (3):** [L. Lovisari](../people/lovisari-lorenzo.md), [T. H. Reiprich](../people/reiprich-thomas-h.md), [G. Schellenberger](../people/schellenberger-gerrit.md)
 
-## Used in 14 script(s)
+## Used in 15 script(s)
 
-How: cited in 14.
+How: cited in 15.
 
 | script | how | lines |
 |---|---|---|
+| [`campaign_fresh_gravity/CFG34_groups_and_the_ladder_under_b.py`](../../campaign_fresh_gravity/CFG34_groups_and_the_ladder_under_b.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG34_groups_and_the_ladder_under_b.py#L3) |
 | [`deepseek_push/G140_amp_mass.py`](../../deepseek_push/G140_amp_mass.py#L313) | cited | [313](../../deepseek_push/G140_amp_mass.py#L313), [555](../../deepseek_push/G140_amp_mass.py#L555), [630](../../deepseek_push/G140_amp_mass.py#L630) |
 | [`fable_independent_2026/L56_potential_trigger.py`](../../fable_independent_2026/L56_potential_trigger.py#L2) | cited | [2](../../fable_independent_2026/L56_potential_trigger.py#L2), [787](../../fable_independent_2026/L56_potential_trigger.py#L787) |
 | [`fable_independent_2026/L57_nonlocal_functional.py`](../../fable_independent_2026/L57_nonlocal_functional.py#L2) | cited | [2](../../fable_independent_2026/L57_nonlocal_functional.py#L2), [1158](../../fable_independent_2026/L57_nonlocal_functional.py#L1158) |

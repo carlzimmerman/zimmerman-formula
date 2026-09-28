@@ -1,11 +1,11 @@
 # Rodrigo A. Ibata
 
-Credited in **65** file(s) through **28** work(s) · ORCID [0000-0002-3292-9709](https://orcid.org/0000-0002-3292-9709) · affiliation on the cited work(s): Université de Strasbourg, CNRS, Observatoire astronomique de Strasbourg, UMR 7550, F-67000 Strasbourg, France; Université de Strasbourg, CNRS, Observatoire Astronomique de Strasbourg, UMR 7550, F-67000 Strasbourg, France
+Credited in **66** file(s) through **28** work(s) · ORCID [0000-0002-3292-9709](https://orcid.org/0000-0002-3292-9709) · affiliation on the cited work(s): Université de Strasbourg, CNRS, Observatoire astronomique de Strasbourg, UMR 7550, F-67000 Strasbourg, France; Université de Strasbourg, CNRS, Observatoire Astronomique de Strasbourg, UMR 7550, F-67000 Strasbourg, France
 
 | work | used in | how |
 |---|---:|---|
 | [Banik et al. 2023](../works/banik-2023-strong-constraints-on-the-gravitational-law-from.md) — Strong constraints on the gravitational law from Gaia DR3 wide binaries | 37 | cited, cited in a paper |
-| [Freundlich et al. 2022](../works/freundlich-2022-probing-the-radial-acceleration-relation-and-the.md) — Probing the radial acceleration relation and the strong equivalence principle with the Coma cluster ultra-diff | 13 | cited, cited in a paper |
+| [Freundlich et al. 2022](../works/freundlich-2022-probing-the-radial-acceleration-relation-and-the.md) — Probing the radial acceleration relation and the strong equivalence principle with the Coma cluster ultra-diff | 14 | cited, cited in a paper |
 | [Collins et al. 2013](../works/collins-2013-a-kinematic-study-of-the-andromeda-dwarf-spheroi.md) — A KINEMATIC STUDY OF THE ANDROMEDA DWARF SPHEROIDAL SYSTEM | 8 | cited |
 | [Nagesh et al. 2024](../works/nagesh-2024-simulations-of-cluster-ultra-diffuse-galaxies-in.md) — Simulations of cluster ultra-diffuse galaxies in MOND | 3 | cited, cited in a paper |
 | [Ibata et al. 2011](../works/ibata-2011-the-globular-cluster-ngc-2419-a-crucible-for-th.md) — THE GLOBULAR CLUSTER NGC 2419: A CRUCIBLE FOR THEORIES OF GRAVITY | 3 | cited |

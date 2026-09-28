@@ -1,6 +1,6 @@
 # Wagenveld, Klöckner & Schwarz 2023 — The cosmic radio dipole: Bayesian estimators on new and old radio surveys
 
-**Reference.** Wagenveld, J. D.; Klöckner, H.-R.; Schwarz, D. J. (2023). The cosmic radio dipole: Bayesian estimators on new and old radio surveys. *Astronomy &amp; Astrophysics* 675, A72. [doi:10.1051/0004-6361/202346210](https://doi.org/10.1051/0004-6361/202346210)
+**Reference.** Wagenveld, J. D.; Klöckner, H.-R.; Schwarz, D. J. (2023). The cosmic radio dipole: Bayesian estimators on new and old radio surveys. *Astronomy & Astrophysics* 675, A72. [doi:10.1051/0004-6361/202346210](https://doi.org/10.1051/0004-6361/202346210)
 
 **BibTeX key:** `Wagenveld2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

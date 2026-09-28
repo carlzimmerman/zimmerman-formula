@@ -1,6 +1,6 @@
 # García-Ruiz, Sancisi & Kuijken 2002 — Neutral hydrogen and optical observations of edge-on galaxies: Hunting for warps
 
-**Reference.** García-Ruiz, I.; Sancisi, R.; Kuijken, K. (2002). Neutral hydrogen and optical observations of edge-on galaxies: Hunting for warps. *Astronomy &amp; Astrophysics* 394, 769-789. [doi:10.1051/0004-6361:20020976](https://doi.org/10.1051/0004-6361:20020976)
+**Reference.** García-Ruiz, I.; Sancisi, R.; Kuijken, K. (2002). Neutral hydrogen and optical observations of edge-on galaxies: Hunting for warps. *Astronomy & Astrophysics* 394, 769-789. [doi:10.1051/0004-6361:20020976](https://doi.org/10.1051/0004-6361:20020976)
 
 **BibTeX key:** `GarciaRuiz2002` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

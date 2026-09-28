@@ -1,6 +1,6 @@
 # Georgiou et al. 2021 — Halo shapes constrained from a pure sample of central galaxies in KiDS-1000
 
-**Reference.** Georgiou, C.; Hoekstra, H.; Kuijken, K.; Bilicki, M.; Dvornik, A.; Erben, T.; Giblin, B.; Heymans, C.; Hildebrandt, H.; de Jong, J. T. A.; Kannawadi, A.; Schneider, P.; Schrabback, T.; Shan, H. Y.; Wright, A. H. (2021). Halo shapes constrained from a pure sample of central galaxies in KiDS-1000. *Astronomy &amp; Astrophysics* 647, A185. [doi:10.1051/0004-6361/201937405](https://doi.org/10.1051/0004-6361/201937405) [arXiv:2102.03549](https://arxiv.org/abs/2102.03549)
+**Reference.** Georgiou, C.; Hoekstra, H.; Kuijken, K.; Bilicki, M.; Dvornik, A.; Erben, T.; Giblin, B.; Heymans, C.; Hildebrandt, H.; de Jong, J. T. A.; Kannawadi, A.; Schneider, P.; Schrabback, T.; Shan, H. Y.; Wright, A. H. (2021). Halo shapes constrained from a pure sample of central galaxies in KiDS-1000. *Astronomy & Astrophysics* 647, A185. [doi:10.1051/0004-6361/201937405](https://doi.org/10.1051/0004-6361/201937405) [arXiv:2102.03549](https://arxiv.org/abs/2102.03549)
 
 **BibTeX key:** `Georgiou2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

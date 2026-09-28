@@ -1,6 +1,6 @@
 # Catán et al. 2024 — Molecular gas budget of strongly magnified low-mass star-forming galaxies at cosmic noon
 
-**Reference.** Catán, V.; González-López, J.; Solimano, M.; Barrientos, L. F.; Afruni, A.; Aravena, M.; Bayliss, M.; Hernández, J. A.; Ledoux, C.; Mahler, G.; Sharon, K.; Tejos, N. (2024). Molecular gas budget of strongly magnified low-mass star-forming galaxies at cosmic noon. *Astronomy &amp; Astrophysics* 692, A215. [doi:10.1051/0004-6361/202451892](https://doi.org/10.1051/0004-6361/202451892) [arXiv:2408.07849](https://arxiv.org/abs/2408.07849)
+**Reference.** Catán, V.; González-López, J.; Solimano, M.; Barrientos, L. F.; Afruni, A.; Aravena, M.; Bayliss, M.; Hernández, J. A.; Ledoux, C.; Mahler, G.; Sharon, K.; Tejos, N. (2024). Molecular gas budget of strongly magnified low-mass star-forming galaxies at cosmic noon. *Astronomy & Astrophysics* 692, A215. [doi:10.1051/0004-6361/202451892](https://doi.org/10.1051/0004-6361/202451892) [arXiv:2408.07849](https://arxiv.org/abs/2408.07849)
 
 **BibTeX key:** `Catan2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

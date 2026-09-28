@@ -1,6 +1,6 @@
 # Benoit Famaey
 
-Credited in **299** file(s) through **30** work(s) · ORCID [0000-0003-3180-9825](https://orcid.org/0000-0003-3180-9825) · affiliation on the cited work(s): Univ. de Strasbourg, CNRS, Observatoire astronomique de Strasbourg; Observatoire astronomique de Strasbourg, Université de Strasbourg, CNRS, 11 rue de l’Université, 67000 Strasbourg, Franc
+Credited in **300** file(s) through **30** work(s) · ORCID [0000-0003-3180-9825](https://orcid.org/0000-0003-3180-9825) · affiliation on the cited work(s): Univ. de Strasbourg, CNRS, Observatoire astronomique de Strasbourg; Observatoire astronomique de Strasbourg, Université de Strasbourg, CNRS, 11 rue de l’Université, 67000 Strasbourg, Franc
 
 | work | used in | how |
 |---|---:|---|
@@ -10,8 +10,8 @@ Credited in **299** file(s) through **30** work(s) · ORCID [0000-0003-3180-9825
 | [Banik et al. 2023](../works/banik-2023-strong-constraints-on-the-gravitational-law-from.md) — Strong constraints on the gravitational law from Gaia DR3 wide binaries | 37 | cited, cited in a paper |
 | [Famaey & McGaugh 2012](../works/famaey-2012-modified-newtonian-dynamics-mond-observationa.md) — Modified Newtonian Dynamics (MOND): Observational Phenomenology and Relativistic Extensions | 37 | cited, cited in a paper |
 | [Famaey, Pizzuti & Saltas 2025](../works/famaey-2025-nature-of-the-missing-mass-of-galaxy-clusters-in.md) — Nature of the missing mass of galaxy clusters in MOND: The view from gravitational lensing | 15 | cited, named method/model, cited in a paper |
+| [Freundlich et al. 2022](../works/freundlich-2022-probing-the-radial-acceleration-relation-and-the.md) — Probing the radial acceleration relation and the strong equivalence principle with the Coma cluster ultra-diff | 14 | cited, cited in a paper |
 | [Hees et al. 2015](../works/hees-2015-combined-solar-system-and-rotation-curve-constra.md) — Combined Solar system and rotation curve constraints on MOND | 14 | cited, cited in a paper |
-| [Freundlich et al. 2022](../works/freundlich-2022-probing-the-radial-acceleration-relation-and-the.md) — Probing the radial acceleration relation and the strong equivalence principle with the Coma cluster ultra-diff | 13 | cited, cited in a paper |
 | [Famaey 2026](../works/famaey-2026-on-the-residual-missing-mass-of-the-bullet-clust.md) — On the residual missing mass of the Bullet Cluster | 12 | cited |
 | [Angus, Famaey & Diaferio 2009](../works/angus-2009-equilibrium-configurations-of-11-ev-sterile-neut.md) — Equilibrium configurations of 11 eV sterile neutrinos in MONDian galaxy clusters: Equilibrium configurations o | 10 | cited, named method/model |
 | [Angus et al. 2006](../works/angus-2006-on-the-proof-of-dark-matter-the-law-of-gravity.md) — On the Proof of Dark Matter, the Law of Gravity, and the Mass of Neutrinos | 7 | cited, named method/model |

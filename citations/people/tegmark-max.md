@@ -1,6 +1,6 @@
 # Max Tegmark
 
-Credited in **34** file(s) through **5** work(s) · ORCID [0000-0001-7670-7190](https://orcid.org/0000-0001-7670-7190) · affiliation on the cited work(s): Department of Physics and Center for Brains, Minds &amp; Machines, Massachusetts Institute of Technology, Cambridge, MA 
+Credited in **34** file(s) through **5** work(s) · ORCID [0000-0001-7670-7190](https://orcid.org/0000-0001-7670-7190) · affiliation on the cited work(s): Department of Physics and Center for Brains, Minds & Machines, Massachusetts Institute of Technology, Cambridge, MA 0213
 
 | work | used in | how |
 |---|---:|---|

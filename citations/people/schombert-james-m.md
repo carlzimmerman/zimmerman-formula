@@ -1,12 +1,12 @@
 # James M. Schombert
 
-Credited in **2030** file(s) through **23** work(s) · ORCID [0000-0003-2022-1911](https://orcid.org/0000-0003-2022-1911) · affiliation on the cited work(s): Department of Physics, University of Oregon, Eugene, OR 97403, USA; Department of Physics, University of Oregon, Eugene, OR 97403
+Credited in **2032** file(s) through **23** work(s) · ORCID [0000-0003-2022-1911](https://orcid.org/0000-0003-2022-1911) · affiliation on the cited work(s): Department of Physics, University of Oregon, Eugene, OR 97403, USA; Department of Physics, University of Oregon, Eugene, OR 97403
 
 | work | used in | how |
 |---|---:|---|
 | [McGaugh, Lelli & Schombert 2016](../works/mcgaugh-2016-radial-acceleration-relation-in-rotationally-sup.md) — Radial Acceleration Relation in Rotationally Supported Galaxies | 1396 | cited, named method/model, cited in a paper |
 | [Lelli et al. 2017](../works/lelli-2017-one-law-to-rule-them-all-the-radial-acceleratio.md) — One Law to Rule Them All: The Radial Acceleration Relation of Galaxies | 1353 | cited, named method/model, cited in a paper |
-| [Lelli, McGaugh & Schombert 2016](../works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CURVES | 1034 | cited, data used, cited in a paper |
+| [Lelli, McGaugh & Schombert 2016](../works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CURVES | 1036 | cited, data used, cited in a paper |
 | [McGaugh et al. 2000](../works/mcgaugh-2000-the-baryonic-tully-fisher-relation.md) — The Baryonic Tully-Fisher Relation | 675 | named method/model, cited in a paper |
 | [Mistele et al. 2024](../works/mistele-2024-radial-acceleration-relation-of-galaxies-with-jo.md) — Radial acceleration relation of galaxies with joint kinematic and weak-lensing data | 83 | cited, named method/model, cited in a paper |
 | [Chae et al. 2020](../works/chae-2020-testing-the-strong-equivalence-principle-detect.md) — Testing the Strong Equivalence Principle: Detection of the External Field Effect in Rotationally Supported Gal | 51 | cited, data used, cited in a paper |

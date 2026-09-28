@@ -1,6 +1,6 @@
 # Ettori & Eckert 2021 — Tracing the non-thermal pressure and hydrostatic bias in galaxy clusters
 
-**Reference.** Ettori, S.; Eckert, D. (2021). Tracing the non-thermal pressure and hydrostatic bias in galaxy clusters. *Astronomy &amp; Astrophysics* 657, L1. [doi:10.1051/0004-6361/202142638](https://doi.org/10.1051/0004-6361/202142638) [arXiv:2112.07554](https://arxiv.org/abs/2112.07554)
+**Reference.** Ettori, S.; Eckert, D. (2021). Tracing the non-thermal pressure and hydrostatic bias in galaxy clusters. *Astronomy & Astrophysics* 657, L1. [doi:10.1051/0004-6361/202142638](https://doi.org/10.1051/0004-6361/202142638) [arXiv:2112.07554](https://arxiv.org/abs/2112.07554)
 
 **BibTeX key:** `Ettori2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

@@ -6,14 +6,16 @@
 
 **Authors (2):** [Aaron A. Dutton](../people/dutton-aaron-a.md), [Andrea V. Macciò](../people/maccio-andrea-v.md)
 
-## Used in 78 script(s)
+## Used in 80 script(s)
 
-How: cited in 43, named method/model in 76, cited in a paper in 1.
+How: cited in 44, named method/model in 78, cited in a paper in 1.
 
 | script | how | lines |
 |---|---|---|
 | [`campaign_fresh_gravity/CFG2_B_galaxies.py`](../../campaign_fresh_gravity/CFG2_B_galaxies.py#L14) | named method/model — Dutton-Maccio halo concentration-mass relation | [14](../../campaign_fresh_gravity/CFG2_B_galaxies.py#L14), [39](../../campaign_fresh_gravity/CFG2_B_galaxies.py#L39), [195](../../campaign_fresh_gravity/CFG2_B_galaxies.py#L195) |
 | [`campaign_fresh_gravity/CFG2_common.py`](../../campaign_fresh_gravity/CFG2_common.py#L3) | cited, named method/model | [3](../../campaign_fresh_gravity/CFG2_common.py#L3), [26](../../campaign_fresh_gravity/CFG2_common.py#L26), [440](../../campaign_fresh_gravity/CFG2_common.py#L440) |
+| [`campaign_fresh_gravity/CFG35_cold_mass_conservation.py`](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L3) | cited, named method/model | [3](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L3), [16](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L16), [60](../../campaign_fresh_gravity/CFG35_cold_mass_conservation.py#L60) |
+| [`campaign_fresh_gravity/CFG36_colour_split_collapse.py`](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L15) | named method/model — Dutton-Maccio halo concentration-mass relation | [15](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L15), [17](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L17), [74](../../campaign_fresh_gravity/CFG36_colour_split_collapse.py#L74) |
 | [`campaign_fresh_gravity/CFG6_common.py`](../../campaign_fresh_gravity/CFG6_common.py#L20) | named method/model — Dutton-Maccio halo concentration-mass relation | [20](../../campaign_fresh_gravity/CFG6_common.py#L20) |
 | [`fable_independent_2026/L143_a0z_prediction_and_tests.py`](../../fable_independent_2026/L143_a0z_prediction_and_tests.py#L12) | named method/model — Dutton-Maccio halo concentration-mass relation | [12](../../fable_independent_2026/L143_a0z_prediction_and_tests.py#L12), [107](../../fable_independent_2026/L143_a0z_prediction_and_tests.py#L107), [227](../../fable_independent_2026/L143_a0z_prediction_and_tests.py#L227) |
 | [`fable_independent_2026/L148_galaxy_cdm_ceiling.py`](../../fable_independent_2026/L148_galaxy_cdm_ceiling.py#L31) | named method/model — Dutton-Maccio halo concentration-mass relation | [31](../../fable_independent_2026/L148_galaxy_cdm_ceiling.py#L31) |

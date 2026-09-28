@@ -1,6 +1,6 @@
 # Adén et al. 2009 — A photometric and spectroscopic study of the new dwarf spheroidal galaxy in Hercules: Metallicity, velocities, and a clean list of RGB members
 
-**Reference.** Adén, D.; Feltzing, S.; Koch, A.; Wilkinson, M. I.; Grebel, E. K.; Lundström, I.; Gilmore, G. F.; Zucker, D. B.; Belokurov, V.; Evans, N. W.; Faria, D. (2009). A photometric and spectroscopic study of the new dwarf spheroidal galaxy in Hercules: Metallicity, velocities, and a clean list of RGB members. *Astronomy &amp; Astrophysics* 506, 1147-1168. [doi:10.1051/0004-6361/200912718](https://doi.org/10.1051/0004-6361/200912718)
+**Reference.** Adén, D.; Feltzing, S.; Koch, A.; Wilkinson, M. I.; Grebel, E. K.; Lundström, I.; Gilmore, G. F.; Zucker, D. B.; Belokurov, V.; Evans, N. W.; Faria, D. (2009). A photometric and spectroscopic study of the new dwarf spheroidal galaxy in Hercules: Metallicity, velocities, and a clean list of RGB members. *Astronomy & Astrophysics* 506, 1147-1168. [doi:10.1051/0004-6361/200912718](https://doi.org/10.1051/0004-6361/200912718)
 
 **BibTeX key:** `Aden2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

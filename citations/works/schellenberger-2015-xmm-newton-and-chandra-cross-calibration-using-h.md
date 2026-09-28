@@ -1,6 +1,6 @@
 # Schellenberger et al. 2015 — XMM-Newton and Chandra cross-calibration using HIFLUGCS galaxy clusters: Systematic temperature differences and cosmological impact⋆
 
-**Reference.** Schellenberger, G.; Reiprich, T. H.; Lovisari, L.; Nevalainen, J.; David, L. (2015). XMM-Newton and Chandra cross-calibration using HIFLUGCS galaxy clusters: Systematic temperature differences and cosmological impact⋆. *Astronomy &amp; Astrophysics* 575, A30. [doi:10.1051/0004-6361/201424085](https://doi.org/10.1051/0004-6361/201424085)
+**Reference.** Schellenberger, G.; Reiprich, T. H.; Lovisari, L.; Nevalainen, J.; David, L. (2015). XMM-Newton and Chandra cross-calibration using HIFLUGCS galaxy clusters: Systematic temperature differences and cosmological impact⋆. *Astronomy & Astrophysics* 575, A30. [doi:10.1051/0004-6361/201424085](https://doi.org/10.1051/0004-6361/201424085)
 
 **BibTeX key:** `Schellenberger2015` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

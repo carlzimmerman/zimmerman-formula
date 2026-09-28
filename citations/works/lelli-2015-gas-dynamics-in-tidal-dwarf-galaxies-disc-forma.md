@@ -1,6 +1,6 @@
 # Lelli et al. 2015 — Gas dynamics in tidal dwarf galaxies: Disc formation atz= 0
 
-**Reference.** Lelli, F.; Duc, P.-A.; Brinks, E.; Bournaud, F.; McGaugh, S. S.; Lisenfeld, U.; Weilbacher, P. M.; Boquien, M.; Revaz, Y.; Braine, J.; Koribalski, B. S.; Belles, P.-E. (2015). Gas dynamics in tidal dwarf galaxies: Disc formation atz= 0. *Astronomy &amp; Astrophysics* 584, A113. [doi:10.1051/0004-6361/201526613](https://doi.org/10.1051/0004-6361/201526613) [arXiv:1509.05404](https://arxiv.org/abs/1509.05404)
+**Reference.** Lelli, F.; Duc, P.-A.; Brinks, E.; Bournaud, F.; McGaugh, S. S.; Lisenfeld, U.; Weilbacher, P. M.; Boquien, M.; Revaz, Y.; Braine, J.; Koribalski, B. S.; Belles, P.-E. (2015). Gas dynamics in tidal dwarf galaxies: Disc formation atz= 0. *Astronomy & Astrophysics* 584, A113. [doi:10.1051/0004-6361/201526613](https://doi.org/10.1051/0004-6361/201526613) [arXiv:1509.05404](https://arxiv.org/abs/1509.05404)
 
 **BibTeX key:** `Lelli2015` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

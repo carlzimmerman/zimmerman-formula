@@ -1,12 +1,12 @@
 # James S. Bullock
 
-Credited in **58** file(s) through **36** work(s) · affiliation on the cited work(s): Department of Physics and Astronomy, University of California, Irvine, CA 92697;; Department of Physics and Astronomy, Center for Cosmology, 4129 Reines Hall, University of California Irvine, CA 92697, 
+Credited in **59** file(s) through **36** work(s) · affiliation on the cited work(s): Department of Physics and Astronomy, University of California, Irvine, CA 92697;; Department of Physics and Astronomy, Center for Cosmology, 4129 Reines Hall, University of California Irvine, CA 92697, 
 
 | work | used in | how |
 |---|---:|---|
 | [Wolf et al. 2010](../works/wolf-2010-accurate-masses-for-dispersion-supported-galaxie.md) — Accurate masses for dispersion-supported galaxies: Accurate masses for spheroidal galaxies | 37 | cited, named method/model, cited in a paper |
 | [Boylan-Kolchin, Bullock & Kaplinghat 2011](../works/boylan-kolchin-2011-too-big-to-fail-the-puzzling-darkness-of-massiv.md) — Too big to fail? The puzzling darkness of massive Milky Way subhaloes | 9 | cited, data used |
-| [Humphrey et al. 2006](../works/humphrey-2006-achandraview-of-dark-matter-in-early-type-galaxi.md) — AChandraView of Dark Matter in Early‐Type Galaxies | 3 | cited |
+| [Humphrey et al. 2006](../works/humphrey-2006-achandraview-of-dark-matter-in-early-type-galaxi.md) — AChandraView of Dark Matter in Early‐Type Galaxies | 4 | cited |
 | [Strigari et al. 2008](../works/strigari-2008-a-common-mass-scale-for-satellite-galaxies-of-th.md) — A common mass scale for satellite galaxies of the Milky Way | 2 | cited, cited in a paper |
 | [Bullock et al. 2001](../works/bullock-2001-a-universal-angular-momentum-profile-for-galacti.md) — A Universal Angular Momentum Profile for Galactic Halos | 2 | cited |
 | [Wechsler et al. 2002](../works/wechsler-2002-concentrations-of-dark-halos-from-their-assembly.md) — Concentrations of Dark Halos from Their Assembly Histories | 2 | cited, cited in a paper |

@@ -1,12 +1,12 @@
 # Federico Lelli
 
-Credited in **1812** file(s) through **31** work(s) · ORCID [0000-0002-9024-9883](https://orcid.org/0000-0002-9024-9883) · affiliation on the cited work(s): INAF – Arcetri Astrophysical Observatory; European Southern Observatory, Karl-Schwarschild-Strasse 2, Garching bei Munchen, Germany
+Credited in **1814** file(s) through **31** work(s) · ORCID [0000-0002-9024-9883](https://orcid.org/0000-0002-9024-9883) · affiliation on the cited work(s): INAF – Arcetri Astrophysical Observatory; European Southern Observatory, Karl-Schwarschild-Strasse 2, Garching bei Munchen, Germany
 
 | work | used in | how |
 |---|---:|---|
 | [McGaugh, Lelli & Schombert 2016](../works/mcgaugh-2016-radial-acceleration-relation-in-rotationally-sup.md) — Radial Acceleration Relation in Rotationally Supported Galaxies | 1396 | cited, named method/model, cited in a paper |
 | [Lelli et al. 2017](../works/lelli-2017-one-law-to-rule-them-all-the-radial-acceleratio.md) — One Law to Rule Them All: The Radial Acceleration Relation of Galaxies | 1353 | cited, named method/model, cited in a paper |
-| [Lelli, McGaugh & Schombert 2016](../works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CURVES | 1034 | cited, data used, cited in a paper |
+| [Lelli, McGaugh & Schombert 2016](../works/lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.md) — SPARC: MASS MODELS FOR 175 DISK GALAXIES WITH SPITZER PHOTOMETRY AND ACCURATE ROTATION CURVES | 1036 | cited, data used, cited in a paper |
 | [Mistele et al. 2024](../works/mistele-2024-radial-acceleration-relation-of-galaxies-with-jo.md) — Radial acceleration relation of galaxies with joint kinematic and weak-lensing data | 83 | cited, named method/model, cited in a paper |
 | [Chae et al. 2020](../works/chae-2020-testing-the-strong-equivalence-principle-detect.md) — Testing the Strong Equivalence Principle: Detection of the External Field Effect in Rotationally Supported Gal | 51 | cited, data used, cited in a paper |
 | [Chae et al. 2021](../works/chae-2021-testing-the-strong-equivalence-principle-ii-re.md) — Testing the Strong Equivalence Principle. II. Relating the External Field Effect in Galaxy Rotation Curves to  | 45 | cited, data used |

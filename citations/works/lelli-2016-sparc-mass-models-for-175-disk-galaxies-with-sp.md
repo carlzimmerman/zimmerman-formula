@@ -6,9 +6,9 @@
 
 **Authors (3):** [Federico Lelli](../people/lelli-federico.md), [Stacy S. McGaugh](../people/mcgaugh-stacy-s.md), [James M. Schombert](../people/schombert-james-m.md)
 
-## Used in 1034 script(s)
+## Used in 1036 script(s)
 
-How: cited in 86, data used in 1011, cited in a paper in 14.
+How: cited in 86, data used in 1013, cited in a paper in 14.
 
 Too many scripts to list here; the complete list is in [lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.tsv](lelli-2016-sparc-mass-models-for-175-disk-galaxies-with-sp.tsv). By top-level folder:
 
@@ -22,7 +22,7 @@ Too many scripts to list here; the complete list is in [lelli-2016-sparc-mass-mo
 | `deepseek_push/` | 76 |
 | `qwen_claude_field_theory/` | 68 |
 | `ai_slop/` | 44 |
-| `campaign_fresh_gravity/` | 28 |
+| `campaign_fresh_gravity/` | 30 |
 | `glm53_push/` | 24 |
 | `hy4_push/` | 15 |
 | `nbody_2026/` | 14 |

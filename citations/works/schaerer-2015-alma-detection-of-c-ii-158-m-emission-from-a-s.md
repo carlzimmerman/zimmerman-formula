@@ -1,6 +1,6 @@
 # Schaerer et al. 2015 — ALMA detection of [C ii] 158μm emission from a strongly lensedz= 2.013 star-forming galaxy
 
-**Reference.** Schaerer, D.; Boone, F.; Jones, T.; Dessauges-Zavadsky, M.; Sklias, P.; Zamojski, M.; Cava, A.; Richard, J.; Ellis, R.; Rawle, T. D.; Egami, E.; Combes, F. (2015). ALMA detection of [C ii] 158μm emission from a strongly lensedz= 2.013 star-forming galaxy. *Astronomy &amp; Astrophysics* 576, L2. [doi:10.1051/0004-6361/201425542](https://doi.org/10.1051/0004-6361/201425542) [arXiv:1502.03842](https://arxiv.org/abs/1502.03842)
+**Reference.** Schaerer, D.; Boone, F.; Jones, T.; Dessauges-Zavadsky, M.; Sklias, P.; Zamojski, M.; Cava, A.; Richard, J.; Ellis, R.; Rawle, T. D.; Egami, E.; Combes, F. (2015). ALMA detection of [C ii] 158μm emission from a strongly lensedz= 2.013 star-forming galaxy. *Astronomy & Astrophysics* 576, L2. [doi:10.1051/0004-6361/201425542](https://doi.org/10.1051/0004-6361/201425542) [arXiv:1502.03842](https://arxiv.org/abs/1502.03842)
 
 **BibTeX key:** `Schaerer2015` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

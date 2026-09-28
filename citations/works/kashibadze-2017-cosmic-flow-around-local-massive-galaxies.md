@@ -1,6 +1,6 @@
 # Kashibadze & Karachentsev 2017 — Cosmic flow around local massive galaxies
 
-**Reference.** Kashibadze, O. G.; Karachentsev, I. D. (2017). Cosmic flow around local massive galaxies. *Astronomy &amp; Astrophysics* 609, A11. [doi:10.1051/0004-6361/201731645](https://doi.org/10.1051/0004-6361/201731645) [arXiv:1709.09420](https://arxiv.org/abs/1709.09420)
+**Reference.** Kashibadze, O. G.; Karachentsev, I. D. (2017). Cosmic flow around local massive galaxies. *Astronomy & Astrophysics* 609, A11. [doi:10.1051/0004-6361/201731645](https://doi.org/10.1051/0004-6361/201731645) [arXiv:1709.09420](https://arxiv.org/abs/1709.09420)
 
 **BibTeX key:** `Kashibadze2017` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

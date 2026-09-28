@@ -1,6 +1,6 @@
 # Gaia Collaboration et al. 2016 — The Gaia mission
 
-**Reference.** Gaia Collaboration; Prusti, T.; de Bruijne, J. H. J.; Brown, A. G. A.; Vallenari, A.; Babusiaux, C.; Bailer-Jones, C. A. L.; Bastian, U.; Biermann, M.; Evans, D. W.; Eyer, L.; Jansen, F.; Jordi, C.; Klioner, S. A.; Lammers, U.; Lindegren, L.; Luri, X.; Mignard, F.; Milligan, D. J.; Panem, C.; Poinsignon, V.; Pourbaix, D.; Randich, S.; Sarri, G.; Sartoretti, P.; Siddiqui, H. I.; Soubiran, C.; Valette, V.; van Leeuwen, F.; Walton, N. A.; et al. (626 authors) (2016). The Gaia mission. *Astronomy &amp; Astrophysics* 595, A1. [doi:10.1051/0004-6361/201629272](https://doi.org/10.1051/0004-6361/201629272)
+**Reference.** Gaia Collaboration; Prusti, T.; de Bruijne, J. H. J.; Brown, A. G. A.; Vallenari, A.; Babusiaux, C.; Bailer-Jones, C. A. L.; Bastian, U.; Biermann, M.; Evans, D. W.; Eyer, L.; Jansen, F.; Jordi, C.; Klioner, S. A.; Lammers, U.; Lindegren, L.; Luri, X.; Mignard, F.; Milligan, D. J.; Panem, C.; Poinsignon, V.; Pourbaix, D.; Randich, S.; Sarri, G.; Sartoretti, P.; Siddiqui, H. I.; Soubiran, C.; Valette, V.; van Leeuwen, F.; Walton, N. A.; et al. (626 authors) (2016). The Gaia mission. *Astronomy & Astrophysics* 595, A1. [doi:10.1051/0004-6361/201629272](https://doi.org/10.1051/0004-6361/201629272)
 
 **BibTeX key:** `GaiaCollaboration2016` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

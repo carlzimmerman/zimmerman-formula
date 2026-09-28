@@ -1,6 +1,6 @@
 # Coquery & Blanchard 2025 — Cosmological implications of the Gaia Milky Way declining rotation curve
 
-**Reference.** Coquery, E.; Blanchard, A. (2025). Cosmological implications of the Gaia Milky Way declining rotation curve. *Astronomy &amp; Astrophysics* 703, A88. [doi:10.1051/0004-6361/202556337](https://doi.org/10.1051/0004-6361/202556337)
+**Reference.** Coquery, E.; Blanchard, A. (2025). Cosmological implications of the Gaia Milky Way declining rotation curve. *Astronomy & Astrophysics* 703, A88. [doi:10.1051/0004-6361/202556337](https://doi.org/10.1051/0004-6361/202556337)
 
 **BibTeX key:** `Coquery2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

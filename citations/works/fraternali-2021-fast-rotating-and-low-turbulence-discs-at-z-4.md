@@ -1,6 +1,6 @@
 # Fraternali et al. 2021 — Fast rotating and low-turbulence discs at z ≃ 4.5: Dynamical evidence of their evolution into local early-type galaxies
 
-**Reference.** Fraternali, F.; Karim, A.; Magnelli, B.; Gómez-Guijarro, C.; Jiménez-Andrade, E. F.; Posses, A. C. (2021). Fast rotating and low-turbulence discs at z ≃ 4.5: Dynamical evidence of their evolution into local early-type galaxies. *Astronomy &amp; Astrophysics* 647, A194. [doi:10.1051/0004-6361/202039807](https://doi.org/10.1051/0004-6361/202039807) [arXiv:2011.05340](https://arxiv.org/abs/2011.05340)
+**Reference.** Fraternali, F.; Karim, A.; Magnelli, B.; Gómez-Guijarro, C.; Jiménez-Andrade, E. F.; Posses, A. C. (2021). Fast rotating and low-turbulence discs at z ≃ 4.5: Dynamical evidence of their evolution into local early-type galaxies. *Astronomy & Astrophysics* 647, A194. [doi:10.1051/0004-6361/202039807](https://doi.org/10.1051/0004-6361/202039807) [arXiv:2011.05340](https://arxiv.org/abs/2011.05340)
 
 **BibTeX key:** `Fraternali2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

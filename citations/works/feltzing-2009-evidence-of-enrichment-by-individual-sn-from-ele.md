@@ -1,6 +1,6 @@
 # Feltzing et al. 2009 — Evidence of enrichment by individual SN from elemental abundance ratios in the very metal-poor dSph galaxy Boötes I
 
-**Reference.** Feltzing, S.; Eriksson, K.; Kleyna, J.; Wilkinson, M. I. (2009). Evidence of enrichment by individual SN from elemental abundance ratios in the very metal-poor dSph galaxy Boötes I. *Astronomy &amp; Astrophysics* 508, L1-L4. [doi:10.1051/0004-6361/200912833](https://doi.org/10.1051/0004-6361/200912833)
+**Reference.** Feltzing, S.; Eriksson, K.; Kleyna, J.; Wilkinson, M. I. (2009). Evidence of enrichment by individual SN from elemental abundance ratios in the very metal-poor dSph galaxy Boötes I. *Astronomy & Astrophysics* 508, L1-L4. [doi:10.1051/0004-6361/200912833](https://doi.org/10.1051/0004-6361/200912833)
 
 **BibTeX key:** `Feltzing2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 

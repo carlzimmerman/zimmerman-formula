@@ -1,6 +1,6 @@
 # Emsellem et al. 2019 — The ultra-diffuse galaxy NGC 1052-DF2 with MUSE: I. Kinematics of the stellar body
 
-**Reference.** Emsellem, E.; van der Burg, R. F. J.; Fensch, J.; Jeřábková, T.; Zanella, A.; Agnello, A.; Hilker, M.; Müller, O.; Rejkuba, M.; Duc, P.-A.; Durrell, P.; Habas, R.; Lelli, F.; Lim, S.; Marleau, F. R.; Peng, E.; Sánchez-Janssen, R. (2019). The ultra-diffuse galaxy NGC 1052-DF2 with MUSE: I. Kinematics of the stellar body. *Astronomy &amp; Astrophysics* 625, A76. [doi:10.1051/0004-6361/201834909](https://doi.org/10.1051/0004-6361/201834909)
+**Reference.** Emsellem, E.; van der Burg, R. F. J.; Fensch, J.; Jeřábková, T.; Zanella, A.; Agnello, A.; Hilker, M.; Müller, O.; Rejkuba, M.; Duc, P.-A.; Durrell, P.; Habas, R.; Lelli, F.; Lim, S.; Marleau, F. R.; Peng, E.; Sánchez-Janssen, R. (2019). The ultra-diffuse galaxy NGC 1052-DF2 with MUSE: I. Kinematics of the stellar body. *Astronomy & Astrophysics* 625, A76. [doi:10.1051/0004-6361/201834909](https://doi.org/10.1051/0004-6361/201834909)
 
 **BibTeX key:** `Emsellem2019` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
 
