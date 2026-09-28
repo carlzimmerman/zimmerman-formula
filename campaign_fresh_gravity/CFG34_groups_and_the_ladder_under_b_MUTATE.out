@@ -1,0 +1,93 @@
+CFG34 -- THE a0 LADDER UNDER CANDIDATE B (B3), and its one untested rung: the X-ray groups under B's max rule.
+
+WHY.  FAILURES_EXECUTIVE_SUMMARY_2026-09-28 row B3: h20's ladder asked every system class for its "implied a0" on the phantom-only
+reading and found the cluster rung at 1.81e-10, 6.3 sigma from the deep tail's 1.14e-10 (hunt_2026/h20_a0_ladder.py).  h20 itself
+concluded that what sits above the galaxies is missing MASS, not a wrong constant.  Candidate B adds exactly that mass.  T5's identity:
+in a bound region the dark mass is max(M_phantom, (Omega_c/Omega_b) M_b).  CFG4 applied it to X-COP at the measurement aperture and
+reproduced the hydrostatic masses to 0.946 +- 0.080.  So under B the cluster rung is not an a0 problem.  But the rule has only been
+checked where the baryons are nearly cosmic (X-COP f_b ~ 0.15).  Groups test it: at 1-3 keV the baryon fraction inside R500 is ~0.10
+(Lovisari+2015, 20 groups; hunt_2026/h7_groups_hot_gas.py, where the phantom-only law came up short by eta ~ 2 in baryons).  B's rule
+AS WRITTEN takes the cosmic share of the baryons present TODAY, so where the phantom does not win it predicts only ~0.10 x 6.36 = 0.65
+of a group's mass.
+
+THE METHOD (declared before this script's first run).  h7's data and stellar-mass import exec'd read-only (Lovisari+2015 hydrostatic
+masses and gas masses at R500 and R2500; stars from the Kravtsov+2018 SHMR, x/1.5 bracket, 0.65 of M_*,500 inside R2500 as h7).  At each
+radius: M_b = M_gas + M_*; M_ph = (nu_mono(g_N/a0) - 1) M_b with g_N = G M_b / r^2 (the monopole reading, as CFG4); B's mass
+M_B = M_b + max(M_ph, 5.364 M_b).  The statistic is the median over groups of log10(M_HSE / M_B).  Its error is the group-to-group
+scatter / sqrt(N), with a floor in quadrature: the stellar bracket (half the spread of the median between the bracket's ends, re-run)
+and a 20% hydrostatic bias (0.079 dex; HSE masses run LOW, which would make the ratio larger -- carried symmetrically).
+
+PRE-DECLARED
+  C1  CONTROL  h7's committed median eta at R500 reproduced (1.80 - 2.11 canonical, 1.54 - 1.81 alt, over the stellar bracket).
+  C2  CONTROL  CFG4's committed X-COP identity ratios recomputed from its per-cluster f_b and phantom/M_b; the median 0.946 +- 0.080.
+  H1  [HEADLINE; MUTATE must fail] B's MAX RULE, AS WRITTEN, REPRODUCES THE GROUPS AT R500: the median log(M_HSE/M_B) lies within
+      2 sigma of zero, both footings.
+  H2  ... and at R2500, both footings.
+  H3  THE RULE TRACKS THE BARYON FRACTION: over the groups (R500) and the X-COP clusters together, log(M_HSE/M_B) falls with log f_b
+      (Spearman rho < 0 at p < 0.01, canonical): where the rule falls short, it falls short by the baryons the system has lost.
+  R1-R4 (reported): which branch of the max wins at each radius; the baryon fraction each group would need for the rule to hold; the
+      phantom-only law beside it; THE LADDER UNDER B -- every rung re-scored in this campaign, with its significance.
+  READING (declared): H1 PASS -> B's max rule covers the groups as well as the clusters, and the upper ladder closes under B.
+  H1 FAIL -> B's rule as written fails at the group scale: its cosmic share must be tied to something other than today's baryons (the
+  baryons a system collapsed with, which feedback can move but a cold component does not follow), or B is short there as the
+  phantom-only law is.
+MUTATE=1: every hydrostatic mass tripled -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every hydrostatic mass tripled -- H1 must FAIL ***
+
+  h7's groups (exec'd read-only): 20; median f_gas(R500) 0.077
+
+======================================================================================================================
+C1  CONTROL: h7's committed median eta at R500
+======================================================================================================================
+  [PASS] C1 CONTROL: h7's committed median eta at R500 reproduced over the stellar bracket (both footings)
+         canonical: 1.800 - 2.108 (committed 1.80 - 2.11); alt: 1.537 - 1.809 (committed 1.54 - 1.81)
+
+======================================================================================================================
+C2  CONTROL: CFG4's X-COP identity ratios recomputed from its per-cluster numbers
+======================================================================================================================
+  [PASS] C2 CONTROL: CFG4's X-COP identity ratios recomputed exactly from its f_b and phantom/M_b (the max rule as CFG4 applied it)
+         max |d| 2.2e-16 over 12 clusters; median 0.9457 (committed 0.9457 +- 0.0804); the cosmic share wins in 12 of 12
+
+======================================================================================================================
+H1 / H2  B's MAX RULE ON THE TWENTY X-RAY GROUPS
+======================================================================================================================
+    canonical R500 : median M_HSE/M_B = 4.24 (+0.627 dex) +- 0.084 (groups 0.014, stars 0.023, HSE 0.079) -> +7.51 sigma; the phantom wins the max in 18 of 20; median f_b 0.099; the phantom-only law alone 4.35
+    canonical R2500: median M_HSE/M_B = 5.65 (+0.752 dex) +- 0.107 (groups 0.017, stars 0.070, HSE 0.079) -> +7.04 sigma; the phantom wins the max in 1 of 20; median f_b 0.083; the phantom-only law alone 6.71
+    alt       R500 : median M_HSE/M_B = 3.99 (+0.601 dex) +- 0.083 (groups 0.014, stars 0.020, HSE 0.079) -> +7.25 sigma; the phantom wins the max in 20 of 20; median f_b 0.099; the phantom-only law alone 3.99
+    alt       R2500: median M_HSE/M_B = 5.64 (+0.751 dex) +- 0.104 (groups 0.016, stars 0.066, HSE 0.079) -> +7.22 sigma; the phantom wins the max in 5 of 20; median f_b 0.083; the phantom-only law alone 6.16
+  [FAIL] H1 [HEADLINE] B's MAX RULE, AS WRITTEN, REPRODUCES THE GROUPS AT R500: median log(M_HSE/M_B) within 2 sigma of zero, both footings  [MUTATE: HSE masses tripled]
+         canonical: 4.24 (+7.51 sigma); alt: 3.99 (+7.25 sigma)
+  [FAIL] H2 ... AND AT R2500, both footings
+         canonical: 5.65 (+7.04 sigma); alt: 5.64 (+7.22 sigma)
+
+======================================================================================================================
+H3  DOES THE RULE TRACK THE BARYON FRACTION? (groups at R500 + X-COP clusters, canonical)
+======================================================================================================================
+  [PASS] H3 THE RULE TRACKS THE BARYON FRACTION: log(M_HSE/M_B) falls with log f_b over groups and clusters (Spearman rho < 0, p < 0.01)
+         rho = -0.958, p = 7.4e-18 over 32 systems; f_b spans 0.068-0.160 (cosmic 0.157)
+
+======================================================================================================================
+R1-R4  REPORTED
+======================================================================================================================
+  [PASS] (reported) R1 (reported) the baryon fraction each group would need inside R500 for B's rule to hold (M_HSE/M_B x f_b), canonical
+         median 0.424 (observed 0.099; cosmic 0.157); range 0.342-0.471
+  [PASS] (reported) R2 (reported) the phantom-only law beside B's rule (median M_HSE/M_law)
+         canonical R500: law 4.35 vs B 4.24; canonical R2500: law 6.71 vs B 5.65; alt R500: law 3.99 vs B 3.99; alt R2500: law 6.16 vs B 5.64
+
+    THE LADDER UNDER CANDIDATE B (every rung scored with B's own rule; significance canonical / alt as each lane reported it):
+      MW ultra-faint dwarfs (CFG28)                        M ~ ~1e3-1e5     +0.325 dex in sigma                3.8 / 3.5
+      MW classical + M31 dwarfs, infall gas (CFG18)        M ~ ~1e6-1e8     +0.025 / +0.078 dex in sigma       0.4 / 1.6
+      Coma UDGs, isolated law of infall baryons (CFG31)    M ~ ~1e8         +0.234 dex in g                    1.3 / 1.1
+      SPARC rotation curves (CFG4)                         M ~ 1e8-1e11     the law's fit: rms 0.100 dex       fit
+      binary galaxies, timing orbits (CFG30)               M ~ ~1e11        A = 1.12 (circular 1.89)           orbit-degenerate
+      X-ray ellipticals (CFG32)                            M ~ ~3e11        +0.280 dex in g                    1.7 / 1.6
+      SLACS lensing vs ATLAS3D dynamics (CFG33)            M ~ ~2e11        +0.159 dex in M_*                  1.6 / 1.5 (floor)
+      X-ray groups at R500 (this lane)                     M ~ 2e13-1.4e14  +0.627 dex in mass                 7.5 / 7.2
+      X-COP clusters at ~0.8 R500 (CFG4)                   M ~ 3e14-9e14    +0.024 dex in mass                 0.7
+  [PASS] (reported) R4 (reported) the ladder under candidate B, from the committed re-scores
+         9 rungs listed above
+
+    READING (declared): B's rule as written fails at the group scale: its cosmic share must be tied to something other than today's baryons, or B is short there as the phantom-only law is
+
+  6/8 checks pass; load-bearing failures: 2   (0 s)
