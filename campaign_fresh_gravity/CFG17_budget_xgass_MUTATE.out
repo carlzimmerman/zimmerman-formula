@@ -1,0 +1,63 @@
+CFG17 -- THE COLD BUDGET WITH A STELLAR-MASS-SELECTED GAS RELATION (xGASS).  Does CFG4's minimal conflict close once the budget's
+gas is measured on a stellar-mass-selected sample instead of HI-selected SPARC?
+
+WHY.  CFG16 left CFG4's minimal conflict at the margin: the self-consistent KiDS floor (0.3409 P2 / 0.3476 nu_mono canonical;
+0.3402 / 0.3453 alt) sits above CFG12's strict budget edge (0.3406 / 0.3380 canonical; 0.2932 / 0.2910 alt).  The budget turns the
+GAMA stellar mass function into baryons with SPARC's gas fractions, log(M_gas/M_*) = -0.456 log M_* + 4.19 -- and SPARC is HI-selected,
+so it over-weights gas-rich galaxies (CFG4 already noted a stars-only budget relaxes by ~30%).  The xGASS representative sample
+(Catinella et al. 2018; 1179 galaxies, 10^9-10^11.5 Msun, stellar-mass-selected, HI detections and upper limits, weights recovering
+the GAMA stellar mass function -- the same function CFG4 integrates) measures the gas at fixed stellar mass without that selection.
+Data: real_research/data/xgass/ (the team's public release, provenance recorded).
+
+THE MEASUREMENT (CFG12's method, gas swapped).  For each xGASS galaxy, its phantom inside x r_ta (CFG4's isolated law, Delta_ta(0)) with
+its own gas (M_gas = 1.33 M_HI, SPARC's convention; upper limits bracketed: at the limit -- conservative -- or zero) is divided by the
+phantom with SPARC's gas relation at the same stellar mass; the weighted mean ratio in 0.1-dex stellar-mass bins rescales the budget's
+integrand (SPARC's relation kept below 10^9, the last bin's ratio above 10^11.5).  FG001's grouping ratio R (CFG11, the most
+conservative D <= 15 Mpc sample) is recomputed at x = 0.31 and 0.40 with the xGASS mean gas relation and interpolated exactly as
+CFG12 did; the share at the budget's own scale is CFG12's (0.672 / 0.667).  CFG11's functions are exec'd read-only.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  with SPARC's gas the lane reproduces CFG11's committed R(0.31), R(0.40) (D <= 15, all four rows) and CFG12's committed
+      FG001 strict edges (0.34062 / 0.33803 / 0.29318 / 0.29099) exactly.
+  C2  CONTROL  the xGASS catalogue: 1179 galaxies; its weighted log M_* histogram (0.25-dex bins, 9.0-11.5) follows the GAMA (Baldry+12)
+      stellar mass function CFG4 uses within 15% per bin after normalisation (the weights are read right).
+  H1  [HEADLINE; MUTATE must fail] with xGASS's gas (non-detections at their limits) the canonical FG001 strict edge reaches CFG16's
+      self-consistent KiDS floor for both kernels: the canonical window opens.  Expectation: uncertain.
+  H2  the same on the alt footing.
+  R1  (reported) the zero-gas bracket for non-detections; the per-bin phantom ratio xGASS/SPARC; R with xGASS's gas.
+MUTATE=1: SPARC's gas relation is kept (the xGASS swap switched off) -- the edges return to CFG12's and H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: SPARC's gas relation kept -- H1 must FAIL ***
+
+======================================================================================================================
+C2  CONTROL: the xGASS weights recover the GAMA stellar mass function
+======================================================================================================================
+    1179 galaxies (375 HI non-detections); weighted histogram / Baldry SMF - 1 per 0.25-dex bin: 9.00: +0.04, 9.25: -0.05, 9.50: -0.02, 9.75: +0.02, 10.00: -0.01, 10.25: +0.02, 10.50: -0.01, 10.75: +0.01, 11.00: -0.02, 11.25: +0.05
+  [PASS] C2 CONTROL: 1179 galaxies; the weighted log M_* histogram follows the GAMA (Baldry+12) SMF within 15% per 0.25-dex bin
+         N = 1179; max |dev| 0.049
+
+======================================================================================================================
+C1  CONTROL: SPARC's gas reproduces CFG11's R and CFG12's FG001 edges
+======================================================================================================================
+    canonical P2      : R(0.31) 0.89103 (CFG11 0.89103), R(0.40) 0.89149 (0.89149); edge 0.34062 (CFG12 0.34062)
+    canonical nu_mono : R(0.31) 0.89221 (CFG11 0.89221), R(0.40) 0.89244 (0.89244); edge 0.33803 (CFG12 0.33803)
+    alt       P2      : R(0.31) 0.89130 (CFG11 0.89130), R(0.40) 0.89170 (0.89170); edge 0.29318 (CFG12 0.29318)
+    alt       nu_mono : R(0.31) 0.89233 (CFG11 0.89233), R(0.40) 0.89253 (0.89253); edge 0.29099 (CFG12 0.29099)
+  [PASS] C1 CONTROL: with SPARC's gas the lane reproduces CFG11's committed R (D <= 15) and CFG12's committed FG001 strict edges
+         max |d R| 0.0e+00, max |d edge| 0.0e+00
+
+======================================================================================================================
+H1 / H2  THE FG001 STRICT EDGE WITH xGASS's GAS, AGAINST CFG16's SELF-CONSISTENT KiDS FLOOR
+======================================================================================================================
+    canonical P2      : edge (limits kept) 0.3406, (limits as zero) 0.3498; KiDS floor 0.3409; gap +0.0003 / -0.0089; R(0.31) 0.8910; phantom ratio xGASS/SPARC at log M_* 9.5 / 10.0 / 10.5 / 11.0: 1.036/0.998/0.922/0.948
+    canonical nu_mono : edge (limits kept) 0.3380, (limits as zero) 0.3472; KiDS floor 0.3476; gap +0.0095 / +0.0004; R(0.31) 0.8922; phantom ratio xGASS/SPARC at log M_* 9.5 / 10.0 / 10.5 / 11.0: 1.036/0.998/0.922/0.948
+    alt       P2      : edge (limits kept) 0.2932, (limits as zero) 0.3011; KiDS floor 0.3402; gap +0.0470 / +0.0391; R(0.31) 0.8913; phantom ratio xGASS/SPARC at log M_* 9.5 / 10.0 / 10.5 / 11.0: 1.036/0.998/0.922/0.948
+    alt       nu_mono : edge (limits kept) 0.2910, (limits as zero) 0.2989; KiDS floor 0.3453; gap +0.0543 / +0.0464; R(0.31) 0.8923; phantom ratio xGASS/SPARC at log M_* 9.5 / 10.0 / 10.5 / 11.0: 1.036/0.998/0.922/0.948
+  [FAIL] H1 [HEADLINE] with xGASS's gas (non-detections at their limits) the canonical FG001 strict edge reaches CFG16's self-consistent KiDS floor for both kernels  [MUTATE: SPARC's gas]
+         P2: edge 0.3406 vs floor 0.3409; nu_mono: edge 0.3380 vs floor 0.3476
+  [FAIL] H2 the same on the alt footing
+         P2: edge 0.2932 vs floor 0.3402; nu_mono: edge 0.2910 vs floor 0.3453
+  [PASS] (reported) R1 (reported) the zero-gas bracket for non-detections
+         can/P2: edge 0.3498 vs floor 0.3409; can/nu_mono: edge 0.3472 vs floor 0.3476; alt/P2: edge 0.3011 vs floor 0.3402; alt/nu_mono: edge 0.2989 vs floor 0.3453
+
+  3/5 checks pass; load-bearing failures: 2   (313 s)

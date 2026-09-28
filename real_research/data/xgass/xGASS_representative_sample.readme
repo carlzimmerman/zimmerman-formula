@@ -1,0 +1,103 @@
+####################################################################################
+#										   #
+#                  The extended GALEX Arecibo SDSS Survey (xGASS)                  #
+#                              Catinella et al. 2018                           	   #
+#                                                                     		   #
+#   Combined Data Tables from:                                        		   #
+#                                                                     		   #
+#      	  GASS Data Release 1: Catinella et al 2010, MNRAS 403, 683-708    	   #
+#      	  GASS Data Release 2: Catinella et al 2012, A&A 544, A65          	   #
+#      	  GASS Data Release 3: Catinella et al 2013, MNRAS, 436, 34        	   #
+#      	  GASS-low Data Release: Catinella et al 2018, MNRAS, 476, 875       	   #
+#                                                                     		   #
+#   Date: 16 Jan 2018.  Barbara Catinella                             		   #
+#                                                                     		   #
+####################################################################################
+
+
+This Table lists SDSS, UV and HI parameters for all the galaxies included
+in the representative sample described in the xGASS paper (Catinella et al. 2018). 
+The sample is obtained by adding the gas-rich galaxies detected by ALFALFA or in 
+the Springob et al. (2005) catalog that we did not re-observe with GASS/GASS-low. 
+The galaxies are ordered by increasing R.A.
+
+
+-----------------------------------------------------------------------------------------
+  xGASS_representative_sample.fits		N=1179, 42 cols
+-----------------------------------------------------------------------------------------
+
+# Object identifiers and basic quantities
+GASS        	  = GASS/xGASS identifier (GASS-low if >100000)
+AGCnr	    	  = AGC identifier (if available)
+SDSS        	  = SDSS identifier
+PLATEID	    	  = SDSS spectroscopic Plate ID
+MJD 	    	  = SDSS spectroscopic MJD
+FIBERID	    	  = SDSS spectroscopic Fiber ID
+RA	    	  = Right Ascension (J2000) from SDSS
+DEC	    	  = Declination (J2000) from SDSS
+zSDSS	    	  = SDSS spectroscopic redshift
+Dlum	    	  = luminosity distance in Mpc (assuming Omega_m=0.3, Omega_L=0.7, H0=70 km/s/Mpc)
+lgMstar     	  = base-10 logarithm of stellar mass, in solar units, from SDSS MPA/JHU
+
+# SDSS quantities from SQL queries to DR7 [a few from DR8] and derived quantities
+expAB_r     	  = minor-to-major axial ratio from the exponential fit in r band, from SDSS
+model_r	    	  = r band model magnitude from SDSS
+merr_r	    	  = error on r band model magnitude from SDSS
+ext_r       	  = Galactic extinction in r band, in magnitudes
+petrR50_r   	  = radius containing 50% of the Petrosian flux in r band, in arcsec
+petrR90_r   	  = radius containing 90% of the Petrosian flux in r band, in arcsec
+petrR50_z   	  = radius containing 50% of the Petrosian flux in z band, in arcsec
+lgmust      	  = base-10 logarithm of stellar mass surface density, in Msun/kpc^2
+CINDX       	  = concentration index in r band (petrR90_r/ps.petrR50_r).
+INCL        	  = inclination to the line-of-sight, in degrees, computed from the above 
+	      	    axis ratio (see GASS DR2 paper for details).
+
+# Star formation rate (SFR) estimates [see Janowiecki et al. 2017, MNRAS, 466, 4795 for details]
+NUVr	    	  = NUV-r colour, corrected for Galactic extinction, in mag
+lgSFR_tot_median  = base-10 logarithm of total SFR, Msun/yr, from SDSS MPA/JHU
+SFR_best    	  = Final best SFR from UV+MIR    [Msun/yr]
+SFRerr_best  	  = uncertainty on SFR_best       [Msun/yr]
+SFRcase_best 	  = case of UV+MIR SFR calculation
+	       	    1- GALEX NUV + WISE W4 (both unflagged)
+	       	    2- GALEX NUV + WISE W3 (both unflagged)
+	       	    6- GALEX NUV or WISE W3 or W4
+	       	    9- SED SFRs corrected to match UV+MIR (no error estimates)
+
+# HI data
+HIsrc             = source of HI data:
+	     	    1- ALFALFA 70% (web release: https://egg.astro.cornell.edu/alfalfa/data/)
+	      	    2- Cornell HI archive (Springob et al. 2005, ApJS, 160, 149)
+	       	    3- xGASS detection
+	      	    4- xGASS non-detection
+HI_FLAG     	  = quality flag for xGASS detections (1=good, 2=marginal, 5=confused). We 
+	      	    assigned code 3 only to a few galaxies, which are both marginal and confused. 
+xGASSDR	    	  = GASS Data Release (1, 2 or 3) or GASS-low (4)
+zHI	    	  = redshift measured from the HI spectrum. 
+W50cor      	  = velocity width corrected for instrumental broadening and cosmological redshift
+	      	    only, in km/s. No inclination or turbulent motion corrections are applied.
+lgMHI       	  = base-10 logarithm of the HI mass, in solar units. This is an upper limit
+	      	    if HIsrc=4 (computed assuming a 5 sigma signal with a 200/300 km/s velocity
+	      	    width for GASS-low/GASS respectively, if the spectrum was smoothed to half width)
+lgGF  	    	  = base-10 logarithm of the HI mass fraction, MHI/Mst. For non-detections, this
+	      	    is computed using the upper limit on the HI mass
+HIconf_flag 	  = HI confusion flag (1= confusion is certain; >0= small companion; 0= not confused).
+              	    Set to -99 for non-detections (HIsrc=4, for which confusion was not assessed).
+weight 	    	  = weights based on the GAMA stellar mass function [Baldry et al. 2012]
+	      	    to recover the stellar mass distribution of a volume-limited sample
+
+# Yang+ 2007 DR7 Group B(II) catalog info (corrected for shredding; see Yang et al. 2007, ApJ, 671, 153 
+# and Janowiecki et al. 2017, MNRAS, 466, 4795 for details)
+group_id_B        = group ID
+NYU_id            = NYU identifier
+env_code_B        = environment identity:
+                    0: satellite
+                    1: isolated central
+                    2: group central
+                   -1: not in group catalog
+Ngal_B            = number of galaxies in group (0 if not in group catalog)
+yang_shred_code   = whether galaxy was corrected for shredding in group B(II)
+                    (0= no, 1= yes, correction was required)
+logMh_Mst_B       = halo mass (using Mst) (0 if not in group catalog)
+lvir_ratB         = log10 r/r_vir, ratio of distance to group cent over group virial radius
+
+-----------------------------------------------------------------------------------------
