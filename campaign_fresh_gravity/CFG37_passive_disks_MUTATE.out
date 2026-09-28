@@ -1,0 +1,72 @@
+CFG37 -- THE PASSIVE-DISK TEST of B's derived cold-mass rule: do early-type galaxies with extended HI discs rotate as the law says,
+or as the conservation rule with their (red) collapse masses says?
+
+WHY.  CFG36: with measured colour-split collapse masses (Mandelbaum+2016) the conservation rule leaves every star-forming spiral on the
+law, supplies about half of the X-ray ellipticals' missing mass, and predicts that PASSIVE galaxies with measured outer rotation
+should rotate faster than the law -- SPARC's one S0 (UGC 2487) would be 0.14 dex too fast, and it is not.  One galaxy is not a test.
+den Heijer+2015 (A&A 581, A98, Table 1; real_research/data/denheijer2015_etg_hi_tfr.tsv) measured the HI circular velocity at the
+outermost point of the rotation curve (8-28 kpc, mean 15 kpc; 3.4-13.7 R_eff) for 16 ATLAS3D early types -- exactly the population.
+
+THE METHOD (declared before this script's first run).  CFG36's machinery exec'd read-only (Mandelbaum's red relation converted to
+M_200c; Dutton-Maccio NFW; the conservation form with the edge at x_e = 0.40).  Baryons: M_* = L_r x (M/L)_SFH (ATLAS3D's Salpeter
+population M/L), plus 1.33 M_HI.  The collapse mass is looked up at the Chabrier-equivalent stellar mass (M_* x 10^-0.25, Mandelbaum's
+convention).  At radius r: the law, v^2 = nu(G M_b / r^2 a0) G M_b / r (point mass: the stars are enclosed at 3-14 R_eff); the rule,
+v^2 = [nu M_b + f_ex (1 - f_b) M_NFW(<r)] G / r.  The radius of each velocity is not tabulated: r = 15 kpc (the sample mean) is the
+headline and 8 / 28 kpc bracket it.  Per galaxy the offset is log(v_obs / v_pred), with the velocity and inclination errors
+(d log v = |cot i| di / ln 10).  Sample: the mean over the 16 with the galaxy-to-galaxy error, and a floor in quadrature: the IMF (Salpeter
+vs Chabrier stellar masses) and the radius (8 vs 28 kpc), each as half the spread of the mean.
+
+PRE-DECLARED
+  C1  CONTROL  the table as transcribed: 16 galaxies; NGC 3941 at i = 57 deg, v_circ = 148 km/s (the paper's worked example).
+  H1  THE LAW FITS THE PASSIVE DISKS: |mean log(v_obs / v_law)| < 2 sigma, both footings.
+  H2  [HEADLINE; MUTATE must fail] THE CONSERVATION RULE WITH RED COLLAPSE MASSES OVER-PREDICTS THEM: mean log(v_obs / v_rule) < 0 at
+      more than 2 sigma, both footings.
+  R1-R3 (reported): per-galaxy offsets, f_ex and collapse masses; the dynamical (JAM) M/L instead of the population one; the rule with the
+      BLUE relation, for scale.
+  READING (declared): H1 PASS and H2 PASS -> passive disks follow the law and reject the rule's extra mass: B's derived conservation rule,
+      with the measured red collapse masses, is falsified on the population CFG36 named, and B's cold sector still has no rule for massive
+      passive systems that spares their disks.  H2 FAIL -> the passive disks do not reject the rule's extra mass.  H1 FAIL -> the passive
+      disks do not follow the law either.
+MUTATE=1: every collapse mass divided by 100 -- H2 must FAIL (rc = 1).
+
+  *** MUTATE=1: every collapse mass / 100 -- H2 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: the table
+======================================================================================================================
+  [PASS] C1 CONTROL: 16 galaxies; NGC 3941 at i = 57 deg, v_circ = 148 km/s (the paper's worked example)
+         16 galaxies; NGC 3941 i = 57, v = 148
+
+======================================================================================================================
+H1 / H2  THE SIXTEEN PASSIVE DISKS
+======================================================================================================================
+    NGC2685  v_obs  144 +-  10; law 159.0; rule 159.0 (f_ex 0.00, M200c 1.7e+10)
+    NGC2824  v_obs  162 +-  10; law 131.0; rule 131.0 (f_ex 0.00, M200c 1.7e+10)
+    NGC2859  v_obs  215 +-  41; law 253.0; rule 253.0 (f_ex 0.00, M200c 3.9e+10)
+    NGC2974  v_obs  310 +-  10; law 217.1; rule 217.1 (f_ex 0.00, M200c 2.2e+10)
+    NGC3522  v_obs  121 +-   8; law 133.2; rule 133.2 (f_ex 0.00, M200c 1.7e+10)
+    NGC3626  v_obs  169 +-   8; law 145.1; rule 145.1 (f_ex 0.00, M200c 1.7e+10)
+    NGC3838  v_obs  159 +-  14; law 154.0; rule 154.0 (f_ex 0.00, M200c 1.7e+10)
+    NGC3941  v_obs  148 +-   8; law 173.5; rule 173.5 (f_ex 0.00, M200c 1.7e+10)
+    NGC3945  v_obs  237 +-  13; law 257.1; rule 257.1 (f_ex 0.00, M200c 4.2e+10)
+    NGC3998  v_obs  246 +-  20; law 193.2; rule 193.2 (f_ex 0.00, M200c 1.6e+10)
+    NGC4203  v_obs  197 +-  35; law 210.9; rule 210.9 (f_ex 0.00, M200c 1.9e+10)
+    NGC4262  v_obs  198 +-  10; law 159.0; rule 159.0 (f_ex 0.00, M200c 1.7e+10)
+    NGC4278  v_obs  256 +-  26; law 244.8; rule 244.8 (f_ex 0.00, M200c 3.4e+10)
+    NGC5582  v_obs  258 +-  10; law 214.0; rule 214.0 (f_ex 0.00, M200c 1.9e+10)
+    NGC6798  v_obs  190 +-   8; law 186.3; rule 186.3 (f_ex 0.00, M200c 1.6e+10)
+    UGC6176  v_obs  144 +-  14; law 122.1; rule 122.1 (f_ex 0.00, M200c 1.7e+10)
+    canonical law  : mean log(v_obs/v_pred) +0.026 +- 0.085 (galaxies 0.018, IMF 0.074, radius 0.038) -> +0.31 sigma
+    canonical rule : mean log(v_obs/v_pred) +0.026 +- 0.085 (galaxies 0.018, IMF 0.074, radius 0.038) -> +0.31 sigma
+    alt       law  : mean log(v_obs/v_pred) +0.011 +- 0.083 (galaxies 0.017, IMF 0.073, radius 0.035) -> +0.13 sigma
+    alt       rule : mean log(v_obs/v_pred) +0.011 +- 0.083 (galaxies 0.017, IMF 0.073, radius 0.035) -> +0.13 sigma
+  [PASS] H1 THE LAW FITS THE PASSIVE DISKS: |mean log(v_obs/v_law)| < 2 sigma, both footings
+         canonical: +0.026 (+0.31 sigma); alt: +0.011 (+0.13 sigma)
+  [FAIL] H2 [HEADLINE] THE CONSERVATION RULE WITH RED COLLAPSE MASSES OVER-PREDICTS THEM: mean log(v_obs/v_rule) < 0 at > 2 sigma, both footings  [MUTATE: collapse masses / 100]
+         canonical: +0.026 (+0.31 sigma); alt: +0.011 (+0.13 sigma)
+  [PASS] (reported) R1 (reported) the dynamical (JAM) M/L for the stars; the rule with the BLUE relation (canonical, r = 15 kpc)
+         JAM: law +0.027, rule +0.027; blue-relation rule +0.026
+
+    READING (declared): the passive disks do not reject the rule's extra mass
+
+  3/4 checks pass; load-bearing failures: 1   (4 s)
