@@ -1,0 +1,79 @@
+CFG39 -- CANDIDATE B's HARNESS RE-RUN WITH THE DERIVED COLD-MASS RULE: does adding the conservation rule (CFG35-38) cost any gate?
+
+WHY.  CFG35 derived T5's conservation form from T4; with Mandelbaum+2016's measured colour-split collapse masses (CFG36) it leaves every
+star-forming spiral and every passive disk below log M_* ~ 11.2 on the law (CFG36, CFG37) and fits the SLUGGS massive early types (CFG38).
+Before B adopts it, every gate of B's 48-gate harness (CFG19: 42/48) must be checked.  The rule changes the dark mass ONLY where a
+system's collapse cold mass exceeds its phantom (f_ex > 0): massive red galaxies, groups and clusters.  So the gates split cleanly:
+  UNCHANGED BY CONSTRUCTION (no system in the gate has f_ex > 0, or the gate does not read the cold mass): CMB lensing and the forest
+      (linear; the cold fluid's amount is unchanged), Cassini, every population gate (satellites, dwarfs, UFDs, TDGs, GCs, DF2/DF4,
+      Chae's wide binaries, the cluster-infall BTFR and the LV host statistic -- all low-mass or Newtonian-owned systems).
+  RECOMPUTED HERE: SPARC (its few massive S0s take the red relation); the cold-mass BUDGET (the rule's leftover locks extra cold fluid
+      in massive systems); KiDS (only if its lens bins reach the rule's threshold mass).
+  NOT RE-SCORABLE WITHOUT CIRCULARITY: X-COP and the Bullet (every collapse-mass estimate in the repository for them comes from their own
+      mass); the rule's dark mass there is at least the as-written identity's (the rule is a floor-raiser), so they keep their rows.
+
+THE METHOD (declared before this script's first run).  CFG36's collapse masses (Mandelbaum red/blue, M_200c) and CFG35's edge phantom
+(x_e = 0.40), exec'd read-only.
+  SPARC: hunt_lib's loader (Q <= 2, inc >= 30, >= 6 points), Upsilon_disk 0.61 (CFG4's nu_mono fit), per-point log(g_obs / g_pred); the
+      rule adds f_ex (1 - f_b) G M_NFW(<r) / r^2 to g_pred for galaxies with f_ex > 0 (T >= 1 blue, T = 0 red; log M_* >= 10.0, the
+      table's range).  The rms over all points with and without the rule.
+  BUDGET: CFG11's copy of CFG4_target's SMF integral (GAMA SMF, SPARC gas fractions), each galaxy's dark mass max(M_ph,edge, (1 - f_b)
+      M_coll) with M_coll from the red and blue relations weighted by the red fraction of Mandelbaum's own central sample (N_red /
+      N_total per stellar-mass bin, sample_table.tex), log M_* >= 10.0; lenient (z = 0.25, all of Omega_c) and strict (z = 0, the
+      turned-around share), as the harness.
+  KiDS: the stellar mass where the red rule's leftover first switches on, against Brouwer+2021's isolated-lens bins (top bin log M_*
+      10.8-11.0 in the paper; the bin edges are not in the repository's data headers -- flagged).
+
+PRE-DECLARED
+  C1  CONTROL  the harness's committed budget Omega_ph at x_e = 0.4 reproduced from CFG11's integral (lenient and strict, both kernels,
+      both footings) to 0.001.
+  C2  CONTROL  the SPARC rms without the rule reproduces CFG4's nu_mono canonical fit to 0.003 dex (0.1003).
+  H1  [HEADLINE; MUTATE must fail] THE RULE COSTS NO GATE: SPARC's rms moves by < 0.005 dex; the lenient budget still passes (Omega_needed
+      <= Omega_c) on all four cells; the KiDS lens bins lie below the rule's threshold mass; so B's harness score is unchanged (42/48).
+  H2  (reported) the strict budget (already failing, reported) with and without the rule; the leftover's share of Omega_c.
+  READING (declared): H1 PASS -> B adopts the derived conservation rule at no cost to its harness.  H1 FAIL -> adopting it costs the
+  named gate(s).
+FIXED BEFORE THE MAIN RUN (disclosed; the MUTATE runs exposed them): a0 was passed to CFG11's SI integral in (km/s)^2/Mpc (C1 caught
+  it); the SPARC gate first used hunt_lib's unweighted loader, whose rms is 0.178, not CFG4's 0.100 (C2 caught it) -- it now uses
+  CFG4's own weighted statistic and arrays, exec'd read-only.  No threshold changed.
+MUTATE=1: every collapse mass multiplied by 30 -- the rule then floods the budget and H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every collapse mass x 30 -- H1 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: the harness's committed budget rows
+======================================================================================================================
+  [PASS] C1 CONTROL: the harness's committed budget Omega_ph (x_e = 0.4) reproduced from CFG11's integral
+         alt/P2/len: 0.217 (0.217); alt/P2/str: 0.264 (0.264); alt/nu_mono/len: 0.219 (0.219); alt/nu_mono/str: 0.266 (0.266); can/P2/len: 0.188 (0.188); can/P2/str: 0.229 (0.229); can/nu_mono/len: 0.190 (0.190); can/nu_mono/str: 0.230 (0.230); limits {'len': 0.265, 'str': 0.159}
+    red fraction of Mandelbaum's centrals by log M_*: 10.28: 0.17, 10.58: 0.36, 10.86: 0.57, 11.10: 0.77, 11.29: 0.91, 11.48: 0.97, 11.68: 0.97
+
+======================================================================================================================
+BUDGET WITH THE RULE
+======================================================================================================================
+    canonical P2      len: Omega_ph 0.188 + leftover 1.725 = 1.913 vs 0.265 -> FAIL
+    canonical P2      str: Omega_ph 0.229 + leftover 1.701 = 1.930 vs 0.159 -> FAIL
+    canonical nu_mono len: Omega_ph 0.190 + leftover 1.724 = 1.913 vs 0.265 -> FAIL
+    canonical nu_mono str: Omega_ph 0.230 + leftover 1.700 = 1.931 vs 0.159 -> FAIL
+    alt       P2      len: Omega_ph 0.217 + leftover 1.708 = 1.925 vs 0.265 -> FAIL
+    alt       P2      str: Omega_ph 0.264 + leftover 1.681 = 1.946 vs 0.159 -> FAIL
+    alt       nu_mono len: Omega_ph 0.219 + leftover 1.707 = 1.926 vs 0.265 -> FAIL
+    alt       nu_mono str: Omega_ph 0.266 + leftover 1.680 = 1.946 vs 0.159 -> FAIL
+
+======================================================================================================================
+C2 / SPARC WITH THE RULE (CFG4's own statistic, exec'd read-only)
+======================================================================================================================
+  [PASS] C2 CONTROL: the SPARC rms without the rule reproduces CFG4's nu_mono canonical fit (0.1003 at Upsilon 0.61) to 0.003 dex
+         175 galaxies: rms 0.1003 at Upsilon 0.61
+    with the rule: rms 0.3409 (change +0.2405); galaxies touched: [('ESO079-G014', 4, 10.5, 0.81), ('ESO563-G021', 4, 11.28, 0.91), ('IC4202', 4, 11.04, 0.91), ('NGC0289', 4, 10.64, 0.73), ('NGC0801', 5, 11.28, 0.91), ('NGC0891', 3, 10.93, 0.89), ('NGC1090', 4, 10.64, 0.79), ('NGC2683', 3, 10.69, 0.83), ('NGC2841', 3, 11.06, 0.92), ('NGC2903', 4, 10.7, 0.83), ('NGC2955', 3, 11.29, 0.91), ('NGC2998', 5, 10.96, 0.88), ('NGC3198', 5, 10.37, 0.81), ('NGC3521', 4, 10.71, 0.83), ('NGC3726', 5, 10.63, 0.8), ('NGC3769', 3, 10.06, 0.9), ('NGC3877', 5, 10.65, 0.82), ('NGC3893', 5, 10.55, 0.77), ('NGC3917', 6, 10.13, 0.91), ('NGC3949', 4, 10.37, 0.85), ('NGC3953', 4, 10.94, 0.89), ('NGC3992', 4, 11.14, 0.92), ('NGC4010', 7, 10.02, 0.92), ('NGC4013', 3, 10.68, 0.83), ('NGC4051', 4, 10.76, 0.85), ('NGC4085', 5, 10.12, 0.91), ('NGC4088', 4, 10.82, 0.85), ('NGC4100', 4, 10.56, 0.78), ('NGC4138', 0, 10.43, 0.94), ('NGC4157', 3, 10.81, 0.85), ('NGC4217', 3, 10.72, 0.84), ('NGC4389', 4, 10.11, 0.92), ('NGC4559', 6, 10.07, 0.89), ('NGC5005', 4, 11.04, 0.92), ('NGC5033', 5, 10.83, 0.85), ('NGC5055', 4, 10.97, 0.89), ('NGC5371', 4, 11.32, 0.92), ('NGC5907', 5, 11.03, 0.9), ('NGC5985', 3, 11.1, 0.93), ('NGC6015', 6, 10.29, 0.86), ('NGC6195', 3, 11.38, 0.91), ('NGC6674', 3, 11.12, 0.91), ('NGC6946', 6, 10.61, 0.79), ('NGC7331', 3, 11.18, 0.92), ('NGC7814', 2, 10.66, 0.83), ('UGC02487', 0, 11.48, 0.99), ('UGC02885', 5, 11.39, 0.9), ('UGC02916', 2, 10.88, 0.85), ('UGC02953', 2, 11.2, 0.92), ('UGC03205', 2, 10.84, 0.85), ('UGC03546', 1, 10.79, 0.86), ('UGC05253', 2, 11.02, 0.9), ('UGC06614', 1, 10.88, 0.85), ('UGC06786', 0, 10.65, 0.92), ('UGC06787', 2, 10.78, 0.85), ('UGC06973', 2, 10.52, 0.81), ('UGC08699', 2, 10.49, 0.81), ('UGC09037', 6, 10.62, 0.74), ('UGC09133', 2, 11.24, 0.91), ('UGC11455', 6, 11.36, 0.91), ('UGC11914', 2, 10.96, 0.9), ('UGC12506', 6, 10.93, 0.86)]
+
+    the red rule's leftover switches on at log M_* = 10.00 (baryons 1.1 M_*, canonical); Brouwer+2021's isolated-lens top bin reaches 11.0
+  [FAIL] H1 [HEADLINE] THE RULE COSTS NO GATE: SPARC rms moves < 0.005 dex, the lenient budget still passes on all four cells, and the KiDS lens bins lie below the rule's threshold -- B's score stays 42/48  [MUTATE: collapse masses x 30]
+         SPARC d rms +0.2405; lenient budget can/P2: 1.913, can/nu_mono: 1.913, alt/P2: 1.925, alt/nu_mono: 1.926 (limit 0.265); threshold log M_* 10.00 vs 11.0
+  [PASS] (reported) H2 (reported) the strict budget with the rule; the leftover's share of Omega_c
+         can/P2: strict 1.930 vs 0.159; leftover 1.725 (lenient); can/nu_mono: strict 1.931 vs 0.159; leftover 1.724 (lenient); alt/P2: strict 1.946 vs 0.159; leftover 1.708 (lenient); alt/nu_mono: strict 1.946 vs 0.159; leftover 1.707 (lenient)
+  [PASS] (reported) R1 (reported; POST-HOC, added after the main run) the red leftover fraction f_ex at the KiDS lens-bin centres, and Mandelbaum's red fraction there
+         log M* 10.15: f_ex(red) 0.961, red fraction 0.17; log M* 10.45: f_ex(red) 0.933, red fraction 0.28; log M* 10.7: f_ex(red) 0.925, red fraction 0.45; log M* 10.9: f_ex(red) 0.943, red fraction 0.6
+
+    READING (declared): adopting the rule costs a gate (see H1)
+
+  4/5 checks pass; load-bearing failures: 1   (21 s)
