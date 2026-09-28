@@ -28,7 +28,9 @@ CFG4 H3's statistic and bootstrap are then rerun on each subset (seed 20260927, 
 | C2 power: synthetic ν_mono data in the point-mass subset exclude β = 1 | pass: [0.40, 0.67] on both footings |
 | **C3 bias: synthetic P2 data (β = 1) in the point-mass subset contain β = 1** | **FAILED**: [0.45, 0.77] / [0.42, 0.77], best 0.59 / 0.55 |
 
-**The estimator is biased low.** The noise is per-galaxy N(0, 0.08 dex) plus per-point N(0, 0.05 dex), with Υ profiled. Data that are P2 by construction come back at β ≈ 0.55–0.59, with β = 1 excluded.
+The noise is per-galaxy N(0, 0.08 dex) plus per-point N(0, 0.05 dex), with Υ profiled. Data that are P2 by construction came back at β ≈ 0.55–0.59, with β = 1 excluded.
+
+**Withdrawn by CFG14: the reading "the estimator is biased low".** Over 60 realizations the estimator is median-unbiased (P2 truth: median β̂ = 1.004). The 0.55–0.59 here was one low draw. What C3 exposed is the galaxy bootstrap's under-coverage: its 95% interval is about 5× narrower than β̂'s true spread.
 
 **Hypotheses, real data**
 
@@ -44,7 +46,7 @@ The points where the baryons look like a point mass prefer a sharper transition 
 
 ## Standing
 
-CFG9's principle is **not falsified** where it applies. The larger point: C3 shows that CFG4 H3's exclusion of P2 cannot be taken at face value, because the estimator is biased low by about 0.4 in β for a P2 truth.
+CFG9's principle is **not falsified** where it applies. The larger point: C3 shows that CFG4 H3's exclusion of P2 cannot be taken at face value. CFG14 finds the reason is the bootstrap's under-coverage, not an estimator bias.
 
 The calibrated question is whether the full-sample β̂ = 0.48 / 0.55 lies inside the distribution β̂ takes under P2 truth. That is CFG14.
 

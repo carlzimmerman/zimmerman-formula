@@ -380,3 +380,11 @@ This is the record's FP16 "X-COP too massive", in data form. The same reading le
 - `CFG4_target.py`, `.out`, `_MUTATE.out`, `_results.json`, `_results_MUTATE.json` — part 5. Its results JSON carries the
   target in machine-readable form under `numbers.TARGET` and `numbers.VERDICT`.
 - `CFG4_README.md` — this page.
+
+
+## Erratum (2026-09-28, CFG14)
+
+The galaxy bootstrap's band on β, [0.40, 0.59] (canonical), under-covers β̂'s sampling spread by about 5×.
+- Calibrated against 60 noise realizations of each truth (CFG14), P2 applied everywhere is **disfavoured at p ≈ 0.03 (about 2σ)**, not excluded at >99.9%.
+- ν_mono is fully consistent.
+- The estimator itself is median-unbiased.

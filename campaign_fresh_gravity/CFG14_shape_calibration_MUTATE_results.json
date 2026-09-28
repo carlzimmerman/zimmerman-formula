@@ -1,0 +1,229 @@
+{
+ "slug": "CFG14_shape_calibration_MUTATE",
+ "summary": {
+  "n_checks": 5,
+  "n_pass": 3,
+  "load_bearing_failures": 2,
+  "failed": [
+   "H1 [HEADLINE] after calibration P2 is NOT excluded: the real beta-hat lies inside the cent",
+   "H2 nu_mono is not excluded: the real beta-hat inside the central 95% of the nu_mono-truth "
+  ],
+  "seconds": 42.5
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: the real beta-hat and Upsilon reproduce CFG4 H3's committed best",
+   "detail": "canonical: beta 0.4847 (CFG4 0.4847), U 0.44 (0.44); alt: beta 0.5533 (CFG4 0.5533), U 0.46 (0.46)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: noiseless P2 returns beta = the grid point nearest 1 and its own Upsilon (the estimator is unbiased without noise)",
+   "detail": "canonical: P2 1.0041@0.70, nu_mono 0.5533@0.49; alt: P2 1.0041@0.65, nu_mono 0.5533@0.46",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] after calibration P2 is NOT excluded: the real beta-hat lies inside the central 95% of the P2-truth distribution under both noise models, both footings  [MUTATE: no noise]",
+   "detail": "can/A: [1.00, 1.00] vs 0.48 (p 0.00); can/B: [1.00, 1.00] vs 0.48 (p 0.00); alt/A: [1.00, 1.00] vs 0.55 (p 0.00); alt/B: [1.00, 1.00] vs 0.55 (p 0.00)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 nu_mono is not excluded: the real beta-hat inside the central 95% of the nu_mono-truth distribution, both models, both footings",
+   "detail": "can/A: [0.55, 0.55] (p 0.00); can/B: [0.55, 0.55] (p 0.00); alt/A: [0.55, 0.55] (p 1.00); alt/B: [0.55, 0.55] (p 1.00)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) the bias and p-values above; CFG13's subsets under the same calibration (model A)",
+   "detail": "can/P2/point-mass: [1.00, 1.00] vs 0.72 OUT; can/P2/embedded: [1.00, 1.00] vs 0.48 OUT; can/nu_mono/point-mass: [0.55, 0.55] vs 0.72 OUT; can/nu_mono/embedded: [0.63, 0.63] vs 0.48 OUT; alt/P2/point-mass: [1.00, 1.00] vs 0.88 OUT; alt/P2/embedded: [1.00, 1.00] vs 0.59 OUT; alt/nu_mono/point-mass: [0.55, 0.55] vs 0.88 OUT; alt/nu_mono/embedded: [0.59, 0.59] vs 0.59 in",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "real": {
+   "canonical": [
+    0.4847,
+    0.44,
+    0.10114313811787998
+   ],
+   "alt": [
+    0.5533,
+    0.46,
+    0.10043271035975651
+   ]
+  },
+  "noiseless": {
+   "canonical|P2": [
+    1.0041,
+    0.7,
+    0.00047337921804811966
+   ],
+   "canonical|nu_mono": [
+    0.5533,
+    0.49,
+    0.010122637164503734
+   ],
+   "alt|P2": [
+    1.0041,
+    0.65,
+    0.00046695736754094646
+   ],
+   "alt|nu_mono": [
+    0.5533,
+    0.46,
+    0.010415643539704674
+   ]
+  },
+  "dist": {
+   "canonical|P2|A": {
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "p_two_sided": 0.0,
+    "inside": false,
+    "bias": 0.0
+   },
+   "canonical|P2|B": {
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "p_two_sided": 0.0,
+    "inside": false,
+    "bias": 0.0
+   },
+   "canonical|nu_mono|A": {
+    "median": 0.5533,
+    "lo95": 0.5533,
+    "hi95": 0.5533,
+    "p_two_sided": 0.0,
+    "inside": false,
+    "bias": 0.0
+   },
+   "canonical|nu_mono|B": {
+    "median": 0.5533,
+    "lo95": 0.5533,
+    "hi95": 0.5533,
+    "p_two_sided": 0.0,
+    "inside": false,
+    "bias": 0.0
+   },
+   "alt|P2|A": {
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "p_two_sided": 0.0,
+    "inside": false,
+    "bias": 0.0
+   },
+   "alt|P2|B": {
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "p_two_sided": 0.0,
+    "inside": false,
+    "bias": 0.0
+   },
+   "alt|nu_mono|A": {
+    "median": 0.5533,
+    "lo95": 0.5533,
+    "hi95": 0.5533,
+    "p_two_sided": 1.0,
+    "inside": true,
+    "bias": 0.0
+   },
+   "alt|nu_mono|B": {
+    "median": 0.5533,
+    "lo95": 0.5533,
+    "hi95": 0.5533,
+    "p_two_sided": 1.0,
+    "inside": true,
+    "bias": 0.0
+   }
+  },
+  "subsets": [
+   {
+    "footing": "canonical",
+    "truth": "P2",
+    "subset": "point-mass",
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "real": 0.7211,
+    "inside": false
+   },
+   {
+    "footing": "canonical",
+    "truth": "P2",
+    "subset": "embedded",
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "real": 0.4847,
+    "inside": false
+   },
+   {
+    "footing": "canonical",
+    "truth": "nu_mono",
+    "subset": "point-mass",
+    "median": 0.5533,
+    "lo95": 0.5533,
+    "hi95": 0.5533,
+    "real": 0.7211,
+    "inside": false
+   },
+   {
+    "footing": "canonical",
+    "truth": "nu_mono",
+    "subset": "embedded",
+    "median": 0.6317,
+    "lo95": 0.6317,
+    "hi95": 0.6317,
+    "real": 0.4847,
+    "inside": false
+   },
+   {
+    "footing": "alt",
+    "truth": "P2",
+    "subset": "point-mass",
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "real": 0.8796,
+    "inside": false
+   },
+   {
+    "footing": "alt",
+    "truth": "P2",
+    "subset": "embedded",
+    "median": 1.0041,
+    "lo95": 1.0041,
+    "hi95": 1.0041,
+    "real": 0.5912,
+    "inside": false
+   },
+   {
+    "footing": "alt",
+    "truth": "nu_mono",
+    "subset": "point-mass",
+    "median": 0.5533,
+    "lo95": 0.5533,
+    "hi95": 0.5533,
+    "real": 0.8796,
+    "inside": false
+   },
+   {
+    "footing": "alt",
+    "truth": "nu_mono",
+    "subset": "embedded",
+    "median": 0.5912,
+    "lo95": 0.5912,
+    "hi95": 0.5912,
+    "real": 0.5912,
+    "inside": true
+   }
+  ]
+ }
+}

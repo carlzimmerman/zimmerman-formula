@@ -1,0 +1,65 @@
+CFG14 -- IS P2's TRANSITION SHAPE EXCLUDED BY SPARC ONCE THE SHAPE ESTIMATOR IS CALIBRATED?
+
+WHY.  CFG4 H3 (committed) fits the transition sharpness beta of nu_beta = (1 + y^-beta)^(1/2beta) to all 175 SPARC galaxies (the
+record's statistic, one global Upsilon profiled) and finds beta = 0.48 (canonical) / 0.55 (alt), with P2 (beta = 1) outside the
+galaxy-bootstrap 95% band.  CFG13's bias control showed the estimator returns beta ~ 0.55-0.59 for data that ARE P2 by construction.
+A galaxy bootstrap measures the estimator's spread, not its bias.  The calibrated question: where does the REAL beta-hat fall in the
+distribution beta-hat takes when the truth is P2, and when it is nu_mono (the contract kernel)?
+
+THE ESTIMATOR: CFG4 H3's exactly (beta on its 49-point grid, Upsilon profiled on 0.30-1.20, the record's weights).
+THE TRUTHS: P2 at its CFG4 best Upsilon (0.70 / 0.65), nu_mono at its (0.61 / 0.57).
+THE NOISE (two declared models; 60 realizations each, seeds 1400-1459):
+  A  per-galaxy offset N(0, 0.08 dex) on g_obs + per-point N(0, 2 eV/(V ln 10)) from SPARC's own velocity errors.
+  B  per-galaxy stellar Upsilon scatter N(0, 0.10 dex) in the TRUTH's g_bar (the fit keeps one global Upsilon) + per-galaxy distance
+     offset N(0, 0.08 dex) on g_obs + the same per-point errors.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  the real data's beta-hat and Upsilon reproduce CFG4 H3's committed best (0.4847 / 0.5533; 0.44 / 0.46).
+  C2  CONTROL  noiseless truths: P2 returns the grid point nearest 1 and its own Upsilon exactly (the estimator is unbiased without
+      noise); nu_mono's noiseless beta-hat is reported.
+  H1  [HEADLINE; MUTATE must fail] after calibration P2 is NOT excluded: the real beta-hat lies inside the central 95% of the
+      P2-truth beta-hat distribution under BOTH noise models, both footings.  Expectation: uncertain.
+  H2  nu_mono is not excluded: the real beta-hat inside the central 95% of the nu_mono-truth distribution, both models, both footings.
+  R1  (reported) the bias (median beta-hat minus the truth's noiseless beta-hat), two-sided p-values of the real beta-hat under each
+      truth, and the same calibration for CFG13's point-mass and embedded subsets (model A).
+MUTATE=1: the noise is switched off (both models) -- the P2-truth distribution collapses onto beta = 1 and H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2  CONTROLS: the real beta-hat, and noiseless truths
+======================================================================================================================
+  [PASS] C1 CONTROL: the real beta-hat and Upsilon reproduce CFG4 H3's committed best
+         canonical: beta 0.4847 (CFG4 0.4847), U 0.44 (0.44); alt: beta 0.5533 (CFG4 0.5533), U 0.46 (0.46)
+    noiseless canonical P2      : beta-hat 1.0041, U 0.70 (truth U 0.70), rms 4.73e-04
+    noiseless canonical nu_mono : beta-hat 0.5533, U 0.49 (truth U 0.61), rms 1.01e-02
+    noiseless alt       P2      : beta-hat 1.0041, U 0.65 (truth U 0.65), rms 4.67e-04
+    noiseless alt       nu_mono : beta-hat 0.5533, U 0.46 (truth U 0.57), rms 1.04e-02
+  [PASS] C2 CONTROL: noiseless P2 returns beta = the grid point nearest 1 and its own Upsilon (the estimator is unbiased without noise)
+         canonical: P2 1.0041@0.70, nu_mono 0.5533@0.49; alt: P2 1.0041@0.65, nu_mono 0.5533@0.46
+
+======================================================================================================================
+THE CALIBRATION: the distribution of beta-hat under each truth, two noise models
+======================================================================================================================
+    canonical truth P2       model A: beta-hat median 1.004, central 95% [0.652, 1.705] (bias +0.000); the real beta-hat 0.4847: outside (p = 0.033)
+    canonical truth P2       model B: beta-hat median 1.004, central 95% [0.553, 1.767] (bias +0.000); the real beta-hat 0.4847: outside (p = 0.033)
+    canonical truth nu_mono  model A: beta-hat median 0.591, central 95% [0.410, 1.004] (bias +0.038); the real beta-hat 0.4847: INSIDE (p = 0.600)
+    canonical truth nu_mono  model B: beta-hat median 0.553, central 95% [0.397, 0.981] (bias +0.000); the real beta-hat 0.4847: INSIDE (p = 0.567)
+    alt       truth P2       model A: beta-hat median 1.004, central 95% [0.591, 1.822] (bias +0.000); the real beta-hat 0.5533: outside (p = 0.033)
+    alt       truth P2       model B: beta-hat median 1.004, central 95% [0.517, 1.958] (bias +0.000); the real beta-hat 0.5533: INSIDE (p = 0.133)
+    alt       truth nu_mono  model A: beta-hat median 0.553, central 95% [0.410, 1.111] (bias +0.000); the real beta-hat 0.5533: INSIDE (p = 1.000)
+    alt       truth nu_mono  model B: beta-hat median 0.518, central 95% [0.397, 1.111] (bias -0.035); the real beta-hat 0.5533: INSIDE (p = 0.967)
+  [FAIL] H1 [HEADLINE] after calibration P2 is NOT excluded: the real beta-hat lies inside the central 95% of the P2-truth distribution under both noise models, both footings
+         can/A: [0.65, 1.71] vs 0.48 (p 0.03); can/B: [0.55, 1.77] vs 0.48 (p 0.03); alt/A: [0.59, 1.82] vs 0.55 (p 0.03); alt/B: [0.52, 1.96] vs 0.55 (p 0.13)
+  [PASS] H2 nu_mono is not excluded: the real beta-hat inside the central 95% of the nu_mono-truth distribution, both models, both footings
+         can/A: [0.41, 1.00] (p 0.60); can/B: [0.40, 0.98] (p 0.57); alt/A: [0.41, 1.11] (p 1.00); alt/B: [0.40, 1.11] (p 0.97)
+    canonical truth P2       point-mass (model A): median 0.972, 95% [0.425, 3.060]; CFG13's real 0.721: inside
+    canonical truth P2       embedded   (model A): median 1.073, 95% [0.571, 3.206]; CFG13's real 0.485: outside
+    canonical truth nu_mono  point-mass (model A): median 0.611, 95% [0.384, 2.388]; CFG13's real 0.721: inside
+    canonical truth nu_mono  embedded   (model A): median 0.653, 95% [0.410, 1.309]; CFG13's real 0.485: inside
+    alt       truth P2       point-mass (model A): median 1.110, 95% [0.454, 2.726]; CFG13's real 0.880: inside
+    alt       truth P2       embedded   (model A): median 1.073, 95% [0.553, 2.551]; CFG13's real 0.591: inside
+    alt       truth nu_mono  point-mass (model A): median 0.675, 95% [0.410, 2.808]; CFG13's real 0.880: inside
+    alt       truth nu_mono  embedded   (model A): median 0.632, 95% [0.397, 1.309]; CFG13's real 0.591: inside
+  [PASS] (reported) R1 (reported) the bias and p-values above; CFG13's subsets under the same calibration (model A)
+         can/P2/point-mass: [0.42, 3.06] vs 0.72 in; can/P2/embedded: [0.57, 3.21] vs 0.48 OUT; can/nu_mono/point-mass: [0.38, 2.39] vs 0.72 in; can/nu_mono/embedded: [0.41, 1.31] vs 0.48 in; alt/P2/point-mass: [0.45, 2.73] vs 0.88 in; alt/P2/embedded: [0.55, 2.55] vs 0.59 in; alt/nu_mono/point-mass: [0.41, 2.81] vs 0.88 in; alt/nu_mono/embedded: [0.40, 1.31] vs 0.59 in
+
+  4/5 checks pass; load-bearing failures: 1   (42 s)

@@ -40,7 +40,10 @@ So P2's shape follows from one kinematic statement. a₀ is the component's char
 - **Correction (added 2026-09-28): "slightly" understated it.** CFG4's committed shape bootstrap in the ν_β family (1000 resamples, Υ profiled) puts β at **0.48 [0.40, 0.59]** (canonical, 95%) and **0.55 [0.45, 0.77]** (alt). P2's β = 1 loses to the best β in 1000 of 1000 resamples. Applied everywhere, **SPARC excludes P2's transition shape.**
 - The theorem fixes the shape only where the baryons look like a point mass. SPARC's transition region, y ~ 0.1–10, lies largely inside the baryons.
 - Whether the point-mass-regime points alone prefer β = 1 is a direct test of the principle. That is CFG13.
-- **Update (CFG13):** CFG4's estimator is itself biased low. Synthetic P2 data come back at β ≈ 0.55–0.59, with β = 1 excluded, so the exclusion above is under review pending CFG14's calibrated test. SPARC's point-mass-regime points give β̂ = 0.72 / 0.88, which does not exclude 1.
+- **Update (CFG13, CFG14): calibrated.** CFG4's galaxy bootstrap under-covers β̂'s spread by about 5×. The estimator is median-unbiased.
+  - Against 60 noise realizations of each truth, **P2 applied everywhere is disfavoured at p ≈ 0.03 (about 2σ)** on the canonical footing and at p ≈ 0.03–0.13 on alt. It is not excluded at >99.9%.
+  - ν_mono is fully consistent.
+  - SPARC's point-mass-regime points (β̂ 0.72 / 0.88) do not discriminate. The preference comes from inside the baryons.
 
 ## Inside real baryons (SPARC, CFG4's committed Υ, CFG9's own statistic)
 
