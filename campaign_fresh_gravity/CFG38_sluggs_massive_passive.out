@@ -1,0 +1,70 @@
+CFG38 -- THE MASSIVE PASSIVE REGIME: do the SLUGGS globular-cluster dispersions of early-type galaxies want the extra mass of B's
+derived cold-mass rule (CFG35/36), or the law alone?
+
+WHY.  CFG36-37: with measured colour-split collapse masses (Mandelbaum+2016) the conservation rule is the law for every star-forming
+spiral and for passive disks below log M_* ~ 11.2 (CFG37: 16 ATLAS3D HI discs follow the law, 0.3 sigma), and adds collapse debris only
+above that on the red sequence.  h50 (hunt_2026/h50_gc_dispersions.py) measured globular-cluster dispersion profiles of 19 SLUGGS early
+types out to 5-15 R_eff and found the law's zero-parameter prediction LOW by ~20% in the mean (h50's 50.2), worst in the most massive
+(M87 +0.28 dex, NGC 5846 and NGC 4374 +0.21, NGC 1407 +0.16).  That is the regime the rule claims.
+
+THE METHOD (declared before this script's first run).  h50's data, dispersion bins and isotropic Jeans machinery exec'd read-only (gamma =
+3 tracer, Hernquist stars from SLUGGS's own stellar masses, the outer bins R > max(R_eff, 2 kpc)); CFG36's collapse masses (Mandelbaum's
+RED relation -- every SLUGGS galaxy is an early type -- converted to M_200c) and CFG35's conservation form (edge x_e = 0.40):
+g(r) = G [nu(g_N/a0) M_b(<r) + f_ex (1 - f_b) M_NFW(<r; M_coll)] / r^2.  SLUGGS's stellar masses stand in for Mandelbaum's Chabrier
+masses (declared); hot gas is omitted, as in h50.  Per galaxy the offset is h50's: the mean over the outer bins of log(sigma_obs /
+sigma_pred).  Sample: the mean over galaxies with the galaxy-to-galaxy error.
+
+PRE-DECLARED
+  C1  CONTROL  h50's committed per-galaxy law offsets (d_MOND, canonical) reproduced to the printed precision.
+  H1  [HEADLINE; MUTATE must fail] THE RULE CLOSES WHAT THE LAW LEAVES: the rule's mean offset over the 19 lies within 2 sigma of zero
+      (galaxy-to-galaxy error), both footings -- where the law's does not (h50: ~+0.08 dex, > 3 sigma).
+  H2  THE MASS TREND GOES: the law's offsets rise with stellar mass; under the rule, the slope d(offset)/d log M_* is consistent with zero
+      (< 2 sigma, bootstrap over galaxies), canonical.
+  R1-R3 (reported): per-galaxy offsets, f_ex and collapse masses; the abundance-matched NFW of h50 (Moster) beside; the BLUE relation.
+  READING (declared): H1 and H2 PASS -> in the massive passive regime the globular clusters want the rule's collapse debris: B's derived
+  conservation rule with measured red collapse masses fits them, alongside the spirals and passive disks it leaves alone.  H1 FAIL ->
+  the rule does not close the SLUGGS deficit.
+MUTATE=1: every collapse mass divided by 100 (the rule reduces to the law) -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: h50's committed per-galaxy law offsets
+======================================================================================================================
+  [PASS] C1 CONTROL: h50's committed per-galaxy law offsets (canonical) reproduced to the printed precision
+         19 galaxies; max |d| 0.000 (e.g. NGC4486 +0.284)
+
+======================================================================================================================
+H1 / H2  THE NINETEEN SLUGGS EARLY TYPES
+======================================================================================================================
+    canonical: law +0.080 +- 0.024 (+3.3 sigma); rule +0.007 +- 0.017 (+0.4 sigma); the rule adds mass in 10 of 19
+    alt      : law +0.065 +- 0.024 (+2.7 sigma); rule +0.002 +- 0.017 (+0.1 sigma); the rule adds mass in 9 of 19
+      NGC1023  log M* 10.99: law +0.04 -> rule +0.04  (f_ex 0.00, M200c 5.8e+12)
+      NGC1400  log M* 11.08: law +0.01 -> rule +0.01  (f_ex 0.00, M200c 8.1e+12)
+      NGC1407  log M* 11.60: law +0.16 -> rule -0.09  (f_ex 0.73, M200c 8.3e+13)
+      NGC2768  log M* 11.21: law +0.06 -> rule +0.01  (f_ex 0.19, M200c 1.4e+13)
+      NGC3115  log M* 10.93: law +0.10 -> rule +0.10  (f_ex 0.00, M200c 4.6e+12)
+      NGC3377  log M* 10.50: law +0.01 -> rule +0.01  (f_ex 0.00, M200c 1.6e+12)
+      NGC3607  log M* 11.39: law -0.01 -> rule -0.11  (f_ex 0.50, M200c 3.1e+13)
+      NGC4278  log M* 10.95: law +0.16 -> rule +0.16  (f_ex 0.00, M200c 5.0e+12)
+      NGC4365  log M* 11.51: law +0.17 -> rule -0.01  (f_ex 0.65, M200c 5.4e+13)
+      NGC4374  log M* 11.51: law +0.21 -> rule +0.02  (f_ex 0.65, M200c 5.4e+13)
+      NGC4459  log M* 10.98: law -0.07 -> rule -0.07  (f_ex 0.00, M200c 5.6e+12)
+      NGC4473  log M* 10.96: law +0.03 -> rule +0.03  (f_ex 0.00, M200c 5.2e+12)
+      NGC4486  log M* 11.62: law +0.28 -> rule +0.08  (f_ex 0.75, M200c 9.1e+13)
+      NGC4494  log M* 11.02: law -0.15 -> rule -0.15  (f_ex 0.00, M200c 6.5e+12)
+      NGC4526  log M* 11.26: law +0.06 -> rule +0.01  (f_ex 0.28, M200c 1.7e+13)
+      NGC4649  log M* 11.60: law +0.14 -> rule -0.04  (f_ex 0.73, M200c 8.3e+13)
+      NGC4697  log M* 11.15: law +0.04 -> rule +0.03  (f_ex 0.05, M200c 1.1e+13)
+      NGC5846  log M* 11.46: law +0.21 -> rule +0.03  (f_ex 0.59, M200c 4.3e+13)
+      NGC7457  log M* 10.13: law +0.06 -> rule +0.06  (f_ex 0.00, M200c 1.7e+12)
+  [PASS] H1 [HEADLINE] THE RULE CLOSES WHAT THE LAW LEAVES: the rule's mean offset within 2 sigma of zero, both footings
+         canonical: rule +0.007 (+0.4 sigma), law +0.080 (+3.3 sigma); alt: rule +0.002 (+0.1 sigma), law +0.065 (+2.7 sigma)
+  [PASS] H2 THE MASS TREND GOES: under the rule d(offset)/d log M_* is consistent with zero (< 2 sigma, bootstrap), canonical
+         rule slope -0.048 +- 0.040 (-1.2 sigma); law slope +0.139 +- 0.075 (+1.8 sigma)
+  [PASS] (reported) R1 (reported) h50's abundance-matched NFW (Moster, colour-blind) and the rule with the BLUE relation, canonical
+         NFW -0.110 +- 0.021; blue-relation rule +0.080 +- 0.024
+  [PASS] (reported) R2 (reported; POST-HOC, added after the main run) LambdaCDM on the same measured red collapse masses (stars + full halo, no phantom)
+         -0.037 +- 0.017 (-2.1 sigma); low-mass half (log M* < 11.2) -0.044, high-mass half -0.028
+
+    READING (declared): in the massive passive regime the globular clusters want the rule's collapse debris: the derived conservation rule with measured red collapse masses fits them
+
+  5/5 checks pass; load-bearing failures: 0   (4 s)
