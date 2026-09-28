@@ -1,0 +1,58 @@
+CFG20 -- THE LOCAL GROUP AGAINST THE TARGET LAW'S EDGE.  Does the Local Group's zero-velocity radius allow the phantom edge that
+KiDS needs?
+
+WHY.  Under FG001 the Local Group (MW + M31) is a top-level bound system: the law acts on its baryons with NO external field, and
+its phantom ends at the target's density edge x_e r_ta (CFG4's T3; CFG4's convention for r_ta: the law's untruncated profile at the
+top-hat contrast Delta_ta(z)).  FP1 (committed) found that the isolated law with no external field puts the LG's zero-velocity
+radius at 1.92-2.02 Mpc against the observed 0.93 +- 0.12 Mpc; the chain needed the web's external field to bring it down, and FG001
+removes that field for top-level systems.  So the edge is the only thing left that can.  CFG16/CFG17 place KiDS's self-consistent
+floor at x_e ~ 0.34.
+
+THE MODEL (FP1's own shell integrator, exec'd read-only; the truncation added).  Test shells start on the Hubble flow at a = 0.02
+and move in the LG's field plus Lambda (Planck, h = 0.674).  At each epoch the LG's edge is r_e(a) = x_e r_ta(a), where r_ta(a) is
+the law's untruncated turnaround radius at Delta_ta(z) (CFG4_switch's committed D1 table, interpolated in ln(1+z); 5.55 above z = 3).
+Inside r_e the law acts, g = nu(g_N/a0) g_N; outside, the enclosed mass stays M_e(a) = M_b nu(g_N(r_e)/a0) (CFG4's density edge).
+R0 is where today's radial velocity changes sign (FP1's bracket-and-refine).  LG baryons: FP1's 1.145e11 and 1.72e11 Msun.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  with no truncation the exec'd integrator reproduces FP1's committed E1 control (nu_RAR, 1.145e11: 1.929 / 2.021 Mpc)
+      and FP1's E3 R0_e0 for the chain's kernel within FP1's own tolerance (2e-3 Mpc).
+  H0  [MUTATE must fail] the truncation at x_e = 0.34 lowers R0 below the untruncated value by more than 0.1 Mpc (every case).
+  H1  [HEADLINE] at KiDS's self-consistent floor (CFG16: 0.341 / 0.348 canonical P2 / nu_mono; 0.340 / 0.345 alt) the LG's R0 lies
+      within 2 sigma of 0.93 +- 0.12 Mpc (R0 <= 1.17 Mpc), both footings, both kernels, both LG baryonic masses.  Expectation: FAIL
+      (a hand estimate gives ~1.3-1.4 Mpc).
+  R1  (reported) R0 against x_e from 0.05 to 1 and untruncated; the largest x_e the LG allows (R0 <= 1.17 Mpc) against KiDS's floor.
+MUTATE=1: the truncation is switched off (x_e -> infinity everywhere) -- H0 must FAIL (rc = 1).
+
+  *** MUTATE=1: the truncation switched off -- H0 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: FP1's LG machinery, untruncated
+======================================================================================================================
+    nu_RAR 1.145e11: 1.9290 / 2.0214 Mpc (FP1 E1: 1.929 / 2.021); P2 canonical 1.9246 (FP1 E3 R0_e0 1.9246, the chain's kernel)
+  [PASS] C1 CONTROL: the exec'd LG integrator reproduces FP1's committed E1 control (1.929 / 2.021 Mpc) within FP1's tolerance
+         1.9290 / 2.0214; P2 canonical 1.9246 vs the chain's R0_e0 1.9246 (reported)
+  [FAIL] C1b CONTROL: the truncated integrator with no truncation equals FP1's integrator (nu_RAR, 1.145e11, canonical)
+         |d R0| 2.7e-06 Mpc
+  [PASS] (reported) C1c (reported; added after the first run) fed FP1's tabulated nu, the untruncated integrator equals FP1's (C1b's 2.7e-6 is the table's interpolation)
+         |d R0| 0.0e+00 Mpc
+
+======================================================================================================================
+THE LG's R0 AGAINST THE EDGE
+======================================================================================================================
+    canonical P2       M_b 1.14e+11: R0 [Mpc] at x_e 0.05: 1.925, 0.1: 1.925, 0.15: 1.925, 0.2: 1.925, 0.25: 1.925, 0.3: 1.925, 0.34: 1.925, 0.4: 1.925, 0.5: 1.925, 0.7: 1.925, 1: 1.925, inf: 1.925; at KiDS's floor 0.341: 1.925; LG allows x_e <= 0.000
+    canonical P2       M_b 1.72e+11: R0 [Mpc] at x_e 0.05: 2.131, 0.1: 2.131, 0.15: 2.131, 0.2: 2.131, 0.25: 2.131, 0.3: 2.131, 0.34: 2.131, 0.4: 2.131, 0.5: 2.131, 0.7: 2.131, 1: 2.131, inf: 2.131; at KiDS's floor 0.341: 2.131; LG allows x_e <= 0.000
+    canonical nu_mono  M_b 1.14e+11: R0 [Mpc] at x_e 0.05: 1.929, 0.1: 1.929, 0.15: 1.929, 0.2: 1.929, 0.25: 1.929, 0.3: 1.929, 0.34: 1.929, 0.4: 1.929, 0.5: 1.929, 0.7: 1.929, 1: 1.929, inf: 1.929; at KiDS's floor 0.348: 1.929; LG allows x_e <= 0.000
+    canonical nu_mono  M_b 1.72e+11: R0 [Mpc] at x_e 0.05: 2.136, 0.1: 2.136, 0.15: 2.136, 0.2: 2.136, 0.25: 2.136, 0.3: 2.136, 0.34: 2.136, 0.4: 2.136, 0.5: 2.136, 0.7: 2.136, 1: 2.136, inf: 2.136; at KiDS's floor 0.348: 2.136; LG allows x_e <= 0.000
+    alt       P2       M_b 1.14e+11: R0 [Mpc] at x_e 0.05: 2.017, 0.1: 2.017, 0.15: 2.017, 0.2: 2.017, 0.25: 2.017, 0.3: 2.017, 0.34: 2.017, 0.4: 2.017, 0.5: 2.017, 0.7: 2.017, 1: 2.017, inf: 2.017; at KiDS's floor 0.340: 2.017; LG allows x_e <= 0.000
+    alt       P2       M_b 1.72e+11: R0 [Mpc] at x_e 0.05: 2.233, 0.1: 2.233, 0.15: 2.233, 0.2: 2.233, 0.25: 2.233, 0.3: 2.233, 0.34: 2.233, 0.4: 2.233, 0.5: 2.233, 0.7: 2.233, 1: 2.233, inf: 2.233; at KiDS's floor 0.340: 2.233; LG allows x_e <= 0.000
+    alt       nu_mono  M_b 1.14e+11: R0 [Mpc] at x_e 0.05: 2.021, 0.1: 2.021, 0.15: 2.021, 0.2: 2.021, 0.25: 2.021, 0.3: 2.021, 0.34: 2.021, 0.4: 2.021, 0.5: 2.021, 0.7: 2.021, 1: 2.021, inf: 2.021; at KiDS's floor 0.345: 2.021; LG allows x_e <= 0.000
+    alt       nu_mono  M_b 1.72e+11: R0 [Mpc] at x_e 0.05: 2.238, 0.1: 2.238, 0.15: 2.238, 0.2: 2.238, 0.25: 2.238, 0.3: 2.238, 0.34: 2.238, 0.4: 2.238, 0.5: 2.238, 0.7: 2.238, 1: 2.238, inf: 2.238; at KiDS's floor 0.345: 2.238; LG allows x_e <= 0.000
+  [FAIL] H0 the truncation at KiDS's floor lowers the LG's R0 below the untruncated value by more than 0.1 Mpc (every case)  [MUTATE: no truncation]
+         can/P2/1.14e+11: 1.925 vs 1.925; can/P2/1.72e+11: 2.131 vs 2.131; can/nu_mono/1.14e+11: 1.929 vs 1.929; can/nu_mono/1.72e+11: 2.136 vs 2.136; alt/P2/1.14e+11: 2.017 vs 2.017; alt/P2/1.72e+11: 2.233 vs 2.233; alt/nu_mono/1.14e+11: 2.021 vs 2.021; alt/nu_mono/1.72e+11: 2.238 vs 2.238
+  [FAIL] H1 [HEADLINE] at KiDS's self-consistent floor the LG's R0 is within 2 sigma of 0.93 +- 0.12 Mpc (<= 1.17), every case
+         can/P2/1.14e+11: 1.925; can/P2/1.72e+11: 2.131; can/nu_mono/1.14e+11: 1.929; can/nu_mono/1.72e+11: 2.136; alt/P2/1.14e+11: 2.017; alt/P2/1.72e+11: 2.233; alt/nu_mono/1.14e+11: 2.021; alt/nu_mono/1.72e+11: 2.238
+  [PASS] (reported) R1 (reported) the largest edge the LG allows against KiDS's floor
+         can/P2/1.14e+11: LG x_e <= 0.000 vs KiDS >= 0.341; can/P2/1.72e+11: LG x_e <= 0.000 vs KiDS >= 0.341; can/nu_mono/1.14e+11: LG x_e <= 0.000 vs KiDS >= 0.348; can/nu_mono/1.72e+11: LG x_e <= 0.000 vs KiDS >= 0.348; alt/P2/1.14e+11: LG x_e <= 0.000 vs KiDS >= 0.340; alt/P2/1.72e+11: LG x_e <= 0.000 vs KiDS >= 0.340; alt/nu_mono/1.14e+11: LG x_e <= 0.000 vs KiDS >= 0.345; alt/nu_mono/1.72e+11: LG x_e <= 0.000 vs KiDS >= 0.345
+
+  3/6 checks pass; load-bearing failures: 3   (51 s)
