@@ -1,0 +1,58 @@
+CFG15 -- DOES CFG12's CANONICAL WINDOW SURVIVE A PHYSICAL 2-HALO AMPLITUDE?
+
+WHY.  CFG12 opened CFG4's strict window on the canonical footing: KiDS floor 0.303-0.309 (2-halo amplitude A fitted in [0, 2] per
+lens bin) against a budget edge 0.338-0.341 (FG001's grouping + the share at the budget's own scale).  The 2-halo template (FP1 E,
+L355) is the projected MATTER correlation, so A is the lens bias.  A cap of 2 allows bias-2 lenses; KiDS's isolated lenses (no
+brighter neighbour within 3 Mpc) are galaxy-mass systems whose bias is expected near or below 1.  If the floor rises above ~0.34
+at a physical bias, CFG12's 'canonical conflict resolved' does not hold.
+
+THE FRAMEWORK'S OWN LENS BIAS.  Each lens bin's profiled baryonic mass (CFG4_switch's committed log M_b = 10.4/10.9/11.05/11.25)
+-> the law's turnaround mass at z_l = 0.25 (CFG4's convention: the enclosed mass at r_ta, Delta_ta(0.25) = 8.89) -> sigma(M) at
+z_l (CLASS via CFG7_common, growth from its cosmology) -> the peak-background-split bias b = 1 + (nu^2 - 1)/delta, nu = delta/sigma,
+for the collapse threshold (1.686) and the turnaround threshold (delta_lin,ta(0.25) = 1.208, CFG4_switch D1).  The cap per bin is
+the larger of the two (generous; isolation only lowers a bias).
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  the exec'd KiDS machinery reproduces CFG4_switch's committed x-scan (A = 0 and A <= 2 rows, both footings, both
+      kernels) to 1e-6.
+  C2  CONTROL  the per-bin-cap copy of FP1's kfit equals FP1's kfit for scalar caps (0, 1, 2) exactly.
+  D1  (reported) the framework's lens bias per bin, both thresholds.
+  H1  [HEADLINE; MUTATE must fail] at the framework's own lens bias the canonical KiDS floor stays at or below CFG12's canonical
+      budget edge (0.341 P2 / 0.338 nu_mono): the window survives.  Expectation: uncertain.
+  H2  the same with unbiased lenses (A <= 1).
+  R1  (reported) the floor versus the cap (0-2) on both footings; the fitted A per bin at the A <= 2 floor.
+MUTATE=1: no 2-halo term (cap 0) in H1 -- the floor returns to 0.47 and H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2  CONTROLS: CFG4_switch's committed x-scan; the per-bin-cap kfit
+======================================================================================================================
+  [PASS] C1 CONTROL: the exec'd KiDS machinery reproduces CFG4_switch's committed x-scan (A = 0 and A <= 2, both footings, both kernels)
+         max |d chi^2| 0.0e+00
+  [PASS] C2 CONTROL: the per-bin-cap kfit equals FP1's kfit for scalar caps 0 / 1 / 2
+         max |d chi^2| 0.0e+00
+
+======================================================================================================================
+D1  THE FRAMEWORK'S OWN LENS BIAS (peak-background split at each bin's turnaround mass, z_l = 0.25)
+======================================================================================================================
+    canonical P2      : logMb 10.4: M_ta 4.91e+12, sigma 1.55, b 1.11/0.68; logMb 10.9: M_ta 1.16e+13, sigma 1.34, b 1.35/0.85; logMb 11.05: M_ta 1.51e+13, sigma 1.28, b 1.44/0.91; logMb 11.25: M_ta 2.13e+13, sigma 1.20, b 1.57/1.01  (D(0.25)/D(0) = 0.8756)
+    canonical nu_mono : logMb 10.4: M_ta 4.93e+12, sigma 1.55, b 1.11/0.68; logMb 10.9: M_ta 1.17e+13, sigma 1.34, b 1.35/0.85; logMb 11.05: M_ta 1.52e+13, sigma 1.28, b 1.44/0.91; logMb 11.25: M_ta 2.14e+13, sigma 1.20, b 1.57/1.01  (D(0.25)/D(0) = 0.8756)
+    alt       P2      : logMb 10.4: M_ta 5.66e+12, sigma 1.51, b 1.14/0.70; logMb 10.9: M_ta 1.34e+13, sigma 1.31, b 1.39/0.88; logMb 11.05: M_ta 1.74e+13, sigma 1.25, b 1.49/0.95; logMb 11.25: M_ta 2.46e+13, sigma 1.17, b 1.63/1.05  (D(0.25)/D(0) = 0.8756)
+    alt       nu_mono : logMb 10.4: M_ta 5.68e+12, sigma 1.51, b 1.15/0.70; logMb 10.9: M_ta 1.35e+13, sigma 1.31, b 1.40/0.88; logMb 11.05: M_ta 1.75e+13, sigma 1.25, b 1.49/0.95; logMb 11.25: M_ta 2.47e+13, sigma 1.17, b 1.64/1.05  (D(0.25)/D(0) = 0.8756)
+  [PASS] (reported) D1 (reported) the framework's lens bias per KiDS bin (collapse / turnaround thresholds)
+         can/P2: 1.11/1.35/1.44/1.57; can/nu_mono: 1.11/1.35/1.44/1.57; alt/P2: 1.14/1.39/1.49/1.63; alt/nu_mono: 1.15/1.40/1.49/1.64
+
+======================================================================================================================
+THE KiDS FLOOR VERSUS THE 2-HALO CAP
+======================================================================================================================
+    canonical P2      : floor at cap 0: 0.473, 0.5: 0.397, 0.75: 0.371, 1: 0.350, 1.25: 0.333, 1.5: 0.315, 2: 0.308; at the framework's own bias: 0.317; CFG12 budget edge (FG001) 0.341
+    canonical nu_mono : floor at cap 0: 0.498, 0.5: 0.414, 0.75: 0.385, 1: 0.360, 1.25: 0.342, 1.5: 0.320, 2: 0.303; at the framework's own bias: 0.322; CFG12 budget edge (FG001) 0.338
+    alt       P2      : floor at cap 0: 0.465, 0.5: 0.393, 0.75: 0.372, 1: 0.351, 1.25: 0.337, 1.5: 0.319, 2: 0.310; at the framework's own bias: 0.318; CFG12 budget edge (FG001) 0.293
+    alt       nu_mono : floor at cap 0: 0.493, 0.5: 0.409, 0.75: 0.384, 1: 0.358, 1.25: 0.343, 1.5: 0.320, 2: 0.306; at the framework's own bias: 0.317; CFG12 budget edge (FG001) 0.291
+  [PASS] H1 [HEADLINE] at the framework's own lens bias the canonical KiDS floor stays at or below CFG12's canonical budget edge -- the canonical window survives
+         P2: floor 0.317 vs edge 0.341; nu_mono: floor 0.322 vs edge 0.338
+  [FAIL] H2 with unbiased lenses (A <= 1) the canonical floor stays at or below the budget edge
+         P2: floor 0.350 vs edge 0.341; nu_mono: floor 0.360 vs edge 0.338
+  [PASS] (reported) R1 (reported) the floor versus the cap; the fitted A per bin near the A <= 2 floor (canonical)
+         P2 at x = 0.31: A = [0.7, 0.85, 1.88, 1.69]; nu_mono at x = 0.3: A = [0.71, 0.96, 2.0, 2.0]
+
+  5/6 checks pass; load-bearing failures: 1   (6 s)

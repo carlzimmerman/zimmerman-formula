@@ -62,3 +62,13 @@ Two consistency corrections to CFG4's strict budget point the same way:
 **Alt footing.** It stays closed, about 5% short in the budget. Its remaining lever is the budget's own systematics (the HI-selected gas fractions and the SMF normalisation). That lever is not claimed here.
 
 x_e remains declared, within the window. Nothing here says the theory is closed.
+
+
+## Downgrade (CFG15, 2026-09-28)
+
+The canonical window depends on the KiDS 2-halo amplitude, which is the lens bias.
+- CFG4's floor of 0.303–0.309 allowed A ≤ 2, and the fit uses 1.7–1.9 in the massive bins.
+- At the framework's own peak-background bias (1.1–1.6) the canonical window survives: floor 0.317–0.322 against edges of 0.338–0.341.
+- With unbiased lenses (A ≤ 1) it closes by 0.01–0.02.
+
+**"Resolved" is downgraded to marginal and bias-dependent.**
