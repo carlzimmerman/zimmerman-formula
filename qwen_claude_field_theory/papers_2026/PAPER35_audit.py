@@ -41,6 +41,10 @@ q("FG001 score 9 of 14 (alt)", 9, F7["SCORE"]["alt"][0], 0); q("FG001 total gate
 tides = [v["tide"] for v in F7["H1"].values()]; ratios = [v["ratio"] for v in F7["H1"].values()]
 q("MW phantom tide at the Sun low 1.6e-31", 1.6e-31, min(tides), 0.05e-31); q("... high 2.6e-31", 2.6e-31, max(tides), 0.05e-31)
 q("Cassini margin low 2e4", 2e4, min(ratios), 0.5e4); q("Cassini margin high 3e4", 3e4, max(ratios), 0.5e4)
+# CFG28 the refereed ultra-faint significance (the revision before deposit)
+R28 = J("CFG28_ufd_referee_results.json")["RES"]
+q("CFG28 refereed UFD canonical 3.8 sigma", 3.8, R28["canonical"]["z_km"], 0.05); q("CFG28 refereed UFD alt 3.5 sigma", 3.5, R28["alt"]["z_km"], 0.05)
+q("CFG28 UFD offset +0.32 canonical", 0.32, R28["canonical"]["km"][0], 0.005); q("CFG28 UFD offset +0.30 alt", 0.30, R28["alt"]["km"][0], 0.005)
 # CFG18 infall baryons (non-detections as zero)
 R18 = J("CFG18_satellite_infall_gas_results.json")["RES"]
 for key, quoted in (("m31|zero|canonical", 1.6), ("m31|zero|alt", 1.2), ("col|zero|canonical", 1.4), ("col|zero|alt", 1.2),
