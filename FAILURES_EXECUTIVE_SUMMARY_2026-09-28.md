@@ -23,7 +23,10 @@ Mixing them overstates or understates the damage.
    - Which orbits apply turns on whether B's dark component exerts dynamical friction, and B must specify that.
 3. **The dark sector carries 5–7σ tensions** (the cold budget against KiDS lensing; KiDS against the Local Group). They are real in the programme's machinery but not decisive: standard ΛCDM halos fail the same machinery by as much or more.
 4. **The largest numbers in the record killed earlier constructions, not the current one:** 43,479σ, 21σ, 15.6σ, 13–34σ, 9σ and 8.5σ.
-5. **Several famous big numbers are withdrawn or overstated:** Lyman-α "6–8σ", Coma "19.4σ", MUSE "12–16σ" and SPARC-vs-P2 "> 99.9%". Never cite them as failures.
+5. **The Coma ultra-diffuse galaxies pass under B's own rule (CFG31).**
+   - They sit at 1.3 / 1.1σ, not the recorded 4.9σ. That number belonged to the external-field reading B dropped.
+   - The pass is only as strong as B's ownership rule, which Gaia DR4 tests.
+6. **Several famous big numbers are withdrawn or overstated:** Lyman-α "6–8σ", Coma "19.4σ", MUSE "12–16σ" and SPARC-vs-P2 "> 99.9%". Never cite them as failures.
 
 ## A. The current best version (candidate B): scored failures, largest first
 
@@ -47,7 +50,7 @@ These come from the 2026-09-03 sweep (`predictions_2026/SECOND_LAW_HUNT_2026.md`
 | # | item | recorded | what candidate B changes | status |
 |---|---|---|---|---|
 | B1 | **binary galaxies** | external-field branch **26σ**. Isolated two-body branch: pairs move **1.5–1.8×** faster than predicted (+0.25 dex), **5.4σ** in the strictest-isolation shell; ΛCDM gives A = 0.90–1.06 | **Re-scored (CFG30).** With circular orbits, even the most generous baryons leave A = 1.51 / 1.44 (12.9 / 11.7σ). But the circular model fails the data's own separation profile for both laws (6.5σ, 5.4σ). B's own timing orbits give A = 1.12 / 1.05 (1.06 / 0.99 after the estimator's bias), and ΛCDM's halos then over-predict (0.46). The timing reading leaves three tensions: the profile (4.2σ), the mass trend (5.3σ; ΛCDM misses it by 4.7σ the other way) and MW–M31, 1.6–1.75× too fast | **orbit-degenerate, not an established failure.** Decided by whether B's dark component exerts dynamical friction (`campaign_fresh_gravity/CFG30_binary_galaxies_referee*`; the originals `hunt_2026/h48_h69_binary_galaxies.out`, `h48_h69b_relative_isolation.out`) |
-| B2 | Coma ultra-diffuse galaxies | +1.16 dex above the external-field prediction; **4.9σ / 4.7σ** (equilibrium), 2.7σ (first infall) | UDGs are accreted under ownership (the isolated law of their infall baryons, no external field) | not re-scored (`fable_independent_2026/L23_udg_verify.out`) |
+| B2 | Coma ultra-diffuse galaxies | +1.16 dex above the external-field prediction; **4.9σ / 4.7σ** (equilibrium), 2.7σ (first infall) | **Re-scored (CFG31).** UDGs are accreted under ownership: the isolated law of their infall baryons, no external field. That gives +0.23 / +0.19 dex = **1.3 / 1.1σ** (stars only 2.3 / 2.1σ); DF44 alone 0.7σ; consistent with the M31 satellites under the same rule (0.4σ) | **passes under B's rule.** The 4.9σ belongs to the external-field reading. The pass is only as strong as the ownership rule, which DR4 tests (`campaign_fresh_gravity/CFG31_coma_udgs_under_b*`; `fable_independent_2026/L23_udg_verify.out`) |
 | B3 | the a₀ ladder (a₀ fitted per system class) | the cluster rung **6.3σ** from the deep-tail value | clusters carry the cosmic cold share under B | not re-scored |
 | B4 | X-ray ellipticals | need **1.69 dex** more boost | the max rule may supply the cosmic share | not re-scored |
 | B5 | clusters and groups: η 1.8–2.1 with no step; CLASH needs a₀ × 18.4; X-COP cores η 2.7–2.9 | as recorded | B's cold component; **X-COP passes** in B's harness | the others not individually re-scored |
