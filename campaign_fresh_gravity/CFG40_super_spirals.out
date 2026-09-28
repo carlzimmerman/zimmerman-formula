@@ -1,0 +1,99 @@
+CFG40 -- THE TOP OF THE DISK MASS FUNCTION: do the most massive star-forming disks rotate as B's law says?  (Ogle+2019's super spirals.)
+
+WHY.  Candidate B's derived cold-mass rule (CFG35-CFG39) leaves star-forming disks on the bare law: with Mandelbaum+2016's measured BLUE
+collapse masses the leftover collapse mass is zero (or small) for every SPARC spiral.  SPARC's heaviest spirals reach log M_* ~ 11.4; nothing
+in the campaign has yet confronted B with the 10x rarer disks above that.  Ogle+2019 (arXiv:1909.09080; real_research/data/
+ogle2019_super_spirals.tsv) measured Halpha rotation curves for 23 'super spirals' (log M_* 11.13-11.74) and report that above ~ 340 km/s the
+baryonic Tully-Fisher relation 'breaks' (slope 0.25 +- 0.41 against 3.75 +- 0.11), 'inconsistent with MOND'.  That claim compares v_max with
+the ASYMPTOTIC v^4 = G M_b a0.  But their speeds are maxima at r = 14-54 kpc, where a = v^2/r = 0.6-2 a0: the transition regime, where the
+law's speed sits ABOVE the asymptote.  The test has to be made with the law evaluated at the radius, which is what B says.  Ogle's sample
+is selected on luminosity and size, not on speed, so a velocity-selection bias does not enter (it does for Di Teodoro+2023; CFG41).
+
+THE METHOD (declared before this script's first run).  CFG36's machinery exec'd read-only (Mandelbaum's blue / red relation converted to
+M_200c; Dutton-Maccio NFW; the conservation form with the edge at x_e = 0.40; nu_mono; both a0 footings).  Baryons: M_* (WISE W1 with a
+constant M/L_W1 = 0.6, the paper's) + M_gas (the paper's Schmidt-law estimate from the WISE W3 SFR; HI could not be measured).  The paper's
+stellar masses stand in for Mandelbaum's Chabrier masses (declared, as SPARC's did in CFG36).  Structure: an exponential disc of scale length
+R_d (Simard et al. 2011's SDSS disc fit) carrying all the baryons; its Newtonian field at r is Freeman's,
+v_N^2 = (2 G M_b / R_d) y^2 [I0(y)K0(y) - I1(y)K1(y)], y = r / 2R_d  (headline).  Brackets: a point mass M_b (upper g_N) and the spherical
+enclosed mass M_b [1 - (1 + r/R_d) e^{-r/R_d}] (lower g_N).  The law: g = nu(g_N / a0) g_N.  The rule:
+g = nu(g_N/a0) g_N + f_ex (1 - f_b) G M_NFW(<r) / r^2, with f_ex from the collapse mass at the star-forming (blue) relation, NFW at M_200c.
+Colour: sSFR = SFR / M_* > 1e-11 / yr -> blue, else red (declared; all 23 are checked in C1).  Observed: v_max +- dv, with the inclination
+error dlog v = |cot i| di / ln 10 at di = 5 deg (declared; the paper quotes none), and stellar (0.2 dex) and gas (0.3 dex) mass errors
+propagated.  Offset per galaxy = log10 (v_obs / v_pred).  Sample: the mean over the 23 with the galaxy-to-galaxy error, plus a floor in
+quadrature: the baryon-structure model (half the spread of the mean across the three), the stellar mass (+-0.2 dex, all together) and the
+gas mass (+-0.3 dex, all together), each as half the shift of the mean.
+
+PRE-DECLARED
+  C1  CONTROL  the table as transcribed: 23 galaxies, 2MASX J15154614+0235564 at v = 568 +- 16 km/s at 41 kpc; every galaxy has
+               sSFR > 1e-11 / yr (the blue relation applies to all).
+  C2  CONTROL  the Freeman field: at r = 50 R_d the disc's v_N^2 r / (G M_b) = 1 within 1%, and its peak sits at r ~ 2.2 R_d.
+  H1  THE BARE LAW FITS THEM: |mean log(v_obs / v_law)| < 2 sigma, canonical footing.
+  H2  [HEADLINE; MUTATE must fail] B (the law + the rule with the blue relation, canonical) fits them: |mean offset| < 2 sigma AND |slope of the
+      offset against log M_b| < 2 sigma AND the nine fastest (v > 340 km/s) have |mean offset| < 2 sigma.
+  R1-R5 (reported): the alt footing; the point and spherical baryon models; the asymptotic v^4 = G M_b a0 comparison (what the paper did);
+      the rule's f_ex and its +1 sigma collapse masses; the rule with the red relation, for scale.
+  READING (declared): H2 PASS -> B holds through the top of the disk mass function and the 'break' is the transition regime, not a failure of the law.
+      H2 FAIL -> B fails on the most massive star-forming disks, and that joins the ultra-faints as a clean standing failure.  H1 FAIL and H2 PASS
+      -> the rule is doing the work here, which would be a new result for the blue relation.  H1 PASS -> the law alone suffices.
+MUTATE=1: the observed speeds multiplied by 0.5 -- H2 must FAIL (rc = 1).
+CHANGED AFTER THE FIRST MUTATE RUN, BEFORE THE MAIN RUN (disclosed): the control first used 0.7.  H2 PASSED under it (mean -0.048 +- 0.075), because the
+  systematic floor (0.075 dex, mostly the 0.2-dex stellar mass) is too large for a 0.155-dex error to bite -- the control had no bite.  It also
+  revealed that the unmutated offsets are near +0.11 dex (mean) with the slope unchanged (+0.19 +- 0.10): seen BEFORE the main run.  No hypothesis,
+  clause or threshold of H1/H2 was changed; only the control's strength (0.5, a 0.30-dex error).
+
+======================================================================================================================
+C1  CONTROL: the table
+======================================================================================================================
+  [PASS] C1 CONTROL: 23 galaxies; 2MASX J15154614+0235564 at 568 +- 16 km/s at 41 kpc; every sSFR > 1e-11 / yr
+         23 galaxies; the big one: 568 +- 16 at 41 kpc; min log sSFR -10.70
+
+======================================================================================================================
+C2  CONTROL: the Freeman field
+======================================================================================================================
+  [PASS] C2 CONTROL: at r = 50 R_d the disc's g_N r^2 / (G M_b) = 1 within 1%; the v_N peak sits at r ~ 2.2 R_d
+         g_N r^2/(G M) = 1.0018; peak at 2.15 R_d
+
+======================================================================================================================
+H1 / H2  THE 23 SUPER SPIRALS
+======================================================================================================================
+           X J09394584+0845033 log M_b 11.52  r  14 kpc  v_obs  322 +-   9; law 256.5; rule 256.5 (f_ex 0.00); asym 253.4
+                      OGC 0441 log M_b 11.63  r  31 kpc  v_obs  444 +-  15; law 288.2; rule 288.2 (f_ex 0.00); asym 269.3
+           X J10222648+0911396 log M_b 11.47  r  33 kpc  v_obs  311 +-  12; law 274.4; rule 274.4 (f_ex 0.00); asym 246.0
+                      OGC 0926 log M_b 11.71  r  30 kpc  v_obs  342 +-  12; law 365.2; rule 365.2 (f_ex 0.00); asym 281.8
+                   2MFGC 08638 log M_b 11.66  r  54 kpc  v_obs  465 +-  13; law 226.4; rule 226.4 (f_ex 0.00); asym 273.8
+           X J11232039+0018029 log M_b 11.49  r  45 kpc  v_obs  436 +-  11; law 271.7; rule 271.7 (f_ex 0.00); asym 248.9
+           X J11483552+0325268 log M_b 11.47  r  31 kpc  v_obs  324 +-  12; law 255.0; rule 255.0 (f_ex 0.00); asym 246.0
+                      OGC 0586 log M_b 11.70  r  19 kpc  v_obs  305 +-  11; law 272.0; rule 272.0 (f_ex 0.00); asym 280.7
+           X J12422564+0056492 log M_b 11.28  r  14 kpc  v_obs  279 +-  10; law 265.6; rule 265.6 (f_ex 0.00); asym 220.3
+           X J12592630-0146580 log M_b 11.27  r  20 kpc  v_obs  318 +-  10; law 240.3; rule 240.3 (f_ex 0.00); asym 219.2
+                   2MFGC 10372 log M_b 11.41  r  23 kpc  v_obs  308 +-   8; law 293.3; rule 293.3 (f_ex 0.00); asym 238.3
+                      OGC 1312 log M_b 11.65  r  26 kpc  v_obs  344 +-   6; law 326.3; rule 326.3 (f_ex 0.00); asym 273.2
+                   2MFGC 12344 log M_b 11.78  r  41 kpc  v_obs  568 +-  16; law 312.8; rule 312.8 (f_ex 0.00); asym 293.8
+           X J15404057-0009331 log M_b 11.43  r  30 kpc  v_obs  304 +-   8; law 276.5; rule 276.5 (f_ex 0.00); asym 240.8
+                      OGC 1304 log M_b 11.67  r  29 kpc  v_obs  453 +-  25; law 336.4; rule 336.4 (f_ex 0.00); asym 275.9
+           X J16184003+0034367 log M_b 11.71  r  40 kpc  v_obs  384 +-  16; law 281.6; rule 281.6 (f_ex 0.00); asym 281.8
+                      OGC 0139 log M_b 11.80  r  31 kpc  v_obs  483 +-  90; law 236.1; rule 236.1 (f_ex 0.00); asym 297.3
+           X J20541957-0055204 log M_b 11.47  r  37 kpc  v_obs  317 +-  13; law 278.4; rule 278.4 (f_ex 0.00); asym 246.4
+           X J21362206+0056519 log M_b 11.51  r  29 kpc  v_obs  336 +-  11; law 293.6; rule 293.6 (f_ex 0.00); asym 251.2
+           X J21384311-0052162 log M_b 11.22  r  15 kpc  v_obs  299 +-  12; law 235.1; rule 235.1 (f_ex 0.00); asym 213.2
+           X J21431882-0820164 log M_b 11.15  r  18 kpc  v_obs  317 +-  13; law 219.4; rule 219.4 (f_ex 0.00); asym 205.3
+           X J22073122-0729223 log M_b 11.25  r  31 kpc  v_obs  243 +-  13; law 257.9; rule 257.9 (f_ex 0.00); asym 217.0
+           X J23130513-0033477 log M_b 11.25  r  19 kpc  v_obs  292 +-   8; law 254.9; rule 254.9 (f_ex 0.00); asym 217.0
+    canonical law  : mean +0.107 +- 0.075 (gal 0.020, model 0.041, M* 0.059, gas 0.010) -> +1.42 sigma; slope +0.194 +- 0.100 (+1.95); fastest 9: +0.170 (+2.06 sigma)
+    canonical rule : mean +0.107 +- 0.075 (gal 0.020, model 0.041, M* 0.059, gas 0.010) -> +1.42 sigma; slope +0.194 +- 0.100 (+1.95); fastest 9: +0.170 (+2.06 sigma)
+    alt       law  : mean +0.092 +- 0.074 (gal 0.020, model 0.040, M* 0.058, gas 0.010) -> +1.25 sigma; slope +0.193 +- 0.099 (+1.95); fastest 9: +0.156 (+1.92 sigma)
+    alt       rule : mean +0.092 +- 0.074 (gal 0.020, model 0.040, M* 0.058, gas 0.010) -> +1.25 sigma; slope +0.193 +- 0.099 (+1.95); fastest 9: +0.156 (+1.92 sigma)
+  [PASS] H1 THE BARE LAW FITS THEM: |mean log(v_obs / v_law)| < 2 sigma, canonical
+         +0.107 +- 0.075 (+1.42 sigma)
+  [FAIL] H2 [HEADLINE] B (law + blue-relation rule) FITS THEM: |mean| < 2 sigma, |slope vs log M_b| < 2 sigma, |mean of the 9 fastest| < 2 sigma (canonical)
+         mean +0.107 +- 0.075 (+1.42); slope +0.194 (+1.95); fastest 9: +0.170 (+2.06)
+  [PASS] (reported) R1 (reported) the asymptotic v^4 = G M_b a0 comparison (the paper's); the baryon models (law only)
+         asymptote: mean log(v_obs/v_asym) +0.144, fastest 9: +0.191; law by model: freeman +0.107, point +0.059, sphere +0.141
+  [PASS] (reported) R2 (reported) the rule's leftover; the rule at +1 sigma collapse masses; the rule with the RED relation, for scale
+         f_ex > 0 in 0 of 23 (max 0.00); +1 sigma mean +0.107; red-relation mean -0.001
+  [PASS] (reported) R3 (reported) the alt footing
+         law: +0.092 +- 0.074 (+1.25 sigma); rule: +0.092 +- 0.074 (+1.25 sigma)
+
+    READING (declared): B fails on the most massive star-forming disks
+
+  6/7 checks pass; load-bearing failures: 1   (5 s)
