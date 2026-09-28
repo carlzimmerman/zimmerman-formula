@@ -608,7 +608,7 @@ def job_pooled(spec):
                            span=tuple(spec.get("span", (3e-3, 12.0))), dcap=spec.get("dcap", 0.25))
         sn = run_shells(ics, cos, snaps=tuple(sorted(a_obs_list + [a_end])), mode=spec.get("mode", "N"),
                         jf=tuple(spec.get("jf", (0.15, 0.35))), seed=sd, eta=spec.get("eta", 0.03), a0=a0, kfun=kf,
-                        mutate_frozen=spec.get("mutate_frozen", False), n_resolve=spec.get("n_resolve", 15))
+                        mutate_frozen=spec.get("mutate_frozen", False), n_resolve=spec.get("n_resolve", 10 ** 9))
         runs.append((ics, {round(x["a"], 6): x for x in sn}))
     out = dict(spec=spec, seconds=None, res={})
     for ao in a_obs_list:

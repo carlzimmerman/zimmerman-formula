@@ -1,0 +1,2448 @@
+{
+ "slug": "CFG7_harness_fg097_MUTATE",
+ "summary": {
+  "n_checks": 6,
+  "n_pass": 4,
+  "load_bearing_failures": 2,
+  "failed": [
+   "K2 CONTROL: every lane the harness reads passes its own controls (failed HYPOTHESES are da",
+   "MUTATE: the harness is REQUIRED (for this control) to call the no-switch candidate a pass "
+  ],
+  "seconds": 0.5
+ },
+ "checks": [
+  {
+   "name": "K2 CONTROL: every lane the harness reads passes its own controls (failed HYPOTHESES are data, failed CONTROLS are flagged)",
+   "detail": "flagged: FG004: [\"C2 CONTROL / D1: for a point mass the phantom's Jeans pressu\"]; FG016: ['C1 CONTROL: EdS eps = 1 -- the instantaneous outer caustic a', 'C4 CONTROL: CONVERGENCE -- 2x the shells and half the step m']",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "K1 CONTROL: SPARC rms (to 1e-6 dex) and KiDS (isolated law, and the x = 0.4, A <= 2 cut, to 1e-6) reproduced",
+   "detail": "SPARC 3.0e-07; KiDS base 0.0e+00; KiDS x = 0.4 cut 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 the harness separates the candidates: B (with FG001) passes strictly more gates than A and than D",
+   "detail": "A 32, B 38, D 32",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 (reported) C's standing with FG016's derived edge",
+   "detail": "C 34/48",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H3 (reported; added before the first run, after FG016's dry runs pointed to it) the hybrid F's standing: which gates it fails",
+   "detail": "F 36/48; failing: CMB lensing; pop: Chae D1 (143 galaxies); pop: Chae D2 (90 galaxies); pop: M31 dwarfs (Collins+13); pop: M31 dwarfs (LVD); pop: MW ultra-faints",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "MUTATE: the harness is REQUIRED (for this control) to call the no-switch candidate a pass on CMB lensing -- it must not",
+   "detail": "no-switch CMB lensing ok = False",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "SCORES": {
+   "A  CFG4 target (as committed)": {
+    "npass": 32,
+    "ntot": 48,
+    "hash": "636ad290a4916988c3daabd73caf1dd33f1340852941eeabbc04ccce14cb982b",
+    "rows": [
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1083 dex (Upsilon 0.70)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.1003 dex (Upsilon 0.61)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "passes only with the declared xi (M_* window)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.86 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "3.53 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "5.96 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "5.80 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "13.19 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "3.92 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.35 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.77 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.95 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.45 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.76 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1035 dex (Upsilon 0.65)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.0991 dex (Upsilon 0.57)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "passes only with the declared xi (M_* window)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.24 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.34 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "5.70 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "5.58 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "12.82 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.96 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.38 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.79 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.12 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.49 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.76 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     }
+    ],
+    "ledger": {
+     "fitted": [
+      "kappa",
+      "Omega_c h^2",
+      "xi (M_*)"
+     ],
+     "declared": [
+      "nu's shape",
+      "x_e = 0.4",
+      "the max rule (T5)",
+      "the switch criterion"
+     ],
+     "tied": [
+      "a0 <-> Lambda (unimodular)"
+     ],
+     "derived": []
+    },
+    "cmb_ok": true
+   },
+   "B  A + FG001 (hierarchical ownership)": {
+    "npass": 38,
+    "ntot": 48,
+    "hash": "142b94b20eb72b0c9509ce5f4f9dcaab799d7c21ceea41dae77bf5285ed8db3e",
+    "rows": [
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1083 dex (Upsilon 0.70)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.1003 dex (Upsilon 0.61)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "the Sun owns no phantom (FG001 H1: margin >= 2e4)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.06 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.60 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.54 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "7.97 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.71 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.30 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.01 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.78 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "4.08 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "4.29 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1035 dex (Upsilon 0.65)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.0991 dex (Upsilon 0.57)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "the Sun owns no phantom (FG001 H1: margin >= 2e4)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.74 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.16 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.32 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "7.52 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.71 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.30 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.01 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.78 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "4.08 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "4.29 sigma (FG001's scorecard, fg001)"
+     }
+    ],
+    "ledger": {
+     "fitted": [
+      "kappa",
+      "Omega_c h^2"
+     ],
+     "declared": [
+      "nu's shape",
+      "x_e = 0.4",
+      "the max rule (T5)",
+      "the switch criterion",
+      "the ownership rule (FG001)"
+     ],
+     "tied": [
+      "a0 <-> Lambda (unimodular)"
+     ],
+     "derived": [
+      "Solar-System screening (no xi)"
+     ]
+    },
+    "cmb_ok": true
+   },
+   "C  B + FG016 (derived edge)": {
+    "npass": 34,
+    "ntot": 48,
+    "hash": "9110f4a4841e83e071820bf90317982db95e8f62368e3fb875f007f55e61b52c",
+    "rows": [
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1083 dex (Upsilon 0.70)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": false,
+      "value": "derived profile, no 2-halo: d chi^2 +51.3 to +84.6"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.216: Omega_ph 0.101 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e(z=0) 0.210: Omega_ph 0.119 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.1003 dex (Upsilon 0.61)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "derived profile, no 2-halo: d chi^2 +62.1 to +94.7"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.219: Omega_ph 0.103 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e(z=0) 0.211: Omega_ph 0.121 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "the Sun owns no phantom (FG001 H1: margin >= 2e4)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.06 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.60 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.54 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "7.97 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.71 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.30 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.01 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.78 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "4.08 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "4.29 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1035 dex (Upsilon 0.65)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": false,
+      "value": "derived profile, no 2-halo: d chi^2 +50.0 to +82.4"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.216: Omega_ph 0.116 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e(z=0) 0.210: Omega_ph 0.137 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.0991 dex (Upsilon 0.57)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "derived profile, no 2-halo: d chi^2 +58.7 to +91.4"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.219: Omega_ph 0.119 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e(z=0) 0.211: Omega_ph 0.140 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "the Sun owns no phantom (FG001 H1: margin >= 2e4)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.74 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.16 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.32 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "7.52 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.71 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.30 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.01 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.78 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "4.08 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "4.29 sigma (FG001's scorecard, fg001)"
+     }
+    ],
+    "ledger": {
+     "fitted": [
+      "kappa",
+      "Omega_c h^2"
+     ],
+     "declared": [
+      "nu's shape",
+      "the max rule (T5)",
+      "the switch criterion",
+      "the ownership rule (FG001)",
+      "the edge = splashback (87th percentile)",
+      "beta_b bracket (astrophysical)"
+     ],
+     "tied": [
+      "a0 <-> Lambda (unimodular)"
+     ],
+     "derived": [
+      "Solar-System screening (no xi)",
+      "x_e (from collapse + T5)"
+     ]
+    },
+    "cmb_ok": true
+   },
+   "D  rival: law on every system with the external field": {
+    "npass": 32,
+    "ntot": 48,
+    "hash": "657ae351e808b091c975ffb783345772697ff0a5bf4890e6fdc75ce14fc0f8d9",
+    "rows": [
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1083 dex (Upsilon 0.70)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.1003 dex (Upsilon 0.61)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "passes only with the declared xi (M_* window)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.86 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "3.53 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "5.96 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "5.80 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "13.19 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "3.92 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.35 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.77 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.95 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.45 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.76 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1035 dex (Upsilon 0.65)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.0991 dex (Upsilon 0.57)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "amplitude 1.000 (-0.39 sigma), CFG4_switch"
+     },
+     {
+      "gate": "forest",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "passes only with the declared xi (M_* window)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.24 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.34 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "5.70 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "5.58 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "12.82 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.96 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.38 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.79 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.12 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.49 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.76 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     }
+    ],
+    "ledger": {
+     "fitted": [
+      "kappa",
+      "Omega_c h^2",
+      "xi (M_*)"
+     ],
+     "declared": [
+      "nu's shape",
+      "x_e = 0.4",
+      "the max rule (T5)",
+      "the switch criterion"
+     ],
+     "tied": [
+      "a0 <-> Lambda (unimodular)"
+     ],
+     "derived": []
+    },
+    "cmb_ok": true
+   },
+   "F  hybrid: T5 inside the splashback, the law's field out to r_ta": {
+    "npass": 36,
+    "ntot": 48,
+    "hash": "658570be968d55ebd1a87f9fc804fae5d8107b0198d6124a93d17c70d2c15990",
+    "rows": [
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1083 dex (Upsilon 0.70)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "the law's field to r_ta (x = 1), no 2-halo: d chi^2 -9.5"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.216: Omega_ph 0.101 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e(z=0) 0.210: Omega_ph 0.119 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.1003 dex (Upsilon 0.61)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "the law's field to r_ta (x = 1), no 2-halo: d chi^2 -9.2"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.219: Omega_ph 0.103 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e(z=0) 0.211: Omega_ph 0.121 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "field phantom ADDED in bound regions (CFG4's conservative leak): linear 1.060 (+1.8 sigma), halofit 1.528 (+18.5 sigma) -- scored on halofit"
+     },
+     {
+      "gate": "forest",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00 (the switch keeps the web free)"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "the Sun owns no phantom (FG001 H1: margin >= 2e4)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.06 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.60 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.54 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "7.97 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.71 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.30 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.01 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.78 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "4.08 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "4.29 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1035 dex (Upsilon 0.65)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "the law's field to r_ta (x = 1), no 2-halo: d chi^2 -8.7"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.216: Omega_ph 0.116 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e(z=0) 0.210: Omega_ph 0.137 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.0991 dex (Upsilon 0.57)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "the law's field to r_ta (x = 1), no 2-halo: d chi^2 -9.3"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.219: Omega_ph 0.119 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e(z=0) 0.211: Omega_ph 0.140 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "field phantom ADDED in bound regions (CFG4's conservative leak): linear 1.060 (+1.8 sigma), halofit 1.528 (+18.5 sigma) -- scored on halofit"
+     },
+     {
+      "gate": "forest",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "deviation 0.00 (the switch keeps the web free)"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "the Sun owns no phantom (FG001 H1: margin >= 2e4)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.74 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.16 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.32 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "7.52 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.71 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.30 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.01 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.78 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "4.08 sigma (FG001's scorecard, fg001)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "4.29 sigma (FG001's scorecard, fg001)"
+     }
+    ],
+    "ledger": {
+     "fitted": [
+      "kappa",
+      "Omega_c h^2"
+     ],
+     "declared": [
+      "nu's shape",
+      "T5 inside the multi-stream region",
+      "the switch (turnaround)",
+      "the ownership rule (FG001)",
+      "beta_b bracket (astrophysical)"
+     ],
+     "tied": [
+      "a0 <-> Lambda (unimodular)"
+     ],
+     "derived": [
+      "Solar-System screening (no xi)",
+      "the cold extent (splashback, FG016)",
+      "the field's extent (the switch region itself: x = 1)"
+     ]
+    },
+    "cmb_ok": false
+   },
+   "E  [MUTATE] A without the switch (the law in the linear web)": {
+    "npass": 28,
+    "ntot": 48,
+    "hash": "47784ad5098de3d62434c38cb73e48a278df8c5fc2c8df4be7face47486fdae7",
+    "rows": [
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1083 dex (Upsilon 0.70)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.1003 dex (Upsilon 0.61)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "canonical",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "no switch: amplitude 1.149 (+4.93 sigma)"
+     },
+     {
+      "gate": "forest",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "no switch: the law acts in the forest's web (not scored; assumed to fail)"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "passes only with the declared xi (M_* window)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.86 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "3.53 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "5.96 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "5.80 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "13.19 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "3.92 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.35 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.77 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": false,
+      "value": "2.95 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "1.45 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.76 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "canonical",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "rms 0.1035 dex (Upsilon 0.65)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "P2",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159"
+     },
+     {
+      "gate": "SPARC",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "rms 0.0991 dex (Upsilon 0.57)"
+     },
+     {
+      "gate": "KiDS",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)"
+     },
+     {
+      "gate": "BUDGET lenient",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": true,
+      "value": "x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265"
+     },
+     {
+      "gate": "BUDGET strict (reported)",
+      "foot": "alt",
+      "kern": "nu_mono",
+      "ok": false,
+      "value": "x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159"
+     },
+     {
+      "gate": "CMB lensing",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "no switch: amplitude 1.149 (+4.93 sigma)"
+     },
+     {
+      "gate": "forest",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "no switch: the law acts in the forest's web (not scored; assumed to fail)"
+     },
+     {
+      "gate": "X-COP (T5)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "identity ratio P2 0.946, nu_mono 0.946"
+     },
+     {
+      "gate": "Bullet",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "main 4.6x, sub 4.9x"
+     },
+     {
+      "gate": "Cassini (no constant)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "passes only with the declared xi (M_* window)"
+     },
+     {
+      "gate": "pop: outer-halo globular clusters (M/L_V)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.11 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: tidal dwarf galaxies (6, Lelli+15)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.24 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW classical dSphs",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.34 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (LVD)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "5.70 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: M31 dwarfs (Collins+13)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "5.58 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: MW ultra-faints",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "12.82 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: LV dwarfs' host statistic",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.96 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR slope",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "2.38 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: cluster-infall BTFR zero point",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.79 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF2",
+      "foot": "alt",
+      "kern": "-",
+      "ok": false,
+      "value": "3.12 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: NGC 1052-DF4",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "1.49 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D1 (143 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.76 sigma (FG001's scorecard, rival)"
+     },
+     {
+      "gate": "pop: Chae D2 (90 galaxies)",
+      "foot": "alt",
+      "kern": "-",
+      "ok": true,
+      "value": "0.00 sigma (FG001's scorecard, rival)"
+     }
+    ],
+    "ledger": {
+     "fitted": [
+      "kappa",
+      "Omega_c h^2",
+      "xi (M_*)"
+     ],
+     "declared": [
+      "nu's shape",
+      "x_e = 0.4",
+      "the max rule (T5)"
+     ],
+     "tied": [
+      "a0 <-> Lambda (unimodular)"
+     ],
+     "derived": []
+    },
+    "cmb_ok": false
+   }
+  },
+  "LANE_FLAGS": {
+   "CFG4_switch": {
+    "control_failures": [],
+    "hypothesis_failures": []
+   },
+   "CFG4_clusters": {
+    "control_failures": [],
+    "hypothesis_failures": []
+   },
+   "CFG4_target": {
+    "control_failures": [],
+    "hypothesis_failures": []
+   },
+   "CFG4_galaxy_law": {
+    "control_failures": [],
+    "hypothesis_failures": []
+   },
+   "FG001": {
+    "control_failures": [],
+    "hypothesis_failures": [
+     "H2 OUTER-HALO GLOBULAR CLUSTERS: the Newtonian dynamical M/L",
+     "H4 SATELLITES: the isolated law (FG001's class A) puts the M"
+    ]
+   },
+   "FG041": {
+    "control_failures": [],
+    "hypothesis_failures": []
+   },
+   "FG004": {
+    "control_failures": [
+     "C2 CONTROL / D1: for a point mass the phantom's Jeans pressu"
+    ],
+    "hypothesis_failures": [
+     "C2 CONTROL / D1: for a point mass the phantom's Jeans pressu",
+     "H2 (pre-declared UNCERTAIN) THE INNER PHANTOM IS THE GROUND "
+    ]
+   },
+   "FG016": {
+    "control_failures": [
+     "C1 CONTROL: EdS eps = 1 -- the instantaneous outer caustic a",
+     "C4 CONTROL: CONVERGENCE -- 2x the shells and half the step m"
+    ],
+    "hypothesis_failures": [
+     "C1 CONTROL: EdS eps = 1 -- the instantaneous outer caustic a",
+     "C4 CONTROL: CONVERGENCE -- 2x the shells and half the step m",
+     "H1 [the FG016 kill test] at the law's own accretion rate the",
+     "H2 [the decisive test] KiDS with the derived profile (law in"
+    ]
+   }
+  }
+ }
+}

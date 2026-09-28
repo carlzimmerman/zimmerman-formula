@@ -1,0 +1,255 @@
+CFG7 / FG016 -- THE PHANTOM'S EDGE DERIVED AS THE SPLASHBACK (FIRST-APOCENTRE) CAUSTIC.
+
+CFG4's target law needs one declared number: where each bound system's phantom ends, x_e = r_edge / r_ta (r_ta = CFG4's
+convention: where the galaxy's UNTRUNCATED law's mean enclosed density equals the GR top-hat turnaround contrast).  Its
+window (CFG4_target VERDICT): KiDS needs x_e >= 0.30-0.31 with the unbound cold component's linear 2-halo term (A <= 2),
+>= 0.47-0.50 without; the cold budget allows x_e <= 0.56 (lenient) down to 0.24-0.28 (strict).  FG016 derives the edge:
+the phantom ends where the matter falling into the bound system first turns back -- the splashback caustic, the boundary of
+the multi-stream (phase-mixed) region.
+
+THE DERIVATION, step by step (each step computed here):
+  1  COLLAPSE.  Spherical collisionless secondary infall in flat LCDM (CFG7_common's shell code; angular momentum at turnaround
+     as XR28, jf ~ U(0.15, 0.35); power-law initial profiles, so the accretion rate s = dln M_ta/dln a is the controlled
+     variable).  The splashback radius at an epoch = the 87th percentile (SPARTA's R_sp^87) of the first apocentres that happen
+     within |dln a| <= 0.1 of it, each in units of the turnaround radius at its own time; 95th reported.  Its output:
+     x_sp(s) (dynamical units) and Delta_sp(s) = the mean enclosed density inside it / rho_m.
+     Two readings of the interior, never pooled:
+       N  the cold matter gravitates normally (collisionless profile inside the caustic);
+       G  the ground state: inside the current caustic the mass follows the law's shape M_b nu(y), normalised to the shells'
+          mass there (T5 imposed at every step; M_b inferred); inside 3% of the caustic radius a uniform-density core replaces
+          the law's point-mass limit (a numerical choice: that spike does not shape the outer caustic, but its orbits cost steps).
+  2  T5 CLOSURE.  The phantom IS the cold matter inside the edge (CFG4 T5), so the law's mean enclosed density at the edge
+     equals the collapse's Delta_sp: x_e = r(Delta_sp) / r(Delta_ta), both radii from the galaxy's own untruncated law (exact
+     P2 / nu_mono shape, both footings).
+  3  THE ACCRETION RATE IS THE LAW'S OWN.  With the edge at a fixed fraction of r_ta, the mass the law requires inside it grows
+     as M_edge(a) = M_law(x_e r_ta(M_b(a), a); M_b(a)); T5 then fixes the accretion rate: s_law = dln M_edge / dln a, given
+     the galaxy's baryonic growth beta_b = dln M_b / dln a in [0, 1] (declared bracket; an astrophysical input, not a constant).
+     No LCDM accretion statistics enter.
+  4  KiDS WITH THE DERIVED PROFILE.  The lens's mass profile is fixed with no free amplitude: the law inside the edge; beyond it
+     the collapse's own infalling matter (the simulation's profile, scaled so that its mass inside the caustic equals the law's
+     -- T5 -- and taken as the excess over the mean density).  This replaces CFG4's linear 2-halo template beyond the edge.
+  5  THE BUDGET.  Omega_ph(x_e) from CFG4_target's committed table against Omega_c (and the turned-around share).
+
+PRE-DECLARED (before this script's first full run; the exploratory smoke runs that fixed the edge definition are listed
+under HISTORY)
+  C1  CONTROL  EdS, eps = 1 (Bertschinger's point-mass seed, s = 1): the instantaneous outer caustic (the 99th-percentile radius
+      of the crossed shells) at 0.364 r_ta (the radial self-similar caustic) within 3%, and the median first apocentre within 10% (its guard printed).
+  C2  CONTROL  the GR top-hat 1 + delta_ta at z = 0 / 0.25 / 0.5 / 2 / 3 equals CFG4_switch's committed D1 table within 1%.
+  C3  CONTROL  KiDS: FP1 E's machinery (exec'd read-only, FP20's exact projector) reproduces CFG4_switch's committed isolated-law
+      chi^2 (139.800 / 133.948, P2) and its committed x-scan (the phantom cut at x r_ta, x = 0.3/0.4/0.5, with and without the
+      2-halo, canonical and alt P2) to 1e-6.
+  C4  CONTROL  CONVERGENCE: doubling the shells and halving the step moves x_sp87 and Delta_sp87 by <= 5% (s = 1, z = 0.25).
+  C5  CONTROL  GUARD: in every production run no more than 0.5% of the crossed shells sit beyond the turnaround radius.
+  H1  [the FG016 kill test, as IDEAS_100 wrote it] at the law's own accretion rate (beta_b in [0, 1]) the derived edge lies in
+      CFG4's window [0.31, 0.48] at z = 0.25, reading G, P2, both footings.
+  H2  [the decisive test] KiDS with the derived profile (the law inside the edge, the collapse's own infall outside, NO free
+      2-halo amplitude) is within d chi^2 <= +9 of the untruncated law at the law's own accretion rate, reading N, both
+      footings, P2 and nu_mono.
+  H3  the lenient budget (z = 0.25, all of Omega_c, every galaxy) holds at the derived edge on both footings; the strict and
+      satellites-merged budgets reported.
+  R1  (reported) Adhikari, Dalal & Chamberlain's fit (reproduced in XR28 K2) against Delta_sp95 at the same s and Omega_m(z).
+  R2  (reported) reading G against reading N: x_e and Delta_sp.
+MUTATE=1: the edge is put at the turnaround radius (x_e = 1): the lenient budget must fail; and C1 is re-run with the enclosed
+mass frozen at its initial Lagrangian value (no shell crossing), which must miss 0.364.  rc = 1.
+
+HISTORY (disclosed).  Scratch prototypes (not committed) fixed the engine: a physical softening swamped early gravity
+(replaced by a comoving one); the step criterion used the net force, which cancels at pericentre (replaced by the size of each
+pull); near-radial orbits (jf <= 0.12) are not resolved by this integrator (crossed shells beyond r_ta), so jf follows XR28's
+committed U(0.15, 0.35); the 99th-percentile radius of crossed shells jumped between snapshots of one run (it reads whichever
+few shells sit at apocentre), so the edge is the percentile of recent first apocentres, pooled over three seeds; the first smoke
+run of C1 showed that with angular momentum the first apocentres SPREAD around Bertschinger's radial 0.364 (median 0.339, 95th
+percentile 0.396: a non-radial orbit is shorter, so it loses less energy while the potential deepens), so C1 is stated on the
+instantaneous caustic (0.359 in that run) and the apocentre median, and C1 starts at a_i = 5e-4 for more self-similar range;
+that start made the earliest-collapsed shells orbit ~1e5 times, each resolved, so a first production run let shells past
+their 15th pericentre (settled deep in the core) stop setting the step.  THAT FIRST PRODUCTION RUN FAILED ITS GUARD: C1
+(a_i = 5e-4) ejected 25% of its crossed shells beyond r_ta and the lowest-accretion LCDM run (s = 0.6) 9.5% -- unresolved
+settled shells get kicked out.  The exclusion is therefore REMOVED everywhere (every turned shell sets the step), C1 starts
+at a_i = 0.002 as in the smoke run that reproduced Bertschinger, and the whole lane was re-run (these outputs).  The first
+run's physics numbers (the edge, KiDS, the budget) agreed with these to within the noise; its log is summarised in
+CFG7_README.  Two dry runs
+(DRY=1: 600 shells, one seed, two accretion rates; outputs *_DRY, not committed) exercised the whole pipeline before the
+production run; their numbers are not results; a constrained-
+mean initial profile was tried and dropped (it collapses almost as a top hat: caustic at 0.04 r_ta).  Smoke runs at s = 1
+(z = 0.25) gave x_sp87 = 0.33 and Delta_sp87 = 132 (dynamical), Delta_sp95 = 111 against the radial fit's 109.
+
+  *** MUTATE=1: the edge at x_e = 1 and C1 with a frozen mass profile -- both must FAIL ***
+
+======================================================================================================================
+C2  CONTROL: the GR top-hat turnaround contrast against CFG4_switch's committed D1 table
+======================================================================================================================
+    z = 0.0 : 1 + delta_ta 11.7646 (CFG4 11.8056); delta_lin,ta 1.2742 (CFG4 1.2761)
+    z = 0.25: 1 + delta_ta 8.8706 (CFG4 8.8929); delta_lin,ta 1.2059 (CFG4 1.2077)
+    z = 0.5 : 1 + delta_ta 7.5234 (CFG4 7.5369); delta_lin,ta 1.1602 (CFG4 1.1619)
+    z = 2.0 : 1 + delta_ta 5.8090 (CFG4 5.8109); delta_lin,ta 1.0788 (CFG4 1.0808)
+    z = 3.0 : 1 + delta_ta 5.6607 (CFG4 5.6615); delta_lin,ta 1.0701 (CFG4 1.0726)
+  [PASS] C2 CONTROL: the top-hat 1 + delta_ta equals CFG4_switch's D1 within 1% (z = 0, 0.25, 0.5, 2, 3)
+         max deviation 0.35%
+
+======================================================================================================================
+C3  CONTROL: KiDS-1000 isolated lenses -- FP1 E's machinery, FP20's exact projector, CFG4_switch's committed numbers
+======================================================================================================================
+    canonical P2 A <= 0: cut at x = 0.3: d chi^2 +91.0595 (CFG4 +91.0595)
+    canonical P2 A <= 0: cut at x = 0.4: d chi^2 +36.0535 (CFG4 +36.0535)
+    canonical P2 A <= 0: cut at x = 0.5: d chi^2 +0.0392 (CFG4 +0.0392)
+    canonical P2 A <= 2: cut at x = 0.3: d chi^2 +11.0422 (CFG4 +11.0422)
+    canonical P2 A <= 2: cut at x = 0.4: d chi^2 -10.7283 (CFG4 -10.7283)
+    canonical P2 A <= 2: cut at x = 0.5: d chi^2 -26.7140 (CFG4 -26.7140)
+    alt       P2 A <= 0: cut at x = 0.3: d chi^2 +89.8969 (CFG4 +89.8969)
+    alt       P2 A <= 0: cut at x = 0.4: d chi^2 +34.5076 (CFG4 +34.5076)
+    alt       P2 A <= 0: cut at x = 0.5: d chi^2 -1.1057 (CFG4 -1.1057)
+    alt       P2 A <= 2: cut at x = 0.3: d chi^2 +11.2107 (CFG4 +11.2107)
+    alt       P2 A <= 2: cut at x = 0.4: d chi^2 -10.8924 (CFG4 -10.8924)
+    alt       P2 A <= 2: cut at x = 0.5: d chi^2 -26.7687 (CFG4 -26.7687)
+    isolated-law chi^2: canonical|P2 139.8002, canonical|nu_mono 162.6053, alt|P2 133.9478, alt|nu_mono 154.7582
+  [PASS] C3 CONTROL: KiDS machinery reproduces CFG4_switch's isolated-law chi^2 and its x-scan (x = 0.3/0.4/0.5, A = 0/2, both footings) to 1e-6
+         max deviation 0.00e+00
+
+======================================================================================================================
+THE COLLAPSE RUNS (process pool)
+======================================================================================================================
+    G|alt|0.195            done (79 s): a = 0.80 s = 2.21 x_sp87 0.165 Delta_sp87 405.2 x_sp95 0.168 n_apo 552 guard 0.0000
+    G|canonical|0.195      done (84 s): a = 0.80 s = 2.21 x_sp87 0.165 Delta_sp87 406.4 x_sp95 0.168 n_apo 550 guard 0.0000
+    G|alt|0.269            done (110 s): a = 0.80 s = 1.60 x_sp87 0.221 Delta_sp87 268.5 x_sp95 0.227 n_apo 365 guard 0.0018
+    G|canonical|0.269      done (116 s): a = 0.80 s = 1.60 x_sp87 0.222 Delta_sp87 265.2 x_sp95 0.228 n_apo 367 guard 0.0018
+    G|alt|0.358            done (155 s): a = 0.80 s = 1.20 x_sp87 0.262 Delta_sp87 215.5 x_sp95 0.270 n_apo 300 guard 0.0009
+    G|canonical|0.358      done (166 s): a = 0.80 s = 1.20 x_sp87 0.267 Delta_sp87 207.3 x_sp95 0.275 n_apo 277 guard 0.0009
+    G|canonical|0.43       done (220 s): a = 0.80 s = 1.00 x_sp87 0.308 Delta_sp87 154.0 x_sp95 0.314 n_apo 241 guard 0.0000
+    G|alt|0.43             done (205 s): a = 0.80 s = 1.00 x_sp87 0.302 Delta_sp87 165.6 x_sp95 0.305 n_apo 245 guard 0.0008
+    N|0.195                done (56 s): a = 0.80 s = 2.21 x_sp87 0.175 Delta_sp87 337.2 x_sp95 0.188 n_apo 511 guard 0.0000
+    G|alt|0.5375           done (317 s): a = 0.80 s = 0.80 x_sp87 0.340 Delta_sp87 133.7 x_sp95 0.345 n_apo 206 guard 0.0000
+    G|canonical|0.5375     done (354 s): a = 0.80 s = 0.80 x_sp87 0.334 Delta_sp87 137.8 x_sp95 0.336 n_apo 216 guard 0.0000
+    N|0.269                done (99 s): a = 0.80 s = 1.60 x_sp87 0.233 Delta_sp87 236.5 x_sp95 0.243 n_apo 367 guard 0.0000
+    N|0.358                done (168 s): a = 0.80 s = 1.20 x_sp87 0.284 Delta_sp87 168.1 x_sp95 0.325 n_apo 299 guard 0.0000
+    N|0.43                 done (255 s): a = 0.80 s = 1.00 x_sp87 0.333 Delta_sp87 125.2 x_sp95 0.354 n_apo 206 guard 0.0000
+    CONV                   done (591 s): a = 0.80 s = 1.00 x_sp87 0.324 Delta_sp87 132.1 x_sp95 0.348 n_apo 310 guard 0.0000
+    G|alt|0.717            done (652 s): a = 0.80 s = 0.60 x_sp87 0.393 Delta_sp87 100.4 x_sp95 0.397 n_apo 140 guard 0.0000
+    G|canonical|0.717      done (709 s): a = 0.80 s = 0.60 x_sp87 0.387 Delta_sp87 103.5 x_sp95 0.393 n_apo 141 guard 0.0000
+    N|0.5375               done (395 s): a = 0.80 s = 0.80 x_sp87 0.366 Delta_sp87 109.3 x_sp95 0.382 n_apo 252 guard 0.0000
+    C1                     done (879 s): a = 1.00 s = 1.00 x_sp87 0.372 Delta_sp87 70.0 x_sp95 0.372 n_apo 168 guard 0.0000
+    N|0.717                done (607 s): a = 0.80 s = 0.60 x_sp87 0.419 Delta_sp87 83.8 x_sp95 0.449 n_apo 142 guard 0.0000
+    all runs done (1202 s)
+
+======================================================================================================================
+C1 / C4 / C5 / R1  the collapse engine's controls
+======================================================================================================================
+  [FAIL] C1 CONTROL: EdS eps = 1 -- the instantaneous outer caustic at 0.364 r_ta (Bertschinger's radial caustic) within 3% and the median first apocentre within 10%  [MUTATE: mass frozen]
+         x_c99 = 0.3772 (+3.6%); x_sp50 = 0.3666 (+0.7%); x_sp87 = 0.3719, x_sp95 = 0.3720; Delta_sp87 = 70.0; guard 0.0000
+  [FAIL] C4 CONTROL: CONVERGENCE -- 2x the shells and half the step move x_sp87 and Delta_sp87 by <= 5% (s = 1, z = 0.25)
+         x_sp87 0.3328 -> 0.3240 (2.6%); Delta_sp87 125.2 -> 132.1 (5.5%)
+  [PASS] C5 CONTROL: GUARD -- no more than 0.5% of the crossed shells beyond the turnaround radius in any production run
+         worst 0.0018 (G|alt|0.269)
+    eps 0.1950 a 0.8000: s = 2.21: Delta_sp95  288.0 vs ADC14 (radial toy model)  169.6 (+70%)
+    eps 0.1950 a 1.0000: s = 1.39: Delta_sp95  247.1 vs ADC14 (radial toy model)  157.1 (+57%)
+    eps 0.2690 a 0.8000: s = 1.60: Delta_sp95  210.0 vs ADC14 (radial toy model)  137.3 (+53%)
+    eps 0.2690 a 1.0000: s = 1.01: Delta_sp95  215.2 vs ADC14 (radial toy model)  135.0 (+59%)
+    eps 0.3580 a 0.8000: s = 1.20: Delta_sp95  120.5 vs ADC14 (radial toy model)  118.3 (+2%)
+    eps 0.3580 a 1.0000: s = 0.76: Delta_sp95  149.9 vs ADC14 (radial toy model)  121.3 (+24%)
+    eps 0.4300 a 0.8000: s = 1.00: Delta_sp95  106.2 vs ADC14 (radial toy model)  109.3 (-3%)
+    eps 0.4300 a 1.0000: s = 0.63: Delta_sp95  159.9 vs ADC14 (radial toy model)  114.6 (+40%)
+    eps 0.5375 a 0.8000: s = 0.80: Delta_sp95   97.2 vs ADC14 (radial toy model)  100.6 (-3%)
+    eps 0.5375 a 1.0000: s = 0.50: Delta_sp95  105.1 vs ADC14 (radial toy model)  107.9 (-3%)
+    eps 0.7170 a 0.8000: s = 0.60: Delta_sp95   69.9 vs ADC14 (radial toy model)   92.0 (-24%)
+    eps 0.7170 a 1.0000: s = 0.38: Delta_sp95   78.4 vs ADC14 (radial toy model)  101.3 (-23%)
+  [FAIL] (reported) R1 (reported) Adhikari, Dalal & Chamberlain's radial toy-model fit against Delta_sp95 within 20%
+         worst 70%
+
+======================================================================================================================
+THE COLLAPSE TABLE: splashback in dynamical units and its mean enclosed density, by accretion rate, epoch and reading
+======================================================================================================================
+    N            z = 0.25: s 0.60: x87 0.419 D87 84; s 0.80: x87 0.366 D87 109; s 1.00: x87 0.333 D87 125; s 1.20: x87 0.284 D87 168; s 1.60: x87 0.233 D87 237; s 2.21: x87 0.175 D87 337
+    N            z = 0.00: s 0.38: x87 0.459 D87 92; s 0.50: x87 0.408 D87 112; s 0.63: x87 0.343 D87 168; s 0.76: x87 0.332 D87 166; s 1.01: x87 0.268 D87 254; s 1.39: x87 0.224 D87 297
+    G|canonical  z = 0.25: s 0.60: x87 0.387 D87 104; s 0.80: x87 0.334 D87 138; s 1.00: x87 0.308 D87 154; s 1.20: x87 0.267 D87 207; s 1.60: x87 0.222 D87 265; s 2.21: x87 0.165 D87 406
+    G|canonical  z = 0.00: s 0.38: x87 0.414 D87 120; s 0.50: x87 0.347 D87 182; s 0.63: x87 0.326 D87 196; s 0.76: x87 0.305 D87 212; s 1.01: x87 0.252 D87 300; s 1.39: x87 0.188 D87 487
+    G|alt        z = 0.25: s 0.60: x87 0.393 D87 100; s 0.80: x87 0.340 D87 134; s 1.00: x87 0.302 D87 166; s 1.20: x87 0.262 D87 216; s 1.60: x87 0.221 D87 269; s 2.21: x87 0.165 D87 405
+    G|alt        z = 0.00: s 0.38: x87 0.422 D87 117; s 0.50: x87 0.352 D87 174; s 0.63: x87 0.338 D87 176; s 0.76: x87 0.300 D87 220; s 1.01: x87 0.250 D87 309; s 1.39: x87 0.189 D87 478
+
+======================================================================================================================
+THE LAW'S OWN ACCRETION RATE (T5) AND THE DERIVED EDGE x_e (CFG4's units)
+======================================================================================================================
+    the KiDS lenses' profiled log M_b (P2, canonical): [10.4, 10.9, 11.05, 11.25]; median 10.975
+    N            canonical P2      z = 0.25 beta_b = 0.0: s_law = 0.97, Delta_sp87 = 123 -> x_e = 0.269 (95th: 0.291); over log M_b 9-11.5: 0.269/0.269/0.269/0.269
+    N            canonical P2      z = 0.25 beta_b = 0.5: s_law = 1.34, Delta_sp87 = 190 -> x_e = 0.216 (95th: 0.246); over log M_b 9-11.5: 0.216/0.216/0.216/0.216
+    N            canonical P2      z = 0.25 beta_b = 1.0: s_law = 1.72, Delta_sp87 = 253 -> x_e = 0.187 (95th: 0.199); over log M_b 9-11.5: 0.187/0.187/0.187/0.187
+    N            canonical P2      z = 0.00 beta_b = 0.0: s_law = 0.76, Delta_sp87 = 168 -> x_e = 0.265 (95th: 0.279); over log M_b 9-11.5: 0.265/0.265/0.265/0.265
+    N            canonical P2      z = 0.00 beta_b = 0.5: s_law = 1.14, Delta_sp87 = 268 -> x_e = 0.210 (95th: 0.228); over log M_b 9-11.5: 0.210/0.210/0.210/0.210
+    N            canonical P2      z = 0.00 beta_b = 1.0: s_law = 1.51, Delta_sp87 = 297 -> x_e = 0.199 (95th: 0.218); over log M_b 9-11.5: 0.199/0.199/0.199/0.199
+    N            alt       P2      z = 0.25 beta_b = 0.0: s_law = 0.97, Delta_sp87 = 123 -> x_e = 0.269 (95th: 0.291); over log M_b 9-11.5: 0.269/0.269/0.269/0.269
+    N            alt       P2      z = 0.25 beta_b = 0.5: s_law = 1.34, Delta_sp87 = 190 -> x_e = 0.216 (95th: 0.246); over log M_b 9-11.5: 0.216/0.216/0.216/0.216
+    N            alt       P2      z = 0.25 beta_b = 1.0: s_law = 1.72, Delta_sp87 = 253 -> x_e = 0.187 (95th: 0.199); over log M_b 9-11.5: 0.187/0.187/0.187/0.187
+    N            alt       P2      z = 0.00 beta_b = 0.0: s_law = 0.76, Delta_sp87 = 168 -> x_e = 0.265 (95th: 0.279); over log M_b 9-11.5: 0.265/0.265/0.265/0.265
+    N            alt       P2      z = 0.00 beta_b = 0.5: s_law = 1.14, Delta_sp87 = 268 -> x_e = 0.210 (95th: 0.228); over log M_b 9-11.5: 0.210/0.210/0.210/0.210
+    N            alt       P2      z = 0.00 beta_b = 1.0: s_law = 1.51, Delta_sp87 = 297 -> x_e = 0.199 (95th: 0.218); over log M_b 9-11.5: 0.199/0.199/0.199/0.199
+    G|canonical  canonical P2      z = 0.25 beta_b = 0.0: s_law = 0.97, Delta_sp87 = 151 -> x_e = 0.242 (95th: 0.245); over log M_b 9-11.5: 0.242/0.242/0.242/0.242
+    G|canonical  canonical P2      z = 0.25 beta_b = 0.5: s_law = 1.34, Delta_sp87 = 226 -> x_e = 0.198 (95th: 0.205); over log M_b 9-11.5: 0.198/0.198/0.198/0.198
+    G|canonical  canonical P2      z = 0.25 beta_b = 1.0: s_law = 1.72, Delta_sp87 = 288 -> x_e = 0.176 (95th: 0.180); over log M_b 9-11.5: 0.175/0.176/0.176/0.176
+    G|canonical  canonical P2      z = 0.00 beta_b = 0.0: s_law = 0.76, Delta_sp87 = 214 -> x_e = 0.235 (95th: 0.240); over log M_b 9-11.5: 0.235/0.235/0.235/0.235
+    G|canonical  canonical P2      z = 0.00 beta_b = 0.5: s_law = 1.14, Delta_sp87 = 354 -> x_e = 0.182 (95th: 0.191); over log M_b 9-11.5: 0.182/0.182/0.182/0.182
+    G|canonical  canonical P2      z = 0.00 beta_b = 1.0: s_law = 1.51, Delta_sp87 = 487 -> x_e = 0.155 (95th: 0.163); over log M_b 9-11.5: 0.155/0.155/0.155/0.155
+    G|alt        alt       P2      z = 0.25 beta_b = 0.0: s_law = 0.97, Delta_sp87 = 160 -> x_e = 0.235 (95th: 0.239); over log M_b 9-11.5: 0.235/0.235/0.235/0.236
+    G|alt        alt       P2      z = 0.25 beta_b = 0.5: s_law = 1.34, Delta_sp87 = 233 -> x_e = 0.195 (95th: 0.202); over log M_b 9-11.5: 0.195/0.195/0.195/0.195
+    G|alt        alt       P2      z = 0.25 beta_b = 1.0: s_law = 1.72, Delta_sp87 = 291 -> x_e = 0.175 (95th: 0.180); over log M_b 9-11.5: 0.175/0.175/0.175/0.175
+    G|alt        alt       P2      z = 0.00 beta_b = 0.0: s_law = 0.76, Delta_sp87 = 222 -> x_e = 0.230 (95th: 0.235); over log M_b 9-11.5: 0.230/0.230/0.230/0.230
+    G|alt        alt       P2      z = 0.00 beta_b = 0.5: s_law = 1.14, Delta_sp87 = 358 -> x_e = 0.181 (95th: 0.191); over log M_b 9-11.5: 0.181/0.181/0.181/0.181
+    G|alt        alt       P2      z = 0.00 beta_b = 1.0: s_law = 1.51, Delta_sp87 = 478 -> x_e = 0.157 (95th: 0.164); over log M_b 9-11.5: 0.157/0.157/0.157/0.157
+
+======================================================================================================================
+H1  THE FG016 KILL TEST AS WRITTEN: x_e in [0.31, 0.48] at z = 0.25 (reading G, P2, beta_b in [0, 1])
+======================================================================================================================
+  [FAIL] H1 [the FG016 kill test] at the law's own accretion rate the derived edge lies in CFG4's window [0.31, 0.48] at z = 0.25 (reading G, P2, both footings, beta_b = 0, 0.5, 1)
+         can b0.0: 0.242; can b0.5: 0.198; can b1.0: 0.176; alt b0.0: 0.235; alt b0.5: 0.195; alt b1.0: 0.175
+
+======================================================================================================================
+H2  KiDS WITH THE DERIVED PROFILE: the law inside the edge, the collapse's own infall outside, no free 2-halo amplitude
+======================================================================================================================
+    reading N canonical P2     : d chi^2 (A = 0 / A <= 2) at s = 2.21: +83.8 / +61.0; 1.60: +84.8 / +49.0; 1.20: +66.5 / +29.1; 1.00: +51.1 / +15.3; 0.80: +51.9 / +10.1; 0.60: +40.8 / -0.0
+    reading N canonical nu_mono: d chi^2 (A = 0 / A <= 2) at s = 2.21: +93.0 / +64.1; 1.60: +95.0 / +50.4; 1.20: +79.4 / +31.2; 1.00: +62.2 / +15.4; 0.80: +62.0 / +11.4; 0.60: +50.9 / -1.5
+    reading G canonical P2     : d chi^2 (A = 0) at s = 2.21: +108.6; 1.60: +92.6; 1.20: +86.5; 1.00: +72.0; 0.80: +71.1; 0.60: +56.3
+    reading N alt       P2     : d chi^2 (A = 0 / A <= 2) at s = 2.21: +84.6 / +60.8; 1.60: +81.9 / +49.1; 1.20: +65.4 / +29.5; 1.00: +50.1 / +15.2; 0.80: +49.4 / +10.3; 0.60: +38.4 / +0.4
+    reading N alt       nu_mono: d chi^2 (A = 0 / A <= 2) at s = 2.21: +91.0 / +64.6; 1.60: +91.5 / +51.0; 1.20: +74.1 / +30.7; 1.00: +58.8 / +16.4; 0.80: +58.3 / +11.2; 0.60: +48.1 / -1.0
+    reading G alt       P2     : d chi^2 (A = 0) at s = 2.21: +103.7; 1.60: +92.1; 1.20: +86.9; 1.00: +75.9; 0.80: +67.0; 0.60: +52.8
+    at the law's own accretion rate (canonical, P2, beta_b = 0.0): s = 0.97 -> d chi^2 +51.3 (no 2-halo) / +14.4 (A <= 2)
+    at the law's own accretion rate (canonical, P2, beta_b = 0.5): s = 1.34 -> d chi^2 +73.0 (no 2-halo) / +36.2 (A <= 2)
+    at the law's own accretion rate (canonical, P2, beta_b = 1.0): s = 1.72 -> d chi^2 +84.6 (no 2-halo) / +51.4 (A <= 2)
+    at the law's own accretion rate (canonical, nu_mono, beta_b = 0.0): s = 0.96 -> d chi^2 +62.1 (no 2-halo) / +14.5 (A <= 2)
+    at the law's own accretion rate (canonical, nu_mono, beta_b = 0.5): s = 1.33 -> d chi^2 +84.4 (no 2-halo) / +37.3 (A <= 2)
+    at the law's own accretion rate (canonical, nu_mono, beta_b = 1.0): s = 1.70 -> d chi^2 +94.7 (no 2-halo) / +52.8 (A <= 2)
+    at the law's own accretion rate (alt, P2, beta_b = 0.0): s = 0.97 -> d chi^2 +50.0 (no 2-halo) / +14.5 (A <= 2)
+    at the law's own accretion rate (alt, P2, beta_b = 0.5): s = 1.34 -> d chi^2 +71.2 (no 2-halo) / +36.5 (A <= 2)
+    at the law's own accretion rate (alt, P2, beta_b = 1.0): s = 1.72 -> d chi^2 +82.4 (no 2-halo) / +51.4 (A <= 2)
+    at the law's own accretion rate (alt, nu_mono, beta_b = 0.0): s = 0.96 -> d chi^2 +58.7 (no 2-halo) / +15.3 (A <= 2)
+    at the law's own accretion rate (alt, nu_mono, beta_b = 0.5): s = 1.33 -> d chi^2 +79.7 (no 2-halo) / +37.3 (A <= 2)
+    at the law's own accretion rate (alt, nu_mono, beta_b = 1.0): s = 1.71 -> d chi^2 +91.4 (no 2-halo) / +53.4 (A <= 2)
+  [FAIL] H2 [the decisive test] KiDS with the derived profile (law inside the edge, the collapse's infall outside, no free 2-halo) is within d chi^2 <= +9 of the untruncated law at the law's own accretion rate (reading N, both footings, P2 and nu_mono, beta_b = 0, 0.5, 1)
+         can/P2/b0.0: s 0.97 d +51.3; can/P2/b0.5: s 1.34 d +73.0; can/P2/b1.0: s 1.72 d +84.6; can/nu_mono/b0.0: s 0.96 d +62.1; can/nu_mono/b0.5: s 1.33 d +84.4; can/nu_mono/b1.0: s 1.70 d +94.7; alt/P2/b0.0: s 0.97 d +50.0; alt/P2/b0.5: s 1.34 d +71.2; alt/P2/b1.0: s 1.72 d +82.4; alt/nu_mono/b0.0: s 0.96 d +58.7; alt/nu_mono/b0.5: s 1.33 d +79.7; alt/nu_mono/b1.0: s 1.71 d +91.4
+
+======================================================================================================================
+H3  THE COLD BUDGET at the derived edge (CFG4_target's committed Omega_ph(x) table)
+======================================================================================================================
+    canonical P2     : [lenient] x_e 1.000: Omega_ph 0.474 vs 0.265 OVER; [z = 0, all of Omega_c] x_e 1.000: Omega_ph 0.576 vs 0.265 OVER; [z = 0.25, turned-around share] x_e 1.000: Omega_ph 0.474 vs 0.159 OVER; [strict] x_e 1.000: Omega_ph 0.576 vs 0.159 OVER; [satellites merged (M_* >= 1e9), z = 0, turned-around share] x_e 1.000: Omega_ph 0.435 vs 0.159 OVER
+    canonical nu_mono: [lenient] x_e 1.000: Omega_ph 0.476 vs 0.265 OVER; [z = 0, all of Omega_c] x_e 1.000: Omega_ph 0.577 vs 0.265 OVER; [z = 0.25, turned-around share] x_e 1.000: Omega_ph 0.476 vs 0.159 OVER; [strict] x_e 1.000: Omega_ph 0.577 vs 0.159 OVER; [satellites merged (M_* >= 1e9), z = 0, turned-around share] x_e 1.000: Omega_ph 0.437 vs 0.159 OVER
+    alt       P2     : [lenient] x_e 1.000: Omega_ph 0.547 vs 0.265 OVER; [z = 0, all of Omega_c] x_e 1.000: Omega_ph 0.664 vs 0.265 OVER; [z = 0.25, turned-around share] x_e 1.000: Omega_ph 0.547 vs 0.159 OVER; [strict] x_e 1.000: Omega_ph 0.664 vs 0.159 OVER; [satellites merged (M_* >= 1e9), z = 0, turned-around share] x_e 1.000: Omega_ph 0.502 vs 0.159 OVER
+    alt       nu_mono: [lenient] x_e 1.000: Omega_ph 0.549 vs 0.265 OVER; [z = 0, all of Omega_c] x_e 1.000: Omega_ph 0.666 vs 0.265 OVER; [z = 0.25, turned-around share] x_e 1.000: Omega_ph 0.549 vs 0.159 OVER; [strict] x_e 1.000: Omega_ph 0.666 vs 0.159 OVER; [satellites merged (M_* >= 1e9), z = 0, turned-around share] x_e 1.000: Omega_ph 0.504 vs 0.159 OVER
+  [FAIL] H3 THE LENIENT BUDGET holds at the derived edge (z = 0.25, all of Omega_c, every galaxy; both footings, both kernels, beta_b = 0, 0.5, 1)  [MUTATE: x_e = 1]
+         can/P2/b0.5: x_e 1.000 Omega_ph 0.474 <= 0.265; can/nu_mono/b0.5: x_e 1.000 Omega_ph 0.476 <= 0.265; alt/P2/b0.5: x_e 1.000 Omega_ph 0.547 <= 0.265; alt/nu_mono/b0.5: x_e 1.000 Omega_ph 0.549 <= 0.265
+    (reported) z = 0, all of Omega_c: fails -- can/P2/b0.5 0.576/0.265, can/nu_mono/b0.5 0.577/0.265, alt/P2/b0.5 0.664/0.265, alt/nu_mono/b0.5 0.666/0.265
+    (reported) z = 0.25, turned-around share: fails -- can/P2/b0.5 0.474/0.159, can/nu_mono/b0.5 0.476/0.159, alt/P2/b0.5 0.547/0.159, alt/nu_mono/b0.5 0.549/0.159
+    (reported) strict: z = 0, turned-around share: fails -- can/P2/b0.5 0.576/0.159, can/nu_mono/b0.5 0.577/0.159, alt/P2/b0.5 0.664/0.159, alt/nu_mono/b0.5 0.666/0.159
+    (reported) satellites merged (M_* >= 1e9), z = 0, turned-around share: fails -- can/P2/b0.5 0.435/0.159, can/nu_mono/b0.5 0.437/0.159, alt/P2/b0.5 0.502/0.159, alt/nu_mono/b0.5 0.504/0.159
+
+======================================================================================================================
+R2  (reported) READING G AGAINST READING N
+======================================================================================================================
+    canonical beta_b 0.0: N: s 0.97 Delta 123 x_e 0.269 | G: s 0.97 Delta 151 x_e 0.242
+    canonical beta_b 0.5: N: s 1.34 Delta 190 x_e 0.216 | G: s 1.34 Delta 226 x_e 0.198
+    canonical beta_b 1.0: N: s 1.72 Delta 253 x_e 0.187 | G: s 1.72 Delta 288 x_e 0.176
+    alt       beta_b 0.0: N: s 0.97 Delta 123 x_e 0.269 | G: s 0.97 Delta 160 x_e 0.235
+    alt       beta_b 0.5: N: s 1.34 Delta 190 x_e 0.216 | G: s 1.34 Delta 233 x_e 0.195
+    alt       beta_b 1.0: N: s 1.72 Delta 253 x_e 0.187 | G: s 1.72 Delta 291 x_e 0.175
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    The edge derived from collapse at the law's own accretion rate: x_e = 0.175-0.242 (reading G), 0.187-0.269 (reading N) of CFG4's r_ta at z = 0.25 -- against CFG4's window [0.31, 0.48].
+    KiDS with the derived profile (no free 2-halo): d chi^2 +50.0 to +94.7; with A <= 2 +14.4 to +53.4.
+
+  3/9 checks pass; load-bearing failures: 5   (1206 s)

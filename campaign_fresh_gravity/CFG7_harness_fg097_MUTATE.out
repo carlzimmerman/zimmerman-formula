@@ -1,0 +1,425 @@
+CFG7 / FG097 -- THE ONE-COMMAND GATE HARNESS.  A candidate law is a small spec; the harness scores it on every committed gate
+the campaign has, in one run, prints the constant ledger (fitted / declared / tied / derived, CFG0's convention), and hashes
+the spec with its predictions (FG098's blind registration) so that choices made after scoring are visible.
+
+GATES (each from committed machinery; recomputed where it is cheap, read from committed results otherwise -- a read result must
+come from a lane with 0 load-bearing failures in its OWN controls, or the gate reports that it rests on a failed lane):
+  SPARC       the RAR statistic at the committed Upsilon (recomputed; CFG4_galaxy_law's convention)          rms <= 0.110 dex
+  KiDS        the isolated lenses, FP1 E + FP20's exact projector (recomputed): the phantom cut at the candidate's edge x_e
+              (declared) with the 2-halo template A <= 2; or, for a derived edge, FG016's derived-profile result  d chi^2 <= +9
+  BUDGET      Omega_ph(x_e) against Omega_c -- lenient and strict (CFG4_target's committed table)          lenient must hold
+  CMB/FOREST  bound-only switch: CFG4_switch H4 (amplitude, forest); a law acting in the web: its no-switch amplitude
+  X-COP       T5's identity reading (CFG4_clusters, committed)                                              within 20%
+  BULLET      collisionless mass on the galaxies > 2x the aperture baryons (CFG4_clusters, committed)
+  CASSINI     with no screening constant: hierarchical ownership (FG001 H1) passes; otherwise the declared xi
+  POPULATIONS FG001's scorecard G2-G14 for the candidate's ownership rule (committed; FG001 reproduces h43/f13/XR27 exactly)
+  TDG         FG041's Newtonian kill test (committed)
+  OPEN        FG004: whether T5 is the relaxed state -- reported as an open requirement, not a gate
+
+CANDIDATES SCORED IN THIS RUN
+  A  CFG4's target law as committed: nu_mono/P2, bound-only switch with M_* (xi), declared edge x_e = 0.4, max rule (T5)
+  B  A with FG001's hierarchical ownership (xi retired; satellites keep their infall cold component; embedded-born Newtonian)
+  C  B with FG016's derived edge (x_e from collapse at the law's own accretion rate; KiDS from the derived profile)
+  D  the rival reading: the law on every system's own baryons with its host's external field, the switch and T5 as A
+  F  the HYBRID FG016 points to: T5 inside the splashback (the relaxed cold component, FG004's outer result) and the law acting
+     as a FIELD between the splashback and the turnaround radius (CFG4's own switch region, so no edge knob); only the cold
+     matter inside the splashback counts against Omega_c; CMB lensing scored on CFG4's conservative added-phantom leak
+
+PRE-DECLARED (before this script's first run)
+  K1  CONTROL  the harness's SPARC and KiDS recomputations reproduce CFG4's committed numbers (rms to 1e-6 dex; isolated-law
+      chi^2 139.800 / 133.948 and the x = 0.4, A <= 2 cut to 1e-6).
+  K2  CONTROL  every committed lane the harness reads has 0 load-bearing failures in its controls, or is flagged.
+  H1  the harness separates the candidates: B passes strictly more gates than A and than D (the ownership rule's gain).
+  H2  (reported) C's standing is printed with its derived edge -- it passes or fails on FG016's numbers, whichever they are.
+  H3  (reported) the hybrid F's standing and the gates it fails (F was added after FG016's dry runs, before this script's
+      first run).
+MUTATE=1: a fifth candidate -- A without the switch (the law acting in the linear web) -- is added and the harness must flag its
+CMB-lensing failure; the MUTATE control check requires the harness to call that candidate a pass, so it must FAIL (rc = 1).
+
+======================================================================================================================
+K2  CONTROL: the committed lanes the harness reads, and their own control status
+======================================================================================================================
+    CFG4_switch     : 13/13 checks; control failures 0; failed hypotheses 0
+    CFG4_clusters   : 7/7 checks; control failures 0; failed hypotheses 0
+    CFG4_target     : 6/6 checks; control failures 0; failed hypotheses 0
+    CFG4_galaxy_law : 7/9 checks; control failures 0; failed hypotheses 0
+    FG001           : 10/13 checks; control failures 0; failed hypotheses 2 (H2 OUTER-HALO GLOBULAR CLUSTERS: the Newtonian dynamical M/L; H4 SATELLITES: the isolated law (FG001's class A) puts the M)
+    FG041           : 5/5 checks; control failures 0; failed hypotheses 0
+    FG004           : 4/7 checks; control failures 1; failed hypotheses 2 (C2 CONTROL / D1: for a point mass the phantom's Jeans pressu; H2 (pre-declared UNCERTAIN) THE INNER PHANTOM IS THE GROUND )
+    FG016           : 4/9 checks; control failures 2; failed hypotheses 4 (C1 CONTROL: EdS eps = 1 -- the instantaneous outer caustic a; C4 CONTROL: CONVERGENCE -- 2x the shells and half the step m; H1 [the FG016 kill test] at the law's own accretion rate the; H2 [the decisive test] KiDS with the derived profile (law in)
+  [FAIL] K2 CONTROL: every lane the harness reads passes its own controls (failed HYPOTHESES are data, failed CONTROLS are flagged)
+         flagged: FG004: ["C2 CONTROL / D1: for a point mass the phantom's Jeans pressu"]; FG016: ['C1 CONTROL: EdS eps = 1 -- the instantaneous outer caustic a', 'C4 CONTROL: CONVERGENCE -- 2x the shells and half the step m']
+
+======================================================================================================================
+K1  CONTROL: the harness's own SPARC and KiDS recomputations against CFG4's committed numbers
+======================================================================================================================
+  [PASS] K1 CONTROL: SPARC rms (to 1e-6 dex) and KiDS (isolated law, and the x = 0.4, A <= 2 cut, to 1e-6) reproduced
+         SPARC 3.0e-07; KiDS base 0.0e+00; KiDS x = 0.4 cut 0.0e+00
+
+======================================================================================================================
+CANDIDATE A  CFG4 target (as committed)
+======================================================================================================================
+    PASS  SPARC                                      canonical P2      rms 0.1083 dex (Upsilon 0.70)
+    PASS  KiDS                                       canonical P2      cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)
+    PASS  BUDGET lenient                             canonical P2      x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical P2      x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159
+    PASS  SPARC                                      canonical nu_mono rms 0.1003 dex (Upsilon 0.61)
+    PASS  KiDS                                       canonical nu_mono cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)
+    PASS  BUDGET lenient                             canonical nu_mono x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical nu_mono x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159
+    PASS  CMB lensing                                canonical -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     canonical -       deviation 0.00
+    PASS  X-COP (T5)                                 canonical -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     canonical -       main 4.6x, sub 4.9x
+    FAIL  Cassini (no constant)                      canonical -       passes only with the declared xi (M_* window)
+    PASS  pop: outer-halo globular clusters (M/L_V)  canonical -       0.00 sigma (FG001's scorecard, rival)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    canonical -       0.86 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW classical dSphs                    canonical -       3.53 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (LVD)                      canonical -       5.96 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (Collins+13)               canonical -       5.80 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW ultra-faints                       canonical -       13.19 sigma (FG001's scorecard, rival)
+    FAIL  pop: LV dwarfs' host statistic             canonical -       3.92 sigma (FG001's scorecard, rival)
+    FAIL  pop: cluster-infall BTFR slope             canonical -       2.35 sigma (FG001's scorecard, rival)
+    PASS  pop: cluster-infall BTFR zero point        canonical -       0.77 sigma (FG001's scorecard, rival)
+    FAIL  pop: NGC 1052-DF2                          canonical -       2.95 sigma (FG001's scorecard, rival)
+    PASS  pop: NGC 1052-DF4                          canonical -       1.45 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D1 (143 galaxies)                canonical -       0.76 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D2 (90 galaxies)                 canonical -       0.00 sigma (FG001's scorecard, rival)
+    PASS  SPARC                                      alt       P2      rms 0.1035 dex (Upsilon 0.65)
+    PASS  KiDS                                       alt       P2      cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)
+    PASS  BUDGET lenient                             alt       P2      x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       P2      x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159
+    PASS  SPARC                                      alt       nu_mono rms 0.0991 dex (Upsilon 0.57)
+    PASS  KiDS                                       alt       nu_mono cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)
+    PASS  BUDGET lenient                             alt       nu_mono x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       nu_mono x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159
+    PASS  CMB lensing                                alt       -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     alt       -       deviation 0.00
+    PASS  X-COP (T5)                                 alt       -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     alt       -       main 4.6x, sub 4.9x
+    FAIL  Cassini (no constant)                      alt       -       passes only with the declared xi (M_* window)
+    PASS  pop: outer-halo globular clusters (M/L_V)  alt       -       0.11 sigma (FG001's scorecard, rival)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    alt       -       1.24 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW classical dSphs                    alt       -       3.34 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (LVD)                      alt       -       5.70 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (Collins+13)               alt       -       5.58 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW ultra-faints                       alt       -       12.82 sigma (FG001's scorecard, rival)
+    FAIL  pop: LV dwarfs' host statistic             alt       -       3.96 sigma (FG001's scorecard, rival)
+    FAIL  pop: cluster-infall BTFR slope             alt       -       2.38 sigma (FG001's scorecard, rival)
+    PASS  pop: cluster-infall BTFR zero point        alt       -       0.79 sigma (FG001's scorecard, rival)
+    FAIL  pop: NGC 1052-DF2                          alt       -       3.12 sigma (FG001's scorecard, rival)
+    PASS  pop: NGC 1052-DF4                          alt       -       1.49 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D1 (143 galaxies)                alt       -       0.76 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D2 (90 galaxies)                 alt       -       0.00 sigma (FG001's scorecard, rival)
+    LEDGER: fitted 3 (kappa, Omega_c h^2, xi (M_*)); declared 4; tied 1; derived 0 (-)
+    passes 32/48 scored gates; registration hash 636ad290a4916988
+
+======================================================================================================================
+CANDIDATE B  A + FG001 (hierarchical ownership)
+======================================================================================================================
+    PASS  SPARC                                      canonical P2      rms 0.1083 dex (Upsilon 0.70)
+    PASS  KiDS                                       canonical P2      cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)
+    PASS  BUDGET lenient                             canonical P2      x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical P2      x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159
+    PASS  SPARC                                      canonical nu_mono rms 0.1003 dex (Upsilon 0.61)
+    PASS  KiDS                                       canonical nu_mono cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)
+    PASS  BUDGET lenient                             canonical nu_mono x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical nu_mono x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159
+    PASS  CMB lensing                                canonical -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     canonical -       deviation 0.00
+    PASS  X-COP (T5)                                 canonical -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     canonical -       main 4.6x, sub 4.9x
+    PASS  Cassini (no constant)                      canonical -       the Sun owns no phantom (FG001 H1: margin >= 2e4)
+    PASS  pop: outer-halo globular clusters (M/L_V)  canonical -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    canonical -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: MW classical dSphs                    canonical -       1.06 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (LVD)                      canonical -       2.60 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (Collins+13)               canonical -       2.54 sigma (FG001's scorecard, fg001)
+    FAIL  pop: MW ultra-faints                       canonical -       7.97 sigma (FG001's scorecard, fg001)
+    PASS  pop: LV dwarfs' host statistic             canonical -       1.71 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR slope             canonical -       0.11 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR zero point        canonical -       1.30 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF2                          canonical -       0.01 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF4                          canonical -       0.78 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D1 (143 galaxies)                canonical -       4.08 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D2 (90 galaxies)                 canonical -       4.29 sigma (FG001's scorecard, fg001)
+    PASS  SPARC                                      alt       P2      rms 0.1035 dex (Upsilon 0.65)
+    PASS  KiDS                                       alt       P2      cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)
+    PASS  BUDGET lenient                             alt       P2      x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       P2      x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159
+    PASS  SPARC                                      alt       nu_mono rms 0.0991 dex (Upsilon 0.57)
+    PASS  KiDS                                       alt       nu_mono cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)
+    PASS  BUDGET lenient                             alt       nu_mono x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       nu_mono x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159
+    PASS  CMB lensing                                alt       -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     alt       -       deviation 0.00
+    PASS  X-COP (T5)                                 alt       -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     alt       -       main 4.6x, sub 4.9x
+    PASS  Cassini (no constant)                      alt       -       the Sun owns no phantom (FG001 H1: margin >= 2e4)
+    PASS  pop: outer-halo globular clusters (M/L_V)  alt       -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    alt       -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: MW classical dSphs                    alt       -       0.74 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (LVD)                      alt       -       2.16 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (Collins+13)               alt       -       2.32 sigma (FG001's scorecard, fg001)
+    FAIL  pop: MW ultra-faints                       alt       -       7.52 sigma (FG001's scorecard, fg001)
+    PASS  pop: LV dwarfs' host statistic             alt       -       1.71 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR slope             alt       -       0.11 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR zero point        alt       -       1.30 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF2                          alt       -       0.01 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF4                          alt       -       0.78 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D1 (143 galaxies)                alt       -       4.08 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D2 (90 galaxies)                 alt       -       4.29 sigma (FG001's scorecard, fg001)
+    LEDGER: fitted 2 (kappa, Omega_c h^2); declared 5; tied 1; derived 1 (Solar-System screening (no xi))
+    passes 38/48 scored gates; registration hash 142b94b20eb72b0c
+
+======================================================================================================================
+CANDIDATE C  B + FG016 (derived edge)
+======================================================================================================================
+    PASS  SPARC                                      canonical P2      rms 0.1083 dex (Upsilon 0.70)
+    FAIL  KiDS                                       canonical P2      derived profile, no 2-halo: d chi^2 +51.3 to +84.6
+    PASS  BUDGET lenient                             canonical P2      x_e 0.216: Omega_ph 0.101 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   canonical P2      x_e(z=0) 0.210: Omega_ph 0.119 vs 0.159
+    PASS  SPARC                                      canonical nu_mono rms 0.1003 dex (Upsilon 0.61)
+    FAIL  KiDS                                       canonical nu_mono derived profile, no 2-halo: d chi^2 +62.1 to +94.7
+    PASS  BUDGET lenient                             canonical nu_mono x_e 0.219: Omega_ph 0.103 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   canonical nu_mono x_e(z=0) 0.211: Omega_ph 0.121 vs 0.159
+    PASS  CMB lensing                                canonical -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     canonical -       deviation 0.00
+    PASS  X-COP (T5)                                 canonical -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     canonical -       main 4.6x, sub 4.9x
+    PASS  Cassini (no constant)                      canonical -       the Sun owns no phantom (FG001 H1: margin >= 2e4)
+    PASS  pop: outer-halo globular clusters (M/L_V)  canonical -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    canonical -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: MW classical dSphs                    canonical -       1.06 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (LVD)                      canonical -       2.60 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (Collins+13)               canonical -       2.54 sigma (FG001's scorecard, fg001)
+    FAIL  pop: MW ultra-faints                       canonical -       7.97 sigma (FG001's scorecard, fg001)
+    PASS  pop: LV dwarfs' host statistic             canonical -       1.71 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR slope             canonical -       0.11 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR zero point        canonical -       1.30 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF2                          canonical -       0.01 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF4                          canonical -       0.78 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D1 (143 galaxies)                canonical -       4.08 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D2 (90 galaxies)                 canonical -       4.29 sigma (FG001's scorecard, fg001)
+    PASS  SPARC                                      alt       P2      rms 0.1035 dex (Upsilon 0.65)
+    FAIL  KiDS                                       alt       P2      derived profile, no 2-halo: d chi^2 +50.0 to +82.4
+    PASS  BUDGET lenient                             alt       P2      x_e 0.216: Omega_ph 0.116 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   alt       P2      x_e(z=0) 0.210: Omega_ph 0.137 vs 0.159
+    PASS  SPARC                                      alt       nu_mono rms 0.0991 dex (Upsilon 0.57)
+    FAIL  KiDS                                       alt       nu_mono derived profile, no 2-halo: d chi^2 +58.7 to +91.4
+    PASS  BUDGET lenient                             alt       nu_mono x_e 0.219: Omega_ph 0.119 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   alt       nu_mono x_e(z=0) 0.211: Omega_ph 0.140 vs 0.159
+    PASS  CMB lensing                                alt       -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     alt       -       deviation 0.00
+    PASS  X-COP (T5)                                 alt       -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     alt       -       main 4.6x, sub 4.9x
+    PASS  Cassini (no constant)                      alt       -       the Sun owns no phantom (FG001 H1: margin >= 2e4)
+    PASS  pop: outer-halo globular clusters (M/L_V)  alt       -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    alt       -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: MW classical dSphs                    alt       -       0.74 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (LVD)                      alt       -       2.16 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (Collins+13)               alt       -       2.32 sigma (FG001's scorecard, fg001)
+    FAIL  pop: MW ultra-faints                       alt       -       7.52 sigma (FG001's scorecard, fg001)
+    PASS  pop: LV dwarfs' host statistic             alt       -       1.71 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR slope             alt       -       0.11 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR zero point        alt       -       1.30 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF2                          alt       -       0.01 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF4                          alt       -       0.78 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D1 (143 galaxies)                alt       -       4.08 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D2 (90 galaxies)                 alt       -       4.29 sigma (FG001's scorecard, fg001)
+    LEDGER: fitted 2 (kappa, Omega_c h^2); declared 6; tied 1; derived 2 (Solar-System screening (no xi), x_e (from collapse + T5))
+    passes 34/48 scored gates; registration hash 9110f4a4841e83e0
+
+======================================================================================================================
+CANDIDATE D  rival: law on every system with the external field
+======================================================================================================================
+    PASS  SPARC                                      canonical P2      rms 0.1083 dex (Upsilon 0.70)
+    PASS  KiDS                                       canonical P2      cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)
+    PASS  BUDGET lenient                             canonical P2      x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical P2      x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159
+    PASS  SPARC                                      canonical nu_mono rms 0.1003 dex (Upsilon 0.61)
+    PASS  KiDS                                       canonical nu_mono cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)
+    PASS  BUDGET lenient                             canonical nu_mono x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical nu_mono x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159
+    PASS  CMB lensing                                canonical -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     canonical -       deviation 0.00
+    PASS  X-COP (T5)                                 canonical -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     canonical -       main 4.6x, sub 4.9x
+    FAIL  Cassini (no constant)                      canonical -       passes only with the declared xi (M_* window)
+    PASS  pop: outer-halo globular clusters (M/L_V)  canonical -       0.00 sigma (FG001's scorecard, rival)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    canonical -       0.86 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW classical dSphs                    canonical -       3.53 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (LVD)                      canonical -       5.96 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (Collins+13)               canonical -       5.80 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW ultra-faints                       canonical -       13.19 sigma (FG001's scorecard, rival)
+    FAIL  pop: LV dwarfs' host statistic             canonical -       3.92 sigma (FG001's scorecard, rival)
+    FAIL  pop: cluster-infall BTFR slope             canonical -       2.35 sigma (FG001's scorecard, rival)
+    PASS  pop: cluster-infall BTFR zero point        canonical -       0.77 sigma (FG001's scorecard, rival)
+    FAIL  pop: NGC 1052-DF2                          canonical -       2.95 sigma (FG001's scorecard, rival)
+    PASS  pop: NGC 1052-DF4                          canonical -       1.45 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D1 (143 galaxies)                canonical -       0.76 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D2 (90 galaxies)                 canonical -       0.00 sigma (FG001's scorecard, rival)
+    PASS  SPARC                                      alt       P2      rms 0.1035 dex (Upsilon 0.65)
+    PASS  KiDS                                       alt       P2      cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)
+    PASS  BUDGET lenient                             alt       P2      x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       P2      x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159
+    PASS  SPARC                                      alt       nu_mono rms 0.0991 dex (Upsilon 0.57)
+    PASS  KiDS                                       alt       nu_mono cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)
+    PASS  BUDGET lenient                             alt       nu_mono x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       nu_mono x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159
+    PASS  CMB lensing                                alt       -       amplitude 1.000 (-0.39 sigma), CFG4_switch
+    PASS  forest                                     alt       -       deviation 0.00
+    PASS  X-COP (T5)                                 alt       -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     alt       -       main 4.6x, sub 4.9x
+    FAIL  Cassini (no constant)                      alt       -       passes only with the declared xi (M_* window)
+    PASS  pop: outer-halo globular clusters (M/L_V)  alt       -       0.11 sigma (FG001's scorecard, rival)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    alt       -       1.24 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW classical dSphs                    alt       -       3.34 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (LVD)                      alt       -       5.70 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (Collins+13)               alt       -       5.58 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW ultra-faints                       alt       -       12.82 sigma (FG001's scorecard, rival)
+    FAIL  pop: LV dwarfs' host statistic             alt       -       3.96 sigma (FG001's scorecard, rival)
+    FAIL  pop: cluster-infall BTFR slope             alt       -       2.38 sigma (FG001's scorecard, rival)
+    PASS  pop: cluster-infall BTFR zero point        alt       -       0.79 sigma (FG001's scorecard, rival)
+    FAIL  pop: NGC 1052-DF2                          alt       -       3.12 sigma (FG001's scorecard, rival)
+    PASS  pop: NGC 1052-DF4                          alt       -       1.49 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D1 (143 galaxies)                alt       -       0.76 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D2 (90 galaxies)                 alt       -       0.00 sigma (FG001's scorecard, rival)
+    LEDGER: fitted 3 (kappa, Omega_c h^2, xi (M_*)); declared 4; tied 1; derived 0 (-)
+    passes 32/48 scored gates; registration hash 657ae351e808b091
+
+======================================================================================================================
+CANDIDATE F  hybrid: T5 inside the splashback, the law's field out to r_ta
+======================================================================================================================
+    PASS  SPARC                                      canonical P2      rms 0.1083 dex (Upsilon 0.70)
+    PASS  KiDS                                       canonical P2      the law's field to r_ta (x = 1), no 2-halo: d chi^2 -9.5
+    PASS  BUDGET lenient                             canonical P2      x_e 0.216: Omega_ph 0.101 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   canonical P2      x_e(z=0) 0.210: Omega_ph 0.119 vs 0.159
+    PASS  SPARC                                      canonical nu_mono rms 0.1003 dex (Upsilon 0.61)
+    PASS  KiDS                                       canonical nu_mono the law's field to r_ta (x = 1), no 2-halo: d chi^2 -9.2
+    PASS  BUDGET lenient                             canonical nu_mono x_e 0.219: Omega_ph 0.103 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   canonical nu_mono x_e(z=0) 0.211: Omega_ph 0.121 vs 0.159
+    FAIL  CMB lensing                                canonical -       field phantom ADDED in bound regions (CFG4's conservative leak): linear 1.060 (+1.8 sigma), halofit 1.528 (+18.5 sigma) -- scored on halofit
+    PASS  forest                                     canonical -       deviation 0.00 (the switch keeps the web free)
+    PASS  X-COP (T5)                                 canonical -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     canonical -       main 4.6x, sub 4.9x
+    PASS  Cassini (no constant)                      canonical -       the Sun owns no phantom (FG001 H1: margin >= 2e4)
+    PASS  pop: outer-halo globular clusters (M/L_V)  canonical -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    canonical -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: MW classical dSphs                    canonical -       1.06 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (LVD)                      canonical -       2.60 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (Collins+13)               canonical -       2.54 sigma (FG001's scorecard, fg001)
+    FAIL  pop: MW ultra-faints                       canonical -       7.97 sigma (FG001's scorecard, fg001)
+    PASS  pop: LV dwarfs' host statistic             canonical -       1.71 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR slope             canonical -       0.11 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR zero point        canonical -       1.30 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF2                          canonical -       0.01 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF4                          canonical -       0.78 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D1 (143 galaxies)                canonical -       4.08 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D2 (90 galaxies)                 canonical -       4.29 sigma (FG001's scorecard, fg001)
+    PASS  SPARC                                      alt       P2      rms 0.1035 dex (Upsilon 0.65)
+    PASS  KiDS                                       alt       P2      the law's field to r_ta (x = 1), no 2-halo: d chi^2 -8.7
+    PASS  BUDGET lenient                             alt       P2      x_e 0.216: Omega_ph 0.116 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   alt       P2      x_e(z=0) 0.210: Omega_ph 0.137 vs 0.159
+    PASS  SPARC                                      alt       nu_mono rms 0.0991 dex (Upsilon 0.57)
+    PASS  KiDS                                       alt       nu_mono the law's field to r_ta (x = 1), no 2-halo: d chi^2 -9.3
+    PASS  BUDGET lenient                             alt       nu_mono x_e 0.219: Omega_ph 0.119 vs Omega_c 0.265
+    PASS  BUDGET strict (reported)                   alt       nu_mono x_e(z=0) 0.211: Omega_ph 0.140 vs 0.159
+    FAIL  CMB lensing                                alt       -       field phantom ADDED in bound regions (CFG4's conservative leak): linear 1.060 (+1.8 sigma), halofit 1.528 (+18.5 sigma) -- scored on halofit
+    PASS  forest                                     alt       -       deviation 0.00 (the switch keeps the web free)
+    PASS  X-COP (T5)                                 alt       -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     alt       -       main 4.6x, sub 4.9x
+    PASS  Cassini (no constant)                      alt       -       the Sun owns no phantom (FG001 H1: margin >= 2e4)
+    PASS  pop: outer-halo globular clusters (M/L_V)  alt       -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    alt       -       0.00 sigma (FG001's scorecard, fg001)
+    PASS  pop: MW classical dSphs                    alt       -       0.74 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (LVD)                      alt       -       2.16 sigma (FG001's scorecard, fg001)
+    FAIL  pop: M31 dwarfs (Collins+13)               alt       -       2.32 sigma (FG001's scorecard, fg001)
+    FAIL  pop: MW ultra-faints                       alt       -       7.52 sigma (FG001's scorecard, fg001)
+    PASS  pop: LV dwarfs' host statistic             alt       -       1.71 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR slope             alt       -       0.11 sigma (FG001's scorecard, fg001)
+    PASS  pop: cluster-infall BTFR zero point        alt       -       1.30 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF2                          alt       -       0.01 sigma (FG001's scorecard, fg001)
+    PASS  pop: NGC 1052-DF4                          alt       -       0.78 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D1 (143 galaxies)                alt       -       4.08 sigma (FG001's scorecard, fg001)
+    FAIL  pop: Chae D2 (90 galaxies)                 alt       -       4.29 sigma (FG001's scorecard, fg001)
+    LEDGER: fitted 2 (kappa, Omega_c h^2); declared 5; tied 1; derived 3 (Solar-System screening (no xi), the cold extent (splashback, FG016), the field's extent (the switch region itself: x = 1))
+    passes 36/48 scored gates; registration hash 658570be968d55eb
+
+======================================================================================================================
+CANDIDATE E  [MUTATE] A without the switch (the law in the linear web)
+======================================================================================================================
+    PASS  SPARC                                      canonical P2      rms 0.1083 dex (Upsilon 0.70)
+    PASS  KiDS                                       canonical P2      cut at x_e = 0.4: d chi^2 -10.7 (A <= 2)
+    PASS  BUDGET lenient                             canonical P2      x_e 0.400: Omega_ph 0.188 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical P2      x_e(z=0) 0.400: Omega_ph 0.229 vs 0.159
+    PASS  SPARC                                      canonical nu_mono rms 0.1003 dex (Upsilon 0.61)
+    PASS  KiDS                                       canonical nu_mono cut at x_e = 0.4: d chi^2 -12.4 (A <= 2)
+    PASS  BUDGET lenient                             canonical nu_mono x_e 0.400: Omega_ph 0.190 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   canonical nu_mono x_e(z=0) 0.400: Omega_ph 0.230 vs 0.159
+    FAIL  CMB lensing                                canonical -       no switch: amplitude 1.149 (+4.93 sigma)
+    FAIL  forest                                     canonical -       no switch: the law acts in the forest's web (not scored; assumed to fail)
+    PASS  X-COP (T5)                                 canonical -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     canonical -       main 4.6x, sub 4.9x
+    FAIL  Cassini (no constant)                      canonical -       passes only with the declared xi (M_* window)
+    PASS  pop: outer-halo globular clusters (M/L_V)  canonical -       0.00 sigma (FG001's scorecard, rival)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    canonical -       0.86 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW classical dSphs                    canonical -       3.53 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (LVD)                      canonical -       5.96 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (Collins+13)               canonical -       5.80 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW ultra-faints                       canonical -       13.19 sigma (FG001's scorecard, rival)
+    FAIL  pop: LV dwarfs' host statistic             canonical -       3.92 sigma (FG001's scorecard, rival)
+    FAIL  pop: cluster-infall BTFR slope             canonical -       2.35 sigma (FG001's scorecard, rival)
+    PASS  pop: cluster-infall BTFR zero point        canonical -       0.77 sigma (FG001's scorecard, rival)
+    FAIL  pop: NGC 1052-DF2                          canonical -       2.95 sigma (FG001's scorecard, rival)
+    PASS  pop: NGC 1052-DF4                          canonical -       1.45 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D1 (143 galaxies)                canonical -       0.76 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D2 (90 galaxies)                 canonical -       0.00 sigma (FG001's scorecard, rival)
+    PASS  SPARC                                      alt       P2      rms 0.1035 dex (Upsilon 0.65)
+    PASS  KiDS                                       alt       P2      cut at x_e = 0.4: d chi^2 -10.9 (A <= 2)
+    PASS  BUDGET lenient                             alt       P2      x_e 0.400: Omega_ph 0.217 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       P2      x_e(z=0) 0.400: Omega_ph 0.264 vs 0.159
+    PASS  SPARC                                      alt       nu_mono rms 0.0991 dex (Upsilon 0.57)
+    PASS  KiDS                                       alt       nu_mono cut at x_e = 0.4: d chi^2 -11.3 (A <= 2)
+    PASS  BUDGET lenient                             alt       nu_mono x_e 0.400: Omega_ph 0.219 vs Omega_c 0.265
+    FAIL  BUDGET strict (reported)                   alt       nu_mono x_e(z=0) 0.400: Omega_ph 0.266 vs 0.159
+    FAIL  CMB lensing                                alt       -       no switch: amplitude 1.149 (+4.93 sigma)
+    FAIL  forest                                     alt       -       no switch: the law acts in the forest's web (not scored; assumed to fail)
+    PASS  X-COP (T5)                                 alt       -       identity ratio P2 0.946, nu_mono 0.946
+    PASS  Bullet                                     alt       -       main 4.6x, sub 4.9x
+    FAIL  Cassini (no constant)                      alt       -       passes only with the declared xi (M_* window)
+    PASS  pop: outer-halo globular clusters (M/L_V)  alt       -       0.11 sigma (FG001's scorecard, rival)
+    PASS  pop: tidal dwarf galaxies (6, Lelli+15)    alt       -       1.24 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW classical dSphs                    alt       -       3.34 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (LVD)                      alt       -       5.70 sigma (FG001's scorecard, rival)
+    FAIL  pop: M31 dwarfs (Collins+13)               alt       -       5.58 sigma (FG001's scorecard, rival)
+    FAIL  pop: MW ultra-faints                       alt       -       12.82 sigma (FG001's scorecard, rival)
+    FAIL  pop: LV dwarfs' host statistic             alt       -       3.96 sigma (FG001's scorecard, rival)
+    FAIL  pop: cluster-infall BTFR slope             alt       -       2.38 sigma (FG001's scorecard, rival)
+    PASS  pop: cluster-infall BTFR zero point        alt       -       0.79 sigma (FG001's scorecard, rival)
+    FAIL  pop: NGC 1052-DF2                          alt       -       3.12 sigma (FG001's scorecard, rival)
+    PASS  pop: NGC 1052-DF4                          alt       -       1.49 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D1 (143 galaxies)                alt       -       0.76 sigma (FG001's scorecard, rival)
+    PASS  pop: Chae D2 (90 galaxies)                 alt       -       0.00 sigma (FG001's scorecard, rival)
+    LEDGER: fitted 3 (kappa, Omega_c h^2, xi (M_*)); declared 3; tied 1; derived 0 (-)
+    passes 28/48 scored gates; registration hash 47784ad5098de3d6
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+    A  CFG4 target (as committed)                             :  32/ 48  (fitted 3, declared 4, derived 0)
+    B  A + FG001 (hierarchical ownership)                     :  38/ 48  (fitted 2, declared 5, derived 1)
+    C  B + FG016 (derived edge)                               :  34/ 48  (fitted 2, declared 6, derived 2)
+    D  rival: law on every system with the external field     :  32/ 48  (fitted 3, declared 4, derived 0)
+    F  hybrid: T5 inside the splashback, the law's field out to r_ta:  36/ 48  (fitted 2, declared 5, derived 3)
+    E  [MUTATE] A without the switch (the law in the linear web):  28/ 48  (fitted 3, declared 3, derived 0)
+  [PASS] H1 the harness separates the candidates: B (with FG001) passes strictly more gates than A and than D
+         A 32, B 38, D 32
+  [PASS] (reported) H2 (reported) C's standing with FG016's derived edge
+         C 34/48
+  [PASS] (reported) H3 (reported; added before the first run, after FG016's dry runs pointed to it) the hybrid F's standing: which gates it fails
+         F 36/48; failing: CMB lensing; pop: Chae D1 (143 galaxies); pop: Chae D2 (90 galaxies); pop: M31 dwarfs (Collins+13); pop: M31 dwarfs (LVD); pop: MW ultra-faints
+  [FAIL] MUTATE: the harness is REQUIRED (for this control) to call the no-switch candidate a pass on CMB lensing -- it must not
+         no-switch CMB lensing ok = False
+
+  4/6 checks pass; load-bearing failures: 2   (0 s)

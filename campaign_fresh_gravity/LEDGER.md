@@ -1,0 +1,16 @@
+# Campaign fresh gravity — the ledger
+
+One headline per committed lane, in the charter's convention: constants counted as fitted / declared / tied / derived;
+both a₀ footings; κ = ½ fitted; nothing here says the theory is closed. Each lane's README holds the numbers and the files.
+
+| Lane | Headline | Standing |
+|---|---|---|
+| CFG0 | 81 own findings inventoried. No constant was reduced beyond λ becoming a regulator. The 74–89% cluster claim is withdrawn. | inventory |
+| CFG1 | Evidence audit: 14 model-independent, 11 soft, 8 contested results. X-COP is soft through the hydrostatic bias. 12 past verdicts rest on the record's own approximations. | audit |
+| CFG4 | The target law: one effective description fits every model-independent fact in a narrow window. It needs a density edge at x_e ≈ 0.31–0.46 r_ta, the max rule (T5) and a bound-only switch. The minimal conflict is KiDS reach against the cold budget. | target |
+| CFG6 | Keep flat a₀. Carry the leaf-averaged √ρ_DE tie as one labelled variant. | branch choice |
+| CFG7 · FG041 | Tidal dwarfs are Newtonian (χ² 1.09 for 6). The framework's law with the host's field is worse by Δχ² +5.2 to +12.0; the isolated law is excluded. **FG001's own kill test passed.** | pass |
+| CFG7 · FG001 | Hierarchical ownership of the phantom, with T5's retained cold component. It passes 9/14 of the record's population gates, against 6/14 for the law with the external field. ξ is retired. Its cost is Chae's external-field fits (4.1/4.3σ). Two sub-hypotheses failed (globular clusters do not discriminate; M31 LVD at 2.2–2.6σ). | constructive; −1 constant (ξ) |
+| CFG7 · FG004 | The max rule's outer part is the relaxed (isothermal) state: σ² = V_f²/2, and P = a₀g_N/(8πG) is derived. The inner part is not: a relaxed cold component overshoots by +0.13–0.15 dex at g_bar > a₀. That locates the next ingredient. | half derived |
+| CFG7 · FG016 | Killed as written. The splashback edge at the law's own accretion rate lands at x_e = 0.18–0.27, below [0.31, 0.48]. KiDS with the derived profile fails by Δχ² +50 to +95. The budget holds. It sharpens CFG4's conflict to "KiDS against the collapse's cold supply"; the hybrid fails CMB lensing. | failed; x_e stays declared |
+| CFG7 · FG097 | The harness. B (CFG4 + FG001) scores 38/48, against 32/48 for CFG4 as committed and for the external-field rival; C 34/48 (KiDS); F 36/48 (CMB lensing). It flags lanes whose own controls failed. | infrastructure |
