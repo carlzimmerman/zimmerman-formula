@@ -1,0 +1,51 @@
+CFG21 -- ONE NUMBER FOR THE TARGET LAW'S EDGE CONFLICT: KiDS's isolated lenses and the Local Group's zero-velocity radius, jointly.
+
+WHY.  CFG16 put KiDS's self-consistent floor at x_e ~ 0.34 (the 2-halo cap of each lens bin at the peak-background bias of its
+truncated turnaround mass); CFG20 found the LG allows only x_e <= 0.16-0.26 (R0 <= 1.17 Mpc).  A universal edge serves both only if
+there is an x_e where the two are jointly acceptable.  This lane scans x_e and scores both data sets on one chi^2:
+      chi^2(x_e) = d chi^2_KiDS(x_e; self-consistent caps)  +  [(R0(x_e) - 0.93) / 0.12]^2
+with d chi^2_KiDS from CFG16's exact machinery (CFG4_switch's KiDS slices exec'd read-only, the untruncated law as reference) and
+R0(x_e) from CFG20's committed table (interpolated in x_e).  One parameter (x_e) is fitted to two data sets.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  the recomputed self-consistent KiDS floor equals CFG16's committed floor, and R0 at CFG20's grid points equals CFG20's
+      committed values (exact).
+  H1  [HEADLINE; MUTATE must fail] a universal edge is jointly acceptable: min over x_e of chi^2(x_e) <= 9 (the two data sets agree
+      within 3 sigma at the best edge) on the canonical footing, both kernels, the lower LG baryon mass (1.145e11, the easier case).
+      Declared EXPECTATION: FAIL.
+  R1  (reported) the best edge, the joint minimum and its sigma equivalent (sqrt of the joint minimum), every case (both footings,
+      both kernels, both LG masses); the minimum with KiDS's tolerance halved/doubled is not scored.
+MUTATE=1: the LG term is dropped (KiDS alone) -- the check that must fail in MUTATE is
+  H0: the LG term raises the joint minimum above KiDS's own minimum by more than 9 in every case.
+REVISION (after the first -- MUTATE -- run, before any main run; disclosed): H1 as first written scored chi^2 = d chi^2_KiDS (against
+  the UNTRUNCATED law) + chi^2_LG and asked min <= 9.  The MUTATE run showed KiDS's own best edge (x_e ~ 0.5-0.6) sits 27-34 BELOW
+  that reference, so the declared statistic passes trivially whatever the LG does.  The operative statistic is the standard
+  parameter-difference tension -- each data set against its own best:  T(x_e) = [chi^2_KiDS(x_e) - min chi^2_KiDS] + chi^2_LG(x_e),
+  T_min ~ (sigma)^2 for one shared parameter -- with the scan extended to x_e = 1.  H1 (operative): T_min <= 9 on the canonical footing,
+  both kernels, LG M_b 1.145e11.  The first-written statistic is still printed (reported).
+
+======================================================================================================================
+C1  CONTROL: CFG16's floor and CFG20's R0 reproduced
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG16's committed self-consistent floors and CFG20's committed R0 grid reproduced exactly
+         max |d floor| 0.0e+00; max |d R0| 0.0e+00
+
+======================================================================================================================
+THE JOINT SCAN: KiDS (self-consistent 2-halo) + the LG's R0, one universal edge
+======================================================================================================================
+    canonical P2       LG M_b 1.145e+11: KiDS best x_e 0.62 (d chi^2 -35.1 vs untruncated); LG best 0.13; joint best 0.56: KiDS excess 2.8 + LG 23.4 = T_min 26.2 (~5.1 sigma) | first-written statistic -8.9 at 0.56
+    canonical P2       LG M_b 1.72e+11: KiDS best x_e 0.62 (d chi^2 -35.1 vs untruncated); LG best 0.10; joint best 0.51: KiDS excess 7.4 + LG 33.5 = T_min 41.0 (~6.4 sigma) | first-written statistic 5.8 at 0.51
+    canonical nu_mono  LG M_b 1.145e+11: KiDS best x_e 0.63 (d chi^2 -38.3 vs untruncated); LG best 0.13; joint best 0.57: KiDS excess 3.2 + LG 24.6 = T_min 27.8 (~5.3 sigma) | first-written statistic -10.4 at 0.57
+    canonical nu_mono  LG M_b 1.72e+11: KiDS best x_e 0.63 (d chi^2 -38.3 vs untruncated); LG best 0.10; joint best 0.53: KiDS excess 6.5 + LG 36.1 = T_min 42.7 (~6.5 sigma) | first-written statistic 4.4 at 0.53
+    alt       P2       LG M_b 1.145e+11: KiDS best x_e 0.62 (d chi^2 -34.7 vs untruncated); LG best 0.11; joint best 0.55: KiDS excess 3.0 + LG 28.9 = T_min 31.9 (~5.6 sigma) | first-written statistic -2.9 at 0.55
+    alt       P2       LG M_b 1.72e+11: KiDS best x_e 0.62 (d chi^2 -34.7 vs untruncated); LG best 0.10; joint best 0.49: KiDS excess 9.1 + LG 39.2 = T_min 48.3 (~6.9 sigma) | first-written statistic 13.6 at 0.49
+    alt       nu_mono  LG M_b 1.145e+11: KiDS best x_e 0.63 (d chi^2 -37.0 vs untruncated); LG best 0.11; joint best 0.56: KiDS excess 3.3 + LG 30.2 = T_min 33.4 (~5.8 sigma) | first-written statistic -3.6 at 0.56
+    alt       nu_mono  LG M_b 1.72e+11: KiDS best x_e 0.63 (d chi^2 -37.0 vs untruncated); LG best 0.10; joint best 0.51: KiDS excess 8.4 + LG 42.2 = T_min 50.6 (~7.1 sigma) | first-written statistic 13.7 at 0.51
+  [PASS] H0 the LG term raises the joint minimum above KiDS's own minimum by more than 9 in every case
+         can/P2/1.145e+11: T_min 26.2; can/P2/1.72e+11: T_min 41.0; can/nu_mono/1.145e+11: T_min 27.8; can/nu_mono/1.72e+11: T_min 42.7; alt/P2/1.145e+11: T_min 31.9; alt/P2/1.72e+11: T_min 48.3; alt/nu_mono/1.145e+11: T_min 33.4; alt/nu_mono/1.72e+11: T_min 50.6
+  [FAIL] H1 [HEADLINE, operative statistic -- see REVISION] a universal edge is jointly acceptable (T_min <= 9) on the canonical footing, both kernels, LG M_b 1.145e11 [declared expectation: FAIL]
+         P2: T_min 26.2 at x_e 0.56; nu_mono: T_min 27.8 at x_e 0.57
+  [PASS] (reported) R1 (reported) every case's tension, best edges, and the first-written statistic
+         can/P2/1.145e+11: T 26.2 (~5.1 sigma) at 0.56; KiDS best 0.62, LG best 0.13; first-written -8.9; can/P2/1.72e+11: T 41.0 (~6.4 sigma) at 0.51; KiDS best 0.62, LG best 0.10; first-written 5.8; can/nu_mono/1.145e+11: T 27.8 (~5.3 sigma) at 0.57; KiDS best 0.63, LG best 0.13; first-written -10.4; can/nu_mono/1.72e+11: T 42.7 (~6.5 sigma) at 0.53; KiDS best 0.63, LG best 0.10; first-written 4.4; alt/P2/1.145e+11: T 31.9 (~5.6 sigma) at 0.55; KiDS best 0.62, LG best 0.11; first-written -2.9; alt/P2/1.72e+11: T 48.3 (~6.9 sigma) at 0.49; KiDS best 0.62, LG best 0.10; first-written 13.6; alt/nu_mono/1.145e+11: T 33.4 (~5.8 sigma) at 0.56; KiDS best 0.63, LG best 0.11; first-written -3.6; alt/nu_mono/1.72e+11: T 50.6 (~7.1 sigma) at 0.51; KiDS best 0.63, LG best 0.10; first-written 13.7
+
+  3/4 checks pass; load-bearing failures: 1   (8 s)
