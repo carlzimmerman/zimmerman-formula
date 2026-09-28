@@ -1,0 +1,45 @@
+CFG27 -- CLOSING THE EDGE THREAD: is the cold-budget-vs-KiDS tension an exclusion of the target law, or smaller than what the KiDS
+machinery demonstrably does to standard halos?
+
+WHAT THIS IS.  A bookkeeping lane on committed numbers only.  Every input is read from a committed results file, and the outcome was
+known when this script was written; it records the closing rule and its result, and tests nothing new.
+
+THE RULE (declared here).  A model-vs-data tension measured with a machinery counts as an EXCLUSION only if it exceeds the spread
+that machinery demonstrably produces for STANDARD physics under reasonable modelling choices.  The spread S is taken as the SMALLEST
+of the standard-halo spreads the record measured on KiDS's isolated lenses (the most conservative choice -- it makes an exclusion as
+easy as possible):
+  S_NFW   = chi^2(NFW, Duffy+08 c, best truncation)  - chi^2(NFW, c x 0.7, best truncation)        CFG23 / CFG23_diagnostics V3
+  S_sph0  = chi^2(spherical-infall standard halo, A = 0, best)       - the same best NFW chi^2     CFG25
+  S_sphb  = chi^2(spherical-infall standard halo, A <= b_Tinker, best) - the same best NFW chi^2   CFG25
+The tension: KiDS's cost at the cold budget's edge against KiDS's own best (CFG24: turned-around associations, the framework's own
+T3 level; the Milky-Way erratum applied), all four footing/kernel rows, and the generous linking (reported).
+
+  C1  CONTROL  the committed inputs are read back and are finite.
+  H1  [HEADLINE; MUTATE must fail] the canonical budget-vs-KiDS cost (both kernels) is below S: the edge thread closes as NOT
+      DECIDABLE with this machinery (not an exclusion).  Known when written: yes.
+  R1  (reported) the alt rows; the ratio cost / S; each spread separately.
+MUTATE=1: S is set to 0 (a machinery with no demonstrated spread) -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: the machinery's spread set to 0 -- H1 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: the committed inputs
+======================================================================================================================
+    NFW Duffy c (CFG23): 173.67; best NFW variant (CFG23_diagnostics V3, c x0.7|x_t 3.0): 99.28; spherical infall standard halo (CFG25): 172.96 (A = 0) / 149.45 (A <= b); the framework's best (CFG21): 104.69
+  [PASS] C1 CONTROL: every committed input is read back and finite
+         13 values
+
+======================================================================================================================
+THE RULE APPLIED
+======================================================================================================================
+    spreads: S_NFW 74.4; S_sph (A = 0) 73.7; S_sph (A <= b) 50.2 -> S = 0.0 (the smallest)
+    canonical|P2      : budget-vs-KiDS cost 29.4 (generous linking 20.8); cost / S = inf
+    canonical|nu_mono : budget-vs-KiDS cost 32.9 (generous linking 25.1); cost / S = inf
+    alt|P2            : budget-vs-KiDS cost 45.4 (generous linking 31.9); cost / S = inf
+    alt|nu_mono       : budget-vs-KiDS cost 49.3 (generous linking 35.3); cost / S = inf
+  [FAIL] H1 [HEADLINE] the canonical budget-vs-KiDS cost (both kernels) is below the machinery's smallest demonstrated standard-halo spread: the edge thread closes as NOT DECIDABLE with this machinery  [MUTATE: S = 0]
+         P2: 29.4 vs S 0.0; nu_mono: 32.9 vs S 0.0
+  [FAIL] (reported) R1 (reported) the alt rows against the same S
+         P2: 45.4; nu_mono: 49.3 vs S 0.0
+
+  1/3 checks pass; load-bearing failures: 1   (0 s)
