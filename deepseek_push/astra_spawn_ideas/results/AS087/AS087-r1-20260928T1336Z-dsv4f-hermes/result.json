@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "task_id": "AS087",
+  "task_sha256": "b09eb2e2fe8bed9c3b29c4bedd7f508f7e35e420085ae6f641104d750c60ebbe",
+  "run_id": "AS087-r1-20260928T1336Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent; identity taken from the executing process",
+  "started_utc": "2026-09-28T13:35:11Z",
+  "finished_utc": "2026-09-28T14:03:37Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On 0 < r_in < R (point baryon mass M_b at the centre, phantom rho = A/r^2, A = C/(4 pi G_N), equipartition M_ph(<r_M)=M_b, isothermal closure P = sigma^2 rho at both surfaces): the exact virial gives sigma^2 = (C/2) F with F = 1 + (r_M - r_in) ln(R/r_in)/(R - r_in); with zero surface pressure on the SAME profile and equilibrium it gives sigma^2 = (C/3) F. Ratio closure/bare = 3/2 EXACTLY for every shell (Lean-certified). sigma^2 = C/2 exactly iff the differential baryon coupling vanishes (degenerate shell R = r_in, or G091 truncation-consistent bookkeeping r_b = R). Mandated fixtures r_in/R in {0.01,0.1,0.5}, R/r_M in {0.62,1}: F = 8.4562, 4.8707, 2.5428 and 5.6052, 3.3026, 1.6931 -> interior imposed-log-well virial does NOT reproduce C/2. Deep exterior r_in/r_M in {10,100}, R/r_in in {2,10}: single-counted local balance dP/dr = -rho (C/r) with the Q-deep algebraic force gives sigma^2 = C/2 exactly at every radius (residual <= 4.7e-16, both footings), full-kernel (filtered MONO) error bounded parametrically |g_MONO - C/r| <= (C/r) c2 (xi/r)^2, xi = unpinned heat-filter width. Both footings, MW proxy M_b = 6.5e10 M_sun: sigma^2(C/2) = 1.4209e10 (sigma = 119.20 km/s, canonical) and 1.5593e10 (m/s)^2 (sigma = 124.89 km/s, alt); rho_Lambda = 5.8444e-27 and 8.4831e-27 kg/m^3 (kappa = 1/2 fixed; densities differ, ratio (a0_alt/a0_can)^2 = 1.4515). Domain: static spherical shell, G_N only, no particle ontology, no time dependence.",
+  "framework_cell": {
+    "action_or_hamiltonian": "none varied in this task (virial + EOS closure sector only; no action variation performed)",
+    "source_hashes": {
+      "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+      "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+      "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03",
+      "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+    },
+    "kernel": "filtered MONO referenced ONLY as the deep-field bound of §5 (S = exp((xi^2/2) Delta), xi unpinned); algebraic deep limit g = C/r used; no branch transfer (Q, RAR, MU2, EXP untouched for conclusions)",
+    "filter": "heat filter width xi NOT pinned by the repo; parametric bound only",
+    "gate": "amended requirement 1 (exact MOND phenomenology via filtered nu_mono, causality criterion B): equilibrium-sector sub-obligation sigma^2 = C/2 as a conditional deep-equilibrium target",
+    "coupling": "G_N only (measured Newton coupling 6.67430e-11); G_bare and G_cosmo NOT invoked anywhere",
+    "parameters": "C = sqrt(G_N M_b a0), r_M = sqrt(G_N M_b/a0), A = C/(4 pi G_N), kappa = 1/2 adopted input, v_flat^4 = G_N M_b a0",
+    "scale_footing": "BOTH: canonical a0 = 9.3619e-11 m/s^2 (rho_Lambda = 5.8444e-27 kg/m^3) and alternative a0 = 1.1279e-10 m/s^2 (rho_Lambda = 8.4831e-27 kg/m^3, kappa back-check 0.500000 on both; the footings do NOT share a fixed vacuum density)",
+    "boundaries": "shell r_in <= r <= R, 0 < r_in < R; r_b = r_in (baryon edge = phantom inner edge, point baryon at centre, phantom strictly outside the baryon core); both surfaces carry the fluid closure P = sigma^2 rho (B1) or zero pressure (B0, negative control)",
+    "initial_conditions": "static; no time dependence in the sector",
+    "units": "SI throughout: C, sigma^2, T, W in m^2/s^2, kg m^2/s^2, J; A in kg/m; rho in kg/m^3; P in Pa"
+  },
+  "new_assumptions": [
+    "phantom strictly outside the baryon core: baryon edge equals the shell inner edge r_in (as in G091's r_b bookkeeping)",
+    "max-entropy profile rho = A/r^2 with gamma = 2 taken as the declared conditional deep-equilibrium sector input (G084 chain); the sigma^2-dependence of that profile is the subject of the task",
+    "equipartition normalization M_ph(< r_M) = M_b fixes A = C/(4 pi G_N) (G03E, as used by G091)",
+    "isothermal barotropic EOS P = sigma^2 rho is the fluid closure (G233)",
+    "phi_b = -G_N M_b/r outside the baryon core for the pair-energy integral (not an extra particle species or imported law)",
+    "single counting rule: one force per pair; the framework log well C ln r is the self-consistent field (C = 4 pi G_N A), so adding it as external PLUS self-gravity double counts (quantified control)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS087_boundary_pressure_and_the_claimed_half_factor.md": "b09eb2e2fe8bed9c3b29c4bedd7f508f7e35e420085ae6f641104d750c60ebbe",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3",
+    "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+    "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+    "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/AS087_boundary_pressure.py": "4d46583c46e3f9c010245cb67d49843f1eb809a82f5180eb43bb720229b09c9f",
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/raw_output.txt": "d6c0575977a06994e22eb08b8117d37e5a56cadc322e9d74ad006976b2f6bc57",
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/residuals.json": "4d36aa331f58e20d4c7802a711bb6a64169f0a6e0ee79da381a366a6c00189b7",
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/time_mem.txt": "9c95760f023ec0937d3e4c549f5d0906ca14702f21f358b29e135fed942d4f4c",
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/lean_output.txt": "13b797b9ea8250bc63be87e40c0a2716598398993ad05007f80e3064d4f563f4",
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/AS087_half_factor.lean": "adb60b2f86ccb4383ed5e2064251274d0bc77aeedd14c7ecec32dd0140d5b03a",
+    "deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes/derivation.md": "914e3fd9fdd4bbd298a0f2ad64fafab4ed0bdbad3df29a6c66b2296be231a36b"
+  },
+  "commands": [
+    "mkdir -p deepseek_push/astra_spawn_ideas/results/AS087/AS087-r1-20260928T1336Z-dsv4f-hermes",
+    "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l python3 AS087_boundary_pressure.py > raw_output.txt (2> time_mem.txt on the timing pass; residuals.json written by the script)",
+    "cd fable_independent_2026/lean_2026 && lake env lean <abs>/AS087_half_factor.lean > lean_output.txt (compile host only; nothing written into the Lean workspace)",
+    "shasum -a 256 <inputs and artifacts> (recorded in input_sha256 / artifacts_sha256)",
+    "working directory: /Users/carlzimmerman/new_physics/zimmerman-formula (runs in the unique run dir under deepseek_push/astra_spawn_ideas/results/AS087/)"
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s, memory <= 512 MB, 1 thread, bounded prototype only (no larger computation staged)",
+    "enforced": "wall: /usr/bin/time -l measured 0.63 s real (final executable; in-script perf_counter 0.42 s) - enforced by timeout and by the bounded design; memory: /usr/bin/time -l maximum resident set size 203,735,040 B = 194.3 MiB, in-script ru_maxrss 205.0 MiB < 512 MB - enforced (no oversized arrays: log grids 40,001 / 400,001 points, 24 shell rows + 8 deep rows); threads: OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1, single process, no multiprocessing - enforced; sample/refinement bounds: grid sizes fixed, tolerances set before evaluation (1e-9 closure forms, 1e-12 ratio, 1e-6 hydrostatic); no refinement beyond the recorded 400,001-pt fix for the W_bar integrand",
+    "note": "the 120 s / 512 MB / 1-thread caps are this task's declared prototype bounds; the run used ~0.5% of the wall budget and ~40% of the memory budget"
+  },
+  "checks": [
+    {"name": "CK1_symbolic_closure_solution_equals_C_over_2_F", "observed": "sympy simplify(sol_closure - (C/2)F) == 0 identically", "tolerance": "exact identity", "pass": true},
+    {"name": "CK2_symbolic_bare_solution_equals_C_over_3_F", "observed": "sympy simplify(sol_bare - (C/3)F) == 0 identically", "tolerance": "exact identity", "pass": true},
+    {"name": "CK3_symbolic_ratio_closure_over_bare_3_halves", "observed": "simplify(sol_closure - (3/2) sol_bare) == 0 identically", "tolerance": "exact identity", "pass": true},
+    {"name": "CK4_full_SIS_3_Ps_V_equals_sigma2_M", "observed": "sympy: simplify(3*(s2 A/R^2)(4 pi R^3/3) - s2 (4 pi A R)) == 0", "tolerance": "exact identity", "pass": true},
+    {"name": "CK5_Wself_closed_form_vs_quadrature", "observed": "max |rel err| over 24 shells = 1.90e-10", "tolerance": "< 1e-9 (pre-set)", "pass": true},
+    {"name": "CK6_Wbar_closed_form_vs_quadrature", "observed": "max |rel err| over 24 shells = 2.21e-10 (400,001-pt grid; first run at 40,001 pts FAILED at 2.21e-09)", "tolerance": "< 1e-9 (pre-set)", "pass": true, "attempt_note": "failed first attempt preserved: grid too coarse for the ~1/r integrand; dense grid fixed it"},
+    {"name": "CK7_virial_balance_residual", "observed": "max |2T + W - s2 M_T|/|s2 M_T| = 4.87e-16", "tolerance": "< 1e-9 (pre-set)", "pass": true},
+    {"name": "CK8_ratio_3_halves_numeric", "observed": "max |s2c/s2b - 1.5| = 2.22e-16", "tolerance": "< 1e-12 (pre-set)", "pass": true},
+    {"name": "CK9_boundary_identity_3PRVR_minus_3PinVin_equals_sigma2_MT", "observed": "max |rel err| = 2.66e-16", "tolerance": "< 1e-9 (pre-set)", "pass": true},
+    {"name": "CK10_deep_hydrostatic_residual", "observed": "max |dP/dr + rho g|/|dP/dr| = 4.66e-16 (8 deep shells, both footings, g = C/r)", "tolerance": "< 1e-6 (pre-set)", "pass": true},
+    {"name": "NC1_zero_surface_pressure_negative_control", "observed": "sigma2_bare = (2/3) sigma2_closure on all 6 canonical diagnostic shells (ratio 1.500000000000); C/2 claim FAILS under B0 -> coefficient conditional", "tolerance": "control must be capable of failing; it fires", "pass": true},
+    {"name": "NC2_double_counting_control", "observed": "constant isothermal sigma^2 is NOT the equilibrium when the log well and phantom self-gravity are both counted: sigma^2(r) = C - C r_in/(2r) forced (position dependent); virial reading gives sigma^2 = C at r_in -> 0", "tolerance": "control must fire; single counting is the C/2 premise", "pass": true},
+    {"name": "NC3_deep_exterior_control", "observed": "sigma^2 = C/2 exact on r_in/r_M in {10,100}, R/r_in in {2,10} (residual <= 4.7e-16)", "tolerance": "algebraic C/2 exactness in the single-counted deep domain", "pass": true},
+    {"name": "NC4_limit_checks", "observed": "a0 -> 0: sigma^2 = (C/2)F -> 0 (deep targets die with a0); r_in -> 0: F ~ (r_M/R) ln(1/eps) -> +inf (no finite virial without inner cutoff); R = r_in: F = 1, sigma^2 = C/2 exactly; leading finite-boundary W_self correction: +3.605%, +13.026%, -15.343% at eps = 0.01, 0.10, 0.50", "tolerance": "exact limit statements; quantified leading neglected terms", "pass": true},
+    {"name": "LEAN_T1_virial_ratio_3_over_2", "observed": "AS087.virial_half_factor_ratio compiles; axioms [propext, Classical.choice, Quot.sound]", "tolerance": "zero sorry, axioms subset of allowed set", "pass": true},
+    {"name": "LEAN_T2_full_SIS_3PsV_equals_sigma2_M", "observed": "AS087.full_sis_surface_pressure_identity compiles; axioms [propext, Classical.choice, Quot.sound]", "tolerance": "zero sorry, axioms subset of allowed set", "pass": true},
+    {"name": "LEAN_T3a_closed_form_substitution", "observed": "AS087.shell_virial_substitution compiles; axioms [propext, Classical.choice, Quot.sound]", "tolerance": "zero sorry, axioms subset of allowed set", "pass": true},
+    {"name": "LEAN_T3b_closed_form_uniqueness", "observed": "AS087.shell_virial_closed_form compiles; axioms [propext, Classical.choice, Quot.sound]; grep -c sorry = 0", "tolerance": "zero sorry, axioms subset of allowed set", "pass": true}
+  ],
+  "tested_domain": "symbolic: reals, G_N, M_b, a0, r_in, R > 0, R > r_in (R != r_in for the Lean division statements); interior numeric shells: r_in/R in {0.01, 0.1, 0.5} x R/r_M in {0.62, 1.0} x {canonical, alt} x M_b in {6.5e10, 7.0e10} M_sun = 24 rows; deep shells: r_in/r_M in {10, 100} x R/r_in in {2, 10} x both footings, M_b = 6.5e10 = 8 rows; quadrature: log grids 40,001 (self/virial/hydrostatic) and 400,001 (baryon pair energy) points; Lean: four theorems in Real, nonzero conditions R != 0, R - r_in != 0, M != 0. Exclusions: r_in -> 0 excluded from finite-virial statements (log divergence, stated); a0 -> 0 excluded from equilibrium claims (targets scale to zero, stated as exact scaling); no time dependence anywhere; no nonspherical geometry; no action variation; filtered-MONO full kernel not solved (parametrically bounded instead). No fit of a0 anywhere; the footings are fixed inputs.",
+  "failed_attempts": [
+    "run 1 (same script, 40,001-pt grid for the W_bar integrand): CK6 measured 2.21e-09 relative > pre-set 1e-9 tolerance -> FAIL. Cause: trapezoid on the ~1/r integrand over a 100:1 log range undersamples near the inner edge. Fix: dedicated 400,001-pt log grid for the baryon pair-energy integral; final run CK6 = 2.21e-10. The failing run is documented here and in derivation.md §4(b); raw_output.txt/residuals.json are from the final (passing) run.",
+    "Lean first compile: T3a left an unsolved ring-goal after field_simp (C-factor distribution identity) -> added ring; hB/hB2 then closed under field_simp alone -> trailing ring rejected by the compiler ('No goals to be solved') -> removed; final file compiles clean, zero sorry. House traps confirmed empirically."
+  ],
+  "limitations": "1) sigma^2 = C/2 is NOT attained on any non-degenerate interior diagnostic shell with a central point baryon (F = 1.69-8.46): the C/2 triad value in the interior is a truncation-consistent-bookkeeping statement (G091 r_b = R), and this result proves the coefficient's boundary-condition dependence (exact 3/2), not its interior universality. 2) The deep C/2 statement is algebraic-line (xi -> 0); the filtered-MONO full-kernel solution is NOT solved and xi is NOT pinned by the repo: the kernel error bound is parametric, O((xi/r)^2) with an unpinned width. 3) Virial + EOS closure only: no action variation, no field equations, no PPN/tensor sector, no dynamics (attainment: G035 kill stands). 4) kappa = 1/2 remains an adopted input; this task derives the boundary-pressure coefficient 1/2 vs 1/3, a different coefficient from kappa's 1/2 in a0 = kappa c sqrt(G rho_Lambda). 5) Shell model idealizations: rho = A/r^2 premise (gamma = 2 from G084 at the virial temperature), point baryon, phantom strictly outside the baryon core, single fluid, static. 6) The interior fixtures test the historical imposed-log-well ansatz only; nothing here transfers C/2 to the filtered-MONO target without the §5 bridge. 7) Finite quadrature residuals are recorded (1e-10..5e-16), not machine-exact; the exactly-proved statements are the symbolic and Lean identities.",
+  "next_unresolved_implication": "Action-level bridge to the operative gate: solve the full filtered-MONO field equation (Delta Phi = 4 pi G_N rho_b + S*[(nu_mono(|grad S u|/a0) - 1) grad S u], S = exp((xi^2/2) Delta)) for a point source M_b and show its deep-shell equilibrium reproduces rho = A/r^2 with sigma^2 = C/2 within the O((xi/r)^2) kernel error, and that the truncated-shell fluid/virial equilibrium of this task is the xi -> 0 limit of that solution (same-theory consistency). Until then C/2 is a conditional equilibrium-sector target with proven boundary-condition dependence, not a transferable constant, and the heat-filter width xi is an unpinned parameter of the target theory.",
+  "suggested_followup": "Child AS087.C01 (spec-ready, NOT dispatched - no spawn mechanism in this execution): 'Filtered-MONO deep-shell equilibrium of the point source': pin or bound xi from the filter calibration record (or treat xi as a declared parameter), solve/bound the full-kernel deep profile, and verify the C/2 equilibrium relation with a numeric full-kernel residual on r_in/r_M in {10, 100} shells; acceptance = kernel error below the parametric bound of this task and residual of the MONO-hydrostatic balance quantified; negative control = xi -> 0 limit must reproduce the algebraic C/2 of this task; duplicate check passed (closest existing seeds: AS044 deep point-source potential/boundary matching - different target (potential matching, not equilibrium-sector sigma^2 survival); AS042 filter order; AS033/AS034 MONO construction - neither answers the equilibrium consequence).",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured Newton coupling; G_bare, G_cosmo separate and unused here)",
+      "M_b baryon mass (observed; MW proxy 6.5e10 M_sun and G233 row 7.0e10 M_sun)",
+      "a0 framework scale, canonical 9.3619e-11 and alternative 1.1279e-10 m/s^2, kappa = 1/2 ADOPTED (task instruction; rho_Lambda = 4 a0^2/(G_N c^2) per footing, kappa back-check 0.500000)",
+      "conditional deep-equilibrium sector profile rho = A/r^2 (gamma = 2, G084 max-entropy chain at the framework virial temperature)",
+      "equipartition/source normalization M_ph(< r_M) = M_b (G03E bookkeeping, as used in G091)",
+      "isothermal barotropic EOS P = sigma^2 rho (G233)",
+      "point baryon at the centre with Newtonian potential -G_N M_b/r outside the baryon core; phantom strictly outside it",
+      "static spherical shell geometry 0 < r_in < R; virial theorem of a stationary truncated fluid 2T + W = 3 P_R V_R - 3 P_in V_in",
+      "single counting rule (one force per pair); the log well C ln r is the self-consistent field with C = 4 pi G_N A"
+    ],
+    "measured_calibrations": ["G_N, c, M_sun, pc default constants; a0 both footings; kappa = 1/2 adopted; M_b proxies; xi (MONO heat-filter width) NOT calibrated - unpinned open parameter"],
+    "boundary_conditions": ["fluid closure P = sigma^2 rho at both shell surfaces (B1); zero surface pressure (B0) for the negative control; baryon edge = r_in"],
+    "genuinely_derived_here": [
+      "T = (3/2) M_T sigma^2 => 2T = 3 M_T sigma^2 (seed math line)",
+      "W_self = -16 pi^2 G_N A^2 [(R - r_in) - r_in ln(R/r_in)] (exact shell integral)",
+      "W_bar = -M_b C ln(R/r_in) (exact pair energy)",
+      "3 P_R V_R - 3 P_in V_in = sigma^2 M_T identically; full-SIS 3 P_s V = sigma^2 M (Lean T2)",
+      "virial solutions sigma^2 = (C/2) F (B1) and (C/3) F (B0), F = 1 + (r_M - r_in) ln(R/r_in)/(R - r_in) (Lean T3a/T3b)",
+      "exact ratio 3/2 closure/bare for every shell (Lean T1): the half factor is the surface-pressure term",
+      "deep single-counted balance: sigma^2 = C/2 exactly for g = C/r (Q-deep algebraic limit)",
+      "double-counting obstruction: sigma^2(r) = C - C r_in/(2r) (not isothermal)",
+      "parametric filtered-MONO kernel bound |g_MONO - C/r| <= (C/r) c2 (xi/r)^2"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "Amended requirement 1 (exact MOND phenomenology with the operative filtered nu_mono kernel, causality criterion B, per FRIED_CHICKEN_SPEC.md) - equilibrium-sector sub-obligation: the relations sigma^2 = C/2, rho_ph = C/(4 pi G r^2), P = sigma^2 rho_ph are conditional deep-equilibrium inputs/targets (framework contract).",
+    "exact_implication": "This result upgrades the status of sigma^2 = C/2 from 'target' to 'derived on the premises {rho = A/r^2, P = sigma^2 rho, equipartition A = C/(4 pi G_N), point baryon, static shell} with PROVEN boundary-condition dependence': the coefficient is the surface-pressure virial term (exact 3/2 ratio, Lean-certified) and C/2 itself requires the differential baryon coupling to vanish; single counting is mandatory (double counting yields sigma^2 = C / position-dependent sigma^2). The deep exterior affirms C/2 under the algebraic deep force with a parametric kernel-error bound.",
+    "common_action_parameter_domain_compatibility": "The result is an equilibrium/virial-sector statement with no action variation: it is compatible with any common action that reduces to the same virial + fluid closure in the static sector, but it does NOT by itself certify an action. The action-side derivation of C/2 (or the equivalent heat-kernel statement) is exactly the next_unresolved_implication; same-parameter compatibility with the filtered-MONO field equation (xi, a0, G_N, M_b) is the test to be discharged there.",
+    "branch_translation": "None performed. Q, RAR, MU2, EXP appear nowhere in the conclusions; MONO enters only through the deep-force bound of §5. No historical branch was imported to repair anything."
+  },
+  "child_proposals": [
+    {
+      "child_id": "AS087.C01",
+      "fingerprint": "action/source revision: filtered-MONO field equation (FRIED_CHICKEN_SPEC amendment; S = exp((xi^2/2) Delta), xi unpinned); branch: MONO (operative); assumptions: point source M_b, static spherical, deep shells r_in/r_M in {10,100}, R/r_in in {2,10}; domain: r >= r_in >> max(r_M, xi); target claim: the deep-shell equilibrium of the FULL kernel reproduces rho = A/r^2 and sigma^2 = C/2 with a kernel error below the parametric bound |g_MONO - C/r| <= (C/r) c2 (xi/r)^2 of parent AS087, or an explicit counterexample profile; observable/operator: full-kernel hydrostatic residual operator dP/dr + rho g_MONO on the deep shells; new input/continuation step: pin or parametrize xi, solve the full-kernel profile numerically/symbolically on the deep shells (bounded prototype first: <120 s, 1 thread), negative control xi -> 0 reproduces the parent's algebraic C/2.",
+      "new_claim_vs_parent": "Parent proved: (i) exact 3/2 boundary-condition dependence of the virial coefficient; (ii) algebraic-line C/2 in the deep exterior with a PARAMETRIC kernel bound. Child target: the non-algebraic (finite xi) verification or falsification of C/2's survival in the operative kernel - the parent explicitly leaves this open.",
+      "controls": "NC1: xi -> 0 limit must reproduce C/2 with algebraic residual; NC2: rho = A/r^2 substituted into the full-kernel equation must leave a quantified residual (not a boolean); NC3: interior fixture R/r_M = 0.62 must show the kernel suppression active (the equilibrium sector door closes outside the deep domain).",
+      "dependencies": ["AS087 parent evidence (this run)", "AS044 (deep point-source potential/boundary matching - review first, its result may subsume the potential part)", "calibration record for xi or an explicit xi declaration by the orchestrator"],
+      "duplicate_search": "manifest.json scan for kernel/filter/point-source/deep-shell/virial/equilibrium titles: closest are AS044 (deep point-source potential and boundary matching - potential, not equilibrium sigma^2 survival), AS042 (filter order), AS043 (external field), AS033/AS034 (MONO splice construction/integration) - none states the equilibrium-sector consequence of finite-xi smoothing for C/2; no live claim found in results/, claims/ absent, fresh_gravity_followups queue not modified.",
+      "dispatch_state": "spec_ready_not_dispatched (no spawn mechanism available in this subagent execution; returned to orchestrator per FIRST_PRINCIPLES_AND_BRANCHING.md)"
+    }
+  ],
+  "closure_candidate": null
+}

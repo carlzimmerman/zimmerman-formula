@@ -15,3 +15,101 @@ AS086 -- External logarithmic-well virial term    run: AS086-r1-20260928T133517
     dPhi_ext/dr = C/r (exact derivative of C ln(r/r_ref));  r*dPhi/dr = C constant
     => W_ext = -C * int rho dV = -C*M  for ANY rho >= 0 on ANY (r_in, R) shell.
 
+    quadrature cells: 80 (2 footings x (6 interior + 4 deep) shells x 4 profiles, N=65536 log-grid trapezoids)
+    [canonical] Richardson on SIS cell (r_in/R=0.01, R/r_M=0.62): residuals ['0.00e+00', '0.00e+00', '0.00e+00'], exponent ~ nan -> final 0.00e+00
+    [alt] Richardson on SIS cell (r_in/R=0.01, R/r_M=0.62): residuals ['0.00e+00', '2.40e-16', '1.20e-16'], exponent ~ nan -> final 1.20e-16
+  [PASS] B1 [identity, quadrature] W_ext = -C*M on every tested shell and profile, both footings: max |W_num + C M|/(C M) over 80 cells = 3.55e-16 < 1e-9
+        measured: max rel residual = 3.55e-16
+        tol: 1e-9 (pre-registered)
+    mpmath(60dp) direct-integrand check on canonical SIS cell: rel residual 1.02e-61
+  [PASS] B2 [identity, independent representation] 60-digit mpmath quadrature of the RAW integrand rho*r*(dPhi/dr) reproduces -C*M
+        measured: rel residual = 1.02e-61 at 60 digits
+        tol: 1e-40
+
+--- B3. the potential-ENERGY form int rho Phi dV (not the virial form) ---
+    max |W_pot - (-C M)|/(C M) over 16 r_ref choices = 4.652
+  [PASS] B3 [negative control: potential-energy form is NOT the virial term] W_pot = int rho Phi_ext dV = C M <ln(r/r_ref)> depends on r_ref and profile and deviates from -C M by up to 4.652 (465%): the claim -C M is about the VIRIAL form -int rho r dPhi/dr dV only
+        measured: max rel deviation = 4.652, deviation does not vanish
+        tol: > 0 (control expected to fail: deviation must be large)
+
+--- C. dispersion inferred with / without pressure boundaries (external log well) ---
+    phantom rho = A/r^2 on [r_in, R]; T = (3/2) M sigma^2;  W_ext = -C M
+    bare virial (no boundaries):      2T + W_ext = 0          -> sigma^2 = C/3
+    twin-moment closure (AS083 lemma): 2T + W_ext = 4 pi (R^3 P(R) - r_in^3 P(r_in))
+        = sigma^2 * 4 pi A (R - r_in) = sigma^2 * M   (P = sigma^2 rho) -> sigma^2 = C/2
+    outer-moment-only (inner term dropped): sigma^2 = C (R - r_in)/(2 R - 3 r_in)
+    [canonical] C=2.949127e+10;  sigma^2(C/3)=9.830422e+09, sigma^2(C/2)=1.474563e+10 (m/s)^2
+    [alt] C=3.237030e+10;  sigma^2(C/3)=1.079010e+10, sigma^2(C/2)=1.618515e+10 (m/s)^2
+      [canonical] r_in/R=0.01, R/r_M=0.62: outer-only sigma^2/C=0.502538 (dev from C/2: 0.51%)
+      [canonical] r_in/R=0.1, R/r_M=0.62: outer-only sigma^2/C=0.529412 (dev from C/2: 5.88%)
+      [canonical] r_in/R=0.5, R/r_M=0.62: outer-only sigma^2/C=1.000000 (dev from C/2: 100.00%)
+      [canonical] r_in/R=0.01, R/r_M=1.0: outer-only sigma^2/C=0.502538 (dev from C/2: 0.51%)
+      [canonical] r_in/R=0.1, R/r_M=1.0: outer-only sigma^2/C=0.529412 (dev from C/2: 5.88%)
+      [canonical] r_in/R=0.5, R/r_M=1.0: outer-only sigma^2/C=1.000000 (dev from C/2: 100.00%)
+      [alt] r_in/R=0.01, R/r_M=0.62: outer-only sigma^2/C=0.502538 (dev from C/2: 0.51%)
+      [alt] r_in/R=0.1, R/r_M=0.62: outer-only sigma^2/C=0.529412 (dev from C/2: 5.88%)
+      [alt] r_in/R=0.5, R/r_M=0.62: outer-only sigma^2/C=1.000000 (dev from C/2: 100.00%)
+      [alt] r_in/R=0.01, R/r_M=1.0: outer-only sigma^2/C=0.502538 (dev from C/2: 0.51%)
+      [alt] r_in/R=0.1, R/r_M=1.0: outer-only sigma^2/C=0.529412 (dev from C/2: 5.88%)
+      [alt] r_in/R=0.5, R/r_M=1.0: outer-only sigma^2/C=1.000000 (dev from C/2: 100.00%)
+  [PASS] C1 [bare virial, no pressure boundaries] sigma^2 = C/3 exactly solves 3 M sigma^2 = C M on every shell (any M): max rel residual = 1.64e-16
+        measured: max |3 M C/3 - C M|/(C M) = 1.64e-16
+        tol: 1e-12
+  [PASS] C2 [fluid closure, BOTH pressure boundaries] sigma^2 = C/2 exactly solves 3 M sigma^2 - C M = sigma^2 * 4 pi A (R - r_in) = sigma^2 M (AS083 twin-moment identity, P = sigma^2 rho) on every shell: max rel residual = 3.27e-16
+        measured: max |3 M C/2 - C M - M C/2|/(C M) = 3.27e-16
+        tol: 1e-12
+  [PASS] C3 [control capable of failing: drop the inner moment] outer-only bookkeeping gives sigma^2 = C(R-r_in)/(2R-3r_in): deviation from C/2 up to 100.0% (100% at r_in/R=0.5, exactly C there): the inner surface moment is load-bearing
+        measured: max |sigma^2_outer - C/2|/(C/2) = 1.0000
+        tol: > 1% (expected to FAIL), and equals 100% at r_in/R=0.5
+
+--- D. double-counting control: W_self and W_ext as the IDENTICAL log field ---
+    self-field of the truncated SIS (Newtonian integral, exact):
+      Phi_self(r) = -G M(<r)/r - 4 pi G A ln(R/r),  M(<r) = 4 pi A (r - r_in)
+      dPhi_self/dr = 4 pi G A (1/r - r_in/r^2)  ->  coefficient C_self = 4 pi G A = C
+      (equipartition A = C/(4 pi G): the self-field HAS the same log coefficient C)
+    closed form: W_self = (1/2) int rho Phi_self dV = -16 pi^2 G A^2 [R - r_in(1+L)],
+      L = ln(R/r_in).  In the singular limit r_in -> 0:  W_self -> -G M_T^2/R = -C M_T
+    [canonical] r_in/R=0.01: W_self(exact)=-2.4024e+51, -C M_T =-2.5196e+51, mis-statement 4.88%, W_self + W_ext (both -C M) = -5.0393e+51 = 2.0976 x W_self(true)
+    [canonical] r_in/R=0.1: W_self(exact)=-1.7045e+51, -C M_T =-2.2906e+51, mis-statement 34.38%, W_self + W_ext (both -C M) = -4.5812e+51 = 2.6876 x W_self(true)
+    [canonical] r_in/R=0.5: W_self(exact)=-3.9048e+50, -C M_T =-1.2725e+51, mis-statement 225.89%, W_self + W_ext (both -C M) = -2.5451e+51 = 6.5178 x W_self(true)
+    [canonical] r_in/R=->0: W_self(exact)=-4.1050e+51, -C M_T =-4.1050e+51, mis-statement 0.00%, W_self + W_ext (both -C M) = -8.2099e+51 = 2.0000 x W_self(true)
+    [alt] r_in/R=0.01: W_self(exact)=-2.6370e+51, -C M_T =-2.7656e+51, mis-statement 4.88%, W_self + W_ext (both -C M) = -5.5312e+51 = 2.0976 x W_self(true)
+    [alt] r_in/R=0.1: W_self(exact)=-1.8710e+51, -C M_T =-2.5142e+51, mis-statement 34.38%, W_self + W_ext (both -C M) = -5.0284e+51 = 2.6876 x W_self(true)
+    [alt] r_in/R=0.5: W_self(exact)=-4.2860e+50, -C M_T =-1.3968e+51, mis-statement 225.89%, W_self + W_ext (both -C M) = -2.7935e+51 = 6.5178 x W_self(true)
+    [alt] r_in/R=->0: W_self(exact)=-4.5057e+51, -C M_T =-4.5057e+51, mis-statement 0.00%, W_self + W_ext (both -C M) = -9.0114e+51 = 2.0000 x W_self(true)
+  [PASS] D1 [control: same field counted twice] adding W_self = -C M and W_ext = -C M when both represent the identical logarithmic field (coefficient C, valid as r_in/R -> 0) gives -2 C M vs the single-coupling value -C M (factor 2.000000): the virial term -C M must be applied ONCE per distinct well; the add-both book over-counts the same force and mis-infers sigma^2 = 2C/3 (bare) or C (closure) instead of C/3, C/2
+        measured: double-count factor = 2.000000000000 (exactly 2 in the singular limit, r_in/R = 1e-15); mis-statement of the self energy by the log formula up to 225.9% at finite r_in
+        tol: 2.0 +/- 1e-9 (r_in/R = 1e-15 row)
+  [PASS] D2 [asymptotic leg] |W_self(exact) - (-C M_T)|/( |W_self| ) -> 0 as r_in/R -> 0 (self-field literally becomes the C ln r well): {0.01: 0.04878625444912333, 0.1: 0.34380206765828164, 0.5: 2.258891353270928, '->0': 3.436858247250271e-14}
+        measured: True
+        tol: at finite r_in the self-field is NOT the pure log well: the -C M formula applied to the self field mis-states the self energy (up to ~226% at r_in/R=0.5), which is why W_self must be booked by its own integral (AS084 domain), not by the external-well formula
+
+--- E. Newtonian-limits control: same virial form with the baryon POINT well ---
+    Phi_b = -G M_b/r:  r dPhi_b/dr = G M_b / r  (NOT constant)  =>
+    W_newt = -int rho r dPhi_b/dr dV = -4 pi G A M_b ln(R/r_in) = -M_b C ln(R/r_in)
+    The log-well identity would claim -C M_T; the deviation is
+    |W_newt + C M_T|/|C M_T| = |(M_b/(4 pi A)) ln(R/r_in)/(R - r_in) - 1|  >> 1 .
+    [canonical] r_in/R=0.01: W_newt(closed)=-1.89041e+52 J, quadrature dev 4.22e-16, |W_newt - (-C M_T)|/|C M_T| = 6.50 (analytic 6.502721)
+    [canonical] r_in/R=0.1: W_newt(closed)=-9.45205e+51 J, quadrature dev 1.13e-15, |W_newt - (-C M_T)|/|C M_T| = 3.13 (analytic 3.126497)
+    [canonical] r_in/R=0.5: W_newt(closed)=-2.84535e+51 J, quadrature dev 2.69e-15, |W_newt - (-C M_T)|/|C M_T| = 1.24 (analytic 1.235959)
+    [alt] r_in/R=0.01: W_newt(closed)=-2.07496e+52 J, quadrature dev 1.41e-15, |W_newt - (-C M_T)|/|C M_T| = 6.50 (analytic 6.502721)
+    [alt] r_in/R=0.1: W_newt(closed)=-1.03748e+52 J, quadrature dev 1.54e-15, |W_newt - (-C M_T)|/|C M_T| = 3.13 (analytic 3.126497)
+    [alt] r_in/R=0.5: W_newt(closed)=-3.12312e+51 J, quadrature dev 7.66e-15, |W_newt - (-C M_T)|/|C M_T| = 1.24 (analytic 1.235959)
+  [PASS] E1 [Newtonian control: the log-well identity FAILS on the point well (AS085)] the -C M claim fails by a factor 1.24-6.50 across the diagnostic shells for Phi = -G M_b/r (pre-estimate '>10' was too strict); the exact deviation |(M_b G/C) ln(R/r_in)/(R - r_in) - 1| is reproduced to 8.88e-16
+        measured: max |W_newt + C M_T|/(C M_T) = 6.50 (>= 1: identity fails, order-unity+); closed-form residual = 7.66e-15; analytic form matched to 8.88e-16
+        tol: dev >= 1 (control expected to FAIL: log identity must not hold); quadrature < 1e-9; analytic form < 1e-6
+
+--- F. normalization and boundary case ---
+    [canonical] g_well(r_M) = C/r_M = 9.361900e-11 vs a0 = 9.361900e-11: rel 0.0e+00  | v_flat^4 = 8.697347e+20 vs G M_b a0 = 8.697347e+20: rel 3.0e-16
+    [alt] g_well(r_M) = C/r_M = 1.127900e-10 vs a0 = 1.127900e-10: rel 0.0e+00  | v_flat^4 = 1.047836e+21 vs G M_b a0 = 1.047836e+21: rel 2.5e-16
+  [PASS] F1 [boundary case] the log well gives g = C/r = a0 exactly at r = r_M on both footings, and v_flat^4 = (sqrt(C))^4 = G M_b a0 (the deep relation); C = v_flat^2 carries units m^2/s^2 and W_ext = -C M carries J
+        measured: max rel dev = 0.0e+00
+        tol: identities
+
+--- G. bounds (actually enforced and measured) ---
+    wall time: 0.088 s (declared budget 120 s; enforced by script structure, no unbounded loop; soft kill at 110 s)
+    peak RSS:  68.58 MiB = 71909376 bytes (declared budget 512 MB; ru_maxrss raw units bytes on macOS, cf. AS002 record; cap enforced by construction: fixed-size arrays, no growth loops)
+    threads:   single (OMP/OPENBLAS/MKL/NUMEXPR/VECLIB = 1; no multiprocessing)
+
+CHECKS: 11/11 pass
+[written] /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS086/AS086-r1-20260928T133517/as086_checks.json

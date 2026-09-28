@@ -1,0 +1,132 @@
+{
+  "checks": [
+    {
+      "name": "A1 flat-T3: direct == correct IBP (incl. lapse-gradient)",
+      "residual": 2.220446049250313e-16,
+      "tol": 2e-10,
+      "value": -2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "name": "A2 NEGATIVE CONTROL flat-T3: wrong IBP must FAIL (residual large)",
+      "residual": 0.12497948474196274,
+      "tol": 0.0001,
+      "value": -0.12497948474196274,
+      "pass": true
+    },
+    {
+      "name": "A3 constant-lapse limit: lapse-gradient term vanishes (both agree)",
+      "residual": 9.020562075079397e-17,
+      "tol": 2e-10,
+      "value": 9.020562075079397e-17,
+      "pass": true
+    },
+    {
+      "name": "B1 curved-T3: direct == correct IBP (\u0393 present, lapse-gradient present)",
+      "residual": 0.0,
+      "tol": 5e-10,
+      "value": 0.0,
+      "pass": true
+    },
+    {
+      "name": "B2 NEGATIVE CONTROL curved-T3: wrong IBP must FAIL",
+      "residual": 0.1352702508189496,
+      "tol": 0.001,
+      "value": -0.1352702508189496,
+      "pass": true
+    },
+    {
+      "name": "C1 stress conformal: IBP-eval == original-operator eval (\u03b5=+1e-6)",
+      "residual": 2.220446049250313e-16,
+      "tol": 5e-10,
+      "value": -2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "name": "C2 stress conformal: FD dS/d\u03b5 == \u0398^{ij} prediction (central)",
+      "residual": 7.48596601374274e-11,
+      "tol": 2e-09,
+      "value": -7.48596601374274e-11,
+      "pass": true
+    },
+    {
+      "name": "C3 stress conformal: 5-point FD dS/d\u03b5 == \u0398^{ij} prediction",
+      "residual": 5.6355947686270724e-11,
+      "tol": 2e-09,
+      "value": -5.6355947686270724e-11,
+      "pass": true
+    },
+    {
+      "name": "C4 NEGATIVE CONTROL stress: wrong stress (no lapse-gradient) must FAIL",
+      "residual": 0.0052032285327766326,
+      "tol": 1e-06,
+      "value": 0.0052032285327766326,
+      "pass": true
+    },
+    {
+      "name": "D1 stress anisotropic: FD dS/d\u03b5 == \u0398^{ij} prediction",
+      "residual": 3.178067618098135e-18,
+      "tol": 2e-09,
+      "value": 3.178067618098135e-18,
+      "pass": true
+    },
+    {
+      "name": "E1 on-shell measure: \u222b N\u221ah B0 = 0 (closed leaf)",
+      "residual": 6.288372600415926e-18,
+      "tol": 5e-10,
+      "value": -6.288372600415926e-18,
+      "pass": true
+    },
+    {
+      "name": "E2 on-shell identity: B0 = div_N(L DW) pointwise (sup norm)",
+      "residual": 1.91491267287347e-12,
+      "tol": 5e-09,
+      "value": 1.91491267287347e-12,
+      "pass": true
+    },
+    {
+      "name": "E3 off-shell identity: \u222bN\u221ah B0 = \u222bN\u221ah L(\u2202_rW-\u0394_hW)",
+      "residual": 2.220446049250313e-16,
+      "tol": 5e-10,
+      "value": -2.220446049250313e-16,
+      "pass": true
+    },
+    {
+      "name": "F1 S2 coarse (96x192): direct == correct IBP",
+      "residual": 7.283063041541027e-14,
+      "tol": 2e-07,
+      "value": 7.283063041541027e-14,
+      "pass": true
+    },
+    {
+      "name": "F2 S2 refined (192x384): direct == correct IBP",
+      "residual": 3.6637359812630166e-13,
+      "tol": 2e-09,
+      "value": 3.6637359812630166e-13,
+      "pass": true
+    },
+    {
+      "name": "F3 NEGATIVE CONTROL S2: wrong IBP must FAIL",
+      "residual": 0.8693066647669978,
+      "tol": 0.0001,
+      "value": -0.8693066647669978,
+      "pass": true
+    }
+  ],
+  "bounds": {
+    "declared": {
+      "wall_s": 120,
+      "mem_MB": 512,
+      "threads": 1
+    },
+    "enforced": {
+      "wall": "timed; elapsed=0.30s, checked <=120",
+      "memory": "RLIMIT_AS soft cap 512 MB set; maxrss=215.7 MiB measured",
+      "threads": "env caps OMP/OPENBLAS/MKL/NUMEXPR/VECLIB=1; active_count=1"
+    },
+    "elapsed_s": 0.2951321601867676,
+    "maxrss_MiB": 215.734375,
+    "active_threads": 1,
+    "pass": true
+  }
+}

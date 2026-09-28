@@ -1,0 +1,199 @@
+{
+ "schema_version": 2,
+ "task_id": "AS147",
+ "task_sha256": "cf210c8fc5db2990f3a24815a98675fc9cd24cba112a0db48391d63fbfe5d551",
+ "run_id": "AS147-r1-20260928T145834Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent; identity taken from the executing agent's own system context (Platform: subagent)",
+ "started_utc": "2026-09-28T14:58:34Z",
+ "finished_utc": "2026-09-28T16:15:51Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "Diagonal U(1) Noether current of the five-field carrier (CA5-GNC-R / CA4-GNC host): J^mu = J_phi^mu + J_chi^mu with J_psi^mu = eps_ab psi_a C^{mu nu} d_nu psi_b, C^{mu nu} = t^{-1} h^{mu nu} - t n^mu n^nu, V = (1/2)mH^2|phi|^2 + (1/2)mL^2|chi+gamma s phi|^2 + (1/2)mu^2 s^2, B = t^{-1}. On shell (B = 1 leaf): div J_phi = +E, div J_chi = -E, div J_total = 0 with the signed exchange source E = gamma mL^2 s (phi1 chi2 - phi2 chi1). Verified (a) symbolically (sympy: every phi/chi source identity reduces to 0 exactly; asymmetric-C control nonzero; potmat det = mH^2 mL^2), (b) on an exact two-mode time-dependent on-shell state (integer-wavenumber cell k1 = 2, k2 = 1, P = 4.4849433, bisection cell s* = 1.2433...): EOM residuals 8.9e-16 (grids 128/512), max|div J_phi - E| = 1.3e-9, max|div J_chi + E| = 1.3e-9, max|div J_total| = 9.3e-10 (finite-difference d_tau J^0 noise floor, honest residuals), max|E| = 0.7500000 (nonzero source REQUIRED for phi-only rotation at nonzero gamma*s: NC1), (c) homogeneous in-phase rotating mode on shell (res 0/-2.2e-16/5.6e-17) with Q ∝ n.J = 1.411547 != 0, dQ/dtau = 0, E_hom = 0 (collinear), (d) static sector: (-Delta + V_stat) positive definite with det V = mH^2 mL^2 > 0 and lambda_min = 1.49957, so the only static on-shell carrier state on the compact leaf is trivial (maximum principle; exchange requires time dependence; limiting case LC1). Controls capable of failing, all exercised with actual residuals: corrupt-sign source residual 1.5000000 = 2 max|E| (NC2 fails as designed), collinear chi = lam phi gives max|E| = 1.63e-16 identically zero (NC3), gamma = 0 separately conserved currents 6.3e-11 / 5.0e-11 with EOM residuals 1.1e-15 (NC4). Lean 4 certificate (12 theorems + 1 def, Mathlib v4.34.0-rc2): exit 0, zero sorry, all 13 unfiltered #print axioms exactly [propext, Classical.choice, Quot.sound]. Charge normalization j^mu = J^mu/Q with Q = int_leaf sqrt(h) n_mu J^mu on the homogeneous mode. Domain: compact 1D leaf (period 2 pi) in natural units (c = 1), fields/masses in powers of M, gamma in M^{-1}, unit lapse t = 1 (B = t^{-1} entering as a one-line exact rescaling E -> B E, not re-verified at general lapse); carrier masses mH = 1.0, mL = 1.3, mu^2 = 0.5, gamma = 0.7, s fixed background per the seed input. Framework footings quoted separately (never mixed): a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 adopted: 9.3619e-11 m/s^2 and 1.1279e-10 m/s^2; the U(1) sector algebra is a0-independent (branch-agnostic: Q/RAR/MU2/EXP/MONO not imported; criterion B not exercised at Tier-0).",
+ "framework_cell": {
+  "action": "none: Tier-0 algebraic identity of the seed itself; the five-field action (FINAL_ACTION eqs. 1,8; PERSPECTIVE_VARIANT P1; CA5-GNC-R R1) with C^{mu nu} = t^{-1} h^{mu nu} - t n^mu n^nu, V = (1/2)mH^2|phi|^2 + (1/2)mL^2|chi+gamma s phi|^2 + (1/2)mu^2 s^2, B := t^{-1} (CA5-GNC-R; exponential host B = e^{-z} identical U(1) sector). No branch action imported into any identity; Q/RAR/MU2/EXP/MONO are comparison/limitation labels only. The operative target (filtered MONO, criterion B) is NOT concluded on; transfer requires the branch bridge (child AS147.C01).",
+  "source_hashes": {
+   "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+   "real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md": "290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+   "real_research/common_action_2026_09_26/action/PERSPECTIVE_VARIANT.md": "36efa45459468d22c1f2553cbcd5d2a2349bef56c6df1e03a5b9fefb9806d78b"
+  },
+  "kernel": "Diagonal-U(1) sector only: J_psi^mu = eps_ab psi_a C^{mu nu} d_nu psi_b; signed exchange pair div J_phi = +E, div J_chi = -E, div J_total = 0 with E = B gamma mL^2 s (phi1 chi2 - phi2 chi1); normalized j^mu = J^mu/Q, Q = int_leaf sqrt(h) n.J. Branches (comparison only, none imported): Q (algebraic a0 line), RAR (1-e^-sqrt(y))^-1, MU2 (1-(1+x/2)^-2)^-1, EXP (1-e^-x)^-1, MONO (nu_mono contract splice; criterion B NOT exercised).",
+  "filter": "no filter applies (algebraic identity of the seed itself; the heat filter's role is named in the transfer limitation AS147.C01)",
+  "gate": "Tier-0 of the 2000-task closure campaign: the diagonal U(1) exchange-source pair of the carrier. Causality criterion B not exercised (algebra only). The seed's controls (NC1 requires a nonzero exchange source; NC2 corrupt sign must fail) are exercised with actual residuals; a completed task is not closure of gravity.",
+  "coupling": "single carrier coupling gamma (M^-1) with singlet background s; no gravitational coupling enters the current algebra (G_N/G_bare/G_cosmo separation irrelevant here: the U(1) sector is a0-independent; a0 = kappa c sqrt(G rho_Lambda) enters only at the framework footing level, with kappa = 1/2 adopted)",
+  "parameters": {
+   "kappa": "1/2 ADOPTED as input (not derived); the U(1) sector algebra cannot fix kappa's normalization freedom (stated in limitations)",
+   "a0_footings": [
+    "9.3619e-11 m/s^2 (canonical)",
+    "1.1279e-10 m/s^2 (alternative)",
+    "separate footings; ratio a0_alt/a0_can = 1.20478; the U(1) identities are dimensionless in the cell and both footings apply at the framework level (no per-object fitting)"
+   ],
+   "cell": "natural units (c = 1): mH = 1.0, mL = 1.3, mu^2 = 0.5, gamma = 0.7, s cell (two-mode) s* = 1.24333... (bisection root of (a-b)^2 + 4c = (y1-y2)^2 = 9), P = (y1+y2+a+b)/2 = 4.4849433, k1 = 2, k2 = 1 (integer wavenumbers, L = 2 pi), A1 = A2 = 0.5, omega = 2.11777; homogeneous mode cell s0 = -0.8, r = 0.91902778, a = 0.97045097, b = 0.89187140, omega = 0.81253684",
+   "unit_lapse": "t = 1 leaf, B = 1 for all numeric verifications; general-lapse factor B = t^{-1} acts as exact rescaling E -> B E (derivation sect. 3, not numerically re-verified at t != 1)"
+  },
+  "scale_footing_note": "All on-shell identities verified in the natural-unit cell are a0-free; the two framework footings (9.3619e-11 and 1.1279e-10 m/s^2) are quoted separately as framework inputs with G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI).",
+  "boundaries": "x in [0, 2 pi) periodic leaf (compact); fields/masses in powers of M; s fixed background (seed input 's fixed'); bounded grids 128 and 512 points (refinement mandated once); Bisection domain s in [1.2, 1.45] for the cell root; no statistical sampling, no seeds.",
+  "initial_conditions": "None evolved: closed-form on-shell states at fixed t0 = 0.37 (two-mode) and t0 = 0 (homogeneous); d_tau J^0 measured by centered/forward finite differences at fixed t0.",
+  "units": "Natural units in the cell (c = 1, masses ~ M); framework SI units: a0 in m/s^2, G in m^3 kg^-1 s^-2, rho_Lambda in kg/m^3; dimensionless ratios where they appear."
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS147_derive_the_diagonal_u_1_noether_current.md": "cf210c8fc5db2990f3a24815a98675fc9cd24cba112a0db48391d63fbfe5d551",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+  "real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md": "290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+  "real_research/common_action_2026_09_26/action/PERSPECTIVE_VARIANT.md": "36efa45459468d22c1f2553cbcd5d2a2349bef56c6df1e03a5b9fefb9806d78b"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/compute_as147.py": "928ac525cc4c4ba0d575852672119991c5406e5d794621ae85242829468dd4ba",
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/raw_output.json": "fcc346f5377651ba7b4f8ea261be64919188f59f8a57992c564f740c3d51fe13",
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/raw_output.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/derivation.md": "ca01178bdb991464a9a1c4b8b5845608dcfb67d8a0da28bffabaad11b2cb9055",
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/AS147_diagonal_u1_noether_current.lean": "b5ed2bebce4aaf48fbf02bda01198505df451451d3317597f29b849334023d60",
+  "deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/lean_compile_out.txt": "c5ba4e89506e8762b64edcaeee356239911284dd18807e34b31ef0fb8ff09e50"
+ },
+ "commands": [
+  "shasum -a 256 deepseek_push/astra_spawn_ideas/AS147_derive_the_diagonal_u_1_noether_current.md  (result cf210c8f...d551; verified BEFORE reading/executing the seed)",
+  "python3 deepseek_push/astra_spawn_ideas/results/AS147/AS147-r1-20260928T145834Z-dsv4f-hermes/compute_as147.py > .../raw_output.json 2> .../raw_output.stderr   (cwd: repo root; EXIT=0; real 0.281 s / user 0.247 s / sys 0.031 s; signal.alarm(120) armed; 1 thread; grids 128 + 512)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs run-dir>/AS147_diagonal_u1_noether_current.lean > .../lean_compile_out.txt 2>&1   (EXIT=0; 13/13 #print axioms = [propext, Classical.choice, Quot.sound]; zero sorry; nothing written into lean_2026)"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_clock_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "precision": "float64 numpy + exact sympy symbolic layer",
+   "grids": "128 and 512 points on the 2 pi periodic leaf (512 = mandated refinement)"
+  },
+  "enforced": {
+   "wall_clock_s": "ENFORCED via signal.alarm(120); observed compute elapsed 0.281 s (final run), 0.27-0.45 s across iterations; Lean compile ~10 s",
+   "memory_MB": "NOT ENFORCEABLE on this macOS host: resource.setrlimit(RLIMIT_AS, 512MB) rejected ('current limit exceeds maximum limit'); recorded honestly in raw_output.json memory_note; observed peak RSS 82.4 MB (ru_maxrss), far below 512 MB",
+   "threads": "ENFORCED: single process, single thread, OMP_NUM_THREADS=1 / OPENBLAS_NUM_THREADS=1, numpy_single_threaded: true"
+  },
+  "scale_note": "Cheapest bounded discriminating prototype (0.28 s): exact closed-form on-shell states + mandated refinement grid + six controls; no larger computation exists or is needed."
+ },
+ "checks": [
+  {"name": "CK1_sym_exchange_phi", "result": "PASS", "observed": "sympy simplify of (phi-source - E) = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK2_sym_exchange_chi", "result": "PASS", "observed": "sympy simplify of (chi-source + E) = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK3_sym_pair_sum", "result": "PASS", "observed": "phi-source + chi-source = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK4_sym_diag_mass_antisym", "result": "PASS", "observed": "phi1*mH2*phi2 - phi2*mH2*phi1 = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK5_sym_gauge_extraction", "result": "PASS", "observed": "delta|psi|^2 extraction identity = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK6_sym_epsC_symmetric", "result": "PASS", "observed": "eps-contraction with symmetric C = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK7_sym_epsC_asymmetric_control", "result": "PASS", "observed": "contraction with C01 != C10 = -p1 q2 + p2 q1 (nonzero; the term the symmetry kills)", "tolerance": "nonzero"},
+  {"name": "CK8_sym_phi_only_pot_var", "result": "PASS", "observed": "phi-only potential variation under chi mixing = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK9_sym_E_gamma0", "result": "PASS", "observed": "E(gamma=0) = 0 exactly", "tolerance": "identically 0"},
+  {"name": "CK10_sym_potmat_det", "result": "PASS", "observed": "det V_stat = mH2*mL2 (positive) exactly", "tolerance": "identically mH2*mL2"},
+  {"name": "CK11_two_mode_EOM_residuals", "result": "PASS", "observed": "grid128: res_f1 8.88e-16, res_f2 8.88e-16, res_c1 1.33e-15, res_c2 1.11e-15; grid512: identical to 1e-15", "tolerance": "< 1e-10"},
+  {"name": "CK12_divJphi_equals_E", "result": "PASS", "observed": "max|div J_phi - E| = 1.33e-9 (grid128), 1.55e-9 (grid512); d_tau J^0 finite-difference floor", "tolerance": "< 1e-6 (honest residual)"},
+  {"name": "CK13_divJchi_equals_minus_E", "result": "PASS", "observed": "max|div J_chi + E| = 1.33e-9 (grid128), 1.33e-9 (grid512)", "tolerance": "< 1e-6"},
+  {"name": "CK14_divJtotal_zero", "result": "PASS", "observed": "max|div J_total| = 9.33e-10 (grid128), 1.34e-9 (grid512)", "tolerance": "< 1e-6"},
+  {"name": "NC1_nonzero_exchange_source", "result": "PASS", "observed": "max|E| = 0.7500000 on the two-mode state (nonzero source REQUIRED for phi-only rotation at nonzero gamma*s)", "tolerance": "> 1e-6"},
+  {"name": "NC2_corrupt_sign_fails", "result": "PASS", "observed": "max|div J_phi + E (wrong sign)| = 1.5000000 = 2*max|E| (fails as designed)", "tolerance": "must exceed 1e-6; measured 1.5"},
+  {"name": "NC3_collinear_zero", "result": "PASS", "observed": "chi = 1.3 phi pointwise: max|E| = 1.63e-16 (identically zero)", "tolerance": "< 1e-12"},
+  {"name": "NC4_gamma0_separate_conservation", "result": "PASS", "observed": "gamma=0 two-mode per-frequency states: max|div J_phi| = 6.32e-11, max|div J_chi| = 5.02e-11 (centered finite diff), EOM res 1.11e-15 / 8.88e-16", "tolerance": "< 1e-8"},
+  {"name": "LC1_static_trivial_only", "result": "PASS", "observed": "det V_stat = 1.6900 > 0, vmin = 0.49957, lambda_min(-Delta+V) = 1.49957 > 0: kernel {0} on the compact leaf (maximum principle); no nontrivial static carrier states", "tolerance": "lambda_min > 0 (exact property)"},
+  {"name": "LC2_homogeneous_charge_normalization", "result": "PASS", "observed": "on-shell res 0.0 / -2.22e-16 / 5.55e-17; n.J = omega(a^2+b^2) = 1.411547 != 0 (Q != 0); E_hom = -0.0; dQ/dtau = 0; normalized j_tau = 1", "tolerance": "res < 1e-10; Q > 1e-8; E ~ 0"},
+  {"name": "LEAN_compile_exit0", "result": "PASS", "observed": "lake env lean exit 0 on the run-dir certificate (Mathlib v4.34.0-rc2)", "tolerance": "exit 0"},
+  {"name": "LEAN_axioms_unfiltered", "result": "PASS", "observed": "13/13 objects (12 theorems + def exch): 'depends on axioms: [propext, Classical.choice, Quot.sound]'; zero sorry in file", "tolerance": "axioms subseteq {propext, Classical.choice, Quot.sound}; zero sorry"},
+  {"name": "SOURCE_HASH_MATCH", "result": "PASS", "observed": "AS147 spec, FRAMEWORK_CONTRACT, RESULT_CONTRACT, SOURCE_MANIFEST, manifest, FIRST_PRINCIPLES_AND_BRANCHING, STANDING, and all three pinned sources match recorded pins (task sha256 verified before execution)", "tolerance": "exact byte match"}
+ ],
+ "tested_domain": "Compact 1D leaf x in [0, 2 pi), unit lapse t = 1 (B = 1), natural units (c = 1; fields/masses ~ M, gamma ~ M^-1, s fixed background per the seed's input). Parameter cell: mH = 1.0, mL = 1.3, mu^2 = 0.5, gamma = 0.7; two-mode cell s* = 1.24333... (integer wavenumbers k1 = 2, k2 = 1, P = 4.4849433, omega = 2.11777, r1 = -1.22045, r2 = 0.81937, A1 = A2 = 0.5); homogeneous cell s0 = -0.8 (r = 0.91903, a = 0.97045, b = 0.89187, omega = 0.81254). Verification grids 128 and 512 points with FFT-differentiation (band-limited integer modes) and centered/forward finite differences for d_tau J^0; sympy exact symbolic layer; Lean 4 certificates for 12 algebraic identities. Static-sector limiting case at s_back = 1.2. The general-lapse rescaling (E -> B E at t != 1) and non-constant s(x) states are explicitly out of domain (named in limitations/child). No random sampling, no seeds, no refinement history beyond the recorded failed attempts.",
+ "failed_attempts": [
+  {"artifact": "compute_as147.py round 1: EOM residual sign convention (d_tau^2 = -omega^2)", "cause": "first residuals used (d2x - omega^2 psi) - V_psi instead of (d2x + omega^2 psi) - V_psi; measured res_f1 = 8.23 while the state is exactly on shell", "resolution": "sign corrected after re-derivation (section 3); residuals dropped to 8.9e-16"},
+  {"artifact": "two-mode cell v1: non-integer wavenumbers (k1 = 0.786, k2 = 1.871)", "cause": "fields not periodic on [0, 2 pi): EOM check (analytic derivatives) passed but the FFT afterword derivative of J^x polluted by boundary jump; max|div J_phi - E| = 1.246", "resolution": "integer-wavenumber cell k1 = 2, k2 = 1 via bisection on s (root of (a-b)^2 + 4c = 9, P = (y1+y2+a+b)/2); divergence residual dropped to 1.3e-9 (finite-difference floor). This failure is exactly the 'capable of failing' property of the divergence control"},
+  {"artifact": "cell construction: fixed P = 5/2 initially", "cause": "root-sum slip: the correct constraint from the dispersion quadratic is y1 + y2 = 2P - (a + b), so P is determined by the cell, not free", "resolution": "P computed from the cell; exactness witnesses disp_res_1/2, sum_res ~ 1e-15; Lean cell_sum certifies the identity"},
+  {"artifact": "NC4 (gamma = 0) round 1: single-mode states (constant currents, vacuous) and the inherited -omega^2 sign slip", "cause": "trivial arena + residual-sign bug (res_eom_f = 7.0)", "resolution": "two-mode per-frequency states (w_j = sqrt(m^2 + k_j^2), integer k) with centered finite differences; final residuals 6.3e-11/5.0e-11, EOM 1.1e-15"},
+  {"artifact": "Lean rounds 1-5: syntax/API detail failures", "cause": "lambda is a reserved token; ring cannot close goals with inv monomials left by field_simp on this Mathlib build; div_eq_iff vs eq_div_iff orientation; parenthesization mismatch (P - y - mH2 - x vs P - y - (mH2 + x)); mul_left_cancel₀ needs exact multiplication precondition", "resolution": "renamed lam; pure-ring keyword proofs using div_mul_cancel₀/mul_left_cancel₀/cross-multiplication + nlinarith; eq_div_iff for a = c/b; explicit hnum congruence lemma; final exit 0, zero sorry, axioms [propext, Classical.choice, Quot.sound]"}
+ ],
+ "limitations": [
+  "Static compact-leaf sector has no nontrivial on-shell carrier states (positive masses, maximum principle, LC1): the nonzero-exchange demonstration is a time-dependent two-mode state with s fixed background (the seed's own 's fixed' input) and phi,chi-subsystem on-shellness; full five-field on-shellness (s-EOM included) is achieved on the homogeneous mode LC2 and not on the two-mode state (s(x) constant background violates the s-EOM where phi.(chi+gamma s phi) floats).",
+  "All numeric verifications at unit lapse t = 1 (B = 1); the general-lapse factor enters as the exact rescaling E -> B E (derivation section 3) but is not numerically re-verified at t != 1.",
+  "The leaf-averaged exchange vanishes (<E>_leaf = 0 by odd parity in x): local exchange exists (max|E| = 0.75 in cell units) but a net leaf charge flow needs a boundary term or time-varying s sector -- unresolved (next_unresolved_implication).",
+  "Natural-unit carrier cell (mH, mL, mu, gamma) is not yet numerically connected to the physical a0 footings; footings 9.3619e-11 and 1.1279e-10 m/s^2 quoted separately at the framework level only, with kappa = 1/2 adopted (not derived).",
+  "Tier-0 scope: no operative-branch (filtered MONO, criterion B) conclusion; branches Q/RAR/MU2/EXP/MONO are comparison labels only; the U(1) algebra is branch-agnostic (carrier action sector common to all branches).",
+  "RLIMIT_AS 512 MB unavailable on this macOS host (recorded honestly); enforced: wall alarm 120 s, 1 thread, observed peak RSS 82.4 MB."
+ ],
+ "next_unresolved_implication": "The diagonal U(1) exchange is locally nonzero yet leaf-average-vanishing; the unresolved step toward the closure is the mechanism making the carrier charge flow net: with a boundary term (open leaf) or a space-time-varying s(x, tau) sector, dQ/dtau can differ from zero and the exchange pair E (+,-) couples to the lapse/expansion factor B = t^{-1} -- the exact general-lapse transport identity div J_phi = +B E, div J_chi = -B E and the existence/completeness of full five-field (dynamical s) on-shell states with dQ/dtau != 0. That identity is the bridge from this seed to the matter Ward identity sibling AS137 (matter current receiving the carrier leak) and the carrier Legendre sibling AS142.",
+ "suggested_followup": "Dispatch ready child AS147.C01: 'general-lapse exchange-pair transport: exact div J_phi = +B E on t != 1 and the completeness of time-dependent full five-field on-shell states with dQ/dtau != 0 (dynamical s(x,tau))' -- controls: B-rescaling identity, homogeneous limit E -> 0, collinear limit E = 0, corrupt-sign divergence control, s-EOM residual on the dynamical-s state; duplicate check: sibling AS137 targets the matter (Ward) current, AS142 the carrier Legendre transform; no AS/MY manifest or FGF-queue task targets the exchange-pair transport theorem at general lapse. Not dispatched (no subagent spawn mechanism in this worker); ready spec returned for the orchestrator per FIRST_PRINCIPLES_AND_BRANCHING.md.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitives": [
+   "G = 6.67430e-11 m^3 kg^-1 s^-2",
+   "c = 299792458 m/s",
+   "M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m",
+   "kappa = 1/2 ADOPTED (not derived)",
+   "a0 = 9.3619e-11 m/s^2 (canonical) and 1.1279e-10 m/s^2 (alternative), separate footings, a0 = kappa*c*sqrt(G*rho_Lambda)"
+  ],
+  "definitions": [
+   "C^{mu nu} = t^{-1} h^{mu nu} - t n^mu n^nu, t = t_c = 1 + Z - <Z>_h > 0",
+   "V = (1/2)mH^2|phi|^2 + (1/2)mL^2|chi + gamma s phi|^2 + (1/2)mu^2 s^2",
+   "B := t^{-1} (CA5-GNC-R); exponential host B = e^{-z} (identical U(1) sector)",
+   "J_psi^mu = eps_ab psi_a C^{mu nu} d_nu psi_b; J^mu = J_phi^mu + J_chi^mu",
+   "E := gamma mL^2 s (phi1 chi2 - phi2 chi1) at B = 1; signed exchange pair (div J_phi = +E, div J_chi = -E)",
+   "Q := int_leaf sqrt(h) n_mu J^mu; j^mu = J^mu/Q; dQ/dtau = 0 on the closed leaf"
+  ],
+  "conditional_inputs_task_declared": [
+   "the seed's input 's fixed' (background singlet)",
+   "the seed's negative control NC1: phi-only rotation with nonzero gamma*s requires a nonzero exchange source",
+   "the framework normalization a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 adopted",
+   "the compact-leaf arena (1D periodic space; sibling convention of the campaign)"
+  ],
+  "genuinely_derived_here": [
+   "the diagonal U(1) Noether current J^mu = J_phi^mu + J_chi^mu from the carrier action (sign-convention-verified extraction)",
+   "div J_phi = +E, div J_chi = -E, div J_total = 0 with every intermediate factor/sign (sympy exact + Lean-certified exchange_phi/chi/pair_cancels)",
+   "the symmetric-C contraction kill (Lean curl_term_antisym) and its asymmetric-C counter-control",
+   "on-shell coefficient collapse mH^2 + gamma mL^2 s r + gamma^2 mL^2 s^2 = P - y (Lean onshell_coefficient)",
+   "mode-ratio consistency across the two coupled equations (Lean mode_ratio_consistency)",
+   "cell construction y1 + y2 = 2P - (a + b) (Lean cell_sum)",
+   "s-EOM amplitude a^2 = -mu^2 s/(gamma mL^2 (r + gamma s)) (Lean sEOM_amplitude)",
+   "static triviality: no nontrivial static carrier states on the compact leaf (det V = mH^2 mL^2, lambda_min > 0; Lean potmat_det)",
+   "quality on-shell demonstrations: two-mode integer-cell state (EOM res ~ 1e-15, div identity ~ 1e-9 finite-diff floor) and homogeneous rotating mode (Q != 0, dQ/dtau = 0, E = 0)",
+   "controls with actual residuals: NC1 nonzero-source, NC2 corrupt-sign fails (2|E|), NC3 collinear zero, NC4 gamma = 0 separate conservation"
+  ],
+  "measured_calibrations": [],
+  "not_derived": [
+   "kappa = 1/2",
+   "the physical coupling of the carrier cell (mH, mL, mu, gamma) to the SI/a0-cell of the branches",
+   "any general-lapse (t != 1) verification (exact B rescaling stated, not re-derived numerically)",
+   "any operative-branch (MONO, criterion B) statement; no empirical test or dataset",
+   "the matter-side Ward identity (sibling AS137) and the carrier Legendre transform (sibling AS142)"
+  ]
+ },
+ "closure_implication": {
+  "gate": "Tier-0 seed of the 2000-task gravity-closure campaign: the diagonal U(1) Noether current of the five-field carrier, its signed exchange-source pair, and charge normalization, pinned by exact symbolic, numeric (two on-shell state classes + six controls) and Lean certificates. Sibling bridge: this seed supplies the charge-transport side (div J_phi = +E, div J_chi = -E) that the matter Ward identity (AS137) and the carrier Legendre transform (AS142) require; criterion B and the operative filtered-MONO target remain unexercised at this tier.",
+  "implication": "Any use of 'the' U(1) current of the carrier must carry the exchange pair: neither phi alone (source +E) nor chi alone (source -E) is conserved at nonzero gamma*s; only the diagonal total is. The static compact-leaf sector is trivial, so on-shell exchange demonstrations require time-dependent states; leaf-averaged exchange vanishes, so net charge flow needs an open-leaf boundary term or a dynamical-s sector (unresolved; child AS147.C01). Framework footings are separate: no identity in this seed mixes 9.3619e-11 with 1.1279e-10 m/s^2, and kappa = 1/2 remains adopted.",
+  "breaking_requirements": [
+   "general-lapse transport identity div J_phi = +B E with the B = t^{-1} factor and its verification at t != 1",
+   "dynamical-s five-field on-shell state with dQ/dtau != 0 (or the no-go proof), coupling the exchange pair to the matter current (AS137 bridge)",
+   "carrier-cell to a0-footing mapping before any physical application"
+  ]
+ },
+ "child_proposals": [
+  {
+   "id": "AS147.C01",
+   "title": "General-lapse exchange-pair transport and completeness of time-dependent full five-field on-shell states with dQ/dtau != 0",
+   "claim": "On a leaf with general lapse t (B = t^{-1}), the diagonal U(1) currents satisfy div J_phi = +B E and div J_chi = -B E exactly (E := gamma mL^2 s (phi1 chi2 - phi2 chi1)); derive the B-rescaling identity, prove existence (or the no-go) of full five-field on-shell states with dynamical s(x, tau) carrying nonzero leaf exchange and dQ/dtau != 0 on an open boundary, and bound how much of the matter current (sibling AS137 Ward identity) is fed by the pair.",
+   "parent": "AS147 run AS147-r1-20260928T145834Z-dsv4f-hermes (task cf210c8f..., derivation ca01178b..., lean b5ed2beb...)",
+   "controls": [
+    "B-rescaling identity div J_phi = +B E at t != 1 (capable of failing on sign/lapse slip)",
+    "homogeneous limit: E -> 0 and dQ/dtau -> 0 as the state becomes in-phase",
+    "collinear limit: E identically 0",
+    "corrupt-sign divergence control (must fail)",
+    "s-EOM residual on the dynamical-s state (full five-field on-shellness)"
+   ],
+   "dependencies": [
+    "FRAMEWORK_CONTRACT lapse/B definitions (t = t_c = 1 + Z - <Z>_h)",
+    "the matter Ward identity sibling AS137 (results/AS137) and carrier Legendre sibling AS142 (results/AS142)",
+    "this run's certificate: exchange pair, symmetric-C kill, on-shell coefficient, cell construction"
+   ],
+   "duplicate_check": "AS/MY manifests, FGF queue and claims/results dirs scanned: no task targets the general-lapse exchange-pair transport theorem or the dynamical-s completeness question; closest seeds AS137 (matter Ward identity) and AS142 (carrier Legendre) are distinct fingerprints (matter side / transform side vs. charge-transport side at general lapse).",
+   "dispatch_state": "NOT DISPATCHED -- no subagent spawn mechanism available to this worker; ready spec returned for the orchestrator per FIRST_PRINCIPLES_AND_BRANCHING.md"
+  }
+ ],
+ "closure_candidate": null
+}

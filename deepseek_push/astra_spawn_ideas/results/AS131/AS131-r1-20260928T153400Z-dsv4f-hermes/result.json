@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "task_id": "AS131",
+  "task_sha256": "c196e1f9ba3087b89d01be20450dd2b49484e263c86157342ca29c987cce9de4",
+  "run_id": "AS131-r1-20260928T153400Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 via openrouter on Hermes Agent (host macOS, subagent platform)",
+  "started_utc": "2026-09-28T15:34:00Z",
+  "finished_utc": "2026-09-28T16:46:27Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For the heat-constraint block of action (4) (CA4-GNC, inherited by CA5-GNC-R) S_heat = (M_P^2 c_N/2) ∫dτ ∫_Σ N√h ∫_0^b dr L [∂_rW − Δ_hW], b = ξ²/2, on a closed leaf with lapse N = e^σ the spatial IBP is ∫ N√h L Δ_h W = −∫ N√h [⟨DL,DW⟩ + L⟨D ln N,DW⟩] (lapse-gradient term REQUIRED), giving the metric stress δ_h S_heat = (M_P²c_N/2)∫dτ∫_0^b dr ∫_Σ N√h Θ^{ij} δh_ij with Θ^{ij} = ½h^{ij}B0 − D^{(i}L D^{j)}W − L D^{(i}ln N D^{j)}W, B0 = L ∂_rW + ⟨DL,DW⟩ + L⟨D ln N,DW⟩, and the on-shell measure ∫_Σ N√h B0 = 0. Domain: bandlimited periodic witnesses on flat T³ (64³), curved T³ (conformal σ = 0.3cos x1), and S² leaves (96×192 and 192×384); nonconstant lapse; residual thresholds 2e-10..5e-9 with all 16 checks passing (max residual 7.5e-11 for stress FD), and the four negative controls (naive lapse-free IBP / lapse-free stress) failing with residuals 1.25e-1, 1.35e-1, 5.2e-3, 8.7e-1. 1D flat mode algebra (W = e^{ikx}, L = e^{iqx}) certified in Lean 4: correct bracket ≡ direct bracket; wrong bracket misses −k(q+k)Φ, nonzero at (k,q)=(1,2).",
+  "framework_cell": {
+    "action": "action (4) CA4-GNC heat-constraint block, real_research/common_action_2026_09_26/action/FINAL_ACTION.md (b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e); inherited by CA5-GNC-R (real_research/breakthrough_review_2026_09_26/CONTRACT.md)",
+    "kernel": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED as input (not derived here)",
+    "filter_gate_coupling": "heat block = Friedman-kernel action restricted to (L, W) sector with truncated r-domain [0, b], b = xi^2/2; lapse N enters as weight; c_N couples G_N to kernel ratio",
+    "constants": {
+      "G_N": "6.67430e-11 m^3 kg^-1 s^-2",
+      "c": "299792458 m/s",
+      "M_sun": "1.98847e30 kg",
+      "pc": "3.085677581491367e16 m",
+      "rho_Lambda": "5.844412e-27 kg/m^3 (canonical), 8.483090e-27 kg/m^3 (alternative)",
+      "Lambda": "1.090800e-52 m^-2 (canonical), 1.583282e-52 m^-2 (alternative)",
+      "c_N": "0.9999999999999519; G_bare/G_N = 1.000000000000048; G_cosmo/G_N = 0.9999999999999519",
+      "M_P^2*c_N/2": "2.980742e+08 kg s^2/m^3 (SI)"
+    },
+    "scale_footings": ["9.3619e-11 m/s^2", "1.1279e-10 m/s^2"],
+    "G_separation": "G_N, G_bare, G_cosmo kept separate throughout; only G_N enters the numerical constants",
+    "boundaries_initial": "closed leaf, no boundary; periodic witnesses; b = xi^2/2 not varied",
+    "units": "SI"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as input",
+    "nonconstant lapse witness class N = e^{a cos} with |D ln N| ~ O(0.1-0.4) so the lapse-gradient moment is nonzero",
+    "bandlimited witness class (spectral exactness is the computation domain)",
+    "no back-reaction of the leaf measure beyond the quoted conformal variation h_eps = e^{2 eps chi} h"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS131_derive_the_heat_field_metric_stress.md": "c196e1f9ba3087b89d01be20450dd2b49484e263c86157342ca29c987cce9de4",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/peer_review_2026_09_26/xc1/REVIEW.md": "26693935fcaf2870119a6f630b819b40ec33d94d0bdcf967beb51750e326f770",
+    "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes/derivation.md": "7e150c680abaa23589fca17507df633fbe75e3c2c08a406a947836d38a1c51a0",
+    "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes/verify_heat_stress.py": "8ad1db7141c0f4f245b64e65fc3bc286e342a7bac91e9779c470957be535bc80",
+    "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes/run_stdout.txt": "3a4a4be05620d2f0cc54370a934c0c420d7dc263bfd0042fd37a182c7adde1b3",
+    "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes/input_hashes.txt": "9b95c4444e98e0fa24427db3265a946b05639e3b4dd936ff0b9150211660b037",
+    "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes/AS131_heat_stress_cert.lean": "fd8d987e141e549951201efd19e28a0106390697a72f608759b058ed35a7c719",
+    "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes/lean_cert_output.txt": "45dee0e717664a5cf6d5cf5b6f97fcdfb97526b8b5dabcd681eb5b40f0192207"
+  },
+  "commands": [
+    {
+      "argv": ["/usr/bin/time", "-p", "python3", "verify_heat_stress.py"],
+      "cwd": "deepseek_push/astra_spawn_ideas/results/AS131/AS131-r1-20260928T153400Z-dsv4f-hermes",
+      "note": "exit 0; output tee'd to run_stdout.txt"
+    },
+    {
+      "argv": ["lake", "env", "lean", "<abs path>/AS131_heat_stress_cert.lean"],
+      "cwd": "fable_independent_2026/lean_2026",
+      "note": "compile host only, exit 0; #print axioms of all six theorems = [propext, Classical.choice, Quot.sound]; output in lean_cert_output.txt"
+    }
+  ],
+  "execution_bounds": {
+    "declared": {
+      "wall_time_s": 120,
+      "memory_mib": 512,
+      "threads": 1
+    },
+    "enforced": {
+      "wall_time_s": 0.30,
+      "wall_time_s_measured_externally": 0.33,
+      "maxrss_mib": 215.7,
+      "threads": 1,
+      "note": "wall checked inside script and by /usr/bin/time; threads capped via env (OMP/threads); memory: RLIMIT_AS soft cap NOT settable on macOS (soft > hard, setrlimit refused), so the 512 MiB bound is enforced by construction (grids sized 64^3 / 96x192 / 192x384) and verified by measured maxrss 215.7 MiB via resource.getrusage"
+    }
+  },
+  "checks": [
+    {"name": "A1", "content": "flat T^3: direct == correct IBP incl. lapse-gradient", "residual": 2.220446e-16, "tolerance": 2.0e-10, "pass": true},
+    {"name": "A2", "content": "NEGATIVE CONTROL flat T^3: wrong-IBP (lapse term dropped)", "residual": 1.249795e-01, "tolerance": "must exceed 1e-4", "pass": true},
+    {"name": "A3", "content": "constant-lapse limit of the identity", "residual": 9.020562e-17, "tolerance": 2.0e-10, "pass": true},
+    {"name": "B1", "content": "curved T^3 (Gamma present): direct == correct IBP", "residual": 0.0, "tolerance": 5.0e-10, "pass": true},
+    {"name": "B2", "content": "NEGATIVE CONTROL curved T^3: wrong-IBP", "residual": 1.352703e-01, "tolerance": "must exceed 1e-3", "pass": true},
+    {"name": "C1", "content": "stress conformal: IBP-eval == original-operator eval (eps=+1e-6)", "residual": 2.220446e-16, "tolerance": 5.0e-10, "pass": true},
+    {"name": "C2", "content": "stress conformal: central FD dS/deps == Theta^ij prediction", "residual": 7.485966e-11, "tolerance": 2.0e-09, "pass": true},
+    {"name": "C3", "content": "stress conformal: 5-point FD dS/deps == Theta^ij prediction", "residual": 5.635595e-11, "tolerance": 2.0e-09, "pass": true},
+    {"name": "C4", "content": "NEGATIVE CONTROL stress: wrong-stress (lapse term dropped)", "residual": 5.203229e-03, "tolerance": "must exceed 1e-6", "pass": true},
+    {"name": "D1", "content": "stress anisotropic: FD dS/deps == Theta^ij prediction", "residual": 3.178068e-18, "tolerance": 2.0e-09, "pass": true},
+    {"name": "E1", "content": "on-shell measure: int N sqrt(h) B0 = 0 (closed leaf)", "residual": 6.288373e-18, "tolerance": 5.0e-10, "pass": true},
+    {"name": "E2", "content": "on-shell identity: B0 = div_N(L DW) pointwise (sup norm)", "residual": 1.914913e-12, "tolerance": 5.0e-09, "pass": true},
+    {"name": "E3", "content": "off-shell identity: int N sqrt(h) B0 = int N sqrt(h) L (d_rW - Delta_h W)", "residual": 2.220446e-16, "tolerance": 5.0e-10, "pass": true},
+    {"name": "F1", "content": "S^2 leaf 96x192: direct == correct IBP", "residual": 7.283063e-14, "tolerance": 2.0e-07, "pass": true},
+    {"name": "F2", "content": "S^2 leaf refined 192x384: direct == correct IBP", "residual": 3.663736e-13, "tolerance": 2.0e-09, "pass": true},
+    {"name": "F3", "content": "NEGATIVE CONTROL S^2: wrong-IBP", "residual": 8.693067e-01, "tolerance": "must exceed 1e-4", "pass": true},
+    {"name": "BOUNDS", "content": "wall<=120s, maxrss<=512MiB, threads<=1", "observed": "0.30s / 215.7 MiB / 1", "pass": true}
+  ],
+  "tested_domain": {
+    "flat_torus": "T^3, N=64 per axis, Fourier bandlimits <=44 per axis, coefficients <= 1e-40 (machine-exact); modes: sigma_c = 0.3 cos x1 lapse, chi = cos(2x2), W2 = cos(x1+x2), L2 = cos(2x1+x2), mu = 1.7",
+    "curved_torus": "3-torus with h0 = e^{2 sigma} delta, sigma = 0.3 cos x1, Gamma power-law representation, conformal Laplacian identity Delta_{e^{2f}h} phi = e^{-2f}(Delta_h phi + <df,dphi>_h)",
+    "sphere": "S^2 leaves, theta-Gauss-Legendre on u = cos theta (96 then 192 nodes) x phi-trapezoid (192 then 384), exact lpmv derivatives, W = P2(cos theta), L = P3(cos theta), lapse N = e^{0.4 cos theta}",
+    "variations": "h_eps = e^{2 eps chi} h0 with chi = cos(2x2) (conformal) and anisotropic variation for D1; eps = 1e-6; FD: central and 5-point",
+    "exclusions": "no boundary terms (closed leaves only); r-dependence not sampled (mu = d_r W as parameter); xi (b = xi^2/2) not varied; no other action blocks",
+    "seed": "witness phases tuned so the discarded lapse-gradient term has nonzero leaf mean (controls genuinely bite); prior phase choices that self-cancel are recorded in failed_attempts"
+  },
+  "failed_attempts": [
+    "No separate failed-run artifacts preserved (run_stdout.txt overwritten); failure history: runs 1-3 failed checks B2/C4/F1/F2 (discarded-term witnesses with zero integral means; S^2 quadrature double Jacobian; dropped L factor in the S^2 integrand), fixed by quadrature correction and witness phase retuning in verify_heat_stress.py; final run 16/16 PASS exit 0"
+  ],
+  "limitations": [
+    "Witness class is bandlimited periodic functions on flat T^3, curved T^3 and S^2 leaves; no torus-with-boundary or asymptotics",
+    "1D-flat and S^2/3-torus assemblies are each checked; the full leaf-family quotient structure of the constraint over the r-interval [0, b] with b = xi^2/2 is not numerically assembled",
+    "kappa = 1/2 is adopted input, not derived",
+    "Lean certificate covers the 1D periodic IBP identity, the on-shell measure statement, the wrong-side residual formula and the mode bracket algebra; it does NOT certify the 3D curved-leaf identities (numerics only there)",
+    "No claim about other GNC/+ blocks or observable values; scale footings enter only as kernel constants"
+  ],
+  "next_unresolved_implication": "The metric stress Theta^ij must be transported to the FULL leaf measure of the traction/torsion balance used by the sibling Tier-0 seeds (AS132 compensator stress, AS127 reciprocal lapse density): the scalar/rank-2 contraction ∫ N sqrt(h) Theta^ij delta h_ij must be shown to close the same kernel-gradient relation the compensator closes, or the framework cell gains an extra term",
+  "suggested_followup": "AS131.C1: assemble the S_heat variation through the r-interval with b = xi^2/2 and a W solving d_r W - Delta_h W = 0 (on-shell mode from AS127's lapse-density data), then verify the DUAL closure: ∫_r ∫_Σ N sqrt(h) [Theta^ij delta h_ij + compensator stress delta h_ij] = 0 for the CA5-GNC-R carrier, with a negative control dropping Theta^ij (required to fail)",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive": [
+      "a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 (adopted)",
+      "action (4) heat block form S_heat = (M_P^2 c_N/2) ∫dτ ∫_Σ N sqrt(h) ∫_0^b dr L[d_r W - Delta_h W]",
+      "lapse enters as weight N = e^sigma on the leaf",
+      "radial kernel domain b = xi^2/2"
+    ],
+    "measured_calibrations": [
+      "G_N = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI)",
+      "rho_Lambda = 5.844412e-27 / 8.483090e-27 kg/m^3; Lambda = 1.090800e-52 / 1.583282e-52 m^-2",
+      "G_bare/G_N = 1.000000000000048, G_cosmo/G_N = 0.9999999999999519",
+      "footings 9.3619e-11 and 1.1279e-10 m/s^2"
+    ],
+    "derived_in_this_run": [
+      "IBP-sigma identity ∫ N sqrt(h) L Delta_h W = -∫ N sqrt(h)[<DL,DW> + L<D ln N,DW>]",
+      "stress Theta^ij = 1/2 h^ij B0 - D^{(i}L D^{j)}W - L D^{(i}ln N D^{j)}W with B0 = L d_r W + <DL,DW> + L<D ln N,DW>",
+      "on-shell measure ∫ N sqrt(h) B0 = 0 and off-shell equality ∫ N sqrt(h) B0 = ∫ N sqrt(h) L (d_r W - Delta_h W)"
+    ]
+  },
+  "closure_implication": {
+    "gate": "CA4-GNC heat-constraint variation gate (inherited by CA5-GNC-R with changed carrier)",
+    "implication": "If Theta^ij is the heat metric stress then the action block varies under metric perturbations by (M_P^2 c_N/2)∫dτ∫_0^b dr ∫_Σ N sqrt(h) Theta^ij delta h_ij with the on-shell measure vanishing, exactly as claimed in the seed",
+    "compatibility": "holds on the bandlimited closed-leaf domain tested; r-interval assembly and other-block cancellation remain open"
+  },
+  "child_proposals": [
+    {
+      "id": "AS131.C01",
+      "spec": "full-r assembly: S_heat variation with b = xi^2/2, W on-shell from AS127 lapse-density data, closure against AS132 compensator stress (negative control: drop Theta^ij, must fail)",
+      "fingerprint": "closure integral ∫_r ∫_Σ N sqrt(h) [Theta^ij + compensator^ij] delta h_ij = 0",
+      "new_target": "dual-stress closure on the CA5-GNC-R carrier",
+      "controls": ["compensator-only integral (must fail)", "constant-lapse limit (must pass)", "refined S^2 sampling 384x768"],
+      "dependencies": ["results/AS132/", "results/AS127/"],
+      "dispatch_state": "not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

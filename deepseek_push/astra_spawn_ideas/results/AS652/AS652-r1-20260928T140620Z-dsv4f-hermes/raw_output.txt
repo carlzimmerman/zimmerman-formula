@@ -1,0 +1,49 @@
+==============================================================================================================
+AS652 -- four-form flux equation with a MOND-dependent scale
+==============================================================================================================
+  [PASS] S1 task sha256 == pinned 9f3281d9...   (9f3281d9697c338ef70adb08f74f33f009a4a07ea2a86682a51b477613b50b2e)
+  [PASS] S2 k04 source == SOURCE_MANIFEST 15c0a7e1...   (15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399)
+  kernel: s_sat = 2.53963828219, Delta_sat = 0.647610237892, I_rar = j_sat = 0.452524896675
+  [PASS] K1 Delta'(s_sat) = 0 (residual)   (6.78309e-59)
+  [PASS] K2 W = s Delta - j >= 0 on grid (secant stiffness; NOT a stability statement per XR31)   (min W = 3.33333e-10)
+  [PASS] K3 W strictly increasing (analytic: d(Delta/s)/ds < 0; numeric)
+  [PASS] K4 deep asymptote W ~ s^{3/2}/3   (W/s^{3/2} = 0.33333332)
+  [PASS] F1 [sign] eps = q P_q - P = +Z q^2/2 + b beta^2 q^2 (promoted primitive gravitates positive)   (q**2*(Z/2 + b*beta**2))
+  F2: kappa^2 = 2*beta**2/(Z + 2*b*beta**2);  kappa = 1/2 <=> Z/beta^2 = 8 - 2b = {0.0: 7.9639892129110015, 0.25: 7.968490561297127}
+  [FAIL] F2 [coefficient] the action fixes Z/beta^2 (kappa=1/2 needs 8-2b ~ 7.96); it is a free ratio of two couplings   (one number, undetermined: the flux amplitude cancels from kappa (k04 F2 FAIL stands; this is the seed's core finding))
+  F3: K_B = 0.00 canonical: a0_loc/a0: s=1e-06: 1.0000, s=0.01: 1.0000, s=0.1: 0.9999, s=1: 0.9968, s=2.54: 0.9881, s=10: 0.9398, s=100: 0.3574, s=1000: 0.0000
+  F3: K_B = 0.25 canonical: a0_loc/a0: s=1e-06: 1.0000, s=0.01: 1.0000, s=0.1: 0.9999, s=1: 0.9972, s=2.54: 0.9896, s=10: 0.9474, s=100: 0.4381, s=1000: 0.0000
+  [PASS] F3 [feedback] unique root in (0,1) for g_N <= 100 a0, |Delta log g_obs| < 0.01 dex (both footings, K_B 0-0.25)   (max |dlog| = 0.0018 dex)
+  [PASS] F3b [feedback] flux-equation residual at fixed point < 1e-30 (substitution verification)   (worst residual = 4.21e-41)
+  [PASS] F3c [feedback] r(s0) matches k04 printed values within 5e-4 (gauge-fixed branch, framework numerics)   (s=0.01: 1.0000; s=0.1: 0.9999; s=1: 0.9968; s=2.54: 0.9881; s=10: 0.9398; s=100: 0.3574)
+  [PASS] F3d [feedback] s0=1000: g_N > g_* -> NO smooth root (k04's 0.0000 row is the iteration's spurious fixed point, not a flux-equation solution)   (g_N = 1000 a0 > g_* = 155.2 a0)
+  F4: g_* = 64 pi a0/((2-K_B) Delta_sat) = 1.4532828e-8 (canonical), 1.7508815e-8 (alt) m/s^2
+    canonical residual g_phi vs sunward bound 3.663e-14 m/s^2: Mercury 0.0e+00 (0.0x), Earth 0.0e+00 (0.0x), Saturn 0.0e+00 (0.0x), Neptune 0.0e+00 (0.0x)
+    alt       residual g_phi vs sunward bound 4.413e-14 m/s^2: Mercury 0.0e+00 (0.0x), Earth 0.0e+00 (0.0x), Saturn 0.0e+00 (0.0x), Neptune 0.0e+00 (0.0x)
+  [PASS] F4 [Solar System] all planets in the switch-off core (g_N > g_*): residual phantom force 0 < sunward bound   (largest residual/bound = 0.0e+00; switch-off radius (1 M_sun) = 638.796 AU)
+  [PASS] F4b [Solar System] shut-off radius ~ 639 AU (XR31)   (r_off = 638.7956 AU)
+    F5: canonical a0_loc/a0 at 2,3,5,10,20 kAU (1.5 M_sun): 0.851 (dgamma_v -0.0187), 0.936 (dgamma_v -0.0076), 0.980 (dgamma_v -0.0023), 0.997 (dgamma_v -0.0003), 1.000 (dgamma_v -0.0000)
+    F5: alt       a0_loc/a0 at 2,3,5,10,20 kAU (1.5 M_sun): 0.877 (dgamma_v -0.0152), 0.948 (dgamma_v -0.0062), 0.984 (dgamma_v -0.0019), 0.998 (dgamma_v -0.0003), 1.000 (dgamma_v -0.0000)
+  [FAIL] F5 [wide binaries] |dgamma_v| < DR4 +/-0.015 at 2 kAU (k04 F5 FAIL stands; per XR31 the 2 kAU point sits on the unstable band and is not a prediction)   (largest |dgamma_v| = 0.0187 at 2 kAU (computed on the C_L,eff < 0 band))
+  S4: g_phi(g_N) peaks at g_N = 2.385082 a0; C_L,eff(20 a0) = -238.6234
+  [PASS] S4 [stability] g_phi peak at 2.385 a0 (XR31)   (2.385082)
+  [PASS] S4b [stability] C_L,eff = dg_N/dg_phi < 0 on the band (2.385, 155.2) a0; at 20 a0 ~ -238.6 (XR31)   (-238.6234)
+  [PASS] S4c [stability] g_phi falls monotonically on the band (fold to switch-off)
+  [PASS] S5 [uniqueness] fixed-point map is a contraction at the root (|T'| < 1) on the tested grid   (max |T'| = 0.644)
+  [PASS] S6 [deep limit] r -> 1 as g_N -> 0 (global a0 restored; W ~ s^{3/2}/3 -> 0)   (r(1e-6 a0) = 0.999999999997)
+  [PASS] S7 [saturated linear] r_lin = (1 - g/g_*)/(1 - 2 j_sat/64 pi) matches the numeric root within 1e-4
+  [PASS] S7b [saturated linear] r(g_*) = 0 exactly (switch-off endpoint)   (r(g_*) = 0.0)
+  [PASS] S7c [saturated linear] no smooth root for g_N > g_* (kink switch-off; q=0 only in the subdifferential sense)
+  [PASS] S8 [negative control] q unconstrained algebraic scalar: dL/dq = 0 admits ONLY q = 0 (Z>0, W>=0; no fine-tuned pole)   (solutions: [0] of -q*(K_B*W*beta**2 - 2*W*beta**2 - 8*Z*pi)/(8*pi))
+  [PASS] S8b [negative control] the altered premise loses the MOND scale: at s0 = 0.1 the RAR predicts g_obs/g_N = 1 + Delta/s = 3.69 (+0.567 dex); the control gives 0   (lost RAR signal = 0.56686 dex (control misses it entirely))
+  S9 canonical: rho_Lambda = 5.844412454e-27 kg/m^3, eps_Lambda = 5.25269596e-10 J/m^3, beta*q0 = 1.145938e-5 kg^1/2 m^-1/2 s^-1, r_M(1.5 M_sun) = 0.047258014 pc, v_flat^4 = 1.8637172e+10 m^4/s^4, g_* = 1.4532828e-8 m/s^2
+  S9 alt      : rho_Lambda = 8.48308962e-27 kg/m^3, eps_Lambda = 7.624220727e-10 J/m^3, beta*q0 = 1.3805996e-5 kg^1/2 m^-1/2 s^-1, r_M(1.5 M_sun) = 0.043054859 pc, v_flat^4 = 2.2453633e+10 m^4/s^4, g_* = 1.7508815e-8 m/s^2
+  [PASS] S9 [footings] canonical rho_Lambda ~ 5.8444e-27 kg/m^3 (matches AS059 bookkeeping)   (5.844412e-27)
+  [PASS] S9b [footings] alternative footing: kappa fixed -> rho_Lambda ratio = (a0_alt/a0_can)^2 = 1.45149   (ratio = 1.451487)
+  S10: full-variation flux equation: deep r0 = 0.995519 (0.45% suppression), g_* shift +0.45% -> 155.933 a0
+  [PASS] S10 [refinement] the 2b beta^2 q term (q-variation of the promoted primitive) is a uniform 0.45% renormalization absorbed by q0; k04's gauge-fixed equation is the comparison branch   (r0 = 0.99552)
+  [PASS] S11 [sign control] opposite-sign coupling gives r > 1 (a0_loc runaway) and a pole at W = 32 pi (no switch-off): excluded   (r(0.5 Wpole) = 2.0, r(0.99 Wpole) = 100.0)
+  S12: general flux equation carries (G_N/G_mon); branch matching condition G_mon = G_N (k04 single-G). g_* scales as (G_mon/G_N): g_* = 64 pi a0 (G_mon/G_N)/((2-K_B) Delta_sat).
+
+  RESULT: 27/29 checks PASS; elapsed 45.45 s; max RSS 189.9 MB
+  wrote raw_output.json

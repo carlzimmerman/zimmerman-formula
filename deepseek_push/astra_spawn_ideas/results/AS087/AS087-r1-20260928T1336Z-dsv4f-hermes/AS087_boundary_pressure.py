@@ -142,13 +142,14 @@ def shell_row(foot, mb_msun, rin_R, R_rM, closure):
     Lv = math.log(Rv / rinv)
     Fv = 1.0 + (rMv - rinv) * Lv / (Rv - rinv)
     MTv = 4 * math.pi * Av * (Rv - rinv)
-    # quadrature (log grid)
+    # quadrature (log grids; W_bar integrand ~1/r needs a denser grid for < 1e-9)
     r = np.geomspace(rinv, Rv, 40001)
     rho = Av / r**2
     Menc = 4 * math.pi * Av * (r - rinv)          # shell phantom mass < r
     Wself_num = -4 * math.pi * GN * trapz(rho * Menc * r, r)
+    rb = np.geomspace(rinv, Rv, 400001)
     # integrand: rho(r) * (G_N M_b / r) * r^2  (phantom density x Newtonian potential)
-    Wbar_num = -4 * math.pi * GN * Mb_kg * trapz(Av / r**2 / r * r**2, r)
+    Wbar_num = -4 * math.pi * GN * Mb_kg * trapz(Av / rb**2 / rb * rb**2, rb)
     Wself_cl = -16 * math.pi**2 * GN * Av**2 * ((Rv - rinv) - rinv * Lv)
     Wbar_cl = -Mb_kg * Cv * Lv
     eps_self = abs(Wself_num - Wself_cl) / abs(Wself_cl)

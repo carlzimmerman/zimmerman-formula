@@ -1,0 +1,195 @@
+{
+ "results": [
+  {
+   "name": "A1a eps = q P_q - P = lam*(n-1)*q^n (exact)",
+   "measured": "eps = lam*q**n*(n - 1)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A1b sign: eps > 0 for n > 1 (probe n=3,5/2; eps<0 probe n=1/2; eps=0 at n=1)",
+   "measured": "n=3 -> +2 lam q^3; n=5/2 -> +3/2; n=1/2 -> -1/2 (negative); n=1 -> 0",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A2  kappa_N^2 = beta^2 |q|^(2m-n) / (G_N lam (n-1))  (exact identity)",
+   "measured": "kappa_N^2 = beta**2*q**(2*m - n)/(G_N*lam*(n - 1))",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A2b d ln(kappa_N^2)/d ln|q| = 2m - n (exact)",
+   "measured": "d ln kappa^2 / d ln q = 2*m - n",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A3a n = 2m  ==>  kappa_N^2 = beta^2/(G_N lam (n-1)), q-free (exact)",
+   "measured": "kappa_N^2|_(n=2m) = beta**2/(G_N*lam*(2*m - 1))",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A3b n != 2m  ==>  d kappa_N^2/dq != 0 (exact: residual 2m-n != 0)",
+   "measured": "residual uncovered: (2m-n)*kappa^2/q (nonzero iff 2m-n != 0)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A4a dim[kappa_N^2] = q^(n-2m): dimensionless iff n = 2m (exact)",
+   "measured": "dim = M^0 L^0 T^0 q^(n-2m) = q^(n - 2*m)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A4b negative check: a T^-1 trial is rejected (dim[kappa^2] != T^-1 for all n,m)",
+   "measured": "algebra gives T^0 always; a T^-1 ansatz is impossible",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A5a k04 kernel: kappa^2 = 2 beta^2/(Z + 2 b beta^2) matches source F2 (exact)",
+   "measured": "kappa^2_k04 = 2*beta**2/(Z + 2*b*beta**2)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A5b general formula n=2m=2 reproduces k04 (exact, with the G-fold-into-beta convention map)",
+   "measured": "identical closed form after G-cancellation",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A5c kappa = 1/2  <=>  Z/beta^2 = 8 - 2 b  (exact, k04 F2)",
+   "measured": "Z/beta^2 = 8 - 2*b",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "A5d numeric k04 fixture: Z/beta^2 = 8 - 2b with b = 2 I/(16 pi) (mpmath 80d)",
+   "measured": "I = j_sat = 0.452524896675, b = 0.0180053935445, Z/beta^2 = 7.96398921291 (k04: 7.96)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B1a exact: kappa_N^2(q2)/kappa_N^2(q1) = (q2/q1)^(2m-n) for all pairs (sympy)",
+   "measured": "ratio = (q2/q1)^(2m-n)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B1b arbitrary (n,m) cancellation is FALSE: residual ratio != 1 exactly when 2m-n != 0",
+   "measured": "5 non-cancelling pairs show ratio != 1; 2 cancelling pairs (2m-n=0) show ratio == 1; the arbitrary-(n,m) inference FAILS (control capable of failing; it does fail)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": true
+  },
+  {
+   "name": "B1c endpoint behaviour: n=2m -> finite constant; n>2m -> 0; n<2m -> oo as q->0",
+   "measured": "n=2m: kappa^2 -> 1.0 constant (lam=beta=G_N=1); n=3,m=1: kappa^2 ~ q^-1 -> oo; both verified",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B2a one constraint in three couplings: rank(Jacobian) = 1 (exact)",
+   "measured": "rank(J) = 1 -> residual freedom 2 (lambda,beta,n)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B2b family 1: (lam,beta) -> (t^2 lam, t beta) leaves lam/beta^2 invariant (exact)",
+   "measured": "kappa unchanged for every t > 0 at fixed n",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B2c family 2: lam(n) = 4 beta^2/(G_N (n-1)) solves kappa=1/2 for EVERY n>1 (exact)",
+   "measured": "n free: (n, lam(n)) all give kappa=1/2 -- the seed's 'why this half' gap is rank-1",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B2d kappa_N = 1/2  <=>  lam (n-1) G_N / beta^2 = 4 (exact)",
+   "measured": "lam = 4 beta^2/(G_N (n-1)) required",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B3a canonical footing: rho_Lambda = 4 a0^2/(G c^2) = 5.8444e-27 kg/m^3",
+   "measured": "rho_can = 5.844412e-27 kg/m^3",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B3b alternative footing, kappa fixed 1/2: rho_Lambda = 8.4831e-27 kg/m^3",
+   "measured": "rho_alt(kappa fixed) = 8.483090e-27 kg/m^3",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B3c alternative footing, rho fixed: kappa_eff = 0.6024 (never both fixed)",
+   "measured": "kappa_eff = 0.602388",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "B3d condition n=2m is footing-independent (exponents only; both footings stated)",
+   "measured": "same equality of exponents for canonical and alternative a0",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "C1a fixture (n=2,m=1,lam=4): kappa_N^2 = 1/4 for q in {1e-12,1,1e12} (80 digits)",
+   "measured": "kappa^2 = 0.25, 0.25, 0.25",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "C1b refinement dps 50 -> 80 stable at q=2",
+   "measured": "k2(50d) = 0.25; k2(80d) = 0.25",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  },
+  {
+   "name": "C1c failing exponent (n=3,m=1): ratio law kappa^2(q2)/kappa^2(q1) = (q2/q1)^(-1) holds, != 1",
+   "measured": "kappa^2(1)=1/2, kappa^2(2)=1/4 (ratio 1/2 != 1)",
+   "tolerance": "exact symbolic (sympy/mpmath)",
+   "pass": true,
+   "control_capable_of_failing": false
+  }
+ ],
+ "elapsed_s": 0.15772691695019603,
+ "peak_rss_mb": 63.455232,
+ "deadline_s": 120.0,
+ "rss_limit_mb": 512.0,
+ "dps": [
+  50,
+  80
+ ],
+ "mpmath_dps_final": 80
+}

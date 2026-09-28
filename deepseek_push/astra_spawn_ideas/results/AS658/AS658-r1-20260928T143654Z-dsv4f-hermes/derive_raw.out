@@ -1,0 +1,22 @@
+======================================================================================================================
+AS658 derive -- three-form gauge invariance + local degree count (contractible flat patch)
+======================================================================================================================
+  [PASS] D1 gauge invariance: F(A + dB) = F(A) identically (generic B, all 4 components)   (sum of squared component differences = 0)
+  [PASS] D1b flux amplitude gauge-invariant: q(A + dB) = q(A)   (delta q = 0)
+  [PASS] D2 q = F_{0123} (eps_{0123} = +1) and q = -(1/4!) eps^u F = (1/3!) eps^u dA   (q = -Derivative(A012(x0, x1, x2, x3), x3) + Derivative(A013(x0, x1, x2, x3), x2) - Derivative(A023(x0, x1, x2, x3), x1) + Derivative(A123(x0, x1, x2, x3), x0))
+  [PASS] D2b normalization: F_{mu nu rho sigma} F^{mu nu rho sigma} = -24 q^2   (F^2 = -24*(Derivative(A012(x0, x1, x2, x3), x3) - Derivative(A013(x0, x1, x2, x3), x2) + Derivative(A023(x0, x1, x2, x3), x1) - Derivative(A123(x0, x1, x2, x3), x0))**2)
+  [PASS] D3 IBP identity exact: P_q dq = sum EOM_sigma a_sigma + div term (component form)   (residual = 0)
+  [PASS] D4 EOM components: EOM = (-d0, +d1, -d2, +d3) P_q (exact signs, no 1/6)   (components (123),(023),(013),(012) = (-d0,+d1,-d2,+d3)P_q)
+  [PASS] D4b EOM map invertible: det M = +1 (signed permutation); EOM <=> d_mu P_q = 0   (det M = 1)
+  [PASS] D4c substitution: q = q0 (const) solves the EOM identically   (all four residuals 0)
+  [PASS] D4d non-constant q fails the EOM: residual -(Z+2b b^2) Q'(x0) != 0 identically   (residual = -(Z + 2*b*beta**2)*Derivative(Q(x0), x0))
+  [PASS] D5a delta^2 q = 0 (q linear in F): q(a/2) = q(a)/2   (2*q(a/2) - q(a) = 0)
+  [PASS] D6 gauge directions are null: L(k ^ b) = (1/6) eps^{mu nu rho sigma} k_mu k_nu b_{rho sigma} = 0 identically   (L(gauge) = 0)
+  [PASS] D7 no dispersion: EOM symbol det = +1 for every k (k-independent signed permutation); no second derivative of P_q (no wave operator)   (det M(k) = 1 (k-independent); max derivative order in EOM (on A) = 2)
+    D7b DOF count: 4 components - 3 gauge redundancies - 1 constraint-scalar condition = 0
+          (standard p-form count C(d-2, p) = C(2,3) = 0, Duff-van Nieuwenhuizen 1980)
+  [PASS] D8a vacuum energy: eps_vac = q P_q - P = (Z/2 + b beta^2) q^2 > 0 (sign: k01 reversed, k04 F1)   (eps_vac = (Z/2 + b*beta**2)*(Derivative(A012(x0, x1, x2, x3), x3) - Derivative(A013(x0, x1, x2, x3), x2) + Derivative(A023(x0, x1, x2, x3), x1) - Derivative(A123(x0, x1, x2, x3), x0))**2)
+  [PASS] D8b flux amplitude cancels: kappa^2 = beta^2/(Z/2 + b beta^2), independent of q_0   (kappa^2 = 2*beta**2/(Z + 2*b*beta**2))
+  [PASS] D8c kappa = 1/2 <=> Z/beta^2 = 8 - 2 b (matching condition; coefficient ratio stays FREE - k04 F2)   (Z/beta^2 = 8 - 2*b)
+
+RESULT: 0 FAIL / 15 checks

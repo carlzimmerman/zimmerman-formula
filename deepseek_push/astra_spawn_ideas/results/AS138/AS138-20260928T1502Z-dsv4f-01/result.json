@@ -1,0 +1,229 @@
+{
+ "schema_version": 2,
+ "task_id": "AS138",
+ "task_sha256": "e3cc42155feab9dd6b7c632c3e4e9a4c9902b3a75529bb2f19552d28419b9356",
+ "run_id": "AS138-20260928T1502Z-dsv4f-01",
+ "worker": "deepseek/deepseek-v4-flash-0731 via Hermes Agent subagent (host macOS 26.5.2; python3 sympy 1.13.1 / numpy 1.26.4; Lean 4.34.0-rc2 via lake env)",
+ "started_utc": "2026-09-28T15:02:00Z",
+ "finished_utc": "2026-09-28T16:14:20Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "For the heat sector of the pinned CA4-GNC common action (FINAL_ACTION.md, eqs. (4)-(5),(9)-(12)), written on a flat 1D foliated slab with a 3-difference discrete r-family (N_disc=3, nodes 0..3, W_b=W_3), the off-shell diffeomorphism (Ward) identity holds exactly at the jet level: d_xi S_heat|fields = N*[sum_k E_Wk^canon(xi\u2202W_k) + sum_k E_Lk(xi\u2202L_k) + (R_W + L_b)\u00b7xi\u2202W_b + (lam0 - L_0)\u00b7xi\u2202W_0 + E_lam0\u00b7xi\u2202lam0 + E_U\u00b7xi\u2202U], with E_Wj^canon(h)=(L_{j-1}-L_j)h - L_j\u00b7Dh(h) (j=1,2), E_Lk(h)=[(W_{k+1}-W_k)-Dh(W_k)]\u00b7h, E_lam0=W_0-U, E_U=-lam0, R_W = G'J'\u00b7h' + G'\u00b7ell\u00b7h'' + ell\u00b7a\u00b7h' (the gate Euler operator, = formula (5) in IBP form). Residual EXACTLY 0 (max over random jets 0.000e+00, symbolic). Domain: jet polynomials of order \u22642 in x, \u22641 in t at the base point of a flat orthogonal foliation, c=1, compact xi vanishing at leaf boundary; 18/18 integrated checks on x in [0,1] (grid 2^14, refined 2^16) also pass. NEGATIVE CONTROL (capable of failing, verified failing): omitting the r-endpoint multipliers leaves the exact nonzero residual N*M = N*(L_2\u00b7(xi\u2202W)_3 - L_0\u00b7(xi\u2202W)_0) (continuum: N*(L_b\u00b7xi\u2202W_b - L_0\u00b7xi\u2202W_0)); witness |N*M| = 5.704e-02 at a random jet and M_integral = 3.315357e-01 on [0,1], both \u2260 0. Eq. (12) sign claim verified: d_{ln N} S_gate = \u222bN eps[G(Y_h) - ell\u00b7Dh(W_b)] requires the measure variation delta N\u00b7(ell a DW_b) (then exact; without it the check fails by -3.80e-02; wrong sign fails by -7.79e-01).",
+ "framework_cell": "action: real_research/common_action_2026_09_26/action/FINAL_ACTION.md (sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e, verified); kernel: S_heat = N*{G(Y_h) + ell*a*DW_b + sum_{k=0}^{2} L_k[(W_{k+1}-W_k) - Dh(W_k)] + lam0*(W_0-U)}, Y_h = J(DW_b) + ell*Dh(W_b) - theta, a = D ln N, Dh = second leaf derivative (flat leaf, K=0), c=1, no kappa factor in the field equations (common factor removed; kappa=1/2 adopted as framework input); filters/gates: gate G(Y_h) linearized about the base action (Gv + Gp*(Jd*(dW3)_x + ell*(dW3)_xx) + ell*lnN_x*(dW3)_x) so the W_b dependence flows through G(Y_h); coupling: ell (lapse-heat), L_k/lam0 (heat r-multipliers), Jd = J_p(DW_b) at|a0, Gp = G'(Y_h); parameters: N_disc=3 differences, leaf [0,1], jets deg_x<=2, deg_t<=1; scale footing (SI, separate): G_N = 6.67430e-11 m^3/(kg s^2) (Newtonian only; G_bare, G_cosmo NOT invoked), c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m (declared, used only for footing accounting); canonical a0 = 9.3619e-11 m/s^2 => rho_Lambda = 5.8444124540e-27 kg/m^3, Lambda = 1.090800e-52 m^-2; alternative a0 = 1.1279e-10 m/s^2 => rho = 8.4830896196e-27 kg/m^3, Lambda = 1.583282e-52 m^-2; density ratio (a0_alt/a0_can)^2 = 1.45148716 (matches AS001 lineage); kappa_eff at fixed rho = 0.60238840; boundaries: xi compactly supported on the leaf (xi = x(1-x) in the witness), initial data: arbitrary polynomial jets/fields (symbolic parameters); units: dimensionless action; all checks reported in the same normalization.",
+ "new_assumptions": [
+  "kappa = 1/2 adopted as framework input (not derived; per seed and FRAMEWORK_CONTRACT).",
+  "Flat-leaf adapted gauge for the heat sector: sqrt(h) leaf factor constant, K=0, dh=0 at the base point; jets truncated to order 2 in x / 1 in t.",
+  "Discrete r-family rendering of the continuum heat action: node multipliers L_k attach to the LEFT node of each first difference (left-node convention), so the r-endpoint bracket reads L_2*(xi\u2202W)_3 - L_0*(xi\u2202W)_0.",
+  "Compactly supported diffeomorphism xi on the leaf (xi^0 = xi^1 = xi, static) so all x-IBP boundary terms vanish; no boundary-field injection at x=0,1.",
+  "Gate linearization: f=G'(Y_h) and J_p = J'(DW_b) treated as independent positive functions for the operator identities (held symbolic in the algebra; generic functions in the numeric witness).",
+  "N > 0 on the leaf; a = D ln N with D the leaf derivative.",
+  "No branch (Q, RAR, MU2, EXP, MONO) engaged: the seed's CA5-GNC-R/CA4-GNC branch only; branch-translation claims explicitly excluded."
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS138_derive_the_total_diffeomorphism_identity_with_heat_fields.md": "e3cc42155feab9dd6b7c632c3e4e9a4c9902b3a75529bb2f19552d28419b9356",
+  "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/derivation.md": "94ba380de585e411351895c080daf11381a66f200f1ada11a3e84feaadaba8c9",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/AS138_ward_heat_check.py": "e9b5f1108edb497120ff181a5f9cb6cd47c5755ece62c6134381cb6151a3c221",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/AS138_instance_witness.py": "0541e61707afb0e1b0abb24a9cc67174abd0c0a2cf7f4093d3a929bfb5220f95",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/raw_output.txt": "4ca8db1dd974077c41a541367e2fe13879c8ac6c40b313ba2be5e1142d2cbe0e",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/instance_output.txt": "d5561a126aee00c5694a7cf12fe801c86b4e01d99cd93b55c16e61ce9b58c4ff",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/instance_residuals.json": "06ca18883090670f0fd7bd324a45a6ae03f9bbda1e7990664cf5259c0b9fa0ed",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/instance_status.json": "33daf14e897a6cc8a97faabdd8414389a3d3d87159eafd573e6d9d54912ae2d6",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/AS138_ibp_endpoint.lean": "200577f30e80693f5bcb941c39ff2f82af4c0a0c07cbc5f4f60e3e5b23fcb081",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/lean_output.txt": "cced219ef46b438b4758b7cc3207f4a9cfdae80ee4d2c146c1898601971e1b3c",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/debug_pieces.py": "c667511e4bb93ca167fb0bc2d02427e527762c3fdbd0dc4c6bd2c06d471e3e18",
+  "deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01/residuals.json": "d9f146f3e171f9f620c933105f48dcd45e25ce4d239361cd22468fa4b9709b67"
+ },
+ "commands": [
+  "cd deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01 && ulimit -t 120 && python3 AS138_ward_heat_check.py > raw_output.txt 2> err.txt   [exit 0; 13/13 PASS; wall 3.55 s]",
+  "cd deepseek_push/astra_spawn_ideas/results/AS138/AS138-20260928T1502Z-dsv4f-01 && ulimit -t 120 && python3 AS138_instance_witness.py > instance_output.txt 2> instance_err.txt   [exit 0; 18/18 PASS; wall 0.01 s + 2^16 refinements]",
+  "cd fable_independent_2026/lean_2026 && lake env lean <run_dir>/AS138_ibp_endpoint.lean > <run_dir>/lean_output.txt   [exit 0; axioms {propext, Classical.choice, Quot.sound}; no sorry; no files written into lean_2026]",
+  "shasum -a 256 (all input/artifact files)   [recorded above]"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "samples": "3 random jets (symbolic), 2^14 trapezoid grid (instance), refined once to 2^16 for derivative-noise checks"
+  },
+  "enforced": "RLIMIT_CPU (100,100) inside both scripts + ulimit -t 120 shell cap; memory via RSS monitor (macOS ru_maxrss bytes vs 512 MB cap; peak 83.5 MB symbolic / 52.4 MB instance); 1 thread (OPENBLAS_NUM_THREADS=1, OMP_NUM_THREADS=1); actual wall: 3.55 s symbolic, <0.1 s instance",
+  "note": "RLIMIT_AS unavailable on macOS; RSS monitoring substituted (macOS ru_maxrss is in bytes) and reports actual peak."
+ },
+ "checks": [
+  {
+   "name": "CHK-1_chain_rule_all_heat_EULER_derivatives",
+   "observed": "max |sum E_A*Lie(A) - dS_heat|fields| over 3 random jets = 0.000e+00",
+   "tolerance": "exact (|<1e-12)",
+   "pass": true
+  },
+  {
+   "name": "CHK-1b_nonvacuous",
+   "observed": "|dS_heat|fields| = 2.784e-01 != 0",
+   "pass": true
+  },
+  {
+   "name": "CHK-2_negative_control_leftover_identity",
+   "observed": "leftover == N*(L_2*LieW_3 - L_0*LieW_0); max |leftover - N*M| = 0.000e+00",
+   "tolerance": "exact, set before evaluation",
+   "pass": true
+  },
+  {
+   "name": "CHK-2b_negative_control_leftover_nonzero",
+   "observed": "|N*M| (random jet) = 5.704e-02 != 0; M_integral = 3.315357e-01 != 0 (I2b)",
+   "tolerance": "must be > 1e-6 (capable of failing)",
+   "pass": true
+  },
+  {
+   "name": "CHK-3_full_offshell_Ward_relation_with_endpoint_multipliers",
+   "observed": "max residual = 0.000e+00",
+   "pass": true
+  },
+  {
+   "name": "CHK-4_gate_EULER_matches_local_RW_structure",
+   "observed": "E_W3 gate = N*(G'J' h_x + G'ell h_xx + ell a h_x) [formula (5) IBP form]; max residual 0.000e+00",
+   "pass": true
+  },
+  {
+   "name": "CHK-6_local_sign_of_ell_term_in_lapse_variation",
+   "observed": "d_{ln N} gate = N eps G + N ell (eps)' DW_b ; Eq (12) sign verified integrated (I6/I6d: -5.07e-09 @2^14 -> -3.17e-10 @2^16)",
+   "pass": true
+  },
+  {
+   "name": "CHK-7_dimensions_of_heat_terms",
+   "observed": "all action terms dimensionless (L-exponents all 0); wrong variants rejected (CHK-7b)",
+   "pass": true
+  },
+  {
+   "name": "CHK-8_homogeneous_limit",
+   "observed": "constant fields: residual 0.000e+00 (identity reduces to 0=0)",
+   "pass": true
+  },
+  {
+   "name": "CHK-9_footings",
+   "observed": "rho_Lambda=5.8444124540e-27, rho_alt=8.4830896196e-27 kg/m^3, ratio=1.45148716, kappa_eff=0.60238840",
+   "pass": true
+  },
+  {
+   "name": "CHK-10_branch_independence",
+   "observed": "residual zero for arbitrary constitutive (J,G) values: 3/3 samples; structural identity branch-agnostic (no branch engaged)",
+   "pass": true
+  },
+  {
+   "name": "I1_field_chain_rule_integrated",
+   "observed": "residual 0.000e+00 on [0,1], grid 2^14",
+   "pass": true
+  },
+  {
+   "name": "I2_endpoint_multiplier_bracket_exact",
+   "observed": "residual -1.776e-15 (float noise)",
+   "pass": true
+  },
+  {
+   "name": "I2c_leftover_equals_bracket",
+   "observed": "residual -1.554e-15",
+   "pass": true
+  },
+  {
+   "name": "I3_full_ward_display_integrated",
+   "observed": "residual -1.776e-15",
+   "pass": true
+  },
+  {
+   "name": "I3b_canonical_form_with_multipliers",
+   "observed": "residual -1.776e-15",
+   "pass": true
+  },
+  {
+   "name": "I4_RW_formula_vs_direct_h1/h2",
+   "observed": "residuals 0.000e+00 / -6.939e-18 (formula (5) holds strongly)",
+   "pass": true
+  },
+  {
+   "name": "I4b_RW_nonzero",
+   "observed": "R_W range 1.969e-02, pairings -1.34e-01 / -2.68e-02 (non-vacuous)",
+   "pass": true
+  },
+  {
+   "name": "I5_N_measure_adjoint",
+   "observed": "residual -2.980e-08 @2^14 -> -1.863e-09 @2^16 (16.0x reduction, convergence pass)",
+   "pass": true
+  },
+  {
+   "name": "I6_eq12_sign_ell_term",
+   "observed": "direct-vs-claim -5.066e-09 @2^14 -> -3.166e-10 @2^16 (16.0x reduction, convergence pass)",
+   "pass": true
+  },
+  {
+   "name": "I6c_measure_piece_required",
+   "observed": "without delta N*(ell a DW_b) term the eq-(12) check FAILS by -3.800e-02 (control capable of failing)",
+   "pass": true
+  },
+  {
+   "name": "I6b_wrong_sign_fails",
+   "observed": "wrong sign residual -7.787e-01 (control capable of failing)",
+   "pass": true
+  },
+  {
+   "name": "I7_homogeneous_limit",
+   "observed": "0.000e+00",
+   "pass": true
+  },
+  {
+   "name": "Lean_ibp_endpoint",
+   "observed": "lake env lean exit 0; #print axioms = {propext, Classical.choice, Quot.sound}; zero sorry",
+   "pass": true
+  }
+ ],
+ "tested_domain": "jets at the base point of a flat 1D leaf (x,t) with order<=2/order<=1; 3 random jets per identity + deterministic homogeneous-limit jet; symbolic parameters (N, ell, L_k, lam0, xi, Jd, Jp, Gp, Gv, lnN fields) sampled in (-1,1) with x=t=0 (base point; slot model consistent only there); instance: leaf [0,1], polynomials of degree<=3, grid 2^14 refined to 2^16 for the two derivative-noise checks, seeded rng (fixed constants 0.4/0.9/1.7, fields as listed in the script header); exclusions: no boundary behavior at x=0,1 (xi compact), no time dependence (static xi, orthogonal foliation), no metric-sector variation (heat-sector Ward relation only), no branch/translation claims; refinement history: single refinement 2^14 -> 2^16 (16x residual reduction both refined checks).",
+ "failed_attempts": [
+  {
+   "artifact": "debug_pieces.py",
+   "cause": "initial chain-rule mismatch at O(0.1-2): substitution bug \u2014 h-slot symbols created with real=True in euler_derivatives but pair_E_lie/CHK-4 zeroed plain Symbol instances, so .subs silently missed; fixed by matching assumptions (real=True)."
+  },
+  {
+   "artifact": "instance I1/I3b residuals (-1.918, -1.333)",
+   "cause": "E_Wk endpoint sign bug in the instance (k=0 needs -L_0) and a duplicated gate factor in the canonical display; fixed."
+  },
+  {
+   "artifact": "instance I5/I6 (-2.98e-08, -5.07e-09)",
+   "cause": "finite-difference truncation at grid 2^14, not physics; refined once to 2^16 with convergence pass (16x reduction)."
+  },
+  {
+   "artifact": "I6 naive claim",
+   "cause": "eq-(12) claim exact only with the measure variation delta N*(ell a DW_b) included; the omitted-piece variant fails by -3.80e-02 and is kept as a negative control."
+  },
+  {
+   "artifact": "initial RLIMIT_AS patch",
+   "cause": "macOS rejects lowering RLIMIT_AS; replaced by RSS monitoring (ru_maxrss in bytes on macOS)."
+  }
+ ],
+ "limitations": "Jet-level identity at the base point; the slot model does not assert function-valued equality away from p (test jets truncated at order 2 make action images of test functions consistent only at p) \u2014 the integrated [0,1] witness covers the function-valued statement for the displayed polynomial family. Heat sector only: the contracted metric identity (step 3) requires the host-sector Ward chain, not executed here; no complete gravity closure claimed. eq. (12) verified for the heat-sector gate with lapse measure as written; the internal-clock/host-sector reduction (theta, geometric part) was not re-derived. Numerics: polynomial family over [0,1], grid-refined; agreement is finite evidence, not an empirical test. No branch (Q/RAR/MU2/EXP/MONO) conclusions drawn.",
+ "next_unresolved_implication": "The heat-sector off-shell Ward relation is derived, but the seed's step-3 statement \u2014 'the contracted metric identity and the clock equation' \u2014 requires composing this heat Ward chain with the host (CA4-GNC) metric/carrier Ward identities of the same action: the missing bridge is the host-sector field variation d_xi S_metric = sum_m E_g * xi^m g (with the E_g,E_tau Euler derivatives and the lapse/internal-clock Ward chain) under the SAME action pin and conventions as AS138, so that imposing metric+matter+auxiliary equations on the combined off-shell relation yields the clock equation.",
+ "suggested_followup": "Dispatch a child AS (same action pin b8c04d4e...) deriving the host-sector off-shell Ward identity (metric + lapse/internal clock) in the same jet/r-IBP conventions, with the negative control 'omit the lapse/helicity endpoint multipliers', then compose with this heat-sector identity so the total diffeomorphism identity of the seed is complete; the composition is checkable by the same random-jet substitution harness.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitive_assumptions": "frictionless constant-candidate action structure of FINAL_ACTION.md eqs. (4)-(5) with named couplings {N, ell, L_k, lam0, J, J_p, G', theta, U}; positivity N>0; compactly supported static diffeomorphisms; flat orthogonal foliation with K=0, dh=0; kappa=1/2 adopted (framework).",
+  "measured_calibrations": "G_N = 6.67430e-11 m^3 kg^-1 s^-2 (Newtonian; G_bare and G_cosmo separate, untouched), c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m; footings a0 = 9.3619e-11 / 1.1279e-10 m/s^2 (canonical/alternative, kept separate).",
+  "boundary_initial_data": "xi = 0 at x in {0,1}; fields free polynomial jets on the leaf; no initial-time data required (static probe).",
+  "derived_equations": "the off-shell Ward relation of CHK-3 (exact, jet level) + the discrete r-IBP identity (Lean-certified) + eq-(12) sign identity (integrated, grid-refined); all others are inputs."
+ },
+ "closure_implication": "Gate: constraint propagation / off-shell Ward relation of the heat sector on the CA5-GNC-R (inherited CA4-GNC) common action. Exact implication: when the heat-sector field equations hold (E_* = 0 with lam0 = L_0 and R_W = -L_b), the endpoint multiplier bracket M = N*(L_b xi\u2202W_b - L_0 xi\u2202W_0) cancels identically, leaving d_xi S_heat = 0 as a consistency identity, and the lapse-sector statement d_{ln N} S_gate = \u222bN eps [G(Y_h) - ell Dh W_b] (eq. 12) holds with the verified sign. Compatibility: same action hash b8c04d4e..., same flat-leaf gauge, c=1 normalization; parameter domain: all positive N, ell on the leaf; requires the host-sector Ward chain (not in this run) before the full CA5-GNC-R closure witness.",
+ "child_proposals": [
+  {
+   "id": "AS138.C01 (specification only, not dispatched)",
+   "claim": "Host-sector (metric + lapse/internal-clock theta) off-shell Ward identity for the same CA4-GNC action pin, in the same jet conventions, expressing d_xi S_metric as the sum of Euler-derivative pairings plus the lapse/helicity endpoint bracket, with the SAME negative control (omit lapse multipliers -> explicit residual).",
+   "dependency": "this run (AS138-20260928T1502Z-dsv4f-01) for heat-sector conventions; SOURCE_MANIFEST pins for FINAL_ACTION",
+   "controls": "random-jet exact residual; nonzero leftover witness; dimensional audit; footing printout (both a0 values); grid-refined integrated witness on [0,1]",
+   "dispatch_state": "specification ready; not dispatched (no runner spawning allowed from this seed)"
+  }
+ ],
+ "closure_candidate": null
+}

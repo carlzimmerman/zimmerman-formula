@@ -1,0 +1,61 @@
+====================================================================================================
+AS653 -- general flux power: amplitude independence of a0^2/(G_N eps_vac)
+====================================================================================================
+
+[A1] Legendre vacuum energy  eps_vac = q P_q - P  (exact, sympy)
+  [PASS] A1a eps = q P_q - P = lam*(n-1)*q^n (exact)   (eps = lam*q**n*(n - 1))
+  [PASS] A1b sign: eps > 0 for n > 1 (probe n=3,5/2; eps<0 probe n=1/2; eps=0 at n=1)   (n=3 -> +2 lam q^3; n=5/2 -> +3/2; n=1/2 -> -1/2 (negative); n=1 -> 0)
+
+[A2] kappa_N^2(q) = a0^2/(G_N eps_vac)  (exact)
+  [PASS] A2  kappa_N^2 = beta^2 |q|^(2m-n) / (G_N lam (n-1))  (exact identity)   (kappa_N^2 = beta**2*q**(2*m - n)/(G_N*lam*(n - 1)))
+  [PASS] A2b d ln(kappa_N^2)/d ln|q| = 2m - n (exact)   (d ln kappa^2 / d ln q = 2*m - n)
+
+[A3] amplitude independence <=> n = 2m  (exact)
+  [PASS] A3a n = 2m  ==>  kappa_N^2 = beta^2/(G_N lam (n-1)), q-free (exact)   (kappa_N^2|_(n=2m) = beta**2/(G_N*lam*(2*m - 1)))
+  [PASS] A3b n != 2m  ==>  d kappa_N^2/dq != 0 (exact: residual 2m-n != 0)   (residual uncovered: (2m-n)*kappa^2/q (nonzero iff 2m-n != 0))
+
+[A4] dimensional analysis (M,L,T,q exponents, exact linear algebra)
+  [PASS] A4a dim[kappa_N^2] = q^(n-2m): dimensionless iff n = 2m (exact)   (dim = M^0 L^0 T^0 q^(n-2m) = q^(n - 2*m))
+  [PASS] A4b negative check: a T^-1 trial is rejected (dim[kappa^2] != T^-1 for all n,m)   (algebra gives T^0 always; a T^-1 ansatz is impossible)
+
+[A5] k04 kernel reproduction (independent representation)
+  [PASS] A5a k04 kernel: kappa^2 = 2 beta^2/(Z + 2 b beta^2) matches source F2 (exact)   (kappa^2_k04 = 2*beta**2/(Z + 2*b*beta**2))
+  [PASS] A5b general formula n=2m=2 reproduces k04 (exact, with the G-fold-into-beta convention map)   (identical closed form after G-cancellation)
+  [PASS] A5c kappa = 1/2  <=>  Z/beta^2 = 8 - 2 b  (exact, k04 F2)   (Z/beta^2 = 8 - 2*b)
+  [PASS] A5d numeric k04 fixture: Z/beta^2 = 8 - 2b with b = 2 I/(16 pi) (mpmath 80d)   (I = j_sat = 0.452524896675, b = 0.0180053935445, Z/beta^2 = 7.96398921291 (k04: 7.96))
+
+[B1] NEGATIVE CONTROL: amplitude cancellation for ARBITRARY (n,m) (mpmath 80 digits)
+  [PASS] B1a exact: kappa_N^2(q2)/kappa_N^2(q1) = (q2/q1)^(2m-n) for all pairs (sympy)   (ratio = (q2/q1)^(2m-n))
+    (n,m)=(3,1): 2m-n = -1.0000, ratio = 0.5  -> RESIDUAL != 1 (cancellation FAILS)
+    (n,m)=(5,2): 2m-n = -1.0000, ratio = 0.5  -> RESIDUAL != 1 (cancellation FAILS)
+    (n,m)=(3/2,1): 2m-n = +0.5000, ratio = 1.4142135623730950488  -> RESIDUAL != 1 (cancellation FAILS)
+    (n,m)=(4,1): 2m-n = -2.0000, ratio = 0.25  -> RESIDUAL != 1 (cancellation FAILS)
+    (n,m)=(2,1): 2m-n = +0.0000, ratio = 1.0  -> CANCELS
+    (n,m)=(3,3/2): 2m-n = +0.0000, ratio = 1.0  -> CANCELS
+    (n,m)=(4,2): 2m-n = +0.0000, ratio = 1.0  -> CANCELS
+  [PASS] B1b arbitrary (n,m) cancellation is FALSE: residual ratio != 1 exactly when 2m-n != 0   (5 non-cancelling pairs show ratio != 1; 2 cancelling pairs (2m-n=0) show ratio == 1; the arbitrary-(n,m) inference FAILS (control capable of failing; it does fail))
+
+[B1c] q -> 0+ limits (mpmath 80 digits, lam=beta=G_N=1)
+    (n,m)=(3,1): q=1.0e-8: 5.0e+7; q=0.0001: 5000.0; q=1.0: 0.5; q=1.0e+4: 5.0e-5
+    (n,m)=(2,1): q=1.0e-8: 1.0; q=0.0001: 1.0; q=1.0: 1.0; q=1.0e+4: 1.0
+  [PASS] B1c endpoint behaviour: n=2m -> finite constant; n>2m -> 0; n<2m -> oo as q->0   (n=2m: kappa^2 -> 1.0 constant (lam=beta=G_N=1); n=3,m=1: kappa^2 ~ q^-1 -> oo; both verified)
+
+[B2] coefficient identifiability: kappa=1/2 leaves (lam, beta, n) degenerate
+  [PASS] B2a one constraint in three couplings: rank(Jacobian) = 1 (exact)   (rank(J) = 1 -> residual freedom 2 (lambda,beta,n))
+  [PASS] B2b family 1: (lam,beta) -> (t^2 lam, t beta) leaves lam/beta^2 invariant (exact)   (kappa unchanged for every t > 0 at fixed n)
+  [PASS] B2c family 2: lam(n) = 4 beta^2/(G_N (n-1)) solves kappa=1/2 for EVERY n>1 (exact)   (n free: (n, lam(n)) all give kappa=1/2 -- the seed's 'why this half' gap is rank-1)
+  [PASS] B2d kappa_N = 1/2  <=>  lam (n-1) G_N / beta^2 = 4 (exact)   (lam = 4 beta^2/(G_N (n-1)) required)
+
+[B3] both acceleration footings (dimensionless theorem applies identically)
+  [PASS] B3a canonical footing: rho_Lambda = 4 a0^2/(G c^2) = 5.8444e-27 kg/m^3   (rho_can = 5.844412e-27 kg/m^3)
+  [PASS] B3b alternative footing, kappa fixed 1/2: rho_Lambda = 8.4831e-27 kg/m^3   (rho_alt(kappa fixed) = 8.483090e-27 kg/m^3)
+  [PASS] B3c alternative footing, rho fixed: kappa_eff = 0.6024 (never both fixed)   (kappa_eff = 0.602388)
+  [PASS] B3d condition n=2m is footing-independent (exponents only; both footings stated)   (same equality of exponents for canonical and alternative a0)
+
+[C1] step-5 verification: explicit finite fixture + refinement (mpmath 80 digits)
+  [PASS] C1a fixture (n=2,m=1,lam=4): kappa_N^2 = 1/4 for q in {1e-12,1,1e12} (80 digits)   (kappa^2 = 0.25, 0.25, 0.25)
+  [PASS] C1b refinement dps 50 -> 80 stable at q=2   (k2(50d) = 0.25; k2(80d) = 0.25)
+  [PASS] C1c failing exponent (n=3,m=1): ratio law kappa^2(q2)/kappa^2(q1) = (q2/q1)^(-1) holds, != 1   (kappa^2(1)=1/2, kappa^2(2)=1/4 (ratio 1/2 != 1))
+
+====================================================================================================
+CHECKS: 26/26 passed; elapsed 0.16 s; peak RSS 63.5 MB

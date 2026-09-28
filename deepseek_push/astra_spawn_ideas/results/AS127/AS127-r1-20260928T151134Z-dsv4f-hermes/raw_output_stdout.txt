@@ -1,0 +1,102 @@
+{
+ "bounds": {
+  "declared": {
+   "wall_s": 120.0,
+   "memory_MB": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "SIGALRM": true,
+   "threads": 1,
+   "note": "process-level alarm at 120s; no thread spawns; 512 MB cap is a declaration (not enforced by OS rlimit in this script)"
+  },
+  "elapsed_s": 0.2723221778869629,
+  "maxrss_raw": 59686912,
+  "maxrss_MB": 56.921875
+ },
+ "checks": {
+  "A_symbolic_substitution_back": {
+   "action_density_L": "-F*V0 - W/t + n**2*t/2",
+   "delta_K_over_K": "-2",
+   "dL_dlnN": "-n**2*t",
+   "derived_density": "F*V0 + W/t + n**2*t/2",
+   "expected_R3": "F*V0 + W/t + n**2*t/2",
+   "residual_simplified": "0",
+   "residual_zero": true
+  },
+  "A_negative_control_algebra": {
+   "wrong_density_when_n_fixed": "F*V0 + W/t - n**2*t/2",
+   "residual_correct_minus_wrong": "n**2*t",
+   "residual_zero": false,
+   "wrong_kinetic_part": "F*V0 + W/t - n**2*t/2",
+   "control_fails_as_designed": true
+  },
+  "B_finite_difference": {
+   "leaf_cells": 2,
+   "fields": 5,
+   "eps_lnN": 1e-06,
+   "B1_correct_variation": {
+    "finite_difference_dS_dlnN": -5.5398483129742715,
+    "predicted_from_density": -5.539848313234229,
+    "rel_residual": 4.6925001236466105e-11,
+    "pass_tol_1e_6": true
+   },
+   "B2_negative_control_n_fixed": {
+    "finite_difference_dS_dlnN": 3.1939883673448577,
+    "predicted_measure_only": 3.19398836740327,
+    "rel_residual_vs_own_prediction": 1.8288227545016975e-11,
+    "wrong_density_kinetic_coefficient": -1.17,
+    "sign_of_wrong_kinetic_part": "NEGATIVE (wrong)",
+    "correct_density": 4.393218329289635,
+    "wrong_density": -2.532901163682213,
+    "residual_correct_minus_wrong": 6.926119492971848,
+    "expected_residual_2tK": 6.926119492971848,
+    "control_failed_as_required": true,
+    "wrong_density_can_go_negative": true
+   }
+  },
+  "C_footings": {
+   "canonical": {
+    "label": "canonical 9.3619e-11",
+    "a0_m_s2": 9.3619e-11,
+    "rho_Lambda_kg_m3": 5.844412454021876e-27,
+    "r_M_Msun_m": 1190639769001739.0,
+    "r_M_Msun_pc": 0.038586007045696584,
+    "v_flat_Msun_m_s": 333.86599787066336,
+    "B_at_rM_m_s2": 9.361899999999999e-11,
+    "B_eq_a0_check": 1.38056346159872e-16
+   },
+   "alternative": {
+    "label": "alternative 1.1279e-10",
+    "a0_m_s2": 1.1279e-10,
+    "rho_Lambda_kg_m3": 8.483089619559099e-27,
+    "r_M_Msun_m": 1084743571587643.9,
+    "r_M_Msun_pc": 0.035154145011591476,
+    "v_flat_Msun_m_s": 349.78311485743615,
+    "B_at_rM_m_s2": 1.1279000000000002e-10,
+    "B_eq_a0_check": 1.145908065532499e-16
+   },
+   "ratio_a0_alt_over_can": 1.2047768081265555,
+   "if_rho_fixed_effective_kappa": 0.6023884040632778,
+   "if_kappa_fixed_rho_ratio": 1.451487157399611,
+   "note": "Separate hypotheses: never share both fixed rho_Lambda and fixed kappa. The lapse identity itself is dimensionless and footing-independent."
+  },
+  "D_clock_source_sigma_R": {
+   "derived_plus_dL_dz": "(K*(z + 1)**3 - 2*V0*((z - 1)*(z + 1) + 1)*((z + 1)**2 - 1) + W*(z + 1))/(z + 1)**3",
+   "expected_R3": "(K*(z + 1)**3 - 2*V0*((z - 1)*(z + 1) + 1)*((z + 1)**2 - 1) + W*(z + 1))/(z + 1)**3",
+   "dL_dt_equals_sigma_R": "0",
+   "residual_simplified": "0",
+   "residual_zero": true,
+   "density_dL_dt_relation_rho_minus_t_sigma": "V0*(3*z**4 + 4*z**3 + z**2 + 2*z + 1)/(z**2 + 2*z + 1)",
+   "note": "R4 convention carries +sigma_R (as CA4 carries +rho_d = +dL_d/dz); the projector mean term <N*sigma_R>_h/N uses the pure sqrt(h) measure (FINAL_ACTION eq. 9). Sign check: a negative-density-sourcing z-variation is the declared R3 coefficient, reproduced exactly."
+  },
+  "D_numeric_clock_source": {
+   "finite_difference_dS_dz": 4.296823818750184,
+   "predicted_N_sqrth_sigmaR": 4.296823819121309,
+   "rel_residual": 8.63720199604534e-11,
+   "pass_tol_1e_6": true
+  }
+ }
+}
+
+WROTE: deepseek_push/astra_spawn_ideas/results/AS127/AS127-r1-20260928T151134Z-dsv4f-hermes/raw_output.json

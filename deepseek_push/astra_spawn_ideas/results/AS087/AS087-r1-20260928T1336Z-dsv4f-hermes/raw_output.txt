@@ -1,0 +1,92 @@
+============================================================================================
+AS087 -- Boundary pressure and the claimed half factor (bounded prototype)
+============================================================================================
+[symbolic] C = sqrt(G M_b a0) = sqrt(G)*sqrt(M_b)*sqrt(a0);   r_M = sqrt(G M_b/a0) = sqrt(G)*sqrt(M_b)/sqrt(a0)
+[symbolic] A = C/(4 pi G);  M_T = 4 pi A (R - r_in) = sqrt(M_b)*sqrt(a0)*(R - r_in)/sqrt(G)
+[symbolic] W_self = M_b*a0*(-R + r_in + log((R/r_in)**r_in))
+[symbolic] W_bar  = -sqrt(G)*M_b**(3/2)*sqrt(a0)*log(R/r_in)
+[symbolic] 3P_R V_R - 3P_in V_in = sqrt(M_b)*sqrt(a0)*sigma^2*(R - r_in)/sqrt(G)  (== sigma^2 M_T: True)
+[symbolic] virial closure solution: sigma^2 = (sqrt(G)*M_b*R*a0 - sqrt(G)*M_b*a0*r_in + log(R**(-sqrt(G)*M_b*a0*r_in + G*M_b**(3/2)*sqrt(a0))*r_in**(sqrt(G)*M_b*a0*r_in - G*M_b**(3/2)*sqrt(a0))))/(2*sqrt(M_b)*sqrt(a0)*(R - r_in))
+[symbolic] virial bare   solution:   sigma^2 = (sqrt(G)*M_b*R*a0 - sqrt(G)*M_b*a0*r_in + log(R**(-sqrt(G)*M_b*a0*r_in + G*M_b**(3/2)*sqrt(a0))*r_in**(sqrt(G)*M_b*a0*r_in - G*M_b**(3/2)*sqrt(a0))))/(3*sqrt(M_b)*sqrt(a0)*(R - r_in))
+[symbolic] F = 1 + (sqrt(G)*sqrt(M_b)/sqrt(a0) - r_in)*log(R/r_in)/(R - r_in)
+[sym exact] closure==(C/2)F : True;   bare==(C/3)F : True
+[sym exact] ratio closure/bare = 3/2 : True
+[sym exact] full-SIS 3 P_s V = sigma^2 M : True
+[sym exact] double-count control: constant sigma^2 != C - C r_in/(2r) : True
+
+--- diagnostic shells (interior fixtures: imposed-log-well ansatz test) ---
+foot          Mb  rin/R  R/rM         F  sigma(closure) km/s sigma(bare) km/s |  eps_self   eps_bar   eps_vir eps_ratio   eps_bnd
+canonical 6.5e+10   0.01  0.62    8.4562             346.6357         283.0268 |  1.08e-10  2.21e-11  0.00e+00  0.00e+00  1.39e-16
+canonical 6.5e+10   0.01  1.00    5.6052             282.2149         230.4275 |  1.08e-10  2.21e-11  2.61e-16  0.00e+00  0.00e+00
+canonical 6.5e+10   0.10  0.62    4.8707             263.0747         214.7996 |  1.90e-10  5.52e-12  1.33e-16  0.00e+00  2.66e-16
+canonical 6.5e+10   0.10  1.00    3.3026             216.6270         176.8752 |  1.90e-10  5.52e-12  4.87e-16  0.00e+00  0.00e+00
+canonical 6.5e+10   0.50  0.62    2.5428             190.0827         155.2019 |  1.13e-10  5.00e-13  1.15e-15  0.00e+00  0.00e+00
+canonical 6.5e+10   0.50  1.00    1.6931             155.1075         126.6448 |  1.13e-10  5.00e-13  2.14e-16  0.00e+00  2.14e-16
+canonical 7.0e+10   0.01  0.62    8.4562             353.1177         288.3194 |  1.08e-10  2.21e-11  3.74e-16  0.00e+00  1.25e-16
+canonical 7.0e+10   0.01  1.00    5.6052             287.4922         234.7364 |  1.08e-10  2.21e-11  8.17e-16  0.00e+00  0.00e+00
+canonical 7.0e+10   0.10  0.62    4.8707             267.9942         218.8163 |  1.90e-10  5.52e-12  1.19e-16  2.22e-16  2.38e-16
+canonical 7.0e+10   0.10  1.00    3.3026             220.6778         180.1827 |  1.90e-10  5.52e-12  0.00e+00  2.22e-16  0.00e+00
+canonical 7.0e+10   0.50  0.62    2.5428             193.6372         158.1041 |  1.13e-10  5.01e-13  2.05e-16  0.00e+00  2.05e-16
+canonical 7.0e+10   0.50  1.00    1.6931             158.0080         129.0130 |  1.13e-10  5.00e-13  3.82e-16  0.00e+00  0.00e+00
+alt       6.5e+10   0.01  0.62    8.4562             363.1616         296.5202 |  1.08e-10  2.21e-11  2.54e-16  0.00e+00  0.00e+00
+alt       6.5e+10   0.01  1.00    5.6052             295.6695         241.4132 |  1.08e-10  2.21e-11  1.19e-16  2.22e-16  0.00e+00
+alt       6.5e+10   0.10  0.62    4.8707             275.6169         225.0402 |  1.90e-10  5.52e-12  0.00e+00  2.22e-16  1.21e-16
+alt       6.5e+10   0.10  1.00    3.3026             226.9547         185.3077 |  1.90e-10  5.52e-12  2.22e-16  0.00e+00  2.22e-16
+alt       6.5e+10   0.50  0.62    2.5428             199.1449         162.6012 |  1.13e-10  5.00e-13  0.00e+00  0.00e+00  0.00e+00
+alt       6.5e+10   0.50  1.00    1.6931             162.5023         132.6826 |  1.13e-10  5.01e-13  5.84e-16  0.00e+00  0.00e+00
+alt       7.0e+10   0.01  0.62    8.4562             369.9526         302.0650 |  1.08e-10  2.21e-11  3.41e-16  2.22e-16  0.00e+00
+alt       7.0e+10   0.01  1.00    5.6052             301.1985         245.9275 |  1.08e-10  2.21e-11  4.25e-16  0.00e+00  2.13e-16
+alt       7.0e+10   0.10  0.62    4.8707             280.7708         229.2484 |  1.90e-10  5.52e-12  8.68e-16  2.22e-16  0.00e+00
+alt       7.0e+10   0.10  1.00    3.3026             231.1987         188.7729 |  1.90e-10  5.52e-12  5.96e-16  0.00e+00  0.00e+00
+alt       7.0e+10   0.50  0.62    2.5428             202.8689         165.6417 |  1.13e-10  5.01e-13  1.87e-16  0.00e+00  0.00e+00
+alt       7.0e+10   0.50  1.00    1.6931             165.5411         135.1637 |  1.13e-10  5.01e-13  3.48e-16  0.00e+00  1.74e-16
+
+--- leading neglected term: shell W_self vs full-SIS closed form -GM_T^2/R ---
+  r_in/R =  0.01:  W_self_shell = -16 pi^2 G A^2 R * 1.036052  (full-SIS coefficient 1; relative deviation 3.605 %)
+  r_in/R =  0.10:  W_self_shell = -16 pi^2 G A^2 R * 1.130259  (full-SIS coefficient 1; relative deviation 13.026 %)
+  r_in/R =  0.50:  W_self_shell = -16 pi^2 G A^2 R * 0.846574  (full-SIS coefficient 1; relative deviation 15.343 %)
+
+--- deep exterior shells (r >> r_M): Q-deep algebraic force g = C/r ---
+  [canonical] r_in/r_M =   10.0 R/r_in =  2.0: F(virial) =   0.3762 (virial closure sigma^2 = (C/2)F = 0.1881 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.48e-16
+  [canonical] r_in/r_M =   10.0 R/r_in = 10.0: F(virial) =   0.7697 (virial closure sigma^2 = (C/2)F = 0.3849 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.42e-16
+  [canonical] r_in/r_M =  100.0 R/r_in =  2.0: F(virial) =   0.3138 (virial closure sigma^2 = (C/2)F = 0.1569 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.66e-16
+  [canonical] r_in/r_M =  100.0 R/r_in = 10.0: F(virial) =   0.7467 (virial closure sigma^2 = (C/2)F = 0.3734 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.57e-16
+  [alt      ] r_in/r_M =   10.0 R/r_in =  2.0: F(virial) =   0.3762 (virial closure sigma^2 = (C/2)F = 0.1881 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.66e-16
+  [alt      ] r_in/r_M =   10.0 R/r_in = 10.0: F(virial) =   0.7697 (virial closure sigma^2 = (C/2)F = 0.3849 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.41e-16
+  [alt      ] r_in/r_M =  100.0 R/r_in =  2.0: F(virial) =   0.3138 (virial closure sigma^2 = (C/2)F = 0.1569 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.39e-16
+  [alt      ] r_in/r_M =  100.0 R/r_in = 10.0: F(virial) =   0.7467 (virial closure sigma^2 = (C/2)F = 0.3734 C); hydrostatic sigma^2 = C/2 exact, max|dP/dr + rho g|/|dP/dr| = 4.44e-16
+
+--- footings (kappa = 1/2 fixed in both; different vacuum densities) ---
+  [canonical] a0 = 9.3619e-11 m/s^2 -> rho_Lambda = 5.8444e-27 kg/m^3 (kappa back-check 0.500000); sigma = sqrt(C/2) = 119.20 km/s (v_flat = 168.6 km/s, r_M = 9.84 kpc)
+  [alt      ] a0 = 1.1279e-10 m/s^2 -> rho_Lambda = 8.4831e-27 kg/m^3 (kappa back-check 0.500000); sigma = sqrt(C/2) = 124.89 km/s (v_flat = 176.6 km/s, r_M = 8.96 kpc)
+  rho_Lambda(alt)/rho_Lambda(canonical) = (a0_alt/a0_can)^2 = 1.451487
+
+--- NEGATIVE CONTROL: zero surface pressure on the SAME truncated profile ---
+  [canonical] r_in/R = 0.01 R/r_M = 0.62: closure sigma^2 = 1.201563e+11, zero-P sigma^2 = 8.010420e+10 (ratio exactly 3/2 = 1.500000000000; sigma^2 = C/2 = 1.420925e+10) PASS(control fires)
+  [canonical] r_in/R = 0.01 R/r_M = 1.00: closure sigma^2 = 7.964525e+10, zero-P sigma^2 = 5.309683e+10 (ratio exactly 3/2 = 1.500000000000; sigma^2 = C/2 = 1.420925e+10) PASS(control fires)
+  [canonical] r_in/R = 0.10 R/r_M = 0.62: closure sigma^2 = 6.920832e+10, zero-P sigma^2 = 4.613888e+10 (ratio exactly 3/2 = 1.500000000000; sigma^2 = C/2 = 1.420925e+10) PASS(control fires)
+  [canonical] r_in/R = 0.10 R/r_M = 1.00: closure sigma^2 = 4.692725e+10, zero-P sigma^2 = 3.128483e+10 (ratio exactly 3/2 = 1.500000000000; sigma^2 = C/2 = 1.420925e+10) PASS(control fires)
+  [canonical] r_in/R = 0.50 R/r_M = 0.62: closure sigma^2 = 3.613144e+10, zero-P sigma^2 = 2.408762e+10 (ratio exactly 3/2 = 1.500000000000; sigma^2 = C/2 = 1.420925e+10) PASS(control fires)
+  [canonical] r_in/R = 0.50 R/r_M = 1.00: closure sigma^2 = 2.405835e+10, zero-P sigma^2 = 1.603890e+10 (ratio exactly 3/2 = 1.500000000000; sigma^2 = C/2 = 1.420925e+10) PASS(control fires)
+
+--- limit checks ---
+  a0 -> 0:  C = sqrt(G M_b a0) -> 0,  r_M -> inf,  sigma^2 = (C/2) F -> 0  (equilibrium-sector targets scale to zero with a0; the Newtonian regime is
+            NOT described by these deep-equilibrium relations -- stated, not hidden)
+  r_in -> 0 (full SIS): F ~ 1 + (r_M/R) ln(1/eps) -> +inf logarithmically: no inner cutoff -> no finite virial (G091's honest note reproduced).
+  R = r_in (degenerate shell): ln(1) = 0 -> F = 1 -> sigma^2 = C/2 exactly; the C/2 value is attained only when the differential baryon coupling vanishes.
+  [PASS] symbolic: closure virial solution == (C/2) F exactly
+  [PASS] symbolic: bare virial solution == (C/3) F exactly
+  [PASS] symbolic: ratio closure/bare == 3/2 exactly
+  [PASS] symbolic: full-SIS identity 3 P_s V = sigma^2 M exact
+  [PASS] numeric: W_self closed form vs quadrature < 1e-9 rel, all shells
+  [PASS] numeric: W_bar closed form vs quadrature < 1e-9 rel, all shells
+  [PASS] numeric: virial balance residual < 1e-9 rel at (C/2)F, all shells
+  [PASS] numeric: 3/2 ratio residual < 1e-12, all shells
+  [PASS] numeric: boundary identity 3P_R V_R - 3P_in V_in = sigma^2 M_T < 1e-9 rel
+  [PASS] deep exterior: hydrostatic dP/dr + rho g = 0 residual < 1e-12 rel at sigma^2 = C/2
+  [PASS] negative control: zero surface pressure changes sigma^2 on every diagnostic shell
+  [PASS] double-counting control: constant isothermal sigma^2 is NOT the equilibrium when the log well and self-gravity are both counted
+
+[24 shell rows + 8 deep rows + controls] wall = 0.42 s, peak RSS = 205.0 MiB (macOS ru_maxrss is bytes), 1 thread (env pinned), log grids 40,001 pts
+checks: 12/12 PASS
+wrote residuals.json

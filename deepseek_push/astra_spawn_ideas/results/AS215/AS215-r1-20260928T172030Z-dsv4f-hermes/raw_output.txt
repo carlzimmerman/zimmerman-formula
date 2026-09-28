@@ -1,0 +1,74 @@
+==============================================================================
+PART A -- symbolic block symbols from the pinned action
+==============================================================================
+[PASS] A1 tensor roots real and substitute back: roots = [k]; residuals = [0] (thr == 0 (symbolic)) 
+[PASS] A2 carrier roots real and substitute back: roots = [k/t_c]; residuals = [0] (thr == 0 (symbolic)) 
+[PASS] A2 composite block lapse identity -g_d(dtau,dtau) = t^-2 X_tau: = t^-2*X_tau (residual 0) (thr == 0 (symbolic)) holds for EVERY t > 0: superluminal carrier (t<1) never breaks ordering
+[PASS] A3 scalar window core identity (cs2-1)*[(2+3c2)a] = 2c2 - 2(1+2c2)a: numerator = -4*a_sym*c2 - 2*a_sym + 2*c2; residual = 0 (thr residual == 0) 
+[PASS] A3 plateau window identity: full gate expression numeric residual (24 random samples): max |(cs2-1)*den - [2c2 - 2(1+2c2) alpha_eff]| = 3.553e-15 (thr < 1e-9) 
+PART B -- numeric certificate on the frozen local symbol
+==============================================================================
+[PASS] A4 vacuum scalar V1: A>0, CI<0 => real roots: A=4.089802e+00, CI=-2.480596e+00, speed^2/c^2=6.065322e-01 (thr A>0 and CI<0) 
+[PASS] A4 vacuum scalar V2: A>0, CI<0 => real roots: A=9.825714e+00, CI=-5.065199e+01, speed^2/c^2=5.155044e+00 (thr A>0 and CI<0) 
+[PASS] A4 vacuum scalar V3: A>0, CI<0 => real roots: A=1.174346e+01, CI=-1.398110e+00, speed^2/c^2=1.190544e-01 (thr A>0 and CI<0) 
+[PASS] A5 degenerate-sector operator Delta_h: omega-free: d(sym)/d(omega) = 0 (thr == 0 (symbolic)) 
+[PASS] A5 degenerate-sector operator S_h=e^(b*Delta_h): omega-free: d(sym)/d(omega) = 0 (thr == 0 (symbolic)) 
+[PASS] A5 degenerate-sector operator div_N: omega-free: d(sym)/d(omega) = 0 (thr == 0 (symbolic)) 
+[PASS] A5 degenerate-sector operator S_N^dag=N^-1 S_h N: omega-free: d(sym)/d(omega) = 0 (thr == 0 (symbolic)) 
+[PASS] A5 gate/heat/U/Z equations carry no partial_tau (structure): eqs (5),(6),(7),R4, d_r W = Delta_h W, W_0=U, L_b=-R_W, lambda0=L_0 (thr no d_tau term present) r is the semigroup direction, not physical time (FINAL_ACTION sec.1,3)
+==============================================================================
+PART B -- numeric certificate on the frozen local symbol
+==============================================================================
+[PASS] B1 tensor: real roots, substitute-back, ordering: min discr=1.000e-02 (>=0), max |X(w,k)|=0.000e+00 (<1e-12), min xi(n)=3.846e-02 (>0), max xi_mu tau^mu=-2.959e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16 (thr disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1) 
+[PASS] B1 carrier t_c=1.3: real roots, substitute-back, ordering: min discr=5.917e-03 (>=0), max |X(w,k)|=2.842e-14 (<1e-12), min xi(n)=2.959e-02 (>0), max xi_mu tau^mu=-2.276e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16 (thr disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1) 
+[PASS] B1 carrier t_c=1.0: real roots, substitute-back, ordering: min discr=1.000e-02 (>=0), max |X(w,k)|=0.000e+00 (<1e-12), min xi(n)=3.846e-02 (>0), max xi_mu tau^mu=-2.959e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16 (thr disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1) 
+[PASS] B1 carrier t_c=0.7: real roots, substitute-back, ordering: min discr=2.041e-02 (>=0), max |X(w,k)|=5.684e-14 (<1e-12), min xi(n)=5.495e-02 (>0), max xi_mu tau^mu=-4.227e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16 (thr disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1) 
+[PASS] B2 refinement 17 -> 33 points (carrier t_c=0.7): max |X(w,k)| = 5.684e-14 (17-pt: 5.684e-14) (thr < 1e-12 both) 
+[PASS] B3 plateau scalar P1 f=0 sub: Q=0.993935, D=1.0000, alpha_eff=1.012094, cs2=0.139443, superluminal window (ae < c2/(1+2c2)) = False (thr 0<ae<2, cs2>0; window <-> cs2>1) 
+[PASS] B3 plateau scalar P2 f=1 SUPER: Q=1.000000, D=1.0998, alpha_eff=0.226870, cs2=1.116516, superluminal window (ae < c2/(1+2c2)) = True (thr 0<ae<2, cs2>0; window <-> cs2>1) 
+[PASS] B3 plateau scalar P3 active gate: Q=1.000000, D=1.5143, alpha_eff=1.009438, cs2=0.245325, superluminal window (ae < c2/(1+2c2)) = False (thr 0<ae<2, cs2>0; window <-> cs2>1) 
+[PASS] A3 alpha_eff domain bounds (numeric scan 2^2 x 3 corners): Q in [1-ell/4,1], D>=1, 0<alpha_eff<2 on 12 corners: ok=True (thr all in declared bounds) 
+[PASS] B3 P2 window persists along k (filter decay): cs2(min k)=1.1146, cs2(max k)=5.5714, all>0: True (thr cs2 > 0 on the k-window) 
+[PASS] B4 vacuum scalar V1: ordering built from A>0, CI<0: speed^2/c^2 = 6.065322e-01; real roots at every k (quadratic in omega) (thr > 0) 
+[PASS] B4 vacuum scalar V2: ordering built from A>0, CI<0: speed^2/c^2 = 5.155044e+00; real roots at every k (quadratic in omega) (thr > 0) 
+[PASS] B4 vacuum scalar V3: ordering built from A>0, CI<0: speed^2/c^2 = 1.190544e-01; real roots at every k (quadratic in omega) (thr > 0) 
+==============================================================================
+PART C -- filtered nu_mono gate: monotonicity / convexity (T3 inputs)
+==============================================================================
+[PASS] C1 actual MONO landmarks (peak and splice solve): y_p = 2.5396382822 (landmark 2.5396, rel 1.51e-05), y_star = 2.3374124053 (landmark 2.3374, rel 5.31e-06) (thr within rounded-landmark tolerance ~1e-3 rel) 
+[PASS] C2 nu_mono >= 1 on [1e-2, 1e2] (monotone phantom): min nu_mono - 1 = 7.455820e-03 (thr >= 0) 
+[PASS] C2 gate monotone J' >= 0 on p-grid (canonical footing): min J' = 4.193006e-10 (>=0); J'(0)=0 by q(0)=0 (thr >= 0 up to roundoff (1e-12)) 
+[PASS] C3 J' nondecreasing in p (canonical footing) - convexity input: min d(J')/dp > 0 except at p=0: True (thr >= 0 up to FD noise) J convex (FINAL_ACTION sec.6): static U-solve elliptic - T3 constraint character
+[PASS] C2 gate monotone J' >= 0 on p-grid (alternative footing): min J' = 5.024420e-10 (>=0); J'(0)=0 by q(0)=0 (thr >= 0 up to roundoff (1e-12)) 
+[PASS] C3 J' nondecreasing in p (alternative footing) - convexity input: min d(J')/dp > 0 except at p=0: True (thr >= 0 up to FD noise) J convex (FINAL_ACTION sec.6): static U-solve elliptic - T3 constraint character
+==============================================================================
+PART D -- negative controls
+==============================================================================
+[PASS] NC-a healthy superluminal carrier (v=1.4286c) passes criterion-B test: veto rejection = True (the error), criterion-B PASS = True (thr veto_rejects==True AND criterionB_pass==True (test distinguishes)) superluminality alone is not a failure under criterion B (spec req.7)
+[PASS] NC-b ghost block fails hyperbolicity T1 (complex roots): max discriminant = 1.000e+00... measured -2.041e-02 < 0 (thr max disc < 0 => certificate FAILS (control fires)) 
+[PASS] NC-c negative-time clock T'=-tau fails ordering while finite-speed check accepts: X_{T'} = -5.917160e-01 < 0; finite-speed-only accept = True (thr finite-speed accept AND ordering_fail==True (test distinguishes)) a finite speed does not make a negative-time branch causal (AS299 control)
+==============================================================================
+PART E -- both a0 footings, dimensional speeds
+==============================================================================
+  canonical: a0=9.3619e-11 m/s^2, rho_L=5.844412e-27 kg/m^3, kappa_eff(fixed rho_L)=0.50000000
+      v_T/c                        = 1.000000  ->  2.997925e+08 m/s
+      v_carrier(t_c=0.7)/c         = 1.428571  ->  4.282749e+08 m/s
+      v_carrier(t_c=1.3)/c         = 0.769231  ->  2.306096e+08 m/s
+      v_scalar_plateau_P2/c        = 1.116516  ->  3.347231e+08 m/s
+      v_scalar_vacuum_V1/c         = 0.778802  ->  2.334789e+08 m/s
+  alternative: a0=1.1279e-10 m/s^2, rho_L=8.483090e-27 kg/m^3, kappa_eff(fixed rho_L)=0.60238840
+      v_T/c                        = 1.000000  ->  2.997925e+08 m/s
+      v_carrier(t_c=0.7)/c         = 1.428571  ->  4.282749e+08 m/s
+      v_carrier(t_c=1.3)/c         = 0.769231  ->  2.306096e+08 m/s
+      v_scalar_plateau_P2/c        = 1.116516  ->  3.347231e+08 m/s
+      v_scalar_vacuum_V1/c         = 0.778802  ->  2.334789e+08 m/s
+[PASS] E1 both footings carried separately (no shared rho_L + kappa): canonical kappa=1/2 at own rho_L; alternative at fixed rho_L gives kappa_eff=0.60238840 (!= 1/2) (thr kappa_eff != 1/2) 
+[PASS] E2 characteristic speeds are footing-independent (cone geometry): speeds are ratios v/c from kinetic coefficients (t_c, alpha_eff, A, CI): identical for both footings (thr identical) a0 enters only the static gate amplitude J ~ a0^2, not the principal symbols
+  G1: G1: X_tau = -g^{mu nu} tau_mu tau_nu > 0 on ALL of M (tau a proper global time function; adapted chart covers M; N finite and positive)
+  G2: G2: leaves compact, connected, closed, spacelike (declared for CA4-GNC/CA5-GNC-R)
+  G3: G3: degenerate leaf sector is constraint-like at primary level (pi_U = pi_W = pi_L = pi_lambda0 = pi_Z = 0; AS151 bounded-prototype primary set) and elliptic-solvable per leaf datum (J'>=0, J convex) -> no leafwise signal dynamics
+  G4: G4: heat semigroup kernels symmetric positive on each compact connected closed leaf -> no directed leaf loop (no closed causal curve through the instantaneous channel)
+wall = 0.111 s ; peak RSS = 82.42 MiB ; rlimit note = RLIMIT_AS not settable: current limit exceeds maximum limit
+threads pinned via OMP/OPENBLAS/MKL/VECLIB/NUMEXPR=1; single process; threading.active_count() = 1
+checks: 37/37 PASS
+residuals.json written

@@ -1,0 +1,205 @@
+{
+ "schema_version": 2,
+ "task_id": "AS245",
+ "task_sha256": "0cf133c925e317b35dbc124f853c6fd9ddaa61b27df03db0b8cf1f9cc7fe50ed",
+ "run_id": "AS245-efe-r1-20260928T1711Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (Hermes subagent, openrouter)",
+ "started_utc": "2026-09-28T13:14:36Z",
+ "finished_utc": "2026-09-28T18:17:06Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "For the CA5-GNC-R filtered action with the MONO operative branch and kappa=1/2, the external-field correction tensor C_ij = C_T(delta_ij - e_i e_j) + C_L e_i e_j (e = p0/|p0|, p0 = D S u_external filtered gradient) has C_T = nu(y)-1, C_L = (nu-1)+y nu'(y), with y = |p0|/a0, on the periodic torus L=16 h=0.25: (i) C_L < C_T at every y in [0.05, 1e6] (softening along e); (ii) deep limit C_L/C_T -> 1/2 for all five branches with exact 2C_L - C_T = c-1 (Q: -1, RAR/MONO: -1/2, EXP: -3/4, MU2: -5/8; Lean-certified); (iii) the residual of the filtered field equation is quadratic in the external amplitude A (r(0.005)/r(0.02) = 0.062446 vs 1/16) while a Q-substitution leaves a linear-in-A leftover 1.5e5x larger (control fires); (iv) real-space and Fourier representations of the anisotropic Green function agree to 5.3e-4 (y=0.5) and 1.3e-3 (y=10); (v) Newtonian recovery C -> 0 as y -> 1e6; (vi) curved-leaf sphere mode attenuates as exp(-xi^2/R^2), residuals <= 6.3e-12.",
+ "framework_cell": "Action FINAL_ACTION.md sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e; kernel q'(y^2)=nu-1, J=2 a0^2 q(|p|^2/a0^2); Hessian 4[(nu-1) delta + y nu' e e]; filter S(k)=exp(-(xi^2/2)|k|^2), xi=0.5 adopted, rational-heat semigroup S_r=(I+(b/m)Ds)^-m, m=64, b=xi^2/2, Ds=-Delta_h (symbol +|k|^2); gate: linearised filtered response M(k)=1+S^2[C_T+(C_L-C_T)cos^2 theta]; coupling: external-field gradient -> y=|p0|/a0; scale footing: a0 = (1/2) c sqrt(G_N rho_Lambda): canonical rho_Lambda = 5.844412454021876e-27 kg/m^3 -> a0 = 9.3619e-11 m/s^2, alternative rho_Lambda = 8.483089619559099e-27 -> a0 = 1.1279e-10 m/s^2 (both kept separate); boundary: periodic torus N=64, L=16, h=L/N; SI units; G_N=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16.",
+ "new_assumptions": [
+  "kappa=1/2 adopted for a0 (framework contract input)",
+  "xi=0.5 filter width (grid units) used for all attenuation/green runs",
+  "MONO deep splice at C^0 continuity to the y^-1/2 family at y=14.348 (max deviation point)",
+  "linear-order filtered response on the periodic torus is the EFE channel (no curvature feedback; sphere factor exp(-xi^2/R^2) exponentially suppresses curvature corrections)"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS245_compute_the_external_field_correction_from_the_filtered_action.md": "0cf133c925e317b35dbc124f853c6fd9ddaa61b27df03db0b8cf1f9cc7fe50ed",
+  "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f"
+ },
+ "artifacts_sha256": {
+  "as245_efe.py": "4778e81d985fedd81953d63101406e16330726b004693ea6be1ab54313db96d8",
+  "efe_run.out": "6f077b7ee697891e1022f640ba44e8caf7b9362b9651094f77e866b89cc47395",
+  "efe_run.time": "ca635ad3eec3b10fd51c522e1ec6399220357ec6963b87045c843649cf9c6313",
+  "raw_output.json": "07ba8bbe4816fca3fe036557a6f9f3c274e5be54d54f9708bcde09fa17769315",
+  "AS245_efe_tensor.lean": "3e041f051cf8f6b3d857d83da5c764523be6e445bc60fab32db1b31347b97d46",
+  "lean_compile_out.txt": "8c7392da1e82005dc73e2527b16ccb8783b48be6a9b8f1a24eb45d7bbcef3a9e",
+  "derivation.md": "b617d50159bce93901042a615b4b3be50de77820a8e282dd1cc48a0f80570fb6"
+ },
+ "commands": [
+  {
+   "argv": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 /usr/bin/time -l python3 as245_efe.py > efe_run.out 2> efe_run.time",
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS245/AS245-efe-r1-20260928T1711Z-dsv4f-hermes"
+  },
+  {
+   "argv": "cd fable_independent_2026/lean_2026 && lake env lean <run_dir>/AS245_efe_tensor.lean > lean_compile_out.txt 2>&1",
+   "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026",
+   "note": "compile host only; no files written into lean_2026"
+  }
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_time_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "sample_N": 64,
+   "refinement_N": 96
+  },
+  "enforced": {
+   "wall_time_s": "signal.alarm(120) inside script",
+   "threads": "OPENBLAS/OMP/MKL/NUMEXPR/VECLIB=1 env"
+  },
+  "recorded": {
+   "wall_time_s": 49.98,
+   "peak_rss_B": 103743488,
+   "threads": 1
+  }
+ },
+ "checks": {
+  "realspace_cross_y0.5": {
+   "value": 0.0005349194161570996,
+   "tol_before": 0.02,
+   "pass": true
+  },
+  "realspace_cross_y10": {
+   "value": 0.0013335088046817023,
+   "tol_before": 0.02,
+   "pass": true
+  },
+  "hessian_fd_max_rel_err_all30cells": {
+   "value": 0.0012539129069546666,
+   "tol_before": 0.01,
+   "pass": true
+  },
+  "tensor_eigenvector_residuals": {
+   "value": "max 1.1e-16 over branches@y0.5 (raw: tensor.*eigenvectors*)",
+   "tol_before": 1e-10,
+   "pass": true
+  },
+  "residual_quadratic_scaling_y0.05": {
+   "value": 0.06249986454781963,
+   "expect": 0.0625,
+   "tol_before": 0.01,
+   "pass": true
+  },
+  "residual_quadratic_scaling_y0.5": {
+   "value": 0.062499998524616816,
+   "expect": 0.0625,
+   "tol_before": 0.01,
+   "pass": true
+  },
+  "refinement_N64_vs_N96": {
+   "value": [
+    1.2755684800749216e-08,
+    1.2755684803466723e-08
+   ],
+   "tol_before": "8 digits",
+   "pass": true
+  },
+  "breakdown_quadratic_A0.005_over_A0.02": {
+   "value": 0.062445972604848514,
+   "expect": 0.0625,
+   "pass": true
+  },
+  "NEG_A_Qsubstitute_linear_leftover": {
+   "value": 149761.10184259812,
+   "expect": "rQ linear >> rM quadratic (monopole Q must fail)",
+   "pass": true
+  },
+  "NEG_B_vector_first_order_transverse": {
+   "value": 0.0,
+   "expect": "0.0 exactly for scalarised theory",
+   "pass": true
+  },
+  "curved_leaf_S_Y1m_max_resid": {
+   "value": 6.255884699157832e-12,
+   "tol_before": 1e-09,
+   "pass": true
+  },
+  "deep_2CL_minus_CT_equals_c_minus_1": {
+   "value": {
+    "Q": -0.9999900000111666,
+    "RAR": -0.499998276020051,
+    "EXP": -0.7499987243209034,
+    "MU2": -0.6249976392573444,
+    "MONO": -0.4999993035016814
+   },
+   "expect": {
+    "Q": -1,
+    "RAR": -0.5,
+    "EXP": -0.75,
+    "MU2": -0.625,
+    "MONO": -0.5
+   },
+   "tol_before": 0.01,
+   "pass": true
+  }
+ },
+ "tested_domain": "y = |p0|/a0 in [0.0005, 1e6] continuous grid samples {0.05,0.1,0.5,1.0,2.5,10,100,1e4,1e6} and deep points 1e-10; five criterion-B branches Q,RAR,EXP,MU2,MONO; torus N=64 (refinement N=96), L=16, h=0.25, box units; external amplitude A in {1e-4,2.5e-4,1e-3,5e-3,2e-2}; separations 40h for force; sphere radii R in {0.5,1,2,10,20} grid units; STL: numpy 1.26.4, scipy 1.14.1, mpmath 1.3.0, Python 3.13.9; single run seed-free (deterministic).",
+ "failed_attempts": [
+  {
+   "artifact": "standalone debug (not preserved) \u2014 scipy diags flat-offset wrap corrupted periodic 5-point Laplacian; fixed with rolled 2-D index arrays",
+   "cause": "plane-wave error 76.31 -> 1e-14 after fix"
+  },
+  {
+   "artifact": "standalone debug \u2014 div stencil roll(+1)-roll(-1) is the negative of the forward derivative",
+   "cause": "div err 6.188318309911633 -> 5e-4-class; sign flipped to roll(-1)-roll(+1)"
+  },
+  {
+   "artifact": "script run 3 traceback: np.trapezoid absent in numpy 1.26.4",
+   "cause": "replaced with np.trapz"
+  }
+ ],
+ "limitations": "Linear-order filtered response on a periodic torus with constant external field; no feedback of the EFE onto the external field; nu_mono splice is C^0 only; force anisotropy at finite separation depends on filter scale (low-k prediction is not the full force); no observational calibration; G_bare/G_cosmo not exercised (G_N only, kept separate).",
+ "next_unresolved_implication": "The EFE tensor is computed at linear order on a flat torus \u2014 the first missing bridge is the near-field EFE with the curved-leaf filter at finite curvature: the sphere factor exp(-xi^2/R^2) suppresses curvature corrections exponentially, but the direction-change of the external field across a compact source (geodesic separation O(R), external axis tilted by theta != 0) has not been computed and may renormalise C_L/C_T at the source scale.",
+ "suggested_followup": "AS245.C01: external-field tensor in a curved-leaf background, source separation d = O(R), external axis tilted by theta != 0 to the leaf normal; controls: theta -> 0 and xi -> 0 must recover this run's C_L/C_T to <= 1e-3; otherwise the torus result is a lattice artifact.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "adopted_inputs": [
+   "kappa = 1/2 (a0 footing)",
+   "xi = 0.5 filter width",
+   "G_N = 6.67430e-11 SI, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16",
+   "rho_Lambda canonical = 5.844412454021876e-27, alternative = 8.483089619559099e-27 kg/m^3",
+   "MONO branch kernel y-landmarks from the action (y_p = 2.539638, y_star = 2.337412)"
+  ],
+  "derived_equations": [
+   "C_T = nu - 1 (from Hessian of 2 a0^2 q(|p|^2/a0^2) at linear order)",
+   "C_L = (nu-1) + y nu'(y)",
+   "M(k) = 1 + S^2(k)[C_T + (C_L-C_T) cos^2 theta_k]",
+   "S_r = (I + (b/m) Ds)^-m ~ exp(-b k^2)",
+   "sphere factor exp(-2b/R^2) = exp(-xi^2/R^2)"
+  ]
+ },
+ "closure_implication": {
+  "gate": "EFE bridge (Tier-0b) \u2014 the filtered-action external-field correction tensor",
+  "implication": "C_L/C_T -> 1/2 with 2C_L - C_T = c - 1 in the deep limit and C_L, C_T -> 0 (Newtonian recovery) at y -> inf, for all five criterion-B branches, with quadratic-in-A residual contamination controlled at 1/16 and the Q-substitute control failing as required",
+  "compatibility": "compatible with FINAL_ACTION.md (b8c04d4e) and FRIED_CHICKEN_SPEC.md (98d9149f) within the linear-response domain; splice C^0 is the only known smoothness gap"
+ },
+ "child_proposals": [
+  {
+   "id": "AS245.C01",
+   "spec": "curved-leaf EFE tensor at finite curvature offset theta",
+   "fingerprint": "C_L/C_T(theta,R,d) with theta->0, xi->0 limits recovering this run to 1e-3",
+   "controls": [
+    "theta -> 0 limit",
+    "xi -> 0 limit",
+    "flat-torus N96 refinement"
+   ],
+   "dependencies": [
+    "AS245 (this run)",
+    "AS043 curved-leaf machinery"
+   ],
+   "dispatch_state": "proposed, not dispatched"
+  }
+ ],
+ "closure_candidate": null
+}

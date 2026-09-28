@@ -1,0 +1,34 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS245/AS245-efe-r1-20260928T1711Z-dsv4f-hermes/AS245_efe_tensor.lean:60:46: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS245/AS245-efe-r1-20260928T1711Z-dsv4f-hermes/AS245_efe_tensor.lean:60:46: warning: Unused tactic linter: `ring` does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+AS245.tensor_on_external_direction (C_T C_L : ℝ) (e : Fin 2 → ℝ) (he : e 0 * e 0 + e 1 * e 1 = 1) :
+  AS245.Cvec C_T C_L e e = C_L • e
+AS245.tensor_on_transverse_direction (C_T C_L : ℝ) (e w : Fin 2 → ℝ) (hw : e 0 * w 0 + e 1 * w 1 = 0) :
+  AS245.Cvec C_T C_L e w = C_T • w
+AS245.tensor_quadratic_form (C_T C_L : ℝ) (e k : Fin 2 → ℝ) :
+  AS245.inner2 k (AS245.Cvec C_T C_L e k) = C_T * (k 0 * k 0 + k 1 * k 1) + (C_L - C_T) * AS245.inner2 e k ^ 2
+AS245.symbol_cos2_weight (C_T C_L : ℝ) (e k : Fin 2 → ℝ) (hk2 : k 0 * k 0 + k 1 * k 1 = 1) :
+  C_T + (C_L - C_T) * AS245.inner2 e k ^ 2 = AS245.inner2 k (AS245.Cvec C_T C_L e k)
+AS245.deep_cL_powerlaw (cL ν d y : ℝ) (hcL : cL = ν - 1 + y * d) (hyd : y * d = -(1 / 2) * ν) : cL = ν / 2 - 1
+AS245.two_cL_minus_cT_powerlaw (cL cT ν : ℝ) (hcL : cL = ν / 2 - 1) (hcT : cT = ν - 1) : 2 * cL - cT = -1
+AS245.deep_ratio_deviation (cL cT ν : ℝ) (hcL : cL = ν / 2 - 1) (hcT : cT = ν - 1) (hν : ν ≠ 1) :
+  cL / cT - 1 / 2 = -1 / (2 * (ν - 1))
+AS245.heat_power_eigen {E : Type} [AddCommGroup E] [Module ℝ E] (P : E → E) (lam : ℝ) (heig : ∀ (v : E), P v = lam • v)
+  (n : ℕ) (f : E) : AS245.itop n P f = lam ^ n • f
+AS245.sphere_attenuation_factor (ξ b R : ℝ) (hb : 2 * b = ξ ^ 2) :
+  Real.exp (-(2 * b) / R ^ 2) = Real.exp (-ξ ^ 2 / R ^ 2)
+AS245.transverse_gain_symbol (C_T C_L S2 : ℝ) (e k : Fin 2 → ℝ) (hw : AS245.inner2 e k = 0) :
+  1 + S2 * (C_T + (C_L - C_T) * AS245.inner2 e k ^ 2) = 1 + S2 * C_T
+'AS245.tensor_on_external_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.tensor_on_transverse_direction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.tensor_quadratic_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.symbol_cos2_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.deep_cL_powerlaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.two_cL_minus_cT_powerlaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.deep_ratio_deviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.heat_power_eigen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.sphere_attenuation_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'AS245.transverse_gain_symbol' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,397 @@
+{
+  "wall_s": 0.11076633399352431,
+  "peak_rss_mib": 82.421875,
+  "rlimit_note": "RLIMIT_AS not settable: current limit exceeds maximum limit",
+  "TOL": 1e-12,
+  "checks": [
+    {
+      "name": "A1 tensor roots real and substitute back",
+      "observed": "roots = [k]; residuals = [0]",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A2 carrier roots real and substitute back",
+      "observed": "roots = [k/t_c]; residuals = [0]",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A2 composite block lapse identity -g_d(dtau,dtau) = t^-2 X_tau",
+      "observed": "= t^-2*X_tau (residual 0)",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": "holds for EVERY t > 0: superluminal carrier (t<1) never breaks ordering"
+    },
+    {
+      "name": "A3 scalar window core identity (cs2-1)*[(2+3c2)a] = 2c2 - 2(1+2c2)a",
+      "observed": "numerator = -4*a_sym*c2 - 2*a_sym + 2*c2; residual = 0",
+      "threshold": "residual == 0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A3 plateau window identity: full gate expression numeric residual (24 random samples)",
+      "observed": "max |(cs2-1)*den - [2c2 - 2(1+2c2) alpha_eff]| = 3.553e-15",
+      "threshold": "< 1e-9",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A4 vacuum scalar V1: A>0, CI<0 => real roots",
+      "observed": "A=4.089802e+00, CI=-2.480596e+00, speed^2/c^2=6.065322e-01",
+      "threshold": "A>0 and CI<0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A4 vacuum scalar V2: A>0, CI<0 => real roots",
+      "observed": "A=9.825714e+00, CI=-5.065199e+01, speed^2/c^2=5.155044e+00",
+      "threshold": "A>0 and CI<0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A4 vacuum scalar V3: A>0, CI<0 => real roots",
+      "observed": "A=1.174346e+01, CI=-1.398110e+00, speed^2/c^2=1.190544e-01",
+      "threshold": "A>0 and CI<0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A5 degenerate-sector operator Delta_h: omega-free",
+      "observed": "d(sym)/d(omega) = 0",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A5 degenerate-sector operator S_h=e^(b*Delta_h): omega-free",
+      "observed": "d(sym)/d(omega) = 0",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A5 degenerate-sector operator div_N: omega-free",
+      "observed": "d(sym)/d(omega) = 0",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A5 degenerate-sector operator S_N^dag=N^-1 S_h N: omega-free",
+      "observed": "d(sym)/d(omega) = 0",
+      "threshold": "== 0 (symbolic)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A5 gate/heat/U/Z equations carry no partial_tau (structure)",
+      "observed": "eqs (5),(6),(7),R4, d_r W = Delta_h W, W_0=U, L_b=-R_W, lambda0=L_0",
+      "threshold": "no d_tau term present",
+      "pass": true,
+      "note": "r is the semigroup direction, not physical time (FINAL_ACTION sec.1,3)"
+    },
+    {
+      "name": "B1 tensor: real roots, substitute-back, ordering",
+      "observed": "min discr=1.000e-02 (>=0), max |X(w,k)|=0.000e+00 (<1e-12), min xi(n)=3.846e-02 (>0), max xi_mu tau^mu=-2.959e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16",
+      "threshold": "disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B1 carrier t_c=1.3: real roots, substitute-back, ordering",
+      "observed": "min discr=5.917e-03 (>=0), max |X(w,k)|=2.842e-14 (<1e-12), min xi(n)=2.959e-02 (>0), max xi_mu tau^mu=-2.276e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16",
+      "threshold": "disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B1 carrier t_c=1.0: real roots, substitute-back, ordering",
+      "observed": "min discr=1.000e-02 (>=0), max |X(w,k)|=0.000e+00 (<1e-12), min xi(n)=3.846e-02 (>0), max xi_mu tau^mu=-2.959e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16",
+      "threshold": "disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B1 carrier t_c=0.7: real roots, substitute-back, ordering",
+      "observed": "min discr=2.041e-02 (>=0), max |X(w,k)|=5.684e-14 (<1e-12), min xi(n)=5.495e-02 (>0), max xi_mu tau^mu=-4.227e-02 (<0), |xi(dtau) + xi(n)/N|=2.220e-16",
+      "threshold": "disc>=0, sub<1e-12, xi(n)>0, xi(dtau)<0, ratio=-1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B2 refinement 17 -> 33 points (carrier t_c=0.7)",
+      "observed": "max |X(w,k)| = 5.684e-14 (17-pt: 5.684e-14)",
+      "threshold": "< 1e-12 both",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B3 plateau scalar P1 f=0 sub",
+      "observed": "Q=0.993935, D=1.0000, alpha_eff=1.012094, cs2=0.139443, superluminal window (ae < c2/(1+2c2)) = False",
+      "threshold": "0<ae<2, cs2>0; window <-> cs2>1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B3 plateau scalar P2 f=1 SUPER",
+      "observed": "Q=1.000000, D=1.0998, alpha_eff=0.226870, cs2=1.116516, superluminal window (ae < c2/(1+2c2)) = True",
+      "threshold": "0<ae<2, cs2>0; window <-> cs2>1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B3 plateau scalar P3 active gate",
+      "observed": "Q=1.000000, D=1.5143, alpha_eff=1.009438, cs2=0.245325, superluminal window (ae < c2/(1+2c2)) = False",
+      "threshold": "0<ae<2, cs2>0; window <-> cs2>1",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "A3 alpha_eff domain bounds (numeric scan 2^2 x 3 corners)",
+      "observed": "Q in [1-ell/4,1], D>=1, 0<alpha_eff<2 on 12 corners: ok=True",
+      "threshold": "all in declared bounds",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B3 P2 window persists along k (filter decay)",
+      "observed": "cs2(min k)=1.1146, cs2(max k)=5.5714, all>0: True",
+      "threshold": "cs2 > 0 on the k-window",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B4 vacuum scalar V1: ordering built from A>0, CI<0",
+      "observed": "speed^2/c^2 = 6.065322e-01; real roots at every k (quadratic in omega)",
+      "threshold": "> 0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B4 vacuum scalar V2: ordering built from A>0, CI<0",
+      "observed": "speed^2/c^2 = 5.155044e+00; real roots at every k (quadratic in omega)",
+      "threshold": "> 0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "B4 vacuum scalar V3: ordering built from A>0, CI<0",
+      "observed": "speed^2/c^2 = 1.190544e-01; real roots at every k (quadratic in omega)",
+      "threshold": "> 0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "C1 actual MONO landmarks (peak and splice solve)",
+      "observed": "y_p = 2.5396382822 (landmark 2.5396, rel 1.51e-05), y_star = 2.3374124053 (landmark 2.3374, rel 5.31e-06)",
+      "threshold": "within rounded-landmark tolerance ~1e-3 rel",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "C2 nu_mono >= 1 on [1e-2, 1e2] (monotone phantom)",
+      "observed": "min nu_mono - 1 = 7.455820e-03",
+      "threshold": ">= 0",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "C2 gate monotone J' >= 0 on p-grid (canonical footing)",
+      "observed": "min J' = 4.193006e-10 (>=0); J'(0)=0 by q(0)=0",
+      "threshold": ">= 0 up to roundoff (1e-12)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "C3 J' nondecreasing in p (canonical footing) - convexity input",
+      "observed": "min d(J')/dp > 0 except at p=0: True",
+      "threshold": ">= 0 up to FD noise",
+      "pass": true,
+      "note": "J convex (FINAL_ACTION sec.6): static U-solve elliptic - T3 constraint character"
+    },
+    {
+      "name": "C2 gate monotone J' >= 0 on p-grid (alternative footing)",
+      "observed": "min J' = 5.024420e-10 (>=0); J'(0)=0 by q(0)=0",
+      "threshold": ">= 0 up to roundoff (1e-12)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "C3 J' nondecreasing in p (alternative footing) - convexity input",
+      "observed": "min d(J')/dp > 0 except at p=0: True",
+      "threshold": ">= 0 up to FD noise",
+      "pass": true,
+      "note": "J convex (FINAL_ACTION sec.6): static U-solve elliptic - T3 constraint character"
+    },
+    {
+      "name": "NC-a healthy superluminal carrier (v=1.4286c) passes criterion-B test",
+      "observed": "veto rejection = True (the error), criterion-B PASS = True",
+      "threshold": "veto_rejects==True AND criterionB_pass==True (test distinguishes)",
+      "pass": true,
+      "note": "superluminality alone is not a failure under criterion B (spec req.7)"
+    },
+    {
+      "name": "NC-b ghost block fails hyperbolicity T1 (complex roots)",
+      "observed": "max discriminant = 1.000e+00... measured -2.041e-02 < 0",
+      "threshold": "max disc < 0 => certificate FAILS (control fires)",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "NC-c negative-time clock T'=-tau fails ordering while finite-speed check accepts",
+      "observed": "X_{T'} = -5.917160e-01 < 0; finite-speed-only accept = True",
+      "threshold": "finite-speed accept AND ordering_fail==True (test distinguishes)",
+      "pass": true,
+      "note": "a finite speed does not make a negative-time branch causal (AS299 control)"
+    },
+    {
+      "name": "E1 both footings carried separately (no shared rho_L + kappa)",
+      "observed": "canonical kappa=1/2 at own rho_L; alternative at fixed rho_L gives kappa_eff=0.60238840 (!= 1/2)",
+      "threshold": "kappa_eff != 1/2",
+      "pass": true,
+      "note": ""
+    },
+    {
+      "name": "E2 characteristic speeds are footing-independent (cone geometry)",
+      "observed": "speeds are ratios v/c from kinetic coefficients (t_c, alpha_eff, A, CI): identical for both footings",
+      "threshold": "identical",
+      "pass": true,
+      "note": "a0 enters only the static gate amplitude J ~ a0^2, not the principal symbols"
+    }
+  ],
+  "block_summaries": {
+    "tensor": {
+      "v": 1.0,
+      "label": "tensor",
+      "min_disc": 0.010000000000000002,
+      "max_sub_res": 0.0,
+      "min_xi_n": 0.038461538461538464,
+      "max_xi_dtau": -0.029585798816568046,
+      "ratio_dev": 2.220446049250313e-16,
+      "k_count": 17
+    },
+    "carrier t_c=1.3": {
+      "v": 0.7692307692307692,
+      "label": "carrier t_c=1.3",
+      "min_disc": 0.00591715976331361,
+      "max_sub_res": 2.842170943040401e-14,
+      "min_xi_n": 0.02958579881656805,
+      "max_xi_dtau": -0.02275830678197542,
+      "ratio_dev": 2.220446049250313e-16,
+      "k_count": 17
+    },
+    "carrier t_c=1.0": {
+      "v": 1.0,
+      "label": "carrier t_c=1.0",
+      "min_disc": 0.010000000000000002,
+      "max_sub_res": 0.0,
+      "min_xi_n": 0.038461538461538464,
+      "max_xi_dtau": -0.029585798816568046,
+      "ratio_dev": 2.220446049250313e-16,
+      "k_count": 17
+    },
+    "carrier t_c=0.7": {
+      "v": 1.4285714285714286,
+      "label": "carrier t_c=0.7",
+      "min_disc": 0.020408163265306128,
+      "max_sub_res": 5.684341886080802e-14,
+      "min_xi_n": 0.05494505494505495,
+      "max_xi_dtau": -0.042265426880811495,
+      "ratio_dev": 2.220446049250313e-16,
+      "k_count": 17
+    }
+  },
+  "plateau_rows": [
+    {
+      "name": "P1 f=0 sub",
+      "Q": 0.9939346934028737,
+      "D": 1.0,
+      "alpha_eff": 1.0120938252501355,
+      "cs2": 0.1394430536129546,
+      "window": false
+    },
+    {
+      "name": "P2 f=1 SUPER",
+      "Q": 1.0,
+      "D": 1.099750312239746,
+      "alpha_eff": 0.22687024654838273,
+      "cs2": 1.1165159572349126,
+      "window": true
+    },
+    {
+      "name": "P3 active gate",
+      "Q": 1.0,
+      "D": 1.514291926231752,
+      "alpha_eff": 1.009438025775728,
+      "cs2": 0.24532510885525877,
+      "window": false
+    }
+  ],
+  "vacuum_rows": [
+    {
+      "name": "V1",
+      "A": 4.089801930594459,
+      "CI": -2.4805964889298537,
+      "speed2": 0.606532182004544
+    },
+    {
+      "name": "V2",
+      "A": 9.825714436168425,
+      "CI": -50.65198697645928,
+      "speed2": 5.1550436668512845
+    },
+    {
+      "name": "V3",
+      "A": 11.743457618100106,
+      "CI": -1.3981100388637315,
+      "speed2": 0.11905437770804697
+    }
+  ],
+  "mono_landmarks": {
+    "y_p": 2.5396382821881645,
+    "h_p": 0.647610237891915,
+    "y_star": 2.33741240526633,
+    "y_p_landmark": 2.5396,
+    "y_star_landmark": 2.3374
+  },
+  "footings": [
+    {
+      "footing": "canonical",
+      "a0": 9.3619e-11,
+      "rho_Lambda": 5.844412454021876e-27,
+      "kappa_effective_at_fixed_rhoL": 0.5,
+      "speeds": {
+        "v_T/c": 1.0,
+        "v_carrier(t_c=0.7)/c": 1.4285714285714286,
+        "v_carrier(t_c=1.3)/c": 0.7692307692307692,
+        "v_scalar_plateau_P2/c": 1.1165159572349126,
+        "v_scalar_vacuum_V1/c": 0.778801760401544
+      }
+    },
+    {
+      "footing": "alternative",
+      "a0": 1.1279e-10,
+      "rho_Lambda": 8.483089619559099e-27,
+      "kappa_effective_at_fixed_rhoL": 0.6023884040632778,
+      "speeds": {
+        "v_T/c": 1.0,
+        "v_carrier(t_c=0.7)/c": 1.4285714285714286,
+        "v_carrier(t_c=1.3)/c": 0.7692307692307692,
+        "v_scalar_plateau_P2/c": 1.1165159572349126,
+        "v_scalar_vacuum_V1/c": 0.778801760401544
+      }
+    }
+  ],
+  "global_obligations": [
+    "G1: X_tau = -g^{mu nu} tau_mu tau_nu > 0 on ALL of M (tau a proper global time function; adapted chart covers M; N finite and positive)",
+    "G2: leaves compact, connected, closed, spacelike (declared for CA4-GNC/CA5-GNC-R)",
+    "G3: degenerate leaf sector is constraint-like at primary level (pi_U = pi_W = pi_L = pi_lambda0 = pi_Z = 0; AS151 bounded-prototype primary set) and elliptic-solvable per leaf datum (J'>=0, J convex) -> no leafwise signal dynamics",
+    "G4: heat semigroup kernels symmetric positive on each compact connected closed leaf -> no directed leaf loop (no closed causal curve through the instantaneous channel)"
+  ],
+  "tested_domain": "frozen local background; identity leaf frame (exact), general symmetric h numeric in fiber checks; k-grid 17 -> 33 (refined once); carrier t_c in {0.7,1.0,1.3}; plateau scalar samples P1-P3; vacuum scalar samples V1-V3; MONO y-grid 401 pts (refined from 101); seed 20260928"
+}

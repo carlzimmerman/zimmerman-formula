@@ -72,7 +72,7 @@
     {
       "argv": ["bash", "-c", "ulimit -t 120 && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /usr/bin/time -l python3 as078_slope_normalizability.py > raw_output.txt 2> err_and_time.txt"],
       "cwd": "/Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS078/run_20260928T125057Z_as078_dsv4f",
-      "purpose": "bounded prototype: closed-form mass identity (50-digit), gamma->3 limit sequence, FTC/trapezoid independent checks, four negative controls, both footings; exit 0; wall 1.03 s (time), max RSS 45.1 MB (/usr/bin/time -l and resource.getrusage)"
+      "purpose": "bounded prototype: closed-form mass identity (50-digit), gamma->3 limit sequence, FTC/trapezoid independent checks, four negative controls, both footings; exit 0; wall 0.143 s (script) / 0.21 s real (/usr/bin/time -l), max RSS 45.1 MB (45,170,688 B by /usr/bin/time; resource.getrusage agrees)"
     },
     {
       "argv": ["lake", "env", "lean", "<run_dir>/AS078_general_slope.lean"],
@@ -89,7 +89,7 @@
     "declared_prototype_bounds": {"wall_s": 120, "memory_MB": 512, "threads": 1, "grid_cells": 512, "refinements": 2},
     "enforced": {
       "cpu": "ulimit -t 120 (shell-enforced CPU cap on the python process)",
-      "wall_s_measured": 1.03,
+      "wall_s_measured": 0.143,
       "threads": "1 (single-threaded CPython; OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=1 env-pinned)",
       "memory": "max RSS 45.1 MB measured by /usr/bin/time -l AND resource.getrusage (limit 512 MB); no allocation bound needed",
       "precision": "mpmath mp.dps = 50; dimensionless endpoints as exact decimal strings",
@@ -107,10 +107,10 @@
     "NEG_CONTROL_1_global_r-2_normalization": {"observed": "M(R)=4 pi A (R-r_in): M(2R)/M(R) -> 2.0000000100 at R=1e6 r_M; M(10^k r_M) grows x10 per decade -> untruncated gamma=2 mass infinite; claim REFUTED", "pass": true, "capable_of_failing": true, "fired": true},
     "NEG_CONTROL_2_gamma3_00_form": {"observed": "naive (R^(3-g)-r_in^(3-g))/(3-g) at g=3 -> ZeroDivisionError (0/0 singular); log extension = 2.0348545100e21 kg on fixture; delta-sequence converges to log(R/r_in) (Lean-certified limit)", "pass": true, "capable_of_failing": true, "fired": true},
     "NEG_CONTROL_3_finite_rin_flatness": {"observed": "v_c^2(0.62 r_M)/C = 0.993809/0.931900/0.387097 at r_in/R=0.01/0.1/0.5 (exact finite-shell formulas): exact flatness requires r_in->0; deviations recorded, not smoothed", "pass": true, "capable_of_failing": true, "fired": true},
-    "NEG_CONTROL_4_exterior_ansatz_transfer": {"observed": "extrapolated ansatz M_shell/M_b = (R-r_in)/r_M = 10/90/100/900 on r_in/r_M in {10,100} x R/r_in in {2,10}, identical on both footings; interior normalization does NOT control exterior mass; kernel-side comparison OPEN (dependency AS044), no branch imported", "pass": true, "capable_of_failing": true, "fired": null},
+    "NEG_CONTROL_4_exterior_ansatz_transfer": {"observed": "extrapolated ansatz M_shell/M_b = (R-r_in)/r_M = 10/90/100/900 on r_in/r_M in {10,100} x R/r_in in {2,10}, identical on both footings; interior normalization does NOT control exterior mass; kernel-side comparison OPEN (dependency AS044), no branch imported", "pass": true, "capable_of_failing": true, "fired": true},
     "deep_equilibrium_fixtures": {"observed": "B(r_M)/a0 = 1.000000000000 and g(r_M)/a0 = 1.000000000000 both footings both proxies; P(r_M)/(a0^2/8 pi G) - 1 = |2.2e-16|; anchors sigma = 119.20 (canonical 6.5e10) / 124.89 (alt) km/s reproduce G091's registered values", "pass": true},
     "equipartition_exactness": {"observed": "M_ph(<r_M)/M_b - 1 = 0.00e+00 (canonical) / -1.11e-16 (alt); A_ex/A_lim - 1 = +1.010e-2 at r_in/R=0.01 (finite-boundary correction recorded)", "pass": true},
-    "bound_enforcement": {"observed": "wall 1.03 s <= 120 s; max RSS 45.1 MB <= 512 MB; 1 thread; <=512 cells; 2 refinements", "pass": true},
+    "bound_enforcement": {"observed": "wall 0.143 s <= 120 s; max RSS 45.1 MB <= 512 MB; 1 thread; <=512 cells; 2 refinements", "pass": true},
     "lean_certificates": {"observed": "AS078_general_slope.lean exit 0; zero sorry (grep count 0 outside header comment); #print axioms of all 12 theorems = [propext, Classical.choice, Quot.sound]", "pass": true}
   },
   "tested_domain": "Algebraic/Lean side: all real gamma on every 0 < r_in < R (gamma != 3 for the closed form; gamma = 3 by certified limit); positivity hypotheses explicit (0 < r_in, 0 < R, 0 < u1 < u2). Numerical side: gamma in {0.5, 1.0, 1.5, 2.0, 2.5, 2.9, 3.0, 3.1, 4.0} x interior shells (r_in/R, R/r_M) in {(0.01,0.62),(0.01,1),(0.1,0.62),(0.1,1),(0.5,0.62),(0.5,1)} x both footings (a0 9.3619e-11 / 1.1279e-10) x M_b proxies {7.0e10, 6.5e10} M_sun -> 54 dimensionless identity cells (worst 1.78e-50) plus physical scaling; gamma->3 delta sequence d = 10^-1..10^-21 at exact decimal endpoints u1=0.062, u2=0.62; exterior transfer shells r_in/r_M in {10,100}, R/r_in in {2,10} (gamma=2, extrapolated ansatz); FTC at gamma in {1.5,2,2.5}, R/r_M=0.8, r_in/R=0.05; trapezoid n in {128,256,512} at gamma=2. No fits, no seeds, no refinement iterations beyond the two declared grid refinements. Deep exterior r >> r_M kernel regime: EXCLUDED (open dependency).",

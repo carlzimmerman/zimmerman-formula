@@ -1,0 +1,302 @@
+{
+ "schema_version": 2,
+ "task_id": "AS085",
+ "task_sha256": "3d50da7fc2ff74c47b6de56ce53b6f2a8d6317d4e69eaaaa7c0d9d964d558e33",
+ "run_id": "run_20260928T132621",
+ "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes Agent subagent, single-run worker seed",
+ "started_utc": "2026-09-28T13:26:21Z",
+ "finished_utc": "2026-09-28T14:10:51Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "On the finite shell 0 < r_in < R < \u221e, the external-Newtonian baryon virial term of the equilibrium phantom rho(r) = A/r^2 (A = C/(4 pi G_N), C = sqrt(G_N M_b a0)) in the point-mass well Phi_b = -G_N M_b/r is exactly W_bar = -\u222b rho r dPhi_b/dr dV = -4 pi G_N M_b A ln(R/r_in) = -M_b C ln(R/r_in); the virial (work) form equals the potential form \u222b rho Phi_b dV (r dPhi_b/dr = -Phi_b), dW_bar/dR = 4 pi R^2 rho(R) Phi_b(R), and G091's verbatim expression -M_b C ln(r_break/r_b) is reproduced on [r_b, r_break] (domain r \u2265 r_b > 0 stated). The term diverges logarithmically as r_in -> 0 (no baryonic core; rate M_b C ln 10 per decade, measured to 50 digits) and as R -> \u221e (no outer edge: full-kernel error -M_b C ln(R_max/R) unbounded; physical outer edge beyond the registered 0.62 r_M cap is an open dependency). Inserted in the G091 closed virial chain 2T + W_self + W_bar = 3 P_s V with the isothermal fluid closure it gives sigma^2 = (C/2)[1 + (1/lam) ln(r_break/r_b)] -> C/2 exactly at r_b = r_break (any lam, any M_b); the bare (boundary-term-free) reading gives (C/3)[...] = (2/3)\u00b7(C/2)[...], so C/2 is not a bare-virial consequence. Exact identity on the whole stated domain; both footings (a0 = 9.3619e-11 and 1.1279e-10 m/s^2, kappa = 1/2 adopted per footing with separate rho_Lambda = 4 a0^2/(G_N c^2)); G_N used only, G_bare/G_cosmo separate and untouched.",
+ "framework_cell": {
+  "action_hash_sources": {
+   "G084": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+   "G091": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+   "G233": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03",
+   "all three match SOURCE_MANIFEST.json": true
+  },
+  "branch": "Conditional deep-equilibrium sector; no automatic particle ontology (seed-declared); no interpolation branch used or transferred (Q/RAR/MU2/EXP/MONO distinct; MONO not evaluated)",
+  "kernel": "none beyond the external Newtonian baryon well Phi_b = -G_N M_b/r (fixture; imposed-log-well ansatz confined to R <= r_M diagnostics per seed)",
+  "filter": "none (deep-exterior shells are closed-form bookkeeping fixtures; branch transfer to filtered MONO requires the S/S* bridge, not supplied)",
+  "gate": "A04 finite-domain equilibrium and virial closure",
+  "coupling": "baryon point mass M_b at origin; phantom\u2013baryon coupling via Phi_b only",
+  "parameters": {
+   "kappa": "1/2 ADOPTED as input (not derived)",
+   "lambda_efe_cap": 0.62,
+   "delta_MONO": "not used"
+  },
+  "scale_footing": {
+   "canonical_a0": 9.3619e-11,
+   "alt_a0": 1.1279e-10,
+   "rho_Lambda_kg_m3": {
+    "canonical": 5.844412454021876e-27,
+    "alt": 8.483089705764823e-27
+   },
+   "Lambda_m-2": {
+    "canonical": 1.0907997632807349e-52,
+    "alt": 1.5833095799710753e-52
+   },
+   "note": "kappa = 1/2 fixed per footing => density differs between footings; no shared fixed density + fixed kappa (contract)"
+  },
+  "boundaries": "0 < r_b < r_break; shell [r_in, R], r_in > 0, R < \u221e; improper at r <= r_b and R -> \u221e; interior diagnostics r_in/R in {0.01,0.1,0.5} x R/r_M in {0.62,1.0}; deep exterior r_in/r_M in {10,100} x R/r_in in {2,10}",
+  "initial_conditions": "none (static bookkeeping only; no dynamics)",
+  "units": "SI: m, kg, s; W_bar in J = kg m^2/s^2; sigma^2 in m^2/s^2"
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS085_external_newtonian_baryon_virial_term.md": "3d50da7fc2ff74c47b6de56ce53b6f2a8d6317d4e69eaaaa7c0d9d964d558e33",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+  "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+  "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/derivation.md": "b115a036f1825cf9bc9230edb5eac0bf933303a38810f07f4d4b7bb215d77145",
+  "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/as085_virial_term.py": "617a1096c3a68989417fd008907e040f58e7fe4eb101f1f1d24aa1e9bb17b595",
+  "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/as085_virial_term_raw.txt": "da33cb9bfda77d89333e65b18f450faaca6cb592afdd82e1265db2303d29c581",
+  "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/as085_virial_term.json": "67024aaa6c1fdc5b04b29a17a58d896ff1eaee3097171ad9501371b75c6eab3e",
+  "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/as085_lean_cert.lean": "27309bac952a5db7be51a6fa85d034be1e5c3f0f9c0321b532cafe551a85c53c",
+  "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621/lean_check.out": "a2f440b41e83d9a32f91b11602406187da8d938f6234109236af930a2ab424fe",
+  "deepseek_push/astra_spawn_ideas/branches/AS085/AS085.C01.md": "d8052b7b3fee506e7f7c715178c80fb2dc1e57dcb1c18c1edcef57a2d7337a16"
+ },
+ "commands": [
+  {
+   "argv": [
+    "python3",
+    "as085_virial_term.py"
+   ],
+   "cwd": "deepseek_push/astra_spawn_ideas/results/AS085/run_20260928T132621",
+   "note": "stdout captured to as085_virial_term_raw.txt; lane start 2026-09-28T13:37:54Z"
+  },
+  {
+   "argv": [
+    "lake",
+    "env",
+    "lean",
+    "<run_dir>/as085_lean_cert.lean"
+   ],
+   "cwd": "fable_independent_2026/lean_2026",
+   "note": "output to lean_check.out; exit 0"
+  },
+  {
+   "argv": [
+    "lake",
+    "env",
+    "lean",
+    "/tmp/as085_probe.lean"
+   ],
+   "cwd": "fable_independent_2026/lean_2026",
+   "note": "throwaway shape probes (/tmp), deleted; no repo writes"
+  }
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_s": 120,
+   "mem_mb": 512,
+   "threads": 1
+  },
+  "enforced": {
+   "RLIMIT_CPU": "soft limit 120 s (set OK)",
+   "SIGALRM": "wall alarm 120 s",
+   "memory": "monitor-and-abort on ru_maxrss ceiling 512 MB (RLIMIT_AS lowering refused by macOS CPython: EINVAL 'current limit exceeds maximum limit' even from RLIM_INFINITY; monitor-abort is the actually enforced mechanism)",
+   "threads": "1: single process, serial, no threading libraries, no BLAS engagement"
+  },
+  "measured": {
+   "elapsed_s": 0.9825289249420166,
+   "peak_rss_mb": 93.1
+  }
+ },
+ "checks": [
+  {
+   "name": "1a [general shell] W_work = -int rho r dPhi_b/dr dV equals W_pot = int rho Phi_b dV for ARBITRARY spherical rho on [r_in, R]",
+   "measured": "W_work = -4*pi*G*M_b*Integral(r*rho(r), (r, r_in, R)) ; W_pot = -4*pi*G*M_b*Integral(r*rho(r), (r, r_in, R)) ; difference == 0: True",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "1b [closed form] rho = A/r^2 on [r_in, R]: W_bar = -4 pi G M_b A ln(R/r_in) EXACTLY (work form integrated explicit)",
+   "measured": "W_work = log((r_in/R)**(4*pi*A*G*M_b)) ; closed = -log((R/r_in)**(4*pi*A*G*M_b)) ; diff == 0: True",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "1c [coefficient] with A = C/(4 pi G), C = sqrt(G M_b a0): 4 pi G M_b A = M_b C, so W_bar = -M_b C ln(R/r_in) (the G091 coefficient)",
+   "measured": "W_bar = log((r_in/R)**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; -M_b C ln(R/r_in): diff == 0: True",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "1d [G091 comparison] shell [r_b, r_break]: W_bar = -M_b C ln(r_break/r_b), identical to the logarithmic expression quoted in G091_virial_triad.py (V1c: 'W_bar = -M_b C ln(r_break/r_b)'), domain r >= r",
+   "measured": "ours = log((a_0*r_b**2/(G*M_b*lambda**2))**(sqrt(G)*M_b**(3/2)*sqrt(a_0)/2)) ; G091 = -log((sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b))**(sqrt(G)*M_b**(3/2)*sqrt(a_0))) ; diff == 0: True",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "1e [differentiation] dW_bar/dR = 4 pi R^2 rho(R) Phi_b(R) (shell theorem derivative), symbolic",
+   "measured": "dW/dR = -sqrt(G)*M_b**(3/2)*sqrt(a_0)/R ; 4 pi R^2 rho Phi_b = -sqrt(G)*M_b**(3/2)*sqrt(a_0)/R ; diff == 0: True",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "1f [thin shell] for Delta << r_in (eps = Delta/r_in): W_bar = -M_b C ln(1+eps) = -M_b C (eps - eps^2/2) + O(eps^3); the leading neglected term is -(1/3) M_b C eps^3 (symbolic, exact)",
+   "measured": "series = sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon**2/2 - sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon ; leading neglected = -sqrt(G)*M_b**(3/2)*sqrt(a_0)*epsilon**3/3",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "2a [interior diagnostics, both footings] 6 shells (r_in/R = 0.01,0.1,0.5 x R/r_M = 0.62,1.0): 50-digit quadrature of the DEFINING work-form integral reproduces -M_b C ln(R/r_in) with rel residual < 1e",
+   "measured": "canonical|r_in/R=0.01, R/r_M=0.62: 0.0e+00; canonical|r_in/R=0.1, R/r_M=0.62: 2.4e-51; canonical|r_in/R=0.5, R/r_M=0.62: 0.0e+00; canonical|r_in/R=0.01, R/r_M=1.0: 1.9e-51; canonical|r_in/R=0.1, R/r_M=1.0: 0.0e+00; canonical|r_in/R=0.5, R/r_M=1.0: 1.6e-51; alt|r_in/R=0.01, R/r_M=0.62: 0.0e+00; alt|r_in/R=0.1, R/r_M=0.62: 0.0e+00; alt|r_in/R=0.5, R/r_M=0.62: 2.3e-51; alt|r_in/R=0.01, R/r_M=1.0: 0.0e+00; alt|r_in/R=0.1, R/r_M=1.0: 1.7e-51; alt|r_in/R=0.5, R/r_M=1.0: 0.0e+00",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "2b [deep exterior, both footings] shells r_in/r_M = 10,100 with R/r_in = 2,10: closed form exact to < 1e-40 relative (the quadrature residual is the full-kernel integral ON the shell; the tail beyond ",
+   "measured": "canonical|r_in/rM=10,R/r_in=2: 1.6e-51; canonical|r_in/rM=10,R/r_in=10: 0.0e+00; canonical|r_in/rM=100,R/r_in=2: 1.6e-51; canonical|r_in/rM=100,R/r_in=10: 0.0e+00; alt|r_in/rM=10,R/r_in=2: 0.0e+00; alt|r_in/rM=10,R/r_in=10: 1.7e-51; alt|r_in/rM=100,R/r_in=2: 0.0e+00; alt|r_in/rM=100,R/r_in=10: 1.7e-51",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "2c [differentiation, numeric] 4th-order central finite difference of W_bar(R) matches dW/dR = -M_b C/R = 4 pi R^2 rho(R) Phi_b(R) to < 1e-50 relative (h/R = 1e-20 at dps 90; threshold set before evalu",
+   "measured": "canonical|R/rM=0.62: 4.7e-72; canonical|R/rM=1.0: 4.7e-72; canonical|R/rM=10.0: 4.7e-72; alt|R/rM=0.62: 1.0e-71; alt|R/rM=1.0: 1.0e-71; alt|R/rM=10.0: 1.3e-71",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "2d [uniform-density case] rho = rho_0 const: W_bar = -2 pi G M_b rho_0 (R^2 - r_in^2) EXACTLY (symbolic residual 0)",
+   "measured": "W_uni = 2*pi*G*M_b*rho_0*(-R**2 + r_in**2) ; closed = -2*pi*G*M_b*rho_0*(R**2 - r_in**2) ; diff == 0: True",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "3a [virial chain, fluid closure] 2T + W_self + W_bar = 3 P_s V with W_bar = -M_b C ln(r_break/r_b) (this result), W_self = -G M_T^2/r_break, M_T = lam M_b: sigma^2 = (C/2)[1 + (1/lam) ln(r_break/r_b)]",
+   "measured": "sigma^2 = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(lambda + log(sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b)))/(2*lambda) ; matches (C/2)[1 + ln/lam]: True",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "3b [bare reading contrast] WITHOUT the boundary term (collisionless reading 2T + W = 0): sigma^2 = (C/3)[1 + (1/lam) ln(r_break/r_b)] (sympy-exact) -- the two readings differ; the C/2 triad is not the",
+   "measured": "sigma^2_bare = sqrt(G)*sqrt(M_b)*sqrt(a_0)*(lambda + log(sqrt(G)*sqrt(M_b)*lambda/(sqrt(a_0)*r_b)))/(3*lambda) ; matches (C/3)[1 + ln/lam]: True",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "3c [anchor] the fluid-closure sigma at r_b = r_break reproduces the registered MW values 119.2/124.9 km/s (G031) to < 0.05 km/s on both footings (threshold set before evaluation)",
+   "measured": "canonical = 119.203 km/s; alt = 124.886 km/s",
+   "pass": true,
+   "tolerance": "see measured"
+  },
+  {
+   "name": "NC1 [no core] extending the point-source integral to r -> 0 with NO baryonic core diverges logarithmically: |W_bar| grows by exactly M_b C ln(10) per decade of r_in -> 0 (increment constancy measured ",
+   "measured": "per-decade = 8.4576390995484016185837069350175484250937768092643e+51 J vs M_b C ln10 = 8.4576390995484016185837069350175484250937768092643e+51 J ; sympy: returned oo ; limit ln(R/r_in) as r_in->0+ = oo",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "NC2 [no outer edge] deep-exterior shells R -> infinity: |W_bar| grows by exactly M_b C ln(10) per decade of R (measured 1e-30 relative); the full-kernel error of any finite-R truncation is M_b C ln(R_",
+   "measured": "per-decade = 8.4576390995484016185837069350175484250937768092643e+51 J vs predicted 8.4576390995484016185837069350175484250937768092643e+51 J",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "NC3 [boundary-term bookkeeping] the ratio sigma2_bare/sigma2_fluid = 2/3 EXACTLY at every (footing, lambda, r_b/r_break) (r = (C/3)/(C/2) = 2/3; asserted equal to 2/3 to 1e-12); the code's assert abs(",
+   "measured": "min |s2A/s2B - 2/3| = 0.00e+00",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "NC4 [boundary case] at r_b = r_break (phantom entirely outside the baryonic inner edge): sigma^2 = C/2 EXACTLY for any lambda, any M_b, both footings (symbolic residual 0)",
+   "measured": "sigma^2(r_b = r_break) - C/2 == 0: True",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "5a [log-well fixture] the imposed-log-well potential energy W_log = int rho (C ln r) dV = C [M(<R)(ln R - 1) - M(<r_in)(ln r_in - 1)] (closed form, symbolic) is a DIFFERENT functional from the Newtoni",
+   "measured": "W_log closed == symbolic: True ; W_log - W_bar != 0: True",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "5b [limits] deep: r_b -> r_break: W_bar -> 0 and sigma^2 -> C/2 (NC4); Newtonian: the closed form is EXACT on every finite shell (no limiting regime used -- 1f's expansion is a consistency check); nor",
+   "measured": "exact-identity chain: 1b+1c+1d (symbolic), 2a+2b+2c (numeric), 3a, NC4",
+   "pass": true,
+   "tolerance": "symbolic residual 0"
+  },
+  {
+   "name": "Lean certificate compiles (lake env lean), exit 0, 11 theorems",
+   "measured": "exit 0; #print axioms per theorem = {propext, Classical.choice, Quot.sound}, no sorryAx",
+   "pass": true,
+   "tolerance": "axioms \u2286 allowed set"
+  }
+ ],
+ "tested_domain": {
+  "symbolic": "all positive-parameter space (0 < r_in < R < \u221e, lam > 0, M_b > 0, both footings); limits r_in -> 0+, R -> \u221e, r_b -> r_break",
+  "numeric": "M_b = 6.5e10 Msun (G031 MW proxy), both a0 footings; interior diagnostics r_in/R in {0.01,0.1,0.5} x R/r_M in {0.62,1.0}; deep exterior r_in/r_M in {10,100} x R/r_in in {2,10}; finite-difference at R/r_M in {0.62,1.0,10.0}; virial table over r_b/r_break in {1.0,0.3,0.1,0.03,0.01} x lam in {0.62,1.0}",
+  "exclusions": "no filtered-MONO kernel evaluation; no dynamics/attainment; no a0 fitting; no G_bare/G_cosmo usage"
+ },
+ "failed_attempts": [],
+ "limitations": [
+  "Fixture-only result: rho = A/r^2, the Newtonian well and the G091 virial chain are conditional deep-equilibrium bookkeeping; no dynamics, no attainment of sigma^2, no kernel physics.",
+  "kappa = 1/2 adopted as input, not derived; sigma^2 = C/2 remains a conditional target.",
+  "No physical outer edge for the deep exterior: NC2 divergence is an open dependency (registered EFE cap lambda = 0.62 lives at <= r_M; nothing beyond r_M).",
+  "Interior fixtures (R <= r_M) test the historical imposed-log-well ansatz; transfer to filtered MONO requires the S/S* branch bridge (metric, measure, domain, BCs) \u2014 not supplied, not claimed.",
+  "Dimensional examples use the G031 MW proxy M_b = 6.5e10 Msun; both footings carried separately.",
+  "Harness iteration (macOS rlimit refusal, precision/print fixes) is documented in derivation.md section 10; failed intermediate outputs were overwritten, nothing preserved \u2014 failed_attempts empty.",
+  "Finite residuals (<= 2.4e-51 quadrature, <= 1.3e-71 FD) are consistency checks of identities already proven symbolically (residual 0) and in Lean."
+ ],
+ "next_unresolved_implication": "A physical outer edge R_max for the equilibrium phantom beyond r_M (the EFE cap at 0.62 r_M is registered only inside r_M) that makes the deep-exterior virial term -M_b C ln(R_max/r_b) finite, plus the branch bridge carrying the interior imposed-log-well ansatz to the operative filtered MONO (S with metric/measure/domain/BCs). Until then the deep-exterior baryon virial term of the no-edge profile is divergent.",
+ "suggested_followup": "Dispatch AS085.C01 (spec at deepseek_push/astra_spawn_ideas/branches/AS085/AS085.C01.md, NOT dispatched): enumerate registered outer-edge candidates (G03B EFE cap, G081 truncation, G119/G132 transition registers), derive the finite R_max virial bound and its delta(sigma^2)/sigma^2 shift, and test the outskirts rotation residual at 10-100 r_M \u2014 discriminating observable for the A04 gate.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "axioms_adopted": [
+   "a0 = kappa c sqrt(G_N rho_Lambda), kappa = 1/2 adopted (framework input; no independent derivation claimed)",
+   "Equilibrium phantom rho = A/r^2 with A = C/(4 pi G_N), C = sqrt(G_N M_b a0) (conditional deep-equilibrium input, G03E/G084/G091)",
+   "Isothermal fluid closure P = sigma^2 rho with surface term 3 P_s V = sigma^2 M_T (G091 V1d, cited source) \u2014 used only for the virial-chain consequence",
+   "G_N, G_bare, G_cosmo separate symbols; only G_N used"
+  ],
+  "measured_calibrations": [
+   "G_N = 6.67430e-11 m^3 kg^-1 s^-2; c = 299792458 m/s; M_sun = 1.98847e30 kg; pc = 3.085677581491367e16 m (contract defaults)",
+   "a0 footings: 9.3619e-11 and 1.1279e-10 m/s^2 (kappa = 1/2 per footing => rho_Lambda differs)",
+   "M_b = 6.5e10 M_sun (G031 MW proxy), lambda = 0.62 (G03B registered)"
+  ],
+  "boundary_initial_data": [
+   "0 < r_b < r_break < \u221e; shell [r_in, R] with r_in > 0; no core below r_b (NC1); no registered edge beyond r_M (NC2 open)"
+  ],
+  "derived_equations": [
+   "W_bar = -4 pi G_N M_b \u222b rho r dr (general spherical rho; work form == potential form)",
+   "W_bar = -M_b C ln(R/r_in) for rho = A/r^2 (exact; = G091 verbatim at [r_b, r_break])",
+   "dW_bar/dR = 4 pi R^2 rho(R) Phi_b(R); thin-shell leading neglected term -(1/3) M_b C eps^3",
+   "sigma^2 = (C/2)[1 + (1/lam) ln(r_break/r_b)] (fluid closure) and (C/3)[...] (bare); ratio 2/3 exact",
+   "Divergence rates: M_b C ln(10) per decade (both edges); sigma^2 -> \u221e as r_b -> 0",
+   "W_log (imposed-log-well fixture) is a different functional: C[M(<R)(ln R - 1) - M(<r_in)(ln r_in - 1)]"
+  ]
+ },
+ "closure_implication": {
+  "gate": "A04 finite-domain equilibrium and virial closure",
+  "exact_implication": "W_bar = -M_b C ln(R/r_b) is the third input of the G091 closed virial chain; verified verbatim; with the fluid closure the chain closes at sigma^2 = C/2 at the well-consistent boundary and is divergent in the no-core/no-edge limits. A complete common-action witness for A04 must therefore carry an explicit finite domain [r_b, R_max] and the outer-edge mechanism; this result supplies the exact term and its domain/divergence conditions.",
+  "common_action_compatibility": "The closed form is representation-independent (work form equals potential form), hence invariant across candidate actions that reproduce the Newtonian baryon well on the equilibrium profile; it does not select among the September-2026 candidates (CA5-GNC-R, CD26-4 common action) and makes no claim about them.",
+  "branch_translation_used": "none; fixtures confined to R <= r_M; filtered MONO not evaluated"
+ },
+ "child_proposals": [
+  {
+   "id": "AS085.C01",
+   "path": "deepseek_push/astra_spawn_ideas/branches/AS085/AS085.C01.md",
+   "fingerprint": "(action=conditional deep-equilibrium sector with explicit finite domain, branch=deep-equilibrium, assumption=outer-edge mechanism exists, domain=r_b \u2264 r \u2264 R_max with R_max in {r_M, 10 r_M, 100 r_M}, claim=finite virial bound + quantified outskirts residual, observable=rotation-curve residual at 10-100 r_M and delta(sigma^2)/sigma^2)",
+   "new_target": "outer-edge existence/bound for the rho = A/r^2 phantom beyond r_M; finite W_bar and its virial-temperature shift",
+   "controls": "mass-convergence requirement M_ph(<r) < \u221e at r -> \u221e; per-candidate analytic bound; negative control capable of failing (candidate rejected if mass diverges)",
+   "dependencies": [
+    "AS085 parent result (NC2)",
+    "G03B cap register",
+    "G081/G119/G132 transition registers"
+   ],
+   "dispatch_state": "spec written; NOT dispatched (no spawn mechanism in this worker); orchestrator decides"
+  }
+ ],
+ "closure_candidate": null
+}

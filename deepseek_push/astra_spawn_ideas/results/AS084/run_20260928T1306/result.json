@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "task_id": "AS084",
+  "task_sha256": "71026d9a802021e7f62e81ef43677f2f6832d03de868a20be43c4ef96720243b",
+  "run_id": "run_20260928T1306",
+  "worker": "hermes subagent; model deepseek/deepseek-v4-flash-0731 (openrouter); macOS 26.5.2 host; execute-only worker, no claims files written",
+  "started_utc": "2026-09-28T13:06:00Z",
+  "finished_utc": "2026-09-28T14:31:18Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "Framework sector a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 (ADOPTED as input), C = sqrt(G*M_b*a0), phantom shell rho_ph(r) = A/r^2 with A = C/(4*pi*G) (dM_shell = m_s dr, m_s = C/G from G084 source normalization). For EVERY finite shell 0 < r_in < R <= r_M with central mass M_in >= 0: the virial integral W_vir,total = -int_{r_in}^{R} G*M(r)/r dM_shell(r), M(r) = M_in + m_s*(r - r_in), equals exactly W_tot = W_cent + W_self with W_cent = -G*m_s*M_in*ln(R/r_in) = -C*M_in*ln(R/r_in) and W_self = -G*m_s^2*(R - r_in - r_in*ln(R/r_in)) = -(C^2/G)*(R - r_in - r_in*ln(R/r_in)); central attraction and shell self-gravity are separated terms, never conflated. The naive replacement -G*M(R)^2/R is strictly more negative than the true virial on every finite shell (M_in = 0; exact deviation -G*m_s^2*r_in*[ln(R/r_in) - (1 - r_in/R)] < 0), recovering exactness only in the singular limit r_in -> 0+ with M(R) = m_s*R, where W_self -> -G*m_s^2*R and the virial sigma^2 -> C/2. Domain of proof: all real r_in, R with 0 < r_in < R (Lean); numerically audited on r_in/R in {0.01, 0.1, 0.5}, R/r_M in {0.62, 1.0}, M_in/M_b in {0, 0.1, 1.0}, both footings, M_b in {6.5e10, 6.2501e10} M_sun; deep exterior r_in/r_M in {10, 100}, R/r_in in {2, 10}. Numeric residuals: closed form vs 50-digit mpmath quadrature of the raw integrand max rel err 2.419992483473175e-51 (tol 1e-25, 16 cells); discrete N-shell pair sum rel err 7.78e-5 at N = 1e4 (tol 5e-4, O(1/N) convergence); dW/dR finite difference rel err 2.493e-11 (tol 1e-5). Negative control (naive form) FAILS as required on all 96 finite-shell samples: relative deviation 3.83%-64.88%.",
+  "framework_cell": {
+    "branch": "MONO (operative filtered MONO; historical EXP AQUAL, Q, RAR, MU2 are distinct and used only as comparison kernels in C7: operative MONO == RAR for y < y_star per C7 note)",
+    "sector_gate": "A04 finite-domain equilibrium and virial closure; conditional deep-equilibrium sector; virial balance obligation only (profile derivation and dynamical attainment are separate open obligations)",
+    "coupling": "G_N = 6.67430e-11 m^3 kg^-1 s^-2 (G091 cited source used 6.674e-11; relative shift 4.49e-5 tracked in C6)",
+    "kernel": "Newtonian pairwise kernel -G dM dM'/r'; enclosed mass M(r) = M_in + m_s*(r - r_in) from rho_ph = A/r^2",
+    "acceleration_scale": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED (not derived)",
+    "footings": {
+      "canonical": {"a0": 9.3619e-11, "unit": "m/s^2", "rho_Lambda": 5.844412454021876e-27, "unit": "kg/m^3", "epsilon_Lambda": 5.252695959726114e-10, "Lambda": 1.0907997632807349e-52, "unit": "1/m^2", "kappa": 0.5},
+      "alt": {"a0": 1.1279e-10, "unit": "m/s^2", "rho_Lambda": 8.483089619559099e-27, "unit": "kg/m^3", "epsilon_Lambda": 7.624220727267281e-10, "Lambda": 1.583281847696523e-52, "unit": "1/m^2", "kappa": 0.5}
+    },
+    "footing_relations": {"kappa_eff_at_alt_if_rho_Lambda_fixed_to_canonical": 0.6023884040632778, "rho_Lambda_ratio_if_kappa_fixed_1_2": 1.451487157399611, "both_footings_share_neither_density_nor_kappa": true},
+    "parameters": {"M_b": ["6.5e10 M_sun (MW)", "6.2501e10 M_sun (NGC3198)"], "M_sun": 1.98847e30, "unit": "kg", "pc": 3.085677581491367e15, "unit": "m", "c": 299792458, "unit": "m/s"},
+    "boundaries": "spherical shell r_in <= r <= R, r_in > 0, R <= r_M (finite-shell domain); deep exterior r_in/r_M in {10,100}, R/r_in in {2,10}",
+    "initial_conditions": "static (no time evolution; dynamical attainment not addressed)",
+    "units": "SI: energies J, velocities m/s, densities kg/m^3, accelerations m/s^2",
+    "virial_definitions": "W_vir,total = -int G*M(r)/r dM_shell(r); sigma^2 from 2T + W_cent + W_self = 3 P_s V with T = 3/2 M_T sigma^2, M_T = m_s*(R - r_in)"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted as framework input (freedom not independently removed; not a derived result)",
+    "shell mass normalization m_s = C/G = 4*pi*A (G084 source normalization, inherited, hash-verified)",
+    "enclosed-mass law M(r) = M_in + m_s*(r - r_in) on [r_in, R] (linear consequence of rho = A/r^2)",
+    "M_in >= 0; spherical symmetry; static shell",
+    "virial energy form W = -int G*M(r)/r dM_shell (G091 virial triad, hash-verified)",
+    "operative MONO == RAR for y < y_star used ONLY for the deep-exterior kernel comparison (C7); finite-shell conclusions use the A-profile kernel only"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS084_self_gravitational_virial_energy_with_a_central_mass.md": "71026d9a802021e7f62e81ef43677f2f6832d03de868a20be43c4ef96720243b",
+    "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+    "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+    "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/derivation.md": "88a0639f3ed208856877e8c9c8d3902c58ae41c0f2cb065527abaa98286d88a7",
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/compute_AS084_virial_central.py": "2b452c2b0b1dd62a84bd7c037ab44a3d57ddf69ca4ee2d63453007c19204c7f5",
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/residuals.json": "bd7a67e5fc1c32201fdda50d0aeb1c7d0d623fa16d41a21386ffde780228123f",
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/raw_output.txt": "293f2c00ebbfb57ba39b99b8384abf59d4be7fe2a39f134bcdd482b264792ee3",
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/time_mem.txt": "016465c99d897fa601144cb5c052dd5cd6f769537e9f47d0c27e54296b5404c2",
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/AS084_virial_identity.lean": "207e2791d1fbe7fdfc6c658cecf97f9b4a7eeba18d030cee28100ebd6afd37d8",
+    "deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/lean_check.out": "0b64dc3065b30eb7f0a95f3812f77539b59baf4f6672896d665d9fbda8c5976a"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306 && OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 perl -e 'alarm shift; exec @ARGV' 120 /usr/bin/time -l python3 compute_AS084_virial_central.py > raw_output.txt 2> time_mem.txt  (exit 0; final run)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS084/run_20260928T1306/AS084_virial_identity.lean > lean_check.out 2>&1  (exit 0; axioms = {propext, Classical.choice, Quot.sound} for all 6 theorems, zero sorry)"
+  ],
+  "execution_bounds": {
+    "declared": {"wall_time_s": 120, "memory_mb": 512, "threads": 1, "sample_bounds": "fixed control cells (grids enumerated in tested_domain); mpmath C1 at fixed 50 digits, 16 cells"},
+    "enforced": {"wall_time_s": 0.87, "max_rss_bytes": 99729408, "max_rss_mb": 95.1, "threads": 1, "enforcement_mechanism": "alarm(120) via perl wrapper (wall); single-threaded BLAS env vars OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1; python single process; Lean single process"},
+    "notes": "Computation is a bounded prototype (0.87 s, 95.1 MB) far inside the 120 s / 512 MB envelope; Lean compile is a single process, no bound needed."
+  },
+  "checks": [
+    {"name": "C1_closed_form_vs_mpmath_quad_raw_integrand", "pass": true, "max_rel_err": "2.4199924834731750258999457784484717516192978048493e-51", "tol": 1e-25, "detail": "both sides at 50 digits; 8 cells x 2 footings; grid (r_in/R, R/r_M) in {(0.01,0.62),(0.1,1.0)}, M_in/M_b in {0,0.1}"},
+    {"name": "C2_pair_sum_converges_to_closed_form", "pass": true, "detail": "discrete N-shell Newtonian pair-energy sum N=10..10000, M_in/M_b=0.1, canonical; O(1/N) boundary-term convergence", "rel_err_by_N": {"0.01|0.62": [0.18072111795435056, 0.01662390729828039, 0.001387919902244889, 0.0001355137756490238], "0.5|1.0": [0.07720242831645645, 0.007774092659503648, 0.0007779177965821441, 7.779683377317814e-05]}, "tol": 0.0005},
+    {"name": "C3_dW_dR_finite_difference_vs_-G_M(R)_m_s_over_R", "pass": true, "max_rel_err": 2.4930007777280818e-11, "tol": 1e-5, "detail": "central fd, h = 1e-6 R"},
+    {"name": "C4_NEGATIVE_CONTROL_naive_-G_M(R)^2_over_R_fails_for_finite_shell", "pass": true, "min_rel_dev": 0.03829839190463202, "max_rel_dev": 0.648811294349543, "tol": 0.001, "detail": "6 (r_in/R, R/r_M) cells x M_in/M_b in {0,0.1} x 2 footings x 2 masses; control capable of failing if the naive form were exact; it fails as required"},
+    {"name": "C4b_naive_form_recovers_exactly_only_in_singular_limit", "pass": true, "detail": "M_in=0, r_in->0; rel dev 1.7420684125157728e-07 (eps=1e-8) -> 2.6631100005879074e-11 (eps=1e-12), all 4 footing-mass rows consistent; tol 1e-6 at eps=1e-12"},
+    {"name": "C5_thin_shell_boundary_R->r_in", "pass": true, "detail": "W -> -C M_in ln(1+eps); W/W_cent = 1.0004999167083373 (eps=1e-3), 1.0000049999932668 (eps=1e-5); tol 0.05"},
+    {"name": "C6_singular_limit_reproduces_G091_W_self_closed_form", "pass": true, "detail": "compare -G M_T^2/r_break at R=0.62 r_M; G_N=6.67430e-11 here vs 6.674e-11 in G091 (rel shift 4.49e-5 tracked)", "max_rel": 2.863122322239904e-11, "tol": 1e-6},
+    {"name": "C7_deep_exterior_shells_and_kernel_error_bound", "pass": true, "detail": "r_in/r_M in {10,100} x R/r_in in {2,10}, M_in in {0,M_b}; A-profile vs Q/RAR kernels; rel_Q 5.154e-3 -> 5.185e-5, rel_RAR 8.636e-4 -> 8.651e-6, matching analytic leading terms (Q: 5e-3, 5e-5; RAR: 8.333e-4, 8.333e-6)", "tol": 2.0},
+    {"name": "C8_both_footings_separate_and_scale_exact", "pass": true, "expected_ratio": 1.0976232541844928, "max_rel_dev_from_analytic_ratio": 2.022958278977107e-16, "tol": 1e-9, "detail": "W_self(alt)/W_self(can) = sqrt(a0_alt/a0_can) = C_alt/C_can analytically (both virial terms scale as sqrt(a0) through C); rho_Lambda per footing, kappa 1/2 both"},
+    {"name": "C9_virial_sigma2_with_central_mass", "pass": true, "singular_limit_ok": true, "detail": "2T + W_self + W_cent = 3 P_s V; sigma^2/(C/2) = 0.9535..8.4563 over the 36-cell grid (finite-shell virial deficit at finite r_in); sympy double-limit M_in->0 then r_in->0+ gives sigma^2 -> C/2 (m_s = C/G substituted)"}
+  ],
+  "tested_domain": {
+    "proof_domain": "all reals G, m_s, M_in, r_in, R with r_in > 0 and r_in < R (Lean theorems virial_integral_closed, virial_value, naive_error_exact (additionally R != 0), naive_overbinds (G>0, m_s>0), wself_singular_limit (R>0)); plus the log-monotonicity lemma ln rho > 1 - 1/rho for rho = R/r_in > 1",
+    "numeric_grid": {"r_in/R": [0.01, 0.1, 0.5], "R/r_M": [0.62, 1.0], "M_in/M_b": [0.0, 0.1, 1.0], "footings": ["canonical", "alt"], "M_b": ["MW_6.5e10", "NGC3198_6.2501e10"]},
+    "deep_exterior": {"r_in/r_M": [10, 100], "R/r_in": [2, 10], "M_in": [0, "M_b"]},
+    "singular_limit_probes": {"eps_r_in_over_R": [1e-8, 1e-12]},
+    "mpmath_precision": "50 digits (C1, both sides)",
+    "exclusions": "interior imposed-log-well ansatz (R<=r_M fixtures) is a control fixture, NOT a controlled point-source deep-MOND domain; no time evolution; no baryonic feedback",
+    "refinement_history": "C2 criterion reformulated after O(1/N) boundary-term convergence diagnosis; C1 both sides lifted to 50-digit mpmath after float64-floor diagnosis; C8 expectation corrected to sqrt(a0_alt/a0_can)"
+  },
+  "failed_attempts": [
+    {"artifact": "intermediate runs 1-3 (overwritten; causes recorded)", "cause": "numpy < 2.0 lacks np.trapezoid -> AttributeError, exit 1, empty raw_output.txt; fixed with trapz(y,x) fallback wrapper (np.trapezoid except AttributeError -> np.trapz)"},
+    {"artifact": "C1 at float64", "cause": "residual floor ~1e-15 from float64 evaluation of the raw integrand; fixed by evaluating BOTH sides in 50-digit mpmath"},
+    {"artifact": "C2 original 1e-4 tolerance", "cause": "discrete N-shell sum error is O(1/N) boundary-term dominated, not O(1/N^2); criterion replaced by per-decade ratio ~0.1 plus N=1e4 residual < 5e-4"},
+    {"artifact": "sympy subs(r_in, 0) on log(R/r_in)", "cause": "log(0) singularity; replaced with sp.limit(..., dir='+')"},
+    {"artifact": "sympy sigma2-limit check", "cause": "m_s free symbol; substituted m_s = C/G before comparing to C/2"},
+    {"artifact": "Lean initial attempts (see lean iterations)", "cause": "rw/change under lambda binders fail; simpa on id-vs-lambda type mismatch; norm_num cannot discharge 0 != 0; all resolved (final: exit 0, zero sorry)"}
+  ],
+  "limitations": [
+    "Static scalar virial only: no dynamics, no profile attainment, no Jeans-balance check; sigma^2 is a virial-consistent estimate, not a measured dispersion",
+    "kappa = 1/2 adopted, not derived; the two footings cannot share both fixed rho_Lambda and fixed kappa (relations recorded)",
+    "Finite-shell results (R <= r_M) do not transfer to the operative filtered-MONO interior without the kernel check; C7 bounds the Q/RAR kernel error (<=0.52%/0.086% at r_in=10 r_M, R=2 r_in; <=5.2e-5/8.7e-6 at r_in=100 r_M) but is not the filtered-MONO kernel itself",
+    "Spherical symmetry assumed; shell normalization inherited from G084",
+    "C1/C4b/C6 residuals near 1e-11..1e-51 are relative errors on ~1e51 J energies; absolute float64 floors apply at ~1e-16 relative",
+    "Numerical agreement is finite evidence; the exact claim's authority rests on the Lean certificate for the algebraic identities and on the FTC application over the real line",
+    "The virial is one scalar moment: it does not fix the radial dependence of the equilibrium profile"
+  ],
+  "next_unresolved_implication": "Dynamical attainment: does the static maximum-entropy profile with deep v_flat^4 = G*M_b*a0 actually reach the virial state W_tot(R; r_in, M_in) = -C*M_in*ln(R/r_in) - (C^2/G)*(R - r_in - r_in*ln(R/r_in)) with sigma^2 -> C/2 at finite time, and which interior pressure/effective-stress term supplies the finite-r_in virial deficit (sigma^2/(C/2) between 0.307 and 8.456 across the grid)? The virial balance (this task) and the attainment obligation (seed obligation) are distinct; the first transfer step is kernel-exact enclosed mass M_MONO(r) from the operative filtered-MONO density with the virial identity re-run at r_in/r_M in {10..100} (C7 bounds the Q/RAR proxies only).",
+  "suggested_followup": "Child AS084.C01: kernel-exact MONO transfer - compute M_MONO(r) = M_in + int rho_MONO(r') dV' from the operative filtered-MONO density (not the RAR proxy) on deep-exterior shells r_in/r_M in {10, 100}, R/r_in in {2, 10}; verify W = -int G*M_MONO(r)/r dM reproduces the AS084 closed form with M(r) replaced by M_MONO(r); controls: 50-digit residual (C1 pattern) and the finite-shell negative control (C4 pattern); dependency: operative filtered-MONO kernel implementation; dispatch state: NOT dispatched, no claims files created.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "a0 = kappa*c*sqrt(G*rho_Lambda) with kappa = 1/2 (framework input, adopted; its normalization freedom is NOT removed by this task)",
+      "Newtonian pairwise gravity kernel -G dM dM'/r'",
+      "spherical static shell; phantom density rho_ph(r) = A/r^2",
+      "virial energy definition W_vir = -int G*M(r)/r dM_shell (G091 virial triad)",
+      "central mass M_in >= 0 at the shell center"
+    ],
+    "measured_calibrations": ["M_b = 6.5e10 M_sun (MW)", "M_b = 6.2501e10 M_sun (NGC3198)", "G = 6.67430e-11 m^3 kg^-1 s^-2", "c = 299792458 m/s", "M_sun = 1.98847e30 kg", "pc = 3.085677581491367e15 m", "rho_Lambda per footing (canonical 5.844412454021876e-27, alt 8.483089619559099e-27 kg/m^3)"],
+    "boundary_data": ["r_in > 0 (finite inner boundary)", "R <= r_M (finite outer boundary; deep exterior separately at r_in/r_M in {10,100})", "M_in/M_b in {0, 0.1, 1.0} for audits", "v_flat^4 = G*M_b*a0 as the deep-MOND scale relation"],
+    "derived_equations": ["W_cent = -C*M_in*ln(R/r_in)", "W_self = -(C^2/G)*(R - r_in - r_in*ln(R/r_in))", "W_tot = W_cent + W_self (exact identity, FTC)", "sigma^2(M_in, r_in) = G*(R*m_s - m_s*r_in + ln(R^(M_in - m_s*r_in)*r_in^(-(M_in - m_s*r_in))))/(2*(R - r_in))", "sigma^2 -> C/2 in the (M_in, r_in) -> 0 singular limit", "naive - W_tot |_{M_in=0} = -G*m_s^2*r_in*(ln(R/r_in) - (1 - r_in/R)) < 0 (exact error structure)"]
+  },
+  "closure_implication": {
+    "gate": "A04 sector virial closure (conditional deep-equilibrium); 13-item target criterion B is served only through operative filtered MONO, not through any historical branch",
+    "exact_implication": "With the finite-shell virial W_tot(R; r_in, M_in) = -C*M_in*ln(R/r_in) - (C^2/G)*(R - r_in - r_in*ln(R/r_in)) established exactly, the naive single-clump binding -G*M(R)^2/R is excluded as the virial for every finite shell (strict overbinding, 3.83%-64.88% deviation, Lean-proved positivity of the deviation for M_in = 0); the singular-sphere identification -G*M(R)^2/R with M(R) = m_s*R and sigma^2 = C/2 is attained only as M_in -> 0, r_in -> 0+; the deep-exterior kernel comparison (C7) bounds the transfer error to the operative MONO gate at <= 0.52% (Q) / <= 0.086% (RAR) for r_in = 10 r_M, R = 2 r_in, decreasing to <= 5.2e-5 / 8.7e-6 for r_in = 100 r_M",
+    "common_action_and_domain_compatibility": "Action: scalar virial energy (J) per baryonic mass; both footings available separately (W scales exactly as sqrt(a0): ratio 1.0976232541844928, C8); unit-compatible (SI); sphere-symmetric finite-shell domain only; dynamics not included"
+  },
+  "child_proposals": [
+    {
+      "id": "AS084.C01",
+      "fingerprint": "kernel-exact MONO transfer of the AS084 virial identity to the operative filtered-MONO enclosed mass",
+      "new_target": "Verify W = -int_{r_in}^{R} G*M_MONO(r)/r dM is exact with M_MONO(r) = M_in + int_{r_in}^{r} rho_MONO(r') 4 pi r'^2 dr' (operative filtered MONO density), on deep-exterior shells r_in/r_M in {10, 100}, R/r_in in {2, 10}; state the sigma^2 deficit at finite r_in",
+      "controls": "C1-style 50-digit mpmath residual; C4 finite-shell negative control; C8 footing scaling",
+      "dependencies": ["operative filtered-MONO density implementation", "AS084 run_20260928T1306 result"],
+      "dispatch_state": "proposed; NOT dispatched; no claims files created"
+    },
+    {
+      "id": "AS084.C02",
+      "fingerprint": "dynamical attainment of the AS084 virial state",
+      "new_target": "Show whether the deep-exterior MONO flow reaches the virial state W_tot with sigma^2 -> C/2 at finite time, identifying the interior stress term that carries the finite-r_in virial deficit (sigma^2/(C/2) from 0.307 to 8.456 across the grid)",
+      "controls": "energy-balance residual; singular-limit recovery; no-inflow boundary consistency",
+      "dependencies": ["dynamics obligation (profile attainment)", "AS084.C01 kernel-exact M_MONO"],
+      "dispatch_state": "proposed; NOT dispatched; no claims files created"
+    }
+  ],
+  "closure_candidate": null
+}

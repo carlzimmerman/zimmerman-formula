@@ -1,0 +1,223 @@
+{
+  "schema": "AS145_gate_lapse_analysis",
+  "run_meta": {
+    "t_checks_nx64": 0.007238459074869752,
+    "t_checks_nx96": 0.014737165998667479,
+    "wall_seconds": 0.10229112487286329,
+    "wall_limit_seconds": 120.0,
+    "timeout_enforced": true,
+    "max_rss_bytes": 64159744,
+    "threads": 1,
+    "thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "mono_landmarks": {
+      "y_p": 2.5396382821881645,
+      "h_p": 0.6476102378919149,
+      "y_star": 2.3374124052663294
+    },
+    "params": {
+      "alpha": 1.0,
+      "c_N": 0.5,
+      "ell": 0.4,
+      "theta": 5.5,
+      "delta": 0.05,
+      "a0_torus": 1.0,
+      "J_inf": 15.480436478660096
+    },
+    "worker": "deepseek/deepseek-v4-flash-0731 (Hermes subagent)"
+  },
+  "nx64_eps1e-05": {
+    "regime_counts": {
+      "inactive": 1828,
+      "transition": 20,
+      "active": 2248,
+      "total": 4096
+    },
+    "main": {
+      "analytic": -4.275179662308247,
+      "analytic_identity_free": -4.275387830745738,
+      "fd": -4.275387831143007,
+      "abs_residual": 0.00020816883476015846,
+      "rel_residual": 4.8692417910634505e-05,
+      "rel_residual_identity_free": 9.292448875495395e-11,
+      "identity_abs_residual": 0.009986707915778936,
+      "identity_rel_residual": 0.00024195909633878946,
+      "eps": 1e-05
+    },
+    "Yh_N_independence": {
+      "max_abs_diff": 0.0
+    },
+    "phantom_Gpp_term_true_action": {
+      "value": -11.789225420868577,
+      "abs": 11.789225420868577,
+      "max_abs_Gpp": 42.8146844450948,
+      "note": "Gpp(Y_h) is nonzero on the transition grid cells, but delta Y_h = 0 kills the G'' channel in eq. (12); the finite difference confirms the term does NOT appear."
+    },
+    "limiting_ell0": {
+      "analytic": -6.3643714350662455,
+      "fd": -6.364371435552129,
+      "rel_residual": 7.63442766539936e-11
+    },
+    "limiting_inactive": {
+      "analytic": 2.0891917727579994,
+      "fd": 2.0889836043670815,
+      "theta": 20.887380630027593,
+      "rel_residual": 9.964063310619562e-05
+    },
+    "limiting_active": {
+      "analytic": -7.37738192280626,
+      "fd": -7.3775900915507,
+      "theta": -12.082010832065329,
+      "rel_residual": 2.8217157064470118e-05
+    },
+    "negative_control_swap": {
+      "fd_swapped_action": -2.754419993067358,
+      "analytic_correct_swapped": -2.7544199921731924,
+      "rel_residual_correct": 3.2462937122075173e-10,
+      "naive_candidate_a_G(YN)-ellLhW": -4.748865905457828,
+      "naive_candidate_a_rel_residual": 0.7240892519696784,
+      "naive_candidate_b_G(Yh)-ellLhW": -4.275179662308247,
+      "naive_candidate_b_rel_residual": 0.5521161163034367,
+      "Gpp_term_value": -16.4118218059367,
+      "Gpp_term_abs_over_scale": 5.958358510047075,
+      "Gp_term_value": 8.538144059957025,
+      "max_abs_Gpp_YN": 43.74342060646912,
+      "conclusion": "naive candidates rejected at O(1); the Delta_N swap generates the div_N((1+G')DW) flux, an explicit G'' term, and a shifted gate argument - none present in eq. (12)."
+    }
+  },
+  "nx96_eps1e-05": {
+    "regime_counts": {
+      "inactive": 4072,
+      "transition": 52,
+      "active": 5092,
+      "total": 9216
+    },
+    "main": {
+      "analytic": -4.269746277810739,
+      "analytic_identity_free": -4.2697875816601165,
+      "fd": -4.269787581279161,
+      "abs_residual": 4.130346842146082e-05,
+      "rel_residual": 9.673518221939565e-06,
+      "rel_residual_identity_free": 8.922209579541311e-11,
+      "identity_abs_residual": 0.0019984750653243566,
+      "identity_rel_residual": 4.8106860362929544e-05,
+      "eps": 1e-05
+    },
+    "Yh_N_independence": {
+      "max_abs_diff": 0.0
+    },
+    "phantom_Gpp_term_true_action": {
+      "value": 11.704094995593563,
+      "abs": 11.704094995593563,
+      "max_abs_Gpp": 43.712833328636954,
+      "note": "Gpp(Y_h) is nonzero on the transition grid cells, but delta Y_h = 0 kills the G'' channel in eq. (12); the finite difference confirms the term does NOT appear."
+    },
+    "limiting_ell0": {
+      "analytic": -6.358953598182217,
+      "fd": -6.358953598351035,
+      "rel_residual": 2.6548054799063292e-11
+    },
+    "limiting_inactive": {
+      "analytic": 2.089207320371477,
+      "fd": 2.0891660165586994,
+      "theta": 20.921872593638746,
+      "rel_residual": 1.977008809743969e-05
+    },
+    "limiting_active": {
+      "analytic": -7.375718121814135,
+      "fd": -7.37575942650892,
+      "theta": -12.632566568395042,
+      "rel_residual": 5.6000912864605e-06
+    },
+    "negative_control_swap": {
+      "fd_swapped_action": -2.950595052197968,
+      "analytic_correct_swapped": -2.9505950668665535,
+      "rel_residual_correct": 4.97139905608981e-09,
+      "naive_candidate_a_G(YN)-ellLhW": -4.747083007457692,
+      "naive_candidate_a_rel_residual": 0.6088561539210464,
+      "naive_candidate_b_G(Yh)-ellLhW": -4.269746277810739,
+      "naive_candidate_b_rel_residual": 0.44707972536932994,
+      "Gpp_term_value": -8.460378909768597,
+      "Gpp_term_abs_over_scale": 2.867346674178912,
+      "Gp_term_value": 8.690026472558595,
+      "max_abs_Gpp_YN": 43.71458826513411,
+      "conclusion": "naive candidates rejected at O(1); the Delta_N swap generates the div_N((1+G')DW) flux, an explicit G'' term, and a shifted gate argument - none present in eq. (12)."
+    }
+  },
+  "nx96_eps5e-06": {
+    "regime_counts": {
+      "inactive": 4072,
+      "transition": 52,
+      "active": 5092,
+      "total": 9216
+    },
+    "main": {
+      "analytic": -4.269746277810739,
+      "analytic_identity_free": -4.2697875816601165,
+      "fd": -4.269787582700246,
+      "abs_residual": 4.130488950693234e-05,
+      "rel_residual": 9.673851048618028e-06,
+      "rel_residual_identity_free": 2.436045826668127e-10,
+      "identity_abs_residual": 0.0019984750653243566,
+      "identity_rel_residual": 4.8106860362929544e-05,
+      "eps": 5e-06
+    },
+    "Yh_N_independence": {
+      "max_abs_diff": 0.0
+    },
+    "phantom_Gpp_term_true_action": {
+      "value": 11.704094995593563,
+      "abs": 11.704094995593563,
+      "max_abs_Gpp": 43.712833328636954,
+      "note": "Gpp(Y_h) is nonzero on the transition grid cells, but delta Y_h = 0 kills the G'' channel in eq. (12); the finite difference confirms the term does NOT appear."
+    },
+    "limiting_ell0": {
+      "analytic": -6.358953598182217,
+      "fd": -6.3589535969299495,
+      "rel_residual": 1.969298255752226e-10
+    },
+    "limiting_inactive": {
+      "analytic": 2.089207320371477,
+      "fd": 2.0891660165138517,
+      "theta": 20.921872593638746,
+      "rel_residual": 1.977010956380193e-05
+    },
+    "limiting_active": {
+      "analytic": -7.375718121814135,
+      "fd": -7.375759423666749,
+      "theta": -12.632566568395042,
+      "rel_residual": 5.599705944871234e-06
+    },
+    "negative_control_swap": {
+      "fd_swapped_action": -2.9505950621455663,
+      "analytic_correct_swapped": -2.9505950668665535,
+      "rel_residual_correct": 1.600011881442622e-09,
+      "naive_candidate_a_G(YN)-ellLhW": -4.747083007457692,
+      "naive_candidate_a_rel_residual": 0.6088561484969695,
+      "naive_candidate_b_G(Yh)-ellLhW": -4.269746277810739,
+      "naive_candidate_b_rel_residual": 0.44707972049066397,
+      "Gpp_term_value": -8.460378909768597,
+      "Gpp_term_abs_over_scale": 2.867346664511976,
+      "Gp_term_value": 8.690026472558595,
+      "max_abs_Gpp_YN": 43.71458826513411,
+      "conclusion": "naive candidates rejected at O(1); the Delta_N swap generates the div_N((1+G')DW) flux, an explicit G'' term, and a shifted gate argument - none present in eq. (12)."
+    }
+  },
+  "footings": {
+    "a0_canonical": 9.3619e-11,
+    "a0_alternative": 1.1279e-10,
+    "kappa": 0.5,
+    "rho_Lambda_canonical_kg_m3": 5.844412454021876e-27,
+    "rho_Lambda_alternative_kg_m3": 8.483089619559099e-27,
+    "rho_alt_over_rho_can": 1.4514871573996113,
+    "a0_alt_over_a0_can": 1.2047768081265555,
+    "kappa_eff_if_rho_fixed_canonical": 1.2047768081265555,
+    "roundtrip_a0_can_from_rho": 9.3619e-11,
+    "gate_identity_footing_independence": true,
+    "note": "eq. (12) contains no a0; J enters through the same dimensionless nu_mono at either footing (y = |DW_b|/a0). Both footings share the identity with identical coefficients."
+  }
+}

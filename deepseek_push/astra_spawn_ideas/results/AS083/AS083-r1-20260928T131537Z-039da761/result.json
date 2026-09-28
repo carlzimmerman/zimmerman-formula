@@ -1,0 +1,192 @@
+{
+ "schema_version": 2,
+ "task_id": "AS083",
+ "task_sha256": "5110591c95e2b379972e69661f734d00575d83fbcd315b64cac166fca07c3b8e",
+ "run_id": "AS083-r1-20260928T131537Z-039da761",
+ "worker": "hermes-agent subagent (openrouter deepseek/deepseek-v4-flash-0731, macOS 26.5.2 host)",
+ "started_utc": "2026-09-28T13:15:37Z",
+ "finished_utc": "2026-09-28T14:23:36Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "'The pressure boundary contribution is 4*pi*(R^3*P(R) - r_in^3*P(r_in))' (seed's boxed claim) holds EXACTLY in the conditional deep-equilibrium sector (log well Phi = C ln r, isothermal phantom rho = A/r^2, P = sigma^2 rho, kappa = 1/2 ADOPTED): the shell virial identity 3∫P dV = 4π(R^3P(R) - r_in^3P(r_in)) + Q with Q = ∫ rho (x·grad Phi) dV = C·M_shell holds with both surfaces retained iff sigma^2 = C/2, the framework value (symbolic: residual + Δ = 4πA(R-r_in)(2σ²-C) generally, 0 exactly at σ² = C/2; verified by IBP core, closed-form phantom, hydrostatic consistency, 20-shell numeric sweep at 50 digits: relres ~1e-51; Newtonian 1/r-well regime: infinite envelope r³P = const gives B = 0 exactly, truncated vacuum-edge envelope carries nonzero B with the identity holding). The one-boundary formula 4πR³P(R) FAILS at finite r_in by exactly Δ = 4π r_in³P(r_in) = σ² M_ph(<r_in) (negative control NC1: residual/Δ = -1 to 12 decimals at r_in/R = 0.01, 0.1, 0.5, both footings); at r_in/R = 0.5 a one-boundary misreading of sigma^2 gives sigma^2_mis = C vs C/2 exact. Domain: symbolic (any differentiable P for the IBP core; phantom closed forms; exact equivalence) + 50-digit numerics on shells r in [r_in, R] with r_in/R in {0.01,0.1,0.5}, R/r_M in {0.62,1}, deep shells r_in/r_M in {10,100}, R/r_in in {2,10}, Newtonian box R/r_M = 0.01; both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2 carried separately with own densities. Claim is scoped to the virial-surface bookkeeping of this sector: the physical origin of the inner edge r_in and the transfer to the Q/RAR/MU2/EXP/MONO branches (criterion B) are NOT part of this result.",
+ "framework_cell": {
+  "action": "Virial surface term with BOTH boundaries (shell form of the virial identity) in the conditional deep-equilibrium sector",
+  "kernel": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED; Phi = C ln r, C = sqrt(G M_b a0); rho = A/r^2, P = sigma^2 rho, sigma^2 = C/2; r_M = sqrt(G M_b/a0); v_flat^4 = G M_b a0",
+  "filter": "equilibrium isothermal phantom; hydrostatic balance x·(grad P + rho grad Phi) = 0; spherical annulus [r_in, R] with both surfaces retained",
+  "gate": "causality criterion B (amended thirteen-item target): branches Q, RAR, MU2, EXP, MONO remain DISTINCT comparison objects; this run establishes the two-boundary surface bookkeeping in the log-well sector only",
+  "coupling": "virial identity 3∫P dV = B + Q with B = 4π(R^3P(R) - r_in^3P(r_in)); hydrostatic P' = -rho Phi'; Q = ∫ rho (x·grad Phi) dV = C M_shell",
+  "parameters": "G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI); M_b = 6.5e10 M_sun; mpmath at 50 digits",
+  "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 (rho_L = 5.844412454022e-27 kg/m^3, C = 1.836552995e+51 m^2/s^2, r_M = 9.8375 kpc) SEPARATE from alternative a0 = 1.1279e-10 m/s^2 (rho_L = 8.483089619559e-27 kg/m^3, C = 2.015843278e+51 m^2/s^2, r_M = 8.9626 kpc); both at the same kappa = 1/2 with own densities (ratio 1.451487157); fixed-density leg kappa_eff = 0.602388404 recorded for accounting only - footings do not share both fixed density and fixed kappa; G_N/G_bare/G_cosmo kept separate throughout",
+  "boundaries": "inner surface r_in > 0 and outer surface R > r_in both retained; outer dust/vacuum edge P(R) = 0 for the truncated Newtonian envelope; infinite envelope continues past R with P = GAM_b/(3r^3)",
+  "initial_conditions": "none (equilibrium bookkeeping; no trajectory initial data)",
+  "units": "SI (m, s, kg, Pa, J, m s^-2, kg m^-3)"
+ },
+ "new_assumptions": [
+  "Equilibrium isothermal phantom rho = A/r^2 with P = sigma^2 rho held down to the inner edge r_in (single-phase mean-field reading; the seed's premise, carried as input)",
+  "The virial bookkeeping requires the FULL surface term: the physical content of the inner surface is the truncation scale r_in of the log-well phantom, whose origin is NOT derived here (the inner edge is the open physical boundary of this sector)",
+  "For the Newtonian truncated envelope: outer boundary is a dust/vacuum edge with P(R) = 0; the infinite-envelope representation requires the pressure to continue past R (r^3 P = const)"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS083_virial_surface_term_with_both_boundaries.md": "5110591c95e2b379972e69661f734d00575d83fbcd315b64cac166fca07c3b8e",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/derivation.md": "bb4d41dc51dc136ed4a26d47d6304fd46cf64565eb7f856af1661805c9881f1c",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_virial_surface_identity.lean": "376c1aa42ab29ab0ea82796ab06cea7cd24685aeaff9727cdd62977d46ca6b8f",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/lean_compile_and_axioms.txt": "d7834bd55e56473ad27ee448d13b2a9722c13c8c2287eb9f08a2bd2011ed0d6e",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_checks.py": "61bb76067efe5b17e918912230be0305298ed1ef6890041fb5ba350167ec53ab",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_checks_raw.json": "cbcef9eff4f10351cf81adb07b21e9c299b3dfd54dfcef328d837ac4deaa4821",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_lane_stdout.txt": "170f0fc0583e965d8fcf487fcd516de49d79f9cd6e652b426fc6fad4f3a8e626",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_lane_stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_supervisor.py": "7fee25cff0ad22c67116e2a7f2860152b6cab8fc589db8f1379926985dee41b2",
+  "deepseek_push/astra_spawn_ideas/results/AS083/AS083-r1-20260928T131537Z-039da761/AS083_bounds.json": "ddd53add93058e5488397a44bed4cb0c245e9a3608b7b6af65c37f846882f247"
+ },
+ "commands": [
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula && shasum -a 256 deepseek_push/astra_spawn_ideas/AS083_virial_surface_term_with_both_boundaries.md (verified = 5110591c95e2b379972e69661f734d00575d83fbcd315b64cac166fca07c3b8e before execution)",
+  "cd <run dir> && python3 AS083_supervisor.py (external supervisor: spawns python3 -u AS083_checks.py single-threaded, polls RSS every 0.1 s, SIGKILL > 512 MiB, wall kill at 120 s; lane sets in-process RLIMIT_CPU 115 s; writes AS083_bounds.json, AS083_lane_stdout.txt, AS083_lane_stderr.txt, AS083_checks_raw.json)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <run dir>/AS083_virial_surface_identity.lean (compile + #check/#print axioms; log: lean_compile_and_axioms.txt) - exit 0, axioms {propext, Classical.choice, Quot.sound}",
+  "shasum -a 256 on all inputs and artifacts (recorded above)"
+ ],
+ "execution_bounds": {
+  "wall": {
+   "declared_s": 120,
+   "enforced": "lane wall 2.28 s (measured; supervisor kill at 120 s armed, not triggered; in-process RLIMIT_CPU soft=hard=115 s set and honored by macOS 26.5.2). Actually enforced: 2.28 s elapsed, wall_killed = false"
+  },
+  "memory": {
+   "declared_mib": 512,
+   "enforced": "external supervisor polling child RSS every 0.1 s, SIGKILL on RSS > 512 MiB (536870912 bytes); observed max 99.2 MiB (99.2 MiB = 99152 KiB), mem_killed = false. In-process RLIMIT_AS/RLIMIT_DATA/RLIMIT_RSS lowering refused by macOS 26.5.2 (empirically verified); memory enforced externally by the supervisor"
+  },
+  "threads": {
+   "declared": 1,
+   "enforced": "single process, no spawns; OMP_NUM_THREADS, OPENBLAS_NUM_THREADS, MKL_NUM_THREADS, VECLIB_MAXIMUM_THREADS, NUMEXPR_NUM_THREADS pinned to 1"
+  },
+  "sample_bounds": "symbolic exact (sympy) + mpmath at 50 digits: 20 phantom shells per footing (6 diagnostic + 4 deep configurations x 2 footings), 6 NC1 shells x 2 footings, 2 Newtonian configs x 2 footings, 2 constant-density shells, G091/equipartition cross-checks, dimensional table"
+ },
+ "checks": [
+  {
+   "name": "C1 IBP core (symbolic)",
+   "result": "PASS",
+   "measured": "d/dr(r^3 P) = 3r^2 P + r^3 P' => [r^3P]_{r_in}^R = 3∫r^2P dr + ∫r^3P' dr, exact for any P",
+   "tolerance": "exact identity"
+  },
+  {
+   "name": "C2a phantom closed form (log well, both boundaries)",
+   "result": "PASS",
+   "measured": "3∫P dV = 12πσ²A(R−r_in); B = 4πσ²A(R−r_in); Q = C·M_shell; identity holds EXACTLY at σ² = C/2",
+   "tolerance": "exact symbolic + numeric rel ~1e-51"
+  },
+  {
+   "name": "C2b phantom hydrostatic consistency",
+   "result": "PASS",
+   "measured": "P' = −ρΦ' in the log well holds iff 2σ² = C, the SAME condition the two-boundary virial imposes",
+   "tolerance": "exact"
+  },
+  {
+   "name": "C3 one-boundary limit and leading neglected term",
+   "result": "PASS",
+   "measured": "residual(one-boundary) + Δ = 4πA(R−r_in)(2σ²−C) generally; = 0 exactly at σ² = C/2; Δ = 4πr_in³P(r_in) = σ²M_ph(<r_in); r_in→0 recovers the one-boundary formula with leading neglected term linear in r_in",
+   "tolerance": "exact symbolic"
+  },
+  {
+   "name": "N1 phantom both-boundary identity (20 shells, both footings)",
+   "result": "PASS",
+   "measured": "10 shells/footing (r_in/R in {0.01,0.1,0.5} x R/r_M in {0.62,1} + deep r_in/r_M in {10,100} x R/r_in in {2,10}); max relres ~1e-51",
+   "tolerance": "rel < 1e-40 (set before evaluation)"
+  },
+  {
+   "name": "N2 Newtonian regime, two representations (both footings)",
+   "result": "PASS",
+   "measured": "(a) truncated envelope P(R)=0: balance FD relres 3.3e-18 (method floor), exact-derivative relres ~2e-51, identity relres 0.0/1.4e-51; (b) infinite envelope P = GAM_b/(3r^3): B = 0 EXACTLY, identity relres ~1.5e-51",
+   "tolerance": "FD < 1e-12; exact < 1e-40; B < 1e-45"
+  },
+  {
+   "name": "N3 constant-density shell (both footings)",
+   "result": "PASS",
+   "measured": "rho = const, P from balance with P(R)=0: identity relres = 0.0",
+   "tolerance": "rel < 1e-40"
+  },
+  {
+   "name": "NC1 NEGATIVE CONTROL: one-boundary form at finite r_in (12 shells)",
+   "result": "PASS (control live: fails the one-boundary claim with content)",
+   "measured": "measured residual = −Δ exactly: ratio residual/Δ = −1.000000000000; |residual|/outer term = r_in/R = 0.010000000000, 0.100000000000, 0.500000000000 (e.g. −1.83655e+49 J vs Δ = 1.83655e+49 J, canonical, r_in/R = 0.01); rel < 1e-40",
+   "tolerance": "rel 1e-40; ratio = −1; |resid|/outer = r_in/R; would pass vacuously only if Δ = 0"
+  },
+  {
+   "name": "V1 G091 cross-check (both footings)",
+   "result": "PASS",
+   "measured": "4πR³P(R) at R = 0.62 r_M equals G091's 3·P_s·V = σ²·M_T",
+   "tolerance": "rel < 1e-40"
+  },
+  {
+   "name": "V2 equipartition + a0-only pressure (both footings)",
+   "result": "PASS",
+   "measured": "4πr_M³P(r_M) = 1.836553e+51 J = σ²M_b (canonical); P(r_M) = 5.2249533e-12 Pa = a0²/(8πG), rel 3.7e-51 / 0.0",
+   "tolerance": "rel < 1e-40"
+  },
+  {
+   "name": "V3 both footings separate at same kappa = 1/2",
+   "result": "PASS",
+   "measured": "rho_L = 5.844412454022e-27 vs 8.483089619559e-27 kg/m^3 at the SAME kappa = 1/2 (own densities); fixed-density leg kappa_eff = 0.602388404 (accounting only)",
+   "tolerance": "1e-12 relative; footings carried separately"
+  }
+ ],
+ "tested_domain": "Symbolic/exact: IBP core for any differentiable P; phantom closed forms; the equivalence (virial identity holds) ⟺ σ² = C/2; one-boundary residual identity; Newtonian cancellation r³P = const. Numeric at 50-digit mpmath: shells r in [r_in, R], r_in/R in {0.01, 0.1, 0.5}, R/r_M in {0.62, 1.0} (6 diagnostic) + r_in/r_M in {10, 100}, R/r_in in {2, 10} (4 deep) per footing; Newtonian box R/r_M = 0.01 (deep inside r_M); constant-density shell; dimensional table at kpc/Pa/J scale. Both footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2. Exclusions: no dynamics/trajectories/observational data; no derivation of the inner-edge scale r_in; branches Q, RAR, MU2, EXP, MONO (criterion B) are not entered.",
+ "failed_attempts": [
+  {
+   "artifact": "early AS083_checks.py versions (superseded in the recorded run)",
+   "cause": "(1) N2 Newtonian envelope closed form carried a spurious 4π in the point-mass term - the P was NOT hydrostatic and the virial identity failed with relres 1.5882 (the control correctly caught a real physics bug; correct form P = (GAM_b/3)(1/r^3-1/R^3) + 4πGA^2[(1/2)(1/r^2-1/R^2) - (r_in/3)(1/r^3-1/R^3)] verified by finite-difference AND exact-derivative balance); (2) NC1 sign bookkeeping: the one-boundary form OVERSHOOTS, residual = -Δ (predicate fixed to |resid| = Δ, ratio −1); (3) V1/V2/NC1 tolerance floor: framework numbers were float64 literals so agreement could not beat ~1e-16 (fixed by computing framework numbers as mpmath mpf at 50 digits); (4) C3 residual + Δ = 0 check omitted the substitution σ² = C/2 (general residual is 4πA(R−r_in)(2σ²−C)); (5) mpf does not accept '%.6e' style format strings (float() wrappers added); (6) supervisor memory-units bug: RSS bytes compared against a KiB limit, SIGKILLing the lane at ~46 MiB (fixed to MEM_LIMIT_BYTES = 512*1024*1024)"
+  },
+  {
+   "artifact": "AS083_virial_surface_identity.lean earlier versions (superseded; final compile log lean_compile_and_axioms.txt)",
+   "cause": "mathlib build-specific: (1) DifferentiableOn membership yields a HasFDerivWithinAt existential, not DifferentiableAt - 'h.hasDerivAt' field projection invalid; restated T1 with honest hypotheses (∀ x ∈ uIcc a b, DifferentiableAt P x + ContinuousOn (deriv P)); (2) intervalIntegral.integral_deriv_eq_sub in this build takes (∀ x, DifferentiableAt f x) + IntervalIntegrable (deriv f), not HasDerivAt + continuity - supplied both via deriv_mul/formula and ContinuousOn.intervalIntegrable; (3) rw does not rewrite under function-lambda bodies ('change' to pointwise-product form required before deriv_mul); (4) deriving (fun y => y^3) x value ascription failed on (3 - 1) (norm_num normalization via deriv_unique without ascription); (5) ContinuousOn.congr expects EqOn f g with the CONtinuous target second - no symm; (6) rw closed purely-defeq residual goals (β-reduction), so trailing ring/simp errored with 'No goals to be solved' (removed); smul_eq_mul needed for the (b - a) • c integral constant on ℝ; ring_nf at hT ⊢ needed in the composite T7; final state: 0 errors, axioms {propext, Classical.choice, Quot.sound}, zero sorry"
+  }
+ ],
+ "limitations": "This result does NOT: (1) derive the physical origin/scale of the inner edge r_in (the truncation of the log-well phantom; Δ = 4πr_in³P(r_in) = σ²M_ph(<r_in) is exactly the unclosed inner-surface quantity, and what fixes r_in is open); (2) test dynamics, time evolution, or any observational data - all checks are exact algebra or finite-precision (50-digit) arithmetic on equilibrium bookkeeping; (3) cover non-isothermal equations of state or non-spherical geometries; (4) transfer to the operative branches Q, RAR, MU2, EXP, MONO (criterion B): they remain distinct comparison objects; (5) claim closure of gravity or of the framework; (6) sample the Newtonian regime beyond R/r_M = 0.01 in this run.",
+ "next_unresolved_implication": "The inner-surface term Δ = 4πr_in³P(r_in) = σ²M_ph(<r_in) is the virial imprint of the sector's truncation radius: the two-boundary identity is exact for ANY r_in (given a hydrostatic isothermal phantom), so the physics lives entirely in the value of r_in - i.e., in what halts the log-well phantom at small radii and hands over to the Newtonian core. Until the inner-edge scale is fixed, the two-boundary surface term is a bookkeeping identity with one free physical constant (r_in), and the one-boundary reading is excluded by the control at every tested geometry.",
+ "suggested_followup": "Child work order AS083.C01: derive r_in from the sector junction - impose continuity of pressure AND of the boundary term across the phantom/Newtonian handover (deep log well vs 1/r core): the inner surface pressure P(r_in) must equal the core-side surface pressure carried by the virial of the interior mass, i.e. 4πr_in³P(r_in) = 4π r_c³ P_core(r_c)-type junction with B continuous; controls: (a) the handover must reproduce the near-Newtonian deviations observed in the G091/G233 legs at r << r_M (capable of failing), (b) the r_in/R = 0.5 misreading σ²_mis = C must be absent when the junction condition is imposed (c) re-verify all AS083 checks unchanged at the derived r_in; dependency: AS083 result (this run), G091 surface pressure, G233 EoS/no-scalar sector.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitive_assumptions": [
+   "Boxed claim: pressure boundary contribution = 4π(R^3P(R) - r_in^3P(r_in)) (both surfaces retained)",
+   "Hydrostatic balance x·(∇P + ρ∇Φ) = 0 integrated over the spherical annulus",
+   "Conditional deep-equilibrium sector: Φ = C·ln r, ρ = A/r², P = σ²ρ, σ² = C/2, κ = 1/2 ADOPTED (a0 = κ·c·√(G·ρ_Lambda))",
+   "Equilibrium isothermal phantom held down to the inner edge r_in (seed premise)",
+   "Newtonian regime representation: truncated envelope with P(R) = 0; infinite envelope P = GAM_b/(3r^3) with r³P = const"
+  ],
+  "measured_calibrations": [
+   "G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI literals)",
+   "canonical a0 = 9.3619e-11 m/s^2 and alternative a0 = 1.1279e-10 m/s^2 (registered footings); M_b = 6.5e10 M_sun"
+  ],
+  "boundary_initial_data": [
+   "0 < r_in < R; both surfaces retained; outer dust/vacuum edge P(R) = 0 (truncated envelope) or continuing envelope past R (infinite envelope)"
+  ],
+  "derived_equations": [
+   "3∫_{r_in}^R P dV = 4π(R³P(R) − r_in³P(r_in)) + Q, Q = ∫ρ (x·∇Φ) dV",
+   "Phantom closed forms: 3∫P dV = 12πσ²A(R−r_in); B = 4πσ²A(R−r_in); Q = C·M_shell = 4πCA(R−r_in)",
+   "Virial equivalence: 12πσ²A(R−r_in) = 4πσ²A(R−r_in) + 4πCA(R−r_in) ⟺ σ² = C/2",
+   "One-boundary residual: res_1b + Δ = 4πA(R−r_in)(2σ²−C); at σ² = C/2: res_1b = −Δ = −4πσ²A·r_in = −σ²M_ph(<r_in)",
+   "Hydrostatic consistency: P' = −ρΦ' holds iff 2σ² = C (same condition as the virial)",
+   "Truncated Newtonian envelope: P(r) = (GAM_b/3)(1/r³−1/R³) + 4πGA²[(1/2)(1/r²−1/R²) − (r_in/3)(1/r³−1/R³)]",
+   "Infinite Newtonian envelope: r³P = GAM_b/3 = const ⇒ B = 0 exactly",
+   "P(r_M) = a0²/(8πG); 4πr_M³P(r_M) = σ²M_b"
+  ]
+ },
+ "closure_implication": {
+  "named_gate": "Causality criterion B (amended thirteen-item target; branches Q, RAR, MU2, EXP, MONO distinct)",
+  "exact_implication": "IF the operative bookkeeping in the conditional deep-equilibrium sector is the shell virial identity with both surfaces retained AND the phantom is hydrostatic and isothermal (σ²ρ, ρ = A/r² in Φ = C ln r), THEN the pressure boundary contribution is exactly 4π(R³P(R) − r_in³P(r_in)); the identity holds iff σ² = C/2 (the framework value); and the one-boundary form 4πR³P(R) is excluded at finite r_in by exactly Δ = 4πr_in³P(r_in). The implication is conditional on the inner-edge scale r_in being supplied (its origin is the open item).",
+  "common_action_compatibility": "Both registered footings (9.3619e-11 and 1.1279e-10 m/s^2) carry kappa = 1/2 with their own densities; all identities are scale-invariant in the log-well sector (C ln r); the action-level compatibility is pending the inner-edge derivation (AS083.C01)."
+ },
+ "child_proposals": [
+  {
+   "id": "AS083.C01",
+   "fingerprint": "derive the inner-edge scale r_in of the log-well phantom from the virial junction: continuity of the surface term 4πr³P(r) across the deep-well/Newtonian handover fixes r_in; closed form r_in = f(r_M, A, M_b) from B_continuity + P-continuity",
+   "new_target": "Fix the truncation radius r_in physically: impose pressure AND surface-contribution continuity across the phantom/Newtonian junction and compute r_in (the sector's only free constant); the two-boundary identity then becomes a closed prediction for the inner surface term Δ = σ²M_ph(<r_in)",
+   "controls": "(a) the handover must reproduce near-Newtonian deviations at r << r_M in the G091/G233 legs (capable of failing); (b) the r_in/R = 0.5 one-boundary misreading σ²_mis = C must disappear once the junction condition fixes r_in; (c) re-verify all 27 AS083 checks unchanged at the derived r_in",
+   "dependencies": "AS083 result (this run), G091 surface pressure, G233 EoS/no-scalar sector",
+   "dispatch_state": "specified only; not dispatched (no runner spawned)"
+  }
+ ],
+ "closure_candidate": null
+}

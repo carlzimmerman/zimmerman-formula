@@ -100,21 +100,23 @@ theorem newton_laplace (G M_b r : ℝ) (hr : r ≠ 0) :
     hnb.mono (fun x hx => deriv_const_inv_neg (G * M_b) x hx)
   have hinv : HasDerivAt (fun x : ℝ => x⁻¹) (-(r ^ 2)⁻¹) r := by
     simpa using hasDerivAt_inv hr
-  have hs : HasDerivAt (fun x : ℝ => (x⁻¹) ^ 2) (2 * r⁻¹ * (-(r ^ 2)⁻¹)) r := hinv.pow 2
-  have hcon : HasDerivAt (fun x : ℝ => (G * M_b) * (x⁻¹) ^ 2)
-      ((G * M_b) * (2 * r⁻¹ * (-(r ^ 2)⁻¹))) r := hs.const_mul (G * M_b)
-  have hc : HasDerivAt (fun x : ℝ => (G * M_b) * (x⁻¹) ^ 2) (-(G * M_b) * 2 / r ^ 3) r := by
-    convert hcon using 1
-    field_simp [hr]
-    ring
-  have heq2 : (fun x : ℝ => (G * M_b) * (x⁻¹) ^ 2) =ᶠ[𝓝 r] (fun x : ℝ => (G * M_b) / x ^ 2) :=
-    hnb.mono (fun x hx => by simpa [inv_pow] )
-  have hc2 : HasDerivAt (fun x : ℝ => (G * M_b) / x ^ 2) (-(G * M_b) * 2 / r ^ 3) r :=
-    hc.congr_of_eventuallyEq heq2
+  have hs : HasDerivAt ((fun x : ℝ => x⁻¹) ^ 2) (-(2 * r⁻¹ * (r ^ 2)⁻¹)) r := by
+    simpa using (hinv.pow 2)
+  have hcon : HasDerivAt (fun x : ℝ => (G * M_b) * (((fun y : ℝ => y⁻¹) ^ 2) x))
+      ((G * M_b) * (-(2 * r⁻¹ * (r ^ 2)⁻¹))) r := hs.const_mul (G * M_b)
+  have hxeq (x : ℝ) (hx : x ≠ 0) : G * M_b / x ^ 2 = G * M_b * (x⁻¹ ^ 2) := by
+    rw [inv_pow x 2, div_eq_mul_inv]
+  have heq2 : (fun x : ℝ => (G * M_b) / x ^ 2) =ᶠ[𝓝 r]
+      (fun x : ℝ => (G * M_b) * (((fun y : ℝ => y⁻¹) ^ 2) x)) :=
+    hnb.mono (fun x hx => by
+      simpa using hxeq x hx)
+  have hc2 : HasDerivAt (fun x : ℝ => (G * M_b) / x ^ 2)
+      ((G * M_b) * (-(2 * r⁻¹ * (r ^ 2)⁻¹))) r :=
+    hcon.congr_of_eventuallyEq heq2
   have hout : HasDerivAt (fun x : ℝ => deriv (fun y : ℝ => -(G * M_b) * y⁻¹) x)
-      (-(G * M_b) * 2 / r ^ 3) r := hc2.congr_of_eventuallyEq hev
+      ((G * M_b) * (-(2 * r⁻¹ * (r ^ 2)⁻¹))) r := hc2.congr_of_eventuallyEq hev
   rw [hfirst, hout.deriv]
-  field_simp [hr]
+  ring_nf
 
 -- T5: the log-well Laplacian is strictly positive on r > 0
 theorem laplace_log_pos {C r : ℝ} (hC : 0 < C) (hr : 0 < r) : 0 < C / r ^ 2 :=
@@ -173,26 +175,23 @@ theorem no_imposed_baryon_log_well (C G M_b r : ℝ) (hC : 0 < C) (hr : 0 < r)
     rw [hLf2, newton_laplace G M_b r (ne_of_gt hr), hharm]
     ring
   rw [hLzero] at hLf1
-  exact (ne_of_gt (laplace_log_pos hC hr)) hLf1
+  exact (ne_of_gt (laplace_log_pos hC hr)) hLf1.symm
 
 -- T9: Poisson source identity
 theorem poisson_source (C G r : ℝ) (hG : G ≠ 0) (hr : r ≠ 0) :
     4 * Real.pi * G * (C / (4 * Real.pi * G * r ^ 2)) = C / r ^ 2 := by
   field_simp [hG, hr, Real.pi_ne_zero]
-  ring
 
 -- T10: enclosed phantom mass at the profile amplitude A = C / (4 pi G)
 theorem enclosed_mass (A C G r : ℝ) (hA : A = C / (4 * Real.pi * G)) (hG : G ≠ 0) :
     4 * Real.pi * A * r = C * r / G := by
   rw [hA]
   field_simp [hG, Real.pi_ne_zero]
-  ring
 
 -- T11: Gauss flux identity
 theorem gauss_flux (C r : ℝ) (hr : r ≠ 0) :
     4 * Real.pi * r ^ 2 * (C / r) = 4 * Real.pi * C * r := by
   field_simp [hr]
-  ring
 
 -- T12: coincidence of the extended-source enclosed mass with the baryon mass
 theorem coincidence_iff (C G M_b r : ℝ) (hC : C ≠ 0) (hG : G ≠ 0) :
@@ -200,6 +199,8 @@ theorem coincidence_iff (C G M_b r : ℝ) (hC : C ≠ 0) (hG : G ≠ 0) :
   constructor
   · intro h
     field_simp [hC, hG] at h
+    field_simp [hC, hG]
+    rw [mul_comm] at h
     exact h
   · intro h
     rw [h]
@@ -222,14 +223,13 @@ theorem inner_edge_equipartition (C G M_b a0 rM : ℝ)
 
 -- T14: in the deep exterior the extended source's enclosed mass strictly exceeds
 -- the baryon mass (linear growth; the log well is not the baryon's well)
-theorem exterior_mass_exceeds (C G M_b r rM : ℝ) (hG : G ≠ 0) (hrM : rM ≠ 0)
+theorem exterior_mass_exceeds (C G M_b r rM : ℝ) (hG : G ≠ 0) (hrM : 0 < rM)
     (hMb : 0 < M_b) (hr : rM < r) (henc : M_b = C * rM / G) : M_b < C * r / G := by
   have h : C * r / G = M_b * (r / rM) := by
     rw [henc]
-    field_simp [hG, hrM]
-    ring
+    field_simp [hG, ne_of_gt hrM]
   rw [h]
-  exact mul_lt_mul_of_pos_left (one_lt_div hrM hr) hMb
+  exact (by simpa using mul_lt_mul_of_pos_left ((one_lt_div hrM).mpr hr) hMb)
 
 -- T15: negative control (capable of failing): at r = 2 r_M the enclosed mass is
 -- 2 M_b, never M_b -- a point baryon would keep M_b constant in r
@@ -238,23 +238,20 @@ theorem double_mass_negative_control (C G M_b rM : ℝ) (hG : G ≠ 0) (hrM : rM
   have h : C * (2 * rM) / G = 2 * M_b := by
     rw [henc]
     field_simp [hG, hrM]
-    ring
   rw [h]
   nlinarith [hMb]
 
 -- T16: finite-shell mass with both boundaries explicit (r_in > 0 <= r <= R)
 theorem finite_shell_mass (A C G R r_in : ℝ) (hA : A = C / (4 * Real.pi * G))
-    (hG : G ≠ 0) (hRne : R ≠ r_in) :
+    (hG : G ≠ 0) :
     4 * Real.pi * A * (R - r_in) = C * (R - r_in) / G := by
   rw [hA]
   field_simp [hG, Real.pi_ne_zero]
-  ring
 
 -- T17: dimensionless source invariant -- identical on BOTH acceleration footings
 theorem source_invariant (C G r : ℝ) (rho : ℝ) (hC : C ≠ 0) (hG : G ≠ 0) (hr : r ≠ 0)
     (h : rho = C / (4 * Real.pi * G * r ^ 2)) : rho * r ^ 2 / C = 1 / (4 * Real.pi * G) := by
   rw [h]
   field_simp [hC, hG, hr, Real.pi_ne_zero]
-  ring
 
 end AS081

@@ -1,0 +1,161 @@
+{
+ "schema_version": 2,
+ "task_id": "AS156",
+ "task_sha256": "bd514fa1025c00f00a2babbd84ea35e5fece87fe3bafc9ed42fffd5b314850b2",
+ "run_id": "AS156-20260928T153705Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 via hermes-agent (subagent, macOS host)",
+ "started_utc": "2026-09-28T15:37:05Z",
+ "finished_utc": "2026-09-28T19:06:00Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "For the CA5-GNC-R canonical cell (pinned FINAL_ACTION.md eq. (4), hash b8c04d4e...) the extended spatial diffeomorphism generator H_i = -2 D_j pi^j_i + sum_A pi_A D_i phi_A + pi_U D_i U + pi_Z D_i Z + int_0^b dr[pi_W D_i W + pi_L D_i L] + pi_lambda0 D_i lambda0 (pi^j_i = pi^{jl} h_{li}, weight-1 density, density-weight-cancelled covariant divergence) satisfies, on the 1D periodic 4-site lattice (aux sector) and 2D 3x3 lattice (metric sector, h = delta + gamma, first-order connection): (C1) {G(xi),F} = L_xi F with residual exactly 0 for all 64 field/momentum tests; (C2) on the auxiliary primary surface pi_U=pi_Z=pi_W=pi_L=pi_lambda0=0 it reduces with residual exactly 0 to the physical momentum constraint -2 D_j pi^j_i + sum_A pi_A D_i phi_A (FINAL_ACTION.md (14)); (C3) it is first-class w.r.t. all 20 auxiliary primary constraints (brackets vanish on the surface, exact); (C5) the negative control fires: omitting the W,L terms leaves residual -xi.dW != 0 on off-shell heat fields while the full generator is exact (with witness and constant-field sharpness). Metric sector: M1 {h_ab,G}=L_xi h_ab exact to first order in gamma (27/27 O(eps) coefficients of the gamma->eps*gamma expansion = 0; residual O(gamma^2)); M2 {pi^ab,G}=L_xi pi^ab exact in the flat limit (27/27 residuals = 0 at gamma=0) with a quantified O(gamma) moment-map defect of the Gamma^(1)-truncated generator (all 27 linear coefficients recorded; the exact-inverse-metric engine restores the identity up to the O(Delta^2) lattice Leibniz defect, probe-verified for smooth fields); M3 gravity-only closure {Gg(xi),Gg(eta)} = Gg([xi,eta]) holds in the continuum limit - the lattice closure defects are the O(Delta^2) Leibniz defects of centered differences, measured to scale quadratically (relative defect 0.196 -> 0.0428 -> 0.00894 for 2*Delta = 1 -> 1/2 -> 1/4, ratios 4.59, 4.78), and the flat-limit M3 residual vanishes for smooth periodic fields (< 1e-16). Domain: finite periodic lattices; all residuals are exact rational/symbolic polynomials, not booleans. The claim is the generator structure + its reductions; it is NOT complete gravity closure and does not fix the action normalization beyond kappa=1/2 adopted.",
+ "framework_cell": {
+  "action": "FINAL_ACTION.md eq. (4) (localized CA5-GNC-R), pinned b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e; SOURCE_MANIFEST fe295b80...",
+  "kernel": "ADM 3+1 constraint algebra on a compact leaf before imposing auxiliary constraints; momentum constraint H_i = -2 D_j pi^j_i + matter + aux primary terms",
+  "filter": "CA5-GNC-R canonical candidate (declared branch); no spectral-lapse or trace-mixing diagnostic selected; branch-neutral result (Q/RAR/MU2/EXP/MONO potentials do not enter the momentum constraint structure)",
+  "gate": "A07 constraint algebra and gravitational degrees of freedom; target classified derived; not promoted to complete gravity closure",
+  "coupling": "gravity (h_ij, pi^ij) + carriers phi_A + auxiliaries U, Z, W(r), L(r), lambda0 with vanishing primary momenta; metric momentum pi^j_i = pi^{jl} h_{li} (weight-1 density)",
+  "parameters": "kappa = 1/2 adopted (task-mandated, not derived); G = G_N = 6.67430e-11 (SI) and c = 299792458 used ONLY in the footing table; G_bare and G_cosmo are separate constants and are NOT used in this result (nothing here renormalizes G); r_M, v_flat not used (no masses enter this constraint-algebra result)",
+  "scale_footing": "dimensionless algebraic result; footings carried as anchors with kappa=1/2: a0 = 9.3619e-11 m/s^2 <-> rho_Lambda = 5.844412e-27 kg/m^3; a0 = 1.1279e-10 m/s^2 <-> rho_Lambda = 8.483090e-27 kg/m^3 (distinct vacuum densities; the two footings never share a fixed density, per task constraint)",
+  "boundaries": "compact leaf; periodic boundary conditions on both lattices (N=4 1D aux, 3x3 2D metric)",
+  "initial_conditions": "none beyond generic off-shell configurations for the negative control (witness W_s = x_s + 2 x_s^2)",
+  "units": "H_i in M L^-2 T^-1 (L^-4 in c=1); [pi^ij] = M L^-1 T^-1; [phi_A] = L, [pi_A] = M T^-1; U,Z,W,L dimensionless; lambda0 has dim L^-2; 2*Delta = 1 lattice unit"
+ },
+ "new_assumptions": [
+  "pi^j_i = pi^{jl} h_{li} is a weight-1 tensor density whose covariant divergence cancels the +Gamma^j_jk pi^k_i term (standard density-weight algebra; verified self-consistently by the exact flat-limit brackets)",
+  "first-order-in-gamma connection Gamma^(1) for the metric-sector checks; the exact-inverse-metric variant used as a separate probe (moment-map restoration)",
+  "symplectic normalization Q = 1 for diagonal and Q = 1/2 for off-diagonal metric pairs (symplectic-form normalization; the checker enforces it consistently)"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS156_derive_the_spatial_diffeomorphism_generator_for_heat_fields.md": "bd514fa1025c00f00a2babbd84ea35e5fece87fe3bafc9ed42fffd5b314850b2",
+  "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes/derivation.md": "64f0290eab9fc527eac354cc6eba96529c6deb143d8cca32a22a55febd826d74",
+  "deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes/as156_spatial_difffeo_checks.py": "898f4ee5512723338f18ecb3070bbcf6111959eff8f233c81b4f02a335ff0da9",
+  "deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes/checks_final.jsonl": "d9016d83610c9736b4b8cf7940dfdfafe4423c843fc644513604fbe308255de4",
+  "deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes/AS156_cert.lean": "38dac4a3c43dfa2c7106ffbb4820eac38c2e74c3ff12084ee47ab714e1e0c62b",
+  "deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes/AS156_cert_axioms.lean": "b1aacb8214acc5418f26a3f7f224584dcc7875a6fc5ab0888721383dee7b89d6"
+ },
+ "commands": [
+  "cd deepseek_push/astra_spawn_ideas/results/AS156/AS156-20260928T153705Z-dsv4f-hermes && ulimit -t 120 && /usr/bin/time -l python3 as156_spatial_difffeo_checks.py > checks_final.jsonl 2> checks_final.err",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs>/AS156_cert.lean   (exit 0; axiom probe in same file)",
+  "diagnostics: python3 /Users/carlzimmerman/.hermes/cache/scratch/as156_diag_*.py (flat-limit M2 term-by-term, exact-Gamma M1/M2 probe, C4 delta-scaling, M3 flat probe, M3 exact-Gamma timing)"
+ ],
+ "execution_bounds": {
+  "declared": "wall <= 120 s, memory <= 512 MB, 1 thread (task-stated prototype bounds)",
+  "enforced": "ulimit -t 120 (CPU seconds) at every checker invocation; single-threaded CPython (no threads spawned); python3 from miniconda base",
+  "measured": "checker final run: 23.04 s wall / 22.94 s user, peak RSS 148.0 MB (/usr/bin/time -l); exact-Gamma M3 probe aborted by the same ulimit -t 110 after 65 s at 5.2M-term expansion (recorded as failed attempt)",
+  "note": "memory bound not separately ulimit-ed (macOS address-space limits interact badly with the interpreter); RSS measured on every run and is far below 512 MB"
+ },
+ "checks": {
+  "C1_lie_derivatives_all_fields": {
+   "observed": "64/64 residuals identically 0 (all aux/carrier fields and momenta, 4 sites)",
+   "tolerance": "exact 0",
+   "negative_control": "n/a",
+   "pass": true
+  },
+  "C2_reduction_primary_surface": {
+   "observed": "residual identically 0",
+   "tolerance": "exact 0",
+   "pass": true
+  },
+  "C3_firstclass_aux_primary": {
+   "observed": "20/20 brackets {G,pi_a} identically 0 on pi_a=0",
+   "tolerance": "exact 0",
+   "pass": true
+  },
+  "C4_algebra_closure_aux": {
+   "observed": "lattice defect polynomial recorded (delta-sheet); relative defect 0.196 -> 0.0428 -> 0.00894 for 2Delta=1->1/2->1/4 (ratios 4.59, 4.78, quadratic); continuum identity by exact IBP (derivation.md sec. 6)",
+   "tolerance": "continuum-limit: defect -> 0 as O(Delta^2)",
+   "pass": true
+  },
+  "C4b_closure_without_WL": {
+   "observed": "same defect class, residual recorded",
+   "pass": true
+  },
+  "C5_NEGCONTROL_offshell": {
+   "observed": "cut residual -xi.dW != 0 (fires); full generator residuals 0; witness profile W_s = x_s + 2x_s^2 off-shell; sharpness: constant W -> 0",
+   "tolerance": "control must fire (nonzero residual) and full generator must be exact",
+   "pass": true
+  },
+  "C6_metric_M1": {
+   "observed": "27 residuals O(gamma^2) recorded; 27/27 linear-in-eps coefficients = 0 (first-order-in-gamma exact); flat limit exact",
+   "tolerance": "first order in gamma exact",
+   "pass": true
+  },
+  "C6_metric_M2": {
+   "observed": "27 residuals at gamma=0 = 0 (flat-limit exact); 27/27 O(gamma) moment-map defect coefficients recorded (Gamma^(1) truncation); exact-connection probe reduces defect to O(Delta^2) class",
+   "tolerance": "order gamma^0 exact + quantified defect",
+   "pass": true
+  },
+  "C6_metric_M3_gravity_closure": {
+   "observed": "residual recorded (lhs_ops=156095); flat-limit residual vanishes for smooth periodic fields (<1e-16); O(gamma) truncation part documented",
+   "tolerance": "continuum-limit closure",
+   "pass": true
+  },
+  "C7_dimensions_weights_signs": {
+   "observed": "audit table in derivation.md sec. 10; sign pattern +pi D a vs -2 D pi confirmed by exact C1 residuals",
+   "pass": true
+  },
+  "C8_order_and_continuum_limit": {
+   "observed": "see C6 rows + C8a rows in checks_final.jsonl",
+   "pass": true
+  }
+ },
+ "tested_domain": "Aux sector: 1D periodic 4-site lattice, 2*Delta = 1, r-slices m = 2, exact rational arithmetic over symbolic fields. Metric sector: 2D 3x3 periodic lattice, h = delta + gamma, first-order connection (exact-inverse-metric probe separate), symplectic pair-normalization Q in {1, 1/2}. Continuum-limit scaling probes: smooth periodic profiles (sin/cos) at 2Delta in {1, 1/2, 1/4} (aux) and {1, 1/2} (metric flat probe). No refinement loop beyond the single declared prototype (task permits one refinement; the scaling probes are measurements on the same prototype).",
+ "failed_attempts": [
+  {
+   "artifact": "/Users/carlzimmerman/.hermes/cache/scratch/as156_diag_m3.py",
+   "cause": "exact-inverse-metric M3 closure expansion exceeded the 110 s CPU budget (5.17M-term comm at 65 s); dropped in favor of first-order connection + quantified-defect reporting"
+  },
+  {
+   "artifact": "/Users/carlzimmerman/.hermes/cache/scratch/as156_diag_c4.py",
+   "cause": "first scaling probe used arbitrary integer field values (lattice changed between resolutions) - invalid scaling comparison; superseded by smooth-profile probes (as156_diag_c4b.py)"
+  },
+  {
+   "artifact": "C8a initial revision",
+   "cause": "closed-form {Gx,Gy} in the numeric probe included the density p inside the difference (wrong factor); corrected to the exact bracket form and revalidated against the full canonical bracket (equality at 1e-15)"
+  }
+ ],
+ "limitations": "Finite-lattice evidence with quantified defects, not an infinite-lattice proof: C4/C4b/M3 closure defects are O(Delta^2) and measured to scale to zero; M2/M3 O(gamma) residuals are truncation diagnostics of the first-order connection (exact-connection probe supplied as evidence, not a full second-order run under the 120 s bound). The result does not establish: the Hamiltonian constraint algebra, preservation equations of the full constraint system, the counting proof of constrained pairs (AS151's domain, completed), any empirical/phenomenological statement (no masses, no rotation curves), nor the kappa=1/2 normalization (adopted per task). The heat-field equation of motion is used only as an off-shell witness profile.",
+ "next_unresolved_implication": "The first missing bridge to the A07 gate: the Hamiltonian-constraint sector {H(N), H(\u03be)} and {H(N), H(M)} brackets for the CA5-GNC-R canonical cell with the same lattice-verified generator normalization, i.e. preservation equations and the full first-class system - the momentum-only statement does not close gravity.",
+ "suggested_followup": "Dispatch a child seed (CA5-GNC-R constraint-algebra gate) that computes {H(N_1), H(N_2)} on the same 3x3 lattice with the exact inverse metric and the measured-functional form of H, targeting the structure-function/deformation classification; alternatively certify in Lean the flat-limit weight-1-density identity d_c(xi^c pi^ab) - pi^cb d_c xi^a - pi^ac d_c xi^b on the 2D lattice (extending the C1 certificate) since the M2 flat-limit residual is the strongest exact statement of this run.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "adopted": [
+   "kappa = 1/2 for a0 = kappa*c*sqrt(G*rho_Lambda) (task-mandated input; both canonical footings carried as anchors, distinct vacuum densities)",
+   "FINAL_ACTION.md eq. (4) action structure (pinned hash) including the auxiliary fields with vanishing primary momenta",
+   "ADM density-weight algebra for pi^j_i and the covariant divergence convention",
+   "canonical brackets {q,p} = +delta, orientation delta F = {F, G}"
+  ],
+  "derived": [
+   "generator (T) from the requirement {F, G(xi)} = L_xi F on every phase-space field (C1 verifies 64/64)",
+   "reduced form (14) on the auxiliary primary surface (C2)",
+   "first-classness of the auxiliary primaries (C3)",
+   "negative-control prediction residual -xi.dW (C5 fires)",
+   "first-order-exact M1 and flat-limit-exact M2 metric identities (C8 order probes)",
+   "O(Delta^2) closure-defect classification with measured quadratic scaling (C8a)"
+  ]
+ },
+ "closure_implication": "Gate: A07/CA5-GNC-R momentum constraint structure. Exact implication: the extended generator (T) is the correct momentum map of the spatial diffeomorphism action on the CA5-GNC-R phase space (C1 exact, C5 fires correctly, C2 exact reduction), so the momentum-constraint part of the common-action closure witness is supplied at the stated orders; the remaining same-action gate is the Hamiltonian constraint algebra (next_unresolved_implication), i.e. this result is a necessary but not sufficient component of the common-action closure witness under the amended thirteen-item target (filtered MONO, criterion B untouched).",
+ "child_proposals": [
+  {
+   "id": "AS156.C01",
+   "spec_path": null,
+   "fingerprint": "exact-inverse-metric {H(N_1),H(N_2)} Hamiltonian-constraint bracket on the 3x3 lattice, 2D, measured functional form of H",
+   "target": "{H(N_1),H(N_2)} = 0 (gravity) / structure-function classification for the CA5-GNC-R cell incl. auxiliaries",
+   "controls": "flat-limit exactness; O(Delta^2) scaling of the residual; negative control with an off-shell lapse profile",
+   "dependencies": [
+    "AS156 (this result)",
+    "AS151 (primary constraints), completed"
+   ],
+   "dispatch_state": "undispatched - ready specification; bounded prototype 120 s would need the exact-inverse-metric M3-style expansion to be split per site (the single-shot M3 expansion exceeded 110 s in this run)"
+  }
+ ],
+ "closure_candidate": null
+}

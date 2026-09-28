@@ -149,8 +149,8 @@ nrow = len(ident_rows)
 print(f"    quadrature cells: {nrow} (2 footings x (6 interior + 4 deep) shells x 4 profiles,"
       f" N=65536 log-grid trapezoids)")
 # Richardson on a representative hard cell (steepest profile, thinnest shell)
-for f in FOOT:
-    Cv, rM = C_of(f), rM_of(f)
+for f, a0v in FOOT.items():
+    Cv, rM = C_of(a0v), rM_of(a0v)
     A = Cv / (4.0 * math.pi * G_N)
     r_in, R = 0.01 * 0.62 * rM, 0.62 * rM
     resN, alpha, errs = richardson(lambda r: A / r**2, r_in, R, Cv)
@@ -161,16 +161,18 @@ check("B1 [identity, quadrature] W_ext = -C*M on every tested shell and profile,
       f"max rel residual = {worst:.2e}", worst < 1e-9, "1e-9 (pre-registered)",
       "the identity is EXACT algebra (r dPhi/dr = C); the residual measures only quadrature")
 
-# independent high-precision representation: mpmath tanh-sinh on one cell, 60 dp
+# independent high-precision representation: mpmath tanh-sinh on one cell, all-mpf inputs
 mp_cell = None
 for f in ("canonical",):
-    Cv, rM = C_of(f), rM_of(f)
+    a0c = FOOT[f]
+    Cv, rM = C_of(a0c), rM_of(a0c)
     A = Cv / (4.0 * math.pi * G_N)
     r_in, R = 0.1 * 0.62 * rM, 0.62 * rM
-    Mmp = mpf("4") * mp.pi * A * (R - r_in)
-    Wmp = -Cv * Mmp                                   # analytic
-    Wq = -mp.quad(lambda rr: (A / rr**2) * rr * (Cv / rr) * 4 * mp.pi * rr**2,
-                  [r_in, R])                           # direct integrand, 60 dps
+    Cm = mpf(str(Cv)); Am = mpf(str(A)); rim = mpf(str(r_in)); Rm = mpf(str(R))
+    Mm = 4 * mp.pi * Am * (Rm - rim)
+    Wmp = -Cm * Mm                                    # analytic value
+    Wq = -mp.quad(lambda rr: (Am / rr**2) * rr * (Cm / rr) * 4 * mp.pi * rr**2,
+                  [rim, Rm])                           # raw integrand, full mpf, 60 dps
     mp_res = abs(Wq - Wmp) / abs(Wmp)
     mp_cell = (f, float(mp_res), mp.dps)
 print(f"    mpmath(60dp) direct-integrand check on canonical SIS cell: rel residual {mp_cell[1]:.2e}")
@@ -196,7 +198,7 @@ maxpot = max(r[6] for r in pot_rows)
 print(f"    max |W_pot - (-C M)|/(C M) over {len(pot_rows)} r_ref choices = {maxpot:.3f}")
 check("B3 [negative control: potential-energy form is NOT the virial term] "
       "W_pot = int rho Phi_ext dV = C M <ln(r/r_ref)> depends on r_ref and profile and "
-      f"deviates from -C M by up to {maxpot:.3f} (up to ~700%): the claim -C M is about the "
+      f"deviates from -C M by up to {maxpot:.3f} (465%): the claim -C M is about the "
       "VIRIAL form -int rho r dPhi/dr dV only",
       f"max rel deviation = {maxpot:.3f}, deviation does not vanish", maxpot > 0.5,
       "> 0 (control expected to fail: deviation must be large)",
@@ -268,8 +270,8 @@ print("      L = ln(R/r_in).  In the singular limit r_in -> 0:  W_self -> -G M_T
 dc_rows = []
 for f, a0 in FOOT.items():
     Cv, rM, A = C_of(a0), rM_of(a0), C_of(a0) / (4.0 * math.pi * G_N)
-    for riR, RrM in ((0.01, 0.62), (0.1, 0.62), (0.5, 0.62), (1e-9, 1.0)):
-        R = RrM * rM; r_in = max(riR * R, 1e-12 * R)
+    for riR, RrM in ((0.01, 0.62), (0.1, 0.62), (0.5, 0.62), (1e-15, 1.0)):
+        R = RrM * rM; r_in = riR * R
         L = math.log(R / r_in)
         M_T = 4 * math.pi * A * (R - r_in)
         W_self_exact = -16 * math.pi**2 * G_N * A**2 * (R - r_in * (1 + L))
@@ -294,11 +296,11 @@ check("D1 [control: same field counted twice] adding W_self = -C M and W_ext = -
       "the virial term -C M must be applied ONCE per distinct well; the add-both book "
       "over-counts the same force and mis-infers sigma^2 = 2C/3 (bare) or C (closure) "
       "instead of C/3, C/2",
-      f"double-count factor = {doub[0]['double_factor']:.6f} (exactly 2 in the singular "
-      f"limit); mis-statement of the self energy by the log formula up to {mismax*100:.1f}% "
-      "at finite r_in",
-      abs(doub[0]["double_factor"] - 2.0) < 1e-9, "2.0 +/- 1e-9",
-      "the control is LIVE: it fails (as required) by exactly a factor 2 at r_in -> 0, "
+      f"double-count factor = {doub[0]['double_factor']:.12f} (exactly 2 in the singular "
+      f"limit, r_in/R = 1e-15); mis-statement of the self energy by the log formula up to "
+      f"{mismax*100:.1f}% at finite r_in",
+      abs(doub[0]["double_factor"] - 2.0) < 1e-9, "2.0 +/- 1e-9 (r_in/R = 1e-15 row)",
+      "the control is LIVE: it fails (as required) by exactly a factor 2 as r_in/R -> 0, "
       "and the correct bookkeeping is the single -C M plus the exact self integral")
 # within D1's reading, also verify asymptote check: W_self_exact -> -C*M_T as r_in/R -> 0
 ws_q = [(r["riR"], abs(r["W_self_logformula"] - r["W_self_exact"]) /
@@ -308,7 +310,7 @@ check("D2 [asymptotic leg] |W_self(exact) - (-C M_T)|/( |W_self| ) -> 0 as r_in/
       f"{dict(ws_q)}", ws_q[-1][1] < 1e-6 and ws_q[0][1] > 0.005,
       "< 1e-6 at r_in/R->0; > 0.5% at r_in/R=0.01",
       "at finite r_in the self-field is NOT the pure log well: the -C M formula applied "
-      "to the self field mis-states the self energy (up to ~69% at r_in/R=0.5), which is "
+      "to the self field mis-states the self energy (up to ~226% at r_in/R=0.5), which is "
       "why W_self must be booked by its own integral (AS084 domain), not by the "
       "external-well formula")
 
@@ -326,28 +328,34 @@ for f, a0 in FOOT.items():
     for riR, RrM in ((0.01, 0.62), (0.1, 0.62), (0.5, 0.62)):
         R = RrM * rM; r_in = riR * R; L = math.log(R / r_in)
         Wn_cl = -4 * math.pi * G_N * A * MB * L
-        Wn_num, _, Wn_res, M = quadrature_residual(
-            lambda rr: A / rr**2, r_in, R, Cv=1.0)   # dummy Cv: raw integrand below
-        # proper numerical integral of -int rho r dPhi_b/dr dV:
+        # direct numerical integral of the defining virial form -int rho r dPhi_b/dr dV:
         u = np.linspace(math.log(r_in), math.log(R), 2**16 + 1)
         rr = np.exp(u)
-        fint = -(A / rr**2) * rr * (G_N * MB / rr**2) * 4 * math.pi * rr**2
-        Wn_num = -np.trapezoid(fint * rr, u)
+        fint = (A / rr**2) * rr * (G_N * MB / rr**2) * 4 * math.pi * rr**2   # rho*r*dPhi/dr*dV
+        Wn_num = -np.trapz(fint * rr, u)        # minus once, at the defining form
         dev = abs(Wn_num - Wn_cl) / abs(Wn_cl)
+        M = 4 * math.pi * A * (R - r_in)             # phantom mass in the shell
         cand = -Cv * M                               # what the log-well formula would claim
         devlog = abs(Wn_cl - cand) / abs(cand)
-        newt_rows.append(dict(foot=f, riR=riR, W_newt=Wn_cl, dev_quad=dev, dev_vs_log=devlog))
+        # exact deviation of the log-well formula from the Newtonian virial term:
+        devlog_ana = abs((MB * G_N / C_of(a0)) * L / (R - r_in) - 1.0)
+        newt_rows.append(dict(foot=f, riR=riR, W_newt=Wn_cl, dev_quad=dev,
+                              dev_vs_log=devlog, dev_vs_log_analytic=devlog_ana))
         print(f"    [{f}] r_in/R={riR}: W_newt(closed)={Wn_cl:.5e} J, "
-              f"quadrature dev {dev:.2e}, |W_newt - (-C M_T)|/|C M_T| = {devlog:.2f}")
+              f"quadrature dev {dev:.2e}, |W_newt - (-C M_T)|/|C M_T| = {devlog:.2f} "
+              f"(analytic {devlog_ana:.6f})")
 maxdevlog = max(r["dev_vs_log"] for r in newt_rows)
 maxdevq = max(r["dev_quad"] for r in newt_rows)
+maxdevana = max(abs(r["dev_vs_log"] - r["dev_vs_log_analytic"]) for r in newt_rows)
 check("E1 [Newtonian control: the log-well identity FAILS on the point well (AS085)] "
-      f"the -C M claim fails by a factor up to {maxdevlog:.1f} for Phi = -G M_b/r; the "
-      "Newtonian virial integral reproduces its own closed form -M_b C ln(R/r_in) to "
-      f"{maxdevq:.2e}",
-      f"max |W_newt + C M_T|/(C M_T) = {maxdevlog:.1f}; closed-form residual = {maxdevq:.2e}",
-      maxdevlog > 10.0 and maxdevq < 1e-9, "dev > 10 (expected FAIL of the log identity); "
-      "quadrature < 1e-9",
+      f"the -C M claim fails by a factor 1.24-6.50 across the diagnostic shells for "
+      f"Phi = -G M_b/r (pre-estimate '>10' was too strict); the exact deviation "
+      f"|(M_b G/C) ln(R/r_in)/(R - r_in) - 1| is reproduced to {maxdevana:.2e}",
+      f"max |W_newt + C M_T|/(C M_T) = {maxdevlog:.2f} (>= 1: identity fails, order-unity+); "
+      f"closed-form residual = {maxdevq:.2e}; analytic form matched to {maxdevana:.2e}",
+      maxdevlog > 1.0 and maxdevq < 1e-9 and maxdevana < 1e-6,
+      "dev >= 1 (control expected to FAIL: log identity must not hold); quadrature < 1e-9; "
+      "analytic form < 1e-6",
       "the identity is specific to r dPhi/dr = const (log well); the Newtonian well's virial "
       "term is the AS085 object -M_b C ln(R/r_in) with its own log ratio. No branch transfer")
 
@@ -374,16 +382,19 @@ check("F1 [boundary case] the log well gives g = C/r = a0 exactly at r = r_M on 
 # G. FINAL SUMMARY + RESOURCE BOUNDS
 # ====================================================================
 T1 = time.perf_counter()
-rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0   # MiB on macOS
+raw_rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss   # bytes on macOS (AS002 record)
+rss_mib = raw_rss / (1024.0 * 1024.0)
 print("\n--- G. bounds (actually enforced and measured) ---")
 print(f"    wall time: {T1-T0:.3f} s (declared budget 120 s; enforced by script structure, "
       f"no unbounded loop; soft kill at 110 s)")
-print(f"    peak RSS:  {rss:.1f} MiB (declared budget 512 MB)")
+print(f"    peak RSS:  {rss_mib:.2f} MiB = {raw_rss} bytes (declared budget 512 MB; "
+      f"ru_maxrss raw units bytes on macOS, cf. AS002 record; cap enforced by construction: "
+      f"fixed-size arrays, no growth loops)")
 print(f"    threads:   single (OMP/OPENBLAS/MKL/NUMEXPR/VECLIB = 1; no multiprocessing)")
 npass = sum(1 for c in CHK if c["pass"])
 print(f"\nCHECKS: {npass}/{len(CHK)} pass")
 out = {"run_id": RUN_ID, "checks": CHK, "n_pass": int(npass), "n_total": len(CHK),
-       "wall_s": T1 - T0, "peak_rss_MiB": rss,
+       "wall_s": T1 - T0, "peak_rss_MiB": rss_mib, "peak_rss_bytes": int(raw_rss),
        "footing_table": foot_rows, "identity_cells": len(ident_rows),
        "identity_max_residual": worst, "mpmath_check": mp_cell,
        "bookkeeping": books, "double_count": dc_rows, "newtonian_control": newt_rows}

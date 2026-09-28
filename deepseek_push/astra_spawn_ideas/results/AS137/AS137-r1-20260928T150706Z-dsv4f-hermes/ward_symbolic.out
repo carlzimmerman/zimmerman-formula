@@ -1,0 +1,41 @@
+==============================================================================
+AS137 symbolic exact checks  (generic curved 2D Lorentzian metric,
+g = diag(-A(t,x), B(t,x)), generic scalar matter)
+==============================================================================
+
+[1] action expansion (measure sqrt(-g) included) reproduces (1/2) sqrt(-g) T h : True
+    flat-limit T^00 = pt**2/2 + px**2/2 + V(phi(t, x))  (>= 0 whenever V >= 0: yes, coefficients [1/2, 1/2] are positive)
+[2] off-shell Ward identity  div T = E_b grad phi  (exact simplification):
+    nu=0: residual = 0   (==0: True)
+    nu=1: residual = 0   (==0: True)
+    E_b from dS/dphi == Box phi - V'(phi): True
+[3] on-shell (E_b = 0, substitute into original equation):
+    nu=0: div T = 0  (==0: True)
+    nu=1: div T = 0  (==0: True)
+[4] negative control Z psi^2 (exact):
+    nu=0: div T' - (E'_psi grad psi + z0 psi^2 grad Z) = 0  (True)
+    nu=1: div T' - (E'_psi grad psi + z0 psi^2 grad Z) = 0  (True)
+    on the baryon shell E'_psi = 0:  div T' = z0 psi^2 grad Z  (extra force term).
+    plain-conservation residual (what the coupling prevents):
+      nu=0: div T'  = (-z0*(2*Zf(t, x)*Derivative(psi(t, x), t) + psi(t, x)*Derivative(Zf(t, x), t))*A(t, x)**2*B(t, x)**2*psi(t, x) + (-Derivative(A(t, x), x)*Derivative(psi(t, x), x) + Derivative(B(t, x), t)*Derivative(psi(t, x), t))*A(t, x)*B(t, x)*Derivative(psi(t, x), t)/2 - A(t, x)**2*B(t, x)*Derivative(psi(t, x), t)*Derivative(psi(t, x), (x, 2)) + A(t, x)**2*Derivative(B(t, x), x)*Derivative(psi(t, x), t)*Derivative(psi(t, x), x)/2 + A(t, x)*B(t, x)**2*Derivative(psi(t, x), t)*Derivative(psi(t, x), (t, 2)) - B(t, x)**2*Derivative(A(t, x), t)*Derivative(psi(t, x), t)**2/2)/(A(t, x)**3*B(t, x)**2)
+             (identity residual = 0, True)
+      nu=1: div T'  = (z0*(2*Zf(t, x)*Derivative(psi(t, x), x) + psi(t, x)*Derivative(Zf(t, x), x))*A(t, x)**2*B(t, x)**2*psi(t, x) + (Derivative(A(t, x), x)*Derivative(psi(t, x), x) - Derivative(B(t, x), t)*Derivative(psi(t, x), t))*A(t, x)*B(t, x)*Derivative(psi(t, x), x)/2 + A(t, x)**2*B(t, x)*Derivative(psi(t, x), x)*Derivative(psi(t, x), (x, 2)) - A(t, x)**2*Derivative(B(t, x), x)*Derivative(psi(t, x), x)**2/2 - A(t, x)*B(t, x)**2*Derivative(psi(t, x), (t, 2))*Derivative(psi(t, x), x) + B(t, x)**2*Derivative(A(t, x), t)*Derivative(psi(t, x), t)*Derivative(psi(t, x), x)/2)/(A(t, x)**2*B(t, x)**3)
+             (identity residual = 0, True)
+    witness psi = x^2, Z = -1/(z0 x^2), flat: E'_psi = 0 (==0: True)
+      div T'^t = 0  ;  div T'^x = 2*wx  (expected (0, 2x): True)
+      => baryon equation holds, yet div T' = (0, 2x) != 0: the extra force
+         term z0 psi^2 grad Z prevents the same on-shell identity.
+[5] any-host-scalar classification (Phi psi^2 instance):
+    nu=0: residual = 0 (True)
+    nu=1: residual = 0 (True)
+    baryon on-shell:  div T = psi^2 grad Phi ;  conservation iff grad Phi = 0
+    (CA4-GNC host fields Z,U,tau,W_b,L,lambda0,phi_A never enter S_b => protected)
+[6] diffeo variation of S_b: local IBP identity, exact pointwise check:
+    config 1: dS_xi + d_mu(sqrt(-g) T xi) at (1/2, 1/3): 0 (==0: True)
+    config 2: dS_xi + d_mu(sqrt(-g) T xi) at (1/2, 1/3): 0 (==0: True)
+    config 3: dS_xi + d_mu(sqrt(-g) T xi) at (1/2, 1/3): 0 (==0: True)
+    => delta_xi S_b = 0 for every compactly supported xi (boundary term
+       integrates to zero); the integral statement is re-checked
+       numerically in ward_numeric.py.
+
+ALL SYMBOLIC CHECKS PASSED (exact zeros).

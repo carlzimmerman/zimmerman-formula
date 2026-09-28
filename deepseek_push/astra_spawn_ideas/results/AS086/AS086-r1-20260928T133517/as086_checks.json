@@ -1,0 +1,388 @@
+{
+ "run_id": "AS086-r1-20260928T133517",
+ "checks": [
+  {
+   "name": "A1 [adopted footing bookkeeping] kappa = a0/(c sqrt(G rho_Lambda)) = 1/2 on both footings when rho_Lambda = 4 a0^2/(G c^2) (consistency of the ADOPTED input; the two footings carry DIFFERENT rho_Lambda, ratio 1.4514871574)",
+   "measured": "kappa = [0.5, 0.5]",
+   "pass": true,
+   "tolerance": "1e-12 rel",
+   "reading": "consistency check of an adopted input, not a derivation"
+  },
+  {
+   "name": "B1 [identity, quadrature] W_ext = -C*M on every tested shell and profile, both footings: max |W_num + C M|/(C M) over 80 cells = 3.55e-16 < 1e-9",
+   "measured": "max rel residual = 3.55e-16",
+   "pass": true,
+   "tolerance": "1e-9 (pre-registered)",
+   "reading": "the identity is EXACT algebra (r dPhi/dr = C); the residual measures only quadrature"
+  },
+  {
+   "name": "B2 [identity, independent representation] 60-digit mpmath quadrature of the RAW integrand rho*r*(dPhi/dr) reproduces -C*M",
+   "measured": "rel residual = 1.02e-61 at 60 digits",
+   "pass": true,
+   "tolerance": "1e-40",
+   "reading": "different representation (direct integrand, tanh-sinh) of the same claim"
+  },
+  {
+   "name": "B3 [negative control: potential-energy form is NOT the virial term] W_pot = int rho Phi_ext dV = C M <ln(r/r_ref)> depends on r_ref and profile and deviates from -C M by up to 4.652 (465%): the claim -C M is about the VIRIAL form -int rho r dPhi/dr dV only",
+   "measured": "max rel deviation = 4.652, deviation does not vanish",
+   "pass": true,
+   "tolerance": "> 0 (control expected to fail: deviation must be large)",
+   "reading": "the virial form is the finite, profile-robust bookkeeping; the energy form is not"
+  },
+  {
+   "name": "C1 [bare virial, no pressure boundaries] sigma^2 = C/3 exactly solves 3 M sigma^2 = C M on every shell (any M): max rel residual = 1.64e-16",
+   "measured": "max |3 M C/3 - C M|/(C M) = 1.64e-16",
+   "pass": true,
+   "tolerance": "1e-12",
+   "reading": "the fixed-log-well collisionless virial pins sigma^2 = C/3 independent of profile"
+  },
+  {
+   "name": "C2 [fluid closure, BOTH pressure boundaries] sigma^2 = C/2 exactly solves 3 M sigma^2 - C M = sigma^2 * 4 pi A (R - r_in) = sigma^2 M (AS083 twin-moment identity, P = sigma^2 rho) on every shell: max rel residual = 3.27e-16",
+   "measured": "max |3 M C/2 - C M - M C/2|/(C M) = 3.27e-16",
+   "pass": true,
+   "tolerance": "1e-12",
+   "reading": "with/without pressure boundaries: C/2 vs C/3 -- the factor 3/2 difference is entirely the boundary-moment bookkeeping (G091's reading A vs B, log-well form)"
+  },
+  {
+   "name": "C3 [control capable of failing: drop the inner moment] outer-only bookkeeping gives sigma^2 = C(R-r_in)/(2R-3r_in): deviation from C/2 up to 100.0% (100% at r_in/R=0.5, exactly C there): the inner surface moment is load-bearing",
+   "measured": "max |sigma^2_outer - C/2|/(C/2) = 1.0000",
+   "pass": true,
+   "tolerance": "> 1% (expected to FAIL), and equals 100% at r_in/R=0.5",
+   "reading": "omitting the inner pressure moment cannot reproduce C/2; this is AS083's own control restated on the log well"
+  },
+  {
+   "name": "D1 [control: same field counted twice] adding W_self = -C M and W_ext = -C M when both represent the identical logarithmic field (coefficient C, valid as r_in/R -> 0) gives -2 C M vs the single-coupling value -C M (factor 2.000000): the virial term -C M must be applied ONCE per distinct well; the add-both book over-counts the same force and mis-infers sigma^2 = 2C/3 (bare) or C (closure) instead of C/3, C/2",
+   "measured": "double-count factor = 2.000000000000 (exactly 2 in the singular limit, r_in/R = 1e-15); mis-statement of the self energy by the log formula up to 225.9% at finite r_in",
+   "pass": true,
+   "tolerance": "2.0 +/- 1e-9 (r_in/R = 1e-15 row)",
+   "reading": "the control is LIVE: it fails (as required) by exactly a factor 2 as r_in/R -> 0, and the correct bookkeeping is the single -C M plus the exact self integral"
+  },
+  {
+   "name": "D2 [asymptotic leg] |W_self(exact) - (-C M_T)|/( |W_self| ) -> 0 as r_in/R -> 0 (self-field literally becomes the C ln r well): {0.01: 0.04878625444912333, 0.1: 0.34380206765828164, 0.5: 2.258891353270928, '->0': 3.436858247250271e-14}",
+   "measured": true,
+   "pass": true,
+   "tolerance": "at finite r_in the self-field is NOT the pure log well: the -C M formula applied to the self field mis-states the self energy (up to ~226% at r_in/R=0.5), which is why W_self must be booked by its own integral (AS084 domain), not by the external-well formula",
+   "reading": ""
+  },
+  {
+   "name": "E1 [Newtonian control: the log-well identity FAILS on the point well (AS085)] the -C M claim fails by a factor 1.24-6.50 across the diagnostic shells for Phi = -G M_b/r (pre-estimate '>10' was too strict); the exact deviation |(M_b G/C) ln(R/r_in)/(R - r_in) - 1| is reproduced to 8.88e-16",
+   "measured": "max |W_newt + C M_T|/(C M_T) = 6.50 (>= 1: identity fails, order-unity+); closed-form residual = 7.66e-15; analytic form matched to 8.88e-16",
+   "pass": true,
+   "tolerance": "dev >= 1 (control expected to FAIL: log identity must not hold); quadrature < 1e-9; analytic form < 1e-6",
+   "reading": "the identity is specific to r dPhi/dr = const (log well); the Newtonian well's virial term is the AS085 object -M_b C ln(R/r_in) with its own log ratio. No branch transfer"
+  },
+  {
+   "name": "F1 [boundary case] the log well gives g = C/r = a0 exactly at r = r_M on both footings, and v_flat^4 = (sqrt(C))^4 = G M_b a0 (the deep relation); C = v_flat^2 carries units m^2/s^2 and W_ext = -C M carries J",
+   "measured": "max rel dev = 0.0e+00",
+   "pass": true,
+   "tolerance": "identities",
+   "reading": "normalization anchor of the deep well; the virial term -C M has SI units J (kg * m^2/s^2)"
+  }
+ ],
+ "n_pass": 11,
+ "n_total": 11,
+ "wall_s": 0.0877614167984575,
+ "peak_rss_MiB": 68.578125,
+ "peak_rss_bytes": 71909376,
+ "footing_table": [
+  {
+   "foot": "canonical",
+   "a0": 9.3619e-11,
+   "rho_Lambda": 5.844412454021876e-27,
+   "kappa_recovered": 0.5,
+   "C": 29491265051.107746,
+   "r_M": 3.1501367298419923e+20,
+   "v_flat": 171730.21007122696,
+   "sigma_kms": 121.43159607595493,
+   "A": 3.5162343698343313e+19
+  },
+  {
+   "foot": "alt",
+   "a0": 1.1279e-10,
+   "rho_Lambda": 8.483089619559099e-27,
+   "kappa_recovered": 0.5,
+   "C": 32370298315.414284,
+   "r_M": 2.8699617266968953e+20,
+   "v_flat": 179917.47640352865,
+   "sigma_kms": 127.22086761890574,
+   "A": 3.859500611492918e+19
+  }
+ ],
+ "identity_cells": 80,
+ "identity_max_residual": 3.5549096411568343e-16,
+ "mpmath_check": [
+  "canonical",
+  1.0164720803095463e-61,
+  60
+ ],
+ "bookkeeping": [
+  {
+   "foot": "canonical",
+   "riR": 0.01,
+   "RrM": 0.62,
+   "M": 8.543660201999999e+40,
+   "s2_C3": 9830421683.702581,
+   "s2_C2": 14745632525.553873,
+   "s2_outer_only": 14820483452.079527,
+   "dev_outer_rel": 0.0050761421319796725,
+   "res_bare": 0.0,
+   "res_twin": 0.0
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.1,
+   "RrM": 0.62,
+   "M": 7.766963819999999e+40,
+   "s2_C3": 9830421683.702581,
+   "s2_C2": 14745632525.553873,
+   "s2_outer_only": 15613022674.115866,
+   "dev_outer_rel": 0.05882352941176471,
+   "res_bare": 1.450757431321827e-16,
+   "res_twin": 7.253787156609136e-17
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.5,
+   "RrM": 0.62,
+   "M": 4.3149798999999994e+40,
+   "s2_C3": 9830421683.702581,
+   "s2_C2": 14745632525.553873,
+   "s2_outer_only": 29491265051.10774,
+   "dev_outer_rel": 0.9999999999999994,
+   "res_bare": 1.3056816881896444e-16,
+   "res_twin": 6.528408440948222e-17
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.01,
+   "RrM": 1.0,
+   "M": 1.3780097099999998e+41,
+   "s2_C3": 9830421683.702581,
+   "s2_C2": 14745632525.553873,
+   "s2_outer_only": 14820483452.079527,
+   "dev_outer_rel": 0.0050761421319796725,
+   "res_bare": 1.6353992862173324e-16,
+   "res_twin": 3.270798572434665e-16
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.1,
+   "RrM": 1.0,
+   "M": 1.2527361e+41,
+   "s2_C3": 9830421683.702581,
+   "s2_C2": 14745632525.553873,
+   "s2_outer_only": 15613022674.115868,
+   "dev_outer_rel": 0.058823529411764844,
+   "res_bare": 0.0,
+   "res_twin": 0.0
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.5,
+   "RrM": 1.0,
+   "M": 6.959645e+40,
+   "s2_C3": 9830421683.702581,
+   "s2_C2": 14745632525.553873,
+   "s2_outer_only": 29491265051.10774,
+   "dev_outer_rel": 0.9999999999999994,
+   "res_bare": 1.6190452933551589e-16,
+   "res_twin": 0.0
+  },
+  {
+   "foot": "alt",
+   "riR": 0.01,
+   "RrM": 0.62,
+   "M": 8.543660201999999e+40,
+   "s2_C3": 10790099438.471428,
+   "s2_C2": 16185149157.707142,
+   "s2_outer_only": 16267307275.258955,
+   "dev_outer_rel": 0.005076142131979709,
+   "res_bare": 0.0,
+   "res_twin": 6.007846440401085e-17
+  },
+  {
+   "foot": "alt",
+   "riR": 0.1,
+   "RrM": 0.62,
+   "M": 7.766963819999999e+40,
+   "s2_C3": 10790099438.471428,
+   "s2_C2": 16185149157.707142,
+   "s2_outer_only": 17137216755.219326,
+   "dev_outer_rel": 0.05882352941176466,
+   "res_bare": 0.0,
+   "res_twin": 6.608631084441194e-17
+  },
+  {
+   "foot": "alt",
+   "riR": 0.5,
+   "RrM": 0.62,
+   "M": 4.3149798999999994e+40,
+   "s2_C3": 10790099438.471428,
+   "s2_C2": 16185149157.707142,
+   "s2_outer_only": 32370298315.414288,
+   "dev_outer_rel": 1.0000000000000002,
+   "res_bare": 0.0,
+   "res_twin": 1.189553595199415e-16
+  },
+  {
+   "foot": "alt",
+   "riR": 0.01,
+   "RrM": 1.0,
+   "M": 1.3780097099999998e+41,
+   "s2_C3": 10790099438.471428,
+   "s2_C2": 16185149157.707142,
+   "s2_outer_only": 16267307275.258957,
+   "dev_outer_rel": 0.005076142131979827,
+   "res_bare": 1.489945917219469e-16,
+   "res_twin": 2.234918875829204e-16
+  },
+  {
+   "foot": "alt",
+   "riR": 0.1,
+   "RrM": 1.0,
+   "M": 1.2527360999999997e+41,
+   "s2_C3": 10790099438.471428,
+   "s2_C2": 16185149157.707142,
+   "s2_outer_only": 17137216755.219326,
+   "dev_outer_rel": 0.05882352941176466,
+   "res_bare": 1.638940508941416e-16,
+   "res_twin": 2.458410763412124e-16
+  },
+  {
+   "foot": "alt",
+   "riR": 0.5,
+   "RrM": 1.0,
+   "M": 6.959644999999999e+40,
+   "s2_C3": 10790099438.471428,
+   "s2_C2": 16185149157.707142,
+   "s2_outer_only": 32370298315.414284,
+   "dev_outer_rel": 1.0,
+   "res_bare": 0.0,
+   "res_twin": 0.0
+  }
+ ],
+ "double_count": [
+  {
+   "foot": "canonical",
+   "riR": 0.01,
+   "W_self_exact": -2.402428010997597e+51,
+   "W_self_logformula": -2.519633475237827e+51,
+   "W_double": -5.039266950475654e+51,
+   "misstate_rel": 0.04878625444912337,
+   "double_factor": 2.0975725088982466
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.1,
+   "W_self_exact": -1.7045485653786914e+51,
+   "W_self_logformula": -2.290575886579843e+51,
+   "W_double": -4.581151773159686e+51,
+   "misstate_rel": 0.34380206765828153,
+   "double_factor": 2.687604135316563
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.5,
+   "W_self_exact": -3.904831494102377e+50,
+   "W_self_logformula": -1.2725421592110238e+51,
+   "W_double": -2.5450843184220477e+51,
+   "misstate_rel": 2.2588913532709287,
+   "double_factor": 6.517782706541857
+  },
+  {
+   "foot": "canonical",
+   "riR": "->0",
+   "W_self_exact": -4.10497470713219e+51,
+   "W_self_logformula": -4.104974707132331e+51,
+   "W_double": -8.209949414264661e+51,
+   "misstate_rel": 3.432376021913059e-14,
+   "double_factor": 2.000000000000069
+  },
+  {
+   "foot": "alt",
+   "riR": 0.01,
+   "W_self_exact": -2.6369608513751608e+51,
+   "W_self_logformula": -2.7656082944427263e+51,
+   "W_double": -5.5312165888854526e+51,
+   "misstate_rel": 0.04878625444912333,
+   "double_factor": 2.0975725088982466
+  },
+  {
+   "foot": "alt",
+   "riR": 0.1,
+   "W_self_exact": -1.8709521432464675e+51,
+   "W_self_logformula": -2.5141893585842966e+51,
+   "W_double": -5.028378717168593e+51,
+   "misstate_rel": 0.34380206765828164,
+   "double_factor": 2.687604135316563
+  },
+  {
+   "foot": "alt",
+   "riR": 0.5,
+   "W_self_exact": -4.2860338515987464e+50,
+   "W_self_logformula": -1.3967718658801647e+51,
+   "W_double": -2.7935437317603294e+51,
+   "misstate_rel": 2.258891353270928,
+   "double_factor": 6.5177827065418565
+  },
+  {
+   "foot": "alt",
+   "riR": "->0",
+   "W_self_exact": -4.505715696387469e+51,
+   "W_self_logformula": -4.505715696387624e+51,
+   "W_double": -9.011431392775248e+51,
+   "misstate_rel": 3.436858247250271e-14,
+   "double_factor": 2.000000000000069
+  }
+ ],
+ "newtonian_control": [
+  {
+   "foot": "canonical",
+   "riR": 0.01,
+   "W_newt": -1.890410713552103e+52,
+   "dev_quad": 4.218854621133462e-16,
+   "dev_vs_log": 6.502721058957466,
+   "dev_vs_log_analytic": 6.502721058957465
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.1,
+   "W_newt": -9.452053567760515e+51,
+   "dev_quad": 1.1250278989689233e-15,
+   "dev_vs_log": 3.126496582426606,
+   "dev_vs_log_analytic": 3.126496582426606
+  },
+  {
+   "foot": "canonical",
+   "riR": 0.5,
+   "W_newt": -2.8453516445186655e+51,
+   "dev_quad": 2.6861569080528203e-15,
+   "dev_vs_log": 1.2359586469675656,
+   "dev_vs_log_analytic": 1.2359586469675659
+  },
+  {
+   "foot": "alt",
+   "riR": 0.01,
+   "W_newt": -2.0749587591542883e+52,
+   "dev_quad": 1.4093299820179085e-15,
+   "dev_vs_log": 6.502721058957466,
+   "dev_vs_log_analytic": 6.502721058957466
+  },
+  {
+   "foot": "alt",
+   "riR": 0.1,
+   "W_newt": -1.0374793795771442e+52,
+   "dev_quad": 1.537450889474082e-15,
+   "dev_vs_log": 3.1264965824266064,
+   "dev_vs_log_analytic": 3.126496582426606
+  },
+  {
+   "foot": "alt",
+   "riR": 0.5,
+   "W_newt": -3.123124131355776e+51,
+   "dev_quad": 7.660951956380278e-15,
+   "dev_vs_log": 1.235958646967566,
+   "dev_vs_log_analytic": 1.2359586469675659
+  }
+ ]
+}

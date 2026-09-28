@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "task_id": "AS651",
+  "task_sha256": "7c1ad8cc522bdf2f50b1ae87e8e1a6377f7882eb1a063cb74ec35e60c8c37fa6",
+  "run_id": "AS651-r1-20260928T140734Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter) via Hermes Agent subagent",
+  "started_utc": "2026-09-28T14:07:34Z",
+  "finished_utc": "2026-09-28T14:33:48Z",
+  "execution_status": "completed",
+  "outcome": "counterexample",
+  "exact_claim": "In the pinned k04 four-form sector (S = ∫√-g P(q) d4x, P(q) = (Z/2)q^2 + b beta^2 q^2, F = q eps with F = dA, a0^2 = G beta^2 q^2, b = (2-K_B)I/(16pi), single flux, no membranes): (i) metric variation holding F-components fixed gives T_mu nu = (P - q P_q) g_mu nu, hence eps_vac = q P_q - P = +(Z/2 + b beta^2) q^2 > 0 for all q != 0 (Z,b,beta > 0) - the AS068 sign obstruction is repaired structurally (B-iii PASSES for sign; magnitude is the adopted flux datum q_0 = q_* = a0/(beta sqrt(G)) = 1.145938e-05/beta canonical, 1.380600e-05/beta alternative); (ii) kappa^2 = a0^2/(G eps_vac) = beta^2/(Z/2 + b beta^2) is independent of the flux amplitude (Lean kappa2_q_independent; numeric residual 0.0 at 50 digits) and kappa = 1/2 holds iff Z/beta^2 = 8 - 2b = 7.96398921 (K_B=0; 7.96849056 at K_B=1/4) - an equivalence (Lean kappa_half_iff_ratio) with NO equation fixing the ratio: B-ii FAILS (adopted reals q_0 and Z/beta^2, zero fixing equations) and B-iv FAILS (kappa-projection is a continuum: kappa^2 = 1/(r/2+b) strictly decreasing and injective in r = Z/beta^2, Lean kappa_strict_anti/kappa_proj_distinct; 7-point witness r in {1,2,4,7.96399,8,16,64} -> kappa in {1.3894,0.9911,0.7040,0.50000,0.4989,0.3532,0.1767}); B-i NOT ESTABLISHED (the primitive's shift C is not coupled into P(q) in the pinned class - precisely named missing input); (iii) NEGATIVE CONTROL (q varied as a metric-independent scalar) forces P_q = 0 -> q = 0 -> eps_vac = 0: the three-form structure (dL/dF = const) is load-bearing and the altered premise is violated at the construction's own flux (residual P_q(q_*) = 9.167504e-05 != 0). CONCLUSION: the four-form promotion is NOT an E* in the AS075 sense; kappa = 1/2 remains adopted input; the open question reduces to 'why Z/beta^2 = 8 - 2b' plus 'why q_0 = q_*'. Domain: 4D Lorentzian single-flux quadratic-P class; symbolic statements for all q > 0, Z, b, beta > 0; RAR-truncated kernel witnesses (s_sat = 2.53964, jsat = 0.45252490, dps 50->100 refinement 1e-51), K_B in {0,1/4}, both registered footings; no Q/RAR/EXP/MU2/MONO conclusion transfer, no criterion-B, no dynamics.",
+  "framework_cell": {
+    "action": "S_FF = ∫ sqrt(-g) P(q) d4x four-form sector; P(q) = (Z/2) q^2 + b beta^2 q^2; F_mu nu rho sigma = q eps_mu nu rho sigma, F = dA (three-form potential); T_mu nu = (P - q P_q) g_mu nu; eps_vac = q P_q - P",
+    "source": "kappa_closure/k04_four_form_promotion_consistency.py sha256 15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399 (verified vs SOURCE_MANIFEST.json)",
+    "kernel": "RAR Delta(s) = s/expm1(sqrt(s)) truncated at peak (numeric witnesses only; k04's own kernel)",
+    "branch": "explicit coefficient-mechanism diagnostic (k04 four-form); Q, RAR, EXP, MU2, MONO kept distinct - no conclusions transferred from another branch",
+    "gate": "Requirement 13 (a0-vacuum relation derive-arm), cell A03",
+    "couplings": "Z > 0, beta > 0, b = (2-K_B) I/(16 pi) > 0, K_B in [0, 1/4]; flux amplitude q_0 = boundary/integration datum",
+    "parameters": "a0 = kappa c sqrt(G_N rho_Lambda), kappa = 1/2 ADOPTED INPUT (not derived); rho_Lambda = 4 a0^2/(G c^2); r_M = sqrt(G M_b/a0); v_flat^4 = G M_b a0 (check relations only)",
+    "boundaries": "flux boundary datum q_0 in (0, inf) unconstrained by bulk EOM; limiting cases q -> 0+ (eps -> 0+, a0 -> 0), q -> inf (eps -> inf); kernel domain s in [1e-3, 1e4]",
+    "scale_footing": "canonical a0 = 9.3619e-11 m/s^2 (rho_L = 5.8444124540e-27 kg/m^3, eps_L = 5.2526959597e-10 J/m^3, s = 1.872380e-10 m/s^2, q_* = 1.145938e-05/beta); alternative a0 = 1.1279e-10 m/s^2 (rho_L = 8.4830896196e-27 kg/m^3, eps_L = 7.6242207273e-10 J/m^3, s = 2.255800e-10, q_* = 1.380600e-05/beta); kappa_eff fixed-canonical-rho relabel = 0.602388404; footings never share fixed rho and fixed kappa",
+    "units": "SI; [P] = [eps] = kg m^-1 s^-2; [q] = kg^(1/2) m^(-1/2) s^-1; [Z] = [beta] = [b] = 1; G_N = 6.67430e-11 separate from G_bare/G_cosmo (single-G promotion is k04's own identification, recorded as construction assumption); c = 299792458"
+  },
+  "new_assumptions": [
+    "kappa = 1/2 adopted framework input (never claimed derived here)",
+    "single four-form flux sector, no membranes (membrane/instanton ensemble deferred to child AS651.C02)",
+    "flux amplitude q_0 in (0, inf) adopted as boundary/integration datum",
+    "P(q) quadratic as pinned in k04 (Z > 0, b > 0 for stability/kernel positivity)",
+    "RAR kernel truncation at the peak for numeric witnesses (kernel transfer to MONO = child AS651.C01)",
+    "candidate E* interpretation: the vacuum-datum/kappa condition supplied by the four-form sector is the system {kappa^2 = beta^2/(Z/2 + b beta^2), rho_vac = rho_Lambda}"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS651_four_form_metric_variation_fixes_the_legendre_vacuum_energy.md": "7c1ad8cc522bdf2f50b1ae87e8e1a6377f7882eb1a063cb74ec35e60c8c37fa6",
+    "kappa_closure/k04_four_form_promotion_consistency.py": "15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/results/AS075/AS075-r1-20260928T121520Z-dsv4f-hermes/derivation.md": "287fc2ad43d020270c7759188c1dbe40d05ad6a5e03639dc70ed81304bb2bd28",
+    "deepseek_push/astra_spawn_ideas/results/AS067/AS067-r1-20260928T103724Z-dsv4f-hermes/derivation.md": "db991964f88d9b523d8cec0d57fa0de3681347a047a758a395773ff58a7656e2",
+    "deepseek_push/astra_spawn_ideas/results/AS068/run_20260928T1030/derivation.md": "37d330b96fc392c65a50f4024347e2568263a97756a8b17ab9c711f59fed9748"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/compute_as651.py": "5b87c26ac2f1227d4dfd9208e9e82d0d2e90e432dc022c345317fcb1aabf801d",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/raw_output.txt": "25d2e8eb23ebe636f21fb855a189aa6b935f6e8626884b583b5de035d7dd894e",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/residuals.json": "10755faa2d7ced3459c748558fe53adf9925c5fa3977815cbabbc13902f2dd21",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/err_time.txt": "2a2b9a9c6efe354687df4dca4db861ea878f5178fe91d3093e8a36ba35fee4da",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/derivation.md": "0284d2cbc9de36dd58ceda179c0101c08a86d82f7f7067bb201ee5a92a7531fc",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/AS651_four_form_legendre_certificates.lean": "25257cf9f1ea5b7d9d4a5ef2117537b494d73c23ea66637b485658d177b6921a",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/lean_compile_out.txt": "b760bec4b8d446b5bfe9ef96464356384ec6cd9dcd94f9a49c51113f426a8831",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/lean_axioms_out.txt": "21a78631c432cdc0f0cd44a63ea1785411fe358c4c9063acb8038f8c3475ca21",
+    "deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes/AS651_axioms_probe.lean": "7c5f509467fcf9b9cf9434b5616944744a05a10254874a02138c736a7b775d01",
+    "deepseek_push/astra_spawn_ideas/branches/AS651/AS651.C01.md": "5885d11bb7251f23b47e991b4c24566e5894127407cf7066d177e34a21d7d559",
+    "deepseek_push/astra_spawn_ideas/branches/AS651/AS651.C02.md": "9af24b0982839d405c5e28d771090661968fff53fd37e2ca82520eada7bdd4dd"
+  },
+  "commands": [
+    "shasum -a 256 deepseek_push/astra_spawn_ideas/AS651_four_form_metric_variation_fixes_the_legendre_vacuum_energy.md kappa_closure/k04_four_form_promotion_consistency.py   (cwd: repo root; task + source hash verification)",
+    "cd deepseek_push/astra_spawn_ideas/results/AS651/AS651-r1-20260928T140734Z-dsv4f-hermes && OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l bash -c 'ulimit -t 120; python3 compute_as651.py' > raw_output.txt 2> err_time.txt   (cwd: run dir; exit 0)",
+    "cd fable_independent_2026/lean_2026 && lake env lean <abs path>/AS651_four_form_legendre_certificates.lean   (compile host only; exit 0; no files written into lean_2026)",
+    "cd fable_independent_2026/lean_2026 && lake env lean <abs path>/AS651_axioms_probe.lean   (unfiltered #print axioms; exit 0)"
+  ],
+  "execution_bounds": {
+    "declared": "<= 120 s wall, <= 512 MB, 1 thread, single bounded prototype",
+    "enforced": "ulimit -t 120 CPU cap on the python process (enforced); thread env vars all = 1, single process; RLIMIT_AS 512 MB kernel-refused on macOS (recorded convention of AS067/AS068/AS075/AS078)",
+    "measured": "wall 0.29 s, max RSS 62.1 MB (62062592 bytes, /usr/bin/time -l) on the final run; 23/23 checks, exit 0",
+    "refinement": "jsat kernel integral at mpmath dps 50 vs dps 100 (relative change 1.00e-51 < 1e-40)"
+  },
+  "checks": [
+    {"name": "L1 legendre identity qP_q - P = (Z/2 + b beta^2) q^2", "result": "symbolic residual 0 (exact)", "threshold": "0", "pass": true},
+    {"name": "L2 normalization F_mu nu rho sigma F^mu nu rho sigma = -24 q^2 (concrete chart, eps^{0123} = -1)", "result": "-96.0 vs -24 q^2 = -96.0", "threshold": "|d| < 1e-12", "pass": true},
+    {"name": "L3a metric-variation FD (double, t=1e-6): dS/dt = -(1/2)(q P_q - P)", "result": "FD -2.999999997085 vs theory -3.000000000000", "threshold": "|d| < 1e-8", "pass": true},
+    {"name": "L3b metric-variation FD (mpmath 50 digits)", "result": "-3.000000000001875 vs -3.0 (central-FD Taylor error f''' t^2/6 = 1.875e-12)", "threshold": "|d| < 1e-11", "pass": true},
+    {"name": "L4 independent representation (closed form q(t) = q/sqrt(1+t), mpmath)", "result": "FD vs closed agree at 50 digits", "threshold": "|d| < 1e-20", "pass": true},
+    {"name": "L4b Taylor coefficient of varied action S(t)-(6-3t) - (9/4)t^2 = -1.87484e-12 (next term 15/8 t^3)", "result": "-1.87484e-12", "threshold": "|res| < 1e-10", "pass": true},
+    {"name": "L5 sign: epsilon = +(Z/2 + b beta^2) q^2 > 0 (k01 sign reversed; B-iii structural)", "result": "6.0 > 0", "threshold": "> 0", "pass": true},
+    {"name": "L6 bulk three-form EOM: residual = 0 iff d_mu q = 0; q's value is an unconstrained integration datum", "result": "symbolic 0 at d_mu q = 0; != 0 at d_mu q = 1", "threshold": "exact", "pass": true},
+    {"name": "N1 altered equation violated by true solution: P_q(q_*) != 0", "result": "a0*(Z + 2 b beta^2)/(sqrt(G) beta) != 0 (exact)", "threshold": "!= 0", "pass": true},
+    {"name": "N2 altered system admits only q = 0", "result": "[0]", "threshold": "[0]", "pass": true},
+    {"name": "N3 vacuum energy vanishes at the altered stationary point", "result": "0", "threshold": "0", "pass": true},
+    {"name": "N4 NEGATIVE CONTROL numeric residual at the true flux (canonical footing, beta=1, Z=8-2b): P_q(q_*) = 8 q_*", "result": "9.167504e-05 != 0", "threshold": "!= 0", "pass": true},
+    {"name": "L7 flux amplitude cancels from kappa^2 (symbolic)", "result": "residual 0", "threshold": "0", "pass": true},
+    {"name": "L8 kernel witness refinement (jsat dps 50 vs 100)", "result": "1.00e-51", "threshold": "< 1e-40", "pass": true},
+    {"name": "L9 kernel stiffness bound min(s Delta - j) >= 0 (F6, s in [1e-3, 1e4])", "result": "1.054e-05", "threshold": ">= -1e-12", "pass": true},
+    {"name": "L10 deep-limit boundary s Delta - j -> 0+", "result": "3.333e-07", "threshold": ">= 0 and < 1e-2", "pass": true},
+    {"name": "E1 B-iv witness: kappa-projection continuum (7 distinct values incl. tuned r_half; kappa(r_half) = 0.500000)", "result": "[1.3894178, 0.99111708, 0.70394518, 0.5, 0.49887845, 0.35315619, 0.17672698]", "threshold": "all distinct; 0.5 to 1e-12", "pass": true},
+    {"name": "E2 q-cancellation numerics kappa^2(q) identical for q in {0.1,1,10,100}", "result": "max |k2(q) - k2_ref| = 0.0 (50 digits)", "threshold": "< 1e-40", "pass": true},
+    {"name": "E3 candidate E*: rho_vac/rho_Lambda - 1 at the tuned ratio", "result": "0.0", "threshold": "< 1e-45", "pass": true},
+    {"name": "F1 units dimensional consistency", "result": "[P] = [eps] = kg m^-1 s^-2; [q] = kg^(1/2) m^(-1/2) s^-1; [Z] = [beta] = [b] = 1", "threshold": "dimensionally consistent", "pass": true},
+    {"name": "F2 sign structural (AS068 negative boundary vacuum repaired)", "result": "+Z q^2/2 + b beta^2 q^2", "threshold": "> 0 for q != 0", "pass": true},
+    {"name": "F3 limiting cases q -> 0+ and q -> inf (same measure)", "result": "0^+ and +inf", "threshold": "monotone in q", "pass": true},
+    {"name": "F4 G_N separate from G_bare/G_cosmo (single-G promotion = k04 assumption)", "result": "G_N = 6.67430e-11 only", "threshold": "no identification", "pass": true},
+    {"name": "LEAN compile + axioms (8 theorems)", "result": "compile exit 0, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound} for all 8", "threshold": "hard bar", "pass": true}
+  ],
+  "tested_domain": "Symbolic: all q > 0, Z > 0, b > 0, beta != 0 (Lean-certified identities); metric variation verified on a concrete diagonal chart (representative component g11 and diagonal metric diag(-1,1,1,1)), FD at t = +-1e-6, closed form, Taylor coefficient. Numeric: RAR kernel s in [1e-3, 1e4] (120 samples) for stiffness; jsat at dps 50 with dps-100 refinement (1.00e-51); kappa grid r in {1,2,4,7.96398921,8,16,64}; q-cancellation grid q in {0.1,1,10,100} at dps 50; K_B in {0, 1/4}; both footings (canonical 9.3619e-11, alternative 1.1279e-10 m/s^2) with fixed-kappa-at-1/2 density and the fixed-canonical-density relabel kappa_eff = 0.602388404. Exclusions: no dynamics, no Q/RAR/EXP/MU2/MONO conclusions, no criterion-B statement, no lensing/PPN, one flux sector only.",
+  "failed_attempts": [
+    "Initial run bugs fixed before final: (1) L3 theory value computed q*P_q without subtracting P (fixed); (2) double-precision FD noise at t=1e-6 exceeded a 1e-9 bar (replaced with mpmath 50-digit FD + documented Taylor error 1.875e-12, threshold 1e-11); (3) sympy solve() returned [] for (Z + 2b beta^2) q = 0 under positive assumptions (replaced by explicit factor-nonzero reasoning); (4) E2/timing residuals computed in double precision (moved to mpmath, residual 0.0); (5) Lean implicit-variable elaboration failed for defs with section variables (rewritten with fully explicit parameters); (6) kappa_half_iff field_simp normalization residue (rewritten via div_eq_iff + nlinarith). All preserved in the run dir file history (git-less); final artifacts supersede.",
+    "err_time.txt initially captured only python stderr (empty) because /usr/bin/time's report was not redirected; re-run with full capture, byte-identical PASS/FAIL output confirmed (diff empty), final err_time.txt contains the time/memory report (wall 0.29 s, max RSS 62.1 MB)."
+  ],
+  "limitations": "Does not derive kappa = 1/2 (remains adopted; the seed's own stance preserved). The E*-failure is established only for the quadratic-P, single-flux, no-membrane class as pinned in k04: a linear term lambda q, a two-flux sector, or a coupled primitive-shift C would be a changed model (labelled separately; C01/C02 children). B-i is NOT ESTABLISHED (missing input: the C-dependence of the fully coupled action), not proven impossible. MONO-branch transfer (b_mono with the heat filter) not computed. No dynamics, no criterion-B, no empirical claims, no Q/RAR/EXP/MU2 conclusions. Numerics at 1e-40..1e-51 (and 2.4e-9 double-FD agreement) are finite evidence; exactness rests on the symbolic identities and the Lean certificate. RLIMIT_AS not enforceable on macOS (recorded, measured RSS 62.1 MB).",
+  "next_unresolved_implication": "Exhibit an equation inside an extended action (same source/action conventions, healthy counted DOF, no new species) that fixes Z/beta^2 = 8 - 2b (the kappa-value condition at the adopted kernel) or selects the flux q_0 = q_* = a0/(beta sqrt G) — the first explicit candidate equations are (a) the MONO-kernel redefinition of b (child AS651.C01: b_mono transfers the ratio condition but not the missing mechanism), and (b) the three-form boundary ensemble/instanton flux selection (child AS651.C02: origin of q_0 with the new required hypothesis stated); alternatively prove a no-go for quadratic-P single-flux four-form sectors. Until then AS075's obligation B has no witness in the audited class and kappa = 1/2 stays adopted; gate 13 derive-arm remains OPEN.",
+  "suggested_followup": "Dispatch AS651.C01 (MONO-dependent P term) as the cheapest discriminating continuation: it decides whether the operative filtered-MONO kernel changes the required ratio and the E* rank verdict at all, using the same-notation derivation of this run; AS651.C02 (boundary ensemble) addresses the B-ii datum q_0. If no worker is available, the orchestrator may attach this package to the AS075.C01 E*-search cell as the k04 leg.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitives": "kappa = 1/2 adopted; G_N = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI); rho_Lambda = 4 a0^2/(G c^2); a0 = kappa c sqrt(G rho_Lambda); monog mode sector absent; RAR kernel Delta(s) = s/expm1(sqrt(s)) as the k04 source's own kernel for numeric witnesses",
+    "measured_calibrations": "none fitted: the ratio Z/beta^2 = 8 - 2b is REPORTED as the unforced condition, not calibrated; q_* is derived algebraically from rho_vac = rho_Lambda at kappa = 1/2",
+    "boundary_initial_data": "flux boundary datum q_0 in (0, inf) adopted (free); no other boundary conditions imposed",
+    "derived_equations": "T_mu nu = (P - q P_q) g_mu nu; eps_vac = q P_q - P = +(Z/2 + b beta^2) q^2; kappa^2 = beta^2/(Z/2 + b beta^2) (q-independent); kappa = 1/2 <=> Z/beta^2 = 8 - 2b; EOM residual = 0 iff d_mu q = 0; altered-premise collapse q = 0 (all Lean-certified)"
+  },
+  "closure_implication": "Gate: Requirement 13 (a0-vacuum relation, derive-arm), cell A03. The four-form mechanism repairs the vacuum SIGN (B-iii, AS068's obstruction lifted) and reduces the missing premise to the single real ratio Z/beta^2 = 8 - 2b plus the flux datum q_0 = q_*; it does NOT supply AS075's E* (B-ii fails: two adopted reals, zero equations; B-iv fails: certified continuum kappa-projection; B-i not established). Common-action compatibility: same action class as k04 (source pinned); parameter cell: kappa = 1/2, K_B in [0, 1/4], both footings; no transfer to Q/RAR/EXP/MU2/MONO branches, no criterion-B claim. The derive-arm stays OPEN with a strictly narrowed target: derive Z/beta^2 = 8 - 2b (or select q_0) in the same action conventions, or prove the class no-go.",
+  "child_proposals": [
+    {
+      "id": "AS651.C01",
+      "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS651/AS651.C01.md",
+      "sha256": "5885d11bb7251f23b47e991b4c24566e5894127407cf7066d177e34a21d7d559",
+      "scientific_fingerprint": "(k04 four-form action pin 15c0a7e1..., operative filtered-MONO kernel h_mono replaces RAR Delta, same source/action conventions, target: b_mono and the ratio 8 - 2 b_mono with E* rank verdict, observable: ratio shift + kappa-projection continuity, new input: MONO kernel landmarks y* = 2.3374, y_p = 2.5396, delta = 0.05)",
+      "new_target": "kernel transfer of b into the four-form vacuum condition: does b_mono change Z/beta^2 = 8 - 2b and the B-iv verdict? (includes the registered AS068.C01 same-sign primitive transfer)",
+      "controls": "MONO kernel monotonicity/stiffness s Delta_mono - j_mono >= 0 analogue (capable of failing); distinctness of the ratio; refinement at dps >= 50",
+      "dependencies": "AS651 (provisional), FRAMEWORK_CONTRACT.md MONO block",
+      "dispatch_state": "not_dispatched (no spawn mechanism in this worker; ready spec returned to orchestrator)"
+    },
+    {
+      "id": "AS651.C02",
+      "spec_path": "deepseek_push/astra_spawn_ideas/branches/AS651/AS651.C02.md",
+      "sha256": "9af24b0982839d405c5e28d771090661968fff53fd37e2ca82520eada7bdd4dd",
+      "scientific_fingerprint": "(three-form boundary variation delta S = int dL/dF ^ delta A, boundary ensemble/membrane flux selection, target: q_0 = q_* = a0/(beta sqrt G) as a consequence, new required hypothesis: discharge/ensemble measure with counted DOF)",
+      "new_target": "origin of the flux datum q_0: membrane/instanton ensemble selection with the new hypothesis stated; alternative changed model: topological mass term lambda q (failure-repair branch) with B-ii relocation audit",
+      "controls": "negative control: ensemble visibility in the bulk Einstein equations in the same measure (residual != 0 => B-i fail; 0 => boundary-localized)",
+      "dependencies": "AS651 (provisional), k01 sign conventions",
+      "dispatch_state": "not_dispatched (no spawn mechanism in this worker; ready spec returned to orchestrator)"
+    }
+  ],
+  "closure_candidate": null
+}

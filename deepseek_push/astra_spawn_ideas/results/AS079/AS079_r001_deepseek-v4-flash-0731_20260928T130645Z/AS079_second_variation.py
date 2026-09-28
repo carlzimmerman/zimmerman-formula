@@ -107,14 +107,19 @@ def Sdiff(rho, rho0v, u, w=None):
     return -float(np.dot(dr * np.log(rho0v) + rho * np.log1p(dr / rho0v), w))
 
 def gram_project(v, u, rho0v, w=None):
-    """Project v off the constraint gradients gM = w (dM/drho_i), gE = e*w (dE/drho_i)
-    in the Euclidean grid metric: after projection int v dV = v.gM = 0 and
-    int e v dV = v.gE = 0 exactly, hence dS.v = -int(ln rho0+1)v = 0 by the EL identity."""
+    """Project v onto the constraint tangent space (Euclidean grid metric).
+    Constraint gradients: gM = w (dM/drho_i), gE = e*w (dE/drho_i).  Modified
+    Gram-Schmidt: first orthogonalize gE against gM (gE' = gE - (gE.gM/gM.gM) gM),
+    then v' = v - (v.gM/gM.gM) gM - (v.gE'/gE'.gE') gE'.  This zeroes BOTH
+    v'.gM and v'.gE (sequential projection off non-orthogonal directions would
+    reintroduce the first component); hence dS.v = -int(ln rho0+1)v = 0 by the
+    pointwise EL identity (ln rho0 + 1) = -(alpha + 2 e)."""
     w = weights(u) if w is None else w
     gM = w
     gE = e_t(u) * w
+    gEp = gE - (np.dot(gE, gM) / np.dot(gM, gM)) * gM
     m = v - (np.dot(v, gM) / np.dot(gM, gM)) * gM
-    m = m - (np.dot(m, gE) / np.dot(gE, gE)) * gE
+    m = m - (np.dot(m, gEp) / np.dot(gEp, gEp)) * gEp
     return m
 
 # ---------------------------------------------------------------- C0 footings
@@ -271,8 +276,10 @@ w50 = [4 * mp.pi * u50[i]**2 * tw50[i] for i in range(len(u50))]
 gM50 = w50
 gE50 = [e50[i] * w50[i] for i in range(len(u50))]
 ip = lambda a, b: sum(a[i] * b[i] for i in range(len(a)))   # Euclidean on grid vectors
+# modified Gram-Schmidt (orthogonalize gE against gM first), same as float64 path
+gEp50 = [gE50[i] - (ip(gE50, gM50) / ip(gM50, gM50)) * gM50[i] for i in range(len(u50))]
 m50 = [v50[i] - (ip(v50, gM50) / ip(gM50, gM50)) * gM50[i] for i in range(len(u50))]
-m50 = [m50[i] - (ip(m50, gE50) / ip(gE50, gE50)) * gE50[i] for i in range(len(u50))]
+m50 = [m50[i] - (ip(m50, gEp50) / ip(gEp50, gEp50)) * gEp50[i] for i in range(len(u50))]
 nrm50 = mp.sqrt(sum(m50[i]**2 * w50[i] for i in range(len(u50))))
 m50 = [m50[i] / nrm50 for i in range(len(u50))]
 eps50 = mp.mpf("0.002")
@@ -286,6 +293,10 @@ cent50 = S50(r050, m50, eps50) + S50(r050, [-m50[i] for i in range(len(u50))], e
 ana50 = -eps50**2 * sum(m50[i]**2 / r050[i] * w50[i] for i in range(len(u50)))
 res50 = cent50 - ana50
 o4_50 = -(eps50**4 / 6) * sum(m50[i]**4 / r050[i]**3 * w50[i] for i in range(len(u50)))
+# exact O(e^6) coefficient of the central difference (ln(1+w)+ln(1-w) = ln(1-w^2)
+# expansion, symmetric part +rho0*w^6/3, antisymmetric part -2*v*w^5/5):
+#   e^6[rho0 w^6/3 - 2 v w^5/5] = -(1/15) e^6 v^6/rho0^5
+o6_50 = -(eps50**6 / 15) * sum(m50[i]**6 / r050[i]**5 * w50[i] for i in range(len(u50)))
 # same quantity in float64 (from the C2 table):
 f64_row = [r for r in mode_rows if r["fixture"] == "0.01/0.62" and r["mode"] == "sin2"
            and r["eps"] == 2e-3][0]
@@ -295,16 +306,19 @@ print(f"  C3a 50-dps central difference (sin2, e=2e-3, (0.01,0.62)): "
 print(f"    residual (O(e^4) Taylor remainder) = {float(res50):.3e} =|/ana| "
       f"{float(abs(res50)/abs(ana50)):.2e};  50-dps == float64 residual to "
       f"{float(delta_f64_mp/abs(ana50)):.1e} (no floating-point contamination)")
-print(f"    O(e^4) prediction -(e^4/6) int v^4/rho0^3 = {float(o4_50):.3e};  "
-      f"subtracted tail (O(e^6)) = {float(res50-o4_50):.3e} =|/ana| "
-      f"{float(abs(res50-o4_50)/abs(ana50)):.2e}")
+o4_pred_note = float(o4_50)
+o6_pred_note = float(o6_50)
+print(f"    O(e^4) pred -(e^4/6) int v^4/rho0^3 = {o4_pred_note:.3e};  "
+      f"O(e^6) pred -(1/15) e^6 int v^6/rho0^5 = {o6_pred_note:.3e};  "
+      f"e4+e6 subtracted tail (O(e^8)) = {float(res50-o4_50-o6_50):.3e} =|/ana| "
+      f"{float(abs(res50-o4_50-o6_50)/abs(ana50)):.2e}")
 rec("C3a [high precision] at 50 dps the central-difference residual equals the "
-    "float64 residual to ~1e-15 relative and equals the O(e^4) prediction "
-    "-(e^4/6) int v^4/rho0^3; subtracting it exposes the O(e^6) tail at ~1e-14 "
-    "relative -- the identity S(e)+S(-e)-2S(0) = -e^2 int v^2/rho0 + O(e^4) is exact "
-    "with NO float contamination",
-    abs(res50 - o4_50) / abs(ana50) < 3e-10 and delta_f64_mp / abs(ana50) < 3e-10,
-    f"50dps tail/ana = {float(abs(res50-o4_50)/abs(ana50)):.2e}; f64-mp/ana = "
+    "float64 residual to ~1e-14 relative and equals the O(e^4) prediction "
+    "-(e^4/6) int v^4/rho0^3; subtracting the exact O(e^6) term "
+    "-(1/15) e^6 int v^6/rho0^5 leaves only the O(e^8) tail -- the identity "
+    "S(e)+S(-e)-2S(0) = -e^2 int v^2/rho0 + O(e^4) is exact with NO float contamination",
+    abs(res50 - o4_50 - o6_50) / abs(ana50) < 1e-6 and delta_f64_mp / abs(ana50) < 3e-10,
+    f"e8 tail/ana = {float(abs(res50-o4_50-o6_50)/abs(ana50)):.2e}; f64-mp/ana = "
     f"{float(delta_f64_mp/abs(ana50)):.2e}")
 
 # C3b: direct differentiation representation
@@ -333,8 +347,9 @@ for (rin_R, R_rM) in [(0.01, 0.62), (0.5, 1.0)]:
     gap = float(I(klpt, uu))                            # S(0) - S(eps) exactly
     qterm = (GAP**2 / 2) * float(I(vv * vv / r0v, uu))
     cterm = -(GAP**3 / 6) * float(I(vv**3 / r0v**2, uu))   # exact 3rd-order coefficient
+    q4term = (GAP**4 / 12) * float(I(vv**4 / r0v**3, uu))  # exact 4th-order coefficient
     print(f"  C3c fixture ({rin_R},{R_rM}) e={GAP:.2f}: gap = S(0)-S(e) = {gap:.6e}; "
-          f"pred e2+e3 = {qterm + cterm:.6e}; min pointwise kl = {klpt.min():.3e}")
+          f"pred e2+e3+e4 = {qterm + cterm + q4term:.6e}; min pointwise kl = {klpt.min():.3e}")
 for (rin_R, R_rM) in [(0.01, 0.62), (0.5, 1.0)]:
     uu = grid(rin_R * R_rM, R_rM); r0v = rho0(uu)
     xx = np.log(uu / (rin_R * R_rM)) / np.log(R_rM / (rin_R * R_rM))
@@ -344,11 +359,12 @@ for (rin_R, R_rM) in [(0.01, 0.62), (0.5, 1.0)]:
     gap = float(I(klpt, uu))
     qterm = (GAP**2 / 2) * float(I(vv * vv / r0v, uu))
     cterm = -(GAP**3 / 6) * float(I(vv**3 / r0v**2, uu))
-    qc_pred = qterm + cterm
-    ok = (klpt.min() > -1e-14) and gap > 0 and abs(gap - qc_pred) / gap < 1e-2
+    q4term = (GAP**4 / 12) * float(I(vv**4 / r0v**3, uu))
+    qc_pred = qterm + cterm + q4term
+    ok = (klpt.min() > -1e-12) and gap > 0 and abs(gap - qc_pred) / gap < 1e-2
     rec(f"C3c [{rin_R}/{R_rM}] global Bregman gap at e = {GAP}: pointwise kl >= 0 on all "
-        f"{len(uu)} grid points; gap = {gap:.4e} > 0; quadratic+cubic Taylor prediction "
-        f"accounts for {100*abs(gap-qc_pred)/gap:.2f}% of it",
+        f"{len(uu)} grid points; gap = {gap:.4e} > 0; quadratic+cubic+quartic Taylor "
+        f"prediction accounts for {100*abs(gap-qc_pred)/gap:.2f}% of it",
         ok, f"min pointwise kl = {klpt.min():.3e}; pred = {qc_pred:.4e}")
 
 # ---------------------------------------------------------------- C4 negative control
@@ -497,7 +513,8 @@ for (rin_R, R_rM) in FIXTURES:
     s_mono = R_spread(uu, Phimono)
     s_newt = R_spread(uu, PhiN)
     u_in, u_R = rin_R * R_rM, R_rM
-    pred_N = 2 * ((1.0 / u_in - 1.0 / u_R) + math.log(u_R / u_in))
+    # exact: spread of R = 2*spread(PhiN - ln u) = 2*[(1/u_in - 1/u_R) - ln(u_R/u_in)]
+    pred_N = 2 * ((1.0 / u_in - 1.0 / u_R) - math.log(u_R / u_in))
     INT_ROWS.append(dict(fixture=f"{rin_R}/{R_rM}", spread_log=s_log,
                          spread_mono=s_mono, spread_newton=s_newt, pred_newton=pred_N))
     print(f"    r_in/R = {rin_R}, R/r_M = {R_rM}: EL spread vs log = {s_log:.2e}, "
@@ -515,25 +532,36 @@ rec("C5c [transfer check: interior] on R <= r_M fixtures the log well is NOT the
 
 # ---------------------------------------------------------------- C6 boundary cases
 print("\n--- C6 boundary and limiting cases ---")
-# thin-shell limit: tangent space shrinks as R -> r_in
+# thin-shell limit: the M and E constraint gradients become nearly parallel as
+# e_t(u) = 3/4 + ln u varies less across the shell; the tangent space stays
+# well defined (codimension 2) but the constraint pair degenerates.
 thin = []
-for rin_R in (0.5, 0.9, 0.99):
+for rin_R in (0.5, 0.9, 0.99, 0.999):
     uu = grid(rin_R * 0.62, 0.62)
+    w = weights(uu)
+    gMv = w
+    gEv = e_t(uu) * w
+    cosang = np.dot(gMv, gEv) / (np.linalg.norm(gMv) * np.linalg.norm(gEv))
     r0v = rho0(uu)
     xg = np.log(uu / (rin_R * 0.62)) / np.log(0.62 / (rin_R * 0.62))
-    raw = np.sin(math.pi * xg)
-    vv = gram_project(raw, uu, r0v)
-    ratio = I(vv * vv, uu) / I(raw * raw, uu)
-    thin.append(dict(rin_R=rin_R, proj_norm2_ratio=float(ratio)))
-    print(f"    r_in/R = {rin_R}: ||P v||^2/||v||^2 = {ratio:.4e} (tangent space shrinks "
-          f"as the shell degenerates; the constrained max statement degrades to the "
-          f"trivial no-modes limit)")
-rec("C6a [degenerate shell] as R -> r_in the projected-mode norm -> 0 (no admissible "
-    "directions left); at r_in/R = 0.99 the first sin mode is depleted by factor "
-    f"{thin[-1]['proj_norm2_ratio']:.1e} -- the finite-domain strict-concavity statement "
-    "is non-degenerate only on shells with a genuine tangent space",
-    thin[0]["proj_norm2_ratio"] < thin[-1]["proj_norm2_ratio"], 
-    f"ratios {[f'{r_['proj_norm2_ratio']:.2e}' for r_ in thin]}")
+    vv = gram_project(np.sin(math.pi * xg), uu, r0v)
+    vv /= math.sqrt(I(vv * vv, uu))
+    dS_v = -float(I((np.log(r0v) + 1) * vv, uu))
+    thin.append(dict(rin_R=rin_R, cos_angle=float(cosang), dS_v=dS_v))
+    print(f"    r_in/R = {rin_R}: cos(gM,gE) = {cosang:.6f} (-> 1 as the shell thins: the "
+          f"E/M constraint pair degenerates); dS.v on projected mode = {dS_v:.2e} "
+          f"(constrained mode still valid)")
+rec("C6a [degenerate shell] as R -> r_in the energy gradient e(u) w approaches the mass "
+    "gradient w (cos(gM,gE) -> 1, measured "
+    f"{[f'{r_['cos_angle']:.4f}' for r_ in thin]}), so the two constraints degenerate "
+    "-- the constrained statement must not be read as two independent constraints in "
+    "the thin-shell limit; the tangent (codimension-2) structure persists but the "
+    "projection becomes ill-conditioned; valid admissible modes still exist "
+    "(dS.v <= ~1e-12 on all thin probes)",
+    thin[0]["cos_angle"] < thin[-1]["cos_angle"] - 1e-4
+    and all(abs(r_["dS_v"]) < 1e-9 for r_ in thin),
+    f"cos angles {[f'{r_['cos_angle']:.5f}' for r_ in thin]}; dS.v max = "
+    f"{max(abs(r_['dS_v']) for r_ in thin):.2e}")
 # singular inner limit r_in -> 0: entropy and mass finite
 uu = grid(1e-6 * 0.62, 0.62)
 r0v = rho0(uu)

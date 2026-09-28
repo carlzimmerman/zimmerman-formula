@@ -1,0 +1,234 @@
+{
+ "schema_version": 2,
+ "task_id": "AS081",
+ "task_sha256": "9023b0b523fff46f3a3e14d636a7553adcf9289de99f406c2b7fb64ece08f3e8",
+ "run_id": "run_20260928T132023Z_as081-9023b0b5",
+ "worker": "Hermes subagent seed (deepseek/deepseek-v4-flash-0731 via openrouter, platform=subagent); actual provider identity per runtime environment",
+ "started_utc": "2026-09-28T13:20:23Z",
+ "finished_utc": "2026-09-28T14:34:29Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "THEOREM (self-source != imposed baryon well), domain r>0 (open annuli r_in<=r<=R, r_in>0, R<=r_M interior / deep-exterior shells q=r_in/r_M in {10,100}, s=R/r_in in {2,10}), flat static spherical Poisson geometry, C>0, G>0, M_b>0: (1) Delta(C ln r)=C/r^2=4 pi G rho_src with rho_src(r)=C/(4 pi G r^2)=A/r^2, A=C/(4 pi G) \u2014 the log well's source is the extended phantom density (exact identity; sympy diff 0, FD max rel 1.73e-07, mpmath 60-digit 5-point stencil max rel 2.67e-37, Poisson residual 1.73e-07); (2) Delta(-G M_b/r)=0 on r>0 (harmonic exterior; FD rel 7.08e-07) with entire baryon flux 4 pi G M_b (rel 1.54e-16): the log well is NOT the point-baryon potential nor that potential plus any harmonic completion \u2014 the negative control 'assign the log potential to a point Newtonian baryon without a modified equation' FAILS as required (normalized source mismatch = 1.000 on the annulus; enclosed mass M_enc(<r)/M_b = r/r_M in {1,2,10} at {r_M,2r_M,10r_M}); (3) the only 'baryonic' readings: amplitude C=sqrt(G M_b a0) fixed by equipartition M_ph(<r_M)=M_b (single-radius coincidence C r/G=M_b iff r=G M_b/C=r_M; at 2 r_M the mass is 2 M_b), the true 1/r well entering only as the leading neglected term -G M_b/r of the two-source potential (|Phi_b|/|C ln(R/r_in)| = 14.4%, 4.3%, 1.44%, 0.43% on the four deep shells) and as the virial coupling W_bar=-M_b C ln(r_break/r_b) (G091 V1c, cited); (4) finite-shell bookkeeping exact with both boundaries: M([r_in,R])=4 pi A (R-r_in)=C (R-r_in)/G (<=1.54e-16), potential drop C ln(R/r_in), deep shells carry q(s-1) M_b = {10,90,100,900} M_b at the interior amplitude \u2014 the interior ansatz does NOT transfer to a point-source deep-MOND domain (no MONO kernel evaluated). Domain/scope: conditional deep-equilibrium sector only; dimensionless theorem holds identically on BOTH footings a0=9.3619e-11 and 1.1279e-10 m/s^2 (Lean T17, H3); dimensional examples per footing separately (kappa=1/2 fixed: rho_Lambda 5.844412e-27 / 8.483090e-27 kg/m^3, ratio 1.451487; fixed rho_Lambda(can) would force kappa_eff=0.602388); M_b=7e10 M_sun fiducial: C=2.949127e10 / 3.237030e10 m^2/s^2, r_M=10.209 / 9.300 kpc, v_flat=171.73 / 179.92 km/s, A=3.516234e19 / 3.859501e19 kg/m. Lean: 18 theorems, zero sorry, axioms subseteq {propext, Classical.choice, Quot.sound}, including laplace_log, newton_laplace, wells_separate, no_imposed_baryon_log_well (conditional on the listed differentiability premises).",
+ "framework_cell": "a0=kappa*c*sqrt(G*rho_Lambda), kappa=1/2 ADOPTED as input (not derived); rho_Lambda=4 a0^2/(G c^2)=5.844412e-27 kg/m^3 (canonical a0=9.3619e-11), 8.483090e-27 kg/m^3 (alternative 1.1279e-10) \u2014 the two footings cannot share both fixed vacuum density and fixed kappa (fixed kappa: density ratio 1.451487; fixed rho_Lambda(can): kappa_eff=0.602388). C=sqrt(G M_b a0)=v_flat^2, r_M=sqrt(G M_b/a0), v_flat^4=G M_b a0; profile rho=A/r^2 with A=C/(4 pi G) (G084/G091 equipartition amplitude), equilibrium relations sigma^2=C/2 and P=sigma^2 rho taken as declared conditional deep-equilibrium targets (not re-derived). G_N=6.67430e-11 used for the Newtonian coupling; G_bare and G_cosmo kept as separate symbols (no vacuum-curvature coupling used in this task, so no ratio is quoted). Branch cell: conditional deep-equilibrium sector ONLY (log well C ln r and its source); no Q/RAR/MU2/EXP/MONO kernel evaluated or transferred; filtered MONO (criterion B) declared operative elsewhere and explicitly NOT invoked. Boundary conditions: r_in>0 (inner edge), cap R<=r_M default; deep-exterior shells (r_in/r_M,R/r_in) in {(10,2),(10,10),(100,2),(100,10)}; r=0 excluded (open domain; log diverges). Units SI: G=6.67430e-11, c=299792458, M_sun=1.98847e30, pc=3.085677581491367e16; fiducial M_b=7e10 M_sun (deepseek_push MW proxy). No fit performed.",
+ "new_assumptions": [
+  "kappa=1/2 adopted per FRAMEWORK_CONTRACT (weakest explicit premise; not derived \u2014 remains an open input)",
+  "The equilibrium relations (profile rho=A/r^2, sigma^2=C/2, P=sigma^2 rho, equipartition M_ph(<r_M)=M_b) are taken as the framework's declared conditional deep-equilibrium targets (G084/G091/G233), not re-derived here; only their source-consequences are derived",
+  "Flat-space Poisson Delta Phi = 4 pi G rho with spherical symmetry; phi=0 at r=0 excluded (open domain)",
+  "Exactly ONE of {fixed rho_Lambda, fixed kappa} can hold across the two footings; the two a0 footings are treated as separate scales, never jointly",
+  "no_imposed_baryon_log_well is a conditional theorem: the pointwise-equality-to-Laplacian transfer assumes differentiability of the Newtonian term and of the harmonic completion h near r (stated as explicit hypotheses in Lean T7/T8) \u2014 the seed's static-profile premises",
+  "Historical sources (G084/G091/G233) used G=6.674e-11, M_sun=1.98892e30; this run uses campaign defaults G=6.67430e-11, M_sun=1.98847e30 \u2014 combined <0.05% on dimensional examples, no structural effect"
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS081_self_source_and_imposed_baryon_well_are_different.md": "9023b0b523fff46f3a3e14d636a7553adcf9289de99f406c2b7fb64ece08f3e8",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f",
+  "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+  "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+  "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/derivation.md": "f85866b7ea4b05166f76bb1dd450cb3eca561c5d01e412a4ac7e06df1a510ab8",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/as081_derive.py": "413b652cc350eceec570c19decd2340bd411fa07e58a4c3d7c51052aebcfb999",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/out/residuals.json": "8f757f4bc23d745deb7035b74d7e23316babc036274877176df2ac434187401f",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/out/results.json": "8f757f4bc23d745deb7035b74d7e23316babc036274877176df2ac434187401f",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/out/stdout_capture.log": "2164c976a21f23a33b39e92cb5407c777b99cff5009ab3a68c7ceebe3505cac0",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/out/failed_attempts_notes.txt": "a16e24314655b8384293f6b447ae6e5df426e92915245d60d2ebd3145ff34dff",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/AS081_cert.lean": "388d9909587de1fac12d69071c992c995443284b02fa03640c398a2dd6288747",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/AS081_axioms.lean": "1bd8155aba7d184edcbb4cc10627ec4cdd769055e00f3f98280fa5cc4c0a72b5",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/out/axioms_check.out": "e95b3b26572649783e496772e727c97d8b08ff09aa01dac46ff40ae2e8c3208d",
+  "deepseek_push/astra_spawn_ideas/results/AS081/run_20260928T132023Z_as081-9023b0b5/AS081_cert.olean": "compiled artifact (lean --root -o), not re-hashed"
+ },
+ "commands": [
+  "sha256sum deepseek_push/astra_spawn_ideas/AS081_self_source_and_imposed_baryon_well_are_different.md (verified 9023b0b5...f3e8); shasum -a 256 of G084/G091/G233 verified against SEED pins and SOURCE_MANIFEST.json \u2014 all three match",
+  "python3 as081_derive.py > out/stdout_capture.log 2>&1 (cwd=<run dir>, env OMP_NUM_THREADS=1, OPENBLAS_NUM_THREADS=1, MKL_NUM_THREADS=1, VECLIB_MAXIMUM_THREADS=1; ulimit -t 120; ulimit -v 524288 attempted \u2014 macOS rejects RLIMIT_AS, recorded) \u2014 exit 0; writes out/results.json (copied to out/residuals.json); in-process wall/RSS record (0.285 s, 91.6 MB)",
+  "cd fable_independent_2026/lean_2026 && lake env lean <abs>/AS081_cert.lean \u2014 exit 0 (18 theorems, zero sorry; compile host untouched, file lives in the run dir)",
+  "LEAN_PATH=<run_dir>:$(lake env printenv LEAN_PATH) /opt/homebrew/bin/lean --root=<run_dir> -o <run_dir>/AS081_cert.olean <run_dir>/AS081_cert.lean \u2014 exit 0",
+  "LEAN_PATH=<run_dir>:$(lake env printenv LEAN_PATH) /opt/homebrew/bin/lean --root=<run_dir> <run_dir>/AS081_axioms.lean > out/axioms_check.out \u2014 exit 0; axiom transcript: all 18 theorems depend on [propext, Classical.choice, Quot.sound] only",
+  "shasum -a 256 over 10 input files and 9 run artifacts (post-writing; see artifacts_sha256)",
+  "date -u (timestamps); grep/byte-inspection of out/stdout_capture.log (exit 0, 0 NUL bytes)"
+ ],
+ "execution_bounds": "DECLARED: <=120 s wall, <=512 MB RSS, 1 thread. ENFORCED (recorded honestly): wall 0.285 s (script-measured time.monotonic); CPU bound ulimit -t 120 s applied and verified (RLIMIT_CPU=120); macOS bash REJECTED ulimit -v (RLIMIT_AS: 'cannot modify limit: Invalid argument') so the 512 MB memory bound is enforced by MONITORING ONLY \u2014 measured peak RSS 91.6 MB (resource.getrusage ru_maxrss), far below the declared bound; threads 1 (single process; OMP/OPENBLAS/MKL/VECLIB_MAXIMUM_THREADS=1 exported before numpy import; no parallel libraries imported). Grid bounds: FD log grid 40001 pts, mpmath dps=60 five-point stencils at 5 radii, sympy exact, six interior fixtures x two footings, four deep-exterior shells. No fit performed; tolerances set before evaluation (see checks).",
+ "checks": [
+  {
+   "name": "A1 [symbolic Laplacian]",
+   "tolerance": "sympy difference == 0",
+   "observed": "0",
+   "pass": true,
+   "note": "sp.diff(C*log r, r, 2) + 2/r*sp.diff(...) simplifies exactly to C/r^2"
+  },
+  {
+   "name": "A2 [FD Laplacian]",
+   "tolerance": "rel resid <= 1e-4",
+   "observed": "1.729e-07",
+   "pass": true,
+   "note": "np.gradient on 40001-pt log grid, interior slice only; edge stencil excluded"
+  },
+  {
+   "name": "A3 [mpmath 60-digit 5-point stencil]",
+   "tolerance": "rel resid <= 1e-30",
+   "observed": "2.667e-37",
+   "pass": true,
+   "note": "independent O(h^4) stencils (h=1e-9 r) at r/r_M in {1e-6,1e-1,1,10,100}; earlier 50-digit 2-point attempt stalled at 1e-24 (see failed_attempts)"
+  },
+  {
+   "name": "B1 [Poisson source]",
+   "tolerance": "rel resid <= 1e-4",
+   "observed": "1.729e-07",
+   "pass": true,
+   "note": "Delta(C ln r) = 4 pi G * C/(4 pi G r^2)"
+  },
+  {
+   "name": "B2 [amplitude identity]",
+   "tolerance": "== 1",
+   "observed": "0.9999999999999999",
+   "pass": true,
+   "note": "A*4*pi*G/C = 1: the G084/G091 equipartition coefficient"
+  },
+  {
+   "name": "C1 [Gauss flux identity]",
+   "tolerance": "rel resid <= 1e-14",
+   "observed": "1.975e-16",
+   "pass": true
+  },
+  {
+   "name": "C2 [enclosed mass]",
+   "tolerance": "rel resid <= 1e-14",
+   "observed": "1.112e-16",
+   "pass": true,
+   "note": "M_enc(<r) = C r/G = 4 pi A r, linear growth \u2014 not a point baryon"
+  },
+  {
+   "name": "D1 [baryon harmonic exterior]",
+   "tolerance": "rel to local scale <= 1e-4",
+   "observed": "7.079e-07",
+   "pass": true,
+   "note": "radial Laplacian of -G M_b/r == 0 on the annulus (u-space stencil, same operator as A2)"
+  },
+  {
+   "name": "D2 [baryon Gauss flux]",
+   "tolerance": "rel resid <= 1e-14",
+   "observed": "1.543e-16",
+   "pass": true,
+   "note": "flux at 10 r_M = 4 pi G M_b exactly: delta-normalized point source"
+  },
+  {
+   "name": "E1 [NEGATIVE CONTROL: log well assigned to point baryon, no modified equation]",
+   "tolerance": "normalized mismatch == 0 IF the assignment were true",
+   "observed": "mismatch = 1.000000",
+   "pass": false,
+   "note": "CONTROL FIRES as required: on r>0 the baryon source is 4 pi G M_b delta == 0 while Delta(C ln r)=C/r^2 > 0; the assignment fails on the whole annulus. The control is capable of failing (it would pass only if the log well were the baryon's well) and demonstrably registers the difference"
+  },
+  {
+   "name": "E2 [enclosed-mass arm of the control]",
+   "tolerance": "== {1, 2, 10}",
+   "observed": "[1.0, 2.0, 10.000000000000002]",
+   "pass": true,
+   "note": "M_enc(<k r_M)/M_b = k: coincidence only at the single equipartition radius k=1"
+  },
+  {
+   "name": "E3 [Laplacian separation]",
+   "tolerance": "== 1 (never 0)",
+   "observed": "1.0",
+   "pass": true,
+   "note": "min |Delta_log - Delta_bar|/|Delta_log| = 1 on the annulus; Lean-certified (wells_separate)"
+  },
+  {
+   "name": "F1 [deep regime]",
+   "tolerance": "rel resid <= 1e-4",
+   "observed": "1.458e-07",
+   "pass": true,
+   "note": "identity exact down to r/r_M=1e-6; no Newtonian limit for the log well (Laplacian never vanishes, potential unbounded)"
+  },
+  {
+   "name": "F2 [leading neglected term]",
+   "tolerance": "declared values (bookkeeping)",
+   "observed": "|Phi_b|/|C ln(R/r_in)| = {0.1443, 0.0434, 0.0144, 0.0043} on (q,s) in {(10,2),(10,10),(100,2),(100,10)}",
+   "pass": true,
+   "note": "the 1/r term is a 0.4%-14% correction of the log in the phantom-dominated exterior"
+  },
+  {
+   "name": "G1 [finite-shell mass]",
+   "tolerance": "rel resid <= 1e-12 on all six fixtures",
+   "observed": "<= 1.544e-16",
+   "pass": true,
+   "note": "M([r_in,R]) = C (R-r_in)/G; potential drop C ln(R/r_in) finite for r_in>0"
+  },
+  {
+   "name": "G2 [deep-exterior shells]",
+   "tolerance": "== q(s-1) exactly",
+   "observed": "[10, 90, 100, 900] vs [10, 90, 100, 900]",
+   "pass": true,
+   "note": "deep shells at the interior amplitude carry q(s-1) M_b: interior normalization does NOT transfer to a point-source deep-MOND domain; no MONO transfer per seed"
+  },
+  {
+   "name": "H1 [framework identity]",
+   "tolerance": "rel resid <= 1e-15",
+   "observed": "OK (both footings)",
+   "pass": true,
+   "note": "a0 = (c/2) sqrt(G rho_Lambda) back-calc"
+  },
+  {
+   "name": "H2 [footing consistency]",
+   "tolerance": "ratio == (a0_alt/a0_can)^2 = 1.451487",
+   "observed": "1.4514871573996113",
+   "pass": true,
+   "note": "fixed kappa=1/2 -> density ratio; fixed rho_Lambda(can) would force kappa_eff=0.602388 \u2014 footings are separate scales"
+  },
+  {
+   "name": "H3 [dimensionless invariance]",
+   "tolerance": "identical on both footings",
+   "observed": "rho r^2 / C = 1/(4 pi G) (both)",
+   "pass": true,
+   "note": "identity scale-free in a0; Lean-certified (source_invariant)"
+  },
+  {
+   "name": "lean_certificate",
+   "tolerance": "zero sorry; axioms subseteq {propext, Classical.choice, Quot.sound}",
+   "observed": "18 theorems compiled, exit 0; all 18 #print axioms = [propext, Classical.choice, Quot.sound]",
+   "pass": true,
+   "note": "includes laplace_log, newton_laplace, wells_separate, laplace_add, no_imposed_baryon_log_well, poisson_source, enclosed_mass, gauss_flux, coincidence_iff, inner_edge_equipartition, exterior_mass_exceeds, double_mass_negative_control, finite_shell_mass, source_invariant"
+  }
+ ],
+ "tested_domain": "r>0 open annuli; interior default door r_in>0, R<=r_M with fixtures (r_in/R, R/r_M) in {0.01,0.1,0.5} x {0.62,1.0}; deep-exterior shells (r_in/r_M, R/r_in) in {(10,2),(10,10),(100,2),(100,10)}; FD grid 40001 pts from r/r_M=1e-6 to 20; mpmath 60-digit at r/r_M in {1e-6,1e-1,1,10,100}; both footings a0=9.3619e-11 and 1.1279e-10 m/s^2 (dimensional examples separate; dimensionless identical); M_b=7e10 M_sun fiducial (plus unit checks via identities free of M_b). Lean domain: abstract reals with positivity hypotheses G,M_b,a0,C,r,r_M,R,r_in>0, r_in<R; differentiability premises explicit in laplace_add/no_imposed_baryon_log_well. Exclusions: r=0 (open), no time dependence, no Q/RAR/MU2/EXP/MONO kernel evaluation, no fit, no relativistic/MONO transfer, no claims about G_bare/G_cosmo relations.",
+ "failed_attempts": [
+  {
+   "artifact": "out/failed_attempts_notes.txt",
+   "cause": "iter1: 50-digit two-point second-difference stalled at rel 1e-24 (truncation vs roundoff tradeoff); replaced by 60-digit five-point O(h^4) stencil (2.67e-37); mp.diff 'step'/'quad' also probed and rejected (unstable residuals 1e-18..1e-33)"
+  },
+  {
+   "artifact": "out/failed_attempts_notes.txt",
+   "cause": "iter2: check D1 mixed u-space and r-space in the (2/r)Phi' term of the baryon Laplacian (spurious residual 6.3e20); fixed to the u-space operator (Phi_uu + 2/u Phi_u)/r_M^2 identical to A2; residual 7.08e-07"
+  },
+  {
+   "artifact": "out/failed_attempts_notes.txt",
+   "cause": "iter3: cosmetic kpc print bug (r_M/1e3 instead of r_M/(1e3*PC)); values always stored in meters; corrected"
+  },
+  {
+   "artifact": "out/failed_attempts_notes.txt",
+   "cause": "environment: macOS bash cannot set RLIMIT_AS ('ulimit -v': Invalid argument) \u2014 memory bound enforced by monitoring only (recorded 91.6 MB); CPU bound enforced (ulimit -t 120)"
+  }
+ ],
+ "limitations": "Numerical checks are finite evidence (float64 FD grids + 60-digit mpmath stencils + sympy), not proofs; the algebra/analysis is separately certified in Lean (18 theorems, zero sorry). kappa=1/2, the equilibrium relations (rho=A/r^2, sigma^2=C/2, P=sigma^2 rho) and equipartition M_ph(<r_M)=M_b are adopted inputs, not derived here. No Q/RAR/MU2/EXP/MONO kernel evaluated and NO interior-to-MONO transfer performed (seed requirement); no time-dependent or dynamical statement; the finite-shell VIRIAL budget at r_in>0 (T, W_self with the inner-edge sliver, W_bar, surface term) is not derived (nearest separate obligation, partly seeded in AS082-AS088); the log well is not normalizable on the unbounded domain without inner cutoff + outer cap (stated); no_imposed_baryon_log_well is conditional on the explicitly listed differentiability premises; historical sources used G=6.674e-11, M_sun=1.98892e30 vs campaign defaults (combined <0.05%, structural conclusions unaffected); macOS RLIMIT_AS unavailable, memory bound enforced by monitoring. A FAIL of E1 is the intended negative-control behavior, not a failure of the claim.",
+ "next_unresolved_implication": "Transfer of the source identity to the operative gravity law: derive the static potential admitted by the filtered-MONO field equation Delta u = 4 pi G rho_b + S*(div[(nu_mono(|grad S u|/a0)-1) grad S u]) (criterion B) with the phantom source rho_src = C/(4 pi G r^2) on [r_in,R], and determine whether the log well C ln r is its exact deep solution or receives a kernel correction (asymptotic C_eff ln r with renormalized amplitude), plus the matching of C_eff to sqrt(G M_b a0). Until then the log well and its source identity are statements about the conditional deep-equilibrium sector only \u2014 the first missing bridge to the A04 source-normalization/equilibrium-action gate.",
+ "suggested_followup": "Child AS081.C01 'filtered-MONO static source consistency of the log well' (spec in child_proposals): solve or bound the static MONO field equation for the phantom source on [r_in,R] in the deep regime B/a0 << 1 and state the exact solution or the leading kernel correction with amplitude renormalization; controls: (i) recover C ln r in the unfiltered RAR/identity limit with zero heat width, (ii) negative control: the kernel must change the amplitude or add a subdominant term measurably at finite filter width or fail, (iii) both footings, (iv) Lean certificate of the static-consistency identity; dependencies: this run's residuals.json and derivation.md; duplicate check: closest seeds AS044 (deep point-source potential/boundary matching), AS582/AS605 (phantom source monopole, far-field log as quotient) \u2014 none states the static solution of the operative filtered-MONO equation for rho=C/(4 pi G r^2) nor an amplitude-renormalization statement; fingerprint (branch=operative filtered MONO, source=rho_src from AS081, domain=r_in>0 shell deep regime, target=exact static potential or leading correction) is unique. Dispatch state: proposed; NOT dispatched by this worker; no runner spawned; no claims/ file created.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": "Primitives/inputs: G=6.67430e-11 m^3/(kg s^2), c=299792458 m/s, M_sun=1.98847e30 kg, pc=3.085677581491367e16 m; a0=kappa*c*sqrt(G*rho_Lambda) with kappa=1/2 ADOPTED; rho_Lambda=4 a0^2/(G c^2) (5.844412e-27 / 8.483090e-27 kg/m^3); r_M=sqrt(G M_b/a0); C=sqrt(G M_b a0); v_flat^4=G M_b a0; Poisson Delta Phi=4 pi G rho (flat, static, spherical); profile rho=A/r^2 and equipartition M_ph(<r_M)=M_b with A=C/(4 pi G) taken as framework deep-equilibrium targets (G084/G091); M_b=7e10 M_sun fiducial; shell geometry 0<r_in<=r<=R, R<=r_M default; deep shells r_in/r_M in {10,100}, R/r_in in {2,10}. Derived in this run (with Lean certificates T0-T17): Delta(C ln r)=C/r^2 exact; rho_src=C/(4 pi G r^2); M_enc(<r)=C r/G (linear; single-radius coincidence with M_b at r=GM_b/C=r_M); Delta(-G M_b/r)=0 on r>0 with flux 4 pi G M_b (delta source); no_imposed_baryon_log_well (conditional on differentiability); leading neglected term -G M_b/r in the phantom-dominated exterior; finite-shell mass M= C(R-r_in)/G and potential drop C ln(R/r_in); dimensionless source invariant rho r^2/C=1/(4 pi G) (both footings); C/r_M=a0 and C r_M=G M_b identities. NOT derived (open): kappa=1/2, sigma^2=C/2, gamma=2, A=C/(4 pi G) as a variational output, MONO-kernel consistency, dynamical attainment, finite-shell virial budget.",
+ "closure_implication": "Gate: A04 finite-domain equilibrium / source-normalization chain of the conditional deep-equilibrium sector. Implication: the source identity Delta(C ln r)=C/(4 pi G r^2) with amplitude A=C/(4 pi G) fixes, for any candidate common action whose static sector contains the log well on [r_in,R], the exact Poisson source and its mass bookkeeping (M_enc=C r/G, finite shells, deep-exterior multiplicities), and proves that the log well cannot be carried by the point baryon alone (no modified equation can be avoided: the seed's negative control fails as required). COMMON-ACTION COMPATIBILITY NOT CLOSED: (i) the transfer of this source identity to the operative filtered-MONO static equation (criterion B) is unproved (next_unresolved_implication); (ii) the finite-shell virial budget at r_in>0 (neighbor seeds AS082-AS088) is unintegrated; (iii) kappa=1/2 remains adopted; (iv) the identity is a statement of the conditional deep-equilibrium sector, not of a common action with two propagating gravitational degrees of freedom (criterion B health checks untouched). Transfer condition: a MONO static-consistency derivation (child AS081.C01) and the finite-shell virial reconciliation must be supplied before this lemma is quoted inside a closure witness.",
+ "child_proposals": [
+  {
+   "id": "AS081.C01",
+   "name": "filtered-MONO static source consistency of the log well",
+   "claim": "For the operative filtered-MONO field equation Delta u = 4 pi G rho_b + S*(div[(nu_mono(|grad S u|/a0)-1) grad S u]) (S = exp((xi^2/2) Delta), criterion B) with the extended phantom source rho_src = C/(4 pi G r^2) on the shell [r_in,R], deep regime B/a0 << 1: derive the exact static potential, or the leading kernel correction to the log well with the renormalized amplitude C_eff, and the matching condition C_eff = sqrt(G M_b a0). This answers the seed's explicit non-transfer requirement (interior ansatz -> MONO) with the actual formula.",
+   "controls": "(i) recover the log well C ln r exactly in the identity limit (nu -> RAR, zero heat width xi -> 0, no baryon source); (ii) negative control: at finite filter width the correction must be nonzero and computable, or the ansatz must fail with a stated amplitude error; (iii) both footings; (iv) Lean certificate of the static-consistency algebra",
+   "dependencies": "this run's residuals.json, derivation.md and Lean T2/T8 (run_20260928T132023Z_as081-9023b0b5, task sha 9023b0b5...); FRAMEWORK_CONTRACT MONO block; source hashes as recorded",
+   "duplicate_check": "searched AS001-AS2000 manifests and results dirs: AS044 (deep point-source potential and boundary matching), AS582 (phantom source monopole from flux at infinity), AS605 (far-field logarithmic potential as a quotient space) are the closest; none states the static solution of the operative filtered-MONO equation for the source rho=C/(4 pi G r^2) or an amplitude-renormalization statement; fingerprint (branch=operative filtered MONO+criterion B, source=AS081 rho_src, domain=r_in>0 shell deep regime, target=exact static potential or leading correction, observable=amplitude C_eff matching) is unique",
+   "dispatch_state": "proposed; NOT dispatched by this worker; no runner spawned; no claims/ file created"
+  }
+ ],
+ "closure_candidate": null
+}

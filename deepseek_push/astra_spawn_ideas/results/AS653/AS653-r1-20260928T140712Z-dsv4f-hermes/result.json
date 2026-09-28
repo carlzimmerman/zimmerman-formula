@@ -1,0 +1,136 @@
+{
+ "schema_version": 2,
+ "task_id": "AS653",
+ "task_sha256": "ab203bd974e5a21bbd3ad3baf83b9cab6a03971528d67c27a0eca9a5e8913b15",
+ "run_id": "AS653-r1-20260928T140712Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (openrouter) via Hermes agent subagent; platform: openrouter; host macOS 26.5.2",
+ "started_utc": "2026-09-28T14:07:12Z",
+ "finished_utc": "2026-09-28T14:42:15Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "In the k04 four-form promotion cell with vacuum action P(q)=lambda*|q|^n (lambda>0, q!=0, n>1), promotion a0=beta*|q|^m (beta>0, m>0), Legendre vacuum energy eps_vac=q*P_q-P=lambda*(n-1)*|q|^n (k04 F1 convention; positive iff n>1; zero at n=1; negative for n<1): (i) kappa_N^2(q) := a0^2/(G_N*eps_vac) = [beta^2/(G_N*lambda*(n-1))]*|q|^(2m-n) EXACT, with log-slope d ln kappa_N^2/d ln|q| = 2m-n; (ii) amplitude independence of kappa_N^2 for all q!=0 holds IFF n = 2m (equivalently, by dimensional analysis, kappa_N^2 dimensionless IFF n = 2m); (iii) at n = 2m, kappa_N^2 = beta^2/(G_N*lambda*(n-1)) = beta^2/(G_N*lambda*(2m-1)) is flux-free but its value is NOT fixed: kappa=1/2 requires lambda*(n-1)*G_N/beta^2 = 4, ONE relation in the three couplings (lambda,beta,n) - Jacobian rank 1, residual freedom 2, exhibited by the families (lambda,beta)->(t^2*lambda,t*beta) and lambda(n)=4*beta^2/(G_N*(n-1)) for every n>1; k04's 'why Z/beta^2 = 8-2b = 7.96' is the (n=2,m=1) instance (reproduced: b = 2*I/(16*pi), I = j_sat = 0.452524896675, Z/beta^2 = 7.96398921291 at 80 digits); (iv) NEGATIVE CONTROL: amplitude cancellation for ARBITRARY (n,m) is FALSE - kappa_N^2(q2)/kappa_N^2(q1) = (q2/q1)^(2m-n) != 1 exactly when 2m-n != 0 (fixtures (3,1),(5,2),(3/2,1),(4,1) FAIL with residual exponents -1,-1,+1/2,-2; (2,1),(3,3/2),(4,2) cancel); at fixed couplings, n>2m gives kappa^2 ~ q^(2m-n) -> +oo as q->0 (the deep-law coefficient runs with the flux and diverges at the vacuum-off limit) while n=2m gives a finite constant. Domain: homogeneous four-form vacuum cell, q!=0, lambda>0, n>1, m>0; identities exact (sympy + Lean 4 with zero sorry, axioms {propext, Classical.choice, Quot.sound}); finite witnesses mpmath 80 digits with a 50->80 digit refinement. The condition n=2m is dimensionless in the exponents and applies identically to both footings (canonical a0=9.3619e-11 m/s^2, rho_Lambda=5.844412e-27 kg/m^3; alternative a0=1.1279e-10 m/s^2, kappa fixed: rho_Lambda=8.483090e-27 kg/m^3, rho fixed: kappa_eff=0.602388 - never both fixed). The theorem proves the necessary amplitude condition for acceleration homogeneity - it does NOT derive the coefficient value 1/2: kappa_N^2 = beta^2/(G_N*lambda*(n-1)) remains a free ratio, so kappa=1/2 stays an adopted input. G_N/G_bare/G_cosmo kept separate; the exponent condition is invariant under their ratios, the coefficient relation is convention-quoted.",
+ "framework_cell": {
+  "branch": "Explicit coefficient-mechanism diagnostic on the k04 four-form promotion (seed-declared branch); Q/RAR/MU2/EXP/MONO all kept distinct per FRAMEWORK_CONTRACT branch dictionary; filtered-MONO and criterion B untouched.",
+  "action": "Vacuum four-form sector S_vac = int d^4x sqrt(-g) P(q) with four-form field strength F = q*eps (eps the spacetime volume form), P(q) = lambda*|q|^n, stress tensor T_mu nu = (P - q*P_q) g_mu nu (k04 F1 convention), gravitating vacuum energy density eps_vac = q*P_q - P (Legendre form); promotion a0 = beta*|q|^m; galaxy sector enters through the deep-law ratio kappa_N^2 = a0^2/(G_N*eps_vac) (AS051 deep-slope matching kappa=1/b specializes the same object).",
+  "kernel": "Pure power P = lambda*|q|^n (n>1); k04's two-term kernel P = Z*q^2/2 + b*beta^2*q^2 reproduced as the (n=2, m=1) instance with lambda = Z/2 + b*beta^2.",
+  "filter": "none (homogeneous vacuum cell; the local environmental feedback equation of k04 F3 that makes a0 position-dependent is OUTSIDE this cell and flagged)",
+  "gate": "CORE coefficient kappa-cell of the four-form promotion: amplitude-cancellation gate (closed here: n=2m) and value gate (open: lambda*G_N/beta^2 = 4/(n-1) undetermined, rank 1)",
+  "coupling": "G_N (galaxy force / measured Newton coupling, 6.67430e-11 m^3 kg^-1 s^-2), G_bare (four-form action coupling), G_cosmo (coupling inside a0 = kappa*c*sqrt(G*rho_Lambda)) kept SEPARATE; kappa_N^2 uses G_N; the cosmological-constant route uses G_bare/G_cosmo; exponent condition (n=2m) invariant under all coupling ratios; single-G statements labelled as convention (k04 reproduction uses G=G_N).",
+  "parameters": "kappa=1/2 ADOPTED (not derived; the residual freedom is the pair (lambda,beta) and n); P(q)=lambda*|q|^n with lambda>0, n>1, q!=0; a0=beta*|q|^m with beta>0, m>0; a0 = kappa*c*sqrt(G*rho_Lambda); rho_Lambda = 4*a0^2/(G*c^2) at kappa=1/2; r_M = sqrt(G*M_b/a0); v_flat^4 = G*M_b*a0.",
+  "scale_footing": "canonical a0=9.3619e-11 m/s^2 (rho_Lambda=5.844412e-27 kg/m^3, s=2*a0) and alternative a0=1.1279e-10 m/s^2 (kappa fixed 1/2: rho_Lambda=8.483090e-27 kg/m^3; rho fixed: kappa_eff=0.602388); footings never share both fixed vacuum density and fixed kappa; the derived condition is footing-independent (exponents only).",
+  "boundaries": "q != 0 (a0 != 0), q constant (Bianchi, no sources), homogeneous vacuum; q->0+ endpoint behaviour resolved: n=2m finite, n>2m kappa^2 ~ q^(2m-n) -> +oo, n<2m -> 0; n->1+ gives kappa^2 -> +oo at fixed (lambda,beta) (eps_vac->0+); n=1 gives eps_vac = 0 identically (ratio undefined).",
+  "initial_conditions": "static vacuum cell, no time dependence; the flux amplitude q is an integration constant of the vacuum sector (no equation in the cited source fixes it - kept free per step 3).",
+  "units": "SI: [lambda] = M L^-1 T^-2 [q]^-n, [beta] = L T^-2 [q]^-m, [kappa_N^2] = [q]^(n-2m) - dimensionless iff n=2m; G_N = 6.67430e-11 m^3 kg^-1 s^-2, c = 299792458 m/s, M_sun = 1.98847e30 kg, pc = 3.085677581491367e16 m"
+ },
+ "new_assumptions": [
+  "The vacuum action is a pure power P(q) = lambda*|q|^n and the promotion is a pure power a0 = beta*|q|^m (the seed-declared cell; beta absorbs the dimensionless couplings of the k04 form a0 = beta*sqrt(G)*|q| via beta_k04^2 = G*beta_cell^2).",
+  "m > 0: the MOND scale vanishes with the flux (vacuum-off -> MOND-off); n > 1 is the seed's declared domain and is exactly the positivity condition of the Legendre vacuum energy.",
+  "q > 0 WLOG: every physical quantity depends on |q| only (formulas even in q; q*|q|' = |q| for q != 0).",
+  "Homogeneous vacuum cell: q constant; the local environmental feedback (k04 F3) is a separate equation that would make a0 position-dependent and is NOT part of the declared target.",
+  "kappa = 1/2 adopted framework input; the theorem derives only the relative statement kappa_N^2 = beta^2/(G_N*lambda*(n-1)) at n=2m."
+ ],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS653_general_flux_power_fixes_acceleration_homogeneity.md": "ab203bd974e5a21bbd3ad3baf83b9cab6a03971528d67c27a0eca9a5e8913b15",
+  "kappa_closure/k04_four_form_promotion_consistency.py": "15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/derivation.md": "a6b3a1ce7b3e64ff7cb17e67537bb9ed1d494c32bfdb422e22f5c0a2a986e24e",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/AS653_certificate.lean": "958b05c5937639e49d984540d3c4a3cb523b13897468f8c941896b20938ca4ad",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/compute_as653.py": "5e54d5254f265be15e123f3d7a5c566a0497d6c5d3674fb45a9c26276ee0bb05",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/checks.json": "79272417b0805580152d56511ea0a577c054d8075d7ff22ff99d409b6aaa6409",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/compute_as653.out": "bec202d6edc259d5a45d8247e0bb2c4d4cec1f7e6ea6819c48d26b375bc07487",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/compute_as653.time": "b2d48e4dfbaf84d8b10010ddac679c5485af97c18a261d2a38be2fab89846f19",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/AS653_axioms_probe.lean": "ec346274302998b19e438d99ddfbc3c5c6a4eed6b94832e9621e17853e498da9",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/AS653_axioms.out": "8cc4c772818d236130cfcefa0f4daa6cbf902495434fd73c30a1c8450c67c197",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/probe_api.lean": "429bf7d34cdb38d9d8781d72d267f6a9d4d2f50bb5d34fadf8c3fd0941d8ef57",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/probe_api2.lean": "46b4afbf8d970bef99d7440a0f14556a6dfd4aa9057a79bb0713ad57bceac7a2",
+  "deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/probe_api3.lean": "8262f544d2bcdba204936ca7a1e3285f308dfbb7f051e9bb2f359599e436fe34"
+ },
+ "commands": [
+  "shasum -a 256 deepseek_push/astra_spawn_ideas/AS653_general_flux_power_fixes_acceleration_homogeneity.md -> ab203bd974e5a21bbd3ad3baf83b9cab6a03971528d67c27a0eca9a5e8913b15 (verified == required); shasum -a 256 kappa_closure/k04_four_form_promotion_consistency.py -> 15c0a7e13eb9b7a5fdb403c8826bd01912d68dc81614609fddb6cd6ed9d32399 (== SOURCE_MANIFEST.json pin) [cwd: repo root]",
+  "cd deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes && /usr/bin/time -p python3 compute_as653.py > raw_outputs/compute_as653.out 2> raw_outputs/compute_as653.time (final run EXIT=0, 26/26 checks; earlier EXIT=1 iterations fixed: check() default tolerance, A5b symbol mismatch, mpmath.findmax absent -> grid+findroot; final elapsed 0.16 s)",
+  "cd fable_independent_2026/lean_2026 && timeout 580 lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/AS653_certificate.lean (EXIT=0, warnings only; no probe or certificate file written into lean_2026 - compile host only)",
+  "cd fable_independent_2026/lean_2026 && timeout 580 lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS653/AS653-r1-20260928T140712Z-dsv4f-hermes/raw_outputs/AS653_axioms_probe.lean > raw_outputs/AS653_axioms.out 2>&1 (EXIT=0; #print axioms per theorem: all exactly [propext, Classical.choice, Quot.sound])",
+  "shasum -a 256 on all inputs and artifacts (hashes above)"
+ ],
+ "execution_bounds": {
+  "declared": "wall-time 120 s hard deadline; memory <= 512 MB; 1 thread",
+  "enforced_numerics": "in-process time.monotonic() deadline with abort path (checked before every section; never breached); memory enforced by in-process RSS watchdog (resource.ru_maxrss) because RLIMIT_AS is not settable on macOS 26.5.2 and shell ulimit -v refused - measured peak 63.5 MB <= 512 MB; threads: single process, no pools, OMP_NUM_THREADS=1",
+  "enforced_lean": "two lake env lean invocations each guarded by timeout 580 s; mathlib-only dependencies; single process",
+  "actual": "numerics 0.16 s wall, 63.5 MB peak RSS, 1 thread; Lean compile exit 0 for certificate and axioms probe; precision mpmath dps 80 (refinement from dps 50)"
+ },
+ "checks": [
+  {"name": "A1a Legendre identity", "measured": "eps = q*P_q - P = lam*(n-1)*q^n exactly (sympy)", "tolerance": "residual == 0 exact", "pass": true},
+  {"name": "A1b sign control", "measured": "n=3 -> +2 lam q^3; n=5/2 -> +3/2; n=1/2 -> -1/2 (negative); n=1 -> 0 exactly", "tolerance": "exact symbols", "pass": true},
+  {"name": "A2 kappa_N^2 formula", "measured": "kappa_N^2 = beta^2*q^(2m-n)/(G_N*lam*(n-1)) exact; d ln kappa^2/d ln q = 2m-n exact", "tolerance": "exact", "pass": true},
+  {"name": "A3 condition", "measured": "n=2m => kappa^2 = beta^2/(G_N*lam*(2m-1)) q-free (d/dq = 0 exact); residual (2m-n)*kappa^2/q uncovered", "tolerance": "exact", "pass": true},
+  {"name": "A4 units", "measured": "dim[kappa^2] = M^0 L^0 T^0 q^(n-2m): dimensionless iff n=2m; a T^-1 ansatz impossible", "tolerance": "exact linear algebra", "pass": true},
+  {"name": "A5 k04 reproduction", "measured": "kappa^2 = 2 beta^2/(Z+2b beta^2) exact; general formula (n=2m=2) reproduces it with the G-fold convention map; kappa=1/2 <=> Z/beta^2 = 8-2b; numeric I = j_sat = 0.452524896675, b = 0.0180053935445, Z/beta^2 = 7.96398921291 (k04: 7.96)", "tolerance": "exact + |8-2b - 7.96| < 0.02 at 80 digits", "pass": true},
+  {"name": "B1a ratio identity", "measured": "kappa^2(q2)/kappa^2(q1) = (q2/q1)^(2m-n) exact (sympy)", "tolerance": "exact", "pass": true},
+  {"name": "B1b NEGATIVE CONTROL: arbitrary (n,m) cancellation", "measured": "(3,1),(5,2),(3/2,1),(4,1): residual ratios 0.5, 0.5, 1.41421356..., 0.25 all != 1 (control FAILS as designed); (2,1),(3,3/2),(4,2): ratio == 1 exactly", "tolerance": "control capable of failing; it does fail on 2m-n != 0", "pass": true, "control_capable_of_failing": true},
+  {"name": "B1c endpoint behaviour", "measured": "n=2m: kappa^2 -> 1.0 constant (lam=beta=G_N=1 fixture); n=3,m=1: kappa^2 ~ q^-1 -> oo as q->0; verified at q in {1e-8,1e-4,1,1e4}", "tolerance": "80 digits", "pass": true},
+  {"name": "B2 coefficient identifiability", "measured": "rank(Jacobian of lam*(n-1)*G_N/beta^2 - 4) = 1 -> residual freedom 2; family (lam,beta)->(t^2 lam, t beta) invariant exact; lambda(n) = 4 beta^2/(G_N(n-1)) solves kappa=1/2 for every n>1 exact", "tolerance": "exact ranks and identities", "pass": true},
+  {"name": "B3 footings", "measured": "rho_can = 5.844412e-27 kg/m^3; rho_alt (kappa fixed) = 8.483090e-27 kg/m^3; kappa_eff (rho fixed) = 0.602388; condition n=2m footing-independent", "tolerance": "relative 1e-4 vs registered values", "pass": true},
+  {"name": "C1 substitution verification + refinement", "measured": "fixture (n=2,m=1,beta=1,G_N=1,lam=4): kappa^2 = 0.25 for q in {1e-12,1,1e12} to 80 digits; dps 50 -> 80 identical; failing fixture (n=3,m=1): kappa^2(1)=1/2, kappa^2(2)=1/4, ratio 1/2 != 1", "tolerance": "80 digits; refinement stable", "pass": true},
+  {"name": "Lean compile + axioms", "measured": "lake env lean exit 0; 9 statements (T1_deriv, T1_legendre, T2..T8) certified, zero sorry; #print axioms per theorem exactly [propext, Classical.choice, Quot.sound]", "tolerance": "axioms subseteq allowed set; no sorry", "pass": true},
+  {"name": "D2 bounds enforced", "measured": "elapsed 0.16 s < 120 s hard deadline (in-process abort path); peak RSS 63.5 MB <= 512 MB (RLIMIT_AS unsettable on macOS -> in-process watchdog); 1 thread", "tolerance": "elapsed < 120 s, RSS <= 512 MB, single thread", "pass": true}
+ ],
+ "tested_domain": "Homogeneous four-form vacuum cell: q != 0 (q > 0 WLOG), lambda > 0, n > 1, m > 0, all real. Exact coverage: sympy identities in the full symbolic cell (A1-A5, B1a, B2); Lean 4 certificate for n, m, lambda, beta, gN, q generic reals with the positivity hypotheses (9 statements). Finite witnesses at mpmath 80 digits: 7 (n,m) pairs in the negative control with q1=1, q2=2; q-ladder {1e-12, 1, 1e12} fixture (n=2,m=1); q in {1e-8,1e-4,1,1e4} endpoint ladder; dps 50 -> 80 refinement; k04 numeric fixture (RAR Delta kernel, s_sat via grid+findroot on [0.5,6]). Both footings: canonical a0=9.3619e-11 and alternative a0=1.1279e-10 m/s^2 (kappa fixed and rho fixed, never both). Exclusions: environment feedback (k04 F3), filtered-MONO/criterion B, nonspherical geometry, dynamics/time dependence, values of (lambda,beta) themselves.",
+ "failed_attempts": [
+  {"path": "compute_as653.py (3 iterations)", "cause": "(1) check() called without tolerance default -> TypeError; (2) A5b convention-map check used a fresh sp.Symbol('G') without positive=True so G' != G and cancellation never fired -> substituted (G, G_N) on the same symbol; (3) mpmath.findmax does not exist in this build -> grid maximum + mp.findroot of Delta'(s). All resolved; final run EXIT=0, 26/26."},
+  {"path": "AS653_certificate.lean (4 compile iterations)", "cause": "(1) Real.hasDerivAt_rpow_const takes p implicitly -> removed explicit argument; (2) rw [← Real.rpow_one q] over-rewrote (base q became q^1 inside q^(n-1)) -> calc with explicit q^1 = q and rpow_add; (3) Nat-vs-Real exponent clash on (q^m)^2 (Lean's ^ defaults to Nat pow) -> bridge hq2m via pow_two + ← Real.rpow_add; (4) field_simp at heq cancels beta^2 and flips orientation (heq : 1 = 2^a) -> exact heq.symm; rw [← hc'] direction reversed -> rw [hc']. Resolved; final compile EXIT=0."}
+ ],
+ "limitations": "1) Does NOT derive kappa = 1/2: at n = 2m the ratio kappa_N^2 = beta^2/(G_N*lambda*(n-1)) is free (rank-1 identifiability, freedom 2), so the coefficient value remains an adopted input - the amplitude half of the coefficient mechanism is closed, the value half is not. 2) Homogeneous vacuum cell only: the environmental flux feedback of k04 F3 (a0_loc position-dependent) is a separate equation not analysed here; its consistency with n=2m is a named open item. 3) No transfer to the operative filtered-MONO target (criterion B / amended thirteen-item target): that would require the AS051-named deep-slope bridge in the MONO variable set. 4) G_N/G_bare/G_cosmo separated only at the level of the ratio structure: the exponent condition is invariant, the coefficient relation is convention-quoted, and a full two-constant test was not performed (single-G convention used for the k04 numeric reproduction). 5) q>0 WLOG relies on the evenness of all |q| expressions (true for the declared powers); the |q| derivative identity q*|q|' = |q| is noted, not separately formalised for negative q. 6) Finite ladders are confirmations, not proofs; the proofs are the sympy identities and the Lean certificate (T1-T8). 7) AS651 (explicit prerequisite) has no landed result at execution time; this run stands on the k04 source and AS039/AS051/AS063 instead.",
+ "next_unresolved_implication": "The coefficient value: no equation in the Legendre/vacuum cell fixes lambda*G_N/beta^2 = 4/(n-1) (k04's 'why Z/beta^2 = 8'), so kappa = 1/2 remains adopted. The first missing bridge is a dynamical or boundary relation that determines the ratio (for example the local feedback equation of k04 F3 solved jointly with the flux equation, or a nucleation/brane boundary condition in the Bousso-Polchinski sense, or a coupling-variation identity linking lambda to the counted degrees of freedom of the common action); equivalently any fourth datum orthogonal to the constraint manifold. Without it, n = 2m is necessary but not sufficient for closure of the CORE coefficient gate.",
+ "suggested_followup": "Child AS653.C01 (ready spec, NOT dispatched - no spawn mechanism in this session; written for the orchestrator per the branching protocol; no-duplicate check run against manifest.json, CAMPAIGN_LEDGER.json, results/, claims/, fresh_gravity_followups/queue.json): 'Fix the ratio: derive lambda*G_N/beta^2 = 4/(n-1) from a specified boundary/nucleation ensemble or from the k04 F3 local feedback equation solved jointly with the vacuum flux equation at n = 2m; target: an expression for lambda/beta^2 in terms of the action's own constants and boundary data, reproducing kappa = 1/2 or yielding a quantified deviation; controls: reproduce A5 (Z/beta^2 = 8-2b), keep G_N/G_bare/G_cosmo separate, Lean certificate of the new identity, n = 2m must not be silently reused as a fit (it is derived here, the coefficient is not); dependencies: this run (hashes above), k04 kernel, AS051 kappa=1/b transfer; parent AS653-r1-20260928T140712Z-dsv4f-hermes'.",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": {
+  "primitive_assumptions": [
+   "a0 = kappa*c*sqrt(G*rho_Lambda) with kappa = 1/2 ADOPTED (framework input, not derived)",
+   "Four-form vacuum sector: F = q*eps, P(q) = lambda*|q|^n (lambda > 0, q != 0, n > 1), T_mu nu = (P - q P_q) g_mu nu (k04 F1 convention), eps_vac = q P_q - P",
+   "Promotion a0 = beta*|q|^m (beta > 0, m > 0); q constant (Bianchi, no sources); homogeneous vacuum cell",
+   "Standard four-form facts adopted from the cited branch: no propagating modes (Duff-van Nieuwenhuizen; Bousso-Polchinski)",
+   "Deep law g^2 = a0*g_N with G_N (AS051-type matching); v_flat^4 = G*M_b*a0; r_M = sqrt(G*M_b/a0)"
+  ],
+  "measured_calibrations": [
+   "G_N = 6.67430e-11 m^3 kg^-1 s^-2",
+   "c = 299792458 m/s",
+   "M_sun = 1.98847e30 kg",
+   "pc = 3.085677581491367e16 m",
+   "a0 canonical = 9.3619e-11 m/s^2; a0 alternative = 1.1279e-10 m/s^2 (registered footings)"
+  ],
+  "boundary_data": [
+   "q != 0 (a0 != 0); q constant over the homogeneous vacuum",
+   "q -> 0+ endpoint: n=2m finite constant; n>2m kappa^2 -> +oo; n<2m kappa^2 -> 0",
+   "n -> 1+ boundary: eps_vac -> 0+, kappa^2 -> +oo at fixed (lambda,beta); n = 1: eps_vac identical zero (ratio undefined)",
+   "Flux amplitude q is an integration constant of the vacuum sector - no equation fixes it (kept free per step 3)"
+  ],
+  "derived_equations": [
+   "eps_vac = lambda*(n-1)*|q|^n (Legendre form; positivity iff n>1)",
+   "kappa_N^2 = beta^2*|q|^(2m-n)/(G_N*lambda*(n-1)); d ln kappa_N^2/d ln|q| = 2m-n",
+   "Amplitude independence <=> n = 2m (also: kappa_N^2 dimensionless <=> n = 2m)",
+   "At n = 2m: kappa_N^2 = beta^2/(G_N*lambda*(n-1)); kappa = 1/2 <=> lambda*(n-1)*G_N/beta^2 = 4",
+   "Residual ratio kappa^2(q2)/kappa^2(q1) = (q2/q1)^(2m-n)",
+   "k04 reproduction: kappa^2 = 2*beta^2/(Z+2*b*beta^2), Z/beta^2 = 8-2b (n=2,m=1 instance)",
+   "Jacobian rank 1, residual freedom 2 (identifiability of the coefficient cell)",
+   "Lean T1-T8: derivative fact, Legendre identity, positivity, ratio formula, amplitude-freeness, 2^a = 1 -> a = 0, negative control, iff, coefficient gate"
+  ]
+ },
+ "closure_implication": "Named gate: CORE coefficient kappa-cell of the four-form promotion (acceleration-homogeneity gate; generalisation of k04's 'why Z/beta^2 = 8'). Exact implication: IF the vacuum action is a pure power P = lambda*|q|^n and the promotion a0 = beta*|q|^m, THEN the deep-law coefficient kappa_N^2 = a0^2/(G_N*eps_vac) is flux-amplitude-independent (equivalently: kappa^2 dimensionless; equivalently: the acceleration scale is homogeneous in the flux) IFF n = 2m - an explicit necessary condition for a scale-selection mechanism compatible with measured G_N and the current gravity action (the seed's required closure contribution). Common-action/parameter-domain compatibility: the implication holds in the k04 homogeneous-vacuum cell with G_N/G_bare/G_cosmo separated at ratio level; it does NOT transfer to the operative filtered-MONO target (criterion B) without the AS051-named deep-slope bridge, and the VALUE of kappa (1/2) remains an adopted input because (lambda, beta, n) keep rank-1 freedom. closure_candidate: null.",
+ "child_proposals": [
+  {
+   "id": "AS653.C01 (ready spec, NOT dispatched - no spawn mechanism in this session; for the orchestrator per FIRST_PRINCIPLES_AND_BRANCHING.md)",
+   "new_claim": "A specified boundary/nucleation ensemble or the joint k04 F3 local-feedback + vacuum-flux system fixes the ratio lambda*G_N/beta^2 = 4/(n-1) at n = 2m, converting kappa_N^2 = beta^2/(G_N*lambda*(2m-1)) into an absolute kappa (target: kappa = 1/2 reproduced or a quantified deviation).",
+   "new_target": "Expression for lambda/beta^2 in terms of the action's own constants and the boundary data (brane tension/nucleation rate or the feedback integral I = j_sat), with G_N/G_bare/G_cosmo kept separate; numeric check on both footings.",
+   "controls": "Reproduce A5 (Z/beta^2 = 8-2b with b = 2I/(16*pi) from the RAR kernel); negative control: a boundary ensemble with no fixed ratio must leave rank-1 freedom (i.e. the control fails to close the value gate); Lean certificate of the new identity; n = 2m must not be silently reused as a fit.",
+   "dependencies": "Parent run AS653-r1-20260928T140712Z-dsv4f-hermes (hashes in artifacts_sha256); kappa_closure/k04_four_form_promotion_consistency.py (pinned hash); AS051 kappa = 1/b transfer; no duplicate found in manifest.json, CAMPAIGN_LEDGER.json, results/, claims/, fresh_gravity_followups/queue.json (checked at spec time).",
+   "dispatch_state": "not_dispatched"
+  }
+ ],
+ "closure_candidate": null
+}

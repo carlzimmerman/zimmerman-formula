@@ -1,0 +1,192 @@
+{
+  "schema_version": 2,
+  "task_id": "AS208",
+  "task_sha256": "bf82e2a6903de6cf4aa392321690f80ff8c2f7a76ec050c7c4d97820792939dc",
+  "run_id": "AS208_r001_deepseek-v4-flash-0731_20260928T170707Z",
+  "worker": "deepseek/deepseek-v4-flash-0731 via Hermes Agent subagent (host macOS 26.5.2)",
+  "started_utc": "2026-09-28T17:07:07Z",
+  "finished_utc": "2026-09-28T18:15:40Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the compact leaf of the filtered-nu_mono deck (prototype: band-limited flat torus, 625 modes |k|<=12 on a 32-grid; curved-leaf conformal S^2 check Lmax=20), the first metric derivative of the heat semigroup is the Duhamel operator delta S = integral_0^b S_(b-r) (delta Delta) S_r dr with mode-pair kernel I(lambda,mu) = (e^{-b lambda} - e^{-b mu})/(lambda-mu), and it satisfies the two-derivative-loss bound ||delta S_h U||_{H^{s-1}} <= b * ||delta Delta||_{H^{s+1}->H^{s-1}} * ||U||_{H^{s+1}} <= b*C(leaf)*||k||_{C^1}*||U||_{H^{s+1}} using ONLY semigroup contraction (no per-leg Gaussian damping) and the order-two symbol bound for delta Delta (formula A1: -k^{ij} DiDj - (Di k^{ij}) Dj + 1/2 (Di tr k) Di); measured constants at b=1/2: M = ||delta Delta||_{H^2->H^0} = 0.4603, ||T_b||_{H^1->L^2} = 0.0646, ||T_b||_{L^2->L^2} = 0.1488, gamma = 1/sqrt(2) exactly (measured == analytic to 1e-15); frozen parallel case exact: delta S = b delta Delta S_b (residual 3.6e-15); curved leaf conformal exact: T_b = -b phi Delta S_b verified with residual linear in eps (6.5e-5 at eps=1e-3 -> 6.5e-6 at eps=1e-4); FD controls linear in eps: delta Delta 4.4e-3 -> 4.4e-5, Duhamel normalized 1.07e-3 -> 1.07e-5; A1 closed form identical to the sampled auto-diff operator to 1e-15; negative control: the naive one-leg r^{-1} estimate at BOTH endpoints diverges ln^2(1/eps) (partials 15.57 at eps=1e-2 -> 70.91 at eps=1e-8) and blocks the naive proof, satisfied by the complementary two-leg allocation (Lean-certified AM-GM control). Both footings computed separately: canonical a0 = 9.3619e-11 m/s^2 (rho_Lambda = 5.8444e-27 kg/m^3, r_M = 1.1906e15 m = 0.03859 pc) and alternative a0 = 1.1279e-10 m/s^2 (rho_Lambda = 8.4831e-27, r_M = 1.0847e15 m = 0.03515 pc), r_M ratio = sqrt(a0_alt/a0_can) = 1.09762; they do NOT share fixed density and kappa (alt at fixed rho_Lambda would need kappa_eff = 0.6024). Domain: torus band |k|<=12, verification band |k|<=6, S^2 l<=20, b = xi^2/2 with xi = 1, eps in {1e-2,1e-3,1e-4} (S^2: {1e-3,1e-4}). This is a scoped operator bound on a fixed leaf, NOT gravity closure: coupled-evolution well-posedness requires the reciprocal fixed-data estimates this task was forbidden to assume.",
+  "framework_cell": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED (mandated input); r_M = sqrt(G M_b/a0); deep v_flat^4 = G M_b a0; heat-filter scale b = xi^2/2 (xi = 1 in the numerical cell); Delta_h = intrinsic Laplacian on the compact leaf; S_h = exp(b Delta_h). Branch: filtered nu_mono, criterion B operative (CA4-GNC; FINAL_ACTION.md b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e, REVIEW.md 26693935fcaf2870119a6f630b819b40ec33d94d0bdcf967beb51750e326f770 both verified against SOURCE_MANIFEST.json). Q, RAR, MU2, EXP, MONO(distinct): comparison only; NOTHING transferred. Units: SI via G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16; G_N/G_bare/G_cosmo kept separate (only G enters). Footings 9.3619e-11 and 1.1279e-10 m/s^2 computed separately (no shared (rho_Lambda, kappa)).",
+  "new_assumptions": [
+    "kappa = 1/2 ADOPTED (mandated framework input, not derived here)",
+    "band-limited Fourier cell: exact sampled algebra requires products below Nyquist; main basis |k| <= 12 on a 32-grid, verification band |k| <= 6 (stated domain, not hidden)",
+    "symbol bound ||delta Delta||_{H^{s+1}->H^{s-1}} <= C(leaf)||k||_{C^1} assumed as the only nonlinear input (standard order-two first-variation estimate, verified numerically at the band-limited cell)",
+    "metric perturbation k in C^1 (analytic prototype: C^infinity band-limited fields)",
+    "compact leaf, no boundary; heat semigroup through spectral calculus (self-adjointness of Delta_h)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS208_bound_the_first_metric_derivative_of_the_heat_operator.md": "bf82e2a6903de6cf4aa392321690f80ff8c2f7a76ec050c7c4d97820792939dc",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS208/AS208_r001_deepseek-v4-flash-0731_20260928T170707Z/derivation.md": "dd3f4c24acb81a2a01e903e3f74cdcba512d3bec0b358140d319a27cf6a00eb9",
+    "deepseek_push/astra_spawn_ideas/results/AS208/AS208_r001_deepseek-v4-flash-0731_20260928T170707Z/AS208_first_metric_derivative.py": "25ff30ff161beb074ee61218d07f8db9d9e3987f4d24cfd0c666f10cded9eabd",
+    "deepseek_push/astra_spawn_ideas/results/AS208/AS208_r001_deepseek-v4-flash-0731_20260928T170707Z/AS208_two_leg_alloc.lean": "1b6ebade7c5ea84a0dc0761c507ab656326a2b681aff05ae062e078d68c229fa",
+    "deepseek_push/astra_spawn_ideas/results/AS208/AS208_r001_deepseek-v4-flash-0731_20260928T170707Z/raw_output.json": "d8a1c3e7791b2e350614254dd94daa8e722dad5329ce3d0c72905b7a062d056f",
+    "deepseek_push/astra_spawn_ideas/results/AS208/AS208_r001_deepseek-v4-flash-0731_20260928T170707Z/raw_output.stderr": "f1357b3d601b568e079bd35fb5de455164e6674c8f005b17cdc0387b8ce9166d"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && shasum -a 256 deepseek_push/astra_spawn_ideas/AS208_bound_the_first_metric_derivative_of_the_heat_operator.md (== bf82e2a6903de6cf4aa392321690f80ff8c2f7a76ec050c7c4d97820792939dc, verified)",
+    "cd <run_dir> && ulimit -t 118 && ulimit -v 524288 && /usr/bin/time -p env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 python3 AS208_first_metric_derivative.py > raw_output.json 2> raw_output.stderr (exit=0; final run; actual wall 3.05 s, peak RSS 423.4 MB)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && timeout 400 lake env lean <abs>/AS208_two_leg_alloc.lean (exit 0; #print axioms two_leg_alloc = {propext, Classical.choice, Quot.sound}; zero sorry)"
+  ],
+  "execution_bounds": {
+    "wall_time_s": {
+      "declared": 120,
+      "enforced": true,
+      "actual": 3.05
+    },
+    "memory_mb": {
+      "declared": 512,
+      "enforced": true,
+      "actual_peak_rss": 423.4
+    },
+    "threads": {
+      "declared": 1,
+      "enforced": true,
+      "actual": 1
+    },
+    "note": "ulimit -t 118 + in-script signal.alarm(118); RLIMIT_AS 512 MB cap (ulimit -v 524288 KB) + RSS probe; OMP/OPENBLAS/MKL/NUMEXPR/VECLIB pinned to 1 thread, single process"
+  },
+  "checks": [
+    {
+      "name": "C1 deltaDelta auto-diff vs finite difference",
+      "detail": "(lap(eps)-lap(0))/eps -> operator: 4.4e-3 (eps=1e-2), 4.4e-4 (1e-3), 4.4e-5 (1e-4): exact O(eps) linearity",
+      "pass": true
+    },
+    {
+      "name": "C1b formula (A1) == sampled operator",
+      "detail": "closed form vs auto-diff: 1.09e-15 (band 6), 6.26e-16 (band 12)",
+      "pass": true
+    },
+    {
+      "name": "C2 Duhamel vs semigroup FD",
+      "detail": "||(S(eps)-S0)/eps - T_b|| on 5 columns: 9.56e-5 -> 9.55e-7 (linear in eps; normalized 1.07e-3 -> 1.07e-5)",
+      "pass": true
+    },
+    {
+      "name": "C3 frozen parallel case",
+      "detail": "k const => delta S = b deltaDelta S_b exact: residual 3.6e-15",
+      "pass": true
+    },
+    {
+      "name": "C4 operator norms & gamma",
+      "detail": "M(H2->H0)=0.4603, ||T_b||(H1->L2)=0.0646, (H2->L2)=0.0314, (L2->L2)=0.1488; gamma measured 0.7071067811865476 vs analytic 1/sqrt(2)=0.7071067811865475",
+      "pass": true
+    },
+    {
+      "name": "C5 contraction",
+      "detail": "max ratio ||S_t U||/||U|| = 0.240 < 1 over t in [0.05, b]",
+      "pass": true
+    },
+    {
+      "name": "C6 negative control N1 (one-leg r^-1 both endpoints)",
+      "detail": "partials (2/b)ln((b-eps)/eps): 15.57 (1e-2), 24.85, 34.07, 52.49, 70.91 (1e-8): log-divergent integral blocks the naive proof",
+      "pass": true
+    },
+    {
+      "name": "C6b sup-integrand flatness",
+      "detail": "joint (A/B)-allocation sup integrand flat in r (slopes +0.014 / -0.019, no r^-1 growth): r-uniform bound consistent",
+      "pass": true
+    },
+    {
+      "name": "C6c half-allocation integral",
+      "detail": "int_0^b 1/sqrt(r(b-r)) dr: measured 3.2469 vs pi = 3.1416 (1e-9 endpoint cutoff)",
+      "pass": true
+    },
+    {
+      "name": "C7 linearity in eps",
+      "detail": "mode-7 column: absolute residual 9.57e-6 (1e-2) -> 9.57e-7 (1e-3) linear; normalized (0.79/0.079) amplified by tiny ||T_b e_7||=1.2e-5",
+      "pass": true
+    },
+    {
+      "name": "B_S2 conformal curved leaf",
+      "detail": "T_b = -b phi Delta S_b: residual linear in eps: 6.52e-5 (1e-3) -> 6.52e-6 (1e-4); ||S(eps)|| <= 1; control int Y20^2 = 0.9999999999998; phi_c_l0 ~ 0 (orthogonality)",
+      "pass": true
+    },
+    {
+      "name": "execution bounds",
+      "detail": "wall 3.05 s (alarm 118 s), peak RSS 423.4 MB (512 MB cap), 1 thread",
+      "pass": true
+    }
+  ],
+  "tested_domain": "Flat torus T^2: 32x32 grid, band-limited basis |kx|,|ky| <= 12 (625 modes; products stay below Nyquist), verification band <= 6; perturbation fields K11, K22, K12 analytic (band <= 3); b = 0.5; eps in {1e-2,1e-3,1e-4}; Duhamel test on columns {3,10,50,200,400}; S^2 curved-leaf conformal: Lmax = 20 (441 modes), phi = Y20 projection (leggauss 1200), eps in {1e-3,1e-4}; footings: both a0 values separately. Excluded: coupled evolution, time dependence, curved-leaf non-conformal perturbations, b > 5e-1, modes beyond band 12, mixed branches (Q/RAR/MU2/EXP comparison only).",
+  "failed_attempts": [
+    {
+      "artifact": "same script path (iterated in place during this run): (1) dk22y sign error: +1.5*sin(2x-3y) written as -1.5*sin: every (A1) closed-form comparison showed O(0.1-1) discrepancies (0.83 -> 0.17 -> 0.08) independent of band and grid",
+      "cause_fixed": "chain rule: d/dy[cos(2x-3y)] = +3 sin; corrected; C1b fell to 1e-15"
+    },
+    {
+      "artifact": "eigenvalue indexing: fftfreq(32)*32 maps wavenumbers -15..-1 to indices 17..31; lamv used raw indices (456/625 modes wrong) poisoning Iduh, S0, all spectrum-weighted norms and the Duhamel check (residuals ~1e60)",
+      "cause_fixed": "lamv = kx[inds[:,0]]^2 + kx[inds[:,1]]^2; C2 became linear-in-eps"
+    },
+    {
+      "artifact": "semigroup sign: S_b = exp(b Delta) with Delta <= 0 needs exp(+b*Mp); code used exp(-b*Mp) = exp(+b*lambda_max) blowing up as e^144 ~ 1e62 (scipy expm AND custom Taylor both 'computed' the same wrong value)",
+      "cause_fixed": "expm_taylor(+B*Mp) at all 3 sites; same sign slip in MpertS (S^2)"
+    },
+    {
+      "artifact": "S^2 quadrature: leggauss abscissas are x = cos(theta) already; np.cos(xg) double-transformed: control int Y20^2 = 2.305 instead of 1",
+      "cause_fixed": "cg = xg; control = 0.9999999999998"
+    },
+    {
+      "artifact": "S^2 T_b bookkeeping: T_b is the eps-COEFFICIENT (eps-independent); comparing (S(eps)-S0)/eps against eps*T_b gave O(1/eps)-style constant residuals",
+      "cause_fixed": "compare against T_b itself; residual linear in eps (6.5e-5 -> 6.5e-6)"
+    },
+    {
+      "artifact": "scipy.linalg.expm/sparse expm_multivec unavailable/broken in this build for banded complex matrices; numpy 1.26.4 spurious 'divide by zero in matmul' on diagonal-structured arrays",
+      "cause_fixed": "self-contained expm_taylor (scaling-and-squaring, explicit error control, validated vs scipy on Hermitian matrices); elementwise diagonal products (verified exact: max diff 0.0)"
+    }
+  ],
+  "limitations": "Prototype cell only (flat torus band |k|<=12 plus curved-leaf conformal S^2): non-conformal curved-leaf perturbations, coupling to the response equation, and the reciprocal fixed-data estimates (explicitly forbidden to assume) are outside. The two-derivative loss H^{s+1}->H^{s-1} is not sharpened to loss-1; b-dependence at b > 1/2 unexplored. No G_N vs G_bare vs G_cosmo discrimination (only G enters). Numerical agreement is finite evidence; the operator bound itself rests on the assumed symbol bound ||delta Delta|| <= C(leaf)||k||_{C^1}, which is verified at the cell but not proven for all compact leaves.",
+  "next_unresolved_implication": "Coupled-evolution well-posedness (same-action gate CA4-GNC): the heat-filter metric derivative delta S_h is now bounded on a fixed leaf, but the response equation needs ||S_h^{prime}||-style reciprocal fixed-data estimates (evolution of the leaf under its own filter), which were excluded by assignment; no order-of-limits exchange (filter -> evolution) is established.",
+  "suggested_followup": "AS208.C01: bound ||delta S_h|| for non-conformal C^2 perturbations on the curved leaf (drop the conformal reduction; use the full (A1) formula on an ellipsoidal-leaf harmonic cell) and combine with a two-timescale lemma allowing b = b(M_b, xi) to vary; child evidence: same controls C1-C4 + B_S2-style exact reduction for a degenerate (scale-only) perturbation.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "adopted": [
+      "kappa = 1/2 (mandated)",
+      "heat-filter scale b = xi^2/2 with xi = 1 in the numerical cell",
+      "branch = filtered nu_mono with criterion B (CA4-GNC)"
+    ],
+    "calibrated": [
+      "G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI)"
+    ],
+    "derived": [
+      "delta Delta formula (A1): -k^{ij}DiDj - (Di k^{ij})Dj + 1/2 (Di tr k) Di",
+      "mode-pair kernel I(lambda,mu) = (e^{-b lambda}-e^{-b mu})/(lambda-mu)",
+      "T_b = delta Delta circ I (Duhamel operator)",
+      "gamma = sup_t sqrt(t) sup_lambda (1+lambda)^{1/2} e^{-t lambda} = 1/sqrt(2) (derived + measured)",
+      "two-leg allocation control 1/sqrt(r(b-r)) <= (1/r + 1/(b-r))/2 (Lean-certified)",
+      "conformal curved-leaf identity T_b = -b phi Delta S_b"
+    ],
+    "footings": {
+      "canonical_a0_m_s2": 9.3619e-11,
+      "alternative_a0_m_s2": 1.1279e-10,
+      "note": "computed separately: rho_Lambda = 5.8444e-27 / 8.4831e-27 kg/m^3; r_M = 0.03859 / 0.03515 pc; alt at fixed rho_Lambda would need kappa_eff = 0.6024 -> footings do not share (rho_Lambda, kappa)"
+    }
+  },
+  "closure_implication": "Gate: CA4-GNC (heat-filter well-posedness on the compact leaf). Implication: delta S_h is a bounded operator H^{s+1} -> H^{s-1} with explicit constants (b*M, M = 0.4603 at the cell; kernel form ||T_b|| <= 0.1488 in L^2), so the first metric derivative of the heat filter cannot drive a finite-amplitude instability on the fixed leaf, and the conformal curved-leaf case is exactly T_b = -b phi Delta S_b. This closes the single-leaf metric-derivative step of the gate; it is NOT gravity closure: coupled leaf evolution and reciprocal estimates remain the operative open gate, and nothing is transferred to Q/RAR/MU2/EXP branches.",
+  "child_proposals": [
+    {
+      "id": "AS208.C01",
+      "target": "non-conformal metric perturbation on the curved leaf + b-variation",
+      "fingerprint": "||delta S_h|| for a C^2 non-conformal k on the ellipsoidal-leaf harmonic cell vs the conformal reduction; verify the residual scales as ||k - conformal-part||-driven and the b-dependence stays b*M",
+      "controls": [
+        "C1/C2 FD linearity",
+        "C4 norm table",
+        "B_S2 exact reduction for scale-only subcase"
+      ],
+      "dependencies": [
+        "AS208 (this run)",
+        "AS206 (metric variation of intrinsic Laplacian)",
+        "AS204 (curved-leaf force bound)"
+      ],
+      "dispatch_state": "proposed, not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

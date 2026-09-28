@@ -1,0 +1,64 @@
+====================================================================================================
+AS651 four-form Legendre vacuum probe: derive-checks, E* audit, negative control
+====================================================================================================
+
+[1] Action sector: S_FF = int sqrt(-g) P(q) d^4x,  P(q) = Z*q**2/2 + b*beta**2*q**2
+    q = dual amplitude of F = q eps (F = dA, A three-form);  a0^2/G = beta^2 q^2 (promotion, k04)
+    boundary datum: flux integration constant q_0 (bulk EOM fixes nothing -- shown in step 3)
+    measure sqrt(-g) d^4x; metric variation with the four-form components held fixed
+
+[2] Metric variation (F components held fixed):
+    q P_q - P = q**2*(Z/2 + b*beta**2)
+  [PASS] L1 legendre identity: qP_q - P = (Z/2 + b beta^2) q^2 (symbolic): sympy residual 0  (thr 0)  exact identity
+  [PASS] L2 normalization: F_{mu nu rho sigma} F^{mu nu rho sigma} = -24 q^2 (concrete chart): -96.0  (thr -24 q^2 = -96.0)  eps^{0123} = -1 convention
+  [PASS] L3a metric variation FD (double, t=1e-6): dS/dt = -(1/2)(q P_q - P) at g11 = 1: FD -2.999999997085e+00 vs theory -3.000000000000e+00  (thr |d| < 1e-8)  T_{mu nu} = (P - q P_q) g_{mu nu} with eps = -T^0_0 = q P_q - P
+  [PASS] L3b metric variation FD (mpmath 50 digits): same law to 1e-11: FD_mp -3.000000000001875 vs theory -3.0  (thr |d| < 1e-11)  central-FD Taylor error f''' t^2/6 = 11.25e-12/6 = 1.875e-12 at t = 1e-6; independent high-precision representation
+  [PASS] L4 independent representation (closed form q(t)=q/sqrt(1+t), mpmath): FD vs closed agree: FD_mp -3.000000000001875 vs closed_mp -3.000000000001875  (thr |d| < 1e-20)  two independent representations agree at 50 digits
+  [PASS] L4b Taylor coefficient of the varied action: S(t)-(6-3t) - (9/4)t^2 -> O(t^3): -1.87484e-12  (thr |res| < 1e-10 (next term 15/8 t^3 ~ 1.9e-12))  the linear coefficient -3 = -(1/2)(q P_q - P) is the Legendre energy density
+  [PASS] L5 sign: epsilon = +q P_q - P = +(Z/2 + b beta^2) q^2 > 0 for q,Z,b,beta > 0 (k01 sign reversed): 6.00000000000000  (thr > 0)  B-iii positive vacuum, structural (k04 F1 re-derived)
+
+[3] Three-form EOM: d/dx^mu [ sqrt(-g) dP/dF_{mu nu rho sigma} ] = 0
+    dP/dF_{abcd} = -P_q/24 * eps^abcd  (exact;  dq/dF = -F^{abcd}/(24 q))
+    EOM residual = -(1/24) P_qq * d_mu q * [alternating symbol],  P_qq = Z + 2*b*beta**2
+  [PASS] L6 bulk EOM: constrains d_mu q = 0 (flux constancy); q's VALUE is an unconstrained integration constant: residual = 0 iff d_mu q = 0  (thr 0 at d_mu q = 0; != 0 at d_mu q = 1)  EOM fixes nothing about q_0 -- boundary/integration datum (B-ii audit below)
+    unknowns {Z, beta, q_0, kappa}: EOM_A gives 0 independent relations; Einstein gives vacuum energy,
+    framework identity kappa^2 = a0^2/(G epsilon_vac) gives 1 relation -> 2 real DOF remain free.
+
+[4] NEGATIVE CONTROL -- altered premise: q treated as a metric-independent scalar (gauge structure dropped)
+    altered EOM: dP/dq = P_q = (Z + 2 b beta^2) q = 0
+    at the construction's own vacuum-matching flux q_* = a0/(beta sqrt G):  P_q(q_*) = a0*(Z + 2*b*beta**2)/(sqrt(G)*beta)
+  [PASS] N1 altered equation violated by the true solution: P_q(q_*) != 0: a0*(Z + 2*b*beta**2)/(sqrt(G)*beta)  (thr != 0)  only stationary point of the altered system is q = 0
+    altered EOM solution: q = [0]
+  [PASS] N2 altered system admits only q = 0 (Z, b, beta > 0): vacuum and scale destroyed: [0]  (thr [0])  epsilon(0) = 0 -> kappa^2 = a0^2/(G*0) undefined; a0 = beta sqrt(G)|q| = 0 -> Newtonian, no MOND scale
+  [PASS] N3 vacuum energy at the altered stationary point vanishes: q P_q - P |_{q=0} = 0: 0  (thr 0)  rho_vac = +rho_Lambda impossible (B-iii violated at q = 0)
+  [PASS] N4 numeric residual of the altered equation at the true flux (canonical footing, beta=1, Z=8-2b): : 9.167504e-05  (thr 8 q_* = 9.167504e-05)  altered premise fails: residual != 0; lost hypotheses: flux conservation dL/dF = const, positivity of scale
+
+[5] kappa structure and the E* audit against AS075 obligation B
+  [PASS] L7 flux amplitude cancels from kappa^2 = beta^2/(Z/2 + b beta^2) (symbolic): residual 0  (thr 0)  q_0 never enters kappa
+    RAR kernel: s_sat = 2.53963828219, Delta_sat = 0.647610237892, jsat = I_rar = 0.452524896675
+    K_B = 0.0: b = 0.01800539   kappa=1/2 requires Z/beta^2 = 8 - 2b = 7.96398921
+    K_B = 0.25: b = 0.01575472   kappa=1/2 requires Z/beta^2 = 8 - 2b = 7.96849056
+  [PASS] L8 kernel witness refinement (jsat at dps 50 vs dps 100): 1.00e-51  (thr < 1e-40)  declared refinement, relative change
+  [PASS] L9 kernel stiffness bound: min(s Delta - j) >= 0 (F6, same measure): 1.054e-05  (thr >= -1e-12)  effective stiffness Z_eff positive on [1e-3, 1e4]
+  [PASS] L10 deep-limit boundary: s Delta - j -> 0+ as s -> 0+: 3.333e-07  (thr >= 0 and < 1e-2)  admissible limiting case in the same measure
+    r = Z/beta^2 =    1.000:  kappa = 1.389418
+    r = Z/beta^2 =    2.000:  kappa = 0.991117
+    r = Z/beta^2 =    4.000:  kappa = 0.703945
+    r = Z/beta^2 =    7.964:  kappa = 0.500000
+    r = Z/beta^2 =    8.000:  kappa = 0.498878
+    r = Z/beta^2 =   16.000:  kappa = 0.353156
+    r = Z/beta^2 =   64.000:  kappa = 0.176727
+  [PASS] E1 B-iv witness: kappa-projection is a continuum, not {1/2} (7 distinct values incl. tuned r_half): [1.3894178, 0.99111708, 0.70394518, 0.5, 0.49887845, 0.35315619, 0.17672698]  (thr all distinct; kappa(r_half) = 0.5 to 1e-12)  rank-1 selection fails: only the tuned ratio r_half lands on 1/2
+  [PASS] E2 q-cancellation numerics: kappa^2 identical for q in {0.1,1,10,100} (beta=1, Z=8-2b): max |k2(q) - k2_ref| = 0.0  (thr < 1e-40)  k2_ref = 1/((8-2b)/2 + b) = 1/4 -> kappa = 1/2 exactly at the tuned ratio, for every q
+  [PASS] E3 candidate E*: rho_vac/rho_Lambda = (Z/2 + b beta^2)/(4 beta^2); = 1 exactly at Z/beta^2 = 8 - 2b: rho_vac/rho_Lambda - 1 = 0.0  (thr < 1e-45)  the vacuum-magnitude equation and the kappa equation collapse into ONE codimension-1 condition on couplings; q drops out
+
+    canonical a0 = 9.3619e-11: rho_Lambda = 5.8444124540e-27 kg/m^3, eps_Lambda = 5.2526959597e-10 J/m^3, s = 1.872380e-10, q_* = 1.145938e-05/beta (kg^1/2 m^-1/2 s^-1)
+    alternative a0 = 1.1279e-10: rho_Lambda = 8.4830896196e-27 kg/m^3, eps_Lambda = 7.6242207273e-10 J/m^3, s = 2.255800e-10, q_* = 1.380600e-05/beta
+    kappa_eff at fixed canonical density (relabel diagnostic) = 0.602388404
+  [PASS] F1 units: [P] = kg m^-1 s^-2 = J/m^3; [q] = kg^1/2 m^-1/2 s^-1; [Z] = [beta] = [b] = 1: check table in derivation.md  (thr dimensionally consistent)  a0^2/G has kg m^-1 s^-2; Z q^2 and b beta^2 q^2 both match; [q] = [a0/sqrt(G)]
+  [PASS] F2 sign: epsilon = +(...)q^2 > 0 structurally; AS068's negative boundary vacuum is repaired by the Legendre form: +Z q^2/2 + b beta^2 q^2  (thr > 0 for q != 0)  B-iii PASSES structurally (sign), magnitude still a datum
+  [PASS] F3 limiting cases: q -> 0+ : epsilon -> 0+, a0 -> 0 (Newtonian); q -> infinity : epsilon -> infinity (no preferred flux): 0^+ and +inf  (thr monotone in q)  same measure; boundary datum free -> boundary ensemble required
+  [PASS] F4 G_N separate: all numerics use G_N = 6.67430e-11; G_bare/G_cosmo untouched (single-G promotion is k04's own assumption): G_N only  (thr no identification)  footing table uses framework G
+
+RESULT: 0 FAIL / 23 checks
+wall 0.113 s

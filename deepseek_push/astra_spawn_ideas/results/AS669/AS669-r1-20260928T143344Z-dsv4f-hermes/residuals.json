@@ -1,0 +1,210 @@
+{
+  "checks": [
+    {
+      "check": "S1 [sign F1 re-derived] eps_vac = qP_q - P gives promoted primitive +b a0^2/G",
+      "pass": true,
+      "detail": "eps = +Z q^2/2 + b beta^2 q^2  (k01's -b a0^2/G reversed without touching the gradient term)",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "S2 [flux identity] Phi = q*Vol is definitional; fixed-flux amplitude law dq/dVol = -q/Vol",
+      "pass": true,
+      "detail": "dq/dVol + q/Vol = 0 exactly (symbolic)",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "S3 [fixed-q law] dPhi/dVol = q exactly; Phi linear in Vol at fixed q",
+      "pass": true,
+      "detail": "",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "S4 [kappa volume-blind] kappa^2 = 2 beta^2/(Z + 2 b beta^2): q and Vol absent",
+      "pass": true,
+      "detail": "kappa^2 = 2*beta**2/(Z + 2*b*beta**2)",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "S5 [half condition] kappa = 1/2  <=>  Z/beta^2 = 8 - 2b  (FLUX amplitude cancels; ratio of two couplings unfixed - k04 F2)",
+      "pass": true,
+      "detail": "Z/beta^2 = 8 - 2*b",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "S6 [negative-control algebra] dPhi = q dVol + Vol dq; simultaneous dq = dPhi = 0 forces q dVol = 0",
+      "pass": true,
+      "detail": "residual = q dVol <> 0 for q <> 0, dVol <> 0: overdetermined (2 constraints, 1 identity, 1 free variation)",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "S7 [k04 F2 number reproduced] Z/beta^2 = 8 - 2b in (7.95, 7.98) at K_B in {0, 0.25}",
+      "pass": true,
+      "detail": "K_B=0 -> 7.96399 (k04 quotes 7.96)",
+      "tolerance": "1e-2 window",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N1a [S^4 volume] Vol = 8 pi^2 R^4/3 at R = 1",
+      "pass": true,
+      "detail": "quad = 26.318945069571622984, exact 8pi^2/3 = 26.318945069571622984, rel |d| < 1e-55",
+      "tolerance": "1e-55 rel (dps=60)",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N2a [fixed-flux dilution R=1.5] q2/q1 = (V1/V2) = (R1/R2)^4",
+      "pass": true,
+      "detail": "q2/q1 = 0.197530864197531, (R1/R2)^4 = 0.197530864197531",
+      "tolerance": "1e-50 rel (dps=60)",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N2b [fixed-q law R=1.5] Phi2/Phi1 = (V2/V1) = (R2/R1)^4",
+      "pass": true,
+      "detail": "Phi2/Phi1 = 5.0625, (R2/R1)^4 = 5.0625",
+      "tolerance": "1e-50 rel",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N2a [fixed-flux dilution R=2.0] q2/q1 = (V1/V2) = (R1/R2)^4",
+      "pass": true,
+      "detail": "q2/q1 = 0.0625, (R1/R2)^4 = 0.0625",
+      "tolerance": "1e-50 rel (dps=60)",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N2b [fixed-q law R=2.0] Phi2/Phi1 = (V2/V1) = (R2/R1)^4",
+      "pass": true,
+      "detail": "Phi2/Phi1 = 16.0, (R2/R1)^4 = 16.0",
+      "tolerance": "1e-50 rel",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N3 [fixed flux, R=1.5] eps_vac ~ Vol^-2, a0 ~ Vol^-1, kappa^2 invariant",
+      "pass": true,
+      "detail": "eps ratio = 0.03901844231 vs (V1/V2)^2 = 0.03901844231; kappa^2 ratio = 1.0",
+      "tolerance": "1e-50 / 1e-58",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N3 [fixed flux, R=2.0] eps_vac ~ Vol^-2, a0 ~ Vol^-1, kappa^2 invariant",
+      "pass": true,
+      "detail": "eps ratio = 0.00390625 vs (V1/V2)^2 = 0.00390625; kappa^2 ratio = 1.0",
+      "tolerance": "1e-50 / 1e-58",
+      "capable_of_failing": null
+    },
+    {
+      "check": "NEG1 [negative control] simultaneous dq = dPhi = 0 violated: residual q (V2 - V1) != 0",
+      "pass": true,
+      "detail": "q*DeltaV = 0.004523982 kg^1/2 m^7/2 s^-1; identity requires V2 = V1, ratio V2/V1 = 16.0",
+      "tolerance": null,
+      "capable_of_failing": "would PASS only if V2 = V1 (volume-preserving variations); any volume-changing metric change fires"
+    },
+    {
+      "check": "N4 [FD consistency, fixed-q] dPhi/dR = q dV/dR (central FD)",
+      "pass": true,
+      "detail": "FD = 0.001206395212, analytic = 0.001206395212",
+      "tolerance": "1e-10 (FD truncation)",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N5 [FD consistency, fixed-flux] dq/dR = -q dV/dR / V (central FD)",
+      "pass": true,
+      "detail": "FD = -4.583752157e-5, analytic = -4.583752157e-5",
+      "tolerance": "1e-10",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N6 [T^4 Stokes] adding the exact term dC (C = sin x0 dx1^dx2^dx3) leaves Phi unchanged (quadrature floor)",
+      "pass": true,
+      "detail": "int dC = -5.67186e-59 (floor ~1e-57 rel); |dPhi|/Phi < 1e-54",
+      "tolerance": "1e-54 rel (dps=60 quadrature floor)",
+      "capable_of_failing": null
+    },
+    {
+      "check": "N7 [representation uniqueness] homogeneous representative forced by flux: q = Phi/V, exact part invisible to the period",
+      "pass": true,
+      "detail": "q(F + dC) = q(F) = Phi/V exactly (H^4 = R on connected compact oriented M^4)",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "F1 [footings separate] canonical vs alternative: same Z/beta^2 couplings, eps = 4 a0^2/G each; never both fixed",
+      "pass": true,
+      "detail": "can: eps = 5.252696e-10 J/m^3 (rho_L c^2 = 5.252696e-10), kappa = 0.5; alt: eps = 7.6242207e-10 J/m^3 (rho_L c^2 = 7.6242207e-10), kappa = 0.5; fixed-rho relabel kappa_eff = 0.6023884041",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "F2 [volume-blind across footings] kappa^2 unchanged under q -> q/16 at both footings",
+      "pass": true,
+      "detail": "kap^2(q)/kap^2(q/16) - 1 = 0.0, 0.0",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "N8 [limiting case q -> 0] eps_vac -> 0 and a0 = beta sqrt(G) |q| -> 0 (no flux => no scale); kappa stays formal",
+      "pass": true,
+      "detail": "q = 0: vacuum energy and promoted a0 both vanish; the half condition is a ratio of TWO couplings, not fixed by the flux",
+      "tolerance": null,
+      "capable_of_failing": null
+    },
+    {
+      "check": "R1 [refinement dps=100] S^4 volume stable at 100 digits",
+      "pass": true,
+      "detail": "dps=100 quad agrees with 8 pi^2/3 at rel < 1e-95",
+      "tolerance": "1e-95 rel",
+      "capable_of_failing": null
+    },
+    {
+      "check": "R2 [refinement] fixed-flux dilution law restated at dps=100 on S^4 (R=1 -> 2)",
+      "pass": true,
+      "detail": "q2/q1 = 0.0625 (exact 1/16)",
+      "tolerance": "1e-55 rel",
+      "capable_of_failing": null
+    }
+  ],
+  "n_pass": 24,
+  "n_total": 24,
+  "wall_s": 0.1755671501159668,
+  "s_sat": "2.539638282188165325",
+  "I_rar": "0.4525248966751305416",
+  "b": {
+    "0.0": "0.018005393544499054547",
+    "0.25": "0.015754719351436672729"
+  },
+  "Z_over_beta2": {
+    "0.0": "7.9639892129110018909",
+    "0.25": "7.9684905612971266545"
+  },
+  "vol_S4_R1": "26.318945069571622984",
+  "vol_S4_8pi2_3": "26.318945069571622984",
+  "vol_T4": "1558.5454565440389958",
+  "vols_S4": {
+    "1.0": "26.318945069571622984",
+    "1.5": "133.23965941470634135",
+    "2.0": "421.10312111314596774"
+  },
+  "q_can": "0.000011459380393073302635",
+  "q_alt": "0.000013805995733074886553",
+  "eps_vac_can": "5.2526959597261135999e-10",
+  "eps_vac_alt": "7.6242207272672789656e-10",
+  "kappa_can": "0.5",
+  "kappa_alt": "0.5",
+  "kappa_eff_fixed_rho": "0.60238840406327775345",
+  "fixed_flux_q_ratio_R2": "0.0625",
+  "fixed_q_Phi_ratio_R2": "16.0",
+  "neg_control_residual": "0.0045239820464493348801",
+  "units": {
+    "q": "kg^1/2 m^-1/2 s^-1  (=(J/m^3)^1/2)",
+    "Phi": "kg^1/2 m^7/2 s^-1",
+    "eps_vac": "J/m^3",
+    "a0": "m/s^2",
+    "kappa": "dimensionless"
+  }
+}

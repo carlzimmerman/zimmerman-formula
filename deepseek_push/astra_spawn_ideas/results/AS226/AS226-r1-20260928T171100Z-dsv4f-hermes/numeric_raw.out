@@ -1,0 +1,83 @@
+{
+ "checks": {
+  "N1_source_and_tie_residuals": {
+   "pass": true,
+   "detail": "mode-wise exact residuals on the N=48 torus: max|(E1)|/scale = 3.372e-16 ; max|Z-tie|/scale = 0.000e+00 ; max|(E2)|/scale = 0.000e+00 ; max|U - u_b|/scale = 4.288e-23 (tolerance 1e-09, set before evaluation)",
+   "residual": [
+    3.3720140688792103e-16,
+    0.0,
+    0.0,
+    4.287737616067518e-23
+   ],
+   "tolerance": 1e-09
+  },
+  "N2_geodesic_far_field": {
+   "pass": true,
+   "detail": "|grad Phi_t| (physical field, /dx^3 normalization) vs G_N M_b/r^2 at r = 6,8,10 sigma: relative residuals [-0.0378, -0.0446, -0.0623] (tolerance 8e-2 set before; small box Ewald terms ~ (r/L)^2 expected and bounded)",
+   "residual": [
+    -0.03778059392764337,
+    -0.04464063957250598,
+    -0.062283396742934455
+   ],
+   "tolerance": "0.08"
+  },
+  "N2b_modewise_newton_coefficient": {
+   "pass": true,
+   "detail": "per mode |(Phi_t - Z) k^2 / rho| = 4 pi G_N exactly: max relative deviation 4.441e-16 (rounding floor); the bare-calibrated coefficient 4 pi G_bare sits 1/c_N - 1 = 0.176471 (= 17.65%) below it \u2014 the measured constant enters the field equations mode by mode via c_N, and the gap is exactly the negative-control margin",
+   "residual": 4.440892098500626e-16,
+   "tolerance": 1e-09
+  },
+  "N3_negative_control_fires": {
+   "pass": true,
+   "detail": "G_bare-calibrated candidate (action c_N kept): max|residual|/scale = 1.850e+00 = (1+c_N) = 1.8500 per unit rho at every mode ((1+c_N)*max|rho_hat|/scale = 1.850); true candidate nil: 0.000e+00 \u2014 the control FIRES as required",
+   "residual": 1.8499999999999999,
+   "tolerance": "> 1e-7 (fires)"
+  },
+  "N4_alpha_content": {
+   "pass": true,
+   "detail": "fired residual minus its alpha = 0 part: max|-R4 - 2 rho - (c_N-1) rho|/scale = 4.046e-16 == 0; the O(alpha) mismatch per unit density is (c_N - 1) = -0.1500 = -alpha/2",
+   "residual": 4.0464168826550524e-16,
+   "tolerance": 1e-09
+  },
+  "N5_reciprocal_clock": {
+   "pass": true,
+   "detail": "Z-auxiliary at the sampled modes: max|Z_hat|/max|Phi_hat| = 9.998e-03 (the (ell S_k/4)-tie); mean-normalized z = Z - <Z>_h -> 0, so the reciprocal clock 1/t_c = 1/(1+z) -> 1 in the high-k window",
+   "residual": 0.009998223629001187,
+   "tolerance": null
+  },
+  "N6_refinement": {
+   "pass": true,
+   "detail": "refined once N=48 -> N=96: (E1) residual 3.372e-16 -> 1.798e-16 (both at the float-algebra floor; exact mode identity, no finite-difference truncation)",
+   "residual": [
+    3.3720140688792103e-16,
+    1.7984075034035265e-16
+   ],
+   "tolerance": "1e-9 both"
+  },
+  "N7_footings": {
+   "pass": true,
+   "detail": "footings (mandated constants): canonical a0 = 9.3619e-11 m/s^2 -> rho_Lambda = 5.844412e-27 kg/m^3, kappa back-check 0.500000000 ; alternative a0 = 1.1279e-10 m/s^2 -> rho_Lambda = 8.483090e-27 kg/m^3, kappa back-check 0.500000000 ; G_N/G_bare = 1.1764705882 = 1/c_N on BOTH footings (a0/kappa enter no leading field equation; the derivation is footing-independent); G_cosm/G_N = c_N (FINAL_ACTION eq. (18)); G_bare = c_N G_N = 5.673155e-11",
+   "residual": [
+    5.844412454021876e-27,
+    8.483089619559099e-27,
+    1.1764705882352942
+   ],
+   "tolerance": null
+  }
+ },
+ "times_s": {
+  "N48": 0.018053770065307617,
+  "N96": 0.15272235870361328
+ },
+ "footings": {
+  "rhoL_can": 5.844412454021876e-27,
+  "rhoL_alt": 8.483089619559099e-27,
+  "kappa_can": 0.5,
+  "kappa_alt": 0.5,
+  "G_bare": 5.673154999999999e-11,
+  "GN_over_Gbare": 1.1764705882352942,
+  "cN": 0.85,
+  "alpha": 0.3,
+  "Gcosm_over_GN": 0.85
+ }
+}

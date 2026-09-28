@@ -1,0 +1,78 @@
+{
+ "checks": {
+  "CHK-1_chain_rule_all_heat_EULER_derivatives": {
+   "pass": true,
+   "observed": "max |sum E_A*Lie(A) - dS_heat|fields| over 3 random jets = 0.000e+00"
+  },
+  "CHK-1b_nonvacuous": {
+   "pass": true,
+   "observed": "|dS_heat|fields| (random jet) = 2.784e-01 != 0 (identity is non-trivial)"
+  },
+  "CHK-2_canonical_rIBP_decomposition_with_endpoint_bracket": {
+   "pass": true,
+   "observed": "delta(bulk)|fields = N*[sum E_Wk^canon*Lie + sum E_Lk*Lie] + N*M ; max residual = 0.000e+00"
+  },
+  "CHK-2_negative_control_leftover_identity": {
+   "pass": true,
+   "observed": "omitting the r-endpoint multipliers leaves EXACTLY N*(L_b*Lie(W_b) - L_0*Lie(W_0)); max |leftover - N*M| = 0.000e+00"
+  },
+  "CHK-2b_negative_control_leftover_nonzero": {
+   "pass": true,
+   "observed": "|N*M| (random jet) = 5.704e-02 != 0  => the formal Ward identity FAILS with an explicit residual when the r-endpoint multipliers are omitted"
+  },
+  "CHK-3_full_offshell_Ward_relation_with_endpoint_multipliers": {
+   "pass": true,
+   "observed": "delta_heat|fields == N*[sum E_Wk^canon*Lie + sum E_Lk*Lie + (R_W+L_b)*Lie W_b + (lam0-L_0)*Lie W_0 + E_lam0*Lie lam0 + E_U*Lie U]; max residual = 0.000e+00"
+  },
+  "CHK-4_gate_EULER_matches_local_RW_structure": {
+   "pass": true,
+   "observed": "density W_b-derivative = N*(G'J' h_x + G'ell h_xx + ell a h_x)  [= formula (5) in IBP form]; max residual 0.000e+00"
+  },
+  "CHK-6_local_sign_of_ell_term_in_lapse_variation": {
+   "pass": true,
+   "observed": "d_{ln N} gate = N eps G + N ell (d eps/dx) DW_b ;  eq (12) needs the IBP sign: +ell a DW_b -> -ell*Dh W_b under lnN variation (verified integrated in CHK-6b)"
+  },
+  "CHK-7_dimensions_of_heat_terms": {
+   "pass": true,
+   "observed": "L-exponents {'term_G': 0, 'term_ell_aDWb': 0, 'term_bulk': 0, 'term_lam0': 0, 'term_r_deriv': 0} (all 0 => dimensionless action; dims: N=0,W=0,a=-1,Dh=-2,Yh,J=-2,theta=-2,ell=0,Lr=lam0=-2,sqrtg=+4,MP2=-2)"
+  },
+  "CHK-7b_dim_checker_rejects_wrong_variants": {
+   "pass": true,
+   "observed": "wrong variants give L-exponents 1,2 (rejected)"
+  },
+  "CHK-8_homogeneous_limit": {
+   "pass": true,
+   "observed": "constant fields: chain-rule residual max = 0.000e+00 (identity reduces to 0=0 in the homogeneous limit)"
+  },
+  "CHK-9_footings": {
+   "pass": true,
+   "observed": "canonical a0=9.3619e-11: rho_Lambda=5.8444124540e-27 kg/m^3, Lambda=1.090800e-52 m^-2 ; alternative a0=1.1279e-10: rho=8.4830896196e-27 kg/m^3, Lambda=1.583282e-52 m^-2 ; density ratio=(a0_alt/a0_can)^2=1.45148716 ; kappa_eff(fixed rho)=0.60238840"
+  },
+  "CHK-10_branch_independence": {
+   "pass": true,
+   "observed": "identity residual zero for arbitrary constitutive values (Jv,Jd,Jp,Gp free symbols): 3/3 samples pass => structural identity valid on Q, RAR, MU2, EXP and operative filtered MONO alike"
+  }
+ },
+ "footings": {
+  "a0_canonical_m_s2": 9.3619e-11,
+  "a0_alternative_m_s2": 1.1279e-10,
+  "rho_Lambda_kg_m3": 5.844412454021876e-27,
+  "rho_total_kg_m3": 8.483089619559099e-27,
+  "Lambda_canonical_m-2": 1.0907997632807349e-52,
+  "Lambda_alternative_m-2": 1.583281847696523e-52,
+  "density_ratio": 1.451487157399611,
+  "kappa_eff_fixed_rho": 0.6023884040632778
+ },
+ "max_residuals": {
+  "CHK1": 0.0,
+  "CHK2": 0.0,
+  "CHK3": 0.0,
+  "CHK4": 0.0
+ },
+ "wall_s": 3.554659128189087,
+ "bounds": {
+  "cpu_s": 100,
+  "memory_MB": 512,
+  "threads": 1
+ }
+}

@@ -1,0 +1,71 @@
+====================================================================================================
+AS669 -- flux integral / metric-volume dependence (k04 branch)
+====================================================================================================
+
+-- step 1/3: fixed source equation, measure, boundary conditions --
+    P(q) = Z*q**2/2 + b*beta**2*q**2
+    eps_vac = q P_q - P = q**2*(Z/2 + b*beta**2)
+    T_mu nu = (P - q P_q) g_mu nu = q**2*(-Z/2 - b*beta**2) g_mu nu
+    conformal q(lam) = q/lam^4 from delta(q sqrt(-g)) = 0:  q/lam**4
+    T on scaled flux: q**2*(-Z/2 - b*beta**2)/lam**8 g_mu nu  (same form, eps -> eps/lam^8)
+  [PASS] S1 [sign F1 re-derived] eps_vac = qP_q - P gives promoted primitive +b a0^2/G  (eps = +Z q^2/2 + b beta^2 q^2  (k01's -b a0^2/G reversed without touching the gradient term))
+
+-- step 2: fixed integrated flux vs fixed local q under volume variation --
+    Phi = q Vol4 ;  fixed flux:  q = Phi/Vol4,  dq/dVol = -Phi/Vol^2 = -q/Vol
+    fixed local q: dPhi/dVol = q
+    kappa^2 = a0^2/(G eps) = 2*beta**2/(Z + 2*b*beta**2)  ->  2*beta**2/(Z + 2*b*beta**2)   (q and Vol cancel)
+    kappa = 1/2  <=>  Z/beta^2 = 8 - 2*b
+
+-- step 4: negative control (q and Phi simultaneously fixed) --
+    variation of Phi = q Vol:  dPhi = q dVol + Vol dq ;  with dq = dPhi = 0:
+    residual = q dVol  (identically Vol*dq - dPhi + dVol*q is 0 only when dVol = 0 or q = 0)
+  [PASS] S2 [flux identity] Phi = q*Vol is definitional; fixed-flux amplitude law dq/dVol = -q/Vol  (dq/dVol + q/Vol = 0 exactly (symbolic))
+  [PASS] S3 [fixed-q law] dPhi/dVol = q exactly; Phi linear in Vol at fixed q
+  [PASS] S4 [kappa volume-blind] kappa^2 = 2 beta^2/(Z + 2 b beta^2): q and Vol absent  (kappa^2 = 2*beta**2/(Z + 2*b*beta**2))
+  [PASS] S5 [half condition] kappa = 1/2  <=>  Z/beta^2 = 8 - 2b  (FLUX amplitude cancels; ratio of two couplings unfixed - k04 F2)  (Z/beta^2 = 8 - 2*b)
+  [PASS] S6 [negative-control algebra] dPhi = q dVol + Vol dq; simultaneous dq = dPhi = 0 forces q dVol = 0  (residual = q dVol <> 0 for q <> 0, dVol <> 0: overdetermined (2 constraints, 1 identity, 1 free variation))
+
+-- inherited boundary datum (imported from k01 through k04, RAR kernel) --
+    s_sat = 2.53963828219  (max of h_RAR; framework landmark y_p ~ 2.5396)
+    I_rar = j(s_sat) = 0.452524896675
+    K_B = 0.0: b = 0.0180053935445,  Z/beta^2 = 7.96398921291
+    K_B = 0.25: b = 0.0157547193514,  Z/beta^2 = 7.9684905613
+  [PASS] S7 [k04 F2 number reproduced] Z/beta^2 = 8 - 2b in (7.95, 7.98) at K_B in {0, 0.25}  (K_B=0 -> 7.96399 (k04 quotes 7.96))
+
+-- numerical witnesses (mpmath dps=60; S^4 round, T^4 flat) --
+  [PASS] N1a [S^4 volume] Vol = 8 pi^2 R^4/3 at R = 1  (quad = 26.318945069571622984, exact 8pi^2/3 = 26.318945069571622984, rel |d| < 1e-55)
+  [PASS] N2a [fixed-flux dilution R=1.5] q2/q1 = (V1/V2) = (R1/R2)^4  (q2/q1 = 0.197530864197531, (R1/R2)^4 = 0.197530864197531)
+  [PASS] N2b [fixed-q law R=1.5] Phi2/Phi1 = (V2/V1) = (R2/R1)^4  (Phi2/Phi1 = 5.0625, (R2/R1)^4 = 5.0625)
+  [PASS] N2a [fixed-flux dilution R=2.0] q2/q1 = (V1/V2) = (R1/R2)^4  (q2/q1 = 0.0625, (R1/R2)^4 = 0.0625)
+  [PASS] N2b [fixed-q law R=2.0] Phi2/Phi1 = (V2/V1) = (R2/R1)^4  (Phi2/Phi1 = 16.0, (R2/R1)^4 = 16.0)
+  [PASS] N3 [fixed flux, R=1.5] eps_vac ~ Vol^-2, a0 ~ Vol^-1, kappa^2 invariant  (eps ratio = 0.03901844231 vs (V1/V2)^2 = 0.03901844231; kappa^2 ratio = 1.0)
+  [PASS] N3 [fixed flux, R=2.0] eps_vac ~ Vol^-2, a0 ~ Vol^-1, kappa^2 invariant  (eps ratio = 0.00390625 vs (V1/V2)^2 = 0.00390625; kappa^2 ratio = 1.0)
+  [PASS] NEG1 [negative control] simultaneous dq = dPhi = 0 violated: residual q (V2 - V1) != 0  (q*DeltaV = 0.004523982 kg^1/2 m^7/2 s^-1; identity requires V2 = V1, ratio V2/V1 = 16.0)
+  [PASS] N4 [FD consistency, fixed-q] dPhi/dR = q dV/dR (central FD)  (FD = 0.001206395212, analytic = 0.001206395212)
+  [PASS] N5 [FD consistency, fixed-flux] dq/dR = -q dV/dR / V (central FD)  (FD = -4.583752157e-5, analytic = -4.583752157e-5)
+  [PASS] N6 [T^4 Stokes] adding the exact term dC (C = sin x0 dx1^dx2^dx3) leaves Phi unchanged (quadrature floor)  (int dC = -5.67186e-59 (floor ~1e-57 rel); |dPhi|/Phi < 1e-54)
+  [PASS] N7 [representation uniqueness] homogeneous representative forced by flux: q = Phi/V, exact part invisible to the period  (q(F + dC) = q(F) = Phi/V exactly (H^4 = R on connected compact oriented M^4))
+  [PASS] F1 [footings separate] canonical vs alternative: same Z/beta^2 couplings, eps = 4 a0^2/G each; never both fixed  (can: eps = 5.252696e-10 J/m^3 (rho_L c^2 = 5.252696e-10), kappa = 0.5; alt: eps = 7.6242207e-10 J/m^3 (rho_L c^2 = 7.6242207e-10), kappa = 0.5; fixed-rho relabel kappa_eff = 0.6023884041)
+  [PASS] F2 [volume-blind across footings] kappa^2 unchanged under q -> q/16 at both footings  (kap^2(q)/kap^2(q/16) - 1 = 0.0, 0.0)
+  [PASS] N8 [limiting case q -> 0] eps_vac -> 0 and a0 = beta sqrt(G) |q| -> 0 (no flux => no scale); kappa stays formal  (q = 0: vacuum energy and promoted a0 both vanish; the half condition is a ratio of TWO couplings, not fixed by the flux)
+  [PASS] R1 [refinement dps=100] S^4 volume stable at 100 digits  (dps=100 quad agrees with 8 pi^2/3 at rel < 1e-95)
+  [PASS] R2 [refinement] fixed-flux dilution law restated at dps=100 on S^4 (R=1 -> 2)  (q2/q1 = 0.0625 (exact 1/16))
+
+====================================================================================================
+  RESULT: 24/24 checks PASS; wall 0.18 s
+
+  Derived equations (k04 branch, compact oriented M^4, homogeneous q):
+    (E1) fixed-flux amplitude law     q = Phi/Vol4,   dq/q = -dVol4/Vol4
+    (E2) fixed-local-q law            dPhi/Phi = dVol4/Vol4
+    (E3) flux fixes only the homogeneous amplitude: q(F) = <[F],[M]>/Vol4,
+         exact parts (dC) are invisible to the period (Stokes on closed M)
+    (E4) negative-control theorem     (dq = 0 & dPhi = 0)  =>  dVol4 = 0 or q = 0
+    (E5) coefficient consequence      kappa^2 = 2 beta^2/(Z + 2 b beta^2):
+         q and Vol4 cancel identically -- the metric-volume channel cannot
+         select kappa = 1/2;  kappa = 1/2 <=> Z/beta^2 = 8 - 2b (k04 F2 deficit
+         unchanged; the missing equation is 'why Z = 8 beta^2'-type, and in
+         the fixed-flux regime the flux datum Phi (lattice unit + winding) is
+         the relocated adopted input).
+  Both footings carried separately: eps_can = 4 a0_can^2/G, eps_alt = 4 a0_alt^2/G,
+  same Z/beta^2; kappa_eff relabel at fixed density = 0.60238840 (diagnostic only).
+

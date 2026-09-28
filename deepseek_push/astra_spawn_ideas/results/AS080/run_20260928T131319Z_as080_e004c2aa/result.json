@@ -1,0 +1,241 @@
+{
+  "schema_version": 2,
+  "task_id": "AS080",
+  "task_sha256": "1e353368ad08a4b9738a345bd17858170185ae7c48e505c77400fb19fdb627fd",
+  "run_id": "run_20260928T131319Z_as080_e004c2aa",
+  "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter), Hermes subagent on macOS (arm64); actual executing identity",
+  "started_utc": "2026-09-28T13:30:27Z",
+  "finished_utc": "2026-09-28T13:58:39Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "For all C > 0, sigma^2 > 0 and every positive finite shell r_in <= r <= R with r_in > 0 (imposed well Phi = C ln(r/r_ref), C = sqrt(G_N M_b a0)): the premises {dP/dr = -rho*C/r ; P = sigma^2*rho} imply exactly and uniquely (given rho(r_in)) the power law rho(r) = A (r/r_ref)^(-gamma) with gamma = C/sigma^2, and gamma = 2 iff sigma^2 = C/2. Verified: symbolic substitution exact (sympy), dxo independent dsolve exact, 50-digit mpmath substitution residual max 5.32e-51 over 14412 points (6 fixture shells x 2 footings x 1201 pts), Lean-certified (7 theorems, exit 0, axioms {propext, Classical.choice, Quot.sound}). Adding Poisson self-consistency (Delta Phi = 4 pi G_N rho, the well sourced by the profile) selects gamma = 2, A = C/(4 pi G_N) and hence sigma^2 = 2 pi G_N A = C/2 (conditional theorem, all premises explicit). Deep-exterior transfer (point source, r_in/r_M = 10, 100; R/r_in = 2, 10; both footings): the log well gradient C/r is the exact asymptotic limit of branches Q, RAR (= MONO for y < y_star), MU2, EXP; actual-kernel slope deviation |slope/gamma - 1| bounded by max 5.083e-2 (RAR/MONO at 10 r_M), 5.008e-3 (at 100 r_M), 4.988e-3 (Q at 10 r_M), 5.000e-5 (Q at 100 r_M); leading coefficients match the closed series (1/2)(r_M/r)^2 (Q) and (1/2)(r_M/r) + (1/12)(r_M/r)^2 (RAR) to 1e-9 at 50 digits. Newtonian regime (r << r_M): the profile is exponential rho ~ exp(G_N M_b/(sigma^2 r)), NOT a power law (power-law residual vs Newtonian ODE O(1); exponential solves it exactly, Lean T5). Domain: deep-equilibrium sector; slope-2 temperature = registered equilibrium values sigma = 119.20 km/s (canonical a0 = 9.3619e-11) and 124.89 km/s (alternative a0 = 1.1279e-10), M_b = 6.5e10 M_sun, kappa = 1/2 adopted.",
+  "framework_cell": {
+    "branch": "Conditional deep-equilibrium sector (fixed logarithmic well + isothermal EOS). Distinct branches kept separate: Q, RAR, MU2, EXP, MONO (criterion B) never identified; deep-limit comparisons are branch-labeled. Operative MONO touched only where h_mono = h_RAR (y = (r_M/r)^2 < y_star ~ 2.3374).",
+    "action_hamiltonian": "None entered: this task is the hydrostatic/EOS level of the equilibrium sector (no scalar action, no f(X), no particle species). Same-theory transfer to the amended thirteen-item target (filtered nu_mono, criterion B) explicitly NOT established (filter scale xi unregistered).",
+    "kernel": "Point-source kernels used for the deep-exterior check only: Q g=sqrt(G M_b a0)/r * sqrt(1+(r_M/r)^2); RAR g=(G M_b/r^2) nu((r_M/r)^2), nu=1/(1-exp(-sqrt(y))); MU2 x(1-(1+x/2)^-2)=B/a0; EXP x(1-e^-x)=B/a0; MONO = RAR for y < y_star (unfiltered; filter S=exp((xi^2/2)Delta) NOT applied - xi unregistered, see limitations).",
+    "gate": "Equilibrium sector virial/closure gate; static balance only. No propagation, no attainment, no formation.",
+    "coupling": "G_N only in the hydrostatic sector. G_bare and G_cosmo kept as separate symbols; rho_Lambda = 4 a0^2/(G_cosmo c^2) reported conditionally with G_cosmo = G_N assumed for the number (numeric values 5.8444e-27 [canonical] / 8.4831e-27 [alt] kg/m^3).",
+    "parameters": "kappa = 1/2 adopted (input, not derived here); gamma = C/sigma^2 derived; A = single density normalization; sigma^2 independent input in the ODE (equilibrium temperature C/2 is DERIVED conditionally in section 5 from hydrostatics + isothermal EOS + log well + Poisson source-consistency).",
+    "scale_footing": "Canonical a0 = 9.3619e-11 m/s^2 (sigma = 119.20 km/s, rho_Lambda = 5.8444e-27 kg/m^3, r_M = 9.8375 kpc) and alternative a0 = 1.1279e-10 m/s^2 (sigma = 124.89 km/s, rho_Lambda = 8.4831e-27 kg/m^3, r_M = 8.9626 kpc), M_b = 6.5e10 M_sun both footings; kappa = 1/2 fixed on both, so the alternative carries rho_Lambda x 1.4515; at fixed canonical rho_Lambda the alternative's effective kappa = 0.60238840. Reported separately throughout.",
+    "boundaries": "r_in <= r <= R, r_in > 0, R <= r_M (interior ansatz fixtures: r_in/R = 0.01/0.1/0.5, R/r_M = 0.62/1 - controls of the imposed-log-well ansatz only); deep exterior: r_in/r_M = 10, 100 with R/r_in = 2, 10. rho(r_in) > 0 normalizes A (equipartition A = C/(4 pi G_N) is a framework input of the equilibrium sector / forced by Poisson consistency).",
+    "initial_conditions": "Static: none beyond normalization. Dynamical attainment explicitly out of scope.",
+    "units": "SI throughout (m, kg, s, Pa, m/s^2, m^2/s^2); G_N = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 per contract.",
+    "constants": {
+      "G_N": 6.6743e-11,
+      "c": 299792458,
+      "M_sun": 1.98847e+30,
+      "pc": 3.085677581491367e+16,
+      "k_B": 1.380649e-23,
+      "M_b_Msun": 65000000000.0
+    },
+    "numerics": {
+      "G_bare": "not entered (no action level)",
+      "G_cosmo": "separate symbol; numeric use only under G_cosmo = G_N assumption, stated"
+    }
+  },
+  "new_assumptions": [
+    "The log well Phi = C ln(r/r_ref) is the deep-regime potential of the point source (exact as r -> infinity on Q/RAR/MU2/EXP/MONO; quantified kernel corrections in tested_domain); the interior imposed-well fixture is an ansatz, not a point-source statement.",
+    "Poisson self-consistency Delta(Phi) = 4 pi G_N rho as an additional premise for the section-5 conditional derivation of sigma^2 = C/2 (every premise explicit; the derivation is conditional on the log well).",
+    "Heat-filter scale xi of the operative MONO for the point-source exterior: NOT assumed / NOT used; its absence is recorded as an open dependency (no invented value).",
+    "sigma^2 positive constant in the shell (isothermal EOS, barotropic); no radial temperature gradient."
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS080_hydrostatic_slope_temperature_relation.md": "1e353368ad08a4b9738a345bd17858170185ae7c48e505c77400fb19fdb627fd",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+    "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+    "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+    "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+    "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/derivation.md": "fbe9c5a2e8be6eaa8294599f28e1f4b50109b015bbba5e0e9d8003f7fce37ac4",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/as080_hydrostatic_slope.py": "c413b2d13d7f21de76c67365aec703d7b32f8b2e6e92f6c85ffb9b687fae475f",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/as080_supervised.py": "10e507c6f2c0ac044cc74a9cb401be83fffe71f82c39acf6a3773100c82629c3",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/as080_hydrostatic_slope.lean": "df2d4d191ce446ccb73d03b9043a9c7a773d1ecc3c453227b564ce9e7804b0a7",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/as080_residuals.json": "2c14613280841dba7591c2e3a1a77aea6d78a7111eea0e6c17ecc812739e0eda",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/as080_bounds.json": "366c6fd10d996af2c6bdcb47b4532276b8280776460172c765935559830021be",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/raw_output.txt": "a5a7b871364b22d9c55f8b55f80b04f26ef99d9f907acc6337586474617b82e1",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/lean_check.out": "e5e38ba5232b8e4f8c84a1d7a5d58215660dcefc87df97703207e7f5dd67bac6",
+    "deepseek_push/astra_spawn_ideas/results/AS080/run_20260928T131319Z_as080_e004c2aa/supervise_out.txt": "abb18e5ab410794fee030f81dbd10cbec7ce96e1d946c94a26295616d245b27b"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && shasum -a 256 deepseek_push/astra_spawn_ideas/AS080_hydrostatic_slope_temperature_relation.md deepseek_push/G084_maxentropy_law.py deepseek_push/G091_virial_triad.py deepseek_push/G233_eos_noscalar.py  (hash verification: task 1e353368... , sources match the pinned manifest hashes)",
+    "cd <run_dir> && python3 as080_supervised.py  (supervisor: enforces 120 s wall + 512 MB RSS via ps-poll/SIGKILL; runs as080_hydrostatic_slope.py payload; wrote raw_output.txt, err_and_time.txt, as080_residuals.json, as080_bounds.json; final run exit 0, wall 0.86 s, max RSS 86848 KB)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs>/as080_hydrostatic_slope.lean > lean_check.out  (final run exit 0; #print axioms for all 7 theorems: {propext, Classical.choice, Quot.sound}, no sorryAx)",
+    "python3 - <<... (standalone gradient/RSS probes; see failed_attempts for the two check-bug iterations)"
+  ],
+  "execution_bounds": {
+    "declared_prototype_bounds": {
+      "wall_s": 120,
+      "memory_MB": 512,
+      "threads": 1
+    },
+    "enforced": {
+      "wall": "SIGKILL at 120 s wall by as080_supervised.py supervisor (enforced; measured 0.86 s)",
+      "cpu": "RLIMIT_CPU = 120 s set inside the payload (OS-enforced SIGXCPU)",
+      "memory": "RSS polled via `ps -o rss=` every 50 ms + SIGKILL on breach of 512 MB (enforced mechanism; macOS refuses to lower RLIMIT_AS/RLIMIT_DATA for the process, so OS rlimit is unavailable - mechanism recorded in as080_bounds.json; measured max RSS 86848 KB = 84.8 MB)",
+      "threads": "OMP/OPENBLAS/MKL/NUMEXPR/VECLIB_MAXIMUM_THREADS=1 set before numpy import; single-threaded CPython (enforced by env pinning)"
+    },
+    "measured": {
+      "wall_s": 0.86,
+      "max_rss_kb": 86848,
+      "memory_limit_kb": 524288,
+      "poll_interval_s": 0.05,
+      "killed": {
+        "memory": false,
+        "wall": false
+      }
+    },
+    "note": "declared vs enforced distinction: 120 s / 512 MB / 1 thread declared and enforced as described; Lean verification runs separately (single process, not under the RSS supervisor)."
+  },
+  "checks": [
+    {
+      "name": "P1a [ODE solved] symbolic substitution residual == 0",
+      "result": "PASS (exact)",
+      "measured": "sigma^2 d rho/dr + C rho/r = 0 at gamma = C/sigma^2, residual simplifies to 0"
+    },
+    {
+      "name": "P1b [dsolve cross-check] independent integration path satisfies the ODE",
+      "result": "PASS",
+      "measured": "sympy dsolve general solution residual = 0 exactly"
+    },
+    {
+      "name": "P1c [slope-temperature relation] gamma table",
+      "result": "PASS",
+      "measured": "sigma^2 = C/2 -> gamma 2; C/3 -> 3; C -> 1; 0.7C -> 10/7 (all exact)"
+    },
+    {
+      "name": "P1d [Poisson consistency] Delta(C ln r) = C/r^2 selects gamma = 2, A = C/(4 pi G_N), sigma^2 = C/2",
+      "result": "PASS",
+      "measured": "Delta(Cln r) = C/r^2 exact; gamma* = [2]; 2 pi G A* = C/2"
+    },
+    {
+      "name": "P1e [Newtonian profile] exponential solves the Newtonian hydrostatic ODE",
+      "result": "PASS",
+      "measured": "sympy residual = 0"
+    },
+    {
+      "name": "P2 [independent high-precision check] 50-digit mpmath substitution residual, 14412 points",
+      "result": "PASS",
+      "measured": "max |residual|/|C rho/r| = 5.32e-51 (tolerance pre-set 1e-40)"
+    },
+    {
+      "name": "P3 [deep exterior, full kernel] slope deviations on shells r_in/r_M = 10,100 x R/r_in = 2,10, branches Q/RAR/MU2/EXP + order checks",
+      "result": "PASS",
+      "measured": "max |delta|: Q 4.988e-3, RAR 5.083e-2, MU2 3.853e-2, EXP 2.575e-2; leading-coefficient ratios within 6% of 1; implicit-solve residuals < 5e-17"
+    },
+    {
+      "name": "NC1 [negative control] sigma^2 = C/3 gives a valid slope-3 solution (not forced to 2)",
+      "result": "PASS",
+      "measured": "fitted slope 3.000000000000 (and 2.000000000000 for C/2, 1.428571428571 for 0.7C); a solver forcing gamma = 2 would have FAILED"
+    },
+    {
+      "name": "NC2 [identifiability] slope s -> sigma^2 = C/s recovers the input",
+      "result": "PASS",
+      "measured": "C/2 and C/3 recovered to 1e-12"
+    },
+    {
+      "name": "NC3 [deep-leading terms] exact Bernoulli-series coefficients at t = 1e-3, 50-digit",
+      "result": "PASS",
+      "measured": "Q delta/(t^2/2) = 1 - t^2/4 + O(t^4): 0.99999975; RAR delta/(t/2) = 1 + t/6 - t^3/360 + O(t^5): 1.00016667; |measured - series| < 1e-9"
+    },
+    {
+      "name": "NC4 [Newtonian regime] power law is NOT a Newtonian solution; exponential is",
+      "result": "PASS",
+      "measured": "power-law residual ratio 0.99 (at r/r_M=0.1) and 0.75 (at 0.5): O(1); exponential solves exactly (sympy P1e; finite-difference diagnostic 2.2e-3 is a grid artifact, labeled)"
+    },
+    {
+      "name": "CC1 [interior ansatz fixture] exact substitution residual, 12 fixtures x 2 footings",
+      "result": "PASS",
+      "measured": "max |residual| ~ 1e-16 (machine precision); fixtures labeled as imposed-log-well controls, NOT point-source statements"
+    },
+    {
+      "name": "P5 [footing scaling] sigma ~ a0^(1/4): 119.20 / 124.89 km/s = registered G031 anchors",
+      "result": "PASS",
+      "measured": "ratio 1.04768 = (a0_alt/a0_can)^(1/4); kappa = 1/2 both footings; rho_Lambda ratio 1.4515; kappa_eff at fixed rho_Lambda = 0.60238840"
+    },
+    {
+      "name": "B1 [bounds] wall time 0.86 s <= 120 s",
+      "result": "PASS",
+      "measured": "0.86 s; RSS 84.8 MB <= 512 MB; 1 thread"
+    },
+    {
+      "name": "Lean certificate: 7 theorems, exit 0, zero sorry",
+      "result": "PASS",
+      "measured": "all #print axioms = {propext, Classical.choice, Quot.sound}; zero sorryAx; compile host fable_independent_2026/lean_2026 (4.34.0-rc2)"
+    }
+  ],
+  "tested_domain": "Symbolic (sympy) and 50-digit (mpmath) exact identities on r > 0; fixture grid r_in/R in {0.01, 0.1, 0.5} x R/r_M in {0.62, 1.0} x 2 footings x 1201 pts (P2) and 12 fixtures x 2 footings (CC1); deep-exterior shells r_in/r_M = 10, 100 x R/r_in = 2, 10 x 2 footings x 4001 pts for Q, RAR, MU2, EXP (Newton iteration residual < 5e-17; MONO = RAR for y < y_star, unfiltered); Newtonian spot r/r_M = 0.1, 0.5; leading-term spot t = 1e-3 (50-digit). M_b = 6.5e10 M_sun both footings. No fit, no sampled parameters beyond the mandated diagnostic grid; no seeds (deterministic).",
+  "failed_attempts": [
+    "First payload run: JSON dump failed on sympy Integer types (TypeError) - serialization fixed by extending the _s sanitizer; no numeric results lost (re-run).",
+    "Check-logic bug NC3: first-order tolerance 1e-6 on the coefficient ratio rejected the exact subleading contribution (1 + t/6 for RAR) - fixed by comparing against the closed Bernoulli-series value (now NC3 passes at 1e-9 at 50 digits).",
+    "Check-logic bug NC4: the exponential profile was constructed with coefficient C/sigma^2 instead of G_N M_b/sigma^2 (= 2 r_M) - the profile did not solve the Newtonian ODE (residual 1.0); fixed by using the correct exponent; the exponential's satisfaction is now certified symbolically (P1e) and in Lean (T5), with the finite-difference 2.2e-3 labeled a grid artifact of the exp(18) dynamic range.",
+    "CC1: np.gradient with scalar spacing on a log grid produced a garbage residual (1.98e2) - replaced by the exact analytic substitution residual (~1e-16) with the finite-difference version kept as labeled diagnostic.",
+    "Lean compile iterations: hasStrictDerivAt_rpow_const_of_ne absent from this build's OLEANS (present in source tree - cache/source drift) -> built powerlaw_deriv from HasStrictDerivAt.rpow chain rule; HasDerivAt.comp instance-diamond goals made bullet order unstable -> order-robust `convert ... <;> try rfl`; `(-1)` exponent elaborated at Nat (Neg Nat failure) -> ascribe (-1 : Real); rwa-at-nonlocal-term -> bind deriv value in a local have; p - 1 defeq p + (-1 : Real) made the rpow_add rewrite close the goal (removed dead congr/ring tactics).",
+    "macOS refuses to lower RLIMIT_AS (ValueError: current limit exceeds maximum limit) -> memory bound enforced by the supervisor wrapper (ps RSS poll every 50 ms + SIGKILL), mechanism recorded in as080_bounds.json."
+  ],
+  "limitations": "Conditional on the log well (deep-regime potential): the interior fixtures R <= r_M test the imposed-log-well ansatz, not a controlled point-source deep-MOND domain; full-kernel deep-exterior deviations are bounded (P3) but only for the UNFILTERED kernels - the operative filtered-MONO transfer requires the unregistered heat-filter scale xi for the point-source exterior, so no filtered-MONO claim is made. sigma^2 = C/2 is derived conditionally on {hydrostatics, isothermal EOS, log well, Poisson source-consistency}; inside the full field theory away from the deep limit the source relation differs. No dynamics: static equilibrium only; relaxation/attainment remains G035/G081 territory. kappa = 1/2, a0, M_b, G_N remain inputs; nothing here is an empirical test or a fit. G_bare/G_cosmo not numerically identified (G_cosmo = G_N assumed where a number is quoted). A finite grid is not a universal theorem: the deep-exterior bounds are finite-shell bounds (r >= 10 r_M, 100 r_M) confirmed by the exact series coefficients at 50 digits.",
+  "next_unresolved_implication": "The filtered-MONO deep-exterior hydrostatic profile: transferring the slope-temperature relation to the operative target needs (a) the registered heat-filter scale xi of MONO for the point-source static exterior, and (b) the bound on |r g_filtered(r)/C - 1| over the same deep shells (r_in/r_M = 10, 100). Until then the equilibrium sector's sigma^2 = C/2 remains conditional on the imposed log well in the interior and holds only asymptotically (to the P3 errors) in the deep exterior of the unfiltered kernels.",
+  "suggested_followup": "AS080.C01: pin xi from the field-theory sources (MONO filter section), then compute F_xi(r) = |r g_MONO_filtered(r)/C - 1| on the mandated deep shells and close the transfer bound; if xi is genuinely free, the child becomes a parameter-sensitivity map of the slope deviation. AS080.C02: quantify the INTERIOR transition correction - match the hydrostatic equilibrium to the actual kernel at r/r_M <~ 1 and bound the deviation of the density slope from 2 in the transition region (the correction the equilibrium sector inherits from the kernel at finite r/r_M).",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "kappa = 1/2 (adopted framework input; NOT derived by this task)",
+      "a0 values 9.3619e-11 / 1.1279e-10 m/s^2 (registered framework scalings)",
+      "G_N = 6.67430e-11 m^3 kg^-1 s^-2 (measured)",
+      "c = 299792458 m/s (defined)",
+      "M_b = 6.5e10 M_sun (observed MW proxy)",
+      "log well Phi = C ln(r/r_ref) with C = sqrt(G_N M_b a0) (deep-regime well of the equilibrium sector)",
+      "isothermal EOS P = sigma^2 rho (barotropic fluid premise of the sector)",
+      "Poisson source-consistency Delta Phi = 4 pi G_N rho (section-5 premise, additional and explicit)"
+    ],
+    "derived_equations": [
+      "rho(r) = A (r/r_ref)^(-C/sigma^2) from dP/dr = -rho C/r and P = sigma^2 rho (integration, exact)",
+      "gamma = C/sigma^2; slope 2 iff sigma^2 = C/2",
+      "Poisson-selected: gamma = 2, A = C/(4 pi G_N), sigma^2 = 2 pi G_N A = C/2 (conditional on the well)",
+      "deep-limit leading corrections (1/2)(r_M/r)^2 (Q), (1/2)(r_M/r) + (1/12)(r_M/r)^2 (RAR), (3/8)(r_M/r) (MU2), (1/4)(r_M/r) (EXP) - derived by series expansion, verified numerically at 50 digits",
+      "Newtonian profile exp(G_N M_b/(sigma^2 r)) solves sigma^2 rho' = -rho G_N M_b/r^2"
+    ],
+    "measured_calibrations": [
+      "G031 registered anchors reproduced: sigma = 119.20 km/s (canonical), 124.89 km/s (alternative) at M_b = 6.5e10 M_sun"
+    ],
+    "open_dependencies": [
+      "heat-filter scale xi of operative MONO (point-source static exterior) - required for the filtered transfer, not registered in the equilibrium sources",
+      "3D radial Laplacian step Delta(C ln r) = C/r^2 certified in Python lane only (Lean blocker named: deriv_congr / rpow-deriv lemma absent from this build's oleans)"
+    ]
+  },
+  "closure_implication": {
+    "named_gate": "A04 finite-domain equilibrium and virial closure gate (same-action chain: max-entropy profile G084 -> virial temperature G091 -> EOS G233 -> here the hydrostatic slope-temperature backbone and its deep-exterior/Newtonian domain controls)",
+    "exact_implication": "Within the well the slope-temperature relation gamma = C/sigma^2 is exact on every positive finite shell (Lean-certified); slope 2 is the Poisson-consistent selection (section 5). For the common-action target (filtered nu_mono, criterion B) the implication is the asymptotic one: gamma -> C/sigma^2 as r/r_M -> infinity with the P3 error bounds; the finite-filter transfer is blocked by the unregistered xi (recorded dependency, not silently assumed). No branch was imported to repair anything; MONO entered only where it equals RAR.",
+    "same_action_domain_compatibility": "The proof domain (static radial hydrostatic sector, fixed well) is a proper subset of the equilibrium sector; the thirteen-item target additionally requires the full MONO field equation, filter, and two gravity dof - untouched by this task."
+  },
+  "child_proposals": [
+    {
+      "child_id": "AS080.C01",
+      "status": "proposed, NOT dispatched (no spawn mechanism in this subagent run; ready specification for the orchestrator)",
+      "fingerprint": "(deep exterior, filtered MONO, xi unregistered, target: F_xi(r) = |r g_MONO_filtered(r)/C - 1| bounded on r_in/r_M = 10, 100; parent AS080 run_20260928T131319Z_as080_e004c2aa)",
+      "new_target_equation": "F_xi(r) = |r * g_MONO_filtered(r)/C - 1| on shells r_in/r_M = 10, 100 x R/r_in = 2, 10, both footings; either closed as a bound < 0.06 (matching the unfiltered RAR bound at 10 r_M) or mapped as a function of xi",
+      "why_not_answered_by_existing_result": "AS080 bounds the UNFILTERED kernels only; MONO's filter S = exp((xi^2/2) Delta) acting on the point source changes the deep acceleration at O((xi/r)^2)-ish before the branch corrections - the existing result has no registered xi and therefore no filtered bound",
+      "controls": "xi -> 0 recovers the unfiltered RAR numbers (P3 table); xi/r_M = O(1) must NOT silently inherit the unfiltered bound (control capable of failing); order check delta_xi vs (xi/r)^2 and (r_M/r)",
+      "dependencies": "registered xi from the MONO filter section of the field theory sources (fable_independent_2026 / qwen_claude_field_theory closure_2026); parent task/result hashes as recorded here",
+      "first_principles_bridge": "the filtered radial acceleration must be computed from S u (the filtered Newtonian potential) and nu_mono(|grad S u|/a0), not from the unfiltered point-source formula",
+      "dispatch_state": "not dispatched"
+    },
+    {
+      "child_id": "AS080.C02",
+      "status": "proposed, NOT dispatched (ready specification)",
+      "fingerprint": "(interior transition, kernel slope deviation, r/r_M <~ 1, target: bound |slope(r)/2 - 1| for the hydrostatic equilibrium under the actual kernel inside r_M; parent AS080 run_20260928T131319Z_as080_e004c2aa)",
+      "new_target_equation": "s(r) = r g_branch(r)/sigma^2 with sigma^2 = C/2 on R <= r_M; quantify the deviation of the equilibrium density slope from 2 in the transition region, e.g. via the Q-branch exact g_Q = (C/r) sqrt(1 + (r_M/r)^2): s(r)/2 = sqrt(1 + (r_M/r)^2) exactly on Q",
+      "why_not_answered_by_existing_result": "AS080's interior fixtures use the imposed well (ansatz, exact by construction); the kernel-corrected interior slope at r/r_M <~ 1 needs the transition-region potential, which the equilibrium sources impose rather than derive",
+      "controls": "r/r_M -> infinity recovers slope 2 to the P3 bounds; s(r) evaluated at r/r_M = 0.62 and 1.0 against the Q exact formula; Newtonian limit r/r_M -> 0 must show the exponential, not the power law (NC4 link)",
+      "dependencies": "the branch choice for the transition region (Q algebraic vs MONO filtered) fixed before dispatch; parent hashes as recorded here",
+      "first_principles_bridge": "the hydrostatic balance must use the transition-region acceleration from the field equation solution, not the imposed log well",
+      "dispatch_state": "not dispatched"
+    }
+  ],
+  "closure_candidate": null,
+  "note_on_closure_candidate": "No complete same-action witness is claimed: the equilibrium sector's hydrostatic backbone is conditionally closed (log well + isothermal EOS + Poisson consistency), but the operative filtered-MONO target and the two-gravitational-dof/action level are not entered by this seed."
+}

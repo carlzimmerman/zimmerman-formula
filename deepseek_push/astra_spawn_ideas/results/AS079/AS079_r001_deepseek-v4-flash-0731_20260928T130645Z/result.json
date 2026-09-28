@@ -1,0 +1,97 @@
+{
+  "schema_version": 2,
+  "task_id": "AS079",
+  "task_sha256": "a12c8abd5ef444d40115ffda5907391bdbd529ebe5e3ef778cc9d3c287c87f98",
+  "run_id": "AS079_r001_deepseek-v4-flash-0731_20260928T130645Z",
+  "worker": "deepseek/deepseek-v4-flash-0731 via Hermes Agent subagent (host macOS 26.5.2)",
+  "started_utc": "2026-09-28T13:06:45Z",
+  "finished_utc": "2026-09-28T14:08:31Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On a spherical shell r_in <= r <= R with fixed log well Phi = C ln(r/r_M), sigma^2 = C/2 (beta = 2), entropy S = -int rho ln rho dV: for every mass/energy-conserving compactly supported mode v: delta^2 S|_v = -int v^2/rho_0 dV < 0 (strict concavity on the (M,E) constraint manifold; affine constraints contribute no curvature), the first variation vanishes on the tangent space (measured |dS.v| < 1.7e-15), and the finite-amplitude Bregman gap S(rho_0)-S(rho_0+eps v) = int[rho ln(rho/rho_0) - (rho-rho_0)] dV > 0 for eps v != 0 with pointwise integrand >= 0 (equality only at rho = rho_0). Domain: gamma = beta*C = 2 ansatz rho_0 = A u^-2 on 6 interior shells (r_in/R = 0.01..0.5, R/r_M = 0.62, 1.0), deep exterior 10-100 r_M; established by 84 central differences (C2), 50-dps mpmath + direct differentiation + global gap (C3), mass-violating negative control (C4), kernel transfer checks (C5), degenerate and singular limits (C6).",
+  "framework_cell": "a0 = kappa*c*sqrt(G*rho_Lambda), kappa = 1/2 ADOPTED; r_M = sqrt(G M_b/a0); C = sqrt(G M_b a0) = v_flat^2; Phi = C ln(r/r_M); sigma^2 = C/2 (G091/g03g chain) so beta*C = 2 (Lean-certified); S = -int rho ln rho dV; E = int rho(3 sigma^2/2 + Phi) dV; dimensionless u = r/r_M, dV_t = 4 pi u^2 du, rho_t = rho r_M^3/M_b (mass 1), e_t = 3/4 + ln u; EL: -ln rho_t0 - 1 - alpha_t - 2(3/4 + ln u) = 0, rho_t0 = A u^-2, A = 1/Z, Z = 4 pi (u_R - u_in) (exact trapezoid), alpha_t = ln Z - 5/2. Branches: filtered MONO + criterion B operative (FRIED_CHICKEN_SPEC amendment); splice y_star = 2.3374, y_p = 2.5396, DELTA = 0.05, h_RAR(y) = y/expm1(sqrt(y)). Units SI via G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16. Footings 9.3619e-11 and 1.1279e-10 m/s^2 (both referenced; only G used in this task; G_N/G_bare/G_cosmo kept separate).",
+  "new_assumptions": [
+    "kappa = 1/2 ADOPTED (mandated framework input, not derived here)",
+    "r_ref = r_M in the log well (G084/AS076 convention)",
+    "existence/uniqueness of the constrained maximizer on the shell assumed; boundary term discarded (compact modes)",
+    "RAR-deep splice h_RAR with y_star/y_p from the contract amendment (filtered MONO, criterion B)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS079_entropy_second_variation_on_the_constrained_shell.md": "a12c8abd5ef444d40115ffda5907391bdbd529ebe5e3ef778cc9d3c287c87f98",
+    "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+    "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+    "deepseek_push/astra_spawn_ideas/AS076_fixed_well_euler_lagrange_density.md": "614a07d8f39fb2160d2f0a4b1b19bf56ac61409f1924910fabb5992473d84474",
+    "deepseek_push/G084_maxentropy_law.py": "752999fdf6c07b0cf0fb419290177f90151a239d63c7707029b240fef46735ec",
+    "deepseek_push/G091_virial_triad.py": "8164360f95fdc340824a92a5db3ccdabf3ce28430bdd1c375e276a77ba67ece5",
+    "deepseek_push/G233_eos_noscalar.py": "ad89298d967ae4f2d574a47f91d5adc54addae40b6a5e47d0bd83cf5564a8b03"
+  },
+  "artifacts_sha256": {
+    "deepseek_push/astra_spawn_ideas/results/AS079/AS079_r001_deepseek-v4-flash-0731_20260928T130645Z/derivation.md": "4b60417e786e206773844ce1a5858f60c540d0531825c6103d0bc479ddaaa596",
+    "deepseek_push/astra_spawn_ideas/results/AS079/AS079_r001_deepseek-v4-flash-0731_20260928T130645Z/AS079_second_variation.py": "26601e744dbc802c0c478691c7cef648c9aaa3c89a6303956ee2abe94725b798",
+    "deepseek_push/astra_spawn_ideas/results/AS079/AS079_r001_deepseek-v4-flash-0731_20260928T130645Z/AS079_second_variation_alg.lean": "2a22870530357370cc4e267a082c0c71fd62b3599dcbd5a13a66f68d22f035a3",
+    "deepseek_push/astra_spawn_ideas/results/AS079/AS079_r001_deepseek-v4-flash-0731_20260928T130645Z/raw_output.log": "60d6c2845d80664e6fa46d6924d5620c3fca859b04b1c17af9985957de2d56d7",
+    "deepseek_push/astra_spawn_ideas/results/AS079/AS079_r001_deepseek-v4-flash-0731_20260928T130645Z/raw_output.json": "02f371bcc3ef2d71d0f5bd2546ebdbe485fe70fe3339f0089e45b0fe4bb94c8c"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula && shasum -a 256 deepseek_push/astra_spawn_ideas/AS079_entropy_second_variation_on_the_constrained_shell.md  (== a12c8abd..., verified)",
+    "cd <run_dir> && (ulimit -t 120; python3 AS079_second_variation.py > raw_output.log 2> raw_output.stderr; echo exit=$?)  (exit=0; final run)",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && timeout 500 lake env lean <abs>/AS079_second_variation_alg.lean  (exit 0; #print axioms = {propext, Classical.choice, Quot.sound} only, zero sorry)"
+  ],
+  "execution_bounds": {
+    "wall_time_s": {"declared": 120, "enforced": true, "actual": 8.718},
+    "memory_mb": {"declared": 512, "enforced": true, "actual_peak_rss": 92.5},
+    "threads": {"declared": 1, "enforced": true, "actual": 1},
+    "note": "ulimit -t 120 + in-script signal.alarm(120); RLIMIT_AS-style 512 MB cap + RSS probe; OMP/OPENBLAS/MKL/NUMEXPR/VECLIB pinned to 1 thread, single process"
+  },
+  "checks": [
+    {"name": "C1a profile EL identity", "detail": "sympy pointwise identity for general gamma exponent; gamma=2 profile rho0 = u^-2/Z", "pass": true},
+    {"name": "C1b EL identity + tangent annihilation", "detail": "-(ln rho0+1) = alpha + 2 e_t pointwise max residual ~1e-15; symbolic ann identity matches", "pass": true},
+    {"name": "C2a admissible modes", "detail": "7 modes x 6 fixtures projected off dV-weighted constraint gradients gM=dV, gE=e_t dV (modified Gram-Schmidt); max |int v dV| = 2.771e-15, max |int e v dV| = 1.731e-15 (tolerance 1e-9)", "pass": true},
+    {"name": "C2b first variation vanishes on tangent", "detail": "max |dS.v| = 1.626e-15 over all projected modes (tolerance 1e-12)", "pass": true},
+    {"name": "C2c sign of delta^2 S", "detail": "84 central differences S(e)+S(-e)-2S(0): all < 0; match -e^2 int v^2/rho0 to max rel 3.114e-4 (tolerance 5e-3, O(e^4) remainder)", "pass": true},
+    {"name": "C2d leading neglected term", "detail": "central - analytic = -(e^4/6) int v^4/rho0^3 + O(e^6); o4 ratio check on all 84 rows", "pass": true},
+    {"name": "C3a 50-dps mpmath", "detail": "residual = O(e^4) pred -(e^4/6)int v^4/rho0^3 (1.19e-5 rel); minus exact O(e^6) -(1/15)e^6 int v^6/rho0^5 leaves O(e^8) tail 4.30e-14 rel; 50dps == float64 to 3.60e-14 (tolerances 1e-6, 3e-10)", "pass": true},
+    {"name": "C3b direct differentiation", "detail": "d2S/de2 via ray derivative FD = -int v^2/rho0 to rel resid 5.93e-8 (tolerance 1e-6)", "pass": true},
+    {"name": "C3c global Bregman gap at e=0.05", "detail": "pointwise kl >= 0 everywhere (min -1.1e-13 float noise, tolerance -1e-12); gap 2.2732e-3 / 3.4826e-3 > 0; e2+e3+e4 prediction to 0.09% / 0.01% (tolerance 1%)", "pass": true},
+    {"name": "C4 negative control (mass-violating mode)", "detail": "raw bump int w dV = +1.034e-1 != 0 REJECTED as admissible; dS.w = -3.482e-1 != 0; linear/quadratic dominance 4e3..8e5 -> sign of delta^2 S along w irrelevant to constrained statement", "pass": true},
+    {"name": "C4b projected control (same bump)", "detail": "after projection int v dV = 5.90e-17, dS.v = 5.04e-17, central -3.367e-6 = -e^2 int v^2/rho0 to 4.16e-6 rel", "pass": true},
+    {"name": "C5a deep exterior kernel check", "detail": "g_full/g_log - 1 = 1/(2u)+1/(12u^2): 0.050833 at 10 r_M, 0.005008 at 100 r_M (analytics matched; y <= 0.01 < y_star)", "pass": true},
+    {"name": "C5b exterior transfer", "detail": "EL spread vs log well 1.8e-15 (exact stationary point); vs full MONO-deep potential exactly 2*spread(Phi_full - ln u): 0.0506/(10,2), 0.0908/(10,10), 0.0050/(100,2), 0.0090/(100,10) (tolerance 1e-6 on ratio)", "pass": true},
+    {"name": "C5c interior transfer", "detail": "spread vs nu_mono 311.0..1.24 (> 1e-2 required); vs Newton exactly 2*[(1/u_in - 1/u_R) - ln(u_R/u_in)] on all 6 fixtures (ratio 1.000, tolerance 1e-4)", "pass": true},
+    {"name": "C6a degenerate thin shells", "detail": "cos(gM,gE) 0.63453 -> 0.999999 as r_in/R 0.5 -> 0.999 (constraint pair degenerates); dS.v still < 1e-16 (tolerance 1e-9)", "pass": true},
+    {"name": "C6b singular inner limit", "detail": "r_in/R = 1e-6: M = 1.0000000000, S = -9.0308e-1 finite; delta^2 S = -3.317e-2 < 0", "pass": true},
+    {"name": "execution bounds", "detail": "wall 8.718 s (alarm 120 enforced), RSS 92.5 MB (512 MB cap), 1 thread", "pass": true}
+  ],
+  "tested_domain": "Spherical shells: interior fixtures (r_in/R, R/r_M) in {(0.01,0.62),(0.01,1.0),(0.1,0.62),(0.1,1.0),(0.5,0.62),(0.5,1.0)}; modes sin(k pi x) k=1..4,6 and 2 Gaussian bumps; amplitudes eps in {2e-3, 5e-3} (84 rows); C3a mpmath 50 dps at (0.01,0.62) sin2 eps=2e-3; C3c eps=0.05 at (0.01,0.62),(0.5,1.0); exterior decks r_in/r_M in {10,100} x R/r_in in {2,10}; thin shells r_in/R in {0.5,0.9,0.99,0.999}; singular probe r_in/R=1e-6; geometric grids n=1200 (2000 for C5), trapezoid-exact mass normalization. Excluded: k>6 modes, non-compact modes, spin, time dependence.",
+  "failed_attempts": [
+    {"artifact": "AS079_second_variation.py (same path, edited in place): first run returned C1b sign error (alpha - 2e_t vs +), gram_project initially used unit gradients instead of dV-weighted constraint gradients (post-projection |int v dV| O(0.1) instead of 1e-15)", "cause_fixed": "patched sympy identity; switched to dV-weighted gradient vectors w and e_t*w with modified Gram-Schmidt (gE orthogonalized against gM first); sequential subtraction reintroduced the mass component and was rejected"},
+    {"artifact": "C3a block: mp.trapz/mp.trapezoid absent in this mpmath build; mpf print formatting; S50 call passed energy array as eps", "cause_fixed": "explicit 50-dps trapezoid sums; float() casts; correct S50(r050, m50, eps50) call"},
+    {"artifact": "C3a tolerance 1e-30 was wrong (O(e^4) remainder is 3.8e-6 rel even at 50 dps)", "cause_fixed": "restructured to residual partitioning: subtract exact O(e^4) and O(e^6) predictions, expose O(e^8) tail"},
+    {"artifact": "C3c cubic coefficient was -e^3/3; correct is -e^3/6", "cause_fixed": "derived from KL expansion rho ln(rho/rho0) - (rho-rho0) = e^2 v^2/(2 rho0) - e^3 v^3/(6 rho0^2) + e^4 v^4/(12 rho0^3) + ..."},
+    {"artifact": "C5 potential conventions: log well must be +ln u (not -ln(u/umax)) to match the EL identity; full kernel well is +int g du'; Newtonian spread needs 2*[(1/u_in-1/u_R) - ln(u_R/u_in)]", "cause_fixed": "re-derived conventions from the EL identity; exterior bound rewritten as 2*spread(Phi_full - ln u)"},
+    {"artifact": "C6a originally claimed tangent-space depletion vs thin shells (proj norm ratio) - false for zero-mass modes", "cause_fixed": "replaced by the correct statement: constraint-pair degeneracy cos(gM,gE) -> 1 with persistence of valid modes (dS.v < 1e-16)"}
+  ],
+  "limitations": "Does not establish anything about the physical MONO kernel on interior shells: C5c quantifies O(1-10) deviations (log-well ansatz only). No global whole-space maximizer statement (fixed-well shell boundary conditions, compact modes). No G_N vs G_bare/G_cosmo discrimination (only G enters). No exotic/excluded modes (spin, time dependence). Pointwise kl noise floor ~1e-13 at (0.01,0.62) is float roundoff, bounded by the Lean-certified exact nonnegativity.",
+  "next_unresolved_implication": "The first variation against the FULL nu_mono potential does not vanish for the u^-2 ansatz (residual 2*spread(Phi_full - ln u) ~ 0.05..0.09 at 10 r_M and O(1-10) in the knee): the entropy-maximizing density of the operative kernel is NOT u^-2; the corrected profile (kernel-consistent rho_0(u)) and its second variation are uncharacterized.",
+  "suggested_followup": "AS140-adjacent action: recompute the constrained maximum-entropy profile with the full MONO-deep potential Phi_full(u) = int^u g du' on an exterior deck (10..100 r_M) and measure the deviation of its density from u^-2 against the C5a kernel-error series 1/(2u)+1/(12u^2)+..., with the same C2/C4 projection controls.",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "adopted": ["kappa = 1/2 (mandated)", "sigma^2 = C/2 virial temperature (G091/g03g)", "fixed log well Phi = C ln(r/r_M) (seed cell)"],
+    "calibrated": ["G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16 (SI)"],
+    "derived": ["rho_t0 = u^-2/Z with Z = 4 pi (u_R - u_in) (exact trapezoid)", "alpha_t = ln Z - 5/2", "gamma = beta*C = 2 (Lean-certified)", "delta^2 S = -int v^2/rho0 dV (affine constraints, no curvature)", "gap = int[rho ln(rho/rho0) - (rho-rho0)] dV with pointwise >= 0 (Lean-certified)"],
+    "splice_landmarks": {"y_star": 2.3374, "y_p": 2.5396, "delta": 0.05, "h_p": 0.647610, "h_RAR": "y/expm1(sqrt(y))"}
+  },
+  "closure_implication": "Gate: kernel-consistency of the constrained max-entropy density (MONO criterion B pathway). Implication: if the full-kernel maximizer's density deviates from u^-2 as 1/(2u) at 10 r_M (C5a/C5b), then entropy-variation arguments on interior shells (R <= r_M) do not constrain the operative kernel until the corrected profile is used; exterior shells (>= 100 r_M) are consistent with the ansatz at the 0.5% level. Common-action compatibility: same log-well cell, kappa = 1/2, virial sigma^2 = C/2; parameters u_deck = 10..100 r_M.",
+  "child_proposals": [
+    {
+      "id": "AS079.C01",
+      "target": "kernel-consistent constrained max-entropy profile on exterior decks",
+      "fingerprint": "delta = ||rho_maxent,full - u^-2/(4 pi (u_R-u_in))||_L2(dV) on 10..100 r_M vs C5a series 1/(2u)+1/(12u^2)",
+      "controls": ["C2-style projection residuals < 1e-12", "C4 mass-violating rejection", "C6a thin-shell degeneracy angle"],
+      "dependencies": ["AS079 (this run)", "AS076 (EL density)", "G084 splice"],
+      "dispatch_state": "proposed, not dispatched"
+    }
+  ],
+  "closure_candidate": null
+}

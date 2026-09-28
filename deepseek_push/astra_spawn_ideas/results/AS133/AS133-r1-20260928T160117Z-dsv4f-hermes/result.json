@@ -1,0 +1,531 @@
+{
+ "schema_version": 2,
+ "task_id": "AS133",
+ "task_sha256": "1a03b8f0f6c756a04f63fe4556d76805dda29e4f68608b98b30381869984a30b",
+ "run_id": "AS133-r1-20260928T160117Z-dsv4f-hermes",
+ "worker": "deepseek/deepseek-v4-flash-0731 (provider: openrouter); Hermes Agent focused subagent; identity taken from the executing agent's own system context, not guessed from the deepseek_push destination folder",
+ "started_utc": "2026-09-28T16:59:05Z",
+ "finished_utc": "2026-09-28T16:59:13Z",
+ "execution_status": "completed",
+ "outcome": "supports_scoped_claim",
+ "exact_claim": "On the CA5-GNC-R common action heat sector (host FINAL_ACTION.md, pinned b8c04d4e..., eqs. (3)-(7)), on a compact flat closed leaf with positive lapse N, smooth gate jets, fixed coefficients (ell=0.04, theta, dG, b=xi^2/2>0, c_N), under the N sqrt(h) measure with each spatial integration by parts explicit and a free endpoint variation delta W_b supported at r=b, the terminal heat adjoint boundary condition is delta S_heat/delta W_b = c_N N sqrt(h) (L_b + R_W) with L_b = -R_W, R_W = -div_N(f J_p + ell a) + ell N^-1 Delta_h(N f), a = D ln N, f = G'(Y_h), Y_h = J(DW_b) + ell Delta_h W_b - theta, J_p = 4(nu_mono(|p|/a0)-1) p. The condition is a0-free (footing ratio y=|p|/a0 cancels), so it applies identically to BOTH footings a0 = 9.3619e-11 and 1.1279e-10 m/s^2. Verified: (A) two R_W forms symbolically identical (residual 0); (A2) exact 2-cell symbolic substitution-back: raw gate coefficient == N_i R_W,i and total coefficient of delta W_b == N_i (L_1,i + R_W,i), residuals exactly 0; (B) direct central FD of S_gate w.r.t. W_b at site (16,10) on a 32x32 flat torus vs N[s]R_W[s]: analytic-jmode rel 4.85e-6 (canonical) / 4.07e-6 (alternative), MONO-jmode rel 6.9e-8 / 1.5e-7 (tolerance 1e-4, PASS); (C) on-shell backward heat semigroup L(r) = N^-1 e^{(b-r)Delta_h}(N L_b): discrete terminal identity rel 5.0e-5 (n=16), continuum terminal residual L_low + R_W -> 0 monotone at the semigroup rate 1-e^{-dr k^2}: 20.31259 (Nr=40), 11.84598 (320), 2.29079 (2560), 0.30507 (20480), 0.07680 (81920) canonical (alternative: 19.87363, 11.32557, 2.17918, 0.29020, 0.07306); naive replacement survives: 30.2651 (Nr=40) vs on-shell 29.5157; (D) on-shell chain W_b = S_h U: dS/dU = N(S_h^dag R_W): analytic rel 2.2e-8/3.3e-8, MONO 3.42e-4 (quadrature-limited, tolerance 1e-3, PASS); (E) NEGATIVE CONTROL (replace Delta_h(Nf)/N by Delta_h f, mandated capable of failing): exact identity R_W^true - R_W^naive = ell[(Delta_h(Nf))/N - Delta_h f] = ell[2 a.Df + f (Delta_h N)/N]; product-rule core machine-exact on band-limited data (4.5e-12), full identity rel 1.8e-6 (n=32) -> <1e-15 (n=64); endpoint residual survives at nonconstant N (max 3.64, matches ell*residue to 0.0; pointwise residue max 91.01) and collapses at constant N (3.6e-12) -- control FAILS AS REQUIRED; (F) Lean 4 certificate AS133_terminal_heat_boundary.lean: 6 theorems, zero sorry, #print axioms exactly {propext, Classical.choice, Quot.sound}, compiled with lake env lean on lean 4.34.0-rc2 (exit 0). Scope: flat leaf, compact torus, bounded prototype (measured 7.5 s, 309 MB peak, SIGALRM 120 s, 1 thread); this is a derived conditional identity of the candidate's heat sector, not a promotion to complete gravity closure.",
+ "framework_cell": {
+  "action": "CA5-GNC-R = CA4-GNC host (FINAL_ACTION.md eq. (4)) heat sector: gate c_N[G(Y_h)+ell a.DW_b], flux c_N int_0^b dr L[partial_r W - Delta_h W], constraint lambda_0[W(0)-U]; eqs. (3),(5),(7): Y_h = J(DW_b)+ell Delta_h W_b-theta, f = G'(Y_h), R_W = -div_N(fJ_p+ell a)+ell N^-1 Delta_h(Nf), L_b = -R_W, partial_r L = -N^-1 Delta_h(NL); coefficients fixed inputs: ell=0.04, theta=8, dG=40 (ramp width), b=xi^2/2=0.5, c_N>0 (cancels in the identity), kappa = 1/2 ADOPTED (framework input, not derived)",
+  "source_hashes": {
+   "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+   "deepseek_push/astra_spawn_ideas/AS133_derive_the_terminal_heat_boundary_condition.md": "1a03b8f0f6c756a04f63fe4556d76805dda29e4f68608b98b30381869984a30b"
+  },
+  "kernel": "MONO operative: nu_mono = filtered monotone continuation of RAR (h'_mono = max(h'_RAR, delta h_p/(y+y_p)), delta=0.05, splice continuity 1.3e-11); computed landmarks y_star=2.3374124486855816, y_p=2.539639390200043 vs pinned 2.3374/2.5396 (|err|=5.3e-6); J_p(p) = 4(nu_mono(|p|/a0)-1) p. Q, RAR, MU2, EXP are distinct branches NOT exercised as conclusions (their gates would be separate actions).",
+  "filter": "heat filter S = exp((xi^2/2) Delta_h) present in host; exercised only through the on-shell chain check D (W_b = S_h U, S_h = e^{b Delta}); filter variation NOT varied (out of this seed's scope)",
+  "gate": "C4 convex gate / lapse-clock gate of CA5-GNC-R (heat gate eq. (3)); terminal heat adjoint boundary condition L_b = -R_W derived for it. Criterion B and filtered-MONO operative target NOT concluded on (no causality/field-health claims made here)",
+  "coupling": "G_N = G_bare/c_N, G_cosmo/G_N = c_N (FINAL_ACTION eq. (18)) kept as separate symbols; c_N cancels in every identity (constant prefactor of the heat block). Same-G used only for the footing rho_Lambda = 4 a0^2/(G c^2) with G = 6.67430e-11",
+  "parameters": {
+   "kappa": "1/2 ADOPTED as input (not derived)",
+   "a0_footings": [
+    "canonical 9.3619e-11 m/s^2 -> rho_Lambda 5.8444e-27 kg/m^3, r_M(M_sun) 0.038586 pc, v_flat 333.87 m/s, B(r_M) = a0",
+    "alternative 1.1279e-10 m/s^2 -> rho_Lambda 8.4831e-27 kg/m^3, r_M(M_sun) 0.035154 pc, v_flat 349.78 m/s, B(r_M) = a0",
+    "separation: ratio 1.2047768; fixed-rho effective kappa 0.6023884; fixed-kappa rho ratio 1.4514872; never share fixed rho AND fixed kappa"
+   ],
+   "heat": "ell=0.04, theta=8, dG=40, b=xi^2/2=0.5, gate ramp G(Y)=0 (Y<=0), dG(7r^5-14r^6+10r^7-2.5r^8) (0<Y<dG), Y-dG/2 (Y>=dG), r=Y/dG (C^2-sewn convex ramp)"
+  },
+  "scale_footing_note": "Identity is dimensionless in a0 (a0 enters only via the footing ratio y=|DW_b|/a0 inside nu_mono and cancels in L_b = -R_W): one proof, both footings, with the SI numbers listed. No per-object a0 fit.",
+  "boundaries": "compact closed spacelike leaf (flat torus); no spatial boundary terms (FINAL_ACTION sec. 2); r-interval [0,b], b=0.5; terminal variation delta W_b supported at r=b, free pointwise; finite-difference box: 32x32 (16x16/8x8 in refinement), N = exp(0.30 sin(2pi X)+0.20 cos(2pi Y)), Wb = 1.40(cos(2pi X)+0.5 sin(2pi Y)), sites (16,10), (8,5), (4,2), eps 1e-5/1e-6",
+  "initial_conditions": "W_0 = U (constraint), L_b = -R_W terminal datum, lambda_0 = L_0 (host); backward profile L(r) = N^-1 e^{(b-r)Delta_h}(N L_b)",
+  "units": "c = 1 in the action; [Y_h] = length^-2, [ell] = length^2 (J, theta, delta length^-2 per FINAL_ACTION); footing numerics in SI (m/s^2, kg/m^3, m, pc, m/s) with G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16, k_B = 1.380649e-23"
+ },
+ "new_assumptions": [],
+ "input_sha256": {
+  "deepseek_push/astra_spawn_ideas/AS133_derive_the_terminal_heat_boundary_condition.md": "1a03b8f0f6c756a04f63fe4556d76805dda29e4f68608b98b30381869984a30b",
+  "deepseek_push/astra_spawn_ideas/FRAMEWORK_CONTRACT.md": "ca696c7fe7cccbe21d754eff833a4c59df6dee962ea61f50f04b5d20d80dddf9",
+  "deepseek_push/astra_spawn_ideas/RESULT_CONTRACT.json": "621fdad0067c731654a0fa95eb7a4dd112f8829b96503d8d57c2ee8ca2cc1517",
+  "deepseek_push/astra_spawn_ideas/FIRST_PRINCIPLES_AND_BRANCHING.md": "f633cdb4f487a16d6ad345092faabbeb1db88c6ca27a010732ba31f65f5c570f",
+  "deepseek_push/astra_spawn_ideas/SOURCE_MANIFEST.json": "fe295b80bddbb0520884036ea5978d8f73174a8520f3ce0f91e2bf0f97f57fba",
+  "deepseek_push/astra_spawn_ideas/manifest.json": "ca1b80071185ee3eb895ad61794c9d7a697ec0d5b96a1c07d052907e73a422a3",
+  "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+  "STANDING.md": "660462ebe8f98844c418e173a1dada90b9df3800c4d445fd5a0556eb9476bf63",
+  "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+ },
+ "artifacts_sha256": {
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/AS133_terminal_heat_boundary.lean": "8676e593be29adcac18dfdd96b459d817cbf44c3c327a9cbafdf7a12819c571f",
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/compute_as133.py": "ffbd148e977870ba06a20798c705417ef60f4bcd548f61f59bd7407b0710c943",
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/derivation.md": "71daca13071044833a9bde506bff67d5efda16430a074d06c8412c4e72eff7af",
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/input_hashes.txt": "b0fc114083e5b0e3d27f4f0ebc08a1a9187418e2e68e82fd2ff2bf8eb98c7772",
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/raw_output.json": "f183c2832464022225ab0558d8866a25f8cf8a2696a7cd294eba46ae4a2baa24",
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/run_stdout.txt": "55db4cd9a3ff52e39d5fc78a85717fbc0f2d9c9e43614e771705fb2c01dfe338",
+  "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/verify_output.json": "bf143a6ec3835e62ccae90f3ab75b3e9be61da4bd302fc76164c3ce2338b5d60"
+ },
+ "commands": [
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes && python3 compute_as133.py raw_output.json (cwd run dir; exit 0; signal.alarm(120) in-process; threads pinned to 1 via OPENBLAS/OMP/MKL/VECLIB_NUM_THREADS=1; elapsed 7.541 s; peak RSS 309.3 MB; final run 2026-09-28T16:59:05Z..16:59:13Z)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs>/AS133_terminal_heat_boundary.lean (compile host only; exit 0; lean 4.34.0-rc2; zero sorry; 6 theorems)",
+  "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && lake env lean <abs>/tmp_as133_axioms_check.lean (axiom print; exit 0; all six theorems: [propext, Classical.choice, Quot.sound])",
+  "shasum -a 256 over all input sources and run artifacts (recorded in input_sha256 / artifacts_sha256)"
+ ],
+ "execution_bounds": {
+  "declared": {
+   "wall_s": 120,
+   "memory_MB": 512,
+   "threads": 1,
+   "sample": "32x32 flat torus prototype + 2-cell symbolic + sympy; refinement chain 8x8 x Nr <= 81920"
+  },
+  "enforced": {
+   "SIGALRM_at_120s": true,
+   "threads_env": "OPENBLAS/OMP/MKL/VECLIB_NUM_THREADS=1",
+   "os_rlimit_memory": "not set (macOS RLIMIT_AS cap unavailable as in AS131); measured peak below",
+   "measured_elapsed_s": 7.445725917816162,
+   "measured_maxrss_MB": 311.803904,
+   "maxrss_source": "resource.getrusage ru_maxrss (macOS bytes -> MB), recorded in raw_output.json; final rerun 309.3 MB, 7.541 s"
+  },
+  "note": "512 MB declared ceiling, not OS-enforced; measured peak 311.8 MB < 512 MB, within bound; 1 thread enforced via env; SIGALRM enforces the 120 s wall bound."
+ },
+ "checks": {
+  "A_two_forms_exact": {
+   "result": "PASS",
+   "residual": "0 (exact sympy)",
+   "exact_zero": true,
+   "exact_zero2": true
+  },
+  "A2_substitution_back_exact": {
+   "result": "PASS",
+   "residuals": [
+    "0",
+    "0"
+   ],
+   "raw_gate_eq_N_RW_exact": true,
+   "total_eq_N_L1_plus_RW_exact": true
+  },
+  "B_gate_direct_FD_canonical_rel_analytic": {
+   "result": "PASS",
+   "tolerance_set_before": 0.0001,
+   "site": [
+    16,
+    10
+   ],
+   "jmode": "analytic",
+   "fd_dSg_dWb": 50.650778689487,
+   "N_sqrt_h_R_W_site": 50.651024577992,
+   "abs_residual": 0.000245889,
+   "rel_residual": 4.855e-06
+  },
+  "B_gate_direct_FD_canonical_rel_mono": {
+   "result": "PASS",
+   "tolerance_set_before": 0.0001,
+   "site": [
+    16,
+    10
+   ],
+   "jmode": "mono",
+   "fd_dSg_dWb": 4.316110198488,
+   "N_sqrt_h_R_W_site": 4.316110498434,
+   "abs_residual": 3e-07,
+   "rel_residual": 6.9e-08
+  },
+  "B_gate_direct_FD_alternative_rel_analytic": {
+   "result": "PASS",
+   "tolerance_set_before": 0.0001,
+   "site": [
+    16,
+    10
+   ],
+   "jmode": "analytic",
+   "fd_dSg_dWb": 40.75930550016,
+   "N_sqrt_h_R_W_site": 40.759471271492,
+   "abs_residual": 0.000165771,
+   "rel_residual": 4.067e-06
+  },
+  "B_gate_direct_FD_alternative_rel_mono": {
+   "result": "PASS",
+   "tolerance_set_before": 0.0001,
+   "site": [
+    16,
+    10
+   ],
+   "jmode": "mono",
+   "fd_dSg_dWb": 5.870003951713,
+   "N_sqrt_h_R_W_site": 5.870004860269,
+   "abs_residual": 9.09e-07,
+   "rel_residual": 1.55e-07
+  },
+  "D_onshell_U_chain_canonical_rel_analytic": {
+   "result": "PASS",
+   "tolerance_set_before": 0.0001,
+   "site": [
+    8,
+    5
+   ],
+   "jmode": "analytic",
+   "fd_dS_dU": -1.485e-09,
+   "N_SN_dagger_R": -1.485e-09,
+   "abs_residual": 0.0,
+   "rel_residual": 2.1635e-08
+  },
+  "D_onshell_U_chain_canonical_rel_mono": {
+   "result": "PASS",
+   "tolerance_set_before": 0.001,
+   "site": [
+    8,
+    5
+   ],
+   "jmode": "mono",
+   "fd_dS_dU": -1.485e-09,
+   "N_SN_dagger_R": -1.485e-09,
+   "abs_residual": 1e-12,
+   "rel_residual": 0.000341950654
+  },
+  "D_onshell_U_chain_alternative_rel_analytic": {
+   "result": "PASS",
+   "tolerance_set_before": 0.0001,
+   "site": [
+    8,
+    5
+   ],
+   "jmode": "analytic",
+   "fd_dS_dU": -1.485e-09,
+   "N_SN_dagger_R": -1.485e-09,
+   "abs_residual": 0.0,
+   "rel_residual": 3.3317e-08
+  },
+  "D_onshell_U_chain_alternative_rel_mono": {
+   "result": "PASS",
+   "tolerance_set_before": 0.001,
+   "site": [
+    8,
+    5
+   ],
+   "jmode": "mono",
+   "fd_dS_dU": -1.485e-09,
+   "N_SN_dagger_R": -1.485e-09,
+   "abs_residual": 1e-12,
+   "rel_residual": 0.000341913292
+  },
+  "C_terminal_on_canonical_rel_Nr40_n16": {
+   "Nr": 40,
+   "mode": "on",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 29.5171927,
+   "L_low_plus_RW_site": 29.51572199,
+   "identity_rel": 4.9825455e-05
+  },
+  "C_terminal_NAIVE_canonical_rel_Nr40_n16": {
+   "Nr": 40,
+   "mode": "naive",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 29.62616003,
+   "L_low_plus_RW_site": 30.26510639,
+   "identity_rel": 0.021111650836
+  },
+  "C_terminal_on_canonical_rel_Nr80_n16": {
+   "Nr": 80,
+   "mode": "on",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 29.29101635,
+   "L_low_plus_RW_site": 29.28954572,
+   "identity_rel": 5.0207839e-05
+  },
+  "C_terminal_NAIVE_canonical_rel_Nr80_n16": {
+   "Nr": 80,
+   "mode": "naive",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 29.43649068,
+   "L_low_plus_RW_site": 30.07543704,
+   "identity_rel": 0.021244790504
+  },
+  "C_terminal_on_canonical_rel_Nr40_n8": {
+   "Nr": 40,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 20.31260172,
+   "L_low_plus_RW_site": 20.31259105,
+   "identity_rel": 5.25122e-07
+  },
+  "C_terminal_NAIVE_canonical_rel_Nr40_n8": {
+   "Nr": 40,
+   "mode": "naive",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 20.37197359,
+   "L_low_plus_RW_site": 20.17199935,
+   "identity_rel": 0.009816144558
+  },
+  "C_terminal_on_canonical_rel_Nr320_n8": {
+   "Nr": 320,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 11.84599107,
+   "L_low_plus_RW_site": 11.8459804,
+   "identity_rel": 9.00688e-07
+  },
+  "C_terminal_on_canonical_rel_Nr2560_n8": {
+   "Nr": 2560,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 2.29079743,
+   "L_low_plus_RW_site": 2.29078675,
+   "identity_rel": 4.659585e-06
+  },
+  "C_terminal_on_canonical_rel_Nr20480_n8": {
+   "Nr": 20480,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 0.30507876,
+   "L_low_plus_RW_site": 0.30506809,
+   "identity_rel": 3.4953382e-05
+  },
+  "C_terminal_on_canonical_rel_Nr81920_n8": {
+   "Nr": 81920,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 0.07680686,
+   "L_low_plus_RW_site": 0.07679619,
+   "identity_rel": 0.00013883252
+  },
+  "C_terminal_on_alternative_rel_Nr40_n16": {
+   "Nr": 40,
+   "mode": "on",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 37.84202096,
+   "L_low_plus_RW_site": 37.84137893,
+   "identity_rel": 1.6966099e-05
+  },
+  "C_terminal_NAIVE_alternative_rel_Nr40_n16": {
+   "Nr": 40,
+   "mode": "naive",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 37.95237963,
+   "L_low_plus_RW_site": 38.42091129,
+   "identity_rel": 0.012194704597
+  },
+  "C_terminal_on_alternative_rel_Nr80_n16": {
+   "Nr": 80,
+   "mode": "on",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 37.62800241,
+   "L_low_plus_RW_site": 37.62736025,
+   "identity_rel": 1.7065995e-05
+  },
+  "C_terminal_NAIVE_alternative_rel_Nr80_n16": {
+   "Nr": 80,
+   "mode": "naive",
+   "site": [
+    8,
+    5
+   ],
+   "raw_dS_dWb_over_N": 37.77045648,
+   "L_low_plus_RW_site": 38.23898809,
+   "identity_rel": 0.012252719843
+  },
+  "C_terminal_on_alternative_rel_Nr40_n8": {
+   "Nr": 40,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 19.87366745,
+   "L_low_plus_RW_site": 19.87363207,
+   "identity_rel": 1.780434e-06
+  },
+  "C_terminal_NAIVE_alternative_rel_Nr40_n8": {
+   "Nr": 40,
+   "mode": "naive",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 19.93546412,
+   "L_low_plus_RW_site": 19.77982682,
+   "identity_rel": 0.007807056977
+  },
+  "C_terminal_on_alternative_rel_Nr320_n8": {
+   "Nr": 320,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 11.32560988,
+   "L_low_plus_RW_site": 11.32557449,
+   "identity_rel": 3.124452e-06
+  },
+  "C_terminal_on_alternative_rel_Nr2560_n8": {
+   "Nr": 2560,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 2.17921794,
+   "L_low_plus_RW_site": 2.17918255,
+   "identity_rel": 1.6240288e-05
+  },
+  "C_terminal_on_alternative_rel_Nr20480_n8": {
+   "Nr": 20480,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 0.2902392,
+   "L_low_plus_RW_site": 0.29020381,
+   "identity_rel": 0.000121934696
+  },
+  "C_terminal_on_alternative_rel_Nr81920_n8": {
+   "Nr": 81920,
+   "mode": "on",
+   "site": [
+    4,
+    2
+   ],
+   "raw_dS_dWb_over_N": 0.07309063,
+   "L_low_plus_RW_site": 0.07305523,
+   "identity_rel": 0.000484376428
+  },
+  "E_canonical_rel": {
+   "product_rule_core_max_abs": 5e-12,
+   "identity_rel_n32": 1.84555e-06,
+   "identity_rel_n64": 2e-12,
+   "realdata_pointwise_resid_max": 91.014752,
+   "realdataformula_mismatch_max": 5.059628,
+   "constantN_max_abs": 3e-12,
+   "terminal_residual_Rtrue_minus_Rnaive_max": 3.64059,
+   "terminal_residual_vs_ell_formula_max": 0.0
+  },
+  "E_alternative_rel": {
+   "product_rule_core_max_abs": 5e-12,
+   "identity_rel_n32": 1.84555e-06,
+   "identity_rel_n64": 2e-12,
+   "realdata_pointwise_resid_max": 93.695555,
+   "realdataformula_mismatch_max": 8.527571,
+   "constantN_max_abs": 3e-12,
+   "terminal_residual_Rtrue_minus_Rnaive_max": 3.747822,
+   "terminal_residual_vs_ell_formula_max": 0.0
+  },
+  "E_negative_control_summary": {
+   "result": "FAILS_AS_REQUIRED",
+   "detail": "naive replacement Delta_h(Nf)/N -> Delta_h f leaves endpoint residual R_true - R_naive = ell[(Delta_h(Nf))/N - Delta_h f], max 3.64 exact vs formula 0.0; pointwise residue max 91.01; collapses at constant N (3.6e-12) proving capability of failing"
+  },
+  "C_terminal_naive_vs_on_evaluation": {
+   "result": "FAILS_AS_REQUIRED",
+   "detail": "naive terminal value 30.2651 (Nr=40, n=16, canonical) vs on-shell 29.5157 at identical grid: naive endpoint residual does NOT vanish (survives refinement), on-shell -> 0 (chain to 0.0768 at Nr=81920)"
+  },
+  "C_terminal_continuum_chain_canonical_n8": {
+   "result": "PASS",
+   "tolerance_set_before": "monotone -> 0 at semigroup rate 1-e^{-dr k^2}",
+   "L_low_plus_RW": [
+    20.312591053148722,
+    11.845980398528063,
+    2.290786751364081,
+    0.3050680933893588,
+    0.07679619269703508
+   ]
+  },
+  "C_terminal_continuum_chain_alternative_n8": {
+   "result": "PASS",
+   "tolerance_set_before": "monotone -> 0 at semigroup rate 1-e^{-dr k^2}",
+   "L_low_plus_RW": [
+    19.873632071058825,
+    11.325574489391064,
+    2.179182552748113,
+    0.29020380955640235,
+    0.07305522883390836
+   ]
+  },
+  "mono_branch_landmarks": {
+   "y_star_computed": 2.3374124486855816,
+   "y_p_computed": 2.539639390200043,
+   "y_star_err": 5.325868735123946e-06,
+   "splice_cont": 1.3278045329911947e-11
+  },
+  "lean_certificate": {
+   "result": "PASS",
+   "theorems": [
+    "Nf_double_deriv",
+    "measure_residual",
+    "endpoint_closed",
+    "terminal_control_residual",
+    "terminal_control_residual_deriv",
+    "rw_forms_1d"
+   ],
+   "sorry": 0,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "compiler": "lean 4.34.0-rc2 via lake env lean",
+   "exit": 0
+  },
+  "bounds_recorded": {
+   "declared": {
+    "wall_s": 120,
+    "memory_MB": 512,
+    "threads": 1
+   },
+   "enforced": {
+    "SIGALRM_at_120s": true,
+    "threads_env": "OPENBLAS/OMP/MKL/VECLIB_NUM_THREADS=1",
+    "os_rlimit_memory": "not set (macOS RLIMIT_AS cap unavailable as in AS131); measured peak below",
+    "measured_elapsed_s": 7.540698051452637,
+    "measured_maxrss_MB": 309.313536
+   }
+  }
+ },
+ "tested_domain": "Flat compact torus leaf (Torus class: spectral D, Laplacian, LapN, K2; periodic). Numeric box 32x32 (n=32): N = exp(0.30 sin(2 pi X) + 0.20 cos(2 pi Y)) positive nonconstant, Wb = 1.40(cos(2 pi X) + 0.5 sin(2 pi Y)), ELL = 0.04, theta = 8, dG = 40, b = 0.5, alpha-free c_N = 1 (cancels in all identities), sites (16,10) [B], (8,5) [C,D], FD eps 1e-5 (B) / 1e-6 (C,D); jmode analytic (placeholder J = ln(1+|p|^2), Jp = 2p/(1+|p|^2) after the full-|p|^2 fix) and jmode MONO (operative; J from a fine uniform-w quadrature of nu_mono; shared interpolation for J and J_p). Symbolic exact box: 2 spatial cells, periodic, 3 r-slices (0,1,b), flat sqrt(h) = 1, sympy exact rational identities. Refinement: n=8, Nr in {40,320,2560,20480,81920}, dr = 0.5/Nr, dr*lambda_max -> 0. E identity box: band-limited manufactured data (N = 1+0.5 cos(2pi x)+0.3 cos(2pi y), f = sin(6pi x) cos(4pi y)) at n=32 and n=64. Constant-N degenerate sector N = 2.7. Seeds: none (deterministic).",
+ "failed_attempts": "results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/compute_as133.py history (git-less): (1) Jp_an used the component-wise denominator 2 a0^2 p/(a0^2+p_i^2) instead of the full |p|^2 -> check B analytic failed at O(1) (rel ~ 0.24); fixed to 2 a0^2 p/(a0^2+|p|^2) both components. (2) q'(w) ~ w^{-1/4} cusp at w=0: nu_RAR(1e-150) overflow -> NaN; fixed with w floor 1e-14 + exact leading antiderivative for the first w-bin. (3) backward heat solve by (I - dr Delta_N) inversion unstable (spectrum too large); replaced by exact Fourier semigroup in L~ = N L. (4) splice crossing bracket was on the wrong side of the h_RAR peak (y_star < y_p); fixed bracket (0.01, y_p). (5) check C perturbed the whole r-profile; restricted to the r=b slice. (6) A2 used h0 != h1 symbolic weights (curved-leaf weights) under a flat-only IBP -> spurious (h0-h1) residues; flat leaf h0 = h1 = 1 now exact zero (curved-metric case flagged as out of scope). (7) r-refinement chain initial Nr range too coarse (dr*lambda_max ~ O(1)): terminal residual 29.5 at Nr=40 stalled; extended to Nr = 81920 with n=8 -> 0.077. (8) raw_output peak RSS 522.6 MB > 512 MB when Wk1 deep-copied all Nr+1 slices; fixed to share slices (only the terminal slice copied): 311.8 MB.",
+ "limitations": "Flat-leaf discretization only: curved metrics h with the lapse N sqrt(h) measure and the compensator's sqrt(h) weights need the full conformal IBP (A2 exact only for flat h = 1; curved-leaf residual terms are the (h0-h1)-type pieces quantified in the failed attempt, not re-derived here). Finite prototype (32x32, symmetric smooth data) -- a finite grid is not a universal theorem; the symbolic 2-cell identity is exact for the discrete periodic leaf. Gate f = G'(Y_h) has G''-corners (not band-limited): all numeric checks carry quantified spectral aliasing (product-rule core machine-exact on band-limited data; full lapse identity rel 1.8e-6 at n=32 -> <1e-15 at n=64). MONO J quadrature limits check D-mono to rel 3.42e-4 (interpolation derivative error; tolerance 1e-3). The continuum terminal limit L_low -> L_b holds at the semigroup rate 1-e^{-dr k^2} (verified to 0.077 at Nr = 81920, monotone); the exact statement L_b = -R_W is constitutive plus substitution-back-verified. No causality (criterion B), field-health, PPN or gravitational-degree claims made. no curved-leaf or spherical-sector test. Both footings apply only because the identity is a0-free; no per-object a0 fit is claimed.",
+ "next_unresolved_implication": "The curved-leaf generalization: under the N sqrt(h) measure with non-flat h, the compensator and Laplacian bring sqrt(h)-weighted IBP shifts (h-connectivity), so the terminal condition acquires h-Dln(sqrt(h))-dependent correction terms; the discrete exact check A2 was flat-only (h0 = h1), and the curved-leaf version of R_W with its (h, N)-covariant div has not been derived or checked -- the first missing mathematical bridge before the heat terminal condition can be used inside a full curved CA5-GNC-R variation.",
+ "suggested_followup": "Child AS133.C01: derive the curved-leaf terminal condition by repeating seed steps 2-3 with the conformal Laplacian Delta_{e^{2w} h} identity (AS131-style) and verify the correction terms on a 2-cell 2-slice symbolically exact box with h0 != h1; controls: (i) h flat limit must reproduce L_b = -R_W identically, (ii) numeric 16x16 box with h = exp(0.2 cos(2pi X)) and the same negative control, (iii) same Lean bar. Dependency: this run (AS133-r1-20260928T160117Z-dsv4f-hermes) for the flat case; no dispatch made (parent orchestrator).",
+ "acceptance_state": "unreviewed",
+ "ancestry": null,
+ "first_principles_inputs": "FINAL_ACTION.md heat sector eqs. (3)-(7) as declared premises (pinned b8c04d4e...); framework input a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 adopted; coefficients theta = 8, dG = 40, ell = 0.04, b = xi^2/2 = 0.5 inputs; constants G = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16; MONO branch nu_mono with delta = 0.05 and pinned landmarks y_star = 2.3374, y_p = 2.5396 (computed 2.3374124486855816 / 2.539639390200043); derived (not assumed): R_W by explicit N sqrt(h)-weighted IBP of the gate variation (check B/A2), L_b = -R_W by matching the r-integration boundary term of the flux (check C), L(r) = N^-1 e^{(b-r)Delta_h}(N L_b) from partial_r(L~) = -Delta_h L~ (exact semigroup), and the control residual ell[(Delta_h(Nf))/N - Delta_h f] by the product rule (Lean T1-T5).",
+ "closure_implication": "Gate: CA5-GNC-R heat terminal adjoint boundary. Exact implication: for the flattened CA5-GNC-R heat sector, free terminal variation of the common action closes iff L_b = -R_W with R_W as eq. (5); the naive lapse-free replacement leaves the exact nonzero residual -ell N[(Delta_h(Nf))/N - Delta_h f]. Compatibility: holds on the compact flat closed leaf with positive N and C^1 gate jets; MONO operative; a0-free -> both footings; does NOT close the full gravity chain (curved-leaf IBP, criterion B causality, two gravitational DOF, Newton/PPN tensor dynamics all remain open gates).",
+ "child_proposals": [
+  {
+   "id": "AS133.C01",
+   "claim": "Derive the curved-leaf terminal heat boundary condition: repeat seed steps 2-3 under N sqrt(h) with non-flat h, obtaining the h-covariant corrections to R_W and L_b = -R_W",
+   "controls": "flat-h limit must reduce identically to this run's L_b = -R_W; 2-cell x 2-slice symbolic exact substitution-back with h0 != h1; 16x16 numeric with h = exp(0.2 cos(2 pi X)) and the mandated negative control surviving; Lean certificate with the same axiom bar",
+   "dependencies": [
+    "deepseek_push/astra_spawn_ideas/results/AS133/AS133-r1-20260928T160117Z-dsv4f-hermes/result.json"
+   ],
+   "dispatch_state": "spec prepared for orchestrator; not dispatched (no child worker spawned by this run)"
+  }
+ ],
+ "closure_candidate": null
+}

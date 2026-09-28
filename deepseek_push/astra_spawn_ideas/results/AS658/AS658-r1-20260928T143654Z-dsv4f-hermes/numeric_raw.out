@@ -1,0 +1,19 @@
+======================================================================================================================
+AS658 numeric -- gauge invariance, EOM residuals, Hessian rank, negative control
+======================================================================================================================
+  [PASS] N1 gauge invariance on grid: F(A+dB) = F(A), q(A+dB) = q(A)   (max |dq| = 6.928e-14, max component |dF| = 7.461e-14)
+  [PASS] N2 EOM on grid: q = const residual ~ machine zero; q = wave residual >> 0 (control fires)   (const: 0.000e+00 (thr < 1e-12); wave: 7.364e-05 (thr > 1.0e-08))
+  [PASS] N3 independent representation: field-space FD of discrete action vs closed-form EOM   (max |FD - EOM*h^4| over 8 (component, cell) probes = 5.875e-09)
+  [PASS] N4a true Hessian symbol rank 1 at 4 momenta (generic k, incl. null k^2 = 0)   (k=(1.0, 1.0, 1.0, 1.0): evals=[-0.       -0.        0.        0.024691], nz=1; k=(1.0, 2.0, 0.0, 0.0): evals=[0.       0.       0.       0.030864], nz=1; k=(0.5, 0.0, 1.5, -1.0): evals=[-0.        0.        0.        0.021605], nz=1; k=(1.0, 1.0, 1.0, -1.0): evals=[-0.       -0.        0.        0.024691], nz=1)
+  [PASS] N4b altered 4-scalar symbol: rank 4 (all four component modes propagating)   (evals = [39.81994605 39.81994605 39.81994605 39.81994605], count = 4)
+  [PASS] N4c EOM symbol det(M) = +1 for every momentum (no characteristic variety, no dispersion)   (det = 1.0 (k-independent; wave model would need det -> 0 at k^2 = 0))
+  [PASS] N5a altered EOM at framework flux: residual P_q(q_*) != 0   (P_q(q_*) = 9.167504e-05 (thr != 0); only stationary point q = 0)
+  [PASS] N5b altered stationary point q = 0 destroys the vacuum: eps = 0, a0 = 0, kappa undefined   (eps_vac(0) = 0; a0 = beta sqrt(G)|q| = 0; kappa^2 = a0^2/(G eps) = 0/0 undefined -> Newtonian, no MOND scale)
+  [PASS] N5c a 4-scalar-style deformation of the flux violates the ORIGINAL EOM (residual >> 0)   (max |EOM residual| = 1.164e+03 (thr > 1.0e-08))
+  [PASS] N5d altered 4-scalar Lagrangian violates gauge invariance; true P(q) invariant (same B)   (|dL_alt|/|L_alt| = 2.809e+01 (thr > 1e-9); |dL_true|/|L_true| = 0.000e+00 (thr < 1e-12))
+  [PASS] N6a kernel fixture + refinement: I_rar at dps 30 vs 60   (I_rar(30) = 0.452524896675130542, I_rar(60) = 0.452524896675130542, rel diff = 2.87e-31)
+  [PASS] N6b tuned cell: kappa = 1/2 <=> Z/beta^2 = 8 - 2b (K_B = 0)   (b = (2-K_B) I_rar/(16 pi) = 0.018005394; Z/beta^2 = 7.963989213 (free ratio: nothing fixes it - k04 F2))
+  [PASS] N6c footings separate: canonical vs alternative (no shared fixed rho_Lambda and fixed kappa)   (canonical: rho_L = 5.844412e-27 kg/m^3, eps_L = 5.252696e-10 J/m^3, s = 1.872380e-10 = 2 a0; q_* = 1.145938e-05/beta; alt (fixed rho_L): kappa_eff = 0.60238840; alt (fixed kappa): rho_L' = 8.483090e-27 kg/m^3, q_* = 1.380600e-05/beta)
+  [PASS] N6d refinement N = 17 -> 25: EOM const residual stays at machine level   (residual at N=25 = 0.000e+00 (same thr < 1e-12))
+
+RESULT: 0 FAIL / 14 checks   wall 4.42 s

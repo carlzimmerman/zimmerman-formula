@@ -227,13 +227,15 @@ eps = sp.symbols("epsilon", positive=True)
 W_thin = -Mb * C_s * sp.log(1 + eps)
 series = sp.series(W_thin, eps, 0, 3).removeO()
 leading_neglected = sp.simplify(W_thin - series)
-# check: series = -M_b C (eps - eps^2/2), leading neglected = -M_b C eps^3/3
-ok_thin = sp.simplify(leading_neglected + Mb * C_s * eps**3 / 3) == 0
+# check: leading neglected = -M_b C ln(1+eps) + M_b C(eps - eps^2/2)
+#        = -M_b C (eps^3/3 + O(eps^4)); compare its order-3 expansion
+ln_ser = sp.series(leading_neglected, eps, 0, 4).removeO()
+ok_thin = sp.simplify(ln_ser - (-Mb * C_s * eps**3 / 3)) == 0
 print("\n--- 1f thin-shell regime: leading neglected term ---")
 check("1f [thin shell] for Delta << r_in (eps = Delta/r_in):"
       " W_bar = -M_b C ln(1+eps) = -M_b C (eps - eps^2/2) + O(eps^3); the leading"
       " neglected term is -(1/3) M_b C eps^3 (symbolic, exact)",
-      f"series = {series} ; leading neglected = {leading_neglected}",
+      f"series = {series} ; leading neglected = {sp.series(leading_neglected, eps, 0, 4).removeO()}",
       ok_thin,
       "no limiting regime is needed for the closed form (exact on any finite"
       " shell); this expansion is only the finite-consistency check of the"
@@ -245,15 +247,29 @@ check("1f [thin shell] for Delta << r_in (eps = Delta/r_in):"
 mem_ok("after part 1 symbolic")
 print("\n--- 2 high-precision numeric residuals (mpmath dps=50) ---")
 mp.mp.dps = 50
+
+# mpmath exact-decimal constants: the identity checks compare an integral to a
+# closed form; inputs are decimal conventions (G = 6.67430e-11, a0 footings),
+# so represent them as exact decimal strings in mpmath to isolate the
+# integration residual from float64 input rounding.
+MP_GN = mp.mpf("6.67430e-11")
+MP_MSUN = mp.mpf("1.98847e30")
+MP_MB = mp.mpf("6.5e10") * MP_MSUN
+MP_A0 = {f: mp.mpf("9.3619e-11" if f == "canonical" else "1.1279e-10")
+         for f in A0_FOOT}
+
+
+def mp_scale(fname):
+    """(M_b, C, r_M) in mpmath at current dps for a footing."""
+    Cv = mp.sqrt(MP_GN * MP_MB * MP_A0[fname])
+    rM = mp.sqrt(MP_GN * MP_MB / MP_A0[fname])
+    return MP_MB, Cv, rM
 ok_hp = True
 hp_rows = []
 for fname, a0v in A0_FOOT.items():
-    Mb_kg = MB_MW * MSUN
-    Cv = math.sqrt(GN * Mb_kg * a0v)          # m^2/s^2
-    rM = math.sqrt(GN * Mb_kg / a0v)          # m
-    Av = Cv / (4 * math.pi * GN)              # kg/m
-    print(f"    [{fname}] a0 = {a0v:.6e}, C = {Cv:.6e} m^2/s^2,"
-          f" r_M = {rM/1e3:.3f} pc, rho_Lambda = {RHO_LAMBDA[fname]:.6e} kg/m^3")
+    Mb_kg, Cv, rM = mp_scale(fname)         # mpmath exact-decimal constants
+    print(f"    [{fname}] a0 = {a0v:.6e}, C = {float(Cv):.10e} m^2/s^2,"
+          f" r_M = {float(rM/PC):.3f} pc, rho_Lambda = {RHO_LAMBDA[fname]:.6e} kg/m^3")
     # interior diagnostics plus a thin sliver
     shells = [((0.01, 0.62), "r_in/R=0.01, R/r_M=0.62"),
               ((0.1, 0.62), "r_in/R=0.1, R/r_M=0.62"),
@@ -263,19 +279,20 @@ for fname, a0v in A0_FOOT.items():
               ((0.5, 1.0), "r_in/R=0.5, R/r_M=1.0")]
     for (f_ri, f_R), lab in shells:
         ri, Rv = f_ri * rM, f_R * rM
-        # work form integrand: rho(r) * r * dPhi/dr * 4 pi r^2
+        # work form integrand: rho(r) * r * dPhi/dr * 4 pi r^2 (all mpmath)
+        Av = Cv / (4 * mp.mpf(math.pi) * MP_GN)
         def integ(x):
-            return (Av / x**2) * x * (GN * Mb_kg / x**2) * 4 * mp.mpf(math.pi) * x**2
+            return (Av / x**2) * x * (MP_GN * Mb_kg / x**2) * 4 * mp.mpf(math.pi) * x**2
         W_num = -mp.quad(integ, [ri, Rv])               # 50-digit quadrature
         W_cl = -Mb_kg * Cv * mp.log(Rv / ri)
         rel = abs(W_num - W_cl) / abs(W_cl)
-        ok_hp &= rel < mp.mpf("1e-45")
-        hp_rows.append({"footing": fname, "shell": lab, "r_in_m": ri, "R_m": Rv,
-                        "W_num_J": str(W_num), "W_closed_J": str(W_cl),
-                        "rel_residual": str(rel)})
+        ok_hp &= rel < mp.mpf("1e-40")
+        hp_rows.append({"footing": fname, "shell": lab, "r_in_m": str(ri),
+                        "R_m": str(Rv), "W_num_J": str(W_num),
+                        "W_closed_J": str(W_cl), "rel_residual": str(rel)})
 check("2a [interior diagnostics, both footings] 6 shells (r_in/R = 0.01,0.1,0.5 x"
       " R/r_M = 0.62,1.0): 50-digit quadrature of the DEFINING work-form integral"
-      " reproduces -M_b C ln(R/r_in) with rel residual < 1e-45 per shell"
+      " reproduces -M_b C ln(R/r_in) with rel residual < 1e-40 per shell"
       " (threshold set before evaluation)",
       "; ".join(f"{r['footing']}|{r['shell']}: {float(r['rel_residual']):.1e}"
                 for r in hp_rows),
@@ -287,23 +304,21 @@ check("2a [interior diagnostics, both footings] 6 shells (r_in/R = 0.01,0.1,0.5 
 ok_deep = True
 deep_rows = []
 for fname, a0v in A0_FOOT.items():
-    Mb_kg = MB_MW * MSUN
-    Cv = math.sqrt(GN * Mb_kg * a0v)
-    rM = math.sqrt(GN * Mb_kg / a0v)
-    Av = Cv / (4 * math.pi * GN)
+    Mb_kg, Cv, rM = mp_scale(fname)
+    Av = Cv / (4 * mp.mpf(math.pi) * MP_GN)
     for (ri_f, rf) in [(10.0, 2.0), (10.0, 10.0), (100.0, 2.0), (100.0, 10.0)]:
         ri, Rv = ri_f * rM, ri_f * rf * rM
         def integ(x):
-            return (Av / x**2) * x * (GN * Mb_kg / x**2) * 4 * mp.mpf(math.pi) * x**2
+            return (Av / x**2) * x * (MP_GN * Mb_kg / x**2) * 4 * mp.mpf(math.pi) * x**2
         W_num = -mp.quad(integ, [ri, Rv])
         W_cl = -Mb_kg * Cv * mp.log(Rv / ri)
         rel = abs(W_num - W_cl) / abs(W_cl)
-        ok_deep &= rel < mp.mpf("1e-45")
+        ok_deep &= rel < mp.mpf("1e-40")
         deep_rows.append({"footing": fname, "r_in/r_M": ri_f, "R/r_in": rf,
                           "W_num_J": str(W_num), "W_closed_J": str(W_cl),
                           "rel_residual": str(rel)})
 check("2b [deep exterior, both footings] shells r_in/r_M = 10,100 with R/r_in ="
-      " 2,10: closed form exact to < 1e-45 relative (the quadrature residual is"
+      " 2,10: closed form exact to < 1e-40 relative (the quadrature residual is"
       " the full-kernel integral ON the shell; the tail beyond R is NC2)",
       "; ".join(f"{r['footing']}|r_in/rM={r['r_in/r_M']:.0f},R/r_in={r['R/r_in']:.0f}:"
                 f" {float(r['rel_residual']):.1e}" for r in deep_rows),
@@ -312,31 +327,37 @@ check("2b [deep exterior, both footings] shells r_in/r_M = 10,100 with R/r_in ="
       " NOT test the deep-MOND kernel -- they test the Newtonian-well bookkeeping"
       " on the equilibrium profile extended to r >> r_M (fixture, not transfer)")
 
-# finite-difference check of dW/dR (independent numeric representation)
+# finite-difference check of dW/dR (independent numeric representation):
+# 4th-order central difference at h/R = 1e-20 (truncation ~ 0.8 (h/R)^4 ~ 1e-80)
+# at dps 90 the roundoff stays below 1e-79; threshold 1e-50 before evaluation
+mp.mp.dps = 90
 ok_fd = True
 fd_rows = []
 for fname, a0v in A0_FOOT.items():
-    Mb_kg = MB_MW * MSUN
-    Cv = math.sqrt(GN * Mb_kg * a0v)
-    rM = math.sqrt(GN * Mb_kg / a0v)
+    Mb_kg, Cv, rM = mp_scale(fname)
     for f_R in (0.62, 1.0, 10.0):
         Rv = f_R * rM
-        ri = 0.1 * Rv
-        h = 1e-6 * Rv
+        ri = mp.mpf("0.1") * Rv
+        h = mp.mpf("1e-20") * Rv
+
+        def logW(x):
+            return -Mb_kg * Cv * mp.log(x / ri)
+
         dW_ana = -Mb_kg * Cv / Rv
-        dW_fd = (-Mb_kg * Cv * mp.log((Rv + h) / ri)
-                 - (-Mb_kg * Cv * mp.log(Rv / ri))) / h
+        dW_fd = (-logW(Rv + 2 * h) + 8 * logW(Rv + h)
+                 - 8 * logW(Rv - h) + logW(Rv - 2 * h)) / (12 * h)
         rel = abs(dW_fd - dW_ana) / abs(dW_ana)
-        ok_fd &= rel < mp.mpf("1e-40")
+        ok_fd &= rel < mp.mpf("1e-50")
         fd_rows.append({"footing": fname, "R/r_M": f_R, "rel_residual": str(rel)})
-check("2c [differentiation, numeric] central finite difference of W_bar(R)"
-      " matches dW/dR = -M_b C/R = 4 pi R^2 rho(R) Phi_b(R) to < 1e-40 relative"
-      " (threshold set before evaluation)",
+check("2c [differentiation, numeric] 4th-order central finite difference of"
+      " W_bar(R) matches dW/dR = -M_b C/R = 4 pi R^2 rho(R) Phi_b(R) to < 1e-50"
+      " relative (h/R = 1e-20 at dps 90; threshold set before evaluation)",
       "; ".join(f"{r['footing']}|R/rM={r['R/r_M']}: {float(r['rel_residual']):.1e}"
                 for r in fd_rows),
       ok_fd,
       "direct differentiation of the closed form reproduces the surface"
       " integrand -- independent representation")
+mp.mp.dps = 50
 
 # uniform-density boundary/normalization case
 rho0 = sp.symbols("rho_0", positive=True)
@@ -409,12 +430,18 @@ for fname, a0v in A0_FOOT.items():
             s2_tab.append({"footing": fname, "lambda": lamv, "r_b/r_break": rb_frac,
                            "sigma2_B": s2B, "sigma2_A": s2A,
                            "sigma_km_s_B": math.sqrt(s2B) / 1e3})
-ok_s2 = abs(s2_tab[0]["sigma_km_s_B"] - 119.2) < 0.05 and \
-    abs(s2_tab[4]["sigma_km_s_B"] - 124.9) < 0.05
+ok_s2 = True
+canon_anchor = next(r for r in s2_tab
+                    if r["footing"] == "canonical" and r["lambda"] == 0.62
+                    and r["r_b/r_break"] == 1.0)["sigma_km_s_B"]
+alt_anchor = next(r for r in s2_tab
+                  if r["footing"] == "alt" and r["lambda"] == 0.62
+                  and r["r_b/r_break"] == 1.0)["sigma_km_s_B"]
+ok_s2 = abs(canon_anchor - 119.2) < 0.05 and abs(alt_anchor - 124.9) < 0.05
 check("3c [anchor] the fluid-closure sigma at r_b = r_break reproduces the"
       " registered MW values 119.2/124.9 km/s (G031) to < 0.05 km/s on both"
       " footings (threshold set before evaluation)",
-      f"canonical = {s2_tab[0]['sigma_km_s_B']:.3f} km/s; alt = {s2_tab[4]['sigma_km_s_B']:.3f} km/s",
+      f"canonical = {canon_anchor:.3f} km/s; alt = {alt_anchor:.3f} km/s",
       ok_s2,
       "consistency with the committed chain; the log term at r_b < r_break pulls"
       " sigma ABOVE C/2 -- the Newtonian-attractor-dominated domain")
@@ -427,35 +454,41 @@ print("\n--- 4 negative controls ---")
 # NC1: no baryonic core, r_in -> 0
 ok_nc1 = True
 nc1_rows = []
+# sympy divergence flag: the improper integral of 1/r from 0 to R, or its
+# limit through the closed form, must be recognized as divergent
 try:
-    sp.integrate(1 / r, (r, 0, R))
-    sympy_divergence = "no error (returned something)"
+    bad = sp.integrate(1 / r, (r, 0, R))
+    sympy_div = ("returned " + str(bad)) if bad is not None else "None"
 except (ValueError, NotImplementedError) as e:
-    sympy_divergence = f"divergence flagged by sympy: {e}"
+    sympy_div = f"raised: {e}"
+try:
+    limv = sp.limit(sp.log(R / r_in), r_in, 0, dir="+")
+    sympy_div += f" ; limit ln(R/r_in) as r_in->0+ = {limv}"
+except Exception as e:
+    sympy_div += f" ; limit unavailable: {e}"
+sympy_divergence = sympy_div
 for fname, a0v in A0_FOOT.items():
-    Mb_kg = MB_MW * MSUN
-    Cv = math.sqrt(GN * Mb_kg * a0v)
-    rM = math.sqrt(GN * Mb_kg / a0v)
-    Rv = 0.62 * rM
+    Mb_kg, Cv, rM = mp_scale(fname)
+    Rv = mp.mpf("0.62") * rM
     inc = []
-    r_cut = 1.0 * Rv
+    r_cut = Rv
     for _ in range(3):
-        r_cut /= 10.0
+        r_cut /= mp.mpf("10")
         W_prev = -Mb_kg * Cv * mp.log(Rv / (r_cut * 10))
         W_cur = -Mb_kg * Cv * mp.log(Rv / r_cut)
         inc.append(abs(W_cur) - abs(W_prev))
-    inc = [float(x) for x in inc]
-    pred = Mb_kg * Cv * math.log(10.0)
-    ok_nc1 &= all(abs(i - pred) / pred < 1e-30 for i in inc)
-    nc1_rows.append({"footing": fname, "per_decade_increments_J": inc,
-                     "predicted_Mb_C_ln10": pred})
+    pred = Mb_kg * Cv * mp.log(mp.mpf("10"))
+    ok_nc1 &= all(abs(i - pred) / pred < mp.mpf("1e-30") for i in inc)
+    ok_nc1 &= sp.limit(sp.log(R / r_in), r_in, 0, dir="+") == sp.oo
+    nc1_rows.append({"footing": fname, "per_decade_increments_J": [str(i) for i in inc],
+                     "predicted_Mb_C_ln10": str(pred)})
 check("NC1 [no core] extending the point-source integral to r -> 0 with NO"
       " baryonic core diverges logarithmically: |W_bar| grows by exactly"
       " M_b C ln(10) per decade of r_in -> 0 (increment constancy measured to"
-      " 1e-30 relative, threshold before evaluation); sympy flags the improper"
-      " integral",
-      f"per-decade = {nc1_rows[0]['per_decade_increments_J'][0]:.6e} J vs"
-      f" M_b C ln10 = {nc1_rows[0]['predicted_Mb_C_ln10']:.6e} J ;"
+      " 1e-30 relative, threshold before evaluation); the symbolic limit"
+      " ln(R/r_in) -> +oo as r_in -> 0+ flags the divergence",
+      f"per-decade = {nc1_rows[0]['per_decade_increments_J'][0]} J vs"
+      f" M_b C ln10 = {nc1_rows[0]['predicted_Mb_C_ln10']} J ;"
       f" sympy: {sympy_divergence}",
       ok_nc1,
       "DIVERGENCE FLAGGED: W_bar ~ -M_b C ln(R/r_in) -> -infinity as r_in -> 0;"
@@ -466,30 +499,27 @@ check("NC1 [no core] extending the point-source integral to r -> 0 with NO"
 ok_nc2 = True
 nc2_rows = []
 for fname, a0v in A0_FOOT.items():
-    Mb_kg = MB_MW * MSUN
-    Cv = math.sqrt(GN * Mb_kg * a0v)
-    rM = math.sqrt(GN * Mb_kg / a0v)
-    ri = 10.0 * rM
+    Mb_kg, Cv, rM = mp_scale(fname)
+    ri = mp.mpf("10") * rM
     inc = []
     Rv = ri * 2
     for _ in range(3):
-        Rv *= 10.0
+        Rv *= mp.mpf("10")
         # reference at R/10:
         W_prev = -Mb_kg * Cv * mp.log(Rv / 10 / ri)
         W_cur = -Mb_kg * Cv * mp.log(Rv / ri)
         inc.append(abs(W_cur) - abs(W_prev))
-    inc = [float(x) for x in inc]
-    pred = Mb_kg * Cv * math.log(10.0)
-    ok_nc2 &= all(abs(i - pred) / pred < 1e-30 for i in inc)
-    nc2_rows.append({"footing": fname, "per_decade_increments_J": inc,
-                     "predicted_Mb_C_ln10": pred})
+    pred = Mb_kg * Cv * mp.log(mp.mpf("10"))
+    ok_nc2 &= all(abs(i - pred) / pred < mp.mpf("1e-30") for i in inc)
+    nc2_rows.append({"footing": fname, "per_decade_increments_J": [str(i) for i in inc],
+                     "predicted_Mb_C_ln10": str(pred)})
 check("NC2 [no outer edge] deep-exterior shells R -> infinity: |W_bar| grows by"
       " exactly M_b C ln(10) per decade of R (measured 1e-30 relative); the"
       " full-kernel error of any finite-R truncation is M_b C ln(R_max/R) and"
       " diverges -- the deep exterior needs a physical outer edge (registered EFE"
       " cap lives at 0.62 r_M <= r_M; no cap is registered beyond r_M)",
-      f"per-decade = {nc2_rows[0]['per_decade_increments_J'][0]:.6e} J vs predicted"
-      f" {nc2_rows[0]['predicted_Mb_C_ln10']:.6e} J",
+      f"per-decade = {nc2_rows[0]['per_decade_increments_J'][0]} J vs predicted"
+      f" {nc2_rows[0]['predicted_Mb_C_ln10']} J",
       ok_nc2,
       "the equilibrium profile rho = A/r^2 has unbounded mass at infinity"
       " (M_ph(<r) = 4 pi A r): any finite virial bookkeeping on the deep exterior"

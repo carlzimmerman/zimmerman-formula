@@ -1,0 +1,235 @@
+{
+  "checks": [
+    {
+      "name": "L1 legendre identity: qP_q - P = (Z/2 + b beta^2) q^2 (symbolic)",
+      "ok": true,
+      "value": "sympy residual 0",
+      "threshold": "0",
+      "note": "exact identity"
+    },
+    {
+      "name": "L2 normalization: F_{mu nu rho sigma} F^{mu nu rho sigma} = -24 q^2 (concrete chart)",
+      "ok": true,
+      "value": -96.0,
+      "threshold": "-24 q^2 = -96.0",
+      "note": "eps^{0123} = -1 convention"
+    },
+    {
+      "name": "L3a metric variation FD (double, t=1e-6): dS/dt = -(1/2)(q P_q - P) at g11 = 1",
+      "ok": true,
+      "value": "FD -2.999999997085e+00 vs theory -3.000000000000e+00",
+      "threshold": "|d| < 1e-8",
+      "note": "T_{mu nu} = (P - q P_q) g_{mu nu} with eps = -T^0_0 = q P_q - P"
+    },
+    {
+      "name": "L3b metric variation FD (mpmath 50 digits): same law to 1e-11",
+      "ok": true,
+      "value": "FD_mp -3.000000000001875 vs theory -3.0",
+      "threshold": "|d| < 1e-11",
+      "note": "central-FD Taylor error f''' t^2/6 = 11.25e-12/6 = 1.875e-12 at t = 1e-6; independent high-precision representation"
+    },
+    {
+      "name": "L4 independent representation (closed form q(t)=q/sqrt(1+t), mpmath): FD vs closed agree",
+      "ok": true,
+      "value": "FD_mp -3.000000000001875 vs closed_mp -3.000000000001875",
+      "threshold": "|d| < 1e-20",
+      "note": "two independent representations agree at 50 digits"
+    },
+    {
+      "name": "L4b Taylor coefficient of the varied action: S(t)-(6-3t) - (9/4)t^2 -> O(t^3)",
+      "ok": true,
+      "value": "-1.87484e-12",
+      "threshold": "|res| < 1e-10 (next term 15/8 t^3 ~ 1.9e-12)",
+      "note": "the linear coefficient -3 = -(1/2)(q P_q - P) is the Legendre energy density"
+    },
+    {
+      "name": "L5 sign: epsilon = +q P_q - P = +(Z/2 + b beta^2) q^2 > 0 for q,Z,b,beta > 0 (k01 sign reversed)",
+      "ok": true,
+      "value": "6.00000000000000",
+      "threshold": "> 0",
+      "note": "B-iii positive vacuum, structural (k04 F1 re-derived)"
+    },
+    {
+      "name": "L6 bulk EOM: constrains d_mu q = 0 (flux constancy); q's VALUE is an unconstrained integration constant",
+      "ok": true,
+      "value": "residual = 0 iff d_mu q = 0",
+      "threshold": "0 at d_mu q = 0; != 0 at d_mu q = 1",
+      "note": "EOM fixes nothing about q_0 -- boundary/integration datum (B-ii audit below)"
+    },
+    {
+      "name": "N1 altered equation violated by the true solution: P_q(q_*) != 0",
+      "ok": true,
+      "value": "a0*(Z + 2*b*beta**2)/(sqrt(G)*beta)",
+      "threshold": "!= 0",
+      "note": "only stationary point of the altered system is q = 0"
+    },
+    {
+      "name": "N2 altered system admits only q = 0 (Z, b, beta > 0): vacuum and scale destroyed",
+      "ok": true,
+      "value": "[0]",
+      "threshold": "[0]",
+      "note": "epsilon(0) = 0 -> kappa^2 = a0^2/(G*0) undefined; a0 = beta sqrt(G)|q| = 0 -> Newtonian, no MOND scale"
+    },
+    {
+      "name": "N3 vacuum energy at the altered stationary point vanishes: q P_q - P |_{q=0} = 0",
+      "ok": true,
+      "value": "0",
+      "threshold": "0",
+      "note": "rho_vac = +rho_Lambda impossible (B-iii violated at q = 0)"
+    },
+    {
+      "name": "N4 numeric residual of the altered equation at the true flux (canonical footing, beta=1, Z=8-2b): ",
+      "ok": true,
+      "value": "9.167504e-05",
+      "threshold": "8 q_* = 9.167504e-05",
+      "note": "altered premise fails: residual != 0; lost hypotheses: flux conservation dL/dF = const, positivity of scale"
+    },
+    {
+      "name": "L7 flux amplitude cancels from kappa^2 = beta^2/(Z/2 + b beta^2) (symbolic)",
+      "ok": true,
+      "value": "residual 0",
+      "threshold": "0",
+      "note": "q_0 never enters kappa"
+    },
+    {
+      "name": "L8 kernel witness refinement (jsat at dps 50 vs dps 100)",
+      "ok": true,
+      "value": "1.00e-51",
+      "threshold": "< 1e-40",
+      "note": "declared refinement, relative change"
+    },
+    {
+      "name": "L9 kernel stiffness bound: min(s Delta - j) >= 0 (F6, same measure)",
+      "ok": true,
+      "value": "1.054e-05",
+      "threshold": ">= -1e-12",
+      "note": "effective stiffness Z_eff positive on [1e-3, 1e4]"
+    },
+    {
+      "name": "L10 deep-limit boundary: s Delta - j -> 0+ as s -> 0+",
+      "ok": true,
+      "value": "3.333e-07",
+      "threshold": ">= 0 and < 1e-2",
+      "note": "admissible limiting case in the same measure"
+    },
+    {
+      "name": "E1 B-iv witness: kappa-projection is a continuum, not {1/2} (7 distinct values incl. tuned r_half)",
+      "ok": true,
+      "value": "[1.3894178, 0.99111708, 0.70394518, 0.5, 0.49887845, 0.35315619, 0.17672698]",
+      "threshold": "all distinct; kappa(r_half) = 0.5 to 1e-12",
+      "note": "rank-1 selection fails: only the tuned ratio r_half lands on 1/2"
+    },
+    {
+      "name": "E2 q-cancellation numerics: kappa^2 identical for q in {0.1,1,10,100} (beta=1, Z=8-2b)",
+      "ok": true,
+      "value": "max |k2(q) - k2_ref| = 0.0",
+      "threshold": "< 1e-40",
+      "note": "k2_ref = 1/((8-2b)/2 + b) = 1/4 -> kappa = 1/2 exactly at the tuned ratio, for every q"
+    },
+    {
+      "name": "E3 candidate E*: rho_vac/rho_Lambda = (Z/2 + b beta^2)/(4 beta^2); = 1 exactly at Z/beta^2 = 8 - 2b",
+      "ok": true,
+      "value": "rho_vac/rho_Lambda - 1 = 0.0",
+      "threshold": "< 1e-45",
+      "note": "the vacuum-magnitude equation and the kappa equation collapse into ONE codimension-1 condition on couplings; q drops out"
+    },
+    {
+      "name": "F1 units: [P] = kg m^-1 s^-2 = J/m^3; [q] = kg^1/2 m^-1/2 s^-1; [Z] = [beta] = [b] = 1",
+      "ok": true,
+      "value": "check table in derivation.md",
+      "threshold": "dimensionally consistent",
+      "note": "a0^2/G has kg m^-1 s^-2; Z q^2 and b beta^2 q^2 both match; [q] = [a0/sqrt(G)]"
+    },
+    {
+      "name": "F2 sign: epsilon = +(...)q^2 > 0 structurally; AS068's negative boundary vacuum is repaired by the Legendre form",
+      "ok": true,
+      "value": "+Z q^2/2 + b beta^2 q^2",
+      "threshold": "> 0 for q != 0",
+      "note": "B-iii PASSES structurally (sign), magnitude still a datum"
+    },
+    {
+      "name": "F3 limiting cases: q -> 0+ : epsilon -> 0+, a0 -> 0 (Newtonian); q -> infinity : epsilon -> infinity (no preferred flux)",
+      "ok": true,
+      "value": "0^+ and +inf",
+      "threshold": "monotone in q",
+      "note": "same measure; boundary datum free -> boundary ensemble required"
+    },
+    {
+      "name": "F4 G_N separate: all numerics use G_N = 6.67430e-11; G_bare/G_cosmo untouched (single-G promotion is k04's own assumption)",
+      "ok": true,
+      "value": "G_N only",
+      "threshold": "no identification",
+      "note": "footing table uses framework G"
+    }
+  ],
+  "meta": {
+    "task": "AS651",
+    "worker": "deepseek/deepseek-v4-flash-0731 (OpenRouter) via Hermes Agent subagent",
+    "kernel": "RAR Delta(s)=s/expm1(sqrt(s)) truncated at peak (k04)",
+    "branch": "explicit coefficient-mechanism diagnostic (k04 four-form)",
+    "s_sat": 2.5396382821881653,
+    "Delta_sat": 0.6476102378919149,
+    "jsat": 0.4525248966751305,
+    "b_KB": {
+      "0.0": 0.018005393544499055,
+      "0.25": 0.015754719351436672
+    },
+    "r_half": 7.9639892129110015,
+    "kappa_grid": [
+      [
+        1.0,
+        1.3894178024792356
+      ],
+      [
+        2.0,
+        0.9911170801933766
+      ],
+      [
+        4.0,
+        0.7039451784875257
+      ],
+      [
+        7.9639892129110015,
+        0.5
+      ],
+      [
+        8.0,
+        0.49887844785903107
+      ],
+      [
+        16.0,
+        0.3531561941913938
+      ],
+      [
+        64.0,
+        0.17672698293108702
+      ]
+    ],
+    "footings": {
+      "canonical": {
+        "a0": 9.3619e-11,
+        "rho_Lambda": 5.844412454021876e-27,
+        "eps_Lambda": 5.252695959726114e-10,
+        "s": 1.87238e-10,
+        "q_star_beta1": 1.1459380393073304e-05
+      },
+      "alternative": {
+        "a0": 1.1279e-10,
+        "rho_Lambda": 8.483089619559099e-27,
+        "eps_Lambda": 7.624220727267281e-10,
+        "s": 2.2558e-10,
+        "q_star_beta1": 1.3805995733074889e-05,
+        "kappa_eff_fixed_canonical_rho": 0.6023884040632778
+      }
+    },
+    "neg_control": {
+      "altered_EOM": "P_q = (Z + 2 b beta^2) q = 0 -> q = 0",
+      "eps_at_q0": 0,
+      "P_q_at_q_star": 9.167504314458643e-05
+    },
+    "constants": {
+      "G": 6.6743e-11,
+      "c": 299792458.0
+    }
+  }
+}

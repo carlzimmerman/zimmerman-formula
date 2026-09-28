@@ -1,0 +1,47 @@
+==============================================================================
+AS137 numeric checks — curved 2D (t,r) Schwarzschild-sector metric
+==============================================================================
+
+[N1] off-shell Ward identity on 2D Schwarzschild sector (grid 180x180):
+     nu=0: max|div T - E grad phi| = 9.948e-14   (term scale 6.306e+01; relative 1.58e-15)
+     nu=1: max|div T - E grad phi| = 2.487e-14   (term scale 9.161e+00; relative 2.71e-15)
+     FD cross-check nu=0: max|residual| = 7.018e-01 TOTAL (1st-order edge stencils), 4.697e-03 INTERIOR (2nd-order central, dr = 0.0279; interior bound ~5e-3)
+
+[N2] on-shell witness phi = t (Box phi = 0 exactly on static metric):
+     max|E| = 0.000e+00  (should be ~0)
+     nu=0: max|div T| = 0.000e+00   (T scale 4.500e+00; relative 0.00e+00)
+     nu=1: max|div T| = 2.631e-14   (T scale 0.000e+00; relative 2.63e-14)
+
+[N3] flat limit (M -> 0) of the same off-shell configuration:
+     nu=0: max|residual| (M=0, curved machinery) = 2.305e-14
+     nu=1: max|residual| (M=0, curved machinery) = 4.889e-15
+
+[N4] diffeomorphism integral, compactly supported xi (IBP once):
+     pointwise IBP identity |I1 + d_mu(sqrt(-g) T xi) + I2|: max = 2.173e-15 (relative 1.81e-16)
+     int I1 (delta_xi S_b integrand)      = -1.930e-04   (|I1| integral 7.312e+00; rel -2.64e-05)
+     int I2 (-xi_nu [divT - E grad phi])  = +1.442e-17
+     flux int(Bnd) (compact xi)           = +1.930e-04
+     consistency int(I1 + Bnd + I2)       = +1.442e-17
+     refined (360x360): int I1 = -4.799e-05, int I2 = -6.293e-17 (Richardson ratio |q1r/q1| = 0.249 — smooth integrand ~1/4)
+     => delta_xi S_b = 0 (truncation floor; refined sums do not drift
+        upward); the once-integrated form (seed step 2) holds at the
+        FD level.  Exact pointwise IBP: ward_symbolic.py [6].
+
+[N5] negative control z0 Z psi^2 on the curved background:
+     nu=0: max|div T' - (E'_psi grad psi + z0 psi^2 grad Z)| = 7.434e-07 (scale 1.203e+04; relative 6.18e-11)
+     nu=1: max|div T' - (E'_psi grad psi + z0 psi^2 grad Z)| = 4.620e-09 (scale 2.568e+03; relative 1.80e-12)
+     flat on-shell witness psi = r^2, Z = -1/(z0 r^2) (Minkowski):
+     E'_psi at r=3: 0.000e+00 (== 0)
+     div T' at (t,r)=(0.4,3.0): t-comp = +0.000000e+00 (expect 0), r-comp = +6.000000e+00 (expect 6 = 2r)
+     => baryon equation holds yet div T' = (0, 2r) != 0: the extra force
+        term prevents the same on-shell identity.
+
+[N6] footings and dimension examples (mandated constants):
+     canonical a0 = 9.361900e-11 m/s^2: rho_Lambda = 5.844412e-27 kg/m^3
+     alternative a0 = 1.127900e-10 m/s^2: rho_Lambda = 8.483090e-27 kg/m^3
+     density ratio (alt/can) = 1.451487 (kappa = 1/2 fixed in both; footings do NOT share a fixed vacuum density)
+     kappa back-check: canonical 0.50000000; alt 0.50000000
+     Ward identity: a0, kappa, rho_Lambda and G_N/G_bare/G_cosmo enter
+     S_b nowhere; the theorem is footing-independent and holds on both.
+
+ALL NUMERIC CHECKS PASSED (actual residuals reported above).
