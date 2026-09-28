@@ -1,0 +1,284 @@
+{
+ "slug": "CFG32_xray_ellipticals_under_b_MUTATE",
+ "summary": {
+  "n_checks": 8,
+  "n_pass": 7,
+  "load_bearing_failures": 1,
+  "failed": [
+   "H1 [HEADLINE] B4 SURVIVES THE REFEREE AS A FAILURE OF B: the mean per-galaxy offset under "
+  ],
+  "seconds": 0.2
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: h10's committed median boost and scatter reproduced (both footings)",
+   "detail": "canonical: 1.689 / 0.2493 (committed 1.69 / 0.249); alt: 1.571 / 0.2421 (committed 1.57 / 0.242)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] B4 SURVIVES THE REFEREE AS A FAILURE OF B: the mean per-galaxy offset under B's law exceeds zero by > 2 sigma (galaxy-to-galaxy error + IMF and radial-range floor), both footings  [MUTATE: g_obs halved]",
+   "detail": "canonical: -0.021 +- 0.165 dex (-0.13 sigma; a factor 0.95); alt: -0.047 +- 0.161 dex (-0.29 sigma; a factor 0.90)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE MISSING MASS IS EXTENDED: the offset grows toward low acceleration in at least 6 of the 7 galaxies (Kroupa, canonical)",
+   "detail": "slopes d log(ratio)/d log y: NGC720 -0.10, NGC1407 -0.28, NGC4125 -0.16, NGC4261 -0.17, NGC4472 -0.33, NGC4649 -0.31, NGC6482 -0.15; 7 of 7 negative",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 B's CLUSTER CONVENTION IS NOT AN ESCAPE: the max rule applied at each radius over-predicts g_obs/g_bar at 10 kpc by more than 2x in at least 5 of the 7 galaxies",
+   "detail": "predicted / observed at 10 kpc: NGC720 2.27, NGC1407 8.70, NGC4125 11.00, NGC4261 10.75, NGC4472 7.38, NGC4649 4.69, NGC6482 9.70 (7 of 7 above 2); at 70 kpc: 0.47, 1.17, 1.71, 1.52, 0.72, 0.53, 1.94",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) the IMF and the radial range: Salpeter, Humphrey's fitted M/L, r <= 40 kpc, the P2 kernel (sample means)",
+   "detail": "canonical: Kroupa -0.021, Salpeter -0.147, fitted +0.046, r <= 40 -0.086, P2 +0.030; alt: Kroupa -0.047, Salpeter -0.171, fitted +0.018, r <= 40 -0.108, P2 +0.006",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the per-galaxy offsets under Salpeter (canonical) and the galaxy-to-galaxy spread",
+   "detail": "NGC720 +0.16, NGC1407 -0.15, NGC4125 -0.39, NGC4261 -0.38, NGC4472 -0.10, NGC4649 +0.11, NGC6482 -0.28; median Kroupa -0.031, Salpeter -0.149",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the hot gas each galaxy would need inside 70 kpc to null its offset there (M_gas / M_*, Kroupa, canonical)",
+   "detail": "NGC720 3.0, NGC1407 0.9, NGC4125 0.0, NGC4261 0.1, NGC4472 2.6, NGC4649 5.0, NGC6482 0.0",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) the significance under Salpeter alone (the most favourable standard IMF), both footings",
+   "detail": "canonical: -0.147 +- 0.106 (-1.39 sigma); alt: -0.171 +- 0.103 (-1.66 sigma)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "C1": {
+   "committed": {
+    "canonical": [
+     1.69,
+     0.249
+    ],
+    "alt": [
+     1.57,
+     0.242
+    ]
+   },
+   "mine": {
+    "canonical": [
+     1.6886553265714053,
+     0.2492788045165474
+    ],
+    "alt": [
+     1.5710285789718037,
+     0.2420907458682424
+    ]
+   }
+  },
+  "RES": {
+   "canonical": {
+    "base": {
+     "per": [
+      0.27085112113309934,
+      -0.031008638781555874,
+      -0.2577315768334564,
+      -0.26700561189801103,
+      0.039645127201654085,
+      0.24991330957540822,
+      -0.150292519852017
+     ],
+     "mean": -0.020804112779268382,
+     "err": 0.08389704435422528,
+     "median": -0.031008638781555874
+    },
+    "salp": {
+     "per": [
+      0.155728230524874,
+      -0.14919798875344184,
+      -0.38778437300871427,
+      -0.3849187692498658,
+      -0.09862489192985187,
+      0.11466487889257286,
+      -0.2800190577543239
+     ],
+     "mean": -0.14716456732553582,
+     "err": 0.08377040729812406,
+     "median": -0.14919798875344184
+    },
+    "fit": {
+     "per": [
+      0.05819678541809855,
+      0.19035437033785121,
+      -0.13690321737297623,
+      -0.2428081669070007,
+      0.181900707041851,
+      0.30995783261742854,
+      -0.04013537899620205
+     ],
+     "mean": 0.04579470459129291,
+     "err": 0.07454823272053178,
+     "median": 0.05819678541809855
+    },
+    "r40": {
+     "per": [
+      0.23064638017724642,
+      -0.12268632660006334,
+      -0.30558231062260754,
+      -0.28965001631365933,
+      -0.0597847078170337,
+      0.1480518613863248,
+      -0.20336487396450703
+     ],
+     "mean": -0.08605285625061423,
+     "err": 0.07876162746639842,
+     "median": -0.12268632660006334
+    },
+    "p2": {
+     "per": [
+      0.3242023698190453,
+      0.017496935128811363,
+      -0.20266246974490618,
+      -0.21637418260928637,
+      0.09180842858898446,
+      0.30099421334000886,
+      -0.10242623857758858
+     ],
+     "mean": 0.030434150849295547,
+     "err": 0.08399786823910747,
+     "median": 0.017496935128811363
+    },
+    "floor": 0.14221238693492497,
+    "tot": 0.16511534468093406,
+    "z": -0.12599745238378587,
+    "imf_term": 0.12636045454626743,
+    "radial_term": 0.06524874347134585
+   },
+   "alt": {
+    "base": {
+     "per": [
+      0.2376488714280255,
+      -0.0555220291438402,
+      -0.2853305488757433,
+      -0.2923609730124167,
+      0.013619439562342999,
+      0.22436806290624217,
+      -0.17456691472196706
+     ],
+     "mean": -0.04744915597962236,
+     "err": 0.08333642520264475,
+     "median": -0.0555220291438402
+    },
+    "salp": {
+     "per": [
+      0.12426949079839117,
+      -0.17103013375224452,
+      -0.41265875198602553,
+      -0.40764783165168234,
+      -0.12160618715161593,
+      0.09213094372997915,
+      -0.30133032132797954
+     ],
+     "mean": -0.1711246844773111,
+     "err": 0.08313052672226963,
+     "median": -0.17103013375224452
+    },
+    "fit": {
+     "per": [
+      0.028407759814325643,
+      0.16130632973465867,
+      -0.16679307466126878,
+      -0.26868137556299465,
+      0.15302398363708636,
+      0.28315029669699354,
+      -0.06677526201082551
+     ],
+     "mean": 0.01766266537828218,
+     "err": 0.07443468239656167,
+     "median": 0.028407759814325643
+    },
+    "r40": {
+     "per": [
+      0.20037091674248045,
+      -0.14209788825076117,
+      -0.32888476905905384,
+      -0.3099905335793544,
+      -0.08125542235043534,
+      0.12748953020143633,
+      -0.22222731139378363
+     ],
+     "mean": -0.1080850682413531,
+     "err": 0.0779291443149698,
+     "median": -0.14209788825076117
+    },
+    "p2": {
+     "per": [
+      0.2890906653952501,
+      -0.003934694071393014,
+      -0.2289605803282085,
+      -0.23909430991838443,
+      0.06803831163188905,
+      0.27797867191126974,
+      -0.12349896364246792
+     ],
+     "mean": 0.005659871568279282,
+     "err": 0.08311023086132163,
+     "median": -0.003934694071393014
+    },
+    "floor": 0.13774015465722017,
+    "tot": 0.16098853987334297,
+    "z": -0.2947362341254401,
+    "imf_term": 0.12367552849768874,
+    "radial_term": 0.060635912261730734
+   }
+  },
+  "H2": {
+   "slopes": [
+    -0.1014618310401188,
+    -0.28185215965717464,
+    -0.16109215950190967,
+    -0.16815078271162529,
+    -0.32978737922569173,
+    -0.30676755803069017,
+    -0.14937539786383283
+   ],
+   "n_negative": 7
+  },
+  "H3": {
+   "over10": [
+    2.2680004044705737,
+    8.700132906959992,
+    11.002889976332552,
+    10.747097385424661,
+    7.379603798873246,
+    4.690854495754438,
+    9.699341936065203
+   ],
+   "outer70": [
+    0.4724909873415781,
+    1.1694263774836033,
+    1.7073637808645197,
+    1.5223435168817958,
+    0.7242121023926074,
+    0.526841191480405,
+    1.9438518493977133
+   ]
+  },
+  "R3_gas_needed": [
+   2.951250072538069,
+   0.8970394442251914,
+   3.944304526105059e-27,
+   0.0776703796801631,
+   2.5632470828674965,
+   5.039710141234904,
+   3.944304526105059e-27
+  ],
+  "reading": "B4 is within the IMF and radial-range systematics of the published best-fit models: not an established failure"
+ }
+}

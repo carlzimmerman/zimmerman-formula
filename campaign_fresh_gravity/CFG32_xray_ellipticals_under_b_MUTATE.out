@@ -1,0 +1,87 @@
+CFG32 -- THE X-RAY ELLIPTICALS UNDER CANDIDATE B, REFEREED: is the recorded "1.69x more boost" liability (B4) a real failure of B?
+
+WHY.  FAILURES_EXECUTIVE_SUMMARY_2026-09-28 row B4: seven X-ray-bright early-type galaxies (Humphrey+2006, ApJ 646, 899; NGC 720,
+1407, 4125, 4261, 4472, 4649, 6482) need a median 1.69x (canonical) / 1.57x (alt) more boost than the kernel gives over 5-70 kpc,
+with stars only at a Kroupa stellar-population M/L (hunt_2026/h10_h18_xray_hse.py).  It was never scored under candidate B and never
+given a significance.  Candidate B's rules for these systems:
+  * T5: "baryon-poor galaxies are phantom-dominated, baryon-complete clusters keep the cosmic share" -- the dark mass is
+    max(M_phantom, (Omega_c/Omega_b) M_b).  For clusters CFG4 applied it at the measurement aperture.  For galaxies B uses the law.
+  * FG001's ownership: an isolated or top-level galaxy obeys the law with no external field; an accreted one (NGC 4472 and 4649 are
+    Virgo members) obeys the isolated law of its infall baryons.  Either way, at 5-70 kpc B's prediction is the law on the galaxy's
+    own baryons -- h10's prediction, with the contract kernel nu_mono.
+So B changes little here; what this lane adds is the referee h10 never had.  h10 used the paper's BEST-FIT MODEL (NFW + stars, fitted
+to the Chandra profiles), not the deprojected data, and omitted the hot gas; the IMF of massive ellipticals is uncertain between
+Kroupa and Salpeter.  None of that was propagated.
+
+THE METHOD (declared before this script's first run).  h10's data file and mass model, exec'd read-only (Hernquist stars with
+a = R_e/1.8153, NFW with Humphrey's M_vir, R_vir, c; g_obs from the fitted model, g_bar from the stars at a population M/L; radii 5,
+10, 20, 40, 70 kpc).  The offset of a point is log10[(g_obs/g_bar)/nu(g_bar/a0)]; a GALAXY's offset is the median over its radii (the
+five radii of one galaxy are not independent), and the SAMPLE offset is the mean of the seven, with the galaxy-to-galaxy error
+std/sqrt(7).  The systematic floor, computed by re-running the pipeline: the IMF (Kroupa -> Salpeter, Humphrey's own population
+values) and the radial range (all radii -> r <= 40 kpc, where the fitted model is least extrapolated).  The hot gas cannot be added
+(no gas profiles in the repository); instead the hot gas each galaxy would need to null its offset at 70 kpc is reported.
+
+PRE-DECLARED
+  C1  CONTROL  h10's committed medians reproduced: 1.69 (scatter 0.249 dex) canonical, 1.57 (0.242) alt.
+  H1  [HEADLINE; MUTATE must fail] B4 SURVIVES THE REFEREE AS A FAILURE OF B: under B's law (nu_mono, no external field, Kroupa baryons)
+      the mean per-galaxy offset exceeds zero by > 2 sigma, sigma = the galaxy-to-galaxy error and the floor (IMF, radial range) in
+      quadrature, both footings.
+  H2  THE MISSING MASS IS EXTENDED: the offset grows toward low acceleration -- the slope d log(ratio)/d log y is negative in at least
+      6 of the 7 galaxies (Kroupa, canonical).  A wrong M/L would move the inner points most, not the outer ones.
+  H3  B's CLUSTER CONVENTION IS NOT AN ESCAPE: applying the max rule at each radius (as CFG4 did at the cluster aperture) over-
+      predicts g_obs/g_bar at 10 kpc by more than 2x in at least 5 of the 7 galaxies -- consistent with T5's class split (galaxies
+      phantom-dominated).
+  R1-R6 (reported): Salpeter and Humphrey's fitted M/L; r <= 40 kpc; the P2 kernel; per-galaxy offsets; the hot gas each galaxy
+      would need at 70 kpc (M_gas/M_*); the max rule's outer-radius ratio.
+  READING (declared): H1 PASS -> B4 stands as a failure of candidate B at the quoted significance; the shortfall grows outward, and
+  the max rule is not an escape.  H1 FAIL -> B4 is within the IMF and radial-range systematics of the published best-fit models: not
+  an established failure.  Either way the definitive test needs the deprojected gas density and temperature profiles.
+MUTATE=1: every g_obs halved -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every g_obs halved -- H1 must FAIL ***
+
+  h10's sample (exec'd read-only): 7 galaxies: NGC720, NGC1407, NGC4125, NGC4261, NGC4472, NGC4649, NGC6482
+
+======================================================================================================================
+C1  CONTROL: h10's committed medians
+======================================================================================================================
+  [PASS] C1 CONTROL: h10's committed median boost and scatter reproduced (both footings)
+         canonical: 1.689 / 0.2493 (committed 1.69 / 0.249); alt: 1.571 / 0.2421 (committed 1.57 / 0.242)
+
+======================================================================================================================
+H1  B's LAW ON THE SEVEN ELLIPTICALS: per-galaxy offsets, the galaxy-to-galaxy error, the floor
+======================================================================================================================
+    canonical: per-galaxy offsets (Kroupa) NGC720 +0.27, NGC1407 -0.03, NGC4125 -0.26, NGC4261 -0.27, NGC4472 +0.04, NGC4649 +0.25, NGC6482 -0.15
+               mean -0.021 +- 0.084 (galaxy-to-galaxy); floor 0.142 (IMF 0.126, radial range 0.065) -> -0.13 sigma;  Salpeter -0.147, fitted M/L +0.046, r <= 40 kpc -0.086, P2 +0.030
+    alt      : per-galaxy offsets (Kroupa) NGC720 +0.24, NGC1407 -0.06, NGC4125 -0.29, NGC4261 -0.29, NGC4472 +0.01, NGC4649 +0.22, NGC6482 -0.17
+               mean -0.047 +- 0.083 (galaxy-to-galaxy); floor 0.138 (IMF 0.124, radial range 0.061) -> -0.29 sigma;  Salpeter -0.171, fitted M/L +0.018, r <= 40 kpc -0.108, P2 +0.006
+  [FAIL] H1 [HEADLINE] B4 SURVIVES THE REFEREE AS A FAILURE OF B: the mean per-galaxy offset under B's law exceeds zero by > 2 sigma (galaxy-to-galaxy error + IMF and radial-range floor), both footings  [MUTATE: g_obs halved]
+         canonical: -0.021 +- 0.165 dex (-0.13 sigma; a factor 0.95); alt: -0.047 +- 0.161 dex (-0.29 sigma; a factor 0.90)
+
+======================================================================================================================
+H2  THE SHAPE: does the shortfall grow toward low acceleration?
+======================================================================================================================
+  [PASS] H2 THE MISSING MASS IS EXTENDED: the offset grows toward low acceleration in at least 6 of the 7 galaxies (Kroupa, canonical)
+         slopes d log(ratio)/d log y: NGC720 -0.10, NGC1407 -0.28, NGC4125 -0.16, NGC4261 -0.17, NGC4472 -0.33, NGC4649 -0.31, NGC6482 -0.15; 7 of 7 negative
+
+======================================================================================================================
+H3  B's CLUSTER CONVENTION (the max rule at each radius) in a galaxy
+======================================================================================================================
+  [PASS] H3 B's CLUSTER CONVENTION IS NOT AN ESCAPE: the max rule applied at each radius over-predicts g_obs/g_bar at 10 kpc by more than 2x in at least 5 of the 7 galaxies
+         predicted / observed at 10 kpc: NGC720 2.27, NGC1407 8.70, NGC4125 11.00, NGC4261 10.75, NGC4472 7.38, NGC4649 4.69, NGC6482 9.70 (7 of 7 above 2); at 70 kpc: 0.47, 1.17, 1.71, 1.52, 0.72, 0.53, 1.94
+
+======================================================================================================================
+R1-R6  REPORTED
+======================================================================================================================
+  [PASS] (reported) R1 (reported) the IMF and the radial range: Salpeter, Humphrey's fitted M/L, r <= 40 kpc, the P2 kernel (sample means)
+         canonical: Kroupa -0.021, Salpeter -0.147, fitted +0.046, r <= 40 -0.086, P2 +0.030; alt: Kroupa -0.047, Salpeter -0.171, fitted +0.018, r <= 40 -0.108, P2 +0.006
+  [PASS] (reported) R2 (reported) the per-galaxy offsets under Salpeter (canonical) and the galaxy-to-galaxy spread
+         NGC720 +0.16, NGC1407 -0.15, NGC4125 -0.39, NGC4261 -0.38, NGC4472 -0.10, NGC4649 +0.11, NGC6482 -0.28; median Kroupa -0.031, Salpeter -0.149
+  [PASS] (reported) R3 (reported) the hot gas each galaxy would need inside 70 kpc to null its offset there (M_gas / M_*, Kroupa, canonical)
+         NGC720 3.0, NGC1407 0.9, NGC4125 0.0, NGC4261 0.1, NGC4472 2.6, NGC4649 5.0, NGC6482 0.0
+  [PASS] (reported) R4 (reported) the significance under Salpeter alone (the most favourable standard IMF), both footings
+         canonical: -0.147 +- 0.106 (-1.39 sigma); alt: -0.171 +- 0.103 (-1.66 sigma)
+
+    READING (declared): B4 is within the IMF and radial-range systematics of the published best-fit models: not an established failure; the definitive test needs the deprojected gas density and temperature profiles.
+
+  7/8 checks pass; load-bearing failures: 1   (0 s)
