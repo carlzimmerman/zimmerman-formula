@@ -1,0 +1,137 @@
+{
+ "slug": "CFG33_slacs_lensing_vs_dynamics",
+ "summary": {
+  "n_checks": 9,
+  "n_pass": 8,
+  "load_bearing_failures": 1,
+  "failed": [
+   "H3 B's DYNAMICS NEED AN IMF THAT GROWS WITH DISPERSION: d log alpha_dyn / d log sigma_e > "
+  ],
+  "seconds": 6.3
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: h53's committed Salpeter kappa_bar reproduced (both footings, both bands)",
+   "detail": "canonical: V 0.8246 / I 0.7938 (committed 0.825 / 0.794); alt: V 0.8542 / I 0.8124 (committed 0.854 / 0.812)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: h9's ATLAS3D sample rebuilt and its Wolf / JAM ratio reproduced",
+   "detail": "N = 258 (h9 258); median log M_Wolf/(M_JAM/2) +0.207 dex (h9 +0.21)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 B's KERNEL KEEPS THE RECORDED SHORTFALL: kappa_bar at Salpeter < 0.90 in both bands, both footings (nu_mono)",
+   "detail": "canonical V: 0.834; canonical I: 0.807; alt V: 0.859; alt I: 0.825",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 [HEADLINE] LENSING AND DYNAMICS AGREE UNDER B's LAW: the lenses' stellar-mass normalisation equals the dynamics' at the same dispersion within 2 sigma (bootstrap + the 0.10-dex floor), both bands, both footings",
+   "detail": "canonical V: +0.159 +- 0.102 dex (+1.56 sigma); canonical I: +0.171 +- 0.102 dex (+1.68 sigma); alt V: +0.152 +- 0.102 dex (+1.49 sigma); alt I: +0.168 +- 0.102 dex (+1.64 sigma)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 B's DYNAMICS NEED AN IMF THAT GROWS WITH DISPERSION: d log alpha_dyn / d log sigma_e > 0 at > 3 sigma over ATLAS3D (canonical)",
+   "detail": "slope +0.204 +- 0.076 (+2.7 sigma); alpha_dyn at sigma = 100 / 200 / 300 km/s: x0.72 / x0.83 / x0.90",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) alpha_lens and alpha_dyn in dispersion bins (canonical, V; relative to each survey's Salpeter)",
+   "detail": "log sigma 2.20-2.35: lenses 23 x1.19, ATLAS3D 61 x0.83; log sigma 2.35-2.45: lenses 33 x1.26, ATLAS3D 14 x0.86; log sigma 2.45-2.60: too few",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the same statistic without the declared floor (statistical only)",
+   "detail": "canonical V: +7.6 sigma; canonical I: +7.8 sigma; alt V: +6.9 sigma; alt I: +7.5 sigma",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the P2 kernel (canonical, V)",
+   "detail": "kappa_bar at Salpeter 0.802; difference +0.165 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) the lenses' own slope d log alpha_lens / d log sigma (canonical, V); Chabrier-equivalent normalisations (x 10^0.25)",
+   "detail": "lens slope +0.45 over log sigma 2.21-2.61; median alpha_lens x1.23 Salpeter = x2.19 Chabrier-like",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "C1": {
+   "committed": {
+    "canonical": [
+     0.825,
+     0.794
+    ],
+    "alt": [
+     0.854,
+     0.812
+    ]
+   },
+   "mine": {
+    "canonical|V": 0.8245838713632407,
+    "canonical|I": 0.7937562945843502,
+    "alt|V": 0.8541550854427344,
+    "alt|I": 0.8123940910558998
+   }
+  },
+  "H1": {
+   "canonical|V": 0.8342565517087492,
+   "canonical|I": 0.8071809659458979,
+   "alt|V": 0.8587434882129231,
+   "alt|I": 0.8247232214885369
+  },
+  "H2": {
+   "canonical|V": {
+    "delta": 0.15895861350810658,
+    "err": 0.020976010326490532,
+    "tot": 0.10217628398614347,
+    "z": 1.5557290528364058,
+    "z_nofloor": 7.57811476224143,
+    "lens_med": 0.08991213758060541,
+    "dyn_at_lens": -0.06445679535211019
+   },
+   "canonical|I": {
+    "delta": 0.17149660469348932,
+    "err": 0.021852753329150897,
+    "tot": 0.10235986922649284,
+    "z": 1.6754281339888861,
+    "z_nofloor": 7.847825951740285,
+    "lens_med": 0.10310642309394227,
+    "dyn_at_lens": -0.06445679535211019
+   },
+   "alt|V": {
+    "delta": 0.15220562260945109,
+    "err": 0.022046263571124693,
+    "tot": 0.10240135613090044,
+    "z": 1.4863633486932093,
+    "z_nofloor": 6.903919211453313,
+    "lens_med": 0.07813551301331129,
+    "dyn_at_lens": -0.07285461069186983
+   },
+   "alt|I": {
+    "delta": 0.1684717606319623,
+    "err": 0.0223763259261816,
+    "tot": 0.10247292306728986,
+    "z": 1.6440612367555245,
+    "z_nofloor": 7.529017998206782,
+    "lens_med": 0.0942983043410073,
+    "dyn_at_lens": -0.07285461069186983
+   }
+  },
+  "H3": {
+   "slope": 0.20435572073222627,
+   "err": 0.07597363627099735
+  },
+  "reading": "B7 is not a failure of B: the lenses need the stellar mass B's law needs for the dynamics of galaxies of the same dispersion; the shortfall at a fixed Salpeter IMF was the IMF, not the law"
+ }
+}

@@ -1,0 +1,89 @@
+CFG33 -- THE SLACS EINSTEIN RADII UNDER CANDIDATE B: is B7 ("14-18% short") a failure of B's law, or the heavier stellar IMF that
+B's own dynamics need anyway?  A lensing-versus-dynamics consistency test inside B.
+
+WHY.  B7: under the law, 70 SLACS lenses (Auger+2009) get only 79-85% of their Einstein mass at a Salpeter IMF and 49-54% at Chabrier
+(hunt_2026/h53_h54_slacs_lenses.py); the predicted Einstein radius is 14-18% short.  At the Einstein radius (~4 kpc) g_N ~ 10 a0,
+deep in the kernel's Newtonian part, so the phantom adds only 14-20%.  B's prediction here IS the law: T5 makes galaxies phantom-
+dominated (CFG32 H3: the cluster max rule applied at each radius over-predicts an elliptical's inner mass several-fold) and ownership
+gives no external field.  h53 itself called the result "a liability AT the level of the stellar-mass systematic, NOT a clean kill":
+the shortfall is 0.07-0.10 dex at Salpeter, and the IMF of massive ellipticals is uncertain at that level.  So the question is not
+whether a Salpeter IMF fits.  It is whether the IMF the lenses need under B equals the IMF B's own law needs to fit the DYNAMICS of the
+same kind of galaxy at the same velocity dispersion.  B treats Upsilon as a nuisance of the data -- one nuisance per population, not
+one per probe.
+
+THE TEST (declared before this script's first run)
+  lensing   alpha_lens, relative to Auger's Salpeter stellar masses: per lens, the normalisation at which B's law gives mean
+            convergence 1 at the observed Einstein radius, alpha f_*,Salp B(alpha M_Salp) = 1 -- h53's machinery exec'd read-only (de
+            Vaucouleurs stars, the law's projected phantom, Auger's measured f_*), the kernel nu_mono, both bands (V, I) for R_e.
+  dynamics  alpha_dyn, relative to ATLAS3D's Salpeter population M/L: per early type, the stellar mass at which B's law reproduces the
+            published JAM mass inside the half-light sphere, M_JAM = nu(g_N(r_1/2)/a0) M_*, g_N = G (M_*/2) / r_1/2^2 (h9's
+            convention, M_JAM ~ 2 M_1/2), JAM quality >= 1.
+  match     log alpha_dyn fitted linearly in log sigma_e over ATLAS3D and evaluated at each lens's dispersion; the statistic is the
+            median over lenses of log alpha_lens - log alpha_dyn(sigma), bootstrap error (lenses and ATLAS3D resampled, the fit redone).
+  floor     0.10 dex, declared up front: two stellar-population libraries, two bands and two IMF implementations (Auger's and
+            ATLAS3D's Salpeter zero points are not the same number), plus the SDSS-fibre vs sigma_e aperture difference.
+
+PRE-DECLARED
+  C1  CONTROL  h53's committed Salpeter kappa_bar (canonical 0.825 V / 0.794 I; alt 0.854 / 0.812) reproduced with its own kernel.
+  C2  CONTROL  h9's ATLAS3D sample rebuilt (258 galaxies) and its Wolf / JAM ratio reproduced (+0.21 dex).
+  H1  B's KERNEL KEEPS THE RECORDED SHORTFALL: with nu_mono, kappa_bar at Salpeter < 0.90 in both bands, both footings.
+  H2  [HEADLINE; MUTATE must fail] LENSING AND DYNAMICS AGREE UNDER B's LAW: |median log(alpha_lens / alpha_dyn(sigma))| < 2 sigma
+      (bootstrap error and the 0.10-dex floor in quadrature), both bands, both footings.
+  H3  B's DYNAMICS NEED AN IMF THAT GROWS WITH DISPERSION: over ATLAS3D, d log alpha_dyn / d log sigma_e > 0 at > 3 sigma (bootstrap),
+      canonical.
+  R1-R4 (reported): H2 without the floor; alpha_lens and alpha_dyn in dispersion bins; the Chabrier-equivalent normalisations; the P2
+      kernel; the lenses' own slope.
+  READING (declared): H2 PASS -> B7 is not a failure of B: the lenses need the stellar mass B's law needs for the dynamics of galaxies
+  of the same dispersion, and the shortfall at a fixed Salpeter IMF was the IMF, not the law.  H2 FAIL -> B fails the lensing-dynamics
+  consistency: at the same dispersion its lenses need a different stellar mass than its dynamics.
+MUTATE=1: every Einstein mass doubled (f_* halved) -- H2 must FAIL (rc = 1).
+
+  *** MUTATE=1: every Einstein mass doubled (f_* halved) -- H2 must FAIL ***
+
+  h53's lenses (exec'd read-only): 70; median sigma 241 km/s
+
+======================================================================================================================
+C1  CONTROL: h53's committed Salpeter kappa_bar (its own kernel, nu_RAR)
+======================================================================================================================
+  [PASS] C1 CONTROL: h53's committed Salpeter kappa_bar reproduced (both footings, both bands)
+         canonical: V 0.8246 / I 0.7938 (committed 0.825 / 0.794); alt: V 0.8542 / I 0.8124 (committed 0.854 / 0.812)
+
+======================================================================================================================
+C2  CONTROL: h9's ATLAS3D sample and its Wolf / JAM calibration
+======================================================================================================================
+  [PASS] C2 CONTROL: h9's ATLAS3D sample rebuilt and its Wolf / JAM ratio reproduced
+         N = 258 (h9 258); median log M_Wolf/(M_JAM/2) +0.207 dex (h9 +0.21)
+
+======================================================================================================================
+H1  B's KERNEL ON THE RECORDED SHORTFALL (Salpeter kappa_bar, nu_mono)
+======================================================================================================================
+  [PASS] H1 B's KERNEL KEEPS THE RECORDED SHORTFALL: kappa_bar at Salpeter < 0.90 in both bands, both footings (nu_mono)
+         canonical V: 0.417; canonical I: 0.404; alt V: 0.429; alt I: 0.412
+
+======================================================================================================================
+H2 / H3  LENSING AGAINST DYNAMICS UNDER B's LAW, matched in velocity dispersion
+======================================================================================================================
+    canonical V: median log alpha_lens +0.424 (x2.66 Salpeter); alpha_dyn at the lenses' dispersions -0.064 (x0.86); difference +0.491 +- 0.021 (stat) -> +4.80 sigma with the 0.1 dex floor (+22.9 without)
+    canonical I: median log alpha_lens +0.428 (x2.68 Salpeter); alpha_dyn at the lenses' dispersions -0.064 (x0.86); difference +0.500 +- 0.022 (stat) -> +4.88 sigma with the 0.1 dex floor (+22.8 without)
+    alt       V: median log alpha_lens +0.418 (x2.62 Salpeter); alpha_dyn at the lenses' dispersions -0.073 (x0.85); difference +0.493 +- 0.023 (stat) -> +4.81 sigma with the 0.1 dex floor (+21.8 without)
+    alt       I: median log alpha_lens +0.422 (x2.64 Salpeter); alpha_dyn at the lenses' dispersions -0.073 (x0.85); difference +0.503 +- 0.023 (stat) -> +4.91 sigma with the 0.1 dex floor (+22.3 without)
+  [FAIL] H2 [HEADLINE] LENSING AND DYNAMICS AGREE UNDER B's LAW: the lenses' stellar-mass normalisation equals the dynamics' at the same dispersion within 2 sigma (bootstrap + the 0.10-dex floor), both bands, both footings  [MUTATE: Einstein masses doubled]
+         canonical V: +0.491 +- 0.102 dex (+4.80 sigma); canonical I: +0.500 +- 0.102 dex (+4.88 sigma); alt V: +0.493 +- 0.103 dex (+4.81 sigma); alt I: +0.503 +- 0.103 dex (+4.91 sigma)
+  [FAIL] H3 B's DYNAMICS NEED AN IMF THAT GROWS WITH DISPERSION: d log alpha_dyn / d log sigma_e > 0 at > 3 sigma over ATLAS3D (canonical)
+         slope +0.204 +- 0.076 (+2.7 sigma); alpha_dyn at sigma = 100 / 200 / 300 km/s: x0.72 / x0.83 / x0.90
+
+======================================================================================================================
+R1-R4  REPORTED
+======================================================================================================================
+  [PASS] (reported) R1 (reported) alpha_lens and alpha_dyn in dispersion bins (canonical, V; relative to each survey's Salpeter)
+         log sigma 2.20-2.35: lenses 23 x2.55, ATLAS3D 61 x0.83; log sigma 2.35-2.45: lenses 33 x2.74, ATLAS3D 14 x0.86; log sigma 2.45-2.60: too few
+  [PASS] (reported) R2 (reported) the same statistic without the declared floor (statistical only)
+         canonical V: +22.9 sigma; canonical I: +22.8 sigma; alt V: +21.8 sigma; alt I: +22.3 sigma
+  [PASS] (reported) R3 (reported) the P2 kernel (canonical, V)
+         kappa_bar at Salpeter 0.401; difference +0.490 dex
+  [PASS] (reported) R4 (reported) the lenses' own slope d log alpha_lens / d log sigma (canonical, V); Chabrier-equivalent normalisations (x 10^0.25)
+         lens slope +0.43 over log sigma 2.21-2.61; median alpha_lens x2.66 Salpeter = x4.73 Chabrier-like
+
+    READING (declared): B fails the lensing-dynamics consistency: at the same dispersion its lenses need a different stellar mass than its dynamics
+
+  7/9 checks pass; load-bearing failures: 2   (6 s)
