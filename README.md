@@ -351,6 +351,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-09-28 | [10.5281/zenodo.23025372](https://doi.org/10.5281/zenodo.23025372) (concept 23025371) | The Cold Component Keeps Its Collapse Mass: A Derived Dark-Sector Rule for a Lambda-Tied MOND Law, Tested with Weak-Lensing Collapse Masses | v1 (PAPER36; lanes CFG35-CFG39; audit `qwen_claude_field_theory/papers_2026/PAPER36_audit.py` 48/48) |
 | 2026-09-26 | [10.5281/zenodo.22984587](https://doi.org/10.5281/zenodo.22984587) (concept 22977899) | A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer | v2 (scope notes: L372/L392 same-cell, MS1 switch leak, DE1 gate cap, GP5 high z; v1's results stand) |
 | 2026-09-26 | [10.5281/zenodo.22977900](https://doi.org/10.5281/zenodo.22977900) (concept 22977899) | A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer | v1 (PAPER34; audit lane `real_research/paper34_audit_2026/`) |
 | 2026-09-25 | [10.5281/zenodo.22967954](https://doi.org/10.5281/zenodo.22967954) (concept 22967560) | The Khronon Route: the Blanchet-Skordis Theory Through Two Gates, and Why No Kinetic Function Repairs It | v2 (corrects v1: the cubic repair is withdrawn) |
