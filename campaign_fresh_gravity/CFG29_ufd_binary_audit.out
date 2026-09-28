@@ -1,0 +1,82 @@
+CFG29 -- THE BINARY AUDIT OF THE ULTRA-FAINT FAILURE: can unresolved binary stars make the offset CFG28 left standing (+0.30-0.33
+dex, 3.5-3.8 sigma), or is it beyond what binaries can do?
+
+WHY.  CFG28 found the ultra-faint offset robust to our analysis, to tides and to measurement noise; binaries were the one escape.
+Two published results bound what binaries can do, and both are used here as fixed inputs, not fitted:
+  (a) single-epoch data: Monte Carlo populations of unresolved binaries are "unlikely to produce dispersions much in excess of
+      ~4.5 km/s", even from a near-zero intrinsic dispersion (McConnachie & Cote 2010, ApJL);
+  (b) multi-epoch data: with a 10-year baseline the residual binary bias reaches ~10-120% for systems whose true dispersion is below
+      ~1 km/s, and is smaller for hotter systems (Ou et al. 2026, arXiv:2609.19407).
+So binaries are strongest where the true dispersion is smallest.  Where the framework predicts a larger dispersion, and wherever
+the measured dispersion exceeds the single-epoch ceiling, binaries cannot close a factor-2 gap.  The data (the committed LVD table;
+the reference for each dispersion, ref_vlos, is carried) and FG001's estimator are CFG28's, exec'd read-only.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG28's committed Kaplan-Meier medians (+0.325 / +0.304 dex) reproduced.
+  H1  [HEADLINE; MUTATE must fail] where binaries are weak -- the ultra-faints whose framework-predicted dispersion is >= 1.5 km/s --
+      the median offset (Kaplan-Meier with the upper limits) is > 0.2 dex and > 3 sigma with CFG28's systematic floor, both footings.
+  H2  at least one ultra-faint beyond 80 kpc (negligible tides) has a measured dispersion above the single-epoch binary ceiling
+      (4.5 km/s) by more than 2 sigma: a system binaries cannot explain even in principle.
+  R1  (reported) the offset for predicted dispersion >= 2 km/s and < 1.5 km/s; per system, the binary floor the framework would
+      need, sqrt(sigma_obs^2 - sigma_pred^2), against the caps (a) and (b); the dispersion references.
+  READING: H1 PASS -> the offset persists where binaries are weakest, so binaries do not explain the failure; H1 FAIL -> the
+  offset lives in the coldest systems, where binaries are strongest, and the failure is not established.
+MUTATE=1: every dispersion and limit is halved (CFG28's control) -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: CFG28's Kaplan-Meier medians
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG28's committed Kaplan-Meier medians reproduced
+         max |d| 0.0e+00
+
+======================================================================================================================
+H1  WHERE BINARIES ARE WEAKEST: the ultra-faints the framework predicts at >= 1.5 km/s
+======================================================================================================================
+    canonical: pred >= 1.5: +0.313 +- 0.031 (19 + 2 limits) -> 3.8 sigma; pred >= 2.0: +0.229 +- 0.146 (5 + 0 limits) -> 1.4 sigma; pred < 1.5: +0.475 +- 0.082 (12 + 7 limits) -> 4.2 sigma
+    alt      : pred >= 1.5: +0.293 +- 0.031 (19 + 2 limits) -> 3.5 sigma; pred >= 2.0: +0.295 +- 0.122 (7 + 1 limits) -> 2.0 sigma; pred < 1.5: +0.455 +- 0.082 (12 + 7 limits) -> 4.0 sigma
+  [PASS] H1 [HEADLINE] where binaries are weakest (framework-predicted dispersion >= 1.5 km/s) the median offset is > 0.2 dex and > 3 sigma with CFG28's floor, both footings
+         canonical: +0.313 dex, 3.8 sigma; alt: +0.293 dex, 3.5 sigma
+
+======================================================================================================================
+H2  BEYOND THE SINGLE-EPOCH BINARY CEILING (4.5 km/s, McConnachie & Cote 2010), FAR FROM THE MILKY WAY
+======================================================================================================================
+    Ursa Major I       D  101.9 kpc  sigma  7.16 +- 1.12  predicted 1.92  binary floor needed 6.90 km/s  (above 4.5 km/s by +2.4 sigma)  [Geha2026ApJ...999..140G]
+    Eridanus II        D  371.6 kpc  sigma  6.90 +- 1.05  predicted 3.05  binary floor needed 6.19 km/s  (above 4.5 km/s by +2.3 sigma)  [Li2017ApJ...838....8L]
+    Ursa Major II      D   40.8 kpc  sigma  6.30 +- 1.00  predicted 1.63  binary floor needed 6.09 km/s  (above 4.5 km/s by +1.8 sigma)  [Geha2026ApJ...999..140G]
+    Eridanus IV        D   76.2 kpc  sigma  6.10 +- 1.05  predicted 1.34  binary floor needed 5.95 km/s  (above 4.5 km/s by +1.5 sigma)  [Heiger2024ApJ...961..234H]
+    Columba I          D  187.3 kpc  sigma  5.96 +- 2.29  predicted 1.55  binary floor needed 5.76 km/s  (above 4.5 km/s by +0.6 sigma)  [Geha2026ApJ...999..140G]
+    Carina III         D   25.0 kpc  sigma  5.60 +- 3.20  predicted 1.03  binary floor needed 5.50 km/s  (above 4.5 km/s by +0.3 sigma)  [Li2018ApJ...857..145L]
+    Canes Venatici II  D  160.6 kpc  sigma  5.28 +- 1.10  predicted 1.95  binary floor needed 4.91 km/s  (above 4.5 km/s by +0.7 sigma)  [Geha2026ApJ...999..140G]
+    Horologium I       D   38.2 kpc  sigma  4.90 +- 1.85  predicted 1.29  binary floor needed 4.73 km/s  (above 4.5 km/s by +0.2 sigma)  [Koposov2015ApJ...811...62K]
+    Willman 1          D   42.7 kpc  sigma  4.70 +- 1.40  predicted 1.06  binary floor needed 4.58 km/s  (above 4.5 km/s by +0.1 sigma)  [Chiu2026ApJ..1002...55C]
+    Aquarius II        D  105.1 kpc  sigma  4.70 +- 1.50  predicted 1.61  binary floor needed 4.42 km/s  (above 4.5 km/s by +0.1 sigma)  [Bruce2023ApJ...950..167B]
+    Tucana IV          D   44.5 kpc  sigma  4.30 +- 1.35  predicted 1.17  binary floor needed 4.14 km/s  (above 4.5 km/s by -0.1 sigma)  [Simon2020ApJ...892..137S]
+    Segue 1            D   27.8 kpc  sigma  3.97 +- 0.92  predicted 0.80  binary floor needed 3.89 km/s  (above 4.5 km/s by -0.6 sigma)  [Geha2026ApJ...999..140G]
+    Centaurus I        D  114.1 kpc  sigma  4.20 +- 0.55  predicted 2.03  binary floor needed 3.68 km/s  (above 4.5 km/s by -0.5 sigma)  [Heiger2024ApJ...961..234H]
+    Tucana II          D   52.5 kpc  sigma  3.80 +- 0.90  predicted 1.39  binary floor needed 3.54 km/s  (above 4.5 km/s by -0.8 sigma)  [Chiti2023AJ....165...55C]
+    Reticulum II       D   22.2 kpc  sigma  3.60 +- 0.85  predicted 1.21  binary floor needed 3.39 km/s  (above 4.5 km/s by -1.1 sigma)  [Walker2015ApJ...808..108W]
+    Pisces II          D  181.9 kpc  sigma  3.72 +- 1.66  predicted 1.58  binary floor needed 3.37 km/s  (above 4.5 km/s by -0.5 sigma)  [Geha2026ApJ...999..140G]
+    Pictor II          D   11.8 kpc  sigma  3.50 +- 1.00  predicted 1.09  binary floor needed 3.33 km/s  (above 4.5 km/s by -1.0 sigma)  [Pace2025OJAp....8E.112P]
+    Bootes I           D   64.0 kpc  sigma  4.00 +- 0.35  predicted 2.36  binary floor needed 3.23 km/s  (above 4.5 km/s by -1.4 sigma)  [Sandford2026ApJ...998...47S]
+    Carina II          D   18.6 kpc  sigma  3.40 +- 1.00  predicted 1.69  binary floor needed 2.95 km/s  (above 4.5 km/s by -1.1 sigma)  [Li2018ApJ...857..145L]
+    Leo V              D  169.8 kpc  sigma  3.37 +- 1.38  predicted 1.64  binary floor needed 2.95 km/s  (above 4.5 km/s by -0.8 sigma)  [Geha2026ApJ...999..140G]
+    Pegasus IV         D   89.1 kpc  sigma  3.33 +- 1.02  predicted 1.58  binary floor needed 2.93 km/s  (above 4.5 km/s by -1.1 sigma)  [Geha2026ApJ...999..140G]
+    Coma Berenices     D   43.5 kpc  sigma  3.33 +- 0.52  predicted 1.59  binary floor needed 2.93 km/s  (above 4.5 km/s by -2.2 sigma)  [Geha2026ApJ...999..140G]
+    Leo IV             D  151.9 kpc  sigma  3.29 +- 0.78  predicted 1.84  binary floor needed 2.72 km/s  (above 4.5 km/s by -1.6 sigma)  [Geha2026ApJ...999..140G]
+    Leo VI             D  113.7 kpc  sigma  2.85 +- 1.44  predicted 1.34  binary floor needed 2.52 km/s  (above 4.5 km/s by -1.1 sigma)  [Tan2025ApJ...979..176T]
+    Pegasus III        D  212.8 kpc  sigma  2.76 +- 1.07  predicted 1.54  binary floor needed 2.29 km/s  (above 4.5 km/s by -1.6 sigma)  [Geha2026ApJ...999..140G]
+    Hydrus I           D   23.9 kpc  sigma  2.70 +- 0.47  predicted 1.75  binary floor needed 2.05 km/s  (above 4.5 km/s by -3.8 sigma)  [Koposov2018MNRAS.479.5343K]
+    Grus I             D  122.7 kpc  sigma  2.50 +- 1.05  predicted 1.52  binary floor needed 1.98 km/s  (above 4.5 km/s by -1.9 sigma)  [Chiti2022ApJ...939...41C]
+    Bootes II          D   39.5 kpc  sigma  1.92 +- 0.69  predicted 1.16  binary floor needed 1.53 km/s  (above 4.5 km/s by -3.8 sigma)  [Geha2026ApJ...999..140G]
+    Tucana V           D   51.8 kpc  sigma  1.20 +- 0.75  predicted 0.76  binary floor needed 0.93 km/s  (above 4.5 km/s by -4.4 sigma)  [Hansen2024ApJ...968...21H]
+    Bootes III         D   47.5 kpc  sigma  1.69 +- 0.94  predicted 2.25  binary floor needed 0.00 km/s  (above 4.5 km/s by -3.0 sigma)  [Li2026arXiv260707803L]
+    Hercules           D  125.0 kpc  sigma  2.25 +- 0.64  predicted 2.25  binary floor needed 0.00 km/s  (above 4.5 km/s by -3.5 sigma)  [Geha2026ApJ...999..140G]
+  [PASS] H2 at least one ultra-faint beyond 80 kpc has a dispersion above the single-epoch binary ceiling (4.5 km/s) by > 2 sigma
+         Eridanus II (6.9 +- 1.1 km/s at 372 kpc, 2.3 sigma above); Ursa Major I (7.2 +- 1.1 km/s at 102 kpc, 2.4 sigma above)
+
+    binary floor the framework needs (canonical): median 3.37 km/s; 26 of 31 systems need more than 2.0 km/s (about the most a 10-yr multi-epoch baseline leaves for a true dispersion near 1 km/s, Ou et al. 2026)
+    READING (declared): binaries do not explain the failure: the offset persists where binaries are weakest
+  [PASS] (reported) R1 (reported) the per-system binary floors and the references
+         median floor 3.37 km/s; beyond the ceiling: 2
+
+  4/4 checks pass; load-bearing failures: 0   (0 s)

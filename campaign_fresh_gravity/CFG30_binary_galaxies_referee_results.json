@@ -1,0 +1,797 @@
+{
+ "slug": "CFG30_binary_galaxies_referee",
+ "summary": {
+  "n_checks": 22,
+  "n_pass": 20,
+  "load_bearing_failures": 2,
+  "failed": [
+   "C3 CONTROL: mock pairs drawn from B's timing prediction (isotropic directions, 40 km/s err",
+   "H4 THE TIMING PROFILE: under B's timing speeds the amplitude changes by < 2 sigma between "
+  ],
+  "seconds": 76.5
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: h48b's committed d3 > 5 r_p amplitudes reproduced to the printed precision (deep-MOND canonical / alt, LambdaCDM)",
+   "detail": "canonical: 1.8864 +- 0.0472 (committed 1.89 +- 0.05); alt: 1.7995 +- 0.0450 (committed 1.80 +- 0.04); lcdm: 0.9486 +- 0.0225 (committed 0.95 +- 0.02); N = 1830 (committed 1830)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2a CONTROL: the Lambda = 0 analytic limits (log potential and Kepler, rise and fall) to 1e-6",
+   "detail": "max relative error: log 1.8e-14, Kepler 1.0e-15",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2b CONTROL: a direct ODE integration from the apocentre lands on the tabulated first-approach (r, v) to 1e-4 and passes r = 0 at the Big Bang; the ODE shooter reproduces the quadrature table to 2e-3 at constant mass",
+   "detail": "forward landing max relative error 3.0e-12; backward: r -> 0 at t = 1.0e-06 t0; shooter vs quadrature (v, 43 points, 2e-3 < rho < 0.9 rho_ta) max 4.5e-04",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2c CONTROL: the general-potential solver reproduces the Kepler table within 0.5% on a point mass (1e13 Msun, 20-800 kpc)",
+   "detail": "v(general) / v(Kepler) - 1: 20 kpc -2.9e-06, 100 kpc +2.6e-06, 300 kpc +4.2e-05, 800 kpc -2.9e-04",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2d CONTROL: the Local Group -- B's first-approach speed at 0.78 Mpc (this lane's radial timing, pure deep-MOND two-body law + Lambda) reproduces FP11's committed full two-body integration of the plain P2 law (T4) within 10%, both footings",
+   "detail": "canonical 1.14e+11: 141.9 vs FP11 142.3 (-0.3%); canonical 1.75e+11: 174.9 vs FP11 175.5 (-0.3%); canonical 2.4e+11: 202.6 vs FP11 203.2 (-0.3%); alt 1.14e+11: 156.0 vs FP11 156.6 (-0.4%); alt 1.75e+11: 191.1 vs FP11 191.7 (-0.3%); alt 2.4e+11: 220.5 vs FP11 221.3 (-0.3%)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: mock pairs drawn from B's timing prediction (isotropic directions, 40 km/s errors, 17% interlopers; A = 1) come back at A = 1 within 0.05 (mean of 5)",
+   "detail": "recovered A: 1.077 +- 0.022 (f_int 0.16), 1.043 +- 0.021 (f_int 0.15), 1.079 +- 0.023 (f_int 0.18), 1.024 +- 0.020 (f_int 0.15), 1.051 +- 0.021 (f_int 0.16); mean 1.055",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 THE BARYONS CANNOT CLOSE THE CIRCULAR GAP: with Upsilon_K = 1.0, +0.3 mag of K light and doubled xGASS gas (upper limits) the circular amplitude stays > 1.3 and > 5 sigma above 1, both footings",
+   "detail": "canonical: A = 1.511 +- 0.040 (12.9 sigma above 1); alt: A = 1.443 +- 0.038 (11.7 sigma above 1)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE CIRCULAR MODEL FAILS THE DATA'S OWN PROFILE for BOTH laws: the circular amplitude falls from the inner to the outer tertile by > 3 sigma (B canonical, LambdaCDM)  [seen in the scratch look]",
+   "detail": "inner - outer: B +0.753 (6.5 sigma); LambdaCDM +0.313 (5.4 sigma)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 [HEADLINE] UNDER B'S OWN TIMING ARGUMENT THE PAIRS ARE NOT TOO FAST: with h48b's baryons the timing amplitude lies in [0.80, 1.25], both footings",
+   "detail": "canonical: A = 1.116 +- 0.028; alt: A = 1.047 +- 0.026",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported; added after the MUTATE run) H3 divided by the estimator's bias on the timing model's own velocities (C3's mean recovery)",
+   "detail": "canonical: 1.058 +- 0.026; alt: 0.993 +- 0.025",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H4 THE TIMING PROFILE: under B's timing speeds the amplitude changes by < 2 sigma between the inner and outer tertile (canonical)",
+   "detail": "inner 1.035 +- 0.040, middle 1.087 +- 0.049, outer 1.385 +- 0.073: inner - outer -4.2 sigma (alt -4.1 sigma)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H5 THE ORBIT MODEL IS NOT A UNIVERSAL RESCUE: LambdaCDM's abundance-matched halos (point masses + Lambda) under the same timing argument give A < 0.80 at d3 > 5 r_p",
+   "detail": "LambdaCDM timing A = 0.463 +- 0.014 (circular 0.949)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) projection geometry: radial-orbit projection for the timing speeds; geometry-consistent projection for circular orbits",
+   "detail": "B timing radial 1.048 +- 0.026; LCDM timing radial 0.469 +- 0.015; B circular consistent 2.160 +- 0.054; LCDM circular consistent 1.061 +- 0.025",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) a steeper companion density n(r) ~ r^-3 in the projection prior (timing)",
+   "detail": "B 1.043 +- 0.026; LCDM 0.421 +- 0.013",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the later timing branches for B (k = 1: outgoing after the first pericentre; k = 2: the second approach)",
+   "detail": "k1: A = 1.113 +- 0.029 (87 pairs without a configuration on the branch); k2: A = 1.375 +- 0.036 (90 pairs without a configuration on the branch)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) a growing baryonic mass, M ~ t (so v_c^2 ~ t^1/2 in deep MOND), by the ODE shooter",
+   "detail": "turnaround today at rho = 0.619 (constant mass 0.701); A = canonical 1.203 +- 0.030; alt 1.129 +- 0.028",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) baryons under timing: H1's favourable ceilings, and realistic (Upsilon_K = 0.6 + xGASS detected gas)",
+   "detail": "canonical: favourable 0.838 +- 0.022, realistic 1.087 +- 0.027 (circular 1.845 +- 0.046); alt: favourable 0.789 +- 0.020, realistic 1.021 +- 0.026 (circular 1.758 +- 0.044)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R6 (reported) THE LOCAL GROUP AGAINST B'S TIMING: MW-M31 at 0.78 Mpc, FP11's baryons (nominal 1.75e11, window 1.145-2.4e11) vs the measured -109.3 +- 4.4 km/s",
+   "detail": "canonical: predicted -175 km/s at the nominal mass (window -142 to -203), 1.60x the measured speed; the timing would need M_b = 7.05e+10; alt: predicted -191 km/s at the nominal mass (window -156 to -221), 1.75x the measured speed; the timing would need M_b = 5.84e+10",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R7 (reported; the LambdaCDM columns and the trend significance added after the MUTATE run) the mass tertiles",
+   "detail": "low (log M_b 10.93): B timing 0.955 +- 0.043, B circular 1.702 +- 0.079, LCDM circular 1.171 +- 0.057, LCDM timing 0.660 +- 0.032; mid (log M_b 11.20): B timing 1.057 +- 0.046, B circular 1.791 +- 0.074, LCDM circular 0.914 +- 0.039, LCDM timing 0.452 +- 0.025; high (log M_b 11.39): B timing 1.331 +- 0.057, B circular 2.203 +- 0.094, LCDM circular 0.854 +- 0.037, LCDM timing 0.347 +- 0.018; high - low: tim_B +5.3 sigma, circ_B +4.1 sigma, circ_L -4.7 sigma, tim_K -8.5 sigma",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R8 (reported) the isolation scan d3 > F r_p under timing (B canonical, LambdaCDM point masses) and circular (B)",
+   "detail": "F 2 (N 4294): B timing 1.222 +- 0.024, LCDM timing 0.546 +- 0.014, B circular 1.758 +- 0.033; F 3 (N 2992): B timing 1.134 +- 0.024, LCDM timing 0.497 +- 0.013, B circular 1.764 +- 0.037; F 5 (N 1830): B timing 1.116 +- 0.028, LCDM timing 0.463 +- 0.014, B circular 1.886 +- 0.047; F 8 (N 1196): B timing 1.021 +- 0.031, LCDM timing 0.401 +- 0.014, B circular 1.875 +- 0.054",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R9 (reported) the ALFALFA dwarf pairs of h47 at d3 > 5 r_p (h47's sample, masses and estimator, exec'd read-only)",
+   "detail": "N = 53; circular 1.12 +- 0.29 (h47 committed 1.12 +- 0.29); B timing canonical 1.13 +- 0.17, alt 1.05 +- 0.15; LCDM timing (h47's halo convention) 1.24 +- 0.19",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R10 (reported) LambdaCDM's halos as NFW (h48b's enclosed-mass model) under the same timing argument",
+   "detail": "A = 0.523 +- 0.013 (1 pairs without a bound configuration)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "C1": {
+   "computed": {
+    "canonical": [
+     1.8863931334765678,
+     0.047159828336914233,
+     0.16798161486607543
+    ],
+    "alt": [
+     1.7994591439899914,
+     0.044986478599749725,
+     0.16798161486607543
+    ],
+    "lcdm": [
+     0.9486447852869718,
+     0.022530313650565573,
+     0.17150476997540087
+    ]
+   },
+   "committed": {
+    "canonical": [
+     1.89,
+     0.05
+    ],
+    "alt": [
+     1.8,
+     0.04
+    ],
+    "lcdm": [
+     0.95,
+     0.02
+    ]
+   },
+   "n": 1830
+  },
+  "C2": {
+   "eB": 1.8207657603852567e-14,
+   "eK": 9.992007221626409e-16,
+   "e_ode": 3.04867242562068e-12,
+   "e_bb": 1e-06,
+   "e_shoot": 0.0004528585904288729,
+   "e_gen": 0.0002902417171471994,
+   "lg": [
+    "canonical 1.14e+11: 141.9 vs FP11 142.3 (-0.3%)",
+    "canonical 1.75e+11: 174.9 vs FP11 175.5 (-0.3%)",
+    "canonical 2.4e+11: 202.6 vs FP11 203.2 (-0.3%)",
+    "alt 1.14e+11: 156.0 vs FP11 156.6 (-0.4%)",
+    "alt 1.75e+11: 191.1 vs FP11 191.7 (-0.3%)",
+    "alt 2.4e+11: 220.5 vs FP11 221.3 (-0.3%)"
+   ],
+   "rho_ta_B": 0.7011306329777033,
+   "rho_ta_K": 0.8417921189920918,
+   "lam": 0.6188927201815978,
+   "t0_gyr": 13.800728840247578
+  },
+  "C3": {
+   "mocks": [
+    [
+     1.076613584578151,
+     0.02153227169156301,
+     0.15775868701896978
+    ],
+    [
+     1.0434896668618525,
+     0.02086979333723704,
+     0.15122825250907412
+    ],
+    [
+     1.0793084857624826,
+     0.022935305322452745,
+     0.1787264236588504
+    ],
+    [
+     1.0244338090029985,
+     0.02048867618005996,
+     0.15446526508353453
+    ],
+    [
+     1.05134526101834,
+     0.02102690522036679,
+     0.16110894957658528
+    ]
+   ],
+   "mean": 1.055038161444765
+  },
+  "H1": {
+   "fits": {
+    "canonical": {
+     "A": 1.5106111103973034,
+     "e": 0.03965354164792921,
+     "fint": 0.16798161486607543,
+     "n": 1830,
+     "excl": 0,
+     "z": 12.876809716792815
+    },
+    "alt": {
+     "A": 1.4427973181096923,
+     "e": 0.03787342960037941,
+     "fint": 0.16798161486607543,
+     "n": 1830,
+     "excl": 0,
+     "z": 11.691503061166035
+    }
+   },
+   "boost_dex": 0.38065383553712984
+  },
+  "profile": {
+   "edges": [
+    90.66883871658989,
+    207.57995428488624
+   ],
+   "tertiles": {
+    "inner": {
+     "n": 610,
+     "rp_med": 49.87717165515912,
+     "sigma": 238.11716694036656,
+     "esig": 8.929393760263661,
+     "fint": 0.06754669113962908,
+     "circ_B": {
+      "A": 2.2982281974803342,
+      "e": 0.08905634265236297,
+      "fint": 0.057324175898868734,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_L": {
+      "A": 1.1244016322275068,
+      "e": 0.040759559168247125,
+      "fint": 0.0629733560569965,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_B": {
+      "A": 1.0347295399501493,
+      "e": 0.04009576967306829,
+      "fint": 0.060086650174007605,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_Balt": {
+      "A": 0.9760022491843015,
+      "e": 0.03782008715589169,
+      "fint": 0.060086650174007605,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.359780680839047,
+      "e": 0.014391227233561893,
+      "fint": 0.07943854918397819,
+      "n": 610,
+      "excl": 0
+     }
+    },
+    "middle": {
+     "n": 610,
+     "rp_med": 141.18808963594824,
+     "sigma": 196.20654064365937,
+     "esig": 10.30084338379207,
+     "fint": 0.17150476997540087,
+     "circ_B": {
+      "A": 1.8381068281343518,
+      "e": 0.08960770787154958,
+      "fint": 0.16451646289656308,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_L": {
+      "A": 0.8948033359148609,
+      "e": 0.040266150116168756,
+      "fint": 0.16451646289656308,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_B": {
+      "A": 1.0874337309882465,
+      "e": 0.048934517894471105,
+      "fint": 0.16110894957658506,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_Balt": {
+      "A": 1.0244338090029985,
+      "e": 0.046099521405134944,
+      "fint": 0.16110894957658528,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.49932535236974385,
+      "e": 0.027462894380335907,
+      "fint": 0.19000156601531293,
+      "n": 610,
+      "excl": 0
+     }
+    },
+    "outer": {
+     "n": 610,
+     "rp_med": 350.2836676225702,
+     "sigma": 170.30732031772925,
+     "esig": 8.515366015886508,
+     "fint": 0.2738850187392209,
+     "circ_B": {
+      "A": 1.5449851178235856,
+      "e": 0.07531802449389982,
+      "fint": 0.2738850187392209,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_L": {
+      "A": 0.811182471538957,
+      "e": 0.04055912357694786,
+      "fint": 0.2738850187392209,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_B": {
+      "A": 1.3849351904498677,
+      "e": 0.07270909749861808,
+      "fint": 0.2738850187392209,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_Balt": {
+      "A": 1.287294091024279,
+      "e": 0.06597382216499433,
+      "fint": 0.2738850187392209,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.719244693635109,
+      "e": 0.03955845814993097,
+      "fint": 0.2890504973749961,
+      "n": 607,
+      "excl": 3
+     }
+    }
+   },
+   "z_circ_B": 6.458095171612436,
+   "z_circ_L": 5.447179227893184,
+   "z_tim_B": -4.217728077091115,
+   "z_tim_B_alt": -4.0934994846513195
+  },
+  "H3": {
+   "canonical": {
+    "A": 1.1160001648702313,
+    "e": 0.027900004121755778,
+    "fint": 0.1787264236588504,
+    "n": 1830,
+    "excl": 0
+   },
+   "alt": {
+    "A": 1.0474100993292048,
+    "e": 0.026185252483230115,
+    "fint": 0.1787264236588504,
+    "n": 1830,
+    "excl": 0
+   }
+  },
+  "H5": {
+   "A": 0.46339388939499154,
+   "e": 0.013901816681849732,
+   "fint": 0.2141650169574414,
+   "n": 1827,
+   "excl": 3
+  },
+  "reported": {
+   "R1": {
+    "tim_B_radial": {
+     "A": 1.0477448353260752,
+     "e": 0.026193620883151875,
+     "fint": 0.19000156601531282,
+     "n": 1830,
+     "excl": 0
+    },
+    "circ_B_consistent": {
+     "A": 2.1596755682953503,
+     "e": 0.053991889207383806,
+     "fint": 0.17150476997540087,
+     "n": 1830,
+     "excl": 0
+    },
+    "circ_L_consistent": {
+     "A": 1.0605848965067883,
+     "e": 0.025188891292036216,
+     "fint": 0.17150476997540087,
+     "n": 1830,
+     "excl": 0
+    },
+    "tim_K_radial": {
+     "A": 0.4693726232522513,
+     "e": 0.014667894476632854,
+     "fint": 0.2227001388253087,
+     "n": 1827,
+     "excl": 3
+    }
+   },
+   "R2": {
+    "tim_B": {
+     "A": 1.0434896668618525,
+     "e": 0.02608724167154631,
+     "fint": 0.1787264236588504,
+     "n": 1830,
+     "excl": 0
+    },
+    "tim_K": {
+     "A": 0.4207488187922058,
+     "e": 0.012622464563766162,
+     "fint": 0.2141650169574414,
+     "n": 1827,
+     "excl": 3
+    }
+   },
+   "R3": {
+    "k1": {
+     "A": 1.113213649054136,
+     "e": 0.029221858287671064,
+     "fint": 0.16110894957658528,
+     "n": 1743,
+     "excl": 87
+    },
+    "k2": {
+     "A": 1.37458703062778,
+     "e": 0.03608290955397922,
+     "fint": 0.18242552380635624,
+     "n": 1740,
+     "excl": 90
+    }
+   },
+   "R4": {
+    "canonical": {
+     "A": 1.2025345787275357,
+     "e": 0.030063364468188386,
+     "fint": 0.18242552380635624,
+     "n": 1830,
+     "excl": 0
+    },
+    "alt": {
+     "A": 1.1286260541890443,
+     "e": 0.0282156513547261,
+     "fint": 0.18242552380635624,
+     "n": 1830,
+     "excl": 0
+    }
+   },
+   "R5": {
+    "canonical": {
+     "fav": {
+      "A": 0.8377112671164001,
+      "e": 0.0219899207618055,
+      "fint": 0.17508626816403972,
+      "n": 1830,
+      "excl": 0
+     },
+     "real": {
+      "A": 1.0870863150891652,
+      "e": 0.027177157877229123,
+      "fint": 0.1787264236588504,
+      "n": 1830,
+      "excl": 0
+     },
+     "real_circ": {
+      "A": 1.8450126690988837,
+      "e": 0.04612531672747214,
+      "fint": 0.17150476997540087,
+      "n": 1830,
+      "excl": 0
+     }
+    },
+    "alt": {
+     "fav": {
+      "A": 0.7894310988050592,
+      "e": 0.019735777470126475,
+      "fint": 0.17508626816403972,
+      "n": 1830,
+      "excl": 0
+     },
+     "real": {
+      "A": 1.0205993762740788,
+      "e": 0.025514984406851966,
+      "fint": 0.1787264236588504,
+      "n": 1830,
+      "excl": 0
+     },
+     "real_circ": {
+      "A": 1.7577870810087355,
+      "e": 0.043944677025218426,
+      "fint": 0.17150476997540087,
+      "n": 1830,
+      "excl": 0
+     }
+    }
+   },
+   "R6": {
+    "canonical": {
+     "v_nom": 174.88584448816363,
+     "ratio": 1.6000534719868584,
+     "z": 14.905873747309915,
+     "M_timing": 70519311772.49702,
+     "v_window": [
+      141.8933259974362,
+      202.63820388978337
+     ]
+    },
+    "alt": {
+     "v_nom": 191.06095232613458,
+     "ratio": 1.7480416498273978,
+     "z": 18.582034619576042,
+     "M_timing": 58412456477.04175,
+     "v_window": [
+      156.01380336805866,
+      220.5263627683749
+     ]
+    }
+   },
+   "R7": {
+    "low": {
+     "tim_B": {
+      "A": 0.9545923820743218,
+      "e": 0.042956657193344495,
+      "fint": 0.20181322226037868,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_B": {
+      "A": 1.7021211541300514,
+      "e": 0.07872310337851494,
+      "fint": 0.19000156601531282,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_L": {
+      "A": 1.1713787552246702,
+      "e": 0.05710471431720269,
+      "fint": 0.1938789378238598,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.6602316059617132,
+      "e": 0.03218629079063352,
+      "fint": 0.2184025360976345,
+      "n": 607,
+      "excl": 3
+     },
+     "logMb": 10.9317303670823
+    },
+    "mid": {
+     "tim_B": {
+      "A": 1.056615151069627,
+      "e": 0.046226912859296185,
+      "fint": 0.1787264236588504,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_B": {
+      "A": 1.7910565150369246,
+      "e": 0.07388108124527316,
+      "fint": 0.16798161486607543,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_L": {
+      "A": 0.9140213752981157,
+      "e": 0.03884590845016993,
+      "fint": 0.16451646289656308,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.4515323222380934,
+      "e": 0.02539869312589274,
+      "fint": 0.2141650169574414,
+      "n": 610,
+      "excl": 0
+     },
+     "logMb": 11.195996458031674
+    },
+    "high": {
+     "tim_B": {
+      "A": 1.331056353925228,
+      "e": 0.05656989504182221,
+      "fint": 0.14492163148782278,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_B": {
+      "A": 2.2033039087979613,
+      "e": 0.09364041612391344,
+      "fint": 0.1358728970090941,
+      "n": 610,
+      "excl": 0
+     },
+     "circ_L": {
+      "A": 0.8535665319758995,
+      "e": 0.03734353577394561,
+      "fint": 0.13010847436299788,
+      "n": 610,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.3466494917870861,
+      "e": 0.01776578645408817,
+      "fint": 0.1938789378238598,
+      "n": 610,
+      "excl": 0
+     },
+     "logMb": 11.391019249284673
+    }
+   },
+   "R7_trend_z": {
+    "tim_B": 5.299982532449759,
+    "circ_B": 4.096805623480894,
+    "circ_L": -4.657876697509214,
+    "tim_K": -8.529632654819158
+   },
+   "R8": {
+    "2.0": {
+     "n": 4294,
+     "tim_B": {
+      "A": 1.2218449186410492,
+      "e": 0.02443689837282097,
+      "fint": 0.33181222783183373,
+      "n": 4294,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.5459999178158164,
+      "e": 0.01364999794539542,
+      "fint": 0.38343349547868066,
+      "n": 4275,
+      "excl": 19
+     },
+     "circ_B": {
+      "A": 1.7577870810087355,
+      "e": 0.03295850776891377,
+      "fint": 0.3100255188723874,
+      "n": 4294,
+      "excl": 0
+     }
+    },
+    "3.0": {
+     "n": 2992,
+     "tim_B": {
+      "A": 1.1342833158281305,
+      "e": 0.024103520461347762,
+      "fint": 0.2738850187392209,
+      "n": 2992,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.49745638879525067,
+      "e": 0.013058230205875328,
+      "fint": 0.3100255188723874,
+      "n": 2983,
+      "excl": 9
+     },
+     "circ_B": {
+      "A": 1.7643911574667268,
+      "e": 0.037493312096168026,
+      "fint": 0.2592251008178461,
+      "n": 2992,
+      "excl": 0
+     }
+    },
+    "5.0": {
+     "n": 1830,
+     "tim_B": {
+      "A": 1.1160001648702313,
+      "e": 0.027900004121755778,
+      "fint": 0.1787264236588504,
+      "n": 1830,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.46339388939499154,
+      "e": 0.013901816681849732,
+      "fint": 0.2141650169574414,
+      "n": 1827,
+      "excl": 3
+     },
+     "circ_B": {
+      "A": 1.8863931334765678,
+      "e": 0.047159828336914233,
+      "fint": 0.16798161486607543,
+      "n": 1830,
+      "excl": 0
+     }
+    },
+    "8.0": {
+     "n": 1196,
+     "tim_B": {
+      "A": 1.0205993762740788,
+      "e": 0.030617981288222365,
+      "fint": 0.1418510649004877,
+      "n": 1196,
+      "excl": 0
+     },
+     "tim_K": {
+      "A": 0.4013587071870176,
+      "e": 0.013545856367561867,
+      "fint": 0.17150476997540087,
+      "n": 1193,
+      "excl": 3
+     },
+     "circ_B": {
+      "A": 1.8746399433704786,
+      "e": 0.05389589837190126,
+      "fint": 0.12455335818741642,
+      "n": 1196,
+      "excl": 0
+     }
+    }
+   },
+   "R9": {
+    "n": 53,
+    "circ": [
+     1.1168997865148598,
+     0.28829975739414815,
+     0.2640546060728516
+    ],
+    "tim": {
+     "canonical": [
+      1.1337795651577416,
+      0.16699628178469234,
+      0.1938789378238598
+     ],
+     "alt": [
+      1.0544452058427034,
+      0.15377325918539422,
+      0.1938789378238598
+     ]
+    },
+    "tim_K": [
+     1.2437622808986757,
+     0.185009639283678,
+     0.20181322226037868
+    ]
+   },
+   "R10": {
+    "A": 0.5227944462643068,
+    "e": 0.013069861156607653,
+    "fint": 0.18242552380635624,
+    "n": 1829,
+    "excl": 1
+   }
+  },
+  "reading": "B1 is not a failure of B's law as such: it was one only under circular orbits, which the data reject for both laws (H2). Under the law's own timing orbits B gives the pair speeds; LambdaCDM's halos under the same orbits over-predict (H5). Which orbits apply is B's to specify: timing orbits if B's dark density exerts no dynamical friction on the pair (T5's identity read literally), virialised orbits if its cold component acts as a free medium, and then B1 stands at H1's level."
+ }
+}

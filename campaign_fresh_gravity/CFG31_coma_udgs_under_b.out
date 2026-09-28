@@ -1,0 +1,116 @@
+CFG31 -- THE COMA ULTRA-DIFFUSE GALAXIES UNDER CANDIDATE B: is the recorded 4.9-sigma liability (B2) a failure of B, or of the
+external-field reading that B dropped?
+
+WHY.  FAILURES_EXECUTIVE_SUMMARY_2026-09-28 row B2: eleven Coma UDGs (Freundlich+2022; dispersions from Chilingarian+2019, DF44 and
+DFX1 from van Dokkum+) sit +1.16 dex (canonical) / +1.11 (alt) in acceleration ABOVE the framework's external-field prediction --
+4.9 / 4.7 sigma with L23's systematic floor (fable_independent_2026/L23_udg_verify.py).  That prediction applied Coma's external field.
+Candidate B does not: under FG001's ownership a UDG that fell into Coma is ACCRETED, and an accreted system obeys the ISOLATED law of
+its INFALL baryons (class A -- the rule CFG18 applied to the Local Group's satellites, where it removed the M31 tension).  L23 already
+computed the isolated offset with stars only: +0.397 / +0.357 dex, statistical error only.  So this lane is a RE-SCORING under B's own
+rule, not a blind test: the stars-only number was known; the infall-gas number and the recomputed floor were not.
+
+THE METHOD (declared before this script's first run)
+  * Data and estimator: L23's, exec'd read-only (the 11 UDGs rebuilt from L, M/L, R_e and sigma; r_1/2 = 4 R_e/3; g_obs = 3 sigma^2 /
+    r_1/2; g_bar = G (M_b/2) / r_1/2^2; the per-galaxy errors and the inverse-variance weighted mean exactly as L23 carried them).
+    This is FG001's own convention for accreted systems (sigma_pred = sqrt(nu g_N r_1/2 / 3)), so the offsets below are B's.
+  * B's prediction: the isolated law, no external field, kernel nu_mono (the contract kernel; P2 reported); both a0 footings.
+  * Infall baryons: M_* + the infall gas, the gas-to-star ratio drawn per galaxy from its 5 nearest members of CFG18's calibration set
+    (the 42 LVD field dwarfs, M_* = 2.0 L_V, gas = 1.33 M_HI) in log M_*, uniformly; HI non-detections as ZERO gas (the headline,
+    CFG18's conservative bracket) or at their upper limits (reported).  The gas follows the stars (half inside r_1/2), as in FG001 and
+    CFG18.  2000 realisations (seed 31).
+  * The systematic floor, recomputed for the isolated law by re-running the pipeline on L23's entries: stellar M/L (x 1.41), aperture
+    + anisotropy (L23's 0.12), the instrumental term (L23's formula, 9 of 11), the Wolf-vs-virial estimator, the distance (+-5%).  The
+    external-field entries (the Coma mass model and the 3-D position) do not apply and are dropped; the footings are reported
+    separately.  The spread over realisations is added in quadrature.
+
+PRE-DECLARED
+  C1  CONTROL  L23's committed isolated offsets (nu_RAR, stars only) reproduced: +0.3965 canonical, +0.357 alt.
+  C2  CONTROL  CFG18's calibration set rebuilt: 42 dwarfs, 32 HI detections, log M_* 4.98-9.65.
+  H1  [HEADLINE; MUTATE must fail] UNDER CANDIDATE B THE COMA UDGs ARE NOT A 2-SIGMA FAILURE: with the isolated law, no external field
+      and the infall baryons (non-detections as zero), the weighted-mean offset lies within 2 sigma of the total error (statistical +
+      the recomputed floor + the realisation spread), both footings.
+  H2  DF44 ALONE (33 hr of Keck/KCWI, the best-measured UDG) lies within 2 sigma under the same prediction (its own error + the
+      per-object floor: M/L, aperture, estimator, distance).
+  H3  THE ACCRETED CLASS IS ONE CLASS: the UDGs' offset in dispersion (half the acceleration offset) agrees with CFG18's M31 LVD
+      dwarfs under the same rule (+0.078 / +0.060 dex in sigma) within 2 sigma combined, both footings.
+  R1-R7 (reported): stars only (the current baryons); non-detections at their limits; the P2 kernel; the Milgrom-1994 virial
+      estimator; the Chilingarian nine against the Keck two; the infall gas-to-star ratio that would null the offset, against the
+      calibration dwarfs at the UDGs' masses; the external-field rival for comparison (L23: +1.159 / +1.112 dex, 4.9 / 4.7 sigma).
+  READING (declared): H1 PASS -> the 4.9-sigma Coma liability belongs to the external-field reading, not to candidate B.  H1 FAIL ->
+  the Coma UDGs remain a failure of B even under its own rule.
+MUTATE=1: every dispersion doubled (g_obs x 4) -- H1 must FAIL (rc = 1).
+
+  L23's sample (exec'd read-only): 11 Coma UDGs (DF44, DFX1, J125848.94+281037.1, J125904.06+281422.4, J125904.20+281507.7, J125929.89+274303.0, J125937.23+274815.2, J130005.40+275333.0, J130026.26+272735.2, J130028.34+274820.5, J130038.63+272835.3); statistical error on the weighted mean 0.062 dex
+
+======================================================================================================================
+C1  CONTROL: L23's committed isolated offsets (nu_RAR, stars only)
+======================================================================================================================
+  [PASS] C1 CONTROL: L23's committed isolated offsets (nu_RAR, stars only, at h9's a0 as L23 printed them) reproduced
+         canonical +0.3965 (committed +0.3965); alt +0.3573 (committed +0.357)
+
+======================================================================================================================
+C2  CONTROL: CFG18's calibration set (LVD field dwarfs)
+======================================================================================================================
+  [PASS] C2 CONTROL: CFG18's calibration set rebuilt exactly (count, detections, stellar-mass range)
+         42 dwarfs, 32 detections, log M_* 4.98-9.65 (CFG18: 42, 32, 4.98-9.65); the UDGs' log M_* 7.70-8.59 lie inside
+    DF44               log M_* 8.59: the 5 nearest calibration dwarfs' gas/star 0.26, 0.83, 0.43, 3.92, 0.37
+    DFX1               log M_* 8.39: the 5 nearest calibration dwarfs' gas/star 0.43, 0.83, 3.92, 0.26, 0.37
+    J125848.94+281037.1 log M_* 7.70: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 1.87
+    J125904.06+281422.4 log M_* 7.80: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 3.92
+    J125904.20+281507.7 log M_* 7.81: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 3.92
+    J125929.89+274303.0 log M_* 8.14: the 5 nearest calibration dwarfs' gas/star 3.92, 0.37, 0.65, 0.43, 0.95
+    J125937.23+274815.2 log M_* 7.76: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 3.92
+    J130005.40+275333.0 log M_* 7.78: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 3.92
+    J130026.26+272735.2 log M_* 8.12: the 5 nearest calibration dwarfs' gas/star 3.92, 0.37, 0.65, 0.95, 0.43
+    J130028.34+274820.5 log M_* 7.75: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 3.92
+    J130038.63+272835.3 log M_* 7.79: the 5 nearest calibration dwarfs' gas/star 1.16, 0.95, 0.65, 0.37, 3.92
+
+======================================================================================================================
+THE SYSTEMATIC FLOOR, recomputed for the isolated law
+======================================================================================================================
+    canonical: stellar M/L and IMF (x 1.41) 0.078; aperture + orbital anisotropy on sigma_eff (L23's carried value) 0.120; velocity-dispersion instrumental term (9 of 11) 0.052; sigma -> acceleration estimator (Wolf vs Milgrom virial) 0.047; distance to Coma (+-5%) 0.021  ->  floor 0.161 dex (L23's EFE-reading floor 0.227)
+    alt      : stellar M/L and IMF (x 1.41) 0.078; aperture + orbital anisotropy on sigma_eff (L23's carried value) 0.120; velocity-dispersion instrumental term (9 of 11) 0.052; sigma -> acceleration estimator (Wolf vs Milgrom virial) 0.045; distance to Coma (+-5%) 0.021  ->  floor 0.160 dex (L23's EFE-reading floor 0.227)
+
+======================================================================================================================
+H1  THE COMA UDGs UNDER CANDIDATE B: the isolated law of their infall baryons
+======================================================================================================================
+    canonical stars only                          : offset +0.397 dex (68% +0.397..+0.397) +- 0.172 -> +2.30 sigma
+    canonical infall gas, non-detections zero     : offset +0.234 dex (68% +0.196..+0.271) +- 0.176 -> +1.33 sigma
+    canonical infall gas, non-detections at limit : offset +0.234 dex (68% +0.196..+0.271) +- 0.176 -> +1.33 sigma
+    alt       stars only                          : offset +0.357 dex (68% +0.357..+0.357) +- 0.172 -> +2.08 sigma
+    alt       infall gas, non-detections zero     : offset +0.195 dex (68% +0.157..+0.232) +- 0.176 -> +1.11 sigma
+    alt       infall gas, non-detections at limit : offset +0.195 dex (68% +0.157..+0.232) +- 0.176 -> +1.11 sigma
+  [PASS] H1 [HEADLINE] UNDER CANDIDATE B THE COMA UDGs ARE NOT A 2-SIGMA FAILURE: the isolated law, no external field, the infall baryons (non-detections as zero) -- within 2 sigma of the total error, both footings
+         canonical: +0.234 +- 0.176 dex (+1.33 sigma); alt: +0.195 +- 0.176 dex (+1.11 sigma)
+
+======================================================================================================================
+H2  DF44 ALONE
+======================================================================================================================
+  [PASS] H2 DF44 ALONE (Keck/KCWI, sigma = 33 +- 3 km/s) lies within 2 sigma under B's prediction (its own error + the per-object floor)
+         canonical: +0.162 +- 0.237 dex (+0.68 sigma; stars only +0.303); alt: +0.123 +- 0.236 dex (+0.52 sigma; stars only +0.264)
+
+======================================================================================================================
+H3  ONE ACCRETED CLASS: the Coma UDGs against CFG18's M31 LVD dwarfs (dex in sigma)
+======================================================================================================================
+  [PASS] H3 THE ACCRETED CLASS IS ONE CLASS: the UDGs' dispersion offset agrees with CFG18's M31 LVD dwarfs under the same rule within 2 sigma, both footings
+         canonical: UDGs +0.117 +- 0.088 vs M31 LVD +0.078 +- 0.048 (+0.38 sigma); alt: UDGs +0.097 +- 0.088 vs M31 LVD +0.060 +- 0.048 (+0.38 sigma)
+
+======================================================================================================================
+R1-R7  REPORTED
+======================================================================================================================
+  [PASS] (reported) R1 (reported) stars only (the current baryons: FG001-H4-like)
+         canonical: +0.397 +- 0.172 (+2.30 sigma); alt: +0.357 +- 0.172 (+2.08 sigma)
+  [PASS] (reported) R2 (reported) infall gas with the non-detections at their upper limits
+         canonical: +0.234 +- 0.176 (+1.33 sigma); alt: +0.195 +- 0.176 (+1.11 sigma)
+  [PASS] (reported) R3/R4 (reported) the P2 kernel; the Milgrom-1994 virial estimator (both with infall gas, non-detections zero)
+         canonical: P2 +0.257, virial +0.286; alt: P2 +0.217, virial +0.245
+  [PASS] (reported) R5 (reported) the Keck pair (DF44, DFX1) against the Chilingarian nine (infall gas, non-detections zero; statistical errors)
+         canonical: Keck +0.165 +- 0.116, Chilingarian +0.261 +- 0.073; alt: Keck +0.127 +- 0.116, Chilingarian +0.222 +- 0.073
+  [PASS] (reported) R6 (reported) the common infall gas-to-star ratio that would null the offset, against the calibration dwarfs at the UDGs' masses
+         canonical: 4.54; alt: 3.73; the calibration dwarfs nearest the UDGs: gas/star 1.87, 1.16, 0.95, 0.65, 0.37, 3.92, 0.43, 0.83, 0.26
+  [PASS] (reported) R7 (reported) the external-field rival for comparison (L23, committed): the reading candidate B drops
+         canonical +1.159 dex (4.9 sigma); alt +1.112 (4.7 sigma)
+
+    READING (declared): the 4.9-sigma Coma liability belongs to the external-field reading, not to candidate B: under B's ownership rule the UDGs sit +0.23 dex (1.3 sigma) / +0.19 dex (1.1 sigma)
+
+  11/11 checks pass; load-bearing failures: 0   (0 s)

@@ -1,0 +1,72 @@
+CFG28 -- ADVERSARIAL REFEREE OF THE LARGEST STANDING FAILURE: the Milky Way's ultra-faint dwarfs at 7.5-8.0 sigma (FG001's G7;
+CFG18).  Is the offset real, or is it made by our own analysis, or by inflated velocity dispersions?
+
+WHY.  Under ownership (FG001) an accreted satellite obeys the isolated law of its infall baryons; the ultra-faints were quenched
+by reionisation and hold no gas, so the law predicts their dispersions from their stars alone.  The measured dispersions sit
++0.355/+0.334 dex above that (7.97/7.52 sigma; canonical/alt).  Both sides are refereed.
+  OUR ANALYSIS.  FG001 (i) drops every ultra-faint whose dispersion is only an upper limit -- 9 of the 40 with a dispersion
+  measurement, likely the slowest systems, so the selection pushes the median up; (ii) quotes a statistical error only,
+  1.2533 rms/sqrt(n), with no coherent systematic floor.
+  THE DATA.  A dispersion can be inflated by unresolved binaries (roughly a constant few km/s added in quadrature), by Milky Way
+  tides (strongest for the closest systems), and by small noisy samples.
+Data: the committed LVD Milky Way table (real_research/data/dsph/lvd_dwarf_mw.csv; Pace 2024).  FG001's loader, estimator and
+constants are exec'd read-only (the isolated law of the stars, Upsilon_V = 2, r = (4/3) r_half, sigma^2 = g(r) r / 3).
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  FG001's committed ultra-faint isolated median (+0.355/+0.334 dex) and its gate value (7.97/7.52 sigma) reproduced.
+  T1  [censoring] the median offset with the upper-limit systems included as left-censored values (Kaplan-Meier on the reflected
+      offset), 2000-resample bootstrap error.  Reported beside it: the limits taken as detections at their limits.
+  T2  [tides] the ultra-faints beyond 80 kpc of the Galactic centre (weaker tides) against those inside (Kaplan-Meier medians,
+      bootstrap errors); the Spearman correlation of the resolved offsets with distance.
+  T3  [binaries] two one-parameter population models by maximum likelihood, each with an intrinsic log scatter, the upper limits
+      entering as censored terms: a shared additive floor, sigma_obs^2 = sigma_pred^2 + s^2 (what unresolved binaries or any
+      constant contamination would do), against a shared factor, sigma_obs = f sigma_pred (what a real mass discrepancy would do).
+  T4  [precision] the resolved systems whose dispersion error is <= 25%: median and FG001's error.
+  T5  [systematics] a coherent floor: Upsilon_V from 1 to 4 and the pure deep-MOND estimator sigma^4 = (4/81) G M a0 in place of
+      FG001's; floor = half the range of the median over these variants; z recomputed with the floor in quadrature.
+  H1  [HEADLINE; MUTATE must fail] the failure is robust to OUR analysis: with the upper limits included (T1) and the systematic
+      floor (T5), the median offset is > 0.2 dex and > 3 sigma on both footings.
+  H2  the offset survives the data tests available here: the far subsample (T2) and the precise subsample (T4) each show a positive
+      offset at > 2 sigma, on both footings.
+  R1  (reported) T3: the fitted floor s (km/s), the factor f, the scatter and Delta ln L.
+  READING: H1 FAIL -> the 8 sigma was made by our analysis.  H1 PASS + H2 FAIL -> it rests on the closest or least precise systems:
+  inflation is plausible and the failure is not established.  H1 PASS + H2 PASS -> it is robust to our analysis and to the data
+  tests available here; the decisive remaining test is multi-epoch, binary-corrected dispersions.
+MUTATE=1: every ultra-faint dispersion (and limit) is halved, as if half the speed were inflation -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every ultra-faint dispersion and limit halved -- H1 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: FG001's committed ultra-faint median and gate value
+======================================================================================================================
+    resolved ultra-faints: 31; upper limits dropped by FG001: 9 (Aquarius III <= 3.5, Draco II <= 2.6, Grus II <= 2.0, Hydra II <= 4.11, Phoenix II <= 21.2, Reticulum III <= 8.3, Segue 2 <= 2.06, Triangulum II <= 3.5, Tucana III <= 1.5)
+  [PASS] C1 CONTROL: FG001's committed ultra-faint isolated median and gate value reproduced
+         max |d| 0.0e+00
+
+======================================================================================================================
+T1 / T5  CENSORING AND THE SYSTEMATIC FLOOR
+======================================================================================================================
+    canonical: FG001 (limits dropped) +0.054 +- 0.044; limits as detections +0.062; Kaplan-Meier with the limits +0.023 +- 0.038 (bootstrap); floor 0.077 dex (Upsilon_V 1/2/4, deep-MOND estimator: +0.100/+0.023/-0.054/+0.041) -> 0.3 sigma
+    alt      : FG001 (limits dropped) +0.033 +- 0.044; limits as detections +0.042; Kaplan-Meier with the limits +0.003 +- 0.038 (bootstrap); floor 0.077 dex (Upsilon_V 1/2/4, deep-MOND estimator: +0.080/+0.003/-0.074/+0.021) -> 0.0 sigma
+  [FAIL] H1 [HEADLINE] robust to our analysis: with the upper limits (Kaplan-Meier) and the systematic floor, the median offset is > 0.2 dex and > 3 sigma on both footings  [MUTATE: dispersions halved]
+         canonical: +0.023 dex, 0.3 sigma; alt: +0.003 dex, 0.0 sigma
+
+======================================================================================================================
+T2 / T4  TIDES AND PRECISION
+======================================================================================================================
+    canonical: beyond 80 kpc +0.023 +- 0.029 (14 resolved + 3 limits); inside +0.021 +- 0.102 (17 + 6); Spearman(offset, distance) rho = -0.22 (p = 0.23); error <= 25%: +0.131 +- 0.056 (N = 13)
+    alt      : beyond 80 kpc +0.003 +- 0.029 (14 resolved + 3 limits); inside +0.000 +- 0.102 (17 + 6); Spearman(offset, distance) rho = -0.22 (p = 0.23); error <= 25%: +0.111 +- 0.056 (N = 13)
+  [FAIL] H2 the offset survives the data tests: the far (> 80 kpc) and the precise (error <= 25%) subsamples each show a positive offset at > 2 sigma, both footings
+         canonical: far 0.8 sigma, precise 2.4 sigma; alt: far 0.1 sigma, precise 2.0 sigma
+
+======================================================================================================================
+T3  A CONSTANT FLOOR (BINARIES) OR A FACTOR (MISSING MASS)?
+======================================================================================================================
+    canonical: floor s = 0.74 km/s (scatter 0.155 dex, ln L 1.42); factor f = 1.13 (scatter 0.161 dex, ln L 0.98); Delta ln L (floor - factor) +0.44; predicted dispersions 0.76-3.05 km/s
+    alt      : floor s = 0.63 km/s (scatter 0.155 dex, ln L 1.36); factor f = 1.08 (scatter 0.161 dex, ln L 0.98); Delta ln L (floor - factor) +0.39; predicted dispersions 0.80-3.19 km/s
+  [PASS] (reported) R1 (reported) T3: the floor and factor fits, and which the population prefers
+         canonical: s 0.74 km/s, f 1.13, dlnL +0.44; alt: s 0.63 km/s, f 1.08, dlnL +0.39
+
+    READING (declared): the 8 sigma was made by our analysis
+
+  2/4 checks pass; load-bearing failures: 2   (0 s)
