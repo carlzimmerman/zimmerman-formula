@@ -1,0 +1,29 @@
+[    0.0s] P0: fresh A_vol_quadrature(0.5, 0) = 0.707277 vs J11 stored 0.70728, |diff| = 3.36e-06
+[    0.0s] P0 PASS
+[    0.0s] K1: q=0: A=0.750000 B=-0.119 C=0.007 vs limit 0.750000, dev 9.13e-09 tol 2.98e-09 KILL
+[    0.0s] K1: q=1: A=1.166667 B=-0.229 C=0.009 vs limit 1.166667, dev 1.83e-08 tol 3.38e-09 KILL
+[    0.0s] K1: q=3: A=2.000000 B=-0.590 C=0.020 vs limit 2.000000, dev 3.72e-08 tol 6.33e-09 KILL
+[    0.1s] K1: q=6: A=3.250000 B=-1.481 C=0.085 vs limit 3.250000, dev 6.80e-08 tol 2.39e-08 KILL
+[    0.1s] K1: q=10: A=4.916667 B=-3.319 C=0.344 vs limit 4.916667, dev 1.20e-07 tol 9.38e-08 KILL
+VERDICT: K1 FIRED at q=[0.0, 1.0, 3.0, 6.0, 10.0]: numerator limit REFUTED at this power (honest FAIL) (exit 1)
+[    0.0s] P0: fresh A_vol_quadrature(0.5, 0) = 0.707277 vs J11 stored 0.70728, |diff| = 3.36e-06
+[    0.0s] P0 PASS
+[    0.0s] K1: q=0: A=0.750000 B=-0.119 C=0.007 vs limit 0.750000, dev 9.13e-09 tol 5.22e-08 ok
+[    0.1s] K1: q=1: A=1.166667 B=-0.229 C=0.009 vs limit 1.166667, dev 1.83e-08 tol 1.03e-07 ok
+[    0.1s] K1: q=3: A=2.000000 B=-0.590 C=0.020 vs limit 2.000000, dev 3.72e-08 tol 2.06e-07 ok
+[    0.1s] K1: q=6: A=3.250000 B=-1.481 C=0.085 vs limit 3.250000, dev 6.80e-08 tol 3.60e-07 ok
+[    0.1s] K1: q=10: A=4.916667 B=-3.319 C=0.344 vs limit 4.916667, dev 1.20e-07 tol 5.65e-07 ok
+[    0.1s] K1 no kill (numerator limit consistent at all 5 q)
+[    0.1s] K2: loaded MC4 line a=0.406623 b=0.226654
+[    5.0s] K2: q=0: c0(0)=0.402217+-0.002911 (slope -0.867) vs a+bq 0.406623, z=1.51 ok
+[    9.8s] K2: q=1: c0(0)=0.620266+-0.007102 (slope 1.306) vs a+bq 0.633277, z=1.83 ok
+[   14.7s] K2: q=3: c0(0)=1.083438+-0.003737 (slope -0.513) vs a+bq 1.086585, z=0.84 ok
+[   20.0s] K2: q=6: c0(0)=1.779360+-0.009715 (slope -1.392) vs a+bq 1.766547, z=1.32 ok
+[   25.6s] K2: q=10: c0(0)=2.674342+-0.009699 (slope -1.342) vs a+bq 2.673163, z=0.12 ok
+[   25.6s] K2 no kill (c0 thin-window limit consistent with MC4 line)
+[   25.6s] K3: q=0: R_meas 1.86467+-0.01349 vs candidate 1.84446, z=1.50 ok
+[   25.6s] K3: q=1: R_meas 1.88091+-0.02154 vs candidate 1.84227, z=1.79 ok
+[   25.6s] K3: q=3: R_meas 1.84598+-0.00637 vs candidate 1.84063, z=0.84 ok
+[   25.6s] K3: q=6: R_meas 1.82650+-0.00997 vs candidate 1.83975, z=1.33 ok
+[   25.6s] K3: q=10: R_meas 1.83846+-0.00667 vs candidate 1.83927, z=0.12 ok
+VERDICT: BANKED-CONFIRMED: thin-window limit structure verified at this power -- N_num -> 3/4+5q/12 (K1 clean), c0 -> a+bq (K2 clean), R_v(0,q) CANDIDATE -> CONFIRMED (K3 clean); consistency-family vs the LR4c-certified numerator, engine leg only (exit 0)
