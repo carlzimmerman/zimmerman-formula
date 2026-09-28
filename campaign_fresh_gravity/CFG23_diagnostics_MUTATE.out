@@ -1,0 +1,63 @@
+CFG23d -- POST-HOC DIAGNOSTICS OF CFG23 (written and run AFTER CFG23's main run; nothing here was pre-declared except V1's
+tolerance, and no check below is scored as a hypothesis -- V1 is a control, V2-V4 are reported numbers).
+
+WHY.  CFG23's LCDM control failed KiDS (chi^2 174 vs the framework's 105) and still showed a larger KiDS-LG tension than the
+framework.  Before any of that is read, three things need a committed script: that the NFW projection is right (V1), where the
+LCDM misfit sits in radius (V2), how the KiDS chi^2 depends on the control's concentration and truncation (V3).  V4 puts a number
+on a point CFG21's README states only in words -- KiDS wants the phantom far past the cold budget's edge -- by scoring the budget's
+edge against KiDS's own best edge, i.e. with CFG21's statistic rather than CFG4's tolerance (+9 against the untruncated law).
+
+  V1  CONTROL [MUTATE must fail]  FIX's projection of an untruncated NFW equals the analytic Delta Sigma (Wright & Brainerd 2000)
+      within 1e-3 at every data radius, for three halos (log M200m 12.0 / 12.6 / 13.2; Duffy c x 1 / 1 / 0.7).
+  V2  (reported) the misfit by radius band (R < 0.15, 0.15-0.6, >= 0.6 Mpc; diagonal chi^2 summed over bins, mean pull per bin)
+      for CFG23's LCDM fits (x_t 1 / 4 / inf at Duffy c; x_t 1 at c x 0.7 / x 1.4) and the framework (canonical P2: CFG21's KiDS
+      best edge 0.62 and untruncated).
+  V3  (reported) CFG23's KiDS chi^2 on its whole (c, x_t) grid, Tinker caps; the best variant.
+  V4  (reported) the KiDS cost of the cold budget's edge (CFG17's committed edge_A; CFG16's self-consistent caps) against KiDS's own
+      best (CFG21's kids_min), every footing and kernel; the cost at CFG16's floor is 9 - kids_min by the floor's definition.
+MUTATE=1: V1's analytic side uses half the concentration -- V1 must FAIL (rc = 1).
+
+  *** MUTATE=1: the analytic NFW uses c/2 -- V1 must FAIL ***
+
+======================================================================================================================
+V1  CONTROL: FIX's NFW projection against the analytic Delta Sigma
+======================================================================================================================
+    log M200m 12.0, c 8.84: FIX / analytic at R = 0.035 / 0.164 / 0.762 / 2.604 Mpc: 1.7472 / 1.1442 / 0.8755 / 0.7868
+    log M200m 12.6, c 7.90: FIX / analytic at R = 0.035 / 0.164 / 0.762 / 2.604 Mpc: 1.9685 / 1.3014 / 0.9272 / 0.8036
+    log M200m 13.2, c 4.95: FIX / analytic at R = 0.035 / 0.164 / 0.762 / 2.604 Mpc: 2.0660 / 1.5402 / 1.0099 / 0.8061
+  [FAIL] V1 CONTROL: FIX's projection of an untruncated NFW equals the analytic Delta Sigma within 1e-3 at every data radius  [MUTATE: c/2]
+         max |FIX/analytic - 1| = 1.07e+00
+
+======================================================================================================================
+V2  WHERE THE MISFIT SITS (reported)
+======================================================================================================================
+    LCDM c x1.0 x_t 1.0         : chi^2 1034.70; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 162.2 / 551.3 / 431.7; mean pull (data - model)/sigma, 0.15-0.6: +1.94, +5.05, +5.24, +6.91; >=0.6: +2.02, +3.12, +4.99, +5.55
+    LCDM c x1.0 x_t 4.0         : chi^2 1008.78; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 163.8 / 529.9 / 421.6; mean pull (data - model)/sigma, 0.15-0.6: +1.79, +4.94, +5.14, +6.80; >=0.6: +1.95, +3.07, +4.94, +5.50
+    LCDM c x1.0 x_t inf         : chi^2 1005.72; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 163.8 / 530.3 / 417.1; mean pull (data - model)/sigma, 0.15-0.6: +1.79, +4.94, +5.14, +6.81; >=0.6: +1.91, +3.04, +4.91, +5.47
+    LCDM c x0.7 x_t 1.0         : chi^2 1029.58; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 157.1 / 551.3 / 431.7; mean pull (data - model)/sigma, 0.15-0.6: +1.94, +5.05, +5.24, +6.91; >=0.6: +2.02, +3.12, +4.99, +5.55
+    LCDM c x1.4 x_t 1.0         : chi^2 1038.66; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 155.8 / 560.7 / 433.6; mean pull (data - model)/sigma, 0.15-0.6: +1.94, +5.14, +5.35, +6.91; >=0.6: +2.02, +3.14, +5.01, +5.55
+    framework P2 x_e 0.62       : chi^2  104.69; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 46.1 / 45.3 / 14.4; mean pull (data - model)/sigma, 0.15-0.6: -0.86, +1.14, +1.03, +1.26; >=0.6: +0.37, +0.21, +0.24, +0.06
+    framework P2 untruncated    : chi^2  139.80; diagonal chi^2 R<0.15 / 0.15-0.6 / >=0.6 Mpc: 49.5 / 45.5 / 49.1; mean pull (data - model)/sigma, 0.15-0.6: -0.75, +1.17, +0.89, +1.35; >=0.6: +0.07, -0.35, +0.92, +0.19
+  [PASS] (reported) V2 (reported) the misfit by radius band, LCDM and the framework
+         LCDM c x1.0 x_t 1.0: >=0.6 Mpc 431.7; LCDM c x1.0 x_t 4.0: >=0.6 Mpc 421.6; LCDM c x1.0 x_t inf: >=0.6 Mpc 417.1; LCDM c x0.7 x_t 1.0: >=0.6 Mpc 431.7; LCDM c x1.4 x_t 1.0: >=0.6 Mpc 433.6; framework P2 x_e 0.62: >=0.6 Mpc 14.4; framework P2 untruncated: >=0.6 Mpc 49.1
+
+======================================================================================================================
+V3  CFG23's KiDS chi^2 OVER ITS (c, x_t) GRID (reported)
+======================================================================================================================
+    c x1.0: x_t 0.5: 1066.5, x_t 0.75: 1045.5, x_t 1.0: 1034.7, x_t 1.25: 1028.0, x_t 1.5: 1023.2, x_t 2.0: 1017.0, x_t 2.5: 1013.3, x_t 3.0: 1011.4, x_t 4.0: 1008.8, x_t inf: 1005.7
+    c x0.7: x_t 0.5: 1065.2, x_t 0.75: 1042.2, x_t 1.0: 1029.6, x_t 1.25: 1021.8, x_t 1.5: 1016.2, x_t 2.0: 1009.0, x_t 2.5: 1004.6, x_t 3.0: 1002.4, x_t 4.0: 999.2, x_t inf: 995.5
+    c x1.4: x_t 0.5: 1068.5, x_t 0.75: 1048.9, x_t 1.0: 1038.7, x_t 1.25: 1032.7, x_t 1.5: 1028.5, x_t 2.0: 1023.1, x_t 2.5: 1019.8, x_t 3.0: 1018.2, x_t 4.0: 1016.0, x_t inf: 1013.4
+  [PASS] (reported) V3 (reported) the best LCDM variant on CFG23's grid against the framework's best
+         c x0.7|x_t inf: 995.55; framework (canonical P2, CFG21) 104.69
+
+======================================================================================================================
+V4  THE COLD BUDGET'S EDGE AGAINST KiDS's OWN BEST (CFG21's statistic; reported)
+======================================================================================================================
+    canonical P2      : budget edge x_e 0.3483 (CFG16 floor 0.3409): chi^2 145.55 (+5.75 vs the untruncated law) against KiDS's best 104.69 -> cost 40.9 (~6.4 sigma); at the floor, by definition, 44.1
+    canonical nu_mono : budget edge x_e 0.3458 (CFG16 floor 0.3476): chi^2 172.15 (+9.54 vs the untruncated law) against KiDS's best 124.34 -> cost 47.8 (~6.9 sigma); at the floor, by definition, 47.3
+    alt       P2      : budget edge x_e 0.2998 (CFG16 floor 0.3402): chi^2 154.60 (+20.65 vs the untruncated law) against KiDS's best 99.23 -> cost 55.4 (~7.4 sigma); at the floor, by definition, 43.7
+    alt       nu_mono : budget edge x_e 0.2976 (CFG16 floor 0.3453): chi^2 179.77 (+25.01 vs the untruncated law) against KiDS's best 117.79 -> cost 62.0 (~7.9 sigma); at the floor, by definition, 46.0
+  [PASS] (reported) V4 (reported) the KiDS cost of the cold budget's edge against KiDS's own best edge
+         canonical|P2: 40.9; canonical|nu_mono: 47.8; alt|P2: 55.4; alt|nu_mono: 62.0
+
+  3/4 checks pass; load-bearing failures: 1   (9 s)

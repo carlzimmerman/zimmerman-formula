@@ -1,0 +1,100 @@
+CFG26 -- THE INFALL WITH THE GALAXY'S OWN SURROUNDINGS: does spherical collapse from the CONSTRAINED mean initial profile (the
+peak's own correlated environment, not a power-law seed) reproduce KiDS's outer signal -- for a standard halo, and for the framework?
+
+WHY.  CFG25 re-ran FG016's collapse engine (power-law seeds) and scored it as a standard halo.  It misses KiDS's outer signal
+(R >= 0.6 Mpc) for standard halos too: best chi^2 149-173 against 99-105 for good fits.  So the KiDS side of FG016's kill of the
+inflow-derived edge -- the computed answer to "where does the cold fluid go?" -- is not framework-specific.  The untested
+ingredient is the surroundings the fluid falls in from.  The constrained mean linear profile around a region of mass M that turns
+around at z_l,
+      dL(<q) = dL_ta sigma^2(q, R) / sigma^2(R, R)      (CFG7_common.ics_constrained),
+is the linear-theory expectation of a peak's own surroundings.  It carries the correlated environment a power-law seed lacks, and
+it fixes the accretion rate from the cosmology (no scan).  The same engine (reading N: collisionless; FG016's angular momentum,
+seeds, shells, integrator) evolves those surroundings nonlinearly to z_l = 0.25.
+
+THE TWO PROFILES, scored with CFG23's exact KiDS fitter (exec'd read-only):
+  (S) a STANDARD halo.  The collapse's mean enclosed mass minus the mean density (FG016's convention), held constant past the
+      simulation's reach.  The mass scale is free per KiDS bin: runs at M_ta = 1e12 ... 3.2e13 Msun (factors of 2), each scaled
+      locally (lambda in 10^[-0.15, 0.15], self-similar).  A = 0 (the collapse's own surroundings carry the outer profile), or
+      A in [0, b_Tinker] (CFG23's parallel treatment).
+  (F) the FRAMEWORK's profile (FG016's derived profile).  The law inside the splashback caustic (x_sp87 r_ta), the collapse's own
+      infall outside, normalised by T5 (the law's enclosed mass at the caustic), no free amplitude.  For each M_b the run whose
+      T5 scaling is closest to 1 is used.  A = 0, or A <= 2 (FG016's convention).
+  Environments: t_env = 0 (the mean; operative, no constant) and t_env = -1 (a 1-sigma underdense surrounding, the direction
+  KiDS's isolation criterion selects; reported).
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  the engine with constrained seeds: in every t_env = 0 run the zero-velocity turnaround radius matches the top-hat one
+      within 3%, and the guard (crossed shells beyond r_ta) is <= 0.5%.
+  C2  CONTROL  CFG23's fitter reproduces BASE (139.800) and CFG21's framework best (104.686).
+  H1  [HEADLINE; MUTATE must fail] (S) with the mean environment (t_env = 0, A = 0) fits KiDS within +9 of the framework's best
+      (chi^2 <= 113.7).
+  H2  [the framework] (F) with the mean environment (t_env = 0, A = 0) fits KiDS within +9 of 104.7, canonical footing, P2 and
+      nu_mono.
+  READING (declared): H1 FAIL -> spherical collapse cannot reproduce KiDS's outer profile even from the peak's own surroundings;
+  no reading for the framework (a non-spherical treatment is needed).  H1 PASS + H2 PASS -> the inflow-derived edge fits KiDS,
+  and the collapse conserves mass, so there is no separate budget cost: the budget-vs-KiDS tension (CFG23/24) was the machinery.
+  H1 PASS + H2 FAIL -> the tension is real and framework-specific.
+  R1  (reported) t_env = -1; A <= b_Tinker for (S), A <= 2 for (F); both footings; the derived edge x_e (T5 closure at Delta_sp87,
+      M_b = 6e10) against CFG24's association-level budget edge (0.390 canonical P2); the accretion rates the cosmology gives.
+MUTATE=1: (S)'s halo scale capped at log M_ta <= 11.0 -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: (S)'s halo scale capped at log M_ta <= 11.0 -- H1 must FAIL ***
+
+======================================================================================================================
+C2  CONTROL: CFG23's fitter reproduces BASE and CFG21's framework best
+======================================================================================================================
+  [PASS] C2 CONTROL: CFG23's fitter reproduces BASE (139.800) and CFG21's framework best (104.686)
+         139.800159 vs 139.800159; 104.685832 vs 104.685832
+
+======================================================================================================================
+THE COLLAPSE RUNS: constrained mean seeds (the peak's own surroundings), reading N, z_l = 0.25 (process pool)
+======================================================================================================================
+    t_env -1 M_ta 8.0e+12 done (8 s): s = 0.00 (seed slope -0.508), r_ta nan / zero-velocity nan Mpc, x_sp87 nan, Delta_sp87 nan, M200m nan, guard nan
+    t_env -1 M_ta 1.6e+13 done (8 s): s = 0.00 (seed slope -0.426), r_ta nan / zero-velocity nan Mpc, x_sp87 nan, Delta_sp87 nan, M200m nan, guard nan
+    t_env -1 M_ta 4.0e+12 done (8 s): s = 0.00 (seed slope -0.604), r_ta nan / zero-velocity nan Mpc, x_sp87 nan, Delta_sp87 nan, M200m nan, guard nan
+    t_env -1 M_ta 1.0e+12 done (8 s): s = 0.00 (seed slope -0.850), r_ta nan / zero-velocity nan Mpc, x_sp87 nan, Delta_sp87 nan, M200m nan, guard nan
+    t_env -1 M_ta 3.2e+13 done (8 s): s = 0.00 (seed slope -0.355), r_ta nan / zero-velocity nan Mpc, x_sp87 nan, Delta_sp87 nan, M200m nan, guard nan
+    t_env -1 M_ta 2.0e+12 done (8 s): s = 0.00 (seed slope -0.716), r_ta nan / zero-velocity nan Mpc, x_sp87 nan, Delta_sp87 nan, M200m nan, guard nan
+    t_env +0 M_ta 1.0e+12 done (11 s): s = 3.07 (seed slope 0.054), r_ta 0.705 / zero-velocity 0.706 Mpc, x_sp87 0.037, Delta_sp87 1189.6, M200m 1.308e+10, guard 0.0000
+    t_env +0 M_ta 2.0e+12 done (12 s): s = 2.90 (seed slope 0.057), r_ta 0.889 / zero-velocity 0.889 Mpc, x_sp87 0.039, Delta_sp87 1284.3, M200m 3.222e+10, guard 0.0000
+    t_env +0 M_ta 4.0e+12 done (12 s): s = 2.74 (seed slope 0.059), r_ta 1.120 / zero-velocity 1.119 Mpc, x_sp87 0.044, Delta_sp87 1232.2, M200m 8.325e+10, guard 0.0000
+    t_env +0 M_ta 8.0e+12 done (13 s): s = 2.59 (seed slope 0.062), r_ta 1.411 / zero-velocity 1.410 Mpc, x_sp87 0.048, Delta_sp87 1198.5, M200m 2.162e+11, guard 0.0000
+    t_env +0 M_ta 1.6e+13 done (14 s): s = 2.44 (seed slope 0.065), r_ta 1.778 / zero-velocity 1.776 Mpc, x_sp87 0.051, Delta_sp87 1288.1, M200m 5.213e+11, guard 0.0000
+    t_env +0 M_ta 3.2e+13 done (14 s): s = 2.29 (seed slope 0.068), r_ta 2.241 / zero-velocity 2.238 Mpc, x_sp87 0.055, Delta_sp87 1234.9, M200m 1.315e+12, guard 0.0000
+  [PASS] C1 CONTROL: every t_env = 0 run's zero-velocity turnaround radius matches the top-hat one within 3%, guard <= 0.5%
+         max |r_zv / r_ta - 1| 0.001; max guard 0.0000
+
+======================================================================================================================
+(S)  THE STANDARD HALO: the collapse's own interior and surroundings, mass free per KiDS bin
+======================================================================================================================
+<repo>/campaign_fresh_gravity/CFG26_constrained_infall.py:152: RuntimeWarning: Mean of empty slice
+  Mm = np.nanmean(np.array(Ms), axis=0)
+    t_env +0 A=0  : chi^2 1154.59 (bands R<0.15 / 0.15-0.6 / >=0.6: 186.4 / 581.0 / 531.9); log M200m 9.12, 9.12, 9.12, 9.12; A 0.00, 0.00, 0.00, 0.00
+    t_env +0 A<=b : chi^2 1044.51 (bands R<0.15 / 0.15-0.6 / >=0.6: 185.9 / 560.0 / 402.9); log M200m 9.12, 9.12, 9.12, 9.12; A 0.62, 0.62, 0.62, 0.62
+    t_env -1 A=0  : chi^2 1215.09 (bands R<0.15 / 0.15-0.6 / >=0.6: 187.6 / 608.0 / 579.5); log M200m nan, nan, nan, nan; A 0.00, 0.00, 0.00, 0.00
+    t_env -1 A<=b : chi^2     nan (bands R<0.15 / 0.15-0.6 / >=0.6: nan / nan / nan); log M200m nan, nan, nan, nan; A nan, nan, nan, nan
+  [FAIL] H1 [HEADLINE] the standard halo from the peak's own mean surroundings (t_env = 0, A = 0) fits KiDS within +9 of the framework's best  [MUTATE: log M_ta <= 11]
+         chi^2 1154.59 vs 104.69 + 9
+
+======================================================================================================================
+(F)  THE FRAMEWORK: the law inside the splashback caustic, the collapse's own infall outside (T5), no free amplitude
+======================================================================================================================
+    t_env +0 canonical P2      : chi^2 A = 0  352.96; A <= 2  352.96  (the framework's best with a sharp edge + linear 2-halo, CFG21: 104.69)
+    t_env +0 canonical nu_mono : chi^2 A = 0  369.36; A <= 2  369.36  (the framework's best with a sharp edge + linear 2-halo, CFG21: 124.34)
+    t_env +0 alt       P2      : chi^2 A = 0  351.36; A <= 2  351.36  (the framework's best with a sharp edge + linear 2-halo, CFG21: 99.23)
+    t_env +0 alt       nu_mono : chi^2 A = 0  362.86; A <= 2  362.86  (the framework's best with a sharp edge + linear 2-halo, CFG21: 117.79)
+Traceback (most recent call last):
+  File "<repo>/campaign_fresh_gravity/CFG26_constrained_infall.py", line 261, in <module>
+    FRES[(te, foot, kern, A)] = kids_chi2_fg016(mf, foot, A)
+                                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "<repo>/campaign_fresh_gravity/CFG26_constrained_infall.py", line 250, in kids_chi2_fg016
+    dS = FIX(Mfun(Mb, A0S[foot]), Mb)
+             ~~~~^^^^^^^^^^^^^^^
+  File "<repo>/campaign_fresh_gravity/CFG26_constrained_infall.py", line 231, in f_
+    ll = brentq(g, -40.0, 40.0)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 806, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 102, in f_raise
+    raise err
+ValueError: The function value at x=-40.0 is NaN; solver cannot continue.
+CFG26 MUTATE rc=1
