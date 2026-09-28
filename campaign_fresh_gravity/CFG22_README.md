@@ -39,3 +39,7 @@ It is scored exactly as CFG21:
 That points at the 2-halo term. It is modelled here, as in CFG4, CFG15 and CFG16, with the **linear** matter correlation.
 
 Nothing here says the theory is closed.
+
+## Update (CFG23, 2026-09-28)
+
+The ΛCDM control (CFG23) hits the same Local Group wall, harder: T = 24.5–72.5 against the framework's 26–28. The soft-edge result stands as a comparison between edges; neither result is a framework-specific exclusion. See CFG23_README.md.

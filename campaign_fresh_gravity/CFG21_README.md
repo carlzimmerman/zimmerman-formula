@@ -39,3 +39,7 @@ The operative statistic is the standard parameter-difference tension, T(x_e) = [
 The target law's shape needs to change, not just its edge. The next lane tests the obvious candidate: a *soft* edge, where the phantom's ρ ∝ r⁻² gives way to ρ ∝ r⁻³ like collapsed matter instead of stopping dead.
 
 Nothing here says the theory is closed.
+
+## Update (CFG23, 2026-09-28)
+
+The same machinery gives standard ΛCDM halos a larger KiDS–LG tension than the framework's phantom: T = 24.5–72.5 (baseline 55.4) against 26–28. So the 5–7σ here is not a framework-specific failure. The Local Group's spherical R₀ is the weak link. See CFG23_README.md.

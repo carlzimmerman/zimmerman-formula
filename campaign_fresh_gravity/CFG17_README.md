@@ -67,3 +67,7 @@ The **alt** footing is closed, about 12% short.
 The gas-fraction systematic that CFG4 flagged, "stars-only relaxes by ~30%", turns out to be small once the gas is measured: the budget edge moves by about +0.008.
 
 Nothing here says the theory is closed.
+
+## Update (CFG23 diagnostics, 2026-09-28)
+
+This window was judged with CFG4's KiDS tolerance, +9 against the untruncated law. KiDS's own best edge (x_e ≈ 0.62, CFG21) beats that reference by 35–38. Against KiDS's own best, the budget's edge costs 40.9 (canonical P2), 47.8 (canonical ν_mono), 55.4 (alt P2) and 62.0 (alt ν_mono), which is 6.4–7.9σ (CFG23_diagnostics V4). The window is open only under the lenient tolerance. The caveat is the linear 2-halo template: it also makes Duffy-c NFW halos miss KiDS at R ≥ 0.6 Mpc. See CFG23_README.md.
