@@ -1,0 +1,190 @@
+{
+ "slug": "CFG10_inner_closure",
+ "summary": {
+  "n_checks": 9,
+  "n_pass": 8,
+  "load_bearing_failures": 1,
+  "failed": [
+   "H1 PRINCIPLE (i) the pressure Gauss law: best rms within +0.005 dex of P2-env's, both foot"
+  ],
+  "seconds": 21.1
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: CFG4 H2's committed rms (< 1e-9) and Upsilon (exact) for P2 and nu_mono on both footings",
+   "detail": "can/P2: d rms 1.4e-17, U 0.70/0.70; can/nu_mono: d rms 1.4e-17, U 0.61/0.61; alt/P2: d rms 1.4e-17, U 0.65/0.65; alt/nu_mono: d rms 2.8e-17, U 0.57/0.57",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: for a point mass (i) and (ii) reproduce P2 to 1e-6 from 0.01 to 100 r_M, both footings",
+   "detail": "max relative deviation 1.28e-12",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: P2 integrated as an ODE equals P2-env at every data point to 1e-4 (relative in g), both footings",
+   "detail": "max relative deviation 4.08e-07",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL: the identity -- P2's cold density minus (ii)'s is >= 0 at every grid radius of every galaxy (relative 1e-9)",
+   "detail": "min (term / (ii)'s density) = -3.53e-14",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 PRINCIPLE (i) the pressure Gauss law: best rms within +0.005 dex of P2-env's, both footings [declared expectation: FAIL]",
+   "detail": "canonical: +0.1678 dex; alt: +0.1754 dex",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 PRINCIPLE (ii) the shell theorem for the charge: best rms within +0.005 dex of P2-env's, both footings [expectation: PASS]",
+   "detail": "canonical: +0.0031 dex; alt: +0.0017 dex",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported; added with the fix) data points where a law's total mass breaks down (prediction floored at 1e-3 g_bar and kept in the statistic as a failure), at its best U",
+   "detail": "can/P2env: 0; can/P2ode: 0; can/gauss: 226; can/encl: 0; alt/P2env: 0; alt/P2ode: 0; alt/gauss: 227; alt/encl: 0",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R1 (reported) where (i) demands negative cold density (canonical, U = 0.70, inside each galaxy's data range)",
+   "detail": "median fraction of radii 0.253, mean 0.268; galaxies with any such region 116/175",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) median inner residual log10(g_obs/g_pred) at g_bar > a0 (per galaxy, then median), each law at its best U",
+   "detail": "can/P2 alg: -0.088 (N 68); can/nu_mono: -0.063 (N 66); can/P2-env: -0.088 (N 68); can/(i): -0.121 (N 70); can/(ii): -0.090 (N 68); alt/P2 alg: -0.079 (N 62); alt/nu_mono: -0.061 (N 60); alt/P2-env: -0.079 (N 62); alt/(i): -0.167 (N 70); alt/(ii): -0.081 (N 62)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "fits": {
+   "canonical|P2": {
+    "rms": 0.10827186091007052,
+    "U": 0.7,
+    "n_floor": 0
+   },
+   "canonical|nu_mono": {
+    "rms": 0.10032895429304413,
+    "U": 0.61,
+    "n_floor": 0
+   },
+   "alt|P2": {
+    "rms": 0.10354897613321767,
+    "U": 0.65,
+    "n_floor": 0
+   },
+   "alt|nu_mono": {
+    "rms": 0.09910318914147398,
+    "U": 0.57,
+    "n_floor": 0
+   },
+   "canonical|P2env": {
+    "rms": 0.10810816548632192,
+    "U": 0.7,
+    "n_floor": 0
+   },
+   "canonical|P2ode": {
+    "rms": 0.1081081654329268,
+    "U": 0.7,
+    "n_floor": 0
+   },
+   "canonical|gauss": {
+    "rms": 0.2759235510731884,
+    "U": 0.92,
+    "n_floor": 226
+   },
+   "canonical|encl": {
+    "rms": 0.11124841596254999,
+    "U": 0.71,
+    "n_floor": 0
+   },
+   "alt|P2env": {
+    "rms": 0.10344201562413441,
+    "U": 0.65,
+    "n_floor": 0
+   },
+   "alt|P2ode": {
+    "rms": 0.10344201557800194,
+    "U": 0.65,
+    "n_floor": 0
+   },
+   "alt|gauss": {
+    "rms": 0.2788567223403005,
+    "U": 0.98,
+    "n_floor": 227
+   },
+   "alt|encl": {
+    "rms": 0.1051764911204775,
+    "U": 0.66,
+    "n_floor": 0
+   }
+  },
+  "H": {
+   "dH1": {
+    "canonical": 0.16781538558686648,
+    "alt": 0.1754147067161661
+   },
+   "dH2": {
+    "canonical": 0.003140250476228068,
+    "alt": 0.0017344754963430908
+   },
+   "kill1": true,
+   "c2dev": 4.077526944978871e-07,
+   "c3dev": 1.283417816466681e-12,
+   "c4min": -3.5252155609458447e-14,
+   "neg_frac_median": 0.25333333333333335,
+   "neg_gal": 116,
+   "inner": {
+    "canonical|P2 alg": [
+     -0.08761028804816995,
+     68
+    ],
+    "canonical|nu_mono": [
+     -0.06269567582317137,
+     66
+    ],
+    "canonical|P2-env": [
+     -0.08760923377227448,
+     68
+    ],
+    "canonical|(i)": [
+     -0.12142747086007422,
+     70
+    ],
+    "canonical|(ii)": [
+     -0.08955971207188762,
+     68
+    ],
+    "alt|P2 alg": [
+     -0.07945699555777308,
+     62
+    ],
+    "alt|nu_mono": [
+     -0.06110626713766676,
+     60
+    ],
+    "alt|P2-env": [
+     -0.07945544883626843,
+     62
+    ],
+    "alt|(i)": [
+     -0.1666068373822931,
+     70
+    ],
+    "alt|(ii)": [
+     -0.08058646533504144,
+     62
+    ]
+   }
+  }
+ }
+}

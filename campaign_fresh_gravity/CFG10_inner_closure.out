@@ -1,0 +1,73 @@
+CFG10 -- WHAT SETS THE COLD COMPONENT INSIDE THE BARYONS?  Two zero-constant principles, each exact for a point mass (CFG9),
+scored on SPARC with the record's own statistic.
+
+CFG9 showed: around a point mass, a locally virialized cold component with charge K = a0 M / 4 pi IS the law P2; inside
+real baryons a constant charge overshoots (the component becomes a central isothermal sphere).  Two principles extend the
+point-mass result into the baryons without any new constant (spherical-equivalent baryons, u = r^2 g, u_N = G M_b(<r)):
+
+  (i)  THE PRESSURE GAUSS LAW   4 pi r^2 P = (a0/2) M_b(<r),  i.e.  P = a0 g_N / (8 pi G)  at every radius; Jeans gives
+       rho_c = - a0 g_N' / (8 pi G g).  ODE: u u' = u u_N' + a0 r u_N - (a0 r^2 / 2) u_N'.
+       It demands NEGATIVE cold density wherever the Newtonian field rises outward (M_b growing faster than r^2).
+  (ii) THE SHELL THEOREM FOR THE CHARGE   only the baryons inside r carry charge at r:  rho_c = a0 g_N / (4 pi G r g)
+       (= a0 M_b(<r) / (4 pi r^3 g); positive definite).  ODE: u u' = u u_N' + a0 r u_N.
+  P2 itself, differentiated: u u' = u_N u_N' + a0 r u_N + (a0 r^2/2) u_N'.  EXACT IDENTITY: P2's phantom density = (ii)'s
+       density + rho_b (u_N + a0 r^2/2 - u)/u, and the second term is >= 0 (AM-GM), vanishing where the baryons end.
+  All three coincide outside the baryons (u_N' = 0).  Principle (i) subtracts the local term, (ii) omits it, P2 adds it.
+
+THE STATISTIC.  CFG4 H2's (the record's rar_framework_a0_mlfit statistic): weighted rms of log10(g_obs/g_pred) over all 175
+SPARC galaxies at one global Upsilon_disk (bulge 1.4 Upsilon), grid 0.30-1.20.  A closure's prediction at a data point is
+g_bar(point) + G M_c(<R)/R^2, with the cold mass from its ODE integrated on the monotone envelope of the spherical-
+equivalent baryonic mass (inside R_0: V_bar^2 proportional to r, a constant central surface density -- declared).  The fair
+baseline is P2 computed in the SAME additive-envelope form ('P2-env'); P2 algebraic is CFG4's committed number.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG4 H2's committed rms and Upsilon for P2 and nu_mono, both footings, reproduced to < 1e-9 (rms) / exact (U).
+  C2  CONTROL  P2 integrated as an ODE through the same machinery equals P2-env at every data point to 1e-4 (relative in g).
+  C3  CONTROL  point mass: closures (i) and (ii) reproduce P2 to 1e-6 over three decades in radius, both footings.
+  C4  CONTROL  the identity: P2's cold density minus (ii)'s is >= 0 at every grid radius of every galaxy (relative 1e-9).
+  H1  PRINCIPLE (i): at its own best Upsilon its rms is within +0.005 dex of P2-env's best rms, both footings.
+      Declared EXPECTATION: FAIL (rising Newtonian fields in dwarfs demand negative cold density).  KILL LINE: > +0.02 dex.
+  H2  PRINCIPLE (ii): at its own best Upsilon its rms is within +0.005 dex of P2-env's best rms, both footings.
+      Declared EXPECTATION: PASS (CFG9 S3: within 0.003 dex at P2's Upsilon in CFG9's statistic).
+  R1  (reported) where (i) demands rho_c < 0: fraction of grid radii and of galaxies.
+  R2  (reported) the median inner residual (data minus prediction, g_bar > a0) for every law at its best Upsilon.
+MUTATE=1: the closures' a0 is doubled inside the ODEs (the statistic's a0 unchanged) -- C3 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: CFG4 H2's committed rms and Upsilon, reproduced
+======================================================================================================================
+    canonical P2      : rms 0.1082718609 at U 0.70  (CFG4 committed 0.1082718609 at 0.70)
+    canonical nu_mono : rms 0.1003289543 at U 0.61  (CFG4 committed 0.1003289543 at 0.61)
+    alt       P2      : rms 0.1035489761 at U 0.65  (CFG4 committed 0.1035489761 at 0.65)
+    alt       nu_mono : rms 0.0991031891 at U 0.57  (CFG4 committed 0.0991031891 at 0.57)
+  [PASS] C1 CONTROL: CFG4 H2's committed rms (< 1e-9) and Upsilon (exact) for P2 and nu_mono on both footings
+         can/P2: d rms 1.4e-17, U 0.70/0.70; can/nu_mono: d rms 1.4e-17, U 0.61/0.61; alt/P2: d rms 1.4e-17, U 0.65/0.65; alt/nu_mono: d rms 2.8e-17, U 0.57/0.57
+
+======================================================================================================================
+C3  CONTROL: point mass -- the closures reproduce P2
+======================================================================================================================
+  [PASS] C3 CONTROL: for a point mass (i) and (ii) reproduce P2 to 1e-6 from 0.01 to 100 r_M, both footings
+         max relative deviation 1.28e-12
+
+======================================================================================================================
+SPARC: every law at its own best Upsilon
+======================================================================================================================
+    canonical: P2 algebraic 0.1083 (U 0.70); P2-env 0.1081 (U 0.70); (i) Gauss pressure 0.2759 (U 0.92); (ii) shell-theorem charge 0.1112 (U 0.71); nu_mono 0.1003
+    alt      : P2 algebraic 0.1035 (U 0.65); P2-env 0.1034 (U 0.65); (i) Gauss pressure 0.2789 (U 0.98); (ii) shell-theorem charge 0.1052 (U 0.66); nu_mono 0.0991
+  [PASS] C2 CONTROL: P2 integrated as an ODE equals P2-env at every data point to 1e-4 (relative in g), both footings
+         max relative deviation 4.08e-07
+  [PASS] C4 CONTROL: the identity -- P2's cold density minus (ii)'s is >= 0 at every grid radius of every galaxy (relative 1e-9)
+         min (term / (ii)'s density) = -3.53e-14
+  [FAIL] H1 PRINCIPLE (i) the pressure Gauss law: best rms within +0.005 dex of P2-env's, both footings [declared expectation: FAIL]
+         canonical: +0.1678 dex; alt: +0.1754 dex
+    H1 kill line (> +0.02 dex on either footing): CROSSED -- the pressure Gauss law is excluded as the inner principle
+  [PASS] H2 PRINCIPLE (ii) the shell theorem for the charge: best rms within +0.005 dex of P2-env's, both footings [expectation: PASS]
+         canonical: +0.0031 dex; alt: +0.0017 dex
+  [PASS] (reported) R0 (reported; added with the fix) data points where a law's total mass breaks down (prediction floored at 1e-3 g_bar and kept in the statistic as a failure), at its best U
+         can/P2env: 0; can/P2ode: 0; can/gauss: 226; can/encl: 0; alt/P2env: 0; alt/P2ode: 0; alt/gauss: 227; alt/encl: 0
+  [PASS] (reported) R1 (reported) where (i) demands negative cold density (canonical, U = 0.70, inside each galaxy's data range)
+         median fraction of radii 0.253, mean 0.268; galaxies with any such region 116/175
+  [PASS] (reported) R2 (reported) median inner residual log10(g_obs/g_pred) at g_bar > a0 (per galaxy, then median), each law at its best U
+         can/P2 alg: -0.088 (N 68); can/nu_mono: -0.063 (N 66); can/P2-env: -0.088 (N 68); can/(i): -0.121 (N 70); can/(ii): -0.090 (N 68); alt/P2 alg: -0.079 (N 62); alt/nu_mono: -0.061 (N 60); alt/P2-env: -0.079 (N 62); alt/(i): -0.167 (N 70); alt/(ii): -0.081 (N 62)
+
+  8/9 checks pass; load-bearing failures: 1   (21 s)
