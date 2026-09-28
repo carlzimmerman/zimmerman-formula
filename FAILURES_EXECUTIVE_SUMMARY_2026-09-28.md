@@ -15,7 +15,12 @@ Mixing them overstates or understates the damage.
 ## Bottom line
 
 1. **The largest standing failure of the current version is the Milky Way's ultra-faint dwarfs: real, and 3.5–3.8σ once refereed** (CFG28), not the first-quoted 7.5–8.0σ. The other scored one is Chae et al.'s external-field signal: 4.1–4.3σ in their fits, 1.7–2.2σ refit under the framework's own law.
-2. **The biggest unscored risk is binary galaxies.** Isolated pairs move 1.5–1.8× faster than the framework's isolated two-body law predicts (5.4σ in the strictest-isolation shell), while ΛCDM lands on its own prediction. It has not been recomputed under ownership.
+2. **Binary galaxies, the biggest unscored risk, are now scored (CFG30), and they do not discriminate.**
+   - The "1.8–1.9× too fast" result assumed circular orbits.
+   - Under B's own timing orbits (pairs still falling in, no halo friction), the mean speeds come out right: A = 1.05–1.12. ΛCDM's halos then over-predict. Under circular orbits it is the reverse.
+   - Neither law's simple orbit model fits how the speeds fall with separation or rise with mass.
+   - The timing reading also makes the Local Group 1.6–1.75× too fast.
+   - Which orbits apply turns on whether B's dark component exerts dynamical friction, and B must specify that.
 3. **The dark sector carries 5–7σ tensions** (the cold budget against KiDS lensing; KiDS against the Local Group). They are real in the programme's machinery but not decisive: standard ΛCDM halos fail the same machinery by as much or more.
 4. **The largest numbers in the record killed earlier constructions, not the current one:** 43,479σ, 21σ, 15.6σ, 13–34σ, 9σ and 8.5σ.
 5. **Several famous big numbers are withdrawn or overstated:** Lyman-α "6–8σ", Coma "19.4σ", MUSE "12–16σ" and SPARC-vs-P2 "> 99.9%". Never cite them as failures.
@@ -41,7 +46,7 @@ These come from the 2026-09-03 sweep (`predictions_2026/SECOND_LAW_HUNT_2026.md`
 
 | # | item | recorded | what candidate B changes | status |
 |---|---|---|---|---|
-| B1 | **binary galaxies** | external-field branch **26σ**. Isolated two-body branch: pairs move **1.5–1.8×** faster than predicted (+0.25 dex), **5.4σ** in the strictest-isolation shell; ΛCDM gives A = 0.90–1.06 | B drops the external field; its one-phantom-per-pair prediction is **not computed** | **OPEN, the largest unscored risk** (`hunt_2026/h48_h69_binary_galaxies.out`, `h48_h69b_relative_isolation.out`) |
+| B1 | **binary galaxies** | external-field branch **26σ**. Isolated two-body branch: pairs move **1.5–1.8×** faster than predicted (+0.25 dex), **5.4σ** in the strictest-isolation shell; ΛCDM gives A = 0.90–1.06 | **Re-scored (CFG30).** With circular orbits, even the most generous baryons leave A = 1.51 / 1.44 (12.9 / 11.7σ). But the circular model fails the data's own separation profile for both laws (6.5σ, 5.4σ). B's own timing orbits give A = 1.12 / 1.05 (1.06 / 0.99 after the estimator's bias), and ΛCDM's halos then over-predict (0.46). The timing reading leaves three tensions: the profile (4.2σ), the mass trend (5.3σ; ΛCDM misses it by 4.7σ the other way) and MW–M31, 1.6–1.75× too fast | **orbit-degenerate, not an established failure.** Decided by whether B's dark component exerts dynamical friction (`campaign_fresh_gravity/CFG30_binary_galaxies_referee*`; the originals `hunt_2026/h48_h69_binary_galaxies.out`, `h48_h69b_relative_isolation.out`) |
 | B2 | Coma ultra-diffuse galaxies | +1.16 dex above the external-field prediction; **4.9σ / 4.7σ** (equilibrium), 2.7σ (first infall) | UDGs are accreted under ownership (the isolated law of their infall baryons, no external field) | not re-scored (`fable_independent_2026/L23_udg_verify.out`) |
 | B3 | the a₀ ladder (a₀ fitted per system class) | the cluster rung **6.3σ** from the deep-tail value | clusters carry the cosmic cold share under B | not re-scored |
 | B4 | X-ray ellipticals | need **1.69 dex** more boost | the max rule may supply the cosmic share | not re-scored |
@@ -91,6 +96,8 @@ These come from the 2026-09-03 sweep (`predictions_2026/SECOND_LAW_HUNT_2026.md`
 
 - **Gaia DR4 (2 December 2026).** Candidate B's ownership rule predicts wide binaries are exactly Newtonian, and dies at γ̂ ≥ 1.084. Standard-MOND wide binaries (1.16–1.23) die on a Newtonian result (`prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md`, Amendments 13–14).
 - **a₀ at z ≈ 2.5.** The flat law predicts a zero-point shift of 0.00; ΛCDM expects +0.33 dex (PAPER7 v3).
-- **The next computation that matters is B1**: binary galaxies under ownership.
+- **B1 is scored (CFG30) and does not decide.** Deciding it needs two things:
+  - an orbit distribution derived from each law's own assembly history (N-body grade);
+  - a statement from B on whether its dark component exerts dynamical friction.
 
 κ = ½ is fitted, not derived. Nothing here says the theory is closed.

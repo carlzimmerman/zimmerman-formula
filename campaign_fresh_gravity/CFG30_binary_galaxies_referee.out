@@ -1,0 +1,167 @@
+CFG30 -- BINARY GALAXIES UNDER CANDIDATE B, REFEREED ADVERSARIALLY: do isolated galaxy pairs move faster than B's law
+allows, or was the September result an artefact of assuming circular orbits?
+
+WHY.  FAILURES_EXECUTIVE_SUMMARY_2026-09-28 lists binary galaxies as the largest unscored risk (B1): isolated 2MRS major
+pairs move 1.8-1.9x faster than Milgrom's isolated deep-MOND two-body law predicts at d3 > 5 r_p
+(hunt_2026/h48_h69b_relative_isolation.py; 19 sigma statistically), while LambdaCDM's abundance-matched halos land on
+their own prediction.  Candidate B drops the external field for top-level systems (FG001's ownership), so B's prediction
+for an isolated pair IS that two-body law.  The estimator, though, assumed every pair is on a circular orbit.  Two things
+make that the assumption to referee:
+  * a scratch look at the committed sample, made before this script was written, found the fitted dispersion FALLING with
+    separation (238 -> 196 -> 170 km/s across the separation tertiles at d3 > 5 r_p), faster than the circular prediction
+    of EITHER law allows;
+  * in B's logarithmic two-body potential an L* pair at 100-500 kpc has a circular period of ~3-18 Gyr.  Unless something
+    removes orbital energy (dynamical friction), such pairs are not virialised: they are still on the orbit the timing
+    argument describes (Kahn & Woltjer 1959) -- separating with the Hubble flow, turning around, falling back.  In a log
+    potential that infall is fast: v = v_c sqrt(2 ln(R/r)), and the timing fixes R ~ v_c t0 / 2.5 ~ 1 Mpc, so v ~ 2 v_c at
+    140 kpc (a hand estimate, made before this script's first run).
+The same timing argument in the same law is already on record for the one pair whose full velocity is measured: FP11 T4
+found the plain MOND law's first approach TOO FAST for the Milky Way and M31 (-142 to -203 km/s against -109.3 +- 4.4).
+This lane computes the timing prediction for the 2MRS pairs, pre-declared, with h48b's sample, estimator and projection
+prior, and referees the baryons as well.
+
+THE MODELS (one machinery for both laws; between the two orbit models only the pair's speed changes)
+  circular  h48b's prediction, unchanged: the circular two-body speed (B: Milgrom's deep-MOND law; LambdaCDM: Moster+13
+            halos as NFW), <dv_los^2> = <v^2>/3 over h48b's projection prior (3-D separation log-uniform in [r_p, 20 r_p]
+            with the random-orientation kernel -- a companion density n(r) ~ r^-2).
+  timing    the radial timing orbit from the Big Bang in the law's own two-body force plus Lambda (B: r'' = -v_c^2/r +
+            Omega_L H0^2 r, v_c the deep-MOND two-body circular speed; LambdaCDM: the halos as point masses M_h1 + M_h2 +
+            Lambda, the classic Kahn-Woltjer form), on the first approach; the speed at each 3-D separation follows from
+            r(t0) = r; the same prior, truncated at the separation turning around today (farther configurations are not
+            bound and belong to the interloper term); <dv_los^2> = <v^2>/3.
+  Estimator and sample: h48b's own (Gaussian pairs + a uniform interloper term; 2MRS major pairs, d3 > 5 r_p), exec'd
+  read-only.  Both a0 footings.  Cosmology: CFG7's Planck 2018 (t0 = 13.80 Gyr, Omega_L = 0.685).
+
+PRE-DECLARED (written before this script's first run; H2 was SEEN in the scratch look and is confirmed here, not predicted)
+  C1  CONTROL  h48b's committed d3 > 5 r_p amplitudes reproduced (deep-MOND 1.89 / 1.80, LambdaCDM 0.95).
+  C2  CONTROL  the timing solver: (a) the Lambda = 0 analytic limits (log potential: t = sqrt(pi/2) (R/v_c) [1 + erf sqrt(ln
+      R/r)]; Kepler: the radial half-period) to 1e-6; (b) a direct integration of the ODE lands on the tabulated (r, v) to
+      1e-4, and the ODE shooter (used for the growing-mass variant) reproduces the quadrature table to 2e-3 at constant mass;
+      (c) the general-potential solver (used for the NFW variant) reproduces the Kepler table within 0.5% on a point mass;
+      (d) the Local Group: B's first approach at 0.78 Mpc reproduces FP11's committed full two-body integration of the plain
+      P2 law (T4: -142 / -175 / -203 km/s at M_b = 1.145 / 1.75 / 2.4e11 canonical, and the alt values) within 10%.
+  C3  CONTROL  the estimator on the timing model's own non-Gaussian velocities: mock pairs drawn from B's timing prediction
+      (A = 1, 17% interlopers) come back at A = 1 within 0.05 (mean of 5 mocks).
+  H1  THE BARYONS CANNOT CLOSE THE CIRCULAR GAP: with the most favourable baryons -- Upsilon_K = 1.0, +0.3 mag of total K
+      light, xGASS cold gas with the non-detections at their upper limits, doubled for molecular and ionised gas; generous
+      ceilings, not measurements -- the circular amplitude stays > 1.3 and > 5 sigma above 1, both footings.
+  H2  THE CIRCULAR MODEL FAILS THE DATA'S OWN PROFILE for BOTH laws: the circular amplitude falls from the inner to the outer
+      separation tertile by > 3 sigma (B canonical, and LambdaCDM).  [seen in the scratch look]
+  H3  [HEADLINE; MUTATE must fail] UNDER B'S OWN TIMING ARGUMENT THE PAIRS ARE NOT TOO FAST: with h48b's baryons (Upsilon_K
+      = 0.6, no gas), so that only the orbit changes, the timing amplitude lies in [0.80, 1.25], both footings.
+  H4  THE TIMING PROFILE: under B's timing speeds the amplitude changes by < 2 sigma between the inner and the outer separation
+      tertile (canonical): the fall of the dispersion with separation is predicted with no free parameter.
+  H5  THE ORBIT MODEL IS NOT A UNIVERSAL RESCUE: LambdaCDM's abundance-matched halos under the same timing argument give
+      A < 0.80 (they over-predict), so the pair test measures (law x orbits) and the two laws sit in opposite orbit models.
+  R1-R10 (reported): the radial-orbit and the geometry-consistent circular projections; a steeper companion density (n ~
+      r^-3); the later timing branches (outgoing after the first pericentre; the second approach); a growing mass (M ~ t);
+      favourable and realistic baryons under timing; the Local Group against B's timing; the mass tertiles; the isolation
+      scan F = 2-8; the ALFALFA dwarf pairs of h47 (d3 > 5 r_p); LambdaCDM's halos as NFW under timing.
+  READING (declared):
+    H3 in [0.80, 1.25] -> B1 is not a failure of B's law as such.  It was one only under circular orbits, which the data
+      reject for both laws (H2).  Under the law's own timing orbits B gives the pair speeds; LambdaCDM's halos under the
+      same orbits over-predict (H5).  Which orbits apply is B's to specify, not a knob: timing orbits if B's dark density
+      exerts no dynamical friction on the pair (T5's identity read literally -- the dark density is the law's phantom,
+      slaved to the baryons); virialised orbits if its cold component acts as a free medium, and then B1 stands at H1's
+      level.
+    H3 < 0.80 -> the two orbit models bracket the data for B (circular too slow, timing too fast): B1 is orbit-degenerate,
+      not an established failure.
+    H3 > 1.25 -> B1 stands under both orbit models.
+MUTATE=1: every velocity difference halved -- H3 must FAIL (rc = 1).
+
+  h48b's sample (exec'd read-only): 41635 candidate major pairs; d3 > 5 r_p: 1830; Upsilon_K = 0.6
+
+======================================================================================================================
+C1  CONTROL: h48b's committed d3 > 5 r_p amplitudes
+======================================================================================================================
+  [PASS] C1 CONTROL: h48b's committed d3 > 5 r_p amplitudes reproduced to the printed precision (deep-MOND canonical / alt, LambdaCDM)
+         canonical: 1.8864 +- 0.0472 (committed 1.89 +- 0.05); alt: 1.7995 +- 0.0450 (committed 1.80 +- 0.04); lcdm: 0.9486 +- 0.0225 (committed 0.95 +- 0.02); N = 1830 (committed 1830)
+
+  timing units: t0 = 13.801 Gyr; lambda = Omega_L (H0 t0)^2 = 0.6189
+  B (deep-MOND two-body + Lambda): turnaround today at rho = 0.7011 v_c t0; first approach at rho = 0.02 / 0.06 / 0.2: v/v_c = 2.416 / 1.916 / 1.196
+  K (point masses + Lambda): turnaround today at rho = 0.8418 (G M t0^2)^(1/3)
+
+======================================================================================================================
+C2  CONTROL: the timing solver
+======================================================================================================================
+  [PASS] C2a CONTROL: the Lambda = 0 analytic limits (log potential and Kepler, rise and fall) to 1e-6
+         max relative error: log 1.8e-14, Kepler 1.0e-15
+  [PASS] C2b CONTROL: a direct ODE integration from the apocentre lands on the tabulated first-approach (r, v) to 1e-4 and passes r = 0 at the Big Bang; the ODE shooter reproduces the quadrature table to 2e-3 at constant mass
+         forward landing max relative error 3.0e-12; backward: r -> 0 at t = 1.0e-06 t0; shooter vs quadrature (v, 43 points, 2e-3 < rho < 0.9 rho_ta) max 4.5e-04
+  [PASS] C2c CONTROL: the general-potential solver reproduces the Kepler table within 0.5% on a point mass (1e13 Msun, 20-800 kpc)
+         v(general) / v(Kepler) - 1: 20 kpc -2.9e-06, 100 kpc +2.6e-06, 300 kpc +4.2e-05, 800 kpc -2.9e-04
+  [PASS] C2d CONTROL: the Local Group -- B's first-approach speed at 0.78 Mpc (this lane's radial timing, pure deep-MOND two-body law + Lambda) reproduces FP11's committed full two-body integration of the plain P2 law (T4) within 10%, both footings
+         canonical 1.14e+11: 141.9 vs FP11 142.3 (-0.3%); canonical 1.75e+11: 174.9 vs FP11 175.5 (-0.3%); canonical 2.4e+11: 202.6 vs FP11 203.2 (-0.3%); alt 1.14e+11: 156.0 vs FP11 156.6 (-0.4%); alt 1.75e+11: 191.1 vs FP11 191.7 (-0.3%); alt 2.4e+11: 220.5 vs FP11 221.3 (-0.3%)
+
+======================================================================================================================
+C3  CONTROL: the estimator on the timing model's own velocities (B canonical, d3 > 5 r_p)
+======================================================================================================================
+  [FAIL] C3 CONTROL: mock pairs drawn from B's timing prediction (isotropic directions, 40 km/s errors, 17% interlopers; A = 1) come back at A = 1 within 0.05 (mean of 5)
+         recovered A: 1.077 +- 0.022 (f_int 0.16), 1.043 +- 0.021 (f_int 0.15), 1.079 +- 0.023 (f_int 0.18), 1.024 +- 0.020 (f_int 0.15), 1.051 +- 0.021 (f_int 0.16); mean 1.055
+
+======================================================================================================================
+H1  THE BARYONS: the most favourable baryons under the circular model
+======================================================================================================================
+    xGASS gas fraction (upper limits) at log M* = 10.5 / 11.0 / 11.4: 0.129 / 0.073 / 0.030; favourable baryons are +0.381 dex over h48b's (median, d3 > 5 r_p)
+  [PASS] H1 THE BARYONS CANNOT CLOSE THE CIRCULAR GAP: with Upsilon_K = 1.0, +0.3 mag of K light and doubled xGASS gas (upper limits) the circular amplitude stays > 1.3 and > 5 sigma above 1, both footings
+         canonical: A = 1.511 +- 0.040 (12.9 sigma above 1); alt: A = 1.443 +- 0.038 (11.7 sigma above 1)
+
+======================================================================================================================
+H2 / H4  THE SEPARATION PROFILE (tertiles of r_p at d3 > 5 r_p)
+======================================================================================================================
+    inner  (N 610, median r_p    50 kpc): sigma 238.1 +-  8.9 km/s, f_int 0.07;  A circular B 2.298 +- 0.089, LCDM 1.124 +- 0.041;  A timing B 1.035 +- 0.040 (alt 0.976 +- 0.038), LCDM 0.360 +- 0.014
+    middle (N 610, median r_p   141 kpc): sigma 196.2 +- 10.3 km/s, f_int 0.17;  A circular B 1.838 +- 0.090, LCDM 0.895 +- 0.040;  A timing B 1.087 +- 0.049 (alt 1.024 +- 0.046), LCDM 0.499 +- 0.027
+    outer  (N 610, median r_p   350 kpc): sigma 170.3 +-  8.5 km/s, f_int 0.27;  A circular B 1.545 +- 0.075, LCDM 0.811 +- 0.041;  A timing B 1.385 +- 0.073 (alt 1.287 +- 0.066), LCDM 0.719 +- 0.040
+  [PASS] H2 THE CIRCULAR MODEL FAILS THE DATA'S OWN PROFILE for BOTH laws: the circular amplitude falls from the inner to the outer tertile by > 3 sigma (B canonical, LambdaCDM)  [seen in the scratch look]
+         inner - outer: B +0.753 (6.5 sigma); LambdaCDM +0.313 (5.4 sigma)
+
+======================================================================================================================
+H3  THE HEADLINE: B's own timing argument, h48b's baryons, d3 > 5 r_p
+======================================================================================================================
+    canonical: timing A = 1.116 +- 0.028 (f_int 0.18, 1830 pairs, 0 without a bound configuration); circular A = 1.886
+    alt      : timing A = 1.047 +- 0.026 (f_int 0.18, 1830 pairs, 0 without a bound configuration); circular A = 1.799
+  [PASS] H3 [HEADLINE] UNDER B'S OWN TIMING ARGUMENT THE PAIRS ARE NOT TOO FAST: with h48b's baryons the timing amplitude lies in [0.80, 1.25], both footings
+         canonical: A = 1.116 +- 0.028; alt: A = 1.047 +- 0.026
+  [PASS] (reported) R0 (reported; added after the MUTATE run) H3 divided by the estimator's bias on the timing model's own velocities (C3's mean recovery)
+         canonical: 1.058 +- 0.026; alt: 0.993 +- 0.025
+  [FAIL] H4 THE TIMING PROFILE: under B's timing speeds the amplitude changes by < 2 sigma between the inner and outer tertile (canonical)
+         inner 1.035 +- 0.040, middle 1.087 +- 0.049, outer 1.385 +- 0.073: inner - outer -4.2 sigma (alt -4.1 sigma)
+
+======================================================================================================================
+H5  LambdaCDM's halos under the same timing argument
+======================================================================================================================
+  [PASS] H5 THE ORBIT MODEL IS NOT A UNIVERSAL RESCUE: LambdaCDM's abundance-matched halos (point masses + Lambda) under the same timing argument give A < 0.80 at d3 > 5 r_p
+         LambdaCDM timing A = 0.463 +- 0.014 (circular 0.949)
+
+======================================================================================================================
+R1-R10  REPORTED VARIANTS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) projection geometry: radial-orbit projection for the timing speeds; geometry-consistent projection for circular orbits
+         B timing radial 1.048 +- 0.026; LCDM timing radial 0.469 +- 0.015; B circular consistent 2.160 +- 0.054; LCDM circular consistent 1.061 +- 0.025
+  [PASS] (reported) R2 (reported) a steeper companion density n(r) ~ r^-3 in the projection prior (timing)
+         B 1.043 +- 0.026; LCDM 0.421 +- 0.013
+  [PASS] (reported) R3 (reported) the later timing branches for B (k = 1: outgoing after the first pericentre; k = 2: the second approach)
+         k1: A = 1.113 +- 0.029 (87 pairs without a configuration on the branch); k2: A = 1.375 +- 0.036 (90 pairs without a configuration on the branch)
+  [PASS] (reported) R4 (reported) a growing baryonic mass, M ~ t (so v_c^2 ~ t^1/2 in deep MOND), by the ODE shooter
+         turnaround today at rho = 0.619 (constant mass 0.701); A = canonical 1.203 +- 0.030; alt 1.129 +- 0.028
+  [PASS] (reported) R5 (reported) baryons under timing: H1's favourable ceilings, and realistic (Upsilon_K = 0.6 + xGASS detected gas)
+         canonical: favourable 0.838 +- 0.022, realistic 1.087 +- 0.027 (circular 1.845 +- 0.046); alt: favourable 0.789 +- 0.020, realistic 1.021 +- 0.026 (circular 1.758 +- 0.044)
+  [PASS] (reported) R6 (reported) THE LOCAL GROUP AGAINST B'S TIMING: MW-M31 at 0.78 Mpc, FP11's baryons (nominal 1.75e11, window 1.145-2.4e11) vs the measured -109.3 +- 4.4 km/s
+         canonical: predicted -175 km/s at the nominal mass (window -142 to -203), 1.60x the measured speed; the timing would need M_b = 7.05e+10; alt: predicted -191 km/s at the nominal mass (window -156 to -221), 1.75x the measured speed; the timing would need M_b = 5.84e+10
+  [PASS] (reported) R7 (reported; the LambdaCDM columns and the trend significance added after the MUTATE run) the mass tertiles
+         low (log M_b 10.93): B timing 0.955 +- 0.043, B circular 1.702 +- 0.079, LCDM circular 1.171 +- 0.057, LCDM timing 0.660 +- 0.032; mid (log M_b 11.20): B timing 1.057 +- 0.046, B circular 1.791 +- 0.074, LCDM circular 0.914 +- 0.039, LCDM timing 0.452 +- 0.025; high (log M_b 11.39): B timing 1.331 +- 0.057, B circular 2.203 +- 0.094, LCDM circular 0.854 +- 0.037, LCDM timing 0.347 +- 0.018; high - low: tim_B +5.3 sigma, circ_B +4.1 sigma, circ_L -4.7 sigma, tim_K -8.5 sigma
+  [PASS] (reported) R8 (reported) the isolation scan d3 > F r_p under timing (B canonical, LambdaCDM point masses) and circular (B)
+         F 2 (N 4294): B timing 1.222 +- 0.024, LCDM timing 0.546 +- 0.014, B circular 1.758 +- 0.033; F 3 (N 2992): B timing 1.134 +- 0.024, LCDM timing 0.497 +- 0.013, B circular 1.764 +- 0.037; F 5 (N 1830): B timing 1.116 +- 0.028, LCDM timing 0.463 +- 0.014, B circular 1.886 +- 0.047; F 8 (N 1196): B timing 1.021 +- 0.031, LCDM timing 0.401 +- 0.014, B circular 1.875 +- 0.054
+  [PASS] (reported) R9 (reported) the ALFALFA dwarf pairs of h47 at d3 > 5 r_p (h47's sample, masses and estimator, exec'd read-only)
+         N = 53; circular 1.12 +- 0.29 (h47 committed 1.12 +- 0.29); B timing canonical 1.13 +- 0.17, alt 1.05 +- 0.15; LCDM timing (h47's halo convention) 1.24 +- 0.19
+  [PASS] (reported) R10 (reported) LambdaCDM's halos as NFW (h48b's enclosed-mass model) under the same timing argument
+         A = 0.523 +- 0.013 (1 pairs without a bound configuration)
+
+======================================================================================================================
+READING
+======================================================================================================================
+    READING (declared): B1 is not a failure of B's law as such: it was one only under circular orbits, which the data reject for both laws (H2). Under the law's own timing orbits B gives the pair speeds; LambdaCDM's halos under the same orbits over-predict (H5). Which orbits apply is B's to specify: timing orbits if B's dark density exerts no dynamical friction on the pair (T5's identity read literally), virialised orbits if its cold component acts as a free medium, and then B1 stands at H1's level.
+    profile under timing (H4): NOT predicted (inner - outer -4.2 sigma)
+    the Local Group under the same timing (R6, canonical): 1.60x the measured approach speed
+
+  20/22 checks pass; load-bearing failures: 2   (76 s)
