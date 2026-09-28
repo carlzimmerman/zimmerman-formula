@@ -1276,6 +1276,115 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > instruction; the draft that preceded it is retained at `AMENDMENT12_DRAFT_NOT_FILED.md`.
 >
 
+> ### 🚨 AMENDMENT 13 — 2026-09-27, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THIS AMENDMENT REGISTERS A THIRD WIDE-BINARY ARM, ARM C: THE HIERARCHICAL-OWNERSHIP READING OF
+> THE FRAMEWORK'S LAW, WHICH PREDICTS EXACTLY NEWTONIAN WIDE BINARIES.  IT ADDS A PREDICTION AND ITS
+> DECISION ROWS; IT MOVES NOTHING.**  Arm A, Arm B, the estimator and every frozen number are untouched.
+>
+> **(a) The principle** (`campaign_fresh_gravity`, lane FG001).
+> - The framework's law, g = ν(g_N/a₀) g_N with a₀ = κ c √(G ρ_Λ) and κ = ½ fitted, acts on a system's
+>   own baryons only if that system is the **outermost bound system**.
+> - A system bound inside a host owns no phantom of its own. That covers a satellite, a cluster member, a
+>   star cluster, a wide binary and the Solar System. Its internal dynamics is Newtonian; the host's
+>   smooth field acts on it only as a tide.
+> - A system that formed inside its host with no cold component of its own is therefore Newtonian
+>   outright. That covers tidal dwarfs, globular clusters, wide binaries and the Solar System.
+> - The rule adds no constant and removes one. The Solar-System screening length ξ is unnecessary,
+>   because the Sun owns no phantom. The Milky Way's phantom tide at the Sun is 1.6–2.6e-31 s⁻², which
+>   is 2–3 × 10⁴ below Cassini's quadrupole bound.
+>
+> **(b) The Arm C prediction.**  Every wide binary in the registered sample is embedded in the Milky
+> Way.  Arm C therefore predicts
+>
+> > **γ_v = 1.000 (exactly Newtonian)** for the registered estimator's pooled 3–30 kAU value, on both
+> > a₀ footings and both g_ext conventions.
+>
+> - The value does not depend on a₀, on the kernel (P2 or ν_mono), on the external field, or on any
+>   coherence length.
+> - It is structural, not a limit: no parameter of the rule moves it.
+> - The Milky Way's smooth phantom acts on a 30 kAU pair only as a tide, about 3 × 10⁻⁴ of the pair's
+>   internal acceleration. It is part of the Newtonian model the estimator already uses.
+> - The rule also predicts that γ_v does not depend on separation. No separation-resolved statistic is
+>   registered here; only the pooled value is scored.
+>
+> **(c) Why it is registered now.**
+> - Arms A and B come from one kernel acting on every system. A predicts a boost; B's corrected value is
+>   that kernel's Newtonian limit.
+> - Arm C is a different rule with a different reason for its number.
+> - It has passed its own kill test on independent data. The six tidal dwarfs of Lelli et al. 2015
+>   (A&A 584, A113) are Newtonian: χ² = 1.09 for 6. The framework's law acting on each dwarf with its
+>   host's external field is worse by Δχ² = +5.2 to +12.0, on both footings and for both kernels.
+> - Across the record's own population statistics it passes 9 of 14 gates. The law with the external
+>   field passes 6 of 14.
+> - Registering it before DR4 lets a Newtonian DR4 result count as the survival of a stated prediction,
+>   not a rescue after the fact.
+>
+> **(d) Decision rows — readings ADDED to the section-1 table (existing rows unchanged).**
+> - γ_C = 1.000 and z_C = (γ̂ − 1.000)/σ_tot. The frozen verdict rule is unchanged: "consistent" means
+>   |z| < 2, "disfavored" means |z| > 3.
+> - The edges below are illustrative at σ_tot = 0.028, the section-1 table's convention (σ_fit = 0.019
+>   at the frozen N = 30,000, scaling mechanically as √(30000/N)). The z-rule is operative.
+>
+> | γ̂ lands in | Arm C | added reading |
+> |---|---|---|
+> | ≤ 0.916 | disfavored (z_C ≤ −3), exactly as Newton | a sub-Newtonian result: every registered arm disfavored; reported, not repaired |
+> | 0.916 – 0.944 | 2–3σ_tot below, not a kill | reported with the z-table; no arm verdict |
+> | 0.944 – 1.056 | **consistent** (\|z_C\| < 2) | Arm A is falsified here (≥ 3.8σ_tot below its canonical floor), so **the arm question is decided for C over A**; C vs Newton and C vs Arm B are NOT decidable (same number) |
+> | 1.056 – 1.084 | disfavored at 2–3σ_tot, not a kill | no arm verdict |
+> | 1.084 – 1.23 | **falsified** (z_C ≥ 3) **if** the frozen stability requirements pass: every ladder variant within 1σ_fit, κ ∈ [0.95, 1.05], and the NSS-off probe moving γ̂ toward the verdict value. Otherwise "systematic-limited, no verdict" | the ownership rule is dead for wide binaries |
+> | > 1.23 | **no verdict**, exactly as for Newton (the frozen guard-zone rule: contamination only raises γ̂) | unchanged |
+>
+> Arm A's floors (1.1614 canonical / 1.1917 alt) sit 5.8σ_tot / 6.8σ_tot above Arm C.  DR4 separates
+> A from C decisively, and **the two cannot both survive**.
+>
+> **(e) Stated against interest.**
+> - **Arm C is the same number as Newton on this estimator.** DR4 can falsify it from above. It cannot
+>   confirm it over Newtonian gravity or over Arm B.
+> - A Newtonian DR4 result is the survival of a test Arm C could have failed, and the falsification of
+>   Arm A. It is never evidence for the framework over general relativity, and must never be described
+>   as such.
+> - **The rule carries a registered cost elsewhere.** Chae's external-field fits in SPARC sit 4.1σ (D1,
+>   143 galaxies) and 4.3σ (D2, 90 galaxies) from its zero external field. CFG1 rates that signal
+>   contested.
+> - Two of FG001's pre-declared sub-hypotheses failed and are kept:
+>   - the outer-halo globular clusters do not discriminate;
+>   - the M31 LVD dwarfs sit 2.2–2.6σ from the isolated law.
+> - Neither failure bears on the wide-binary number.
+> - FG016, the companion attempt to derive the phantom's edge, was falsified by KiDS; the edge remains a
+>   declared constant. It does not enter the wide-binary number either.
+>
+> **(f) Unchanged.**
+> - Arm A (1.1614–1.1814 / 1.1917–1.2267).
+> - Arm B (1.0000 ± 0.0025, not a testable arm, kill-from-above 1.084).
+> - Amendment 12(e)'s CARRIER declaration.
+> - The estimator, the 16-row cut table, the error model, the strictness ladder and the NSS screen.
+> - The frozen N = 30,000, both a₀ footings, the κ window [0.95, 1.05], the no-verdict edge 1.23 and the
+>   no-EFE benchmark 1.33.
+> - Amendment 7(e)'s reporting rule stands and already covers Arm C: its value 1.000 is the reported
+>   Newtonian distance.
+> - No pipeline file changes.
+>
+> **κ = ½ FITTED, NOT DERIVED.**
+>
+> **(g) Numbering.**  A different amendment was planned under the number 13 but never filed. It concerns
+> the instability of Amendment 11(f)'s four-form variant and a separation-resolved statistic for the
+> derivation chain's law. It will be filed, if at all, under the next free number.
+>
+> **(h) Provenance.**  All in `campaign_fresh_gravity/`, commits 3bdfe877d and 2511c8894.
+> - `CFG7_hierarchy_fg001.py`:
+>   - its controls reproduce h43's, f13's and XR27's committed numbers exactly;
+>   - the headline passed;
+>   - two sub-hypotheses failed and are kept.
+> - `CFG7_tdg_fg041.py` (the kill test):
+>   - Lelli et al.'s Tables 8 and 9 are reproduced;
+>   - data in `real_research/data/tidal_dwarfs/`, with provenance.
+> - `CFG7_harness_fg097.py`: the candidate carrying the ownership rule scores 38/48 on the committed
+>   gates, against 32/48 without it.
+>
+> Filed on the owner's explicit instruction, 2026-09-27.
+>
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)

@@ -207,3 +207,12 @@ pick, in light of today's results, is below.
 
 **Why AS440 does not rank.** AS440 (filter-length transfer from galaxies to binaries) is weak. Galaxies do not
 constrain ξ: the heat filter moves forces by less than 1e-3 at 0.1–30 kpc (XR29). Gaia DR4 measures ξ directly (XR22).
+
+## Addendum, 2026-09-27 (late): DR4 amendment numbering
+
+The DR4 preregistration's Amendment 13 was filed on the owner's instruction as **Arm C**, the hierarchical-ownership arm
+(γ_v = 1.000 exactly; `prep_2026/gaia_dr4_prep/AMENDMENT13_HASH.txt`).
+
+The item planned above as "Amendment 13(a)/(b)" was never filed. It covers the four-form variant's instability and a
+separation-resolved statistic for the chain's law. It takes the next free number, 14, if it is filed. XR22 must be
+re-run first.
