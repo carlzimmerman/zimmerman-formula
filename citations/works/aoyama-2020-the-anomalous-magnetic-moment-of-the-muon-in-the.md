@@ -1,0 +1,16 @@
+# Aoyama et al. 2020 — The anomalous magnetic moment of the muon in the Standard Model
+
+**Reference.** Aoyama, T.; Asmussen, N.; Benayoun, M.; Bijnens, J.; Blum, T.; Bruno, M.; Caprini, I.; Carloni Calame, C.; Cè, M.; Colangelo, G.; Curciarello, F.; Czyż, H.; Danilkin, I.; Davier, M.; Davies, C.; Della Morte, M.; Eidelman, S.; El-Khadra, A.; Gérardin, A.; Giusti, D.; Golterman, M.; Gottlieb, S.; Gülpers, V.; Hagelstein, F.; Hayakawa, M.; Herdoíza, G.; Hertzog, D.; Hoecker, A.; Hoferichter, M.; Hoid, B.-L.; et al. (132 authors) (2020). The anomalous magnetic moment of the muon in the Standard Model. *Physics Reports* 887, 1-166. [doi:10.1016/j.physrep.2020.07.006](https://doi.org/10.1016/j.physrep.2020.07.006)
+
+**BibTeX key:** `Aoyama2020` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (132):** [T. Aoyama](../people/aoyama-tatsumi.md), N. Asmussen, M. Benayoun, J. Bijnens, T. Blum, M. Bruno, I. Caprini, C.m. Carloni Calame, M. Cè, G. Colangelo, F. Curciarello, H. Czyż, I. Danilkin, M. Davier, C.t.h. Davies, M. Della Morte, S.i. Eidelman, A.x. El-Khadra, A. Gérardin, D. Giusti, M. Golterman, Steven Gottlieb, V. Gülpers, F. Hagelstein, [M. Hayakawa](../people/hayakawa-masashi.md), G. Herdoíza, D.w. Hertzog, A. Hoecker, M. Hoferichter, B.-L. Hoid, R.j. Hudspith, F. Ignatov, T. Izubuchi, F. Jegerlehner, L. Jin, A. Keshavarzi, [T. Kinoshita](../people/kinoshita-toichiro.md), B. Kubis, A. Kupich, A. Kupść, L. Laub, C. Lehner, [L. Lellouch](../people/lellouch-l-p.md), I. Logashenko, B. Malaescu, K. Maltman, M.k. Marinković, P. Masjuan, A.s. Meyer, H.b. Meyer, T. Mibe, [K. Miura](../people/miura-k.md), S.e. Müller, [M. Nio](../people/nio-makiko.md), D. Nomura, A. Nyffeler, V. Pascalutsa, M. Passera, E. Perez del Rio, S. Peris, A. Portelli, M. Procura, C.f. Redmer, B.l. Roberts, P. Sánchez-Puertas, S. Serednyakov, B. Shwartz, S. Simula, D. Stöckinger, H. Stöckinger-Kim, P. Stoffer, T. Teubner, R. Van de Water, M. Vanderhaeghen, G. Venanzoni, G. von Hippel, H. Wittig, Z. Zhang, M.n. Achasov, A. Bashir, N. Cardoso, B. Chakraborty, E.-H. Chao, [J. Charles](../people/charles-j.md), A. Crivellin, O. Deineka, A. Denig, C. DeTar, C.a. Dominguez, A.e. Dorokhov, V.p. Druzhinin, G. Eichmann, M. Fael, C.s. Fischer, E. Gámiz, Z. Gelzer, J.r. Green, S. Guellati-Khelifa, D. Hatton, N. Hermansson-Truedsson, S. Holz, B. Hörz, M. Knecht, J. Koponen, A.s. Kronfeld, J. Laiho, S. Leupold, P.b. Mackenzie, W.j. Marciano, C. McNeile, D. Mohler, J. Monnard, E.t. Neil, A.v. Nesterenko, K. Ottnad, V. Pauk, A.e. Radzhabov, E. de Rafael, K. Raya, A. Risch, A. Rodríguez-Sánchez, P. Roig, T. San José, E.p. Solodov, R. Sugar, K. Yu. Todyshev, [A. Vainshtein](../people/vainshtein-a-i.md), A. Vaquero Avilés-Casco, E. Weil, J. Wilhelm, R. Williams, A.s. Zhevlakov
+
+## Used in 2 script(s)
+
+How: cited in 2.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/muon_g2/muon_anomaly_analysis.py`](../../ai_slop/research/muon_g2/muon_anomaly_analysis.py#L2) | cited | [2](../../ai_slop/research/muon_g2/muon_anomaly_analysis.py#L2), [119](../../ai_slop/research/muon_g2/muon_anomaly_analysis.py#L119) |
+| [`ai_slop/research/muon_g2/muon_g2_analysis.py`](../../ai_slop/research/muon_g2/muon_g2_analysis.py#L2) | cited | [2](../../ai_slop/research/muon_g2/muon_g2_analysis.py#L2) |

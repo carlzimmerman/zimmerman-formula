@@ -1,0 +1,19 @@
+# Christophe Magneville
+
+Credited in **438** file(s) through **11** work(s) · affiliation on the cited work(s): Université Paris-Saclay
+
+| work | used in | how |
+|---|---:|---|
+| [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) — The DESI Experiment Part I: Science,Targeting, and Survey Design | 381 | cited, data used |
+| [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md) — DESI DR2 results. II. Measurements of baryon acoustic oscillations and cosmological constraints | 164 | cited, data used, cited in a paper |
+| [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md) — DESI 2024 VI: cosmological constraints from the measurements of baryon acoustic oscillations | 103 | cited, data used, cited in a paper |
+| [Tisserand et al. 2007](../works/tisserand-2007-limits-on-the-macho-content-of-the-galactic-halo.md) — Limits on the Macho content of the Galactic Halo from the EROS-2 Survey of the Magellanic Clouds | 4 | cited, data used |
+| [Palanque-Delabrouille et al. 2015](../works/palanque-delabrouille-2015-neutrino-masses-and-cosmology-with-lyman-alpha-f.md) — Neutrino masses and cosmology with Lyman-alpha forest power spectrum | 2 | cited, named method/model |
+| [Adame et al. 2025](../works/adame-2025-desi-2024-v-full-shape-galaxy-clustering-from-g.md) — DESI 2024 V: Full-Shape galaxy clustering from galaxies and quasars | 2 | cited, cited in a paper |
+| [Elbers et al. 2025](../works/elbers-2025-constraints-on-neutrino-physics-from-desi-dr2-ba-2.md) — Constraints on neutrino physics from DESI DR2 BAO and DR1 full shape | 2 | cited |
+| [Hahn et al. 2023](../works/hahn-2023-the-desi-bright-galaxy-survey-final-target-sele.md) — The DESI Bright Galaxy Survey: Final Target Selection, Design, and Validation | 2 | cited |
+| [Elbers et al. 2025](../works/elbers-2025-constraints-on-neutrino-physics-from-desi-dr2-ba.md) — Constraints on Neutrino Physics from DESI DR2 BAO and DR1 Full Shape | 1 | cited |
+| [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md) — Data Release 1 of the Dark Energy Spectroscopic Instrument | 1 | cited |
+| [Baur et al. 2016](../works/baur-2016-lyman-alpha-forests-cool-warm-dark-matter.md) — Lyman-alpha forests cool warm dark matter | 1 | cited |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

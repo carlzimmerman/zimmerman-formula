@@ -1,0 +1,16 @@
+# Robotham et al. 2014 — Galaxy And Mass Assembly (GAMA): galaxy close pairs, mergers and the future fate of stellar mass
+
+**Reference.** Robotham, A. S. G.; Driver, S. P.; Davies, L. J. M.; Hopkins, A. M.; Baldry, I. K.; Agius, N. K.; Bauer, A. E.; Bland-Hawthorn, J.; Brough, S.; Brown, M. J. I.; Cluver, M.; De Propris, R.; Drinkwater, M. J.; Holwerda, B. W.; Kelvin, L. S.; Lara-Lopez, M. A.; Liske, J.; López-Sánchez, Á. R.; Loveday, J.; Mahajan, S.; McNaught-Roberts, T.; Moffett, A.; Norberg, P.; Obreschkow, D.; Owers, M. S.; Penny, S. J.; Pimbblet, K.; Prescott, M.; Taylor, E. N.; van Kampen, E.; et al. (31 authors) (2014). Galaxy And Mass Assembly (GAMA): galaxy close pairs, mergers and the future fate of stellar mass. *Monthly Notices of the Royal Astronomical Society* 444, 3986-4008. [doi:10.1093/mnras/stu1604](https://doi.org/10.1093/mnras/stu1604) [arXiv:1408.1476](https://arxiv.org/abs/1408.1476)
+
+**BibTeX key:** `Robotham2014` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (31):** [A. S. G. Robotham](../people/robotham-aaron-s-g.md), [S. P. Driver](../people/driver-simon-p.md), [L. J. M. Davies](../people/davies-luke-j-m.md), [A. M. Hopkins](../people/hopkins-andrew-m.md), [I. K. Baldry](../people/baldry-ivan-k.md), [N. K. Agius](../people/agius-n-k.md), [A. E. Bauer](../people/bauer-amanda-e.md), [J. Bland-Hawthorn](../people/bland-hawthorn-joss.md), [S. Brough](../people/brough-sarah.md), [M. J. I. Brown](../people/brown-michael-j-i.md), [M. Cluver](../people/cluver-michelle-e.md), [R. De Propris](../people/de-propris-roberto.md), [M. J. Drinkwater](../people/drinkwater-michael-j.md), [B. W. Holwerda](../people/holwerda-benne-w.md), [L. S. Kelvin](../people/kelvin-lee-s.md), [M. A. Lara-Lopez](../people/lara-lopez-maritza-a.md), [J. Liske](../people/liske-jochen.md), [Á. R. López-Sánchez](../people/lopez-sanchez-angel-r.md), [J. Loveday](../people/loveday-jon.md), [S. Mahajan](../people/mahajan-smriti.md), [T. McNaught-Roberts](../people/mcnaught-roberts-t.md), [A. Moffett](../people/moffett-amanda-j.md), [P. Norberg](../people/norberg-peder.md), [D. Obreschkow](../people/obreschkow-danail.md), [M. S. Owers](../people/owers-matt-s.md), [S. J. Penny](../people/penny-samantha-j.md), [K. Pimbblet](../people/pimbblet-kevin-a.md), [M. Prescott](../people/prescott-m.md), [E. N. Taylor](../people/taylor-edward-n.md), [E. van Kampen](../people/van-kampen-eelco.md), [S. M. Wilkins](../people/wilkins-stephen-m.md)
+
+## Used in 2 script(s)
+
+How: cited in 2.
+
+| script | how | lines |
+|---|---|---|
+| [`deepseek_push/G121_pair_merger_forecast.py`](../../deepseek_push/G121_pair_merger_forecast.py#L2) | cited | [2](../../deepseek_push/G121_pair_merger_forecast.py#L2), [233](../../deepseek_push/G121_pair_merger_forecast.py#L233), [234](../../deepseek_push/G121_pair_merger_forecast.py#L234) |
+| [`deepseek_push/G174_merger_first_scoring.py`](../../deepseek_push/G174_merger_first_scoring.py#L6) | cited | [6](../../deepseek_push/G174_merger_first_scoring.py#L6), [46](../../deepseek_push/G174_merger_first_scoring.py#L46), [103](../../deepseek_push/G174_merger_first_scoring.py#L103), [272](../../deepseek_push/G174_merger_first_scoring.py#L272), [297](../../deepseek_push/G174_merger_first_scoring.py#L297) |

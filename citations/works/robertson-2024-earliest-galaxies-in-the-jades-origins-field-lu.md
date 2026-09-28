@@ -1,0 +1,15 @@
+# Robertson et al. 2024 — Earliest Galaxies in the JADES Origins Field: Luminosity Function and Cosmic Star Formation Rate Density 300 Myr after the Big Bang
+
+**Reference.** Robertson, B.; Johnson, B. D.; Tacchella, S.; Eisenstein, D. J.; Hainline, K.; Arribas, S.; Baker, W. M.; Bunker, A. J.; Carniani, S.; Cargile, P. A.; Carreira, C.; Charlot, S.; Chevallard, J.; Curti, M.; Curtis-Lake, E.; D’Eugenio, F.; Egami, E.; Hausen, R.; Helton, J. M.; Jakobsen, P.; Ji, Z.; Jones, G. C.; Maiolino, R.; Maseda, M. V.; Nelson, E.; Pérez-González, P. G.; Puskás, D.; Rieke, M.; Smit, R.; Sun, F.; et al. (36 authors) (2024). Earliest Galaxies in the JADES Origins Field: Luminosity Function and Cosmic Star Formation Rate Density 300 Myr after the Big Bang. *The Astrophysical Journal* 970, 31. [doi:10.3847/1538-4357/ad463d](https://doi.org/10.3847/1538-4357/ad463d)
+
+**BibTeX key:** `Robertson2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (36):** [Brant Robertson](../people/robertson-brant-e.md), [Benjamin D. Johnson](../people/johnson-benjamin-d.md), [Sandro Tacchella](../people/tacchella-sandro.md), [Daniel J. Eisenstein](../people/eisenstein-daniel-j.md), [Kevin Hainline](../people/hainline-kevin-n.md), [Santiago Arribas](../people/arribas-santiago.md), [William M. Baker](../people/baker-william-m.md), [Andrew J. Bunker](../people/bunker-andrew-j.md), [Stefano Carniani](../people/carniani-stefano.md), [Phillip A. Cargile](../people/cargile-phillip-a.md), [Courtney Carreira](../people/carreira-courtney.md), [Stephane Charlot](../people/charlot-stephane.md), [Jacopo Chevallard](../people/chevallard-jacopo.md), [Mirko Curti](../people/curti-mirko.md), [Emma Curtis-Lake](../people/curtis-lake-emma.md), [Francesco D’Eugenio](../people/deugenio-francesco.md), [Eiichi Egami](../people/egami-eiichi.md), [Ryan Hausen](../people/hausen-ryan.md), [Jakob M. Helton](../people/helton-jakob-m.md), [Peter Jakobsen](../people/jakobsen-peter.md), [Zhiyuan Ji](../people/ji-zhiyuan.md), [Gareth C. Jones](../people/jones-gareth-c.md), [Roberto Maiolino](../people/maiolino-roberto.md), [Michael V. Maseda](../people/maseda-michael-v.md), [Erica Nelson](../people/nelson-erica-j.md), [Pablo G. Pérez-González](../people/perez-gonzalez-pablo-g.md), [Dávid Puskás](../people/puskas-david.md), [Marcia Rieke](../people/rieke-marcia.md), [Renske Smit](../people/smit-renske.md), [Fengwu Sun](../people/sun-fengwu.md), [Hannah Übler](../people/ubler-hannah.md), [Lily Whitler](../people/whitler-lily.md), [Christina C. Williams](../people/williams-christina-c.md), [Christopher N. A. Willmer](../people/willmer-christopher-n-a.md), [Chris Willott](../people/willott-chris-j.md), [Joris Witstok](../people/witstok-joris.md)
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/z2_mond_predictions/z2_kinematic_predictor.py`](../../ai_slop/research/z2_mond_predictions/z2_kinematic_predictor.py#L148) | cited | [148](../../ai_slop/research/z2_mond_predictions/z2_kinematic_predictor.py#L148) |

@@ -1,0 +1,30 @@
+# Jacobson & Mattingly 2004 — Einstein-aether waves
+
+**Reference.** Jacobson, T.; Mattingly, D. (2004). Einstein-aether waves. *Physical Review D* 70, 024003. [doi:10.1103/physrevd.70.024003](https://doi.org/10.1103/physrevd.70.024003) [arXiv:gr-qc/0402005](https://arxiv.org/abs/gr-qc/0402005)
+
+**BibTeX key:** `Jacobson2004` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (2):** [T. Jacobson](../people/jacobson-ted.md), [D. Mattingly](../people/mattingly-david.md)
+
+## Used in 16 script(s)
+
+How: cited in 5, named method/model in 16.
+
+| script | how | lines |
+|---|---|---|
+| [`fable_independent_2026/L31_foliation_nogo.py`](../../fable_independent_2026/L31_foliation_nogo.py#L126) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [126](../../fable_independent_2026/L31_foliation_nogo.py#L126) |
+| [`fable_independent_2026/L39_nonlocal_modes.py`](../../fable_independent_2026/L39_nonlocal_modes.py#L108) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [108](../../fable_independent_2026/L39_nonlocal_modes.py#L108) |
+| [`fable_independent_2026/L61_permitted_branches.py`](../../fable_independent_2026/L61_permitted_branches.py#L132) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [132](../../fable_independent_2026/L61_permitted_branches.py#L132) |
+| [`fable_independent_2026/L65_memory_kernel.py`](../../fable_independent_2026/L65_memory_kernel.py#L150) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [150](../../fable_independent_2026/L65_memory_kernel.py#L150) |
+| [`nbody_2026/stage71_ppn_alpha2_degeneracy_2026.py`](../../nbody_2026/stage71_ppn_alpha2_degeneracy_2026.py#L3) | cited, named method/model | [3](../../nbody_2026/stage71_ppn_alpha2_degeneracy_2026.py#L3), [50](../../nbody_2026/stage71_ppn_alpha2_degeneracy_2026.py#L50), [98](../../nbody_2026/stage71_ppn_alpha2_degeneracy_2026.py#L98), [99](../../nbody_2026/stage71_ppn_alpha2_degeneracy_2026.py#L99) |
+| [`opus_48_extended_research/reviews/route2_aether_shear_absorbing_ADVERSARIAL.py`](../../opus_48_extended_research/reviews/route2_aether_shear_absorbing_ADVERSARIAL.py#L406) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [406](../../opus_48_extended_research/reviews/route2_aether_shear_absorbing_ADVERSARIAL.py#L406) |
+| [`opus_48_extended_research/reviews/routeC_finsler/covariant_pureslip_lensing_partner.py`](../../opus_48_extended_research/reviews/routeC_finsler/covariant_pureslip_lensing_partner.py#L317) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [317](../../opus_48_extended_research/reviews/routeC_finsler/covariant_pureslip_lensing_partner.py#L317) |
+| [`opus_48_extended_research/reviews/toe_law/agentXX_part1_fixedpoint.py`](../../opus_48_extended_research/reviews/toe_law/agentXX_part1_fixedpoint.py#L65) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [65](../../opus_48_extended_research/reviews/toe_law/agentXX_part1_fixedpoint.py#L65) |
+| [`opus_48_extended_research/reviews/toe_law/agentXX_verify_block1_speed_and_eom.py`](../../opus_48_extended_research/reviews/toe_law/agentXX_verify_block1_speed_and_eom.py#L10) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [10](../../opus_48_extended_research/reviews/toe_law/agentXX_verify_block1_speed_and_eom.py#L10), [31](../../opus_48_extended_research/reviews/toe_law/agentXX_verify_block1_speed_and_eom.py#L31) |
+| [`qwen_claude_field_theory/closure_2026/field_equations_2026/sector2_conserved_charge_dust_2026.py`](../../qwen_claude_field_theory/closure_2026/field_equations_2026/sector2_conserved_charge_dust_2026.py#L113) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [113](../../qwen_claude_field_theory/closure_2026/field_equations_2026/sector2_conserved_charge_dust_2026.py#L113) |
+| [`real_research/reviews/alpha2_literature_forensics_2026.py`](../../real_research/reviews/alpha2_literature_forensics_2026.py#L3) | cited, named method/model | [3](../../real_research/reviews/alpha2_literature_forensics_2026.py#L3), [57](../../real_research/reviews/alpha2_literature_forensics_2026.py#L57), [687](../../real_research/reviews/alpha2_literature_forensics_2026.py#L687) |
+| [`real_research/reviews/alpha2_regulated_limit_2026.py`](../../real_research/reviews/alpha2_regulated_limit_2026.py#L3) | cited, named method/model | [3](../../real_research/reviews/alpha2_regulated_limit_2026.py#L3), [83](../../real_research/reviews/alpha2_regulated_limit_2026.py#L83) |
+| [`real_research/reviews/alpha2_wellposedness_2026.py`](../../real_research/reviews/alpha2_wellposedness_2026.py#L522) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [522](../../real_research/reviews/alpha2_wellposedness_2026.py#L522), [526](../../real_research/reviews/alpha2_wellposedness_2026.py#L526) |
+| [`real_research/reviews/mi_gw_ppn_gauntlet_2026.py`](../../real_research/reviews/mi_gw_ppn_gauntlet_2026.py#L2) | cited, named method/model | [2](../../real_research/reviews/mi_gw_ppn_gauntlet_2026.py#L2), [44](../../real_research/reviews/mi_gw_ppn_gauntlet_2026.py#L44), [272](../../real_research/reviews/mi_gw_ppn_gauntlet_2026.py#L272) |
+| [`real_research/reviews/mi_propagator_2026/propagator_compute.py`](../../real_research/reviews/mi_propagator_2026/propagator_compute.py#L2) | cited, named method/model | [2](../../real_research/reviews/mi_propagator_2026/propagator_compute.py#L2), [21](../../real_research/reviews/mi_propagator_2026/propagator_compute.py#L21) |
+| [`real_research/reviews/toe_law/agentDD_vector_carrier.py`](../../real_research/reviews/toe_law/agentDD_vector_carrier.py#L531) | named method/model — Einstein-aether theory and its wave speeds (Jacobson-Mattingly) | [531](../../real_research/reviews/toe_law/agentDD_vector_carrier.py#L531) |

@@ -1,0 +1,15 @@
+# Smarra et al. 2023 — Second Data Release from the European Pulsar Timing Array: Challenging the Ultralight Dark Matter Paradigm
+
+**Reference.** Smarra, C.; Goncharov, B.; Barausse, E.; Antoniadis, J.; Babak, S.; Nielsen, A.-S. B.; Bassa, C. G.; Berthereau, A.; Bonetti, M.; Bortolas, E.; Brook, P. R.; Burgay, M.; Caballero, R. N.; Chalumeau, A.; Champion, D. J.; Chanlaridis, S.; Chen, S.; Cognard, I.; Desvignes, G.; Falxa, M.; Ferdman, R. D.; Franchini, A.; Gair, J. R.; Graikou, E.; Grießmeier, J.-M.; Guillemot, L.; Guo, Y. J.; Hu, H.; Iraci, F.; Izquierdo-Villalba, D.; et al. (72 authors) (2023). Second Data Release from the European Pulsar Timing Array: Challenging the Ultralight Dark Matter Paradigm. *Physical Review Letters* 131, 171001. [doi:10.1103/physrevlett.131.171001](https://doi.org/10.1103/physrevlett.131.171001) [arXiv:2306.16228](https://arxiv.org/abs/2306.16228)
+
+**BibTeX key:** `Smarra2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (72):** Clemente Smarra, Boris Goncharov, [Enrico Barausse](../people/barausse-enrico.md), [J. Antoniadis](../people/antoniadis-john.md), S. Babak, A.-S. Bak Nielsen, [C. G. Bassa](../people/bassa-cees.md), A. Berthereau, [M. Bonetti](../people/bonetti-matteo.md), E. Bortolas, P. R. Brook, [M. Burgay](../people/burgay-m.md), [R. N. Caballero](../people/caballero-r-nicolas.md), A. Chalumeau, [D. J. Champion](../people/champion-david-j.md), S. Chanlaridis, S. Chen, [I. Cognard](../people/cognard-i.md), [G. Desvignes](../people/desvignes-gregory.md), M. Falxa, [R. D. Ferdman](../people/ferdman-r-d.md), A. Franchini, J. R. Gair, E. Graikou, J.-M. Grießmeier, [L. Guillemot](../people/guillemot-l.md), Y. J. Guo, H. Hu, F. Iraci, D. Izquierdo-Villalba, J. Jang, J. Jawor, [G. H. Janssen](../people/janssen-gemma-h.md), [A. Jessner](../people/jessner-axel.md), [R. Karuppusamy](../people/karuppusamy-ramesh.md), E. F. Keane, M. J. Keith, [M. Kramer](../people/kramer-michael.md), M. A. Krishnakumar, K. Lackeos, K. J. Lee, K. Liu, Y. Liu, [A. G. Lyne](../people/lyne-a-g.md), [J. W. McKee](../people/mckee-james-w.md), R. A. Main, M. B. Mickaliger, I. C. Niţu, A. Parthasarathy, [B. B. P. Perera](../people/perera-benetge-b-p.md), D. Perrodin, A. Petiteau, N. K. Porayko, [A. Possenti](../people/possenti-a.md), H. Quelquejay Leclere, A. Samajdar, S. A. Sanidas, A. Sesana, G. Shaifullah, L. Speri, R. Spiewak, [B. W. Stappers](../people/stappers-b-w.md), S. C. Susarla, [G. Theureau](../people/theureau-g.md), C. Tiburzi, E. van der Wateren, A. Vecchio, V. Venkatraman Krishnan, J. Wang, [L. Wang](../people/wang-lingyu.md), [Z. Wu](../people/wu-zihao.md), *European Pulsar Timing Array*
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`real_research/reviews/toe_law/agentI_fraction_amplitude.py`](../../real_research/reviews/toe_law/agentI_fraction_amplitude.py#L80) | cited | [80](../../real_research/reviews/toe_law/agentI_fraction_amplitude.py#L80) |

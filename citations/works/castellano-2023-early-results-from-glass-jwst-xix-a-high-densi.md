@@ -1,0 +1,15 @@
+# Castellano et al. 2023 — Early Results from GLASS-JWST. XIX. A High Density of Bright Galaxies at z ≈ 10 in the A2744 Region
+
+**Reference.** Castellano, M.; Fontana, A.; Treu, T.; Merlin, E.; Santini, P.; Bergamini, P.; Grillo, C.; Rosati, P.; Acebron, A.; Leethochawalit, N.; Paris, D.; Bonchi, A.; Belfiori, D.; Calabrò, A.; Correnti, M.; Nonino, M.; Polenta, G.; Trenti, M.; Boyett, K.; Brammer, G.; Broadhurst, T.; Caminha, G. B.; Chen, W.; Filippenko, A. V.; Fortuni, F.; Glazebrook, K.; Mascia, S.; Mason, C. A.; Menci, N.; Meneghetti, M.; et al. (41 authors) (2023). Early Results from GLASS-JWST. XIX. A High Density of Bright Galaxies at z ≈ 10 in the A2744 Region. *The Astrophysical Journal Letters* 948, L14. [doi:10.3847/2041-8213/accea5](https://doi.org/10.3847/2041-8213/accea5) [arXiv:2212.06666](https://arxiv.org/abs/2212.06666)
+
+**BibTeX key:** `Castellano2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (41):** [Marco Castellano](../people/castellano-marco.md), [Adriano Fontana](../people/fontana-adriano.md), [Tommaso Treu](../people/treu-tommaso.md), [Emiliano Merlin](../people/merlin-emiliano.md), [Paola Santini](../people/santini-paola.md), [Pietro Bergamini](../people/bergamini-pietro.md), [Claudio Grillo](../people/grillo-claudio.md), [Piero Rosati](../people/rosati-piero.md), Ana Acebron, [Nicha Leethochawalit](../people/leethochawalit-nicha.md), [Diego Paris](../people/paris-diego.md), [Andrea Bonchi](../people/bonchi-andrea.md), [Davide Belfiori](../people/belfiori-davide.md), [Antonello Calabrò](../people/calabro-antonello.md), Matteo Correnti, [Mario Nonino](../people/nonino-mario.md), [Gianluca Polenta](../people/polenta-gianluca.md), [Michele Trenti](../people/trenti-michele.md), [Kristan Boyett](../people/boyett-kristan.md), [G. Brammer](../people/brammer-gabriel-b.md), [Tom Broadhurst](../people/broadhurst-tom.md), [Gabriel B. Caminha](../people/caminha-gabriel-b.md), [Wenlei Chen](../people/chen-wenlei.md), [Alexei V. Filippenko](../people/filippenko-alexei-v.md), Flaminia Fortuni, [Karl Glazebrook](../people/glazebrook-karl.md), [Sara Mascia](../people/mascia-sara.md), [Charlotte A. Mason](../people/mason-charlotte-a.md), Nicola Menci, [Massimo Meneghetti](../people/meneghetti-massimo.md), [Amata Mercurio](../people/mercurio-amata.md), Benjamin Metha, [Takahiro Morishita](../people/morishita-takahiro.md), [Themiya Nanayakkara](../people/nanayakkara-themiya.md), [Laura Pentericci](../people/pentericci-laura.md), [Guido Roberts-Borsani](../people/roberts-borsani-guido-w.md), [Namrata Roy](../people/roy-namrata.md), [Eros Vanzella](../people/vanzella-eros.md), [Benedetta Vulcani](../people/vulcani-benedetta.md), [Lilan Yang](../people/yang-lilan.md), [Xin Wang](../people/wang-xin.md)
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`real_research/reviews/bhstar_h2_window_forecast.py`](../../real_research/reviews/bhstar_h2_window_forecast.py#L2) | cited | [2](../../real_research/reviews/bhstar_h2_window_forecast.py#L2) |

@@ -1,12 +1,9 @@
-# Neil Gehrels
+# Neil Gehrels → moved to the verified index
 
-**Affiliation:** NASA Goddard (deceased)
+This page belonged to the previous surname-count index (1 files, 6 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 1 file(s), 6 occurrence(s) across the repo:**
+**People with this surname credited by the scripts:**
 
-**Data/config (1 files):**
+- N. Gehrels — 267 scripts
 
-- [`real_research/data/jpl_comets_sbdb.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/jpl_comets_sbdb.json) — 6×
-
----
-*Living citation page for Neil Gehrels · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

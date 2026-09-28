@@ -1,12 +1,7 @@
-# Kareem El-Badry
+# Kareem El-Badry → moved to the verified index
 
-**Affiliation:** Harvard University
+This page belonged to the previous surname-count index (1 files, 2 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 1 file(s), 2 occurrence(s) across the repo:**
+**Now:** [Kareem El-Badry](../people/el-badry-kareem.md) — 35 scripts, 5 works.
 
-**Python script (1 files):**
-
-- [`prep_2026/gaia_dr4_prep/wide_binary_pipeline.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/gaia_dr4_prep/wide_binary_pipeline.py) — 2×
-
----
-*Living citation page for Kareem El-Badry · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

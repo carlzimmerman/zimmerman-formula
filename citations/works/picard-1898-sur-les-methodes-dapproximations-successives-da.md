@@ -1,0 +1,30 @@
+# Picard 1898 — Sur les Methodes d'Approximations Successives dans la Theorie des Equations Differentielles
+
+**Reference.** Picard, E. (1898). Sur les Methodes d'Approximations Successives dans la Theorie des Equations Differentielles. *American Journal of Mathematics* 20, 87. [doi:10.2307/2369869](https://doi.org/10.2307/2369869)
+
+**BibTeX key:** `Picard1898` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (1):** [Emile Picard](../people/picard-emile.md)
+
+## Used in 16 script(s)
+
+How: named method/model in 16.
+
+| script | how | lines |
+|---|---|---|
+| [`nbody_2026/stage41_convergence_and_footing_audit_2026.py`](../../nbody_2026/stage41_convergence_and_footing_audit_2026.py#L61) | named method/model — Picard iteration (successive approximations for ODEs) | [61](../../nbody_2026/stage41_convergence_and_footing_audit_2026.py#L61), [412](../../nbody_2026/stage41_convergence_and_footing_audit_2026.py#L412) |
+| [`qwen_36_experiment/generate_all_figures.py`](../../qwen_36_experiment/generate_all_figures.py#L828) | named method/model — Picard iteration (successive approximations for ODEs) | [828](../../qwen_36_experiment/generate_all_figures.py#L828), [949](../../qwen_36_experiment/generate_all_figures.py#L949) |
+| [`qwen_36_experiment/tn15_ness_backreaction.py`](../../qwen_36_experiment/tn15_ness_backreaction.py#L22) | named method/model — Picard iteration (successive approximations for ODEs) | [22](../../qwen_36_experiment/tn15_ness_backreaction.py#L22) |
+| [`qwen_36_experiment/tn16_rho_ness_sign.py`](../../qwen_36_experiment/tn16_rho_ness_sign.py#L9) | named method/model — Picard iteration (successive approximations for ODEs) | [9](../../qwen_36_experiment/tn16_rho_ness_sign.py#L9), [97](../../qwen_36_experiment/tn16_rho_ness_sign.py#L97), [145](../../qwen_36_experiment/tn16_rho_ness_sign.py#L145) |
+| [`qwen_36_experiment/tn17_rho_to_nu_neSS.py`](../../qwen_36_experiment/tn17_rho_to_nu_neSS.py#L24) | named method/model — Picard iteration (successive approximations for ODEs) | [24](../../qwen_36_experiment/tn17_rho_to_nu_neSS.py#L24), [30](../../qwen_36_experiment/tn17_rho_to_nu_neSS.py#L30) |
+| [`qwen_36_experiment/tn21_fixed_point_attractor.py`](../../qwen_36_experiment/tn21_fixed_point_attractor.py#L12) | named method/model — Picard iteration (successive approximations for ODEs) | [12](../../qwen_36_experiment/tn21_fixed_point_attractor.py#L12) |
+| [`qwen_36_experiment/tn22_strong_coupling_stability.py`](../../qwen_36_experiment/tn22_strong_coupling_stability.py#L11) | named method/model — Picard iteration (successive approximations for ODEs) | [11](../../qwen_36_experiment/tn22_strong_coupling_stability.py#L11), [61](../../qwen_36_experiment/tn22_strong_coupling_stability.py#L61), [87](../../qwen_36_experiment/tn22_strong_coupling_stability.py#L87), [225](../../qwen_36_experiment/tn22_strong_coupling_stability.py#L225), [277](../../qwen_36_experiment/tn22_strong_coupling_stability.py#L277) |
+| [`qwen_36_experiment/tn25_four_dimensional_deSitter.py`](../../qwen_36_experiment/tn25_four_dimensional_deSitter.py#L139) | named method/model — Picard iteration (successive approximations for ODEs) | [139](../../qwen_36_experiment/tn25_four_dimensional_deSitter.py#L139) |
+| [`qwen_claude_field_theory/closure_2026/g01_strict_aqual.py`](../../qwen_claude_field_theory/closure_2026/g01_strict_aqual.py#L128) | named method/model — Picard iteration (successive approximations for ODEs) | [128](../../qwen_claude_field_theory/closure_2026/g01_strict_aqual.py#L128) |
+| [`qwen_claude_field_theory/closure_2026/sf39_mechanismB_promotion_static_2026.py`](../../qwen_claude_field_theory/closure_2026/sf39_mechanismB_promotion_static_2026.py#L580) | named method/model — Picard iteration (successive approximations for ODEs) | [580](../../qwen_claude_field_theory/closure_2026/sf39_mechanismB_promotion_static_2026.py#L580) |
+| [`real_research/cross_thread_review_2026_09_26/XR24_common.py`](../../real_research/cross_thread_review_2026_09_26/XR24_common.py#L383) | named method/model — Picard iteration (successive approximations for ODEs) | [383](../../real_research/cross_thread_review_2026_09_26/XR24_common.py#L383), [568](../../real_research/cross_thread_review_2026_09_26/XR24_common.py#L568) |
+| [`real_research/reviews/mi_algebraic_disc_escape_2026.py`](../../real_research/reviews/mi_algebraic_disc_escape_2026.py#L713) | named method/model — Picard iteration (successive approximations for ODEs) | [713](../../real_research/reviews/mi_algebraic_disc_escape_2026.py#L713) |
+| [`real_research/reviews/mi_aqual_solve_framework_kernel_2026.py`](../../real_research/reviews/mi_aqual_solve_framework_kernel_2026.py#L15) | named method/model — Picard iteration (successive approximations for ODEs) | [15](../../real_research/reviews/mi_aqual_solve_framework_kernel_2026.py#L15), [117](../../real_research/reviews/mi_aqual_solve_framework_kernel_2026.py#L117) |
+| [`real_research/reviews/mi_route_a_vertical_radial_ratio_2026.py`](../../real_research/reviews/mi_route_a_vertical_radial_ratio_2026.py#L197) | named method/model — Picard iteration (successive approximations for ODEs) | [197](../../real_research/reviews/mi_route_a_vertical_radial_ratio_2026.py#L197) |
+| [`real_research/reviews/mi_trajectory_in_kernel_2026.py`](../../real_research/reviews/mi_trajectory_in_kernel_2026.py#L588) | named method/model — Picard iteration (successive approximations for ODEs) | [588](../../real_research/reviews/mi_trajectory_in_kernel_2026.py#L588), [591](../../real_research/reviews/mi_trajectory_in_kernel_2026.py#L591) |
+| [`real_research/reviews/toe_law/agentX_sk_dynamics.py`](../../real_research/reviews/toe_law/agentX_sk_dynamics.py#L10) | named method/model — Picard iteration (successive approximations for ODEs) | [10](../../real_research/reviews/toe_law/agentX_sk_dynamics.py#L10), [142](../../real_research/reviews/toe_law/agentX_sk_dynamics.py#L142), [159](../../real_research/reviews/toe_law/agentX_sk_dynamics.py#L159) |

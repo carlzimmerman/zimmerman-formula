@@ -1,0 +1,30 @@
+# Rosenberg, Gratton & Efstathiou 2022 — CMB power spectra and cosmological parameters from Planck PR4 with CamSpec
+
+**Reference.** Rosenberg, E.; Gratton, S.; Efstathiou, G. (2022). CMB power spectra and cosmological parameters from Planck PR4 with CamSpec. *Monthly Notices of the Royal Astronomical Society* 517, 4620-4636. [doi:10.1093/mnras/stac2744](https://doi.org/10.1093/mnras/stac2744)
+
+**BibTeX key:** `Rosenberg2022` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (3):** [Erik Rosenberg](../people/rosenberg-erik.md), [Steven Gratton](../people/gratton-steven.md), [George Efstathiou](../people/efstathiou-george.md)
+
+## Used in 16 script(s)
+
+How: data used in 16.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/cmb_audit/t3_low_l_suppression.py`](../../ai_slop/research/cmb_audit/t3_low_l_suppression.py#L11) | data used — Planck PR4 (NPIPE) spectra | [11](../../ai_slop/research/cmb_audit/t3_low_l_suppression.py#L11) |
+| [`ai_slop/research/cmb_predictions/birefringence_tension_analysis.py`](../../ai_slop/research/cmb_predictions/birefringence_tension_analysis.py#L55) | data used — Planck PR4 (NPIPE) spectra | [55](../../ai_slop/research/cmb_predictions/birefringence_tension_analysis.py#L55), [56](../../ai_slop/research/cmb_predictions/birefringence_tension_analysis.py#L56), [62](../../ai_slop/research/cmb_predictions/birefringence_tension_analysis.py#L62) |
+| [`ai_slop/research/cmb_predictions/tensor_scalar_verification.py`](../../ai_slop/research/cmb_predictions/tensor_scalar_verification.py#L63) | data used — Planck PR4 (NPIPE) spectra | [63](../../ai_slop/research/cmb_predictions/tensor_scalar_verification.py#L63) |
+| [`ai_slop/research/experimental_tests/experimental_tests_analysis.py`](../../ai_slop/research/experimental_tests/experimental_tests_analysis.py#L553) | data used — Planck PR4 (NPIPE) spectra | [553](../../ai_slop/research/experimental_tests/experimental_tests_analysis.py#L553), [783](../../ai_slop/research/experimental_tests/experimental_tests_analysis.py#L783) |
+| [`ai_slop/research/frb_analysis/birefringence_null_test.py`](../../ai_slop/research/frb_analysis/birefringence_null_test.py#L492) | data used — Planck PR4 (NPIPE) spectra | [492](../../ai_slop/research/frb_analysis/birefringence_null_test.py#L492) |
+| [`ai_slop/research/offensive_campaign/planck_cmb_fetcher.py`](../../ai_slop/research/offensive_campaign/planck_cmb_fetcher.py#L7) | data used — Planck PR4 (NPIPE) spectra | [7](../../ai_slop/research/offensive_campaign/planck_cmb_fetcher.py#L7), [22](../../ai_slop/research/offensive_campaign/planck_cmb_fetcher.py#L22), [423](../../ai_slop/research/offensive_campaign/planck_cmb_fetcher.py#L423) |
+| [`ai_slop/research/validation_engine/HONESTY_ASSESSMENT.py`](../../ai_slop/research/validation_engine/HONESTY_ASSESSMENT.py#L294) | data used — Planck PR4 (NPIPE) spectra | [294](../../ai_slop/research/validation_engine/HONESTY_ASSESSMENT.py#L294) |
+| [`ai_slop/research/validation_engine/advanced_verification.py`](../../ai_slop/research/validation_engine/advanced_verification.py#L210) | data used — Planck PR4 (NPIPE) spectra | [210](../../ai_slop/research/validation_engine/advanced_verification.py#L210), [257](../../ai_slop/research/validation_engine/advanced_verification.py#L257), [650](../../ai_slop/research/validation_engine/advanced_verification.py#L650) |
+| [`ai_slop/research/validation_engine/comprehensive_verification.py`](../../ai_slop/research/validation_engine/comprehensive_verification.py#L76) | data used — Planck PR4 (NPIPE) spectra | [76](../../ai_slop/research/validation_engine/comprehensive_verification.py#L76), [101](../../ai_slop/research/validation_engine/comprehensive_verification.py#L101), [372](../../ai_slop/research/validation_engine/comprehensive_verification.py#L372), [379](../../ai_slop/research/validation_engine/comprehensive_verification.py#L379) |
+| [`ai_slop/research/z2_testible_predictions/cosmic_birefringence_explained.py`](../../ai_slop/research/z2_testible_predictions/cosmic_birefringence_explained.py#L339) | data used — Planck PR4 (NPIPE) spectra | [339](../../ai_slop/research/z2_testible_predictions/cosmic_birefringence_explained.py#L339) |
+| [`ai_slop/research/z2_testible_predictions/dust_eb_systematic.py`](../../ai_slop/research/z2_testible_predictions/dust_eb_systematic.py#L154) | data used — Planck PR4 (NPIPE) spectra | [154](../../ai_slop/research/z2_testible_predictions/dust_eb_systematic.py#L154) |
+| [`campaign_fresh_gravity/CFG1_evidence_audit.py`](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L771) | data used — Planck PR4 (NPIPE) spectra | [771](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L771) |
+| [`deepseek_push/G04_cmb_lss.py`](../../deepseek_push/G04_cmb_lss.py#L43) | data used — Planck PR4 (NPIPE) spectra | [43](../../deepseek_push/G04_cmb_lss.py#L43) |
+| [`deepseek_push/astra_spawn_ideas/measurement_decade_2017_2026/_catalog/author_2020_2022.py`](../../deepseek_push/astra_spawn_ideas/measurement_decade_2017_2026/_catalog/author_2020_2022.py#L20) | data used — Planck PR4 (NPIPE) spectra | [20](../../deepseek_push/astra_spawn_ideas/measurement_decade_2017_2026/_catalog/author_2020_2022.py#L20), [109](../../deepseek_push/astra_spawn_ideas/measurement_decade_2017_2026/_catalog/author_2020_2022.py#L109), [111](../../deepseek_push/astra_spawn_ideas/measurement_decade_2017_2026/_catalog/author_2020_2022.py#L111), [124](../../deepseek_push/astra_spawn_ideas/measurement_decade_2017_2026/_catalog/author_2020_2022.py#L124) |
+| [`fable_independent_2026/L275_desi_chains_bands.py`](../../fable_independent_2026/L275_desi_chains_bands.py#L5) | data used — Planck PR4 (NPIPE) spectra | [5](../../fable_independent_2026/L275_desi_chains_bands.py#L5), [31](../../fable_independent_2026/L275_desi_chains_bands.py#L31) |
+| [`real_research/cross_thread_review_2026_09_26/XR32_consistency.py`](../../real_research/cross_thread_review_2026_09_26/XR32_consistency.py#L4) | data used — Planck PR4 (NPIPE) spectra | [4](../../real_research/cross_thread_review_2026_09_26/XR32_consistency.py#L4) |

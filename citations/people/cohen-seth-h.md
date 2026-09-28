@@ -1,0 +1,9 @@
+# Seth H. Cohen
+
+Credited in **1** file(s) through **1** work(s) · ORCID [0000-0003-3329-1337](https://orcid.org/0000-0003-3329-1337)
+
+| work | used in | how |
+|---|---:|---|
+| [Arrabal Haro et al. 2023](../works/arrabal-haro-2023-confirmation-and-refutation-of-very-luminous-gal.md) — Confirmation and refutation of very luminous galaxies in the early Universe | 1 | cited |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

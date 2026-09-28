@@ -1,0 +1,16 @@
+# Maiolino et al. 2024 — A small and vigorous black hole in the early Universe
+
+**Reference.** Maiolino, R.; Scholtz, J.; Witstok, J.; Carniani, S.; D’Eugenio, F.; de Graaff, A.; Übler, H.; Tacchella, S.; Curtis-Lake, E.; Arribas, S.; Bunker, A.; Charlot, S.; Chevallard, J.; Curti, M.; Looser, T. J.; Maseda, M. V.; Rawle, T. D.; Rodríguez del Pino, B.; Willott, C. J.; Egami, E.; Eisenstein, D. J.; Hainline, K. N.; Robertson, B.; Williams, C. C.; Willmer, C. N. A.; Baker, W. M.; Boyett, K.; DeCoursey, C.; Fabian, A. C.; Helton, J. M.; et al. (39 authors) (2024). A small and vigorous black hole in the early Universe. *Nature* 627, 59-63. [doi:10.1038/s41586-024-07052-5](https://doi.org/10.1038/s41586-024-07052-5)
+
+**BibTeX key:** `Maiolino2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (39):** [Roberto Maiolino](../people/maiolino-roberto.md), [Jan Scholtz](../people/scholtz-jan-2.md), [Joris Witstok](../people/witstok-joris.md), [Stefano Carniani](../people/carniani-stefano.md), [Francesco D’Eugenio](../people/deugenio-francesco-2.md), [Anna de Graaff](../people/de-graaff-anna.md), [Hannah Übler](../people/ubler-hannah.md), [Sandro Tacchella](../people/tacchella-sandro.md), [Emma Curtis-Lake](../people/curtis-lake-emma.md), [Santiago Arribas](../people/arribas-santiago.md), [Andrew Bunker](../people/bunker-andrew-j.md), [Stéphane Charlot](../people/charlot-stephane.md), [Jacopo Chevallard](../people/chevallard-jacopo.md), [Mirko Curti](../people/curti-mirko.md), [Tobias J. Looser](../people/looser-tobias-j.md), [Michael V. Maseda](../people/maseda-michael-v.md), [Timothy D. Rawle](../people/rawle-timothy-d.md), [Bruno Rodríguez del Pino](../people/rodriguez-del-pino-bruno.md), [Chris J. Willott](../people/willott-chris-j.md), [Eiichi Egami](../people/egami-eiichi.md), [Daniel J. Eisenstein](../people/eisenstein-daniel-j.md), [Kevin N. Hainline](../people/hainline-kevin-n.md), [Brant Robertson](../people/robertson-brant-e.md), [Christina C. Williams](../people/williams-christina-c.md), [Christopher N. A. Willmer](../people/willmer-christopher-n-a.md), [William M. Baker](../people/baker-william-m.md), [Kristan Boyett](../people/boyett-kristan.md), [Christa DeCoursey](../people/decoursey-christa.md), [Andrew C. Fabian](../people/fabian-andrew-c.md), [Jakob M. Helton](../people/helton-jakob-m.md), [Zhiyuan Ji](../people/ji-zhiyuan.md), [Gareth C. Jones](../people/jones-gareth-c.md), [Nimisha Kumari](../people/kumari-nimisha.md), [Nicolas Laporte](../people/laporte-nicolas.md), [Erica J. Nelson](../people/nelson-erica-j.md), [Michele Perna](../people/perna-michele.md), [Lester Sandles](../people/sandles-lester.md), [Irene Shivaei](../people/shivaei-irene.md), [Fengwu Sun](../people/sun-fengwu.md)
+
+## Used in 2 script(s)
+
+How: cited in 2.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/quasars/m_sigma_z2_calculator.py`](../../ai_slop/research/quasars/m_sigma_z2_calculator.py#L232) | cited | [232](../../ai_slop/research/quasars/m_sigma_z2_calculator.py#L232) |
+| [`real_research/reviews/jwst_predictions_comprehensive.py`](../../real_research/reviews/jwst_predictions_comprehensive.py#L80) | cited | [80](../../real_research/reviews/jwst_predictions_comprehensive.py#L80) |

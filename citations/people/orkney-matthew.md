@@ -1,0 +1,9 @@
+# Matthew Orkney
+
+Credited in **1** file(s) through **1** work(s) · affiliation on the cited work(s): Department of Physics, University of Surrey, Guildford GU2 7XH, UK
+
+| work | used in | how |
+|---|---:|---|
+| [Alvey et al. 2020](../works/alvey-2020-new-constraints-on-the-mass-of-fermionic-dark-ma.md) — New constraints on the mass of fermionic dark matter from dwarf spheroidal galaxies | 1 | cited |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

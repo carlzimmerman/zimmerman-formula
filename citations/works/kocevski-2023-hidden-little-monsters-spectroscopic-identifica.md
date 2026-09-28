@@ -1,0 +1,16 @@
+# Kocevski et al. 2023 — Hidden Little Monsters: Spectroscopic Identification of Low-Mass, Broad-Line AGN at $z>5$ with CEERS
+
+**Reference.** Kocevski, D. D.; Onoue, M.; Inayoshi, K.; Trump, J. R.; Haro, P. A.; Grazian, A.; Dickinson, M.; Finkelstein, S. L.; Kartaltepe, J. S.; Hirschmann, M.; Fujimoto, S.; Juneau, S.; Amorin, R. O.; Bagley, M. B.; Barro, G.; Bell, E. F.; Bisigello, L.; Calabro, A.; Cleri, N. J.; Cooper, M. C.; Ding, X.; Grogin, N. A.; Ho, L. C.; Inoue, A. K.; Jiang, L.; Jones, B.; Koekemoer, A. M.; Li, W.; Li, Z.; McGrath, E. J.; et al. (37 authors) (2023). Hidden Little Monsters: Spectroscopic Identification of Low-Mass, Broad-Line AGN at $z>5$ with CEERS. [arXiv:2302.00012](https://arxiv.org/abs/2302.00012)
+
+**BibTeX key:** `Kocevski2023` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** arXiv record, 2026-09-28
+
+**Authors (37):** [Dale D. Kocevski](../people/kocevski-dale-d.md), [Masafusa Onoue](../people/onoue-masafusa.md), [Kohei Inayoshi](../people/inayoshi-kohei.md), [Jonathan R. Trump](../people/trump-jonathan-r.md), [Pablo Arrabal Haro](../people/haro-pablo-arrabal.md), [Andrea Grazian](../people/grazian-andrea.md), [Mark Dickinson](../people/dickinson-mark.md), [Steven L. Finkelstein](../people/finkelstein-steven-l.md), [Jeyhan S. Kartaltepe](../people/kartaltepe-jeyhan-s.md), [Michaela Hirschmann](../people/hirschmann-michaela.md), [Seiji Fujimoto](../people/fujimoto-seiji.md), [Stephanie Juneau](../people/juneau-stephanie.md), [Ricardo O. Amorin](../people/amorin-ricardo-o.md), [Micaela B. Bagley](../people/bagley-micaela-b.md), [Guillermo Barro](../people/barro-guillermo.md), [Eric F. Bell](../people/bell-eric-f.md), [Laura Bisigello](../people/bisigello-laura.md), [Antonello Calabro](../people/calabro-antonello.md), [Nikko J. Cleri](../people/cleri-nikko-j.md), [M. C. Cooper](../people/cooper-michael-c.md), [Xuheng Ding](../people/ding-xuheng.md), [Norman A. Grogin](../people/grogin-norman-a.md), [Luis C. Ho](../people/ho-luis-c.md), [Akio K. Inoue](../people/inoue-akio-k.md), [Linhua Jiang](../people/jiang-linhua.md), [Brenda Jones](../people/jones-brenda.md), [Anton M. Koekemoer](../people/koekemoer-anton-m.md), [Wenxiu Li](../people/li-wenxiu.md), [Zhengrong Li](../people/li-zhengrong.md), [Elizabeth J. McGrath](../people/mcgrath-elizabeth-j.md), [Juan Molina](../people/molina-juan.md), [Casey Papovich](../people/papovich-casey.md), [Pablo G. Perez-Gonzalez](../people/perez-gonzalez-pablo-g.md), [Nor Pirzkal](../people/pirzkal-norbert.md), [Stephen M. Wilkins](../people/wilkins-stephen-m-2.md), [Guang Yang](../people/yang-guang.md), [L. Y. Aaron Yung](../people/yung-l-y-aaron.md)
+
+## Used in 2 script(s)
+
+How: cited in 2.
+
+| script | how | lines |
+|---|---|---|
+| [`campaign_fresh_gravity/CFG1_evidence_audit.py`](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L900) | cited | [900](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L900) |
+| [`real_research/cross_thread_review_2026_09_26/XR23_mass_function_ceiling.py`](../../real_research/cross_thread_review_2026_09_26/XR23_mass_function_ceiling.py#L3) | cited | [3](../../real_research/cross_thread_review_2026_09_26/XR23_mass_function_ceiling.py#L3), [95](../../real_research/cross_thread_review_2026_09_26/XR23_mass_function_ceiling.py#L95) |

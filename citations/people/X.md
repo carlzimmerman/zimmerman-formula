@@ -1,0 +1,58 @@
+# People — X
+
+54 people. [A–Z](README.md)
+
+- [Xavier Prochaska, J.](xavier-prochaska-j.md) — 1 work(s) · 1 scripts
+- Xella, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Xi, Hongwei](xi-hongwei.md) — 1 work(s) · 1 scripts
+- Xia, J. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Xia, Q. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- [Xiang, Maosheng](xiang-maosheng.md) — 3 work(s) · 2 scripts
+- Xiang, X. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- Xiao, L. — author of [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 1 scripts
+- Xiao, L. — author of [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) · 8 scripts
+- Xiao, L. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) · 10 scripts
+- Xiao, L. — author of [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 3 scripts
+- Xiao, L. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Xiao, L. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
+- Xiao, L. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
+- [Xiao, Li](xiao-li.md) — 1 work(s) · 21 scripts
+- Xiao, Liting — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- [Xiao, Mengyuan](xiao-mengyuan.md) — 4 work(s) · 70 scripts
+- Xiao, Q. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
+- Xiao, S. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2017](../works/abbott-2017-gw170814-a-three-detector-observation-of-gravit.md) … · 264 scripts
+- Xiao, Ting — author of [Bundy et al. 2014](../works/bundy-2014-overview-of-the-sdss-iv-manga-survey-mapping-ne.md) · 25 scripts
+- [Xie, Lingxi](xie-lingxi.md) — 1 work(s) · 4 scripts
+- Xie, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Xilouris, E. M.](xilouris-e-m.md) — 1 work(s) · 1 scripts
+- Xin, Bo — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Xing, Xiao-Zheng — author of [Cui et al. 2012](../works/cui-2012-the-large-sky-area-multi-object-fiber-spectrosco.md) · 2 scripts
+- Xing, Y. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- [Xu, B. D.](xu-b-d.md) — 2 work(s) · 5 scripts
+- Xu, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Xu, C. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Xu, C. K. — author of [López-Sanjuan et al. 2012](../works/lopez-sanjuan-2012-the-dominant-role-of-mergers-in-the-size-evoluti.md) · 2 scripts
+- [Xu, C. Kevin](xu-c-kevin.md) — 1 work(s) · 1 scripts
+- [Xu, Canwen](xu-canwen.md) — 2 work(s) · 7 scripts
+- Xu, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 69 scripts
+- Xu, J. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- Xu, Ling-Zhe — author of [Cui et al. 2012](../works/cui-2012-the-large-sky-area-multi-object-fiber-spectrosco.md) · 2 scripts
+- [Xu, Max Wenqiang](xu-max-wenqiang.md) — 1 work(s) · 4 scripts
+- Xu, R. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 4 scripts
+- Xu, V. A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- Xu, W-R. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Xu, W. — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md) · 13 scripts
+- Xu, Weiran — author of [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- [Xu, Weishuang Linda](xu-weishuang-linda.md) — 1 work(s) · 1 scripts
+- Xu, Wenli — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Xu, Xin-Qi — author of [Cui et al. 2012](../works/cui-2012-the-large-sky-area-multi-object-fiber-spectrosco.md) · 2 scripts
+- Xu, Y. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Xu, Y.](xu-y-2.md) — 1 work(s) · 1 scripts
+- Xu, Y. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [Xu, Yan](xu-yan.md) — 3 work(s) · 4 scripts
+- [Xu, Yi](xu-yi.md) — 3 work(s) · 12 scripts
+- Xu, Zhilei — author of [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md), [Madhavacheril et al. 2024](../works/madhavacheril-2024-the-atacama-cosmology-telescope-dr6-gravitation.md), [Aiola et al. 2020](../works/aiola-2020-the-atacama-cosmology-telescope-dr4-maps-and-co.md) … · 15 scripts
+- [Xue, Ling-Qin](xue-ling-qin.md) — 1 work(s) · 1 scripts
+- [Xue, Rui](xue-rui.md) — 2 work(s) · 202 scripts
+- [Xue, Xiang-Xiang](xue-xiang-xiang.md) — 6 work(s) · 12 scripts
+- Xylakis-Dornbusch, Theodora — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts

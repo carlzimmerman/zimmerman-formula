@@ -1,36 +1,9 @@
-# ClearPotential team
+# ClearPotential team → moved to the verified index
 
-**Affiliation:** ClearPotential collaboration
+This page belonged to the previous surname-count index (16 files, 39 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 16 file(s), 39 occurrence(s) across the repo:**
+**Now:** no scanned script uses this person's published work (the old count came from the word appearing in notes, papers or data).
 
-**Data/config (4 files):**
+*Why the old count differed:* 'ClearPotential 2026' is arXiv:2512.09989; its real authors are credited through that paper.
 
-- [`glm53_push/G042_wang_vertical_response_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G042_wang_vertical_response_results.json) — 3×
-- [`glm53_push/G051_master_table.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G051_master_table.json) — 2×
-- [`deepseek_push/G072_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G072_results.json) — 1×
-- [`glm53_push/G062_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G062_results.json) — 1×
-
-**Markdown/notes (3 files):**
-
-- [`glm53_push/G041_literature_sweep_2026H2.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G041_literature_sweep_2026H2.md) — 2×
-- [`glm53_push/STATE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/STATE.md) — 1×
-- [`glm53_push/REFEREE_ATTACKS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/REFEREE_ATTACKS.md) — 1×
-
-**Other (4 files):**
-
-- [`deepseek_push/G072_mw_law.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G072_mw_law.out) — 3×
-- [`glm53_push/G042_wang_vertical_response.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G042_wang_vertical_response.out) — 2×
-- [`deepseek_push/g078_surface_density.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/g078_surface_density.out) — 1×
-- [`glm53_push/G051_master_table.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G051_master_table.out) — 1×
-
-**Python script (5 files):**
-
-- [`glm53_push/G042_wang_vertical_response.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G042_wang_vertical_response.py) — 9×
-- [`glm53_push/G062_mw_test.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G062_mw_test.py) — 6×
-- [`deepseek_push/G072_mw_law.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G072_mw_law.py) — 4×
-- [`deepseek_push/g078_surface_density.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/g078_surface_density.py) — 1×
-- [`glm53_push/G051_master_table.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/glm53_push/G051_master_table.py) — 1×
-
----
-*Living citation page for ClearPotential team · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

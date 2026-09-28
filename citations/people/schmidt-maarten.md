@@ -1,0 +1,11 @@
+# Maarten Schmidt
+
+Credited in **4** file(s) through **3** work(s)
+
+| work | used in | how |
+|---|---:|---|
+| [Schmidt 1959](../works/schmidt-1959-the-rate-of-star-formation.md) — The Rate of Star Formation. | 2 | named method/model |
+| [Kluge et al. 2020](../works/kluge-2020-structure-of-brightest-cluster-galaxies-and-intr.md) — Structure of Brightest Cluster Galaxies and Intracluster Light | 1 | cited |
+| [Kluge et al. 2021](../works/kluge-2021-photometric-dissection-of-intracluster-light-and.md) — Photometric Dissection of Intracluster Light and Its Correlations with Host Cluster Properties | 1 | cited |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

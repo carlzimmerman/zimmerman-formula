@@ -1,0 +1,29 @@
+# Famaey, Pizzuti & Saltas 2025 — Nature of the missing mass of galaxy clusters in MOND: The view from gravitational lensing
+
+**Reference.** Famaey, B.; Pizzuti, L.; Saltas, I. D. (2025). Nature of the missing mass of galaxy clusters in MOND: The view from gravitational lensing. *Physical Review D* 111, 123042. [doi:10.1103/dccw-srks](https://doi.org/10.1103/dccw-srks) [arXiv:2410.02612](https://arxiv.org/abs/2410.02612)
+
+**BibTeX key:** `Famaey2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (3):** [Benoit Famaey](../people/famaey-benoit.md), [Lorenzo Pizzuti](../people/pizzuti-lorenzo.md), [Ippocratis D. Saltas](../people/saltas-ippocratis-d.md)
+
+## Used in 15 script(s)
+
+How: cited in 13, named method/model in 5, cited in a paper in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`fable_independent_2026/L24_lensing_vs_dynamics.py`](../../fable_independent_2026/L24_lensing_vs_dynamics.py#L615) | cited | [615](../../fable_independent_2026/L24_lensing_vs_dynamics.py#L615), [620](../../fable_independent_2026/L24_lensing_vs_dynamics.py#L620) |
+| [`fable_independent_2026/L41_cluster_specification.py`](../../fable_independent_2026/L41_cluster_specification.py#L2) | cited | [2](../../fable_independent_2026/L41_cluster_specification.py#L2), [815](../../fable_independent_2026/L41_cluster_specification.py#L815), [817](../../fable_independent_2026/L41_cluster_specification.py#L817), [853](../../fable_independent_2026/L41_cluster_specification.py#L853), [866](../../fable_independent_2026/L41_cluster_specification.py#L866) |
+| [`opus_48_extended_research/reviews/clash_cluster/aest_mg_vs_mi_residual.py`](../../opus_48_extended_research/reviews/clash_cluster/aest_mg_vs_mi_residual.py#L1) | cited, named method/model | [1](../../opus_48_extended_research/reviews/clash_cluster/aest_mg_vs_mi_residual.py#L1), [39](../../opus_48_extended_research/reviews/clash_cluster/aest_mg_vs_mi_residual.py#L39), [225](../../opus_48_extended_research/reviews/clash_cluster/aest_mg_vs_mi_residual.py#L225) |
+| [`opus_48_extended_research/reviews/clash_cluster/clash_target_profile.py`](../../opus_48_extended_research/reviews/clash_cluster/clash_target_profile.py#L1) | cited | [1](../../opus_48_extended_research/reviews/clash_cluster/clash_target_profile.py#L1) |
+| [`opus_48_extended_research/reviews/clash_cluster/framework_mi_residual.py`](../../opus_48_extended_research/reviews/clash_cluster/framework_mi_residual.py#L1) | cited, named method/model | [1](../../opus_48_extended_research/reviews/clash_cluster/framework_mi_residual.py#L1), [6](../../opus_48_extended_research/reviews/clash_cluster/framework_mi_residual.py#L6), [57](../../opus_48_extended_research/reviews/clash_cluster/framework_mi_residual.py#L57), [141](../../opus_48_extended_research/reviews/clash_cluster/framework_mi_residual.py#L141) |
+| [`opus_48_extended_research/reviews/cluster_closure/target_profile.py`](../../opus_48_extended_research/reviews/cluster_closure/target_profile.py#L155) | cited | [155](../../opus_48_extended_research/reviews/cluster_closure/target_profile.py#L155) |
+| [`opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py`](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L2) | cited, named method/model | [2](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L2), [50](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L50) |
+| [`opus_48_extended_research/reviews/cluster_dsunruh_baryons.py`](../../opus_48_extended_research/reviews/cluster_dsunruh_baryons.py#L213) | cited | [213](../../opus_48_extended_research/reviews/cluster_dsunruh_baryons.py#L213) |
+| [`opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py`](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L42) | cited, named method/model | [42](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L42) |
+| [`opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py`](../../opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py#L2) | cited | [2](../../opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py#L2), [246](../../opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py#L246) |
+| [`opus_48_extended_research/reviews/cluster_stack/cand_i_lensing_vs_dynamics_split.py`](../../opus_48_extended_research/reviews/cluster_stack/cand_i_lensing_vs_dynamics_split.py#L21) | named method/model — Famaey-Pizzuti-Saltas cluster lensing vs MOND | [21](../../opus_48_extended_research/reviews/cluster_stack/cand_i_lensing_vs_dynamics_split.py#L21) |
+| [`opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py`](../../opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py#L1) | cited | [1](../../opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py#L1) |
+| [`opus_48_extended_research/reviews/collective_efe/route2_collective_efe.py`](../../opus_48_extended_research/reviews/collective_efe/route2_collective_efe.py#L1) | cited | [1](../../opus_48_extended_research/reviews/collective_efe/route2_collective_efe.py#L1) |
+| [`qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex`](../../qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex#L405) | cited in a paper — famaey25 | [405](../../qwen_claude_field_theory/papers_2026/PAPER8_complete_theory_2026.tex#L405) |
+| [`real_research/reviews/clusters_eta_audit.py`](../../real_research/reviews/clusters_eta_audit.py#L487) | cited | [487](../../real_research/reviews/clusters_eta_audit.py#L487) |

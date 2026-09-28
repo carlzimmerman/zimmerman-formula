@@ -1,0 +1,385 @@
+# People — O
+
+381 people. [A–Z](README.md)
+
+- O'Brien, Thomas — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) · 381 scripts
+- O'Brient, R. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
+- [O'Connell, Robert W.](oconnell-robert-w.md) — 3 work(s) · 16 scripts
+- O'Connor, C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [O'Donnell, Christine](odonnell-christine.md) — 1 work(s) · 2 scripts
+- O'Donnell, J. H. — author of [DES Collaboration et al. 2026](../works/des-collaboration-2026-dark-energy-survey-year-6-results-cosmological.md) · 1 scripts
+- O'Hanlon, T. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- O'Neal, B. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [O'Neill, Melissa E.](oneill-melissa-e.md) — 1 work(s) · 789 scripts
+- O'Neill, N. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [O'Shea, Brian W](oshea-brian-w.md) — 1 work(s) · 1 scripts
+- O'Shea, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- Oakes, L.b. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 69 scripts
+- Oakham, F.g. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Obadia, N.](obadia-n.md) — 1 work(s) · 1 scripts
+- Obayashi, K. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Obergaulinger, M. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md), [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md), [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 10 scripts
+- Oberlack, H. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oberlack, U. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- Oberling, Jason — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- [Obied, Georges](obied-georges.md) — 1 work(s) · 4 scripts
+- [Obreja, Aura](obreja-aura.md) — 1 work(s) · 1 scripts
+- [Obreschkow, Danail](obreschkow-danail.md) — 7 work(s) · 69 scripts
+- Obuchi, Yoshiyuki — author of [Aihara et al. 2017](../works/aihara-2017-the-hyper-suprime-cam-ssp-survey-overview-and-s.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 34 scripts
+- [Obukhov, A. M.](obukhov-a-m.md) — 2 work(s) · 4 scripts
+- Ocaña, F. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md) · 61 scripts
+- [Ocariz, J.](ocariz-j.md) — 2 work(s) · 69 scripts
+- Ochi, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ochoa, C. E. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Ochsner, E. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 19 scripts
+- [Ocker, Stella Koch](ocker-stella-koch.md) — 2 work(s) · 19 scripts
+- Ocvirk, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- [Oda, Ichiro](oda-ichiro.md) — 1 work(s) · 1 scripts
+- Oda, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Odaka, Hirokazu — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md), [XRISM Collaboration et al. 2025](../works/xrism-collaboration-2025-constraining-gas-motion-and-non-thermal-pressure.md) · 3 scripts
+- Odaka, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Odegard, N.](odegard-n.md) — 2 work(s) · 26 scripts
+- [Odekon, Mary Crone](odekon-mary-crone.md) — 1 work(s) · 5 scripts
+- [Odenkirchen, Michael](odenkirchen-michael.md) — 2 work(s) · 2 scripts
+- Odier, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Odlyzko, Andrew M.](odlyzko-andrew-m.md) — 2 work(s) · 84 scripts
+- [Odom, B.](odom-b.md) — 1 work(s) · 1 scripts
+- Oehmichen, Luis Alberto Garma — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [Oei, Martijn S. S. L.](oei-martijn-s-s-l.md) — 1 work(s) · 1 scripts
+- [Oelker, Eric](oelker-eric.md) — 8 work(s) · 30 scripts
+- Oelpmann, P. — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md) · 13 scripts
+- Oertel, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- [Oesch, Pascal A.](oesch-pascal-a.md) — 15 work(s) · 19 scripts
+- Ofek, E. O. — author of [Kasliwal et al. 2017](../works/kasliwal-2017-illuminating-gravitational-waves-a-concordant-p.md) · 1 scripts
+- [Offringa, A R](offringa-a-r.md) — 1 work(s) · 1 scripts
+- Ogaki, W. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Ogando, R. L. C. — author of [DES Collaboration: T. M. C. Abbott et al. 2024](../works/des-collaboration-t-m-c-abbott-2024-the-dark-energy-survey-cosmology-results-wit.md), [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Chiu et al. 2018](../works/chiu-2018-baryon-content-in-a-sample-of-91-galaxy-clusters.md) … · 131 scripts
+- Oganesyan, Gor — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- Ogawa, Hideo — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md), [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 22 scripts
+- Ogawa, N. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Ogawa, Shoji — author of [XRISM Collaboration et al. 2025](../works/xrism-collaboration-2025-constraining-gas-motion-and-non-thermal-pressure.md) · 1 scripts
+- Ogaz, S. — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md) · 199 scripts
+- Ogburn, R. W. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
+- Ogden, A. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md) · 61 scripts
+- Ogin, Greg H. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 270 scripts
+- Ogorzalek, Anna — author of [XRISM Collaboration et al. 2025](../works/xrism-collaboration-2025-constraining-gas-motion-and-non-thermal-pressure.md) · 1 scripts
+- Ogren, H. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Oguri, Masamune](oguri-masamune.md) — 12 work(s) · 36 scripts
+- Oh, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oh, J. J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Oh, J. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) · 10 scripts
+- Oh, J. J. — author of [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 3 scripts
+- Oh, J. J. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Oh, J. J. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
+- Oh, J. J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md) · 261 scripts
+- Oh, J. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170608-observation-of-a-19-solar-mass-binary.md) · 5 scripts
+- Oh, J. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 4 scripts
+- Oh, J. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
+- Oh, J. J. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- Oh, J. J. — author of [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 1 scripts
+- Oh, J. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) · 8 scripts
+- Oh, J. J. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Oh, J. J. — author of [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 4 scripts
+- Oh, J. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) · 7 scripts
+- Oh, J. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170814-a-three-detector-observation-of-gravit.md) · 7 scripts
+- Oh, J. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md) · 258 scripts
+- Oh, John J. — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Oh, Junghwan — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- [Oh, K. S.](oh-k-s.md) — 3 work(s) · 14 scripts
+- Oh, Minji — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) · 381 scripts
+- [Oh, S-H.](oh-s-h-4.md) — 1 work(s) · 11 scripts
+- [Oh, S.](oh-s.md) — 1 work(s) · 5 scripts
+- Oh, S. — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md) · 199 scripts
+- Oh, S. H. — author of [Abbott et al. 2017](../works/abbott-2017-gw170814-a-three-detector-observation-of-gravit.md) · 7 scripts
+- Oh, S. H. — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md) · 258 scripts
+- Oh, S. H. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) · 10 scripts
+- Oh, S. H. — author of [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 3 scripts
+- Oh, S. H. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Oh, S. H. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
+- Oh, S. H. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Oh, S. H. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md) · 261 scripts
+- Oh, S. H. — author of [Abbott et al. 2017](../works/abbott-2017-gw170608-observation-of-a-19-solar-mass-binary.md) · 5 scripts
+- Oh, S. H. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 4 scripts
+- Oh, S. H. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
+- Oh, S. H. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- Oh, S. H. — author of [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 1 scripts
+- Oh, S. H. — author of [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) · 8 scripts
+- Oh, S. H. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Oh, S. H. — author of [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 4 scripts
+- Oh, S. H. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) · 7 scripts
+- Oh, S.-H. — author of [Koribalski et al. 2020](../works/koribalski-2020-wallaby-an-ska-pathfinder-h-i-survey.md) · 47 scripts
+- Oh, S.h. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oh, Sanghoon H. — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- [Oh, Se-Heon](oh-se-heon.md) — 2 work(s) · 22 scripts
+- [Oh, Semyeong](oh-semyeong.md) — 1 work(s) · 1 scripts
+- [Oh, Seung Joon](oh-seung-joon.md) — 1 work(s) · 1 scripts
+- Oh, Y. D. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Ohashi, M. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) … · 18 scripts
+- Ohashi, T. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 5 scripts
+- Ohishi, N. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Ohkawa, M. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- Ohm, C.c. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Ohmae, Noriaki](ohmae-noriaki.md) — 1 work(s) · 3 scripts
+- Ohme, Frank — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Ohno, M. — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 2 scripts
+- Ohshima, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ohta, Hiroaki — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- Ohta, K. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Oishi, Yukie — author of [Aihara et al. 2017](../works/aihara-2017-the-hyper-suprime-cam-ssp-survey-overview-and-s.md) · 24 scripts
+- Ok, S. — author of [Ramos-Ceja et al. 2026](../works/ramos-ceja-2026-the-srg-erosita-all-sky-survey-dr2-cumulative-x.md) · 2 scripts
+- [Okabe, Nobuhiro](okabe-nobuhiro.md) — 12 work(s) · 34 scripts
+- Okabe, Y. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Okada, A. — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md) · 12 scripts
+- [Okada, Hiroshi](okada-hiroshi.md) — 1 work(s) · 1 scripts
+- Okada, Marcos A. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 269 scripts
+- Okada, Norio — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md) · 103 scripts
+- Okada, T. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Okajima, Takashi — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md), [XRISM Collaboration et al. 2025](../works/xrism-collaboration-2025-constraining-gas-motion-and-non-thermal-pressure.md) · 3 scripts
+- Okamoto, K. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- [Okamoto, Sakurako](okamoto-sakurako.md) — 7 work(s) · 25 scripts
+- [Okamoto, Takemi](okamoto-takemi.md) — 1 work(s) · 1 scripts
+- [Okamura, Sadanori](okamura-sadanori.md) — 4 work(s) · 103 scripts
+- Okamura, W. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Okawa, H. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Okazawa, H. — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md), [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 12 scripts
+- [Okazawa, Susumu](okazawa-susumu.md) — 1 work(s) · 1 scripts
+- Oke, I. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Oke, T.r.](oke-t-r.md) — 1 work(s) · 1 scripts
+- Okino, Hiroki — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Oksuzian, Y. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- [Okubo, Susumu](okubo-susumu.md) — 1 work(s) · 2 scripts
+- Okumura, K. — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md), [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 12 scripts
+- Okumura, Y. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Okura, Yuki](okura-yuki.md) — 3 work(s) · 29 scripts
+- Okusawa, T. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Okutani, Y. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Okutomi, K. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- [Okuyama, Kazumi](okuyama-kazumi.md) — 3 work(s) · 2 scripts
+- Okuyama, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Olariu, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Olchevski, A.g. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Olcina, I. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- [Old, Lyndsay](old-lyndsay.md) — 1 work(s) · 5 scripts
+- Olechowska, A. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md) · 143 scripts
+- Olevitch, M. A. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
+- Olias Sanz, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- [Oliosi, Michele](oliosi-michele.md) — 3 work(s) · 5 scripts
+- [Oliphant, Travis E.](oliphant-travis-e.md) — 2 work(s) · 5181 scripts
+- [Oliva, E.](oliva-e.md) — 1 work(s) · 1 scripts
+- Olivares, Héctor — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Olivares Pino, S.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Olivares, Rodrigo — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- [Olive, Keith A.](olive-keith-a.md) — 6 work(s) · 213 scripts
+- Oliveira, A. C. Silva — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Omori et al. 2026](../works/omori-2026-spt-3g-d1-quadratic-estimator-cmb-lensing-recon.md) · 1 scripts
+- Oliveira, A. S. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Oliveira Damazio, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oliveira, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oliveira, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Oliver Garcia, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oliver, John — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Oliver, Miquel — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 270 scripts
+- Oliver, Seb — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md), [Jarvis et al. 2018](../works/jarvis-2018-the-meerkat-international-ghz-tiered-extragalact.md) · 2 scripts
+- Oliver-Mallory, K. C. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- Oliveri, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 9 scripts
+- Olivetti, Emanuele — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
+- Olivetto, Christian — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- [Olivier, Grace M.](olivier-grace-m.md) — 1 work(s) · 1 scripts
+- Olivier, Scot S. — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Olivito, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Olling, Rob P.](olling-rob-p.md) — 1 work(s) · 1 scripts
+- Olmstead, Matthew D. — author of [Alam et al. 2017](../works/alam-2017-the-clustering-of-galaxies-in-the-completed-sdss.md), [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md), [Betoule et al. 2014](../works/betoule-2014-improved-cosmological-constraints-from-a-joint-a.md) … · 51 scripts
+- Olney, Richard — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md) · 7 scripts
+- [Olsen, Knut A. G.](olsen-knut-a-g.md) — 6 work(s) · 383 scripts
+- Olszewski, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Olszewski, Edward W.](olszewski-edward-w.md) — 19 work(s) · 19 scripts
+- Olszowska, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Olum, Ken D. — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- [Oman, Kyle A.](oman-kyle-a.md) — 11 work(s) · 313 scripts
+- Omarov, Z. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- Omer, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Omont, Alain](omont-alain.md) — 2 work(s) · 2 scripts
+- [Omori, Fusakichi](omori-fusakichi.md) — 1 work(s) · 1 scripts
+- Omori, Kiyoaki C. — author of [Sarrouh et al. 2025](../works/sarrouh-2025-canucs-technicolor-data-release-1-imaging-phot.md) · 1 scripts
+- Omori, Y. — author of [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Bocquet et al. 2024](../works/bocquet-2024-spt-clusters-with-des-and-hst-weak-lensing-ii.md), [Secco et al. 2022](../works/secco-2022-dark-energy-survey-year-3-results-cosmology-fro.md) … · 37 scripts
+- Ong, R. A. — author of [Archambault et al. 2017](../works/archambault-2017-dark-matter-constraints-from-a-joint-analysis-of.md) · 1 scripts
+- Onillon, Anthony — author of [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- Onishi, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Ono, Yoshiaki](ono-yoshiaki.md) — 5 work(s) · 37 scripts
+- [Onodera, Masato](onodera-masato.md) — 5 work(s) · 28 scripts
+- Onofre, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Oñorbe, Jose](onorbe-jose.md) — 8 work(s) · 11 scripts
+- Onori, F. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
+- [Onoue, Masafusa](onoue-masafusa.md) — 3 work(s) · 26 scripts
+- Onyisi, P.u.e. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Ooguri, Hirosi](ooguri-hirosi.md) — 1 work(s) · 4 scripts
+- Oohara, K. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) … · 18 scripts
+- Ooi, C. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- [Oort, J. H.](oort-j-h.md) — 1 work(s) · 8 scripts
+- [Oost, Jacob](oost-jacob.md) — 1 work(s) · 11 scripts
+- [Oosterloo, Tom A](oosterloo-tom-a.md) — 11 work(s) · 112 scripts
+- Oozeer, N. — author of [Jarvis et al. 2018](../works/jarvis-2018-the-meerkat-international-ghz-tiered-extragalact.md) · 1 scripts
+- Ophardt, P. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Oppenheim, Jonathan](oppenheim-jonathan.md) — 1 work(s) · 1 scripts
+- [Oppenheimer, Benjamin D.](oppenheimer-benjamin-d.md) — 1 work(s) · 2 scripts
+- [Oppenheimer, R.](oppenheimer-r.md) — 1 work(s) · 2 scripts
+- Oppermann, Patrick — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 270 scripts
+- Oram, C.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oram, Richard J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Orava, R. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- [Oravetz, Audrey E.](oravetz-audrey-e.md) — 5 work(s) · 31 scripts
+- [Oravetz, Daniel J.](oravetz-daniel-j.md) — 10 work(s) · 91 scripts
+- Ordénovic, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Ordieres-Meré, J. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Ordóñez-Blanco, D. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
+- Oreglia, M.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oren, Y. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Orestano, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Ori, Fabio](ori-fabio.md) — 1 work(s) · 1 scripts
+- [Oria, Pierre-Antoine](oria-pierre-antoine.md) — 2 work(s) · 14 scripts
+- [Origlia, L.](origlia-l.md) — 1 work(s) · 1 scripts
+- Orii, A. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- [Orkney, Matthew](orkney-matthew.md) — 1 work(s) · 1 scripts
+- Orlando, N. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Orloff, J.](orloff-j.md) — 1 work(s) · 1 scripts
+- Orlov, I. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Orlov, V. G.](orlov-v-g.md) — 1 work(s) · 9 scripts
+- Orlowski-Scherer, John — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 19 scripts
+- Orlowski-Sherer, John — author of [Aiola et al. 2020](../works/aiola-2020-the-atacama-cosmology-telescope-dr4-maps-and-co.md) · 3 scripts
+- [Ormerod, Katherine](ormerod-katherine.md) — 1 work(s) · 1 scripts
+- Ormiston, Rich G. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 269 scripts
+- Ormsby, N. D. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- [Ornstein, L. S.](ornstein-l-s.md) — 1 work(s) · 1 scripts
+- Oropeza Barrera, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Orpwood, J. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- Orr, R.s. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Orrù, G. — author of [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaiaearly-data-release-3-acceleration-of-the-so.md) · 39 scripts
+- Orselli, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 9 scripts
+- Ortega, Luis F. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 269 scripts
+- Ortigoza-Urdaneta, Mario — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md) · 7 scripts
+- Ortiz, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Ortiz, Sandra — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Ortiz-León, Gisela N. — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Ortolan, L. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Osar, W. — author of [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 24 scripts
+- [Osato, Ken](osato-ken.md) — 3 work(s) · 29 scripts
+- Osborne, J. P. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- Osborne, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Osborne, S. — author of [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md) · 5 scripts
+- Osculati, B. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oshima, Takuya — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md) · 1774 scripts
+- Oshima, Y. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Oshino, S. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) … · 18 scripts
+- [Oshiro, Peter](oshiro-peter.md) — 3 work(s) · 13 scripts
+- Osier, Shawn — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Osinde, J. O. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- [Osłowski, S.](oslowski-s.md) — 3 work(s) · 4 scripts
+- [Osmond, John P. F.](osmond-john-p-f.md) — 1 work(s) · 3 scripts
+- Osofsky, R. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- Osorio, J. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Osorio, Yeisson — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md), [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 8 scripts
+- Ospanov, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ospina, N. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Ossokine, Serguei — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 269 scripts
+- [Ostheimer, James C.](ostheimer-james-c.md) — 2 work(s) · 1 scripts
+- Osthelder, Charles — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- [Ostriker, Jeremiah P.](ostriker-jeremiah-p.md) — 6 work(s) · 111 scripts
+- [Ostrogradsky, M.](ostrogradsky-m.md) — 1 work(s) · 139 scripts
+- Ostrovska, J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Osumi, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Osumi, Keisuke — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- Osuna, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Oszkiewicz, D. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Ota, I. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Ota, Kazuaki](ota-kazuaki.md) — 1 work(s) · 1 scripts
+- [Ota, Naomi](ota-naomi.md) — 6 work(s) · 144 scripts
+- Otabe, S. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Otero y Garzon, G. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Othman, G. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Otsuka, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Ott, C. D. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- [Ott, Jürgen](ott-jurgen.md) — 1 work(s) · 1 scripts
+- Ottaway, David J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Otte, A. N. — author of [Archambault et al. 2017](../works/archambault-2017-dark-matter-constraints-from-a-joint-analysis-of.md) · 1 scripts
+- Ottens, R. S. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Otter, Justin — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md) · 7 scripts
+- Ottersbach, J.p. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ottnad, K. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- [Otto, Jonah](otto-jonah.md) — 1 work(s) · 1 scripts
+- [Ou, Xiaowei](ou-xiaowei.md) — 3 work(s) · 13 scripts
+- [Ouchi, Masami](ouchi-masami.md) — 6 work(s) · 38 scripts
+- Ouchrif, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ouellette, A. — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Omori et al. 2026](../works/omori-2026-spt-3g-d1-quadratic-estimator-cmb-lensing-recon.md) · 1 scripts
+- Ouellette, E.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ould-Saada, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ouraou, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Outmezguine, Nadav Joseph](outmezguine-nadav-joseph.md) — 1 work(s) · 8 scripts
+- Ouyang, Q. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Ouzounis, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Ouzriat, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Ovcharova, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Overdeck, K. — author of [Tan et al. 2026](../works/tan-2026-delve-milky-way-satellite-galaxy-census-i-sate.md), [Tan et al. 2026](../works/tan-2026-ultra-faint-milky-way-satellites-discovered-in-c.md) · 2 scripts
+- Overmier, Harry — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- [Overstreet, Chris](overstreet-chris.md) — 1 work(s) · 1 scripts
+- Owen, B. J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Owen, B. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) · 10 scripts
+- Owen, B. J. — author of [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 3 scripts
+- Owen, B. J. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
+- Owen, B. J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md) · 261 scripts
+- Owen, B. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170608-observation-of-a-19-solar-mass-binary.md) · 5 scripts
+- Owen, B. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 4 scripts
+- Owen, B. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
+- Owen, B. J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- Owen, B. J. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- Owen, B. J. — author of [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 1 scripts
+- Owen, B. J. — author of [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) · 8 scripts
+- Owen, B. J. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Owen, B. J. — author of [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 4 scripts
+- Owen, B. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) · 7 scripts
+- Owen, B. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170814-a-three-detector-observation-of-gravit.md) · 7 scripts
+- Owen, B. J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md) · 258 scripts
+- Owen, Ben J. — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md) · 3 scripts
+- [Owen, Benjamin J.](owen-benjamin-j.md) — 1 work(s) · 1 scripts
+- Owen, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Owen, Russell E. — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md), [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md), [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) … · 106 scripts
+- Owen, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Owens, Kayla A.](owens-kayla-a.md) — 3 work(s) · 2 scripts
+- [Owers, Matt S](owers-matt-s.md) — 5 work(s) · 23 scripts
+- Oxborrow, C. A. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck2015-results-xviii-background-geometry-a.md) · 14 scripts
+- Oyama, Tomoaki — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Oyama, Y. — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md), [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 12 scripts
+- [Oyarzún, Grecco A.](oyarzun-grecco-a.md) — 1 work(s) · 1 scripts
+- Ozaki, M. — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 2 scripts
+- Ozaki, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- Ozcan, V.e. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Özel, Feryal](ozel-feryal.md) — 3 work(s) · 31 scripts
+- Ozturk, N. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- OʼBrien, B.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- OʼNeil, D.c. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- OʼShea, V. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- O’Beirne, T. — author of [Westmeier et al. 2022](../works/westmeier-2022-wallaby-pilot-survey-public-release-of-h-i-data.md) · 47 scripts
+- O’Brien, Brendan D. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- O’Brien, P. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- O’Brien, S. — author of [Archambault et al. 2017](../works/archambault-2017-dark-matter-constraints-from-a-joint-analysis-of.md) · 1 scripts
+- O’Connell, H. B. — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md) · 195 scripts
+- O’Connell, Julia E. — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md), [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md), [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 10 scripts
+- O’Connell, Ross — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- [O’Connor, Jessica](oconnor-jessica.md) — 1 work(s) · 21 scripts
+- O’Connor, Paul — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- [O’Dea, Christopher P.](odea-christopher-p.md) — 1 work(s) · 1 scripts
+- O’Dea, G. D. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) … · 265 scripts
+- O’Dell, J. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) … · 28 scripts
+- [O’Donoghue, Aileen A.](odonoghue-aileen-a.md) — 2 work(s) · 21 scripts
+- O’Dwyer, I. J. — author of [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md) · 5 scripts
+- O’Flaherty, K. S. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- O’Hare, C. A. J. — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md) · 195 scripts
+- [O’Meara, John M.](omeara-john-m.md) — 3 work(s) · 11 scripts
+- O’Mullane, William — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md), [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 257 scripts
+- [O’Neal-Ault, Kellie](oneal-ault-kellie.md) — 1 work(s) · 1 scripts
+- O’Neill, D. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
+- O’Neill, F. G. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
+- O’Reilly, Brian — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- O’Shaughnessy, Richard — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- O’Shea, E. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- O’Steen, Richard — author of [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) · 199 scripts
+- [O’Sullivan, Ewan](osullivan-ewan.md) — 3 work(s) · 9 scripts
+- O’Sullivan, K. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts

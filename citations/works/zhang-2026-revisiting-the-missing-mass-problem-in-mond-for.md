@@ -1,0 +1,24 @@
+# Zhang, Zonoozi & Kroupa 2026 — Revisiting the missing mass problem in MOND for nearby galaxy clusters
+
+**Reference.** Zhang, D.; Zonoozi, A. H.; Kroupa, P. (2026). Revisiting the missing mass problem in MOND for nearby galaxy clusters. *Physical Review D* 113, 043027. [doi:10.1103/mp3f-q5dc](https://doi.org/10.1103/mp3f-q5dc) [arXiv:2602.06082](https://arxiv.org/abs/2602.06082)
+
+**BibTeX key:** `Zhang2026b` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (3):** [Dong Zhang](../people/zhang-dong.md), [Akram Hasani Zonoozi](../people/zonoozi-akram-hasani.md), [Pavel Kroupa](../people/kroupa-pavel.md)
+
+## Used in 10 script(s)
+
+How: cited in 10, named method/model in 6.
+
+| script | how | lines |
+|---|---|---|
+| [`opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py`](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L117) | cited, named method/model | [117](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L117), [118](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L118), [123](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L123), [225](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L225) |
+| [`opus_48_extended_research/reviews/cluster_dsunruh_baryons.py`](../../opus_48_extended_research/reviews/cluster_dsunruh_baryons.py#L155) | cited | [155](../../opus_48_extended_research/reviews/cluster_dsunruh_baryons.py#L155) |
+| [`opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py`](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L160) | cited, named method/model | [160](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L160), [164](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L164), [166](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L166), [178](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L178), [261](../../opus_48_extended_research/reviews/cluster_explain/route3_literature_sweep.py#L261) |
+| [`opus_48_extended_research/reviews/cluster_hunt2/igimf_integrated_erass1.py`](../../opus_48_extended_research/reviews/cluster_hunt2/igimf_integrated_erass1.py#L1) | cited, named method/model | [1](../../opus_48_extended_research/reviews/cluster_hunt2/igimf_integrated_erass1.py#L1), [2](../../opus_48_extended_research/reviews/cluster_hunt2/igimf_integrated_erass1.py#L2) |
+| [`opus_48_extended_research/reviews/cluster_hunt2/igimf_remnant_core_test.py`](../../opus_48_extended_research/reviews/cluster_hunt2/igimf_remnant_core_test.py#L1) | cited, named method/model | [1](../../opus_48_extended_research/reviews/cluster_hunt2/igimf_remnant_core_test.py#L1), [3](../../opus_48_extended_research/reviews/cluster_hunt2/igimf_remnant_core_test.py#L3) |
+| [`opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py`](../../opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py#L24) | cited, named method/model | [24](../../opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py#L24), [84](../../opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py#L84), [104](../../opus_48_extended_research/reviews/cluster_stack/stack_no_new_particle_core.py#L104) |
+| [`opus_48_extended_research/reviews/no_extra_mass_steelman.py`](../../opus_48_extended_research/reviews/no_extra_mass_steelman.py#L2) | cited | [2](../../opus_48_extended_research/reviews/no_extra_mass_steelman.py#L2), [82](../../opus_48_extended_research/reviews/no_extra_mass_steelman.py#L82), [87](../../opus_48_extended_research/reviews/no_extra_mass_steelman.py#L87) |
+| [`real_research/reviews/alldoors_sweep_2026/c5_bullet_i0_ledger.py`](../../real_research/reviews/alldoors_sweep_2026/c5_bullet_i0_ledger.py#L2) | cited | [2](../../real_research/reviews/alldoors_sweep_2026/c5_bullet_i0_ledger.py#L2), [42](../../real_research/reviews/alldoors_sweep_2026/c5_bullet_i0_ledger.py#L42), [95](../../real_research/reviews/alldoors_sweep_2026/c5_bullet_i0_ledger.py#L95) |
+| [`real_research/reviews/project_erass1_cluster_a0_fork.py`](../../real_research/reviews/project_erass1_cluster_a0_fork.py#L105) | cited | [105](../../real_research/reviews/project_erass1_cluster_a0_fork.py#L105), [127](../../real_research/reviews/project_erass1_cluster_a0_fork.py#L127) |
+| [`real_research/reviews/zhang_kroupa_2026_a0swap_replay.py`](../../real_research/reviews/zhang_kroupa_2026_a0swap_replay.py#L2) | cited, named method/model | [2](../../real_research/reviews/zhang_kroupa_2026_a0swap_replay.py#L2), [3](../../real_research/reviews/zhang_kroupa_2026_a0swap_replay.py#L3) |

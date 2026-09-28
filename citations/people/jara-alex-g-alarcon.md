@@ -1,0 +1,9 @@
+# Alex G. Alarcón Jara
+
+Credited in **2** file(s) through **1** work(s)
+
+| work | used in | how |
+|---|---:|---|
+| [Fu, Simon & Jara 2019](../works/fu-2019-dynamical-histories-of-the-crater-ii-and-hercule.md) — Dynamical Histories of the Crater II and Hercules Dwarf Galaxies | 2 | cited |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

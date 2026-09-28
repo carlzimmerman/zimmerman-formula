@@ -1,0 +1,28 @@
+# Jacobson 2016 — Entanglement Equilibrium and the Einstein Equation
+
+**Reference.** Jacobson, T. (2016). Entanglement Equilibrium and the Einstein Equation. *Physical Review Letters* 116, 201101. [doi:10.1103/physrevlett.116.201101](https://doi.org/10.1103/physrevlett.116.201101) [arXiv:1505.04753](https://arxiv.org/abs/1505.04753) [INSPIRE 1370675](https://inspirehep.net/literature/1370675)
+
+**BibTeX key:** `Jacobson2016` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (1):** [Ted Jacobson](../people/jacobson-ted.md)
+
+## Used in 14 script(s)
+
+How: cited in 1, named method/model in 14.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/original/omega_ratio_complete_proof.py`](../../ai_slop/research/original/omega_ratio_complete_proof.py#L499) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [499](../../ai_slop/research/original/omega_ratio_complete_proof.py#L499) |
+| [`ai_slop/research/original/omega_ratio_derivation.py`](../../ai_slop/research/original/omega_ratio_derivation.py#L507) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [507](../../ai_slop/research/original/omega_ratio_derivation.py#L507) |
+| [`opus_48_extended_research/reviews/toe_law/agentYY_routeEntropy.py`](../../opus_48_extended_research/reviews/toe_law/agentYY_routeEntropy.py#L274) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [274](../../opus_48_extended_research/reviews/toe_law/agentYY_routeEntropy.py#L274) |
+| [`qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py`](../../qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py#L161) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [161](../../qwen_36_experiment/03_kubo_program/tn02_phase34_passivity_theorem.py#L161) |
+| [`qwen_claude_field_theory/closure_2026/trichotomy/exception_hunt_2026.py`](../../qwen_claude_field_theory/closure_2026/trichotomy/exception_hunt_2026.py#L265) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [265](../../qwen_claude_field_theory/closure_2026/trichotomy/exception_hunt_2026.py#L265) |
+| [`real_research/reviews/clean_slate_field_theory.py`](../../real_research/reviews/clean_slate_field_theory.py#L16) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [16](../../real_research/reviews/clean_slate_field_theory.py#L16) |
+| [`real_research/reviews/derive_aest_from_horizon.py`](../../real_research/reviews/derive_aest_from_horizon.py#L43) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [43](../../real_research/reviews/derive_aest_from_horizon.py#L43) |
+| [`real_research/reviews/desitter_complexity_sign.py`](../../real_research/reviews/desitter_complexity_sign.py#L92) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [92](../../real_research/reviews/desitter_complexity_sign.py#L92), [103](../../real_research/reviews/desitter_complexity_sign.py#L103) |
+| [`real_research/reviews/entropy_counting_and_the_cube.py`](../../real_research/reviews/entropy_counting_and_the_cube.py#L34) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [34](../../real_research/reviews/entropy_counting_and_the_cube.py#L34) |
+| [`real_research/reviews/established_paths_to_mond.py`](../../real_research/reviews/established_paths_to_mond.py#L27) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [27](../../real_research/reviews/established_paths_to_mond.py#L27) |
+| [`real_research/reviews/modified_clausius_mond.py`](../../real_research/reviews/modified_clausius_mond.py#L22) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [22](../../real_research/reviews/modified_clausius_mond.py#L22) |
+| [`real_research/reviews/project_entanglement_equilibrium_a0.py`](../../real_research/reviews/project_entanglement_equilibrium_a0.py#L2) | cited, named method/model | [2](../../real_research/reviews/project_entanglement_equilibrium_a0.py#L2), [6](../../real_research/reviews/project_entanglement_equilibrium_a0.py#L6), [60](../../real_research/reviews/project_entanglement_equilibrium_a0.py#L60) |
+| [`real_research/reviews/toe_law/agentQ_jacobson_DL.py`](../../real_research/reviews/toe_law/agentQ_jacobson_DL.py#L6) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [6](../../real_research/reviews/toe_law/agentQ_jacobson_DL.py#L6), [138](../../real_research/reviews/toe_law/agentQ_jacobson_DL.py#L138), [250](../../real_research/reviews/toe_law/agentQ_jacobson_DL.py#L250) |
+| [`real_research/reviews/unification_path_gates.py`](../../real_research/reviews/unification_path_gates.py#L9) | named method/model — Jacobson's thermodynamic / entanglement-equilibrium derivation of Einstein's equation (delta Q = T delta S) | [9](../../real_research/reviews/unification_path_gates.py#L9) |

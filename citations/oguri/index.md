@@ -1,17 +1,9 @@
-# Mitsuaki Oguri
+# Mitsuaki Oguri → moved to the verified index
 
-**Affiliation:** University of Tokyo / Kavli IPMU
+This page belonged to the previous surname-count index (3 files, 74 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 3 file(s), 74 occurrence(s) across the repo:**
+**People with this surname credited by the scripts:**
 
-**Data/config (2 files):**
+- [Masamune Oguri](../people/oguri-masamune.md) — 36 scripts
 
-- [`real_research/data/groener2016_cluster_concentrations.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/groener2016_cluster_concentrations.tsv) — 69×
-- [`real_research/data/groener2016_refs.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/groener2016_refs.tsv) — 3×
-
-**Other (1 files):**
-
-- [`hunt_2026/h88_crispy_gap_concentrations.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h88_crispy_gap_concentrations.out) — 2×
-
----
-*Living citation page for Mitsuaki Oguri · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

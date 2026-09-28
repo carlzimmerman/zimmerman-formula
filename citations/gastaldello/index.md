@@ -1,14 +1,7 @@
-# Fabio Gastaldello
+# Fabio Gastaldello → moved to the verified index
 
-**Affiliation:** INAF, Milan
+This page belonged to the previous surname-count index (3 files, 22 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 3 file(s), 22 occurrence(s) across the repo:**
+**Now:** [Fabio Gastaldello](../people/gastaldello-fabio.md) — 61 scripts, 10 works.
 
-**Data/config (3 files):**
-
-- [`real_research/data/groener2016_cluster_concentrations.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/groener2016_cluster_concentrations.tsv) — 18×
-- [`real_research/data/groener2016_refs.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/groener2016_refs.tsv) — 3×
-- [`real_research/data/humphrey2006_ellipticals.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/humphrey2006_ellipticals.tsv) — 1×
-
----
-*Living citation page for Fabio Gastaldello · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

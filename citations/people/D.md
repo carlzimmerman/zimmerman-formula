@@ -1,0 +1,1010 @@
+# People — D
+
+1006 people. [A–Z](README.md)
+
+- [D'Ambrosio, Fabio](dambrosio-fabio.md) — 1 work(s) · 2 scripts
+- D'Ambrosio, G — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
+- [D'Amico, N.](damico-n.md) — 1 work(s) · 1 scripts
+- d'Assignies, W. — author of [DES Collaboration et al. 2026](../works/des-collaboration-2026-dark-energy-survey-year-6-results-cosmological.md) · 1 scripts
+- [D'Eugenio, F.](deugenio-f.md) — 1 work(s) · 1 scripts
+- [D'Eugenio, Francesco](deugenio-francesco-2.md) — 7 work(s) · 47 scripts
+- [D'Onghia, Elena](donghia-elena.md) — 1 work(s) · 1 scripts
+- [D'Onofrio, M.](donofrio-m.md) — 5 work(s) · 255 scripts
+- da Conceição, L. V. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Da Costa, Gary S.](da-costa-gary-s.md) — 7 work(s) · 71 scripts
+- [da Costa, Luiz Nicolati](da-costa-luiz-nicolati.md) — 41 work(s) · 434 scripts
+- [da Cunha, Elisabete](da-cunha-elisabete.md) — 6 work(s) · 21 scripts
+- Da Cunha Sargedas De Sousa, M.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Da Rio, Nicola — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- Da Silva Costa, C. F. — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) … · 263 scripts
+- da Silva Pereira, M. E. — author of [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Tan et al. 2026](../works/tan-2026-delve-milky-way-satellite-galaxy-census-i-sate.md), [Tan et al. 2026](../works/tan-2026-ultra-faint-milky-way-satellites-discovered-in-c.md) · 33 scripts
+- Da Via, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dabadie, P. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- Dabagov, S. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- Dabbieri, Collin — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
+- [Dabringhausen, Jörg](dabringhausen-jorg.md) — 3 work(s) · 5 scripts
+- Dabrowski, W. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dacunha, T — author of [Shin et al. 2021](../works/shin-2021-the-mass-and-galaxy-distribution-around-sz-selec.md) · 4 scripts
+- [Daddi, Emanuele](daddi-emanuele.md) — 8 work(s) · 30 scripts
+- Dadina, M. — author of [Pian et al. 2017](../works/pian-2017-spectroscopic-identification-of-r-process-nucleo.md) · 1 scripts
+- Dafinca, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dafonte, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Daguisé, Eric — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Dahl, C. E. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- [Dahle, Håkon](dahle-hakon.md) — 4 work(s) · 4 scripts
+- [Dahlen, Dar W.](dahlen-dar-w.md) — 1 work(s) · 5 scripts
+- [Dai, De-Chang](dai-de-chang.md) — 1 work(s) · 3 scripts
+- [Dai, Mi](dai-mi.md) — 2 work(s) · 105 scripts
+- Dai, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dai, Xinyi](dai-xinyi.md) — 1 work(s) · 1 scripts
+- [Dai, Xinyu](dai-xinyu.md) — 1 work(s) · 3 scripts
+- [Dai 戴, Y. Sophia 昱](dai-y-sophia.md) — 2 work(s) · 10 scripts
+- Dai 戴, Yu Sophia 昱 — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [Dal Canton, Tito](dal-canton-tito.md) — 21 work(s) · 273 scripts
+- Dal Pra, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Dalal, Neal](dalal-neal.md) — 3 work(s) · 3 scripts
+- [Dalal, Roohi](dalal-roohi.md) — 4 work(s) · 16 scripts
+- [Dalang, Charles](dalang-charles.md) — 1 work(s) · 1 scripts
+- [Dalcanton, Julianne J.](dalcanton-julianne-j.md) — 8 work(s) · 10 scripts
+- [Dalessandro, E.](dalessandro-e.md) — 2 work(s) · 4 scripts
+- Daley, C. — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Omori et al. 2026](../works/omori-2026-spt-3g-d1-quadratic-estimator-cmb-lensing-recon.md), [Balkenhol et al. 2023](../works/balkenhol-2023-measurement-of-the-cmb-temperature-power-spectru.md) · 2 scripts
+- [Dalgarno, A.](dalgarno-a.md) — 1 work(s) · 1 scripts
+- [Dalibard, Jean](dalibard-jean.md) — 1 work(s) · 1 scripts
+- [Dall'Ora, Massimo](dallora-massimo.md) — 10 work(s) · 1 scripts
+- [Dalla Vecchia, Claudio](dalla-vecchia-claudio.md) — 2 work(s) · 25 scripts
+- Dallapiccola, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dall’Osso, S. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 14 scripts
+- Dalton, Gavin B — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md), [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Daly, Philip N. — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Dálya, Gergely — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- [Dam, Lawrence](dam-lawrence.md) — 1 work(s) · 1 scripts
+- Dam, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dam, P. — author of [Lee et al. 2026](../works/lee-2026-the-alpine-cristal-jwst-survey-gas-phase-abunda.md) · 1 scripts
+- [Dame, T. M.](dame-t-m.md) — 1 work(s) · 1 scripts
+- [Damen, M. C.](damen-m-c.md) — 1 work(s) · 4 scripts
+- Damerdji, Y. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Dameri, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Damiani, D.s. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Damjanov, Ivana](damjanov-ivana.md) — 1 work(s) · 1 scripts
+- Damke, Guillermo — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md) · 7 scripts
+- [Damour, Thibault](damour-thibault.md) — 8 work(s) · 244 scripts
+- Damsted, Sanna B. — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- Dana, Aykutlu — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- Danese, L. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck2015-results-xviii-background-geometry-a.md) · 14 scripts
+- Daneshgaran-Bajastani, Lara M. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- [Danforth, Charles W.](danforth-charles-w.md) — 1 work(s) · 2 scripts
+- Dang, Y. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Danhaive, A Lola](danhaive-a-lola.md) — 5 work(s) · 47 scripts
+- Daniel, Byron A. — author of [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- Daniel, M. K. — author of [Archambault et al. 2017](../works/archambault-2017-dark-matter-constraints-from-a-joint-analysis-of.md) · 1 scripts
+- Daniel, Scott F. — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- [Danieli, Shany](danieli-shany.md) — 8 work(s) · 12 scripts
+- Danielsson, H.o. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Danila, B. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Danilishin, Stefan L. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Danilkin, I. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Danner, O. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Dannerbauer, H.](dannerbauer-h.md) — 2 work(s) · 17 scripts
+- Dannhauer, S. M. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md) · 143 scripts
+- Danto, Pascale — author of [Touboul et al. 2022](../works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md), [Touboul et al. 2017](../works/touboul-2017-microscope-mission-first-results-of-a-space-tes.md) · 32 scripts
+- Danzmann, Karsten — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Dao, V. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dapergolas, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Darbo, G. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Darc, P](darc-p.md) — 1 work(s) · 1 scripts
+- Darlea, G.l. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Darling, Jeremy K.](darling-jeremy-k.md) — 3 work(s) · 28 scripts
+- Darman, N. S. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 18 scripts
+- Darmigny, E. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Darroch, K. E. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- Darsow-Fromm, Christian — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- Dartez, L. P. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Daruich, Felipe — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Darvish, Behnam — author of [Casey et al. 2023](../works/casey-2023-cosmos-web-an-overview-of-the-jwst-cosmic-origi.md) · 2 scripts
+- Darwish, Omar — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 22 scripts
+- [Das, Kaustav K.](das-kaustav-k.md) — 1 work(s) · 1 scripts
+- [Das, P.](das-p.md) — 1 work(s) · 1 scripts
+- Das, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2018](../works/abbott-2018-dark-energy-survey-year-1-results-cosmological.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 8 scripts
+- Das, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Das, Santanu](das-santanu.md) — 2 work(s) · 2 scripts
+- [Das, Subinoy](das-subinoy.md) — 1 work(s) · 1 scripts
+- [Das, Sudeep](das-sudeep.md) — 3 work(s) · 6 scripts
+- Dasgupta, Arnab — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- Dassoulas, J.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Datrier, Laurence E. H. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 24 scripts
+- Datta, Kanan Kumar — author of [Koopmans et al. 2015](../works/koopmans-2015-the-cosmic-dawn-and-epoch-of-reionisation-with-s.md) · 1 scripts
+- Datta, M. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Datta, Rahul — author of [Aiola et al. 2020](../works/aiola-2020-the-atacama-cosmology-telescope-dr4-maps-and-co.md), [De Bernardis et al. 2017](../works/de-bernardis-2017-detection-of-the-pairwise-kinematic-sunyaev-zel.md) · 4 scripts
+- Datta, Sayantani — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Dattilo, Vincenzo — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Daubard, Guillaume — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Daues, Greg — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Daum, M. — author of [Abel et al. 2020](../works/abel-2020-measurement-of-the-permanent-electric-dipole-mom.md) · 2 scripts
+- Daumas, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Dauner, L. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md), [Ramos-Ceja et al. 2026](../works/ramos-ceja-2026-the-srg-erosita-all-sky-survey-dr2-cumulative-x.md) · 143 scripts
+- Dauser, T. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md) · 143 scripts
+- [Davari, Mohammadreza](davari-mohammadreza.md) — 1 work(s) · 1 scripts
+- Davari, N. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [Davari, Zahra](davari-zahra.md) — 2 work(s) · 5 scripts
+- Dave, Ishant — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- [Davé, Romeel](dave-romeel.md) — 8 work(s) · 83 scripts
+- Davelaar, Jordy — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Daveloza, H. P. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Davenport, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- Davenport, James R. A. — author of [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md), [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 8 scripts
+- Davey, W. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- David, A. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- David, John — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
+- [David, L.](david-l.md) — 2 work(s) · 7 scripts
+- David, M. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- David, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Davidek, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Davidson, James W. — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md), [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 5 scripts
+- Davidson Jr., James W. — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md) · 7 scripts
+- Davidson, M. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 277 scripts
+- Davidson, N. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Davidson, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Davidson, Sacha](davidson-sacha.md) — 1 work(s) · 2 scripts
+- Davidzon, I. — author of [de la Torre et al. 2017](../works/de-la-torre-2017-the-vimos-public-extragalactic-redshift-survey.md) · 1 scripts
+- Davier, Michel — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 275 scripts
+- Davies, C.t.h. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Davies, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Davies, Frederick B.](davies-frederick-b.md) — 4 work(s) · 2 scripts
+- Davies, G. Cabourn — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Davies, G. S. — author of [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) · 8 scripts
+- Davies, G. S. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Davies, G. S. — author of [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 4 scripts
+- Davies, G. S. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) · 10 scripts
+- Davies, G. S. — author of [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 3 scripts
+- Davies, G. S. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
+- Davies, G. S. Cabourn — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 15 scripts
+- Davies, Gareth S. — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md) · 3 scripts
+- [Davies, Jonathan](davies-jonathan.md) — 1 work(s) · 21 scripts
+- [Davies, Luke J. M.](davies-luke-j-m.md) — 3 work(s) · 5 scripts
+- Davies, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Davies, P. C. W.](davies-p-c-w.md) — 3 work(s) · 675 scripts
+- [Davies, R.](davies-r.md) — 1 work(s) · 1 scripts
+- [Davies, R.](davies-r-2.md) — 1 work(s) · 10 scripts
+- [Davies, R.](davies-r-3.md) — 1 work(s) · 2 scripts
+- [Davies, R.](davies-r-4.md) — 1 work(s) · 3 scripts
+- [Davies, R.](davies-r-5.md) — 1 work(s) · 2 scripts
+- [Davies, R.](davies-r-6.md) — 1 work(s) · 1 scripts
+- [Davies, R.](davies-r-7.md) — 1 work(s) · 1 scripts
+- [Davies, R.](davies-r-8.md) — 1 work(s) · 71 scripts
+- [Davies, R.](davies-r-9.md) — 1 work(s) · 44 scripts
+- Davies, R. L — author of [Owers et al. 2017](../works/owers-2017-the-sami-galaxy-survey-the-cluster-redshift-sur.md) · 6 scripts
+- [Davies, R. L.](davies-r-l-2.md) — 1 work(s) · 4 scripts
+- [Davies, Rebecca L.](davies-rebecca-l.md) — 7 work(s) · 70 scripts
+- [Davies, Ric](davies-ric.md) — 12 work(s) · 135 scripts
+- [Davies, Richard I.](davies-richard-i.md) — 2 work(s) · 2 scripts
+- [Davies, Roger L.](davies-roger-l.md) — 5 work(s) · 15 scripts
+- Davies, T. F. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Davignon, O. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Davini, S. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 3 scripts
+- Davinson, T. — author of [Mossa et al. 2020](../works/mossa-2020-setup-commissioning-for-an-improved-measurement.md) · 1 scripts
+- Davis, C. — author of [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Chiu et al. 2018](../works/chiu-2018-baryon-content-in-a-sample-of-91-galaxy-clusters.md), [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) … · 50 scripts
+- Davis, Derek — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- Davis Eigenbrot, Arthur — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- Davis, John Eric — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 104 scripts
+- Davis, Kelcey — author of [Finkelstein et al. 2024](../works/finkelstein-2024-the-complete-ceers-early-universe-galaxy-sample.md) · 1 scripts
+- Davis, L. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [Davis, M.](davis-m.md) — 1 work(s) · 1 scripts
+- Davis, M. C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Davis, M. C. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Davis, M. C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [Davis, Marc](davis-marc.md) — 1 work(s) · 1 scripts
+- Davis, Matt — author of [The Astropy Collaboration et al. 2013](../works/the-astropy-collaboration-2013-astropy-a-community-python-package-for-astronom.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 201 scripts
+- Davis, Megan C. — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
+- Davis, P. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Davis, R. J. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck2015-results-xviii-background-geometry-a.md) · 14 scripts
+- [Davis, Tamara M](davis-tamara-m.md) — 21 work(s) · 461 scripts
+- [Davis, Timothy A.](davis-timothy-a.md) — 4 work(s) · 9 scripts
+- Davison, A.r. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Davison, Joe](davison-joe.md) — 2 work(s) · 7 scripts
+- Davison, T. J. R. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
+- [Davisson, C.](davisson-c.md) — 1 work(s) · 1 scripts
+- Davygora, Y. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Daw, Edward J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Dawe, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dawe, John](dawe-john.md) — 1 work(s) · 15 scripts
+- Dawson, I. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dawson, Kyle S.](dawson-kyle-s.md) — 19 work(s) · 466 scripts
+- [Dawson, William A.](dawson-william-a.md) — 2 work(s) · 2 scripts
+- Dax, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- Day, B. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) … · 264 scripts
+- [Day, Cherie K.](day-cherie-k.md) — 4 work(s) · 5 scripts
+- Day, R. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 18 scripts
+- Daya-Ishmukhametova, R.k. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dayal, Pratika](dayal-pratika.md) — 9 work(s) · 11 scripts
+- de Alarcón, P. F. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- [de Amici, G.](de-amici-g.md) — 1 work(s) · 3 scripts
+- de Andrade Queiroz, Anna Barbara — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
+- De Angeli, F. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- de Asmundis, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- de Barbaro, P. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- [de Beer, Stephanie](de-beer-stephanie.md) — 1 work(s) · 13 scripts
+- de Belsunce, R. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md), [DESI Collaboration et al. 2026](../works/desi-collaboration-2026-desi-dr2-results-iv-alcock-paczynski-measuremen.md) · 2 scripts
+- De Bernardis, F. — author of [De Bernardis et al. 2017](../works/de-bernardis-2017-detection-of-the-pairwise-kinematic-sunyaev-zel.md) · 1 scripts
+- de Bernardis, P. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 420 scripts
+- [de Blok, W. J. G.](de-blok-w-j-g.md) — 11 work(s) · 721 scripts
+- de Boer, K. S. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- [de Boer, Thomas J. L.](de-boer-thomas-j-l.md) — 2 work(s) · 2 scripts
+- De Bolle, J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [de Boor, Carl](de-boor-carl.md) — 1 work(s) · 41 scripts
+- [De Breuck, Carlos](de-breuck-carlos.md) — 1 work(s) · 2 scripts
+- [De Broglie, Louis](de-broglie-louis.md) — 1 work(s) · 40 scripts
+- [de Bruijn, N. G.](de-bruijn-n-g.md) — 1 work(s) · 5 scripts
+- [de Bruijne, Jos H. J.](de-bruijne-jos-h-j.md) — 7 work(s) · 277 scripts
+- de Bruyn, A. G. — author of [Koopmans et al. 2015](../works/koopmans-2015-the-cosmic-dawn-and-epoch-of-reionisation-with-s.md) · 1 scripts
+- de Burgos, Abel — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- [de Carvalho, R. R.](de-carvalho-r-r.md) — 1 work(s) · 1 scripts
+- De Castro, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De Cat, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- De Cecco, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De Cesare, G. — author of [Pian et al. 2017](../works/pian-2017-spectroscopic-identification-of-r-process-nucleo.md) · 1 scripts
+- De Cia, A. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
+- [de Doncker-Kapenga, Elise](de-doncker-kapenga-elise.md) — 1 work(s) · 362 scripts
+- [De Felice, Antonio](de-felice-antonio.md) — 4 work(s) · 9 scripts
+- de Felice, F. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Lindegren et al. 2018](../works/lindegren-2018-gaia-data-release-2-the-astrometric-solution.md) · 257 scripts
+- de Florian, D — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
+- de Gouvêa, A — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
+- [de Graaff, Anna](de-graaff-anna.md) — 20 work(s) · 63 scripts
+- de Graat, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [De Grandi, Sabrina](de-grandi-sabrina.md) — 5 work(s) · 270 scripts
+- De Groot, N. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [de Haan, Tijmen](de-haan-tijmen.md) — 8 work(s) · 8 scripts
+- de Haas, Ernst — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md), [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md) · 103 scripts
+- [de Jaeger, Thomas](de-jaeger-thomas.md) — 2 work(s) · 16 scripts
+- [de Jong, Jelte T. A.](de-jong-jelte-t-a.md) — 15 work(s) · 363 scripts
+- de Jong, P. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 84 scripts
+- [de Jong, Roelof S.](de-jong-roelof-s.md) — 3 work(s) · 15 scripts
+- De, K. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Kasliwal et al. 2017](../works/kasliwal-2017-illuminating-gravitational-waves-a-concordant-p.md) · 69 scripts
+- [de Kat, J.](de-kat-j.md) — 1 work(s) · 4 scripts
+- de la Cruz, R. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md) · 1 scripts
+- [de la Macorra, Axel](de-la-macorra-axel.md) — 20 work(s) · 448 scripts
+- De La Taille, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De la Torre, H. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [de la Torre, Sylvain](de-la-torre-sylvain.md) — 8 work(s) · 33 scripts
+- de la Vega, Alexander — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md), [Larson et al. 2023](../works/larson-2023-a-ceers-discovery-of-an-accreting-supermassive-b.md), [Finkelstein et al. 2024](../works/finkelstein-2024-the-complete-ceers-early-universe-galaxy-sample.md) · 201 scripts
+- [de Laplace, Pierre-Simon](de-laplace-pierre-simon.md) — 2 work(s) · 243 scripts
+- [De Laurentis, Mariafelicia](de-laurentis-mariafelicia.md) — 22 work(s) · 275 scripts
+- De Laurentis, Martina — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md) · 3 scripts
+- [de Laverny, Patrick](de-laverny-patrick.md) — 7 work(s) · 277 scripts
+- [De Lee, Nathan](de-lee-nathan.md) — 6 work(s) · 15 scripts
+- De Lillo, F. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) … · 18 scripts
+- De Lillo, Nicola — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- [De Looze, Ilse](de-looze-ilse.md) — 3 work(s) · 3 scripts
+- [De Lorenzi, F.](de-lorenzi-f.md) — 2 work(s) · 69 scripts
+- [De Luca, Valerio](de-luca-valerio.md) — 1 work(s) · 1 scripts
+- [De Lucia, Gabriella](de-lucia-gabriella.md) — 7 work(s) · 9 scripts
+- De Luise, F. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- De March, R. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- [de Marchi, Guido](de-marchi-guido.md) — 2 work(s) · 3 scripts
+- De Marco, F. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 261 scripts
+- de Martino, D. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
+- De Matteis, F. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) … · 18 scripts
+- [de Mattia, Arnaud](de-mattia-arnaud.md) — 13 work(s) · 324 scripts
+- de Mello, G. F. Porto — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- de Melo, C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- de Miranda Cardoso, José Vinícius — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md), [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) · 1870 scripts
+- de Mora, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De, Nikhil — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- De Nooij, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [de Oliveira-Costa, Angélica](de-oliveira-costa-angelica.md) — 1 work(s) · 1 scripts
+- De Paolis, F. — author of [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 1 scripts
+- [de Paz, Armando Gil](de-paz-armando-gil.md) — 3 work(s) · 10 scripts
+- De Pedis, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- de Perio, P. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- [De Petris, M.](de-petris-m.md) — 1 work(s) · 1 scripts
+- de Peyster, Robert — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- De Pietri, Roberto — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- de Plaa, J. — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 2 scripts
+- [De Propris, Roberto](de-propris-roberto.md) — 2 work(s) · 4 scripts
+- de Rafael, E. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- de Ravel, L. — author of [López-Sanjuan et al. 2012](../works/lopez-sanjuan-2012-the-dominant-role-of-mergers-in-the-size-evoluti.md) · 2 scripts
+- [de Rham, Claudia](de-rham-claudia.md) — 3 work(s) · 3 scripts
+- [de Rham, G.](de-rham-g.md) — 1 work(s) · 4 scripts
+- De Ridder, J. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- de Rosa, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md) … · 93 scripts
+- [De Rosa, Gisella](de-rosa-gisella.md) — 2 work(s) · 2 scripts
+- De Rosa, Rosario — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- De Rossi, Camilla — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- De, S. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
+- [de Salas, Pablo F](de-salas-pablo-f.md) — 2 work(s) · 3 scripts
+- De Salvo, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De Sanctis, U. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De Santo, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- De Simone, R. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) … · 18 scripts
+- [de Simoni, F.](de-simoni-f.md) — 1 work(s) · 1 scripts
+- [de Sitter, W.](de-sitter-w.md) — 1 work(s) · 788 scripts
+- De Souza, A. Domiciano — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- de Souza, R S — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 277 scripts
+- de Teodoro, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- de Torres, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 277 scripts
+- de Ugarte-Postigo, A. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- [de Val-Borro, Miguel](de-val-borro-miguel.md) — 4 work(s) · 204 scripts
+- de Varona, Omar — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 268 scripts
+- De Vicente, Juan — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md), [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Grandis et al. 2024](../works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md) … · 413 scripts
+- de Viveiros, L. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- De Vivie De Regie, J.b. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- de Vries, C. P. — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 2 scripts
+- [de Zeeuw, P. T.](de-zeeuw-p-t.md) — 6 work(s) · 264 scripts
+- De Zorzi, G. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Mossa et al. 2020](../works/mossa-2020-setup-commissioning-for-an-improved-measurement.md) · 69 scripts
+- de Zotti, G. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 420 scripts
+- Dean, R. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Deane, Roger — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md), [Jarvis et al. 2018](../works/jarvis-2018-the-meerkat-international-ghz-tiered-extragalact.md) · 11 scripts
+- Dearnaley, W.j. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Deason, Alis J](deason-alis-j.md) — 13 work(s) · 10 scripts
+- [Debattista, Victor P.](debattista-victor-p.md) — 2 work(s) · 1 scripts
+- Debbe, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Debenedetti, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Debevec, P. T. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- DeBoer, David R. — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
+- Debosscher, J. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
+- Debowski, Karol — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md), [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- [DeBra, Dan](debra-dan.md) — 19 work(s) · 272 scripts
+- Debreczeni, G. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 18 scripts
+- deBruin, E. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Debut, Lysandre](debut-lysandre.md) — 3 work(s) · 7 scripts
+- [Debye, P.](debye-p.md) — 1 work(s) · 8 scripts
+- [Decarli, Roberto](decarli-roberto.md) — 8 work(s) · 5 scripts
+- [Decca, R. S.](decca-r-s.md) — 1 work(s) · 1 scripts
+- DeCesar, Megan E. — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- Dechenaux, B. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Decher, R.](decher-r.md) — 1 work(s) · 1 scripts
+- Deconto Machado, Alice — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [DeCoursey, Christa](decoursey-christa.md) — 3 work(s) · 44 scripts
+- Decowski, M. P. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- Dedovich, D.v. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Deelman, E. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) · 7 scripts
+- Deenadayalan, Malathi — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 23 scripts
+- [Deffayet, Cedric](deffayet-cedric.md) — 7 work(s) · 52 scripts
+- Deffert, M. — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md) · 13 scripts
+- [Deg, N.](deg-n.md) — 3 work(s) · 47 scripts
+- Degallaix, Jerome — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- DeGan, Dallas — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- Degaudenzi, H. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Congedo et al. 2026](../works/congedo-2026-euclid-quick-data-release-q1-lensmc-shear.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md) … · 5 scripts
+- Degenaar, Nathalie — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Degenhardt, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Degl’Innocenti, S.](deglinnocenti-s.md) — 1 work(s) · 1 scripts
+- DeGrand, T — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
+- [Dehnen, Walter](dehnen-walter.md) — 4 work(s) · 5 scripts
+- [Deil, Christoph](deil-christoph.md) — 3 work(s) · 203 scripts
+- Deineka, O. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Deiosso, N. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md), [Adame et al. 2025](../works/adame-2025-desi-2024-v-full-shape-galaxy-clustering-from-g.md) … · 239 scripts
+- Deka, U. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [Dekel, Avishai](dekel-avishai.md) — 12 work(s) · 107 scripts
+- Dekker, Hans — author of [Murphy et al. 2022](../works/murphy-2022-fundamental-physics-with-espresso-precise-limit.md) · 1 scripts
+- Del Favero, V. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- [del Olmo, A.](del-olmo-a.md) — 1 work(s) · 2 scripts
+- Del Papa, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- del Peloso, E. F. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md), [Lindegren et al. 2021](../works/lindegren-2021-gaia-early-data-release-3-the-astrometric-solut.md) … · 93 scripts
+- Del Peso, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [del Pino, Andrés](del-pino-andres.md) — 4 work(s) · 6 scripts
+- [Del Pino, Bruno Rodríguez](del-pino-bruno-rodriguez.md) — 6 work(s) · 47 scripts
+- [Del Popolo, Antonino](del-popolo-antonino.md) — 5 work(s) · 12 scripts
+- del Pozo, E. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Del Pozzo, Walter — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Del Prete, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [del Río, Jaime Fernández](del-rio-jaime-fernandez.md) — 1 work(s) · 5148 scripts
+- del Rio, O. M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Delabrouille, J. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 420 scripts
+- [Delange, Hubert](delange-hubert.md) — 1 work(s) · 3 scripts
+- [Delangue, Clement](delangue-clement.md) — 2 work(s) · 7 scripts
+- Delbo, M. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Delchambre, L. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Deléglise, Samuel — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
+- Delemontex, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Delfavero, Matthew — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md), [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) … · 14 scripts
+- [Delfini, Luca](delfini-luca.md) — 1 work(s) · 2 scripts
+- Delgado, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Delgado, David Martinez — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Delgado, Francisco — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Delgado, H. E. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) … · 275 scripts
+- Delgaudio, J. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- [Deligne, Pierre](deligne-pierre.md) — 3 work(s) · 9 scripts
+- Delisle, J.-B. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaiaearly-data-release-3-acceleration-of-the-so.md) · 93 scripts
+- Deliyergiyev, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dell, S. L. O’ — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 2 scripts
+- Della Costa, J. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md), [DESI Collaboration et al. 2026](../works/desi-collaboration-2026-desi-dr2-results-iv-alcock-paczynski-measuremen.md) · 164 scripts
+- Della Morte, M. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Della Pietra, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Della Valle, M. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
+- della Volpe, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dellapenna, Alfred — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Delle Luche, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- [Deller, Adam T.](deller-adam-t.md) — 7 work(s) · 11 scripts
+- DellʼAcqua, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- DellʼAsta, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dell’Agli, Flavia — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [Dell’Antonio, Ian P.](dellantonio-ian-p.md) — 3 work(s) · 10 scripts
+- Dell’Aquila, D. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Dell’Oro, A. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Delmastro, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Delorme, Philippe](delorme-philippe.md) — 1 work(s) · 1 scripts
+- [Delouis, Jean-Marc](delouis-jean-marc.md) — 4 work(s) · 412 scripts
+- Delpierre, P. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Delsart, P.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Delubac, Timothée — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md), [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 383 scripts
+- Deluca, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Demagny, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Demange, Louis — author of [Touboul et al. 2022](../works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md) · 32 scripts
+- DeMarchi, Lindsay M. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- Demarco, R. — author of [Biviano et al. 2013](../works/biviano-2013-clash-vlt-the-mass-velocity-anisotropy-and-ps.md) · 1 scripts
+- [DeMaria, Mark](demaria-mark.md) — 2 work(s) · 2 scripts
+- Demasi, G. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Demasi, Sebastian — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
+- [Demchenko, Vasiliy G.](demchenko-vasiliy-g.md) — 1 work(s) · 1 scripts
+- Demers, S. — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 253 scripts
+- Demichev, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Demina, R. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md) · 164 scripts
+- Demiragli, Z. — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md) · 195 scripts
+- Demirbozan, U. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md) · 1 scripts
+- Demirkoz, B. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Demmel, James W.](demmel-james-w.md) — 2 work(s) · 726 scripts
+- [Démoclès, Jessica](democles-jessica.md) — 1 work(s) · 2 scripts
+- Demorest, Paul B. — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- Demortier, L. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Demos, Nicholas — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- Demouchy, C. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md) · 61 scripts
+- Dempsey, Jessica — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- [den Brok, M.](den-brok-m.md) — 1 work(s) · 4 scripts
+- den Herder, J.-W. — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md) · 2 scripts
+- Dencheva, Nadia — author of [The Astropy Collaboration et al. 2013](../works/the-astropy-collaboration-2013-astropy-a-community-python-package-for-astronom.md), [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md), [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) · 199 scripts
+- [Dénes, H.](denes-h.md) — 4 work(s) · 47 scripts
+- Deng, Heling — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- Deng, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Deng, Meiling — author of [The CHIME/FRB Collaboration et al. 2021](../works/the-chime-frb-collaboration-2021-the-first-chime-frb-fast-radio-burst-catalog.md) · 4 scripts
+- Denig, A. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Deninno, M. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Denison, Edward V. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [Aiola et al. 2020](../works/aiola-2020-the-atacama-cosmology-telescope-dr4-maps-and-co.md), [Schaan et al. 2021](../works/schaan-2021-atacama-cosmology-telescope-combined-kinematic.md) … · 36 scripts
+- Denisov, S.p. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Denker, T. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 268 scripts
+- Denneau, L. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
+- Dennefeld, M. — author of [Smartt et al. 2017](../works/smartt-2017-a-kilonova-as-the-electromagnetic-counterpart-to.md) · 1 scripts
+- [Dennerl, K.](dennerl-k.md) — 6 work(s) · 147 scripts
+- [Denney, Kelly D.](denney-kelly-d.md) — 1 work(s) · 25 scripts
+- [Dent, Thomas](dent-thomas.md) — 21 work(s) · 273 scripts
+- [Depagne, Éric](depagne-eric.md) — 2 work(s) · 204 scripts
+- Depalo, R. — author of [Mossa et al. 2020](../works/mossa-2020-setup-commissioning-for-an-improved-measurement.md) · 1 scripts
+- Depasse, A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) … · 18 scripts
+- DePergola, N. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- DePoy, D. L. — author of [DES Collaboration: T. M. C. Abbott et al. 2024](../works/des-collaboration-t-m-c-abbott-2024-the-dark-energy-survey-cosmology-results-wit.md), [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md), [Abbott et al. 2018](../works/abbott-2018-dark-energy-survey-year-1-results-cosmological.md) … · 84 scripts
+- [Deram, P.](deram-p.md) — 2 work(s) · 1 scripts
+- Derby, J. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md), [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 9 scripts
+- Dereli, H. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Derendarz, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dergachev, V. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
+- Derkaoui, J.e. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Derome, Mark — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
+- DeRosa, R. T. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
+- DeRose, J. — author of [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Grandis et al. 2024](../works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md), [Shin et al. 2021](../works/shin-2021-the-mass-and-galaxy-distribution-around-sz-selec.md) … · 47 scripts
+- Derrick, E. K. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Derue, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dervan, P. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Derwent, Mark — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) · 381 scripts
+- [des Bourboux, Hélion du Mas](des-bourboux-helion-du-mas.md) — 3 work(s) · 22 scripts
+- Des Small — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Desai, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Desai, Shantanu](desai-shantanu.md) — 33 work(s) · 136 scripts
+- DeSalvo, Riccardo — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- DeSantis, D. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Descartes, René](descartes-rene.md) — 1 work(s) · 22 scripts
+- Desch, K. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Deschamps, O.](deschamps-o.md) — 1 work(s) · 1 scripts
+- Descher, Martin — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md), [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- [Descotes-Genon, S.](descotes-genon-s.md) — 1 work(s) · 1 scripts
+- [Deser, S](deser-s.md) — 7 work(s) · 440 scripts
+- Désert, F.-X. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck2015-results-xviii-background-geometry-a.md) · 14 scripts
+- Deshmukh, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Deshmukh, V. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Deshpande, Rohit — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- DeSimone, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- [Desmaison, Alban](desmaison-alban.md) — 1 work(s) · 23 scripts
+- [Desmond, Harry](desmond-harry.md) — 12 work(s) · 241 scripts
+- [Despali, Giulia](despali-giulia.md) — 1 work(s) · 1 scripts
+- [Desprez, Guillaume](desprez-guillaume.md) — 5 work(s) · 6 scripts
+- [Dessart, Luc](dessart-luc.md) — 2 work(s) · 2 scripts
+- [Dessauges-Zavadsky, Miroslava](dessauges-zavadsky-miroslava.md) — 9 work(s) · 9 scripts
+- [Dessert, Christopher](dessert-christopher.md) — 3 work(s) · 5 scripts
+- [Desvignes, Gregory](desvignes-gregory.md) — 6 work(s) · 32 scripts
+- DeTar, C. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Determan, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Dettman, Kyle G.](dettman-kyle-g.md) — 1 work(s) · 102 scripts
+- [Dettmar, R.-J.](dettmar-r-j.md) — 1 work(s) · 5 scripts
+- [Dev, A.](dev-a.md) — 1 work(s) · 3 scripts
+- Devenson, J. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) … · 264 scripts
+- Devetak, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Devillepoix, Hadrien A. R. — author of [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) · 199 scripts
+- Devine, R. C. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 7 scripts
+- [DeVito, Zach](devito-zach.md) — 1 work(s) · 23 scripts
+- Deviveiros, P.o. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Devlin, Mark J.](devlin-mark-j.md) — 17 work(s) · 30 scripts
+- Devoto, F. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Dewhurst, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- DeWilde, B. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [DeWitt, Bryce](dewitt-bryce.md) — 1 work(s) · 2 scripts
+- Dexter, Jason — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Dexter, Matt — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
+- Dexter, Matthew — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
+- Dey, Arjun — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md) … · 436 scripts
+- Dey, Biprateep — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md), [Slepian et al. 2025](../works/slepian-2025-measurement-of-parity-violating-modes-of-the-dar.md) … · 239 scripts
+- Dey, S. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- [Dey, Ujjal Kumar](dey-ujjal-kumar.md) — 1 work(s) · 1 scripts
+- Dhage, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Dhaliwal, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dhani, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Dharmawardena, T. E. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md) · 61 scripts
+- Dhatri, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Dhawan, Suhail](dhawan-suhail.md) — 2 work(s) · 2 scripts
+- [Dhillon, Vik S.](dhillon-vik-s.md) — 1 work(s) · 1 scripts
+- Dhital, Saurav — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- Dhruv, Vedant — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Dhuicque, Océane — author of [Touboul et al. 2022](../works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md) · 32 scripts
+- Dhullipudi, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dhungana, Govinda — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) · 381 scripts
+- Dhurandhar, Sanjeev — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
+- Dhurkunde, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Di Canto, A. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- [Di Cesare, Claudia](di-cesare-claudia.md) — 1 work(s) · 1 scripts
+- Di Cesare, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Di Ciaccio, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Ciaccio, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Di Cintio, Arianna](di-cintio-arianna.md) — 2 work(s) · 4 scripts
+- Di Domizio, S. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 4 scripts
+- Di Donato, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Di Fabrizio, Luca](di-fabrizio-luca.md) — 7 work(s) · 1 scripts
+- Di Falco, S. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- Di Ferdinando, D. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 4 scripts
+- Di Fiore, Luciano — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Di Fronzo, Chiara — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- Di Gangi, P. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- Di Giorgio, A. M. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 4 scripts
+- Di Giorgio, Cinzia — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- Di Giovanni, Fabrizio — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- Di Giovanni, Matteo — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Di Girolamo, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Girolamo, B. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Girolamo, Tristano — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- Di Leva, A. — author of [Mossa et al. 2020](../works/mossa-2020-setup-commissioning-for-an-improved-measurement.md) · 1 scripts
+- Di Lieto, Alberto — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 271 scripts
+- Di Lodovico, F. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Di Luise, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Marcantonio, Paolo — author of [Murphy et al. 2022](../works/murphy-2022-fundamental-physics-with-espresso-precise-limit.md) · 1 scripts
+- [Di Mascolo, L.](di-mascolo-l.md) — 1 work(s) · 1 scripts
+- [Di Matteo, Paola](di-matteo-paola.md) — 7 work(s) · 278 scripts
+- Di Micco, B. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Michele, A. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- [Di Mille, Francesco](di-mille-francesco.md) — 5 work(s) · 14 scripts
+- Di Nardo, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Pace, Sibilla — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Di Palma, Irene — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Di Paola, A. — author of [Pian et al. 2017](../works/pian-2017-spectroscopic-identification-of-r-process-nucleo.md) · 1 scripts
+- [Di Paolo, Chiara](di-paolo-chiara.md) — 1 work(s) · 2 scripts
+- Di Pede, S. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- Di Piero, D. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Di Porto, Cinzia — author of [The Euclid Theory Working Group et al. 2018](../works/the-euclid-theory-working-group-2018-cosmology-and-fundamental-physics-with-the.md) · 1 scripts
+- Di Renzo, Francesco — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 271 scripts
+- [Di Ruscio, A.](di-ruscio-a.md) — 4 work(s) · 4 scripts
+- Di Ruzza, B. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Di Sciascio, G. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- Di Simone, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Di Sipio, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Di Stefano, Rosanne](di-stefano-rosanne.md) — 1 work(s) · 1 scripts
+- [Di Teodoro, Enrico M.](di-teodoro-enrico-m.md) — 9 work(s) · 20 scripts
+- [Di Valentino, Eleonora](di-valentino-eleonora.md) — 10 work(s) · 435 scripts
+- Di Virgilio, A. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 18 scripts
+- Diab, R. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- [Diaferio, Antonaldo](diaferio-antonaldo.md) — 14 work(s) · 33 scripts
+- Diakite, S. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- [Dial, Tyson](dial-tyson.md) — 1 work(s) · 1 scripts
+- Diamond, P. Z. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Diamond-Stanic, Aleksandar M. — author of [Bundy et al. 2014](../works/bundy-2014-overview-of-the-sdss-iv-manga-survey-mapping-ne.md), [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md), [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 29 scripts
+- Díaz Barrero, D. — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md) · 13 scripts
+- Diaz, C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Diaz, J. Casanueva — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) … · 270 scripts
+- Diaz, J. J. — author of [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 1 scripts
+- Diaz, Julia Casanueva — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md) · 3 scripts
+- Díaz, M. C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Díaz, M. C. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) · 10 scripts
+- Díaz, M. C. — author of [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 3 scripts
+- Díaz, M. C. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) · 10 scripts
+- Díaz, M. C. — author of [Abbott et al. 2019](../works/abbott-2019-gwtc-1-a-gravitational-wave-transient-catalog-o.md) · 8 scripts
+- Díaz, M. C. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md) · 261 scripts
+- Díaz, M. C. — author of [Abbott et al. 2017](../works/abbott-2017-gw170608-observation-of-a-19-solar-mass-binary.md) · 5 scripts
+- Díaz, M. C. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 4 scripts
+- Díaz, M. C. — author of [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) · 10 scripts
+- Díaz, M. C. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- Díaz, M. C. — author of [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) · 4 scripts
+- Díaz, M. C. — author of [Abbott et al. 2019](../works/abbott-2019-tests-of-general-relativity-with-the-binary-blac.md) · 1 scripts
+- Díaz, M. C. — author of [Abbott et al. 2020](../works/abbott-2020-gw190412-observation-of-a-binary-black-hole-coa.md) · 8 scripts
+- Díaz, M. C. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Díaz, M. C. — author of [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 4 scripts
+- Díaz, M. C. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) · 7 scripts
+- Díaz, M. C. — author of [Abbott et al. 2017](../works/abbott-2017-gw170814-a-three-detector-observation-of-gravit.md) · 7 scripts
+- Díaz, M. C. — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md) · 258 scripts
+- Diaz, M.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Díaz, Mariana Cano — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
+- Díaz, Mario C. — author of [Abbott et al. 2021](../works/abbott-2021-open-data-from-the-first-and-second-observing-ru.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Diaz-Ortiz, M. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 14 scripts
+- Díaz-Sánchez, A. — author of [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 2 scripts
+- [Díaz-Santos, Tanio](diaz-santos-tanio.md) — 4 work(s) · 4 scripts
+- Dibert, K. R. — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Omori et al. 2026](../works/omori-2026-spt-3g-d1-quadratic-estimator-cmb-lensing-recon.md), [Balkenhol et al. 2023](../works/balkenhol-2023-measurement-of-the-cmb-temperature-power-spectru.md) · 2 scripts
+- [Dicke, R. H.](dicke-r-h.md) — 1 work(s) · 15 scripts
+- Dicker, Simon R. — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 19 scripts
+- Dickinson, C. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md) · 14 scripts
+- [Dickinson, Mark](dickinson-mark.md) — 10 work(s) · 31 scripts
+- [Dickson, L. E.](dickson-l-e.md) — 1 work(s) · 5 scripts
+- [Dickson, N](dickson-n.md) — 1 work(s) · 2 scripts
+- Dicorato, M. A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Dideron, G. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- Didio, N. A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- [Diederik Kruijssen, J. M.](diederik-kruijssen-j-m.md) — 1 work(s) · 3 scripts
+- [Diego, Jose M.](diego-jose-m.md) — 11 work(s) · 423 scripts
+- [Diego-Palazuelos, P.](diego-palazuelos-p.md) — 1 work(s) · 3 scripts
+- Diehl, E.b. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Diehl, H. T. — author of [DES Collaboration: T. M. C. Abbott et al. 2024](../works/des-collaboration-t-m-c-abbott-2024-the-dark-energy-survey-cosmology-results-wit.md), [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Chiu et al. 2018](../works/chiu-2018-baryon-content-in-a-sample-of-91-galaxy-clusters.md) … · 130 scripts
+- Diehl, R. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md) · 261 scripts
+- [Diehl, S](diehl-s.md) — 1 work(s) · 2 scripts
+- [Diemand, J.](diemand-j.md) — 1 work(s) · 1 scripts
+- [Diemer, Benedikt](diemer-benedikt.md) — 3 work(s) · 7 scripts
+- Diener, C. — author of [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) … · 96 scripts
+- [Dienes, Keith R.](dienes-keith-r.md) — 1 work(s) · 1 scripts
+- [Dierckx, Paul](dierckx-paul.md) — 1 work(s) · 10 scripts
+- Dierickx, M. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
+- Dietl, J. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md), [Ramos-Ceja et al. 2026](../works/ramos-ceja-2026-the-srg-erosita-all-sky-survey-dr2-cumulative-x.md) · 143 scripts
+- Dietrich, Jörg P. — author of [Virtanen et al. 2020](../works/virtanen-2020-scipy-1-0-fundamental-algorithms-for-scientific.md), [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md), [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) … · 1966 scripts
+- [Dietrich, Matthias](dietrich-matthias.md) — 1 work(s) · 1 scripts
+- Dietrich, Tim — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md) … · 267 scripts
+- Dietzsch, T.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Diez-Tejedor, Alberto](diez-tejedor-alberto.md) — 1 work(s) · 1 scripts
+- DiFronzo, C. — author of [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) · 5 scripts
+- [Digani, Jagrit](digani-jagrit.md) — 1 work(s) · 4 scripts
+- Digel, Seth W. — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Diglio, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 69 scripts
+- Diksha, D. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- Dilday, Ben — author of [Abazajian et al. 2009](../works/abazajian-2009-the-seventh-data-release-of-the-sloan-digital-sk.md) · 6 scripts
+- Dillon, Joshua S. — author of [The HERA Collaboration et al. 2023](../works/the-hera-collaboration-2023-improved-constraints-on-the-21-cm-eor-power-spec.md) · 1 scripts
+- Dillon, Sean — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [Dimitriadis, Georgios](dimitriadis-georgios.md) — 3 work(s) · 105 scripts
+- [Dimopoulos, Savas](dimopoulos-savas.md) — 1 work(s) · 4 scripts
+- Dindar Yagci, K. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dinescu, D. I.](dinescu-d-i.md) — 1 work(s) · 1 scripts
+- Ding, Binlei — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- Ding, C. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md) · 1 scripts
+- [Ding, Dejian](ding-dejian.md) — 1 work(s) · 1 scripts
+- Ding, J. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md), [Ding et al. 2025](../works/ding-2025-the-draco-dwarf-spheroidal-galaxy-in-the-first-y.md) … · 8 scripts
+- [Ding, Xuheng](ding-xuheng.md) — 3 work(s) · 7 scripts
+- Ding, Zhejie — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md) … · 436 scripts
+- Dingfelder, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dinis, J. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration: et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlvi-the-near-infrared-back.md) · 3 scripts
+- Dinut, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dionies, Frank — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Dionisi, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Diósi, L.](diosi-l.md) — 1 work(s) · 2 scripts
+- [Dirac, Paul Adrien Maurice](dirac-paul-adrien-maurice.md) — 3 work(s) · 289 scripts
+- [Dirichlet, Peter Gustav Lejeune](dirichlet-peter-gustav-lejeune.md) — 2 work(s) · 36 scripts
+- [Dirsch, Boris](dirsch-boris.md) — 1 work(s) · 1 scripts
+- Disseau, Karen — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Distefano, E. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- [Distler, Jacques](distler-jacques.md) — 1 work(s) · 5 scripts
+- Dita, P. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dita, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [DiTeodoro, E. M.](diteodoro-e-m.md) — 1 work(s) · 5 scripts
+- Dittmann, J. R. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- Dittus, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dittus, Hansjoerg — author of [Touboul et al. 2022](../works/touboul-2022-m-i-c-r-o-s-c-o-p-e-mission-final-results-of-th.md), [Touboul et al. 2017](../works/touboul-2017-microscope-mission-first-results-of-a-space-tes.md) · 32 scripts
+- Divakarla, Atul K. — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- [DiVincenzo, David](divincenzo-david.md) — 1 work(s) · 2 scripts
+- Divyajyoti — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- [Dixon, L.](dixon-l.md) — 2 work(s) · 10 scripts
+- [Dixon, Mitchell](dixon-mitchell.md) — 3 work(s) · 76 scripts
+- Djama, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Djobava, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Djorgovski, S. G.](djorgovski-s-g.md) — 6 work(s) · 12 scripts
+- Dmitriev, Artemiy — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 23 scripts
+- [Do, A.](do-a.md) — 1 work(s) · 1 scripts
+- do Nascimento, Janaina Correa — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [Do, T.](do-t.md) — 1 work(s) · 1 scripts
+- do Vale, M.a.b. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Do Valle Wemans, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Doan, T.k.o. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dobbs, Matt — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md), [The CHIME/FRB Collaboration et al. 2021](../works/the-chime-frb-collaboration-2021-the-first-chime-frb-fast-radio-burst-catalog.md), [Bocquet et al. 2024](../works/bocquet-2024-spt-clusters-with-des-and-hst-weak-lensing-ii.md) … · 78 scripts
+- Dobi, A. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
+- Dobie, D. — author of [Kasliwal et al. 2017](../works/kasliwal-2017-illuminating-gravitational-waves-a-concordant-p.md) · 1 scripts
+- Dobinson, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dobkin, David P.](dobkin-david-p.md) — 1 work(s) · 1 scripts
+- Dobos, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dobrescu, Bogdan A.](dobrescu-bogdan-a.md) — 3 work(s) · 207 scripts
+- Dobson, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dobson, J. E. Y. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- Docherty, J. P. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Doctor, Zoheyr](doctor-zoheyr.md) — 20 work(s) · 272 scripts
+- Dodd, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dodelson, Scott](dodelson-scott.md) — 23 work(s) · 127 scripts
+- Dodson, R. — author of [Bannister et al. 2019](../works/bannister-2019-a-single-fast-radio-burst-localized-to-a-massive.md) · 1 scripts
+- Doe, Peter J. — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md), [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- Doel, Peter — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-dr2-results-ii-measurements-of-baryon-aco.md), [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-desi-2024-vi-cosmological-constraints-from-the.md) … · 474 scripts
+- Doeleman, Sheperd S. — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Doerksen, N. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Doglioni, C. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dogruel, Burak — author of [Driver et al. 2022](../works/driver-2022-galaxy-and-mass-assembly-gama-data-release-4.md) · 2 scripts
+- Doherty, Peter — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Doherty, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dohmae, T. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dohmen, E. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- [Doi, Mamoru](doi-mamoru.md) — 5 work(s) · 104 scripts
+- Doi, Y. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dojcinoski, G. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) · 18 scripts
+- Doke, A. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- Doki, W. — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md) · 12 scripts
+- [Dolag, Klaus](dolag-klaus.md) — 10 work(s) · 201 scripts
+- Dolch, Timothy — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- Dolding, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 278 scripts
+- Dole, H. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck2015-results-xviii-background-geometry-a.md) … · 19 scripts
+- Dolejsi, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dolenc, I. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Doleva, P. P. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- Dolezal, Z. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dolgachev, V. P.](dolgachev-v-p.md) — 1 work(s) · 1 scripts
+- Dolgoshein, B.a. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dolique, V. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
+- Doliva-Dolinsky, A. — author of [Tan et al. 2026](../works/tan-2026-delve-milky-way-satellite-galaxy-census-i-sate.md) · 2 scripts
+- [Doll, Andreas](doll-andreas.md) — 1 work(s) · 6 scripts
+- [Doll, Goran](doll-goran.md) — 2 work(s) · 3 scripts
+- [Dolphin, Andrew E.](dolphin-andrew-e.md) — 6 work(s) · 9 scripts
+- Dombeck, Tom — author of [York et al. 2000](../works/york-2000-the-sloan-digital-sky-survey-technical-summary.md) · 103 scripts
+- [Domènech, Guillem](domenech-guillem.md) — 1 work(s) · 2 scripts
+- Domingo, A. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md) · 261 scripts
+- Domingues, C. D. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Dominguez, C.a. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- [Domínguez-Fernández, P.](dominguez-fernandez-p.md) — 1 work(s) · 2 scripts
+- Domínguez-Gómez, Jesús — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- Domínguez-Palmero, Lilian — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- [Domozhilova, L. M.](domozhilova-l-m.md) — 1 work(s) · 1 scripts
+- Donadelli, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Donagi, Ron](donagi-ron.md) — 1 work(s) · 1 scripts
+- Donahue, L. — author of [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 3 scripts
+- [Donahue, Megan](donahue-megan.md) — 7 work(s) · 28 scripts
+- Donath, Axel — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md), [The Astropy Collaboration et al. 2022](../works/the-astropy-collaboration-2022-the-astropy-project-sustaining-and-growing-a-co.md) · 199 scripts
+- Donati, S. — author of [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md), [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 25 scripts
+- [Donato, F.](donato-f.md) — 1 work(s) · 10 scripts
+- Done, Chris — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md), [XRISM Collaboration et al. 2025](../works/xrism-collaboration-2025-constraining-gas-motion-and-non-thermal-pressure.md) · 3 scripts
+- [Donelan, M. A.](donelan-m-a.md) — 1 work(s) · 1 scripts
+- [Dong, F. (Adam)](dong-f-adam.md) — 1 work(s) · 1 scripts
+- [Dong, Yiming](dong-yiming.md) — 1 work(s) · 2 scripts
+- [Dongarra, J.](dongarra-j.md) — 1 work(s) · 697 scripts
+- Donini, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Donley, Jennifer L.](donley-jennifer-l.md) — 1 work(s) · 1 scripts
+- [Donnan, Callum T.](donnan-callum-t.md) — 3 work(s) · 4 scripts
+- [Donoghue, John F.](donoghue-john-f.md) — 1 work(s) · 1 scripts
+- Donor, John — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md), [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md), [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 12 scripts
+- [Donovan, David](donovan-david.md) — 1 work(s) · 3 scripts
+- Donovan, Fred — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Donzelli, S. — author of [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck-2015-results-xiii-cosmological-paramete.md), [Planck Collaboration et al. 2014](../works/planck-collaboration-2014-planck-2013-results-xvi-cosmological-parameter.md), [Planck Collaboration et al. 2016](../works/planck-collaboration-2016-planck2015-results-xviii-background-geometry-a.md) · 14 scripts
+- Doohan, M. — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Omori et al. 2026](../works/omori-2026-spt-3g-d1-quadratic-estimator-cmb-lensing-recon.md) · 1 scripts
+- Doohyun Choi, Peter — author of [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 1 scripts
+- [Dooley, Gregory A](dooley-gregory-a.md) — 1 work(s) · 1 scripts
+- Dooley, Katherine L. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Dooney, T. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 9 scripts
+- [Dopita, Michael A.](dopita-michael-a.md) — 2 work(s) · 2 scripts
+- Dopke, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Doppel, Jessica E.](doppel-jessica-e.md) — 1 work(s) · 1 scripts
+- [Doppler, Christian](doppler-christian.md) — 1 work(s) · 39 scripts
+- [Doran, Michael](doran-michael.md) — 1 work(s) · 11 scripts
+- Doravari, Suresh — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- [Dorda, G.](dorda-g.md) — 1 work(s) · 12 scripts
+- Dorda, Ricardo — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- Doré, O. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 420 scripts
+- Doria, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dorigo, M. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- [Dormand, J.r.](dormand-j-r.md) — 2 work(s) · 240 scripts
+- Dornbusch, Sven — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Dorokhov, A.e. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- Dorosh, O. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- Doroshenko, V. — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md) · 143 scripts
+- Dorrington, Iain — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 269 scripts
+- [Dörscher, S.](dorscher-s.md) — 1 work(s) · 1 scripts
+- Dos Anjos, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dos Anjos, S. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- dos Santos, J. M. F. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- Döscher, Daniel — author of [De Jong et al. 2019](../works/de-jong-2019-4most-project-overview-and-information-for-the.md) · 1 scripts
+- Doser, M — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
+- Doshi, M. — author of [DESI Collaboration et al. 2026](../works/desi-collaboration-2026-desi-dr2-results-iv-alcock-paczynski-measuremen.md) · 1 scripts
+- Doshi, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Dosopoulou, F. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Dotani, Tadayasu — author of [Aharonian et al. 2017](../works/aharonian-2017-hitomi-constraints-on-the-3-5-kev-line-in-the-pe.md), [XRISM Collaboration et al. 2025](../works/xrism-collaboration-2025-constraining-gas-motion-and-non-thermal-pressure.md) · 3 scripts
+- [Dotter, Aaron L.](dotter-aaron-l.md) — 1 work(s) · 1 scripts
+- Dotti, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Doubrawa, L](doubrawa-l.md) — 1 work(s) · 1 scripts
+- Dougal, Sean — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- [Douglas, Michael R.](douglas-michael-r.md) — 1 work(s) · 1 scripts
+- [Douglas, Nigel G.](douglas-nigel-g.md) — 3 work(s) · 1 scripts
+- Douglas, R. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
+- [Douglas, Tim](douglas-tim.md) — 1 work(s) · 1 scripts
+- Douglass, K. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md) · 1 scripts
+- [Douspis, M.](douspis-m.md) — 7 work(s) · 426 scripts
+- Doussot, A. — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Balkenhol et al. 2023](../works/balkenhol-2023-measurement-of-the-cmb-temperature-power-spectru.md) · 2 scripts
+- Doux, C. — author of [DES Collaboration: T. M. C. Abbott et al. 2024](../works/des-collaboration-t-m-c-abbott-2024-the-dark-energy-survey-cosmology-results-wit.md), [Abbott et al. 2022](../works/abbott-2022-dark-energy-survey-year-3-results-cosmological.md), [Grandis et al. 2024](../works/grandis-2024-the-srg-erosita-all-sky-survey-dark-energy-surv.md) … · 119 scripts
+- Dova, M.t. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dovale Álvarez, M. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) … · 264 scripts
+- Dow, Peter — author of [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) · 5 scripts
+- Dowell, J.d. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dowicz, M. — author of [DESI Collaboration et al. 2025](../works/desi-collaboration-2025-data-release-1-of-the-dark-energy-spectroscopic.md) · 1 scripts
+- Downes, Thomas P. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 270 scripts
+- [Downs, G. S.](downs-g-s.md) — 1 work(s) · 7 scripts
+- Doxiadis, A.d. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Doyle, A.t. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Doyle, R. A. — author of [Fukuda et al. 1998](../works/fukuda-1998-evidence-for-oscillation-of-atmospheric-neutrino.md) · 12 scripts
+- Doyle, W. J. D. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md) · 6 scripts
+- Doyon, René — author of [Sarrouh et al. 2025](../works/sarrouh-2025-canucs-technicolor-data-release-1-imaging-phot.md) · 1 scripts
+- Doze, Peter — author of [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md), [Madhavacheril et al. 2024](../works/madhavacheril-2024-the-atacama-cosmology-telescope-dr6-gravitation.md), [Coulton et al. 2024](../works/coulton-2024-atacama-cosmology-telescope-high-resolution-com.md) … · 10 scripts
+- Drachler, Brendan — author of [Agazie et al. 2023](../works/agazie-2023-the-nanograv-15-yr-data-set-evidence-for-a-grav.md) · 18 scripts
+- Drago, Marco — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Dragoun, Otokar — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md), [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- Drake, Alyssa — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- [Drakos, Nicole E](drakos-nicole-e.md) — 3 work(s) · 2 scripts
+- [Drame, Mariama](drame-mariama.md) — 2 work(s) · 7 scripts
+- [Draper, Patrick](draper-patrick.md) — 1 work(s) · 1 scripts
+- [Draper, Peter W.](draper-peter-w.md) — 4 work(s) · 12 scripts
+- [Draper, Terrence](draper-terrence.md) — 1 work(s) · 2 scripts
+- Drapier, O. — author of [Super-Kamiokande Collaboration et al. 2020](../works/super-kamiokande-collaboration-2020-search-for-proton-decay-via-p-e-0-and-p.md) · 1 scripts
+- Drazinos, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
+- Dreiner, H K — author of [Navas et al. 2024](../works/navas-2024-review-of-particle-physics.md), [Particle Data Group et al. 2022](../works/particle-data-group-2022-review-of-particle-physics.md) · 205 scripts
+- Dreissigacker, C. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2017](../works/abbott-2017-gw170814-a-three-detector-observation-of-gravit.md) … · 264 scripts
+- Drendel, B. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- [Dressler, Alan](dressler-alan.md) — 6 work(s) · 52 scripts
+- Dressnandt, N. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Drever, R. W. P. — author of [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md), [Abbott et al. 2016](../works/abbott-2016-gw151226-observation-of-gravitational-waves-fro.md) · 19 scripts
+- Drew, J E — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- [Drew, Patrick M.](drew-patrick-m.md) — 1 work(s) · 2 scripts
+- [Drewes, Marco](drewes-marco.md) — 2 work(s) · 9 scripts
+- Drexlin, Guido — author of [The KATRIN Collaboration et al. 2022](../works/the-katrin-collaboration-2022-direct-neutrino-mass-measurement-with-sub-electr.md), [KATRIN Collaboration† et al. 2025](../works/katrin-collaboration-2025-direct-neutrino-mass-measurement-based-on-259-da.md) · 13 scripts
+- [Driebe, Thomas](driebe-thomas.md) — 1 work(s) · 1 scripts
+- Driggers, Jenne C. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Drimmel, R. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 277 scripts
+- [Drinkwater, Michael J](drinkwater-michael-j.md) — 6 work(s) · 13 scripts
+- Dris, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Driutti, A. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md), [The Muon $g-2$ Collaboration et al. 2025](../works/the-muon-g-2-collaboration-2025-measurement-of-the-positive-muon-anomalous-magne.md), [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 26 scripts
+- [Driver, Simon P](driver-simon-p.md) — 7 work(s) · 19 scripts
+- [Drlica-Wagner, A.](drlica-wagner-a.md) — 34 work(s) · 128 scripts
+- Droettboom, Michael — author of [The Astropy Collaboration et al. 2013](../works/the-astropy-collaboration-2013-astropy-a-community-python-package-for-astronom.md), [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md) · 199 scripts
+- Drori, Y. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 13 scripts
+- [Drory, Niv](drory-niv.md) — 7 work(s) · 26 scripts
+- [Drouffe, J](drouffe-j.md) — 1 work(s) · 1 scripts
+- [Drout, M. R.](drout-m-r.md) — 6 work(s) · 15 scripts
+- Druszkiewicz, E. — author of [Aalbers et al. 2023](../works/aalbers-2023-search-for-new-physics-in-low-energy-electron-re.md), [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 2 scripts
+- Druzhinin, V.p. — author of [Aoyama et al. 2020](../works/aoyama-2020-the-anomalous-magnetic-moment-of-the-muon-in-the.md) · 2 scripts
+- [Du Croz, J.](du-croz-j.md) — 1 work(s) · 697 scripts
+- [Du, Guo-Hong](du-guo-hong.md) — 2 work(s) · 2 scripts
+- [du Mas des Bourboux, Hélion](du-mas-des-bourboux-helion.md) — 3 work(s) · 4 scripts
+- [Du, Peizhi](du-peizhi.md) — 1 work(s) · 2 scripts
+- [Du, Xiaolong](du-xiaolong.md) — 3 work(s) · 2 scripts
+- Du, Zhihui — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 270 scripts
+- [Duan, Qiao](duan-qiao.md) — 1 work(s) · 3 scripts
+- Duan, Yutong T. — author of [DESI Collaboration et al. 2016](../works/desi-collaboration-2016-the-desi-experiment-part-i-science-targeting-a.md) · 381 scripts
+- [Duann, Yi](duann-yi.md) — 1 work(s) · 1 scripts
+- Duband, L. — author of [BICEP/Keck Collaboration et al. 2021](../works/bicep-keck-collaboration-2021-improved-constraints-on-primordial-gravitational.md), [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 32 scripts
+- [Dubath, F.](dubath-f.md) — 5 work(s) · 7 scripts
+- Dubath, P. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- Dubbert, J. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dube, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dubinski, John](dubinski-john.md) — 2 work(s) · 1 scripts
+- Dubois, M. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- Dubois, Richard — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Dubois-Felsmann, Gregory P. — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- [Dubourg, Vincent](dubourg-vincent.md) — 1 work(s) · 17 scripts
+- [Dubovsky, Sergei](dubovsky-sergei.md) — 2 work(s) · 6 scripts
+- [Duc, Pierre-Alain](duc-pierre-alain.md) — 7 work(s) · 28 scripts
+- Ducci, L. — author of [Ramos-Ceja et al. 2026](../works/ramos-ceja-2026-the-srg-erosita-all-sky-survey-dr2-cumulative-x.md) · 2 scripts
+- [Duchesnay, Édouard](duchesnay-edouard.md) — 1 work(s) · 17 scripts
+- Duchovni, E. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Duckeck, G. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Duckworth, Chris — author of [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md), [Ahumada et al. 2020](../works/ahumada-2020-the-16th-data-release-of-the-sloan-digital-sky-s.md) · 8 scripts
+- Ducoin, Jean-gregoire — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- Ducourant, C. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2023](../works/gaia-collaboration-2023-gaia-data-release-3-summary-of-the-content-and.md), [Gaia Collaboration et al. 2021](../works/gaia-collaboration-2021-gaia-early-data-release-3-summary-of-the-conten.md) … · 276 scripts
+- Ducout, A. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 419 scripts
+- Ducrot, M. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 267 scripts
+- Duda, D. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dudarev, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dudevoir, Kevin A. — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md) · 10 scripts
+- Dudi, R. — author of [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190425-observation-of-a-compact-binary-coales.md) · 258 scripts
+- [Dudzevičiūtė, U.](dudzeviciute-u.md) — 2 work(s) · 17 scripts
+- Dudziak, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Duell, Cody J. — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 23 scripts
+- Duerdoth, I.p. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Duey, Francis](duey-francis.md) — 1 work(s) · 2 scripts
+- [Duff, M.j.](duff-m-j.md) — 1 work(s) · 1 scripts
+- Duff, Shannon M. — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 23 scripts
+- [Duffy, Alan R.](duffy-alan-r.md) — 3 work(s) · 73 scripts
+- [Duffy, Ryan T.](duffy-ryan-t.md) — 1 work(s) · 1 scripts
+- Duflot, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dufour, M.-A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Duggan, Gina E.](duggan-gina-e.md) — 1 work(s) · 1 scripts
+- Duginov, V. N. — author of [Aguillard et al. 2023](../works/aguillard-2023-measurement-of-the-positive-muon-anomalous-magne.md) · 25 scripts
+- Duguid, L. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Duhamel, Jean-Marie Constant](duhamel-jean-marie-constant.md) — 1 work(s) · 12 scripts
+- Dührssen, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Duivenvoorden, Adriaan J. — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 23 scripts
+- [Dulong, Pierre-Louis](dulong-pierre-louis.md) — 1 work(s) · 3 scripts
+- Dumbreck, R. S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Duminil-Copin, Hugo](duminil-copin-hugo.md) — 1 work(s) · 1 scripts
+- [Dunbar, R.i.m.](dunbar-r-i-m.md) — 1 work(s) · 7 scripts
+- [Duncan, A. K.](duncan-a-k.md) — 1 work(s) · 1 scripts
+- Duncan, C. A. J. — author of [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md), [Euclid Collaboration et al. 2026](../works/euclid-collaboration-2026-euclid-quick-data-release-q1-xvi-optical-and.md) · 3 scripts
+- Duncan, J. — author of [Abbott et al. 2017](../works/abbott-2017-gw170104-observation-of-a-50-solar-mass-binary.md) · 7 scripts
+- Duncan, Kenneth J — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- Dunford, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dunkel, Jörn](dunkel-jorn.md) — 1 work(s) · 1 scripts
+- [Dunkerton, T. J.](dunkerton-t-j.md) — 1 work(s) · 1 scripts
+- [Dunkley, Jo](dunkley-jo.md) — 17 work(s) · 61 scripts
+- [Dunkley, Joanna](dunkley-joanna.md) — 2 work(s) · 5 scripts
+- [Dunlop, James S.](dunlop-james-s.md) — 6 work(s) · 10 scripts
+- [Dunn, J. K.](dunn-j-k.md) — 1 work(s) · 1 scripts
+- Dunn, L. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md) · 9 scripts
+- Dünner, Rolando — author of [Louis et al. 2025](../works/louis-2025-the-atacama-cosmology-telescope-dr6-power-spect.md), [Calabrese et al. 2025](../works/calabrese-2025-the-atacama-cosmology-telescope-dr6-constraints.md), [Qu et al. 2024](../works/qu-2024-the-atacama-cosmology-telescope-a-measurement-o.md) … · 23 scripts
+- Dupac, X. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-viii-gravitational-lensing.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md) … · 425 scripts
+- Dupej, Peter — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md) … · 269 scripts
+- [Dupke, Renato A.](dupke-renato-a.md) — 1 work(s) · 1 scripts
+- Dupletsa, U. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2023](../works/abbott-2023-open-data-from-the-third-observing-run-of-ligo.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 9 scripts
+- [Dupuy, Alexandra](dupuy-alexandra.md) — 1 work(s) · 15 scripts
+- [Durakovic, Amel](durakovic-amel.md) — 3 work(s) · 112 scripts
+- Durán, Carlos A. — author of [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Durán, J. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md), [Gaia Collaboration et al. 2018](../works/gaia-collaboration-2018-gaia-data-release-2-summary-of-the-contents-and.md) · 256 scripts
+- Duran Yildiz, H. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Durante, D.](durante-d.md) — 4 work(s) · 5 scripts
+- Durante, Ofelia — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- [Durbala, Adriana](durbala-adriana.md) — 1 work(s) · 5 scripts
+- Durech, Josef — author of [Ivezić et al. 2019](../works/ivezic-2019-lsst-from-science-drivers-to-reference-design-a.md) · 1 scripts
+- Düren, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Durrell, Patrick R.](durrell-patrick-r.md) — 2 work(s) · 5 scripts
+- Durrer, Ruth — author of [The Euclid Theory Working Group et al. 2018](../works/the-euclid-theory-working-group-2018-cosmology-and-fundamental-physics-with-the.md) · 1 scripts
+- [Durret, F.](durret-f.md) — 3 work(s) · 7 scripts
+- Dushkin, A. — author of [Aalbers et al. 2023](../works/aalbers-2023-first-dark-matter-search-results-from-the-lux-ze.md) · 1 scripts
+- Dusini, S. — author of [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-vi-cosmological-parameters.md), [Planck Collaboration et al. 2020](../works/planck-collaboration-2020-planck-2018-results-v-cmb-power-spectra-and-li.md), [Euclid Collaboration et al. 2024](../works/euclid-collaboration-2024-euclid-preparation-xlii-a-unified-catalogue-le.md) … · 414 scripts
+- Dutcher, D. — author of [Raghunathan et al. 2026](../works/raghunathan-2026-measurement-of-the-full-shape-of-the-thermal-sun.md), [Omori et al. 2026](../works/omori-2026-spt-3g-d1-quadratic-estimator-cmb-lensing-recon.md), [Balkenhol et al. 2023](../works/balkenhol-2023-measurement-of-the-cmb-temperature-power-spectru.md) · 2 scripts
+- Dutra-Ferreira, Letícia — author of [Alam et al. 2015](../works/alam-2015-the-eleventh-and-twelfth-data-releases-of-the-sl.md) · 2 scripts
+- [Dutta Chowdhury, Dhruba](dutta-chowdhury-dhruba.md) — 1 work(s) · 3 scripts
+- Dutta, Rajeshwari — author of [Jin et al. 2023](../works/jin-2023-the-wide-field-multiplexed-spectroscopic-facil.md) · 1 scripts
+- [Dutton, Aaron A](dutton-aaron-a.md) — 5 work(s) · 105 scripts
+- Duval, H. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 6 scripts
+- [Duval, Valerie](duval-valerie.md) — 1 work(s) · 10 scripts
+- Duverne, P. -A. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) … · 18 scripts
+- [Dux, F.](dux-f.md) — 1 work(s) · 1 scripts
+- Duxfield, R. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dvali, Gia](dvali-gia.md) — 4 work(s) · 6 scripts
+- [Dvorak, Vernon F.](dvorak-vernon-f.md) — 1 work(s) · 1 scripts
+- Dvorkin, C. — author of [The BICEP/Keck Collaboration et al. 2018](../works/the-bicep-keck-collaboration-2018-measurements-of-degree-scale-b-mode-polarizati.md) · 1 scripts
+- [Dvorkin, Irina](dvorkin-irina.md) — 1 work(s) · 1 scripts
+- [Dvornik, Andrej](dvornik-andrej.md) — 13 work(s) · 176 scripts
+- Dwelly, Tom — author of [Merloni et al. 2024](../works/merloni-2024-the-srg-erosita-all-sky-survey-first-x-ray-cata.md), [Abdurro’uf et al. 2022](../works/abdurrouf-2022-the-seventeenth-data-release-of-the-sloan-digita.md), [Almeida et al. 2023](../works/almeida-2023-the-eighteenth-data-release-of-the-sloan-digital.md) … · 156 scripts
+- Dwivedi, S. — author of [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-5-0-observations-from-the-second-par.md) · 1 scripts
+- [Dwomoh, Arianna](dwomoh-arianna.md) — 3 work(s) · 105 scripts
+- Dwuznik, M. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- Dwyer, Sheila E. — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- Dydak, F. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [Dye, Simon](dye-simon.md) — 1 work(s) · 1 scripts
+- [Dynkin, E. B.](dynkin-e-b.md) — 1 work(s) · 17 scripts
+- [Dyson, Freeman J.](dyson-freeman-j.md) — 3 work(s) · 2 scripts
+- Dzib, Sergio A. — author of [The Event Horizon Telescope Collaboration et al. 2019](../works/the-event-horizon-telescope-collaboration-2019-first-m87-event-horizon-telescope.md), [Event Horizon Telescope Collaboration et al. 2022](../works/event-horizon-telescope-collaboration-2022-first-sagittarius-a-event-horizon-tel.md) · 10 scripts
+- Dzigan, Y. — author of [Gaia Collaboration et al. 2016](../works/gaia-collaboration-2016-the-gaia-mission.md) · 256 scripts
+- DʼAuria, S. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- DʼOrazio, A. — author of [Aad et al. 2012](../works/aad-2012-observation-of-a-new-particle-in-the-search-for.md) · 68 scripts
+- [D’Addona, Maurizio](daddona-maurizio.md) — 2 work(s) · 5 scripts
+- [D’Ago, Giuseppe](dago-giuseppe.md) — 2 work(s) · 3 scripts
+- D’Andrea, C. B. — author of [Chiu et al. 2018](../works/chiu-2018-baryon-content-in-a-sample-of-91-galaxy-clusters.md), [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md), [Abbott et al. 2018](../works/abbott-2018-dark-energy-survey-year-1-results-cosmological.md) … · 18 scripts
+- D’Andrea, V. — author of [Aprile et al. 2023](../works/aprile-2023-first-dark-matter-search-with-nuclear-recoils-fr.md) · 1 scripts
+- D’Angelo, Beatrice — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts
+- D’Antonio, Sabrina — author of [Abbott et al. 2017](../works/abbott-2017-gravitational-waves-and-gamma-rays-from-a-binary.md), [Abbott et al. 2017](../works/abbott-2017-gw170817-observation-of-gravitational-waves-fro.md), [Abbott et al. 2016](../works/abbott-2016-observation-of-gravitational-waves-from-a-binary.md) … · 273 scripts
+- [D’arcy Kenworthy, W.](darcy-kenworthy-w.md) — 1 work(s) · 116 scripts
+- d’Ascenzo, N. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- [D’Avanzo, P.](davanzo-p.md) — 2 work(s) · 2 scripts
+- D’Avella, D. — author of [The Astropy Collaboration et al. 2018](../works/the-astropy-collaboration-2018-the-astropy-project-building-an-open-science-pr.md) · 199 scripts
+- D’Elia, V. — author of [Pian et al. 2017](../works/pian-2017-spectroscopic-identification-of-r-process-nucleo.md) · 1 scripts
+- D’Emilio, Virginia — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 17 scripts
+- D’Errico, M. — author of [CDF Collaboration†‡ et al. 2022](../works/cdf-collaboration-2022-high-precision-measurement-of-the-w-boson-mass-w.md) · 1 scripts
+- [D’Eugenio, Francesco](deugenio-francesco.md) — 8 work(s) · 210 scripts
+- [D’Odorico, Valentina](dodorico-valentina.md) — 2 work(s) · 26 scripts
+- D’Onofrio, L. — author of [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [The LIGO Scientific Collaboration et al. 2026](../works/the-ligo-scientific-collaboration-2026-gwtc-4-0-updating-the-gravitational-wave.md), [Abbott et al. 2021](../works/abbott-2021-gwtc-2-compact-binary-coalescences-observed-by.md) … · 18 scripts
+- [D’Urso, B.](durso-b.md) — 1 work(s) · 1 scripts
+- D’Urso, Domenico — author of [Abbott et al. 2020](../works/abbott-2020-gw190521-a-binary-black-hole-merger-with-a-tota.md), [Abbott et al. 2023](../works/abbott-2023-gwtc-3-compact-binary-coalescences-observed-by.md), [Abbott et al. 2020](../works/abbott-2020-gw190814-gravitational-waves-from-the-coalescen.md) … · 20 scripts

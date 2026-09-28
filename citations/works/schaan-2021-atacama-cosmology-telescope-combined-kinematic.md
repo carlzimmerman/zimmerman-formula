@@ -1,0 +1,15 @@
+# Schaan et al. 2021 — Atacama Cosmology Telescope: Combined kinematic and thermal Sunyaev-Zel’dovich measurements from BOSS CMASS and LOWZ halos
+
+**Reference.** Schaan, E.; Ferraro, S.; Amodeo, S.; Battaglia, N.; Aiola, S.; Austermann, J. E.; Beall, J. A.; Bean, R.; Becker, D. T.; Bond, R. J.; Calabrese, E.; Calafut, V.; Choi, S. K.; Denison, E. V.; Devlin, M. J.; Duff, S. M.; Duivenvoorden, A. J.; Dunkley, J.; Dünner, R.; Gallardo, P. A.; Guan, Y.; Han, D.; Hill, J. C.; Hilton, G. C.; Hilton, M.; Hložek, R.; Hubmayr, J.; Huffenberger, K. M.; Hughes, J. P.; Koopman, B. J.; et al. (59 authors) (2021). Atacama Cosmology Telescope: Combined kinematic and thermal Sunyaev-Zel’dovich measurements from BOSS CMASS and LOWZ halos. *Physical Review D* 103, 063513. [doi:10.1103/physrevd.103.063513](https://doi.org/10.1103/physrevd.103.063513) [arXiv:2009.05557](https://arxiv.org/abs/2009.05557)
+
+**BibTeX key:** `Schaan2021` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (59):** Emmanuel Schaan, Simone Ferraro, Stefania Amodeo, [Nicholas Battaglia](../people/battaglia-nicholas.md), Simone Aiola, Jason E. Austermann, James A. Beall, [Rachel Bean](../people/bean-rachel.md), Daniel T. Becker, Richard J. Bond, [Erminia Calabrese](../people/calabrese-erminia.md), Victoria Calafut, Steve K. Choi, Edward V. Denison, [Mark J. Devlin](../people/devlin-mark-j.md), Shannon M. Duff, Adriaan J. Duivenvoorden, [Jo Dunkley](../people/dunkley-jo.md), Rolando Dünner, Patricio A. Gallardo, Yilun Guan, Dongwon Han, [J. Colin Hill](../people/hill-j-colin.md), Gene C. Hilton, [Matt Hilton](../people/hilton-matt.md), [Renée Hložek](../people/hlozek-renee.md), Johannes Hubmayr, [Kevin M. Huffenberger](../people/huffenberger-kevin-m.md), [John P. Hughes](../people/hughes-john-p.md), Brian J. Koopman, Amanda MacInnis, Jeff McMahon, [Mathew S. Madhavacheril](../people/madhavacheril-mathew-s.md), [Kavilan Moodley](../people/moodley-kavilan.md), [Tony Mroczkowski](../people/mroczkowski-tony.md), Sigurd Naess, Federico Nati, Laura B. Newburgh, [Michael D. Niemack](../people/niemack-michael-d.md), [Lyman A. Page](../people/page-lyman-a.md), [Bruce Partridge](../people/partridge-bruce.md), Maria Salatino, [Neelima Sehgal](../people/sehgal-neelima.md), Alessandro Schillaci, [Cristóbal Sifón](../people/sifon-cristobal.md), [Kendrick M. Smith](../people/smith-kendrick-m.md), [David N. Spergel](../people/spergel-david-n.md), [Suzanne Staggs](../people/staggs-suzanne-t.md), Emilie R. Storer, Hy Trac, Joel N. Ullom, Jeff Van Lanen, Leila R. Vale, Alexander van Engelen, Mariana Vargas Magaña, Eve M. Vavagiakis, [Edward J. Wollack](../people/wollack-edward-j.md), Zhilei Xu, *Atacama Cosmology Telescope Collaboration*
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`fable_independent_2026/L254_ksz_pairwise_velocity.py`](../../fable_independent_2026/L254_ksz_pairwise_velocity.py#L74) | cited | [74](../../fable_independent_2026/L254_ksz_pairwise_velocity.py#L74), [360](../../fable_independent_2026/L254_ksz_pairwise_velocity.py#L360) |

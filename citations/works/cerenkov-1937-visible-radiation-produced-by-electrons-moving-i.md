@@ -1,0 +1,28 @@
+# Čerenkov 1937 — Visible Radiation Produced by Electrons Moving in a Medium with Velocities Exceeding that of Light
+
+**Reference.** Čerenkov, P. A. (1937). Visible Radiation Produced by Electrons Moving in a Medium with Velocities Exceeding that of Light. *Physical Review* 52, 378-379. [doi:10.1103/physrev.52.378](https://doi.org/10.1103/physrev.52.378)
+
+**BibTeX key:** `Cerenkov1937` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (1):** [P. A. Čerenkov](../people/cerenkov-p-a.md)
+
+## Used in 14 script(s)
+
+How: named method/model in 14.
+
+| script | how | lines |
+|---|---|---|
+| [`fable_independent_2026/L10_khronon_gate.py`](../../fable_independent_2026/L10_khronon_gate.py#L55) | named method/model — Cherenkov radiation | [55](../../fable_independent_2026/L10_khronon_gate.py#L55), [332](../../fable_independent_2026/L10_khronon_gate.py#L332), [368](../../fable_independent_2026/L10_khronon_gate.py#L368), [420](../../fable_independent_2026/L10_khronon_gate.py#L420) |
+| [`fable_independent_2026/L14_parameter_sweep.py`](../../fable_independent_2026/L14_parameter_sweep.py#L250) | named method/model — Cherenkov radiation | [250](../../fable_independent_2026/L14_parameter_sweep.py#L250) |
+| [`fable_independent_2026/L15_sigma_one.py`](../../fable_independent_2026/L15_sigma_one.py#L15) | named method/model — Cherenkov radiation | [15](../../fable_independent_2026/L15_sigma_one.py#L15), [409](../../fable_independent_2026/L15_sigma_one.py#L409) |
+| [`fable_independent_2026/L19_cherenkov_applicability.py`](../../fable_independent_2026/L19_cherenkov_applicability.py#L3) | named method/model — Cherenkov radiation | [3](../../fable_independent_2026/L19_cherenkov_applicability.py#L3), [7](../../fable_independent_2026/L19_cherenkov_applicability.py#L7), [18](../../fable_independent_2026/L19_cherenkov_applicability.py#L18), [61](../../fable_independent_2026/L19_cherenkov_applicability.py#L61), [104](../../fable_independent_2026/L19_cherenkov_applicability.py#L104), [420](../../fable_independent_2026/L19_cherenkov_applicability.py#L420), [558](../../fable_independent_2026/L19_cherenkov_applicability.py#L558), [613](../../fable_independent_2026/L19_cherenkov_applicability.py#L613) |
+| [`fable_independent_2026/L26_sigma_above_one.py`](../../fable_independent_2026/L26_sigma_above_one.py#L21) | named method/model — Cherenkov radiation | [21](../../fable_independent_2026/L26_sigma_above_one.py#L21), [780](../../fable_independent_2026/L26_sigma_above_one.py#L780) |
+| [`fable_independent_2026/L33_scalar_cone.py`](../../fable_independent_2026/L33_scalar_cone.py#L496) | named method/model — Cherenkov radiation | [496](../../fable_independent_2026/L33_scalar_cone.py#L496), [520](../../fable_independent_2026/L33_scalar_cone.py#L520) |
+| [`opus_48_extended_research/reviews/toe_law/agentXX_verify_block2_nogo_and_luminal.py`](../../opus_48_extended_research/reviews/toe_law/agentXX_verify_block2_nogo_and_luminal.py#L19) | named method/model — Cherenkov radiation | [19](../../opus_48_extended_research/reviews/toe_law/agentXX_verify_block2_nogo_and_luminal.py#L19) |
+| [`qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.py`](../../qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.py#L97) | named method/model — Cherenkov radiation | [97](../../qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.py#L97), [109](../../qwen_claude_field_theory/closure_2026/g03z_nurar_action_gate_ladder.py#L109) |
+| [`qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py`](../../qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py#L1035) | named method/model — Cherenkov radiation | [1035](../../qwen_claude_field_theory/closure_2026/route2_mechC_constrained_vector_2026.py#L1035) |
+| [`real_research/clock_2026/L280_alpha2_reconciliation.py`](../../real_research/clock_2026/L280_alpha2_reconciliation.py#L11) | named method/model — Cherenkov radiation | [11](../../real_research/clock_2026/L280_alpha2_reconciliation.py#L11) |
+| [`real_research/cross_thread_review_2026_09_26/XR25_lambda_regulator.py`](../../real_research/cross_thread_review_2026_09_26/XR25_lambda_regulator.py#L434) | named method/model — Cherenkov radiation | [434](../../real_research/cross_thread_review_2026_09_26/XR25_lambda_regulator.py#L434) |
+| [`real_research/reviews/coherence_audit_2026_09_19/closure_resume/environment/check_environment.py`](../../real_research/reviews/coherence_audit_2026_09_19/closure_resume/environment/check_environment.py#L169) | named method/model — Cherenkov radiation | [169](../../real_research/reviews/coherence_audit_2026_09_19/closure_resume/environment/check_environment.py#L169) |
+| [`real_research/reviews/coherence_audit_2026_09_19/closure_resume/normalization/environment_vacuum/environment_source_snapshot.py`](../../real_research/reviews/coherence_audit_2026_09_19/closure_resume/normalization/environment_vacuum/environment_source_snapshot.py#L169) | named method/model — Cherenkov radiation | [169](../../real_research/reviews/coherence_audit_2026_09_19/closure_resume/normalization/environment_vacuum/environment_source_snapshot.py#L169) |
+| [`real_research/reviews/mi_khronon_spin0_health_2026.py`](../../real_research/reviews/mi_khronon_spin0_health_2026.py#L11) | named method/model — Cherenkov radiation | [11](../../real_research/reviews/mi_khronon_spin0_health_2026.py#L11), [47](../../real_research/reviews/mi_khronon_spin0_health_2026.py#L47), [288](../../real_research/reviews/mi_khronon_spin0_health_2026.py#L288), [394](../../real_research/reviews/mi_khronon_spin0_health_2026.py#L394) |

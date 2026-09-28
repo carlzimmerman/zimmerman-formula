@@ -1,53 +1,7 @@
-# Michele Cappellari
+# Michele Cappellari → moved to the verified index
 
-**Affiliation:** University of Oxford
+This page belonged to the previous surname-count index (33 files, 54 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 33 file(s), 54 occurrence(s) across the repo:**
+**Now:** [Michele Cappellari](../people/cappellari-michele.md) — 44 scripts, 16 works.
 
-**Data/config (4 files):**
-
-- [`deepseek_push/S03_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/S03_results.json) — 5×
-- [`deepseek_push/G162_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G162_results.json) — 2×
-- [`real_research/data/atlas3d_fj_table.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/atlas3d_fj_table.tsv) — 2×
-- [`deepseek_push/Z10_results.json`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/Z10_results.json) — 1×
-
-**Markdown/notes (7 files):**
-
-- [`prep_2026/manga_anisotropy/FROZEN.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/FROZEN.md) — 3×
-- [`deepseek_push/MNRAS_METHODS.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/MNRAS_METHODS.md) — 2×
-- [`prep_2026/manga_anisotropy/VERIFY.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/VERIFY.md) — 2×
-- [`opus_48_extended_research/reviews/MORPHOLOGY_SPLIT_RELIVE_ROUTE4_2026-06-15.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/MORPHOLOGY_SPLIT_RELIVE_ROUTE4_2026-06-15.md) — 1×
-- [`prep_2026/manga_anisotropy/FIRING.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/FIRING.md) — 1×
-- [`prep_2026/manga_anisotropy/STAGE.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/STAGE.md) — 1×
-- [`ai_slop/research/comprehensive_validation/COMPLETE_VALIDATION.md`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/COMPLETE_VALIDATION.md) — 1×
-
-**Other (6 files):**
-
-- [`opus_48_extended_research/reviews/_cluster_measurement_systematics_workflow.js`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/_cluster_measurement_systematics_workflow.js) — 2×
-- [`hunt_2026/g02v_adversarial_mi_argument_refutation.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g02v_adversarial_mi_argument_refutation.out) — 1×
-- [`hunt_2026/h52_fundamental_plane.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h52_fundamental_plane.out) — 1×
-- [`deepseek_push/G114_data/leisman/d6.bbl`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G114_data/leisman/d6.bbl) — 1×
-- [`deepseek_push/S03_atlas3d_audit.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/S03_atlas3d_audit.out) — 1×
-- [`prep_2026/manga_anisotropy/verify_independent.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/verify_independent.out) — 1×
-
-**Python script (16 files):**
-
-- [`deepseek_push/S03_atlas3d_audit.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/S03_atlas3d_audit.py) — 6×
-- [`hunt_2026/h52_fundamental_plane.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h52_fundamental_plane.py) — 3×
-- [`deepseek_push/G162_fill_gap.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G162_fill_gap.py) — 3×
-- [`ai_slop/research/comprehensive_validation/validate_all_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/validate_all_problems.py) — 2×
-- [`deepseek_push/G226_btfr_floor.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/deepseek_push/G226_btfr_floor.py) — 1×
-- [`hunt_2026/h45_virgo_de.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h45_virgo_de.py) — 1×
-- [`hunt_2026/g02_vertical_vs_planar_frequency_split.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g02_vertical_vs_planar_frequency_split.py) — 1×
-- [`hunt_2026/g02v_adversarial_mi_argument_refutation.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/g02v_adversarial_mi_argument_refutation.py) — 1×
-- [`prep_2026/sigma_spread/power.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/sigma_spread/power.py) — 1×
-- [`opus_48_extended_research/reviews/cluster_measurement/route_a_baryon_census.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cluster_measurement/route_a_baryon_census.py) — 1×
-- [`opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/opus_48_extended_research/reviews/cluster_measurement/routeC_eta_footing_radial.py) — 1×
-- [`prep_2026/manga_anisotropy/fire_anisotropy.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/fire_anisotropy.py) — 1×
-- [`prep_2026/manga_anisotropy/verify_independent.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/verify_independent.py) — 1×
-- [`prep_2026/manga_anisotropy/stage1_catalog.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/prep_2026/manga_anisotropy/stage1_catalog.py) — 1×
-- [`ai_slop/research/comprehensive_validation/advanced_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/advanced_problems.py) — 1×
-- [`ai_slop/research/comprehensive_validation/data_backed_problems.py`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/ai_slop/research/comprehensive_validation/data_backed_problems.py) — 1×
-
----
-*Living citation page for Michele Cappellari · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

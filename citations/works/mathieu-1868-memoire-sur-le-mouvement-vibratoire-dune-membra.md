@@ -1,0 +1,21 @@
+# Mathieu 1868 — Mémoire sur le mouvement vibratoire d'une membrane de forme elliptique
+
+**Reference.** Mathieu, É. (1868). Mémoire sur le mouvement vibratoire d'une membrane de forme elliptique. *Journal de Mathématiques Pures et Appliquées (2e série) 13, 137-203*. [link](https://www.numdam.org/item/JMPA_1868_2_13__137_0/)
+
+**BibTeX key:** `Mathieu1868` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** bibliographic record (no DOI exists; not machine-checkable), 2026-09-28
+
+**Authors (1):** [Émile Mathieu](../people/mathieu-emile.md)
+
+## Used in 7 script(s)
+
+How: named method/model in 7.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/fun_folder/honest_zpe_computation.py`](../../ai_slop/fun_folder/honest_zpe_computation.py#L12) | named method/model — Mathieu equation / Mathieu (parametric) instability | [12](../../ai_slop/fun_folder/honest_zpe_computation.py#L12), [230](../../ai_slop/fun_folder/honest_zpe_computation.py#L230) |
+| [`ai_slop/fun_folder/zpe_dynamics_sim.py`](../../ai_slop/fun_folder/zpe_dynamics_sim.py#L26) | named method/model — Mathieu equation / Mathieu (parametric) instability | [26](../../ai_slop/fun_folder/zpe_dynamics_sim.py#L26) |
+| [`ai_slop/research/experiments/exp1_bec_parametric_resonance.py`](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L6) | named method/model — Mathieu equation / Mathieu (parametric) instability | [6](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L6), [11](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L11), [138](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L138), [142](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L142), [189](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L189), [201](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L201), [306](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L306), [389](../../ai_slop/research/experiments/exp1_bec_parametric_resonance.py#L389) … |
+| [`ai_slop/research/experiments/exp3_optical_parametric_kk_analogue.py`](../../ai_slop/research/experiments/exp3_optical_parametric_kk_analogue.py#L258) | named method/model — Mathieu equation / Mathieu (parametric) instability | [258](../../ai_slop/research/experiments/exp3_optical_parametric_kk_analogue.py#L258), [355](../../ai_slop/research/experiments/exp3_optical_parametric_kk_analogue.py#L355) |
+| [`ai_slop/research/experiments/exp5_metamaterial_bulk_propagation.py`](../../ai_slop/research/experiments/exp5_metamaterial_bulk_propagation.py#L254) | named method/model — Mathieu equation / Mathieu (parametric) instability | [254](../../ai_slop/research/experiments/exp5_metamaterial_bulk_propagation.py#L254), [264](../../ai_slop/research/experiments/exp5_metamaterial_bulk_propagation.py#L264), [365](../../ai_slop/research/experiments/exp5_metamaterial_bulk_propagation.py#L365) |
+| [`ai_slop/research/field_theory/localized_radion_configurations.py`](../../ai_slop/research/field_theory/localized_radion_configurations.py#L366) | named method/model — Mathieu equation / Mathieu (parametric) instability | [366](../../ai_slop/research/field_theory/localized_radion_configurations.py#L366), [504](../../ai_slop/research/field_theory/localized_radion_configurations.py#L504), [577](../../ai_slop/research/field_theory/localized_radion_configurations.py#L577) |
+| [`ai_slop/research/field_theory/verification_planck_seed.py`](../../ai_slop/research/field_theory/verification_planck_seed.py#L12) | named method/model — Mathieu equation / Mathieu (parametric) instability | [12](../../ai_slop/research/field_theory/verification_planck_seed.py#L12), [62](../../ai_slop/research/field_theory/verification_planck_seed.py#L62), [75](../../ai_slop/research/field_theory/verification_planck_seed.py#L75), [89](../../ai_slop/research/field_theory/verification_planck_seed.py#L89), [103](../../ai_slop/research/field_theory/verification_planck_seed.py#L103), [181](../../ai_slop/research/field_theory/verification_planck_seed.py#L181), [192](../../ai_slop/research/field_theory/verification_planck_seed.py#L192), [222](../../ai_slop/research/field_theory/verification_planck_seed.py#L222) … |

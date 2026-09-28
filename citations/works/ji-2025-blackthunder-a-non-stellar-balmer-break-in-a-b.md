@@ -1,0 +1,16 @@
+# Ji et al. 2025 — BlackTHUNDER – A non-stellar Balmer break in a black hole-dominated little red dot at z = 7.04
+
+**Reference.** Ji, X.; Maiolino, R.; Übler, H.; Scholtz, J.; D’Eugenio, F.; Sun, F.; Perna, M.; Turner, H.; Carniani, S.; Arribas, S.; Bennett, J. S.; Bunker, A.; Charlot, S.; Cresci, G.; Curti, M.; Egami, E.; Fabian, A.; Inayoshi, K.; Isobe, Y.; Jones, G.; Juodžbalis, I.; Kumari, N.; Lyu, J.; Mazzolari, G.; Parlanti, E.; Robertson, B.; Rodríguez Del Pino, B.; Schneider, R.; Sijacki, D.; Tacchella, S.; et al. (37 authors) (2025). BlackTHUNDER – A non-stellar Balmer break in a black hole-dominated little red dot at z = 7.04. *Monthly Notices of the Royal Astronomical Society* 544, 3900-3935. [doi:10.1093/mnras/staf1867](https://doi.org/10.1093/mnras/staf1867)
+
+**BibTeX key:** `Ji2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (37):** [Xihan Ji](../people/ji-xihan.md), [Roberto Maiolino](../people/maiolino-roberto.md), [Hannah Übler](../people/ubler-hannah.md), [Jan Scholtz](../people/scholtz-jan-2.md), [Francesco D’Eugenio](../people/deugenio-francesco.md), [Fengwu Sun](../people/sun-fengwu.md), [Michele Perna](../people/perna-michele.md), [Hannah Turner](../people/turner-hannah-c.md), [Stefano Carniani](../people/carniani-stefano.md), [Santiago Arribas](../people/arribas-santiago.md), [Jake S Bennett](../people/bennett-jake-s.md), [Andrew Bunker](../people/bunker-andrew-j.md), [Stéphane Charlot](../people/charlot-stephane.md), [Giovanni Cresci](../people/cresci-giovanni.md), [Mirko Curti](../people/curti-mirko.md), [Eiichi Egami](../people/egami-eiichi.md), [Andy Fabian](../people/fabian-andrew-c.md), [Kohei Inayoshi](../people/inayoshi-kohei.md), [Yuki Isobe](../people/isobe-yuki.md), [Gareth Jones](../people/jones-gareth-c.md), [Ignas Juodžbalis](../people/juodzbalis-ignas.md), [Nimisha Kumari](../people/kumari-nimisha.md), [Jianwei Lyu](../people/lyu-jianwei.md), [Giovanni Mazzolari](../people/mazzolari-giovanni.md), [Eleonora Parlanti](../people/parlanti-eleonora.md), [Brant Robertson](../people/robertson-brant-e.md), [Bruno Rodríguez Del Pino](../people/rodriguez-del-pino-bruno.md), [Raffaella Schneider](../people/schneider-raffaella.md), [Debora Sijacki](../people/sijacki-debora.md), [Sandro Tacchella](../people/tacchella-sandro.md), [Alessandro Trinca](../people/trinca-alessandro.md), [Rosa Valiante](../people/valiante-rosa.md), [Giacomo Venturi](../people/venturi-giacomo.md), [Marta Volonteri](../people/volonteri-marta.md), [Chris Willott](../people/willott-chris-j.md), [Callum Witten](../people/witten-callum.md), [Joris Witstok](../people/witstok-joris.md)
+
+## Used in 2 script(s)
+
+How: cited in 2.
+
+| script | how | lines |
+|---|---|---|
+| [`opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py`](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L2) | cited | [2](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L2), [83](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L83) |
+| [`real_research/reviews/bhstar_p1_empirical_rigor.py`](../../real_research/reviews/bhstar_p1_empirical_rigor.py#L2) | cited | [2](../../real_research/reviews/bhstar_p1_empirical_rigor.py#L2) |

@@ -1,0 +1,373 @@
+# Numerical / statistical methods reached THROUGH library calls -> the people who invented them.
+# `calls` are regexes on the qualified call name recorded by extract.py, with the literal `method=`/`kind=`
+# keyword (when given) appended in brackets, e.g. "scipy.integrate.solve_ivp[DOP853]".
+# Every doi/arxiv here is re-verified by fetch.py; `classic` entries are pre-DOI books/memoirs/reports.
+
+- label: "PCG64 generator (NumPy default_rng)"
+  calls: ['^numpy\.random\.(default_rng|PCG64|Generator)$']
+  works:
+    - classic: true
+      authors: ["Melissa E. O'Neill"]
+      year: 2014
+      title: "PCG: A Family of Simple Fast Space-Efficient Statistically Good Algorithms for Random Number Generation"
+      venue: "Harvey Mudd College, Technical Report HMC-CS-2014-0905"
+      url: https://www.cs.hmc.edu/tr/hmc-cs-2014-0905.pdf
+- label: "Mersenne Twister (NumPy legacy global RandomState)"
+  calls: ['^numpy\.random\.(seed|uniform|normal|rand|randn|random|choice|randint|RandomState|lognormal|exponential|gamma|beta|pareto|multivariate_normal|poisson|binomial|shuffle|permutation|standard_normal|triangular|laplace|chisquare|weibull)$']
+  works:
+    - {doi: 10.1145/272991.272995}                      # Matsumoto & Nishimura 1998
+- label: "LAPACK (dense linear algebra behind numpy.linalg / scipy.linalg)"
+  calls: ['^numpy\.linalg\.(eigh|eigvalsh|eig|eigvals|svd|solve|lstsq|cholesky|qr|det|inv|pinv|slogdet|matrix_rank|cond)$',
+          '^scipy\.linalg\.(eigh|eigvalsh|eig|eigvals|svd|solve|lstsq|cholesky|cho_factor|cho_solve|solve_banded|eigh_tridiagonal|eig_banded|qr|det|inv|pinv|lu|lu_factor|lu_solve|schur|null_space|orth)$']
+  works:
+    - {doi: 10.1137/1.9780898719604}                    # Anderson et al. 1999, LAPACK Users' Guide, 3rd ed.
+- label: "Brent's method (root bracketing / scalar minimisation)"
+  calls: ['^scipy\.optimize\.(brentq|brenth|brent|fminbound)$', '^scipy\.optimize\.minimize_scalar(\[(brent|bounded)\])?$']
+  works:
+    - classic: true
+      authors: ["Richard P. Brent"]
+      year: 1973
+      title: "Algorithms for Minimization Without Derivatives"
+      venue: "Prentice-Hall, Englewood Cliffs, NJ (Dover reprint 2002)"
+      url: https://maths-people.anu.edu.au/~brent/pub/pub011.html
+- label: "QUADPACK adaptive quadrature (scipy.integrate.quad family)"
+  calls: ['^scipy\.integrate\.(quad|dblquad|tplquad|nquad|quad_vec)$']
+  works:
+    - {doi: 10.1007/978-3-642-61786-7}                  # Piessens, de Doncker-Kapenga, Ueberhuber & Kahaner 1983
+- label: "Golub-Welsch Gauss quadrature nodes (numpy leggauss / hermgauss)"
+  calls: ['^numpy\.polynomial\.(legendre\.leggauss|hermite\.hermgauss|laguerre\.laggauss|chebyshev\.chebgauss|hermite_e\.hermegauss)$',
+          '^scipy\.special\.roots_(legendre|hermite|laguerre|jacobi)$']
+  works:
+    - {doi: 10.1090/S0025-5718-69-99647-1}              # Golub & Welsch 1969, Math. Comp. 23, 221
+- label: "Dormand-Prince RK5(4) (solve_ivp default / RK45)"
+  calls: ['^scipy\.integrate\.solve_ivp(\[RK45\])?$', '^scipy\.integrate\.RK45$']
+  works:
+    - {doi: 10.1016/0771-050X(80)90013-3}               # Dormand & Prince 1980
+- label: "Bogacki-Shampine RK3(2) (solve_ivp RK23)"
+  calls: ['^scipy\.integrate\.solve_ivp\[RK23\]$', '^scipy\.integrate\.RK23$']
+  works:
+    - {doi: 10.1016/0893-9659(89)90079-7}               # Bogacki & Shampine 1989
+- label: "DOP853 Runge-Kutta 8(5,3)"
+  calls: ['^scipy\.integrate\.solve_ivp\[DOP853\]$', '^scipy\.integrate\.DOP853$']
+  works:
+    - {doi: 10.1016/0771-050X(81)90010-3}               # Prince & Dormand 1981
+    - {doi: 10.1007/978-3-540-78862-1}                  # Hairer, Norsett & Wanner 1993, Solving ODEs I
+- label: "Radau IIA implicit Runge-Kutta"
+  calls: ['^scipy\.integrate\.solve_ivp\[Radau\]$', '^scipy\.integrate\.Radau$']
+  works:
+    - {doi: 10.1007/978-3-642-05221-7}                  # Hairer & Wanner 1996, Solving ODEs II
+- label: "BDF/NDF stiff solver"
+  calls: ['^scipy\.integrate\.solve_ivp\[BDF\]$', '^scipy\.integrate\.BDF$']
+  works:
+    - {doi: 10.1137/S1064827594276424}                  # Shampine & Reichelt 1997
+- label: "LSODA / ODEPACK (odeint, solve_ivp LSODA)"
+  calls: ['^scipy\.integrate\.solve_ivp\[LSODA\]$', '^scipy\.integrate\.(odeint|LSODA)$']
+  works:
+    - {doi: 10.1137/0904010}                            # Petzold 1983
+    - classic: true
+      authors: ["Alan C. Hindmarsh"]
+      year: 1983
+      title: "ODEPACK, A Systematized Collection of ODE Solvers"
+      venue: "in Scientific Computing (R. S. Stepleman et al., eds.), IMACS Trans. Sci. Comput. 1, North-Holland, 55-64"
+      url: https://computing.llnl.gov/projects/odepack
+- label: "Collocation BVP solver (solve_bvp)"
+  calls: ['^scipy\.integrate\.solve_bvp$']
+  works:
+    - {doi: 10.1145/502800.502801}                      # Kierzenka & Shampine 2001
+- label: "tanh-sinh (double-exponential) quadrature (mpmath.quad default)"
+  calls: ['^mpmath\.(mp\.)?quad$']
+  works:
+    - {doi: 10.2977/prims/1195192451}                   # Takahasi & Mori 1974
+- label: "Nelder-Mead simplex"
+  calls: ['^scipy\.optimize\.minimize\[Nelder-Mead\]$', '^scipy\.optimize\.fmin$']
+  works:
+    - {doi: 10.1093/comjnl/7.4.308}                     # Nelder & Mead 1965
+- label: "Powell's conjugate-direction method"
+  calls: ['^scipy\.optimize\.minimize\[Powell\]$', '^scipy\.optimize\.fmin_powell$']
+  works:
+    - {doi: 10.1093/comjnl/7.2.155}                     # Powell 1964
+- label: "L-BFGS-B"
+  calls: ['^scipy\.optimize\.minimize\[L-BFGS-B\]$', '^scipy\.optimize\.fmin_l_bfgs_b$']
+  works:
+    - {doi: 10.1137/0916069}                            # Byrd, Lu, Nocedal & Zhu 1995
+    - {doi: 10.1145/279232.279236}                      # Zhu, Byrd, Lu & Nocedal 1997
+- label: "BFGS quasi-Newton (minimize default without bounds)"
+  calls: ['^scipy\.optimize\.minimize(\[BFGS\])?$', '^scipy\.optimize\.fmin_bfgs$']
+  works:
+    - {doi: 10.1093/imamat/6.1.76}                      # Broyden 1970
+    - {doi: 10.1093/comjnl/13.3.317}                    # Fletcher 1970
+    - {doi: 10.1090/S0025-5718-1970-0258249-6}          # Goldfarb 1970
+    - {doi: 10.1090/S0025-5718-1970-0274029-X}          # Shanno 1970
+- label: "SLSQP"
+  calls: ['^scipy\.optimize\.minimize\[SLSQP\]$', '^scipy\.optimize\.fmin_slsqp$']
+  works:
+    - classic: true
+      authors: ["Dieter Kraft"]
+      year: 1988
+      title: "A software package for sequential quadratic programming"
+      venue: "DFVLR-FB 88-28, Deutsche Forschungs- und Versuchsanstalt fuer Luft- und Raumfahrt, Koeln"
+      url: https://degenerateconic.com/uploads/2018/03/DFVLR_FB_88_28.pdf
+- label: "Trust-region reflective least squares (least_squares default)"
+  calls: ['^scipy\.optimize\.least_squares(\[trf\])?$', '^scipy\.optimize\.lsq_linear(\[trf\])?$']
+  works:
+    - {doi: 10.1137/S1064827595289108}                  # Branch, Coleman & Li 1999
+- label: "Levenberg-Marquardt (curve_fit default, least_squares lm)"
+  calls: ['^scipy\.optimize\.curve_fit$', '^scipy\.optimize\.least_squares\[lm\]$', '^scipy\.optimize\.leastsq$']
+  works:
+    - {doi: 10.1090/qam/10666}                          # Levenberg 1944
+    - {doi: 10.1137/0111030}                            # Marquardt 1963
+    - {doi: 10.1007/BFb0067700}                         # More 1978 (MINPACK LM)
+- label: "MINPACK hybrid Powell method (fsolve / root hybr)"
+  calls: ['^scipy\.optimize\.(fsolve|root)(\[hybr\])?$']
+  works:
+    - {doi: 10.2172/6997568}                            # More, Garbow & Hillstrom 1980, MINPACK User Guide
+- label: "Differential evolution"
+  calls: ['^scipy\.optimize\.differential_evolution$']
+  works:
+    - {doi: 10.1023/A:1008202821328}                    # Storn & Price 1997
+- label: "HiGHS linear programming"
+  calls: ['^scipy\.optimize\.linprog(\[highs.*\])?$', '^scipy\.optimize\.milp$']
+  works:
+    - {doi: 10.1007/s12532-017-0130-5}                  # Huangfu & Hall 2018
+- label: "Non-negative least squares"
+  calls: ['^scipy\.optimize\.nnls$']
+  works:
+    - {doi: 10.1137/1.9781611971217}                    # Lawson & Hanson 1995 (SIAM Classics; orig. 1974)
+- label: "Bounded-variable least squares (lsq_linear bvls)"
+  calls: ['^scipy\.optimize\.lsq_linear\[bvls\]$']
+  works:
+    - classic: true
+      authors: ["Philip B. Stark", "Robert L. Parker"]
+      year: 1995
+      title: "Bounded-variable least-squares: an algorithm and applications"
+      venue: "Computational Statistics 10, 129-141"
+      url: https://www.stat.berkeley.edu/~stark/Preprints/bvls.pdf
+- label: "Cubic splines"
+  calls: ['^scipy\.interpolate\.(CubicSpline|make_interp_spline|interp1d\[cubic\]|interp1d\[quadratic\])$']
+  works:
+    - classic: true
+      authors: ["Carl de Boor"]
+      year: 1978
+      title: "A Practical Guide to Splines"
+      venue: "Springer-Verlag, Applied Mathematical Sciences 27 (revised edition 2001)"
+      url: https://link.springer.com/book/9780387953663
+- label: "PCHIP monotone cubic interpolation"
+  calls: ['^scipy\.interpolate\.(PchipInterpolator|pchip_interpolate)$']
+  works:
+    - {doi: 10.1137/0717021}                            # Fritsch & Carlson 1980
+    - {doi: 10.1137/0905021}                            # Fritsch & Butland 1984
+- label: "FITPACK smoothing splines (Dierckx)"
+  calls: ['^scipy\.interpolate\.(RectBivariateSpline|UnivariateSpline|InterpolatedUnivariateSpline|LSQUnivariateSpline|SmoothBivariateSpline|splrep|splev|splprep|bisplrep|bisplev)$']
+  works:
+    - classic: true
+      authors: ["Paul Dierckx"]
+      year: 1993
+      title: "Curve and Surface Fitting with Splines"
+      venue: "Oxford University Press (Monographs on Numerical Analysis)"
+      url: https://global.oup.com/academic/product/curve-and-surface-fitting-with-splines-9780198534402
+- label: "k-d trees (scipy.spatial cKDTree/KDTree)"
+  calls: ['^scipy\.spatial\.(cKDTree|KDTree)$']
+  works:
+    - {doi: 10.1145/361002.361007}                      # Bentley 1975
+    - {arxiv: "cs/9901013"}                             # Maneewongvatana & Mount 1999 (sliding midpoint rule)
+- label: "Qhull (Voronoi / Delaunay / convex hulls)"
+  calls: ['^scipy\.spatial\.(Voronoi|ConvexHull|Delaunay|HalfspaceIntersection)$']
+  works:
+    - {doi: 10.1145/235815.235821}                      # Barber, Dobkin & Huhdanpaa 1996
+- label: "Spearman rank correlation"
+  calls: ['^scipy\.stats\.spearmanr$']
+  works:
+    - {doi: 10.2307/1412159}                            # Spearman 1904
+- label: "Pearson correlation coefficient"
+  calls: ['^scipy\.stats\.pearsonr$', '^numpy\.corrcoef$']
+  works:
+    - {doi: 10.1098/rspl.1895.0041}                     # Pearson 1895
+- label: "Kendall rank correlation"
+  calls: ['^scipy\.stats\.kendalltau$']
+  works:
+    - {doi: 10.1093/biomet/30.1-2.81}                   # Kendall 1938
+- label: "Pearson chi-squared"
+  calls: ['^scipy\.stats\.(chi2(\..*)?|chisquare|chi2_contingency)$']
+  works:
+    - {doi: 10.1080/14786440009463897}                  # Pearson 1900
+- label: "Student's t"
+  calls: ['^scipy\.stats\.(ttest_1samp|ttest_ind|ttest_rel|t(\..*)?)$']
+  works:
+    - {doi: 10.1093/biomet/6.1.1}                       # Student (W. S. Gosset) 1908
+- label: "Mann-Whitney U test"
+  calls: ['^scipy\.stats\.mannwhitneyu$']
+  works:
+    - {doi: 10.1214/aoms/1177730491}                    # Mann & Whitney 1947
+- label: "Kolmogorov-Smirnov test"
+  calls: ['^scipy\.stats\.(kstest|ks_2samp|ks_1samp|kstwobign(\..*)?|kstwo(\..*)?)$']
+  works:
+    - classic: true
+      authors: ["Andrey N. Kolmogorov"]
+      year: 1933
+      title: "Sulla determinazione empirica di una legge di distribuzione"
+      venue: "Giornale dell'Istituto Italiano degli Attuari 4, 83-91"
+      url: https://link.springer.com/chapter/10.1007/978-94-011-2260-3_15
+    - {doi: 10.1214/aoms/1177730256}                    # Smirnov 1948
+- label: "Wilcoxon signed-rank test"
+  calls: ['^scipy\.stats\.wilcoxon$']
+  works:
+    - {doi: 10.2307/3001968}                            # Wilcoxon 1945
+- label: "Kruskal-Wallis test"
+  calls: ['^scipy\.stats\.kruskal$']
+  works:
+    - {doi: 10.1080/01621459.1952.10483441}             # Kruskal & Wallis 1952
+- label: "Anderson-Darling test"
+  calls: ['^scipy\.stats\.(anderson|anderson_ksamp)$']
+  works:
+    - {doi: 10.1214/aoms/1177729437}                    # Anderson & Darling 1952
+- label: "Shapiro-Wilk test"
+  calls: ['^scipy\.stats\.shapiro$']
+  works:
+    - {doi: 10.1093/biomet/52.3-4.591}                  # Shapiro & Wilk 1965
+- label: "Levene's test"
+  calls: ['^scipy\.stats\.levene$']
+  works:
+    - classic: true
+      authors: ["Howard Levene"]
+      year: 1960
+      title: "Robust tests for equality of variances"
+      venue: "in Contributions to Probability and Statistics (I. Olkin, ed.), Stanford University Press, 278-292"
+      url: https://www.sup.org/books/title/?id=1791
+- label: "Theil-Sen estimator"
+  calls: ['^scipy\.stats\.(theilslopes|siegelslopes)$']
+  works:
+    - {doi: 10.1080/01621459.1968.10480934}             # Sen 1968
+- label: "Gaussian kernel density estimation (Scott's rule)"
+  calls: ['^scipy\.stats\.gaussian_kde$']
+  works:
+    - {doi: 10.1002/9780470316849}                      # Scott 1992, Multivariate Density Estimation
+- label: "Shannon entropy / Kullback-Leibler divergence"
+  calls: ['^scipy\.stats\.entropy$', '^scipy\.special\.(entr|rel_entr|kl_div)$']
+  works:
+    - {doi: 10.1002/j.1538-7305.1948.tb01338.x}         # Shannon 1948
+    - {doi: 10.1214/aoms/1177729694}                    # Kullback & Leibler 1951
+- label: "Maxwell distribution"
+  calls: ['^scipy\.stats\.maxwell(\..*)?$']
+  works:
+    - {doi: 10.1080/14786446008642818}                  # Maxwell 1860
+- label: "Lomax (Pareto II) distribution"
+  calls: ['^scipy\.stats\.lomax(\..*)?$']
+  works:
+    - {doi: 10.1080/01621459.1954.10501239}             # Lomax 1954
+- label: "Lambert W function"
+  calls: ['^scipy\.special\.lambertw$', '^mpmath\.(mp\.)?lambertw$']
+  works:
+    - {doi: 10.1007/BF02124750}                         # Corless, Gonnet, Hare, Jeffrey & Knuth 1996
+- label: "Hankel functions"
+  calls: ['^scipy\.special\.(hankel1|hankel2|hankel1e|hankel2e)$', '^mpmath\.(mp\.)?(hankel1|hankel2)$']
+  works:
+    - {doi: 10.1007/BF01445870}                         # Hankel 1869, Math. Ann. 1, 467
+- label: "Struve functions"
+  calls: ['^scipy\.special\.(struve|modstruve)$', '^mpmath\.(mp\.)?(struveh|struvel)$']
+  works:
+    - {doi: 10.1002/andp.18822531319}                   # Struve 1882, Ann. Phys. 253, 1008
+- label: "PSLQ integer-relation algorithm"
+  calls: ['^mpmath\.(mp\.)?(pslq|identify|findpoly)$']
+  works:
+    - {doi: 10.1090/S0025-5718-99-00995-3}              # Ferguson, Bailey & Arno 1999
+- label: "Durand-Kerner polynomial roots (mpmath.polyroots)"
+  calls: ['^mpmath\.(mp\.)?polyroots$']
+  works:
+    - {doi: 10.1007/BF02162564}                         # Kerner 1966, Numer. Math. 8, 290
+- label: "Fast Fourier transform"
+  calls: ['^numpy\.fft\.(fft|ifft|fft2|ifft2|fftn|ifftn|rfft|irfft|rfft2|irfft2|rfftn|irfftn|hfft|ihfft)$',
+          '^scipy\.fft\.(fft|ifft|fft2|ifft2|fftn|ifftn|rfft|irfft|rfft2|irfft2|rfftn|irfftn|dct|idct|dst|idst)$',
+          '^scipy\.fftpack\.', '^scipy\.signal\.fftconvolve$']
+  works:
+    - {doi: 10.1090/S0025-5718-1965-0178586-1}          # Cooley & Tukey 1965
+- label: "Welch power spectral density"
+  calls: ['^scipy\.signal\.(welch|csd|coherence)$']
+  works:
+    - {doi: 10.1109/TAU.1967.1161901}                   # Welch 1967
+- label: "Lomb-Scargle periodogram"
+  calls: ['^scipy\.signal\.lombscargle$', '^astropy\.timeseries\.LombScargle$']
+  works:
+    - {doi: 10.1007/BF00648343}                         # Lomb 1976
+    - {doi: 10.1086/160554}                             # Scargle 1982
+- label: "Savitzky-Golay filter"
+  calls: ['^scipy\.signal\.savgol_filter$', '^scipy\.signal\.savgol_coeffs$']
+  works:
+    - {doi: 10.1021/ac60214a047}                        # Savitzky & Golay 1964
+- label: "Forward-backward (zero-phase) filtering"
+  calls: ['^scipy\.signal\.filtfilt$']
+  works:
+    - {doi: 10.1109/78.492552}                          # Gustafsson 1996
+- label: "Matrix exponential (scaling and squaring)"
+  calls: ['^scipy\.linalg\.expm$', '^scipy\.sparse\.linalg\.expm(_multiply)?$']
+  works:
+    - {doi: 10.1137/09074721X}                          # Al-Mohy & Higham 2009 (SIMAX 31, 970)
+- label: "Frechet derivative of the matrix exponential"
+  calls: ['^scipy\.linalg\.expm_frechet$']
+  works:
+    - {doi: 10.1137/080716426}                          # Al-Mohy & Higham 2009 (SIMAX 30, 1639)
+- label: "Matrix logarithm (inverse scaling and squaring)"
+  calls: ['^scipy\.linalg\.logm$']
+  works:
+    - {doi: 10.1137/110852553}                          # Al-Mohy & Higham 2012
+- label: "SuperLU sparse direct solver"
+  calls: ['^scipy\.sparse\.linalg\.(spsolve|splu|factorized|spilu)$']
+  works:
+    - {doi: 10.1145/1089014.1089017}                    # X. S. Li 2005
+    - {doi: 10.1137/S0895479895291765}                  # Demmel, Eisenstat, Gilbert, Li & Liu 1999
+- label: "ARPACK implicitly restarted Lanczos/Arnoldi"
+  calls: ['^scipy\.sparse\.linalg\.(eigsh|eigs|svds)$']
+  works:
+    - {doi: 10.1137/1.9780898719628}                    # Lehoucq, Sorensen & Yang 1998
+- label: "Conjugate gradients"
+  calls: ['^scipy\.sparse\.linalg\.cg$']
+  works:
+    - {doi: 10.6028/jres.049.044}                       # Hestenes & Stiefel 1952
+- label: "GMRES"
+  calls: ['^scipy\.sparse\.linalg\.gmres$']
+  works:
+    - {doi: 10.1137/0907058}                            # Saad & Schultz 1986
+- label: "Orthogonal distance regression (ODRPACK)"
+  calls: ['^scipy\.odr\.(ODR|odr)$']
+  works:
+    - {doi: 10.1137/0908085}                            # Boggs, Byrd & Schnabel 1987
+- label: "Gradient boosting"
+  calls: ['^sklearn\.ensemble\.(GradientBoostingRegressor|GradientBoostingClassifier|HistGradientBoosting.*)$']
+  works:
+    - {doi: 10.1214/aos/1013203451}                     # Friedman 2001
+- label: "Principal component analysis"
+  calls: ['^sklearn\.decomposition\.PCA$']
+  works:
+    - {doi: 10.1080/14786440109462720}                  # Pearson 1901
+    - {doi: 10.1037/h0071325}                           # Hotelling 1933
+- label: "Gaussian-process regression"
+  calls: ['^sklearn\.gaussian_process\.']
+  works:
+    - {doi: 10.7551/mitpress/3206.001.0001}             # Rasmussen & Williams 2006
+- label: "Kernel density estimation"
+  calls: ['^sklearn\.neighbors\.KernelDensity$']
+  works:
+    - {doi: 10.1214/aoms/1177728190}                    # Rosenblatt 1956
+    - {doi: 10.1214/aoms/1177704472}                    # Parzen 1962
+- label: "Huber robust regression"
+  calls: ['^sklearn\.linear_model\.HuberRegressor$']
+  works:
+    - {doi: 10.1214/aoms/1177703732}                    # Huber 1964
+- label: "Logistic regression"
+  calls: ['^sklearn\.linear_model\.LogisticRegression$']
+  works:
+    - {doi: 10.1111/j.2517-6161.1958.tb00292.x}         # Cox 1958
+- label: "Method of least squares (polyfit, lstsq, linregress)"
+  calls: ['^numpy\.polyfit$', '^numpy\.polynomial\.polynomial\.polyfit$', '^numpy\.linalg\.lstsq$', '^scipy\.stats\.linregress$', '^scipy\.linalg\.lstsq$']
+  works:
+    - classic: true
+      authors: ["Adrien-Marie Legendre"]
+      year: 1805
+      title: "Nouvelles méthodes pour la détermination des orbites des comètes"
+      venue: "Firmin Didot, Paris (appendix: Sur la méthode des moindres quarrés)"
+      url: https://archive.org/details/nouvellesmthode00legegoog
+    - classic: true
+      authors: ["Carl Friedrich Gauss"]
+      year: 1809
+      title: "Theoria motus corporum coelestium in sectionibus conicis solem ambientium"
+      venue: "Perthes & Besser, Hamburg"
+      url: https://archive.org/details/theoriamotuscor00gausgoog

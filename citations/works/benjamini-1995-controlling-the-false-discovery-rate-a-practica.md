@@ -1,0 +1,23 @@
+# Benjamini & Hochberg 1995 — Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing
+
+**Reference.** Benjamini, Y.; Hochberg, Y. (1995). Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing. *Journal of the Royal Statistical Society Series B: Statistical Methodology* 57, 289-300. [doi:10.1111/j.2517-6161.1995.tb02031.x](https://doi.org/10.1111/j.2517-6161.1995.tb02031.x)
+
+**BibTeX key:** `Benjamini1995` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (2):** [Yoav Benjamini](../people/benjamini-yoav.md), [Yosef Hochberg](../people/hochberg-yosef.md)
+
+## Used in 9 script(s)
+
+How: named method/model in 9.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/OlympusFlow/statistical_validator.py`](../../ai_slop/OlympusFlow/statistical_validator.py#L219) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [219](../../ai_slop/OlympusFlow/statistical_validator.py#L219), [241](../../ai_slop/OlympusFlow/statistical_validator.py#L241) |
+| [`deepseek_push/G087_btfr_scatter.py`](../../deepseek_push/G087_btfr_scatter.py#L41) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [41](../../deepseek_push/G087_btfr_scatter.py#L41) |
+| [`deepseek_push/lanes/G040_offset_decomposition.py`](../../deepseek_push/lanes/G040_offset_decomposition.py#L25) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [25](../../deepseek_push/lanes/G040_offset_decomposition.py#L25), [279](../../deepseek_push/lanes/G040_offset_decomposition.py#L279), [295](../../deepseek_push/lanes/G040_offset_decomposition.py#L295) |
+| [`fable_independent_2026/kappa_slot_2026/IDEAS_100_generator.py`](../../fable_independent_2026/kappa_slot_2026/IDEAS_100_generator.py#L264) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [264](../../fable_independent_2026/kappa_slot_2026/IDEAS_100_generator.py#L264) |
+| [`glm53_push/G040_offset_decomposition.py`](../../glm53_push/G040_offset_decomposition.py#L25) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [25](../../glm53_push/G040_offset_decomposition.py#L25), [279](../../glm53_push/G040_offset_decomposition.py#L279), [295](../../glm53_push/G040_offset_decomposition.py#L295) |
+| [`opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py`](../../opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py#L71) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [71](../../opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py#L71), [77](../../opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py#L77), [750](../../opus_48_extended_research/reviews/derivation_chain/gap2_germ_fingerprint_FDR.py#L750) |
+| [`opus_48_extended_research/reviews/derivation_chain/gap2_mechanism_independence.py`](../../opus_48_extended_research/reviews/derivation_chain/gap2_mechanism_independence.py#L42) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [42](../../opus_48_extended_research/reviews/derivation_chain/gap2_mechanism_independence.py#L42), [82](../../opus_48_extended_research/reviews/derivation_chain/gap2_mechanism_independence.py#L82), [685](../../opus_48_extended_research/reviews/derivation_chain/gap2_mechanism_independence.py#L685) |
+| [`opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py`](../../opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py#L57) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [57](../../opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py#L57), [109](../../opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py#L109), [355](../../opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py#L355), [365](../../opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py#L365), [377](../../opus_48_extended_research/reviews/derivation_chain/gap3_conservative_kernel_dissolves_antimond.py#L377) |
+| [`real_research/reviews/posit_cascade.py`](../../real_research/reviews/posit_cascade.py#L45) | named method/model — Benjamini-Hochberg false discovery rate (FDR) procedure | [45](../../real_research/reviews/posit_cascade.py#L45) |

@@ -1,0 +1,15 @@
+# Maiolino et al. 2026 — A black hole in a near pristine galaxy 700 Myr after the big bang
+
+**Reference.** Maiolino, R.; Uebler, H.; D'Eugenio, F.; Scholtz, J.; Juodzbalis, I.; Ji, X.; Perna, M.; Bromm, V.; Dayal, P.; Koudmani, S.; Liu, B.; Schneider, R.; Sijacki, D.; Valiante, R.; Trinca, A.; Zhang, S.; Volonteri, M.; Inayoshi, K.; Carniani, S.; Nakajima, K.; Isobe, Y.; Witstok, J.; Jones, G. C.; Tacchella, S.; Arribas, S.; Bunker, A.; Cataldi, E.; Charlot, S.; Cresci, G.; Curti, M.; et al. (39 authors) (2026). A black hole in a near pristine galaxy 700 Myr after the big bang. *Monthly Notices of the Royal Astronomical Society* 548, staf2109. [doi:10.1093/mnras/staf2109](https://doi.org/10.1093/mnras/staf2109) [arXiv:2505.22567](https://arxiv.org/abs/2505.22567)
+
+**BibTeX key:** `Maiolino2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (39):** [Roberto Maiolino](../people/maiolino-roberto.md), [Hannah Uebler](../people/uebler-hannah.md), [Francesco D'Eugenio](../people/deugenio-francesco-2.md), [Jan Scholtz](../people/scholtz-jan-2.md), [Ignas Juodzbalis](../people/juodzbalis-ignas.md), [Xihan Ji](../people/ji-xihan.md), [Michele Perna](../people/perna-michele.md), [Volker Bromm](../people/bromm-volker.md), [Pratika Dayal](../people/dayal-pratika.md), [Sophie Koudmani](../people/koudmani-sophie.md), [Boyuan Liu](../people/liu-boyuan.md), [Raffaella Schneider](../people/schneider-raffaella.md), [Debora Sijacki](../people/sijacki-debora.md), [Rosa Valiante](../people/valiante-rosa.md), [Alessandro Trinca](../people/trinca-alessandro.md), [Saiyang Zhang](../people/zhang-saiyang.md), [Marta Volonteri](../people/volonteri-marta.md), [Kohei Inayoshi](../people/inayoshi-kohei.md), [Stefano Carniani](../people/carniani-stefano.md), [Kimihiko Nakajima](../people/nakajima-kimihiko.md), [Yuki Isobe](../people/isobe-yuki.md), [Joris Witstok](../people/witstok-joris.md), [Gareth C. Jones](../people/jones-gareth-c.md), [Sandro Tacchella](../people/tacchella-sandro.md), [Santiago Arribas](../people/arribas-santiago.md), [Andrew Bunker](../people/bunker-andrew-j.md), [Elisa Cataldi](../people/cataldi-elisa.md), [Stephane Charlot](../people/charlot-stephane.md), [Giovanni Cresci](../people/cresci-giovanni.md), [Mirko Curti](../people/curti-mirko.md), [Andrew C. Fabian](../people/fabian-andrew-c-2.md), [Harley Katz](../people/katz-harley.md), [Nimisha Kumari](../people/kumari-nimisha.md), [Nicolas Laporte](../people/laporte-nicolas.md), [Giovanni Mazzolari](../people/mazzolari-giovanni.md), [Brant Robertson](../people/robertson-brant-e.md), [Fengwu Sun](../people/sun-fengwu.md), [Bruno Rodriguez Del Pino](../people/del-pino-bruno-rodriguez.md), [Giacomo Venturi](../people/venturi-giacomo.md)
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`real_research/bhstar_audit_2026/L327_qso1_cube_refit.py`](../../real_research/bhstar_audit_2026/L327_qso1_cube_refit.py#L275) | cited | [275](../../real_research/bhstar_audit_2026/L327_qso1_cube_refit.py#L275) |

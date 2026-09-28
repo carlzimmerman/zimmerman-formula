@@ -1,0 +1,15 @@
+# Treu et al. 2022 — The GLASS-JWST Early Release Science Program. I. Survey Design and Release Plans
+
+**Reference.** Treu, T.; Roberts-Borsani, G.; Bradac, M.; Brammer, G.; Fontana, A.; Henry, A.; Mason, C.; Morishita, T.; Pentericci, L.; Wang, X.; Acebron, A.; Bagley, M.; Bergamini, P.; Belfiori, D.; Bonchi, A.; Boyett, K.; Boutsia, K.; Calabró, A.; Caminha, G. B.; Castellano, M.; Dressler, A.; Glazebrook, K.; Grillo, C.; Jacobs, C.; Jones, T.; Kelly, P. L.; Leethochawalit, N.; Malkan, M. A.; Marchesini, D.; Mascia, S.; et al. (46 authors) (2022). The GLASS-JWST Early Release Science Program. I. Survey Design and Release Plans. *The Astrophysical Journal* 935, 110. [doi:10.3847/1538-4357/ac8158](https://doi.org/10.3847/1538-4357/ac8158)
+
+**BibTeX key:** `Treu2022` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (46):** [T. Treu](../people/treu-tommaso.md), [G. Roberts-Borsani](../people/roberts-borsani-guido-w.md), [M. Bradac](../people/bradac-marusa.md), [G. Brammer](../people/brammer-gabriel-b.md), [A. Fontana](../people/fontana-adriano.md), [A. Henry](../people/henry-alaina.md), [C. Mason](../people/mason-charlotte-a.md), [T. Morishita](../people/morishita-takahiro.md), [L. Pentericci](../people/pentericci-laura.md), [X. Wang](../people/wang-xin.md), A. Acebron, [M. Bagley](../people/bagley-micaela-b.md), [P. Bergamini](../people/bergamini-pietro.md), [D. Belfiori](../people/belfiori-davide.md), [A. Bonchi](../people/bonchi-andrea.md), [K. Boyett](../people/boyett-kristan.md), [K. Boutsia](../people/boutsia-konstantina.md), [A. Calabró](../people/calabro-antonello.md), [G. B. Caminha](../people/caminha-gabriel-b.md), [M. Castellano](../people/castellano-marco.md), [A. Dressler](../people/dressler-alan.md), [K. Glazebrook](../people/glazebrook-karl.md), [C. Grillo](../people/grillo-claudio.md), C. Jacobs, [T. Jones](../people/jones-tucker-a.md), [P. L. Kelly](../people/kelly-patrick-l.md), [N. Leethochawalit](../people/leethochawalit-nicha.md), [M. A. Malkan](../people/malkan-matthew-a.md), [D. Marchesini](../people/marchesini-danilo.md), [S. Mascia](../people/mascia-sara.md), [A. Mercurio](../people/mercurio-amata.md), [E. Merlin](../people/merlin-emiliano.md), [T. Nanayakkara](../people/nanayakkara-themiya.md), [M. Nonino](../people/nonino-mario.md), [D. Paris](../people/paris-diego.md), [B. Poggianti](../people/poggianti-bianca-m.md), [P. Rosati](../people/rosati-piero.md), [P. Santini](../people/santini-paola.md), C. Scarlata, H. V. Shipley, [V. Strait](../people/strait-victoria.md), [M. Trenti](../people/trenti-michele.md), C. Tubthong, [E. Vanzella](../people/vanzella-eros.md), [B. Vulcani](../people/vulcani-benedetta.md), [L. Yang](../people/yang-lilan.md)
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`prep_2026/a0z_crossscale/archive_inventory_d2_2026.py`](../../prep_2026/a0z_crossscale/archive_inventory_d2_2026.py#L200) | cited | [200](../../prep_2026/a0z_crossscale/archive_inventory_d2_2026.py#L200) |

@@ -1,0 +1,15 @@
+# Nightingale et al. 2025 — The COSMOS-Web Lens Survey (COWLS) I: discovery of >100 high redshift strong lenses in contiguous JWST imaging
+
+**Reference.** Nightingale, J. W.; Mahler, G.; McCleary, J.; He, Q.; Hogg, N. B.; Amvrosiadis, A.; Gozaliasl, G.; Mercier, W.; Scognamiglio, D.; Berman, E.; Leroy, G.; Liu, D.; Massey, R. J.; Shuntov, M.; von Wietersheim-Kramsta, M.; Franco, M.; Paquereau, L.; Ilbert, O.; Allen, N.; Toft, S.; Akins, H. B.; Casey, C. M.; Kartaltepe, J. S.; Koekemoer, A. M.; McCracken, H. J.; Rhodes, J. D.; Robertson, B. E.; Drakos, N. E.; Faisst, A. L.; Jin, S. (2025). The COSMOS-Web Lens Survey (COWLS) I: discovery of >100 high redshift strong lenses in contiguous JWST imaging. *Monthly Notices of the Royal Astronomical Society* 543, 203-222. [doi:10.1093/mnras/staf1253](https://doi.org/10.1093/mnras/staf1253) [arXiv:2503.08777](https://arxiv.org/abs/2503.08777)
+
+**BibTeX key:** `Nightingale2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (30):** [James W Nightingale](../people/nightingale-james-w.md), [Guillaume Mahler](../people/mahler-guillaume.md), [Jacqueline McCleary](../people/mccleary-jacqueline-e.md), [Qiuhan He](../people/he-qiuhan.md), [Natalie B Hogg](../people/hogg-natalie-b.md), [Aristeidis Amvrosiadis](../people/amvrosiadis-aristeidis.md), [Ghassem Gozaliasl](../people/gozaliasl-ghassem.md), [Wilfried Mercier](../people/mercier-wilfried.md), [Diana Scognamiglio](../people/scognamiglio-diana.md), [Edward Berman](../people/berman-edward.md), [Gavin Leroy](../people/leroy-gavin.md), [Daizhong Liu](../people/liu-daizhong.md), [Richard J Massey](../people/massey-richard-j.md), [Marko Shuntov](../people/shuntov-marko.md), [Maximilian von Wietersheim-Kramsta](../people/von-wietersheim-kramsta-maximilian.md), [Maximilien Franco](../people/franco-maximilien.md), [Louise Paquereau](../people/paquereau-louise.md), [Olivier Ilbert](../people/ilbert-olivier.md), [Natalie Allen](../people/allen-natalie.md), [Sune Toft](../people/toft-sune.md), [Hollis B Akins](../people/akins-hollis-b.md), [Caitlin M Casey](../people/casey-caitlin-m.md), [Jeyhan S Kartaltepe](../people/kartaltepe-jeyhan-s.md), [Anton M Koekemoer](../people/koekemoer-anton-m.md), [Henry Joy McCracken](../people/mccracken-henry-joy.md), [Jason D Rhodes](../people/rhodes-jason-d.md), [Brant E Robertson](../people/robertson-brant-e.md), [Nicole E Drakos](../people/drakos-nicole-e.md), [Andreas L Faisst](../people/faisst-andreas-l.md), [Shuowen Jin](../people/jin-shuowen.md)
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/offensive_campaign/real_data_fetcher.py`](../../ai_slop/research/offensive_campaign/real_data_fetcher.py#L923) | cited | [923](../../ai_slop/research/offensive_campaign/real_data_fetcher.py#L923), [933](../../ai_slop/research/offensive_campaign/real_data_fetcher.py#L933), [1048](../../ai_slop/research/offensive_campaign/real_data_fetcher.py#L1048) |

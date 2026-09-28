@@ -1,0 +1,26 @@
+# Tiley et al. 2018 — KROSS–SAMI: a direct IFS comparison of the Tully–Fisher relation across 8 Gyr sincez ≈ 1
+
+**Reference.** Tiley, A. L.; Bureau, M.; Cortese, L.; Harrison, C. M.; Johnson, H. L.; Stott, J. P.; Swinbank, A. M.; Smail, I.; Sobral, D.; Bunker, A. J.; Glazebrook, K.; Bower, R. G.; Obreschkow, D.; Bryant, J. J.; Jarvis, M. J.; Bland-Hawthorn, J.; Magdis, G.; Medling, A. M.; Sweet, S. M.; Tonini, C.; Turner, O. J.; Sharples, R. M.; Croom, S. M.; Goodwin, M.; Konstantopoulos, I. S.; Lorente, N. P. F.; Lawrence, J. S.; Mould, J.; Owers, M. S.; Richards, S. N. (2018). KROSS–SAMI: a direct IFS comparison of the Tully–Fisher relation across 8 Gyr sincez ≈ 1. *Monthly Notices of the Royal Astronomical Society* 482, 2166-2188. [doi:10.1093/mnras/sty2794](https://doi.org/10.1093/mnras/sty2794) [arXiv:1810.07202](https://arxiv.org/abs/1810.07202)
+
+**BibTeX key:** `Tiley2018` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (30):** [A L Tiley](../people/tiley-a-l-3.md), [M Bureau](../people/bureau-martin.md), [L Cortese](../people/cortese-luca.md), [C M Harrison](../people/harrison-chris-m.md), [H L Johnson](../people/johnson-helen-l.md), [J P Stott](../people/stott-john-p.md), A M Swinbank, [I Smail](../people/smail-ian.md), [D Sobral](../people/sobral-david.md), [A J Bunker](../people/bunker-andrew-j.md), [K Glazebrook](../people/glazebrook-karl.md), [R G Bower](../people/bower-richard-g.md), [D Obreschkow](../people/obreschkow-danail.md), [J J Bryant](../people/bryant-julia-j.md), [M J Jarvis](../people/jarvis-matt-j.md), [J Bland-Hawthorn](../people/bland-hawthorn-joss.md), [G Magdis](../people/magdis-georgios-e.md), [A M Medling](../people/medling-a-m.md), [S M Sweet](../people/sweet-s-m.md), [C Tonini](../people/tonini-c.md), [O J Turner](../people/turner-o-j.md), [R M Sharples](../people/sharples-ray.md), [S M Croom](../people/croom-scott-m.md), [M Goodwin](../people/goodwin-michael.md), [I S Konstantopoulos](../people/konstantopoulos-i-s.md), [N P F Lorente](../people/lorente-n-p-f.md), [J S Lawrence](../people/lawrence-jon-s.md), [J Mould](../people/mould-jeremy-r.md), [M S Owers](../people/owers-matt-s.md), [S N Richards](../people/richards-samuel.md)
+
+## Used in 12 script(s)
+
+How: cited in 12.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/examples/07_btf_evolution/run.py`](../../ai_slop/examples/07_btf_evolution/run.py#L2) | cited | [2](../../ai_slop/examples/07_btf_evolution/run.py#L2) |
+| [`campaign_fresh_gravity/CFG6_a0z_evidence.py`](../../campaign_fresh_gravity/CFG6_a0z_evidence.py#L3) | cited | [3](../../campaign_fresh_gravity/CFG6_a0z_evidence.py#L3) |
+| [`nbody_2026/stage60_btfr_discriminator_2026.py`](../../nbody_2026/stage60_btfr_discriminator_2026.py#L3) | cited | [3](../../nbody_2026/stage60_btfr_discriminator_2026.py#L3), [119](../../nbody_2026/stage60_btfr_discriminator_2026.py#L119), [142](../../nbody_2026/stage60_btfr_discriminator_2026.py#L142) |
+| [`nbody_2026/stage60_ev_btfr_lane_2026.py`](../../nbody_2026/stage60_ev_btfr_lane_2026.py#L10) | cited | [10](../../nbody_2026/stage60_ev_btfr_lane_2026.py#L10), [269](../../nbody_2026/stage60_ev_btfr_lane_2026.py#L269), [271](../../nbody_2026/stage60_ev_btfr_lane_2026.py#L271), [281](../../nbody_2026/stage60_ev_btfr_lane_2026.py#L281), [363](../../nbody_2026/stage60_ev_btfr_lane_2026.py#L363) |
+| [`prep_2026/a0_line_crossz/crossz_estimator_landscape.py`](../../prep_2026/a0_line_crossz/crossz_estimator_landscape.py#L255) | cited | [255](../../prep_2026/a0_line_crossz/crossz_estimator_landscape.py#L255) |
+| [`prep_2026/a0z_crossscale/a0z_drift_nuisance_dilution_2026.py`](../../prep_2026/a0z_crossscale/a0z_drift_nuisance_dilution_2026.py#L339) | cited | [339](../../prep_2026/a0z_crossscale/a0z_drift_nuisance_dilution_2026.py#L339) |
+| [`prep_2026/a0z_crossscale/a0z_fork_likelihood_2026.py`](../../prep_2026/a0z_crossscale/a0z_fork_likelihood_2026.py#L247) | cited | [247](../../prep_2026/a0z_crossscale/a0z_fork_likelihood_2026.py#L247) |
+| [`prep_2026/a0z_crossscale/a0z_model_comparison_forecast_2026.py`](../../prep_2026/a0z_crossscale/a0z_model_comparison_forecast_2026.py#L180) | cited | [180](../../prep_2026/a0z_crossscale/a0z_model_comparison_forecast_2026.py#L180) |
+| [`prep_2026/a0z_crossscale/confront.py`](../../prep_2026/a0z_crossscale/confront.py#L2) | cited | [2](../../prep_2026/a0z_crossscale/confront.py#L2) |
+| [`prep_2026/a0z_crossscale/galaxy_a0z.py`](../../prep_2026/a0z_crossscale/galaxy_a0z.py#L2) | cited | [2](../../prep_2026/a0z_crossscale/galaxy_a0z.py#L2), [100](../../prep_2026/a0z_crossscale/galaxy_a0z.py#L100), [102](../../prep_2026/a0z_crossscale/galaxy_a0z.py#L102) |
+| [`prep_2026/a0z_crossscale/highz_a0_fork_confront_2026.py`](../../prep_2026/a0z_crossscale/highz_a0_fork_confront_2026.py#L187) | cited | [187](../../prep_2026/a0z_crossscale/highz_a0_fork_confront_2026.py#L187), [190](../../prep_2026/a0z_crossscale/highz_a0_fork_confront_2026.py#L190) |
+| [`prep_2026/highz_tfr_fork/fork_confrontation.py`](../../prep_2026/highz_tfr_fork/fork_confrontation.py#L169) | cited | [169](../../prep_2026/highz_tfr_fork/fork_confrontation.py#L169) |

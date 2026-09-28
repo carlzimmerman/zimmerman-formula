@@ -1,0 +1,15 @@
+# Luque et al. 2017 — The Dark Energy Survey view of the Sagittarius stream: discovery of two faint stellar system candidates
+
+**Reference.** Luque, E.; Pieres, A.; Santiago, B.; Yanny, B.; Vivas, A. K.; Queiroz, A.; Drlica-Wagner, A.; Morganson, E.; Balbinot, E.; Marshall, J. L.; Li, T. S.; Neto, A. F.; da Costa, L. N.; Maia, M. A. G.; Bechtol, K.; Kim, A. G.; Bernstein, G. M.; Dodelson, S.; Whiteway, L.; Diehl, H. T.; Finley, D. A.; Abbott, T.; Abdalla, F. B.; Allam, S.; Annis, J.; Benoit-Lévy, A.; Bertin, E.; Brooks, D.; Burke, D. L.; Rosell, A. C.; et al. (66 authors) (2017). The Dark Energy Survey view of the Sagittarius stream: discovery of two faint stellar system candidates. *Monthly Notices of the Royal Astronomical Society* 468, 97-108. [doi:10.1093/mnras/stx405](https://doi.org/10.1093/mnras/stx405)
+
+**BibTeX key:** `Luque2017` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (66):** E. Luque, [A. Pieres](../people/pieres-a.md), B. Santiago, [B. Yanny](../people/yanny-brian.md), [A. K. Vivas](../people/vivas-a-katherina.md), A. Queiroz, [A. Drlica-Wagner](../people/drlica-wagner-a.md), [E. Morganson](../people/morganson-eric.md), E. Balbinot, [J. L. Marshall](../people/marshall-j-l.md), [T. S. Li](../people/li-ting-s.md), A. Fausti Neto, [L. N. da Costa](../people/da-costa-luiz-nicolati.md), [M. A. G. Maia](../people/maia-marcio-antonio-geimba.md), [K. Bechtol](../people/bechtol-keith.md), [A. G. Kim](../people/kim-alex-g.md), G. M. Bernstein, [S. Dodelson](../people/dodelson-scott.md), L. Whiteway, H. T. Diehl, D. A. Finley, T. Abbott, F. B. Abdalla, [S. Allam](../people/allam-sahar-s.md), [J. Annis](../people/annis-james.md), A. Benoit-Lévy, E. Bertin, D. Brooks, [D. L. Burke](../people/burke-david-l.md), A. Carnero Rosell, M. Carrasco Kind, J. Carretero, [C. E. Cunha](../people/cunha-carlos-e.md), C. B. D'Andrea, [S. Desai](../people/desai-shantanu.md), P. Doel, [A. E. Evrard](../people/evrard-august-e.md), B. Flaugher, P. Fosalba, D. W. Gerdes, D. A. Goldstein, [D. Gruen](../people/gruen-daniel.md), [R. A. Gruendl](../people/gruendl-robert-a.md), G. Gutierrez, [D. J. James](../people/james-david-j.md), [K. Kuehn](../people/kuehn-kyler.md), [N. Kuropatkin](../people/kuropatkin-nikolay.md), [O. Lahav](../people/lahav-ofer.md), P. Martini, R. Miquel, [B. Nord](../people/nord-brian.md), R. Ogando, A. A. Plazas, A. K. Romer, E. Sanchez, V. Scarpine, M. Schubnell, I. Sevilla-Noarbe, [R. C. Smith](../people/smith-r-chris.md), [M. Soares-Santos](../people/soares-santos-marcelle.md), F. Sobreira, E. Suchyta, M. E. C. Swanson, G. Tarle, [D. Thomas](../people/thomas-daniel-b.md), [A. R. Walker](../people/walker-alistair-r.md)
+
+## Used in 1 script(s)
+
+How: cited in a paper in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`deepseek_push/G070_data/simon_ufds_v8.tex`](../../deepseek_push/G070_data/simon_ufds_v8.tex#L3137) | cited in a paper — luque17 | [3137](../../deepseek_push/G070_data/simon_ufds_v8.tex#L3137) |

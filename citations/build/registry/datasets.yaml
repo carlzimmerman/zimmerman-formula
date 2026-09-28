@@ -1,0 +1,472 @@
+# Data products (surveys, data releases, catalogues, ephemerides, reference compilations) named in the scripts
+# -> the release / data paper(s) that the providers ask users to cite.
+# Facilities and instruments on their own (JWST, HST, ALMA, MUSE, Chandra, Keck ...) are NOT listed: the index credits
+# the data papers, not the hardware. Patterns are case-sensitive Python regexes applied to comments/docstrings/strings.
+
+- label: "SPARC rotation-curve database"
+  patterns: ['\bSPARC\b', 'Rotmod_LTG', 'SPARC_Lelli2016c', 'MassModels_Lelli2016']
+  works:
+    - {doi: 10.3847/0004-6256/152/6/157}               # Lelli, McGaugh & Schombert 2016, AJ 152, 157
+- label: "Planck 2018 results (parameters)"
+  patterns: ['\bPlanck\s*(?:2018|18|2020)\b', '\bPlanck2018\b', '\bPlanck\s*PR3\b', '\bPlanck\s*(?:TT|TTTEEE|TT,TE,EE)\b',
+             '\bPlanck\s+(?:best[- ]fit|baseline|cosmology|cosmological parameters|\+\s*BAO|LCDM|ΛCDM|prior)\b']
+  works:
+    - {doi: 10.1051/0004-6361/201833910}               # Planck Collaboration VI 2020, A&A 641, A6
+- label: "Planck 2018 likelihoods"
+  patterns: ['\bPlanck\s+(?:2018\s+)?likelihoods?\b', '\bplik\b']
+  works:
+    - {doi: 10.1051/0004-6361/201936386}               # Planck Collaboration V 2020, A&A 641, A5
+- label: "Planck 2018 lensing"
+  patterns: ['\bPlanck\s+(?:2018\s+)?(?:CMB\s+)?lensing\b']
+  works:
+    - {doi: 10.1051/0004-6361/201833886}               # Planck Collaboration VIII 2020, A&A 641, A8
+- label: "Planck 2015 results (parameters)"
+  patterns: ['\bPlanck\s*(?:2015|15)\b']
+  works:
+    - {doi: 10.1051/0004-6361/201525830}               # Planck Collaboration XIII 2016, A&A 594, A13
+- label: "Planck 2013 results (parameters)"
+  patterns: ['\bPlanck\s*(?:2013|13)\b']
+  works:
+    - {doi: 10.1051/0004-6361/201321591}               # Planck Collaboration XVI 2014, A&A 571, A16
+- label: "Planck PR4 (NPIPE) spectra"
+  patterns: ['\bPlanck\s*PR4\b', '\bNPIPE\b', '\bCamSpec\b']
+  works:
+    - {doi: 10.1051/0004-6361/202348015}               # Tristram et al. 2024, A&A 682, A37
+    - {doi: 10.1093/mnras/stac2744}                    # Rosenberg, Gratton & Efstathiou 2022, MNRAS 517, 4620
+- label: "DESI DR2 BAO"
+  patterns: ['\bDESI\s*(?:DR2|Y3|2025)\b', '\bDESI[- ]DR2\b']
+  works:
+    - {arxiv: "2503.14738"}                            # DESI Collaboration 2025, DR2 Results II (BAO + cosmology)
+- label: "DESI DR1 BAO"
+  patterns: ['\bDESI\s*(?:DR1|Y1|2024)\b', '\bDESI[- ]DR1\b']
+  works:
+    - {doi: 10.1088/1475-7516/2025/02/021}             # DESI Collaboration 2025, JCAP 02, 021 (DR1 VI)
+- label: "DESI survey"
+  patterns: ['\bDESI\b(?!\s*(?:DR\d|Y\d|20\d\d))']
+  works:
+    - {arxiv: "1611.00036"}                            # DESI Collaboration 2016, Science, Targeting, Survey Design
+- label: "Gaia DR3"
+  patterns: ['\bGaia\s*DR3\b', '\bGaiaDR3\b']
+  works:
+    - {doi: 10.1051/0004-6361/202243940}               # Gaia Collaboration, Vallenari et al. 2023, A&A 674, A1
+- label: "Gaia EDR3"
+  patterns: ['\bGaia\s*[eE]DR3\b', '\bGaiaEDR3\b']
+  works:
+    - {doi: 10.1051/0004-6361/202039657}               # Gaia Collaboration, Brown et al. 2021, A&A 649, A1
+- label: "Gaia DR2"
+  patterns: ['\bGaia\s*DR2\b']
+  works:
+    - {doi: 10.1051/0004-6361/201833051}               # Gaia Collaboration, Brown et al. 2018, A&A 616, A1
+- label: "Gaia mission"
+  patterns: ['\bGaia\b(?!\s*(?:DR\d|[eE]DR3))', '\bGaia\s*DR4\b']
+  works:
+    - {doi: 10.1051/0004-6361/201629272}               # Gaia Collaboration, Prusti et al. 2016, A&A 595, A1
+- label: "Pantheon+ supernovae"
+  patterns: ['\bPantheon\+', '\bPantheonPlus\b', '\bPantheon\s*plus\b', '(?i)pantheonplus', '(?i)pantheon_plus']
+  works:
+    - {doi: 10.3847/1538-4357/ac8b7a}                  # Scolnic et al. 2022, ApJ 938, 113
+    - {doi: 10.3847/1538-4357/ac8e04}                  # Brout et al. 2022, ApJ 938, 110
+- label: "Pantheon supernovae"
+  patterns: ['\bPantheon\b(?!\+|Plus|\s*plus)']
+  works:
+    - {doi: 10.3847/1538-4357/aab9bb}                  # Scolnic et al. 2018, ApJ 859, 101
+- label: "SH0ES distance ladder"
+  patterns: ['\bSH0ES\b', '\bSHOES\b']
+  works:
+    - {doi: 10.3847/2041-8213/ac5c5b}                  # Riess et al. 2022, ApJL 934, L7
+- label: "Union3 supernovae"
+  patterns: ['\bUnion\s*3\b', '\bUNITY1\.5\b']
+  works:
+    - {arxiv: "2311.12098"}                            # Rubin et al. 2023, Union through UNITY
+- label: "Union2.1 supernovae"
+  patterns: ['\bUnion\s*2\.1\b']
+  works:
+    - {doi: 10.1088/0004-637X/746/1/85}                # Suzuki et al. 2012, ApJ 746, 85
+- label: "JLA supernovae"
+  patterns: ['\bJLA\b']
+  works:
+    - {doi: 10.1051/0004-6361/201423413}               # Betoule et al. 2014, A&A 568, A22
+- label: "DES 5-year supernovae"
+  patterns: ['\bDES[- ]?SN5YR\b', '\bDES\s*Y5\b', '\bDESY5\b', '\bDES[- ]SN\b']
+  works:
+    - {doi: 10.3847/2041-8213/ad6f9f}                  # DES Collaboration 2024, ApJL 973, L14
+- label: "DES Y3 3x2pt"
+  patterns: ['\bDES\s*Y3\b', '\bDESY3\b']
+  works:
+    - {doi: 10.1103/PhysRevD.105.023520}               # DES Collaboration, Abbott et al. 2022, PRD 105, 023520
+- label: "DES Y1 3x2pt"
+  patterns: ['\bDES\s*Y1\b']
+  works:
+    - {doi: 10.1103/PhysRevD.98.043526}                # DES Collaboration, Abbott et al. 2018, PRD 98, 043526
+- label: "KiDS-1000 data release"
+  patterns: ['\bKiDS[- ]?1000\b']
+  works:
+    - {doi: 10.1051/0004-6361/201834918}               # Kuijken et al. 2019, A&A 625, A2
+- label: "KiDS-450"
+  patterns: ['\bKiDS[- ]?450\b']
+  works:
+    - {doi: 10.1093/mnras/stw2805}                     # Hildebrandt et al. 2017, MNRAS 465, 1454
+- label: "KiDS survey"
+  patterns: ['\bKiDS\b(?![- ]?(?:1000|450))']
+  works:
+    - {doi: 10.1007/s10686-012-9306-1}                 # de Jong et al. 2013, Exp. Astron. 35, 25
+- label: "HSC Y3 cosmology"
+  patterns: ['\bHSC\s*Y3\b']
+  works:
+    - {doi: 10.1103/PhysRevD.108.123519}               # Dalal et al. 2023, PRD 108, 123519
+- label: "HSC survey"
+  patterns: ['\bHSC\b(?!\s*Y\d)', '\bHyper Suprime-Cam\b']
+  works:
+    - {doi: 10.1093/pasj/psx066}                       # Aihara et al. 2018, PASJ 70, S4
+- label: "eROSITA eRASS1"
+  patterns: ['\beRASS\s*1\b', '\beRASS1\b', '\beRASS\b', '\beROSITA\b']
+  works:
+    - {doi: 10.1051/0004-6361/202347165}               # Merloni et al. 2024, A&A 682, A34
+    - {doi: 10.1051/0004-6361/202348264}               # Bulbul et al. 2024, A&A 685, A106
+- label: "X-COP clusters"
+  patterns: ['\bX-?COP\b', '\bXCOP\b']
+  works:
+    - {doi: 10.1002/asna.201713345}                    # Eckert et al. 2017, Astron. Nachr. 338, 293
+    - {doi: 10.1051/0004-6361/201833325}               # Ghirardini et al. 2019, A&A 621, A41
+- label: "BOSS DR12 clustering"
+  patterns: ['\bBOSS\b']
+  works:
+    - {doi: 10.1093/mnras/stx721}                      # Alam et al. 2017, MNRAS 470, 2617
+- label: "eBOSS DR16 cosmology"
+  patterns: ['\beBOSS\b']
+  works:
+    - {doi: 10.1103/PhysRevD.103.083533}               # Alam et al. 2021, PRD 103, 083533
+- label: "6dF Galaxy Survey"
+  patterns: ['\b6dF(?:GS|GRS)?\b']
+  works:
+    - {doi: 10.1111/j.1365-2966.2009.15338.x}          # Jones et al. 2009, MNRAS 399, 683
+- label: "WiggleZ BAO"
+  patterns: ['\bWiggleZ\b']
+  works:
+    - {doi: 10.1111/j.1365-2966.2011.19592.x}          # Blake et al. 2011, MNRAS 418, 1707
+- label: "2MASS Redshift Survey"
+  patterns: ['\b2MRS\b']
+  works:
+    - {doi: 10.1088/0067-0049/199/2/26}                # Huchra et al. 2012, ApJS 199, 26
+- label: "Cosmicflows-4"
+  patterns: ['\bCosmicflows-?4\b', '\bCF4\b']
+  works:
+    - {doi: 10.3847/1538-4357/ac94d8}                  # Tully et al. 2023, ApJ 944, 94
+- label: "Cosmicflows-3"
+  patterns: ['\bCosmicflows-?3\b']
+  works:
+    - {doi: 10.3847/0004-6256/152/2/50}                # Tully et al. 2016, AJ 152, 50
+- label: "SDSS"
+  patterns: ['\bSDSS\b(?!\s*DR\d)', '\bSloan Digital Sky Survey\b']
+  works:
+    - {doi: 10.1086/301513}                            # York et al. 2000, AJ 120, 1579
+- label: "SDSS DR7"
+  patterns: ['\bSDSS\s*DR7\b']
+  works:
+    - {doi: 10.1088/0067-0049/182/2/543}               # Abazajian et al. 2009, ApJS 182, 543
+- label: "SDSS DR12"
+  patterns: ['\bSDSS\s*DR12\b']
+  works:
+    - {doi: 10.1088/0067-0049/219/1/12}                # Alam et al. 2015, ApJS 219, 12
+- label: "SDSS DR16"
+  patterns: ['\bSDSS\s*DR16\b']
+  works:
+    - {doi: 10.3847/1538-4365/ab929e}                  # Ahumada et al. 2020, ApJS 249, 3
+- label: "SDSS DR17"
+  patterns: ['\bSDSS\s*DR17\b']
+  works:
+    - {doi: 10.3847/1538-4365/ac4414}                  # Abdurro'uf et al. 2022, ApJS 259, 35
+- label: "SDSS DR18"
+  patterns: ['\bSDSS\s*DR18\b']
+  works:
+    - {doi: 10.3847/1538-4365/acda98}                  # Almeida et al. 2023, ApJS 267, 44
+- label: "THINGS HI survey"
+  patterns: ['(?<!LITTLE )\bTHINGS\b']
+  works:
+    - {doi: 10.1088/0004-6256/136/6/2563}              # Walter et al. 2008, AJ 136, 2563
+    - {doi: 10.1088/0004-6256/136/6/2648}              # de Blok et al. 2008, AJ 136, 2648
+- label: "LITTLE THINGS"
+  patterns: ['\bLITTLE\s+THINGS\b']
+  works:
+    - {doi: 10.1088/0004-6256/144/5/134}               # Hunter et al. 2012, AJ 144, 134
+    - {doi: 10.1088/0004-6256/149/6/180}               # Oh et al. 2015, AJ 149, 180
+- label: "WALLABY"
+  patterns: ['\bWALLABY\b']
+  works:
+    - {doi: 10.1007/s10509-020-03831-4}                # Koribalski et al. 2020, Ap&SS 365, 118
+    - {doi: 10.1017/pasa.2022.50}                      # Westmeier et al. 2022, PASA 39, e058
+- label: "MIGHTEE-HI"
+  patterns: ['\bMIGHTEE(?:-HI)?\b']
+  works:
+    - {doi: 10.1051/0004-6361/202039655}               # Maddox et al. 2021, A&A 646, A35
+- label: "ALFALFA"
+  patterns: ['\bALFALFA\b', '\balpha\.100\b']
+  works:
+    - {doi: 10.3847/1538-4357/aac956}                  # Haynes et al. 2018, ApJ 861, 49
+    - {doi: 10.1086/497431}                            # Giovanelli et al. 2005, AJ 130, 2598
+- label: "xGASS"
+  patterns: ['\bxGASS\b']
+  works:
+    - {doi: 10.1093/mnras/sty089}                      # Catinella et al. 2018, MNRAS 476, 875
+- label: "xCOLD GASS"
+  patterns: ['\bxCOLD\s*GASS\b']
+  works:
+    - {doi: 10.3847/1538-4365/aa97e0}                  # Saintonge et al. 2017, ApJS 233, 22
+- label: "MaNGA"
+  patterns: ['\bMaNGA\b']
+  works:
+    - {doi: 10.1088/0004-637X/798/1/7}                 # Bundy et al. 2015, ApJ 798, 7
+- label: "SAMI"
+  patterns: ['\bSAMI\b']
+  works:
+    - {doi: 10.1111/j.1365-2966.2011.20365.x}          # Croom et al. 2012, MNRAS 421, 872
+- label: "KMOS3D"
+  patterns: ['\bKMOS\s*3D\b', '\bKMOS\^3D\b']
+  works:
+    - {doi: 10.1088/0004-637X/799/2/209}               # Wisnioski et al. 2015, ApJ 799, 209
+    - {doi: 10.3847/1538-4357/ab4db8}                  # Wisnioski et al. 2019, ApJ 886, 124
+- label: "RC100 rotation curves"
+  patterns: ['\bRC100\b']
+  works:
+    - {doi: 10.3847/1538-4357/aca9cf}                  # Nestor Shachar et al. 2023, ApJ 944, 78
+- label: "JADES"
+  patterns: ['\bJADES\b']
+  works:
+    - {arxiv: "2306.02465"}                            # Eisenstein et al. 2023, JADES overview
+- label: "CEERS"
+  patterns: ['\bCEERS\b']
+  works:
+    - {doi: 10.3847/2041-8213/acade4}                  # Finkelstein et al. 2023, ApJL 946, L13
+- label: "APOGEE"
+  patterns: ['\bAPOGEE\b']
+  works:
+    - {doi: 10.3847/1538-3881/aa784d}                  # Majewski et al. 2017, AJ 154, 94
+- label: "H3 survey"
+  patterns: ['\bH3\s+[Ss]urvey\b']
+  works:
+    - {doi: 10.3847/1538-4357/ab38b8}                  # Conroy et al. 2019, ApJ 883, 107
+- label: "LAMOST"
+  patterns: ['\bLAMOST\b']
+  works:
+    - {doi: 10.1088/1674-4527/12/9/003}                # Cui et al. 2012, RAA 12, 1197
+- label: "Local Volume Database"
+  patterns: ['\bLocal\s+Volume\s+Database\b', '\bLVD\b']
+  works:
+    - {arxiv: "2411.07424"}                            # Pace 2024, The Local Volume Database
+- label: "Updated Nearby Galaxy Catalog"
+  patterns: ['\bUNGC\b', '\bUpdated Nearby Galaxy Catalog']
+  works:
+    - {doi: 10.1088/0004-6256/145/4/101}               # Karachentsev, Makarov & Kaisina 2013, AJ 145, 101
+- label: "Quaia quasar catalogue"
+  patterns: ['\bQuaia\b']
+  works:
+    - {doi: 10.3847/1538-4357/ad1328}                  # Storey-Fisher et al. 2024, ApJ 964, 69
+- label: "CatWISE2020"
+  patterns: ['\bCatWISE(?:2020)?\b']
+  works:
+    - {doi: 10.3847/1538-4365/abd805}                  # Marocco et al. 2021, ApJS 253, 8
+- label: "WISE"
+  patterns: ['(?<![A-Za-z])WISE\b']
+  works:
+    - {doi: 10.1088/0004-6256/140/6/1868}              # Wright et al. 2010, AJ 140, 1868
+- label: "NVSS"
+  patterns: ['\bNVSS\b']
+  works:
+    - {doi: 10.1086/300337}                            # Condon et al. 1998, AJ 115, 1693
+- label: "IllustrisTNG"
+  patterns: ['\bIllustrisTNG\b', '\bTNG(?:50|100|300)\b']
+  works:
+    - {doi: 10.1186/s40668-019-0028-x}                 # Nelson et al. 2019, Comput. Astrophys. Cosmol. 6, 2
+    - {doi: 10.1093/mnras/stx2656}                     # Pillepich et al. 2018, MNRAS 473, 4077
+- label: "EAGLE simulations"
+  patterns: ['\bEAGLE\s+(?:simulations?|project|haloes|halos|galaxies)\b']
+  works:
+    - {doi: 10.1093/mnras/stu2058}                     # Schaye et al. 2015, MNRAS 446, 521
+- label: "FIRE-2 simulations"
+  patterns: ['\bFIRE-2\b', '\bFIRE\s+simulations?\b']
+  works:
+    - {doi: 10.1093/mnras/sty1690}                     # Hopkins et al. 2018, MNRAS 480, 800
+- label: "Magneticum simulations"
+  patterns: ['\bMagneticum\b']
+  works:
+    - {doi: 10.1093/mnras/stu1023}                     # Hirschmann et al. 2014, MNRAS 442, 2304
+    - {doi: 10.1093/mnras/stw2035}                     # Dolag, Komatsu & Sunyaev 2016, MNRAS 463, 1797
+- label: "Millennium simulation"
+  patterns: ['\bMillennium\s+(?:[Ss]imulation|[Rr]un)\b']
+  works:
+    - {doi: 10.1038/nature03597}                       # Springel et al. 2005, Nature 435, 629
+- label: "WMAP 9-year"
+  patterns: ['\bWMAP\s*9\b', '\bWMAP(?!\s*\d)']
+  works:
+    - {doi: 10.1088/0067-0049/208/2/19}                # Hinshaw et al. 2013, ApJS 208, 19
+- label: "WMAP 7-year"
+  patterns: ['\bWMAP\s*7\b']
+  works:
+    - {doi: 10.1088/0067-0049/192/2/18}                # Komatsu et al. 2011, ApJS 192, 18
+- label: "WMAP 5-year"
+  patterns: ['\bWMAP\s*5\b']
+  works:
+    - {doi: 10.1088/0067-0049/180/2/330}               # Komatsu et al. 2009, ApJS 180, 330
+- label: "COBE/FIRAS spectrum"
+  patterns: ['\bFIRAS\b']
+  works:
+    - {doi: 10.1086/178173}                            # Fixsen et al. 1996, ApJ 473, 576
+- label: "BICEP/Keck 2018"
+  patterns: ['\bBICEP\d?(?:/Keck)?\b', '\bBK18\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.127.151301}            # BICEP/Keck, Ade et al. 2021, PRL 127, 151301
+- label: "ACT DR4"
+  patterns: ['\bACT\s*DR4\b']
+  works:
+    - {doi: 10.1088/1475-7516/2020/12/047}             # Aiola et al. 2020, JCAP 12, 047
+- label: "ACT DR6 power spectra and cosmology"
+  patterns: ['\bACT\s*DR6\b']
+  works:
+    - {arxiv: "2503.14452"}                            # Louis et al. 2025
+    - {arxiv: "2503.14454"}                            # Calabrese et al. 2025
+- label: "NANOGrav 15-year"
+  patterns: ['\bNANOGrav\b']
+  works:
+    - {doi: 10.3847/2041-8213/acdac6}                  # Agazie et al. 2023, ApJL 951, L8
+- label: "GW150914"
+  patterns: ['\bGW150914\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.116.061102}            # LIGO/Virgo, Abbott et al. 2016, PRL 116, 061102
+- label: "GW151226"
+  patterns: ['\bGW151226\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.116.241103}            # Abbott et al. 2016, PRL 116, 241103
+- label: "GW170104"
+  patterns: ['\bGW170104\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.118.221101}            # Abbott et al. 2017, PRL 118, 221101
+- label: "GW170608"
+  patterns: ['\bGW170608\b']
+  works:
+    - {doi: 10.3847/2041-8213/aa9f0c}                  # Abbott et al. 2017, ApJL 851, L35
+- label: "GW170814"
+  patterns: ['\bGW170814\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.119.141101}            # Abbott et al. 2017, PRL 119, 141101
+- label: "GW170817 (binary neutron star; speed of gravity)"
+  patterns: ['\bGW170817\b', '\bGRB\s*170817A\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.119.161101}            # Abbott et al. 2017, PRL 119, 161101
+    - {doi: 10.3847/2041-8213/aa920c}                  # Abbott et al. 2017, ApJL 848, L13
+- label: "GW190412"
+  patterns: ['\bGW190412\b']
+  works:
+    - {doi: 10.1103/PhysRevD.102.043015}               # Abbott et al. 2020, PRD 102, 043015
+- label: "GW190425"
+  patterns: ['\bGW190425\b']
+  works:
+    - {doi: 10.3847/2041-8213/ab75f5}                  # Abbott et al. 2020, ApJL 892, L3
+- label: "GW190521"
+  patterns: ['\bGW190521\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.125.101102}            # Abbott et al. 2020, PRL 125, 101102
+- label: "GW190814"
+  patterns: ['\bGW190814\b']
+  works:
+    - {doi: 10.3847/2041-8213/ab960f}                  # Abbott et al. 2020, ApJL 896, L44
+- label: "GWTC-1"
+  patterns: ['\bGWTC-?1\b', '\bGW1510(?:12)\b', '\bGW1707(?:29)\b', '\bGW1708(?:09|18|23)\b']
+  works:
+    - {doi: 10.1103/PhysRevX.9.031040}                 # Abbott et al. 2019, PRX 9, 031040
+- label: "GWTC-2"
+  patterns: ['\bGWTC-?2(?:\.1)?\b']
+  works:
+    - {doi: 10.1103/PhysRevX.11.021053}                # Abbott et al. 2021, PRX 11, 021053
+- label: "GWTC-3"
+  patterns: ['\bGWTC-?3\b', '\bGW191109\b', '\bGW191216\b']
+  works:
+    - {doi: 10.1103/PhysRevX.13.041039}                # Abbott et al. 2023, PRX 13, 041039
+- label: "GWTC-4.0"
+  patterns: ['\bGWTC-?4(?:\.0)?\b']
+  works:
+    - {arxiv: "2508.18082"}                            # LVK Collaboration 2025, GWTC-4.0
+- label: "Event Horizon Telescope images"
+  patterns: ['\bEHT\b', '\bEvent Horizon Telescope\b']
+  works:
+    - {doi: 10.3847/2041-8213/ab0ec7}                  # EHT Collaboration 2019, ApJL 875, L1 (M87*)
+    - {doi: 10.3847/2041-8213/ac6674}                  # EHT Collaboration 2022, ApJL 930, L12 (Sgr A*)
+- label: "Fermilab Muon g-2"
+  patterns: ['\bMuon\s*g-2\b', '\bFermilab\s*(?:2023|2025|g-2)\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.131.161802}            # Muon g-2 Collaboration, Aguillard et al. 2023
+    - {arxiv: "2506.03069"}                            # Muon g-2 Collaboration, Aguillard et al. 2025 (final)
+- label: "KATRIN neutrino mass"
+  patterns: ['\bKATRIN\b']
+  works:
+    - {doi: 10.1038/s41567-021-01463-1}                # KATRIN Collaboration, Aker et al. 2022, Nat. Phys. 18, 160
+    - {doi: 10.1126/science.adq9592}                   # KATRIN Collaboration, Aker et al. 2025, Science 388, 180
+- label: "MICROSCOPE equivalence-principle test"
+  patterns: ['\bMICROSCOPE\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.129.121102}            # Touboul et al. 2022, PRL 129, 121102
+- label: "Super-Kamiokande atmospheric oscillations"
+  patterns: ['\bSuper-?Kamiokande\b', '\bSuper-K\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.81.1562}               # Fukuda et al. 1998, PRL 81, 1562
+- label: "Pioneer anomaly"
+  patterns: ['\bPioneer\s+(?:anomaly|10|11)\b']
+  works:
+    - {doi: 10.1103/PhysRevLett.81.2858}               # Anderson et al. 1998, PRL 81, 2858
+    - {doi: 10.1103/PhysRevLett.108.241101}            # Turyshev et al. 2012, PRL 108, 241101
+- label: "MACHO microlensing"
+  patterns: ['\bMACHO\s+(?:project|collaboration|survey)\b']
+  works:
+    - {doi: 10.1086/309512}                            # Alcock et al. 2000, ApJ 542, 281
+- label: "EROS-2 microlensing"
+  patterns: ['\bEROS(?:-2)?\b']
+  works:
+    - {doi: 10.1051/0004-6361:20066017}                # Tisserand et al. 2007, A&A 469, 387
+- label: "CHIME/FRB catalogue"
+  patterns: ['\bCHIME/FRB\b']
+  works:
+    - {doi: 10.3847/1538-4365/ac33ab}                  # CHIME/FRB Collaboration 2021, ApJS 257, 59
+- label: "Particle Data Group 2024"
+  patterns: ['\bPDG\s*2024\b', '\bPDG2024\b', '\bPDG\b(?!\s*20(?:22|23))', '\bParticle Data Group\b']
+  works:
+    - {doi: 10.1103/PhysRevD.110.030001}               # Navas et al. (PDG) 2024, PRD 110, 030001
+- label: "Particle Data Group 2022"
+  patterns: ['\bPDG\s*202[23]\b', '\bPDG202[23]\b']
+  works:
+    - {doi: 10.1093/ptep/ptac097}                      # Workman et al. (PDG) 2022, PTEP 2022, 083C01
+- label: "CODATA 2022"
+  patterns: ['\bCODATA[\s-]*2022\b']
+  works:
+    - {doi: 10.1103/RevModPhys.97.025002}              # Mohr et al. 2025, RMP 97, 025002
+- label: "CODATA 2018"
+  patterns: ['\bCODATA[\s-]*2018\b']
+  works:
+    - {doi: 10.1103/RevModPhys.93.025010}              # Tiesinga et al. 2021, RMP 93, 025010
+- label: "CODATA (adjustment not stated)"
+  patterns: ['\bCODATA\b(?![\s-]*20\d\d)']
+  works:
+    - {doi: 10.1103/RevModPhys.93.025010}
+    - {doi: 10.1103/RevModPhys.97.025002}
+- label: "IAU 2015 nominal solar values"
+  patterns: ['\bIAU\s*2015\b']
+  works:
+    - {doi: 10.3847/0004-6256/152/2/41}                # Prsa et al. 2016, AJ 152, 41
+- label: "JPL DE440 ephemeris"
+  patterns: ['\bDE44[01]\b']
+  works:
+    - {doi: 10.3847/1538-3881/abd414}                  # Park et al. 2021, AJ 161, 105
+- label: "INPOP10a ephemeris"
+  patterns: ['\bINPOP10a\b']
+  works:
+    - {doi: 10.1007/s10569-011-9377-8}                 # Fienga et al. 2011, CeMDA 111, 363
+- label: "INPOP ephemerides"
+  patterns: ['\bINPOP\b(?!\d)']
+  works:
+    - {doi: 10.1051/0004-6361:20066607}                # Fienga et al. 2008, A&A 477, 315
+- label: "EPM2011 ephemeris"
+  patterns: ['\bEPM2011\b']
+  works:
+    - {doi: 10.1134/S0038094613040059}                 # Pitjeva 2013, Sol. Syst. Res. 47, 386
+- label: "EPM2004 ephemeris"
+  patterns: ['\bEPM2004\b']
+  works:
+    - {doi: 10.1007/s11208-005-0033-2}                 # Pitjeva 2005, Sol. Syst. Res. 39, 176

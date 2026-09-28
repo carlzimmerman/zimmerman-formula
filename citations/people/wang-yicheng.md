@@ -1,0 +1,9 @@
+# Yicheng Wang
+
+Credited in **1** file(s) through **1** work(s) · affiliation on the cited work(s): Qufu Normal University
+
+| work | used in | how |
+|---|---:|---|
+| [Yang, Dai & Wang 2025](../works/yang-2025-new-cosmological-constraints-on-the-evolution-of.md) — New cosmological constraints on the evolution of dark matter energy density | 1 | cited |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

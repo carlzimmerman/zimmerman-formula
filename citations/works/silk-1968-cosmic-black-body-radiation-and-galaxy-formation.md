@@ -1,0 +1,26 @@
+# Silk 1968 — Cosmic Black-Body Radiation and Galaxy Formation
+
+**Reference.** Silk, J. (1968). Cosmic Black-Body Radiation and Galaxy Formation. *The Astrophysical Journal* 151, 459. [doi:10.1086/149449](https://doi.org/10.1086/149449)
+
+**BibTeX key:** `Silk1968` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (1):** [Joseph Silk](../people/silk-joseph.md)
+
+## Used in 12 script(s)
+
+How: named method/model in 12.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/consistency_checks/CMB_SOLAR_SYSTEM_ANALYSIS.py`](../../ai_slop/research/consistency_checks/CMB_SOLAR_SYSTEM_ANALYSIS.py#L298) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [298](../../ai_slop/research/consistency_checks/CMB_SOLAR_SYSTEM_ANALYSIS.py#L298), [311](../../ai_slop/research/consistency_checks/CMB_SOLAR_SYSTEM_ANALYSIS.py#L311) |
+| [`ai_slop/research/offensive_campaign/WORK_ORDER_OO_cmb_matched_circles.py`](../../ai_slop/research/offensive_campaign/WORK_ORDER_OO_cmb_matched_circles.py#L122) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [122](../../ai_slop/research/offensive_campaign/WORK_ORDER_OO_cmb_matched_circles.py#L122) |
+| [`ai_slop/research/offensive_campaign/WORK_ORDER_QQ_monte_carlo_cmb.py`](../../ai_slop/research/offensive_campaign/WORK_ORDER_QQ_monte_carlo_cmb.py#L85) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [85](../../ai_slop/research/offensive_campaign/WORK_ORDER_QQ_monte_carlo_cmb.py#L85), [113](../../ai_slop/research/offensive_campaign/WORK_ORDER_QQ_monte_carlo_cmb.py#L113), [124](../../ai_slop/research/offensive_campaign/WORK_ORDER_QQ_monte_carlo_cmb.py#L124) |
+| [`book/figures/ch10_acoustic_peaks.py`](../../book/figures/ch10_acoustic_peaks.py#L28) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [28](../../book/figures/ch10_acoustic_peaks.py#L28) |
+| [`fable_independent_2026/L141_acoustic_driving_third_peak.py`](../../fable_independent_2026/L141_acoustic_driving_third_peak.py#L43) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [43](../../fable_independent_2026/L141_acoustic_driving_third_peak.py#L43), [102](../../fable_independent_2026/L141_acoustic_driving_third_peak.py#L102) |
+| [`fable_independent_2026/L182_recombination_kernel_solver.py`](../../fable_independent_2026/L182_recombination_kernel_solver.py#L7) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [7](../../fable_independent_2026/L182_recombination_kernel_solver.py#L7), [138](../../fable_independent_2026/L182_recombination_kernel_solver.py#L138) |
+| [`grok_push/K003_gr_fluid_action.py`](../../grok_push/K003_gr_fluid_action.py#L229) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [229](../../grok_push/K003_gr_fluid_action.py#L229) |
+| [`qwen_claude_field_theory/closure_2026/condensate_pincer_2026/rising_a0_baryon_only_gate_2026.py`](../../qwen_claude_field_theory/closure_2026/condensate_pincer_2026/rising_a0_baryon_only_gate_2026.py#L13) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [13](../../qwen_claude_field_theory/closure_2026/condensate_pincer_2026/rising_a0_baryon_only_gate_2026.py#L13), [91](../../qwen_claude_field_theory/closure_2026/condensate_pincer_2026/rising_a0_baryon_only_gate_2026.py#L91), [101](../../qwen_claude_field_theory/closure_2026/condensate_pincer_2026/rising_a0_baryon_only_gate_2026.py#L101) |
+| [`qwen_claude_field_theory/closure_2026/route2_full_stack_2026.py`](../../qwen_claude_field_theory/closure_2026/route2_full_stack_2026.py#L692) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [692](../../qwen_claude_field_theory/closure_2026/route2_full_stack_2026.py#L692), [709](../../qwen_claude_field_theory/closure_2026/route2_full_stack_2026.py#L709) |
+| [`qwen_claude_field_theory/closure_2026/route5_double_count_theorem_2026.py`](../../qwen_claude_field_theory/closure_2026/route5_double_count_theorem_2026.py#L67) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [67](../../qwen_claude_field_theory/closure_2026/route5_double_count_theorem_2026.py#L67), [574](../../qwen_claude_field_theory/closure_2026/route5_double_count_theorem_2026.py#L574), [578](../../qwen_claude_field_theory/closure_2026/route5_double_count_theorem_2026.py#L578) |
+| [`real_research/reviews/cmb_bath_acceleration.py`](../../real_research/reviews/cmb_bath_acceleration.py#L7) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [7](../../real_research/reviews/cmb_bath_acceleration.py#L7), [32](../../real_research/reviews/cmb_bath_acceleration.py#L32) |
+| [`real_research/reviews/mi_cmb_camb_run_2026.py`](../../real_research/reviews/mi_cmb_camb_run_2026.py#L46) | named method/model — Silk damping (photon-diffusion damping of acoustic oscillations) | [46](../../real_research/reviews/mi_cmb_camb_run_2026.py#L46), [158](../../real_research/reviews/mi_cmb_camb_run_2026.py#L158) |

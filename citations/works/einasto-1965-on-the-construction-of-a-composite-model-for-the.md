@@ -1,0 +1,25 @@
+# Einasto 1965 — On the Construction of a Composite Model for the Galaxy and on the Determination of the System of Galactic Parameters
+
+**Reference.** Einasto, J. (1965). On the Construction of a Composite Model for the Galaxy and on the Determination of the System of Galactic Parameters. *Trudy Astrofizicheskogo Instituta Alma-Ata 5, 87-100*. [link](https://ui.adsabs.harvard.edu/abs/1965TrAlm...5...87E/abstract)
+
+**BibTeX key:** `Einasto1965` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** bibliographic record (no DOI exists; not machine-checkable), 2026-09-28
+
+**Authors (1):** [Jaan Einasto](../people/einasto-jaan.md)
+
+## Used in 11 script(s)
+
+How: named method/model in 11.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/research/z2_navigation/ZCS_COSMOLOGICAL_FRAMEWORK.py`](../../ai_slop/research/z2_navigation/ZCS_COSMOLOGICAL_FRAMEWORK.py#L451) | named method/model — Einasto profile | [451](../../ai_slop/research/z2_navigation/ZCS_COSMOLOGICAL_FRAMEWORK.py#L451) |
+| [`campaign_fresh_gravity/CFG31_coma_udgs_under_b.py`](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L253) | named method/model — Einasto profile | [253](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L253), [254](../../campaign_fresh_gravity/CFG31_coma_udgs_under_b.py#L254) |
+| [`deepseek_push/G157_slope_floor.py`](../../deepseek_push/G157_slope_floor.py#L341) | named method/model — Einasto profile | [341](../../deepseek_push/G157_slope_floor.py#L341) |
+| [`fable_independent_2026/L23_udg_verify.py`](../../fable_independent_2026/L23_udg_verify.py#L50) | named method/model — Einasto profile | [50](../../fable_independent_2026/L23_udg_verify.py#L50), [338](../../fable_independent_2026/L23_udg_verify.py#L338), [372](../../fable_independent_2026/L23_udg_verify.py#L372), [380](../../fable_independent_2026/L23_udg_verify.py#L380), [382](../../fable_independent_2026/L23_udg_verify.py#L382), [392](../../fable_independent_2026/L23_udg_verify.py#L392), [561](../../fable_independent_2026/L23_udg_verify.py#L561) |
+| [`fable_independent_2026/L42_what_decides.py`](../../fable_independent_2026/L42_what_decides.py#L271) | named method/model — Einasto profile | [271](../../fable_independent_2026/L42_what_decides.py#L271) |
+| [`glm53_push/G042_wang_vertical_response.py`](../../glm53_push/G042_wang_vertical_response.py#L14) | named method/model — Einasto profile | [14](../../glm53_push/G042_wang_vertical_response.py#L14), [25](../../glm53_push/G042_wang_vertical_response.py#L25), [114](../../glm53_push/G042_wang_vertical_response.py#L114), [116](../../glm53_push/G042_wang_vertical_response.py#L116), [397](../../glm53_push/G042_wang_vertical_response.py#L397), [492](../../glm53_push/G042_wang_vertical_response.py#L492) |
+| [`hunt_2026/h67b_xcop_core_eta.py`](../../hunt_2026/h67b_xcop_core_eta.py#L172) | named method/model — Einasto profile | [172](../../hunt_2026/h67b_xcop_core_eta.py#L172), [174](../../hunt_2026/h67b_xcop_core_eta.py#L174) |
+| [`qwen_claude_field_theory/closure_2026/route5_one_field_confrontation_2026.py`](../../qwen_claude_field_theory/closure_2026/route5_one_field_confrontation_2026.py#L470) | named method/model — Einasto profile | [470](../../qwen_claude_field_theory/closure_2026/route5_one_field_confrontation_2026.py#L470) |
+| [`real_research/cross_thread_review_2026_09_26/XR27_efe_disfavouring.py`](../../real_research/cross_thread_review_2026_09_26/XR27_efe_disfavouring.py#L40) | named method/model — Einasto profile | [40](../../real_research/cross_thread_review_2026_09_26/XR27_efe_disfavouring.py#L40), [789](../../real_research/cross_thread_review_2026_09_26/XR27_efe_disfavouring.py#L789), [947](../../real_research/cross_thread_review_2026_09_26/XR27_efe_disfavouring.py#L947) |
+| [`real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py`](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L69) | named method/model — Einasto profile | [69](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L69), [738](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L738), [764](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L764), [766](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L766), [784](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L784), [790](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L790), [808](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L808), [860](../../real_research/cross_thread_review_2026_09_26/XR6_efe_udg_under_candidate.py#L860) … |
+| [`real_research/cross_thread_review_2026_09_26/XR9_environment.py`](../../real_research/cross_thread_review_2026_09_26/XR9_environment.py#L48) | named method/model — Einasto profile | [48](../../real_research/cross_thread_review_2026_09_26/XR9_environment.py#L48), [615](../../real_research/cross_thread_review_2026_09_26/XR9_environment.py#L615) |

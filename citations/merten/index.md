@@ -1,17 +1,7 @@
-# Julián Merten
+# Julián Merten → moved to the verified index
 
-**Affiliation:** Heidelberg
+This page belonged to the previous surname-count index (3 files, 21 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 3 file(s), 21 occurrence(s) across the repo:**
+**Now:** [Julian Merten](../people/merten-julian.md) — 11 scripts, 5 works.
 
-**Data/config (2 files):**
-
-- [`real_research/data/groener2016_cluster_concentrations.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/groener2016_cluster_concentrations.tsv) — 19×
-- [`real_research/data/groener2016_refs.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/groener2016_refs.tsv) — 1×
-
-**Other (1 files):**
-
-- [`hunt_2026/h88_crispy_gap_concentrations.out`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/hunt_2026/h88_crispy_gap_concentrations.out) — 1×
-
----
-*Living citation page for Julián Merten · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

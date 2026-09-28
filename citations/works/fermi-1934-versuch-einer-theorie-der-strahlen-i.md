@@ -1,0 +1,36 @@
+# Fermi 1934 — Versuch einer Theorie der ?-Strahlen. I
+
+**Reference.** Fermi, E. (1934). Versuch einer Theorie der ?-Strahlen. I. *Zeitschrift f�r Physik* 88, 161-177. [doi:10.1007/bf01351864](https://doi.org/10.1007/bf01351864)
+
+**BibTeX key:** `Fermi1934` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (1):** [E. Fermi](../people/fermi-enrico.md)
+
+## Used in 22 script(s)
+
+How: named method/model in 22.
+
+| script | how | lines |
+|---|---|---|
+| [`ai_slop/ErgonFlow/lagrangian_templates.py`](../../ai_slop/ErgonFlow/lagrangian_templates.py#L170) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [170](../../ai_slop/ErgonFlow/lagrangian_templates.py#L170) |
+| [`ai_slop/OlympusFlow/flows/ergon/lagrangian_templates.py`](../../ai_slop/OlympusFlow/flows/ergon/lagrangian_templates.py#L170) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [170](../../ai_slop/OlympusFlow/flows/ergon/lagrangian_templates.py#L170) |
+| [`ai_slop/research/HUNDRED_DERIVATIONS.py`](../../ai_slop/research/HUNDRED_DERIVATIONS.py#L114) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [114](../../ai_slop/research/HUNDRED_DERIVATIONS.py#L114), [119](../../ai_slop/research/HUNDRED_DERIVATIONS.py#L119) |
+| [`ai_slop/research/SPECTROSCOPY_AND_DECAYS.py`](../../ai_slop/research/SPECTROSCOPY_AND_DECAYS.py#L387) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [387](../../ai_slop/research/SPECTROSCOPY_AND_DECAYS.py#L387) |
+| [`ai_slop/research/computational_math/hierarchy_warp_factor.py`](../../ai_slop/research/computational_math/hierarchy_warp_factor.py#L30) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [30](../../ai_slop/research/computational_math/hierarchy_warp_factor.py#L30) |
+| [`ai_slop/research/computational_math/higgs_vev_derivation.py`](../../ai_slop/research/computational_math/higgs_vev_derivation.py#L25) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [25](../../ai_slop/research/computational_math/higgs_vev_derivation.py#L25), [27](../../ai_slop/research/computational_math/higgs_vev_derivation.py#L27) |
+| [`ai_slop/research/computational_math/higgs_vev_factor_derivation.py`](../../ai_slop/research/computational_math/higgs_vev_factor_derivation.py#L42) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [42](../../ai_slop/research/computational_math/higgs_vev_factor_derivation.py#L42), [258](../../ai_slop/research/computational_math/higgs_vev_factor_derivation.py#L258), [629](../../ai_slop/research/computational_math/higgs_vev_factor_derivation.py#L629) |
+| [`ai_slop/research/electroweak_masses/electroweak_masses_analysis.py`](../../ai_slop/research/electroweak_masses/electroweak_masses_analysis.py#L65) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [65](../../ai_slop/research/electroweak_masses/electroweak_masses_analysis.py#L65) |
+| [`ai_slop/research/foundations/Z2_DARK_MATTER.py`](../../ai_slop/research/foundations/Z2_DARK_MATTER.py#L33) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [33](../../ai_slop/research/foundations/Z2_DARK_MATTER.py#L33), [133](../../ai_slop/research/foundations/Z2_DARK_MATTER.py#L133), [145](../../ai_slop/research/foundations/Z2_DARK_MATTER.py#L145) |
+| [`ai_slop/research/foundations/Z2_ELECTROWEAK_MASSES.py`](../../ai_slop/research/foundations/Z2_ELECTROWEAK_MASSES.py#L39) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [39](../../ai_slop/research/foundations/Z2_ELECTROWEAK_MASSES.py#L39) |
+| [`ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py`](../../ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py#L11) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [11](../../ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py#L11), [101](../../ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py#L101), [120](../../ai_slop/research/foundations/Z2_PARAMETER_AUDIT.py#L120) |
+| [`ai_slop/research/foundations/Z2_WEAK_BOSON_MASSES.py`](../../ai_slop/research/foundations/Z2_WEAK_BOSON_MASSES.py#L31) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [31](../../ai_slop/research/foundations/Z2_WEAK_BOSON_MASSES.py#L31), [190](../../ai_slop/research/foundations/Z2_WEAK_BOSON_MASSES.py#L190) |
+| [`ai_slop/research/geometric_closure/CLOSURE_GAPS_FINAL.py`](../../ai_slop/research/geometric_closure/CLOSURE_GAPS_FINAL.py#L95) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [95](../../ai_slop/research/geometric_closure/CLOSURE_GAPS_FINAL.py#L95) |
+| [`ai_slop/research/geometric_closure/ELECTROWEAK_FORMULAS.py`](../../ai_slop/research/geometric_closure/ELECTROWEAK_FORMULAS.py#L329) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [329](../../ai_slop/research/geometric_closure/ELECTROWEAK_FORMULAS.py#L329) |
+| [`ai_slop/research/geometric_closure/UNIFIED_FIELD_THEORY.py`](../../ai_slop/research/geometric_closure/UNIFIED_FIELD_THEORY.py#L31) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [31](../../ai_slop/research/geometric_closure/UNIFIED_FIELD_THEORY.py#L31) |
+| [`ai_slop/research/geometric_closure/electroweak_physics.py`](../../ai_slop/research/geometric_closure/electroweak_physics.py#L10) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [10](../../ai_slop/research/geometric_closure/electroweak_physics.py#L10), [40](../../ai_slop/research/geometric_closure/electroweak_physics.py#L40) |
+| [`ai_slop/research/muon_g2/muon_anomaly_analysis.py`](../../ai_slop/research/muon_g2/muon_anomaly_analysis.py#L56) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [56](../../ai_slop/research/muon_g2/muon_anomaly_analysis.py#L56) |
+| [`ai_slop/research/neutron_lifetime/neutron_lifetime_analysis.py`](../../ai_slop/research/neutron_lifetime/neutron_lifetime_analysis.py#L16) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [16](../../ai_slop/research/neutron_lifetime/neutron_lifetime_analysis.py#L16) |
+| [`ai_slop/research/new_derivations/expanded_search_2.py`](../../ai_slop/research/new_derivations/expanded_search_2.py#L140) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [140](../../ai_slop/research/new_derivations/expanded_search_2.py#L140) |
+| [`ai_slop/research/overnight_particle_physics.py`](../../ai_slop/research/overnight_particle_physics.py#L35) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [35](../../ai_slop/research/overnight_particle_physics.py#L35) |
+| [`project_atomos/targets/pdg_constants.py`](../../project_atomos/targets/pdg_constants.py#L281) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [281](../../project_atomos/targets/pdg_constants.py#L281) |
+| [`real_research/reviews/koide_qed_running.py`](../../real_research/reviews/koide_qed_running.py#L204) | named method/model — Fermi's theory of beta decay (Fermi constant G_F) | [204](../../real_research/reviews/koide_qed_running.py#L204) |

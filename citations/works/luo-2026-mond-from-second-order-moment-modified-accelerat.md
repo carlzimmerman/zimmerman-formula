@@ -1,0 +1,25 @@
+# Luo 2026 — MOND from Second-Order Moment Modified Acceleration and Quantum Equivalence Principle
+
+**Reference.** Luo, M. J. (2026). MOND from Second-Order Moment Modified Acceleration and Quantum Equivalence Principle. [arXiv:2602.14515](https://arxiv.org/abs/2602.14515)
+
+**BibTeX key:** `Luo2026` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** arXiv record, 2026-09-28
+
+**Authors (1):** [M. J. Luo](../people/luo-m-j.md)
+
+## Used in 11 script(s)
+
+How: cited in 6, named method/model in 9.
+
+| script | how | lines |
+|---|---|---|
+| [`opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py`](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L142) | cited, named method/model | [142](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L142), [147](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L147), [149](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L149), [156](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L156), [226](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L226), [243](../../opus_48_extended_research/reviews/cluster_doors3/route_d_fresh_mechanism_sweep.py#L243) |
+| [`opus_48_extended_research/reviews/cosmic_density_a0/cosmic_web_a0_route1.py`](../../opus_48_extended_research/reviews/cosmic_density_a0/cosmic_web_a0_route1.py#L268) | named method/model — Luo (2026) dS-Unruh second-order-moment modified acceleration (a0 = c H_Lambda/2) | [268](../../opus_48_extended_research/reviews/cosmic_density_a0/cosmic_web_a0_route1.py#L268) |
+| [`opus_48_extended_research/reviews/cosmic_density_a0/route3_distinct_from_routeE.py`](../../opus_48_extended_research/reviews/cosmic_density_a0/route3_distinct_from_routeE.py#L14) | named method/model — Luo (2026) dS-Unruh second-order-moment modified acceleration (a0 = c H_Lambda/2) | [14](../../opus_48_extended_research/reviews/cosmic_density_a0/route3_distinct_from_routeE.py#L14), [203](../../opus_48_extended_research/reviews/cosmic_density_a0/route3_distinct_from_routeE.py#L203), [222](../../opus_48_extended_research/reviews/cosmic_density_a0/route3_distinct_from_routeE.py#L222), [394](../../opus_48_extended_research/reviews/cosmic_density_a0/route3_distinct_from_routeE.py#L394) |
+| [`real_research/rar_emergent_discriminate.py`](../../real_research/rar_emergent_discriminate.py#L8) | named method/model — Luo (2026) dS-Unruh second-order-moment modified acceleration (a0 = c H_Lambda/2) | [8](../../real_research/rar_emergent_discriminate.py#L8) |
+| [`real_research/reviews/close_covariant_eom.py`](../../real_research/reviews/close_covariant_eom.py#L27) | named method/model — Luo (2026) dS-Unruh second-order-moment modified acceleration (a0 = c H_Lambda/2) | [27](../../real_research/reviews/close_covariant_eom.py#L27) |
+| [`real_research/reviews/mi_luo2602_composition_vs_alpha1_2026.py`](../../real_research/reviews/mi_luo2602_composition_vs_alpha1_2026.py#L2) | cited | [2](../../real_research/reviews/mi_luo2602_composition_vs_alpha1_2026.py#L2), [85](../../real_research/reviews/mi_luo2602_composition_vs_alpha1_2026.py#L85), [215](../../real_research/reviews/mi_luo2602_composition_vs_alpha1_2026.py#L215) |
+| [`real_research/reviews/nonstationary_2026_07/laneB_band_persistence.py`](../../real_research/reviews/nonstationary_2026_07/laneB_band_persistence.py#L2) | cited, named method/model | [2](../../real_research/reviews/nonstationary_2026_07/laneB_band_persistence.py#L2), [20](../../real_research/reviews/nonstationary_2026_07/laneB_band_persistence.py#L20) |
+| [`real_research/reviews/nonstationary_2026_07/laneC_finite_time_response.py`](../../real_research/reviews/nonstationary_2026_07/laneC_finite_time_response.py#L2) | cited, named method/model | [2](../../real_research/reviews/nonstationary_2026_07/laneC_finite_time_response.py#L2), [4](../../real_research/reviews/nonstationary_2026_07/laneC_finite_time_response.py#L4) |
+| [`real_research/reviews/nonstationary_2026_07/verify_C_luo_adversarial.py`](../../real_research/reviews/nonstationary_2026_07/verify_C_luo_adversarial.py#L6) | named method/model — Luo (2026) dS-Unruh second-order-moment modified acceleration (a0 = c H_Lambda/2) | [6](../../real_research/reviews/nonstationary_2026_07/verify_C_luo_adversarial.py#L6) |
+| [`reviews/mi_action_programme_close_2026.py`](../../reviews/mi_action_programme_close_2026.py#L258) | cited | [258](../../reviews/mi_action_programme_close_2026.py#L258) |
+| [`reviews/mi_mechanism_audit_2026-07-30.py`](../../reviews/mi_mechanism_audit_2026-07-30.py#L121) | cited, named method/model | [121](../../reviews/mi_mechanism_audit_2026-07-30.py#L121), [123](../../reviews/mi_mechanism_audit_2026-07-30.py#L123), [125](../../reviews/mi_mechanism_audit_2026-07-30.py#L125), [324](../../reviews/mi_mechanism_audit_2026-07-30.py#L324) |

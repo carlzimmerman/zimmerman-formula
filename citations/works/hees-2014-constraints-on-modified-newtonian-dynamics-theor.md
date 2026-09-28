@@ -1,0 +1,33 @@
+# Hees et al. 2014 — Constraints on modified Newtonian dynamics theories from radio tracking data of the Cassini spacecraft
+
+**Reference.** Hees, A.; Folkner, W. M.; Jacobson, R. A.; Park, R. S. (2014). Constraints on modified Newtonian dynamics theories from radio tracking data of the Cassini spacecraft. *Physical Review D* 89, 102002. [doi:10.1103/physrevd.89.102002](https://doi.org/10.1103/physrevd.89.102002) [arXiv:1402.6950](https://arxiv.org/abs/1402.6950)
+
+**BibTeX key:** `Hees2014` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (4):** [A. Hees](../people/hees-aurelien.md), [W. M. Folkner](../people/folkner-william-m.md), [R. A. Jacobson](../people/jacobson-r-a.md), [R. S. Park](../people/park-ryan-s.md)
+
+## Used in 19 script(s)
+
+How: cited in 18, cited in a paper in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`campaign_fresh_gravity/CFG1_evidence_audit.py`](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L403) | cited | [403](../../campaign_fresh_gravity/CFG1_evidence_audit.py#L403) |
+| [`hunt_2026/g04_solar_system_eccentricity_discriminant.py`](../../hunt_2026/g04_solar_system_eccentricity_discriminant.py#L3) | cited | [3](../../hunt_2026/g04_solar_system_eccentricity_discriminant.py#L3), [294](../../hunt_2026/g04_solar_system_eccentricity_discriminant.py#L294), [303](../../hunt_2026/g04_solar_system_eccentricity_discriminant.py#L303) |
+| [`hunt_2026/g04_verify_cassini_q2_adversarial.py`](../../hunt_2026/g04_verify_cassini_q2_adversarial.py#L3) | cited | [3](../../hunt_2026/g04_verify_cassini_q2_adversarial.py#L3) |
+| [`hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py`](../../hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py#L3) | cited | [3](../../hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py#L3), [106](../../hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py#L106), [247](../../hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py#L247), [271](../../hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py#L271), [289](../../hunt_2026/g04v_adversarial_eccentricity_vacuity_refutation.py#L289) |
+| [`hunt_2026/g04v_adversarial_q2_discriminant_refutation.py`](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L3) | cited | [3](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L3), [124](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L124), [250](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L250), [252](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L252), [260](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L260), [270](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L270), [273](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L273), [280](../../hunt_2026/g04v_adversarial_q2_discriminant_refutation.py#L280) … |
+| [`hunt_2026/k01_solar_efe_quadrupole.py`](../../hunt_2026/k01_solar_efe_quadrupole.py#L282) | cited | [282](../../hunt_2026/k01_solar_efe_quadrupole.py#L282) |
+| [`hunt_2026/k_contrarian_q2.py`](../../hunt_2026/k_contrarian_q2.py#L347) | cited | [347](../../hunt_2026/k_contrarian_q2.py#L347), [378](../../hunt_2026/k_contrarian_q2.py#L378) |
+| [`prep_2026/planetary_doors/laneR_bounds_compute.py`](../../prep_2026/planetary_doors/laneR_bounds_compute.py#L2) | cited | [2](../../prep_2026/planetary_doors/laneR_bounds_compute.py#L2), [77](../../prep_2026/planetary_doors/laneR_bounds_compute.py#L77), [161](../../prep_2026/planetary_doors/laneR_bounds_compute.py#L161) |
+| [`qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/paper/why_banik_and_zhao_were_right.tex`](../../qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/paper/why_banik_and_zhao_were_right.tex#L363) | cited in a paper — hees | [363](../../qwen_claude_field_theory/closure_2026/filtered_tidal_relation_2026/paper/why_banik_and_zhao_were_right.tex#L363) |
+| [`qwen_claude_field_theory/closure_2026/route2_vainshtein_kmouflage_2026.py`](../../qwen_claude_field_theory/closure_2026/route2_vainshtein_kmouflage_2026.py#L591) | cited | [591](../../qwen_claude_field_theory/closure_2026/route2_vainshtein_kmouflage_2026.py#L591) |
+| [`qwen_claude_field_theory/gates_2026/gate0_dhf_reproduction_2026.py`](../../qwen_claude_field_theory/gates_2026/gate0_dhf_reproduction_2026.py#L3) | cited | [3](../../qwen_claude_field_theory/gates_2026/gate0_dhf_reproduction_2026.py#L3) |
+| [`qwen_claude_field_theory/gates_2026/gate3_nSS_posterior_2026.py`](../../qwen_claude_field_theory/gates_2026/gate3_nSS_posterior_2026.py#L3) | cited | [3](../../qwen_claude_field_theory/gates_2026/gate3_nSS_posterior_2026.py#L3) |
+| [`qwen_claude_field_theory/theory_2026/york/referee_gateF_2026.py`](../../qwen_claude_field_theory/theory_2026/york/referee_gateF_2026.py#L136) | cited | [136](../../qwen_claude_field_theory/theory_2026/york/referee_gateF_2026.py#L136) |
+| [`qwen_claude_field_theory/theory_2026/york/weak_field_lensing_2026.py`](../../qwen_claude_field_theory/theory_2026/york/weak_field_lensing_2026.py#L140) | cited | [140](../../qwen_claude_field_theory/theory_2026/york/weak_field_lensing_2026.py#L140) |
+| [`real_research/reviews/AUDIT_rule2_foreign_a0_bounds_2026.py`](../../real_research/reviews/AUDIT_rule2_foreign_a0_bounds_2026.py#L92) | cited | [92](../../real_research/reviews/AUDIT_rule2_foreign_a0_bounds_2026.py#L92), [96](../../real_research/reviews/AUDIT_rule2_foreign_a0_bounds_2026.py#L96), [277](../../real_research/reviews/AUDIT_rule2_foreign_a0_bounds_2026.py#L277), [398](../../real_research/reviews/AUDIT_rule2_foreign_a0_bounds_2026.py#L398) |
+| [`real_research/reviews/branchB_q2_gate_2026/laneA_family_scan.py`](../../real_research/reviews/branchB_q2_gate_2026/laneA_family_scan.py#L206) | cited | [206](../../real_research/reviews/branchB_q2_gate_2026/laneA_family_scan.py#L206), [211](../../real_research/reviews/branchB_q2_gate_2026/laneA_family_scan.py#L211) |
+| [`real_research/reviews/kernel_2026_07/d3_kernel_gauntlet.py`](../../real_research/reviews/kernel_2026_07/d3_kernel_gauntlet.py#L2) | cited | [2](../../real_research/reviews/kernel_2026_07/d3_kernel_gauntlet.py#L2), [48](../../real_research/reviews/kernel_2026_07/d3_kernel_gauntlet.py#L48) |
+| [`real_research/reviews/mi_q1_efe_order_count_2026.py`](../../real_research/reviews/mi_q1_efe_order_count_2026.py#L496) | cited | [496](../../real_research/reviews/mi_q1_efe_order_count_2026.py#L496) |
+| [`reviews/mi_mechanism_audit_2026-07-30.py`](../../reviews/mi_mechanism_audit_2026-07-30.py#L167) | cited | [167](../../reviews/mi_mechanism_audit_2026-07-30.py#L167) |

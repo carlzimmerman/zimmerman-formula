@@ -1,0 +1,17 @@
+# Umetsu et al. 2009 — MASS AND HOT BARYONS IN MASSIVE GALAXY CLUSTERS FROM SUBARU WEAK-LENSING AND AMiBA SUNYAEV-ZEL'DOVICH EFFECT OBSERVATIONS
+
+**Reference.** Umetsu, K.; Birkinshaw, M.; Liu, G.-C.; Wu, J.-H. P.; Medezinski, E.; Broadhurst, T.; Lemze, D.; Zitrin, A.; Ho, P. T. P.; Huang, C.-W. L.; Koch, P. M.; Liao, Y.-W.; Lin, K.-Y.; Molnar, S. M.; Nishioka, H.; Wang, F.-C.; Altamirano, P.; Chang, C.-H.; Chang, S.-H.; Chang, S.-W.; Chen, M.-T.; Han, C.-C.; Huang, Y.-D.; Hwang, Y.-J.; Jiang, H.; Kesteven, M.; Kubo, D. Y.; Li, C.-T.; Martin-Cocher, P.; Oshiro, P.; et al. (33 authors) (2009). MASS AND HOT BARYONS IN MASSIVE GALAXY CLUSTERS FROM SUBARU WEAK-LENSING AND AMiBA SUNYAEV-ZEL'DOVICH EFFECT OBSERVATIONS. *The Astrophysical Journal* 694, 1643-1663. [doi:10.1088/0004-637x/694/2/1643](https://doi.org/10.1088/0004-637x/694/2/1643) [arXiv:0810.0969](https://arxiv.org/abs/0810.0969)
+
+**BibTeX key:** `Umetsu2009` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (33):** [Keiichi Umetsu](../people/umetsu-keiichi.md), [Mark Birkinshaw](../people/birkinshaw-mark.md), [Guo-Chin Liu](../people/liu-guo-chin.md), [Jiun-Huei Proty Wu](../people/wu-jiun-huei-proty.md), [Elinor Medezinski](../people/medezinski-elinor.md), [Tom Broadhurst](../people/broadhurst-tom.md), [Doron Lemze](../people/lemze-doron.md), [Adi Zitrin](../people/zitrin-adi.md), [Paul T. P. Ho](../people/ho-paul-t-p.md), [Chih-Wei Locutus Huang](../people/huang-chih-wei-locutus.md), [Patrick M. Koch](../people/koch-patrick-m.md), [Yu-Wei Liao](../people/liao-yu-wei.md), [Kai-Yang Lin](../people/lin-kai-yang.md), [Sandor M. Molnar](../people/molnar-sandor-m.md), [Hiroaki Nishioka](../people/nishioka-hiroaki.md), [Fu-Cheng Wang](../people/wang-fu-cheng.md), [Pablo Altamirano](../people/altamirano-pablo.md), [Chia-Hao Chang](../people/chang-chia-hao.md), [Shu-Hao Chang](../people/chang-su-wei.md), [Su-Wei Chang](../people/chang-su-wei.md), [Ming-Tang Chen](../people/chen-ming-tang.md), [Chih-Chiang Han](../people/han-chih-chiang.md), [Yau-De Huang](../people/huang-yau-de.md), [Yuh-Jing Hwang](../people/hwang-yuh-jing.md), [Homin Jiang](../people/jiang-homin.md), [Michael Kesteven](../people/kesteven-michael.md), [Derek Y. Kubo](../people/kubo-derek-y.md), [Chao-Te Li](../people/li-chao-te.md), [Pierre Martin-Cocher](../people/martin-cocher-pierre-l.md), [Peter Oshiro](../people/oshiro-peter.md), [Philippe Raffin](../people/raffin-philippe-a.md), [Tashun Wei](../people/wei-tashun.md), [Warwick Wilson](../people/wilson-warwick.md)
+
+## Used in 3 script(s)
+
+How: cited in 3.
+
+| script | how | lines |
+|---|---|---|
+| [`deepseek_push/G136_lensing_core_registry.py`](../../deepseek_push/G136_lensing_core_registry.py#L128) | cited | [128](../../deepseek_push/G136_lensing_core_registry.py#L128) |
+| [`deepseek_push/G216_lensing_cores.py`](../../deepseek_push/G216_lensing_cores.py#L2) | cited | [2](../../deepseek_push/G216_lensing_cores.py#L2), [534](../../deepseek_push/G216_lensing_cores.py#L534), [535](../../deepseek_push/G216_lensing_cores.py#L535), [608](../../deepseek_push/G216_lensing_cores.py#L608), [706](../../deepseek_push/G216_lensing_cores.py#L706), [710](../../deepseek_push/G216_lensing_cores.py#L710) |
+| [`fable_independent_2026/L24_lensing_vs_dynamics.py`](../../fable_independent_2026/L24_lensing_vs_dynamics.py#L2) | cited | [2](../../fable_independent_2026/L24_lensing_vs_dynamics.py#L2), [247](../../fable_independent_2026/L24_lensing_vs_dynamics.py#L247) |

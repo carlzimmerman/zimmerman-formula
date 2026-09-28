@@ -1,0 +1,17 @@
+# Furtak et al. 2024 — A high black-hole-to-host mass ratio in a lensed AGN in the early Universe
+
+**Reference.** Furtak, L. J.; Labbé, I.; Zitrin, A.; Greene, J. E.; Dayal, P.; Chemerynska, I.; Kokorev, V.; Miller, T. B.; Goulding, A. D.; de Graaff, A.; Bezanson, R.; Brammer, G. B.; Cutler, S. E.; Leja, J.; Pan, R.; Price, S. H.; Wang, B.; Weaver, J. R.; Whitaker, K. E.; Atek, H.; Bogdán, Á.; Charlot, S.; Curtis-Lake, E.; van Dokkum, P.; Endsley, R.; Feldmann, R.; Fudamoto, Y.; Fujimoto, S.; Glazebrook, K.; Juneau, S.; et al. (38 authors) (2024). A high black-hole-to-host mass ratio in a lensed AGN in the early Universe. *Nature* 628, 57-61. [doi:10.1038/s41586-024-07184-8](https://doi.org/10.1038/s41586-024-07184-8)
+
+**BibTeX key:** `Furtak2024` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (38):** [Lukas J. Furtak](../people/furtak-lukas-j.md), [Ivo Labbé](../people/labbe-ivo.md), [Adi Zitrin](../people/zitrin-adi.md), [Jenny E. Greene](../people/greene-jenny-e.md), [Pratika Dayal](../people/dayal-pratika.md), [Iryna Chemerynska](../people/chemerynska-iryna.md), [Vasily Kokorev](../people/kokorev-vasily.md), [Tim B. Miller](../people/miller-tim-b.md), [Andy D. Goulding](../people/goulding-andy-d.md), [Anna de Graaff](../people/de-graaff-anna.md), [Rachel Bezanson](../people/bezanson-rachel.md), [Gabriel B. Brammer](../people/brammer-gabriel-b.md), [Sam E. Cutler](../people/cutler-sam-e.md), [Joel Leja](../people/leja-joel.md), [Richard Pan](../people/pan-richard.md), [Sedona H. Price](../people/price-sedona-h.md), [Bingjie Wang](../people/wang-bingjie.md), [John R. Weaver](../people/weaver-john-r.md), [Katherine E. Whitaker](../people/whitaker-katherine-e.md), [Hakim Atek](../people/atek-hakim.md), [Ákos Bogdán](../people/bogdan-akos.md), [Stéphane Charlot](../people/charlot-stephane.md), [Emma Curtis-Lake](../people/curtis-lake-emma.md), [Pieter van Dokkum](../people/van-dokkum-pieter-g.md), [Ryan Endsley](../people/endsley-ryan.md), [Robert Feldmann](../people/feldmann-robert.md), [Yoshinobu Fudamoto](../people/fudamoto-yoshinobu.md), [Seiji Fujimoto](../people/fujimoto-seiji.md), [Karl Glazebrook](../people/glazebrook-karl.md), [Stéphanie Juneau](../people/juneau-stephanie.md), [Danilo Marchesini](../people/marchesini-danilo.md), [Micheal V. Maseda](../people/maseda-micheal-v.md), [Erica Nelson](../people/nelson-erica-j.md), [Pascal A. Oesch](../people/oesch-pascal-a.md), [Adèle Plat](../people/plat-adele.md), [David J. Setton](../people/setton-david-j.md), [Daniel P. Stark](../people/stark-daniel-p.md), [Christina C. Williams](../people/williams-christina-c.md)
+
+## Used in 3 script(s)
+
+How: cited in 3.
+
+| script | how | lines |
+|---|---|---|
+| [`opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py`](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L2) | cited | [2](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L2), [65](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L65), [68](../../opus_49_doorB/kp1_z7p04_lensed_lrd_lane.py#L68) |
+| [`real_research/bhstar_audit_2026/L327_qso1_cube_refit.py`](../../real_research/bhstar_audit_2026/L327_qso1_cube_refit.py#L274) | cited | [274](../../real_research/bhstar_audit_2026/L327_qso1_cube_refit.py#L274) |
+| [`real_research/bhstar_audit_2026/qso1_refit/model.py`](../../real_research/bhstar_audit_2026/qso1_refit/model.py#L13) | cited | [13](../../real_research/bhstar_audit_2026/qso1_refit/model.py#L13) |

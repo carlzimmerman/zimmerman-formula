@@ -1,12 +1,7 @@
-# Robin Ciardullo
+# Robin Ciardullo → moved to the verified index
 
-**Affiliation:** Penn State
+This page belonged to the previous surname-count index (1 files, 3 word matches, all file types). The index now credits people only through verified publications used by the scripts — see [how it is built](../README.md).
 
-**Cited in 1 file(s), 3 occurrence(s) across the repo:**
+**Now:** no scanned script uses this person's published work (the old count came from the word appearing in notes, papers or data).
 
-**Data/config (1 files):**
-
-- [`real_research/data/pn_ngc3379_3384_sluis2006.tsv`](https://github.com/carlzimmerman/zimmerman-formula/blob/main/real_research/data/pn_ngc3379_3384_sluis2006.tsv) — 3×
-
----
-*Living citation page for Robin Ciardullo · index: [CITATIONS.md](../CITATIONS.md) · append-only.*
+[People A–Z](../people/README.md) · [Corrections to the old index](../CORRECTIONS.md)

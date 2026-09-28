@@ -1,0 +1,12 @@
+# Cesar Rojas-Bravo
+
+Credited in **109** file(s) through **4** work(s) · ORCID [0000-0002-7559-315X](https://orcid.org/0000-0002-7559-315X) · affiliation on the cited work(s): Department of Astronomy and Astrophysics, University of California, Santa Cruz, CA 95064, USA.
+
+| work | used in | how |
+|---|---:|---|
+| [Brout et al. 2022](../works/brout-2022-the-pantheon-analysis-cosmological-constraints.md) — The Pantheon+ Analysis: Cosmological Constraints | 104 | cited, data used |
+| [Scolnic et al. 2022](../works/scolnic-2022-the-pantheon-analysis-the-full-data-set-and-li.md) — The Pantheon+ Analysis: The Full Data Set and Light-curve Release | 102 | cited, data used |
+| [The LIGO Scientific Collaboration and The Virgo Collaboration et al. 2017](../works/the-ligo-scientific-collaboration-and-the-virgo-collaboration-2017-a-gravitation.md) — A gravitational-wave standard siren measurement of the Hubble constant | 4 | cited |
+| [Drout et al. 2017](../works/drout-2017-light-curves-of-the-neutron-star-merger-gw170817.md) — Light curves of the neutron star merger GW170817/SSS17a: Implications for r-process nucleosynthesis | 1 | cited in a paper |
+
+[All people A–Z](README.md) · [How this index is built](../README.md)

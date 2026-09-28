@@ -1,0 +1,21 @@
+# Wald 1993 — Black hole entropy is the Noether charge
+
+**Reference.** Wald, R. M. (1993). Black hole entropy is the Noether charge. *Physical Review D* 48, R3427-R3431. [doi:10.1103/physrevd.48.r3427](https://doi.org/10.1103/physrevd.48.r3427) [arXiv:gr-qc/9307038](https://arxiv.org/abs/gr-qc/9307038)
+
+**BibTeX key:** `Wald1993` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** Crossref (publisher record), 2026-09-28
+
+**Authors (1):** [Robert M. Wald](../people/wald-robert-m.md)
+
+## Used in 7 script(s)
+
+How: cited in 1, named method/model in 7.
+
+| script | how | lines |
+|---|---|---|
+| [`real_research/reviews/mi_aest_entropy_discriminator_2026.py`](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L20) | named method/model — Wald (Noether-charge) black-hole entropy | [20](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L20), [69](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L69), [70](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L70), [113](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L113), [204](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L204), [288](../../real_research/reviews/mi_aest_entropy_discriminator_2026.py#L288) |
+| [`real_research/reviews/mi_index_multiplicity_half_2026.py`](../../real_research/reviews/mi_index_multiplicity_half_2026.py#L79) | named method/model — Wald (Noether-charge) black-hole entropy | [79](../../real_research/reviews/mi_index_multiplicity_half_2026.py#L79), [110](../../real_research/reviews/mi_index_multiplicity_half_2026.py#L110) |
+| [`real_research/reviews/mi_local_presentation_grading_2026.py`](../../real_research/reviews/mi_local_presentation_grading_2026.py#L405) | named method/model — Wald (Noether-charge) black-hole entropy | [405](../../real_research/reviews/mi_local_presentation_grading_2026.py#L405) |
+| [`real_research/reviews/mi_pi_free_area_2026.py`](../../real_research/reviews/mi_pi_free_area_2026.py#L37) | named method/model — Wald (Noether-charge) black-hole entropy | [37](../../real_research/reviews/mi_pi_free_area_2026.py#L37), [595](../../real_research/reviews/mi_pi_free_area_2026.py#L595), [627](../../real_research/reviews/mi_pi_free_area_2026.py#L627), [867](../../real_research/reviews/mi_pi_free_area_2026.py#L867) |
+| [`real_research/reviews/mi_wald_entropy_normalisation_2026.py`](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L20) | named method/model — Wald (Noether-charge) black-hole entropy | [20](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L20), [25](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L25), [62](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L62), [63](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L63), [136](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L136), [317](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L317), [342](../../real_research/reviews/mi_wald_entropy_normalisation_2026.py#L342) |
+| [`real_research/reviews/strained_horizon_wald_theta.py`](../../real_research/reviews/strained_horizon_wald_theta.py#L3) | named method/model — Iyer-Wald Noether-charge formalism / Wald entropy; Wald (Noether-charge) black-hole entropy | [3](../../real_research/reviews/strained_horizon_wald_theta.py#L3), [50](../../real_research/reviews/strained_horizon_wald_theta.py#L50), [116](../../real_research/reviews/strained_horizon_wald_theta.py#L116) |
+| [`real_research/reviews/wald_entropy_aest_coefficient.py`](../../real_research/reviews/wald_entropy_aest_coefficient.py#L2) | cited, named method/model | [2](../../real_research/reviews/wald_entropy_aest_coefficient.py#L2), [3](../../real_research/reviews/wald_entropy_aest_coefficient.py#L3), [6](../../real_research/reviews/wald_entropy_aest_coefficient.py#L6), [21](../../real_research/reviews/wald_entropy_aest_coefficient.py#L21), [83](../../real_research/reviews/wald_entropy_aest_coefficient.py#L83), [88](../../real_research/reviews/wald_entropy_aest_coefficient.py#L88), [130](../../real_research/reviews/wald_entropy_aest_coefficient.py#L130) |

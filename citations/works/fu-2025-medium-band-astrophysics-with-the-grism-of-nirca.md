@@ -1,0 +1,15 @@
+# Fu et al. 2025 — Medium-band Astrophysics with the Grism of NIRCam In Frontier fields (MAGNIF): Spectroscopic Census of H$α$ Luminosity Functions and Cosmic Star Formation at $z\sim 4.5$ and 6.3
+
+**Reference.** Fu, S.; Sun, F.; Jiang, L.; Lin, X.; Diego, J. M.; Furtak, L. J.; Jauzac, M.; Koekemoer, A. M.; Li, M.; Oguri, M.; Patel, N. R.; Willmer, C. N. A.; Windhorst, R. A.; Zitrin, A.; Bauer, F. E.; Chen, C.-C.; Chen, W.; Cheng, C.; Conselice, C. J.; Eisenstein, D. J.; Egami, E.; Espada, D.; Fan, X.; Fujimoto, S.; Hsiao, T. Y.-Y.; Jin, X.; Kohno, K.; Lagattuta, D. J.; Li, Z.; Liu, W.; et al. (38 authors) (2025). Medium-band Astrophysics with the Grism of NIRCam In Frontier fields (MAGNIF): Spectroscopic Census of H$α$ Luminosity Functions and Cosmic Star Formation at $z\sim 4.5$ and 6.3. [arXiv:2503.03829](https://arxiv.org/abs/2503.03829)
+
+**BibTeX key:** `Fu2025` (in [REFERENCES.bib](../REFERENCES.bib)) · **Verified against:** arXiv record, 2026-09-28
+
+**Authors (38):** [Shuqi Fu](../people/fu-shuqi.md), [Fengwu Sun](../people/sun-fengwu.md), [Linhua Jiang](../people/jiang-linhua.md), [Xiaojing Lin](../people/lin-xiaojing.md), [Jose M. Diego](../people/diego-jose-m.md), [Lukas J. Furtak](../people/furtak-lukas-j.md), [Mathilde Jauzac](../people/jauzac-mathilde.md), [Anton M. Koekemoer](../people/koekemoer-anton-m.md), [Mingyu Li](../people/li-mingyu.md), [Masamune Oguri](../people/oguri-masamune.md), [Nency R. Patel](../people/patel-nency-r.md), [Christopher N. A. Willmer](../people/willmer-christopher-n-a.md), [Rogier A. Windhorst](../people/windhorst-rogier-a.md), [Adi Zitrin](../people/zitrin-adi.md), [Franz E. Bauer](../people/bauer-franz-e.md), [Chian-Chou Chen](../people/chen-chian-chou.md), [Wenlei Chen](../people/chen-wenlei.md), [Cheng Cheng](../people/cheng-cheng.md), [Christopher J. Conselice](../people/conselice-christopher-j.md), [Daniel J. Eisenstein](../people/eisenstein-daniel-j.md), [Eiichi Egami](../people/egami-eiichi.md), [Daniel Espada](../people/espada-daniel.md), [Xiaohui Fan](../people/fan-xiaohui.md), [Seiji Fujimoto](../people/fujimoto-seiji.md), [Tiger Yu-Yang Hsiao](../people/hsiao-tiger-yu-yang.md), [Xiangyu Jin](../people/jin-xiangyu.md), [Kotaro Kohno](../people/kohno-kotaro.md), [David J. Lagattuta](../people/lagattuta-david-j.md), [Zihao Li](../people/li-zihao.md), [Weizhe Liu](../people/liu-weizhe.md), [Jordi Miralda-Escudé](../people/miralda-escude-jordi.md), [Yuanhang Ning](../people/ning-yuanhang.md), [Sandro Tacchella](../people/tacchella-sandro.md), [Wei Leong Tee](../people/tee-wei-leong.md), [Hideki Umehata](../people/umehata-hideki.md), [Feige Wang](../people/wang-feige.md), [Haojing Yan](../people/yan-haojing.md), [Yongda Zhu](../people/zhu-yongda.md)
+
+## Used in 1 script(s)
+
+How: cited in 1.
+
+| script | how | lines |
+|---|---|---|
+| [`prep_2026/a0z_crossscale/archive_inventory_d2_2026.py`](../../prep_2026/a0z_crossscale/archive_inventory_d2_2026.py#L205) | cited | [205](../../prep_2026/a0z_crossscale/archive_inventory_d2_2026.py#L205) |
