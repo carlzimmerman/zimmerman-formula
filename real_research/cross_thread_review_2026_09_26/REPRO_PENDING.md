@@ -16,3 +16,20 @@ load allows, and this file updated.
 
 Re-run and matched (recorded in their commits or README.md): XR11–XR15, XR14's score, XR17, XR18, XR18b, XR19,
 XR20, XR21 stage 1 (controls and web channel), XR25, XR27, XR30, XR31, XR33.
+
+## Re-run 2026-09-28: all six matched
+
+All six were re-run in scratch mirrors with `run_repro_lane.sh`, MUTATE first, then main, sequentially. Each `.out` and results JSON was diffed against the committed copy, ignoring timing. Numeric JSON leaves were compared one by one.
+
+| Lane | Result | Notes |
+|---|---|---|
+| XR22 | **matched** | Both scripts, both modes: JSON identical. The `.out` differs only in a worker count (3 vs 4) and a timing figure inside a sentence. **The specific risk is cleared:** the outputs match the committed `XR22_common.py`. |
+| XR23 | **matched** | Every numeric JSON difference is a `sec` timing field. The `.out` differs in timing only. |
+| XR26 | **matched** | `cmb` identical; `linear_equations` differs in timing only. `bbn`'s K3 read `nan` on the first pass, because the batch ran `bbn` before `linear_equations` and K3 reads part 1's results file from its own directory, which did not yet exist in the mirror. Re-run after part 1: `.out` identical, JSON identical except `elapsed_s`. |
+| XR28 | **matched** | `controls` and `hot_phase` identical. `outskirts_L`: `.out` identical; the JSON's 1534 line differences are ordering and formatting, with zero numeric differences. **The specific risk is cleared.** |
+| XR29 | **matched** | JSON identical. One diagnostic print line appears one line later. |
+| XR32 | **matched** | Every `.out` and JSON identical in both modes. |
+
+**The rule for next time:** when a lane reads a sibling part's results file, run the parts in dependency order inside the mirror.
+
+Nothing remains pending from the table above.
