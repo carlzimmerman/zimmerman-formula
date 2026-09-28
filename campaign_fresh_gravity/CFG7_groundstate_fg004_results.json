@@ -1,0 +1,250 @@
+{
+ "slug": "CFG7_groundstate_fg004",
+ "summary": {
+  "n_checks": 7,
+  "n_pass": 4,
+  "load_bearing_failures": 2,
+  "failed": [
+   "C2 CONTROL / D1: for a point mass the phantom's Jeans pressure equals a0 g_N/(8 pi G) and ",
+   "H3 (reported) THE DEEP IDENTITY ON DATA: P_Jeans / [a0 g_N/(8 pi G)] has median within 30%",
+   "H2 (pre-declared UNCERTAIN) THE INNER PHANTOM IS THE GROUND STATE: the isothermal cold com"
+  ],
+  "seconds": 1.9
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: CFG4_galaxy_law's committed SPARC rms at its committed Upsilon reproduced to 1e-6 dex (P2, nu_mono, both footings)",
+   "detail": "max |d rms| = 2.96e-07",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL / D1: for a point mass the phantom's Jeans pressure equals a0 g_N/(8 pi G) and sigma^2 = V_f^2/2 within 1% at g_N/a0 <= 1e-3 (P2, nu_mono, both footings)",
+   "detail": "max deviation 1.05e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C2b (reported; added after the first run) the nu_mono deviation from D1 falls as sqrt(g_N/a0) (a factor 10^0.5 = 3.16 per decade within 15%) -- the identity is exact for P2 and asymptotic for nu_mono",
+   "detail": "deviation ratios per decade 3.16, 3.16",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 THE OUTER PHANTOM IS RELAXED: at g_bar < 0.1 a0 the phantom's Jeans sigma^2 is within 20% of V_flat^2/2 (median over galaxies), both footings, both kernels",
+   "detail": "can/P2: 0.930 (N = 84); can/nu_mono: 0.924 (N = 89); alt/P2: 1.005 (N = 93); alt/nu_mono: 1.006 (N = 98)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 (reported) THE DEEP IDENTITY ON DATA: P_Jeans / [a0 g_N/(8 pi G)] has median within 30% of 1 at g_bar < 0.1 a0",
+   "detail": "can/P2: 1.235; can/nu_mono: 1.407; alt/P2: 1.375; alt/nu_mono: 1.641",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "H2 (pre-declared UNCERTAIN) THE INNER PHANTOM IS THE GROUND STATE: the isothermal cold component with T5's amount stays within 0.1 dex of the law at g_bar > a0 (median over galaxies), both footings, both kernels",
+   "detail": "can/P2: +0.130 dex; can/nu_mono: +0.146 dex; alt/P2: +0.142 dex; alt/nu_mono: +0.142 dex",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H4 (reported) NO UNIVERSAL BAROTROPIC EQUATION OF STATE: the cross-galaxy scatter of log P at fixed log rho_ph exceeds 0.1 dex (D2 on data)",
+   "detail": "can/P2: 0.545 dex; can/nu_mono: 0.528 dex; alt/P2: 0.526 dex; alt/nu_mono: 0.509 dex",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "H1": {
+   "canonical|P2": {
+    "n": 84,
+    "med_sigma": 0.9303899715824321,
+    "iqr_sigma": [
+     0.7740547137122133,
+     1.1124075085142935
+    ],
+    "med_P": 1.2346944427594089,
+    "iqr_P": [
+     1.019976027775005,
+     2.496522302960143
+    ]
+   },
+   "canonical|nu_mono": {
+    "n": 89,
+    "med_sigma": 0.9242833173708456,
+    "iqr_sigma": [
+     0.7889482943456108,
+     1.0884277509041675
+    ],
+    "med_P": 1.4066749299889019,
+    "iqr_P": [
+     1.117292380560576,
+     3.0434932157159453
+    ]
+   },
+   "alt|P2": {
+    "n": 93,
+    "med_sigma": 1.0048106342804397,
+    "iqr_sigma": [
+     0.8174475950355377,
+     1.197969492132687
+    ],
+    "med_P": 1.3752276790036877,
+    "iqr_P": [
+     1.036802273137083,
+     2.7462122361532657
+    ]
+   },
+   "alt|nu_mono": {
+    "n": 98,
+    "med_sigma": 1.0057281037510641,
+    "iqr_sigma": [
+     0.8161328869497423,
+     1.1727898809617836
+    ],
+    "med_P": 1.641155949742743,
+    "iqr_P": [
+     1.1514347402609113,
+     3.512585776690376
+    ]
+   }
+  },
+  "H2": {
+   "canonical|P2": {
+    "gb>a0": {
+     "n": 64,
+     "median": 0.12963260102257557,
+     "p84": 0.38521861294951265
+    },
+    "0.1<gb<a0": {
+     "n": 118,
+     "median": 0.02403296202070808,
+     "p84": 0.11864500643475757
+    },
+    "gb<0.1": {
+     "n": 86,
+     "median": 0.004673203371807635,
+     "p84": 0.01859397188722941
+    },
+    "frac_points_iso_exceeds_law": 0.72
+   },
+   "canonical|nu_mono": {
+    "gb>a0": {
+     "n": 63,
+     "median": 0.14603950365071333,
+     "p84": 0.39766678836676994
+    },
+    "0.1<gb<a0": {
+     "n": 118,
+     "median": 0.02347146734029284,
+     "p84": 0.12356487977416769
+    },
+    "gb<0.1": {
+     "n": 90,
+     "median": 0.005123542571604284,
+     "p84": 0.02043538415695013
+    },
+    "frac_points_iso_exceeds_law": 0.705
+   },
+   "alt|P2": {
+    "gb>a0": {
+     "n": 59,
+     "median": 0.14172906266719013,
+     "p84": 0.41219106999369665
+    },
+    "0.1<gb<a0": {
+     "n": 114,
+     "median": 0.026298062470121966,
+     "p84": 0.11126407842275017
+    },
+    "gb<0.1": {
+     "n": 95,
+     "median": 0.005020488290052825,
+     "p84": 0.018522279973561328
+    },
+    "frac_points_iso_exceeds_law": 0.585
+   },
+   "alt|nu_mono": {
+    "gb>a0": {
+     "n": 57,
+     "median": 0.14216792546090215,
+     "p84": 0.37972844113508936
+    },
+    "0.1<gb<a0": {
+     "n": 111,
+     "median": 0.029074785188321964,
+     "p84": 0.10952451844171
+    },
+    "gb<0.1": {
+     "n": 99,
+     "median": 0.00584299552682413,
+     "p84": 0.02085146569379402
+    },
+    "frac_points_iso_exceeds_law": 0.6025
+   }
+  },
+  "H4": {
+   "canonical|P2": {
+    "scatter_median": 0.5452110866074291,
+    "scatter_bins": [
+     0.4174030281237173,
+     0.46120113992840917,
+     0.48284022110475355,
+     0.5171779950251723,
+     0.5327768357726828,
+     0.5576453374421754,
+     0.5843387713121995,
+     0.6269954976417057,
+     0.6777318892915879,
+     0.7319363115231511
+    ]
+   },
+   "canonical|nu_mono": {
+    "scatter_median": 0.5280067745383095,
+    "scatter_bins": [
+     0.41405271028135954,
+     0.4487086953477519,
+     0.46465653867003265,
+     0.492012332041225,
+     0.513336316184562,
+     0.542677232892057,
+     0.5783610856472711,
+     0.6241170284759229,
+     0.6647653826293783,
+     0.7009406404046722
+    ]
+   },
+   "alt|P2": {
+    "scatter_median": 0.5263111639896683,
+    "scatter_bins": [
+     0.40874570342880046,
+     0.4495306570870833,
+     0.46805801325986546,
+     0.5002380496079297,
+     0.5141030171446701,
+     0.5385193108346663,
+     0.5673765747284714,
+     0.611016901199785,
+     0.661413828811244,
+     0.7155001177577415
+    ]
+   },
+   "alt|nu_mono": {
+    "scatter_median": 0.5087628933970902,
+    "scatter_bins": [
+     0.4051525864673116,
+     0.4407914838384119,
+     0.45433269646370295,
+     0.4772768339641635,
+     0.4942551476897136,
+     0.5232706391044668,
+     0.5614782190826115,
+     0.6133016375691202,
+     0.6523231309010894,
+     0.6843922098083688
+    ]
+   }
+  }
+ }
+}

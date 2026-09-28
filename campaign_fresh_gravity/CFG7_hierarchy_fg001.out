@@ -1,0 +1,217 @@
+CFG7 / FG001 -- HIERARCHICAL OWNERSHIP OF THE PHANTOM, scored population by population on the record's own statistics.
+
+THE PRINCIPLE (FG001, with CFG4's T5 "in bound regions the cold component IS the phantom").  The framework's law acts on a
+system's own baryons only if that system is TOP-LEVEL (the outermost bound system).  Three classes follow, with no new
+constant:
+  T  top-level (isolated galaxies, groups' and clusters' centrals): the law on their own baryons, no external-field effect
+     (the web is not a host; a uniform external field drops out of a system's internal dynamics).
+  A  accreted (formed top-level, later embedded: satellites, cluster members, UDGs): they keep the cold component they owned
+     at infall -- by T5 their phantom WAS cold matter, collisionless, bound inside their tidal radius.  Their internal
+     dynamics is Newtonian with that retained cold matter, i.e. the ISOLATED law of their infall baryons, with NO external-
+     field effect.
+  E  formed embedded, without a cold component (tidal dwarfs, globular clusters, collision debris such as NGC 1052-DF2/DF4,
+     wide binaries, the Solar System): NEWTONIAN from their baryons.
+The rival reading, scored beside it on the same statistics: the law acts on every system's own baryons with its host's
+external field (the record's chain/M*/QUMOND reading; XR27's L -> infinity rows; h43's EFE column).
+
+WHAT IS RE-USED (read-only; each reproduced as a control): h43 (hunt_2026, the LG dwarf dispersions), f13 (hunt_2026, the
+outer-halo globular clusters), XR27 (the cluster-infall BTFR, the LV dwarfs' host statistic, DF2/DF4, Chae's EFE fits), and
+this campaign's FG041 (tidal dwarfs).  Data: real_research/data/dsph (LVD 2024, Collins+2013), globular_clusters (Baumgardt).
+
+PRE-DECLARED (before this script's first run)
+  K1  CONTROL  h43's committed medians log10(sigma_obs/sigma_pred) (EFE, isolated, Newtonian; MW ultra-faint / classical / all,
+      M31 Collins / LVD; both footings; and the isolated field dwarfs' -0.044 / -0.062) are reproduced to 0.001 dex.
+  K2  CONTROL  f13's committed medians (+0.302 dex with the external field, +0.561 without; 16 discriminating clusters) are
+      reproduced to 0.001 dex.
+  K3  CONTROL  XR27's committed significances are recomputed from its own committed obs/err/prediction numbers (LV dwarfs'
+      statistic, the cluster slope and zero point) to 0.01 sigma.
+  K4  CONTROL  FG041 (CFG7_tdg_fg041_results.json) is committed with 0 load-bearing failures.
+  H1  CASSINI WITHOUT xi (FG029): the Sun owns no phantom; the only non-Newtonian tide in the Solar System is the Milky Way's
+      phantom field's, and it is below Cassini's quadrupole bound 5.2e-27 s^-2 by >= 1e3 on both footings.
+  H2  GLOBULAR CLUSTERS (class E): the Newtonian dynamical M/L_V of the discriminating clusters with >= 20 radial velocities has
+      a median inside the stellar-population range [1.0, 2.5]; the law with the external field needs a median M/L_V (dynamical
+      over its boost) below 1.0 (reported).
+  H3  TIDAL DWARFS (class E): FG041's kill test passed (from its committed results).
+  H4  SATELLITES (class A = the isolated law): the median offset is within 2 sigma of zero for the MW classical dSphs and the
+      M31 LVD sample on both footings (reported: M31 Collins, the MW ultra-faints); the external-field column fails them.
+  H5  THE HOST STATISTICS (class A predicts no host dependence): the LV dwarfs' statistic and the cluster-infall BTFR slope and
+      zero point are within 2 sigma of zero on both footings.
+  H6  DF2 and DF4 (class E): Newtonian within 2 sigma at 20 Mpc for the central measurements (Danieli+19, van Dokkum+19).
+  H7  THE COST (reported, pre-declared as a likely failure): Chae's EFE fits (D1, D2) against zero external field.
+  H0  [HEADLINE] FG001 passes strictly more of the gates G1-G14 than the law-with-external-field reading, on both footings.
+  H8  (reported; EXPLORATORY, declared after seeing h43's isolated offsets) the fossil-gas account under the max rule: a satellite
+      keeps the cold component set by its pre-infall baryons, so if it has since lost its gas it sits above the isolated law
+      for its current stars by (1/4) log(1 + f_g) in the deep regime; f_g(M_*) from the isolated LG dwarfs' own HI.
+MUTATE=1: every system is treated as top-level with its host's external field (no hierarchy) -- the FG001 column becomes the
+rival's, the headline H0 must FAIL (rc = 1).
+
+======================================================================================================================
+K1  CONTROL: h43's LG dwarf-dispersion medians reproduced (its estimator, samples and constants)
+======================================================================================================================
+    canonical MW ultra-faint     N= 31: EFE +0.825 (h43 +0.825) | isolated +0.355 (+0.355) | Newton +1.108 (+1.108)
+    canonical MW classical dSph  N= 14: EFE +0.320 (h43 +0.320) | isolated +0.067 (+0.067) | Newton +0.616 (+0.616)
+    canonical MW all             N= 45: EFE +0.660 (h43 +0.660) | isolated +0.303 (+0.303) | Newton +1.048 (+1.048)
+    canonical M31 Collins+2013   N= 14: EFE +0.480 (h43 +0.480) | isolated +0.226 (+0.226) | Newton +0.853 (+0.853)
+    canonical M31 LVD            N= 34: EFE +0.381 (h43 +0.381) | isolated +0.116 (+0.116) | Newton +0.714 (+0.714)
+    canonical isolated LG field dwarfs N=13: isolated -0.044 (h43 -0.044)
+    alt       MW ultra-faint     N= 31: EFE +0.806 (h43 +0.806) | isolated +0.334 (+0.334) | Newton +1.108 (+1.108)
+    alt       MW classical dSph  N= 14: EFE +0.302 (h43 +0.302) | isolated +0.047 (+0.047) | Newton +0.616 (+0.616)
+    alt       MW all             N= 45: EFE +0.642 (h43 +0.642) | isolated +0.283 (+0.283) | Newton +1.048 (+1.048)
+    alt       M31 Collins+2013   N= 14: EFE +0.461 (h43 +0.461) | isolated +0.207 (+0.207) | Newton +0.853 (+0.853)
+    alt       M31 LVD            N= 34: EFE +0.363 (h43 +0.363) | isolated +0.096 (+0.096) | Newton +0.714 (+0.714)
+    alt       isolated LG field dwarfs N=13: isolated -0.062 (h43 -0.062)
+  [PASS] K1 CONTROL: h43's committed medians (EFE / isolated / Newtonian for five samples, and the isolated field dwarfs) reproduced to 0.001 dex on both footings
+         max |dev| = 0.0000 dex
+
+======================================================================================================================
+K2  CONTROL: f13's outer-halo globular-cluster medians reproduced (Baumgardt catalogue, its prescription)
+======================================================================================================================
+    discriminating clusters: 16; with the external field +0.302 dex (f13 +0.302); without +0.561 (f13 +0.561)
+  [PASS] K2 CONTROL: f13's committed medians (+0.302 / +0.561 dex, 16 clusters) reproduced to 0.001 dex
+         N = 16; +0.3024 / +0.5609
+
+======================================================================================================================
+K3  CONTROL: XR27's committed significances recomputed from its own committed numbers
+======================================================================================================================
+    6 LV-dwarf rows and 24 cluster rows: max |recomputed - committed| = 0.00e+00 sigma
+  [PASS] K3 CONTROL: XR27's committed significances (LV dwarfs' statistic; cluster slope and zero point) recomputed from its own committed obs/err/prediction numbers to 0.01 sigma
+         max deviation 0.00e+00
+
+======================================================================================================================
+K4  CONTROL: FG041 (tidal dwarfs) is committed and passes its own controls
+======================================================================================================================
+  [PASS] K4 CONTROL: CFG7_tdg_fg041_results.json exists with 0 load-bearing failures (C1, C2, H1)
+         5/5 pass, load-bearing failures 0
+
+======================================================================================================================
+H1  CASSINI WITHOUT xi: the Sun owns no phantom; the Milky Way's phantom tide at the Sun
+======================================================================================================================
+    canonical P2      : g_N(R0) = 1.055e-10, phantom g = 3.943e-11 m/s^2 (v_c = 191 km/s); phantom tide ~ 1.56e-31 s^-2 vs Cassini bound 5.2e-27: margin 3.3e+04
+    canonical nu_mono : g_N(R0) = 1.055e-10, phantom g = 5.578e-11 m/s^2 (v_c = 202 km/s); phantom tide ~ 2.20e-31 s^-2 vs Cassini bound 5.2e-27: margin 2.4e+04
+    alt       P2      : g_N(R0) = 1.055e-10, phantom g = 4.637e-11 m/s^2 (v_c = 196 km/s); phantom tide ~ 1.83e-31 s^-2 vs Cassini bound 5.2e-27: margin 2.8e+04
+    alt       nu_mono : g_N(R0) = 1.055e-10, phantom g = 6.485e-11 m/s^2 (v_c = 208 km/s); phantom tide ~ 2.56e-31 s^-2 vs Cassini bound 5.2e-27: margin 2.0e+04
+  [PASS] H1 CASSINI WITHOUT xi (FG029): under FG001 the Sun owns no phantom (it is embedded in the Milky Way), so the only non-Newtonian tide in the Solar System is the host's smooth phantom field -- below Cassini's 5.2e-27 s^-2 by >= 1e3
+         can/P2: tide 1.6e-31, margin 3.3e+04; can/nu_mono: tide 2.2e-31, margin 2.4e+04; alt/P2: tide 1.8e-31, margin 2.8e+04; alt/nu_mono: tide 2.6e-31, margin 2.0e+04
+
+======================================================================================================================
+H2  OUTER-HALO GLOBULAR CLUSTERS (class E): Newtonian dynamical M/L_V against stellar populations
+======================================================================================================================
+    canonical: 10 discriminating clusters with N_RV >= 20 (NGC 2419, Pyxis, Pal 3, Pal 4, Crater, Arp 2, Ter 8, Sagittarius II, Pal 13, NGC 7492)
+        Newtonian M/L_V median 1.70 +- 0.22 (0.0 sigma outside [1.0, 2.5]); the law with the external field (boost 1.82) needs M/L_V 1.04 +- 0.15 (0.0 sigma below 1.0)
+    alt      : 16 discriminating clusters with N_RV >= 20 (NGC 2419, Pyxis, Pal 3, Pal 4, Crater, Rup 106, NGC 5053, NGC 5466, IC 4499, Pal 5, Ter 7, Arp 2, Ter 8, Sagittarius II, Pal 13, NGC 7492)
+        Newtonian M/L_V median 1.73 +- 0.15 (0.0 sigma outside [1.0, 2.5]); the law with the external field (boost 1.68) needs M/L_V 0.99 +- 0.11 (0.1 sigma below 1.0)
+  [FAIL] H2 OUTER-HALO GLOBULAR CLUSTERS: the Newtonian dynamical M/L_V median lies in the stellar-population range [1.0, 2.5]; the law with the external field would need M/L_V below 1.0 (a stellar population with almost no low-mass stars)
+         canonical: Newton 1.70, law 1.04 (N = 10); alt: Newton 1.73, law 0.99 (N = 16)
+
+======================================================================================================================
+H3  TIDAL DWARFS (class E): FG041
+======================================================================================================================
+    canonical: Newton chi^2 1.09 (6 TDGs) -> 0.00 sigma; the law with the host's field (best kernel, most favourable M_host) chi^2 6.30 -> 0.86 sigma
+    alt      : Newton chi^2 1.09 (6 TDGs) -> 0.00 sigma; the law with the host's field (best kernel, most favourable M_host) chi^2 8.31 -> 1.24 sigma
+  [PASS] H3 TIDAL DWARFS: FG041's kill test passed (committed) -- the six TDGs are Newtonian, no MOND-like discrepancy
+         chi^2 1.09; <M_dyn/M_bar> = 1.16 +- 0.26
+
+======================================================================================================================
+H4  SATELLITES (class A): the isolated law of their infall baryons, no external-field effect
+======================================================================================================================
+    canonical MW classical dSph  N= 14: isolated +0.067 +- 0.064 (1.1 sigma) | with the external field +0.320 +- 0.091 (3.5 sigma)
+    canonical M31 LVD            N= 34: isolated +0.116 +- 0.045 (2.6 sigma) | with the external field +0.381 +- 0.064 (6.0 sigma)
+    canonical M31 Collins+2013   N= 14: isolated +0.226 +- 0.089 (2.5 sigma) | with the external field +0.480 +- 0.083 (5.8 sigma)
+    canonical MW ultra-faint     N= 31: isolated +0.355 +- 0.044 (8.0 sigma) | with the external field +0.825 +- 0.063 (13.2 sigma)
+    alt       MW classical dSph  N= 14: isolated +0.047 +- 0.063 (0.7 sigma) | with the external field +0.302 +- 0.090 (3.3 sigma)
+    alt       M31 LVD            N= 34: isolated +0.096 +- 0.044 (2.2 sigma) | with the external field +0.363 +- 0.064 (5.7 sigma)
+    alt       M31 Collins+2013   N= 14: isolated +0.207 +- 0.089 (2.3 sigma) | with the external field +0.461 +- 0.083 (5.6 sigma)
+    alt       MW ultra-faint     N= 31: isolated +0.334 +- 0.044 (7.5 sigma) | with the external field +0.806 +- 0.063 (12.8 sigma)
+  [FAIL] H4 SATELLITES: the isolated law (FG001's class A) puts the MW classical dSphs and the M31 LVD dwarfs within 2 sigma of zero on both footings, while the external-field column fails both
+         can/cls: iso 1.1 vs EFE 3.5 sigma; can/m31: iso 2.6 vs EFE 6.0 sigma; alt/cls: iso 0.7 vs EFE 3.3 sigma; alt/m31: iso 2.2 vs EFE 5.7 sigma
+
+======================================================================================================================
+H5  THE HOST STATISTICS: class A predicts no dependence on the host's field
+======================================================================================================================
+    canonical: LV dwarfs obs +0.0800 +- 0.0467 -> FG001 (0) 1.71 sigma; rival (best variant) 3.92
+               cluster slope obs +0.0033 +- 0.0304 -> FG001 0.11 sigma (worst variant); rival (best) 2.35
+               cluster zero point obs -0.0119 +- 0.0092 -> FG001 1.30 sigma; rival (best) 0.77
+    alt      : LV dwarfs obs +0.0804 +- 0.0469 -> FG001 (0) 1.71 sigma; rival (best variant) 3.96
+               cluster slope obs +0.0033 +- 0.0304 -> FG001 0.11 sigma (worst variant); rival (best) 2.38
+               cluster zero point obs -0.0119 +- 0.0092 -> FG001 1.30 sigma; rival (best) 0.79
+  [PASS] H5 THE HOST STATISTICS: the LV dwarfs' statistic and the cluster-infall BTFR slope and zero point are within 2 sigma of FG001's zero on both footings
+         can: dwarfs 1.71, slope 0.11, zero point 1.30 sigma (rival best 3.9/2.4/0.8); alt: dwarfs 1.71, slope 0.11, zero point 1.30 sigma (rival best 4.0/2.4/0.8)
+
+======================================================================================================================
+H6  NGC 1052-DF2 AND DF4 (class E): Newtonian
+======================================================================================================================
+    NGC1052-DF2 Danieli19        at 20 Mpc: Newton 8.47 km/s -> 0.01 sigma; the law (XR27) canonical 2.95, alt 3.12 sigma
+    NGC1052-DF2 Emsellem19       at 20 Mpc: Newton 8.47 km/s -> 0.66 sigma; the law (XR27) canonical 1.88, alt 2.04 sigma
+    NGC1052-DF2 u02 (8.5+-2.3)   at 20 Mpc: Newton 8.47 km/s -> 0.01 sigma; the law (XR27) canonical 2.95, alt 3.12 sigma
+    NGC1052-DF4 vanDokkum19      at 20 Mpc: Newton 9.47 km/s -> 0.78 sigma; the law (XR27) canonical 1.45, alt 1.49 sigma
+    NGC1052-DF4 u02 (4.2+-1.5)   at 20 Mpc: Newton 9.47 km/s -> 2.28 sigma; the law (XR27) canonical 4.26, alt 4.38 sigma
+  [PASS] H6 DF2 AND DF4: Newtonian (FG001 class E) within 2 sigma at 20 Mpc for the central measurements
+         DF2 (Danieli+19) 0.01 sigma, DF4 (van Dokkum+19) 0.78 sigma; over all distances and measurements 0.01-2.42
+
+======================================================================================================================
+H7  THE COST: Chae's external-field fits in SPARC (D1, D2) against FG001's zero
+======================================================================================================================
+    D1: median fitted e = 0.053 (-0.013/+0.008) vs FG001's 0: 4.08 sigma; the chain (L -> infinity) predicts 0.043 (0.76 sigma)
+    D2: median fitted e = 0.060 (-0.014) vs 0: 4.29 sigma; the chain's band contains it
+  [FAIL] (reported) H7 (reported; pre-declared as a likely failure) THE COST: Chae's EFE fits against FG001's zero external field
+         D1 4.1 sigma, D2 4.3 sigma (CFG1 rates Chae's signal CONTESTED)
+
+======================================================================================================================
+H0  THE SCORECARD: gates G1-G14, FG001 against the law with the external field (pass = <= 2 sigma)
+======================================================================================================================
+    canonical G1 Cassini (no screening constant)        : FG001   0.00 pass | rival    inf FAIL
+    canonical G2 outer-halo globular clusters (M/L_V)   : FG001   0.00 pass | rival   0.00 pass
+    canonical G3 tidal dwarf galaxies (6, Lelli+15)     : FG001   0.00 pass | rival   0.86 pass
+    canonical G4 MW classical dSphs                     : FG001   1.06 pass | rival   3.53 FAIL
+    canonical G5 M31 dwarfs (LVD)                       : FG001   2.60 FAIL | rival   5.96 FAIL
+    canonical G6 M31 dwarfs (Collins+13)                : FG001   2.54 FAIL | rival   5.80 FAIL
+    canonical G7 MW ultra-faints                        : FG001   7.97 FAIL | rival  13.19 FAIL
+    canonical G8 LV dwarfs' host statistic              : FG001   1.71 pass | rival   3.92 FAIL
+    canonical G9 cluster-infall BTFR slope              : FG001   0.11 pass | rival   2.35 FAIL
+    canonical G10 cluster-infall BTFR zero point        : FG001   1.30 pass | rival   0.77 pass
+    canonical G11 NGC 1052-DF2                          : FG001   0.01 pass | rival   2.95 FAIL
+    canonical G12 NGC 1052-DF4                          : FG001   0.78 pass | rival   1.45 pass
+    canonical G13 Chae D1 (143 galaxies)                : FG001   4.08 FAIL | rival   0.76 pass
+    canonical G14 Chae D2 (90 galaxies)                 : FG001   4.29 FAIL | rival   0.00 pass
+    canonical TOTAL: FG001 passes 9/14, the rival 6/14
+    alt       G1 Cassini (no screening constant)        : FG001   0.00 pass | rival    inf FAIL
+    alt       G2 outer-halo globular clusters (M/L_V)   : FG001   0.00 pass | rival   0.11 pass
+    alt       G3 tidal dwarf galaxies (6, Lelli+15)     : FG001   0.00 pass | rival   1.24 pass
+    alt       G4 MW classical dSphs                     : FG001   0.74 pass | rival   3.34 FAIL
+    alt       G5 M31 dwarfs (LVD)                       : FG001   2.16 FAIL | rival   5.70 FAIL
+    alt       G6 M31 dwarfs (Collins+13)                : FG001   2.32 FAIL | rival   5.58 FAIL
+    alt       G7 MW ultra-faints                        : FG001   7.52 FAIL | rival  12.82 FAIL
+    alt       G8 LV dwarfs' host statistic              : FG001   1.71 pass | rival   3.96 FAIL
+    alt       G9 cluster-infall BTFR slope              : FG001   0.11 pass | rival   2.38 FAIL
+    alt       G10 cluster-infall BTFR zero point        : FG001   1.30 pass | rival   0.79 pass
+    alt       G11 NGC 1052-DF2                          : FG001   0.01 pass | rival   3.12 FAIL
+    alt       G12 NGC 1052-DF4                          : FG001   0.78 pass | rival   1.49 pass
+    alt       G13 Chae D1 (143 galaxies)                : FG001   4.08 FAIL | rival   0.76 pass
+    alt       G14 Chae D2 (90 galaxies)                 : FG001   4.29 FAIL | rival   0.00 pass
+    alt       TOTAL: FG001 passes 9/14, the rival 6/14
+    canonical the 13 physical gates only (G1, the no-constant Cassini gate, left out): FG001 8, rival 6
+    alt       the 13 physical gates only (G1, the no-constant Cassini gate, left out): FG001 8, rival 6
+  [PASS] H0 [HEADLINE] FG001 passes strictly more of the gates G1-G14 than the law-with-external-field reading, on both footings
+         canonical: FG001 9/14 vs rival 6/14; alt: FG001 9/14 vs rival 6/14
+
+======================================================================================================================
+H8  (EXPLORATORY) THE FOSSIL-GAS ACCOUNT: satellites keep the cold component of their gas-rich infall baryons
+======================================================================================================================
+    isolated LG field dwarfs with HI: 32; log(M_gas/M_*) = -0.216 log M_* +1.366 (at M_* = 1e6/1e7: 1.18/0.71)
+    canonical MW classical dSph : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median -0.018 dex (stars only +0.067)
+    canonical M31 LVD           : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median +0.036 dex (stars only +0.116)
+    canonical M31 Collins+2013  : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median +0.140 dex (stars only +0.226)
+    canonical MW ultra-faint    : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median +0.209 dex (stars only +0.355)
+    alt       MW classical dSph : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median -0.038 dex (stars only +0.047)
+    alt       M31 LVD           : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median +0.016 dex (stars only +0.096)
+    alt       M31 Collins+2013  : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median +0.120 dex (stars only +0.207)
+    alt       MW ultra-faint    : isolated law of (stars + the gas an isolated dwarf of that M_* holds): median +0.190 dex (stars only +0.334)
+  [PASS] (reported) H8 (reported, exploratory) the fossil-gas account moves every satellite sample's isolated-law offset toward zero, with the gas fraction taken from the isolated field dwarfs (no fitted constant)
+         can/cls: +0.067 -> -0.018; can/m31: +0.116 -> +0.036; can/col: +0.226 -> +0.140; can/ufd: +0.355 -> +0.209; alt/cls: +0.047 -> -0.038; alt/m31: +0.096 -> +0.016; alt/col: +0.207 -> +0.120; alt/ufd: +0.334 -> +0.190
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    FG001 (the phantom belongs to the top-level system; accreted systems keep their infall cold component; systems formed embedded are Newtonian) passes 9/14 of the record's own population gates (canonical; 9/14 alt) against 6/14 for the law with the external field.  Constant ledger: xi (the Solar-System screening length) is not needed (-1); nothing is added (the ownership rule is FG001's principle; the retained cold component is CFG4's T5).  Its cost: Chae's external-field fits in SPARC (4.1/4.3 sigma against zero; contested).
+
+  10/13 checks pass; load-bearing failures: 2   (0 s)

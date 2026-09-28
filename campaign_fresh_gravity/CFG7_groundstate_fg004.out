@@ -1,0 +1,115 @@
+CFG7 / FG004 -- IS THE MAX RULE A GROUND STATE?  (Is CFG4's T5 -- "in a bound region the cold component IS the phantom" --
+the relaxed state of a collisionless cold component in the law's own field?)
+
+THE QUESTION.  A self-gravitating collisionless component that has relaxed (violent relaxation: the maximum-entropy state at
+fixed mass and energy) is ISOTHERMAL in the potential it sits in: rho ~ exp(-Phi/sigma^2).  If the law's phantom density is
+that state, T5 is derived (the cold component settles where the law says, with no new rule).  If it is not, the size and place
+of the mismatch is the next target.
+
+TWO RESULTS DERIVED HERE (analytic, checked numerically):
+  D1  Around a point baryonic mass, in the law's deep regime (g_N << a0), the phantom rho_ph = -div[(nu - 1) g_N]/4 pi G is an
+      isotropic, isothermal sphere in hydrostatic (Jeans) equilibrium in the TOTAL field, with sigma^2 = V_f^2 / 2 and pressure
+          P_ph = rho_ph sigma^2 = a0 g_N / (8 pi G)        (a local identity: the phantom's pressure is set by the Newtonian field)
+      -- the relaxed (maximum-entropy) configuration of a tracer in the flat-rotation-curve potential.
+  D2  No LOCAL equation of state P = Pi(g_N) can hold wherever baryons sit: in spherical symmetry the Jeans condition splits into
+      a term in dg_N/dr (which fixes Pi') and a term without it (2 h nu g_N / r with h = (nu - 1) g_N), which vanishes only where
+      the phantom does.  So inside the baryons the ground state cannot be a local fluid of g_N alone.
+SPARC TEST (175 galaxies; the law at its committed global Upsilon from CFG4_galaxy_law; both footings; P2 and nu_mono; the
+spherical-equivalent phantom M_ph(r) = r^2 (g_obs,law - g_N)/G along each rotation curve):
+  S1  the phantom's Jeans dispersion sigma^2(r) = (1/rho_ph) Int_r^oo rho_ph g_tot dr' (the tail beyond the last point: the
+      galaxy's baryons as a point mass, integrated to 100 R_last).
+  S2  the maximum-entropy alternative: the SAME cold mass inside the last measured radius (T5's amount there), distributed
+      isothermally at the outer sigma^2 in the law's potential, rho_iso = C exp(-Phi_tot / sigma^2_out); with the max rule
+      the rotation it implies, against the law, point by point.
+
+PRE-DECLARED (before this script's first run)
+  C1  CONTROL  CFG4_galaxy_law's committed SPARC fit (rms and Upsilon, P2 and nu_mono, both footings) is reproduced by this
+      script's own statistic to 1e-6 dex (the RAR the phantom is built on).
+  C2  CONTROL  D1 numerically: for a point mass, the Jeans pressure of the phantom equals a0 g_N/(8 pi G) within 1% at
+      g_N/a0 <= 1e-3, and sigma^2 -> V_f^2/2 within 1% (P2 and nu_mono, both footings).
+  H1  THE OUTER PHANTOM IS RELAXED: at SPARC points with g_bar < 0.1 a0 the phantom's Jeans sigma^2 lies within 20% of
+      V_flat^2/2 (median over galaxies), both footings, both kernels.  EXPECT TRUE.
+  H2  THE INNER PHANTOM IS THE GROUND STATE: the isothermal (maximum-entropy) cold component, with T5's amount inside the last
+      point, in the law's potential and under the max rule, stays within 0.1 dex of the law (median residual) at g_bar > a0.
+      Pre-declared UNCERTAIN: a relaxed cold component concentrates where the baryons deepen the potential.
+  H3  (reported) THE DEEP IDENTITY ON DATA: at the points with g_bar < 0.1 a0, the Jeans pressure over a0 g_N/(8 pi G) has
+      median within 30% of 1.
+  H4  (reported) NO UNIVERSAL BAROTROPIC EQUATION OF STATE: the cross-galaxy scatter of log P at fixed log rho_ph exceeds
+      0.1 dex (D2 on data).
+MUTATE=1: the phantom is computed with a0 x 10 while the rotation data stay: the outer sigma^2 no longer matches V_flat^2/2,
+H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: CFG4_galaxy_law's committed SPARC fit reproduced (the record's statistic)
+======================================================================================================================
+    canonical P2      : Upsilon_disk 0.70: rms 0.108272 dex (committed 0.108272)
+    canonical nu_mono : Upsilon_disk 0.61: rms 0.100329 dex (committed 0.100329)
+    alt       P2      : Upsilon_disk 0.65: rms 0.103549 dex (committed 0.103549)
+    alt       nu_mono : Upsilon_disk 0.57: rms 0.099103 dex (committed 0.099103)
+  [PASS] C1 CONTROL: CFG4_galaxy_law's committed SPARC rms at its committed Upsilon reproduced to 1e-6 dex (P2, nu_mono, both footings)
+         max |d rms| = 2.96e-07
+
+======================================================================================================================
+C2  CONTROL / D1: the phantom of a point mass is a Jeans-isothermal sphere with P = a0 g_N / (8 pi G) in the deep regime
+======================================================================================================================
+    canonical P2       g_N/a0 = 1e-03: P_Jeans / [a0 g_N/(8 pi G)] = 1.00000; sigma^2 / (V_f^2/2) = 1.00000
+    canonical P2       g_N/a0 = 1e-04: P_Jeans / [a0 g_N/(8 pi G)] = 1.00000; sigma^2 / (V_f^2/2) = 1.00000
+    canonical nu_mono  g_N/a0 = 1e-03: P_Jeans / [a0 g_N/(8 pi G)] = 1.01054; sigma^2 / (V_f^2/2) = 0.99481
+    canonical nu_mono  g_N/a0 = 1e-04: P_Jeans / [a0 g_N/(8 pi G)] = 1.00333; sigma^2 / (V_f^2/2) = 0.99834
+    alt       P2       g_N/a0 = 1e-03: P_Jeans / [a0 g_N/(8 pi G)] = 1.00000; sigma^2 / (V_f^2/2) = 1.00000
+    alt       P2       g_N/a0 = 1e-04: P_Jeans / [a0 g_N/(8 pi G)] = 1.00000; sigma^2 / (V_f^2/2) = 1.00000
+    alt       nu_mono  g_N/a0 = 1e-03: P_Jeans / [a0 g_N/(8 pi G)] = 1.01054; sigma^2 / (V_f^2/2) = 0.99481
+    alt       nu_mono  g_N/a0 = 1e-04: P_Jeans / [a0 g_N/(8 pi G)] = 1.00333; sigma^2 / (V_f^2/2) = 0.99834
+  [FAIL] C2 CONTROL / D1: for a point mass the phantom's Jeans pressure equals a0 g_N/(8 pi G) and sigma^2 = V_f^2/2 within 1% at g_N/a0 <= 1e-3 (P2, nu_mono, both footings)
+         max deviation 1.05e-02
+    nu_mono: P_Jeans / [a0 g_N/(8 pi G)] - 1 = +1.05e-02 at 1e-03, +3.33e-03 at 1e-04, +1.05e-03 at 1e-05, +3.34e-04 at 1e-06
+  [PASS] (reported) C2b (reported; added after the first run) the nu_mono deviation from D1 falls as sqrt(g_N/a0) (a factor 10^0.5 = 3.16 per decade within 15%) -- the identity is exact for P2 and asymptotic for nu_mono
+         deviation ratios per decade 3.16, 3.16
+
+======================================================================================================================
+S1  THE PHANTOM ALONG EACH SPARC ROTATION CURVE: rho_ph, its Jeans sigma^2 and pressure
+======================================================================================================================
+    canonical P2      : 135 galaxies with a flat velocity and >= 5 points
+    canonical nu_mono : 135 galaxies with a flat velocity and >= 5 points
+    alt       P2      : 135 galaxies with a flat velocity and >= 5 points
+    alt       nu_mono : 135 galaxies with a flat velocity and >= 5 points
+
+======================================================================================================================
+H1  THE OUTER PHANTOM IS RELAXED: Jeans sigma^2 at g_bar < 0.1 a0 against V_flat^2/2
+======================================================================================================================
+    canonical P2      : 84 galaxies with deep points: sigma^2/(V_flat^2/2) median 0.930 (IQR 0.77-1.11); P/[a0 g_N/(8 pi G)] median 1.235 (IQR 1.02-2.50)
+    canonical nu_mono : 89 galaxies with deep points: sigma^2/(V_flat^2/2) median 0.924 (IQR 0.79-1.09); P/[a0 g_N/(8 pi G)] median 1.407 (IQR 1.12-3.04)
+    alt       P2      : 93 galaxies with deep points: sigma^2/(V_flat^2/2) median 1.005 (IQR 0.82-1.20); P/[a0 g_N/(8 pi G)] median 1.375 (IQR 1.04-2.75)
+    alt       nu_mono : 98 galaxies with deep points: sigma^2/(V_flat^2/2) median 1.006 (IQR 0.82-1.17); P/[a0 g_N/(8 pi G)] median 1.641 (IQR 1.15-3.51)
+  [PASS] H1 THE OUTER PHANTOM IS RELAXED: at g_bar < 0.1 a0 the phantom's Jeans sigma^2 is within 20% of V_flat^2/2 (median over galaxies), both footings, both kernels
+         can/P2: 0.930 (N = 84); can/nu_mono: 0.924 (N = 89); alt/P2: 1.005 (N = 93); alt/nu_mono: 1.006 (N = 98)
+  [FAIL] (reported) H3 (reported) THE DEEP IDENTITY ON DATA: P_Jeans / [a0 g_N/(8 pi G)] has median within 30% of 1 at g_bar < 0.1 a0
+         can/P2: 1.235; can/nu_mono: 1.407; alt/P2: 1.375; alt/nu_mono: 1.641
+
+======================================================================================================================
+H2  THE INNER TEST: the maximum-entropy (isothermal) cold component with T5's amount, under the max rule
+======================================================================================================================
+    canonical P2      : the isothermal cold component (max rule) over the law, median per galaxy: gb>a0: +0.130 dex (84th pct +0.385, N 64); 0.1<gb<a0: +0.024 dex (84th pct +0.119, N 118); gb<0.1: +0.005 dex (84th pct +0.019, N 86); median fraction of radii where the relaxed component exceeds the law 0.72
+    canonical nu_mono : the isothermal cold component (max rule) over the law, median per galaxy: gb>a0: +0.146 dex (84th pct +0.398, N 63); 0.1<gb<a0: +0.023 dex (84th pct +0.124, N 118); gb<0.1: +0.005 dex (84th pct +0.020, N 90); median fraction of radii where the relaxed component exceeds the law 0.70
+    alt       P2      : the isothermal cold component (max rule) over the law, median per galaxy: gb>a0: +0.142 dex (84th pct +0.412, N 59); 0.1<gb<a0: +0.026 dex (84th pct +0.111, N 114); gb<0.1: +0.005 dex (84th pct +0.019, N 95); median fraction of radii where the relaxed component exceeds the law 0.58
+    alt       nu_mono : the isothermal cold component (max rule) over the law, median per galaxy: gb>a0: +0.142 dex (84th pct +0.380, N 57); 0.1<gb<a0: +0.029 dex (84th pct +0.110, N 111); gb<0.1: +0.006 dex (84th pct +0.021, N 99); median fraction of radii where the relaxed component exceeds the law 0.60
+  [FAIL] H2 (pre-declared UNCERTAIN) THE INNER PHANTOM IS THE GROUND STATE: the isothermal cold component with T5's amount stays within 0.1 dex of the law at g_bar > a0 (median over galaxies), both footings, both kernels
+         can/P2: +0.130 dex; can/nu_mono: +0.146 dex; alt/P2: +0.142 dex; alt/nu_mono: +0.142 dex
+
+======================================================================================================================
+H4  (reported) A UNIVERSAL BAROTROPIC EQUATION OF STATE?  log P at fixed log rho_ph across galaxies
+======================================================================================================================
+    canonical P2      : the cross-galaxy scatter of log P at fixed log rho: median 0.545 dex over 10 bins
+    canonical nu_mono : the cross-galaxy scatter of log P at fixed log rho: median 0.528 dex over 10 bins
+    alt       P2      : the cross-galaxy scatter of log P at fixed log rho: median 0.526 dex over 10 bins
+    alt       nu_mono : the cross-galaxy scatter of log P at fixed log rho: median 0.509 dex over 10 bins
+  [PASS] (reported) H4 (reported) NO UNIVERSAL BAROTROPIC EQUATION OF STATE: the cross-galaxy scatter of log P at fixed log rho_ph exceeds 0.1 dex (D2 on data)
+         can/P2: 0.545 dex; can/nu_mono: 0.528 dex; alt/P2: 0.526 dex; alt/nu_mono: 0.509 dex
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+    Outer phantom: sigma^2/(V_flat^2/2) = can/P2 0.93, can/nu_mono 0.92, alt/P2 1.00, alt/nu_mono 1.01 -- the relaxed isothermal state (D1: P = a0 g_N / 8 pi G exactly in the deep regime).
+    Inner phantom: a relaxed cold component with T5's amount would exceed the law at g_bar > a0 by can/P2 +0.13 dex, can/nu_mono +0.15 dex, alt/P2 +0.14 dex, alt/nu_mono +0.14 dex (max rule).
+
+  4/7 checks pass; load-bearing failures: 2   (2 s)

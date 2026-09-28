@@ -1,0 +1,262 @@
+{
+ "slug": "CFG7_tdg_fg041_MUTATE",
+ "summary": {
+  "n_checks": 5,
+  "n_pass": 3,
+  "load_bearing_failures": 1,
+  "failed": [
+   "H1 [the FG041 kill test] FG001's Newtonian prediction fits the six TDGs (chi^2 <= 12.6 for",
+   "H2 (reported) the framework's law applied to the TDGs themselves, with the host's external"
+  ],
+  "seconds": 0.2
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: Table 8 reproduced from Table 7 -- V_circ within 1 km/s, M_bar within 0.15e8 Msun, M_dyn within 12% (rounding)",
+   "detail": "max |dV| 0.36 km/s, max |dM_bar| 0.050e8, max |M_dyn ratio - 1| 0.032",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: Table 9 reproduced by the paper's eq. 4 at one a0 in {1.2, 1.25, 1.3}e-10 -- V_ISO within 2 km/s, V_EFE within 3 km/s",
+   "detail": "best a0 = 1.25e-10 m/s^2: max |dV_ISO| 1.03, max |dV_EFE| 1.42 km/s",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [the FG041 kill test] FG001's Newtonian prediction fits the six TDGs (chi^2 <= 12.6 for 6 dof) and M_dyn/M_bar is within 2 sigma of 1 -- no MOND-like discrepancy (which would kill FG001)",
+   "detail": "chi^2 26.25 (p = 0.000); <M_dyn/M_bar> = 2.539 +- 0.368 (+4.18 sigma)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 (reported) the framework's law applied to the TDGs themselves, with the host's external field at its most favourable M_host, fits worse than Newton by d chi^2 >= 4 on both footings for both kernels",
+   "detail": "can/P2: d chi^2 -26.0 (with 10% sys -19.4); can/nu_mono: d chi^2 -26.1 (with 10% sys -19.5); alt/P2: d chi^2 -26.2 (with 10% sys -19.6); alt/nu_mono: d chi^2 -26.0 (with 10% sys -19.4)",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "H3 (reported) the isolated law (no external field) is worse still",
+   "detail": "can/P2: isolated 36.6 vs EFE 0.3; can/nu_mono: isolated 45.0 vs EFE 0.1; alt/P2: isolated 48.2 vs EFE 0.0; alt/nu_mono: isolated 57.4 vs EFE 0.3",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "C1": [
+   [
+    "NGC 5291N",
+    44.721359549995796,
+    45.0,
+    15.600000000000001,
+    15.6,
+    22.59983019854739,
+    23.0
+   ],
+   [
+    "NGC 5291S",
+    34.64101615137755,
+    35.0,
+    15.900000000000002,
+    15.9,
+    20.50725332831152,
+    20.0
+   ],
+   [
+    "NGC 5291SW",
+    27.784887978899608,
+    28.0,
+    7.1,
+    7.1,
+    8.749761420079581,
+    8.7
+   ],
+   [
+    "NGC 7252E",
+    17.916472867168917,
+    18.0,
+    3.95,
+    3.9,
+    3.3899745297821084,
+    3.4
+   ],
+   [
+    "NGC 7252NW",
+    21.354156504062622,
+    21.0,
+    8.16,
+    8.2,
+    7.895292531399937,
+    7.9
+   ],
+   [
+    "VCC 2062",
+    16.34013463836819,
+    16.0,
+    1.45,
+    1.4,
+    1.547576849809994,
+    1.5
+   ]
+  ],
+  "C2": {
+   "a0_paper": 1.25e-10,
+   "max_dev_iso": 1.0292483628918347,
+   "max_dev_efe": 1.416069913474189
+  },
+  "H1": {
+   "chi2_newton": 26.247535422740008,
+   "p": 0.0002001994699446598,
+   "mean_ratio": 2.539316093003131,
+   "err_mean_ratio": 0.3680648258736051,
+   "per": [
+    {
+     "obj": "NGC 5291N",
+     "v_obs": 57.0,
+     "v_N": 37.387138333255734,
+     "e_N": 5.064201569536371
+    },
+    {
+     "obj": "NGC 5291S",
+     "v_obs": 49.0,
+     "v_N": 30.818596611867324,
+     "e_N": 3.258742066714071
+    },
+    {
+     "obj": "NGC 5291SW",
+     "v_obs": 43.0,
+     "v_N": 25.222556297637638,
+     "e_N": 3.7833313379595257
+    },
+    {
+     "obj": "NGC 7252E",
+     "v_obs": 28.0,
+     "v_N": 19.306635216940315,
+     "e_N": 4.229699636606113
+    },
+    {
+     "obj": "NGC 7252NW",
+     "v_obs": 39.0,
+     "v_N": 21.401396244656073,
+     "e_N": 2.820108428801151
+    },
+    {
+     "obj": "VCC 2062",
+     "v_obs": 25.0,
+     "v_N": 15.218010809563777,
+     "e_N": 2.383882900688159
+    }
+   ]
+  },
+  "H2": {
+   "canonical|P2": {
+    "chi_iso": 36.59386333955601,
+    "chi_efe": 0.284903763257001,
+    "host_fac": {
+     "NGC 4694": 1.0,
+     "NGC 5291": 0.5,
+     "NGC 7252": 1.0
+    },
+    "chi_newton_sys": 19.603259568965687,
+    "chi_efe_sys": 0.21294513103626045,
+    "v_iso": [
+     67.96118597652396,
+     67.41375724312917,
+     55.11073530592533,
+     47.24832809329155,
+     56.78284251545926,
+     36.59148908473404
+    ],
+    "v_efe": [
+     57.272317792218004,
+     51.17542272475696,
+     43.968074400153405,
+     27.52210701168201,
+     36.31096128990728,
+     23.828565730497075
+    ]
+   },
+   "canonical|nu_mono": {
+    "chi_iso": 44.97536807238758,
+    "chi_efe": 0.09919349487233925,
+    "host_fac": {
+     "NGC 4694": 1.0,
+     "NGC 5291": 1.0,
+     "NGC 7252": 1.0
+    },
+    "chi_newton_sys": 19.603259568965687,
+    "chi_efe_sys": 0.0803268310574263,
+    "v_iso": [
+     71.67953038626901,
+     70.25704995342473,
+     57.43913999288707,
+     48.91519795241573,
+     58.53272065371212,
+     37.920154544709845
+    ],
+    "v_efe": [
+     58.041226014458594,
+     50.23986461791894,
+     43.427471121560664,
+     29.704486319030586,
+     38.675191261083484,
+     25.54351339189874
+    ]
+   },
+   "alt|P2": {
+    "chi_iso": 48.24797363539006,
+    "chi_efe": 0.04715231461846808,
+    "host_fac": {
+     "NGC 4694": 1.0,
+     "NGC 5291": 1.0,
+     "NGC 7252": 1.0
+    },
+    "chi_newton_sys": 19.603259568965687,
+    "chi_efe_sys": 0.03694284170188083,
+    "v_iso": [
+     70.97312839026546,
+     70.54880297092792,
+     57.673140903171536,
+     49.479504542226096,
+     59.48409676745131,
+     38.31604060622355
+    ],
+    "v_efe": [
+     56.02963782534881,
+     48.713656464755154,
+     42.367446261180085,
+     28.617629142212035,
+     37.917968969793044,
+     24.84353756295569
+    ]
+   },
+   "alt|nu_mono": {
+    "chi_iso": 57.429230549352816,
+    "chi_efe": 0.2833983656761416,
+    "host_fac": {
+     "NGC 4694": 2.0,
+     "NGC 5291": 2.0,
+     "NGC 7252": 1.0
+    },
+    "chi_newton_sys": 19.603259568965687,
+    "chi_efe_sys": 0.2338906165750449,
+    "v_iso": [
+     74.64486611540102,
+     73.32079799730231,
+     59.943293289559094,
+     51.096336577318596,
+     61.17662634370098,
+     39.60572644103716
+    ],
+    "v_efe": [
+     56.0293228522009,
+     47.3200580860737,
+     41.280159040033745,
+     30.807044827178263,
+     40.24419659440241,
+     23.846886492779106
+    ]
+   }
+  }
+ }
+}
