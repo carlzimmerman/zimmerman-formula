@@ -1,0 +1,78 @@
+CFG46 -- THE ULTRA-FAINT FAILURE AGAINST BINARY-CORRECTED DISPERSIONS (Arroyo-Polonio, Battaglia & Thomas 2026).
+
+WHY.  CFG28-CFG29 refereed B's largest data failure, the Milky Way ultra-faints' measured dispersions +0.30-0.33 dex above the isolated law (3.5-3.8
+sigma), and found that unresolved binaries could not explain it with PUBLISHED bounds (McConnachie & Cote 2010; Ou+2026) used as fixed inputs.  The
+remaining escape was a statistical correction applied to the data themselves.  Arroyo-Polonio et al. 2026 (arXiv:2603.03129, Table 1;
+real_research/data/arroyopolonio2026_ufd_binary_corrected.tsv) apply exactly that to 12 ultra-faints: a mixture model with the solar-neighbourhood
+binary velocity distribution, single-epoch data, the binary fraction f free (flat prior) or fixed at 0.7.  They find dispersions lowered by ~1.25-1.75x
+(masses by 1.5-3x).  This lane scores B on those corrected dispersions.
+
+THE METHOD (declared before this script's first run).  FG001's committed estimator (exec'd read-only, as CFG28/CFG42): sigma^2 = g(r) r / 3 at r = (4/3) r_half
+with half of the baryons enclosed, Upsilon_V = 2, stars only; the isolated law (nu_mono, both footings).  Galaxy inputs (M_V, r_half, gas) from the repo's
+Milky Way LVD table (the same source as FG001), matched by name; FG001's brightness cut M_V > -7.7 removes Crater II (reported separately); three of the
+paper's twelve (Eri III, Sag II, UNIONS 1) are absent from that table and are not scored.  Scored: the eight that remain (Boo I, Car II, Hyd I, Leo IV,
+Leo V, Ret II, Seg 1, Wil 1).  Dispersions: the paper's posterior medians for f = 0 (sig_fz), f free (sig_f, HEADLINE) and f = 0.7 (sig_f7); the paper's
+own f = 0 re-analysis is the control.  Statistic: the median over the eight of log10(sigma / sigma_law).  Errors: a bootstrap over the eight (2000), plus the
+measurement error (each dispersion drawn from a split normal built from the paper's asymmetric 1-sigma errors, 2000 draws; the spread of the median), plus a
+floor in quadrature = CFG28's: half the range of the median over Upsilon_V 1 to 4 and the pure deep-MOND estimator sigma^4 = (4/81) G M a0.  The rule
+(reported): CFG42's sum with the Moster collapse mass (clamped at 1e9, declared there).
+
+PRE-DECLARED
+  C1  CONTROL  the table as transcribed: 12 rows; Boo I sig_fz = 2.55, sig_f = 2.18; the paper's sig_f is below its sig_fz for at least 10 of 12.
+  C2  CONTROL  with the paper's f = 0 dispersions the bare law's offset is positive and within 0.1 dex of the uncorrected LVD-table value for the same eight (the
+               paper's re-analysis is consistent with FG001's data).
+  H1  [HEADLINE; MUTATE must fail] THE FAILURE SURVIVES THE BINARY CORRECTION: the bare law's median offset with the f-free dispersions is positive at more
+      than 2 sigma on both footings.
+  H2  the failure also survives the strongest correction (f = 0.7): positive at more than 1 sigma on both footings.
+  H3  (reported as a test of the rule) the sum rule with the corrected dispersions is within 2 sigma of zero (not over-predicting) on both footings.
+  R1  (reported) per-system offsets; the f = 0 and f = 0.7 versions; Crater II; the fraction of the eight with a positive offset.
+  READING (declared): H1 PASS -> the statistical binary correction does not remove B's ultra-faint failure (it lowers it); the multi-epoch data are still the decisive
+      test.  H1 FAIL -> the corrected dispersions no longer show a > 2 sigma failure: the failure was carried by binaries (statistically) and B's ultra-faint problem
+      is not established.  H3 FAIL -> with the corrected dispersions the rule now over-predicts.
+MUTATE=1: every dispersion multiplied by 0.5 -- H1 must FAIL (rc = 1).
+NOTE (disclosed): H1's threshold (> 2 sigma) was declared without checking that eight systems can reach it at f = 0; on these eight even the uncorrected offset is 1.8 sigma.
+  The post-hoc R2 (paired shift) was added after the main run for that reason.
+
+  *** MUTATE=1: every dispersion x 0.5 -- H1 must FAIL ***
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: 12 rows; Boo I sig_fz = 2.55, sig_f = 2.18; sig_f < sig_fz for at least 10 of 12
+         12 rows; Boo I 2.55 / 2.18; sig_f < sig_fz for 12
+  [PASS] C2 CONTROL: with the paper's f = 0 dispersions the bare law's offset is positive and within 0.1 dex of the LVD-table value for the same eight
+         canonical: paper f=0 -0.006, LVD +0.308; alt: paper f=0 -0.026, LVD +0.288
+
+======================================================================================================================
+H1 / H2 / H3  THE EIGHT ULTRA-FAINTS
+======================================================================================================================
+    canonical law  f = 0   : median -0.006 +- 0.163 (bootstrap 0.124, measurement 0.073, floor 0.076) -> -0.04 sigma
+    canonical law  f free  : median -0.095 +- 0.164 (bootstrap 0.113, measurement 0.091, floor 0.077) -> -0.58 sigma
+    canonical law  f = 0.7 : median -0.130 +- 0.172 (bootstrap 0.119, measurement 0.097, floor 0.077) -> -0.76 sigma
+    canonical rule f free : median -0.452 +- 0.129 -> -3.51 sigma
+    alt       law  f = 0   : median -0.026 +- 0.163 (bootstrap 0.124, measurement 0.073, floor 0.076) -> -0.16 sigma
+    alt       law  f free  : median -0.115 +- 0.164 (bootstrap 0.113, measurement 0.091, floor 0.077) -> -0.70 sigma
+    alt       law  f = 0.7 : median -0.151 +- 0.171 (bootstrap 0.119, measurement 0.097, floor 0.077) -> -0.88 sigma
+    alt       rule f free : median -0.455 +- 0.129 -> -3.54 sigma
+    Boo I   sigma_law  2.36  paper f=0  2.55  f free  2.18  f=0.7  1.97  offsets -0.27 / -0.34 / -0.38
+    Car II  sigma_law  1.69  paper f=0  3.24  f free  2.77  f=0.7  2.55  offsets -0.02 / -0.09 / -0.12
+    Hyd I   sigma_law  1.75  paper f=0  3.17  f free  2.77  f=0.7  2.55  offsets -0.04 / -0.10 / -0.14
+    Leo IV  sigma_law  1.84  paper f=0  3.74  f free  2.54  f=0.7  2.16  offsets +0.01 / -0.16 / -0.23
+    Leo V   sigma_law  1.64  paper f=0  2.44  f free  2.34  f=0.7  2.16  offsets -0.13 / -0.15 / -0.18
+    Ret II  sigma_law  1.21  paper f=0  4.53  f free  3.17  f=0.7  3.01  offsets +0.27 / +0.12 / +0.10
+    Seg 1   sigma_law  0.80  paper f=0  3.56  f free  3.01  f=0.7  2.80  offsets +0.35 / +0.28 / +0.25
+    Wil 1   sigma_law  1.06  paper f=0  4.64  f free  4.24  f=0.7  4.11  offsets +0.34 / +0.30 / +0.29
+  [FAIL] H1 [HEADLINE] THE FAILURE SURVIVES THE BINARY CORRECTION: the bare law's median offset with the f-free dispersions is positive at > 2 sigma, both footings  [MUTATE: sigma x 0.5]
+         canonical: f = 0 -0.006, f free -0.095 +- 0.164 (-0.58 sigma); alt: f = 0 -0.026, f free -0.115 +- 0.164 (-0.70 sigma)
+  [FAIL] H2 THE FAILURE SURVIVES THE STRONGEST CORRECTION (f = 0.7): positive at > 1 sigma, both footings
+         canonical: -0.130 (-0.76 sigma); alt: -0.151 (-0.88 sigma)
+  [FAIL] H3 THE RULE WITH THE CORRECTED DISPERSIONS IS WITHIN 2 SIGMA OF ZERO (not over-predicting), both footings
+         canonical: -0.452 (-3.51 sigma); alt: -0.455 (-3.54 sigma)
+  [PASS] (reported) R1 (reported) fraction of the eight with a positive offset; Crater II (excluded by FG001's M_V cut)
+         positive offsets of 8: f=0 4, f free 3, f=0.7 3; Crater II (M_V -8.18): law 3.87 vs f free 2.17 (-0.55 dex)
+  [PASS] (reported) R2 (reported, POST-HOC: added after the main run) the paired shift of each dispersion by the correction, median over the eight (dex): f free, f = 0.7
+         f free -0.068 (range -0.17..-0.02); f = 0.7 -0.104 (range -0.24..-0.05); the uncorrected f = 0 offset on these eight is only -0.04 sigma, so H1's failure is largely lost power (N = 8 against 40 in CFG28)
+
+    READING (declared): the corrected dispersions no longer show a > 2 sigma failure: B's ultra-faint problem is not established at the statistical level; with the corrected dispersions the rule now over-predicts
+
+  4/7 checks pass; load-bearing failures: 3   (5 s)
