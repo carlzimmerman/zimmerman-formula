@@ -10,3 +10,14 @@ Frozen question: `FROZEN_QUESTION.md` (Q1–Q3 committed in 226e53662 before any
 | Q4 clusters | A steady column Σ_M over a cluster's R500 gives 2.06 / 1.40 / 0.95 × the needed dark mass (0.85 M500) at log M500 = 14 / 14.5 / 15 (alt 2.49 / 1.69 / 1.15): the right order, but it scales as R500² ∝ M^(2/3) instead of ∝ M, so it misses the factor-2 line at 10¹⁴ (reported FAIL). The full swept column is 3–7× the need. Cylinder vs sphere and the 0.15 baryon fraction are declared approximations; the record's X-COP test (CFG4_clusters) is the real one. |
 
 **Standing.** The owner's picture passes the budget test only in the sense that the a₀–Λ coincidence already implies it: the law's characteristic column a₀/(2πG) is about 0.3 of the vacuum column a light-speed flow sweeps in the age of the universe. It gives clusters the right order of dark mass but the wrong mass scaling, and it needs a deposit law that falls ~1/x outside r_M. If the compaction accumulates in time, it predicts a₀ falling with redshift, a sharp, testable consequence opposite to both readings tested so far. Not a mechanism; κ = ½ stays FITTED; nothing here says the theory is closed.
+
+## Referee note (CFG181, 305d2c2ae; appended 2026-09-29, nothing above edited)
+
+An independent re-derivation reproduces every pass line (max difference 0.55%; Σ_M 106.88/129.03, swept column 365.15, R = 0.2927/0.3534, Q3 −0.326/−0.509/−0.722 dex, Q4 2.068/1.409/0.960). Its findings, not verdict-changing:
+- **Restatement confirmed and sharpened:** Q1's pass band accepts a₀ over one dex (3.2e-11 to 3.2e-10), so every literature a₀ and every κ in 0.35–0.72 passes; R is exactly linear in a₀, depends on H₀t₀, and holds only for 4–40 Gyr. Q1 is the a₀/(cH₀) coincidence rewritten, not a test.
+- **Declared choices matter:** a shell column gives R = 0.073 (fails the 0.1 lower line); a projected column with Z/R = 100 gives 1.55 (fails); a flow at 370 or 600 km/s instead of c gives R = 237 or 146; the simple kernel gives 0.585 (passes); 42 of 48 joint cells pass.
+- **Q3:** the sign (a₀ falling with z under accumulation) is robust; the z = 1.5 amplitude spreads 0.105 dex across flow-onset redshifts, just over 0.1, so −0.51 dex is assumption-dependent.
+- **Q4:** the M^(2/3) scaling is confirmed; the 10¹⁴ fail (2.068 vs 2) flips to a pass in 2 of 24 cells (1.997 at f_b = 0.12); the column also overshoots the law's own phantom mass at R500 by 2.2–3.0×.
+- **Label:** Q2's f(x) is normalised to Σ_M, not to the swept column as written above.
+- **Cosmology:** ρ_Λ = 5.8424e-27 is hard-coded while t₀ and R500 use H₀ = 67.66 (a mixed cosmology); the alt a₀ here is 1.1312e-10 against the referee's 1.13e-10.
+- **Owner's Addendum 2 (the flowing medium is massless, not a particle):** Q1/Q4 are read as the size of the effective mass the flow must mimic, not as deposited vacuum.

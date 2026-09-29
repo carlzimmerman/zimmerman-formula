@@ -44,3 +44,7 @@ The owner specified: **the flowing medium has NO mass and is NOT a particle.** T
 - A massless medium still carries energy and stress, and in GR energy and stress gravitate; "no mass" is read as no rest mass and no particle content (as for the cosmological constant or a field), not as no energy. Each variant must state its medium's stress-energy (vacuum-like w = −1, a null or radiation-like flow, or a non-perfect-fluid stress) and whether it gravitates.
 - The cold dark component the CMB and clusters require (Ω_c h² ≈ 0.12; the record's standing rule: the mass is still required) is not supplied by a massless flow. A variant that claims to remove it must pass G2 (CMB and growth) without it; otherwise the cold component stays as in candidate B and the flow replaces only the law's phantom.
 
+## Erratum 1 (2026-09-29; found by the CFG181 referee; the gates are otherwise unchanged)
+
+The Target line writes the P2 kernel as ν = ½ + √(¼ + a₀/g_N). That is the "simple" interpolating function, not P2. **P2 is ν = √(1 + a₀/g_N)**, i.e. g_tot² = g_N² + a₀ g_N, as used by CFG44's code and CFG174. Any door-11 variant that took the kernel from this file must state which one it used; the simple kernel is a legitimate alternative to report, not the primary.
+
