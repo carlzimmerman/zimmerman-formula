@@ -68,3 +68,12 @@ other change): the residual falls as h^2 with the finite-difference step (2.5e-8
 a residual of 0.61, so the check has power. Change made: explicit step h = 1e-8, threshold 1e-12, plus a required-failure control
 (C0a': the same function must NOT solve the wrong-sign equation). No other criterion, threshold or hypothesis was changed; C1-C8 numbers
 were identical before and after.
+
+## Amendment 2 (2026-09-28, dimensional caveat, disclosed after commit 5db88bfc2)
+
+The verified pair-production factor is for dS_2. In two dimensions the charge e has mass dimension 1 (and E has dimension 1), so
+alpha = e^2/(4 pi) with E/H^2 dimensionless is a 4D convention, not a 2D one. AH1 combined the dS_2 rate with the 4D mapping without
+saying so. What survives: (i) the rate depends on e only through lambda = eE/H^2, in any dimension; (ii) the tie statements T1-T3 are
+statements about lambda and are dimension-independent; (iii) the numbers eps* = kappa/e = 1.651 and the handle table are 4D arithmetic on
+those ties. What does NOT carry over: the specific dS_2 formula r(lambda, mu) and its checks C0-C4 are a 2D toy; the dS_4 rate has a different
+index (9/4 in place of 1/4, recalled from the literature, not verified here). No criterion or number in AH1 changes.
