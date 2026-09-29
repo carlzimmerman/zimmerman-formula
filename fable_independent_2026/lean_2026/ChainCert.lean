@@ -3,3 +3,4 @@ import ChainCert.Kernel
 import ChainCert.Chain
 import ChainCert.Fluid
 import ChainCert.PointMass
+import ChainCert.Profile

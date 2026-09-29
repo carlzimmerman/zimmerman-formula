@@ -1,6 +1,7 @@
 import ChainCert.Chain
 import ChainCert.Fluid
 import ChainCert.PointMass
+import ChainCert.Profile
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -57,3 +58,26 @@ import ChainCert.PointMass
 #print axioms ChainB.no_single_polytrope
 #print axioms ChainB.GammaEff_tendsto_zero
 #print axioms ChainB.GammaEff_tendsto_atTop
+#print axioms ChainC.identity_P
+#print axioms ChainC.hydrostatic_general
+#print axioms ChainC.charge_nonneg
+#print axioms ChainC.rhoC_nonneg
+#print axioms ChainC.Pext_tendsto_zero
+#print axioms ChainC.pressure_unique
+#print axioms ChainC.pressure_nonneg
+#print axioms ChainC.pressure_pos
+#print axioms ChainC.dispersion_ratio
+#print axioms ChainC.target_iff_ode
+#print axioms ChainC.ode_hasDerivAt
+#print axioms ChainC.w_eq
+#print axioms ChainC.gtot_pointMass
+#print axioms ChainC.pointMass_target
+#print axioms ChainC.Pext_pointMass
+#print axioms ChainC.pointMass_config
+#print axioms ChainC.pointMass_decay
+#print axioms ChainC.pointMass_pressure_pos
+#print axioms ChainC.pointMass_hydrostatic
+#print axioms ChainC.pointMass_ode
+#print axioms ChainC.isothermal_config
+#print axioms ChainC.exp_profile_identity_P
+#print axioms ChainC.exp_profile_decay
