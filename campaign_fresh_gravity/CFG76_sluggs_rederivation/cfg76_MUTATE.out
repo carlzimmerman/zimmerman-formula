@@ -1,0 +1,52 @@
+CFG76  MUTATE=True  spec sha256 18d52fc88aacef0f
+
+== C1 closed-form limits ==
+  [PASS] C1a point-mass Newton gamma=3: sigma_r^2 = GM/(4r)   (max rel err 2.1e-04)
+  [PASS] C1b deep-MOND point mass: sigma_r^2 = sqrt(G M a0)/3, and sigma_los = sigma_r for constant sigma_r (beta=0)   (1.1e-04, 5.3e-05)
+  [PASS] C1c Newtonian limit of the calibration (a0 x1e-6): M* = M_JAM; deep limit (a0 x1e6): M* = MJ^2 G/(2 r^2 a0)   (1.8e-07, 6.2e-06 (deep-limit tolerance 1e-3: nu_mono -> y^-1/2 only up to 1/y))
+  [PASS] C1d EdS turnaround (3pi/4)^2   (5.55165248 vs 5.55165248; LCDM(0.3153) 1+delta_ta(a=1) = 11.7646)
+  [PASS] C1e M200m->M200c: the NFW mass in R200m equals 200 rho_m V; the inverse table round-trips   (6.2e-15, round trip 0.0e+00)
+  [PASS] C1f nu_mono == nu_RAR for y < 2 and h_mono monotone   (max rel diff 4.9e-09; Y_P 2.5396)
+
+== sample ==
+  galaxies in catalogue 27; GC RVs parsed with h50's key: 3440; dropped prefixes (top): NGC821:68, NGC720:65
+  h50-faithful sample: 19 galaxies: NGC1023, NGC1400, NGC1407, NGC2768, NGC3115, NGC3377, NGC3607, NGC4278, NGC4365, NGC4374, NGC4459, NGC4473, NGC4486, NGC4494, NGC4526, NGC4649, NGC4697, NGC5846, NGC7457
+  [PASS] C2 h50's committed sample: 27 galaxies, 3440 GC RVs, 19 in the dispersion sample   (27 / 3440 / 19)
+  with ATLAS3D JAM quality >= 1: 16; not in ATLAS3D: [1400, 1407, 3115]; in ATLAS3D but qual<1: []
+  [PASS] G2 sample = 16, the rest exactly NGC 1400/1407/3115   (16; outside ATLAS3D [1400, 1407, 3115])
+  corrected key: GC RVs 3573; extra galaxies entering: ['NGC720', 'NGC821']
+
+== MAIN: JAM-calibrated masses, N=16 ==  [MUTATE: JAM x0.5]
+  nu_mono  canonical: law +0.216 +- 0.024 (+9.03s; ddof0 0.023, +9.33s) N=16 | rule +0.199 +- 0.025 (+7.85s; ddof0 0.025, +8.12s) N=15; rule-excluded [7457]; multi-root galaxies []
+  nu_mono  alt      : law +0.209 +- 0.024 (+8.76s; ddof0 0.023, +9.04s) N=16 | rule +0.196 +- 0.026 (+7.55s; ddof0 0.025, +7.82s) N=15; rule-excluded [7457]; multi-root galaxies []
+  nu_rar   canonical: law +0.216 +- 0.024 (+9.03s; ddof0 0.023, +9.32s) N=16 | rule +0.199 +- 0.025 (+7.84s; ddof0 0.025, +8.12s) N=15; rule-excluded [7457]; multi-root galaxies []
+  nu_rar   alt      : law +0.209 +- 0.024 (+8.75s; ddof0 0.023, +9.04s) N=16 | rule +0.196 +- 0.026 (+7.55s; ddof0 0.025, +7.82s) N=15; rule-excluded [7457]; multi-root galaxies []
+
+== SLUGGS masses, same 16 (and 19 for the law) ==
+  nu_mono  canonical: 16: law +0.077 +- 0.028 (+2.75s; ddof0 0.027, +2.84s) N=16 | rule +0.006 +- 0.018 (+0.35s; ddof0 0.018, +0.37s) N=16
+                      19: law +0.079 +- 0.024 (+3.27s; ddof0 0.024, +3.36s) N=19 | rule +0.006 +- 0.017 (+0.39s; ddof0 0.016, +0.40s) N=19
+  nu_mono  alt      : 16: law +0.063 +- 0.028 (+2.23s; ddof0 0.027, +2.31s) N=16 | rule +0.002 +- 0.018 (+0.12s; ddof0 0.018, +0.12s) N=16
+                      19: law +0.065 +- 0.024 (+2.67s; ddof0 0.024, +2.74s) N=19 | rule +0.002 +- 0.017 (+0.10s; ddof0 0.016, +0.10s) N=19
+  nu_rar   canonical: 16: law +0.077 +- 0.028 (+2.75s; ddof0 0.027, +2.84s) N=16 | rule +0.007 +- 0.018 (+0.36s; ddof0 0.018, +0.37s) N=16
+                      19: law +0.080 +- 0.024 (+3.28s; ddof0 0.024, +3.37s) N=19 | rule +0.007 +- 0.017 (+0.39s; ddof0 0.016, +0.40s) N=19
+  nu_rar   alt      : 16: law +0.063 +- 0.028 (+2.23s; ddof0 0.027, +2.31s) N=16 | rule +0.002 +- 0.018 (+0.12s; ddof0 0.018, +0.13s) N=16
+                      19: law +0.065 +- 0.024 (+2.67s; ddof0 0.024, +2.75s) N=19 | rule +0.002 +- 0.017 (+0.10s; ddof0 0.016, +0.10s) N=19
+
+== gates ==
+  [FAIL] G1 reproduction of CFG55 headline, kernel nu_mono, error ddof=1   (can law: +0.216(+0.119) err 0.024(-0.000) 9.03s; can rule: +0.199(+0.153) err 0.025(+0.007) 7.85s; alt law: +0.209(+0.121) err 0.024(-0.000) 8.76s; alt rule: +0.196(+0.149) err 0.026(+0.008) 7.55s)
+  [FAIL] G1 reproduction of CFG55 headline, kernel nu_mono, error ddof=0   (can law: +0.216(+0.119) err 0.023(-0.001) 9.33s; can rule: +0.199(+0.153) err 0.025(+0.007) 8.12s; alt law: +0.209(+0.121) err 0.023(-0.001) 9.04s; alt rule: +0.196(+0.149) err 0.025(+0.007) 7.82s)
+  [FAIL] G1 reproduction of CFG55 headline, kernel nu_rar, error ddof=1   (can law: +0.216(+0.119) err 0.024(-0.000) 9.03s; can rule: +0.199(+0.153) err 0.025(+0.007) 7.84s; alt law: +0.209(+0.121) err 0.024(-0.000) 8.75s; alt rule: +0.196(+0.149) err 0.026(+0.008) 7.55s)
+  [FAIL] G1 reproduction of CFG55 headline, kernel nu_rar, error ddof=0   (can law: +0.216(+0.119) err 0.023(-0.001) 9.32s; can rule: +0.199(+0.153) err 0.025(+0.007) 8.12s; alt law: +0.209(+0.121) err 0.023(-0.001) 9.04s; alt rule: +0.196(+0.149) err 0.025(+0.007) 7.82s)
+  [PASS] G3 SLUGGS-mass rows (CFG55 16-galaxy law/rule; CFG38 19-galaxy law +0.080/+0.065), kernel nu_mono   (can 16: law +0.077 rule +0.006; 19: law +0.079 +-0.024 rule +0.006 +-0.017; alt 16: law +0.063 rule +0.002; 19: law +0.065 +-0.024 rule +0.002 +-0.017)
+  [PASS] G3 SLUGGS-mass rows (CFG55 16-galaxy law/rule; CFG38 19-galaxy law +0.080/+0.065), kernel nu_rar   (can 16: law +0.077 rule +0.007; 19: law +0.080 +-0.024 rule +0.007 +-0.017; alt 16: law +0.063 rule +0.002; 19: law +0.065 +-0.024 rule +0.002 +-0.017)
+
+== MUTATE checks against the stored main run ==
+  nu_mono canonical: law +0.098 -> +0.216 (+0.118); rule +0.047 -> +0.199 (+0.152)
+  [PASS] M1 both offsets rise by > 0.05 dex when JAM masses are halved (nu_mono, canonical)
+  nu_mono alt: law +0.089 -> +0.209 (+0.120); rule +0.048 -> +0.196 (+0.149)
+  [PASS] M1 both offsets rise by > 0.05 dex when JAM masses are halved (nu_mono, alt)
+  nu_rar canonical: law +0.097 -> +0.216 (+0.119); rule +0.046 -> +0.199 (+0.153)
+  [PASS] M1 both offsets rise by > 0.05 dex when JAM masses are halved (nu_rar, canonical)
+  nu_rar alt: law +0.088 -> +0.209 (+0.120); rule +0.047 -> +0.196 (+0.149)
+  [PASS] M1 both offsets rise by > 0.05 dex when JAM masses are halved (nu_rar, alt)
+  (the G1/G3 checks above are the headline gate: they must FAIL in this mode)

@@ -1,0 +1,70 @@
+CFG76 -- INDEPENDENT RE-DERIVATION of the CFG55 headline: the SLUGGS early-type offset under JAM-calibrated dynamical stellar masses.
+FROZEN BEFORE THE FIRST RUN (written 2026-09-28/29, before any number of this lane existed).
+
+QUESTION
+  CFG55 (campaign_fresh_gravity/CFG55_README.md, restated by CFG71) reports, for 16 SLUGGS massive early types whose stellar mass is fixed by
+  the ATLAS3D JAM mass inside the half-light sphere, an outer-globular-cluster velocity-dispersion offset
+      law  (nu applied to the calibrated stars)      : +0.097 +- 0.024 dex (4.0 sigma) canonical ; +0.088 +- 0.024 (3.65 sigma) alt
+      rule (law + collapse debris, conservation form): +0.046 +- 0.018 dex (2.6 sigma) canonical ; +0.047 +- 0.018 (2.6 sigma) alt
+  with SLUGGS's own stellar masses (same 16): law +0.077 (2.75) / +0.063 (2.2); rule +0.007 (0.4) / +0.002 (0.1).
+  Does an implementation written from the README's stated model and the committed DATA files alone (no CFG38/CFG55/CFG71 analysis code read,
+  executed or imported) reproduce these to three decimals?  offset = mean over the outer bins, then over galaxies, of log10(sigma_obs/sigma_pred).
+
+MODEL (as stated by the README; every choice the README does not fix is listed as an INTERPRETATION and gets a sensitivity row)
+  Data (read-only): real_research/data/sluggs_forbes2017_gcvel.tsv, sluggs_forbes2017_galaxies.tsv (h50's), atlas3d_fj_table.tsv (Cappellari+13 XV:
+  logML_JAM, qual, logr12 [arcsec], logL [Lsun,r], Dist_Mpc, logML_Salp), mandelbaum2016_lbg_halo_mass.tsv (red relation).
+  GC dispersions: h50's estimator as described in h50's own docstring/method text (iterative 3-sigma-clipped Gaussian MLE with per-object errors
+  deconvolved; equal-number radial bins nb = max(2, min(6, N//25)); bins need >= 12 GCs; galaxies need >= 30 clean GCs and >= 2 bins; outer bins are
+  R > max(1 R_e, 2 kpc)).  Jeans: spherical, isotropic (beta = 0), tracer rho ~ r^-3 (gamma = 3), Hernquist stars with a_h = R_e/1.8153, exact projection.
+  Law: g = nu(g_N/a0) g_N.  a0 = 9.36e-11 (canonical) / 1.13e-10 (alt) m/s^2.  KERNEL: the README says nu_mono, so the PRIMARY kernel is nu_mono
+  (FP1's monotone repair of nu_RAR, rebuilt from its documented definition: h_RAR = y/expm1(sqrt y); dh floored at 0.05 H_P/(y+Y_P), where Y_P is the
+  peak of h_RAR; nu = 1 + cumulative_integral(dh)/y); the SECONDARY kernel is the plain RAR nu = 1/(1-exp(-sqrt y)) that h50's hunt_lib uses.
+  Both kernels coincide for y < Y_P = 2.54 and are reported side by side; which one the lane used is not observable from its README, only from which
+  one reproduces its committed numbers, and that is stated in the result.
+  Sample: h50's 19 galaxies intersected with ATLAS3D (quality >= 1).  Expected: 16 (NGC 1400, 1407, 3115 outside ATLAS3D).  The h50 galaxy key
+  is reproduced faithfully (see INTERPRETATION 5).
+  JAM mass: M_JAM = (M/L)_JAM * L_r, with L_r and r_1/2 moved to the SLUGGS distance (PRIMARY, literal reading: L_r scales as D^2, M/L held fixed,
+  r_1/2[kpc] = r_1/2[arcsec]/206264.806 * D_SLUGGS).
+  Calibration (CFG33's convention): half the stars lie inside r_1/2 and the model's total mass inside r_1/2 equals M_JAM/2.
+     law : nu(g_N/a0) M*/2 = M_JAM/2 with g_N = G (M*/2)/r_1/2^2 -- solved for M*.
+     rule: the same plus the debris D(M*) = f_ex (1-f_b) M_NFW(<r_1/2; M_coll(M*)); solved for M*.
+  Rule (CFG35 conservation form at x_e = 0.40, CFG36 red collapse masses, restated in their READMEs): g = G[nu M_b + f_ex (1-f_b) M_NFW]/r^2,
+  f_b = 0.02237/(0.02237+0.1200), (1-f_b) M_coll the cold mass, f_ex = max(0, 1 - M_ph,edge/[(1-f_b) M_coll]); M_ph,edge = M_law(x_e r_ta) - M_b,
+  with r_ta where the law's untruncated mean enclosed density equals (1+delta_ta) times today's mean matter density (flat LCDM Om = 0.3153,
+  h = 0.6736; 1+delta_ta from the spherical-collapse turnaround at a = 1, solved by me from the Lambda shell energy equation, not from any table);
+  M_coll = Mandelbaum+16's red <M_200m> (h^-1 Msun, h = 0.673) interpolated linearly in log M* on the table's logMs_eff column (clamped),
+  converted to M_200c on the Dutton-Maccio NFW (c = 10^(0.905 - 0.101 (log10(M200c*0.674) - 12)), rho_c at H0 = 67.4, Om = 0.315).
+  Hot gas omitted (as h50).
+  INTERPRETATIONS the README does not fix (each gets a reported sensitivity row; none is tuned):
+   (1) the rule's collapse mass is evaluated from the CALIBRATED stellar mass M*, not SLUGGS's (inferred from the README's NGC 7457 remark);
+   (2) rule roots: scan log M* on a grid; if several roots, take the highest-mass one; a galaxy with no root is EXCLUDED with a printed note;
+   (3) the distance treatment above (alternative: M_JAM proportional to D, i.e. M/L rescaled as D_A/D_S);
+   (4) error = sample standard deviation (ddof = 1) / sqrt(N); ddof = 0 also printed;
+   (5) h50's galaxy key: h50 takes the GC name's prefix ('NGC720') and looks it up in a dict keyed 'NGC0720'; if the data show that 3-digit NGC names
+       are then silently dropped, the PRIMARY sample reproduces that (it is what the 19-galaxy CFG38/CFG55 population is), and a corrected-key
+       sample is a REPORTED row, not gated.
+
+PASS LINES (declared now)
+  G1  [HEADLINE = reproduction gate]  PRIMARY kernel/interpretations, both footings, N = 16: the law offset, the rule offset and both errors agree
+      with CFG55's committed rounded numbers to three decimals (|difference| < 0.0015 dex), and both sigma values agree to within 0.1.  If not, the
+      actual differences are reported and the gate is FAIL (a non-reproduction is a valid outcome).  Read separately for kernel nu_mono and nu_RAR.
+  G2  sample: the h50-faithful intersection with ATLAS3D (qual >= 1) is exactly 16 galaxies, none outside ATLAS3D's list among the rest but NGC 1400,
+      1407, 3115.
+  G3  the SLUGGS-mass rows (same 16): law +0.077/+0.063 and rule +0.007/+0.002 (canonical/alt) to three decimals; and the 19-galaxy law +0.080 (canonical,
+      +0.065 alt) from h50/CFG38.
+  Controls (all can fail):
+  C1  closed-form limits: (a) point mass, Newton, gamma = 3: sigma_r^2 = GM/(4r) (numerical Jeans vs closed form, < 1e-3 relative, r = 1..100 kpc);
+      (b) deep-MOND point mass: sigma_r^2 = (G M a0)^{1/2}/3 (< 1e-3) and the projected sigma_los = sigma_r when sigma_r is constant (beta = 0)
+      (< 1e-3); (c) Newtonian limit of the calibration: with a0 -> 1e-6 a0 the calibrated law mass equals M_JAM (< 1e-4 relative) and with a0 -> 1e6 a0
+      (deep MOND) M* = (M_JAM/2)^2 (2 r^2 a0/G)^-1... i.e. nu M*/2 = M_JAM/2 with nu = (G M*/2/r^2/a0)^-1/2, checked by substitution (< 1e-6);
+      (d) EdS turnaround: (1+delta_ta) = (3 pi/4)^2 = 5.553 from my own turnaround solver run with Om = 1 (< 1e-6);
+      (e) the M200m -> M200c conversion: the NFW mass inside the solved R200m equals 200 rho_m 4/3 pi R^3 (< 1e-6);
+      (f) nu_mono equals nu_RAR for y < 2.0 (< 1e-9 relative on the phantom) and is monotone non-decreasing in h over the grid.
+  C2  sample counts: 27 galaxies / 3440 parsed GCs / 19 galaxies in the h50-faithful sample (its committed output) versus my parse (reported as found).
+  C3  JAM x 1/2 sensitivity (my own implementation): the law offset (canonical) moves from its main value to CFG55's +0.216 (9.1 sigma) to three decimals.
+  MUTATE (env MUTATE=1): every JAM mass is multiplied by 0.5.  Required: (i) the law and rule offsets both INCREASE relative to the main run by > 0.05
+      dex (halving the dynamical masses lowers M* and the predicted sigma, so obs/pred rises), (ii) the reproduction gate G1 FAILS, (iii) exit code 1.
+  Reported, not gated: kernel nu_RAR; distance alternative; Hernquist enclosed fraction instead of 1/2; without NGC 7457; Salpeter population masses
+  (ATLAS3D logML_Salp x L_r at the SLUGGS distance); corrected-key sample (adds NGC 821 if present in ATLAS3D); gamma scan 2.4-3.6 and beta scan
+  -0.3/0/+0.3 for the JAM-calibrated law and rule; ddof convention; per-galaxy table; ratio r_1/2 (ATLAS3D) / R_e (SLUGGS).
+RULES: nothing here says the data favour the framework; kappa = 1/2 is fitted; failed controls are failures; no tuning after seeing results.
