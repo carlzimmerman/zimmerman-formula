@@ -1,0 +1,46 @@
+====================================================================================================
+CFG165 referee re-derivation of CFG160 (P4).  MODE=5.  repo=<repo>
+====================================================================================================
+MUTATION: KURVS v_last x 10^0.3
+
+-- controls
+  [PASS] C2 alpha(0)=1.475, alpha(1)=2.533, alpha(4)=3.955 to 1e-9: (1.475, 2.5330000000000004, 3.955)
+  [PASS] C2b alpha monotone increasing on [0,4]: 
+  [PASS] C3 kernel limits (y=1e-12: g/sqrt(gbar a)-1 <1e-5; y=1e12: g/gbar-1 <1e-5): (5.029586807037134e-07, 1.4903633882568101e-12)
+  [PASS] C4a ten IDs are exactly the f_DM rows: [3, 7, 8, 9, 11, 13, 15, 16, 17, 21]
+  [PASS] C4b all KURVS inputs finite: 
+  [PASS] C4c no galaxy has x outside [0,4]: (1.04, 3.5357142857142856)
+  [PASS] C1 alpha := 2R/Rd reproduces my own P2 grid to 1e-12 (24 cells x 4): 1.1102230246251565e-16
+
+-- KURVS inputs (R_max kpc, V, sigma_out +- err [route], R/Rd, x)
+  KURVS-3   R= 11.7 V= 418.6+-28.1 sig0=  51 sig_out= 55.3+- 7.6 [outer3] R/Rd=4.68 x= 1.79 alpha=3.159
+  KURVS-7   R= 11.4 V= 210.3+-19.8 sig0=  61 sig_out= 69.1+-13.1 [outer3] R/Rd=4.26 x= 1.53 alpha=2.978
+  KURVS-8   R= 11.0 V= 137.3+-13.4 sig0=  40 sig_out= 27.9+-20.3 [interp(1 side)] R/Rd=7.39 x= 3.40 alpha=3.881
+  KURVS-9   R= 10.2 V= 273.2+-16.6 sig0=  48 sig_out= 51.3+- 5.2 [outer3] R/Rd=3.43 x= 1.04 alpha=2.569
+  KURVS-11  R= 12.4 V= 492.0+-10.4 sig0=  62 sig_out= 65.8+- 4.7 [outer3] R/Rd=3.53 x= 1.10 alpha=2.624
+  KURVS-13  R= 12.1 V= 188.2+-21.3 sig0=  62 sig_out= 61.3+- 9.7 [outer3] R/Rd=5.98 x= 2.56 alpha=3.600
+  KURVS-15  R=  9.2 V= 223.9+- 7.2 sig0=  68 sig_out= 67.1+- 4.2 [outer3] R/Rd=4.07 x= 1.42 alpha=2.891
+  KURVS-16  R= 10.9 V= 278.1+-12.2 sig0=  69 sig_out= 73.0+- 4.0 [outer3] R/Rd=4.70 x= 1.79 alpha=3.166
+  KURVS-17  R=  9.9 V= 241.2+-21.3 sig0=  65 sig_out= 61.7+- 6.3 [outer3] R/Rd=6.93 x= 3.12 alpha=3.812
+  KURVS-21  R= 12.7 V= 290.5+-31.3 sig0=  74 sig_out= 76.8+- 8.5 [interp(1 side)] R/Rd=7.62 x= 3.54 alpha=3.907
+  SPARC anchor: n=75
+
+-- R0 power (expected separation / pooled error, before any g_obs; V replaced by the flat prediction's V)
+  mu= 0.25: separation/error over delta,footing in [3.46, 3.91] sigma
+  mu= 0.67: separation/error over delta,footing in [3.34, 3.85] sigma
+  mu= 1.50: separation/error over delta,footing in [3.18, 3.74] sigma
+  mu= 4.00: separation/error over delta,footing in [2.82, 3.48] sigma
+
+-- ladder, decision cell (mu=0.67, delta=0, canonical), anchor-corrected; README targets in []
+  P0: flat +0.475 +-0.059 (+8.1s)  rival +0.328 +-0.062 (+5.3s)   anchor +0.092+-0.013   [flat -0.130 +-0.057; rival -0.279]
+  P1: flat +0.670 +-0.052 (+12.8s)  rival +0.518 +-0.054 (+9.7s)   anchor +0.115+-0.013   [flat +0.398 +-0.070; rival +0.244]
+  P2: flat +0.689 +-0.048 (+14.4s)  rival +0.540 +-0.049 (+11.1s)   anchor +0.115+-0.013   [flat +0.390 +-0.065; rival +0.237 +-0.063]
+  P3: flat +0.612 +-0.051 (+12.0s)  rival +0.464 +-0.053 (+8.8s)   anchor +0.104+-0.013   [flat +0.24 +-0.07; rival +0.09 +-0.07]
+  P4: flat +0.556 +-0.051 (+10.9s)  rival +0.409 +-0.054 (+7.6s)   anchor +0.097+-0.013   [flat +0.144 +-0.044; rival -0.006 +-0.044]
+  C1(README) anchor P0 median Delta_flat = +0.064 [README +0.064], pooled +0.092 +-0.013 [README +0.092 +-0.013]
+
+-- DECISION CELL (P4)  [MUTATED]
+  Delta'_flat = +0.5564 +- 0.0512 (+10.87s)   Delta'_H = +0.4085 +- 0.0536 (+7.62s)
+  class (frozen map) = non-diagnostic (both outside)
+
+MUTATE=5: class = non-diagnostic (both outside)  ->  CONTROL BITES (exit 1)

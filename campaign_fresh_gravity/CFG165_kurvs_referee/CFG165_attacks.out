@@ -1,0 +1,127 @@
+====================================================================================================
+(a) FORKING PATHS: alternative alpha(x) shapes / normalisation / R_e,gas / P3 (labelled sensitivity grid)
+====================================================================================================
+median alpha over the ten (P4) = 3.163
+
+-- decision cell, shape variants (anchor uses the same shape)
+  Kretschmer table (primary)             med alpha  3.16 (x1.00)  flat +0.147 +-0.044 (+3.32s)  rival -0.003 +-0.045 (-0.06s)  -> lean rival
+  linear 1.475+1.204x                    med alpha  3.63 (x1.15)  flat +0.184 +-0.050 (+3.69s)  rival +0.034 +-0.050 (+0.67s)  -> lean rival
+  abstract-linear 1+0.75x                med alpha  2.34 (x0.74)  flat +0.105 +-0.047 (+2.22s)  rival -0.044 +-0.048 (-0.92s)  -> lean rival
+  self-grav shape rescaled 1.265 R/Re    med alpha  3.53 (x1.12)  flat +0.179 +-0.051 (+3.55s)  rival +0.029 +-0.051 (+0.58s)  -> lean rival
+  constant 1                             med alpha  1.00 (x0.32)  flat -0.028 +-0.049 (-0.57s)  rival -0.176 +-0.052 (-3.40s)  -> lean flat
+  constant 2                             med alpha  2.00 (x0.63)  flat +0.059 +-0.043 (+1.36s)  rival -0.090 +-0.044 (-2.02s)  -> lean flat
+  constant 2.53                          med alpha  2.53 (x0.80)  flat +0.100 +-0.041 (+2.41s)  rival -0.049 +-0.042 (-1.16s)  -> lean rival
+  constant 3                             med alpha  3.00 (x0.95)  flat +0.128 +-0.040 (+3.17s)  rival -0.021 +-0.041 (-0.51s)  -> lean rival
+  constant 3.955                         med alpha  3.96 (x1.25)  flat +0.185 +-0.040 (+4.61s)  rival +0.036 +-0.040 (+0.89s)  -> lean rival
+  table, held flat beyond x=3            med alpha  3.16 (x1.00)  flat +0.143 +-0.044 (+3.26s)  rival -0.006 +-0.044 (-0.14s)  -> lean rival
+  table at x+0.5                         med alpha  3.47 (x1.10)  flat +0.161 +-0.043 (+3.77s)  rival +0.012 +-0.043 (+0.28s)  -> lean rival
+  table at x-0.5                         med alpha  2.79 (x0.88)  flat +0.125 +-0.046 (+2.72s)  rival -0.024 +-0.046 (-0.53s)  -> lean rival
+  shapes within x[0.75,1.25] of P4's median alpha: ['Kretschmer table (primary)', 'linear 1.475+1.204x', 'self-grav shape rescaled 1.265 R/Re', 'constant 2.53', 'constant 3', 'table, held flat beyond x=3', 'table at x+0.5', 'table at x-0.5']
+  of these, class != 'lean rival': []
+  (a1) PRE-DECLARED TEST 'lean is not a forking-path artefact of the alpha shape': PASS
+
+-- normalisation scan s (alpha x s), decision cell; break-even s
+  s=0.30: flat -0.024 +-0.050 (-0.47s)  rival -0.172 +-0.052 (-3.29s)  -> lean flat
+  s=0.50: flat +0.036 +-0.046 (+0.78s)  rival -0.112 +-0.048 (-2.36s)  -> lean flat
+  s=0.60: flat +0.062 +-0.045 (+1.37s)  rival -0.087 +-0.046 (-1.87s)  -> non-diagnostic (both within)
+  s=0.75: flat +0.097 +-0.044 (+2.19s)  rival -0.052 +-0.045 (-1.16s)  -> lean rival
+  s=1.00: flat +0.147 +-0.044 (+3.32s)  rival -0.003 +-0.045 (-0.06s)  -> lean rival
+  s=1.25: flat +0.189 +-0.045 (+4.21s)  rival +0.040 +-0.045 (+0.88s)  -> lean rival
+  s=1.40: flat +0.212 +-0.046 (+4.64s)  rival +0.062 +-0.046 (+1.37s)  -> lean rival
+  break-even s: flat Delta'=0 at s=0.375 [hand est 0.3]; rival Delta'=0 at s=1.015 [hand est 0.96]
+  flat falls below +2s (z=2) at s=0.714
+
+-- R_e,gas / R_eff scan (KURVS only; anchor unchanged)
+  R_e/R_eff=1.00: flat +0.147 +-0.044 (+3.32s)  rival -0.003 +-0.045 (-0.06s)  -> lean rival
+  R_e/R_eff=1.25: flat +0.124 +-0.045 (+2.75s)  rival -0.026 +-0.046 (-0.56s)  -> lean rival
+  R_e/R_eff=1.50: flat +0.103 +-0.045 (+2.27s)  rival -0.046 +-0.046 (-1.00s)  -> lean rival
+  R_e/R_eff=2.00: flat +0.069 +-0.046 (+1.50s)  rival -0.079 +-0.047 (-1.68s)  -> non-diagnostic (both within)
+  R_e/R_eff=3.00: flat +0.034 +-0.046 (+0.74s)  rival -0.114 +-0.048 (-2.40s)  -> lean flat
+
+-- P3 at the decision cell (the 'first reading favouring the rival' check)
+  P2: flat +0.391 +-0.065 (+6.02s)  rival +0.238 +-0.064 (+3.74s)  -> non-diagnostic (both outside)
+  P3: flat +0.250 +-0.068 (+3.66s)  rival +0.100 +-0.068 (+1.47s)  -> lean rival
+  P4: flat +0.147 +-0.044 (+3.32s)  rival -0.003 +-0.045 (-0.06s)  -> lean rival
+  lean-rival cells in the 24-cell grid: P3 12, P4 14, P2 3
+
+====================================================================================================
+(b) GAS PRIOR: molecular-only mu=0.67 vs total (molecular + HI), repo data only
+====================================================================================================
+  PHIBSS (z 0.9-2.4, logM* 9.5-10.6, CO-detected, CO-selected so biased high): n=9  M_mol/M* 16/50/84% = 0.79 / 1.19 / 2.54
+  Sharma+2024 (z 0.76-1.04, logM* 9.5-10.6, Mstar_flag OK; values are the paper's fitted/stacked gas, not per-galaxy detections): n=186  M_H2/M* 0.17 / 0.27 / 0.46;  M_HI/M* 1.39 / 3.75 / 11.21
+
+-- decision cell at each repo-derived mu
+  mol-only, paper 40% (decision cell)    mu= 0.67: flat +0.147 +-0.044 (+3.32s)  rival -0.003 +-0.045 (-0.06s)  -> lean rival
+  PHIBSS median mol                      mu= 1.19: flat +0.087 +-0.044 (+1.97s)  rival -0.059 +-0.044 (-1.34s)  -> non-diagnostic (both within)
+  Sharma median mol                      mu= 0.27: flat +0.205 +-0.045 (+4.59s)  rival +0.052 +-0.045 (+1.15s)  -> lean rival
+  Sharma total (H2+HI) median            mu= 4.01: flat -0.122 +-0.045 (-2.70s)  rival -0.253 +-0.044 (-5.70s)  -> non-diagnostic (both outside)
+  Sharma total, 16th pct                 mu= 1.56: flat +0.050 +-0.044 (+1.13s)  rival -0.094 +-0.044 (-2.12s)  -> lean flat
+  Sharma total, 84th pct                 mu=11.67: flat -0.392 +-0.049 (-8.04s)  rival -0.500 +-0.046 (-10.82s)  -> non-diagnostic (both outside)
+  PHIBSS mol + Sharma HI (medians)       mu= 4.93: flat -0.168 +-0.046 (-3.68s)  rival -0.295 +-0.045 (-6.63s)  -> non-diagnostic (both outside)
+
+-- gas-disc scale variants at mu_tot values (HI more extended than 2 R_d, so less enclosed at R_max)
+  gas scale 2 R_d, mu=1.5: flat +0.055 +-0.044 (+1.25s)  rival -0.089 +-0.044 (-2.01s)  -> lean flat
+  gas scale 2 R_d, mu=2.0: flat +0.011 +-0.044 (+0.25s)  rival -0.130 +-0.044 (-2.94s)  -> lean flat
+  gas scale 2 R_d, mu=4.0: flat -0.121 +-0.045 (-2.68s)  rival -0.252 +-0.044 (-5.69s)  -> non-diagnostic (both outside)
+  gas scale 3 R_d, mu=1.5: flat +0.102 +-0.042 (+2.40s)  rival -0.045 +-0.043 (-1.04s)  -> lean rival
+  gas scale 3 R_d, mu=2.0: flat +0.066 +-0.042 (+1.56s)  rival -0.079 +-0.042 (-1.85s)  -> non-diagnostic (both within)
+  gas scale 3 R_d, mu=4.0: flat -0.047 +-0.042 (-1.12s)  rival -0.183 +-0.042 (-4.36s)  -> lean flat
+  gas scale 4 R_d, mu=1.5: flat +0.136 +-0.042 (+3.25s)  rival -0.012 +-0.042 (-0.29s)  -> lean rival
+  gas scale 4 R_d, mu=2.0: flat +0.106 +-0.042 (+2.57s)  rival -0.040 +-0.042 (-0.95s)  -> lean rival
+  gas scale 4 R_d, mu=4.0: flat +0.011 +-0.041 (+0.28s)  rival -0.129 +-0.041 (-3.12s)  -> lean flat
+
+-- log-mu grid: class and break-even mu (bootstrap of the ten galaxies, 2000 resamples, seed 165)
+  break-even mu (Delta'=0): flat 2.14 (bootstrap 16/50/84: (1.6829943784181827, 2.1283901681246444, 2.640587748199097), nan-frac 0.00);  rival 0.65 ((0.37902338704961896, 0.6581982148641385, 0.9718870468539688), nan-frac 0.03)   [hand est: flat 2.0, rival 0.65]
+  geometric midpoint of the two break-evens = 1.18: total gas above it reads flat, below it reads rival
+  (b) PRE-DECLARED TEST 'lean rival persists at mu_tot from the repo data and its 16-84% range': FAIL  (median-total class: non-diagnostic (both outside))
+
+====================================================================================================
+(c) ANCHORS: SPARC and KROSS under a pressure correction of this size
+====================================================================================================
+  KROSS n=390 (RT/RT+, v/sigma0>=1, finite M*, r_im, sigma0)
+  (c1) SPARC anchor pooled Delta_flat: P0 +0.092, P2 +0.115, P4 +0.097  (shift P0->P4 = +0.005; hand est +0.013 to +0.02)
+  SPARC anchor x range -0.28..10.18, alpha 1.48..3.96; median Vc2/V2 (P4) 1.011, max 1.045
+  anchor x in [-9,1.5): n=16  pooled Delta_flat P0 +0.130  P4 +0.135
+  anchor x in [1.5,2.5): n= 7  pooled Delta_flat P0 +0.163  P4 +0.168
+  anchor x in [2.5,99): n=52  pooled Delta_flat P0 +0.072  P4 +0.077
+  anchor sigma sensitivity (sigma_anchor km/s -> anchor pooled offset and decision-cell Delta'_flat / rival):
+    sigma= 7.0: anchor +0.094   Delta'_flat +0.149 (+3.38s)  Delta'_H -0.000 (-0.00s)
+    sigma=10.0: anchor +0.097   Delta'_flat +0.147 (+3.32s)  Delta'_H -0.003 (-0.06s)
+    sigma=15.0: anchor +0.103   Delta'_flat +0.140 (+3.18s)  Delta'_H -0.009 (-0.20s)
+
+  (c3) KURVS - KROSS differential (raw pooled Delta, mu=0.67 both, canonical; anchor cancels)
+   P0: Delta_flat KURVS -0.033+-0.057, KROSS -0.055+-0.018 (n=390); differential +0.022 +-0.060; flat predicts 0 (+0.4s), rival predicts +0.067 (-0.8s from it)
+        KROSS anchor-corrected Delta': flat -0.147 (-6.5s)  rival -0.227 (-10.1s)   [KROSS median z 0.85; the stellar-mass-only P0 is the no-correction scenario]
+   P1: Delta_flat KURVS +0.514+-0.069, KROSS +0.240+-0.015 (n=390); differential +0.274 +-0.070; flat predicts 0 (+3.9s), rival predicts +0.078 (+2.8s from it)
+        KROSS anchor-corrected Delta': flat +0.125 (+6.4s)  rival +0.049 (+2.6s)   [KROSS median z 0.85; the stellar-mass-only P0 is the no-correction scenario]
+   P2: Delta_flat KURVS +0.506+-0.064, KROSS +0.240+-0.015 (n=390); differential +0.266 +-0.065; flat predicts 0 (+4.1s), rival predicts +0.077 (+2.9s from it)
+        KROSS anchor-corrected Delta': flat +0.125 (+6.4s)  rival +0.049 (+2.6s)   [KROSS median z 0.85; the stellar-mass-only P0 is the no-correction scenario]
+   P4: Delta_flat KURVS +0.243+-0.042, KROSS +0.093+-0.015 (n=390); differential +0.151 +-0.045; flat predicts 0 (+3.4s), rival predicts +0.071 (+1.8s from it)
+        KROSS anchor-corrected Delta': flat -0.004 (-0.2s)  rival -0.082 (-4.1s)   [KROSS median z 0.85; the stellar-mass-only P0 is the no-correction scenario]
+   (c3) PRE-DECLARED TEST P4 differential within 2s of BOTH flat and rival predictions: FAIL (z vs flat +3.4, vs rival +1.8; FAIL-flat if |z vs flat| > 2)
+
+  (c4) size of the correction: Vc/V - 1
+   KURVS P4: min 0.09, median 0.39, max 0.59; fraction above 0.87: 0.00; count above 0.87: 0/10
+   KURVS P2: min 0.23, median 0.93, max 1.46; fraction above 0.87: 0.60; count above 0.87: 6/10
+   KURVS P3: min 0.00, median 0.50, max 1.31; fraction above 0.87: 0.10; count above 0.87: 1/10
+   KROSS P4: min 0.00, median 0.12, max 0.87; fraction above 0.87: 0.00; count above 0.87: 1/390
+   KROSS P1: min 0.00, median 0.31, max 1.76; fraction above 0.87: 0.18; count above 0.87: 72/390
+   (c4) PRE-DECLARED TEST P4 max Vc/V-1 <= 0.87 (Sharma+2021's 10-87% per the repo's ONE_OFF note): PASS
+
+====================================================================================================
+(d) RANGE AND SCATTER AT R_max
+====================================================================================================
+  x = R_max/R_eff - 1 range 1.04..3.54; galaxies outside [0,4]: 0; alpha clipped == unclipped: True
+  R_max/R_eff = 2.79, 2.53, 4.40, 2.04, 2.10, 3.56, 2.42, 2.79, 4.12, 4.54
+  log10 M* range 9.55..10.68 (Kretschmer profiles quoted above 10^9.5): 0 below
+  alpha(x=0)=1.475 (table) vs '~1 at R_e' (abstract as quoted): ratio 1.475; alpha(x=4)=3.955 vs '4': fine
+  largest x: KURVS-21(3.54), KURVS-8(3.40), KURVS-17(3.12), KURVS-13(2.56)  | README claims 13, 17, 21 'have the largest x' -> 
+  (d2) x shifts / hold-flat beyond x=3 are in the (a) table above
+
+  (d3) scatter as a RANDOM per-galaxy lognormal(0,0.4) on alpha (20000 draws, seed 165) vs CFG160's coherent x0.6/x1.4
+   MC mean Delta'_flat +0.153 sd 0.026; Delta'_H +0.003 sd 0.026   [hand est extra sd 0.027]
+   sigma inflated 0.044 -> 0.051: z_flat +2.86, z_H -0.05  [hand est 2.8, -0.1]
+   class under random-scatter-inflated errors: lean rival
+   (d) PRE-DECLARED TEST no galaxy outside [0,4]: PASS; class unchanged under random-scatter inflation: PASS; 'largest x = 13, 17, 21' statement: FAIL (largest x are KURVS-21, KURVS-8, KURVS-17)
+
+written CFG165_attacks_results.json
