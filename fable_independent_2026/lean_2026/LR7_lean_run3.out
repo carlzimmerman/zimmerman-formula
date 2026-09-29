@@ -1,0 +1,80 @@
+LR7_w1_moments.lean:32:46: error: Application type mismatch: The argument
+  hsq
+has type
+  HasDerivAt (id ^ 2) (↑2 * id u ^ (2 - 1) * 1) u
+but is expected to have type
+  HasDerivAt ?m.74 ?m.76 1
+in the application
+  HasDerivAt.sub (hasDerivAt_const 1 u) hsq
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LR7_w1_moments.lean:39:78: error: unsolved goals
+u : ℝ
+k : ℕ
+hu : 0 < 1 - u ^ 2
+hb : HasDerivAt (fun w => 1 - w ^ 2) (-2 * u) u
+hp : HasDerivAt ((fun w => 1 - w ^ 2) ^ (k + 1)) (↑(k + 1) * (1 - u ^ 2) ^ (k + 1 - 1) * (-2 * u)) u
+hsqr : HasDerivAt sqrt (1 / (2 * √(1 - u ^ 2))) (1 - u ^ 2)
+h3 : HasDerivAt (fun w => √(1 - w ^ 2)) (1 / (2 * √(1 - u ^ 2)) * (-2 * u)) u
+h :
+  HasDerivAt ((fun w => 1 - w ^ 2) ^ (k + 1) * fun w => √(1 - w ^ 2))
+    (↑(k + 1) * (1 - u ^ 2) ^ (k + 1 - 1) * (-2 * u) * √(1 - u ^ 2) +
+      ((fun w => 1 - w ^ 2) ^ (k + 1)) u * (1 / (2 * √(1 - u ^ 2)) * (-2 * u)))
+    u
+hs : √(1 - u ^ 2) ^ 2 = 1 - u ^ 2
+hpos : √(1 - u ^ 2) ≠ 0
+⊢ -u - u * ↑(1 + k) * √(1 - u ^ 2) ^ 2 * 2 + u ^ 3 = -(u * √(1 - u ^ 2) ^ 2 * 3) - u * √(1 - u ^ 2) ^ 2 * ↑k * 2
+LR7_w1_moments.lean:50:13: warning: This simp argument is unused:
+  Pi.mul_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Pi.pow_apply, pow_succ, Nat.succ_sub_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+LR7_w1_moments.lean:73:2: error: No goals to be solved
+LR7_w1_moments.lean:82:4: error: Type mismatch
+  HasDerivAt.congr_deriv t1 ?m.426
+has type
+  HasDerivAt (fun y => -1 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2))) ?m.424 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 7) * ((1 - w ^ 2) ^ (2 + 1) * √(1 - w ^ 2))) (x * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:92:2: error: No goals to be solved
+LR7_w1_moments.lean:101:4: error: Type mismatch
+  HasDerivAt.congr_deriv t1 ?m.426
+has type
+  HasDerivAt (fun y => -1 / 9 * ((1 - y ^ 2) ^ (3 + 1) * √(1 - y ^ 2))) ?m.424 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 9) * ((1 - w ^ 2) ^ (3 + 1) * √(1 - w ^ 2))) (x * (1 - x ^ 2) ^ 3 * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:111:2: error: No goals to be solved
+LR7_w1_moments.lean:144:4: error: Type mismatch
+  HasDerivAt.congr_deriv (HasDerivAt.add t1 t2) ?m.639
+has type
+  HasDerivAt
+    ((fun y => -1 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2))) + fun y =>
+      1 / 9 * ((1 - y ^ 2) ^ (3 + 1) * √(1 - y ^ 2)))
+    ?m.637 x
+but is expected to have type
+  HasDerivAt
+    (fun w => -(1 / 7) * ((1 - w ^ 2) ^ (2 + 1) * √(1 - w ^ 2)) + 1 / 9 * ((1 - w ^ 2) ^ (3 + 1) * √(1 - w ^ 2)))
+    (x ^ 3 * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:168:4: error: Type mismatch
+  HasDerivAt.congr_deriv (HasDerivAt.add (HasDerivAt.add t1 t2) t3) ?m.774
+has type
+  HasDerivAt
+    (((fun y => -(1 / 5) * ((1 - y ^ 2) ^ (1 + 1) * √(1 - y ^ 2))) + fun y =>
+        2 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2))) +
+      fun y => -1 / 9 * ((1 - y ^ 2) ^ (3 + 1) * √(1 - y ^ 2)))
+    ?m.772 x
+but is expected to have type
+  HasDerivAt
+    (fun w =>
+      -(1 / 5) * ((1 - w ^ 2) ^ (1 + 1) * √(1 - w ^ 2)) + 2 / 7 * ((1 - w ^ 2) ^ (2 + 1) * √(1 - w ^ 2)) -
+        1 / 9 * ((1 - w ^ 2) ^ (3 + 1) * √(1 - w ^ 2)))
+    (x ^ 5 * (1 - x ^ 2) * √(1 - x ^ 2)) x
+'moment_c2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'moment_cT' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'moment_T2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

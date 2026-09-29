@@ -1,0 +1,179 @@
+LR7_w1_moments.lean:33:59: error: `HasDerivAt (fun w => (1 - w ^ 2) ^ (k + 1)) ((↑k + 1) * (1 - u ^ 2) ^ k * (-2 * u))
+  u` is not a `fun_prop` goal! Consider marking `HasDerivAt` with `@[fun_prop]`.
+LR7_w1_moments.lean:35:25: error: Application type mismatch: The argument
+  hu
+has type
+  0 < 1 - u ^ 2
+but is expected to have type
+  1 - u ^ 2 ≠ 0
+in the application
+  hasDerivAt_sqrt hu
+LR7_w1_moments.lean:37:68: error: Application type mismatch: The argument
+  h1
+has type
+  HasDerivAt (fun w => (1 - w ^ 2) ^ (k + 1)) ((↑k + 1) * (1 - u ^ 2) ^ k * (-2 * u)) u
+but is expected to have type
+  HasDerivAt (fun w => 1 - w ^ 2) (-2 * u) u
+in the application
+  HasDerivAt.comp u ?m.401 h1
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+LR7_w1_moments.lean:31:78: error: unsolved goals
+u : ℝ
+k : ℕ
+hu : 0 < 1 - u ^ 2
+h1 : HasDerivAt (fun w => (1 - w ^ 2) ^ (k + 1)) ((↑k + 1) * (1 - u ^ 2) ^ k * (-2 * u)) u
+h2 : HasDerivAt sqrt (1 / (2 * √(1 - u ^ 2))) (1 - u ^ 2)
+h3 : HasDerivAt (fun w => √(1 - w ^ 2)) (1 / (2 * √(1 - u ^ 2)) * (-2 * u)) u
+h :
+  HasDerivAt ((fun w => (1 - w ^ 2) ^ (k + 1)) * fun w => √(1 - w ^ 2))
+    ((↑k + 1) * (1 - u ^ 2) ^ k * (-2 * u) * √(1 - u ^ 2) + (1 - u ^ 2) ^ (k + 1) * (1 / (2 * √(1 - u ^ 2)) * (-2 * u)))
+    u
+hs : √(1 - u ^ 2) ^ 2 = 1 - u ^ 2
+hpos : √(1 - u ^ 2) ≠ 0
+⊢ -(u * ↑k * √(1 - u ^ 2) ^ 2 * (1 - u ^ 2) ^ k * 2) - u * √(1 - u ^ 2) ^ 2 * (1 - u ^ 2) ^ k * 2 -
+        u * (1 - u ^ 2) ^ k +
+      u ^ 3 * (1 - u ^ 2) ^ k =
+    -(u * ↑k * √(1 - u ^ 2) ^ 2 * (1 - u ^ 2) ^ k * 2) - u * √(1 - u ^ 2) ^ 2 * (1 - u ^ 2) ^ k * 3
+LR7_w1_moments.lean:64:4: error: Type mismatch
+  HasDerivAt.congr_deriv this ?m.368
+has type
+  HasDerivAt (fun y => -1 / 5 * ((1 - y ^ 2) ^ (1 + 1) * √(1 - y ^ 2))) ?m.366 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2))) (x * (1 - x ^ 2) * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:68:88: error(lean.unknownIdentifier): Unknown identifier `volume`
+LR7_w1_moments.lean:71:6: error(lean.unknownIdentifier): Unknown identifier `integral_eq_sub_of_hasDerivAt_of_le`
+LR7_w1_moments.lean:57:93: error: unsolved goals
+hderiv :
+  ∀ x ∈ Set.Ioo 0 1,
+    HasDerivAt (fun w => -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2))) (x * (1 - x ^ 2) * √(1 - x ^ 2)) x
+hcont : ContinuousOn (fun w => -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2))) (Set.Icc 0 1)
+hint : IntervalIntegrable (fun u => u * (1 - u ^ 2) * √(1 - u ^ 2)) sorry 0 1
+⊢ ∫ (u : ℝ) in 0..1, u * (1 - u ^ 2) * √(1 - u ^ 2) = ↑1 / 5
+LR7_w1_moments.lean:82:4: error: Type mismatch
+  HasDerivAt.congr_deriv this ?m.408
+has type
+  HasDerivAt (fun y => -1 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2))) ?m.406 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 7) * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2))) (x * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:86:92: error(lean.unknownIdentifier): Unknown identifier `volume`
+LR7_w1_moments.lean:89:6: error(lean.unknownIdentifier): Unknown identifier `integral_eq_sub_of_hasDerivAt_of_le`
+LR7_w1_moments.lean:75:97: error: unsolved goals
+hderiv :
+  ∀ x ∈ Set.Ioo 0 1,
+    HasDerivAt (fun w => -(1 / 7) * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2))) (x * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2)) x
+hcont : ContinuousOn (fun w => -(1 / 7) * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2))) (Set.Icc 0 1)
+hint : IntervalIntegrable (fun u => u * (1 - u ^ 2) ^ 2 * √(1 - u ^ 2)) sorry 0 1
+⊢ ∫ (u : ℝ) in 0..1, u * (1 - u ^ 2) ^ 2 * √(1 - u ^ 2) = ↑1 / 7
+LR7_w1_moments.lean:100:4: error: Type mismatch
+  HasDerivAt.congr_deriv this ?m.408
+has type
+  HasDerivAt (fun y => -1 / 9 * ((1 - y ^ 2) ^ (3 + 1) * √(1 - y ^ 2))) ?m.406 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 9) * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2))) (x * (1 - x ^ 2) ^ 3 * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:104:92: error(lean.unknownIdentifier): Unknown identifier `volume`
+LR7_w1_moments.lean:107:6: error(lean.unknownIdentifier): Unknown identifier `integral_eq_sub_of_hasDerivAt_of_le`
+LR7_w1_moments.lean:93:97: error: unsolved goals
+hderiv :
+  ∀ x ∈ Set.Ioo 0 1,
+    HasDerivAt (fun w => -(1 / 9) * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2))) (x * (1 - x ^ 2) ^ 3 * √(1 - x ^ 2)) x
+hcont : ContinuousOn (fun w => -(1 / 9) * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2))) (Set.Icc 0 1)
+hint : IntervalIntegrable (fun u => u * (1 - u ^ 2) ^ 3 * √(1 - u ^ 2)) sorry 0 1
+⊢ ∫ (u : ℝ) in 0..1, u * (1 - u ^ 2) ^ 3 * √(1 - u ^ 2) = ↑1 / 9
+LR7_w1_moments.lean:120:4: error: Type mismatch
+  HasDerivAt.congr_deriv (HasDerivAt.add t1 t2) ?m.563
+has type
+  HasDerivAt
+    ((fun y => -1 / 5 * ((1 - y ^ 2) ^ (1 + 1) * √(1 - y ^ 2))) + fun y =>
+      1 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2)))
+    ?m.561 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2)) + 1 / 7 * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)))
+    (x ^ 3 * (1 - x ^ 2) * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:125:92: error(lean.unknownIdentifier): Unknown identifier `volume`
+LR7_w1_moments.lean:128:6: error(lean.unknownIdentifier): Unknown identifier `integral_eq_sub_of_hasDerivAt_of_le`
+LR7_w1_moments.lean:111:98: error: unsolved goals
+hderiv :
+  ∀ x ∈ Set.Ioo 0 1,
+    HasDerivAt (fun w => -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2)) + 1 / 7 * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)))
+      (x ^ 3 * (1 - x ^ 2) * √(1 - x ^ 2)) x
+hcont :
+  ContinuousOn (fun w => -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2)) + 1 / 7 * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)))
+    (Set.Icc 0 1)
+hint : IntervalIntegrable (fun u => u ^ 3 * (1 - u ^ 2) * √(1 - u ^ 2)) sorry 0 1
+⊢ ∫ (u : ℝ) in 0..1, u ^ 3 * (1 - u ^ 2) * √(1 - u ^ 2) = ↑2 / 35
+LR7_w1_moments.lean:141:4: error: Type mismatch
+  HasDerivAt.congr_deriv (HasDerivAt.add t1 t2) ?m.603
+has type
+  HasDerivAt
+    ((fun y => -1 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2))) + fun y =>
+      1 / 9 * ((1 - y ^ 2) ^ (3 + 1) * √(1 - y ^ 2)))
+    ?m.601 x
+but is expected to have type
+  HasDerivAt (fun w => -(1 / 7) * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)) + 1 / 9 * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2)))
+    (x ^ 3 * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:146:96: error(lean.unknownIdentifier): Unknown identifier `volume`
+LR7_w1_moments.lean:149:6: error(lean.unknownIdentifier): Unknown identifier `integral_eq_sub_of_hasDerivAt_of_le`
+LR7_w1_moments.lean:132:102: error: unsolved goals
+hderiv :
+  ∀ x ∈ Set.Ioo 0 1,
+    HasDerivAt (fun w => -(1 / 7) * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)) + 1 / 9 * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2)))
+      (x ^ 3 * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2)) x
+hcont :
+  ContinuousOn (fun w => -(1 / 7) * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)) + 1 / 9 * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2)))
+    (Set.Icc 0 1)
+hint : IntervalIntegrable (fun u => u ^ 3 * (1 - u ^ 2) ^ 2 * √(1 - u ^ 2)) sorry 0 1
+⊢ ∫ (u : ℝ) in 0..1, u ^ 3 * (1 - u ^ 2) ^ 2 * √(1 - u ^ 2) = ↑2 / 63
+LR7_w1_moments.lean:164:4: error: Type mismatch
+  HasDerivAt.congr_deriv (HasDerivAt.add (HasDerivAt.add t1 t2) t3) ?m.720
+has type
+  HasDerivAt
+    (((fun y => -1 / 5 * ((1 - y ^ 2) ^ (1 + 1) * √(1 - y ^ 2))) + fun y =>
+        2 / 7 * ((1 - y ^ 2) ^ (2 + 1) * √(1 - y ^ 2))) +
+      fun y => -1 / 9 * ((1 - y ^ 2) ^ (3 + 1) * √(1 - y ^ 2)))
+    ?m.718 x
+but is expected to have type
+  HasDerivAt
+    (fun w =>
+      -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2)) + 2 / 7 * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)) -
+        1 / 9 * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2)))
+    (x ^ 5 * (1 - x ^ 2) * √(1 - x ^ 2)) x
+LR7_w1_moments.lean:170:92: error(lean.unknownIdentifier): Unknown identifier `volume`
+LR7_w1_moments.lean:173:6: error(lean.unknownIdentifier): Unknown identifier `integral_eq_sub_of_hasDerivAt_of_le`
+LR7_w1_moments.lean:153:99: error: unsolved goals
+hderiv :
+  ∀ x ∈ Set.Ioo 0 1,
+    HasDerivAt
+      (fun w =>
+        -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2)) + 2 / 7 * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)) -
+          1 / 9 * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2)))
+      (x ^ 5 * (1 - x ^ 2) * √(1 - x ^ 2)) x
+hcont :
+  ContinuousOn
+    (fun w =>
+      -(1 / 5) * ((1 - w ^ 2) ^ 2 * √(1 - w ^ 2)) + 2 / 7 * ((1 - w ^ 2) ^ 3 * √(1 - w ^ 2)) -
+        1 / 9 * ((1 - w ^ 2) ^ 4 * √(1 - w ^ 2)))
+    (Set.Icc 0 1)
+hint : IntervalIntegrable (fun u => u ^ 5 * (1 - u ^ 2) * √(1 - u ^ 2)) sorry 0 1
+⊢ ∫ (u : ℝ) in 0..1, u ^ 5 * (1 - u ^ 2) * √(1 - u ^ 2) = ↑8 / 315
+LR7_w1_moments.lean:181:6: error(lean.unknownIdentifier): Unknown identifier `integral_const_mul`
+LR7_w1_moments.lean:180:23: error: unsolved goals
+⊢ ∫ (u : ℝ) in 0..1, 4 * (u * (1 - u ^ 2) * √(1 - u ^ 2)) = ↑4 / 5
+LR7_w1_moments.lean:193:6: error(lean.unknownIdentifier): Unknown identifier `integral_const_mul`
+LR7_w1_moments.lean:187:23: error: unsolved goals
+⊢ (∫ (x : ℝ) in 0..1, 6 / 5 * (x * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2))) +
+      ∫ (x : ℝ) in 0..1, 4 * (x ^ 3 * (1 - x ^ 2) * √(1 - x ^ 2)) =
+    ↑2 / 5
+LR7_w1_moments.lean:214:6: error(lean.unknownIdentifier): Unknown identifier `integral_const_mul`
+LR7_w1_moments.lean:202:27: error: unsolved goals
+⊢ ((∫ (x : ℝ) in 0..1, 8 / 21 * (x * (1 - x ^ 2) ^ 3 * √(1 - x ^ 2))) +
+        ∫ (x : ℝ) in 0..1, 12 / 5 * (x ^ 3 * (1 - x ^ 2) ^ 2 * √(1 - x ^ 2))) +
+      ∫ (x : ℝ) in 0..1, 4 * (x ^ 5 * (1 - x ^ 2) * √(1 - x ^ 2)) =
+    ↑208 / 945
+'moment_c2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'moment_cT' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'moment_T2' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1,0 +1,58 @@
+{
+ "lane": "LR7",
+ "title": "Lean certificates of the W1 exact moments: E[c^2]=4/5, E[cT]=2/5, E[T^2]=208/945 -> b0=19/160, b1=7/80, b2=703/30240",
+ "date": "2026-09-29",
+ "deliverables": {
+  "primary": "fable_independent_2026/lean_2026/LR7_w1_moments.lean",
+  "r0_audit": "LR7_r0_audit.py/.out/.json",
+  "runner": "LR7_moments_lean.py/.out",
+  "lean_stdout": "LR7_lean_stdout.txt",
+  "lean_run_history": "LR7_lean_run1..7.out"
+ },
+ "gates": {
+  "G1": {
+   "lean_rc": 0,
+   "sorry": 0,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "theorems": [
+    "moment_c2 (4/5)",
+    "moment_cT (2/5)",
+    "moment_T2 (208/945)"
+   ]
+  },
+  "G2": {
+   "E_c2": "4/5 MATCH",
+   "E_cT": "2/5 MATCH",
+   "E_T2": "208/945 MATCH",
+   "bases": {
+    "A": "1/5",
+    "B": "2/35",
+    "C": "1/7",
+    "D": "2/63",
+    "E": "1/9",
+    "G": "8/315"
+   },
+   "all": "MATCH"
+  },
+  "G3": {
+   "b0": "19/160 EXACT",
+   "b1": "7/80 EXACT",
+   "b2": "703/30240 EXACT"
+  }
+ },
+ "r0_audit": {
+  "methods": [
+   "scipy dblquad",
+   "Gauss-Legendre + analytic even-v moments"
+  ],
+  "max_rel_dev": 3.9e-13,
+  "gate": 1e-08,
+  "run_history": "run-1 exit 1 (dblquad arg-order bug, runner fixed)"
+ },
+ "run_history": "lean runs 1-7: five honest compile failures (fun_prop HasDerivAt limitation; hasDerivAt_sqrt ne-of-gt arg; Pi.add/Pi.pow form mismatches; Neg-of-div vs div-of-Neg const token; hasDerivAt_const arg order (x,c)) -- statement/tooling fixes, math untouched; run 7 rc 0",
+ "exit_code": 0
+}
