@@ -37,3 +37,10 @@ A second reading is recorded for 11C: if "the top" is the **time direction** (th
 
 For 11B′ the binding gates are expected in advance to be G8 (anisotropy of the force relative to the flow direction), G6 (preferred frame) and G7 (a₀ varying with a galaxy's motion through the flow); each must be computed, not assumed.
 
+## Addendum 2 (the owner's clarification, 2026-09-29; recorded while the variants run; criteria otherwise unchanged)
+
+The owner specified: **the flowing medium has NO mass and is NOT a particle.** The extra gravity is an effect of the flow itself, not of mass the flow carries or deposits. Consequences recorded now:
+- The reading in CFG174 in which "the compacted vacuum IS the dark mass" is not the owner's picture. CFG174's column budget stays valid as a statement about the size of the effective (phantom) mass the flow's boost must mimic, not about stuff deposited.
+- A massless medium still carries energy and stress, and in GR energy and stress gravitate; "no mass" is read as no rest mass and no particle content (as for the cosmological constant or a field), not as no energy. Each variant must state its medium's stress-energy (vacuum-like w = −1, a null or radiation-like flow, or a non-perfect-fluid stress) and whether it gravitates.
+- The cold dark component the CMB and clusters require (Ω_c h² ≈ 0.12; the record's standing rule: the mass is still required) is not supplied by a massless flow. A variant that claims to remove it must pass G2 (CMB and growth) without it; otherwise the cold component stays as in candidate B and the flow replaces only the law's phantom.
+
