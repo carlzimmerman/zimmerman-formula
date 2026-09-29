@@ -215,3 +215,8 @@ The line numbers are those of the files at HEAD. Each quote was checked verbatim
   - PHIBSS's N = 0 is a knife-edge on an assumed velocity radius.
   - CFG52's pooled z ≥ 1.5 result depends on excluding one +1.14-dex object.
 - **"Independent" re-derivations** check the arithmetic and the shared inputs, not the model.
+
+
+## Addendum after CFG110 (appended 2026-09-29; the rows above are unchanged)
+
+- **E2 and E3 (the KiDS split):** Within colour classes the KiDS 1-halo lensing signal shows no detectable dependence on stellar mass. B's mass-independence gives 22.2/14 (p 0.075) and the colour-split ΛCDM 25.2/14; the two are not discriminated (power 8.8, below the declared 9). The colour-blind Moster ΛCDM is rejected (105/14). So, relative to the colour-blind ΛCDM, B and ΛCDM each fail one KiDS test; relative to the colour-split ΛCDM, the colour split stays B-specific. The signal depends on type, not on mass within a type. All of this is at the re-measurement's jackknife errors; satellites and calibration systematics are not covered (CFG110 2f05b5303). The reading that B gets the mass-independence right rests on a non-detection in a power-limited test.

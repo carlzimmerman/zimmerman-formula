@@ -245,3 +245,8 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
   - The count moves with the model gas: 1 to 8 across its factor-2 bracket.
   - The velocities there come back about 28% low in injection tests (beam smearing; declared control C1c failed and kept).
   - With the table-based lanes (CFG52, CFG54, CFG90), the on-disk data cannot run the z ≈ 2.5 test. It needs deeper or higher-resolution data with measured gas.
+
+
+## Addendum after CFG110 (appended 2026-09-29; the rows above are unchanged)
+
+- **The KiDS rows (next to gate 3.05):** Within colour classes the KiDS 1-halo lensing signal shows no detectable dependence on stellar mass. B's mass-independence gives 22.2/14 (p 0.075) and the colour-split ΛCDM 25.2/14; the two are not discriminated (power 8.8, below the declared 9). The colour-blind Moster ΛCDM is rejected (105/14). So, relative to the colour-blind ΛCDM, B and ΛCDM each fail one KiDS test; relative to the colour-split ΛCDM, the colour split stays B-specific. The signal depends on type, not on mass within a type. All of this is at the re-measurement's jackknife errors; satellites and calibration systematics are not covered (CFG110 2f05b5303). The reading that B gets the mass-independence right rests on a non-detection in a power-limited test.

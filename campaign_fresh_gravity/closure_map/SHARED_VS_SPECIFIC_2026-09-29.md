@@ -212,3 +212,9 @@ The KiDS early/late split, B-specific for the difference only and fragile, remai
   - colour-dependent halos fit both.
 - **The KiDS row stays B-specific relative to the colour-split ΛCDM.** Relative to the colour-blind ΛCDM, the two models each fail one KiDS test.
 - **The lens photo-z check:** the within-class redshift split is consistent with zero (19.2/14, p = 0.16).
+
+
+## Wording note on the CFG110 addendum (appended 2026-09-29)
+
+- "B's law gets the mass-independence right" rests on a non-detection in a power-limited test: the power between B and the colour-split ΛCDM is 8.8, below the declared 9.
+- The result is at the re-measurement's jackknife errors; satellites and calibration systematics are not covered.
