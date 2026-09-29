@@ -1,4 +1,6 @@
-# CFG89 — KMOS3D cubes: how far out can Hα rotation be measured, and how many z ≥ 1.9 discs reach g_bar < a₀ there? FROZEN CRITERIA
+# CFG99 (run as CFG89) — KMOS3D cubes: how far out can Hα rotation be measured, and how many z ≥ 1.9 discs reach g_bar < a₀ there? FROZEN CRITERIA
+
+**Renumbered (bookkeeping only).** This lane was frozen and run as CFG89: criteria 6eb7ae539 at 07:13, lane 029968534. Another session had committed its own CFG89 (8a9541d3a, a super-spirals re-derivation) at 06:55, so this lane moved to CFG99. Its files keep their working names (`cfg89_*`), and the script's docstring still shows the old path. The script's paths are relative to its own file, so it runs unchanged from here. Nothing else changed.
 
 Written 2026-09-29, **before any CFG89 script existed and before any line fit, velocity, centroid, rotation curve, r_out or g_bar was computed for any real KMOS3D object.** This file is committed on its own. Any later departure goes in the README as a disclosed departure; anything added after the first run is a reported-only row.
 
