@@ -1,0 +1,74 @@
+CFG93 -- independent re-derivation of CFG51 (Walker+2023 multi-epoch, binary-cleaned UFD dispersions) and
+CFG66 (Bootes I two-Gaussian mixture; Tucana II velocity gradient).            FROZEN BEFORE THE FIRST RUN.
+
+QUESTION. Does a fresh implementation, written from the README/docstring statements only (CFG51/CFG66/CFG46/CFG78
+READMEs, the docstring of CFG51's reduce_walker.py, the Walker+2023 ReadMe and the LVD table), reproduce
+  Bootes I : single-epoch offset +0.310, cleaned sigma 3.91(+0.45,-0.38), cleaned offset +0.219 +/- 0.089 (2.46 sig), rule -0.205
+  Tucana II: single-epoch offset +0.730, cleaned sigma 4.06(+1.16,-0.82), cleaned offset +0.465 +/- 0.128 (3.63 sig), rule -0.165
+  (sigma_law 2.36 / 1.39 km/s; single 4.82 / 7.48; all-epoch mean 3.92 / 5.30; members 55(33 multi,53 clean) / 14(9,12))
+and CFG66: Boo I mixture (s_cold 2.00 [1.19,2.82], s_hot 5.09 [4.09,6.64], f_hot 0.525 [0.29,0.84], total 3.94 [3.46,4.56],
+LR 2.31, bootstrap P 0.155, total offset +0.222+/-0.097 (2.29 sig), cold-only -0.072+/-0.203); Tuc II gradient 2.0+/-15.9 km/s/deg,
+LR 0.020, p 0.99, gradient-removed sigma 4.060(+1.164,-0.821), offset +0.464+/-0.128 (3.62 sig)?  And how fragile are the
+offsets to the membership cuts, the cleaning threshold/epoch count/error floor, the binary population, and is the per-star
+likelihood unbiased at N=30-100 with the real epoch cadence?
+Programme rules: nothing here says the data favour the framework; kappa=1/2 is FITTED; a non-reproduction is a valid outcome.
+
+MODEL AS READ.  sigma_law: stars only, Upsilon_V=2 (L_V from M_V, M_V,sun=4.83), half the stellar mass inside r=(4/3)R_half
+(R_half = LVD angular rhalf x LVD distance, projected pc), g_N=G(M*/2)/r^2, g=g_N nu(g_N/a0), nu(y)=1/(1-exp(-sqrt y)),
+sigma^2=g r/3.  a0=9.3603e-11 (canonical) and 1.1312e-10 m/s^2 (alt).  Offset = log10(sigma_obs/sigma_law).
+Offset error = quadrature of (i) the mean of the up and down log10 errors of the profile-likelihood 1-sigma interval and
+(ii) a 0.076 dex systematic floor (the Upsilon_V floor inherited from CFG28/46; RECIPE INFERRED from the README numbers
+0.089/0.128 by arithmetic before any run; it is inherited, not derived).  Rule offsets: the sum rule is NOT re-implemented
+(not in the allowed reading); sigma_rule is INFERRED from the README (sigma_clean_README x 10^0.205 / 10^0.165) so the
+rule rows are a consistency check only, not an independent reproduction.
+
+DATA / MEMBERSHIP AS READ (declared, then applied once).  Fixed-width byte ranges from the Walker ReadMe. One row = one epoch.
+Quality epoch: Goodobs>0, RRL==0, AGN==0, e_Vlos>0.  Epochs pooled by (Target, Gaia DR3 id) across the 3 files; rows with
+no Gaia id are never members.  Star: quality epochs sorted by HJD; mean = inverse-variance mean, e_mean=1/sqrt(sum w);
+logg, PM, parallax from the first quality epoch.  UFD: lower-case Target == LVD key and M_V > -7.7.  Membership per star:
+(1) logg<4.0; (2) |v_mean-v_c| < 4 sqrt(sig_seed^2+e_mean^2), sig_seed=max(LVD vlos_sigma,3) (5 if missing), v_c = LVD
+vlos_systemic on pass 1, then the median of pass-1 members (one recentring, membership fully recomputed); (3) PM chi2 =
+dpmra^2/(e_pmra^2+s^2)+dpmde^2/(e_pmde^2+s^2) < 11.83, s^2=0.05^2+pm_err_LVD^2+(sig_seed/(4.74 d_kpc))^2 (pm_err_LVD^2 =
+mean of the squared mean(em,ep) of pmra and pmdec); stars with no PM rejected; (4) |plx-1/d_kpc| < 3 sqrt(e_plx^2+0.03^2) if plx present.
+Informative = n_multi>=8 and n_multi/n_members>=0.5 (n_multi = members with >=2 quality epochs).
+ESTIMATORS.  -2lnL(mu,s)=sum[ln(s^2+e_i^2)+(v_i-mu)^2/(s^2+e_i^2)], mu profiled, s in [0,60]; 1-sigma interval Delta=1;
+sigma_hat<1e-3 -> 0.  SINGLE = earliest-HJD quality epoch of every member.  ALLMEAN = ivar mean over quality epochs.
+CLEAN = drop members with >=2 quality epochs and chi2 about their weighted mean with p<0.01 (dof=N_ep-1, own e_Vlos), then
+ALLMEAN of the rest (single-epoch stars stay).  PAPERFLAG(alt) = drop f_Vlosvar==1 on any quality row.
+CFG66: Boo I common-mean two-Gaussian mixture (s_cold<=s_hot, f_hot in [0,1]) on the cleaned ALLMEAN stars; multi-start ML;
+profile 1-sigma intervals; T=2(lnL_mix - lnL_1G) (also quoted as raw dlnL); parametric-bootstrap P (500 draws from the
+single-Gaussian MLE, same errors); total sigma=sqrt(f s_h^2+(1-f)s_c^2); cold-only offset = log10(s_cold/sigma_law) with
+the s_cold profile interval + floor.  Tuc II: gnomonic tangent plane about the LVD centre (deg), v=v0+a*xi+b*eta,
+profile in (a,b) (2 dof for LR), |grad| error = mean of the two component errors from the Hessian, permutation p (2000).
+
+PASS LINES (each evaluated once, no tuning).
+ R1 counts exact: n_members, n_multi, n_clean = 55,33,53 / 14,9,12.
+ R2 sigmas (single, allmean, clean +up -down) within 0.005 km/s of the README values (2-decimal precision).
+ R3 offsets and errors: |delta| <= 0.0006 dex = "3 decimals reproduced"; <= 0.02 = CLOSE; else DIFFERENT (stated).  Headline
+    lines: cleaned offset and error, both systems.  Significance within 0.01 sigma.
+ R4 sigma_law within 0.005 km/s of 2.36 / 1.39 (else both conventions are reported; verdict lines use mine).
+ R5 CFG66 numbers: parameters within 0.05 km/s (f within 0.02), interval ends within 0.1, LR within 0.05, bootstrap P within
+    0.04, gradient within 0.5 km/s/deg, offsets as R3.
+ H1 (CFG51's science line): both cleaned offsets > 0 at > 2 sigma on both footings.  H2: cleaning lowers each offset relative
+    to single-epoch but leaves it > 0.
+ C1 sigma_law closed forms: Newtonian limit (a0->1e-30) sigma^2 = G M*/(8 R_half) rtol 1e-6; deep-MOND limit (a0->1e30)
+    sigma^4 = G M* a0/18 rtol 1e-6.
+ C2 (synthetic, no binaries) for pool in {Boo I, Tuc II real cadence} x sigma_true {2,4} x N {30,50,100}, 1500 reps: median
+    sigma_hat/sigma_true within 1 +/- 0.05 for CLEAN, and the Delta=1 interval covers sigma_true in [0.60, 0.76] (12 cells).
+ C3 (synthetic, binaries; DM91 log-normal period mean logP[d]=5.03 sd 2.28, q~U[0.1,1], M1=0.8, e~U[0,0.8] for logP>1 else 0,
+    isotropic inclination, random phase; orbits with periastron < 3 R1, R1=15 Rsun, resampled): flag efficiency measured in a
+    3000-star calibration run per pool; the recovered binary fraction f_hat=f_flag/eff must be within 0.05 of f_true at
+    N=100, f_true=0.5 (both pools); AND median sigma_hat_CLEAN/sigma_true within 1 +/- 0.10 in all 8 cells
+    pool x sigma_true{2,4} x N{30,100} at f_bin=0.5 (also reported: f_bin 0.3, 0.7; SINGLE and ALLMEAN estimators).
+ C4 MUTATE=1: observed Vlos multiplied by 0.5 about the LVD systemic velocity (e_Vlos unchanged).  It must FAIL R3 and H1
+    (exit 1); closed-form C1 still passes.  MUTATE skips the simulations and the sensitivity block.
+ Exit code: 1 if any of R1-R5, H1, H2, C1-C3 fails; the printed verdict states which.
+
+ATTACKS (reported, no pass line; a variant "flips" if any cleaned offset < 2 sigma or changes sign).
+ A1 membership: velocity window 3/4/5 sigma; logg cut 3.5/4.0/4.5/none; PM 2/3/4 sigma; no parallax cut; sig_seed = 3, LVD, 5;
+    no recentring.
+ A2 cleaning: p threshold 0.05/0.01/0.001; require >=3 epochs; use only the first k=2,3 epochs; PAPERFLAG.
+ A3 error floor: per-epoch systematic added in quadrature 0/0.5/1/2 km/s and error scale x0.8/1.2/1.5, in cleaning and likelihood.
+ A4 the epoch-error calibration: distribution of chi2-p over all matched-system multi-epoch members.
+ A5 nonparametric star bootstrap of sigma_clean; binary-population variants in the simulation (flat in logP, logP mean 4,
+    no periastron cut).

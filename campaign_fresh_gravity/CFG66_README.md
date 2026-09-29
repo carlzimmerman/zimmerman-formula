@@ -21,3 +21,6 @@ C1 passes (the single-Gaussian, gradient-free fits reproduce CFG51: 3.9108 and 4
 ## Standing
 
 **Both CFG51 offsets survive the declared systematics; Boötes I marginally, and its cold component alone is consistent with no failure.** The data cannot say whether Boötes I's hot component belongs to the galaxy. Two objects are not a population result. Nothing here says the theory is closed.
+
+## Referee correction (CFG93's independent re-derivation; appended)
+- CFG93 reproduces the cleaned offsets and the CFG66 numbers, but shows that Tucana II's 3.6 sigma rests on stars the cleaning cannot test: of 12 cleaned stars only 7 are testable multi-epoch stars, and these alone give +0.22 +/- 0.14 (1.55 sigma); Bootes I's cleaning flags only 2 of 33 multi-epoch stars and its excess is compatible with the bare law plus binaries under weaker binary assumptions (P = 0.03 to 0.45); at the real epoch cadence the flagging catches only 9-13% of injected binaries and the cleaned sigma is biased high by +3-18%. The README's radius (rhalf_sph_physical) and Upsilon_V floor convention (half the offset range over Upsilon_V = 1, 2, 4 and the deep-MOND estimator, not a fixed 0.076) are not stated. 'Both offsets survive' should carry these caveats. See CFG93.
