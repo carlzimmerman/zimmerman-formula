@@ -1,0 +1,114 @@
+CFG168 attacks; repo = <repo>
+
+=== (a) placement variants (each recomputes the six s_eq and the crossings in the variant's own units) ===
+base: s_mid 0.6693 s_f2 0.7257 s_h2 0.5993 q_mid 0.5483;  s_eq K21 1.000, D&S 2010 1.422, P3 (fixed height) 1.617, Price 2022 (n=1) 1.688, P2 (self-grav.) 3.001
+  A1 match Delta'_H                      s_mid 0.669 K21@1 above s_mid | D&S 2010 1.417 (above; move 0.005) | P3 (fixed height) 1.613 (above; move 0.005) | Price 2022 (n=1) 1.683 (above; move 0.005) | P2 (self-grav.) 2.990 (above; move 0.011)  -> side ok, move <=line 
+  A2 mean pressure fraction <Vc2/V2 - 1> per prescription (unweighted mean over the ten): K21 0.819, D&S 2010 1.224, P3 (fixed height) 1.463, Price 2022 (n=1) 1.449, P2 (self-grav.) 2.661; q_mid (K21 at s_mid) = 0.548
+  A2 f_press ratio (K21 units)           s_mid 0.669 K21@1 above s_mid | D&S 2010 1.494 (above; move 0.072) | P3 (fixed height) 1.786 (above; move 0.169) | Price 2022 (n=1) 1.768 (above; move 0.080) | P2 (self-grav.) 3.248 (above; move 0.247)  -> side ok, move <=line 
+  A3 median alpha_presc/alpha_K21        s_mid 0.669 K21@1 above s_mid | D&S 2010 1.364 (above; move 0.058) | P3 (fixed height) 1.845 (above; move 0.227) | Price 2022 (n=1) 1.633 (above; move 0.055) | P2 (self-grav.) 2.964 (above; move 0.037)  -> side ok, move <=line 
+  A3 geometric-mean ratio                s_mid 0.669 K21@1 above s_mid | D&S 2010 1.441 (above; move 0.019) | P3 (fixed height) 0.000 (BELOW; move 1.617) | Price 2022 (n=1) 1.720 (above; move 0.032) | P2 (self-grav.) 3.133 (above; move 0.132)  -> side FLIP, move OVER LINE 
+  A4 placement s_eq(mu) and the direct check |Delta'_flat(prescription, mu) - Delta'_flat(s_eq(0.67) K21, mu)|:
+   mu=0.25: s_mid 0.444; s_eq K21 1.000, D&S 2010 1.421, P3 (fixed height) 1.616, Price 2022 (n=1) 1.687, P2 (self-grav.) 2.998 | direct-placed diff D&S 2010 -0.0001, P3 (fixed height) -0.0001, Price 2022 (n=1) -0.0001, P2 (self-grav.) -0.0002
+        classes direct vs placed: (none differ)
+   mu=0.67: s_mid 0.669; s_eq K21 1.000, D&S 2010 1.422, P3 (fixed height) 1.617, Price 2022 (n=1) 1.688, P2 (self-grav.) 3.001 | direct-placed diff D&S 2010 -0.0000, P3 (fixed height) +0.0000, Price 2022 (n=1) -0.0000, P2 (self-grav.) -0.0000
+        classes direct vs placed: Price 2022 (n=1): lean rival / non-diagnostic (both outside)
+   mu=1.5: s_mid 1.108; s_eq K21 1.000, D&S 2010 1.423, P3 (fixed height) 1.620, Price 2022 (n=1) 1.690, P2 (self-grav.) 3.005 | direct-placed diff D&S 2010 +0.0002, P3 (fixed height) +0.0003, Price 2022 (n=1) +0.0002, P2 (self-grav.) +0.0004
+        classes direct vs placed: (none differ)
+   mu=4.0: s_mid 2.387; s_eq K21 1.000, D&S 2010 1.426, P3 (fixed height) 1.626, Price 2022 (n=1) 1.693, P2 (self-grav.) 3.013 | direct-placed diff D&S 2010 +0.0007, P3 (fixed height) +0.0012, Price 2022 (n=1) +0.0006, P2 (self-grav.) +0.0011
+        classes direct vs placed: P2 (self-grav.): non-diagnostic (both within) / lean rival
+   max |direct - placed| over prescriptions and mu: 0.0012 (frozen line 0.02) -> PASS
+   mu=0.67: prescriptions ABOVE s_mid by their own direct Delta'_flat: D&S 2010 True, P3 (fixed height) True, Price 2022 (n=1) True, P2 (self-grav.) True, K21 True
+   mu=1.5: prescriptions ABOVE s_mid by their own direct Delta'_flat: D&S 2010 True, P3 (fixed height) True, Price 2022 (n=1) True, P2 (self-grav.) True, K21 False
+   mu=4.0: prescriptions ABOVE s_mid by their own direct Delta'_flat: D&S 2010 False, P3 (fixed height) False, Price 2022 (n=1) False, P2 (self-grav.) True, K21 False
+  A5 R_e = 1.5 R_eff (KURVS+anchor)      s_mid 0.857 K21@1 above s_mid | D&S 2010 1.834 (above; move 0.412) | P3 (fixed height) 2.089 (above; move 0.472) | Price 2022 (n=1) 2.182 (above; move 0.494) | P2 (self-grav.) 3.906 (above; move 0.905)  -> side ok, move OVER LINE [q_mid 0.552; K21 s=1 vs s_mid 0.857]
+  A5 R_e = 2.0 R_eff (KURVS+anchor)      s_mid 1.058 K21@1 BELOW/at s_mid | D&S 2010 2.272 (above; move 0.850) | P3 (fixed height) 2.590 (above; move 0.973) | Price 2022 (n=1) 2.706 (above; move 1.017) | P2 (self-grav.) 4.861 (above; move 1.860)  -> side ok, move OVER LINE [q_mid 0.555; K21 s=1 vs s_mid 1.058]
+  A6 anchor pressure correction off      s_mid 0.655 K21@1 above s_mid | D&S 2010 1.446 (above; move 0.025) | P3 (fixed height) 1.644 (above; move 0.027) | Price 2022 (n=1) 1.718 (above; move 0.030) | P2 (self-grav.) 3.094 (above; move 0.093)  -> side ok, move <=line 
+  A7 sigma_0, grad2=0                    s_mid 0.777 K21@1 above s_mid | D&S 2010 1.486 (above; move 0.065) | P3 (fixed height) 1.613 (above; move 0.004) | Price 2022 (n=1) 1.756 (above; move 0.068) | P2 (self-grav.) 3.168 (above; move 0.167)  -> side ok, move <=line 
+  bootstrap (N=2000, seed 168): P(s_mid < placement) = K21 0.968, D&S 2010 1.000, P3 (fixed height) 1.000, Price 2022 (n=1) 1.000, P2 (self-grav.) 1.000; P(s_mid < 0.6) = 0.332; P(s_mid < 1.4) = 1.000
+
+(a) VERDICT (frozen: A1-A3, A6, A7 keep side and move <= max(0.15, 15%); A4 direct diff <= 0.02; A5 non-K21 stay above s_mid): FAIL
+   A1 match Delta'_H: side ok; move ok
+   A2 mean pressure fraction axis: side ok; move ok
+   A3 median alpha ratio: side ok; move ok
+   A3 geometric-mean alpha ratio: side FLIP; move over line
+   A6 anchor pressure correction off: side ok; move ok
+   A7 sigma_0 (grad2 = 0): side ok; move ok
+   A5 R_e = 1.5 R_eff (both): side ok; move over line
+   A5 R_e = 2.0 R_eff (both): side ok; move over line
+
+=== (b) stability of the crossings to definitions (decision cell) ===
+  base (inc_star, R_e=R_eff)                   s_mid 0.669 (0.000) s_f2 0.726 (0.000) s_h2 0.599 (0.000) q_mid 0.548
+  inclination column inc_sfr_deg               s_mid 0.652 (-0.018) s_f2 0.714 (-0.012) s_h2 0.573 (-0.026) q_mid 0.534
+  inclination error 3 deg                      s_mid 0.660 (-0.010) s_f2 0.718 (-0.008) s_h2 0.589 (-0.011) q_mid 0.540
+  inclination error 8 deg                      s_mid 0.690 (0.021) s_f2 0.743 (0.017) s_h2 0.622 (0.023) q_mid 0.565
+  KURVS mass error 0.10 dex                    s_mid 0.661 (-0.008) s_f2 0.695 (-0.031) s_h2 0.611 (0.011) q_mid 0.541
+  KURVS mass error 0.20 dex                    s_mid 0.680 (0.011) s_f2 0.771 (0.045) s_h2 0.595 (-0.004) q_mid 0.557
+  gas disc scale 1 R_d                         s_mid 0.807 (0.138) s_f2 0.895 (0.169) s_h2 0.721 (0.122) q_mid 0.661
+  gas disc scale 3 R_d                         s_mid 0.561 (-0.109) s_f2 0.610 (-0.116) s_h2 0.491 (-0.108) q_mid 0.459
+  anchor sigma 7 km/s                          s_mid 0.662 (-0.007) s_f2 0.718 (-0.008) s_h2 0.593 (-0.007) q_mid 0.542
+  anchor sigma 15 km/s                         s_mid 0.688 (0.018) s_f2 0.746 (0.020) s_h2 0.617 (0.017) q_mid 0.563
+  anchor pressure correction off               s_mid 0.655 (-0.014) s_f2 0.711 (-0.015) s_h2 0.586 (-0.013) q_mid 0.537
+  anchor offset = median (not pooled)          s_mid 0.564 (-0.105) s_f2 0.622 (-0.104) s_h2 0.488 (-0.111) q_mid 0.462
+   (anchor inc>=45: 67 of 75)
+  anchor inclination >= 45 deg                 s_mid 0.667 (-0.002) s_f2 0.726 (0.000) s_h2 0.595 (-0.004) q_mid 0.547
+   (anchor logM>=10: 57 of 75)
+  anchor log M* >= 10                          s_mid 0.657 (-0.012) s_f2 0.719 (-0.007) s_h2 0.581 (-0.018) q_mid 0.538
+  R_e = 1.5 R_eff (KURVS and anchor)           s_mid 0.857 (0.188) s_f2 0.944 (0.218) s_h2 0.757 (0.158) q_mid 0.552
+  R_e = 2.0 R_eff (KURVS and anchor)           s_mid 1.058 (0.389) s_f2 1.173 (0.447) s_h2 0.929 (0.330) q_mid 0.555
+  R_e = 2 R_eff KURVS only (anchor 1.68 Rdisk) s_mid 1.067 (0.398) s_f2 1.183 (0.457) s_h2 0.937 (0.337) q_mid 0.559
+  jackknife s_mid (leave one disc out, ids [3, 7, 8, 9, 11, 13, 15, 16, 17, 21]): 0.648, 0.591, 0.625, 0.645, 0.724, 0.702, 0.601, 0.675, 0.794, 0.701;  range 0.203, max shift 0.125
+  bootstrap with the anchor ALSO resampled (seed 168): s_mid 16/50/84 = 0.501/0.674/0.859 (fixed anchor: 0.513/0.672/0.844); no-root {'s_mid': 0, 's_f2': 0, 's_h2': 3}
+
+(b) VERDICT: non-R_e variants moving s_mid/s_f2/s_h2 by > 0.05: [('gas disc scale 1 R_d', '0.138', '0.169', '0.122'), ('gas disc scale 3 R_d', '-0.109', '-0.116', '-0.108'), ('anchor offset = median (not pooled)', '-0.105', '-0.104', '-0.111')]
+    jackknife range 0.203 (line 0.085): OVER;  q_mid spread over R_e variants 2.0% of base (line 15%): ok  (q_mid values [0.548, 0.552, 0.555, 0.559, 0.548])
+    (b) overall: FAIL
+
+=== (c) the (s, mu) map: regions, break-evens vs s ===
+  (c1) R1 (both within 1 sigma) grid-area fraction: 0.0000;  min over the map of max(|z_flat|,|z_H|) = 1.293 at s=2.40, mu=4.00
+       minimum separation (Delta'_flat-Delta'_H)/mean-sigma over the map: 2.238 (R1 needs <= 2 for both within 1 sigma: empty by the bound);  maximum 3.448
+  (c2) R2 (both within 2 sigma) grid-area fraction of the box (uniform in s and ln mu): 0.0556
+       at mu~0.25: R2 s-range 0.40-0.45 (2 grid points of 0.05)
+       at mu~0.67: R2 s-range 0.60-0.70 (3 grid points of 0.05)
+       at mu~1.49: R2 s-range 1.05-1.20 (4 grid points of 0.05)
+       at mu~4.00: R2 s-range 2.10-2.80 (15 grid points of 0.05)
+  24-cell grid at s = 0..4 step 0.25: (both within 1 sigma, both within 2 sigma) = 0:(0, 0), 0.25:(0, 0), 0.5:(0, 4), 0.75:(0, 2), 1:(0, 0), 1.25:(0, 2), 1.5:(0, 0), 1.75:(0, 0), 2:(0, 2), 2.25:(0, 3), 2.5:(0, 4), 2.75:(0, 3), 3:(0, 2), 3.25:(0, 2), 3.5:(0, 0), 3.75:(0, 0), 4:(0, 0)
+  (c3) break-even gas curves (continuous root on log mu in [0.05, 60]; 'none' = no sign change):
+       s=0.00: mu_f   None  mu_h   None
+       s=0.25: mu_f   0.35  mu_h   None
+       s=0.50: mu_f   0.93  mu_h   None
+       s=0.75: mu_f   1.52  mu_h   0.25
+       s=1.00: mu_f   2.11  mu_h   0.62
+       s=1.25: mu_f   2.70  mu_h   1.00
+       s=1.50: mu_f   3.28  mu_h   1.38
+       s=1.75: mu_f   3.87  mu_h   1.77
+       s=2.00: mu_f   4.46  mu_h   2.17
+       s=2.25: mu_f   5.05  mu_h   2.57
+       s=2.50: mu_f   5.64  mu_h   2.98
+       s=2.75: mu_f   6.24  mu_h   3.40
+       s=3.00: mu_f   6.85  mu_h   3.83
+       s=3.25: mu_f   7.45  mu_h   4.26
+       s=3.50: mu_f   8.06  mu_h   4.70
+       s=3.75: mu_f   8.67  mu_h   5.14
+       s=4.00: mu_f   9.28  mu_h   5.59
+  (c4) README claim 'published prescriptions (s = 1.0-1.7): flat fits if mu ~ 2.1-3.7, rival if mu ~ 0.6-1.7', with the DIRECT (prescription itself) break-evens:
+       K21                  direct flat 2.11 rival 0.62;  via s_eq flat 2.11 rival 0.62;  |direct-via| 0.000 / 0.000
+       D&S 2010             direct flat 3.11 rival 1.25;  via s_eq flat 3.10 rival 1.26;  |direct-via| 0.009 / 0.006
+       P3 (fixed height)    direct flat 3.58 rival 1.56;  via s_eq flat 3.56 rival 1.56;  |direct-via| 0.018 / 0.006
+       Price 2022 (n=1)     direct flat 3.74 rival 1.67;  via s_eq flat 3.73 rival 1.67;  |direct-via| 0.011 / 0.005
+       P2 (self-grav.)      direct flat 6.89 rival 3.83;  via s_eq flat 6.85 rival 3.83;  |direct-via| 0.043 / 0.003
+  (c4) direct vs placed within 0.3 in mu for all six: True
+  (c) scope statements: R1 area 0.0000 (empty: True); R2 area 0.056
+
+=== (d1) scale scan of KURVS v_last (V and eV scaled together) ===
+  V x 0.850: s_mid 1.030 s_f2 1.118 s_h2 0.959;  K21 (s=1): flat +1.52s H -1.80s non-diagnostic (both within)
+  V x 0.900: s_mid 0.907 s_f2 0.974 s_h2 0.845;  K21 (s=1): flat +2.11s H -1.25s lean rival
+  V x 1.000: s_mid 0.669 s_f2 0.726 s_h2 0.599;  K21 (s=1): flat +3.28s H -0.14s lean rival
+  V x 1.100: s_mid 0.441 s_f2 0.516 s_h2 0.331;  K21 (s=1): flat +4.38s H +0.94s lean rival
+  V x 1.260: s_mid 0.019 s_f2 0.179 s_h2 None;  K21 (s=1): flat +5.95s H +2.51s non-diagnostic (both outside)
+  V x 1.500: s_mid None s_f2 None s_h2 None;  K21 (s=1): flat +7.89s H +4.50s non-diagnostic (both outside)
+  V x 1.995: s_mid None s_f2 None s_h2 None;  K21 (s=1): flat +11.00s H +7.67s non-diagnostic (both outside)
+
+=== EXTRA (post hoc, not frozen): 200 permutations of sigma_out across the ten discs ===
+  s_mid under permuted sigma: 16/50/84 = 0.657/0.698/0.741; frac within 0.05 of 0.669: 0.69; none 0
+
+saved CFG168_attacks_results.json

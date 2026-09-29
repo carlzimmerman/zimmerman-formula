@@ -1,0 +1,172 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""CFG168 attack (d2): mock truths, what the s_mid map would look like under flat / rival truth (criteria section 6d).
+    ZF_REPO=<repo> python3 cfg168_null.py > CFG168_null.out ; rc 0.
+Mock: real KURVS baryons, sigma_out, errors and anchor; law at (s_true, mu_true) -> V; measurement noise (V, inclination, sigma, mass); analysed by the
+CFG162 map at the analysis mu = 0.67 with a vectorised copy of the shared per_object arithmetic (validated against the module on the real data)."""
+import sys
+import json
+import math
+sys.dont_write_bytecode = True
+from cfg168_common import *      # noqa
+
+S = load_S("inc_star_deg")
+A = load_A()
+N = 2000
+SG = np.arange(0.0, 4.0 + 1e-9, 0.025)
+i1 = int(np.argmin(abs(SG - 1.0)))
+n = len(S.R)
+xK = np.clip(S.R / S.Reff - 1, 0, 4)
+aK = -0.146 * xK ** 2 + 1.204 * xK + 1.475
+Ez = M.E_of_z(S.z)
+A0c = M.A0["canonical"]
+Rm = S.R * M.KPC
+G = M.G; MS = M.MSUN
+nu = M.nu_mono
+
+
+def enc(y):
+    return 1.0 - np.exp(-y) * (1.0 + y)
+
+
+def gbar_v(logM, mu, gas_scale=2.0):
+    Ms = 10.0 ** logM
+    Mb = Ms * enc(S.R / S.Rd) + mu * Ms * enc(S.R / (gas_scale * S.Rd))
+    return G * Mb * MS / Rm ** 2
+
+
+# analysis-side fixed pieces (nominal mass, mu = 0.67)
+gb_a = gbar_v(S.logM, 0.67)
+a_flat = A0c * np.ones(n); a_H = A0c * Ez
+gp_f = nu(gb_a / a_flat) * gb_a
+gp_h = nu(gb_a / a_H) * gb_a
+em_f = S.mass_err * np.abs(M.slope(gb_a, a_flat))
+em_h = S.mass_err * np.abs(M.slope(gb_a, a_H))
+GR = grid_arrays(S, A, SG)          # real anchor offset per s (and per-galaxy real KURVS arrays for the validation)
+Af, Ae = GR["Af"], GR["Ae"]
+
+
+def analyse(V, sig):
+    """V, sig: (N, n) observed. returns Delta'_flat, sigma_flat, Delta'_H, sigma_H each (N, ns)"""
+    s = SG[None, :, None]
+    Vc2 = V[:, None, :] ** 2 + s * aK[None, None, :] * sig[:, None, :] ** 2
+    gobs = Vc2 * 1e6 / Rm[None, None, :]
+    ev = (2 * V[:, None, :] / Vc2 * S.eV[None, None, :]) / LN10
+    dC = 2 * s * aK[None, None, :] * sig[:, None, :]
+    es = np.abs(dC) * S.esig[None, None, :] / Vc2 / LN10
+    ei = (2.0 * (V[:, None, :] ** 2 / Vc2) / LN10) * (1.0 / np.tan(S.inc))[None, None, :] * S.einc[None, None, :]
+    out = []
+    for gp, em in ((gp_f, em_f), (gp_h, em_h)):
+        d = np.log10(gobs) - np.log10(gp)[None, None, :]
+        e = np.sqrt(ev ** 2 + es ** 2 + ei ** 2 + em[None, None, :] ** 2)
+        m, err = pool_v(d, e)
+        out.append((m - Af[None, :], np.sqrt(err ** 2 + Ae[None, :] ** 2)))
+    return out[0][0], out[0][1], out[1][0], out[1][1]
+
+
+# --- validation on the real data
+df, sf, dh, sh = analyse(S.V[None, :], S.sig[None, :])
+ref = [K21cell(S, A, float(SG[k])) for k in (0, i1, 100, 160)]
+dd = max(abs(df[0, k] - r["flat"]["dprime"]) + abs(dh[0, k] - r["H"]["dprime"]) + abs(sf[0, k] - r["flat"]["sigma"]) for k, r in zip((0, i1, 100, 160), ref))
+P(f"CFG168 null; repo = <repo>\nC-d0 vectorised analysis vs shared module on the real data (s = 0, 1, 2.5, 4): max diff {dd:.2e} -> {'PASS' if dd < 1e-9 else 'FAIL'}")
+CTRL_OK = dd < 1e-9
+
+
+def smid_of(df, dh):
+    """per mock: (s_mid or nan, code) ; code 0 crossing found, -1 below range (sum>0 at s=0), +1 above range (sum<0 at s=4)"""
+    y = df + dh
+    Nn = y.shape[0]
+    out = np.full(Nn, np.nan); code = np.zeros(Nn, int)
+    for k in range(Nn):
+        yy = y[k]
+        if yy[0] > 0:
+            code[k] = -1; continue
+        j = np.where(yy > 0)[0]
+        if len(j) == 0:
+            code[k] = 1; continue
+        j = j[0]
+        out[k] = SG[j - 1] + (0 - yy[j - 1]) * (SG[j] - SG[j - 1]) / (yy[j] - yy[j - 1])
+    return out, code
+
+
+def generate(law, rng, mu_med, mu_sd_dex, s_true, s_pg, s_coh, N=N):
+    """returns observed V, sig (N,n) and the floored fraction"""
+    dm = rng.normal(0, S.mass_err, (N, n))                          # true mass offset (dex)
+    if mu_sd_dex > 0:
+        mu = mu_med * 10 ** rng.normal(0, mu_sd_dex, (N, n))
+    else:
+        mu = mu_med * np.ones((N, n))
+    Ms = 10.0 ** (S.logM + dm)
+    Mb = Ms * enc(S.R / S.Rd) + mu * Ms * enc(S.R / (2.0 * S.Rd))
+    gb = G * Mb * M.MSUN / Rm ** 2
+    a = A0c * (np.ones(n) if law == "flat" else Ez)
+    g = nu(gb / a) * gb
+    Vc2 = g * Rm / 1e6
+    fac = s_true * np.exp(rng.normal(0, s_pg, (N, n)) + rng.normal(0, s_coh, (N, 1))) if (s_pg > 0 or s_coh > 0) else s_true * np.ones((N, n))
+    sig_t = S.sig[None, :] * np.ones((N, 1))
+    C = fac * aK[None, :] * sig_t ** 2
+    V2 = Vc2 - C
+    floor = 0.0025 * Vc2
+    fl = V2 < floor
+    V2 = np.where(fl, floor, V2)
+    V = np.sqrt(V2)
+    dinc = rng.normal(0, 1, (N, n)) * S.einc[None, :]
+    Vobs = V * np.sin(S.inc)[None, :] / np.sin(S.inc[None, :] + dinc) + rng.normal(0, 1, (N, n)) * S.eV[None, :]
+    sigo = np.maximum(sig_t + rng.normal(0, 1, (N, n)) * S.esig[None, :], 1.0)
+    return Vobs, sigo, float(fl.mean())
+
+
+FAM = {
+    "ideal": dict(mu_med=0.67, mu_sd_dex=0.0, s_true=1.0, s_pg=0.0, s_coh=0.0),
+    "N1": dict(mu_med=1.0, mu_sd_dex=0.3, s_true=1.0, s_pg=0.4, s_coh=0.2),
+    "N2": dict(mu_med=2.0, mu_sd_dex=0.3, s_true=1.0, s_pg=0.4, s_coh=0.2),
+    "point(s=1,mu=2.14)": dict(mu_med=2.14, mu_sd_dex=0.0, s_true=1.0, s_pg=0.0, s_coh=0.0),
+    "point(s=1,mu=0.65)": dict(mu_med=0.65, mu_sd_dex=0.0, s_true=1.0, s_pg=0.0, s_coh=0.0),
+}
+JOBS = [("ideal", "flat"), ("ideal", "rival"), ("N1", "flat"), ("N1", "rival"), ("N2", "flat"), ("N2", "rival"),
+        ("point(s=1,mu=2.14)", "flat"), ("point(s=1,mu=0.65)", "rival")]
+RES = {}
+for seed in (168, 169):
+    P(f"\n--- seed {seed}, N = {N} per family ---")
+    for fam, law in JOBS:
+        rng = np.random.default_rng(seed * 1000 + JOBS.index((fam, law)))
+        Vo, so, ffl = generate(law, rng, **FAM[fam])
+        df, sf, dh, sh = analyse(Vo, so)
+        sm, code = smid_of(df, dh)
+        ok = ~np.isnan(sm)
+        zf1 = df[:, i1] / sf[:, i1]; zh1 = dh[:, i1] / sh[:, i1]
+        lean_rival = (np.abs(zh1) <= 2) & (zf1 > 2)
+        lean_flat = (np.abs(zf1) <= 2) & (zh1 < -2)
+        ge = np.where(ok, sm >= 0.67, code == 1)         # 'at or above 0.67', above-range counts as above
+        r = dict(fam=fam, law=law, floored=ffl, p_below_range=float(np.mean(code == -1)), p_above_range=float(np.mean(code == 1)),
+                 p_lt_067=float(np.mean(~ge)), p_ge_067=float(np.mean(ge)), p_gt_1=float(np.mean(np.where(ok, sm > 1.0, code == 1))),
+                 p_K21_lean_rival=float(np.mean(lean_rival)), p_K21_lean_flat=float(np.mean(lean_flat)),
+                 pct=[float(np.percentile(sm[ok], q)) if ok.sum() else None for q in (16, 50, 84)], mean_dprime_flat_s1=float(np.mean(df[:, i1])))
+        RES.setdefault(seed, {})[f"{fam}|{law}"] = r
+        P(f"  {fam:20s} {law:5s}: s_mid 16/50/84 = " + "/".join(fmt(x, 3) for x in r["pct"]) + f"; below range {r['p_below_range']:.3f} above range {r['p_above_range']:.3f}; P(s_mid<0.67) {r['p_lt_067']:.3f}  P(>=0.67) {r['p_ge_067']:.3f}  P(>1) {r['p_gt_1']:.3f}; P(K21 lean rival) {r['p_K21_lean_rival']:.3f} lean flat {r['p_K21_lean_flat']:.3f}; floored frac {ffl:.3f}")
+
+P("\nseed 168 vs 169 agreement (max |diff| over the fractions p_*): " + f"{max(abs(RES[168][k][f]-RES[169][k][f]) for k in RES[168] for f in ('p_below_range','p_above_range','p_lt_067','p_ge_067','p_gt_1','p_K21_lean_rival','p_K21_lean_flat')):.4f} (line 0.02)")
+a = RES[168]
+t1 = a["N1|flat"]["p_ge_067"]; t2 = a["N1|rival"]["p_ge_067"]
+P(f"\nFROZEN TEST (d2): the map's crossing is informative about the law only if P(s_mid >= 0.67 | flat, N1) < 0.05 and P(s_mid >= 0.67 | rival, N1) > 0.3:  {t1:.3f} and {t2:.3f}  -> {'INFORMATIVE' if (t1 < 0.05 and t2 > 0.3) else 'NOT informative (the crossing does not discriminate the laws once gas and pressure are uncertain)'}")
+P(f"   ideal world: P(s_mid >= 0.67 | flat) {a['ideal|flat']['p_ge_067']:.3f}, | rival) {a['ideal|rival']['p_ge_067']:.3f}")
+
+# extra (post hoc, labelled): likelihood ratio of the observed s_mid = 0.669 by KDE of the finite s_mid draws, ideal and N1, N2
+P("\nEXTRA (post hoc, not frozen): density ratio rival/flat of the observed s_mid = 0.669 (Gaussian KDE of the mock s_mid, seed 168)")
+from scipy.stats import gaussian_kde
+LR = {}
+for fam in ("ideal", "N1", "N2"):
+    dens = {}
+    for law in ("flat", "rival"):
+        rng = np.random.default_rng(168000 + JOBS.index((fam, law)))
+        Vo, so, _ = generate(law, rng, **FAM[fam])
+        df, sf, dh, sh = analyse(Vo, so)
+        sm, code = smid_of(df, dh)
+        v = sm[~np.isnan(sm)]
+        dens[law] = float(gaussian_kde(v)(0.669)[0] * len(v) / len(sm))
+    LR[fam] = dens["rival"] / dens["flat"] if dens["flat"] > 0 else float("inf")
+    P(f"  {fam}: density flat {dens['flat']:.3f}, rival {dens['rival']:.3f}, ratio rival/flat {LR[fam]:.2f}")
+
+with open("CFG168_null_results.json", "w") as f:
+    json.dump(dict(res=RES, LR=LR, ctrl_ok=bool(CTRL_OK)), f, indent=1, default=lambda o: None if o is None else str(o))
+P("\nsaved CFG168_null_results.json")

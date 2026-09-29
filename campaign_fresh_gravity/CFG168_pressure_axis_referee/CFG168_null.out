@@ -1,0 +1,34 @@
+CFG168 null; repo = <repo>; pipeline offset in mocks: True
+C-d0 vectorised analysis vs shared module on the real data (s = 0, 1, 2.5, 4): max diff 1.73e-16 -> PASS
+
+--- seed 168, N = 2000 per family ---
+  ideal                flat : s_mid 16/50/84 = 1.069/1.239/1.419; below range 0.000 above range 0.000; P(s_mid<0.67) 0.001  P(>=0.67) 1.000  P(>1) 0.916; P(K21 lean rival) 0.050 lean flat 0.866; floored frac 0.177
+  ideal                rival: s_mid 16/50/84 = 0.392/0.557/0.730; below range 0.013 above range 0.000; P(s_mid<0.67) 0.743  P(>=0.67) 0.257  P(>1) 0.005; P(K21 lean rival) 0.962 lean flat 0.004; floored frac 0.031
+  N1                   flat : s_mid 16/50/84 = 0.732/0.996/1.286; below range 0.002 above range 0.000; P(s_mid<0.67) 0.114  P(>=0.67) 0.886  P(>1) 0.492; P(K21 lean rival) 0.331 lean flat 0.326; floored frac 0.164
+  N1                   rival: s_mid 16/50/84 = 0.255/0.449/0.717; below range 0.333 above range 0.000; P(s_mid<0.67) 0.869  P(>=0.67) 0.132  P(>1) 0.018; P(K21 lean rival) 0.695 lean flat 0.006; floored frac 0.070
+  N2                   flat : s_mid 16/50/84 = 0.353/0.613/0.894; below range 0.168 above range 0.000; P(s_mid<0.67) 0.647  P(>=0.67) 0.352  P(>1) 0.075; P(K21 lean rival) 0.707 lean flat 0.027; floored frac 0.104
+  N2                   rival: s_mid 16/50/84 = 0.126/0.330/0.545; below range 0.853 above range 0.000; P(s_mid<0.67) 0.992  P(>=0.67) 0.009  P(>1) 0.001; P(K21 lean rival) 0.275 lean flat 0.000; floored frac 0.043
+  point(s=1,mu=2.14)   flat : s_mid 16/50/84 = 0.398/0.574/0.766; below range 0.015 above range 0.000; P(s_mid<0.67) 0.701  P(>=0.67) 0.299  P(>1) 0.016; P(K21 lean rival) 0.931 lean flat 0.013; floored frac 0.034
+  point(s=1,mu=0.65)   rival: s_mid 16/50/84 = 0.399/0.565/0.745; below range 0.015 above range 0.000; P(s_mid<0.67) 0.726  P(>=0.67) 0.275  P(>1) 0.008; P(K21 lean rival) 0.954 lean flat 0.006; floored frac 0.031
+
+--- seed 169, N = 2000 per family ---
+  ideal                flat : s_mid 16/50/84 = 1.063/1.241/1.427; below range 0.000 above range 0.000; P(s_mid<0.67) 0.001  P(>=0.67) 1.000  P(>1) 0.915; P(K21 lean rival) 0.054 lean flat 0.849; floored frac 0.177
+  ideal                rival: s_mid 16/50/84 = 0.396/0.558/0.718; below range 0.014 above range 0.000; P(s_mid<0.67) 0.750  P(>=0.67) 0.249  P(>1) 0.004; P(K21 lean rival) 0.967 lean flat 0.002; floored frac 0.030
+  N1                   flat : s_mid 16/50/84 = 0.717/0.988/1.270; below range 0.005 above range 0.000; P(s_mid<0.67) 0.125  P(>=0.67) 0.875  P(>1) 0.477; P(K21 lean rival) 0.351 lean flat 0.291; floored frac 0.166
+  N1                   rival: s_mid 16/50/84 = 0.238/0.459/0.722; below range 0.328 above range 0.000; P(s_mid<0.67) 0.866  P(>=0.67) 0.135  P(>1) 0.015; P(K21 lean rival) 0.692 lean flat 0.005; floored frac 0.074
+  N2                   flat : s_mid 16/50/84 = 0.370/0.609/0.923; below range 0.164 above range 0.000; P(s_mid<0.67) 0.652  P(>=0.67) 0.347  P(>1) 0.087; P(K21 lean rival) 0.699 lean flat 0.033; floored frac 0.107
+  N2                   rival: s_mid 16/50/84 = 0.126/0.325/0.552; below range 0.868 above range 0.000; P(s_mid<0.67) 0.990  P(>=0.67) 0.010  P(>1) 0.000; P(K21 lean rival) 0.251 lean flat 0.000; floored frac 0.043
+  point(s=1,mu=2.14)   flat : s_mid 16/50/84 = 0.397/0.572/0.756; below range 0.021 above range 0.000; P(s_mid<0.67) 0.696  P(>=0.67) 0.304  P(>1) 0.008; P(K21 lean rival) 0.943 lean flat 0.006; floored frac 0.034
+  point(s=1,mu=0.65)   rival: s_mid 16/50/84 = 0.416/0.572/0.740; below range 0.011 above range 0.000; P(s_mid<0.67) 0.740  P(>=0.67) 0.261  P(>1) 0.006; P(K21 lean rival) 0.964 lean flat 0.005; floored frac 0.030
+
+seed 168 vs 169 agreement (max |diff| over the fractions p_*): 0.0350 (line 0.02)
+
+FROZEN TEST (d2): the map's crossing is informative about the law only if P(s_mid >= 0.67 | flat, N1) < 0.05 and P(s_mid >= 0.67 | rival, N1) > 0.3:  0.886 and 0.132  -> NOT informative (the crossing does not discriminate the laws once gas and pressure are uncertain)
+   ideal world: P(s_mid >= 0.67 | flat) 1.000, | rival) 0.257
+
+EXTRA (post hoc, not frozen): density ratio rival/flat of the observed s_mid = 0.669 (Gaussian KDE of the mock s_mid, seed 168)
+  ideal: density flat 0.013, rival 1.790, ratio rival/flat 138.51
+  N1: density flat 0.716, rival 0.647, ratio rival/flat 0.90
+  N2: density flat 1.160, rival 0.092, ratio rival/flat 0.08
+
+saved CFG168_null_results.json

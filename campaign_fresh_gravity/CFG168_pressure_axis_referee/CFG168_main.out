@@ -1,0 +1,144 @@
+CFG168 main; repo = <repo>; mutate = 0
+C1 alpha=2R/Rd vs P2: max diff 1.11e-16  PASS
+C2 Price alpha(50)=50.4975485 vs y+1/2-1/(8y)=50.4975000 (diff 4.85e-05); numeric -dlnK0/dlny diff 3.6e-11  PASS
+C3 s=0.6: mine +0.0580/-0.0917 vs CFG160 row +0.0580/-0.0920  max diff 0.0003
+C3 s=1.0: mine +0.1441/-0.0060 vs CFG160 row +0.1441/-0.0060  max diff 0.0000
+C3 s=1.4: mine +0.2107/+0.0601 vs CFG160 row +0.2110/+0.0600  max diff 0.0003
+C3 P2 cell: mine +0.3899 +-0.0647 / +0.2372 vs CFG141 +0.390/+0.237, diff 0.0002
+C4 Delta'_flat(s) strictly increasing on [0,6]: True  (values at 0, 1, 3, 6: -0.130 +0.144 +0.390 +0.587)
+C5 ids = f_DM rows: True; x range 1.04-3.54: PASS
+
+R0 power: (Delta'_flat - Delta'_H)/sigma at the decision cell (mu=0.67)
+  s=0: sep 0.1487  /mean sigma 2.53   /sigma_flat 2.60  /sigma_H 2.47
+  s=1: sep 0.1501  /mean sigma 3.41   /sigma_flat 3.42  /sigma_H 3.39
+  s=2: sep 0.1511  /mean sigma 3.09   /sigma_flat 3.07  /sigma_H 3.12
+  s=4: sep 0.1522  /mean sigma 2.59   /sigma_flat 2.55  /sigma_H 2.62
+
+Decision cell curves (mu=0.67, delta=0, canonical):
+  s=0.00: flat -0.1302 +-0.0572 (-2.28s)  H -0.2789 +-0.0603 (-4.62s)  non-diagnostic (both outside)
+  s=0.25: flat -0.0447 +-0.0502 (-0.89s)  H -0.1941 +-0.0525 (-3.69s)  lean flat
+  s=0.50: flat +0.0319 +-0.0456 (+0.70s)  H -0.1177 +-0.0472 (-2.50s)  lean flat
+  s=0.60: flat +0.0580 +-0.0446 (+1.30s)  H -0.0917 +-0.0459 (-2.00s)  non-diagnostic (both within)
+  s=0.75: flat +0.0934 +-0.0439 (+2.13s)  H -0.0565 +-0.0448 (-1.26s)  lean rival
+  s=1.00: flat +0.1441 +-0.0439 (+3.28s)  H -0.0060 +-0.0443 (-0.14s)  lean rival
+  s=1.40: flat +0.2107 +-0.0456 (+4.62s)  H +0.0601 +-0.0454 (+1.32s)  lean rival
+  s=2.00: flat +0.2895 +-0.0492 (+5.88s)  H +0.1385 +-0.0485 (+2.86s)  non-diagnostic (both outside)
+  s=3.00: flat +0.3898 +-0.0550 (+7.08s)  H +0.2381 +-0.0538 (+4.42s)  non-diagnostic (both outside)
+  s=4.00: flat +0.4678 +-0.0596 (+7.85s)  H +0.3156 +-0.0581 (+5.43s)  non-diagnostic (both outside)
+
+CROSSINGS (brentq): s_mid=0.6693  s_f2=0.7257  s_h2=0.5993   
+H1 (s_mid exists in [0,4]): True
+
+Bootstrap of the ten KURVS discs (anchor fixed), N=2000
+  seed 168: s_mid 16/50/84 = 0.513/0.672/0.844; no-root counts {'s_mid': 0, 's_f2': 0, 's_h2': 2}; s_f2 0.564/0.734/0.894; s_h2 0.432/0.610/0.810
+  grid-vs-brentq control on the full sample: 2.95e-12
+  seed 169: s_mid 16/50/84 = 0.518/0.674/0.849; no-root counts {'s_mid': 0, 's_f2': 0, 's_h2': 0}; s_f2 0.570/0.732/0.901; s_h2 0.434/0.610/0.812
+  bootstrap seed 168 vs 169 percentile agreement: max |diff| = 0.005
+
+Gas-bracket crossings (canonical, delta=0) and alt footing
+  mu=0.25: s_mid 0.444  s_f2 0.498  s_h2 0.366
+  mu=0.67: s_mid 0.669  s_f2 0.726  s_h2 0.599
+  mu=1.5: s_mid 1.108  s_f2 1.206  s_h2 1.021
+  mu=4.0: s_mid 2.387  s_f2 2.841  s_h2 2.099
+  alt footing (mu=0.67): s_mid 0.662 s_f2 0.709 s_h2 0.599
+
+Full-grid verdict counts (24 cells = 4 mu x 3 delta x 2 footing)
+  s=0.00: lean flat  8  lean rival  0  both within  0  neither 16
+  s=0.25: lean flat 14  lean rival  0  both within  0  neither 10
+  s=0.50: lean flat 10  lean rival  4  both within  4  neither  6
+  s=0.75: lean flat  6  lean rival 10  both within  2  neither  6
+  s=1.00: lean flat  6  lean rival 14  both within  0  neither  4
+  s=1.25: lean flat  4  lean rival 12  both within  2  neither  6
+  s=1.50: lean flat  6  lean rival 10  both within  0  neither  8
+  s=1.75: lean flat  6  lean rival  8  both within  0  neither 10
+  s=2.00: lean flat  4  lean rival  6  both within  2  neither 12
+  s=2.25: lean flat  2  lean rival  5  both within  3  neither 14
+  s=2.50: lean flat  0  lean rival  4  both within  4  neither 16
+  s=2.75: lean flat  0  lean rival  3  both within  3  neither 18
+  s=3.00: lean flat  0  lean rival  4  both within  2  neither 18
+  s=3.25: lean flat  0  lean rival  4  both within  2  neither 18
+  s=3.50: lean flat  0  lean rival  6  both within  0  neither 18
+  s=3.75: lean flat  0  lean rival  6  both within  0  neither 18
+  s=4.00: lean flat  0  lean rival  6  both within  0  neither 18
+
+Gas axis at s = 1 (60 log-spaced mu in [0.25, 4]); break-evens by brentq on continuous mu
+  mu= 0.25: flat +0.204 (+4.61s)  H +0.051 (+1.13s)
+  mu= 0.40: flat +0.181 (+4.11s)  H +0.029 (+0.65s)
+  mu= 0.64: flat +0.148 (+3.37s)  H -0.002 (-0.05s)
+  mu= 1.02: flat +0.102 (+2.32s)  H -0.046 (-1.04s)
+  mu= 1.64: flat +0.040 (+0.91s)  H -0.104 (-2.36s)
+  mu= 2.62: flat -0.038 (-0.87s)  H -0.176 (-4.03s)
+  mu= 4.00: flat -0.123 (-2.74s)  H -0.255 (-5.79s)
+  break-evens at s=1 (continuous root): flat 2.109  rival 0.621
+  README-style step-0.25 grid, linear interpolation in mu: flat 2.111 rival 0.625;  in log mu: flat 2.107 rival 0.612
+
+Placements (s_eq: root of Delta'_flat(s K21) = Delta'_flat(prescription) at the decision cell; prescription also on the anchor)
+  P0                   s_eq 0.000  flat -0.130 (-2.28s) H -0.279 (-4.62s) non-diagnostic (both outside)
+                       break-even flat/rival via s_eq: ('None', 'None'); direct: None
+  K21                  s_eq 1.000  flat +0.144 (+3.28s) H -0.006 (-0.14s) lean rival
+                       break-even flat/rival via s_eq: ('2.109', '0.621'); direct: ('2.109', '0.621')
+  D&S 2010             s_eq 1.422  flat +0.214 (+4.08s) H +0.063 (+1.20s) lean rival
+                       break-even flat/rival via s_eq: ('3.100', '1.260'); direct: ('3.108', '1.254')
+  P3 (fixed height)    s_eq 1.617  flat +0.242 (+3.48s) H +0.090 (+1.30s) lean rival
+                       break-even flat/rival via s_eq: ('3.560', '1.563'); direct: ('3.578', '1.557')
+  Price 2022 (n=1)     s_eq 1.688  flat +0.251 (+4.70s) H +0.100 (+1.88s) lean rival
+                       break-even flat/rival via s_eq: ('3.726', '1.674'); direct: ('3.737', '1.668')
+  P2 (self-grav.)      s_eq 3.001  flat +0.390 (+6.03s) H +0.237 (+3.74s) non-diagnostic (both outside)
+                       break-even flat/rival via s_eq: ('6.848', '3.830'); direct: ('6.891', '3.828')
+
+SCORING against the CFG162 README targets (pass lines of criteria section 3)
+  [crossings] s_mid: mine 0.669 target 0.67 line 0.02  -> ok
+  [crossings] s_f2: mine 0.726 target 0.73 line 0.02  -> ok
+  [crossings] s_h2: mine 0.599 target 0.6 line 0.02  -> ok
+  [crossings] boot 16%: mine 0.513 target 0.51 line 0.03  -> ok
+  [crossings] boot 84%: mine 0.844 target 0.85 line 0.03  -> ok
+  [crossings] alt footing s_mid: mine 0.662 target 0.66 line 0.02  -> ok
+  [gas-bracket crossings] s_mid mu=0.25: mine 0.444 target 0.44 line 0.03  -> ok
+  [gas-bracket crossings] s_mid mu=1.5: mine 1.108 target 1.11 line 0.03  -> ok
+  [gas-bracket crossings] s_mid mu=4: mine 2.387 target 2.39 line 0.05  -> ok
+  [break-evens] flat s=1 (continuous): mine 2.109 target 2.11 line 0.03  -> ok
+  [break-evens] rival s=1 (continuous): mine 0.621 target 0.62 line 0.03  -> ok
+  [break-evens] D&S 2010 flat (via s_eq): mine 3.100 target 3.1 line 0.08  -> ok
+  [break-evens] D&S 2010 rival (via s_eq): mine 1.260 target 1.26 line 0.08  -> ok
+  [break-evens] P3 (fixed height) flat (via s_eq): mine 3.560 target 3.56 line 0.08  -> ok
+  [break-evens] P3 (fixed height) rival (via s_eq): mine 1.563 target 1.56 line 0.08  -> ok
+  [break-evens] Price 2022 (n=1) flat (via s_eq): mine 3.726 target 3.73 line 0.08  -> ok
+  [break-evens] Price 2022 (n=1) rival (via s_eq): mine 1.674 target 1.67 line 0.08  -> ok
+  [break-evens] P2 rival (via s_eq): mine 3.830 target 3.83 line 0.08  -> ok
+  P2 flat break-even (via s_eq) 6.85: README says >4 -> ok
+  [placements] s_eq D&S 2010: mine 1.422 target 1.42 line 0.03  -> ok
+  [placements] s_eq P3 (fixed height): mine 1.617 target 1.62 line 0.03  -> ok
+  [placements] s_eq Price 2022 (n=1): mine 1.688 target 1.69 line 0.03  -> ok
+  [placements] s_eq P2 (self-grav.): mine 3.001 target 3.0 line 0.1  -> ok
+  [placements] own cell P0: mine -2.28/-4.62 non-diagnostic (both outside)  target -2.3/-4.6 non-diagnostic (both outside) -> ok
+  [placements] own cell K21: mine +3.28/-0.14 lean rival  target 3.3/-0.1 lean rival -> ok
+  [placements] own cell D&S 2010: mine +4.08/+1.20 lean rival  target 4.1/1.2 lean rival -> ok
+  [placements] own cell P3 (fixed height): mine +3.48/+1.30 lean rival  target 3.5/1.3 lean rival -> ok
+  [placements] own cell Price 2022 (n=1): mine +4.70/+1.88 lean rival  target 4.7/1.9 lean rival -> ok
+  [placements] own cell P2 (self-grav.): mine +6.03/+3.74 non-diagnostic (both outside)  target 6.0/3.7 non-diagnostic (both outside) -> ok
+  [counts] s=1.0: rival 14 flat 6 target 14/6 (line 1 cell) -> ok
+  [counts] s=0.5: rival 4 flat 10 target 4/10 (line 1 cell) -> ok
+  [counts] no lean-flat cell for s >= 2.5: True
+  [power] R0 s=0 (mean sigma): mine 2.531 target 2.5 line 0.3  -> ok
+  [power] R0 s=1 (mean sigma): mine 3.405 target 3.4 line 0.3  -> ok
+  [power] R0 s=2 (mean sigma): mine 3.092 target 3.1 line 0.3  -> ok
+  [power] R0 s=4 (mean sigma): mine 2.585 target 2.6 line 0.3  -> ok
+
+Ordering claims
+  O1 mu=0.67, s_mid=0.669: K21 1.00 (margin +0.33); D&S 2010 1.42 (margin +0.75); P3 (fixed height) 1.62 (margin +0.95); Price 2022 (n=1) 1.69 (margin +1.02); P2 (self-grav.) 3.00 (margin +2.33) -> all above: True
+  O2 mu=1.5, s_mid=1.108: margins K21 -0.11; D&S 2010 +0.31; P3 (fixed height) +0.51; Price 2022 (n=1) +0.58; P2 (self-grav.) +1.89 -> K21 below, D&S/P3/Price above: True
+  O3 mu=4, s_mid=2.387: margins K21 -1.39; D&S 2010 -0.97; P3 (fixed height) -0.77; Price 2022 (n=1) -0.70; P2 (self-grav.) +0.61 -> all but P2 below: True
+  K21's +-40% band (0.6, 1.4): lower edge 0.6 vs s_mid(0.67) = 0.669: the band edge is below s_mid;  vs s_h2 0.599
+
+VERDICT PER GROUP (REPRODUCES = all rows within lines; PARTLY = at least half; DISAGREES = fewer)
+  crossings                6/6  REPRODUCES
+  gas-bracket crossings    3/3  REPRODUCES
+  break-evens              10/10  REPRODUCES
+  placements               10/10  REPRODUCES
+  counts                   3/3  REPRODUCES
+  power                    4/4  REPRODUCES
+  ordering                 4/4  REPRODUCES
+
+my controls: {'C1_alpha_2y_equals_P2': True, 'C2_price_alpha': True, 'C3_rows': True, 'C4_monotone': True, 'C5_ids_x': True, 'C6_grid_root_vs_brentq': True} -> exit 0
+
+saved CFG168_main_results.json; runtime 2.6s
