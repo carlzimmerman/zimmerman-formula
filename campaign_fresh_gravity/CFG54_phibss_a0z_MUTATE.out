@@ -1,0 +1,46 @@
+CFG54 -- A PRE-REGISTERED a0(z) CHECK ON THE PHIBSS z ~ 1-2 SAMPLE (Tacconi+2013 joined table): flat a0 (the framework's branch A) against a0 * E(z) (the H(z)-tracking rival).
+
+WHY.  CFG52 found that no clean object on disk has g_bar < 0.3 a0 at z >= 1.5, and that the deepest sample (MUSE-DARK II, z ~ 1.2) is gas-dominated.  The data-assembly
+thread (commit fa93fe736, data_assembly/kmos3d_phibss/) joined Tacconi+2013's tables 1 and 2 (73 galaxies at z ~ 1.2 and 2.2, direct CO gas masses, Vrot for 65) and found
+KMOS3D and PHIBSS do not overlap.  This lane runs the one check that sample allows, with every criterion FROZEN BEFORE THE FIRST RUN.  An empty or non-diagnostic
+result is a valid result.
+
+FROZEN CRITERIA (declared before this script's first run; nothing below is tuned afterwards).
+  Sample S0: rows of data_assembly/kmos3d_phibss/phibss13_joined.csv with a rotation velocity, a half-light radius (rh_opt_kpc, else rh_co_kpc), a redshift z_co, mbar_is_upper_limit
+      = 0, co_upper_limit = 0 and fgas_inconsistent_in_source = 0.  (Six gas masses are 3-sigma upper limits and three rows quote an fgas their masses do not reproduce: excluded.)
+  Baryons: an exact Freeman exponential disc of mass M_bar = M_* + M_mol (the table's mbar_msun) with R_d = r_h / 1.68 (as CFG52).
+  Velocity radius (declared assumption; the table does not tabulate it): r_v = 2.2 R_d = 1.31 r_h, the ledger's convention (v at 2.2 R_d).  Brackets, used only for the floor: r_v = 1.0 r_h
+      and 2.0 r_h.  MISMATCH stated: Tacconi+2013's own velocities are CO or H-alpha rotation velocities with the inclination and pressure corrections they applied (a sigma0 term
+      is not applied here); the ledger's convention is not identical to theirs.
+  Selection S1: g_bar(r_v) < a0 (canonical, disc model).  Selection is on the baryonic acceleration, which does not use the velocity.
+  Predictions: g_flat = nu_mono(g_bar/a0) g_bar (canonical a0 = 9.3603e-11 m/s^2); g_rival = nu_mono(g_bar/(a0 E(z))) g_bar with E(z) = sqrt(0.3138 (1+z)^3 + 0.6862) at the galaxy's z_co.
+  Observed: g_obs = v^2/r_v.  Offset Delta = log10(g_obs/g_pred) for each law.
+  Errors: velocity 25% (the table quotes 20-30%) -> 2 x 0.25/ln 10 = 0.217 dex per galaxy in g_obs; mass 0.20 dex, CORRELATED across the sample (Mmol 50% and M* 30% systematics),
+      propagated through the slope d log g_pred / d log g_bar; the sample mean's error = the quadrature of (velocity scatter / sqrt N) and (the correlated mass term) and (half the
+      spread of the mean over the three velocity radii).  The mean's significance is against this total.
+  H0  [FEASIBILITY GATE] the selected sample has N >= 5.  If not, the lane is declared NON-DIAGNOSTIC (reported plainly, no hypothesis is scored).
+  H1  flat a0 fits: |mean Delta_flat| < 2 sigma_tot.        H2  the rival fits: |mean Delta_rival| < 2 sigma_tot.
+  H3  [HEADLINE; MUTATE must fail] the sample can DISCRIMINATE the two laws: |mean Delta_flat - mean Delta_rival| > 2 sigma_tot.
+  R1-R3 (reported): the selection-bias mock (mass noise 0.20 dex, reselect on the noisy g_bar, truth = flat law); the discs-only subsample; N and the g_bar / a0 range; the
+      z ~ 1.2 and z ~ 2.2 halves.
+  READING (declared): H0 FAIL -> non-diagnostic.  H0 PASS, H3 FAIL -> the sample is too small or too uncertain to discriminate (CFG52's forecast: the calibration systematic caps
+      the significance near 2.3 sigma).  H3 PASS -> the sample discriminates, and whichever of H1 / H2 holds is the verdict; a verdict is subject to the selection-bias mock.
+MUTATE=1: the observed velocities are multiplied by 0.5 -- H1 and H2 must FAIL (rc = 1).  NOTE (disclosed after the run): the selection precedes the velocities, so if H0 fails
+  H1/H2 are never scored and the control is vacuous; the mutated run then fails H0 exactly as the main run does.
+
+  *** MUTATE=1: observed velocities x 0.5 -- H1 and H2 must FAIL ***
+
+======================================================================================================================
+SAMPLE
+======================================================================================================================
+  [PASS] C1 CONTROL: the table has 73 rows; S0 keeps only measured, consistent rows with a velocity, radius and redshift
+         73 rows; S0 = 51 (6 gas upper limits and 3 inconsistent-fgas rows excluded by rule)
+    S0 = 51; S1 (g_bar < a0 at r_v = 2.2 R_d) = 0; g_bar/a0 of S0: min 1.10, median 4.66, max 113.79
+  [FAIL] H0 [FEASIBILITY GATE] the selected sample (g_bar < a0) has N >= 5
+         N = 0 of 51
+  [PASS] (reported) R0 (reported, POST-HOC: added after the main run) the number of S0 galaxies with g_bar < a0 if the velocity were measured at r = 1.31, 2, 3, 4 r_h, and the three lowest g_bar/a0
+         1.31 r_h: N = 0, lowest 1.10, 1.11, 1.28; 2.0 r_h: N = 7, lowest 0.63, 0.63, 0.73; 3.0 r_h: N = 20, lowest 0.29, 0.30, 0.34; 4.0 r_h: N = 31, lowest 0.16, 0.16, 0.18
+
+    READING (declared): NON-DIAGNOSTIC: the frozen selection leaves fewer than five discs
+
+  2/3 checks pass; load-bearing failures: 1   (0 s)
