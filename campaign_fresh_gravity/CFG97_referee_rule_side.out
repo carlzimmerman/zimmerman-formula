@@ -1,0 +1,22 @@
+CFG97 referee: CFG97 reproduced CFG41's law side but NOT its rule side (the four S0/S0a: -0.105 +- 0.131 dex).  Its consistency test
+assumed the rule's debris enters as a velocity-squared fraction (v_law^2 (1 + f) or v_law^2 / (1 - f)).  CFG41's code (pred()) adds it to
+the acceleration as an NFW enclosed mass at the colour-split collapse mass:
+    v_rule^2 = v_law^2 + f_ex (1 - f_b) G M_NFW(< R_flat; M_h) / R_flat,   M_h = collapse(M*, colour) (Mandelbaum+2016, 200m -> 200c).
+This script re-implements that with the referee's own code (Mandelbaum interpolation, the 200m -> 200c conversion on the Dutton-Maccio NFW,
+the NFW enclosed mass) and checks the four S0/S0a rule velocities and offsets against CFG41's committed output.
+  inputs    log M* (W1): real_research/data/diteodoro2023_massive_spirals.tsv; Mandelbaum+2016 Table 3: real_research/data/mandelbaum2016_lbg_halo_mass.tsv;
+            R_flat, v_law and v_rule (printed to 0.1): CFG41_massive_spirals_hi.out; f_ex and the per-galaxy law / rule offsets: CFG41's results JSON.
+  conventions (CFG36 / h48, not results): M_h is M_200c; c = 10^(0.905 - 0.101 (log10(M_200c h) - 12)), h = 0.674; rho_crit for H0 = 67.4;
+            Mandelbaum masses in h^-1 Msun with h = 0.673, 200 x the mean density with Omega_m = 0.315; f_b = 0.02237 / (0.02237 + 0.1200);
+            NFW radius clipped to [1e-4, 5] R_200.  f_ex itself (the edge-phantom deficit) is taken from CFG41, not re-derived.
+
+f_b = 0.15713; rho_crit = 1.2608e+02 Msun/kpc^3; a Mandelbaum-to-200c check: log M_h(red, log M* 11.3) = 13.3141
+    NGC1167   log M* 11.30  log M_h 13.314  R_flat  70.2  f_ex 0.3087  v_law 243.4  v_rule: mine 312.68, CFG41 312.7  | rule offset mine -0.0312, CFG41 -0.0312
+    NGC5790   log M* 11.30  log M_h 13.314  R_flat  50.2  f_ex 0.3087  v_law 249.4  v_rule: mine 308.53, CFG41 308.5  | rule offset mine -0.0239, CFG41 -0.0239
+    UGC12591  log M* 11.70  log M_h 14.083  R_flat  16.5  f_ex 0.7783  v_law 405.1  v_rule: mine 476.35, CFG41 476.4  | rule offset mine -0.0247, CFG41 -0.0248
+    UGC12811  log M* 11.40  log M_h 13.511  R_flat  71.6  f_ex 0.4858  v_law 258.0  v_rule: mine 376.03, CFG41 376.1  | rule offset mine -0.0362, CFG41 -0.0362
+
+max |v_rule mine - CFG41| = 0.07 km/s (CFG41 prints to 0.1); max |offset difference| = 1.1e-04 dex
+S0/S0a rule offset: raw mean -0.0290 (CFG41 -0.0290); corrected (B = 0.076) -0.1050 (CFG41 -0.105); rule-minus-law shift 0.1088 dex (CFG41 README 0.109)
+CFG97's consistency forms for contrast: v_law^2 (1 + f_ex): mean shift 0.082 dex
+CFG97's consistency forms for contrast: v_law^2 / (1 - f_ex): mean shift 0.158 dex
