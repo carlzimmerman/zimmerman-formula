@@ -1,0 +1,38 @@
+A1  Weyl weights and dS field strength
+  [PASS] A1 sqrt(-g) g g = eta eta, sqrt(-g) g^{mu nu} = a^2 eta, F_tz = E a^2, nabla_nu F^{nu z} = -2 E H / a (nabla_nu F^(nu z) = 2*E*H**2*t)
+
+A2  divergence identity: which sign of the Pauli term removes F W_{nu mu} from D_nu(EOM)
+     sign +1: derivative terms left in [D_nu E^nu + D_nu(M^2 W^nu)] : 1; expression = 2*lambda*(-lambda*Wt(tau) - tau*(k_z*Wt(tau) + I*Derivative(Wz(tau), tau)) + I*Wz(tau))/tau**3
+     sign -1: derivative terms left in [D_nu E^nu + D_nu(M^2 W^nu)] : 0; expression = -2*I*lambda*Wz(tau)/tau**3
+  [PASS] A2 exactly one sign of the Pauli term removes F.W_{nu mu} from D_nu(EOM); remainder = (d_tau calE) W_z i.e. (d_nu F^{nu mu}) W_mu (g=2 sign found: -1)
+     => the g = 2 sign of the term i*s*G*(Wc_z W_tau - Wc_tau W_z) with G = e*calE*c is s = -1 (c = 1)
+
+A3  Legendre transform with W_tau eliminated
+     c=0 (g=1): H_reduced = |Pi|^2 + |P x W|^2 + M^2|W|^2 + |P.Pi - s G W_z|^2/M^2 with s' = 1 (in the convention G = |c| e calE and the g=2 Lagrangian sign found in A2); W_tau = I*(-P_z*Pi_z - Pi_x*k_perp)/M**2
+     g=2: H_reduced = |Pi|^2 + |P x W|^2 + M^2|W|^2 + |P.Pi - s G W_z|^2/M^2 with s' = 1 (in the convention G = |c| e calE and the g=2 Lagrangian sign found in A2); W_tau = I*(-G*W_z - P_z*Pi_z - Pi_x*k_perp)/M**2
+  [PASS] A3 reduced Hamiltonian is |Pi|^2 + |P x W|^2 + M^2|W|^2 + |P.Pi - s e calE W_z|^2/M^2 (symbolic identity, c = 0 and c = g2) 
+  [PASS] A3b Hamilton's equations of the reduced H reproduce the Euler-Lagrange equations (Pi_i' and W_i'), residual 0 (g = 2 sign) 
+
+     h (g=2) real symmetric: True
+     h_y = [[M**2 + P_z**2 + k_perp**2, 0], [0, 1]]
+
+A4  W_y decouples; its equation has the Whittaker index mu_w^2 = 1/4 - lambda^2 - mu^2 (AH4 index at mu_s^2 = mu^2 + 2)
+  [PASS] A4 h couples W_y only to Pi_y, h_y = diag(P^2+M^2,1); its ODE is the Whittaker equation with mu_w^2 = 1/4 - lambda^2 - mu^2 (residual 0) 
+
+A5  positivity of h (sum of squares) in the electric background
+  [PASS] A5 h >= diag(M^2,1) > 0 (lambda_min >= min(1,M^2)) at 2 x 20000 random points (lambda <= 50, mu in [0.01,20], all r, tau in (-10,-0.01)), g=2 and g=1 (violations of the bound: 0; min over points of lambda_min/min(1,M^2) = 1.000000)
+
+A6  the current: e dH/dp (canonical variables fixed) - d/dtau P_pol; envelope check dL/dp = -dH/dp
+  [PASS] A6a envelope identity dL_red/dp|_{q,q'} = -dH_red/dp|_{q,Pi} at a random configuration (complex fields) (|diff| = 4.44e-16)
+     P_pol/(c e) = (-2*G*W_z*Wc_z - P_z*Pi_z*Wc_z - P_z*Pic_z*W_z - Pi_x*Wc_z*k_perp - Pic_x*W_z*k_perp)/M**2
+     P_pol matrix real symmetric: True
+  [PASS] A6b the polarization P_pol = dL/d(calE) is a REAL SYMMETRIC bilinear in the canonical variables (so its symmetric-ordered expectation is nonzero) 
+
+A7  e and E enter only through lambda = eE/H^2; h(tau; k, e, E, m, H) = H h~(lambda, mu; k/H, H tau)
+  [PASS] A7 h depends on (e, E, m, H) only through lambda = eE/H^2 and mu = m/H, homogeneous of the stated weight in H 
+
+A8  constant-coefficient limit: the adiabatic vacuum covariance is stationary, so d<P_pol>/dtau = 0
+  [PASS] A8 Gamma_0 = (1/2) h^{-1/2}|K|h^{-1/2} is stationary (A G + G A^T = 0) and pure (G J G = J/4) on the 6x6 vector h 
+
+CHECKS: 10/10 passed
+g = 2 sign of the Pauli term (in this Lagrangian's convention): s = -1;  H_reduced = |Pi|^2 + |P x W|^2 + M^2|W|^2 + |P.Pi - s' e calE W_z|^2/M^2

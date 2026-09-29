@@ -1,0 +1,60 @@
+================================================================================================================
+S1 script 4: vector UV structure and current -- REAL RUN
+================================================================================================================
+
+E4  ln coefficient: exact-mode c_{-1} (independent of any beta-function input), lambda = 0.1, window k in [max(20, 6 mu), 250]
+     mu =   3: W_y c1/lam = -1.3333, c-1/lam = -0.3307 (res 1e-07);  {x,z} g=2 c1/lam = -2.8149, c-1/lam = +7.8253 (res 7e-05);  g=1 c1/lam = -2.6667, c-1/lam = +1.1888 (res 9e-08)
+     mu =   4: W_y c1/lam = -1.3333, c-1/lam = -0.3283 (res 2e-07);  {x,z} g=2 c1/lam = -2.7500, c-1/lam = +7.2728 (res 1e-05);  g=1 c1/lam = -2.6667, c-1/lam = +1.2579 (res 2e-07)
+     mu =   6: W_y c1/lam = -1.3333, c-1/lam = -0.3236 (res 2e-07);  {x,z} g=2 c1/lam = -2.7037, c-1/lam = +7.4267 (res 4e-06);  g=1 c1/lam = -2.6667, c-1/lam = +1.3134 (res 2e-07)
+     g = 2: total (W_y + {x,z}) c-1/lam = [7.495 6.945 7.103]; fit c_inf + a/mu^2: c_inf = 6.837, a = 5.12;  prediction -b = +7 (b = -7)
+     g = 1: total c-1/lam = [0.858 0.93  0.99 ]; fit c_inf = 1.032, a = -1.57;  prediction -b = +1 (b = 1 - 2 g^2 = -1)
+  [PASS] E4 the exact-mode ln coefficient at large mass equals -b lambda with b = -7 (g = 2) and b = -1 (g = 1) within 5% (ratio to the scalar's 1/3: 21 and 3) (ratio to scalar 20.51 [21], 3.09 [3])
+
+E1  is the second-order adiabatic subtraction (the AH4/Q1 rule) sufficient?  slope of |k^2 Int dr R| between k = 16 and 32; converges iff <= -2.5;  (lambda, mu) = (0.3, 1.0)
+     y g=2 scheme alg: N=2: slope -2.85 (converges);  N=3: slope -2.85 (converges);  N=4: slope -4.67 (converges);  
+     xz g=2 scheme alg: N=2: slope -0.87 (does NOT converge);  N=3: slope -0.69 (does NOT converge);  N=4: slope -0.89 (does NOT converge);  
+     xz g=1 scheme alg: N=2: slope -0.98 (does NOT converge);  N=3: slope -0.98 (does NOT converge);  N=4: slope -2.96 (converges);  
+     xz g=2 scheme F1: N=2: slope -0.88 (does NOT converge);  N=3: slope -0.88 (does NOT converge);  N=4: slope -0.90 (does NOT converge);  
+  [PASS] E1 observed convergence statuses equal the declared ones: W_y converges at N=2; {x,z} g=2 never converges through N=4 (the rule fails for the vector); g=1 converges only at N=4; F1 fails 
+
+E2  baseline UV coefficients (lambda = 0.3, window k in [20,160]): scalar and W_y
+     scalar mu = 1.0: c1/lam = -1.3333 [-4/3], c-1/lam = -0.3334 [-1/3]
+     y      mu = 1.0: c1/lam = -1.3333 [-4/3], c-1/lam = -0.3332 [-1/3]
+     scalar mu = 2.0: c1/lam = -1.3333 [-4/3], c-1/lam = -0.3331 [-1/3]
+     y      mu = 2.0: c1/lam = -1.3333 [-4/3], c-1/lam = -0.3327 [-1/3]
+  [PASS] E2 scalar and W_y: c1 = -4 lambda/3 (1%) and c-1 = -lambda/3 = -b lambda with b = 1/3 (3%) 
+
+E3/E5  {x,z} quadratic coefficient and the mass-dependent extra divergence (lambda = 0.1; mu <= 2: window [20,160]; mu >= 3 from E4)
+     mu = 0.5: g=2 c1/lam = -8.0170 [law -8.0000], c-1/lam =  +97.187 (res 2e-03);  g=1 c1/lam = -2.6667 [-2.6667], c-1/lam = -4.070 (res 5e-06)
+     mu = 1.0: g=2 c1/lam = -3.9998 [law -4.0000], c-1/lam =  +10.703 (res 2e-04);  g=1 c1/lam = -2.6667 [-2.6667], c-1/lam = -0.003 (res 8e-07)
+     mu = 2.0: g=2 c1/lam = -3.0000 [law -3.0000], c-1/lam =   +7.944 (res 6e-06);  g=1 c1/lam = -2.6667 [-2.6667], c-1/lam = +1.000 (res 5e-08)
+     linearity in lambda (g=2, mu = 2.0): c-1/lam at lambda = 0.3 over lambda = 0.1: 1.009
+     linearity in lambda (g=2, mu = 4.0): c-1/lam at lambda = 0.3 over lambda = 0.1: 1.008
+  [PASS] E3 {x,z}: c1/lambda = -(8/3 + 4/(3 mu^2)) at g = 2 and -8/3 at g = 1 (0.5%, mu = 0.5..6); c-1 linear in lambda (5%) 
+     E5: mass-dependent part of the log coefficient: total c-1/lam = c_inf + a/mu^2 with a(g=2) = 5.12, a(g=1) = -1.57; small-mass {x,z} values c-1/lam(g=2) = 97.2, 10.7, 7.9 at mu = 0.5, 1, 2 (fit residuals 2e-03, 2e-04, 6e-06: mu = 0.5 is not reliable)
+  [PASS] E5 the log coefficient of the g = 2 block carries a mass-dependent part a/mu^2 with |a| > 0.5 (a non-renormalizable, H^2/m^2 divergence, not removable by a charge renormalization) (a = 5.12)
+
+E6  W_y finite current (one of three polarizations; vector-counting subtraction, see s1_3 C3 for its scheme term) vs scalar and Dirac: G = f_1/pi, odd extraction from lambda = 0.1, 0.2
+     mu     G_y(mu)         G_s(mu) [AH4]   G_s(sqrt(mu^2+2))   G_Dirac(mu) [Q1]
+      0.3   -0.042820     +9.581244      +0.124033          -0.365006
+      0.5   -0.006681     +2.940059      +0.109885          -0.193081
+      1.0   +0.011127     +0.417605      +0.069412          -0.048471
+      2.0   +0.004575     +0.045158      +0.026095          -0.009207
+      4.0   +0.001087     +0.008366      +0.007368          -0.002225
+     odd-cubic check at mu = 1: f(0.05) measured -0.00175036, predicted from f(0.1), f(0.2): -0.00175038
+     ties sigma/H = c on W_y alone (required alpha = c/G_y with G_y's SIGN; determined only if all three are positive and the spread over mu in {0.5, 1, 2} is < 2):
+       c = kappa    : alpha_req = -7.483e+01, +4.494e+01, +1.093e+02; |spread| 2.43e+00; determined: False
+       c = kappa/pi : alpha_req = -2.382e+01, +1.430e+01, +3.479e+01; |spread| 2.43e+00; determined: False
+       c = 1/(2 pi) : alpha_req = -2.382e+01, +1.430e+01, +3.479e+01; |spread| 2.43e+00; determined: False
+       c = 1/pi     : alpha_req = -4.764e+01, +2.861e+01, +6.958e+01; |spread| 2.43e+00; determined: False
+       c = 1        : alpha_req = -1.497e+02, +8.987e+01, +2.186e+02; |spread| 2.43e+00; determined: False
+       c = 2 kappa  : alpha_req = -1.497e+02, +8.987e+01, +2.186e+02; |spread| 2.43e+00; determined: False
+  [PASS] E6 W_y alone: G_y is mass dependent (it changes sign between mu = 0.5 and 1 in this scheme) and no tie fixes alpha; odd-cubic consistency (f(0.05) to 2%) 
+
+E7  dynamical stability of the exact vacuum in the electric background: R = ||Gamma_exact||_F / ||Gamma_adiabatic(order 2)||_F at fixed k (T = 2000, order-4 initial data)
+     weak field (lambda, mu) = (0.1, 3): max |R - 1| over r in {-0.9,0.3,0.9}, k = 50, 100, 200: 4.1e-08
+     strong field, light (lambda, mu) = (10, 0.3) [lambda/mu^2 = 111], r = 0.9, k = 100:  g = 2: R = 2.41e+51;   g = 1: R = 1.000203
+     strong field, heavier (10, 1) [lambda/mu^2 = 10], r = 0.9, k = 100, g = 2: R = 1.003029
+  [PASS] E7 no growth at weak field (|R-1| <= 1e-3); for g = 2 at lambda/mu^2 = 111 the sub-horizon vacuum is exponentially amplified (R > 1e3) while g = 1 at the same point is not (|R-1| < 1e-2); (script 1 A5: h > 0 for every real E, so this is a dynamical, not a tachyonic, instability) 
+
+CHECKS: 7/7 passed

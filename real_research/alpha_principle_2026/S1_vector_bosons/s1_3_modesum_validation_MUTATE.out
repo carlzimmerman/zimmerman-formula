@@ -1,0 +1,22 @@
+==============================================================================================================
+S1 script 3: mode-sum machinery validation -- MUTATE CONTROL (scalar subtraction at order 0 only)
+==============================================================================================================
+
+C1  adiabatic machinery
+  [PASS] C1a Gamma_0 = (1/2) h^{-1/2}|K|h^{-1/2} is stationary under A_0 and pure (G J G = J/4) for scalar, W_y, {x,z} (30 random points) 
+  [PASS] C1b implicit-differentiation jets of Gamma_0 (first and second derivative) equal 4th-order finite differences of the closed form (scalar, {x,z}) (worst relative difference 1.1e-07)
+     scalar: residual of Gamma' = A Gamma + Gamma A^T after order 2: 2.04e-03 (k=10), 3.14e-05 (k=40); slope -3.01
+     y: residual of Gamma' = A Gamma + Gamma A^T after order 2: 1.94e-05 (k=10), 2.11e-08 (k=40); slope -4.92
+     xz: residual of Gamma' = A Gamma + Gamma A^T after order 2: 4.17e-05 (k=10), 1.31e-07 (k=40); slope -4.16
+  [PASS] C1c series through order 2 solves Gamma' = A Gamma + Gamma A^T up to a remainder falling faster than k^-2.5 (scalar, W_y, {x,z} at g = 2) 
+
+C2  SCALAR regression vs the published closed form (AH4 script, eq. 2.58): pipeline f = -f_KA
+     lambda=0.50 mu=2.00  pipeline f = -0.77209506   closed form (KA sign) = +0.07222646   -pipeline/closed = +10.689920
+     lambda=1.00 mu=1.50  pipeline f = -1.86863105   closed form (KA sign) = +0.37298834   -pipeline/closed = +5.009891
+     lambda=0.30 mu=1.00  pipeline f = -0.87425216   closed form (KA sign) = +0.38501253   -pipeline/closed = +2.270711
+     lambda=0.40 mu=1.40  pipeline f = -0.78271155   closed form (KA sign) = +0.17525562   -pipeline/closed = +4.466114
+     lambda=0.30 mu=3.00  pipeline f = -0.39439006   closed form (KA sign) = +0.01504305   -pipeline/closed = +26.217435
+  [FAIL] C2 scalar: direct mode sum (ODE vacuum + second-order adiabatic subtraction) = closed form (2.58), worst |ratio - 1| <= 2e-3, sign pipeline = -f_KA (worst 2.5e+01)
+
+MUTATE CONTROL: the order-2 adiabatic term was dropped; C2 FAILED as required
+CONTROL FAILS AS REQUIRED

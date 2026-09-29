@@ -1,0 +1,32 @@
+==============================================================================================================
+S1 script 3: mode-sum machinery validation -- REAL RUN
+==============================================================================================================
+
+C1  adiabatic machinery
+  [PASS] C1a Gamma_0 = (1/2) h^{-1/2}|K|h^{-1/2} is stationary under A_0 and pure (G J G = J/4) for scalar, W_y, {x,z} (30 random points) 
+  [PASS] C1b implicit-differentiation jets of Gamma_0 (first and second derivative) equal 4th-order finite differences of the closed form (scalar, {x,z}) (worst relative difference 1.1e-07)
+     scalar: residual of Gamma' = A Gamma + Gamma A^T after order 2: 2.04e-03 (k=10), 3.14e-05 (k=40); slope -3.01
+     y: residual of Gamma' = A Gamma + Gamma A^T after order 2: 1.94e-05 (k=10), 2.11e-08 (k=40); slope -4.92
+     xz: residual of Gamma' = A Gamma + Gamma A^T after order 2: 4.17e-05 (k=10), 1.31e-07 (k=40); slope -4.16
+  [PASS] C1c series through order 2 solves Gamma' = A Gamma + Gamma A^T up to a remainder falling faster than k^-2.5 (scalar, W_y, {x,z} at g = 2) 
+
+C2  SCALAR regression vs the published closed form (AH4 script, eq. 2.58): pipeline f = -f_KA
+     lambda=0.50 mu=2.00  pipeline f = -0.07222625   closed form (KA sign) = +0.07222646   -pipeline/closed = +0.999997
+     lambda=1.00 mu=1.50  pipeline f = -0.37298873   closed form (KA sign) = +0.37298834   -pipeline/closed = +1.000001
+     lambda=0.30 mu=1.00  pipeline f = -0.38501297   closed form (KA sign) = +0.38501253   -pipeline/closed = +1.000001
+     lambda=0.40 mu=1.40  pipeline f = -0.17525605   closed form (KA sign) = +0.17525562   -pipeline/closed = +1.000002
+     lambda=0.30 mu=3.00  pipeline f = -0.01504441   closed form (KA sign) = +0.01504305   -pipeline/closed = +1.000091
+  [PASS] C2 scalar: direct mode sum (ODE vacuum + second-order adiabatic subtraction) = closed form (2.58), worst |ratio - 1| <= 2e-3, sign pipeline = -f_KA (worst 9.1e-05)
+
+C3  W_y = scalar of mass^2 m^2 + 2 H^2 + computed scheme term
+     lambda=0.2 mu=0.2: pipeline f_y = +0.0496999;  -f_KA,closed(mu_s=1.4283) = -0.0813612;  Delta = +1.311e-01;  -f_KA + Delta = +0.0496997;  rel diff 3.3e-06
+     lambda=0.3 mu=0.8: pipeline f_y = -0.0098263;  -f_KA,closed(mu_s=1.6248) = -0.0806806;  Delta = +7.085e-02;  -f_KA + Delta = -0.0098273;  rel diff 9.9e-05
+     lambda=0.5 mu=1.2: pipeline f_y = -0.0177989;  -f_KA,closed(mu_s=1.8547) = -0.0903717;  Delta = +7.257e-02;  -f_KA + Delta = -0.0178026;  rel diff 2.1e-04
+  [PASS] C3 f_y (vector counting, no a''/a) = -f_KA,closed(mu_s^2 = mu^2 + 2) + Delta (independent quadrature) at three points, <= 3e-3 
+
+C4  {x,z} block exact dynamics
+     purity |G J G - J/4| along the ODE (k = 20, 50): 2.3e-14;  current at k = 20 for T = 1500, 3000, 6000: ['1.5296689819', '1.5296689988', '1.5296689516'] (spread 4.7e-08)
+  [PASS] C4 purity preserved (<= 1e-8) and the exact current is independent of the initial time (spread <= 1e-7) 
+
+CHECKS: 6/6 passed
+exit 0
