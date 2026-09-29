@@ -1,0 +1,13 @@
+CFG188 R4 -- 11C-c. mode: main
+  R4: lattice solution dtheta_i = -(8 pi G beta c^2/(c2 theta_L)) (rho_i - rho_bar): True  ; L_eff = (K_c/2) sum (rho_i - rho_bar)^2 with K_c = 8 pi G beta^2 c^4/(c2 theta_L^2): True
+  R4: P(rho) = K_c*(-rho**2 + rho_bar**2)/2   c_s^2 = dP/drho = -K_c*rho
+  [PASS] R4: lattice elimination gives dtheta = -(8 pi G beta c^2/(c2 theta_L))(rho - rho_bar) and L_eff = (K_c/2) sum (rho - rho_bar)^2 (sympy)  
+  [PASS] R4: envelope theorem: force on a baryon = gradient of L_eff  
+  [PASS] R4: c_s^2 = dP/drho = -K_c rho exactly (P = -K_c (rho^2 - rho_bar^2)/2)  -K_c*rho
+  [PASS] R4: K_c = 8 pi G beta^2 c^4/(c2 theta_L^2) > 0 for c2 > 0, independent of the sign of beta  K_c ~ beta^2/c2
+  R4: saturating coupling h(s) = s/(1+|s|): d^2V/da^2 (V = interaction energy in units of Lambda0) ranges -1.986e+00 .. -3.582e-06 over a = 1e-3..1e4 (negative => c_s^2 < 0)
+  [PASS] R4: saturating coupling: c_s^2 < 0 at every density sampled (sign of d^2 V/da^2 < 0)  
+  R4 toy: omega^2/k^2 = W with W^2/c_theta^2 - W - K_c rho0 = 0: one root W_- < 0 for every c_theta (growth rate k sqrt(|W_-|), unbounded in k in the toy; the toy has no k^4 term), one W_+ ~ c_theta^2 (the khronon wave)
+  [PASS] R4 toy: the retarded dispersion keeps one unstable root W_- < 0 for all c_theta and all k (toy assumption stated)  
+  E23: UV-unbounded growth holds in the toy only; the k^4 regularisation question is NOT DONE
+MAIN: reproduction controls all pass -> exit 0

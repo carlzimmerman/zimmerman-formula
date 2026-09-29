@@ -1,0 +1,57 @@
+{
+ "R4_lattice_solution": true,
+ "R4_Leff": true,
+ "Kc": "8*pi*G*beta**2*c**4/(c2*theta_L**2)",
+ "P": "K_c*(-rho**2 + rho_bar**2)/2",
+ "cs2": "-K_c*rho",
+ "saturating_max_Vaa": -3.5822985345068742e-06,
+ "saturating_min_Vaa": -1.9862114138260647,
+ "toy_ct2_0.001": {
+  "W_minus": -0.03112672920173694,
+  "W_plus": 0.03212672920173694
+ },
+ "toy_ct2_1.0": {
+  "W_minus": -0.6180339887498949,
+  "W_plus": 1.618033988749895
+ },
+ "toy_ct2_1000.0": {
+  "W_minus": -0.999001995013904,
+  "W_plus": 1000.9990019950139
+ },
+ "E23": "toy: growth rate ~ k sqrt(K_c rho0), unbounded in k; a k^4 regularisation from c2 (nabla^2 chi)^2 was NOT tested (NOT DONE, neither agreement nor disagreement)",
+ "hidden_objects_11Cc": "constants: beta (free), c2 (from the a-channel/khronon); function: h shape declared; a-channel F_a shape declared (P2)",
+ "checks": [
+  {
+   "name": "R4: lattice elimination gives dtheta = -(8 pi G beta c^2/(c2 theta_L))(rho - rho_bar) and L_eff = (K_c/2) sum (rho - rho_bar)^2 (sympy)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R4: envelope theorem: force on a baryon = gradient of L_eff",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R4: c_s^2 = dP/drho = -K_c rho exactly (P = -K_c (rho^2 - rho_bar^2)/2)",
+   "ok": true,
+   "detail": "-K_c*rho"
+  },
+  {
+   "name": "R4: K_c = 8 pi G beta^2 c^4/(c2 theta_L^2) > 0 for c2 > 0, independent of the sign of beta",
+   "ok": true,
+   "detail": "K_c ~ beta^2/c2"
+  },
+  {
+   "name": "R4: saturating coupling: c_s^2 < 0 at every density sampled (sign of d^2 V/da^2 < 0)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R4 toy: the retarded dispersion keeps one unstable root W_- < 0 for all c_theta and all k (toy assumption stated)",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "expectations": [],
+ "mode": "main"
+}

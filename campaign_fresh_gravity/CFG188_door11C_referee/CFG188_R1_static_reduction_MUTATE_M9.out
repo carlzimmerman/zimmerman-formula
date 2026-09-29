@@ -1,0 +1,17 @@
+CFG188 R1 -- static reduction from the unitary-gauge ADM action, areal gauge, nonlinear. mode: M9
+  [PASS] R3 from the metric equals 2/r^2 (1 - 1/A^2 + 2 r A'/A^3)  
+  leading EL_N/eps = -16*pi*G*s(r) + 4*r*Derivative(m(r), r) + 4*m(r)
+  leading EL_A/eps = -4*r*Derivative(f(r), r) + 4*m(r)
+  EL_A=0 solved for m: [r*Derivative(f(r), r)]
+  derived law: f' = [G*Mb(r)/r**2]
+  F'(X) for F = 2 a_*^2 Q(sqrt(X)/a_*) equals Q'(y)/y = 2 q(y): True
+  [PASS] C1: exact Schwarzschild (N^2 = 1 - rs/r, A = 1/N) solves the derived exact EL_N and EL_A (residual == 0)  
+  [PASS] C3: q = e^{-y}: (yq)' = (1-y)e^{-y} and 1-(yq)' = 1+(y-1)e^{-y} (record's W'')  
+  [PASS] C4: P2 kernel mu(y_g) = (sqrt(1+4y^2)-1)/(2y) from g^2 = g_N^2 + a0 g_N  max rel 6.21e-11
+  [PASS] C4: CFG44 point-mass identity M_c/M = sqrt(1+x^2)-1 with g/g_N = sqrt(1+x^2)  
+  [PASS] (yq)' = 1 - 2y/sqrt(1+4y^2) for P2 (sympy)  
+  [PASS] R1.c/(a)(iii): static aligned u has nabla_a u_b = -u_a a_b exactly, so sigma = theta = omega = 0 on static slices  
+  aether equation E_mu (spatial projection) = [4*Pf(r)*Derivative(Nf(r), r)**2/(Af2(r)**2*Nf(r)), 0, 0, 0]
+  [PASS] R1.c: radial (and angular) components of the covariant aether equation vanish identically for static aligned u and generic F(a^2)  
+  M9: with the aether term dropped, derived law f' = GM/r^2 ;  matches mu = 1 - q? False
+MUTATE=M9: control 'R1.a residual == 0 for the law mu = 1 - q with q != 0' BITES (claim fails as required) -> exit 1

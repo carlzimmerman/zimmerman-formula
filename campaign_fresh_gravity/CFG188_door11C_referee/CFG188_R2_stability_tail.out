@@ -1,0 +1,31 @@
+CFG188 R2 -- stability, tail bound, Q2. mode: main
+  R2a: background a^2 = g**2
+  R2a: coefficient of (d_t d_z chi)^2 = F1 + 2*F2*g**2  ; of (d_t d_x chi)^2 = F1
+  R2a: K_z = 2 (y q)' ?  True  ; K_x = 2 q ?  True
+  [PASS] R2.a: decoupling limit: radial kinetic coefficient of the flow = 2 (yq)', tangential = 2 q (sympy, generic q)  
+  R2b: leading-order determinant of the (phi, psi, B) x (cos, sin) Hessian, factored:
+       4*(k_x**2 + k_z**2)**4*(F1*c2*k_x**4 + 2*F1*c2*k_x**2*k_z**2 + 3*F1*c2*k_x**2*omega**2 + F1*c2*k_z**4 + 3*F1*c2*k_z**2*omega**2 + 2*F1*k_x**2*omega**2 + 2*F1*k_z**2*omega**2 + 2*F2*c2*g**2*k_x**2*k_z**2 + 2*F2*c2*g**2*k_z**4 + 6*F2*c2*g**2*k_z**2*omega**2 + 4*F2*g**2*k_z**2*omega**2 - 2*c2*k_x**4 - 4*c2*k_x**2*k_z**2 - 2*c2*k_z**4)**2
+  R2b: roots omega^2 = [-c2*(k_x**2 + k_z**2)*(F1*k_x**2 + F1*k_z**2 + 2*F2*g**2*k_z**2 - 2*k_x**2 - 2*k_z**2)/((3*c2 + 2)*(F1*k_x**2 + F1*k_z**2 + 2*F2*g**2*k_z**2))]
+  [PASS] R2.b (STRETCH, DONE): determinant non-degenerate and the full-theory local dispersion is omega^2 = c2/(2+3c2) k^2 (1-kappa)/kappa, kappa = (F1 + 2 F2 g^2 cos^2 alpha)/2 (sympy roots of det = 0)  non-degenerate True; roots [-c2*(k_x**2 + k_z**2)*(F1*k_x**2 + F1*k_z**2 + 2*F2*g**2*k_z**2 - 2*k_x**2 - 2*k_z**2)/((3*c2 + 2)*(F1*k_x**2 + F1*k_z**2 + 2*F2*g**2*k_z**2))]
+  R2b: radial c_s^2/c^2 at c2 = 1e-3: P2 {'0.1': 0.0001217976937312588, '1.0': 0.004229723392411172, '10.0': 0.39965036839237483, '1000.0': 3994.009235210798} ; exponential kernel {'0.5': 0.0011470007695458093, '2.0': -0.004188245680943909, '5.0': -0.01902311022248834}
+  [PASS] R2.b: sign of the full-theory radial c_s^2 = sign((yq)'(1-(yq)')) for c2 > 0: P2 stable, exponential kernel unstable for y > 1  
+  [PASS] R2.c: closed form h_min(eps) = (1 - sqrt(1-eps^2))/2 (sympy)  y* = [epsilon**2*sqrt(-1/(epsilon - 1))/(2*sqrt(epsilon + 1))], h = (epsilon**2*sqrt(-1/(epsilon - 1)) - sqrt(-1/(epsilon - 1)) + sqrt(epsilon + 1))/(2*sqrt(epsilon + 1))
+  R2c: P2: minimal forced tail (band 10%) = 0.28206 a0 at y_N* = 0.6471; G1-range restricted 0.28206; band 20% 0.20000; band 50% 0.06699
+  R2c: simple: minimal forced tail (band 10%) = 0.46754 a0 at y_N* = 1.4785; G1-range restricted 0.46754; band 20% 0.30557; band 50% 0.08579
+  R2c: nu_mono: minimal forced tail (band 10%) = 0.42405 a0 at y_N* = 1.0575; G1-range restricted 0.42405; band 20% 0.29043; band 50% 0.08494
+  [PASS] R2.c: P2 tail 0.2821 (+-0.003)  0.28206
+  [PASS] R2.c: P2 20% band 0.2000 (+-0.001)  0.20000
+  [PASS] R2.c: simple kernel 0.4675 (+-0.003)  0.46754
+  R2c: tail tolerance for Q2 = 7.962e-05 a0; the +-band at which the closed-form bound reaches it = 98.22%
+  [PASS] R2.c: band at which the tail bound alone stops violating Q2 is ~98% (+-1%)  98.22%
+  R2d recipe A (tide = max(|dg/dR|, g/R), Saturn 9.58 AU): Sun's own P2 tail canonical 6.280e+03, alt 7.590e+03; minimal tail 3.543e+03 (9.54 AU: 6.306e+03)
+  [PASS] R2.d: Q2 canonical 6.3e3 (+-10% frozen D-2 line; sensitivity to Saturn distance reported)  6.280e+03 / 9.54 AU 6.306e+03
+  [PASS] R2.d: Q2 alt footing 7.6e3 (+-10%)  7.590e+03
+  [PASS] R2.d: minimal-tail Q2 3.6e3 (+-10%)  3.543e+03
+  R2d recipe B (apsidal precession 2 pi eps/g_N per orbit, near-circular; hand formula): Saturn, minimal tail: 1.80 arcsec/century; Earth: 0.577 arcsec/century
+      (ephemeris precession bounds are NOT stated by me: no reliable number from memory -> ratio NOT SCORED for recipe B)
+  R2d recipe C (0.282 a0 vs the quoted delta A_R bounds 3.66e-14 / 3.72e-14 m/s^2): Earth 7.213e+02, Mars 7.097e+02
+  [PASS] R2.d: 'pincer survives' line: recipes A and C give ratio >= 100 for the minimal tail (recipe B not scored)  
+  EFE remark: first-order (g_e) change of div n_hat = -2*z/k
+  [PASS] EFE remark (diagnostic): the first-order external-field change of the phantom source div(n_hat) is a pure dipole (odd in z), so the monopole a0/2 tail is unchanged at first order  -2*z/k
+MAIN: reproduction controls all pass -> exit 0

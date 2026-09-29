@@ -1,0 +1,25 @@
+CFG188 R1 -- static reduction from the unitary-gauge ADM action, areal gauge, nonlinear. mode: M3
+  [PASS] R3 from the metric equals 2/r^2 (1 - 1/A^2 + 2 r A'/A^3)  
+  leading EL_N/eps = -16*pi*G*s(r) - 2*r**2*P(r)*Derivative(f(r), (r, 2)) - 2*r**2*Derivative(P(r), r)*Derivative(f(r), r) - 4*r*P(r)*Derivative(f(r), r) + 4*r*Derivative(m(r), r) + 4*m(r)
+  leading EL_A/eps = -4*r*Derivative(f(r), r) + 4*m(r)
+  EL_A=0 solved for m: [r*Derivative(f(r), r)]
+  derived law: f' = [-2*G*Mb(r)/(r**2*(P(r) - 2))]
+  F'(X) for F = 2 a_*^2 Q(sqrt(X)/a_*) equals Q'(y)/y = 2 q(y): True
+  [PASS] R1.a: N-equation leading order = 4(rm)' - (2 r^2 P f')' - 16 pi G s (residual == 0)  
+  [PASS] R1.a: derived law f'(1 - P/2) = G Mb/r^2, i.e. mu = 1 - q with P = 2q (residual == 0)  
+  [PASS] R1.a: first integral of the N equation is exact  
+  [PASS] F'(X) = Q'(y)/y = 2 q(y) (sympy, generic polynomial Q)  
+  [PASS] R1.b: EL_A leading order vanishes iff m = r f' (Psi' = Phi', isotropic gauge)  
+  [PASS] C1: exact Schwarzschild (N^2 = 1 - rs/r, A = 1/N) solves the derived exact EL_N and EL_A (residual == 0)  
+  [PASS] C2: linear aether F = c14 a^2 gives G_N = G/(1 - c14/2)  G_N/G = -2/(c14 - 2)
+  [PASS] C3: q = e^{-y}: (yq)' = (1-y)e^{-y} and 1-(yq)' = 1+(y-1)e^{-y} (record's W'')  
+  [PASS] C4: P2 kernel mu(y_g) = (sqrt(1+4y^2)-1)/(2y) from g^2 = g_N^2 + a0 g_N  max rel 6.21e-11
+  [PASS] C4: CFG44 point-mass identity M_c/M = sqrt(1+x^2)-1 with g/g_N = sqrt(1+x^2)  
+  [PASS] (yq)' = 1 - 2y/sqrt(1+4y^2) for P2 (sympy)  
+  [PASS] R1.c/(a)(iii): static aligned u has nabla_a u_b = -u_a a_b exactly, so sigma = theta = omega = 0 on static slices  
+  aether equation E_mu (spatial projection) = [4*Pf(r)*Derivative(Nf(r), r)**2/(Af2(r)**2*Nf(r)), 0, 0, 0]
+  [PASS] R1.c: radial (and angular) components of the covariant aether equation vanish identically for static aligned u and generic F(a^2)  
+  G1-law from the derived equations, target P2: max |g/g_target - 1| = 9.667e-01  per footing {'canonical': 0.9666852046922717, 'alt': 0.9666853224495856}
+  G1-law from the derived equations, target nu_mono: max |g/g_target - 1| = 9.672e-01  per footing {'canonical': 0.9672161344733047, 'alt': 0.9672162485605833}
+  M3: max dev 0.967 (frozen expectation 0.97)
+MUTATE=M3: control 'G1-law passes with the GR kernel (q = 0)' BITES (claim fails as required) -> exit 1

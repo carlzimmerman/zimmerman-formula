@@ -1,0 +1,138 @@
+{
+ "EL_N_lead": "-16*pi*G*s(r) - 2*r**2*P(r)*Derivative(f(r), (r, 2)) - 2*r**2*Derivative(P(r), r)*Derivative(f(r), r) - 4*r*P(r)*Derivative(f(r), r) + 4*r*Derivative(m(r), r) + 4*m(r)",
+ "EL_A_lead": "-4*r*Derivative(f(r), r) + 4*m(r)",
+ "resN": "0",
+ "law_fprime": [
+  "-2*G*Mb(r)/(r**2*(P(r) - 2))"
+ ],
+ "Fprime_ok": true,
+ "EL_A_with_m=r f'": "0",
+ "aether_E": [
+  "4*Pf(r)*Derivative(Nf(r), r)**2/(Af2(r)**2*Nf(r))",
+  "0",
+  "0",
+  "0"
+ ],
+ "zetaR3sq_dEL_N_lead": "0",
+ "zetaR3sq_dEL_A_lead": "-32*zeta*Derivative(m(r), (r, 2)) + 64*zeta*m(r)/r**2",
+ "G1_maxdev_P2": 1.1868284133242923e-12,
+ "G1_maxdev_P2_per_footing": {
+  "canonical": 1.1868284133242923e-12,
+  "alt": 1.1646239528317892e-12
+ },
+ "G1_maxdev_nu_mono": 8.657278138812785e-08,
+ "G1_maxdev_nu_mono_per_footing": {
+  "canonical": 7.015516834130153e-08,
+  "alt": 8.657278138812785e-08
+ },
+ "G1_frozen_10pct_line": true,
+ "simple_vs_P2_maxdev_g": 0.1546877021405646,
+ "slip_worst_relative_residual_full": 6.230428233027981e-06,
+ "slip_worst_relative_residual_GR_only": 6.231274423421588e-06,
+ "slip_worst_relative_residual_aether_part": 5.928044609720087e-07,
+ "EL_A_contains_dP_dr": false,
+ "checks": [
+  {
+   "name": "R3 from the metric equals 2/r^2 (1 - 1/A^2 + 2 r A'/A^3)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.a: N-equation leading order = 4(rm)' - (2 r^2 P f')' - 16 pi G s (residual == 0)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.a: derived law f'(1 - P/2) = G Mb/r^2, i.e. mu = 1 - q with P = 2q (residual == 0)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.a: first integral of the N equation is exact",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "F'(X) = Q'(y)/y = 2 q(y) (sympy, generic polynomial Q)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.b: EL_A leading order vanishes iff m = r f' (Psi' = Phi', isotropic gauge)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C1: exact Schwarzschild (N^2 = 1 - rs/r, A = 1/N) solves the derived exact EL_N and EL_A (residual == 0)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C2: linear aether F = c14 a^2 gives G_N = G/(1 - c14/2)",
+   "ok": true,
+   "detail": "G_N/G = -2/(c14 - 2)"
+  },
+  {
+   "name": "C3: q = e^{-y}: (yq)' = (1-y)e^{-y} and 1-(yq)' = 1+(y-1)e^{-y} (record's W'')",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "C4: P2 kernel mu(y_g) = (sqrt(1+4y^2)-1)/(2y) from g^2 = g_N^2 + a0 g_N",
+   "ok": true,
+   "detail": "max rel 6.21e-11"
+  },
+  {
+   "name": "C4: CFG44 point-mass identity M_c/M = sqrt(1+x^2)-1 with g/g_N = sqrt(1+x^2)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "(yq)' = 1 - 2y/sqrt(1+4y^2) for P2 (sympy)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.c/(a)(iii): static aligned u has nabla_a u_b = -u_a a_b exactly, so sigma = theta = omega = 0 on static slices",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.c: radial (and angular) components of the covariant aether equation vanish identically for static aligned u and generic F(a^2)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "(a)(ii): a zeta R3^2 term leaves EL_N at leading order but changes EL_A at leading order (the class is a declared choice)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "R1.d: G1 law max dev P2 <= 1e-6 (frozen reporting line)",
+   "ok": true,
+   "detail": "1.19e-12"
+  },
+  {
+   "name": "R1.d: G1 law max dev nu_mono <= 1e-4 (frozen reporting line)",
+   "ok": true,
+   "detail": "8.66e-08"
+  },
+  {
+   "name": "(d)(i): a different declared kernel (simple) fails the 10% G1 line against P2",
+   "ok": true,
+   "detail": "0.155"
+  },
+  {
+   "name": "R1.b: |Psi/Phi - 1| estimate from the exact nonlinear A-equation <= 1e-3 on sampled cells",
+   "ok": true,
+   "detail": "6.23e-06"
+  },
+  {
+   "name": "C5: prescribed flow v(r)=sqrt(2 Int g dr) reproduces g exactly (G1-law pass) and is graded M0 (prescribed), never a mechanism",
+   "ok": true,
+   "detail": "graded M0 by construction"
+  }
+ ],
+ "expectations": [],
+ "mode": "main"
+}
