@@ -153,7 +153,8 @@ def main():
     if "--lean" in sys.argv:
         ldir = os.path.join(ROOT, "fable_independent_2026", "lean_2026")
         for f, want in (("AH3_alpha_nogo.lean", 0), ("AH3_alpha_nogo_MUTATE.lean", 1), ("AH7_dimensional_obstruction.lean", 0),
-                        ("AH7_dimensional_obstruction_MUTATE.lean", 1)):
+                        ("AH7_dimensional_obstruction_MUTATE.lean", 1),
+                        ("AH8_alpha_identity_audit.lean", 0), ("AH8_alpha_identity_audit_MUTATE.lean", 1)):
             p = subprocess.run(["lake", "env", "lean", f], cwd=ldir, capture_output=True, timeout=1800)
             print(f"  lean {f}: exit {p.returncode} (expected {want}) {'OK' if p.returncode == want else 'MISMATCH'}")
             bad = bad if p.returncode == want else bad + [f]
