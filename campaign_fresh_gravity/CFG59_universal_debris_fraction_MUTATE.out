@@ -1,0 +1,195 @@
+CFG59 -- DOES A SINGLE UNIVERSAL FRACTION phi OF THE COLLAPSE DEBRIS RECONCILE EVERY POPULATION B'S SUM RULE HAS BEEN SCORED ON?
+(a descriptive consistency question; NOT a search for a rule that passes)
+
+FROZEN QUESTION (verbatim):
+  'Across the populations where B's derived cold-mass rule (the sum, reading S of CFG45) has been scored, does a SINGLE universal fraction phi of the leftover
+  collapse debris reconcile them all? For each population, scale the debris acceleration (the rule's added term G f_ex (1-f_b) M_NFW(<r)/r^2) by phi in [0,1]
+  (phi=0 is the bare law, phi=1 is the sum) and find phi_needed = the value at which the population's declared offset is zero, with the interval of phi whose
+  offset lies within 1 sigma of zero (the lane's own error model). The answer is YES only if the intervals of ALL populations in the declared set have a
+  non-empty common intersection; otherwise NO, and the harness reports which populations conflict and by how much. No phi is selected, fitted or recommended;
+  a YES would be recorded as consistency with a universal fraction, not as a derived rule.'
+
+STANDING (from the program): kappa = 1/2 is FITTED; nothing here says the theory is closed; no tuning after seeing a result; every claim is this committed-style script
+plus a MUTATE control that must fail.  A YES would mean only "consistent with a universal fraction"; a NO means the sum's over-prediction and the bare law's
+under-prediction are not two ends of ONE knob on these lanes.  Neither is a derived rule.
+
+MACHINERY (declared).  CFG45_rule_readings.py is exec'd READ-ONLY up to its own controls (its prefix, MUTATE handled by the environment exactly as CFG45 does), which
+exec's the lane scripts (CFG42, CFG36/CFG35, CFG38, CFG40, CFG41) read-only.  Its function `extra_acc` is REPLACED IN THE EXEC NAMESPACE (no repo file is edited) by a
+version with one added reading, "P": g_extra(P) = phi x g_extra(S), phi a global set by this harness.  Every lane estimator (sigma_read, sluggs_sigma, xray_gal, pred41,
+stat41, ufd_stat, boot, offs, km_median ...) is then CFG45's own function, called with reading "P".  CFG51's prefix is exec'd read-only the same way (its FG001 slices,
+its Walker+2023 reduced table, its spred); its rule term is re-written here with the same phi.  Nothing is re-fitted: phi enters ONLY as that multiplier.
+
+POPULATIONS (declared; exactly these ten; each with the lane's own declared offset and error model, both footings 'canonical' | 'alt'):
+  U1  MW ultra-faints (CFG42 H1): Kaplan-Meier median of log10(sigma_obs/sigma_pred) with the 9 upper limits; error = sqrt(bootstrap(1000, seed 42)^2 + Upsilon_V floor^2
+      (half the |shift| for Upsilon_V 1 -> 4) + collapse-mass floor^2 (half the range over M_c = 1e8..1e10 for the M_* < 1e5 systems)).  The error model is RE-EVALUATED at
+      every phi (the floors and the bootstrap use the phi-scaled reading).
+  U2  MW classical dSphs (14), U3 M31 Collins+13 (14), U4 M31 LVD (34): CFG42 H2 with the infall gas; sample median offset; error = sqrt((1.2533 std/sqrt n)^2 + Upsilon floor^2 +
+      collapse floor^2) re-evaluated at every phi.
+  U5  SLUGGS (19 early types, CFG38 H1): mean over galaxies of the outer-bin mean of log10(sigma_obs/sigma_pred) (h50 machinery, red relation); error std/sqrt(19), re-evaluated.
+  U6  X-ray ellipticals (7, CFG36 H1): per-galaxy median over 5,10,20,40,70 kpc of log10(M_total/M_pred); sample mean; error = sqrt(err^2 + Salpeter-shift^2 + (radii <= 40 kpc)-shift^2)
+      re-evaluated at every phi.
+  U7  the four Di Teodoro+2023 S0/S0a (CFG41 H2b): mean corrected offset (log10(v_flat/v_pred) - B, B = 0.076), point-mass headline; error = CFG45's s0err (sample sem, model, M_*, M_gas,
+      radius, B floors) re-evaluated at every phi.
+  U8  UGC 2487 (SPARC's S0): offset log10(V_flat / v_pred(R_HI)); error as CFG45 declared it (SIG_UGC: measurement, 0.5 x 0.1003 law rms, 0.25 x 0.2 M_*), phi-independent.
+  U9  Bootes I and U10 Tucana II (CFG51, Walker+2023 multi-epoch, binary-cleaned dispersion): offset log10(sigma_clean / sigma_pred), sigma_pred = FG001's estimator with the
+      phi-scaled CFG42 sum term (Moster collapse mass, clamped by halo_mass, M_c as CFG51); error = CFG51's err_dex on the cleaned dispersion (reduction interval + Upsilon/deep-MOND floor),
+      phi-independent.  U9, U10 are two SEPARATE populations (two objects each: no sample statistic); they share stars/galaxies with U1 only through the ultra-faint class.
+  (SPARC dwarfs, SPARC >= 10 and Ogle are NOT in the set: CFG45 scored them as an unchanged-by-the-rule constraint (A3) or reported-only, not as an offset with an error model
+  that the sum is compared to.  They are not used here.)
+
+DEFINITIONS (declared before the first run).
+  offset o_p(phi, footing); error e_p(phi, footing) = the lane's model evaluated with the phi-scaled reading.  All o_p are non-increasing in phi (a larger debris term raises the
+  predicted sigma / v / mass ratio ... see the monotonicity control), so the zero is unique.
+  phi_needed[p] = the root of o_p(phi) = 0 on [0,1] (brentq, xtol 1e-9 on the offset alone).  'no solution in [0,1]' if o_p(0) and o_p(1) have the same sign; the signs are reported.
+  phi_needed_ext[p] (reported only, NOT part of the YES/NO) = the root on [0, 6] if it exists (only to say how far outside [0,1] a no-solution population sits).
+  interval[p] = { phi in [0,1] : |o_p(phi)| <= e_p(phi) } from a grid of 101 points (step 0.01, both o and e evaluated at every grid point), the edges by linear
+  interpolation of e - |o| between adjacent grid points.  It may be empty, and it may exist when phi_needed does not (the zero lies outside [0,1] but the 1-sigma band reaches in).
+  ANSWER (per footing) = YES iff every one of the ten intervals is non-empty and the ten intervals have a non-empty common intersection; otherwise NO, with: the empty-interval
+  populations; the binding pair (the largest lower edge, the smallest upper edge, their gap in phi); every disjoint pair.  OVERALL = YES iff both footings are YES.  (Also
+  reported: the intersection of all twenty footing-population intervals.)
+  GROUPED (DESCRIPTIVE SPLIT, declared): populations are assigned to log M_* bins by the population's median log10 M_* (the lane's own stellar mass): < 7, 7-10, > 10.  The
+  intersection is reported per bin and footing (an empty bin is reported as empty, not as YES).
+  SPEARMAN (descriptive only): rank correlation of phi_needed (populations with a root in [0,1]; and separately phi_needed_ext) with (a) the population's median log10 M_*, (b) the
+  population's median log10(M_phantom,edge / M_c) (M_phantom,edge = the law's phantom inside r_e = 0.40 r_ta, CFG35's, and M_c the collapse mass, both as each lane uses them).
+  scipy.stats.spearmanr; n and p reported; at n <= 10 nothing here is a significance claim.
+
+CONTROLS
+  C1  CONTROL  phi = 1 reproduces CFG45's reading (S) and phi = 0 its (L) for every population, both footings, to 1e-9 (offsets and errors, computed here against the same functions with
+               the reading letters "S" / "L"); and (non-MUTATE run) the committed CFG45 / CFG51 results files to 1e-6 (CFG42 UF/CL, CFG36 X-ray, CFG38 SLUGGS, CFG41 S0, CFG45 UGC 2487,
+               CFG51 Bootes I / Tucana II offsets, bare and rule).
+  C2  CONTROL  every o_p(phi) is non-increasing on the 101-point grid (tolerance 1e-9 dex) for every population and footing.
+  C3  CONTROL  the MUTATE run: every collapse mass divided by 100 (CFG45's MCF, and the CFG51 rule); see H1.
+  H1  [HEADLINE; MUTATE must fail] the ultra-faint populations have a solution: phi_needed exists in [0,1] for U1 (KM median, both footings).  In the MUTATE run the debris is 1/100:
+      the bare-law failure cannot be closed by any phi, U1 has no solution, and H1 must FAIL (rc = 1).
+  H2  (reported) the table, the YES/NO per footing and overall, the groups, the Spearman correlations.
+MUTATE=1: collapse masses / 100 (CFG45's MCF; and the collapse mass in the CFG51 systems' rule).
+ADDED AFTER THE FIRST MAIN RUN, BEFORE ANY INTERPRETATION (disclosed; reported only, no gate, grid, threshold or population changed): R1, an exhaustive search over the 2^10 sub-collections
+  for the SMALLEST number of populations whose removal makes the common intersection non-empty (per footing, and per mass bin).  It says which populations carry the conflict; it selects no phi.
+Nothing is selected, fitted or recommended; no grid, threshold or population is changed after the first run.
+
+  *** MUTATE=1: every collapse mass / 100 -- H1 must FAIL ***
+    scanned U1 MW ultra-faints (KM median)   (10 s)
+    scanned U2 MW classical dSphs   (11 s)
+    scanned U3 M31 Collins+13   (11 s)
+    scanned U4 M31 LVD   (11 s)
+    scanned U5 SLUGGS   (12 s)
+    scanned U6 X-ray ellipticals   (12 s)
+    scanned U7 DT23 four S0/S0a   (12 s)
+    scanned U8 UGC 2487   (12 s)
+    scanned U9 Bootes I (multi-epoch)   (12 s)
+    scanned U10 Tucana II (multi-epoch)   (12 s)
+    solved U1 MW ultra-faints (KM median)   (12 s)
+    solved U2 MW classical dSphs   (12 s)
+    solved U3 M31 Collins+13   (12 s)
+    solved U4 M31 LVD   (12 s)
+    solved U5 SLUGGS   (12 s)
+    solved U6 X-ray ellipticals   (12 s)
+    solved U7 DT23 four S0/S0a   (12 s)
+    solved U8 UGC 2487   (12 s)
+    solved U9 Bootes I (multi-epoch)   (12 s)
+    solved U10 Tucana II (multi-epoch)   (12 s)
+
+======================================================================================================================
+C1  CONTROLS: phi = 1 is CFG45's (S), phi = 0 is its (L); committed results
+======================================================================================================================
+  [PASS] C1a CONTROL: reading P at phi = 1 equals CFG45's S and at phi = 0 its L (offsets and errors, every population, both footings) to 1e-9 (CFG51 systems: its spred with rule=True / False)
+         100 comparisons; worst ratio to tolerance 0.00e+00 (U1 MW ultra-faints (KM median) canonical phi=1 vs S: offset)
+  [PASS] (reported) C1b CONTROL: skipped in the MUTATE run (the committed results are for the unmutated rule)
+         -
+  [PASS] C2 CONTROL: every offset is non-increasing in phi on the 101-point grid (max increment <= 1e-9 dex)
+         largest increment 0.00e+00 (U1 MW ultra-faints (KM median) canonical)
+
+======================================================================================================================
+THE TABLE (plot-free): per population and footing -- offset at phi = 0 and 1 [dex, and in sigma], phi_needed, 1-sigma interval
+======================================================================================================================
+    population                          foot    o(0)   z(0)    o(1)   z(1)  phi_need  phi_ext  1-sigma interval(s) within [0,1]
+    U1 MW ultra-faints (KM median) canonical  +0.325  +3.77  +0.322  +2.47 none(+,+)     none  empty
+    U1 MW ultra-faints (KM median)       alt  +0.304  +3.55  +0.302  +2.32 none(+,+)     none  empty
+    U2 MW classical dSphs          canonical  +0.027  +0.32  +0.027  +0.32 none(+,+)     none  [0.000,1.000]
+    U2 MW classical dSphs                alt  +0.008  +0.09  +0.008  +0.09 none(+,+)     none  [0.000,1.000]
+    U3 M31 Collins+13              canonical  +0.064  +0.78  +0.064  +0.78 none(+,+)     none  [0.000,1.000]
+    U3 M31 Collins+13                    alt  +0.045  +0.55  +0.045  +0.55 none(+,+)     none  [0.000,1.000]
+    U4 M31 LVD                     canonical  +0.044  +0.60  +0.044  +0.60 none(+,+)     none  [0.000,1.000]
+    U4 M31 LVD                           alt  +0.031  +0.42  +0.031  +0.42 none(+,+)     none  [0.000,1.000]
+    U5 SLUGGS                      canonical  +0.080  +3.28  +0.080  +3.28 none(+,+)     none  empty
+    U5 SLUGGS                            alt  +0.065  +2.67  +0.065  +2.67 none(+,+)     none  empty
+    U6 X-ray ellipticals           canonical  +0.280  +1.70  +0.280  +1.70 none(+,+)     none  empty
+    U6 X-ray ellipticals                 alt  +0.254  +1.58  +0.254  +1.58 none(+,+)     none  empty
+    U7 DT23 four S0/S0a            canonical  +0.004  +0.05  +0.004  +0.05 none(+,+)     none  [0.000,1.000]
+    U7 DT23 four S0/S0a                  alt  -0.012  -0.17  -0.012  -0.17 none(-,-)     none  [0.000,1.000]
+    U8 UGC 2487                    canonical  +0.064  +0.90  +0.064  +0.90 none(+,+)     none  [0.000,1.000]
+    U8 UGC 2487                          alt  +0.048  +0.68  +0.048  +0.68 none(+,+)     none  [0.000,1.000]
+    U9 Bootes I (multi-epoch)      canonical  +0.219  +2.46  +0.219  +2.46 none(+,+)     none  empty
+    U9 Bootes I (multi-epoch)            alt  +0.199  +2.24  +0.199  +2.24 none(+,+)     none  empty
+    U10 Tucana II (multi-epoch)    canonical  +0.465  +3.63  +0.465  +3.63 none(+,+)     none  empty
+    U10 Tucana II (multi-epoch)          alt  +0.445  +3.47  +0.445  +3.47 none(+,+)     none  empty
+    (phi_need 'none(+,+)' = offset positive at phi = 0 and 1: the data want MORE debris than the sum; 'none(-,-)' = negative at both: LESS than none; phi_ext = the root on [0,6], reported only.)
+    per-population medians (canonical):  log M_*  |  log10(M_ph,edge/M_c)  |  median f_ex  |  n objects
+      U1 MW ultra-faints (KM median)   3.89      0.50    0.00   40
+      U2 MW classical dSphs            6.08      1.53    0.00   14
+      U3 M31 Collins+13                5.63      1.57    0.00   14
+      U4 M31 LVD                       5.84      1.54    0.00   34
+      U5 SLUGGS                       11.15      1.90    0.00   19
+      U6 X-ray ellipticals            11.44      1.56    0.00   7
+      U7 DT23 four S0/S0a             11.35      1.70    0.00   4
+      U8 UGC 2487                     11.48      1.54    0.00   1
+      U9 Bootes I (multi-epoch)        4.64      0.91    0.00   1
+      U10 Tucana II (multi-epoch)      3.73      0.38    0.00   1
+
+======================================================================================================================
+THE ANSWER: does a single universal phi lie inside every population's 1-sigma interval?
+======================================================================================================================
+  [canonical] ANSWER: NO   intersection of all ten intervals: empty
+      populations with NO phi in [0,1] within 1 sigma, even alone: U1 MW ultra-faints (KM median), U5 SLUGGS, U6 X-ray ellipticals, U9 Bootes I (multi-epoch), U10 Tucana II (multi-epoch)
+      binding pair (hulls): largest lower edge U2 MW classical dSphs at phi = 0.000; smallest upper edge U2 MW classical dSphs at phi = 1.000; gap -1.000 (positive = they do not overlap)
+      phi_needed ordering (low -> high; 'more than sum' = +9 marker, 'bare law already too high' = -9): U1>1 < U2>1 < U3>1 < U4>1 < U5>1 < U6>1 < U7>1 < U8>1 < U9>1 < U10>1
+  [alt] ANSWER: NO   intersection of all ten intervals: empty
+      populations with NO phi in [0,1] within 1 sigma, even alone: U1 MW ultra-faints (KM median), U5 SLUGGS, U6 X-ray ellipticals, U9 Bootes I (multi-epoch), U10 Tucana II (multi-epoch)
+      binding pair (hulls): largest lower edge U2 MW classical dSphs at phi = 0.000; smallest upper edge U2 MW classical dSphs at phi = 1.000; gap -1.000 (positive = they do not overlap)
+      phi_needed ordering (low -> high; 'more than sum' = +9 marker, 'bare law already too high' = -9): U7<0 < U1>1 < U2>1 < U3>1 < U4>1 < U5>1 < U6>1 < U8>1 < U9>1 < U10>1
+
+  OVERALL (YES iff both footings YES): NO;  intersection of all twenty footing-population intervals: empty
+
+======================================================================================================================
+GROUPED by the population's median log M_* (descriptive split declared in advance): < 7, 7-10, > 10
+======================================================================================================================
+  logM* < 7          [canonical] n_pop 6: EMPTY (no common phi)   members: U1, U2, U3, U4, U9, U10
+  logM* < 7          [alt      ] n_pop 6: EMPTY (no common phi)
+  7 <= logM* <= 10   [canonical] n_pop 0: no populations   members: 
+  7 <= logM* <= 10   [alt      ] n_pop 0: no populations
+  logM* > 10         [canonical] n_pop 4: EMPTY (no common phi)   members: U5, U6, U7, U8
+  logM* > 10         [alt      ] n_pop 4: EMPTY (no common phi)
+
+======================================================================================================================
+R1 (added after the first main run, before interpretation; reported only): the smallest sets of populations whose removal leaves a common intersection
+======================================================================================================================
+  all ten            [canonical] minimal removals k = 5: drop {U1, U5, U6, U9, U10} -> [0.000,1.000]
+  all ten            [alt      ] minimal removals k = 5: drop {U1, U5, U6, U9, U10} -> [0.000,1.000]
+  logM* < 7          [canonical] minimal removals k = 3: drop {U1, U9, U10} -> [0.000,1.000]
+  logM* < 7          [alt      ] minimal removals k = 3: drop {U1, U9, U10} -> [0.000,1.000]
+  logM* > 10         [canonical] minimal removals k = 2: drop {U5, U6} -> [0.000,1.000]
+  logM* > 10         [alt      ] minimal removals k = 2: drop {U5, U6} -> [0.000,1.000]
+
+======================================================================================================================
+SPEARMAN (descriptive only; n <= 10)
+======================================================================================================================
+  [canonical] phi_needed in [0,1]              vs log M_*             : n = 0 < 4, not computed
+  [canonical] phi_needed in [0,1]              vs log(M_ph,edge/M_c)  : n = 0 < 4, not computed
+  [canonical] phi_needed_ext (root on [0,6])   vs log M_*             : n = 0 < 4, not computed
+  [canonical] phi_needed_ext (root on [0,6])   vs log(M_ph,edge/M_c)  : n = 0 < 4, not computed
+  [alt      ] phi_needed in [0,1]              vs log M_*             : n = 0 < 4, not computed
+  [alt      ] phi_needed in [0,1]              vs log(M_ph,edge/M_c)  : n = 0 < 4, not computed
+  [alt      ] phi_needed_ext (root on [0,6])   vs log M_*             : n = 0 < 4, not computed
+  [alt      ] phi_needed_ext (root on [0,6])   vs log(M_ph,edge/M_c)  : n = 0 < 4, not computed
+
+======================================================================================================================
+HEADLINE / REPORT
+======================================================================================================================
+  [FAIL] H1 [HEADLINE; MUTATE must fail] THE ULTRA-FAINTS HAVE A SOLUTION: phi_needed exists in [0,1] for U1 (KM median), both footings  [MUTATE: collapse masses / 100]
+         canonical: o(0) +0.325, o(1) +0.322, phi_needed none; alt: o(0) +0.304, o(1) +0.302, phi_needed none
+  [PASS] (reported) H2 (reported) the universal-phi answer
+         canonical NO; alt NO; OVERALL NO
+
+  READING (declared): YES would be consistency with a universal debris fraction on these lanes, not a derived rule; NO means the lanes' offsets are not reconciled by one multiplier of the sum's debris term.  Nothing here says the theory is closed; no phi is selected, fitted or recommended.
+
+  4/5 checks pass; load-bearing failures: 1   (12 s)
