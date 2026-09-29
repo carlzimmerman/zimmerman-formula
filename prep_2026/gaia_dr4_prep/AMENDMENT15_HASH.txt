@@ -1,0 +1,29 @@
+AMENDMENT 15 -- The frozen cut list (§1.2) is mapped onto DR4's table structure before release, so that no source
+  table is chosen after the data exist.  (a) The base sample is gaiadr4.gaia_source (the curated ~2 billion
+  subset); quantities for cuts 1-8, 10-11 and 14-15 come from gaia_source where DR4 carries them, otherwise from
+  the all_source_* table that carries them, joined on source_id.  Cut 9 (A_V) comes from the ap_* table that
+  carries it.  Cut 13's resolved-triple search runs against the full all_source_astrometry (~2.8 billion
+  sources), never the curated subset alone.  (b) Cut 12 (NSS screen) reads the DR4 nss_* tables: a pair is
+  rejected if either component appears in any non-single-star table carrying an astrometric orbit, an
+  acceleration solution or a spectroscopic orbit, with no quality threshold.  (c) A sample-definition variant
+  with all_source_* as the base runs alongside the primary and is reported, never substituted.  (d) Table and
+  column names are read from the published DR4 data model on release day and recorded in the fetch manifest;
+  no cut value, threshold, estimator setting or decision row changes; a quantity DR4 lacks makes that cut
+  UNIMPLEMENTABLE and flagged, with no substitute chosen after the data exist.  (e) A difference between the
+  primary and the variant larger than sigma_fit is reported as a systematic and never used to pick one.
+  ARMS A, B AND C, THE ESTIMATOR AND EVERY FROZEN NUMBER ARE UNTOUCHED.
+date: 2026-09-28
+sha256(PREREGISTRATION_DR4.md) before Amendment 15 (= after Amendment 14): d8edb85ccfaf801a9213fd8e6ec5d3eddea06b9fd476a82a3fee67ab3404e03f
+sha256(PREREGISTRATION_DR4.md) after Amendment 15: c8727e42748916afe84bc4c94b7a40fd314836e64ec86dc71fa1ebc0fc7fd33d
+added: (a) the base-sample and per-cut table mapping, including cut 9 (ap_*) and cut 13 (full all_source_astrometry);
+  (b) the NSS-screen table mapping; (c) the all_source_* sample-definition variant; (d) the release-day naming
+  rule and the unimplementable-cut rule; (e) the against-interest statement.
+unchanged: the estimator; the 16-row cut table's values; the error model; the strictness ladder; the NSS
+  screen's definition; the frozen N = 30,000; both a0 footings; ARMS A, B AND C; Amendment 14's decision rows.
+  No pipeline file changes.  KAPPA = 1/2 FITTED, NOT DERIVED.
+against interest: the curated base could drop genuine pairs whose photometry DPAC judged low-quality (for
+  example close pairs with BP/RP blending); the variant measures that and is never used to pick a sample.
+source: prep_2026/gaia_dr4_prep/AMENDMENT15_DRAFT_NOT_FILED.md, plus two additions made at filing after
+  checking the draft against ESA's DR4 content page (cosmos.esa.int/web/gaia/dr4, read 2026-09-28): cut 9's
+  extinction source (ap_*) and cut 13's full-catalogue search.  Filed on the owner's explicit instruction
+  2026-09-28.
