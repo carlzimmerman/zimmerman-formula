@@ -36,6 +36,15 @@ theorem C1_a0_form_unique (α β γ : ℚ)
     α = 1 ∧ β = 1 / 2 ∧ γ = 1 / 2 := by
   refine ⟨?_, ?_, ?_⟩ <;> linarith
 
+/-- the converse: (1, 1/2, 1/2) does satisfy the three unit equations, so the units of an acceleration hold iff (alpha, beta, gamma) = (1, 1/2, 1/2) -/
+theorem C1_a0_form_iff (α β γ : ℚ) :
+    (-β + γ = 0 ∧ α + 3 * β - 3 * γ = 1 ∧ -α - 2 * β = -2) ↔ (α = 1 ∧ β = 1 / 2 ∧ γ = 1 / 2) := by
+  constructor
+  · rintro ⟨h1, h2, h3⟩
+    exact C1_a0_form_unique α β γ h1 h2 h3
+  · rintro ⟨rfl, rfl, rfl⟩
+    norm_num
+
 /-! ## C2 -- links (b)+(c): kernel family => deep-MOND flat speed => BTFR zero point, composed with a0(Lambda) -/
 
 /-- the transition family nu_beta(y) = (1 + y^-beta)^(1/(2 beta)); beta = 1 is P2 = sqrt(1 + 1/y) -/

@@ -7,6 +7,7 @@ import ChainCert.PointMass
 
 #print axioms C1_exponent_matrix_det
 #print axioms C1_a0_form_unique
+#print axioms C1_a0_form_iff
 #print axioms C2_nuBeta_one
 #print axioms C2_nuBeta_mul_sqrt
 #print axioms C2_nuBeta_deep
