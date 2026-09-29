@@ -1,0 +1,69 @@
+====================================================================================================
+N1-2 product Einstein-Maxwell maps -- mode: REAL RUN
+====================================================================================================
+
+G1  Fubini-Study normalisation (holomorphic sectional curvature 4)
+  [PASS] G1 CP^1: Ric_(i jbar) = -d d-bar ln det G = 4 G_(i jbar)  (Einstein, Ric = 4 g; CP^1 has radius 1/2, K = 4) 
+  [PASS] G1 CP^2: Ric_(i jbar) = -d d-bar ln det G = 6 G_(i jbar)  (Einstein, Ric = 6 g; CP^1 has radius 1/2, K = 4) 
+    Vol(CP^1) = pi,  Vol(CP^2) = pi**2/2
+  [PASS] G2 Vol(CP^1) = pi (= Int omega over CP^1), Vol(CP^2) = pi^2/2 
+  [PASS] G3 flux quantisation on the CP^1 line: Int_{CP^1} F = FLUXNORM * N * pi = 2 pi N  (needs FLUXNORM = 2) 
+
+G4  Killing vector and moment map of T3 (index-1 su(2) Cartan) on CP^1 and CP^2
+    CP^1: i_V omega = -d mu0 with mu0 = c (1/2)(1-|w1|^2)/(1+|w|^2):  c = [{cc: 1/2}]
+  [PASS] G4a CP^1: i_V omega = -d mu0 has a solution of the form mu0 = (c/2)(1-|w1|^2)/(1+|w|^2) = c <z|T3|z>/<z|z>, c unique; the solver returns c = 1/2 (omega has holomorphic curvature 4, so its moment map is half of <T3>) (c = 1/2)
+    CP^2: i_V omega = -d mu0 with mu0 = c (1/2)(1-|w1|^2)/(1+|w|^2):  c = [{cc: 1/2}]
+  [PASS] G4a CP^2: i_V omega = -d mu0 has a solution of the form mu0 = (c/2)(1-|w1|^2)/(1+|w|^2) = c <z|T3|z>/<z|z>, c unique; the solver returns c = 1/2 (omega has holomorphic curvature 4, so its moment map is half of <T3>) (c = 1/2)
+    CP^1: <|K|^2> = 1/6 (FS units R=1),  <mu0> = 0,  <mu0^2> = 1/48
+    CP^2: <|K|^2> = 1/8 (FS units R=1),  <mu0> = 0,  <mu0^2> = 1/96
+  [PASS] G4b CP^1: <|K|^2> = 1/6 (= (2/3) rho^2 with rho = 1/2, the S^2 value), <mu0> = 0 
+  [PASS] G4c CP^1: F = 2 N omega gives <mu^2> = (2N)^2 <mu0^2> = N^2/12 (the S^2 value); with the mutated normalisation this fails (<mu^2>/N^2 = 1/12)
+  [PASS] G4d CP^2: <mu0> = 0 (traceless, no mixing with the U(1) zero mode) 
+  [PASS] G4e CP^2 sum rule: <mu0_a^2> = (1/4)(1/8)(1/3) = 1/96 from completeness sum_a T_a^{ij} T_a^{kl} = (1/2)(d^{il} d^{jk} - d^{ij} d^{kl}/3) (direct integral 1/96)
+    CP^2: <|K_T3|^2> = 1/8   (FS units)
+    factor S2: n = 2, R^2*Ricci_scalar = 2, beta = 1/8, vol/R^n = 4*pi, <K^2>/R^2 = 2/3, <mu^2>/N^2 = 1/12
+    factor CP1: n = 2, R^2*Ricci_scalar = 8, beta = 2, vol/R^n = pi, <K^2>/R^2 = 1/6, <mu^2>/N^2 = 1/12
+    factor CP2: n = 4, R^2*Ricci_scalar = 24, beta = 4, vol/R^n = pi**2/2, <K^2>/R^2 = 1/8, <mu^2>/N^2 = 1/24
+
+M1  CP^1 reproduces the S^2 result through the GENERAL code (the check that the machinery is right)
+  [PASS] M1a Einstein-equation cross-check agrees with the dW = 0 extremum (CP^1) 
+  [PASS] M1b radius: rho^2 = N^2 kappa^2/(4 g^2) (= f2 B2a) (rho^2 = N1**2*kappa**2/(4*g**2))
+  [PASS] M1c alpha_SU2 = 3 l_P^2/rho^2 and alpha_U1 = N^2 l_P^2/(2 rho^2) from the general code (equals n1_1) (got 3, N1**2/2)
+
+M2  D = 8: M_4 x CP^2, one Maxwell field with flux N_1 (SU(3) x U(1))
+  [PASS] M2a Einstein-equation cross-check (CP^2) 
+    R_FS^2 = 2*N1**2*kappa**2/(3*g**2);  alpha_3 = 16 l_P^2/R_FS^2;  alpha_U1(unit) = 4*N1**2/3 l_P^2/R_FS^2
+    flux/geometry ratio of 1/g_3^2 at Minkowski: phi_3 = 1  (S^2: 1)
+  [PASS] M2b alpha_3 = 4 l_P^2 / (<K^2>(1 + phi_3)) reproduced 
+
+M3  Map C: D = 10, M_4 x CP^2 x S^2, ONE Maxwell field with fluxes (N_1 on CP^2, N_2 on S^2)
+    X_1 = 1/R_1^2 = 3*g**2/(2*N1**2*kappa**2);  X_2 = 1/R_2^2 = 4*g**2/(N2**2*kappa**2);  Lambda_10 = g**2*(2*N1**2 + 9*N2**2)/(N1**2*N2**2*kappa**2)
+  [PASS] M3a Minkowski conditions decouple: R_i^2 proportional to N_i^2 (one common free real g^2/kappa^{3/2}-type scale) 
+  [PASS] M3b Einstein-equation cross-check on the product (4D block + CP^2 block + S^2 block) 
+    alpha_2/alpha_3 = N1**2/(2*N2**2);   alpha_U1/alpha_2 = N2**2/6;   alpha_U1/alpha_3 = N1**2/12;   R_1^2/R_2^2 = 8*N1**2/(3*N2**2)
+    alpha_2 = 3 l_P^2/R_2^2;  alpha_3 = 16 l_P^2/R_1^2   (R_1 is the Fubini-Study scale)
+  [PASS] M3c alpha_2/alpha_3 = C0 (N_1/N_2)^2 with C0 a pure number; alpha_U1/alpha_2 = N_2^2/6 (same as the S^2 map alone) (C0 = 1/2)
+  [PASS] M3d alpha_2 = 3 l_P^2/R_2^2 also in the product (flux = geometry at each factor) 
+    alpha_3 = 16 l_P^2/R_FS^2;  in terms of the CP^1 line radius rho = R_FS/2: alpha_3 = 4 l_P^2/rho^2
+    alpha_3 = alpha_2 requires N_1/N_2 = sqrt(2) = 1.4142  (a derived value; an integer/half-integer ratio must approximate it)
+
+M4  content lattice of the CP^2 x S^2 zero modes (spin^c counts RECALLED; counting identities checked)
+  [PASS] M4a dim Sym^k(C^3) = (k+1)(k+2)/2: k = 0, 1, 2, 3 -> 1, 3, 6, 10 (singlet, triplet, sextet, ...) 
+      Q    (dim_SU3, dim_SU2) = (3,2), |Y| = 1/6:  |q N_1| = 5/2, |q N_2| = 2  =>  N_1/N_2 = 5/4
+      L    (dim_SU3, dim_SU2) = (1,2), |Y| = 1/2:  |q N_1| = 3/2, |q N_2| = 2  =>  N_1/N_2 = 3/4
+      u^c  (dim_SU3, dim_SU2) = (3,1), |Y| = 2/3:  |q N_1| = 5/2, |q N_2| = 1  =>  N_1/N_2 = 5/2
+      d^c  (dim_SU3, dim_SU2) = (3,1), |Y| = 1/3:  |q N_1| = 5/2, |q N_2| = 1  =>  N_1/N_2 = 5/2
+      e^c  (dim_SU3, dim_SU2) = (1,1), |Y| = 1:  |q N_1| = 3/2, |q N_2| = 1  =>  N_1/N_2 = 3/2
+  [PASS] M4b the five SM types need five (four distinct) values of N_1/N_2 {5/4, 3/4, 5/2, 3/2}; only (u^c, d^c) share one, so Q, L, u^c, e^c cannot coexist for any single (N_1, N_2) (pairs with equal required N_1/N_2: [('u^c', 'd^c')])
+  [PASS] M4c the CP^2 lattice alone forces every colour triplet to have the same |q| (=5/(2N_1)) and every colour singlet the same |q| (=3/(2N_1)); SM |Y| among triplets = {1/6, 2/3, 1/3}, singlets {1/2, 1} (triplet |Y| set [Fraction(1, 6), Fraction(1, 3), Fraction(2, 3)], singlet [Fraction(1, 2), Fraction(1, 1)])
+  [PASS] M4d required |q_triplet|/|q_singlet| = (5/2)/(3/2) = 5/3, while SM |Y_Q|/|Y_L| = 1/3, |Y_u|/|Y_e| = 2/3 
+
+M5  family table for the scored trials of Map C (declared: N_2 in 1..6, N_1 in {1/2, 1, ..., 6}: 72 members)
+    members: 72;  alpha_2/alpha_3 range 0.003472 .. 18; alpha_U1/alpha_2 = N_2^2/6 in [0.1667, 0.6667, 1.5, 2.6667, 4.1667, 6.0]
+  [PASS] M5a the family has 72 members 
+
+====================================================================================================
+CHECKS: 24/24 passed
+VERDICT (Map C): the three couplings are forced functions of (N_1, N_2) and ONE free real (the overall g^2/kappa-type scale):
+  alpha_2/alpha_3 = 1/2 (N_1/N_2)^2,  alpha_U1(unit)/alpha_2 = N_2^2/6;  two integers for two ratios (no over-determination beyond integer granularity);
+  the SM chiral content needs four different N_1/N_2 (M4) and hypercharges the lattice cannot give.

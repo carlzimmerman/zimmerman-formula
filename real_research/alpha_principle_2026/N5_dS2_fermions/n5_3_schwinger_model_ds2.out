@@ -1,0 +1,82 @@
+==============================================================================================================
+N5-3 massless Schwinger model in dS_2 -- mode: REAL RUN
+==============================================================================================================
+
+S2. Linear conductivity of the massless fermion from the direct mode sum (n5_2: J/(eH) = (2 lambda*s - I_raw)/(2 pi), s = 1 with the subtraction)
+     lambda = 0.05:  I_raw = 0.0 (ODE no-mixing deviation 4.8e-11),  J/(eH lambda) = 0.318309886184   (1/pi = 0.318309886184)
+     lambda = 0.30:  I_raw = 0.0 (ODE no-mixing deviation 4.9e-11),  J/(eH lambda) = 0.318309886184   (1/pi = 0.318309886184)
+     lambda = 1.10:  I_raw = 0.0 (ODE no-mixing deviation 4.9e-11),  J/(eH lambda) = 0.318309886184   (1/pi = 0.318309886184)
+     lambda = 2.70:  I_raw = 0.0 (ODE no-mixing deviation 4.9e-11),  J/(eH lambda) = 0.318309886184   (1/pi = 0.318309886184)
+  [PASS] S2 sigma_0 = e^2/(pi H): J/(eH lambda) = 1/pi exactly, independent of lambda (coefficient 0.318309886184; 1/pi = 0.318309886184)
+
+S1. Homogeneous Maxwell equation in dS_2 with the massless-fermion induced current (sympy)
+     L = (1/2) a^-2 A'^2 - (1/2)(e^2/pi) A^2   [the induced term is conformally invariant: sqrt(g) g^{xx} A_x^2 = -A^2]
+     Euler-Lagrange: (pi*H**2*tau*(tau*Derivative(A(tau), (tau, 2)) + 2*Derivative(A(tau), tau)) + e**2*A(tau))/pi
+     EL = E' + (e^2/pi) A with E = A'/a^2: True ; (E'' + (e^2/pi) a^2 E) - d(EL)/dtau = 0
+     cosmic time:  E_tt + H E_t + (e^2/pi) E  =?   0
+     memory relation  J_t + H J - (e^2/pi) E = 0
+     constant E: J =  E0*e**2/(pi*H)   = e^2 E/(pi H)   (the direct-sum value J/(eH) = lambda/pi with lambda = eE/H^2)
+     E ~ exp(-s t):  s^2 - H s + e^2/pi = 0  ->  s = [H/2 - sqrt(pi*H**2 - 4*e**2)/(2*sqrt(pi)), H/2 + sqrt(pi*H**2 - 4*e**2)/(2*sqrt(pi))] ; Delta = s/H obeys Delta(1 - Delta) = e^2/(pi H^2) = x
+  [PASS] S1 Maxwell + induced current: E'' + (e^2/pi) a^2 E = 0, E_tt + H E_t + (e^2/pi) E = 0, J_t + H J = (e^2/pi) E, J_const = e^2 E/(pi H) 
+
+S1b. The exact solution's propagator (Anninos-Anous-Rios Fukelman eq. 3.5/3.10): G = 2F1(Delta, 1-Delta; 1; 1-u/2), u = 1 - cos(Theta):  (nabla^2 - m^2) G = 0, m^2 = Delta(1-Delta) = x ?
+     x =  0.05:  Delta(1-Delta) = 0.050000;  relative residual of (nabla^2 - x) G = 0 at Theta = 1.1:  1.3e-30
+     x =  0.20:  Delta(1-Delta) = 0.200000;  relative residual of (nabla^2 - x) G = 0 at Theta = 1.1:  0.0e+00
+     x =  0.25:  Delta(1-Delta) = 0.250000;  relative residual of (nabla^2 - x) G = 0 at Theta = 1.1:  0.0e+00
+     x =  0.60:  Delta(1-Delta) = 0.600000;  relative residual of (nabla^2 - x) G = 0 at Theta = 1.1:  1.7e-31
+     x =  1.50:  Delta(1-Delta) = 1.500000;  relative residual of (nabla^2 - x) G = 0 at Theta = 1.1:  2.7e-31
+  [PASS] S1b the exact model's propagator is the dS_2 scalar propagator of m^2 = x = e^2/(pi H^2) (worst 1.3e-30)
+
+S3. Numerical integration of E'' + c e^2 a^2 E = 0  (conformal time, H = 1) with c = sigma_0 H^2/e^2 read from the mode sum (S2); x_nominal = e^2/pi, x_eff = pi c x_nominal
+     real exponents (x < 1/4):
+       x = 0.05:  fitted late-time exponent 0.052786   Delta_- = 1/2 - sqrt(1/4 - x) = 0.052786   diff 3.8e-15
+       x = 0.15:  fitted late-time exponent 0.183772   Delta_- = 1/2 - sqrt(1/4 - x) = 0.183772   diff 3.4e-14
+       x = 0.24:  fitted late-time exponent 0.400000   Delta_- = 1/2 - sqrt(1/4 - x) = 0.400000   diff 3.4e-09
+     complex exponents (x > 1/4): envelope (-tau)^(1/2), oscillation frequency nu = sqrt(x - 1/4) in ln(-tau):
+       x = 0.60:  envelope amplitude of (-tau)^(-1/2) E constant to 2.7e-11;  nu(fit from zero crossings) = 0.59161  vs sqrt(x - 1/4) = 0.59161
+       x = 1.50:  envelope amplitude of (-tau)^(-1/2) E constant to 1.3e-11;  nu(fit from zero crossings) = 1.11803  vs sqrt(x - 1/4) = 1.11803
+  [PASS] S3 late-time exponents/oscillation of the integrated Maxwell equation match Delta(1 - Delta) = x (real) and 1/2 +- i sqrt(x - 1/4) (complex) (worst real-exponent diff 3.4e-09; envelope spread 2.7e-11; frequency diff 1.5e-09)
+
+S4. Exact decay exponent against the naive local-response rate  x  (local model: E_t = -(e^2/(pi H)) E at every time, as in Stahl-Xue 1603.07166 at mu = 0)
+     x        Delta_- (exact)   local rate x   (Delta_- - x)/x     regime
+      0.01    0.010102         0.0100       +0.0102          overdamped (monotone)
+      0.10    0.112702         0.1000       +0.1270          overdamped (monotone)
+      0.24    0.400000         0.2400       +0.6667          overdamped (monotone)
+      0.25    0.500000         0.2500       +1.0000          overdamped (monotone)
+      0.60    Re Delta = 0.5000  0.6000       (rate saturates at H/2, oscillates at H*sqrt(x-1/4) = 0.5916 H)  underdamped
+      1.00    Re Delta = 0.5000  1.0000       (rate saturates at H/2, oscillates at H*sqrt(x-1/4) = 0.8660 H)  underdamped
+      2.00    Re Delta = 0.5000  2.0000       (rate saturates at H/2, oscillates at H*sqrt(x-1/4) = 1.3229 H)  underdamped
+  [PASS] S4 exact Delta_- = x + x^2 + 2 x^3 + 5 x^4 + ...: (Delta_- - x)/x = x + 2 x^2 + 5 x^3 (1e-4 at x = 0.01, 1e-2 at x = 0.1); for x > 1/4 the rate saturates at H/2 and E oscillates 
+
+S5. Special-value table (nine declared candidates; e^2/H^2 = pi x)
+     candidate                              x        e^2/H^2 = pi x    exact model at x
+     critical damping (Delta_+ = Delta_-)    0.2500      0.78540        Delta = 1/2 (double root; branch point of Delta only)
+     linear-response rate = H                1.0000      3.14159        Delta = 1/2 +- 0.8660 i (underdamped)
+     tie sigma/H = kappa                     0.5000      1.57080        Delta = 1/2 +- 0.5000 i (underdamped)
+     tie sigma/H = kappa/pi                  0.1592      0.50000        Delta_- = 0.1986 (overdamped)
+     tie sigma/H = 1/(2 pi)                  0.1592      0.50000        Delta_- = 0.1986 (overdamped)
+     tie sigma/H = 1/pi                      0.3183      1.00000        Delta = 1/2 +- 0.2614 i (underdamped)
+     tie sigma/H = 1                         1.0000      3.14159        Delta = 1/2 +- 0.8660 i (underdamped)
+     tie sigma/H = 2 kappa                   1.0000      3.14159        Delta = 1/2 +- 0.8660 i (underdamped)
+     instanton weight e^{-1/(2x)} = e^-1     0.5000      1.57080        Delta = 1/2 +- 0.5000 i (underdamped)
+
+     H5 test (a): the Euclidean (dS-invariant) propagator coefficient Gamma(Delta)Gamma(1-Delta) 2F1(Delta,1-Delta;1;1-u/2) is analytic across x = 1/4
+     x:       0.22  0.23  0.24  0.25  0.26  0.27  0.28
+     x C(x):  1.00413980  1.00404709  1.00393343  1.00379920  1.00364477  1.00347052  1.00327680
+     third finite differences (step 0.01):  x C(x) at the threshold 3.82e-07;  x C(x) at x = 0.6 (control) 2.00e-07;  raw C(x) at the threshold 1.98e-03 (pole at x = 0 only 0.25 away);
+                                            calibration Delta_-(x) (sqrt singularity at 1/4) 1.87e-01;  max |Im C| 1.6e-40
+     H5 test (b): sphere-series coefficients q^2 l^2 / (L(L+1)(L(L+1) + x)), q^2 l^2 = pi x, are positive for every L >= 1 on x in [1e-3, 1e3]:
+       all positive: True  (400 values of x, L = 1..199)
+  [PASS] H5 the exact model is analytic through the threshold x = 1/4 and well defined (positive-definite spectral sum) at every x: no coupling is excluded or isolated 
+
+==============================================================================================================
+CHECKS: 6/6 passed
+VERDICT (against the declared criteria):
+  * The massless dS_2 Schwinger model is a damped plasma oscillator: sigma_0 = e^2/(pi H) from the anomaly (S2) gives E_tt + H E_t + (e^2/pi) E = 0,
+    i.e. a dS_2 scalar of mass^2 = e^2/pi = m_photon^2 (S1, S1b, S3), matching the literature parameter map Delta(1 - Delta) = e^2/(pi H^2).
+  * The constant-field response J = e^2 E/(pi H) is the exact particular solution; the naive local-response model reproduces only the small-x rate (S4).
+  * The only special point on the family is the branch point x = 1/4 (e^2/H^2 = pi/4) where the two exponents merge; the dS-invariant correlators are analytic there (H5a),
+    and every x > 0 gives a well-defined exact model (H5b).  A threshold is not a selected value: NO coupling is forced.  The six conductivity ties give e^2/H^2 = pi c only
+    if c is supplied from outside.  2D toy: e^2/H^2 is not alpha; nothing here selects any 4D coupling.
+  * kappa = 1/2 stays FITTED.  The SM-mass wall is unchanged.
+exit 0

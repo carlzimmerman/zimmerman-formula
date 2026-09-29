@@ -1,0 +1,59 @@
+==============================================================================================================
+N5-1 Dirac fermion in dS_2 -- mode: REAL RUN
+==============================================================================================================
+
+D1. Dirac equation on ds^2 = a^2 (d tau^2 - dx^2): tetrad e^a_mu = a delta, spin connection fixed by  nabla_mu gamma^nu = 0
+     Omega_tau = [[0, 0], [0, 0]]    Omega_x = [[-Derivative(a(tau), tau)/(2*a(tau)), 0], [0, Derivative(a(tau), tau)/(2*a(tau))]]
+     a * D psi - a^{-1/2} * [flat Dirac operator with m -> m a on Psi] = [[0, 0]]
+     flat rows (p = k + eA):  row1 = -m*Psi1(tau)*a(tau) - p*Psi2(tau) + I*Derivative(Psi2(tau), tau)     row2 = -m*Psi2(tau)*a(tau) + p*Psi1(tau) + I*Derivative(Psi1(tau), tau)
+  [PASS] D1 curved Dirac operator reduces to the flat system  i Psi_1' = -p Psi_1 + m a Psi_2, i Psi_2' = p Psi_2 + m a Psi_1 
+
+M1/M1b. Whittaker modes vs the first-order system (c found at tau_ref = -1, both rows checked at other times)
+     k     lambda   mu     tau     residual      |c|*mu - 1
+      0.7  +0.30   0.90  -0.60   2.31e-31     0.00e+00   (c = -0.000000+1.111111j)
+      1.3  +0.60   0.60  -1.70   8.18e-32     0.00e+00   (c = 0.000000+1.666667j)
+      2.1  -0.40   0.50  -0.40   1.04e-31     0.00e+00   (c = 0.000000+2.000000j)
+      0.4  +1.20   0.30  -2.20   4.44e-31     0.00e+00   (c = -0.000000+3.333333j)
+      3.0  +0.10   1.50  -0.50   1.02e-31     0.00e+00   (c = -0.000000+0.666667j)
+      0.9  +0.80   0.05  -1.10   1.86e-31     0.00e+00   (c = -0.000000+20.000000j)
+  [PASS] M1 Whittaker modes W_{kappa -+ 1/2, i rho_f}(2 i k tau) satisfy the Dirac system to <= 1e-12 (worst 4.4e-31)
+  [PASS] M1b |c| = 1/mu (the constant used by the current script) (worst 0.0e+00)
+
+M2. norm conservation |Psi_1|^2 + |Psi_2|^2 in tau (k = 1.3, lambda = 0.6, mu = 0.6)
+     norms: ['1.096591903194', '1.096591903194', '1.096591903194', '1.096591903194', '1.096591903194']
+  [PASS] M2 unit-norm constant in tau (relative spread 1.8e-31; the constant only fixes the overall normalisation of the unnormalised construction)
+
+M3. independent ODE integration from tau_0 = -4000/|k| (adiabatic eigenvector start) vs Whittaker construction, f = |Psi_1|^2 - |Psi_2|^2 at tau = -1
+      k     lambda   mu     f(ODE)         f(Whittaker)    |diff|     norm(ODE)-1
+     +0.50  +0.30   0.90   -0.25318347    -0.25318347    4.5e-09    -4.9e-11
+     +2.00  +0.60   0.60   -0.93822932    -0.93822932    6.4e-09    -4.8e-11
+     +1.00  -0.40   0.50   -0.94671538    -0.94671538    1.3e-09    -4.8e-11
+     -0.50  +0.30   0.90   +0.66259297    +0.66259296    1.7e-08    -4.9e-11
+     -2.00  +0.60   0.60   +0.97542057    +0.97542057    2.4e-09    -4.8e-11
+     -1.00  -0.40   0.50   +0.86604490    +0.86604490    9.0e-10    -4.8e-11
+  [PASS] M3 Whittaker Bunch-Davies modes (k>0) and the k<0 swap mapping agree with the far-past ODE integration to <= 1e-4 (worst 1.7e-08)
+
+P1. pair production |beta_k|^2 by projection onto the out modes vs Stahl-Strobel-Xue eq. (73)   [k>0; r = sgn(k lambda)]
+      k     lambda    mu      |beta|^2 (numeric)   eq.(73)          rel diff    |alpha|^2+|beta|^2-1   |<out+|out->|
+      1.0  +0.50   1.00    2.0583618724e-02     2.0583618724e-02    6.7e-16     +0.0e+00          2.0e-31
+      1.0  -0.50   1.00    3.7648938476e-05     3.7648938476e-05    0.0e+00     +0.0e+00          2.0e-31
+      0.3  +1.20   0.30    7.9290752060e-01     7.9290752060e-01    4.4e-16     +0.0e+00          4.3e-31
+      0.3  -1.20   0.30    4.6385301785e-08     4.6385301785e-08    2.1e-15     +0.0e+00          1.9e-31
+      2.5  +0.20   2.00    1.1508668325e-05     1.1508668325e-05    2.1e-15     +0.0e+00          2.0e-31
+      2.5  -0.20   2.00    9.3222210693e-07     9.3222210693e-07    2.1e-15     +0.0e+00          5.5e-32
+     k-independence: |beta|^2 at k = 1.0 and k = 3.7 (lambda = 0.5, mu = 1): 2.0583618724e-02  2.0583618724e-02
+  [PASS] P1 numeric |beta_k|^2 equals eq. (73) to <= 1e-6 (both signs of r), independent of |k| (worst 2.1e-15)
+
+P2. massless limit (mu = 1e-3): n_k -> theta(k lambda)
+     lambda = +1 (screening, k lambda > 0):   n = 0.999997
+     lambda = -1 (anti-screening):            n = 1.096e-11
+  [PASS] P2 n_k >= 0.99 for k lambda > 0 and <= 0.01 for k lambda < 0 at mu = 1e-3 
+
+==============================================================================================================
+CHECKS: 7/7 passed
+VERDICT (against the declared criteria):
+  * The dS_2 Dirac system, its exact Whittaker modes with index i*sqrt(mu^2 + lambda^2), the k<0 mapping and the pair-production factor
+    are verified independently of the published formulas (ODE from the far past; out-mode projection).
+  * Massless limit: n_k = theta(k lambda) (probability 1 in the screening direction, 0 against it): spectral flow.
+  * 2D toy: e has mass dimension 1 here; lambda = eE/H^2 is the only place e enters the pair-production factor.
+exit 0

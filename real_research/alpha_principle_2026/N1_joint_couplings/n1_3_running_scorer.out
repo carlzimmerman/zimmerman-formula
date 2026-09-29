@@ -1,0 +1,48 @@
+====================================================================================================
+N1-3 running + scorer -- mode: REAL RUN
+====================================================================================================
+
+R1  one-loop coefficients from the SM field content: b_Y = 41/6, b_2 = -19/6, b_3 = -7, b_1 (GUT) = 41/10
+  [PASS] R1a b_Y = 41/6, b_2 = -19/6, b_3 = -7 derived from the field content 
+  [PASS] R1b b_Y = (5/3) b_1 (alpha_Y^-1 = (5/3) alpha_1^-1) 
+
+R2  one-loop 1/alpha_em(m_P) with measured couplings at m_Z
+    this lib: alpha_Y^-1 = 55.461, alpha_2^-1 = 49.455, alpha_3^-1 = 52.409, alpha_em^-1 = 104.917;  rg_common.run_oneloop: 55.461, 49.455, 52.409
+  [PASS] R2a 1/alpha_em(m_P) (one loop) = 104.94 (lane M 104.937, lane B 104.917, lane F 104.94) within 0.1 (got 104.917)
+  [PASS] R2b this library's one-loop running equals lane B's rg_common.run_oneloop to 1e-9 at m_P 
+
+R3  two-loop shift of alpha_em^-1(m_P) (lane B measured 0.5-0.7%; lane M: 0.67%)
+    two-loop alpha_i^-1(m_P) = 55.069, 49.145, 52.901; alpha_em^-1: 104.214 vs one-loop 104.917: shift -0.670%;  y_t(m_Z) = 0.9658
+  [PASS] R3a two-loop shift of alpha_em^-1(m_P) has size within 0.4-1.0% (lane B: 0.5-0.7%; the coefficients are RECALLED, this is their validation) (got -0.670%)
+
+R4  measured ratios and delta_run at the scales used (5 variants: 2L-A central, 1L-A, 1L-B, 2L-B, 1L-A-topdec)
+    mu = 1.000e+13 GeV: alpha_Y^-1, alpha_2^-1, alpha_3^-1 (2L-A) = 70.410, 42.152, 37.200;  alpha_Y/alpha_2 = 0.5987, alpha_2/alpha_3 = 0.8825;  delta_run: Y2 0.15%, 23 1.65%
+    mu = 1.000e+16 GeV: alpha_Y^-1, alpha_2^-1, alpha_3^-1 (2L-A) = 62.847, 45.596, 44.943;  alpha_Y/alpha_2 = 0.7255, alpha_2/alpha_3 = 0.9857;  delta_run: Y2 0.06%, 23 1.60%
+    mu = 1.000e+17 GeV: alpha_Y^-1, alpha_2^-1, alpha_3^-1 (2L-A) = 60.327, 46.746, 47.522;  alpha_Y/alpha_2 = 0.7749, alpha_2/alpha_3 = 1.0166;  delta_run: Y2 0.03%, 23 1.59%
+    mu = 1.000e+18 GeV: alpha_Y^-1, alpha_2^-1, alpha_3^-1 (2L-A) = 57.807, 47.895, 50.100;  alpha_Y/alpha_2 = 0.8285, alpha_2/alpha_3 = 1.0460;  delta_run: Y2 0.08%, 23 1.57%
+    mu = 1.221e+19 GeV: alpha_Y^-1, alpha_2^-1, alpha_3^-1 (2L-A) = 55.069, 49.145, 52.901;  alpha_Y/alpha_2 = 0.8924, alpha_2/alpha_3 = 1.0764;  delta_run: Y2 0.15%, 23 1.55%
+  [PASS] R4a delta_run at 1e18 GeV is below 5% for both ratios (running-model spread only; thresholds NOT included; Amendment 1: the lower bound 0.1% written in the first draft was wrong for alpha_Y/alpha_2, whose spread is 0.08%) (Y2 0.08%, 23 1.57%)
+
+R5  sensitivity (reported, not bounds)
+    Map-A self-consistent scale mu_c = M_P sqrt(alpha_2(mu_c)/3) = 1.0184e+18 GeV (R/l_P = 11.988); alpha_2^-1(mu_c) = 47.904
+    mu_c x 0.286: alpha_Y/alpha_2 = 0.7992 (-3.59%), alpha_2/alpha_3 = 1.0304 (-1.51%)
+    mu_c x 3.500: alpha_Y/alpha_2 = 0.8602 (+3.77%), alpha_2/alpha_3 = 1.0617 (+1.47%)
+    scale ambiguity (factor 3.5 either way): alpha_Y/alpha_2 3.77%, alpha_2/alpha_3 1.51%;  running spread delta_run: 0.09%, 1.57%
+  [PASS] R5a the mu_c ambiguity (lightest KK mass vs 1/R, factor 3.5) exceeds the running spread for alpha_Y/alpha_2 (3.7% vs 0.09%) and is comparable for alpha_2/alpha_3 (1.5% vs 1.6%) (Amendment 1: the first draft expected < 2%); it is carried as the EXTENDED tolerance in n1_4 
+    y_t x 0.95: alpha_Y/alpha_2 shifts by +0.003%
+    y_t x 1.05: alpha_Y/alpha_2 shifts by -0.004%
+    one Y = 1 Dirac fermion at 1 TeV shifts alpha_Y^-1(mu_c) by -7.33 (-12.7%);  one vector-like doublet (Y = 1/2) shifts alpha_2^-1 by -3.67 (-7.7%) and alpha_Y^-1 by -3.67
+  [PASS] R5b thresholds: ONE unit-hypercharge Dirac fermion at 1 TeV moves alpha_Y^-1(mu_c) by > 10% (unbounded in general: the SM-desert ratio at ~1e18 is conditional) (-12.7%)
+
+R6  scorer controls
+    positive control: miss +0.00e+00, +0.00e+00; J1 True; lambda = 5.98e-05, P = 5.98e-05 (family 1)
+    negative control: misses +8.00%, -8.00% (tol 1.00%); J1 False
+  [PASS] R6a positive control: a synthetic map equal to the model's own ratios passes J1 and J2 in a family of 1 
+  [PASS] R6b negative control: the same ratios perturbed by 8% fail J1 
+  [PASS] R6c look-elsewhere formula: 72 trials x two ratios at tol 1% gives lambda = 72 (2*0.01/ln100)^2 = 1.36e-3 (so P = 1.4e-3, cannot clear 1e-3) 
+  [PASS] R6d a 50% miss on one ratio is rejected even in a family of 1 
+
+====================================================================================================
+CHECKS: 12/12 passed
+STATEMENT: at mu ~ 1e18 GeV the SM-desert ratios are known to about delta_run = 0.1% (Y2) and 1.6% (23) from one/two-loop and input choices; unknown thresholds are NOT bounded
+  (one Y=1 Dirac fermion at 1 TeV moves alpha_Y^-1 by 13%). A ratio test at that scale can KILL a map that misses by far more than that; it cannot confirm one.

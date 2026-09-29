@@ -1,0 +1,85 @@
+==============================================================================================================
+N5-2 induced current of a Dirac fermion in dS_2 -- mode: REAL RUN
+==============================================================================================================
+
+1. DIRECT mode sum vs the closed form  J/(eH) = (1/pi) rho_f sinh(2 pi lambda)/sinh(2 pi rho_f)
+     lambda    mu     rho_f     direct J/(eH)     closed form       ratio      tail(c2)
+      0.30   0.90   0.9487   +0.005008970    +0.005008970    +1.000000   -1.75e-08
+      0.60   0.60   0.8485   +0.056640075    +0.056640075    +1.000000   -1.02e-08
+      1.00   0.30   1.0440   +0.252007795    +0.252007795    +1.000000   -1.16e-09
+      1.50   1.00   1.8028   +0.085623300    +0.085623300    +1.000000   +1.52e-08
+      2.00   1.50   2.5000   +0.034388543    +0.034388544    +1.000000   +1.94e-07
+      0.10   0.30   0.3162   +0.018862713    +0.018862713    +1.000000   -4.79e-10
+      0.20   0.10   0.2236   +0.060006905    +0.060006905    +1.000000   -9.91e-11
+      0.35   2.00   2.0304   +0.000016584    +0.000016583    +1.000001   -2.35e-07
+      0.50   0.50   0.7071   +0.061156166    +0.061156166    +1.000000   -6.04e-09
+      0.40   0.05   0.4031   +0.125797637    +0.125797637    +1.000000   -4.44e-11
+  [PASS] V1 direct current equals the closed form on the whole grid, one consistent sign (worst |ratio| - 1 = 1.1e-06; sign of direct/closed = +; + means the paper's orientation convention, in which J and E have the same sign, i.e. sigma > 0)
+
+2. MASSLESS LIMIT: chirality decouples, no mixing, the whole current is the subtraction (anomaly)
+     ODE (m = 0): |Psi_2| = 1, Psi_1 = 0 for k>0 and the reverse for k<0, for constant and for time-dependent A: worst deviation 5.0e-11
+     => f(k,lambda) = -1 (k>0), +1 (k<0) for both signs of lambda:  I_raw = Int [f(k,lambda) - f(k,-lambda)] dk = 0,  J/(eH) = 2 lambda/(2 pi) = lambda/pi
+       lambda = 0.15:  J/(eH) = 0.0477464829   lambda/pi = 0.0477464829   closed form (mu -> 0) = 0.0477464829
+       lambda = 0.40:  J/(eH) = 0.1273239545   lambda/pi = 0.1273239545   closed form (mu -> 0) = 0.1273239545
+       lambda = 0.80:  J/(eH) = 0.2546479089   lambda/pi = 0.2546479089   closed form (mu -> 0) = 0.2546479089
+       lambda = 1.60:  J/(eH) = 0.5092958179   lambda/pi = 0.5092958179   closed form (mu -> 0) = 0.5092958179
+  [PASS] V2 massless: no mixing verified by ODE (<= 1e-10), so I_raw = 0 and J/(eH) = lambda/pi exactly linear (matches the closed form at mu = 0) (worst no-mixing deviation 5.0e-11)
+  [PASS] V3 J is odd in lambda (direct computation at +0.6 and -0.6, mu = 0.7) (J(+) = +0.03879705, J(-) = -0.03879705)
+
+4. HEAVY FIELDS: exponentially small current (mu = 3, lambda = 0.3): convergence with the UV cutoff K
+       K =    160:  J = 5.429987e-08   closed = 3.660503e-08   rel diff 4.83e-01
+       K =    320:  J = 3.771892e-08   closed = 3.660503e-08   rel diff 3.04e-02
+       K =    640:  J = 3.667478e-08   closed = 3.660503e-08   rel diff 1.91e-03
+       K =   1280:  J = 3.660939e-08   closed = 3.660503e-08   rel diff 1.19e-04
+     small-lambda slope of the closed form over 4 mu e^{-2 pi mu}  (scalar AH2: 1.16, 1.08, 1.04, 1.02 at these mu):
+       mu =   5.0:  ratio = 1.000000
+       mu =  10.0:  ratio = 1.000000
+       mu =  20.0:  ratio = 1.000000
+       mu =  40.0:  ratio = 1.000000
+  [PASS] V4 the exponentially small heavy-field current is resolved by the direct sum (mu = 3) and the slope -> 4 mu e^{-2 pi mu} (mu = 3 ratio 1.00012; the fermion slope is 1/(1 - e^{-4 pi mu}) times 4 mu e^{-2 pi mu}, no 1/mu correction)
+
+5. LINEAR CONDUCTIVITY  sigma H/e^2 = g_f(mu) = 2 mu/sinh(2 pi mu)   (scalar: g_s = 2 rho_s/sinh(2 pi rho_s), rho_s = sqrt(mu^2 - 1/4))
+     mu       g_f(mu)        g_s(mu)        g_f/g_s      exp(-pi/(4 mu))
+      0.00   3.183099e-01   (scalar: diverges as 1/(2 pi mu^2))
+      0.05   3.131336e-01   6.318672e+01   0.00496      0.00000
+      0.10   2.982920e-01   1.544678e+01   0.01931      0.00039
+      0.30   1.865026e-01   1.361041e+00   0.13703      0.07295
+      0.50   8.658954e-02   3.183099e-01   0.27203      0.20788
+      1.00   7.469797e-03   1.501169e-02   0.49760      0.45594
+      2.00   2.789874e-05   4.025953e-05   0.69297      0.67523
+      5.00   4.542202e-13   5.290227e-13   0.85860      0.85464
+     large-mu ratio g_f/g_s against exp(-pi/(4 mu)):
+       mu =   5.0:  g_f/g_s = 0.858603   exp(-pi/(4 mu)) = 0.854636   rel diff 4.6e-03
+       mu =  10.0:  g_f/g_s = 0.925578   exp(-pi/(4 mu)) = 0.924465   rel diff 1.2e-03
+       mu =  20.0:  g_f/g_s = 0.961786   exp(-pi/(4 mu)) = 0.961491   rel diff 3.1e-04
+     small-mu expansion  pi g_f = 1 - (2 pi^2/3) mu^2 + (14 pi^4/45) mu^4 + O(mu^6)  (Amendments 2 and 3):
+       mu =  0.01:  pi g_f = 0.99934233   three-term series = 0.99934233   rel diff of the deviation from 1: 1.9e-07
+       mu =  0.05:  pi g_f = 0.98373811   three-term series = 0.98374007   rel diff of the deviation from 1: 1.2e-04
+     g_f falls to half its massless value 1/pi at mu = 0.3465   (information)
+  [PASS] V5 g_f < g_s at every tabulated mu >= 0.05; g_f/g_s -> exp(-pi/(4 mu)) (5%); g_f = 1/pi at mu = 0 with the three-term small-mu series of Amendments 2-3 
+
+6. TIES  sigma/H = c:  required e^2/H^2 = c/g_f(mu)   (kappa = 1/2 is FITTED)
+     c            mu=0.3       mu=0.5       mu=1.0       mu=2.0       mu=5.0        spread(max/min)   massless: e^2/H^2 = pi c
+     kappa        2.6809e+00   5.7744e+00   6.6936e+01   1.7922e+04   1.1008e+12    4.11e+11        1.57080
+     kappa/pi     8.5337e-01   1.8380e+00   2.1306e+01   5.7047e+03   3.5039e+11    4.11e+11        0.50000
+     1/(2 pi)     8.5337e-01   1.8380e+00   2.1306e+01   5.7047e+03   3.5039e+11    4.11e+11        0.50000
+     1/pi         1.7067e+00   3.6761e+00   4.2613e+01   1.1409e+04   7.0078e+11    4.11e+11        1.00000
+     1            5.3619e+00   1.1549e+01   1.3387e+02   3.5844e+04   2.2016e+12    4.11e+11        3.14159
+     2 kappa      5.3619e+00   1.1549e+01   1.3387e+02   3.5844e+04   2.2016e+12    4.11e+11        3.14159
+  [PASS] V6 no tie on the conductivity fixes e^2/H^2 independently of the mass (declared: spread < 2 would count) (the massless value e^2/H^2 = pi c exists only for m = 0 exactly and c supplied from outside)
+
+   Electron-mass reading (2D-toy statement): mu_e = m_e/H0 = 3.554e+38;  ln g_f(mu_e) = ln(2 mu) - ln sinh(2 pi mu) = -2.233e+39
+     (any tie sigma/H = c would need ln(e^2/H^2) = ln c + 2.233e+39: unreachable, as for the scalar)
+  [PASS] V6b heavy fermion: ln g_f = ln(4 mu) - 2 pi mu up to exponentially small terms (mu = 5, 10, 20) 
+
+==============================================================================================================
+CHECKS: 7/7 passed
+VERDICT (against the declared criteria):
+  * The dS_2 fermion induced current is computed by a direct mode sum and matches the published closed form (V1-V4).
+  * It carries e^2: sigma H = (e^2/H^2) g_f(mu), g_f = 2 mu/sinh(2 pi mu), mass dependent; only lambda = eE/H^2 enters the nonlinear function.
+  * Massless limit: J = e^2 E/(pi H) exactly for all lambda (the anomaly); g_f(0) = 1/pi = the coefficient of the Schwinger-model photon mass e^2/pi.
+  * Unlike the scalar: no 1/(2 pi mu^2) divergence at small mu; at large mu g_f/g_s -> exp(-pi/(4 mu)).
+  * A tie sigma/H = c fixes e^2/H^2 = pi c only for an exactly massless fermion with c supplied from outside; for any massive fermion the required coupling
+    varies over many decades (V6).  2D toy: e has mass dimension 1; dS_4 fermions and charge renormalisation are not computed here.
+  * kappa = 1/2 stays FITTED.  The SM-mass wall is unchanged.
+exit 0

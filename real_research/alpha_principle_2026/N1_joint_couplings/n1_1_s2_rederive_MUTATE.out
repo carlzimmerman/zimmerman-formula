@@ -1,0 +1,58 @@
+====================================================================================================
+N1-1 S^2 flux relations re-derived -- mode: MUTATE CONTROL (flux term dropped)
+====================================================================================================
+
+I1  Killing vectors, algebra normalisation, moment maps, averages
+  [PASS] I1a K_x, K_y, K_z are Killing vectors of S^2(R) 
+  [PASS] I1b [K_a, K_b] = eps_abc K_c up to one overall sign: unit-normalised su(2) (doublets have T3 = +-1/2) (overall sign -1)
+  [PASS] I1c flux quantisation: Int F = 2 pi N 
+  [PASS] I1d moment maps found: i_{K_a} F = -d mu_a with mu_a = +-(N/2) n_a (adjoint, traceless) {'x': -N*sin(theta)*cos(phi)/2, 'y': -N*sin(phi)*sin(theta)/2, 'z': -N*cos(theta)/2}
+    <|K_a|^2> = {'x': 2*R**2/3, 'y': 2*R**2/3, 'z': 2*R**2/3};   <mu_a^2> = {'x': N**2/12, 'y': N**2/12, 'z': N**2/12}
+  [PASS] I1e <|K_a|^2> = 2 R^2/3 for a = x, y, z 
+  [PASS] I1f <mu_a^2> = N^2/12 for a = x, y, z 
+  [PASS] I1g no off-diagonal kinetic mixing between different generators (K.K and mu mu) 
+  [PASS] I1h SU(2)-U(1) mixing vanishes: <mu_a> = 0 (a 6D Maxwell zero mode does not mix with any su(2) generator) 
+    NOTE (statement, not a check): the flux term uses the traceless moment map; <mu_a> = 0 (I1h) fixes the additive constant. A shifted constant c would add c^2 to <mu^2> and give the Cartan an asymmetric charge spectrum, i.e. it would not be the SU(2)-covariant gauge field.
+
+I2  Minkowski point and the couplings
+    Minkowski: R^2 = N**2*kappa**2/(4*g**2),   Lambda_6 = 2*g**2/(N**2*kappa**2)
+  [PASS] I2a Minkowski point R^2 = N^2 kappa^2/(4 g^2) and Lambda_6 = 1/(2 R^2) (agrees with f2 B2a/B2b) 
+  [PASS] I2b radion (l = 0) is stable there: V_E'' > 0 (other modes NOT tested) V'' = 64*pi*g**2/(N**2*kappa**4)
+    alpha_a / (l_P^2/R^2) = {'x': 6, 'y': 6, 'z': 6};   alpha_U1(unit) / (l_P^2/R^2) = N**2/2
+  [FAIL] I2c alpha_SU2 = 3 l_P^2/R^2 for a = x, y, z (all three generators; f2 B3d got it from the Cartan only) 
+  [PASS] I2d alpha_U1(unit charge) = N^2 l_P^2/(2 R^2)  (f2 B3e) 
+  [FAIL] I2e ratio alpha_U1/alpha_SU2 = N^2/6, independent of chat = g^2/kappa and of R ratio = N**2/12
+  [PASS] I2f alpha_SU2 = 3 chat^2/(2 pi^2 N^4): the ONE free real of the map is chat (matches f2's alpha_U1 = (chat/(2 pi N))^2 via the ratio) alpha_SU2 = 3*chat**2/(2*pi**2*N**4)
+
+I3  general geometric formula alpha_geo = 4 l_P^2/<|K|^2>  (pure metric part)
+  [PASS] I3a alpha_geo = 4 l_P^2/<|K|^2> 
+    NOTE: S^1 (K = d/dy, |K|^2 = R^2) gives 4 l_P^2/R^2, the AH6/F relation (recalled from those lanes, not re-run here).
+  [PASS] I3b S^2 pure-metric half: <|K|^2> = 2R^2/3 gives 6 l_P^2/R^2; the flux piece equals it at Minkowski, so 1/g^2 doubles and alpha_SU2 = 3 l_P^2/R^2 
+
+I5  chirality / content lattice of the S^2 map (spinor zero-mode counts RECALLED; algebra checked)
+  [PASS] I5a Dirac spectrum lambda^2 R^2 = k(k+|Q|) reproduced by (k+|Q|/2)^2 - Q^2/4 (algebra of the recalled j-spectrum); lowest level k = 0 has j = (|Q|-1)/2, multiplicity |Q| 
+    S^2 map: dim_SU2 = |q N|  =>  |Y_f|/dim_f = |s|/N must be the SAME for every field (Y = s q).  SM left-handed Weyl content per generation:
+      Q    dim_SU2 = 2  Y =   1/6  |Y|/dim = 1/12
+      L    dim_SU2 = 2  Y =  -1/2  |Y|/dim = 1/4
+      u^c  dim_SU2 = 1  Y =  -2/3  |Y|/dim = 2/3
+      d^c  dim_SU2 = 1  Y =   1/3  |Y|/dim = 1/3
+      e^c  dim_SU2 = 1  Y =     1  |Y|/dim = 1
+    subsets (size >= 2) with equal |Y|/dim: none
+  [PASS] I5b NO subset of two or more SM fields has equal |Y|/dim: the SM hypercharge lattice cannot be the S^2 flux U(1) (the doublets alone: Q 1/12 vs L 1/4) 
+  [PASS] I5c the map requires |Y_doublet| = 2 |Y_singlet| for every (doublet, singlet) pair; no SM pair satisfies it (|Y_L|/|Y_e^c| = 1/2, |Y_Q|/|Y_u^c| = 1/4, ...) 
+
+I6  scope of the relations (statement only; not a check)
+    * tree level at mu_c = 1/R; no running, no KK threshold
+    * radion (l = 0) direction only; fluxed dS_p x S^q is generically unstable in other modes (hep-th/0205080, abstract read by lane F)
+    * Minkowski point requires Lambda_6 tuned to 2 (R/l_P)^2 x ~ 3e-119 of its value (f2 B2e): the vacuum-energy problem re-enters
+    * chat = g^2/kappa is a free continuous real: alpha_SU2 = 3 chat^2/(2 pi^2 N^4)
+    * 4D gauge group SU(2) x U(1) only; there is no SU(3); the SU(2) is a KK isometry with unit-index generators
+
+Cross-check against lane F's own script (run as a subprocess, PASS lines B3d/B3e read)
+  [PASS] X1 lane F f2 run exits 0 and its B3d/B3e (alpha_SU2 = 3, alpha_U1 = N^2/2) PASS lines agree with this independent derivation (f2 exit 0)
+
+====================================================================================================
+CHECKS: 18/20 passed
+SCOPE (exact): tree-level relations at mu_c = 1/R for the Minkowski point of 6D Einstein-Maxwell-Lambda on S^2 with integer flux N;
+  alpha_SU2 = 3 l_P^2/R^2, alpha_U1(unit) = N^2 l_P^2/(2 R^2), ratio N^2/6 (chat-free); overall coupling = 3 chat^2/(2 pi^2 N^4) with chat FREE.
+  The SM hypercharge lattice is NOT reproducible by this U(1) (I5).
