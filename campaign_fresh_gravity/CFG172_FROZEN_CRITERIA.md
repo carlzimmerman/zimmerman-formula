@@ -279,3 +279,9 @@ with the multiplier fixed on shell, λ̃ = u_n∇_m𝒥^{mn} − c₄F′a²; th
 ---
 
 Hash of this file is reported by the writer after the last edit; a later change would void it.
+
+---
+
+## Erratum 1 (dated 2026-09-29; appended after the criteria were committed at 51716d8e4 and before any CFG172 result was reported; nothing above is edited)
+
+The door-11 gates file's Erratum 1 states that the primary P2 kernel is ν = √(1 + a₀/g_N) (CFG44's code), not the simple interpolating kernel ν = ½ + √(¼ + a₀/g_N) that the gates file's Target line wrote. This file's "Target for G1" paragraph (section 2) already uses P2 correctly (g_tot = √(g_N² + a₀ g_N) for the point mass). The exclusions paragraph for FC-KH (section 0) instead carried the simple kernel in its hand check: it wrote μ(y) = y/(1+y) from g = g_N[½ + √(¼ + a₀/g_N)]. **That hand check, and every hand number that depends on it (the ≥ 0.47 a₀ tail, the sign of (yq)′, the estimate of the tail against the Q₂ bound), is void for P2 and must be recomputed in phase 2.** For P2: g² = g_N² + a₀g_N, so μ = g_N/g = √(y/(1+y)), not y/(1+y). Phase 2 uses P2 as primary (ν_mono reported, the simple kernel run as a labelled sensitivity variant, never pooled), and the README must say which section-0 and section-3 hand estimates changed and by how much. The estimates in section 3 keep their recorded values as written; the change is reported, not repaired.
