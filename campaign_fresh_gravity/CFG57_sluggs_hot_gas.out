@@ -1,0 +1,93 @@
+CFG57 -- THE HOT-GAS TEST ON SLUGGS: does each galaxy's measured hot X-ray gas, added to the baryons, close the globular-cluster deficit that
+survived dynamical stellar masses (CFG55: law +0.097 +- 0.024 dex, 4.0 sigma; rule +0.046, 2.6 sigma)?
+
+Criteria frozen and committed before any gas data were fetched and before any run: campaign_fresh_gravity/CFG57_FROZEN_CRITERIA.md (78a5a3a0a).
+The owner approved the two sources in this session (Lakhchaura+2018 PDF; Fukazawa+2006 source); they were digitised / transcribed by
+real_research/data/cfg57_gas_sources/ (its README states the digitisation error and validation).
+  sample   CFG55's 16 intersected with the sources' coverage (fixed by coverage alone): Lakhchaura+2018 for NGC 4486 (M87), NGC 5846, NGC 4374,
+           NGC 4649; Fukazawa+2006 for NGC 4365, NGC 4494, NGC 3607, NGC 4697 (and the first three as a cross-check).  Uncovered galaxies are
+           reported without gas and are not in the headline mean.
+  gas      spherical; rho_gas = mu_e m_p n_e, mu_e = 1.155.  Source 1: the digitised n_e(r), log-log interpolated; beyond the last point the
+           power law of the outermost three points; inside the first point constant.  Source 2: beta = 0.5, r_c = 1 kpc normalised to
+           n_e(10 kpc).  Moved to SLUGGS's distance: radii ~ D, n_e ~ D^-1/2.  No hydrostatic equilibrium assumed: gas enters as mass only.
+  dynamics CFG55's machinery (exec'd read-only): the calibration nu(g_N/a0) [M_*/2 + M_gas(<r12)] (+ the rule's debris) = M_JAM/2 with g_N from
+           the same enclosed baryons; the Jeans baryons M_* f_H(r) + M_gas(<r); the rule's collapse mass from M_*; its edge phantom from
+           M_* + M_gas(<R_max of the source) (measured gas only).
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  CFG55's committed per-galaxy offsets reproduced with the gas set to zero on the covered subset (1e-9).
+  C2  CONTROL  the transcription / digitisation: rows per source and one spot value; for a digitised curve, one printed number within 10%.
+  C3  CONTROL  the numerical gas-mass integral of the beta model against its closed form (1e-8).
+  H1  [HEADLINE; MUTATE must fail] with the measured hot gas the JAM-calibrated law fits the outer GCs of the covered galaxies: |mean| < 2 sigma
+      (galaxy-to-galaxy), both footings.
+  H2  the rule, with the same gas, fits: |mean| < 2 sigma, both footings.
+  H3  (leverage) the gas moves the law's mean offset by more than that mean's error (else non-diagnostic).
+  R   per-galaxy offsets with and without gas (M87, NGC 5846, NGC 4374 always shown); the gas each galaxy would need to null its law offset
+      (the same shape, scaled); the outer extrapolation slope +-0.3; beta = 0.4 / 0.6 for source 2; the edge phantom from M_* only.
+MUTATE=1: every gas density x 0 (the test reduces to CFG55 on the covered subset) -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C3  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG55's committed per-galaxy offsets reproduced with the gas set to zero on the covered subset (1e-9)
+         covered = ['NGC3607', 'NGC4365', 'NGC4374', 'NGC4486', 'NGC4649', 'NGC4697', 'NGC5846']; max |deviation| 8.9e-14 dex
+  [PASS] C3 CONTROL: the beta-model gas-mass integral against its closed form (x^3/3) 2F1(3b/2, 3/2; 5/2; -x^2) (1e-8)
+         numerical 11.954339859640, closed 11.954339859640, rel. dev. 0.0e+00
+  [PASS] C2 CONTROL: the transcription / digitisation -- rows per source; a Fukazawa spot value (NGC 5846 n_e(10 kpc) = 7.17e-3, D 22.9 Mpc); the digitisation method reproduces the paper's PRINTED numbers (Table 1 kT, L_X of the four targets) within 10%
+         Lakhchaura rows {'NGC4486': 25, 'NGC5846': 23, 'NGC4374': 12, 'NGC4649': 20} (80 total); Fukazawa NGC5846 ne10 7.17 D 22.9; V1 max |dig/printed - 1| 5.7e-07; reported: the density profiles integrated to 10 kpc (whole shells cut at 10 kpc) against the paper's PLOTTED Fig. 1 gas masses: ratios [0.903, 0.933, 0.815, 0.816] (no per-galaxy density or gas mass is printed; a whole-shell scheme found after two others fell short matches to 1.002 -- see the data README)
+    uncovered (the source lacks the needed quantity): ['NGC4494']; covered: ['NGC3607', 'NGC4365', 'NGC4374', 'NGC4486', 'NGC4649', 'NGC4697', 'NGC5846']
+
+    gas per covered galaxy (SLUGGS distance): NGC3607 src2 M_gas(<r12) 1.68e+08, (<20 kpc) 1.02e+09, (<50 kpc) 4.10e+09, R_max 32 kpc; NGC4365 src2 M_gas(<r12) 2.63e+08, (<20 kpc) 7.89e+08, (<50 kpc) 3.17e+09, R_max 45 kpc; NGC4374 src1 M_gas(<r12) 3.68e+08, (<20 kpc) 1.57e+09, (<50 kpc) 1.16e+11, R_max 20 kpc, outer slope 2.13; NGC4486 src1 M_gas(<r12) 2.25e+09, (<20 kpc) 1.25e+10, (<50 kpc) 5.50e+11, R_max 30 kpc, outer slope 3.81; NGC4649 src1 M_gas(<r12) 4.90e+08, (<20 kpc) 1.86e+09, (<50 kpc) 1.06e+10, R_max 21 kpc, outer slope -0.64; NGC4697 src2 M_gas(<r12) 7.08e+07, (<20 kpc) 4.86e+08, (<50 kpc) 1.96e+09, R_max 24 kpc; NGC5846 src1 M_gas(<r12) 1.26e+09, (<20 kpc) 4.91e+09, (<50 kpc) 5.18e+10, R_max 32 kpc, outer slope 2.29
+
+======================================================================================================================
+PER GALAXY (canonical): offsets without and with the measured hot gas
+======================================================================================================================
+    NGC3607  (source 2): law +0.027 -> +0.025; rule -0.010 -> -0.011
+    NGC4365  (source 2): law +0.207 -> +0.204; rule +0.131 -> +0.130
+    NGC4374  (source 1): law +0.200 -> -1.762; rule +0.063 -> -1.762
+    NGC4486  (source 1): law +0.273 -> -4.232; rule +0.125 -> -4.232
+    NGC4649  (source 1): law +0.123 -> +0.115; rule -0.015 -> -0.019
+    NGC4697  (source 2): law +0.095 -> +0.093; rule +0.095 -> +0.093
+    NGC5846  (source 1): law +0.213 -> -1.951; rule +0.101 -> -1.951
+    canonical law : without gas +0.1626 +- 0.0319 (+5.10 sigma, n=7); with gas -1.0727 +- 0.6331 (-1.69 sigma, n=7)
+    canonical rule: without gas +0.0698 +- 0.0229 (+3.05 sigma, n=7); with gas -1.1075 +- 0.6223 (-1.78 sigma, n=7)
+    alt       law : without gas +0.1532 +- 0.0316 (+4.85 sigma, n=7); with gas -1.0777 +- 0.6316 (-1.71 sigma, n=7)
+    alt       rule: without gas +0.0767 +- 0.0231 (+3.32 sigma, n=7); with gas -1.1047 +- 0.6232 (-1.77 sigma, n=7)
+
+======================================================================================================================
+H1 / H2 / H3
+======================================================================================================================
+  [PASS] H1 [HEADLINE] WITH THE MEASURED HOT GAS THE JAM-CALIBRATED LAW FITS THE OUTER GCs: |mean| < 2 sigma, both footings
+         canonical: -1.0727 +- 0.6331 (-1.69 sigma); alt: -1.0777 +- 0.6316 (-1.71 sigma)
+  [PASS] H2 THE RULE, WITH THE SAME GAS, FITS: |mean| < 2 sigma, both footings
+         canonical: -1.1075 (-1.78 sigma); alt: -1.1047 (-1.77 sigma)
+  [PASS] (reported) H3 (leverage) the gas moves the law's mean offset by more than its error, both footings
+         canonical: shift +1.2353 vs error 0.6331; alt: shift +1.2309 vs error 0.6316
+
+======================================================================================================================
+REPORTED ROWS (canonical)
+======================================================================================================================
+  [PASS] (reported) R1 (reported) the gas each covered galaxy would need to null its law offset (the measured profile scaled by k; M_gas(<50 kpc) at that k)
+         NGC3607: k 20.24, M_gas(<50 kpc) 8.30e+10; NGC4365: offset +0.204 at k = 1, no k <= 100 nulls it; NGC4374: k 0.00, M_gas(<50 kpc) 2.03e+07; NGC4486: k 0.00, M_gas(<50 kpc) 7.69e+02; NGC4649: k 42.74, M_gas(<50 kpc) 4.51e+11; NGC4697: offset +0.093 at k = 1, no k <= 100 nulls it; NGC5846: k 0.00, M_gas(<50 kpc) 2.90e+06
+  [PASS] (reported) R2 (reported) the outer extrapolation slope +-0.3 (source 1): the law's mean
+         +0.3: -1.2496; -0.3: -0.8989 (headline -1.0727)
+  [PASS] (reported) R3 (reported) beta = 0.4 / 0.6 for source 2: the law's mean
+         0.4: -1.0732; 0.6: -1.0724
+  [PASS] (reported) R4 (reported) source 2 as a cross-check where both sources cover a galaxy: M_gas(<20 kpc) Lakhchaura vs Fukazawa
+         NGC5846: 4.91e+09 vs 5.04e+09; NGC4374: 1.57e+09 vs 4.87e+08; NGC4649: 1.86e+09 vs 1.77e+09
+  [PASS] (reported) R5 (reported) the rule with its edge phantom from M_* only
+         rule mean -1.1077 (headline -1.1075)
+  [PASS] (reported) D0 (reported) the frozen rule's outer slopes (source 1): positive slopes mean a density rising outward without bound
+         NGC4374 +2.13; NGC4486 +3.81; NGC4649 -0.64; NGC5846 +2.29
+  [PASS] (reported) D1 (reported; DISCLOSED departure, post hoc) the outermost Lakhchaura shell dropped, the slope fitted to the three points before it
+         slopes NGC4374 -1.68; NGC4486 -1.48; NGC4649 -2.58; NGC5846 -1.32 | canonical law: +0.1528 +- 0.0282 (+5.42 sigma); canonical rule: +0.0658 +- 0.0218 (+3.02 sigma); alt law: +0.1431 +- 0.0278 (+5.14 sigma); alt rule: +0.0722 +- 0.0218 (+3.32 sigma)
+    D1 per galaxy (canonical): NGC3607 law +0.025 rule -0.011; NGC4365 law +0.204 rule +0.130; NGC4374 law +0.197 rule +0.062; NGC4486 law +0.233 rule +0.109; NGC4649 law +0.123 rule -0.015; NGC4697 law +0.093 rule +0.093; NGC5846 law +0.195 rule +0.092
+  [PASS] (reported) D2 (reported; with D1) the outer slope +-0.3 around the D1 slopes: the law's mean
+         +0.3: +0.1499; -0.3: +0.1549
+  [PASS] (reported) D3 (reported; with D1) the frozen H1, H2 and H3 applied to D1, and the frozen reading map
+         canonical: H1 FAIL (+5.42 sigma), H2 FAIL (+3.02 sigma), H3 FAIL (shift +0.0098 vs error 0.0282); alt: H1 FAIL (+5.14 sigma), H2 FAIL (+3.32 sigma), H3 FAIL (shift +0.0101 vs error 0.0278) -> reading: non-diagnostic: the measured gas moves the law's mean by less than its error
+
+    READING (declared, mechanical): the SLUGGS deficit is baryonic: the measured hot gas closes it, and B's derived rule loses its last supporting population; the rule, with the same gas, also fits
+    DISCLOSED: the frozen extrapolation is non-physical on these profiles (row D0: positive outer slopes from the upturned last shell), so the mechanical reading is not interpretable; the disclosed departure D1 (outermost shell dropped) is the physically meaningful variant.
+    D1 under the frozen reading map (row D3): non-diagnostic: the measured gas moves the law's mean by less than its error.
+
+  15/15 checks pass; load-bearing failures: 0   (6 s)

@@ -1,0 +1,354 @@
+{
+ "slug": "CFG57_sluggs_hot_gas_MUTATE",
+ "summary": {
+  "n_checks": 15,
+  "n_pass": 12,
+  "load_bearing_failures": 2,
+  "failed": [
+   "H1 [HEADLINE] WITH THE MEASURED HOT GAS THE JAM-CALIBRATED LAW FITS THE OUTER GCs: |mean| ",
+   "H2 THE RULE, WITH THE SAME GAS, FITS: |mean| < 2 sigma, both footings",
+   "H3 (leverage) the gas moves the law's mean offset by more than its error, both footings"
+  ],
+  "seconds": 5.8
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: CFG55's committed per-galaxy offsets reproduced with the gas set to zero on the covered subset (1e-9)",
+   "detail": "covered = ['NGC3607', 'NGC4365', 'NGC4374', 'NGC4486', 'NGC4649', 'NGC4697', 'NGC5846']; max |deviation| 8.9e-14 dex",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the beta-model gas-mass integral against its closed form (x^3/3) 2F1(3b/2, 3/2; 5/2; -x^2) (1e-8)",
+   "detail": "numerical 11.954339859640, closed 11.954339859640, rel. dev. 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: the transcription / digitisation -- rows per source; a Fukazawa spot value (NGC 5846 n_e(10 kpc) = 7.17e-3, D 22.9 Mpc); the digitisation method reproduces the paper's PRINTED numbers (Table 1 kT, L_X of the four targets) within 10%",
+   "detail": "Lakhchaura rows {'NGC4486': 25, 'NGC5846': 23, 'NGC4374': 12, 'NGC4649': 20} (80 total); Fukazawa NGC5846 ne10 7.17 D 22.9; V1 max |dig/printed - 1| 5.7e-07; reported: the density profiles integrated to 10 kpc (whole shells cut at 10 kpc) against the paper's PLOTTED Fig. 1 gas masses: ratios [0.903, 0.933, 0.815, 0.816] (no per-galaxy density or gas mass is printed; a whole-shell scheme found after two others fell short matches to 1.002 -- see the data README)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] WITH THE MEASURED HOT GAS THE JAM-CALIBRATED LAW FITS THE OUTER GCs: |mean| < 2 sigma, both footings  [MUTATE: gas x 0]",
+   "detail": "canonical: +0.1626 +- 0.0319 (+5.10 sigma); alt: +0.1532 +- 0.0316 (+4.85 sigma)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE RULE, WITH THE SAME GAS, FITS: |mean| < 2 sigma, both footings",
+   "detail": "canonical: +0.0698 (+3.05 sigma); alt: +0.0767 (+3.32 sigma)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 (leverage) the gas moves the law's mean offset by more than its error, both footings",
+   "detail": "canonical: shift +0.0000 vs error 0.0319; alt: shift +0.0000 vs error 0.0316",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "R1 (reported) the gas each covered galaxy would need to null its law offset (the measured profile scaled by k; M_gas(<50 kpc) at that k)",
+   "detail": "NGC3607: offset +0.027 at k = 1, no k <= 100 nulls it; NGC4365: offset +0.207 at k = 1, no k <= 100 nulls it; NGC4374: offset +0.200 at k = 1, no k <= 100 nulls it; NGC4486: offset +0.273 at k = 1, no k <= 100 nulls it; NGC4649: offset +0.123 at k = 1, no k <= 100 nulls it; NGC4697: offset +0.095 at k = 1, no k <= 100 nulls it; NGC5846: offset +0.213 at k = 1, no k <= 100 nulls it",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the outer extrapolation slope +-0.3 (source 1): the law's mean",
+   "detail": "+0.3: +0.1626; -0.3: +0.1626 (headline +0.1626)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) beta = 0.4 / 0.6 for source 2: the law's mean",
+   "detail": "0.4: +0.1626; 0.6: +0.1626",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) source 2 as a cross-check where both sources cover a galaxy: M_gas(<20 kpc) Lakhchaura vs Fukazawa",
+   "detail": "NGC5846: 0.00e+00 vs 0.00e+00; NGC4374: 0.00e+00 vs 0.00e+00; NGC4649: 0.00e+00 vs 0.00e+00",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) the rule with its edge phantom from M_* only",
+   "detail": "rule mean +0.0698 (headline +0.0698)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "D0 (reported) the frozen rule's outer slopes (source 1): positive slopes mean a density rising outward without bound",
+   "detail": "NGC4374 +2.13; NGC4486 +3.81; NGC4649 -0.64; NGC5846 +2.29",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "D1 (reported; DISCLOSED departure, post hoc) the outermost Lakhchaura shell dropped, the slope fitted to the three points before it",
+   "detail": "slopes NGC4374 -1.68; NGC4486 -1.48; NGC4649 -2.58; NGC5846 -1.32 | canonical law: +0.1626 +- 0.0319 (+5.10 sigma); canonical rule: +0.0698 +- 0.0229 (+3.05 sigma); alt law: +0.1532 +- 0.0316 (+4.85 sigma); alt rule: +0.0767 +- 0.0231 (+3.32 sigma)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "D2 (reported; with D1) the outer slope +-0.3 around the D1 slopes: the law's mean",
+   "detail": "+0.3: +0.1626; -0.3: +0.1626",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "D3 (reported; with D1) the frozen H1, H2 and H3 applied to D1, and the frozen reading map",
+   "detail": "canonical: H1 FAIL (+5.10 sigma), H2 FAIL (+3.05 sigma), H3 FAIL (shift +0.0000 vs error 0.0319); alt: H1 FAIL (+4.85 sigma), H2 FAIL (+3.32 sigma), H3 FAIL (shift +0.0000 vs error 0.0316) -> reading: non-diagnostic: the measured gas moves the law's mean by less than its error",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "D1": {
+   "canonical|law": {
+    "mean": 0.1625921245728104,
+    "err": 0.03186985287053451,
+    "per": {
+     "NGC3607": 0.02711924754896501,
+     "NGC4365": 0.20650048289522993,
+     "NGC4374": 0.20002111270359307,
+     "NGC4486": 0.2732460942416892,
+     "NGC4649": 0.12338183276255273,
+     "NGC4697": 0.09458500356485014,
+     "NGC5846": 0.21329109829279264
+    }
+   },
+   "canonical|rule": {
+    "mean": 0.06981480815298292,
+    "err": 0.022906424493484814,
+    "per": {
+     "NGC3607": -0.010346855973790493,
+     "NGC4365": 0.13080134441719352,
+     "NGC4374": 0.06326687177613935,
+     "NGC4486": 0.12467425986880776,
+     "NGC4649": -0.01533372602910762,
+     "NGC4697": 0.09458500356489125,
+     "NGC5846": 0.10105675944674668
+    }
+   },
+   "alt|law": {
+    "mean": 0.1531879272206367,
+    "err": 0.03159416919745263,
+    "per": {
+     "NGC3607": 0.018973703779335084,
+     "NGC4365": 0.19811961990083105,
+     "NGC4374": 0.18860802322784162,
+     "NGC4486": 0.2633274510121395,
+     "NGC4649": 0.11327420931024998,
+     "NGC4697": 0.08678491125461618,
+     "NGC5846": 0.20322757205944356
+    }
+   },
+   "alt|rule": {
+    "mean": 0.07666271916663613,
+    "err": 0.023067124197960275,
+    "per": {
+     "NGC3607": 0.0010002343259852516,
+     "NGC4365": 0.1434663748545847,
+     "NGC4374": 0.07190348331018347,
+     "NGC4486": 0.13088460475887087,
+     "NGC4649": -0.01118487329229647,
+     "NGC4697": 0.08678491125464015,
+     "NGC5846": 0.11378429895448491
+    }
+   }
+  },
+  "D0_slopes": {
+   "NGC4374": 2.1250320982009727,
+   "NGC4486": 3.8113983070868374,
+   "NGC4649": -0.6376684404909766,
+   "NGC5846": 2.286689906751949
+  },
+  "D3": {
+   "z1": {
+    "canonical": 5.101753222184971,
+    "alt": 4.848613877556493
+   },
+   "z2": {
+    "canonical": 3.0478265245123732,
+    "alt": 3.323462366124299
+   },
+   "shift": {
+    "canonical": 0.0,
+    "alt": 0.0
+   },
+   "h1": false,
+   "h3": false,
+   "reading": "non-diagnostic: the measured gas moves the law's mean by less than its error"
+  },
+  "covered": [
+   "NGC3607",
+   "NGC4365",
+   "NGC4374",
+   "NGC4486",
+   "NGC4649",
+   "NGC4697",
+   "NGC5846"
+  ],
+  "need": {
+   "NGC3607": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.02711924754896501
+   },
+   "NGC4365": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.20650048289522993
+   },
+   "NGC4374": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.20002111270359307
+   },
+   "NGC4486": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.2732460942416892
+   },
+   "NGC4649": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.12338183276255273
+   },
+   "NGC4697": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.09458500356485014
+   },
+   "NGC5846": {
+    "k": null,
+    "M50": null,
+    "off_at_1": 0.21329109829279264
+   }
+  },
+  "R2": {
+   "0.3": 0.1625921245728104,
+   "-0.3": 0.1625921245728104
+  },
+  "R3": {
+   "0.4": 0.1625921245728104,
+   "0.6": 0.1625921245728104
+  },
+  "RES": {
+   "canonical|law|gas": {
+    "per": {
+     "NGC3607": 0.02711924754896501,
+     "NGC4365": 0.20650048289522993,
+     "NGC4374": 0.20002111270359307,
+     "NGC4486": 0.2732460942416892,
+     "NGC4649": 0.12338183276255273,
+     "NGC4697": 0.09458500356485014,
+     "NGC5846": 0.21329109829279264
+    },
+    "mean": 0.1625921245728104,
+    "err": 0.03186985287053451,
+    "n": 7
+   },
+   "canonical|law|nogas": {
+    "per": {
+     "NGC3607": 0.02711924754896501,
+     "NGC4365": 0.20650048289522993,
+     "NGC4374": 0.20002111270359307,
+     "NGC4486": 0.2732460942416892,
+     "NGC4649": 0.12338183276255273,
+     "NGC4697": 0.09458500356485014,
+     "NGC5846": 0.21329109829279264
+    },
+    "mean": 0.1625921245728104,
+    "err": 0.03186985287053451,
+    "n": 7
+   },
+   "canonical|rule|gas": {
+    "per": {
+     "NGC3607": -0.010346855973790493,
+     "NGC4365": 0.13080134441719352,
+     "NGC4374": 0.06326687177613935,
+     "NGC4486": 0.12467425986880776,
+     "NGC4649": -0.01533372602910762,
+     "NGC4697": 0.09458500356489125,
+     "NGC5846": 0.10105675944674668
+    },
+    "mean": 0.06981480815298292,
+    "err": 0.022906424493484814,
+    "n": 7
+   },
+   "canonical|rule|nogas": {
+    "per": {
+     "NGC3607": -0.010346855973790493,
+     "NGC4365": 0.13080134441719352,
+     "NGC4374": 0.06326687177613935,
+     "NGC4486": 0.12467425986880776,
+     "NGC4649": -0.01533372602910762,
+     "NGC4697": 0.09458500356489125,
+     "NGC5846": 0.10105675944674668
+    },
+    "mean": 0.06981480815298292,
+    "err": 0.022906424493484814,
+    "n": 7
+   },
+   "alt|law|gas": {
+    "per": {
+     "NGC3607": 0.018973703779335084,
+     "NGC4365": 0.19811961990083105,
+     "NGC4374": 0.18860802322784162,
+     "NGC4486": 0.2633274510121395,
+     "NGC4649": 0.11327420931024998,
+     "NGC4697": 0.08678491125461618,
+     "NGC5846": 0.20322757205944356
+    },
+    "mean": 0.1531879272206367,
+    "err": 0.03159416919745263,
+    "n": 7
+   },
+   "alt|law|nogas": {
+    "per": {
+     "NGC3607": 0.018973703779335084,
+     "NGC4365": 0.19811961990083105,
+     "NGC4374": 0.18860802322784162,
+     "NGC4486": 0.2633274510121395,
+     "NGC4649": 0.11327420931024998,
+     "NGC4697": 0.08678491125461618,
+     "NGC5846": 0.20322757205944356
+    },
+    "mean": 0.1531879272206367,
+    "err": 0.03159416919745263,
+    "n": 7
+   },
+   "alt|rule|gas": {
+    "per": {
+     "NGC3607": 0.0010002343259852516,
+     "NGC4365": 0.1434663748545847,
+     "NGC4374": 0.07190348331018347,
+     "NGC4486": 0.13088460475887087,
+     "NGC4649": -0.01118487329229647,
+     "NGC4697": 0.08678491125464015,
+     "NGC5846": 0.11378429895448491
+    },
+    "mean": 0.07666271916663613,
+    "err": 0.023067124197960275,
+    "n": 7
+   },
+   "alt|rule|nogas": {
+    "per": {
+     "NGC3607": 0.0010002343259852516,
+     "NGC4365": 0.1434663748545847,
+     "NGC4374": 0.07190348331018347,
+     "NGC4486": 0.13088460475887087,
+     "NGC4649": -0.01118487329229647,
+     "NGC4697": 0.08678491125464015,
+     "NGC5846": 0.11378429895448491
+    },
+    "mean": 0.07666271916663613,
+    "err": 0.023067124197960275,
+    "n": 7
+   }
+  },
+  "reading": "non-diagnostic: the measured gas moves the law's mean by less than its error"
+ }
+}
