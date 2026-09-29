@@ -1,0 +1,43 @@
+======================================================================================================================
+S2-2 method validation on the conformal massless scalar -- mode: REAL RUN
+======================================================================================================================
+
+S0. scalar one-loop vacuum polarization, on-shell scheme (recalled; verified here)
+  [PASS] S0a Int (1-2x)^2 ln(x(1-x)) = -8/9 exactly (sympy) (-8/9)
+  [PASS] S0b m -> 0 form: -(1/4) Int (1-2x)^2 ln(1 + x(1-x)Q2/m2) = -(1/12)[ln(Q2/m2) - 8/3] (units alpha/pi) at Q2/m2 = 1e8, to 1e-6 (diff -8.71e-08)
+  [PASS] S0c small-Q2 slope = -1/120 (units alpha/pi per Q2/m2) to 1e-5 (slope -0.008333333 vs -0.008333333)
+  [PASS] S0d spectral representation -(1/12) Q2 Int ds (1-4m2/s)^{3/2}/(s(s+Q2)) equals the Feynman-parameter integral at Q2/m2 = 0.5, 3, 40 (1e-8) (worst 6.68e-18)
+
+W2. retarded response of the exact MASSIVE flat Pi_hat (scalar) to D = d_tau F^{tau z} at tau = -1: K(m) + ln m -> kappa = 2/3 - gamma_E (analytic value -0.4105489982)
+     m =  0.100   K(m) = +1.9364138401   K + ln m = -0.3661712529   error vs analytic 4.438e-02
+     m =  0.030   K(m) = +3.1028044082   K + ln m = -0.4037534892   error vs analytic 6.796e-03
+     m =  0.010   K(m) = +4.1956888986   K + ln m = -0.4094812874   error vs analytic 1.068e-03
+     m =  0.003   K(m) = +5.3987220143   K + ln m = -0.4104209760   error vs analytic 1.280e-04
+     m =  0.001   K(m) = +6.4972237821   K + ln m = -0.4105314968   error vs analytic 1.750e-05
+  [PASS] S1 spectral response -> kappa_s = 1/6 - gamma_E: error at m = 1e-3 <= 1e-4 and monotone decreasing (errors ['4.4e-02', '6.8e-03', '1.1e-03', '1.3e-04', '1.8e-05'])
+  [PASS] S1b plus-distribution constant kappa_s = 1/6 - gamma_E (1e-12, uses the exact limit 3) (kappa_s = -0.410548998235)
+
+S2. Weyl-anomaly coefficient (units alpha/(12 pi); pole algebra and dS invariance are identical in form to the fermion's, P -> P_s)
+  [PASS] S2a the ln Q2 coefficient of Pi_hat_s is -1/12 (units alpha/pi) = -P_s, so the pole is 2 P_s/eps and the anomaly term is 2 P_s ln a (slope -0.083333331)
+
+W4. Weyl-anomaly coefficient of ln a (units P = alpha/(3 pi) for the fermion)
+  [PASS] W4a D-dim pole algebra: pole = 2P/eps, ln Q2 coefficient = -P, counterterm times (a^{-eps} - 1) leaves +2 P ln a (pole 2*P; finite: -P*log(Q2) + P*log(mu2); anomaly coefficient 2 P ln a)
+  [PASS] W4b dJ_phys/dT = 0 (de Sitter invariance) holds iff the anomaly coefficient is 2 (sympy solve) (solution [2])
+  [PASS] W4b' the coefficient USED in this run makes the physical current T-independent (c used = 2; dJ/dT = 0)
+  [PASS] S2b dS invariance: the anomaly coefficient used (2 in units P_s) makes the physical current T-independent
+
+S3. prediction vs Q2/AH4 closed form
+     route B' constant: f/lambda = (1/3)(ln M + c_S),  c_S = c_an/4 - kappa_s = 0.910548998235   [gamma_E + 1/3 = 0.910548998235]
+     lambda = 0.050   f_0(lambda, sqrt 2)/lambda = +0.419119393319
+     lambda = 0.030   f_0(lambda, sqrt 2)/lambda = +0.419069140457
+     lambda = 0.020   f_0(lambda, sqrt 2)/lambda = +0.419053431593
+     lambda = 0.010   f_0(lambda, sqrt 2)/lambda = +0.419044005165
+     extrapolation lambda -> 0: quadratic-in-lambda^2 fit (3 pts) a0 = 0.419040862838;  cubic fit (4 pts) a0 = 0.419040862838
+     Q2/AH4 constant  c_S(Q2) = 3 f_0(sqrt 2)/lambda - ln sqrt 2 = 0.910548998235
+     relative difference |c_S(route) - c_S(Q2)|/|c_S(Q2)| = 1.846e-13
+  [PASS] S3 route B' reproduces the Q2/AH4 conformal-scalar constant to 1e-6 (relative) (rel 1.85e-13)
+
+route B' method validation verdict: VALIDATED
+======================================================================================================================
+CHECKS: 9/9 passed
+Scope: conformally coupled massless charged scalar, on-shell(m) scheme, linear in E; the comparator's own validity: Q2 direct sums at lambda = 0.3-0.8 (five points, worst 1.1e-7) and AH4/K&A closed form.

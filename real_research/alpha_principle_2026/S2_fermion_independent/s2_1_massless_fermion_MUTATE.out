@@ -1,0 +1,55 @@
+======================================================================================================================
+S2-1 massless-limit route for the dS_4 Dirac fermion -- mode: MUTATE CONTROL (anomaly term dropped)
+======================================================================================================================
+
+W0. Weyl map: the massless Dirac operator in g = a^2 eta acts on psi = a^{-3/2} Xi as a^{-5/2} times the flat operator
+  [PASS] W0a spin connection sign found by nabla gamma = 0 (c = 1; +1: True, -1: False)
+  [PASS] W0b D-slash(a^{-3/2} Xi) = a^{-5/2} gamma^a d_a Xi (residual identically 0) 
+
+W1. one-loop vacuum polarization, on-shell scheme (recalled; verified here)
+  [PASS] W1a Int x(1-x) ln(x(1-x)) = -5/18 exactly (sympy) (-5/18)
+  [PASS] W1b m -> 0 form: -2 Int x(1-x) ln(1 + x(1-x)Q2/m2) = -(1/3)[ln(Q2/m2) - 5/3] (units alpha/pi) at Q2/m2 = 1e8, to 1e-6 (diff -2.00e-08)
+  [PASS] W1c small-Q2 slope = -1/15 (units alpha/pi per Q2/m2) to 1e-5 (slope -0.06666666 vs -0.06666667)
+  [PASS] W1d spectral representation -(1/3) Q2 Int ds R(s)/(s(s+Q2)) equals the Feynman-parameter integral at Q2/m2 = 0.5, 3, 40 (1e-8) (worst 3.99e-17)
+
+W2. retarded response of the exact MASSIVE flat Pi_hat (fermion) to D = d_tau F^{tau z} at tau = -1: K(m) + ln m -> kappa = 2/3 - gamma_E (analytic value 0.0894510018)
+     m =  0.100   K(m) = +2.4038311078   K + ln m = +0.1012460148   error vs analytic 1.180e-02
+     m =  0.030   K(m) = +3.5972501659   K + ln m = +0.0906922686   error vs analytic 1.241e-03
+     m =  0.010   K(m) = +4.6947667114   K + ln m = +0.0895965254   error vs analytic 1.455e-04
+     m =  0.003   K(m) = +5.8986073643   K + ln m = +0.0894643740   error vs analytic 1.337e-05
+     m =  0.001   K(m) = +6.9972077759   K + ln m = +0.0894524969   error vs analytic 1.495e-06
+  [PASS] W2 spectral response -> kappa: error at m = 1e-3 <= 1e-4 and monotone decreasing along m = 0.1, 0.03, 0.01, 0.003, 0.001 (errors ['1.2e-02', '1.2e-03', '1.5e-04', '1.3e-05', '1.5e-06'])
+
+W3. plus-distribution (time-domain) evaluation of ln(-i w) D, and the Laplace identity
+  [PASS] W3a Laplace identity: L^{-1}[ln s/(s+b)](t) = -gamma f - lim[Int_eps f(t-u)/u du + f ln eps] (b = 0.7, t = 1.3), to 1e-8 (time-domain -0.807786000318, mpmath invertlaplace -0.807786000319)
+  [PASS] W3b Flim(T) = -(2E/T^3)(ln T - 3/2) (sympy, exact) (sympy: (3 - 2*log(T))/T**3)
+  [PASS] W3c numeric T = 1 limit is 3 (E = 1) to 1e-7 (eps = 1e-8: 2.9999999400, 1e-10: 2.999999999400)
+  [PASS] W3d constant kappa from the plus-distribution evaluation equals 2/3 - gamma_E to 1e-8 (kappa = 0.089451001465; 2/3 - gamma = 0.089451001765)
+
+W4. Weyl-anomaly coefficient of ln a (units P = alpha/(3 pi) for the fermion)
+  [PASS] W4a D-dim pole algebra: pole = 2P/eps, ln Q2 coefficient = -P, counterterm times (a^{-eps} - 1) leaves +2 P ln a (pole 2*P; finite: -P*log(Q2) + P*log(mu2); anomaly coefficient 2 P ln a)
+  [PASS] W4b dJ_phys/dT = 0 (de Sitter invariance) holds iff the anomaly coefficient is 2 (sympy solve) (solution [2])
+  [FAIL] W4b' the coefficient USED in this run makes the physical current T-independent (c used = 0; dJ/dT = -4*E*P/T)
+
+W5. assembly (numerical ingredients): sigma_HFY = (1/(3 pi^2)) (ln M + c_B),  c_B = c_an/4 - kappa
+     kappa (W3, numeric) = 0.089451001465;  anomaly coefficient used = 0;  c_B = -0.089451001465   [gamma_E - 1/6 = 0.410548998235]
+     cross-check from the spectral response at m = 1e-3 alone: c_B = -0.0894524969 (difference -1.50e-06)
+
+W6. comparison with lane Q1 (weak-field function sigma_HFY(M), HFY 4.3, imported read-only)
+     M        G_f (Q1, 4pi sigma)      G_f (route B, (4/3pi)(ln M + c_B))    rel diff     c_Q1(M) = 3 pi^2 sigma - ln M
+      0.100   -8.0626622263e-01         -1.0152116493e+00                2.592e-01     +0.4028650616
+      0.030   -1.3142817798e+00         -1.5261935777e+00                1.612e-01     +0.4098544091
+      0.010   -1.7802852912e+00         -1.9924591145e+00                1.192e-01     +0.4104717919
+      0.003   -2.2912374014e+00         -2.5034410429e+00                9.262e-02     +0.4105420494
+      0.001   -2.7575003167e+00         -2.9697065796e+00                7.696e-02     +0.4105482261
+     extrapolation (c0 + c1 M^2 + c2 M^4 through M = 0.01, 0.003, 0.001): c_Q1(0) = 0.410548998235, c1 = -0.772101;  gamma_E - 1/6 = 0.410548998235
+     |c_B - c_Q1(0)| = 5.000e-01
+  [FAIL] W6 route B constant equals Q1's light-mass constant: |c_B - c_Q1(0)| <= 1e-6 (pre-registered CONFIRMED level) (difference 5.00e-01)
+
+route B fermion-only verdict (ingredient gates all pass): CONTRADICTED (all ingredient gates pass but the constants differ by > 1e-3) -- must be localised
+======================================================================================================================
+CHECKS: 13/15 passed
+Scope: massless conformal Dirac field, on-shell(m) scheme, linear in E, first order; the ln M coefficient is a coefficient identity and is not scored.
+alpha stays an INPUT.  kappa = 1/2 stays FITTED.  The SM-mass wall is unchanged.
+
+MUTATE CONTROL: the anomaly term was dropped; W4b' (dS invariance) and W6 FAILED as required -- the control works
