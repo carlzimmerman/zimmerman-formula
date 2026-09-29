@@ -1,0 +1,81 @@
+# Lane E -- literature audit of every published a0 <-> (Lambda, H) coefficient (c = G = 1 in the algebra)
+
+## Bottom line
+- **No published route derives kappa = 1/2** (Z = c H_L/a0 = sqrt(32 pi/3) = 5.789): of ~35 works opened (27 audited in detail) every one inserts its coefficient (a free parameter set by the coincidence, "order unity", or an unproven identification).
+- Routes that compute a number: the T - T_Lambda family (Milgrom 1999, Smolin, Klinkhamer-Kopp, Pikhitsa) all give **a0 = 2cH** (one function, verified), 9-11x the data; only Verlinde (cH/6) and van Putten (0.2023 cH) are within 30% of the data, with 5-6 inserted steps each. Verlinde's Z = 6 is the only computed value in [5.789, 2pi]; it equals the framework's only if pi = 27/8.
+- **Sharp structural result** (`e02`, 18/18): horizon-first routes give Z rational (or fitted, proportional to pi), so kappa^2 = 8pi/(3Z^2) carries an odd power of pi; exact kappa = 1/2 needs a0^2 linear in a density. Milgrom's naturalness action and Xu's rho_DE = A0 a^2/G are that form: the puzzle is **|F0| = A0 = 4 exactly** (natural value 1 = the record's forced kernel), which the literature leaves O(1).
+- **Verdict: SHARP NO-GO (scoped to the published literature and to horizon-first derivations); nothing derived; kappa = 1/2 stays FITTED.**
+
+## What I did
+Opened and audited the derivation chains (equations reproduced by script wherever the paper gives the algebra). Depth of reading -- full/relevant sections: 1611.02269, 1704.00780, astro-ph/9805346, 2001.09729, 1404.7661, 0810.4065, 1804.05840,
+1005.3537, 1104.2022, 1010.0318, 1009.1301, 1104.3654, 1009.3333 (+ page image), 1201.4594, 1302.4411, 1703.01415, 1801.10374, 1707.09945, 1806.10195, 1909.01734, 1005.1169, 1009.4944, 2510.14345, 2601.04290, 1411.2665 (+ page images), 1709.04918, 2203.05606.
+Abstract-level only (no coefficient audited): 1212.6433, 1612.06282, 2511.05632, 1706.06443, 1712.06981, gr-qc/9504004 (Jacobson: gives the Einstein equation, no a0), 2010.03530, 2307.10228, 1110.2580; two Zenodo records (page level, not peer reviewed).
+NOT opened: the 1983 and 1984 founding papers (no arXiv version; they enter only through the opened reviews, where a0 is an input constant), a 2025 preprints.org paper (HTTP 403), Zhang-Li "MOND cosmology from entropic force" (search snippet only), and no Danielsson a0-derivation could be identified.
+Papers were fetched with the fetch tool (saved PDFs converted to text locally); two garbled formulas (Hajdukovic eq 14, van Putten eq 14) were read from rendered page images.
+
+## Scripts (all committed here, all exit 0)
+| script | claim | result |
+|---|---|---|
+| `e01_derivation_algebra.py` | the algebra of every computed coefficient, with controls/mutations (A: DL family; B: HMN; C: Verlinde d-dim chain; D: Debye family; E: van Putten; F: Hajdukovic; G: McCulloch, brane) | **38/38** |
+| `e02_pi_class_and_normalisation.py` | pi-class table; pi-parity lemma; Milgrom-naturalness <-> F0 = -4; the [sqrt(32pi/3), 2pi] window; deep-MOND symmetry is a0-blind | **18/18** |
+| `e03_numbers_table.py` | numbers on both footings vs the a0 quoted in the papers; viability classification | **11/11** |
+Outputs: `*.out` next to each script. Mutations that must FAIL/CHANGE: A8/A9 (wrong functionals), B4/B5 (beta), C6 (drop horizon matching: 1/6 -> 2/27), D5, E3 (graviton mass 2H^2 -> 3H^2: Z 4.94 -> 5.94), N9-N11 (wrong-coefficient controls must not be viable).
+Own errors fixed openly: (i) my first e02 `D4` assumed (d-1)(d-2)/(d-3) is monotone near d = 4 and "found" d = 4.21; sympy showed it has a minimum 3 + 2 sqrt2 = 5.828 at d = 3 + sqrt2, which exceeds sqrt(32pi/3): no real d reproduces the framework (a numerology lead retracted before use);
+(ii) e01 `C6` first failed because of a simultaneous-substitution bug in my script; (iii) my integer-relation search (degree 8, coeff 1e6) could return spurious relations, tightened to degree 6, coeff 1000; (iv) the "2" in van Putten's eq (14) was ambiguous in text extraction, verified from the page image (reproduces his 1.37e-10).
+
+## The audit (arXiv IDs opened). Z = c H_L/a0; kappa = a0/(c sqrt(G rho_L)) = sqrt(8pi/3)/Z; framework: Z = 5.789, kappa = 0.5, a0/(cH) = 0.1727
+### Routes that compute a coefficient
+| work | (a) coefficient and chain | (b) inserted / unproven step | (c) pi content | (d) rho_L (flat) or H(z) | (e) vs kappa = 1/2 |
+|---|---|---|---|---|---|
+| Milgrom 1999 astro-ph/9805346 | a0hat = 2 c sqrt(Lambda/3). Deser-Levin T(a) = sqrt(a^2 + Lambda/3)/2pi (= Tolman, e01 A0); 2pi(T - T_L) = a muhat(a/a0hat) | "inertia ~ Delta T" (paper: not clear why); the other functional a dT/da gives a0 = sqrt(Lambda/3): coefficient 2 or 1 by choice; no circular motion; the printed T_L exponent 1/3 is a typo for 1/2 (repeated in Pazy) | 2pi in T is derived and cancels | Lambda; paper says H0-vs-Lambda undecided | Z = 1/2: a0 = 11.6x framework, 9x data. NO |
+| Smolin 1704.00780 | a^2 = 2 a_N a_L (eq 32), a0 = 2 c^2 sqrt(Lambda/3); thermal EP: static detector at T_DL, force = (T_DL - T_dS) dS/dL, S_loc = 2pi L/lambda_C | thermal EP itself; subtraction of T_dS; localisation entropy + m_I := hbar/(lambda_C c); static-detector = orbiting-star acceleration. His eq (3) (a0 ~ a_L/8.3, a_L = c^2 sqrt(Lambda)) is inconsistent with the derived 2 c^2 sqrt(Lambda/3) by ~9x (e03 N4) | 2pi cancels (T vs S) | Lambda | NO (as above) |
+| Klinkhamer-Kopp 1104.2022 | A0 = 2 c H_dS (eq 9): T_min on the screen, 2pi T_min = H, inverse DL, M ~ N Delta T | T_min > 0 hypothesis; T_min <-> dS horizon "simply assumed"; M ~ N Delta T; linear motion only (they say circular a0 differs by O(1); actual factor ~9) | 4pi = 2 x 2pi, follows from the identification | H_dS (dS-constant; 0.87 H0) | NO |
+| Pikhitsa 1010.0318 | a0 = 2 c H "exactly": same muhat with x = g/H | K = H^2 curvature -> Davies-Unruh T0 = H/2pi; cited local-temperature law; mass introduced adiabatically; equipartition | cancels | H taken as the Hubble rate (rising with z if H(z)) | NO |
+| Verlinde 1611.02269 | a_M = (d-3)/((d-2)(d-1)) a0 -> a0/6, a0 = c H0 = c^2/L. Chain reproduced symbolically (e01 C1-C5): S_M = 2pi M r; volume law 1/V0 = (d-1)/(4GL) [= rho_L/T_dS at d=4, e01 C7]; incompressible elastic medium, int eps^2 = V_M; Sigma_D = a0 eps/8piG; Gauss (1.6) | (i) dS entropy is thermal, volume-law, uniformly distributed; (ii) elastic-inclusion identity + additivity; (iii) horizon matching u(L) = Phi(L) L fixing V0*/V0 (dropping it: 1/6 -> 2/27, e01 C6); (iv) strain <-> apparent-DM density identification; (v) a0 := c H0 (sec 8.2 says it should be Lambda-defined) | 2pi (Bekenstein), 4pi (area), 8piG (criterion) all cancel: Z = 6 rational | written H0; own sec 8.2: should be dark-energy defined -> constant | Z = 6 vs 5.789 (+3.6%); kappa_V = sqrt(2pi/27) = 0.4824; equal only if pi = 27/8 (e02 D2). NOT equal |
+| van Putten 1411.2665 | a0 = 2 c H0/(1 + beta_dS), beta_dS = 2pi sqrt2 -> 0.2023 cH0 (his 1.37e-10 reproduced, e01 E2) | graviton mass from dark energy; Higuchi-saturating m0^2 = 2H^2 (his own m^2 = Lambda = 3H^2 gives Z = 5.94, e01 E3); k_B T0 = m0 c^2; energy split e = mc^2/(1+beta); equipartition | 2pi from T_dS derived, sqrt2 inserted; Z = 1/2 + pi sqrt2 (mixed class) | a_H = c H0 with dS assumed | 1/Z = 0.2023 vs 0.1727 (+17%). NO |
+| Milgrom brane 1804.05840, 2001.09729 sec III.C | a0 = n c^2/l0, Lambda = 3/l0^2 (n = 2 toy): Z = 1/n; the 2018 paper: a0 ~ (alpha beta) c^2/l0, "order unity" | brane picture; brane wave speed := c; tension-force balance; l0 read as l_Lambda | none | Lambda | Z <= 1/2. NO |
+| McCulloch 1709.04918 | a0 = 2c^2/Theta = 2.04e-10 (Theta = 8.8e26 m) | the MiHsC postulate m_i = m(1 - 2c^2/(abs(a) Theta)) (the coefficient 2 comes from his earlier papers, not re-derived here); a0 := minimum acceleration; Theta chosen (his 2007/12 value 2.6e26 m gives 6.9e-10: 3.4x, e01 G1) | none | Theta(z) = Theta_now/(1+z) under his linear-expansion assumption: rising | 1.7x data. NO |
+### Coefficient inserted, fitted, or not computed
+| work | what carries the number | (c),(d),(e) |
+|---|---|---|
+| Ho-Minic-Ng 1005.3537 | DL entropic force alone gives NO MOND (e01 B5); a_c = beta a_L/2 with beta = the postulated M' = (1/pi)(a_L/a)^2 M, "a_c = a_L/2pi for simplicity" (e01 B2-B4) | 1/pi inserted; Lambda (= 3H^2); Z = 2pi |
+| Li-Chang 1005.1169; Kiselev-Timofeev 1009.1301; Neto 1009.4944; Pazy 1302.4411 | a0 = 12 c w_D/pi (Debye, derived from D -> pi^2/6x, e01 D1-D2) with w_D = H0/24 imposed by 2pi a0 ~ cH0; KT a0 = 12 N_G H_L with N_G = 1/(24 pi sqrt(Om_L)) "new fundamental parameter" = the coincidence, identically circular (e01 D4); Neto a0 = 2pi c k T_c/hbar, T_c free; Pazy a0 = (12c/pi hbar) E_F, E_F free, cosmology only quoted | free parameter defined by a0 ~ cH0/2pi; Lambda (KT) |
+| Kiselev-Timofeev 1104.3654 | g0 ~ H0/2pi quoted "empirically"; K0 ~ 1/(2 pi dtheta) order of magnitude | H(z) |
+| Hajdukovic 1009.3333 (1201.4594) | a_cr = (1/4pi^2) Omega_L cH0/sqrt(Omega_0 - 1), from a_cr = G m_pi^3 c^2/hbar^2 and a Dirac-type relation patched with a dimensionless bracket that must be "close to 12"; 1/4pi^2 restored by an erratum | diverges as Omega_0 -> 1 (e01 F1); needs Omega_0 - 1 ~ 0.009 to match (e01 F2); claimed constant |
+| Hossenfelder 1703.01415; Cadoni et al. 1801.10374, 1707.09945; Peach 1806.10195; Sheykhi-Liravi 2510.14345; Rostami et al. 2511.05632 (abstract) | a0^2 = Lambda "by order of magnitude", prefactor depends on the field mass; "factors of order one neglected", a_MOND ~ sqrt(a_B/L) "up to a numerical factor" (and the 1/6 imported from Verlinde in eq 1.2); arbitrary critical length r_c; inverse approach with a0 (gamma) as input | O(1) unfixed |
+| Singh 2601.04290 | a0 = c^2/(xi l_dS), xi = O(1) "fixed by matching"; remarks xi is comparable to Milgrom's 2pi; deep-MOND conformal group = SO(4,1) = dS4 isometries | symmetry is a0-blind (e02 E1, E2) |
+| Milgrom 1404.7661, 2001.09729, 0810.4065 | near-equalities 2pi a0 ~ cH0 ~ c^2 sqrt(Lambda/3), "mere numerical near equality"; naturalness: any constant in F gives Lambda ~ l_M^-2, coefficient not fixed (e02 C1-C3); dS/conformal-group isomorphism only conjectured to matter | 2pi empirical; H0 vs Lambda "moot" |
+| Xu 2203.05606 (ApJ 981) | rho_DE0 ~ A0 a_c0^2/G with A0 "of unity"; a_c ~ (1+z)^(3/4) from N-body cascade; pi enters via a 3pi angle-of-incidence factor that is inserted | A0 = 4 is the puzzle (e02 C3); rising in z |
+| Aksman (Zenodo, not peer reviewed) | a0 = cH/2pi from a *postulated* synchronisation condition and a U(1) holonomy 2pi | 2pi postulated; H(z) |
+| Yoon-Hwang 1909.01734 | Verlinde's cH0/6 on H0 vs quasi-dS: best fit is ~30% lower (Lambda-type footing) | fit, not derivation |
+
+## Ranking: fewest inserted steps (routes that compute a coefficient; my count, itemised above, disputable)
+1. **Milgrom 1999**: 1 inserted step (inertia ~ Delta T), plus a functional ambiguity that moves the answer 2 -> 1. Number wrong by 5.8-11.6x.
+2. Klinkhamer-Kopp (3), Pikhitsa (3-4), McCulloch (4), Smolin (4): all a0 = 2cH or Theta-dependent; only McCulloch is within 2x of the data, by a choice of Theta.
+3. Milgrom brane (3-4): a coefficient that is a geometry number n (Z <= 1/2).
+4. **Verlinde (5)** and **van Putten (6)**: the only computed values within 30% of the data (e03 N8).
+The fewest-step routes are the least viable numerically; the viable ones need >= 5 hypotheses. The "2" in a0 = 2H is a Taylor factor of sqrt(a^2 + H^2) and is unrelated to kappa = 1/2 (do not conflate).
+
+**Is any a genuine derivation of a factor between 1/2 and 1/(2pi)?** In Z: only Verlinde's 6 lies in [5.789, 6.283] (e02 D1); in a0/(cH): Verlinde 0.1667, van Putten 0.2023 (and McCulloch 0.31 with one of his two Theta) lie in [0.159, 0.5].
+Each is a conditional derivation (its hypotheses inserted), none equals kappa = 1/2 (0.1727 in a0/cH_L), and Verlinde's cannot be moved onto it: its Z is rational by construction and (d-1)(d-2)/(d-3) never reaches 5.789 for any real d > 3 (e02 D4).
+
+## Structural results (the part that narrows where the factor can live)
+1. **pi-parity (e02 A, B).** With H_L = sqrt(8 pi G rho_L/3), kappa^2 = 8pi/(3 Z^2). Every computed route has Z in Q (6, 1/2, 1, 1/n), Milgrom's 2pi is empirical, van Putten is mixed. Rational Z gives kappa^2 in pi Q; 2pi gives Q/pi; only kappa = 1/2 (and the record's forced kernel) gives Q
+   (and a0^2 A_dS/c^4 = 3/8, no pi, versus pi/9 for Verlinde, 16pi for the DL family, 1/pi for 2pi). Integer powers of pi (T = H/2pi, 2pi in Bekenstein, 4pi r^2, 8piG) can never make kappa^2 rational (no relation of degree <= 6 for any integer j; exactly one at j = -1/2). So a horizon-first route (a0 linear in H = c/L)
+   cannot equal the framework: **exactness requires a0^2 linear in a density (or 1/area)**, i.e. rho_L, not the Killing surface gravity, must be the primitive. This is a restatement of the record's pi-counting (p02) with the whole published literature run through it.
+2. **The derived coefficient of the thermal route misses the empirical one by exactly 4pi** (2H vs H/2pi, e01 A11): it does not miss it by a "natural" small factor; the missing factor to the framework, 2 sqrt(32pi/3) = 11.578 = 3.69 pi, is not a natural constant either.
+3. **Milgrom's naturalness (2001.09729 sec III.A) = the framework's relation with a free constant.** With EH = R/16pi and F normalised with the same prefactor as his eq (16) (this normalisation is my choice; he writes only proportionalities), a constant F0 acts as Lambda = -8 pi F0 a0^2, so kappa = 1/sqrt(|F0|): |F0| = 1 is the forced kernel (kappa = 1), the puzzle is |F0| = 4 = 2^2 (Verlinde 4.30, Milgrom 2pi 4.71, data band 2.4-4.7: all "O(1)"; the DL family 0.03). Xu's A0 is the same number. (If F carries the 1/16pi, F0 = -64pi = the record's U_v = 32pi of p09.) The normalisation ambiguity is exactly the 16 pi of Einstein's coupling: "O(1)" cannot pick 4.
+4. **The dS/conformal-group route is a0-blind** (e02 E1): the deep-MOND symmetry group is the same for every a0 (A0 scales out), so the group isomorphism with the dS isometries relates two groups and contains no ratio a0 : l_dS; xi in Singh's a0 = c^2/(xi l_dS) stays matched.
+
+## Could any published route be adapted to give exactly kappa = 1/2 non-tautologically? Missing step, route by route
+- **Verlinde-type chain (closest in size and structure)**: no. Its algebra has only integer powers of pi (all cancel), so it returns a rational Z. The missing step is to make a0^2 proportional to G rho_L (the vacuum's free-fall rate) instead of a0 := c H0 (the dS Killing surface gravity); the two differ by sqrt(8pi/3) = 2.894 (the record's forced kernel, kappa = 1). Even after that conversion the record still needs the further factor 2 (kappa = 1/2), and nothing in the chain supplies it.
+- **Effective-action / naturalness route (Milgrom, Xu)**: the only place kappa = 1/2 is expressible without pi: it is |F0| = A0 = 4. The missing step is a dynamical or symmetry principle fixing the vacuum coefficient of the a0-sector to 4 (equivalently U_v = 32pi in Poisson units, p09). The literature offers "O(1)"; the data allow 2.4-4.7. Adapting this route is restating the puzzle, not deriving it.
+- **T - T_Lambda route**: no (11.6x off in the wrong direction; a 1/4pi rescaling would give Milgrom's 2pi, still not kappa = 1/2).
+- **dS/conformal group**: no (a0-blind); would need a dictionary tying the DML action coefficient a0^2/G to the vacuum energy density, which no paper has.
+Net: all published routes insert the coefficient; the honest location of the factor is a vacuum-energy normalisation (F0 = -4), which is where the record already had it.
+
+## Not established
+- That no derivation exists; only that none is published in the works listed, and that horizon-first ones cannot land on kappa = 1/2 by pi-parity. Counts of "inserted steps" are my reading, itemised so they can be disputed.
+- The unopened items above (1983/1984 founding papers, a 2025 preprint, Zhang-Li, any Danielsson paper). No claim is made about them.
+- The numbers in `e03` use adopted H0 = 67.4, Omega_L = 0.685 and a0 = 1.2e-10 as quoted in the papers; the conclusions (factor ~10 vs a few %) do not depend on them. The data do not decide between Z = 5.79, 6 and 2pi (record p03).
+- Nothing here changes "kappa = 1/2 FITTED". No new object is proposed.

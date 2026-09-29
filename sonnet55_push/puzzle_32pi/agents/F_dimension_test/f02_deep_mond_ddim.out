@@ -1,0 +1,59 @@
+A  the fixed kernel s = 1 (mu -> x), analytic:
+    g = sqrt(a0 GM) r^(-(d-1)/2),   v^2 = g r = sqrt(a0 GM) r^((3-d)/2)
+  [OK] A2  d=2: d ln v^2/d ln r = (3-d)/2 = 1/2   (flat iff 0)
+  [OK] A3  d=3: d ln v^2/d ln r = (3-d)/2 = 0   (flat iff 0)
+  [OK] A4  d=4: d ln v^2/d ln r = (3-d)/2 = -1/2   (flat iff 0)
+  [OK] A5  d=5: d ln v^2/d ln r = (3-d)/2 = -1   (flat iff 0)
+  [OK] A6  d=6: d ln v^2/d ln r = (3-d)/2 = -3/2   (flat iff 0)
+  [OK] A-pot2 d=2: the deep-MOND potential diverges at infinity (power: all orbits bound)
+  [OK] A-pot3 d=3: the deep-MOND potential diverges at infinity (log: all orbits bound)
+  [OK] A-pot4 d=4: the deep-MOND potential difference Phi(inf)-Phi(1) is finite (escape possible)
+  [OK] A-pot5 d=5: the deep-MOND potential difference Phi(inf)-Phi(1) is finite (escape possible)
+
+  numerical log-slope d ln v/d ln r at r = 1e5..1e7 r_M (a0 = 1, GM = 1)
+      d    s=1 (fixed kernel)   predicted (3-d)/4     s=d-2 (flat kernel)
+      2              0.249845            0.250000                     nan
+      3             -0.000001            0.000000               -0.000001
+      4             -0.250000           -0.250000               -0.000000
+      5             -0.500000           -0.500000                0.000000
+      6             -0.750000           -0.750000                0.000000
+  [OK] An2 d=2: numerical slope with mu = x/(1+x) equals (3-d)/4 within 1e-3
+  [OK] An3 d=3: numerical slope with mu = x/(1+x) equals (3-d)/4 within 1e-3
+  [OK] An4 d=4: numerical slope with mu = x/(1+x) equals (3-d)/4 within 1e-3
+  [OK] An5 d=5: numerical slope with mu = x/(1+x) equals (3-d)/4 within 1e-3
+  [OK] An6 d=6: numerical slope with mu = x/(1+x) equals (3-d)/4 within 1e-3
+  [OK] Bn3 d=3: with mu -> x^(d-2) the deep curve is flat (|slope| < 1e-3)
+  [OK] Bn4 d=4: with mu -> x^(d-2) the deep curve is flat (|slope| < 1e-3)
+  [OK] Bn5 d=5: with mu -> x^(d-2) the deep curve is flat (|slope| < 1e-3)
+  [OK] Bn6 d=6: with mu -> x^(d-2) the deep curve is flat (|slope| < 1e-3)
+  [OK] A-ctl  control: at d = 3 both kernels are the same (s = d-2 = 1) and flat
+  [OK] A-d2   control: at d = 2 Newtonian gravity g_N ~ 1/r is ALREADY flat (numerical slope 0.00e+00); the flatness-preserving kernel s = d-2 = 0 is a constant mu (no MOND needed)
+  [OK] A-mut  mutation: claiming flatness for s=1 at d=4 (slope 0) is rejected by the numerics
+
+B  flatness and conformal invariance
+  [OK] B1  g ~ 1/r (flat curve) from the deep kernel mu ~ x^s requires s = d - 2
+  [OK] B2  inversion x -> x/|x|^2 maps int |grad Phi|^p d^dx to itself iff 2p - d - 1 = d - 1, i.e. p = d  (s = d - 2)
+  [OK] B3  chain rule: dPhi~/dr' = -(1/r'^2) Phi'(r) with r = 1/r' (so |grad Phi| = r'^2 |grad Phi~|)
+  [OK] B4  the fixed kernel s=1 (p=3) is conformally invariant iff d = 3 (2p-d-1 = d-1 -> d = 3)
+  [OK] B5  control: s = 1 at d = 4 gives exponent 2p-d-1 = 1 != d-1 = 3 (not invariant); s = d-2 = 2 at d = 4 gives p = 4 = d (invariant)
+
+C  (x,t) -> lambda (x,t) with Phi (a velocity^2) fixed, s = 1
+  [OK] C1  mass scales as lambda^(d-3): mass-preserving scale invariance only at d = 3
+  [OK] C2  control d=3 -> 1, d=4 -> lambda, d=2 -> 1/lambda
+
+D  dimensional analysis of a velocity from (G M) and a0
+  [OK] D1  v = (G M)^p a0^q exists for EVERY d: p = 1/(2(d-1)), q = (d-2)/(2(d-1))  (v^4 = G M a0 at d = 3)
+  [OK] D2  at d = 3: p = q = 1/4
+  [OK] D3  the s = d-2 kernel's plateau v^2 = (a0^(d-2) G M)^(1/(d-1)) is exactly the dimensional-analysis velocity of D1
+
+E  the 'slope reading' mu'(0) = N needs the deep kernel mu ~ x^1
+    d=3: mu = x^1/(1+x^1):  mu'(0) = 1
+    d=4: mu = x^2/(1+x^2):  mu'(0) = 0
+    d=5: mu = x^3/(1+x^3):  mu'(0) = 0
+  [OK] E1  flat kernel: mu'(0) = 1 at d = 3 (finite, nonzero) and 0 at d = 4, 5 : N-slope readings of kappa are defined only at d = 3 when the curve is flat
+
+F  isometry group of dS_(d+1) = conformal group of R^d, for every d (Milgrom 2009, arXiv:0810.4065, states the d = 3 case: ten generators)
+  [OK] F1  dim Isom(dS_(d+1)) = dim SO(d+1,1) = (d+1)(d+2)/2 equals dim Conf(R^d) = d(d+1)/2 + 1 + d for every d; d = 3: 10 = 10 (Milgrom's ten)
+  [OK] F2  so a 'deep-MOND equation conformally invariant in R^d' matches dS_(d+1) symmetry for EVERY d, provided the deep kernel is the p = d one (s = d-2, flat curves); the fixed p = 3 cubic action does so only at d = 3
+
+  34/34 checks held.

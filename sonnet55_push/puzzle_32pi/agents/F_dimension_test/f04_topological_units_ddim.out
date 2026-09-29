@@ -1,0 +1,58 @@
+A  Euler density of constant-curvature spaces (brute-force generalised-Kronecker contraction)
+  [OK] A2  E_2 on S^2(L=1) = (2n)! = 2  (brute force: 2.000000)
+  [OK] A4  E_4 on S^4(L=1) = (2n)! = 24  (brute force: 24.000000)
+  [OK] A6  E_6 on S^6(L=1) = (2n)! = 720  (brute force: 720.000000)
+  [OK] A41  general D: contraction = D!/(D-2n)! (12.0000 vs 12.0)
+  [OK] A52  general D: contraction = D!/(D-2n)! (120.0000 vs 120.0)
+     (S^8: E_8 = 8! by the same antisymmetry argument; brute force skipped, 8! permutations x 8^8 entries)
+
+   D    Vol(S^D)          E_D             int E_D = E_D Vol   unit per chi = (4pi)^n n!    Chern unit (2pi)^n n!
+   2    4*pi                    2       8*pi               4*pi                       2*pi
+  [OK] A-int2  int_(S^2) E_2 = (4 pi)^1 1! * chi with chi = 2
+   4    8*pi**2/3              24       64*pi**2           32*pi**2                   8*pi**2
+  [OK] A-int4  int_(S^4) E_4 = (4 pi)^2 2! * chi with chi = 2
+   6    16*pi**3/15           720       768*pi**3          384*pi**3                  48*pi**3
+  [OK] A-int6  int_(S^6) E_6 = (4 pi)^3 3! * chi with chi = 2
+   8    32*pi**4/105        40320       12288*pi**4        6144*pi**4                 384*pi**4
+  [OK] A-int8  int_(S^8) E_8 = (4 pi)^4 4! * chi with chi = 2
+  [OK] A-D4  D = 4 unit is 32 pi^2 and the Chern (SU(2) instanton) unit 8 pi^2: ratio 4 = 2^n
+  [OK] A-D6  D = 6 unit is 384 pi^3 (task's 'or similar'), D = 8: 6144 pi^4
+
+B  horizon area x Lambda^((d-1)/2) with a Tangherlini horizon of surface gravity a0 = kappa sqrt(G rho_L)
+  [OK] B1  A Lambda alone has dimension length^(d-3): (G rho) ~ 1/L^2 so A Lambda ~ L^(d-1) L^-2  (dimensionless only at d = 3)
+  [OK] B2  AL_d(kappa) = Omega_(d-1) (2 pi (d-2)^2/kappa^2)^((d-1)/2), independent of G, rho
+  [OK] B3  control: d = 3, kappa = 1/2 gives exactly 32 pi^2 = the D = 4 Gauss-Bonnet unit
+  [OK] B3b control: kappa = 1 at d = 3 gives 8 pi^2 (not 32 pi^2): wrong kappa is rejected
+
+   pi-power of AL_d (algebraic kappa)  vs  pi-power of the topological unit U_(d+1):
+   d=3 (D=4):  AL/U = 1/(4*kappa**2)   = (1/4) kappa^-2 pi^0
+   d=5 (D=6):  AL/U = 9*pi/(4*kappa**4)   = (9/4) kappa^-4 pi^1
+   d=7 (D=8):  AL/U = 3125*pi**2/(144*kappa**6)   = (3125/144) kappa^-6 pi^2
+   d=9 (D=10):  AL/U = 823543*pi**3/(3600*kappa**8)   = (823543/3600) kappa^-8 pi^3
+  [OK] B4  AL_d/U_(d+1) = (rational) * kappa^-(d-1) * pi^((d-3)/2) with the rational coefficient shown for d = 3, 5, 7, 9 (no pi left in the coefficient)
+  [OK] B5  the pi-exponent (d-3)/2 vanishes only at d = 3
+  [OK] B6  d = 5: AL/U = (9/4) pi/kappa^4 exactly; equals 1 only at kappa = (9 pi/4)^(1/4) = 1.6305, not algebraic (pi^(1/4)); no algebraic kappa gives a rational multiple
+   variant with G rho instead of Lambda:  A (G rho)^((d-1)/2)/U = 1/(32*pi*kappa**2), 9/(256*pi*kappa**4), 3125/(73728*pi*kappa**6)
+  [OK] B9  with (G rho)^((d-1)/2) in place of Lambda^((d-1)/2) the ratio to the Euler unit is (rational)/(pi kappa^(d-1)) in EVERY odd d, including d = 3 (there the missing pi is Einstein's 8 pi): one Einstein pi is needed at d=3 and (d-1)/2 of them appear in Lambda^((d-1)/2)
+
+   value of AL_d/U_(d+1) for the readings (algebraic kappa unless stated) -- transcendental for d >= 5, NOT an integer
+   (1) kappa = 1/2                    d=3: 1                      =     1.0000   d=5: 36*pi                  =   113.0973   d=7: 12500*pi**2/9          = 13707.7839
+   (3) kappa = (d-2)/2                d=3: 1                      =     1.0000   d=5: 4*pi/9                 =     1.3963   d=7: 4*pi**2/45             =     0.8773
+   (4) kappa = (2/3) d/(d+1)          d=3: 1                      =     1.0000   d=5: 59049*pi/2500          =    74.2032   d=7: 64800000*pi**2/117649  =  5436.0884
+   (5) kappa = sqrt(3/(2d(d-1)))      d=3: 1                      =     1.0000   d=5: 400*pi                 =  1256.6371   d=7: 4287500*pi**2/9        = 4701769.8744
+  [OK] B7  at d = 3 every reading has kappa = 1/2 (p05), so every reading gives the ratio exactly 1: the D = 4 identity carries no information about WHICH reading
+  [OK] B8  at d = 5 and d = 7 no reading gives 1: every value is a nonzero rational times pi^((d-3)/2)
+   (note: some values sit near 1 by accident, e.g. reading (3) at d = 7 gives 0.877; the exact ratio is 0.877..., a transcendental number; near-misses are not evidence)
+
+D  the de Sitter horizon itself
+   d=3: A_dS Lambda^((d-1)/2)/U = 3/(8*pi)
+   d=5: A_dS Lambda^((d-1)/2)/U = 25/(36*pi)
+   d=7: A_dS Lambda^((d-1)/2)/U = 1029/(640*pi)
+  [OK] D1  A_dS Lambda^((d-1)/2) / U_(d+1) is (rational)/pi in every odd d: one pi short of the topological unit (the 2 pi of the thermal period / Euclidean rotation)
+  [OK] D2  d = 3: A_dS Lambda = 12 pi, and 12 pi x 8 pi/3 = 32 pi^2: the a0 horizon's extra area factor is Z^2 = 8 pi/3 x (dS area) in D = 4 (p08); no such fixed factor in general d
+
+Controls
+  [OK] C1  d = 4 (D = 5, odd): chi(S^D) = 1 + (-1)^D gives chi(S^5) = 0 (and chi(S^4) = 2): there is no Euler-density unit at odd D, the topological reading is undefined
+  [OK] C2  d = 2 (D = 3): Tangherlini r_s = (d-2)/(2 a0) = 0: no horizon, AL_2 = Omega_1 r_s Lambda^(1/2) = 0
+
+  25/25 checks held.

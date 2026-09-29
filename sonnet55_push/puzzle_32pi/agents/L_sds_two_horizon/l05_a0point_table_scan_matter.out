@@ -1,0 +1,86 @@
+=== Part 1: the a0-points (Z = 5.788810036) ===
+ BLACK-HOLE horizon a0-point (kappa_b = a0)
+    mu                     0.98695239140969
+    r_b/L                  0.52263231005817
+    r_c/L                  0.63039097254277
+    |r_-|/L                1.1530232826009
+    S_b/S_dS               0.27314453151674
+    S_c/S_dS               0.39739277826342
+    S_tot/S_dS             0.67053730978016
+    dS/S_dS                0.32946269021984
+    S_b/S_c                0.68734145776469
+    T_b/T_dS               0.17274707473567
+    T_c/T_dS               0.15242789249906
+    T_c/T_b                0.88237611393595
+    T_b/T_c                1.1333035699928
+    kBH_b                  1.8501903949465
+    kBH_c                  1.6325638107346
+    f(r*)                  0.0087174318247907
+    r*/L                   0.57482825498149
+    M/L                    0.18993907628591
+    A_b Lam/pi             3.2777343782009
+    A_c Lam/pi             4.768713339161
+    n_A=IntE4/32pi^2       3.7647522278719
+    n_B                    4.2666071399856
+    rho_m/rho_L (R=L)      0.37987815257182
+    kb*rb                  0.090283202724893
+    kc*rc                  0.096089167395128
+    r_static1/L            0.56952765489592
+    r_static2/L            0.58022777840951
+ COSMOLOGICAL horizon a0-point (kappa_c = a0)
+    mu                     0.9829840391638
+    r_b/L                  0.51471483516387
+    r_c/L                  0.63779702654861
+    |r_-|/L                1.1525118617125
+    S_b/S_dS               0.26493136153777
+    S_c/S_dS               0.40678504707425
+    S_tot/S_dS             0.67171640861202
+    dS/S_dS                0.32828359138798
+    S_b/S_c                0.65128097368193
+    T_b/T_dS               0.19933942191637
+    T_c/T_dS               0.17274707473567
+    T_c/T_b                0.86659765075542
+    T_b/T_c                1.1539380462528
+    kBH_b                  1.8689209746244
+    kBH_c                  1.619602526057
+    f(r*)                  0.011376391070734
+    r*/L                   0.57405679420805
+    M/L                    0.18917536654011
+    A_b Lam/pi             3.1791763384532
+    A_c Lam/pi             4.881420564891
+    n_A=IntE4/32pi^2       3.7331953015108
+    n_B                    4.3078760925057
+    rho_m/rho_L (R=L)      0.37835073308022
+    kb*rb                  0.10260295769334
+    kc*rc                  0.11017757061138
+    r_static1/L            0.56800955652467
+    r_static2/L            0.58023330188167
+PASS T1 identities at the b-point: x^2 + x y + y^2 = 1, 2M = x y (x+y), f(r_b)=f(r_c)=0, kappa_b = a0, T_b/T_dS = 1/Z; at the c-point kappa_c = a0
+PASS T2 A_b Lambda = 12 pi x^2 = 10.297306 (not 32 pi^2 = 315.82734): the puzzle's AREA relation does not hold at the a0-point (audit a07 S3 reproduced); S_tot/S_dS = 0.67053731
+PASS T3 BH-normalised surface gravities at the b-point: kappa_b^BH = 1.8501904 H, kappa_c^BH = 1.6325638 H: both > H, so in that normalisation a0 = H/Z is NOT a horizon value (a07 S5 reproduced)
+PASS T4 two static worldlines with proper acceleration a0 exist inside the b-point SdS, at r/L = 0.56952765 < r* = 0.57482825 < r/L = 0.58022778, both between the horizons (r_b = 0.52263231, r_c = 0.63039097); pure de Sitter: sin(theta0) = 1/sqrt(1+Z^2) = 0.17022584
+
+=== Part 2 (E9): closed-form scan, menu size 27412, tolerance 1e-09, decoys for the hit rate ===
+   a0 point Z = sqrt(32pi/3)            quantities tested: 52   closed-form hits: 0 []
+   decoy Z = 2 pi (Milgrom)             quantities tested: 52   closed-form hits: 0 []
+   decoy Z = 6                          quantities tested: 52   closed-form hits: 0 []
+   decoy Z = 5.5                        quantities tested: 52   closed-form hits: 0 []
+   decoy Z = 6.5                        quantities tested: 52   closed-form hits: 0 []
+   decoy Z = sqrt(8pi/3) (kappa=1)      quantities tested: 52   closed-form hits: 0 []
+   decoy Z = 1.05 Z                     quantities tested: 52   closed-form hits: 0 []
+PASS E9a the a0-point has 0 closed-form hits among 52 quantities (each tested as q and q^2); the six decoy points have 0 hits among 312 quantities; expected spurious rate ~ 1.1e-04 per test at this menu size and tolerance
+PASS E9b control: a planted value (3/7) pi sqrt3 is recovered by the scan ([('q', '(3/7) pi^1 sqrt3^1 sqrt2^0')]); the same value shifted by 1e-6 (relative) is not
+PASS E9c verdict: no quantity of the SdS geometry at the a0-point equals a simple (rational x pi^a sqrt3^b sqrt2^c, p,q <= 40) closed form to 1e-9; every quantity is an explicit algebraic function of Z^2 = 32 pi/3 (e.g. r_b/L = (sqrt(1+32 pi) - 1)/sqrt(96 pi)) with no simplification
+
+=== Part 3 (E7): matter mass as a fraction of M_N -- DATA-DEPENDENT, never used to fit ===
+PASS M1 derivations: M_m(L)/M_N = (3 sqrt3/2) Omega_m/Omega_Lambda  and  M_m(R_H)/M_N = (3 sqrt3/2) Omega_m sqrt(Omega_Lambda) (rho_m = (Omega_m/Omega_Lambda) rho_Lambda, rho_Lambda = 3/(8 pi L^2), pi cancels)
+PASS M2 exact: the reading-(ii) mass fraction has its maximum at Omega_m = 2/3 with value exactly 1 (the Nariai mass): mu_ii <= 1 for every Omega_m, equality only at 2/3 (critical points [2/3]; value 1)
+   a0-point (BH) mass fraction mu* = 0.98695239 ; cosmological a0-point mu_c = 0.98298404
+   Omega_m that would give mu = mu*:  reading (i): 0.2753 ; reading (ii): [0.6026, 0.7269]
+   Omega_m = 0.315 (Planck-2018-like, illustrative)     reading (i) mu = 1.1947   reading (ii) mu = 0.6773
+   Omega_m = 0.27                                       reading (i) mu = 0.9609   reading (ii) mu = 0.5993
+   Omega_m = 0.34                                       reading (i) mu = 1.3384   reading (ii) mu = 0.7176
+PASS M3 (data-dependent illustration) with Omega_m = 0.315: reading (i) mu = 1.195 (21% above mu* = 0.9870), reading (ii) mu = 0.677 (31% below mu*): neither equals mu*; the Omega_m that would match is 0.2753 (reading i), 0.6026/0.7269 (reading ii), 5.7 sigma from 0.315 +/- 0.007 for reading (i)
+PASS M4 the reading (i) mu_m(t) = (3 sqrt3/2) rho_m/rho_Lambda ~ a^-3 falls with time: it equals mu* only at a = 1.0658, i.e. +0.94 Gyr from now (flat LCDM, Omega_m = 0.315, H0 = 67.4, illustrative): a time-dependent reading cannot fix a CONSTANT a0/H_Lambda (the record's flat a0(z) law), so it cannot be the principle
+
+11/11

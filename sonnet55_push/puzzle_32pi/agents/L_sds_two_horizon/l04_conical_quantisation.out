@@ -1,0 +1,45 @@
+PASS Q1a E4(SdS) = 24/L^4 + 48 M^2/r^6 from the six orthonormal sectional curvatures (independent of a08's coordinate computation); Ricci = 3/L^2 g (Einstein space) and R = 12/L^2
+PASS [mutation rejected] Q1b mutation: dropping the M^2 term would give 24/L^4 (Nariai/dS value): rejected
+   mu       kappa_c/kappa_b    n_A = IntE4/(32 pi^2), reading A    n_B, reading B
+   0.1296   0.095494          2.190988                       22.943706
+   0.4988   0.346493          2.692985                       7.772127
+   0.7979   0.580169          3.160338                       5.447273
+   0.9324   0.746254          3.492508                       4.680052
+   0.9857   0.877100          3.754200                       4.280241
+   0.9998   0.983202          3.966404                       4.034170
+PASS Q2a numerical quadrature of E4 reproduces Int E4 = 64 pi^2 (1 + kappa_c/kappa_b) (reading A, max |diff| = 3.06e-37) and 64 pi^2 (1 + kappa_b/kappa_c) (reading B, max |diff| = 3.53e-37)
+PASS [mutation rejected] Q2b mutation: 64 pi^2 (1 + kappa_b/kappa_c) does NOT reproduce reading A at x = 0.2
+PASS Q2c endpoints: M -> 0 gives Int E4 -> 64 pi^2 (n = 2 = chi(S^4) with 32 pi^2 chi/..: pure dS), Nariai gives 128 pi^2 (n = 4, chi(S^2 x S^2) = 4)
+
+   Reading A: n = 2 (1 + rho), rho = kappa_c/kappa_b in (0,1)  =>  integer n only n = 3 (rho = 1/2); n = 2 and n = 4 are the endpoints
+   n = 3: x = 0.2988584907  mu = 0.7071067812   K_b = 1.224744871   K_c = 0.6123724357
+PASS Q3a reading A has exactly ONE interior integer: n = 3, kappa_c/kappa_b = 1/2, at mu = 0.70710678 with K_b = 1.2247449 (n = 2 and 4 are the pure-dS and Nariai endpoints)
+PASS Q3b that point is not the a0 point: K_b = 1.2247449 vs 1/Z = 0.17274707 (ratio 7.08982)
+   Reading B: n = 2 (1 + kappa_b/kappa_c) in (4, inf): every integer n >= 5 allowed, kappa_b/kappa_c = n/2 - 1
+   n =  5: kappa_b/kappa_c = 1.5   x = 0.40337828  mu = 0.87748198  K_c = 0.42297592
+   n =  6: kappa_b/kappa_c = 2.0   x = 0.29885849  mu = 0.70710678  K_c = 0.61237244
+   n =  7: kappa_b/kappa_c = 2.5   x = 0.23428909  mu = 0.57528847  K_c = 0.71307279
+   n =  8: kappa_b/kappa_c = 3.0   x = 0.19163997  mu = 0.47960961  K_c = 0.77386637
+   n =  9: kappa_b/kappa_c = 3.5   x = 0.16172214  mu = 0.4091774  K_c = 0.81403982
+   n = 10: kappa_b/kappa_c = 4.0   x = 0.13970124  mu = 0.3558709  K_c = 0.84237858
+   n = 11: kappa_b/kappa_c = 4.5   x = 0.12286699  mu = 0.31439879  K_c = 0.86336463
+   n = 12: kappa_b/kappa_c = 5.0   x = 0.10960381  mu = 0.28133825  K_c = 0.87949587
+PASS Q3c reading B admits a whole tower n = 5, 6, ..., 12 (checked), with mu decreasing and K_c increasing towards H as n grows: the integer condition does not single out a point (each K_c is algebraic, none equals 1/Z)
+PASS Q3e the single clean interior point of reading A, n = 3 (kappa_c/kappa_b = 1/2), is EXACTLY mu = 1/sqrt2 with K_b = sqrt(3/2) and K_c = sqrt(3/8) (also = reading B, n = 6); mu = 0.707106781186548, K_b = 1.22474487139159
+   Orbifold: cone angle 2 pi rho = 2 pi/N (reading A): rho = 1/N
+   N = 2: mu = 0.70710678   K_b = 1.2247449
+   N = 3: mu = 0.47960961   K_b = 2.3215991
+   N = 4: mu = 0.3558709   K_b = 3.3695143
+   N = 5: mu = 0.28133825   K_b = 4.3974793
+   N = 6: mu = 0.23212842   K_b = 5.4156817
+   N = 7: mu = 0.19737733   K_b = 6.4284379
+   N = 8: mu = 0.17158803   K_b = 7.4378613
+PASS Q3d orbifold cone angles 2 pi/N give a discrete set (one point per N); any rational rho = p/q also gives one: rationals are dense, so 'commensurate cone angle' does not single out a point
+
+   a0-point of the BLACK-HOLE horizon: mu = 0.9869523914, kappa_c/kappa_b = 0.8823761139, n_A = 3.764752228, cone angle = 317.6554 deg
+   a0-point of the COSMOLOGICAL horizon: mu = 0.9829840392, kappa_b/kappa_c = 1.153938046, n_B = 4.307876093
+PASS Q4a at the a0-point n_A = 3.7647522 (not an integer; distance to 4 is 0.2352) and n_B = 4.3078761 (not an integer; distance to 4 is 0.3079): the a0-points are near-Nariai but are not integer-quantised points
+PASS Q4b near Nariai 1 - kappa_c/kappa_b = (4/(3 sqrt3)) kappa_b/H + O(kappa^2): Richardson-extrapolated coefficient 0.76980036 vs 4/(3 sqrt3) = 0.76980036; so for ANY small a0/H the a0-points are within O(a0/H) of the Nariai ratio 1 (proximity to Nariai is generic, not specific to Z)
+PASS Q4c kappa_c/kappa_b at the a0 point is an algebraic function of 1/Z (non-constant), hence transcendental by Lindemann, hence NOT rational: no integer n, no orbifold N (heuristic sanity: no integer polynomial of degree <= 8, coeff <= 1e6 at 100 digits: None)
+
+13/13

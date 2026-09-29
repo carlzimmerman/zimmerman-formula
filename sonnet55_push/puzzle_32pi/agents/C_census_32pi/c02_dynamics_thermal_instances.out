@@ -1,0 +1,49 @@
+
+D1  the Friedmann coefficient 8 pi/3
+  [OK] Einstein tensor of flat FRW: G_tt = 3 H^2  (so 8 pi G rho = 3 H^2: H^2 = (8 pi/3) G rho; the 3 = dim SO(3))
+  [OK] Newtonian zero-energy shell: H^2 = 2 G M/r^3 = (8 pi/3) G rho = 2 x (4 pi/3) G rho
+
+D2  free-fall time
+  [OK] t_ff = (pi/2) sqrt(R^3/(2 G M)) = sqrt(3 pi/(32 G rho))   (exact, substitution r = R sin^2 u)
+  [OK] independent mpmath quadrature (G = rho = R = 1): t_ff = 0.542700940919 vs sqrt(3 pi/32) = 0.542700940919
+  [OK] CONTROL C-D2a: sqrt(3 pi/(16 G rho)) (wrong) is rejected
+      t_ff sqrt(G rho) = sqrt(3 pi/32) = 0.542701
+  [OK] [bookkeeping] G rho t_ff^2 = 3 pi/32 = (pi/2)^2 x 3/(8 pi): an ANGLE integral pi/2 squared times the Friedmann/Gauss factor 3/(8 pi)
+  [OK] t_ff = (pi/2)/H_rho with H_rho^2 = (8 pi/3) G rho: the 32 pi is 8 pi x 4 with 4 = (2/pi)^2 pi^2 -> the pi count is +1 in the numerator (3 pi/32), NOT 32 pi in the numerator
+  [OK] [tautology, flagged] Z sqrt(G rho) t_ff = pi  (i.e. (32 pi/3)(3 pi/32) = pi^2): it only says Z = 2 sqrt(8 pi/3) and t_ff = (pi/2)/sqrt(8 pi G rho/3)
+
+D3  Jeans instability
+  [OK] dispersion relation  omega^2 = c_s^2 k^2 - 4 pi G rho0
+  [OK] lambda_J = 2 pi/k_J = sqrt(pi c_s^2/(G rho)) : the coefficient is 4 pi (Poisson), no 32
+  [OK] CONTROL C-D3a: dropping the 4 pi (Poisson) gives k_J = sqrt(G rho)/c_s and is rejected
+
+D4  Stefan-Boltzmann and Hawking evaporation (photons only, geometric cross section)
+  [OK] int_0^oo x^3/(e^x - 1) dx = Gamma(4) zeta(4) = pi^4/15  (closed form and independent mpmath quadrature 6.49393940227)
+  [OK] photon energy density u = (pi^2/15) T^4
+  [OK] sigma = u/(4 T^4) = pi^2/60
+  [OK] P = sigma A T^4 = 1/(15360 pi G^2 M^2)
+  [OK] evaporation time t = 5120 pi G^2 M^3
+  [OK] CONTROL C-D4a: sigma = pi^2/30 (wrong) gives lifetime 2560 pi and is rejected
+  [OK] [bookkeeping] 15360 pi = 60 (8 pi)^4/((pi^2)(16 pi)):  60 = 4 x 15 from sigma=pi^2/60;  (8 pi)^4 from T^4;  pi^2 from sigma;  16 pi from A
+  [OK] [numerology flag] 15360 pi = 32 pi x 480 and 5120 pi = 32 pi x 160 (a literal factor, not an origin; 15360 = 2^10 x 15, 5120 = 2^10 x 5)
+      caveat: the coefficient is model-dependent (species content, greybody factors); it is not a fundamental constant of gravity.
+
+D5  Casimir energy by dimensional regularisation
+  [OK] int d^2k/(2 pi)^2 sqrt(k^2+m^2) -> -m^3/(6 pi) (dim. reg.)
+  [OK] zeta(-3) = 1/120
+  [OK] E/A = -pi^2/(720 d^3)
+  [OK] force per area -dE/dd = -pi^2/(240 d^4)
+  [OK] CONTROL C-D5a: with zeta(-3) replaced by 1/12 the result -pi^2/(72 d^3) is rejected
+
+D6  Euler-Heisenberg and Schwinger from the proper-time integral
+  [OK] x cot x = 1 - x^2/3 - x^4/45 + O(x^6)
+  [OK] L_(4) = e^4 E^4/(360 pi^2 m^4)   [hep-th/0406216 eq.(1.9) as read: e^4/(360 pi^2 m^4) (E^2-B^2)^2 + ...]
+  [OK] [bookkeeping] 360 pi^2 = 8 pi^2 x 45 (the proper-time loop 1/(8 pi^2) x the x^4 coefficient 1/45)
+  [OK] residues at s_n = n pi/(eE):  (eE)^2/(n^2 pi^2) exp(-n pi m^2/eE)  (n = 1, 2, 3)
+  [OK] Gamma = 2 Im L = (eE)^2/(4 pi^3) sum_n exp(-n pi m^2/eE)/n^2   [hep-th/0406216 eq.(1.10),(1.11) as read; Wikipedia 'Schwinger effect']
+  [OK] CONTROL C-D6a: prefactor (eE)^2/(8 pi^3) (forgetting Gamma = 2 Im L) is rejected
+  [OK] [bookkeeping] Gamma prefactor = 2 x [1/(8 pi^2)] x [pi from the half residue] x [1/pi^2 from s_n^2]
+      the exponent pi m^2/(eE) is a semicircle area (WKB action): a scale (the Schwinger field m^2/e) enters, and the ratio eE/m is an ACCELERATION
+      a = eE/m (a coupling ratio e/m times the field): this is the closest textbook 'acceleration set by sqrt(rho)' (rho = E^2/2), with e/m free.
+
+  31/31 checks held.

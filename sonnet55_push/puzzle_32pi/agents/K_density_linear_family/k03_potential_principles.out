@@ -1,0 +1,44 @@
+== A  W_v is a dimensionless, hbar-free, c-free invariant
+   parameters ['a0', 'G', 'c', 'hbar', 'rho_energy']: rank 3, 2 independent dimensionless invariants
+PASS A1 G rho/a0^2 is dimensionless with no c and no hbar in it (rho as an energy density)
+PASS A2 MUTATION: inserting one power of hbar breaks dimensionlessness
+
+== B  the normalisation-independent form: c = F(0)/F'(inf)
+PASS B1 c = F(0)/F'(inf) is invariant under F -> lambda F while F(0) alone is not (the 8 pi of Einstein's coupling is a normalisation of F, so 'F(0) = O(1)' is convention-laden and 'c = O(1)' is not)
+PASS B2 in the Milgrom-type normalisation (Newtonian slope 1/(8 pi)) the requirement F_M(0) = 4 reads F_M(0)/F_M'(inf) = 4 * 8 pi = 32 pi: the same c
+   values of c for parameter-free, data-shaped mu (finite-c cases), and G rho/a0^2 = c/(8 pi):
+     sharp          c =  0.333333   W_v = 0.013263
+     mu_n n=3       c =       1.0   W_v = 0.039789
+     exponential    c =       2.0   W_v = 0.079577
+     record OR N=5  c =   4.16667   W_v = 0.16579
+     mu_n n=6       c =  0.431185   W_v = 0.017156
+     RAR-nu         c =   25.9758   W_v = 1.0335
+   needed: c = 32 pi = 100.531 (W_v = 4);  ratio to the largest natural value (RAR-nu): 3.87
+PASS B3 the parameter-free, data-shaped members with finite c (sharp, mu_n n>=3, exponential, record OR N>=5, RAR-nu) span c = 0.33 ... 26: 32 pi = 100.5 lies a factor >= 3.9 above the largest, i.e. G rho/a0^2 between 0.013 and 1.03 versus the required 4
+PASS B4 bookkeeping identity: the same coefficient reads 4 in W_v and 32 pi = 100.5 in c; the factor is Einstein's 8 pi (an O(1) F0 in the Poisson normalisation means W_v ~ 1/(8 pi) ~ 0.04)
+
+== C  extremum / first-order / Z2 / Bogomolny principles cannot see the additive constant
+PASS C1 stationary points and second derivatives (masses) of V and V + C coincide
+PASS C2 the Bogomolny equation phi' = sqrt(2 (V - V_min)) is identical for V and V + C (V_min shifts too): tension and profile ignore C
+PASS C3 the Z2 barrier top V(0) = lambda v^4/4 is a free combination of two couplings (no number): nothing here equals 4 a0^2/G without inserting it
+PASS C4 sine-Gordon V = m^2 f^2 (1 - cos(phi/f)): barrier top 2 m^2 f^2 -- free as well
+
+== D  Hamilton-Jacobi (real superpotential) form and the SUSY form
+PASS D1 V = 3W^2 - 2W'^2 with H = W(phi), phidot = -2W'(phi) solves Friedmann, Raychaudhuri and Klein-Gordon identically (8 pi G = 1)
+PASS D2 the de Sitter critical point W' = 0 has V_* = 3 W_*^2 = 3 H_*^2 (positive is allowed) -- but W_* is a free constant: the first-order principle relates V_* to H_* (tautology, Friedmann), never to a0
+PASS D3 (textbook algebra) at a supersymmetric point DW = 0 the N=1 sugra potential is V = -3 e^K |W|^2 <= 0: a BPS/SUSY principle gives Minkowski or AdS, never rho_L > 0
+
+== E  Coleman-Weinberg: the coefficient carries hbar, so equating it to 4 a0^2/G fixes a mass
+PASS E1 W_cw = G m^4 c^5/(64 pi^2 hbar^3 a0^2) is dimensionless and contains hbar^(-3): it is a function of the field's MASS
+   a0 = 9.3619e-11: W_cw = 4 needs m c^2 = 11.231 meV
+   a0 = 1.1279e-10: W_cw = 4 needs m c^2 = 12.328 meV
+   rho_L^(1/4) = 2.240 meV (rho_L from H0 = 67.4, Omega_L = 0.685)
+PASS E2 the mass a one-loop vacuum needs for W_v = 4 is m c^2 = 11.2 meV = (64 pi^2)^(1/4) rho_L^(1/4) with rho_L^(1/4) = 2.24 meV (a free field mass; its numerical vicinity to the neutrino scale is the old rho_L^(1/4) fact, not a derivation)
+PASS E3 MUTATION: if the one-loop formula lost its hbar^-3 the ratio would not be dimensionless
+
+== F  generic completion: W_v is a free ratio
+PASS F1 S = int[R/16piG + (a0^2/8piG) F-term - V0 w(phi)] has W_v = G V0 w_v/a0^2: V0 and a0 enter through independent parameters, so W_v is free unless an extra relation ties them
+   single-length completion: G rho_vac/a0^2 = F0m  (c-factors as displayed)
+PASS F2 in the single-length completion the ratio is a pure number F0 = F(0) (no free scale): the value is decided by the shape of F alone -- which is exactly the c[mu] of k01
+
+18/18 checks passed

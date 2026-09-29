@@ -1,0 +1,37 @@
+PASS F1a discriminant of r^3 - L^2 r + 2 M L^2 is 4 L^4 (L^2 - 27 M^2): vanishes at M = L/(3 sqrt3) = M_Nariai; three real roots for M < M_N
+PASS F1b trig roots satisfy f(r_b) = f(r_c) = 0, r_b + r_c + r_- = 0, x^2 + x y + y^2 = 1, 2M = x y (x + y) at 6 masses (max residual 6.08e-40)
+PASS F1c Nariai limit: r_b = r_c = 1/sqrt3 (L = 1) from the trig roots
+PASS F1d M -> 0: r_b = 0, r_c = L (pure de Sitter)
+PASS F2a xi = d_t is a Killing vector of SdS (nabla_(mu xi_nu) = 0, direct Christoffel computation)
+PASS F2b covariant kappa^2 = -(1/2) nabla_mu xi_nu nabla^mu xi^nu = f'(r)^2/4 (r-independent expression, so evaluated on either horizon it gives (f'(r_h)/2)^2)
+PASS F2c Euclidean regularity: g_tautau = rho^2 (f'/2)^2 near the horizon, hence the smooth period is beta = 2 pi/(f'/2) = 2 pi/kappa (kappa = |f'|/2 is the regularity normalisation of t)
+PASS F2d kappa_b L = (1 - 3 x^2)/(2 x) and kappa_c L = (3 y^2 - 1)/(2 y) from f'/2 with the horizon condition 2M = r - r^3
+PASS [mutation rejected] F2e mutation: kappa = f'(r_h) (missing 1/2) does NOT give kappa_c(M=0) = H
+PASS F2f pure de Sitter: kappa_c(M=0) = H exactly; kappa_b -> infinity as M -> 0; both -> 0 at Nariai
+PASS F3a f'(r*) = 0 at r*^3 = M L^2 (static geodesic observer); f(r*) = 1 - 3 M^(2/3) for L = 1
+PASS F3b BH-normalisation: kappa_c -> H (=1) as M -> 0 and kappa_b, kappa_c -> sqrt(3) H at Nariai (1.7320509, 1.7320507)
+PASS F3c BH-normalised kappa_b >= sqrt3 H and H <= kappa_c <= sqrt3 H at 8 masses: no SdS horizon has kappa < H in that normalisation
+PASS F3d near-Nariai leading order: (kappa_f L)^2 = 2 (1 - mu) (rel. error 1.09e-5)
+PASS F4a first law of the black-hole horizon: dM = T_b dS_b (fixed L), T_b = kappa_b/2pi, S_b = pi r_b^2
+PASS F4b first law of the cosmological horizon carries the NEGATIVE-energy sign: dM = - T_c dS_c (raising M shrinks r_c); equivalently E_c = -M obeys dE_c = +T_c dS_c
+PASS [mutation rejected] F4c mutation: dM = +T_c dS_c is false
+PASS F4d S_tot = pi (r_b^2 + r_c^2) = pi L^2 (1 - x y) and dS_tot/dM = 2 pi (1/kappa_b - 1/kappa_c) < 0 (numerical derivative vs formula, 3 masses; entropy DEcreases with M)
+PASS F4e S_tot(Nariai)/S_dS = 2/3 (1 - x y at x = y = 1/sqrt3) and S_tot < S_dS on the whole family (entropy bound)
+PASS F4f extended first law dM = T dS + V dP with P = -rho_Lambda = -Lambda/8pi, V = 4 pi r_b^3/3 (partial derivatives in r_b and Lambda)
+PASS F4g Smarr relation M = 2 T S - 2 P V = kappa_b r_b^2 + (8 pi/3) rho_Lambda r_b^3 (weights 1 = 2 - 2(-2 + 3)/... verified as an identity)
+PASS F5a near Nariai: f = (2/3) eps - 3 rho^2/L^2 + O(rho^3, eps rho) with r = L/sqrt3 + rho, M = M_N (1 - eps)
+PASS F5b the (t, rho) factor is dS_2 of radius ell = L/sqrt3 (R_2 = -f'' = 6/L^2 = 2/ell^2), the sphere factor has radius r_0 = L/sqrt3: the Nariai geometry is dS_2 x S^2 with EQUAL radii L/sqrt3
+PASS F5c R_4 = 2/ell^2 + 2/r_0^2 = 12/L^2 = 4 Lambda (consistency of the product with the Einstein equation R_mn = Lambda g_mn)
+PASS F5d no 'ultracold' (triple-root) point exists in the SdS family for r, M > 0 (needs charge); the only degenerate configuration is Nariai f = f' = 0
+PASS F6a static-observer proper acceleration a = f'(r)/(2 sqrt f) (Christoffel computation)
+PASS F6b pure dS: a L = tan(theta) for r = L sin(theta)
+PASS F6c a0 static worldline in pure dS: tan(theta0) = 1/Z, sin(theta0) = 1/sqrt(1+Z^2) = 0.1702258441 (the earlier 'static observer' fact)
+PASS F6d Tolman: in pure dS kappa_dS/sqrt(f) = sqrt(a^2 + H^2) exactly (the static-patch Unruh-effective temperature T^2 = (a^2 + H^2)/4 pi^2)
+PASS F7a exact closed form r_b/L = (sqrt(1+3Z^2) - 1)/(3Z) = (sqrt(1+32 pi) - 1)/sqrt(96 pi) = 0.522632310058 solves kappa_b = a0; 1 + 3 Z^2 = 1 + 32 pi
+PASS F7b consistency: the trig parametrisation at mu* = (3 sqrt3/2) x(1-x^2) = 0.98695239141 returns the same r_b and r_c = 0.6303909725 (partner from x^2+xy+y^2=1)
+PASS F7c cosmological-horizon a0-point: r_c/L = (sqrt(1+3Z^2)+1)/(3Z) = 0.6377970265, mu_c = 0.9829840392, partner r_b = 0.51471484; kappa_c = a0
+PASS F7d agreement with the audit (a07): mu_b* = 0.9869523914, r_b = 0.52263231, r_c = 0.63039097; mu_c* = 0.98298404
+PASS [mutation rejected] F7e mutation: with kappa = f' (no 1/2) the black-hole a0-point would sit at mu = 0.9869523914 (it does not)
+PASS F7f f(r_b) = f(r_c) = 0 at M*: residuals 2.3e-41 1.7e-41
+
+35/35

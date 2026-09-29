@@ -1,0 +1,33 @@
+PASS E1a flat FRW, D = 2+1: G_tt = 1 H^2 = d(d-1)/2 H^2  (=> H^2 = 16 pi G rho/(d(d-1)))
+PASS E1a flat FRW, D = 3+1: G_tt = 3 H^2 = d(d-1)/2 H^2  (=> H^2 = 16 pi G rho/(d(d-1)))
+PASS E1a flat FRW, D = 4+1: G_tt = 6 H^2 = d(d-1)/2 H^2  (=> H^2 = 16 pi G rho/(d(d-1)))
+PASS E1a flat FRW, D = 5+1: G_tt = 10 H^2 = d(d-1)/2 H^2  (=> H^2 = 16 pi G rho/(d(d-1)))
+PASS E1b Schwarzschild-Tangherlini D = 4: kappa = f'(r_s)/2 = 1/(2*r_s) = (D-3)/(2 r_s) = (d-2)/(2 r_s)
+PASS E1b Schwarzschild-Tangherlini D = 5: kappa = f'(r_s)/2 = 1/r_s = (D-3)/(2 r_s) = (d-2)/(2 r_s)
+PASS E1b Schwarzschild-Tangherlini D = 6: kappa = f'(r_s)/2 = 3/(2*r_s) = (D-3)/(2 r_s) = (d-2)/(2 r_s)
+PASS E1b Schwarzschild-Tangherlini D = 7: kappa = f'(r_s)/2 = 2/r_s = (D-3)/(2 r_s) = (d-2)/(2 r_s)
+   row 1 Lambda = 32 pi a0^2/c^4              kappa = 1/2 ; mutated -> kappa = 2*sqrt(15)/15
+   row 2 A Lambda = 32 pi^2                   kappa = 1/2 ; mutated -> kappa = 2*sqrt(15)/15
+   row 3 1/r_s^2 = G rho/c^2                  kappa = 1/2 ; mutated -> kappa = sqrt(2)/2
+   row 4 c^2/a0 = 2 R*                        kappa = 1/2 ; mutated -> kappa = 1/3
+   row 5 2 p'(0) = 1/kappa, p'(0) = 1         kappa = 1/2 ; mutated -> kappa = 1/3
+   row 6 M1 = 2c/(3 a0) = (4/3) t_L           kappa = 1/2 ; mutated -> kappa = 2/5
+   row 9 Z = c H_L/a0 = 2 sqrt(8pi/3)         kappa = 1/2 ; mutated -> kappa = 1/3
+   row 10 Omega_L = 32 pi a0^2/(3 H0^2 c^2)   kappa = 1/2 ; mutated -> kappa = sqrt(14)/7
+PASS E2 each of rows 1-6, 9, 10 gives kappa = 1/2 and its mutation moves kappa (p04 controlled only row 1); rows 7, 8 are solved for Z_q and n, not kappa
+PASS E2b row 7: kappa = 1/2 <=> Z_q/beta^2 = 8 - 2b -- ONE relation among THREE free numbers (Z_q, beta, b); kappa is not fixed by it (source FOURFORM report says the action does not select b or Z/beta^2)
+PASS E3a row 5: 'p'(0) = 1' (the response of p in mu = 1-(1-p)^N) gives kappa = 1/N; it equals 1/2 only BECAUSE N = 2 is the convention (the 2 is put in by the exponent) -- the row is equivalent to kappa = 1/2 only given N = 2
+   integer mode counts: n=5 -> kappa=0.5789 (Z=5), n=6 -> kappa=0.4824 (Z=6), n=7 -> kappa=0.4135 (Z=7)
+PASS E3b row 8: with an INTEGER mode count n, kappa = sqrt(8 pi/3)/n is never 1/2 (n=6 -> 0.4824); row 8 is equivalent to kappa=1/2 only for a non-integer 'count' n = 5.789
+   row 10 evaluated on data: Omega_Lambda(pred from SPARC a0, H0=67.4) = 0.906 vs 0.685 observed (+32%)
+PASS E3c row 10 is an algebraic identity in kappa but, with the committed a0 and H0 = 67.4, predicts Omega_Lambda = 0.91 (observed 0.685): as a cosmological statement it is NOT satisfied (the SPARC a0 exceeds the framework's c H_Lambda/Z by 15 percent = the rho_Lambda-footing tension, 2.4 sigma)
+   8 Vol(B^d)                                           equals Z_d^2 = 64 pi/(d(d-1)) at d = [3]
+   2^d Vol(B^d) (= vol of ball of radius 2)             equals Z_d^2 = 64 pi/(d(d-1)) at d = [3]
+   (8/3) Vol(S^(d-1)) with S^(d-1) = boundary of B^d    equals Z_d^2 = 64 pi/(d(d-1)) at d = [3]
+PASS E4a for the generalisations tried the match is at d = 3 only (p04-B B1 confirmed for these; but it is a statement about the CHOSEN generalisations -- 32 pi/3 = 8 Vol(B^3) = (8/3) Vol(S^2) admits infinitely many d-continuations)
+PASS E5a Z_f,d = H/(c sqrt(G rho)) = sqrt(16 pi/(d(d-1))) = 4 sqrt(pi/(d(d-1))) (from the FRW Einstein tensor of E1a) at d = 3 is sqrt(8pi/3)
+PASS E5b the five forms are 1/2, 1/(d-1), (d-2)/2, (2/3) d/(d+1), sqrt(3/(2 d (d-1))); each is exactly 1/2 at d = 3 and (3) is the Tangherlini value of E1b with r_s = R*
+   NOTE E5c: option (1) 'two static channels: kappa = 1/2 for every d' is a constant, not a d-dependence: it is the statement kappa = 1/2 itself; the 'five origins' contain one restatement and four rational functions
+PASS E5d p04-B's Z_d = 8 sqrt(pi/(d(d-1))) (= 2 Z_f,d) equals only option (1) of p05: under options (2)-(5) the d-dimensional Z differs, so 'the 3 is dim SO(3)' (README 6) is conditional on d-independent kappa = 1/2
+
+17/17

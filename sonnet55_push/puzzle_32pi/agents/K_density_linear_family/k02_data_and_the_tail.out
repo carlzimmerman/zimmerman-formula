@@ -1,0 +1,88 @@
+== A  SPARC data, controls, coverage
+   155 galaxies, 2786 points (eV/V < 0.10, >= 3 points; Upsilon_d = 0.5, Upsilon_b = 0.7)
+PASS A1 sample size matches the record's masked SPARC sample (155 curves)   (155/2786)
+   nu_RAR rms: 0.1453 (a0 = 9.3619e-11) / 0.1421 (a0 = 1.1279e-10)
+PASS A2 CONTROL: the RAR machinery reproduces the committed nu_RAR scatter 0.1453 / 0.1421 dex (L92)
+PASS A3 MUTATION: pairing g_bar with the wrong point's g_obs (permutation) ruins the fit (rms 0.735 >> 0.142): the fit statistic has power
+   coverage (a0 = 1.1279e-10): max g_bar/a0 = 58.0, max g_obs/a0 = 62.4;  points with g_obs/a0 > 3, 10, 30, 100: 398, 79, 12, 0
+PASS A4 coverage: 79 of 2786 points lie at g_obs > 10 a0, 12 at > 30 a0 and none above ~62 a0: the data end near x ~ 60-100
+
+== B  family fits (a0 free; then a0 and a global M/L scale s free)
+   family                              c     a0_fit      rms |     a0_fit      s      rms   c_req(a0_fit)
+   RAR-nu (McGaugh)                   26 1.1340e-10  0.14212 | 1.0274e-10  1.083  0.14153      68.5
+   simple mu_1                       inf 1.1066e-10  0.14212 | 1.0577e-10  1.037  0.14200      72.0
+   mu_n n=1.5                        inf 1.4413e-10  0.14462 | 1.2132e-10  1.168  0.14215      42.4
+   standard mu_2                     inf 1.5815e-10  0.14776 | 1.2713e-10  1.232  0.14319      35.2
+   mu_n n=2.02                      49.7 1.5852e-10  0.14787 | 1.2727e-10  1.234  0.14323      35.1
+   mu_n n=3                            1 1.6874e-10  0.15193 | 1.3115e-10  1.287  0.14514      30.9
+   mu_n n=6                        0.431 1.7524e-10  0.15608 | 1.3342e-10  1.325  0.14767      28.7
+   exp 1-e^-x                          2 1.4066e-10  0.14596 | 1.1354e-10  1.216  0.14216      44.5
+   record OR N=2                     inf 1.2459e-10  0.14296 | 1.0810e-10  1.128  0.14157      56.8
+   record OR N=2.074                 108 1.2513e-10  0.14303 | 1.0822e-10  1.132  0.14156      56.3
+   record OR N=3                       9 1.2969e-10  0.14370 | 1.0943e-10  1.159  0.14158      52.4
+   T-excess (Milgrom 1999)           inf 1.4451e-10  0.14389 | 1.2671e-10  1.125  0.14244      42.2
+PASS B1 the best a0-only fit is a shallow-transition shape (RAR-nu or simple mu_1, rms 0.14212); both have UNBOUNDED or 26 c
+PASS B2 the standard mu_2 (log-divergent c) and mu_n n >= 3 (finite c) fit WORSE than RAR-nu at fixed M/L: rms 0.1478 / 0.1519 vs 0.1421
+PASS B3 the record's own OR shape (N = 2 or 2.074) fits almost as well as RAR-nu: rms 0.14296 / 0.14303 vs 0.14212 (fixed M/L); c = inf / 108
+   with a free global M/L scale the shapes converge further; spread over the non-sharp families = 0.0017 dex
+PASS B4 c (0.4 ... infinity across these fits) is not ordered by fit quality: infinite-c shapes are the BEST fits, finite-c shapes the worst (n=6: c=0.43), except RAR-nu (c=26) and record OR N=2.074 (c=108)
+
+== C  paired galaxy bootstrap of the rms difference to RAR-nu
+   family                     d(rms) point      boot 95% interval  frac(family better)
+   simple mu_1                    +0.00001 [ -0.00088,  +0.00086]   0.472
+   mu_n n=1.5                     +0.00250 [ -0.00007,  +0.00480]   0.027
+   standard mu_2                  +0.00564 [ +0.00133,  +0.00939]   0.004
+   mu_n n=2.02                    +0.00575 [ +0.00139,  +0.00954]   0.004
+   mu_n n=3                       +0.00981 [ +0.00391,  +0.01500]   0.001
+   record OR N=2                  +0.00084 [ -0.00044,  +0.00198]   0.094
+   record OR N=2.074              +0.00091 [ -0.00045,  +0.00211]   0.091
+   exp 1-e^-x                     +0.00384 [ +0.00018,  +0.00703]   0.017
+PASS C1 CONTROL: the bootstrap of the baseline against itself is exactly 0
+PASS C2 the standard mu_2 (log-divergent c) is disfavoured vs RAR-nu at fixed M/L: 95% interval of d(rms) [0.0013, 0.0094] excludes 0
+PASS C3 the record's OR shape N=2.074 (finite c = 108) is statistically compatible with RAR-nu / simple mu_1 at fixed M/L within the bootstrap width: d(rms) in [-0.0004, 0.0021]
+
+== D  tail graft on the best-fit RAR-nu baseline
+   baseline RAR-nu: c(<1e5) = 25.97576 (k01: 25.97576 in total)
+PASS D1 the tabulated RAR-nu mu (Pchip in log-log) reproduces c = 25.9758 (k01) to 1e-3
+   Saturn: g = 6.458e-05 m/s^2 = 5.695e+05 a0
+   target c: 32 pi = 100.53;  c_req at the RAR-nu a0 (1.1340e-10) = 68.53;  baseline rms 0.14212
+     X_J    target        p  max|d(1-mu)|  max|dlog g|     d(rms) N pts >X_J  c(check)   frac c above Saturn   1-mu at Saturn
+      10      32pi   2.1016    2.421e-03     1.03e-03   1.64e-07         79    100.53             0.29   4.61e-12
+      10     c_req   2.1581    2.832e-03     1.20e-03   5.35e-07         79     68.53             0.15   2.49e-12
+      10       inf   2.0000    1.684e-03     7.13e-04  -5.43e-07         79       inf              nan   1.40e-11
+      20      32pi   2.1131    9.088e-04     3.93e-04  -6.08e-07         26    100.53             0.26   4.53e-12
+      20     c_req   2.1841    7.800e-04     3.36e-04  -4.90e-07         26     68.53             0.11   2.19e-12
+      20       inf   2.0000    1.132e-03     4.90e-04  -8.01e-07         26       inf              nan   1.45e-11
+      30      32pi   2.0958    5.981e-04     2.49e-04  -4.02e-08         12    100.53             0.31   4.57e-12
+      30     c_req   2.1603    5.511e-04     2.29e-04  -3.54e-08         12     68.53             0.14   2.42e-12
+      30       inf   2.0000    6.709e-04     2.80e-04  -4.69e-08         12       inf              nan   1.17e-11
+PASS D2 every graft hits its target: c(graft) = 32 pi / c_req / infinity (analytic tail + numerical core)
+PASS D3 independent check of one graft (X_J = 20, p = 2.1131): direct log-grid quadrature to 1e16 plus the analytic remainder = 100.531 (target 100.531)
+PASS D4 every grafted 1-mu is continuous at X_J and monotone non-increasing (a legitimate mu with mu' >= 0): 9 grafts on 2e4 points each
+   worst change in any SPARC prediction: 1.20e-03 dex; worst change in the RAR rms: 8.01e-07 dex (rms itself 0.142; bootstrap width ~0.003)
+PASS D5 CORE RESULT: replacing the RAR-nu tail beyond X_J = 10-30 a0 by a power law with c = 32 pi, c = c_req, or c = infinity changes no SPARC prediction by more than 1.2e-03 dex and the rms by 8.0e-07 dex: c is not measured by galaxy data
+PASS D6 CONTROL: a change of similar size in the transition region (a0 -> 1.02 a0, 2%) moves the rms by 3.6e-05 dex -- the same statistic sees a 2% a0 shift
+   fraction of the grafted c that sits above Saturn's solar acceleration: 0.11 to 0.31
+PASS D7 for the c = 32 pi / c_req grafts a large share (11%-31%) of c lives at accelerations above the Solar System's Saturn value: the tail that fixes c is beyond every test, and the Solar-System bound cannot cap c from above
+
+== E  offset reading as a prediction inside Milgrom's mu_n (c(n) = c_req(a0_fit(n)))
+   n      c(n)      a0_fit      c_req(a0_fit)   rms
+   1.50       inf  1.4413e-10      42.42   0.14462
+   2.02    49.706  1.5852e-10      35.07   0.14787
+   2.05    19.723  1.5905e-10      34.83   0.14804
+   2.10     9.751  1.5989e-10      34.47   0.14831
+   2.30     3.171  1.6275e-10      33.27   0.14930
+   2.60     1.592  1.6590e-10      32.02   0.15058
+   3.00     1.000  1.6874e-10      30.95   0.15193
+   4.00     0.599  1.7252e-10      29.61   0.15412
+   self-consistent n* = 2.0283 (c(n*) = 35.0 = c_req(a0_fit) = 35.0); fit rms at n* = 0.14792 vs RAR-nu 0.14212 vs standard 0.14776
+PASS E1 the offset reading, as a prediction inside mu_n, selects n* = 2.028 (a tail exponent 0.02-0.05 above the marginal 2); its fit at fixed M/L is 0.0058 dex worse than RAR-nu and 0.0002 from the standard mu_2 (not better, not worse than a neighbour of the standard function)
+   n* vs the shallower n = 1.5 (c = inf): fixed M/L d(rms) = +0.0033 dex; with a global M/L scale floated, n = 2.02 vs RAR-nu: +0.0017 dex
+PASS E2 the data do not confirm the prediction: at fixed M/L the shallower n = 1.5 (c = infinity) fits better by 0.0033 dex (the boot interval of C excludes 0 for n = 2.02 vs RAR-nu), and with a global M/L scale floated the preference shrinks to 0.0017 dex
+
+== F  what the data DO force: Markov lower bound c >= X^2 (1 - mu(X))
+   best-fit RAR-nu: max_X X^2 (1-mu(X)) = 4.88 at X = 15.1  (c = 25.98)
+   standard mu_2:  max_X X^2 (1-mu(X)) = 0.50  (its tail x^-2/2 saturates at 1/2 x-independent: c >= 0.5 per e-fold)
+PASS F1 the Markov bound from the best-fit shape is ~4-5 (X^2 (1-mu) at X ~ 10-20): the shape SPARC prefers forces c >= 4.6 and nothing more; the requirement is 61-100
+
+21/21 checks passed

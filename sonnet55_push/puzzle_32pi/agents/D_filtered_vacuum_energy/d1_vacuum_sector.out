@@ -1,0 +1,73 @@
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:346: RuntimeWarning: divide by zero encountered in matmul
+  Wg = (A * np.cos(XG @ kv.T + ph)).sum(axis=1)
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:346: RuntimeWarning: overflow encountered in matmul
+  Wg = (A * np.cos(XG @ kv.T + ph)).sum(axis=1)
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:346: RuntimeWarning: invalid value encountered in matmul
+  Wg = (A * np.cos(XG @ kv.T + ph)).sum(axis=1)
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:311: RuntimeWarning: divide by zero encountered in matmul
+  arg = x @ kv.T + ph
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:311: RuntimeWarning: overflow encountered in matmul
+  arg = x @ kv.T + ph
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:311: RuntimeWarning: invalid value encountered in matmul
+  arg = x @ kv.T + ph
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:312: RuntimeWarning: divide by zero encountered in matmul
+  g = -(A * np.sin(arg)) @ kv
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:312: RuntimeWarning: overflow encountered in matmul
+  g = -(A * np.sin(arg)) @ kv
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:312: RuntimeWarning: invalid value encountered in matmul
+  g = -(A * np.sin(arg)) @ kv
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:306: RuntimeWarning: divide by zero encountered in matmul
+  arg = x @ kv.T + ph
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:306: RuntimeWarning: overflow encountered in matmul
+  arg = x @ kv.T + ph
+<repo>/sonnet55_push/puzzle_32pi/agents/D_filtered_vacuum_energy/d1_vacuum_sector.py:306: RuntimeWarning: invalid value encountered in matmul
+  arg = x @ kv.T + ph
+== A. reduced action: sqrt(-g)(R - 2 Lambda) on ds^2 = -N^2 dt^2 + a^2 dOmega_k^2
+PASS A1 closed-leaf Ricci scalar from the metric = 6(a''/(N^2 a) - a'N'/(N^3 a) + a'^2/(N^2 a^2) + 1/a^2)
+PASS A2 flat-leaf Ricci scalar = same with k = 0
+PASS A3 N a^3 R = (-6 a a'^2/N + 6 k N a) + total derivative
+PASS A4 lapse equation at N=1 is the Friedmann constraint  3(a'^2 + k)/a^2 = Lambda  (vacuum energy density = M_P^2 Lambda)
+PASS A5 a = cosh(Ht)/H (k=1) and a = exp(Ht) (k=0) solve the constraint with H^2 = Lambda/3 exactly
+PASS A6 vacuum energy density (lapse source) rho_vac = M_P^2 Lambda; H_Lambda^2 = Lambda/3 = 8 pi G_bare rho_vac/3 (M_P^2 = 1/(8 pi G))
+PASS A7 the record's eq (13) on the homogeneous leaf (all c2, alpha, c_N, gate, DZ terms vanish, B below): (M_P^2/2)(6k/a^2 + 6H^2 - 2 Lambda) = rho  <=>  3 M_P^2 (H^2 + k/a^2) = M_P^2 Lambda + rho, the record's (18)
+
+== B. remaining terms of the CA4 action on a homogeneous leaf
+PASS B1 homogeneous field: |D f|^2 = 0 and Lap_h f = 0 (so a_mu = D ln N = 0, DZ = DU = DW_b = 0, Lap W_b = 0)
+PASS B2 zonal harmonics sin((l+1)chi)/sin(chi) are Lap_h eigenfunctions with eigenvalue -l(l+2)/a^2 (l = 0..4): l = 0 is the constant, eigenvalue 0
+PASS B3 Y_h = J(|DW_b|^2) + ell Lap W_b - theta is independent of the constant mode u0 (shift symmetry U -> U + c)
+PASS B4 at zero gradient J(0) = 2 a0^2 q(0) = 0 and dJ/da0 -> 0 (regular q = sqrt(1+s)-1 and the singular-tangent models s^(3/4), s^(1/2)): a0 does not appear in the vacuum
+PASS B5 ramp: G(delta)=delta/2 and G'(delta)=1 join the linear branch; G(0)=G'(0)=G''(0)=0 join the zero branch; G' = 35r^4-84r^5+70r^6-20r^7; G'' = 140 r^3(1-r)^3/delta
+PASS B6 on the homogeneous background Y_h = -theta < 0: G = G' = 0 in a whole neighbourhood, so the gate term has zero value AND zero first variation
+PASS B7 first variation at the homogeneous background vanishes for alpha|a-DZ|^2, -c2 Q_K^2, 4a.DZ, -2|DZ|^2, -4c_N DZ.DU, c_N ell a.DW_b  (each is O(e^2))
+PASS B8 heat pair on a homogeneous leaf: W(r,x)=U0(t) solves dW/dr = Lap_h W with W(0)=U; endpoint L_b = -R_W = 0 (f = G' = 0, a = 0) so L = lambda0 = 0 and the whole heat pair contributes nothing
+PASS B9 Lap_h[c] = 0 for a completely general 3-metric h_ij(x): hence delta_h(S_h) 1 = 0 and the filter's stress vanishes on constant W (eq. (11))
+
+== C. S_h 1 = 1 on S^3(L=1): kernel K_t(chi) = (4 pi t)^(-3/2) e^t sum_n (chi + 2 pi n)/sin(chi) e^{-(chi+2 pi n)^2/4t}
+   deviations from 1: {'0.125': '0.0', '0.5': '0.0', '1.0': '0.0', '16.755': '0.0'}
+PASS C1 integral of the S^3 heat kernel over the leaf = 1 at b/L^2 = 1/8, 1/2, 1, 16 pi/3 (worst |dev| = 0.0): (4 pi b)^(-3/2) and the 4 pi/pi-integrals cancel exactly
+PASS C2 CONTROL: the un-normalised Gaussian filter has gain (4 pi b)^(3/2) = 15.7496 != 1 at b = 1/2, and the norm check flags it (norm != 1)
+PASS C2b CONTROL: a kernel with the wrong curvature factor (e^t dropped) has norm 0.60653066 = e^{-1/2}, not 1: the integral test is not vacuous
+PASS C3 CONTROL: with the un-normalised filter the homogeneous filtered constant would be (4 pi b)^(3/2) x const -- transcendental gain; with the record's filter it is exactly 1
+
+== D. vacuum energy as a function of the action's parameters
+PASS D1 d(reduced vacuum Lagrangian)/d(parameter) = 0 for alpha, c_N, c_2, xi, ell, theta, delta, a0, m_H, m_L, mu, gamma, b -- only Lambda enters
+PASS D2 CONTROL: a mutant with a potential term c_N kappa_W W_b breaks U -> U + c (d L/d u0 != 0): the check for shift symmetry can fail; the record's action has no such term (B3)
+
+== E. CA5-GNC-R reciprocal vacuum
+PASS E1 F(1) = 1, F'(1) = F''(1) = F'''(1) = 0, F''''(1) = 24 (record: 'nonlinear confinement at fourth order')
+PASS E2 F(t) = F(1/t) = 1 + (t-1)^4/t^2; F' = 2(t-1)^3(t+1)/t^3; F'' = 2(t-1)^2(t^2+2t+3)/t^4 (R2)
+PASS E3 at t = 1: rho_R = V0, sigma_R = -V0 F'(1) = 0, so the Z equation (R4) has zero projected source and t = 1 is a solution; vacuum stress -V0 g
+PASS E4 the Laurent ansatz with F(1)=1, F''(1)=0 forces b = -4a, c = 1 + 6a  => F = 1 + a(t+1/t-2)^2 (record's stated class)
+PASS E5 the infrared condition (R6) f1 + r0 f2/2 = 0 holds for CA5 with f1 = f2 = 0 for every r0 = ell/4
+PASS E6 CONTROL: the quadratic floor 1 + (t-1)^2 has f2 = 2 and violates (R6): the R6 test can fail
+PASS E7 CA5 vacuum: 3 M_P^2 H^2 = V0 (R3 with T = V = 0, bare Lambda = 0) => Lambda_eff = V0/M_P^2 = 8 pi G_bare V0, independent of ell, xi, alpha, c2, theta, delta, a0
+
+== F. gate offset  c_N (theta + delta/2)/2  and the compact-leaf maximum principle
+PASS F1 formal full-on gate would shift Lambda_eff by c_N(theta + delta/2)/2 (a 'vacuum-shaped' constant that involves the a0-sector's thresholds theta, delta)
+PASS F2 theta > 0: at the (Newton-refined, continuum) maximum of W_b, Y_h <= -theta in all 300 random compact-leaf fields (0 refinement failures excluded)
+PASS F2b CONTROL: the same test at the MINIMUM of W_b (where Lap W_b >= 0) does exceed -theta in 300/300 fields: the max-principle test can fail, the F2 pass is not vacuous
+PASS F3 non-vacuity: the gate IS on somewhere in 295/300 of those fields (grid), yet never everywhere (0)
+PASS F4 CONTROL: with theta = -0.1 < 0 the homogeneous state has Y = +0.1 > 0 everywhere (globally on): the 'impossible' statement needs theta > 0
+PASS F5 leaf average: <Lap W_b> = 0 (to round-off), so <Y_h> + theta = <J(DW_b)> >= 0: the offset can only be paid by gradient energy of matter-sourced W_b, never by the vacuum
+
+35/35 checks held

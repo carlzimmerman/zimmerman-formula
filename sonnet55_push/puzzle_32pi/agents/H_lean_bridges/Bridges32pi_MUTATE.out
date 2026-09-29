@@ -1,0 +1,35 @@
+Bridges32pi_MUTATE.lean:18:21: error: Type mismatch
+  Zsq_iff_A_Lambda ha hL
+has type
+  (1 / (a0 * L)) ^ 2 = 32 * π / 3 ↔ π / a0 ^ 2 * (3 / L ^ 2) = 32 * π ^ 2
+but is expected to have type
+  (1 / (a0 * L)) ^ 2 = 8 * π / 3 ↔ π / a0 ^ 2 * (3 / L ^ 2) = 32 * π ^ 2
+Bridges32pi_MUTATE.lean:44:2: error: Type mismatch
+  (Zsq_iff_A_Lambda ha hL).mp h
+has type
+  π / a0 ^ 2 * (3 / L ^ 2) = 32 * π ^ 2
+but is expected to have type
+  π / a0 ^ 2 * (3 / L ^ 2) = 16 * π ^ 2
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Bridges32pi_MUTATE.lean:64:83: error: unsolved goals
+G ρ r0 a0 : ℝ
+hG : 0 < G
+hρ : 0 < ρ
+hr : 0 < r0
+ha : 0 < a0
+h : G * ρ = 4 * a0 ^ 2
+hp : 0 < π
+this✝ : 32 * G * ρ = 128 * a0 ^ 2
+this : a0 ≠ 0
+⊢ 64 = 128
+'M8a_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M8b_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M8c_refuted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M8a_web_near_miss' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'M8b_constant_wrong' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'M8c_tff_rs_wrong' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

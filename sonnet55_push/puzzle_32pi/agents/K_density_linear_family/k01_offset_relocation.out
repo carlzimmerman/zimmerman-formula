@@ -1,0 +1,96 @@
+== A  Euler-Lagrange derivation and the meaning of F(0)
+PASS A1 EL equation of L = -(a0^2/8piG)F(y) - rho*phi is div(F'(y) grad phi) = 4 pi G rho (mu = F')
+PASS A2 MUTATION: prefactor 1/(4 pi G) does not give div(mu grad phi) = 4 pi G rho
+PASS A3 F = y reproduces Poisson  lap(phi) = 4 pi G rho
+PASS A4 additive constant of F is invisible to the field equation (the 'offset' is fixed only by the normalisation choice)
+PASS A5 F(0) = int_0^inf (1-mu) dy evaluated symbolically for mu = 1-e^{-x}: c = 2
+PASS A6 a constant L = -rho_off has T_00 = +rho_off, T_ii = -rho_off (a cosmological term, w = -1) from the metric variation of sqrt(-g) L (Minkowski point)
+
+== B  c = int (1-mu) dy = int x^2 dmu  (second moment of the transition)
+   exp       int(1-mu)dy =              2.0   int x^2 dmu =              2.0
+   mu_3      int(1-mu)dy =              1.0   int x^2 dmu =              1.0
+   mu_4      int(1-mu)dy =   0.599070117368   int x^2 dmu =   0.599070117368
+   OR N=3    int(1-mu)dy =              9.0   int x^2 dmu =              9.0
+   OR N=5    int(1-mu)dy =    4.16666666667   int x^2 dmu =    4.16666666667
+PASS B1 c = int(1-mu)dy equals the second moment int x^2 mu'(x) dx for 5 families (integration by parts, boundary term x^2(1-mu) -> 0)
+PASS B2 MUTATION: the FIRST moment int(1-mu)dx (= 1 for the exponential) is not c (= 2): the weight 2x matters
+
+== C  lower bound c >= 1/3 when mu' <= mu'(0) = 1 (density of the CDF is bounded by its value at 0)
+   random monotone-density search: min c = 0.333333 (bathtub value 1/3 = 0.333333); sharp transition c = 0.333333
+PASS C1 for 20000 random nonincreasing densities with f(0)=1: c >= 1/3 (sharp transition attains it)
+PASS C2 CONTROL: with mu' > mu'(0) allowed (non-concave mu) c = 0.0174 < 1/3, so the bound really needs mu' <= 1
+PASS C3 no upper bound: c[mu] over concave mu is unbounded (mu_n, n -> 2+, has c ~ 1/(n-2)): c(2.001) = 999.694
+
+== D  when is c finite?  tail 1-mu ~ A x^-p
+   partial c(X) for X = 1e2..1e8:
+   simple (p=1)         190.77     1986.18     19981.6    199977.0  1.99997e+6      2.0e+7      2.0e+8
+   standard (p=2)      4.79835      7.1009     9.40349     11.7061     14.0087     16.3112     18.6138
+   T-excess (p=1)      98.3771     997.801     9997.23     99996.7    999996.0      1.0e+7      1.0e+8
+PASS D1 partial c for the simple mu = 2X - 2 ln(1+X) (linear divergence) [closed form vs quadrature at X=1e2..1e8]
+PASS D2 partial c for the standard mu = asinh X + X^2 - X sqrt(1+X^2) ~ ln(2X) - 1/2 (log divergence) [closed form vs quadrature]
+PASS D3 Milgrom-1999 temperature-excess form 1-mu ~ 1/(2x): partial c grows like X (linear divergence): c(1e8)/c(1e6) = 100.0
+   Milgrom mu_n, c(n) closed form vs quadrature (log-variable x = e^u so that slow tails are resolved):
+   n =  2.05: quad    19.7234861206   closed    19.7234861206
+   n =   2.5: quad    1.90030027798   closed    1.90030027798
+   n =     3: quad              1.0   closed              1.0
+   n =     4: quad   0.599070117368   closed   0.599070117368
+   n =     6: quad   0.431184926538   closed   0.431184926538
+   n =    10: quad   0.366097722989   closed   0.366097722989
+PASS D4 mu_n: c(n) = -(2/n) Gamma(3/n) Gamma(-2/n)/Gamma(1/n) (finite n > 2) matches numerical integration for n = 2.05...10
+PASS D5 c(n) = 1 at n=3 and c(n) ~ 1/(n-2) as n -> 2+ (c(2.001)*(0.001) = 0.999694)
+PASS D6 MUTATION: the naive sign (+(2/n)Gamma(3/n)Gamma(-2/n)/Gamma(1/n)) is negative for n>2 and is rejected by the numerics
+PASS D7 synthetic tail (1+x)^-p: p = 2.5 gives finite c = 2/((p-1)(p-2)) = 2.6666667 (quad 2.6666667)
+PASS D8 p = 1.5: partial c grows as X^(1/2) (x10 per two decades): ratios ['10.18', '10.02']
+
+== E  c for the standard families
+   sharp min(x,1)                                           c =   0.3333333333   G rho/a0^2 = c/(8 pi) = 0.0132629
+   exponential 1-e^-x                                       c =            2.0   G rho/a0^2 = c/(8 pi) = 0.0795775
+   Milgrom mu_n, n=3                                        c =            1.0   G rho/a0^2 = c/(8 pi) = 0.0397887
+   Milgrom mu_n, n=4                                        c =   0.5990701174   G rho/a0^2 = c/(8 pi) = 0.0238362
+   Milgrom mu_n, n=6                                        c =   0.4311849265   G rho/a0^2 = c/(8 pi) = 0.0171563
+   Milgrom mu_n, n=10                                       c =    0.366097723   G rho/a0^2 = c/(8 pi) = 0.0145666
+   RAR-nu (proper AQUAL inverse)                            c =    25.97575761   G rho/a0^2 = c/(8 pi) = 1.03354
+   RAR mu=1-e^-sqrt(x) at g_obs (wrong deep-MOND limit)     c =           24.0   G rho/a0^2 = c/(8 pi) = 0.95493
+   record OR family (1+x/N)^-N, N=3                         c =            9.0   G rho/a0^2 = c/(8 pi) = 0.358099
+   record OR family (1+x/N)^-N, N=5                         c =    4.166666667   G rho/a0^2 = c/(8 pi) = 0.165786
+   (RAR-nu second method (scipy, inverse by brentq): 25.975757606)
+PASS E1 sharp transition c = 1/3 exactly, exponential c = 2 exactly
+PASS E2 RAR-nu (proper inverse): two independent integrations agree: 25.9757576 vs 25.9757576 (lane G: 25.976)
+PASS E3 the literal-argument reading mu(x) = 1 - e^{-sqrt x} gives exactly c = 24 (but its deep limit mu ~ sqrt(x) is NOT deep-MOND: excluded as a MOND mu)
+PASS E4 literal reading: mu/x -> infinity as x -> 0 (mu ~ sqrt(x)); a MOND mu must have mu/x -> 1
+PASS E5 OR family closed forms: c(N) = 2N^2/((N-1)(N-2)) [(1+x/N)^-N] verified vs quadrature at N = 3, 5
+PASS E6 OR family literal-compact reading (p = min(g/s,1), mu = 1-(1-g/s)^N on g<s): c = 2N^2/((N+1)(N+2)) < 2 for every N (verified at N=2: 0.66666667 vs quad 0.66666667)
+PASS E7 the record's own N = 2 shape (kappa = 1/2) is the MARGINAL member: 1-mu = 4/(2+x)^2 ~ 4/x^2, c(X) = 8[ln(1+X/2) + 2/(2+X) - 1] -> infinity (closed form vs quadrature at X = 1e3, 1e6)
+PASS E8 tail amplitudes: standard 1-mu -> 1/(2x^2); record N=2 -> 4/x^2 (8x heavier); simple -> 1/x; T-excess -> 1/(2x)
+
+== F  what each family needs
+   framework a0 = cH_L/Z = 9.3624e-11 ; SPARC-fitted a0 = 1.1279e-10 ; cH0 = 6.5483e-10 m/s^2
+   c_req = 3 Omega_L (c H0/a0)^2 =    100.531   [a0 = cH_L/Z (framework)]   G rho_L/a0^2 = 4.0
+   c_req = 3 Omega_L (c H0/a0)^2 = 69.2676958594831   [a0 = 1.1279e-10 (SPARC fit)]   G rho_L/a0^2 = 2.7561
+   c_req = 3 Omega_L (c H0/a0)^2 = 61.19408460344695   [a0 = 1.2e-10 (rounded literature)]   G rho_L/a0^2 = 2.4348
+PASS F1 CONTROL: with a0 = c H_L / Z the requirement is c_req = 3 Z^2 = 32 pi exactly, independent of H0 and Omega_L
+PASS F2 on the SPARC-fitted a0 the requirement is c_req = 69.3 (not 32 pi): the offset reading needs 61-100 depending on the a0 footing; G rho_L/a0^2 = c_req/(8 pi) = 2.7-4
+   family parameter that makes c = c_req:
+   c_req =   100.531 (32 pi   ):  Milgrom n* = 2.0099175,  stretched-exp s* = 0.40852525,  record-OR N* = 2.0796945
+   c_req = 69.2676958594831 (SPARC-a0):  Milgrom n* = 2.0143749,  stretched-exp s* = 0.42807434,  record-OR N* = 2.1158412
+PASS F3 32 pi needs Milgrom n* = 2.0100 (a tail 0.010 above the marginal exponent 2), stretched-exponential s* = 0.4085 (lane G), record-OR N* = 2.0796
+PASS F4 each solution verifies: c(n*) = c(N*) = c(s*) = 32 pi
+   cutoff X_c (units of a0) at which the partial c reaches 32 pi:  simple 54.278;  record N=2 1.5589e+6;  standard 3.7684e+43
+PASS F5 the cutoffs that would make a marginal/divergent family hit 32 pi: simple X_c = 54.3 a0; record N=2 X_c = 1.56e6 a0; standard X_c = 3.8e43 a0 (exact closed forms; no scale identified; bookkeeping, not results)
+   record OR family, unit response p'(0)=1 (a0 = s/N): offset reading G rho/a0^2 = N^2 = c(N)/(8 pi)  =>  (N-1)(N-2) = 1/(4 pi):
+      N* = (3 + sqrt(1 + 1/pi))/2 = 2.07408838304  (numeric root 2.07408838304);  kappa* = 1/N* = 0.48213953;  G rho/a0^2 = 4.3018426
+PASS F6 self-consistency in the record's OR family (mu = 1-(1+g/s)^-N, a0 = s/N): the offset reading is (N-1)(N-2) = 1/(4 pi), N* = 2.0740884, NOT N = 2 (at N=2 the offset is infinite)
+PASS F7 the compact reading (p = min(g/s,1)) has NO solution: c(N) = 2N^2/((N+1)(N+2)) < 8 pi N^2 for every N > 0
+   disclosure: kappa* = 0.48214 lies 0.0542% from Verlinde's sqrt(2 pi/27) = 0.482401; different chains, I attribute no meaning to it.
+PASS F8 disclosure check (numerology guard): kappa* is within 0.1% of Verlinde's 0.4824 -- a numerical coincidence of two unrelated chains; nothing is claimed
+
+== G  where c accumulates, and the state dependence of the offset
+   fraction of c from x < X, X = 3, 10, 30, 100, 1e3, 1e6
+   RAR-nu (c = 25.98):        0.041 0.245 0.664 0.973 1.000 1.000
+   mu_n, n = 2.01 (c = 99.5): 0.013 0.025 0.035 0.047 0.069 0.131   (asymptotic tail formula, valid x >> 1)
+PASS G1 for the RAR-nu (c = 25.98): only 25% of c comes from x < 10, 66% from x < 30, 97% from x < 100: c is a moment of the 10-100 a0 range that SPARC covers by a few hundred points at most (k02), not of the transition x ~ 1
+PASS G2 for the mu_n tail with n = 2.01 (c = 99.5) only 7% of c comes from x < 1e3 and 13% from x < 1e6: >85% of c sits at g > 1e6 a0 = 1e-4 m/s^2, far beyond any galaxy
+   RAR-nu offset remaining at field g = X a0 (eps(g)/eps(0)): X=0.01: 1.000  X=1: 0.977  X=3: 0.884  X=10: 0.580  X=30: 0.190
+PASS G3 the offset is STATE-DEPENDENT: eps(g)/eps(0) = 1.00 (g<<a0), 0.98 at g = a0, 0.58 at 10 a0, 0.19 at 30 a0: inside high-g systems the 'vacuum energy' is suppressed, so the reading needs the cosmic vacuum to sit at g << a0
+
+38/38 checks passed

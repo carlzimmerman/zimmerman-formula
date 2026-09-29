@@ -1,0 +1,38 @@
+PART A  quadratic EH action of a TT wave; canonical normalisation
+   [sqrt(-g) R]_(eps^2) = -2*f(t, z)*Derivative(f(t, z), (t, 2)) + 2*f(t, z)*Derivative(f(t, z), (z, 2)) - 2*g(t, z)*Derivative(g(t, z), (t, 2)) + 2*g(t, z)*Derivative(g(t, z), (z, 2)) - 3*Derivative(f(t, z), t)**2/2 + 3*Derivative(f(t, z), z)**2/2 - 3*Derivative(g(t, z), t)**2/2 + 3*Derivative(g(t, z), z)**2/2
+PASS A1  [sqrt(-g)R]_(eps^2) = -(1/4) d_l h_ij d^l h_ij up to a total derivative (Euler operators agree)
+PASS C1  CONTROL: coefficient 1/3 instead of 1/4 is rejected
+PASS A2  h_+ = f = sqrt(16 pi G) phi is canonical when e^+_ij e^+_ij = 2 (h_ij h_ij = 2 f^2)
+PASS A3  with unit-norm polarisation tensors, or per component of h_ij with L = -(1/2) d h_ij d h_ij:  kappa_g^2 = 32 pi G
+BOOK A4  32 pi = 2 x 16 pi = 2 x [16 pi x (1/4)^-1 / 2]:  1/(16 pi G) x (1/4) = 1/(64 pi G) = (1/2)/(32 pi G)
+
+PART B  Isaacson tensor from the exact Ricci tensor of the plane wave (u = t - z)
+PASS B0  first-order Einstein tensor of the TT plane wave vanishes (vacuum wave)
+   <G^(2)_mu nu> = [-omega**2*(A**2 + B**2)/4, omega**2*(A**2 + B**2)/4, -omega**2*(A**2 + B**2)/4] (tt, tz, zz)
+PASS B1  t_mu nu = -(1/8 pi G)<G^(2)_mu nu> equals (1/32 pi G)<d_mu h_ab d_nu h_ab> for tt, tz, zz (A, B free, phase-independent)
+PASS B2  energy density  rho = w^2 (A^2 + B^2)/(32 pi G)
+PASS B3  flux  = rho (null wave: t_tz = -rho, t_zz = rho)
+PASS B4  traceless: eta^{mn} t_mn = -t_tt + t_zz = 0  (so an isotropic bath has p = rho/3; done in g02)
+PASS B5  <R_uu^(2)> = -(1/4)<h'_ab h'_ab>  (the 1/4 = 1/2 - 1/4 after averaging by parts)
+BOOK B6  (1/8 pi G) x (1/4) = 1/(32 pi G): 32 pi = 8 pi x 4 with 4 = 1/(1/4), the 1/4 being the B5 coefficient
+PASS C2  CONTROL: 1/16 pi G (instead of 1/32 pi G) is rejected by the same comparison
+PASS B7  route 2: stress tensor of L2 = -(1/64 pi G)(dh)^2 is 2 x 1/(64 pi G) = 1/(32 pi G): the SAME 32 pi (the 2 = derivative of a quadratic form)
+
+PART D  Isaacson identity rho_GW = a_tidal^2/(8 pi G);  geodesic deviation from the Riemann tensor
+PASS D1  R_{0x0x} = -(1/2) d_t^2 h_xx  (linear order)  => geodesic deviation  x''^i = -R^i_{0j0} x^j = +(1/2) h_ij'' x^j
+PASS D2  rho_GW = a_tidal^2/(8 pi G)  with a_tidal = (1/2) w h0 (peak tidal acceleration at r = c/w):  8 pi x 4 = 32 pi is (Newtonian field energy) x (geodesic-deviation 1/2)^2
+PASS C3  CONTROL: rho_GW = a_tidal^2/(16 pi G) is rejected
+
+PART E  one-graviton exchange: 32 pi = 8 x 4 pi;  classical route 16 pi G/(4 pi) = 4 G
+PASS E1  de Donder tensor structure for two static masses: T1 P T2 = (1/2) m1 m2
+PASS E2  Fourier transform  int d^3q/(2 pi)^3 e^{iq.r}/q^2 = 1/(4 pi r)
+PASS E3  V(r) = -kappa^2 m1 m2/(32 pi r): 32 pi = 8 (tensor structure x vertices) x 4 pi (Poisson Green function);  kappa^2 = 32 pi G gives Newton
+PASS C4  CONTROL: kappa^2 = 16 pi G gives G/2, not Newton
+
+PART F  memory: the coefficient is 4G/r = 16 pi G/(4 pi): pi-free
+PASS F1  Laplacian h-bar_00 = -16 pi G m delta^3 : flux of grad(4Gm/r) through a sphere = -16 pi G m
+PASS F2  static metric: h_00 = h-bar_00 - (1/2) eta_00 h-bar = 2Gm/r  (g_00 = -1 + 2Gm/r)
+BOOK F3  linear memory (Favata 2010, arXiv:1003.3486 eq 11) carries 4 M/R per particle = 16 pi/(4 pi): no pi remains
+BOOK F4  nonlinear memory: 4 G/R x [dE/dt dOmega with dE = r^2 t_tr dt dOmega, t = 1/(32 pi G)<hdot hdot>] = 1/(8 pi) x r int int <hdot hdot> ...: a 1/(8 pi) reappears only when memory is written through the strain
+
+21/21 recomputed checks (incl. 4 mutation controls) behaved as declared; 4/4 bookkeeping lines true

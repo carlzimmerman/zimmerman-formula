@@ -1,0 +1,42 @@
+== A. conventions verified from first principles ==
+PASS A1a Euclidean de Sitter S^4(L): G_ab = -(3/L^2) g_ab (Einstein tensor computed from the metric)
+PASS A1b vacuum energy rho gives H^2 = 8 pi rho / 3  (Lambda = 8 pi rho, H^2 = Lambda/3)
+PASS A2 four-form F = E vol: F^2 = -24 E^2 and T_ab = -(E^2/2) g_ab, i.e. energy density T_00 = E^2/2 (rho = E^2/2), pressure -E^2/2
+PASS A3 membrane -sigma*Area + e*Int A3 with L = -F^2/(2 4!): Euler-Lagrange gives E'(z) = e delta(z), i.e. Gauss jump DeltaE = e
+PASS A4 pressure jump rho_out - rho_in = e E - e^2/2 = e * (mean of the two side fields)  (Lorentz force on a charged sheet)
+PASS A5a O(4) metric ds^2 = d xi^2 + rho(xi)^2 dOmega_3^2: G^xi_xi = 3(rho'^2 - 1)/rho^2 (constraint) and G^i_j = [2 rho''/rho + (rho'^2 - 1)/rho^2] delta^i_j
+PASS A5b vacuum constraint: rho'^2 = 1 - H^2 rho^2 with 3 H^2 = 8 pi rho_E
+PASS A5c Israel jump: [rho'] = rho'_out - rho'_in = -4 pi sigma rho  (so the extrinsic curvatures K = rho'/rho obey  K_in - K_out = 4 pi sigma)
+PASS A6 solving A - B = 4 pi sigma, A^2 - B^2 = H_out^2 - H_in^2:  A = DP/(3 sigma) + 2 pi sigma, B = DP/(3 sigma) - 2 pi sigma, mean = DP/(3 sigma)  (all sigma)
+   A6n: 4 of 4 cases had a bracketed root
+PASS A6n independent numerical root-find of the Israel junction reproduces 1/R^2 = H_out^2 + (DeltaP/(3 sigma) - 2 pi sigma)^2 (all solved cases, rel err < 1e-12; needs >= 3 solved)
+PASS A6L literature (opened: hep-th/9604090): with kappa = 8 pi G = 1, the symmetric-wall acceleration 2 pi G sigma = sigma/4 and the extreme-wall AdS acceleration 4 pi G sigma = sigma/2 = chi both follow from A - B = 4 pi G sigma
+
+== B. what the puzzle asks of a membrane ==
+PASS B1 a0 = kappa sqrt(G rho_Lambda), rho = E^2/2  =>  a0/H_out = kappa sqrt(3/(8 pi)) = 1/Z at kappa = 1/2 (Z = sqrt(32 pi/3)); a0 = E/(2 sqrt 2)
+PASS B2 probe limit (x, s -> 0, k = e/sigma fixed): mean acceleration -> k E/3; a0 = E/(2 sqrt2) needs k* = 3 kappa/sqrt2 = 3/(2 sqrt 2) = 1.0607 at kappa = 1/2
+PASS B3 exact target locus (mean reading, all x): sigma/E = (2 sqrt2/3)(x - x^2/2), i.e. DeltaP/(3 sigma) = sqrt(rho)/2 with NO pi anywhere
+PASS B4 puzzle in Lagrangian form: (eE/(3 sigma))^2 = G rho/4 with E^2 = 2 rho  <=>  e^2/(G sigma^2) = 9/8   (pi-free); equivalently 4 pi G sigma^2/e^2 = 32 pi/9 = Z^2/3
+   kappa readings and the probe ratio k* = e/sigma they need (Heaviside, rho = E^2/2, Gauss jump e):
+     framework kappa=1/2 (Z=5.789)      kappa=0.5000  a0/H=0.17275  k*=3kappa/sqrt2=1.06066
+     forced kernel kappa=1 (Z=2.894)    kappa=1.0000  a0/H=0.34549  k*=3kappa/sqrt2=2.12132
+     Milgrom  c H/(2 pi)  (Z=2 pi)      kappa=0.4607  a0/H=0.15915  k*=3kappa/sqrt2=0.97721
+     Verlinde c H/6       (Z=6)         kappa=0.4824  a0/H=0.16667  k*=3kappa/sqrt2=1.02333
+     Nariai-shell 3 sqrt3 (Z=5.196)     kappa=0.5570  a0/H=0.19245  k*=3kappa/sqrt2=1.18164
+
+== C. controls: wrong conventions ==
+   k*(standard) = 3*sqrt(2)/4 = 1.060660 ;  Gauss jump e/2: 3*sqrt(2)/2 = 2.121320 ;  rho = E^2: 3/4 = 0.750000 ;  Israel 8 pi sigma: 3*sqrt(2)/2 = 2.121320 ;  Gaussian e_G: 3*sqrt(2)/(8*sqrt(pi)) = 0.299207
+PASS C0 general-convention machinery reproduces the standard k* = 3/(2 sqrt 2) for (rho, Gauss, Israel) = (E^2/2, e, 4 pi sigma)
+PASS C1 CONTROL (Gauss jump e/2): k* doubles to 3/sqrt2 (the kappa = 1 value) -- detected
+PASS C2 CONTROL (rho = E^2, no 1/2): k* becomes 3/4 -- detected
+PASS C3 CONTROL (Israel 8 pi sigma): k* doubles -- detected
+PASS C4 unit change to Gaussian charge e_G = e/sqrt(4 pi): k*_G = 3 kappa/sqrt(8 pi) = k*/sqrt(4 pi) (pi-content changes with the unit, as it must)
+PASS C5 covariance: a/H = k/(2 sqrt(3 pi)) [Heaviside] = k_G/sqrt3 [Gaussian, k_G = k/sqrt(4 pi)]: a principle transcribed consistently gives the same a/H; transcribed inconsistently it is off by sqrt(4 pi)
+
+== D. numerical sanity at the target (independent of the algebra above) ==
+   sigma=1e-03  mean=0.35336589  H/Z=0.35355339   A=0.35964908  B=0.34708271
+   sigma=1e-05  mean=0.35355152  H/Z=0.35355339   A=0.35361435  B=0.35348868
+   sigma=1e-07  mean=0.35355337  H/Z=0.35355339   A=0.35355400  B=0.35355274
+PASS D1 at e/sigma = 3/(2 sqrt2) the mean wall acceleration -> H/Z as sigma -> 0 (rel err < 1e-6 at sigma = 1e-7)
+
+22/22

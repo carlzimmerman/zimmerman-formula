@@ -1,0 +1,129 @@
+
+Census table: decomposition into origin atoms is exact
+  [OK] all 41 decompositions multiply back to the coefficient exactly (sympy)
+  [OK] CONTROL C-4a: Isaacson with the expansion factor 1/8 instead of 1/4 is rejected
+  [OK] CONTROL C-4b: the puzzle with '2' instead of 4 (Lambda = 16 pi a0^2) is rejected
+
+      id   coefficient            class                    decomposition (tag: value)                                  | name  [source status]
+      I01  1/(32*pi)              scale                    E8:1/(8*pi) x ACT:1/2 x ACT:1/4 x ACT:2                      | Isaacson GW energy: rho = <hdot_ij hdot_ij>/(32 pi G)  [opened gr-qc/0501041 eq.(5.38),(5.40); derived c01 A]
+      I02  32*pi                  scale                    E8:8*pi x ACT:2 x ACT:4 x ACT:1/2                            | graviton coupling kappa^2 = 32 pi G (tensor-canonical)  [opened 1703.05448 eq.(2.9.11); derived c01 B]
+      I03  16*pi                  scale                    E8:8*pi x ACT:2 x ACT:4 x ACT:1/2 x NRM:1/2                  | per-polarisation kappa^2 = 16 pi G  [derived c01 B]
+      I04  1/(32*pi)              scale                    E8:1/(8*pi) x ACT:1/2 x ACT:1/4 x ACT:2                      | Bondi mass loss (1/32 pi) oint N_AB N^AB  [from memory (Bondi-Sachs); follows from I01 by flux integration]
+      I05  1/(16*pi)              scale                    E8:1/(8*pi) x ACT:1/2                                        | ADM mass 1/(16 pi G) oint(...)  [derived c01 E]
+      I06  1/(4*pi)               scale                    E8:1/(8*pi) x NUM:2                                          | Komar mass 1/(4 pi G) oint  [derived c01 E]
+      I07  1/(8*pi)               scale                    THM:1/(2*pi) x HOR:1/4                                       | BH first law kappa/(8 pi) dA  [derived c01 E (Kerr, sympy)]
+      I08  16*pi                  scale                    SPH:4*pi x HOR:4                                             | Schwarzschild area A = 16 pi M^2  [derived c01 E]
+      I09  pi                     dimensionless-geometric  SPH:4*pi x HOR:1/4                                           | Schwarzschild A kappa^2 = pi (max over Kerr-Newman)  [derived c01 E (sharp bound, 200000-sample scan + proof)]
+      I10  1/(8*pi)               scale                    THM:1/(2*pi) x HOR:1/4                                       | Hawking temperature T = 1/(8 pi G M)  [derived c01 E]
+      I11  3/(32*pi)              scale                    NUM:3 x SPH:1/(4*pi) x HOR:1/8                               | mean density of a Schwarzschild ball rho = 3/(32 pi G^3 M^2)  [opened Wikipedia "Schwarzschild radius"; algebra here]
+      I12  1/(15360*pi)           scale                    SPEC:pi**2/60 x SPH:16*pi x THM:1/(16*pi**4) x HOR:1/256     | Hawking photon-only power 1/(15360 pi G^2 M^2)  [derived c02 D4; opened Wikipedia "Hawking radiation"]
+      I13  5120*pi                scale                    NUM:1/3 x SPEC:60/pi**2 x SPH:1/(16*pi) x THM:16*pi**4 x HOR:256 | evaporation time 5120 pi G^2 M^3  [derived c02 D4; opened Wikipedia]
+      I14  3*pi/32                scale                    ANG:pi**2/4 x E8:3/(8*pi)                                    | free fall: G rho t_ff^2 = 3 pi/32  [derived c02 D2; Wikipedia "Free-fall time" form (1/4)sqrt(3 pi/2 G rho)]
+      I15  8*pi/3                 scale                    E8:8*pi x NUM:1/3                                            | Friedmann H^2 = (8 pi/3) G rho  [derived c02 D1 (sympy FRW G_tt = 3H^2)]
+      I16  4*pi                   scale                    SPH:4*pi                                                     | Jeans k_J^2 c_s^2 = 4 pi G rho  [derived c02 D3]
+      I17  32/5                   scale                    NUM:2 x NUM:64 x NUM:1/4 x NUM:1/5                           | Peters P = (32/5) G^4 mu^2 M^3/a^5 (pi-free)  [derived c01 C]
+      I18  96*pi**(8/3)/5         scale                    NUM:3 x NUM:32/5 x NUM:pi**(8/3)                             | chirp fdot = (96/5) pi^(8/3) ...  [derived c01 C]
+      I19  1/(6*pi)               scale                    SPH:1/(16*pi**2) x SPH:8*pi/3                                | Larmor P = q^2 a^2/(6 pi) (HL)  [derived c01 D]
+      I20  32*pi**2               topological              TOP:2 x SPH:16*pi**2                                         | Chern-Gauss-Bonnet int E4 = 32 pi^2 chi  [derived c03 T1 (S^4, S^2xS^2, n=1..6); hep-th/9308075 eq.(35) form]
+      I21  32*pi**2               topological              SPH:2*pi**2 x TOP:16                                         | BPST instanton: int F Ftilde = 32 pi^2 k  [derived c03 T2 (explicit BPST); opened 0802.1862 eq.(10.3),(12.7)]
+      I22  8*pi**2                topological              SPH:2*pi**2 x TOP:16 x NUM:1/4                               | instanton action 8 pi^2/g^2  [derived c03 T2; opened 0802.1862 eq.(1.1)]
+      I23  1/(16*pi**2)           scale-free               SPH:1/(8*pi**2) x SPEC:1/2                                   | loop factor 1/(16 pi^2)  [derived c03 T4]
+      I24  2*pi                   topological              TOP:1/(12*pi) x TOP:24*pi**2                                 | Chern-Simons: Delta S = 2 pi k from (k/12 pi)(24 pi^2)  [derived c03 T3]
+      I25  1/(360*pi**2)          scale                    SPEC:1/(8*pi**2) x SPEC:1/45                                 | Euler-Heisenberg e^4/(360 pi^2 m^4)  [derived c02 D6; opened hep-th/0406216 eq.(1.9)]
+      I26  1/(4*pi**3)            scale                    NUM:2 x SPEC:1/(8*pi**2) x SPEC:pi x SPEC:pi**(-2)           | Schwinger rate (eE)^2/(4 pi^3) exp(-pi m^2/eE)  [derived c02 D6; opened hep-th/0406216 eq.(1.10),(1.11)]
+      I27  1/(5760*pi**2)         scale-free               SPH:1/(16*pi**2) x NUM:1/360                                 | trace anomaly a_scalar/(16 pi^2) = 1/(5760 pi^2)  [derived c03 T5; opened hep-th/9308075 eq.(30),(31)]
+      I28  1/(960*pi**2)          scale                    NUM:6 x SPH:1/(16*pi**2) x NUM:1/360                         | de Sitter conformal-scalar rho = H^4/(960 pi^2)  [derived c03 T5 (value from memory: Bunch-Davies vacuum)]
+      I29  360*pi                 scale-free               NUM:3 x SPH:960*pi**2 x E8:1/(8*pi)                          | semiclassical self-consistent dS: G H^2 = 360 pi/N  [derived c03 T5]
+      I30  1/(96*pi)              scale-free               TOP:1/(24*pi) x NRM:1/4                                      | Polyakov c/(96 pi) int R box^-1 R  [derived c03 T6; opened hep-th/0402009 App.B (c/24 pi)]
+      I31  pi**2/720              scale                    SPEC:1/(6*pi) x SPEC:pi**3 x SPEC:1/120                      | Casimir E/A = -pi^2/(720 d^3)  [derived c02 D5]
+      I32  pi**2/60               scale                    NUM:1/4 x SPEC:pi**2/15                                      | Stefan-Boltzmann sigma = pi^2/60  [derived c02 D4]
+      I33  32*pi**2               topological              NUM:12 x SPH:8*pi**2/3                                       | S^4: 32 pi^2 = 12 Vol(S^4)  [derived c03 T1, T7]
+      I34  12*pi                  dimensionless-geometric  SPH:4*pi x NUM:3                                             | de Sitter horizon A Lambda = 12 pi  [derived c01 F]
+      I35  4*pi                   dimensionless-geometric  SPH:4*pi                                                     | Nariai horizon A Lambda = 4 pi  [derived c01 F]
+      I36  32*pi                  scale                    E8:8*pi x FIT:4                                              | THE PUZZLE: Lambda = 32 pi a0^2 (G rho_Lambda = 4 a0^2)  [the record; p01, p04]
+      I37  32*pi**2               dimensionless-geometric  E8:8*pi x SPH:4*pi                                           | THE PUZZLE, dimensionless: A Lambda = 32 pi^2 with A = pi/a0^2  [the record; p01, p04]
+      I38  4*pi                   scale                    SPH:4*pi                                                     | Eddington luminosity L = 4 pi G M c/kappa_es (radiation force = gravity)  [from memory (standard); one-line algebra]
+      I39  1/(64*pi)              scale                    E8:1/(8*pi) x ACT:1/2 x ACT:1/4                              | quadratic EH action for h_ij h_ij: S_2 = (1/(64 pi G)) int (hdot_ij hdot_ij - ...)  [derived c01 A (A0 = 1, sympy)]
+      I40  128*pi**2              topological              TOP:4 x TOP:2 x SPH:16*pi**2                                 | Euclidean Nariai S^2 x S^2: int E4 = 128 pi^2 (chi = 4)  [derived c03 T1]
+      I41  64*pi**2               topological              TOP:2 x TOP:2 x SPH:16*pi**2                                 | Euclidean S^4 / Schwarzschild: int E4 = 64 pi^2 (chi = 2)  [derived c03 T1 (S^4); Euclidean Schwarzschild in p01]
+
+Classification
+      scale                      n = 26: I01 I02 I03 I04 I05 I06 I07 I08 I10 I11 I12 I13 I14 I15 I16 I17 I18 I19 I25 I26 I28 I31 I32 I39 I38 I36
+      dimensionless-geometric    n =  4: I09 I34 I35 I37
+      topological                n =  7: I20 I21 I22 I24 I33 I40 I41
+      scale-free                 n =  4: I23 I27 I29 I30
+  [OK] [table] the 32 pi^2 (two-pi) instances are TOPOLOGICAL normalisations: GB (I20), instanton (I21), S^4 identity (I33) - scale-free integers
+  [OK] [table] the 32 pi (one-pi) literal coefficients are I01, I02, I04 (field normalisations) and the puzzle I36
+
+A1  literal coefficient frequencies (descriptive only; the table was assembled by SEARCHING for 32 pi, so 32 pi is over-represented)
+      literal   4 pi^k (k = 1, 2) or reciprocal: n =  4 : I06 I16 I35 I38
+      literal   8 pi^k (k = 1, 2) or reciprocal: n =  3 : I07 I10 I22
+      literal  12 pi^k (k = 1, 2) or reciprocal: n =  1 : I34
+      literal  16 pi^k (k = 1, 2) or reciprocal: n =  4 : I03 I05 I08 I23
+      literal  24 pi^k (k = 1, 2) or reciprocal: n =  0 : 
+      literal  32 pi^k (k = 1, 2) or reciprocal: n =  8 : I01 I02 I04 I20 I21 I33 I36 I37
+      literal  48 pi^k (k = 1, 2) or reciprocal: n =  0 : 
+      literal  64 pi^k (k = 1, 2) or reciprocal: n =  2 : I39 I41
+      literal  96 pi^k (k = 1, 2) or reciprocal: n =  1 : I30
+      literal-32 set = ['I01', 'I02', 'I04', 'I20', 'I21', 'I33', 'I36', 'I37']
+  [OK] [table] every member of the literal 32 pi^k set (other than the puzzle) is EITHER a topological normalisation (GB, instanton, S^4 identity) OR a field normalisation (tag ACT: kappa^2, Isaacson, Bondi) - no third kind
+  [OK] [table] the occurrence count says nothing about physics: 32 pi^k appears 3 (topological) + 3 (field normalisation) + 2 (puzzle) times; the counts of 8, 16, 64 are set by which formulae I searched
+
+A2  the origin of the extra '4' in 32 pi = 8 pi x 4 (gravitational, hbar-free instances only)
+      I01/I02/I04                ACT: second-order expansion of sqrt(-g)R (1/4), EH half (1/2), canonical half, e_ij e_ij = 2  [field normalisation; convention-laden]
+      I14 free fall              ANG: (pi/2)^2 from the cycloid angle; the 8 pi is Gauss/Friedmann; net pi count is +1 in the numerator
+      I07/I08/I09/I10/I11/I12    HOR: r_s = 2M and kappa = 1/(4M); (1/2)^2 = 1/4 = (r_s kappa)^2
+      I20 GB (32 pi^2)           TOP: (4 pi)^n n! Pfaffian normalisation; with a tensor-vs-2-form norm factor 4 (2-form norm, 1/8 pi^2)
+      I21 instanton              TOP/SPH: Vol(S^3) = 2 pi^2 times 16; 32 pi^2 = 8 pi^2 x 2 x 2 (trace norm 1/2, F^F = (1/2) F Ftilde)
+      I36 puzzle                 FIT: 4 = 1/kappa^2 with kappa = 1/2 (fitted); on the horizon reading it is the HOR entry (r_s kappa = 1/2), which p06 shows cannot be realised
+      tags common to all of ['I01', 'I02', 'I04', 'I14']: ['E8']
+  [OK] [table+derivations] across the 32 pi-type gravitational instances (I01, I02, I04, I14) the only common origin tag is Einstein's 8 pi G coupling itself: the residual factors have different origins
+      incidence: {'ACT': ['I01', 'I02', 'I04'], 'ANG': ['I14'], 'HOR': [], 'E8': ['I01', 'I02', 'I04', 'I14']}
+  [OK] [table+derivations] the ACT normalisation is shared by I01, I02, I04 (same cause: the quadratic EH action) but NOT by the free-fall time, which has an ANG origin; HOR is in none of them
+  [OK] CONTROL C-4c: the false claim 'the same origin tag (ACT) is shared by all four 32 pi-type gravitational instances' is rejected
+      instances carrying the Schwarzschild-horizon origin HOR: ['I07', 'I08', 'I09', 'I10', 'I11', 'I12', 'I13']
+  [OK] [table+derivations] the only instances that share the puzzle's horizon-type '4' are the black-hole-geometry ones (I07-I13); the puzzle's own horizon reading is p06's excluded object
+
+A3  rate^2 versus G rho: pi-power in the coefficient
+      Friedmann H^2                      c = 8*pi/3       =   8.3776   pi-power 1
+      free fall 1/t_ff^2                 c = 32/(3*pi)    =   3.3953   pi-power -1
+      Jeans (k_J c_s)^2                  c = 4*pi         =  12.5664   pi-power 1
+      uniform-ball harmonic omega_0^2    c = 4*pi/3       =   4.1888   pi-power 1
+      THE PUZZLE a0^2                    c = 1/4          =   0.2500   pi-power 0
+  [OK] every classical dynamical rate^2 at density rho carries pi^(+1) or pi^(-1) (Poisson/Gauss 4 pi or the cycloid angle); the puzzle's a0^2 = G rho/4 carries pi^0
+  [OK] relative to the Friedmann rate the puzzle's extra factor is 1/(4 x 8 pi/3) = 1/Z^2: pi^(-1) all sits in the Friedmann 8 pi; the '4' is the only new content
+
+A4  classical rate / sqrt(G rho)  versus  a0 / sqrt(G rho_Lambda) = 1/2
+      Friedmann H^2                       2.8944
+      free fall 1/t_ff^2                  1.8426
+      Jeans (k_J c_s)^2                   3.5449
+      uniform-ball harmonic omega_0^2     2.0467
+      THE PUZZLE a0^2                     0.5000
+      ratio to a0: {'Friedmann H^2': 5.789, 'free fall 1/t_ff^2': 3.685, 'Jeans (k_J c_s)^2': 7.09, 'uniform-ball harmonic omega_0^2': 4.093}
+  [OK] every classical dynamical rate of a self-gravitating density rho is 3.7 to 7.1 times FASTER than a0 = (1/2) sqrt(G rho): a0 is not a dynamical rate of the vacuum (it is the README's 'sub-Hubble' statement, seen from the census)
+  [OK] CONTROL C-4d: the false claim 'free fall gives a0 (ratio 1)' is rejected
+
+A5  can any census cause be the cause of the puzzle's 32 pi?
+      H_GW: omega^2 <h_ij h_ij> = 128 pi a0^2 = 402.1 a0^2; if omega = a0 then <h_ij h_ij> = 402 (h_+ ~ 14.2 >> 1);
+            perturbative (<h_ij h_ij> <= 0.01) requires omega >= 201 a0: an extra free scale (the frequency) and a free amplitude
+            at omega = H_Lambda: <h_ij h_ij> = 128 pi/Z^2 = 12 (h_+ = sqrt(6) = 2.45); NOTE the Isaacson average assumes omega >> H, so omega = H is outside its domain: illustrative only
+  [OK] [illustrative] H_GW at omega = H_Lambda would need <h_ij h_ij> = 12 exactly (= 3 x 4: the Friedmann 3 and the puzzle's 4): non-perturbative (h_+ = 2.45), outside the short-wave domain, and it only restates Z^2 = 32 pi/3
+  [OK] H_GW fails: reading the puzzle as rho_Lambda = GW-like condensate needs h_+ ~ 14 at omega = a0 (non-perturbative), or a free frequency omega >= 200 a0 (then a0 is not the rate); either way a second scale enters
+  [OK] H_FF fails: a0 t_ff = (1/2) sqrt(3 pi/32) = 0.271 (not 1, not pi-free): free fall supplies neither the 1/2 nor the pi-power (pi^-1 in rate^2)
+  [OK] H_BH fails as a realised object: M_s/M_Nariai = 3 sqrt(3) Z/4 = 7.520 > 1, so Schwarzschild-de Sitter with kappa = a0 has NO horizon (p06, recomputed)
+  [OK] H_BH: Z <= 2 would be needed to fit r_s = Z L/2 <= L; the puzzle has Z = 5.789
+  [OK] H_TOP: c03 shows the GB integrals are the same at every radius (S^4: 64 pi^2 for every L) and the instanton integral independent of rho: scale-free, so they cannot fix a0/H
+  [OK] [bookkeeping] H_hbar: the puzzle relation carries no hbar (classical), so it cannot be a member of the hbar-carrying family (Hawking, Schwinger, EH, Casimir, SB, anomalies, loops: I07 I10 I12 I13 I23 I25 I26 I27 I28 I29 I30 I31 I32)
+      hbar-free instances: ['I01', 'I02', 'I03', 'I04', 'I05', 'I06', 'I08', 'I09', 'I11', 'I14', 'I15', 'I16', 'I17', 'I18', 'I19', 'I20', 'I21', 'I22', 'I24', 'I33', 'I34', 'I35', 'I39', 'I40', 'I41', 'I38', 'I36', 'I37']
+
+A6  MOND-literature coefficients (sources opened: astro-ph/9805346, 0801.3133, 1611.02269, 1704.00780, 1005.3537, 1104.2022)
+      derivation: Milgrom 1999 (astro-ph/9805346) eq.(9): a0_hat = 2 (Lambda/3)^(1/2) = 2 H_Lambda [crossover of mu_hat with mu_hat(x<<1) = x]  -> a0 = 2 H_Lambda = 2.000 H_Lambda
+      derivation: 1104.2022 eq.(9): A_0 = 2 c H_dS  -> a0 = 2 H_Lambda = 2.000 H_Lambda
+      derivation: Smolin (1704.00780) eq.(32): a^2 = 2 a_N a_Lambda, a_Lambda = c^2 sqrt(Lambda) = sqrt(3) H_Lambda  ->  a0 = 2 a_Lambda  -> a0 = 2*sqrt(3) H_Lambda = 3.464 H_Lambda
+      derivation: Ho-Minic-Ng (1005.3537) eq.(5),(6): F = m a^2/(2 a0), a0 = sqrt(Lambda/3) = H  ->  MOND a0 = 2 H before their a_c := a0/(2 pi)  -> a0 = 2 H_Lambda = 2.000 H_Lambda
+      data-side coefficients: Milgrom's observed 2 pi a0 ~ c H0 [0801.3133] -> 0.1592 H; Verlinde's DERIVED a_M = a0/6 with a0 = cH0 [1611.02269 eq.(1.7),(7.43): (d-3)/((d-2)(d-1)) at d = 4] -> 0.1667 H; framework 1/Z = 0.1727 H_Lambda; Smolin a0 ~ a_Lambda/8.3
+      gap = (Unruh-type 2H)/(coefficient that matches the data): vs Milgrom's 2 pi 12.57 = 4 pi; vs Verlinde's 1/6 12.00; framework 2Z = 11.58
+  [OK] the four Unruh/entropic derivations land at 2 to 2 sqrt(3) H_Lambda (pi-free) while the coefficients that match the data are H/(2 pi) (observed, Milgrom), H/6 (Verlinde's separate derivation), 1/Z (framework): the gap is 4 pi = 12.6 (Milgrom 2H), 12, 2Z = 11.6, and every one of the four derivations exceeds every data-side coefficient by a factor >= 11.5
+      => the puzzle's Z is the statement 'the Unruh / entropic derivation over-predicts a0 by 2Z = 11.58' (Milgrom's own version: 4 pi). No new content.
+
+  23/23 checks held.

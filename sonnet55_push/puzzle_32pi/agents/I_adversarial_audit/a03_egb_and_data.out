@@ -1,0 +1,18 @@
+PASS T1 first law T = dM/dS with S = pi r^2 + 4 pi alpha ln r reproduces p03's corrected T = (r^2 - alpha)/(4 pi r (r^2 + 2 alpha))
+PASS T2 numerical f'(r_h)/(4 pi) from the full metric agrees with T_p03 at 5 fixed points (max |err| = 3.6e-43)
+   r_h^2/alpha at the maximum = 5.37228132327 ; (5+sqrt 33)/2 = 5.37228132327 ; kappa_max^2 alpha = 0.01636792622 ; 1/32 = 0.03125
+PASS T3 kappa_max^2 alpha = 0.016368, max at r_h^2 = alpha (5 + sqrt 33)/2 (independent numerical maximisation)
+PASS T3b closed form kappa_max^2 alpha = (x0-1)^2/(4 x0 (x0+2)^2), x0 = (5+sqrt33)/2, = 0.016368 != 1/32
+PASS T4 the OLD (misremembered) temperature has its maximum at r = sqrt(2 alpha) with kappa^2 alpha = 1/32 exactly: the retracted 'lead' was an artefact, retraction is correct
+   NOTE: p03's docstring still lists the OLD formula in E2/E3 ('T = r_h/(4 pi (r_h^2+2 alpha))', 'kappa_max^2 = 1/(32 alpha)') -- stale text contradicting the code and .out
+PASS K1 Kounterterm coefficient (vanishing on-shell S^4 action) alpha = -L^2/4, and S_JM = A/4 + 4 pi alpha vanishes at A = 4 pi L^2 (the dS horizon area), as README section 5 states (recomputed here; p03 only scripts alpha = -3/(4 Lambda))
+   coefficient                  H0 foot.  H_L foot. |  H0=73 tot    H0=73 L   (offset in sigma of the SPARC fit; sigma = 5.44% statistical)
+   Milgrom 2 pi                   -0.59      -3.65  |     +0.89      -2.43
+   Verlinde 6                     +0.25      -2.96  |     +1.80      -1.68
+   framework sqrt(32pi/3)         +0.93      -2.40  |     +2.54      -1.07
+   Nariai-shell 3 sqrt 3          +3.14      -0.57  |     +4.92      +0.91
+PASS D1 on the rho_Lambda (H_L) footing exactly THREE candidates sit 2.4-3.7 sigma low; the Nariai-shell 3 sqrt3 is at -0.57 sigma, i.e. WITHIN 1 sigma -- README section 6 says 'all sit 2.4-3.7 sigma low' (wrong for that candidate)
+PASS D2 H0 sensitivity: moving H0 from 67.4 to 73.0 raises every H0-footing offset by ~1.5-1.8 sigma; the framework moves from +0.93 to +2.54 sigma (outside 2 sigma) and Milgrom from -0.59 to +0.89 (the 'three of four within 1 sigma' statement is footing- AND H0-dependent)
+PASS D3 reproduces p03's table (Milgrom -0.59, Verlinde +0.25, framework +0.93, Nariai +3.14 on H0; -3.65, -2.96, -2.40, -0.57 on H_L)
+
+9/9

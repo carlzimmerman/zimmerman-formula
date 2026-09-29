@@ -1,0 +1,67 @@
+== 0. Seeley-DeWitt data of S^3, S^4 from explicit curvature tensors (Gilkey; Vassilevich arXiv:hep-th/0306138)
+   S^3 (unit): R = 6, |Ric|^2 = 12, |Riem|^2 = 12
+   S^4 (unit): R = 12, |Ric|^2 = 36, |Riem|^2 = 24
+PASS 0a curvature invariants of the unit S^d: R = d(d-1), |Ric|^2 = d(d-1)^2, |Riem|^2 = 2d(d-1)  (d = 3, 4, from the metric)
+   Gilkey for -Lap:  S^3: a_1 = 1, a_2 = 1/2 ;  S^4: a_1 = 2, a_2 = 29/15   (units L^-2, L^-4)
+   integrated (4 pi)^(-2) Vol a_2:  minimal scalar 29/90 ; conformal scalar -1/90
+PASS 0b Gilkey: S^3 a_1 = 1, a_2 = 1/2 (= 1/n! pattern); S^4 minimal scalar (4 pi)^-2 Vol a_2 = 29/90; conformal scalar = -1/90
+
+== 1. S^3 (unit radius; eps = b/L^2):  T3(eps) = sum (l+1)^2 exp(-eps l(l+2))
+PASS 1a Poisson-resummed form equals the l-sum at 50 digits for eps = 0.05, 0.18, 1/2, 1, 2, 16 pi/3 (max rel dev 1.36e-46): the pi lives in the DUAL representation only
+PASS 1b CONTROL: the dual form without the curvature factor e^eps differs from the l-sum by 0.649 (test can fail)
+PASS 1c small-eps series of T3: (sqrt(pi)/4) eps^(-3/2) (1 + eps + eps^2/2 + ...), i.e. a_0 = 1, a_1 = 1, a_2 = 1/2 (Gilkey, 0b); only HALF-integer powers of eps => heat-trace constant term = 0
+PASS 1d Vol(S^3)/(4 pi b)^(3/2) = (sqrt(pi)/4) (L^2/b)^(3/2): the filter's pi^(-3/2) times the volume's pi^2 leaves pi^(1/2)  (half-integer parity)
+PASS 1e Weyl law on S^3: coefficient omega_3 Vol/(2 pi)^3 = 1/3 (no pi); exact count/(n^3/3) at n = 4000 is 1.000375 -> 1
+PASS 1f zeta_{S^3}(0) = zeta_R(-2) - 1 = -1 (zero mode removed), so the heat-trace constant term is 0 (H1)
+
+== 2. S^4 (unit radius):  eigenvalue l(l+3), degeneracy (2l+3)(l+1)(l+2)/6;  n = l + 3/2
+   minimal scalar   T4(e) ~ 149*e**2/1890 + 37*e/189 + 29/90 + 1/(3*e) + 1/(6*e**2)
+   conformal scalar Tc(e) ~ -e**2/630 - 4*e/945 - 1/90 + 1/(6*e**2)
+PASS 2a minimal scalar: T4 = 1/(6 e^2) + 1/(3 e) + 29/90 + O(e)  (a_0 = 1, a_1 = R/6 = 2, a_2 = 29/15 in units of L; (4 pi)^-2 Vol = 1/6)
+PASS 2b conformal scalar (-Lap + R/6): Tc = 1/(6 e^2) + 0/e - 1/90 + O(e)  (a_1 = 0)
+PASS 2c the same constants equal Gilkey's integrated a_2 from the curvature tensors (0b): 29/90 and -1/90 -- independent routes (spectrum vs curvature) agree
+PASS 2d direct l-sum of the S^4 heat trace at e = 1e-3, 2e-3 minus the two singular terms, Richardson-extrapolated = 0.32222206 (29/90 = 0.32222222)
+PASS 2e zeta(0): minimal scalar (zero mode removed) = -61/90 = 29/90 - 1 ; conformal scalar = -1/90 = -1/90  (Hurwitz continuation, exact)
+PASS 2f de Rham supertrace sum_p (-1)^p Tr e^{-eps Delta_p} = 2 = chi(S^4) at eps = 0.01, 0.3, 1, 16 pi/3 (spread 0.0): the filter width drops out of the Euler characteristic
+PASS 2g CONTROL: dropping the harmonic 4-form gives 1, not 2: the supertrace test can fail
+PASS 2h leading behaviour Tr_p ~ C(4,p)/(6 e^2) (ranks 1,4,6,4,1): the p-form spectra used are consistent (Tr_1 * 6e^2 = 3.992 at e = 0.002)
+PASS 2i (4 pi)^2 chi(S^4) = 32 pi^2 = 12 Vol(S^4_unit) = 6 x [(1/6) int R dV]: the ONLY spectral quantity equal to 32 pi^2 is this eps-independent integer times (4 pi)^2
+PASS 2j Casimir-type regularised sum on S^3 (conformal scalar, omega_n = n/L): (1/2) sum n^3 e^{-lambda n} = 3/lambda^4 + 1/240 + O(lambda^2); finite part = 0.004166665675 (1/240 = 0.004166666667): RATIONAL; pi appears only if one divides by Vol(S^3) = 2 pi^2 L^3 to form a density (rho = 1/(480 pi^2 L^4), an hbar-carrying quantity)
+
+== 3. T^3 (side 1)
+PASS 3a T^3 heat trace: sum_n e^{-4 pi^2 b |n|^2} = (4 pi b)^(-3/2) theta_3(e^{-1/(4b)})^3 at 50 digits (max rel dev 1.2e-50): pi^(-3/2) prefactor, no pi in the volume
+
+== 4. pi-parity of the normalised volume  Vol(S^d)/(4 pi)^{d/2}
+   d: value   {2: (1, 'rational'), 3: (1/4, 'rational x sqrt(pi)'), 4: (1/6, 'rational'), 5: (1/32, 'rational x sqrt(pi)')}
+PASS 4a Vol(S^d)/(4 pi)^{d/2} is rational for even d and rational x sqrt(pi) for odd d, d = 1..9 (so heat-trace quantities have integer parity on S^4, half-integer parity on S^3)
+   target / (S^3 single-trace coefficient sqrt(pi)/4) has degree<=4 minimal polynomial? {'Z=sqrt(32pi/3)': True, 'sqrt(8pi/3)': True, 'Z^2=32pi/3': False, '32 pi': False, '32 pi^2': False, '8pi/3': False}
+   target / (T^3 coefficient (4 pi)^(-3/2))?                                             {'Z=sqrt(32pi/3)': False, 'sqrt(8pi/3)': False, 'Z^2=32pi/3': False, '32 pi': False, '32 pi^2': False, '8pi/3': False}
+   target / (S^4 coefficient 1/6)?                                                        {'Z=sqrt(32pi/3)': False, 'sqrt(8pi/3)': False, 'Z^2=32pi/3': False, '32 pi': False, '32 pi^2': False, '8pi/3': False}
+PASS 4b integer-relation test of parity (150 digits): Z and sqrt(8 pi/3) (parity 1/2) are ALGEBRAIC multiples of the S^3 single-trace coefficient sqrt(pi)/4, while Z^2, 32 pi, 32 pi^2, 8 pi/3 (integer parity) are not; on T^3 (coefficient pi^(-3/2)) no target matches and on S^4 (rational coefficient) no target matches; control: the search finds 3 sqrt2 + 1 and rejects pi, sqrt(pi)
+PASS 4c CONTROL: the un-normalised volume Vol(S^4) = 8 pi^2/3 has parity 2 and 32 pi^2 = 12 Vol(S^4) (the puzzle's number), whereas Vol(S^4)/(4 pi)^2 = 1/6 has parity 0: the normalisation of the filter removes exactly the pi that the puzzle needs
+
+== 5. targets vs principled eps  (targets and eps list were declared in the docstring)
+   principled eps                    T3(eps) S^3    T4(eps) S^4    T^3 (b=eps)
+   P1 xi=L (eps=1/2)                 2.066365252     1.77475589    1.000000016
+   P2 b=L^2 (eps=1)                  1.202172333     1.09221425            1.0
+   P3 xi=1/a0,L=1/H (eps=Z^2/2)              1.0            1.0            1.0
+PASS 5a at the three principled eps none of T3, T4, T^3 is within 5% of any of the six targets (closest relative deviation 0.286)
+   P3: T3(16 pi/3) - 1 = 5.9161e-22 = 4 e^{-3 eps} + 9 e^{-8 eps}+...: at the framework's own ratio only the zero mode survives
+PASS 5b at P3 (xi = Rindler length = Z L/... i.e. filter longer than the leaf) T3 = 1 + 5.92e-22: no information beyond the constant mode
+   P4: c/H_Lambda = 5.374e+9 pc;  eps in [1.02e-23, 1.73e-16];  Weyl count Tr S_h = (sqrt(pi)/4) eps^(-3/2) in [1.95e+23, 1.36e+34]
+PASS 5c P4: with the record's own xi window the closed-leaf eps is <= 2e-16 (radius >= c/H_Lambda), deep in the Weyl regime: Tr S_h >= 1e23, corrections e^eps - 1 <= 2e-16; no O(1) transcendental content
+   eps* such that T3(eps*) = target (b tuned to the answer; the solution exists for ANY target > 1):
+     Z = sqrt(32pi/3)     eps* = 0.20695175      xi*/L = sqrt(2 eps*) = 0.643353    (xi* = 3.458e+9 pc if L = c/H_Lambda; record's max xi = 100 pc)
+     Z^2 = 32pi/3         eps* = 0.058128274     xi*/L = sqrt(2 eps*) = 0.340964    (xi* = 1.832e+9 pc if L = c/H_Lambda; record's max xi = 100 pc)
+     32 pi                eps* = 0.027378113     xi*/L = sqrt(2 eps*) = 0.234       (xi* = 1.258e+9 pc if L = c/H_Lambda; record's max xi = 100 pc)
+     32 pi^2              eps* = 0.01263871      xi*/L = sqrt(2 eps*) = 0.158989    (xi* = 8.544e+8 pc if L = c/H_Lambda; record's max xi = 100 pc)
+     8pi/3                eps* = 0.15639059      xi*/L = sqrt(2 eps*) = 0.559268    (xi* = 3.006e+9 pc if L = c/H_Lambda; record's max xi = 100 pc)
+     sqrt(8pi/3)          eps* = 0.36502505      xi*/L = sqrt(2 eps*) = 0.85443     (xi* = 4.592e+9 pc if L = c/H_Lambda; record's max xi = 100 pc)
+PASS 5d T3 is strictly decreasing (samples) from +inf to 1: a root eps* exists for every target > 1 (H5)
+PASS 5e CONTROL: 20/20 random decoy targets in [4, 700] are ALSO hit by some eps* (20/20): a solved-for b reproduces anything, so a hit only counts if b is fixed first
+PASS 5f the tuned eps* for the puzzle's own targets need xi* >= 8.54e+6 x the record's maximum xi = 100 pc (xi* of order the Hubble radius)
+PASS 5g parity-compatible reading: the Weyl term (sqrt(pi)/4) eps^(-3/2) equals Z = 4 sqrt(2 pi/3) iff eps = 3^(1/3)/8 = 0.18028 (algebraic, a cube root of 3), and Z^2 = 32 pi/3 would need eps ~ pi^(-1/3): parity forbids it
+   with the curvature factor e^eps kept, T3(eps) = Z needs eps = 0.20695175 (no longer algebraic; T3 - Weyl = 1.082)
+PASS 5h that eps is not any of P1-P3, and 3^(1/3)/8 has no derivation in the record (xi is a declared knob: FP17 theorem, xi not buildable from (a0, Lambda, G, c)): parity compatibility is a necessary condition, not evidence
+
+30/30 checks held

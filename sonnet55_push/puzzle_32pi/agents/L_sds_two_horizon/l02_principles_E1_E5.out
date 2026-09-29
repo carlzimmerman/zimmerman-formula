@@ -1,0 +1,52 @@
+target 1/Z = 0.172747074735668 ; comparator tolerance 1.0e-10
+PASS C1 (positive control) the puzzle's own condition kappa_b = a0 at x* = 0.522632310058 is recognised by the comparator: this is a RESTATEMENT, counted as such, not as a success
+PASS [mutation rejected] C2 a planted near-miss target 1/Z (1 + 1e-6) is rejected by the comparator at tolerance 1e-10
+PASS E1a exact identity kappa_b - kappa_c = (x + y)(1 - 3 x y)/(2 x y), so T_b = T_c iff x y = 1/3
+PASS E1b x y < 1/3 strictly for every interior point (max of x y over the family is at the Nariai end, value 1/3), so T_b > T_c on the whole open family; equality only at Nariai (x = y = 1/sqrt3)
+   E1 (Nariai endpoint)                   mu=1.0  K_b=-1.988296816e-41 K_c=-1.988296816e-41  (BH-norm: 1.7320508, 1.7320508)
+PASS E1c E1 selects only the endpoint: K_b = K_c = 0 (f-normalisation) or sqrt3 (BH-normalisation); neither is 1/Z = 0.17274707. FAILS to select a0
+PASS C3 detector control: (x - 0.3)^2 shows 1 sign change (expected 1) and x^3 shows 0 (expected 0) on the same grid
+   S_tot/L^2                          sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_b S_c/L^4                        sign changes of dF/dx over 2300 grid points: 0  (increasing at the small-M end)
+   (S_c-S_b)/L^2                      sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_tot/M^2                          sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_b S_c/M^4                        sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   (S_c-S_b)/M^2                      sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_tot/r_b^2                        sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_b S_c/r_b^4                      sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   (S_c-S_b)/r_b^2                    sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_tot/r_c^2                        sign changes of dF/dx over 2300 grid points: 0  (increasing at the small-M end)
+   S_b S_c/r_c^4                      sign changes of dF/dx over 2300 grid points: 0  (increasing at the small-M end)
+   (S_c-S_b)/r_c^2                    sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   S_b/S_c                            sign changes of dF/dx over 2300 grid points: 0  (increasing at the small-M end)
+   [E2'] kappa_b kappa_c              sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   [E2'] kappa_b + kappa_c            sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   [E2'] kappa_b - kappa_c            sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   [E2'] kappa_c/kappa_b              sign changes of dF/dx over 2300 grid points: 0  (increasing at the small-M end)
+   [E2'] BH-norm kappa_b kappa_c      sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+   [E2'] BH-norm kappa_b + kappa_c    sign changes of dF/dx over 2300 grid points: 0  (decreasing at the small-M end)
+PASS E2a 19 of 19 functionals (entropies and, as flagged extras, temperature combinations; each at fixed L, M, r_b or r_c where dimensionful) are STRICTLY monotone in mu on the whole family; those with an interior stationary point: none
+PASS E2b no interior stationary point has kappa_b/H or kappa_c/H equal to 1/Z (vacuous if there is none): E2 selects only endpoints -> FAILS to select a0
+PASS E2c exact: d(S_tot/pi L^2)/dx = -y - x dy/dx < 0 on (0, 1/sqrt3) [S_tot/pi L^2 = 1 - x y]; checked symbolically at 40 rational points
+PASS E3a Smarr balance kappa_b r_b^2 = (8 pi/3) rho_Lambda r_b^3 (= Lambda r_b^3/3) has the unique interior root x^2 = 1/5 (root finder 0.4472135955 vs 1/sqrt5 = 0.4472135955); it is an ALGEBRAIC point
+   E3 Smarr half-and-half                 mu=0.9295160031  K_b=0.4472135955 K_c=0.3315456948  (BH-norm: 2.0506756, 1.5202862)
+PASS E3b at that point K_b = 1/sqrt5 = 0.4472136 (not 1/Z) and mu = 0.929516: E3 FAILS to select a0
+PASS E4a S_b/(2 pi M r_b) = 1/(1 - x^2) > 1 for every x > 0, equals 1 only at M -> 0 (endpoint), 3/2 at Nariai: saturation is not an interior point
+PASS E4b with the Misner-Sharp energy E = M + r^3/2L^2 the horizon obeys S = 2 pi E r EXACTLY for every mu (identity S_h = pi r_h^2, E(r_h) = r_h/2): no selection
+PASS E4c dS entropy bound S_tot = S_dS is saturated only at M = 0 (S_tot/S_dS = 1 - x y < 1 for all x > 0)
+   E5: T_eff(a) = sqrt(a^2 + H^2)/(2 pi)
+PASS E5a flat-space Hawking T = 1/(8 pi M) at M = M_N: a/H = sqrt(27/16 - 1) = sqrt(11)/4 = 0.8291561976 (algebraic, != 1/Z)
+PASS E5b flat-space T at M = L/2 is BELOW the dS floor (kappa = 1/(4 M) = 1/2 < H): no real acceleration a matches it
+PASS E5c SdS horizons at Nariai (BH normalisation, kappa = sqrt3 H): a/H = sqrt2 = 1.414213562 (algebraic)
+PASS E5d BH-horizon in the BH normalisation always has a = sqrt(kappa^2 - H^2) >= sqrt2 H (min over 60 masses of kappa_b^BH = 1.7322 >= sqrt3): a0 = 0.173 H is never reached
+   E5e cosmological horizon, BH-norm: a = a0 at x = r_b/L = 0.002368573427, mu = 0.006153699752 (the mass whose cosmological-horizon effective temperature equals that of an observer with a0)
+PASS E5e map a <-> mu on the cosmological horizon (BH norm): a increases monotonically from 0 (M = 0) towards sqrt2 H (Nariai; a(0.99 M_N) = 1.30507), so a0 = 0.1727 H corresponds to ONE definite small mass mu = 0.0061537 (the leading-order estimate M_N/Z^3 = 0.00515504 is 16% low, the next term is O(M^(1/3)) ~ 14%): not a distinguished mass, no principle picks it. [my first tolerance 0.1 on the leading-order estimate was too tight; corrected here, the asymptotics are checked in E5f]
+PASS E5f small-M asymptote of the map: a^2 -> 3 (M/L)^(2/3)/L^2 with relative correction -(4/3)(M/L)^(1/3): measured 1.058e-10 vs predicted 1.058e-10 at M = 5.0e-31
+   E5g f-normalisation: kappa_b = sqrt(a0^2 + H^2) = 1.0148111 H at x = 0.33087848, mu = 0.76553281 (an ordinary mid-family point, no distinction)
+PASS E5g in the f-normalisation the same matching selects mu = 0.765533: an arbitrary interior point; nothing forces it
+PASS E5h in SdS (mu = 0.5) kappa_c^2/f - a^2 varies with r (1.0186 ... 1.35486) so the dS 'T^2 = (a^2 + H^2)/4 pi^2' has NO exact SdS analogue; at mu -> 0 it is the constant H^2 = 1 (1.0): the E5 matchings above use horizon values, not a local identity
+PASS E10a K_Sigma = rho_Lambda (G rho_Lambda r_h^2 = 1) is unattainable on ANY SdS horizon: max over black-hole horizons 0.0397887 (Nariai, = 1/(8 pi)), max over cosmological horizons 0.119366 (M = 0, = 3/(8 pi)); the puzzle's Gauss-curvature form and its kappa form are different conditions inside SdS
+PASS E10b mean density of the hole (3M/4 pi r_b^3)/rho_Lambda = 1/x^2 - 1 in (2, infinity), equal to 2 at Nariai (and total incl. vacuum 3 rho_Lambda): algebraic, pi cancels; an interior 'density principle' selects an algebraic point
+PASS S  none of the selected points of E1-E5 reproduces 1/Z = 0.17274707 to 1e-10 (E2 has no interior selection; E4 saturations are endpoints or identities)
+
+25/25

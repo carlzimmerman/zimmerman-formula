@@ -1,0 +1,21 @@
+PASS 1a embedding: wall-worldline covariant acceleration = sqrt(1/R^2 - 1/L^2) (NOT 1/R); embedding accel = 1/R; normal part = 1/L (5 cases, |err| < 1e-30)
+PASS 1b static coordinates: acceleration^2 of the static observer at r = c is (c/L^2)^2/(1 - c^2/L^2) (Christoffel calculation)
+PASS 1c ... and this equals 1/R^2 - 1/L^2 with R^2 = L^2 - c^2 (the two routes agree)
+PASS 2a exact: A = DeltaP/(3 sigma) + 2 pi sigma and B = DeltaP/(3 sigma) - 2 pi sigma   (DeltaP = eE - e^2/2)
+PASS 2b consistency with the author's Euclidean radius: 1/R^2 = H_in^2 + A^2 = H_out^2 + B^2
+PASS 2c pure tension: side accelerations = +-2 pi sigma independent of H; 1/R^2 = H^2 + (2 pi sigma)^2 (author's A2 formula, which itself displays a = 2 pi sigma)
+   sigma=1e-02  1/R=2.066936 (>H=2.046653, the S^3 radius)   side accelerations A=0.414510 B=0.288847   mean=0.351678  DeltaP/(3sigma)=0.351678   H/Z=0.353553
+   sigma=1e-04  1/R=2.076857 (>H=2.046653, the S^3 radius)   side accelerations A=0.354163 B=0.352906   mean=0.353535  DeltaP/(3sigma)=0.353535   H/Z=0.353553
+   sigma=1e-06  1/R=2.076965 (>H=2.046653, the S^3 radius)   side accelerations A=0.353559 B=0.353547   mean=0.353553  DeltaP/(3sigma)=0.353553   H/Z=0.353553
+   sigma=1e-08  1/R=2.076967 (>H=2.046653, the S^3 radius)   side accelerations A=0.353553 B=0.353553   mean=0.353553  DeltaP/(3sigma)=0.353553   H/Z=0.353553
+PASS 3a at the p07 target ratio (e/sigma = 3/(2 sqrt2), sigma -> 0): proper accelerations A, B -> H/Z = 0.3536 (NOT ~ H); the 'probe reading is inconsistent' claim (p07 check 6, README section 9) is wrong
+PASS 3b the mean of the two side accelerations equals DeltaP/(3 sigma) EXACTLY at every sigma, including finite sigma (so the probe formula needs no a >> H)
+PASS 3c pure-tension wall with sigma = a0/(2 pi G) has proper acceleration exactly a0 = H/Z < H and Euclidean radius 1/R = sqrt(H^2 + a0^2) (author's A4 'needs sigma^2 < 0' is wrong)
+PASS 3d static-patch location of such a wall: r = L sin(theta0), tan(theta0) = 1/Z (p06's own check D1 already says an a0 observer sits at this angle, contradicting p06 A4)
+   Z <= 2  <=>  kappa >= sqrt(6)*sqrt(pi)/3 = 1.4472   (at kappa = 1, Z = 2.8944, r_s = 1.4472 L > L)
+PASS 4 'embeddable iff Z <= 2, i.e. kappa >= 1' is arithmetically wrong: the threshold is kappa >= sqrt(2 pi/3) = 1.447; even kappa = 1 (forced kernel) has r_s > L
+PASS 5 p06 A3 (20000 random cases of 1/R^2 >= max(H_i^2, H_o^2)) is a tautology: 1/R^2 - H_i^2 = A^2 and 1/R^2 - H_o^2 = B^2 are squares by construction (geometrically: an S^3 in S^4 has radius <= the S^4 radius); no control could fail
+PASS 6a flat-space Schwinger radius by direct extremisation of the bounce action B(R) = 2 pi^2 R^3 sigma - (pi^2/2) R^4 DeltaP: R = 3 sigma/DeltaP (author's p07 check 1 confirmed)
+PASS 6b control: as H -> 0 the proper acceleration sqrt(1/R^2 - H^2) -> 1/R, so the author's identification is right ONLY in the flat limit (which is why it looked right)
+
+14/14
