@@ -1,0 +1,79 @@
+==================================================================================================================================
+U3-2 verdicts -- mode: MUTATE CONTROL (V01 record corrupted)   (family size 34, log2 = 5.09)
+==================================================================================================================================
+
+  [PASS] C0 34 records 
+  [FAIL] C1 every recorded status equals the status recomputed from its own fields by the pre-registered rule (inconsistent: ['V01'])
+  [PASS] C2 the bar clears a 1e-12 miss in a 34-member family and rejects a 1% miss even at predicted precision 1% (P_neg = 0.0169, needs < 1e-3 and miss <= 5e-10 or 2x own precision: lambda = 0.017)
+  [PASS] C3 statement: with 34 trials the bar's P < 1e-3 needs delta_eff < 5.89e-04, far below the 1% floor of the running 
+
+Lane D bar on the variants that fix alpha (both a_Y and a_2 absolute).  Implied Thomson value = 137.035999177 + (pred - run) for Y and 2 at the scale X; predicted precision = the variant's own tolerance:
+  V01 Dual-Coxeter 4 pi h, X_P                             implied 1/alpha(0) =    162.528 (miss 0.186, spread over V 0.70, tol 0.0103); bar: P = 0.271, c1 False, c2 False -> does not clear
+  V02 Dual-Coxeter 4 pi h, X_S                             implied 1/alpha(0) =    160.150 (miss 0.169, spread over V 0.66, tol 0.01); bar: P = 0.249, c1 False, c2 False -> does not clear
+  V26 Emergence of all three at M_red/sqrt(118)            implied 1/alpha(0) =     30.297 (miss 0.779, spread over V 0.66, tol 0.01); bar: P = 0.734, c1 False, c2 False -> does not clear
+  V27 Emergence of all three at M_red/sqrt(126)            implied 1/alpha(0) =     30.278 (miss 0.779, spread over V 0.66, tol 0.01); bar: P = 0.734, c1 False, c2 False -> does not clear
+  V28 a_Y=0, a_2=8 pi, a_3=12 pi, X_S                      implied 1/alpha(0) =     55.430 (miss 0.596, spread over V 0.66, tol 0.01); bar: P = 0.637, c1 False, c2 False -> does not clear
+  V29 a_Y=0, a_2=8 pi, a_3=12 pi, X_R                      implied 1/alpha(0) =     56.850 (miss 0.585, spread over V 0.68, tol 0.01); bar: P = 0.63, c1 False, c2 False -> does not clear
+  V30 Anomaly index a_i = 2 pi I_i, X_P                    implied 1/alpha(0) =    133.207 (miss 0.0279, spread over V 0.70, tol 0.0103); bar: P = 0.0464, c1 False, c2 False -> does not clear
+  V31 Anomaly index a_i = 4 pi I_i, X_P                    implied 1/alpha(0) =    233.738 (miss 0.706, spread over V 0.70, tol 0.0103); bar: P = 0.699, c1 False, c2 False -> does not clear
+  [PASS] C4 no variant clears the bar unless it also passed T-JOINT (bar and joint test agree) 
+
+PER VARIANT
+id   principle variant                                                  scale X (GeV)  worst |miss|/tol  flag verdict / reason
+V01  Dual-Coxeter 4 pi h, X_P                                              1.22e+19              48.9       UNDECIDED: T-MONO: predicts a_Y ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+V02  Dual-Coxeter 4 pi h, X_S                                              2.24e+17              46.8       DEAD: T-MONO: predicts a_Y ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+V03  GUT crossing a_1=a_2, a_3=a_2, a_2=4 pi h (SU(5))                     1.09e+13              32.7       DEAD: T-MONO: predicts a_2=4pi h ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+V04  GUT crossing a_1=a_2, a_3=a_2, a_2=4 pi h (SO(10))                    1.09e+13              57.9       DEAD: T-MONO: predicts a_2=4pi h ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+V05  GUT crossing a_1=a_2, a_3=a_2, a_2=4 pi h (E6)                        1.09e+13              71.9       DEAD: T-MONO: predicts a_2=4pi h ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+V06  Equal couplings GUT norm, X_P                                         1.22e+19              48.6       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 4.096, 5.055]
+V07  Equal couplings GUT norm, X_R                                         2.44e+18              41.7       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 3.786, 4.523]
+V08  Equal couplings GUT norm, X_S                                         2.24e+17               6.0       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 3.273, 3.642]
+V09  Equal couplings Y norm, X_P                                           1.22e+19              10.8  PHI  UNDECIDED: T-JOINT failed, but <= 1 unforced multiplet of each type at 1 TeV rescues it: N = [0.759, 0.0, 0.959
+V10  Equal couplings Y norm, X_R                                           2.44e+18              15.0  PHI  DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [1.136, 0.0, 0.737]
+V11  Equal couplings Y norm, X_S                                           2.24e+17               6.4       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [1.76, 0.0, 0.368]
+V12  Y-norm universality at the aY=a2 crossing                             5.16e+20               3.9       DEAD: T-DOMAIN: scale 5.163e+20 GeV is 42.3 x M_P (above the programme's cutoff)
+V13  Y-norm universality at the a2=a3 crossing                             2.80e+16               4.6       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 0.0, 1.407]
+V14  Y-norm universality at the aY=a3 crossing                             3.30e+19               3.5       DEAD: T-DOMAIN: scale 3.297e+19 GeV is 2.7 x M_P (above the programme's cutoff)
+V15  a_Y/a_2 = 2, a_3 = a_2, X_P                                           1.22e+19              78.4       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 5.499, 6.459]
+V16  a_Y/a_2 = 2, a_3 = a_2, X_S                                           2.24e+17               9.1       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 4.971, 5.34]
+V17  a_Y/a_2 = 3, a_3 = a_2, X_P                                           1.22e+19             167.5       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 7.839, 8.798]
+V18  a_Y/a_2 = 3, a_3 = a_2, X_S                                           2.24e+17              14.3       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 7.802, 8.17]
+V19  Equal |log-derivative|, X_P                                           1.22e+19              92.4       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.193, 8.152, 0.0]
+V20  Equal |log-derivative|, X_S                                           2.24e+17              10.2       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.751, 8.51, 0.0]
+V21  Sum b_i a_i = 0 (Y norm), X_P                                         1.22e+19              14.5       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 0.0, 2.681]
+V22  Sum b_i a_i = 0 (Y norm), X_S                                         2.24e+17               3.5       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 0.0, 1.54]
+V23  Sum b_i a_i = 0 (GUT norm), X_P                                       1.22e+19              59.0       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 2.756, 6.111]
+V24  Sum b_i a_i = 0 (GUT norm), X_S                                       2.24e+17              28.9       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 2.61, 5.669]
+V25  RG invariant I = 0 (scale-free)                                       1.00e+03               1.1  *    DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 1.283, 0.0]
+V26  Emergence of all three at M_red/sqrt(118)                             2.24e+17             100.0       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [8.491, 13.462, 13.831]
+V27  Emergence of all three at M_red/sqrt(126)                             2.17e+17             100.0       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [8.505, 13.471, 13.834]
+V28  a_Y=0, a_2=8 pi, a_3=12 pi, X_S                                       2.24e+17             100.0       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [8.491, 6.294, 3.078]
+V29  a_Y=0, a_2=8 pi, a_3=12 pi, X_R                                       2.44e+18             100.0       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [7.572, 6.187, 3.581]
+V30  Anomaly index a_i = 2 pi I_i, X_P                                     1.22e+19              23.4       DEAD: T-MONO: predicts a_Y ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+V31  Anomaly index a_i = 4 pi I_i, X_P                                     1.22e+19              39.7       DEAD: T-MONO: predicts a_Y, a_2, a_3 ABOVE the SM-desert run beyond tolerance; no added matter can repair 
+V32  't Hooft universality a_1:a_2:a_3 = 5:2:3, X_P                        1.22e+19             271.6       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 9.149, 8.424]
+V33  't Hooft universality a_1:a_2:a_3 = 5:2:3, X_S                        2.24e+17              17.1       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 9.387, 7.717]
+V34  Heterotic string-scale locking (recalled 0.216 g M_red)               2.71e+17              32.9       DEAD: T-BRIDGE needs more than 1 unforced multiplet: N = [0.0, 3.349, 3.773]
+  (worst |miss|/tol = the largest ratio of a constraint's miss to its own tolerance; * = fails by less than 25% of its tolerance, i.e. marginal; PHI = post-hoc informed)
+
+PER PRINCIPLE (headline = least severe non-inapplicable variant)
+P01 Dual-Coxeter coupling: UNDECIDED  (2 variants: 1 DEAD, 1 UNDECIDED)  | closest V02: a_Y +0.759/tol 0.045, a_2 -0.468/tol 0.010, a_3 -0.223/tol 0.025
+P02 GUT-group Coxeter at the crossing: DEAD  (3 variants: 3 DEAD, 0 UNDECIDED)  | closest V03: a_3/a_2 +0.131/tol 0.042, a_2=4pi h +0.487/tol 0.015
+P03 Equal couplings at a Planckian scale: UNDECIDED  (6 variants: 5 DEAD, 1 UNDECIDED)  | closest V08: a_ab/a_2 +0.321/tol 0.054, a_3/a_2 -0.027/tol 0.032
+P04 Y-normalised universality at a pair crossing: DEAD  (3 variants: 3 DEAD, 0 UNDECIDED)  | closest V14: a2/aY +0.088/tol 0.025
+P05 Fixed hypercharge-to-weak ratio: DEAD  (4 variants: 4 DEAD, 0 UNDECIDED)  | closest V16: a_Y/a_2=n +0.585/tol 0.064, a_3/a_2 -0.027/tol 0.032
+P06 Equal log-derivative magnitudes: DEAD  (2 variants: 2 DEAD, 0 UNDECIDED)  | closest V20: rate_2/rate_Y +0.711/tol 0.070, rate_3/rate_Y -0.205/tol 0.046
+P07 Vanishing beta-weighted sum: DEAD  (4 variants: 4 DEAD, 0 UNDECIDED)  | closest V22: sum b a / sum|b a| -0.092/tol 0.026
+P08 RG invariant vanishes: DEAD  (1 variants: 1 DEAD, 0 UNDECIDED)  | closest V25: I/S -0.061/tol 0.058
+P09 Species-scale emergence, all three: DEAD  (2 variants: 2 DEAD, 0 UNDECIDED)  | closest V26: a_Y=0 -1.000/tol 0.010, a_2=0 -1.000/tol 0.010, a_3=0 -1.000/tol 0.010
+P10 Abelian emergence + Coxeter non-abelian: DEAD  (2 variants: 2 DEAD, 0 UNDECIDED)  | closest V28: a_Y=0 -1.000/tol 0.010, a_2=8pi -0.468/tol 0.010, a_3=12pi -0.223/tol 0.025
+P11 Anomaly-index coupling: DEAD  (2 variants: 2 DEAD, 0 UNDECIDED)  | closest V30: a_Y +0.139/tol 0.016, a_2 -0.234/tol 0.010, a_3 -0.288/tol 0.015
+P12 't Hooft-coupling universality: DEAD  (2 variants: 2 DEAD, 0 UNDECIDED)  | closest V33: a_1/a_2=5/2 +2.303/tol 0.134, a_3/a_2=3/2 +0.460/tol 0.048
+P13 Heterotic string-scale locking: DEAD  (1 variants: 1 DEAD, 0 UNDECIDED)  | closest V34: a_1/a_2 +0.329/tol 0.010, a_3/a_2 -0.029/tol 0.032
+
+SUMMARY: variants DEAD 32, UNDECIDED 2, SURVIVES 0 (of 34); principles by headline: DEAD 11, UNDECIDED 2, SURVIVES 0
+  UNDECIDED: V01 Dual-Coxeter 4 pi h, X_P -- T-MONO: predicts a_Y ABOVE the SM-desert run beyond tolerance; no added matter can repair it
+  UNDECIDED: V09 Equal couplings Y norm, X_P -- T-JOINT failed, but <= 1 unforced multiplet of each type at 1 TeV rescues it: N = [0.759, 0.0, 0.959]  [PHI: post-hoc informed, not a prediction]
+
+FAILED checks: ['C1']
+MUTATE CONTROL: works (exactly C1 failed) -> exit 1

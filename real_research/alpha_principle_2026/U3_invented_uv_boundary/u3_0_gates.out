@@ -1,0 +1,38 @@
+====================================================================================================
+U3-0 gates -- mode: REAL RUN
+====================================================================================================
+
+G1  b from the SM content: b_Y = 41/6, b_2 = -19/6, b_3 = -7, b_1 = 41/10
+  [PASS] G1 b = (41/6, -19/6, -7) and b_Y = (5/3) b_1 
+
+G2  one loop at M_P: this runner a_Y, a_2, a_3 = 55.461, 49.455, 52.409; rg_common = 55.461, 49.455, 52.409; a_em = 104.917
+  [PASS] G2 1/alpha_Y(M_P) = 55.48, 1/alpha_2(M_P) = 49.46, 1/alpha_em(M_P) = 104.94 (lanes B, M, N1) and equals rg_common to 1e-9 
+
+G3  two loop (2L-A) at M_P: a_Y, a_2, a_3 = 55.069, 49.145, 52.901; a_em shift vs one loop -0.670%
+  [PASS] G3 two-loop shift of 1/alpha_em(M_P) within 0.4-1.0% (lane M: 0.67%) (got -0.670%)
+
+G4  N1 Runner 2L-A at M_P: 55.0687, 49.1449, 52.9006; this runner 2L-A: 55.0687, 49.1449, 52.9006
+    central 2L-T (top threshold) at M_P: 55.1644, 49.1959, 52.9656; largest relative difference to 2L-A: 0.174%
+  [PASS] G4 this runner's 2L-A equals N1's Runner.twoloop to 1e-4 (relative) 
+  [PASS] G4b the top-threshold central differs from 2L-A by less than the 1% floor (0.174%)
+
+G5  largest relative shift of any a_i(M_P) under 1-sigma input variations (declared sigmas): 0.120%
+  [PASS] G5 input errors move every a_i(X_P) by < 0.5% (the 1% tolerance floor is not eaten by inputs) (0.120%)
+
+G6  Delta b (Y=1 Dirac singlet, SU(2) VL doublet, colour VL triplet) = (4/3, 2/3, 2/3); top removal Delta b_Y = 17/18
+  [PASS] G6a multiplet coefficients equal the lib's (4/3, 2/3, 2/3) and the top's Delta b_Y = 17/18 
+    one unit-Y Dirac fermion at 1 TeV lowers a_Y by 12.69% at N1's mu_c = 1.018e+18 GeV (N1: 12.7%) and by 14.17% at M_P (one loop)
+  [PASS] G6b N1 cross-check: -12.7% for one unit-Y Dirac fermion at 1 TeV, at N1's own scale mu_c 
+
+G7  H_Lambda = 1.190e-33 eV; m_e / H_Lambda = 4.294e+38; charged states lighter than H_Lambda: 0
+  [PASS] G7 no charged state lies below H_Lambda (m_e/H > 1e30), so d(1/alpha_em)/d ln mu = 0 for mu < m_e and a rule at H_Lambda is a rule at m_e 
+
+G8  Dynkin sums over 3 generations: I_3 = 6, I_2 = 6, I_Y = 10;  dual Coxeter from the gauge part -11 h/3: h(SU(3)) = 3, h(SU(2)) = 2
+  [PASS] G8 I_3 = 6, I_2 = 6, I_Y = 10 and h(SU(3)) = 3, h(SU(2)) = 2 
+
+G9  one-loop crossings (SM desert, set A): a_1=a_2 at 1.027e+13 GeV (closed form 1.027e+13); a_2=a_3 at 9.633e+16; a_Y=a_2 at 5.316e+20; a_Y=a_3 at 4.883e+19
+    at the GUT-norm crossing a_3 / a_2 - 1 = -13.160% (N1: alpha_3 off by -13%, i.e. a_3 higher)
+  [PASS] G9a numeric crossing equals the closed form to 1e-6 
+  [PASS] G9b SM crossing scales as expected: a_1=a_2 ~1e13 (within a decade), a_2=a_3 ~1e17, a_Y=a_2 beyond M_P 
+
+FAILED: none
