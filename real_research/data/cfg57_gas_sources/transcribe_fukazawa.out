@@ -1,0 +1,44 @@
+transcribe_fukazawa.py -- CFG57 gas source 2: Fukazawa et al. 2006, ApJ 636, 698
+tarball raw/fukazawa2006_astro-ph_0509521.tar.gz sha256 68f6999d676086b022df57be48c76bd29e64f13b6a4c322c2c9e8ac8301e5ec4 match: True
+ms.tex: 1626 lines, sha256 14a176fec6a628bd29dbff1e72047b5e36312d9441073e18b00cf20e91ff6183
+distance scale: line 261: Throughout this paper, we assume $H_0=70$ km s$^{-1}$ Mpc$^{-1}$.
+deluxetables in order of appearance: ['tab:sample-chandra', 'tab:sample-newton', 'table:spec', 'table:results', 'table:nfwcmp']
+Table 1 = tab:sample-chandra: caption line 1309, data lines 1322-1375
+Table 4 = table:results: caption line 1492, data lines 1506-1558
+Table 4 rows: 53; Table 1 rows: 53; every Table 4 galaxy has a Table 1 distance: True
+check EXG/CXG rule (ne10 > / < 2e-3 cm^-3; VCXG has no ne10): violations none
+check R_max lower limits, ACIS-I: 3 rows, R_max/D = 713.0-737.0 arcsec (NGC1550 733.5, NGC6861 737.0, NGC6868 713.0)
+check R_max lower limits, ACIS-S: 21 rows, R_max/D = 396.7-399.2 arcsec (IC1262 397.9, NGC507 397.7, NGC533 397.7, NGC720 397.8, NGC741 397.7, NGC1399 398.1, NGC1404 398.1, NGC1407 398.0, NGC1553 399.2, NGC1600 397.7, NGC2434 396.7, NGC3923 396.9, NGC4261 397.5, NGC4325 397.7, NGC4472 398.3, NGC4636 398.3, NGC4649 398.3, NGC4697 398.9, NGC5044 397.8, NGC5846 397.9, NGC7618 397.7)
+  -> the ACIS-S lower limits share one field-edge angle to 0.62% (full spread), within the rounding of D to 0.1 Mpc (up to +-0.35% at D = 14 Mpc): the D and R_max columns are transcribed consistently; the ACIS-I limits sit further out (larger field, pointing-dependent)
+independent re-read (regex on the raw .tex lines, not the table parser):
+  NGC5846  Table 4 line 1553: NGC5846 & 0.71$\pm$0.14 (7) & 0.64$\pm$0.05 & 2\tablenotemark{\dagger} & 2 & 9 & $>$44.18 & 6.70 & 7.17 & EXG \\
+  NGC5846  Table 1 line 1370: NGC5846 & 788 & 22.9 & 10.66 & 7.0 62.68 & ACIS-S & 24680 & 1.526 \\
+  NGC5846  -> n_beta 2, R_max >44.18 kpc, ne10 7.17 e-3 cm^-3, D 22.9 Mpc, type EXG; re-read agrees: True
+  NGC4374  Table 4 line 1538: NGC4374 & 0.57$\pm$0.09 (5) & 0.72$\pm$0.12 & 2\tablenotemark{\dagger} & 1 & 11 & 15.43 & 7.27 & 0.63 & CXG \\
+  NGC4374  Table 1 line 1354: NGC4374 & 803 & 15.9 & 10.57 & 4.2 54.59 & ACIS-S & 28427 & 0.757 \\
+  NGC4374  -> n_beta 1, R_max 15.43 kpc, ne10 0.63 e-3 cm^-3, D 15.9 Mpc, type CXG; re-read agrees: True
+  NGC4649  Table 4 line 1546: NGC4649 & 0.86$\pm$0.04 (5) & 0.80$\pm$0.07 & 2\tablenotemark{\dagger} & 1 & 5 & $>$30.70 & 9.15 & 2.57 & EXG \\
+  NGC4649  Table 1 line 1362: NGC4649 & 785 & 15.9 & 10.73 & 5.7 73.64 & ACIS-S & 32327 & 1.316 \\
+  NGC4649  -> n_beta 1, R_max >30.70 kpc, ne10 2.57 e-3 cm^-3, D 15.9 Mpc, type EXG; re-read agrees: True
+  NGC4365  Table 4 line 1537: NGC4365 & 0.34$\pm$0.23 (10) & 0.48$\pm$0.33 & 2 & 3 & --- & 30.70 & 8.10 & 0.82 & CXG \\
+  NGC4365  Table 1 line 1353: NGC4365 & 2015 & 15.9 & 10.34 & 4.4 57.16 & ACIS-S & 40379 & 0.116 \\
+  NGC4365  -> n_beta 3, R_max 30.70 kpc, ne10 0.82 e-3 cm^-3, D 15.9 Mpc, type CXG; re-read agrees: True
+  NGC4494  Table 4 line 1541: NGC4494 & 0.26$\pm$0.14 (20) & 0.29$\pm$0.11 & 0 & 1 & --- & 5.05 & 4.64 & --- & VCXG \\
+  NGC4494  Table 1 line 1357: NGC4494 & 2079 & 21.3 & 10.62 & 4.7 45.41 & ACIS-S & 23602 & 0.152 \\
+  NGC4494  -> n_beta 1, R_max 5.05 kpc, ne10 nan e-3 cm^-3, D 21.3 Mpc, type VCXG; re-read agrees: True
+  NGC3607  Table 4 line 1532: NGC3607 & 0.63$\pm$0.28 (29) & 0.53$\pm$0.31 & 2 & 2 & --- & 28.55 & 4.50 & 1.37 & CXG \\
+  NGC3607  Table 1 line 1348: NGC3607 & 2073 & 19.8 & 10.46 & 6.3 65.63 & ACIS-I & 38448 & 0.098 \\
+  NGC3607  -> n_beta 2, R_max 28.55 kpc, ne10 1.37 e-3 cm^-3, D 19.8 Mpc, type CXG; re-read agrees: True
+  NGC4697  Table 4 line 1547: NGC4697 & 0.31$\pm$0.07 (23) & 0.32$\pm$0.06 & 0 & 1 & 6 & $>$29.20 & 3.56 & 0.88 & CXG \\
+  NGC4697  Table 1 line 1363: NGC4697 & 784 & 15.1 & 10.55 & 5.5 75.36 & ACIS-S & 145366 & 0.108 \\
+  NGC4697  -> n_beta 1, R_max >29.20 kpc, ne10 0.88 e-3 cm^-3, D 15.1 Mpc, type CXG; re-read agrees: True
+wrote fukazawa2006_table4.tsv (53 rows)
+
+CFG57 rows:
+  NGC5846  D  22.9 Mpc  n_beta 2  R_max >44.18 kpc  ne10 7.17 e-3 cm^-3  EXG
+  NGC4374  D  15.9 Mpc  n_beta 1  R_max 15.43 kpc  ne10 0.63 e-3 cm^-3  CXG
+  NGC4649  D  15.9 Mpc  n_beta 1  R_max >30.70 kpc  ne10 2.57 e-3 cm^-3  EXG
+  NGC4365  D  15.9 Mpc  n_beta 3  R_max 30.70 kpc  ne10 0.82 e-3 cm^-3  CXG
+  NGC4494  D  21.3 Mpc  n_beta 1  R_max 5.05 kpc  ne10 nan e-3 cm^-3  VCXG
+  NGC3607  D  19.8 Mpc  n_beta 2  R_max 28.55 kpc  ne10 1.37 e-3 cm^-3  CXG
+  NGC4697  D  15.1 Mpc  n_beta 1  R_max >29.20 kpc  ne10 0.88 e-3 cm^-3  CXG
