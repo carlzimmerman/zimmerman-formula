@@ -1,6 +1,6 @@
-# Per-galaxy tables taken from the public TeX/FITS source of four arXiv papers
+# Per-galaxy tables taken from the public TeX/FITS source of five arXiv papers
 
-Built 2026-09-29 by `build.py`. The source tarballs (arxiv.org/e-print/<id>, 76 MB in total) are kept outside the
+Built 2026-09-29 by `build.py`. The source tarballs (arxiv.org/e-print/<id>, about 85 MB in total) are kept outside the
 repo in `~/new_physics/_external_data/arxiv_src/`; the exact table fragments and the two FITS files are
 byte-for-byte in `raw_small/` with sha256 in `manifest.json`. Every parse is checked in `checks.txt` (all PASS).
 This is how the tables the PDFs and supplements did not give became available: the papers' own LaTeX and
@@ -15,6 +15,7 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
 | `manceraPina2026_sample.csv` | 43 | Mancera Pina+2026, arXiv:2511.08685 (KROSS + KMOS3D, z 0.79-1.03) | z, log M*, j*, flat circular velocity V_circ,f (p16/p50/p84), V/sigma |
 | `amvrosiadis_parent.csv` | 30 | Amvrosiadis+2025, arXiv:2312.08959 (ALMA CO, z 1.2-4.7) | z, CO transition, beam, log M*, **log M_gas from CO**, SFR, L_IR, class |
 | `amvrosiadis_bestfit.csv` | 12 | same | r_e (arcsec), inclination, V_max, sigma, **V_circ at r = 2 r_e**, M_dyn(r < 10 kpc), with errors |
+| `alpaka1_sample.csv`, `alpaka1_alma_obs.csv`, `alpaka1_properties.csv`, `alpaka1_geometry.csv`, `alpaka1_kinematics.csv` | 28 galaxies (19 kinematic disks) | ALPAKA I, arXiv:2303.16227 (ALMA CO and [CI], z 0.56-3.63) | sample and fields; ALMA line, beam, rms; M*, SFR, MS offset, L_IR, line flux and **line luminosity L'(CO or [CI])**; PA and inclination from HST and ALMA, kinematic class (D 19, U 7, M 2); for the 19 disks **V_max, mean sigma, V_ext and sigma_ext** with errors |
 | `sharma2024_gs21b.csv` | 225 | Sharma+2024, arXiv:2406.08934 (KROSS, z 0.76-1.04) | inclination, R_e, **velocities at R_e, R_opt and R_out (about 5 R_D)**, M*, M_H2, M_HI, gas radius, quality flags |
 
 ## Cross-checks that passed
@@ -38,6 +39,15 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
   (Chowdhury+2022). The median M_HI is 4.1 times the stellar mass and the median M_H2 is 0.27 times it, so the
   baryon budget at large radius is set by an assumed gas mass. The FITS has no radius column; the radii are as
   the paper defines them. 19 rows have `Rout_Flag = F`, 15 have `Mstar_flag = F`.
+- **ALPAKA I:** measured cold-gas tracers (CO or [CI]) and 3D-tilted-ring rotation curves for 19 secure disks at
+  z 0.56-3.63, so it is the closest high-z set to measured gas plus an outer velocity. BUT (a) the tables give the gas
+  as a line luminosity L' only; a gas mass needs a conversion factor and line ratio that are not applied here;
+  (b) `V_ext` is the mean of the last two radial points of each curve, and the outermost radius R_ext and the
+  optical effective radius are NOT tabulated (they appear only in plots; the rotation curves are a raster PNG,
+  `figures/vrot.png`), so the radius in units of R_e is not available from the tables; (c) M* is missing for IDs
+  16, 17 and 24; (d) the sample is biased to massive, actively star-forming galaxies in overdense environments,
+  with AGN hosts, and the paper flags ID 3, 7 and 28 as having kinematic anomalies absorbed into the dispersion;
+  (e) the paper's title and abstract say z = 0.5-3.5 but the table maximum is 3.63.
 - **Mancera Pina:** stellar-mass sample with a flat circular velocity; no gas.
 - The CRC file (`sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits`, 16 rows) holds Burkert-halo fits to 16
   stacked bins (`bin_0`...`bin_15`), not to individual galaxies; it is in `raw_small/` but not parsed.

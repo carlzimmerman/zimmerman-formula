@@ -205,12 +205,100 @@ log(f"Sharma: median M_HI / M_star = {np.median(hi_over_star):.2f} (HI from a st
 log("Sharma: Ve, Vopt, Vout are velocities at R_e, R_opt and R_out (about 5 R_D) per the paper text; the FITS carries no radius column and "
     "Rout_Flag marks 19 galaxies as F")
 
+# ------------------------------------------------------------------ ALPAKA I (Rizzo+ / Roman-Oliveira+, arXiv:2303.16227)
+def cell_lim(s):
+    v, hi, lo, fl = cell(s)
+    lim = "<" if "lesssim" in s else (">" if "gtrsim" in s else "")
+    return v, hi, lo, lim
+
+
+def alp_rows(fn):
+    """Rows of an ALPAKA table: lines whose first cell starts with an integer ID. A terminal \\ only is removed
+    (\\substack cells contain \\\\ inside the row)."""
+    out = []
+    for l in active_lines(fn):
+        s = re.sub(r"\s*\\\\\s*$", "", l.strip())
+        c = [x.strip() for x in s.split("&")]
+        if len(c) >= 3 and re.match(r"^\d+(\$\^\{\*\}\$)?$", c[0]):
+            out.append(c)
+    return out
+
+
+def alp_id(x):
+    return int(re.match(r"\d+", x).group(0)), ("*" if "*" in x else "")
+
+
+A1 = []
+for c in alp_rows("alpaka1_2303.16227_table1_sample.tex"):
+    i, m = alp_id(c[0])
+    A1.append([i, c[1].strip(), float(c[2]), float(c[3]), float(c[4]), c[5].strip(), c[6].strip()])
+check(len(A1) == 28, f"ALPAKA I sample table has 28 galaxies (got {len(A1)})")
+check([r[0] for r in A1] == list(range(1, 29)), "ALPAKA IDs run 1..28")
+az = np.array([r[4] for r in A1]); check(bool(az.min() > 0.5 and az.max() < 3.7), f"ALPAKA z in (0.5, 3.7): {az.min()}-{az.max()} (the paper's title and abstract say z = 0.5-3.5; the table's maximum is {az.max()}, a small wording mismatch in the source)")
+write("alpaka1_sample.csv", ["id", "name", "ra_deg", "dec_deg", "z", "field_survey", "notes"], A1)
+
+A2 = []
+for c in alp_rows("alpaka1_2303.16227_table2_alma_obs.tex"):
+    i, _ = alp_id(c[0])
+    bm = re.findall(r"\d+\.?\d*", c[4])
+    A2.append([i, c[1], c[2], c[3], float(bm[0]), float(bm[1]), cell(c[5])[0], cell(c[6])[0], cell(c[7])[0]])
+check(len(A2) == 28, f"ALPAKA I ALMA-observation table has 28 rows (got {len(A2)})")
+write("alpaka1_alma_obs.csv", ["id", "project", "line", "freq_range_ghz", "beam_major_arcsec", "beam_minor_arcsec",
+                             "channel_kms", "rms_mjy_beam", "int_time_hr"], A2)
+
+A3 = []
+for c in alp_rows("alpaka1_2303.16227_table3_properties.tex"):
+    i, _ = alp_id(c[0])
+    ms = cell(c[1]); sf = cell(c[2]); dm = cell(c[3]); li = cell(c[5]); il = cell(c[6]); lp = cell(c[7])
+    A3.append([i, ms[0], ms[1], sf[0], sf[1], dm[0], dm[1], dm[2], c[4].strip(), li[0], il[0], il[1], lp[0], lp[1],
+               re.sub(r"[\$\\ ]", "", c[8]), cell(c[9])[0]])
+check(len(A3) == 28, f"ALPAKA I properties table has 28 rows (got {len(A3)})")
+ms_ = np.array([r[1] for r in A3], float)
+no_ms = [r[0] for r in A3 if not np.isfinite(r[1])]
+check(no_ms == [16, 17, 24], f"ALPAKA M* is finite for 25 of 28 galaxies; the source table prints '-' for IDs {no_ms} (expected [16, 17, 24])")
+check(bool(np.all(ms_[np.isfinite(ms_)] > 0)), f"ALPAKA M* positive where given (1e10 Msun): {np.nanmin(ms_)}-{np.nanmax(ms_)}")
+write("alpaka1_properties.csv", ["id", "mstar_1e10msun", "e_mstar", "sfr_msun_yr", "e_sfr", "delta_ms", "delta_ms_errhi",
+      "delta_ms_errlo", "type_ms_or_other", "lir_1e12lsun", "iline_jykms", "e_iline", "lprime_1e10_kkmspc2", "e_lprime",
+      "hst_filter", "lambda_rest_eff_A"], A3)
+
+A4 = []
+for c in alp_rows("alpaka1_2303.16227_table4_geometry.tex"):
+    i, m = alp_id(c[0])
+    v = [cell(c[k]) for k in range(1, 6)]
+    A4.append([i, m] + [x for t_ in v for x in t_[:3]] + [c[6].strip()])
+check(len(A4) == 28, f"ALPAKA I geometry table has 28 rows (got {len(A4)})")
+kc4 = collections.Counter(r[-1] for r in A4)
+log(f"ALPAKA kinematic classes (KC column): {dict(kc4)}")
+write("alpaka1_geometry.csv", ["id", "footnote_star", "pa_hst", "e1", "e2", "i_hst", "e1", "e2", "pa_alma", "e1", "e2",
+      "i_alma", "e1", "e2", "pa_kin", "e1", "e2", "kc"], A4)
+
+A5 = []
+for c in alp_rows("alpaka1_2303.16227_table5_kinematics.tex"):
+    i, _ = alp_id(c[0])
+    v = [cell_lim(c[k]) for k in range(1, 7)]
+    A5.append([i] + [x for t_ in v for x in t_])
+check(len(A5) == 19, f"ALPAKA I kinematics table has 19 disks (paper: 19 secure disks) (got {len(A5)})")
+check(all(r[0] in {a[0] for a in A1} for r in A5), "every kinematics ID is in the sample table")
+vm = np.array([r[1] for r in A5], float); ve = np.array([r[9] for r in A5], float)
+check(bool(np.all(vm > 0) and np.all(ve > 0)), f"ALPAKA Vmax and Vext positive: Vmax {vm.min():.0f}-{vm.max():.0f}, Vext {ve.min():.0f}-{ve.max():.0f} km/s")
+check(bool(np.all(ve <= 1.5 * vm) and np.all(ve >= 0.3 * vm)), "ALPAKA Vext within a factor 0.3-1.5 of Vmax for every disk (both are outer-radius velocities of the same curve)")
+log(f"ALPAKA: disks with kinematic class D in table 4: {sum(1 for r in A4 if r[-1] == 'D')}; Vext is the average of the last TWO radial points; "
+    f"the outermost radius R_ext is NOT tabulated (only plotted); gas is given as line luminosity L' (CO or [CI]), not a gas mass")
+write("alpaka1_kinematics.csv", ["id", "vmax_kms", "vmax_errhi", "vmax_errlo", "vmax_lim", "sigma_m_kms", "sigma_m_errhi",
+      "sigma_m_errlo", "sigma_m_lim", "vext_kms", "vext_errhi", "vext_errlo", "vext_lim", "sigma_ext_kms", "sigma_ext_errhi",
+      "sigma_ext_errlo", "sigma_ext_lim", "vmax_over_sigma_m", "e1", "e2", "lim", "vext_over_sigma_ext", "e1", "e2", "lim2"], A5)
+
 # ------------------------------------------------------------------ manifest
 src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, tables/galaxy_parameters.tbl",
        "msa3d_2606.27853_fitted_parameters.tbl": "arXiv:2606.27853 source, tables/fitted_parameters.tbl",
        "manceraPina2026_2511.08685_table_sample.tex": "arXiv:2511.08685 source, aa57349-25.tex lines 509-566",
        "amvrosiadis2025_2312.08959_table_parent.tex": "arXiv:2312.08959 source, main.tex lines 148-264",
        "amvrosiadis2025_2312.08959_table_bestfit.tex": "arXiv:2312.08959 source, main.tex lines 440-538",
+       "alpaka1_2303.16227_table1_sample.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 185-231",
+       "alpaka1_2303.16227_table2_alma_obs.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 246-297",
+       "alpaka1_2303.16227_table3_properties.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 332-381",
+       "alpaka1_2303.16227_table4_geometry.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 415-461",
+       "alpaka1_2303.16227_table5_kinematics.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 684-723",
        "sharma2024_2406.08934_GS21b_catalog.fits": "arXiv:2406.08934 source, extra_material/GS21b_catalog.fits",
        "sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits": "arXiv:2406.08934 source, extra_material/CRCs_FitsParam_Burkert.fits"}
 man = {"built_by": "data_assembly/arxiv_tables/build.py", "source_tarballs": "https://arxiv.org/e-print/<id>", "raw_small": {}}
