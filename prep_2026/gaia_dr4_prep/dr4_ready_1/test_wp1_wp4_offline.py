@@ -73,14 +73,16 @@ def synth(drop_planted=False):
     add(102, base_ra[1] + d_arc(50), dec[1], 2.0, 5.0, 3.0, 17.0, 1)                                    # field star
     add(103, base_ra[1], dec[1] + 175 / 3600, plx, pm[0], pm[1], 17.5, 1)                               # co-moving, outside
     add(104, base_ra[2], dec[2] - 60 / 3600, plx, pm[0], pm[1], np.nan, 2)                              # co-moving, no G
+    add(105, base_ra[2], dec[2] + 40 / 3600, np.nan, pm[0], pm[1], 17.0, 2)                             # no kinematics (2-p)
     return pairs, {k: np.array(v) for k, v in nb.items()}
 
 
 lit, orb, man = W1.evaluate(*synth())
 T("T4 planted third (pair 0) flagged by BOTH criteria; field star and the star outside 30 kAU (pair 1) not; no-G third (pair 2) "
   "not flagged but counted", lit.flags.tolist() == [True, False, False] and orb.flags.tolist() == [True, False, False]
-  and lit.n_no_g >= 1 and lit.n_no_g_kin >= 1, f"literal {lit.flags.tolist()}, orbit-aware {orb.flags.tolist()}, "
-  f"n_no_g {lit.n_no_g}, n_no_g_kin {lit.n_no_g_kin}; manifest {json.dumps(man)}")
+  and lit.n_no_g >= 1 and lit.n_no_g_kin >= 1 and lit.n_no_kin >= 1 and orb.n_no_kin >= 1,
+  f"literal {lit.flags.tolist()}, orbit-aware {orb.flags.tolist()}, n_no_g {lit.n_no_g}, n_no_g_kin {lit.n_no_g_kin}, "
+  f"n_no_kin {lit.n_no_kin} (the NaN-parallax neighbour: never flagged, counted); manifest {json.dumps(man)}")
 lit_m, orb_m, _ = W1.evaluate(*synth(drop_planted=True))
 T("M1 (control) removing the planted third removes the flag", lit_m.flags.tolist() == [False, False, False]
   and orb_m.flags.tolist() == [False, False, False], f"literal {lit_m.flags.tolist()}")
@@ -116,6 +118,27 @@ man6 = {"cut12_nss": {"counted_tables": ["nss_acceleration_astro", "nss_two_body
                                                    "nss_multiple_orbits": str(tmp / "dr4_pairs.npz")}}}
 fl6, _ = W4.run(man6, pa, pb)
 T("T8 DR4-style table names are run-time data (no DR3 list assumed)", fl6.tolist() == [False, True, True], f"flags {fl6.tolist()}")
+man9 = {"cut12_nss": {"counted_tables": ["nss_two_body_orbit"], "excluded": {},
+                      "id_files": {"nss_two_body_orbit": str(tmp / "tbo.npz"), "nss_masses": str(tmp / "mult.npz")}}}
+try:
+    W4.run(man9, pa, pb)
+    T("T9 a supplied table that is neither counted nor excluded (nss_masses) raises (never silently ignored)", False)
+except ValueError as e:
+    T("T9 a supplied table that is neither counted nor excluded (nss_masses) raises (never silently ignored)", True, str(e)[:90])
+np.savez(tmp / "tbo2.npz", source_id=np.array([12, 4242], np.int64))                                   # 12 again: in two tables
+man10 = {"cut12_nss": {"counted_tables": ["nss_two_body_orbit", "nss_acceleration_astro"], "excluded": {},
+                       "id_files": {"nss_two_body_orbit": str(tmp / "tbo.npz"), "nss_acceleration_astro": str(tmp / "tbo2.npz")}}}
+fl10, rep10 = W4.run(man10, pa, pb)
+T("T10 an id in two counted tables flags its pair once (component counted once)", fl10.tolist() == [False, True, False]
+  and rep10["n_components_flagged"] == 1, f"flags {fl10.tolist()}, components flagged {rep10['n_components_flagged']}")
+dr4 = ["nss_acceleration_astro", "nss_two_body_orbit", "nss_resolved_pair", "nss_multiple_orbits", "nss_masses"]
+man11 = {"cut12_nss": {"counted_tables": dr4, "excluded": {"nss_multiplicity": "example reason: pairs involving a source, "
+                                                           "not a single-star NSS solution (decided on release day)"},
+                       "id_files": {**{t: str(tmp / "acc.csv") for t in dr4}, "nss_multiplicity": str(tmp / "mult.npz")}}}
+fl11, rep11 = W4.run(man11, pa, pb)
+T("T11 all six DR4 table names from the preview (d9ac3a13f) are accepted as list entries (nothing decided here)",
+  fl11.tolist() == [False, False, False] and set(rep11["row_counts"]) == set(dr4) | {"nss_multiplicity"},
+  f"row counts {rep11['row_counts']}")
 np.savez(tmp / "tbo.npz", source_id=np.array([999, 5555], np.int64))
 fl_m, _ = W4.run(man4, pa, pb)
 T("M2 (control) removing the planted id removes the flag", fl_m.tolist() == [False, False, False], f"flags {fl_m.tolist()}")

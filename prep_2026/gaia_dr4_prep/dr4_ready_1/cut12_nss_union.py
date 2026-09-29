@@ -47,7 +47,9 @@ def run(manifest, pair_ids_a, pair_ids_b):
     for t in list(counted) + list(excluded):
         if t not in files:
             raise KeyError(f"no id file declared for table {t!r}")
-    ids_by_table = {t: load_ids(files[t]) for t in list(counted) + list(excluded)}
+    # every SUPPLIED id file is passed on: a table that is neither counted nor excluded with a reason makes cut12_stub raise
+    # (it is never silently ignored)
+    ids_by_table = {t: load_ids(files[t]) for t in files}
     sids = np.unique(np.concatenate([np.asarray(pair_ids_a, np.int64), np.asarray(pair_ids_b, np.int64)]))
     res = cut12_stub.nss_union_flags(sids, ids_by_table, counted, excluded)
     flag_of = dict(zip(sids.tolist(), np.asarray(res.flag).tolist()))
