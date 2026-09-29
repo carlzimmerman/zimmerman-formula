@@ -1,0 +1,95 @@
+CFG61 -- DOES B's DERIVED RULE REPRODUCE THE KiDS-1000 EARLY/LATE LENSING SPLIT, WHERE THE COLOUR-BLIND LAW CANNOT?
+
+The criteria were frozen and committed BEFORE this script existed: campaign_fresh_gravity/CFG61_FROZEN_CRITERIA.md (commit d7aecf12b).  This script
+implements them; the checks below are copied from that file.  Summary:
+  data     Brouwer+2021 Fig. 8 colour bins (u-r < 2.5 late, >= 2.5 early), 15 g_bar bins each, the 30x30 covariance (bias-corrected); the Sersic
+           bins as a reported replicate.
+  lenses   lr_lenses.npz (181,477; Mgal = M*(1+f_cold), Brouwer's g_bar mass; typ 1 early / 0 late, rest-frame u-r > 2.0 -- a declared proxy).
+  model    lens by lens: in g_bar bin k the pairs sit at R = sqrt(G M_gal / g), g inside the bin; within a bin weight 1/g, across lenses weight
+           M_gal.  Delta Sigma of a spherical enclosed-mass profile, point baryons plus the dark mass, with the lane's own projector (C2).
+           L: M_L(<r) = M_gal nu_mono(G M_gal / r^2 a0) to r_e = 0.40 r_ta (CFG7_common.r_ta_law at the lens redshift), frozen beyond.
+           S: M_L + f_ex (1 - f_b) M_NFW(<r; M_coll) truncated at r_e, M_coll = CFG36 collapse(M_*, red for early / blue for late),
+              f_ex = max(0, 1 - M_ph,edge / [(1 - f_b) M_coll]) (CFG35's conservation form, x_e = 0.40), M_* = 10^logM.
+  K1       the 1-halo bins: lens-weighted median R of BOTH classes < 0.3 Mpc (fixed by the lens distribution, before any comparison).
+  stat     D_obs = d_early - d_late on K1, C_D = C_ee + C_ll - C_el - C_le; D_L, D_S the model differences; one amplitude A (0 = law, 1 = rule),
+           A_hat = D'C^-1(D_obs - D_L) / D'C^-1 D with D = D_S - D_L; sigma_A = stat (+) half the spread of A_hat under a colour-dependent
+           +-0.1 dex M_* calibration of the early class.  chi2_L, chi2_S with |K1| dof.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  the released profiles give the committed split chi2 = 119.9/15 (u-r) and 69.1/15 (Sersic), all 15 bins, to +-0.5.
+  C2  CONTROL  the projector reproduces a point mass and an untruncated NFW (Wright & Brainerd) to 1e-3.
+  C3  CONTROL  lr_lenses: 93,398 late and 88,079 early; median logM 10.328 / 10.744.
+  C4  CONTROL  the law's Delta Sigma at fixed g_bar <= 1e-12 m/s^2 is mass-independent to 3% between M_gal = 1e10 and 1e11 (edge excluded).
+  H1  the colour-blind law is rejected by the split in the 1-halo regime: A_hat / sigma_A > 3 on both footings (chi2_L p < 0.0027 reported).
+  H2  [HEADLINE; MUTATE must fail] B's derived rule accounts for the split: |A_hat - 1| < 2 sigma_A on both footings and chi2_S p > 0.01.
+  H3  (reported) the absolute early profile on K1 against S and L (C_ee), the late profile against L (C_ll).
+  R1-R5 (reported) the Sersic replicate; the Sigma_crit^-2 weighting bracket (z_s = 0.75); the class-definition medians; the point-mass hot gas
+      the early class would need for the law alone; all 15 bins including the 2-halo range (out of the isolation-reliable range).
+MUTATE=1: the early and late data swapped (profiles and covariance blocks) -- H2 must FAIL (rc = 1).
+
+======================================================================================================================
+C1-C4  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: the released profiles give the committed early-vs-late split (119.9/15 u-r, 69.1/15 Sersic) to +-0.5
+         u-r chi2 119.9, Sersic 69.1; sqrt(diag C) vs the error column: max rel. dev. 2.9e-05
+  [PASS] C2 CONTROL: the projector reproduces an untruncated NFW (Wright & Brainerd) to 1e-3; the point mass is exact (M/pi R^2)
+         max rel. deviation (NFW, 0.02-2 Mpc) 2.6e-05
+  [PASS] C3 CONTROL: lr_lenses has 93,398 late and 88,079 early lenses, median logM 10.328 / 10.744 (and Mgal = M*(1+f_cold) exactly)
+         late 93398, early 88079; median logM 10.328 / 10.744; Mgal identity max rel. dev. 0.0e+00; bin midpoints vs file 3.2e-05
+  [PASS] C4 CONTROL: the law's Delta Sigma at fixed g_bar (1e-13, 1e-12 m/s^2) is mass-independent to 3% between M_gal = 1e10 and 1e11 (untruncated)
+         relative differences 1.7e-06, 3.7e-06
+
+======================================================================================================================
+THE STACKS (canonical): per g_bar bin, lens-weighted median R, data and models [Msun/pc^2]
+======================================================================================================================
+       g_bar 1.38e-15: R_med late 2.369 early 2.767 Mpc | late    0.44 (L    0.19, S    0.19) | early    1.00 (L    0.18, S    0.18)
+       g_bar 2.44e-15: R_med late 1.783 early 2.083 Mpc | late    0.64 (L    0.34, S    0.34) | early    1.76 (L    0.31, S    0.31)
+       g_bar 4.30e-15: R_med late 1.342 early 1.568 Mpc | late    0.95 (L    0.60, S    0.60) | early    2.57 (L    0.55, S    0.55)
+       g_bar 7.59e-15: R_med late 1.011 early 1.181 Mpc | late    1.81 (L    1.05, S    1.05) | early    3.29 (L    0.96, S    0.96)
+       g_bar 1.34e-14: R_med late 0.761 early 0.889 Mpc | late    1.99 (L    1.78, S    1.78) | early    4.06 (L    1.69, S    1.69)
+       g_bar 2.36e-14: R_med late 0.573 early 0.669 Mpc | late    2.85 (L    2.80, S    2.80) | early    5.77 (L    2.82, S    2.82)
+       g_bar 4.17e-14: R_med late 0.431 early 0.504 Mpc | late    5.34 (L    3.74, S    3.74) | early    7.33 (L    3.79, S    3.79)
+       g_bar 7.36e-14: R_med late 0.325 early 0.379 Mpc | late    4.40 (L    4.74, S    4.74) | early    8.86 (L    4.75, S    4.75)
+    K1 g_bar 1.30e-13: R_med late 0.244 early 0.286 Mpc | late    8.96 (L    6.25, S    6.26) | early   10.73 (L    6.26, S    6.26)
+    K1 g_bar 2.29e-13: R_med late 0.184 early 0.215 Mpc | late   10.61 (L    8.33, S    8.34) | early   12.45 (L    8.34, S    8.34)
+    K1 g_bar 4.04e-13: R_med late 0.139 early 0.162 Mpc | late   12.39 (L   11.16, S   11.17) | early   17.62 (L   11.16, S   11.17)
+    K1 g_bar 7.13e-13: R_med late 0.104 early 0.122 Mpc | late   11.53 (L   15.01, S   15.03) | early   23.39 (L   15.02, S   15.02)
+    K1 g_bar 1.26e-12: R_med late 0.079 early 0.092 Mpc | late   15.11 (L   20.29, S   20.30) | early   30.45 (L   20.29, S   20.30)
+    K1 g_bar 2.22e-12: R_med late 0.059 early 0.069 Mpc | late   26.96 (L   27.57, S   27.59) | early   36.82 (L   27.57, S   27.58)
+    K1 g_bar 3.92e-12: R_med late 0.044 early 0.052 Mpc | late   23.28 (L   37.74, S   37.76) | early   47.72 (L   37.74, S   37.75)
+
+    K1 = 7 bins [8, 9, 10, 11, 12, 13, 14]; f_ex (z = 0.25, canonical) red > 0 for log M* >= 8.0, blue > 0 for log M* >= 8.0
+    canonical: A_hat -1709.594 +- 384.905 (stat) +- 2551.759 (early M* +-0.1 dex) = +- 2580.625; A/sigma -0.66, (A-1)/sigma -0.66; chi2_L 28.1/7 (p 2.1e-04), chi2_S 28.1/7 (p 2.1e-04)
+    alt      : A_hat -9244.490 +- 2190.664 (stat) +- 3479.799 (early M* +-0.1 dex) = +- 4111.935; A/sigma -2.25, (A-1)/sigma -2.25; chi2_L 28.1/7 (p 2.1e-04), chi2_S 28.1/7 (p 2.1e-04)
+
+======================================================================================================================
+H1 / H2
+======================================================================================================================
+  [FAIL] H1 THE COLOUR-BLIND LAW IS REJECTED BY THE SPLIT (1-halo bins): A_hat / sigma_A > 3 on both footings
+         canonical: A -1709.594 +- 2580.625 (-0.7 sigma); chi2_L p 2.1e-04; alt: A -9244.490 +- 4111.935 (-2.2 sigma); chi2_L p 2.1e-04
+  [FAIL] H2 [HEADLINE] B's DERIVED RULE ACCOUNTS FOR THE SPLIT: |A_hat - 1| < 2 sigma_A and chi2_S p > 0.01, both footings
+         canonical: A -1709.594 ((A-1)/sigma -0.66); chi2_S 28.1/7 p 2.1e-04; alt: A -9244.490 ((A-1)/sigma -2.25); chi2_S 28.1/7 p 2.1e-04
+
+======================================================================================================================
+H3, R1-R5 (reported)
+======================================================================================================================
+  [PASS] (reported) H3 (reported, canonical) absolute profiles on K1: early vs S and vs L (C_ee); late vs L (C_ll)
+         early vs S chi2 51.8, vs L 51.9; late vs L 12.6 (dof 7)
+  [PASS] (reported) R1 (reported, canonical) the Sersic replicate (n >= 2 early; the same colour-proxy lens masses)
+         A_hat -1599.987 +- 388.609 (stat); chi2_L 20.9, chi2_S 20.9 /7
+  [PASS] (reported) R2 (reported, canonical) the Sigma_crit^-2 weighting bracket (source plane z_s = 0.75)
+         A_hat -1949.053 +- 437.129 (stat); chi2_L 28.1, chi2_S 28.1
+  [PASS] (reported) R3 (reported) the class-definition proxy: median log M_gal by lr typ (rest-frame u-r > 2.0; Brouwer's classes use GAaP u-r >= 2.5)
+         late 10.448, early 10.810
+  [PASS] (reported) R4 (reported, canonical) the hot gas (a point mass, an upper bound on its effect) the early class would need for the law alone
+         chi2_L of the difference vs f_hot (M_true = M_gal (1 + f_hot)): 0: 28.1, 0.25: 18.2, 0.5: 10.0, 1: 4.8, 1.5: 4.1, 2: 10.4, 3: 26.9, 4: 58.4; best f_hot 1.5
+  [PASS] (reported) R5 (reported, canonical) all 15 bins, including the 2-halo range (out of the isolation-reliable range; no 2-halo term modelled)
+         A_hat -2551.021 +- 261.225; chi2_L 124.3, chi2_S 124.4 /15
+  [PASS] (reported) H1 chi2 form (reported; frozen as equivalent to H1): the early-minus-late difference rejects the law at p < 0.0027, both footings
+         canonical: chi2_L 28.1/7, p 2.1e-04; alt: chi2_L 28.1/7, p 2.1e-04
+  [PASS] (reported) DEGENERACY (reported): the rule's predicted split relative to the data errors on K1, and where the rule bites
+         max |D_S - D_L| / sigma_D: canonical 1.2e-03, alt 2.4e-04; red f_ex > 0 inside Mandelbaum's measured range (log M* >= 10.28) from log M* 11.2; the lens sample's max log M* 11.000; below 10.28 f_ex > 0 only through the clamped collapse mass (the standing artefact)
+
+    READING (declared, mechanical): in the 1-halo regime, with B's own lens-by-lens model, the split does not reject the colour-blind law
+    DISCLOSED (post hoc): the mechanical reading follows H1's amplitude form, which is degenerate here (the rule predicts no split at KiDS lens masses). H1's frozen chi2 form rejects the law -- and the rule, which equals it here -- at p = 2.1e-04, 2.1e-04 (chi2_L = chi2_S). See the DEGENERACY row and the README.
+
+  12/14 checks pass; load-bearing failures: 2   (47 s)
