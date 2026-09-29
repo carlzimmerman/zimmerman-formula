@@ -1,0 +1,84 @@
+{
+ "lane": "CFG172_A8_stress_energy",
+ "mutate": "M7",
+ "checks": {
+  "A8.1 T_uu of the flow sector to O(e) = +(1/4 pi G) div(ell' grad Phi) (own metric variation): it IS the source the Phi equation uses (the frozen text expected them to differ: wrong expectation, kept)": {
+   "ok": true,
+   "measured": "l1*(r*Derivative(Phi(r), (r, 2)) + 2*Derivative(Phi(r), r))/(4*pi*G*r)",
+   "load_bearing": true
+  },
+  "A8.2 p_r and p_t are O(e^2) = O((Phi/c^2)^2) relative to rho c^2 at fixed density scale: the flow behaves as a stress-free static source at leading order (dust-like, not vacuum-like)": {
+   "ok": true,
+   "measured": "p_r = -l1*Derivative(Phi(r), r)**2/(8*pi*G); p_t = l1*Derivative(Phi(r), r)**2/(8*pi*G)",
+   "load_bearing": false
+  },
+  "A8.3 Newtonian-limit conservation of T^flow: p_r' + rho Phi' + (2/r)(p_r - p_t) = 0 identically (Psi = Phi), for arbitrary Phi(r)": {
+   "ok": true,
+   "measured": "0",
+   "load_bearing": true
+  },
+  "A8.4 khronon form: the momentum constraint (the flux of the aether equation, i.e. the shift-symmetry Noether current) vanishes on the static solution: dL/d(shift) at zero shift = 0 => Q = 0 with no tuning": {
+   "ok": true,
+   "measured": "dL/d eps at eps=0: 0",
+   "load_bearing": true
+  },
+  "A8.5 a conserved khronon charge in FRW: d_t(a^3 J^0) = 0 <=> J^0 = Q/a^3 (an a^-3 term, dust-like): what M7 switches on": {
+   "ok": true,
+   "measured": "0",
+   "load_bearing": false
+  },
+  "S2a no parameter of any variant carries the dimension of a rest mass (scales are Lambda-derived: L^-2, T^-2; couplings dimensionless)": {
+   "ok": true,
+   "measured": "{'a_*^2 = kappa^2 Lambda/8pi': 'L^-2', 'theta_L^2 = 3 Lambda c^2': 'T^-2', 'G': 'overall 1/16 pi G normalisation (not a rest mass)', 'c2': '1', 'beta': '1', 'kappa': '1', 'M^2 (11C-b) = 3 c2 Lambda c^2': 'T^-2', 'shape functions': '1'}",
+   "load_bearing": false
+  },
+  "S2c the effective density is a functional of the baryons: at fixed r it falls like sqrt(M) as M -> 0": {
+   "ok": true,
+   "measured": "rho_ph(1e9)/rho_ph(1e12) = 3.163e-02 (sqrt(1e-3) = 0.0316)",
+   "load_bearing": true
+  },
+  "M7 khronon charge Q != 0: S2(b) FAILS (a conserved number a^3 J^0 = Q exists)": {
+   "ok": false,
+   "measured": "Q = 1",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "T_flow_weak_field": {
+   "rho_O(e)": "l1*(r*Derivative(Phi(r), (r, 2)) + 2*Derivative(Phi(r), r))/(4*pi*G*r)",
+   "p_r_O(e^2)": "-l1*Derivative(Phi(r), r)**2/(8*pi*G)",
+   "p_t_O(e^2)": "l1*Derivative(Phi(r), r)**2/(8*pi*G)"
+  },
+  "rho_sign_relative_to_(-div(ell' grad Phi)/4piG)": 1,
+  "parameter_dimensions": {
+   "a_*^2 = kappa^2 Lambda/8pi": "L^-2",
+   "theta_L^2 = 3 Lambda c^2": "T^-2",
+   "G": "overall 1/16 pi G normalisation (not a rest mass)",
+   "c2": "1",
+   "beta": "1",
+   "kappa": "1",
+   "M^2 (11C-b) = 3 c2 Lambda c^2": "T^-2",
+   "shape functions": "1"
+  },
+  "S2": {
+   "11C-a": {
+    "a_rest_mass": "none",
+    "b_conserved_number": "none (aether form); Q = 0 (khronon form, A8.4)",
+    "c_functional_of_baryons": "yes: rho_eff -> 0 as M -> 0 (deep-MOND rho_eff ~ sqrt(M))"
+   },
+   "11C-b": {
+    "a_rest_mass": "none",
+    "b_conserved_number": "none / Q = 0",
+    "c_functional_of_baryons": "yes; plus a background G-renormalisation rho_ae ~ H^2 slaved to expansion"
+   },
+   "11C-c": {
+    "a_rest_mass": "none in the flow; the coupling changes the BARYONS' effective mass m(1 + beta h)",
+    "b_conserved_number": "none / Pi_0 fixed by <delta theta> = 0",
+    "c_functional_of_baryons": "yes (delta theta slaved to rho)"
+   }
+  }
+ },
+ "verdicts": {},
+ "runtime_s": 1.7,
+ "control_bit": true
+}

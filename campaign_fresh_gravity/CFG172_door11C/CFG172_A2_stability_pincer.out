@@ -1,0 +1,37 @@
+== CFG172_A2_stability_pincer  MUTATE=off  repo=<repo>
+  [PASS] A2.1 radial kinetic coefficient K_x = N (l1 + 2 a^2 l2), i.e. N (y q)' with q = ell'
+         measured: Nsym*l1 + 2*Nx**2*l2/Nsym
+  [PASS] A2.2 tangential kinetic coefficient K_perp = N l1 = N q
+         measured: Nsym*l1
+  [PASS] A2.3 no pi_tt^2 term survives (no extra time derivatives from the projection)
+         measured: absent
+  [PASS] A2.4 G_x = -N^3 a' (l1 + 2 a^2 l2)  => omega_x^2 = -G_x/K_x = N^2 a' (kernel-independent; decoupling limit only)
+         measured: -Nsym*ap*(Nsym**2*l1 + 2*Nx**2*l2)
+  NOTE (declared): the gradient / characteristic sector in the decoupling limit gives omega_x^2 = N^2 da/dx, a kernel-independent local dynamical rate; without metric mixing and the theta-channel it is NOT a reliable stability verdict.  Only the kinetic signs are used (they agree with the record's (yq)' >= 0).
+  [PASS] C2 FC-KH exponential kernel: (y q)' = (1-y) e^{-y} (finite difference vs analytic), negative for 1 < y <= 30 (record: c^2_par < 0 on 1 < y < ~38)
+         measured: max dev 1.6e-10; negative on (1,30]: True
+  [PASS] C2b true P2: q > 0 and (y q)' = 1 - 2y/sqrt(1+4y^2) > 0 (finite difference agrees); simple kernel (sensitivity) (y q)' = 1/(1+y)^2 > 0
+         measured: dev P2 4.2e-08, dev simple 1.6e-10; min (yq)'(P2, y<=1e6) 1.25e-13; min q 5.00e-07
+  >> G5-kinetic-sign (11C-a decoupling limit): PASS  (K_x=(yq)'>=0 everywhere: True; K_perp=q>=0: True)
+  11C-b operating offset t=0: fraction of the 4 decades above threshold with (y q_eff)' < 0 = 0.000; min = 1.191e-09
+  11C-b operating offset t=0.0001: fraction of the 4 decades above threshold with (y q_eff)' < 0 = 0.000; min = -6.079e+00
+  11C-b operating offset t=1: fraction of the 4 decades above threshold with (y q_eff)' < 0 = 0.140; min = -7.069e+02
+  11C-b operating offset t=3.7e+06: fraction of the 4 decades above threshold with (y q_eff)' < 0 = 0.789; min = -4.166e+05
+  >> G5-kinetic-sign (11C-b, declared Newtonian continuation of F below the branch point): FAIL  (radial kinetic coefficient (y q_eff)' turns negative just above the branch point whenever t>0 (analytic: numerator 1 - t/w < 0 for w = sqrt(y^2-t) < t))
+  Q2 / bound, the Sun's own flow field at Saturn (isolated, no EFE): {'Sun@Saturn/P2/canonical': '6.31e+03', 'Sun@Saturn/nu_mono/canonical': '1.30e+04', 'Sun@Saturn/simple/canonical': '1.26e+04', 'Sun@Saturn/P2/alt': '7.62e+03', 'Sun@Saturn/nu_mono/alt': '1.56e+04', 'Sun@Saturn/simple/alt': '1.52e+04'}
+  MW phantom tide at the Sun: {'canonical/P2': '1.558e-31', 'canonical/nu_mono': '2.205e-31', 'alt/P2': '1.832e-31', 'alt/nu_mono': '2.563e-31'}
+  [PASS] C5b reproduces CFG7 H1's numbers (canonical P2: g_N(R0) = 1.055e-10, tide 1.56e-31; nu_mono 2.20e-31; alt P2 1.83e-31; alt nu_mono 2.56e-31)
+         measured: {'canonical/P2': '1.558e-31', 'canonical/nu_mono': '2.205e-31', 'alt/P2': '1.832e-31', 'alt/nu_mono': '2.563e-31'}
+  [FAIL] C5 (AS FROZEN) 'the strict-law MW ratio is 4.0-5.7x the ceiling' -- NOT what the H1 recipe gives: the H1 tide is 1.6-2.6e-31 s^-2, i.e. 6e-5 x the bound; the 4.0-5.7 in GATES.md 4.01 has another origin (kept as a failed control)
+         measured: H1 tide/bound = 3.0e-05
+  11C-b Q2 / bound: {'Sun@Saturn/t=1.2e-06/canonical': '6.31e+03', 'MW@Sun/t=1.2e-06/canonical': '3.00e-05', 'Sun@Saturn/t=1/canonical': '6.31e+03', 'MW@Sun/t=1/canonical': '3.65e-05', 'Sun@Saturn/t=4.04e+06/canonical': '6.31e+03', 'MW@Sun/t=4.04e+06/canonical': '4.74e-18'}
+  >> G5-Q2 (11C-b, canonical): FAIL  (the Sun's own tail at Saturn is unchanged by the operating offset (y = 7e5 >> sqrt(t)); the MW tide at the Sun is switched off for large t (y_gal << sqrt(t)) at the price of G1)
+  minimum tail (units of a0) a kernel must keep if it is within 10% of the target on y_N in [1.1e-3, 100] AND (y q)' >= 0: {'P2': 0.2821, 'nu_mono': 0.424, 'simple': 0.4675}
+  ... Q2/bound at Saturn for that minimal tail: {'P2': '3.56e+03', 'nu_mono': '5.35e+03', 'simple': '5.90e+03'}
+  [PASS] C7 the minimal-tail kernel exists inside the band and is monotone (yq nondecreasing): pincer numerically constructive for P2
+         measured: ok=True
+  >> G5-Q2-Sun-own-field (11C-a, -c; P2): FAIL  (Q2/bound = 6.31e+03 (canonical), 7.62e+03 (alt))
+  >> G5-pincer (11C-a): FAIL  (any kernel inside the G1 band with (yq)'>=0 keeps a tail >= 0.282 a0 => Q2 >= 3.6e+03 x bound (canonical))
+  >> G5-gamma: PASS  (Psi = Phi exactly in the static reduction (A1 S1): gamma - 1 = 0 (11C-a, -c; -b same a-channel))
+  >> G5-hyperbolicity / criterion B / gradient sector: UNDEFINED  (decoupling limit only; metric mixing and the theta-channel not treated)
+== CFG172_A2_stability_pincer: 8/9 checks pass; runtime 1.4 s; wrote CFG172_A2_stability_pincer_results.json

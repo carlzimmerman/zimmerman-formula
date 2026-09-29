@@ -1,0 +1,128 @@
+{
+ "lane": "CFG172_A6_b_operating_point",
+ "mutate": "",
+ "checks": {
+  "A6.1 t -> 0 recovers 11C-a exactly (G1 deviation < 1e-6 at t = 0)": {
+   "ok": true,
+   "measured": "4.9e-14",
+   "load_bearing": true
+  },
+  "A6.2 t at the rule-T tie (1.0) already fails G1 (the offset balances, it does not just shift, the acceleration term)": {
+   "ok": true,
+   "measured": "0.967",
+   "load_bearing": true
+  },
+  "A6.3 G4 ledger recorded (strict counts 1 / 1 / 2)": {
+   "ok": true,
+   "measured": "{'11C-a': 1, '11C-b': 1, '11C-c': 2}",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "G1b_scan": {
+   "0.0": {
+    "newton": 4.884981308350689e-14,
+    "mirror": 4.884981308350689e-14
+   },
+   "1e-08": {
+    "newton": 2.2450314753896805e-06,
+    "mirror": 2.2450314753896805e-06
+   },
+   "1e-06": {
+    "newton": 0.00022452825986474245,
+    "mirror": 0.00022452825986474245
+   },
+   "1e-05": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.0022475601593268113
+   },
+   "0.0001": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.022698151667761568
+   },
+   "0.001": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.24319329475034301
+   },
+   "0.01": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.6614306721343876
+   },
+   "0.1": {
+    "newton": 0.9666853224495856,
+    "mirror": 1.043927378358764
+   },
+   "1.0": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.9460956804415761
+   },
+   "100.0": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.9649779712078052
+   },
+   "4040000.0": {
+    "newton": 0.9666853224495856,
+    "mirror": 0.9666770340830241
+   }
+  },
+  "t_max_G1": {
+   "newton": 1.2344323643220039e-06,
+   "mirror": 0.00042699498787930146
+  },
+  "G1b_gap_factor": 3272348079782.1396,
+  "D1_b": {
+   "tie t0=1": {
+    "z=0": 1.0,
+    "z=1": 1.7908377927662795,
+    "z=2.5": 3.768711649887797,
+    "z=5": 8.293943573475769
+   },
+   "corner t0=4e6": {
+    "z=0": 2009.975124224178,
+    "z=1": 3599.5394149807553,
+    "z=2.5": 7575.016666648332,
+    "z=5": 16670.62026440528
+   }
+  },
+  "D1_a_c": "flat: a_* = a0 (rule T; theta-term leaf-averaged, no H(z) in the a-channel)",
+  "G4_ledger_strict": {
+   "11C-a": {
+    "strict": 1,
+    "constants": [
+     "c2 (window)"
+    ],
+    "shape": "F_a = P2 (declared)"
+   },
+   "11C-b": {
+    "strict": 1,
+    "constants": [
+     "overall size of c2 (ratio tied by rule T)"
+    ],
+    "shape": "F = P2 branch + Newtonian continuation (declared)"
+   },
+   "11C-c": {
+    "strict": 2,
+    "constants": [
+     "c2",
+     "beta"
+    ],
+    "shape": "F_a = P2, h (declared)"
+   }
+  }
+ },
+ "verdicts": {
+  "G1-law (11C-b) at the rule-T tie t = 1": {
+   "status": "FAIL",
+   "why": "max dev 0.97"
+  },
+  "G1-law (11C-b) at the G6 x G7 allowed corner t = 4e6": {
+   "status": "FAIL",
+   "why": "max dev 0.97"
+  },
+  "G1-law (11C-b) overall": {
+   "status": "FAIL",
+   "why": "G1 needs t <= 1.2e-06; G6 and G7 need t >= 4.0e+06: no overlap (factor 3.3e+12)"
+  }
+ },
+ "runtime_s": 2.4
+}

@@ -1,0 +1,161 @@
+{
+ "lane": "CFG172_A2_stability_pincer",
+ "mutate": "M3",
+ "checks": {
+  "A2.1 radial kinetic coefficient K_x = N (l1 + 2 a^2 l2), i.e. N (y q)' with q = ell'": {
+   "ok": true,
+   "measured": "Nsym*l1 + 2*Nx**2*l2/Nsym",
+   "load_bearing": true
+  },
+  "A2.2 tangential kinetic coefficient K_perp = N l1 = N q": {
+   "ok": true,
+   "measured": "Nsym*l1",
+   "load_bearing": true
+  },
+  "A2.3 no pi_tt^2 term survives (no extra time derivatives from the projection)": {
+   "ok": true,
+   "measured": "absent",
+   "load_bearing": true
+  },
+  "A2.4 G_x = -N^3 a' (l1 + 2 a^2 l2)  => omega_x^2 = -G_x/K_x = N^2 a' (kernel-independent; decoupling limit only)": {
+   "ok": true,
+   "measured": "-Nsym*ap*(Nsym**2*l1 + 2*Nx**2*l2)",
+   "load_bearing": true
+  },
+  "C2 FC-KH exponential kernel: (y q)' = (1-y) e^{-y} (finite difference vs analytic), negative for 1 < y <= 30 (record: c^2_par < 0 on 1 < y < ~38)": {
+   "ok": true,
+   "measured": "max dev 1.6e-10; negative on (1,30]: True",
+   "load_bearing": true
+  },
+  "C2b true P2: q > 0 and (y q)' = 1 - 2y/sqrt(1+4y^2) > 0 (finite difference agrees); simple kernel (sensitivity) (y q)' = 1/(1+y)^2 > 0": {
+   "ok": true,
+   "measured": "dev P2 4.2e-08, dev simple 1.6e-10; min (yq)'(P2, y<=1e6) 1.25e-13; min q 5.00e-07",
+   "load_bearing": true
+  },
+  "C7 the minimal-tail kernel exists inside the band and is monotone (yq nondecreasing): pincer numerically constructive for P2": {
+   "ok": true,
+   "measured": "ok=True",
+   "load_bearing": true
+  }
+ },
+ "numbers": {
+  "gradient_coeffs_decoupling_limit": {
+   "G_x": "-Nsym*ap*(Nsym**2*l1 + 2*Nx**2*l2)",
+   "G_perp": "-Nsym*(Nsym**2*ap*l1 + 2*Nx**2*ap*l2 + Nx**2*l1)"
+  },
+  "b_kinetic_sign_scan": {
+   "0.0": {
+    "neg_fraction_of_4_decades_above_threshold": 0.0,
+    "min_(y q_eff)'": 1.1914964584984393e-09
+   },
+   "0.0001": {
+    "neg_fraction_of_4_decades_above_threshold": 0.00016666666666666666,
+    "min_(y q_eff)'": -6.079210003417867
+   },
+   "1.0": {
+    "neg_fraction_of_4_decades_above_threshold": 0.13983333333333334,
+    "min_(y q_eff)'": -706.9198667807412
+   },
+   "3700000.0": {
+    "neg_fraction_of_4_decades_above_threshold": 0.789,
+    "min_(y q_eff)'": -416559.93979419715
+   }
+  },
+  "Q2_over_bound_sun_saturn": {
+   "Sun@Saturn/P2/canonical": 6308.397898069057,
+   "Sun@Saturn/nu_mono/canonical": 13011.654463244055,
+   "Sun@Saturn/simple/canonical": 12616.782210784386,
+   "Sun@Saturn/P2/alt": 7623.750487337432,
+   "Sun@Saturn/nu_mono/alt": 15631.188024114923,
+   "Sun@Saturn/simple/alt": 15247.481133267696
+  },
+  "Q2_over_bound_11Cb": {
+   "Sun@Saturn/t=1.2e-06/canonical": 6308.398042716676,
+   "MW@Sun/t=1.2e-06/canonical": 2.9968053188923526e-05,
+   "Sun@Saturn/t=1.2e-06/alt": 7623.75046720426,
+   "MW@Sun/t=1.2e-06/alt": 3.524016346865499e-05,
+   "Sun@Saturn/t=1/canonical": 6308.397901712943,
+   "MW@Sun/t=1/canonical": 3.654351173251308e-05,
+   "Sun@Saturn/t=1/alt": 7623.75046720426,
+   "MW@Sun/t=1/alt": 6.681591574979025e-18,
+   "Sun@Saturn/t=4.04e+06/canonical": 6308.424049092412,
+   "MW@Sun/t=4.04e+06/canonical": 4.738965065109833e-18,
+   "Sun@Saturn/t=4.04e+06/alt": 7623.796847315945,
+   "MW@Sun/t=4.04e+06/alt": 6.681591574979025e-18
+  },
+  "pincer_min_tail": {
+   "P2": {
+    "tail_over_a0": 0.2820542446523684,
+    "at_yN": 0.6498943655689422,
+    "Q2_over_bound_canonical": 3558.622085416561,
+    "Q2_over_bound_alt": 4300.624235359137
+   },
+   "nu_mono": {
+    "tail_over_a0": 0.42403967758397476,
+    "at_yN": 1.067197059617048,
+    "Q2_over_bound_canonical": 5350.023941682169,
+    "Q2_over_bound_alt": 6465.548201265844
+   },
+   "simple": {
+    "tail_over_a0": 0.46751853890013484,
+    "at_yN": 1.504419577702074,
+    "Q2_over_bound_canonical": 5898.588053238614,
+    "Q2_over_bound_alt": 7128.492469069924
+   }
+  },
+  "Q2_MW": {
+   "canonical/P2": {
+    "tide": 1.5583384286700735e-31,
+    "gN": 1.0545405565814039e-10,
+    "gph": 3.942994562053458e-11
+   },
+   "canonical/nu_mono": {
+    "tide": 2.204597647245693e-31,
+    "gN": 1.0545405565814039e-10,
+    "gph": 5.578195579778011e-11
+   },
+   "alt/P2": {
+    "tide": 1.8324879831854302e-31,
+    "gN": 1.0545405565814039e-10,
+    "gph": 4.636663012215441e-11
+   },
+   "alt/nu_mono": {
+    "tide": 2.562928361309786e-31,
+    "gN": 1.0545405565814039e-10,
+    "gph": 6.484863881718851e-11
+   }
+  }
+ },
+ "verdicts": {
+  "G5-kinetic-sign (11C-a decoupling limit)": {
+   "status": "FAIL",
+   "why": "K_x=(yq)'>=0 everywhere: False; K_perp=q>=0: False"
+  },
+  "G5-kinetic-sign (11C-b, declared Newtonian continuation of F below the branch point)": {
+   "status": "FAIL",
+   "why": "radial kinetic coefficient (y q_eff)' turns negative just above the branch point whenever t>0 (analytic: numerator 1 - t/w < 0 for w = sqrt(y^2-t) < t)"
+  },
+  "G5-Q2 (11C-b, canonical)": {
+   "status": "FAIL",
+   "why": "the Sun's own tail at Saturn is unchanged by the operating offset (y = 7e5 >> sqrt(t)); the MW tide at the Sun is switched off for large t (y_gal << sqrt(t)) at the price of G1"
+  },
+  "G5-Q2-Sun-own-field (11C-a, -c; P2)": {
+   "status": "FAIL",
+   "why": "Q2/bound = 6.31e+03 (canonical), 7.62e+03 (alt)"
+  },
+  "G5-pincer (11C-a)": {
+   "status": "FAIL",
+   "why": "any kernel inside the G1 band with (yq)'>=0 keeps a tail >= 0.282 a0 => Q2 >= 3.6e+03 x bound (canonical)"
+  },
+  "G5-gamma": {
+   "status": "PASS",
+   "why": "Psi = Phi exactly in the static reduction (A1 S1): gamma - 1 = 0 (11C-a, -c; -b same a-channel)"
+  },
+  "G5-hyperbolicity / criterion B / gradient sector": {
+   "status": "UNDEFINED",
+   "why": "decoupling limit only; metric mixing and the theta-channel not treated"
+  }
+ },
+ "runtime_s": 1.7,
+ "control_bit": true
+}

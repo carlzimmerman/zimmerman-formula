@@ -1,0 +1,26 @@
+== CFG172_A6_b_operating_point  MUTATE=off  repo=<repo>
+  t =  0.00e+00: max G1 deviation  Newtonian continuation 4.885e-14   mirrored continuation 4.885e-14
+  t =  1.00e-08: max G1 deviation  Newtonian continuation 2.245e-06   mirrored continuation 2.245e-06
+  t =  1.00e-06: max G1 deviation  Newtonian continuation 2.245e-04   mirrored continuation 2.245e-04
+  t =  1.00e-05: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 2.248e-03
+  t =  1.00e-04: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 2.270e-02
+  t =  1.00e-03: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 2.432e-01
+  t =  1.00e-02: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 6.614e-01
+  t =  1.00e-01: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 1.044e+00
+  t =  1.00e+00: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 9.461e-01
+  t =  1.00e+02: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 9.650e-01
+  t =  4.04e+06: max G1 deviation  Newtonian continuation 9.667e-01   mirrored continuation 9.667e-01
+  G1(b) passes only for t <= 1.23e-06 (Newtonian continuation), 4.27e-04 (mirrored)
+  t needed by G6 and G7 (A3) >= 4.04e+06; G1 allows t <= 1.23e-06: gap factor 3.27e+12
+  [PASS] A6.1 t -> 0 recovers 11C-a exactly (G1 deviation < 1e-6 at t = 0)
+         measured: 4.9e-14
+  [PASS] A6.2 t at the rule-T tie (1.0) already fails G1 (the offset balances, it does not just shift, the acceleration term)
+         measured: 0.967
+  >> G1-law (11C-b) at the rule-T tie t = 1: FAIL  (max dev 0.97)
+  >> G1-law (11C-b) at the G6 x G7 allowed corner t = 4e6: FAIL  (max dev 0.97)
+  >> G1-law (11C-b) overall: FAIL  (G1 needs t <= 1.2e-06; G6 and G7 need t >= 4.0e+06: no overlap (factor 3.3e+12))
+  D1 (b, tie t0=1): a_*(z)/a0(z=0) = z=0: 1, z=1: 1.79, z=2.5: 3.77, z=5: 8.29   (flat law would be constant; H(z) rival gives E(z))
+  D1 (b, corner t0=4e6): a_*(z)/a0(z=0) = z=0: 2.01e+03, z=1: 3.6e+03, z=2.5: 7.58e+03, z=5: 1.67e+04   (flat law would be constant; H(z) rival gives E(z))
+  [PASS] A6.3 G4 ledger recorded (strict counts 1 / 1 / 2)
+         measured: {'11C-a': 1, '11C-b': 1, '11C-c': 2}
+== CFG172_A6_b_operating_point: 3/3 checks pass; runtime 2.4 s; wrote CFG172_A6_b_operating_point_results.json

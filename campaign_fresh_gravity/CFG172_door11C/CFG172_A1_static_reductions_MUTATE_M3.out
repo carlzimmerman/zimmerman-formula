@@ -1,0 +1,24 @@
+== CFG172_A1_static_reductions  MUTATE=M3  repo=<repo>
+  [PASS] S1 Psi equation is d/dr[r^2 (Psi'-Phi')] = 0 => Psi' = Phi' (gamma = 1, no flow source in the g_ij equation)
+         measured: 0
+  [PASS] S2 Phi equation reduces to d/dr[ r^2 (1 - ell') Phi' ] = 4 pi G r^2 rho (Euler-Lagrange, Psi=Phi)
+         measured: |E+T|=4*r*(-4*pi*G*r*rho - 2*r*Derivative(Phi(r), r)**2*Derivative(Phi(r), (r, 2))*Subs(Derivative(ell(_xi_1), (_xi_1, 2)), _xi_1, Derivative(Phi(r), r)**2) - r*Derivative(Phi(r), (r, 2))*Subs(Derivative(ell(_xi_1), _xi_1), _xi_1, Derivative(Phi(r), r)**2) + r*Derivative(Phi(r), (r, 2)) - 2*Derivative(Phi(r), r)*Subs(Derivative(ell(_xi_1), _xi_1), _xi_1, Derivative(Phi(r), r)**2) + 2*Derivative(Phi(r), r)), |E-T|=0
+  [PASS] S3 true P2: mu(y_g) = (sqrt(1+4y^2)-1)/(2y) satisfies mu*y_g = y_N at y_g = sqrt(y_N^2+y_N)
+         measured: 0
+  [PASS] S4 flow term Q(y) for true P2 has dQ/dy = 2 y q(y)  (so dQ/d(y^2) = q)
+         measured: Q(y)=y**2 - y*sqrt(4*y**2 + 1)/2 + y - asinh(2*y)/4
+  [PASS] S5 simple-nu: q = 1/(1+y), Q = 2[y - ln(1+y)]
+         measured: 0
+  [PASS] S6 (y q)' for true P2 = 1 - 2y/sqrt(1+4y^2) > 0 for all y (radially stable kinetic sign, decoupling limit; A2 derives it)
+         measured: -2*y/sqrt(4*y**2 + 1) + 1
+  [PASS] C1a CFG44 P2 point-mass identities g = sqrt(gN^2+a0 gN), M_c = M(sqrt(1+x^2)-1) (all masses, footings)
+         measured: max rel dev 6.56e-14
+  [PASS] C1b exponential sphere enclosed mass equals Bcommon.exp_sphere (read-only import)
+         measured: max rel dev 2.04e-10
+  kernel P2      : max |g_flow/g_target - 1| over grid, masses, profiles, footings = 9.833e-01
+  kernel nu_mono : max |g_flow/g_target - 1| over grid, masses, profiles, footings = 9.836e-01
+  kernel simple  : max |g_flow/g_target - 1| over grid, masses, profiles, footings = 9.836e-01
+  >> G1-law: FAIL  (max dev (P2 target) = 9.833e-01 (pass line 0.10))
+  >> G1-mechanism: FAIL  (the flow function (q, Q) is set to the target's kernel by declaration (menu written knowing the target); nothing in rule T fixes q(y); M2 (derived kernel) NOT achieved)
+  nu_simple/nu_P2 range: [1.0048900000681218, 1.1546980002783576]  nu_mono/nu_P2: [1.0024560082423382, 1.1404214054914787]
+== CFG172_A1_static_reductions: 8/8 checks pass; runtime 2.6 s; wrote CFG172_A1_static_reductions_MUTATE_M3_results.json

@@ -1,0 +1,66 @@
+{
+ "lane": "CFG172_A7_c_response",
+ "mutate": "M3",
+ "checks": {
+  "C7.1 flow equation for static matter: lap(Pi) = 0 with Pi = dL/d(delta theta) = -(c2/8 pi G) delta theta - beta rho/theta_L (Euler-Lagrange in chi)": {
+   "ok": true,
+   "measured": "EL(chi) = +-lap(Pi)",
+   "load_bearing": true
+  },
+  "C7.2 delta theta = -(8 pi G beta/(c2 theta_L)) (rho - rho_bar): a LOCAL algebraic response (c = 1)": {
+   "ok": true,
+   "measured": "-8*pi*G*beta*rho_/(c2*thetaL)",
+   "load_bearing": true
+  },
+  "C7.3 integrated-out interaction energy density = -(K_c/2) rho^2, K_c = 8 pi G beta^2/(c2 theta_L^2)": {
+   "ok": true,
+   "measured": "-4*pi*G*beta**2*rho_**2/(c2*thetaL**2)",
+   "load_bearing": true
+  },
+  "C7.4 pressure P = -K_c rho^2/2 and c_s^2 = dP/drho = -K_c rho < 0 for c2 > 0 (gradient instability); c2 < 0 flips c_s^2 but makes the delta-theta sector's static energy coefficient negative (ghost)": {
+   "ok": true,
+   "measured": "P = -4*pi*G*beta**2*rho_**2/(c2*thetaL**2), c_s^2 = -8*pi*G*beta**2*rho_/(c2*thetaL**2)",
+   "load_bearing": true
+  },
+  "C7.5 theta-only mechanism: no K_c (linear) and no (beta, A) (saturating) brings G1 within 10% for the exponential sphere at all masses; the point mass gets no force at all": {
+   "ok": true,
+   "measured": "0.97, 0.97, 0.97",
+   "load_bearing": true
+  },
+  "C7.6 flow stress-energy outside the baryons vanishes at quadratic order (c13 = 0 removes the shear; c2 delta-theta^2 is local): T ~ delta theta^2 ~ (rho - rho_bar)^2": {
+   "ok": true,
+   "measured": "local",
+   "load_bearing": false
+  }
+ },
+ "numbers": {
+  "theta_only_linear_best_common_K": {
+   "K_c": 5.623413251903491e-05,
+   "max_dev": 0.9666852519121779
+  },
+  "theta_only_linear_best_per_mass": {
+   "canonical/1e+09": 0.9666851756887329,
+   "canonical/3e+09": 0.9666851697673813,
+   "canonical/1e+10": 0.9666851697673615,
+   "canonical/3e+10": 0.9666851697673615,
+   "canonical/1e+11": 0.9666851697673615,
+   "canonical/3e+11": 0.9666851697673615,
+   "canonical/1e+12": 0.9666851697673615,
+   "alt/1e+09": 0.9666851970143658,
+   "alt/3e+09": 0.9666851697676624,
+   "alt/1e+10": 0.9666851697673615,
+   "alt/3e+10": 0.9666851697673615,
+   "alt/1e+11": 0.9666851697673615,
+   "alt/3e+11": 0.9666851697673615,
+   "alt/1e+12": 0.9666851697673615
+  },
+  "theta_only_point_mass_dev": 0.9666851697673615,
+  "contact_force_fraction_beyond_rM_1e11": 0.05758252554228323,
+  "theta_only_saturating_best": 0.9666851697673615,
+  "G3_Kc_ceiling": 4.540992004109506e-06,
+  "G5_cs2_at_ceiling": -2258.5041374837506
+ },
+ "verdicts": {},
+ "runtime_s": 0.6,
+ "control_bit": true
+}
