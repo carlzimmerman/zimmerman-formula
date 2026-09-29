@@ -1,0 +1,246 @@
+{
+ "slug": "CFG95_kids_split_own_calibration_MUTATE",
+ "summary": {
+  "n_checks": 11,
+  "n_pass": 9,
+  "load_bearing_failures": 2,
+  "failed": [
+   "H1 [HEADLINE] WITH B's OWN CALIBRATION, B's LAW FITS THE RELEASED SPLIT ON K1: p > 0.01, b",
+   "H2 THE SAME FOR THE RE-MEASURED SPLIT UNDER THE JACKKNIFE COVARIANCE: p > 0.01, both footi"
+  ],
+  "seconds": 45.7
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: delta = 0 reproduces CFG61's committed law stacks (ml, me, canonical) to 1e-9 and the released chi2_L = 28.07",
+   "detail": "max relative deviation 2.2e-16; released chi2 28.0727 (CFG61 28.0727)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: the canonical alpha_dyn fit reproduces CFG33's committed calibration (slope +0.204; x0.72 / x0.83 / x0.90)",
+   "detail": "slope +0.204; alpha at 100 / 200 / 300 km/s x0.72 / x0.83 / x0.90 (N = 187); alt: a -0.093, b +0.244; sigma(M_Salp): log sigma = 2.219 + 0.279 (log M_Salp - 11), scatter 0.085 dex",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the log-M_b interpolation of the law's Delta Sigma (plus point mass) matches directly computed profiles at three off-node masses to 1%",
+   "detail": "max relative deviations at log M* 10.325 / 10.775 / 11.125 (z = 0.25, K1 radii): 2.5e-04, 3.0e-04, 3.2e-04",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] WITH B's OWN CALIBRATION, B's LAW FITS THE RELEASED SPLIT ON K1: p > 0.01, both footings  [MUTATE: calibration removed]",
+   "detail": "canonical: chi2 28.07/7, p 2.13e-04 (3.70 sigma); alt: chi2 28.07/7, p 2.13e-04 (3.70 sigma)  [no calibration: 28.07/7, p 2.1e-4]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE SAME FOR THE RE-MEASURED SPLIT UNDER THE JACKKNIFE COVARIANCE: p > 0.01, both footings",
+   "detail": "canonical: chi2 35.03/7, p 1.11e-05 (4.40 sigma); alt: chi2 35.03/7, p 1.11e-05 (4.40 sigma)  [no calibration (CFG88): 35.04/7, p 1.1e-5]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) delta(M*) per class: early = log10 alpha_dyn(sigma(M*)) + 0.25, late = log10(Upsilon_SPARC/0.5)",
+   "detail": "early logM* 9.5: +0.081 (sigma 74 km/s), logM* 10.0: +0.110 (sigma 102 km/s), logM* 10.5: +0.138 (sigma 141 km/s), logM* 11.0: +0.167 (sigma 195 km/s), logM* 11.5: +0.195 (sigma 268 km/s); late +0.086; M_gal-weighted early mean +0.154",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the late-type bracket: delta_late = 0 (discs at catalogue mass); reference Upsilon_3.6 = 0.6",
+   "detail": "delta_late 0: released 13.96 (p 5.18e-02), re-measured 19.57 (p 6.58e-03); ref 0.6 (delta_late +0.007): released 14.41 (p 4.43e-02), re-measured 20.08 (p 5.39e-03)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the Salpeter/Chabrier offset at 0.20 and 0.30 dex",
+   "detail": "0.20: released 25.91 (p 5.22e-04), re-measured 32.73 (p 2.97e-05); 0.30: released 15.17 (p 3.39e-02), re-measured 20.96 (p 3.83e-03)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) constant alpha at the early class's M_gal-weighted median sigma (no sigma-slope)",
+   "detail": "median sigma 170 km/s (alpha 0.803): released 20.26 (p 5.03e-03), re-measured 26.63 (p 3.88e-04)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) chi2 against a uniform differential offset Delta = delta_early - delta_late (0-0.5 dex; a diagnostic, not a fit)",
+   "detail": "released: 0: 28.1, 0.05: 23.2, 0.1: 18.6, 0.15: 14.3, 0.2: 10.5, 0.25: 7.4, 0.3: 5.1, 0.35: 3.8, 0.4: 3.9, 0.45: 5.7, 0.5: 9.4 | p > 0.0027 for Delta 0.075-0.500, p > 0.05 for 0.175-0.500; re-measured: 0: 35.0, 0.05: 29.8, 0.1: 24.8, 0.15: 19.9, 0.2: 15.5, 0.25: 11.5, 0.3: 8.2, 0.35: 5.7, 0.4: 4.3, 0.45: 4.2, 0.5: 5.7 | p > 0.0027 for 0.150-0.500, p > 0.05 for 0.225-0.500",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R6 (reported) the absolute per-class profiles on K1 with B's calibration (released per-class blocks)",
+   "detail": "early 51.9/7, late 12.6/7  [CFG61 without calibration: early 51.9, late 12.6]",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "alpha": {
+   "canonical": {
+    "a": -0.08121668316919425,
+    "b": 0.20435572073222755
+   },
+   "alt": {
+    "a": -0.09283785343179293,
+    "b": 0.24365855053763041
+   }
+  },
+  "sigma_fit": {
+   "s0": 2.2194219170132548,
+   "s1": 0.27924608553510677,
+   "scatter": 0.08481004765474934
+  },
+  "Upsilon": {
+   "canonical": 0.61,
+   "alt": 0.57
+  },
+  "delta_early_mean": 0.15351584379300437,
+  "H": {
+   "canonical": {
+    "released": 28.072749213883476,
+    "remeasured": 35.025399438267414,
+    "D": [
+     0.006010678483374221,
+     0.003064906245947796,
+     0.0016281738612757835,
+     0.0009371369464101775,
+     0.000493584789264645,
+     0.00034233078462619915,
+     0.00022989487970193068
+    ]
+   },
+   "alt": {
+    "released": 28.0734446420589,
+    "remeasured": 35.02633547390019,
+    "D": [
+     0.005619786192816001,
+     0.002891486571206414,
+     0.0015392092930017753,
+     0.0008950917518859569,
+     0.00046748242455763034,
+     0.0003370253727617012,
+     0.00023403118111531285
+    ]
+   }
+  },
+  "R2": {
+   "late0": [
+    13.964542842921887,
+    19.57069614956712
+   ],
+   "ref06": [
+    14.41119317243141,
+    20.084926240349343
+   ]
+  },
+  "R3": {
+   "0.2": [
+    25.91111109725184,
+    32.73009605301233
+   ],
+   "0.3": [
+    15.168501605474724,
+    20.956664270677184
+   ]
+  },
+  "R4": [
+   20.264467268907758,
+   26.634710496135515
+  ],
+  "R5": {
+   "0.0": [
+    28.072749213883476,
+    35.025399438267414
+   ],
+   "0.025": [
+    25.59145983407023,
+    32.386104285653964
+   ],
+   "0.05": [
+    23.196839856612165,
+    29.816230257670888
+   ],
+   "0.075": [
+    20.829480780310732,
+    27.246499025008056
+   ],
+   "0.1": [
+    18.565272906471083,
+    24.758260004493064
+   ],
+   "0.125": [
+    16.364561302286774,
+    22.30196453423457
+   ],
+   "0.15": [
+    14.289937949891826,
+    19.944903868736937
+   ],
+   "0.175": [
+    12.319089673048207,
+    17.65479867429154
+   ],
+   "0.2": [
+    10.504442147129371,
+    15.48793494932126
+   ],
+   "0.225": [
+    8.839011830929996,
+    13.427197568011556
+   ],
+   "0.25": [
+    7.367918882869218,
+    11.52066632117287
+   ],
+   "0.275": [
+    6.097969860297382,
+    9.764715447829587
+   ],
+   "0.3": [
+    5.069530440435874,
+    8.20171668302322
+   ],
+   "0.325": [
+    4.302212232683112,
+    6.840358383643132
+   ],
+   "0.35": [
+    3.8338288802130345,
+    5.7194644696933805
+   ],
+   "0.375": [
+    3.6964237793431463,
+    4.859434303751032
+   ],
+   "0.4": [
+    3.9271060032758616,
+    4.297342104380569
+   ],
+   "0.425": [
+    4.5706532090092455,
+    4.065311041682075
+   ],
+   "0.45": [
+    5.664964681551365,
+    4.200103255609937
+   ],
+   "0.475": [
+    7.268569418447379,
+    4.746251250653004
+   ],
+   "0.5": [
+    9.421326946586738,
+    5.741289329709345
+   ]
+  },
+  "R6": {
+   "early": 51.87936535869603,
+   "late": 12.550389923601042
+  },
+  "reading": "the split survives B's own stellar-mass calibration"
+ }
+}

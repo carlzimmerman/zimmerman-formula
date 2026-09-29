@@ -1,0 +1,69 @@
+CFG95 -- DOES B'S OWN STELLAR-MASS CALIBRATION ACCOUNT FOR THE KiDS EARLY/LATE SPLIT?  B's colour-blind law, with each lens's TRUE
+stellar mass set by B's own dynamical calibrations (early types: CFG33's ATLAS3D alpha_dyn(sigma); discs: SPARC's Upsilon), scored on
+the KiDS early/late split in CFG61's seven 1-halo bins (K1), against the released covariance and CFG88's jackknife covariance.
+
+Criteria frozen and committed before any number: campaign_fresh_gravity/CFG95_FROZEN_CRITERIA.md (32abb6e12 as CFG90; renumbered 05a819f04).
+  early    true M* = alpha_dyn,foot(sigma) M_Salp; alpha_dyn,foot = 10^(a + b (log sigma - 2.3)), the CFG33 / CFG55-C2 fit of log(M_law/M_Salp)
+           on log sigma_e over ATLAS3D qual >= 1 (N = 187), recomputed per footing with CFG55's own law_mass; sigma from an OLS fit of
+           log sigma_e on log M_Salp over the same set; M_Salp = 10^0.25 M*_Chabrier (KiDS LePhare masses read as Chabrier).
+           delta_early(M*) = log10 alpha_dyn(sigma(M*)) + 0.25.
+  late     delta_late = log10(Upsilon_SPARC / 0.5): Upsilon_SPARC = 0.61 canonical / 0.57 alt (CFG4_galaxy_law, nu_mono), 0.5 = SPARC's
+           population-synthesis reference; +0.086 / +0.057 dex.
+  model    M_b,true = 10^delta M* + M_gas (M_gas = f_cold(M*) M*, CFG61); each lens keeps its measured-mass R for its g_bar bin; the law's
+           Delta Sigma at the true M_b interpolated linearly in log M_b between CFG61's profile nodes, plus the true point-mass term.
+  data     released: Brouwer+2021 Fig. 8 colour bins, 30x30 covariance, C_D = C_ee + C_ll - C_el - C_le on K1 (CFG61).
+           re-measured: the June 2026 re-measurement (lr_esd_jackknife.npz), CFG88's 50-patch jackknife covariance on K1 (Hartlap 41/49).
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  delta = 0 reproduces CFG61's committed law stacks (ml, me, canonical) to 1e-9 relative and the released chi2_L = 28.07.
+  C2  CONTROL  the canonical alpha_dyn fit reproduces CFG33's committed calibration (slope +0.204; x0.72 / x0.83 / x0.90).
+  C3  CONTROL  the log-M_b interpolation of the law's Delta Sigma matches directly computed profiles at three off-node masses to 1%.
+  H1  [HEADLINE; MUTATE must fail] with B's own calibration, the law fits the RELEASED split on K1: p > 0.01, both footings.
+  H2  the same for the RE-MEASURED split under the jackknife covariance: p > 0.01, both footings.
+  R1-R6 (reported): delta(M*); the late-type bracket (delta_late = 0; reference 0.6); Salpeter/Chabrier 0.20 / 0.30; constant alpha;
+               chi2 against a uniform differential offset Delta (0-0.5 dex); the absolute per-class profiles on K1.
+MUTATE=1: delta_early = delta_late = 0 (B's calibration removed) -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: delta_early = delta_late = 0 (B's calibration removed) -- H1 must FAIL ***
+
+======================================================================================================================
+C1-C3  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: delta = 0 reproduces CFG61's committed law stacks (ml, me, canonical) to 1e-9 and the released chi2_L = 28.07
+         max relative deviation 2.2e-16; released chi2 28.0727 (CFG61 28.0727)
+  [PASS] C2 CONTROL: the canonical alpha_dyn fit reproduces CFG33's committed calibration (slope +0.204; x0.72 / x0.83 / x0.90)
+         slope +0.204; alpha at 100 / 200 / 300 km/s x0.72 / x0.83 / x0.90 (N = 187); alt: a -0.093, b +0.244; sigma(M_Salp): log sigma = 2.219 + 0.279 (log M_Salp - 11), scatter 0.085 dex
+  [PASS] C3 CONTROL: the log-M_b interpolation of the law's Delta Sigma (plus point mass) matches directly computed profiles at three off-node masses to 1%
+         max relative deviations at log M* 10.325 / 10.775 / 11.125 (z = 0.25, K1 radii): 2.5e-04, 3.0e-04, 3.2e-04
+
+======================================================================================================================
+H1 / H2  B's LAW WITH B's OWN STELLAR-MASS CALIBRATION
+======================================================================================================================
+  early-class delta (canonical), M_gal-weighted mean +0.154 dex; late delta +0.086 (alt +0.057); differential +0.067 dex; clamped lens-grid nodes 0
+    canonical: model early-late on K1 [0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    alt      : model early-late on K1 [0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    data (released):     [1.78, 1.84, 5.22, 11.86, 15.34, 9.86, 24.44]
+    data (re-measured):  [3.26, 7.14, 5.6, 5.33, 11.92, 21.48, 33.28]
+  [FAIL] H1 [HEADLINE] WITH B's OWN CALIBRATION, B's LAW FITS THE RELEASED SPLIT ON K1: p > 0.01, both footings  [MUTATE: calibration removed]
+         canonical: chi2 28.07/7, p 2.13e-04 (3.70 sigma); alt: chi2 28.07/7, p 2.13e-04 (3.70 sigma)  [no calibration: 28.07/7, p 2.1e-4]
+  [FAIL] H2 THE SAME FOR THE RE-MEASURED SPLIT UNDER THE JACKKNIFE COVARIANCE: p > 0.01, both footings
+         canonical: chi2 35.03/7, p 1.11e-05 (4.40 sigma); alt: chi2 35.03/7, p 1.11e-05 (4.40 sigma)  [no calibration (CFG88): 35.04/7, p 1.1e-5]
+
+======================================================================================================================
+REPORTED ROWS (canonical unless stated)
+======================================================================================================================
+  [PASS] (reported) R1 (reported) delta(M*) per class: early = log10 alpha_dyn(sigma(M*)) + 0.25, late = log10(Upsilon_SPARC/0.5)
+         early logM* 9.5: +0.081 (sigma 74 km/s), logM* 10.0: +0.110 (sigma 102 km/s), logM* 10.5: +0.138 (sigma 141 km/s), logM* 11.0: +0.167 (sigma 195 km/s), logM* 11.5: +0.195 (sigma 268 km/s); late +0.086; M_gal-weighted early mean +0.154
+  [PASS] (reported) R2 (reported) the late-type bracket: delta_late = 0 (discs at catalogue mass); reference Upsilon_3.6 = 0.6
+         delta_late 0: released 13.96 (p 5.18e-02), re-measured 19.57 (p 6.58e-03); ref 0.6 (delta_late +0.007): released 14.41 (p 4.43e-02), re-measured 20.08 (p 5.39e-03)
+  [PASS] (reported) R3 (reported) the Salpeter/Chabrier offset at 0.20 and 0.30 dex
+         0.20: released 25.91 (p 5.22e-04), re-measured 32.73 (p 2.97e-05); 0.30: released 15.17 (p 3.39e-02), re-measured 20.96 (p 3.83e-03)
+  [PASS] (reported) R4 (reported) constant alpha at the early class's M_gal-weighted median sigma (no sigma-slope)
+         median sigma 170 km/s (alpha 0.803): released 20.26 (p 5.03e-03), re-measured 26.63 (p 3.88e-04)
+  [PASS] (reported) R5 (reported) chi2 against a uniform differential offset Delta = delta_early - delta_late (0-0.5 dex; a diagnostic, not a fit)
+         released: 0: 28.1, 0.05: 23.2, 0.1: 18.6, 0.15: 14.3, 0.2: 10.5, 0.25: 7.4, 0.3: 5.1, 0.35: 3.8, 0.4: 3.9, 0.45: 5.7, 0.5: 9.4 | p > 0.0027 for Delta 0.075-0.500, p > 0.05 for 0.175-0.500; re-measured: 0: 35.0, 0.05: 29.8, 0.1: 24.8, 0.15: 19.9, 0.2: 15.5, 0.25: 11.5, 0.3: 8.2, 0.35: 5.7, 0.4: 4.3, 0.45: 4.2, 0.5: 5.7 | p > 0.0027 for 0.150-0.500, p > 0.05 for 0.225-0.500
+  [PASS] (reported) R6 (reported) the absolute per-class profiles on K1 with B's calibration (released per-class blocks)
+         early 51.9/7, late 12.6/7  [CFG61 without calibration: early 51.9, late 12.6]
+
+    READING (declared): the split survives B's own stellar-mass calibration; conditional on the Salpeter/Chabrier offset, the SPARC reference Upsilon and the LePhare-Chabrier reading of the KiDS masses (R2, R3)
+
+  9/11 checks pass; load-bearing failures: 2   (46 s)
