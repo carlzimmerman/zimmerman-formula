@@ -1,0 +1,70 @@
+frozen doc sha256 (must equal FROZEN_HASH.txt): 55e9704fd1a85cdaa79fd064b78692770050a76708bac70b89ad37e9f735e4db
+repo root: (resolved; not printed)
+layers with a gate layer: 24 / 24
+
+C6  pointwise sign test vs DE12's c_gate2 > c_s^2 (fine grids, all 24 layers)
+  [PASS] C6 pointwise instability sign (a - B W'' < 0) equals DE12's (c_gate^2 > c_s^2)
+         nodes 192000; mismatches beyond 1e-12 relative margin: 0; worst mismatch margin 0.0e+00
+
+C2  discrete energy / gradient / Hessian consistency (finite differences)
+  [PASS] C2 gradient = FD of energy, Hessian-vector = FD of gradient (1e-6), dense FD Hessian symmetric and equal to the tridiagonal (1e-6)
+         grad 2.2e-12; Hv 7.4e-10; dense asym 8.3e-13; dense vs bands 6.1e-12
+
+C3  closed-form limit: constant coefficients, radial Dirichlet window, lowest eigenvalue = mu (pi/L)^2 + g
+  [PASS] C3 lowest eigenvalue vs mu (pi/L)^2 + g
+         3.989868 vs 3.989868 (rel 3.1e-08)
+
+C4  Schur elimination = 2-field inertia (Haynsworth)
+    (key, mu/(B r^2), n_neg 2-field, n_neg Schur): [('0.25/1e+11/canonical', 0.0001, 7, 7), ('0.25/1e+11/canonical', 0.01, 1, 1), ('0.25/1e+11/canonical', 1.0, 0, 0), ('0.25/1e+11/canonical', 100.0, 0, 0), ('2.5/1e+11/canonical', 0.0001, 7, 7), ('2.5/1e+11/canonical', 0.01, 1, 1), ('2.5/1e+11/canonical', 1.0, 0, 0), ('2.5/1e+11/canonical', 100.0, 0, 0), ('4.0/1e+10/alt', 0.0001, 7, 7), ('4.0/1e+10/alt', 0.01, 1, 1), ('4.0/1e+10/alt', 1.0, 0, 0), ('4.0/1e+10/alt', 100.0, 0, 0)]
+  [PASS] C4 Schur count equals the 2-field count in all 12 cases, and the test has teeth (some count > 0)
+         equal=True; some negative=True
+
+C5a  m2 large: chi0 -> t inside the layer
+  [PASS] C5a m2 = 1e-3, mu = 2e28: max |chi0 - t| in the layer <= 1e-3 and solver converged
+         7.27e-14; {'converged': True, 'iterations': 1, 'merit': 2.573702989069824e-23, 'strict_layer_rel': 2.9258906090135494e-14, 'delta': array([0.00000000e+00, 7.95298065e-04, 8.36179746e-04, ...,
+       9.73353374e-19, 9.72333808e-19, 0.00000000e+00])}
+
+C5c  the solver's chi0 is an independent-implementation stationary point and a local minimum; C7 grid-resolution independence of the costs
+    (layer, m2, in-layer residual [chi-form gradient], chi-only Hessian, converged): [('0.25/1e+11/canonical', 1e-12, '7.6e-14', 'PD', True), ('0.25/1e+11/canonical', 1e-16, '1.1e-08', 'PD', False), ('2.5/1e+11/canonical', 1e-12, '5.5e-12', 'PD', True), ('2.5/1e+11/canonical', 1e-16, '1.8e-09', 'PD', True), ('4.0/1e+12/alt', 1e-12, '3.0e-12', 'PD', True), ('4.0/1e+12/alt', 1e-16, '1.2e-11', 'PD', True)]
+  [FAIL] C5c chi0 is a stationary point (independent chi-form gradient, in-layer residual < 1e-7 of the static scale) AND a local minimum (chi-only Hessian PD)
+         False
+    [(1e-12, 'F', [-13.671044056607384, -13.671071269278613, -13.671128430280808]), (1e-12, 'S', [-928713.1156477509, -928660.2342347531, -928569.1610434995]), (1e-10, 'F', [-12.382660743565355, -12.3826806831823, -12.382733503218768]), (1e-10, 'S', [-72740139.68837924, -72739367.29736452, -72737292.87203881])]
+  [PASS] C7 flagship / Sun potentials unchanged (<= 1%) between the 20000-node grid and a 5000-node subsample
+         worst 1.55e-04
+
+C1  m2 = inf (chi0 = t, g_eff = a): per-layer minimal mu, eta_U and N1 (DE13's numbers)
+    per-layer mu_min(m2=inf) [J/m]:
+       0.25/1e+10/canonical     6.1474e+24   mu_U = t_U^2 mu = 2.4590e+25   eta_U = 5.106e-18
+       0.25/1e+10/alt           6.4656e+24   mu_U = t_U^2 mu = 2.5863e+25   eta_U = 5.371e-18
+       0.25/1e+11/canonical     1.0800e+26   mu_U = t_U^2 mu = 4.3202e+26   eta_U = 8.972e-17
+       0.25/1e+11/alt           1.1373e+26   mu_U = t_U^2 mu = 4.5490e+26   eta_U = 9.447e-17
+       0.25/1e+12/canonical     1.8656e+27   mu_U = t_U^2 mu = 7.4623e+27   eta_U = 1.550e-15
+       0.25/1e+12/alt           1.9708e+27   mu_U = t_U^2 mu = 7.8831e+27   eta_U = 1.637e-15
+       1.0/1e+10/canonical      1.4557e+25   mu_U = t_U^2 mu = 5.8228e+25   eta_U = 1.209e-17
+       1.0/1e+10/alt            1.5384e+25   mu_U = t_U^2 mu = 6.1535e+25   eta_U = 1.278e-17
+       1.0/1e+11/canonical      2.5189e+26   mu_U = t_U^2 mu = 1.0076e+27   eta_U = 2.092e-16
+       1.0/1e+11/alt            2.6674e+26   mu_U = t_U^2 mu = 1.0669e+27   eta_U = 2.216e-16
+       1.0/1e+12/canonical      4.2066e+27   mu_U = t_U^2 mu = 1.6827e+28   eta_U = 3.494e-15
+       1.0/1e+12/alt            4.4821e+27   mu_U = t_U^2 mu = 1.7928e+28   eta_U = 3.723e-15
+       2.5/1e+10/canonical      5.5941e+25   mu_U = t_U^2 mu = 2.2376e+26   eta_U = 4.647e-17
+       2.5/1e+10/alt            5.9922e+25   mu_U = t_U^2 mu = 2.3969e+26   eta_U = 4.977e-17
+       2.5/1e+11/canonical      9.2619e+26   mu_U = t_U^2 mu = 3.7048e+27   eta_U = 7.693e-16
+       2.5/1e+11/alt            9.9586e+26   mu_U = t_U^2 mu = 3.9834e+27   eta_U = 8.272e-16
+       2.5/1e+12/canonical      1.4662e+28   mu_U = t_U^2 mu = 5.8648e+28   eta_U = 1.218e-14
+       2.5/1e+12/alt            1.5858e+28   mu_U = t_U^2 mu = 6.3431e+28   eta_U = 1.317e-14
+       4.0/1e+10/canonical      1.3477e+26   mu_U = t_U^2 mu = 5.3908e+26   eta_U = 1.119e-16
+       4.0/1e+10/alt            1.4615e+26   mu_U = t_U^2 mu = 5.8460e+26   eta_U = 1.214e-16
+       4.0/1e+11/canonical      2.2210e+27   mu_U = t_U^2 mu = 8.8838e+27   eta_U = 1.845e-15
+       4.0/1e+11/alt            2.4091e+27   mu_U = t_U^2 mu = 9.6365e+27   eta_U = 2.001e-15
+       4.0/1e+12/canonical      3.5461e+28   mu_U = t_U^2 mu = 1.4184e+29   eta_U = 2.946e-14
+       4.0/1e+12/alt            3.8599e+28   mu_U = t_U^2 mu = 1.5440e+29   eta_U = 3.206e-14
+    universal mu_t = 3.8599e+28 J/m (set by 4.0/1e+12/alt); mu_U = t_U^2 mu = 1.5440e+29; eta_U = 3.206e-14
+    N1 (m2 = inf): flagship |Phi|/v_f^2 = 31.83 (r_F = 38.6 kpc); Sun |Phi|/v_f^2 = 2.126e+08
+  [PASS] C1a eta_U (universal, galaxies) = 3.2e-14 (2 digits)
+         3.206e-14
+  [PASS] C1b N1 flagship 31.8 v_f^2 (3 digits)
+         31.83
+  [PASS] C1c N1 Sun 2.13e8 v_f^2 (3 digits)
+         2.126e+08
+
+  9/10 checks pass; load-bearing failures: 1   [2s]

@@ -1,0 +1,38 @@
+frozen doc sha256: 55e9704fd1a85cdaa79fd064b78692770050a76708bac70b89ad37e9f735e4db
+  *** MUTATE=b ***
+chi0 boundary condition: Dirichlet (declared main)
+
+m2 [Pa]     mu_uni [J/m]   set by                  l=sqrt(mu/m2)  edges<=10%  Phi_F/vf2   F/gM       Phi_Sun/vf2   UVspeed[c]  conv
+ 1.00e-16   3.4453e+26   0.25/1e+12/alt              60.15      6/24       -0.1176    -0.1286   -1.044e+04      0.023    True
+ 3.16e-16   1.4592e+27   0.25/1e+12/alt              69.62      8/24       -0.4046    -0.4181    -3.46e+04     0.0409    True
+ 1.00e-15   1.8009e+27   0.25/1e+12/alt              43.49     10/24       -0.9321     -1.177   -9.176e+04     0.0727    True
+ 3.16e-15   2.9005e+27   1.0/1e+12/alt               31.04     12/24         -2.15     -3.216   -2.423e+05      0.129    True
+ 1.00e-14   3.9682e+27   1.0/1e+12/alt               20.41     14/24        -4.036     -7.601   -5.599e+05       0.23    True
+ 3.16e-14   4.3101e+27   1.0/1e+12/alt               11.96     16/24         -5.15     -13.01   -9.551e+05      0.409    True
+ 1.00e-13   4.8710e+27   2.5/1e+12/alt                7.15     18/24        -5.399     -16.85   -1.128e+06      0.727    True
+ 3.16e-13   1.2498e+28   2.5/1e+12/alt                6.44     21/24        -13.42     -43.02   -2.701e+06       1.29    True
+ 1.00e-12   1.4736e+28   2.5/1e+12/alt                3.93     24/24        -13.67      -45.6   -9.288e+05        2.3    True
+ 3.16e-12   2.6333e+28   4.0/1e+12/alt                2.96     24/24        -23.16     -76.18   +8.654e+05       4.09    True
+ 1.00e-11   3.4583e+28   4.0/1e+12/alt                1.91     24/24        -29.24     -94.41     -1.6e+06       7.27    True
+ 3.16e-11   3.7257e+28   4.0/1e+12/alt                1.11     24/24        -30.98      -99.2   -4.021e+07       12.9    True
+ 1.00e-10   3.8162e+28   4.0/1e+12/alt                0.63     24/24        -31.55     -100.8   -1.261e+08         23    True
+ 3.16e-10   3.8459e+28   4.0/1e+12/alt                0.36     24/24        -31.74     -101.3   -1.945e+08       40.9    True
+ 1.00e-09   3.8554e+28   4.0/1e+12/alt                0.20     24/24         -31.8     -101.5   -2.113e+08       72.7    True
+ 3.16e-09   3.8585e+28   4.0/1e+12/alt                0.11     24/24        -31.82     -101.6   -2.127e+08        129    True
+ 1.00e-08   3.8594e+28   4.0/1e+12/alt                0.06     24/24        -31.83       -102    -2.13e+08        230    True
+
+CHECKS
+  [PASS] H1a [load-bearing] mu = 0: all 24 layers unstable at every scanned m2
+         17/17 m2 values; mu=0 chi0 solves converged on all: False
+  [FAIL] H1b [load-bearing] at mu = mu_uni(m2) (1.000001x) every layer stable, every scanned m2
+         0/17 m2 values
+  [FAIL] (reported) H2 [reported] mu_min(layer; m2) >= 0.98 mu_min(layer; inf) on layers with edge within a factor 2
+         371 (m2, layer) pairs; violations 120; lowest ratio 0.000 at m2 = 3.2e-15, 4.0/1e+11/canonical
+  [FAIL] (reported) H3 [reported] exists an m2 with T and F and S
+         T: 9 values, F: 0, S: 0, all three: 0  (of 17 scanned)
+  [PASS] C5b solver converged (merit <= 1e-8) on every layer, flagship and Sun solve at every scanned (m2, mu_uni)
+         all converged: True; worst merit 7.3e-09; worst strict in-layer relative residual 1.5e-05 (diagnostic)
+  [FAIL] (reported) M1 [reported] stability is monotone in mu on the probes: unstable above mu_min (x1.001..1e3): 31 violations; stable below mu_min (x0.9..0.01): 31 violations
+         (bisection assumes this)
+
+  2/6 checks pass; load-bearing failures: 1   [828s]
