@@ -1,0 +1,30 @@
+== L1 Landau pole vs Planck mass (one-loop QED, toy) ==
+[PASS] L1a closed form Lpole = 3 pi/(2 alpha) (N Q^2 = 1) 
+   electron only: alpha_max = 3 pi/(2 ln(M_Pl/m_e)) = 0.0914533 = 12.532 alpha_0
+[PASS] L1a numerics: pole scale at alpha_max equals M_Pl 
+   toy SM-fermion QED, quark masses A, M=M_Pl: S = 77.2304  1/alpha(M) at alpha_0 = 59.8056  alpha_max = 1/S = 0.0129483 = 1.7744 alpha_0
+   toy SM-fermion QED, quark masses A, M=M_Pl_red: S = 74.4937  1/alpha(M) at alpha_0 = 62.5423  alpha_max = 1/S = 0.013424 = 1.8396 alpha_0
+   toy SM-fermion QED, quark masses B, M=M_Pl: S = 75.3308  1/alpha(M) at alpha_0 = 61.7052  alpha_max = 1/S = 0.0132748 = 1.8191 alpha_0
+   toy SM-fermion QED, quark masses B, M=M_Pl_red: S = 72.594  1/alpha(M) at alpha_0 = 64.442  alpha_max = 1/S = 0.0137752 = 1.8877 alpha_0
+   spread of the toy edge over quark-mass convention and M_Pl definition: 0.1133 alpha_0
+[FAIL] L1 [MUTATED: pole must lie BELOW M_Pl] alpha_0 satisfies it (alpha_0 = 0.00729735, edge 0.0129483)
+== L2 Dirac Coulomb: E_1s = m sqrt(1-(Z alpha)^2) ==
+[PASS] L2a Dirac formula reduces to m sqrt(1-(Z alpha)^2) for 1s 
+[PASS] L2b real ground state needs Z alpha < 1 (radicand sign flips at 1/Z) 
+[PASS] L2c alpha_0 < 1/26 (declared Z_req = 26) edge = 0.038462 = 5.271 alpha_0
+   Z = 137 would be needed for alpha = 1/Z to be the critical value: the critical charge Z_c = 137.036 is NOT an integer (an integer Z gives alpha=1/Z, not 1/137.036); not scored.
+== L3 positivity / unitarity ==
+[PASS] L3a a1 = alpha^2/(90 m^4), a2 = 7 alpha^2/(360 m^4) 
+[PASS] L3b positivity a1>0 and a2>0 holds for all alpha>0 (sympy positivity) 
+   => positivity of the pure QED light-by-light coefficients gives NO constraint on alpha.
+   gravity (Cheung-Remmen, abstract read only): edge alpha >~ (m_e/M_Pl,red)^2 x O(1) = 4.403e-44 (O(1) set to 1, scaling only)
+[PASS] L3c alpha_0 above that scaling edge 
+== L4 hydrogen stability against e + p -> n + nu (recalled decomposition) ==
+[PASS] L4a recalled decomposition reproduces m_n - m_p = 1.293 MeV 
+   D_EM central  : alpha/alpha_0 < 2.025
+   D_EM D_EM+0.3 : alpha/alpha_0 < 1.452
+   D_EM D_EM-0.3 : alpha/alpha_0 < 3.346
+[PASS] L4b alpha_0 satisfies hydrogen stability (edge 2.025 alpha_0; recalled inputs)
+   proton stability (m_n > m_p): alpha/alpha_0 < 2.697  (weaker than the hydrogen edge)
+
+10/11 checks pass

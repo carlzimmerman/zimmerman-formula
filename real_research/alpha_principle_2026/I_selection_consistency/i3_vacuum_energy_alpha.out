@@ -1,0 +1,41 @@
+== V1: Hartle-Hawking weight ==
+[PASS] V1a d ln W/d alpha = -(3 pi/(G Lambda^2)) dLambda/dalpha 
+[PASS] V1b H^2 = Lambda/3 => S_dS = pi/(G H^2) = 3 pi/(G Lambda) 
+   interior extremum in alpha requires dLambda_eff/dalpha = 0 (Lambda_eff finite, > 0); otherwise W is monotonic in alpha.
+== V2: two-loop QED vacuum energy ==
+[PASS] V2a closed form of I(m,m,0) matches direct radial integration at d=2.5 (direct 0.0306573687674, closed 0.0306573687674)
+   1/eps^2 coefficient / m^4 (coeffs of 1,L,L^2): ['-0.003023581353', '-6.726232629e-44', '-2.242077543e-44']  fit residual 2.69e-43
+   1/eps   coefficient / m^4 (coeffs of 1,L,L^2): ['0.001007860451', '-2.055237748e-43', '-4.857834676e-44']  fit residual 8.97e-43
+[PASS] V2b non-local divergences cancel: 1/eps^2 and 1/eps coefficients are L-independent (pure local m^4 poles) 
+   finite part rho_2^ren / (alpha m^4) = b2 L^2 + b1 L + b0   (fit residual 3.86e-42)
+      b2 = 0.00302358135311245   (b*pi^3 PSLQ over [1, pi^2, zeta3]: [32, -3, 0, 0])
+      b1 = -0.00806288360829987   (b*pi^3 PSLQ over [1, pi^2, zeta3]: [4, 1, 0, 0])
+      b0 = 0.00907074405933736   (b*pi^3 PSLQ over [1, pi^2, zeta3]: [32, -9, 0, 0])
+[PASS] V2c RG check: L^2 coefficient equals the value required by dm/dln mu = -(3 alpha/2 pi) m  (b2 = 3/(32 pi^3)) (got 0.00302358135311, RG 0.00302358135311)
+[PASS] V2d recalled pole relation is RG-consistent: d ln m_MS/d ln mu = -3 alpha/(2 pi) 
+   c_alpha(L) = d rho/d alpha at fixed pole mass M (units M^4), L = ln(M^2/mu^2):
+      c_alpha = (-3*L**2 + 7*L + pi**3*(0.04837730164979923377663308*L**2 - 0.1290061377327979567376882*L + 0.1451319049493977013298992) - 4)/(16*pi**3) 
+             = -0.0030235814*L**2 + 0.0060471627*L + 0.0010078604
+[PASS] V2e c_alpha depends on the scale mu (the vacuum-energy counterterm runs at two loops): degree >= 1 in L 
+   zeros of c_alpha in L: [-0.154700538379252, 2.15470053837925]
+      mu = M      : c_alpha =  1.00786e-03  M^4
+      mu = 2M     : c_alpha = -1.31860e-02  M^4
+      mu = M/2    : c_alpha =  3.58025e-03  M^4
+      mu = 1e3 M  : c_alpha = -6.59643e-01  M^4
+      mu = M_Pl   : c_alpha = -3.27331e+01  M^4
+   real zero at L = -0.1547, i.e. mu/M = 1.0804
+   real zero at L = 2.1547, i.e. mu/M = 0.3405
+[PASS] V2f c_alpha changes SIGN between mu = M and mu = M_e e^15 (scale-dependent sign, hence no unique alpha-dependence of Lambda_eff) 
+[PASS] V2g c_alpha has real zeros at mu/M = 1.080 and 0.3405 only because of the arbitrary scale choice (they move with mu; not physical) 
+   closed forms (PSLQ above): rho_2^ren = alpha m^4/(32 pi^3) (3 L^2 - 8 L + 9), in MS-bar with the overall mu^(2 eps)(e^gamma/4pi)^eps convention on rho;
+   b1 and b0 depend on that convention (a change of scheme = a change of the finite vacuum-energy counterterm); only b2 and the pole cancellation are convention-independent checks.
+== V3: magnitudes ==
+   m_e^4 = 6.818e-14 GeV^4 ; rho_Lambda = 2.519e-47 GeV^4 ; ratio = 2.707e+33
+   S_dS = 3 M_Pl^4/(8 rho_Lambda) = 3.307e+122  (G = 1/M_Pl^2)
+   |d ln W/d alpha| (mu = M_e, linear response) = S_dS * |c_alpha| m_e^4/rho_Lambda = 9.022e+152
+   => across d alpha = 1e-3 alpha_0 ln W changes by 6.584e+147 (natural-log units), i.e. if the weight applied it would be a step function
+   boundary solution alpha* inside |alpha*/alpha_0 - 1| < 1e-3 needs rho_0 within 1.003e-21 GeV^4 of a value; Planck-scale flat prior gives probability 5.673e-97
+[PASS] V3 probability that the HH boundary solution alpha* lands in the 1e-3 window under a Planck-scale prior on rho_0 is < 1e-80 
+[PASS] V3 at this order rho_QED(alpha) is linear in alpha with c_alpha != 0 at mu = M: no interior extremum in THAT scheme choice (scheme-dependent, see V2f/V2g) 
+
+11/11 checks pass

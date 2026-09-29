@@ -1,0 +1,35 @@
+alpha_0 = 7.297353e-03 (test value 7.297353e-03)
+
+band                                                           lo/alpha_0   hi/alpha_0   width/a0   width/1e-3
+Landau toy (SM-fermion QED), hi                                         -        1.774       open         open
+hydrogen stable vs e p -> n nu (recalled), hi                           -        2.025       open         open
+Dirac Z_req = 26, hi                                                    -        5.271       open         open
+stellar window, all c_i = 1                                        0.7653        1.094     0.3289        328.9
+stellar window, generous (c_i in [1/3,3])                         0.09607        4.734      4.638         4638
+gravity positivity scaling, lower edge (m_e/M_Pl)^2 [not in intersection]    6.033e-42            -       open         open
+Landau pole above M_Pl, electron only (toy) [not in intersection]            -        12.53       open         open
+Dirac Coulomb, Z = 1 [not in intersection]                              -          137       open         open
+
+Intersection, TIGHT (stellar c_i = 1): [0.7653, 1.094] alpha_0; width = 0.3289 alpha_0 = 329 x 1e-3
+[PASS] alpha_0 inside every band, TIGHT (stellar c_i = 1) 
+   random draw within 1e-3 of alpha_0: flat prior 0.00608, log-flat prior 0.00559  (i.e. ~ 7.5 bits at most if the band were a prediction)
+[PASS] TIGHT (stellar c_i = 1): band is at least 100 x wider than the 1e-3 hit window (a band is not a point) 
+
+Intersection, GENEROUS (stellar edges over c_i in [1/3,3]): [0.09607, 1.774] alpha_0; width = 1.678 alpha_0 = 1678 x 1e-3
+[PASS] alpha_0 inside every band, GENEROUS (stellar edges over c_i in [1/3,3]) 
+   random draw within 1e-3 of alpha_0: flat prior 0.00119, log-flat prior 0.000686  (i.e. ~ 10.5 bits at most if the band were a prediction)
+[PASS] GENEROUS (stellar edges over c_i in [1/3,3]): band is at least 100 x wider than the 1e-3 hit window (a band is not a point) 
+
+Handles compared to alpha_0 as equalities (hit = within 1e-3):
+   H1 Landau edge, electron only      alpha = 9.14533e-02  ratio to alpha_0 = 12.5324  miss
+   H2 Landau edge, toy SM fermions    alpha = 1.29483e-02  ratio to alpha_0 = 1.7744  miss
+   H3 Dirac edge 1/26                 alpha = 3.84615e-02  ratio to alpha_0 = 5.2706  miss
+   H4 hydrogen-stability edge         alpha = 1.47771e-02  ratio to alpha_0 = 2.0250  miss
+   H5 stellar lower edge (c=1)        alpha = 5.58442e-03  ratio to alpha_0 = 0.7653  miss
+   H6 stellar upper edge (c=1)        alpha = 7.98445e-03  ratio to alpha_0 = 1.0942  miss
+   H7 Carter equality C=1             alpha = 7.98445e-03  ratio to alpha_0 = 1.0942  miss
+[PASS] no handle is a 1e-3 hit (declared expectation) 
+   trial count = 7 (H6 and H7 are the same equality, N_crit = N_max: effective distinct = 6);  P(hit) per handle = 0.000217 (log-uniform over [1e-4,1]);  E[chance hits] = 0.00152
+   calibrated-constants Carter reading (recalled stellar numbers): alpha_C = 2.9686e-02 = 4.07 alpha_0 (not a handle; reported)
+
+5/5 checks pass

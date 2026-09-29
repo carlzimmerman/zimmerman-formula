@@ -1,0 +1,65 @@
+Measured at m_Z (inputs): alpha_em^-1 = 127.955, sin^2 theta_W = 0.23122, alpha_s = 0.1179;  alpha_Y^-1, alpha_2^-1, alpha_3^-1 = [98.369 29.586  8.482]
+
+--- V1 one-loop, Delta=0 ---
+  input alpha_em : alpha_G^-1 =  22.194 (g_string = 0.752, Lambda = 3.966e+17 GeV) -> predicted alpha_em^-1(m_Z) =  127.955, sin^2 = 0.2182, alpha_s = 0.2000
+       prediction of sin2thW    : 0.21824 vs measured 0.23122: offset -5.61%   
+       prediction of alpha_s    : 0.19996 vs measured 0.11790: offset +69.60%   
+  input sin2thW  : alpha_G^-1 =  26.461 (g_string = 0.689, Lambda = 3.632e+17 GeV) -> predicted alpha_em^-1(m_Z) =  139.167, sin^2 = 0.2312, alpha_s = 0.1074
+       prediction of alpha_em^-1: 139.16655 vs measured 127.95500: offset +8.76%   
+       prediction of alpha_s    : 0.10741 vs measured 0.11790: offset -8.90%   
+  input alpha_s  : alpha_G^-1 =  25.640 (g_string = 0.700, Lambda = 3.689e+17 GeV) -> predicted alpha_em^-1(m_Z) =  137.007, sin^2 = 0.2289, alpha_s = 0.1179
+       prediction of alpha_em^-1: 137.00744 vs measured 127.95500: offset +7.07%   
+       prediction of sin2thW    : 0.22889 vs measured 0.23122: offset -1.01%   
+--- V2 + Dienes 5.12 corrections ---
+  input alpha_em : alpha_G^-1 =  21.447 (g_string = 0.765, Lambda = 4.034e+17 GeV) -> predicted alpha_em^-1(m_Z) =  127.955, sin^2 = 0.2205, alpha_s = 0.2082
+       prediction of sin2thW    : 0.22051 vs measured 0.23122: offset -4.63%   
+       prediction of alpha_s    : 0.20818 vs measured 0.11790: offset +76.58%   
+  input sin2thW  : alpha_G^-1 =  24.965 (g_string = 0.709, Lambda = 3.739e+17 GeV) -> predicted alpha_em^-1(m_Z) =  137.190, sin^2 = 0.2312, alpha_s = 0.1197
+       prediction of alpha_em^-1: 137.18996 vs measured 127.95500: offset +7.22%   
+       prediction of alpha_s    : 0.11966 vs measured 0.11790: offset +1.49%   
+  input alpha_s  : alpha_G^-1 =  25.088 (g_string = 0.708, Lambda = 3.730e+17 GeV) -> predicted alpha_em^-1(m_Z) =  137.514, sin^2 = 0.2316, alpha_s = 0.1179
+       prediction of alpha_em^-1: 137.51423 vs measured 127.95500: offset +7.47%   
+       prediction of sin2thW    : 0.23157 vs measured 0.23122: offset +0.15%   
+
+trial count S1+S2 = 12 predictions (declared 12); chance-hit probability per comparison 2e-3/ln10 = 8.69e-04; expected chance hits = 0.0104; hits = []
+[PASS] S1/S2 trial count is the declared 12 
+[PASS] S1a baseline sanity: every alpha_em^-1(m_Z) prediction is within 10 percent of measured (the string relation is not wildly off) (max offset 8.8%)
+[PASS] S1b no prediction is within 1e-3 of the measured value (declared expectation) 
+   NOTE (Amendment 2): V1 alpha_s-input predicts alpha_em^-1(m_Z) = 137.007: numerically close to 137.036 but at m_Z, where the measured value is 127.955: a +7.1% miss. Not a hit.
+
+S3 data count: unknowns (alpha_G, Delta_Y, Delta_2, Delta_3) = 4 vs 3 couplings.
+   Jacobian (3x4) rank = 3: the map is onto; for ANY measured triple there is a one-parameter family of (alpha_G, Delta_i) that fits it exactly.
+[PASS] S3a Jacobian rank 3: thresholds absorb all three couplings 
+   required thresholds (exact fit) as a function of g_string:
+      g = 0.5: Delta_Y, Delta_2, Delta_3 required = [-599.8 -331.1 -311.5]   (Delta_Y - Delta_2 = -268.7, Delta_2 - Delta_3 = -19.6)
+      g = 0.6: Delta_Y, Delta_2, Delta_3 required = [-282.1 -138.4 -117.4]   (Delta_Y - Delta_2 = -143.7, Delta_2 - Delta_3 = -21.1)
+      g = 0.7: Delta_Y, Delta_2, Delta_3 required = [-91.6 -22.4  -0.1]   (Delta_Y - Delta_2 = -69.2, Delta_2 - Delta_3 = -22.3)
+      g = 0.8: Delta_Y, Delta_2, Delta_3 required = [31.4 52.9 76.3]   (Delta_Y - Delta_2 = -21.5, Delta_2 - Delta_3 = -23.4)
+      g = 0.9: Delta_Y, Delta_2, Delta_3 required = [115.1 104.5 128.8]   (Delta_Y - Delta_2 = +10.6, Delta_2 - Delta_3 = -24.3)
+      g = 1.0: Delta_Y, Delta_2, Delta_3 required = [174.5 141.3 166.4]   (Delta_Y - Delta_2 = +33.2, Delta_2 - Delta_3 = -25.1)
+      g = 1.2: Delta_Y, Delta_2, Delta_3 required = [250.9 189.2 215.8]   (Delta_Y - Delta_2 = +61.7, Delta_2 - Delta_3 = -26.6)
+   minimum over g in [0.3,1.5] of max|Delta_i| required = 35.04 at g = 0.741
+   same with the Dienes 5.12 corrections already included as the base: minimum of max|Delta_i| = 35.47 at g = 0.750
+   Dienes (read, Sect. 6.5): explicit threshold calculations give |Delta| ~ O(1); the required sizes are O(10)-O(100) (his 6.16-6.18).  The three Delta are model/moduli dependent and NOT computed in this lane.
+[PASS] S3b the smallest achievable maximal threshold needed for an exact fit is >3 (i.e. larger than the O(1) explicit-calculation scale quoted by Dienes) at every g in [0.3,1.5] (min 35.04; with 5.12 base 35.47; the >3 cut is a descriptive marker, see Amendment 3)
+
+S4 Thomson step (input: the measured SM low-energy shift, Amendment 2)
+   measured shift alpha^-1(0) - alpha^-1_MSbar(m_Z) = 9.081;  decomposition: one-loop leptons (measured masses) 4.836 + hadronic (recalled Delta alpha_had, OS->MSbar) 4.439 = 9.275; residual +0.194 (+1.5e-03 relative to alpha^-1(m_Z))
+[PASS] S4a the decomposition reproduces the measured shift to within 0.3 (W/top/scheme conventions; ~2e-3 of alpha^-1) 
+   predicted alpha^-1(0) = alpha_em^-1_pred(m_Z) + measured shift, for each of the four alpha_em predictions that are not inputs:
+      V1 one-loop, Delta=0             input sin2thW : alpha^-1(0) =  148.248  offset from 137.036: +8.18%   (alpha_G^-1 = 26.46; alpha_em^-1 at Lambda = 70.6, i.e. (3/8) alpha_G)
+      V1 one-loop, Delta=0             input alpha_s : alpha^-1(0) =  146.088  offset from 137.036: +6.61%   (alpha_G^-1 = 25.64; alpha_em^-1 at Lambda = 68.4, i.e. (3/8) alpha_G)
+      V2 + Dienes 5.12 corrections     input sin2thW : alpha^-1(0) =  146.271  offset from 137.036: +6.74%   (alpha_G^-1 = 24.96; alpha_em^-1 at Lambda = 66.6, i.e. (3/8) alpha_G)
+      V2 + Dienes 5.12 corrections     input alpha_s : alpha^-1(0) =  146.595  offset from 137.036: +6.98%   (alpha_G^-1 = 25.09; alpha_em^-1 at Lambda = 66.9, i.e. (3/8) alpha_G)
+[PASS] S4b no Thomson-limit prediction within 1e-3 of 137.036 (declared expectation) 
+
+S5 sensitivity at the V1 alpha_s-input solution: d alpha_em^-1(m_Z)/d alpha_G^-1 = 2.629; to hold alpha(0) to 1e-3 (= 0.137 in alpha^-1) alpha_G^-1 must be known to +-0.052
+   versus a threshold budget: one unit of Delta_Y+Delta_2 shifts alpha_em^-1(m_Z) by 1/(4 pi) = 0.0796; the 1e-3 window is 1.72 units of Delta_Y+Delta_2 (the Dienes 5.12 corrections alone are 24.6 units)
+[PASS] S5 the 1e-3 window in alpha(0) is smaller than the known model-independent correction (5.12) by >10x, so 1e-3 cannot be scored without a full two-loop + scheme + threshold calculation 
+
+S6 convention sensitivity (R2): scaling Lambda by sqrt(2) or 2 (Witten vs Kaplunovsky, Dienes vs Kaplunovsky) at fixed alpha_G:
+   Lambda x 1.4142: alpha_em^-1(m_Z) shifts by +0.662 (+0.52%)
+   Lambda x 2.0000: alpha_em^-1(m_Z) shifts by +1.324 (+1.03%)
+[PASS] S6 the convention uncertainty shifts alpha_em^-1(m_Z) by more than the 1e-3 window (so the tree-level relation cannot be scored at 1e-3 until a convention/scheme is fixed by a full derivation) 
+
+SUMMARY: 9/9 checks pass

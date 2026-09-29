@@ -1,0 +1,66 @@
+=== D8 universality: tree-level alpha_i^-1 = k_i S for every factor (Dienes 2.6) ===
+[PASS] D8a the three tree-level couplings depend on ONE real modulus (rank 1): ratios alpha_i/alpha_j = k_j/k_i are S-independent 
+   => the levels (integers/rationals) fix RATIOS; the overall scale of the three couplings is the single dilaton S.
+
+=== D1 T-duality self-dual / free-fermionic points ===
+[PASS] D1a tree-level alpha_G(S, T) has zero derivative with respect to the Kahler modulus T: fixing T (self-dual point) fixes no coupling at tree level 
+   ln(Im T |eta(T)|^4): T=i -1.0546883 (closed form 4 ln[Gamma(1/4)/(2 pi^(3/4))] = -1.0546883);  T=e^(2 pi i/3) -1.0335193;  T=e^(i pi/6) -1.3302541 (not a fixed point)
+[PASS] D1b numerical eta evaluation reproduces the closed form at T = i to 1e-10 
+   T=i: moduli-dependent threshold piece |b'| |ln| with the declared |b'| <= 10: up to 10.5 (16 pi^2/g^2 units) vs required >= 35 (h3 S3): ratio required/reach = 3.3
+   T=rho: moduli-dependent threshold piece |b'| |ln| with the declared |b'| <= 10: up to 10.3 (16 pi^2/g^2 units) vs required >= 35 (h3 S3): ratio required/reach = 3.4
+   VERDICT D1c (pre-registered criterion: required/reachable > 5 for |b'| <= 10): NOT MET (ratio 3.32).
+   Reading: a size argument alone does NOT exclude large-b' N=2 sectors at a self-dual T; but the constant X of Dienes 6.19 stays free and model dependent, and the S-dependence is untouched, so no NUMBER for alpha follows either way.
+[PASS] D1c the criterion was evaluated and reported (ratio between 3 and 4; NOT met -- see Amendment 3) 
+   literal self-dual torus (2 pi sqrt(alpha'))^6 with e^(2 phi) <= 1 in Witten's (1.4): alpha_G <= 3.23e-07  (alpha_G^-1 >= 3.09e+06); convention/(2 pi)^n-dependent, REPORTED only
+
+=== D2 S-duality fixed points (16 scored comparisons) ===
+   tau=i (Im=1); S=4pi/g^2+i th/2pi: alpha^-1=Im S                alpha_G^-1                         =    1.000   vs 22.194:   -95.5%   vs 137.036:   -99.3%
+   tau=i (Im=1); S=4pi/g^2+i th/2pi: alpha^-1=Im S                alpha_em^-1(M_s)=(8/3)alpha_G^-1   =    2.667   vs 22.194:   -88.0%   vs 137.036:   -98.1%
+   tau=i (Im=1); S=1/g^2: alpha^-1=4 pi Im S                      alpha_G^-1                         =   12.566   vs 22.194:   -43.4%   vs 137.036:   -90.8%
+   tau=i (Im=1); S=1/g^2: alpha^-1=4 pi Im S                      alpha_em^-1(M_s)=(8/3)alpha_G^-1   =   33.510   vs 22.194:   +51.0%   vs 137.036:   -75.5%
+   tau=e^(2 pi i/3) (Im=sqrt3/2); S=4pi/g^2+i th/2pi: alpha^-1=Im S alpha_G^-1                         =    0.866   vs 22.194:   -96.1%   vs 137.036:   -99.4%
+   tau=e^(2 pi i/3) (Im=sqrt3/2); S=4pi/g^2+i th/2pi: alpha^-1=Im S alpha_em^-1(M_s)=(8/3)alpha_G^-1   =    2.309   vs 22.194:   -89.6%   vs 137.036:   -98.3%
+   tau=e^(2 pi i/3) (Im=sqrt3/2); S=1/g^2: alpha^-1=4 pi Im S     alpha_G^-1                         =   10.883   vs 22.194:   -51.0%   vs 137.036:   -92.1%
+   tau=e^(2 pi i/3) (Im=sqrt3/2); S=1/g^2: alpha^-1=4 pi Im S     alpha_em^-1(M_s)=(8/3)alpha_G^-1   =   29.021   vs 22.194:   +30.8%   vs 137.036:   -78.8%
+   trials = 16 (declared 16); hits = []; expected chance hits = 0.0139
+[PASS] D2a declared trial count 16 
+[PASS] D2b no S-duality fixed-point value hits either target at 1e-3 
+   Note: the duality-invariant-condensation literature (FILQ 1990, RECALLED) puts the minimum at these fixed points; they give alpha_G^-1 of O(1)-O(10), not ~25, and S-duality is not a symmetry of the N=1 spectrum (RECALLED).
+
+=== D3 gaugino condensation / racetrack (sympy) ===
+   single condensate V(s) = A**2*((2*a*s + 1)**2 - 3)*exp(-2*a*s)/(2*s)
+[PASS] D3a single condensate: D_S W = 0 has no finite solution (no SUSY minimum) 
+[PASS] D3b V vanishes at s = (sqrt(3)-1)/(2a) (K = -ln(S+Sbar)) 
+   critical points of V(s) (A=a=1): [0.7071], second derivatives [-3.32]
+[PASS] D3c single condensate: only extremum is a MAXIMUM; V decreases to 0+ as s -> infinity (runaway of the dilaton) 
+   racetrack a_i = 8 pi^2/N_i, (N1,N2) = (9,8) [hidden-group ranks; RECALLED convention], A2 = -r A1:
+      r =   4.0: SUSY point(s) s0 = [1.3675]  (leading-order estimate 1.3716);  alpha_G^-1 = 4 pi s0 = [17.184]
+      r =   8.0: SUSY point(s) s0 = [2.0008]  (leading-order estimate 2.0036);  alpha_G^-1 = 4 pi s0 = [25.143]
+      r =  16.0: SUSY point(s) s0 = [2.6336]  (leading-order estimate 2.6357);  alpha_G^-1 = 4 pi s0 = [33.094]
+   d alpha_G^-1/d ln r = 4 pi/(a2-a1) = 11.46;  to hold alpha_G^-1 to +-0.052 (1e-3 in alpha(0), h3 S5) the prefactor ratio r = -A2/A1 must be known to 0.45 percent
+[PASS] D3d racetrack: a SUSY minimum exists, but its position is a continuous function of the prefactor ratio r (dS0/d ln r = 1/(a2-a1) != 0) 
+   r is set by string-threshold and one-loop determinants of the two hidden sectors (moduli dependent, model dependent, NOT computed in this lane): so the racetrack converts the coupling into the constant r.
+   required r for alpha_G^-1 = 25.640 over the 36 pairs (N1>N2, 2..10) (leading-order): 2 lie in [0.1,10]; range 5.39e+00 .. 1.94e+27. REPORTED requirement only (not a hit search).
+   pairs with r in [0.1,10]: [(9, 8, 8.33), (10, 9, 5.39)]
+   NOTE (Amendment 3): the illustrative pair (N1,N2) = (9,8) above was chosen BY HAND after seeing that it reaches alpha_G^-1 ~ 25 at r ~ 8; it is an illustration of the sensitivity, is not a trial, and is not evidence.
+
+=== D4 flux counting (structural arithmetic) ===
+   per-vacuum chance of landing in the 1e-3 window (log-uniform, one decade) = 8.69e-04; vacua needed for one expected chance hit = 1151 (= 1/8.69e-4).
+   GKP/KKLT-type stabilisation ties tau to integer fluxes (abstract-level knowledge); Denef-Douglas (abstract) count flux vacua; typical counts are >> 1e3 -- so 'alpha equals a flux-fixed value' is a statement about which integer choice, not a forcing principle.
+[PASS] D4 vacuum count needed for one expected chance hit is ~1150 (1/8.69e-4 = 1151); flux-landscape counts in the literature (abstract-level) are far larger 
+
+=== D5 Horava-Witten critical G_N (Witten 1.15): an inequality ===
+   integral I = 0.25 M_GUT^-2: alpha_G^crit = 4 pi sqrt(G_N/I) = 0.0412 (alpha^-1 = 24.3, Witten normalisation)
+   integral I = 1.0 M_GUT^-2: alpha_G^crit = 4 pi sqrt(G_N/I) = 0.0206 (alpha^-1 = 48.6, Witten normalisation)
+   integral I = 4.0 M_GUT^-2: alpha_G^crit = 4 pi sqrt(G_N/I) = 0.0103 (alpha^-1 = 97.2, Witten normalisation)
+   G_N >= G_crit is a BOUND (below it one E8 goes strongly coupled); I is an unknown O(1) topological integral; UNSCORED.  The order of magnitude (alpha^-1 ~ 50 for I = 1) is the well-known statement that the strong-coupling window is close to the data.
+
+=== D6 runaway (from D3): V -> 0+ as s -> infinity for one condensate; racetrack minima are AdS (V<0 at the SUSY point) ===
+   racetrack SUSY point s0 = 2.0008: V = -4.991e-18 (<0: AdS; cannot be the dS vacuum without an uplift term, which is another free constant)
+[PASS] D6 the racetrack SUSY extremum has V < 0 (supersymmetric AdS) 
+
+=== D7 heterotic SO(32) <-> Type I map preserves alpha_G ===
+[PASS] D7a the duality map (phi_I = -phi_h, V_I = e^{-3 phi_h} V_h) leaves alpha_G invariant (a consistency check on Witten Eq. 1.4 vs 1.10) 
+   => duality relabels the free parameter, it cannot fix it.  The formal fixed point phi = 0 of the map is not a symmetry point of a single theory (heterotic and Type I are different string theories) (RECALLED).
+
+SUMMARY: 13/13 checks pass
