@@ -1,0 +1,29 @@
+CFG163 -- KURVS-15's cold gas from archival ALMA: the Ibar Band 6 dust continuum (227.3 GHz), under the frozen plan and its addendum.
+
+Frozen plan: CFG163_FROZEN_CRITERIA.md (9ec06b770) with the addendum (5fc3c4d8e), committed before any file was read.
+Data: the data chat's download (header facts e58f0d75b) in <repo>/../_external_data/alma_kurvs15/A001_X133d_X7ac/ (outside the repo).
+The CO(2-1) cubes were not downloaded, so the CO channel is not run (declared).
+  order       sha256 check -> rms by the frozen rule (annulus 3-10", pb >= 0.5, sources masked; robust MAD of pbcor x pb) -> power gate
+              (3-sigma limit in mu_dust at 25 K, nominal M*; >= 2.14 -> NON-DIAGNOSTIC before the source pixel is read) -> the source pixel.
+  measure     the pixel at KURVS-15's position (primary; point source at the 1.43" x 0.85" beam) and a 1.0"-radius aperture sum (variant).
+  detection   >= 4 sigma; otherwise a 3-sigma limit, never zero.  mu_dust from Scoville et al. 2016 (CFG142's conversion) at 227.291 GHz.
+MUTATE=1: a point source with mu_dust = 8 injected at KURVS-15 -> must classify 'detected, > 2.14' (exit 0 when it behaves).
+MUTATE=2: KURVS-15's pixel and aperture replaced by those at an off-source position -> must classify 'not detected' (exit 0 when it behaves).
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour either model, or that the theory is closed.
+  [PASS] C0 CONTROL: both files match the data chat's sha256 (e58f0d75b)
+         member.uid___A001_X133d_X7ac.cdfs_31127_sci.spw25_27_29_31.cont.I.pbcor.fits, member.uid___A001_X133d_X7ac.cdfs_31127_sci.spw25_27_29_31.cont.I.pb.fits.gz
+  [PASS] C2 CONTROL (continuum form): the image is the 227.3-GHz Band 6 continuum the addendum assumed; single plane; beam from the header
+         CRVAL3 227.291 GHz; beam 1.429" x 0.850" (47.6 px); pixel 0.170"; image (270, 270)
+  rms rule: annulus 3-10", pb >= 0.5, 2 catalogue/KURVS positions masked within the image; 9456 pixels; robust sigma0 40.3 uJy/beam (plain std 40.2); pb at KURVS-15 1.0000; sigma at the source 40.3 uJy/beam (archive estimate 64.6 per window / ~32 over four)
+  [PASS] C3 CONTROL (continuum form): the robust MAD sigma and the plain std of the same masked annulus agree within 30%
+         MAD 40.3 vs std 40.2 uJy/beam
+  POWER GATE: 3-sigma limit in mu_dust (25 K, nominal M* 10.07) = 1.90  ->  PASS: the channel can reach below 2.14
+  [PASS] C1 CONTROL (injection): a 10-sigma point source injected 6" off-source is recovered by the pixel measurement within 15%
+         injected 403.4 uJy, recovered 401.9 uJy (0.996)
+  [PASS] C4 CONTROL: the conversion reproduces CFG142's pre-data table for KURVS-15 at 272.5 GHz (S(mu_dust = 2) = 0.222 mJy)
+         0.2218 mJy
+  KURVS-15: pixel +39.0 uJy/beam (+1.0 sigma); 1.0" aperture +41.6 uJy; 3-sigma limit: mu_dust < 1.90 (25 K, nominal), 1.75 (35 K); x2 gas-to-dust: 3.79; M* -0.2 dex: 3.01  ->  not detected, limit 0.65-2.14
+  [PASS] MUTATE=2 [pinned control]: the off-source values at the source position classify 'not detected'
+         not detected, limit 0.65-2.14
+
+  6/6 checks pass; load-bearing failures: 0   (0 s)
