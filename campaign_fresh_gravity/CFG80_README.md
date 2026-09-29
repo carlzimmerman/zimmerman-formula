@@ -99,3 +99,21 @@
 - **The committed outputs are the first runs:** main, then MUTATE. No check was added after them, and nothing was re-run.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections after CFG86's independent re-derivation (appended 2026-09-29; no committed number changed)
+
+CFG86 (4d994bb28) re-derived **ΛCDM's side** from independently written code and reproduced it to the last digit: gap +0.0370 ± 0.0247 (+0.36σ with the floor, +1.50σ statistical); median lens halo 10^14.36; V1–V4; the gate at × 100 fails at −2.61σ and at × 33 passes. **B's side was not re-derived.** Its four gaps were taken from CFG33's README, so CFG86's B-minus-ΛCDM test is unpaired.
+
+- **"Specific to B statistically" is conditional, not robust.** CFG86 declared 54 convention cells before running: halo multiplier {1/3, 1, 3} × mass tie {solved Salpeter, solved Chabrier-equivalent, fixed Chabrier-equivalent} × {z = 0, redshift-consistent} × {Duffy, relaxed, Dutton–Macciò}.
+  - ΛCDM's statistical gap is inside 2σ in 52% of cells.
+  - B minus ΛCDM is above 2σ (unpaired) in 78%.
+  - Both hold in 52%. With the floor, ΛCDM passes in 100%.
+- **What flips it:**
+  - **Lighter halos.** ΛCDM's gap crosses +2σ at a multiplier of about 0.72. At × 1/3 and z = 0 it sits at +0.062 to +0.075 dex (2.6–3.4σ statistical).
+  - **A Chabrier-equivalent mass tie at z = 0.**
+  - **A Salpeter zero-point offset d between Auger and ATLAS3D.** It shifts ΛCDM's gap by exactly −d. ΛCDM stays inside 2σ only for d in [−0.012, +0.086].
+  - **The redshift.** Halos evaluated at the lens redshifts (median z ≈ 0.19) move ΛCDM's gap to −0.020. Redshift consistency should be a frozen, declared variant.
+- **The robust statement.** Over all 54 cells, B minus ΛCDM has a median of +0.118 dex and a range of +0.023 to +0.266, and never goes negative. **B sits about 0.12 dex above ΛCDM: a difference between the models, not a failure of either.**
+- **What the gap measures.** With halos off, the gap is +0.191 dex (9.6σ statistical). B's +0.15–0.17 lies between that stars-only gap and ΛCDM's base. So the lensing–dynamics gap tracks how much projected dark mass a model has inside the Einstein radius. B's phantom is about 14–20% of the Einstein mass in projection, against ΛCDM's 42%.
+- **The class, reworded.** "SPECIFIC-TO-B for the statistical gap" becomes: **B minus ΛCDM ≈ 0.12 dex, conditional on the halo and zero-point conventions.** Both models pass CFG33's gate with its floor.

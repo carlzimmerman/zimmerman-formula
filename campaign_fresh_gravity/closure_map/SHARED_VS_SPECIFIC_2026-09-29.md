@@ -135,3 +135,12 @@ Each lane ran CFG69's base halo (Moster+2013 halo mass, Duffy+2008 full 200c con
 - **The groups' shape test** does not separate them at 2σ.
 
 The KiDS early/late split, B-specific for the difference only and fragile, remains the one B-specific observational failure in shared machinery. κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model or that the theory is closed.
+
+
+## Addendum after CFG86 (appended 2026-09-29; the rows above are unchanged)
+
+- **Row 1.19, SLACS.** "SPECIFIC-TO-B for the statistical gap only" is replaced by **B minus ΛCDM ≈ 0.12 dex, conditional on the halo and zero-point conventions. Both models pass with the floor.**
+  - CFG86 (4d994bb28) independently re-derived ΛCDM's side exactly. B's side was not re-derived, so its B-minus-ΛCDM test is unpaired.
+  - Over 54 declared convention cells, ΛCDM's statistical gap is inside 2σ in only 52%. B minus ΛCDM has a median of +0.118 dex (+0.023 to +0.266) and is never negative.
+  - Lighter halos, a Chabrier-equivalent tie, a zero-point offset below −0.012 dex, or redshift-consistent halos (−0.020) each change ΛCDM's statistical verdict.
+  - It is a difference between the models, not a failure of either.
