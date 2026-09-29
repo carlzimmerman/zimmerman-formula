@@ -133,3 +133,22 @@ This does not say the data favour ΛCDM, which was given each group's R500 mass.
 - **No other file was edited.**
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections after CFG85's independent re-derivation (appended 2026-09-29; no committed number changed)
+
+CFG85 (8115c1189) re-derived this lane's headline from independently written code. It reproduced: B at R2500 1.88 (+2.57σ; alt +2.63σ), ΛCDM 1.05 (+0.25σ; c = 4.42), B's shape-only deficit 1.37σ (alt 1.79σ), and the MUTATE flip.
+
+- **Which reading V3, V4, V3u and V4u use.**
+  - In these variants the data's critical density ρ_c,g is kept from the measured, unscaled M500 and R500 (`RHOG`, computed once). Only the normalisation target is scaled.
+  - The frozen text did not say which reading applies. If ρ_c,g follows the scaled mass, CFG85 gets −0.056 (−0.70σ), +0.113 (+1.40σ), +0.023 (+0.28σ) and +0.016 (+0.20σ), in place of this lane's −0.044, +0.100, +0.035 and +0.003.
+  - CFG85's unscaled reading reproduces this lane's numbers exactly. Every variant stays within 2σ under either reading.
+- **ΛCDM does not depend on the stars; B does.**
+  - CFG85 varied the stars: uniform shifts of ±0.2 and ±0.5 dex, stars near zero, and the stars permuted or scattered across groups. Over all of these, ΛCDM's R2500 offset stays between +0.005 and +0.027 dex, because the R500 normalisation absorbs the stellar level.
+  - B's failure is a statement about the stellar level. With +0.2 dex in stars it is 1.45σ (MARGINAL), and B closes at about 10^0.5 ≈ 3.2× the Kravtsov relation.
+  - Breaking the per-group tie to M500_HSE, by permuting or scattering the stars, leaves B above 2σ in 96% and 91% of draws.
+- **"SPECIFIC-TO-B" was too strong.** It compared a shape test with a full-mass test: ΛCDM is handed M500 at R500 and B is not.
+  - On equal footing, with both normalised at R500, B's shape-only deficit is 1.37σ (alt 1.79σ), inside 2σ.
+  - The gap to ΛCDM (+0.126 against +0.020 dex) is about 1.3× the 0.079-dex hydrostatic allowance, and that allowance is almost all of ΛCDM's error.
+  - **Corrected class:** on equal footing the shape test **does not separate B from ΛCDM at 2σ**.
+  - B's R2500 failure as run (2.57σ) combines its R500 normalisation with the shape. It rests on the Kravtsov stellar level, and this lane cannot test the normalisation for ΛCDM.
