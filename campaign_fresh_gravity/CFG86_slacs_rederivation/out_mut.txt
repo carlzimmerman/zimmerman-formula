@@ -1,0 +1,182 @@
+PASS FROZEN docstring == CFG86_FROZEN.txt  sha256 9317075695fc1a3f
+MODE MUTATE
+PASS C0 counts: 85 rows -> 70 lenses  85,70
+PASS C0 counts: 258 ATLAS usable  258
+PASS C0 counts: 187 Q>=1  187
+PASS C0 M_E vs tabulated Mass <=0.01 dex  max 0.0076 median 0.0026
+s (Chab/Salp median) = 0.5623  log10 = -0.25
+PASS C0 Moster endpoints  4.282 11.969
+PASS C0 rho_c(0.674)=1.2605e11 Msun/Mpc^3  1.26078e+11
+PASS C0 f_b = 0.1571  0.15713
+
+=== CONTROLS ===
+PASS C1 M(<R200)=Mh and R200 identity to 1e-12; monotone  worst 1.89e-15
+PASS C1 c(Mh=2e12/h)=5.71
+PASS C2 analytic M2D vs numerical (disc, shell) <=1e-6, X<1,X>1,X=1 covered  n=84 disc 8.88e-16 shell 9.25e-07
+PASS C2 h(1)=1+ln(1/2)
+PASS C2 continuity across X=1 (<1e-6)  6.67e-07
+PASS C2 h(X) vs 50-digit literal formula <=1e-12  9.99e-16
+PASS C4i lenses on the fit line: Delta=0  1.4e-17
+PASS C4ii lenses = fit +k: Delta=k  0.0e+00
+PASS C4iii fit recovers synthetic law
+
+=== BASE RUN ===
+m=1 tie=solved_salp z0 c=duffy                       n=70/187  Delta=-0.2938 err=0.0516  z=-2.61 zstat=-5.69 FAIL-
+PASS C3 kbar(alpha_lens)=1 (<=1e-9) and M(<r_1/2)=M_JAM/2 (<=1e-9)  4.7e-13 4.5e-13
+FAIL C5 witness: halo mass / Moster(M_*) = 1 (1e-12)  ratio median 100
+
+=== HEADLINE (P1-P4) ===
+m=1 tie=solved_salp z0 c=duffy                       n=70/187  Delta=-0.2938 err=0.0516  z=-2.61 zstat=-5.69 FAIL-
+PASS P1 70/70 lenses solved, 187/187 calibrated  70/187
+alpha_lens median 0.293  alpha_dyn at lenses' sigma (median of fit) 0.584   slope dlogalpha_dyn/dlogsigma +0.133
+median log Mh lenses 13.21 (range 12.24..14.22); calibrators 11.94 (range 10.94..13.84)
+median projected dark fraction inside R_E 0.794; median 3D dark fraction inside r_1/2 (of M_JAM/2) 0.346
+lenses above Moster grid top (M_*>10^11.97): 0; calibrators with r_1/2<1e-4 R200: 0
+lens slope dlog alpha_lens/dlog sigma = -0.587
+FAIL H1 [HEADLINE] LCDM passes CFG33 gate (counts and |z|<=2)  FAIL- z=-2.61
+
+=== HALO-MASS LADDER (both sides, every halo mass x m) ===
+m=0.01 tie=solved_salp z0 c=duffy                    n=70/187  Delta=+0.0370 err=0.0248  z=+0.36 zstat=+1.49 PASS
+m=0.03 tie=solved_salp z0 c=duffy                    n=70/187  Delta=-0.0325 err=0.0269  z=-0.31 zstat=-1.21 PASS
+m=0.1 tie=solved_salp z0 c=duffy                     n=70/187  Delta=-0.1063 err=0.0353  z=-1.00 zstat=-3.01 PASS
+m=0.333333 tie=solved_salp z0 c=duffy                n=70/187  Delta=-0.1972 err=0.0449  z=-1.80 zstat=-4.39 PASS
+m=1 tie=solved_salp z0 c=duffy                       n=70/187  Delta=-0.2938 err=0.0516  z=-2.61 zstat=-5.70 FAIL-
+m=3 tie=solved_salp z0 c=duffy                       n=70/186  Delta=-0.4089 err=0.0591  z=-3.52 zstat=-6.92 FAIL-
+m=10 tie=solved_salp z0 c=duffy                      n=70/183  Delta=-0.4940 err=0.0721  z=-4.01 zstat=-6.85 FAIL-
+m=33 tie=solved_salp z0 c=duffy                      n=70/176  Delta=-0.6269 err=0.0813  z=-4.86 zstat=-7.71 FAIL-
+m=100 tie=solved_salp z0 c=duffy                     n=70/171  Delta=-0.8752 err=0.1195  z=-5.62 zstat=-7.32 FAIL-
+m=300 tie=solved_salp z0 c=duffy                     n=70/157  Delta=-1.3172 err=0.1822  z=-6.34 zstat=-7.23 FAIL-
+gate PASSES for multipliers [0.01, 0.03, 0.1, 0.3333333333333333]
+
+=== VARIANTS P3 ===
+V1 Dutton-Maccio c :: m=1 tie=solved_salp z0 c=dm                          n=70/186  Delta=-0.3471 err=0.0595  z=-2.98 zstat=-5.84 FAIL-
+V2 Duffy relaxed :: m=1 tie=solved_salp z0 c=relaxed                     n=70/187  Delta=-0.3451 err=0.0596  z=-2.96 zstat=-5.79 FAIL-
+V3 Mh x1/3 :: m=0.333333 tie=solved_salp z0 c=duffy                n=70/187  Delta=-0.1972 err=0.0449  z=-1.80 zstat=-4.39 PASS
+V4 Mh x3 :: m=3 tie=solved_salp z0 c=duffy                       n=70/186  Delta=-0.4089 err=0.0588  z=-3.53 zstat=-6.96 FAIL-
+
+=== z-CONSISTENT EXTENSION (lens halos at z_lens; calibrators z=0) ===
+full :: m=1 tie=solved_salp zfull c=duffy                    n=70/187  Delta=-0.3334 err=0.0548  z=-2.92 zstat=-6.09 FAIL-
+rho_c(z) only :: m=1 tie=solved_salp z[r] c=duffy                     n=70/187  Delta=-0.3506 err=0.0535  z=-3.09 zstat=-6.56 FAIL-
+Duffy (1+z) only :: m=1 tie=solved_salp z[c] c=duffy                     n=70/187  Delta=-0.2598 err=0.0508  z=-2.32 zstat=-5.12 FAIL-
+Moster z-evol only :: m=1 tie=solved_salp z[m] c=duffy                     n=70/187  Delta=-0.3242 err=0.0540  z=-2.85 zstat=-6.01 FAIL-
+
+=== DECLARED-RANGE GRID (54 cells) and extended context ===
+    m tie          z     c         Delta    err    zstat  zfloor gate  Sa Sb Saf W
+ 0.33 solved_salp  z0    duffy    -0.1972 0.0449  -4.39  -1.80 PASS  0  1  1  0
+ 0.33 solved_salp  z0    relaxed  -0.2178 0.0484  -4.50  -1.96 PASS  0  1  1  0
+ 0.33 solved_salp  z0    dm       -0.2364 0.0518  -4.57  -2.10 FAIL- 0  1  0  0
+ 0.33 solved_salp  full  duffy    -0.2372 0.0482  -4.92  -2.14 FAIL- 0  1  0  0
+ 0.33 solved_salp  full  relaxed  -0.2639 0.0519  -5.08  -2.34 FAIL- 0  1  0  0
+ 0.33 solved_salp  full  dm       -0.2912 0.0560  -5.20  -2.54 FAIL- 0  1  0  0
+ 0.33 solved_chab  z0    duffy    -0.0942 0.0343  -2.75  -0.89 PASS  0  1  1  0
+ 0.33 solved_chab  z0    relaxed  -0.1141 0.0396  -2.88  -1.06 PASS  0  1  1  0
+ 0.33 solved_chab  z0    dm       -0.1266 0.0433  -2.92  -1.16 PASS  0  1  1  0
+ 0.33 solved_chab  full  duffy    -0.1201 0.0401  -2.99  -1.11 PASS  0  1  1  0
+ 0.33 solved_chab  full  relaxed  -0.1395 0.0452  -3.09  -1.27 PASS  0  1  1  0
+ 0.33 solved_chab  full  dm       -0.1630 0.0494  -3.30  -1.46 PASS  0  1  1  0
+ 0.33 fixed_chab   z0    duffy    -0.1201 0.0703  -1.71  -0.98 PASS  1  1  1  1
+ 0.33 fixed_chab   z0    relaxed  -0.1732 0.0851  -2.04  -1.32 UNFIT 0  1  1  0
+ 0.33 fixed_chab   z0    dm       -0.1846 0.1026  -1.80  -1.29 UNFIT 1  1  1  1
+ 0.33 fixed_chab   full  duffy    -0.1346 0.0795  -1.69  -1.05 UNFIT 1  1  1  1
+ 0.33 fixed_chab   full  relaxed  -0.1190 0.0954  -1.25  -0.86 UNFIT 1  1  1  1
+ 0.33 fixed_chab   full  dm       -0.2052 0.1183  -1.73  -1.32 UNFIT 1  1  1  1
+ 1.00 solved_salp  z0    duffy    -0.2938 0.0516  -5.70  -2.61 FAIL- 0  1  0  0
+ 1.00 solved_salp  z0    relaxed  -0.3451 0.0598  -5.77  -2.96 FAIL- 0  1  0  0
+ 1.00 solved_salp  z0    dm       -0.3471 0.0598  -5.80  -2.98 FAIL- 0  1  0  0
+ 1.00 solved_salp  full  duffy    -0.3334 0.0550  -6.06  -2.92 FAIL- 0  1  0  0
+ 1.00 solved_salp  full  relaxed  -0.3653 0.0623  -5.87  -3.10 FAIL- 0  1  0  0
+ 1.00 solved_salp  full  dm       -0.3770 0.0621  -6.08  -3.20 FAIL- 0  1  0  0
+ 1.00 solved_chab  z0    duffy    -0.1722 0.0465  -3.71  -1.56 PASS  0  1  1  0
+ 1.00 solved_chab  z0    relaxed  -0.2169 0.0533  -4.07  -1.91 PASS  0  1  1  0
+ 1.00 solved_chab  z0    dm       -0.2185 0.0535  -4.08  -1.93 PASS  0  1  1  0
+ 1.00 solved_chab  full  duffy    -0.2010 0.0499  -4.03  -1.80 PASS  0  1  1  0
+ 1.00 solved_chab  full  relaxed  -0.2316 0.0557  -4.16  -2.02 FAIL- 0  1  0  0
+ 1.00 solved_chab  full  dm       -0.2445 0.0559  -4.37  -2.13 FAIL- 0  1  0  0
+ 1.00 fixed_chab   z0    duffy    -0.3663 0.1707  -2.15  -1.85 UNFIT 0  1  1  0
+ 1.00 fixed_chab   z0    relaxed  -0.2658 0.1785  -1.49  -1.30 UNFIT 1  1  1  1
+ 1.00 fixed_chab   z0    dm       -0.1824 0.1981  -0.92  -0.82 UNFIT 1  0  1  0
+ 1.00 fixed_chab   full  duffy    -0.2705 0.1884  -1.44  -1.27 UNFIT 1  1  1  1
+ 1.00 fixed_chab   full  relaxed  -0.0627 0.1569  -0.40  -0.34 UNFIT 1  0  1  0
+ 1.00 fixed_chab   full  dm       -0.0506 0.1203  -0.42  -0.32 UNFIT 1  0  1  0
+ 3.00 solved_salp  z0    duffy    -0.4089 0.0591  -6.92  -3.52 FAIL- 0  1  0  0
+ 3.00 solved_salp  z0    relaxed  -0.4362 0.0708  -6.16  -3.56 FAIL- 0  1  0  0
+ 3.00 solved_salp  z0    dm       -0.4169 0.0707  -5.90  -3.40 FAIL- 0  1  0  0
+ 3.00 solved_salp  full  duffy    -0.4165 0.0601  -6.93  -3.57 FAIL- 0  1  0  0
+ 3.00 solved_salp  full  relaxed  -0.4453 0.0708  -6.29  -3.63 FAIL- 0  1  0  0
+ 3.00 solved_salp  full  dm       -0.4489 0.0704  -6.38  -3.67 FAIL- 0  1  0  0
+ 3.00 solved_chab  z0    duffy    -0.2914 0.0596  -4.89  -2.50 FAIL- 0  1  0  0
+ 3.00 solved_chab  z0    relaxed  -0.3135 0.0630  -4.98  -2.65 FAIL- 0  1  0  0
+ 3.00 solved_chab  z0    dm       -0.3389 0.0692  -4.90  -2.79 FAIL- 0  1  0  0
+ 3.00 solved_chab  full  duffy    -0.3002 0.0603  -4.98  -2.57 FAIL- 0  1  0  0
+ 3.00 solved_chab  full  relaxed  -0.3247 0.0630  -5.15  -2.75 FAIL- 0  1  0  0
+ 3.00 solved_chab  full  dm       -0.3724 0.0708  -5.26  -3.04 FAIL- 0  1  0  0
+ 3.00 fixed_chab   z0    duffy    -0.2053 0.1564  -1.31  -1.11 UNFIT 1  1  1  1
+ 3.00 fixed_chab   z0    relaxed  -0.2453 0.1715  -1.43  -1.24 UNFIT 1  1  1  1
+ 3.00 fixed_chab   z0    dm       -0.2685 0.1591  -1.69  -1.43 UNFIT 1  1  1  1
+ 3.00 fixed_chab   full  duffy    -0.2101 0.1815  -1.16  -1.01 UNFIT 1  0  1  0
+ 3.00 fixed_chab   full  relaxed  -0.2809 0.1803  -1.56  -1.36 UNFIT 1  1  1  1
+ 3.00 fixed_chab   full  dm       -0.3113 0.1698  -1.83  -1.58 UNFIT 1  1  1  1
+ 0.10 solved_salp  z0    duffy    -0.1063 0.0353  -3.01  -1.00 PASS  0  1  1  0
+ 0.10 solved_salp  z0    relaxed  -0.1284 0.0389  -3.30  -1.20 PASS  0  1  1  0
+ 0.10 solved_salp  z0    dm       -0.1395 0.0410  -3.40  -1.29 PASS  0  1  1  0
+ 0.10 solved_salp  full  duffy    -0.1536 0.0417  -3.68  -1.42 PASS  0  1  1  0
+ 0.10 solved_salp  full  relaxed  -0.1709 0.0448  -3.82  -1.56 PASS  0  1  1  0
+ 0.10 solved_salp  full  dm       -0.1867 0.0476  -3.92  -1.69 PASS  0  1  1  0
+ 0.10 solved_chab  z0    duffy    -0.0246 0.0250  -0.98  -0.24 PASS  1  1  1  1
+ 0.10 solved_chab  z0    relaxed  -0.0421 0.0275  -1.53  -0.41 PASS  1  1  1  1
+ 0.10 solved_chab  z0    dm       -0.0550 0.0292  -1.88  -0.53 PASS  1  1  1  1
+ 0.10 solved_chab  full  duffy    -0.0513 0.0290  -1.77  -0.49 PASS  1  1  1  1
+ 0.10 solved_chab  full  relaxed  -0.0698 0.0325  -2.15  -0.66 PASS  0  1  1  0
+ 0.10 solved_chab  full  dm       -0.0836 0.0358  -2.33  -0.79 PASS  0  1  1  0
+ 0.10 fixed_chab   z0    duffy    -0.0655 0.0601  -1.09  -0.56 PASS  1  1  1  1
+ 0.10 fixed_chab   z0    relaxed  -0.0839 0.0819  -1.02  -0.65 PASS  1  1  1  1
+ 0.10 fixed_chab   z0    dm       -0.0421 0.0956  -0.44  -0.30 PASS  1  0  1  0
+ 0.10 fixed_chab   full  duffy    -0.0746 0.0665  -1.12  -0.62 PASS  1  1  1  1
+ 0.10 fixed_chab   full  relaxed  -0.0695 0.0612  -1.14  -0.59 PASS  1  1  1  1
+ 0.10 fixed_chab   full  dm       -0.0463 0.0785  -0.59  -0.36 PASS  1  1  1  1
+10.00 solved_salp  z0    duffy    -0.4940 0.0721  -6.85  -4.01 FAIL- 0  1  0  0
+10.00 solved_salp  z0    relaxed  -0.5126 0.0837  -6.12  -3.93 FAIL- 0  1  0  0
+10.00 solved_salp  z0    dm       -0.4819 0.0829  -5.81  -3.71 FAIL- 0  1  0  0
+10.00 solved_salp  full  duffy    -0.5213 0.0737  -7.08  -4.20 FAIL- 0  1  0  0
+10.00 solved_salp  full  relaxed  -0.5538 0.0894  -6.19  -4.13 FAIL- 0  1  0  0
+10.00 solved_salp  full  dm       -0.5470 0.0895  -6.11  -4.08 FAIL- 0  1  0  0
+10.00 solved_chab  z0    duffy    -0.4093 0.0725  -5.65  -3.31 FAIL- 0  1  0  0
+10.00 solved_chab  z0    relaxed  -0.3907 0.0756  -5.17  -3.12 FAIL- 0  1  0  0
+10.00 solved_chab  z0    dm       -0.3929 0.0793  -4.96  -3.08 FAIL- 0  1  0  0
+10.00 solved_chab  full  duffy    -0.4366 0.0723  -6.04  -3.54 FAIL- 0  1  0  0
+10.00 solved_chab  full  relaxed  -0.4371 0.0807  -5.42  -3.40 FAIL- 0  1  0  0
+10.00 solved_chab  full  dm       -0.4773 0.0862  -5.54  -3.61 FAIL- 0  1  0  0
+10.00 fixed_chab   z0    duffy    -0.4817 0.2937  -1.64  -1.55 UNFIT 1  1  1  1
+10.00 fixed_chab   z0    relaxed  +nan nan   +nan   +nan UNFIT 0  0  0  0
+10.00 fixed_chab   z0    dm       +nan nan   +nan   +nan UNFIT 0  0  0  0
+10.00 fixed_chab   full  duffy    -0.4424 0.3116  -1.42  -1.35 UNFIT 1  0  1  0
+10.00 fixed_chab   full  relaxed  +nan nan   +nan   +nan UNFIT 0  0  0  0
+10.00 fixed_chab   full  dm       +nan nan   +nan   +nan UNFIT 0  0  0  0
+
+DECLARED RANGE (54 cells): S_a 0.296  S_b 0.926  S_a_floor 0.556  W=S_a&S_b 0.222
+EXTENDED context (36 cells): S_a 0.333  S_b 0.833  S_a_floor 0.556  W 0.278
+gap range over the 54 cells: -0.449 .. -0.051
+axis marginals in the 54 cells (fraction with S_a | S_b | W):
+   m=0.3333333333333333 n=18  S_a 0.28  S_b 1.00  W 0.28   mean Delta -0.174
+   m=1            n=18  S_a 0.28  S_b 0.83  W 0.11   mean Delta -0.252
+   m=3            n=18  S_a 0.33  S_b 0.94  W 0.28   mean Delta -0.335
+   tie=solved_salp  n=18  S_a 0.00  S_b 1.00  W 0.00   mean Delta -0.338
+   tie=solved_chab  n=18  S_a 0.00  S_b 1.00  W 0.00   mean Delta -0.221
+   tie=fixed_chab   n=18  S_a 0.89  S_b 0.78  W 0.67   mean Delta -0.203
+   z=z0           n=27  S_a 0.26  S_b 0.96  W 0.22   mean Delta -0.252
+   z=full         n=27  S_a 0.33  S_b 0.89  W 0.22   mean Delta -0.256
+   c=duffy        n=18  S_a 0.28  S_b 0.94  W 0.22   mean Delta -0.243
+   c=relaxed      n=18  S_a 0.28  S_b 0.94  W 0.22   mean Delta -0.253
+   c=dm           n=18  S_a 0.33  S_b 0.89  W 0.22   mean Delta -0.266
+VERDICT on wording 'B-specific statistically' over the declared range at d=0: NOT SUPPORTED (0.222)
+S_b with B canonical I (+0.171): 0.944  min B-LCDM difference over 54 cells (alt V B): +0.203
+
+=== IMF ZERO-POINT AXIS d (Auger Salpeter scale relative to ATLAS3D's; Delta_L(d) = Delta_L - d exactly, C4iv) ===
+base      d=-0.10: DeltaL=-0.194 Sa=0 | d=-0.05: DeltaL=-0.244 Sa=0 | d=+0.00: DeltaL=-0.294 Sa=0 | d=+0.05: DeltaL=-0.344 Sa=0 | d=+0.10: DeltaL=-0.394 Sa=0   => S_a holds for d in [-0.397,-0.191]
+V3 Mh/3   d=-0.10: DeltaL=-0.097 Sa=0 | d=-0.05: DeltaL=-0.147 Sa=0 | d=+0.00: DeltaL=-0.197 Sa=0 | d=+0.05: DeltaL=-0.247 Sa=0 | d=+0.10: DeltaL=-0.297 Sa=0   => S_a holds for d in [-0.287,-0.107]
+V4 Mh x3  d=-0.10: DeltaL=-0.309 Sa=0 | d=-0.05: DeltaL=-0.359 Sa=0 | d=+0.00: DeltaL=-0.409 Sa=0 | d=+0.05: DeltaL=-0.459 Sa=0 | d=+0.10: DeltaL=-0.509 Sa=0   => S_a holds for d in [-0.526,-0.291]
+V1 DM c   d=-0.10: DeltaL=-0.247 Sa=0 | d=-0.05: DeltaL=-0.297 Sa=0 | d=+0.00: DeltaL=-0.347 Sa=0 | d=+0.05: DeltaL=-0.397 Sa=0 | d=+0.10: DeltaL=-0.447 Sa=0   => S_a holds for d in [-0.466,-0.228]
+z-full    d=-0.10: DeltaL=-0.233 Sa=0 | d=-0.05: DeltaL=-0.283 Sa=0 | d=+0.00: DeltaL=-0.333 Sa=0 | d=+0.05: DeltaL=-0.383 Sa=0 | d=+0.10: DeltaL=-0.433 Sa=0   => S_a holds for d in [-0.443,-0.224]
+B (alt V) stat gap +0.152-d exceeds 2 sigma (0.044) for d < +0.108; S_b is d-invariant (assumes B shifts by -d too).
+
+FAILED CHECKS: ['C5 witness: halo mass / Moster(M_*) = 1 (1e-12)', 'H1 [HEADLINE] LCDM passes CFG33 gate (counts and |z|<=2)']

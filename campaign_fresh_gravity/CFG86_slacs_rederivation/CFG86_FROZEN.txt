@@ -1,0 +1,87 @@
+CFG86 -- INDEPENDENT RE-DERIVATION OF CFG80 (LCDM comparator for the SLACS lensing-vs-dynamics gap of CFG33), FROZEN BEFORE ANY RUN
+=====================================================================================================================================
+
+Written before this script was executed. Disclosed reading before writing (all non-LCDM): CFG80_FROZEN_CRITERIA.md, CFG80_README.md, CFG80 LEDGER row,
+CFG33 README + docstring, CFG69 README + docstring, docstrings of hunt_2026/h53, h9, h48, and the on-disk data (real_research/data/
+slacs_auger2009_lenses.tsv, atlas3d_fj_table.tsv). NOT opened before my run: the CFG80 script, .out, _results.json (and no CFG33/CFG69/CFG45/h48
+CODE). One non-LCDM plumbing count was done before this docstring: rows with numeric zlens,zsrc,sigma,RE,Mass,Fs,logMs = 70 of 85 lenses; ATLAS3D 258
+usable rows, 187 with qual>=1. No halo mass, projected mass, alpha or gap was computed for any object.
+
+QUESTION.  Through the CFG33 pipeline (70 SLACS lenses' Einstein masses vs ATLAS3D Q>=1 JAM masses, linear fit of log alpha_dyn in log sigma_e
+evaluated at the lenses' SDSS sigma, median statistic, bootstrap, 0.10-dex floor) does a standard LCDM halo (Moster+2013 SHMR, Duffy+2008 NFW, Newtonian)
+show the lensing-dynamics gap B shows (+0.15..+0.17 dex)?  Reproduce CFG80's headline; then attack the wording "B-specific statistically".
+
+MODEL as I read it (all mine, no code from the lanes)
+  Cosmology for lens geometry: flat, Om=0.3, h=0.7 (Auger). D_A(z1,z2) = c/H0/(1+z2) Int dz/E.  Sigma_crit = c^2/(4 pi G) D_s/(D_l D_ls).
+      M_E = pi R_E^2 Sigma_crit with R_E = tabulated RE (kpc).  Validation: log10 M_E vs tabulated 'Mass' (2 decimals).
+  Stars: lens projected stellar mass in R_E = alpha * Fs * M_E (Fs = Auger's Salpeter f_*, M_Salp = 10^logMs).  ATLAS3D: M_Salp = 10^(logML_Salp+logL),
+      M_JAM = 10^(logML_JAM+logL), r_1/2 = 10^logr12 arcsec * Dist/206265 (kpc, 3D half-light sphere), sigma_e = 10^logsig_e; half of the stars inside r_1/2.
+  Halo: M_h = Moster+2013 z=0 SHMR inverted on a fine log grid (M_h 1e9..10^15.5; np.interp; clamped outside) evaluated at M_* = alpha*M_Salp (the 'solved tie').
+      Moster: M*/Mh = 2N[(Mh/M1)^-beta + (Mh/M1)^gamma]^-1, log M1=11.590, N=0.0351, beta=1.376, gamma=0.608 (from memory of the paper; endpoints checked).
+      NFW 200c, rho_c(z=0) = 3 H0^2/(8 pi G), H0 = 67.4 (h=0.674); c = Duffy+2008 full 200c: 5.71 (Mh/(2e12/h))^-0.084 (h=0.674); m(t)=ln(1+t)-t/(1+t);
+      f_b = 0.02237/(0.02237+0.1200) = 0.1571; added mass (1-f_b) M_NFW.  Newtonian, no phantom, no adiabatic contraction, no SHMR scatter.
+  Lens solve:  alpha Fs + (1-f_b) M2D(<R_E; M_h(alpha M_Salp))/M_E = 1, bracket log M_* in [8,13.5] (brentq).  M2D = analytic untruncated NFW cylinder
+      (Bartelmann 1996 / Wright & Brainerd 2000), X = c R/R200, h(X) = ln(X/2) + 2/sqrt(1-X^2) artanh sqrt((1-X)/(1+X)) (X<1), arctan form (X>1), h(1)=1+ln(1/2);
+      M2D = M_h h(X)/m(c).   alpha_lens = M_*/M_Salp.
+  ATLAS solve: 0.5 M_* + (1-f_b) M_NFW(<r_1/2; M_h(M_*)) = M_JAM/2 on the same bracket; alpha_dyn = M_*/M_Salp.  3D NFW x=r/R200 clipped to [1e-4,5].
+      No root => excluded and counted.
+  Statistic: y = log10 alpha_dyn regressed on (log10 sigma_e - 2.3) (unweighted least squares); Delta = median_i [log10 alpha_lens,i - fit(log10 sigma_lens,i - 2.3)]
+      (lens sigma = SDSS 'sigma', no aperture correction); error = std of 2000 bootstraps (lenses and calibrators resampled, fit redone; my own RNG,
+      default_rng(86): calibrators drawn first, then lenses -- CFG33's draw order is unknown to me, so the error carries ~1.6% Monte-Carlo noise);
+      sigma_tot = sqrt(err^2+0.10^2); z = Delta/sigma_tot; z_stat = Delta/err.  Gate PASS iff |z|<=2 and >=35 lenses solved and >=94 calibrated.
+  B's side is NOT re-derived (needs nu_mono and h53's phantom projection, which I did not read): B's numbers are TAKEN from the CFG33 README
+      (gap +0.159/+0.171/+0.152/+0.168 for canonical V/I, alt V/I; stat errors 0.021/0.022/0.022/0.022) and used only as fixed comparison values.
+      Consequently my B-minus-LCDM significance is UNPAIRED (err = sqrt(errB^2+errL^2)), more conservative than CFG80's paired bootstrap.
+
+PASS LINES (reproduction of CFG80's README headline; CFG80 numbers as stated in its README/ledger, read before my run)
+  P1 exact: 70 lenses, 258 ATLAS, 187 Q>=1, 70/70 lenses solved and 187/187 calibrated (LCDM base), no exclusions.
+  P2 base: Delta_L = +0.037 dex, error 0.025, z=+0.36 (floor), z_stat=+1.5, alpha_lens ~0.82, alpha_dyn(at lenses) ~0.76.
+      REPRODUCED-3dp if |Delta-0.037|<=0.0015; REPRODUCED-within-resolution if <=0.005; else the difference is stated as a non-reproduction.
+      err within +-0.003; z within +-0.05; z_stat within +-0.2.
+  P3 variants (same tolerance): V1 Dutton-Maccio c (log10 c = 0.905-0.101 log10(Mh/(1e12/h)), h=0.674): +0.011; V2 Duffy relaxed 200c (6.71,-0.091): +0.019;
+      V3 all Mh x1/3: +0.075 (3.4 z_stat); V4 all Mh x3: -0.033; all Mh x100: -0.294, z=-2.61 (gate FAILS); x33 passes (CFG80 quotes -1.80 sigma in its MUTATE);
+      x300 fails (CFG80: -3.50).  Gate-weakness statement to reproduce: fails at x100, passes at x33.
+  P4 diagnostics: median log Mh lenses 14.36 (range 12.51..15.50), calibrators 12.13; median dark fraction inside R_E 42%, 3D dark fraction inside
+      r_1/2 12%; 1 lens above the Moster grid top; no inner-clip galaxies.  Class SPECIFIC-TO-B (z<=2 with floor), not NON-DISCRIMINATING (x100 outcome differs).
+  P5 caveats to reproduce: (a) with Moster tied to alpha x Salpeter masses the lens halos have median ~10^14.4; (b) halos x1/3 keep ~half of B's gap at 3.4 z_stat;
+      (c) z-consistent halos: CFG80 says NOT computed; I compute it as an extension and report it separately (no CFG80 number to compare).
+
+CONTROLS (a failed control is a failure; nothing tuned after seeing results)
+  C0 data/plumbing: 70/258/187 counts; log M_E (mine) vs tabulated 'Mass': max |diff| <= 0.01 dex (table rounds to 0.005); rho_c(0.674) = 1.2605e11 within 3e-4 rel;
+      f_b = 0.1571 within 5e-4; Moster inversion endpoints: M_*(Mh=1e9) = 10^4.28+-0.01 and M_*(Mh=10^15.5)=10^11.97+-0.01; monotonic inversion.
+  C1 NFW closed forms: M(<R200) = M_h to 1e-12; monotone; R200 from 200 rho_c 4pi/3 R^3 = M_h to 1e-12; c(Mh) at 2e12/h equals 5.71 to 1e-12.
+  C2 projection: analytic M2D vs my own numerical projection (line-of-sight Sigma(R) integrated with scipy.quad over the disc, and shell projection)
+      to 1e-6 relative over M_h 1e10..1e16, R 0.3..100 kpc, all three c relations, X<1, X>1; continuity across X=1 to 1e-6; h(1)=1+ln(1/2); M2D >= M3D(<R).
+  C3 solves: kbar(alpha_lens)=1 to 1e-9 at every solved lens; M_LCDM(<r_1/2)=M_JAM/2 to 1e-9 at every calibrator; halo switched off (Mh x1e-30) returns
+      alpha_lens = 1/Fs and alpha_dyn = M_JAM/M_Salp to 1e-9; halo only lowers alpha.
+  C4 estimator closed forms: (i) lens alphas placed exactly on the fitted line give Delta=0 to 1e-12; (ii) lens alphas = 10^k x fit give Delta = k to 1e-12;
+      (iii) the fit recovers a synthetic log-linear alpha_dyn(sigma) to 1e-10; (iv) a pure Salpeter zero-point rescale of the lens table M_Salp->10^d M_Salp,
+      Fs->10^d Fs shifts the LCDM lens alphas by exactly 10^-d (halo tie unchanged since physical M_* is the same) and Delta by -d to 1e-9 (checked at d=+-0.1 by full re-solve).
+  C5 MUTATE witness: the halo mass entering every base solve / Moster(M_*) = 1 to 1e-12 (passes in the main run; fails under MUTATE by construction, ratio 100).
+  H1 [HEADLINE] LCDM passes the CFG33 gate (P1 counts and |z|<=2).  MUTATE=1 multiplies every LCDM halo mass by 100: H1 must FAIL (rc 1), failing set must differ
+      from the main run's.  C6: the gate outcome at x100 differs from x1 (else NON-DISCRIMINATING).
+
+HALO-MASS LADDER (reported, not tuned): multipliers 0.01,0.03,0.1,1/3,1,3,10,33,100,300 on every halo (both lenses and calibrators): Delta, err, z (floor), z_stat, gate;
+      report the interval of multipliers on which the gate passes.
+
+ATTACK ON THE WORDING "B-specific statistically" (declared here, before any run)
+  Definitions, evaluated per cell using B's fixed README gaps (worst case = smallest, alt V +0.152, err 0.022; and canonical V +0.159):
+    S_a : LCDM's own statistical gap is not significant: |Delta_L| <= 2 err_L      (LCDM does not share B's 7-8 sigma statistical gap)
+    S_b : B - LCDM > 2 sqrt(errB^2 + errL^2), unpaired  (B's excess over LCDM is significant)
+    S_a_f: |Delta_L| <= 2 sqrt(err_L^2+0.10^2) (LCDM passes with the floor).
+    'B-specific statistically' SUPPORTED in a cell iff S_a AND S_b.
+  Cells in the DECLARED RANGE (54): halo multiplier m in {1/3,1,3}; halo tie in {solved Salpeter-tied (base): M_*=alpha M_Salp;  solved Chabrier-equivalent:
+      M_* = s alpha M_Salp;  fixed Chabrier-equivalent: M_h = Moster(s M_Salp) for calibrators and Moster(10^logMc) for lenses, independent of alpha}, where s =
+      median over the 70 lenses of 10^(logMc-logMs) (Auger); z-evaluation in {z=0 (base); z-consistent: lens halo with rho_c(z_l)=rho_c0[0.3(1+z)^3+0.7], Duffy (1+z)^-0.47
+      (relaxed (1+z)^-0.44; Dutton-Maccio a(z),b(z) with a=0.520+0.385exp(-0.617 z^1.21), b=-0.101+0.026 z) and Moster+2013 z-evolution at z_l (M1: 11.590+1.195 z/(1+z);
+      N: 0.0351-0.0247 z/(1+z); beta: 1.376-0.826 z/(1+z); gamma: 0.608+0.329 z/(1+z)), ATLAS3D calibrators at z=0}; c in {Duffy full, Duffy relaxed, Dutton-Maccio}.
+      3x3x2x3 = 54.  Extended context (not counted in the verdict): m in {0.1, 10}.
+  Extra decomposition at base (reported): z-consistent pieces separately (rho_c(z) only; Duffy (1+z) only; Moster z-evolution only).
+  IMF/alpha zero-point axis: a Salpeter zero-point offset d between Auger and ATLAS3D (C4iv shows it shifts LCDM's Delta by exactly -d; I ASSUME B's shifts by -d as well,
+      as CFG80 asserts 'almost equally'; B's side is not re-derived), d in {-0.10,-0.05,0,+0.05,+0.10} (the 0.10 floor).  S_b is d-invariant by construction; S_a is not.
+  VERDICT RULES (declared): for wording W = S_a AND S_b over the 54 cells at d=0: ROBUST if >=90% of cells support W; CONDITIONAL if 50-90% (state which axis levels flip);
+      NOT SUPPORTED if <50%.  Separately state which single axis levels flip S_a (marginal fractions) and whether S_b ever flips.  Then add the d axis: state the d-range in which the
+      base cell supports W, and whether the +-0.10 floor range is inside it.
+
+STANDING: kappa=1/2 is FITTED; nothing here says the data favour B or LCDM; no claim that the theory is closed.  Non-reproduction is a valid outcome.
+Run: python3 CFG86_lcdm_slacs_rederivation.py   (MUTATE=1 for the control)
