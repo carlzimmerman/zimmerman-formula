@@ -1,0 +1,69 @@
+[PASS] S1 d_j T_ij = 0 for arbitrary Phi (sympy) :: [0, 0, 0]
+[PASS] S1 tr T = 2 lap Phi = 8 pi G rho (sympy) :: 0
+[PASS] S1 T_rr = 2 Phi'/r = 2 g_N/r :: 2*Derivative(P(r), r)/r
+[PASS] S1 T_perp = Phi'' + Phi'/r = 4 pi G rho - g_N/r :: Derivative(P(r), (r, 2)) + Derivative(P(r), r)/r
+[PASS] S1 FRW: angular-average projector = (2/3) delta -> T_ij = (8 pi G rho/3) delta_ij :: Matrix([[2/3, 0, 0], [0, 2/3, 0], [0, 0, 2/3]])
+[PASS] S2 Cartesian q = (delta lap - d d)F equals div(2[F_perp'+(F_perp-F_rr)/r] rhat) :: worst rel diff 8.80e-17
+[PASS] S3 point mass: T_rr' P + 2 T_perp' P = P (tr T)' = 0 -> a_f = 0 :: 0
+[PASS] S3 point mass: a_react = 4 pi G chi P' = -chi G a0 M/r^3 :: -G*M*a0*chi/r**3
+[PASS] S3 linearised fluid: omega^2 = c_eff^2 k.g^{-1}.k (eigenvalue of g^{-1}(c^2 k k^T)) :: [c2*(gp*gr*k2**2 + gp*gt*k1**2 + gr*gt*k3**2)/(gp*gr*gt), 0]
+[PASS] S3 g with one negative eigenvalue: omega^2 = c^2 k.g^-1.k = -2 <0 for k along it (ghost + gradient instability) :: [-2, 0]
+[PASS] P6 point-mass target M_c = M(sqrt(1+x^2)-1) (seed 0), rel err < 1e-6 [MUTATE a: fluid-sourced -> must fail] :: max rel err 1.28e-12
+[PASS] P6 closure seed-independent (|d log10 M_c(x=3)| between seeds 1e-3, 1e-6 < 1e-3 dex) [MUTATE a must fail] :: spread 6.347e-05 dex
+[PASS] P6 Jeans identity (rho sigma_r^2)'+2 beta rho sigma_r^2/r = -rho_c g_tot (beta=-(3/2)rho_b/rhobar_b) :: max rel residual 1.26e-06 (finite-difference derivative)
+[PASS] N1 target fluid mass M_c(<r) >= 0 and monotone (eps=0.3) :: min M_c 4.465e-14
+[PASS] P6 chi_c = 1/lambda_max = 3/(8 pi G rho_0) = 3 h^3/(G M) :: num 3.000022500 closed 3.000000000 (grid starts at s=1e-5; leading correction 3s/4)
+[PASS] P6 ghost detector: flagged 0.1% above the boundary, clean 0.1% below (used sign) :: chi_used=-3
+[PASS] P9 reversed sign: ghost boundary moves by factor lambda_max/max(-lambda_min) within 85-97 (CFG50: 91) :: factor 91.49
+[PASS] P1 support sign is chi<0 (a_f>0 outward at r=h for chi<0) :: sign(a_f(chi=-1, r=h)) = +1
+[PASS] P1 used-sign coupling gives OUTWARD force (support) at r=h [MUTATE b must fail] :: a_f/g_tot(h) used sign = +0.4940
+[FAIL] P1 ceiling 0.505 +- 5e-4 (chi = -chi_c) [uses the support sign] :: peak 0.50077 at r/h=0.852; 0.3h: 0.3367; 3h: 0.1430
+[PASS] P1 0.3h value 0.34+-0.005 and 3h value 0.14+-0.005 :: 0.3367, 0.1430
+[PASS] P1 mass independence: eps cancels in a_f/g_tot :: Pi ∝ eps, rho_c g_tot ∝ eps: analytic
+   eps    a_react/g_tot(0.3h)   (1h)   [option A, chi=-chi_c]
+     0.001       -0.0155       -0.0021
+   0.00178       -0.0273       -0.0038
+   0.00316       -0.0479       -0.0067
+   0.00562       -0.0830       -0.0117
+      0.01       -0.1418       -0.0204
+    0.0178       -0.2372       -0.0349
+    0.0316       -0.3869       -0.0585
+    0.0562       -0.6129       -0.0958
+       0.1       -0.9425       -0.1521
+     0.178       -1.4093       -0.2343
+     0.316       -2.0562       -0.3507
+     0.562       -2.9396       -0.5118
+         1       -4.1346       -0.7316
+      1.78       -5.7415       -1.0286
+      3.16       -7.8946       -1.4278
+      5.62      -10.7739       -1.9625
+        10      -14.6196       -2.6774
+      17.8      -19.7525       -3.6320
+      31.6      -26.6008       -4.9060
+      56.2      -35.7358       -6.6056
+       100      -47.9195       -8.8728
+  option A M_b=1e+09: eps=2.741  h=2.02 kpc  predicted |a_react/g|(1h)=1.318 (range from 0.3h rounding 1.308-1.327)  CFG50 1.3
+  option A M_b=1e+10: eps=0.6141  h=3.02 kpc  predicted |a_react/g|(1h)=0.5412 (range from 0.3h rounding 0.532-0.5504)  CFG50 0.54
+  option A M_b=1e+12: eps=0.01717  h=5.06 kpc  predicted |a_react/g|(1h)=0.03376 (range from 0.3h rounding 0.03299-0.03453)  CFG50 0.03
+  option B M_b=1e+09: eps=5.445  h=2.85 kpc  predicted |a_react/g|(1h)=1.414 (range from 0.3h rounding 1.404-1.424)  CFG50 1.3
+  option B M_b=1e+10: eps=1.013  h=3.88 kpc  predicted |a_react/g|(1h)=0.5914 (range from 0.3h rounding 0.5815-0.6012)  CFG50 0.54
+  option B M_b=1e+12: eps=0.01758  h=5.12 kpc  predicted |a_react/g|(1h)=0.03429 (range from 0.3h rounding 0.03349-0.03509)  CFG50 0.03
+[PASS] P2 (option A) all three masses: calibrated on 0.3h, predicted 1h: intervals (quoted rounding propagated) overlap :: see table above
+[FAIL] P2 (option B) all three masses: calibrated on 0.3h, predicted 1h: intervals (quoted rounding propagated) overlap :: see table above
+[PASS] P3 a_react opposite to a_f inside r_flip, r_flip in [1.6,1.8] h (chi-sign invariant: both linear in chi) :: r_flip = 1.7802879164157006 (eps=1), 1.7802879164157006 (eps=0.02); all sign changes of the product: [1.78]
+  signs (eps=1, chi used): a_react/g(0.3h)=-4.135, (1h)=-0.732; a_f/g(0.3h)=+0.337, (1h)=+0.494
+  virtual work R=0.3: finite-diff -0.62797  adjoint -0.62794  rel 5.30e-05
+  virtual work R=0.6: finite-diff -0.37871  adjoint -0.37869  rel 6.05e-05
+  virtual work R=1.0: finite-diff -0.17297  adjoint -0.17296  rel 7.96e-05
+  virtual work R=1.5: finite-diff -0.03928  adjoint -0.03927  rel 1.81e-04
+  virtual work R=2.5: finite-diff +0.04141  adjoint +0.04142  rel 4.03e-05
+  virtual work R=4.0: finite-diff +0.03571  adjoint +0.03571  rel 4.76e-07
+[PASS] P4 virtual work = adjoint formula, max rel diff < 1% (CFG50 quotes 0.24%) :: max rel 1.812e-04
+[PASS] P5 Noether (3-D non-spherical): |dS/da_b + dS/da_f| / |dS/da_b| < 1e-9 :: 6.06e-11
+[PASS] P5 adjoint force -int rho_b grad(lambda) = finite-difference dS/da_b to 1e-5 rel :: 5.00e-09; force on baryons = [-0.86866143  0.76284236 -2.04239826]
+[PASS] P5 without the reaction, net momentum = O(1) of the fluid-side force (translation-invariance violated) :: |F_fluid|/|F_react| = 1.000
+[PASS] P6 point-mass limit at 20h: a_f/g_tot < 1e-4 and a_react = 4 pi G chi P' within 2e-3 :: a_f/g=2.86e-08, a_react/(4 pi chi P')=1.000038
+[PASS] P7 FRW inertia renormalisation chi Omega_b H^2: order 4e-8..3e-6 today, 50..3400 at z=1100 (chi=1e-4..1e-2 quoted from CFG50; not derived) :: H0=67.0 chi=0.0001: today 2.20e-08, z=1100 29.4; H0=67.0 chi=0.01: today 2.20e-06, z=1100 2935.7; H0=70.0 chi=0.0001: today 2.40e-08, z=1100 32.0; H0=70.0 chi=0.01: today 2.40e-06, z=1100 3204.5
+[PASS] P8 chi needed differs by ~x64 across 1e9..1e12 at the P2-calibrated h(M) (reported cross-check) :: h(kpc)={1000000000.0: 2.02, 10000000000.0: 3.02, 1000000000000.0: 5.06}; chi_needed={1000000000.0: '0.0115', 10000000000.0: '0.00385', 1000000000000.0: '0.00018'}; max/min=63.8
+
+MUTATE=0: 30/32 checks pass; sha256(script)=55668b869eb9e09d

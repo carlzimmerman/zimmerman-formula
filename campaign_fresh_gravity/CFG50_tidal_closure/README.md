@@ -37,3 +37,6 @@ Nothing here says the theory is closed.
 
 ## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
 - 'The reaction on the baryons is O(g_law)' holds for M_b <= 1e10; at 1e12 it is 0.03 g at r = h (0.23 at 0.3h). The output labels the column reaction/g_tot. D1 MUTATE_b and D2 MUTATE_a exist and pass 6/6 (not mentioned above).
+
+## Referee correction (CFG101's independent re-derivation; appended)
+- CFG101 reproduces the reaction values, the x91 ghost boundary and the x64 chi range, with two corrections: the ghost-free force ceiling is 0.5008 g_tot (D2's 0.505 comes from a grid starting at r0 = 0.01 h, which puts lambda_max 0.75% low), and the reaction is opposite in sign to the fluid force inside r < 1.8 h, not 1.7 h. The 0.5 ceiling belongs to the tidal line with the energy-gradient force: freeing the coupling under ghost-freedom alone makes the force unbounded, and the fluid-side force definition (CFG50's omits the h_ij v^j momentum terms) is load-bearing; the reaction itself is definition-independent and is a translation-invariance consequence (3-D Noether check). See CFG101.

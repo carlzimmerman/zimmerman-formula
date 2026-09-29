@@ -1,0 +1,50 @@
+[PASS] X5 isotropic Pi: q = (delta lap - d d)F = chi lap(P) exactly (Cartesian sympy) :: so lambda = -4 pi G chi P, a_react = 4 pi G chi grad P; a_f = (4 pi G chi P/rho_c) grad rho_b is contact
+[PASS] X2 canonical-momentum-flux force = geodesic expression after Jeans substitution (sympy) :: -(1/2) h_rr' P_r + h_p' P_p + 2(h_p-h_r)P_p/r + h_r rho g
+
+--- fluid-side force definition D_c4 ---
+  tidal line    : O1 sup a_f/g at 0.3h,1h,3h = 0.3135(st0), 0.4833(st0), 0.1619(st0);  O2 max-min over [0.3,3]h = 0.1619 (st 0)  (a,b,c)=[-1.5014 -1.5014 -0.    ]
+     O3 t0=0.100: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 2.1674
+     O3 t0=0.081: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 1.7548
+  full (a,b,c)  : O1 sup a_f/g at 0.3h,1h,3h = 1433.7051(st0), 1373.6070(st0), 0.4522(st0);  O2 max-min over [0.3,3]h = 0.2329 (st 0)  (a,b,c)=[ 6.8479 -3.4177  0.8649]
+     O3 t0=0.100: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 0.1268
+     O3 t0=0.081: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 0.1027
+
+--- fluid-side force definition D_full ---
+  tidal line    : O1 sup a_f/g at 0.3h,1h,3h = 57.2961(st0), 18.4663(st0), 0.0049(st0);  O2 max-min over [0.3,3]h = -0.0000 (st 0)  (a,b,c)=[-0. -0. -0.]
+     O3 t0=0.100: min max|a_react|/g on [0.3,3]h (eps=0.6141) = infeasible/status 2
+     O3 t0=-0.000: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 0.0000
+  full (a,b,c)  : O1 sup a_f/g at 0.3h,1h,3h = 8997.1312(st0), 5166.8430(st0), 2155.5350(st0);  O2 max-min over [0.3,3]h = 2155.5350 (st 0)  (a,b,c)=[ 10000. -10000. -10000.]
+     O3 t0=0.100: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 0.1079
+     O3 t0=-0.000: min max|a_react|/g on [0.3,3]h (eps=0.6141) = 0.0000
+[FAIL] X1 control: tidal-line LP sup a_f/g (r in 0.7..1) equals the direct tidal evaluation at chi=-chi_c (0.5008) :: LP 0.48563, direct 0.50077
+[PASS] X1 control: full-family optimum >= tidal-line optimum (superset) :: 
+[PASS] X3 control: exp coupling at |chi| = 1e-3 chi_c equals the linear coupling to 1e-2 :: max rel 5.20e-04
+
+--- X3 nonlinear h = exp(chi T) - 1, chi = -k chi_c, eps=0.614 (M_b=1e10) ---
+  k=  0.5: sup_[0.3,5]h a_f/g =    0.2085; at 1h a_f/g =    0.2085, a_react/g =   -0.3104, ratio a_react/(a_f) =   -1.489; at 0.3h a_f/g=   0.1173 a_react/g=  -1.2026
+  k=  1.0: sup_[0.3,5]h a_f/g =    0.3571; at 1h a_f/g =    0.3522, a_react/g =   -0.6651, ratio a_react/(a_f) =   -1.888; at 0.3h a_f/g=   0.1634 a_react/g=  -1.8472
+  k=  2.0: sup_[0.3,5]h a_f/g =    0.5581; at 1h a_f/g =    0.5042, a_react/g =   -1.3593, ratio a_react/(a_f) =   -2.696; at 0.3h a_f/g=   0.1588 a_react/g=  -2.1290
+  k=  3.0: sup_[0.3,5]h a_f/g =    0.6925; at 1h a_f/g =    0.5430, a_react/g =   -1.9076, ratio a_react/(a_f) =   -3.513; at 0.3h a_f/g=   0.1158 a_react/g=  -1.7978
+  k=  5.0: sup_[0.3,5]h a_f/g =    0.8729; at 1h a_f/g =    0.4705, a_react/g =   -2.4281, ratio a_react/(a_f) =   -5.161; at 0.3h a_f/g=   0.0458 a_react/g=  -0.9045
+  k= 10.0: sup_[0.3,5]h a_f/g =    1.1444; at 1h a_f/g =    0.1897, a_react/g =   -1.7568, ratio a_react/(a_f) =   -9.262; at 0.3h a_f/g=   0.0025 a_react/g=  -0.0769
+  k= 20.0: sup_[0.3,5]h a_f/g =    1.5195; at 1h a_f/g =    0.0165, a_react/g =   -0.2826, ratio a_react/(a_f) =  -17.166; at 0.3h a_f/g=   0.0000 a_react/g=  -0.0002
+  k= 50.0: sup_[0.3,5]h a_f/g =    2.6951; at 1h a_f/g =    0.0000, a_react/g =   -0.0001, ratio a_react/(a_f) =  -39.918; at 0.3h a_f/g=   0.0000 a_react/g=  -0.0000
+[PASS] X4 ratio a_react/a_f is invariant under a rescaling of Pi at fixed g_tot (both linear in Pi) :: R(0.3h)=-9.207, R(1h)~-1.096 at eps=0.6141
+  a_react/a_f (tidal, ghost-limited, c4) at 0.3h,1h,3h for M_b=1e9 (eps=2.741): [-21.681  -2.667   2.505]
+  a_react/a_f (tidal, ghost-limited, c4) at 0.3h,1h,3h for M_b=1e10 (eps=0.6141): [-9.207 -1.095  1.069]
+  a_react/a_f (tidal, ghost-limited, c4) at 0.3h,1h,3h for M_b=1e12 (eps=0.01717): [-0.683 -0.068  0.076]
+
+--- X6 oblate homogeneous spheroid: lambda_max(T_center)/sphere at fixed M and equatorial radius ---
+  q=0.999999: N_z=0.33334, N_x=0.33333, lambda_max/lambda_sphere = 1.0000  (chi_c scales as 1/1.000)
+  q=0.500000: N_z=0.52720, N_x=0.23640, lambda_max/lambda_sphere = 2.2908  (chi_c scales as 1/2.291)
+  q=0.200000: N_z=0.75048, N_x=0.12476, lambda_max/lambda_sphere = 6.5643  (chi_c scales as 1/6.564)
+  q=0.100000: N_z=0.86080, N_x=0.06960, lambda_max/lambda_sphere = 13.9560  (chi_c scales as 1/13.956)
+  q=0.050000: N_z=0.92618, N_x=0.03691, lambda_max/lambda_sphere = 28.8927  (chi_c scales as 1/28.893)
+[PASS] X6 control: q -> 1 gives N = 1/3 and ratio 1 :: 
+
+--- X7 ceiling vs the start radius r0 of the chi_c grid (main run: r0 = 1e-5 h) ---
+  r0=1e-05: chi_c = 3.000023, ceiling = 0.50077 at r/h = 0.851
+  r0=0.001: chi_c = 3.002251, ceiling = 0.50114 at r/h = 0.852
+  r0=0.01: chi_c = 3.022579, ceiling = 0.50453 at r/h = 0.852
+
+MUTATE=1: 6/7 controls pass

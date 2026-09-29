@@ -1,0 +1,67 @@
+[PASS] S1 d_j T_ij = 0 for arbitrary Phi (sympy) :: [0, 0, 0]
+[PASS] S1 tr T = 2 lap Phi = 8 pi G rho (sympy) :: 0
+[PASS] S1 T_rr = 2 Phi'/r = 2 g_N/r :: 2*Derivative(P(r), r)/r
+[PASS] S1 T_perp = Phi'' + Phi'/r = 4 pi G rho - g_N/r :: Derivative(P(r), (r, 2)) + Derivative(P(r), r)/r
+[PASS] S1 FRW: angular-average projector = (2/3) delta -> T_ij = (8 pi G rho/3) delta_ij :: Matrix([[2/3, 0, 0], [0, 2/3, 0], [0, 0, 2/3]])
+[PASS] S2 Cartesian q = (delta lap - d d)F equals div(2[F_perp'+(F_perp-F_rr)/r] rhat) :: worst rel diff 8.80e-17
+[PASS] S3 point mass: T_rr' P + 2 T_perp' P = P (tr T)' = 0 -> a_f = 0 :: 0
+[PASS] S3 point mass: a_react = 4 pi G chi P' = -chi G a0 M/r^3 :: -G*M*a0*chi/r**3
+[PASS] S3 linearised fluid: omega^2 = c_eff^2 k.g^{-1}.k (eigenvalue of g^{-1}(c^2 k k^T)) :: [c2*(gp*gr*k2**2 + gp*gt*k1**2 + gr*gt*k3**2)/(gp*gr*gt), 0]
+[PASS] S3 g with one negative eigenvalue: omega^2 = c^2 k.g^-1.k = -2 <0 for k along it (ghost + gradient instability) :: [-2, 0]
+[PASS] P6 point-mass target M_c = M(sqrt(1+x^2)-1) (seed 0), rel err < 1e-6 [MUTATE a: fluid-sourced -> must fail] :: max rel err 1.28e-12
+[PASS] P6 closure seed-independent (|d log10 M_c(x=3)| between seeds 1e-3, 1e-6 < 1e-3 dex) [MUTATE a must fail] :: spread 6.347e-05 dex
+[PASS] P6 Jeans identity (rho sigma_r^2)'+2 beta rho sigma_r^2/r = -rho_c g_tot (beta=-(3/2)rho_b/rhobar_b) :: max rel residual 1.26e-06 (finite-difference derivative)
+[PASS] N1 target fluid mass M_c(<r) >= 0 and monotone (eps=0.3) :: min M_c 4.465e-14
+[PASS] P6 chi_c = 1/lambda_max = 3/(8 pi G rho_0) = 3 h^3/(G M) :: num 3.000022500 closed 3.000000000 (grid starts at s=1e-5; leading correction 3s/4)
+[PASS] P6 ghost detector: flagged 0.1% above the boundary, clean 0.1% below (used sign) :: chi_used=274.459
+[PASS] P9 reversed sign: ghost boundary moves by factor lambda_max/max(-lambda_min) within 85-97 (CFG50: 91) :: factor 91.49
+[PASS] P1 support sign is chi<0 (a_f>0 outward at r=h for chi<0) :: sign(a_f(chi=-1, r=h)) = +1
+[FAIL] P1 used-sign coupling gives OUTWARD force (support) at r=h [MUTATE b must fail] :: a_f/g_tot(h) used sign = -45.1987
+[FAIL] P1 ceiling 0.505 +- 5e-4 (chi = -chi_c) [uses the support sign] :: peak 0.00000 at r/h=50.215; 0.3h: -30.8036; 3h: -13.0855
+[FAIL] P1 0.3h value 0.34+-0.005 and 3h value 0.14+-0.005 :: -30.8036, -13.0855
+[PASS] P1 mass independence: eps cancels in a_f/g_tot :: Pi ∝ eps, rho_c g_tot ∝ eps: analytic
+   eps    a_react/g_tot(0.3h)   (1h)   [option A, chi=-chi_c]
+     0.001       +1.4190       +0.1958
+   0.00178       +2.5006       +0.3466
+   0.00316       +4.3790       +0.6114
+   0.00562       +7.5921       +1.0722
+      0.01      +12.9684       +1.8627
+    0.0178      +21.7023       +3.1905
+    0.0316      +35.3965       +5.3560
+    0.0562      +56.0756       +8.7627
+       0.1      +86.2258      +13.9178
+     0.178     +128.9273      +21.4380
+     0.316     +188.1116      +32.0835
+     0.562     +268.9340      +46.8234
+         1     +378.2574      +66.9314
+      1.78     +525.2650      +94.1072
+      3.16     +722.2526     +130.6283
+      5.62     +985.6693     +179.5461
+        10    +1337.4969     +244.9433
+      17.8    +1807.0879     +332.2760
+      31.6    +2433.6158     +448.8297
+      56.2    +3269.3443     +604.3270
+       100    +4383.9868     +811.7388
+  option A M_b=1e+09: eps=0.005395  h=0.09 kpc  predicted |a_react/g|(1h)=1.03 (range from 0.3h rounding 1.023-1.037)  CFG50 1.3
+  option A M_b=1e+10: eps=0.002215  h=0.18 kpc  predicted |a_react/g|(1h)=0.4307 (range from 0.3h rounding 0.4237-0.4378)  CFG50 0.54
+  option B M_b=1e+09: eps=0.005415  h=0.09 kpc  predicted |a_react/g|(1h)=1.033 (range from 0.3h rounding 1.026-1.04)  CFG50 1.3
+  option B M_b=1e+10: eps=0.002217  h=0.18 kpc  predicted |a_react/g|(1h)=0.431 (range from 0.3h rounding 0.4239-0.438)  CFG50 0.54
+[FAIL] P2 (option A) all three masses: calibrated on 0.3h, predicted 1h: intervals (quoted rounding propagated) overlap :: see table above
+[FAIL] P2 (option B) all three masses: calibrated on 0.3h, predicted 1h: intervals (quoted rounding propagated) overlap :: see table above
+[PASS] P3 a_react opposite to a_f inside r_flip, r_flip in [1.6,1.8] h (chi-sign invariant: both linear in chi) :: r_flip = 1.7802879164157006 (eps=1), 1.7802879164157006 (eps=0.02); all sign changes of the product: [1.78]
+  signs (eps=1, chi used): a_react/g(0.3h)=+378.257, (1h)=+66.931; a_f/g(0.3h)=-30.804, (1h)=-45.199
+  virtual work R=0.3: finite-diff -0.62797  adjoint -0.62794  rel 5.30e-05
+  virtual work R=0.6: finite-diff -0.37871  adjoint -0.37869  rel 6.05e-05
+  virtual work R=1.0: finite-diff -0.17297  adjoint -0.17296  rel 7.96e-05
+  virtual work R=1.5: finite-diff -0.03928  adjoint -0.03927  rel 1.81e-04
+  virtual work R=2.5: finite-diff +0.04141  adjoint +0.04142  rel 4.03e-05
+  virtual work R=4.0: finite-diff +0.03571  adjoint +0.03571  rel 4.76e-07
+[PASS] P4 virtual work = adjoint formula, max rel diff < 1% (CFG50 quotes 0.24%) :: max rel 1.812e-04
+[PASS] P5 Noether (3-D non-spherical): |dS/da_b + dS/da_f| / |dS/da_b| < 1e-9 :: 6.06e-11
+[PASS] P5 adjoint force -int rho_b grad(lambda) = finite-difference dS/da_b to 1e-5 rel :: 5.00e-09; force on baryons = [-0.86866143  0.76284236 -2.04239826]
+[PASS] P5 without the reaction, net momentum = O(1) of the fluid-side force (translation-invariance violated) :: |F_fluid|/|F_react| = 1.000
+[PASS] P6 point-mass limit at 20h: a_f/g_tot < 1e-4 and a_react = 4 pi G chi P' within 2e-3 :: a_f/g=2.86e-08, a_react/(4 pi chi P')=1.000038
+[PASS] P7 FRW inertia renormalisation chi Omega_b H^2: order 4e-8..3e-6 today, 50..3400 at z=1100 (chi=1e-4..1e-2 quoted from CFG50; not derived) :: H0=67.0 chi=0.0001: today 2.20e-08, z=1100 29.4; H0=67.0 chi=0.01: today 2.20e-06, z=1100 2935.7; H0=70.0 chi=0.0001: today 2.40e-08, z=1100 32.0; H0=70.0 chi=0.01: today 2.40e-06, z=1100 3204.5
+[FAIL] P8 chi needed across masses :: calibration incomplete
+
+MUTATE=b: 26/32 checks pass; sha256(script)=55668b869eb9e09d
