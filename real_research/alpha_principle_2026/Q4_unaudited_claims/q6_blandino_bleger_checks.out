@@ -1,0 +1,43 @@
+== B1: K that reproduces a given alpha^-1 in Blandino's formula ==
+  A(pi) = 137.03630377588 (miss vs T = 2.22e-6) ; K_fit(CODATA 2022) = 9.93279051198 (paper: 9.9327912864)
+  F = 10 - K = 0.0672094880156 ; continued fraction of F: [0; 14, 1, 7, 3, 1, 13, 1, 1, 1, 5, 7, 1]
+  the paper's six-quotient K = 9.93279132791 ; S(K_cf) = 137.035999177 ; miss vs T = 3.26e-16 (sigma_CODATA 2.04e-6)
+  information: K_fit is ONE real fitted to CODATA (10 significant digits ~ 33 bits); the quotients [14,1,7,3,1,3] are the same number written as a continued fraction (six integers <= 14: ~ 6*log2(45)= 33 bits available): no evidence beyond the fit
+== B2: Monte Carlo replication of the stated model (numpy float64, 2,000,000 draws, depth 20) ==
+  E_int = 5.0 (P(q) ~ exp(-q/10.0)): mean <S> = 137.035999167845 ; std = 1.396e-08 ; P(q=1) = 0.0958 ; P(q=1) analytic = 0.0962
+  printed: mean = 137.035999167828 ; std = 1.40e-08 ; P(q=1) = 0.1815
+  replicated mean - printed mean = 1.717e-11 (0.000817 x the CODATA 2.1e-8) ; replicated mean - CODATA 2022 = -9.155e-09
+  H6 the printed mean is NOT reproduced (|diff| > 5e-8): False ; H9 the printed P(q=1) = 18.15% is NOT the stated distribution's (|diff| > 5 points): True
+  scan of the printed insensitivity claim (mean insensitive to E_int in [3,10]):
+     E_int =  2.5 : mean <S> = 137.035999162366 ; P(q=1) = 0.1817 ; mean - CODATA = -1.463e-08
+     E_int =  3.0 : mean <S> = 137.035999163923 ; P(q=1) = 0.1533 ; mean - CODATA = -1.308e-08
+     E_int =  5.0 : mean <S> = 137.035999167838 ; P(q=1) = 0.0961 ; mean - CODATA = -9.162e-09
+     E_int = 10.0 : mean <S> = 137.035999171584 ; P(q=1) = 0.0548 ; mean - CODATA = -5.416e-09
+  spread of the mean over E_int in {3, 5, 10} = 7.661e-09 (CODATA 2022 sigma = 2.1e-8): insensitivity HOLDS
+== B3/B4: what K does each CODATA value need, and how sensitive is S to K? ==
+  A - 1/(24A) = 137.0359997202 (miss vs T = 3.96e-9 = 24.8 sigma_CODATA) ; c = 1/(A^2 pi^2) = 5.3954663e-6
+  dS/dK at K_fit = c/K^2 = 5.4687e-8 per unit K ; window of K within 1 sigma_CODATA (2.1e-8 abs): +-0.384 ; within the bar (6.85e-8 abs): +-1.25
+  S(K = 10) = 137.03599918065 ; miss vs T = 2.66e-11 (0.167 sigma_CODATA)  <- no continued fraction at all (F = 0)
+  S(K = 9.5) = 137.03599915225 ; miss vs T = 1.81e-10 (1.13 sigma_CODATA)
+  S(K = 9) = 137.0359991207 ; miss vs T = 4.11e-10 (2.57 sigma_CODATA)
+  (the five CODATA values are RECALLED from memory, not read from a source in this lane)
+  2006 : K needed = 130.96609 (OUTSIDE the operator domain (9,10): the model cannot represent this value with any single continued fraction)
+  2010 : K needed = 8.3495632 (OUTSIDE the operator domain (9,10): the model cannot represent this value with any single continued fraction)
+  2014 : K needed = 9.283362245 (inside (9,10)) ; F = 10 - K has quotients [0; 1, 2, 1, 1, 8, 9, 2, 27]
+  2018 : K needed = 8.4808049 (OUTSIDE the operator domain (9,10): the model cannot represent this value with any single continued fraction)
+  2022 : K needed = 9.932790512 (inside (9,10)) ; F = 10 - K has quotients [0; 14, 1, 7, 3, 1, 13, 1, 1]
+  CODATA values with K inside (9,10): 2 of 5
+  Gauss-Kuzmin: P(a quotient > 45) = 0.0310 ; P(all 8 quotients <= 45) = 0.777 ; for the paper's claim over five values (40 quotients) = 0.283
+== G1: Bleger's script and closed form ==
+  fetched bleger_pkg.zip         sha256 43f00c7edfa52eac
+  script exit 0 ; printed closed form = 137.035999181486 ; lines printed = 139
+  independent mpmath: 19596/143 + 5R/(6370 - 2R) = 137.035999181486 ; miss vs T = 3.27e-11 = 0.205 sigma_CODATA (rel 1.6e-10)
+  L(1, chi_12) = 0.760345996300946 ; R/sqrt(3) = 0.760345996300946 ; identity holds to 0.0
+== G2: how many formulas of Bleger's shape hit the bar's miss? (A/B + R/C + c3 (R/C)^2, B <= 300, C <= 3000, c3 = p/q in [0,1], q <= 40) ==
+  fractions p/q with q <= 40 in [0,1]: 491 ; combinations (B, C, c3): 4.42e+08
+  hits within 5e-10 of T: 8983 ; expected by density (2*tol*B per combination): 9114
+  hits with B <= 143, C <= 1274, q <= 5 (simpler than or equal to Bleger's (143, 1274, 2/5) in every coordinate): 26
+  examples (B, C, p/q, A): (98, 245, 2/5, 13429); (97, 261, 1/1, 13292); (123, 379, 1/3, 16855); (30, 494, 0/1, 4111); (30, 495, 3/4, 4111); (60, 494, 0/1, 8222); (60, 495, 3/4, 8222); (121, 448, 1/5, 16581)
+  Bleger's own (143, 1274, 2/5, 19596) among the hits: True
+  the source's own c3 sweep, miss vs T (relative): 0/1: 3.09e-09; 1/3: 4.88e-10; 3/8: 1.63e-10; 11/28: 2.43e-11; 2/5: 3.14e-11; 1/2: 8.11e-10
+flags (H6, H9, G1, G2, b4a, b4c) = (False, True, True, True, True, True) ; recorded (False, True, True, True, True, True) ; match True

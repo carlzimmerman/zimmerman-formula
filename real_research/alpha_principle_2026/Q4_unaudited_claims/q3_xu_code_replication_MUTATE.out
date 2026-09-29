@@ -1,0 +1,16 @@
+(a) printed import line fails: cannot import name 'sphericaljn' from 'mpmath' (/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/mpmath/__init__.py)
+(b) repaired Listing 1, dps = 40, baseline as printed (137.035999177):
+  m=2 : output = 137.10161345543869026 ; harmonic_correction*1e-12 = -1.6891e-12 ; delta_EBT_vac = 0.0656143 ; |output - baseline| = 0.0656143 ; paper Table 1 = 137.0359985 ; |output - Table 1| = 0.065615
+        baseline-removed control (baseline 137.0; MUTATE feeds the CODATA baseline) : output = 137.10161345543869026 ; slope d output / d baseline = 0.0
+  m=4 : output = 137.10161345543613675 ; harmonic_correction*1e-12 = -4.24261e-12 ; delta_EBT_vac = 0.0656143 ; |output - baseline| = 0.0656143 ; paper Table 1 = 137.03599916 ; |output - Table 1| = 0.0656143
+        baseline-removed control (baseline 137.0; MUTATE feeds the CODATA baseline) : output = 137.10161345543613675 ; slope d output / d baseline = 0.0
+  m=6 : output = 137.10161345542827733 ; harmonic_correction*1e-12 = -1.2102e-11 ; delta_EBT_vac = 0.0656143 ; |output - baseline| = 0.0656143 ; paper Table 1 = 137.035999177 ; |output - Table 1| = 0.0656143
+        baseline-removed control (baseline 137.0; MUTATE feeds the CODATA baseline) : output = 137.10161345542827733 ; slope d output / d baseline = 0.0
+  m=8 : output = 137.10161345540346291 ; harmonic_correction*1e-12 = -3.69164e-11 ; delta_EBT_vac = 0.0656143 ; |output - baseline| = 0.0656143 ; paper Table 1 = 137.0359991762 ; |output - Table 1| = 0.0656143
+        baseline-removed control (baseline 137.0; MUTATE feeds the CODATA baseline) : output = 137.10161345540346291 ; slope d output / d baseline = 0.0
+(b) output tracks the baseline one-for-one (d output/d baseline = 1 to 1e-9): False
+(c) repaired output reproduces none of Table 1 for m = 2,4,6,8 to 1e-9: True
+    the m-independent term delta_EBT_vac = 0.065614278 dominates the m-dependent harmonic terms (|harmonic_correction*1e-12| <= 3.692e-11): so the repaired code returns 137.101613455, i.e. 0.0656143 away from its own baseline (4.8e-04 relative); the printed Table 1 is not what this code prints.
+    m = 1024 at 20000 digits (the paper's headline) was NOT run: the paper itself says it is 'extrapolated'; besseljzero(1024, 1) at that precision was not attempted here.
+    reference to the paper's 'experiment': Table 2 quotes 137.035999177(11) as a 2025 measurement (relative 8.0e-11); CODATA 2022 sigma_rel = 1.6e-10; the code's 'agreement at 1e-15' is agreement with its own baseline line.
+MUTATE: check (b) FAILS (a live control fails here) ; exit 1

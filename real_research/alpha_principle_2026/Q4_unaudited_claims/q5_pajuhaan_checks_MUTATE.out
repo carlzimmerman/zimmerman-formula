@@ -1,0 +1,40 @@
+== T1: published values by version (transcribed from the version PDFs; record ids are Zenodo) ==
+  17021330 (2025-09-01)  1/alpha = 137.0359991770873        miss vs 137.035999177 = 6.37e-13 (0.00398 sigma_CODATA rel; 0.00416 in the source's 2.1e-8 unit) ; Lambda = 0.6916840202841755642869 ; Table IV cfg5; 'Emergent alpha input' table
+  17109113 (2025-09-12)  1/alpha = 137.0359991770872        miss vs 137.035999177 = 6.36e-13 (0.00398 sigma_CODATA rel; 0.00415 in the source's 2.1e-8 unit) ; Lambda = 0.6916840202841763119337 ; Table IV cfg2
+  17385707 (2025-10-18)  1/alpha = 137.0359991770872        miss vs 137.035999177 = 6.36e-13 (0.00398 sigma_CODATA rel; 0.00415 in the source's 2.1e-8 unit) ; Lambda = 0.6916840202841763119337 ; Table IV; 'This work (emergent) 0.007297352564326775'
+  19462288 (2026-04-08)  1/alpha = 137.03599916349474199    miss vs 137.035999177 = 9.86e-11 (0.616 sigma_CODATA rel; 0.643 in the source's 2.1e-8 unit) ; Lambda = None ; lock table
+  19819000 (2026-04-27)  1/alpha = 137.035999163494704022   miss vs 137.035999177 = 9.86e-11 (0.616 sigma_CODATA rel; 0.643 in the source's 2.1e-8 unit) ; Lambda = 0.6916831461069910267 ; Final primary result
+  drift 2025 -> 2026: 1/alpha changed by 1.359e-8 (9.92e-11 relative) while Lambda changed by 1.264e-6 relative; with the source's own elasticity d ln alpha/d ln Lambda = 1.0032 the Lambda change alone would move alpha by 1.268e-6: the scalar evaluator was also changed (a compensating change of size 1.27e-6)
+== T2: September 2025 program (Zenodo 17109113) ==
+  fetched old_calc.py              sha256 8be1d48473556ad8  (https://zenodo.org/api/records/17109113/files/Full%20Alpha%20Geometry%20Calculation.py/content)
+  1/alpha = 137.0359991769773 ; printed 137.0359991769773 ; |difference| = 0.0
+  T2 reproduces: True ; miss vs 2022 = 1.66e-13 relative
+== T4: September 2025 program, switches the source calls 'optional' ==
+  CHI_LADDER_ON = False      : 1/alpha = 137.0360019620995 ; shift vs the printed configuration = 2.785e-6 (2.03e-8 relative; bar miss is 5e-10) ; miss vs 2022 = 2.03e-8
+  SELF_LADDER_ON = False     : 1/alpha = 137.0359990835413 ; shift vs the printed configuration = -9.344e-8 (6.82e-10 relative; bar miss is 5e-10) ; miss vs 2022 = 6.82e-10
+  both ladders off           : 1/alpha = 137.0360018686635 ; shift vs the printed configuration = 2.692e-6 (1.96e-8 relative; bar miss is 5e-10) ; miss vs 2022 = 1.96e-8
+  CURV_SERIES_ORDER = 4      : 1/alpha = 137.0359991523676 ; shift vs the printed configuration = -2.461e-8 (1.8e-10 relative; bar miss is 5e-10) ; miss vs 2022 = 1.8e-10
+  OUT_LMAX = 41              : 1/alpha = 137.0359991770862 ; shift vs the printed configuration = 1.089e-10 (7.95e-13 relative; bar miss is 5e-10) ; miss vs 2022 = 6.29e-13
+  T4 at least one 'optional' switch moves 1/alpha by more than 5e-10 relative: True
+== T6: does the September 2025 program take the target as input? ==
+  ALPHA_REF -> None      : 1/alpha = 137.0359991769773 ; difference from the printed configuration = 0.0
+  ALPHA_REF -> 1/137     : 1/alpha = 137.0359991769773 ; difference from the printed configuration = 0.0
+  EPS_GIND -> +1e-9      : 1/alpha = 137.0359398022788 ; shift = -5.94e-5 (4.33e-7 relative)
+  EPS_GIND -> -1e-9      : 1/alpha = 137.0360585517271 ; shift = 5.94e-5 (4.33e-7 relative)
+  T6 (i) target constant is logging-only (unchanged when replaced): True ; (ii) the offset knob is load-bearing at > 5e-10 relative (it is set to 0 by the author): True
+== T3: current program (GitHub AlphaEmergent), reduced settings, one worker ==
+  fetched new_calc.py              sha256 896b73b1908ad1d4  (https://raw.githubusercontent.com/pajuhaan/AlphaEmergent/main/Full%20Alpha%20Geometry%20Calculation.py)
+  reduced settings (odd modes <= 41, 256 nodes, dps 60): 1/alpha = 137.0359991634794 ; Lambda_geom = 0.6916831461070681 ; 3 s
+  published (full settings; reproduced by hand at 137.0359991634947040218): |difference| = 1.53e-11
+  MUTATE: Lambda_ind perturbed by +1e-6 relative: 1/alpha = 137.0358696085906 ; |difference from published| = 0.00013
+  T3 reproduces the published value to 5e-9: False ; miss vs 2022 of the published value = 9.86e-11 relative (0.616 sigma_CODATA)
+== T5: current program, log-elasticities of alpha to six hand-built constants (+1e-4 relative perturbation each) ==
+  LAMBDA_IND   = 0.6518064846 : d ln alpha / d ln x = 0.945411 ; to keep the bar's 5e-10 the constant must be right to 5.29e-10 relative
+  C0_GAUSS     = 0.6351814227 : d ln alpha / d ln x = 0.0789846 ; to keep the bar's 5e-10 the constant must be right to 6.33e-9 relative
+  GAMMA_GEOM   = 0.5084863102 : d ln alpha / d ln x = -0.000883547 ; to keep the bar's 5e-10 the constant must be right to 5.66e-7 relative
+  A_UV         = 0.007115836656 : d ln alpha / d ln x = 4.65435e-7 ; to keep the bar's 5e-10 the constant must be right to 0.00107 relative
+  B_IR         = 0.0001300201842 : d ln alpha / d ln x = -1.2268e-9 ; to keep the bar's 5e-10 the constant must be right to 0.408 relative
+  K_GEOMETRIC  = 0.002231538917 : d ln alpha / d ln x = 1.00325 ; to keep the bar's 5e-10 the constant must be right to 4.98e-10 relative
+  T5 all six elasticities nonzero: True
+  a constant that enters at first order must be 'right' to <= 5e-10/elasticity; the alternatives the author lists (e.g. ln 2, gamma, pi combinations) differ from each other by O(1) relative
+MUTATE: T3 FAILS (a live control fails here); exit 1
