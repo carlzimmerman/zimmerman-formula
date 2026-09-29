@@ -1,0 +1,91 @@
+CFG159 independent re-derivation of CFG119's G1 headline   mode = B
+criteria: CFG159_FROZEN_CRITERIA.md;  README numbers are READ targets, not blind predictions;  a0 canonical 9.3603e-11, alt 1.1312e-10
+kappa = 1/2 is FITTED; nothing here says the data favour the framework or that the theory is closed.
+
+SOLVER CONTROLS S1-S5 (dt = 2.5e-4 unless stated)
+  [PASS] S1 hydrogen (self-gravity off, point mass): E = -0.500000003 (exact -0.5, rel err 5.21e-09); max rel. err of ln psi over 0.01<r<40 a_B: 2.60e-09
+  [PASS] S2 pure soliton, no baryons: E = -0.16276921 (target -0.16277, rel diff 4.9e-06); r_c = 2.679405 a_B(M_sol) (target 2.6794, rel diff 1.9e-06); iterations 13
+cells: 32  (x2 footings, rule (ii))  workers 12
+  [PASS] S3 virial theorem 2T + <Vb> + <Vpsi>/2 = 0 (five point-mass SP states): s=0.01: 5.3e-09 (E vs T+V: 1.0e-08); s=0.1: 5.9e-09 (E vs T+V: 1.1e-08); s=1: 1.1e-08 (E vs T+V: 1.3e-08); s=10: 2.8e-08 (E vs T+V: 1.8e-08); s=100: 3.5e-08 (E vs T+V: 1.9e-08)
+
+RULE-(ii) J TABLE (dex; largest |log10 C_SP/C_target| over x in [0.1, 30]); canonical footing, README value in brackets
+  cell                                 1e-23                     1e-22                     1e-21                     1e-20
+  point 1e+09                       0 [4.89]                   0 [370]                 0 [37000]               0 [3.7e+06]
+  point 1e+10                        0 [116]                 0 [12000]               0 [1.2e+06]               0 [1.2e+08]
+  point 1e+11                       0 [3700]                0 [370000]               0 [3.7e+07]               0 [3.7e+09]
+  point 1e+12                     0 [118000]               0 [1.2e+07]               0 [1.2e+09]               0 [1.2e+11]
+  exp 1e+09                         0 [4.26]                  0 [56.1]                   0 [605]                  0 [6100]
+  exp 1e+10                         0 [43.8]                   0 [539]                  0 [5500]                 0 [55000]
+  exp 1e+11                          0 [474]                  0 [5100]                 0 [51000]                0 [510000]
+  exp 1e+12                         0 [4600]                 0 [47000]                0 [470000]               0 [4.7e+06]
+ALT footing:
+  point 1e+09                              0                         0                         0                         0
+  point 1e+10                              0                         0                         0                         0
+  point 1e+11                              0                         0                         0                         0
+  point 1e+12                              0                         0                         0                         0
+  exp 1e+09                                0                         0                         0                         0
+  exp 1e+10                                0                         0                         0                         0
+  exp 1e+11                                0                         0                         0                         0
+  exp 1e+12                                0                         0                         0                         0
+
+FROZEN LINES
+  [FAIL] P1 closest cell = (exp 1e9, h=2, m=1e-23), J within 0.3 dex of 4.26 / 4.0: canonical: ('point', 1000000000.0, 1e-23) J = 0.0000; alt: ('point', 1000000000.0, 1e-23) J = 0.0000
+  [FAIL] P2 verdict: J >= 3.0 dex in every cell (H1 = FAIL): canonical: min J = 0, cells within band = 32, undefined cells = 0; alt: min J = 0, cells within band = 32, undefined cells = 0
+  [FAIL] P3 best single m = 1e-23, worst galaxy point 1e12 with J within 1% of 1.18e5, alt/canonical in [0.89, 0.94]: canonical: best m = 1e-23 eV, worst galaxy ('point', 1000000000.0) J = 0; alt: best m = 1e-23 eV, worst galaxy ('point', 1000000000.0) J = 0; alt/canonical = nan
+  [FAIL] P4 table: 32 canonical cells within max(0.3 dex, 2%) of the README table: 0/32 within tolerance -> disagreement (2-s.f. README entries carry up to 1.4% rounding)
+  [FAIL] P4b tail-dominated cells: alt/canonical = 0.910 +- 0.02: no cell with J > 100
+  [FAIL] P5 R1 profile at the closest cell (canonical): log10 ratio at x = 0.1, 1, 30 within 0.3 dex of -3.57, -2.58, -4.26; argmax x = 30: 0.000, 0.000, 0.000; argmax x = 0.1
+  [FAIL] P6 M_sol/M_b at the closest cell: 0.64 (canonical) and 0.76 (alt) each within 0.1 dex: canonical 0.0000, alt 0.0000
+  [FAIL] P7a core: flat-core cells exist, all with m <= 1e-22 and M_b <= 1e10, slope in [-0.15, 0]: 15 core cells (of 64); slope range [-1.1790, -0.0004]
+  [PASS] P7b envelope: slope at x = 30 <= -6 in every cell, shallowest in [-18, -4.5], steepest <= -1e9: shallowest -6.54, steepest -2.71e+11
+  [FAIL] P7c both ends fail (|log ratio| > 0.3 at x=0.1 and 30) in all cells; argmax at x = 30 in >= 90%: both: 0/64; argmax x=30: 0/64
+  [PASS] P7d target slope at x = 0.1 (own ODE): point -1.0099, exp spheres in [-1.05, -0.45]: point -1.0099; 1e+09: -0.551, 1e+10: -0.621, 1e+11: -0.788, 1e+12: -0.965
+POST-HOC (undeclared, does not re-score P7a): cells whose boson log-slope at x = 0.1 is above -0.075: 8 of 64; slope range [-0.0286, -0.0004], max m = 1e-22, max M_b = 1e+10
+  core cells under the declared rho(0.1 r_M)/rho(0) >= 0.5: point 1e+09 m=1e-23 can -0.029; point 1e+09 m=1e-23 alt -0.026; exp 1e+09 m=1e-23 can -0.000; exp 1e+09 m=1e-23 alt -0.000; exp 1e+09 m=1e-22 can -0.011; exp 1e+09 m=1e-22 alt -0.009; exp 1e+09 m=1e-21 can -0.134; exp 1e+09 m=1e-21 alt -0.111; exp 1e+09 m=1e-20 alt -1.179; exp 1e+10 m=1e-23 can -0.015; exp 1e+10 m=1e-23 alt -0.013; exp 1e+10 m=1e-22 can -0.218; exp 1e+10 m=1e-22 alt -0.181; exp 1e+11 m=1e-23 can -0.400; exp 1e+11 m=1e-23 alt -0.332
+
+rule-(ii) optimum rows (canonical): cell -> s = M_sol/M_b, kappa, J, argmax x, log10 ratio at x = 0.1 / 1 / 30, core ratio, slopes at 0.1 / 30, seconds
+  point 1e+09 m=1e-23: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.972 slope=-0.0286/-8.568 it=1 conv=True  a_B/r_s=8.93e+07 (3s)
+  point 1e+09 m=1e-22: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.0575 slope=-2.8559/-856.8 it=1 conv=True  a_B/r_s=8.93e+05 (4s)
+  point 1e+09 m=1e-21: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=9.36e-125 slope=-285.5869/-8.568e+04 it=1 conv=True  a_B/r_s=8.93e+03 (4s)
+  point 1e+09 m=1e-20: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-28558.6899/-8.568e+06 it=1 conv=True  a_B/r_s=89.3 (5s)
+  point 1e+10 m=1e-23: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.405 slope=-0.9031/-270.9 it=1 conv=True  a_B/r_s=8.93e+05 (3s)
+  point 1e+10 m=1e-22: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=6.01e-40 slope=-90.3105/-2.709e+04 it=1 conv=True  a_B/r_s=8.93e+03 (4s)
+  point 1e+10 m=1e-21: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-9031.0510/-2.709e+06 it=1 conv=True  a_B/r_s=89.3 (5s)
+  point 1e+10 m=1e-20: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-903104.9983/-2.709e+08 it=1 conv=True  a_B/r_s=0.893 (7s)
+  point 1e+11 m=1e-23: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=3.95e-13 slope=-28.5587/-8568 it=1 conv=True  a_B/r_s=8.93e+03 (4s)
+  point 1e+11 m=1e-22: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-2855.8695/-8.568e+05 it=1 conv=True  a_B/r_s=89.3 (5s)
+  point 1e+11 m=1e-21: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-285586.8956/-8.568e+07 it=1 conv=True  a_B/r_s=0.893 (5s)
+  point 1e+11 m=1e-20: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-28558687.7830/-8.568e+09 it=1 conv=True  a_B/r_s=0.00893 (6s)
+  point 1e+12 m=1e-23: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-903.1052/-2.709e+05 it=1 conv=True  a_B/r_s=89.3 (4s)
+  point 1e+12 m=1e-22: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-90310.5097/-2.709e+07 it=1 conv=True  a_B/r_s=0.893 (5s)
+  point 1e+12 m=1e-21: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-9031050.7901/-2.709e+09 it=1 conv=True  a_B/r_s=0.00893 (6s)
+  point 1e+12 m=1e-20: s=3.159e-16 kappa=1 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-903105044.5969/-2.709e+11 it=1 conv=True  a_B/r_s=8.93e-05 (15s)
+  exp   1e+09 m=1e-23: s=3.159e-16 kappa=0.8803 J=0 xmax=0.1 lr=0.000/0.000/0 core=1 slope=-0.0005/-7.228 it=1 conv=True  a_B/r_s=8.93e+07 (4s)
+  exp   1e+09 m=1e-22: s=3.159e-16 kappa=0.1862 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.995 slope=-0.0110/-150.5 it=1 conv=True  a_B/r_s=8.93e+05 (4s)
+  exp   1e+09 m=1e-21: s=3.159e-16 kappa=0.02043 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.935 slope=-0.1345/-1652 it=1 conv=True  a_B/r_s=8.93e+03 (6s)
+  exp   1e+09 m=1e-20: s=3.159e-16 kappa=0.002065 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.49 slope=-1.4237/-1.669e+04 it=1 conv=True  a_B/r_s=89.3 (8s)
+  exp   1e+10 m=1e-23: s=3.159e-16 kappa=0.4147 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.992 slope=-0.0153/-109.5 it=1 conv=True  a_B/r_s=8.93e+05 (4s)
+  exp   1e+10 m=1e-22: s=3.159e-16 kappa=0.05184 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.896 slope=-0.2182/-1367 it=1 conv=True  a_B/r_s=8.93e+03 (6s)
+  exp   1e+10 m=1e-21: s=3.159e-16 kappa=0.00532 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.3 slope=-2.3912/-1.404e+04 it=1 conv=True  a_B/r_s=89.3 (7s)
+  exp   1e+10 m=1e-20: s=3.159e-16 kappa=0.0005336 J=0 xmax=0.1 lr=0.000/0.000/0 core=4.46e-06 slope=-24.4194/-1.408e+05 it=1 conv=True  a_B/r_s=0.893 (9s)
+  exp   1e+11 m=1e-23: s=3.159e-16 kappa=0.1355 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.817 slope=-0.4000/-1148 it=1 conv=True  a_B/r_s=8.93e+03 (5s)
+  exp   1e+11 m=1e-22: s=3.159e-16 kappa=0.01449 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.0939 slope=-4.6527/-1.228e+04 it=1 conv=True  a_B/r_s=89.3 (6s)
+  exp   1e+11 m=1e-21: s=3.159e-16 kappa=0.00146 J=0 xmax=0.1 lr=0.000/0.000/0 core=2.2e-11 slope=-47.9800/-1.237e+05 it=1 conv=True  a_B/r_s=0.893 (8s)
+  exp   1e+11 m=1e-20: s=3.159e-16 kappa=0.0001462 J=0 xmax=0.1 lr=0.000/0.000/0 core=5.39e-108 slope=-482.0031/-1.238e+06 it=1 conv=True  a_B/r_s=0.00893 (9s)
+  exp   1e+12 m=1e-23: s=3.159e-16 kappa=0.04041 J=0 xmax=0.1 lr=0.000/0.000/0 core=0.00773 slope=-9.2724/-1.09e+04 it=1 conv=True  a_B/r_s=89.3 (5s)
+  exp   1e+12 m=1e-22: s=3.159e-16 kappa=0.004124 J=0 xmax=0.1 lr=0.000/0.000/0 core=4.6e-23 slope=-97.0482/-1.113e+05 it=1 conv=True  a_B/r_s=0.893 (7s)
+  exp   1e+12 m=1e-21: s=3.159e-16 kappa=0.0004133 J=0 xmax=0.1 lr=0.000/0.000/0 core=4.2e-226 slope=-976.5005/-1.115e+06 it=1 conv=True  a_B/r_s=0.00893 (8s)
+  exp   1e+12 m=1e-20: s=3.159e-16 kappa=4.134e-05 J=0 xmax=0.1 lr=0.000/0.000/0 core=0 slope=-9774.2634/-1.115e+07 it=1 conv=True  a_B/r_s=8.93e-05 (16s)
+
+seconds 30
+MUTATE B: control BITES; failed load-bearing lines: 9
+   fail: P1 closest cell = (exp 1e9, h=2, m=1e-23), J within 0.3 dex of 4.26 / 4.0
+   fail: P2 verdict: J >= 3.0 dex in every cell (H1 = FAIL)
+   fail: P3 best single m = 1e-23, worst galaxy point 1e12 with J within 1% of 1.18e5, alt/canonical in [0.89, 0.94]
+   fail: P4 table: 32 canonical cells within max(0.3 dex, 2%) of the README table
+   fail: P4b tail-dominated cells: alt/canonical = 0.910 +- 0.02
+   fail: P5 R1 profile at the closest cell (canonical): log10 ratio at x = 0.1, 1, 30 within 0.3 dex of -3.57, -2.58, -4.26; argmax x = 30
+   fail: P6 M_sol/M_b at the closest cell: 0.64 (canonical) and 0.76 (alt) each within 0.1 dex
+   fail: P7a core: flat-core cells exist, all with m <= 1e-22 and M_b <= 1e10, slope in [-0.15, 0]
+   fail: P7c both ends fail (|log ratio| > 0.3 at x=0.1 and 30) in all cells; argmax at x = 30 in >= 90%
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.

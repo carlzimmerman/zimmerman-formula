@@ -1,0 +1,46 @@
+CFG159 independent re-derivation of CFG119's G1 headline   mode = A
+criteria: CFG159_FROZEN_CRITERIA.md;  README numbers are READ targets, not blind predictions;  a0 canonical 9.3603e-11, alt 1.1312e-10
+kappa = 1/2 is FITTED; nothing here says the data favour the framework or that the theory is closed.
+
+SOLVER CONTROLS S1-S5 (dt = 2.5e-4 unless stated)
+  [PASS] S1 hydrogen (self-gravity off, point mass): E = -0.500000003 (exact -0.5, rel err 5.21e-09); max rel. err of ln psi over 0.01<r<40 a_B: 2.60e-09
+  [PASS] S2 pure soliton, no baryons: E = -0.16276921 (target -0.16277, rel diff 4.9e-06); r_c = 2.679405 a_B(M_sol) (target 2.6794, rel diff 1.9e-06); iterations 13
+MUTATE A: rho_psi replaced by the target's own rho_c (re-derived from the CFG44 definition, own ODE)
+
+RULE-(ii) J TABLE (dex; largest |log10 C_SP/C_target| over x in [0.1, 30]); canonical footing, README value in brackets
+  cell                                 1e-23                     1e-22                     1e-21                     1e-20
+  point 1e+09               1.929e-16 [4.89]           1.929e-16 [370]         1.929e-16 [37000]       1.929e-16 [3.7e+06]
+  point 1e+10                1.929e-16 [116]         1.929e-16 [12000]       1.929e-16 [1.2e+06]       1.929e-16 [1.2e+08]
+  point 1e+11               1.929e-16 [3700]        1.929e-16 [370000]       1.929e-16 [3.7e+07]       1.929e-16 [3.7e+09]
+  point 1e+12             1.929e-16 [118000]       1.929e-16 [1.2e+07]       1.929e-16 [1.2e+09]       1.929e-16 [1.2e+11]
+  exp 1e+09                 4.042e-11 [4.26]          4.042e-11 [56.1]           4.042e-11 [605]          4.042e-11 [6100]
+  exp 1e+10                 5.863e-11 [43.8]           5.863e-11 [539]          5.863e-11 [5500]         5.863e-11 [55000]
+  exp 1e+11                  1.978e-11 [474]          1.978e-11 [5100]         1.978e-11 [51000]        1.978e-11 [510000]
+  exp 1e+12                  8.54e-12 [4600]          8.54e-12 [47000]         8.54e-12 [470000]        8.54e-12 [4.7e+06]
+ALT footing:
+  point 1e+09                      1.929e-16                 1.929e-16                 1.929e-16                 1.929e-16
+  point 1e+10                      1.929e-16                 1.929e-16                 1.929e-16                 1.929e-16
+  point 1e+11                      1.929e-16                 1.929e-16                 1.929e-16                 1.929e-16
+  point 1e+12                      1.929e-16                 1.929e-16                 1.929e-16                 1.929e-16
+  exp 1e+09                        2.303e-11                 2.303e-11                 2.303e-11                 2.303e-11
+  exp 1e+10                        7.666e-11                 7.666e-11                 7.666e-11                 7.666e-11
+  exp 1e+11                        2.751e-11                 2.751e-11                 2.751e-11                 2.751e-11
+  exp 1e+12                        1.668e-11                 1.668e-11                 1.668e-11                 1.668e-11
+
+FROZEN LINES
+  [FAIL] P1 closest cell = (exp 1e9, h=2, m=1e-23), J within 0.3 dex of 4.26 / 4.0: canonical: ('point', 1000000000.0, 1e-23) J = 0.0000; alt: ('point', 1000000000.0, 1e-23) J = 0.0000
+  [FAIL] P2 verdict: J >= 3.0 dex in every cell (H1 = FAIL): canonical: min J = 1.929e-16, cells within band = 32, undefined cells = 0; alt: min J = 1.929e-16, cells within band = 32, undefined cells = 0
+  [FAIL] P3 best single m = 1e-23, worst galaxy point 1e12 with J within 1% of 1.18e5, alt/canonical in [0.89, 0.94]: canonical: best m = 1e-23 eV, worst galaxy ('exp', 10000000000.0) J = 5.8626e-11; alt: best m = 1e-23 eV, worst galaxy ('exp', 10000000000.0) J = 7.6665e-11; alt/canonical = 1.3077
+  [FAIL] P4 table: 32 canonical cells within max(0.3 dex, 2%) of the README table: 0/32 within tolerance -> disagreement (2-s.f. README entries carry up to 1.4% rounding)
+  [FAIL] P4b tail-dominated cells: alt/canonical = 0.910 +- 0.02: no cell with J > 100
+
+rule-(ii) optimum rows (canonical): cell -> s = M_sol/M_b, kappa, J, argmax x, log10 ratio at x = 0.1 / 1 / 30, core ratio, slopes at 0.1 / 30, seconds
+
+seconds 1
+MUTATE A: control BITES; failed load-bearing lines: 5
+   fail: P1 closest cell = (exp 1e9, h=2, m=1e-23), J within 0.3 dex of 4.26 / 4.0
+   fail: P2 verdict: J >= 3.0 dex in every cell (H1 = FAIL)
+   fail: P3 best single m = 1e-23, worst galaxy point 1e12 with J within 1% of 1.18e5, alt/canonical in [0.89, 0.94]
+   fail: P4 table: 32 canonical cells within max(0.3 dex, 2%) of the README table
+   fail: P4b tail-dominated cells: alt/canonical = 0.910 +- 0.02
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.

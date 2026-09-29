@@ -1,0 +1,64 @@
+CFG159 independent re-derivation of CFG119's G1 headline   mode = E
+criteria: CFG159_FROZEN_CRITERIA.md;  README numbers are READ targets, not blind predictions;  a0 canonical 9.3603e-11, alt 1.1312e-10
+kappa = 1/2 is FITTED; nothing here says the data favour the framework or that the theory is closed.
+
+SOLVER CONTROLS S1-S5 (dt = 2.5e-4 unless stated)
+  [PASS] S1 hydrogen (self-gravity off, point mass): E = -0.500000003 (exact -0.5, rel err 5.21e-09); max rel. err of ln psi over 0.01<r<40 a_B: 2.60e-09
+  [FAIL] S2 pure soliton, no baryons: E = -0.17945305 (target -0.16277, rel diff 1.0e-01); r_c = 2.551814 a_B(M_sol) (target 2.6794, rel diff 4.8e-02); iterations 13
+MUTATE E: Poisson source x 1.05 in the solver controls and in the reference cells
+cells: 8  (x2 footings, rule (ii))  workers 12
+  [PASS] S3 virial theorem 2T + <Vb> + <Vpsi>/2 = 0 (five point-mass SP states): s=0.01: 5.3e-09 (E vs T+V: 1.0e-08); s=0.1: 5.9e-09 (E vs T+V: 1.1e-08); s=1: 1.1e-08 (E vs T+V: 1.3e-08); s=10: 2.8e-08 (E vs T+V: 1.8e-08); s=100: 3.5e-08 (E vs T+V: 1.9e-08)
+  [PASS] S4 halving the step (dt 1e-3 -> 5e-4) at the rule-(ii) optimum: exp 1e+09 m=1e-23: dE/E 2.7e-08, dJ/J 1.9e-08; point 1e+12 m=1e-23: dE/E 6.2e-08, dJ/J 3.1e-08
+
+RULE-(ii) J TABLE (dex; largest |log10 C_SP/C_target| over x in [0.1, 30]); canonical footing, README value in brackets
+  cell                                 1e-23                     1e-22                     1e-21                     1e-20
+  point 1e+09                   4.909 [4.89]                       n/a                       n/a                       n/a
+  point 1e+10                    116.3 [116]                       n/a                       n/a                       n/a
+  point 1e+11                    3717 [3700]                       n/a                       n/a                       n/a
+  point 1e+12             1.177e+05 [118000]                       n/a                       n/a                       n/a
+  exp 1e+09                     4.282 [4.26]                       n/a                       n/a                       n/a
+  exp 1e+10                      43.8 [43.8]                       n/a                       n/a                       n/a
+  exp 1e+11                        474 [474]                       n/a                       n/a                       n/a
+  exp 1e+12                      4623 [4600]                       n/a                       n/a                       n/a
+ALT footing:
+  point 1e+09                          4.608                       n/a                       n/a                       n/a
+  point 1e+10                          105.7                       n/a                       n/a                       n/a
+  point 1e+11                           3380                       n/a                       n/a                       n/a
+  point 1e+12                       1.07e+05                       n/a                       n/a                       n/a
+  exp 1e+09                            4.019                       n/a                       n/a                       n/a
+  exp 1e+10                            39.59                       n/a                       n/a                       n/a
+  exp 1e+11                            429.1                       n/a                       n/a                       n/a
+  exp 1e+12                             4196                       n/a                       n/a                       n/a
+
+FROZEN LINES
+  [PASS] P1 closest cell = (exp 1e9, h=2, m=1e-23), J within 0.3 dex of 4.26 / 4.0: canonical: ('exp', 1000000000.0, 1e-23) J = 4.2818; alt: ('exp', 1000000000.0, 1e-23) J = 4.0193
+  [PASS] P2 verdict: J >= 3.0 dex in every cell (H1 = FAIL): canonical: min J = 4.282, cells within band = 0, undefined cells = 0; alt: min J = 4.019, cells within band = 0, undefined cells = 0
+  [PASS] P3 best single m = 1e-23, worst galaxy point 1e12 with J within 1% of 1.18e5, alt/canonical in [0.89, 0.94]: canonical: best m = 1e-23 eV, worst galaxy ('point', 1000000000000.0) J = 1.1766e+05; alt: best m = 1e-23 eV, worst galaxy ('point', 1000000000000.0) J = 1.0703e+05; alt/canonical = 0.9096
+  [FAIL] P4 table: 32 canonical cells within max(0.3 dex, 2%) of the README table: 8/32 within tolerance -> disagreement (2-s.f. README entries carry up to 1.4% rounding)
+  [PASS] P4b tail-dominated cells: alt/canonical = 0.910 +- 0.02: 5 cells, ratio range [0.9052, 0.9096]
+  [PASS] P5 R1 profile at the closest cell (canonical): log10 ratio at x = 0.1, 1, 30 within 0.3 dex of -3.57, -2.58, -4.26; argmax x = 30: -3.593, -2.600, -4.282; argmax x = 30
+  [PASS] P6 M_sol/M_b at the closest cell: 0.64 (canonical) and 0.76 (alt) each within 0.1 dex: canonical 0.6082, alt 0.7205
+  [FAIL] P7a core: flat-core cells exist, all with m <= 1e-22 and M_b <= 1e10, slope in [-0.15, 0]: 8 core cells (of 16); slope range [-0.4018, -0.0004]
+  [FAIL] P7b envelope: slope at x = 30 <= -6 in every cell, shallowest in [-18, -4.5], steepest <= -1e9: shallowest -9.14, steepest -2.71e+05
+  [PASS] P7c both ends fail (|log ratio| > 0.3 at x=0.1 and 30) in all cells; argmax at x = 30 in >= 90%: both: 16/16; argmax x=30: 16/16
+  [PASS] P7d target slope at x = 0.1 (own ODE): point -1.0099, exp spheres in [-1.05, -0.45]: point -1.0099; 1e+09: -0.551, 1e+10: -0.621, 1e+11: -0.788, 1e+12: -0.965
+POST-HOC (undeclared, does not re-score P7a): cells whose boson log-slope at x = 0.1 is above -0.075: 6 of 16; slope range [-0.0286, -0.0004], max m = 1e-23, max M_b = 1e+10
+  core cells under the declared rho(0.1 r_M)/rho(0) >= 0.5: point 1e+09 m=1e-23 can -0.029; point 1e+09 m=1e-23 alt -0.026; exp 1e+09 m=1e-23 can -0.001; exp 1e+09 m=1e-23 alt -0.000; exp 1e+10 m=1e-23 can -0.016; exp 1e+10 m=1e-23 alt -0.013; exp 1e+11 m=1e-23 can -0.402; exp 1e+11 m=1e-23 alt -0.334
+
+rule-(ii) optimum rows (canonical): cell -> s = M_sol/M_b, kappa, J, argmax x, log10 ratio at x = 0.1 / 1 / 30, core ratio, slopes at 0.1 / 30, seconds
+  point 1e+09 m=1e-23: s=4.350e-01 kappa=1.281 J=4.9094 xmax=30 lr=-3.180/-2.292/-4.909 core=0.972 slope=-0.0286/-10.67 it=5 conv=True  a_B/r_s=8.93e+07 (6s)
+  point 1e+10 m=1e-23: s=5.853e-03 kappa=1.004 J=116.29 xmax=30 lr=-1.057/-3.593/-116.3 core=0.405 slope=-0.9038/-272 it=4 conv=True  a_B/r_s=8.93e+05 (4s)
+  point 1e+11 m=1e-23: s=1.781e-04 kappa=1 J=3716.5 xmax=30 lr=-10.087/-120.726/-3717 core=3.94e-13 slope=-28.5619/-8569 it=2 conv=True  a_B/r_s=8.93e+03 (4s)
+  point 1e+12 m=1e-23: s=5.623e-06 kappa=1 J=1.1766e+05 xmax=30 lr=-386.899/-3915.834/-1.177e+05 core=0 slope=-903.1085/-2.709e+05 it=2 conv=True  a_B/r_s=89.3 (4s)
+  exp   1e+09 m=1e-23: s=6.082e-01 kappa=1.221 J=4.2818 xmax=30 lr=-3.593/-2.600/-4.282 core=1 slope=-0.0005/-9.68 it=6 conv=True  a_B/r_s=8.93e+07 (5s)
+  exp   1e+10 m=1e-23: s=1.227e-02 kappa=0.4188 J=43.804 xmax=30 lr=-2.849/-2.155/-43.8 core=0.992 slope=-0.0155/-110.6 it=4 conv=True  a_B/r_s=8.93e+05 (5s)
+  exp   1e+11 m=1e-23: s=6.293e-04 kappa=0.1356 J=474.04 xmax=30 lr=-2.018/-7.462/-474 core=0.817 slope=-0.4018/-1149 it=4 conv=True  a_B/r_s=8.93e+03 (5s)
+  exp   1e+12 m=1e-23: s=3.564e-05 kappa=0.04041 J=4623.1 xmax=30 lr=-3.159/-99.728/-4623 core=0.00769 slope=-9.2794/-1.09e+04 it=2 conv=True  a_B/r_s=89.3 (6s)
+
+seconds 10
+MUTATE E: control BITES; failed load-bearing lines: 4
+   fail: S2 pure soliton, no baryons
+   fail: P4 table: 32 canonical cells within max(0.3 dex, 2%) of the README table
+   fail: P7a core: flat-core cells exist, all with m <= 1e-22 and M_b <= 1e10, slope in [-0.15, 0]
+   fail: P7b envelope: slope at x = 30 <= -6 in every cell, shallowest in [-18, -4.5], steepest <= -1e9
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
