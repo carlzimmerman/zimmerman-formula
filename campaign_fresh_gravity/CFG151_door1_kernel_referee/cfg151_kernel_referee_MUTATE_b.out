@@ -1,0 +1,163 @@
+spec sha256 0c1aa5a86fea0b5af9a46dbf295cdfb285d870a513ae929bef1ed399e8c18f23  (campaign_fresh_gravity/CFG151_FROZEN_CRITERIA.md)
+CFG151 -- referee of CFG120's door-1 headline.  Mode: MUTATE=b
+python 3.13.9, numpy 1.26.4, scipy 1.14.1; one process
+G = 4.30091727e-06 kpc (km/s)^2/Msun (G Msun = 1.3271244e20 m^3/s^2, 1 kpc = 3.0856775814913673e19 m)
+  canonical: a0 = 9.3603e-11 m/s^2 = 2888.2868 (km/s)^2/kpc;  r_M(1e9) = 1.220283, r_M(10^10.5) = 6.862153, r_M(1e12) = 38.588721 kpc;  overlap [3.8589, 36.6085] kpc
+  alt      : a0 = 1.1312e-10 m/s^2 = 3490.5185 (km/s)^2/kpc;  r_M(1e9) = 1.110032, r_M(10^10.5) = 6.242170, r_M(1e12) = 35.102300 kpc;  overlap [3.5102, 33.3010] kpc
+Grids: 13 point masses 1e9-1e12 (0.25 dex); x: 200 log points in [0.1, 30]; S(r) at 60 overlap radii; sphere grids 1200 log points from 1e-4 h to 3000 kpc; quad epsrel 1e-10
+
+CONTROLS
+  [PASS] C1a Gaussian kernel on a Gaussian sphere (rho_D, M_D vs closed form, line 1e-6): max rel dev rho_D 5.60e-09, M_D 3.22e-08 over r in [0.01, 5] sigma_tot; 0 quad warnings
+  [PASS] C1b power law on a Gaussian sphere (rho_D vs the Dawson closed form, line 1e-6): max rel dev 3.79e-13 over r in [0.01, 30] sigma; 0 quad warnings
+  [PASS] C1c K0 on a compact sphere (h = 1e-5 r0) = point mass (line 1e-6; ESTIMATE finite size < 2e-8): max rel dev rho_D 5.97e-10, M_D 1.59e-07 at r in [0.1, 30] r0
+  [PASS] C1d point-mass kernel mass m(r): quadrature vs closed forms (line 1e-10): max rel dev 6.66e-16 (K0 at three M0, RM 0.06/0.10, PL; x-grids of all 13 masses; both footings)
+  [PASS] C2a target ODE, point mass: M_c and rho_c vs closed forms (line 1e-8): max rel dev M_c 5.47e-12, rho_c 1.27e-12 (13 masses, both footings, x in [0.1, 30])
+  [PASS] C2b target identity on the spheres: rho_c r^3 g_tot = (a0/4 pi) M_b(<r) (line 1e-7; start test 1e-8): max rel dev of C 1.94e-09; start 1e-7 h vs 1e-6 h changes M_c by 5.86e-11 (7 (M, h) pairs, both footings)
+  [PASS] C2c sphere M_b closed form vs quadrature (line 1e-10); r_M(1e9) canonical = 1.2203 +- 1e-4 kpc: max rel dev 1.29e-14; r_M(1e9) = 1.220283 kpc
+  [PASS] C3 positive control: K0 (N = 1) on a point mass M0 gives R = 1 (line 1e-8); fitter returns N = 1 +- 1e-6: max |R - 1| = 6.66e-16; |N_fit - 1| = 4.44e-13 (both footings)
+  (controls 5.7 s)
+
+POINT MASS (canonical; overlap [3.8589, 36.6085] kpc; c = the fitted multiplier of the mode-b base normalisation)
+  slot        c*(1e9) c*(10^10.5)   c*(1e12)    ratio  res 1e9 res 1e12 |   c_common  res_com       S(r) min..max      F min..max  expo C_model
+  K0@10.5           1           1          1        1  -0.0000   0.0000 |          1  -0.0000    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  K0@9              1           1          1        1  -0.0000   0.0000 |          1  -0.0000    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  K0@12             1           1          1        1  -0.0000   0.0000 |          1  -0.0000    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  RM0.06       0.7065       15.97  2.938e+07 2.404e-08   2.0234  34.3605 |  2.915e+07  34.3761    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  RM0.10        1.119       140.4  3.175e+12 3.523e-13   2.5206  57.4921 |  3.112e+12  57.5322    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  PL           0.4466      0.4466     0.4466        1   1.5402   1.5402 |     0.4466   1.5402    3.1269..  13.6945  1.7683.. 3.7006 1.1650..1.3788
+  recalled RM sets as given (N = 1/lambda0): max |ln R| over x, per mass, at 1e9 / 10^10.5 / 1e12; masses in the [0.9, 1.1] band
+    lambda0=3,mu0=0.06        3.082    9.840   63.557; in band at 0 of 13
+    lambda0=3,mu0=0.1         4.451   18.051  109.816; in band at 0 of 13
+    lambda0=10,mu0=0.06       5.271   12.072   65.789; in band at 0 of 13
+    lambda0=10,mu0=0.1        6.577   20.194  111.958; in band at 0 of 13
+  (point masses, canonical: 0.3 s)
+
+POINT MASS (alt; overlap [3.5102, 33.3010] kpc; c = the fitted multiplier of the mode-b base normalisation)
+  slot        c*(1e9) c*(10^10.5)   c*(1e12)    ratio  res 1e9 res 1e12 |   c_common  res_com       S(r) min..max      F min..max  expo C_model
+  K0@10.5           1           1          1        1   0.0000  -0.0000 |          1   0.0000    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  K0@9              1           1          1        1   0.0000  -0.0000 |          1   0.0000    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  K0@12             1           1          1        1   0.0000  -0.0000 |          1   0.0000    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  RM0.06       0.6663       11.66   6.11e+06 1.091e-07   1.9610  31.2246 |   6.07e+06  31.2376    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  RM0.10        1.006       87.17  2.315e+11 4.344e-12   2.4040  52.2684 |  2.277e+11  52.3021    1.0000..   1.0000  1.0000.. 1.0000 1.0000..1.0000
+  PL           0.4466      0.4466     0.4466        1   1.5402   1.5402 |     0.4466   1.5402    3.1269..  13.6945  1.7683.. 3.7006 1.1650..1.3788
+  recalled RM sets as given (N = 1/lambda0): max |ln R| over x, per mass, at 1e9 / 10^10.5 / 1e12; masses in the [0.9, 1.1] band
+    lambda0=3,mu0=0.06        3.087    8.906   57.470; in band at 0 of 13
+    lambda0=3,mu0=0.1         4.310   16.376   99.545; in band at 0 of 13
+    lambda0=10,mu0=0.06       5.267   11.138   59.702; in band at 0 of 13
+    lambda0=10,mu0=0.1        6.431   18.518  101.687; in band at 0 of 13
+  (point masses, alt: 0.2 s)
+
+SPHERES (canonical; h(M)=2,3,4,5; masses 1e9, 1e10, 1e11, 1e12)
+  slot        c*(1e9)   c*(1e10)   c*(1e11)   c*(1e12)    ratio                res per mass |   c_common  res_com       c_lo       c_hi  G1?      S_exp min..max
+  K0@10.5       2.741      2.366      1.885      1.416    1.937  1.996  1.703  1.253  0.685 |      2.741   1.9956      7.686      1.028   no     1.882..    4.875
+  RM0.06        2.194      4.484      203.2  2.953e+07 7.428e-08  1.664  3.027 10.478 34.161 |  2.777e+07  34.2844  7.337e+14     0.3539   no     1.066..    2.233
+  RM0.10        2.269      14.88       7946  3.069e+12 7.392e-13  1.634  5.195 17.578 56.984 |  2.763e+12  57.1946  6.888e+24     0.3979   no     1.089..    2.441
+  PL            2.135      1.566     0.8933     0.6314    3.381  1.693  1.215  0.639  0.868 |      1.697   2.0977      5.044     0.3161   no     1.686..    2.528
+  recalled RM sets as given: max |ln R| per mass (1e9 .. 1e12); masses in band
+    lambda0=3,mu0=0.06        4.376    5.464   18.216   63.369; in band at 0 of 4
+    lambda0=3,mu0=0.1         4.399    9.966   32.593  109.240; in band at 0 of 4
+    lambda0=10,mu0=0.06       5.916    7.695   20.448   65.600; in band at 0 of 4
+    lambda0=10,mu0=0.1        6.487   12.108   34.735  111.383; in band at 0 of 4
+
+SPHERES (canonical; h=2 at every mass; masses 1e9, 1e10, 1e11, 1e12)
+  slot        c*(1e9)   c*(1e10)   c*(1e11)   c*(1e12)    ratio                res per mass |   c_common  res_com       c_lo       c_hi  G1?      S_exp min..max
+  K0@10.5       2.741      2.146      1.521      1.121    2.446  1.996  1.509  0.827  0.225 |      2.741   1.9956      7.686      1.028   no     1.828..    2.617
+  RM0.06        2.194      4.398      199.4   2.89e+07 7.591e-08  1.664  3.104 10.606 34.364 |   2.89e+07  34.3643  7.947e+14     0.1394   no         1..        1
+  RM0.10        2.269      14.72       7915  3.125e+12 7.26e-13  1.634  5.326 17.854 57.442 |  3.125e+12  57.4416  8.817e+24     0.1445   no         1..        1
+  PL            2.135      1.249     0.6716     0.4808     4.44  1.693  0.940  0.748  1.398 |      1.336   2.5092      5.044     0.1358   no     1.754..    6.239
+  recalled RM sets as given: max |ln R| per mass (1e9 .. 1e12); masses in band
+    lambda0=3,mu0=0.06        4.376    5.502   18.306   63.528; in band at 0 of 4
+    lambda0=3,mu0=0.1         4.399   10.074   32.861  109.734; in band at 0 of 4
+    lambda0=10,mu0=0.06       5.916    7.734   20.538   65.760; in band at 0 of 4
+    lambda0=10,mu0=0.1        6.487   12.217   35.003  111.877; in band at 0 of 4
+  H1a spheres (h = 3 kpc, separate runs at 1e9 and 1e12, 20 radii in [0.3, 300] kpc): exponent of C_model per slot: K0@10.5 0.853586..0.988134; RM0.06 1.000000..1.000000; RM0.10 1.000000..1.000000; PL 1.010235..1.273224
+  (spheres, canonical: 21.3 s)
+
+SPHERES (alt; h(M)=2,3,4,5; masses 1e9, 1e10, 1e11, 1e12)
+  slot        c*(1e9)   c*(1e10)   c*(1e11)   c*(1e12)    ratio                res per mass |   c_common  res_com       c_lo       c_hi  G1?      S_exp min..max
+  K0@10.5       2.789      2.415      1.939      1.456    1.915  2.030  1.743  1.308  0.742 |      2.789   2.0302      7.886      1.026   no     1.908..    5.126
+  RM0.06        2.268      3.816      123.5  6.149e+06 3.689e-07  1.721  2.711  9.485 31.023 |  5.782e+06  31.1460   3.18e+13     0.3832   no     1.069..     2.32
+  RM0.10        2.346      11.41       3473  2.246e+11 1.045e-11  1.690  4.670 15.923 51.754 |  2.021e+11  51.9646  3.687e+22     0.4309   no     1.094..    2.538
+  PL            2.207      1.639     0.9652     0.6477    3.407  1.750  1.279  0.699  0.819 |      1.797   2.1166      5.334     0.3421   no     1.674..    2.325
+  recalled RM sets as given: max |ln R| per mass (1e9 .. 1e12); masses in band
+    lambda0=3,mu0=0.06        4.661    5.016   16.416   57.281; in band at 0 of 4
+    lambda0=3,mu0=0.1         4.684    9.101   29.472   98.970; in band at 0 of 4
+    lambda0=10,mu0=0.06       6.200    7.247   18.648   59.513; in band at 0 of 4
+    lambda0=10,mu0=0.1        6.339   11.243   31.615  101.112; in band at 0 of 4
+
+SPHERES (alt; h=2 at every mass; masses 1e9, 1e10, 1e11, 1e12)
+  slot        c*(1e9)   c*(1e10)   c*(1e11)   c*(1e12)    ratio                res per mass |   c_common  res_com       c_lo       c_hi  G1?      S_exp min..max
+  K0@10.5       2.789      2.199      1.566      1.143    2.441  2.030  1.557  0.885  0.262 |      2.789   2.0302      7.886      1.026   no     1.846..    2.691
+  RM0.06        2.268       3.74      121.1  6.018e+06 3.769e-07  1.721  2.789  9.613 31.226 |  6.018e+06  31.2258  3.445e+13     0.1525   no         1..        1
+  RM0.10        2.346      11.28       3459  2.287e+11 1.026e-11  1.690  4.802 16.199 52.212 |  2.287e+11  52.2115   4.72e+22     0.1578   no         1..        1
+  PL            2.207      1.323     0.6876     0.4954    4.454  1.750  1.004  0.702  1.340 |      1.435   2.5105      5.334     0.1488   no     1.705..    5.763
+  recalled RM sets as given: max |ln R| per mass (1e9 .. 1e12); masses in band
+    lambda0=3,mu0=0.06        4.661    5.055   16.507   57.441; in band at 0 of 4
+    lambda0=3,mu0=0.1         4.684    9.210   29.740   99.464; in band at 0 of 4
+    lambda0=10,mu0=0.06       6.200    7.285   18.738   59.673; in band at 0 of 4
+    lambda0=10,mu0=0.1        6.339   11.352   31.882  101.606; in band at 0 of 4
+  H1a spheres (h = 3 kpc, separate runs at 1e9 and 1e12, 20 radii in [0.3, 300] kpc): exponent of C_model per slot: K0@10.5 0.850197..0.989123; RM0.06 1.000000..1.000000; RM0.10 1.000000..1.000000; PL 1.008837..1.257903
+  (spheres, alt: 7.3 s)
+
+HEADLINE H1 (each part on both footings; H1 passes only if all four parts pass)
+  [FAIL] H1a scaling (canonical): d ln C_model/d ln M_b = 2.00 +- 0.02 and C_target 1.00 +- 0.02, 1e9 vs 1e12: point mass (6 slots x 20 overlap radii) 1.000000..1.378849; spheres at h = 3 kpc (4 slots x 20 radii, separate runs) 0.853586..1.273224; C_target 1.000000..1.000000
+  [FAIL] H1b spread (canonical): S(r) = 1000 +- 2% at 60 overlap radii, F within 2% of 31.6228, every slot: S 1.000000..13.694534; F 1.000000..3.700613; ends 3.8589 / 36.6085 kpc vs CFG120's 3.87 / 36.55 (-0.29%, +0.16%)
+  [FAIL] H1c no single normalisation, point mass (canonical): best common N leaves max|ln R| >= 3.434 for every slot; K0@10.5 attains 3.4539 at N = 1: residuals K0@10.5 -0.0000, K0@9 -0.0000, K0@12 -0.0000, RM0.06 34.3761, RM0.10 57.5322, PL 1.5402; K0@10.5 N_common = 1.000000, max|R/(M/M0) - 1| at N = 1: 3.06e+01, R at N = 1 spans 1.00000..1.0000
+  [PASS] H1d no single normalisation, spheres (canonical): no common N puts R in [0.9, 1.1] (4 slots x 2 h assignments): G1-passable cases: 0 of 8; best common max|ln R| 1.996..57.442
+  [FAIL] H1a scaling (alt): d ln C_model/d ln M_b = 2.00 +- 0.02 and C_target 1.00 +- 0.02, 1e9 vs 1e12: point mass (6 slots x 20 overlap radii) 1.000000..1.378849; spheres at h = 3 kpc (4 slots x 20 radii, separate runs) 0.850197..1.257903; C_target 1.000000..1.000000
+  [FAIL] H1b spread (alt): S(r) = 1000 +- 2% at 60 overlap radii, F within 2% of 31.6228, every slot: S 1.000000..13.694534; F 1.000000..3.700613; ends 3.5102 / 33.3010 kpc (reported; CFG120 did not print them)
+  [FAIL] H1c no single normalisation, point mass (alt): best common N leaves max|ln R| >= 3.434 for every slot; K0@10.5 attains 3.4539 at N = 1: residuals K0@10.5 0.0000, K0@9 0.0000, K0@12 0.0000, RM0.06 31.2376, RM0.10 52.3021, PL 1.5402; K0@10.5 N_common = 1.000000, max|R/(M/M0) - 1| at N = 1: 3.06e+01, R at N = 1 spans 1.00000..1.0000
+  [PASS] H1d no single normalisation, spheres (alt): no common N puts R in [0.9, 1.1] (4 slots x 2 h assignments): G1-passable cases: 0 of 8; best common max|ln R| 2.030..52.212
+  H1 overall: FAIL (H1a FAIL, H1b FAIL, H1c FAIL, H1d pass)
+
+REPORTED ROWS (no pass line)
+  R1 (canonical): B_req = a0/(4 pi G M) = 5.34404e-02, 1.68993e-03, 5.34404e-05 kpc^-2 at 1e9, 10^10.5, 1e12 (ratio 1000.000000)
+      point K0@10.5 : N*(1e9)/N*(1e12) = 1; per-mass residual -0.0000..0.0000
+      point K0@9    : N*(1e9)/N*(1e12) = 1; per-mass residual -0.0000..0.0000
+      point K0@12   : N*(1e9)/N*(1e12) = 1; per-mass residual -0.0000..0.0000
+      point RM0.06  : N*(1e9)/N*(1e12) = 7.6037e-07; per-mass residual 2.0234..34.3605
+      point RM0.10  : N*(1e9)/N*(1e12) = 1.1142e-11; per-mass residual 2.5206..57.4921
+      point PL      : N*(1e9)/N*(1e12) = 31.623; per-mass residual 1.5402..1.5402
+      sphere [h(M)=2,3,4,5] K0@10.5 : N*(1e9)/N*(1e12) = 1.9366; S_exp on the overlap 1.882..4.875
+      sphere [h(M)=2,3,4,5] RM0.06  : N*(1e9)/N*(1e12) = 2.349e-06; S_exp on the overlap 1.066..2.233
+      sphere [h(M)=2,3,4,5] RM0.10  : N*(1e9)/N*(1e12) = 2.3376e-11; S_exp on the overlap 1.089..2.441
+      sphere [h(M)=2,3,4,5] PL      : N*(1e9)/N*(1e12) = 106.9; S_exp on the overlap 1.686..2.528
+      sphere [h=2 at every mass] K0@10.5 : N*(1e9)/N*(1e12) = 2.4457; S_exp on the overlap 1.828..2.617
+      sphere [h=2 at every mass] RM0.06  : N*(1e9)/N*(1e12) = 2.4004e-06; S_exp on the overlap 1..1
+      sphere [h=2 at every mass] RM0.10  : N*(1e9)/N*(1e12) = 2.2957e-11; S_exp on the overlap 1..1
+      sphere [h=2 at every mass] PL      : N*(1e9)/N*(1e12) = 140.41; S_exp on the overlap 1.754..6.239
+  R3 (canonical): single-kernel mass window 1.1/0.9 = 1.2222 (CFG120 1.222); R(2M)/R(M) at fixed r 1.000000000000..1.286335476728 (CFG120 2.000000000000); centred residual sqrt 2 - 1 = 0.4142; my reading of 'linear band 0.998': (S-1)/(S+1) = 0.000000..0.863895
+  R4 (canonical): PL best common N residual 1.5402 (factor 4.67; CFG120 RM 3-parameter fit 3.97, factor 53); RM0.06 34.376, RM0.10 57.532
+  R1 (alt): B_req = a0/(4 pi G M) = 6.45831e-02, 2.04230e-03, 6.45831e-05 kpc^-2 at 1e9, 10^10.5, 1e12 (ratio 1000.000000)
+      point K0@10.5 : N*(1e9)/N*(1e12) = 1; per-mass residual -0.0000..0.0000
+      point K0@9    : N*(1e9)/N*(1e12) = 1; per-mass residual -0.0000..0.0000
+      point K0@12   : N*(1e9)/N*(1e12) = 1; per-mass residual -0.0000..0.0000
+      point RM0.06  : N*(1e9)/N*(1e12) = 3.4487e-06; per-mass residual 1.9610..31.2246
+      point RM0.10  : N*(1e9)/N*(1e12) = 1.3736e-10; per-mass residual 2.4040..52.2684
+      point PL      : N*(1e9)/N*(1e12) = 31.623; per-mass residual 1.5402..1.5402
+      sphere [h(M)=2,3,4,5] K0@10.5 : N*(1e9)/N*(1e12) = 1.9151; S_exp on the overlap 1.908..5.126
+      sphere [h(M)=2,3,4,5] RM0.06  : N*(1e9)/N*(1e12) = 1.1664e-05; S_exp on the overlap 1.069..2.32
+      sphere [h(M)=2,3,4,5] RM0.10  : N*(1e9)/N*(1e12) = 3.3034e-10; S_exp on the overlap 1.094..2.538
+      sphere [h(M)=2,3,4,5] PL      : N*(1e9)/N*(1e12) = 107.74; S_exp on the overlap 1.674..2.325
+      sphere [h=2 at every mass] K0@10.5 : N*(1e9)/N*(1e12) = 2.4412; S_exp on the overlap 1.846..2.691
+      sphere [h=2 at every mass] RM0.06  : N*(1e9)/N*(1e12) = 1.1919e-05; S_exp on the overlap 1..1
+      sphere [h=2 at every mass] RM0.10  : N*(1e9)/N*(1e12) = 3.2442e-10; S_exp on the overlap 1..1
+      sphere [h=2 at every mass] PL      : N*(1e9)/N*(1e12) = 140.86; S_exp on the overlap 1.705..5.763
+  R3 (alt): single-kernel mass window 1.1/0.9 = 1.2222 (CFG120 1.222); R(2M)/R(M) at fixed r 1.000000000000..1.286335476728 (CFG120 2.000000000000); centred residual sqrt 2 - 1 = 0.4142; my reading of 'linear band 0.998': (S-1)/(S+1) = 0.000000..0.863895
+  R4 (alt): PL best common N residual 1.5402 (factor 4.67; CFG120 RM 3-parameter fit 3.97, factor 53); RM0.06 31.238, RM0.10 52.302
+
+ESTIMATES written in the spec before running (hand algebra) vs results
+  K0 keyed point: S, exponent of C_model                     ESTIMATE           1, 1.00 | result 1.00000000..1.00000000, 1.000000..1.000000
+  PL keyed point: S on the overlap                           ESTIMATE         about 2-8 | result 3.1269..13.6945
+
+MUTATE=b BITE (the declared lines must flip, i.e. fail)
+  H1a: FLIPPED (fails)  [declared]
+  H1b: FLIPPED (fails)  [declared]
+  H1c: FLIPPED (fails)  [declared]
+  H1d: did not flip (passes)  [not required]
+  bite on every declared line: YES
+
+DIAGNOSTICS (added in stage 2 before the first run; no pass line): spline vs direct rho_D on 26 unit grids at 10 radii each, max rel diff 1.24e-08; quadrature warnings 0; 26 unit convolutions
+
+VERDICT (MUTATE=b): 10 of 16 checks pass; exit 1
+elapsed 34.9 s
