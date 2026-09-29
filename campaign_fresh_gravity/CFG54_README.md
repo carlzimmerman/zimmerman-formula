@@ -22,3 +22,6 @@ How many of the 51 would qualify if the velocity were measured farther out: at 1
 2. Independent mass calibration at about 0.1 dex: the sample's own systematics (Mmol 50%, M* 30%) already cap the significance near 2.3σ (CFG52's forecast).
 
 Nothing here says the theory is closed.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- 'N = 0 of 51' is the canonical footing only (a0 = 9.3603e-11); the alt footing is not scored. Scaling the printed ratios (not re-run) gives about 2 rows below 0.3 a0 at a0 = 1.1312e-10, still below 5, so non-diagnostic holds either way. The 2.3 sigma cap comes from CFG52's generic correlated 0.2-dex floor, not from this sample's own systematics.

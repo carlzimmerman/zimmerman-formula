@@ -32,3 +32,6 @@ C1a/C1b pass (φ = 1 reproduces CFG45's S and φ = 0 its L, 100 + 40 comparisons
 **One multiplier of the sum's debris term does not reconcile the lanes.** The low-mass satellites want about a quarter of the debris and the most massive early types want nearly all of it. That is a statement about the sum's mass dependence, not a rule. Nothing here says the theory is closed.
 
 **Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- Superseded in part by CFG71: with JAM-calibrated SLUGGS masses no phi in [0,1] brings SLUGGS within 1 sigma, and the binding pair becomes the ultra-faints against the LVD (gap 0.087 | 0.164). 'The most massive early types want nearly all of it' no longer holds. The [0.22, 0.30] group exists only after dropping the ultra-faints (KM median needs phi >= 0.39), SLUGGS and the X-ray ellipticals.

@@ -36,3 +36,6 @@ The largest move anywhere is 0.027 dex and 0.39σ; the ultra-faint lanes move by
 ## Standing
 
 **No headline verdict of CFG40–CFG59 depends on the kernel choice**; the one sensitive hypothesis is a non-headline row crossing the 2σ line by 0.4σ. The kernel description error in six lanes' docstrings is recorded here and in each lane's README. Nothing here says the theory is closed.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- 'Largest move anywhere 0.027 dex / 0.39 sigma' is for the H rows only; the alt-companion rows reach 0.028 dex / 0.43 sigma. 'No headline of CFG40-CFG59' covers only the nine lanes tested. The kernel notes appended to CFG42/45/46/51/58/59 say 'not nu_mono as the text above says', but those READMEs do not contain nu_mono (only docstrings and .out do).

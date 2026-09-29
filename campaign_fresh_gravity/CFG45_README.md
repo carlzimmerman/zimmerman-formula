@@ -38,3 +38,7 @@ Acceptance (A1–A7): the ultra-faints (|KM median| < 2σ), the classical satell
 **Among the natural zero-parameter readings, the sum is the best, and it fails one gate. None closes candidate B, and the radial max is not a fix.** This is a design constraint, not a result for the framework. Nothing here says the theory is closed.
 
 **Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- The ranking 'S is best, 6/7' is input-conditional: its SLUGGS gate (A4) uses h50's own stellar masses. With JAM-calibrated dynamical masses the rule leaves +0.046 dex (2.6 sigma) and fails that gate (CFG55, CFG71), so S would be about 5/7; under the 200c-consistent Duffy row (A2) the classical-satellite gate moves inside 2 sigma (CFG65).
+- The main .out prints '[PASS] C3 CONTROL (MUTATE run only)' with contents that contradict the criterion in the un-mutated run; cosmetic, but it should not be read as a passed control.

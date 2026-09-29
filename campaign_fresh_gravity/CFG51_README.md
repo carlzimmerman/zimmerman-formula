@@ -34,3 +34,5 @@ Nothing here says the theory is closed.
 
 **Update (CFG66):** a two-Gaussian mixture fit to the binary-cleaned Boötes I members gives a cold-only offset of −0.07 ± 0.20 dex (consistent with zero), not the +0.007 quoted above from the literature's 2.4 km/s, and the split itself is not detected (bootstrap P = 0.155); the total-mixture offset is +0.22 (2.3σ). A linear-gradient fit to Tucana II finds no gradient (0.43 ± 3.4 km/s per half-light radius) and leaves its offset at +0.46 (3.6σ). See `CFG66_README.md`.
 
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- '16,369 stars in 38 systems' is inherited from the script docstring; run.log gives 49,367 rows and 15,639 stars passing quality and Gaia in 38 systems. 'Nine others lack members or epochs' cannot be traced to an output (the tsv has 16 UFD rows, 2 informative). 'The truth needs a partial debris' is stronger than two objects can carry; no sigma is printed for the -0.205 / -0.165 rule offsets.

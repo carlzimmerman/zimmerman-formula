@@ -28,3 +28,7 @@ Script: `CFG58_rule_more_populations.py` (about 5 s). Outputs: `.out`, `_results
 **The sum is harmless above M_b ≈ 2 × 10⁷ M☉ and harmful below it.** This adds nothing new for the sub-3 × 10⁷ M_b regime beyond CFG42: the rule's problems live where the law's own phantom is smaller than the collapse mass. Nothing here says the theory is closed.
 
 **Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- 'Harmful below M_b ~ 2e7' is stronger than the numbers: S changes the 13 field dwarfs by 0.061 dex, which is -3.5 sigma in S's own shrunken error (0.030) but -1.4 / -1.3 sigma in L's error; statistic C (92 dwarfs, 86% below the switch-off) passes for both L and S (delta slope 0.013). C1's tolerance failure is four values (2.2-4.8e-9), not one. CFG69 finds the field-dwarf failure shared with a Dutton-Maccio LCDM concentration.
+- The main .out prints '[PASS] C3 CONTROL (MUTATE run only)' with contents that contradict the criterion (0.0615 dex against < 0.01); cosmetic.

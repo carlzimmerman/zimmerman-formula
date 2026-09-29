@@ -27,3 +27,6 @@ Alt footing: +0.090, +0.165 (slope), +0.149 (nine fastest, 2.17σ). **H1 passed*
 What limits the result is now the stellar-mass systematic (0.059 of the 0.063 floor), the missing HI, and the inclination and maximum-of-a-noisy-curve caveats CFG40 listed. On galaxy scatter alone the mean offset would be 5σ. **B fails its declared test on the most massive star-forming disks at 2.3σ (the nine fastest), 1.8σ (the mass trend) and 1.7σ (the mean).** That is still marginal, and the cold-mass rule still cannot cure it (f_ex = 0 in all 23).
 
 Nothing here says the theory is closed.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- The change for the nine fastest is -0.0068 dex (README says -0.006); 0.105/0.018 is 5.8 sigma (README says 5). Under the RAR kernel (CFG64 P2) the nine fastest go 2.34 -> 2.69 sigma and this lane's H1 flips PASS -> FAIL.

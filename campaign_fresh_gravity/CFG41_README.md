@@ -55,3 +55,6 @@ Reproduced: raw law mean +0.048, the algorithm within 3 km/s for 10 of 15. Its s
 **UGC 2487 (SPARC's S0) stays a 0.14-dex over-prediction by the rule (CFG36).** The four new S0 / S0a point the same way but weakly: the rule over-predicts them by 10% after the correction (−0.105 ± 0.131, 0.8σ), and by 5–9% before it. They neither confirm nor remove that worry.
 
 Nothing here says the theory is closed.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- '-0.105 dex' is a 27% speed over-prediction (10^0.105 = 1.27), not 10%; the '5-9% before' figure (-0.02 to -0.04 dex) is right. CFG53's shape test on the same 15 disks is not cross-referenced (every measurement leans against the debris, none at 2 sigma).

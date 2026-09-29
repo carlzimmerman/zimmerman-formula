@@ -79,3 +79,7 @@ The MUTATE control first multiplied the speeds by 0.7. H2 **passed** under it (m
 Nothing here says the theory is closed.
 
 **Update (CFG56):** with Simard+2011's measured bulge-to-total ratios the marginal fail survives (nine fastest +0.164, 2.34σ). The structure-model dependence noted above is not a way out.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- The statements that any centrally concentrated correction 'removes the failure', that it is 'not a robust failure', and that it fails 'only under the declared disc model' are superseded: CFG56 measured the bulges and the nine fastest miss at 2.34 sigma. A LCDM halo through the same machinery also misses (CFG68: +0.121, 2.26 sigma), so the miss is not specific to the law. Under the RAR kernel (CFG64 P2) the nine fastest go 2.06 -> 2.35 sigma.
+- The referee-only correlations in the text (-0.68 with r/R_d, +0.054 / +0.155, +0.38 with inclination, 0.033 dex per 0.1 dex of M_*, +0.130, 47 kpc, 0.01) have no committed script; '+0.113' and '+0.201' are re-printed in CFG56's docstring. 'M_200m ~ 6e12, phantom ~ 1e13' is in no output. No kernel-sensitivity note existed before CFG64.

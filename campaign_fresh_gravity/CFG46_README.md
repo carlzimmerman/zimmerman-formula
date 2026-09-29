@@ -38,3 +38,6 @@ FG001's estimator and inputs (as CFG28 and CFG42); the statistic is the median o
 Nothing here says the theory is closed.
 
 **Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- The MUTATE (sigma x 0.5) fails H1, but H1 already fails in the main run (+1.26 sigma); only H3 (main PASS -> MUTATE FAIL) shows the control has bite. Per-system offsets at f = 0 are all positive (+0.03 to +0.65); -0.03 is Bootes I at f free and -0.08 at f = 0.7 is the actual minimum. 'Multi-epoch data remain decisive' has since been run (CFG51, CFG66: Bootes I +0.22, Tucana II +0.47 after cleaning).

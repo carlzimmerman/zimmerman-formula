@@ -28,3 +28,6 @@ Inventory of every high-z rotation-curve table in the repo (RC100 100, MSA-3D 30
 The gap is 0.23–0.27 dex in g_obs at g_bar/a₀ = 0.05–0.3. Two to four discs at z ≈ 2.5 with σ_V/V = 5–10% and independent mass errors of 0.1–0.2 dex would give 3σ (this matches the repo's "3 at ±0.10 or 4 at ±0.20"). A **correlated** 0.2-dex mass-scale systematic caps the significance near 2.3σ whatever N is, so the mass calibration must reach about 0.1 dex. Data kind: resolved 3D kinematics (JWST NIRSpec IFU) out to R ≳ 8–10 kpc, ALMA CO for measured gas, low lensing-magnification uncertainty, V/σ > 1.5, log M_bar ≲ 10.
 
 Nothing here says the theory is closed.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- 'No clean object at z >= 1.5 with g_bar < 0.3 a0' is the canonical footing: in the alt-footing table (feas.out) RC100 has 2 such objects (the second is zC 410041, z = 2.45, about 0.295 a0 alt). The typical prediction gap is 0.08-0.13 dex in the per-set medians, not 0.10-0.19.

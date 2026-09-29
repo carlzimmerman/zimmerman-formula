@@ -34,3 +34,6 @@ Key numbers (exponential spheres, canonical a₀):
 **The tidal-tensor coupling does not rescue the fluid.** It falls under CFG44's reciprocity and state-independent-stress obstructions and adds a ceiling of 0.5 on the force it can supply. What CFG44 found survives: a temperature-slaved or locally virialised fluid, as restatements. The remaining object is still the non-adiabatic, nonlocal enclosed-mass exchange, which is Gap 1's ownership object.
 
 Nothing here says the theory is closed.
+
+## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
+- 'The reaction on the baryons is O(g_law)' holds for M_b <= 1e10; at 1e12 it is 0.03 g at r = h (0.23 at 0.3h). The output labels the column reaction/g_tot. D1 MUTATE_b and D2 MUTATE_a exist and pass 6/6 (not mentioned above).
