@@ -1,0 +1,76 @@
+{
+ "slug": "D2_wellposed_nogo_MUTATE_0",
+ "failures": 0,
+ "checks": [
+  {
+   "name": "W1 (sympy) a prescribed state-independent force density has omega^2 = -i F.k/rho0 (Hadamard ill-posed); the same 'pressure' derived from an action, L = Int P_b(x) d^3x, exerts identically zero force",
+   "detail": "omega^2 set [I*(-F1*k1 - F2*k2 - F3*k3)/rho0, 0]; EL force residual 0",
+   "ok": true
+  },
+  {
+   "name": "W2 (sympy) no equation of state whose energy depends on x through LOCAL fields of Phi_b (T_perp, g_N ~ r T, rho_b) can have the target as its static equilibrium on generic baryon profiles: the coefficients of rho_b force mu_rho = mu_T = 0, then mu_r = -a0 T/(4 pi G rho) is inconsistent",
+   "detail": "mu_rho = 0, mu_T = 0, mu_r = -T*a0/(4*pi*G*rho), d mu_r/d rho = T*a0/(4*pi*G*rho**2) != 0",
+   "ok": true
+  },
+  {
+   "name": "W3a (sympy) omega^2 = (k g^-1 k)(c_s^2 - 4 pi G rho0/k^2): hyperbolic (real omega^2 at high k) iff the effective metric g_ij = delta + chi T_ij is positive-definite; a negative eigenvalue is simultaneously a ghost and a gradient instability",
+   "detail": "dispersion residual ok = True",
+   "ok": true
+  },
+  {
+   "name": "W3b (numeric) ghost detector: exponential spheres, support-sign coupling: no ghost at 0.95 chi_crit, ghost at 1.05 chi_crit",
+   "detail": "{'1e+09': (False, True), '1e+10': (False, True), '1e+11': (False, True), '1e+12': (False, True)}",
+   "ok": true
+  },
+  {
+   "name": "W3c (numeric) at the ghost boundary the coupling supplies an OUTWARD force of at most ~0.5 g_tot per unit fluid mass (peak over 0.3-5 h) -- less than the f = 1 needed to carry the closure",
+   "detail": "force direction sign and peak fraction: {'1e+09': (1.0, 0.505), '1e+10': (1.0, 0.505), '1e+11': (1.0, 0.505), '1e+12': (1.0, 0.505)}",
+   "ok": true
+  },
+  {
+   "name": "W4 (sympy + numbers) the background tidal tensor of uniform density is Omega_b H^2 delta_ij (nonzero): the coupling renormalises the fluid inertia by m - 1 = chi Omega_b H^2 -- for the galaxy-scale chi it is >> 1 at z = 1100 (incompatible with GR+CDM at the CMB) unless Phi_b is built on the overdensity (postulated); the required chi also varies by > x10 across M_b = 1e9..1e12 (not universal)",
+   "detail": "T_ii uniform ok True; growth algebra ok True; chi_need spread x64; m(1100) - 1 in 5e+01..3e+03",
+   "ok": true
+  }
+ ],
+ "numbers": {
+  "W3_rows": {
+   "1e+09": {
+    "chi_crit_support": -0.005622203314513727,
+    "chi_crit_anti": 0.510513410218787,
+    "ghost_below": false,
+    "ghost_above": true,
+    "force_dir": 1.0,
+    "fmax_peak": 0.5045348257929305,
+    "fmax_at_h": 0.4977818770367531
+   },
+   "1e+10": {
+    "chi_crit_support": -0.0018974936189383508,
+    "chi_crit_anti": 0.17229827598461428,
+    "ghost_below": false,
+    "ghost_above": true,
+    "force_dir": 1.0,
+    "fmax_peak": 0.5045348114017743,
+    "fmax_at_h": 0.4977818771391909
+   },
+   "1e+11": {
+    "chi_crit_support": -0.0004497762652080003,
+    "chi_crit_anti": 0.040841072819063406,
+    "ghost_below": false,
+    "ghost_above": true,
+    "force_dir": 1.0,
+    "fmax_peak": 0.5045348177395923,
+    "fmax_at_h": 0.4977818743583007
+   },
+   "1e+12": {
+    "chi_crit_support": -8.784692675954724e-05,
+    "chi_crit_anti": 0.007976772034657482,
+    "ghost_below": false,
+    "ghost_above": true,
+    "force_dir": 1.0,
+    "fmax_peak": 0.5045348396221113,
+    "fmax_at_h": 0.4977818888796385
+   }
+  }
+ }
+}

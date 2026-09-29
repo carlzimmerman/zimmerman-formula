@@ -12,3 +12,5 @@ The gate list was frozen before any assembly attempt, so the assembly cannot mov
 
 **Update 2026-09-28 (CFG44).** Gap 2 has an exact target and a scoped no-go: no barotropic EOS, local closure, second force, constraint action, phantom-potential coupling or density slaving produces it. Only a temperature-slaved fluid (postulating the BTFR) and a locally virialised collisionless fluid with a postulated anisotropy survive, as restatements. The missing object, C(r) = ρ_c r³ g_tot = (a₀/4π) M_b(<r), is a non-adiabatic, nonlocal enclosed-mass energy exchange — which is Gap 1's ownership object. The three gaps are therefore two: a legal bound-only, owned switch, and the tie (partly filled, CFG43). (`../CFG44_fluid_target/`)
 
+**Update 2026-09-28 (CFG50).** The one CFG44 exclusion gap, a fluid whose stress is the tidal tensor of a baryon-sourced auxiliary potential, was tested: it fails on reciprocity (the reaction on the baryons is O(g_law)) and on a 0.5 ceiling for the ghost-free force. Gap 2 still reduces to Gap 1. (`../CFG50_tidal_closure/`)
+

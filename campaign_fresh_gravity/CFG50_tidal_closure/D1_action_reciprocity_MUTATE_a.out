@@ -1,0 +1,91 @@
+D1 -- ACTION + RECIPROCITY for a conserved cold fluid coupled to the TIDAL TENSOR of an auxiliary potential Phi_b sourced by baryons only.
+
+ACTION (Newtonian weak-field reduction; kappa = 1/2 FITTED; nothing new fitted):
+  S = S_b[x_b; Phi_tot] + S_g[Phi_tot] + S_c[fluid; Phi_tot] + S_aux[Phi_b, lambda; rho_b] + S_int
+  S_g   = - Int |grad Phi_tot|^2 /(8 pi G)                      (GR weak field; baryons + fluid minimally coupled to Phi_tot)
+  S_aux = Int lambda (lap Phi_b - 4 pi G rho_b)/(4 pi G)        (Phi_b sourced by baryons ONLY, via a multiplier: baryons do not couple to Phi_b directly)
+  S_int = Int d^3x (1/2) chi T_ij[Phi_b] Pi^ij ,  T_ij = (delta_ij lap - d_i d_j) Phi_b   ("K-coupling": Pi^ij = Int f v^i v^j = the fluid's SECOND MOMENT, a composite fluid variable)
+          <=> each fluid particle has L_p = (1/2)(delta_ij + h_ij) v^i v^j - Phi_tot, h_ij = chi T_ij   (an effective spatial metric built from the tidal tensor of Phi_b).
+  DIMENSIONS: the requested L_int = (a0/8 pi G) T_ij Pi^ij is not an energy density for Pi = rho sigma^2: [a0/G][T][Pi] = M L^-2 T^-2 x (energy density) -- the coefficient must be a TIME^2
+              chi (= 2 c_int).  The only universal a0,c time^2 is (c/a0)^2 (and 1/(G rho_L) = (kappa c/a0)^2); nothing built from a0,G alone has dimension time^2.
+CLAIMS (all by committed calculation below):
+  C1  T_ij is identically divergence-free (d_j T_ij = 0): used as a STRESS (force = d_j Sigma_ij) it exerts NO force.  In the K-coupling Pi is composite; for a cold fluid Pi = 0 -> S_int = 0; for isotropic Pi = P delta,
+      S_int = 4 pi G chi Int rho_b P (a CONTACT term: zero force on the fluid wherever rho_b = 0).
+  C2  ADJOINT / RECIPROCITY THEOREM: for ANY S_int[fluid, Phi_b], the multiplier equation d S/d Phi_b: lap(lambda) = -4 pi G q, q = delta S_int/delta Phi_b;  the baryons feel the extra acceleration a_react = -grad lambda.
+      For S_int = Int F^ij T_ij : q = (delta_ij lap - d_i d_j) F^ij = div( 2[F_perp' + (F_perp-F_rr)/r] rhat ),  a_react = 8 pi G [F_perp' + (F_perp - F_rr)/r]   (outward positive).
+      Checked (i) Cartesian sympy identity, (ii) 1-D EL of the multiplier action, (iii) the B4-Q3 case S_int = -Int rho_c Phi_b -> a_react = -G M_c/r^2 (B4's kappa=1), (iv) finite-difference virtual work.
+      Normalisation independence: a kinetic term Z, source eps rho_b Phi_b (no multiplier) gives the same reaction at fixed FLUID-side coupling -> the reaction cannot be removed by a different action normalisation.
+  C3  NUMBERS: Pi = the target's own Jeans stress (sigma_r^2 = V_c^2/2, beta = -(3/2) rho_b/rhobar_b), exponential spheres.  Fluid-side force  a_f = (chi/2rho)[d_r T_rr Pi_rr + 2 d_r T_perp Pi_perp]  vs reaction a_react;  R = a_react/a_f (chi cancels).
+      Point mass: outside the baryons Pi is isotropic and T_ij is trace-free-diagonal(2,-1,-1) => a_f = 0 identically (the fluid does not feel the coupling at all), while the contact reaction ~ chi P' diverges as r->0.
+  C4  MUTATE(a): Phi_b sourced by the FLUID density (rho_c g_tot = (a0/4 pi G) T_perp[Phi_c]): the closure becomes dM_c/dr = a0 r M_c/(G(M_b+M_c)): seed-dependent Gaussian growth, not the law -> the target FAILS.
+
+  *** MUTATE=a: Phi_b sourced by the fluid density in C4 -- the target check must FAIL ***
+
+==============================================================================================================
+C1  dimensions; T_ij identically conserved; cold and isotropic limits of the K-coupling
+==============================================================================================================
+    (a0/G) T_ij Pi^ij / [energy density] = M/(L**2*T_t**2)   (!= 1);   dimension of chi in S_int = chi T Pi /2 :  T_t**2  (a time^2)
+    d_j T_ij = [0, 0, 0]   (sympy, generic Phi(x,y,z))
+    spherical: T_rr = 2 g_N/r ; T_perp = 4 pi G rho_b - g_N/r ; trace = 2 lap Phi_b = 8 pi G rho_b.  Vacuum: T = (g_N/r) diag(2,-1,-1).
+  [PASS] C1a (sympy) the tidal tensor T_ij = (delta lap - d d) Phi is identically divergence-free; the requested L_int has the wrong dimension by a time^2 (a coefficient chi ~ time^2 is required)
+         d_j T_ij = 0 for generic Phi; mismatch factor M/(L**2*T_t**2)
+    isotropic Pi = P delta_ij:  S_int density = 4*pi*G*chi*P(r)*rho_b(r)  = 4 pi G chi rho_b P   (contact term: no force on the fluid where rho_b = 0; cold fluid Pi = 0 -> S_int = 0)
+  [PASS] C1b (sympy) isotropic Pi: (1/2) chi T_ii P = 4 pi G chi rho_b P  (contact with the baryon density); Pi = 0 (cold fluid): S_int = 0
+         4*pi*G*chi*P(r)*rho_b(r)
+
+==============================================================================================================
+C2  adjoint (reciprocity) theorem -- Cartesian identity, radial multiplier EL, B4-Q3 control
+==============================================================================================================
+    q = (delta_ij lap - d_i d_j) F^ij  (Cartesian, F = A delta + B n n) minus  (1/r^2) d_r( r^2 * 2[F_perp' + (F_perp - F_rr)/r] ):  |residual| = 1.78e-15
+    EL of Phi_b in the multiplier action with lambda' = -8 pi G [F_perp' + (F_perp-F_rr)/r]:  residual = 0
+    B4-Q3 control (fluid feels Phi_b itself, S_int = -Int rho_c Phi_b): lambda' = G M_c/r^2 -> a_react = -G M_c/r^2 (inward extra pull);  EL residual = 0
+  [PASS] C2a (sympy) reciprocity theorem: baryons feel a_react = -grad lambda, lap lambda = -4 pi G q; for S_int = Int F^ij T_ij, a_react = 8 pi G [F_perp' + (F_perp-F_rr)/r]; reproduces B4-Q3 (-G M_c/r^2 for kappa = 1)
+         Cartesian identity residual 1.8e-15; EL residuals 0, 0
+    healthy-kinetic-term (Z>0) formulation without a multiplier: a_react = (eps c/Z) x 8 pi G[...] = C x 8 pi G[...] with C = c eps/Z the FLUID-side coupling; G_eff on baryons is renormalised by eps^2/Z (removable with Z -> infinity) but the reaction is NOT.
+  [PASS] C2b the reaction depends only on the fluid-side coupling C = c eps/Z: no choice of normalisation of Phi_b removes it
+         a_react coefficient = c*epsilon/Z = C
+
+==============================================================================================================
+C3  reaction vs fluid-side force, exponential spheres, Pi = the target's Jeans stress (sigma_r^2 = V_c^2/2, beta = -(3/2) rho_b/rhobar_b); a0 canonical
+==============================================================================================================
+  M_b = 1e+09, h = 2.0 kpc:  |chi|_crit(support sign chi<0) = 5.622e-03,  (anti-support chi>0) = 5.105e-01  [kpc^2/(km/s)^2]
+     r = 0.3 h:  a_f/(chi g) = -6.035e+01   a_react/(chi g) = +1.294e+03   R = a_react/a_f = -21.44   max ghost-free support f = 0.339 ;  reaction/g_tot at that strength = -7.27
+     r = 1.0 h:  a_f/(chi g) = -8.854e+01   a_react/(chi g) = +2.335e+02   R = a_react/a_f = -2.64   max ghost-free support f = 0.498 ;  reaction/g_tot at that strength = -1.31
+     r = 2.0 h:  a_f/(chi g) = -5.474e+01   a_react/(chi g) = -2.547e+01   R = a_react/a_f = +0.47   max ghost-free support f = 0.308 ;  reaction/g_tot at that strength = +0.14
+     r = 3.0 h:  a_f/(chi g) = -2.567e+01   a_react/(chi g) = -6.350e+01   R = a_react/a_f = +2.47   max ghost-free support f = 0.144 ;  reaction/g_tot at that strength = +0.36
+     r = 5.0 h:  a_f/(chi g) = -4.483e+00   a_react/(chi g) = -4.219e+01   R = a_react/a_f = +9.41   max ghost-free support f = 0.025 ;  reaction/g_tot at that strength = +0.24
+  M_b = 1e+10, h = 3.0 kpc:  |chi|_crit(support sign chi<0) = 1.897e-03,  (anti-support chi>0) = 1.723e-01  [kpc^2/(km/s)^2]
+     r = 0.3 h:  a_f/(chi g) = -1.788e+02   a_react/(chi g) = +1.630e+03   R = a_react/a_f = -9.12   max ghost-free support f = 0.339 ;  reaction/g_tot at that strength = -3.09
+     r = 1.0 h:  a_f/(chi g) = -2.623e+02   a_react/(chi g) = +2.846e+02   R = a_react/a_f = -1.08   max ghost-free support f = 0.498 ;  reaction/g_tot at that strength = -0.54
+     r = 2.0 h:  a_f/(chi g) = -1.622e+02   a_react/(chi g) = -3.143e+01   R = a_react/a_f = +0.19   max ghost-free support f = 0.308 ;  reaction/g_tot at that strength = +0.06
+     r = 3.0 h:  a_f/(chi g) = -7.606e+01   a_react/(chi g) = -8.040e+01   R = a_react/a_f = +1.06   max ghost-free support f = 0.144 ;  reaction/g_tot at that strength = +0.15
+     r = 5.0 h:  a_f/(chi g) = -1.328e+01   a_react/(chi g) = -5.584e+01   R = a_react/a_f = +4.20   max ghost-free support f = 0.025 ;  reaction/g_tot at that strength = +0.11
+  M_b = 1e+11, h = 4.0 kpc:  |chi|_crit(support sign chi<0) = 4.498e-04,  (anti-support chi>0) = 4.084e-02  [kpc^2/(km/s)^2]
+     r = 0.3 h:  a_f/(chi g) = -7.543e+02   a_react/(chi g) = +2.223e+03   R = a_react/a_f = -2.95   max ghost-free support f = 0.339 ;  reaction/g_tot at that strength = -1.00
+     r = 1.0 h:  a_f/(chi g) = -1.107e+03   a_react/(chi g) = +3.604e+02   R = a_react/a_f = -0.33   max ghost-free support f = 0.498 ;  reaction/g_tot at that strength = -0.16
+     r = 2.0 h:  a_f/(chi g) = -6.842e+02   a_react/(chi g) = -4.055e+01   R = a_react/a_f = +0.06   max ghost-free support f = 0.308 ;  reaction/g_tot at that strength = +0.02
+     r = 3.0 h:  a_f/(chi g) = -3.209e+02   a_react/(chi g) = -1.090e+02   R = a_react/a_f = +0.34   max ghost-free support f = 0.144 ;  reaction/g_tot at that strength = +0.05
+     r = 5.0 h:  a_f/(chi g) = -5.604e+01   a_react/(chi g) = -8.364e+01   R = a_react/a_f = +1.49   max ghost-free support f = 0.025 ;  reaction/g_tot at that strength = +0.04
+  M_b = 1e+12, h = 5.0 kpc:  |chi|_crit(support sign chi<0) = 8.785e-05,  (anti-support chi>0) = 7.977e-03  [kpc^2/(km/s)^2]
+     r = 0.3 h:  a_f/(chi g) = -3.862e+03   a_react/(chi g) = +2.587e+03   R = a_react/a_f = -0.67   max ghost-free support f = 0.339 ;  reaction/g_tot at that strength = -0.23
+     r = 1.0 h:  a_f/(chi g) = -5.666e+03   a_react/(chi g) = +3.795e+02   R = a_react/a_f = -0.07   max ghost-free support f = 0.498 ;  reaction/g_tot at that strength = -0.03
+     r = 2.0 h:  a_f/(chi g) = -3.503e+03   a_react/(chi g) = -4.316e+01   R = a_react/a_f = +0.01   max ghost-free support f = 0.308 ;  reaction/g_tot at that strength = +0.00
+     r = 3.0 h:  a_f/(chi g) = -1.643e+03   a_react/(chi g) = -1.219e+02   R = a_react/a_f = +0.07   max ghost-free support f = 0.144 ;  reaction/g_tot at that strength = +0.01
+     r = 5.0 h:  a_f/(chi g) = -2.869e+02   a_react/(chi g) = -1.070e+02   R = a_react/a_f = +0.37   max ghost-free support f = 0.025 ;  reaction/g_tot at that strength = +0.01
+  f_max(r/h) identical for all four spheres to within a factor 1.0000 (a0 drops out: a_f/(chi g) = (r/4)[d_r T_rr + 2(1-beta) d_r T_perp] is baryon geometry only)
+  Point mass (rho_b = 0 outside): beta = 0, Pi isotropic; a_f = (chi/2rho)[d_r T_rr + 2 d_r T_perp] P = 0 since T_rr + 2 T_perp = 0 => the coupling exerts NO force on the fluid; contact reaction a_react = 4 pi G chi P' = -chi a0 G M/r^3 -> infinity at r -> 0.
+  sympy: d_r(T_rr + 2 T_perp) in vacuum = 0
+    finite-difference virtual work (shell of mass 1e5 moved by +-0.05h at r = h, S_int recomputed from the shifted baryons):  a_react = +2.6600e+05  vs adjoint formula +2.6536e+05  (rel diff 2.41e-03)
+  reaction/g_law at the ghost-limited strength, r = 0.3 h, 1 h:  M_b=1e9: [7.27, 1.31];  1e10: [3.09, 0.54];  1e12: [0.227, 0.033]  -> O(1) g_law in the deep-MOND (dwarf/LSB) regime, falling ~ (fluid mass / baryon mass) in the Newtonian regime
+  [PASS] C3 (numeric) the ghost-free K-coupling supplies at most f_max < 1 of g_tot to the fluid (best at r ~ h, ~0.5, mass-independent) and at that strength the reaction on the baryons inside r <= h is >= 0.3 g_law for M_b = 1e9, 1e10 (deep-MOND regime; smaller for massive spirals) (R = a_react/a_f = O(1-10), opposite sign to the fluid force inside r < 1.7 h); the finite-difference virtual work agrees with the adjoint formula to 2%
+         f_max(r=0.3,1,2,3,5 h) = [0.339, 0.498, 0.308, 0.144, 0.025];  |reaction/g_law| at chi_crit, r=0.3,1 h (1e10) = [3.09, 0.54], (1e9) [7.27, 1.31];  R = [9.12, 1.08];  fd rel diff 2.4e-03
+
+==============================================================================================================
+C4  the closure with Phi_b sourced by BARYONS reproduces the law (point mass); with Phi_b sourced by the FLUID it does not
+==============================================================================================================
+    Phi_b <- baryons:   max |log10 g_tot/g_P2| over 1e-3..1e3 r_M = 3.03e-12   (positive control: the closure IS the law for a point mass)
+    Phi_b <- fluid (MUTATE a): max |log10 g_tot/g_P2| over 0.1..10 r_M for seeds 1e-6, 1e-3, 1 x M_b : {1e-06: 0.6572061562376361, 0.001: 0.603001063244428, 1.0: 0.6793624051687208}
+  [FAIL] C4 (numeric) closure with Phi_b sourced by baryons = the P2 law for a point mass (<1e-4 dex); sourced by the fluid it does not (seed-dependent, >0.05 dex from the law at every seed)  [MUTATE a: asserts the fluid-sourced closure equals the law]
+         baryon-sourced dev 3.0e-12 dex; fluid-sourced devs {1e-06: 0.6572061562376361, 0.001: 0.603001063244428, 1.0: 0.6793624051687208}
+
+  5/6 checks pass; failures: 1   (3 s)

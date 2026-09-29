@@ -1,0 +1,69 @@
+D2 -- WELL-POSEDNESS AND CLOSURE NO-GO for a fluid whose stress/dynamics is a functional of the tidal tensor T_ij[Phi_b] of a baryon-only auxiliary potential.
+(Companion of D1; action and notation as in D1.  kappa = 1/2 FITTED; nothing new fitted; labels DERIVED/POSTULATED/OPEN in the report.)
+
+W1  STATE-INDEPENDENT STRESS/FORCE (the 'stress is a functional of Phi_b only' reading).  (i) 3-D linearised dust in a prescribed force density F(x) (independent of the fluid state): xi_tt = (F/rho0) (div xi) + ...
+    -> omega^2 = -i (F.k)/rho0 (sympy eigenvalues): Hadamard ill-posed, growth ~ sqrt(k), for F.k != 0 (B4-Q1 in 3-D).  (ii) FROM AN ACTION: L = -rho0 e(rho,x) with e = -P_b(x)/rho (a state-independent pressure P_b) is Int P_b(x) J d^3a = Int P_b d^3x:
+    its Euler-Lagrange force is IDENTICALLY ZERO (sympy).  So a state-independent stress derived from an action does nothing; imposed by hand it is ill-posed.
+W2  LOCAL EOS NO-GO.  A fluid with a state-dependent barotropic-type energy W(rho, x) whose x-dependence enters through LOCAL fields of Phi_b (T_perp = g_N/r, g_N = rT_perp [i.e. r], rho_b), i.e. chemical potential mu(rho, T_perp, r, rho_b):
+    static equilibrium mu' = -g_tot with the TARGET density rho_c = a0 T_perp/(4 pi G g_tot) requires (sympy, coefficients of rho_b and 1/r):  mu_rho = mu_T = 0 and mu_r = -g_tot(rho,T) -- inconsistent (mixed partials).  NO such EOS exists on generic baryon profiles.  (On the point-mass family rho_b = 0 the same equation is a first-order linear PDE and IS solvable: the obstruction is the extended-baryon term.)
+W3  K-COUPLING (kinetic effective metric g_ij = delta_ij + chi T_ij).  Sympy dispersion of the linearised fluid: omega^2 = (k g^-1 k)(c_s^2 - 4 pi G rho0/k^2): hyperbolic iff g positive-definite; a negative eigenvalue of g = ghost (negative kinetic energy) AND gradient instability (omega^2 ~ -k^2, Hadamard ill-posed).
+    Ghost boundary for the exponential sphere: chi_crit = -1/lambda_max (chi<0, the sign that SUPPORTS the fluid: a_f>0), +1/max(-lambda) (chi>0, anti-support).  DETECTOR CONTROLS: flagged just above chi_crit, not just below.
+    Combined with D1: the largest ghost-free support fraction is ~0.5 (r ~ h), scale-free.
+W4  FRW.  (i) uniform baryon density gives T_ij = (8 pi G rho_b/3) delta_ij = Omega_b H^2 delta_ij (sympy): S_int renormalises the fluid inertia m = 1 + chi Omega_b H^2 (growth: delta'' + (2H + m'/m) delta' = 4 pi G rho/m);
+    with chi ~ the galaxy-scale value D1 requires (1e-4..1e-2 kpc^2/(km/s)^2), m(z=0) - 1 ~ 1e-7..1e-5 but m(z=1100) - 1 ~ 5e1..3e3: incompatible with GR+CDM at the CMB unless Phi_b is defined on the OVERDENSITY (Jeans swindle, POSTULATED), in which case the background is untouched.
+    (ii) The auxiliary sector with a finite-c completion L = lambda(lap Phi_b - Phi_b_tt/c^2 - 4 pi G rho_b)/(4 pi G): kinetic matrix [[0,D],[D,0]], det = -D^2, D = k^2 - omega^2/c^2 -> a degenerate (dipole) ghost pair: OPEN (frozen in the static limit).
+MUTATE=b : chi -> -chi (reverse the coupling).  The ghost boundary moves by x~90 and the force on the fluid turns inward (anti-support): W3's sign-specific assertions must FAIL.
+
+==============================================================================================================
+W1  state-independent force density / stress: 3-D Hadamard ill-posedness; zero force from an action
+==============================================================================================================
+    linearised dust, prescribed force density F(x): omega^2 in [I*(-F1*k1 - F2*k2 - F3*k3)/rho0, 0]  (multiplicities [1, 2])
+    -> omega^2 = -i (F.k)/rho0: Im omega = sqrt(|F.k|/2rho0) grows as sqrt(k): Hadamard ill-posed whenever F.k != 0 (F = rho g_tot rhat for the target: omega^2 = -i g k_r)
+    EL force from L = -rho0 e(rho,x), e = -P_b(x)/rho  (i.e. L = Int P_b(x) J da): 0
+  [PASS] W1 (sympy) a prescribed state-independent force density has omega^2 = -i F.k/rho0 (Hadamard ill-posed); the same 'pressure' derived from an action, L = Int P_b(x) d^3x, exerts identically zero force
+         omega^2 set [I*(-F1*k1 - F2*k2 - F3*k3)/rho0, 0]; EL force residual 0
+
+==============================================================================================================
+W2  no local EOS mu(rho, T_perp, r, rho_b) has the target as its static equilibrium
+==============================================================================================================
+    equilibrium mu' + g_tot = 0 with mu_tau = 0 (rho_b' is an independent profile function):
+      coefficient of rho_b*u : 4*pi*G*(T*mu_T + mu_rho*rho)/T
+      coefficient of rho_b   : -16*pi**2*G**2*mu_rho*rho**2/(T*a0)
+      => {mu_T: 0, mu_rho: 0}
+      remaining equation gives mu_r = -T*a0/(4*pi*G*rho)   (must equal d mu/dr at fixed rho, T, with mu_rho = mu_T = 0 ->  mu = mu(r) only)
+      integrability: d(mu_r)/d rho = T*a0/(4*pi*G*rho**2)  vs  d(mu_rho)/dr = 0
+  [PASS] W2 (sympy) no equation of state whose energy depends on x through LOCAL fields of Phi_b (T_perp, g_N ~ r T, rho_b) can have the target as its static equilibrium on generic baryon profiles: the coefficients of rho_b force mu_rho = mu_T = 0, then mu_r = -a0 T/(4 pi G rho) is inconsistent
+         mu_rho = 0, mu_T = 0, mu_r = -T*a0/(4*pi*G*rho), d mu_r/d rho = T*a0/(4*pi*G*rho**2) != 0
+
+==============================================================================================================
+W3  K-coupling: linearised fluid in the effective metric g_ij = delta_ij + h_ij: hyperbolicity, ghost, gradient stability
+==============================================================================================================
+    omega^2 eigenvalues of g^-1 K: [(-J + c_s2*k_r**2 + c_s2*k_t**2)*(h_p*k_r**2 + h_r*k_t**2 + k_r**2 + k_t**2)/((h_p + 1)*(h_r + 1)*(k_r**2 + k_t**2)), 0]
+    the propagating mode: omega^2 = (k g^-1 k)(c_s^2 - 4 pi G rho0/k^2) = -(J - c_s2*(k_r**2 + k_t**2))*(k_r**2*(h_p + 1) + k_t**2*(h_r + 1))/((h_p + 1)*(h_r + 1)*(k_r**2 + k_t**2))
+    radial k: omega^2/k^2 (J -> 0) = c_s2/(h_r + 1) = c_s^2/(1 + h_r):  negative if 1 + h_r < 0 -> ghost (negative kinetic energy rho0 (1+h_r) xi_dot^2/2) AND gradient instability (omega^2 ~ -k^2: Hadamard ill-posed)
+  [PASS] W3a (sympy) omega^2 = (k g^-1 k)(c_s^2 - 4 pi G rho0/k^2): hyperbolic (real omega^2 at high k) iff the effective metric g_ij = delta + chi T_ij is positive-definite; a negative eigenvalue is simultaneously a ghost and a gradient instability
+         dispersion residual ok = True
+  M_b = 1e+09, h = 2.0: chi_crit(support, chi<0) = -5.622e-03; chi_crit(anti, chi>0) = 5.105e-01 (x91);  coupling used: support sign chi = -5.622e-03: ghost at 0.95 chi: False, at 1.05 chi: True; force on fluid outward (support);  peak |a_f|/g_tot at the boundary strength = 0.505 (r in 0.3..5 h)
+  M_b = 1e+10, h = 3.0: chi_crit(support, chi<0) = -1.897e-03; chi_crit(anti, chi>0) = 1.723e-01 (x91);  coupling used: support sign chi = -1.897e-03: ghost at 0.95 chi: False, at 1.05 chi: True; force on fluid outward (support);  peak |a_f|/g_tot at the boundary strength = 0.505 (r in 0.3..5 h)
+  M_b = 1e+11, h = 4.0: chi_crit(support, chi<0) = -4.498e-04; chi_crit(anti, chi>0) = 4.084e-02 (x91);  coupling used: support sign chi = -4.498e-04: ghost at 0.95 chi: False, at 1.05 chi: True; force on fluid outward (support);  peak |a_f|/g_tot at the boundary strength = 0.505 (r in 0.3..5 h)
+  M_b = 1e+12, h = 5.0: chi_crit(support, chi<0) = -8.785e-05; chi_crit(anti, chi>0) = 7.977e-03 (x91);  coupling used: support sign chi = -8.785e-05: ghost at 0.95 chi: False, at 1.05 chi: True; force on fluid outward (support);  peak |a_f|/g_tot at the boundary strength = 0.505 (r in 0.3..5 h)
+  [PASS] W3b (numeric) ghost detector: exponential spheres, support-sign coupling: no ghost at 0.95 chi_crit, ghost at 1.05 chi_crit
+         {'1e+09': (False, True), '1e+10': (False, True), '1e+11': (False, True), '1e+12': (False, True)}
+  [PASS] W3c (numeric) at the ghost boundary the coupling supplies an OUTWARD force of at most ~0.5 g_tot per unit fluid mass (peak over 0.3-5 h) -- less than the f = 1 needed to carry the closure
+         force direction sign and peak fraction: {'1e+09': (1.0, 0.505), '1e+10': (1.0, 0.505), '1e+11': (1.0, 0.505), '1e+12': (1.0, 0.505)}
+
+==============================================================================================================
+W4  FRW: the background tidal tensor of a uniform baryon density; inertia renormalisation; the finite-c multiplier pair
+==============================================================================================================
+    uniform density: lap Phi_b = 4*pi*G*rhobar;  T_ij = 8*pi*G*rhobar/3 delta_ij  (= (8 pi G rho_b/3) delta_ij = Omega_b H^2 delta_ij for a flat matter-dominated background)
+    perturbation of d(m x_dot)/dt = -grad Phi about the background: a m q'' + (2 m a' + m' a) q' = -grad(delta Phi)  ->  delta'' + (2H + m'/m) delta' = 4 pi G rho delta/m   [sympy residual ok = True]
+    M_b = 1e+09: chi needed for f = 1 at r = h : 1.129e-02 kpc^2/(km/s)^2  (galaxy-dependent: spread over the four spheres x1.0 so far)
+    M_b = 1e+10: chi needed for f = 1 at r = h : 3.812e-03 kpc^2/(km/s)^2  (galaxy-dependent: spread over the four spheres x3.0 so far)
+    M_b = 1e+11: chi needed for f = 1 at r = h : 9.036e-04 kpc^2/(km/s)^2  (galaxy-dependent: spread over the four spheres x12.5 so far)
+    M_b = 1e+12: chi needed for f = 1 at r = h : 1.765e-04 kpc^2/(km/s)^2  (galaxy-dependent: spread over the four spheres x64.0 so far)
+    chi Omega_b H^2 today: ['2.5e-06', '8.5e-07', '2.0e-07', '3.9e-08'];   at z = 1100 (x (1+z)^3): ['3.4e+03', '1.1e+03', '2.7e+02', '5.3e+01']   -> m - 1 >> 1 at recombination unless Phi_b is built from the OVERDENSITY
+    (Phi_b, lambda) quadratic form [[0,D],[D,0]]: det = -D**2, eigenvalues [-D, D] (one negative): indefinite pair (dipole ghost with D = k^2 - omega^2/c^2); enslaved (no propagating dof) in the static Poisson limit; relativistic completion OPEN
+  [PASS] W4 (sympy + numbers) the background tidal tensor of uniform density is Omega_b H^2 delta_ij (nonzero): the coupling renormalises the fluid inertia by m - 1 = chi Omega_b H^2 -- for the galaxy-scale chi it is >> 1 at z = 1100 (incompatible with GR+CDM at the CMB) unless Phi_b is built on the overdensity (postulated); the required chi also varies by > x10 across M_b = 1e9..1e12 (not universal)
+         T_ii uniform ok True; growth algebra ok True; chi_need spread x64; m(1100) - 1 in 5e+01..3e+03
+
+  6/6 checks pass; failures: 0   (2 s)

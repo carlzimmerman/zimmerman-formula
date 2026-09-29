@@ -1,0 +1,248 @@
+{
+ "slug": "D1_action_reciprocity_MUTATE_a",
+ "failures": 1,
+ "checks": [
+  {
+   "name": "C1a (sympy) the tidal tensor T_ij = (delta lap - d d) Phi is identically divergence-free; the requested L_int has the wrong dimension by a time^2 (a coefficient chi ~ time^2 is required)",
+   "detail": "d_j T_ij = 0 for generic Phi; mismatch factor M/(L**2*T_t**2)",
+   "ok": true
+  },
+  {
+   "name": "C1b (sympy) isotropic Pi: (1/2) chi T_ii P = 4 pi G chi rho_b P  (contact with the baryon density); Pi = 0 (cold fluid): S_int = 0",
+   "detail": "4*pi*G*chi*P(r)*rho_b(r)",
+   "ok": true
+  },
+  {
+   "name": "C2a (sympy) reciprocity theorem: baryons feel a_react = -grad lambda, lap lambda = -4 pi G q; for S_int = Int F^ij T_ij, a_react = 8 pi G [F_perp' + (F_perp-F_rr)/r]; reproduces B4-Q3 (-G M_c/r^2 for kappa = 1)",
+   "detail": "Cartesian identity residual 1.8e-15; EL residuals 0, 0",
+   "ok": true
+  },
+  {
+   "name": "C2b the reaction depends only on the fluid-side coupling C = c eps/Z: no choice of normalisation of Phi_b removes it",
+   "detail": "a_react coefficient = c*epsilon/Z = C",
+   "ok": true
+  },
+  {
+   "name": "C3 (numeric) the ghost-free K-coupling supplies at most f_max < 1 of g_tot to the fluid (best at r ~ h, ~0.5, mass-independent) and at that strength the reaction on the baryons inside r <= h is >= 0.3 g_law for M_b = 1e9, 1e10 (deep-MOND regime; smaller for massive spirals) (R = a_react/a_f = O(1-10), opposite sign to the fluid force inside r < 1.7 h); the finite-difference virtual work agrees with the adjoint formula to 2%",
+   "detail": "f_max(r=0.3,1,2,3,5 h) = [0.339, 0.498, 0.308, 0.144, 0.025];  |reaction/g_law| at chi_crit, r=0.3,1 h (1e10) = [3.09, 0.54], (1e9) [7.27, 1.31];  R = [9.12, 1.08];  fd rel diff 2.4e-03",
+   "ok": true
+  },
+  {
+   "name": "C4 (numeric) closure with Phi_b sourced by baryons = the P2 law for a point mass (<1e-4 dex); sourced by the fluid it does not (seed-dependent, >0.05 dex from the law at every seed)  [MUTATE a: asserts the fluid-sourced closure equals the law]",
+   "detail": "baryon-sourced dev 3.0e-12 dex; fluid-sourced devs {1e-06: 0.6572061562376361, 0.001: 0.603001063244428, 1.0: 0.6793624051687208}",
+   "ok": false
+  }
+ ],
+ "numbers": {
+  "C3_rows": {
+   "M=1e+09,h=2.0": [
+    {
+     "r_over_h": 0.3,
+     "af_over_chi_g": -60.345329147754086,
+     "ar_over_chi_g": 1293.5408599627822,
+     "R": -21.435641800802486,
+     "fmax_support": 0.33927370954992486,
+     "react_over_gtot_at_chicrit": -7.27254971034169,
+     "react_over_gph_at_chicrit": -8.774637735294169,
+     "gph_over_gtot": 0.828814810335629
+    },
+    {
+     "r_over_h": 1.0,
+     "af_over_chi_g": -88.53857628231415,
+     "ar_over_chi_g": 233.5245246159239,
+     "R": -2.6375455131705245,
+     "fmax_support": 0.4977818770367531,
+     "react_over_gtot_at_chicrit": -1.3129223563158898,
+     "react_over_gph_at_chicrit": -1.6943752075231697,
+     "gph_over_gtot": 0.7748710855106963
+    },
+    {
+     "r_over_h": 2.0,
+     "af_over_chi_g": -54.73561453558121,
+     "ar_over_chi_g": -25.465881156622693,
+     "R": 0.4652524936952785,
+     "fmax_support": 0.3077347534638904,
+     "react_over_gtot_at_chicrit": 0.14317436144577678,
+     "react_over_gph_at_chicrit": 0.18253756784456282,
+     "gph_over_gtot": 0.7843555884764214
+    },
+    {
+     "r_over_h": 3.0,
+     "af_over_chi_g": -25.668782493348598,
+     "ar_over_chi_g": -63.49996861083599,
+     "R": 2.4738208221325015,
+     "fmax_support": 0.14431511401363642,
+     "react_over_gtot_at_chicrit": 0.3570097339953597,
+     "react_over_gph_at_chicrit": 0.43870146445088065,
+     "gph_over_gtot": 0.8137874224838209
+    },
+    {
+     "r_over_h": 5.0,
+     "af_over_chi_g": -4.483344906465464,
+     "ar_over_chi_g": -42.19456867994008,
+     "R": 9.41140366405694,
+     "fmax_support": 0.025206276593238364,
+     "react_over_gtot_at_chicrit": 0.2372264438868362,
+     "react_over_gph_at_chicrit": 0.27279090356547253,
+     "gph_over_gtot": 0.869627398810604
+    }
+   ],
+   "M=1e+10,h=3.0": [
+    {
+     "r_over_h": 0.3,
+     "af_over_chi_g": -178.80097033702816,
+     "ar_over_chi_g": 1630.0710957151325,
+     "R": -9.116679247559757,
+     "fmax_support": 0.33927370027449627,
+     "react_over_gtot_at_chicrit": -3.0930495025353095,
+     "react_over_gph_at_chicrit": -4.572686965875226,
+     "gph_over_gtot": 0.6764183784321852
+    },
+    {
+     "r_over_h": 1.0,
+     "af_over_chi_g": -262.33652233186444,
+     "ar_over_chi_g": 284.61661141895297,
+     "R": -1.0849294215271463,
+     "fmax_support": 0.4977818771391909,
+     "react_over_gtot_at_chicrit": -0.5400582040113194,
+     "react_over_gph_at_chicrit": -0.9178048718855367,
+     "gph_over_gtot": 0.5884237712770306
+    },
+    {
+     "r_over_h": 2.0,
+     "af_over_chi_g": -162.1795971193897,
+     "ar_over_chi_g": -31.4298887548083,
+     "R": 0.1937968111467866,
+     "fmax_support": 0.3077347506560345,
+     "react_over_gtot_at_chicrit": 0.059638013356190976,
+     "react_over_gph_at_chicrit": 0.09926782908738586,
+     "gph_over_gtot": 0.6007788616359424
+    },
+    {
+     "r_over_h": 3.0,
+     "af_over_chi_g": -76.05565132602068,
+     "ar_over_chi_g": -80.40322895023598,
+     "R": 1.0571631108065718,
+     "fmax_support": 0.14431511307532438,
+     "react_over_gtot_at_chicrit": 0.15256461387511203,
+     "react_over_gph_at_chicrit": 0.23604814976565147,
+     "gph_over_gtot": 0.6463283615083538
+    },
+    {
+     "r_over_h": 5.0,
+     "af_over_chi_g": -13.283984824481156,
+     "ar_over_chi_g": -55.84052958765876,
+     "R": 4.203597815374633,
+     "fmax_support": 0.02520627643852688,
+     "react_over_gtot_at_chicrit": 0.10595704857072066,
+     "react_over_gph_at_chicrit": 0.14295410651239412,
+     "gph_over_gtot": 0.741196256307154
+    }
+   ],
+   "M=1e+11,h=4.0": [
+    {
+     "r_over_h": 0.3,
+     "af_over_chi_g": -754.3166166430979,
+     "ar_over_chi_g": 2222.8059810736545,
+     "R": -2.9467811420696397,
+     "fmax_support": 0.3392737106180675,
+     "react_over_gtot_at_chicrit": -0.9997653724493134,
+     "react_over_gph_at_chicrit": -2.4285329700607177,
+     "gph_over_gtot": 0.4116746137584113
+    },
+    {
+     "r_over_h": 1.0,
+     "af_over_chi_g": -1106.732197458441,
+     "ar_over_chi_g": 360.40655629655004,
+     "R": -0.3256492917836916,
+     "fmax_support": 0.4977818743583007,
+     "react_over_gtot_at_chicrit": -0.16210231484753918,
+     "react_over_gph_at_chicrit": -0.531306440873912,
+     "gph_over_gtot": 0.305101354654966
+    },
+    {
+     "r_over_h": 2.0,
+     "af_over_chi_g": -684.1951802388545,
+     "ar_over_chi_g": -40.551625026128995,
+     "R": 0.05926908899295711,
+     "fmax_support": 0.3077347528411466,
+     "react_over_gtot_at_chicrit": 0.018239158452367576,
+     "react_over_gph_at_chicrit": 0.05823117234030342,
+     "gph_over_gtot": 0.3132198394663565
+    },
+    {
+     "r_over_h": 3.0,
+     "af_over_chi_g": -320.8597801450002,
+     "ar_over_chi_g": -109.00498076588651,
+     "R": 0.33972777989384,
+     "fmax_support": 0.14431511356907828,
+     "react_over_gtot_at_chicrit": 0.04902785313795034,
+     "react_over_gph_at_chicrit": 0.13592813769344478,
+     "gph_over_gtot": 0.3606895082203038
+    },
+    {
+     "r_over_h": 5.0,
+     "af_over_chi_g": -56.04181123036155,
+     "ar_over_chi_g": -83.64293008211382,
+     "R": 1.492509400495588,
+     "fmax_support": 0.025206276550683786,
+     "react_over_gtot_at_chicrit": 0.03762060470338705,
+     "react_over_gph_at_chicrit": 0.0778699662222399,
+     "gph_over_gtot": 0.48312085555576484
+    }
+   ],
+   "M=1e+12,h=5.0": [
+    {
+     "r_over_h": 0.3,
+     "af_over_chi_g": -3862.1009046296053,
+     "ar_over_chi_g": 2586.512195493101,
+     "R": -0.6697163692415645,
+     "fmax_support": 0.33927369530697804,
+     "react_over_gtot_at_chicrit": -0.22721714740015816,
+     "react_over_gph_at_chicrit": -1.5750261208971457,
+     "gph_over_gtot": 0.14426246294298517
+    },
+    {
+     "r_over_h": 1.0,
+     "af_over_chi_g": -5666.469018798536,
+     "ar_over_chi_g": 379.50036724503695,
+     "R": -0.06697298899650608,
+     "fmax_support": 0.4977818888796385,
+     "react_over_gtot_at_chicrit": -0.033337940966596036,
+     "react_over_gph_at_chicrit": -0.3905643972195143,
+     "gph_over_gtot": 0.08535837163841295
+    },
+    {
+     "r_over_h": 2.0,
+     "af_over_chi_g": -3503.079335665235,
+     "ar_over_chi_g": -43.155125029127355,
+     "R": 0.012319197167406485,
+     "fmax_support": 0.3077347538330673,
+     "react_over_gtot_at_chicrit": 0.0037910451077328546,
+     "react_over_gph_at_chicrit": 0.04387335980877312,
+     "gph_over_gtot": 0.08640881674566395
+    },
+    {
+     "r_over_h": 3.0,
+     "af_over_chi_g": -1642.8020873921148,
+     "ar_over_chi_g": -121.92611052676202,
+     "R": 0.07421838057213272,
+     "fmax_support": 0.14431511465156643,
+     "react_over_gtot_at_chicrit": 0.010710834101520924,
+     "react_over_gph_at_chicrit": 0.10091768150172442,
+     "gph_over_gtot": 0.10613436557535168
+    },
+    {
+     "r_over_h": 5.0,
+     "af_over_chi_g": -286.934074660139,
+     "ar_over_chi_g": -106.98238157191503,
+     "R": 0.3728465561248905,
+     "fmax_support": 0.025206276641487693,
+     "react_over_gtot_at_chicrit": 0.009398073438509956,
+     "react_over_gph_at_chicrit": 0.05413146969091214,
+     "gph_over_gtot": 0.17361570805619103
+    }
+   ]
+  }
+ }
+}
