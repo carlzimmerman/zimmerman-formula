@@ -1,0 +1,736 @@
+{
+ "slug": "cfg171_s3_gates",
+ "mode": null,
+ "load_bearing_failures": 1,
+ "checks": [
+  {
+   "name": "G2 background: with the minimal normalisation the L4 flow is an inflow inside r* ~ V_f/H and the Hubble outflow outside, |v/(Hr) - 1| <= 0.05 at 10 r* on every mass, kernel, profile and footing (kinematic only; growth and CMB UNDEFINED: 11A is defined per bound system)",
+   "detail": "max deviation 0.028",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3a CONTROL: r_ta(A) reproduces CFG48 Gcommon.r_ta_kpc to 1e-12",
+   "detail": "max |A/Gcommon - 1| = 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL (as frozen): the CFG4-style r_ta(B) is 1.7-3.6x r_ta(A) at every mass 1e9-1e12 (the CFG48 referee's range)",
+   "detail": "B/A = [4.365, 3.603, 2.974, 2.455]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3b (reported, added after C3 fell): the referee's range was quoted for M_b = 1e10-1e14 (edges 0.11, 0.13, 0.16 r_ta at 1e10-1e12); B reproduces those edges to their rounding, so C3's failure is the 1e9 point outside the quoted range",
+   "detail": "0.4 A/B at 1e10, 1e11, 1e12 = [0.111, 0.135, 0.163]",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "G3(i) the literal medium CANNOT be destroyed only on the baryons: the fraction of its required creation/destruction that lies off the baryons exceeds 0.10 on every case (point mass: all of it) -- 'the boost is localised on the baryons' is false for the flow that carries the law",
+   "detail": "min fraction 0.999",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G3(ii) reaction if the baryons absorb the destroyed momentum: small inside the baryons (x ~ 1) but it exceeds 0.10 g_law inside x in [0.3, 30] on every exp-sphere case, where the baryon density runs out and the medium must still be destroyed (FAIL of the pass line)",
+   "detail": "first x over 0.10: [9.71, 5.47, 2.79, 1.33, 10.01, 5.71, 2.93, 1.41]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G3(iii) energy the literal medium carries into r_e over 1/H exceeds the baryons' (1/2) M_b V_f^2 in both r_ta conventions (frozen dust-like reading); the massless w = 1/3 reading adds an enthalpy flux ~(c/v)^2 larger (FAIL of the pass line)",
+   "detail": "frozen: min 15.8, max 205.0; w=1/3 enthalpy min 9.3e+06",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 CONTROL: the Sereno-Jetzer 2-sigma inversion reproduces the record's Earth 3.66e-14 and Mars 3.72e-14 m/s^2 (1%) and a0/2 = 1278x the Earth bound",
+   "detail": "Earth 3.661e-14, Mars 3.723e-14; a0/2 / Earth = 1278",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C6 CONTROL: the Milky Way phantom tide at the Sun reproduces CFG7 H1's committed values (1e-3) on both footings and kernels",
+   "detail": "max relative deviation 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G5-L4 (P2) FAILS the planets: the law's alpha = 1 tail gives a constant sunward ~a0/2, 1.2-1.5e3x the Earth/Mars bounds on both footings -- a property of the TARGET, which the flow neither causes nor cures",
+   "detail": "min over cases 1257x",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G5-L1 (own frame) monopole anomaly H sqrt(GM/2r) at Earth/Mars (reported as computed; ~1x the bound)",
+   "detail": "max 1.26x the bound",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "G5-L4 nu_mono monopole at Earth/Mars (reported): the record's monotone repair keeps h(y) = (nu - 1) y NON-DECREASING (floor 0.05 H_P/(y + Y_P) on h'), so the phantom h(y) a0 never falls below H_P a0 = 0.648 a0 at high g and grows logarithmically -- an alpha = 1-like tail, WORSE than P2's a0/2 (not the exponential tail of nu_RAR); relevant only if the Sun owns its inflow",
+   "detail": "h(y_Earth) = 1.177 (a0 units); max 3.62e+03x the bound",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "G7-L1 a literal linear superposition in the Hubble-flow frame FAILS: the frame term is >= 10% of the law already at w = 100 km/s on every mass (and ~17x the Sun's Newtonian pull at 1 AU for the CMB-dipole speed); L0 (GR) and L4 (the Hamilton-Jacobi congruence, S1 1g) are exactly frame-free",
+   "detail": "min over cases 0.15; Sun 17.6",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "G2": {
+   "canonical|P2|1e+09|point": {
+    "r_star_kpc": 1064.489996634911,
+    "r_star_over_Vf_over_H": 1.0000003285319854,
+    "r_star_GR_kpc": 111.40749874814654,
+    "r_star_over_rta_A": 7.193395821471571,
+    "dev_at_10rstar": 0.028429948381995196,
+    "v_at_rM": -214.00651674750853
+   },
+   "canonical|P2|1e+09|exp_hCFG118": {
+    "r_star_kpc": 1064.4899966347039,
+    "r_star_over_Vf_over_H": 1.0000003285317907,
+    "r_star_GR_kpc": 111.40749874814654,
+    "r_star_over_rta_A": 7.193395821470172,
+    "dev_at_10rstar": 0.028429948382009185,
+    "v_at_rM": -192.78756946172984
+   },
+   "canonical|P2|1e+10|point": {
+    "r_star_kpc": 1892.961987918184,
+    "r_star_over_Vf_over_H": 1.0000010389061635,
+    "r_star_GR_kpc": 240.02018003269055,
+    "r_star_over_rta_A": 5.937463235148294,
+    "dev_at_10rstar": 0.028429936639136844,
+    "v_at_rM": -363.31355406680535
+   },
+   "canonical|P2|1e+10|exp_hCFG118": {
+    "r_star_kpc": 1892.9619879181755,
+    "r_star_over_Vf_over_H": 1.000001038906159,
+    "r_star_GR_kpc": 240.02018003269055,
+    "r_star_over_rta_A": 5.937463235148268,
+    "dev_at_10rstar": 0.02842993663921478,
+    "v_at_rM": -343.72393575550336
+   },
+   "canonical|P2|1e+11|point": {
+    "r_star_kpc": 3366.222888884594,
+    "r_star_over_Vf_over_H": 1.0000032852839085,
+    "r_star_GR_kpc": 517.1078021701265,
+    "r_star_over_rta_A": 4.900818013218739,
+    "dev_at_10rstar": 0.028429850252932654,
+    "v_at_rM": -613.8671596229921
+   },
+   "canonical|P2|1e+11|exp_hCFG118": {
+    "r_star_kpc": 3366.222888884833,
+    "r_star_over_Vf_over_H": 1.0000032852839795,
+    "r_star_GR_kpc": 517.1078021701265,
+    "r_star_over_rta_A": 4.900818013219088,
+    "dev_at_10rstar": 0.02842985025282363,
+    "v_at_rM": -605.8794550670751
+   },
+   "canonical|P2|1e+12|point": {
+    "r_star_kpc": 5986.127374546439,
+    "r_star_over_Vf_over_H": 1.0000103887216252,
+    "r_star_GR_kpc": 1114.074987481465,
+    "r_star_over_rta_A": 4.045184433764807,
+    "dev_at_10rstar": 0.028429581639337842,
+    "v_at_rM": -1031.1809514059548
+   },
+   "canonical|P2|1e+12|exp_hCFG118": {
+    "r_star_kpc": 5986.127374546439,
+    "r_star_over_Vf_over_H": 1.0000103887216252,
+    "r_star_GR_kpc": 1114.074987481465,
+    "r_star_over_rta_A": 4.045184433764807,
+    "dev_at_10rstar": 0.028429581639282997,
+    "v_at_rM": -1030.9268416964012
+   },
+   "canonical|nu_mono|1e+09|point": {
+    "r_star_kpc": 1064.7946468107714,
+    "r_star_over_Vf_over_H": 1.000286522180503,
+    "r_star_GR_kpc": 111.40749874814654,
+    "r_star_over_rta_A": 7.195454524990602,
+    "dev_at_10rstar": 0.028421694334486047,
+    "v_at_rM": -219.12914779436193
+   },
+   "canonical|nu_mono|1e+09|exp_hCFG118": {
+    "r_star_kpc": 1064.7946468110229,
+    "r_star_over_Vf_over_H": 1.0002865221807393,
+    "r_star_GR_kpc": 111.40749874814654,
+    "r_star_over_rta_A": 7.195454524992301,
+    "dev_at_10rstar": 0.028421694334503922,
+    "v_at_rM": -195.1634353918854
+   },
+   "canonical|nu_mono|1e+10|point": {
+    "r_star_kpc": 1893.9243333399488,
+    "r_star_over_Vf_over_H": 1.0005094201772582,
+    "r_star_GR_kpc": 240.02018003269055,
+    "r_star_over_rta_A": 5.940481727118926,
+    "dev_at_10rstar": 0.028415280977615254,
+    "v_at_rM": -372.83140342831865
+   },
+   "canonical|nu_mono|1e+10|exp_hCFG118": {
+    "r_star_kpc": 1893.924333339942,
+    "r_star_over_Vf_over_H": 1.0005094201772544,
+    "r_star_GR_kpc": 240.02018003269055,
+    "r_star_over_rta_A": 5.940481727118905,
+    "dev_at_10rstar": 0.02841528097759305,
+    "v_at_rM": -350.78821403193285
+   },
+   "canonical|nu_mono|1e+11|point": {
+    "r_star_kpc": 3369.2602438463937,
+    "r_star_over_Vf_over_H": 1.000905591827662,
+    "r_star_GR_kpc": 517.1078021701265,
+    "r_star_over_rta_A": 4.905240038854202,
+    "dev_at_10rstar": 0.028403846149944734,
+    "v_at_rM": -631.6119809092528
+   },
+   "canonical|nu_mono|1e+11|exp_hCFG118": {
+    "r_star_kpc": 3369.2602438463937,
+    "r_star_over_Vf_over_H": 1.000905591827662,
+    "r_star_GR_kpc": 517.1078021701265,
+    "r_star_over_rta_A": 4.905240038854202,
+    "dev_at_10rstar": 0.028403846149877343,
+    "v_at_rM": -622.9573706539111
+   },
+   "canonical|nu_mono|1e+12|point": {
+    "r_star_kpc": 5995.699458923362,
+    "r_star_over_Vf_over_H": 1.0016094498875043,
+    "r_star_GR_kpc": 1114.074987481465,
+    "r_star_over_rta_A": 4.051652863902939,
+    "dev_at_10rstar": 0.028383599529002157,
+    "v_at_rM": -1064.3825884680577
+   },
+   "canonical|nu_mono|1e+12|exp_hCFG118": {
+    "r_star_kpc": 5995.699458923362,
+    "r_star_over_Vf_over_H": 1.0016094498875043,
+    "r_star_GR_kpc": 1114.074987481465,
+    "r_star_over_rta_A": 4.051652863902939,
+    "dev_at_10rstar": 0.0283835995290056,
+    "v_at_rM": -1064.116815372741
+   },
+   "alt|P2|1e+09|point": {
+    "r_star_kpc": 923.537166188139,
+    "r_star_over_Vf_over_H": 1.0000003611621426,
+    "r_star_GR_kpc": 98.19318302772342,
+    "r_star_over_rta_A": 6.240893210112464,
+    "dev_at_10rstar": 0.028429945331864492,
+    "v_at_rM": -223.56365304215166
+   },
+   "alt|P2|1e+09|exp_hCFG118": {
+    "r_star_kpc": 923.5371661880964,
+    "r_star_over_Vf_over_H": 1.0000003611620965,
+    "r_star_GR_kpc": 98.19318302772342,
+    "r_star_over_rta_A": 6.240893210112176,
+    "dev_at_10rstar": 0.028429945331866713,
+    "v_at_rM": -199.6085282815892
+   },
+   "alt|P2|1e+10|point": {
+    "r_star_kpc": 1642.3084095637907,
+    "r_star_over_Vf_over_H": 1.0000011420917083,
+    "r_star_GR_kpc": 211.55079983957734,
+    "r_star_over_rta_A": 5.15126339820688,
+    "dev_at_10rstar": 0.028429937367501434,
+    "v_at_rM": -379.4030223679425
+   },
+   "alt|P2|1e+10|exp_hCFG118": {
+    "r_star_kpc": 1642.3084095637892,
+    "r_star_over_Vf_over_H": 1.0000011420917072,
+    "r_star_GR_kpc": 211.55079983957734,
+    "r_star_over_rta_A": 5.151263398206875,
+    "dev_at_10rstar": 0.028429937367503988,
+    "v_at_rM": -356.3867896288868
+   },
+   "alt|P2|1e+11|point": {
+    "r_star_kpc": 2920.490441751607,
+    "r_star_over_Vf_over_H": 1.0000036115798776,
+    "r_star_GR_kpc": 455.77238187837685,
+    "r_star_over_rta_A": 4.2518848682393715,
+    "dev_at_10rstar": 0.02842983268827215,
+    "v_at_rM": -640.7742437981569
+   },
+   "alt|P2|1e+11|exp_hCFG118": {
+    "r_star_kpc": 2920.490441751607,
+    "r_star_over_Vf_over_H": 1.0000036115798776,
+    "r_star_GR_kpc": 455.77238187837685,
+    "r_star_over_rta_A": 4.2518848682393715,
+    "dev_at_10rstar": 0.028429832688270706,
+    "v_at_rM": -630.1499646933813
+   },
+   "alt|P2|1e+12|point": {
+    "r_star_kpc": 5193.488574888969,
+    "r_star_over_Vf_over_H": 1.0000114205062254,
+    "r_star_GR_kpc": 981.9318302772341,
+    "r_star_over_rta_A": 3.509550971034596,
+    "dev_at_10rstar": 0.028429541488680043,
+    "v_at_rM": -1075.7993631406614
+   },
+   "alt|P2|1e+12|exp_hCFG118": {
+    "r_star_kpc": 5193.488574888969,
+    "r_star_over_Vf_over_H": 1.0000114205062254,
+    "r_star_GR_kpc": 981.9318302772341,
+    "r_star_over_rta_A": 3.509550971034596,
+    "dev_at_10rstar": 0.028429541488666277,
+    "v_at_rM": -1075.2986441981927
+   },
+   "alt|nu_mono|1e+09|point": {
+    "r_star_kpc": 923.8142728057286,
+    "r_star_over_Vf_over_H": 1.000300410502673,
+    "r_star_GR_kpc": 98.19318302772342,
+    "r_star_over_rta_A": 6.242765785328175,
+    "dev_at_10rstar": 0.02842129078542366,
+    "v_at_rM": -228.9534021826993
+   },
+   "alt|nu_mono|1e+09|exp_hCFG118": {
+    "r_star_kpc": 923.8142728055128,
+    "r_star_over_Vf_over_H": 1.0003004105024393,
+    "r_star_GR_kpc": 98.19318302772342,
+    "r_star_over_rta_A": 6.242765785326717,
+    "dev_at_10rstar": 0.028421290785444975,
+    "v_at_rM": -201.94109432096562
+   },
+   "alt|nu_mono|1e+10|point": {
+    "r_star_kpc": 1643.183703722396,
+    "r_star_over_Vf_over_H": 1.0005341084658523,
+    "r_star_GR_kpc": 211.55079983957734,
+    "r_star_over_rta_A": 5.154008845246931,
+    "dev_at_10rstar": 0.028414564120919583,
+    "v_at_rM": -389.41990283127075
+   },
+   "alt|nu_mono|1e+10|exp_hCFG118": {
+    "r_star_kpc": 1643.1837037223947,
+    "r_star_over_Vf_over_H": 1.0005341084658514,
+    "r_star_GR_kpc": 211.55079983957734,
+    "r_star_over_rta_A": 5.154008845246927,
+    "dev_at_10rstar": 0.028414564120946895,
+    "v_at_rM": -363.4773771598777
+   },
+   "alt|nu_mono|1e+11|point": {
+    "r_star_kpc": 2923.252787642916,
+    "r_star_over_Vf_over_H": 1.0009494649982797,
+    "r_star_GR_kpc": 455.77238187837685,
+    "r_star_over_rta_A": 4.255906513552155,
+    "dev_at_10rstar": 0.02840258239844451,
+    "v_at_rM": -659.4548847357353
+   },
+   "alt|nu_mono|1e+11|exp_hCFG118": {
+    "r_star_kpc": 2923.2527876429135,
+    "r_star_over_Vf_over_H": 1.000949464998279,
+    "r_star_GR_kpc": 455.77238187837685,
+    "r_star_over_rta_A": 4.255906513552152,
+    "dev_at_10rstar": 0.028402582398398102,
+    "v_at_rM": -647.8932419969559
+   },
+   "alt|nu_mono|1e+12|point": {
+    "r_star_kpc": 5202.192523306131,
+    "r_star_over_Vf_over_H": 1.0016873744811208,
+    "r_star_GR_kpc": 981.9318302772341,
+    "r_star_over_rta_A": 3.515432749761709,
+    "dev_at_10rstar": 0.028381363609377486,
+    "v_at_rM": -1110.7622665729266
+   },
+   "alt|nu_mono|1e+12|exp_hCFG118": {
+    "r_star_kpc": 5202.192523306131,
+    "r_star_over_Vf_over_H": 1.0016873744811208,
+    "r_star_GR_kpc": 981.9318302772341,
+    "r_star_over_rta_A": 3.515432749761709,
+    "dev_at_10rstar": 0.028381363609292554,
+    "v_at_rM": -1110.2376742262763
+   }
+  },
+  "C3_ratio_B_over_A": {
+   "1e+09": 4.3651357706429215,
+   "1e+10": 3.6030082849254166,
+   "1e+11": 2.973956259513764,
+   "1e+12": 2.4547632915742765
+  },
+  "G3_literal_medium": {
+   "canonical|1e+09|point": {
+    "r_star": 1064.489996634911,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 42.31113823996661,
+    "E_over_Eb_A_w1/3_kin": 56.41485098662215,
+    "E_over_Eb_A_w1/3_enthalpy": 601638141.6966559,
+    "v_at_re_A": 129.82691664766912,
+    "E_over_Eb_B": 200.39411426020536,
+    "E_over_Eb_B_w1/3_kin": 267.1921523469404,
+    "E_over_Eb_B_w1/3_enthalpy": 7207906104.711746,
+    "v_at_re_B": 81.62872059864125
+   },
+   "canonical|1e+09|exp_hCFG118": {
+    "r_star": 1064.4899966347039,
+    "frac_off_baryons": 0.9989627933691475,
+    "reaction_at_x0.3": 0.014889155354940646,
+    "reaction_at_x1": 0.004254294031033154,
+    "reaction_at_x3": 0.0038753264213316043,
+    "x_first_over_0.10": 9.705457875438006,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 42.31113823988751,
+    "E_over_Eb_A_w1/3_kin": 56.41485098651668,
+    "E_over_Eb_A_w1/3_enthalpy": 601638141.6962812,
+    "v_at_re_A": 129.82691664758823,
+    "E_over_Eb_B": 200.3941142603118,
+    "E_over_Eb_B_w1/3_kin": 267.19215234708236,
+    "E_over_Eb_B_w1/3_enthalpy": 7207906104.713022,
+    "v_at_re_B": 81.6287205986557
+   },
+   "canonical|1e+10|point": {
+    "r_star": 1892.961987918184,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 30.823191159757116,
+    "E_over_Eb_A_w1/3_kin": 41.09758821300949,
+    "E_over_Eb_A_w1/3_enthalpy": 150633223.2644394,
+    "v_at_re_A": 221.45397714191697,
+    "E_over_Eb_B": 112.69203182928644,
+    "E_over_Eb_B_w1/3_kin": 150.2560424390486,
+    "E_over_Eb_B_w1/3_enthalpy": 1281778512.2773864,
+    "v_at_re_B": 145.15940530384003
+   },
+   "canonical|1e+10|exp_hCFG118": {
+    "r_star": 1892.9619879181755,
+    "frac_off_baryons": 0.9992440601051312,
+    "reaction_at_x0.3": 0.002164419568508513,
+    "reaction_at_x1": 0.0011050611312509865,
+    "reaction_at_x3": 0.005406242013901572,
+    "x_first_over_0.10": 5.473284367594097,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 30.823191159754735,
+    "E_over_Eb_A_w1/3_kin": 41.09758821300631,
+    "E_over_Eb_A_w1/3_enthalpy": 150633223.2644355,
+    "v_at_re_A": 221.45397714191125,
+    "E_over_Eb_B": 112.69203182906779,
+    "E_over_Eb_B_w1/3_kin": 150.25604243875705,
+    "E_over_Eb_B_w1/3_enthalpy": 1281778512.2765574,
+    "v_at_re_B": 145.15940530374615
+   },
+   "canonical|1e+11|point": {
+    "r_star": 3366.222888884594,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 22.208804938997087,
+    "E_over_Eb_A_w1/3_kin": 29.61173991866278,
+    "E_over_Eb_A_w1/3_enthalpy": 37576334.252946034,
+    "v_at_re_A": 376.36606526844304,
+    "E_over_Eb_B": 63.37518958147991,
+    "E_over_Eb_B_w1/3_kin": 84.50025277530654,
+    "E_over_Eb_B_w1/3_enthalpy": 227942447.20295826,
+    "v_at_re_B": 258.1380954692659
+   },
+   "canonical|1e+11|exp_hCFG118": {
+    "r_star": 3366.222888884833,
+    "frac_off_baryons": 0.9995586964548636,
+    "reaction_at_x0.3": 0.00024380662012879215,
+    "reaction_at_x1": 0.0006030734620740304,
+    "reaction_at_x3": 0.18875745266631544,
+    "x_first_over_0.10": 2.7875457621061885,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 22.208804938845635,
+    "E_over_Eb_A_w1/3_kin": 29.611739918460845,
+    "E_over_Eb_A_w1/3_enthalpy": 37576334.25286062,
+    "v_at_re_A": 376.3660652675875,
+    "E_over_Eb_B": 63.375189580991965,
+    "E_over_Eb_B_w1/3_kin": 84.50025277465593,
+    "E_over_Eb_B_w1/3_enthalpy": 227942447.2023732,
+    "v_at_re_B": 258.1380954686034
+   },
+   "canonical|1e+12|point": {
+    "r_star": 5986.127374546439,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 15.796956678965723,
+    "E_over_Eb_A_w1/3_kin": 21.06260890528763,
+    "E_over_Eb_A_w1/3_enthalpy": 9333437.005883109,
+    "v_at_re_A": 636.8996090789051,
+    "E_over_Eb_B": 35.6452517706507,
+    "E_over_Eb_B_w1/3_kin": 47.5270023608676,
+    "E_over_Eb_B_w1/3_enthalpy": 40538142.728576794,
+    "v_at_re_B": 459.06479499558037
+   },
+   "canonical|1e+12|exp_hCFG118": {
+    "r_star": 5986.127374546439,
+    "frac_off_baryons": 0.9997677977248127,
+    "reaction_at_x0.3": 4.629586141456783e-05,
+    "reaction_at_x1": 0.007718359057009148,
+    "reaction_at_x3": 37519.40707073001,
+    "x_first_over_0.10": 1.3282330289846964,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 15.796956679076562,
+    "E_over_Eb_A_w1/3_kin": 21.062608905435415,
+    "E_over_Eb_A_w1/3_enthalpy": 9333437.005904937,
+    "v_at_re_A": 636.8996090803947,
+    "E_over_Eb_B": 35.64525177106232,
+    "E_over_Eb_B_w1/3_kin": 47.52700236141642,
+    "E_over_Eb_B_w1/3_enthalpy": 40538142.728732824,
+    "v_at_re_B": 459.0647949973474
+   },
+   "alt|1e+09|point": {
+    "r_star": 923.537166188139,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 48.92305496109035,
+    "E_over_Eb_A_w1/3_kin": 65.23073994812046,
+    "E_over_Eb_A_w1/3_enthalpy": 672622705.8680636,
+    "v_at_re_A": 132.03105433453408,
+    "E_over_Eb_B": 205.0011208424239,
+    "E_over_Eb_B_w1/3_kin": 273.3348277898985,
+    "E_over_Eb_B_w1/3_enthalpy": 8240100392.352737,
+    "v_at_re_B": 77.21771311651888
+   },
+   "alt|1e+09|exp_hCFG118": {
+    "r_star": 923.5371661880964,
+    "frac_off_baryons": 0.9986476419207736,
+    "reaction_at_x0.3": 0.023883151434292014,
+    "reaction_at_x1": 0.006499265570626621,
+    "reaction_at_x3": 0.005149260589385852,
+    "x_first_over_0.10": 10.005850390515674,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 48.923054961163835,
+    "E_over_Eb_A_w1/3_kin": 65.23073994821844,
+    "E_over_Eb_A_w1/3_enthalpy": 672622705.8684003,
+    "v_at_re_A": 132.03105433460019,
+    "E_over_Eb_B": 205.00112084258186,
+    "E_over_Eb_B_w1/3_kin": 273.3348277901091,
+    "E_over_Eb_B_w1/3_enthalpy": 8240100392.354853,
+    "v_at_re_B": 77.2177131165387
+   },
+   "alt|1e+10|point": {
+    "r_star": 1642.3084095637907,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 35.35377712461912,
+    "E_over_Eb_A_w1/3_kin": 47.13836949949216,
+    "E_over_Eb_A_w1/3_enthalpy": 167953884.19394717,
+    "v_at_re_A": 224.6094130345747,
+    "E_over_Eb_B": 115.2825037789646,
+    "E_over_Eb_B_w1/3_kin": 153.71000503861944,
+    "E_over_Eb_B_w1/3_enthalpy": 1465330981.3206859,
+    "v_at_re_B": 137.3152915021766
+   },
+   "alt|1e+10|exp_hCFG118": {
+    "r_star": 1642.3084095637892,
+    "frac_off_baryons": 0.999014014865136,
+    "reaction_at_x0.3": 0.0034120996601884265,
+    "reaction_at_x1": 0.0015754973052233836,
+    "reaction_at_x3": 0.005755839164478472,
+    "x_first_over_0.10": 5.7074333731087785,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 35.35377712470501,
+    "E_over_Eb_A_w1/3_kin": 47.13836949960668,
+    "E_over_Eb_A_w1/3_enthalpy": 167953884.19408318,
+    "v_at_re_A": 224.60941303475659,
+    "E_over_Eb_B": 115.28250377956533,
+    "E_over_Eb_B_w1/3_kin": 153.71000503942042,
+    "E_over_Eb_B_w1/3_enthalpy": 1465330981.323231,
+    "v_at_re_B": 137.3152915024151
+   },
+   "alt|1e+11|point": {
+    "r_star": 2920.490441751607,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 25.23098780530185,
+    "E_over_Eb_A_w1/3_kin": 33.6413170737358,
+    "E_over_Eb_A_w1/3_enthalpy": 41763860.94839173,
+    "v_at_re_A": 380.51508227419896,
+    "E_over_Eb_B": 64.83149154049163,
+    "E_over_Eb_B_w1/3_kin": 86.44198872065549,
+    "E_over_Eb_B_w1/3_enthalpy": 260582909.30506897,
+    "v_at_re_B": 244.1884462250458
+   },
+   "alt|1e+11|exp_hCFG118": {
+    "r_star": 2920.490441751607,
+    "frac_off_baryons": 0.9994236012091301,
+    "reaction_at_x0.3": 0.0003732107656312447,
+    "reaction_at_x1": 0.0007129856162672191,
+    "reaction_at_x3": 0.11942777555121363,
+    "x_first_over_0.10": 2.9349971223747864,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 25.23098780532534,
+    "E_over_Eb_A_w1/3_kin": 33.64131707376712,
+    "E_over_Eb_A_w1/3_enthalpy": 41763860.94840468,
+    "v_at_re_A": 380.515082274317,
+    "E_over_Eb_B": 64.83149154060588,
+    "E_over_Eb_B_w1/3_kin": 86.44198872080783,
+    "E_over_Eb_B_w1/3_enthalpy": 260582909.30522206,
+    "v_at_re_B": 244.18844622518924
+   },
+   "alt|1e+12|point": {
+    "r_star": 5193.488574888969,
+    "frac_off_baryons": 1.0,
+    "E_over_Eb_A": 17.741693262390537,
+    "E_over_Eb_A_w1/3_kin": 23.655591016520717,
+    "E_over_Eb_A_w1/3_enthalpy": 10333926.218593065,
+    "v_at_re_A": 641.4605082505495,
+    "E_over_Eb_B": 36.46343684981218,
+    "E_over_Eb_B_w1/3_kin": 48.617915799749575,
+    "E_over_Eb_B_w1/3_enthalpy": 46342365.519232005,
+    "v_at_re_B": 434.25494257087377
+   },
+   "alt|1e+12|exp_hCFG118": {
+    "r_star": 5193.488574888969,
+    "frac_off_baryons": 0.9996974099233341,
+    "reaction_at_x0.3": 6.144661268108914e-05,
+    "reaction_at_x1": 0.0056058078152373325,
+    "reaction_at_x3": 6665.3435922379595,
+    "x_first_over_0.10": 1.4073472726960512,
+    "reaction_passes_x0.3_30": false,
+    "E_over_Eb_A": 17.741693262366756,
+    "E_over_Eb_A_w1/3_kin": 23.65559101648901,
+    "E_over_Eb_A_w1/3_enthalpy": 10333926.218588447,
+    "v_at_re_A": 641.4605082502629,
+    "E_over_Eb_B": 36.46343684969706,
+    "E_over_Eb_B_w1/3_kin": 48.61791579959607,
+    "E_over_Eb_B_w1/3_enthalpy": 46342365.51918323,
+    "v_at_re_B": 434.25494257041674
+   }
+  },
+  "G5_monopole": {
+   "canonical|Earth": {
+    "L0 (GR, outward)": {
+     "anomaly": 4.886997748058181e-25,
+     "over_bound": 1.3347530717210346e-11
+    },
+    "L1 (own frame)": {
+     "anomaly": 3.806593280279647e-14,
+     "over_bound": 1.0396694116883434
+    },
+    "L4 P2": {
+     "anomaly": 4.6801499815316247e-11,
+     "over_bound": 1278.258122064129
+    },
+    "L4 nu_mono (reported)": {
+     "anomaly": 1.1020288203696788e-10,
+     "over_bound": 3009.89775102312
+    },
+    "L4 simple (reported)": {
+     "anomaly": 9.360299864583484e-11,
+     "over_bound": 2556.5162172311375
+    }
+   },
+   "canonical|Mars": {
+    "L0 (GR, outward)": {
+     "anomaly": 7.44631846871625e-25,
+     "over_bound": 1.999822695981413e-11
+    },
+    "L1 (own frame)": {
+     "anomaly": 3.0838038254156933e-14,
+     "over_bound": 0.8282026757155084
+    },
+    "L4 P2": {
+     "anomaly": 4.680149957122677e-11,
+     "over_bound": 1256.9258411618734
+    },
+    "L4 nu_mono (reported)": {
+     "anomaly": 1.0764999504313799e-10,
+     "over_bound": 2891.105238299974
+    },
+    "L4 simple (reported)": {
+     "anomaly": 9.360299655876743e-11,
+     "over_bound": 2513.8516129349055
+    }
+   },
+   "alt|Earth": {
+    "L0 (GR, outward)": {
+     "anomaly": 7.1374223322593915e-25,
+     "over_bound": 1.9493965156703638e-11
+    },
+    "L1 (own frame)": {
+     "anomaly": 4.600299476141082e-14,
+     "over_bound": 1.2564490865697189
+    },
+    "L4 P2": {
+     "anomaly": 5.6559999730270784e-11,
+     "over_bound": 1544.7855159441551
+    },
+    "L4 nu_mono (reported)": {
+     "anomaly": 1.3248739273187996e-10,
+     "over_bound": 3618.53971558414
+    },
+    "L4 simple (reported)": {
+     "anomaly": 1.1311999722816332e-10,
+     "over_bound": 3089.570970916853
+    }
+   },
+   "alt|Mars": {
+    "L0 (GR, outward)": {
+     "anomaly": 1.0875290407663635e-24,
+     "over_bound": 2.920725546994254e-11
+    },
+    "L1 (own frame)": {
+     "anomaly": 3.726802439355824e-14,
+     "over_bound": 1.0008897864057595
+    },
+    "L4 P2": {
+     "anomaly": 5.6559999373780025e-11,
+     "over_bound": 1519.005276333286
+    },
+    "L4 nu_mono (reported)": {
+     "anomaly": 1.2940220850149104e-10,
+     "over_bound": 3475.2941948239663
+    },
+    "L4 simple (reported)": {
+     "anomaly": 1.1311999485564708e-10,
+     "over_bound": 3038.0104481432977
+    }
+   }
+  },
+  "G5_bounds": {
+   "Earth": 3.661349692012225e-14,
+   "Mars": 3.723489329168739e-14
+  },
+  "G5_host_tide": {
+   "canonical|P2": 1.5583710030342467e-31,
+   "canonical|nu_mono": 2.2046676816623103e-31,
+   "alt|P2": 1.8325325961078995e-31,
+   "alt|nu_mono": 2.563026656767983e-31
+  },
+  "G7_L1_literal": {
+   "canonical|1e+09|x1|w100": 1.6857825103172805,
+   "canonical|1e+09|x1|w300": 5.057347530951842,
+   "canonical|1e+09|x1|w600": 10.114695061903683,
+   "canonical|1e+09|x10|w100": 0.7687693480337594,
+   "canonical|1e+09|x10|w300": 2.306308044101278,
+   "canonical|1e+09|x10|w600": 4.612616088202556,
+   "canonical|1e+10|x1|w100": 0.948582741318974,
+   "canonical|1e+10|x1|w300": 2.845748223956922,
+   "canonical|1e+10|x1|w600": 5.691496447913844,
+   "canonical|1e+10|x10|w100": 0.44071975645214706,
+   "canonical|1e+10|x10|w300": 1.3221592693564412,
+   "canonical|1e+10|x10|w600": 2.6443185387128825,
+   "canonical|1e+11|x1|w100": 0.5340248462904471,
+   "canonical|1e+11|x1|w300": 1.6020745388713413,
+   "canonical|1e+11|x1|w600": 3.2041490777426826,
+   "canonical|1e+11|x10|w100": 0.2562439143939904,
+   "canonical|1e+11|x10|w300": 0.7687317431819712,
+   "canonical|1e+11|x10|w600": 1.5374634863639425,
+   "canonical|1e+12|x1|w100": 0.30090181023198365,
+   "canonical|1e+12|x1|w300": 0.9027054306959509,
+   "canonical|1e+12|x1|w600": 1.8054108613919018,
+   "canonical|1e+12|x10|w100": 0.15250552490540112,
+   "canonical|1e+12|x10|w300": 0.4575165747162034,
+   "canonical|1e+12|x10|w600": 0.9150331494324068,
+   "alt|1e+09|x1|w100": 1.6078894707619062,
+   "alt|1e+09|x1|w300": 4.823668412285718,
+   "alt|1e+09|x1|w600": 9.647336824571436,
+   "alt|1e+09|x10|w100": 0.7341074003666954,
+   "alt|1e+09|x10|w300": 2.2023222011000865,
+   "alt|1e+09|x10|w600": 4.404644402200173,
+   "alt|1e+10|x1|w100": 0.9047802662323005,
+   "alt|1e+10|x1|w300": 2.7143407986969015,
+   "alt|1e+10|x1|w600": 5.428681597393803,
+   "alt|1e+10|x10|w100": 0.4212279108673719,
+   "alt|1e+10|x10|w300": 1.2636837326021158,
+   "alt|1e+10|x10|w600": 2.5273674652042315,
+   "alt|1e+11|x1|w100": 0.50939290440359,
+   "alt|1e+11|x1|w300": 1.5281787132107696,
+   "alt|1e+11|x1|w600": 3.056357426421539,
+   "alt|1e+11|x10|w100": 0.24528284411744222,
+   "alt|1e+11|x10|w300": 0.7358485323523267,
+   "alt|1e+11|x10|w600": 1.4716970647046534,
+   "alt|1e+12|x1|w100": 0.2870502513893168,
+   "alt|1e+12|x1|w300": 0.8611507541679504,
+   "alt|1e+12|x1|w600": 1.7223015083359008,
+   "alt|1e+12|x10|w100": 0.14634166212058244,
+   "alt|1e+12|x10|w300": 0.43902498636174736,
+   "alt|1e+12|x10|w600": 0.8780499727234947
+  },
+  "G7_sun_L1": 17.568052106592358
+ }
+}

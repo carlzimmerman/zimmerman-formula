@@ -1,0 +1,65 @@
+CFG171 S1 -- symbolic checks (mode: MUTATE_a)
+
+======================================================================================================================
+1a  Schwarzschild-de Sitter -> Painleve-Gullstrand: v^2 = 2GM/r + Lambda c^2 r^2/3, no cross term; geodesic congruence
+======================================================================================================================
+    MUTATE a: f(r) carries the cross term -2 sqrt(2GM/r) sqrt(Lambda/3) r / c
+    PG form -c^2 dt^2 + (dr - v dt)^2 requires g_rr = 1, g_tt = -c^2 + v^2, (2 g_tr)^2 = 4 v^2 with v^2 = c^2(1 - f) = 2*sqrt(6)*sqrt(G)*sqrt(Lambda)*sqrt(M)*c*sqrt(r)/3 + 2*G*M/r + Lambda*c**2*r**2/3
+    exact residuals of (g_rr - 1, g_tt + c^2 - v^2, (2g_tr)^2 - 4v^2) at 6 points: [(0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0), (0.0, 0.0, 0.0)]
+  [FAIL] 1a PG-SdS: the transformed metric is exactly -c^2 dt^2 + (dr - v dt)^2 with v^2 = 2GM/r + Lambda c^2 r^2/3; the mixed derivative d^2(v^2)/dM dLambda = 0 (the Newtonian and Lambda flows add in v^2, with NO cross term)
+         PG form True; v^2 - target = 2*sqrt(6)*sqrt(G)*sqrt(Lambda)*sqrt(M)*c*sqrt(r)/3; d2(v^2)/dMdLambda = sqrt(6)*sqrt(G)*c*sqrt(r)/(6*sqrt(Lambda)*sqrt(M))
+  [PASS] 1a' for ANY v(r) the PG flow observers u = (1, v, 0, 0) are unit timelike and geodesic, with d^2r/dtau^2 = v v' = d(v^2/2)/dr exactly (so the inward acceleration is g = -d(v^2/2)/dr, the door's formula)
+         u.u = -c**2; -Gamma^r uu = v(r)*Derivative(v(r), r); -Gamma^t uu = 0
+
+======================================================================================================================
+1b  linear velocity superposition v = v_N + s H r (s = +1 Lambda outflow, -1 inflow)
+======================================================================================================================
+    cross term in v^2 = -2*sqrt(2)*sqrt(G)*H*sqrt(M)*sqrt(r)*s;  its inward acceleration = sqrt(2)*sqrt(G)*H*sqrt(M)*s/(2*sqrt(r))
+    d ln g_cross/d ln r = -1/2;  rotation speed V ~ r^1/4;  g_cross / (deep-MOND sqrt(G M a0)/r) = sqrt(2)*H*sqrt(r)/(2*sqrt(a_0))
+  [PASS] 1b linear superposition: cross-term acceleration = s H sqrt(GM/(2r)) ~ r^(-1/2) (attractive for the Lambda OUTFLOW s = +1), V ~ r^(1/4); its ratio to deep MOND grows as H sqrt(r/(2 a0)) (not a constant): not the deep-MOND law
+         g_cross = sqrt(2)*sqrt(G)*H*sqrt(M)*s/(2*sqrt(r)); slope -1/2; V slope 1/4
+
+======================================================================================================================
+1c  no algebraic superposition of the Newtonian and Lambda flows gives the deep-MOND force
+======================================================================================================================
+    force of the term: M-exponent a/2, r-exponent -a/2 + b - 1; deep MOND (M^1/2 r^-1) requires [{a: 1, b: 1/2}]
+    at a = 1, b = 1/2 the v^2 term is sqrt(2)*C*sqrt(G)*sqrt(H)*sqrt(M)*sqrt(c) (r-independent) and its force is 0
+    the M-independent constant force (a = 0, b = 1) is -C*H*c/2: equal to the P2 tail a0/2 only for C = -a0/(c H) = -1/Z (origin-centred)
+  [PASS] 1c the only algebraic term with the deep-MOND scalings (sqrt(M), 1/r in the force) is v_N (c v_L)^(1/2) = sqrt(2 G M c H): r-independent, so its force is identically ZERO; the 1/r force needs a logarithm, i.e. a differential (field) law, not a superposition rule
+         solution [{a: 1, b: 1/2}]; term sqrt(2)*C*sqrt(G)*sqrt(H)*sqrt(M)*sqrt(c); force 0
+
+======================================================================================================================
+1d  a pure Lambda vacuum has no velocity: T^{mu nu} = (rho + P/c^2) u u + P eta^-1 is u-independent at P = -rho c^2
+======================================================================================================================
+  [PASS] 1d at w = -1 dT/dbeta = 0 for every component (the Lambda vacuum is boost-invariant: it has no rest frame and no flow velocity); control: at w = -0.9 T depends on beta. A 'flowing Lambda-vacuum' therefore needs a medium that is NOT exactly Lambda (or a vector/khronon, 11C)
+         w=-1: True; w=-0.9 u-dependent: True
+
+======================================================================================================================
+1e  conserved barotropic medium, steady radial inflow outside its sink: the sign of c_s^2 needed for attraction
+======================================================================================================================
+    required c_s^2 = n*v**2/(n - 2)  (Newton n = 1/2: -v**2/3;  n -> 0: 0)
+    deep-MOND log flow: g = V**2/r; rho'/rho = -2/r + 1/(2*r*Lf(r)); required c_s^2 = -2*L*V**2/(4*L - 1) (L = ln(R/r))
+    Addendum 2 (massless medium): w = 1/3 (radiation-like) gives c_s,eff^2 = c**2/4 > 0 -> no attraction outside the sink; w = -1 has no velocity (1d)
+  [PASS] 1e attraction outside the sink with |v| ~ r^-n, 0 < n < 2 (force slower than r^-5) requires c_s^2 = -n v^2/(2 - n) < 0; the deep-MOND log flow requires c_s^2 = -V^2/(2 - 1/(2L)) < 0; a Lambda-like EOS gives c_s,eff^2 = w c^2/(1+w) (= -c^2 at w = -1/2): negative, i.e. a gradient instability, and |c_s| ~ c makes the flow incompressible at galactic speeds (v ~ r^-2, force ~ r^-5); the massless radiation-like w = 1/3 gives +c^2/4: no attraction at all
+         c_s^2(n) = n*v**2/(n - 2); log flow -2*L*V**2/(4*L - 1); Lambda EOS c**2*w/(w + 1)
+
+======================================================================================================================
+1f  isothermal c_s^2 = -K < 0: Bernoulli v^2/2 - K ln rho = E with rho = Q/(4 pi r^2 |v|)
+======================================================================================================================
+    g_in = -v v' = 2*K*u(r)**2/(r*(K + u(r)**2))
+  [PASS] 1f isothermal negative-c_s^2 medium: g_in = (2K/r) v^2/(v^2 + K): supersonic limit 2K/r (a 1/r force whose amplitude V_c^2 = 2K is a property of the MEDIUM, the same for every mass -- the BTFR needs K = sqrt(G M a0)/2, i.e. the medium slaved to the enclosed mass, CFG44's postulate again); subsonic limit 2 v^2/r with v ~ r^-2 (force ~ r^-5)
+         g = 2*K*u(r)**2/(r*(K + u(r)**2)); supersonic -> 2*K/r; subsonic leading 2*q**2/r
+
+======================================================================================================================
+1g  Hamilton-Jacobi potential flow: D(grad chi)/Dt = -grad Phi identically (3-D, time-dependent)
+======================================================================================================================
+  [PASS] 1g for v = grad chi with chi_t + |grad chi|^2/2 + Phi = 0, Dv/Dt + grad Phi = 0 identically: the flow's parcels are ordinary test particles in Phi; the flow adds no dynamics and no frame (the law is Galilean-covariant)
+         residuals [0, 0, 0]
+
+======================================================================================================================
+1h  P2 as an AQUAL flow-potential equation: ellipticity and the Lambda reading of its scale
+======================================================================================================================
+  [PASS] 1h P2 inverts to mu(z) z = (sqrt(1+4z^2) - 1)/2 with d(mu z)/dz = 2z/sqrt(1+4z^2) > 0 (AQUAL elliptic); the scale a0^2/(8 pi G) = (kappa^2/8 pi) rho_Lambda c^2 (CFG43's P_cap); c H_Lambda/a0 = sqrt(8 pi/3)/kappa = sqrt(32 pi/3) at kappa = 1/2 (Z = kappa restated, FITTED)
+         inverse check 0; d(mu z)/dz = 2*z/sqrt(4*z**2 + 1); P_cap = c**2*kappa**2*rho/(8*pi); Z = 2*sqrt(6)*sqrt(pi)/(3*kappa)
+
+  8/9 checks pass; load-bearing failures: 1   (8.3 s)
