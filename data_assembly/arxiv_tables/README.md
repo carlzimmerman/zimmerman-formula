@@ -57,6 +57,9 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
   the baryon budget I guessed in an earlier note for ID1 (about 1.9e10 Msun) is superseded; with the paper's numbers the baryons are about 4.4e10 Msun.
 - **ALMA-CRISTAL (z 4.4-5.7, [CII]):** 3 of the 14 modelled disks reach R_out/R_e >= 3 (CRISTAL-23c 9.2, -09 3.1, -02 3.0), median 2.5, but with only 1.6-5.5 beam elements at R_out; gas is [CII]-based, V_rot(R_e) is
   the only velocity in the tables, and the paper's figures show the observed V_rot below sigma0 for several disks, i.e. dispersion-supported systems whose 'circular velocity' comes from a pressure-support correction.
+- **Big Wheel (arXiv:2409.17956, z = 3.245, JWST NIRSpec + ALMA CO(4-3)), one object, numbers from the paper's Table 1:** stellar mass 3.7e11 Msun (1.7e11 with a parametric star-formation history), H2 mass from CO 1.8e11 Msun (a
+  conversion factor is assumed), half-light radius 9.6 kpc, stellar disk to at least 30 kpc in diameter, H-alpha v_rot 280 km/s, circular velocity 304 km/s, sigma_int 61 km/s. The rotation velocities come from three NIRSpec slits, and the paper
+  FITS a two-parameter flat (pseudo-isothermal) rotation-curve model, so the outer velocity is a model assumption; the radii the slit velocities reach are not stated in the text (they are plotted). The table is not in a file here; no calculation was made.
 - **Mancera Pina:** stellar-mass sample with a flat circular velocity; no gas.
 - The CRC file (`sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits`, 16 rows) holds Burkert-halo fits to 16
   stacked bins (`bin_0`...`bin_15`), not to individual galaxies; it is in `raw_small/` but not parsed.
