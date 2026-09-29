@@ -27,3 +27,17 @@ Labels: DERIVED = follows from the stated hypotheses by the named script; POSTUL
 ## Independent verification
 
 The equations chat re-ran rows 1–11 from a scratch copy (26 runs, main and every MUTATE control) and reported 0 mismatches in exit codes and check counts (report: `sonnet55_push/equations/LEDGER_VERIFICATION_2026-09-28.md`, uncommitted at the time of writing). Its two wording corrections are applied above (rows 4 and 11); neither changes a verdict.
+
+## Additions 2026-09-29 (from the equations chat's Lean and equation mining; appended)
+
+ChainCert at HEAD: `verify_chain.sh` re-run by the orchestrating session after the Footing module (392dfd15e): 172 theorems, 0 non-standard axioms, 0 sorry, PASS; `MUTATE=1` exits 1. The statements below are as reported by the equations chat; the Lean check is what I re-ran, not the physical reading.
+
+| # | statement | label | script / file | re-run |
+|---|---|---|---|---|
+| 12 | the κ convention identity: Milgrom's cH/2π = κ√(2/(3π)), (κ_F/κ_M)² = 3π/8; and a one-parameter footing family R²(λ) with 1 ≤ R² ≤ (1+z)³, so a₀ cannot rise faster than (1+z)^(3/2), strictly increasing in λ, κ-independent, with the closed-form inverse λ = Ω_L(ρ − 1)/(Ω_m((1+z)³ − ρ)) | DERIVED (mathematics; the footing family's premises are the stated definitions) | `fable_independent_2026/lean_2026/ChainCert/Footing.lean` (11 theorems) | re-run (verify_chain PASS 172) |
+| 13 | CFG44 B2: the point-mass sound-speed exponent e(x) lies in (1/2, 1], so no universal barotropic EOS (conditional on a fixed-density curve, stated) | DERIVED (scoped) | the CFG44 Lean file among the 18 new islands | reported; recompiled by the equations chat |
+| 14 | CFG50: the tidal-tensor stress is divergence-free and λ_max ≤ (8π/3) G ρ₀ | DERIVED | the CFG50 Lean file | reported; recompiled by the equations chat |
+| 15 | CFG43: the Λ-tied cap identities and the slab column bound Σ ≤ a₀/(2πG) (same statement as row 5, now certified) | DERIVED | the CFG43 Lean file | reported; recompiled by the equations chat |
+
+Not certified: dS₄ fermion asymptotics, the extremality analysis (Q5), and FP15/FP16/FP22/FP24 (not read to depth). The 18 island files are not yet in `LEAN_CATALOGUE.md`. Lean certifies premises ⇒ conclusions only; empirical premises and κ = ½ are not certified.
+
