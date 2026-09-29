@@ -1,0 +1,24 @@
+====================================================================================================
+AH1 Schwinger/Unruh in de Sitter -- mode: MUTATE CONTROL (sign of lambda flipped)
+====================================================================================================
+
+1. VERIFY the pair-production factor (do not assume it)
+  [PASS] C0a Whittaker W_{-i lam, i rho}(2 i k tau) solves the mode equation (relative residual 2.40e-16)
+  [PASS] C0a' the same function does NOT solve the wrong-sign equation (the check has power) (relative residual 6.09e-01)
+  [PASS] C0b at tau -> -inf the in-mode is e^{-ik tau} (positive frequency, Bunch-Davies) (|ratio - 1| = 1.53e-04 at tau = -5000)
+     lambda    mu      r_numeric        r_analytic       rel diff
+      0.00   1.50   1.3834418602e-04   1.3834418602e-04   2.0e-16
+      0.40   0.70   1.8866840264e-01   1.8735760876e-03   9.9e-01
+      0.90   0.30   6.4319596372e-01   6.1897791938e-05   1.0e+00
+      1.30   0.90   2.2155335204e-01   2.9394329124e-08   1.0e+00
+      2.00   1.20   1.4833589791e-01   2.4871315189e-12   1.0e+00
+      3.00   2.00   2.6964400725e-02   1.2078613004e-18   1.0e+00
+      1.00   3.00   1.6151933391e-06   5.6327489460e-12   1.0e+00
+      2.50   0.20   5.6614713138e-01   6.8309456174e-14   1.0e+00
+  [FAIL] C1 analytic r = numerically extracted |B/A|^2 on the whole grid (worst rel diff 1.0e+00)
+  [PASS] C2 lambda = 0 gives 1/(e^{2 pi rho} - 1), the Gibbons-Hawking thermal factor (N = 1.383633e-04 vs 1.383633e-04)
+  [PASS] C3 large-lambda limit: d(-ln r)/d(mu^2/lambda) = pi (flat-space Schwinger exp(-pi m^2/eE)) (slope 3.13611 vs pi = 3.14159)
+  [PASS] C4 r < 1 on the grid, and the k < 0 branch is suppressed relative to k > 0 
+
+MUTATE CONTROL: sign of lambda flipped inside the cosh ratio.
+  C1 FAILED as required -- the control works

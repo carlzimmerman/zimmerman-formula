@@ -1,0 +1,66 @@
+====================================================================================================
+AH1 Schwinger/Unruh in de Sitter -- mode: REAL RUN
+====================================================================================================
+
+1. VERIFY the pair-production factor (do not assume it)
+  [PASS] C0a Whittaker W_{-i lam, i rho}(2 i k tau) solves the mode equation (relative residual 2.40e-16)
+  [PASS] C0a' the same function does NOT solve the wrong-sign equation (the check has power) (relative residual 6.09e-01)
+  [PASS] C0b at tau -> -inf the in-mode is e^{-ik tau} (positive frequency, Bunch-Davies) (|ratio - 1| = 1.53e-04 at tau = -5000)
+     lambda    mu      r_numeric        r_analytic       rel diff
+      0.00   1.50   1.3834418602e-04   1.3834418602e-04   2.0e-16
+      0.40   0.70   1.8866840264e-01   1.8866840332e-01   3.6e-09
+      0.90   0.30   6.4319596372e-01   6.4319596465e-01   1.4e-09
+      1.30   0.90   2.2155335204e-01   2.2155335162e-01   1.9e-09
+      2.00   1.20   1.4833589791e-01   1.4833589820e-01   1.9e-09
+      3.00   2.00   2.6964400725e-02   2.6964400688e-02   1.4e-09
+      1.00   3.00   1.6151933391e-06   1.6151929391e-06   2.5e-07
+      2.50   0.20   5.6614713138e-01   5.6614713203e-01   1.2e-09
+  [PASS] C1 analytic r = numerically extracted |B/A|^2 on the whole grid (worst rel diff 2.5e-07)
+  [PASS] C2 lambda = 0 gives 1/(e^{2 pi rho} - 1), the Gibbons-Hawking thermal factor (N = 1.383633e-04 vs 1.383633e-04)
+  [PASS] C3 large-lambda limit: d(-ln r)/d(mu^2/lambda) = pi (flat-space Schwinger exp(-pi m^2/eE)) (slope 3.13611 vs pi = 3.14159)
+  [PASS] C4 r < 1 on the grid, and the k < 0 branch is suppressed relative to k > 0 
+
+2. STRUCTURAL: the rate sees e only through lambda = eE/H^2
+     alpha           alpha^-1    e          E/H^2 needed      r
+     7.297353e-03     137.036   0.30282     4.292949e+00   2.215533516195e-01
+     1.000000e-02     100.000   0.35449     3.667232e+00   2.215533516195e-01
+     2.000000e-02      50.000   0.50133     2.593125e+00   2.215533516195e-01
+     5.000000e-01       2.000   2.50663     5.186250e-01   2.215533516195e-01
+     1.000000e-04   10000.000   0.03545     3.667232e+01   2.215533516195e-01
+  [PASS] C5 the same lambda (hence the same rate) is reached at every alpha by rescaling E/H^2 (max rel diff 0.0e+00)
+     => alpha = lambda^2 / (4 pi eps^2), eps = E/H^2.  The rate fixes lambda, not alpha.
+
+3. THE TIES: what alpha is consistent with each, once the only free directions are swept
+     tie                                       alpha_min        alpha_max        span (x)
+     T1 lambda = kappa*mu   (eE/m = a0)         1.989e-08      1.989e+10      1.00e+18
+     T2 lambda = kappa      (eE = kappa H^2)    1.989e-08      1.989e+04      1.00e+12
+     T3 lambda = 1/2 at mu=0 (massless onset)   1.989e-08      1.989e+04      1.00e+12
+  [PASS] C6 every tie leaves alpha spanning far more than a factor of 2 (none determines alpha) (declared criterion: a tie determines alpha only if the span is < 2)
+
+4. THE MISSING INPUT: the field strength eps = E/H^2 each tie would need to give alpha = 1/137.036
+     e = sqrt(4 pi alpha) = 0.302822
+     T2 (lambda = kappa):    eps* = kappa/e = 1.65113
+     T3 (lambda = 1/2):      eps* = 0.5/e   = 1.65113   (same as T2 only because kappa = 1/2 numerically)
+     T1 (lambda = kappa mu): eps* = kappa mu/e = 1.65113 * mu
+  [PASS] C7 the required eps reproduces alpha exactly (self-consistency of the inversion) 
+
+   Natural handles on eps declared in advance, applied to T2 (alpha = kappa^2/(4 pi eps^2)):
+     eps               alpha        alpha^-1     miss (rel)    hit (<1e-3)?
+     1               1.98944e-02      50.265    1.726e+00     no
+     kappa           7.95775e-02      12.566    9.905e+00     no
+     1/(2 pi)        7.85398e-01       1.273    1.066e+02     no
+     1/(4 pi)        3.14159e+00       0.318    4.295e+02     no
+     sqrt(8 pi/3)    2.37472e-03     421.103    6.746e-01     no
+  [PASS] C8 no pre-declared natural handle hits alpha to 1e-3 (declared expectation) 
+
+====================================================================================================
+CHECKS: 11/11 passed
+VERDICT (against the declared criteria):
+  * The factor is verified: analytic = numerical (C1), thermal limit (C2), flat-space Schwinger limit (C3).
+  * alpha does NOT fix itself from the pair-production factor.  The factor depends on e only through
+    lambda = eE/H^2 (C5); alpha needs E/H^2 as a separate input, and none of T1-T3 supplies it (C6).
+  * Tying the horizon field to kappa (T2) would need E/H^2 = 1.6511 to give 1/137.036; the natural handles
+    declared in advance all miss (C8).  The number 1.6511 is a TARGET the missing input would have to hit,
+    not something derived here.
+  * Not tested: the induced current / vacuum polarization, dS_4, fermions, running of alpha.
+  * kappa = 1/2 stays FITTED.  The SM-mass wall is unchanged.
