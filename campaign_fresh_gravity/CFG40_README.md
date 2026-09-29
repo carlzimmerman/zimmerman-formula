@@ -77,3 +77,5 @@ The MUTATE control first multiplied the speeds by 0.7. H2 **passed** under it (m
 **What comes next.** Di Teodoro+2023 measured extended HI curves for 15 spirals of similar mass and report no break in the Tully–Fisher relation. Their tracer (HI, flat part) and selection (v > 300 km/s) differ from Ogle's (Hα maxima, luminosity-selected), so whether the two agree is untested. CFG41 scores B on them with the same method.
 
 Nothing here says the theory is closed.
+
+**Update (CFG56):** with Simard+2011's measured bulge-to-total ratios the marginal fail survives (nine fastest +0.164, 2.34σ). The structure-model dependence noted above is not a way out.
