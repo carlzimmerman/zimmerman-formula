@@ -1,0 +1,72 @@
+CFG140 -- a0 AT z ~ 1.4 FROM KURVS-CDFS'S OUTERMOST OBSERVED ROTATION POINTS: FLAT a0 AGAINST a0 PROPORTIONAL TO H(z).
+One pipeline for three samples: KURVS-CDFS (Puglisi+2023; the 10 rotation-supported galaxies), a SPARC same-pipeline z = 0 anchor, and a
+KROSS V2 z ~ 0.9 same-instrument control.  g_obs = V_c^2 / R (spherical surrogate) at the outermost measured point; g_bar from thin
+exponential discs (stars R_d, gas 2 R_d); the gas is UNMEASURED for KURVS and KROSS -- a declared bracket, not data.
+
+Criteria frozen and committed before any acceleration number: campaign_fresh_gravity/CFG140_FROZEN_CRITERIA.md (28dca75b8; pre-run C2
+correction 49baf209f).
+  grid     gas mu = M_gas/M* in {0.25, 0.67, 1.5, 4} x coherent M* offset delta in {-0.2, 0, +0.2} dex x pressure support {P0: none,
+           P1: V_c^2 = V^2 + 2 sigma0^2 R/R_d} x a0 footing {canonical, alt} = 48 cells.
+  readings flat: g_pred = nu_mono(g_bar/a0) g_bar;  rival: a = a0 E(z).  Delta = log10 g_obs - log10 g_pred; anchor-corrected
+           Delta' = Delta(KURVS) - Delta(SPARC, measured gas, same P, delta, footing).
+PRE-DECLARED (from the frozen file)
+  C1 CONTROL  SPARC anchor (measured gas, P0, delta 0, canonical): median Delta_flat within +-0.10 dex of zero.
+  C2 CONTROL  nu_mono's limits to 1e-5 at y = 1e-12 (sqrt(g a)) and 1e12 (g_bar)  [pre-run correction].
+  C3 CONTROL  the 10 KURVS IDs are exactly the f_DM rows; every value used finite.
+  R0 POWER    (printed before any g_obs or Delta) pooled expected separation log g_pred,H - log g_pred,flat per cell over the pooled
+              per-object error (velocity error evaluated at the flat prediction's V); KURVS objects with g_bar < a0 at R.
+  H0          feasibility (load-bearing): separation >= 2 sigma in the central cell (mu 0.67, delta 0, P1, canonical).
+  H1 [HEADLINE; MUTATE must change it] flat a0 NOT disfavoured: NOT (Delta'_flat > +2 sigma in every one of the 48 cells).
+  H2          (reported verdict) the rival disfavoured: Delta'_H < -2 sigma in every cell.
+  R1-R6 (reported): the grid; per galaxy; KROSS and the differential; all-22 variant; the model R'_6D variant; SPARC with the bracket.
+MUTATE=1: every KURVS v_last x 10^0.3 (g_obs x 4) -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2 / C3  CONTROLS
+======================================================================================================================
+  [PASS] C3 CONTROL: the 10 KURVS IDs are exactly the f_DM rows and every value used is finite
+         f_DM IDs [3, 7, 8, 9, 11, 13, 15, 16, 17, 21]; selected [3, 7, 8, 9, 11, 13, 15, 16, 17, 21]; finite True; SPARC anchor N = 75; KROSS control N = 390
+  [PASS] C2 CONTROL: nu_mono's limits to 1e-5 at y = 1e-12 (sqrt(g a)) and 1e12 (g_bar)  [pre-run correction]
+         5.0e-07, 1.5e-12
+
+======================================================================================================================
+R0 / H0  POWER (baryons and quoted errors only; the velocity error is evaluated at the flat prediction's V -- no observed velocity enters)
+======================================================================================================================
+    expected separation (dex) / pooled error per cell, canonical, delta 0:  mu 0.25 P0: +0.155/0.038; mu 0.25 P1: +0.154/0.033; mu 0.67 P0: +0.151/0.038; mu 0.67 P1: +0.150/0.033; mu 1.5 P0: +0.146/0.038; mu 1.5 P1: +0.145/0.034; mu 4.0 P0: +0.133/0.039; mu 4.0 P1: +0.133/0.035
+    KURVS objects with g_bar < a0 (canonical) at R_max by mu: {0.25: 10, 0.67: 10, 1.5: 10, 4.0: 8};  median z 1.529 (E = 2.40)
+  [PASS] H0 FEASIBILITY: expected separation >= 2 sigma in the central cell (mu 0.67, delta 0, P1, canonical)
+         separation +0.150 dex, pooled error 0.033 -> 4.52 sigma; range over all 48 cells 3.09-5.06 sigma; CFG52's correlated mass-scale floor caps any such test near 2.3 sigma
+
+======================================================================================================================
+H1 / H2  THE GRID (anchor-corrected; every cell)
+======================================================================================================================
+    canonical P0: mu 0.25: D'_flat -0.070+-0.057, D'_H -0.222; mu 0.67: D'_flat -0.130+-0.057, D'_H -0.279; mu 1.5: D'_flat -0.222+-0.057, D'_H -0.365; mu 4.0: D'_flat -0.400+-0.057, D'_H -0.530  (delta 0)
+    canonical P1: mu 0.25: D'_flat +0.459+-0.071, D'_H +0.302; mu 0.67: D'_flat +0.398+-0.070, D'_H +0.244; mu 1.5: D'_flat +0.307+-0.070, D'_H +0.158; mu 4.0: D'_flat +0.133+-0.070, D'_H -0.004  (delta 0)
+    alt P0: mu 0.25: D'_flat -0.067+-0.057, D'_H -0.222; mu 0.67: D'_flat -0.126+-0.058, D'_H -0.278; mu 1.5: D'_flat -0.217+-0.058, D'_H -0.363; mu 4.0: D'_flat -0.391+-0.057, D'_H -0.526  (delta 0)
+    alt P1: mu 0.25: D'_flat +0.460+-0.070, D'_H +0.301; mu 0.67: D'_flat +0.400+-0.069, D'_H +0.244; mu 1.5: D'_flat +0.310+-0.069, D'_H +0.159; mu 4.0: D'_flat +0.139+-0.069, D'_H -0.001  (delta 0)
+  [PASS] H1 [HEADLINE] THE FRAMEWORK'S FLAT a0 IS NOT DISFAVOURED: NOT (anchor-corrected Delta'_flat > +2 sigma in every one of the 48 cells)
+         cells with Delta'_flat > +2 sigma: 21/48; cells where flat is within 2 sigma: 11/48; central cell Delta'_flat +0.398 +- 0.070
+  [FAIL] (reported) H2 (reported verdict) THE RIVAL a0 ~ H(z) IS DISFAVOURED: Delta'_H < -2 sigma in every cell
+         cells with Delta'_H < -2 sigma: 24/48; cells where the rival is within 2 sigma: 8/48; central cell Delta'_H +0.244 +- 0.070
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] C1 CONTROL: the SPARC anchor (measured gas, P0, delta 0, canonical): median Delta_flat within +-0.10 dex of zero
+         median +0.064 dex (pooled +0.092 +- 0.013; N = 75)
+  [PASS] (reported) R1 (reported) the grid extremes: anchor-corrected Delta'_flat and Delta'_H over the 48 cells
+         Delta'_flat -0.442 .. +0.489; Delta'_H -0.561 .. +0.326; SPARC anchor Delta_flat -0.039 .. +0.202
+  [PASS] (reported) R2 (reported) per KURVS galaxy, central cell: g_bar/a0 at R_max, Delta_flat, Delta_H (unanchored)
+         KURVS-3 z 1.54 R 11.7 kpc g_bar/a0 0.67 D_flat +0.23 D_H +0.09 (+-0.12); KURVS-7 z 1.52 R 11.4 kpc g_bar/a0 0.27 D_flat +0.29 D_H +0.14 (+-0.11); KURVS-8 z 1.54 R 11.0 kpc g_bar/a0 0.07 D_flat +0.46 D_H +0.29 (+-0.10); KURVS-9 z 1.54 R 10.2 kpc g_bar/a0 0.23 D_flat +0.29 D_H +0.14 (+-0.11); KURVS-11 z 1.38 R 12.4 kpc g_bar/a0 0.57 D_flat +0.36 D_H +0.24 (+-0.10); KURVS-13 z 1.33 R 12.1 kpc g_bar/a0 0.06 D_flat +0.74 D_H +0.59 (+-0.10); KURVS-15 z 1.61 R 9.2 kpc g_bar/a0 0.27 D_flat +0.45 D_H +0.29 (+-0.10); KURVS-16 z 1.57 R 10.9 kpc g_bar/a0 0.25 D_flat +0.50 D_H +0.34 (+-0.10); KURVS-17 z 1.35 R 9.9 kpc g_bar/a0 0.08 D_flat +0.88 D_H +0.73 (+-0.09); KURVS-21 z 1.38 R 12.7 kpc g_bar/a0 0.22 D_flat +0.69 D_H +0.55 (+-0.10)
+  [PASS] (reported) R3 (reported) KROSS (z ~ 0.9) through the same pipeline (mu 0.67, delta 0, canonical) and the differential KURVS - KROSS
+         P0: KROSS Delta_flat -0.055 +- 0.018 (N 390, median z 0.85); KURVS -0.039 +- 0.056; differential +0.017 +- 0.058; P1: KROSS Delta_flat +0.240 +- 0.015 (N 390, median z 0.85); KURVS +0.513 +- 0.069; differential +0.273 +- 0.070; predicted differential: flat 0, rival about +0.083 dex in the deep regime (half the log E ratio)
+  [PASS] (reported) R4 (reported) the all-22 variant with v/sigma0 >= 1 (central cell, unanchored)
+         N = 19: Delta_flat +0.533 +- 0.069, Delta_H +0.384
+  [PASS] (reported) R5 (reported) the R'_6D model-extrapolated velocities at 6 R_eff/1.68 (no seeing term; rough; central cell, unanchored)
+         Delta_flat +0.543 +- 0.053, Delta_H +0.387
+  [PASS] (reported) R6 (reported) SPARC with the mu bracket instead of its measured gas (P0, delta 0, canonical): pooled Delta_flat
+         mu 0.25: +0.103 +- 0.013; mu 0.67: +0.040 +- 0.014; mu 1.5: -0.054 +- 0.014; mu 4.0: -0.227 +- 0.015
+
+    READING (declared): NON-DIAGNOSTIC over the declared brackets: some cells favour flat a0, some the rival; measured gas and a pressure-free tracer would settle it
+
+  11/12 checks pass; load-bearing failures: 0   (0 s)
