@@ -1,0 +1,182 @@
+CFG69 -- IS EACH FAILURE OF CANDIDATE B SPECIFIC TO B, OR SHARED BY A STANDARD LCDM HALO RUN THROUGH THE IDENTICAL DATA, ESTIMATOR, SIGMA TREATMENT AND FLOORS?
+
+FROZEN QUESTION (verbatim):
+  'For each population where candidate B (the bare law L or the sum rule S) fails or is marginal -- (a) SLUGGS massive early types with JAM-calibrated stellar masses
+  (CFG55: law +0.097 dex 4.0 sigma, rule +0.046 2.6 sigma, 16 of 19), (b) the Milky Way ultra-faints (CFG42's 31 resolved + 9 limits KM median +0.325 dex law; CFG46's
+  eight binary-corrected systems; CFG51/CFG66's Bootes I and Tucana II multi-epoch cleaned), (c) the classical satellites and M31 dwarfs (CFG42: MW classical, M31 Collins,
+  M31 LVD; CFG58's LV field dwarfs) -- is the failure SPECIFIC to B, or is it SHARED by a standard LCDM halo run through the IDENTICAL data, estimator, sigma treatment
+  and floors?  A failure is SHARED if the LCDM offset has the same sign and |z| > 2 under the lane's own error model (with the same collapse-mass floor treatment as CFG42);
+  SPECIFIC-TO-B if LCDM is within 2 sigma; LCDM-WORSE if LCDM has the opposite sign at > 2 sigma.'
+
+STANDING (declared): kappa = 1/2 is FITTED for B; nothing is tuned after a result is seen; any result is valid; nothing here says the data favour B or LCDM, and nothing says the
+theory is closed.  Every claim is this script plus a MUTATE control that must fail.  Nothing in the repository is edited; the lanes' scripts are exec'd READ-ONLY.
+
+THE LCDM MODEL (declared ONCE; identical for every population; no per-population tuning):
+  stars (each lane's own stellar mass, each lane's own gas) inside a standard NFW halo.  Virial mass M_h = the Moster+2013 stellar-to-halo relation of h48 (`halo_mass`, as CFG35 /
+  CFG42 use it) evaluated at the lane's own M_* (the satellites: Upsilon_V L_V with Upsilon_V = 2, as CFG42), CLAMPED at M_h = 1e9 Msun below M_* ~ 1.6e4 Msun (the grid floor;
+  CFG42's declared trap; the sensitivity M_h = 1e8, 3e8, 1e9, 3e9, 1e10 for every satellite with M_* < 1e5 is CFG42's floor and enters the error exactly as it does there).
+  Concentration: the Duffy+2008 FULL-sample Delta = 200 x CRITICAL row, c = 5.71 (M_200c / [2e12 / h])^-0.084, h = 0.674, z = 0 -- CFG65's row A2, the one whose convention matches
+  h48's 200c R200 (CFG65 transcribed its coefficients from the paper; this script does not re-verify them against the paper, only re-uses them).  Shape NFW, m(t) = ln(1+t) - t/(1+t),
+  x = r/R200 clipped to [1e-4, 5], mass normalised to M_h at R200 (CFG65's `make_profile`, copied).  Added mass: (1 - f_b) M_h m(c x)/m(c) with f_b = Omega_b/Omega_m of CFG35 (the
+  same (1 - f_b) suppression CFG42 uses for the collapse mass), i.e. f_ex = 1: the FULL halo.  NO phantom and NO law: the acceleration is purely Newtonian, g = G [M_b(<r) +
+  (1 - f_b) M_NFW(<r)] / r^2 -- nu = 1.  NO adiabatic contraction (declared once: UNTESTED here; AC would deepen the stellar-dominated inner potential and raise the LCDM
+  dispersions).  LCDM has no a_0, so its numbers are IDENTICAL on the two footings (9.36e-11 / 1.13e-10 enter only B's L and S).
+  The prediction enters each lane's estimator exactly where the rule's debris enters, with the law switched off: the satellites' sigma^2 = g(r) r / 3 at r = (4/3) r_half with half
+  of the baryons enclosed (FG001 / CFG42); SLUGGS's isotropic Jeans integral (CFG38 / h50, gamma = 3 tracer, Hernquist stars at a = R_e / 1.8153, outer bins); CFG55's JAM
+  calibration (the model's total mass inside the 3D half-light radius equals M_JAM / 2, half the stars inside, solved for M_*: for LCDM 0.5 M_* + (1 - f_b) M_NFW(<r_1/2; M_h(M_*),
+  c) = M_JAM / 2, the Moster halo tied to the solved M_*).
+
+THE POPULATIONS AND THEIR STATISTICS (each lane's own; L and S are taken from the lanes' own exec'd machinery and controlled against the committed JSONs; LCDM is scored with the
+same generic estimator code that also re-derives L and S, controlled against the lanes):
+  a1 SLUGGS JAM-calibrated, 16 of 19 (CFG55; law +0.097 / rule +0.046); statistic: mean over galaxies of the outer-bin mean of log10(sigma_obs/sigma_pred); error std/sqrt(n).
+     For the LCDM a galaxy whose NFW mass inside r_1/2 alone already exceeds M_JAM / 2 cannot be calibrated and is EXCLUDED (counted; as CFG55 does for the rule).
+  a2 SLUGGS with SLUGGS's own stellar masses, 19 (CFG38; law +0.080, rule +0.007).      a3 the same 16 with SLUGGS's masses (CFG55 R1).
+  b1 MW ultra-faints, 31 resolved + 9 limits, Kaplan-Meier median (CFG42 H1; error sqrt(bootstrap(1000, seed 42)^2 + Upsilon_V^2 + collapse-mass floor^2)).
+  b2 CFG46's eight binary-corrected systems, median offset (headline f free; also f = 0 and f = 0.7); error sqrt(bootstrap^2 + measurement^2 + floor^2), the floor = half the range over
+     Upsilon_V 1, 2, 4 (+ the pure deep-MOND estimator for L, which has no LCDM meaning).  For LCDM the collapse-mass floor is ADDED (CFG42's treatment, declared here); z is also
+     reported without it.  S is CFG46's committed rule (its own error, no collapse floor).
+  b3 Bootes I and b4 Tucana II binary-cleaned (CFG51: offset log10(sigma_clean/sigma_pred), error sqrt(e_stat^2 + floor^2), floor = half the range over Upsilon_V 1, 2, 4 (+ deep MOND
+     for L)); for S and LCDM the same with the collapse-mass floor added (S, not committed with an error in CFG51, is scored with exactly the LCDM error model).
+  b5 Bootes I total-mixture, b6 Bootes I cold-only, b7 Tucana II gradient-removed (CFG66's committed maximum-likelihood dispersions and profile intervals, read from its JSON; the
+     same error model as b3/b4).
+  c1 MW classical (14), c2 M31 Collins+13 (14), c3 M31 LVD (34) with the CFG18 infall gas (CFG42 H2: sample median; error sqrt((1.2533 std/sqrt n)^2 + Upsilon^2 + collapse^2)).
+  c4 the isolated Local-Volume field dwarfs (CFG58 d2, n = 13, no gas, CFG42's error model).
+  Sign: offset = log10(obs / pred); positive = the data sit ABOVE the prediction (under-prediction).  z = offset / the lane's total error.
+
+CLASSIFICATION (declared, exactly the frozen rule), applied SEPARATELY to L and to S, on each footing where the population is a B failure or marginal:
+  B status per footing: FAIL if |z| > 2; MARGINAL if 1 < |z| <= 2; OK if |z| <= 1 (then no classification: 'B-ok').  For a FAIL or MARGINAL B:
+    LCDM |z| <= 2 -> SPECIFIC-TO-B;  LCDM same sign as B and |z| > 2 -> SHARED;  LCDM opposite sign and |z| > 2 -> LCDM-WORSE.
+  If the two footings give different classes the row reads MIXED.  'Marginal' (1 < |z| <= 2) is this script's declared reading of the frozen word.
+
+REPORTED-ONLY SENSITIVITY (never enters a classification): LCDM with (V1) the Dutton-Maccio concentration of h48 in place of Duffy, (V2) the Duffy RELAXED-sample 200c row
+  (6.71, -0.091), (V3, V4) every halo mass x 1/3 and x 3 (a stand-in for the SHMR scatter / systematics; the Moster relation carries no scatter in `halo_mass`), (V5, SLUGGS only) the
+  Mandelbaum+2016 red collapse masses of CFG36 with h48's Dutton-Maccio c (CFG38's own post-hoc LCDM form).  The collapse-mass clamp sensitivity (1e8...1e10) is reported per row.
+
+CONTROLS
+  C1 CONTROL (i)  the LCDM engine, run through CFG38's SLUGGS machinery with SLUGGS's own stellar masses in CFG38's form (Mandelbaum red collapse masses + Dutton-Maccio c), reproduces
+                  CFG38's committed post-hoc LCDM offsets galaxy by galaxy to 1e-9 and its printed -0.037 +- 0.017 (-2.1 sigma).  (non-MUTATE)
+  C2 CONTROL (ii) L and S reproduce the committed lane numbers to 1e-6 (CFG42 UF / CL, CFG46, CFG51, CFG66's L offsets, CFG58 d2, CFG55 JAM, CFG38 SLUGGS), both footings; the generic
+                  estimator code used for LCDM also reproduces the lanes' L and S (recomputed through it).  (non-MUTATE)
+  C3 CONTROL      the generic NFW profile with Duffy c equals the analytic enclosed mass (direct numerical integration of the NFW density) to 1e-7, with M(<R200) = M_h to 1e-12, monotone;
+                  and with the Dutton-Maccio c equals h48's committed `nfw_enclosed` to 1e-9 (30 masses x 40 radii).
+  C4 CONTROL      the LCDM engine with M_h -> 0 is the pure Newtonian prediction (satellite sigma = sqrt(G 0.5 M_b / r_h / 3 ...) closed form to 1e-9), LCDM is identical on both footings, and
+                  the LCDM sigma exceeds the Newtonian one (mass is added, never removed).
+  H1 [HEADLINE; MUTATE must fail]  the LCDM ultra-faint gate is live: the KM median of b1 within 2 sigma of zero on BOTH footings (the same gate as CFG42 H1).
+  C5 CONTROL (MUTATE=1: every LCDM halo mass x 100) the LCDM ultra-faint gate must FAIL; the MUTATE run also reports whether the gate was passed in the un-mutated run (read from
+                  the committed .json of the un-mutated run if present).
+  H2 (reported) the classification table.
+MUTATE=1: every LCDM halo mass (and every floor variant) x 100 -- H1 must FAIL (rc = 1).  L and S are un-mutated (their lanes are exec'd with their own MUTATE off).
+ADDED AFTER THE FIRST MAIN RUN, BEFORE ANY INTERPRETATION (disclosed; the first run's log is kept as run_first.log; NO hypothesis, gate, threshold, model choice or classification rule changed):
+  (1) control C6: the LCDM JAM calibration is verified -- at every calibrated galaxy the LCDM total mass inside r_1/2 equals M_JAM / 2 to 1e-9, and with the halo switched off the solved
+      stellar mass returns M_JAM to 1e-9 (CFG55's C3 analogue); (2) a reported column 'B minus LCDM' (dex) beside the classification, because for a MARGINAL B (|z| <= 2) the label
+      SPECIFIC-TO-B only says the LCDM is inside 2 sigma; (3) the table's column widths and per-galaxy LCDM SLUGGS offsets in the JSON.
+  (4) THE DECLARED MUTATE CONTROL FAILED (kept as a FAIL, run_mutate_first.log): with every LCDM halo mass x 100 the LCDM ultra-faint gate did NOT fail (KM median +0.080 -> -0.149, |z| = 1.25 <
+      2), so H1 passes in the MUTATE run and C5 fails.  Nothing was changed to make it fail.  Supplemental, REPORTED-ONLY diagnostic added after that run (R3): the same gate with every halo
+      mass multiplied by 0.01, 0.1, 1, 10, 100, 1e3, 1e4, 1e5 (independent of the MUTATE switch), to show at what multiple the gate does flip and that the mutation acts in the right direction.
+
+======================================================================================================================
+C3  CONTROLS: the NFW profile function
+======================================================================================================================
+  [PASS] C3 CONTROL: the generic NFW (Duffy full / relaxed c) equals the analytic enclosed mass (numerical integration of the density) to 1e-7, M(<R200) = M_h to 1e-12, monotone; with the Dutton-Maccio c it equals h48's committed nfw_enclosed to 1e-9 (30 masses x 40 radii)
+         max |analytic difference| 1.1e-13; max |M(<R200)/M_h - 1| 0.0e+00; monotone True; max |DM-c vs h48| 0.0e+00
+
+======================================================================================================================
+THE LCDM ENGINE: the base configuration through every population
+======================================================================================================================
+    config base  done (6 s): Moster + Duffy full 200c (THE declared LCDM)
+    config V1    done (7 s): V1 Moster + Dutton-Maccio c
+    config V2    done (7 s): V2 Moster + Duffy relaxed 200c
+    config V3    done (8 s): V3 base, every M_h x 1/3
+    config V4    done (9 s): V4 base, every M_h x 3
+    config V5    done (9 s): V5 Mandelbaum red + Dutton-Maccio (CFG38's form; SLUGGS rows only)
+
+======================================================================================================================
+C1 / C2  CONTROLS: L and S reproduce the lanes; the LCDM engine reproduces CFG38's post-hoc LCDM
+======================================================================================================================
+  [PASS] C2 CONTROL (ii): L and S reproduce the committed lane numbers to 1e-6 (CFG42 UF/CL via the lane machinery AND via the generic estimator used for LCDM; CFG46; CFG51; CFG66's L; CFG58 d2; CFG55; CFG38), both footings
+         124 comparisons; worst CFG42 UF canonical rule km (lane): 1.67e-16; over tolerance: none
+  [PASS] C1 CONTROL (i): LCDM through CFG38's SLUGGS machinery with SLUGGS's own stellar masses (Mandelbaum red collapse + Dutton-Maccio) reproduces CFG38's committed post-hoc LCDM offsets per galaxy to 1e-9 and its printed -0.037 +- 0.017 (-2.1 sigma)
+         max per-galaxy |d| 0.0e+00; mean -0.0365 +- 0.0172 (-2.12 sigma)
+  [PASS] C4 CONTROL: the LCDM engine with M_h -> 0 is the closed-form Newtonian prediction (1e-9), the halo only adds mass (sigma ratio >= 1), and LCDM carries no footing dependence (no a_0 enters)
+         max |zero-halo / closed form - 1| 2.2e-16; minimum sigma(LCDM)/sigma(Newton) 1.2147
+  [PASS] C6 CONTROL: the LCDM JAM calibration -- total mass inside r_1/2 equals M_JAM / 2 at every calibrated galaxy (1e-9), and with the halo switched off the solved M_* returns M_JAM (1e-9)
+         max residual 3.7e-13; halo-off max |M_*/M_JAM - 1| 2.0e-15
+
+======================================================================================================================
+THE TABLE: offset [dex] (z) -- canonical | alt for B; LCDM identical on both footings
+======================================================================================================================
+    population                                  | L (bare law) can | alt        | S (sum rule) can | alt        | LCDM          |  L-LCDM  S-LCDM | class(L) / class(S)
+    a1 SLUGGS JAM-calibrated (CFG55; 16 of 19)  | +0.097(+4.0) | +0.088(+3.6)   | +0.046(+2.6) | +0.047(+2.6)   | +0.001(+0.0)   |  +0.096  +0.045 | SPECIFIC-TO-B / SPECIFIC-TO-B
+    a2 SLUGGS own masses, 19 (CFG38)            | +0.080(+3.3) | +0.065(+2.7)   | +0.007(+0.4) | +0.002(+0.1)   | -0.048(-2.4)   |  +0.128  +0.055 | LCDM-WORSE / B-ok
+    a3 SLUGGS own masses, same 16 (CFG55 R1)    | +0.077(+2.8) | +0.062(+2.2)   | +0.007(+0.4) | +0.002(+0.1)   | -0.045(-2.2)   |  +0.122  +0.052 | LCDM-WORSE / B-ok
+    b1 MW ultra-faints, 31 + 9 limits, KM median| +0.325(+3.8) | +0.304(+3.5)   | -0.059(-0.4) | -0.059(-0.4)   | +0.080(+0.6)   |  +0.244  -0.139 | SPECIFIC-TO-B / B-ok
+    b2 CFG46 eight, f free (headline)           | +0.206(+1.3) | +0.186(+1.1)   | -0.151(-1.2) | -0.154(-1.2)   | +0.016(+0.1)   |  +0.190  -0.167 | SPECIFIC-TO-B / SPECIFIC-TO-B
+    b2z CFG46 eight, f = 0                      | +0.295(+1.8) | +0.275(+1.7)   | -0.108(-0.9) | -0.110(-0.9)   | +0.055(+0.3)   |  +0.240  -0.163 | SPECIFIC-TO-B / B-ok
+    b2h CFG46 eight, f = 0.7                    | +0.171(+1.0) | +0.150(+0.9)   | -0.186(-1.3) | -0.189(-1.4)   | -0.019(-0.1)   |  +0.190  -0.167 | B-ok / SPECIFIC-TO-B
+    b3 Bootes I cleaned (CFG51)                 | +0.219(+2.5) | +0.199(+2.2)   | -0.205(-0.8) | -0.205(-0.8)   | -0.078(-0.5)   |  +0.297  -0.128 | SPECIFIC-TO-B / B-ok
+    b4 Tucana II cleaned (CFG51)                | +0.465(+3.6) | +0.445(+3.5)   | -0.165(-0.9) | -0.165(-0.9)   | -0.041(-0.2)   |  +0.506  -0.124 | SPECIFIC-TO-B / B-ok
+    b5 Bootes I total mixture (CFG66)           | +0.222(+2.3) | +0.202(+2.1)   | -0.203(-0.7) | -0.203(-0.8)   | -0.075(-0.5)   |  +0.297  -0.128 | SPECIFIC-TO-B / B-ok
+    b6 Bootes I cold-only (CFG66)               | -0.072(-0.4) | -0.092(-0.5)   | -0.497(-1.5) | -0.497(-1.6)   | -0.369(-1.6)   |  +0.297  -0.128 | B-ok / SPECIFIC-TO-B
+    b7 Tucana II gradient-removed (CFG66)       | +0.464(+3.6) | +0.444(+3.5)   | -0.165(-0.9) | -0.166(-0.9)   | -0.041(-0.2)   |  +0.506  -0.124 | SPECIFIC-TO-B / B-ok
+    c1 MW classical dSph (CFG42)                | +0.027(+0.3) | +0.008(+0.1)   | -0.118(-1.8) | -0.123(-1.9)   | -0.029(-0.4)   |  +0.056  -0.089 | B-ok / SPECIFIC-TO-B
+    c2 M31 Collins+13 (CFG42)                   | +0.064(+0.8) | +0.045(+0.5)   | -0.024(-0.2) | -0.016(-0.2)   | +0.058(+0.6)   |  +0.006  -0.082 | B-ok / B-ok
+    c3 M31 LVD (CFG42)                          | +0.044(+0.6) | +0.031(+0.4)   | -0.107(-2.7) | -0.109(-2.7)   | -0.062(-1.3)   |  +0.105  -0.045 | B-ok / SPECIFIC-TO-B
+    c4 LV field dwarfs, n = 13 (CFG58 d2)       | -0.044(-0.6) | -0.062(-0.8)   | -0.105(-3.5) | -0.093(-2.7)   | -0.020(-0.5)   |  -0.024  -0.086 | B-ok / SPECIFIC-TO-B
+    (B minus LCDM columns: canonical-footing offset difference in dex, reported only.  B-ok = |z| <= 1 on both footings: no classification.)
+
+======================================================================================================================
+LCDM detail per row (base configuration)
+======================================================================================================================
+    a1: mean +0.0009 +- 0.0188 (+0.05 sigma), n = 16
+        JAM-calibrated log M_* (LCDM): 1023 10.79, 2768 11.28, 3377 10.39, 3607 11.21, 4278 11.02, 4365 11.27, 4374 11.44, 4459 10.83, 4473 10.87, 4486 11.53, 4494 10.87, 4526 11.17, 4649 11.56, 4697 10.97, 5846 11.34, 7457 10.06
+    a2: mean -0.0482 +- 0.0198 (-2.44 sigma), n = 19
+    a3: mean -0.0450 +- 0.0208 (-2.16 sigma), n = 16
+    b1: KM median +0.080 +- 0.132 (bootstrap 0.054, Upsilon 0.000, collapse floor 0.121); resolved-only median +0.123; KM median at M_h(M_* < 1e5) = 1e+08: +0.204, 3e+08: +0.143, 1e+09: +0.080, 3e+09: +0.023, 1e+10: -0.037
+    b2: median +0.016 +- 0.172 (bootstrap 0.094, measurement 0.091, Upsilon floor 0.004, collapse floor 0.112) -> +0.09 sigma; without the collapse floor +- 0.131 -> +0.12 sigma
+    b2z: median +0.055 +- 0.170 (bootstrap 0.107, measurement 0.070, Upsilon floor 0.004, collapse floor 0.112) -> +0.32 sigma; without the collapse floor +- 0.128 -> +0.43 sigma
+    b2h: median -0.019 +- 0.179 (bootstrap 0.101, measurement 0.097, Upsilon floor 0.004, collapse floor 0.112) -> -0.11 sigma; without the collapse floor +- 0.140 -> -0.14 sigma
+    b3: offset -0.078 +- 0.143 (e_stat 0.046, Upsilon floor 0.001, collapse floor 0.136) -> -0.54 sigma
+    b4: offset -0.041 +- 0.172 (e_stat 0.104, Upsilon floor 0.000, collapse floor 0.137) -> -0.24 sigma
+    b5: offset -0.075 +- 0.148 (e_stat 0.060, Upsilon floor 0.001, collapse floor 0.136) -> -0.50 sigma
+    b6: offset -0.369 +- 0.232 (e_stat 0.188, Upsilon floor 0.001, collapse floor 0.136) -> -1.59 sigma
+    b7: offset -0.041 +- 0.172 (e_stat 0.104, Upsilon floor 0.000, collapse floor 0.137) -> -0.24 sigma
+    c1: median -0.029 +- 0.077 -> -0.38 sigma; median at the floor variants 1e8..1e10: -0.029, -0.029, -0.029, -0.029, -0.029
+    c2: median +0.058 +- 0.095 -> +0.61 sigma; median at the floor variants 1e8..1e10: +0.058, +0.058, +0.058, +0.058, +0.047
+    c3: median -0.062 +- 0.046 -> -1.34 sigma; median at the floor variants 1e8..1e10: -0.040, -0.062, -0.062, -0.062, -0.062
+    c4: median -0.020 +- 0.043 -> -0.46 sigma; median at the floor variants 1e8..1e10: -0.020, -0.020, -0.020, -0.020, -0.020
+
+======================================================================================================================
+SENSITIVITY (reported only; never enters a classification): LCDM offset [dex] (z)
+======================================================================================================================
+    row                                                        base               V1               V2               V3               V4               V5
+    a1 SLUGGS JAM-calibrated (CFG55; 16 of 19)         +0.001(+0.0)     -0.015(-0.8)     -0.009(-0.5)     +0.049(+2.5)     -0.046(-2.5)     +0.005(+0.3)
+    a2 SLUGGS own masses, 19 (CFG38)                   -0.048(-2.4)     -0.082(-4.1)     -0.069(-3.4)     +0.012(+0.6)     -0.108(-5.3)     -0.037(-2.1)
+    a3 SLUGGS own masses, same 16 (CFG55 R1)           -0.045(-2.2)     -0.079(-3.7)     -0.066(-3.1)     +0.014(+0.7)     -0.105(-5.1)     -0.036(-1.9)
+    b1 MW ultra-faints, 31 + 9 limits, KM median (     +0.080(+0.6)     -0.043(-0.4)     +0.015(+0.1)     +0.140(+1.0)     +0.023(+0.2)                -
+    b2 CFG46 eight, f free (headline)                  +0.016(+0.1)     -0.110(-0.7)     -0.050(-0.3)     +0.070(+0.4)     -0.036(-0.2)                -
+    b2z CFG46 eight, f = 0                             +0.055(+0.3)     -0.072(-0.4)     -0.012(-0.1)     +0.108(+0.6)     +0.002(+0.0)                -
+    b2h CFG46 eight, f = 0.7                           -0.019(-0.1)     -0.146(-0.8)     -0.086(-0.5)     +0.034(+0.2)     -0.071(-0.4)                -
+    b3 Bootes I cleaned (CFG51)                        -0.078(-0.5)     -0.195(-1.4)     -0.140(-1.0)     -0.013(-0.1)     -0.137(-1.0)                -
+    b4 Tucana II cleaned (CFG51)                       -0.041(-0.2)     -0.159(-0.9)     -0.104(-0.6)     +0.026(+0.1)     -0.102(-0.6)                -
+    b5 Bootes I total mixture (CFG66)                  -0.075(-0.5)     -0.192(-1.3)     -0.137(-0.9)     -0.010(-0.1)     -0.134(-1.0)                -
+    b6 Bootes I cold-only (CFG66)                      -0.369(-1.6)     -0.486(-2.1)     -0.431(-1.9)     -0.304(-1.3)     -0.429(-1.9)                -
+    b7 Tucana II gradient-removed (CFG66)              -0.041(-0.2)     -0.159(-0.9)     -0.104(-0.6)     +0.026(+0.1)     -0.102(-0.6)                -
+    c1 MW classical dSph (CFG42)                       -0.029(-0.4)     -0.118(-1.6)     -0.085(-1.1)     +0.024(+0.3)     -0.088(-1.1)                -
+    c2 M31 Collins+13 (CFG42)                          +0.058(+0.6)     -0.043(-0.5)     +0.004(+0.0)     +0.121(+1.3)     -0.001(-0.0)                -
+    c3 M31 LVD (CFG42)                                 -0.062(-1.3)     -0.112(-2.2)     -0.099(-1.9)     +0.006(+0.1)     -0.099(-1.9)                -
+    c4 LV field dwarfs, n = 13 (CFG58 d2)              -0.020(-0.5)     -0.096(-2.6)     -0.068(-1.8)     +0.021(+0.4)     -0.068(-1.8)                -
+    base: Moster + Duffy full 200c (THE declared LCDM); V1: V1 Moster + Dutton-Maccio c; V2: V2 Moster + Duffy relaxed 200c; V3: V3 base, every M_h x 1/3; V4: V4 base, every M_h x 3; V5: V5 Mandelbaum red + Dutton-Maccio (CFG38's form; SLUGGS rows only)
+
+======================================================================================================================
+GATES
+======================================================================================================================
+  [PASS] H1 [HEADLINE; MUTATE must fail] the LCDM ultra-faint gate is live: the KM median (31 + 9 limits, CFG42's error model incl. the collapse-mass floor) within 2 sigma of zero on both footings
+         LCDM KM median +0.080 +- 0.132 -> +0.61 sigma (identical on both footings); B: L +3.77|+3.55, S -0.41|-0.41 sigma
+  [PASS] (reported) C5 CONTROL: (MUTATE-run only; recorded here) the un-mutated LCDM ultra-faint gate
+         passes: True
+  [PASS] (reported) R3 (reported; ADDED after the first MUTATE run, disclosed) the LCDM ultra-faint gate against a multiple of every halo mass (independent of the MUTATE switch)
+         x0.01: +0.381 (+2.22 sigma); x0.1: +0.213 (+1.50 sigma); x1: +0.080 (+0.61 sigma); x10: -0.037 (-0.30 sigma); x100: -0.149 (-1.25 sigma); x1000: -0.261 (-2.10 sigma); x10000: -0.385 (-1.95 sigma); x100000: -0.649 (-2.06 sigma); gate fails (|z| > 2) at: x0.01, x1000, x100000
+  [PASS] (reported) H2 (reported) the classification table (counts over the 16 rows x {L, S})
+         B-ok: 15; LCDM-WORSE: 2; SPECIFIC-TO-B: 15
+
+  9/9 checks pass; load-bearing failures: 0   (14 s)
