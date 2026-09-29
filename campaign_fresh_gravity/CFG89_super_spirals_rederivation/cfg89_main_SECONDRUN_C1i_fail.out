@@ -1,0 +1,173 @@
+frozen docstring sha256: 6b2e690ba0095c42  mode: main
+
+== CONTROLS ==
+PASS C4a table :: N=23, n(v>340)=9, fastest 568.0+-16.0 at 41.0 kpc
+PASS C4b Simard vs Ogle :: i equal: True; max |Rd_S/Rd_O-1| = 0.0047
+FAIL C1i Freeman vs ring-summation :: max rel dev over r/Rd=0.5,1,2,5: inf
+PASS C1ii Freeman peak :: peak at 2.150 Rd, v^2/(GM/Rd) = 0.3870
+PASS C1iii far limit :: g r^2/(GM) at 50 Rd = 1.00181
+PASS C1iv disc enclosed mass :: 0.8837994256
+PASS C2i Hernquist enclosed mass :: 0.5732653061 vs 0.5732653061
+PASS C2ii Hernquist v_c peak :: peak at 1.0000 a, v^2 4a/GM = 1.0000000
+PASS C2iii Hernquist half-mass :: 2.414213562
+PASS C2iv R_e = 1.8153 a :: projected half-mass radius = 1.81527 a
+PASS C3a units :: 207.39 km/s
+PASS C3b mono==RAR (y<=y_p), continuity, peak :: y_p=2.5396, h_p=0.64761
+PASS C3c nu(1) :: mono 1.5820, P2 1.4142
+
+== MAIN (frozen): kernel mono ==
+CFG40-model canonical              mean +0.1069 +- 0.0752 (+1.42s) [sem 0.0200, floor 0.0724: model 0.0407 M* 0.0590 gas 0.0104] | slope +0.194 +- 0.100 (+1.95s) | nine (9) +0.1705 +- 0.0826 (+2.06s) [sem9 0.0397] | H1 PASS H2 FAIL
+CFG56-model canonical              mean +0.1046 +- 0.0628 (+1.67s) [sem 0.0183, floor 0.0601: model 0.0015 M* 0.0592 gas 0.0102] | slope +0.166 +- 0.092 (+1.80s) | nine (9) +0.1636 +- 0.0699 (+2.34s) [sem9 0.0358] | H1 PASS H2 FAIL
+CFG40-model alt                    mean +0.0926 +- 0.0738 (+1.25s) [sem 0.0198, floor 0.0711: model 0.0400 M* 0.0579 gas 0.0102] | slope +0.193 +- 0.099 (+1.95s) | nine (9) +0.1556 +- 0.0812 (+1.92s) [sem9 0.0392] | H1 PASS H2 PASS
+CFG56-model alt                    mean +0.0903 +- 0.0617 (+1.47s) [sem 0.0181, floor 0.0589: model 0.0014 M* 0.0581 gas 0.0100] | slope +0.165 +- 0.091 (+1.81s) | nine (9) +0.1489 +- 0.0687 (+2.17s) [sem9 0.0353] | H1 PASS H2 FAIL
+
+CFG56-model: mean on galaxy scatter alone = 0.1046/0.0183 = 5.72 sigma;   CFG40-model: 0.1069/0.0200 = 5.34 sigma
+std of offsets: CFG56 0.0877, CFG40 0.0960;  y=g_N/a0 range 0.10..1.11; n(y>y_p)=0
+PASS C5a B/T=0 (Ogle Rd) == CFG40-model mean :: +0.1069368546 vs +0.1069368546
+PASS C5b B/T=0 (Simard Rd) within 1e-3 of CFG40-model :: +0.10690 vs +0.10694
+disc-only, Simard Rd, B/T=0        mean +0.1069 +- 0.0632 (+1.69s) [sem 0.0200, floor 0.0599: model 0.0000 M* 0.0590 gas 0.0104] | slope +0.194 +- 0.100 (+1.94s) | nine (9) +0.1704 +- 0.0719 (+2.37s) [sem9 0.0397] | H1 PASS H2 FAIL
+S2: B/T from rbMag/rdMag vs table B/T_r: max |diff| = 0.004; median +0.001
+
+== REPRODUCTION vs README targets (tolerance 0.0015 dex / 0.05 sigma) ==
+REPRODUCED T1 CFG40 canonical mean                              mine +0.1069  README +0.1070  diff -0.0001
+REPRODUCED T1 CFG40 canonical mean err (total)                  mine +0.0752  README +0.0750  diff +0.0002
+REPRODUCED T1 CFG40 z(mean)                                     mine +1.4230  README +1.4200  diff +0.0030
+REPRODUCED T1 CFG40 slope                                       mine +0.1943  README +0.1940  diff +0.0003
+REPRODUCED T1 CFG40 slope err                                   mine +0.0999  README +0.1000  diff -0.0001
+REPRODUCED T1 CFG40 nine                                        mine +0.1705  README +0.1700  diff +0.0005
+REPRODUCED T1 CFG40 z(nine)                                     mine +2.0636  README +2.0600  diff +0.0036
+REPRODUCED T1 CFG40 alt mean                                    mine +0.0926  README +0.0920  diff +0.0006
+REPRODUCED T1 CFG40 alt err                                     mine +0.0738  README +0.0740  diff -0.0002
+REPRODUCED T1 CFG40 alt nine                                    mine +0.1556  README +0.1560  diff -0.0004
+REPRODUCED T1 CFG40 alt z(nine)                                 mine +1.9175  README +1.9200  diff -0.0025
+REPRODUCED T1 point mean                                        mine +0.0592  README +0.0590  diff +0.0002
+REPRODUCED T1 point nine                                        mine +0.1127  README +0.1130  diff -0.0003
+REPRODUCED T1 sph mean                                          mine +0.1407  README +0.1410  diff -0.0003
+REPRODUCED T1 sph nine                                          mine +0.2014  README +0.2010  diff +0.0004
+REPRODUCED T1 asymptotic mean                                   mine +0.1439  README +0.1440  diff -0.0001
+REPRODUCED T1 asymptotic nine                                   mine +0.1913  README +0.1910  diff +0.0003
+REPRODUCED T2 CFG56 canonical mean                              mine +0.1046  README +0.1050  diff -0.0004
+REPRODUCED T2 CFG56 mean err (total)                            mine +0.0628  README +0.0630  diff -0.0002
+REPRODUCED T2 CFG56 z(mean)                                     mine +1.6667  README +1.6700  diff -0.0033
+REPRODUCED T2 CFG56 slope                                       mine +0.1659  README +0.1660  diff -0.0001
+REPRODUCED T2 CFG56 slope err                                   mine +0.0923  README +0.0920  diff +0.0003
+REPRODUCED T2 CFG56 z(slope)                                    mine +1.7981  README +1.8000  diff -0.0019
+REPRODUCED T2 CFG56 nine                                        mine +0.1636  README +0.1640  diff -0.0004
+REPRODUCED T2 CFG56 z(nine)                                     mine +2.3408  README +2.3400  diff +0.0008
+REPRODUCED T2 CFG56 alt mean                                    mine +0.0903  README +0.0900  diff +0.0003
+REPRODUCED T2 CFG56 alt slope                                   mine +0.1650  README +0.1650  diff +0.0000
+REPRODUCED T2 CFG56 alt nine                                    mine +0.1489  README +0.1490  diff -0.0001
+REPRODUCED T2 CFG56 alt z(nine)                                 mine +2.1669  README +2.1700  diff -0.0031
+REPRODUCED T2 CFG56 model floor term                            mine +0.0015  README +0.0010  diff +0.0005
+REPRODUCED T2 CFG40 model floor term                            mine +0.0407  README +0.0410  diff -0.0003
+REPRODUCED T2 CFG56 M* term                                     mine +0.0592  README +0.0590  diff +0.0002
+DIFFERS    T2 5.8 sigma on galaxy scatter alone                 mine +5.7238  README +5.8000  diff -0.0762
+REPRODUCED T3 P2 CFG56 mean                                     mine +0.1316  README +0.1320  diff -0.0004
+REPRODUCED T3 P2 CFG56 z(mean)                                  mine +2.0632  README +2.0600  diff +0.0032
+REPRODUCED T3 P2 CFG56 z(nine)                                  mine +2.6873  README +2.6900  diff -0.0027
+REPRODUCED T3 P2 CFG40 mean                                     mine +0.1338  README +0.1340  diff -0.0002
+REPRODUCED T3 P2 CFG40 z(mean)                                  mine +1.7518  README +1.7500  diff +0.0018
+REPRODUCED T3 P2 CFG40 z(nine)                                  mine +2.3507  README +2.3500  diff +0.0007
+RAR vs mono (CFG56 model): max |offset diff| = 0.00e+00; mean +0.10464 vs +0.10464; nine +0.16363 vs +0.16363
+P2 CFG56-model canonical           mean +0.1316 +- 0.0638 (+2.06s) [sem 0.0183, floor 0.0611: model 0.0014 M* 0.0602 gas 0.0104] | slope +0.165 +- 0.093 (+1.78s) | nine (9) +0.1904 +- 0.0709 (+2.69s) [sem9 0.0359] | H1 FAIL H2 FAIL
+P2 CFG40-model canonical           mean +0.1338 +- 0.0764 (+1.75s) [sem 0.0200, floor 0.0737: model 0.0415 M* 0.0600 gas 0.0105] | slope +0.193 +- 0.100 (+1.93s) | nine (9) +0.1969 +- 0.0838 (+2.35s) [sem9 0.0398] | H1 PASS H2 FAIL
+V1 verdicts (mono, canonical): H1 PASS (frozen PASS), H2 FAIL (frozen FAIL); clause z: mean 1.67, slope 1.80, nine 2.34; under P2 H1 FAIL (frozen FAIL)
+
+== SENSITIVITY (CFG56 model, mono, canonical unless stated; columns: mean(z) | slope(z) | nine(z) | floor) ==
+-- S1 disc scale length / radius / bulge scale
+headline (Simard Rd)                         +0.105 (+1.67) | +0.166 (+1.80) | +0.164 (+2.34) | fl 0.060  H1 P H2 F
+Ogle Rd                                      +0.105 (+1.67) | +0.166 (+1.80) | +0.164 (+2.34) | fl 0.060  H1 P H2 F
+Rd x0.8                                      +0.082 (+1.30) | +0.150 (+1.69) | +0.140 (+2.02) | fl 0.061  H1 P H2 F
+Rd x1.25                                     +0.131 (+2.10) | +0.178 (+1.88) | +0.191 (+2.72) | fl 0.060  H1 F H2 F
+Rd capped 25 kpc                             +0.099 (+1.59) | +0.133 (+1.61) | +0.149 (+2.21) | fl 0.060  H1 P H2 F
+Rd = Rhl/1.678                               +0.087 (+1.37) | +0.165 (+1.90) | +0.145 (+2.10) | fl 0.061  H1 P H2 F
+2MFGC 08638 Rd -> 20 kpc                     +0.100 (+1.61) | +0.147 (+1.72) | +0.152 (+2.23) | fl 0.060  H1 P H2 F
+r x0.9                                       +0.111 (+1.73) | +0.173 (+1.82) | +0.170 (+2.39) | fl 0.061  H1 P H2 F
+r x1.1                                       +0.100 (+1.62) | +0.159 (+1.77) | +0.158 (+2.31) | fl 0.059  H1 P H2 F
+bulge scale x0.5                             +0.099 (+1.57) | +0.169 (+1.83) | +0.160 (+2.27) | fl 0.061  H1 P H2 F
+bulge scale x2                               +0.112 (+1.81) | +0.161 (+1.74) | +0.170 (+2.44) | fl 0.059  H1 P H2 F
+-- S2 B/T
+B/T + 0.10                                   +0.103 (+1.65) | +0.152 (+1.70) | +0.160 (+2.32) | fl 0.060  H1 P H2 F
+B/T - 0.10                                   +0.106 (+1.69) | +0.182 (+1.90) | +0.168 (+2.36) | fl 0.060  H1 P H2 F
+B/T x0.5                                     +0.106 (+1.68) | +0.179 (+1.87) | +0.167 (+2.36) | fl 0.060  H1 P H2 F
+B/T x2                                       +0.103 (+1.65) | +0.141 (+1.64) | +0.158 (+2.32) | fl 0.060  H1 P H2 F
+bulge M/L x1.25 (total M* fixed)             +0.104 (+1.66) | +0.161 (+1.77) | +0.163 (+2.34) | fl 0.060  H1 P H2 F
+bulge M/L x1.5 (total M* fixed)              +0.104 (+1.66) | +0.157 (+1.74) | +0.162 (+2.33) | fl 0.060  H1 P H2 F
+bulge M/L x2.0 (total M* fixed)              +0.103 (+1.65) | +0.149 (+1.69) | +0.160 (+2.32) | fl 0.060  H1 P H2 F
+bulge as point mass                          +0.093 (+1.45) | +0.172 (+1.84) | +0.155 (+2.19) | fl 0.061  H1 P H2 F
+no bulge (B/T=0, Simard Rd)                  +0.107 (+1.69) | +0.194 (+1.94) | +0.170 (+2.37) | fl 0.060  H1 P H2 F
+-- S3 M/L, gas
+M* x10^-0.2                                  +0.161 (+2.54) | +0.159 (+1.77) | +0.219 (+3.12) | fl 0.061  H1 F H2 F
+M* x10^-0.1                                  +0.134 (+2.12) | +0.163 (+1.79) | +0.192 (+2.75) | fl 0.060  H1 F H2 F
+M* x10^+0.1                                  +0.074 (+1.19) | +0.168 (+1.80) | +0.134 (+1.91) | fl 0.060  H1 P H2 P
+M* x10^+0.2                                  +0.043 (+0.69) | +0.171 (+1.80) | +0.103 (+1.47) | fl 0.060  H1 P H2 P
+gas x0                                       +0.119 (+1.77) | +0.172 (+1.87) | +0.178 (+2.40) | fl 0.065  H1 P H2 F
+gas x2                                       +0.091 (+1.51) | +0.158 (+1.70) | +0.151 (+2.22) | fl 0.057  H1 P H2 F
+-- S4 inclination
+i + 5 deg (v_obs -> v sin i/sin(i+5))        +0.090 (+1.42) | +0.169 (+1.75) | +0.148 (+2.08) | fl 0.060  H1 P H2 F
+i - 5 deg                                    +0.124 (+1.98) | +0.163 (+1.83) | +0.183 (+2.67) | fl 0.060  H1 P H2 F
+drop i>80 (n=3)                              +0.092 (+1.46) | +0.077 (+0.86) | +0.133 (+1.85) | fl 0.060  H1 P H2 P
+drop i<50 (n=2)                              +0.107 (+1.70) | +0.202 (+2.23) | +0.187 (+2.68) | fl 0.060  H1 P H2 F
+corr(offset, i) = +0.382;  corr(offset, r/Rd) = -0.623;  corr(offset, B/T) = -0.142
+per-galaxy v+inclination errors (dex): median 0.0235, max 0.0815 (2MASX J16394598+4609058); added stat term on 23-mean sqrt(sum sig^2)/N = 0.0063 -> sem 0.0193
+-- S7 kernel / footing / a0
+kernel mono canonical                        +0.105 (+1.67) | +0.166 (+1.80) | +0.164 (+2.34) | fl 0.060  H1 P H2 F
+kernel mono alt                              +0.090 (+1.47) | +0.165 (+1.81) | +0.149 (+2.17) | fl 0.059  H1 P H2 F
+kernel rar canonical                         +0.105 (+1.67) | +0.166 (+1.80) | +0.164 (+2.34) | fl 0.060  H1 P H2 F
+kernel rar alt                               +0.090 (+1.47) | +0.165 (+1.81) | +0.149 (+2.17) | fl 0.059  H1 P H2 F
+kernel p2 canonical                          +0.132 (+2.06) | +0.165 (+1.78) | +0.190 (+2.69) | fl 0.061  H1 F H2 F
+kernel p2 alt                                +0.118 (+1.90) | +0.164 (+1.80) | +0.176 (+2.55) | fl 0.059  H1 P H2 F
+a0 x0.99                                     +0.105 (+1.68) | +0.166 (+1.80) | +0.164 (+2.35) | fl 0.060  H1 P H2 F
+a0 x1.01                                     +0.104 (+1.66) | +0.166 (+1.80) | +0.163 (+2.33) | fl 0.060  H1 P H2 F
+asymptotic v^4=GMa0                          +0.144 (+3.03) | +0.091 (+1.30) | +0.191 (+3.75) | fl 0.046  H1 F H2 F
+
+-- S5 leave-one-out (full recompute incl. floor / floor fixed)
+dropped                           v     off | 23-mean z (drop) | slope z | nine z (8 or 9, floor recomputed) | nine z (floor fixed)
+2MASX J11052843+0736413       * 465  +0.284 | +1.54 | +1.54 | +2.10 (mean +0.149) | +2.11
+2MASX J16394598+4609058       * 483  +0.276 | +1.55 | +1.20 | +2.11 (mean +0.150) | +2.12
+2MASX J15154614+0235564       * 568  +0.260 | +1.56 | +1.30 | +2.13 (mean +0.152) | +2.13
+2MASX J11232039+0018029       * 436  +0.206 | +1.58 | +1.84 | +2.19 (mean +0.158) | +2.19
+SDSS J095727.02+083501.7      * 444  +0.181 | +1.61 | +1.66 | +2.23 (mean +0.162) | +2.23
+2MASX J16014061+2718161       * 453  +0.130 | +1.65 | +1.73 | +2.32 (mean +0.168) | +2.32
+2MASX J16184003+0034367       * 384  +0.125 | +1.64 | +1.75 | +2.33 (mean +0.168) | +2.33
+2MASX J20541957-0055204         317  +0.064 | +1.68 | +1.75 | +2.33 (mean +0.164) | +2.34
+2MASX J22073122-0729223         243  -0.012 | +1.75 | +1.45 | +2.34 (mean +0.164) | +2.34
+2MASX J11483552+0325268         324  +0.102 | +1.66 | +1.75 | +2.34 (mean +0.164) | +2.34
+2MASX J10222648+0911396         311  +0.056 | +1.69 | +1.75 | +2.34 (mean +0.164) | +2.34
+2MASX J15404057-0009331         304  +0.049 | +1.70 | +1.72 | +2.34 (mean +0.164) | +2.34
+2MASX J12592630-0146580         318  +0.126 | +1.65 | +1.91 | +2.34 (mean +0.164) | +2.34
+2MASX J23130513-0033477         292  +0.064 | +1.69 | +1.69 | +2.34 (mean +0.164) | +2.34
+2MASX J21362206+0056519         336  +0.059 | +1.70 | +1.77 | +2.34 (mean +0.164) | +2.34
+2MASX J21431882-0820164         317  +0.155 | +1.63 | +2.27 | +2.34 (mean +0.164) | +2.34
+2MASX J13033075-0214004         308  +0.031 | +1.72 | +1.70 | +2.34 (mean +0.164) | +2.34
+2MASX J09394584+0845033         322  +0.096 | +1.67 | +1.76 | +2.34 (mean +0.164) | +2.34
+2MASX J11535621+4923562         305  +0.024 | +1.73 | +2.13 | +2.35 (mean +0.164) | +2.34
+2MASX J21384311-0052162         299  +0.095 | +1.67 | +1.82 | +2.35 (mean +0.164) | +2.34
+2MASX J12422564+0056492         279  +0.026 | +1.73 | +1.58 | +2.35 (mean +0.164) | +2.34
+SDSS J143447.86+020228.6      * 344  +0.030 | +1.72 | +2.01 | +2.58 (mean +0.180) | +2.58
+2MASX J10304263+0418219       * 342  -0.018 | +1.76 | +2.39 | +2.76 (mean +0.186) | +2.75
+(base: mean z +1.67, slope z +1.80, nine z +2.34; * = one of the nine; dominant = drop moves the nine z by > 0.3)
+dominant members of the nine (>0.3 sigma move): ['2MASX J10304263+0418219']
+lowest nine-clause z after dropping two of the nine: [(1.84, 0.13, ['052843+0736413', '394598+4609058']), (1.85, 0.133, ['052843+0736413', '154614+0235564']), (1.86, 0.134, ['154614+0235564', '394598+4609058'])]
+floor recomputed on the nine's own mean: model 0.0037 M* 0.0583 gas 0.0098 total 0.0593 -> nine z = +2.36 (headline uses the 23-sample floor 0.0601: +2.34)
+offsets of the nine (name, v, r, offset, y=g_N/a0):
+   2MASX J15154614+0235564       568 r=  41 kpc  off +0.260  y 0.38  B/T 0.33  Rd 21.9
+   2MASX J16394598+4609058       483 r=  31 kpc  off +0.276  y 0.31  B/T 0.13  Rd 33.0
+   2MASX J11052843+0736413       465 r=  54 kpc  off +0.284  y 0.10  B/T 0.22  Rd 47.0
+   2MASX J16014061+2718161       453 r=  29 kpc  off +0.130  y 0.79  B/T 0.04  Rd 11.4
+   SDSS J095727.02+083501.7      444 r=  31 kpc  off +0.181  y 0.48  B/T 0.13  Rd 17.0
+   2MASX J11232039+0018029       436 r=  45 kpc  off +0.206  y 0.21  B/T 0.26  Rd 18.9
+   2MASX J16184003+0034367       384 r=  40 kpc  off +0.125  y 0.30  B/T 0.41  Rd 24.6
+   SDSS J143447.86+020228.6      344 r=  26 kpc  off +0.030  y 0.82  B/T 0.24  Rd 11.6
+   2MASX J10304263+0418219       342 r=  30 kpc  off -0.018  y 0.90  B/T 0.19  Rd 8.7
+
+-- S6 selection on the outcome
+nine largest v_obs (headline)      mean +0.164  sigma(with floor) 0.070  z +2.34  overlap with the fastest nine: 9
+nine largest v_pred (law)          mean +0.091  sigma(with floor) 0.067  z +1.36  overlap with the fastest nine: 6
+nine largest M_b                   mean +0.143  sigma(with floor) 0.071  z +2.01  overlap with the fastest nine: 8
+nine largest r                     mean +0.151  sigma(with floor) 0.070  z +2.15  overlap with the fastest nine: 5
+nine largest r/Rd                  mean +0.149  sigma(with floor) 0.067  z +2.23  overlap with the fastest nine: 4
+random 9 of 23: mean +0.105, sd 0.023; fraction >= the fastest-nine mean +0.164: 0.0043; the nine-vs-other-14 gap +0.097
+corr(offset, log v_obs) = +0.840; corr(offset, log v_pred) = -0.232; corr(offset, log Mb) = +0.365
+
+CONTROL FAILURES: ['C1i Freeman vs ring-summation']

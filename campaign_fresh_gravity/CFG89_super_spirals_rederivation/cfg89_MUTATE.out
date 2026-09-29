@@ -1,0 +1,16 @@
+frozen docstring sha256: 6b2e690ba0095c42  mode: MUTATE
+
+== MAIN (frozen): kernel mono ==
+CFG40-model canonical              mean -0.1941 +- 0.0752 (-2.58s) [sem 0.0200, floor 0.0724: model 0.0407 M* 0.0590 gas 0.0104] | slope +0.194 +- 0.100 (+1.95s) | nine (9) -0.1306 +- 0.0826 (-1.58s) [sem9 0.0397] | H1 FAIL H2 FAIL
+CFG56-model canonical              mean -0.1964 +- 0.0628 (-3.13s) [sem 0.0183, floor 0.0601: model 0.0015 M* 0.0592 gas 0.0102] | slope +0.166 +- 0.092 (+1.80s) | nine (9) -0.1374 +- 0.0699 (-1.97s) [sem9 0.0358] | H1 FAIL H2 FAIL
+CFG40-model alt                    mean -0.2084 +- 0.0738 (-2.82s) [sem 0.0198, floor 0.0711: model 0.0400 M* 0.0579 gas 0.0102] | slope +0.193 +- 0.099 (+1.95s) | nine (9) -0.1454 +- 0.0812 (-1.79s) [sem9 0.0392] | H1 FAIL H2 FAIL
+CFG56-model alt                    mean -0.2107 +- 0.0617 (-3.42s) [sem 0.0181, floor 0.0589: model 0.0014 M* 0.0581 gas 0.0100] | slope +0.165 +- 0.091 (+1.81s) | nine (9) -0.1521 +- 0.0687 (-2.21s) [sem9 0.0353] | H1 FAIL H2 FAIL
+
+CFG56-model: mean on galaxy scatter alone = -0.1964/0.0183 = -10.74 sigma;   CFG40-model: -0.1941/0.0200 = -9.70 sigma
+std of offsets: CFG56 0.0877, CFG40 0.0960;  y=g_N/a0 range 0.10..1.11; n(y>y_p)=0
+
+== MUTATE verdict: H1 and H2 must both FAIL ==
+PASS C6 MUTATE=1 H1 fails :: z=-3.13
+PASS C6 MUTATE=1 H2 fails :: clauses: mean -3.13, slope +1.80, nine -1.97
+
+CONTROL FAILURES: none

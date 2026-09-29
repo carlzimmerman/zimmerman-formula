@@ -1,0 +1,65 @@
+CFG89 -- independent re-derivation of CFG56 (and CFG40): the nine fastest Ogle+2019 super spirals against the bare law, with Simard+2011 bulge fractions.
+Written BEFORE any run; nothing in this directory had been executed when this text was frozen. The CFG40/CFG56 scripts, .out and _results.json were NOT opened before the frozen
+main and MUTATE runs (only their docstrings, via ast, and the READMEs, were read: that is where every model statement below comes from).
+
+QUESTION. Does my own code reproduce (a) CFG56's headline offsets (mean +0.105 +- 0.063 = 1.67 sigma; nine fastest +0.164 = 2.34 sigma; slope +0.166 +- 0.092 = 1.80 sigma),
+(b) the README's "mean would be 5.8 sigma on galaxy scatter alone" (referee-corrected from 5), (c) the frozen verdicts H1 = PASS (1.67 < 2) and H2 = FAIL (nine-fastest clause)?
+And which of the nine, which structure/M-L/inclination/radius choice, and which kernel, carry the significance?
+
+MODEL AS READ FROM THE READMEs / DOCSTRINGS (not from the code).
+ Data: real_research/data/ogle2019_super_spirals.tsv (23 rows: vmax, dvmax, r_kpc, logMstars, logMgas, i, Rd) and simard2011_ogle_bulge_disc.tsv (BT_r, Re_kpc, Rd_kpc, i).
+ Constants (mine): G = 6.6743e-11, Msun = 1.98847e30 kg, kpc = 3.0857e19 m. a0: canonical 9.36e-11 m/s^2 (rho_DE / cH_Lambda footing), alt 1.13e-10 (rho_total / cH0 footing),
+   taken from the programme's standing notes (the READMEs do not print them).
+ Baryons: M_b = M_* + M_gas (M_* from the paper's logMstars = WISE W1, M/L 0.6; M_gas from the paper, the '<10.4' bound used as a value for 2MFGC 10372).
+ CFG40 model (all in a disc): Freeman exponential disc, v_N^2 = (2 G M_b / R_d) y^2 [I0K0 - I1K1], y = r/(2 R_d), R_d from the Ogle table; g_N = v_N^2 / r.
+   Brackets: point mass g_N = G M_b / r^2; spherical enclosed mass M_b [1 - (1 + r/R_d) e^{-r/R_d}].
+ CFG56 model (bulge + disc): stars split into a Hernquist bulge of mass fraction B/T_r (scale a = R_e,bulge / 1.8153, R_e from Simard) and a Freeman disc (1 - B/T_r, R_d from Simard);
+   the gas is in the disc; g_N = g_disc + G M_bulge / (r + a)^2 (Hernquist enclosed mass, r = r_kpc).
+ Law: g = nu(g_N/a0) g_N, evaluated AT the tabulated radius; v_pred = sqrt(g r); offset = log10(v_obs / v_pred), v_obs = vmax. No phantom rule (see limits).
+ Kernels (three, all reported): nu_mono as I read it from the standing notes = the exponential RAR nu = 1/(1 - exp(-sqrt(y))) for y <= y_p = 2.54 (phantom h = (nu-1) y peaks at h_p = 0.6476),
+   then a slowly rising phantom h' = 0.05 h_p / (y + y_p) (h continuous at y_p); nu_RAR = 1/(1 - exp(-sqrt y)) everywhere; P2 = sqrt(1 + 1/y) (CFG64's P2).
+   Expectation declared now: for these galaxies y = g_N/a0 is mostly < 2.54, so nu_mono == nu_RAR there (identical numbers) and the CFG64 reading 'P2' is a DIFFERENT kernel from RAR
+   (the CFG56 README's 'RAR kernel (CFG64 P2)' conflates them); CFG56's own numbers use nu_mono, which equals RAR where y <= 2.54.
+ Nine fastest: v_obs > 340 km/s (count must be 9).
+ Errors (my reading): galaxy-to-galaxy error = std(offset, ddof=1)/sqrt(N); floor added in quadrature = model term (CFG40: half the range of the mean over the three baryon models
+   Freeman / point / spherical; CFG56: half the range of the mean over B/T_r, B/T_r+0.10, max(B/T_r-0.10, 0)) + M_* term (half the shift of the mean between M_* x10^{+0.2} and x10^{-0.2}, all
+   together) + gas term (same with 0.3 dex), the three in quadrature; total sigma_mean = sqrt(sem^2 + floor^2). The nine-fastest clause uses sigma_9 = sqrt(sem_9^2 + floor^2) with sem_9 = std_9/3
+   and the SAME floor as the 23-mean (my reading: it is the only one that gives 0.0825 for CFG40 and 0.070 for CFG56 from the quoted 2.06 and 2.34 sigma). Slope: OLS of offset on log10 M_b, OLS standard error.
+   Per-galaxy inclination error dlog v = |cot i| (5 deg) / ln10 and dlog v = dv/(v ln10) are computed and reported (R-rows), not used in the headline sigma.
+ The Mandelbaum collapse-mass rule is NOT re-derived (no data/machinery in scope): f_ex = 0 in all 23 is imported from the CFG40/56 READMEs, so 'B' = the bare law here and my H2 is the
+   bare-law H2. This is a declared limit, not a finding.
+
+FROZEN TARGETS (from the READMEs), pass lines. A number is REPRODUCED if |mine - README| <= 0.0015 (offsets, errors), 0.05 (sigma); otherwise I state the difference and cause.
+ T1  CFG40 model (Ogle R_d, all-disc), canonical nu_mono: mean +0.107 +- 0.075 (1.42 sigma); slope +0.194 +- 0.100 (1.95 sigma); nine fastest +0.170 (2.06 sigma); alt: +0.092 +- 0.074 (1.25),
+     nine fastest +0.156 (1.92); point mass +0.059 / +0.113 (mean / nine); spherical +0.141 / +0.201; asymptotic v^4 = G M_b a0: +0.144 / +0.191.
+ T2  CFG56 model, canonical: mean +0.105 +- 0.063 (1.67 sigma), slope +0.166 +- 0.092 (1.80), nine fastest +0.164 (2.34); alt: mean +0.090, slope +0.165, nine +0.149 (2.17 sigma);
+     floor model term 0.041 -> 0.001, M_* term 0.059, floor 0.063 (README wording), sem ~0.018 (mean 5.8 sigma on galaxy scatter alone).
+ T3  Kernel P2 (CFG64): CFG56 mean +0.132 (2.06 sigma); CFG56 nine fastest 2.69 sigma (README correction; CFG64 headline table lists H2 FAIL -> FAIL); CFG40 mean +0.134 (1.75 sigma).
+ V1  Frozen H1 verdict (bare law fits: |mean| < 2 sigma, canonical, nu_mono): PASS (1.67). Frozen H2 verdict: FAIL (nine-fastest clause 2.34 > 2; mean and slope clauses pass). H1 flips to FAIL under P2.
+ Reproduction verdict of each statistic is reported as REPRODUCED / DIFFERS (with the number). A DIFFERS is a valid outcome and is not tuned away.
+
+CONTROLS (a failed control is a failure and is reported as such; exit code 1).
+ C1  Freeman disc closed forms: (i) the peak of v_N^2 sits at r = 2.15 +- 0.03 R_d with v_N^2 = 0.3878 G M / R_d ... value not asserted from memory; instead I assert the peak position/value
+     from a DIRECT NUMERICAL RING SUMMATION of the in-plane radial force of an exponential disc (complete elliptic integrals, independent of Bessel functions) to 0.5% at y = 0.5, 1, 2, 5 R_d;
+     (ii) v_N^2 r/(G M) -> 1 within 1% at r = 50 R_d; (iii) enclosed mass of the disc M[1-(1+x)e^{-x}] integrates the surface density (numerical check 1e-8).
+ C2  Hernquist closed forms: M(<r) = M r^2/(r+a)^2 equals the numerical integral of rho = M a / (2 pi r (r+a)^3) to 1e-8; v_c^2 = G M r/(r+a)^2 peaks at r = a with GM/(4a); half-mass radius (1+sqrt2) a;
+     the projected half-mass radius is 1.8153 a within 1e-3 (numerical projection, checks the R_e/1.8153 conversion).
+ C3  Units: v = sqrt(G M/r) for 1e11 Msun at 10 kpc = 207.0 +- 0.5 km/s. Kernel checks: nu_mono == nu_RAR for y <= 2.54 and continuous at y_p; h_p = 0.6476 +- 0.0005; nu(1) = 1.582 (mono, RAR), 1.414 (P2).
+ C4  Table: 23 rows, nine with v > 340, fastest 568 +- 16 km/s at 41 kpc; Simard rows match Ogle R_d (within 2%) and i (exactly).
+ C5  DISC-ONLY RUN: B/T = 0 in the bulge+disc model equals my CFG40-model (Ogle R_d) mean offset to 1e-3 (Simard vs Ogle R_d differ at the 3rd digit; with Ogle R_d forced it must agree to 1e-9).
+ C6  MUTATE=1 (the docstring's stated mutation): observed speeds x 0.5. H1 and H2 must both FAIL. (Bite check.) A second frozen mutation MUTATE=nu1: Newtonian kernel nu = 1 -- the mean offset must
+     become > +0.15 dex and H1 must fail.
+ Nothing may be changed after the results are seen.
+
+SENSITIVITY / ATTACK LIST (frozen; reported, no thresholds re-set after the fact; 'dominant' = leave-one-out change in the nine-fastest significance > 0.3 sigma):
+ S1  disc scale length / radius: R_d x 0.8, x 1.25, R_d capped at 25 kpc, R_d = Simard half-light radius / 1.678, Ogle vs Simard R_d, r x 0.9, x 1.1, bulge scale x 0.5, x 2.
+ S2  B/T: B/T_r as stellar mass fraction (headline), +-0.10, x0.5, x2; a bulge M/L ratio q = 1, 1.25, 1.5, 2 relative to the disc with total M_* fixed; B/T recomputed from rbMag/rdMag (consistency);
+     bulge as a point mass; no bulge (B/T = 0).
+ S3  M/L: M_* x 10^{-0.2 ... +0.2} in 0.1 steps; gas x 0, x 2.
+ S4  inclination: v_obs -> v_obs sin(i)/sin(i +- 5 deg); drop the near edge-on (i > 80); drop i < 50; offset vs i correlation; per-galaxy inclination+velocity errors as an extra statistical term.
+ S5  leave-one-out of every galaxy (full recompute incl. floor; also with the floor fixed), and leave-one-out of each of the nine on the nine-fastest clause.
+ S6  selection: nine fastest are chosen on v_obs, which is correlated with the measured outcome. Compare: nine largest by v_pred, nine largest by M_b, and a permutation distribution of the mean of a
+     random 9 of 23 offsets (fraction of random nines >= the observed nine-fastest mean); also the correlation of offset with log v_obs and log v_pred.
+ S7  kernel: mono, RAR, P2, both footings, for mean / slope / nine / H1 / H2; the asymptotic v^4 = G M_b a0 comparison; a0 +-1%.
+ What I will attack in the final report: the floor construction (M_* 0.2 dex dominates and is a shared systematic that is treated as a random error for the mean but the nine-fastest sigma reuses it),
+ the selection of the nine on v_obs, the fixed f_ex = 0 import, and the nine's dependence on a few outliers.

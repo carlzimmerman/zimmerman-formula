@@ -30,3 +30,6 @@ Nothing here says the theory is closed.
 
 ## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
 - The change for the nine fastest is -0.0068 dex (README says -0.006); 0.105/0.018 is 5.8 sigma (README says 5). Under the RAR kernel (CFG64 P2) the nine fastest go 2.34 -> 2.69 sigma and this lane's H1 flips PASS -> FAIL.
+
+## Referee correction (CFG89's independent re-derivation; appended, the text above is unchanged)
+- CFG89 reproduces every number here. Corrections: '5.8 sigma' on galaxy scatter alone is 5.72 (5.7 sigma); 'under the RAR kernel (CFG64 P2)' conflates two kernels: nu_mono equals the exponential RAR kernel for these galaxies (every y < 2.54), and P2 = sqrt(1+1/y) is the different kernel that moves the numbers (nine fastest 2.34 -> 2.69 sigma). The nine-fastest clause is selected on v_obs and adds almost nothing beyond the 23-mean (selection alone gives +0.071 +/- 0.016 excess; observed +0.059, P = 0.77); the unselected trend test is the slope clause (1.80 sigma). H1 PASS holds only under the frozen nu_mono and canonical choices (R_d x 1.25 also flips it); the verdict is decided by the M* floor convention (M* + 0.1 dex alone gives H2 PASS). See CFG89.
