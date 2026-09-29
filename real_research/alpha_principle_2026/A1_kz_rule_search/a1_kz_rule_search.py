@@ -2,7 +2,7 @@
 """A1 -- decoy-calibrated search over 5,488,000 zero-knob rules for the three gauge couplings.  Pre-registered in A1_PREREGISTRATION.md.
 Imports lane Y1's validated running READ-ONLY (path-relative).
 Run:    python3 a1_kz_rule_search.py            (exit 0 iff all declared checks pass; the number of real hits is REPORTED, not asserted)
-MUTATE: python3 a1_kz_rule_search.py MUTATE     (tolerance forced to 0 sigma; exactly S3 must fail: exit 1; exit 3 if broken)
+MUTATE: python3 a1_kz_rule_search.py MUTATE     (the search grammar loses the multiplier 5/3 while planted rules still use it; exactly S3 must fail: exit 1; exit 3 if broken)
 """
 import sys
 sys.dont_write_bytecode = True
@@ -24,8 +24,9 @@ Z = 2 * math.sqrt(8 * PI / 3)
 MP, MRED = 1.22089e19, 2.435e18
 SCALES = {"M_P": MP, "M_P/Z": MP / Z, "M_P*Z": MP * Z, "M_P/Z^2": MP / Z ** 2, "M_P*Z^2": MP * Z ** 2, "M_red": MRED, "M_red/sqrt(118)": MRED / math.sqrt(118), "M_red/Z": MRED / Z}
 REL = np.array([0.0023, 0.00021, 0.0012])
-NSIG = 0.0 if MUT else 3.0
-C = np.array([1, 2, 3, 4, 5, 6, 8, 12, 1 / 2, 1 / 3, 2 / 3, 3 / 2, 3 / 5, 5 / 3])
+NSIG = 3.0
+C_FULL = np.array([1, 2, 3, 4, 5, 6, 8, 12, 1 / 2, 1 / 3, 2 / 3, 3 / 2, 3 / 5, 5 / 3])
+C = C_FULL[:-1] if MUT else C_FULL      # MUTATE: the search grammar silently LOSES its last multiplier (5/3) while planted rules are still drawn from the full set
 EXPS = [-2, -1, 0, 1, 2]
 MONO = np.array([PI ** r * Z ** p * KAPPA ** q for r in EXPS for p in EXPS for q in EXPS])
 MONO_LAB = [(r, p, q) for r in EXPS for p in EXPS for q in EXPS]
@@ -99,7 +100,7 @@ found = 0
 NPL = 200
 for _ in range(NPL):
     mi = int(rng2.integers(len(MONO)))
-    cs = C[rng2.integers(len(C), size=3)]
+    cs = C_FULL[rng2.integers(len(C_FULL), size=3)]
     planted = np.array([cs[i] * MONO[mi] for i in range(3)])
     h, _l = search(np.array([planted]), tol_sig=NSIG)
     found += (h > 0)
@@ -114,6 +115,6 @@ else:
 print("  alpha stays an INPUT; kappa = 1/2 FITTED.")
 if MUT:
     works = [t.split()[0] for t in FAILED] == ["S3"]
-    print("\nMUTATE CONTROL: tolerance forced to 0 sigma; failed:", [t.split()[0] for t in FAILED], "->", "the control works (exit 1)" if works else "CONTROL BROKEN (exit 3): it must fail exactly S3")
+    print("\nMUTATE CONTROL: search grammar missing 5/3; failed:", [t.split()[0] for t in FAILED], "->", "the control works (exit 1)" if works else "CONTROL BROKEN (exit 3): it must fail exactly S3")
     sys.exit(1 if works else 3)
 sys.exit(0 if not FAILED else 1)

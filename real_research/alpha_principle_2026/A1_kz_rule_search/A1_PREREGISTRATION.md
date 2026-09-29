@@ -23,3 +23,7 @@ P_chance = fraction of decoys with at least one hit anywhere in the 5,488,000 ru
 
 ## Reading rules
 A hit would be a numerical coincidence between three running couplings and an expression; it would carry no physical claim until a mechanism is supplied. alpha stays an INPUT; kappa = 1/2 FITTED; the trial count (5,488,000) enters every probability.
+
+## Amendment 1 (2026-09-29, disclosed; no result changed)
+
+The control declared above ('tolerance forced to 0 sigma; S3 must fail') was BROKEN: it exited 3 (the script's own broken-control code) because planted rules are still found by exact equality at zero tolerance, so S3 never fails. The lane was committed in that state (commit 699600756) and its commit message and the status-document line wrongly said the control 'fails exactly the planted-rule check (exit 1)'. That statement was false when made; it is corrected by the commit that adds this amendment. The control was redesigned: in MUTATE mode the search grammar silently loses its last multiplier (5/3) while the planted rules are still drawn from the full set, so exactly S3 fails and the script exits 1. The real run and its outputs are unchanged (0 real hits, P_chance = 0.001, 200 of 200 planted rules recovered).
