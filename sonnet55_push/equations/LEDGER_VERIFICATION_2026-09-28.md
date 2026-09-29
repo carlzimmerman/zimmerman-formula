@@ -227,3 +227,23 @@ tables (`rerun5_reports/`, exact rows) are, main / MUTATE:
 This is the same as the Opus chat's in-place observation (CFG76, 83, 93, 94 exit 1 in both modes; CFG78 and CFG89 exit 0 in both). The
 environment (absolute paths, git-ignored data) did not change any exit code in these six lanes. I did not repeat the runs in the live
 tree: running there would overwrite tracked `.out` files, and there is no remaining difference to explain.
+
+---
+
+# Part 6 -- CFG110 and CFG111 (HEAD 009d87b3a)
+
+`ledger_rerun3.py` from a `git archive HEAD` export; output in `ledger_rerun3c.out`. Both lanes read git-ignored inputs, so the
+needed small files were copied into the export from the working tree (cfg110_perlens.npz 65 MB, lr_lenses.npz 10 MB,
+lr_esd_jackknife.npz 1.5 MB, brouwer2021_rar/ 2.3 MB; 76 MB in all; both READMEs list these as inputs).
+
+| lane | main exit (expected: README) | MUTATE exit | tally (main) | equals committed .out |
+|---|---|---|---|---|
+| CFG110 (`CFG110_kids_mass_split.py`) | 0 (0: 12/12) | 1 (fails H1) | 12/12, 0 load-bearing failures | yes |
+| CFG111 (`CFG111_sluggs_literature_gamma.py`) | 0 (0: 8/8) | 1 (fails H1 and H2) | 8/8, 0 load-bearing failures | yes |
+
+MUTATE tallies: CFG110 11/12 (1 load-bearing failure), CFG111 6/8 (2). Both controls discriminate: main passes and MUTATE fails the
+headline check(s), so the exit code carries information here (unlike CFG79/83/95 in Part 5). 0 runs differ.
+
+Not verified: `CFG110_stage_perlens.py` (one pass of the KiDS-1000 estimator over the 17.7 GB SOM-gold catalogue, 228 s) was not run;
+the per-lens file it writes was taken as an input, so CFG110's result is reproduced from that file, not regenerated from the catalogue.
+`data_assembly/arxiv_tables/alpaka1_digitised/digitise.py` (a data-digitisation script, not a lane) was not run.

@@ -31,6 +31,8 @@ JOBS = {
     "CFG72": (CF + "/CFG72_lightcone_exchange", "cfg72_lightcone_exchange.py", 1, "cfg72_lightcone_exchange.out", "env", ("a", "b", "c", "1")),   # README: rc 1 by design
     "CFG73": (CF, "CFG73_lcdm_uf_rederive.py", 1, "CFG73_lcdm_uf_rederive.out", "env"),                             # README: rc 1 by design
     "CFG74": (CF, "CFG74_lcdm_variants.py", 1, "CFG74_lcdm_variants.out", "env"),                                   # README: rc 1 by design
+    "CFG110": (CF, "CFG110_kids_mass_split.py", 0, "CFG110_kids_mass_split.out", "env"),                            # README: main 12/12 exit 0; MUTATE exit 1
+    "CFG111": (CF, "CFG111_sluggs_literature_gamma.py", 0, "CFG111_sluggs_literature_gamma.out", "env"),            # README: main 8/8 exit 0; MUTATE exit 1
 }
 paths = [CF, "real_research", "prep_2026", "hunt_2026", "data_assembly", "opus_48_extended_research",
          "fable_independent_2026", ":(exclude)fable_independent_2026/lean_2026"]
