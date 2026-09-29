@@ -1,0 +1,179 @@
+<!-- Gate status refresh for candidate B. A NEW file; the frozen list closure_map/GATES.md is untouched. No new physics: every entry below is read from a committed output. -->
+# Candidate B against the frozen gates: status refresh, 2026-09-29
+
+**Scope.** This file restates the status of every row of the frozen list `closure_map/GATES.md` (frozen 2026-09-28, commit 653e5af9a), using everything committed since then:
+- lanes CFG40–CFG59, plus CFG40 itself, which GATES.md did not cite;
+- the referee notes 071301aab (CFG40–42) and 35eebbe99 (CFG48).
+
+The row ids are GATES.md's, and each row carries one status.
+
+**Rules applied.**
+- The frozen list, its thresholds and its row ids are not moved.
+- **Status** is candidate B as frozen: the law T1–T6 plus FG001 ownership.
+- **Derived rule** is B's cold-mass rule, the sum S of CFG35/36, where a lane has scored it.
+- A row with no committed change since GATES.md is **carried** and marked *reported (GATES.md)*.
+- A row changed by a lane cites that lane's script and commit.
+- **Verified** means the lane's scripts were re-run in every mode with a committed output, from a clean `git archive` export of HEAD a628e8a66, and the outputs matched the committed ones line for line apart from the timing field.
+- Rows 1.25–1.26 are **new populations** scored since the freeze. They are not in the frozen list and are marked NEW.
+- Nothing here says the theory is closed. κ = ½ and Ω_c h² stay fitted.
+
+**Bottom line.**
+- **Candidate B's gate record has not improved since the freeze. It has sharpened.**
+- **The one clean pass of B's derived rule (SLUGGS) did not survive dynamical stellar masses.** The law's deficit grows to 4.0σ, and the rule leaves 2.6σ (CFG55).
+- **The rule's gains and costs trade off.** It closes the ultra-faint failure but breaks the classical satellites and the LV field dwarfs. No single fraction of its debris reconciles the populations (CFG42, CFG45, CFG58, CFG59).
+- **The top of the disk mass function is a new marginal failure of the law**, 2.3σ on the nine fastest super spirals (CFG40, CFG56).
+- **At the action level**, Gap 1 and Gap 2 are scoped no-gos that collapse into one non-derivable object, and Gap 3 is partly filled (CFG43, CFG44, CFG48, CFG50). One stability expectation fell: a nonlocal enclosed-mass gate is second-variation stable (CFG48 G6, referee-reproduced).
+- **a₀(z) at z ≈ 2.5 still cannot be scored** from the data on disk (CFG52, CFG54).
+
+Status codes: PASS / FAIL / MARGINAL (within about 1σ of its bar, or passing only under a declared floor) / NS (not scorable, or not scored under B) / UNDECIDED.
+
+## (1) Galactic dynamics
+
+| id | observable | status 2026-09-29 (B) | since GATES.md (derived rule in *italics*) | evidence | verified |
+|---|---|---|---|---|---|
+| 1.01 | SPARC RAR | PASS (ν_mono 0.1003 / 0.0991) | *SPARC LSBs spared, S ≡ L (100%); SPARC dwarfs f_ex = 0 in all 110; SPARC +0.0009 dex with the rule (CFG39, already in GATES.md)* | CFG58 (3371b14ac), CFG42 (67c170fe7) | re-run: reproduced, re-run: reproduced |
+| 1.02 | RAR intrinsic scatter | met | none | CFG4_galaxy_law.py | reported (GATES.md) |
+| 1.03 | a₀ normalisation vs g† | PASS | none (see 3.11) | CFG4_galaxy_law.py, CFG1 | reported (GATES.md) |
+| 1.04 | BTFR | met | the top of the mass function is new row 1.25 | CFG4_galaxy_law.py | reported (GATES.md) |
+| 1.05 | kernel shape | ν_mono PASS; P2 ~2σ | none | CFG14 | reported (GATES.md) |
+| 1.06 | halo surface density | met | none | CFG4_galaxy_law.py | reported (GATES.md) |
+| 1.07 | MW classical dSphs | PASS 1.06 / 0.74 | *the rule over-predicts them, −1.78 / −1.90σ* | CFG42 (67c170fe7) | re-run: reproduced |
+| 1.08 | M31 dSphs (LVD, Collins) | MARGINAL (1.21–1.63σ) | ***FAIL under the rule: M31 LVD −2.67σ**; Collins −0.02 (fine); the only one of seven gates the sum fails in the rule-readings harness* | CFG42, CFG45 (5518cfcd0) | re-run: reproduced, re-run: reproduced |
+| 1.09 | MW ultra-faints | **FAIL** (refereed 3.8 / 3.5σ, 40 objects) | Binary-corrected dispersions on 8 systems: +0.21 (1.26σ, f free) against 1.8σ uncorrected on the same 8, so mostly lost power; 7 of 8 stay positive (CFG46). Multi-epoch, binary-cleaned: Boötes I +0.22 (2.46σ), Tucana II +0.47 (3.63σ), two objects (CFG51). *The rule closes the population offset (−0.06, −0.41σ; CFG42) but over-predicts the corrected set (−0.15, −1.17σ) and the cleaned pair (−0.21, −0.17).* | CFG46 (e6ecfd6ff), CFG51 (d7e6a6565), CFG42 | re-run: reproduced, re-run: reproduced, re-run: reproduced |
+| 1.10 | LV dwarfs, statistic C | PASS 1.71 / 1.71 | statistic C passes under L and S; LV field dwarfs L −1.4 / −1.3σ (pass); ***S −3.47 / −2.70σ (FAIL)**; S switches off above M_b ≈ 2.3e7* | CFG58 | re-run: reproduced |
+| 1.11 | cluster-infall BTFR | PASS | none | CFG7_hierarchy_fg001.py | reported (GATES.md) |
+| 1.12 | tidal dwarfs | PASS (ownership exempt) | the blind, non-exempt version fails under L and S (change 0.000 dex): the pass rests on ownership | CFG58 | re-run: reproduced |
+| 1.13 | outer-halo GCs | PASS (does not discriminate) | none | CFG7_hierarchy_fg001.py | reported (GATES.md) |
+| 1.14 | NGC 1052-DF2 / DF4 | PASS at 20 Mpc (CONT distance) | the blind version fails under L and S (change 0.000): the pass rests on ownership | CFG58 | re-run: reproduced |
+| 1.15 | Chae external-field signal | **FAIL** (refit 1.7–3.0σ) | none | CFG7 H7, CFG8 | reported (GATES.md) |
+| 1.16 | Coma UDGs | PASS 1.33 / 1.11σ | *S = L (spared)* | CFG31; CFG58 | re-run: reproduced |
+| 1.17 | binary galaxies | UNDECIDED (orbit-degenerate) | none | CFG30 | reported (GATES.md) |
+| 1.18 | X-ray ellipticals | MARGINAL / FAIL (1.70 / 1.58σ) | *the rule 1.04σ (CFG36, in GATES.md)*; the hot-gas test's criteria are frozen but it has not run (no gas profiles in the repo; the fetch awaits the owner) | CFG32, CFG36; CFG57 (78a5a3a0a, criteria only) | reported (GATES.md); CFG57 not run |
+| 1.19 | SLACS lensing vs dynamics | MARGINAL (1.5–1.7σ with the floor) | none | CFG33 | reported (GATES.md) |
+| 1.20 | SLUGGS massive early types | **FAIL**, robust to the IMF: +0.080 (3.3σ) with SLUGGS masses; **+0.097 ± 0.024 (4.0σ; alt 3.65σ) with each galaxy's own JAM-calibrated stellar mass** (16 of 19) | ***the rule's pass does not survive dynamical masses:** +0.007 (0.4σ) with SLUGGS masses → +0.046 (2.6σ) with JAM masses (1.9σ under the Hernquist convention; 2.5σ without NGC 7457)*. No single debris fraction reconciles SLUGGS (φ ≥ 0.81) with M31 LVD (φ ≤ 0.30) (CFG59) | CFG55 (791083f7f), CFG59 (3371b14ac) | re-run: reproduced, re-run: reproduced |
+| 1.21 | passive disks, 16 ATLAS3D + HI | PASS (+0.026, 0.3σ) | none (f_ex = 0 in all 16) | CFG37 | reported (GATES.md) |
+| 1.22 | massive S0 / late spirals under the rule | law consistent | *the rule still over-predicts UGC 2487 (+0.139 dex); on four S0/S0a with HI to 30–97 kpc it is −0.105 ± 0.131 (0.8σ), and by outer-curve shape −1.22 / −1.04σ with power 0.98σ (cannot decide); together −1.25σ against the rule. Every measurement leans against the debris; none reaches 2σ* | CFG41 (42c87ead1), CFG53 (6a48c4e2e) | re-run: reproduced, re-run: reproduced |
+| 1.23 | Milky Way | NS | none | CFG1 | reported (GATES.md) |
+| 1.24 | environmental null | consistent | none | CFG6 | reported (GATES.md) |
+| **1.25 NEW** | super spirals (Ogle+2019, 23; top of the disk mass function) | **MARGINAL / FAIL** | All 23: +0.105 ± 0.063 (1.67σ, with Simard+2011 bulges). **The nine fastest: +0.164 (2.34σ; H2 failed as declared).** Trend +0.166 (1.80σ). The point-mass escape is refuted; the 0.2-dex stellar-mass floor is the limit. *The rule cannot help (f_ex = 0 in all 23).* | CFG40 (e773982cd), CFG56 (33e1af197); referee 071301aab | re-run: reproduced, re-run: reproduced |
+| **1.26 NEW** | massive HI disks (Di Teodoro+2023, 15, HI to 30–97 kpc) | PASS (law −0.028 ± 0.066 after the width-selection correction) | the law fits the blue disks' outer shapes (0.9σ) | CFG41, CFG53 | re-run: reproduced, re-run: reproduced |
+
+## (2) Groups and clusters
+
+| id | observable | status 2026-09-29 (B) | since GATES.md | evidence | verified |
+|---|---|---|---|---|---|
+| 2.01 | X-COP identity at 0.8 R500 | PASS 0.946 ± 0.080 | none | CFG4_clusters.py | reported (GATES.md) |
+| 2.02 | Bullet Cluster | PASS 4.6× / 4.9× | none | CFG4_clusters.py | reported (GATES.md) |
+| 2.03 | Lovisari X-ray groups | R500 MARGINAL; R2500 FAIL (2.57 / 2.63σ) | none | CFG34 | reported (GATES.md) |
+| 2.04 | Local Group R0 | FAIL (3.0–4.8σ; not framework-specific) | none | CFG20, CFG23 | reported (GATES.md) |
+| 2.05 | Harvey collisions; cluster counts | NS | none | CFG1 | reported (GATES.md) |
+
+## (3) Cosmology and lensing
+
+| id | observable | status 2026-09-29 (B) | since GATES.md | evidence | verified |
+|---|---|---|---|---|---|
+| 3.01 | CMB TT/TE/EE | met by construction | none | CFG4_cosmology.py | reported (GATES.md) |
+| 3.02 | CMB lensing | PASS with the bound-only switch | none | CFG4_switch.py | reported (GATES.md) |
+| 3.03 | growth, S8, RSD | met by allowance | none | CFG4_cosmology.py | reported (GATES.md) |
+| 3.04 | BAO, P(k) | unchanged by construction | none | CFG4_cosmology.py | reported (GATES.md) |
+| 3.05 | KiDS isolated lenses | PASS at x_e = 0.4 | none | CFG4_switch.py, CFG16 | reported (GATES.md) |
+| 3.06 | cold budget | lenient PASS; strict FAIL (reported) | none | CFG4_target.py, CFG39 | reported (GATES.md) |
+| 3.07 | budget vs KiDS | FAIL as declared; not decidable | none | CFG24, CFG27 | reported (GATES.md) |
+| 3.08 | KiDS + LG shared edge | FAIL (not framework-specific) | none | CFG21–23 | reported (GATES.md) |
+| 3.09 | density edge x_e | declared 0.4 | CFG48's referee note: CFG48's maximal-ball gate places a baryon-only edge at 0.11–0.24 r_ta against B's committed (phantom-inclusive) r_ta, below the window | CFG48 G2; 35eebbe99 | referee-reproduced (35eebbe99) |
+| 3.10 | a₀(z) at z ≈ 2.5 | **NS (still)** | At z ≥ 1.5 no clean object on disk has g_bar < 0.3 a₀. Pooled z ≥ 1.5 g_bar < a₀ (N = 14): flat +1.0σ, rival −0.3σ, absorbed by a selection mock. PHIBSS: N = 0 at the frozen velocity radius. A decisive test needs 2–4 JWST IFU + ALMA discs at z ≈ 2.5 with mass calibration ≲ 0.1 dex. | CFG52 (9ffb95d57), CFG54 (8b6473b7a) | re-run: reproduced (no MUTATE output committed), re-run: reproduced |
+| 3.11 | a₀ = κ c √(Gρ_Λ) | consistent; κ FITTED | The Unruh / de Sitter matching route to κ is retired (n = 2 gives κ = 1.447, 12.9σ from the BTFR κ). Reported, not re-run: like-for-like on H₀, κ = ½ and 1/2π are indistinguishable (97f30b36c). | CFG47 (1c375b449 → 4dfa7d995); 97f30b36c | re-run: reproduced; 97f30b36c reported |
+| 3.12 | Lyman-α forest | PASS 0.00 | none | CFG4_switch.py | reported (GATES.md) |
+| 3.13 | cosmic shear, JWST, Li-7, BBN, τ | NS | none | CFG1 | reported (GATES.md) |
+
+## (4) Local and relativistic
+
+| id | observable | status 2026-09-29 (B) | since GATES.md | evidence | verified |
+|---|---|---|---|---|---|
+| 4.01 | Cassini, ephemeris | PASS via ownership (effective law) | At the action level, every monotone local gate functional (E < 0, U, θ ≤ 0) is ON at the Sun (U_sun/U_MW = 9e16); the top-level-ball functional removes the Sun's own phantom (PARTIAL). The effective-law status is unchanged. | CFG48 G2 (0dba13349) | referee-reproduced (35eebbe99) |
+| 4.02 | GW170817 | NS (no action) | none | — | reported (GATES.md) |
+| 4.03 | lensing = dynamics | NS as derivation | none | XR3 | reported (GATES.md) |
+| 4.04 | full PPN | NS for B | none | KM3 | reported (GATES.md) |
+| 4.05 | wide binaries DR3 | CONT | none | CFG1 | reported (GATES.md) |
+| 4.06 | wide binaries DR4 (2 Dec 2026) | NS until DR4 | Amendment 15 FILED (9f60163d3). Amendment 16 is a DRAFT, not filed (59e383ff3). | prep_2026/gaia_dr4_prep | reported |
+| 4.07 | external-field effect | CONT | none | CFG1 O6 | reported (GATES.md) |
+| 4.08 | preferred frame | NS | none | KM1 | reported (GATES.md) |
+
+## (5) Theory consistency (an action for B)
+
+| id | requirement | status 2026-09-29 | since GATES.md | evidence | verified |
+|---|---|---|---|---|---|
+| 5.01 | one explicit action | **FAIL / OPEN: no action produces B** | **Gap 3 partly filled:** the a₀–Λ tie acts on a conserved fluid's stress cap at no cost in local degrees of freedom, but a barotropic cap is excluded. **Gap 2 is a scoped no-go** that reduces to Gap 1's enclosed-mass object; the tidal-tensor closure fails reciprocity. **Gap 1 is a scoped no-go:** Gauss (a flux-gated field gives M_dyn = M_b beyond the edge), history (acausal inside an action, or a label as initial data), and the exchange's reaction (0.06–22 g_law; energy 23–50× the baryons' orbital kinetic energy, 18–179× under the committed r_ta). CFG49 (gate scalar) is not yet committed. | CFG43 (e42a98572), CFG44 (513ee4b28), CFG48 (0dba13349) + referee 35eebbe99, CFG50 (bb2a7b680) | re-run: reproduced, re-run: reproduced, re-run: reproduced (MUTATE=a fails D1, MUTATE=b fails D2, as its README declares); CFG48 referee-reproduced |
+| 5.02 | stability (no ghost or gradient instability) | FAIL as varied (V0 region gate) | **A nonlocal enclosed-mass (Volterra) gate that reads baryon mass has no negative mode on 48 of 48 DE12 layers** (η_crit ≥ 13.7; referee-reproduced 96/96 with an independent grid and eigensolver). The dynamical-mass reading is unstable on 29 of 48 (every z ≤ 1 layer). This is a second-variation statement only: the first variation (an edge potential step of 0.2–8 c_s²) is not fed back. | CFG48 G6 | referee-reproduced (35eebbe99) |
+| 5.03 | strong coupling G8 | bounded pass (frozen-background scope) | none | XC1, XC3, XC6 | reported (GATES.md) |
+| 5.04 | Cauchy problem, causality | partial | none | XC2, XC5 | reported (GATES.md) |
+| 5.05 | N_grav = 2 | orphaned | none | XR3 | reported (GATES.md) |
+| 5.06 | matter conservation (Noether) | NS | the Noether identity for a gated MOND field is exact; its reaction on the baryons is 0.55–2.2 of their weight on DE12's layers | CFG48 G1 | referee-reproduced |
+| 5.07 | GW c_T = c, one metric | c_T = 1 in the reduced sector | none | XR3 | reported (GATES.md) |
+| 5.08 | zero-field limit | partial | none | XC2, XC5 | reported (GATES.md) |
+| 5.09 | Newton/GR recovery | orphaned | none | XR3 | reported (GATES.md) |
+| 5.10 | FLRW growth | partial | none | CV2 | reported (GATES.md) |
+| 5.11 | dark mass as a state of the framework's field | **OPEN** | The exact target is derived: ρ_c g_tot = a₀ M_b(<r)/(4πr³), with the point-mass identities in Lean. No action derives it. Survivors are restatements only: a temperature-slaved fluid postulating the BTFR, and a locally virialised collisionless fluid with a postulated anisotropy. | CFG44 | re-run: reproduced |
+| 5.12 | inner cold component | open requirement | CFG44's target gives the inner profile exactly for P2 (ν_mono departs by up to 2%) | CFG44 | re-run: reproduced |
+| 5.13 | a₀–Λ relation | declared input; κ FITTED | the tie written into a fluid's stress cap (CFG43); the Unruh route retired (CFG47) | CFG43, CFG47 | re-run: reproduced, re-run: reproduced |
+
+## Re-verification log (clean export of HEAD a628e8a66; each script in every mode that has a committed output)
+
+Every run's output matched its committed file line for line (timing stripped); `diff` counts differing lines; `rc` is the exit code, which equals the one each lane records (1 where a declared hypothesis or MUTATE control fails). CFG48 was re-verified separately (referee note 35eebbe99). CFG49 (gate scalar) is not committed and is not included.
+
+```
+CFG40_super_spirals.py [main] rc=1 diff=0
+CFG40_super_spirals.py [MUTATE1] rc=1 diff=0
+CFG41_massive_spirals_hi.py [main] rc=1 diff=0
+CFG41_massive_spirals_hi.py [MUTATE1] rc=1 diff=0
+CFG41_selbias_mc.py [main] rc=0 diff=0
+CFG42_satellites_rule.py [main] rc=1 diff=0
+CFG42_satellites_rule.py [MUTATE1] rc=1 diff=0
+CFG45_rule_readings.py [main] rc=1 diff=0
+CFG45_rule_readings.py [MUTATE1] rc=1 diff=0
+CFG46_ufd_binary_corrected.py [main] rc=1 diff=0
+CFG46_ufd_binary_corrected.py [MUTATE1] rc=1 diff=0
+CFG51_walker_ufd.py [main] rc=1 diff=0
+CFG51_walker_ufd.py [MUTATE1] rc=1 diff=0
+CFG53_passive_disk_shapes.py [main] rc=1 diff=0
+CFG53_passive_disk_shapes.py [MUTATE1] rc=1 diff=0
+CFG54_phibss_a0z.py [main] rc=1 diff=0
+CFG54_phibss_a0z.py [MUTATE1] rc=1 diff=0
+CFG55_sluggs_dynamical_masses.py [main] rc=1 diff=0
+CFG55_sluggs_dynamical_masses.py [MUTATE1] rc=1 diff=0
+CFG56_super_spirals_bulge.py [main] rc=1 diff=0
+CFG56_super_spirals_bulge.py [MUTATE1] rc=1 diff=0
+CFG58_rule_more_populations.py [main] rc=1 diff=0
+CFG58_rule_more_populations.py [MUTATE1] rc=1 diff=0
+CFG59_universal_debris_fraction.py [main] rc=0 diff=0
+CFG59_universal_debris_fraction.py [MUTATE1] rc=1 diff=0
+CFG43_fluid_tie/A1_action_field_equations_dof.py [main] rc=0 diff=0
+CFG43_fluid_tie/A1_action_field_equations_dof.py [MUTATE1] rc=1 diff=0
+CFG43_fluid_tie/A1_action_field_equations_dof.py [MUTATE2] rc=1 diff=0
+CFG43_fluid_tie/A2_frw_flat_a0_and_dust_limit.py [main] rc=0 diff=0
+CFG43_fluid_tie/A2_frw_flat_a0_and_dust_limit.py [MUTATE1] rc=1 diff=0
+CFG43_fluid_tie/A2_frw_flat_a0_and_dust_limit.py [MUTATE2] rc=1 diff=0
+CFG43_fluid_tie/A3_cap_entry_form_and_obstruction.py [main] rc=0 diff=0
+CFG43_fluid_tie/A3_cap_entry_form_and_obstruction.py [MUTATE1] rc=1 diff=0
+CFG43_fluid_tie/A3_cap_entry_form_and_obstruction.py [MUTATE2] rc=1 diff=0
+CFG44_fluid_target/B1_target_and_hydrostatics.py [main] rc=0 diff=0
+CFG44_fluid_target/B1_target_and_hydrostatics.py [MUTATE1] rc=1 diff=0
+CFG44_fluid_target/B2_barotropic_nogo.py [main] rc=0 diff=0
+CFG44_fluid_target/B2_barotropic_nogo.py [MUTATE1] rc=1 diff=0
+CFG44_fluid_target/B3_local_closures.py [main] rc=0 diff=0
+CFG44_fluid_target/B3_local_closures.py [MUTATE1] rc=1 diff=0
+CFG44_fluid_target/B4_actions_reciprocity.py [main] rc=0 diff=0
+CFG44_fluid_target/B4_actions_reciprocity.py [MUTATE1] rc=1 diff=0
+CFG47_unruh_matching/CFG47_unruh_matching.py [main] rc=0 diff=0
+CFG47_unruh_matching/CFG47_unruh_matching.py [MUTATE1] rc=1 diff=0
+CFG47_unruh_matching/CFG47_unruh_matching.py [MUTATE2] rc=1 diff=0
+CFG52_a0z_feasibility/feas.py [main] rc=0 diff=0
+CFG52_a0z_feasibility/mock_bias.py [main] rc=0 diff=0
+CFG52_a0z_feasibility/pooled.py [main] rc=0 diff=0
+CFG50_tidal_closure/D1_action_reciprocity.py [MUTATE=0] rc=0 diff=0
+CFG50_tidal_closure/D1_action_reciprocity.py [MUTATE=a] rc=1 diff=0
+CFG50_tidal_closure/D1_action_reciprocity.py [MUTATE=b] rc=0 diff=0
+CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=0] rc=0 diff=0
+CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=a] rc=0 diff=0
+CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
+```
