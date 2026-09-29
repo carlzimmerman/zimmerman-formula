@@ -14,3 +14,5 @@ The gate list was frozen before any assembly attempt, so the assembly cannot mov
 
 **Update 2026-09-28 (CFG50).** The one CFG44 exclusion gap, a fluid whose stress is the tidal tensor of a baryon-sourced auxiliary potential, was tested: it fails on reciprocity (the reaction on the baryons is O(g_law)) and on a 0.5 ceiling for the ghost-free force. Gap 2 still reduces to Gap 1. (`../CFG50_tidal_closure/`)
 
+
+**Also (2026-09-28).** [`EQUATION_LEDGER_2026-09-28.md`](EQUATION_LEDGER_2026-09-28.md): each equation the closure work has derived since CFG43, with its script and control. The fine-structure lane (a walled-sector route from the programme's inputs to α, all scoped no-gos) is summarised in [`../../real_research/alpha_schwinger_2026/ALPHA_LANE_FOR_CLOSURE_MAP.md`](../../real_research/alpha_schwinger_2026/ALPHA_LANE_FOR_CLOSURE_MAP.md); it does not touch the gates or the three action gaps.
