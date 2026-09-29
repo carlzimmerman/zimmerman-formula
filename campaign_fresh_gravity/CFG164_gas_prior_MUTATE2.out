@@ -1,0 +1,33 @@
+CFG164 -- a measured gas prior for the KURVS discs from PHIBSS (Tacconi et al. 2013), and the decision-cell verdict marginalised over it.
+
+Frozen criteria: CFG164_FROZEN_CRITERIA.md (9a1d4bc9d), committed before any PHIBSS gas value was examined.
+  clean       51 rows: no CO upper limit, not fgas-inconsistent, finite Mmol/M*/z_CO, primary component.
+  primary     the 17 rows with z_CO in [1.0, 1.7] and log M* in [9.5, 10.8]; each KURVS disc draws mu_mol uniformly from them.
+  variant M   OLS log mu = a + b (log M* - 10.5) on the 38 clean z < 1.7 rows, plus the residual scatter (extrapolated below 10.40).
+  variant Z   primary x [(1 + z_i)/(1 + z_CO,j)]^2.5 (a declared exponent).  Coherent per draw: Mmol ln 1.5, M* ln 1.3.
+  brackets    alpha_CO ULIRG-like (x 0.8/4.36); HI h in {0, 0.5, 1}: mu = mu_mol (1 + h).  4000 draws per prior, seed 164.
+  P1 windows (rival 0.6-1.7, flat 2.1-3.7) for the sample median mu; P2 the decision-cell verdict (CFG160's map) at s = 1.00, 1.42,
+  1.62, 1.69, 3.00 x K21; P3 KURVS-15's dust limit (1.90 nominal, 3.79 x2) against its prior; X = the spread across priors.
+MUTATE=1: every PHIBSS mu x 4 -> P(lean rival | s = 1) < 0.32.  MUTATE=2: x 0.25 -> P(lean flat | s = 1) < 0.05.  Exit 0 when they behave.
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour either model, or that the theory is closed.
+  [PASS] C2 CONTROL: the clean count is 51 and the matched count 17 (38 clean rows at z < 1.7)
+         clean 51, matched 17, z<1.7 38
+  [PASS] C3 CONTROL: fgas_recomputed = Mmol/(Mmol + M*) on the clean rows
+         max |difference| 0.0e+00
+  [PASS] C1 CONTROL: with every disc at mu = 0.67 the per-disc pipeline reproduces CFG160's decision cell (4 decimals)
+         D'_flat +0.1441 (+0.1441), D'_H -0.0060 (-0.0060)
+  variant M fit on 38 rows: log mu = -0.578 -0.219 (log M* - 10.5), residual scatter 0.277 dex; KURVS discs below log M* 10.40: 8 of 10 (extrapolated)
+  [PASS] (reported) R0 (reported) POWER: the 16-84% width of the sample-median mu under the primary prior against the 0.53-dex break-even separation at s = 1
+         median mu 0.25 (16-84%: 0.15-0.42), width 0.45 dex
+
+  [primary, h 0] sample-median mu: 0.25 (16-84% 0.15-0.42); windows (median mu): below 0.6 0.95, rival 0.05, between 0.00, flat 0.00, above 3.7 0.00; per-disc rival 0.09, flat 0.00
+      s 1.00 (Kretschmer     ): lean flat 0.00, lean rival 1.00, both within 2 sigma 0.00, neither 0.00;  D'_flat/sigma +4.5 [+3.9, +4.9], D'_H/sigma +1.1 [+0.5, +1.4]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.00, lean rival 0.16, both within 2 sigma 0.00, neither 0.84;  D'_flat/sigma +5.8 [+5.2, +6.3], D'_H/sigma +2.5 [+2.0, +2.9]
+      s 1.62 (fixed height   ): lean flat 0.00, lean rival 0.04, both within 2 sigma 0.00, neither 0.96;  D'_flat/sigma +6.3 [+5.6, +6.7], D'_H/sigma +3.1 [+2.5, +3.4]
+      s 1.69 (Price n=1      ): lean flat 0.00, lean rival 0.02, both within 2 sigma 0.00, neither 0.98;  D'_flat/sigma +6.4 [+5.8, +6.8], D'_H/sigma +3.2 [+2.7, +3.6]
+      s 3.00 (self-grav      ): lean flat 0.00, lean rival 0.00, both within 2 sigma 0.00, neither 1.00;  D'_flat/sigma +8.0 [+7.4, +8.4], D'_H/sigma +5.3 [+4.8, +5.7]
+      KURVS-15: prior median mu 0.25; P(mu > 1.90) = 0.00; P(mu > 3.79) = 0.00
+  [PASS] MUTATE=2 [pinned control]: with every PHIBSS mu x 0.25, P(lean flat | s = 1) < 0.05
+         0.00
+
+  5/5 checks pass; load-bearing failures: 0   (0 s)

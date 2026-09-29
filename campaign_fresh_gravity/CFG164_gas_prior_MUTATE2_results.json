@@ -1,0 +1,145 @@
+{
+ "slug": "CFG164_gas_prior_MUTATE2",
+ "summary": {
+  "n_checks": 5,
+  "n_pass": 5,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 0.3
+ },
+ "checks": [
+  {
+   "name": "C2 CONTROL: the clean count is 51 and the matched count 17 (38 clean rows at z < 1.7)",
+   "detail": "clean 51, matched 17, z<1.7 38",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: fgas_recomputed = Mmol/(Mmol + M*) on the clean rows",
+   "detail": "max |difference| 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CONTROL: with every disc at mu = 0.67 the per-disc pipeline reproduces CFG160's decision cell (4 decimals)",
+   "detail": "D'_flat +0.1441 (+0.1441), D'_H -0.0060 (-0.0060)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported) POWER: the 16-84% width of the sample-median mu under the primary prior against the 0.53-dex break-even separation at s = 1",
+   "detail": "median mu 0.25 (16-84%: 0.15-0.42), width 0.45 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "MUTATE=2 [pinned control]: with every PHIBSS mu x 0.25, P(lean flat | s = 1) < 0.05",
+   "detail": "0.00",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "priors": {
+   "primary, h 0": {
+    "mu_bar_16_50_84": [
+     0.14947409499595565,
+     0.253075490294447,
+     0.42353328405961
+    ],
+    "windows_median": {
+     "below": 0.9515,
+     "rival": 0.0485,
+     "between": 0.0,
+     "flat": 0.0,
+     "above": 0.0
+    },
+    "windows_per_disc": {
+     "rival": 0.088775,
+     "flat": 0.00055
+    },
+    "kurvs15": {
+     "above_1p90": 0.0005,
+     "above_3p79": 0.0,
+     "median": 0.2490054841899713
+    },
+    "probs": {
+     "1.00": {
+      "lean rival": 0.999,
+      "both within 2 sigma": 0.001
+     },
+     "1.42": {
+      "neither": 0.84,
+      "lean rival": 0.16
+     },
+     "1.62": {
+      "neither": 0.958,
+      "lean rival": 0.042
+     },
+     "1.69": {
+      "neither": 0.976,
+      "lean rival": 0.024
+     },
+     "3.00": {
+      "neither": 1.0
+     }
+    },
+    "z_flat": {
+     "1.00": [
+      3.900843988601117,
+      4.508492042204555,
+      4.9486008420396095
+     ],
+     "1.42": [
+      5.1999856911426035,
+      5.821496449404139,
+      6.2619529891358034
+     ],
+     "1.62": [
+      5.6487829551003825,
+      6.267169207246216,
+      6.708079807744516
+     ],
+     "1.69": [
+      5.78318730519976,
+      6.401319424313507,
+      6.843364473695737
+     ],
+     "3.00": [
+      7.392561661768526,
+      7.982485243742312,
+      8.398658374185917
+     ]
+    },
+    "z_rival": {
+     "1.00": [
+      0.5395078724803288,
+      1.0727905293847995,
+      1.4350179810826398
+     ],
+     "1.42": [
+      1.9998732078759571,
+      2.507643459191697,
+      2.887550827303372
+     ],
+     "1.62": [
+      2.5497724629388743,
+      3.050983957255709,
+      3.4184943873874536
+     ],
+     "1.69": [
+      2.723468960488997,
+      3.2182088752908466,
+      3.5893799038059386
+     ],
+     "3.00": [
+      4.836530338027746,
+      5.304405700769017,
+      5.652605948716189
+     ]
+    }
+   }
+  },
+  "verdict": "diagnostic: lean rival (1.00)"
+ }
+}

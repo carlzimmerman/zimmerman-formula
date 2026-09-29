@@ -1,0 +1,156 @@
+{
+ "slug": "CFG164_gas_prior_MUTATE1",
+ "summary": {
+  "n_checks": 5,
+  "n_pass": 5,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 0.3
+ },
+ "checks": [
+  {
+   "name": "C2 CONTROL: the clean count is 51 and the matched count 17 (38 clean rows at z < 1.7)",
+   "detail": "clean 51, matched 17, z<1.7 38",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: fgas_recomputed = Mmol/(Mmol + M*) on the clean rows",
+   "detail": "max |difference| 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CONTROL: with every disc at mu = 0.67 the per-disc pipeline reproduces CFG160's decision cell (4 decimals)",
+   "detail": "D'_flat +0.1441 (+0.1441), D'_H -0.0060 (-0.0060)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported) POWER: the 16-84% width of the sample-median mu under the primary prior against the 0.53-dex break-even separation at s = 1",
+   "detail": "median mu 4.05 (16-84%: 2.39-6.78), width 0.45 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "MUTATE=1 [pinned control]: with every PHIBSS mu x 4, P(lean rival | s = 1) < 0.32",
+   "detail": "0.01",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "priors": {
+   "primary, h 0": {
+    "mu_bar_16_50_84": [
+     2.3915855199352904,
+     4.049207844711152,
+     6.77653254495376
+    ],
+    "windows_median": {
+     "below": 0.0,
+     "rival": 0.04925,
+     "between": 0.055,
+     "flat": 0.32725,
+     "above": 0.5685
+    },
+    "windows_per_disc": {
+     "rival": 0.1101,
+     "flat": 0.281475
+    },
+    "kurvs15": {
+     "above_1p90": 0.85225,
+     "above_3p79": 0.53625,
+     "median": 3.9840877470395406
+    },
+    "probs": {
+     "1.00": {
+      "neither": 0.547,
+      "lean flat": 0.421,
+      "both within 2 sigma": 0.024,
+      "lean rival": 0.008
+     },
+     "1.42": {
+      "lean flat": 0.543,
+      "both within 2 sigma": 0.152,
+      "lean rival": 0.042,
+      "neither": 0.263
+     },
+     "1.62": {
+      "lean flat": 0.489,
+      "lean rival": 0.089,
+      "both within 2 sigma": 0.223,
+      "neither": 0.199
+     },
+     "1.69": {
+      "lean flat": 0.465,
+      "lean rival": 0.109,
+      "both within 2 sigma": 0.245,
+      "neither": 0.181
+     },
+     "3.00": {
+      "both within 2 sigma": 0.368,
+      "neither": 0.089,
+      "lean rival": 0.417,
+      "lean flat": 0.126
+     }
+    },
+    "z_flat": {
+     "1.00": [
+      -4.162067454580305,
+      -2.168567724350372,
+      -0.40656986410524376
+     ],
+     "1.42": [
+      -2.877060647548236,
+      -0.8691473406974893,
+      0.9262872290587872
+     ],
+     "1.62": [
+      -2.330747217267926,
+      -0.39376553623790067,
+      1.4584826547788134
+     ],
+     "1.69": [
+      -2.154343440130652,
+      -0.22765344504131457,
+      1.6332813972745626
+     ],
+     "3.00": [
+      0.18630327443937908,
+      1.9527529074007552,
+      3.855982429986038
+     ]
+    },
+    "z_rival": {
+     "1.00": [
+      -6.746062865405589,
+      -4.765591109068181,
+      -3.155846746568376
+     ],
+     "1.42": [
+      -5.350663062368407,
+      -3.4044400948052362,
+      -1.7900562651812948
+     ],
+     "1.62": [
+      -4.706421669729476,
+      -2.8215381642667374,
+      -1.2203411134219864
+     ],
+     "1.69": [
+      -4.520760489076481,
+      -2.6296336009026833,
+      -1.0482169281061255
+     ],
+     "3.00": [
+      -1.82810731923028,
+      -0.13458849477507362,
+      1.4686090684714783
+     ]
+    }
+   }
+  },
+  "verdict": "NON-DIAGNOSTIC (largest class neither at 0.55)"
+ }
+}

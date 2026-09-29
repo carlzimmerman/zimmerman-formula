@@ -1,0 +1,75 @@
+CFG164 -- a measured gas prior for the KURVS discs from PHIBSS (Tacconi et al. 2013), and the decision-cell verdict marginalised over it.
+
+Frozen criteria: CFG164_FROZEN_CRITERIA.md (9a1d4bc9d), committed before any PHIBSS gas value was examined.
+  clean       51 rows: no CO upper limit, not fgas-inconsistent, finite Mmol/M*/z_CO, primary component.
+  primary     the 17 rows with z_CO in [1.0, 1.7] and log M* in [9.5, 10.8]; each KURVS disc draws mu_mol uniformly from them.
+  variant M   OLS log mu = a + b (log M* - 10.5) on the 38 clean z < 1.7 rows, plus the residual scatter (extrapolated below 10.40).
+  variant Z   primary x [(1 + z_i)/(1 + z_CO,j)]^2.5 (a declared exponent).  Coherent per draw: Mmol ln 1.5, M* ln 1.3.
+  brackets    alpha_CO ULIRG-like (x 0.8/4.36); HI h in {0, 0.5, 1}: mu = mu_mol (1 + h).  4000 draws per prior, seed 164.
+  P1 windows (rival 0.6-1.7, flat 2.1-3.7) for the sample median mu; P2 the decision-cell verdict (CFG160's map) at s = 1.00, 1.42,
+  1.62, 1.69, 3.00 x K21; P3 KURVS-15's dust limit (1.90 nominal, 3.79 x2) against its prior; X = the spread across priors.
+MUTATE=1: every PHIBSS mu x 4 -> P(lean rival | s = 1) < 0.32.  MUTATE=2: x 0.25 -> P(lean flat | s = 1) < 0.05.  Exit 0 when they behave.
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour either model, or that the theory is closed.
+  [PASS] C2 CONTROL: the clean count is 51 and the matched count 17 (38 clean rows at z < 1.7)
+         clean 51, matched 17, z<1.7 38
+  [PASS] C3 CONTROL: fgas_recomputed = Mmol/(Mmol + M*) on the clean rows
+         max |difference| 0.0e+00
+  [PASS] C1 CONTROL: with every disc at mu = 0.67 the per-disc pipeline reproduces CFG160's decision cell (4 decimals)
+         D'_flat +0.1441 (+0.1441), D'_H -0.0060 (-0.0060)
+  variant M fit on 38 rows: log mu = +0.024 -0.219 (log M* - 10.5), residual scatter 0.277 dex; KURVS discs below log M* 10.40: 8 of 10 (extrapolated)
+  [PASS] (reported) R0 (reported) POWER: the 16-84% width of the sample-median mu under the primary prior against the 0.53-dex break-even separation at s = 1
+         median mu 1.01 (16-84%: 0.60-1.69), width 0.45 dex
+
+  [primary, h 0] sample-median mu: 1.01 (16-84% 0.60-1.69); windows (median mu): below 0.6 0.16, rival 0.68, between 0.08, flat 0.07, above 3.7 0.00; per-disc rival 0.56, flat 0.10
+      s 1.00 (Kretschmer     ): lean flat 0.21, lean rival 0.55, both within 2 sigma 0.24, neither 0.00;  D'_flat/sigma +2.2 [+0.7, +3.3], D'_H/sigma -1.0 [-2.3, -0.0]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.03, lean rival 0.81, both within 2 sigma 0.11, neither 0.04;  D'_flat/sigma +3.5 [+2.1, +4.7], D'_H/sigma +0.5 [-0.8, +1.5]
+      s 1.62 (fixed height   ): lean flat 0.01, lean rival 0.74, both within 2 sigma 0.07, neither 0.17;  D'_flat/sigma +4.0 [+2.6, +5.2], D'_H/sigma +1.1 [-0.2, +2.0]
+      s 1.69 (Price n=1      ): lean flat 0.01, lean rival 0.70, both within 2 sigma 0.06, neither 0.23;  D'_flat/sigma +4.2 [+2.8, +5.4], D'_H/sigma +1.2 [-0.0, +2.2]
+      s 3.00 (self-grav      ): lean flat 0.00, lean rival 0.09, both within 2 sigma 0.00, neither 0.91;  D'_flat/sigma +6.1 [+4.8, +7.2], D'_H/sigma +3.6 [+2.4, +4.5]
+      KURVS-15: prior median mu 1.00; P(mu > 1.90) = 0.16; P(mu > 3.79) = 0.02
+
+  [primary, h 0.5] sample-median mu: 1.57 (16-84% 0.91-2.57); windows (median mu): below 0.6 0.04, rival 0.53, between 0.16, flat 0.22, above 3.7 0.05; per-disc rival 0.47, flat 0.22
+      s 1.00 (Kretschmer     ): lean flat 0.47, lean rival 0.24, both within 2 sigma 0.25, neither 0.04;  D'_flat/sigma +1.0 [-0.6, +2.4], D'_H/sigma -2.0 [-3.5, -0.8]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.16, lean rival 0.58, both within 2 sigma 0.24, neither 0.01;  D'_flat/sigma +2.3 [+0.8, +3.8], D'_H/sigma -0.6 [-2.0, +0.7]
+      s 1.62 (fixed height   ): lean flat 0.08, lean rival 0.67, both within 2 sigma 0.20, neither 0.04;  D'_flat/sigma +2.8 [+1.3, +4.3], D'_H/sigma +0.0 [-1.4, +1.2]
+      s 1.69 (Price n=1      ): lean flat 0.07, lean rival 0.68, both within 2 sigma 0.19, neither 0.06;  D'_flat/sigma +3.0 [+1.4, +4.4], D'_H/sigma +0.2 [-1.2, +1.4]
+      s 3.00 (self-grav      ): lean flat 0.00, lean rival 0.28, both within 2 sigma 0.03, neither 0.69;  D'_flat/sigma +5.0 [+3.5, +6.4], D'_H/sigma +2.6 [+1.3, +3.8]
+      KURVS-15: prior median mu 1.49; P(mu > 1.90) = 0.36; P(mu > 3.79) = 0.08
+
+  [primary, h 1] sample-median mu: 2.05 (16-84% 1.19-3.47); windows (median mu): below 0.6 0.01, rival 0.35, between 0.15, flat 0.35, above 3.7 0.13; per-disc rival 0.36, flat 0.29
+      s 1.00 (Kretschmer     ): lean flat 0.59, lean rival 0.11, both within 2 sigma 0.19, neither 0.11;  D'_flat/sigma +0.1 [-1.6, +1.7], D'_H/sigma -2.8 [-4.3, -1.4]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.30, lean rival 0.37, both within 2 sigma 0.30, neither 0.03;  D'_flat/sigma +1.5 [-0.2, +3.1], D'_H/sigma -1.3 [-2.9, +0.0]
+      s 1.62 (fixed height   ): lean flat 0.19, lean rival 0.49, both within 2 sigma 0.29, neither 0.03;  D'_flat/sigma +2.0 [+0.3, +3.6], D'_H/sigma -0.8 [-2.3, +0.6]
+      s 1.69 (Price n=1      ): lean flat 0.17, lean rival 0.52, both within 2 sigma 0.29, neither 0.03;  D'_flat/sigma +2.2 [+0.4, +3.8], D'_H/sigma -0.6 [-2.1, +0.8]
+      s 3.00 (self-grav      ): lean flat 0.01, lean rival 0.43, both within 2 sigma 0.08, neither 0.48;  D'_flat/sigma +4.2 [+2.6, +5.8], D'_H/sigma +1.9 [+0.4, +3.2]
+      KURVS-15: prior median mu 2.03; P(mu > 1.90) = 0.53; P(mu > 3.79) = 0.16
+
+  [variant M, h 0] sample-median mu: 1.30 (16-84% 0.75-2.26); windows (median mu): below 0.6 0.08, rival 0.62, between 0.11, flat 0.16, above 3.7 0.03; per-disc rival 0.46, flat 0.18
+      s 1.00 (Kretschmer     ): lean flat 0.37, lean rival 0.32, both within 2 sigma 0.29, neither 0.02;  D'_flat/sigma +1.4 [-0.3, +2.7], D'_H/sigma -1.6 [-3.0, -0.5]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.11, lean rival 0.67, both within 2 sigma 0.19, neither 0.02;  D'_flat/sigma +2.8 [+1.1, +4.2], D'_H/sigma -0.2 [-1.7, +1.0]
+      s 1.62 (fixed height   ): lean flat 0.06, lean rival 0.70, both within 2 sigma 0.16, neither 0.08;  D'_flat/sigma +3.3 [+1.6, +4.8], D'_H/sigma +0.4 [-1.1, +1.6]
+      s 1.69 (Price n=1      ): lean flat 0.05, lean rival 0.70, both within 2 sigma 0.14, neither 0.11;  D'_flat/sigma +3.5 [+1.8, +5.0], D'_H/sigma +0.6 [-0.9, +1.8]
+      s 3.00 (self-grav      ): lean flat 0.00, lean rival 0.21, both within 2 sigma 0.02, neither 0.78;  D'_flat/sigma +5.7 [+4.0, +7.2], D'_H/sigma +3.1 [+1.7, +4.3]
+      KURVS-15: prior median mu 1.29; P(mu > 1.90) = 0.31; P(mu > 3.79) = 0.09
+
+  [variant Z, h 0] sample-median mu: 1.31 (16-84% 0.75-2.19); windows (median mu): below 0.6 0.08, rival 0.62, between 0.12, flat 0.16, above 3.7 0.02; per-disc rival 0.48, flat 0.18
+      s 1.00 (Kretschmer     ): lean flat 0.33, lean rival 0.31, both within 2 sigma 0.34, neither 0.02;  D'_flat/sigma +1.3 [-0.1, +2.6], D'_H/sigma -1.5 [-2.8, -0.4]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.08, lean rival 0.65, both within 2 sigma 0.26, neither 0.01;  D'_flat/sigma +2.6 [+1.1, +3.9], D'_H/sigma -0.1 [-1.4, +0.9]
+      s 1.62 (fixed height   ): lean flat 0.04, lean rival 0.70, both within 2 sigma 0.20, neither 0.06;  D'_flat/sigma +3.1 [+1.6, +4.4], D'_H/sigma +0.4 [-0.9, +1.5]
+      s 1.69 (Price n=1      ): lean flat 0.03, lean rival 0.71, both within 2 sigma 0.17, neither 0.09;  D'_flat/sigma +3.2 [+1.8, +4.6], D'_H/sigma +0.6 [-0.7, +1.6]
+      s 3.00 (self-grav      ): lean flat 0.00, lean rival 0.24, both within 2 sigma 0.02, neither 0.74;  D'_flat/sigma +5.2 [+3.7, +6.5], D'_H/sigma +2.9 [+1.6, +3.9]
+      KURVS-15: prior median mu 1.49; P(mu > 1.90) = 0.36; P(mu > 3.79) = 0.10
+
+  [alpha_CO ULIRG, h 0] sample-median mu: 0.18 (16-84% 0.11-0.31); windows (median mu): below 0.6 0.99, rival 0.01, between 0.00, flat 0.00, above 3.7 0.00; per-disc rival 0.04, flat 0.00
+      s 1.00 (Kretschmer     ): lean flat 0.00, lean rival 1.00, both within 2 sigma 0.00, neither 0.00;  D'_flat/sigma +4.8 [+4.3, +5.1], D'_H/sigma +1.3 [+0.9, +1.6]
+      s 1.42 (Dalcanton&Stilp): lean flat 0.00, lean rival 0.06, both within 2 sigma 0.00, neither 0.94;  D'_flat/sigma +6.1 [+5.6, +6.4], D'_H/sigma +2.7 [+2.3, +3.0]
+      s 1.62 (fixed height   ): lean flat 0.00, lean rival 0.01, both within 2 sigma 0.00, neither 0.99;  D'_flat/sigma +6.5 [+6.0, +6.8], D'_H/sigma +3.3 [+2.9, +3.5]
+      s 1.69 (Price n=1      ): lean flat 0.00, lean rival 0.01, both within 2 sigma 0.00, neither 0.99;  D'_flat/sigma +6.7 [+6.2, +7.0], D'_H/sigma +3.5 [+3.0, +3.7]
+      s 3.00 (self-grav      ): lean flat 0.00, lean rival 0.00, both within 2 sigma 0.00, neither 1.00;  D'_flat/sigma +8.2 [+7.7, +8.5], D'_H/sigma +5.5 [+5.1, +5.8]
+      KURVS-15: prior median mu 0.18; P(mu > 1.90) = 0.00; P(mu > 3.79) = 0.00
+
+  X (spread across priors at s = 1): P(lean rival) 0.11-1.00; median mu 0.18-2.05
+  [PASS] (reported) H1 [HEADLINE, reported] class probabilities at s = 1 under the primary prior, h = 0
+         NON-DIAGNOSTIC (largest class lean rival at 0.55)
+
+  5/5 checks pass; load-bearing failures: 0   (6 s)

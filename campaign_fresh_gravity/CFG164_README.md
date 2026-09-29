@@ -1,0 +1,75 @@
+# CFG164 — a measured gas prior for the KURVS discs from PHIBSS, and the decision-cell verdict marginalised over it
+
+- **Criteria:** frozen in `CFG164_FROZEN_CRITERIA.md` (9a1d4bc9d), before any PHIBSS gas value was examined.
+- **Data:** `data_assembly/kmos3d_phibss/phibss13_joined.csv`, from Tacconi et al. 2013. The 51 clean rows are what remain after removing:
+  - the CO upper limits;
+  - the three inconsistent-f_gas rows;
+  - one secondary component.
+- **Script:** `CFG164_gas_prior.py`, about 6 s. It runs CFG141's pipeline read-only and unmutated in every mode.
+- **Runs:**
+  - The main run passes all three controls (C1, C2, C3) and exits 0. Its headline is reported.
+  - MUTATE=1 multiplies μ by 4. The probability of "lean rival" at s = 1 drops to 0.01, as required; exit 0.
+  - MUTATE=2 multiplies μ by 0.25. The probability of "lean flat" drops to 0.00, as required; exit 0.
+  - The two controls move the verdict in opposite directions.
+
+## Bottom line
+
+**NON-DIAGNOSTIC at Kretschmer's correction. The measured prior is uncertain by about a factor of 2 in μ, and that moves the verdict across both classes.**
+
+- **The primary prior.** It uses the 17 PHIBSS rows matched in z and M*, with molecular gas only. The sample-median μ is 1.01, with a 16–84% range of 0.60–1.69.
+  - 68% of the prior falls in the rival's window (μ 0.6–1.7) and 7% in flat's (2.1–3.7).
+  - At the decision cell, s = 1 (Kretschmer): lean rival 0.55, lean flat 0.21, both within 2σ 0.24. The largest class is below the frozen 68% bar.
+- **Class probabilities at s = 1 (Kretschmer) and s = 1.42–1.69 (Dalcanton & Stilp, fixed height, Price):**
+
+  | prior | median μ (16–84%) | s = 1.00: lean flat / lean rival / both | s = 1.42–1.69: lean rival |
+  |---|---|---|---|
+  | **primary, molecular only (h = 0)** | **1.01 (0.60–1.69)** | **0.21 / 0.55 / 0.24** | **0.70–0.81** |
+  | primary + HI = ½ molecular (h = 0.5) | 1.57 (0.91–2.57) | 0.47 / 0.24 / 0.25 | 0.58–0.68 |
+  | primary + HI = molecular (h = 1) | 2.05 (1.19–3.47) | 0.59 / 0.11 / 0.19 | 0.37–0.52 |
+  | variant M (μ–M* regression, extrapolated for 8 of 10 discs) | 1.30 (0.75–2.26) | 0.37 / 0.32 / 0.29 | 0.67–0.70 |
+  | variant Z (declared (1+z)^2.5) | 1.31 (0.75–2.19) | 0.33 / 0.31 / 0.34 | 0.65–0.71 |
+  | α_CO ULIRG-like (× 0.8/4.36) | 0.18 (0.11–0.31) | 0.00 / 1.00 / 0.00 | 0.01–0.06 (the rest "neither") |
+
+  Under P2 (self-gravitating, s = 3) the class is mostly "neither": both readings under-predict.
+- **The uncertainty in the prior, X.** Across the declared variants at s = 1, the probability of "lean rival" spans 0.11–1.00, and the median μ spans 0.18–2.05. The ULIRG-like α_CO is the extreme case; without it the median μ spans 1.0–2.05.
+  - **The HI bracket alone,** from none to equal to the molecular, turns Kretschmer's cell from 0.55 lean rival into 0.59 lean flat.
+  - **The mass matching matters.** Every clean PHIBSS row at z < 1.7 has log M* ≥ 10.40, and 8 of the 10 KURVS discs lie below that. The mass-scaled prior (slope −0.22 dex per dex; residual scatter 0.28 dex) raises the median μ from 1.01 to 1.30, and the verdict at s = 1 becomes an even split.
+- **The KURVS-15 check.** The primary prior gives KURVS-15 a median μ of 1.00. Its dust limit (μ < 1.90 at the nominal calibration, from CFG163) excludes the 16% of the prior above 1.90. With h = 1 it would exclude 53%.
+
+## Reading
+
+- **With a measured, mass- and redshift-matched molecular prior,** the KURVS gas most likely lies in the rival's window. The decision cell then leans rival:
+  - 55% under Kretschmer's correction;
+  - 70–81% under the stronger published corrections.
+- **That lean is not robust to the declared unknowns:**
+  - HI comparable to the molecular gas reverses it at s = 1;
+  - extrapolating the gas–mass relation to KURVS's lower masses splits it;
+  - the α_CO bracket spans it.
+- **The frozen headline is NON-DIAGNOSTIC.** The measured prior narrows the question, but it does not settle it.
+- **What would settle it:**
+  - gas measured for the KURVS discs themselves: CO or dust at a depth reaching μ ≈ 1 (CFG163 reached 1.9 for one disc);
+  - an HI measurement, or a constraint on HI, at z ≈ 1.5.
+
+## Selection differences (stated before the data)
+
+- **Mass:** PHIBSS at z < 1.7 has log M* 10.40–11.23, against KURVS's 9.55–10.68. The prior likely under-states KURVS's gas; variant M sizes this.
+- **Redshift:** 1.0–1.53 against 1.33–1.61. Another under-statement; variant Z sizes it.
+- **CO detection:** removing the upper limits biases the prior toward gas-rich galaxies, an over-statement. It is not corrected.
+- **Selection:** PHIBSS galaxies are SFR- or optically selected; KURVS discs are Hα-selected and rotation-supported. The net effect is unknown.
+
+## Controls
+
+- **C1:** with μ = 0.67 for every disc, the per-disc pipeline reproduces CFG160's decision cell (+0.1441 / −0.0060).
+- **C2:** 51 clean rows, 17 matched, 38 at z < 1.7.
+- **C3:** f_gas = Mmol/(Mmol + M*) holds exactly on the clean rows.
+- **R0 (power):** the 16–84% width of the median μ is 0.45 dex, against the 0.53-dex separation of the break-evens at s = 1. So the prior's width alone is almost enough to span both windows.
+
+## Untested (declared)
+
+- HI, which is bracketed only;
+- the selection difference beyond variants M and Z;
+- α_CO beyond the bracket;
+- the pressure prescription, used at its placed values only;
+- PHIBSS-2 and Tacconi et al. 2018, which are not in the repo.
+
+κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
