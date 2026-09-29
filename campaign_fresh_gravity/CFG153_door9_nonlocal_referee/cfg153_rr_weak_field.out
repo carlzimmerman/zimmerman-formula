@@ -1,0 +1,144 @@
+
+====================================================================================================
+CFG153 referee of CFG123 (door 9) -- header
+====================================================================================================
+frozen criteria: ../CFG153_FROZEN_CRITERIA.md  sha256 = bf50fa3f42f241a8cb817680b7eeda1af5b2e55484d277b23870491a57aeaf29
+mode: main   K_plant (m_static / m) = 1
+python 3.13.9  sympy 1.13.1  scipy 1.14.1  mpmath 1.3.0  numpy 1.26.4
+
+====================================================================================================
+Geometry helper self-tests (own code)
+====================================================================================================
+  2-sphere of radius a: R = 2/a_s**2    FRW: R - 6(a''/a + a'^2/a^2) = 0
+  geometry helper sane: True
+
+====================================================================================================
+Route A: nonlocal RR action at quadratic order (static, Newtonian gauge), point mass
+====================================================================================================
+  R^(1) = -2*Derivative(Phi(x, y, z), (x, 2)) - 2*Derivative(Phi(x, y, z), (y, 2)) - 2*Derivative(Phi(x, y, z), (z, 2)) + 4*Derivative(Psi(x, y, z), (x, 2)) + 4*Derivative(Psi(x, y, z), (y, 2)) + 4*Derivative(Psi(x, y, z), (z, 2))
+  found: R^(1) = Lap F with F = (-2) Phi + (4) Psi ; F derivation consistent: True
+  Phi_hat/rho_hat = -4*pi*G*(3*k2 - 4*m**2)/(3*k2*(k2 - m**2))
+  Psi_hat/rho_hat = -4*pi*G*(3*k2 - 2*m**2)/(3*k2*(k2 - m**2))
+  pole terms Phi: [('1/k2', '-16*pi*G/3'), ('1/(k2-ms^2)', '4*pi*G/3')]   Psi: [('1/k2', '-8*pi*G/3'), ('1/(k2-ms^2)', '-4*pi*G/3')]
+  Green-function table checks (Lap, Lap+m^2, delta normalisation): True
+  Phi(r) = G*M*(cos(m*r) - 4)/(3*r)
+  Psi(r) = -G*M*(cos(m*r) + 2)/(3*r)
+  U(r)   = 2*G*M*cos(m*r)/r
+  rho_eff(r) (CFG123 definition) = -M*m**2*cos(m*r)/(12*pi*r)
+  rho_eff / (m_s^2 M / 4 pi r) = -cos(m*r)/3   ->  c1 = -1/3
+  leading order in m: rho_eff = -M*m**2/(12*pi*r)
+  route A time 0.9 s
+
+====================================================================================================
+Route B: one-multiplier localised action, Weyl-reduced on -A dt^2 + B dr^2 + C r^2 dOmega^2
+====================================================================================================
+  E_A    linear: (-8*pi*G*r**2*rho1(r) + r**2*Derivative(l(r), (r, 2)) + r*Derivative(b(r), r) + 2*r*Derivative(l(r), r) + b(r))/(16*pi*G)
+  E_B    linear: (-r*Derivative(a(r), r) + 2*r*Derivative(l(r), r) + b(r))/(16*pi*G)
+  E_C    linear: r*(-r*Derivative(a(r), (r, 2)) + 2*r*Derivative(l(r), (r, 2)) - Derivative(a(r), r) + Derivative(b(r), r) + 2*Derivative(l(r), r))/(16*pi*G)
+  E_U    linear: r*(-m**2*r*u(r) - 3*r*Derivative(l(r), (r, 2)) - 6*Derivative(l(r), r))/(48*pi*G)
+  E_lam  linear: (r**2*Derivative(a(r), (r, 2)) - r**2*Derivative(u(r), (r, 2)) + 2*r*Derivative(a(r), r) - 2*r*Derivative(b(r), r) - 2*r*Derivative(u(r), r) - 2*b(r))/(16*pi*G)
+  Ricci scalar theta-free: True    zeroth order vanishes (flat, U = lam = 0): True
+  a constant added to lam drops out of all five linear equations: True
+  R^(1) (areal) = (-r**2*Derivative(a(r), (r, 2)) + 2*r*(-Derivative(a(r), r) + Derivative(b(r), r)) + 2*b(r))/r**2
+  E_lam / [r^2 (R^(1) + Lap u)] = -1/(16*pi*G)  (constant => E_lam is Box U = -R): True
+  first integral: X = -Derivative(a(r), r) + 2*b(r)/r   (r^2 X)' = r^2 R^(1): True
+  order-by-order solve: 19 equations, 14 unknowns, 1 solution(s)
+     beta_m1  = r_S
+     mu_m1    = r_S
+     alpha0   = (free)
+     alpha1   = -1/6
+     alpha2   = 0
+     beta0    = 0
+     beta1    = 1/6
+     beta2    = 0
+     mu0      = (free)
+     mu1      = -1/2
+     mu2      = 0
+     lam0     = (free)
+     lam1     = -1/6
+     lam2     = 0
+  route B: A = 1 + a, a_2 = alpha1 m_s^2 r_S r  =>  c1 = 2 alpha1 = -1/3
+  route-A exact solution in route-B equations (r > 0): residuals {'E_A': '0', 'E_B': '0', 'E_C': '0', 'E_U': '0', 'E_lam': '0', 'flux': '0'}
+  lam(r) of that solution = 2*G*M*(cos(m*r) - 1)/(3*r)
+  route B time 1.3 s
+
+====================================================================================================
+C1-C3: GR limit, the literature static limit, and the two routes
+====================================================================================================
+  [PASS] C1 GR limit: m=0: Phi=-G*M/r, Psi=-G*M/r, rho_eff=0; route B O(m^0): b = r_S/r (GR areal: r_S/r)
+  [PASS] C2 literature static limit: mine - KM(4.31-4.33): dA=0 dB=0 dU=0; series vs MM A=1-(rS/r)(1+m^2r^2/6): 0; A+B-2 at O(m^2): 0; relative (mr)^2 coefficient of the potential = 1/6
+  [PASS] C3 two routes: route-A exact solution solves all five route-B equations + flux: True; O(m^2) g_tt diff 0, g_rr diff 0; c1 route A = -1/3, route B = -1/3
+
+====================================================================================================
+Background: minisuperspace of the same one-multiplier action (units H0 = 1, 8 pi G/3 = 1)
+====================================================================================================
+  Friedmann constraint (from N):  H^2 = (-36*A_sc**4*Omega_L - A_sc**4*U0**2*mu**2 - 36*A_sc*Omega_m - 36*Omega_r)/(6*A_sc**4*(6*L0 - L1*U1 + 6*L1 - 6))
+  dynamical solve count: 1
+  U-equation (vary lam):  A_sc**3*H**2*(U1*zeta + 3*U1 + U2 - 6*zeta - 12)/6  = 0
+  lam-equation (vary U):  A_sc**3*(3*H**2*(L1*zeta + 3*L1 + L2) - U0*mu**2)/18  = 0
+  [PASS] C4 background equations = Maggiore-Mancarella: my constraint / [H^2(1-l-l'+l'U'/6) - (rho + mu^2 U^2/36)] = A_sc**3; mine - MM (h^2 = Om e^-3x + Or e^-4x + gamma Y) = 0; my lam-eqn / MM W-eqn = A_sc**3*mu**2/18; my U-eqn / [U''+(3+z)U'-6(2+z)] = A_sc**3*H**2/6
+  inputs: H0 = 67.36 km/s/Mpc, Omega_m = 0.3153, Omega_r = 9.146268e-05 (Omega_r h^2 = 4.15e-5), no separate Lambda
+  shot: m/H0 = 0.283768 (x_i = -18);  x_i = -15: 0.283817 ; x_i = -21: 0.283765
+  today: h^2 = 1.000000000000, U = 16.04504, U' = 3.14949, lam = 0.055442, lam' = 0.112239, H0^2 S = 2.06553, zeta = -0.323461, w_DE = -1.14575
+  [FAIL] C5 integrator: LCDM limit: max |h/h_LCDM - 1| = 8.88e-16, max rel zeta dev = 7.72e-16 (line 1e-9); constraint propagation max rel = 5.87e-16 (line 1e-8); m/H0 change for x_i = -15/-21: 1.73e-04 (line 1e-4)
+  background time 1.3 s
+
+====================================================================================================
+Target (own implementation of CFG44's point mass and exponential sphere) -- C6
+====================================================================================================
+  [PASS] C6 target identity: rho_c r^3 g_P2 vs (a0/4pi)M: 5.35e-51; quadrature of M_c: 3.74e-49; g_P2 = G(M+M_c)/r^2: 5.35e-51; sphere M(<r): 1.74e-47; comparator fed the cold-mass density: |R-1| = 6.68e-51
+
+====================================================================================================
+The ratio R_A = rho_eff / rho_target on the grid (point mass, exact linear rho_eff)
+====================================================================================================
+  m = (m/H0) H0/c = 2.0663014e-27 1/m ; 1/m = 15684.0 Mpc ; m_static = 1 m
+  max m_static r on the grid = 7.38118e-5
+  footing canonical: log10|R_A| (rows M_b, columns x)
+      M_b        0.1      0.2      0.3      0.5      1.0      2.0      3.0      5.0     10.0     20.0     30.0
+    1.0e+9   -14.693  -14.687  -14.676  -14.647  -14.545  -14.346  -14.195  -13.988  -13.693  -13.394  -13.218
+    1.0e+10   -13.693  -13.687  -13.676  -13.647  -13.545  -13.346  -13.195  -12.988  -12.693  -12.394  -12.218
+    1.0e+11   -12.693  -12.687  -12.676  -12.647  -12.545  -12.346  -12.195  -11.988  -11.693  -11.394  -11.218
+    1.0e+12   -11.693  -11.687  -11.676  -11.647  -11.545  -11.346  -11.195  -10.988  -10.693  -10.394  -10.218
+  footing alt: log10|R_A| (rows M_b, columns x)
+      M_b        0.1      0.2      0.3      0.5      1.0      2.0      3.0      5.0     10.0     20.0     30.0
+    1.0e+9   -14.775  -14.769  -14.759  -14.729  -14.627  -14.428  -14.277  -14.070  -13.775  -13.476  -13.300
+    1.0e+10   -13.775  -13.769  -13.759  -13.729  -13.627  -13.428  -13.277  -13.070  -12.775  -12.476  -12.300
+    1.0e+11   -12.775  -12.769  -12.759  -12.729  -12.627  -12.428  -12.277  -12.070  -11.775  -11.476  -11.300
+    1.0e+12   -11.775  -11.769  -11.759  -11.729  -11.627  -11.428  -11.277  -11.070  -10.775  -10.476  -10.300
+  numerical CFG123-definition rho_eff (mpmath 50 digits, from g_tt) vs closed form: max rel dev = 2.01e-25
+  H1 canonical min (M_b=1.0e+9, x=0.1, r=0.12203 kpc): mine |R_A| = 2.02791e-15 ; CFG123 2.0e-15 ; |d log10| = 0.0060 dex
+  H1 canonical max (M_b=1.0e+12, x=30.0, r=1157.7 kpc): mine |R_A| = 6.0569e-11 ; CFG123 6.1e-11 ; |d log10| = 0.0031 dex
+  H1 alt       min (M_b=1.0e+9, x=0.1, r=0.111 kpc): mine |R_A| = 1.67803e-15 ; CFG123 1.7e-15 ; |d log10| = 0.0056 dex
+  H1 alt       max (M_b=1.0e+12, x=30.0, r=1053.1 kpc): mine |R_A| = 5.01188e-11 ; CFG123 5.0e-11 ; |d log10| = 0.0010 dex
+  canonical shortfall at (1e12, x = 30) = 1.65101e+10 (log10 = 10.218); CFG123: 1.65e10
+  [PASS] H1 headline (four pinned points within 0.5 dex; extremes at the pinned corners): within 0.5 dex at all four: True; my grid extremes at (1e9, 0.1) and (1e12, 30): True
+
+====================================================================================================
+Reported rows R1-R3 and E1 (not gates)
+====================================================================================================
+  R1 digits (my value to 2 figures vs CFG123 printed): [('canonical', 'min', '2.0e-15', '2.0e-15', True), ('canonical', 'max', '6.1e-11', '6.1e-11', True), ('alt', 'min', '1.7e-15', '1.7e-15', True), ('alt', 'max', '5.0e-11', '5.0e-11', True)]
+  R1 shortfall to 3 figures: 1.65e+10 vs 1.65e10
+  R1 c1 = -1/3 (route A), -1/3 (route B); sign of rho_eff on the grid: all negative (CFG123: negative everywhere)
+  R1 G1-S spread over x (point mass): 29.8677 .. 29.8677 (CFG123: 29.87)
+  R1 G1-M spread over M_b: 1000.0 .. 1000.0 (CFG123: 1000)
+  R1 m_req at x = 0.1 (canonical), in units of H0/c (1e9 .. 1e12): leading order 6.301e+6 .. 1.993e+5 ; exact linear 6.35e+6 .. 2.008e+5
+     1/m_req = 0.57879 r_M (leading order) and 0.5744 r_M (exact linear); CFG123: 0.5788 r_M, 6.3e6 .. 2.0e5
+  R2 m/H0 = 0.28377 vs CFG123 0.2839 (rel -4.66e-04; line 0.5%) ; vs literature 0.283 (rel 2.71e-03; sanity)
+  R2 U-bar(0) = 16.0450 vs 16.0 ; H0^2 S-bar(0) = 2.0655 vs 2.06 ; w_DE(0) = -1.1457 vs -1.146 (literature w0 -1.144)
+  R3 uses route A's coefficients: c0 = -16*pi/3 G, cm = 4*pi/3 G ; -(c0 + cm) = 4 pi G: True
+  R3 sphere (h = 2 kpc, canonical): |R_X| in [6.152e-17, 2.018e-12] at (M_b, x) = (1.0e+9, 0.1) and (1.0e+12, 2.0); CFG123 [6e-17, 2.0e-12]
+  R3 |d log10| at the two ends: 0.0109, 0.0039 dex (line 0.5; reported); sign: all negative
+  E1 U-bar(0)/2 = 8.0225 (hand expectation about 8): the size of the untested background coupling -U-bar dU g_mn relative to the flat-space -2 dU g_mn in the 00 equation
+
+====================================================================================================
+Summary
+====================================================================================================
+  PASS C1 GR limit
+  PASS C2 literature static limit
+  PASS C3 two routes
+  PASS C4 background equations = Maggiore-Mancarella
+  FAIL C5 integrator
+  PASS C6 target identity
+  PASS H1 headline (four pinned points within 0.5 dex; extremes at the pinned corners)
+  exit code: 1   runtime 8.6 s
+  kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
