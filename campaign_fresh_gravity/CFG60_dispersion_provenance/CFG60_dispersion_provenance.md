@@ -150,7 +150,7 @@ H6. **Unreviewed rows** (A35, A42-A47) are labelled as such; none of them carrie
     python3 CFG60_audit.py --mutate   # corrupts one expected string (A16 / E2b PASS -> FAIL); must exit 1
     python3 CFG60_audit.py --emit-table   # regenerates the two tables from the script's ROWS
 
-The audit reads the repository at `/Users/carlzimmerman/new_physics/zimmerman-formula` (override with `CFG60_REPO`) and writes nothing.
+The audit reads the repository at `<HOME>/new_physics/zimmerman-formula` (override with `CFG60_REPO`) and writes nothing.
 
 ## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
 - A24 says CFG49 is uncommitted and still changing; it is now committed (b899e204e) and complete (B, C, D); the U class probably stands but the reasoning at lines ~118 and ~143 is stale. H6 (line ~106) lists A35, A42-A47 and gives U=3, but removing only A47 from Table A gives U=4 (A22, A24, A25, A48); U=3 needs A48 removed too. No .out is committed; the '122 of 122' is reproducible only by running CFG60_audit.py with the .md beside it.
