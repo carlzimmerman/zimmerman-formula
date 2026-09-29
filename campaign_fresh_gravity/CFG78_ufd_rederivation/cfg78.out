@@ -1,0 +1,90 @@
+scored (8): Boo I, Car II, Hyd I, Leo IV, Leo V, Ret II, Seg 1, Wil 1; excluded by M_V cut: Cra II
+
+=== C1  closed forms ===
+  [PASS] C1 Newtonian limit (canonical, Boo I)  code 0.382454 closed 0.382454 rel +0.0e+00
+  [PASS] C1 deep-MOND limit (canonical)  code 7.536932e+12 closed 7.536932e+12 rel +2.2e-16
+
+=== per-system (canonical) ===
+  Boo I   M_V  -6.02 rh  160.86 pc  sigma_law 2.360   obs f0 2.55 ffree 2.18 f7 1.97   offsets +0.034 / -0.034 / -0.078
+  Car II  M_V  -4.57 rh   76.52 pc  sigma_law 1.691   obs f0 3.24 ffree 2.77 f7 2.55   offsets +0.282 / +0.214 / +0.178
+  Hyd I   M_V  -4.71 rh   52.42 pc  sigma_law 1.753   obs f0 3.17 ffree 2.77 f7 2.55   offsets +0.257 / +0.199 / +0.163
+  Leo IV  M_V  -4.95 rh  101.11 pc  sigma_law 1.844   obs f0 3.74 ffree 2.54 f7 2.16   offsets +0.307 / +0.139 / +0.069
+  Leo V   M_V  -4.40 rh   35.23 pc  sigma_law 1.638   obs f0 2.44 ffree 2.34 f7 2.16   offsets +0.173 / +0.155 / +0.120
+  Ret II  M_V  -3.10 rh   36.46 pc  sigma_law 1.206   obs f0 4.53 ffree 3.17 f7 3.01   offsets +0.575 / +0.420 / +0.397
+  Seg 1   M_V  -1.30 rh   19.52 pc  sigma_law 0.796   obs f0 3.56 ffree 3.01 f7 2.80   offsets +0.651 / +0.578 / +0.546
+  Wil 1   M_V  -2.53 rh   19.98 pc  sigma_law 1.061   obs f0 4.64 ffree 4.24 f7 4.11   offsets +0.641 / +0.602 / +0.588
+  [PASS] MUTATE-shift identity: x0.5 shifts every per-system offset and the median by exactly log10(0.5) (<1e-12), all keys/footings  asserted on the model at fixed inputs
+
+=== HEADLINE ===
+  canonical law  f = 0  : +0.295 +- 0.163 (boot 0.124 meas 0.074 floor 0.076) -> +1.81 sigma
+  canonical law  f free : +0.206 +- 0.164 (boot 0.111 meas 0.093 floor 0.077) -> +1.26 sigma
+  canonical law  f = 0.7: +0.171 +- 0.172 (boot 0.117 meas 0.101 floor 0.077) -> +0.99 sigma
+  canonical rule f free: -0.151 +- 0.129 (boot 0.090 meas 0.092 floor 0.013) -> -1.17 sigma
+  alt       law  f = 0  : +0.275 +- 0.163 (boot 0.124 meas 0.074 floor 0.076) -> +1.68 sigma
+  alt       law  f free : +0.186 +- 0.164 (boot 0.111 meas 0.093 floor 0.077) -> +1.13 sigma
+  alt       law  f = 0.7: +0.150 +- 0.172 (boot 0.117 meas 0.101 floor 0.077) -> +0.87 sigma
+  alt       rule f free: -0.154 +- 0.129 (boot 0.090 meas 0.092 floor 0.013) -> -1.20 sigma
+  rule diagnostics (canonical): Boo I fex 0.90 Mcoll 1.4e+09 sig_rule 6.28; Car II fex 0.95 Mcoll 1.0e+09 sig_rule 4.48; Hyd I fex 0.95 Mcoll 1.0e+09 sig_rule 3.90; Leo IV fex 0.94 Mcoll 1.0e+09 sig_rule 5.01; Leo V fex 0.96 Mcoll 1.0e+09 sig_rule 3.33; Ret II fex 0.98 Mcoll 1.0e+09 sig_rule 3.22; Seg 1 fex 0.99 Mcoll 1.0e+09 sig_rule 2.37; Wil 1 fex 0.99 Mcoll 1.0e+09 sig_rule 2.48
+  my 1+delta_ta (LCDM, a_ta=1) = 11.7646
+  [PASS] REPRODUCE canonical sig_fz law  mine +0.295 +- 0.163 (+1.81) vs CFG46 +0.295 +- 0.163 (+1.81); dmed -0.0003
+  [PASS] REPRODUCE canonical sig_f law  mine +0.206 +- 0.164 (+1.26) vs CFG46 +0.206 +- 0.164 (+1.26); dmed +0.0005
+  [PASS] REPRODUCE canonical sig_f7 law  mine +0.171 +- 0.172 (+0.99) vs CFG46 +0.171 +- 0.172 (+0.99); dmed -0.0004
+  [PASS] REPRODUCE canonical sig_f rule  mine -0.151 +- 0.129 (-1.17) vs CFG46 -0.151 +- 0.129 (-1.17); dmed +0.0002
+  [PASS] REPRODUCE alt sig_fz law median  mine +0.275 vs +0.275
+  [PASS] REPRODUCE alt sig_f law median  mine +0.186 vs +0.186
+  [PASS] REPRODUCE alt sig_f7 law median  mine +0.150 vs +0.150
+  [PASS] H1' law f-free z > 2 both footings (CFG46 expected FAIL)  h1=False
+  [PASS] H2' law f=0.7 z > 1 both footings (CFG46 expected FAIL)  h2=False  [check is 'agrees with CFG46's verdict']
+  [PASS] H3' rule f-free |z| < 2 both footings  h3=True
+
+=== C2  median / bootstrap implementation vs brute force ===
+  [PASS] C2a hand-sorted median == numpy median on 1000 random arrays (n = 7, 8)  
+  [PASS] C2b bootstrap std, f = 0  exact(8^8) 0.12394; 2000-MC 0.12383 (-0.1%); 2e6-MC 0.12395 (+0.01%)
+  [PASS] C2b bootstrap std, f free  exact(8^8) 0.11154; 2000-MC 0.11134 (-0.2%); 2e6-MC 0.11153 (-0.01%)
+  [PASS] C2b bootstrap std, f = 0.7  exact(8^8) 0.11721; 2000-MC 0.11701 (-0.2%); 2e6-MC 0.11720 (-0.00%)
+
+=== C3  leave-one-out (canonical) ===
+  f = 0: full median +0.295 z +1.81
+    drop Boo I  : median +0.307 (shift +0.012) +- 0.191 -> +1.61 sigma
+    drop Car II : median +0.307 (shift +0.012) +- 0.206 -> +1.49 sigma
+    drop Hyd I  : median +0.307 (shift +0.012) +- 0.204 -> +1.51 sigma
+    drop Leo IV : median +0.282 (shift -0.012) +- 0.211 -> +1.34 sigma
+    drop Leo V  : median +0.307 (shift +0.012) +- 0.189 -> +1.62 sigma
+    drop Ret II : median +0.282 (shift -0.012) +- 0.166 -> +1.70 sigma
+    drop Seg 1  : median +0.282 (shift -0.012) +- 0.154 -> +1.84 sigma
+    drop Wil 1  : median +0.282 (shift -0.012) +- 0.153 -> +1.85 sigma
+  f free: full median +0.206 z +1.26
+    drop Boo I  : median +0.214 (shift +0.008) +- 0.188 -> +1.14 sigma
+    drop Car II : median +0.199 (shift -0.008) +- 0.204 -> +0.97 sigma
+    drop Hyd I  : median +0.214 (shift +0.008) +- 0.211 -> +1.02 sigma
+    drop Leo IV : median +0.214 (shift +0.008) +- 0.197 -> +1.09 sigma
+    drop Leo V  : median +0.214 (shift +0.008) +- 0.190 -> +1.13 sigma
+    drop Ret II : median +0.199 (shift -0.008) +- 0.185 -> +1.07 sigma
+    drop Seg 1  : median +0.199 (shift -0.008) +- 0.156 -> +1.28 sigma
+    drop Wil 1  : median +0.199 (shift -0.008) +- 0.156 -> +1.27 sigma
+  f = 0.7: full median +0.171 z +0.99
+    drop Boo I  : median +0.178 (shift +0.008) +- 0.196 -> +0.91 sigma
+    drop Car II : median +0.163 (shift -0.008) +- 0.214 -> +0.76 sigma
+    drop Hyd I  : median +0.178 (shift +0.008) +- 0.224 -> +0.80 sigma
+    drop Leo IV : median +0.178 (shift +0.008) +- 0.204 -> +0.87 sigma
+    drop Leo V  : median +0.178 (shift +0.008) +- 0.199 -> +0.90 sigma
+    drop Ret II : median +0.163 (shift -0.008) +- 0.192 -> +0.85 sigma
+    drop Seg 1  : median +0.163 (shift -0.008) +- 0.164 -> +0.99 sigma
+    drop Wil 1  : median +0.163 (shift -0.008) +- 0.165 -> +0.99 sigma
+  max |shift| of the f-free median = 0.008 dex; drivers (>0.05 dex): none
+
+=== C4  weighting (canonical; reported only) ===
+  f = 0   sym dex errors 0.07 0.14 0.07 0.12 0.35 0.09 0.11 0.08
+    unweighted median +0.295 | IVW median (1/s^2) +0.282 | IVW median (1/(s^2+floor^2)) +0.307 | IVW mean +0.347 +- 0.033 (+10.38 sigma stat-only) | unweighted mean +0.365
+    measurement term with (3-sigma cols)/3: meas 0.087 vs 0.074; total 0.170 vs 0.163; z +1.74 vs +1.81
+  f free  sym dex errors 0.12 0.23 0.11 0.28 0.38 0.15 0.17 0.11
+    unweighted median +0.206 | IVW median (1/s^2) +0.214 | IVW median (1/(s^2+floor^2)) +0.214 | IVW mean +0.307 +- 0.053 (+5.78 sigma stat-only) | unweighted mean +0.284
+    measurement term with (3-sigma cols)/3: meas 0.099 vs 0.093; total 0.167 vs 0.164; z +1.24 vs +1.26
+  f = 0.7 sym dex errors 0.13 0.27 0.11 0.33 0.43 0.15 0.18 0.12
+    unweighted median +0.171 | IVW median (1/s^2) +0.163 | IVW median (1/(s^2+floor^2)) +0.178 | IVW mean +0.274 +- 0.056 (+4.93 sigma stat-only) | unweighted mean +0.248
+    measurement term with (3-sigma cols)/3: meas 0.103 vs 0.101; total 0.173 vs 0.172; z +0.98 vs +0.99
+
+=== seed sensitivity of the total error (canonical f free) ===
+  totals: 0.166, 0.163, 0.161, 0.164, 0.163; z: +1.24, +1.26, +1.29, +1.26, +1.27
+
+FAILS: none
