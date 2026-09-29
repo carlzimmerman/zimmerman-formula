@@ -1,0 +1,118 @@
+
+A3 -- HOW THE CAP ENTERS THE FLUID LAGRANGIAN: minimality, the constraint entry, the saturating-EOS entry and its OBSTRUCTION, and the
+EOS-independent consequence of a bounded pressure (the maximum dark column a0/(2 pi G)).  Companion to A1 (action, dof) and A2 (FRW).
+
+The two entries the task lists, and one more, are examined:
+  N1  DIMENSIONAL ANALYSIS (sympy nullspace): with (Mp2, Lambda, m, n, P) and c = 1 the only invariant of the fluid state is nu = m n/(Mp2 Lambda);
+      so any Lambda-tied, hbar-free, single-current fluid has P = P_cap(Lambda) F(nu), P_cap = eps Mp2 Lambda.  ONLY F is free.  (DERIVED)
+  N2  CONSTRAINT ENTRY (Lagrange multiplier imposing P = P_cap): solves to rho = -P_cap + C n: dust plus a shift of Lambda by -P_cap/Mp2 = -eps Lambda.
+      The cap is then ALWAYS saturated: it renormalises Lambda (0.0022 dex in a0, absorbed by kappa) and carries no physics.  (DERIVED)
+  N3  SATURATING-EOS ENTRY (POSTULATED, the entry used in A1/A2): F(x) = x^2/(1+x^2), x = nu/nu_s.
+      (i)   nu_s = 1 (no new number): c_s^2(z=0) ~ 6e-3 and the linear growth is suppressed to 5-14%: EXCLUDED by orders of magnitude.
+      (ii)  nu_s free: two-fluid linear growth with the EOS's c_s^2(z) gives nu_min(k) (smallest nu_s with growth within 5% / 20% / 50% of LCDM
+            at scale k); nu_min propto k^{3/2}.
+      (iii) engagement: the cap is reached (F >= 1/2) at the radius r_M where g_N = a0 (P2 point-mass phantom, P_d = P_cap exactly there) iff
+            nu_M(M_b) >= nu_s, with nu_M propto M_b^{-1/2} (exact).  Since nu_min(k(M)) is ALSO propto M^{-1/2}, the ratio g0 = nu_M/nu_min is a PURE NUMBER
+            and the mass window in which the cap is engaged AND the structure is un-suppressed has width M_max/M_min = g0^2, independent of nu_s.
+  N4  EOS-INDEPENDENT CONSEQUENCE of P <= P_cap (self-gravitating plane-symmetric slab): P + g^2/(8 pi G) = const  =>  Sigma <= a0/(2 pi G).  (DERIVED)
+  N5  the cap here is a HARD bound; the CFG2 hydrostatic medium has P_d = sqrt(P_Lambda P_N) = y P_cap > P_cap for y = g_N/a0 > 1: a different object.
+
+MUTATE=1  the multiplier is replaced by a thawing scalar: the derived column bound Sigma_max(z) = a0(z)/(2 pi G) is no longer flat (must FAIL).
+MUTATE=2  the tie is dropped (cap reads a constant Lc): Sigma_max does not follow Lambda_0 across universes (must FAIL).
+N1-N3 concern the ENTRY FORM and are the same in every mode (they test the entry, not the tie).
+Run:  python3 A3_cap_entry_form_and_obstruction.py     (MUTATE=1 or 2 for the controls)
+
+MUTATE mode = 2
+
+======================================================================================================================
+N1  DIMENSIONAL ANALYSIS: what can P depend on?  (sympy nullspace, c = 1, dimensions in (mass, length))
+======================================================================================================================
+  dimension matrix rank 2, 5 variables -> 3 independent dimensionless groups
+    group exponents (Mp2, Lambda, m, n, P): [-1, 1/2, 1, 0, 0]
+    group exponents (Mp2, Lambda, m, n, P): [0, -3/2, 0, 1, 0]
+    group exponents (Mp2, Lambda, m, n, P): [-1, -1, 0, 0, 1]
+  [PASS] N1 the invariants of a Lambda-tied, hbar-free, single-current fluid are u = n/Lambda^(3/2) (state), P/(Mp2 Lambda) (response) and the rest-mass ratio mu = m sqrt(Lambda)/Mp2 (a constant coefficient); nu = m n/(Mp2 Lambda) = mu u.  Hence EVERY such EOS is P = Mp2 Lambda [u f' - f](u) and the cap can enter ONLY as an amplitude P_cap = eps Mp2 Lambda times a shape F(nu/nu_s)
+         measured: nullspace dimension 3 (groups printed above); P/(Mp2 Lambda) and nu are dimensionless: True; the mass ratio is a third independent group: True
+         reading:  MINIMAL: no other pressure scale exists without adding a constant.  What is NOT fixed by dimensions: the shape F and every dimensionless number inside it (the scale nu_s)
+
+======================================================================================================================
+N2  CONSTRAINT ENTRY: a Lagrange multiplier imposing P = P_cap
+======================================================================================================================
+  [PASS] N2 P == P_cap gives rho = -P_cap + C1 n (dust + a constant): T_mn = C1 n u u + P_cap g_mn... i.e. Lambda_eff = Lambda (1 - eps): the always-saturated cap only renormalises Lambda
+         measured: rho = C1*n - P_c ; Lambda_eff = Lambda*(1 - epsilon) (True); a0 shifts by +0.0022 dex (absorbed in the FITTED kappa)
+         reading:  no cap PHYSICS: the constraint entry either binds everywhere (this) or is the unconstrained fluid (multiplier zero, pressure a free function)
+
+======================================================================================================================
+N3  SATURATING-EOS ENTRY: P = P_cap F(nu/nu_s), F = x^2/(1+x^2)  (POSTULATED).  Cold-FRW growth and engagement
+======================================================================================================================
+  [PASS] N3-i nu_s = 1 (no new number): c_s^2(z=0) = eps F'(nu0) ~ 6e-3 and the linear growth is crushed
+         measured: c_s^2(0) = 5.782e-03 (c_s = 22797 km/s; the Jeans bound at k = 10/Mpc is 2.01e-10: excess factor 2.9e+07); growth ratio to LCDM at k = 0.1, 0.5, 2, 10 /Mpc: 0.051, 0.140, 0.099, 0.080
+         reading:  OBSTRUCTION 1: with only (kappa, Lambda, G, c) the cap is 1% of rho_Lambda and a barotropic fluid that reaches it near rho ~ rho_Lambda has c_s^2 ~ eps
+  [PASS] N3-i-b DBI/tachyon entry L = -P_cap sqrt(1 - X) (tension P_cap = eps Mp2 Lambda, |P| <= P_cap, NO second scale): P = -P_cap^2/rho (Chaplygin), c_s^2 = (P_cap/rho)^2
+         measured: c_s^2(z=0) = 6.61e-04 (c_s = 7706 km/s); growth ratio to LCDM at k = 0.01, 0.05, 0.1, 0.5, 2 /Mpc: 0.975, 0.491, -0.043, 0.186, 0.115; the cap binds where rho ~ P_cap = 0.01 rho_Lambda (VOIDS), and P < 0
+         reading:  OBSTRUCTION 1b: the only bounded-stress fluid that needs no new number has the WRONG SIGN (tension), binds in voids (not in bound regions) and its c_s^2(0) ~ 7e-4 kills growth
+  nu_min(k): smallest nu_s with linear growth at z=0 within (1-thr) of LCDM, k in 1/Mpc  [conservative: all larger nu_s also pass]
+     thr \ k         0.5          2         10         30
+     0.50       3.59e+03   2.68e+04   3.47e+05   1.80e+06
+     0.80       7.47e+03   6.69e+04   7.20e+05   3.73e+06
+     0.95       2.24e+04   2.00e+05   2.16e+06   1.12e+07
+  meaning of nu_s: the cap is reached at rho_* = nu_s rho_Lambda (rho_Lambda = 8.632e-08 Msun/pc^3) and corresponds to a velocity scale sigma_* = c sqrt(eps/nu_s):
+     thr 0.80: k=0.5/Mpc: nu_min=7.47e+03 -> rho_*=0.001 Msun/pc^3, sigma_*=346 km/s; k=2/Mpc: nu_min=6.69e+04 -> rho_*=0.006 Msun/pc^3, sigma_*=116 km/s; k=10/Mpc: nu_min=7.20e+05 -> rho_*=0.062 Msun/pc^3, sigma_*=35 km/s; k=30/Mpc: nu_min=3.73e+06 -> rho_*=0.322 Msun/pc^3, sigma_*=15 km/s
+     thr 0.95: k=0.5/Mpc: nu_min=2.24e+04 -> rho_*=0.002 Msun/pc^3, sigma_*=200 km/s; k=2/Mpc: nu_min=2.00e+05 -> rho_*=0.017 Msun/pc^3, sigma_*=67 km/s; k=10/Mpc: nu_min=2.16e+06 -> rho_*=0.186 Msun/pc^3, sigma_*=20 km/s; k=30/Mpc: nu_min=1.12e+07 -> rho_*=0.965 Msun/pc^3, sigma_*=9 km/s
+  [PASS] N3-ii with nu_s free the cold-FRW growth is restored above nu_min(k) propto k^(3/2)  (the EOS's c_s^2 peaks at c_s^2 ~ 0.65 eps/nu_s at the redshift nu_cos = nu_s)
+         measured: fitted exponents 1.48 (thr 0.8), 1.48 (thr 0.95); e.g. nu_min(k = 2/Mpc) = 2.00e+05, nu_min(10/Mpc) = 2.16e+06 (5% growth criterion)
+         reading:  nu_s is a NEW dimensionless constant; its size is set by the smallest structure that must survive: it is FITTED/declared, not derived from kappa
+  [PASS] N3-iii-a nu_M(M_b) (local dark density at r_M over rho_Lambda) scales as M_b^(-1/2) exactly
+         measured: nu_M(1e9) = 3.587e+05, nu_M(1e11) = 3.587e+04, exponent -0.500000 (expect -0.5); r_M(1e9) = 1.22 kpc
+         reading:  the cap is reached (P_d = P_cap) exactly at r_M for the P2 phantom (P_d = sqrt(P_Lambda P_N) = y P_cap at y = 1)
+  g0 = nu_M(M_b)/nu_min(k(M_h)) at M_b = 3e10 (M_h = f_h M_b); window in baryonic mass covered by ONE nu_s: M_max/M_min = g0^2:
+     thr   f_h   k-convention    k(M_h)[1/Mpc]   nu_min(k)     nu_M(3e10)     g0      M_max/M_min
+     0.50   10   pi/R              2.581      3.935e+04     6.549e+04    1.664        2.770
+     0.50   10   2pi/R             5.162      1.113e+05     6.549e+04    0.588        0.346
+     0.50   20   pi/R              2.048      2.782e+04     6.549e+04    2.354        5.541
+     0.50   20   2pi/R             4.097      7.870e+04     6.549e+04    0.832        0.693
+     0.50   40   pi/R              1.626      1.967e+04     6.549e+04    3.329       11.081
+     0.50   40   2pi/R             3.252      5.565e+04     6.549e+04    1.177        1.385
+     0.80   10   pi/R              2.581      9.813e+04     6.549e+04    0.667        0.445
+     0.80   10   2pi/R             5.162      2.776e+05     6.549e+04    0.236        0.056
+     0.80   20   pi/R              2.048      6.939e+04     6.549e+04    0.944        0.891
+     0.80   20   2pi/R             4.097      1.963e+05     6.549e+04    0.334        0.111
+     0.80   40   pi/R              1.626      4.907e+04     6.549e+04    1.335        1.782
+     0.80   40   2pi/R             3.252      1.388e+05     6.549e+04    0.472        0.223
+     0.95   10   pi/R              2.581      2.938e+05     6.549e+04    0.223        0.050
+     0.95   10   2pi/R             5.162      8.311e+05     6.549e+04    0.079        0.006
+     0.95   20   pi/R              2.048      2.078e+05     6.549e+04    0.315        0.099
+     0.95   20   2pi/R             4.097      5.876e+05     6.549e+04    0.111        0.012
+     0.95   40   pi/R              1.626      1.469e+05     6.549e+04    0.446        0.199
+     0.95   40   2pi/R             3.252      4.155e+05     6.549e+04    0.158        0.025
+  direct check of the M-independence (thr 0.8, f_h = 20, k = pi/R): M_b = 1e9: k = 6.37/Mpc, g0 = 1.079;  M_b = 3e11: k = 0.95/Mpc, g0 = 1.037
+  [PASS] N3-iii-b g0 = nu_M/nu_min(k(M)) does not depend on M_b (both propto M^(-1/2)); so one nu_s engages the cap over a mass window of ratio g0^2 only, whatever nu_s is
+         measured: g0 (5% growth, f_h = 20, k = pi/R) = 0.32, (20%) = 0.94; most generous corner of the grid (50% suppression allowed, f_h = 40, k = pi/R) g0 = 3.33 -> window 11.1x in mass; M-independence (direct re-solves at 1e9 and 3e11 Msun, agree within 30%): True; needed window for the BTFR (1e8 - 1e12): 1e4
+         reading:  OBSTRUCTION 2 (screening estimate: the convention grid moves g0 over 0.08-3.3, a factor ~40, but even its most generous corner gives ONE decade in mass, not the 4-5 of the BTFR): no nu_s makes the saturating-EOS cap engaged at r_M across the BTFR mass range while the structures of those masses keep their linear growth
+
+======================================================================================================================
+N4  EOS-INDEPENDENT CONSEQUENCE of P <= P_cap: the maximum dark column of a self-gravitating slab
+======================================================================================================================
+  [PASS] N4 hydrostatic plane slab (dP/dz = -rho g, dg/dz = 4 pi G rho): d/dz [P + g^2/(8 pi G)] = 0, so with P(inf) = 0 and P(0) <= P_cap: g_inf <= a0 and the total column Sigma <= a0/(2 pi G)
+         measured: invariant True; Sigma_max = 106.9 (canonical) / 129.2 (alt) Msun/pc^2  (CFG2 A4 quotes 106.9 / 129.2; Donato+09: 10^(2.15 +- 0.2) = 141)
+         reading:  DERIVED for ANY EOS: it needs only P <= P_cap.  This is what the cap DOES; the entry form only decides whether it binds
+
+======================================================================================================================
+T  the column bound follows the tie: Sigma_max(z) = a0(z)/(2 pi G), and across universes Sigma_max propto sqrt(Lambda_0)
+======================================================================================================================
+  [PASS] T-flat Sigma_max(z) = a0(z)/(2 pi G) is flat in z (the cap does not run)
+         measured: Sigma_max(z)/Sigma_max(0) from A2's integrated solution (HT + fluid): z=0.5: 1.000000000000, z=1: 1.000000000000, z=2.5: 0.999999999999 (-0.0000 dex at z = 2.5)
+         reading:  DERIVED via H-CONST (A1) and confirmed on the integrated geometry (A2-a); MUTATE=1 replaces the multiplier and the bound rises toward high z
+  [FAIL] T-tie across universes the column bound follows the HT constant: Sigma_max(Lambda_0)/[kappa sqrt(Lambda_0/8 pi)/(2 pi G)] = 1
+         measured: ratios 1.414214, 1.000000, 0.707107, 0.377964
+         reading:  MUTATE=2: the fluid's cap reads Lc, so Sigma_max is decoupled from Lambda_0
+
+======================================================================================================================
+N5  HARD BOUND vs CFG2's hydrostatic medium
+======================================================================================================================
+  [PASS] N5 CFG2 A2's settled medium has P_d = sqrt(P_Lambda P_N) = y P_cap: it EXCEEDS the cap for y = g_N/a0 > 1 (inside r_M); a hard-bound EOS cannot supply it
+         measured: P_d/P_cap at y = [0.1, 0.5, 1.0, 3.0, 10.0]: [0.1, 0.5, 1.0, 3.0, 10.0]
+         reading:  the action written here realises the CFG5-type cap (a bound on the stress), NOT the CFG2 stress law (a scale in a geometric mean); the latter depends on the BARYONS' field and has no local fluid EOS (CFG2 A6, N20)
+
+SUMMARY A3_cap_entry_form_and_obstruction (MUTATE=2): 10/11 checks pass; load-bearing failures = 1
+   failed: T-tie (load-bearing)

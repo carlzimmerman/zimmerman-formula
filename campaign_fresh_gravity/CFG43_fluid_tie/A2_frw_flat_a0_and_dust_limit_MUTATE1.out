@@ -1,0 +1,56 @@
+
+A2 -- FRW LIMIT OF THE A1 ACTION: (a) a0(z) FLAT because the cap reads the HT constant; (b) the fluid is CDM-like dust with Omega_c FREE
+(initial data) and a constant Lambda; (c) the tie survives across universes (Lambda_0 is a free integration constant, P_cap follows it).
+
+The equations integrated are the ones DERIVED in A1 (sympy Euler-Lagrange of the minisuperspace action, lapse N = 1 after variation):
+  HT (MUTATE=0/2):  E_T: Lambda' = 0;  E_theta: J0' = 0;  E_N: 3 Mp2 H^2 = Mp2 Lambda + rho(n; Lambda);  E_a: the second-order Raychaudhuri equation
+  MUTATE=1 (scalar replaces the multiplier):  psi'' + 3 H psi' + U'(psi) + rho_Lambda U'/Mp2 = 0, Friedmann with (psi'^2/2 + U)
+  MUTATE=2 (tie dropped): the cap reads an independent constant Lc (a0 does not follow Lambda_0).
+Units: Mp2 = 1, m = 1, a = 1 today, Lambda = 1 for the reference universe (so Omega_c0 = n0/(Lambda + n0)-type ratios are dimensionless).
+
+Checks:  A2-a a0(z)/a0(0), Lambda_eff(z) inferred from (H, rho) is constant;  A2-b E_N is preserved by the integrated E_a (Bianchi) and n a^3 = const;
+         A2-c dust limit: rho a^3 constancy, w and c_s^2 sizes, H(z)/H_LCDM;  A2-d Omega_c free (two integration constants);  A2-e the tie across universes.
+         C-XR20 (control): a thawing exponential field reproduces XR20's E4 rise of a0 toward high z (+0.07..+0.16 dex at z = 2.5).
+Run:  python3 A2_frw_flat_a0_and_dust_limit.py     (MUTATE=1 or 2 for the controls)
+
+MUTATE mode = 1
+
+======================================================================================================================
+A2-a  a0(z) and the Lambda inferred from (H, rho): constant?  (a0 = sqrt(8 pi G P_cap) = sqrt(P_cap/Mp2))
+======================================================================================================================
+  thawing exponential U = U0 exp(-1.27 psi): tuned to Omega_c0 = 0.315 (flat); w0 = -0.751, Omega_de0 = 0.685
+  a0(z)/a0(0) = sqrt(U(z)/U(0)): z=0.5: 1.158981, z=1: 1.231818, z=2.5: 1.292789, z=5: 1.306391, z=1100: 1.309910
+  Lambda_eff(z) = 3H^2 - rho/Mp2 spread over z in [0, 10]: 5.02e-01 (a constant Lambda gives < 1e-10)
+  [FAIL] A2-a a0(z) flat and Lambda_eff constant
+         measured: max |dlog a0| over z <= 5: 0.116 dex (z=2.5: +0.112 dex); Lambda_eff spread 5.02e-01
+         reading:  MUTATE=1: the cap tracks the scalar; a0 rises toward high z (compare XR20 E4: +0.111 dex at z = 2.5 for the DESY5 w0)
+  [PASS] C-XR20 control: the thawing field's a0(2.5) rise is of XR20 E4's size (XR20: +0.111 dex for the DESY5-matched w0 = -0.752; this run has w0 = -0.751)
+         measured: this lane: +0.112 dex at z = 2.5 (w0 = -0.751); XR20 E4: +0.070 / +0.111 / +0.156 for w0 = -0.838 / -0.752 / -0.667
+         reading:  same sign, same magnitude: the thawing-field realisation is the one XR20 T5 scored
+
+======================================================================================================================
+A2-b  the constraint is preserved by the integrated Raychaudhuri equation (Bianchi) and n a^3 = const
+======================================================================================================================
+  [PASS] A2-b E_N stays zero along the integration (the scalar action is also reparametrisation invariant) and n a^3 = const
+         measured: max |E_N|/(3 H^2 a^3) = 3.37e-13; n a^3 const by E_theta (A1 H-NUM)
+         reading:  passes in every mode: the identity is a property of any invariant action; the physics is A2-a/c
+
+======================================================================================================================
+A2-c  DUST LIMIT: rho a^3, w, c_s^2 and H(z)/H_LCDM for the cold fluid (nu_s = 1e+06; POSTULATED EOS)
+======================================================================================================================
+  [FAIL] A2-c cold-limit with a CONSTANT Lambda: Lambda_eff(z) spread over z <= 10 below 1e-7
+         measured: Lambda_eff varies by 5.02e-01
+         reading:  MUTATE=1: the scalar's energy density evolves; dust + constant Lambda no longer describes the background
+
+======================================================================================================================
+A2-d  Omega_c is FREE (initial data J0) and independent of Lambda_0: two integration constants, P_cap depends on Lambda_0 only
+======================================================================================================================
+  [n/a ] A2-d/e: with a dynamical scalar the 'universes' are labelled by (psi_i, lambda): Lambda_0 is not an integration constant; the tie check A2-e reduces to A2-a
+  [FAIL] A2-e a0_cap tracks the scalar: a0_cap(z)/a0_cap(0) equals sqrt(U(z)/U(0)) but is not constant
+         measured: z=2.5: 1.2928
+         reading:  MUTATE=1: not a constant
+
+SUMMARY A2_frw_flat_a0_and_dust_limit (MUTATE=1): 2/5 checks pass; load-bearing failures = 3
+   failed: A2-a (load-bearing)
+   failed: A2-c (load-bearing)
+   failed: A2-e (load-bearing)

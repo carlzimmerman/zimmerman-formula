@@ -1,0 +1,83 @@
+
+A1 -- ONE ACTION: GR + Henneaux-Teitelboim (HT) sector with integration constant Lambda + a conserved (Schutz-Sorkin / Brown)
+fluid whose stress cap P_cap = a0^2/(8 pi G) is a function of the SAME HT field.  Field equations, number conservation, the
+Dirac constraint count.  (Gap 3 of scratchpad/closure/actions.md.)
+
+THE ACTION (c = 1, Mp2 = 1/(8 pi G), eps = kappa^2/(8 pi), kappa = 1/2 FITTED):
+  S = Int d^4x { sqrt(-g) [ (Mp2/2) R - Mp2 Lambda ]  +  Mp2 Lambda d_m T^m                      GR + HT (T^m: vector density)
+                 - sqrt(-g) rho(n; Lambda)  +  J^m d_m theta } ,   n = sqrt(-g_mn J^m J^n)/sqrt(-g)   Schutz-Sorkin fluid
+  rho(n; Lambda) = m n  +  P_cap(Lambda) * x atan(x) ,   x = m n / (nu_s Mp2 Lambda) ,   P_cap(Lambda) = eps Mp2 Lambda
+  =>  P = n rho_n - rho = P_cap x^2/(1 + x^2)   (saturating, P -> P_cap),  rho_Lambda|_n = - P/Lambda   (homogeneity).
+  POSTULATED: the saturating form F(x) = x^2/(1+x^2) and the argument x = rho_c/(nu_s rho_Lambda).  nu_s is a pure number.
+  DERIVED from the action (this script): Lambda constant (T^m eq.), number conservation (theta eq.), the clock d_m T^m
+  = sqrt(-g)(1 - P/(Mp2 Lambda)) absorbing the fluid's dependence on Lambda, reparametrisation (Bianchi) identity, Friedmann
+  eq., the continuity equation (rho' + 3H(rho + P) = rho_Lambda Lambda'), the Dirac count 2N + 2 (fluid + ONE global pair).
+
+MUTATE=1  the multiplier is replaced by a dynamical scalar psi, Lambda -> U(psi) with kinetic term (Mp2/2)(d psi)^2 (the fluid still
+          reads Lambda = U(psi)): Lambda' = 0 no longer follows, the fluid is no longer separately conserved, the count has an
+          extra local dof, delta Lambda obeys a wave equation.  Every check below is COMPUTED on the mutated action.
+MUTATE=2  the tie is dropped: the fluid's cap reads an independent constant Lc, not the HT field (HT multiplier kept):
+          rho_Lambda|_n = 0, the clock is Na^3 with no fluid term, and sqrt(8 pi G P_cap) != kappa sqrt(Lambda/8pi).
+
+Checks:  H-EOS, H-TIE, H-CONST, H-NUM, H-CLOCK, H-FRIED, H-BIANCHI, H-SEPCONS, H-LOCAL, H-DIRAC-0, H-DIRAC.
+Run:  python3 A1_action_field_equations_dof.py       (MUTATE=1 or 2 for the controls)
+
+MUTATE mode = 2  (0 = HT multiplier + tied cap; 1 = dynamical scalar replaces the multiplier; 2 = cap not tied to Lambda)
+
+======================================================================================================================
+E  THE FLUID'S EOS: P = n rho_n - rho, the cap, and how the cap reads Lambda
+======================================================================================================================
+  [FAIL] H-EOS P = n rho_n - rho = P_cap x^2/(1+x^2); sup_n P = P_cap; and the fluid depends on the HT field Lambda as rho_Lambda|_n = -P/Lambda (degree-1 homogeneity in (n, Lambda))
+         measured: P closed form True; sup P = P_cap True; d rho/d Lambda_HT = -P/Lambda_HT: False
+         reading:  MUTATE=2: the fluid reads Lc, so it does not depend on the HT field at all
+  [FAIL] H-TIE as functions of the HT field: sqrt(8 pi G P_cap(Lambda)) == kappa sqrt(Lambda/8pi) (the SAME alpha(Lambda) XR20 wrote into the AQUAL kernel), so a0 = kappa c sqrt(G rho_Lambda) with kappa the only coupling
+         measured: function identity False; numbers: sqrt(8 pi G P_cap) = 9.36029e-11, kappa sqrt(Lambda/8pi) c^2 = 9.36029e-11, kappa c sqrt(G rho_L) = 9.36029e-11 m/s^2 (canonical footing 9.3603e-11); P_cap = 5.2232e-12 Pa (= 0.995% of rho_L c^2 = 5.2509e-10 Pa)
+         reading:  kappa = 1/2 stays FITTED; the sqrt(Lambda) power is dimensional (FP0 C1)
+
+======================================================================================================================
+F  FLAT-FRW MINISUPERSPACE: the action varied (sympy Euler-Lagrange), generic rho(n, Lambda) for the structure
+======================================================================================================================
+  [PASS] H-CONST Lambda is a global integration constant: the equations imply Lambda' = 0 (so P_cap(Lambda) and a0 are constant in z)
+         measured: E_T = -Mp2*Derivative(Lam(t), t)  =>  Lambda' = [0]   (the matter Lagrangian, incl. the fluid's Lambda-dependence, does not enter E_T)
+         reading:  a0 = alpha(Lambda) c^2 and P_cap are constant on every solution
+  [PASS] H-NUM number conservation: the theta equation is J0' = 0, i.e. n a^3 = const, for ANY rho(n, Lambda) and any Lambda(t)
+         measured: E_theta = -Derivative(J0(t), t); n = J0/a^3
+         reading:  Omega_c is initial data: the constant J0 (comoving particle number) is free, not fixed by the action
+  [FAIL] H-CLOCK the fluid's Lambda-dependence lands ONLY in the unimodular clock: T0' = N a^3 [1 + rho_Lambda/Mp2] = N a^3 [1 - P/(Mp2 Lambda)], and T^m appears in no other equation
+         measured: generic: T0' = N(t)*a(t)**3; concrete: T0' = N a^3 (1 - P/(Mp2 Lambda)) is False; T in other equations: False
+         reading:  XR20 T1b had the same structure for the MOND term (clock shift (kappa^2/8pi) F); here the shift is P/rho_Lambda = eps F(x)
+  [PASS] H-FRIED lapse equation = Friedmann with no extra component: 3 Mp2 H^2 = Mp2 Lambda + rho(n; Lambda) (GR + Lambda + the fluid)
+         measured: E_N/a^3 = 3*H**2*Mp2 - Mp2*Lam(t) - rho(J0(t)/a(t)**3, Lc)
+         reading:  with Lambda' = 0 the HT sector adds nothing to the background
+  [PASS] H-BIANCHI time-reparametrisation identity  sum_i E_i q_i' - N E_N' == 0  holds identically (the constraint propagates iff the field equations hold)
+         measured: identity: True
+         reading:  holds in every mode (an invariant action); the physics is in the NEXT check
+  [PASS] H-SEPCONS chain rule: rho' + 3H(rho + P) = rho_Lambda Lambda' (verified) -- the fluid is separately conserved on shell, so Omega_c a^3 = const
+         measured: chain rule True; source rho_Lambda*Lambda' = 0 because Lambda' = 0 on shell
+         reading:  MUTATE=1: coupled dark energy; Omega_c is no longer free initial data
+
+======================================================================================================================
+L  LOCAL STRUCTURE (1+1 toy with x-dependence): does delta Lambda propagate?
+======================================================================================================================
+  [PASS] H-LOCAL with x-dependence: E_T0 = -Mp2 d_t Lambda, E_T1 = -Mp2 d_x Lambda, E_theta = -(d_t J^0 + d_x J^1); a perturbation obeys d_t(dL) = d_x(dL) = 0; no second derivative of Lambda appears anywhere (no wave operator)
+         measured: T equations + number current True; linearised first-order homogeneous True; second derivatives of Lambda present: False
+         reading:  no propagating delta Lambda: the only freedom is the global constant
+
+======================================================================================================================
+D  DIRAC CONSTRAINT COUNT on a periodic 1-D lattice (flat background; gravity's 2 counted as textbook): fluid + HT (or + scalar)
+======================================================================================================================
+  lattice N = 3 (periodic).  dim = phase-space dimension of the extended space; K = independent constraints; S = rank of their Poisson matrix (second class);
+  F = K - S (first class); D = dim - 2F - S = physical phase-space dimension; closure = residual of the consistency system for the multipliers (0 => no tertiary constraint)
+    FIXED Lambda (before: fluid only)  dim= 18  K= 12  S= 12  F=  0  D=  6  closure=7.1e-14  max|C|=8.9e-15
+    HT_UNTIED (now)                    dim= 36  K= 23  S= 18  F=  5  D=  8  closure=1.8e-13  max|C|=4.4e-16
+  [PASS] H-DIRAC-0 before: the fluid alone (J^m second class with p_J and chi = dH/dJ^1; Hessian of rho(n) non-degenerate) leaves (theta, pi): D = 2N = 6, i.e. ONE local dof per site (the sound mode)
+         measured: D_fixed = 6; closure residual 7.1e-14
+         reading:  with GR's 2 tensor dof (textbook: 12 canonical variables - 8 from 4 first-class constraints = 4 = 2 dof, NOT re-derived here) the local count is 3
+  [PASS] H-DIRAC after adding the HT multiplier: D = 2N + 2 = 8 (fluid + ONE global pair (Lambda_0, clock volume)), first class F = 2N - 1 (the pT^1 momenta and the N-1 independent d_x Lambda constraints), and NO secondary constraint arises from the fluid's Lambda-dependence (closure)
+         measured: mode HT_UNTIED: D = 8, F = 5 (target 5), closure 1.8e-13
+         reading:  local dof unchanged (2 + 1); the one new integration constant is global  [MUTATE=2 is not a dof question: the count is unchanged, the tie checks H-EOS/H-TIE/H-CLOCK catch it]
+
+SUMMARY A1_action_field_equations_dof (MUTATE=2): 8/11 checks pass; load-bearing failures = 3
+   failed: H-EOS (load-bearing)
+   failed: H-TIE (load-bearing)
+   failed: H-CLOCK (load-bearing)

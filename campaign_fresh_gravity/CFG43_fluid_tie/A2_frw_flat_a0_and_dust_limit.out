@@ -1,0 +1,68 @@
+
+A2 -- FRW LIMIT OF THE A1 ACTION: (a) a0(z) FLAT because the cap reads the HT constant; (b) the fluid is CDM-like dust with Omega_c FREE
+(initial data) and a constant Lambda; (c) the tie survives across universes (Lambda_0 is a free integration constant, P_cap follows it).
+
+The equations integrated are the ones DERIVED in A1 (sympy Euler-Lagrange of the minisuperspace action, lapse N = 1 after variation):
+  HT (MUTATE=0/2):  E_T: Lambda' = 0;  E_theta: J0' = 0;  E_N: 3 Mp2 H^2 = Mp2 Lambda + rho(n; Lambda);  E_a: the second-order Raychaudhuri equation
+  MUTATE=1 (scalar replaces the multiplier):  psi'' + 3 H psi' + U'(psi) + rho_Lambda U'/Mp2 = 0, Friedmann with (psi'^2/2 + U)
+  MUTATE=2 (tie dropped): the cap reads an independent constant Lc (a0 does not follow Lambda_0).
+Units: Mp2 = 1, m = 1, a = 1 today, Lambda = 1 for the reference universe (so Omega_c0 = n0/(Lambda + n0)-type ratios are dimensionless).
+
+Checks:  A2-a a0(z)/a0(0), Lambda_eff(z) inferred from (H, rho) is constant;  A2-b E_N is preserved by the integrated E_a (Bianchi) and n a^3 = const;
+         A2-c dust limit: rho a^3 constancy, w and c_s^2 sizes, H(z)/H_LCDM;  A2-d Omega_c free (two integration constants);  A2-e the tie across universes.
+         C-XR20 (control): a thawing exponential field reproduces XR20's E4 rise of a0 toward high z (+0.07..+0.16 dex at z = 2.5).
+Run:  python3 A2_frw_flat_a0_and_dust_limit.py     (MUTATE=1 or 2 for the controls)
+
+MUTATE mode = 0
+
+======================================================================================================================
+A2-a  a0(z) and the Lambda inferred from (H, rho): constant?  (a0 = sqrt(8 pi G P_cap) = sqrt(P_cap/Mp2))
+======================================================================================================================
+  a0(z)/a0(0) along the integrated HT solution (a0 = sqrt(eps Lambda_eff), Lambda_eff from the geometry): z=0.5: 0.999999999999934, z=1: 0.999999999999798, z=2.5: 0.999999999999238, z=5: 0.999999999996478, z=1100: 0.999999957258017
+  Lambda_eff(z) = 3H^2 - rho/Mp2, max |Lambda_eff/Lambda_eff(0) - 1| over z in [0, 10] = 5.68e-11;  over z in [0, 1100] = 6.33e-07 (round-off amplified by rho/Lambda ~ 4e8 at z = 1100: 1e-13 x 4e8 ~ 4e-5; not physics)
+  [PASS] A2-a a0(z) = alpha(Lambda) c^2 is flat: with Lambda READ FROM THE GEOMETRY (3H^2 - rho/Mp2 along the integrated solution) a0(z)/a0(0) = 1 to 1e-10 at z = 0.5, 1, 2.5, 5, and Lambda_eff is constant to 1e-10 over z <= 10 (z = 1100 is beyond the round-off floor; there E_T's Lambda' = 0 is the statement)
+         measured: max |dlog a0| (z <= 10) = 1.5e-12 dex; Lambda_eff spread (z <= 10) 5.68e-11
+         reading:  DERIVED: E_T = -Mp2 Lambda' (A1); the numbers only confirm that the integrated E_a keeps the constraint
+
+======================================================================================================================
+A2-b  the constraint is preserved by the integrated Raychaudhuri equation (Bianchi) and n a^3 = const
+======================================================================================================================
+  [PASS] A2-b E_N (Friedmann constraint) stays zero along the integration of E_a from data with E_N = 0, and n a^3 = J0 is constant
+         measured: max |E_N|/(3 H^2 a^3) = 1.65e-13 over a in [5e-4, 1]; n a^3/J0 - 1 = 2.2e-16
+         reading:  the reparametrisation identity of A1 (H-BIANCHI) at work; the HT sector does not disturb it (Lambda' = 0)
+
+======================================================================================================================
+A2-c  DUST LIMIT: rho a^3, w, c_s^2 and H(z)/H_LCDM for the cold fluid (nu_s = 1e+06; POSTULATED EOS)
+======================================================================================================================
+  z         :         0        0.5          1        2.5          5         10         30        100        300       1100
+  rho a^3/(rho a^3)_0 - 1 :  0.00e+00   9.99e-15   2.98e-14   1.78e-13   9.16e-13   5.67e-12   1.27e-10   4.14e-09   1.48e-08   1.56e-08
+  w = P/rho :  4.26e-15   1.44e-14   3.41e-14   1.83e-13   9.21e-13   5.67e-12   1.27e-10   3.68e-09   8.45e-10   1.74e-11
+  c_s^2 = dP/drho :  8.53e-15   2.88e-14   6.82e-14   3.66e-13   1.84e-12   1.13e-11   2.54e-10   6.15e-09   1.23e-11   1.06e-16
+  H/H_LCDM - 1 (same bare dust) max = 7.80e-09; after freeing the dust density (Omega_c rescale k = 1.0000000088) max = 4.39e-09
+  [PASS] A2-c cold-limit: rho a^3 constant to (pi/2) eps/nu_s ~ 1.6e-08, w < 1e-6, c_s^2 < 1e-6 everywhere on z in [0, 1100], H(z) = LCDM with a rescaled (FREE) dust density to 4.4e-09
+         measured: max |rho a^3 - 1| = 1.56e-08; max w = 3.68e-09; max c_s^2 = 6.15e-09 (NB only a crude cold check: the Jeans/structure bound is applied in A3); H/H_LCDM residual 4.39e-09
+         reading:  DERIVED in the limit x -> 0 or x -> oo (the EOS is dust + a constant mass renormalisation); the size of the bump is set by the POSTULATED nu_s
+
+======================================================================================================================
+A2-d  Omega_c is FREE (initial data J0) and independent of Lambda_0: two integration constants, P_cap depends on Lambda_0 only
+======================================================================================================================
+   Lambda_0 = 1, n0 = 0.4286  ->  Omega_c0 = 0.300000, Omega_Lambda0 = 0.700000, P_cap = eps Mp2 Lambda_fluid = 9.947184e-03
+   Lambda_0 = 1, n0 = 0.1111  ->  Omega_c0 = 0.100000, Omega_Lambda0 = 0.900000, P_cap = eps Mp2 Lambda_fluid = 9.947184e-03
+   Lambda_0 = 1, n0 = 1.5000  ->  Omega_c0 = 0.600000, Omega_Lambda0 = 0.400000, P_cap = eps Mp2 Lambda_fluid = 9.947184e-03
+   Lambda_0 = 2, n0 = 0.4286  ->  Omega_c0 = 0.176471, Omega_Lambda0 = 0.823529, P_cap = eps Mp2 Lambda_fluid = 1.989437e-02
+  [PASS] A2-d Omega_c0 varies freely with the initial data J0 (0.1 ... 0.6) at fixed Lambda_0, while P_cap does not move; Omega_c + Omega_Lambda = 1 in every run (GR + Lambda + dust)
+         measured: Delta Omega_c = 0.200 at fixed Lambda_0; Delta P_cap = 0.0e+00; flatness residual 4.9e-14
+         reading:  Omega_c is initial data (like LCDM); the cap depends on Lambda_0 only
+
+======================================================================================================================
+A2-e  the tie holds across universes: a0 (from the fluid's cap) / kappa sqrt(Lambda_0/8pi) is the same in every solution
+======================================================================================================================
+   Lambda_0 = 0.5   a0_cap = 0.070524   kappa sqrt(Lambda_0/8pi) = 0.070524   ratio 1.000000000000
+   Lambda_0 = 1     a0_cap = 0.099736   kappa sqrt(Lambda_0/8pi) = 0.099736   ratio 1.000000000000
+   Lambda_0 = 2     a0_cap = 0.141047   kappa sqrt(Lambda_0/8pi) = 0.141047   ratio 1.000000000000
+   Lambda_0 = 7     a0_cap = 0.263876   kappa sqrt(Lambda_0/8pi) = 0.263876   ratio 1.000000000000
+  [PASS] A2-e a0_cap(universe) / [kappa sqrt(Lambda_0/8 pi)] = 1 for Lambda_0 = 0.5, 1, 2, 7: the cap follows the HT integration constant (one constant, kappa the coupling)
+         measured: ratios ['1.000000000000', '1.000000000000', '1.000000000000', '1.000000000000']
+         reading:  MUTATE=2: the fluid's cap reads Lc (held at the reference value), so the ratio drifts as sqrt(Lc/Lambda_0)
+
+SUMMARY A2_frw_flat_a0_and_dust_limit (MUTATE=0): 5/5 checks pass; load-bearing failures = 0
