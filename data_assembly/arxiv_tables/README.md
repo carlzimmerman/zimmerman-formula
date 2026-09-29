@@ -1,4 +1,4 @@
-# Per-galaxy tables taken from the public TeX/FITS source of nine arXiv papers
+# Per-galaxy tables taken from the public TeX/FITS source of eleven arXiv papers
 
 Built 2026-09-29 by `build.py`. The source tarballs (arxiv.org/e-print/<id>, about 125 MB in total) are kept outside the
 repo in `~/new_physics/_external_data/arxiv_src/`; the exact table fragments and the two FITS files are
@@ -19,6 +19,7 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
 | `lelli2023_massmodels.csv`, `lelli2023_3dbarolo.csv` | 2 galaxies (6 model fits) | Lelli+2023, arXiv:2302.00030 (ALMA CO, zC-488879 at z 1.47, zC-400569 at z 2.24) | 3DBarolo geometry and mean V_rot; baryons-only, baryons+NFW and MOND mass models with gas, disk and bulge masses (1e10 Msun) |
 | `alpaka_jwst2026_data.csv`, `alpaka_jwst2026_fiducial_fit.csv` | 3 discs (ALPAKA IDs 1, 3, 13) | arXiv:2601.03338 (JWST NIRCam stars + ALMA CO/[CI] gas, z 0.56, 1.45, 2.10) | line luminosity, SED M*, SFR; rotation-curve decomposition with free gas normalisation: dynamical stellar mass, bulge, disc, gas, halo mass |
 | `cristal2025_sample.csv`, `cristal2025_kinematics.csv`, `cristal2025_dynamics.csv` | 32 galaxies; 34 kinematic rows; 14 dynamical models | ALMA-CRISTAL, arXiv:2507.11600 ([CII], z 4.41-5.69) | positions, M*, SFR, beams; kinematic class (Best Disk 7, Disk 9, Non-Disk 18) and f_molgas; DysmalPy: M_tot, R_e,disk, V_rot(R_e), sigma0, f_DM(R_e), **R_out/R_e** and R_out/beam |
+| `romanoliveira2023_sample.csv`, `_gasmasses.csv`, `_kinematics.csv` | 5 sources (4 with kinematics) | Roman-Oliveira+2023, arXiv:2302.03049 ([CII] with ALMA, z 4.26-4.43: AzTEC 1, BRI1335-0417, J081740, SGP38326-1/2) | [CII] data properties; SFR and H2 masses from literature CO (7.6e10-1.9e11 Msun); V_rot,max 198-562 km/s, V_ext, sigma with errors |
 | `sharma2024_gs21b.csv` | 225 | Sharma+2024, arXiv:2406.08934 (KROSS, z 0.76-1.04) | inclination, R_e, **velocities at R_e, R_opt and R_out (about 5 R_D)**, M*, M_H2, M_HI, gas radius, quality flags |
 
 ## Cross-checks that passed

@@ -407,6 +407,54 @@ no_dyn = sorted(d for d in disk_ids if d not in ids3 and d not in {v for v in al
 log(f"CRISTAL: 16 galaxies are classified Disk or Best Disk; {sorted(disk_ids - ids3 - set(alias.values()))} have no row in the dynamical-model table (the table lists 14; ID '09' there is '09a' elsewhere)")
 log(f"CRISTAL: {len(C3r)} disks with a dynamical model; median R_out/R_e = {np.median(ro):.1f}; velocities are Vrot at R_e; gas is [CII]-based (f_molgas), not CO")
 
+# ------------------------------------------------------------------ Roman-Oliveira+2023, arXiv:2302.03049 ([CII] discs at z ~ 4.3, five sources, four discs)
+def ro_rows(fn, first_regex):
+    out = []
+    for l in active_lines(fn):
+        s = re.sub(r"\\vspace\{[^}]*\}", "", l)
+        s = re.sub(r"\s*\\\\.*$", "", s.strip())
+        c = [x.strip() for x in s.split("&")]
+        if len(c) >= 3 and re.match(first_regex, c[0]):
+            out.append(c)
+    return out
+
+
+RO_ID = r"^(AzTEC 1|BRI1335-0417|J081740|SGP38326-[12])"
+R1 = ro_rows("romanoliveira2023_2302.03049_table_sample.tex", RO_ID)
+check(len(R1) == 5, f"Roman-Oliveira sample table has 5 sources (got {len(R1)})")
+rr = []
+for c in R1:
+    idn = re.sub(r"\s*\$.*$", "", c[0]).strip()
+    beam = re.findall(r"\d+\.\d+", c[6])
+    rr.append([idn, c[1], c[2], float(c[3]), float(c[4]), float(c[5]), float(beam[0]), float(beam[1]), cell(c[7])[0], cell(c[8])[0], cell(c[8])[1], cell(c[8])[2], cell(c[9])[0]])
+write("romanoliveira2023_sample.csv", ["id", "ra", "dec", "z", "kpc_per_arcsec", "channel_kms", "beam_major_arcsec", "beam_minor_arcsec", "rms_mjy_beam",
+      "I_cii_jykms", "errhi", "errlo", "int_time_s"], rr)
+check(all(4.2 < r[3] < 4.5 for r in rr), "Roman-Oliveira z in (4.2, 4.5)")
+R2 = ro_rows("romanoliveira2023_2302.03049_table_gasmasses.tex", RO_ID)
+check(len(R2) == 5, f"Roman-Oliveira gas-mass table has 5 sources (got {len(R2)})")
+def sci(s):
+    m = re.search(r"(\d+\.?\d*)\s*\\pm\s*(\d+\.?\d*)\s*\\times\s*10\^\{(\d+)\}", s)
+    if m: return float(m.group(1)) * 10 ** int(m.group(3)), float(m.group(2)) * 10 ** int(m.group(3))
+    m = re.search(r"(\d+\.?\d*)\s*\\times\s*10\^\{(\d+)\}", s)
+    return (float(m.group(1)) * 10 ** int(m.group(2)), np.nan) if m else (np.nan, np.nan)
+gas = []
+for c in R2:
+    idn = re.sub(r"\s*\$.*$", "", c[0]).strip()
+    s_sfr = cell(c[1].replace("\\sim", "")); g, ge = sci(c[2])
+    gas.append([idn, s_sfr[0], s_sfr[1], s_sfr[2], "approx" if "sim" in c[1] else "", g, ge, "approx" if "sim" in c[2] else "", c[3]])
+write("romanoliveira2023_gasmasses.csv", ["id", "sfr_msun_yr", "errhi", "errlo", "sfr_flag", "mh2_msun", "e_mh2", "mh2_flag", "refs"], gas)
+log("Roman-Oliveira: H2 masses (from literature CO luminosities, the paper's own conversion) between %.1e and %.1e Msun" % (min(g[5] for g in gas), max(g[5] for g in gas)))
+R3 = ro_rows("romanoliveira2023_2302.03049_table_kinematics.tex", RO_ID)
+check(len(R3) == 4, f"Roman-Oliveira kinematics table has 4 discs (got {len(R3)})")
+kk = []
+for c in R3:
+    idn = re.sub(r"\s*\$.*$", "", c[0]).strip()
+    v = [cell(x) for x in c[1:7]]
+    kk.append([idn] + [y for t_ in v for y in t_[:3]])
+write("romanoliveira2023_kinematics.csv", ["id"] + [f"{n}{s}" for n in ("vrot_max_kms", "vrot_ext_kms", "sigma_mean_kms", "sigma_ext_kms", "vmax_over_sigma", "vext_over_sigma_ext") for s in ("", "_errhi", "_errlo")], kk)
+vmx = [k[1] for k in kk]; check(all(150 < v < 700 for v in vmx), f"Roman-Oliveira Vrot,max in 150-700 km/s: {vmx}")
+log("Roman-Oliveira: V_ext is the mean of the last two radial points; the outermost radius is not tabulated (plotted only); H2 masses are literature CO-based; external velocities 125-548 km/s (massive submillimetre galaxies); the acceleration at the outer radius is not assessed here")
+
 # ------------------------------------------------------------------ manifest
 src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, tables/galaxy_parameters.tbl",
        "msa3d_2606.27853_fitted_parameters.tbl": "arXiv:2606.27853 source, tables/fitted_parameters.tbl",
@@ -425,6 +473,9 @@ src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, table
        "cristal2025_2507.11600_table_main.tex": "arXiv:2507.11600 source, main_arxiv.tex lines 241-297",
        "cristal2025_2507.11600_table_kinematics.tex": "arXiv:2507.11600 source, main_arxiv.tex lines 317-393",
        "cristal2025_2507.11600_table_dynamics.tex": "arXiv:2507.11600 source, main_arxiv.tex lines 761-815",
+       "romanoliveira2023_2302.03049_table_sample.tex": "arXiv:2302.03049 source, main.tex (sample table)",
+       "romanoliveira2023_2302.03049_table_gasmasses.tex": "arXiv:2302.03049 source, main.tex (SFR and gas-mass table)",
+       "romanoliveira2023_2302.03049_table_kinematics.tex": "arXiv:2302.03049 source, main.tex (kinematic parameters)",
        "sharma2024_2406.08934_GS21b_catalog.fits": "arXiv:2406.08934 source, extra_material/GS21b_catalog.fits",
        "sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits": "arXiv:2406.08934 source, extra_material/CRCs_FitsParam_Burkert.fits"}
 man = {"built_by": "data_assembly/arxiv_tables/build.py", "source_tarballs": "https://arxiv.org/e-print/<id>", "raw_small": {}}
