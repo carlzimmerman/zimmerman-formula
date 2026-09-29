@@ -1,0 +1,59 @@
+CFG113 -- DOES GC ORBITAL ANISOTROPY RESCUE THE LAW'S SLUGGS DEFICIT?  CFG111's JAM-calibrated SLUGGS test (published per-galaxy GC
+density slopes gamma_i, isotropic orbits) with a constant orbital anisotropy beta for the GC tracer.
+
+Criteria frozen and committed before any number: campaign_fresh_gravity/CFG113_FROZEN_CRITERIA.md (8ef01b411).
+  bracket  constant beta in {-0.5, -0.25, 0, +0.25, +0.5} for every galaxy (spans the measured early-type GC-system anisotropies: NGC 5846
+           red ~0.4 / blue ~0.15 outside ~3 R_e, Napolitano+2014; NGC 1407 metal-rich radial / metal-poor tangential, Wasserman+2018; M87 red
+           tangential / blue ~isotropic, Li+2020); beta = 0 is the control (= CFG111); +0.75 / +0.9 reported beyond the bracket.
+  machinery CFG111's per-galaxy pipeline (CFG55 exec'd read-only): published gamma_i, CFG55's JAM-calibrated masses (independent of the GC
+           orbits), CFG55's 16; beta enters only h50's sigma_r2 / sigma_los (which already take a constant beta).  beta(r) is not tested.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  beta = 0 reproduces CFG111's committed per-galaxy offsets (law and rule, both footings) to 1e-9.
+  C2  CONTROL  flat-v_c potential, power-law tracer: sigma_r2 / sigma_los reproduce sigma_los^2 / v_c^2 = (g - b(g-1)) / (g (g - 2b)) to 0.3%
+               at R = 5 kpc for gamma in {2.5, 3.43}, beta in {-0.5, +0.5}.
+  H1  [HEADLINE; MUTATE must fail] with the published gamma_i the law's JAM-calibrated SLUGGS deficit exceeds 2 sigma at EVERY beta in the
+               bracket, both footings (the minimum over the bracket is tested).
+  R1-R6 (reported): law and rule at every beta; per-galaxy null beta; the global null beta; gamma = 3 at beta = +-0.5; SLUGGS population
+               masses at beta = +-0.5; the four centrals excluded at beta = +0.5.
+  R7  (POST HOC, added after the first run; reported only) the law's mean at beta = 0.5 / 0.9 / 0.99 on an extended radial grid,
+               bounding the solver's grid-edge bias near beta = 1.  Every other line of both logs is unchanged apart from timing.
+MUTATE=1: on each footing every galaxy's observed outer dispersions x 10^(-D), D = the law's mean offset at (gamma_i, beta = +0.5) from the
+  unmodified data -- the deficit removed, the scatter kept; H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: beta = 0 reproduces CFG111's committed per-galaxy offsets (law and rule, both footings) to 1e-9
+         max |d offset| 0.0e+00 (64 offsets)
+  [PASS] C2 CONTROL: flat-v_c potential, power-law tracer: h50's sigma_r2 / sigma_los reproduce the analytic sigma_los^2 / v_c^2 to 0.3% (R = 5 kpc)
+         worst 2.3e-04; g 2.5 b -0.5: 0.37150 vs 0.37143; g 2.5 b +0.5: 0.46663 vs 0.46667; g 3.43 b -0.5: 0.30577 vs 0.30569; g 3.43 b +0.5: 0.26577 vs 0.26575
+
+======================================================================================================================
+H1  THE LAW'S DEFICIT ACROSS THE DECLARED ANISOTROPY BRACKET (published gamma_i)
+======================================================================================================================
+    canonical: beta -0.50 law +0.0856 (+3.66); beta -0.25 law +0.0842 (+3.64); beta +0.00 law +0.0821 (+3.60); beta +0.25 law +0.0789 (+3.53); beta +0.50 law +0.0738 (+3.38)
+    alt: beta -0.50 law +0.0770 (+3.31); beta -0.25 law +0.0752 (+3.28); beta +0.00 law +0.0728 (+3.22); beta +0.25 law +0.0693 (+3.12); beta +0.50 law +0.0636 (+2.93)
+  [PASS] H1 [HEADLINE] WITH THE PUBLISHED SLOPES THE LAW'S DEFICIT EXCEEDS 2 SIGMA AT EVERY BETA IN THE BRACKET, both footings
+         canonical: minimum +3.38 sigma at beta +0.50 (+0.0738 +- 0.0218); alt: minimum +2.93 sigma at beta +0.50 (+0.0636 +- 0.0217)  [beta = 0 (CFG111): +3.60 / +3.22 sigma]
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) the law and the rule at every beta (canonical | alt; sigma = mean / error)
+         beta -0.50: law +0.0856 (+3.66) | +3.31, rule +0.0359 (+2.06) | +2.10; beta -0.25: law +0.0842 (+3.64) | +3.28, rule +0.0324 (+1.84) | +1.91; beta +0.00: law +0.0821 (+3.60) | +3.22, rule +0.0276 (+1.55) | +1.64; beta +0.25: law +0.0789 (+3.53) | +3.12, rule +0.0209 (+1.13) | +1.26; beta +0.50: law +0.0738 (+3.38) | +2.93, rule +0.0110 (+0.56) | +0.69; beta +0.75: law +0.0641 (+2.99) | +2.48, rule -0.0047 (-0.21) | -0.10; beta +0.90: law +0.0534 (+2.46) | +1.91, rule -0.0189 (-0.75) | -0.68
+  [PASS] (reported) R2 (reported) per galaxy (canonical): the constant beta in [-1, 0.99] that nulls the law's offset (nan = none), beside gamma_i
+         1023 +nan (gamma 2.89, offset at 0 +0.093); 2768 +nan (gamma 2.75, offset at 0 -0.022); 3377 +nan (gamma 3.20, offset at 0 +0.077); 3607 +0.08 (gamma 2.63, offset at 0 +0.002); 4278 +nan (gamma 2.91, offset at 0 +0.123); 4365 +nan (gamma 2.56, offset at 0 +0.174); 4374 +nan (gamma 2.56, offset at 0 +0.167); 4459 +nan (gamma 2.89, offset at 0 -0.031); 4473 +nan (gamma 2.91, offset at 0 +0.055); 4486 +nan (gamma 2.49, offset at 0 +0.237); 4494 +nan (gamma 2.87, offset at 0 -0.112); 4526 +nan (gamma 2.72, offset at 0 +0.057); 4649 +0.93 (gamma 2.50, offset at 0 +0.089); 4697 +nan (gamma 2.79, offset at 0 +0.079); 5846 +nan (gamma 2.59, offset at 0 +0.183); 7457 +nan (gamma 3.43, offset at 0 +0.143)  [NGC 5846 measured: red ~0.4, blue ~0.15 outside ~3 R_e]
+  [PASS] (reported) R3 (reported) the one constant beta in [-1, 0.99] that nulls the law's mean offset (nan = none)
+         canonical: +nan (mean at beta 0.99: +0.0436); alt: +nan (mean at beta 0.99: +0.0313)
+  [PASS] (reported) R4 (reported) gamma = 3 for every galaxy (CFG55's baseline), canonical: the law and the rule at beta = -0.5 / 0 / +0.5
+         beta -0.5: law +0.0943 (+3.87), rule +0.0470 (+2.66); beta +0.0: law +0.0970 (+3.99), rule +0.0456 (+2.58); beta +0.5: law +0.1018 (+4.20), rule +0.0431 (+2.40)
+  [PASS] (reported) R5 (reported) SLUGGS's population masses, published gamma_i, canonical: the law and the rule at beta = -0.5 / +0.5
+         beta -0.5: law +0.0658 (+2.44), rule -0.0044 (-0.24); beta +0.5: law +0.0548 (+2.24), rule -0.0302 (-1.31)
+  [PASS] (reported) R6 (reported) the four group/cluster centrals excluded, beta = +0.5, canonical
+         N = 12: law +0.0436 (+1.93 sigma); rule +0.0072 (+0.28 sigma)
+  [PASS] (reported) R7 (post hoc, reported only; added after the first run) the law's mean offset at beta = 0.5 / 0.9 / 0.99 on an extended radial grid (to 3e6 kpc, 1600 points), bounding the solver's grid-edge bias near beta = 1
+         canonical: beta 0.5: +0.0738 (standard grid +0.0738), beta 0.9: +0.0525 (standard grid +0.0534), beta 0.99: +0.0411 (standard grid +0.0436); alt: beta 0.5: +0.0636 (standard grid +0.0636), beta 0.9: +0.0408 (standard grid +0.0417), beta 0.99: +0.0288 (standard grid +0.0313)
+
+    READING (declared): orbital anisotropy inside the measured range does not rescue the law
+
+  10/10 checks pass; load-bearing failures: 0   (24 s)
