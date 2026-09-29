@@ -1,0 +1,29 @@
+=== decision cells (mu = 0.67): |mine - CFG175| for D', sigma
+  s=1 flat  mine +0.14412 +- 0.04389 | CFG175 +0.14412 +- 0.04389 | diff +3.5e-06 -6.0e-07
+  s=1 rival mine -0.00601 +- 0.04429 | CFG175 -0.00601 +- 0.04429 | diff +3.1e-07 -3.5e-07
+  s=1 T     mine +0.32274 +- 0.04654 | CFG175 +0.32273 +- 0.04654 | diff +9.9e-06 -1.1e-06
+  s=0 flat  mine -0.13017 +- 0.05717 | CFG175 -0.13017 +- 0.05717 | diff +4.1e-06 +4.0e-07
+  s=0 rival mine -0.27885 +- 0.06032 | CFG175 -0.27885 +- 0.06031 | diff +1.1e-06 +3.5e-07
+  s=0 T     mine +0.04573 +- 0.05369 | CFG175 +0.04572 +- 0.05369 | diff +1.1e-05 +2.8e-07
+  max |diff| decision cells: 1.05e-05
+=== the (s, mu) map: KURVS mu in {0.25,0.67,1.5,4}, KROSS mu=0.67, all six s, three laws
+  90 cells compared: max |dD'| 1.75e-05, max |dsigma| 2.08e-06
+=== break-evens and intervals (both finite): relative differences
+  95 finite values compared; worst relative difference 4.77e-04 at ('KROSS|1.00|rival', 'mu', 0.051994808500244544, 0.052019614388850506)
+  values finite in one and missing in the other (reporting convention, listed):
+     ('KURVS|0.00|flat', 'hi', 0.17434439878578675, None)
+     ('KROSS|1.00|rival', 'lo', None, 0.01)
+=== s0 fit points
+  KURVS flat  mine 0.3892 | CFG175 0.3892
+  KURVS rival mine 1.0328 | CFG175 1.0328
+  KURVS T     mine <0 | CFG175 < 0
+  KROSS flat  mine 1.0389 | CFG175 1.0390
+  KROSS rival mine 1.8678 | CFG175 1.8679
+  KROSS T     mine 0.2556 | CFG175 0.2557
+=== status labels and summary
+  status labels different: 0 of 18
+  summary equal (modulo the 'STRONGLY DISFAVOURED' suffix wording): True
+=== independence check on HOW the two pipelines differ (from the code, read after my runs):
+  CFG175 exec's CFG141's own pipeline and re-implements P4 pooling/anchor in its own terms/DS/pooled functions; mine imports the CFG165 referee module (which itself matched CFG160 after the inc_star_deg column).
+  Both use the same data files, CFG140 set-up choices and Kretschmer alpha (shared). Root-finder: theirs a 36-node log grid + brentq; mine 200 nodes + brentq.
+  The 1-sigma interval convention (roots of D'(mu) = +-sigma(mu), sigma evaluated at the trial mu) is the same; where no break-even exists theirs still prints an upper edge, mine prints none.
