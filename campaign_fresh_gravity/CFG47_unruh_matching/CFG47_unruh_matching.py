@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""CFG46 -- does the Unruh / de Sitter matching, with a mode count n, give kappa = 1/2?  (A pasted 'Bohr postulate' route.)
+"""CFG47 -- does the Unruh / de Sitter matching, with a mode count n, give kappa = 1/2?  (A pasted 'Bohr postulate' route.)
 
 The route under test (third-party text, not a framework result): read the integer 2 in kappa = 1/2 as the two graviton
 helicities, and 'derive' a0 = c sqrt(G rho_L)/n by matching an Unruh temperature to the de Sitter horizon temperature or by
@@ -20,7 +20,7 @@ import sympy as sp
 HERE = os.path.dirname(os.path.abspath(__file__))
 MUTATE = int(os.environ.get("MUTATE", "0"))
 tag = "" if MUTATE == 0 else "_MUTATE%d" % MUTATE
-OUT = open(os.path.join(HERE, "CFG46_unruh_matching" + tag + ".out"), "w", encoding="utf-8")
+OUT = open(os.path.join(HERE, "CFG47_unruh_matching" + tag + ".out"), "w", encoding="utf-8")
 res = []; fail = 0
 
 def P(*a):
@@ -44,7 +44,7 @@ SQ = math.sqrt(8 * math.pi / 3)
 fac = (2.0 / Z) if MUTATE == 1 else 1.0
 kmeas = KMEAS if MUTATE != 2 else [("BTFR", SQ / 2, 0.076), ("a0 ties", SQ / 2, 0.17)]
 
-P("CFG46 -- Unruh / de Sitter matching with a mode count n (MUTATE=%d)" % MUTATE)
+P("CFG47 -- Unruh / de Sitter matching with a mode count n (MUTATE=%d)" % MUTATE)
 P("constants: G=%.4e c=%.1f rho_L=%.4e kg/m3 hbar=%.6e ; sqrt(8pi/3)=%.6f  Z=%.6f" % (G, C, RHO_L, HBAR, SQ, Z))
 
 # ---------------- U1 symbolic
@@ -102,11 +102,11 @@ check("U5", "several integers fit the band, so a fit cannot select the mode coun
 P("\nRESULT: the Unruh/de Sitter matching lands at a = c H_L (kappa = 2.894/n). The footing needs n = Z = 5.79; n = 2 is off by 2.9x.")
 P("The energy-matching variant has the wrong functional form. kappa = 1/2 stays FITTED; this route is retired as stated.")
 npass = sum(1 for r in res if r[1])
-P("\nSUMMARY CFG46 (MUTATE=%d): %d/%d checks pass; load-bearing failures = %d" % (MUTATE, npass, len(res), fail))
+P("\nSUMMARY CFG47 (MUTATE=%d): %d/%d checks pass; load-bearing failures = %d" % (MUTATE, npass, len(res), fail))
 for t_, ok, lb in res:
     if not ok: P("   failed: %s %s" % (t_, "(load-bearing)" if lb else "(reported)"))
 json.dump({"mutate": MUTATE, "kappa_match_over_n": SQ, "Z": Z, "n_required_canonical": nreq_can,
            "energy_matching_exponent": slope, "integers_in_2sigma": ints,
            "checks": [{"id": t_, "ok": ok, "load_bearing": lb} for t_, ok, lb in res]},
-          open(os.path.join(HERE, "CFG46_unruh_matching_results%s.json" % tag), "w"), indent=1)
+          open(os.path.join(HERE, "CFG47_unruh_matching_results%s.json" % tag), "w"), indent=1)
 OUT.close(); sys.exit(1 if fail else 0)

@@ -1,6 +1,6 @@
-# CFG46 — the Unruh / de Sitter matching with a mode count n
+# CFG47 — the Unruh / de Sitter matching with a mode count n
 
-A pasted third-party route said κ = ½ follows from two graviton helicities: match an Unruh temperature to the de Sitter horizon and divide by n = 2. The algebra had not been written. `CFG46_unruh_matching.py` (9 checks; `MUTATE=1` and `MUTATE=2` must exit 1, and do) writes it.
+A pasted third-party route said κ = ½ follows from two graviton helicities: match an Unruh temperature to the de Sitter horizon and divide by n = 2. The algebra had not been written. `CFG47_unruh_matching.py` (9 checks; `MUTATE=1` and `MUTATE=2` must exit 1, and do) writes it.
 
 | | result |
 |---|---|
@@ -11,3 +11,5 @@ A pasted third-party route said κ = ½ follows from two graviton helicities: ma
 | U5 | disclosure: the BTFR 2σ band admits every integer n = 5…9, so a fit cannot select the count; n = 6 (κ = 0.482) would be post-hoc numerology |
 
 Standing: the route as pasted is retired (n = 2 is excluded; the energy variant has the wrong form). κ = ½ stays FITTED. This does not exclude some other mechanism that would produce a factor Z; it shows the graviton-helicity count does not.
+
+Numbering: first committed as CFG46 (1c375b449); renamed CFG47 because another session used CFG46 for the ultra-faint binary-corrected test.
