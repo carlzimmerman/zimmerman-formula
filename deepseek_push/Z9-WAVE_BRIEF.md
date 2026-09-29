@@ -123,3 +123,29 @@ estimator-precision result, and the OPERATIVE identity gate moves to K-C:
   dtau_q := |Bfit(full tau grid) - Bfit(grid without tau=1e-2)| measures
   Bfit's own tau^3-leakage scale (ablation, not tuning). Exit 0 iff P0 and
   K-C (i)(ii)(iii) all pass.
+
+## MC7 DOOR (conductor, 2026-09-29, registered BEFORE any run — successor to MC6's refutation, landed within the same tick per the Z4 in-tick precedent)
+Goal: a dedicated determination of the thin-window limit c00(q) = lim_{tau0->0}
+E[D]_vol/tau0 with an extrapolation MODEL SELECTED BY MEASURED SE — deciding
+between "MC6's fire was extrapolation-model-limited" and "MC6's refutation
+stands at independent seeds/denser grid".
+Budget (fixed before any run): q in {0,1,3,6,10}; tau0 grid 8 values
+{1e-2, 6e-3, 4e-3, 2e-3, 1e-3, 6e-4, 4e-4, 2e-4}; n = 4e6 x 6 reps/cell
+(n_eff 2.4e7 per cell), seeds 7101.., single pass, no re-tuning.
+Gates (pre-registered):
+- P0: fresh pooled c0 at tau0 = 1e-3 (MC4's registered operating point) vs
+  MC4 stored pooled: |diff| <= 3*sqrt(se_fresh^2 + se_stored^2). FIRED ->
+  exit 1.
+- M1: per q, weighted linear and quadratic fits of c0(tau0) on the 8-point
+  grid; both intercepts + SEs recorded.
+- M2 model selection: quadratic coefficient significant (|c2|/se(c2) > 3) ->
+  quadratic model selected; else linear.
+- M3: selected-intercept c00(q) vs MC4 line a+bq: any q with |z| > 3 ->
+  "MC6 refutation CONFIRMED at independent seeds and 2x denser grid" (exit
+  0 — the refutation is a result); if ALL q within 3 SE -> "MC6 fire was
+  extrapolation-model-limited; MC4 line = thin-window limit restored" (exit
+  0, MC5 R_v CONFIRMED status restored — append-only correction row).
+- M4: R_v(0,q) = (3/4+5q/12)/c00(q) re-adjudicated vs the CANDIDATE curve
+  (MC4-line denominator); recorded either way.
+- Exit 0 iff P0 passes and M1-M4 complete with any honest M2/M3/M4 outcome;
+  exit 1 only on P0 fire or execution failure.
