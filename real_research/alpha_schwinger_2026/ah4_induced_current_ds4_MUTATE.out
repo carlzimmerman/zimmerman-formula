@@ -1,0 +1,24 @@
+====================================================================================================
+AH4 induced current in dS_4 -- mode: MUTATE CONTROL (delta dropped)
+====================================================================================================
+
+0. TRANSCRIPTION of eq. (2.58): finite and linear as lambda -> 0, odd in lambda
+     mu = 1.0:  f/lambda at 1e-3: +1.31194567   at 1e-4: +1.31194601   rel diff 2.6e-07
+     mu = 2.0:  f/lambda at 1e-3: +0.14186919   at 1e-4: +0.14186918   rel diff 7.2e-08
+     oddness: f(+0.4) = +0.50564676, f(-0.4) = -0.50564676, |f(+)+f(-)|/|f(+)| = 0.0e+00
+  [PASS] V0 transcribed closed form is finite, linear as lambda -> 0 at two masses, and odd in lambda 
+
+1. DIRECT mode sum (order-T^-2 adiabatic subtraction) vs closed form (2.58); f = 4 pi^2 J/(e H^3)
+     (29 s on 7 processes)
+     lambda   mu_phys   mu_w^2      direct f         closed f         ratio      tail c2
+      0.50     2.00    -2.000   +1.24347381   +0.07222646   +17.216320   -3.75e+01
+      1.00     1.50    -1.000   +2.81137704   +0.37298834   +7.537440   -7.50e+01
+      0.30     1.00    +1.160   +1.15707565   +0.38501253   +3.005293   -2.25e+01
+      0.50     1.20    +0.560   +1.61652196   +0.36013701   +4.488630   -3.75e+01
+      1.50     0.80    -0.640   +6.24693826   +2.27505090   +2.745845   -1.12e+02
+      0.40     1.40    +0.130   +1.15981015   +0.17525562   +6.617820   -3.00e+01
+      0.30     3.00    -6.840   +0.67724501   +0.01504305   +45.020472   -2.25e+01
+  [FAIL] V1 direct = closed form on the whole grid with one consistent sign (worst |ratio| - 1 = 4.4e+01; sign of direct/closed = +)
+
+MUTATE CONTROL: the order-T^-2 term delta was dropped from the subtraction (order 0 only).
+  V1 FAILED as required -- the control works

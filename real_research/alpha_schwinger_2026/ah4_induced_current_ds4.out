@@ -1,0 +1,64 @@
+====================================================================================================
+AH4 induced current in dS_4 -- mode: REAL RUN
+====================================================================================================
+
+0. TRANSCRIPTION of eq. (2.58): finite and linear as lambda -> 0, odd in lambda
+     mu = 1.0:  f/lambda at 1e-3: +1.31194567   at 1e-4: +1.31194601   rel diff 2.6e-07
+     mu = 2.0:  f/lambda at 1e-3: +0.14186919   at 1e-4: +0.14186918   rel diff 7.2e-08
+     oddness: f(+0.4) = +0.50564676, f(-0.4) = -0.50564676, |f(+)+f(-)|/|f(+)| = 0.0e+00
+  [PASS] V0 transcribed closed form is finite, linear as lambda -> 0 at two masses, and odd in lambda 
+
+1. DIRECT mode sum (order-T^-2 adiabatic subtraction) vs closed form (2.58); f = 4 pi^2 J/(e H^3)
+     (33 s on 7 processes)
+     lambda   mu_phys   mu_w^2      direct f         closed f         ratio      tail c2
+      0.50     2.00    -2.000   +0.07222645   +0.07222646   +1.000000   +2.58e-06
+      1.00     1.50    -1.000   +0.37298835   +0.37298834   +1.000000   +2.68e-06
+      0.30     1.00    +1.160   +0.38501253   +0.38501253   +1.000000   +6.09e-07
+      0.50     1.20    +0.560   +0.36013701   +0.36013701   +1.000000   +1.36e-06
+      1.50     0.80    -0.640   +2.27500860   +2.27505090   +0.999981   -3.81e-07
+      0.40     1.40    +0.130   +0.17525562   +0.17525562   +1.000000   +1.28e-06
+      0.30     3.00    -6.840   +0.01504304   +0.01504305   +0.999999   +2.62e-06
+  [PASS] V1 direct = closed form on the whole grid with one consistent sign (worst |ratio| - 1 = 1.9e-05; sign of direct/closed = +)
+
+2. HEAVY FIELDS from the closed form at small lambda:  F(mu) = |f|/lambda
+     mu     F(mu) = |f/lambda|       bare log term (1/3) ln mu
+       2.0   1.418692e-01        0.2310
+       5.0   1.633376e-02        0.5365
+      10.0   3.935173e-03        0.7675
+      20.0   9.750807e-04        0.9986
+      40.0   2.432337e-04        1.2296
+     log-log slope between mu = 10 and 40: -2.0080
+  [PASS] V2 power-law fall ~ 1/mu^2 (slope in [-2.3, -1.7]) and the ln(m) term is cancelled (F(40) < 1/3) (slope -2.008, F(40) = 2.432e-04)
+
+3. THE ln(m/H) TERM IS THE ONE-LOOP RUNNING OF e
+     nabla_nu F^(nu z) = 2*E*H**2*tau   (at tau = -1, H = 1, E = 1: -2.000000; = -2 E H / a)
+     coefficient of e^2 E H ln(m/H) in the current:  8.4434319702e-03  (= 1/(12 pi^2) = 8.4434319702e-03)
+     one-loop scalar-QED running x |nabla F| / (E H):  8.4434319702e-03  (1/(24 pi^2) x 2)
+  [PASS] V3 the ln(m/H) coefficient equals the scalar-QED one-loop running times |nabla_nu F^(nu z)| (|ratio| = 1 to 1e-12) 
+
+4. THE alpha QUESTION:  sigma/H = alpha * G(mu),  G = f_1/pi,  alpha = e^2/(4 pi) (now the 4D constant)
+     mu      |G(mu)| = |f/lambda|/pi
+      0.5    2.940059e+00
+      1.0    4.176053e-01
+      2.0    4.515836e-02
+      5.0    5.199197e-03
+
+   Tie sigma/H = c: required alpha = c/|G(mu)|
+     c            mu=0.5       mu=1.0       mu=2.0       mu=5.0        spread (max/min)
+     kappa        1.7006e-01   1.1973e+00   1.1072e+01   9.6169e+01    5.65e+02
+     kappa/pi     5.4133e-02   3.8111e-01   3.5244e+00   3.0611e+01    5.65e+02
+     1/(2 pi)     5.4133e-02   3.8111e-01   3.5244e+00   3.0611e+01    5.65e+02
+     1/pi         1.0827e-01   7.6223e-01   7.0487e+00   6.1223e+01    5.65e+02
+     1            3.4013e-01   2.3946e+00   2.2144e+01   1.9234e+02    5.65e+02
+     2 kappa      3.4013e-01   2.3946e+00   2.2144e+01   1.9234e+02    5.65e+02
+  [PASS] V4 no tie on the conductivity fixes alpha independently of the mass (declared: spread < 2 would count) 
+
+   Electron-mass reading (EXTRAPOLATION |G| ~ C/mu^2, C = 0.1240 from mu = 20, 40): mu_e = 3.554e+38
+     tie sigma/H = kappa = 0.5000:  required alpha ~ c mu_e^2 / C = 5.09e+77
+     tie sigma/H = kappa/pi = 0.1592:  required alpha ~ c mu_e^2 / C = 1.62e+77
+
+====================================================================================================
+CHECKS: 5/5 passed
+VERDICT (against the declared criteria): see the numbers above; alpha stays an INPUT (flat-space renormalization condition),
+  the dS_4 scalar current is alpha times a mass function G(mu), and no tie on it fixes alpha.
+  Scalar only; fermions, backreaction, other species untested.  kappa = 1/2 stays FITTED.  The SM-mass wall is unchanged.
