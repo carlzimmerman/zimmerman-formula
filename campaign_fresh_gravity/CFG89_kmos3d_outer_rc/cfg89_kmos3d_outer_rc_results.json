@@ -1,0 +1,772 @@
+{
+ "slug": "cfg89_kmos3d_outer_rc",
+ "summary": {
+  "n_checks": 25,
+  "n_pass": 22,
+  "load_bearing_failures": 3,
+  "failed": [
+   "C1c CONTROL (V at r_out): rotating injections with r_out >= PSF_FWHM and i >= 30 deg: |V_r",
+   "H1-can HEADLINE (feasibility gate): N(g_bar(r_out) < a0) >= 5 clean discs at z >= 1.9, can",
+   "H1-alt HEADLINE (feasibility gate): N(g_bar(r_out) < a0) >= 5 clean discs at z >= 1.9, alt"
+  ],
+  "seconds": 51.9
+ },
+ "checks": [
+  {
+   "name": "C1a CONTROL (honest errors): robust std of (v - v_ref)/sigma_v over reliable pseudo-slit apertures of the rotating injections in [0.7, 1.5], with >= 30 apertures",
+   "detail": "N = 343, robust std = 1.080, median pull = +0.046",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1b CONTROL (r_out not noise-inflated): over E0-extractable rotating injections, median(r_out - r_exp) in [-0.2, +0.2] arcsec and |r_out - r_exp| <= 0.4 arcsec in >= 80%",
+   "detail": "N = 39, median = +0.00\", fraction within 0.4\" = 0.97; r_out - r_exp values: +0.0, +0.0, +0.0, +0.0, -0.2, +0.0, +0.0, -0.2, +0.2, +0.0, -0.2, +0.0, +0.0, +0.0, +0.6, +0.2, +0.0, +0.0, +0.0, +0.2, +0.0, +0.0, +0.0, +0.0, +0.0, +0.0, -0.2, -0.2, +0.0, +0.0, +0.0, +0.0, +0.0, +0.2, -0.2, +0.2, +0.0, +0.0, +0.2",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1c CONTROL (V at r_out): rotating injections with r_out >= PSF_FWHM and i >= 30 deg: |V_rot/V_true(r_out) - 1| <= 0.25 in >= 70% (>= 8 injections)",
+   "detail": "N = 33, fraction within 25% = 0.36; median V_rot/V_true - 1 = -0.281; values -0.22, -0.23, -0.22, -0.34, -0.27, -0.56, -0.22, -0.38, -0.22, -0.28, -0.41, -0.13, -0.54, -0.30, -0.44, -0.20, -0.22, -0.26, -0.19, -0.13, -0.14, -0.31, -0.28, -0.29, -0.72, -0.27, -0.65, -0.40, -0.30, -0.38, -0.33, -0.27, -0.24",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C1d CONTROL (rotation detection): (a) >= 80% of rotating injections with r_out >= PSF_FWHM and i >= 30 deg pass K1 (>= 8); (b) <= 2 of the 20 non-rotating injections pass K1",
+   "detail": "(a) 31/33 = 0.94; (b) 1/20",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R12 (reported) C1 details: PA recovery (r_out >= PSF, i >= 30); C1c and C1d(a) in the 0 < r_out < PSF regime; E0 rates",
+   "detail": "median |dPA| = 3.3 deg (N = 33); r_out < PSF: N = 5, within 25% = 0.00, K1 = 5/5; E0: rotating 39/40, non-rotating 18/20",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C2 CONTROL: integrated Halpha flux vs HAFIT_FLUX_HA (catalogue S/N >= 5): |median log ratio| <= 0.10 dex and robust scatter <= 0.15 dex",
+   "detail": "N = 347 (of which failed or non-positive fits, entered as -inf: 7); median -0.024 dex, robust scatter 0.061 dex; p16-p84 of the log ratio -0.090 to +0.046",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R16 (reported) C2 against HAFIT_FLUX_HA / HAFIT_FLUX_AP_CORR",
+   "detail": "N = 347; median +0.006 dex, robust scatter 0.082 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C3 CONTROL: Halpha centroid redshift vs Z: |median dv| <= 30 km/s and robust scatter <= 60 km/s",
+   "detail": "N = 340; median +9.8 km/s, robust scatter 11.7 km/s",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D1 rotation detected: >= 20% of all selected HIGH + LOW objects (FLAG_ZQUALITY = 0, after S7) pass K1",
+   "detail": "269/381 = 0.706",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1-can HEADLINE (feasibility gate): N(g_bar(r_out) < a0) >= 5 clean discs at z >= 1.9, canonical footing (a0 = 9.3603e-11)",
+   "detail": "N(< a0) = 2, N(< 0.3 a0) = 1 -> NOT FEASIBLE",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H1-alt HEADLINE (feasibility gate): N(g_bar(r_out) < a0) >= 5 clean discs at z >= 1.9, alt footing (a0 = 1.1312e-10)",
+   "detail": "N(< a0) = 3, N(< 0.3 a0) = 1 -> NOT FEASIBLE",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) N(< 0.3 a0) at z >= 1.9, both footings",
+   "detail": "canonical: 1; alt: 1",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) distributions of r_out/R_e and g_bar/a0 at r_out (HIGH and LOW; measured and clean) -- printed above",
+   "detail": "see above",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) gas bracket (mu_gas x0.5 / x1 / x2), HIGH clean discs: N(< a0), N(< 0.3 a0)",
+   "detail": "_gasx0.5|canonical: 6, 1; _gasx0.5|alt: 8, 1; base|canonical: 2, 1; base|alt: 3, 1; _gasx2|canonical: 1, 0; _gasx2|alt: 1, 0",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) enclosed-mass (lower-g) bracket, HIGH clean discs: N(< a0), N(< 0.3 a0)",
+   "detail": "canonical: 4, 1; alt: 7, 1",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) beam smearing: HIGH clean discs with r_out >= PSF_FWHM, and their N(< a0), N(< 0.3 a0)",
+   "detail": "68 of 74 clean discs have r_out >= PSF_FWHM; canonical: 2, 1; alt: 3, 1; r_out/PSF (clean HIGH): n=74: min 0.50, p16 1.08, median 1.61, p84 2.02, max 3.37",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R6 (reported) either-side r_out (clean HIGH discs, g_bar at the larger one-sided reach)",
+   "detail": "canonical: 4, 1; alt: 6, 1",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R7 (reported) FLAG_ZQUALITY = 1 objects added (HIGH): clean discs, N(< a0), N(< 0.3 a0)",
+   "detail": "clean 74; canonical: 2, 1; alt: 3, 1",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R8 (reported) MID window (1.1 < z < 1.9): clean discs, N(< a0), N(< 0.3 a0); r_out/R_e and g_bar/a0 (can)",
+   "detail": "clean 74; canonical: 14, 2; alt: 23, 3; r_out/R_e n=74: min 0.43, p16 1.11, median 1.58, p84 2.30, max 3.31; g/a0 n=74: min 0.09, p16 0.88, median 1.81, p84 4.69, max 9.15",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R9 (reported) counts robust to the 0.2-dex mass floor (g_bar x 10^0.2), HIGH clean discs",
+   "detail": "canonical: 1, 0; alt: 2, 0",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R11 (reported) clean discs whose r_out is FOV-LIMITED",
+   "detail": "HIGH: 1/74; LOW: 16/114",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R13 (reported) K3-excluded HIGH objects (FLAG_ADDGALDET = 1) that otherwise pass K1, K2 and the gate; of them g_bar < a0",
+   "detail": "4 objects; canonical: 0; alt: 0 ; IDs COS4_05706, COS4_06963, GS4_29868, GS4_40477",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R14 (reported) the list above",
+   "detail": "3 objects",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R15 (reported) header-polynomial R(lambda_Ha) / catalogue SPEC_RES",
+   "detail": "N = 526; median 1.000, p16-p84 1.000-1.000",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "P1 (reported; POST HOC after the first run, prompted by the C1c failure) HIGH objects passing K1, not K3 and the gate but failing K2 (V_rot/sigma_0 < 1); of them g_bar(r_out) < a0 and < 0.3 a0 -- i.e. the headline without K2 = the headline + these",
+   "detail": "17 objects; canonical: N(<a0) 0, N(<0.3a0) 0 -> without K2: 2, 1; alt: N(<a0) 0, N(<0.3a0) 0 -> without K2: 3, 1; their V_rot/sigma_0: n=17: min 0.40, p16 0.55, median 0.77, p84 0.86, max 0.92",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "selected_counts": {
+   "HIGH_zq0": 168,
+   "HIGH_zq1": 8,
+   "LOW_zq0": 215,
+   "LOW_zq1": 21,
+   "MID_zq0": 145,
+   "MID_zq1": 12
+  },
+  "projected_minutes": 0.9382206588983536,
+  "subsample_fallback": false,
+  "worker_errors": [],
+  "stages": {
+   "HIGH_zq0": [
+    168,
+    168,
+    156,
+    150,
+    112,
+    79,
+    75,
+    74
+   ],
+   "HIGH_zq1": [
+    8,
+    8,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "LOW_zq0": [
+    215,
+    213,
+    188,
+    185,
+    157,
+    121,
+    116,
+    114
+   ],
+   "LOW_zq1": [
+    21,
+    21,
+    4,
+    4,
+    2,
+    1,
+    1,
+    1
+   ],
+   "MID_zq0": [
+    145,
+    145,
+    136,
+    135,
+    110,
+    81,
+    74,
+    74
+   ],
+   "MID_zq1": [
+    12,
+    12,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1
+   ]
+  },
+  "C1": {
+   "pull_std": 1.0801204600094036,
+   "n_pulls": 343,
+   "dr": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.19999999999999996,
+    0.0,
+    0.0,
+    -0.20000000000000007,
+    0.19999999999999996,
+    0.0,
+    -0.19999999999999996,
+    0.0,
+    0.0,
+    0.0,
+    0.6000000000000001,
+    0.20000000000000007,
+    0.0,
+    0.0,
+    0.0,
+    0.19999999999999996,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.19999999999999996,
+    -0.19999999999999996,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.20000000000000007,
+    -0.20000000000000007,
+    0.19999999999999996,
+    0.0,
+    0.0,
+    0.2
+   ],
+   "fr": [
+    -0.21672371707365934,
+    -0.23055537379061242,
+    -0.2233968937285017,
+    -0.33978797379104997,
+    -0.2739159112255838,
+    -0.5569135489132058,
+    -0.2163750679086094,
+    -0.37615736974305714,
+    -0.21999689573082448,
+    -0.2813958365197995,
+    -0.4116412960100443,
+    -0.13235306284464432,
+    -0.5381015221719178,
+    -0.30318272845179906,
+    -0.43854362504993616,
+    -0.19969080678022566,
+    -0.21830058004886377,
+    -0.26116075790898274,
+    -0.18827227021013515,
+    -0.1345903507036631,
+    -0.141918669699586,
+    -0.3087005942332606,
+    -0.2813935541852193,
+    -0.2895822153683665,
+    -0.7169535370607303,
+    -0.2740929150039546,
+    -0.6544623522232698,
+    -0.40036788887013164,
+    -0.30055136031820984,
+    -0.37567132179017493,
+    -0.327505840739189,
+    -0.269992792252285,
+    -0.2396774375675248
+   ],
+   "k1_rot": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "k1_null": [
+    false,
+    false,
+    false,
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "dpa_median": 3.347701969895354
+  },
+  "C2": {
+   "n": 347,
+   "median": -0.02399782989441442,
+   "scatter": 0.061309764601158126,
+   "median_apcorr": 0.005967301865943281,
+   "scatter_apcorr": 0.08174618965611292
+  },
+  "C3": {
+   "n": 340,
+   "median": 9.820827526879452,
+   "scatter": 11.694305451784471
+  },
+  "D1": {
+   "n_k1": 269,
+   "n": 381,
+   "frac": 0.7060367454068242
+  },
+  "headline": {
+   "canonical": {
+    "n_lt_a0": 2,
+    "n_lt_0p3": 1
+   },
+   "alt": {
+    "n_lt_a0": 3,
+    "n_lt_0p3": 1
+   }
+  },
+  "headline_low": {
+   "canonical": {
+    "n_lt_a0": 53,
+    "n_lt_0p3": 9
+   },
+   "alt": {
+    "n_lt_a0": 65,
+    "n_lt_0p3": 16
+   }
+  },
+  "distributions": {
+   "HIGH|measured (E0, r_out > 0)": {
+    "r_out_arcsec": {
+     "n": 150,
+     "min": 0.2,
+     "p16": 0.4,
+     "med": 0.6000000000000001,
+     "p84": 0.8,
+     "max": 1.2000000000000002
+    },
+    "r_out_kpc": {
+     "n": 150,
+     "min": 1.5976382284902895,
+     "p16": 3.2395986156181453,
+     "med": 4.917361706358825,
+     "p84": 6.599451083761239,
+     "max": 9.971645442159758
+    },
+    "r_out_over_Re": {
+     "n": 150,
+     "min": 0.2656042496679947,
+     "p16": 0.9556120135841439,
+     "med": 1.4634233398176075,
+     "p84": 2.598304082035102,
+     "max": 7.594936708860761
+    },
+    "r_out_over_psf": {
+     "n": 150,
+     "min": 0.4088976120379457,
+     "p16": 0.8709853021230267,
+     "med": 1.2783821080322322,
+     "p84": 1.9247607507984412,
+     "max": 3.368231958907571
+    },
+    "gbar_can": {
+     "n": 150,
+     "min": 0.23610044039712585,
+     "p16": 1.9063579583096377,
+     "med": 4.176397648861836,
+     "p84": 9.742990685884797,
+     "max": 47.59639161774007
+    },
+    "gbar_alt": {
+     "n": 150,
+     "min": 0.19536518319034804,
+     "p16": 1.5774471708951292,
+     "med": 3.4558287581896607,
+     "p84": 8.061997499742528,
+     "max": 39.384415174994025
+    },
+    "mu_gas": {
+     "n": 150,
+     "min": 0.14016502081180737,
+     "p16": 0.7959524955118612,
+     "med": 1.2804876727489911,
+     "p84": 1.9694960849350656,
+     "max": 6.668063673063472
+    }
+   },
+   "HIGH|clean discs": {
+    "r_out_arcsec": {
+     "n": 74,
+     "min": 0.2,
+     "p16": 0.4,
+     "med": 0.6000000000000001,
+     "p84": 0.8,
+     "max": 1.2000000000000002
+    },
+    "r_out_kpc": {
+     "n": 74,
+     "min": 1.6189832627416405,
+     "p16": 3.330323715069765,
+     "med": 4.984236664407332,
+     "p84": 6.628258951312319,
+     "max": 9.971645442159758
+    },
+    "r_out_over_Re": {
+     "n": 74,
+     "min": 0.5181347150259068,
+     "p16": 1.0350558640707215,
+     "med": 1.4337331984390809,
+     "p84": 2.090970090970091,
+     "max": 7.594936708860761
+    },
+    "r_out_over_psf": {
+     "n": 74,
+     "min": 0.49981257028614273,
+     "p16": 1.0777231094503086,
+     "med": 1.6138142499798276,
+     "p84": 2.022728207350177,
+     "max": 3.368231958907571
+    },
+    "gbar_can": {
+     "n": 74,
+     "min": 0.23610044039712585,
+     "p16": 1.8306162849201557,
+     "med": 3.9740174551745717,
+     "p84": 9.282506424625295,
+     "max": 22.743779740866067
+    },
+    "gbar_alt": {
+     "n": 74,
+     "min": 0.19536518319034804,
+     "p16": 1.5147734805284774,
+     "med": 3.2883659463994466,
+     "p84": 7.680962242434596,
+     "max": 18.81971371184836
+    },
+    "mu_gas": {
+     "n": 74,
+     "min": 0.2777079701687434,
+     "p16": 0.7485404234457689,
+     "med": 1.1083613493863202,
+     "p84": 1.607436359399598,
+     "max": 6.668063673063472
+    }
+   },
+   "LOW|measured (E0, r_out > 0)": {
+    "r_out_arcsec": {
+     "n": 185,
+     "min": 0.2,
+     "p16": 0.4,
+     "med": 0.8,
+     "p84": 1.0,
+     "max": 1.6
+    },
+    "r_out_kpc": {
+     "n": 185,
+     "min": 1.3818862778078582,
+     "p16": 3.1215852694434845,
+     "med": 6.01441935386779,
+     "p84": 7.792946580020917,
+     "max": 12.902135415291188
+    },
+    "r_out_over_Re": {
+     "n": 185,
+     "min": 0.17452006980802795,
+     "p16": 0.9315780519851885,
+     "med": 1.484230055658627,
+     "p84": 2.4432013127470724,
+     "max": 6.382978723404256
+    },
+    "r_out_over_psf": {
+     "n": 185,
+     "min": 0.25812446761828556,
+     "p16": 0.8809990529260182,
+     "med": 1.419513580013249,
+     "p84": 2.11450710514761,
+     "max": 3.7841758380372745
+    },
+    "gbar_can": {
+     "n": 185,
+     "min": 0.12358450775665901,
+     "p16": 0.38917758147594766,
+     "med": 1.017599461155572,
+     "p84": 3.4705369156867087,
+     "max": 13.284881968940264
+    },
+    "gbar_alt": {
+     "n": 185,
+     "min": 0.10226202863814138,
+     "p16": 0.32203137516701846,
+     "med": 0.8420293702488066,
+     "p84": 2.871752713216257,
+     "max": 10.9927935549745
+    },
+    "mu_gas": {
+     "n": 185,
+     "min": 0.01792322692988216,
+     "p16": 0.28501491651022287,
+     "med": 0.5798423632343269,
+     "p84": 1.0951508113075954,
+     "max": 6.527497335434819
+    }
+   },
+   "LOW|clean discs": {
+    "r_out_arcsec": {
+     "n": 114,
+     "min": 0.4,
+     "p16": 0.6000000000000001,
+     "med": 0.8,
+     "p84": 1.0,
+     "max": 1.6
+    },
+    "r_out_kpc": {
+     "n": 114,
+     "min": 2.933813752638311,
+     "p16": 4.571934452021542,
+     "med": 6.255383986971822,
+     "p84": 7.876855296946084,
+     "max": 12.902135415291188
+    },
+    "r_out_over_Re": {
+     "n": 114,
+     "min": 0.3064351378958121,
+     "p16": 1.1372327481314097,
+     "med": 1.5220209040015444,
+     "p84": 2.3946375904906603,
+     "max": 5.74712643678161
+    },
+    "r_out_over_psf": {
+     "n": 114,
+     "min": 0.6701065469409636,
+     "p16": 1.1151454670285315,
+     "med": 1.6193457843031418,
+     "p84": 2.2091745425530673,
+     "max": 3.7841758380372745
+    },
+    "gbar_can": {
+     "n": 114,
+     "min": 0.13126563023277873,
+     "p16": 0.41074624636633905,
+     "med": 1.0271094251104027,
+     "p84": 2.8696339268658155,
+     "max": 10.620150590969702
+    },
+    "gbar_alt": {
+     "n": 114,
+     "min": 0.10861789945791007,
+     "p16": 0.339878720815315,
+     "med": 0.8498985459565862,
+     "p84": 2.3745256758877384,
+     "max": 8.787817855079005
+    },
+    "mu_gas": {
+     "n": 114,
+     "min": 0.12980795113204913,
+     "p16": 0.2819600730310584,
+     "med": 0.5483537404998009,
+     "p84": 1.025547378850627,
+     "max": 6.527497335434819
+    }
+   }
+  },
+  "R": {
+   "R3": {
+    "_gasx0.5|canonical": [
+     6,
+     1
+    ],
+    "_gasx0.5|alt": [
+     8,
+     1
+    ],
+    "base|canonical": [
+     2,
+     1
+    ],
+    "base|alt": [
+     3,
+     1
+    ],
+    "_gasx2|canonical": [
+     1,
+     0
+    ],
+    "_gasx2|alt": [
+     1,
+     0
+    ]
+   },
+   "R4": {
+    "canonical": [
+     4,
+     1
+    ],
+    "alt": [
+     7,
+     1
+    ]
+   },
+   "R5": {
+    "canonical": [
+     2,
+     1
+    ],
+    "alt": [
+     3,
+     1
+    ]
+   },
+   "n_R5": 68,
+   "R6": {
+    "canonical": [
+     4,
+     1
+    ],
+    "alt": [
+     6,
+     1
+    ]
+   },
+   "R7": {
+    "canonical": [
+     2,
+     1
+    ],
+    "alt": [
+     3,
+     1
+    ]
+   },
+   "R8": {
+    "canonical": [
+     14,
+     2
+    ],
+    "alt": [
+     23,
+     3
+    ]
+   },
+   "n_mid_clean": 74,
+   "R9": {
+    "canonical": [
+     1,
+     0
+    ],
+    "alt": [
+     2,
+     0
+    ]
+   },
+   "R11": {
+    "HIGH": [
+     1,
+     74
+    ],
+    "LOW": [
+     16,
+     114
+    ]
+   },
+   "R13": {
+    "canonical": 0,
+    "alt": 0
+   },
+   "R14": [
+    "U3_10584",
+    "COS4_08515",
+    "U4_22581"
+   ]
+  },
+  "P1_posthoc": {
+   "n": 17,
+   "lt_a0": {
+    "canonical": 0,
+    "alt": 0
+   },
+   "lt_0p3": {
+    "canonical": 0,
+    "alt": 0
+   },
+   "ids_lt_a0_alt": []
+  },
+  "reading": "NOT FEASIBLE on either footing"
+ }
+}

@@ -1,0 +1,216 @@
+CFG89 -- KMOS3D CUBES: HOW FAR OUT CAN H-ALPHA ROTATION BE MEASURED, AND HOW MANY z >= 1.9 DISCS REACH g_bar < a0 AT THEIR OUTERMOST
+RELIABLE RADIUS?  A FEASIBILITY COUNT, NOT A TEST OF B (no law is scored; no velocity is compared with any prediction).
+Criteria frozen and committed before any extraction: campaign_fresh_gravity/CFG89_kmos3d_outer_rc/FROZEN_CRITERIA.md (commit 6eb7ae539).
+Data: the 739 KMOS3D cubes (Wisnioski+2019 release) outside the repo at ../_external_data/kmos3d/cubes (relative to the repo root; never
+copied into the repo); catalogue data_assembly/kmos3d_phibss/kmos3d_catalog.csv.
+  extraction  Halpha+[NII] Gaussian fits (grid, then least_squares) with the noise extension rescaled per summed spectrum (E2); 3x3-box
+              velocity field -> kinematic PA (arctan model on a grid); pseudo-slit of PSF-FWHM apertures along the kinematic axis;
+              reliable = S/N(Halpha) >= 5 (+ sanity bounds); r_out = largest radius reliable on BOTH sides (two consecutive failures
+              stop a side); inclination from Q with q0 = 0.2.
+  g_bar       one exponential disc, R_d = RHALF/1.678 (arcsec -> kpc, flat LCDM H0 = 70, Om = 0.3); gas = Tacconi+2018 mu_gas(z, M*, dMS)
+              with the repo's constants; exact Freeman thin-disc radial acceleration; enclosed-mass form = lower-g bracket;
+              footings a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt) m/s^2.
+  checks      C1 injection-recovery (C1a-d), C2 integrated Halpha flux vs HAFIT_FLUX_HA, C3 centroid redshift vs Z, D1 coherent
+              rotation in >= 20% of the sample, H1-can / H1-alt the feasibility gate: N(g_bar(r_out) < a0) >= 5 clean discs at
+              z >= 1.9 (CFG54's gate).  A NOT FEASIBLE verdict makes the main run exit 1 -- a declared, valid result.
+MUTATE=1: every real cube's spaxels are spatially scrambled before the kinematic extraction (C1, C2, C3 run unscrambled) -- D1 must FAIL.
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the theory is closed.
+
+  cube directory (relative to the repo root): ../_external_data/kmos3d/cubes ; exists: True; FITS files: 739
+
+  catalogue rows: 785
+  selected (S1-S5): HIGH zq=0: 168; HIGH zq=1: 8; LOW zq=0: 215; LOW zq=1: 21; MID zq=0: 145; MID zq=1: 12
+  cube files missing among selected: 0
+  C1 hosts: HIGH 30, LOW 30 (first 20 rotating, next 10 non-rotating per window); offsets used: [-6000.0, 4000.0]
+  timing: first 28 objects in 3 s; projected full run 0.9 min (fallback if > 180 min)
+  run times: real sample 0.7 min; with C1 0.9 min; subsample fallback used: False
+  worker errors: 0
+
+======================================================================================================================
+R10 (reported) STAGE TABLE: selected -> window-in -> E0 -> r_out>0 -> K1 -> K2 -> not K3 -> gate (= clean discs)
+======================================================================================================================
+  HIGH  zq=0: 168 -> 168 -> 156 -> 150 -> 112 -> 79 -> 75 -> 74   (window-out 0, errors 0)
+  HIGH  zq=1: 8 -> 8 -> 1 -> 1 -> 0 -> 0 -> 0 -> 0   (window-out 0, errors 0)
+  LOW   zq=0: 215 -> 213 -> 188 -> 185 -> 157 -> 121 -> 116 -> 114   (window-out 2, errors 0)
+  LOW   zq=1: 21 -> 21 -> 4 -> 4 -> 2 -> 1 -> 1 -> 1   (window-out 0, errors 0)
+  MID   zq=0: 145 -> 145 -> 136 -> 135 -> 110 -> 81 -> 74 -> 74   (window-out 0, errors 0)
+  MID   zq=1: 12 -> 12 -> 3 -> 3 -> 2 -> 1 -> 1 -> 1   (window-out 0, errors 0)
+
+======================================================================================================================
+C1 INJECTION-RECOVERY (synthetic discs in the hosts' real cubes at a velocity offset; unaffected by MUTATE)
+======================================================================================================================
+  injections: rotating 40, non-rotating 20; errors 0
+    IH00 host U4_24247    ROT  voff  -6000 i= 81.7 psf 0.39 E0 1 r_out 0.8 r_exp 0.8 PA err  10.4 R2 0.95 Vrot  151.0 Vtrue  192.8 K1 1
+    IH01 host U4_11582    ROT  voff  -6000 i= 48.9 psf 0.38 E0 1 r_out 0.6 r_exp 0.6 PA err   1.7 R2 0.98 Vrot  161.5 Vtrue  209.9 K1 1
+    IH02 host COS4_18604  ROT  voff  +4000 i= 67.5 psf 0.40 E0 1 r_out 0.4 r_exp 0.4 PA err   3.5 R2 0.99 Vrot   73.8 Vtrue  129.9 K1 1
+    IH03 host GS4_27404   ROT  voff  +4000 i= 46.9 psf 0.42 E0 1 r_out 0.6 r_exp 0.6 PA err   3.3 R2 0.98 Vrot  129.8 Vtrue  167.1 K1 1
+    IH04 host COS4_03179  ROT  voff  -6000 i= 39.8 psf 0.45 E0 1 r_out 0.6 r_exp 0.8 PA err   0.3 R2 0.98 Vrot   88.8 Vtrue  134.5 K1 1
+    IH05 host U4_36074    ROT  voff  -6000 i= 67.0 psf 0.40 E0 1 r_out 0.8 r_exp 0.8 PA err   2.7 R2 0.99 Vrot  109.8 Vtrue  151.2 K1 1
+    IH06 host GS4_28870   ROT  voff  -6000 i= 56.6 psf 0.36 E0 1 r_out 0.4 r_exp 0.4 PA err   7.2 R2 0.94 Vrot   57.4 Vtrue  129.6 K1 1
+    IH07 host GS4_37988   ROT  voff  -6000 i= 69.7 psf 0.42 E0 1 r_out 0.4 r_exp 0.6 PA err   8.5 R2 0.96 Vrot   87.2 Vtrue  149.4 K1 1
+    IH08 host GS4_42789   ROT  voff  -6000 i= 47.7 psf 0.46 E0 1 r_out 1.0 r_exp 0.8 PA err   0.9 R2 0.99 Vrot  153.3 Vtrue  195.6 K1 1
+    IH09 host GS4_08603   ROT  voff  -6000 i= 57.6 psf 0.54 E0 1 r_out 0.6 r_exp 0.6 PA err   5.8 R2 0.96 Vrot  105.8 Vtrue  169.6 K1 1
+    IH10 host U4_32147    ROT  voff  -6000 i= 60.7 psf 0.48 E0 1 r_out 0.6 r_exp 0.8 PA err   5.5 R2 0.99 Vrot  186.8 Vtrue  239.5 K1 1
+    IH11 host GS4_10500   ROT  voff  -6000 i= 59.4 psf 0.51 E0 1 r_out 0.6 r_exp 0.6 PA err  11.0 R2 0.98 Vrot  116.3 Vtrue  161.8 K1 1
+    IH12 host U4_36677    ROT  voff  -6000 i= 58.0 psf 0.43 E0 1 r_out 0.6 r_exp 0.6 PA err   1.2 R2 0.99 Vrot  107.3 Vtrue  182.3 K1 1
+    IH13 host COS4_13174  ROT  voff  -6000 i= 78.9 psf 0.40 E0 1 r_out 1.2 r_exp 1.2 PA err   1.9 R2 0.97 Vrot  204.2 Vtrue  235.3 K1 1
+    IH14 host GS4_15819   ROT  voff  -6000 i= 61.5 psf 0.54 E0 1 r_out 0.8 r_exp 0.2 PA err  13.6 R2 0.70 Vrot   91.3 Vtrue  197.7 K1 0
+    IH15 host GS4_27159   ROT  voff  -6000 i= 69.1 psf 0.42 E0 1 r_out 0.6 r_exp 0.4 PA err   4.6 R2 0.96 Vrot   95.9 Vtrue  137.7 K1 1
+    IH16 host GS4_41748   ROT  voff  -6000 i= 34.4 psf 0.38 E0 1 r_out 0.6 r_exp 0.6 PA err   5.0 R2 0.99 Vrot  124.4 Vtrue  221.7 K1 1
+    IH17 host COS4_19753  ROT  voff  -6000 i= 46.4 psf 0.41 E0 1 r_out 0.8 r_exp 0.8 PA err   1.3 R2 0.98 Vrot  139.6 Vtrue  174.4 K1 1
+    IH18 host GS4_39671   ROT  voff  -6000 i= 42.1 psf 0.40 E0 1 r_out 0.8 r_exp 0.8 PA err   1.2 R2 0.99 Vrot  124.4 Vtrue  159.1 K1 1
+    IH19 host COS4_10056  ROT  voff  -6000 i= 48.4 psf 0.39 E0 1 r_out 0.8 r_exp 0.6 PA err   4.2 R2 0.98 Vrot  181.5 Vtrue  245.6 K1 1
+    IH20 host U4_26012    NULL voff  -6000 i= 45.0 psf 0.44 E0 1 r_out 0.6 r_exp 0.6 PA err 123.2 R2 0.67 Vrot   20.3 Vtrue    nan K1 0
+    IH21 host COS4_25229  NULL voff  -6000 i= 49.9 psf 0.40 E0 1 r_out 0.6 r_exp 0.6 PA err  72.3 R2 0.18 Vrot   12.6 Vtrue    nan K1 0
+    IH22 host GS4_45068   NULL voff  -6000 i= 20.9 psf 0.38 E0 1 r_out 0.6 r_exp 0.4 PA err 163.1 R2 0.19 Vrot  -13.9 Vtrue    nan K1 0
+    IH23 host COS4_04453  NULL voff  -6000 i= 62.3 psf 0.45 E0 1 r_out 0.4 r_exp 0.4 PA err 137.8 R2 0.80 Vrot   30.6 Vtrue    nan K1 1
+    IH24 host U4_13952    NULL voff  -6000 i= 28.4 psf 0.39 E0 1 r_out 0.6 r_exp 0.6 PA err 101.5 R2 0.35 Vrot    2.1 Vtrue    nan K1 0
+    IH25 host COS4_04519  NULL voff  -6000 i= 53.3 psf 0.39 E0 1 r_out 0.6 r_exp 0.6 PA err  86.2 R2 0.52 Vrot   11.4 Vtrue    nan K1 0
+    IH26 host GS4_41886   NULL voff  -6000 i= 58.3 psf 0.38 E0 1 r_out 0.4 r_exp 0.4 PA err 150.3 R2 0.45 Vrot    8.7 Vtrue    nan K1 0
+    IH27 host GS4_24110   NULL voff  +4000 i= 41.1 psf 0.44 E0 1 r_out 1.0 r_exp 1.0 PA err  61.7 R2 0.19 Vrot   13.0 Vtrue    nan K1 0
+    IH28 host GS4_37124   NULL voff  -6000 i= 68.4 psf 0.40 E0 1 r_out 0.6 r_exp 0.6 PA err  35.0 R2 0.48 Vrot    9.3 Vtrue    nan K1 0
+    IH29 host U4_25808    NULL voff  +4000 i= 78.9 psf 0.38 E0 1 r_out 0.6 r_exp 0.6 PA err 153.5 R2 0.53 Vrot    8.6 Vtrue    nan K1 0
+    IL00 host U4_26605    ROT  voff  -6000 i= 50.0 psf 0.46 E0 1 r_out 1.0 r_exp 1.0 PA err   2.0 R2 0.99 Vrot  201.0 Vtrue  247.6 K1 1
+    IL01 host COS4_04669  ROT  voff  -6000 i= 50.9 psf 0.60 E0 1 r_out 1.4 r_exp 1.4 PA err   1.2 R2 0.99 Vrot  180.2 Vtrue  208.2 K1 1
+    IL02 host COS4_20618  ROT  voff  -6000 i= 44.8 psf 0.78 E0 1 r_out 1.2 r_exp 1.2 PA err   1.9 R2 0.99 Vrot  149.4 Vtrue  174.1 K1 1
+    IL03 host U4_28004    ROT  voff  -6000 i= 81.8 psf 0.37 E0 1 r_out 0.8 r_exp 0.8 PA err   2.5 R2 0.95 Vrot   66.9 Vtrue   96.8 K1 1
+    IL04 host GS4_29730   ROT  voff  -6000 i= 69.0 psf 0.93 E0 1 r_out 0.6 r_exp 0.6 PA err   7.4 R2 0.94 Vrot   81.9 Vtrue  152.1 K1 1
+    IL05 host U4_33943    ROT  voff  -6000 i= 67.5 psf 0.36 E0 1 r_out 0.6 r_exp 0.6 PA err   3.3 R2 0.98 Vrot   67.1 Vtrue   93.4 K1 1
+    IL06 host U4_30704    ROT  voff  -6000 i= 76.9 psf 0.40 E0 1 r_out 0.6 r_exp 0.8 PA err   8.2 R2 0.98 Vrot   52.9 Vtrue   74.5 K1 1
+    IL07 host U4_33076    ROT  voff  -6000 i= 77.1 psf 0.62 E0 0 r_out nan r_exp nan PA err   nan R2 nan Vrot    nan Vtrue    nan K1 0
+    IL08 host U4_42393    ROT  voff  -6000 i= 34.9 psf 0.62 E0 1 r_out 0.8 r_exp 1.0 PA err  62.0 R2 0.24 Vrot   63.3 Vtrue  223.5 K1 0
+    IL09 host GS4_03228   ROT  voff  -6000 i= 90.0 psf 0.44 E0 1 r_out 1.4 r_exp 1.4 PA err   3.8 R2 0.93 Vrot   71.2 Vtrue   98.1 K1 1
+    IL10 host COS4_09156  ROT  voff  -6000 i= 54.7 psf 0.64 E0 1 r_out 1.0 r_exp 1.0 PA err   2.9 R2 0.95 Vrot   47.2 Vtrue  136.7 K1 1
+    IL11 host COS4_02418  ROT  voff  -6000 i= 46.7 psf 0.66 E0 1 r_out 0.8 r_exp 0.8 PA err   2.8 R2 0.97 Vrot   97.7 Vtrue  162.9 K1 1
+    IL12 host U4_20688    ROT  voff  -6000 i= 50.1 psf 0.70 E0 1 r_out 0.4 r_exp 0.4 PA err   7.0 R2 0.92 Vrot   88.0 Vtrue  164.1 K1 1
+    IL13 host GS4_41708   ROT  voff  -6000 i= 61.5 psf 0.33 E0 1 r_out 0.4 r_exp 0.4 PA err  21.5 R2 0.96 Vrot   93.5 Vtrue  133.6 K1 1
+    IL14 host U4_32433    ROT  voff  -6000 i= 59.5 psf 0.40 E0 1 r_out 0.6 r_exp 0.4 PA err  12.3 R2 0.98 Vrot   62.0 Vtrue   99.3 K1 1
+    IL15 host GS4_34627   ROT  voff  -6000 i= 62.3 psf 0.43 E0 1 r_out 0.4 r_exp 0.6 PA err   8.9 R2 0.98 Vrot   71.3 Vtrue  107.0 K1 1
+    IL16 host U4_18701    ROT  voff  -6000 i= 44.7 psf 0.55 E0 1 r_out 0.8 r_exp 0.6 PA err   5.8 R2 0.99 Vrot  143.8 Vtrue  213.8 K1 1
+    IL17 host COS4_10613  ROT  voff  -6000 i= 67.4 psf 0.46 E0 1 r_out 1.0 r_exp 1.0 PA err   3.1 R2 0.98 Vrot   72.1 Vtrue   98.7 K1 1
+    IL18 host U4_33182    ROT  voff  -6000 i= 35.2 psf 0.36 E0 1 r_out 0.6 r_exp 0.6 PA err   2.0 R2 0.98 Vrot  140.8 Vtrue  185.2 K1 1
+    IL19 host COS4_08096  ROT  voff  -6000 i= 22.7 psf 0.60 E0 1 r_out 0.4 r_exp 0.2 PA err  14.9 R2 0.96 Vrot  134.3 Vtrue  240.5 K1 1
+    IL20 host U4_14170    NULL voff  -6000 i= 72.4 psf 0.44 E0 1 r_out 0.4 r_exp 0.4 PA err 109.2 R2 0.48 Vrot    5.5 Vtrue    nan K1 0
+    IL21 host COS4_24973  NULL voff  -6000 i= 37.3 psf 0.80 E0 0 r_out nan r_exp nan PA err   nan R2 nan Vrot    nan Vtrue    nan K1 0
+    IL22 host GS4_07134   NULL voff  -6000 i= 30.8 psf 0.43 E0 0 r_out nan r_exp nan PA err   nan R2 nan Vrot    nan Vtrue    nan K1 0
+    IL23 host GS4_36094   NULL voff  -6000 i= 43.4 psf 0.32 E0 1 r_out 0.6 r_exp 0.6 PA err 110.9 R2 0.10 Vrot    4.8 Vtrue    nan K1 0
+    IL24 host U4_20404    NULL voff  -6000 i= 74.6 psf 0.44 E0 1 r_out 0.0 r_exp 0.2 PA err  88.2 R2 0.25 Vrot    nan Vtrue    nan K1 0
+    IL25 host U4_20987    NULL voff  -6000 i= 66.6 psf 0.56 E0 1 r_out 0.8 r_exp 0.8 PA err  24.8 R2 0.27 Vrot    9.1 Vtrue    nan K1 0
+    IL26 host U4_18696    NULL voff  -6000 i= 58.2 psf 0.46 E0 1 r_out 0.8 r_exp 0.8 PA err 110.3 R2 0.08 Vrot   33.0 Vtrue    nan K1 0
+    IL27 host U4_14312    NULL voff  -6000 i= 57.2 psf 0.42 E0 1 r_out 0.6 r_exp 0.6 PA err  93.5 R2 0.56 Vrot   14.2 Vtrue    nan K1 0
+    IL28 host COS4_09601  NULL voff  -6000 i= 53.8 psf 0.60 E0 1 r_out 0.6 r_exp 0.6 PA err  12.0 R2 0.27 Vrot   25.5 Vtrue    nan K1 0
+    IL29 host U4_34545    NULL voff  -6000 i= 54.4 psf 0.40 E0 1 r_out 0.8 r_exp 0.6 PA err  36.4 R2 0.04 Vrot   -1.1 Vtrue    nan K1 0
+  [PASS] C1a CONTROL (honest errors): robust std of (v - v_ref)/sigma_v over reliable pseudo-slit apertures of the rotating injections in [0.7, 1.5], with >= 30 apertures
+         N = 343, robust std = 1.080, median pull = +0.046
+  [PASS] C1b CONTROL (r_out not noise-inflated): over E0-extractable rotating injections, median(r_out - r_exp) in [-0.2, +0.2] arcsec and |r_out - r_exp| <= 0.4 arcsec in >= 80%
+         N = 39, median = +0.00", fraction within 0.4" = 0.97; r_out - r_exp values: +0.0, +0.0, +0.0, +0.0, -0.2, +0.0, +0.0, -0.2, +0.2, +0.0, -0.2, +0.0, +0.0, +0.0, +0.6, +0.2, +0.0, +0.0, +0.0, +0.2, +0.0, +0.0, +0.0, +0.0, +0.0, +0.0, -0.2, -0.2, +0.0, +0.0, +0.0, +0.0, +0.0, +0.2, -0.2, +0.2, +0.0, +0.0, +0.2
+  [FAIL] C1c CONTROL (V at r_out): rotating injections with r_out >= PSF_FWHM and i >= 30 deg: |V_rot/V_true(r_out) - 1| <= 0.25 in >= 70% (>= 8 injections)
+         N = 33, fraction within 25% = 0.36; median V_rot/V_true - 1 = -0.281; values -0.22, -0.23, -0.22, -0.34, -0.27, -0.56, -0.22, -0.38, -0.22, -0.28, -0.41, -0.13, -0.54, -0.30, -0.44, -0.20, -0.22, -0.26, -0.19, -0.13, -0.14, -0.31, -0.28, -0.29, -0.72, -0.27, -0.65, -0.40, -0.30, -0.38, -0.33, -0.27, -0.24
+  [PASS] C1d CONTROL (rotation detection): (a) >= 80% of rotating injections with r_out >= PSF_FWHM and i >= 30 deg pass K1 (>= 8); (b) <= 2 of the 20 non-rotating injections pass K1
+         (a) 31/33 = 0.94; (b) 1/20
+  [PASS] (reported) R12 (reported) C1 details: PA recovery (r_out >= PSF, i >= 30); C1c and C1d(a) in the 0 < r_out < PSF regime; E0 rates
+         median |dPA| = 3.3 deg (N = 33); r_out < PSF: N = 5, within 25% = 0.00, K1 = 5/5; E0: rotating 39/40, non-rotating 18/20
+
+======================================================================================================================
+C2 / C3 INTEGRATED H-ALPHA (1.5" radius aperture at the catalogue position, unscrambled cubes)
+======================================================================================================================
+  [PASS] C2 CONTROL: integrated Halpha flux vs HAFIT_FLUX_HA (catalogue S/N >= 5): |median log ratio| <= 0.10 dex and robust scatter <= 0.15 dex
+         N = 347 (of which failed or non-positive fits, entered as -inf: 7); median -0.024 dex, robust scatter 0.061 dex; p16-p84 of the log ratio -0.090 to +0.046
+  [PASS] (reported) R16 (reported) C2 against HAFIT_FLUX_HA / HAFIT_FLUX_AP_CORR
+         N = 347; median +0.006 dex, robust scatter 0.082 dex
+  [PASS] C3 CONTROL: Halpha centroid redshift vs Z: |median dv| <= 30 km/s and robust scatter <= 60 km/s
+         N = 340; median +9.8 km/s, robust scatter 11.7 km/s
+
+======================================================================================================================
+D1 COHERENT ROTATION IN THE REAL SAMPLE (the MUTATE target)
+======================================================================================================================
+  [PASS] D1 rotation detected: >= 20% of all selected HIGH + LOW objects (FLAG_ZQUALITY = 0, after S7) pass K1
+         269/381 = 0.706
+
+======================================================================================================================
+HEADLINE: HIGH (z >= 1.9) clean discs with g_bar(r_out) < a0 and < 0.3 a0 (Freeman disc, Tacconi gas), both footings
+======================================================================================================================
+  clean discs at z >= 1.9: 74 (of 168 selected)
+  [FAIL] H1-can HEADLINE (feasibility gate): N(g_bar(r_out) < a0) >= 5 clean discs at z >= 1.9, canonical footing (a0 = 9.3603e-11)
+         N(< a0) = 2, N(< 0.3 a0) = 1 -> NOT FEASIBLE
+  [FAIL] H1-alt HEADLINE (feasibility gate): N(g_bar(r_out) < a0) >= 5 clean discs at z >= 1.9, alt footing (a0 = 1.1312e-10)
+         N(< a0) = 3, N(< 0.3 a0) = 1 -> NOT FEASIBLE
+  [PASS] (reported) R1 (reported) N(< 0.3 a0) at z >= 1.9, both footings
+         canonical: 1; alt: 1
+  comparison, LOW (0.6 <= z <= 1.1) clean discs: 114; canonical: N(<a0) = 53, N(<0.3a0) = 9; alt: N(<a0) = 65, N(<0.3a0) = 16
+
+======================================================================================================================
+REPORTED ROWS (not load-bearing)
+======================================================================================================================
+  [HIGH | measured (E0, r_out > 0)]
+     r_out [arcsec]  n=150: min 0.20, p16 0.40, median 0.60, p84 0.80, max 1.20
+     r_out [kpc]     n=150: min 1.60, p16 3.24, median 4.92, p84 6.60, max 9.97
+     r_out / R_e     n=150: min 0.27, p16 0.96, median 1.46, p84 2.60, max 7.59
+     r_out / PSF     n=150: min 0.41, p16 0.87, median 1.28, p84 1.92, max 3.37
+     g_bar/a0 (can)  n=150: min 0.24, p16 1.91, median 4.18, p84 9.74, max 47.60
+     g_bar/a0 (alt)  n=150: min 0.20, p16 1.58, median 3.46, p84 8.06, max 39.38
+     mu_gas          n=150: min 0.14, p16 0.80, median 1.28, p84 1.97, max 6.67
+  [HIGH | clean discs]
+     r_out [arcsec]  n=74: min 0.20, p16 0.40, median 0.60, p84 0.80, max 1.20
+     r_out [kpc]     n=74: min 1.62, p16 3.33, median 4.98, p84 6.63, max 9.97
+     r_out / R_e     n=74: min 0.52, p16 1.04, median 1.43, p84 2.09, max 7.59
+     r_out / PSF     n=74: min 0.50, p16 1.08, median 1.61, p84 2.02, max 3.37
+     g_bar/a0 (can)  n=74: min 0.24, p16 1.83, median 3.97, p84 9.28, max 22.74
+     g_bar/a0 (alt)  n=74: min 0.20, p16 1.51, median 3.29, p84 7.68, max 18.82
+     mu_gas          n=74: min 0.28, p16 0.75, median 1.11, p84 1.61, max 6.67
+  [LOW | measured (E0, r_out > 0)]
+     r_out [arcsec]  n=185: min 0.20, p16 0.40, median 0.80, p84 1.00, max 1.60
+     r_out [kpc]     n=185: min 1.38, p16 3.12, median 6.01, p84 7.79, max 12.90
+     r_out / R_e     n=185: min 0.17, p16 0.93, median 1.48, p84 2.44, max 6.38
+     r_out / PSF     n=185: min 0.26, p16 0.88, median 1.42, p84 2.11, max 3.78
+     g_bar/a0 (can)  n=185: min 0.12, p16 0.39, median 1.02, p84 3.47, max 13.28
+     g_bar/a0 (alt)  n=185: min 0.10, p16 0.32, median 0.84, p84 2.87, max 10.99
+     mu_gas          n=185: min 0.02, p16 0.29, median 0.58, p84 1.10, max 6.53
+  [LOW | clean discs]
+     r_out [arcsec]  n=114: min 0.40, p16 0.60, median 0.80, p84 1.00, max 1.60
+     r_out [kpc]     n=114: min 2.93, p16 4.57, median 6.26, p84 7.88, max 12.90
+     r_out / R_e     n=114: min 0.31, p16 1.14, median 1.52, p84 2.39, max 5.75
+     r_out / PSF     n=114: min 0.67, p16 1.12, median 1.62, p84 2.21, max 3.78
+     g_bar/a0 (can)  n=114: min 0.13, p16 0.41, median 1.03, p84 2.87, max 10.62
+     g_bar/a0 (alt)  n=114: min 0.11, p16 0.34, median 0.85, p84 2.37, max 8.79
+     mu_gas          n=114: min 0.13, p16 0.28, median 0.55, p84 1.03, max 6.53
+  [PASS] (reported) R2 (reported) distributions of r_out/R_e and g_bar/a0 at r_out (HIGH and LOW; measured and clean) -- printed above
+         see above
+  [PASS] (reported) R3 (reported) gas bracket (mu_gas x0.5 / x1 / x2), HIGH clean discs: N(< a0), N(< 0.3 a0)
+         _gasx0.5|canonical: 6, 1; _gasx0.5|alt: 8, 1; base|canonical: 2, 1; base|alt: 3, 1; _gasx2|canonical: 1, 0; _gasx2|alt: 1, 0
+  [PASS] (reported) R4 (reported) enclosed-mass (lower-g) bracket, HIGH clean discs: N(< a0), N(< 0.3 a0)
+         canonical: 4, 1; alt: 7, 1
+  [PASS] (reported) R5 (reported) beam smearing: HIGH clean discs with r_out >= PSF_FWHM, and their N(< a0), N(< 0.3 a0)
+         68 of 74 clean discs have r_out >= PSF_FWHM; canonical: 2, 1; alt: 3, 1; r_out/PSF (clean HIGH): n=74: min 0.50, p16 1.08, median 1.61, p84 2.02, max 3.37
+  [PASS] (reported) R6 (reported) either-side r_out (clean HIGH discs, g_bar at the larger one-sided reach)
+         canonical: 4, 1; alt: 6, 1
+  [PASS] (reported) R7 (reported) FLAG_ZQUALITY = 1 objects added (HIGH): clean discs, N(< a0), N(< 0.3 a0)
+         clean 74; canonical: 2, 1; alt: 3, 1
+  [PASS] (reported) R8 (reported) MID window (1.1 < z < 1.9): clean discs, N(< a0), N(< 0.3 a0); r_out/R_e and g_bar/a0 (can)
+         clean 74; canonical: 14, 2; alt: 23, 3; r_out/R_e n=74: min 0.43, p16 1.11, median 1.58, p84 2.30, max 3.31; g/a0 n=74: min 0.09, p16 0.88, median 1.81, p84 4.69, max 9.15
+  [PASS] (reported) R9 (reported) counts robust to the 0.2-dex mass floor (g_bar x 10^0.2), HIGH clean discs
+         canonical: 1, 0; alt: 2, 0
+  [PASS] (reported) R11 (reported) clean discs whose r_out is FOV-LIMITED
+         HIGH: 1/74; LOW: 16/114
+  [PASS] (reported) R13 (reported) K3-excluded HIGH objects (FLAG_ADDGALDET = 1) that otherwise pass K1, K2 and the gate; of them g_bar < a0
+         4 objects; canonical: 0; alt: 0 ; IDs COS4_05706, COS4_06963, GS4_29868, GS4_40477
+
+  R14 (reported) HIGH clean discs with g_bar(r_out) < a0 on either footing:
+    ID               z  logM* Re_kpc r_out"  r_kpc  r/Re r/PSF g/a0 can g/a0 alt mu_gas   Vrot  sV/V  V/s0     i FoV
+    U3_10584     2.246   8.99   4.62   0.80   6.59  1.43  1.86    0.236    0.195   6.67  126.3  0.08  1.37  80.5 0
+    COS4_08515   2.454   9.88   4.50   0.80   6.48  1.44  1.73    0.748    0.619   2.00   70.0  0.07  1.38  84.4 0
+    U4_22581     2.166  10.19   3.81   0.80   6.63  1.74  1.82    1.112    0.920   1.00  148.0  0.10  2.19  66.4 0
+  [PASS] (reported) R14 (reported) the list above
+         3 objects
+  [PASS] (reported) R15 (reported) header-polynomial R(lambda_Ha) / catalogue SPEC_RES
+         N = 526; median 1.000, p16-p84 1.000-1.000
+  [PASS] (reported) P1 (reported; POST HOC after the first run, prompted by the C1c failure) HIGH objects passing K1, not K3 and the gate but failing K2 (V_rot/sigma_0 < 1); of them g_bar(r_out) < a0 and < 0.3 a0 -- i.e. the headline without K2 = the headline + these
+         17 objects; canonical: N(<a0) 0, N(<0.3a0) 0 -> without K2: 2, 1; alt: N(<a0) 0, N(<0.3a0) 0 -> without K2: 3, 1; their V_rot/sigma_0: n=17: min 0.40, p16 0.55, median 0.77, p84 0.86, max 0.92
+
+    READING (declared gate): NOT FEASIBLE on either footing.  This is a feasibility count, not a test of B.
+
+  wrote cfg89_per_object.csv (569 rows), cfg89_curves.csv, cfg89_c1_injections.csv (60 rows)
+
+  kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the theory is closed, and nothing here says the data favour B, the framework or LCDM.
+
+  22/25 checks pass; load-bearing failures: 3   (52 s)
