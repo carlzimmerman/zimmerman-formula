@@ -80,3 +80,14 @@ The alt footing moves these by 0.01 or less; the δ = ±0.2 dex stellar-mass bra
 
 - CFG140 correction (logic; the orchestrator's check). The observed velocity is a lower bound on the circular speed, because pressure support only raises V_c. A lower bound can exclude only a model that predicts V_c below V_obs. Under P0 both readings predict at or above the observed accelerations in every cell (the largest P0 Δ′ is −0.035 for flat and −0.196 for the rival), so the bound excludes neither. The P0 rows are the NO-PRESSURE-SUPPORT SCENARIO (V_c = V_obs), not a bound in the excluding direction. 'a₀ ∝ H(z) over-predicts in all 24 cells' holds only if the outer pressure support is zero; it means the rival needs substantial outer pressure support to survive. 'Flat a₀ under-predicts in 21 of 24 cells' holds only in the constant-σ Burkert scenario (P1); it means flat a₀ needs the outer pressure support well below that level. Neither reading is excluded by the data alone. The frozen verdict (NON-DIAGNOSTIC), the anchor, the KROSS control, the power row and the MUTATE are unchanged.
 - In the table and the Reading above, read '(a strict lower bound on the circular speed)' as 'the no-pressure-support scenario'. 'The one robust statement' is a statement about that scenario only.
+
+## Addendum after CFG141 (appended 2026-09-29; the text above is unchanged)
+
+- **What CFG141 measured:** each galaxy's outer Hα dispersion, read from the paper's plotted σ(R). At R_max σ does not fall: σ_out/σ₀ has median 1.05 and range 0.70–1.13.
+- **The KROSS caution, in the form above, is not borne out.** The over-correction the KROSS control pointed to is not caused by a falling outer σ, and P1's constant-σ input is supported.
+- **The caution is narrowed, not removed.** The KURVS − KROSS differential under P1 (+0.27 ± 0.07) is unchanged and still unexplained. It may come from:
+  - the dispersion model at large R/R_d (anisotropy, thickness and non-equilibrium are untested);
+  - gas differences between the samples;
+  - something neither reading predicts.
+- **With the measured σ, both readings need about 4 M* of cold gas at z ≈ 1.5.** That is a requirement of the P2 dispersion model, not a prediction of the framework (CFG141 README, correction).
+- The frozen verdict (NON-DIAGNOSTIC) and every number above are unchanged.

@@ -82,3 +82,33 @@ At R_max the pressure term dominates the circular speed for most of these discs 
 - **What settles it:** a measured total gas mass, CO plus HI or a dust-based proxy, for KURVS-like discs. If μ ≤ 1.5 is measured, flat a₀ is disfavoured at z ≈ 1.5 under P2.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## Correction (appended 2026-09-29; the text above is unchanged)
+
+Wording corrections at the orchestrator's check. The frozen verdict (NON-DIAGNOSTIC) and every number above are unchanged.
+
+1. **Under P2 both readings under-predict at realistic gas.**
+   - At the paper's 40% molecular fraction (μ = 0.67), Δ′_flat = +0.39 ± 0.07 (6.0σ) and Δ′_H = +0.24 ± 0.06 (3.7σ).
+   - At μ = 1.5 the rival is still 2.4σ high. Both readings survive only at μ = 4: flat in 3 cells, the rival in 6.
+   - So the P2 excess is NOT evidence against flat a₀ in particular.
+   - The rival sits 0.12–0.16 dex closer in every cell. That gap is about half the gas bracket (0.32 dex), so it does not discriminate while the gas is unmeasured.
+   - Under P2, either both readings need about 4 M* of cold gas, or the P2 dispersion model over-corrects.
+     - Four M* is far above the molecular gas the paper assumes: 40%, μ = 0.67, from Tacconi+2020 scaling relations.
+     - It is also above PHIBSS-type molecular fractions at these masses and redshifts: about 0.4–0.6 of M* + M_mol, μ ≈ 0.7–1.5.
+     - It would need an atomic reservoir of roughly 2.5–3.3 M*, the top of the declared bracket.
+   - Under P3 at the paper's gas the two readings separate more: flat +0.24 ± 0.07 (3.5σ), the rival +0.09 ± 0.07 (1.3σ).
+2. **The conclusion rests on the dispersion model.**
+   - The pressure term dominates V_c at R_max: V_c²/V_obs² runs from 1.5 to 6.1.
+   - At 4–7 R_d, anisotropy, disc thickness and non-equilibrium are untested. That is the regime where beam smearing and pressure support are debated.
+3. **The measured σ shows only that σ does not fall.**
+   - σ_out/σ₀ ≈ 1.05 supports P1's constant-σ input at R_max.
+   - It does not validate the isotropic, isothermal, self-gravitating layer that P2 assumes.
+   - Read "the constant-σ pressure correction … is supported by data" in that narrower sense.
+4. **The gas requirement belongs to the P2 model, not the framework.**
+   - "About 4 M* of cold gas" is what the P2 dispersion model requires of these discs, for either reading. It is not a prediction of the framework.
+   - A measured μ ≤ 1.5 would disfavour both readings under P2, and would point at the dispersion model before either law.
+   - Read "This is a testable prediction" and "What flat a₀ requires" in that sense.
+5. **The KROSS caution is narrowed, not removed.**
+   - The measured σ rules out one source of the over-correction CFG140 suspected: a falling outer σ.
+   - The KURVS − KROSS differential under P1 (+0.27 ± 0.07) is unchanged and unexplained.
+   - Read "CFG140's caution … is not borne out" as "not explained by a falling outer σ".
