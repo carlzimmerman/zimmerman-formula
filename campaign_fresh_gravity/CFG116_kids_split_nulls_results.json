@@ -1,0 +1,152 @@
+{
+ "slug": "CFG116_kids_split_nulls",
+ "summary": {
+  "n_checks": 9,
+  "n_pass": 9,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 1.0
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: near + far tangential sums reproduce cfg110_perlens (WG, WW, NN) per lens per bin to 1e-9 relative",
+   "detail": "max relative deviation 1.4e-10; far share of the K1 pair weight: early 0.513, late 0.511",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: on the first 2,000 lenses the cross sums equal the tangential estimator at position angle + 45 deg (to 1e-12, relative to max)",
+   "detail": "max |WX - WG(phi + 45)| / max|WG(phi + 45)| = 8.2e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported) POWER: expected chi2 (7 dof) if a fraction eps of the early-late tangential difference leaked into the cross difference / into near-minus-far",
+   "detail": "eps 0.25: cross 2.2, near-far 0.8; eps 0.5: cross 9.0, near-far 3.0; the tangential difference itself: chi2 35.0/7 (the known split)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 [HEADLINE] THE CROSS SHEAR PASSES: early-late cross difference and each class's cross profile consistent with zero (7 dof each, p > 0.01)",
+   "detail": "difference 5.27/7 (p 0.627); late 2.17/7 (p 0.950); early 4.73/7 (p 0.693)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE SPLIT DOES NOT DEPEND ON SOURCE SEPARATION: chi2 of D_near - D_far (7 dof) p > 0.01",
+   "detail": "5.37/7 (p 0.615)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) B's null (the early-late difference against zero, 7 dof) from far sources only and near sources only; early-late amplitude (dex)",
+   "detail": "far 23.2/7 (p 1.6e-03); near 18.8/7 (p 8.8e-03); amplitude near +0.204 +- 0.064, far +0.165 +- 0.045, all +0.182 +- 0.038",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the class tangential profiles over K1 from near and far sources (Msun/pc^2)",
+   "detail": "late: near [6.4, 11.7, 11.7, 16.7, 13.4, 16.3, 14.4], far [10.7, 7.5, 19.6, 21.1, 26.6, 35.1, 23.9]; early: near [10.5, 14.4, 18.7, 20.2, 32.8, 44.8, 47.3], far [13.2, 18.8, 23.9, 28.2, 31.2, 49.4, 57.1]",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the far/near ratio of each class's amplitude (dilution by associated galaxies lowers the near-source ESD)",
+   "detail": "late far - near +0.130 +- 0.081 dex; early far - near +0.091 +- 0.035 dex",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) the survey-level cross null: all lenses, all 15 bins",
+   "detail": "12.11/15 (p 0.671)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "Dt": [
+   3.2591816642606535,
+   7.140644664799234,
+   5.604864191024079,
+   5.331865040200764,
+   11.923795834244771,
+   21.477838868448092,
+   33.27728732079116
+  ],
+  "Dx": [
+   -2.5185569256617812,
+   -1.1931358606870495,
+   4.687662442071726,
+   -0.48609562728418676,
+   1.131226928904633,
+   3.8843617709986464,
+   -2.434377890907152
+  ],
+  "Dn": [
+   4.058639192908966,
+   2.7613561985945037,
+   7.055989104636703,
+   3.506200357060724,
+   19.378846042218,
+   28.509663291395828,
+   32.93517559066045
+  ],
+  "Df": [
+   2.4958566209809767,
+   11.278668218700247,
+   4.24053863434062,
+   7.05094663816028,
+   4.563850339460508,
+   14.270908427507493,
+   33.266846697263446
+  ],
+  "H1": {
+   "diff": [
+    5.269235531535252,
+    0.6271439363331566
+   ],
+   "late": [
+    2.1680938745175493,
+    0.9499536909875809
+   ],
+   "early": [
+    4.728940821145722,
+    0.6930021078668644
+   ]
+  },
+  "H2": [
+   5.366148014773414,
+   0.6153741261146195
+  ],
+  "R0": {
+   "0.25": [
+    2.2458856279856088,
+    0.7601720326326351
+   ],
+   "0.5": [
+    8.983542511942435,
+    3.0406881305305404
+   ]
+  },
+  "R1": {
+   "far": 23.152897386638777,
+   "near": 18.82263232229627,
+   "amp": {
+    "near": [
+     0.20419791322811887,
+     0.06419308935491665
+    ],
+    "far": [
+     0.1648255522212898,
+     0.04470513885886526
+    ],
+    "all": [
+     0.1817244566818279,
+     0.03823479911599815
+    ]
+   }
+  },
+  "R4": 12.107411516606831,
+  "reading": "the split passes both nulls at this power: class-dependent B-mode systematics and source-side dilution/alignment are excluded as its origin"
+ }
+}

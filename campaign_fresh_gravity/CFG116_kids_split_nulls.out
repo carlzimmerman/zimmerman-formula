@@ -1,0 +1,60 @@
+CFG116 -- DOES B'S ONE SPECIFIC FAILURE PASS THE STANDARD LENSING SYSTEMATICS NULLS?  The KiDS early/late lensing difference at fixed
+g_bar (1-halo bins K1) under (H1) the cross-shear (B-mode) null and (H2) a source-separation split (near vs far background sources).
+
+Criteria frozen and committed before any staging or number: campaign_fresh_gravity/CFG116_FROZEN_CRITERIA.md (e4083bd4f).
+  data     cfg116_perlens.npz (CFG116_stage_perlens.py: one pass of the June estimator keeping near (z_l+0.2 < z_B <= z_l+0.5) and far
+           (z_B > z_l+0.5) tangential sums and the cross-shear sums per lens per bin); CFG110's data prefix exec'd read-only (cfg110_perlens,
+           lr_lenses, June patch labels, K1 = bins 8-14, 50-patch leave-one-out jackknife).  D = ESD(early) - ESD(late) per K1 bin.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  near + far tangential sums reproduce cfg110_perlens (WG, WW, NN) per lens per bin to 1e-9 relative.
+  C2  CONTROL  on the first 2,000 lenses the cross sums equal the tangential estimator at position angle + 45 deg to 1e-12.
+  R0  POWER (printed before any cross or near/far number): expected chi2 of each null if a fraction eps = 0.25 / 0.5 of the early-late
+               tangential difference leaked into it.
+  H1  [HEADLINE; MUTATE must fail] the cross shear passes: the early-late cross difference (7 dof) and each class's cross profile (7 dof)
+               are consistent with zero, Hartlap chi2 p > 0.01.
+  H2  the early-late tangential difference does not depend on source separation: chi2 of D_near - D_far (7 dof) p > 0.01.
+  R1-R4 (reported): B's null from far / near sources only; the class profiles; the far/near class amplitude ratios (dilution); the
+               survey-level cross null (all lenses, 15 bins).
+MUTATE=1: WX += 0.3 WG for every early-type lens -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: near + far tangential sums reproduce cfg110_perlens (WG, WW, NN) per lens per bin to 1e-9 relative
+         max relative deviation 1.4e-10; far share of the K1 pair weight: early 0.513, late 0.511
+  [PASS] C2 CONTROL: on the first 2,000 lenses the cross sums equal the tangential estimator at position angle + 45 deg (to 1e-12, relative to max)
+         max |WX - WG(phi + 45)| / max|WG(phi + 45)| = 8.2e-16
+
+======================================================================================================================
+R0  POWER (covariances only; printed before any cross or near/far number)
+======================================================================================================================
+  [PASS] (reported) R0 (reported) POWER: expected chi2 (7 dof) if a fraction eps of the early-late tangential difference leaked into the cross difference / into near-minus-far
+         eps 0.25: cross 2.2, near-far 0.8; eps 0.5: cross 9.0, near-far 3.0; the tangential difference itself: chi2 35.0/7 (the known split)
+
+======================================================================================================================
+H1 / H2  THE NULLS
+======================================================================================================================
+    cross ESD (Msun/pc^2) late [0.24, 0.51, -3.13, 0.6, -0.84, -2.97, -6.01]  early [-2.28, -0.68, 1.56, 0.11, 0.29, 0.91, -8.45]
+    cross difference [-2.52, -1.19, 4.69, -0.49, 1.13, 3.88, -2.43] +- [2.09, 2.26, 3.36, 4.37, 5.78, 9.73, 9.33];  tangential difference [3.26, 7.14, 5.6, 5.33, 11.92, 21.48, 33.28]
+  [PASS] H1 [HEADLINE] THE CROSS SHEAR PASSES: early-late cross difference and each class's cross profile consistent with zero (7 dof each, p > 0.01)
+         difference 5.27/7 (p 0.627); late 2.17/7 (p 0.950); early 4.73/7 (p 0.693)
+    D_near [4.06, 2.76, 7.06, 3.51, 19.38, 28.51, 32.94]
+    D_far  [2.5, 11.28, 4.24, 7.05, 4.56, 14.27, 33.27]
+  [PASS] H2 THE SPLIT DOES NOT DEPEND ON SOURCE SEPARATION: chi2 of D_near - D_far (7 dof) p > 0.01
+         5.37/7 (p 0.615)
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) B's null (the early-late difference against zero, 7 dof) from far sources only and near sources only; early-late amplitude (dex)
+         far 23.2/7 (p 1.6e-03); near 18.8/7 (p 8.8e-03); amplitude near +0.204 +- 0.064, far +0.165 +- 0.045, all +0.182 +- 0.038
+  [PASS] (reported) R2 (reported) the class tangential profiles over K1 from near and far sources (Msun/pc^2)
+         late: near [6.4, 11.7, 11.7, 16.7, 13.4, 16.3, 14.4], far [10.7, 7.5, 19.6, 21.1, 26.6, 35.1, 23.9]; early: near [10.5, 14.4, 18.7, 20.2, 32.8, 44.8, 47.3], far [13.2, 18.8, 23.9, 28.2, 31.2, 49.4, 57.1]
+  [PASS] (reported) R3 (reported) the far/near ratio of each class's amplitude (dilution by associated galaxies lowers the near-source ESD)
+         late far - near +0.130 +- 0.081 dex; early far - near +0.091 +- 0.035 dex
+  [PASS] (reported) R4 (reported) the survey-level cross null: all lenses, all 15 bins
+         12.11/15 (p 0.671)
+
+    READING (declared): the split passes both nulls at this power: class-dependent B-mode systematics and source-side dilution/alignment are excluded as its origin
+
+  9/9 checks pass; load-bearing failures: 0   (1 s)
