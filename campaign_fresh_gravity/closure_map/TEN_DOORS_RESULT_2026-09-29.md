@@ -31,6 +31,7 @@ Where cold matter is dynamical (6, 8, 10), its scale comes from the turnaround, 
 - The seven independent referee lanes CFG150-156 are pending; an appended note will say what reproduced.
 
 ## Appended note: what the independent referee lanes reproduced (2026-09-29)
+This note supersedes the last caveat above (referee lanes pending); the caveat is left as first written.
 Each referee re-derived one headline per door from the frozen criteria and README with its own code, opened the original lane's scripts only after its own runs were saved, and was re-run in place by a second session. None changed a verdict. Referees were not blind to the README numbers.
 - Door 1 CFG151 (db335c0e7), door 4 CFG154 (2f6845de3), door 5 CFG155 (bdbcf3fe1), door 8 CFG156 (bb7bd135d), door 9 CFG153 (9ce8b61c5), door 10 CFG152 (7cb9ba39e): reported by the calc chat as reproducing their headlines, each with README-level corrections (for example door 4 counts about 237 independent tests, not about 36; door 9's A4 carries a background term A2/A3 omit; door 10's T0.4a label). Not re-verified here.
 - Door 3 CFG157 (0bbd62cd7): reproduces T1.2 (1.310 / 1.016 / 0.434 / 0.063), B1 and T1.5; does not test T1.3, T1.4, Q1, G1c B2-B4, G2-G5 or O1, on which the scoped no-go mostly rests.
