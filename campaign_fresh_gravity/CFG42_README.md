@@ -49,3 +49,5 @@ Reproduced: KM median +0.325 / +0.304, resolved-only +0.355 / +0.334, 31 + 9 lim
 **Caveats.** The ultra-faint collapse mass is extrapolated, though weakly constrained by the cusp property. The M31 LVD −2.7σ has a small error (0.040). Its collapse-mass floor covers only the satellites with M_* < 10⁵; the scatter of the Moster relation for the rest is not propagated (a weak effect, by the M_halo^0.13 scaling, but not measured here). The stellar-mass systematic enters only through Υ_V.
 
 Nothing here says the theory is closed.
+
+**Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).

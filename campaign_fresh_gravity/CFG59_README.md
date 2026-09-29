@@ -30,3 +30,5 @@ C1a/C1b pass (φ = 1 reproduces CFG45's S and φ = 0 its L, 100 + 40 comparisons
 ## Standing
 
 **One multiplier of the sum's debris term does not reconcile the lanes.** The low-mass satellites want about a quarter of the debris and the most massive early types want nearly all of it. That is a statement about the sum's mass dependence, not a rule. Nothing here says the theory is closed.
+
+**Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).

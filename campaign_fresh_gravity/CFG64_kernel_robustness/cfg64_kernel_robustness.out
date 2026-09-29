@@ -1,0 +1,293 @@
+CFG64 -- KERNEL ROBUSTNESS OF THE COMMITTED RULE / UFD / SUPER-SPIRAL LANES: nu_mono (the campaign default) versus P2.
+
+FROZEN QUESTION (verbatim):
+  'Is any headline verdict of the committed lanes CFG40, CFG41, CFG42, CFG45, CFG46, CFG51, CFG56 and CFG58/CFG59 (the pass/fail of each declared
+   hypothesis, and the sigma of each headline offset) sensitive to the choice of the interpolating kernel, nu_mono (the campaign default) versus P2
+   (nu_p2 in CFG7_common/CFG4_common; CFG14 found P2 disfavoured at about 2 sigma by the SPARC transition shape, not excluded)?  A verdict is
+   KERNEL-SENSITIVE if its pass/fail flips or its headline offset changes by more than 0.05 dex or by more than 1 sigma under P2 relative to nu_mono;
+   otherwise KERNEL-ROBUST.'
+Program rules that apply: kappa = 1/2 is FITTED; no tuning after seeing results; a robustness result of any kind is valid; nothing here says the theory is
+closed; both a0 footings (9.36e-11 canonical / 1.13e-10 alt) are exercised because every lane already scores both (see FOOTINGS below).
+
+WHAT THE KERNELS ARE (read from CFG4_common, not from the brief): nu_p2(y) = sqrt(1 + 1/y) (g_obs = sqrt(g_bar^2 + g_bar a0)), so nu_p2(1) = sqrt(2) = 1.41421.
+nu_mono = FP1's monotone repair of nu_RAR (exec'd read-only inside CFG4_common), nu_mono(1) = 1 + H(1) (a table interpolant; value printed by the harness).  The
+brief's alternative form sqrt((1 + sqrt(1 + 4/y))/2) is NOT what CFG4_common calls P2 (its y = 1 value is 1.272) and is not used; the lanes' own P2 is.
+
+THE SWAP (declared).  For every lane a COPY of its script is written to lane_copies/<lane>__<kernel>.py with one line added directly after `import CFG7_common as C`
+(a marker that prints nu(1) through C.nu_mono).  The copy is exec'd in a child process with __file__ set to the repo lane path (so HERE / REPO / LANES resolve
+to the repo, read-only) and with Report.write redirected to runs/<lane>__<kernel>/ (nothing is written into the repo; bytecode writing is off).  The kernel swap is
+done BEFORE the lane runs, at the CODE level: `CFG4_common.nu_mono.__code__` is replaced by P2's (or, for the control, the Newtonian nu = 1) body, keeping the
+function object.  That is stricter than `C.nu_mono = C.nu_p2`: every reference to the kernel -- C.nu_mono, C4.nu_mono, KERNELS['nu_mono'], the copies of it inside the
+namespaces the lanes exec (CFG36 / CFG7_hierarchy_fg001 / CFG45 prefix / k_contrarian_dwarfefe / hunt_lib) and any function default or argument that captured it
+-- becomes P2, with no import-order dependence.  Every P2 call increments a counter (proof the kernel is actually used).  Every other choice is frozen: footings,
+floors, thresholds, seeds, data, x_e = 0.40, M_c laws, MUTATE = 0 inside each lane.  Values that a lane READS from a committed results file are not recomputed
+(they are data of the lane's controls); they are not swapped and are a declared fragile assumption (README).
+
+EXTENDED SWAP (added after the FIRST RUN, before the second; disclosed).  The first run swapped only nu_mono.  CFG42, CFG46, CFG51 (and the FG001-derived parts of
+CFG45, CFG58, CFG59) did not move at all, and G1 failed as designed: their isolated law is NOT nu_mono, despite the docstrings -- CFG7_hierarchy_fg001's a_int calls
+hunt_lib.nu_s, the hard-coded exponential RAR form nu_RAR = 1/(1 - exp(-sqrt y)); CFG58's LV dwarfs use k_contrarian_dwarfefe.nu (also nu_RAR, as a default argument).
+nu_RAR is the shape nu_mono is the monotone repair of (they agree deep in the MOND regime where the ultra-faints sit), so the intended kernel question for those lanes is
+'RAR-form versus P2'.  The swap now also replaces, at the code level, hunt_lib.nu, hunt_lib.nu_s and k_contrarian_dwarfefe.nu.  The classification rules, thresholds and
+gates were NOT changed by this; the first run's other results (CFG40 / CFG41 / CFG56 moved by <= 0.03 dex, CFG56 H1 flipped PASS -> FAIL) are unaffected by the extension.
+SECOND EXTENSION (after the residual-leak audit R1 of the second run; disclosed): fable_independent_2026/L23_udg_verify.py carries its own boost nu(y) = 1 + Delta(y)/y
+(the saturated RAR-type form) which CFG31 exec's (CFG58's UDG population) for its control and floor; the child now wraps CFG4_common.exec_slices so that this nu is swapped
+too when it appears.  The audit's other hits are false positives (cosmology / sampling code that uses exp and sqrt) or unused references (CFG4_common.nu_rar, FP1 _h_rar).
+POST-RUN SCOPE CORRECTION to G1 (disclosed): a lane that crashes under the alternative kernel (only possible for the Newtonian one) counts as bite -- the swap changed the run.
+POST-RUN SCOPE CORRECTION to C2 (disclosed): its clause 'every child wrote results' applies to the P2 children; the Newtonian control crashes in CFG45 and CFG58 (a division
+by the zero edge phantom inside their own C2-type controls) and is reported as NOT RUN, as the classification rules already declare.
+Also from the first run: the declared control C3 (CFG41 H2 flips under nu = 1) FAILED -- CFG41 H2 stays PASS with the Newtonian law plus the full collapse halo (-1.43 sigma).
+It is kept as declared and reported as a FAIL.  Added afterwards (post-hoc, disclosed): all nine lanes are also run under nu = 1 in the main run, and C3b requires at
+least one HEADLINE verdict to flip under nu = 1.  A residual-leak audit (reported) scans every function object alive after a lane finishes for RAR-form kernels
+(code using exp / expm1 together with sqrt) that were not swapped.
+
+FOOTINGS.  Every lane in scope scores both footings inside one run (H rows name "canonical" and "alt"; CFG40 / CFG41 / CFG56 report the alt footing in an R row).
+"Also run under the alt footing" is therefore satisfied by the lanes' own two-footing evaluation: the classification below uses every H row (both footings where
+the row carries both) and additionally the R rows whose name says 'alt footing' (companions, reported and classified by the same rule; the lane classification
+is the union).
+
+THE HYPOTHESES AND HEADLINES (from each lane's own docstring; not chosen by result):
+  CFG40 H2   CFG41 H2   CFG42 H1   CFG45 H1   CFG46 H1   CFG51 H1   CFG56 H2   CFG58 H1   CFG59 H1        (headline = the first-named [HEADLINE] hypothesis)
+  A 'declared hypothesis' = every check of the lane whose name begins 'H<digit>' (including the reported ones).
+
+CLASSIFICATION RULES (declared before the first run; the frozen question's rule made operational):
+  * VERDICT FLIP: the check's ok flag differs between nu_mono and the alternative kernel.  For the three reported rows whose verdict is embedded in text
+    (CFG45 H2 'which readings pass', CFG58 H2 'the classification', CFG59 H2 'the universal-phi answer'), the verdict is the detail string with every decimal number
+    masked; a difference in that masked string is a verdict flip.
+  * OFFSET CHANGE: the decimal tokens of the row's detail string are extracted in order (regex [+-]?\d+\.\d+, exponent forms and tokens preceded by '> ' or
+    followed by '?)' are skipped; the H3 rows of CFG41 / CFG42, whose numbers are fractions f_ex, are numerically skipped; 'phi_needed' values are skipped).  A token is a
+    SIGMA token if it is followed by 'sigma' (also in 'a/b sigma') or is enclosed in parentheses; every other token is a DEX token (offsets in dex; CFG58 H1's
+    numbers are dex changes by that lane's own units).  Aligned by position when the two strings have the same token count (otherwise the row is flagged MISALIGNED and
+    classified on the verdict alone).  A row is offset-sensitive if any aligned DEX token changes by > 0.05 or any aligned SIGMA token changes by > 1.0
+    (strict inequality, the question's wording).
+  * A hypothesis is KERNEL-SENSITIVE if either rule fires; else KERNEL-ROBUST.  A lane is KERNEL-SENSITIVE if any of its hypotheses is; its HEADLINE is classified
+    separately.  A lane that crashes under the alternative kernel is reported 'NOT RUN' and counted as a swap failure, not a verdict.
+  * Controls / other checks of a lane (C*, R* not naming alt) are reported for information; committed-value controls are EXPECTED to fail under P2 (they compare to
+    nu_mono numbers) and are not verdicts.
+
+CHECKS OF THIS HARNESS:
+  C1  CONTROL  the nu_mono copies reproduce every committed lane result (check names, ok flags and detail strings identical) -- the harness is the lane.
+  C2  CONTROL  the swap plumbing: nu_p2(1) != nu_mono(1) by > 0.01; after the swap nu(1) equals sqrt(2) to 1e-12 in every P2 child (Newtonian: 1); every alternative
+               child called the swapped kernel > 10 times; every child completed and wrote its results.
+  G1  GATE     'the swap has bite': for EVERY lane at least one decimal token of some check differs between nu_mono and the alternative kernel by > 1e-6.
+  C3  CONTROL  the absurd kernel: with nu = 1 (Newtonian), CFG41 H2 (its headline; PASS under nu_mono) FLIPS to FAIL.  (As declared before the first run.)
+  C3b CONTROL  (added after the first run, disclosed): with nu = 1 in ALL nine lanes, at least one headline verdict flips its pass/fail (the classifier can see a flip).
+  H1  [HEADLINE; MUTATE must fail]  every one of the nine headline verdicts is KERNEL-ROBUST under the alternative kernel.  (A FAIL here is a valid result: it says
+      at least one headline is kernel-sensitive.)
+  H2  (reported) every declared hypothesis of the nine lanes is KERNEL-ROBUST; the sensitive ones are listed.
+MUTATE=1: the alternative kernel is the absurd Newtonian nu = 1 for ALL lanes (instead of P2) -- H1 must FAIL (rc = 1), and does so only if the classifier can see flips.
+RESIDUAL-LEAK AUDIT (reported, R1): RAR-form functions alive after each P2 lane that were not swapped.
+
+  running 27 lane copies (nu_mono, P2, Newtonian nu = 1; 9 lanes each) in 6 worker processes; the alternative kernel scored by H1 is p2 ...
+  done (241 s of lane time)
+
+======================================================================================================================
+C1  the nu_mono copies reproduce the committed lanes
+======================================================================================================================
+  [PASS] C1 CONTROL: the nu_mono copies reproduce every committed lane result exactly (check names, ok flags, detail strings)
+         all 9 lanes identical
+
+======================================================================================================================
+C2  the swap plumbing
+======================================================================================================================
+  nu_mono(1) = 1.581977   nu_p2(1) = 1.414214   (sqrt 2 = 1.414214)   difference 0.1678
+  p2     CFG40_super_spirals                nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 10787   rc 1   results written True   swapped: 4 functions
+  p2     CFG41_massive_spirals_hi           nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 7883   rc 1   results written True   swapped: 4 functions
+  p2     CFG42_satellites_rule              nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 26977   rc 1   results written True   swapped: 4 functions
+  p2     CFG45_rule_readings                nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 23226   rc 1   results written True   swapped: 4 functions
+  p2     CFG46_ufd_binary_corrected         nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 382925   rc 1   results written True   swapped: 4 functions
+  p2     CFG51_walker_ufd                   nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 161   rc 1   results written True   swapped: 4 functions
+  p2     CFG56_super_spirals_bulge          nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 9744   rc 1   results written True   swapped: 4 functions
+  p2     CFG58_rule_more_populations        nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 11631   rc 1   results written True   swapped: 5 functions
+  p2     CFG59_universal_debris_fraction    nu(1) after swap 1.4142135623730951   marker in the lane copy 1.4142135623730951   swapped-kernel calls 240027   rc 1   results written True   swapped: 4 functions
+  newton CFG40_super_spirals                nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 6573   rc 1   results written True   swapped: 4 functions
+  newton CFG41_massive_spirals_hi           nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 4821   rc 1   results written True   swapped: 4 functions
+  newton CFG42_satellites_rule              nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 17304   rc 1   results written True   swapped: 4 functions
+  newton CFG45_rule_readings                nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 18436   rc -1   results written False   swapped: 4 functions
+  newton CFG46_ufd_binary_corrected         nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 280726   rc 0   results written True   swapped: 4 functions
+  newton CFG51_walker_ufd                   nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 148   rc 1   results written True   swapped: 4 functions
+  newton CFG56_super_spirals_bulge          nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 5952   rc 1   results written True   swapped: 4 functions
+  newton CFG58_rule_more_populations        nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 7006   rc -1   results written False   swapped: 5 functions
+  newton CFG59_universal_debris_fraction    nu(1) after swap 1.0   marker in the lane copy 1.0   swapped-kernel calls 234405   rc 1   results written True   swapped: 4 functions
+  [PASS] C2 CONTROL: nu_p2(1) != nu_mono(1); after the swap nu(1) is the alternative's in every child (also as printed inside the lane copy); the swapped kernel was called > 10 times in every lane (CFG51 exempt from the count: it is a 4-galaxy lane); every P2 child wrote results (Newtonian crashes are reported as NOT RUN)
+         nu_mono(1) 1.58198, nu_p2(1) 1.41421; min calls (P2) 161; lanes with results (P2/Newton): 9/9, 7/9
+  [PASS] (reported) R0 (reported) nu_RAR (what hunt_lib.nu_s / k_contrarian.nu compute) against nu_mono: max |ratio - 1| over y = 1e-4..0.1 and over y = 0.1..30
+         3.27e-09 (ultra-faint regime); 2.29e-02 (y up to 30)
+
+======================================================================================================================
+CLASSIFICATION  nu_mono versus P2 (every declared hypothesis; alt-footing companions)
+======================================================================================================================
+
+  CFG40_super_spirals  (headline H2)
+    H1  (H) PASS -> PASS  max d(dex) 0.027  max d(sigma) 0.33  ROBUST 
+         mono: +0.107 +- 0.075 (+1.42 sigma)
+         alt : +0.134 +- 0.076 (+1.75 sigma)
+    H2  (H) FAIL -> FAIL  max d(dex) 0.027  max d(sigma) 0.33  ROBUST  [HEADLINE] 
+         mono: mean +0.107 +- 0.075 (+1.42); slope +0.194 (+1.95); fastest 9: +0.170 (+2.06)
+         alt : mean +0.134 +- 0.076 (+1.75); slope +0.193 (+1.93); fastest 9: +0.197 (+2.35)
+    R3  (altR) PASS -> PASS  max d(dex) 0.028  max d(sigma) 0.36  ROBUST 
+         mono: law: +0.092 +- 0.074 (+1.25 sigma); rule: +0.092 +- 0.074 (+1.25 sigma)
+         alt : law: +0.120 +- 0.074 (+1.61 sigma); rule: +0.120 +- 0.074 (+1.61 sigma)
+
+  CFG41_massive_spirals_hi  (headline H2)
+    H1  (H) PASS -> PASS  max d(dex) 0.023  max d(sigma) 0.36  ROBUST 
+         mono: raw +0.048, corrected -0.028 +- 0.066 (-0.43 sigma)
+         alt : raw +0.071, corrected -0.005 +- 0.064 (-0.07 sigma)
+    H2  (H) PASS -> PASS  max d(dex) 0.021  max d(sigma) 0.26  ROBUST  [HEADLINE] 
+         mono: (a) -0.057 +- 0.081 (-0.71); (b) four S0/S0a: corrected -0.105 +- 0.131 (> -0.262?) -> -0.80 sigma
+         alt : (a) -0.036 +- 0.080 (-0.45); (b) four S0/S0a: corrected -0.095 +- 0.135 (> -0.270?) -> -0.70 sigma
+    H3  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.00  ROBUST 
+         mono: f_ex: 0.31, 0.31, 0.78, 0.49
+         alt : f_ex: 0.32, 0.32, 0.78, 0.49
+    R1  (altR) PASS -> PASS  max d(dex) 0.023  max d(sigma) 0.34  ROBUST 
+         mono: raw: law +0.048, rule +0.019; alt corrected: law -0.045 (-0.69 sigma), rule -0.067 (-0.85 sigma)
+         alt : raw: law +0.071, rule +0.040; alt corrected: law -0.022 (-0.35 sigma), rule -0.046 (-0.59 sigma)
+
+  CFG42_satellites_rule  (headline H1)
+    H1  (H) PASS -> PASS  max d(dex) 0.005  max d(sigma) 0.13  ROBUST  [HEADLINE] 
+         mono: canonical: law +0.325 (+3.77), rule -0.059 (-0.41); alt: law +0.304 (+3.55), rule -0.059 (-0.41)
+         alt : canonical: law +0.329 (+3.90), rule -0.058 (-0.41); alt: law +0.309 (+3.65), rule -0.059 (-0.41)
+    H3  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.00  ROBUST 
+         mono: 100% (median f_ex 0.96)
+         alt : 100% (median f_ex 0.96)
+    H2  (H) FAIL -> FAIL  max d(dex) 0.012  max d(sigma) 0.18  ROBUST 
+         mono: MW classical dSph can -0.118 (-1.78); MW classical dSph alt -0.123 (-1.90); M31 Collins+2013 can -0.024 (-0.22); M31 Collins+2013 alt -0.016 (-0.15); M31 LVD can -0.107 (-2.67); M31 LVD alt -0.109 (-2.66)
+         alt : MW classical dSph can -0.106 (-1.60); MW classical dSph alt -0.113 (-1.74); M31 Collins+2013 can -0.020 (-0.18); M31 Collins+2013 alt -0.011 (-0.11); M31 LVD can -0.100 (-2.49); M31 LVD alt -0.100 (-2.50)
+    H4  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.00  ROBUST 
+         mono: 110 galaxies; f_ex > 0 in 0; d log v < 0.03 in 100%; max +0.000; largest: CamB (log M_* 7.7, f_ex 0.00, +0.000), DDO064 (log M_* 8.0, f_ex 0.00, +0.000), DDO154 (log M_* 7.5, f_ex 0.00, +0.000), DDO161 (log M_* 8.5, f_ex 0.00, +0.
+         alt : 110 galaxies; f_ex > 0 in 0; d log v < 0.03 in 100%; max +0.000; largest: CamB (log M_* 7.7, f_ex 0.00, +0.000), DDO064 (log M_* 8.0, f_ex 0.00, +0.000), DDO154 (log M_* 7.5, f_ex 0.00, +0.000), DDO161 (log M_* 8.5, f_ex 0.00, +0.
+
+  CFG45_rule_readings  (headline H1)
+    H1  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.13  ROBUST  [HEADLINE] 
+         mono: (L) +3.77/+3.55 sigma; (S) -0.41/-0.41 sigma; (M) -0.35/-0.35 sigma; (E) +3.77/+3.55 sigma
+         alt : (L) +3.90/+3.65 sigma; (S) -0.41/-0.41 sigma; (M) -0.35/-0.35 sigma; (E) +3.90/+3.65 sigma
+    H2  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.00  ROBUST 
+         mono: readings passing all seven: none; per-reading gates passed: (L) 5/7 [fails: A1 UFD, A4 SLUGGS]; (S) 6/7 [fails: A2 classical]; (M) 4/7 [fails: A2 classical, A3 SPARC, A4 SLUGGS]; (E) 5/7 [fails: A1 UFD, A4 SLUGGS]
+         alt : readings passing all seven: none; per-reading gates passed: (L) 5/7 [fails: A1 UFD, A4 SLUGGS]; (S) 6/7 [fails: A2 classical]; (M) 4/7 [fails: A2 classical, A3 SPARC, A4 SLUGGS]; (E) 5/7 [fails: A1 UFD, A4 SLUGGS]
+
+  CFG46_ufd_binary_corrected  (headline H1)
+    H1  (H) FAIL -> FAIL  max d(dex) 0.004  max d(sigma) 0.03  ROBUST  [HEADLINE] 
+         mono: canonical: f = 0 +0.295, f free +0.206 +- 0.164 (+1.26 sigma); alt: f = 0 +0.275, f free +0.186 +- 0.164 (+1.14 sigma)
+         alt : canonical: f = 0 +0.298, f free +0.210 +- 0.163 (+1.29 sigma); alt: f = 0 +0.277, f free +0.190 +- 0.163 (+1.17 sigma)
+    H2  (H) FAIL -> FAIL  max d(dex) 0.004  max d(sigma) 0.03  ROBUST 
+         mono: canonical: +0.171 (+0.99 sigma); alt: +0.150 (+0.88 sigma)
+         alt : canonical: +0.174 (+1.02 sigma); alt: +0.154 (+0.90 sigma)
+    H3  (H) PASS -> PASS  max d(dex) 0.001  max d(sigma) 0.01  ROBUST 
+         mono: canonical: -0.151 (-1.17 sigma); alt: -0.154 (-1.20 sigma)
+         alt : canonical: -0.150 (-1.16 sigma); alt: -0.153 (-1.19 sigma)
+
+  CFG51_walker_ufd  (headline H1)
+    H1  (H) PASS -> PASS  max d(dex) 0.003  max d(sigma) 0.06  ROBUST  [HEADLINE] 
+         mono: Bootes I can: +0.219 +- 0.089 (+2.46); Bootes I alt: +0.199 +- 0.089 (+2.24); Tucana II can: +0.465 +- 0.128 (+3.63); Tucana II alt: +0.445 +- 0.128 (+3.47)
+         alt : Bootes I can: +0.222 +- 0.088 (+2.52); Bootes I alt: +0.202 +- 0.088 (+2.28); Tucana II can: +0.466 +- 0.128 (+3.64); Tucana II alt: +0.445 +- 0.128 (+3.48)
+    H2  (H) PASS -> PASS  max d(dex) 0.003  max d(sigma) 0.00  ROBUST 
+         mono: Bootes I can: single +0.310 -> cleaned +0.219; Bootes I alt: single +0.290 -> cleaned +0.199; Tucana II can: single +0.730 -> cleaned +0.465; Tucana II alt: single +0.709 -> cleaned +0.445
+         alt : Bootes I can: single +0.313 -> cleaned +0.222; Bootes I alt: single +0.293 -> cleaned +0.202; Tucana II can: single +0.731 -> cleaned +0.466; Tucana II alt: single +0.710 -> cleaned +0.445
+
+  CFG56_super_spirals_bulge  (headline H2)
+    H1  (H) PASS -> FAIL  max d(dex) 0.027  max d(sigma) 0.39  SENSITIVE verdict FLIP 
+         mono: +0.105 +- 0.063 (+1.67 sigma)
+         alt : +0.132 +- 0.064 (+2.06 sigma)
+    H2  (H) FAIL -> FAIL  max d(dex) 0.027  max d(sigma) 0.39  ROBUST  [HEADLINE] 
+         mono: mean +0.105 +- 0.063 (+1.67); slope +0.166 (+1.80); fastest 9: +0.164 (+2.34)
+         alt : mean +0.132 +- 0.064 (+2.06); slope +0.165 (+1.78); fastest 9: +0.190 (+2.69)
+    R3  (altR) PASS -> PASS  max d(dex) 0.028  max d(sigma) 0.43  ROBUST 
+         mono: law: +0.090 +- 0.062 (+1.46 sigma); rule: +0.090 +- 0.062 (+1.46 sigma)
+         alt : law: +0.118 +- 0.062 (+1.89 sigma); rule: +0.118 +- 0.062 (+1.89 sigma)
+
+  CFG58_rule_more_populations  (headline H1)
+    H1  (H) PASS -> PASS  max d(dex) 0.009  max d(sigma) 0.00  ROBUST  [HEADLINE] 
+         mono: a UDGs: 0.000; d2 LV field dwarfs: 0.061; e SPARC LSB (median dlogv): 0.000; b DF2/DF4 (T-E): 0.000; c TDGs (T-E): 0.000
+         alt : a UDGs: 0.000; d2 LV field dwarfs: 0.070; e SPARC LSB (median dlogv): 0.000; b DF2/DF4 (T-E): 0.000; c TDGs (T-E): 0.000
+    H2  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.00  ROBUST 
+         mono: a UDGs: SPARES; b DF2/DF4 (T-E): SPARES; c TDGs (T-E): SPARES; d1 LV stat C: BOTH PASS; d2 LV field dwarfs: BREAKS; e SPARC LSB: SPARES | T-B: b DF2/DF4 T-B: BOTH FAIL (spared by the rule itself: True); c TDGs T-B: BOTH FAIL (spar
+         alt : a UDGs: SPARES; b DF2/DF4 (T-E): SPARES; c TDGs (T-E): SPARES; d1 LV stat C: BOTH PASS; d2 LV field dwarfs: BREAKS; e SPARC LSB: SPARES | T-B: b DF2/DF4 T-B: BOTH FAIL (spared by the rule itself: True); c TDGs T-B: BOTH FAIL (spar
+
+  CFG59_universal_debris_fraction  (headline H1)
+    H1  (H) PASS -> PASS  max d(dex) 0.005  max d(sigma) 0.00  ROBUST  [HEADLINE] 
+         mono: canonical: o(0) +0.325, o(1) -0.059, phi_needed 0.740; alt: o(0) +0.304, o(1) -0.059, phi_needed 0.736
+         alt : canonical: o(0) +0.329, o(1) -0.058, phi_needed 0.741; alt: o(0) +0.309, o(1) -0.059, phi_needed 0.737
+    H2  (H) PASS -> PASS  max d(dex) 0.000  max d(sigma) 0.00  ROBUST 
+         mono: canonical NO; alt NO; OVERALL NO
+         alt : canonical NO; alt NO; OVERALL NO
+
+======================================================================================================================
+SUMMARY under p2
+======================================================================================================================
+  CFG40_super_spirals                headline H2: KERNEL-ROBUST
+  CFG41_massive_spirals_hi           headline H2: KERNEL-ROBUST
+  CFG42_satellites_rule              headline H1: KERNEL-ROBUST
+  CFG45_rule_readings                headline H1: KERNEL-ROBUST
+  CFG46_ufd_binary_corrected         headline H1: KERNEL-ROBUST
+  CFG51_walker_ufd                   headline H1: KERNEL-ROBUST
+  CFG56_super_spirals_bulge          headline H2: KERNEL-ROBUST
+  CFG58_rule_more_populations        headline H1: KERNEL-ROBUST
+  CFG59_universal_debris_fraction    headline H1: KERNEL-ROBUST
+  sensitive hypotheses (H rows): [('CFG56_super_spirals_bulge', 'H1')]
+  sensitive alt-footing companion rows: []
+  pass/fail flips (any row): [('CFG56_super_spirals_bulge', 'H1')]
+
+======================================================================================================================
+REFERENCE: the same classification under the other kernel (newton), summary only
+======================================================================================================================
+  CFG40_super_spirals                headline H2: KERNEL-ROBUST
+  CFG41_massive_spirals_hi           headline H2: KERNEL-ROBUST
+  CFG42_satellites_rule              headline H1: KERNEL-SENSITIVE
+  CFG45_rule_readings                headline H1: NOT RUN
+  CFG46_ufd_binary_corrected         headline H1: KERNEL-SENSITIVE
+  CFG51_walker_ufd                   headline H1: KERNEL-SENSITIVE
+  CFG56_super_spirals_bulge          headline H2: KERNEL-ROBUST
+  CFG58_rule_more_populations        headline H1: NOT RUN
+  CFG59_universal_debris_fraction    headline H1: KERNEL-SENSITIVE
+  sensitive hypotheses (H rows): [('CFG40_super_spirals', 'H1'), ('CFG41_massive_spirals_hi', 'H1'), ('CFG42_satellites_rule', 'H1'), ('CFG42_satellites_rule', 'H4'), ('CFG46_ufd_binary_corrected', 'H1'), ('CFG46_ufd_binary_corrected', 'H2'), ('CFG51_walker_ufd', 'H1'), ('CFG51_walker_ufd', 'H2'), ('CFG56_super_spirals_bulge', 'H1'), ('CFG59_universal_debris_fraction', 'H1')]
+  sensitive alt-footing companion rows: [('CFG40_super_spirals', 'R3'), ('CFG41_massive_spirals_hi', 'R1'), ('CFG56_super_spirals_bulge', 'R3')]
+  pass/fail flips (any row): [('CFG40_super_spirals', 'H1'), ('CFG42_satellites_rule', 'H4'), ('CFG46_ufd_binary_corrected', 'H1'), ('CFG46_ufd_binary_corrected', 'H2'), ('CFG56_super_spirals_bulge', 'H1')]
+  NOT RUN under this kernel (no results): ['CFG45_rule_readings', 'CFG58_rule_more_populations']
+
+======================================================================================================================
+G1  the swap has bite
+======================================================================================================================
+  CFG40_super_spirals                largest token change between the two kernels: 0.36
+  CFG41_massive_spirals_hi           largest token change between the two kernels: 0.37
+  CFG42_satellites_rule              largest token change between the two kernels: 1e+07
+  CFG45_rule_readings                largest token change between the two kernels: 5.64e+04
+  CFG46_ufd_binary_corrected         largest token change between the two kernels: 0.03
+  CFG51_walker_ufd                   largest token change between the two kernels: 0.06
+  CFG56_super_spirals_bulge          largest token change between the two kernels: 0.43
+  CFG58_rule_more_populations        largest token change between the two kernels: 3e+05
+  CFG59_universal_debris_fraction    largest token change between the two kernels: 0.053
+  [PASS] G1 GATE: the swap has bite -- in every lane at least one decimal token differs between nu_mono and the alternative kernel by > 1e-6
+         CFG40_ 0.36; CFG41_ 0.37; CFG42_ 1e+07; CFG45_ 5.64e+04; CFG46_ 0.03; CFG51_ 0.06; CFG56_ 0.43; CFG58_ 3e+05; CFG59_ 0.053
+
+======================================================================================================================
+C3  the absurd kernel
+======================================================================================================================
+  [FAIL] C3 CONTROL (declared before the first run): with nu = 1 (Newtonian) CFG41's headline H2 flips PASS -> FAIL
+         nu_mono: PASS; Newtonian: PASS ((a) -0.103 +- 0.072 (-1.43); (b) four S0/S0a: corrected -0.146 +- 0.090 (> -0.180?) -> -1.62 sigma); nu(1) printed in the copy 1.0; calls 4821
+  [PASS] C3b CONTROL (added after the first run, disclosed): with nu = 1 in all nine lanes at least one HEADLINE verdict flips its pass/fail
+         headlines flipped under nu = 1: [('CFG46_', 'H1')]; lanes not run: ['CFG45_rule_readings', 'CFG58_rule_more_populations']
+
+======================================================================================================================
+R1  residual-leak audit: RAR-form functions alive after each P2 lane that were NOT swapped
+======================================================================================================================
+  CFG40_super_spirals                ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG41_massive_spirals_hi           ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG42_satellites_rule              ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG45_rule_readings                ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred', 'h50_gc_dispersions.py:128 sigma_los']
+  CFG46_ufd_binary_corrected         ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG51_walker_ufd                   ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG56_super_spirals_bulge          ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG58_rule_more_populations        ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'L23_udg_verify.py:78 Delta', 'h48_h69b_relative_isolation.py:97 sigma_pred']
+  CFG59_universal_debris_fraction    ['CFG4_common.py:201 nu_rar', 'CFG7_common.py:149 class_pk', 'CFG7_common.py:272 run_shells', 'CFG7_common.py:404 measure', 'CFG7_common.py:47 Cosmo.__init__', 'FP1_static_sector.py:122 _h_rar', 'h48_h69b_relative_isolation.py:97 sigma_pred', 'h50_gc_dispersions.py:128 sigma_los']
+  [PASS] (reported) R1 (reported) residual RAR-form functions after the P2 runs (not swapped; each is inspected in the README)
+         CFG40_: 7; CFG41_: 7; CFG42_: 7; CFG45_: 8; CFG46_: 7; CFG51_: 7; CFG56_: 7; CFG58_: 8; CFG59_: 8
+
+======================================================================================================================
+HEADLINES AND HYPOTHESES
+======================================================================================================================
+  lane-level (p2): CFG40_ ROBUST; CFG41_ ROBUST; CFG42_ ROBUST; CFG45_ ROBUST; CFG46_ ROBUST; CFG51_ ROBUST; CFG56_ SENSITIVE; CFG58_ ROBUST; CFG59_ ROBUST
+  [PASS] H1 [HEADLINE] EVERY HEADLINE VERDICT IS KERNEL-ROBUST: the nine headline hypotheses keep their pass/fail and move by <= 0.05 dex and <= 1 sigma
+         CFG40_ H2 robust; CFG41_ H2 robust; CFG42_ H1 robust; CFG45_ H1 robust; CFG46_ H1 robust; CFG51_ H1 robust; CFG56_ H2 robust; CFG58_ H1 robust; CFG59_ H1 robust
+  [FAIL] (reported) H2 (reported) every declared hypothesis of the nine lanes is KERNEL-ROBUST (alt-footing companion rows included)
+         sensitive hypotheses: [('CFG56_super_spirals_bulge', 'H1')]; sensitive alt-footing companions: none
+
+  7/9 checks pass; load-bearing failures: 1   (50 s)

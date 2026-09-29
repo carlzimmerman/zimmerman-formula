@@ -29,3 +29,5 @@ CFG46's statistical binary correction lowered B's ultra-faint offset but could n
 Two objects do not make a population result. The other multi-epoch UFDs need data that do not exist yet (Hydrus I, Reticulum II and Ursa Major II have no repeat epochs in this catalogue).
 
 Nothing here says the theory is closed.
+
+**Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).

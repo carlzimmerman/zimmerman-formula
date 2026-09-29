@@ -1,0 +1,2099 @@
+{
+ "slug": "cfg64_kernel_robustness",
+ "summary": {
+  "n_checks": 9,
+  "n_pass": 7,
+  "load_bearing_failures": 1,
+  "failed": [
+   "C3 CONTROL (declared before the first run): with nu = 1 (Newtonian) CFG41's headline H2 fl",
+   "H2 (reported) every declared hypothesis of the nine lanes is KERNEL-ROBUST (alt-footing co"
+  ],
+  "seconds": 50.3
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: the nu_mono copies reproduce every committed lane result exactly (check names, ok flags, detail strings)",
+   "detail": "all 9 lanes identical",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: nu_p2(1) != nu_mono(1); after the swap nu(1) is the alternative's in every child (also as printed inside the lane copy); the swapped kernel was called > 10 times in every lane (CFG51 exempt from the count: it is a 4-galaxy lane); every P2 child wrote results (Newtonian crashes are reported as NOT RUN)",
+   "detail": "nu_mono(1) 1.58198, nu_p2(1) 1.41421; min calls (P2) 161; lanes with results (P2/Newton): 9/9, 7/9",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported) nu_RAR (what hunt_lib.nu_s / k_contrarian.nu compute) against nu_mono: max |ratio - 1| over y = 1e-4..0.1 and over y = 0.1..30",
+   "detail": "3.27e-09 (ultra-faint regime); 2.29e-02 (y up to 30)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "G1 GATE: the swap has bite -- in every lane at least one decimal token differs between nu_mono and the alternative kernel by > 1e-6",
+   "detail": "CFG40_ 0.36; CFG41_ 0.37; CFG42_ 1e+07; CFG45_ 5.64e+04; CFG46_ 0.03; CFG51_ 0.06; CFG56_ 0.43; CFG58_ 3e+05; CFG59_ 0.053",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL (declared before the first run): with nu = 1 (Newtonian) CFG41's headline H2 flips PASS -> FAIL",
+   "detail": "nu_mono: PASS; Newtonian: PASS ((a) -0.103 +- 0.072 (-1.43); (b) four S0/S0a: corrected -0.146 +- 0.090 (> -0.180?) -> -1.62 sigma); nu(1) printed in the copy 1.0; calls 4821",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3b CONTROL (added after the first run, disclosed): with nu = 1 in all nine lanes at least one HEADLINE verdict flips its pass/fail",
+   "detail": "headlines flipped under nu = 1: [('CFG46_', 'H1')]; lanes not run: ['CFG45_rule_readings', 'CFG58_rule_more_populations']",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) residual RAR-form functions after the P2 runs (not swapped; each is inspected in the README)",
+   "detail": "CFG40_: 7; CFG41_: 7; CFG42_: 7; CFG45_: 8; CFG46_: 7; CFG51_: 7; CFG56_: 7; CFG58_: 8; CFG59_: 8",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 [HEADLINE] EVERY HEADLINE VERDICT IS KERNEL-ROBUST: the nine headline hypotheses keep their pass/fail and move by <= 0.05 dex and <= 1 sigma",
+   "detail": "CFG40_ H2 robust; CFG41_ H2 robust; CFG42_ H1 robust; CFG45_ H1 robust; CFG46_ H1 robust; CFG51_ H1 robust; CFG56_ H2 robust; CFG58_ H1 robust; CFG59_ H1 robust",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 (reported) every declared hypothesis of the nine lanes is KERNEL-ROBUST (alt-footing companion rows included)",
+   "detail": "sensitive hypotheses: [('CFG56_super_spirals_bulge', 'H1')]; sensitive alt-footing companions: none",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "kernel_nu1": {
+   "nu_mono": 1.5819767100712954,
+   "nu_p2": 1.4142135623730951
+  },
+  "alt_kernel": "p2",
+  "rows": {
+   "CFG40_super_spirals|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.02700000000000001,
+    "max_dsig": 0.33000000000000007,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.107,
+      0.134
+     ],
+     [
+      "dex",
+      0.075,
+      0.076
+     ],
+     [
+      "sigma",
+      1.42,
+      1.75
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "+0.107 +- 0.075 (+1.42 sigma)",
+    "det_alt": "+0.134 +- 0.076 (+1.75 sigma)"
+   },
+   "CFG40_super_spirals|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.02700000000000001,
+    "max_dsig": 0.33000000000000007,
+    "ok_mono": false,
+    "ok_alt": false,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.107,
+      0.134
+     ],
+     [
+      "dex",
+      0.075,
+      0.076
+     ],
+     [
+      "sigma",
+      1.42,
+      1.75
+     ],
+     [
+      "dex",
+      0.194,
+      0.193
+     ],
+     [
+      "sigma",
+      1.95,
+      1.93
+     ],
+     [
+      "dex",
+      0.17,
+      0.197
+     ],
+     [
+      "sigma",
+      2.06,
+      2.35
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "mean +0.107 +- 0.075 (+1.42); slope +0.194 (+1.95); fastest 9: +0.170 (+2.06)",
+    "det_alt": "mean +0.134 +- 0.076 (+1.75); slope +0.193 (+1.93); fastest 9: +0.197 (+2.35)"
+   },
+   "CFG40_super_spirals|R3": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.027999999999999997,
+    "max_dsig": 0.3600000000000001,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.092,
+      0.12
+     ],
+     [
+      "dex",
+      0.074,
+      0.074
+     ],
+     [
+      "sigma",
+      1.25,
+      1.61
+     ],
+     [
+      "dex",
+      0.092,
+      0.12
+     ],
+     [
+      "dex",
+      0.074,
+      0.074
+     ],
+     [
+      "sigma",
+      1.25,
+      1.61
+     ]
+    ],
+    "kind": "altR",
+    "det_mono": "law: +0.092 +- 0.074 (+1.25 sigma); rule: +0.092 +- 0.074 (+1.25 sigma)",
+    "det_alt": "law: +0.120 +- 0.074 (+1.61 sigma); rule: +0.120 +- 0.074 (+1.61 sigma)"
+   },
+   "CFG41_massive_spirals_hi|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.023,
+    "max_dsig": 0.36,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.048,
+      0.071
+     ],
+     [
+      "dex",
+      -0.028,
+      -0.005
+     ],
+     [
+      "dex",
+      0.066,
+      0.064
+     ],
+     [
+      "sigma",
+      -0.43,
+      -0.07
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "raw +0.048, corrected -0.028 +- 0.066 (-0.43 sigma)",
+    "det_alt": "raw +0.071, corrected -0.005 +- 0.064 (-0.07 sigma)"
+   },
+   "CFG41_massive_spirals_hi|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.021000000000000005,
+    "max_dsig": 0.25999999999999995,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      -0.057,
+      -0.036
+     ],
+     [
+      "dex",
+      0.081,
+      0.08
+     ],
+     [
+      "sigma",
+      -0.71,
+      -0.45
+     ],
+     [
+      "dex",
+      -0.105,
+      -0.095
+     ],
+     [
+      "dex",
+      0.131,
+      0.135
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "(a) -0.057 +- 0.081 (-0.71); (b) four S0/S0a: corrected -0.105 +- 0.131 (> -0.262?) -> -0.80 sigma",
+    "det_alt": "(a) -0.036 +- 0.080 (-0.45); (b) four S0/S0a: corrected -0.095 +- 0.135 (> -0.270?) -> -0.70 sigma"
+   },
+   "CFG41_massive_spirals_hi|H3": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [],
+    "kind": "H",
+    "det_mono": "f_ex: 0.31, 0.31, 0.78, 0.49",
+    "det_alt": "f_ex: 0.32, 0.32, 0.78, 0.49"
+   },
+   "CFG41_massive_spirals_hi|R1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.023,
+    "max_dsig": 0.33999999999999997,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.048,
+      0.071
+     ],
+     [
+      "dex",
+      0.019,
+      0.04
+     ],
+     [
+      "dex",
+      -0.045,
+      -0.022
+     ],
+     [
+      "sigma",
+      -0.69,
+      -0.35
+     ],
+     [
+      "dex",
+      -0.067,
+      -0.046
+     ],
+     [
+      "sigma",
+      -0.85,
+      -0.59
+     ]
+    ],
+    "kind": "altR",
+    "det_mono": "raw: law +0.048, rule +0.019; alt corrected: law -0.045 (-0.69 sigma), rule -0.067 (-0.85 sigma)",
+    "det_alt": "raw: law +0.071, rule +0.040; alt corrected: law -0.022 (-0.35 sigma), rule -0.046 (-0.59 sigma)"
+   },
+   "CFG42_satellites_rule|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0050000000000000044,
+    "max_dsig": 0.1299999999999999,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.325,
+      0.329
+     ],
+     [
+      "sigma",
+      3.77,
+      3.9
+     ],
+     [
+      "dex",
+      -0.059,
+      -0.058
+     ],
+     [
+      "sigma",
+      -0.41,
+      -0.41
+     ],
+     [
+      "dex",
+      0.304,
+      0.309
+     ],
+     [
+      "sigma",
+      3.55,
+      3.65
+     ],
+     [
+      "dex",
+      -0.059,
+      -0.059
+     ],
+     [
+      "sigma",
+      -0.41,
+      -0.41
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "canonical: law +0.325 (+3.77), rule -0.059 (-0.41); alt: law +0.304 (+3.55), rule -0.059 (-0.41)",
+    "det_alt": "canonical: law +0.329 (+3.90), rule -0.058 (-0.41); alt: law +0.309 (+3.65), rule -0.059 (-0.41)"
+   },
+   "CFG42_satellites_rule|H3": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [],
+    "kind": "H",
+    "det_mono": "100% (median f_ex 0.96)",
+    "det_alt": "100% (median f_ex 0.96)"
+   },
+   "CFG42_satellites_rule|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.011999999999999997,
+    "max_dsig": 0.17999999999999994,
+    "ok_mono": false,
+    "ok_alt": false,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      -0.118,
+      -0.106
+     ],
+     [
+      "sigma",
+      -1.78,
+      -1.6
+     ],
+     [
+      "dex",
+      -0.123,
+      -0.113
+     ],
+     [
+      "sigma",
+      -1.9,
+      -1.74
+     ],
+     [
+      "dex",
+      -0.024,
+      -0.02
+     ],
+     [
+      "sigma",
+      -0.22,
+      -0.18
+     ],
+     [
+      "dex",
+      -0.016,
+      -0.011
+     ],
+     [
+      "sigma",
+      -0.15,
+      -0.11
+     ],
+     [
+      "dex",
+      -0.107,
+      -0.1
+     ],
+     [
+      "sigma",
+      -2.67,
+      -2.49
+     ],
+     [
+      "dex",
+      -0.109,
+      -0.1
+     ],
+     [
+      "sigma",
+      -2.66,
+      -2.5
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "MW classical dSph can -0.118 (-1.78); MW classical dSph alt -0.123 (-1.90); M31 Collins+2013 can -0.024 (-0.22); M31 Collins+2013 alt -0.016 (-0.15); M31 LVD can -0.107 (-2.67); M31 LVD alt -0.109 (-2.66)",
+    "det_alt": "MW classical dSph can -0.106 (-1.60); MW classical dSph alt -0.113 (-1.74); M31 Collins+2013 can -0.020 (-0.18); M31 Collins+2013 alt -0.011 (-0.11); M31 LVD can -0.100 (-2.49); M31 LVD alt -0.100 (-2.50)"
+   },
+   "CFG42_satellites_rule|H4": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.03,
+      0.03
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      7.7,
+      7.7
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      8.0,
+      8.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      7.5,
+      7.5
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      8.5,
+      8.5
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "110 galaxies; f_ex > 0 in 0; d log v < 0.03 in 100%; max +0.000; largest: CamB (log M_* 7.7, f_ex 0.00, +0.000), DDO064 (log M_* 8.0, f_ex 0.00, +0.000), DDO154 (log M_* 7.5, f_ex 0.00, +0.000), DDO161 (log M_* 8.5, f_ex 0.00, +0.000)",
+    "det_alt": "110 galaxies; f_ex > 0 in 0; d log v < 0.03 in 100%; max +0.000; largest: CamB (log M_* 7.7, f_ex 0.00, +0.000), DDO064 (log M_* 8.0, f_ex 0.00, +0.000), DDO154 (log M_* 7.5, f_ex 0.00, +0.000), DDO161 (log M_* 8.5, f_ex 0.00, +0.000)"
+   },
+   "CFG45_rule_readings|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.1299999999999999,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "sigma",
+      3.77,
+      3.9
+     ],
+     [
+      "sigma",
+      3.55,
+      3.65
+     ],
+     [
+      "sigma",
+      -0.41,
+      -0.41
+     ],
+     [
+      "sigma",
+      -0.41,
+      -0.41
+     ],
+     [
+      "sigma",
+      -0.35,
+      -0.35
+     ],
+     [
+      "sigma",
+      -0.35,
+      -0.35
+     ],
+     [
+      "sigma",
+      3.77,
+      3.9
+     ],
+     [
+      "sigma",
+      3.55,
+      3.65
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "(L) +3.77/+3.55 sigma; (S) -0.41/-0.41 sigma; (M) -0.35/-0.35 sigma; (E) +3.77/+3.55 sigma",
+    "det_alt": "(L) +3.90/+3.65 sigma; (S) -0.41/-0.41 sigma; (M) -0.35/-0.35 sigma; (E) +3.90/+3.65 sigma"
+   },
+   "CFG45_rule_readings|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [],
+    "kind": "H",
+    "det_mono": "readings passing all seven: none; per-reading gates passed: (L) 5/7 [fails: A1 UFD, A4 SLUGGS]; (S) 6/7 [fails: A2 classical]; (M) 4/7 [fails: A2 classical, A3 SPARC, A4 SLUGGS]; (E) 5/7 [fails: A1 UFD, A4 SLUGGS]",
+    "det_alt": "readings passing all seven: none; per-reading gates passed: (L) 5/7 [fails: A1 UFD, A4 SLUGGS]; (S) 6/7 [fails: A2 classical]; (M) 4/7 [fails: A2 classical, A3 SPARC, A4 SLUGGS]; (E) 5/7 [fails: A1 UFD, A4 SLUGGS]"
+   },
+   "CFG46_ufd_binary_corrected|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0040000000000000036,
+    "max_dsig": 0.030000000000000027,
+    "ok_mono": false,
+    "ok_alt": false,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.295,
+      0.298
+     ],
+     [
+      "dex",
+      0.206,
+      0.21
+     ],
+     [
+      "dex",
+      0.164,
+      0.163
+     ],
+     [
+      "sigma",
+      1.26,
+      1.29
+     ],
+     [
+      "dex",
+      0.275,
+      0.277
+     ],
+     [
+      "dex",
+      0.186,
+      0.19
+     ],
+     [
+      "dex",
+      0.164,
+      0.163
+     ],
+     [
+      "sigma",
+      1.14,
+      1.17
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "canonical: f = 0 +0.295, f free +0.206 +- 0.164 (+1.26 sigma); alt: f = 0 +0.275, f free +0.186 +- 0.164 (+1.14 sigma)",
+    "det_alt": "canonical: f = 0 +0.298, f free +0.210 +- 0.163 (+1.29 sigma); alt: f = 0 +0.277, f free +0.190 +- 0.163 (+1.17 sigma)"
+   },
+   "CFG46_ufd_binary_corrected|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0040000000000000036,
+    "max_dsig": 0.030000000000000027,
+    "ok_mono": false,
+    "ok_alt": false,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.171,
+      0.174
+     ],
+     [
+      "sigma",
+      0.99,
+      1.02
+     ],
+     [
+      "dex",
+      0.15,
+      0.154
+     ],
+     [
+      "sigma",
+      0.88,
+      0.9
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "canonical: +0.171 (+0.99 sigma); alt: +0.150 (+0.88 sigma)",
+    "det_alt": "canonical: +0.174 (+1.02 sigma); alt: +0.154 (+0.90 sigma)"
+   },
+   "CFG46_ufd_binary_corrected|H3": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0010000000000000009,
+    "max_dsig": 0.010000000000000009,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      -0.151,
+      -0.15
+     ],
+     [
+      "sigma",
+      -1.17,
+      -1.16
+     ],
+     [
+      "dex",
+      -0.154,
+      -0.153
+     ],
+     [
+      "sigma",
+      -1.2,
+      -1.19
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "canonical: -0.151 (-1.17 sigma); alt: -0.154 (-1.20 sigma)",
+    "det_alt": "canonical: -0.150 (-1.16 sigma); alt: -0.153 (-1.19 sigma)"
+   },
+   "CFG51_walker_ufd|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0030000000000000027,
+    "max_dsig": 0.06000000000000005,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.219,
+      0.222
+     ],
+     [
+      "dex",
+      0.089,
+      0.088
+     ],
+     [
+      "sigma",
+      2.46,
+      2.52
+     ],
+     [
+      "dex",
+      0.199,
+      0.202
+     ],
+     [
+      "dex",
+      0.089,
+      0.088
+     ],
+     [
+      "sigma",
+      2.24,
+      2.28
+     ],
+     [
+      "dex",
+      0.465,
+      0.466
+     ],
+     [
+      "dex",
+      0.128,
+      0.128
+     ],
+     [
+      "sigma",
+      3.63,
+      3.64
+     ],
+     [
+      "dex",
+      0.445,
+      0.445
+     ],
+     [
+      "dex",
+      0.128,
+      0.128
+     ],
+     [
+      "sigma",
+      3.47,
+      3.48
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "Bootes I can: +0.219 +- 0.089 (+2.46); Bootes I alt: +0.199 +- 0.089 (+2.24); Tucana II can: +0.465 +- 0.128 (+3.63); Tucana II alt: +0.445 +- 0.128 (+3.47)",
+    "det_alt": "Bootes I can: +0.222 +- 0.088 (+2.52); Bootes I alt: +0.202 +- 0.088 (+2.28); Tucana II can: +0.466 +- 0.128 (+3.64); Tucana II alt: +0.445 +- 0.128 (+3.48)"
+   },
+   "CFG51_walker_ufd|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0030000000000000027,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.31,
+      0.313
+     ],
+     [
+      "dex",
+      0.219,
+      0.222
+     ],
+     [
+      "dex",
+      0.29,
+      0.293
+     ],
+     [
+      "dex",
+      0.199,
+      0.202
+     ],
+     [
+      "dex",
+      0.73,
+      0.731
+     ],
+     [
+      "dex",
+      0.465,
+      0.466
+     ],
+     [
+      "dex",
+      0.709,
+      0.71
+     ],
+     [
+      "dex",
+      0.445,
+      0.445
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "Bootes I can: single +0.310 -> cleaned +0.219; Bootes I alt: single +0.290 -> cleaned +0.199; Tucana II can: single +0.730 -> cleaned +0.465; Tucana II alt: single +0.709 -> cleaned +0.445",
+    "det_alt": "Bootes I can: single +0.313 -> cleaned +0.222; Bootes I alt: single +0.293 -> cleaned +0.202; Tucana II can: single +0.731 -> cleaned +0.466; Tucana II alt: single +0.710 -> cleaned +0.445"
+   },
+   "CFG56_super_spirals_bulge|H1": {
+    "flip": true,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.02700000000000001,
+    "max_dsig": 0.3900000000000001,
+    "ok_mono": true,
+    "ok_alt": false,
+    "sensitive": true,
+    "pairs": [
+     [
+      "dex",
+      0.105,
+      0.132
+     ],
+     [
+      "dex",
+      0.063,
+      0.064
+     ],
+     [
+      "sigma",
+      1.67,
+      2.06
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "+0.105 +- 0.063 (+1.67 sigma)",
+    "det_alt": "+0.132 +- 0.064 (+2.06 sigma)"
+   },
+   "CFG56_super_spirals_bulge|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.02700000000000001,
+    "max_dsig": 0.3900000000000001,
+    "ok_mono": false,
+    "ok_alt": false,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.105,
+      0.132
+     ],
+     [
+      "dex",
+      0.063,
+      0.064
+     ],
+     [
+      "sigma",
+      1.67,
+      2.06
+     ],
+     [
+      "dex",
+      0.166,
+      0.165
+     ],
+     [
+      "sigma",
+      1.8,
+      1.78
+     ],
+     [
+      "dex",
+      0.164,
+      0.19
+     ],
+     [
+      "sigma",
+      2.34,
+      2.69
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "mean +0.105 +- 0.063 (+1.67); slope +0.166 (+1.80); fastest 9: +0.164 (+2.34)",
+    "det_alt": "mean +0.132 +- 0.064 (+2.06); slope +0.165 (+1.78); fastest 9: +0.190 (+2.69)"
+   },
+   "CFG56_super_spirals_bulge|R3": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.027999999999999997,
+    "max_dsig": 0.42999999999999994,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.09,
+      0.118
+     ],
+     [
+      "dex",
+      0.062,
+      0.062
+     ],
+     [
+      "sigma",
+      1.46,
+      1.89
+     ],
+     [
+      "dex",
+      0.09,
+      0.118
+     ],
+     [
+      "dex",
+      0.062,
+      0.062
+     ],
+     [
+      "sigma",
+      1.46,
+      1.89
+     ]
+    ],
+    "kind": "altR",
+    "det_mono": "law: +0.090 +- 0.062 (+1.46 sigma); rule: +0.090 +- 0.062 (+1.46 sigma)",
+    "det_alt": "law: +0.118 +- 0.062 (+1.89 sigma); rule: +0.118 +- 0.062 (+1.89 sigma)"
+   },
+   "CFG58_rule_more_populations|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.009000000000000008,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.061,
+      0.07
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ],
+     [
+      "dex",
+      0.0,
+      0.0
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "a UDGs: 0.000; d2 LV field dwarfs: 0.061; e SPARC LSB (median dlogv): 0.000; b DF2/DF4 (T-E): 0.000; c TDGs (T-E): 0.000",
+    "det_alt": "a UDGs: 0.000; d2 LV field dwarfs: 0.070; e SPARC LSB (median dlogv): 0.000; b DF2/DF4 (T-E): 0.000; c TDGs (T-E): 0.000"
+   },
+   "CFG58_rule_more_populations|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [],
+    "kind": "H",
+    "det_mono": "a UDGs: SPARES; b DF2/DF4 (T-E): SPARES; c TDGs (T-E): SPARES; d1 LV stat C: BOTH PASS; d2 LV field dwarfs: BREAKS; e SPARC LSB: SPARES | T-B: b DF2/DF4 T-B: BOTH FAIL (spared by the rule itself: True); c TDGs T-B: BOTH FAIL (spared by the rule itself: True)",
+    "det_alt": "a UDGs: SPARES; b DF2/DF4 (T-E): SPARES; c TDGs (T-E): SPARES; d1 LV stat C: BOTH PASS; d2 LV field dwarfs: BREAKS; e SPARC LSB: SPARES | T-B: b DF2/DF4 T-B: BOTH FAIL (spared by the rule itself: True); c TDGs T-B: BOTH FAIL (spared by the rule itself: True)"
+   },
+   "CFG59_universal_debris_fraction|H1": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0050000000000000044,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [
+     [
+      "dex",
+      0.325,
+      0.329
+     ],
+     [
+      "dex",
+      -0.059,
+      -0.058
+     ],
+     [
+      "dex",
+      0.304,
+      0.309
+     ],
+     [
+      "dex",
+      -0.059,
+      -0.059
+     ]
+    ],
+    "kind": "H",
+    "det_mono": "canonical: o(0) +0.325, o(1) -0.059, phi_needed 0.740; alt: o(0) +0.304, o(1) -0.059, phi_needed 0.736",
+    "det_alt": "canonical: o(0) +0.329, o(1) -0.058, phi_needed 0.741; alt: o(0) +0.309, o(1) -0.059, phi_needed 0.737"
+   },
+   "CFG59_universal_debris_fraction|H2": {
+    "flip": false,
+    "off": false,
+    "misaligned": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true,
+    "sensitive": false,
+    "pairs": [],
+    "kind": "H",
+    "det_mono": "canonical NO; alt NO; OVERALL NO",
+    "det_alt": "canonical NO; alt NO; OVERALL NO"
+   }
+  },
+  "rows_other_kernel": {
+   "CFG40_super_spirals|H1": {
+    "flip": true,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.15500000000000003,
+    "max_dsig": 0.8900000000000001,
+    "ok_mono": true,
+    "ok_alt": false
+   },
+   "CFG40_super_spirals|H2": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.034,
+    "max_dsig": 0.17999999999999994,
+    "ok_mono": false,
+    "ok_alt": false
+   },
+   "CFG40_super_spirals|R3": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.17,
+    "max_dsig": 1.06,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG41_massive_spirals_hi|H1": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.247,
+    "max_dsig": 2.37,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG41_massive_spirals_hi|H2": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.04599999999999999,
+    "max_dsig": 0.72,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG41_massive_spirals_hi|H3": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG41_massive_spirals_hi|R1": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.264,
+    "max_dsig": 2.63,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG42_satellites_rule|H1": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.774,
+    "max_dsig": 3.24,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG42_satellites_rule|H3": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG42_satellites_rule|H2": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.026999999999999996,
+    "max_dsig": 0.48999999999999977,
+    "ok_mono": false,
+    "ok_alt": false
+   },
+   "CFG42_satellites_rule|H4": {
+    "flip": true,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 1.6000000000000005,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": false
+   },
+   "CFG46_ufd_binary_corrected|H1": {
+    "flip": true,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.805,
+    "max_dsig": 0.8600000000000001,
+    "ok_mono": false,
+    "ok_alt": true
+   },
+   "CFG46_ufd_binary_corrected|H2": {
+    "flip": true,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.759,
+    "max_dsig": 1.0299999999999998,
+    "ok_mono": false,
+    "ok_alt": true
+   },
+   "CFG46_ufd_binary_corrected|H3": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.044,
+    "max_dsig": 0.35,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG51_walker_ufd|H1": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 1.036,
+    "max_dsig": 1.1,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG51_walker_ufd|H2": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 1.037,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG56_super_spirals_bulge|H1": {
+    "flip": true,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.15300000000000002,
+    "max_dsig": 1.06,
+    "ok_mono": true,
+    "ok_alt": false
+   },
+   "CFG56_super_spirals_bulge|H2": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.03,
+    "max_dsig": 0.24,
+    "ok_mono": false,
+    "ok_alt": false
+   },
+   "CFG56_super_spirals_bulge|R3": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.168,
+    "max_dsig": 1.27,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG59_universal_debris_fraction|H1": {
+    "flip": false,
+    "off": true,
+    "sensitive": true,
+    "max_ddex": 0.774,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true
+   },
+   "CFG59_universal_debris_fraction|H2": {
+    "flip": false,
+    "off": false,
+    "sensitive": false,
+    "max_ddex": 0.0,
+    "max_dsig": 0.0,
+    "ok_mono": true,
+    "ok_alt": true
+   }
+  },
+  "headline_sensitive_other": {
+   "CFG40_super_spirals": false,
+   "CFG41_massive_spirals_hi": false,
+   "CFG42_satellites_rule": true,
+   "CFG45_rule_readings": null,
+   "CFG46_ufd_binary_corrected": true,
+   "CFG51_walker_ufd": true,
+   "CFG56_super_spirals_bulge": false,
+   "CFG58_rule_more_populations": null,
+   "CFG59_universal_debris_fraction": true
+  },
+  "leaks": {
+   "CFG40_super_spirals": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG41_massive_spirals_hi": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG42_satellites_rule": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG45_rule_readings": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred",
+    "h50_gc_dispersions.py:128 sigma_los"
+   ],
+   "CFG46_ufd_binary_corrected": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG51_walker_ufd": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG56_super_spirals_bulge": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG58_rule_more_populations": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "L23_udg_verify.py:78 Delta",
+    "h48_h69b_relative_isolation.py:97 sigma_pred"
+   ],
+   "CFG59_universal_debris_fraction": [
+    "CFG4_common.py:201 nu_rar",
+    "CFG7_common.py:149 class_pk",
+    "CFG7_common.py:272 run_shells",
+    "CFG7_common.py:404 measure",
+    "CFG7_common.py:47 Cosmo.__init__",
+    "FP1_static_sector.py:122 _h_rar",
+    "h48_h69b_relative_isolation.py:97 sigma_pred",
+    "h50_gc_dispersions.py:128 sigma_los"
+   ]
+  },
+  "headline_sensitive": {
+   "CFG40_super_spirals": false,
+   "CFG41_massive_spirals_hi": false,
+   "CFG42_satellites_rule": false,
+   "CFG45_rule_readings": false,
+   "CFG46_ufd_binary_corrected": false,
+   "CFG51_walker_ufd": false,
+   "CFG56_super_spirals_bulge": false,
+   "CFG58_rule_more_populations": false,
+   "CFG59_universal_debris_fraction": false
+  },
+  "lane_sensitive": {
+   "CFG40_super_spirals": false,
+   "CFG41_massive_spirals_hi": false,
+   "CFG42_satellites_rule": false,
+   "CFG45_rule_readings": false,
+   "CFG46_ufd_binary_corrected": false,
+   "CFG51_walker_ufd": false,
+   "CFG56_super_spirals_bulge": true,
+   "CFG58_rule_more_populations": false,
+   "CFG59_universal_debris_fraction": false
+  },
+  "not_run": [],
+  "run_status": {
+   "CFG40_super_spirals|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 10.1
+   },
+   "CFG41_massive_spirals_hi|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 9.2
+   },
+   "CFG42_satellites_rule|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 6.8
+   },
+   "CFG45_rule_readings|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "h50_gc_dispersions.py:128 sigma_los",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 9.5
+   },
+   "CFG46_ufd_binary_corrected|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 10.1
+   },
+   "CFG51_walker_ufd|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 6.4
+   },
+   "CFG56_super_spirals_bulge|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 8.6
+   },
+   "CFG58_rule_more_populations|mono": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "L23_udg_verify.py:78 Delta",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 6.4
+   },
+   "CFG59_universal_debris_fraction|mono": {
+    "rc": 0,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.5819767100712954,
+    "calls": 0,
+    "swapped": [],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "h50_gc_dispersions.py:128 sigma_los",
+     "hunt_lib.py:15 nu",
+     "hunt_lib.py:17 nu_s",
+     "k_contrarian_dwarfefe.py:60 nu"
+    ],
+    "marker_nu1": 1.5819767100712954,
+    "seconds": 18.1
+   },
+   "CFG40_super_spirals|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 10787,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 8.7
+   },
+   "CFG41_massive_spirals_hi|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 7883,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 8.0
+   },
+   "CFG42_satellites_rule|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 26977,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 5.8
+   },
+   "CFG45_rule_readings|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 23226,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "h50_gc_dispersions.py:128 sigma_los"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 8.0
+   },
+   "CFG46_ufd_binary_corrected|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 382925,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 7.7
+   },
+   "CFG51_walker_ufd|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 161,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 5.3
+   },
+   "CFG56_super_spirals_bulge|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 9744,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 8.9
+   },
+   "CFG58_rule_more_populations|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 11631,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu",
+     "L23_udg_verify.nu (exec'd)"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "L23_udg_verify.py:78 Delta",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 5.4
+   },
+   "CFG59_universal_debris_fraction|p2": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.4142135623730951,
+    "calls": 240027,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "h50_gc_dispersions.py:128 sigma_los"
+    ],
+    "marker_nu1": 1.4142135623730951,
+    "seconds": 18.8
+   },
+   "CFG40_super_spirals|newton": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 6573,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 10.2
+   },
+   "CFG41_massive_spirals_hi|newton": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 4821,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 10.0
+   },
+   "CFG42_satellites_rule|newton": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 17304,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 7.7
+   },
+   "CFG45_rule_readings|newton": {
+    "rc": -1,
+    "err": "Traceback (most recent call last):\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG64_kernel_robustness/CFG64_kernel_robustness.py\", line 156, in child\n    exec(compile(text, cp, \"exec\"), g)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG64_kernel_robustness/lane_copies/CFG45_rule_readings__newton.py\", line 479, in <module>\n    d_edge = max(abs(edge_info(Mb, f)[0] / edge_phantom36(Mb, f, XE) - 1) for Mb in (1e4, 1e7, 1e9, 1e11) for f in FOOTS)\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG64_kernel_robustness/lane_copies/CFG45_rule_readings__newton.py\", line 479, in <genexpr>\n    d_edge = max(abs(edge_info(Mb, f)[0] / edge_phantom36(Mb, f, XE) - 1) for Mb in (1e4, 1e7, 1e9, 1e11) for f in FOOTS)\n                     ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~\nZeroDivisionError: float division by zero\n",
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 18436,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "h50_gc_dispersions.py:128 sigma_los"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 9.0
+   },
+   "CFG46_ufd_binary_corrected|newton": {
+    "rc": 0,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 280726,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 8.9
+   },
+   "CFG51_walker_ufd|newton": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 148,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 5.6
+   },
+   "CFG56_super_spirals_bulge|newton": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 5952,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 8.0
+   },
+   "CFG58_rule_more_populations|newton": {
+    "rc": -1,
+    "err": "Traceback (most recent call last):\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG64_kernel_robustness/CFG64_kernel_robustness.py\", line 156, in child\n    exec(compile(text, cp, \"exec\"), g)\n    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG64_kernel_robustness/lane_copies/CFG58_rule_more_populations__newton.py\", line 448, in <module>\n    d_edge = max(abs(edge_info(Mb, f)[0] / edge_phantom36(Mb, f, XE) - 1) for Mb in (1e4, 1e7, 1e9, 1e11) for f in FOOTS)\n  File \"/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG64_kernel_robustness/lane_copies/CFG58_rule_more_populations__newton.py\", line 448, in <genexpr>\n    d_edge = max(abs(edge_info(Mb, f)[0] / edge_phantom36(Mb, f, XE) - 1) for Mb in (1e4, 1e7, 1e9, 1e11) for f in FOOTS)\n                     ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~\nZeroDivisionError: float division by zero\n",
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 7006,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu",
+     "L23_udg_verify.nu (exec'd)"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "L23_udg_verify.py:78 Delta",
+     "h48_h69b_relative_isolation.py:97 sigma_pred"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 5.9
+   },
+   "CFG59_universal_debris_fraction|newton": {
+    "rc": 1,
+    "err": null,
+    "nu1_mono": 1.5819767100712954,
+    "nu1_p2": 1.4142135623730951,
+    "nu1_after": 1.0,
+    "calls": 234405,
+    "swapped": [
+     "CFG4_common.nu_mono",
+     "hunt_lib.nu",
+     "hunt_lib.nu_s",
+     "k_contrarian_dwarfefe.nu"
+    ],
+    "leaks": [
+     "CFG4_common.py:201 nu_rar",
+     "CFG7_common.py:149 class_pk",
+     "CFG7_common.py:272 run_shells",
+     "CFG7_common.py:404 measure",
+     "CFG7_common.py:47 Cosmo.__init__",
+     "FP1_static_sector.py:122 _h_rar",
+     "h48_h69b_relative_isolation.py:97 sigma_pred",
+     "h50_gc_dispersions.py:128 sigma_los"
+    ],
+    "marker_nu1": 1.0,
+    "seconds": 14.2
+   }
+  }
+ }
+}

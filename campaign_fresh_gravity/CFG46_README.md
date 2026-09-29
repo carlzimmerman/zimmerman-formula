@@ -36,3 +36,5 @@ FG001's estimator and inputs (as CFG28 and CFG42); the statistic is the median o
 **Together with CFG42:** the rule with the corrected dispersions sits at −0.15 (−1.2σ), so the rule over-predicts the ultra-faints slightly once the binary correction is applied. Its earlier ultra-faint "closure" (−0.06) was against the uncorrected dispersions.
 
 Nothing here says the theory is closed.
+
+**Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).

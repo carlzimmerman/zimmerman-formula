@@ -26,3 +26,5 @@ Script: `CFG58_rule_more_populations.py` (about 5 s). Outputs: `.out`, `_results
 ## Standing
 
 **The sum is harmless above M_b ≈ 2 × 10⁷ M☉ and harmful below it.** This adds nothing new for the sub-3 × 10⁷ M_b regime beyond CFG42: the rule's problems live where the law's own phantom is smaller than the collapse mass. Nothing here says the theory is closed.
+
+**Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
