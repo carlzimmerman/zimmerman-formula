@@ -78,3 +78,8 @@ Before the criteria were frozen, the June all-15-bin numbers were printed (126.0
 ## Correction at adoption (appended 2026-09-29)
 
 - Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran both modes; both reproduce. The data it needs are listed above (`lr_esd_jackknife*.npz` and `brouwer2021_rar/`).

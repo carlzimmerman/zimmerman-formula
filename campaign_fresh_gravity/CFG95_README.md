@@ -75,3 +75,12 @@ B's colour-blind law needs early-type lenses to hold about 2.2–2.5× the baryo
 ## Correction at adoption (appended 2026-09-29)
 
 - Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran both modes on copies of the small data files; both reproduce. Both runs fail exactly H1 and H2, so the MUTATE changes no check; C1's exact reproduction is the machinery check.
+- **Data requirements (not in git)**, all in `real_research/data/lensing_rar/`:
+  - Brouwer+2021's `brouwer2021_rar/` (Fig. 8 colour bins and covariance, 2.3 MB);
+  - `lr_lenses.npz` (9.7 MB), through CFG61;
+  - `lr_esd_jackknife.npz`, the re-measured split.

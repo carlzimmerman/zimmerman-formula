@@ -127,3 +127,9 @@ CFG84 (68d166cea) re-derived this lane from independently written code. It repro
   - Matching each galaxy to its own halo does not visibly help. The identity assignment's galaxy-to-galaxy error sits at the 74th percentile of all 5040 permutations.
 - **The class, reworded.** "SPECIFIC-TO-B through a weak gate" is replaced by: **a compatibility check, not a test of ΛCDM or of B.** The data are in ΛCDM's own functional form, and the pass rests on a cancellation between halo mass and concentration. B's shortfall stays marginal (CFG32).
 - **NGC 4472 (alt).** A referee's +0.32 against this lane's +0.31 is a double-rounding artefact of that check (unrounded 0.31465). This lane's numbers stand.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran both modes; both reproduce.
+- **Which checks the MUTATE changes:** H1b and M1 only. The declared C4 fails in both runs, so both exit 1, and the exit code alone does not tell them apart.

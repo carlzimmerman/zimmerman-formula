@@ -158,3 +158,9 @@ The first one owes its low g_bar to an extrapolated gas fraction (Tacconi+2018 a
 - **At z ≈ 0.6–1.9 the g_bar < a₀ regime is reached for tens of discs.** Using them would still need a beam-smearing forward model (C1c) and measured gas.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- **Not verified by LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3):** the KMOS3D cubes are git-ignored and outside the repo. Without them the script gives 16/25 checks against the committed 22/25, and it still exits 1.
+- **Data requirements (not in git):** the 739 KMOS3D cubes (about 3.8 GB) at `../_external_data/kmos3d/cubes` relative to the repo root, with their hashes in `data_assembly/kmos3d_phibss/manifest.json`. The catalogue `data_assembly/kmos3d_phibss/kmos3d_catalog.csv` is in git.

@@ -152,3 +152,9 @@ CFG85 (8115c1189) re-derived this lane's headline from independently written cod
   - The gap to ΛCDM (+0.126 against +0.020 dex) is about 1.3× the 0.079-dex hydrostatic allowance, and that allowance is almost all of ΛCDM's error.
   - **Corrected class:** on equal footing the shape test **does not separate B from ΛCDM at 2σ**.
   - B's R2500 failure as run (2.57σ) combines its R500 normalisation with the shape. It rests on the Kravtsov stellar level, and this lane cannot test the normalisation for ΛCDM.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran both modes; both reproduce.
+- **Which checks the MUTATE changes:** the MUTATE exits 1 through the construction detector C5, so its exit code says nothing about the science. The science change is H1, which flips to +3.30σ.

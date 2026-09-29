@@ -56,3 +56,11 @@ It is still a failure that every colour-blind dark mass shares (CFG77).
 ## Correction at adoption (appended 2026-09-29)
 
 - Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran the scoring script (`CFG96_kids_split_isolation.py`, both modes) on copies of the small data files; both reproduce. The stage (`CFG96_stage_stack.py`) was not re-run, because it needs the 17.7 GB catalogue.
+- **Data requirements (not in git)**, all in `real_research/data/lensing_rar/`:
+  - The stage: `KiDS_DR4.1_SOM_gold_WL_cat.fits` (17.7 GB), `KiDS_DR4_brightsample.fits`, `KiDS_DR4_brightsample_LePhare.fits`, `lr_lenses.npz` and `lr_esd_jackknife.npz`.
+  - The scoring: `cfg96_isoflags.npz` and `cfg96_stack.npz` (written by the stage), `lr_lenses.npz` and `lr_esd_jackknife.npz`.

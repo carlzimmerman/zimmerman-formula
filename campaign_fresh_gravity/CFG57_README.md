@@ -132,3 +132,8 @@ B's derived rule leaves 3.0σ with the gas (alt 3.3σ). For comparison (CFG69): 
   - The deficit also leans on the group and cluster centrals, four of which are among this lane's seven: M87, NGC 4365, NGC 4374 and NGC 5846.
   - So the 5.4σ and 3.0σ here are statistical errors at γ = 3. The gas shift (0.010 dex) was computed at γ = 3 only.
 - **h50's name-key artefact does not change this lane's sample.** NGC 821 is in neither gas source. NGC 720 is in Fukazawa's table but lies outside ATLAS3D, so it is not in CFG55's JAM sample.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran the main and MUTATE runs; both reproduce with matching exit codes and tallies.

@@ -117,3 +117,9 @@ CFG86 (4d994bb28) re-derived **ΛCDM's side** from independently written code an
 - **The robust statement.** Over all 54 cells, B minus ΛCDM has a median of +0.118 dex and a range of +0.023 to +0.266, and never goes negative. **B sits about 0.12 dex above ΛCDM: a difference between the models, not a failure of either.**
 - **What the gap measures.** With halos off, the gap is +0.191 dex (9.6σ statistical). B's +0.15–0.17 lies between that stars-only gap and ΛCDM's base. So the lensing–dynamics gap tracks how much projected dark mass a model has inside the Einstein radius. B's phantom is about 14–20% of the Einstein mass in projection, against ΛCDM's 42%.
 - **The class, reworded.** "SPECIFIC-TO-B for the statistical gap" becomes: **B minus ΛCDM ≈ 0.12 dex, conditional on the halo and zero-point conventions.** Both models pass CFG33's gate with its floor.
+
+
+## Notes after the independent re-run (appended 2026-09-29; no result changed)
+
+- LEDGER_VERIFICATION Part 5 (84910a506, at HEAD 4fa9f54e3) re-ran both modes; both reproduce.
+- **Which checks the MUTATE changes:** the MUTATE exits 1 through the construction witness C5, so its exit code says nothing about the science. The science change is H1 (ΛCDM's gap goes to −0.294, FAIL−), together with C6 (the gate outcome changes).
