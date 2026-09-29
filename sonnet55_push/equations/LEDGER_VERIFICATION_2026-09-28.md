@@ -247,3 +247,54 @@ headline check(s), so the exit code carries information here (unlike CFG79/83/95
 Not verified: `CFG110_stage_perlens.py` (one pass of the KiDS-1000 estimator over the 17.7 GB SOM-gold catalogue, 228 s) was not run;
 the per-lens file it writes was taken as an input, so CFG110's result is reproduced from that file, not regenerated from the catalogue.
 `data_assembly/arxiv_tables/alpaka1_digitised/digitise.py` (a data-digitisation script, not a lane) was not run.
+
+---
+
+# Part 7 -- CFG112-115, the independent re-derivation lanes (CFG97, CFG100-106) and the alpha-principle lanes S1/T1/U1/U2/V1 (HEAD f44735222)
+
+Three read-only verifier workers, one `git archive HEAD` export, same rules as Part 5 (exit code and tally compared with the lane's
+committed output; git-ignored data copied only if under 200 MB; live-tree paths and controls that cannot discriminate reported).
+Worker W2 and W3 could not write their report files, so their tables are summarised here from their returned text (their logs
+were left in the scratch export, not committed). The machine was heavily loaded (load average 30-55), so runs were 2-5x slower than
+the READMEs state.
+
+## W1 -- CFG112, CFG113, CFG114, CFG115: 8 runs, 6 reproduce, 2 not verifiable
+| lane | main (exit, tally) | MUTATE (exit, tally) | committed .out |
+|---|---|---|---|
+| CFG112 | 1, 7/8 | 1, 7/8 | identical |
+| CFG113 | 0, 10/10 | 1, 9/10 | identical (control discriminates) |
+| CFG114 | 1, 5/6 | 1, 5/6 | identical |
+| CFG115 | NOT VERIFIED | NOT VERIFIED | needs git-ignored KiDS files: it stops at `KiDS_DR4_brightsample_LePhare.fits` (246 MB, over the copy limit) in the CFG110/CFG61 exec prefix before any CFG115 check runs |
+CFG112 and CFG114: the control's failure set equals main's (H1, exit 1 in both), so the exit code cannot discriminate; both READMEs declare it.
+No absolute live-tree paths (they use HERE/REPO). Live HEAD moved after the export: for CFG112-115 only a CFG107 corrections section was appended to `CFG115_README.md`.
+
+## W2 -- the independent re-derivation lanes: 39 runs, 0 exit-code mismatches, 0 tally mismatches, 1 reproduction failure
+CFG97 (cfg97_massive_spirals_hi main 1 with 5 PASS / 3 FAIL, MUTATE 1 with 7 PASS / 1 FAIL; cfg97_selbias_mc main 1, MUTATE 1; c3a_repair 0; the referee script 0),
+CFG100 (main 0, 9/9; MUTATE 0, 3/3), CFG101 (cfg101_main main / a / b: 1 / 1 / 1, 30/32, 28/32, 26/32; cfg101_attack 0 / 1; cfg101_attack2 0 / 1; referee ceiling 0.50453),
+CFG103 (A1 0 / 1 / 1; A2 0 / 1 / 1; A3 1 / 1 / 1 with its declared a4 failure; grid/A3c/A3d/referee_growth 0), CFG104 (0 / 1),
+CFG105 (aniso 0 / 1 / 1; posthoc 0), CFG106 (0 / 1): every exit code equals its README/committed declaration and every tally equals the committed `.out`.
+1. **Reproduction failure: `posthoc_shape_weighting.py` (CFG97) crashes from a plain run** (`NameError: __file__`): it `exec()`s the
+   main script, whose line 58 was edited after the runs to use `__file__`. With `ZF_REPO` set it exits 0 and matches; the README instruction
+   and the committed output are stale.
+2. `cfg97_selbias_mc.py` timed out at 1500 s under load on both runs, then finished in about 1200 s and matched the committed results JSON exactly.
+3. Controls that cannot discriminate by exit code: CFG97's MUTATE exit 1 comes only from the C3a numerical fault, which also fails in main; in
+   CFG101 main and CFG103 A3 all modes exit 1 (mutant failure sets are supersets, so only the tally discriminates); CFG100's MUTATE exits 0 like main (K9 is a passing control).
+4. Declared "failed and kept" controls reproduce: CFG97 C2, C3a, C5 and MC M3; CFG101 P1 ceiling (0.5008 against 0.505) and P2 option B; CFG103 A3 a4.
+5. CFG100 needs three git-ignored files (`lr_lenses.npz` 10 MB, `lr_esd_jackknife.npz` 1.5 MB, `cfg110_perlens.npz` 65 MB); with them the results were identical.
+6. Cosmetic: the CFG105 `.out` embeds the repo directory name and the committed copy has an extra trailing FAILED CHECKS line; the CFG105 README says "10 checks" and the run shows 13 PASS lines.
+
+## W3 -- alpha-principle lanes S1, T1, U1, U2, V1: 30 main runs (15 scripts x real and --mutate), 0 exit-code mismatches, 0 tracebacks
+Every output byte-identical to the committed `.out` except one trailing line (finding 5). Also run: 2 clean-export `u1_9` runs, 2 V1 `--candidate` runs and 4 harness invocations
+(`--only T1_`, `U2_`, `V1_`, `u1_lib`); the full harness (112 scripts, hours) was not run.
+1. **Clean-export failure (a real defect):** `u1_9_graveyard.py` needs `u1_1/2/3_results.json`; none of the 8 U1 json files is committed. From a clean HEAD export `u1_9` exits 1
+   (FileNotFoundError) and its `--mutate` exits 1 for the wrong reason. After `u1_1..3` have run, `u1_9` matches the committed output and the regenerated jsons equal the live-tree ones.
+2. `RUN_ALL_RESULTS.md/json` are stale: they list 97 scripts with no S1/U1/U2/V1 rows; the runner now enumerates 112.
+3. The harness would flag a problem at HEAD: `u1_lib.py` is not in `SKIP_FILES`, so it reports "UNDETECTED convention" and exits 1 (`--only u1_lib`); and it runs scripts in an unordered thread pool, so `u1_9` races `u1_1..3`.
+4. Control power: T1 and V1 count any failed check as "control works", not the named one (only B1 fails in both); V1 B1 is a tautology in the real run; U2's control-broken exit is 0, not 3 (the runner still catches it).
+5. The committed `s1_3_modesum_validation.out` has a trailing "exit 0" line that a fresh run does not write.
+6. S1's final scripts enforce the re-registered checks (E1-E7, C1-C4), not the registered D1-D7; E1, E3, E5 thresholds were set post hoc (disclosed in the lane's amendments).
+7. V1: the digit-count criterion is not computed; A2 checks only the relative spread; a bare decimal `--candidate` becomes a float (offset 3.75e-7 sigma instead of 0). T1's status text says "1e81 or more" but its electron shortfall at H0 is 9.79e80.
+No live-tree paths or git-ignored data in these lanes.
+
+## Not covered
+CFG115 (data over the copy limit); the full alpha harness run; scripts' physics.
