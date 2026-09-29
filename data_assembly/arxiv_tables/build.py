@@ -1,0 +1,221 @@
+#!/usr/bin/env python3
+"""Parse per-galaxy LaTeX tables from four arXiv sources (public TeX source, raw fragments in raw_small/).
+
+  MSA-3D            arXiv:2606.27853  galaxy_parameters.tbl, fitted_parameters.tbl (JWST/NIRSpec, z 0.5-1.7)
+  Mancera Pina 2026 arXiv:2511.08685  'Main parameters of our galaxy sample' (KROSS+KMOS3D discs, z=0.9)
+  Amvrosiadis 2025  arXiv:2312.08959  parent-sample table and best-fit table (ALMA CO discs, z 1.2-4.7)
+  Sharma 2024       arXiv:2406.08934  extra_material/GS21b_catalog.fits (225 KROSS galaxies), CRC fit FITS (16 bins)
+
+Outputs: msa3d_galaxies.csv, msa3d_kinematics.csv, manceraPina2026_sample.csv, amvrosiadis_parent.csv,
+         amvrosiadis_bestfit.csv, sharma2024_gs21b.csv, checks.txt, manifest.json.
+Commented-out LaTeX (lines starting with %) is ignored: several of these files keep superseded drafts of the tables.
+No fit, no derived physics.  Usage: python3 build.py
+"""
+import collections, csv, hashlib, json, os, re, sys
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+RAW = os.path.join(HERE, "raw_small")
+LOG = []
+
+
+def log(m):
+    print(m); LOG.append(m)
+
+
+def check(c, m):
+    log(("PASS  " if c else "FAIL  ") + m)
+    if not c:
+        open(os.path.join(HERE, "checks.txt"), "w").write("\n".join(LOG) + "\n")
+        sys.exit("check failed: " + m)
+
+
+def sha(p):
+    return hashlib.sha256(open(p, "rb").read()).hexdigest()
+
+
+def active_lines(fn):
+    """Non-comment lines; strip a trailing unescaped % comment."""
+    out = []
+    for l in open(os.path.join(RAW, fn), encoding="utf-8", errors="replace"):
+        s = l.rstrip("\n")
+        if s.lstrip().startswith("%"):
+            continue
+        m = re.search(r"(?<!\\)%", s)
+        if m:
+            s = s[:m.start()]
+        out.append(s)
+    return out
+
+
+NAN = float("nan")
+
+
+def cell(s):
+    """-> (value, err_hi, err_lo, flag). value NaN if not numeric. flag = dagger/ddagger/other marker text."""
+    raw = s
+    s = re.sub(r"\\iffalse.*?\\fi", "", s)
+    flag = ""
+    for k, tag in (("dagger", "fixed1"), ("ddagger", "fixed2")):
+        if k in s:
+            flag = "ddagger" if "ddagger" in s else "dagger"
+    t = re.sub(r"\\(dagger|ddagger|,|;|!|:|\s)", " ", s)
+    t = t.replace("$", " ").replace("{", " ").replace("}", " ").replace("\\pm", " PM ")
+    if re.search(r"---|xmark|cdots\s*$", raw) and not re.search(r"\d", re.sub(r"cdots", "", t)):
+        return NAN, NAN, NAN, flag
+    m = re.search(r"(-?\d+\.?\d*)", t)
+    if not m:
+        return NAN, NAN, NAN, flag
+    val = float(m.group(1)); rest = t[m.end():]
+    hi = lo = NAN
+    if "PM" in rest:
+        e = re.search(r"PM\s*(\d+\.?\d*)", rest)
+        if e:
+            hi = lo = float(e.group(1))
+    else:
+        h = re.search(r"\+\s*(\d+\.?\d*)", rest); l_ = re.search(r"-\s*(\d+\.?\d*)", rest)
+        if h: hi = float(h.group(1))
+        if l_: lo = float(l_.group(1))
+    return val, hi, lo, flag
+
+
+def row_cells(line):
+    line = re.sub(r"\\\\.*$", "", line)          # drop the row terminator and anything after
+    return [c.strip() for c in line.split("&")]
+
+
+def write(fn, cols, rows):
+    with open(os.path.join(HERE, fn), "w", newline="") as f:
+        w = csv.writer(f); w.writerow(cols); w.writerows(rows)
+
+
+def tt(s):
+    return re.sub(r"\\texttt\{|\$\^\{\([a-z]\)\}\$|\}|\$", "", s).strip()
+
+
+# ------------------------------------------------------------------ MSA-3D
+sec = None; G = []
+for l in active_lines("msa3d_2606.27853_galaxy_parameters.tbl"):
+    if "Golden sample" in l: sec = "golden"; continue
+    if "Good sample" in l: sec = "good"; continue
+    if l.lstrip().startswith("\\texttt"):
+        c = row_cells(l)
+        foot = re.findall(r"\^\{\(([a-z])\)\}", l)
+        z = cell(c[1])[0]; ra = float(c[2]); dec = float(c[3]); lm = cell(c[4])[0]; sfr = cell(c[5])[0]; re_ = cell(c[6])[0]
+        G.append([tt(c[0]), sec, z, ra, dec, lm, sfr, re_, ";".join(foot)])
+ids_g = [r[0] for r in G]
+cnt = collections.Counter(r[1] for r in G)
+check(len(G) == 30 and cnt == {"golden": 23, "good": 7} or len(G) == 30,
+      f"MSA-3D galaxy table: {len(G)} active rows, sections {dict(cnt)} (paper: 30 = 23 golden + 7 good)")
+check(cnt.get("golden") == 23 and cnt.get("good") == 7, "MSA-3D sections are 23 golden and 7 good")
+check(len(set(ids_g)) == len(ids_g), "MSA-3D galaxy IDs unique")
+zs = np.array([r[2] for r in G]); lm = np.array([r[5] for r in G])
+check(bool(np.all((zs > 0.5) & (zs < 1.75)) and np.all((lm > 8.5) & (lm < 11.5))),
+      f"MSA-3D z in (0.5, 1.75) and log M* in (8.5, 11.5): z {zs.min()}-{zs.max()}, logM {lm.min()}-{lm.max()}")
+write("msa3d_galaxies.csv", ["id", "sample", "z", "ra_deg", "dec_deg", "logMstar", "sfr_msun_yr", "re_arcsec", "footnote"], G)
+
+sec = None; Kn = []
+for l in active_lines("msa3d_2606.27853_fitted_parameters.tbl"):
+    if "Golden sample" in l: sec = "golden"; continue
+    if "Good sample" in l: sec = "good"; continue
+    if l.lstrip().startswith("\\texttt"):
+        c = row_cells(l)
+        row = [tt(c[0]), sec, cell(c[1])[0]]
+        for i in range(2, 10):
+            v, hi, lo, fl = cell(c[i])
+            row += [v, hi, lo, fl]
+        row.append(re.sub(r"[\$\s]", "", c[10]) if len(c) > 10 else "")
+        Kn.append(row)
+names_k = ["inc_F444W_deg", "pa_deg", "re_disk_kpc", "sigma0_kms", "vrot_re_kms", "v_over_sigma", "fdm_re", "bt_kin"]
+kcols = ["id", "sample", "z"] + [f"{n}{s}" for n in names_k for s in ("", "_errhi", "_errlo", "_flag")] + ["rc_shape"]
+check(len(Kn) == 30 and [r[0] for r in Kn] == ids_g, "MSA-3D kinematics table lists the same 30 IDs in the same order as the galaxy table")
+check(all(a[2] == b[2] for a, b in zip(G, Kn)), "MSA-3D redshifts agree between the two tables for every galaxy")
+vr = np.array([r[3 + 4 * names_k.index("vrot_re_kms")] for r in Kn], float)
+fd = np.array([r[3 + 4 * names_k.index("fdm_re")] for r in Kn], float)
+check(bool(np.all(np.isfinite(vr)) and vr.min() > 20 and vr.max() < 400), f"MSA-3D Vrot(Re) finite for all 30, {vr.min():.1f}-{vr.max():.1f} km/s")
+check(bool(np.all(np.isfinite(fd)) and fd.min() >= 0 and fd.max() <= 1), f"MSA-3D fDM(Re) in [0,1]: {fd.min():.2f}-{fd.max():.2f}; median of golden {np.median([f for f,r in zip(fd,Kn) if r[1]=='golden']):.2f}")
+shapes = collections.Counter(r[-1] for r in Kn)
+log(f"MSA-3D rotation-curve shapes: {dict(shapes)}; velocity is Vrot at ONE radius, R_e of the disk; no gas mass in either table")
+write("msa3d_kinematics.csv", kcols, Kn)
+
+# ------------------------------------------------------------------ Mancera Pina 2026
+M = []
+for l in active_lines("manceraPina2026_2511.08685_table_sample.tex"):
+    c = row_cells(re.sub(r"\\noalign\{[^}]*\}", "", l))
+    if len(c) >= 11 and re.fullmatch(r"\d\.\d+", c[1].strip() or "x"):
+        M.append([c[0].strip()] + [float(x) for x in c[1:11]])
+mc = ["name", "z", "logMstar", "e_logMstar", "jstar_p16", "jstar_p50", "jstar_p84", "vcirc_flat_p16", "vcirc_flat_p50", "vcirc_flat_p84", "v_over_sigma_halpha"]
+check(len(M) == 43, f"Mancera Pina 2026 table has 43 galaxies (paper: 43 discs at z=0.9) (got {len(M)})")
+mz = np.array([r[1] for r in M]); check(bool(mz.min() > 0.5 and mz.max() < 1.1), f"Mancera Pina z in (0.5,1.1): {mz.min()}-{mz.max()}")
+check(all(r[7] <= r[8] <= r[9] for r in M), "Mancera Pina Vcirc,f percentiles are ordered p16 <= p50 <= p84 for every row")
+write("manceraPina2026_sample.csv", mc, M)
+
+# ------------------------------------------------------------------ Amvrosiadis 2025
+P = []
+for l in active_lines("amvrosiadis2025_2312.08959_table_parent.tex"):
+    if l.lstrip().startswith("\\textbf{"):
+        c = row_cells(l)
+        idn_raw = re.sub(r"\\textbf\{|\}", "", c[0]).strip()
+        idn = idn_raw.split("$")[0].strip()          # drop footnote markers such as $^{\alpha,\beta$
+        beam = re.sub(r"[\$\\ ]|times", lambda m: "x" if m.group(0) == "times" else "", c[3])
+        lm = cell(c[4]); lg = cell(c[5]); ls = cell(c[6]); ll = cell(c[7]); dv = cell(c[8])[0]
+        snr = cell(c[9])[0]
+        cls = re.sub(r"\\Romannum\{(\d)\}", lambda m: {"1": "I", "2": "II", "3": "III"}.get(m.group(1), m.group(1)), c[10]).strip()
+        co = re.sub(r"[\$\\ ]", "", c[2]).replace("-", "-")
+        P.append([idn, cell(c[1])[0], co, beam, lm[0], lm[1], lm[2], lg[0], lg[1], ls[0], ll[0], dv, snr, cls])
+pc_ = ["alessid", "z", "co_transition", "beam_arcsec", "logMstar", "logMstar_errhi", "logMstar_errlo", "logMgas_msun", "logMgas_err",
+       "logSFR", "logLIR", "delta_v_kms", "snr", "class"]
+check(len(P) >= 15, f"Amvrosiadis parent table parsed {len(P)} sources")
+pz = np.array([r[1] for r in P]); check(bool(pz.min() > 1.0 and pz.max() < 5.0), f"Amvrosiadis z in (1,5): {pz.min()}-{pz.max()}")
+write("amvrosiadis_parent.csv", pc_, P)
+B = []
+for l in active_lines("amvrosiadis2025_2312.08959_table_bestfit.tex"):
+    if l.lstrip().startswith("\\textbf{"):
+        c = row_cells(l)
+        idn = re.sub(r"\\textbf\{|\}", "", c[0]).strip()
+        row = [idn]
+        for i in range(1, 8):
+            v, hi, lo, fl = cell(c[i]) if i < len(c) else (NAN, NAN, NAN, "")
+            row += [v, hi, lo]
+        B.append(row)
+bc = ["alessid"] + [f"{n}{s}" for n in ("re_arcsec", "theta_deg", "inc_deg", "vmax_kms", "sigma_kms", "vcirc_2re_kms", "mdyn_10kpc_1e11msun") for s in ("", "_errhi", "_errlo")]
+check(len(B) >= 8, f"Amvrosiadis best-fit table parsed {len(B)} sources with a fit")
+pids = {r[0] for r in P}
+check(all(r[0] in pids for r in B), "every Amvrosiadis best-fit source is in the parent table")
+have_v = [r for r in B if np.isfinite(r[bc.index('vcirc_2re_kms')])]
+log(f"Amvrosiadis: {len(B)} fitted sources; {len(have_v)} have a finite V_circ(2 r_e); velocity is at a STATED radius, 2 r_e; "
+    f"gas mass is measured CO gas with a conversion factor (parent-table logMgas), not a scaling")
+write("amvrosiadis_bestfit.csv", bc, B)
+
+# ------------------------------------------------------------------ Sharma 2024
+from astropy.io import fits
+d = fits.open(os.path.join(RAW, "sharma2024_2406.08934_GS21b_catalog.fits"))[1].data
+check(len(d) == 225, f"Sharma GS21b catalogue has 225 rows (got {len(d)})")
+cols = list(d.columns.names)
+with open(os.path.join(HERE, "sharma2024_gs21b.csv"), "w", newline="") as f:
+    w = csv.writer(f); w.writerow(cols)
+    for r in d:
+        w.writerow([str(x) if isinstance(x, (str, np.str_)) else float(x) for x in r])
+zz = np.asarray(d["Redshift"], float); check(bool(zz.min() > 0.7 and zz.max() < 1.05), f"Sharma z in (0.7, 1.05): {zz.min():.3f}-{zz.max():.3f}")
+for c in ("Ve", "Vopt", "Vout", "Mstar", "MH2", "MHI"):
+    check(bool(np.all(np.isfinite(np.asarray(d[c], float))) and np.all(np.asarray(d[c], float) > 0)), f"Sharma {c} finite and positive for every row")
+hi_over_star = np.asarray(d["MHI"], float) / np.asarray(d["Mstar"], float)
+log(f"Sharma: median M_HI / M_star = {np.median(hi_over_star):.2f} (HI from a stacked M*-M_HI relation, NOT measured per galaxy); "
+    f"median M_H2 / M_star = {np.median(np.asarray(d['MH2'], float) / np.asarray(d['Mstar'], float)):.2f} (Tacconi+2018 scaling)")
+log("Sharma: Ve, Vopt, Vout are velocities at R_e, R_opt and R_out (about 5 R_D) per the paper text; the FITS carries no radius column and "
+    "Rout_Flag marks 19 galaxies as F")
+
+# ------------------------------------------------------------------ manifest
+src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, tables/galaxy_parameters.tbl",
+       "msa3d_2606.27853_fitted_parameters.tbl": "arXiv:2606.27853 source, tables/fitted_parameters.tbl",
+       "manceraPina2026_2511.08685_table_sample.tex": "arXiv:2511.08685 source, aa57349-25.tex lines 509-566",
+       "amvrosiadis2025_2312.08959_table_parent.tex": "arXiv:2312.08959 source, main.tex lines 148-264",
+       "amvrosiadis2025_2312.08959_table_bestfit.tex": "arXiv:2312.08959 source, main.tex lines 440-538",
+       "sharma2024_2406.08934_GS21b_catalog.fits": "arXiv:2406.08934 source, extra_material/GS21b_catalog.fits",
+       "sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits": "arXiv:2406.08934 source, extra_material/CRCs_FitsParam_Burkert.fits"}
+man = {"built_by": "data_assembly/arxiv_tables/build.py", "source_tarballs": "https://arxiv.org/e-print/<id>", "raw_small": {}}
+for fn, s in src.items():
+    p = os.path.join(RAW, fn); man["raw_small"][fn] = {"source": s, "bytes": os.path.getsize(p), "sha256": sha(p)}
+json.dump(man, open(os.path.join(HERE, "manifest.json"), "w"), indent=2)
+log("wrote manifest.json")
+open(os.path.join(HERE, "checks.txt"), "w").write("\n".join(LOG) + "\n")
