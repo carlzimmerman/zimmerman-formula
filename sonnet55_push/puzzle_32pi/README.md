@@ -54,5 +54,31 @@ Schwarzschild solution), and (b) supply the dynamical reason for r_s = c/√(Gρ
 - That no principle exists: I searched exact curvature integrals, the Euler charge, the on-shell action and 34 matching conditions, not every possibility.
   One further route was checked by hand and gives nothing new: a Gauss-Bonnet term with the Kounterterm coefficient that makes the renormalised on-shell action
   of S⁴ vanish has α = -L²/4; the Wald/Jacobson-Myers entropy is then S = A/4 + 4πα = A/4 - πL², which vanishes at A = 4πL², the de Sitter horizon's own area,
-  not at 32π²/Λ. Junction conditions and the 4D Einstein-Gauss-Bonnet black holes were not developed.
+  not at 32π²/Λ. The 4D Einstein-Gauss-Bonnet black hole was then checked (`p03`): its maximal Hawking temperature gives κ_max² = 0.0164/α, no 32
+  (a first version of that check used a wrongly remembered temperature and failed; the corrected one is committed and the 'lead' is retracted). Junction conditions were not developed.
 - Anything about why κ = ½. kappa = 1/2 stays FITTED.
+
+## 6. Piecing it together with the rest of the repo (2026-09-29)
+What the repo already established, and how this folder fits:
+- **The 2026-06-15 "derive Z" verdict** (`opus_48_extended_research/reviews/DERIVE_Z_FRESH_RUN_VERDICT_2026-06-15.md`, five routes, every step in sympy): Z is an
+  UNFORCED POSIT. The form (a0 ~ c²√Λ), the √-law, the 8π (Einstein) and the 3 (Friedmann) are forced, giving the forced kernel **Z = √(8π/3) = 2.894 (κ = 1)**; the
+  entire remaining content is κ = ½, "the lone factor of 2". Its "32π = 8π × 4 as Einstein × entropy-quarter" lead was killed as numerology (a literal second Bekenstein-Hawking
+  quarter gives Z = 11.58). The scan and the Gauss-Bonnet no-go in this folder agree, and add: exactly one of 34 pre-declared matchings reproduces 32π/3 (K_Σ = ρ_Λ), and a
+  topological invariant is scale-free.
+- **`deepseek_push/GEOMETRIC_EQUATIONS_SYNTHESIS_2026-09-22.md` Part 1** already states the relation as a₀ = (c/2)√(Gρ) = "the surface gravity of the free-fall horizon at R* = c/√(Gρ)".
+  That is my K_Σ = ρ_Λ, i.e. r_s = R*, with the Schwarzschild κ = c²/(2r_s) supplying the ½. It also gives the dimension lock Z_d = 8√(π/(d(d-1))).
+- **`p04_equivalence_web.py` (13/13)** proves that TEN formulations the repo uses are the same statement, each with the unique positive root κ = ½:
+  Λ = 32πa₀²; AΛ = 32π² (Schwarzschild κ = a₀); horizon Gauss curvature = ρ_Λ; Rindler length = 2R*; unit response p'(0) = 1; memory moment M₁ = (4/3)t_Λ;
+  four-form Z_q + 2bβ² = 8β²; the Unruh mode count n = Z; Z = 2√(8π/3); Ω_Λ = 32πa₀²/(3H₀²c²). Deriving any one derives all; the repo has not derived any.
+- **The repo's "Z² = 8 × Vol(unit 3-ball)" reading is a d = 3 coincidence.** The dimension-covariant Friedmann form is Z_d² = 64π/(d(d-1)) = 32π/dim SO(d);
+  it equals 8 Vol(B^d) only at d = 3 (`p04` part B). So the structural content of the "3" is dim SO(3), the number of independent 2-planes of the spatial slice
+  (H² = 8πGρ/dim SO(d)), not a ball volume. This weakens the "bulk-boundary conversion" gloss and leaves the Friedmann origin of 8π/3 intact.
+- **The data do not decide the coefficient** (`p03`): on the ρ_total footing three of four natural candidates (Milgrom 2π at -0.59σ, Verlinde 6 at +0.25σ, √(32π/3) at +0.93σ)
+  lie within 1σ of the SPARC a₀; the Nariai-shell 3√3 is at +3.1σ. On the ρ_Λ footing all sit 2.4-3.7σ low. So no measurement forces 32π over its neighbours.
+
+Where a derivation could still hide (each is a statement of the ONE number; none is a proof):
+1. formulations 3 and 4 compare two geometric objects (a horizon's curvature or length, and a density-derived length): a variational or junction-condition principle setting r_s = c/√(Gρ_Λ) would do it;
+2. formulations 5-7 are normalisations or response coefficients inside an action (unit susceptibility, the four-form ratio, the memory moment 4/3 = the enthalpy ratio (ρ+p)/ρ of a
+   p = ρ/3 component): the repo's action-route audit shows the checked actions leave Z_q/β² free, so the missing object is a principle or symmetry that fixes it;
+3. the mode-count form (8) needs n = Z, a non-integer: an integer count cannot give it, so if it is a count it must be a measure (a weight or a volume ratio), not a number of channels.
+Not established: that any of these can be derived; nothing here shows κ = ½ is anything but fitted.
