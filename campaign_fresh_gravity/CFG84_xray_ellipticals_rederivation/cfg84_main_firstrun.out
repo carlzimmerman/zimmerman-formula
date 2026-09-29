@@ -1,0 +1,97 @@
+CFG84 -- independent re-derivation of CFG79 headline
+  kernel: y_p=2.5396 y*=2.3374; f_b=0.15713; rho_c=1.26047e+11 Msun/Mpc^3
+
+C0 kernel controls
+  [PASS] C0 kernel: y* = 2.3374 (1e-3), nu>=1, monotone decreasing, deep-MOND nu sqrt(y)->1 (1e-3 at y=1e-8), nu-1<1e-3... at y=1e4
+         y*=2.33741; nu(1e-8)sqrt(1e-8)=1.00005; nu(1e4)-1=8.94e-05; max rel step 6.9e-03; monotone True
+
+B (CFG32 pipeline, my kernel)
+  canonical per-galaxy +0.572 +0.270 +0.043 +0.034 +0.341 +0.551 +0.151
+            mean +0.2802 err 0.0839 IMF 0.1264 rad 0.0652 floor 0.1422 sigma 0.1651 z +1.697  salp +0.1539 r40 +0.2150
+  alt       per-galaxy +0.539 +0.246 +0.016 +0.009 +0.315 +0.525 +0.126
+            mean +0.2536 err 0.0833 IMF 0.1237 rad 0.0606 floor 0.1377 sigma 0.1610 z +1.575  salp +0.1299 r40 +0.1929
+  [FAIL] P2 B reproduces CFG32's committed printed numbers (per-galaxy 2dp; mean/err/IMF/rad/floor/sigma/Salpeter/r<=40 at 3dp; z 2dp), both footings
+         canonical: per-galaxy(2dp) max diff 0.000; scalars(3dp) max diff 0.000; z diff 0.00; alt: per-galaxy(2dp) max diff 0.010; scalars(3dp) max diff 0.000; z diff 0.00
+  P2' (post hoc, reported) canonical: mine unrounded 0.57188 0.27002 0.04330 0.03402 0.34068 0.55094 0.15074; vs CFG32 printed 2dp: match = True
+  P2' (post hoc, reported) alt: mine unrounded 0.53868 0.24551 0.01570 0.00867 0.31465 0.52540 0.12646; vs CFG32 printed 2dp: match = True
+
+LCDM (Moster+13 exact inversion, Duffy full, (1-f_b) NFW, nu=1)
+  per-galaxy: M*_K [Msun], log Mh (Moster 200c), log Mvir_H, Duffy c, Humphrey c, R200 kpc, Humphrey Rvir
+   NGC720   M*=5.950e+10 logMh=12.472 logMvir_H=12.820 c=5.71 c_H=18.0 R200=304 Rvir_H=480
+   NGC1407  M*=3.410e+11 logMh=14.387 logMvir_H=13.204 c=3.94 c_H=18.0 R200=1322 Rvir_H=650
+   NGC4125  M*=1.980e+11 logMh=13.785 logMvir_H=12.792 c=4.43 c_H=10.0 R200=832 Rvir_H=470
+   NGC4261  M*=2.860e+11 logMh=14.192 logMvir_H=13.826 c=4.09 c_H=3.7 R200=1138 Rvir_H=1040
+   NGC4472  M*=2.656e+11 logMh=14.110 logMvir_H=13.519 c=4.16 c_H=13.0 R200=1069 Rvir_H=820
+   NGC4649  M*=2.750e+11 logMh=14.149 logMvir_H=13.544 c=4.13 c_H=21.0 R200=1101 Rvir_H=840
+   NGC6482  M*=3.360e+11 logMh=14.371 logMvir_H=12.851 c=3.96 c_H=18.0 R200=1305 Rvir_H=500
+  base           +0.0598 +- 0.1231 (gal-gal 0.0912, IMF 0.0807, rad 0.0182) z +0.486
+  V1             +0.0061 +- 0.1240 (gal-gal 0.0901, IMF 0.0833, rad 0.0176) z +0.049
+  V2             +0.0278 +- 0.1251 (gal-gal 0.0901, IMF 0.0854, rad 0.0160) z +0.222
+  V3             +0.1499 +- 0.1273 (gal-gal 0.1062, IMF 0.0702, rad 0.0040) z +1.177
+  V4             -0.0125 +- 0.1325 (gal-gal 0.0900, IMF 0.0953, rad 0.0193) z -0.094
+  base per-galaxy: +0.494 -0.010 -0.149 -0.162 +0.069 +0.263 -0.087
+  vs CFG79 README (read): base: mine +0.060/0.123/+0.49 vs +0.060/0.123/+0.49; V1: mine +0.006/0.124/+0.05 vs +0.006/0.124/+0.05; V2: mine +0.028/0.125/+0.22 vs +0.028/0.125/+0.22; V3: mine +0.150/0.127/+1.18 vs +0.150/0.127/+1.18; V4: mine -0.012/0.132/-0.09 vs -0.012/0.132/-0.09
+  max |diff| offset/sigma over base+V1-V4: 0.00047 ; per-galaxy base max diff 0.00039
+  [PASS] P1 [HEADLINE] LCDM base reproduces +0.060 +- 0.123 (z +0.49) to 3 decimals (|diff|<=5e-4)
+         mine +0.0598 +- 0.1231 z +0.486; gal-gal 0.091 (CFG79 0.091) IMF 0.081 (0.081) rad 0.018 (0.018)
+  [PASS] P1b class on both footings (declared halos) = SPECIFIC-TO-B; V1-V4 all SPECIFIC-TO-B
+         canonical: base SPECIFIC-TO-B; alt: base SPECIFIC-TO-B
+
+C1 closed-form controls
+  [PASS] C1a Hernquist enclosed mass = integral of Hernquist density (rho = M a /(2 pi r (r+a)^3)), 35 (galaxy,radius)
+         max rel diff 4.4e-16
+  [PASS] C1b NFW: M(<R200)=M_h to 1e-12 (147 halos); closed form = quad of density to 1e-7 (base,V1,V2); monotone
+         max |M(R200)/Mh-1| 2.2e-16; max quad diff 2.5e-14; monotone True
+  [PASS] C1c Moster: round trip 1e-9 (exact inversion); analytic M*/Mh at Mh=1e12 = 0.03427+-2e-5; every Mh (Kroupa/Salpeter/fit stars) inside h48's grid logMh 9-15.5
+         round trip 0.0e+00; M*/Mh(1e12)=0.03428; logMh range 12.472-14.823
+  [PASS] C1d M_h->0: LCDM offset == log10(g_obs/g_bar) exactly (footing-independent by construction: no a0 in the LCDM code path); g_L>=g_bar
+         max diff 0.0e+00; min g_L/g_bar 1.1561
+  [PASS] C3 estimator identity: generic estimator with B kernel == direct B pipeline to 1e-12
+         0.0e+00
+
+Ladder: every declared Mh x m (floors recomputed at each m)
+   x0.003    +0.4578 +- 0.2238 z +2.05  SHARED
+   x0.005    +0.4388 +- 0.2172 z +2.02  SHARED
+   x0.01     +0.4085 +- 0.2068 z +1.98  SPECIFIC-TO-B
+   x0.3333   +0.1499 +- 0.1273 z +1.18  SPECIFIC-TO-B
+   x1        +0.0598 +- 0.1231 z +0.49  SPECIFIC-TO-B
+   x3        -0.0125 +- 0.1325 z -0.09  SPECIFIC-TO-B
+   x10       -0.1147 +- 0.1071 z -1.07  SPECIFIC-TO-B
+   x33       -0.1904 +- 0.1186 z -1.61  SPECIFIC-TO-B
+   x50       -0.2235 +- 0.1210 z -1.85  SPECIFIC-TO-B
+   x70       -0.2522 +- 0.1184 z -2.13  LCDM-WORSE
+   x100      -0.2847 +- 0.1159 z -2.46  LCDM-WORSE
+   x300      -0.3873 +- 0.1157 z -3.35  LCDM-WORSE
+   z crosses +2 at x0.006998; crosses -2 at x60.81
+  [PASS] C2 ladder: sample mean offset strictly decreasing in the halo multiple
+         68 multiples, x0.003..x300
+  [PASS] P3 gate weakness: |z|<=2 at every ladder point x0.01..x33 (47 points) and |z|>2 at x100
+         x0.01 z=+1.975 (+0.408+-0.207); x33 z=-1.606; x100 z=-2.457 (-0.285+-0.116); crossings x0.006998 / x60.81
+
+H1 classification
+  [PASS] H1a NOT SHARED: LCDM (scored halos) not off in B's direction at >2 sigma
+         z_L=+0.486
+  [PASS] H1b NOT LCDM-WORSE: LCDM (scored halos) not off in the opposite direction at >2 sigma
+         z_L=+0.486
+  [PASS] H1c THE GATE SEES THE HALO: class at all-Mh x100 differs from class at declared Mh (both footings)
+         declared {'canonical': 'SPECIFIC-TO-B', 'alt': 'SPECIFIC-TO-B'}; x100 {'canonical': 'LCDM-WORSE', 'alt': 'LCDM-WORSE'}
+  [PASS] M1 [MUTATE detector] scored class == declared class
+         scored {'canonical': 'SPECIFIC-TO-B', 'alt': 'SPECIFIC-TO-B'}; declared {'canonical': 'SPECIFIC-TO-B', 'alt': 'SPECIFIC-TO-B'}
+
+R4 floor readings (reported)
+  R4a IMF term with Mh re-derived from Salpeter M*: IMF 0.1658, sigma 0.1901, z +0.315  (CFG79 +0.31)
+  R4b B's floor on LCDM (canonical): sigma 0.1689 z +0.354  (CFG79 +0.35 / +0.36)
+  R4b B's floor on LCDM (alt): sigma 0.1652 z +0.362  (CFG79 +0.35 / +0.36)
+  R4c Salpeter -0.021 (CFG79 -0.021); fitted M/L +0.113 (+0.113); r<=40 +0.078 (+0.078)
+R5 shape: slope of log(g_obs/g_L) vs log g_bar per galaxy
+  LCDM slopes +0.002 -0.000 +0.076 +0.096 -0.067 -0.047 +0.124 ; negative 3/7 (CFG79: -0.07..+0.12, 3/7)
+  B slopes    -0.101 -0.282 -0.161 -0.168 -0.330 -0.307 -0.149 ; negative 7/7 (CFG32 7/7; different sign convention? vs y = g_bar/a0: same slope)
+
+R-circ: how much of the LCDM pass is built in (reported)
+  data allow only Humphrey's fitted NFW+stars model (no deprojected profile in TSV): a model-independent g_obs is NOT available
+  per-galaxy log Mh_Moster - log Mvir_H: -0.35 +1.18 +0.99 +0.37 +0.59 +0.60 +1.52 | c_Duffy/c_H: 0.32 0.22 0.44 1.11 0.32 0.20 0.22
+  (i) PERMUTATION of Moster/Duffy halos among the 7 galaxies (5040 perms incl. identity): sample offset median +0.047, 5-95% +0.035..+0.059; |z|<=2 in 100.0%
+  (ii) GENERIC one halo (median Moster Mh=1.41e+14) for all: +0.001 +- 0.096  z +0.01
+  (iii) Humphrey's own fitted halos with Kroupa stars (form-matched limit) = 'fitted M/L' row for B +0.280; for LCDM-form: offset = log(g_obs/g_bar) only through stars -> see C1d ref mean +0.533
+
+14/15 checks pass; failing: ["P2 B reproduces CFG32's committed printed numbers (per-galaxy 2dp; mean/err/IMF/rad/floor/sigma/Salpeter/r<=40 at 3dp; z 2dp), both footings"]

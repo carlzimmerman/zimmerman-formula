@@ -1,0 +1,67 @@
+CFG84 -- independent re-derivation of CFG79's headline (LCDM comparator for the X-ray ellipticals). SPEC FROZEN BEFORE ANY RUN.
+Written before any code was run. I read: CFG79_FROZEN_CRITERIA.md, CFG79_README.md (so the CFG79 target numbers below are READ,
+not blind predictions), LEDGER row, CFG32 README/.out/.py header + pipeline code, h10 (data loader and Hernquist/NFW), the TSV,
+hunt_lib constants, and, for the halo model, h48's Moster function and CFG69's c/NFW/RHO_C definitions. I did NOT open
+CFG79_lcdm_xray_ellipticals.py or any CFG79 .out/.json.  Everything below is my own code; nothing is exec'd or imported from the repo.
+
+QUESTION. Through CFG32's pipeline (Humphrey+2006 best-fit NFW+stars g_obs at 5,10,20,40,70 kpc; stars-only baryons at Kroupa M/L;
+offset = log10(g_obs/g_model); galaxy = median of 5 radii; sample = mean of 7; err = std(ddof=1)/sqrt7; floor = hypot(IMF term, radial
+term); sigma = hypot(err, floor)), does a Moster+13 / Duffy+08 LCDM halo fall short like B's law (+0.280, 1.70 sigma)? CFG79 says it does
+not (+0.060 +- 0.123, +0.49 sigma) and that this gate is weak (LCDM inside 2 sigma for every halo multiple x0.01..x33, failing only at x100).
+
+MODEL AS I READ IT.
+ B: g_model = nu_mono(g_bar/a0) g_bar, a0 = 9.3603e-11 / 1.1312e-10 (CFG7 A0_SI); nu_mono = RAR kernel h_rar(y)=y/(e^sqrt(y)-1) up to
+    y*, then monotone log splice h = h_rar(y*) + 0.05 h_p ln((y+y_p)/(y*+y_p)), y_p = argmax h_rar, y* solves h'_rar(y*) = 0.05 h_p/(y*+y_p)
+    (CFG5's stated construction; CFG5 quotes y* = 2.3374 -- I check that). nu = 1 + h/y.
+ LCDM: g = G[M_Hern(r; Ups_K L_K) + (1-f_b) M_NFW(<r)]/r^2, nu=1. M_h = Moster+2013 z=0 inverse at M_* = Ups_K L_K
+    (M*/Mh = 2N/[(Mh/M1)^-b + (Mh/M1)^g], N=0.0351, logM1=11.590, b=1.376, g=0.608), I invert it EXACTLY (CFG79/h48 use a
+    0.005-dex grid interpolation, so ~1e-6 dex differences are expected). f_b = 0.02237/(0.02237+0.1200). c = Duffy full 200c
+    5.71 (Mh h/2e12)^-0.084, h=0.674. R200 = (3Mh/(4 pi 200 rho_c))^(1/3), rho_c from H0=67.4, G=6.674e-11, Msun=1.989e30, Mpc=3.0857e22.
+    M_NFW(<r)=Mh m(c x)/m(c), x=clip(r/R200,1e-4,5). Constants G,kpc,Msun as hunt_lib (6.674e-11, 3.0857e19, 1.989e30).
+ IMF floor for LCDM: Salpeter stars, halo stays at the Kroupa-M_* M_h. Radial term: r<=40 kpc. Floors recomputed per model.
+ Classes (B MARGINAL 1<|z|<=2): SPECIFIC-TO-B if |z_L|<=2; SHARED if z_L>2; LCDM-WORSE if z_L<-2. NON-DISCRIMINATING if class at
+ all-Mh x100 equals class at x1.
+
+TARGETS FROM THE CFG79 README (to compare, 3 decimals; read, not blind):
+ B canonical +0.280 +-0.084 gal-gal, IMF .126, radial .065, floor .142, sigma .165, z 1.70; alt +0.254, .124, .061, .138, .161, z 1.58.
+ per-galaxy B canonical +0.572 +0.270 +0.043 +0.034 +0.341 +0.551 +0.151; alt +0.539 +0.246 +0.016 +0.009 +0.315 +0.525 +0.126.
+ LCDM base +0.060 +-0.123 (z 0.49; gal-gal 0.091, IMF 0.081, radial 0.018); per-galaxy +0.494 -0.010 -0.149 -0.162 +0.069 +0.263 -0.087.
+ V1 (Dutton-Maccio c) +0.006 (z .05); V2 (Duffy relaxed 6.71,-0.091) +0.028 (z .22); V3 (Mh/3) +0.150 (z 1.18); V4 (Mh x3) -0.012 (z -.09).
+ ladder: x0.01 +0.408 +-0.207 (z +1.98); x100 -0.285 +-0.116 (z -2.46, LCDM-WORSE); everything x0.01..x33 inside 2 sigma.
+ R4: Salpeter-halo re-derived z +0.31; B floor on LCDM z +0.35 (canon)/+0.36 (alt); Salpeter -0.021, fitted M/L +0.113, r<=40 +0.078.
+ R5 LCDM residual slopes vs log y: -0.07..+0.12, 3 of 7 negative.
+
+PASS LINES (each reported with my number, CFG79's, and difference).
+ P1 [headline] my LCDM base mean, sigma, z match the CFG79 targets to 3 decimals (|diff| <= 5e-4 on offset/sigma; z to 2 decimals) -- else
+    state the difference and cause.  P1b class = SPECIFIC-TO-B on both footings.
+ P2 B numbers match CFG32's committed 3 decimals (mean, err, floor, terms, z) and per-galaxy 2 decimals -- else FAIL (kernel independence).
+ P3 gate weakness: fine log ladder of Mh multiples m in [0.003, 300] (61 points, plus the exact points 0.01,1/3,1,3,33,100,300):
+    |z|<=2 at every ladder point from 0.01 to 33 inclusive AND |z|>2 at x100. I also report the exact crossing multiples on both sides.
+ CONTROLS (a failed control is a FAIL, kept):
+ C0 kernel: y* within 1e-3 of 2.3374; nu_mono continuous, monotone-decreasing, nu>=1, nu->sqrt-deep-MOND limit nu*sqrt... i.e.
+    nu(y) sqrt(y) -> 1 as y->0 (to 1e-3 at y=1e-8); nu-1 -> 0 at y=1e4.
+ C1 closed-form: (a) Hernquist enclosed mass equals the quad integral of the Hernquist density to 1e-9 at 5 radii; (b) NFW: M(<R200)=Mh to
+    1e-12 for every halo (base, V1-V4, ladder), closed form vs quad of the NFW density to 1e-7 for base/V1/V2, monotone in r;
+    (c) Moster: moster_mstar(halo_mass(M*)) = M* to 1e-9 (exact inversion) and an analytic hand value at Mh=1e12: M*/Mh = 0.03427 +-2e-5;
+    every Mh inside log 9-15.5 (h48's grid, so CFG79's grid never clamps) ; (d) Mh -> 0: LCDM offset == log10(g_obs/g_bar) exactly and
+    independent of footing; g_LCDM >= g_bar everywhere.
+ C2 ladder monotone: sample mean offset strictly decreasing in the halo multiple; and the log-slope of g_L at multiple ->1e6 tends to
+    the pure-halo scaling (offset change per dex of Mh approaches -(2/3)... NOT declared as a pass condition -- report only).
+ C3 estimator identity: my generic estimator with the B kernel reproduces my B pipeline to 1e-12.
+ MUTATE=1: every scored LCDM Mh x100 (base, V1-V4); the ladder and H1c comparison stay relative to declared halos.
+    H1a (not SHARED) and H1b (not LCDM-WORSE) scored on the x100 halos; H1c = class(x100) != class(x1) (gate sees halo); M1 = class(scored)
+    == class(declared). Expected: main run passes H1a,H1b,H1c,M1; MUTATE fails H1b (z_L -2.46) and M1; exit 1 in MUTATE.
+
+REPORTED-ONLY ROWS (declared now, not tuned): 
+ R-circ: how much of the LCDM pass is built in.  Data allow only Humphrey's fitted NFW+stars model (TSV has no deprojected profile), so a
+    model-independent g_obs is NOT available; stated, and instead quantified three ways:
+    (i) PERMUTATION: assign each galaxy the halo (M_h, c, from Moster/Duffy of ANOTHER galaxy's stars) -- all 5040 permutations; report the
+        distribution of the sample offset and the fraction with |z|<=2 (with the floor recomputed each time).  A gate that passes almost all
+        random halo assignments has no power over halo-galaxy matching.
+    (ii) GENERIC: one fixed halo (the median Moster M_h, Duffy c) for all seven.
+    (iii) HUMPHREY's OWN halos with Kroupa stars (fitted-M/L row) as the form-matched limit; and Humphrey's fitted (Mvir,c) forms vs Moster:
+        per-galaxy log Mh_Moster - log Mvir, c ratio.
+ R-shape: LCDM per-galaxy slope of log(g_obs/g_L) vs log g_bar (count negative), B's 7/7.
+ R-floor: R4a, R4b, R4c as above.
+Reading (declared): a non-reproduction is a valid outcome; if |diff|>5e-4 I report cause (Moster inversion grid, kernel splice tolerance,
+constants). Nothing is tuned after the run. Data do not favour the framework; kappa=1/2 is fitted.
