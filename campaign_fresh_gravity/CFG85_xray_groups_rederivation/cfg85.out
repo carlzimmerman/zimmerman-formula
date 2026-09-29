@@ -1,0 +1,192 @@
+CFG85 -- INDEPENDENT RE-DERIVATION of CFG81's headline (LCDM comparator for CFG34's X-ray groups).
+FROZEN BEFORE ANY RUN.  Written from CFG81_FROZEN_CRITERIA.md, the CFG81 README, the CFG34 README/docstring, the h7 docstring, the
+CFG4/CFG45 READMEs and the data file real_research/data/lovisari2015_groups.tsv.  CFG81's script, .out and _results.json were NOT
+opened before this run.  Not used: any CFG34/CFG81 code (own implementation of everything).
+
+QUESTION.  Through CFG34's pipeline (20 Lovisari+2015 groups, radii R2500 and R500, statistic = median over groups of
+log10(M_HSE/M_model), the same floor), (a) does B (M_B = M_b + max(M_ph, 5.364 M_b)) show a 1.88x / 2.57 sigma shortfall at R2500 and
+1.41x / 1.80 sigma at R500; (b) does a LCDM shape-design halo -- M_L(<r) = M_b(<r) + (1-f_b) M_NFW(<r; M_200c, c_Duffy-full-200c(M_200c)),
+M_200c solved per group so M_L(<R500) = M500_HSE, every overdensity in the data's own critical density rho_c,g = 3 M500/(4 pi 500 R500^3),
+f_b = 0.02237/0.14237, baryons = the lane's own -- reproduce M2500 (headline: ratio 1.05, +0.020 dex, +0.25 sigma); (c) what is B's
+shape-only deficit (per-group log(M_HSE/M_B)@R2500 minus @R500: 1.37 sigma canonical, 1.79 alt)?
+(d) SHARED CAVEAT: the lane's stars are 1.7e12 (M500_HSE/1e14)^0.6 (Kravtsov+2018), i.e. a function of the HYDROSTATIC M500 -> how do
+B and LCDM change when the stars are varied +-0.2 dex or drawn independently of M500_HSE (as far as the data allow)?
+
+MODEL AS I READ IT.
+ B      : M_b(R500) = Mgas500 + M*500; M_b(R2500) = Mgas2500 + 0.65 M*500; M*500 = 1.7e12 (M500/1e14)^0.6 Msun (M500 in Msun, h70 units
+          used as published); g_N = G M_b / r^2 (monopole); y = g_N/a0; nu = RAR kernel 1/(1-exp(-sqrt y)) [CFG45 README: equals nu_mono
+          to 3e-9 for y<=0.1; I check y<=0.1 for every group/radius, else the substitution is declared invalid]; M_ph=(nu-1)M_b;
+          M_B = M_b + max(M_ph, COSMIC M_b), COSMIC = 0.1200/0.02237.  a0 = 9.3603e-11 (canonical), 1.1312e-10 (alt) m/s^2.
+          Constants CODATA (G=6.6743e-11, Msun=1.98847e30, kpc=3.0856776e19 m).
+ stats  : per-group d = log10(M_HSE/M_model); med = median; err = std(d, ddof=1)/sqrt(20); star = 0.5|med(stars x1.5)-med(stars /1.5)|
+          with the whole chain (incl. the LCDM R500 normalisation) re-run; HSE = log10 1.2; tot = sqrt(err^2+star^2+HSE^2); z=med/tot.
+ LCDM   : NFW m(t)=ln(1+t)-t/(1+t); M_NFW(<r)=M_h m(c x)/m(c), x=r/R200 clipped [1e-4,5], R200=(3 M_h/(4 pi 200 rho_c,g))^(1/3);
+          c = 5.71 (M_h/(2e12/0.674))^-0.084 (Duffy+08 full 200c z=0), M_h by brentq on [1e10,1e18].  Prediction at the MEASURED R2500.
+ shape-only B: d(R2500)-d(R500) per group; med, err=std/sqrt20 of the difference, star = 0.5|bracket spread of median difference|, HSE 0.0792.
+ variants (reported): V1 Dutton-Maccio c (log c = 0.905-0.101 log10(M/(1e12/h)), h=.674); V2 Duffy relaxed 200c (6.71 (M/(2e12/h))^-0.091);
+          V3/V4 normalisation mass x1.2/x0.8 with R2500 still vs measured M2500; V3u/V4u M500 and M2500 both x1.2/x0.8; V5 total mass as ONE
+          NFW no baryons (f_b->0, M_b->0); V6 rho_c = 3H^2/(8 pi G), H0=67.4 (in the R200 definition only, normalisation still at measured R500).
+          rho_c,g in V3/V4/V3u/V4u = 3*(normalisation mass)/(4 pi 500 R500^3) [my reading; the unscaled-rho_c reading is reported as V3'/V4'].
+ MUTATE=1: every LCDM concentration x0.1 (B untouched).  Expected: LCDM gate fails.
+
+PASS LINES (each reported PASS / DIFF; DIFF is a valid outcome, no tuning afterwards).
+ P1  B: R500 canonical 1.41, +0.150 dex, +1.80 sigma; alt 1.33, +0.124, +1.49.   R2500 canonical 1.88, +0.275, +2.57; alt 1.88, +0.274, +2.63.
+     Floor terms R2500 (canonical) groups 0.017, stars 0.070, allowance 0.079.  Tolerance: ratio 0.01, dex 0.001, sigma 0.01.
+ P2  LCDM base R2500: 1.05, +0.020 dex, +0.25 sigma (same tolerances); median c 4.42 (range 3.96-4.69); class SPECIFIC-TO-B on both footings
+     (|z_L|<=2 while |z_B|>2).  R500 offset zero by construction.
+ P3  B shape-only: +0.126 dex, +1.37 sigma (canonical); +0.161, +1.79 (alt).
+ P4  MUTATE model (c x0.1) R2500: +0.265 dex, +3.30 sigma, median c 0.41 -> gate fails, i.e. the test discriminates.
+ P5  variants V1..V6 within tolerance of CFG81's table (V1 -0.008/-0.10, V2 +0.002/+0.02, V3 -0.044/-0.55, V4 +0.100/+1.23,
+     V3u +0.035/+0.43, V4u +0.003/+0.04, V5 +0.011/+0.14, V6 +0.025/+0.31).
+ P6  CIRCULARITY (own test; no target numbers): stars x10^{+-0.2}; stars=0; stars permuted across groups (independent of own M500,
+     500 draws); stars = Kravtsov(M500) x 10^N(0,0.2) per-group scatter (500 draws).  Report B z and LCDM z, and whether classes change.
+     Pass rule for 'robust': LCDM |z|<=2 and B |z|>2 in every stellar variation (both footings for B).  The data have no independent stellar
+     mass (Lovisari tabulates none); a fully independent draw is impossible, the permutation and scatter draws are the closest available.
+CONTROLS (a failed control is a failure)
+ C1 data read: 20 groups, R500/R2500 finite; rho_c implied by (M500,R500) vs (M2500,R2500) agree to 2% per group (rho_c,g convention).
+ C2 NFW engine: M(<R200)=M_h to 1e-12 (M_h=1e12..1e15, three c relations); M_NFW(<r) equals numerical integral of the NFW density to 1e-7;
+    mean NFW density within r_Delta from the fixed-point (m(c x)/m(c) = (Delta/200) x^3) equals Delta rho_c to 1e-9 for 500 and 2500.
+ C3 closed-form limits: (i) B with nu=1 gives M_B/M_b = 1+COSMIC exactly; (ii) LCDM with f_b=0, no baryons is a single NFW: its M(<R2500)/M(<R500)
+    equals the closed form m(c x2500)/m(c x500); (iii) SYNTHETIC CLOSURE: groups generated from the LCDM model itself (Duffy c, same baryons,
+    M2500 := M_L(<R2500)) return offset 0 to 1e-9 -- fails under MUTATE (mutated model vs Duffy-generated data) by construction of the test;
+    (iv) synthetic B closure: M_HSE := M_B returns B offset 0.
+ C4 normalisation: |M_L(<R500)/target - 1| < 1e-9 for all groups in every LCDM run (base, bracket ends, variants, MUTATE).
+ C5 c used equals c_Duffy_full(M_h) x (0.1 if MUTATE) to 1e-12 (self-consistency); y<=0.1 everywhere for B (kernel substitution valid).
+ MUTATE: exit 1 expected through C3(iii) (and the P4 gate).  Main run exit 1 only on a failed control.
+
+====================================================================================================
+CFG85 run   MUTATE=False   N=20   FB=0.15713   COSMIC=5.3643   RHO_C(V6)=1.2607e+11
+====================================================================================================
+
+C1 data / rho_c convention
+  [PASS] C1a 20 groups read, all finite  N=20
+  [PASS] C1b rho_c implied at R500 and R2500 agree to 2% per group  max dev 0.0087
+      rho_c,g / RHO_C(H0=67.4): min 1.020 median 1.078 max 1.085
+
+B (candidate B, own implementation)
+  canonical  R500 : 1.41 (+0.150 dex) err 0.014 star 0.023 tot 0.084 -> z +1.80   phantom wins 18/20   (y max 0.033)
+  canonical  R2500: 1.88 (+0.275 dex) err 0.017 star 0.070 tot 0.107 -> z +2.57   phantom wins 1/20   (y max 0.055)
+  canonical  SHAPE-ONLY (R2500-R500): 1.34 (+0.126 dex) err 0.016 star 0.043 tot 0.092 -> z +1.37
+  alt        R500 : 1.33 (+0.124 dex) err 0.014 star 0.020 tot 0.083 -> z +1.49   phantom wins 20/20   (y max 0.027)
+  alt        R2500: 1.88 (+0.274 dex) err 0.016 star 0.066 tot 0.104 -> z +2.63   phantom wins 5/20   (y max 0.046)
+  alt        SHAPE-ONLY (R2500-R500): 1.45 (+0.161 dex) err 0.016 star 0.041 tot 0.090 -> z +1.79
+  [PASS] C5a kernel substitution valid: y <= 0.1 at every group/radius (B, both footings)  y max 0.0552
+
+P1 (B numbers)
+  [MATCH] B canonical r5 ratio: mine 1.41  target 1.41  (tol 0.01)
+  [MATCH] B canonical r5 dex: mine +0.150  target +0.150  (tol 0.001)
+  [MATCH] B canonical r5 sigma: mine +1.80  target +1.80  (tol 0.01)
+  [MATCH] B canonical r25 ratio: mine 1.88  target 1.88  (tol 0.01)
+  [MATCH] B canonical r25 dex: mine +0.275  target +0.275  (tol 0.001)
+  [MATCH] B canonical r25 sigma: mine +2.57  target +2.57  (tol 0.01)
+  [MATCH] B alt r5 ratio: mine 1.33  target 1.33  (tol 0.01)
+  [MATCH] B alt r5 dex: mine +0.124  target +0.124  (tol 0.001)
+  [MATCH] B alt r5 sigma: mine +1.49  target +1.49  (tol 0.01)
+  [MATCH] B alt r25 ratio: mine 1.88  target 1.88  (tol 0.01)
+  [MATCH] B alt r25 dex: mine +0.274  target +0.274  (tol 0.001)
+  [MATCH] B alt r25 sigma: mine +2.63  target +2.63  (tol 0.01)
+  [MATCH] B canonical R2500 err (groups): mine 0.0174  target 0.0170  (tol 0.0006)
+  [MATCH] B canonical R2500 star: mine 0.0697  target 0.0700  (tol 0.0006)
+  [MATCH] B canonical R500 err: mine 0.0142  target 0.0140  (tol 0.0006)
+
+P3 (B shape-only)
+  [MATCH] B shape canonical dex: mine +0.126  target +0.126  (tol 0.001)
+  [MATCH] B shape canonical sigma: mine +1.37  target +1.37  (tol 0.01)
+  [MATCH] B shape alt dex: mine +0.161  target +0.161  (tol 0.001)
+  [MATCH] B shape alt sigma: mine +1.79  target +1.79  (tol 0.01)
+
+C2 NFW engine
+  [PASS] C2a M_NFW(<R200)=M_h to 1e-12  max 2.22e-16
+  [PASS] C2b M_NFW(<r) = numerical integral of NFW density to 1e-7  max 5.55e-16
+  [PASS] C2c fixed-point r_Delta gives mean density Delta rho_c to 1e-9 (500, 2500)  max 1.67e-15
+
+LCDM shape design (base)
+  R2500: 1.05 (+0.020 dex) err 0.016 star 0.003 tot 0.081 -> z +0.25
+  M_200c range 3.11e+13-2.32e+14; c median 4.42 (range 3.96-4.69)
+  class per footing: {'canonical': 'SPECIFIC-TO-B', 'alt': 'SPECIFIC-TO-B'}
+  per-group R500 offset max |d| = 6.94e-15
+
+P2
+  [MATCH] LCDM base ratio: mine 1.05  target 1.05  (tol 0.01)
+  [MATCH] LCDM base dex: mine +0.020  target +0.020  (tol 0.001)
+  [MATCH] LCDM base sigma: mine +0.25  target +0.25  (tol 0.01)
+  [MATCH] LCDM c median: mine 4.42  target 4.42  (tol 0.005)
+  [MATCH] LCDM c min: mine 3.96  target 3.96  (tol 0.005)
+  [MATCH] LCDM c max: mine 4.69  target 4.69  (tol 0.005)
+  [MATCH] LCDM err: mine 0.0162  target 0.0160  (tol 0.0006)
+  [MATCH] LCDM star: mine 0.0029  target 0.0030  (tol 0.0006)
+  [PASS] C5b c used equals c_Duffy_full(M_h) (x0.1 if MUTATE) to 1e-12  max 0.0e+00
+  [PASS] C5c c used equals UNMUTATED Duffy c at solved M_h [mutation detector; must fail under MUTATE]  
+
+RM (every c x0.1): 1.84 (+0.265 dex) err 0.011 star 0.008 tot 0.080 -> z +3.30   c median 0.41   gate |z|<2: FAIL
+P4
+  [MATCH] RM dex: mine +0.265  target +0.265  (tol 0.001)
+  [MATCH] RM sigma: mine +3.30  target +3.30  (tol 0.01)
+  [MATCH] RM c median: mine 0.41  target 0.41  (tol 0.005)
+  MUTATE flips the gate outcome (base vs RM): True -> informative
+
+P5 variants at R2500
+  [MATCH] V1 DM14 c dex: mine -0.008  target -0.008  (tol 0.001)
+  [MATCH] V1 DM14 c sigma: mine -0.10  target -0.10  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 5.53
+  [MATCH] V2 Duffy relaxed dex: mine +0.002  target +0.002  (tol 0.001)
+  [MATCH] V2 Duffy relaxed sigma: mine +0.02  target +0.02  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 5.10
+  [DIFF ] V3 norm x1.2 dex: mine -0.056  target -0.044  (tol 0.001)
+  [DIFF ] V3 norm x1.2 sigma: mine -0.70  target -0.55  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 4.34
+  [DIFF ] V4 norm x0.8 dex: mine +0.113  target +0.100  (tol 0.001)
+  [DIFF ] V4 norm x0.8 sigma: mine +1.40  target +1.23  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 4.52
+  [DIFF ] V3u M500&M2500 x1.2 dex: mine +0.023  target +0.035  (tol 0.001)
+  [DIFF ] V3u M500&M2500 x1.2 sigma: mine +0.28  target +0.43  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 4.34
+  [DIFF ] V4u M500&M2500 x0.8 dex: mine +0.016  target +0.003  (tol 0.001)
+  [DIFF ] V4u M500&M2500 x0.8 sigma: mine +0.20  target +0.04  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 4.52
+  [MATCH] V5 one NFW no baryons dex: mine +0.011  target +0.011  (tol 0.001)
+  [MATCH] V5 one NFW no baryons sigma: mine +0.14  target +0.14  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 4.46
+  [MATCH] V6 RHO_C(67.4) dex: mine +0.025  target +0.025  (tol 0.001)
+  [MATCH] V6 RHO_C(67.4) sigma: mine +0.31  target +0.31  (tol 0.01)
+      class SPECIFIC-TO-B/SPECIFIC-TO-B   c median 4.42
+  V3' norm x1.2, unscaled rho_c,g: -0.044 dex  z -0.55  (own reading alternative)
+  V4' norm x0.8, unscaled rho_c,g: +0.100 dex  z +1.23  (own reading alternative)
+  R6-like (allowance removed both sides): LCDM z +1.21; B canonical +3.83; alt +4.06
+
+R5 implied c of a single total-mass NFW: median 4.95 (range 1.44-7.38); solved 20/20; Duffy at same M200 median 4.49; 13/20 above Duffy
+
+C3 closed-form limits and synthetic closure
+  [PASS] C3i B with nu=1: M_B/M_b = 1+COSMIC exactly  
+  [PASS] C3ii single NFW (f_b=0, no baryons): M(<R2500)/M(<R500)=m(c x2500)/m(c x500)  max 5.6e-17
+  [PASS] C3iii synthetic closure: Duffy-generated M2500 recovered by the model in use (offset 0 to 1e-9) [fails under MUTATE]  max |offset| 0.00e+00
+      synthetic-data offset by the model in use: median +0.0000 dex
+  [PASS] C3iv B synthetic closure: M_HSE:=M_B gives offset 0  
+  [PASS] C4 normalisation at R500 (all LCDM runs)  max 5.1e-14
+
+P6 CIRCULARITY: stars varied / decoupled from M500_HSE
+  Note: Lovisari tabulates no stellar mass; kT, R500, Mgas are all tied to HSE. A fully independent stellar mass is NOT available from the data.
+  stars x10^+0.2                     B R2500 z +1.45/+1.45 (+0.183/+0.183 dex) | B R500 z +1.37/+1.08 | LCDM R2500 +0.016 dex z +0.20  class SPECIFIC-TO-B/SPECIFIC-TO-B
+  stars x10^-0.2                     B R2500 z +3.58/+3.63 (+0.343/+0.334 dex) | B R500 z +2.10/+1.73 | LCDM R2500 +0.023 dex z +0.28  class SPECIFIC-TO-B/SPECIFIC-TO-B
+  stars x10^+0.5                     B R2500 z -0.09/-0.09 (-0.014/-0.014 dex) | B R500 z +0.20/+0.17 | LCDM R2500 +0.005 dex z +0.06  class B-ok/B-ok
+  stars x10^-0.5                     B R2500 z +4.86/+4.68 (+0.408/+0.389 dex) | B R500 z +2.39/+1.94 | LCDM R2500 +0.025 dex z +0.31  class SPECIFIC-TO-B/SPECIFIC-TO-B
+  stars ~0 (gas only)                B R2500 z +5.98/+5.54 (+0.479/+0.444 dex) | B R500 z +2.64/+2.16 | LCDM R2500 +0.027 dex z +0.34  class SPECIFIC-TO-B/SPECIFIC-TO-B
+  permuted across groups             (500 draws)  B z canon +2.35 [+2.17,+2.56]  alt +2.46 [+2.25,+2.66]  |  LCDM z +0.25 [+0.22,+0.27]  LCDM dex +0.020
+      fraction of draws with LCDM |z|<=2 AND both B z>2 (SPECIFIC-TO-B robust): 0.960; B canon z>2 in 0.960, LCDM |z|<=2 in 1.000
+  Kravtsov x10^N(0,0.2) per group    (500 draws)  B z canon +2.41 [+2.13,+2.76]  alt +2.49 [+2.19,+2.87]  |  LCDM z +0.25 [+0.23,+0.27]  LCDM dex +0.020
+      fraction of draws with LCDM |z|<=2 AND both B z>2 (SPECIFIC-TO-B robust): 0.912; B canon z>2 in 0.912, LCDM |z|<=2 in 1.000
+  robust in +-0.2 dex uniform shifts (LCDM |z|<=2 and both B>2): False
+  d(LCDM offset)/d(log10 stars): x0.316: +0.0248, x1: +0.0199, x3.16: +0.0050
+  [PASS] C4b normalisation held in every stellar variation  max 5.1e-14
+
+SUMMARY of P-lines: 38/46 MATCH
+   DIFF: V3 norm x1.2 dex: mine -0.0563 target -0.0440
+   DIFF: V3 norm x1.2 sigma: mine -0.6970 target -0.5500
+   DIFF: V4 norm x0.8 dex: mine +0.1132 target +0.1000
+   DIFF: V4 norm x0.8 sigma: mine +1.3988 target +1.2300
+   DIFF: V3u M500&M2500 x1.2 dex: mine +0.0228 target +0.0350
+   DIFF: V3u M500&M2500 x1.2 sigma: mine +0.2824 target +0.4300
+   DIFF: V4u M500&M2500 x0.8 dex: mine +0.0163 target +0.0030
+   DIFF: V4u M500&M2500 x0.8 sigma: mine +0.2009 target +0.0400
+
+CONTROLS FAILED: none

@@ -1,0 +1,24 @@
+# CFG85 -- independent re-derivation of CFG81's X-ray-group R2500 headline
+
+**Question (frozen inside the script before any run; sha256 78379430...0440ba).** Does CFG81's headline reproduce from independently written code: at R2500 the LCDM comparator gives ratio 1.05 (+0.25 sigma) against B's 1.88 (2.57 sigma), and B's shape-only deficit is 1.37 sigma (alt 1.79)? The agent read only CFG81's frozen criteria and README, the CFG34 README/docstring, the h7 docstring, the CFG4/CFG45 READMEs and the Lovisari table; it opened no CFG81 code, .out or JSON, and no CFG34 code, until after its own runs. Kernel: nu_RAR in place of nu_mono (CFG45 says they agree to 3e-9 for y <= 0.1; y <= 0.055 everywhere here); CODATA constants.
+
+**Result: every headline number reproduces to the stated precision.** B R500 1.41 (+1.80 sigma; alt 1.33, +1.49); B R2500 1.88 (+2.57 sigma; alt +2.63); B floor terms at R2500 0.0174 (groups) and 0.0697 (stars); LCDM base R2500 1.05 (+0.020 dex, +0.25 sigma, error 0.016, star term 0.003), concentration c = 4.42 (3.96-4.69); class SPECIFIC-TO-B on both footings (R500 is zero by construction); B shape-only +0.126 dex (1.37 sigma) and alt +0.161 (1.79 sigma); MUTATE model (c x 0.1) +0.265 dex (+3.30 sigma) with the gate flipping PASS -> FAIL; V1, V2, V5, V6, R5 (implied c median 4.95, 1.44-7.38, 20/20 solved, 13/20 above Duffy 4.49) and R6 (allowance removed both sides: LCDM +1.21 sigma, B +3.83 / +4.06) match.
+
+**Differences (a reading, not physics).** V3, V4, V3u, V4u: -0.056/-0.70, +0.113/+1.40, +0.023/+0.28, +0.016/+0.20 (agent's primary reading: rho_c,g follows the scaled normalisation mass) against CFG81's -0.044/-0.55, +0.100/+1.23, +0.035/+0.43, +0.003/+0.04 (rho_c,g kept from the measured, unscaled M500). The agent's own V3'/V4' unscaled reading reproduces -0.044/-0.55 and +0.100/+1.23 exactly, and a post-hoc unscaled run of V3u/V4u (`post_alt.py`) gives +0.035/+0.43 and +0.003/+0.04 exactly. No class changes. The frozen text does not say which reading is meant.
+
+**The circularity caveat, tested (the shared CFG34 caveat: stars from h7's mstar500(M500_HSE)).** The data cannot supply an independent stellar mass (Lovisari tabulates none; kT, R500 and M_gas are tied to the hydrostatic mass), so the substitutes are uniform shifts, permutation of the Kravtsov values across groups, and per-group scatter:
+| stellar variation | B R2500 z (canonical / alt) | LCDM R2500 offset, z |
+|---|---|---|
+| base | +2.57 / +2.63 | +0.020 dex, +0.25 |
+| x10^+0.2 | +1.45 / +1.45 | +0.016, +0.20 |
+| x10^-0.2 | +3.58 / +3.63 | +0.023, +0.28 |
+| x10^+0.5 | -0.09 / -0.09 (B closes) | +0.005 |
+| x10^-0.5 | +4.86 / +4.68 | +0.025 |
+| stars about 0 | +5.98 / +5.54 | +0.027, +0.34 |
+| permuted across groups (500 draws) | +2.35 [+2.17, +2.56] / +2.46 | +0.020, +0.25 |
+| Kravtsov x 10^N(0, 0.2) per group (500 draws) | +2.41 [+2.13, +2.76] / +2.49 | +0.020, +0.25 |
+- **LCDM is insensitive to the stars** (offset +0.005 to +0.027 dex, |z| <= 0.34): the R500 normalisation absorbs the stellar level, so the LCDM half of the headline is not affected by the circularity. **B is sensitive to the stellar level, not to the per-group tie to M500_HSE** (breaking the tie leaves B above 2 sigma in 96% and 91% of draws). **A uniform +0.2 dex in stars is enough to move B's R2500 failure below 2 sigma** (row would read MARGINAL, class still SPECIFIC-TO-B); B would need stars about 3.2x the Kravtsov relation to close at R2500. So B's headline FAIL rests on the imported normalisation, and the agent's own 'robust' pass line (LCDM <= 2 sigma and B > 2 sigma at both +-0.2 dex) is False as reported.
+
+**What the agent would attack.** (1) Unequal tests: LCDM is handed M500 at R500 and B is not, so SPECIFIC-TO-B compares a shape test with a full-mass test; on equal footing (both normalised at R500) B's shape-only deficit is 1.37 / 1.79 sigma, inside 2 sigma, and the gap to LCDM (+0.126 vs +0.020 dex) is about 1.3x the 0.079-dex allowance, not a strong discrimination. (2) The error is almost all the hydrostatic allowance (0.08 of 0.081 total for LCDM; a 20% differential bias between radii moves the LCDM offset from -0.044 to +0.100, V3/V4). (3) A median-only pass: the groups' implied concentrations span 1.4-7.4 and four low-M2500/M500 groups are over-predicted by LCDM; no concentration scatter, no adiabatic contraction. (4) nu_RAR was used for nu_mono; the z = 0 Duffy row and h70 units are as CFG81 has them.
+
+**Controls.** The main run exits 0 (about 4 s) with no control failed; MUTATE exits 1, as declared, on the two controls meant to fail under it (c equals unmutated Duffy; synthetic closure). Nothing here says the data favour B or LCDM; kappa = 1/2 is FITTED. Run in place: `python3 cfg85_rederive.py` (rc 0), `MUTATE=1 python3 ...` (rc 1), `python3 post_alt.py`; output identical to the agent's. The script keeps the agent's working name cfg85 (this lane is CFG85).
