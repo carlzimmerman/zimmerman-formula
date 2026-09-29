@@ -35,4 +35,4 @@ At Δ = 0 (sympy): m q̈ = −mΦ′ − ∂F/∂q for the baryon and r + c(θ �
 
 ## Standing
 
-**A causal, reciprocal memory-kernel action for the enclosed-mass exchange exists, and it gives CFG48's reaction and energy demand back.** The exchange cannot be made to pass by adding memory; it needs either an unfunded reservoir or an untied coupling below 1%. This is a scoped no-go for a time-kernel exchange inside a closed action. Nothing here says the theory is closed.
+**A causal, reciprocal memory-kernel action for the enclosed-mass exchange exists, and it gives CFG48's reaction and energy demand back.** The exchange cannot be made to pass by adding memory; it needs either an unfunded reservoir or an untied coupling (the pressure-slaved bound is about 0.3 down to 0.005 for time scales of 0.01 to 10 free-fall times; below 1% only for time scales at or above one free-fall time, CFG70 README). This is a scoped no-go for a time-kernel exchange inside a closed action. Nothing here says the theory is closed.

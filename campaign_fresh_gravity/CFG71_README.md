@@ -28,4 +28,4 @@ C1a: φ = 0 and 1 reproduce CFG45's L and S for the nine unchanged populations (
 
 ## Standing
 
-**Under dynamical stellar masses no single fraction of the sum's debris helps SLUGGS at all, and the low-mass satellites want a quarter of it.** Nothing here says the theory is closed.
+**Under dynamical stellar masses no fraction phi in [0, 1] of the sum's debris brings SLUGGS within 1 sigma (phi = 1 halves the offset, +0.097 to +0.046, 2.6 sigma remains), and the low-mass satellites want a quarter of it. The binding pair of populations is now ultra-faints against the Local Volume dwarfs (gap 0.087 | 0.164), narrower than CFG59's 0.51; what is sharper is that SLUGGS's interval is empty. The pre-declared classification printed MIXED (disclosed above).** Nothing here says the theory is closed.
