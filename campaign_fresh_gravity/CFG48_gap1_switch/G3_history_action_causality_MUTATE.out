@@ -1,0 +1,35 @@
+G3 -- OWNERSHIP AS A HISTORY VARIABLE INSIDE AN ACTION: is the accretion / turnaround history a legal action term?   Gate GA (a)-(d), GG(i).
+
+MODEL.  One degree of freedom x(t) (a baryon element's turnaround coordinate) with a discrete action on N steps:
+        S = sum_i dt [ (1/2) ((x_{i+1} - x_i)/dt)^2 - V(x_i) - B W(ell_i) ]
+    and four gate variables ell_i:
+        LOCAL     ell_i = f(x_i)                                  (an instantaneous state gate, the DE12 / XR36 class)
+        MEMORY    ell_i = dt sum_{j<i} f(x_j)                     (accumulated time spent turned around)
+        LATCH     ell_i = 1 - prod_{j<i} (1 - f(x_j))             (has ever turned around: the ownership latch)
+        LABEL     ell_i = ell_0 (a prescribed, advected label: ownership as initial data)
+    with f a smooth turnaround indicator and W a smooth step.  The Euler-Lagrange residual is R_i = dS/dx_i.
+CAUSALITY TEST (frozen in GATES_FROZEN.md, GA).  A history term is admissible only if R_i depends on x_j only for j <= i + 1 (a banded Hessian):
+    then the trajectory can be advanced forward from initial data.  The measure is  c = max_{j > i+1} |d R_i / d x_j| / max |d R_i / d x_j|
+    (Hessian by sympy, evaluated on a test trajectory).  PASS iff c < 1e-12.
+RESULT (pre-declared): LOCAL and LABEL banded; MEMORY and LATCH not.  In the memory and latch actions the force at time t_i contains W'(ell_k) f'(x_i)
+    for every LATER k > i: the early motion depends on the future trajectory.  (Equivalent: with ell as a constrained variable the multiplier lambda obeys
+    a BACKWARD recursion with a terminal condition, so the problem is a two-point boundary value problem, not an initial value problem.)
+    A LABEL is causal but is initial data: ownership is then a postulate (PARTIAL), not derived.
+MUTATE=1 replaces MEMORY and LATCH by the LOCAL gate: the claim "the memory action has advanced dependence" must FAIL.
+SCOPE.  A toy with one variable; smooth W, f; exact statement is about the structure of the reduced action, not the size of the effect.
+
+  *** MUTATE=1: MEMORY and LATCH replaced by the LOCAL gate; 'advanced dependence' must FAIL ***
+    LOCAL  : c = max_(j>i+1) |dR_i/dx_j| / max|H| = 0.000e+00;   max_(j>=2) |dR_0/dx_j|/max|H| = 0.000e+00
+    LABEL  : c = max_(j>i+1) |dR_i/dx_j| / max|H| = 0.000e+00;   max_(j>=2) |dR_0/dx_j|/max|H| = 0.000e+00
+    MEMORY : c = max_(j>i+1) |dR_i/dx_j| / max|H| = 0.000e+00;   max_(j>=2) |dR_0/dx_j|/max|H| = 0.000e+00
+    LATCH  : c = max_(j>i+1) |dR_i/dx_j| / max|H| = 0.000e+00;   max_(j>=2) |dR_0/dx_j|/max|H| = 0.000e+00
+  [FAIL] H1 the LOCAL and LABEL actions have banded Euler-Lagrange residuals (causal); the MEMORY and LATCH actions do not: R_i depends on later coordinates (advanced dependence)
+         c: {'LOCAL': 0.0, 'LABEL': 0.0, 'MEMORY': 0.0, 'LATCH': 0.0}  [MUTATE: memory/latch replaced by local]
+  [FAIL] H2 the size of the advanced dependence: the earliest force depends on later coordinates (j >= 2) at a relative strength >= 1e-4 in both history actions
+         {'MEMORY': 0.0, 'LATCH': 0.0}  [MUTATE]
+  >> GATE GA / accretion-history (memory) variable inside an action: FAIL -- the EL residual at t depends on the future trajectory (adjoint / backward-in-time structure); hypotheses: reduced action with the history as a functional of the path, smooth W, f
+  >> GATE GA / ownership latch ('has ever turned around'): FAIL -- same: advanced dependence; a latch is irreversible, an action's EL equations are not
+  >> GATE GA / prescribed advected label (ownership as initial data): PARTIAL -- causal and legal as a two-species baryon fluid, but the label is a POSTULATE (the assignment rule is not derived): 'ownership' becomes 'which baryons have the charge'
+  >> GATE GG(i) / history: PARTIAL -- the only causal carrier of history is a prescribed label; the rule that sets it (first turnaround, first top-level status) is outside the action
+
+  0/2 checks pass; load-bearing failures: 2   (0 s)

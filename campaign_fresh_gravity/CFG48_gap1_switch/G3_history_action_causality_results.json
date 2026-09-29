@@ -1,0 +1,56 @@
+{
+ "slug": "G3_history_action_causality",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "H1 the LOCAL and LABEL actions have banded Euler-Lagrange residuals (causal); the MEMORY and LATCH actions do not: R_i depends on later coordinates (advanced dependence)",
+   "detail": "c: {'LOCAL': 0.0, 'LABEL': 0.0, 'MEMORY': 0.000855, 'LATCH': 0.017}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 the size of the advanced dependence: the earliest force depends on later coordinates (j >= 2) at a relative strength >= 1e-4 in both history actions",
+   "detail": "{'MEMORY': 0.000277, 'LATCH': 0.017}",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "verdicts": {
+  "GA / accretion-history (memory) variable inside an action": {
+   "status": "FAIL",
+   "why": "the EL residual at t depends on the future trajectory (adjoint / backward-in-time structure); hypotheses: reduced action with the history as a functional of the path, smooth W, f"
+  },
+  "GA / ownership latch ('has ever turned around')": {
+   "status": "FAIL",
+   "why": "same: advanced dependence; a latch is irreversible, an action's EL equations are not"
+  },
+  "GA / prescribed advected label (ownership as initial data)": {
+   "status": "PARTIAL",
+   "why": "causal and legal as a two-species baryon fluid, but the label is a POSTULATE (the assignment rule is not derived): 'ownership' becomes 'which baryons have the charge'"
+  },
+  "GG(i) / history": {
+   "status": "PARTIAL",
+   "why": "the only causal carrier of history is a prescribed label; the rule that sets it (first turnaround, first top-level status) is outside the action"
+  }
+ },
+ "numbers": {
+  "results": {
+   "LOCAL": {
+    "c": 0.0,
+    "R0_on_xlast": 0.0
+   },
+   "LABEL": {
+    "c": 0.0,
+    "R0_on_xlast": 0.0
+   },
+   "MEMORY": {
+    "c": 0.0008547747080861556,
+    "R0_on_xlast": 0.0002773213930965158
+   },
+   "LATCH": {
+    "c": 0.017003699340232593,
+    "R0_on_xlast": 0.017003699340232593
+   }
+  }
+ }
+}

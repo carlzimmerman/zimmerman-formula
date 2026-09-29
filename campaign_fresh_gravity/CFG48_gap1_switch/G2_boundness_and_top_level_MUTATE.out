@@ -1,0 +1,85 @@
+G2 -- OWNERSHIP AS A NONLOCAL FUNCTIONAL: energy boundness, monotone boundness functionals, the top-level (maximal-ball) functional, and
+     what none of them can carry (history).   Tasks (1) and (2) of GATES_FROZEN.md; gates GC, GD, GA, GF, GG(i), GG(ii).
+
+D1  Energy boundness on the BARYON potential.  A baryon element on the circular orbit of the law, E_b = (1/2) V_c^2 + Phi_N (Phi_N = -G M_b/r),
+    is bound iff M_dyn(<r)/M_b < 2.  For the point-mass P2 law M_dyn = M_b sqrt(1 + (r/r_M)^2), so the edge is r_0 = sqrt(3) r_M exactly; for
+    nu_mono it is solved.  Compared with the declared edge r_e = 0.4 r_ta (GE window 0.31-0.48).  The phantom-inclusive potential is bound
+    everywhere inside whatever reference shell is chosen (log potential): its edge is the reference itself (r_ta), which is not a baryon-state
+    function (computed as the second reading; it is also the MUTATE).
+D2  The three MONOTONE boundness functionals (energy E_b < 0, enclosed mean baryon overdensity U above the edge threshold, expansion theta <= 0)
+    evaluated at the Sun's own centre (1 AU) and at the Sun's Galactic position (8 kpc): all three are ON at the Sun with margins of ~17-25
+    orders of magnitude, so a monotone functional gives the Sun its own phantom (CFG7 H1: the strict law is 4.0-5.7x over the Cassini ceiling).
+    Top-level status is therefore not monotone: it needs an outward-looking maximum.
+D3  The maximal-ball functional (the candidate that can detect top-level): M_top(x) = largest baryon mass in a ball containing x whose mean
+    baryon overdensity is >= Delta_edge = Delta_ta/x_e^3 (x_e = 0.4, B's declared value), balls of any centre and radius (sup over centres:
+    origin-free).  Point-mass tests: (a) the Sun-like clump and its host give the same M_top (one top-level system; the clump owns no phantom of
+    its own); (b) the ball boundary of an isolated system with all its baryons retained is r_e = 0.4 r_ta exactly (Delta_edge = Delta_ta/x_e^3
+    and M_col = M_b/f_b), so the source-confined edge costs no constant beyond B's declared x_e; (c) translation invariance of M_top; (d) MERGER JUMP:
+    two equal systems at separation d: M_top jumps from M to 2M at d_c = 2^(4/3) R_1 (a fold), so the functional has a jump discontinuity at
+    every merger and needs a smoothing width (a new constant) to be varied; (e) the functional gives the SAME value to an accreted satellite and to a
+    formed-embedded tidal dwarf with the same baryon state: it cannot carry ownership by history.
+D4  The size of what (e) must distinguish: M_dyn/M_b for a dwarf of M_b = 1e6, 1e7, 1e8 at r = 1 kpc: isolated law (accreted, keeps its infall halo)
+    against Newtonian (formed embedded).
+MUTATE=1 uses the phantom-inclusive potential with the r_ta reference in D1: the "edge at sqrt(3) r_M" claim must FAIL.
+SCOPE.  Point masses / circular orbits in the law's field, P2 and nu_mono kernels; balls in flat 3-space (the leaf geometry); z = 0.
+
+  *** MUTATE=1: D1 uses the phantom-inclusive potential (reference r_ta); 'edge at sqrt(3) r_M' must FAIL ***
+
+======================================================================================================================
+D1  energy boundness on the baryon potential: the edge sits at sqrt(3) r_M, far inside r_e = 0.4 r_ta
+======================================================================================================================
+    P2      : nu(y) = 2 at y = 0.33333  =>  r_0 = 1.73205 r_M   (sqrt(3) = 1.73205)
+    nu_mono : nu(y) = 2 at y = 0.48045  =>  r_0 = 1.44270 r_M
+    M_b = 1e+10: r_M =   3.9 kpc, r_ta =   318.8, r_e =  127.5 kpc;  E_b<0 edge    6.7 kpc = 0.052 r_e;   phantom-inclusive potential, E = 0 at 0.606 r_ta (reference-dependent; needs r_ta)
+    M_b = 1e+11: r_M =  12.2 kpc, r_ta =   686.9, r_e =  274.7 kpc;  E_b<0 edge   21.1 kpc = 0.077 r_e;   phantom-inclusive potential, E = 0 at 0.606 r_ta (reference-dependent; needs r_ta)
+    M_b = 1e+12: r_M =  38.6 kpc, r_ta =  1479.8, r_e =  591.9 kpc;  E_b<0 edge   66.8 kpc = 0.113 r_e;   phantom-inclusive potential, E = 0 at 0.606 r_ta (reference-dependent; needs r_ta)
+  [FAIL] D1 the baryon-potential boundness edge is r_0 = sqrt(3) r_M (P2, exact) and sits below 0.15 r_e for M_b = 1e10, 1e11, 1e12 (the law is verified far beyond it)
+         r_0/r_e = [0.052, 0.077, 0.113]; nu_mono r_0 = 1.443 r_M  [MUTATE: phantom-inclusive potential]
+  >> GATE GE / energy boundness (baryon potential): FAIL -- edge at 0.05-0.11 of r_e; the phantom-inclusive potential has no edge without the reference r_ta (history / cosmology, not a state function)
+
+======================================================================================================================
+D2  monotone boundness functionals are ON at the Sun (ownership inversion)
+======================================================================================================================
+    Sun at 1 AU:        E_b = -4.436e+02 (km/s)^2 (<0: bound);  U = 3.36e+23 x cosmic baryon density  (edge threshold 184.5);  theta_b <= 0 by definition of bound (not computed)
+    Sun at 8 kpc (MW):  E_b = -8.553e+03 (km/s)^2 (<0: bound);  U(<8 kpc) = 3.74e+06 x cosmic;  y = g_N/a0 = 1.16
+    U_sun / U_threshold = 1.8e+21;   U_sun / U_MW = 9.0e+16
+  [PASS] D2 the energy and overdensity functionals are ON at the Sun's own centre (the turnaround functional theta_b <= 0 holds by definition for a bound virialised clump; not computed), with the overdensity margin over the MW's ~1e17
+         E_sun<0 True; U_sun/U_threshold = 1.8e+21; U_sun/U_MW = 9.0e+16
+  >> GATE GG(ii) / monotone functionals: FAIL -- every monotone-in-overdensity gate is ON at the Sun; the embedded system gets its own phantom (strict law 4.0-5.7x over the Cassini ceiling, CFG7 H1)
+
+======================================================================================================================
+D3  the maximal-ball (top-level) functional on point-mass configurations
+======================================================================================================================
+    (a) host 5e+10, clump (1 Msun) at 8 kpc, isolated dwarf 1e+08 at 1.5 Mpc:  M_top(host) = 5.000000e+10 (0, 1), M_top(clump) = 5.000000e+10 (0, 1), M_top(dwarf) = 1.000e+08 (2,)
+  [PASS] D3a the clump inside the host shares the host's M_top (it owns no phantom of its own); an isolated dwarf is its own top level
+         M_top host/clump/dwarf = 5.000000e+10 / 5.000000e+10 / 1.000e+08
+    (b) M_b = 1e+10: ball boundary R_thr =  127.527 kpc vs r_e = 0.4 r_ta =  127.527 kpc: ratio 1.000000
+    (b) M_b = 1e+11: ball boundary R_thr =  274.748 kpc vs r_e = 0.4 r_ta =  274.748 kpc: ratio 1.000000
+    (b) M_b = 1e+12: ball boundary R_thr =  591.926 kpc vs r_e = 0.4 r_ta =  591.926 kpc: ratio 1.000000
+  [PASS] D3b the top-level ball boundary of an isolated, fully baryon-retaining system is r_e = 0.4 r_ta (Delta_edge = Delta_ta/x_e^3): no constant beyond B's declared x_e
+         ratios [1.0, 1.0, 1.0]
+  [PASS] D3c M_top is translation invariant (sup over all centres: no origin, no system-centre coordinate)
+         5.000000e+10 vs 5.000000e+10
+    (d) two equal systems (1e10): M_top(1) jumps from 2.00e+10 to 1.00e+10 at d_c = 2.5195 R_1  (analytic 2^(4/3) = 2.5198);  jump ratio 2.000
+  [PASS] D3d M_top has a jump (fold) of a factor 2 at d_c = 2^(4/3) R_1: a Lagrangian term built from it has a delta-function variation at every merger unless a smoothing width is introduced
+         one jump at d_c/R_1 = 2.5195; ratio 2.000
+  [PASS] D3e the functional assigns identical values to an accreted satellite and a formed-embedded tidal dwarf with the same baryon state (it reads no history)
+         5.001000e+10 == 5.001000e+10
+
+======================================================================================================================
+D4  what (e) must distinguish: isolated law (accreted) vs Newtonian (formed embedded) for the same baryons
+======================================================================================================================
+    M_b = 1e+06 at 1 kpc: y = 0.0015; M_dyn/M_b isolated law 25.93 (P2) / 26.42 (nu_mono); Newtonian 1.00
+    M_b = 1e+07 at 1 kpc: y = 0.0149; M_dyn/M_b isolated law 8.26 (P2) / 8.70 (nu_mono); Newtonian 1.00
+    M_b = 1e+08 at 1 kpc: y = 0.1489; M_dyn/M_b isolated law 2.78 (P2) / 3.12 (nu_mono); Newtonian 1.00
+  [PASS] (reported) D4 (reported) the accreted/embedded distinction is a factor 2.8-26 in dynamical mass for the same baryon state
+         P2 ratios [25.9, 8.3, 2.8]
+  >> GATE GC / maximal-ball functional: PASS -- reads only baryon masses and positions
+  >> GATE GD / maximal-ball functional: PARTIAL -- origin-free (D3c) and defined on the leaf geometry; leaf-covariance needs the foliation (CV-type preferred frame); no covariant field-theoretic definition written
+  >> GATE GE / maximal-ball edge: PARTIAL -- the ball boundary reproduces r_e without a new constant (D3b) -- but as a FIELD gate the Gauss lemma of G1 still gives M_dyn = M_b beyond it
+  >> GATE GA / maximal-ball functional: FAIL -- supremum over centres and radii: jump discontinuities at mergers (D3d); variation needs a smoothing width (new constant) and is defined only almost everywhere
+  >> GATE GF / maximal-ball functional: FAIL -- one new constant at least (the merger-smoothing width); x_e is B's own declared item
+  >> GATE GG(i) / any baryon-state functional: FAIL -- identical baryon state, identical gate value (D3e), different ownership (D4): a history variable that is not a function of the baryon state is required
+  >> GATE GG(ii) / maximal-ball functional: PARTIAL -- nesting removes the Sun's own phantom (D3a) -- but it also makes every ACCRETED satellite Newtonian, contradicting CFG7's rule (accreted keep their infall halo)
+
+  7/8 checks pass; load-bearing failures: 1   (0 s)

@@ -1,0 +1,150 @@
+{
+ "slug": "G2_boundness_and_top_level",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "D1 the baryon-potential boundness edge is r_0 = sqrt(3) r_M (P2, exact) and sits below 0.15 r_e for M_b = 1e10, 1e11, 1e12 (the law is verified far beyond it)",
+   "detail": "r_0/r_e = [0.052, 0.077, 0.113]; nu_mono r_0 = 1.443 r_M",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D2 the energy and overdensity functionals are ON at the Sun's own centre (the turnaround functional theta_b <= 0 holds by definition for a bound virialised clump; not computed), with the overdensity margin over the MW's ~1e17",
+   "detail": "E_sun<0 True; U_sun/U_threshold = 1.8e+21; U_sun/U_MW = 9.0e+16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3a the clump inside the host shares the host's M_top (it owns no phantom of its own); an isolated dwarf is its own top level",
+   "detail": "M_top host/clump/dwarf = 5.000000e+10 / 5.000000e+10 / 1.000e+08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3b the top-level ball boundary of an isolated, fully baryon-retaining system is r_e = 0.4 r_ta (Delta_edge = Delta_ta/x_e^3): no constant beyond B's declared x_e",
+   "detail": "ratios [1.0, 1.0, 1.0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3c M_top is translation invariant (sup over all centres: no origin, no system-centre coordinate)",
+   "detail": "5.000000e+10 vs 5.000000e+10",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3d M_top has a jump (fold) of a factor 2 at d_c = 2^(4/3) R_1: a Lagrangian term built from it has a delta-function variation at every merger unless a smoothing width is introduced",
+   "detail": "one jump at d_c/R_1 = 2.5195; ratio 2.000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3e the functional assigns identical values to an accreted satellite and a formed-embedded tidal dwarf with the same baryon state (it reads no history)",
+   "detail": "5.001000e+10 == 5.001000e+10",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D4 (reported) the accreted/embedded distinction is a factor 2.8-26 in dynamical mass for the same baryon state",
+   "detail": "P2 ratios [25.9, 8.3, 2.8]",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "GE / energy boundness (baryon potential)": {
+   "status": "FAIL",
+   "why": "edge at 0.05-0.11 of r_e; the phantom-inclusive potential has no edge without the reference r_ta (history / cosmology, not a state function)"
+  },
+  "GG(ii) / monotone functionals": {
+   "status": "FAIL",
+   "why": "every monotone-in-overdensity gate is ON at the Sun; the embedded system gets its own phantom (strict law 4.0-5.7x over the Cassini ceiling, CFG7 H1)"
+  },
+  "GC / maximal-ball functional": {
+   "status": "PASS",
+   "why": "reads only baryon masses and positions"
+  },
+  "GD / maximal-ball functional": {
+   "status": "PARTIAL",
+   "why": "origin-free (D3c) and defined on the leaf geometry; leaf-covariance needs the foliation (CV-type preferred frame); no covariant field-theoretic definition written"
+  },
+  "GE / maximal-ball edge": {
+   "status": "PARTIAL",
+   "why": "the ball boundary reproduces r_e without a new constant (D3b) -- but as a FIELD gate the Gauss lemma of G1 still gives M_dyn = M_b beyond it"
+  },
+  "GA / maximal-ball functional": {
+   "status": "FAIL",
+   "why": "supremum over centres and radii: jump discontinuities at mergers (D3d); variation needs a smoothing width (new constant) and is defined only almost everywhere"
+  },
+  "GF / maximal-ball functional": {
+   "status": "FAIL",
+   "why": "one new constant at least (the merger-smoothing width); x_e is B's own declared item"
+  },
+  "GG(i) / any baryon-state functional": {
+   "status": "FAIL",
+   "why": "identical baryon state, identical gate value (D3e), different ownership (D4): a history variable that is not a function of the baryon state is required"
+  },
+  "GG(ii) / maximal-ball functional": {
+   "status": "PARTIAL",
+   "why": "nesting removes the Sun's own phantom (D3a) -- but it also makes every ACCRETED satellite Newtonian, contradicting CFG7's rule (accreted keep their infall halo)"
+  }
+ },
+ "numbers": {
+  "D1": {
+   "kernels": {
+    "P2": {
+     "x0": 1.7320508075688774
+    },
+    "nu_mono": {
+     "x0": 1.4426950360934248
+    }
+   },
+   "rows": [
+    {
+     "Mb": 10000000000.0,
+     "r_M": 3.858872129324422,
+     "r_ta": 318.8166247013242,
+     "r_e": 127.52664988052969,
+     "r0_baryon": 6.683762587901399,
+     "r0_over_re": 0.0524107125386178,
+     "r0_phantom_ref_rta_over_rta": 0.6064745084082288
+    },
+    {
+     "Mb": 100000000000.0,
+     "r_M": 12.202825128009005,
+     "r_ta": 686.8695960154088,
+     "r_e": 274.7478384061635,
+     "r0_baryon": 21.135913117589787,
+     "r0_over_re": 0.07692840547973402,
+     "r0_phantom_ref_rta_over_rta": 0.6064724487929692
+    },
+    {
+     "Mb": 1000000000000.0,
+     "r_M": 38.58872129324422,
+     "r_ta": 1479.8156851837823,
+     "r_e": 591.9262740735129,
+     "r0_baryon": 66.83762587901398,
+     "r0_over_re": 0.1129154572224872,
+     "r0_phantom_ref_rta_over_rta": 0.6064237732940133
+    }
+   ]
+  },
+  "D4": {
+   "1e+06": {
+    "y": 0.0014890894110476801,
+    "Mdyn_over_Mb_P2": 25.933594952095298,
+    "Mdyn_over_Mb_numono": 26.417523527176375
+   },
+   "1e+07": {
+    "y": 0.0148908941104768,
+    "Mdyn_over_Mb_P2": 8.255612316111645,
+    "Mdyn_over_Mb_numono": 8.704990185486785
+   },
+   "1e+08": {
+    "y": 0.148908941104768,
+    "Mdyn_over_Mb_P2": 2.7776813120646917,
+    "Mdyn_over_Mb_numono": 3.1235085275808325
+   }
+  }
+ }
+}

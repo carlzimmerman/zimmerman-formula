@@ -1,0 +1,79 @@
+G1 -- LEADS 1 AND 2 (Gauss and Noether) for a gated MOND field, and the variational test that separates them.
+
+QUESTION.  Can a source-confined edge (phantom mass kept beyond r_e, target M_law(r_e) = M_b sqrt(1 + (r_e/r_M)^2)) be produced by a gate W(x)
+multiplying a shift-symmetric MOND field whose only source is the baryons?  (GATES_FROZEN.md: GA, GE; leads L1, L2.)
+
+C1 (sympy)  L1, the Gauss lemma.  Fields (Phi, psi = Phi_N), radial, measure r^2:
+        L = r^2 [ -(1/8 pi G) (2 Phi' psi' - Q_W(psi'^2)) - rho Phi ],  Q_W(s) = W(r) Q1(s) + (1 - W(r)) s,  A = dQ_W/ds = W Q1' + 1 - W.
+    The Euler-Lagrange equations are derived with sympy; with M' = 4 pi r^2 rho, psi' = G M/r^2, Phi' = A psi' they vanish identically, so the
+    dynamical mass r^2 Phi'/G = A M_b(<r):  at W = 0 (A = 1)  M_dyn = M_b exactly, whatever happens inside.  (This is N10 in general form.)
+C2 (numbers) the point-mass P2 profile for three gated forms, r_e = 0.4 r_ta, M_b = 1e10, 1e11, 1e12: (a) flux-gated QUMOND (action-derived),
+    (b) flux-gated AQUAL (action-derived), (c) SOURCE-SWITCHED QUMOND (W multiplies the phantom density, not its flux; the GP-lane form).
+    Reported: M_dyn/M_law(r_e) at 2 r_e (the GE test) and at 3 r_e (W < 1e-8, the Gauss test), and the negative-shell mass.
+C3 (sympy)  Helmholtz test: is (c) the Euler-Lagrange system of ANY Lagrangian in (Phi, psi)?  The linearised operator of an EL system is
+    formally self-adjoint: L_ab = (L_ba)^dagger.  The flux-gated system satisfies it; the source-switched system fails it by a term proportional
+    to W' and vanishes when W' = 0.  So the form that keeps the mass beyond the edge is not an action in these fields.
+C4 (sympy + numbers)  L2, Noether:  with the EL equation p' = dL/dPhi and H = Phi' p - L,  dH/dx = -(dL/dW) W' = -Delta L W'  (a prescribed W breaks
+    momentum conservation by Delta L grad W).  Its size on DE12's 24 layers (DE12's B = a0^2 q(y)/8 pi G) against the baryons' weight rho_b g.
+MUTATE=1 adds a second (real-mass) source to the potential equation: L1's "M_dyn = M_b beyond the edge" must FAIL, in C1 and C2.
+SCOPE.  Spherical, static, Newtonian-limit; shift-symmetric Phi, prescribed W(r); point-mass baryons for C2; P2 kernel (nu = sqrt(1 + 1/y)).
+
+======================================================================================================================
+C1  (sympy) the Gauss lemma for a gated shift-symmetric two-field MOND action
+======================================================================================================================
+    E_Phi on the solution psi' = G M/r^2:  0
+    E_psi on the solution Phi' = A psi':   0
+  [PASS] C1 (sympy) the EL system of the gated action is solved by psi' = G M_b/r^2, Phi' = A psi' (no other source): dynamical mass = A M_b(<r), and M_dyn = M_b wherever the gate is off (A = 1)
+         residuals: E_Phi -> 0, E_psi -> 0
+
+======================================================================================================================
+C2  the point-mass P2 profile for three gated forms; r_e = 0.4 r_ta; GE test at 2 r_e, Gauss test at 3 r_e
+======================================================================================================================
+    M_b = 1e+10: r_ta =   318.8 kpc, r_e =  127.5 kpc, x_e = r_e/r_M =  33.0, M_law(r_e)/M_b =  33.1
+        flux_QUMOND     : M_dyn(2 r_e)/M_law(r_e) = 0.0302   M_dyn(3 r_e)/M_b = 1.000000   negative shell 3.21e+11 Msun
+        flux_AQUAL      : M_dyn(2 r_e)/M_law(r_e) = 0.0302   M_dyn(3 r_e)/M_b = 1.000000   negative shell 3.21e+11 Msun
+        source_switched : M_dyn(2 r_e)/M_law(r_e) = 1.0041   M_dyn(3 r_e)/M_b = 33.198586   negative shell -1.36e+09 Msun
+    M_b = 1e+11: r_ta =   686.9 kpc, r_e =  274.7 kpc, x_e = r_e/r_M =  22.5, M_law(r_e)/M_b =  22.5
+        flux_QUMOND     : M_dyn(2 r_e)/M_law(r_e) = 0.0444   M_dyn(3 r_e)/M_b = 1.000000   negative shell 2.15e+12 Msun
+        flux_AQUAL      : M_dyn(2 r_e)/M_law(r_e) = 0.0444   M_dyn(3 r_e)/M_b = 1.000000   negative shell 2.15e+12 Msun
+        source_switched : M_dyn(2 r_e)/M_law(r_e) = 1.0041   M_dyn(3 r_e)/M_b = 22.629992   negative shell -9.27e+09 Msun
+    M_b = 1e+12: r_ta =  1479.8 kpc, r_e =  591.9 kpc, x_e = r_e/r_M =  15.3, M_law(r_e)/M_b =  15.4
+        flux_QUMOND     : M_dyn(2 r_e)/M_law(r_e) = 0.0651   M_dyn(3 r_e)/M_b = 1.000000   negative shell 1.44e+13 Msun
+        flux_AQUAL      : M_dyn(2 r_e)/M_law(r_e) = 0.0651   M_dyn(3 r_e)/M_b = 1.000000   negative shell 1.44e+13 Msun
+        source_switched : M_dyn(2 r_e)/M_law(r_e) = 1.0041   M_dyn(3 r_e)/M_b = 15.435199   negative shell -6.33e+10 Msun
+  [PASS] C2a (L1) both ACTION-DERIVED gated forms give M_dyn = M_b beyond the edge (|M_dyn(3 r_e)/M_b - 1| < 1e-6) for M_b = 1e10, 1e11, 1e12
+         {'1e+10': (1.00000003, 1.0), '1e+11': (1.00000002, 1.0), '1e+12': (1.00000001, 1.0)}
+  [PASS] (reported) C2b (reported) GE for the flux-gated forms (M_dyn(2 r_e) within 10% of M_law(r_e))
+         pass = False; ratios {'1e+10': 0.03, '1e+11': 0.044, '1e+12': 0.065}
+  [PASS] (reported) C2c (reported) GE for the source-switched form
+         pass = True; ratios {'1e+10': 1.004, '1e+11': 1.004, '1e+12': 1.004}
+  >> GATE GE / flux-gated (action-derived): FAIL -- M_dyn beyond the edge = M_b; the phantom mass inside the edge is a negative shell (Gauss lemma, N10 in general form)
+  >> GATE GE / source-switched: PASS -- keeps M_law(r_e) beyond the edge (source-confined) -- but see C3 for GA
+
+======================================================================================================================
+C3  (sympy) Helmholtz test: is the source-switched system the EL system of a Lagrangian in (Phi, psi)?
+======================================================================================================================
+    flux-gated:      nonzero Helmholtz residuals: 0
+    source-switched: nonzero Helmholtz residuals: 2
+        residual = r**2*(nu(Derivative(psi(r), r)) + Derivative(nu(Derivative(psi(r), r)), Derivative(psi(r), r))*Derivative(psi(r), r) - 1)*Derivative(W(r), r)/(2*pi*G)
+        residual = r*(r*nu(Derivative(psi(r), r))*Derivative(W(r), (r, 2)) + 2*r*Derivative(W(r), r)*Derivative(nu(Derivative(psi(r), r)), Derivative(psi(r), r))*Derivative(psi(r), (r, 2)) + r*Derivative(W(r), r)*Derivative(nu(Derivative(psi(r), r)), (Derivative(psi(r), r), 2))*Derivative(psi(r), r)*Derivative(psi(r), (r, 2)) + r*Derivative(W(r), (r, 2))*Derivative(nu(Derivative(psi(r), r)), Derivative(psi(r), r))*Derivative(psi(r), r) - r*Derivative(W(r), (r, 2)) + 2*nu(Derivative(psi(r), r))*Derivative(W(r), r) + 2*Derivative(W(r), r)*Derivative(nu(Derivative(psi(r), r)), Derivative(psi(r), r))*Derivative(psi(r), r) - 2*Derivative(W(r), r))/(4*pi*G)
+    source-switched with W' = W'' = 0: residuals [0, 0]
+  [PASS] C3 (sympy) the flux-gated system is formally self-adjoint (an EL system); the source-switched system that keeps the mass beyond the edge is NOT, and its asymmetry is proportional to W' (it vanishes for constant W)
+         flux-gated nonzero residuals 0; source-switched 2; with W' = 0: [0, 0]
+  >> GATE GA / source-switched: FAIL -- not derivable from any Lagrangian in (Phi, psi) with a prescribed W (Helmholtz); hypotheses: 2 fields, first-derivative, gate a prescribed function of r
+
+======================================================================================================================
+C4  (sympy + numbers) the Noether identity: a prescribed W breaks momentum conservation by Delta L grad W
+======================================================================================================================
+    d/dx (Phi' p - L) - Phi' (EL) + (dL/dW) W'  =  0     (dL/dW = + Delta L with Delta L = (a0^2/8 pi G)(y - F))
+    check dL/dW - Delta L = 0
+  [PASS] C4a (sympy, L2) on shell, d/dx(Phi' p - L) = -(dL/dW) W' = -Delta L W' (dL/dW = Delta L): a prescribed W breaks momentum conservation by exactly Delta L grad W, Delta L = (a0^2/8 pi G)(y - F(y))
+         identity residual 0; dL/dW - Delta L = 0
+    z = 0.25 max (Delta L |grad W|)/(rho_b g) over the layer: 1e+10/can: 0.6, 1e+10/alt: 0.6, 1e+11/can: 0.9, 1e+11/alt: 0.8, 1e+12/can: 1.0, 1e+12/alt: 1.0
+    z = 2.50 max (Delta L |grad W|)/(rho_b g) over the layer: 1e+10/can: 2.0, 1e+10/alt: 1.9, 1e+11/can: 1.9, 1e+11/alt: 1.8, 1e+12/can: 1.7, 1e+12/alt: 1.7
+    over all 24 layers: min 0.55, max 2.23  (a value >= 1 means the gate's reaction force density exceeds the baryons' weight)
+  [PASS] (reported) C4b (reported, L2 size) Delta L |grad W| against rho_b g on DE12's 24 layers (gate width w = 0.25)
+         range 0.55 - 2.23
+  >> GATE GB-related (Noether reaction): OPEN -- the reaction Delta L grad W must be absorbed by whatever W reads; its size is 0.6-2.2 of the baryons' weight on DE12's layers (gate width 0.25)
+
+  7/7 checks pass; load-bearing failures: 0   (1 s)

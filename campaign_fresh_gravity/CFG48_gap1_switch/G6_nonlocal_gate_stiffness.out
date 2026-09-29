@@ -1,0 +1,77 @@
+G6 -- THE NONLOCAL BARYON-READING GATES AGAINST DE12's STIFFNESS BUDGET (gate GB).  Two nonlocal functionals of the baryon density, each entering as
+      B(x) W(t) with the MOND-sector energy scale B = a0^2 q(y)/(8 pi G) (DE7/DE12's constitutive coupling), VARIED, on DE12's 24 layers x w in {0.25, 1},
+      gas at 1e6 K.  Two readings of what the gate reads: 'baryon-mass' (A = 1) and 'dynamical-mass' (A = A_par = nu + y nu', the response of the enclosed
+      baryon+phantom mass, the analogue of MS1's carrier-blind reading A+).
+
+  VOLTERRA (enclosed-mass) gate.  U_enc(r) = U_0(r) [1 + A dM_b(<r)/M_0(<r)],  dM(<r) = int_0^r 4 pi s^2 drho ds  (linear in dM).  With m = dM(<r):
+        E2 = (1/2) int [ p m'^2 - V m^2 ] dr,   p = c_s^2/(4 pi r^2 rho_b),   V = 4 pi r^2 B W''(t) (t_U U_0 A/M_0)^2,   t_U = 1/(2w),
+     m = 0 at the ends of a Dirichlet window, kinetic weight K = 1/(4 pi r^2 rho_b).  Negative modes counted exactly (Sylvester, LDL^T pivots) on DE13's five
+     half-layer windows (t-width 0.5, t_0 in linspace(0.004, 0.496, 5)) and the full layer.  eta_crit = the factor by which B would have to be multiplied for the
+     first negative mode to appear (bisection on the full layer).  Growth rate of the fastest full-layer mode: Gamma = sqrt(-lambda_min), A m = lambda K m.
+  TOP-LEVEL-BALL (rank-one) gate.  The maximal-ball functional of G2 gives every point of the layer ONE number, the ball radius R: t(r) = t_0(r R_0/R).
+     E_gate(lnR) = -int 4 pi r^2 B W(t(r; lnR)) dr.  The ball radius solves phi(R) + A dM = 0, phi(R) = M_eff,0(R) - (4 pi/3) rhobar Delta R^3 (edge threshold set at the
+     layer midpoint t = 0.5).  With L1 = dlnR/dM, L2 = d2 lnR/dM2 the FULL second variation (rank-one) is
+        E2 = (1/2) dM^2 [ c_s^2/M_gas + E_R L2 + E_RR L1^2 ],   E_R = dE_gate/dlnR,  E_RR = d2E_gate/dlnR2,
+     by Cauchy-Schwarz over the gas inside the ball (exact for a rank-one gate); unstable iff the bracket is negative: Xi = -(E_R L2 + E_RR L1^2) M_gas/c_s^2 > 1.
+     (The FIRST run of this lane used only the W'' term of E_RR; it missed E_R L2 and the W' part of E_RR.  Disclosed; this version supersedes it.)
+     Reported also: the gate's FIRST variation, the potential step Delta mu = E_R L1 A per unit baryon mass at the ball boundary, against v_f^2 and c_s^2.
+CONTROLS.  C1: the local gate's c_gate_max reproduces DE12's committed budget (24 layers).  C2: the LOCAL gate in the same counting machinery (number of nodes with
+     c_gate > c_s, DE12's own arrays) has negative modes on >= 90% of the 48 cases, so the counter is not blind.
+PRE-DECLARED (before the first run; the baryon-mass reading A = 1):
+  H_V  the Volterra gate has at least one negative mode fitting in the layer on >= 75% of the 48 layer x w cases.
+  H_R  the top-level-ball gate has Xi > 1 on >= 75% of the 48 cases.
+DECLARED AFTER SEEING ROUND 1 (round 1 gave 0/48 for both on the baryon-mass reading, so the lane added the dynamical-mass reading, which the phantom amplifies by up to nu ~ 30):
+  H_V2 the Volterra gate with the dynamical-mass reading has a negative mode on >= 75% of the 48 cases.
+  H_R2 the ball gate with the dynamical-mass reading has Xi > 1 on >= 75% of the 48 cases.
+MUTATE=1 sets B = 0: no negative modes and Xi = 0; the LOCAL control C2 and every H must FAIL.
+SCOPE.  Frozen background (DE12's, spherical); isothermal gas 117 km/s; a fluid description; the point-mass baryons plus DE12's gas as the baryon reservoir; the
+      gas at rest in a background that does not include the gate's own force; z = 0.25, 1, 2.5, 4.  A gate defined through enclosed mass about a centre is a
+      SPHERICAL statement; no covariant field-theoretic definition is written (GD).
+
+======================================================================================================================
+C1  control: the LOCAL c_gate reproduces DE12's committed budget on all 24 layers
+======================================================================================================================
+    max relative deviation from DE12's committed c_gate_max over the layers: 0.00e+00
+  [PASS] C1 control: the local gate's c_gate_max equals DE12's committed value on every layer (1e-9)
+         0.00e+00
+
+======================================================================================================================
+G  the 24 layers x 2 widths x 2 readings
+======================================================================================================================
+    w=0.25 z=0.25 M_b=1e+10 can: LOCAL unstable nodes   242 (c_gate   1526 km/s) | Volterra A=1: neg 0, eta_crit 3.6e+02 | A_par: neg 3, eta_crit 3.1e-02, Gamma/H 2.0e+02 | ball Xi A=1 -3.46e-01, A_par -3.58e-01; dmu/v_f^2 2.70, dmu/c_s^2 2.2
+    w=0.25 z=0.25 M_b=1e+11 can: LOCAL unstable nodes   244 (c_gate   2235 km/s) | Volterra A=1: neg 0, eta_crit 1.3e+02 | A_par: neg 3, eta_crit 3.6e-02, Gamma/H 1.0e+02 | ball Xi A=1 -1.11e+00, A_par -1.14e+00; dmu/v_f^2 1.45, dmu/c_s^2 3.7
+    w=0.25 z=0.25 M_b=1e+12 can: LOCAL unstable nodes   245 (c_gate   3436 km/s) | Volterra A=1: neg 0, eta_crit 4.9e+01 | A_par: neg 3, eta_crit 4.0e-02, Gamma/H 5.5e+01 | ball Xi A=1 -3.58e+00, A_par -3.70e+00; dmu/v_f^2 0.82, dmu/c_s^2 6.6
+    w=0.25 z=1.00 M_b=1e+10 can: LOCAL unstable nodes   234 (c_gate   1018 km/s) | Volterra A=1: neg 0, eta_crit 4.3e+02 | A_par: neg 1, eta_crit 2.2e-01, Gamma/H 9.5e+01 | ball Xi A=1 -4.00e-01, A_par -4.12e-01; dmu/v_f^2 1.18, dmu/c_s^2 1.0
+    w=0.25 z=1.00 M_b=1e+11 can: LOCAL unstable nodes   238 (c_gate   1642 km/s) | Volterra A=1: neg 0, eta_crit 1.4e+02 | A_par: neg 1, eta_crit 2.2e-01, Gamma/H 5.3e+01 | ball Xi A=1 -1.32e+00, A_par -1.36e+00; dmu/v_f^2 0.70, dmu/c_s^2 1.8
+    w=0.25 z=1.00 M_b=1e+12 can: LOCAL unstable nodes   238 (c_gate   2726 km/s) | Volterra A=1: neg 0, eta_crit 4.6e+01 | A_par: neg 1, eta_crit 2.1e-01, Gamma/H 3.1e+01 | ball Xi A=1 -4.39e+00, A_par -4.59e+00; dmu/v_f^2 0.43, dmu/c_s^2 3.5
+    w=0.25 z=2.50 M_b=1e+10 can: LOCAL unstable nodes   220 (c_gate    706 km/s) | Volterra A=1: neg 0, eta_crit 3.4e+02 | A_par: neg 0, eta_crit 2.9e+00, Gamma/H 0.0e+00 | ball Xi A=1 -5.80e-01, A_par -6.08e-01; dmu/v_f^2 0.43, dmu/c_s^2 0.4
+    w=0.25 z=2.50 M_b=1e+11 can: LOCAL unstable nodes   225 (c_gate   1188 km/s) | Volterra A=1: neg 0, eta_crit 9.6e+01 | A_par: neg 0, eta_crit 2.2e+00, Gamma/H 0.0e+00 | ball Xi A=1 -1.99e+00, A_par -2.10e+00; dmu/v_f^2 0.29, dmu/c_s^2 0.7
+    w=0.25 z=2.50 M_b=1e+12 can: LOCAL unstable nodes   226 (c_gate   1921 km/s) | Volterra A=1: neg 0, eta_crit 2.7e+01 | A_par: neg 0, eta_crit 1.5e+00, Gamma/H 0.0e+00 | ball Xi A=1 -6.78e+00, A_par -7.28e+00; dmu/v_f^2 0.20, dmu/c_s^2 1.7
+    w=0.25 z=4.00 M_b=1e+10 can: LOCAL unstable nodes   209 (c_gate    576 km/s) | Volterra A=1: neg 0, eta_crit 2.2e+02 | A_par: neg 0, eta_crit 1.1e+01, Gamma/H 0.0e+00 | ball Xi A=1 -7.74e-01, A_par -8.27e-01; dmu/v_f^2 0.27, dmu/c_s^2 0.2
+    w=0.25 z=4.00 M_b=1e+11 can: LOCAL unstable nodes   220 (c_gate    914 km/s) | Volterra A=1: neg 0, eta_crit 5.9e+01 | A_par: neg 0, eta_crit 7.1e+00, Gamma/H 0.0e+00 | ball Xi A=1 -2.59e+00, A_par -2.78e+00; dmu/v_f^2 0.19, dmu/c_s^2 0.5
+    w=0.25 z=4.00 M_b=1e+12 can: LOCAL unstable nodes   228 (c_gate   1398 km/s) | Volterra A=1: neg 0, eta_crit 1.6e+01 | A_par: neg 0, eta_crit 4.1e+00, Gamma/H 0.0e+00 | ball Xi A=1 -8.42e+00, A_par -9.03e+00; dmu/v_f^2 0.15, dmu/c_s^2 1.2
+
+    cases evaluated: 48
+    Volterra negative modes by redshift (dynamical-mass reading): z=0.25: 12/12, z=1.0: 12/12, z=2.5: 5/12, z=4.0: 0/12; baryon-mass reading: z=0.25: 0/12, z=1.0: 0/12, z=2.5: 0/12, z=4.0: 0/12
+    LOCAL gate with an unstable node: 44/48;  Volterra negative mode: A=1 0/48, A_par 29/48;  ball Xi > 1: A=1 0/48, A_par 0/48
+  [PASS] C2 control: the LOCAL gate has unstable nodes (c_gate > c_s) on >= 90% of the 48 cases in the same window/counting machinery
+         44/48
+  [FAIL] H_V (pre-declared) the Volterra gate, baryon-mass reading, has a negative mode on >= 75% of the 48 cases
+         0/48
+  [FAIL] H_R (pre-declared) the ball gate, baryon-mass reading, has Xi > 1 on >= 75% of the 48 cases
+         0/48
+  [FAIL] H_V2 (declared after round 1) the Volterra gate, dynamical-mass reading, has a negative mode on >= 75% of the 48 cases
+         29/48
+  [FAIL] H_R2 (declared after round 1) the ball gate, dynamical-mass reading, has Xi > 1 on >= 75% of the 48 cases
+         0/48
+  [PASS] (reported) R1 (reported) eta_crit = factor on B for the first Volterra negative mode
+         A=1: min 1.37e+01; A_par: min 1.20e-02, median 3.69e-01
+  [PASS] (reported) R2 (reported) ball Xi range (Xi > 1 unstable)
+         A=1: -9.33e+00 .. -3.46e-01; A_par: -1.00e+01 .. -3.58e-01
+  [PASS] (reported) R3 (reported) the ball gate's FIRST variation: potential step at the ball boundary per unit baryon mass (A_par reading)
+         dmu/v_f^2: 0.15 .. 3.14; dmu/c_s^2: 0.2 .. 8.2
+  >> GATE GB / Volterra enclosed-mass gate, baryon-mass reading: PASS -- no negative mode on 48/48 cases; eta_crit (factor on B for the first mode) min 13.7, i.e. the local gate's instability (44/48) is removed with margin
+  >> GATE GB / Volterra enclosed-mass gate, dynamical-mass reading: FAIL -- negative mode on 29/48 cases: every z = 0.25 and z = 1 layer and part of z = 2.5 (phantom amplification A_par up to ~30); Gamma/H up to 238; the frozen rule (a fail on any layer = FAIL) applies
+  >> GATE GB / top-level-ball rank-one gate (second variation): PASS -- Xi in [-10.0, -0.35] < 0 on all 48 cases, both readings: the energy is nearly linear in ln R (E_RR L1^2 ~ 0 numerically; B r^3 ~ const in the transition region) and ln R is concave in M (E_R L2 > 0), so the gate STABILISES. CAVEAT (first variation, R3): a potential step of 0.15-3.14 v_f^2 (0.2-8.2 c_s^2) at the ball boundary means DE12's frozen background is NOT an equilibrium of the varied theory
+
+  5/9 checks pass; load-bearing failures: 4   (3 s)

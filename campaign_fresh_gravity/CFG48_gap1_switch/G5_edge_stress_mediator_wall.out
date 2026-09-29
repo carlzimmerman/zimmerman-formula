@@ -1,0 +1,64 @@
+G5 -- LEADS 3, 4 AND 5 (the edge stress, a long-range mediator that carries it, and the wall-balance exponent).  Each lead is verified or refuted here;
+      none is assumed.  Definitions and pass lines are frozen in GATES_FROZEN.md (L3, L4, L5).
+
+SETUP (candidate B's own numbers).  Point-mass baryons M_b, r_e = 0.4 r_ta (r_ta from M_col = M_b (1 + Omega_c/Omega_b), Delta_ta = 11.81, z = 0), x_e = r_e/r_M.
+  The fluid's stress at the edge that must be held if the exchange is off outside it:  P_c(r_e) = a0 M_b/(8 pi r_e^2) = a0 g_N/(8 pi G)  (CFG44 B1; E0/E1 of G4).
+L3  (edge stress).  Baryon supply P_b = rho_b sigma^2 with sigma^2 = V_c^2/2 at r_e, three accountings of rho_b(r_e):
+      (a) enclosed mean density 3 M_b/(4 pi r_e^3)          -> P_b/P_c = 3 g_law/a0
+      (b) isothermal edge density (1/3 of the mean)          -> P_b/P_c = g_law/a0
+      (c) cosmic share of the local matter: rho_b = rho_c Omega_b/Omega_c   (the lead's accounting)   -> P_b/P_c = Omega_b/Omega_c = 0.186
+    Frozen line: L3 HOLDS iff (a) and (b) are both <= 0.25 for every M_b in 1e9..1e13.  Reported as run; (c) reported separately.
+L4  (mediator).  A massless scalar with baryon coupling alpha G (force alpha g_N) carries stress alpha g_N^2/(8 pi G); equating to P_c gives alpha_req = a0/g_N = x_e^2
+      (the lead's factor 1/2 is used as the lower bound: alpha_req >= x_e^2/2).  Frozen line: HOLDS iff alpha_req >= 1e2 for M_b >= 1e10 and >= 1e6 x the Cassini bound 3e-5.
+      Also reported: the mediator's own force on baryons, alpha g_N, against g_law.
+L5  (wall balance; kinematic only, no gate field is built).  P_c(r_e) = DeltaV + 2 sigma_w/r_e with DeltaV, sigma_w >= 0: the implicit r_e(M_b) has
+      d ln r_e/d ln M in [1/2, 1] (1/2: DeltaV only; 1: sigma_w only), hence d ln x_e/d ln M = d ln r_e/d ln M - 1/3 in [1/6, 2/3]; x_e stays in [0.31, 0.48]
+      over at most ln(0.48/0.31)/(1/6) = 2.62 e-folds = 1.14 decades of M_b.  Checked (i) by the analytic slope range on 4000 log-uniform (DeltaV, sigma_w) draws
+      (a bound, not a fit), (ii) by the maximal window width over a 2-D grid, against the >= 4 decades B needs.
+MUTATE=1: L3(c) is evaluated with baryon fraction 0.9 (almost all mass baryonic): the "short by 5.4" claim must FAIL; the wall target is made to scale as 1/r_ta
+      (P_c = 2 sigma/(0.4 r_ta), a wall balanced by construction): the narrow-window claim must FAIL.
+SCOPE.  Static, spherical, point-mass baryons, P2, canonical footing; the pressure stress is isotropic-equivalent; Cassini bound as quoted in GATES.md (gamma - 1 = (2.1 +- 2.3)e-5;
+      3e-5 used as the quoted scale for a universal scalar).
+
+======================================================================================================================
+L3  the edge stress: what baryons at the edge can supply against P_c(r_e)
+======================================================================================================================
+    M_b = 1e+09: x_e =  48.5, g_law/a0 = 0.0206;  P_b/P_c: (a) mean 0.062 (=3g/a0 0.062), (b) isothermal 0.021, (c) cosmic share 0.186
+    M_b = 1e+10: x_e =  33.0, g_law/a0 = 0.0303;  P_b/P_c: (a) mean 0.091 (=3g/a0 0.091), (b) isothermal 0.030, (c) cosmic share 0.186
+    M_b = 1e+11: x_e =  22.5, g_law/a0 = 0.0445;  P_b/P_c: (a) mean 0.133 (=3g/a0 0.133), (b) isothermal 0.044, (c) cosmic share 0.186
+    M_b = 1e+12: x_e =  15.3, g_law/a0 = 0.0653;  P_b/P_c: (a) mean 0.196 (=3g/a0 0.196), (b) isothermal 0.065, (c) cosmic share 0.186
+    M_b = 1e+13: x_e =  10.5, g_law/a0 = 0.0961;  P_b/P_c: (a) mean 0.288 (=3g/a0 0.288), (b) isothermal 0.096, (c) cosmic share 0.186
+    M_b = 1e+14: x_e =   7.1, g_law/a0 = 0.1418;  P_b/P_c: (a) mean 0.425 (=3g/a0 0.425), (b) isothermal 0.142, (c) cosmic share 0.186
+  [PASS] L3c the lead's accounting (baryons at the cosmic share of the local matter, same sigma^2) supplies P_b/P_c = Omega_b/Omega_c = 0.186 of the edge stress: short by 5.4 with no free parameter
+         P_b/P_c = 0.1864 at every mass
+  [PASS] (reported) L3ab (reported; frozen line) the enclosed-mean and isothermal accountings <= 0.25 for every M_b in 1e9..1e13
+         pass = False; worst mean-density ratio 0.288 at M_b = 1e+13 (3 g_law/a0 grows with M_b as x_e falls)
+  >> GATE L3 (edge stress): PARTIAL -- cosmic-share accounting: baryons supply 0.186 of P_c (short by 5.4, not the lead's ~6.4 = 1/f_b, which is Omega_c/Omega_b + 1 for the TOTAL matter). Under the frozen line (mean AND isothermal <= 0.25 up to 1e13) it is NOT met: the mean-density ratio 3 g/a0 reaches 0.29 at 1e+13. Baryons alone cannot hold the edge; the stress must be carried by the cold infall (ram pressure) or by a mediator.
+
+======================================================================================================================
+L4  a long-range mediator that carries the stress
+======================================================================================================================
+    M_b = 1e+09: x_e =  48.5; alpha_req = x_e^2 =   2353.0 (lead's a0/(2 g_N) =   1176.5); / Cassini 3e-5 = 3.9e+07;  the mediator's own force on baryons = alpha g_N = 0.50 a0 = 24.2 g_law
+    M_b = 1e+10: x_e =  33.0; alpha_req = x_e^2 =   1092.1 (lead's a0/(2 g_N) =    546.1); / Cassini 3e-5 = 1.8e+07;  the mediator's own force on baryons = alpha g_N = 0.50 a0 = 16.5 g_law
+    M_b = 1e+11: x_e =  22.5; alpha_req = x_e^2 =    506.9 (lead's a0/(2 g_N) =    253.5); / Cassini 3e-5 = 8.4e+06;  the mediator's own force on baryons = alpha g_N = 0.50 a0 = 11.2 g_law
+    M_b = 1e+12: x_e =  15.3; alpha_req = x_e^2 =    235.3 (lead's a0/(2 g_N) =    117.6); / Cassini 3e-5 = 3.9e+06;  the mediator's own force on baryons = alpha g_N = 0.50 a0 = 7.7 g_law
+    M_b = 1e+13: x_e =  10.5; alpha_req = x_e^2 =    109.2 (lead's a0/(2 g_N) =     54.6); / Cassini 3e-5 = 1.8e+06;  the mediator's own force on baryons = alpha g_N = 0.50 a0 = 5.2 g_law
+    M_b = 1e+14: x_e =   7.1; alpha_req = x_e^2 =     50.7 (lead's a0/(2 g_N) =     25.3); / Cassini 3e-5 = 8.4e+05;  the mediator's own force on baryons = alpha g_N = 0.50 a0 = 3.5 g_law
+  [PASS] L4a alpha_req >= 1e2 for M_b = 1e10..1e12 and >= 1e6 x the Cassini bound for every M_b >= 1e10 up to 1e13 (the lead's range and conclusion)
+         1e10-1e12 all >= 1e2: True; alpha_req(1e13) = 54.6, alpha_req(1e14) = 25.3 (falls as x_e^2 with mass)
+  [PASS] (reported) L4b (reported; frozen line, literal) alpha_req >= 1e2 for ALL M_b >= 1e10 and >= 1e6 x Cassini for all
+         alpha>=1e2: False; >=1e6 Cassini: False (fails at 1e13-1e14 by the M_b^(-1/3) fall of x_e^2)
+  >> GATE L4 (mediator): PARTIAL -- frozen line literal = NOT met at 1e13-1e14; holds for 1e10-1e12. alpha_req = 546 (1e10), 118 (1e12), 55 (1e13), 25 (1e14): 1e5-1e7 over the Cassini scale of a universal scalar; the mediator's own force on baryons is a0/2 = 17-4 g_law: it overshoots the law it must reproduce. A screened or non-universal mediator is not excluded here (untested).
+
+======================================================================================================================
+L5  wall balance P_c(r_e) = DeltaV + 2 sigma_w / r_e: the exponent range
+======================================================================================================================
+    4000 (DeltaV, sigma_w) draws: d ln x_e / d ln M in [0.1667, 0.6667]   (analytic range [1/6, 2/3] = [0.1667, 0.6667])
+    maximal window width over the (DeltaV, sigma_w) grid: 1.136 decades of M_b; analytic bound ln(0.48/0.31)/(1/6) = 1.139 decades; B needs >= 4
+  [PASS] L5a the local exponent d ln x_e/d ln M lies in [1/6, 2/3] for every wall (DeltaV, sigma_w >= 0)
+         [0.1667, 0.6667]
+  [PASS] L5b no wall keeps x_e in [0.31, 0.48] over more than 1.2 decades of M_b (B needs >= 4): the maximal window over the grid
+         1.136 decades
+  >> GATE L5 (wall-balance exponent): HOLDS -- window 1.14 decades vs the 4 needed; the edge r_e ~ M^(1/2..1) outruns r_ta ~ M^(1/3)
+
+  6/6 checks pass; load-bearing failures: 0   (0 s)

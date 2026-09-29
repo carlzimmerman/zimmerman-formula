@@ -1,0 +1,160 @@
+{
+ "slug": "G1_gauss_noether",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "C1 (sympy) the EL system of the gated action is solved by psi' = G M_b/r^2, Phi' = A psi' (no other source): dynamical mass = A M_b(<r), and M_dyn = M_b wherever the gate is off (A = 1)",
+   "detail": "residuals: E_Phi -> 0, E_psi -> 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2a (L1) both ACTION-DERIVED gated forms give M_dyn = M_b beyond the edge (|M_dyn(3 r_e)/M_b - 1| < 1e-6) for M_b = 1e10, 1e11, 1e12",
+   "detail": "{'1e+10': (1.00000003, 1.0), '1e+11': (1.00000002, 1.0), '1e+12': (1.00000001, 1.0)}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2b (reported) GE for the flux-gated forms (M_dyn(2 r_e) within 10% of M_law(r_e))",
+   "detail": "pass = False; ratios {'1e+10': 0.03, '1e+11': 0.044, '1e+12': 0.065}",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C2c (reported) GE for the source-switched form",
+   "detail": "pass = True; ratios {'1e+10': 1.004, '1e+11': 1.004, '1e+12': 1.004}",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C3 (sympy) the flux-gated system is formally self-adjoint (an EL system); the source-switched system that keeps the mass beyond the edge is NOT, and its asymmetry is proportional to W' (it vanishes for constant W)",
+   "detail": "flux-gated nonzero residuals 0; source-switched 2; with W' = 0: [0, 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4a (sympy, L2) on shell, d/dx(Phi' p - L) = -(dL/dW) W' = -Delta L W' (dL/dW = Delta L): a prescribed W breaks momentum conservation by exactly Delta L grad W, Delta L = (a0^2/8 pi G)(y - F(y))",
+   "detail": "identity residual 0; dL/dW - Delta L = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4b (reported, L2 size) Delta L |grad W| against rho_b g on DE12's 24 layers (gate width w = 0.25)",
+   "detail": "range 0.55 - 2.23",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "GE / flux-gated (action-derived)": {
+   "status": "FAIL",
+   "why": "M_dyn beyond the edge = M_b; the phantom mass inside the edge is a negative shell (Gauss lemma, N10 in general form)"
+  },
+  "GE / source-switched": {
+   "status": "PASS",
+   "why": "keeps M_law(r_e) beyond the edge (source-confined) -- but see C3 for GA"
+  },
+  "GA / source-switched": {
+   "status": "FAIL",
+   "why": "not derivable from any Lagrangian in (Phi, psi) with a prescribed W (Helmholtz); hypotheses: 2 fields, first-derivative, gate a prescribed function of r"
+  },
+  "GB-related (Noether reaction)": {
+   "status": "OPEN",
+   "why": "the reaction Delta L grad W must be absorbed by whatever W reads; its size is 0.6-2.2 of the baryons' weight on DE12's layers (gate width 0.25)"
+  }
+ },
+ "numbers": {
+  "C2": {
+   "1e+10": {
+    "r_ta": 318.8166247013242,
+    "r_e": 127.52664988052969,
+    "r_M": 3.858872129324422,
+    "x_e": 33.047648537360566,
+    "M_law_over_Mb": 33.062774745155764,
+    "flux_QUMOND": {
+     "M_over_target_2re": 0.030247373203733594,
+     "M_over_Mb_3re": 1.0000000281485681,
+     "negative_shell_Msun": 320627126582.88055
+    },
+    "flux_AQUAL": {
+     "M_over_target_2re": 0.03024552419341422,
+     "M_over_Mb_3re": 1.0000000002867684,
+     "negative_shell_Msun": 320627737916.9975
+    },
+    "source_switched": {
+     "M_over_target_2re": 1.0041075896772365,
+     "M_over_Mb_3re": 33.198586371436534,
+     "negative_shell_Msun": -1358083122.4399414
+    }
+   },
+   "1e+11": {
+    "r_ta": 686.8695960154088,
+    "r_e": 274.7478384061635,
+    "r_M": 12.202825128009005,
+    "x_e": 22.515100849518685,
+    "M_law_over_Mb": 22.53729722624248,
+    "flux_QUMOND": {
+     "M_over_target_2re": 0.0443727564570595,
+     "M_over_Mb_3re": 1.0000000190871292,
+     "negative_shell_Msun": 2153725522522.206
+    },
+    "flux_AQUAL": {
+     "M_over_target_2re": 0.04437093512879589,
+     "M_over_Mb_3re": 1.0000000002867344,
+     "negative_shell_Msun": 2153729627303.8484
+    },
+    "source_switched": {
+     "M_over_target_2re": 1.0041128432994566,
+     "M_over_Mb_3re": 22.62999185568449,
+     "negative_shell_Msun": -9269237188.481445
+    }
+   },
+   "1e+12": {
+    "r_ta": 1479.8156851837823,
+    "r_e": 591.9262740735129,
+    "r_M": 38.58872129324422,
+    "x_e": 15.339359642817247,
+    "M_law_over_Mb": 15.371920968170842,
+    "flux_QUMOND": {
+     "M_over_target_2re": 0.06505552047885128,
+     "M_over_Mb_3re": 1.0000000129141746,
+     "negative_shell_Msun": 14371892648826.72
+    },
+    "flux_AQUAL": {
+     "M_over_target_2re": 0.06505374017545695,
+     "M_over_Mb_3re": 1.0000000002866616,
+     "negative_shell_Msun": 14371920015509.797
+    },
+    "source_switched": {
+     "M_over_target_2re": 1.0041163758863556,
+     "M_over_Mb_3re": 15.435199110631128,
+     "negative_shell_Msun": -63276604800.3418
+    }
+   }
+  },
+  "noether/0.25/1e+10/canonical": 0.6117549223371753,
+  "noether/0.25/1e+10/alt": 0.5517836367863468,
+  "noether/0.25/1e+11/canonical": 0.8500780674065014,
+  "noether/0.25/1e+11/alt": 0.7828947968139229,
+  "noether/0.25/1e+12/canonical": 1.0495070204335768,
+  "noether/0.25/1e+12/alt": 0.9889022624185134,
+  "noether/1.0/1e+10/canonical": 1.223753743952018,
+  "noether/1.0/1e+10/alt": 1.152385950420322,
+  "noether/1.0/1e+11/canonical": 1.364140788790064,
+  "noether/1.0/1e+11/alt": 1.3098615682724242,
+  "noether/1.0/1e+12/canonical": 1.395033812090896,
+  "noether/1.0/1e+12/alt": 1.3578644863365243,
+  "noether/2.5/1e+10/canonical": 1.9678153495189021,
+  "noether/2.5/1e+10/alt": 1.9418475155430135,
+  "noether/2.5/1e+11/canonical": 1.8538133449842025,
+  "noether/2.5/1e+11/alt": 1.8354773805519695,
+  "noether/2.5/1e+12/canonical": 1.714673402064412,
+  "noether/2.5/1e+12/alt": 1.7072291674033517,
+  "noether/4.0/1e+10/canonical": 2.2264134665676907,
+  "noether/4.0/1e+10/alt": 2.213961364481936,
+  "noether/4.0/1e+11/canonical": 2.072118987461491,
+  "noether/4.0/1e+11/alt": 2.07774392097484,
+  "noether/4.0/1e+12/canonical": 1.8500620285818328,
+  "noether/4.0/1e+12/alt": 1.8816830660504007
+ }
+}

@@ -1,0 +1,164 @@
+{
+ "slug": "G4_exchange_action",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "E0 the target fluid is hydrostatic in the total field and satisfies the virial identity with its surface term (1e-6); P(r) = a0 M/(8 pi r^2) confirmed",
+   "detail": "hydrostatic 1.9e-09; virial 2.2e-16; P vs closed form 6.7e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1 (reported) the exchange must supply 1.5 r_e/r_M times the baryons' orbital kinetic energy (~20-50): the energy cannot come from the baryons' own budget",
+   "detail": "ratios [49.6, 33.8, 23.0]",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "E2a the closed forms a_sigma = (3/8) a0 (2+x^2)/(1+x^2), a_P = (3/4) a0 reproduce the finite-difference derivative of the discretised action (2%)",
+   "detail": "worst deviation 1.20e-03",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E2b the reaction exceeds 0.10 g_law somewhere on x in [0.3, 30] for both readings (GH(b) pass line 0.10 violated), outward, growing ~ x at large x",
+   "detail": "a/g_law: {'sigma': [0.06, 0.4, 1.17, 3.77, 11.26], 'pressure': [0.06, 0.53, 2.13, 7.46, 22.49]}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E3i the force on a fluid shell and the reaction on a baryon shell, coded independently, have a symmetric cross block (action-derived reciprocity)",
+   "detail": "asymmetry 6.98e-07",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E3ii the exchange acts only from ENCLOSED baryons (the cross block vanishes for baryon shells outside the fluid shell)",
+   "detail": "1.61e-07",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E3iii E_ex contains positions only (no time or space derivative of a displacement): the principal symbol of the coupled system is unchanged (a zeroth-order coupling)",
+   "detail": "by construction of E_ex (declared)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "GH(b) / exchange reaction on baryons": {
+   "status": "FAIL",
+   "why": "a = (3/8)-(3/4) a0 outward, 0.4 g_law at x = 1 and ~11-22 g_law at x = 30 (isotropic exterior, fluid masses fixed)"
+  },
+  "GH(a) / symmetric operator": {
+   "status": "PARTIAL",
+   "why": "the cross block is symmetric by construction (action-derived); the FULL coupled operator (gravity + pressure + exchange) was not diagonalised: stability OPEN"
+  },
+  "GH(c) / causality": {
+   "status": "PARTIAL",
+   "why": "zeroth-order Volterra coupling: no new characteristics; instantaneous on the leaf (needs the khronon foliation, criterion B) -- relativistic completion OPEN"
+  },
+  "GF / exchange action": {
+   "status": "PASS",
+   "why": "no new constant in the target; the numerical step regulariser is not a model parameter -- but the target's shape (P2) and the slaving choice are POSTULATED"
+  },
+  "GA / exchange action": {
+   "status": "PARTIAL",
+   "why": "a legal bilocal energy E_ex[rho_c, rho_b]; its reaction on baryons is then fixed (E2) and fails GH(b)"
+  }
+ },
+ "numbers": {
+  "E1": {
+   "1e+10": {
+    "E_c": 2762417941952588.0,
+    "E_b_kin": 55727646911598.586,
+    "ratio": 49.569972806040845,
+    "ratio_closed": 49.571472806040845,
+    "surface_over_3intP": 0.3333434200848826,
+    "P_edge": 70664054.41633546
+   },
+   "1e+11": {
+    "E_c": 5.951364795433365e+16,
+    "E_b_kin": 1762262928822996.0,
+    "ratio": 33.771151274278026,
+    "ratio_closed": 33.772651274278026,
+    "surface_over_3intP": 0.33334813886945314,
+    "P_edge": 152241090.17285392
+   },
+   "1e+12": {
+    "E_c": 1.2821560355670492e+18,
+    "E_b_kin": 5.572764691159859e+16,
+    "ratio": 23.007539464225864,
+    "ratio_closed": 23.009039464225868,
+    "surface_over_3intP": 0.3333550653399557,
+    "P_edge": 327993485.91666865
+   }
+  },
+  "E2": {
+   "sigma": [
+    [
+     0.3,
+     0.7189878313641977,
+     0.7190366972477064,
+     0.061984102379621056
+    ],
+    [
+     1.0,
+     0.5624766473582443,
+     0.5625,
+     0.397747564417433
+    ],
+    [
+     3.0,
+     0.4124807812143444,
+     0.41250000000000003,
+     1.173995581337511
+    ],
+    [
+     10.0,
+     0.37916727461180844,
+     0.3787128712871287,
+     3.768333913419019
+    ],
+    [
+     30.0,
+     0.3755535685880678,
+     0.3754162042175361,
+     11.256234399079878
+    ]
+   ],
+   "pressure": [
+    [
+     0.3,
+     0.74997185388009,
+     0.75,
+     0.0646532742524277
+    ],
+    [
+     1.0,
+     0.7499598909370336,
+     0.75,
+     0.5303300858899106
+    ],
+    [
+     3.0,
+     0.7499613863049157,
+     0.75,
+     2.134537420613656
+    ],
+    [
+     10.0,
+     0.7508997296508966,
+     0.75,
+     7.462778926574918
+    ],
+    [
+     30.0,
+     0.7502751144865679,
+     0.75,
+     22.487510407030975
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,158 @@
+{
+ "slug": "G5_edge_stress_mediator_wall_MUTATE",
+ "load_bearing_failures": 2,
+ "checks": [
+  {
+   "name": "L3c the lead's accounting (baryons at the cosmic share of the local matter, same sigma^2) supplies P_b/P_c = Omega_b/Omega_c = 0.186 of the edge stress: short by 5.4 with no free parameter",
+   "detail": "P_b/P_c = 9.0000 at every mass  [MUTATE: baryon fraction 0.9]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "L3ab (reported; frozen line) the enclosed-mean and isothermal accountings <= 0.25 for every M_b in 1e9..1e13",
+   "detail": "pass = False; worst mean-density ratio 0.288 at M_b = 1e+13 (3 g_law/a0 grows with M_b as x_e falls)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "L4a alpha_req >= 1e2 for M_b = 1e10..1e12 and >= 1e6 x the Cassini bound for every M_b >= 1e10 up to 1e13 (the lead's range and conclusion)",
+   "detail": "1e10-1e12 all >= 1e2: True; alpha_req(1e13) = 54.6, alpha_req(1e14) = 25.3 (falls as x_e^2 with mass)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "L4b (reported; frozen line, literal) alpha_req >= 1e2 for ALL M_b >= 1e10 and >= 1e6 x Cassini for all",
+   "detail": "alpha>=1e2: False; >=1e6 Cassini: False (fails at 1e13-1e14 by the M_b^(-1/3) fall of x_e^2)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "L5a the local exponent d ln x_e/d ln M lies in [1/6, 2/3] for every wall (DeltaV, sigma_w >= 0)",
+   "detail": "[nan, nan]  [MUTATE: not evaluated]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "L5b no wall keeps x_e in [0.31, 0.48] over more than 1.2 decades of M_b (B needs >= 4): the maximal window over the grid",
+   "detail": "8.000 decades  [MUTATE: wall balanced by construction]",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "verdicts": {
+  "L3 (edge stress)": {
+   "status": "REFUTED",
+   "why": "cosmic-share accounting: baryons supply 9.000 of P_c (short by 0.1, not the lead's ~6.4 = 1/f_b, which is Omega_c/Omega_b + 1 for the TOTAL matter). Under the frozen line (mean AND isothermal <= 0.25 up to 1e13) it is NOT met: the mean-density ratio 3 g/a0 reaches 0.29 at 1e+13. Baryons alone cannot hold the edge; the stress must be carried by the cold infall (ram pressure) or by a mediator."
+  },
+  "L4 (mediator)": {
+   "status": "PARTIAL",
+   "why": "frozen line literal = NOT met at 1e13-1e14; holds for 1e10-1e12. alpha_req = 546 (1e10), 118 (1e12), 55 (1e13), 25 (1e14): 1e5-1e7 over the Cassini scale of a universal scalar; the mediator's own force on baryons is a0/2 = 17-4 g_law: it overshoots the law it must reproduce. A screened or non-universal mediator is not excluded here (untested)."
+  },
+  "L5 (wall-balance exponent)": {
+   "status": "REFUTED",
+   "why": "window 8.00 decades vs the 4 needed; the edge r_e ~ M^(1/2..1) outruns r_ta ~ M^(1/3)"
+  }
+ },
+ "numbers": {
+  "L3": {
+   "1e+09": {
+    "x_e": 48.50731431976939,
+    "g_over_a0": 0.020619827953672377,
+    "a_mean": 0.06185948386101712,
+    "b_iso": 0.020619827953672374,
+    "c_cosmic": 9.000000000000002,
+    "P_c": 32799348.59166686
+   },
+   "1e+10": {
+    "x_e": 33.047648537360566,
+    "g_over_a0": 0.030273188965875258,
+    "a_mean": 0.0908195668976258,
+    "b_iso": 0.030273188965875258,
+    "c_cosmic": 9.000000000000005,
+    "P_c": 70664054.41633546
+   },
+   "1e+11": {
+    "x_e": 22.515100849518685,
+    "g_over_a0": 0.04445842151337705,
+    "a_mean": 0.13337526454013116,
+    "b_iso": 0.04445842151337705,
+    "c_cosmic": 9.000000000000004,
+    "P_c": 152241090.17285392
+   },
+   "1e+12": {
+    "x_e": 15.339359642817247,
+    "g_over_a0": 0.06533015417565519,
+    "a_mean": 0.1959904625269655,
+    "b_iso": 0.06533015417565517,
+    "c_cosmic": 9.000000000000002,
+    "P_c": 327993485.91666865
+   },
+   "1e+13": {
+    "x_e": 10.45058406907915,
+    "g_over_a0": 0.09612550833254556,
+    "a_mean": 0.28837652499763666,
+    "b_iso": 0.09612550833254557,
+    "c_cosmic": 9.000000000000002,
+    "P_c": 706640544.1633551
+   },
+   "1e+14": {
+    "x_e": 7.119900043287103,
+    "g_over_a0": 0.14182995895254125,
+    "a_mean": 0.42548987685762385,
+    "b_iso": 0.14182995895254127,
+    "c_cosmic": 9.000000000000004,
+    "P_c": 1522410901.7285397
+   }
+  },
+  "L4": {
+   "1e+09": {
+    "x_e": 48.50731431976939,
+    "alpha_full": 2352.9595425169045,
+    "alpha_lead": 1176.4797712584523,
+    "over_cassini": 39215992.37528174,
+    "mediator_force_over_g_law": 24.248504940166114
+   },
+   "1e+10": {
+    "x_e": 33.047648537360566,
+    "alpha_full": 1092.1470738489097,
+    "alpha_lead": 546.0735369244549,
+    "over_cassini": 18202451.23081516,
+    "mediator_force_over_g_law": 16.51626462490005
+   },
+   "1e+11": {
+    "x_e": 22.515100849518685,
+    "alpha_full": 506.929766263997,
+    "alpha_lead": 253.4648831319985,
+    "over_cassini": 8448829.437733283,
+    "mediator_force_over_g_law": 11.246463166704098
+   },
+   "1e+12": {
+    "x_e": 15.339359642817247,
+    "alpha_full": 235.29595425169043,
+    "alpha_lead": 117.64797712584522,
+    "over_cassini": 3921599.2375281737,
+    "mediator_force_over_g_law": 7.653433644984745
+   },
+   "1e+13": {
+    "x_e": 10.45058406907915,
+    "alpha_full": 109.21470738489093,
+    "alpha_lead": 54.607353692445464,
+    "over_cassini": 1820245.1230815155,
+    "mediator_force_over_g_law": 5.201532961160042
+   },
+   "1e+14": {
+    "x_e": 7.119900043287103,
+    "alpha_full": 50.692976626399684,
+    "alpha_lead": 25.346488313199842,
+    "over_cassini": 844882.9437733281,
+    "mediator_force_over_g_law": 3.5253482669857403
+   }
+  },
+  "L5": {
+   "slope_min": "nan",
+   "slope_max": "nan",
+   "max_window_decades": 8.0,
+   "analytic_bound_decades": 1.139277261247887
+  }
+ }
+}
