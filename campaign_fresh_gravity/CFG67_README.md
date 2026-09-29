@@ -56,3 +56,8 @@ An independent in-place re-run by the equations session reproduced the outputs.
   - Every colour-blind model fails that difference equally: the law's χ² is the zero-model χ², 28.085.
   - Its significance rests on a near-diagonal released covariance with no systematic terms. With every error × 1.5 it is 12.5/7 (p = 0.086); see CFG61's addendum.
   - So "standard halos reproduce the split and B's colour-blind dark mass cannot" holds at face value of the released errors.
+
+
+## Correction at adoption (appended 2026-09-29)
+
+- Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.

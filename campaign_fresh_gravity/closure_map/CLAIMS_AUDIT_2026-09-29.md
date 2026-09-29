@@ -200,3 +200,18 @@ The line numbers are those of the files at HEAD. Each quote was checked verbatim
   - No class changes. The REQUIRES-CORRECTION items replace a superseded 0.4σ, and that still holds, but any corrected text should carry the γ qualifier.
 - **E1's sample.** h50's name-key artefact dropped NGC 720 and NGC 821. With the keys corrected (`CFG55_h50_keyfix.py`), the JAM sample of 17 gives law +0.0996 (4.3σ) and rule +0.0513 (2.9σ).
 - **CFG55's README errors** (the kernel, the distance wording and the undefined Salpeter row) are corrected in its appended section. No audit class depends on them.
+
+
+## Corrections at adoption (appended 2026-09-29; the rows and addenda above are unchanged; this addendum supersedes them where they differ)
+
+- **E3 and the E2 provenance note** ("specific to B's mass-independent dark mass"): the KiDS early/late lensing split is B-SPECIFIC relative to the ΛCDM comparator, for the early-minus-late difference only. It is shared by any model whose predicted difference at fixed g_bar is negligible, NOT by every colour-blind model (a colour-blind Moster halo fits it at 6.9/7, CFG67). It is robust to the repo's own jackknife covariance (4.4σ in the 1-halo bins, CFG88 ef7c1d303) and to a twice-stricter isolation (4.1σ, amplitude 0.97 ± 0.19, CFG96 d2e97eb53); reduced but not removed by B's own stellar-mass calibration (2.8σ released / 3.6σ jackknife, CFG95 7214b5c62); fragile only to systematics a jackknife cannot see. The law's χ² is the zero-model χ² (CFG77).
+- **PAPER36 line 103** ("CFG68 … is in progress"). CFG68 is done: ΛCDM also misses the nine fastest (+0.121, 2.26σ), so the row is SHARED. The number stands, but the failure is not specific to B.
+- **PAPER36 line 113** ("the ultra-faints … B's largest standing one") is stale.
+  - After CFG55 (SLUGGS 4.0σ with JAM masses, 4.3σ key-fixed, at γ = 3) and CFG88 (KiDS 4.4σ with the jackknife covariance), the ultra-faints (3.8σ) are not the largest.
+  - The ultra-faint gate is non-discriminating against ΛCDM (CFG69, CFG73, CFG74).
+- **E5 and the rows quoting M31 LVD −2.67σ:** it depends on the error recipe, −2.67 / −1.74 / −1.97 / −1.49σ (CFG91 abb698467).
+- **E10, "a barotropic cap is excluded":** a scoped, convention-dependent screening result, with a window from about 11× up to 10⁴–10⁵ in mass (CFG43 README).
+- **E9 and the a₀(z) rows** (CFG90 0137d584d):
+  - PHIBSS's N = 0 is a knife-edge on an assumed velocity radius.
+  - CFG52's pooled z ≥ 1.5 result depends on excluding one +1.14-dex object.
+- **"Independent" re-derivations** check the arithmetic and the shared inputs, not the model.

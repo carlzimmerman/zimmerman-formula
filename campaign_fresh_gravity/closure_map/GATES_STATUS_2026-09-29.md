@@ -219,3 +219,19 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
 - **"A decisive test needs 2–4 JWST IFU + ALMA discs at z ≈ 2.5 with mass calibration ≲ 0.1 dex"** paraphrases CFG52 (9ffb95d57). It applies to flat a₀ against a₀ ∝ H(z).
   - CFG52's own sentence: 2–4 discs with 5–10% velocity errors and independent mass errors of 0.1–0.2 dex would give 3σ, but a correlated mass-scale systematic caps the test near 2.3σ whatever the sample size. So the calibration must reach about 0.1 dex.
   - **Against ΛCDM-native (+0.334 dex) the cap is 1.3σ** at the 0.25-dex floor. Reaching 3σ there needs the floor to fall to about 0.11 dex (CFG63 7b8640ded).
+
+
+## Corrections at adoption (appended 2026-09-29; the rows and addenda above are unchanged; this addendum supersedes them where they differ)
+
+- **The KiDS split** (the CFG67/CFG68 addendum's "The failure belongs to B's mass-independent dark mass, not to the machinery"): the KiDS early/late lensing split is B-SPECIFIC relative to the ΛCDM comparator, for the early-minus-late difference only. It is shared by any model whose predicted difference at fixed g_bar is negligible, NOT by every colour-blind model (a colour-blind Moster halo fits it at 6.9/7, CFG67). It is robust to the repo's own jackknife covariance (4.4σ in the 1-halo bins, CFG88 ef7c1d303) and to a twice-stricter isolation (4.1σ, amplitude 0.97 ± 0.19, CFG96 d2e97eb53); reduced but not removed by B's own stellar-mass calibration (2.8σ released / 3.6σ jackknife, CFG95 7214b5c62); fragile only to systematics a jackknife cannot see.
+  - The law's χ² is the zero-model χ² (CFG77 a736715f8).
+  - ΛCDM's absolute profiles fail in the same machinery too: 29.6 and 27.9/7 (CFG67 H3).
+- **Row 1.08.** M31 LVD's −2.67σ depends on the error recipe: −2.67 / −1.74 / −1.97 / −1.49σ across four recipes, and −1.49σ under CFG91's frozen one (CFG91 abb698467).
+- **Row 1.09.**
+  - The rule's −0.15 (−1.17σ) on the binary-corrected set is a clamp artefact: the collapse-mass floor used there is 0.013, against CFG42's 0.133 (CFG78 9e7f778bc).
+  - The luminosity ordering is not detected on the 40 objects and only flagged on 8 (CFG83 b41ca5f55).
+- **Row 3.10** (CFG90 0137d584d):
+  - CFG52's counts reproduce only with its undocumented conventions.
+  - The pooled N = 14 (flat +1.0σ, rival −0.3σ) excludes the +1.14-dex object GS4 01529. Keeping it gives flat +0.17 to +0.22 dex and flips the rival's sign.
+  - PHIBSS's N = 0 is a knife-edge on an assumed velocity radius (lowest g_bar/a₀ = 1.097).
+- **Row 5.01, "a barotropic cap is excluded", overstates.** A barotropic saturating cap is a scoped screening result. In CFG43's own referee paragraph the window is convention-dependent, from about 11× up to 10⁴–10⁵ in mass (CFG43 README).

@@ -70,3 +70,8 @@
 B's colour-blind law needs early-type lenses to hold about 2.2–2.5× the baryons their catalogue masses imply, relative to discs (a differential of 0.35–0.4 dex). B's own dynamical calibration supplies about a fifth of that differential with SPARC's disc correction (0.07 dex), and about two fifths without it (0.15 dex). **So the KiDS split stays B's one specific failure, now at 2.6–2.8σ (released) and 3.3–3.6σ (re-measured) after the calibration.** It remains a failure that every colour-blind dark mass shares (CFG77).
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+
+## Correction at adoption (appended 2026-09-29)
+
+- Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.

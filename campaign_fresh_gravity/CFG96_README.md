@@ -51,3 +51,8 @@ It remains candidate B's one failure specific to B in shared machinery, and it h
 It is still a failure that every colour-blind dark mass shares (CFG77).
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+
+## Correction at adoption (appended 2026-09-29)
+
+- Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.

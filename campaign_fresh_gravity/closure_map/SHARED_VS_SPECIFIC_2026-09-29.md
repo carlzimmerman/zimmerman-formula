@@ -168,3 +168,32 @@ The KiDS early/late split, B-specific for the difference only and fragile, remai
   - So satellites, as removed by this isolation, do not drive it.
 
 **It remains B's one failure specific to B in shared machinery**, and it is shared by every colour-blind dark mass (CFG77). Still open: calibration common to all patches, colour-class contamination, and satellites that photo-z isolation cannot catch.
+
+
+## Corrections at adoption (appended 2026-09-29; the rows and addenda above are unchanged; this addendum supersedes them where they differ)
+
+**The current bottom line.** This supersedes the "Bottom line" block above and the wording of the later addenda.
+- **The one B-specific failure:** the KiDS early/late lensing split is B-SPECIFIC relative to the ΛCDM comparator, for the early-minus-late difference only. It is shared by any model whose predicted difference at fixed g_bar is negligible, NOT by every colour-blind model (a colour-blind Moster halo fits it at 6.9/7, CFG67). It is robust to the repo's own jackknife covariance (4.4σ in the 1-halo bins, CFG88 ef7c1d303) and to a twice-stricter isolation (4.1σ, amplitude 0.97 ± 0.19, CFG96 d2e97eb53); reduced but not removed by B's own stellar-mass calibration (2.8σ released / 3.6σ jackknife, CFG95 7214b5c62); fragile only to systematics a jackknife cannot see. Every earlier "every colour-blind dark mass" or "any colour-blind model" in this file should read "any model with a negligible predicted difference at fixed g_bar".
+- **Shared with standard halos:** the super spirals (CFG68), and the Local Group R₀ with the KiDS + LG edge (CFG23, CFG25).
+- **Not B-only failures:**
+  - SLACS is a conditional difference between the models. B − ΛCDM ≈ +0.12 dex (median +0.118 over 54 cells, never negative; paired base cell +0.115 to +0.135). The specificity holds in 28 of 54 cells (W = 0.52), and both models pass with the floor (CFG86 4d994bb28, CFG87 f7332204e).
+  - The groups at R2500 do not separate the models on equal footing (CFG81, CFG85).
+  - The super spirals are shared.
+- **Non-discriminating:** the ultra-faints, and the cold budget against KiDS.
+- **Mixed:** SLUGGS (at γ = 3; key-fix 17 galaxies).
+- **A compatibility check:** the X-ray ellipticals.
+- **Convention-dependent:** the rule's satellites. M31 LVD's −2.67σ also depends on the error recipe: −2.67 / −1.74 / −1.97 / −1.49σ (CFG91 abb698467).
+- **No ΛCDM counterpart:** Chae's external-field signal.
+
+**Line-level corrections.**
+- **"Independent"** (the re-run definition at the top, the SLUGGS row's re-run cell, and the CFG77 addendum): an independent re-implementation checks the arithmetic and the shared inputs, not the model.
+- **The ultra-faint caveat "luminosity-ordered (untested)".** CFG83 (b41ca5f55) tested it.
+  - No trend on the 40-object sample: Kendall τ against M_V is +0.18 (p 0.09).
+  - On the 8 binary-corrected systems, τ_b = +0.79 (p 0.0055). That is flagged but not detected against the declared Bonferroni bar of 3.3 × 10⁻⁴, and it is identical for the law, the rule and ΛCDM.
+- **"Not re-run by anyone this round" is stale.**
+  - CFG32's, CFG33's and CFG34's B numbers have been re-derived, through CFG84, CFG87 and CFG85 respectively.
+  - CFG66 and CFG74 were re-run clean (LEDGER_VERIFICATION Parts 3–4).
+- **The SLACS rows** ("SPECIFIC-TO-B for the statistical gap only"; "B's side was not re-derived … unpaired").
+  - CFG87 re-derived B's side and paired it: B's gaps reproduce (+0.159 / +0.172 / +0.152 / +0.168).
+  - The paired base cell gives B − ΛCDM = +0.115 to +0.135 (7.5–8.2σ statistical).
+  - Across the cells it stays CONDITIONAL: a difference between the models.

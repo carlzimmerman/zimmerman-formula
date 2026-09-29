@@ -104,3 +104,8 @@ CFG77 (a736715f8) rebuilt this lane from independently written code. It reproduc
   - Inflating every error by 1.2 gives 19.5/7 (p = 6.7 × 10⁻³); by 1.5, 12.5/7 (p = 0.086).
   - The signal is concentrated in bins 11, 12 and 14. Dropping bin 11 or bin 12 leaves about 20/6.
   - The stellar-mass floor and the IMF rescales do not enter the law's χ² (a change of at most 0.03). They enter only ΛCDM's.
+
+
+## Correction at adoption (appended 2026-09-29)
+
+- Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.

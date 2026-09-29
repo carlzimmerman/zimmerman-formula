@@ -1,5 +1,7 @@
 # Campaign: fresh gravity
 
+**Current status page:** [`STANDING_2026-09-29.md`](STANDING_2026-09-29.md). It was adopted on 2026-09-29; [`STANDING_2026-09-28.md`](STANDING_2026-09-28.md) stays as history. The shared-versus-specific map is [`closure_map/SHARED_VS_SPECIFIC_2026-09-29.md`](closure_map/SHARED_VS_SPECIFIC_2026-09-29.md).
+
 Started 2026-09-27. A new campaign, separate from the derivation chain (`real_research/derivation_chain_2026/`)
 and the cross-thread review (`real_research/cross_thread_review_2026_09_26/`). Both keep running. This campaign
 does not edit their files.
