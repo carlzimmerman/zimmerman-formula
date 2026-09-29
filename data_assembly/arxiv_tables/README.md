@@ -46,7 +46,7 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
   optical effective radius are NOT tabulated (they appear only in plots; the rotation curves are a raster PNG,
   `figures/vrot.png`), so the radius in units of R_e is not available from the tables; (c) M* is missing for IDs
   16, 17 and 24; (d) the sample is biased to massive, actively star-forming galaxies in overdense environments,
-  with AGN hosts, and the paper flags ID 3, 7 and 28 as having kinematic anomalies absorbed into the dispersion;
+  with AGN hosts, and the paper says the velocity dispersions of ID 3, 7 and 28 (kinematic anomalies absorbed by inflating the dispersion) are upper limits;
   (e) the paper's title and abstract say z = 0.5-3.5 but the table maximum is 3.63.
 - **Mancera Pina:** stellar-mass sample with a flat circular velocity; no gas.
 - The CRC file (`sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits`, 16 rows) holds Burkert-halo fits to 16
