@@ -36,6 +36,10 @@ An NFW cusp makes the ultra-faint answer nearly independent of the halo mass. In
 - **The floor on the ultra-faint result** is 0.133 dex, and it is the collapse-mass floor. The KM median is +0.279 at 3 × 10⁷, +0.052 at 2 × 10⁸, −0.059 at 10⁹ and −0.142 at 6 × 10⁹, and it crosses zero near **3 × 10⁸**. The ultra-faints want halos of about 3 × 10⁸ M☉, three times below the clamped value. I have not checked that against a specific abundance-matching relation; it is not a measurement.
 - **Why SPARC dwarfs are safe and the classical satellites are not:** SPARC dwarfs are gas-rich, so the law's phantom already exceeds their collapse mass (f_ex = 0). The classical satellites are gas-poor and have lost their gas, so the phantom is small and the debris carries about half the halo (median f_ex 0.5–0.6).
 
+## Independent referee (2026-09-28)
+
+Reproduced: KM median +0.325 / +0.304, resolved-only +0.355 / +0.334, 31 + 9 limits, and the Moster and NFW helpers against textbook formulas (NFW to 1.5e-4). The clamp covers 33 of the 40 ultra-faints; unclamped Moster gives 1.9e8–2.2e9 (median 6.9e8), and interpolating R1 gives about −0.03, so the ultra-faint result does not depend on the clamp (the referee's interpolation, not a re-run). **The ultra-faint "closure" is a weak test:** every collapse mass from 2 × 10⁸ to 10¹² passes the 2σ criterion (the offset runs +0.05 to −0.35), only masses below about 3 × 10⁷ fail, and the σ falls from 3.8 to −0.4 partly because the error grows from 0.086 to 0.143. Seven of the 40 have host = LMC in the source table (harmless for the isolated law).
+
 ## Standing
 
 **B's derived rule closes B's largest failure and trades it for a smaller one in σ (1.8–2.7σ), spread over more objects.** The ultra-faints move from +0.325 dex (3.8σ) to −0.06 dex (−0.4σ), which is what a cusp does. But the rule puts a full NFW debris into the classical dwarfs, and it over-predicts them by about 0.11–0.12 dex: −2.7σ for the M31 LVD, −1.8 to −1.9σ for the MW classicals, and nothing for Collins+13. This is the cusp problem, which ΛCDM has as well, now reached from B's side.

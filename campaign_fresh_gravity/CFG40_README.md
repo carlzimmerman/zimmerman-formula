@@ -50,13 +50,29 @@ Ogle+2019 (arXiv:1909.09080) measured Hα rotation curves of 23 super spirals (l
 
 **What Ogle's "break" is.** In the paper's own comparison (the asymptote) the mean offset is +0.144 and the nine fastest are at +0.191. Evaluating the law at the radius, where the data actually are, removes about a quarter of that: the offsets fall to +0.107 and +0.170. The rest remains.
 
+## Independent referee (2026-09-28)
+
+A hostile re-implementation (own code, own arithmetic) reproduced every headline number: mean +0.107, nine fastest +0.170, slope +0.194, alt +0.092 / +0.156, and the asymptotic comparison +0.144 / +0.191. It found no unit, sign or double-counting error. It found that **the reading depends on the baryon structure model**:
+
+| model | mean | nine fastest |
+|---|---|---|
+| Freeman disc (declared headline) | +0.107 | +0.170 |
+| point mass | +0.059 | +0.113 |
+| spherical enclosed | +0.141 | +0.201 |
+
+- The nine-fastest clause fails at 2.06σ only under the declared Freeman model. Any centrally concentrated correction (a bulge, which massive spirals have) moves g_N toward the point-mass value and removes the failure. The lane's floor takes only half the spread of the means.
+- The offset correlates at −0.68 with r/R_d (+0.155 for r < 2.2 R_d, +0.054 beyond) and at +0.38 with inclination. Simard R_d values for the giants look doubtful (47 kpc for 2MFGC 08638). The signal sits in the galaxies with the least reliable structure inputs.
+- The mean shifts by 0.033 dex per 0.1 dex of stellar mass (M/L_W1 = 0.5 gives +0.130). The maximum of a noisy curve is biased upward by about 0.01 dex, not removed here.
+
+**So the marginal fail is a statement about the structure model and the stellar-mass floor, not a robust failure.**
+
 ## What changed after the first MUTATE run (disclosed)
 
 The MUTATE control first multiplied the speeds by 0.7. H2 **passed** under it (mean −0.048 ± 0.075), because the floor is too large for a 0.155-dex error to bite. That run also exposed the unmutated offsets (mean about +0.11, slope unchanged) **before the main run**. No hypothesis, clause or threshold was changed. Only the control's strength was raised to 0.5, and under it H1 and H2 both fail.
 
 ## Standing
 
-**B fails its declared test on the most massive star-forming disks, but only at the margin (2.06σ on the nine fastest, 1.95σ in the mass trend, 1.4σ in the mean).** It is not an established failure: the 0.2-dex stellar-mass floor and the missing inclination and HI data limit it. It is a consistent direction, and the rule cannot cure it, because the measured blue collapse masses are consumed by the phantom.
+**B fails its declared test on the most massive star-forming disks, but only at the margin (2.06σ on the nine fastest, 1.95σ in the mass trend, 1.4σ in the mean), and only under the declared disc model (the referee's point-mass model gives +0.113 for the nine fastest, which passes).** It is not an established failure: the 0.2-dex stellar-mass floor and the missing inclination and HI data limit it. It is a consistent direction, and the rule cannot cure it, because the measured blue collapse masses are consumed by the phantom.
 
 **What comes next.** Di Teodoro+2023 measured extended HI curves for 15 spirals of similar mass and report no break in the Tully–Fisher relation. Their tracer (HI, flat part) and selection (v > 300 km/s) differ from Ogle's (Hα maxima, luminosity-selected), so whether the two agree is untested. CFG41 scores B on them with the same method.
 

@@ -42,6 +42,10 @@ CFG37 said the derived rule bites only above log M_* ≈ 11.2 on the red sequenc
 - **Sensitivity (reported).** WISE colours instead of RC3 type: law −0.028, rule −0.051. Excluding the two galaxies the paper flags as uncertain (NGC 5635, UGC 12591): law −0.038 (−0.60σ), rule −0.066 (−0.81σ).
 - **Per galaxy, uncorrected.** The rule puts the four S0 / S0a slightly fast (−0.02 to −0.04 dex), and the law puts them slow (+0.08 on average). The correction turns these into rule −0.105 and law +0.004.
 
+## Independent referee (2026-09-28)
+
+Reproduced: raw law mean +0.048, the algorithm within 3 km/s for 10 of 15. Its selection-bias Monte-Carlo matches the lane's magnitude for matched rows (+0.077). Adding 0.2-dex stellar-mass errors to the mock, which the lane's Monte-Carlo omits, lowers the matched bias to +0.058, so **B is plausibly about 0.02 dex too large and the corrected mean −0.010 rather than −0.028**. H1 passes for any B from 0 to 0.10, so no verdict changes. The bias scales roughly as s_int², which the data do not identify; across the whole grid it runs 0.00–0.15 and the ±0.030 covers only the matched rows. Under B = 0 the CFG40–CFG41 difference is 0.059, not 0.135.
+
 ## Standing
 
 **The first massive passive disks with extended HI kinematics are consistent with both the bare law and the derived rule. The test does not decide between them.** The four S0 / S0a error on the rule (0.131 dex) is dominated by the 0.2-dex stellar-mass systematic, because the collapse mass depends steeply on M_*; the law's is 0.071. After the selection correction neither is off by more than 1σ. Nothing here favours the rule over the law.
