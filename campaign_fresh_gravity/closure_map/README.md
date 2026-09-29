@@ -16,3 +16,6 @@ The gate list was frozen before any assembly attempt, so the assembly cannot mov
 
 
 **Also (2026-09-28).** [`EQUATION_LEDGER_2026-09-28.md`](EQUATION_LEDGER_2026-09-28.md): each equation the closure work has derived since CFG43, with its script and control. The fine-structure lane (a walled-sector route from the programme's inputs to α, all scoped no-gos) is summarised in [`../../real_research/alpha_schwinger_2026/ALPHA_LANE_FOR_CLOSURE_MAP.md`](../../real_research/alpha_schwinger_2026/ALPHA_LANE_FOR_CLOSURE_MAP.md); it does not touch the gates or the three action gaps.
+
+**Update 2026-09-28 (CFG70).** The enclosed-mass exchange written as a causal, reciprocal Schwinger–Keldysh memory-kernel action returns CFG48's reaction (0.06–22 g_law) and energy demand (23–72× the baryons' orbital energy) for every retarded kernel: memory reshapes only the transient. It passes only with an unfunded reservoir or an untied coupling below 1%. (`../CFG70_memory_kernel_exchange/`)
+

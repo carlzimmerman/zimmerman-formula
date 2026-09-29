@@ -1,0 +1,183 @@
+CFG70 -- Can CFG60's residual object (the nonlocal, causal, non-adiabatic enclosed-mass exchange C(r) = rho_c r^3 g_tot = (a0/4 pi) M_b(<r))
+be written as a CAUSAL action with a memory kernel (a retarded Volterra term in time, Schwinger-Keldysh doubled fields)?
+
+FROZEN QUESTION (verbatim, declared before the first run):
+ 'Can the enclosed-mass exchange be written as a CAUSAL action with a memory kernel (a retarded Volterra term in time, for example through a
+  Schwinger-Keldysh doubled-field action or an equivalent dissipative variational principle), such that (P1) the reaction on the baryons is
+  <= 0.10 g_law at every x in [0.3, 30] for M_b = 1e9, 1e10, 1e12 Msun (canonical a0), (P2) the energy supplied is <= the baryons' orbital
+  kinetic energy (declare the exact ratio computed in CFG48's r_ta convention AND in B's committed r_ta convention from CFG4's r_ta_law),
+  (P3) the kernel is retarded (no advanced dependence: prove it on the discrete action as CFG48's G3 does) and the exchange respects
+  reciprocity (the coupling is derived from the action, not prescribed), (P4) no new untied constant is introduced other than what the memory
+  kernel's own time scale requires (report that scale and whether it can be tied to a0, c, H0 or the dynamical time t_dyn = r/v)?
+  A scoped NO with the exact hypothesis that fails is a valid answer.'
+
+INHERITED OBJECT (CFG48 G4, read-only).  Target (point-mass baryons, P2 law, x = r/r_M, r_M = sqrt(G M_b/a0), g_law = g_N sqrt(1+x^2)):
+   pressure-slaved  theta^T(r; M) = 4 pi r^2 (3/2) P,  P = a0 M_b(<r)/(8 pi r^2)      =>  theta^T = (3 a0/4) M_b(<r)          [energy per unit radius]
+   sigma-slaved     theta^T(r; M) = 4 pi r^2 (3/2) rho_c^fin(r) sigma^2(r; M),  sigma^2 = r g(M,r)/2, g = sqrt(g_N^2 + a0 g_N), rho_c^fin = target density
+ The static (bilocal-potential) reaction on a baryon shell is a = -(1/dm) dE_ex/du = theta^T_M(u) (= (3/4) a0 or (3/8) a0 (2+x^2)/(1+x^2)),
+ i.e. G4's 0.06 (x=0.3), 0.4-0.5 (x=1), 11-22 (x=30) g_law against the pass line 0.10; energy 1.5 x_e times (1/2) M_b V_f^2, V_f^4 = G M_b a0.
+
+THE MODEL (declared).  Spherical, Newtonian, canonical a0, P2 law.  Baryons: a point mass M_b(<r, t) = M_b m-profile g(t/t_f), the smoothstep
+ g(u) = 3u^2 - 2u^3 on [0,1] (0 before, 1 after; t_f = formation time), plus a probe baryon shell dm at radius u = s (the reaction is evaluated there).
+ Cold fluid: shells at radius r with a thermal store theta_l(t) (energy per unit radius), theta_l(0) = theta^T_l(0) = 0.
+ SK ACTION (Galley-type doubled fields q_pm = q_S +- q_D/2, theta_pm = th_S +- th_D/2; physical limit D -> 0):
+   S = int dt { (m/2)(qdot_+^2 - qdot_-^2) - m [Phi(q_+) - Phi(q_-)] - [F(q_+,theta_+) - F(q_-,theta_-)] } - int int th_D(t) Gamma(t - t') thdot_S(t') dt' dt
+   F(q, theta) = r theta + (c/2) (theta - theta^T(q))^2         (theta^T(q) = target at the probe's position through M_b(<r))
+   Gamma(s) = 0 for s < 0 (RETARDED cross term).  Static limit: theta -> theta^T (offset -r/c) for any Gamma with finite integral.
+   Memory kernel K (Edot = int K(t-t') d/dt' f dt', f = theta^T, int K = 1):  K-hat(s) = 1/(1 + s Gamma-hat(s)/c), i.e. K = the fluid's response to the
+   baryon-set target; Gamma = gamma delta  <=>  K = exp(-s/tau)/tau, tau = gamma/c (Newton relaxation  tau thdot = theta^T - theta).
+   K1: Gamma-tilde = eps_c tau delta.   K2 (Maxwell/two-time): Gamma-tilde = eps_c [tau0 delta + (tau1/T) exp(-s/T)], tau0 = tau1 = T = tau_bar/2 (declared).
+   tau_bar = int s K ds = mean memory time.  eps_c = c * theta^T_full is dimensionless (the free-energy stiffness in units of the full target).
+ Ledger fraction r in F: r = 1 counts the heat theta in the closed baryon+fluid energy (E_tot = K_b + Phi + F conserved up to Gamma dissipation);
+   r = 0: the heat comes from an unspecified reservoir integrated out (an OPEN SK system).  r and eps_c are the two couplings the action leaves free.
+ Equations (derived by sympy, S1):  m q'' = -m Phi' - dF/dq  (baryon);  r + c(theta - theta^T) + (Gamma * thdot)(t) = 0  (fluid, retarded).
+ Reaction on the probe:  a(t) = -c (theta - theta^T) theta^T_M   with  a/theta^T_M = r Theta_K(t) + eps_c (Thetabar * mdot)(t),  Theta_K = int_0^t K,
+   Thetabar = 1 - Theta_K (survival function of the kernel), m(t) = theta^T(t)/theta^T_full  (S1 derives this; S3 checks it against forward marching).
+
+CHECKS AND PASS LINES (frozen here, before the first run)
+ S1 (sympy)  D1 the doubled action's Delta-variations at Delta = 0 give exactly the two equations above; D2 the Sigma-equations vanish at Delta = 0
+             (no advanced/extra equation); D3 the closed form of a(t) (Laplace algebra for a general Gamma, exponential case by dsolve on a ramp) holds and
+             its static limit is r theta^T_M; D4 at r = 1, w = 0 the reaction is G4's closed forms (3/4) a0 and (3/8) a0 (2+x^2)/(1+x^2).
+ S2 (discrete action, N = 6 steps, G3's test)  C1 CAUSALITY: the Euler-Lagrange residual of the doubled discrete action has no dependence on later data:
+             c_adv = max_{j>i+1}|dR_i/dx_j| / max|dR_i/dx_j| < 1e-12 for the q-residuals and (strictly, j > i) for the theta-residuals.
+             C2 (context, load-bearing) the same memory term written on ONE branch (no doubling) has c_adv > 1e-4.
+             R1 RECIPROCITY: (i) cross block d R^q_i/d th_j = d R^th_j/d q_i (symmetric to 1e-12); (ii) the hand-coded baryon reaction and fluid equation
+             reproduce the sympy-derived residuals of the action to 1e-12 (coupling DERIVED from F, not prescribed).
+ S3 (numerics, forward marching = an initial-value solve, possible only because the kernel is retarded; kernels K1, K2; tau_bar/t_f in {0.01,0.1,1,10})
+             N1 marching reproduces the closed form of a(t) to 1e-3; N2 (control) at late times, r = 1: a/g_law = G4's numbers to 1e-3 for all masses,
+             both slavings, both kernels; N3 (CLAIM, P1 in the energy-ledger class r = 1) max over x in [0.3,30] of the late-time a/g_law > 0.10
+             for both slavings; N4 (CLAIM) for r = 1 the reaction (units of G4's) is never below the fraction f_real of the target energy realised;
+             N5 (P1 in the open class r = 0): P1 holds iff eps_c <= eps_max = 0.10/peak(eps_c = 1); verified at eps_c = eps_max (peak = 0.10) and reported at 1.
+ S4 (energy, P2)  E1 the ratio E_c(<r_e)/((1/2) M_b V_f^2) = 1.5 x_e, r_e = 0.4 r_ta, computed by quadrature and closed form, in CFG48's r_ta and in B's
+             committed r_ta (CFG7_common.r_ta_law = CFG4's convention; kernel nu_mono primary, P2 kernel as the referee's control 179 / 57 to 1%);
+             E2 the energy delivered by the memory law = f_real * E_c for every kernel (kernel-independent up to the realised fraction).
+ S5 (time scales, P4)  tabulate tau_bar candidates (r/c, t_dyn = r/V_c, r_M/V_f, 1/H0, c/a0) against t_f in {1, 10} Gyr (declared); nothing is scanned or chosen.
+ GATES  P1 PASS iff a <= 0.10 g_law at every x in [0.3,30], all three masses, with NO untied coupling (r = 1, no new eps_c-type constant);
+        P2 PASS iff energy supplied <= (1/2) M_b V_f^2; P3 PASS iff C1 and R1 hold; P4 PASS iff no constant beyond the kernel's own time scale.
+MUTATE controls (each must exit rc = 1):
+   MUTATE=a : the kernel is made advanced (symmetrised in time, Gamma_{|i-j|}) in the discrete SK action  -> C1 (causality) must FAIL.
+   MUTATE=b : the reciprocity term is dropped (F's coupling to the baryon replaced by a PRESCRIBED drive th_D c theta^T(q_S) with no q_D partner) -> R1 must FAIL.
+   MUTATE=1 : both.  Outputs are named by mode.
+DISCLOSED ADDITIONS (made AFTER the first run, reported only, never gated): (i) the E_c/E_infall column in S4 (E_infall = G M_col M_c/r_ta, a scale estimate
+ with O(1) prefactors omitted; it was in the code at the first run but not in this list); (ii) N6, the open class r = 0 evaluated at two TIED kernel scales,
+ tau_bar = r_e/c and tau_bar = t_dyn(r_e), for t_f in {1, 10} Gyr, eps_c = 1; (iii) T2, the closed form t_dyn(r_e) = 0.4 sqrt(2/(Delta_ta Omega_m))/H0 (deep-MOND edge,
+ committed r_ta), compared with the number S5 prints; (iv) the time of the sigma-slaved peak in N5.  The first run also had a units bug in the c/a0 printout (fixed).
+SCOPE.  Time-domain kernel only: the spatial (enclosed-mass) nonlocality is instantaneous on the leaf, as in G4 (a light-cone support t - t' >= (r - u)/c is
+ not built; OPEN).  Point-mass baryons, probe-shell reaction, pressure- and sigma-slaved targets, fluid shell masses fixed.  Nothing is fitted; the test values in S2
+ (m, c, r, dt, Gamma_k, random positions, fixed seed) are numerical test data, not model numbers.  kappa = 1/2 is FITTED; nothing here says the theory is closed.
+
+  *** MUTATE=b: advanced kernel = False, reciprocity term dropped = True; the corresponding claims must FAIL ***
+
+======================================================================================================================
+S1  SK action -> equations (sympy)
+======================================================================================================================
+    baryon equation from d/dq_D:   (c*(thS(t) - tanh(qS(t))) - m*((qS(t)**2 + 2)*qS(t) + 2*Derivative(qS(t), (t, 2)))*cosh(qS(t))**2/2)/cosh(qS(t))**2 = 0
+    fluid  equation from d/dth_D:  -c*thS(t) + c*tanh(qS(t)) - gamma*Derivative(thS(t), t) - r = 0
+    Sigma-equations at Delta=0:    d/dq_S -> 0,  d/dth_S -> 0
+  [PASS] D1 the Delta-variations at Delta = 0 are m q'' = -m Phi' - dF/dq and r + c(theta - theta^T) + gamma thdot = 0 (sympy residual 0, concrete Phi, theta^T)
+         residuals: baryon 0, fluid 0
+  [PASS] D2 the Sigma-equations vanish identically at Delta = 0 (Galley: the physical limit carries only the D-equations; no advanced equation appears)
+         0, 0
+    general retarded kernel: d/dth_D of -th_D J[th_S](t) = -J(t) (J = Gamma * thdot_S depends on th_S(t' <= t) only)
+    a-hat(s) = r K-hat/s + c (1 - K-hat) theta^T-hat,  K-hat = 1/(1 + s Gamma-hat/c):  sympy residual 0
+    static limit s * a-hat(s), s -> 0, for Gamma = g0 delta + (g1/T) exp(-s/T), step target A: r   (= r; A drops out: the reaction is r theta^T_M)
+  [PASS] D3 a/theta^T_M = r Theta_K(t) + eps_c (Thetabar * mdot)(t): Laplace form for a general Gamma (sympy residual 0), exponential kernel on a ramp by dsolve (residual 0), static limit = r
+         Laplace residual 0; dsolve residual 0; static limit r
+    sigma-slaved theta^T_M at x: 3*a0*(x**2 + 2)/(8*(x**2 + 1))  (target (3/8) a0 (2+x^2)/(1+x^2), residual 0);  pressure-slaved: 3*a0/4 (residual 0)
+  [PASS] D4 at r = 1, w = 0 (static limit) the derived reaction is G4's: (3/4) a0 (pressure-slaved), (3/8) a0 (2+x^2)/(1+x^2) (sigma-slaved)
+         residuals 0, 0
+
+======================================================================================================================
+S2  discrete SK action: retardation (advanced dependence) and reciprocity
+======================================================================================================================
+    doubled discrete action (N = 6 steps): advanced-dependence measure  c_q(j > i+1) = 0.00e+00,  c_theta(strict j > i) = 0.00e+00
+  [PASS] C1 CAUSALITY on the discrete SK action: the EL residuals depend on no later data (c_adv < 1e-12 for R^q (j > i+1) and strictly for R^theta (j > i))
+         c_q = 0.00e+00, c_theta = 0.00e+00
+    the same memory term on ONE branch (undoubled, retarded weights): c_adv(j > i+1) = 6.31e-02  (the EL residual at t_i contains Gamma_{k-i} thdot_k for every LATER k)
+  [PASS] C2 (context) an undoubled memory action has advanced dependence; only the SK cross term is retarded
+         c_adv = 6.31e-02 > 1e-4
+    cross-block asymmetry |dR^q_i/dth_j - dR^th_j/dq_i| / scale = 1.00e+00 (scale 1.562e-01);  hand-coded (independent) residuals vs the action's: 2.94e-02
+  [FAIL] R1 RECIPROCITY: the cross block is symmetric (asymmetry < 1e-12) and the independently coded baryon reaction and fluid equation are exactly the action's residuals (coupling DERIVED from F)
+         asymmetry 1.00e+00; hand-coded deviation 2.94e-02  [MUTATE b: reciprocity term dropped -> prescribed drive]
+
+======================================================================================================================
+S3  reaction on the baryons: forward marching of the retarded SK equations (masses 1e9, 1e10, 1e12)
+======================================================================================================================
+  [PASS] N1 forward marching of the derived retarded equations reproduces the closed form a/theta^T_M = r Theta_K + eps_c (Thetabar * mdot) (max relative deviation < 1e-2 at dt = min(tau,t_f)/200)
+         worst deviation 7.57e-03
+  [PASS] N2 (control) at late times (r = 1) the marched reaction equals G4's static reaction (closed forms) for all masses, both slavings, both kernels, tau_bar/t_f in {0.01,...,10}, to 1e-3
+         worst relative deviation 9.75e-12; mass independence (1e9 vs 1e12) 2.1e-16
+    late-time reaction a/g_law (r = 1; identical for every kernel, tau_bar and mass -- the memory law changes only the transient):
+      pressure-slaved: x=0.3: 0.065; x=1: 0.530; x=3: 2.135; x=10: 7.463; x=30: 22.488
+      sigma-slaved   : x=0.3: 0.062; x=1: 0.398; x=3: 1.174; x=10: 3.768; x=30: 11.256
+    a/g_law reaches the 0.10 pass line at x = 0.38 (pressure) / 0.39 (sigma); max over [0.3, 30]: 22.49 / 11.26 (at x = 30)
+  [PASS] N3 CLAIM (P1, energy-ledger class r = 1): max over x in [0.3, 30] of the late-time reaction exceeds the 0.10 g_law pass line for both slavings, for every kernel and mass
+         max a/g_law = 22.49 (pressure), 11.26 (sigma); crossing of 0.10 at x = 0.38 / 0.39
+  [PASS] N4 CLAIM (r = 1) the reaction in units of G4's is never below the realised fraction f_real = theta/theta^T_full of the target: reaction/G4 >= f_real at every t, both kernels, eps_c in {10,100}
+         min over t of (reaction/G4 - f_real) = -0.000e+00 >= -1e-9
+    => P1 at r = 1 needs the realised fraction of the target f_real <= 0.10/max(a_G4/g_law) = 0.0044 (pressure) / 0.0089 (sigma): the fluid may hold <= 0.4-0.9 percent of its target, whereas the law needs f_real ~ 1
+
+    open class r = 0 (heat from an unspecified reservoir): reaction/g_law = eps_c * [peak over t of -(th - m) theta^T_M(t)/theta^T_M(fin)] * a_G4/g_law(x)
+      K1: peak a/g_law at eps_c = 1 [tau_bar/t_f = 0.01: P 0.337 / S 11.2, 0.1: P 3.24 / S 11.2, 1: P 14.8 / S 11.2, 10: P 21.4 / S 11.2]
+      K2: peak a/g_law at eps_c = 1 [tau_bar/t_f = 0.01: P 0.338 / S 11.1, 0.1: P 3.17 / S 11.1, 1: P 13 / S 11.1, 10: P 20.5 / S 11.2]
+      eps_c,max = 0.10/peak(eps_c = 1)  (P1 holds iff eps_c <= eps_c,max): P/K1/0.01: 0.297; P/K1/0.1: 0.0308; P/K1/1: 0.00675; P/K1/10: 0.00467; S/K1/0.01: 0.00895; S/K1/0.1: 0.00895; S/K1/1: 0.00895; S/K1/10: 0.00891
+      (sigma-slaved, x = 30, K1, tau_bar = t_f: the peak sits at t/t_f = 0.005 -- the start of the declared formation profile, where theta^T_M ~ M^(-1/2) diverges as M -> 0; the sigma bound is set there, not by the exchange at late times)
+  [PASS] N5 (open class r = 0) P1 holds iff eps_c <= eps_c,max: at eps_c = eps_c,max the marched peak reaction is exactly 0.10 g_law (linear in eps_c); eps_c is an UNTIED dimensionless coupling
+         peak at eps_c,max = 0.1000 g_law (target 0.1000); eps_c,max(P, K1) = 0.00675 at tau_bar/t_f = 1; at eps_c = 1 the peak is 14.81 g_law
+
+======================================================================================================================
+S4  energy budget (P2): what the exchange must supply, in CFG48's r_ta and in B's committed r_ta
+======================================================================================================================
+  [PASS] E0 (control) this script's CFG48-convention r_ta equals Gcommon.r_ta_kpc (1e-9); CFG7_common.r_ta_law loads (committed convention)
+         max deviation 0.0e+00
+    M_b        r_M     r_ta(CFG48)  x_e48   ratio48 | r_ta(comm,nu_mono)  x_e  ratio | (P2 kernel) ratio | E_c/E_infall(48, comm)
+    1e+09    1.22      148.0    48.5     72.8 |     647.5   212.2    318.4 |   318.2 | 129, 2474
+    1e+10    3.86      318.8    33.0     49.6 |    1151.8   119.4    179.1 |   178.9 | 60, 783
+    1e+12   38.59     1479.8    15.3     23.0 |    3648.9    37.8     56.7 |    56.6 | 13, 79
+  [PASS] E1 E_c(<r_e)/((1/2) M_b V_f^2) = 1.5 x_e by quadrature and closed form (2e-3), in CFG48's r_ta and in B's committed r_ta (nu_mono and P2 kernels)
+         closed-form agreement True
+  [PASS] E1b (control) the committed-convention ratio reproduces the CFG48 referee's 179 (1e10) and 57 (1e12) with the P2 kernel (1%)
+         deviations -0.000, -0.007
+  [PASS] E2 the energy delivered by the memory law is f_real * E_c with f_real = 1 - r/eps_c (0.99 at eps_c = 100, r = 1), the SAME for both kernels and every tau_bar: the memory kernel redistributes the delivery in time, it does not reduce the total
+         f_real(t -> infinity) = [0.99]
+    P2 needs the realised fraction of the target energy <= (1/2) M_b V_f^2 / E_c = 1/(1.5 x_e) = 1e+09: 0.0137 (CFG48), 0.0031 (committed), 1e+10: 0.0202 (CFG48), 0.0056 (committed), 1e+12: 0.0435 (CFG48), 0.0176 (committed)
+    ledger fraction bound for P1 (r * f_real <= 0.0044 pressure / 0.0089 sigma) and for the baryon-paid share against P2: r <= 0.0031 (committed, worst mass): the reservoir must fund >= 99.7 percent of the heat
+
+======================================================================================================================
+S5  the kernel's time scale (P4): what the closure needs, and which tied scales exist
+======================================================================================================================
+    scales in Gyr;  r = r_e (0.4 r_ta committed) and x = 1 (r_M):  light crossing r/c | t_dyn = r/V_c | t_M = r_M/V_f | 1/H0 | c/a0
+    M_b = 1e+09: r_e/c = 8.45e-04 | t_dyn(r_e) = 4.27, t_dyn(r_M) = 0.017 | t_M = 0.020 | 1/H0 = 14.5 | c/a0 = 101.5
+    M_b = 1e+10: r_e/c = 1.50e-03 | t_dyn(r_e) = 4.27, t_dyn(r_M) = 0.030 | t_M = 0.036 | 1/H0 = 14.5 | c/a0 = 101.5
+    M_b = 1e+12: r_e/c = 4.76e-03 | t_dyn(r_e) = 4.27, t_dyn(r_M) = 0.095 | t_M = 0.113 | 1/H0 = 14.5 | c/a0 = 101.5
+  [PASS] T1 no kernel time scale is REQUIRED: tau_bar/t_f -> 0 (1e-3) gives the instantaneous G4 reaction at r = 1 (a/theta^T_M = 1 to 1e-3); the retarded structure (C1) holds for every tau_bar >= 0
+         |a/theta^T_M - 1| at tau_bar/t_f = 1e-3: 1.8e-12
+    tau_bar/t_f of the tied scales (t_f = 1 or 10 Gyr, declared):  1e+09: r_e/c -> 8.4e-05, t_dyn(r_e) -> 0.43 (t_f = 10); t_dyn(r_e) -> 4.27 (t_f = 1); 1e+10: r_e/c -> 1.5e-04, t_dyn(r_e) -> 0.43 (t_f = 10); t_dyn(r_e) -> 4.27 (t_f = 1); 1e+12: r_e/c -> 4.8e-04, t_dyn(r_e) -> 0.43 (t_f = 10); t_dyn(r_e) -> 4.27 (t_f = 1)
+
+    N6 (reported): open class r = 0, pressure-slaved, eps_c = 1, tied tau_bar (K1), worst x = 30 (a_G4/g_law = 22.49):
+      M_b = 1e+09, t_f = 1 Gyr, tau_bar = r_e/c = 0.000845 Gyr (tau_bar/t_f = 8.45e-04): peak a/g_law = 0.0285 at eps_c = 1;  eps_c,max = 3.51
+      M_b = 1e+09, t_f = 1 Gyr, tau_bar = t_dyn(r_e) = 4.27 Gyr (tau_bar/t_f = 4.27e+00): peak a/g_law = 20.1 at eps_c = 1;  eps_c,max = 0.00498
+      M_b = 1e+09, t_f = 10 Gyr, tau_bar = r_e/c = 0.000845 Gyr (tau_bar/t_f = 8.45e-05): peak a/g_law = 0.00285 at eps_c = 1;  eps_c,max = 35.1
+      M_b = 1e+09, t_f = 10 Gyr, tau_bar = t_dyn(r_e) = 4.27 Gyr (tau_bar/t_f = 4.27e-01): peak a/g_law = 9.97 at eps_c = 1;  eps_c,max = 0.01
+      M_b = 1e+10, t_f = 1 Gyr, tau_bar = r_e/c = 0.0015 Gyr (tau_bar/t_f = 1.50e-03): peak a/g_law = 0.0507 at eps_c = 1;  eps_c,max = 1.97
+      M_b = 1e+10, t_f = 1 Gyr, tau_bar = t_dyn(r_e) = 4.27 Gyr (tau_bar/t_f = 4.27e+00): peak a/g_law = 20.1 at eps_c = 1;  eps_c,max = 0.00498
+      M_b = 1e+10, t_f = 10 Gyr, tau_bar = r_e/c = 0.0015 Gyr (tau_bar/t_f = 1.50e-04): peak a/g_law = 0.00507 at eps_c = 1;  eps_c,max = 19.7
+      M_b = 1e+10, t_f = 10 Gyr, tau_bar = t_dyn(r_e) = 4.27 Gyr (tau_bar/t_f = 4.27e-01): peak a/g_law = 9.97 at eps_c = 1;  eps_c,max = 0.01
+      M_b = 1e+12, t_f = 1 Gyr, tau_bar = r_e/c = 0.00476 Gyr (tau_bar/t_f = 4.76e-03): peak a/g_law = 0.161 at eps_c = 1;  eps_c,max = 0.623
+      M_b = 1e+12, t_f = 1 Gyr, tau_bar = t_dyn(r_e) = 4.27 Gyr (tau_bar/t_f = 4.27e+00): peak a/g_law = 20.1 at eps_c = 1;  eps_c,max = 0.00498
+      M_b = 1e+12, t_f = 10 Gyr, tau_bar = r_e/c = 0.00476 Gyr (tau_bar/t_f = 4.76e-04): peak a/g_law = 0.0161 at eps_c = 1;  eps_c,max = 6.23
+      M_b = 1e+12, t_f = 10 Gyr, tau_bar = t_dyn(r_e) = 4.27 Gyr (tau_bar/t_f = 4.27e-01): peak a/g_law = 9.98 at eps_c = 1;  eps_c,max = 0.01
+  [FAIL] (reported) N6 (reported, added after the first run) in the OPEN class (r = 0, heat from an unspecified reservoir) P1 is met at eps_c = 1 for tau_bar = r_e/c and NOT for tau_bar = t_dyn(r_e)
+         peaks: r_e/c 0.16 g_law; t_dyn(r_e) 10-20 g_law
+  [PASS] (reported) T2 (reported, added after the first run) t_dyn(r_e) is mass-independent: t_dyn(r_e) = 0.4 sqrt(2/(Delta_ta Omega_m))/H0 in the deep-MOND edge (committed r_ta) -- a scale tied to H0 by a pure number
+         closed form 4.264 Gyr vs printed 4.267 / 4.274 Gyr (= 0.294 / H0)
+
+======================================================================================================================
+VERDICTS (frozen gates)
+======================================================================================================================
+  >> P1 reaction <= 0.10 g_law on x in [0.3, 30], M_b = 1e9, 1e10, 1e12: FAIL -- in the energy-conserving completion (r = 1, no free coupling): late-time reaction = G4's for EVERY kernel, tau_bar and mass: 22.5 / 11.3 g_law at x = 30, 0.10 crossed at x = 0.38/0.39; reaction/G4 >= f_real, so 0.10 g_law needs f_real <= 0.0044/0.0089. Met ONLY in the open class (r << 1: heat from an unspecified reservoir, >= 99.7 percent unfunded) or with eps_c <= eps_c,max (pressure-slaved 0.00675 at tau_bar = t_f; sigma-slaved 0.00895, set by the M -> 0 start of the profile)
+  >> P2 energy supplied <= (1/2) M_b V_f^2: FAIL -- ratios (1e9, 1e10, 1e12): CFG48 convention 72.8, 49.6, 23.0; committed (CFG4 r_ta_law, nu_mono) 318.4, 179.1, 56.7; kernel-independent (int Edot dt = f_real E_c; the static limit IS the target)
+  >> P3 retarded + reciprocal: FAIL -- SK cross term: c_adv = 0.0e+00/0.0e+00 (undoubled memory: 0.063); cross block symmetric 1.0e+00; reaction derived from F; but the derived reaction IS G4's at r = 1 (that is the cost of reciprocity)
+  >> P4 no untied constant beyond the kernel time scale: FAIL -- r = 1 needs only tau_bar (not even that: tau_bar -> 0 is G4), and then P1 fails; passing P1 needs r << 1 (>= 99 percent unfunded) or eps_c << 1, each an untied dimensionless coupling; eps_c = c theta^T_full is additionally needed to hold theta = theta^T (offset r/eps_c)
+
+  17/19 checks pass; load-bearing failures: 1   (9 s)

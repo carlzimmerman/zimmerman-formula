@@ -1,0 +1,375 @@
+{
+ "slug": "cfg70_memory_kernel_exchange",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "D1 the Delta-variations at Delta = 0 are m q'' = -m Phi' - dF/dq and r + c(theta - theta^T) + gamma thdot = 0 (sympy residual 0, concrete Phi, theta^T)",
+   "detail": "residuals: baryon 0, fluid 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D2 the Sigma-equations vanish identically at Delta = 0 (Galley: the physical limit carries only the D-equations; no advanced equation appears)",
+   "detail": "0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3 a/theta^T_M = r Theta_K(t) + eps_c (Thetabar * mdot)(t): Laplace form for a general Gamma (sympy residual 0), exponential kernel on a ramp by dsolve (residual 0), static limit = r",
+   "detail": "Laplace residual 0; dsolve residual 0; static limit r",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D4 at r = 1, w = 0 (static limit) the derived reaction is G4's: (3/4) a0 (pressure-slaved), (3/8) a0 (2+x^2)/(1+x^2) (sigma-slaved)",
+   "detail": "residuals 0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CAUSALITY on the discrete SK action: the EL residuals depend on no later data (c_adv < 1e-12 for R^q (j > i+1) and strictly for R^theta (j > i))",
+   "detail": "c_q = 0.00e+00, c_theta = 0.00e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 (context) an undoubled memory action has advanced dependence; only the SK cross term is retarded",
+   "detail": "c_adv = 6.31e-02 > 1e-4",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 RECIPROCITY: the cross block is symmetric (asymmetry < 1e-12) and the independently coded baryon reaction and fluid equation are exactly the action's residuals (coupling DERIVED from F)",
+   "detail": "asymmetry 0.00e+00; hand-coded deviation 3.55e-15",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N1 forward marching of the derived retarded equations reproduces the closed form a/theta^T_M = r Theta_K + eps_c (Thetabar * mdot) (max relative deviation < 1e-2 at dt = min(tau,t_f)/200)",
+   "detail": "worst deviation 7.57e-03",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N2 (control) at late times (r = 1) the marched reaction equals G4's static reaction (closed forms) for all masses, both slavings, both kernels, tau_bar/t_f in {0.01,...,10}, to 1e-3",
+   "detail": "worst relative deviation 9.75e-12; mass independence (1e9 vs 1e12) 2.1e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N3 CLAIM (P1, energy-ledger class r = 1): max over x in [0.3, 30] of the late-time reaction exceeds the 0.10 g_law pass line for both slavings, for every kernel and mass",
+   "detail": "max a/g_law = 22.49 (pressure), 11.26 (sigma); crossing of 0.10 at x = 0.38 / 0.39",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N4 CLAIM (r = 1) the reaction in units of G4's is never below the realised fraction f_real = theta/theta^T_full of the target: reaction/G4 >= f_real at every t, both kernels, eps_c in {10,100}",
+   "detail": "min over t of (reaction/G4 - f_real) = -0.000e+00 >= -1e-9",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N5 (open class r = 0) P1 holds iff eps_c <= eps_c,max: at eps_c = eps_c,max the marched peak reaction is exactly 0.10 g_law (linear in eps_c); eps_c is an UNTIED dimensionless coupling",
+   "detail": "peak at eps_c,max = 0.1000 g_law (target 0.1000); eps_c,max(P, K1) = 0.00675 at tau_bar/t_f = 1; at eps_c = 1 the peak is 14.81 g_law",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E0 (control) this script's CFG48-convention r_ta equals Gcommon.r_ta_kpc (1e-9); CFG7_common.r_ta_law loads (committed convention)",
+   "detail": "max deviation 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1 E_c(<r_e)/((1/2) M_b V_f^2) = 1.5 x_e by quadrature and closed form (2e-3), in CFG48's r_ta and in B's committed r_ta (nu_mono and P2 kernels)",
+   "detail": "closed-form agreement True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1b (control) the committed-convention ratio reproduces the CFG48 referee's 179 (1e10) and 57 (1e12) with the P2 kernel (1%)",
+   "detail": "deviations -0.000, -0.007",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E2 the energy delivered by the memory law is f_real * E_c with f_real = 1 - r/eps_c (0.99 at eps_c = 100, r = 1), the SAME for both kernels and every tau_bar: the memory kernel redistributes the delivery in time, it does not reduce the total",
+   "detail": "f_real(t -> infinity) = [0.99]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T1 no kernel time scale is REQUIRED: tau_bar/t_f -> 0 (1e-3) gives the instantaneous G4 reaction at r = 1 (a/theta^T_M = 1 to 1e-3); the retarded structure (C1) holds for every tau_bar >= 0",
+   "detail": "|a/theta^T_M - 1| at tau_bar/t_f = 1e-3: 1.8e-12",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N6 (reported, added after the first run) in the OPEN class (r = 0, heat from an unspecified reservoir) P1 is met at eps_c = 1 for tau_bar = r_e/c and NOT for tau_bar = t_dyn(r_e)",
+   "detail": "peaks: r_e/c 0.16 g_law; t_dyn(r_e) 10-20 g_law",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "T2 (reported, added after the first run) t_dyn(r_e) is mass-independent: t_dyn(r_e) = 0.4 sqrt(2/(Delta_ta Omega_m))/H0 in the deep-MOND edge (committed r_ta) -- a scale tied to H0 by a pure number",
+   "detail": "closed form 4.264 Gyr vs printed 4.267 / 4.274 Gyr (= 0.294 / H0)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "P1 reaction <= 0.10 g_law on x in [0.3, 30], M_b = 1e9, 1e10, 1e12": {
+   "status": "FAIL",
+   "why": "in the energy-conserving completion (r = 1, no free coupling): late-time reaction = G4's for EVERY kernel, tau_bar and mass: 22.5 / 11.3 g_law at x = 30, 0.10 crossed at x = 0.38/0.39; reaction/G4 >= f_real, so 0.10 g_law needs f_real <= 0.0044/0.0089. Met ONLY in the open class (r << 1: heat from an unspecified reservoir, >= 99.7 percent unfunded) or with eps_c <= eps_c,max (pressure-slaved 0.00675 at tau_bar = t_f; sigma-slaved 0.00895, set by the M -> 0 start of the profile)"
+  },
+  "P2 energy supplied <= (1/2) M_b V_f^2": {
+   "status": "FAIL",
+   "why": "ratios (1e9, 1e10, 1e12): CFG48 convention 72.8, 49.6, 23.0; committed (CFG4 r_ta_law, nu_mono) 318.4, 179.1, 56.7; kernel-independent (int Edot dt = f_real E_c; the static limit IS the target)"
+  },
+  "P3 retarded + reciprocal": {
+   "status": "PASS",
+   "why": "SK cross term: c_adv = 0.0e+00/0.0e+00 (undoubled memory: 0.063); cross block symmetric 0.0e+00; reaction derived from F; but the derived reaction IS G4's at r = 1 (that is the cost of reciprocity)"
+  },
+  "P4 no untied constant beyond the kernel time scale": {
+   "status": "FAIL",
+   "why": "r = 1 needs only tau_bar (not even that: tau_bar -> 0 is G4), and then P1 fails; passing P1 needs r << 1 (>= 99 percent unfunded) or eps_c << 1, each an untied dimensionless coupling; eps_c = c theta^T_full is additionally needed to hold theta = theta^T (offset r/eps_c)"
+  }
+ },
+ "numbers": {
+  "late_reaction_over_glaw": {
+   "P": {
+    "0.3": 0.06465327425254118,
+    "1": 0.5303300858908413,
+    "3": 2.134537420617402,
+    "10": 7.4627789265880144,
+    "30": 22.487510407070435
+   },
+   "S": {
+    "0.3": 0.06198410237972985,
+    "1": 0.39774756441813097,
+    "3": 1.1739955813395713,
+    "10": 3.7683339134256317,
+    "30": 11.256234399099633
+   }
+  },
+  "eps_c_max": {
+   "P/K1/0.01": 0.29658008583354717,
+   "P/K1/0.1": 0.030848653723042543,
+   "P/K1/1": 0.006751070837517672,
+   "P/K1/10": 0.004671125066798636,
+   "P/K2/0.01": 0.29592122330568255,
+   "P/K2/0.1": 0.031540904349436585,
+   "P/K2/1": 0.007704712069848668,
+   "P/K2/10": 0.0048718432618681,
+   "S/K1/0.01": 0.008948226357109991,
+   "S/K1/0.1": 0.008948226342350386,
+   "S/K1/1": 0.008948224870859549,
+   "S/K1/10": 0.008908158192333312,
+   "S/K2/0.01": 0.008991863340970583,
+   "S/K2/0.1": 0.008991863326139004,
+   "S/K2/1": 0.008991861847472284,
+   "S/K2/10": 0.008912601150691365
+  },
+  "peak_at_eps1": {
+   "P/K1/0.01": 0.3371770552933351,
+   "P/K1/0.1": 3.241632548953167,
+   "P/K1/1": 14.81246492693734,
+   "P/K1/10": 21.40811872299861,
+   "P/K2/0.01": 0.3379277730840595,
+   "P/K2/0.1": 3.170486137369942,
+   "P/K2/1": 12.979070352458239,
+   "P/K2/10": 20.526111909777487,
+   "S/K1/0.01": 11.175399013072912,
+   "S/K1/0.1": 11.175399031506114,
+   "S/K1/1": 11.175400869244607,
+   "S/K1/10": 11.225665041070295,
+   "S/K2/0.01": 11.121165459038881,
+   "S/K2/0.1": 11.121165477382627,
+   "S/K2/1": 11.121167306202683,
+   "S/K2/10": 11.220069013437547
+  },
+  "E1": {
+   "1e+09": {
+    "CFG48": {
+     "r_ta": 147.98156851837823,
+     "r_e": 59.192627407351296,
+     "x_e": 48.50731431976939,
+     "ratio_num": 72.75947147965408,
+     "ratio_closed": 72.76097147965409,
+     "E_c": 128221319309348.44,
+     "KE": 1762262928822.9958
+    },
+    "committed_nu_mono": {
+     "r_ta": 647.466892585115,
+     "r_e": 258.98675703404604,
+     "x_e": 212.23508025170065,
+     "ratio_num": 318.3511203775509,
+     "ratio_closed": 318.352620377551,
+     "E_c": 561018377790625.0,
+     "KE": 1762262928822.9958
+    },
+    "committed_P2": {
+     "r_ta": 647.1625156192656,
+     "r_e": 258.8650062477063,
+     "x_e": 212.13530762932626,
+     "ratio_num": 318.2014614439894,
+     "ratio_closed": 318.20296144398935,
+     "E_c": 560754639400042.3,
+     "KE": 1762262928822.9958
+    },
+    "E_infall_ratio_48": 129.22276091915742,
+    "E_infall_ratio_comm": 2473.8069345546314
+   },
+   "1e+10": {
+    "CFG48": {
+     "r_ta": 318.8166247013242,
+     "r_e": 127.52664988052969,
+     "x_e": 33.047648537360566,
+     "ratio_num": 49.569972806040845,
+     "ratio_closed": 49.571472806040845,
+     "E_c": 2762417941952588.0,
+     "KE": 55727646911598.586
+    },
+    "committed_nu_mono": {
+     "r_ta": 1151.7988012785768,
+     "r_e": 460.71952051143074,
+     "x_e": 119.39227449656113,
+     "ratio_num": 179.0869117448417,
+     "ratio_closed": 179.0884117448417,
+     "E_c": 9980092184205156.0,
+     "KE": 55727646911598.586
+    },
+    "committed_P2": {
+     "r_ta": 1150.8379883144557,
+     "r_e": 460.3351953257823,
+     "x_e": 119.29267928511894,
+     "ratio_num": 178.9375189276784,
+     "ratio_closed": 178.9390189276784,
+     "E_c": 9971766874039152.0,
+     "KE": 55727646911598.586
+    },
+    "E_infall_ratio_48": 59.979313961608526,
+    "E_infall_ratio_comm": 782.856791086829
+   },
+   "1e+12": {
+    "CFG48": {
+     "r_ta": 1479.8156851837823,
+     "r_e": 591.9262740735129,
+     "x_e": 15.339359642817247,
+     "ratio_num": 23.007539464225864,
+     "ratio_closed": 23.009039464225868,
+     "E_c": 1.2821560355670492e+18,
+     "KE": 5.572764691159859e+16
+    },
+    "committed_nu_mono": {
+     "r_ta": 3648.8849967603646,
+     "r_e": 1459.553998704146,
+     "x_e": 37.82333152769361,
+     "ratio_num": 56.733497291540424,
+     "ratio_closed": 56.734997291540424,
+     "E_c": 3.1616243051230996e+18,
+     "KE": 5.572764691159859e+16
+    },
+    "committed_P2": {
+     "r_ta": 3639.361315061359,
+     "r_e": 1455.7445260245438,
+     "x_e": 37.72461168023733,
+     "ratio_num": 56.58541752035598,
+     "ratio_closed": 56.58691752035599,
+     "E_c": 3.153372167919783e+18,
+     "KE": 5.572764691159859e+16
+    },
+    "E_infall_ratio_48": 12.921700052500999,
+    "E_infall_ratio_comm": 78.5672560351367
+   }
+  },
+  "time_scales_Gyr": {
+   "1e+09": {
+    "light_re": 0.0008447018255083077,
+    "tdyn_re": 4.265514029806345,
+    "tdyn_rM": 0.016900482993142642,
+    "t_M": 0.020098174622427713,
+    "invH0": 14.515917780296752,
+    "c_over_a0": 101.49086818892114
+   },
+   "1e+10": {
+    "light_re": 0.001502666099534031,
+    "tdyn_re": 4.267025365965201,
+    "tdyn_rM": 0.030053780926418548,
+    "t_M": 0.03574017011043001,
+    "invH0": 14.515917780296752,
+    "c_over_a0": 101.49086818892114
+   },
+   "1e+12": {
+    "light_re": 0.004760428452993326,
+    "tdyn_re": 4.274059144588095,
+    "tdyn_rM": 0.09503840002720791,
+    "t_M": 0.11302034151083044,
+    "invH0": 14.515917780296752,
+    "c_over_a0": 101.49086818892114
+   }
+  },
+  "N6": {
+   "1e+09/1/r_e/c": [
+    0.0008447018255083077,
+    0.028492779503009227,
+    3.5096611051736333
+   ],
+   "1e+09/1/t_dyn(r_e)": [
+    4.265514029806345,
+    20.089913425988456,
+    0.0049776222465269205
+   ],
+   "1e+09/10/r_e/c": [
+    8.447018255083077e-05,
+    0.0028492860816459976,
+    35.09651089238159
+   ],
+   "1e+09/10/t_dyn(r_e)": [
+    0.42655140298063454,
+    9.96803251686973,
+    0.010032070002857805
+   ],
+   "1e+10/1/r_e/c": [
+    0.001502666099534031,
+    0.05068636693660036,
+    1.9729170986960307
+   ],
+   "1e+10/1/t_dyn(r_e)": [
+    4.267025365965201,
+    20.090671882090593,
+    0.004977434333051992
+   ],
+   "1e+10/10/r_e/c": [
+    0.00015026660995340308,
+    0.0050686824703437125,
+    19.728992807319987
+   ],
+   "1e+10/10/t_dyn(r_e)": [
+    0.4267025365965201,
+    9.970107519105339,
+    0.010029982104844286
+   ],
+   "1e+12/1/r_e/c": [
+    0.004760428452993326,
+    0.16056057518242467,
+    0.6228178983936913
+   ],
+   "1e+12/1/t_dyn(r_e)": [
+    4.274059144588095,
+    20.094195162002435,
+    0.0049765615986997695
+   ],
+   "1e+12/10/r_e/c": [
+    0.00047604284529933257,
+    0.01605751295548756,
+    6.227614467894644
+   ],
+   "1e+12/10/t_dyn(r_e)": [
+    0.4274059144588095,
+    9.979704446451809,
+    0.0100203368282669
+   ]
+  }
+ }
+}
