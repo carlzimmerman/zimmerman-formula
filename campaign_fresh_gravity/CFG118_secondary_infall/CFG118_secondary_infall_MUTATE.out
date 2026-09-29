@@ -1,0 +1,354 @@
+CFG118 -- Door 6: spherical secondary infall of a cold fluid onto a baryon core (shell crossing), against CFG44's target
+C(r) = rho_c r^3 g_tot = (a0/4 pi) M_b(<r).
+
+Frozen criteria: ../CFG118_FROZEN_CRITERIA.md (committed in b09ca1480 before this script); shared gates G1-G5 in
+../closure_map/TEN_DOORS_GATES_2026-09-29.md.  The menu of doors was written knowing the target.
+
+THE SIMULATION (as frozen; the numerical choices marked [declared] were fixed before any H1 number was seen)
+  * 1-D spherical Lagrangian shell code (shellcore.c, compiled at run time into a temporary directory): N_s = 20,000 cold
+    shells (5,000 for C3), Newtonian gravity in physical coordinates, each shell feels
+        -G [M_b(<r) + M_c(<r)] / r^2 + (Lambda c^2/3) r + j^2/r^3   (+ the smooth background, below);
+    enclosed masses exact at every kick (every shell drifted and re-sorted at every multiple of the level-17 step, the fast
+    tier at every tick, slow shells counted at their exact positions; see shellcore.c); shells cross freely; a shell feels
+    half its own mass.
+  * Planck18 background: H0 = 67.4, Omega_m = 0.315, Omega_L = 0.685, Omega_b/Omega_m = 0.157 (Omega_c = 0.2655).
+    [declared reading] The cold shells carry Omega_c only; the rest of the cosmic baryons (Omega_b, outside the core) are a
+    smooth, non-clustering background on the Hubble flow.  Without it C1 cannot hold: cold shells at Omega_c moving with
+    Planck18's H(z) would be a 16% under-density at z = 100 and leave the Hubble flow by far more than 1e-6.
+  * Initial conditions (Bertschinger): at z_i = 100 the shells are uniformly spaced in enclosed cold mass at Omega_c
+    rho_crit(z_i), on the Hubble flow, out to the Lagrangian mass whose shell sits at 3 r_ta(z = 0) at z = 0 (r_ta(z=0) and
+    that mass from the exact single-shell orbit before crossing, with the core and background included).
+  * The baryon core, static in physical coordinates from z_i: a point mass (Plummer-softened at 1e-3 r_M, canonical r_M)
+    or CFG44's exponential sphere, h = 2, 3, 4, 5 kpc for M_b = 1e9, 1e10, 1e11, 1e12 Msun.
+  * Angular momentum: radial until a shell first reaches maximum radius; there
+        j^2 = 2 [Phi(r_ta) - Phi(q r_ta)] / ((q r_ta)^-2 - r_ta^-2),
+    the energy/pericentre relation for apocentre r_ta and pericentre q r_ta in the potential of the mass enclosed at that
+    moment (shells inside r_ta at their current radii, the core, the smooth background, Lambda), q = 0.05, 0.1, 0.2, the same
+    at every mass; all three reported, with the realised first-pericentre ratios.  (A first version used the point-mass form
+    j^2 = 2 G M(<r_ta) r_ta q/(1+q); in a timing run its realised first pericentres were ~2q, so it was replaced before any
+    H1 number was computed.)
+  * Integrator [declared]: kick-drift-kick leapfrog with individual power-of-two steps, step = min(eta t_loc, eta_H/H(t)),
+    t_loc = min(sqrt(r/g_pull), r/|v|, r^2/j), eta = 0.01, eta_H = 3e-4; 2^40 ticks over z = 100..0.
+  * Density at z = 0 [declared]: shells binned in log r (0.1 dex); each bin time-averaged over the last local dynamical
+    time t_dyn(r) = sqrt(3 pi/(16 G rho_bar(<r))) (Binney & Tremaine's; rho_bar from M_b + M_c at z = 0), capped at 0.9 of the
+    run; snapshots at lookback 0 and 60 per decade from 1e-5 to 0.9 of the run (piecewise-linear time quadrature).
+
+EVALUATION
+  C_X,b = (Delta M_X,b / V_b) r_b^3 G [M_b(<r_b) + M_c,X(<r_b)] / r_b^2 for X = simulation and target (the same binned estimator
+  for both; r_b the geometric bin centre); ratio = C_sim/C_target on 25 bins of 0.1 dex, x = r/r_M from 0.1 to 31.6
+  (r_M = sqrt(G M_b/a0)), on both footings: a0 = 9.3603e-11 (canonical) and 1.1312e-10 (alt).
+  C1 CONTROL: no core: every shell on the Planck18 Hubble flow to 1e-6 relative at z = 0 (position and velocity).
+  C2 CONTROL: Einstein-de Sitter, Lambda = 0, a single collisionless background (all matter in the shells, Bertschinger's set-up),
+    q = 0.05, a point seed of 1e10 Msun: the least-squares log-slope of the inner profile over the self-similar range
+    [declared: r/r_ta(z=0) in [0.03, 0.15], r_ta the measured zero-velocity radius] is -9/4 +- 0.15.
+  C3 CONTROL: 5,000 vs 20,000 shells, every mass/geometry/bracket, both footings: |ratio_5k/ratio_20k - 1| <= 0.10 on bins with
+    centres in x in [0.3, 30].
+  H1 [HEADLINE]: on each footing, for at least one bracket q: |ratio - 1| <= 0.10 on every bin with centre in [0.1, 30] for every
+    mass and both geometries.  H1 passes only if it passes on both footings.
+  R1 ratio curves, largest deviation, the x range within 10% (plus a shell-bootstrap discreteness indicator, reported only).
+  R2 the radius where the log-slope of rho_c is -2 (5-bin sliding least squares on the 0.1-dex profile, first downward crossing
+     outward from x = 0.1) against M_b: fitted exponent, against r_M ~ M^(1/2) and the turnaround ~ M^(1/3).
+  R3 G2-G5 as statements.
+POST-HOC (added after the first full run showed C3 failing; reported only, no frozen verdict depends on them): where C3 fails
+  (local bins against the cumulative cold mass), H1 on the 5,000-shell runs, the cumulative cold mass against the target's, and an
+  R2 cross-check with the radius where M_c(<r) = M_b.
+MUTATE=1: G1 (H1 and R1) is evaluated on the target's own binned rho_c and M_c in place of the simulated ones; H1 must then pass.
+The simulations are unchanged by MUTATE (a MUTATE run reuses the main run's cached simulation products when their hash matches).
+
+  *** MUTATE=1: G1 is evaluated on the target's own rho_c and M_c in place of the simulated ones -- H1 must PASS ***
+
+  simulation products reused from CFG118_secondary_infall_sims.json (hash 70bf36b70c167f11; the main run wrote them)
+
+  simulation wall time 11.6 min on 8 processes (machine shared and loaded)
+
+======================================================================================================================
+SET-UP: the z = 0 turnaround and the shell extent (exact single-shell orbits before crossing)
+======================================================================================================================
+      M_b core   r_M can  r_M alt  M_ta/M_b  r_ta0 kpc   x_ta  M_out/M_b    m/M_b   r_ta meas/pred (q=.05,.1,.2)
+    1e+09 point     1.22     1.11     23.64      235.8  193.2       77.8   0.0039            1.000, 1.000, 1.000
+    1e+09 exp       1.22     1.11     19.72      222.5  182.4       68.1   0.0034            1.000, 1.000, 1.000
+    1e+10 point     3.86     3.51     23.64      508.0  131.6       77.8   0.0039            1.000, 1.000, 1.000
+    1e+10 exp       3.86     3.51     22.25      498.2  129.1       74.6   0.0037            1.000, 1.000, 1.000
+    1e+11 point    12.20    11.10     23.64     1094.5   89.7       77.8   0.0039            1.000, 1.000, 1.000
+    1e+11 exp      12.20    11.10     23.48     1092.0   89.5       77.5   0.0039            1.000, 1.000, 1.000
+    1e+12 point    38.59    35.10     23.64     2357.9   61.1       77.8   0.0039            1.000, 1.000, 1.000
+    1e+12 exp      38.59    35.10     23.64     2357.8   61.1       77.8   0.0039            1.000, 1.000, 1.000
+  (r_ta meas = the zero-velocity radius of the shells at z = 0; pred = the single-shell orbit.)
+
+  realised first pericentre / turnaround radius (16/50/84 percentiles over the shells that reached a pericentre):
+    q = 0.05: 1e+09/point 0.047/0.048/0.050  1e+09/exp 0.044/0.046/0.049  1e+10/point 0.047/0.048/0.050  1e+10/exp 0.045/0.047/0.049  1e+11/point 0.047/0.048/0.050  1e+11/exp 0.046/0.048/0.049  1e+12/point 0.047/0.048/0.049  1e+12/exp 0.047/0.048/0.049
+    q = 0.10: 1e+09/point 0.093/0.095/0.097  1e+09/exp 0.089/0.092/0.095  1e+10/point 0.093/0.095/0.097  1e+10/exp 0.089/0.093/0.096  1e+11/point 0.091/0.095/0.098  1e+11/exp 0.090/0.094/0.097  1e+12/point 0.092/0.095/0.098  1e+12/exp 0.092/0.095/0.097
+    q = 0.20: 1e+09/point 0.181/0.185/0.188  1e+09/exp 0.178/0.179/0.181  1e+10/point 0.182/0.185/0.188  1e+10/exp 0.180/0.181/0.184  1e+11/point 0.183/0.185/0.188  1e+11/exp 0.181/0.183/0.185  1e+12/point 0.182/0.185/0.188  1e+12/exp 0.183/0.184/0.187
+
+  per-run integrator counters (20,000 shells): kicks, ticks, slow ticks, step-floor hits, reflections, lazy checks, fallbacks
+    q=0.05  1e+09 point: 5.77e+08 / 1.42e+07 / 1.31e+05 / 0 / 0 / 3.36e+06 / 0; turned 6077, 173 s
+    q=0.05  1e+09 exp  : 4.75e+08 / 1.9e+06 / 1.31e+05 / 0 / 0 / 1.8e+06 / 0; turned 5790, 171 s
+    q=0.05  1e+10 point: 5.83e+08 / 1.71e+07 / 1.31e+05 / 0 / 0 / 3.25e+06 / 0; turned 6077, 177 s
+    q=0.05  1e+10 exp  : 4.89e+08 / 2.5e+06 / 1.31e+05 / 0 / 0 / 3.52e+06 / 0; turned 5965, 182 s
+    q=0.05  1e+11 point: 5.82e+08 / 1.57e+07 / 1.31e+05 / 0 / 0 / 3.09e+06 / 0; turned 6077, 176 s
+    q=0.05  1e+11 exp  : 5.08e+08 / 3.55e+06 / 1.31e+05 / 0 / 0 / 5.87e+06 / 0; turned 6062, 203 s
+    q=0.05  1e+12 point: 5.81e+08 / 1.47e+07 / 1.31e+05 / 0 / 0 / 3.28e+06 / 0; turned 6077, 175 s
+    q=0.05  1e+12 exp  : 5.24e+08 / 4.25e+06 / 1.31e+05 / 0 / 0 / 7.04e+06 / 0; turned 6077, 203 s
+    q=0.10  1e+09 point: 5.41e+08 / 8.23e+06 / 1.31e+05 / 0 / 0 / 2.64e+06 / 0; turned 6077, 139 s
+    q=0.10  1e+09 exp  : 4.62e+08 / 8.91e+05 / 1.31e+05 / 0 / 0 / 5.94e+05 / 0; turned 5790, 168 s
+    q=0.10  1e+10 point: 5.39e+08 / 8.01e+06 / 1.31e+05 / 0 / 0 / 2.74e+06 / 0; turned 6077, 140 s
+    q=0.10  1e+10 exp  : 4.71e+08 / 1.2e+06 / 1.31e+05 / 0 / 0 / 1.39e+06 / 0; turned 5965, 165 s
+    q=0.10  1e+11 point: 5.41e+08 / 8.2e+06 / 1.31e+05 / 0 / 0 / 2.83e+06 / 0; turned 6077, 139 s
+    q=0.10  1e+11 exp  : 4.86e+08 / 1.77e+06 / 1.31e+05 / 0 / 0 / 3.67e+06 / 0; turned 6062, 177 s
+    q=0.10  1e+12 point: 5.41e+08 / 8.23e+06 / 1.31e+05 / 0 / 0 / 2.49e+06 / 0; turned 6077, 164 s
+    q=0.10  1e+12 exp  : 5.01e+08 / 2.24e+06 / 1.31e+05 / 0 / 0 / 5.02e+06 / 0; turned 6077, 195 s
+    q=0.20  1e+09 point: 5.08e+08 / 4.23e+06 / 1.31e+05 / 0 / 0 / 1.64e+06 / 0; turned 6077, 137 s
+    q=0.20  1e+09 exp  : 4.52e+08 / 3.29e+05 / 1.31e+05 / 0 / 0 / 4.84e+04 / 0; turned 5790, 163 s
+    q=0.20  1e+10 point: 5.09e+08 / 4.25e+06 / 1.31e+05 / 0 / 0 / 1.4e+06 / 0; turned 6077, 138 s
+    q=0.20  1e+10 exp  : 4.59e+08 / 4.96e+05 / 1.31e+05 / 0 / 0 / 2.46e+05 / 0; turned 5965, 168 s
+    q=0.20  1e+11 point: 5.09e+08 / 4.37e+06 / 1.31e+05 / 0 / 0 / 1.4e+06 / 0; turned 6077, 136 s
+    q=0.20  1e+11 exp  : 4.7e+08 / 7.1e+05 / 1.31e+05 / 0 / 0 / 1.21e+06 / 0; turned 6062, 176 s
+    q=0.20  1e+12 point: 5.1e+08 / 4.62e+06 / 1.31e+05 / 0 / 0 / 1.47e+06 / 0; turned 6077, 149 s
+    q=0.20  1e+12 exp  : 4.81e+08 / 9.87e+05 / 1.31e+05 / 0 / 0 / 2.8e+06 / 0; turned 6077, 188 s
+
+======================================================================================================================
+C1 CONTROL: no baryon core -- the shells follow the Planck18 Hubble flow to 1e-6 at z = 0
+======================================================================================================================
+  N = 20000, extent M_out = 7.781e+11 Msun; max |r/r_Hubble - 1| = 4.256e-07; max |v/(H0 r) - 1| = 1.978e-07; shells that turned around: 0; 4.41e+08 kicks
+  [PASS] C1 CONTROL: no core, every shell on the Hubble flow to 1e-6 relative at z = 0 (position and velocity)
+         max |dr/r| = 4.26e-07, max |dv/v| = 1.98e-07
+
+======================================================================================================================
+NUMERICAL DIAGNOSTIC (reported): the adaptive leapfrog on the most eccentric, most-orbited shell
+======================================================================================================================
+  test shell in the static softened 1e10 point mass, turnaround 0.7 kpc, q = 0.05: realised r_peri/r_ta = 0.0500, 2096 pericentres, energy drift over the run -0.43%
+  test shell in the static softened 1e10 point mass, turnaround 0.7 kpc, q = 0.1: realised r_peri/r_ta = 0.1000, 1950 pericentres, energy drift over the run -0.14%
+  test shell in the static softened 1e10 point mass, turnaround 0.7 kpc, q = 0.2: realised r_peri/r_ta = 0.2000, 1710 pericentres, energy drift over the run -0.06%
+  [PASS] (reported) numerical: energy drift of the innermost-type orbit over ~2,000 orbits below 1% at eta = 0.01
+         worst |dE/E| = 0.43% (q = 0.05 orbits are the worst)
+
+======================================================================================================================
+C2 CONTROL: Einstein-de Sitter, Lambda = 0, point seed, q = 0.05 -- Bertschinger's r^(-9/4)
+======================================================================================================================
+  seed 1e10 Msun; measured r_ta(a=1) = 580.6 kpc (predicted 580.6); M_ta = 56.4 seed masses
+  realised first-pericentre ratio r_p1/r_ta (16/50/84%): 0.0469, 0.0478, 0.049
+  lambda = r/r_ta  0.037  0.047  0.059  0.075  0.094  0.118  0.149
+  rho (Msun/kpc^3) 3.93e+05  2.39e+05  1.48e+05  9.11e+04  4.99e+04  2.94e+04  1.86e+04
+  local slope      -2.29  -2.13  -2.10  -2.35  -2.45  -2.15  -2.96
+  least-squares log-slope over lambda in [0.03, 0.15] (7 bins): -2.238 (Bertschinger -2.250)
+  [PASS] C2 CONTROL: EdS point-seed infall at q = 0.05 approaches rho ~ r^(-9/4) within +-0.15 over the self-similar range
+         fitted slope -2.238 over lambda = r/r_ta in [0.03, 0.15]
+  [FAIL] (reported) C2 (reported): local slopes over the same range
+         min -2.96, max -2.10
+
+======================================================================================================================
+R1 (canonical footing, a0 = 9.3603e-11): C_infall / C_target on x = r/r_M bins (0.1 dex), z = 0   [MUTATE: target rho_c in place of the simulation]
+======================================================================================================================
+  x centres:  0.11  0.14  0.18  0.22  0.28  0.35  0.45  0.56  0.71  0.89  1.12  1.41  1.78  2.24  2.82  3.55  4.47  5.62  7.08  8.91 11.22 14.13 17.78 22.39 28.18
+
+  q = r_peri/r_ta = 0.05:
+   1e+09 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+09 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+
+  q = r_peri/r_ta = 0.1:
+   1e+09 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+09 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+
+  q = r_peri/r_ta = 0.2:
+   1e+09 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+09 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+
+  discreteness indicators (simulation, x = 0.1 / 0.3 / 1 / 3 / 10 / 30 bins): time-averaged shells in the bin; distinct shells visiting it in the window; shell-bootstrap sd of the ratio
+    q=0.05  1e+09 point shells 4.6/12/36/93/2.2e+02/3.3e+02; distinct 19/56/194/529/1239/1695; boot sd 1.99/0.46/0.13/0.04/0.01/0.00
+    q=0.05  1e+09 exp   shells 0.91/6.9/28/63/1.7e+02/3.3e+02; distinct 12/44/158/430/1014/1734; boot sd 139.56/34.38/1.77/0.05/0.01/0.00
+    q=0.05  1e+10 point shells 5.3/13/53/1.1e+02/2.3e+02/4.4e+02; distinct 21/70/283/623/1250/2010; boot sd 2.21/0.60/0.19/0.05/0.02/0.00
+    q=0.05  1e+10 exp   shells 3.2/16/44/99/2.4e+02/4.2e+02; distinct 30/106/264/612/1362/2024; boot sd 143.17/20.39/0.81/0.05/0.01/0.00
+    q=0.05  1e+11 point shells 8.4/25/63/1.8e+02/3.5e+02/4.4e+02; distinct 45/126/375/983/1868/2061; boot sd 2.42/0.93/0.24/0.08/0.02/0.01
+    q=0.05  1e+11 exp   shells 9.6/30/62/1.6e+02/3.1e+02/4.7e+02; distinct 58/171/380/864/1702/1994; boot sd 68.15/7.08/0.35/0.08/0.02/0.01
+    q=0.05  1e+12 point shells 15/35/83/2.1e+02/3.7e+02/3.1e+02; distinct 66/187/495/1181/1945/1518; boot sd 3.56/1.27/0.32/0.11/0.03/0.00
+    q=0.05  1e+12 exp   shells 21/40/87/2.1e+02/3.7e+02/3.5e+02; distinct 133/217/504/1161/1882/1549; boot sd 23.49/2.77/0.34/0.12/0.03/0.00
+    q=0.10  1e+09 point shells 2.1/10/33/93/1.9e+02/4.1e+02; distinct 8/37/157/463/998/1902; boot sd 1.14/0.58/0.11/0.04/0.01/0.00
+    q=0.10  1e+09 exp   shells 0.6/3.7/21/68/1.5e+02/4.3e+02; distinct 19/28/130/378/855/1909; boot sd 26.27/9.98/0.93/0.05/0.01/0.00
+    q=0.10  1e+10 point shells 3.8/15/52/1.3e+02/2.7e+02/3.3e+02; distinct 13/60/243/662/1299/1695; boot sd 1.74/0.60/0.19/0.06/0.02/0.00
+    q=0.10  1e+10 exp   shells 1.3/8.7/37/1e+02/2.6e+02/4e+02; distinct 11/54/202/556/1293/1956; boot sd 33.17/7.05/0.54/0.05/0.01/0.00
+    q=0.10  1e+11 point shells 6.8/27/70/2.4e+02/3.4e+02/4.4e+02; distinct 34/113/330/1126/1802/1910; boot sd 2.23/0.98/0.26/0.12/0.03/0.00
+    q=0.10  1e+11 exp   shells 5.4/23/58/1.6e+02/2.8e+02/4.9e+02; distinct 37/131/306/821/1453/1935; boot sd 23.94/4.81/0.33/0.08/0.02/0.01
+    q=0.10  1e+12 point shells 10/32/90/2.1e+02/3.6e+02/2.7e+02; distinct 46/149/460/1010/1794/1250; boot sd 2.93/1.12/0.35/0.11/0.03/0.00
+    q=0.10  1e+12 exp   shells 15/34/92/1.8e+02/3.4e+02/3.1e+02; distinct 86/181/464/937/1902/1384; boot sd 13.92/2.00/0.40/0.11/0.03/0.00
+    q=0.20  1e+09 point shells 0.79/7.7/33/92/2.4e+02/3.7e+02; distinct 2/23/126/382/973/1735; boot sd 0.78/0.44/0.12/0.04/0.01/0.00
+    q=0.20  1e+09 exp   shells 0.61/2.9/14/57/1.5e+02/4.2e+02; distinct 3/15/77/291/748/1780; boot sd 55.00/9.18/0.45/0.04/0.01/0.00
+    q=0.20  1e+10 point shells 4/13/47/1.2e+02/2.7e+02/5e+02; distinct 9/49/173/479/1089/2063; boot sd 2.00/0.54/0.20/0.06/0.02/0.00
+    q=0.20  1e+10 exp   shells 0.69/3.6/28/1.3e+02/2.4e+02/4.5e+02; distinct 13/25/147/542/1136/2002; boot sd 3.87/1.69/0.32/0.06/0.01/0.00
+    q=0.20  1e+11 point shells 6.1/23/61/1.8e+02/3.8e+02/6e+02; distinct 17/72/265/695/1553/1969; boot sd 2.39/0.92/0.23/0.10/0.03/0.01
+    q=0.20  1e+11 exp   shells 3.3/17/58/1.7e+02/3.9e+02/5.2e+02; distinct 16/77/255/724/1628/1923; boot sd 17.29/2.80/0.33/0.09/0.03/0.01
+    q=0.20  1e+12 point shells 11/35/79/2.4e+02/3.7e+02/2.5e+02; distinct 36/136/344/1030/1659/1217; boot sd 3.96/1.22/0.35/0.13/0.03/0.00
+    q=0.20  1e+12 exp   shells 8.7/31/93/2.3e+02/3.8e+02/2.4e+02; distinct 47/137/402/897/1783/1106; boot sd 7.01/1.71/0.37/0.15/0.03/0.00
+
+======================================================================================================================
+R1 (alt footing, a0 = 1.1312e-10): C_infall / C_target on x = r/r_M bins (0.1 dex), z = 0   [MUTATE: target rho_c in place of the simulation]
+======================================================================================================================
+  x centres:  0.11  0.14  0.18  0.22  0.28  0.35  0.45  0.56  0.71  0.89  1.12  1.41  1.78  2.24  2.82  3.55  4.47  5.62  7.08  8.91 11.22 14.13 17.78 22.39 28.18
+
+  q = r_peri/r_ta = 0.05:
+   1e+09 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+09 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+
+  q = r_peri/r_ta = 0.1:
+   1e+09 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+09 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+
+  q = r_peri/r_ta = 0.2:
+   1e+09 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+09 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+10 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+11 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 point  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+   1e+12 exp    1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00  1.00 | max|dev| 0.00 at x=0.11; within 10%: [0.10, 31.62]
+
+  discreteness indicators (simulation, x = 0.1 / 0.3 / 1 / 3 / 10 / 30 bins): time-averaged shells in the bin; distinct shells visiting it in the window; shell-bootstrap sd of the ratio
+    q=0.05  1e+09 point shells 4.7/9/33/89/2e+02/3.1e+02; distinct 16/49/174/491/1166/1604; boot sd 2.23/0.34/0.11/0.03/0.01/0.00
+    q=0.05  1e+09 exp   shells 0.95/6.7/26/54/1.6e+02/3.3e+02; distinct 13/39/146/386/948/1686; boot sd 142.66/35.62/2.10/0.05/0.01/0.00
+    q=0.05  1e+10 point shells 3.4/11/46/99/2.2e+02/4e+02; distinct 16/57/253/581/1206/1987; boot sd 1.48/0.52/0.17/0.04/0.01/0.00
+    q=0.05  1e+10 exp   shells 3.2/15/41/94/2.3e+02/3.9e+02; distinct 28/98/248/569/1312/1977; boot sd 181.13/22.23/0.84/0.05/0.01/0.00
+    q=0.05  1e+11 point shells 8.6/24/57/1.6e+02/3.2e+02/3.9e+02; distinct 39/119/335/915/1760/1968; boot sd 2.67/0.85/0.23/0.08/0.02/0.00
+    q=0.05  1e+11 exp   shells 8.9/26/57/1.5e+02/2.9e+02/4.4e+02; distinct 54/150/345/809/1589/1952; boot sd 65.95/6.70/0.35/0.07/0.02/0.00
+    q=0.05  1e+12 point shells 11/33/78/2e+02/3.8e+02/3.4e+02; distinct 59/166/465/1102/1936/1518; boot sd 2.82/1.13/0.29/0.10/0.03/0.00
+    q=0.05  1e+12 exp   shells 19/40/79/2e+02/3.7e+02/3.9e+02; distinct 112/205/463/1110/1905/1590; boot sd 22.74/3.09/0.33/0.11/0.03/0.01
+    q=0.10  1e+09 point shells 2.5/8.9/29/88/1.9e+02/3.8e+02; distinct 8/35/145/428/968/1817; boot sd 1.71/0.48/0.10/0.04/0.01/0.00
+    q=0.10  1e+09 exp   shells 0.44/2.8/20/54/1.4e+02/3.9e+02; distinct 16/24/119/334/816/1845; boot sd 21.50/7.05/1.02/0.05/0.01/0.00
+    q=0.10  1e+10 point shells 3.8/14/46/1.2e+02/2.6e+02/3.7e+02; distinct 11/58/220/590/1208/1792; boot sd 2.07/0.61/0.17/0.05/0.02/0.00
+    q=0.10  1e+10 exp   shells 1.1/8.4/35/93/2.7e+02/3.9e+02; distinct 10/49/188/503/1236/1846; boot sd 36.97/7.84/0.61/0.05/0.01/0.00
+    q=0.10  1e+11 point shells 6.4/24/61/2.2e+02/3.5e+02/4.2e+02; distinct 28/98/315/1040/1785/1998; boot sd 2.12/0.92/0.23/0.10/0.03/0.00
+    q=0.10  1e+11 exp   shells 4.4/20/58/1.4e+02/2.8e+02/4e+02; distinct 31/118/300/731/1395/2032; boot sd 22.37/4.40/0.35/0.07/0.02/0.00
+    q=0.10  1e+12 point shells 9.8/30/82/2.1e+02/3.3e+02/2.9e+02; distinct 38/138/426/979/1710/1332; boot sd 3.04/1.03/0.32/0.11/0.02/0.00
+    q=0.10  1e+12 exp   shells 13/30/85/1.7e+02/3.5e+02/3e+02; distinct 77/168/432/892/1878/1384; boot sd 13.27/1.89/0.37/0.11/0.03/0.00
+    q=0.20  1e+09 point shells 0.13/6.4/27/87/2.3e+02/3.7e+02; distinct 2/21/104/346/904/1721; boot sd 0.17/0.39/0.10/0.04/0.01/0.00
+    q=0.20  1e+09 exp   shells 0.48/2.8/12/54/1.5e+02/4e+02; distinct 3/12/70/266/709/1791; boot sd 24.66/9.65/0.42/0.05/0.01/0.00
+    q=0.20  1e+10 point shells 3/11/39/1.2e+02/2.6e+02/5.1e+02; distinct 9/39/157/452/1031/2076; boot sd 1.83/0.48/0.15/0.06/0.02/0.00
+    q=0.20  1e+10 exp   shells 0.43/2.7/25/1.1e+02/2.2e+02/4.6e+02; distinct 9/23/135/492/1050/1997; boot sd 2.77/1.48/0.33/0.05/0.01/0.00
+    q=0.20  1e+11 point shells 5.9/18/57/1.8e+02/3.1e+02/5.2e+02; distinct 17/59/244/675/1341/2047; boot sd 2.54/0.81/0.23/0.10/0.02/0.01
+    q=0.20  1e+11 exp   shells 4.1/15/51/1.7e+02/3.1e+02/4.5e+02; distinct 16/67/230/690/1416/1938; boot sd 21.60/2.86/0.30/0.09/0.02/0.01
+    q=0.20  1e+12 point shells 10/29/76/1.8e+02/3.7e+02/2.5e+02; distinct 29/115/322/849/1717/1307; boot sd 3.77/1.06/0.34/0.11/0.03/0.00
+    q=0.20  1e+12 exp   shells 7.6/27/90/2.3e+02/3.8e+02/2.6e+02; distinct 41/128/373/896/1765/1411; boot sd 7.51/1.59/0.36/0.13/0.03/0.00
+
+======================================================================================================================
+H1 [HEADLINE]: G1 -- for at least one bracket, |C_infall/C_target - 1| <= 0.10 over x in [0.1, 30] at every mass, both geometries   [MUTATE]
+======================================================================================================================
+  canonical q = 0.05: 8/8 mass-geometry cases pass; largest deviation 0.00; PASS
+  canonical q = 0.10: 8/8 mass-geometry cases pass; largest deviation 0.00; PASS
+  canonical q = 0.20: 8/8 mass-geometry cases pass; largest deviation 0.00; PASS
+  [PASS] (reported) H1 on the canonical footing (reported per footing)
+         brackets passing: 0.05, 0.1, 0.2
+  alt       q = 0.05: 8/8 mass-geometry cases pass; largest deviation 0.00; PASS
+  alt       q = 0.10: 8/8 mass-geometry cases pass; largest deviation 0.00; PASS
+  alt       q = 0.20: 8/8 mass-geometry cases pass; largest deviation 0.00; PASS
+  [PASS] (reported) H1 on the alt footing (reported per footing)
+         brackets passing: 0.05, 0.1, 0.2
+  [PASS] H1 [HEADLINE]: G1 holds (every mass, both geometries, one bracket, both footings)
+         best bracket's largest deviation: canonical 0.00, alt 0.00 (pass line 0.10)
+
+======================================================================================================================
+C3 CONTROL: 5,000 vs 20,000 shells -- ratio curves agree to 10% over x in [0.3, 30]
+======================================================================================================================
+  canonical q=0.05: 1e+09/point 0.550  1e+09/exp 0.469  1e+10/point 0.853  1e+10/exp 0.345  1e+11/point 0.460  1e+11/exp 0.573  1e+12/point 0.252  1e+12/exp 0.780
+  canonical q=0.10: 1e+09/point 1.307  1e+09/exp 0.668  1e+10/point 0.581  1e+10/exp 1.934  1e+11/point 0.498  1e+11/exp 0.593  1e+12/point 0.343  1e+12/exp 0.956
+  canonical q=0.20: 1e+09/point 0.436  1e+09/exp 2.823  1e+10/point 0.755  1e+10/exp 0.590  1e+11/point 0.428  1e+11/exp 0.449  1e+12/point 0.363  1e+12/exp 0.326
+  alt       q=0.05: 1e+09/point 0.682  1e+09/exp 0.469  1e+10/point 0.708  1e+10/exp 0.347  1e+11/point 0.493  1e+11/exp 0.692  1e+12/point 0.264  1e+12/exp 0.756
+  alt       q=0.10: 1e+09/point 0.968  1e+09/exp 0.673  1e+10/point 0.728  1e+10/exp 1.835  1e+11/point 0.443  1e+11/exp 0.514  1e+12/point 0.326  1e+12/exp 0.853
+  alt       q=0.20: 1e+09/point 0.324  1e+09/exp 2.788  1e+10/point 0.449  1e+10/exp 0.581  1e+11/point 0.430  1e+11/exp 0.594  1e+12/point 0.422  1e+12/exp 0.354
+  [FAIL] C3 CONTROL: the 5,000-shell ratio curves reproduce the 20,000-shell ones to 10% over x in [0.3, 30]
+         largest |ratio_5k/ratio_20k - 1| = 2.823 over 48 curves
+
+======================================================================================================================
+R2: the infall profile's radial scale against M_b (radius where the log-slope of rho_c is -2)
+======================================================================================================================
+  point q=0.05: r(-2) = 0.373, 0.641, 2.32, 6.31 kpc (x = 0.31, 0.17, 0.19, 0.16); exponent 0.424; r_ta(z=0) exponent 0.333
+  point q=0.10: r(-2) = 0.295, 0.99, 3.05, 4.15 kpc (x = 0.24, 0.26, 0.25, 0.11); exponent 0.393; r_ta(z=0) exponent 0.333
+  point q=0.20: r(-2) = 1.33, 1.5, 5.04, 15.8 kpc (x = 1.09, 0.39, 0.41, 0.41); exponent 0.375; r_ta(z=0) exponent 0.333
+  exp   q=0.05: r(-2) = 0.779, 1.85, 3.36, 4.45 kpc (x = 0.64, 0.48, 0.28, 0.12); exponent 0.253; r_ta(z=0) exponent 0.342
+  exp   q=0.10: r(-2) = 0.748, 2.39, 2.9, 6.05 kpc (x = 0.61, 0.62, 0.24, 0.16); exponent 0.281; r_ta(z=0) exponent 0.342
+  exp   q=0.20: r(-2) = 0.414, 10.6, 18.7, 21.9 kpc (x = 0.34, 2.74, 1.53, 0.57); exponent 0.542; r_ta(z=0) exponent 0.342
+  [FAIL] (reported) R2 (reported): the infall radial scale scales like the target's r_M ~ M^(1/2) (exponent within 0.05 of 0.5)
+         exponents of r(-2): 0.424, 0.393, 0.375, 0.253, 0.281, 0.542 (turnaround expectation 1/3)
+
+======================================================================================================================
+POST-HOC DIAGNOSTICS (added after the first full run showed C3 failing; reported only -- no frozen verdict changes)
+======================================================================================================================
+  (i) where C3 fails: the local binned ratio against the cumulative cold mass M_c(<r), 5,000 vs 20,000 shells
+    |5k/20k - 1| of the local ratio, x in [0.3, 30] (the frozen C3 measure): median over the 48 curves 0.561, largest 2.823
+    |5k/20k - 1| of the local ratio, x in [3, 30]: median over the 48 curves 0.325, largest 0.956
+    |5k/20k - 1| of the cumulative M_c(<r), x in [1, 30]: median over the 48 curves 0.122, largest 0.250
+    |5k/20k - 1| of the cumulative M_c(<r), x in [3, 30]: median over the 48 curves 0.088, largest 0.250
+    |5k/20k - 1| of the cumulative M_c(<r) at x = 28: median over the 48 curves 0.020, largest 0.104
+
+  (ii) H1 evaluated on the 5,000-shell runs (same evaluator)
+    canonical: best bracket's largest deviation 22.25 (pass line 0.10) -> FAIL
+    alt      : best bracket's largest deviation 17.95 (pass line 0.10) -> FAIL
+
+  (iii) the cumulative cold mass against the target's (canonical footing): M_c,sim(<r)/M_c,target(<r) at x = 1.12 and 28.2
+    q=0.05: 1e+09/point 1.44|0.36  1e+09/exp 3.66|0.28  1e+10/point 2.14|0.48  1e+10/exp 3.66|0.40  1e+11/point 2.92|0.57  1e+11/exp 3.48|0.56  1e+12/point 3.96|0.66  1e+12/exp 4.24|0.65
+    q=0.10: 1e+09/point 1.27|0.38  1e+09/exp 2.74|0.29  1e+10/point 1.98|0.47  1e+10/exp 2.61|0.42  1e+11/point 2.77|0.57  1e+11/exp 3.02|0.56  1e+12/point 4.04|0.65  1e+12/exp 4.12|0.65
+    q=0.20: 1e+09/point 1.04|0.39  1e+09/exp 1.48|0.30  1e+10/point 1.61|0.47  1e+10/exp 1.80|0.44  1e+11/point 2.61|0.58  1e+11/exp 2.41|0.57  1e+12/point 3.81|0.65  1e+12/exp 3.87|0.65
+    at x = 28.2 the simulated cold mass is 0.28-0.66 of the target's (5,000 shells: 0.27-0.66)
+
+  (iv) R2 cross-check with a cumulative scale: the radius where M_c(<r) = M_b (the target puts it at x = sqrt(3) for a point mass,
+      i.e. r ~ M_b^(1/2)); generic profile, both resolutions
+    20k point q=0.05: r = 1.87, 4.03, 9.15, 20.7 kpc (x = 1.54, 1.04, 0.75, 0.54); exponent 0.348
+    20k point q=0.10: r = 2.14, 4.34, 9.79, 20.9 kpc (x = 1.75, 1.12, 0.80, 0.54); exponent 0.332
+    20k point q=0.20: r = 2.37, 5.15, 10.6, 21.9 kpc (x = 1.94, 1.34, 0.87, 0.57); exponent 0.321
+    20k exp   q=0.05: r = 3.32, 4.79, 8.96, 17.2 kpc (x = 2.72, 1.24, 0.73, 0.45); exponent 0.241
+    20k exp   q=0.10: r = 3.79, 6.41, 10.6, 20.5 kpc (x = 3.11, 1.66, 0.87, 0.53); exponent 0.242
+    20k exp   q=0.20: r = 4.72, 7.8, 13.6, 24.1 kpc (x = 3.87, 2.02, 1.12, 0.63); exponent 0.237
+     5k point q=0.05: r = 1.92, 3.31, 7.83, 18.7 kpc (x = 1.58, 0.86, 0.64, 0.49); exponent 0.334
+     5k point q=0.10: r = 1.95, 4.33, 8.69, 19.3 kpc (x = 1.59, 1.12, 0.71, 0.50); exponent 0.329
+     5k point q=0.20: r = 2.27, 5.01, 10.6, 22.8 kpc (x = 1.86, 1.30, 0.87, 0.59); exponent 0.333
+     5k exp   q=0.05: r = 3.07, 4.48, 7.59, 14.3 kpc (x = 2.52, 1.16, 0.62, 0.37); exponent 0.223
+     5k exp   q=0.10: r = 3.87, 5.89, 9.54, 18.1 kpc (x = 3.18, 1.53, 0.78, 0.47); exponent 0.222
+     5k exp   q=0.20: r = 4.59, 7.76, 12.3, 22.9 kpc (x = 3.76, 2.01, 1.01, 0.59); exponent 0.230
+
+======================================================================================================================
+R3: the shared gates as statements (G1 is H1; the door lives or dies on G1)
+======================================================================================================================
+  G1 target        : PASS (H1 above).
+  G2 CMB/growth    : the cold fluid is CDM (collisionless, cold shells under Newtonian gravity only), so its linear growth and
+                     CMB behaviour are LCDM's by construction (not re-tested here).  The simulation's idealised background
+                     (baryons outside the core held smooth) slows the cold perturbation's growth a little; that is a set-up
+                     simplification, not a property of the mechanism.
+  G3 reciprocity   : ordinary Newtonian gravity between the cold fluid and the baryons: the reaction on the baryons is the
+                     Newtonian pull of the cold mass (third law) and the dynamics conserve energy.  The core is held static,
+                     which is an untested hypothesis, not a result.
+  G4 constants     : no constant in the dynamics beyond LCDM's.  The result depends on declared initial-condition choices
+                     (z_i = 100, the full core present from z_i, the bracket q, the smooth-background reading); a pass that
+                     needed one of them would count it against G4.  kappa enters only through the target's a0.
+  G5 well-posedness: collisionless CDM (Vlasov-Poisson) is well posed; Newtonian gravity is Solar-System (Cassini) safe.
+
+  kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+  6/9 checks pass; load-bearing failures: 1   (22 s)
