@@ -27,3 +27,6 @@ leaves items 3-6 open.
 
 ## Log
 - 2026-09-28  folder created; target and gates written; no field-theory result yet.
+- 2026-09-28  equations/ (EQ01 kappa convention, EQ02 empty-dS psi mode in closed form, EQ03 footing family) and
+  occupied_matrix/ (vector-form check 5/5; finite-k scripts; exact evolution shows no exponential growth on the baseline
+  case, final multi-case run pending). No verdict on CA5-GNC-R yet.
