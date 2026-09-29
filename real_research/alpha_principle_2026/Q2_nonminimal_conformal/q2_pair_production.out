@@ -1,0 +1,80 @@
+====================================================================================================
+Q2/q2 pair-production factor, dS_4 charged scalar with xi R phi^2 -- REAL RUN
+====================================================================================================
+
+P1. closed form vs small-|tau| extraction from the Whittaker mode  (xi = 1/6 rows are the conformal scalar)
+     lambda     r      mu    xi     rho       numeric          closed form      rel diff
+      1.30  -1.00  0.00  0.167   1.200   4.3318543285e-07   4.3318543285e-07   2.0e-12
+      1.30  -0.50  0.00  0.167   1.200   9.2320808084e-06   9.2320808083e-06   6.5e-13
+      1.30  +0.00  0.00  0.167   1.200   5.3149202308e-04   5.3149202308e-04   4.1e-16
+      1.30  +0.50  0.00  0.167   1.200   3.0598060877e-02   3.0598060877e-02   1.0e-14
+      1.30  +1.00  0.00  0.167   1.200   6.5210819472e-01   6.5210819472e-01   1.4e-15
+      0.90  +0.70  0.00  0.167   0.748   3.2229542438e-01   3.2229542438e-01   3.1e-15
+      2.50  -0.40  0.00  0.167   2.449   3.8658380742e-10   3.8658380746e-10   9.2e-11
+      0.60  +0.30  0.80  0.167   0.866   1.3268456825e-02   1.3268456825e-02   1.7e-15
+      2.00  +0.50  0.30  0.000   1.356   9.6238022589e-02   9.6238022589e-02   8.2e-15
+      2.50  +1.00  0.00  0.000   2.000   9.5857616783e-01   9.5857616783e-01   1.2e-16
+      1.80  -0.50  0.00  0.000   0.995   1.0460028754e-05   1.0460028754e-05   9.2e-13
+      0.50  +0.60  1.00  0.300   1.612   2.6213984923e-04   2.6213984923e-04   4.3e-15
+  [PASS] P1 closed form = numerically extracted |B/A|^2 on 12 points (worst 9.2e-11)
+
+P2. independent ODE integration from tau = -2000 (second-order WKB initial data) vs closed form
+     lambda     r      mu    xi     ODE r            closed r         rel diff
+      1.30  +0.50  0.00  0.167   3.05958891e-02   3.05980609e-02   7.1e-05
+      2.00  +0.50  0.30  0.000   9.62425772e-02   9.62380226e-02   4.7e-05
+      0.60  +0.30  0.80  0.167   1.32678982e-02   1.32684568e-02   4.2e-05
+      0.50  +0.60  1.00  0.300   2.62180840e-04   2.62139849e-04   1.6e-04
+  [PASS] P2 ODE from the far past reproduces the closed form (Bunch-Davies identification and connection formula independent of the Whittaker asymptotics) (worst 1.6e-04; threshold 1e-3)
+
+P3. r = +-1 is the dS_2 problem: the conformal scalar in dS_4 (xi = 1/6, mass mu) vs the AH1 dS_2 formula at the same (lam, mu)
+     mu     lambda    ratio(dS4 conf, r=+1)    ratio(dS2, +lam)     ratio(dS4 conf, r=-1)   ratio(dS2, -lam)
+     0.0    1.30    6.521081947172e-01      6.521081947172e-01     4.331854328523e-07     4.331854328523e-07
+     0.0    0.80    7.508630781998e-01      7.508630781998e-01     5.202693133173e-04     5.202693133173e-04
+     0.5    1.00    5.000017436712e-01      5.000017436712e-01     6.974660389389e-06     6.974660389389e-06
+     0.9    0.40    5.637142372579e-02      5.637142372579e-02     4.150439535505e-04     4.150439535505e-04
+     1.2    2.00    1.483358981954e-01      1.483358981954e-01     2.487131518894e-12     2.487131518894e-12
+     2.0    0.30    2.960546158250e-05      2.960546158250e-05     6.825670736026e-07     6.825670736026e-07
+  [PASS] P3 the dS_4 conformal per-mode factor at r = +-1 equals the dS_2 minimal-scalar factor (same rho) (worst 0.0e+00)
+
+P4. lambda = 0: N = 1/(exp(2 pi rho) - 1) (thermal, T = H/2pi) from the numerically extracted ratio
+     mu = 1.5, xi = 0.167: rho = 1.4142  N numeric = 1.38363328e-04  Bose-Einstein = 1.38363328e-04
+     mu = 2.0, xi = 0.000: rho = 1.3229  N numeric = 2.45643989e-04  Bose-Einstein = 2.45643989e-04
+     mu = 0.9, xi = 0.300: rho = 1.4697  N numeric = 9.76363060e-05  Bose-Einstein = 9.76363060e-05
+  [PASS] P4 lambda = 0 gives the Gibbons-Hawking Bose-Einstein factor (worst 7.8e-16)
+
+P5. the threshold rho -> 0+:  N rho -> 1/(2 pi (1 - tanh(pi lam r)))
+     D=4 conformal massless, lam_c = 1/2:  N*rho = 0.46233310  predicted 0.46238311
+     D=4 minimal massless,   lam_c = 3/2:  N*rho = 8.93791434  predicted 8.93796491
+     D=2 minimal massless,   lam_c = 1/2 (r = 1):  N*rho = 1.92100529  predicted 1.92105540
+  [PASS] P5 pair number diverges as 1/rho at the threshold in all three cases (a threshold of the out-particle notion) (worst 1.1e-04)
+     For lambda < lambda_c (mu_w real) rho is imaginary: the out modes are real powers (-tau)^{1/2 +- mu_w}, no oscillation, no particle number.
+
+P6. large lambda
+     conformal massless, lam = 200, r = +1: ratio = 0.500982  (-> 1/2, i.e. N -> 1 per mode along the field)
+     oblique (lam = 2000, theta = 0.1; pi(rho - lam r) = 31.39): -ln ratio = 62.779118 vs pi lam theta^2 = 62.831853  (flat-space Schwinger Gaussian exp(-pi k_perp^2/eE) at k = eE/H, k_perp = k sin(theta))
+  [PASS] P6 large-lambda limits: ratio(r=1) -> 1/2 and the flat-space transverse Gaussian 
+
+P7. the per-mode factor depends on e only through lambda = eE/H^2
+     alpha           1/alpha     e          E/H^2 needed      ratio
+     7.297353e-03     137.036   0.30282     4.292949e+00   1.375441582913e-02
+     1.000000e-02     100.000   0.35449     3.667232e+00   1.375441582913e-02
+     2.000000e-02      50.000   0.50133     2.593125e+00   1.375441582913e-02
+     5.000000e-01       2.000   2.50663     5.186250e-01   1.375441582913e-02
+     1.000000e-04   10000.000   0.03545     3.667232e+01   1.375441582913e-02
+  [PASS] P7 the same lambda (hence the same per-mode factor) is reached at every alpha by rescaling E/H^2 (max rel diff 0.0e+00)
+     => alpha = lambda^2/(4 pi eps^2), eps = E/H^2: the factor fixes lambda, not alpha (structural, as in AH1 C5).
+
+Reference table (unscored): conformal massless scalar, per-mode N(lambda, r) = ratio/(1 - ratio) and its angular average <N> = (1/2) Int dr N
+     lambda    rho      N(r=-1)      N(r=0)       N(r=+1)      <N>
+      0.55    0.229   6.74424e-02   3.10631e-01   8.01535e+00   1.20947e+00
+      0.75    0.559   1.15849e-03   3.07419e-02   3.32390e+00   3.53444e-01
+      1.00    0.866   2.68715e-05   4.35228e-03   2.32057e+00   1.84682e-01
+      2.00    1.936   4.51392e-11   5.19751e-06   1.49039e+00   5.93005e-02
+      5.00    4.975   1.31049e-27   2.65844e-14   1.17055e+00   1.86299e-02
+
+====================================================================================================
+CHECKS: 7/7 passed
+VERDICT: for the charged scalar in dS_4 the per-mode Bogoliubov factor is exp(-2 pi rho) cosh(pi(lam r + rho))/cosh(pi(lam r - rho)),
+  rho^2 = lam^2 + mu^2 + 12 xi - 9/4.  At xi = 1/6, m = 0: rho^2 = lam^2 - 1/4 and the r = +-1 modes are exactly the dS_2 problem;
+  off-axis r shifts lam -> lam r inside the cosh ratio only.  It depends on e only through lam (alpha free).  The pair number is
+  singular as 1/rho at lam = lam_c (a threshold of the particle notion, not of the physics).  Scalar only; no claim about alpha.

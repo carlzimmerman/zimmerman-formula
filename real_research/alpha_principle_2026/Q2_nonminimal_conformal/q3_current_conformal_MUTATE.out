@@ -1,0 +1,53 @@
+====================================================================================================
+Q2/q3 induced current, dS_4 charged scalar with xi R phi^2 -- MUTATE CONTROL (minimal-coupling subtraction constant used)
+====================================================================================================
+
+S1. Adiabatic expansion with xi (derived; not copied from AH4)
+     chi = (2W)^(-1/2) exp(-i Int W) solves chi'' + om2 chi = 0  <=>  W^2 = om2 - (1/2)(W''/W - (3/2)(W'/W)^2):  residual = 0
+     second-order term W2(xi) = -Derivative(Om(tt), (tt, 2))/(4*Om(tt)**2) + 3*Derivative(Om(tt), tt)**2/(8*Om(tt)**3) + 6*xi/(tt**2*Om(tt)) - 1/(tt**2*Om(tt))
+     W2(xi) - AH4 delta at xi = 0                                  = 0
+     W2(1/6) - [(3/4)(Om'/Om)^2 - (1/2) Om''/Om]/(2 Om)   (no a''/a term)            = 0
+     W2(xi) - AH4 delta - 12 xi/(2 Om tau^2)                                        = 0
+  [PASS] S1 the xi-dependent second-order adiabatic term is s/tau^2 with s = 12 xi - 2 (AH4 at xi = 0; the a''/a term vanishes at xi = 1/6) 
+
+S2. Coefficient of the logarithmic divergence of the subtraction, from the large-p expansion of p^2 I(p; mu, s)
+     coefficient of 1/p in p^2 I(p; mu, s) at large p:  L(lam, mu, s) = -lam/6
+     2 L = -lam/3  ->  the coefficient of ln(mu_sub) in f is -2L; compare +lam/3 (AH4 V3)
+        (mu, s) = (1.0, -2.0):  -2 L / lam = 0.3333333333333333
+        (mu, s) = (2.0, 0.0):  -2 L / lam = 0.3333333333333333
+        (mu, s) = (0.7, 3.5):  -2 L / lam = 0.3333333333333333
+  [PASS] S2 the ln(m/H) coefficient is lam/3, independent of the subtraction mass and of s (hence of xi) (independent of mu and s: True; equals lam/3: True)
+
+S3. Delta: numerical p-space integral vs the elementary result (lam/3) ln(mu_sub/mu_eff); identity; breakpoint stability
+     lam = 0.5, mu_eff = 1.3000, mu_sub = 0.8:  Delta_p numeric = -0.0809179692969501   (lam/3) ln(mu_sub/mu_eff) = -0.0809179692969501
+     lam = 0.3, mu_eff = 1.4142, mu_sub = 1.0:  Delta_p numeric = -0.0346573590279973   (lam/3) ln(mu_sub/mu_eff) = -0.0346573590279973
+     lam = 1.2, mu_eff = 0.4000, mu_sub = 3.0:  Delta_p numeric = 0.805961208216906   (lam/3) ln(mu_sub/mu_eff) = 0.805961208216906
+     lam = 0.1, mu_eff = 5.0000, mu_sub = 0.05:  Delta_p numeric = -0.15350567286627   (lam/3) ln(mu_sub/mu_eff) = -0.15350567286627
+  [PASS] S3 Delta_p = (lam/3) ln(mu_sub/mu_eff) numerically (4 cases), Delta_p(mu, mu) = 0, stable under breakpoints (worst rel diff 2.1e-41)
+
+DIRECT mode sums (17 points: A xi = 0 regression x3, B xi != 0 massive x9, C exactly massless conformal, matched x5); running ...
+     (45 s)
+     set  lambda  mu_mode  xi     mu_sub  s_true    direct f          f_0+Delta (with surface)  ratio      | f_0+Delta_p only  ratio       tail c2
+     A    0.50    2.00  0.000    2.00   -2.00  +0.07222645   +0.07222646          +1.000000  | +0.07222646   +1.000000   +2.6e-06
+     A    0.30    1.00  0.000    1.00   -2.00  +0.38501253   +0.38501253          +1.000000  | +0.38501253   +1.000000   +6.1e-07
+     A    0.40    1.40  0.000    1.40   -2.00  +0.17525562   +0.17525562          +1.000000  | +0.17525562   +1.000000   +1.3e-06
+     B    0.30    1.00  0.167    1.00   +0.00  -0.18896245   +0.01103754          -17.119983  | +0.01103754   -17.119983   -2.2e-06
+     B    0.80    1.00  0.167    1.00   +0.00  -0.49525660   +0.03807669          -13.006817  | +0.03807669   -13.006817   -4.9e-06
+     B    0.50    0.50  0.167    0.50   +0.00  -0.34007416   -0.00674085          +50.449781  | -0.00674085   +50.449781   -1.1e-06
+     B    1.20    0.70  0.167    0.70   +0.00  -0.73097346   +0.06902202          -10.590439  | +0.06902202   -10.590439   -8.0e-07
+     B    0.40    2.00  0.167    2.00   +0.00  -0.26069715   +0.00596947          -43.671717  | +0.00596947   -43.671717   -1.3e-05
+     B    0.90    0.60  0.167    0.60   +0.00  -0.57466359   +0.02533666          -22.681106  | +0.02533666   -22.681106   -2.0e-06
+     B    0.50    1.50  0.100    1.50   -0.80  -0.14564503   +0.05435496          -2.679517  | +0.05435496   -2.679517   -2.9e-06
+     B    0.30    0.80  0.100    0.80   -0.80  -0.02769223   +0.09230777          -0.299999  | +0.09230777   -0.299999   -1.5e-07
+     B    0.60    1.00  0.300    1.00   +1.60  -0.80113469   -0.08113475          +9.874125  | -0.08113475   +9.874125   -1.5e-05
+     C    0.30    0.00  0.167    1.00   -1.00  -0.00810756   +0.09189244          -0.088229  | +0.09189244   -0.088229   -1.9e-07
+     C    0.50    0.00  0.167    1.00   -1.00  -0.01111388   +0.15555278          -0.071448  | +0.15555278   -0.071448   -3.2e-07
+     C    0.80    0.00  0.167    1.00   -1.00  -0.00901986   +0.25764678          -0.035009  | +0.25764678   -0.035009   -5.2e-07
+     C    0.30    0.00  0.167    2.00   -4.00  +0.36120714   +0.16120716          +2.240640  | +0.16120716   +2.240640   +6.8e-06
+     C    0.80    0.00  0.167    2.00   -4.00  +0.97581932   +0.44248603          +2.205311  | +0.44248603   +2.205311   +1.5e-05
+     worst |ratio - 1| (with surface term):  A 1.0e-07   B 4.9e+01   C 1.2e+00   Cm nan
+     worst |ratio - 1| (p-space only, H4 as literally pre-registered):  A 1.0e-07   B 4.9e+01   C 1.2e+00   Cm nan
+
+MUTATE CONTROL: the minimal-coupling subtraction constant s = -2 was used for the xi != 0 modes and for the massless-conformal matched set.
+  A (xi = 0, unaffected): pass;  B: FAIL;  C: FAIL
+  B and C FAILED as required -- CONTROL FAILS AS REQUIRED

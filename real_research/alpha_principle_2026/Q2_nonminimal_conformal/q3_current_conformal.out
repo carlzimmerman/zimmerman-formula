@@ -1,0 +1,131 @@
+====================================================================================================
+Q2/q3 induced current, dS_4 charged scalar with xi R phi^2 -- REAL RUN
+====================================================================================================
+
+S1. Adiabatic expansion with xi (derived; not copied from AH4)
+     chi = (2W)^(-1/2) exp(-i Int W) solves chi'' + om2 chi = 0  <=>  W^2 = om2 - (1/2)(W''/W - (3/2)(W'/W)^2):  residual = 0
+     second-order term W2(xi) = -Derivative(Om(tt), (tt, 2))/(4*Om(tt)**2) + 3*Derivative(Om(tt), tt)**2/(8*Om(tt)**3) + 6*xi/(tt**2*Om(tt)) - 1/(tt**2*Om(tt))
+     W2(xi) - AH4 delta at xi = 0                                  = 0
+     W2(1/6) - [(3/4)(Om'/Om)^2 - (1/2) Om''/Om]/(2 Om)   (no a''/a term)            = 0
+     W2(xi) - AH4 delta - 12 xi/(2 Om tau^2)                                        = 0
+  [PASS] S1 the xi-dependent second-order adiabatic term is s/tau^2 with s = 12 xi - 2 (AH4 at xi = 0; the a''/a term vanishes at xi = 1/6) 
+
+S2. Coefficient of the logarithmic divergence of the subtraction, from the large-p expansion of p^2 I(p; mu, s)
+     coefficient of 1/p in p^2 I(p; mu, s) at large p:  L(lam, mu, s) = -lam/6
+     2 L = -lam/3  ->  the coefficient of ln(mu_sub) in f is -2L; compare +lam/3 (AH4 V3)
+        (mu, s) = (1.0, -2.0):  -2 L / lam = 0.3333333333333333
+        (mu, s) = (2.0, 0.0):  -2 L / lam = 0.3333333333333333
+        (mu, s) = (0.7, 3.5):  -2 L / lam = 0.3333333333333333
+  [PASS] S2 the ln(m/H) coefficient is lam/3, independent of the subtraction mass and of s (hence of xi) (independent of mu and s: True; equals lam/3: True)
+
+S3. Delta: numerical p-space integral vs the elementary result (lam/3) ln(mu_sub/mu_eff); identity; breakpoint stability
+     lam = 0.5, mu_eff = 1.3000, mu_sub = 0.8:  Delta_p numeric = -0.0809179692969501   (lam/3) ln(mu_sub/mu_eff) = -0.0809179692969501
+     lam = 0.3, mu_eff = 1.4142, mu_sub = 1.0:  Delta_p numeric = -0.0346573590279973   (lam/3) ln(mu_sub/mu_eff) = -0.0346573590279973
+     lam = 1.2, mu_eff = 0.4000, mu_sub = 3.0:  Delta_p numeric = 0.805961208216906   (lam/3) ln(mu_sub/mu_eff) = 0.805961208216906
+     lam = 0.1, mu_eff = 5.0000, mu_sub = 0.05:  Delta_p numeric = -0.15350567286627   (lam/3) ln(mu_sub/mu_eff) = -0.15350567286627
+  [PASS] S3 Delta_p = (lam/3) ln(mu_sub/mu_eff) numerically (4 cases), Delta_p(mu, mu) = 0, stable under breakpoints (worst rel diff 2.1e-41)
+
+DIRECT mode sums (19 points: A xi = 0 regression x3, B xi != 0 massive x9, C exactly massless conformal, matched x5, Cm mismatched-s variant x2); running ...
+     (61 s)
+     set  lambda  mu_mode  xi     mu_sub  s_true    direct f          f_0+Delta (with surface)  ratio      | f_0+Delta_p only  ratio       tail c2
+     A    0.50    2.00  0.000    2.00   -2.00  +0.07222645   +0.07222646          +1.000000  | +0.07222646   +1.000000   +2.6e-06
+     A    0.30    1.00  0.000    1.00   -2.00  +0.38501253   +0.38501253          +1.000000  | +0.38501253   +1.000000   +6.1e-07
+     A    0.40    1.40  0.000    1.40   -2.00  +0.17525562   +0.17525562          +1.000000  | +0.17525562   +1.000000   +1.3e-06
+     B    0.30    1.00  0.167    1.00   +0.00  +0.01103755   +0.01103754          +1.000001  | +0.01103754   +1.000001   -2.0e-06
+     B    0.80    1.00  0.167    1.00   +0.00  +0.03807674   +0.03807669          +1.000001  | +0.03807669   +1.000001   -4.7e-06
+     B    0.50    0.50  0.167    0.50   +0.00  -0.00674083   -0.00674085          +0.999997  | -0.00674085   +0.999997   -1.1e-06
+     B    1.20    0.70  0.167    0.70   +0.00  +0.06902621   +0.06902202          +1.000061  | +0.06902202   +1.000061   -1.2e-06
+     B    0.40    2.00  0.167    2.00   +0.00  +0.00596950   +0.00596947          +1.000005  | +0.00596947   +1.000005   -8.3e-06
+     B    0.90    0.60  0.167    0.60   +0.00  +0.02533641   +0.02533666          +0.999990  | +0.02533666   +0.999990   -2.0e-06
+     B    0.50    1.50  0.100    1.50   -0.80  +0.05435497   +0.05435496          +1.000000  | +0.05435496   +1.000000   -1.7e-06
+     B    0.30    0.80  0.100    0.80   -0.80  +0.09230777   +0.09230777          +1.000000  | +0.09230777   +1.000000   -7.0e-08
+     B    0.60    1.00  0.300    1.00   +1.60  -0.08113470   -0.08113475          +0.999999  | -0.08113475   +0.999999   -1.4e-05
+     C    0.30    0.00  0.167    1.00   -1.00  +0.09189244   +0.09189244          +1.000000  | +0.09189244   +1.000000   -1.9e-09
+     C    0.50    0.00  0.167    1.00   -1.00  +0.15555279   +0.15555278          +1.000000  | +0.15555278   +1.000000   -1.9e-07
+     C    0.80    0.00  0.167    1.00   -1.00  +0.25764681   +0.25764678          +1.000000  | +0.25764678   +1.000000   -2.6e-07
+     C    0.30    0.00  0.167    2.00   -4.00  +0.16120715   +0.16120716          +1.000000  | +0.16120716   +1.000000   +2.9e-06
+     C    0.80    0.00  0.167    2.00   -4.00  +0.44248601   +0.44248603          +1.000000  | +0.44248603   +1.000000   +6.0e-06
+     Cm   0.30    0.00  0.167    1.00   +0.00  +0.19189244   +0.19189244          +1.000000  | +0.09189244   +2.088229   -4.2e-10
+     Cm   0.80    0.00  0.167    2.00   +0.00  +1.50915262   +1.50915270          +1.000000  | +0.44248603   +3.410622   +2.5e-05
+     worst |ratio - 1| (with surface term):  A 1.0e-07   B 6.1e-05   C 1.1e-07   Cm 5.1e-08
+     worst |ratio - 1| (p-space only, H4 as literally pre-registered):  A 1.0e-07   B 6.1e-05   C 1.1e-07   Cm 2.4e+00
+  [PASS] A direct mode sum reproduces AH4's closed form at xi = 0 (regression of the code, 3 points) (worst 1.0e-07)
+  [PASS] B direct mode sum = f_0(mu_eff) + (lam/3) ln(mu/mu_eff) for xi != 0 massive fields (9 points) (worst 6.1e-05)
+  [PASS] C direct mode sum for the exactly massless conformal scalar = f_0(sqrt 2) + (lam/3) ln(mu_s/sqrt 2) (5 matched points, includes lam = 1/2) (worst 1.1e-07)
+  [PASS] Cm the mismatched-s variant agrees with the surface-term formula (tests Delta_surface; 2 points) (worst 5.1e-08; p-space-only version misses by 2.4e+00)
+     H4 as literally pre-registered (no surface term): REFUTED at the mismatched points; amended in Amendment 3.
+
+Convergence test: one B point (0.3, 1.0, 1/6) and one C point (0.8, mu_s = 1) with n_seg = 90, n_gl = 16
+     direct f (fine) = +0.01103754, +0.25764679;  (coarse) = +0.01103755, +0.25764681
+  [PASS] convergence: doubled quadrature changes the direct sums by < 1e-4 (max rel change 9.7e-08)
+
+H5. (1/lam) d f / d ln(mu_sub) at FIXED modes, matched subtraction s = mu_eff^2 - 2 - mu_sub^2, four mode indices (mu_eff^2 = 1 + 12 xi)
+     xi       mu_eff     range of mu_sub    slope        (expect 1/3)
+     0.000    1.0000    (0.01, 0.02)        0.333333
+     0.000    1.0000    (20.0, 40.0)        0.333333
+     0.100    1.4832    (0.01, 0.02)        0.333333
+     0.100    1.4832    (20.0, 40.0)        0.333333
+     0.167    1.7321    (0.01, 0.02)        0.333333
+     0.167    1.7321    (20.0, 40.0)        0.333333
+     0.300    2.1448    (0.01, 0.02)        0.333333
+     0.300    2.1448    (20.0, 40.0)        0.333333
+     (for contrast, MISMATCHED s = 0 at mu_eff = sqrt 2, mu_sub 20 -> 40: slope 577.411; the extra lam mu_sub^2/3 is a gauge-non-invariant term, not a running)
+  [PASS] H5 the coefficient of ln(reference scale) is 1/3 per lam at small and large scale for every xi (matched subtraction) 
+
+H6. Heavy fields, F_xi(mu) = f/lam at lam = 1e-3 with mu_sub = mu, s = 12 xi - 2, mu_eff^2 = mu^2 + 12 xi
+     xi       mu=5           mu=10          mu=20          mu=40           slope(10->40)   C(20)      C(40)      C_inf (Richardson)
+     0.000    1.633376e-02  3.935173e-03  9.750807e-04  2.432337e-04    -2.0080    0.390032   0.389174   0.388888
+     0.100    7.735497e-03  1.899865e-03  4.729041e-04  1.180981e-04    -2.0039    0.189162   0.188957   0.188889
+     0.167    2.240280e-03  5.566709e-04  1.389584e-04  3.472656e-05    -2.0014    0.055583   0.055563   0.055556
+     0.300    -8.234742e-03 -2.097671e-03 -5.269324e-04 -1.318915e-04   -1.9957    -0.210773   -0.211026   -0.211111
+     C(xi) = C0 + c1 xi with C0 = 0.388888 (AH4: |f/lam| ~ 0.389/mu^2), c1 = -1.999996;  max deviation of xi = 0.1, 1/6 from the line: 5.54e-07
+  [PASS] H6a heavy-field power law is ~1/mu^2 for every xi tested (slope in [-2.3, -1.7]) 
+  [PASS] H6b the 1/mu^2 coefficient is affine in xi (deviation <= 2e-3) (deviation 5.5e-07)
+  [PASS] H6c the slope c1 = dC/dxi equals -2 (derived in Amendment 3 before this run; tolerance 5e-3) (c1 = -2.00000)
+     C(xi = 1/6) = 0.055556  (conformal coupling reduces the heavy-field coefficient from 0.3889 to 0.0556; the fraction C(1/6)/C0 = 0.1429)
+
+H7. Light fields at lam = 1e-3
+     xi = 0     mu =  0.05   F = +1.195500e+03
+     xi = 0     mu =  0.10   F = +2.961965e+02
+     xi = 0     mu =  0.20   F = +7.152323e+01
+     xi = 0: log-log slope of |F| between mu = 0.05 and 0.1: -2.0130  (IR hyperconductivity, mu_w -> 3/2)
+     xi = 1/6   mu =  0.01   F = -1.23158336   F - (1/3) ln mu = +0.30347337
+     xi = 1/6   mu =  0.02   F = -1.00066325   F - (1/3) ln mu = +0.30334442
+  [PASS] H7a minimal scalar: |F| ~ mu^-2 as mu -> 0 (slope in [-2.4, -1.6]) (slope -2.013)
+  [PASS] H7b conformal scalar: F - (1/3) ln mu converges as mu -> 0 (no power-law blow-up) (difference 1.3e-04)
+
+H8. Smoothness of the exactly massless conformal current (subtraction reference mu_s = 1) through lam = 1/2
+     lam         f_massless(lam)
+     eps = 1e-03:  right slope +0.32591749  left slope +0.32566413  (Dr - Dl)/eps = +0.253360   (a kink would make Dr - Dl -> const, i.e. this ratio ~ 1/eps)
+     eps = 2e-03:  right slope +0.32604464  left slope +0.32553792  (Dr - Dl)/eps = +0.253360   (a kink would make Dr - Dl -> const, i.e. this ratio ~ 1/eps)
+  [PASS] H8 no kink at lam = 1/2: (Dr - Dl)/eps is the same at eps = 1e-3 and 2e-3 (a smooth function; a kink would double it) (ratio - 1 = 2.4e-06)
+
+H9. Ties for the conformal scalar (xi = 1/6): sigma/H = alpha G_c(mu), G_c = |F|/pi at lam = 1e-3
+     mu =  0.5   |G_c| = 6.681366e-03
+     mu =  1.0   |G_c| = 1.112866e-02
+     mu =  2.0   |G_c| = 4.584403e-03
+     mu =  5.0   |G_c| = 7.131031e-04
+     c            mu=0.5       mu=1.0       mu=2.0       mu=5.0        spread (max/min)
+     kappa        7.4835e+01   4.4929e+01   1.0907e+02   7.0116e+02    1.56e+01
+     kappa/pi     2.3821e+01   1.4301e+01   3.4717e+01   2.2319e+02    1.56e+01
+     1/(2 pi)     2.3821e+01   1.4301e+01   3.4717e+01   2.2319e+02    1.56e+01
+     1/pi         4.7641e+01   2.8603e+01   6.9433e+01   4.4637e+02    1.56e+01
+     1            1.4967e+02   8.9858e+01   2.1813e+02   1.4023e+03    1.56e+01
+     2 kappa      1.4967e+02   8.9858e+01   2.1813e+02   1.4023e+03    1.56e+01
+  [PASS] H9a no tie on the conformal-scalar conductivity fixes alpha independently of the mass (spread < 2 would count) 
+     exactly massless, subtraction scale mu_s = 1 (a scale CHOICE, unscored): F = +0.30351636, |G| = 0.096612
+        tie kappa    : required alpha_H = 5.17533e+00  (miss vs 1/137.036: 7.08e+02)
+        tie kappa/pi : required alpha_H = 1.64736e+00  (miss vs 1/137.036: 2.25e+02)
+        tie 1/(2 pi) : required alpha_H = 1.64736e+00  (miss vs 1/137.036: 2.25e+02)
+        tie 1/pi     : required alpha_H = 3.29472e+00  (miss vs 1/137.036: 4.50e+02)
+        tie 1        : required alpha_H = 1.03507e+01  (miss vs 1/137.036: 1.42e+03)
+        tie 2 kappa  : required alpha_H = 1.03507e+01  (miss vs 1/137.036: 1.42e+03)
+     Electron-mass reading (EXTRAPOLATION, F ~ C/mu^2 with C(1/6) = 0.0556): mu_e = 3.554e+38; required alpha ~ c mu_e^2/(pi-normalised C):
+        tie sigma/H = kappa: alpha ~ 3.57e+78
+        tie sigma/H = kappa/pi: alpha ~ 1.14e+78
+
+====================================================================================================
+CHECKS: 16/16 passed   (elapsed 144 s)
+VERDICT (against the declared criteria): see the numbers above.  xi changes the finite part and the 1/mu^2 coefficient, not the ln(m/H)
+  coefficient (lam/3, the flat-space running) and not the power law.  The exactly massless conformal current is alpha x (a log of the
+  scale at which alpha is defined) + a finite function of lam; no tie on it fixes alpha.  Scalar only; kappa = 1/2 stays FITTED.

@@ -1,0 +1,32 @@
+====================================================================================================
+Q2/q1 mode equation -- MUTATE CONTROL (dS_2 index used for dS_4)
+====================================================================================================
+
+M1. Covariant derivation, D = 2..6 (metric -> Christoffels -> Ricci scalar -> box with gauge field)
+     D = 2:  R = 2*H**2   [R - D(D-1)H^2 = 0: True]   mode-equation residual = 0
+     D = 3:  R = 6*H**2   [R - D(D-1)H^2 = 0: True]   mode-equation residual = 0
+     D = 4:  R = 12*H**2   [R - D(D-1)H^2 = 0: True]   mode-equation residual = 0
+     D = 5:  R = 20*H**2   [R - D(D-1)H^2 = 0: True]   mode-equation residual = 0
+     D = 6:  R = 30*H**2   [R - D(D-1)H^2 = 0: True]   mode-equation residual = 0
+  [PASS] M1 general-D mode equation and R = D(D-1) H^2 (5 dimensions, zero symbolic residual) 
+
+M2. Whittaker substitution chi(tau) = W(2 i k tau), kappa_W = -i lam r, symbolic
+     general xi, mu_w^2 = 9/4 - lam^2 - mu^2 - 12 xi :  residual = 0
+     xi = 1/6, m = 0, mu_w^2 = 1/4 - lam^2            :  residual = 0
+     (power test) dS_2 index at xi = 0                :  residual = -2/tau**2  (must be non-zero)
+  [PASS] M2 Whittaker index reproduces the mode equation symbolically (general xi and the conformal massless case) 
+
+M3. Numerical ODE (DOP853, rtol 1e-13) from tau = -3 to -0.2 vs the Whittaker mode; M4 Wronskian; M5 BD normalisation
+     lambda    r      mu    xi      |ODE - Whittaker| (rel)     |Wronskian - i|     |2k|q|^2 - 1| at tau=-3000
+      0.80  +0.50  0.00  0.167   2.254e-14                1.367e-16           1.333e-04
+      1.50  -0.30  0.00  0.167   3.395e-14                1.367e-16           1.501e-04
+      0.30  +0.90  0.00  0.167   2.184e-13                1.367e-16           9.001e-05
+      1.20  +0.20  0.70  0.167   6.423e-14                1.367e-16           7.990e-05
+      0.50  +0.40  1.00  0.000   3.438e+00                1.367e-16           6.660e-05
+      1.30  +1.00  0.50  0.000   5.735e+00                1.367e-16           4.335e-04
+      0.60  -0.60  0.40  0.300   1.363e+00                1.367e-16           1.200e-04
+      0.40  -1.00  0.90  0.050   1.394e+00                1.367e-16           1.334e-04
+  [FAIL] M3 numerical ODE = Whittaker mode on 8 parameter sets (worst 5.73e+00; threshold 1e-8)
+
+MUTATE CONTROL: the dS_2 index 1/4 - lam^2 - mu^2 was used for the dS_4 modes (identical for xi = 1/6, wrong for the xi != 1/6 sets).
+  M3 FAILED as required -- CONTROL FAILS AS REQUIRED

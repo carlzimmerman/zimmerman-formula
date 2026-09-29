@@ -1,0 +1,72 @@
+====================================================================================================
+Q2/q4 the conformal threshold lambda_c = 1/2 -- REAL RUN
+====================================================================================================
+
+Q1. Threshold table from mu_w^2 = (D-1)^2/4 - lam^2 - mu^2 - xi D(D-1)  (lam_c: mu_w^2 = 0 at fixed mu, xi)
+     D   xi_c        lam_c (minimal, m=0)   lam_c (conformal, m=0)   conformal massive lam_c(mu)
+     2   0           1/2                    1/2                      sqrt(1 - 4*mu**2)/2
+     3   1/8         1                      1/2                      sqrt(1 - 4*mu**2)/2
+     4   1/6         3/2                    1/2                      sqrt(1 - 4*mu**2)/2
+     5   3/16        2                      1/2                      sqrt(1 - 4*mu**2)/2
+     6   1/5         5/2                    1/2                      sqrt(1 - 4*mu**2)/2
+     independent conformal-rescaling route: coefficient of 1/tau^2 equals mu^2 + xi D(D-1) - D(D-2)/4 for D = 2..6: True
+     D = 2: xi_c = 0, so the MINIMAL dS_2 scalar is already the conformal one: 'dS_2 minimal' and 'dS_4 conformal' are one case, not two independent occurrences of 1/2.
+  [PASS] Q1 threshold table: (D-1)/2 minimal, 1/2 conformal in every D, sqrt(1/4 - mu^2) massive conformal; independent 1/tau^2 coefficient 
+
+Q2. Fall-to-the-centre: chi'' + g chi/tau^2 = 0 (late-time, k -> 0 limit; g = lam^2 for the conformal massless scalar)
+     chi ~ (-tau)^s:  s(s-1) + g = 0  ->  s = [1/2 - sqrt(1 - 4*g)/2, sqrt(1 - 4*g)/2 + 1/2]   (real for g <= 1/4, complex = log-oscillation for g > 1/4; g_c = 1/4, lam_c = 1/2)
+     lam     rho = sqrt(lam^2 - 1/4)   predicted zeros ~ rho ln(1e12)/pi   numeric zeros of the real solution
+     0.30      0.0000                     0.00                          0
+     0.45      0.0000                     0.00                          0
+     0.55      0.2291                     2.02                          2
+     0.80      0.6245                     5.49                          5
+  [PASS] Q2 lam_c = 1/2 is the inverse-square critical constant: no oscillation below, log-oscillation (zero counts as rho ln(1e12)/pi) above 
+
+Q3. Units: lam = e E c / (hbar H^2)
+     dimensional dependencies of e E c/(hbar H^2): {} (empty = dimensionless)
+     H0 = 2.1843e-18 s^-1;  F_c = hbar H^2/(2 c) = 8.392e-79 N (mass independent);  E_c = F_c/e = 5.238e-60 V/m;  Hubble mass hbar H/c^2 = 2.563e-69 kg = 1.438e-33 eV
+  [PASS] Q3 lam is dimensionless in SI; lam_c = 1/2 is the mass-independent force hbar H^2/(2c) 
+
+Q4. Relation to a0 = kappa c H
+     F_c = m a0  <=>  m = hbar H/(2 kappa c^2): for kappa = 1/2 this is exactly the Hubble mass -- the statement 'lam_c = kappa' is the
+     restatement 'the critical force equals (Hubble mass) x a0'; no independent content.
+     At the Hubble mass mu = 1 the massive conformal scalar has lam_c^2 = 1/4 - mu^2 = -0.75 < 0: NO threshold exists there (the threshold needs mu < 1/2).
+     kappa        mu_* = 1/(2 sqrt(1 + kappa^2))   root of sqrt(1/4 - mu^2)/mu = kappa    mu_* < 1/2?
+     0.50000     0.4472135955                          0.4472135955           True
+     0.46500     0.4533807131                          0.4533807131           True
+     0.55000     0.4381079543                          0.4381079543           True
+     0.15915     0.4937852461                          0.4937852461           True
+     As mu -> 0 the acceleration a_c = F_c/m diverges: there is NO finite, mass-independent acceleration attached to the massless threshold.
+  [PASS] Q4 a0 is reached only at an arbitrary mass (exists for every kappa); no mass-independent acceleration 
+
+Q5. Can lam_c constrain alpha?  It fixes eE/H^2, so E_c/H^2 = lam_c/e for any alpha:
+     alpha           E_c/H^2 = 1/(2 e)
+     7.297353e-03   1.65113
+     1.000000e-02   1.41047
+     2.000000e-02   0.99736
+     5.000000e-01   0.19947
+     1.000000e-04   14.10474
+     x = Lambda G hbar/c^3 = 2.8485e-122 (AH5's inputs);  rho_E/rho_Lambda at lam_c = lam^2 x/(9 alpha) = 1.084e-121
+     the tie rho_E(E_c) = rho_Lambda would give alpha = lam_c^2 x/9 = 7.913e-124   (vs 1/137.036 = 7.297e-03; ratio 1.08e-121); arithmetic on a tie, not a candidate
+  [PASS] Q5 lam_c fixes E/H^2 for any alpha (alpha spans > 2 at fixed lam_c); the only dimensionless tie built from it gives alpha ~ 1e-123 
+
+Q6. Coincidence count over the natural cases (D = 2..6, minimal and conformal massless scalars)
+     natural cases: 10; distinct lam_c values: ['1/2', '1', '3/2', '2', '5/2']; cases equal to kappa = 1/2: 6 (D=2 minimal, D=2 conformal, D=3 conformal, D=4 conformal, D=5 conformal, D=6 conformal)
+     of the 5 distinct values, 1 equals kappa. All five conformal cases equal 1/2 by the identity (D-1)^2/4 - D(D-2)/4 = 1/4;
+     D = 2 minimal is the same field as D = 2 conformal. A fitted kappa near a small rational is not evidence: this is a coincidence count, not a p-value.
+  [PASS] Q6 the number of natural thresholds equal to kappa is fixed by the identity 1/4 (five conformal cases + D = 2 minimal), not by a coincidence of independent origin 
+
+Q7. Pre-registered verdict rule (LEAD only if ALL hold):
+     (a) NOT the inverse-square constant               : False
+     (b) changes with kappa                            : False
+     (c) mass-independent acceleration tied to a0      : False
+     (d) constrains alpha                              : False
+     => lambda_c = 1/2 is NOT a lead (a numerical coincidence of the conformal 1/4 with the fitted kappa = 1/2)
+  [PASS] Q7 verdict rule applied: not a lead 
+
+====================================================================================================
+CHECKS: 7/7 passed
+VERDICT: lambda_c = 1/2 is the classical critical inverse-square constant (1/4) of the conformally mapped mode equation, identical for every
+  conformal scalar in every dimension (3/2 for the minimal massless dS_4 scalar), a mass-independent force scale F_c = hbar H^2/(2c) with no
+  finite acceleration form, tied to a0 only through an arbitrary mass, blind to kappa, and it fixes eE/H^2, not e.  Not a lead on alpha or on kappa.
+  kappa = 1/2 stays FITTED; alpha stays an INPUT.
