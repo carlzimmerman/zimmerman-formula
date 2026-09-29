@@ -28,3 +28,12 @@ Frozen criteria per variant committed before any script; MUTATE control that mus
 
 ## Owners (requests)
 11A: the orchestrating session's agent (CFG171). 11B: the calculation chat (CFG173). 11C: the Opus/Fable chat (CFG172). Literature status for flowing-vacuum and aether-MOND models, and the G6 limits from their sources: the data chat.
+
+## Addendum 1 (the owner's clarification, recorded before any door-11 script or number; criteria otherwise unchanged)
+
+The owner specified the picture: the vacuum flow comes from ONE direction ("the top"), not from all around, and it is **compacted (compressed) as it pushes through matter**; the Λ-vacuum is unlike ordinary matter, and the extra gravity is a boosted effect of the flow itself. This makes **11B the primary variant**, refined as **11B′ — a compressible directional flow**: the medium streams in one direction, its density rises where it crosses baryons, and the boost comes from that compression. 11A (inflow from all around) is kept only as a control reading.
+
+A second reading is recorded for 11C: if "the top" is the **time direction** (the flow is the cosmic arrow of time, a timelike flow present everywhere, as in an aether or khronon), the flow is spatially isotropic in every galaxy's rest frame and the "compaction" is the flow's expansion rate (its divergence) being changed by matter. 11C tests that reading; 11B′ tests the spatial one. The two are scored separately and never pooled.
+
+For 11B′ the binding gates are expected in advance to be G8 (anisotropy of the force relative to the flow direction), G6 (preferred frame) and G7 (a₀ varying with a galaxy's motion through the flow); each must be computed, not assumed.
+
