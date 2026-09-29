@@ -1,0 +1,42 @@
+CFG157 G1  (repo files printed as <repo>-relative; MUTATE=kernel: kernel=simple sign=+1 target=enclosed mass (CFG44))
+nu_mono is RECONSTRUCTED: RAR kernel up to y_m = 2.539638, then y(nu-1) held at 0.647610 (see cfg157_common.py).
+README numbers are targets read before deriving; my hand estimates in the frozen file were made after reading them.
+
+=== integrity checks (abort exit 2 on failure in the main run) ===
+  [PASS] (b) M_b(<r) closed form = quad of rho_b (1e-8), M_b(<inf)=M_b  
+  (a) point-mass, P2, +, enclosed-mass target: max|ratio-1| analytic 5.551e-16, fd 1.010e-11, sympy 1.665e-15
+  (a) [control] point-mass max|ratio-1| with the mutated model: 0.9806 (identity BROKEN)
+  [PASS] (c) three derivative routes (chain rule / 5-pt FD / sympy) agree to 1e-5 relative (+1e-9 abs); worst scaled err 6.23e-06  
+  [PASS] (f) 121 -> 2001 points changes max dev < 0.5%  
+  [PASS] (g) G of CFG121 vs 4.30091727e-6 kpc(km/s)^2/Msun changes max dev < 1e-3 relative  
+
+=== T1.2 (exponential spheres, chi = P2 kernel, NO refit) and T1.5 (reconstructed nu_mono) ===
+
+-- footing canonical: a0 = 9.3603e-11 m/s^2
+  M=1e+09 h=2 kpc r_M=1.220 kpc (h/r_M=1.639): T1.2 max|dev|=1.4628 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.4628 +1.4105 +1.2569 +0.8957 +0.1770 +0.0167
+  M=1e+10 h=3 kpc r_M=3.859 kpc (h/r_M=0.777): T1.2 max|dev|=1.4117 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.4117 +1.3080 +1.0423 +0.4931 +0.0513 +0.0167
+  M=1e+11 h=4 kpc r_M=12.203 kpc (h/r_M=0.328): T1.2 max|dev|=1.2737 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.2737 +1.1056 +0.7246 +0.1812 +0.0499 +0.0167
+  M=1e+12 h=5 kpc r_M=38.589 kpc (h/r_M=0.130): T1.2 max|dev|=1.0619 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.0619 +0.9324 +0.4731 +0.1644 +0.0499 +0.0167
+
+-- footing second: a0 = 1.1312e-10 m/s^2
+  M=1e+09 h=2 kpc r_M=1.110 kpc (h/r_M=1.802): T1.2 max|dev|=1.4667 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.4667 +1.4191 +1.2774 +0.9398 +0.2208 +0.0167
+  M=1e+10 h=3 kpc r_M=3.510 kpc (h/r_M=0.855): T1.2 max|dev|=1.4208 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.4208 +1.3250 +1.0744 +0.5461 +0.0531 +0.0167
+  M=1e+11 h=4 kpc r_M=11.100 kpc (h/r_M=0.360): T1.2 max|dev|=1.2941 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.2941 +1.1299 +0.7592 +0.1933 +0.0499 +0.0167
+  M=1e+12 h=5 kpc r_M=35.102 kpc (h/r_M=0.142): T1.2 max|dev|=1.0789 at x=0.100; min dev=+0.0167; dev(x=0.1,0.3,1,3,10,30)=+1.0789 +0.9428 +0.4864 +0.1644 +0.0499 +0.0167
+
+=== comparison with CFG121 README (canonical footing), pass lines of the frozen file ===
+  T1.2 M=1e+09: mine 1.4628 vs README 1.31 (tol +-0.0262) -> DISAGREES; door verdict mine FAIL vs README FAIL
+  T1.2 M=1e+10: mine 1.4117 vs README 1.02 (tol +-0.0204) -> DISAGREES; door verdict mine FAIL vs README FAIL
+  T1.2 M=1e+11: mine 1.2737 vs README 0.43 (tol +-0.0086) -> DISAGREES; door verdict mine FAIL vs README FAIL
+  T1.2 M=1e+12: mine 1.0619 vs README 0.063 (tol +-0.0013) -> DISAGREES; door verdict mine FAIL vs README PASS
+
+=== MUTATE=kernel control ===
+  M=1e+09: main max dev 1.3099 -> mutated 1.4628 (x1.12); verdict FAIL -> FAIL
+  M=1e+10: main max dev 1.0160 -> mutated 1.4117 (x1.39); verdict FAIL -> FAIL
+  M=1e+11: main max dev 0.4342 -> mutated 1.2737 (x2.93); verdict FAIL -> FAIL
+  M=1e+12: main max dev 0.0632 -> mutated 1.0619 (x16.79); verdict PASS -> FAIL
+  point-mass identity: main 5.55e-16 -> mutated 0.9806
+  declared: point-mass dev >= 0.5 at x=0.1: observed 0.9806; max relative move of a T1.2 number 15.790
+  CONTROL BITES (exit 1)
+
+wrote cfg157_g1_MUTATE_kernel.out and cfg157_g1_MUTATE_kernel_results.json

@@ -1,0 +1,34 @@
+CFG157 B1 (MUTATE=pm_target).  README targets read before deriving: F_req 0.41-0.97, Q*=9.68 (pass line F_allow 0.10).
+Path handling prints only bare names / <repo>-relative names.
+
+=== integrity checks ===
+  [PASS] (e1) point-mass ODE: (M+M_c)^2 = M^2(1+x^2) to 1e-8 (max rel 9.95e-13)  
+
+-- footing canonical: a0 = 9.3603e-11
+  M=1e+09 beta=1.639: F_req on [0.1,30]: min 0.9412 (x=13.372) max 69.2816; on [0.3,30]: min 0.9412 (x=13.401) max 24.6499; F(0.3)=24.6499; ODE residual (2001-pt gradient) 1.35e+02
+  M=1e+10 beta=0.777: F_req on [0.1,30]: min 0.8677 (x=5.168) max 8.2197; on [0.3,30]: min 0.8677 (x=5.134) max 3.4849; F(0.3)=3.4849; ODE residual (2001-pt gradient) 1.52e+01
+  M=1e+11 beta=0.328: F_req on [0.1,30]: min 0.6990 (x=1.366) max 1.1584; on [0.3,30]: min 0.6990 (x=1.340) max 0.9678; F(0.3)=0.8187; ODE residual (2001-pt gradient) 1.30e+00
+  M=1e+12 beta=0.130: F_req on [0.1,30]: min 0.5420 (x=0.285) max 0.9678; on [0.3,30]: min 0.5420 (x=0.300) max 0.9678; F(0.3)=0.5420; ODE residual (2001-pt gradient) 1.08e-01
+  OVERALL (all masses): F_req range [0.1,30]: 0.5420 - 69.2816; [0.3,30]: 0.5420 - 24.6499; Q* = max/0.10 = 692.816 ([0.1,30]) / 246.499 ([0.3,30])
+  point-mass closed form F = y+1-sqrt(y^2+y) at x=0.3,3,30: 0.51077 0.75975 0.96776 ; small-r deep limit 2/5 = 0.4
+
+-- footing second: a0 = 1.1312e-10
+  M=1e+09 beta=1.802: F_req on [0.1,30]: min 0.9471 (x=15.421) max 91.5035; on [0.3,30]: min 0.9471 (x=15.036) max 32.1955; F(0.3)=32.1955; ODE residual (2001-pt gradient) 1.79e+02
+  M=1e+10 beta=0.855: F_req on [0.1,30]: min 0.8803 (x=5.960) max 10.6679; on [0.3,30]: min 0.8804 (x=5.986) max 4.3683; F(0.3)=4.3683; ODE residual (2001-pt gradient) 2.00e+01
+  M=1e+11 beta=0.360: F_req on [0.1,30]: min 0.7213 (x=1.575) max 1.3575; on [0.3,30]: min 0.7212 (x=1.624) max 0.9678; F(0.3)=0.9018; ODE residual (2001-pt gradient) 1.69e+00
+  M=1e+12 beta=0.142: F_req on [0.1,30]: min 0.5503 (x=0.328) max 0.9678; on [0.3,30]: min 0.5503 (x=0.324) max 0.9678; F(0.3)=0.5504; ODE residual (2001-pt gradient) 1.38e-01
+  OVERALL (all masses): F_req range [0.1,30]: 0.5503 - 91.5035; [0.3,30]: 0.5503 - 32.1955; Q* = max/0.10 = 915.035 ([0.1,30]) / 321.955 ([0.3,30])
+  point-mass closed form F = y+1-sqrt(y^2+y) at x=0.3,3,30: 0.51077 0.75975 0.96776 ; small-r deep limit 2/5 = 0.4
+
+=== comparison with CFG121 README (canonical footing) ===
+  Q*: mine 692.816 / 246.499 vs README 9.68 (2%: 9.48-9.87) -> DISAGREES
+  max F_req: mine 69.2816 vs README 0.97 (2%) -> DISAGREES
+  min F_req: mine 0.5420 ([0.1,30]) / 0.5420 ([0.3,30]) vs README 0.41 (3%; closest convention used) -> DISAGREES
+  B1 verdict vs door line 0.10: F_req > 0.10 everywhere for all masses -> FAIL for the door (min 0.542)
+
+=== MUTATE=pm_target control ===
+  min F_req: main (true ODE) 0.4064 -> mutated 0.5420 (change 33.4%); ODE residual of the mutated target 1.353e+02 (main: ~1e-6 numerical-gradient level)
+  declared: min F_req rises to >= 0.5 and the ODE check fails: observed min 0.5420; ODE-check FAILS
+  CONTROL BITES (exit 1)
+
+wrote cfg157_b1_MUTATE_pm_target.out and cfg157_b1_MUTATE_pm_target_results.json

@@ -1,0 +1,56 @@
+CFG157 G1  (repo files printed as <repo>-relative; MUTATE=none: kernel=P2 sign=+1 target=enclosed mass (CFG44))
+nu_mono is RECONSTRUCTED: RAR kernel up to y_m = 2.539638, then y(nu-1) held at 0.647610 (see cfg157_common.py).
+README numbers are targets read before deriving; my hand estimates in the frozen file were made after reading them.
+
+=== integrity checks (abort exit 2 on failure in the main run) ===
+  [PASS] (b) M_b(<r) closed form = quad of rho_b (1e-8), M_b(<inf)=M_b  
+  (a) point-mass, P2, +, enclosed-mass target: max|ratio-1| analytic 5.551e-16, fd 1.010e-11, sympy 1.665e-15
+  [PASS] (a) point-mass identity 1e-9 analytic / 1e-6 fd  
+  [PASS] (c) three derivative routes (chain rule / 5-pt FD / sympy) agree to 1e-5 relative (+1e-9 abs); worst scaled err 7.54e-04  
+  [PASS] (d) closed form 1+(dln m/dln r)B(y) = numerical ratio to 1e-6 (abs); worst 2.00e-15  
+  [PASS] (f) 121 -> 2001 points changes max dev < 0.5%  
+  [PASS] (g) G of CFG121 vs 4.30091727e-6 kpc(km/s)^2/Msun changes max dev < 1e-3 relative  
+
+=== T1.2 (exponential spheres, chi = P2 kernel, NO refit) and T1.5 (reconstructed nu_mono) ===
+
+-- footing canonical: a0 = 9.3603e-11 m/s^2
+  M=1e+09 h=2 kpc r_M=1.220 kpc (h/r_M=1.639): T1.2 max|dev|=1.3099 at x=0.100; min dev=+0.0000; dev(x=0.1,0.3,1,3,10,30)=+1.3099 +1.1739 +0.9382 +0.6245 +0.1112 +0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=1.4620 at x=0.100 (max ratio 2.4620, min ratio 1.0167)
+  M=1e+10 h=3 kpc r_M=3.859 kpc (h/r_M=0.777): T1.2 max|dev|=1.0160 at x=0.100; min dev=+0.0000; dev(x=0.1,0.3,1,3,10,30)=+1.0160 +0.7773 +0.5063 +0.2323 +0.0011 +0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=1.4038 at x=0.100 (max ratio 2.4038, min ratio 1.0167)
+  M=1e+11 h=4 kpc r_M=12.203 kpc (h/r_M=0.328): T1.2 max|dev|=0.4342 at x=0.100; min dev=-0.0000; dev(x=0.1,0.3,1,3,10,30)=+0.4342 +0.2501 +0.1390 +0.0107 +0.0000 -0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=1.1868 at x=0.100 (max ratio 2.1868, min ratio 1.0167)
+  M=1e+12 h=5 kpc r_M=38.589 kpc (h/r_M=0.130): T1.2 max|dev|=0.0632 at x=0.100; min dev=-0.0000; dev(x=0.1,0.3,1,3,10,30)=+0.0632 +0.0374 +0.0090 +0.0000 +0.0000 -0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=0.6253 at x=0.580 (max ratio 1.6253, min ratio 1.0167)
+
+-- footing second: a0 = 1.1312e-10 m/s^2
+  M=1e+09 h=2 kpc r_M=1.110 kpc (h/r_M=1.802): T1.2 max|dev|=1.3324 at x=0.100; min dev=+0.0001; dev(x=0.1,0.3,1,3,10,30)=+1.3324 +1.2090 +0.9867 +0.6781 +0.1501 +0.0001
+     T1.5 (reconstructed nu_mono): max|dev|=1.4660 at x=0.100 (max ratio 2.4660, min ratio 1.0167)
+  M=1e+10 h=3 kpc r_M=3.510 kpc (h/r_M=0.855): T1.2 max|dev|=1.0665 at x=0.100; min dev=+0.0000; dev(x=0.1,0.3,1,3,10,30)=+1.0665 +0.8382 +0.5612 +0.2756 +0.0027 +0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=1.4148 at x=0.100 (max ratio 2.4148, min ratio 1.0167)
+  M=1e+11 h=4 kpc r_M=11.100 kpc (h/r_M=0.360): T1.2 max|dev|=0.4988 at x=0.100; min dev=-0.0000; dev(x=0.1,0.3,1,3,10,30)=+0.4988 +0.2949 +0.1654 +0.0185 +0.0000 -0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=1.2266 at x=0.100 (max ratio 2.2266, min ratio 1.0167)
+  M=1e+12 h=5 kpc r_M=35.102 kpc (h/r_M=0.142): T1.2 max|dev|=0.0794 at x=0.100; min dev=-0.0000; dev(x=0.1,0.3,1,3,10,30)=+0.0794 +0.0459 +0.0140 +0.0000 +0.0000 +0.0000
+     T1.5 (reconstructed nu_mono): max|dev|=0.6274 at x=0.580 (max ratio 1.6274, min ratio 1.0167)
+
+=== comparison with CFG121 README (canonical footing), pass lines of the frozen file ===
+  T1.2 M=1e+09: mine 1.3099 vs README 1.31 (tol +-0.0262) -> REPRODUCES; door verdict mine FAIL vs README FAIL
+  T1.2 M=1e+10: mine 1.0160 vs README 1.02 (tol +-0.0204) -> REPRODUCES; door verdict mine FAIL vs README FAIL
+  T1.2 M=1e+11: mine 0.4342 vs README 0.43 (tol +-0.0086) -> REPRODUCES; door verdict mine FAIL vs README FAIL
+  T1.2 M=1e+12: mine 0.0632 vs README 0.063 (tol +-0.0013) -> REPRODUCES; door verdict mine PASS vs README PASS
+  T1.2 headline: REPRODUCES
+  T1.5 M=1e+09: mine 1.4620 vs README 1.46 -> REPRODUCES
+  T1.5 M=1e+10: mine 1.4038 vs README 1.4 -> REPRODUCES
+  T1.5 M=1e+11: mine 1.1868 vs README 1.19 -> REPRODUCES
+  T1.5 M=1e+12: mine 0.6253 vs README 0.62 -> REPRODUCES
+  T1.5 headline (conditional on the reconstruction): REPRODUCES
+  point-mass charge function R(x=1) with the reconstructed nu_mono: 1.4565 (CFG44 README: 1.46)
+
+=== section-3 identities (frozen file) ===
+  [PASS] (i) point mass ratio identically 1 (see integrity check (a))  
+  [PASS] (ii-a) deviation >= 0 everywhere on the grid (min over masses and footings -4.441e-16)  
+  [PASS] (ii-b) maximum at the grid edge x=0.1 for every mass and footing  {'canonical,1e+09': 0.1, 'canonical,1e+10': 0.1, 'canonical,1e+11': 0.1, 'canonical,1e+12': 0.1, 'second,1e+09': 0.1, 'second,1e+10': 0.1, 'second,1e+11': 0.1, 'second,1e+12': 0.1}
+  [FAIL] (ii-c) deviation -> 1.5 (ratio 2.5) as r -> 0: at x=1e-6 1.4994, 1.4982, 1.4935, 1.4740  
+  [PASS] (ii-d) deviation decreases monotonically with x on [0.1,30] (2001 points)  
+
+wrote cfg157_g1.out and cfg157_g1_results.json
