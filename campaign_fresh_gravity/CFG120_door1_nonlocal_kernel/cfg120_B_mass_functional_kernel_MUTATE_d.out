@@ -1,0 +1,139 @@
+CFG120 script B -- extended baryons: the frozen G1 metric on exponential spheres for the universal kernels (K*, the best RM fit, a
+recalled RM set), T1e (K_{M_tot}: the mass-functional-kernel escape, a DIAGNOSTIC OUTSIDE THE DOOR) and T1f (far-shell leakage).
+Written to CFG120_FROZEN_CRITERIA.md (commit e8b9fbcdf).
+
+Profiles (declared before the run): (P1) exponential sphere with h = 2.0 kpc for every mass (CFG44 B1's Bcommon default, COMPACT expsphere);
+(P2) h = 0.1 r_M(M); (P3) h = 0.5 r_M(M).  Masses: the 13-point grid; x in [0.1, 30] (r_M from the total baryon mass); both footings.
+G1 metric R = C_model/C_target in [0.9, 1.1]; C_target = (a0/4pi) M_b(<r) exactly, C_model from the model's own g_tot.
+T1f: exponential sphere (h = 2 kpc, M = 1e9, 1e10, 1e12) plus a shell of 10 M at R' = 4 r*, r* = r_M and 3 r_M; pass line |Delta C / C| <= 0.10.
+Claims (CHECKS) = pre-declared expectations (frozen section 8): universal kernels fail on extended baryons; K_Mtot misses on extended baryons
+and leaks; far-shell leakage of every positive kernel exceeds 10 percent.  If a claim is false it is reported false (kept).
+MUTATE=d : kernel sign flipped (K -> -K): the claim 'the far shell ADDS dark density inside r*' must FAIL.  MUTATE=a,b,c: no bite here (declared).
+
+  repo root: <repo>  (ZF_REPO);  a0 footings (km/s)^2/kpc: canonical 2888.29, second 3490.52
+  MUTATE mode: d
+
+======================================================================================================================
+G1 (extended baryons, universal LTI kernels): R = C_model/C_target on exponential spheres, x in [0.1, 30]
+======================================================================================================================
+
+  --- footing canonical ---
+    K* (best universal, ln-centred)                      P1: R over all masses in [-16.1, 18]  (per-mass Rmax at 1e9/1e12: 0.018/18);  meets the 10% line at every mass: False
+    K* (best universal, ln-centred)                      P2: R over all masses in [-5.35, 17.2]  (per-mass Rmax at 1e9/1e12: 0.0197/17.2);  meets the 10% line at every mass: False
+    K* (best universal, ln-centred)                      P3: R over all masses in [-0.218, 14.8]  (per-mass Rmax at 1e9/1e12: 0.0192/14.8);  meets the 10% line at every mass: False
+    RM best fit (A=0.00794, lam=0.0797, mu=4.6e-07)      P1: R over all masses in [-17.1, 14.6]  (per-mass Rmax at 1e9/1e12: 0.0107/14.6);  meets the 10% line at every mass: False
+    RM best fit (A=0.00794, lam=0.0797, mu=4.6e-07)      P2: R over all masses in [-5.39, 14.6]  (per-mass Rmax at 1e9/1e12: 0.0107/14.6);  meets the 10% line at every mass: False
+    RM best fit (A=0.00794, lam=0.0797, mu=4.6e-07)      P3: R over all masses in [-0.214, 14.6]  (per-mass Rmax at 1e9/1e12: 0.0107/14.6);  meets the 10% line at every mass: False
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)             P1: R over all masses in [-0.604, 80.4]  (per-mass Rmax at 1e9/1e12: 0.0804/80.4);  meets the 10% line at every mass: False
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)             P2: R over all masses in [-5.38, 76.1]  (per-mass Rmax at 1e9/1e12: 0.0742/76.1);  meets the 10% line at every mass: False
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)             P3: R over all masses in [-0.215, 18.5]  (per-mass Rmax at 1e9/1e12: 0.0738/18.5);  meets the 10% line at every mass: False
+
+  --- footing second ---
+    K* (best universal, ln-centred)                      P1: R over all masses in [-14.4, 17.9]  (per-mass Rmax at 1e9/1e12: 0.0179/17.9);  meets the 10% line at every mass: False
+    K* (best universal, ln-centred)                      P2: R over all masses in [-5.35, 17.2]  (per-mass Rmax at 1e9/1e12: 0.0197/17.2);  meets the 10% line at every mass: False
+    K* (best universal, ln-centred)                      P3: R over all masses in [-0.218, 14.8]  (per-mass Rmax at 1e9/1e12: 0.0192/14.8);  meets the 10% line at every mass: False
+    RM best fit (A=0.00808, lam=0.0739, mu=4.2e-07)      P1: R over all masses in [-15, 14.6]  (per-mass Rmax at 1e9/1e12: 0.0107/14.6);  meets the 10% line at every mass: False
+    RM best fit (A=0.00808, lam=0.0739, mu=4.2e-07)      P2: R over all masses in [-5.39, 14.6]  (per-mass Rmax at 1e9/1e12: 0.0107/14.6);  meets the 10% line at every mass: False
+    RM best fit (A=0.00808, lam=0.0739, mu=4.2e-07)      P3: R over all masses in [-0.214, 14.6]  (per-mass Rmax at 1e9/1e12: 0.0107/14.6);  meets the 10% line at every mass: False
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)             P1: R over all masses in [-0.566, 66.6]  (per-mass Rmax at 1e9/1e12: 0.0665/66.6);  meets the 10% line at every mass: False
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)             P2: R over all masses in [-5.38, 64.6]  (per-mass Rmax at 1e9/1e12: 0.0614/64.6);  meets the 10% line at every mass: False
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)             P3: R over all masses in [-0.213, 17.5]  (per-mass Rmax at 1e9/1e12: 0.0611/17.5);  meets the 10% line at every mass: False
+  [PASS] B.1 (frozen expectation) no universal LTI kernel (K*, best RM fit, recalled RM) meets the 10 percent line on the exponential spheres at every mass
+         cases that pass: none of 18 (kernel x profile x footing)
+  << GATE G1(extended baryons, universal kernels): FAIL >> 0 of 18 kernel x profile x footing cases meet the line
+
+======================================================================================================================
+T1e  the mass-functional kernel K_{M_tot} (a DIAGNOSTIC outside the door: not linear in rho_b, postulates the target) on exponential spheres
+======================================================================================================================
+
+  --- footing canonical ---
+    P1: R over all masses in [0.02583, 1.045];  masses outside [0.9,1.1]: 13 of 13;  meets the line at every mass: False
+        per mass (M, Rmin, Rmax): 1.0e+09: 0.026-1.045; 5.6e+09: 0.063-1.013; 3.2e+10: 0.158-1.000; 1.8e+11: 0.370-1.000; 1.0e+12: 0.712-1.000
+    P2: R over all masses in [0.4425, 1];  masses outside [0.9,1.1]: 13 of 13;  meets the line at every mass: False
+        per mass (M, Rmin, Rmax): 1.0e+09: 0.442-1.000; 5.6e+09: 0.442-1.000; 3.2e+10: 0.442-1.000; 1.8e+11: 0.442-1.000; 1.0e+12: 0.442-1.000
+    P3: R over all masses in [0.08855, 1.004];  masses outside [0.9,1.1]: 13 of 13;  meets the line at every mass: False
+        per mass (M, Rmin, Rmax): 1.0e+09: 0.089-1.004; 5.6e+09: 0.089-1.004; 3.2e+10: 0.089-1.004; 1.8e+11: 0.089-1.004; 1.0e+12: 0.089-1.004
+
+  --- footing second ---
+    P1: R over all masses in [0.02355, 1.049];  masses outside [0.9,1.1]: 13 of 13;  meets the line at every mass: False
+        per mass (M, Rmin, Rmax): 1.0e+09: 0.024-1.049; 5.6e+09: 0.057-1.016; 3.2e+10: 0.143-1.000; 1.8e+11: 0.339-1.000; 1.0e+12: 0.672-1.000
+    P2: R over all masses in [0.4425, 1];  masses outside [0.9,1.1]: 13 of 13;  meets the line at every mass: False
+        per mass (M, Rmin, Rmax): 1.0e+09: 0.442-1.000; 5.6e+09: 0.442-1.000; 3.2e+10: 0.442-1.000; 1.8e+11: 0.442-1.000; 1.0e+12: 0.442-1.000
+    P3: R over all masses in [0.08855, 1.004];  masses outside [0.9,1.1]: 13 of 13;  meets the line at every mass: False
+        per mass (M, Rmin, Rmax): 1.0e+09: 0.089-1.004; 5.6e+09: 0.089-1.004; 3.2e+10: 0.089-1.004; 1.8e+11: 0.089-1.004; 1.0e+12: 0.089-1.004
+  [PASS] B.2 (frozen expectation) K_{M_tot} misses the target on extended baryons: for every profile family at least one mass leaves the 10 percent band
+         cases where K_Mtot passes at every mass: none
+  << GATE T1e (K_Mtot on extended baryons; diagnostic, outside the door): FAIL >> canonical/P1: R in [0.0258, 1.05]; canonical/P2: R in [0.442, 1]; canonical/P3: R in [0.0885, 1]
+
+======================================================================================================================
+T1f  far-shell leakage: C should depend on M_b(<r) only; add a shell of 10 M at R' = 4 r* to an exponential sphere (h = 2 kpc)
+======================================================================================================================
+
+  --- footing canonical ---
+    K* (best universal, ln-centred)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +3.752;  Delta C / C = -1.150   (R without/with shell: -0.012 / 0.002)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = +1.289;  Delta C / C = +0.042   (R without/with shell: -0.016 / -0.017)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = +1.237;  Delta C / C = +0.031   (R without/with shell: -0.162 / -0.166)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = +0.540;  Delta C / C = -31.356   (R without/with shell: -0.002 / 0.065)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = +0.263;  Delta C / C = +0.404   (R without/with shell: 16.732 / 23.493)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = +0.304;  Delta C / C = +0.394   (R without/with shell: 7.289 / 10.162)
+    RM best fit (A=0.00794, lam=0.0797, mu=4.6e-07)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +4.105;  Delta C / C = -3.401   (R without/with shell: -0.014 / 0.033)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = +0.843;  Delta C / C = -0.050   (R without/with shell: -0.018 / -0.017)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = +0.801;  Delta C / C = -0.057   (R without/with shell: -0.171 / -0.162)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = +0.552;  Delta C / C = +6.963   (R without/with shell: 0.009 / 0.075)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = +0.631;  Delta C / C = +1.104   (R without/with shell: 10.877 / 22.885)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = +0.638;  Delta C / C = +1.017   (R without/with shell: 13.476 / 27.180)
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +3.887;  Delta C / C = -154.933   (R without/with shell: -0.006 / 0.943)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = +0.522;  Delta C / C = +2.743   (R without/with shell: 0.036 / 0.133)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = +0.475;  Delta C / C = +2.263   (R without/with shell: 0.391 / 1.276)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = +0.051;  Delta C / C = +0.079   (R without/with shell: 0.755 / 0.815)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = +0.000;  Delta C / C = +0.000   (R without/with shell: 7.555 / 7.556)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = +0.000;  Delta C / C = +0.000   (R without/with shell: 0.003 / 0.003)
+    K_Mtot (total mass incl. shell)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +0.498;  Delta C / C = +0.905   (R without/with shell: 0.284 / 0.541)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = -0.500;  Delta C / C = -0.707   (R without/with shell: 0.760 / 0.223)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = -0.541;  Delta C / C = -0.641   (R without/with shell: 0.704 / 0.253)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = -0.619;  Delta C / C = -0.805   (R without/with shell: 1.000 / 0.195)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = -0.671;  Delta C / C = -0.745   (R without/with shell: 0.997 / 0.254)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = -0.592;  Delta C / C = -0.802   (R without/with shell: 1.000 / 0.198)
+
+  --- footing second ---
+    K* (best universal, ln-centred)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +4.424;  Delta C / C = -2.883   (R without/with shell: -0.010 / 0.019)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = +1.416;  Delta C / C = -0.192   (R without/with shell: -0.015 / -0.012)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = +1.352;  Delta C / C = -0.190   (R without/with shell: -0.144 / -0.116)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = +0.538;  Delta C / C = -36.776   (R without/with shell: -0.002 / 0.068)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = +0.260;  Delta C / C = +0.402   (R without/with shell: 16.820 / 23.585)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = +0.306;  Delta C / C = +0.397   (R without/with shell: 7.233 / 10.106)
+    RM best fit (A=0.00808, lam=0.0739, mu=4.2e-07)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +4.847;  Delta C / C = -6.442   (R without/with shell: -0.011 / 0.061)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = +0.933;  Delta C / C = -0.218   (R without/with shell: -0.015 / -0.012)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = +0.881;  Delta C / C = -0.216   (R without/with shell: -0.150 / -0.118)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = +0.545;  Delta C / C = +7.307   (R without/with shell: 0.009 / 0.077)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = +0.630;  Delta C / C = +1.103   (R without/with shell: 10.870 / 22.863)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = +0.638;  Delta C / C = +1.017   (R without/with shell: 13.476 / 27.178)
+    RM recalled (A=1, lam=3 kpc, mu=0.1/kpc)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +4.649;  Delta C / C = -173.526   (R without/with shell: -0.006 / 0.988)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = +0.618;  Delta C / C = +3.954   (R without/with shell: 0.024 / 0.120)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = +0.562;  Delta C / C = +3.215   (R without/with shell: 0.270 / 1.140)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = +0.065;  Delta C / C = +0.106   (R without/with shell: 0.649 / 0.718)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = +0.000;  Delta C / C = +0.000   (R without/with shell: 8.804 / 8.807)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = +0.000;  Delta C / C = +0.000   (R without/with shell: 0.007 / 0.007)
+    K_Mtot (total mass incl. shell)
+        M = 1e+09, r* = 1 r_M: Delta rho_D/rho_D = +0.711;  Delta C / C = +1.422   (R without/with shell: 0.260 / 0.630)
+        M = 1e+09, r* = 3 r_M: Delta rho_D/rho_D = -0.467;  Delta C / C = -0.678   (R without/with shell: 0.719 / 0.231)
+        M = 1e+10, r* = 1 r_M: Delta rho_D/rho_D = -0.511;  Delta C / C = -0.616   (R without/with shell: 0.665 / 0.255)
+        M = 1e+10, r* = 3 r_M: Delta rho_D/rho_D = -0.621;  Delta C / C = -0.805   (R without/with shell: 0.999 / 0.195)
+        M = 1e+12, r* = 1 r_M: Delta rho_D/rho_D = -0.671;  Delta C / C = -0.745   (R without/with shell: 0.997 / 0.254)
+        M = 1e+12, r* = 3 r_M: Delta rho_D/rho_D = -0.592;  Delta C / C = -0.802   (R without/with shell: 1.000 / 0.198)
+  [PASS] B.3 the far shell ADDS dark density inside r* for every positive universal LTI kernel (leakage is positive by construction)
+         min Delta rho_D/rho_D over universal kernels/masses/footings = +0.000
+  [FAIL] B.4 (frozen expectation) every kernel leaks more than 10 percent of C at r* = r_M and 3 r_M (universal LTI kernels and K_Mtot)
+         |Delta C/C| over universal kernels: min 0.000, max 173.526; K_Mtot: min 0.616, max 1.422; cases <= 0.10: universal 9, K_Mtot 0
+
+  (the target itself has Delta C = 0 exactly: C_target = (a0/4pi) M_b(<r), unchanged by baryons outside r; a leakage above the 10 percent line fails the far-shell property)
+  << GATE T1f (far-shell leakage): MIXED >> |DeltaC/C| universal 0.000..173.526; K_Mtot 0.616..1.422 (pass line 0.10)
+
+  3/4 checks pass; load-bearing failures: 1   (807 s)

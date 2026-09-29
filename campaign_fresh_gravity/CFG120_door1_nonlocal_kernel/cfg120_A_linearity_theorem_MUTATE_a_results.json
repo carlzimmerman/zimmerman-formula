@@ -1,0 +1,105 @@
+{
+ "slug": "cfg120_A_linearity_theorem_MUTATE_a",
+ "mutate": "a",
+ "load_bearing_failures": 5,
+ "checks": [
+  {
+   "name": "T0.1 point-mass target: ODE dM_D/dr = (a0/G) r M/(M+M_D) reproduces M_D = M(sqrt(1+x^2)-1)",
+   "detail": "max rel err on x in [0.1,30] = 1.39e-12 (line 1e-8)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.2 extended target (exponential sphere M=1e10, h=2 kpc, Bcommon default) matches CFG44's Bcommon.cold_mass('encl')",
+   "detail": "max rel err on x in [0.1,30] = 2.61e-11 (line 1e-6)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.3 F(z) = (pi/2z)[I0(z)-L0(z)] equals the defining sine integral (z=0.1,1,3) and its asymptotic series (z=30,100)",
+   "detail": "max rel err 1.10e-10 (line 1e-6) and 1.76e-08 (line 1e-6)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.4 POSITIVE CONTROL: K_M reproduces C_target with R = 1 at its own mass",
+   "detail": "max |R-1| = 4.44e-16 (line 1e-8)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.5 spherical-convolution formula: an exponential sphere with h = 1e-3 kpc reproduces the point-mass dark mass M m(r)",
+   "detail": "max rel err K_M: 3.77e-03, RM(1,3,0.1): 2.79e-03 (declared line 5e-3)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T1a.1 (sympy) any LTI kernel: [C_model/C_target](lambda rho_b) / [C_model/C_target](rho_b) = lambda  (C_model ~ lambda^2, C_target ~ lambda)",
+   "detail": "ratio = lambda",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T1a.2 (sympy) target density exponent d ln rho_c/d ln M at fixed r = x^2/(2(1+x^2))",
+   "detail": "= x**2/(2*(x**2 + 1))",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T1a.3 numeric finite-difference exponent agrees with x^2/(2(1+x^2))",
+   "detail": "max abs diff 1.02e-10 (line 1e-6)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T1b.1 K_M depends on the mass (rM ~ M^(1/2)): K_M(1e9) and K_M(1e12) differ at every tested radius",
+   "detail": "K_M(1e9)/K_M(1e12) at r = 0.5, 5, 20 kpc: [925.414 239.079  68.595]; rM = 1.220, 38.589 kpc",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T1b.2 the frozen estimates M_lambda = 6.0e9 and 6.7e10 Msun hold",
+   "detail": "6.044e+09, 6.716e+10",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "T1c.1 the best universal kernel leaves a centred residual factor sqrt(1000) = 31.62 on the overlap",
+   "detail": "mutated: per-mass K_M gives worst factor 1.000000",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T1c.2 no universal kernel meets the 10 percent line at every r (G1 point mass FAILS)",
+   "detail": "mutated: worst |R-1| 6.66e-16",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T1c.3 a single kernel passes the 10 percent line only over a mass factor <= 1.1/0.9 = 1.222 (frozen: 'about 1.22'); the pass line is >= 1e3",
+   "detail": "windows {'canonical': [1000.0, 1000.0, 1000.0], 'second': [1000.0, 1000.0, 1000.0]}",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T1c.4 M versus 2M: C_model(2M)/C_model(M)-ratio = 2 for every LTI kernel, so no kernel serves both within 10 percent (best centred residual 41%)",
+   "detail": "ratio range [1.0000000000, 1.0000000000]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T1a.4 (numeric) at fixed exponential profile (h = 2 kpc) and fixed kernel, R scales exactly as M_b",
+   "detail": "max |R(10M)/R(M)/10 - 1| = 9.11e-01 (line 1e-6)",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "gates": [
+  {
+   "gate": "G1(point mass) under MUTATE=a",
+   "verdict": "not a door verdict",
+   "detail": "control run"
+  }
+ ],
+ "numbers": {}
+}

@@ -1,0 +1,96 @@
+
+======================================================================================================================
+A2  G1 linear static response.  MUTATE=d;  RR background: m^2/H0^2 = 0.080618, m/H0 = 0.28393, m = 2.0675e-27 /m = 1/(3.5219 c/H0)
+======================================================================================================================
+
+  ---- point mass, footing canonical (a0 = 9.3603e-11), m = 2.0675e-27 /m ----
+   M_b      r_M[kpc] | R_A = rho_eff/rho_target at x = 0.1  0.2  0.3  0.5  1  2  3  5  10  20  30
+   1e+09     1.220 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+10     3.859 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+11    12.203 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+12    38.589 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   G1-S spread over x per mass: 1e+09: 1, 1e+10: 1, 1e+11: 1, 1e+12: 1
+   G1-M spread over M at fixed x: x=0.1: 1, x=0.2: 1, x=0.3: 1, x=0.5: 1, x=1: 1, x=2: 1, x=3: 1, x=5: 1, x=10: 1, x=20: 1, x=30: 1
+   |R_A| range over the grid: [1.000e+00, 1.000e+00]
+
+  ---- point mass, footing alt (a0 = 1.1312e-10), m = 2.0675e-27 /m ----
+   M_b      r_M[kpc] | R_A = rho_eff/rho_target at x = 0.1  0.2  0.3  0.5  1  2  3  5  10  20  30
+   1e+09     1.110 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+10     3.510 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+11    11.100 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+12    35.103 | +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   G1-S spread over x per mass: 1e+09: 1, 1e+10: 1, 1e+11: 1, 1e+12: 1
+   G1-M spread over M at fixed x: x=0.1: 1, x=0.2: 1, x=0.3: 1, x=0.5: 1, x=1: 1, x=2: 1, x=3: 1, x=5: 1, x=10: 1, x=20: 1, x=30: 1
+   |R_A| range over the grid: [1.000e+00, 1.000e+00]
+  >> G1-A (point mass, canonical): PASS -- |R_A| in [1.00e+00, 1.00e+00] against [0.90, 1.10]; any point within the band: True
+  >> G1-S (point mass): PASS -- spread over x = 1, 1, 1, 1 against 1.20
+  >> G1-M (point mass): PASS -- spread over M at fixed x: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 against 1.20
+  >> G1-sign (point mass): PASS -- rho_eff > 0 at every grid point
+  [FAIL] P1 (amplitude): |R_A| in [1e-17, 1e-7] at every grid point, both footings, and no point within 10% of 1
+         range [1.000e+00, 1.000e+00]; any point in the 0.90-1.10 band: True
+  [FAIL] P2a (shape): the G1-S spread exceeds 1.2 and |R_A| follows sqrt(1+x^2) to within 10%
+         spread 1; max deviation from sqrt(1+x^2) shape 9.67e-01
+  [FAIL] P2b (the frozen text's number 'about 300 over x in [0.1, 30]'): the G1-S spread is 300 within a factor 1.5
+         spread 1 = sqrt(1 + 30^2)/sqrt(1 + 0.1^2) = 29.87: the frozen 'about 300' was an arithmetic error by a factor 10
+  [FAIL] P3 (mass scaling): the G1-M spread at fixed x is 1000 within 2% for the point-mass linear response
+         spreads ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']
+  [FAIL] T0c-consistency: G1-sign equals the sign derived in A1 (negative density: rho_eff < 0 at every point)
+         all rho_eff > 0: True
+
+======================================================================================================================
+G1-req  the inverse length m_req needed for |R_A| = 1 at x = 0.1 (diagnostic)
+======================================================================================================================
+    M_b = 1e+09: m_req = 4.588e-20 /m = 6.301e+06 x (H0/c);  1/m_req = 0.706 kpc = 0.5788 r_M ;  RR: 1/m = 1.567e+07 kpc
+    M_b = 1e+10: m_req = 1.451e-20 /m = 1.993e+06 x (H0/c);  1/m_req = 2.234 kpc = 0.5788 r_M ;  RR: 1/m = 1.567e+07 kpc
+    M_b = 1e+11: m_req = 4.588e-21 /m = 6.301e+05 x (H0/c);  1/m_req = 7.063 kpc = 0.5788 r_M ;  RR: 1/m = 1.567e+07 kpc
+    M_b = 1e+12: m_req = 1.451e-21 /m = 1.993e+05 x (H0/c);  1/m_req = 22.335 kpc = 0.5788 r_M ;  RR: 1/m = 1.567e+07 kpc
+    scaling exponent of m_req with M = -0.5000  (hand estimate -1/2); 1/m_req / r_M = [0.5788, 0.5788, 0.5788, 0.5788]  (closed form (1+x^2)^(1/4)/sqrt(3) = 0.5788; an earlier label typed 0.5738 by hand was a typo in a print string)
+  [PASS] G1-req: m_req scales as M^(-1/2) and 1/m_req = r_M * const (the required screening length is the mass-dependent r_M)
+         exponent -0.50000
+    background dark-energy density 3 H0^2 Omega_L/(8 pi G) = 5.836e-27 kg/m^3 ; rho_target(r_M):
+       M_b = 1e+09: rho_target(r_M) = 2.096e-21 kg/m^3 ; rho_DE^bg/rho_target(r_M) = 2.784e-06
+       M_b = 1e+10: rho_target(r_M) = 6.627e-22 kg/m^3 ; rho_DE^bg/rho_target(r_M) = 8.805e-06
+       M_b = 1e+11: rho_target(r_M) = 2.096e-22 kg/m^3 ; rho_DE^bg/rho_target(r_M) = 2.784e-05
+       M_b = 1e+12: rho_target(r_M) = 6.627e-23 kg/m^3 ; rho_DE^bg/rho_target(r_M) = 8.805e-05
+
+  embedding scan (exploratory, bounded, reported): background today U-bar = 16.035, S-bar/H0^-2 = 2.064: F-bar = 1 - m^2 S-bar/3 = 0.9445 (mu_eff = 1.0587: a factor O(1) on the linear response), and a uniform density shift m^2 c^2 U-bar/(24 pi G) = 1.224e-27 kg/m^3 (vs rho_DE^bg = 5.836e-27).  Neither changes any verdict (the response is 7+ orders short).
+
+======================================================================================================================
+G1-X  CFG44's exponential sphere (h = 2 kpc, CFG44 B1's scale): C_eff(r) = rho_eff r^3 g_tot against (a0/4 pi) M_b(<r)
+======================================================================================================================
+
+  ---- exponential sphere, footing canonical ----
+   1e+09  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+10  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+11  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+12  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+09  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+10  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+11  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+12  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+
+  ---- exponential sphere, footing alt ----
+   1e+09  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+10  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+11  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+12  R_X = C_eff/C_target: +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+09  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+10  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+11  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+   1e+12  R_A (rho_eff/rho_target^ext): +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00  +1.00e+00
+  >> G1-X (exponential sphere, canonical): PASS -- |R_X| in [1.00e+00, 1.00e+00] vs [0.9, 1.1]; shape spreads ['1', '1', '1', '1']; mass spreads at fixed x ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']; rho_eff > 0: False
+  [FAIL] P1-ext: the extended-sphere |R_X| also lies in [1e-17, 1e-7] (both footings) and none is within 10% of 1
+         range [1.000e+00, 1.000e+00]
+
+======================================================================================================================
+G1 for generic analytic DW (from T0d): M_eff/M is one constant at every r and every M
+======================================================================================================================
+    Phi'(r) = g_N(r) * (Fbar - 8 f1)/(Fbar (Fbar - 6 f1)) for the point mass and (1 - 2 f1/(Fbar - 6 f1))/Fbar * g_N for extended baryons: a pure rescaling of G.
+    Relative to the MEASURED G the effective dark density is exactly 0 at every r > 0 (rho_eff = 0), so G1-A/S/M cannot be met: the target needs M_c(<r)/M = sqrt(1+x^2) - 1 from 0.005 (x = 0.1) to 29 (x = 30).
+    Cassini: |gamma - 1| = |4 f1/(Fbar - 8 f1)| <= 2.3e-5  =>  |f1| <~ 5.75e-6 Fbar, so any residual 'constant fraction' is <~ 1e-5.
+  >> G1 (DW, generic analytic f, linear static): FAIL -- rho_eff = 0 relative to the measured G; a constant rescaling cannot supply M_c/M = sqrt(1+x^2)-1; shape, mass and amplitude lines all fail (not a numerical result: T0d exact)
+  [PASS] (reported) DW: the linear static response rescales G only (T0d exact residuals 0, so the K = 0)
+         see A1
+  >> G1 (RR, linear static, point mass + exponential sphere): PASS -- A PASS, S PASS, M PASS, sign PASS, X see above
+
+  2/8 checks pass; load-bearing failures: 6   (14 s)

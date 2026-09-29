@@ -1,0 +1,74 @@
+CFG124 G2 -- CMB / linear growth for the mimetic dust (frozen: CFG124_FROZEN_CRITERIA.md, e8b9fbcdf).
+Equations (stated, then solved; CFG43's two-fluid sub-horizon treatment, declared inputs H0 = 67.4, Oc = 0.265, Ob = 0.050, OL = 0.685, Or = 9.1e-5):
+  d_c'' + (2 + dlnE) d_c' + c_s^2 (c k/(a H))^2 d_c = (1 - s) (3/2)(Om_c d_c + Om_b d_b),   d_b'' + (2 + dlnE) d_b' = (3/2)(Om_c d_c + Om_b d_b)
+  ( ' = d/dln a; c_s^2 = gt/(2 - 3 gt) from T0.6a; s = the switch: the fraction of the dust's gravitational force cancelled by a class-E coupling )
+Initial conditions at z = 1100: d_c = d_b = a_i, d' = d (as CFG43 with z_i = 1000; the frozen criteria say 1100).  Pass: growth of the matter
+contrast within 5% of LCDM at z = 10, k up to 30/Mpc.  NOTE: the Jeans form of the pressure term is the frozen G2.1 statement; the high-k
+dispersion c_s^2 = gt/(2-3gt) is derived in T0.6, the full comoving-gauge growth equation is not re-derived here.
+MUTATE b: the G1-scale sound speed is replaced by c_s^2 = 0 (so the claim that it fails 5% must flip); MUTATE a/c: not used.
+
+derived c_s^2(gt) = -gt/(3*gt - 2) (T0.6a); gt(c_s^2) = 2 c^2/(1+3 c^2)
+
+==============================================================================================================
+G2.0  controls
+==============================================================================================================
+  [FAIL] G2.0a  pressureless baseline: matter contrast grows by ~ (1+z_i)/(1+z) between z = 1100 and 10 (matter era; within 10% of 100.1 because of radiation and baryon simplifications)
+         measured: delta_m(z=10)/delta_i = 89.4  (delta_i = 1/1101)
+  [PASS] (reported) G2.0a-POSTHOC  [post-hoc, not frozen] the Meszaros CDM growth factor between z = 1100 and 10 is (1 + 1.5 y_10)/(1 + 1.5 y_1100) with y = a/a_eq: the computed baryon+CDM growth should be within 15% of it (baryons still coupled to photons at z = 1100 are treated as pressureless: a known simplification)
+         measured: Meszaros 82.8 vs computed 89.4
+  [PASS] G2.0b  class A (c_s^2 = 0, s = 0) reproduces the baseline exactly (mimetic dust with V = gamma = 0 IS cold dust)
+         measured: ratio at k = 0.1, 1, 30: [1.0, 1.0, 1.0]
+
+==============================================================================================================
+G2.3  the c_s^2 window: the largest constant c_s^2 with growth within 5% of LCDM at z = 10 (and, reported, at z = 0)
+==============================================================================================================
+  k =   0.1 /Mpc : c_s^2,max(z=10) = 3.817e-06 (gt_max = 7.635e-06) ;  c_s^2,max(z=0) = 4.153e-07
+  k =   0.5 /Mpc : c_s^2,max(z=10) = 1.527e-07 (gt_max = 3.054e-07) ;  c_s^2,max(z=0) = 1.661e-08
+  k =   1.0 /Mpc : c_s^2,max(z=10) = 3.817e-08 (gt_max = 7.635e-08) ;  c_s^2,max(z=0) = 4.153e-09
+  k =   2.0 /Mpc : c_s^2,max(z=10) = 9.544e-09 (gt_max = 1.909e-08) ;  c_s^2,max(z=0) = 1.038e-09
+  k =   5.0 /Mpc : c_s^2,max(z=10) = 1.527e-09 (gt_max = 3.054e-09) ;  c_s^2,max(z=0) = 1.661e-10
+  k =  10.0 /Mpc : c_s^2,max(z=10) = 3.817e-10 (gt_max = 7.635e-10) ;  c_s^2,max(z=0) = 4.153e-11
+  k =  30.0 /Mpc : c_s^2,max(z=10) = 4.242e-11 (gt_max = 8.483e-11) ;  c_s^2,max(z=0) = 4.614e-12
+  [PASS] G2.3a  frozen screening estimate: c_s^2,max(k = 30/Mpc, z = 10) ~ 1e-10 (order of magnitude: within [1e-11, 1e-9])
+         measured: c_s^2,max = 4.242e-11  (gt_max = 8.483e-11)
+  halo dispersion scale sigma^2/c^2 = V_f^2/(2c^2) over M_b = 1e9..1e12 and both footings: 1.96e-08 ... 6.82e-07
+  [PASS] G2.3b  frozen statement: the halo scale is about 2e-8 (1e9 Msun) to 6e-7 (1e12 Msun) c^2
+         measured: measured 1.96e-08 ... 6.82e-07 (canonical: 1.96e-08 ... 6.20e-07)
+
+==============================================================================================================
+G2.3c  growth at the halo-scale sound speed (k = 30/Mpc, z = 10), and the joint window
+==============================================================================================================
+  canonical M=1e+09: c_s^2 = 1.96e-08 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 2.16e-03
+  canonical M=1e+10: c_s^2 = 6.20e-08 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 6.84e-04
+  canonical M=1e+11: c_s^2 = 1.96e-07 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 2.16e-04
+  canonical M=1e+12: c_s^2 = 6.20e-07 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 6.84e-05
+  alt       M=1e+09: c_s^2 = 2.16e-08 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 1.97e-03
+  alt       M=1e+10: c_s^2 = 6.82e-08 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 6.22e-04
+  alt       M=1e+11: c_s^2 = 2.16e-07 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 1.97e-04
+  alt       M=1e+12: c_s^2 = 6.82e-07 (used 0.00e+00): growth ratio at k = 30: 1.000e+00 ; k = 2: 1.000e+00 ; c_s^2,max/needed = 6.22e-05
+  [FAIL] G2.3c  at the halo-scale sound speed the growth at k = 30/Mpc is NOT within 5% of LCDM (for all eight mass/footing cases)
+         measured: ratios: {'canonical_1e+09': 1.0, 'canonical_1e+10': 1.0, 'canonical_1e+11': 1.0, 'canonical_1e+12': 1.0, 'alt_1e+09': 1.0, 'alt_1e+10': 1.0, 'alt_1e+11': 1.0, 'alt_1e+12': 1.0}
+  [PASS] G2.3d  the joint window is empty: c_s^2,max(k=30, z=10) is below every halo-scale c_s^2 needed (ratio max/needed < 1 for all eight cases; shortfall in decades reported)
+         measured: c_s^2,max/needed ranges 6.2e-05 ... 2.2e-03
+
+==============================================================================================================
+G2.4  the switch's cosmological face: the dust force multiplied by (1 - s) at z >~ 10
+==============================================================================================================
+  s = 0.00 : growth ratio at k = 0.1, 1, 10, 30 /Mpc : [1. 1. 1. 1.]
+  s = 0.05 : growth ratio at k = 0.1, 1, 10, 30 /Mpc : [0.9022 0.9022 0.9022 0.9022]
+  s = 0.50 : growth ratio at k = 0.1, 1, 10, 30 /Mpc : [0.3241 0.3241 0.3241 0.3241]
+  s = 1.00 : growth ratio at k = 0.1, 1, 10, 30 /Mpc : [0.0728 0.0728 0.0728 0.0728]
+  largest s with growth within 5% at z = 10: k = 1: 0.0250 ; k = 30: 0.0250
+  [PASS] G2.4a  the G1.3 requirement applied at z >~ 10 (s = 1, dust force fully cancelled) destroys the growth (ratio << 0.95 at every k), and any s above a few percent already fails 5%: a coupling that satisfies G1.3 inside halos must be off (s < 0.025) in the linear regime
+         measured: s = 1: [0.0728 0.0728 0.0728 0.0728] ; s_max(k=30) = 0.0250
+
+==============================================================================================================
+G2.2  background: class B with a non-constant V(phi)
+==============================================================================================================
+  derived in T0.4b: d(a^3 eps)/dt = -a^3 dV/dt exactly (a homogeneous source). Pass line: rho_c(a) = LCDM a^-3 to 1% over z in [10, 1100], i.e. |int a^3 dV/dt dt| <= 0.01 a^3 eps.
+  (G1 results not present or MUTATE c: the numeric source comparison is skipped; the structural statement T0.4b stands)
+  [PASS] (reported) G2.2  class B: V(phi) is a function of proper time only, so it changes rho_c(a) homogeneously (T0.4b) and cannot depend on M_b(<r); the G2 pass line then holds only for V = const, which is Lambda (already tied by CFG43/XR20) and adds nothing
+         measured: derived: d(a^3 eps)/dt = -a^3 Vdot (T0.4b PASS)
+  CMB: mimetic dust with gt <= gt_max(30/Mpc, z=10) = 8.48e-11 is a GDM fluid (w = 0, c_s^2 <~ 1e-10, c_vis = 0): the growth bound above is the operative one; the CMB-side GDM bound (recalled ~1e-6, unverified) is weaker and is not used.
+
+  7/9 checks pass; load-bearing failures: 2   (12 s)   MUTATE='1'

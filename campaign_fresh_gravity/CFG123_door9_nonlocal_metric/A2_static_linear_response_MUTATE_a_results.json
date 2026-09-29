@@ -1,0 +1,151 @@
+{
+ "slug": "A2_static_linear_response_MUTATE_a",
+ "load_bearing_failures": 3,
+ "checks": [
+  {
+   "name": "P1 (amplitude): |R_A| in [1e-17, 1e-7] at every grid point, both footings, and no point within 10% of 1",
+   "detail": "range [1.000e-02, 2.987e+02]; any point in the 0.90-1.10 band: True",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P2a (shape): the G1-S spread exceeds 1.2 and |R_A| follows sqrt(1+x^2) to within 10%",
+   "detail": "spread 29.87; max deviation from sqrt(1+x^2) shape 3.33e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P2b (the frozen text's number 'about 300 over x in [0.1, 30]'): the G1-S spread is 300 within a factor 1.5",
+   "detail": "spread 29.87 = sqrt(1 + 30^2)/sqrt(1 + 0.1^2) = 29.87: the frozen 'about 300' was an arithmetic error by a factor 10",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P3 (mass scaling): the G1-M spread at fixed x is 1000 within 2% for the point-mass linear response",
+   "detail": "spreads ['1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000']",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0c-consistency: G1-sign equals the sign derived in A1 (negative density: rho_eff < 0 at every point)",
+   "detail": "all rho_eff > 0: False",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1-req: m_req scales as M^(-1/2) and 1/m_req = r_M * const (the required screening length is the mass-dependent r_M)",
+   "detail": "exponent -0.50000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P1-ext: the extended-sphere |R_X| also lies in [1e-17, 1e-7] (both footings) and none is within 10% of 1",
+   "detail": "range [2.667e-04, 4.454e+04]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "DW: the linear static response rescales G only (T0d exact residuals 0, so the K = 0)",
+   "detail": "see A1",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "G1-A (point mass, canonical)": {
+   "status": "FAIL",
+   "why": "|R_A| in [1.00e-02, 2.99e+02] against [0.90, 1.10]; any point within the band: True"
+  },
+  "G1-S (point mass)": {
+   "status": "FAIL",
+   "why": "spread over x = 29.87, 29.87, 29.87, 29.87 against 1.20"
+  },
+  "G1-M (point mass)": {
+   "status": "FAIL",
+   "why": "spread over M at fixed x: 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000 against 1.20"
+  },
+  "G1-sign (point mass)": {
+   "status": "FAIL",
+   "why": "rho_eff < 0 (NEGATIVE effective density, gravity weakened) at every grid point"
+  },
+  "G1-X (exponential sphere, canonical)": {
+   "status": "FAIL",
+   "why": "|R_X| in [2.95e-04, 4.45e+04] vs [0.9, 1.1]; shape spreads ['116', '470', '1.6e+03', '2.3e+04']; mass spreads at fixed x ['2.2e+04', '1.25e+04', '6.41e+03', '1.34e+03', '1.4e+04', '3.82e+04', '6.87e+04', '1.64e+05', '9.51e+05', '2.12e+06', '1.31e+06']; rho_eff > 0: False"
+  },
+  "G1 (DW, generic analytic f, linear static)": {
+   "status": "FAIL",
+   "why": "rho_eff = 0 relative to the measured G; a constant rescaling cannot supply M_c/M = sqrt(1+x^2)-1; shape, mass and amplitude lines all fail (not a numerical result: T0d exact)"
+  },
+  "G1 (RR, linear static, point mass + exponential sphere)": {
+   "status": "FAIL",
+   "why": "A FAIL, S FAIL, M FAIL, sign FAIL, X see above"
+  }
+ },
+ "numbers": {
+  "m_req_over_H0c": {
+   "1e+09": 6301326.083791217,
+   "1e+10": 1992654.2704209269,
+   "1e+11": 630132.6083791216,
+   "1e+12": 199265.42704209266
+  },
+  "Fbar_today": 0.9445313835354215,
+  "Ubar_today": 16.034899869857078,
+  "R_X_canonical": {
+   "1e+09": [
+    -0.00029488910640690456,
+    -0.0005879841803780725,
+    -0.0008783488576214389,
+    -0.0014477078500309483,
+    -0.002777558091774973,
+    -0.004914576747638423,
+    -0.006329237962755672,
+    -0.007464194784322069,
+    -0.005193471871543079,
+    0.009327966028813557,
+    0.03407225119766156
+   ],
+   "1e+10": [
+    -0.009251537128281103,
+    -0.018143384964849553,
+    -0.026483058627522874,
+    -0.04109906181503983,
+    -0.06497297398700769,
+    -0.0737856588634329,
+    -0.05627377774396187,
+    0.01938303379815947,
+    0.39022698339916206,
+    1.8753751011427382,
+    4.350622695792254
+   ],
+   "1e+11": [
+    -0.2777558089207193,
+    -0.49145767443731775,
+    -0.6329237964890695,
+    -0.7464194778676516,
+    -0.5193471863013632,
+    0.9327965951266517,
+    3.4072251656238532,
+    11.32800842355817,
+    48.456722197934546,
+    196.97157280487977,
+    444.4963348859229
+   ],
+   "1e+12": [
+    -6.497297405696316,
+    -7.378565852068898,
+    -5.627377744385491,
+    1.9383033830599814,
+    39.02269820942182,
+    187.5375133107021,
+    435.06227158452106,
+    1227.1414746330186,
+    4940.012854248642,
+    19791.498403571535,
+    44543.97413585627
+   ]
+  },
+  "G1_RR_linear": "FAIL",
+  "mu": 0.28393372799882904,
+  "lam": 0.08061836189531303
+ }
+}

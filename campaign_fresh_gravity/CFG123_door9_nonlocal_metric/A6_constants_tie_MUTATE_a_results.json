@@ -1,0 +1,70 @@
+{
+ "slug": "A6_constants_tie_MUTATE_a",
+ "load_bearing_failures": 4,
+ "checks": [
+  {
+   "name": "G4-b(i): a_mech/a0 (canonical) is a pure number in [0.9, 1.1] produced by the action (kappa = 1/2, no new number)",
+   "detail": "1.9852",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G4-b(ii): the linear response's scale can equal a0 for an M-independent constant (m or a tie) at every mass",
+   "detail": "m_req^2 varies as 1/M by a factor 1000 over 1e9-1e12 (A2, exact)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G4-c: implied a0(z)/a0(0) within 1% for z <= 5",
+   "detail": "z = 5: 0.7512",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P7a (pre-registered): net new constants = 0 only under R-A (R-B: 1; DW: f free)",
+   "detail": "R-A 1, R-B 1, DW free function",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P7b (pre-registered): the tie is not produced by the action (G4-b FAIL)",
+   "detail": "a_mech/a0 = 1.985; m_req is M-dependent",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P7c (pre-registered): implied a0(5)/a0(0) departs from 1 by more than 1%",
+   "detail": "24.884%",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P7d (pre-registered hand number): the departure at z = 5 is 'about 30%' (25-40%)",
+   "detail": "24.884%",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "G4-a (R-A)": {
+   "status": "FAIL",
+   "why": "tuned m"
+  },
+  "G4-a (R-B)": {
+   "status": "FAIL",
+   "why": "m is a new constant"
+  },
+  "G4-a (DW)": {
+   "status": "FAIL",
+   "why": "f is a free function"
+  },
+  "G4 (constants)": {
+   "status": "FAIL",
+   "why": "G4-a R-A FAIL (m replaces Lambda), G4-b FAIL (a_mech/a0 = 1.985, no tie; m_req M-dependent), G4-c FAIL (a0(5)/a0(0) = 0.751); R-B and DW FAIL G4-a"
+  }
+ },
+ "numbers": {
+  "a_mech_over_a0": 1.985177995554136,
+  "a0_ratio_z5": 0.75115599055224
+ }
+}

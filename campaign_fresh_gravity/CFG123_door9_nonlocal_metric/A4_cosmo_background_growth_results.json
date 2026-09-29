@@ -1,0 +1,67 @@
+{
+ "slug": "A4_cosmo_background_growth",
+ "load_bearing_failures": 1,
+ "checks": [
+  {
+   "name": "T0-cons: the background solution obeys the SECOND Friedmann equation (E_xx of the localised action, derived independently in A1) with radiation pressure",
+   "detail": "worst relative residual 5.57e-16 over a = 1e-4..1",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2-b(i): |H_RR/H_LCDM - 1| <= 5e-3 for all z >= 10",
+   "detail": "max 4.321e-04",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2-b(ii): the theta_* shift is removable by an H0 shift <= 0.54 km/s/Mpc (Planck 1-sigma)",
+   "detail": "needed +3.805 km/s/Mpc (proxy +3.303)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G2-c: the k^2-enhanced (quasi-static) coefficients are exactly  -2 Fbar psi/a^2 (00),  Fbar (phi - psi) (traceless ij),  (2 phi - 4 psi - u)/a^2 (U); the S equation has s = a^2 (u + O(phi,psi))/k^2; Fbar = 1 - m^2 S-bar/3",
+   "detail": "symbolic match: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2-c: D_RR/D_LCDM(z=10; normalised at z=1100) in [0.95, 1.05] for k = 0.5, 2, 10, 30 /Mpc",
+   "detail": "1.000176",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2-c: |mu - 1| <= 0.05 and |eta - 1| <= 0.05 for z >= 10",
+   "detail": "max |mu-1| = 4.54e-05, |eta-1| <= 1e-4",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P5 (pre-registered): growth ratio, mu, eta within 5% at z >= 10 and H within 5e-3 (recorded as vacuous)",
+   "detail": "growth 1.00018, mu-1 4.5e-05, H 4.3e-04",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "verdicts": {
+  "G2 (CMB and growth)": {
+   "status": "FAIL on the theta_* line; growth and H(z>=10) lines PASS (vacuously)",
+   "why": "H dev 4.3e-04 (z>=10), theta_* needs dH0 = +3.80, growth ratio 1.00018, mu-1 4.5e-05"
+  }
+ },
+ "numbers": {
+  "lam": 0.08061836189531303,
+  "mu": 0.28393372799882904,
+  "w_DE_today": -1.1456761802629376,
+  "H_dev_z_ge_10": 0.0004321025308298143,
+  "rho_DE_ratio_z5": 0.5642353536833945,
+  "theta_star_shift": 0.009488876807231206,
+  "dH0_needed": 3.8049293870987877,
+  "QS_worst_aH_over_k_sq": 9.249264234073928e-05,
+  "growth_ratio_z10": 1.0001763275297868,
+  "growth_ratio_z0": 1.0313891392097654,
+  "mu_z0": 1.0587260703365484
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "slug": "A3_nonlinear_static",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "N1 control: the eps = 0 variational solution reproduces the closed-form linear response (A2: g_lam = (1/3r^2) int psi r'^2) to 1e-6 at r/h = 0.5, 2, 5, 20, 100",
+   "detail": "max relative deviation 8.07e-12",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N2 control: the independent theta-theta field equation (not used in the integration) holds along the finite-lam nonlinear solutions",
+   "detail": "worst relative residual 2.15e-08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N1/N2 agreement: at m h = 0.03 the finite-lam nonlinear R_NL matches the O(lam) series to 30% (through O(eps^2))",
+   "detail": "max relative difference 20.21%",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P4a: R_NL <= 1e-3 at every G1 grid point (galactic parameters)",
+   "detail": "max |R_NL| = 1.815e-05",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P4b: the fitted exponent of eps (exact O(lam) system) is 1.0 +/- 0.15",
+   "detail": "1.0003",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P4c: the fitted exponent of (m h) in R_NL (finite lam) is >= 0 (no 1/(m r)^2 enhancement)",
+   "detail": "exponents [0.101, 0.208, 0.503, 0.101, 0.208, 0.503, 0.102, 0.21, 0.504]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P4d: the exact-in-eps N1 and the frozen 'second order' agree: the c2 range is O(1) (|c2| <= 10 over r/h in the grid)",
+   "detail": "c2 in [-0.302, +0.846]",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "nonlinear route (RR, static spherical, exponential sphere, prescription P0)": {
+   "status": "CLOSED-in-scope",
+   "why": "max |R_NL| = 1.815e-05 (galactic eps_h), fitted (m h) exponent min 0.101, eps exponent 1.000"
+  }
+ },
+ "numbers": {
+  "R_NL_max": 1.8149018933932837e-05,
+  "R_NL_over_eps_max": 0.8462405402708831,
+  "c2_range": [
+   -0.30217598000661783,
+   0.8462387159592556
+  ],
+  "decision": "CLOSED-in-scope",
+  "eps_exponent_N1": 1.000287803458208,
+  "mh_exponents_N2": [
+   0.10114505899540224,
+   0.20833687348701246,
+   0.5033979213488794,
+   0.10126719771991084,
+   0.20846851564589225,
+   0.5034798928598563,
+   0.10249410838749878,
+   0.2097989012369579,
+   0.5043327030053787
+  ]
+ }
+}

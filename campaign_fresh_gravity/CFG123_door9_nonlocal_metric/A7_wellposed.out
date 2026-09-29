@@ -1,0 +1,36 @@
+
+======================================================================================================================
+A7 G5: well-posedness.  MUTATE=none
+======================================================================================================================
+  [PASS] G5 set-up: the trace of the linearised metric equation is -R^(1) + 3 box F1, F1 = -(m^2/6) S - xi1 (symbolic, perturbed flat metric, off shell)
+         residual = 0
+  Mass/kinetic decomposition (rows: E_xi1, E_S, E_U, E_xi2 in the basis (xi1, S, U, xi2)): M(p^2) = Kin p^2 + Mass, Kin = [[3, m2s/2, -1, 0], [m2s/2, m2s**2/12, 0, -1], [-1, 0, 0, 0], [0, -1, 0, 0]]
+  [PASS] G5-a set-up: the symmetric matrix Kin p^2 + Mass equals the directly derived linearised scalar equations (box -> -p^2, with R^(1) = 3 box F1)
+         matrices equal: True
+  det M(p^2) = p2**3*(-m2s + p2)
+  eigenvalues of the kinetic matrix Kin (m^2 = 0.08062 in H0 units): [-1.0, -0.30273, 1.0, 3.30327] -> 2 negative-kinetic direction(s), signature (2, 2)
+  poles of the propagator (p^2 = k^2 - omega^2): {m2s: 1, 0: 3}
+  multiplicity of the root p^2 = 0 in det M(p^2): 3 (number of massless-type fields);  highest pole order of any propagator entry at p^2 = 0: 2 (dipole 1/p^4: the CFG50-type structure)
+  F1/(8 pi G T) = m2s/(3*p2*(-m2s + p2))
+  partial fractions in p^2: 1/(3*(-m2s + p2)) - 1/(3*p2)
+  series in m^2: m2s*(m2s + p2)/(3*p2**3)  (static leading term should be +m^2/(3 p^4): F1 = -m^2 S/3, S = -8 pi G T/p^4)
+  [PASS] G5-a consistency with T0c: the leading (order m^2) static propagator of F1 is m^2/(3 p^4), i.e. F1 = -m^2 S/3 with S = -8 pi G T/p^4
+         True
+  >> G5-a ghost (localised action, free initial data): FAIL -- Kin signature (2, 2); highest propagator pole order at p^2 = 0 is 2; det root multiplicity 3; other poles [m2s]; the retarded zero-data prescription removes the free data and is scored PARTIAL, never PASS (CFG48 GA analogue: ownership-as-initial-data)
+  [PASS] P8a (pre-registered): a mixed-signature (ghost-like) sector exists in the localised action with free data
+         signature (2, 2), propagator pole order 2
+
+  G5-b principal symbol det(Kin p^2) = p2**4: all characteristic surfaces p^2 = 0 (null cones): every characteristic speed = c; no superluminal characteristic.
+  [PASS] P8b (pre-registered): all characteristic speeds equal c
+         det(Kin p^2) = p2**4
+  the pole p^2 = m^2 (k^2 - omega^2 = m^2): omega^2 = k^2 - m^2 -> for k < m the homogeneous solutions GROW at rate up to m = 0.2839 H0 (e-folding time 3.52/H0 = 51 Gyr); static solutions are cos(m r)/r, not exponentials. A long-wavelength (k < m ~ 0.28 H0/c) tachyon with free data: reported, not a Solar System effect.
+
+  G5-c  RR: |gamma - 1| = m^2 r^2/3 at 1 AU = 3.189e-32 (Cassini 2.3e-5); delta g/g_N = m^2 r^2/6 = 1.594e-32; beta: nonlinear corrections to this are smaller by eps(1 AU, Sun) = 9.9e-09 (bound, not separately extracted)
+  [PASS] P8c (pre-registered): |gamma - 1| <= 1e-25 for RR at 1 AU
+         3.189e-32
+  [PASS] G5-c: RR passes Cassini (|gamma - 1| <= 2.3e-5)
+         3.189e-32
+       DW: |gamma - 1| = |4 f1/(Fbar - 8 f1)| (T0d, exact) <= 2.3e-5  =>  |f1| <~ 5.75e-06 Fbar: reported as a bound on the local f'; DW passes only inside that range and the door has no target amplitude that needs anything else.
+       G5-d (GW speed / tensor propagation): NOT tested.
+
+  7/7 checks pass; load-bearing failures: 0   (8 s)

@@ -1,0 +1,37 @@
+CFG120 POST-HOC diagnostics (written AFTER seeing the main runs; NOT frozen; none of this can upgrade or change a verdict).
+Purpose: explain three numerical misses of pre-declared implementation lines in script D and locate two numbers, without touching those lines.
+  P1  T3a.2 missed its 1e-4 line (2.0e-4): which d, and is it quadrature?  (tighter direct integration)
+  P2  T3b missed its 1e-12 ABSOLUTE line (1.2e-11): the same quantity relative to its own scale.
+  P3  T4.1's declared 1e-4 bound: where the Hubble-scale kernel's R peaks and its size relative to the 0.9 pass line.
+  P4  T1f (script B) B.4 was false for finite-range kernels: leakage of the recalled RM kernel versus shell separation, to show it is a range effect.
+
+  repo root: <repo>  (ZF_REPO);  a0 footings (km/s)^2/kpc: canonical 2888.29, second 3490.52
+  MUTATE mode: none (main run)
+
+======================================================================================================================
+P1  direct 3-D cloud-force integral, per distance, with two quadrature settings
+======================================================================================================================
+  d =   0.5 kpc: rel err (eps 1e-9) = 2.21e-04; (eps 1e-12, split intervals) = 1.90e-04
+  d =     5 kpc: rel err (eps 1e-9) = 2.08e-04; (eps 1e-12, split intervals) = 1.91e-04
+  d =    40 kpc: rel err (eps 1e-9) = 4.28e-05; (eps 1e-12, split intervals) = 3.92e-05
+
+======================================================================================================================
+P2  self-force relative to its own scale
+======================================================================================================================
+  |sum| = 1.17e-11; scale sum|.| = 1.29e+06; relative = 9.11e-18  (the frozen-run line was an absolute 1e-12 on a dimensionful sum dominated by K(1e-3 kpc) ~ 3e4)
+
+======================================================================================================================
+P3  Hubble-scale kernel K = 1/(4 pi L s^2): where R peaks
+======================================================================================================================
+  max R = 1.243e-04 at M = 1.0e+12, x = 0.1, r = 3.86 kpc; the 0.9 pass line is 7.24e+03 times larger. (K is A/(4 pi L s^2) with L = c/(H0 sqrt(3 Omega_L)) = 3.105e+06 kpc)
+
+======================================================================================================================
+P4  shell leakage of the recalled RM kernel (h = 2 kpc, M = 1e10) versus shell separation; kernel range 1/mu = 10 kpc
+======================================================================================================================
+  shell at 1.5 r* = 5.8 kpc: Delta C/C = +26.052
+  shell at 2 r* = 7.7 kpc: Delta C/C = +8.326
+  shell at 4 r* = 15.4 kpc: Delta C/C = +0.776
+  shell at 8 r* = 30.9 kpc: Delta C/C = +0.058
+  shell at 16 r* = 61.7 kpc: Delta C/C = +0.001
+
+  0/0 checks pass; load-bearing failures: 0   (205 s)

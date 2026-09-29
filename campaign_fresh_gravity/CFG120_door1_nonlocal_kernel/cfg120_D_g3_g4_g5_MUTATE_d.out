@@ -1,0 +1,79 @@
+CFG120 script D -- G3 (T3a reciprocity/energy of the pair-potential structure, T3b self-force), G4 (T4 constant count) and G5 (T5: Poisson-operator sign,
+hyperbolicity statement, Solar System, ownership statement), written to CFG120_FROZEN_CRITERIA.md (commit e8b9fbcdf).  (T3c, the cosmological Bianchi
+check, is in script C because it needs the linear solver.)
+
+Pass lines (frozen): G3 reaction on baryons beyond g_law <= 0.10 g_law and supplied energy <= orbital energy (both r_ta conventions: the supplied energy is
+independent of r_ta because the map has no exchange); G4 zero constants beyond kappa and Omega_c h^2 and a0 tied as in CFG43 (inherited as an input);
+G5a min_k(1 + Khat) > 0; G5b hyperbolicity/ghost UNDECIDED at this scope (a static instantaneous relation); G5c |g_D(9.5 AU)| <= 1e-13 m/s^2 (declared placeholder;
+CFG7's committed Cassini line is a QUADRUPOLE TIDE bound, Q2 = 5.2e-27 s^-2, a different observable: reported POST-HOC beside it, see below).
+Kernel used for the N-body and the Solar System: the recalled RM sets (closed forms), the T1g best fits, K* (extended inward with its local power-law slope, declared), and K_M(M_sun).
+MUTATE=d : kernel sign flipped: the G5a claim '1 + Khat > 0' must FAIL.  MUTATE=a,b,c: no bite here (declared).
+
+  repo root: <repo>  (ZF_REPO);  a0 footings (km/s)^2/kpc: canonical 2888.29, second 3490.52
+  MUTATE mode: d
+
+======================================================================================================================
+T3a  reciprocity and energy: a linear translation-invariant map is a FIXED two-body law F = G m1 m2 (1 + m(d))/d^2 with a symmetric pair potential
+======================================================================================================================
+  [PASS] T3a.1 the pair potential W(d) = (K*1/s)(d) has W'(d) = -m(d)/d^2 (analytic W against finite difference), so the pair force is G m1 m2 (1+m(d))/d^2
+         max rel err over d = 0.05-200 kpc: 1.97e-09 (line 1e-6)
+  [FAIL] T3a.2 independent route: the force of the cloud on a test mass by direct 3-D integration over the cloud equals G m(d)/d^2 (shell theorem)
+         max rel err at d = 0.5, 5, 40 kpc: 2.01e-04 (line 1e-4)
+  [PASS] T3a.3 N = 3 (hierarchical, 10 inner periods, DOP853 rtol 1e-12): energy (kinetic + pair potentials) conserved to 1e-8 and total momentum to 1e-12
+         |dE/E| = 9.78e-12, |dp|/(sum m v) = 1.28e-15; force vs -grad(pair-sum energy): 1.89e-10
+  [PASS] T3a.4 N = 30 (random virialised-ish cluster, 10 median half-crossing times): energy conserved to 1e-8 and total momentum to 1e-12
+         |dE/E| = 3.13e-10, |dp|/(sum m v) = 2.43e-14 (T = 0.407 kpc/(km/s), crossing 0.0814); gradient check (6 bodies) 1.26e-09
+  [FAIL] T3b a baryon's own cloud exerts no net force on it (z-component of Int K(|y|) y/|y|^3 d^3y with symmetric quadrature)
+         |F_self| = 1.17e-11 (line 1e-12)
+  << GATE G3 (Reading P, static instantaneous map: reciprocity and energy): PASS (by structure) >> reaction beyond g_law: 1.9e-10 g_law (line 0.10); supplied energy |dE|/E_orbit 3.1e-10 (line 1), both r_ta conventions (r_ta does not enter: no exchange). This says only that a fixed pair law is reciprocal and conservative; the cosmological Bianchi check T3c is scored in script C
+
+======================================================================================================================
+T4  constants beyond kappa = 1/2 and Omega_c h^2 = 0.12 (a0 tie inherited as an input; the door does not derive a0)
+======================================================================================================================
+  Hubble-scale lengths (the only lengths from G, a0, c, Lambda): c/(H0 sqrt(3 Omega_L)) = 3.105e+06 kpc = 3.11 Gpc; c^2/a0 = 3.112e+07 kpc (canonical), 2.575e+07 (second)
+    universal kernel K = 1/(4 pi L s^2) with L = c/sqrt(Lambda)-type (3.11e+06 kpc): zero new constants, R = C_model/C_target over the whole G1 domain in [1.31e-08, 1.24e-04]
+    universal kernel K = 1/(4 pi L s^2) with L = c^2/a0 canonical (3.11e+07 kpc): zero new constants, R = C_model/C_target over the whole G1 domain in [1.31e-09, 1.24e-05]
+    universal kernel K = 1/(4 pi L s^2) with L = c^2/a0 second (2.57e+07 kpc): zero new constants, R = C_model/C_target over the whole G1 domain in [1.58e-09, 1.50e-05]
+  constant counts:
+    RM 3-parameter best fit (A, lambda0, mu0) = (0.00794, 0.0797 kpc, 4.6e-07/kpc): 3 new constants (one degenerate: mu0 -> 0, so effectively the single number A/lambda0 = 0.09955/kpc); residual factor 53.2
+    RM 2-parameter (A = 1) best fit lambda0 = 10.05 kpc, mu0 = 3.2e-07/kpc: 2 new constants; recalled sets (lambda0, mu0): 2 new constants
+    K* (best universal kernel): a whole tabulated function with breakpoints at r = 0.1 rM(M_i) and 30 rM(M_i) (galactic lengths 0.12-1158 kpc): at least one new galactic length
+    K_M / K_Mtot: zero new constants (only a0, G and the baryon mass), but NOT universal (depends on M_b) and NOT linear in rho_b: a postulate of the target (CFG60 class P)
+  [FAIL] T4.1 no kernel is at once universal (fixed constants), free of new constants, and G1-passing: the zero-constant universal (Hubble-scale) kernels give R <= 1e-4 everywhere
+         c/sqrt(Lambda)-type: R in [1.3e-08, 1.2e-04]; c^2/a0 canonical: R in [1.3e-09, 1.2e-05]; c^2/a0 second: R in [1.6e-09, 1.5e-05]
+  << GATE G4 (constants): FAIL >> every universal kernel that reaches the galactic scale carries >= 1 new length (RM: 2-3 constants); the zero-constant universal kernels are Hubble-scale and give R <= 1e-6; K_M/K_Mtot have zero new constants but are mass-dependent (not universal, not linear) and postulate the target; a0's tie is inherited, not derived
+
+======================================================================================================================
+T5  well-posedness and the Solar System
+======================================================================================================================
+    K_M (M = 1e10)            : min_k (1 + (-)Khat) = -4.071e+08   (Khat range 1.34e-19 .. 4.07e+08)
+    RM recalled (1,3,0.1)     : min_k (1 + (-)Khat) = -5.667   (Khat range 5.24e-10 .. 6.67)
+    RM best fit (3-param)     : min_k (1 + (-)Khat) = -4.349e+05   (Khat range 1.56e-10 .. 4.35e+05)
+    RM best fit (A=1)         : min_k (1 + (-)Khat) = -6.319e+05   (Khat range 1.56e-10 .. 6.32e+05)
+  [FAIL] T5a the Newtonian-limit Poisson operator has 1 + Khat(k) > 0 at every k for every kernel tested (no pole)
+         min over kernels = -4.071e+08
+  << GATE G5a (sign of the Poisson operator): FAIL >> min_k(1+Khat) = -4.07e+08
+  << GATE G5b (hyperbolicity, ghosts, gradient instability): UNDECIDED >> the Newtonian-limit map is a static instantaneous relation, not a dynamical field; the DE12/DE13/XR criteria are undefined at this scope; a covariant (time-nonlocal) completion is not tested
+  Solar System: anomalous acceleration g_D(9.5 AU) from the Sun's phantom cloud, pass line 1e-13 m/s^2 (declared placeholder)
+    RM recalled lambda0=3, mu0=0.06                               : g_D = 1.009e-12 m/s^2   FAIL   (10.1 x the line)
+    RM recalled lambda0=3, mu0=0.1                                : g_D = 1.009e-12 m/s^2   FAIL   (10.1 x the line)
+    RM recalled lambda0=10, mu0=0.06                              : g_D = 3.026e-13 m/s^2   FAIL   (3.03 x the line)
+    RM recalled lambda0=10, mu0=0.1                               : g_D = 3.026e-13 m/s^2   FAIL   (3.03 x the line)
+    RM best fit 3-param                                           : g_D = 3.046e-13 m/s^2   FAIL   (3.05 x the line)
+    RM best fit 2-param                                           : g_D = 3.046e-13 m/s^2   FAIL   (3.05 x the line)
+    K* (extended inward, local slope n = -1.963)                  : g_D = 1.370e-13 m/s^2   FAIL   (1.37 x the line)
+    K_M(M_sun): the target itself (r_M = 7959 AU)                 : g_D = 4.680e-11 m/s^2   FAIL   (468 x the line)
+  [PASS] T5c (frozen expectation) the recalled Rahvar-Mashhoon sets and K_M(M_sun) exceed 1e-13 m/s^2 at 9.5 AU (fail Cassini); ESTIMATE was ~1e-12 for lambda0 = 3 kpc and a0/2 = 4.7e-11 for K_M
+         RM recalled lambda0=3, mu0=0.06: 1.01e-12; RM recalled lambda0=3, mu0=0.1: 1.01e-12; RM recalled lambda0=10, mu0=0.06: 3.03e-13; RM recalled lambda0=10, mu0=0.1: 3.03e-13; RM best fit 3-param: 3.05e-13; RM best fit 2-param: 3.05e-13; K* (extended inward, local slope n = -1.963): 1.37e-13; K_M(M_sun): the target itself (r_M = 7959 AU): 4.68e-11
+
+  POST-HOC (not frozen; different observable): CFG7's committed Cassini line is the quadrupole tide bound 5.2e-27 s^-2.  |d g_D/dr| at 9.5 AU for the same kernels (s^-2):
+    RM recalled lambda0=3, mu0=0.1      : |dg_D/dr| = 7.10e-25 s^-2  (1.4e+02 x 5.2e-27); the central-force gradient is not the same object as a quadrupole tide, so this is indicative only
+    RM recalled lambda0=10, mu0=0.06    : |dg_D/dr| = 2.13e-25 s^-2  (41 x 5.2e-27); the central-force gradient is not the same object as a quadrupole tide, so this is indicative only
+    RM best fit 3-param                 : |dg_D/dr| = 2.57e-24 s^-2  (4.9e+02 x 5.2e-27); the central-force gradient is not the same object as a quadrupole tide, so this is indicative only
+    K_M(M_sun)                          : |dg_D/dr| = 2.56e-29 s^-2  (0.0049 x 5.2e-27); the central-force gradient is not the same object as a quadrupole tide, so this is indicative only
+  << GATE G5c (Solar System, |g_D(9.5 AU)| <= 1e-13 m/s^2): FAIL >> fail: RM recalled lambda0=3, mu0=0.06; RM recalled lambda0=3, mu0=0.1; RM recalled lambda0=10, mu0=0.06; RM recalled lambda0=10, mu0=0.1; RM best fit 3-param; RM best fit 2-param; K* (extended inward, local slope n = -1.963); K_M(M_sun): the target itself (r_M = 7959 AU)
+
+  G5d ownership (structural, not scored): the map applies to EVERY baryon (the Sun, unbound gas, the intracluster medium); there is no bound-only switch. With the recalled kernel the cosmic mean dark/baryon ratio is 6.67 (background required 5.36); the unbound web carries a phantom, at odds with CFG4 H4 ('the unbound web carries no phantom'). The door is silent on Gap 1.
+  << GATE G5d (ownership): UNDECIDED / structural >> no bound-only switch; every baryon carries a cloud; not a scored pass
+
+  4/8 checks pass; load-bearing failures: 4   (60 s)

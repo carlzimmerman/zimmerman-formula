@@ -1,0 +1,84 @@
+CFG124 T0 -- structure of the mimetic action (sympy).  Frozen criteria: CFG124_FROZEN_CRITERIA.md (committed e8b9fbcdf).
+Action (signature -+++, c=1):  S = INT sqrt(-g)[ R/16piG + lam (X+1) - V(phi) + (gamma/2)(box phi)^2 ] + S_b[g].
+Unitary-gauge (phi = t) route: X = g^{tt} = -1/N^2 => N = 1; box phi = -K; sqrt(-g)R = N sqrt(h)(R3 + K_ij K^ij - K^2) + t.d.;
+so the reduced action is  INT sqrt(h) [ (1/16piG)(R3 + K_ij K^ij - (1 - gt) K^2) - V(t) ],  gt = 8 pi G gamma  (gamma is measured in
+units of M_P^2 = 1/(8 pi G); this normalisation was not spelled out in the frozen text: disclosed, not a criterion change).
+The Hamiltonian constraint is NOT imposed (lam plays its role): that is the dust.  Checks T0.1-T0.7 below.
+MUTATE: a (breaks T0.5's static-support claim by giving the dust a pressure by hand), b (breaks c_s^2 by dropping the gamma term in the
+gradient sign), c/1 are not used here except '1' which activates a and b.
+
+
+==============================================================================================================
+T0.1  sqrt(-g) R = N sqrt(h)(R3 + K_ij K^ij - K^2) + total derivative  (checked on flat FRW with lapse N=1)
+==============================================================================================================
+  [PASS] T0.1  a^3 R - a^3(K_ijK^ij - K^2) = 6 d/dt(a^2 adot) exactly (total derivative)
+         measured: residual = 0
+
+==============================================================================================================
+T0.2  unitary gauge: box(phi=t) = -K for N = 1, shift N_i = d_i psi, h_ij = a^2 e^{2 zeta} delta_ij (fields depend on t, x)
+==============================================================================================================
+  [PASS] T0.2a  X = g^{tt} = -1 identically when N = 1 (the constraint fixes the lapse in unitary gauge)
+         measured: g^tt = -1
+  [PASS] T0.2b  box phi = -K (K = trace of the extrinsic curvature of the phi = const slices)
+         measured: box phi + K = 0
+
+==============================================================================================================
+T0.3  the constraint is kinematic: the congruence u_mu = d_mu phi is geodesic and irrotational for ANY V, gamma, D-term
+==============================================================================================================
+  [PASS] T0.3a  phi^nu nabla_nu phi_mu = (1/2) d_mu X identically (generic 1+1 metric and phi), so X = -1 => a_mu = 0: geodesic, whatever the action's other terms
+         measured: residuals = [0, 0]
+  [PASS] T0.3b  weak-field HJ pi_t = Phi + pi_x^2/2 gives the pressureless Euler equation v_t + v v_x = -Phi_x (v = -pi_x)
+         measured: residual = 0
+  [PASS] T0.3c  a v = 0 state (pi = f(t)) needs f' = sqrt(1+2 Phi(x)) - 1 to be x-independent: d_x of it = Phi'/sqrt(1+2Phi), nonzero whenever grad Phi != 0. NO stationary v = 0 state exists in a potential well, for every class A-D (the constraint is kinematic)
+         measured: d/dx[ sqrt(1+2Phi) - 1 ] = Derivative(Phi(x), x)/sqrt(2*Phi(x) + 1)
+
+==============================================================================================================
+T0.4  background (N-variation gives the energy density; a-variation the dynamics): Cm conserved iff V is constant
+==============================================================================================================
+  [PASS] T0.4a  N-variation: eps = -2 lam = (3/8piG)(1 - 3 gt/2) H^2 - V (Friedmann with the gamma-modified coefficient; eps is the free 'dust' energy)
+         measured: diff = 0
+  [PASS] T0.4b  d(a^3 eps)/dt = -a^3 dV/dt exactly on the a-equation (so Cm = a^3 eps is conserved iff V is constant; a non-constant V is a homogeneous source, position-independent)
+         measured: d(a^3 eps)/dt = -a(t)**3*Derivative(V(t), t)
+
+==============================================================================================================
+T0.5  flat-space EOM of L = lam(X+1) + (gamma/2)(box phi)^2 : current J^mu = eps u^mu + gamma nabla^mu(box phi), linearised
+==============================================================================================================
+  linearised phi-equation:  gam*Derivative(p(t, x), (t, 4)) + gam*Derivative(p(t, x), (x, 4)) - 2*gam*Derivative(p(t, x), (t, 2), (x, 2)) + 2*l0*Derivative(p(t, x), (t, 2)) - 2*l0*Derivative(p(t, x), (x, 2)) + 2*Derivative(l(t, x), t) = 0;  linearised constraint: -2*Derivative(p(t, x), t) = 0
+  reduced (p_t = 0) equation: gam*Derivative(p(t, x), (x, 4)) - 2*l0*Derivative(p(t, x), (x, 2)) + 2*Derivative(l(t, x), t)
+  [PASS] T0.5  linear current law (p_t = 0 from the constraint): 2 d_t l - 2 l0 p_xx + gamma p_xxxx = 0, i.e. with eps = -2 lam, v = -p_x:  d_t d(eps) + eps0 d_x v = -gamma d_x^3 v, the L374 continuity form d_t rho + d_x(rho v) = beta d_x^3 v with beta = -gamma
+         measured: E1c = gam*Derivative(p(t, x), (x, 4)) - 2*l0*Derivative(p(t, x), (x, 2)) + 2*Derivative(l(t, x), t)
+  d_t d(eps) = gam*Derivative(p(t, x), (x, 4)) - 2*l0*Derivative(p(t, x), (x, 2))   (eps0 = -2 l0, v = -p_x)  =>  d_t d(eps) + eps0 d_x v = beta d_x^3 v  with beta = -gam
+
+==============================================================================================================
+T0.6  scalar sector of the reduced ADM action (h_ij = a^2 e^{2 zeta} delta_ij, N=1, N_i = d_i psi): momentum constraint, c_s^2, kinetic sign, DOF count
+==============================================================================================================
+  momentum constraint (Fourier): k**2*(gt*k**2*pt(t) + 3*gt*a(t)**2*Derivative(zt(t), t) + k**2*s*pt(t) + s*a(t)**2*Derivative(zt(t), t) - 2*a(t)**2*Derivative(zt(t), t))/(G8*a(t)) = 0  =>  psi_k = (-3*gt - s + 2)*a(t)**2*Derivative(zt(t), t)/(k**2*(gt + s))
+  z-double-dot coefficient A = -2*(s + 1)*(3*gt + s - 2)*a(t)**3/(G8*(gt + s)) ;  k^2 z coefficient B = 2*(w + 1)*a(t)/G8
+  c_s^2 (omega^2 = c_s^2 k^2/a^2 at large k) = B a^2 / A = -(gt + s)*(w + 1)/((s + 1)*(3*gt + s - 2))
+  [PASS] T0.6a  mimetic + (box phi)^2 (s = w = 0): c_s^2 = gt/(2 - 3 gt), the recalled CMV value (recomputed from the reduced action, not assumed)
+         measured: c_s^2 = -gt/(3*gt - 2)
+  A(gt) at s=w=0 = -2*(3*gt - 2)*a(t)**3/(G8*gt)   (S2 = -(A/2) zdot^2 + ...: kinetic sign = -sign(A/a^3...))
+  (gt: (sign of kinetic term of the zeta action [+1 healthy], sign of c_s^2)) = {'-1/10': ('1', '-1'), '1/100': ('-1', '1'), '1/4': ('-1', '1'), '1/2': ('-1', '1'), '3/5': ('-1', '1'), '7/10': ('1', '-1')}
+  [PASS] T0.6b  GHOST (negative kinetic term of the scalar mode) for every 0 < gt < 2/3, where c_s^2 > 0; GRADIENT instability (c_s^2 < 0) with healthy kinetic sign for gt < 0 and gt > 2/3.  So no gt gives a healthy stable scalar in the minimal action [the recalled 'ghost/gradient dichotomy' of Ramazanov et al. / projectable Horava-like models, here derived]
+         measured: {'-1/10': ('1', '-1'), '1/100': ('-1', '1'), '1/4': ('-1', '1'), '1/2': ('-1', '1'), '3/5': ('-1', '1'), '7/10': ('1', '-1')}
+  [PASS] T0.6c  DOF count: the momentum constraint is algebraic in psi_k and the zeta equation is second order => ONE scalar mode beyond the tensors (the dust mode) for gt != 0. At gt = 0 (s = 0) the momentum constraint loses psi and becomes zeta-dot = 0: zeta frozen, no propagating scalar (pure dust, class A)
+         measured: momentum constraint at gt = s = 0: -2*k**2*a(t)*Derivative(zt(t), t)/G8 = 0
+  class D (K_ij K^ij coefficient 1+s, R3 coefficient 1+w): c_s^2 = -(gt + s)*(w + 1)/((s + 1)*(3*gt + s - 2))
+
+==============================================================================================================
+T0.6d  tensor sector (class D): c_T^2 = (1+w)/(1+s)
+==============================================================================================================
+  kinetic coefficient (x 4G8/a) = (s + 1)*a(t)**2 ; gradient coefficient after integration by parts (x 4G8/a) = -w - 1
+  c_T^2 = -(gradient)/(kinetic) [times a^-2 in the gradient, times a^2 for physical units] = (w + 1)/(s + 1)
+  [PASS] T0.6d  tensor speed c_T^2 = (1+w)/(1+s) (GW170817 needs c_T = 1, i.e. s = w)
+         measured: c_T^2 = (w + 1)/(s + 1)
+  with c_T = 1 (w = s): c_s^2 = -(gt + s)/(3*gt + s - 2) ; A = -2*(s + 1)*(3*gt + s - 2)*a(t)**3/(G8*(gt + s))
+  scan of (gt, s) with c_T = 1 (w = s): 234834 grid points, 0 with kinetic term healthy AND 0 < c_s^2 <= 1; examples []
+
+==============================================================================================================
+T0.7  static stress: terms B, C, D vanish or are homogeneous on a stationary configuration; the reduced action has no pressure-like term that supports a static halo
+==============================================================================================================
+  [PASS] T0.7  at K_ij = 0 (stationary slices) the (box phi)^2 term (gt K^2) and the K_ijK^ij term contribute NOTHING (and their h_ij-variation is quadratic or linear in K, K-dot: zero at K = 0 = K-dot); V contributes a homogeneous -V h^{ij}; R3 (class D) modifies the gravity sector, not a dust pressure. So the only stationary states are v = 0 states, which T0.3c shows do not exist for grad Phi != 0
+         measured: K_ijK^ij and K^2 terms at K=0: 0
+
+  14/14 checks pass; load-bearing failures: 0   (12 s)   MUTATE=''

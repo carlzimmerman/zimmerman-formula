@@ -1,0 +1,205 @@
+{
+ "slug": "cfg120_C_cosmology_g2_MUTATE_c",
+ "mutate": "c",
+ "load_bearing_failures": 2,
+ "checks": [
+  {
+   "name": "T2a the cosmic sum rule FAILS: the interior dark mass G1 needs (29.0 M) exceeds the background dark share (5.36 M) by a factor 5.4",
+   "detail": "29.017 vs 5.364: ratio 5.409",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C.ctl LCDM solver: delta_m(z=10)/delta_m(a=0.05) at k = 0.5/Mpc equals the analytic ratio D(0.0909)/D(0.05)",
+   "detail": "numeric 1.81476, analytic 1.82716, rel diff 6.79e-03 (line 2e-2)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T2b (frozen expectation) the baryon-sourced phantom fails the acoustic-driving/growth lines for the frozen kernel (i) and for (ii), (iii)",
+   "detail": "failing k: (i) []; (ii) []; (iii) []; kernels that pass everywhere: ['fit', 'recalled', 'const']",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T3c (frozen expectation) the non-gravitational force on the photon-coupled baryons (Bianchi violation of a phantom slaved to them) exceeds the 0.05 line at k = 0.1/Mpc, z = 1100",
+   "detail": "0.0000 (pass line <= 0.05)",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "gates": [
+  {
+   "gate": "G2/T2a (sum rule)",
+   "verdict": "FAIL",
+   "detail": "required 29.02 M vs allowed 5.36 M (x_cap = 6.29)"
+  },
+  {
+   "gate": "G2/T2b (acoustic driving, growth)",
+   "verdict": "PASS(some)",
+   "detail": "failing k for the frozen kernel (i): []; (ii): []; (iii, post-hoc favourable): []. With a sane LCDM reference only: (i) []; (ii) []; (iii) []"
+  },
+  {
+   "gate": "G3/T3c (Bianchi consistency in cosmology)",
+   "verdict": "PASS",
+   "detail": "|Q|/(k^2 phi) = 0.000 at k = 0.1/Mpc, z = 1100 (line 0.05); values at other k: 0.01: 0.00, 0.02: 0.00, 0.05: 0.00, 0.1: 0.00, 0.3: 0.00"
+  }
+ ],
+ "numbers": {
+  "T2b": {
+   "fit": {
+    "failing_k": [],
+    "failing_k_sane_reference": [],
+    "rows": {
+     "0.01": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.02": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.05": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.1": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.3": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.5": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "2.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "10.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "30.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     }
+    }
+   },
+   "recalled": {
+    "failing_k": [],
+    "failing_k_sane_reference": [],
+    "rows": {
+     "0.01": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.02": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.05": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.1": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.3": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.5": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "2.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "10.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "30.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     }
+    }
+   },
+   "const": {
+    "failing_k": [],
+    "failing_k_sane_reference": [],
+    "rows": {
+     "0.01": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.02": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.05": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.1": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.3": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "0.5": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "2.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "10.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     },
+     "30.0": {
+      "rD": 1.0,
+      "rPhi": 1.0,
+      "rGrowth": 1.0
+     }
+    }
+   }
+  }
+ }
+}

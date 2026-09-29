@@ -1,0 +1,57 @@
+
+======================================================================================================================
+A4 G2: RR background, perturbation equations, growth
+======================================================================================================================
+  R-A background: m^2/H0^2 = 0.08061836, m/H0 = 0.283934  (this shot value replaces Lambda; it is the only new number and it is FIXED by H(a=1) = H0)
+  [PASS] T0-cons: the background solution obeys the SECOND Friedmann equation (E_xx of the localised action, derived independently in A1) with radiation pressure
+         worst relative residual 5.57e-16 over a = 1e-4..1
+  Omega_DE^eff(today) = 0.68461;  rho_DE^eff(z=1)/today = 0.7805, (z=2) 0.6929, (z=5) 0.5642, (z=10) 0.4641
+  w_DE^eff(z=0) = -1.1457; at z=1: -1.1010; at z=5: -1.1027   (phantom-like if < -1)
+  max |H_RR/H_LCDM - 1| for z >= 10: 4.321e-04;  at z = 10: 4.351e-04;  at z = 1: 2.370e-02;  at z = 0.3: 2.520e-02
+  [PASS] G2-b(i): |H_RR/H_LCDM - 1| <= 5e-3 for all z >= 10
+         max 4.321e-04
+  D_M(z*=1090): RR/LCDM - 1 = 9.489e-03 (fixed H0, Omega_m h^2);  LCDM-sensitivity proxy for the H0 shift = +3.303 km/s/Mpc;
+  EXACT: RR re-solved at shifted H0 (omega_m, omega_r fixed, m^2 re-shot) matches the LCDM D_M(z*) at H0 = 71.165, i.e. a shift of +3.805 km/s/Mpc (pass line 0.54); r_s unchanged (RR = LCDM at z >= 10 to 4e-4)
+  [FAIL] G2-b(ii): the theta_* shift is removable by an H0 shift <= 0.54 km/s/Mpc (Planck 1-sigma)
+         needed +3.805 km/s/Mpc (proxy +3.303)
+
+======================================================================================================================
+G2-c  linear perturbation equations of the localised RR model on FRW (sympy) and the quasi-static reduction
+======================================================================================================================
+    delta E_00      = 2*k**2*m2*Sb(t)*psi(t)/(3*a(t)**2) - k**2*m2*s(t)/(3*a(t)**2) - 2*k**2*psi(t)/a(t)**2 + 2*m2*Sb(t)*Derivative(a(t), t)*Derivative(psi(t), t)/a(t) - m2*Ub(t)**2*phi(t)/6 - m2*Ub(t)*u(t)/6 + m2*Derivative(Sb(t), t)*Derivative(psi(t), t) + m2*Derivative(Sb(t), t)*Derivative(u(t), t)/6 + m2*Derivative(Ub(t), t)*Derivative(s(t), t)/6 - m2*Derivative(a(t), t)*Derivative(s(t), t)/a(t) - m2*s(t)*Derivative(a(t), t)**2/a(t)**2 - 6*Derivative(a(t), t)*Derivative(psi(t), t)/a(t)
+    delta(E_xx-E_yy)= k**2*(-m2*Sb(t)*phi(t) + m2*Sb(t)*psi(t) - m2*s(t) + 3*phi(t) - 3*psi(t))/3
+    delta(box U + R)= 2*k**2*phi(t)/a(t)**2 - 4*k**2*psi(t)/a(t)**2 - k**2*u(t)/a(t)**2 + 2*phi(t)*Derivative(Ub(t), (t, 2)) + Derivative(Ub(t), t)*Derivative(phi(t), t) + 3*Derivative(Ub(t), t)*Derivative(psi(t), t) - 6*Derivative(psi(t), (t, 2)) - Derivative(u(t), (t, 2)) + 6*phi(t)*Derivative(Ub(t), t)*Derivative(a(t), t)/a(t) - 12*phi(t)*Derivative(a(t), (t, 2))/a(t) - 6*Derivative(a(t), t)*Derivative(phi(t), t)/a(t) - 24*Derivative(a(t), t)*Derivative(psi(t), t)/a(t) - 3*Derivative(a(t), t)*Derivative(u(t), t)/a(t) - 12*phi(t)*Derivative(a(t), t)**2/a(t)**2
+    delta(box S + U)= -k**2*s(t)/a(t)**2 + 2*phi(t)*Derivative(Sb(t), (t, 2)) + u(t) + Derivative(Sb(t), t)*Derivative(phi(t), t) + 3*Derivative(Sb(t), t)*Derivative(psi(t), t) - Derivative(s(t), (t, 2)) + 6*phi(t)*Derivative(Sb(t), t)*Derivative(a(t), t)/a(t) - 3*Derivative(a(t), t)*Derivative(s(t), t)/a(t)
+    quasi-static scaling (s = sigma/k^2, phi, psi, u = O(1), k -> infinity):
+       E_00:  k^2 coefficient = 2*(m2*Sb(t) - 3)*psi(t)/(3*a(t)**2)   (expected -2 Fbar psi / a^2)
+       E_xx-E_yy: k^2 coefficient = -m2*Sb(t)*phi(t)/3 + m2*Sb(t)*psi(t)/3 + phi(t) - psi(t)   (expected Fbar (phi - psi))
+       box U + R: k^2 coefficient = (2*phi(t) - 4*psi(t) - u(t))/a(t)**2   (expected (2 phi - 4 psi - u)/a^2)
+       box S + U: k^0 coefficient = 2*phi(t)*Derivative(Sb(t), (t, 2)) + u(t) + Derivative(Sb(t), t)*Derivative(phi(t), t) + 3*Derivative(Sb(t), t)*Derivative(psi(t), t) + 6*phi(t)*Derivative(Sb(t), t)*Derivative(a(t), t)/a(t) - sigma(t)/a(t)**2   (u - sigma/a^2 plus S-bar-derivative x (phi, psi) terms of the same order as u, so s = a^2 (u + O(phi, psi))/k^2; an earlier draft of this check expected exactly u - sigma/a^2 and was too strict, corrected before any number was used)
+  [PASS] G2-c: the k^2-enhanced (quasi-static) coefficients are exactly  -2 Fbar psi/a^2 (00),  Fbar (phi - psi) (traceless ij),  (2 phi - 4 psi - u)/a^2 (U); the S equation has s = a^2 (u + O(phi,psi))/k^2; Fbar = 1 - m^2 S-bar/3
+         symbolic match: True
+    => quasi-static:  k^2 psi = -4 pi G a^2 delta-rho / Fbar  (mu = G_eff/G = 1/Fbar),  phi - psi = O(m^2 a^2 u/k^2) (eta = psi/phi = 1 + O(m^2 a^2/(Fbar k^2))),  u = 2 phi - 4 psi,  s = a^2 u/k^2
+    neglected terms are the k^0 coefficients (time derivatives of phi, psi, u, s times H, and m^2 u, m^2 U-bar^2 phi): relative size O((a H/k)^2) and O(m^2 a^2/k^2).
+
+    k [1/Mpc]   z=10: (aH/k)^2   m^2 a^2/k^2   | z=1100: (aH/k)^2
+       0.5      7.03e-07      1.35e-10     | 9.25e-05
+       2.0      4.39e-08      8.41e-12     | 5.78e-06
+      10.0      1.76e-09      3.36e-13     | 2.31e-07
+      30.0      1.95e-10      3.74e-14     | 2.57e-08
+
+======================================================================================================================
+G2-c  growth of the clustering matter (CDM + baryons), dust equation with mu = 1/Fbar, H from the background
+======================================================================================================================
+    k [1/Mpc]:  0.5  2  10  30   (quasi-static growth is k-independent; the k-dependence is the O((aH/k)^2) correction above)
+    D_RR/D_LCDM at z = 10 (normalised at z = 1100): 1.000176 for every k;  at z = 0 (informational, no gate): 1.03139
+    mu = 1/Fbar: max |mu - 1| for z in [10, 1100] = 4.540e-05;  mu(z=0) = 1.0587;  eta - 1 = O(m^2 a^2/k^2) <= 1.3e-10 at z=10
+    remark (unverified against the literature): my recollection is that the RR literature reports a SUPPRESSED late-time growth; the quasi-static system derived here gives mu(z=0) = 1/Fbar > 1 (enhancement) because S-bar > 0, partly offset by H; I have not resolved this and it is not a gate line.
+  [PASS] G2-c: D_RR/D_LCDM(z=10; normalised at z=1100) in [0.95, 1.05] for k = 0.5, 2, 10, 30 /Mpc
+         1.000176
+  [PASS] G2-c: |mu - 1| <= 0.05 and |eta - 1| <= 0.05 for z >= 10
+         max |mu-1| = 4.54e-05, |eta-1| <= 1e-4
+    G2-d: a G2 pass is VACUOUS: the CDM (Omega_c h^2 = 0.12) is inserted by hand exactly as in LCDM and the nonlocal term is negligible at z >= 10; it says nothing for the door.
+  >> G2 (CMB and growth): FAIL on the theta_* line; growth and H(z>=10) lines PASS (vacuously) -- H dev 4.3e-04 (z>=10), theta_* needs dH0 = +3.80, growth ratio 1.00018, mu-1 4.5e-05
+  [PASS] P5 (pre-registered): growth ratio, mu, eta within 5% at z >= 10 and H within 5e-3 (recorded as vacuous)
+         growth 1.00018, mu-1 4.5e-05, H 4.3e-04
+
+  6/7 checks pass; load-bearing failures: 1   (34 s)

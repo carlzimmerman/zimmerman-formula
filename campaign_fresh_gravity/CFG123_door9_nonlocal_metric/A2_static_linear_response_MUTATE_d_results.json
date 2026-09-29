@@ -1,0 +1,151 @@
+{
+ "slug": "A2_static_linear_response_MUTATE_d",
+ "load_bearing_failures": 6,
+ "checks": [
+  {
+   "name": "P1 (amplitude): |R_A| in [1e-17, 1e-7] at every grid point, both footings, and no point within 10% of 1",
+   "detail": "range [1.000e+00, 1.000e+00]; any point in the 0.90-1.10 band: True",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P2a (shape): the G1-S spread exceeds 1.2 and |R_A| follows sqrt(1+x^2) to within 10%",
+   "detail": "spread 1; max deviation from sqrt(1+x^2) shape 9.67e-01",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P2b (the frozen text's number 'about 300 over x in [0.1, 30]'): the G1-S spread is 300 within a factor 1.5",
+   "detail": "spread 1 = sqrt(1 + 30^2)/sqrt(1 + 0.1^2) = 29.87: the frozen 'about 300' was an arithmetic error by a factor 10",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "P3 (mass scaling): the G1-M spread at fixed x is 1000 within 2% for the point-mass linear response",
+   "detail": "spreads ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T0c-consistency: G1-sign equals the sign derived in A1 (negative density: rho_eff < 0 at every point)",
+   "detail": "all rho_eff > 0: True",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G1-req: m_req scales as M^(-1/2) and 1/m_req = r_M * const (the required screening length is the mass-dependent r_M)",
+   "detail": "exponent -0.50000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "P1-ext: the extended-sphere |R_X| also lies in [1e-17, 1e-7] (both footings) and none is within 10% of 1",
+   "detail": "range [1.000e+00, 1.000e+00]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "DW: the linear static response rescales G only (T0d exact residuals 0, so the K = 0)",
+   "detail": "see A1",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "G1-A (point mass, canonical)": {
+   "status": "PASS",
+   "why": "|R_A| in [1.00e+00, 1.00e+00] against [0.90, 1.10]; any point within the band: True"
+  },
+  "G1-S (point mass)": {
+   "status": "PASS",
+   "why": "spread over x = 1, 1, 1, 1 against 1.20"
+  },
+  "G1-M (point mass)": {
+   "status": "PASS",
+   "why": "spread over M at fixed x: 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 against 1.20"
+  },
+  "G1-sign (point mass)": {
+   "status": "PASS",
+   "why": "rho_eff > 0 at every grid point"
+  },
+  "G1-X (exponential sphere, canonical)": {
+   "status": "PASS",
+   "why": "|R_X| in [1.00e+00, 1.00e+00] vs [0.9, 1.1]; shape spreads ['1', '1', '1', '1']; mass spreads at fixed x ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']; rho_eff > 0: False"
+  },
+  "G1 (DW, generic analytic f, linear static)": {
+   "status": "FAIL",
+   "why": "rho_eff = 0 relative to the measured G; a constant rescaling cannot supply M_c/M = sqrt(1+x^2)-1; shape, mass and amplitude lines all fail (not a numerical result: T0d exact)"
+  },
+  "G1 (RR, linear static, point mass + exponential sphere)": {
+   "status": "PASS",
+   "why": "A PASS, S PASS, M PASS, sign PASS, X see above"
+  }
+ },
+ "numbers": {
+  "m_req_over_H0c": {
+   "1e+09": 6301326.083791217,
+   "1e+10": 1992654.2704209269,
+   "1e+11": 630132.6083791216,
+   "1e+12": 199265.42704209266
+  },
+  "Fbar_today": 0.9445313835354215,
+  "Ubar_today": 16.034899869857078,
+  "R_X_canonical": {
+   "1e+09": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "1e+10": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "1e+11": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "1e+12": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "G1_RR_linear": "PASS",
+  "mu": 0.28393372799882904,
+  "lam": 0.08061836189531303
+ }
+}

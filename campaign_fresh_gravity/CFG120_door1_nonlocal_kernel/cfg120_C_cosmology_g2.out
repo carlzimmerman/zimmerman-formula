@@ -1,0 +1,104 @@
+CFG120 script C -- G2 (T2a cosmic sum rule, T2b acoustic driving and growth) and T3c (Bianchi/momentum non-conservation of the
+minimal covariantisation), written to CFG120_FROZEN_CRITERIA.md (commit e8b9fbcdf).
+
+SOLVER (declared in this header, as the frozen file requires): one simplified linear Einstein-fluid code, conformal Newtonian gauge,
+phi = psi (no anisotropic stress), massless neutrinos as a perfect fluid (w = 1/3, N_eff = 3.046), photons a perfect fluid tightly
+coupled to baryons (zeroth-order tight coupling, R = 3 rho_b/4 rho_gamma) until an INSTANT decoupling at z = 1090, after which baryons
+are free pressureless and photons keep the perfect-fluid equations; CDM pressureless; flat, h = 0.6736, omega_b = 0.02237, omega_c = 0.1200,
+T_cmb = 2.7255 K.  Adiabatic initial conditions at k tau = 1e-3.  The SAME code runs LCDM and the door, so its systematics cancel in the ratios.
+DOOR (Reading P, minimal covariantisation of frozen section 5): there is NO cdm; the dark component D has background rho_D = K0 rho_b
+(K0 = Omega_c/Omega_b = 5.36, so the background is LCDM's) and perturbations delta rho_D = rho_D s(k/a) delta_b, momentum (rho+p)theta_D = rho_D s(k/a) theta_b,
+with s(k) = Khat(k)/Khat(0) of the kernel (physical k = k_comoving / a), no shear.
+Kernels: (i) the T1g best-fit RM kernel (the frozen choice); (ii) the recalled RM set lambda0 = 3 kpc, mu0 = 0.1/kpc normalised to K0;
+(iii) POST-HOC (not in the frozen file; cannot upgrade a verdict): s = 1 at all k, the most favourable case for the door.
+PASS LINES (frozen): |delta_D/delta_c - 1| <= 0.05 and |Phi/Phi_LCDM - 1| <= 0.05 at z = 1100 for k in {0.01, 0.02, 0.05, 0.1, 0.3}/Mpc;
+growth (delta_m ratio at z = 10) within 5 percent for k in {0.5, 2, 10, 30}/Mpc; T2a: G1's required interior dark mass at x = 30 (29.0 M) <= 1.05 * Omega_c/Omega_b;
+T3c: |Q| / (rho_D k^2 phi) <= 0.05 at z = 1100, k = 0.1/Mpc.
+MUTATE=c : the dark source is made CDM-like (delta_D from the CDM run): T2b and T3c claims must FAIL.  MUTATE=a,b,d: no bite here (declared).
+
+  repo root: <repo>  (ZF_REPO);  a0 footings (km/s)^2/kpc: canonical 2888.29, second 3490.52
+  MUTATE mode: none (main run)
+
+  background: Omega_b=0.04930 Omega_c=0.26447 Omega_r=9.220e-05 Omega_L=0.68614; K0 = Omega_c/Omega_b = 5.3643; a_dec = 1/1091
+
+======================================================================================================================
+T2a  cosmic sum rule: the dark mass G1 requires versus the background dark share
+======================================================================================================================
+  G1 requires M_D(<30 r_M)/M = sqrt(901) - 1 = 29.017; background K0 = Omega_c/Omega_b = 5.364; x_cap where the point-mass target exhausts K0: 6.285 (CFG44: 6.29)
+  total integral of the kernels (M_D,total/M_b): T1g best fit 4.349e+05; recalled RM(1,3,0.1) 6.667; required by G1 >= 29.017; allowed 5.364
+  [PASS] T2a the cosmic sum rule FAILS: the interior dark mass G1 needs (29.0 M) exceeds the background dark share (5.36 M) by a factor 5.4
+         29.017 vs 5.364: ratio 5.409
+  << GATE G2/T2a (sum rule): FAIL >> required 29.02 M vs allowed 5.36 M (x_cap = 6.29)
+
+======================================================================================================================
+Solver control (LCDM): late-time sub-horizon growth against the analytic growth factor
+======================================================================================================================
+  [PASS] C.ctl LCDM solver: delta_m(z=10)/delta_m(a=0.05) at k = 0.5/Mpc equals the analytic ratio D(0.0909)/D(0.05)
+         numeric 1.81476, analytic 1.82716, rel diff 6.79e-03 (line 2e-2)
+
+======================================================================================================================
+T2b  acoustic driving at z = 1100 and growth at z = 10, door versus LCDM (same code)
+======================================================================================================================
+
+  SOLVER SANITY (diagnostic added after the first look at the numbers; it does not change any pass line): the LCDM reference is treated as sane at a k only if its Poisson (00) residual at z = 1100 is < 5 percent AND delta_c keeps its sign between z = 1100 and z = 10. This solver has NO Silk damping (photons are a perfect fluid), so baryons keep full acoustic velocities at decoupling and run away at high k.
+  LCDM reference sane at k = 0.01: NO (Poisson res -0.278, sign kept), 0.02: NO (Poisson res -0.098, sign kept), 0.05: yes (Poisson res -0.044, sign kept), 0.1: yes (Poisson res -0.025, sign kept), 0.3: yes (Poisson res -0.015, sign kept), 0.5: yes (Poisson res -0.012, sign kept), 2: yes (Poisson res -0.009, sign kept), 10: NO (Poisson res -0.010, sign FLIPPED), 30: NO (Poisson res -0.016, sign FLIPPED)
+
+  (i) T1g best-fit RM shape (frozen choice)
+    (all entries are RATIOS door/LCDM; the line is |ratio - 1| <= 0.05)
+    k[/Mpc] | delta_D/delta_c (z=1100) | Phi/Phi_LCDM (z=1100) | delta_m ratio at z=10 | (delta_b, delta_gamma at 1100 in the door run) | door Poisson residual (z=1100)
+      0.01  | +0.0000               | -0.8445              | -0.0446              | (-3.560, -4.747) | -2.553  FAIL  [LCDM reference not sane at this k: entry not evidential]
+      0.02  | -0.0000               | -1.0558              | -0.0372              | (+4.687, +6.249) | -0.848  FAIL  [LCDM reference not sane at this k: entry not evidential]
+      0.05  | +0.0000               | -0.4727              | -0.0038              | (-3.536, -4.715) | -1.207  FAIL
+       0.1  | +0.0000               | -0.3178              | -0.0042              | (-4.351, -5.801) | -1.158  FAIL
+       0.3  | -0.0000               | -0.2547              | -0.0091              | (+3.729, +4.971) | -0.917  FAIL
+       0.5  | +0.0000               | -0.1745              | -0.0075              | (-4.060, -5.413) | -1.082  FAIL
+         2  | +0.0000               | -0.1254              | -0.0067              | (-0.958, -1.278) | -1.011  FAIL
+        10  | +0.0000               | -0.0802              | +1.7275              | (-4.023, -5.364) | -1.058  FAIL  [LCDM reference not sane at this k: entry not evidential]
+        30  | +0.0000               | -0.0564              | +0.1669              | (-4.007, -5.343) | -1.079  FAIL  [LCDM reference not sane at this k: entry not evidential]
+    k values outside the 5 percent line: [0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0];  of these, k with a sane LCDM reference: [0.05, 0.1, 0.3, 0.5, 2.0]
+
+  (ii) recalled RM(1,3,0.1) shape
+    (all entries are RATIOS door/LCDM; the line is |ratio - 1| <= 0.05)
+    k[/Mpc] | delta_D/delta_c (z=1100) | Phi/Phi_LCDM (z=1100) | delta_m ratio at z=10 | (delta_b, delta_gamma at 1100 in the door run) | door Poisson residual (z=1100)
+      0.01  | +1.6778               | -1.8632              | -2.9573              | (-5.831, -7.774) | -3.512  FAIL  [LCDM reference not sane at this k: entry not evidential]
+      0.02  | -0.5422               | -2.3285              | -2.8863              | (+4.944, +6.591) | -0.920  FAIL  [LCDM reference not sane at this k: entry not evidential]
+      0.05  | +0.0949               | -0.3743              | +0.2860              | (-2.944, -3.925) | -1.403  FAIL
+       0.1  | +0.0575               | -0.2605              | +0.0204              | (-4.283, -5.711) | -1.393  FAIL
+       0.3  | -0.0106               | -0.2656              | -0.2375              | (+3.714, +4.952) | -0.882  FAIL
+       0.5  | +0.0057               | -0.1691              | -0.1525              | (-4.058, -5.411) | -1.117  FAIL
+         2  | +0.0002               | -0.1252              | -0.0705              | (-0.959, -1.279) | -1.013  FAIL
+        10  | +0.0001               | -0.0801              | +8.2885              | (-4.023, -5.364) | -1.060  FAIL  [LCDM reference not sane at this k: entry not evidential]
+        30  | +0.0000               | -0.0564              | +0.3933              | (-4.007, -5.343) | -1.080  FAIL  [LCDM reference not sane at this k: entry not evidential]
+    k values outside the 5 percent line: [0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0];  of these, k with a sane LCDM reference: [0.05, 0.1, 0.3, 0.5, 2.0]
+
+  (iii) POST-HOC: s = 1 at all k (most favourable)
+    (all entries are RATIOS door/LCDM; the line is |ratio - 1| <= 0.05)
+    k[/Mpc] | delta_D/delta_c (z=1100) | Phi/Phi_LCDM (z=1100) | delta_m ratio at z=10 | (delta_b, delta_gamma at 1100 in the door run) | door Poisson residual (z=1100)
+      0.01  | +0.9778               | +1.0000              | +0.9459              | (-3.371, -4.494) | -0.223  ok  [LCDM reference not sane at this k: entry not evidential]
+      0.02  | +0.6004               | +0.5896              | +0.1649              | (-5.305, -7.073) | +0.345  FAIL  [LCDM reference not sane at this k: entry not evidential]
+      0.05  | -0.1149               | -0.3027              | +0.2587              | (+2.995, +3.993) | -0.361  FAIL
+       0.1  | +0.0220               | -0.0241              | +0.4571              | (-0.991, -1.321) | -2.604  FAIL
+       0.3  | -0.0315               | -0.0815              | -0.5943              | (+2.601, +3.468) | -0.496  FAIL
+       0.5  | +0.0366               | +0.0191              | +0.0585              | (-3.725, -4.966) | +1.619  FAIL
+         2  | +0.0081               | -0.0096              | -0.4950              | (-1.265, -1.687) | -2.051  FAIL
+        10  | +0.0179               | +0.0125              | +111.9750              | (-4.026, -5.368) | +0.784  FAIL  [LCDM reference not sane at this k: entry not evidential]
+        30  | +0.0145               | +0.0183              | +10.6541              | (-4.007, -5.343) | +0.016  FAIL  [LCDM reference not sane at this k: entry not evidential]
+    k values outside the 5 percent line: [0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0];  of these, k with a sane LCDM reference: [0.05, 0.1, 0.3, 0.5, 2.0]
+  [PASS] T2b (frozen expectation) the baryon-sourced phantom fails the acoustic-driving/growth lines for the frozen kernel (i) and for (ii), (iii)
+         failing k: (i) [0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0]; (ii) [0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0]; (iii) [0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0]; kernels that pass everywhere: none
+  << GATE G2/T2b (acoustic driving, growth): FAIL >> failing k for the frozen kernel (i): [0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0]; (ii): [0.01, 0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0]; (iii, post-hoc favourable): [0.02, 0.05, 0.1, 0.3, 0.5, 2.0, 10.0, 30.0]. With a sane LCDM reference only: (i) [0.05, 0.1, 0.3, 0.5, 2.0]; (ii) [0.05, 0.1, 0.3, 0.5, 2.0]; (iii) [0.05, 0.1, 0.3, 0.5, 2.0]
+
+======================================================================================================================
+T3c  Bianchi / momentum non-conservation of the minimal covariantisation: |Q|/(rho_D k^2 phi), Q = theta_b' + H theta_b - k^2 phi, at z = 1100
+======================================================================================================================
+  (kernels (ii), (iii) give: recalled: 0.01: 1.376, 0.02: 0.143, 0.05: 4.997, 0.1: 31.082, 0.3: 140.342; const: 0.01: 0.424, 0.02: 3.010, 0.05: 10.224, 0.1: 56.826, 0.3: 314.883)
+    k = 0.01/Mpc: |Q| / (k^2 |phi|) = 2.0312
+    k = 0.02/Mpc: |Q| / (k^2 |phi|) = 0.6434
+    k = 0.05/Mpc: |Q| / (k^2 |phi|) = 5.3467
+    k = 0.1/Mpc: |Q| / (k^2 |phi|) = 26.0299
+    k = 0.3/Mpc: |Q| / (k^2 |phi|) = 146.9568
+  [PASS] T3c (frozen expectation) the non-gravitational force on the photon-coupled baryons (Bianchi violation of a phantom slaved to them) exceeds the 0.05 line at k = 0.1/Mpc, z = 1100
+         26.0299 (pass line <= 0.05)
+  << GATE G3/T3c (Bianchi consistency in cosmology): FAIL >> |Q|/(k^2 phi) = 26.030 at k = 0.1/Mpc, z = 1100 (line 0.05); values at other k: 0.01: 2.03, 0.02: 0.64, 0.05: 5.35, 0.1: 26.03, 0.3: 146.96
+
+  4/4 checks pass; load-bearing failures: 0   (318 s)

@@ -1,0 +1,108 @@
+{
+ "slug": "cfg120_D_g3_g4_g5_MUTATE_d",
+ "mutate": "d",
+ "load_bearing_failures": 4,
+ "checks": [
+  {
+   "name": "T3a.1 the pair potential W(d) = (K*1/s)(d) has W'(d) = -m(d)/d^2 (analytic W against finite difference), so the pair force is G m1 m2 (1+m(d))/d^2",
+   "detail": "max rel err over d = 0.05-200 kpc: 1.97e-09 (line 1e-6)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T3a.2 independent route: the force of the cloud on a test mass by direct 3-D integration over the cloud equals G m(d)/d^2 (shell theorem)",
+   "detail": "max rel err at d = 0.5, 5, 40 kpc: 2.01e-04 (line 1e-4)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T3a.3 N = 3 (hierarchical, 10 inner periods, DOP853 rtol 1e-12): energy (kinetic + pair potentials) conserved to 1e-8 and total momentum to 1e-12",
+   "detail": "|dE/E| = 9.78e-12, |dp|/(sum m v) = 1.28e-15; force vs -grad(pair-sum energy): 1.89e-10",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T3a.4 N = 30 (random virialised-ish cluster, 10 median half-crossing times): energy conserved to 1e-8 and total momentum to 1e-12",
+   "detail": "|dE/E| = 3.13e-10, |dp|/(sum m v) = 2.43e-14 (T = 0.407 kpc/(km/s), crossing 0.0814); gradient check (6 bodies) 1.26e-09",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T3b a baryon's own cloud exerts no net force on it (z-component of Int K(|y|) y/|y|^3 d^3y with symmetric quadrature)",
+   "detail": "|F_self| = 1.17e-11 (line 1e-12)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T4.1 no kernel is at once universal (fixed constants), free of new constants, and G1-passing: the zero-constant universal (Hubble-scale) kernels give R <= 1e-4 everywhere",
+   "detail": "c/sqrt(Lambda)-type: R in [1.3e-08, 1.2e-04]; c^2/a0 canonical: R in [1.3e-09, 1.2e-05]; c^2/a0 second: R in [1.6e-09, 1.5e-05]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T5a the Newtonian-limit Poisson operator has 1 + Khat(k) > 0 at every k for every kernel tested (no pole)",
+   "detail": "min over kernels = -4.071e+08",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T5c (frozen expectation) the recalled Rahvar-Mashhoon sets and K_M(M_sun) exceed 1e-13 m/s^2 at 9.5 AU (fail Cassini); ESTIMATE was ~1e-12 for lambda0 = 3 kpc and a0/2 = 4.7e-11 for K_M",
+   "detail": "RM recalled lambda0=3, mu0=0.06: 1.01e-12; RM recalled lambda0=3, mu0=0.1: 1.01e-12; RM recalled lambda0=10, mu0=0.06: 3.03e-13; RM recalled lambda0=10, mu0=0.1: 3.03e-13; RM best fit 3-param: 3.05e-13; RM best fit 2-param: 3.05e-13; K* (extended inward, local slope n = -1.963): 1.37e-13; K_M(M_sun): the target itself (r_M = 7959 AU): 4.68e-11",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "gates": [
+  {
+   "gate": "G3 (Reading P, static instantaneous map: reciprocity and energy)",
+   "verdict": "PASS (by structure)",
+   "detail": "reaction beyond g_law: 1.9e-10 g_law (line 0.10); supplied energy |dE|/E_orbit 3.1e-10 (line 1), both r_ta conventions (r_ta does not enter: no exchange). This says only that a fixed pair law is reciprocal and conservative; the cosmological Bianchi check T3c is scored in script C"
+  },
+  {
+   "gate": "G4 (constants)",
+   "verdict": "FAIL",
+   "detail": "every universal kernel that reaches the galactic scale carries >= 1 new length (RM: 2-3 constants); the zero-constant universal kernels are Hubble-scale and give R <= 1e-6; K_M/K_Mtot have zero new constants but are mass-dependent (not universal, not linear) and postulate the target; a0's tie is inherited, not derived"
+  },
+  {
+   "gate": "G5a (sign of the Poisson operator)",
+   "verdict": "FAIL",
+   "detail": "min_k(1+Khat) = -4.07e+08"
+  },
+  {
+   "gate": "G5b (hyperbolicity, ghosts, gradient instability)",
+   "verdict": "UNDECIDED",
+   "detail": "the Newtonian-limit map is a static instantaneous relation, not a dynamical field; the DE12/DE13/XR criteria are undefined at this scope; a covariant (time-nonlocal) completion is not tested"
+  },
+  {
+   "gate": "G5c (Solar System, |g_D(9.5 AU)| <= 1e-13 m/s^2)",
+   "verdict": "FAIL",
+   "detail": "fail: RM recalled lambda0=3, mu0=0.06; RM recalled lambda0=3, mu0=0.1; RM recalled lambda0=10, mu0=0.06; RM recalled lambda0=10, mu0=0.1; RM best fit 3-param; RM best fit 2-param; K* (extended inward, local slope n = -1.963); K_M(M_sun): the target itself (r_M = 7959 AU)"
+  },
+  {
+   "gate": "G5d (ownership)",
+   "verdict": "UNDECIDED / structural",
+   "detail": "no bound-only switch; every baryon carries a cloud; not a scored pass"
+  }
+ ],
+ "numbers": {
+  "T3a": {
+   "dE3": 9.777279816076884e-12,
+   "dp3": 1.2796316702985769e-15,
+   "dE30": 3.1266576779053016e-10,
+   "dp30": 2.4307128054571677e-14,
+   "gradient_check3": 1.8878144202338025e-10,
+   "W_prime_err": 1.97049110362002e-09,
+   "force_integral_err": 0.00020067585923100317
+  },
+  "solar_system": {
+   "RM recalled lambda0=3, mu0=0.06": 1.008766778128369e-12,
+   "RM recalled lambda0=3, mu0=0.1": 1.0087668559414394e-12,
+   "RM recalled lambda0=10, mu0=0.06": 3.026300334385107e-13,
+   "RM recalled lambda0=10, mu0=0.1": 3.026300567824319e-13,
+   "RM best fit 3-param": 3.045982594646151e-13,
+   "RM best fit 2-param": 3.045982594546396e-13,
+   "K* (extended inward, local slope n = -1.963)": 1.3704855352769896e-13,
+   "K_M(M_sun): the target itself (r_M = 7959 AU)": 4.68014833383551e-11
+  }
+ }
+}

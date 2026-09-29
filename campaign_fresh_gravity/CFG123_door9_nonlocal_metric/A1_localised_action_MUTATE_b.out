@@ -1,0 +1,100 @@
+A1 localised action, MUTATE=b
+
+======================================================================================================================
+T0a(i)  FRW: covariant E_mu nu versus Euler-Lagrange of the reduced localised action
+======================================================================================================================
+    seed 1   N: |EL - covariant| = 1.933e+02
+    seed 1   a: |EL - covariant| = 2.880e+02
+    seed 1   U: |EL - covariant| = 0.000e+00
+    seed 1   S: |EL - covariant| = 1.834e+01
+    seed 1  x1: |EL - covariant| = 0.000e+00
+    seed 1  x2: |EL - covariant| = 0.000e+00
+    seed 2   N: |EL - covariant| = 4.378e-01
+    seed 2   a: |EL - covariant| = 1.973e+01
+    seed 2   U: |EL - covariant| = 0.000e+00
+    seed 2   S: |EL - covariant| = 3.912e-01
+    seed 2  x1: |EL - covariant| = 0.000e+00
+    seed 2  x2: |EL - covariant| = 0.000e+00
+    seed 3   N: |EL - covariant| = 3.148e+01
+    seed 3   a: |EL - covariant| = 7.099e+01
+    seed 3   U: |EL - covariant| = 0.000e+00
+    seed 3   S: |EL - covariant| = 5.911e+00
+    seed 3  x1: |EL - covariant| = 0.000e+00
+    seed 3  x2: |EL - covariant| = 0.000e+00
+  [FAIL] T0a(i) FRW: covariant E_mu nu and the four scalar EOMs equal the reduced-action Euler-Lagrange equations (exact rationals, 3 random field sets x 3 points)
+         max |residual| = 2.880e+02
+
+======================================================================================================================
+T0a-bg  E_00 on shell (xi1 = m^2 S/6, xi2 = m^2 U/6), N = 1, versus the constraint coded in cfg123_common.rr_rhs
+======================================================================================================================
+    E_00 on shell - [3H^2(1 - m^2 S/3) - m^2 H S' + (m^2/6) S' U' - (m^2/12) U^2] = 0
+  [PASS] T0a-bg: E_00(on shell) equals the Friedmann constraint used by the background solver (symbolic)
+         residual = 0
+    E_xx on shell (used in A4 as a consistency check of the solver): m2*(a(t)*Derivative(S(t), (t, 2)) + 3*Derivative(S(t), t)*Derivative(a(t), t))*a(t)/3 + m2*U(t)**2*a(t)**2/12 + m2*a(t)**2*Derivative(S(t), t)*Derivative(U(t), t)/6 - m2*a(t)*Derivative(S(t), t)*Derivative(a(t), t)/3 + (m2*S(t) - 3)*(2*a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/3
+
+======================================================================================================================
+T0a(ii)  static spherical: covariant E_mu nu versus Euler-Lagrange of the reduced action (areal gauge, g_tt = -alpha^2, g_rr = beta^2)
+======================================================================================================================
+    seed 1  al: |EL - covariant| = 1.706e+02
+    seed 1  be: |EL - covariant| = 1.584e+02
+    seed 1   U: |EL - covariant| = 0.000e+00
+    seed 1   S: |EL - covariant| = 2.242e+00
+    seed 1  x1: |EL - covariant| = 0.000e+00
+    seed 1  x2: |EL - covariant| = 0.000e+00
+    seed 2  al: |EL - covariant| = 9.826e+00
+    seed 2  be: |EL - covariant| = 2.052e+00
+    seed 2   U: |EL - covariant| = 0.000e+00
+    seed 2   S: |EL - covariant| = 5.333e-01
+    seed 2  x1: |EL - covariant| = 0.000e+00
+    seed 2  x2: |EL - covariant| = 0.000e+00
+    seed 3  al: |EL - covariant| = 1.362e+02
+    seed 3  be: |EL - covariant| = 1.730e+02
+    seed 3   U: |EL - covariant| = 0.000e+00
+    seed 3   S: |EL - covariant| = 2.563e+00
+    seed 3  x1: |EL - covariant| = 0.000e+00
+    seed 3  x2: |EL - covariant| = 0.000e+00
+  [FAIL] T0a(ii) static spherical: covariant E_tt, E_rr and the four scalar EOMs equal the reduced-action Euler-Lagrange equations (exact, 3 sets x 3 points)
+         max |residual| = 1.730e+02
+  [PASS] T0a-trace: g^{mu nu}E_mu nu (on shell in xi) = -F R + 3 box F - (m^2/3) dS.dU + (m^2/3) U^2, F = 1 - m^2 S/3 (used with box S = -U in A3)
+         residual = 0
+
+======================================================================================================================
+T0b  Noether / Bianchi identity: nabla^mu E_mu r = c * sum_phi E_phi d_r phi  (static spherical, off shell)
+======================================================================================================================
+    seed 1: solved c = [-1/2]; max |residual| over 3 points at that c = 0.00e+00
+    seed 2: solved c = [-1/2]; max |residual| over 3 points at that c = 0.00e+00
+    seed 3: solved c = [-1/2]; max |residual| over 3 points at that c = 0.00e+00
+  [PASS] T0b: nabla^mu E_mu r = c sum_phi E_phi d_r phi with ONE pure rational c for all random field sets, exact residual 0
+         c = [-1/2, -1/2, -1/2], worst residual 0.00e+00
+
+======================================================================================================================
+T0c  linear static point-mass solution about flat space (areal gauge): exact in m r, then leading order in m^2
+======================================================================================================================
+    E_tt^(1) = m2*Derivative(s(r), (r, 2))/3 + 2*m2*Derivative(s(r), r)/(3*r) + 2*Derivative(Lam(r), r)/r + 2*Lam(r)/r**2
+    E_rr^(1) = 2*(-m2*r*Derivative(s(r), r) + 3*r*Derivative(Phi(r), r) - 3*Lam(r))/(3*r**2)
+    R^(1) = -2*Derivative(Phi(r), (r, 2)) + 4*Derivative(Lam(r), r)/r - 4*Derivative(Phi(r), r)/r + 4*Lam(r)/r**2
+    residuals of [E_tt, E_rr, box u + R, box s + u] on the exact linear vacuum solution (u = 2GM cos(mr)/r, s = 2GM (cos(mr)-1)/(m^2 r)): [0, 0, 0, 0]
+  [PASS] T0c: the exact linear static vacuum solution satisfies E_tt = 0, E_rr = 0, box u = -R, box s = -u (symbolic, r > 0)
+         residuals [0, 0, 0, 0]
+    leading order in m^2:  s -> -M*r,   delta Phi' = Phi' - GM/r^2 -> -M*m2/6
+    delta Phi = -M*m2*r/6  (exponent of r: 1);  delta g = delta Phi' = -M*m2/6 = -(m^2 r^2/6) g_N
+    effective density (G = 1 units): G*rho_eff = (1/4 pi r^2) d(r^2 dg)/dr = -M*m2/(12*pi*r)  ->  rho_eff = -m^2 M/(12 pi r):  c1 = -1/3 in rho_eff = c1 m^2 M/(4 pi r)
+  [PASS] T0c: exponent of r in delta Phi is exactly +1 (frozen line, literature-consistency only)
+         exponent = 1
+  [PASS] T0c: G rho_eff = -m^2 (GM)/(12 pi r): the response has the SIGN of a NEGATIVE density (weakens gravity); c1 = -1/3
+         G rho_eff = -M*m2/(12*pi*r)
+    for spherical extended baryons the same steps give  rho_eff(r) = m^2 Psi_N(r)/(12 pi G)  (Psi_N <= 0, Psi_N -> 0 at infinity; U -> 0 zero-data prescription P0)
+
+======================================================================================================================
+T0d  Deser-Woodard localised: T0a/T0b analogues and the linear static point-mass solution
+======================================================================================================================
+  [PASS] T0d: DW covariant E_mu nu and scalar EOMs equal the reduced-action Euler-Lagrange equations (exact)
+         max |residual| = 0.000e+00
+  [PASS] T0d: DW Noether identity nabla^mu E_mu r = c sum E_phi d_r phi with one rational c
+         c = [-1/2, -1/2]
+    DW residuals [E_tt, E_rr, scalar X eq, scalar xi eq] for x = -2GM/(r (Fbar-6f1)), z = 2 f1 GM/(r (Fbar-6f1)), Lam = (GM/r)(Fbar-4f1)/(Fbar(Fbar-6f1)), Phi' = (GM/r^2)(Fbar-8f1)/(Fbar(Fbar-6f1)): [0, 0, 0, 0]
+  [PASS] T0d: the DW linear static point-mass solution (G renormalisation and slip only) satisfies all four linear equations (symbolic, r > 0)
+         residuals [0, 0, 0, 0]
+    => Phi' = (G M/r^2) * const: M_eff/M is the SAME constant at every r and every M (a pure G renormalisation); PPN slip gamma - 1 = 4 f1/(Fbar - 8 f1) (areal-gauge reading)
+
+  9/11 checks pass; load-bearing failures: 2   (31 s)

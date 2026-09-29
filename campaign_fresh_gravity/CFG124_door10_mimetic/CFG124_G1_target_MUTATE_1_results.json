@@ -1,0 +1,238 @@
+{
+ "slug": "CFG124_G1_target_MUTATE_1",
+ "mutate": "1",
+ "load_bearing_failures": 5,
+ "checks": [
+  {
+   "name": "G1.0a",
+   "claim": "Cm(x) := C_44 at t0 gives C/C_44 = 1 to numerical differentiation error (initial data reproduces the target by choice: NOT a mechanism)",
+   "measured": "max |ratio-1| = {'point': 5.34651023498256e-06, 'expsphere': 7.072497334226213e-06}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.0b",
+   "claim": "the dimensionless exponential-sphere target equals CFG44's Bcommon.target_fields (M = 1e10, h = 0.5 r_M) [imported read-only]",
+   "measured": "max |mu_mine/mu_CFG44 - 1| = 2.70e-11",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.1-A/B (MUTATE c)",
+   "claim": "[claim of the main run, now tested with a designed sink] no steady flow within 10%",
+   "measured": "designed-sink best sup|ratio-1| = {'point': 4.3782188634877706e-05, 'expsphere': 2.323842580032043e-06}",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.2-ctrl",
+   "claim": "the numerical fall-time quadrature reproduces the analytic Kepler radial-fall time for the point mass to 1%",
+   "measured": "relative errors at s0 = 0.1, 1, 10: [7.e-05 7.e-05 7.e-05]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.2a (MUTATE a)",
+   "claim": "[claim of the main run] no scored shell keeps its target profile for 10 Gyr; with the hand-supplied f_ext = g_tot the shells are exactly static (infinite T_ff)",
+   "measured": "with f_ext = g_tot: net acceleration of a shell at rest = g_tot - g_tot = 0 -> T_ff = inf for all 2624 shells",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.2b",
+   "claim": "even before any crossing the prescribed profile drifts by more than 10% within 0.3 of the free-fall time at x = 1 (point mass, Kepler)",
+   "measured": "median |C/C_44 - 1| over shells x0 in [1,40] = 0.00; max 0.03",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.3a",
+   "claim": "point mass: f_ext/g_law = g_tot(target)/g_law(P2) = 1 identically (P2: g = sqrt(g_N^2 + a0 g_N) IS the target's g_tot)",
+   "measured": "max |f_ext/g_law - 1| = 4.4e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.3b",
+   "claim": "with no external force the resting target dust accelerates inward at a_res = g_tot (order g_law) at every x; a static state needs f_ext = g_tot",
+   "measured": "a_res/g_law: point mass min 1.000 max 1.000",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.4a",
+   "claim": "E1 (constraint g^{mu nu} phi_mu phi_nu = -F(rho_b), F = 1 + 2f): the dust's weak-field HJ potential is Phi + f, i.e. an EXTRA LOCAL force -grad f(rho_b)  [-> CFG44 B3 far-shell theorem and reciprocity class]",
+   "measured": "linearised branches: [Phi + f, -Phi - f - 2]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.4b",
+   "claim": "E1 locality: two baryon systems with IDENTICAL rho_b(r) (and all its derivatives) for r > 0.3 kpc but different interior mass need forces on the dust that differ by > 10%: no local F(rho_b) serves both (consistent with CFG44 B3)",
+   "measured": "g_tot(B)/g_tot(A) at r = 3, 4, 6, 10 kpc = [2.427 1.859 1.476 1.294]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.4c",
+   "claim": "E2 (a force proportional to the baryon field, f = beta g_N with a constant beta): needs g_tot/g_N = sqrt(1+x^2) = 1.005 ... 30 over x in [0.1, 30]; no constant beta lands within 10% [CFG44 B2 fixed-kernel exclusion]",
+   "measured": "max/min of g_tot/g_N = 29.9",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.4d",
+   "claim": "E4 baryon-to-dust conversion cannot supply the target: M_c/M_b = sqrt(1+x^2) - 1 reaches 29 at x = 30 (baryons cannot be converted into 29 times their own mass); a vacuum-to-dust transfer is door 8",
+   "measured": "M_c/M_b(x=30) = 29.0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1-MUTATE(a)",
+   "claim": "[control] with f_ext = g_tot supplied by hand, G1.2/G1.3 flip to PASS: shells at rest stay at rest",
+   "measured": "a_net = g_tot - f_ext = 0",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "G1.2_T_ff_gyr_table": {
+   "canonical_1e+09_point": [
+    0.020098174622427713,
+    0.003729864289580027,
+    0.6562676291308696,
+    0,
+    164
+   ],
+   "canonical_1e+09_expsphere": [
+    0.020098174622427713,
+    0.019332846906058968,
+    0.6566466493248511,
+    0,
+    164
+   ],
+   "canonical_1e+10_point": [
+    0.03574017011043001,
+    0.006632740868399616,
+    1.1670272123584855,
+    0,
+    164
+   ],
+   "canonical_1e+10_expsphere": [
+    0.03574017011043001,
+    0.034379203590479364,
+    1.1677012161654317,
+    0,
+    164
+   ],
+   "canonical_1e+11_point": [
+    0.06355600861866621,
+    0.011794866518398723,
+    2.075300462692216,
+    0,
+    164
+   ],
+   "canonical_1e+11_expsphere": [
+    0.06355600861866621,
+    0.061135829878485655,
+    2.0764990297843964,
+    0,
+    164
+   ],
+   "canonical_1e+12_point": [
+    0.11302034151083044,
+    0.020974568273825923,
+    3.6904640824498176,
+    0,
+    164
+   ],
+   "canonical_1e+12_expsphere": [
+    0.11302034151083044,
+    0.10871658748855341,
+    3.692595469631392,
+    0,
+    164
+   ],
+   "alt_1e+09_point": [
+    0.017436904704944575,
+    0.003235979853971768,
+    0.5693689265355092,
+    0,
+    164
+   ],
+   "alt_1e+09_expsphere": [
+    0.017436904704944575,
+    0.016772916720509266,
+    0.5696977593339032,
+    0,
+    164
+   ],
+   "alt_1e+10_point": [
+    0.031007688611613758,
+    0.0057544763456187555,
+    1.0124970387740602,
+    0,
+    164
+   ],
+   "alt_1e+10_expsphere": [
+    0.031007688611613758,
+    0.029826932450379207,
+    1.0130817953687898,
+    0,
+    164
+   ],
+   "alt_1e+11_point": [
+    0.05514033421093114,
+    0.010233066800969857,
+    1.8005026367772923,
+    0,
+    164
+   ],
+   "alt_1e+11_expsphere": [
+    0.05514033421093114,
+    0.053040619841131134,
+    1.8015424973895842,
+    0,
+    164
+   ],
+   "alt_1e+12_point": [
+    0.09805492098996364,
+    0.01819725199371756,
+    3.2017967667018477,
+    0,
+    164
+   ],
+   "alt_1e+12_expsphere": [
+    0.09805492098996364,
+    0.09432104215918545,
+    3.2036459294179966,
+    0,
+    164
+   ]
+  },
+  "G1.2_posthoc_drift": {
+   "0.3": [
+    -0.02546299790852391,
+    -0.0043329972594865485,
+    0.0005535503569056299,
+    0.001032908729022175
+   ],
+   "0.7": [
+    -0.0780398645839342,
+    0.020101736393464797,
+    0.0451619518063473,
+    0.047673207916903326
+   ],
+   "0.95": [
+    0.1968796613747228,
+    0.40813087624268674,
+    0.46642857294796736,
+    0.47237625176256204
+   ]
+  },
+  "G1.2_classC_ratio": {
+   "at_G2_bound": 0.0031120331673712524,
+   "at_G1_scale": 0.5
+  }
+ }
+}

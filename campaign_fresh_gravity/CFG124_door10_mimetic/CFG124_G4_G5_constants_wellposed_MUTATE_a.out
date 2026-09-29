@@ -1,0 +1,72 @@
+CFG124 G4 (constants) and G5 (well-posedness) (frozen: CFG124_FROZEN_CRITERIA.md, e8b9fbcdf).
+Reads the derived results of T0 (c_s^2, ghost/gradient signs, class-D scan), G2 (gt_max window) and re-derives the E1 hyperbolicity.
+MUTATE b: the G2 upper bound is replaced by 1e-6 by hand (widening the window): the 'window is empty' claim must flip.
+MUTATE a/c: not used here.
+
+
+==============================================================================================================
+G4  constants
+==============================================================================================================
+  constants beyond kappa = 1/2 (FITTED) and Omega_c h^2 = 0.12 (FITTED):
+    class A: Cm(x) prescribed = an unconstrained function that equals the postulated target (rule 3: the target enters as data) -> FAIL G4
+    class B: V(phi): a free function (a constant V is Lambda, already tied) -> each shape parameter is a new constant
+    class C: gamma: one dimensionless constant (gt = 8 pi G gamma), a new constant unless tied
+    class D: gt, s, w: three
+    class E: F(rho_b) [scale + strength]; per-mass Mdot, S from G1.1 (dimensionless a, b, w and the M^{3/4} scaling law)
+  window for a single tied gt: it must lie BELOW the growth bound gt_max = 8.483e-11 (G2, k = 30/Mpc, z = 10) and ABOVE the halo scale gt >= 3.922e-08 (smallest need, M_b = 1e9), and ideally serve all masses (needs span 3.9e-08 ... 1.4e-06, a factor 35).
+  [PASS] G4a  the window for a tied gamma is EMPTY: the halo-scale need exceeds the G2 growth bound by 4.6e+02 (smallest need / bound)
+         measured: need_min = 3.922e-08, bound = 8.483e-11
+  [PASS] G4b  a single mass-independent gamma cannot match sigma^2 = V_f^2/2 across M_b = 1e9-1e12 anyway: the required gt spans a factor > 10
+         measured: need span factor = 34.8
+    tie candidate kappa                  = 5.000e-01 : outside (decades from the window: 9.8)
+    tie candidate kappa^2                = 2.500e-01 : outside (decades from the window: 9.5)
+    tie candidate kappa^2/(8 pi)         = 9.947e-03 : outside (decades from the window: 8.1)
+    tie candidate Omega_Lambda           = 6.847e-01 : outside (decades from the window: 9.9)
+    tie candidate Omega_c/Omega_b        = 5.364e+00 : outside (decades from the window: 10.8)
+    tie candidate (a0/cH0)^1             = 1.430e-01 : outside (decades from the window: 9.2)
+    tie candidate kappa (a0/cH0)^1       = 7.151e-02 : outside (decades from the window: 8.9)
+    tie candidate (a0alt/cH0)^1          = 1.728e-01 : outside (decades from the window: 9.3)
+    tie candidate (a0/cH0)^2             = 2.046e-02 : outside (decades from the window: 8.4)
+    tie candidate kappa (a0/cH0)^2       = 1.023e-02 : outside (decades from the window: 8.1)
+    tie candidate (a0alt/cH0)^2          = 2.988e-02 : outside (decades from the window: 8.5)
+    tie candidate (a0/cH0)^3             = 2.926e-03 : outside (decades from the window: 7.5)
+    tie candidate kappa (a0/cH0)^3       = 1.463e-03 : outside (decades from the window: 7.2)
+    tie candidate (a0alt/cH0)^3          = 5.164e-03 : outside (decades from the window: 7.8)
+  [PASS] G4c  NO candidate of the frozen tie list lands inside the window (frozen expectation; the smallest candidate is (a0/cH0)^3 ~ 3e-3)
+         measured: candidates inside: [] ; smallest candidate 1.46e-03
+
+==============================================================================================================
+G5  well-posedness
+==============================================================================================================
+  [PASS] G5a  class C (gamma): the derived scalar sector has NO healthy stable window: kinetic term negative (GHOST) for 0 < gt < 2/3, gradient-unstable (c_s^2 < 0) for gt < 0 and gt > 2/3 (T0.6b). The frozen G5 text implied a healthy window 0 < gt < 1/2; that expectation is WRONG
+         measured: T0.6b ok = True ; {'-1/10': ('1', '-1'), '1/100': ('-1', '1'), '1/4': ('-1', '1'), '1/2': ('-1', '1'), '3/5': ('-1', '1'), '7/10': ('1', '-1')}
+  [PASS] G5b  class D with c_T = 1 (w = s, GW170817): a scan of (gt, s) finds NO point with a healthy kinetic term and 0 < c_s^2 <= 1
+         measured: 234834 grid points, 0 healthy
+  [PASS] (reported) G5c  class A (gt = 0): the scalar is frozen by the momentum constraint (T0.6c): no ghost, no gradient instability, hyperbolic (dust): PASS
+         measured: T0.6c ok = True
+    gt = -8.5e-11: gradient-instability rate |c_s| c k/a = 1.997e-06 /Gyr at k = 1 /Mpc (a=1)
+    gt = -8.5e-11: gradient-instability rate |c_s| c k/a = 5.990e-05 /Gyr at k = 30 /Mpc (a=1)
+    gt = -8.5e-11: gradient-instability rate |c_s| c k/a = 1.997e-03 /Gyr at k = 1000 /Mpc (a=1)
+    gt = -1.0e-07: gradient-instability rate |c_s| c k/a = 6.856e-05 /Gyr at k = 1 /Mpc (a=1)
+    gt = -1.0e-07: gradient-instability rate |c_s| c k/a = 2.057e-03 /Gyr at k = 30 /Mpc (a=1)
+    gt = -1.0e-07: gradient-instability rate |c_s| c k/a = 6.856e-02 /Gyr at k = 1000 /Mpc (a=1)
+    gt = -1.0e-03: gradient-instability rate |c_s| c k/a = 6.851e-03 /Gyr at k = 1 /Mpc (a=1)
+    gt = -1.0e-03: gradient-instability rate |c_s| c k/a = 2.055e-01 /Gyr at k = 30 /Mpc (a=1)
+    gt = -1.0e-03: gradient-instability rate |c_s| c k/a = 6.851e+00 /Gyr at k = 1000 /Mpc (a=1)
+  [PASS] G5d  E1 (contact coupling E_int = INT eps U(rho_b)): the stiffness matrix of (delta rho_b, delta eps) has determinant -rho_b eps U'^2 < 0 for ANY nonzero coupling U': one squared frequency omega^2 = k^2 lambda_- is negative: a gradient (Hadamard) instability at every k, whatever U''
+         measured: det = -Up**2*eps*rho_b
+  exponential sphere M = 1e10, h = 0.5 r_M: lambda_- (km/s)^2 at x = 0.3, 1, 3, 10, 30 = ['-4.85e+03', '-5.17e+03', '-1.85e+04', '-6.42e+08', '-5.80e+24'] ; instability rate at k = 1/kpc = ['7.13e+01', '7.35e+01', '1.39e+02', '2.59e+04', '2.46e+12'] /Gyr
+  [PASS] G5e  E1 at the target on the exponential sphere: lambda_- < 0 at every x in [0.3, 30] (the instability is present everywhere the coupling is on)
+         measured: max lambda_- over the range = -4.66e+03 (km/s)^2 (negative = unstable)
+  E3 (enclosed-mass exchange): CFG48 G6: the baryon-mass Volterra gate is second-variation stable on 48 of 48; CFG72: the coupled fluid + mediator operator has growing modes under the declared 5/3 shell-gas operator, fragile. Cited, not re-run.
+
+==============================================================================================================
+G5  Solar System
+==============================================================================================================
+  classes A-D: minimally coupled dust + GR metric sector: PPN = GR, Cassini safe by construction (explicit statement); the dust there is the local environmental dust (order 0.01 Msun/pc^3 = 6.8e-22 kg/m^3).
+  E-couplings that make the dust follow C_44 at the Sun would put rho_c = a0/(4 pi G r sqrt(1+x^2)) = 7.46e-13 kg/m^3 at 1 AU (x = 1.3e-04), which is 1.1e+09 times the local halo density 6.8e-22 kg/m^3.
+  [PASS] (reported) G5f  the frozen G5 asked to compare rho_c(1 AU) with 'the committed Cassini/ephemeris constraint read from CASSINI_QUADRUPOLE_CONSTRAINT.md'. That file holds the MOND external-field QUADRUPOLE bound (Q2), not a dust-density bound; the comparison cannot be made as written (criterion not repaired; disclosed). rho_c(1 AU) and the local-halo ratio are reported instead
+         measured: density/ephemeris terms found in the file: False
+  ownership (a bound-only top-level switch that excludes the Sun) is Gap 1 (CFG48): unresolved; E-couplings are therefore not Solar-System-safe without it.
+
+  9/9 checks pass; load-bearing failures: 0   (1 s)   MUTATE='a'

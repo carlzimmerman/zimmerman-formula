@@ -1,0 +1,123 @@
+{
+ "slug": "CFG124_T0_field_equations_MUTATE_b",
+ "mutate": "b",
+ "load_bearing_failures": 1,
+ "checks": [
+  {
+   "name": "T0.1",
+   "claim": "a^3 R - a^3(K_ijK^ij - K^2) = 6 d/dt(a^2 adot) exactly (total derivative)",
+   "measured": "residual = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.2a",
+   "claim": "X = g^{tt} = -1 identically when N = 1 (the constraint fixes the lapse in unitary gauge)",
+   "measured": "g^tt = -1",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.2b",
+   "claim": "box phi = -K (K = trace of the extrinsic curvature of the phi = const slices)",
+   "measured": "box phi + K = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.3a",
+   "claim": "phi^nu nabla_nu phi_mu = (1/2) d_mu X identically (generic 1+1 metric and phi), so X = -1 => a_mu = 0: geodesic, whatever the action's other terms",
+   "measured": "residuals = [0, 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.3b",
+   "claim": "weak-field HJ pi_t = Phi + pi_x^2/2 gives the pressureless Euler equation v_t + v v_x = -Phi_x (v = -pi_x)",
+   "measured": "residual = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.3c",
+   "claim": "a v = 0 state (pi = f(t)) needs f' = sqrt(1+2 Phi(x)) - 1 to be x-independent: d_x of it = Phi'/sqrt(1+2Phi), nonzero whenever grad Phi != 0. NO stationary v = 0 state exists in a potential well, for every class A-D (the constraint is kinematic)",
+   "measured": "d/dx[ sqrt(1+2Phi) - 1 ] = Derivative(Phi(x), x)/sqrt(2*Phi(x) + 1)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.4a",
+   "claim": "N-variation: eps = -2 lam = (3/8piG)(1 - 3 gt/2) H^2 - V (Friedmann with the gamma-modified coefficient; eps is the free 'dust' energy)",
+   "measured": "diff = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.4b",
+   "claim": "d(a^3 eps)/dt = -a^3 dV/dt exactly on the a-equation (so Cm = a^3 eps is conserved iff V is constant; a non-constant V is a homogeneous source, position-independent)",
+   "measured": "d(a^3 eps)/dt = -a(t)**3*Derivative(V(t), t)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.5",
+   "claim": "linear current law (p_t = 0 from the constraint): 2 d_t l - 2 l0 p_xx + gamma p_xxxx = 0, i.e. with eps = -2 lam, v = -p_x:  d_t d(eps) + eps0 d_x v = -gamma d_x^3 v, the L374 continuity form d_t rho + d_x(rho v) = beta d_x^3 v with beta = -gamma",
+   "measured": "E1c = gam*Derivative(p(t, x), (x, 4)) - 2*l0*Derivative(p(t, x), (x, 2)) + 2*Derivative(l(t, x), t)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.6a",
+   "claim": "mimetic + (box phi)^2 (s = w = 0): c_s^2 = gt/(2 - 3 gt), the recalled CMV value (recomputed from the reduced action, not assumed)",
+   "measured": "c_s^2 = -gt/(3*gt - 2)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.6b",
+   "claim": "GHOST (negative kinetic term of the scalar mode) for every 0 < gt < 2/3, where c_s^2 > 0; GRADIENT instability (c_s^2 < 0) with healthy kinetic sign for gt < 0 and gt > 2/3.  So no gt gives a healthy stable scalar in the minimal action [the recalled 'ghost/gradient dichotomy' of Ramazanov et al. / projectable Horava-like models, here derived]",
+   "measured": "{'-1/10': ('1', '-1'), '1/100': ('-1', '1'), '1/4': ('-1', '1'), '1/2': ('-1', '1'), '3/5': ('-1', '1'), '7/10': ('1', '-1')}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.6c",
+   "claim": "DOF count: the momentum constraint is algebraic in psi_k and the zeta equation is second order => ONE scalar mode beyond the tensors (the dust mode) for gt != 0. At gt = 0 (s = 0) the momentum constraint loses psi and becomes zeta-dot = 0: zeta frozen, no propagating scalar (pure dust, class A)",
+   "measured": "momentum constraint at gt = s = 0: -2*k**2*a(t)*Derivative(zt(t), t)/G8 = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.6d",
+   "claim": "tensor speed c_T^2 = (1+w)/(1+s) (GW170817 needs c_T = 1, i.e. s = w)",
+   "measured": "c_T^2 = (w + 1)/(s + 1)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.7",
+   "claim": "at K_ij = 0 (stationary slices) the (box phi)^2 term (gt K^2) and the K_ijK^ij term contribute NOTHING (and their h_ij-variation is quadratic or linear in K, K-dot: zero at K = 0 = K-dot); V contributes a homogeneous -V h^{ij}; R3 (class D) modifies the gravity sector, not a dust pressure. So the only stationary states are v = 0 states, which T0.3c shows do not exist for grad Phi != 0",
+   "measured": "K_ijK^ij and K^2 terms at K=0: 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0.6a-MUTATE(b)",
+   "claim": "[control] a wrong-sign gamma term (gt -> -gt) in the gradient piece: c_s^2 would be -gt/(2+3gt)",
+   "measured": "c_s^2(mutated) = -gt/(3*gt + 2)",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "T0_current_coefficient_of_p_xxxx_in_d_t_eps": "gam",
+  "cs2_general_gt_s_w": "-(gt + s)*(w + 1)/((s + 1)*(3*gt + s - 2))",
+  "A_zddot_coefficient_s0w0": "-2*(3*gt - 2)*a(t)**3/(G8*gt)",
+  "cT2": "(w + 1)/(s + 1)",
+  "classD_cT1_healthy_points": [
+   234834,
+   0,
+   []
+  ]
+ }
+}

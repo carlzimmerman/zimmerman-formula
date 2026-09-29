@@ -1,0 +1,76 @@
+
+======================================================================================================================
+A3 nonlinear ladder, MUTATE=c
+======================================================================================================================
+
+======================================================================================================================
+N1  exact-in-eps O(lam) response of the localised RR equations on the exponential sphere
+======================================================================================================================
+    eps = 0 (linear) run: 33 s
+  [PASS] N1 control: the eps = 0 variational solution reproduces the closed-form linear response (A2: g_lam = (1/3r^2) int psi r'^2) to 1e-6 at r/h = 0.5, 2, 5, 20, 100
+         max relative deviation 8.07e-12
+    M_b = 1e+09: eps_h = 5.000e-02 (35 s)
+    M_b = 1e+10: eps_h = 5.000e-02 (35 s)
+    M_b = 1e+11: eps_h = 5.000e-02 (35 s)
+    M_b = 1e+12: eps_h = 5.000e-02 (29 s)
+
+    R_NL(x, M) at the true galactic eps_h and r = x r_M (canonical footing):
+    M_b     eps_h    | x = 0.1  0.2  0.3  0.5  1  2  3  5  10  20  30
+    1e+09  5.00e-02 | +4.3e-02  +4.3e-02  +4.3e-02  +4.3e-02  +4.2e-02  +4.0e-02  +3.8e-02  +3.2e-02  +1.9e-02  +4.6e-03  -1.4e-03
+    1e+10  5.00e-02 | +4.3e-02  +4.3e-02  +4.2e-02  +4.1e-02  +3.8e-02  +2.8e-02  +2.0e-02  +8.9e-03  -2.1e-03  -8.6e-03  -1.1e-02
+    1e+11  5.00e-02 | +4.2e-02  +4.0e-02  +3.8e-02  +3.2e-02  +1.9e-02  +4.6e-03  -1.4e-03  -6.8e-03  -1.1e-02  -1.3e-02  -1.4e-02
+    1e+12  5.00e-02 | +3.8e-02  +2.8e-02  +2.0e-02  +8.9e-03  -2.1e-03  -8.6e-03  -1.1e-02  -1.3e-02  -1.4e-02  -1.5e-02  -1.5e-02
+
+    max |R_NL| over the grid (both footings) = 4.286e-02; max |R_NL|/eps_h = 0.857
+    second-order coefficient c2(r/h) = [g_lam(eps) - g_lam(-eps)]/(2 eps g_lam(0)): min -0.302, max +0.846 over r/h in [0.0555, 579]
+
+======================================================================================================================
+N1/N3  exponent of eps in R_NL (fixed r/h = 0.5, 5, 50)
+======================================================================================================================
+    r/h = 0.5: R_NL(eps = 1e-6, 1e-4, 1e-2) = 8.367e-07, 8.367e-05, 8.388e-03; fitted exponent of eps = 1.0003
+    r/h = 5: R_NL(eps = 1e-6, 1e-4, 1e-2) = 4.597e-07, 4.597e-05, 4.595e-03; fitted exponent of eps = 1.0000
+    r/h = 50: R_NL(eps = 1e-6, 1e-4, 1e-2) = 1.978e-07, 1.978e-05, 1.989e-03; fitted exponent of eps = 1.0006
+
+======================================================================================================================
+N2  full nonlinear finite-lam system at inflated parameters (theta-theta residual checked)
+======================================================================================================================
+    m h = 0.03 (lam = 0.0009), eps = 0.0001: R_NL^N2(r/h = 1, 3, 10) = +8.250e-05, +6.605e-05, +2.046e-05   [theta-theta residual 9.0e-09; 13 s]
+    m h = 0.03 (lam = 0.0009), eps = 0.001: R_NL^N2(r/h = 1, 3, 10) = +8.252e-04, +6.606e-04, +2.045e-04   [theta-theta residual 5.0e-09; 19 s]
+    m h = 0.03 (lam = 0.0009), eps = 0.01: R_NL^N2(r/h = 1, 3, 10) = +8.271e-03, +6.614e-03, +2.036e-03   [theta-theta residual 7.0e-09; 27 s]
+    m h = 0.03 (lam = 0.0009), eps = 0.05: R_NL^N2(r/h = 1, 3, 10) = +4.177e-02, +3.324e-02, +9.968e-03   [theta-theta residual 7.3e-09; 21 s]
+    m h = 0.1 (lam = 0.01), eps = 0.0001: R_NL^N2(r/h = 1, 3, 10) = +8.738e-05, +7.310e-05, +3.386e-05   [theta-theta residual 1.3e-08; 21 s]
+    m h = 0.1 (lam = 0.01), eps = 0.001: R_NL^N2(r/h = 1, 3, 10) = +8.741e-04, +7.311e-04, +3.386e-04   [theta-theta residual 1.3e-08; 21 s]
+    m h = 0.1 (lam = 0.01), eps = 0.01: R_NL^N2(r/h = 1, 3, 10) = +8.768e-03, +7.329e-03, +3.384e-03   [theta-theta residual 6.6e-09; 13 s]
+    m h = 0.1 (lam = 0.01), eps = 0.05: R_NL^N2(r/h = 1, 3, 10) = +4.445e-02, +3.702e-02, +1.688e-02   [theta-theta residual 7.2e-09; 16 s]
+    m h = 0.3 (lam = 0.09), eps = 0.0001: R_NL^N2(r/h = 1, 3, 10) = +1.043e-04, +1.072e-04, -6.543e-05   [theta-theta residual 2.1e-08; 36 s]
+    m h = 0.3 (lam = 0.09), eps = 0.001: R_NL^N2(r/h = 1, 3, 10) = +1.044e-03, +1.073e-03, -6.541e-04   [theta-theta residual 9.0e-09; 26 s]
+    m h = 0.3 (lam = 0.09), eps = 0.01: R_NL^N2(r/h = 1, 3, 10) = +1.049e-02, +1.077e-02, -6.524e-03   [theta-theta residual 6.7e-09; 31 s]
+    m h = 0.3 (lam = 0.09), eps = 0.05: R_NL^N2(r/h = 1, 3, 10) = +5.368e-02, +5.490e-02, -3.225e-02   [theta-theta residual 6.6e-09; 26 s]
+    m h = 0.5 (lam = 0.25), eps = 0.0001: R_NL^N2(r/h = 1, 3, 10) = +1.956e-04, +4.901e-04, +1.023e-05   [theta-theta residual 2.9e-08; 22 s]
+    m h = 0.5 (lam = 0.25), eps = 0.001: R_NL^N2(r/h = 1, 3, 10) = +1.957e-03, +4.900e-03, +1.019e-04   [theta-theta residual 2.1e-08; 21 s]
+    m h = 0.5 (lam = 0.25), eps = 0.01: R_NL^N2(r/h = 1, 3, 10) = +1.961e-02, +4.891e-02, +9.824e-04   [theta-theta residual 2.1e-08; 25 s]
+    m h = 0.5 (lam = 0.25), eps = 0.05: R_NL^N2(r/h = 1, 3, 10) = +9.899e-02, +2.429e-01, +4.126e-03   [theta-theta residual 2.1e-08; 22 s]
+  [PASS] N2 control: the independent theta-theta field equation (not used in the integration) holds along the finite-lam nonlinear solutions
+         worst relative residual 2.93e-08
+
+    N3 fitted exponent of eps (N2): [1.001, 1.0, 0.999, 1.001, 1.001, 1.0, 1.001, 1.001, 0.999, 1.0, 1.0, 0.991];  fitted exponent of (m h): [0.101, 0.208, 0.503, 0.101, 0.208, 0.503, 0.102, 0.21, 0.504]
+    N3 fitted exponent of eps (N1, exact O(lam)): [1.0003, 1.0, 1.0006]
+    N1 (lam -> 0) R_NL(eps = 1e-3, r/h = 1, 3, 10) = [0.000813, 0.000644, 0.00017]; N2 (m h = 0.03) = [0.000825, 0.000661, 0.000205]; max relative difference 20.21%
+  [PASS] (reported) N1/N2 agreement: at m h = 0.03 the finite-lam nonlinear R_NL matches the O(lam) series to 30% (through O(eps^2))
+         max relative difference 20.21%
+
+======================================================================================================================
+decision
+======================================================================================================================
+  >> nonlinear route (RR, static spherical, exponential sphere, prescription P0): UNDECIDED -- max |R_NL| = 4.286e-02 (galactic eps_h), fitted (m h) exponent min 0.101, eps exponent 1.000
+    the linear response falls short of the target by 1/|R_A| >= 1/6.06e-11 = 1.65e+10 (A2, worst grid point); the nonlinear terms change the response by at most a factor (1 + 4.29e-02); the shortfall after them is unchanged to 4.3e-02.
+  [FAIL] P4a: R_NL <= 1e-3 at every G1 grid point (galactic parameters)
+         max |R_NL| = 4.286e-02
+  [PASS] P4b: the fitted exponent of eps (exact O(lam) system) is 1.0 +/- 0.15
+         1.0003
+  [PASS] P4c: the fitted exponent of (m h) in R_NL (finite lam) is >= 0 (no 1/(m r)^2 enhancement)
+         exponents [0.101, 0.208, 0.503, 0.101, 0.208, 0.503, 0.102, 0.21, 0.504]
+  [PASS] (reported) P4d: the exact-in-eps N1 and the frozen 'second order' agree: the c2 range is O(1) (|c2| <= 10 over r/h in the grid)
+         c2 in [-0.302, +0.846]
+
+  6/7 checks pass; load-bearing failures: 1   (721 s)

@@ -1,0 +1,26 @@
+
+======================================================================================================================
+A5 G3: reciprocity and energy
+======================================================================================================================
+  [PASS] G3-a: T0b (Noether/Bianchi identity, exact, A1) holds: the total stress is conserved once the auxiliary-field equations hold, universal coupling => no separate reaction
+         c = [-1/2, -1/2, -1/2], worst residual 0.00e+00
+    reaction := |g_baryon - g_tot,mechanism| = 0 by construction (same metric for every species): the CFG44 N11/CFG48 G4 reaction line (<= 0.10 g_law) is met exactly, vacuously.
+    the trap: delta g/g_law of the TARGET = 1 - 1/sqrt(1 + x^2) at x = 0.1: 0.005, 0.2: 0.019, 0.3: 0.042, 0.5: 0.106, 1: 0.293, 2: 0.553, 3: 0.684, 5: 0.804, 10: 0.900, 20: 0.950, 30: 0.967; a naive 'reaction = delta g' reading would fail 0.10 for x >= 0.5, i.e. G3-naive and G1 could never both hold.
+
+  E_eff = int rho_eff c^2 dV (out to r_ta) versus (1/2) M_b V_f^2, V_f^4 = G M_b a0 (Msun (km/s)^2):
+  footing     M_b     r_ta(CFG48) r_ta(committed nu_mono) [kpc] | E_eff [Msun km2/s2] | E_orb | |E_eff|/E_orb (CFG48 / committed)
+  canonical  1e+09      148.0       647.5        | -1.334e+09 / -2.556e+10 | 1.762e+12 | 7.570e-04 / 1.450e-02
+  canonical  1e+10      318.8      1151.8        | -6.196e+10 / -8.088e+11 | 5.573e+13 | 1.112e-03 / 1.451e-02
+  canonical  1e+11      686.9      2049.6        | -2.876e+12 / -2.561e+13 | 1.762e+15 | 1.632e-03 / 1.453e-02
+  canonical  1e+12     1479.8      3648.9        | -1.335e+14 / -8.117e+14 | 5.573e+16 | 2.396e-03 / 1.457e-02
+  alt        1e+09      148.0       678.8        | -1.334e+09 / -2.809e+10 | 1.937e+12 | 6.886e-04 / 1.450e-02
+  alt        1e+10      318.8      1207.5        | -6.196e+10 / -8.889e+11 | 6.126e+13 | 1.011e-03 / 1.451e-02
+  alt        1e+11      686.9      2148.5        | -2.876e+12 / -2.814e+13 | 1.937e+15 | 1.485e-03 / 1.453e-02
+  alt        1e+12     1479.8      3824.5        | -1.335e+14 / -8.917e+14 | 6.126e+16 | 2.179e-03 / 1.456e-02
+  [PASS] G3-b: |E_eff| <= (1/2) M_b V_f^2 in both r_ta conventions, both footings, all four masses (pass line 1)
+         max ratio 1.457e-02
+  [FAIL] P6 (pre-registered): E_eff/E_orb <= 1e-6 in both conventions (hand estimate 'about 1e-10 or smaller')
+         max ratio 1.457e-02
+  >> G3 (reciprocity and energy): PASS (vacuous) -- reaction 0 by construction; |E_eff|/E_orb <= 1.46e-02; the pass is a consequence of the mechanism being negligible (G1), not support
+
+  2/3 checks pass; load-bearing failures: 1   (16 s)

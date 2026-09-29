@@ -1,0 +1,86 @@
+{
+ "slug": "CFG124_G2_growth_MUTATE_1",
+ "mutate": "1",
+ "load_bearing_failures": 2,
+ "checks": [
+  {
+   "name": "G2.0a",
+   "claim": "pressureless baseline: matter contrast grows by ~ (1+z_i)/(1+z) between z = 1100 and 10 (matter era; within 10% of 100.1 because of radiation and baryon simplifications)",
+   "measured": "delta_m(z=10)/delta_i = 89.4  (delta_i = 1/1101)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.0a-POSTHOC",
+   "claim": "[post-hoc, not frozen] the Meszaros CDM growth factor between z = 1100 and 10 is (1 + 1.5 y_10)/(1 + 1.5 y_1100) with y = a/a_eq: the computed baryon+CDM growth should be within 15% of it (baryons still coupled to photons at z = 1100 are treated as pressureless: a known simplification)",
+   "measured": "Meszaros 82.8 vs computed 89.4",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "G2.0b",
+   "claim": "class A (c_s^2 = 0, s = 0) reproduces the baseline exactly (mimetic dust with V = gamma = 0 IS cold dust)",
+   "measured": "ratio at k = 0.1, 1, 30: [1.0, 1.0, 1.0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.3a",
+   "claim": "frozen screening estimate: c_s^2,max(k = 30/Mpc, z = 10) ~ 1e-10 (order of magnitude: within [1e-11, 1e-9])",
+   "measured": "c_s^2,max = 4.242e-11  (gt_max = 8.483e-11)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.3b",
+   "claim": "frozen statement: the halo scale is about 2e-8 (1e9 Msun) to 6e-7 (1e12 Msun) c^2",
+   "measured": "measured 1.96e-08 ... 6.82e-07 (canonical: 1.96e-08 ... 6.20e-07)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.3c",
+   "claim": "at the halo-scale sound speed the growth at k = 30/Mpc is NOT within 5% of LCDM (for all eight mass/footing cases)",
+   "measured": "ratios: {'canonical_1e+09': 1.0, 'canonical_1e+10': 1.0, 'canonical_1e+11': 1.0, 'canonical_1e+12': 1.0, 'alt_1e+09': 1.0, 'alt_1e+10': 1.0, 'alt_1e+11': 1.0, 'alt_1e+12': 1.0}",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.3d",
+   "claim": "the joint window is empty: c_s^2,max(k=30, z=10) is below every halo-scale c_s^2 needed (ratio max/needed < 1 for all eight cases; shortfall in decades reported)",
+   "measured": "c_s^2,max/needed ranges 6.2e-05 ... 2.2e-03",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.4a",
+   "claim": "the G1.3 requirement applied at z >~ 10 (s = 1, dust force fully cancelled) destroys the growth (ratio << 0.95 at every k), and any s above a few percent already fails 5%: a coupling that satisfies G1.3 inside halos must be off (s < 0.025) in the linear regime",
+   "measured": "s = 1: [0.0728 0.0728 0.0728 0.0728] ; s_max(k=30) = 0.0250",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G2.2",
+   "claim": "class B: V(phi) is a function of proper time only, so it changes rho_c(a) homogeneously (T0.4b) and cannot depend on M_b(<r); the G2 pass line then holds only for V = const, which is Lambda (already tied by CFG43/XR20) and adds nothing",
+   "measured": "derived: d(a^3 eps)/dt = -a^3 Vdot (T0.4b PASS)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "cs2_max_z10": {
+   "0.1": 3.817424737617501e-06,
+   "0.5": 1.5269698950603916e-07,
+   "1.0": 3.817424737649479e-08,
+   "2.0": 9.543561844119946e-09,
+   "5.0": 1.5269698950284139e-09,
+   "10.0": 3.817424737569535e-10,
+   "30.0": 4.2415830418566234e-11
+  },
+  "gt_max_z10_k30": 8.483166082633785e-11,
+  "joint_window_ratio_min_max": [
+   6.222628307928904e-05,
+   0.0021632099629179686
+  ]
+ }
+}
