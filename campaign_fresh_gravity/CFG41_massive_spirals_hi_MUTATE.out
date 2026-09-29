@@ -1,0 +1,92 @@
+CFG41 -- THE MASSIVE PASSIVE DISKS, at last: Di Teodoro+2023's 15 extremely massive spirals with extended HI rotation curves, under B's law and
+B's derived cold-mass rule.
+
+WHY.  CFG37 found that the rule bites only above log M_* ~ 11.2 on the red sequence, and that no passive disk with extended kinematics above
+that mass was in the repository ('none is in the repository').  Di Teodoro et al. 2023 (MNRAS 518, 6340; arXiv:2207.02906) measured HI rotation
+curves out to 30-97 kpc for 15 galaxies with log M_* 11.0-11.7 (WISE), including four S0 / S0a (NGC 1167, NGC 5790, UGC 12591, UGC 12811) --
+exactly the population.  CFG40 (Ogle+2019, star-forming super spirals) found the law slightly slow at the top of the disk mass function; this
+sample is the HI cross-check.  The curves are not tabulated; they were read from the paper's vector atlas figures (data file with provenance).
+
+A SELECTION BIAS THAT CUTS ONE WAY.  The sample was selected on speed: SDSS M_* > 1e11 and ALFALFA inclination-corrected HI width > 300 km/s.  A cut on
+the observed speed picks upward fluctuations at fixed mass, so the raw mean of log(v_obs / v_law) is biased HIGH.  CFG41_selbias_mc.py (a
+Monte-Carlo, all choices declared in its docstring) gives +0.067 to +0.085 dex where the mock reproduces the real sample's mean v_flat (~290
+km/s) and mass (log M_* ~ 11.25), and +0.003 to +0.154 dex across its whole grid.  The correction used here is B = 0.076 +- 0.030 dex
+(matched-grid centre; the error covers the matched rows' spread and the mass-function variants).  It is subtracted from every offset; its error
+enters the floor.
+
+THE METHOD (declared before this script's first run).  CFG36's machinery exec'd read-only (Mandelbaum's blue / red relation as M_200c; Dutton-Maccio
+NFW; the conservation form at x_e = 0.40; nu_mono; both footings).  Baryons: M_* (WISE W1, Upsilon = 0.6, the paper's; stands in for Mandelbaum's
+Chabrier masses) + M_gas (1.36 M_HI, the paper's).  Velocity: the paper's tabulated v_flat with its error.  Radius: the mean galactocentric radius of the
+points the Lelli+2016 flat-part algorithm includes (recomputed here from the recovered points; the control checks it).  Structure: point mass
+(headline; the flat parts lie at 15-97 kpc, well outside the discs) with brackets -- an exponential disc (Freeman) and the spherical enclosed mass, both at
+R_d = 8 kpc (the paper gives no R_d).  Colour: CFG36's convention on RC3 type T (T <= 0 red; T >= 1 or no T blue).  Offset = log10(v_flat / v_pred) - B.
+Sample: mean over the 15 with the galaxy-to-galaxy error (std / sqrt N), plus a floor in quadrature: the baryon-structure model (half the spread of the
+mean), the stellar mass (+-0.2 dex), the gas mass (+-0.1 dex, the paper's), the radius (mean flat radius +-25%) and B's error (0.030).
+
+PRE-DECLARED
+  C1  CONTROL  the data: 15 galaxies, 216 points; the table's v_flat for NGC 5440 is 303 +- 25.
+  C2  CONTROL  the Lelli+2016 algorithm applied to the recovered points reproduces the paper's tabulated v_flat within 3 km/s for >= 12 of 15
+               galaxies (the recovered points are faithful to the paper's own analysis).
+  H1  THE BARE LAW FITS THEM after the selection correction: |mean(log v_obs/v_law - B)| < 2 sigma, canonical.
+  H2  [HEADLINE; MUTATE must fail] B (law + rule, canonical) FITS THEM: (a) |mean(log v_obs/v_B - B)| < 2 sigma over the 15, AND (b) over the four S0 / S0a
+      (T <= 0) the rule does not over-predict: mean(log v_obs/v_B - B) > -2 sigma_S0 with sigma_S0 = the four's own std / 2 with the floor in quadrature.
+  H3  THE RULE BITES: f_ex > 0 in at least 2 of the 4 S0 / S0a (otherwise the passive-disk test of the rule is empty, as CFG37's H2 was).
+  R1-R6 (reported): uncorrected offsets; the alt footing; the WISE colour assignment (W2-W3 < 2.0 red); the two galaxies the paper flags as
+      uncertain (NGC 5635, UGC 12591) excluded; per-galaxy table; the brackets.
+  READING (declared): H1, H2, H3 PASS -> the derived rule fits the first massive passive disks (log M_* 11.3-11.7) while the law fits the rest, on the HI tracer.
+      H2b FAIL -> the rule over-predicts massive passive disks (the CFG36/UGC 2487 worry, now on four).  H3 FAIL -> the four do not test the rule.
+      H1 FAIL -> the law fails on these massive disks even after the selection correction.
+MUTATE=1: the observed speeds multiplied by 0.5 -- H2 must FAIL (rc = 1).
+
+  *** MUTATE=1: observed speeds x 0.5 -- H2 must FAIL ***
+
+======================================================================================================================
+C1 / C2  CONTROLS: the data and the recovered curves
+======================================================================================================================
+  [PASS] C1 CONTROL: 15 galaxies, 216 recovered points; NGC 5440's tabulated v_flat = 303 +- 25
+         15 galaxies; 216 points; NGC5440 303 +- 25
+  [FAIL] C2 CONTROL: the Lelli+2016 algorithm on the recovered points reproduces the paper's v_flat within 3 km/s for >= 12 of 15
+         10 of 15; worst 12 km/s (UGC02849)
+
+======================================================================================================================
+H1 / H2 / H3  THE FIFTEEN MASSIVE DISKS
+======================================================================================================================
+    NGC0338   T    2 blue log M_b 11.25  R_flat  43.3 kpc ( 7 pts)  v_flat  234 +-  21; law 237.7; rule 237.7 (f_ex 0.00)
+    NGC1167   T   -3 red  log M_b 11.34  R_flat  70.2 kpc ( 6 pts)  v_flat  291 +-  28; law 243.4; rule 312.7 (f_ex 0.31)
+    NGC1324   T    3 blue log M_b 11.24  R_flat  36.4 kpc ( 2 pts)  v_flat  261 +-  20; law 240.0; rule 240.0 (f_ex 0.00)
+    NGC2599   T    1 blue log M_b 11.14  R_flat  47.5 kpc ( 4 pts)  v_flat  176 +-  36; law 219.2; rule 219.2 (f_ex 0.00)
+    NGC2713   T    2 blue log M_b 11.43  R_flat  54.9 kpc ( 5 pts)  v_flat  276 +-  26; law 262.1; rule 262.1 (f_ex 0.00)
+    NGC2862   T None blue log M_b 11.15  R_flat  44.0 kpc (12 pts)  v_flat  260 +-  18; law 222.0; rule 222.0 (f_ex 0.00)
+    NGC5440   T    1 blue log M_b 11.20  R_flat  45.8 kpc (27 pts)  v_flat  303 +-  25; law 228.1; rule 228.1 (f_ex 0.00)
+    NGC5533   T    2 blue log M_b 11.10  R_flat  47.9 kpc (13 pts)  v_flat  223 +-  17; law 212.9; rule 212.9 (f_ex 0.00)
+    NGC5635   T None blue log M_b 11.15  R_flat  25.1 kpc ( 4 pts)  v_flat  354 +-  18; law 235.1; rule 235.1 (f_ex 0.00)  [flagged uncertain by the paper]
+    NGC5790   T    0 red  log M_b 11.34  R_flat  50.2 kpc ( 2 pts)  v_flat  292 +-  27; law 249.4; rule 308.5 (f_ex 0.31)
+    UGC02849  T    6 blue log M_b 11.26  R_flat  53.5 kpc ( 2 pts)  v_flat  231 +-  36; law 235.6; rule 235.6 (f_ex 0.00)
+    UGC02885  T    5 blue log M_b 11.30  R_flat  41.4 kpc (16 pts)  v_flat  278 +-  16; law 246.3; rule 246.3 (f_ex 0.00)
+    UGC08179  T    3 blue log M_b 11.66  R_flat  50.7 kpc ( 8 pts)  v_flat  318 +-  25; law 311.4; rule 311.4 (f_ex 0.00)
+    UGC12591  T    0 red  log M_b 11.71  R_flat  16.5 kpc ( 7 pts)  v_flat  450 +-  47; law 405.1; rule 476.4 (f_ex 0.78)  [flagged uncertain by the paper]
+    UGC12811  T   -2 red  log M_b 11.43  R_flat  71.6 kpc ( 7 pts)  v_flat  346 +-  24; law 258.0; rule 376.1 (f_ex 0.49)
+    canonical law   all (N=15): raw -0.253, corrected -0.329 +- 0.066 (gal 0.017, model 0.012, M* 0.053, gas 0.003, radius 0.012, bias 0.030) -> -5.01 sigma
+    canonical law   s0  (N= 4): raw -0.221, corrected -0.297 +- 0.071 (gal 0.017, model 0.011, M* 0.059, gas 0.002, radius 0.015, bias 0.030) -> -4.19 sigma
+    canonical rule  all (N=15): raw -0.282, corrected -0.358 +- 0.081 (gal 0.017, model 0.011, M* 0.071, gas 0.003, radius 0.007, bias 0.030) -> -4.45 sigma
+    canonical rule  s0  (N= 4): raw -0.330, corrected -0.406 +- 0.131 (gal 0.003, model 0.007, M* 0.127, gas 0.001, radius 0.001, bias 0.030) -> -3.10 sigma
+    alt       law   all (N=15): raw -0.270, corrected -0.346 +- 0.065 (gal 0.017, model 0.012, M* 0.053, gas 0.003, radius 0.011, bias 0.030) -> -5.33 sigma
+    alt       law   s0  (N= 4): raw -0.237, corrected -0.313 +- 0.070 (gal 0.016, model 0.010, M* 0.058, gas 0.002, radius 0.014, bias 0.030) -> -4.50 sigma
+    alt       rule  all (N=15): raw -0.292, corrected -0.368 +- 0.079 (gal 0.016, model 0.011, M* 0.070, gas 0.003, radius 0.007, bias 0.030) -> -4.66 sigma
+    alt       rule  s0  (N= 4): raw -0.320, corrected -0.396 +- 0.127 (gal 0.005, model 0.007, M* 0.123, gas 0.001, radius 0.001, bias 0.030) -> -3.12 sigma
+  [FAIL] H1 THE BARE LAW FITS THEM after the selection correction: |mean - B| < 2 sigma (canonical)
+         raw -0.253, corrected -0.329 +- 0.066 (-5.01 sigma)
+  [FAIL] H2 [HEADLINE] B FITS THEM: (a) |mean - B| < 2 sigma over the 15; (b) the rule does not over-predict the four S0/S0a  [MUTATE: v x 0.5]
+         (a) -0.358 +- 0.081 (-4.45); (b) four S0/S0a: corrected -0.406 +- 0.131 (> -0.262?) -> -3.10 sigma
+  [PASS] H3 THE RULE BITES: f_ex > 0 in at least 2 of the four S0/S0a
+         f_ex: 0.31, 0.31, 0.78, 0.49
+  [PASS] (reported) R1 (reported) uncorrected offsets; the alt footing
+         raw: law -0.253, rule -0.282; alt corrected: law -0.346 (-5.33 sigma), rule -0.368 (-4.66 sigma)
+  [PASS] (reported) R2 (reported) the WISE colour assignment; the two galaxies the paper flags as uncertain excluded
+         WISE colours: law -0.329 (-5.01), rule -0.352 (-4.27); excluding NGC5635 / UGC12591: law -0.339 (-5.37, N=13), rule -0.367 (-4.53, N=13)
+  [PASS] (reported) R3 (reported) the four S0/S0a under the law and under the rule
+         law -0.297 (raw -0.221); rule -0.406 (raw -0.330); per galaxy (rule, raw): NGC1167 -0.332, NGC5790 -0.325, UGC12591 -0.326, UGC12811 -0.337
+
+    READING (declared): the rule over-predicts the massive passive disks
+
+  5/8 checks pass; load-bearing failures: 3   (5 s)
