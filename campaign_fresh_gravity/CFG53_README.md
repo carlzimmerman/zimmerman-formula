@@ -91,3 +91,4 @@ Hypotheses and scope:
 ## Addendum after CFG76 (appended 2026-09-29)
 
 - The SLUGGS 4.0σ and 2.6σ quoted in the correction above are statistical errors at a fixed GC density slope, γ = 3. The law's offset is zero at γ ≈ 1.83 and the rule's at ≈ 2.45 (CFG76; see CFG55's appended section).
+- With h50's name-key artefact corrected (NGC 821 restored; 17 galaxies; `CFG55_h50_keyfix.py`), the same numbers are law +0.0996 (4.3σ) and rule +0.0513 (2.9σ).
