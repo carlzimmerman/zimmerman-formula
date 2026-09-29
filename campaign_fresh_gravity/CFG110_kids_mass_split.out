@@ -1,0 +1,79 @@
+CFG110 -- DOES THE KiDS LENSING SIGNAL AT FIXED g_bar DEPEND ON LENS MASS WITHIN A COLOUR CLASS?  B's law predicts no dependence in the
+deep regime (all of CFG61's K1 bins are << a0); a standard halo predicts a rising one.  The high-mass minus low-mass difference within
+each class, in the repo's own June re-measurement, against B's law and CFG67's LCDM computed on the identical lens subsets.
+
+Criteria frozen and committed before any subset number: campaign_fresh_gravity/CFG110_FROZEN_CRITERIA.md (f870b217a).
+  data     real_research/data/lensing_rar/cfg110_perlens.npz (CFG110_stage_perlens.py: each lens's per-bin sums from one pass of the June
+           estimator) with lr_lenses.npz; June patch labels (lr_esd_jackknife.npz); ESD = sum wgE / sum W in Msun/pc^2.
+  subsets  mass halves within each class at the class median log10 M_gal (late 10.448, early 10.810; the median lens goes up); redshift
+           halves (reported) at the class median z.
+  stat     D = [D_late, D_early], D_c = ESD(c, high) - ESD(c, low) on K1 (14 bins); joint leave-one-patch-out covariance (50 patches);
+           chi2 = (D - D_model)^T C^-1 (D - D_model) x 34/49 (Hartlap, p = 14), 14 dof.
+  models   B: CFG61's law stack (both footings) on each subset's lenses.  LCDM: CFG67's colour-split stack (red early, blue late) on the same
+           subsets.  LCDM_m (reported): CFG67's colour-blind Moster variant.  No fit.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  the per-lens sums, summed by (patch, class), reproduce the June per-patch sums to 1e-9 relative.
+  C2  CONTROL  the mass halves and the redshift halves partition each class exactly.
+  C3  CONTROL  with the full-class mask the model machinery reproduces CFG61's committed law stacks and CFG67's committed LCDM stacks
+               (ml, me; canonical) to 1e-9 relative.
+  C4  CONTROL  covariance calibration: 200 random within-class halvings (seed 110), mean Hartlap chi2 of D_null in [9.8, 18.2] (14 +- 30%).
+  H1  [HEADLINE] B's law is consistent with the within-class mass dependence: p > 0.01, both footings.
+  H2  CFG67's colour-split LCDM is consistent: p > 0.01.
+  R0-R4 (reported): the power Delta chi2_pred(LCDM vs B) from the covariance alone; per-class 7-bin chi2; the mass-split amplitude per
+               class (pair-weighted mean log10 ratio over K1, jackknife sigma) for data and models; LCDM_m; the redshift split.
+MUTATE=1: the high-mass half's wgE multiplied per K1 bin by [ESD_LCDM(hi)/ESD_LCDM(lo)] / [ESD_B(hi)/ESD_B(lo)] (canonical) in each
+class -- H1 must FAIL (rc = 1); if it does not, the test is declared NON-DISCRIMINATING.
+
+======================================================================================================================
+C1 / C2  CONTROLS (data)
+======================================================================================================================
+  [PASS] C1 CONTROL: the per-lens sums, summed by (patch, class), reproduce the June per-patch sums (wgE, W, NN) to 1e-9 relative
+         max relative deviation 3.1e-11
+  [PASS] C2 CONTROL: the mass halves and the redshift halves partition each class exactly
+         class 0: median log M_gal 10.448 (hi 46,700 / lo 46,698), median z 0.305 (hi 46,699 / lo 46,699); class 1: median log M_gal 10.810 (hi 44,044 / lo 44,035), median z 0.310 (hi 44,040 / lo 44,039)
+
+======================================================================================================================
+C3  CONTROL (models)
+======================================================================================================================
+  [PASS] C3 CONTROL: with the full-class mask the model machinery reproduces CFG61's law stacks and CFG67's LCDM stacks (ml, me; canonical) to 1e-9
+         max relative deviation 0.0e+00
+
+======================================================================================================================
+R0 / C4  POWER AND COVARIANCE CALIBRATION
+======================================================================================================================
+  [PASS] (reported) R0 (reported) the power: Delta chi2_pred = (D_LCDM - D_B)^T C^-1 (D_LCDM - D_B) x 34/49 (covariance only; >= 9 means discriminating)
+         8.8  (LCDM_m vs B: 87.1)
+  [PASS] C4 CONTROL: covariance calibration -- mean Hartlap chi2 of 200 random within-class halvings (14 bins) in [9.8, 18.2]
+         mean 13.69, median 12.36, 16-84% 8.5-18.7; fraction p < 0.01: 0.020
+
+======================================================================================================================
+H1 / H2  THE WITHIN-CLASS MASS SPLIT ON K1 (14 bins)
+======================================================================================================================
+  data D (late | early): [-5.61, 9.56, -7.7, -9.89, -0.67, -3.56, 20.89] | [0.23, 0.78, -1.21, 5.48, 15.17, -2.19, 10.99]
+  jackknife sigma:       [3.53, 3.89, 5.51, 7.65, 9.54, 12.1, 18.31] | [2.12, 2.62, 3.54, 5.97, 6.11, 9.82, 12.18]
+  B canonical           [0.04, 0.02, 0.01, 0.01, 0.0, 0.0, 0.0] | [0.03, 0.01, 0.01, 0.0, 0.0, 0.0, 0.0]
+  B alt                 [0.03, 0.02, 0.01, 0.01, 0.0, 0.0, 0.0] | [0.03, 0.01, 0.01, 0.0, 0.0, 0.0, 0.0]
+  LCDM                  [-4.2, -5.54, -6.99, -8.42, -9.6, -10.28, -10.27] | [1.37, 1.98, 2.79, 3.82, 5.05, 6.45, 7.96]
+  LCDM_m                [4.87, 6.79, 9.2, 12.08, 15.32, 18.76, 22.18] | [6.85, 9.38, 12.45, 15.94, 19.65, 23.29, 26.56]
+  [PASS] H1 [HEADLINE] B's LAW IS CONSISTENT WITH THE WITHIN-CLASS MASS DEPENDENCE: p > 0.01, both footings
+         canonical: chi2 22.20/14, p 7.46e-02 (1.78 sigma); alt: chi2 22.20/14, p 7.46e-02 (1.78 sigma)
+  [PASS] H2 CFG67's COLOUR-SPLIT LCDM IS CONSISTENT WITH IT: p > 0.01
+         chi2 25.16/14, p 3.31e-02 (2.13 sigma)
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) per-class 7-bin chi2 (canonical B; Hartlap p = 7)
+         late: B 13.4/7 (p 6.2e-02), LCDM 21.8/7 (p 2.7e-03), LCDM_m 25.2/7 (p 7.0e-04); early: B 6.5/7 (p 4.8e-01), LCDM 5.1/7 (p 6.5e-01), LCDM_m 55.0/7 (p 1.5e-09)
+  [PASS] (reported) R2 (reported) the mass-split amplitude per class: pair-weighted mean over K1 of log10[ESD(high)/ESD(low)], jackknife sigma
+         late: data +0.003 +- nan dex; B +0.001; LCDM -0.218; early: data +0.025 +- 0.040 dex; B +0.001; LCDM +0.058
+  [PASS] (reported) R2b (reported; ADDED AFTER THE FIRST RUN, disclosed: R2's per-bin log ratio is undefined where a noisy K1 bin's jackknife ESD goes negative) the mass-split amplitude as log10 of the ratio of pair-weighted sums over K1, jackknife sigma
+         late: data -0.063 +- 0.081 dex; B +0.001; LCDM -0.195; early: data +0.034 +- 0.032 dex; B +0.001; LCDM +0.058
+  [PASS] (reported) R3 (reported) LCDM_m (colour-blind Moster) on the 14 bins
+         chi2 105.46/14, p 4.23e-16
+  [PASS] (reported) R4 (reported) the redshift split (high-z minus low-z within class; the photo-z check): chi2/14 against zero, B and LCDM
+         zero 19.2 (p 1.6e-01), B 19.1 (p 1.6e-01), LCDM 15.9 (p 3.2e-01); data late [-4.49, 2.77, -4.49, -9.08, -13.11, -3.62, 4.82] early [2.73, 6.03, 0.86, 18.1, 1.23, -0.38, 19.7]
+
+    READING (declared): both models are acceptable (NON-DISCRIMINATING: power below 9)
+
+  12/12 checks pass; load-bearing failures: 0   (88 s)
