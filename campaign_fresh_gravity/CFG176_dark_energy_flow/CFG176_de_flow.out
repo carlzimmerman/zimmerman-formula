@@ -1,0 +1,171 @@
+CFG176 (MUTATE=0): the nature of dark energy in the flowing-vacuum picture.  kappa = 1/2 FITTED.
+Signature (-,+,+,+), c = 1 in the algebra.  Cosmology for t(z): flat, H0 = 67.66, Omega_m = 0.3111 (CFG174); rho_Lambda = 5.8424e-27 kg/m^3 (FP0, CFG174).
+
+====================================================================================================================
+CONTROLS  (CFG174's committed R and a0(z); CFG6's committed B5 crossing fractions)
+====================================================================================================================
+  t0 = 13.7915 Gyr;  R = Sigma_M/(rho_L c t0): canonical 0.2928, alt 0.3539 (CFG174 JSON 0.2928 / 0.3539)
+  [PASS] C1  CFG174's column ratio R reproduces from its committed JSON (both footings)
+         measured: max rel diff 0.0e+00
+  [PASS] C2  CFG174's accumulation a0(z)/a0(0) = t(z)/t0 reproduces at z = 0.85, 1.5, 2.5
+         measured: 0.85: +0.0e+00, 1.5: +0.0e+00, 2.5: +0.0e+00
+  [PASS] C3  CFG6's B5 crossing fractions reproduce from the committed thinned chains (same code)
+         measured: DESY5 +0.0e+00, Pantheon+ +0.0e+00, Union3 +0.0e+00
+
+====================================================================================================================
+Q1  CAN A MOVING MEDIUM STAY VACUUM-LIKE (w = -1)?  sympy
+====================================================================================================================
+  T(u_beta) - T(u_rest), nonzero entries: ['-beta*(p + rho)/((beta - 1)*(beta + 1))', '-beta**2*(p + rho)/((beta - 1)*(beta + 1))']
+  [PASS] S1a  T^{mu nu}(u) is the same for a moving and a resting u iff rho + p = 0 (a vacuum's 'flow' is invisible in T)
+         measured: solve -> [{p: -rho}]
+  [PASS] S1b  the rest-frame stress diag(rho, p, p, p) is invariant under every boost iff rho + p = 0 (only then no rest frame)
+         measured: solve -> [{p: -rho}]
+  [PASS] S1c  eigenstructure of T^mu_nu (beta = 3/5): generic fluid {-rho: 1 (along u), p: 3}; w = -1 {-rho: 4} -- every timelike vector is an eigenvector, so there is no Landau rest frame
+         measured: generic {-rho: 1, p: 3}; vacuum {-rho: 4}
+  [PASS] S1d  a w-fluid moving at beta in the CMB frame: momentum density g = (1+w) rho gamma^2 beta (zero for beta != 0 iff w = -1); e = rho[1 + (1+w) gamma^2 beta^2]; P_par = rho[(1+w) gamma^2 beta^2 + w]; P_perp = w rho
+         measured: g = -beta*rho*(w + 1)/((beta - 1)*(beta + 1))
+  [PASS] S2  -u_nu d_mu T^{mu nu} = u.grad(rho) + (rho + p) div u exactly (1+1, any v(t,x)): compaction along the flow is proportional to 1 + w; for w = -1 conservation reads d_t rho = d_x rho = 0 (a Lambda-vacuum cannot be compacted anywhere); for constant w, rho ~ n^(1+w) (n = volume-compression density)
+         measured: identity True; vacuum rigid True; rho(n) = C1*n**(w + 1)
+  [PASS] S3  NEC along +-n gives |T^{0n}| <= (T^{00} + T^{nn})/2 for ANY stress, i.e. g/e <= (1 + w_par)/2; a boosted perfect fluid has T_kk = (1+w) rho gamma^2 (1 -+ beta)^2; a w = -1 medium given an energy flux q has eigenvalues -rho +- i q (Hawking-Ellis type IV) and T_kk = -+2q: it violates the NEC
+         measured: T_k+ = P + e - 2*g; eigenvalues [-I*q - rho, I*q - rho]; T_kk [-2*q, 2*q]
+  [PASS] S4  a homogeneous tilted w-fluid in FRW: nabla_mu T^mu_x = a^-3 d/dt(a^3 T^0_x), T^0_x = a (rho+p) gamma^2 v, so a^4 (rho+p) gamma^2 v is conserved and gamma^2 v ~ a^(3w-1) (~ a^-4 near w = -1): a flow of the dark energy relative to the CMB frame decays unless driven, with force density (1 - 3w) H g
+         measured: identity True
+  [PASS] C4  geometry sanity: the helper's Ricci scalar for flat FRW is 6(a''/a + a'^2/a^2)
+         measured: 6*(a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/a(t)**2
+  [PASS] S5  CMB-frame view of a w-fluid at beta: 1 + w_eff = (1+w)(1 + 4/3 g^2b^2)/(1 + (1+w) g^2b^2); active density rho[(1+w) g^2 (1+b^2) + 2w]; if it carries the column fraction g/e = R then rest-frame 1+w = R(1-b^2)/[b(1-Rb)], 1 + w_eff = R(1/b + b/3) >= 4R/3 (at b -> 1) and Delta = R b
+         measured: all identities True
+
+====================================================================================================================
+Q1 NUMBERS  the minimum departure from w = -1 for a flow that carries CFG174's column; compaction; active density
+====================================================================================================================
+  canonical: R = 0.293.  Any NEC-respecting medium: 1 + w_par >= 2R = 0.586.  Perfect fluid at beta:
+      beta        rest-frame 1+w     CMB-frame 1+w_eff   Delta (anisotropic)
+      0.002001    146.4              146.3               0.0006
+      0.01        29.36              29.28               0.0029
+      0.1         2.986              2.938               0.0293
+      0.3         0.9737             1.005               0.0878
+      0.5         0.5145             0.6344              0.1464
+      0.9         0.08393            0.4132              0.2635
+      0.99        0.008288           0.3924              0.2899
+      0.999       0.0008281          0.3906              0.2925
+      dominant energy condition (w_rest <= 1) needs beta >= 0.150; CMB-frame 1 + w_eff >= 4R/3 = 0.390 (beta -> 1)
+  alt: R = 0.354.  Any NEC-respecting medium: 1 + w_par >= 2R = 0.708.  Perfect fluid at beta:
+      beta        rest-frame 1+w     CMB-frame 1+w_eff   Delta (anisotropic)
+      0.002001    176.9              176.8               0.0007
+      0.01        35.51              35.39               0.0035
+      0.1         3.632              3.55                0.0354
+      0.3         1.201              1.215               0.1062
+      0.5         0.6449             0.7667              0.1769
+      0.9         0.1096             0.4993              0.3185
+      0.99        0.01095            0.4742              0.3503
+      0.999       0.001095           0.472               0.3535
+      dominant energy condition (w_rest <= 1) needs beta >= 0.183; CMB-frame 1 + w_eff >= 4R/3 = 0.472 (beta -> 1)
+
+  The law's phantom density at r_M (P2 point mass), in units of rho_Lambda, and the volume compression a DE-like
+  medium needs to present it (rho ~ n^(1+w)):  log10(n/n_inf) = log10(C)/(1+w)
+    footing    log M_b  r_M [kpc]   C = rho_c/rho_L   log10 compression at 1+w = 0.04, 0.162, 0.248, 0.333, 1
+    canonical  9        1.22        3.59e+05          139, 34.3, 22.4, 16.7, 5.55
+    canonical  10       3.86        1.13e+05          126, 31.2, 20.4, 15.2, 5.05
+    canonical  11       12.20       3.59e+04          114, 28.1, 18.4, 13.7, 4.55
+    canonical  12       38.59       1.13e+04          101, 25, 16.3, 12.2, 4.05
+    alt        9        1.11        4.77e+05          142, 35.1, 22.9, 17.1, 5.68
+    alt        10       3.51        1.51e+05          129, 32, 20.9, 15.5, 5.18
+    alt        11       11.10       4.77e+04          117, 28.9, 18.9, 14, 4.68
+    alt        12       35.10       1.51e+04          104, 25.8, 16.8, 12.5, 4.18
+  active density rho(1+3w) at rest: repulsive for w < -1/3.  Speed above which a w-fluid's active density turns attractive: w = -0.667: beta > 0.775, w = -0.752: beta > 0.847, w = -0.838: beta > 0.908, w = -0.95: beta > 0.974, w = -0.99: beta > 0.995
+  [FAIL(reported)] R-Q1f  (reported) the law's density at r_M is 10^3-10^5 rho_Lambda and scales as M^-1/2; a DE-like medium (1+w <= 0.333) must be volume-compressed by >= 10^10 to present it; at rest a w < -1/3 medium repels
+         measured: C = 1.13e+04 .. 4.77e+05; slope -0.500; min log10 compression at 1+w = 0.333: 12.2
+  a free DE flow decays as gamma^2 v ~ a^(3w-1): w -0.667: z=1100->0 -9.1 dex, z=2.5->0 -1.63 dex, e-fold 4.8 Gyr; w -0.752: z=1100->0 -9.9 dex, z=2.5->0 -1.77 dex, e-fold 4.4 Gyr; w -0.838: z=1100->0 -10.7 dex, z=2.5->0 -1.91 dex, e-fold 4.1 Gyr; w -0.95: z=1100->0 -11.7 dex, z=2.5->0 -2.09 dex, e-fold 3.8 Gyr
+  [PASS] H1  a w = -1 medium flowing at beta = 0.5 carries zero momentum density and zero energy flux (and, S2, cannot be compacted): every flow observable is proportional to 1 + w
+         measured: g/rho = 0
+
+====================================================================================================================
+Q2  THE 11C TIME-DIRECTION READING  (flow = the Hubble flow)
+====================================================================================================================
+  2a. For T = -rho_Lambda g the flow can be identified with the Hubble flow or any other u (S1a): no new content;
+      the background is LambdaCDM, w = -1, and a0 = kappa c sqrt(G rho_Lambda) is flat (CFG6 branch A).
+  2b. Einstein-aether terms on FRW for the comoving (Hubble-flow) unit vector: K1 = 3*Derivative(a(t), t)**2/(N(t)**2*a(t)**2), K2 = 9*Derivative(a(t), t)**2/(N(t)**2*a(t)**2), K3 = 3*Derivative(a(t), t)**2/(N(t)**2*a(t)**2), K4 = 0
+  [PASS] S6  minisuperspace (sympy Euler-Lagrange in the lapse N and a, N -> 1): with a unit timelike flow along the Hubble flow, H^2 = 8 pi G (rho_m + rho_Lambda) / [3 (1 + beta/2)], beta = c1 + 3 c2 + c3, and a''/a = -(4 pi G_cos/3)(rho_m - 2 rho_Lambda): the flow's energy is rho_flow = -(beta/2) rho_crit(t), tracking H^2 with w_flow = w_total
+         measured: Friedmann True; acceleration True; tracking True
+  [PASS] H5  the 11C reading implies no w(z) of its own: the shape of H(z) is LambdaCDM's exactly (w_DE = -1); the only new content of a dynamical time-flow is G_cos = G/(1 + (c1 + 3c2 + c3)/2)
+         measured: from S6
+  2c. theta-channel (scoped to the homogeneous beta H^2 term): stopping the expansion inside a bound region changes the
+      flow's energy by at most (|beta|/2) rho_crit, so presenting the law's density at r_M needs |beta| >= 2 C Omega_L: M_b 1e9: 4.91e+05, M_b 1e10: 1.55e+05, M_b 1e11: 4.91e+04, M_b 1e12: 1.55e+04
+  [PASS] R-Q2c  (reported) the theta-channel needs |c1 + 3c2 + c3| >= 10^3 (G_cos/G would be ~10^-3); gradient terms around masses (the generalized-aether MOND route, CFG172's lane) are not scored here
+         measured: min 1.55e+04
+
+====================================================================================================================
+Q3  THE CFG174 ACCUMULATION READING: a0(z) ~ t(z)/t0
+====================================================================================================================
+  3-I (density tie, rho_DE ~ t^2, self-consistent): H0 t0 = 1.0302 (LambdaCDM 0.9543); w(z) = -1 - 2/(3 H t): z=0.0 -1.647, z=0.5 -1.916, z=1.0 -1.982, z=2.5 -1.999
+       CPL-equivalent (w0, wa) = (-1.703, -0.516); a0(z)/a0(0): z=0.85 -0.339, z=1.50 -0.533, z=2.50 -0.752 dex; H/H_LCDM: z=0.5 0.869, z=1.0 0.905, z=2.5 0.976
+       DESY5      p(w0 <= -1.647) = 0.00e+00;  Gaussian-equivalent distance of the model's (w0, wa): 36.1 sigma (LambdaCDM's (-1, 0): 4.3 sigma); p(w0 < -1) = 0.0000
+       Pantheon+  p(w0 <= -1.647) = 0.00e+00;  Gaussian-equivalent distance of the model's (w0, wa): 34.0 sigma (LambdaCDM's (-1, 0): 3.0 sigma); p(w0 < -1) = 0.0013
+       Union3     p(w0 <= -1.647) = 0.00e+00;  Gaussian-equivalent distance of the model's (w0, wa): 27.5 sigma (LambdaCDM's (-1, 0): 3.8 sigma); p(w0 < -1) = 0.0001
+  [PASS] H3  the density-tie accumulation (a0 ~ t, so rho_DE ~ t^2) is phantom, w0 < -1.3, and lies outside every committed DESI DR2 chain (weighted p(w0 <= model) < 1e-3 for DESY5, Pantheon+, Union3)
+         measured: w0 = -1.647; p = 0.0e+00, 0.0e+00, 0.0e+00
+  CFG6's band at z = 2.5 (every dark-energy branch, all three combinations, 16-84%): [-0.153, +0.268] dex
+  [PASS] H4  the accumulation reading's a0(2.5) lies more than 0.3 dex below CFG6's DESI band
+         measured: a0(2.5) -0.752 vs band low -0.153 (gap 0.599 dex)
+  3-II f_dep = 0.01  H0 t0 = 0.9517; w0 = -0.9965; CPL (w0, wa) = (-1.001, +0.040); rho_V(2.5)/rho_V0 = 1.062; a0(2.5) -0.722 dex; p(wa >= model): DESY5 0.000, Pantheon+ 0.000, Union3 0.000
+  3-II f_dep = 0.1   H0 t0 = 0.9308; w0 = -0.9642; CPL (w0, wa) = (-0.992, +0.273); rho_V(2.5)/rho_V0 = 1.611; a0(2.5) -0.718 dex; p(wa >= model): DESY5 0.000, Pantheon+ 0.000, Union3 0.000
+  3-II f_dep = 0.3   H0 t0 = 0.8986; w0 = -0.8887; CPL (w0, wa) = (-0.916, +0.443); rho_V(2.5)/rho_V0 = 2.813; a0(2.5) -0.713 dex; p(wa >= model): DESY5 0.000, Pantheon+ 0.000, Union3 0.000
+  3-II f_dep = 1     H0 t0 = 0.8467; w0 = -0.6063; CPL (w0, wa) = (-0.593, +0.254); rho_V(2.5)/rho_V0 = 6.930; a0(2.5) -0.706 dex; p(wa >= model): DESY5 0.000, Pantheon+ 0.000, Union3 0.000
+  [PASS] R-Q3II  (reported) the vacuum-pays accumulation has wa > 0 (w rising into the past) for every f_dep, while every committed chain has p(wa > 0) < 0.05
+         measured: wa: +0.040, +0.273, +0.443, +0.254; p(wa>0): 0.0000, 0.0006, 0.0000
+
+====================================================================================================================
+Q4  WHAT BOUNDS 1 + w TODAY, AND SO THE FLOW  (committed CFG6 numbers + the committed chains, no download)
+====================================================================================================================
+  committed (CFG6): DESI DR2 CPL (w0, wa) DESY5 (-0.752, -0.86); Pantheon+ (-0.838, -0.62); Union3 (-0.667, -1.09)
+                    crossing w = -1 in 0 < z < 2.5: DESY5 0.9998 at z 0.41; Pantheon+ 0.9978 at z 0.36; Union3 0.9998 at z 0.44
+                    healthy thawing, posterior-conditioned: best-node w0_eff DESY5 -0.884 (<w0_eff> -0.915); Pantheon+ -0.949 (<w0_eff> -0.960); Union3 -0.939 (<w0_eff> -0.928); LambdaCDM: 1 + w = 0
+  DESY5      1+w0 [2.5,16,50,84,97.5] = 0.137, 0.191, 0.247, 0.305, 0.362; wa = -1.32, -1.09, -0.85, -0.64, -0.44
+             momentum today g/rho_DE <= (1+w0)/2: median 0.123, 97.5% 0.181 (perfect fluid at beta -> 1: 0.185, 0.272); p(3(1+w0)/4 >= R) can/alt 0.0088/0.0000
+             column carried over the cosmic age / (rho_DE0 c t0): isotropic [50,84,97.5] 0.0209, 0.0266, 0.0327; perfect fluid 0.0314, 0.0399, 0.0490
+  Pantheon+  1+w0 [2.5,16,50,84,97.5] = 0.056, 0.107, 0.161, 0.217, 0.274; wa = -1.05, -0.82, -0.61, -0.41, -0.23
+             momentum today g/rho_DE <= (1+w0)/2: median 0.081, 97.5% 0.137 (perfect fluid at beta -> 1: 0.121, 0.205); p(3(1+w0)/4 >= R) can/alt 0.0001/0.0000
+             column carried over the cosmic age / (rho_DE0 c t0): isotropic [50,84,97.5] 0.0122, 0.0175, 0.0230; perfect fluid 0.0182, 0.0263, 0.0345
+  Union3     1+w0 [2.5,16,50,84,97.5] = 0.164, 0.246, 0.334, 0.423, 0.511; wa = -1.69, -1.38, -1.08, -0.80, -0.54
+             momentum today g/rho_DE <= (1+w0)/2: median 0.167, 97.5% 0.256 (perfect fluid at beta -> 1: 0.251, 0.383); p(3(1+w0)/4 >= R) can/alt 0.2599/0.0626
+             column carried over the cosmic age / (rho_DE0 c t0): isotropic [50,84,97.5] 0.0311, 0.0414, 0.0521; perfect fluid 0.0467, 0.0621, 0.0781
+  thawing best node DESY5      (Om 0.32, lambda 0.90): w0 -0.879; carried column iso 0.0260, perfect fluid 0.0389
+  thawing best node Pantheon+  (Om 0.31, lambda 0.60): w0 -0.946; carried column iso 0.0109, perfect fluid 0.0164
+  thawing best node Union3     (Om 0.31, lambda 0.65): w0 -0.936; carried column iso 0.0130, perfect fluid 0.0194
+  [PASS] H2  the committed dark-energy fits cannot carry CFG174's column: the time-integrated NEC-limited column (perfect-fluid bound, 97.5th percentile, every DESI combination; and the healthy thawing best nodes) is below R on both footings (LambdaCDM: exactly 0)
+         measured: largest carried fraction 0.0781 vs R 0.293 / 0.354
+  Bianchi I (S7): sigma/H0 = 2 Omega_DE Delta int_0^1 a^2/E da = 0.370 Delta.  Making up the NEC shortfall at today's most generous 1+w0 (97.5%, 0.511) needs Delta = 0.112 / 0.295 -> sigma/H0 = 0.041 / 0.109 (can/alt): a 4-11% anisotropy of today's expansion
+  [PASS] S7  Bianchi I: R^1_1 - (1/3) R^i_i = V^-1 d/dt[V (H_1 - H_bar)], so (Einstein) V^-1 d(V sigma_1)/dt = 8 pi G pi_1 with pi_1 = (2/3) Delta rho_DE for a flow along x
+         measured: identity True
+  flow speed allowed for a perfect fluid with rest-frame 1+w = X under a CMB-frame ceiling eps (97.5% 1+w0): gamma^2 beta^2 <= (eps - X)/[X (4/3 - eps)]  (X -> 0: unbounded -- a vacuum's speed is unobservable)
+    DESY5      eps 0.362: X 0.01: beta <= 0.986, X 0.05: beta <= 0.930, X 0.1: beta <= 0.854, X 0.2: beta <= 0.675
+    Pantheon+  eps 0.274: X 0.01: beta <= 0.981, X 0.05: beta <= 0.899, X 0.1: beta <= 0.788, X 0.2: beta <= 0.508
+    Union3     eps 0.511: X 0.01: beta <= 0.992, X 0.05: beta <= 0.958, X 0.1: beta <= 0.913, X 0.2: beta <= 0.809
+  [PASS] R-Q4  (reported) the requirement 1 + w_par >= 2R exceeds the largest committed 97.5th-percentile 1 + w0
+         measured: 2R = 0.586 / 0.708 vs 0.511
+
+====================================================================================================================
+Q5  (ADDENDUM 1) A MEDIUM WITH NO REST MASS: WHICH STRESS-ENERGY EACH READING NEEDS
+====================================================================================================================
+  [PASS] S8  a medium with no rest mass (traceless T): the trace -rho + 3p is frame-invariant, so T^mu_mu = 0 forces the isotropic w_eff = 1/3 in EVERY frame; a null flow (Phi k k) has e = g = P_par = Phi, P_perp = 0 (w_par = 1, NEC saturated) and in FRW dilutes as a^-4 (radiation: rho ~ a^-3(1+w) = a^-4); its active density is 2e > 0
+         measured: trace 3*p - rho -> p = [rho/3]; w_eff(1/3 fluid, any beta) = 1/3; null dust True; FRW a^-4 True
+  [PASS] S9  11A's river (PG metric, any steady v(r)): G^t_t = G^r_r = -(r v^2)'/r^2, G^th_th = -(r v^2)''/(2r), no flux: the medium is radially vacuum-like (p_r = -rho) with rho = (r v^2)'/(8 pi G r^2); v^2 = 2m/r + H^2 r^2 is pure Lambda (the river is a frame, not a medium); the LINEAR superposition v = -sqrt(2m/r) + H r needs an extra medium rho_x = -3H sqrt(2m)/(8 pi G r^1.5) < 0 (WEC violated) with p_r = -rho_x, p_perp = -rho_x/4
+         measured: general True; superposition in v^2 True; linear True (rho_x = -3*sqrt(2)*H*sqrt(m)/(8*pi*G*r**(3/2)))
+  11A linear-superposition medium at r_M (canonical): 1e9: rho_x/rho_L = -1.23e+03, g_cross/a0 = 8.11e-04; 1e10: rho_x/rho_L = -694, g_cross/a0 = 1.44e-03; 1e11: rho_x/rho_L = -390, g_cross/a0 = 2.56e-03; 1e12: rho_x/rho_L = -219, g_cross/a0 = 4.56e-03
+  M2 null flow carrying the column today at c (canonical): Omega_null,0 = R Omega_L = 0.202; dominates matter before z = 0.54; H/H_LCDM z=0.5 1.213, z=1.0 1.397, z=2.5 1.773; 2208 x the CMB+neutrino radiation density (T_CMB, N_eff standard, not committed)
+  M2 null flow carrying the column today at c (alt): Omega_null,0 = R Omega_L = 0.244; dominates matter before z = 0.28; H/H_LCDM z=0.5 1.253, z=1.0 1.467, z=2.5 1.895; 2668 x the CMB+neutrino radiation density (T_CMB, N_eff standard, not committed)
+  [PASS] H6  a massless (null or radiation-like) flow cannot be the dark energy (w_eff = 1/3, S8); carrying the column today it would dominate matter before z < 1 and raise H(2.5) by > 20% over LambdaCDM on both footings
+         measured: canonical z_eq 0.54, H(2.5) x1.77, alt z_eq 0.28, H(2.5) x1.89
+  11A inflow (control)             needs: M1 (Lambda) if the river is GR's v^2 = 2GM/r + H^2 r^2: a frame, no medium, no new content; the linear superposition needs a negative-energy medium (S9)
+                                   bound: WEC violated; |rho_x| = 219-1.23e+03 rho_L at r_M, and its pull there is only 8.1e-04-4.6e-03 a0
+  11B' directional, compressible   needs: momentum and compaction, both prop. to (rho + p): M3 (1+w > 0, a field flow) or M2 (massless, w_eff = 1/3)
+                                   bound: M3: DESI 1+w0 (Q4) -> carried column <= 0.0781 of the vacuum column vs R = 0.293; M2: not dark energy, H(z) (H6)
+  11C time direction               needs: M1 or M4 (preferred-frame vacuum, T ~ g on the background)
+                                   bound: w = -1 exactly; G_cos = G/(1+beta/2) (S6); PPN alpha1/alpha2 (door gate G6, not scored here)
+  CFG174 accumulation              needs: 3-I: phantom rho_DE ~ t^2; 3-II: a non-HT decaying vacuum
+                                   bound: 3-I outside the chains (H3); 3-II wa > 0 against the chains; a0(2.5) off CFG6's band (H4)
+
+====================================================================================================================
+SUMMARY
+====================================================================================================================
+CFG176 (MUTATE=0): 25/26 checks pass; load-bearing failures: none

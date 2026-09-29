@@ -1,0 +1,840 @@
+{
+ "lane": "CFG176",
+ "mutate": 1,
+ "checks": [
+  {
+   "id": "C1",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "CFG174's column ratio R reproduces from its committed JSON (both footings)",
+   "measured": "max rel diff 0.0e+00"
+  },
+  {
+   "id": "C2",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "CFG174's accumulation a0(z)/a0(0) = t(z)/t0 reproduces at z = 0.85, 1.5, 2.5",
+   "measured": "0.85: +0.0e+00, 1.5: +0.0e+00, 2.5: +0.0e+00"
+  },
+  {
+   "id": "C3",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "CFG6's B5 crossing fractions reproduce from the committed thinned chains (same code)",
+   "measured": "DESY5 +0.0e+00, Pantheon+ +0.0e+00, Union3 +0.0e+00"
+  },
+  {
+   "id": "S1a",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "T^{mu nu}(u) is the same for a moving and a resting u iff rho + p = 0 (a vacuum's 'flow' is invisible in T)",
+   "measured": "solve -> [{p: -rho}]"
+  },
+  {
+   "id": "S1b",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the rest-frame stress diag(rho, p, p, p) is invariant under every boost iff rho + p = 0 (only then no rest frame)",
+   "measured": "solve -> [{p: -rho}]"
+  },
+  {
+   "id": "S1c",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "eigenstructure of T^mu_nu (beta = 3/5): generic fluid {-rho: 1 (along u), p: 3}; w = -1 {-rho: 4} -- every timelike vector is an eigenvector, so there is no Landau rest frame",
+   "measured": "generic {-rho: 1, p: 3}; vacuum {-rho: 4}"
+  },
+  {
+   "id": "S1d",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "a w-fluid moving at beta in the CMB frame: momentum density g = (1+w) rho gamma^2 beta (zero for beta != 0 iff w = -1); e = rho[1 + (1+w) gamma^2 beta^2]; P_par = rho[(1+w) gamma^2 beta^2 + w]; P_perp = w rho",
+   "measured": "g = -beta*rho*(w + 1)/((beta - 1)*(beta + 1))"
+  },
+  {
+   "id": "S2",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "-u_nu d_mu T^{mu nu} = u.grad(rho) + (rho + p) div u exactly (1+1, any v(t,x)): compaction along the flow is proportional to 1 + w; for w = -1 conservation reads d_t rho = d_x rho = 0 (a Lambda-vacuum cannot be compacted anywhere); for constant w, rho ~ n^(1+w) (n = volume-compression density)",
+   "measured": "identity True; vacuum rigid True; rho(n) = C1*n**(w + 1)"
+  },
+  {
+   "id": "S3",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "NEC along +-n gives |T^{0n}| <= (T^{00} + T^{nn})/2 for ANY stress, i.e. g/e <= (1 + w_par)/2; a boosted perfect fluid has T_kk = (1+w) rho gamma^2 (1 -+ beta)^2; a w = -1 medium given an energy flux q has eigenvalues -rho +- i q (Hawking-Ellis type IV) and T_kk = -+2q: it violates the NEC",
+   "measured": "T_k+ = P + e - 2*g; eigenvalues [-I*q - rho, I*q - rho]; T_kk [-2*q, 2*q]"
+  },
+  {
+   "id": "S4",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "a homogeneous tilted w-fluid in FRW: nabla_mu T^mu_x = a^-3 d/dt(a^3 T^0_x), T^0_x = a (rho+p) gamma^2 v, so a^4 (rho+p) gamma^2 v is conserved and gamma^2 v ~ a^(3w-1) (~ a^-4 near w = -1): a flow of the dark energy relative to the CMB frame decays unless driven, with force density (1 - 3w) H g",
+   "measured": "identity True"
+  },
+  {
+   "id": "C4",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "geometry sanity: the helper's Ricci scalar for flat FRW is 6(a''/a + a'^2/a^2)",
+   "measured": "6*(a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/a(t)**2"
+  },
+  {
+   "id": "S5",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "CMB-frame view of a w-fluid at beta: 1 + w_eff = (1+w)(1 + 4/3 g^2b^2)/(1 + (1+w) g^2b^2); active density rho[(1+w) g^2 (1+b^2) + 2w]; if it carries the column fraction g/e = R then rest-frame 1+w = R(1-b^2)/[b(1-Rb)], 1 + w_eff = R(1/b + b/3) >= 4R/3 (at b -> 1) and Delta = R b",
+   "measured": "all identities True"
+  },
+  {
+   "id": "R-Q1f",
+   "ok": false,
+   "load_bearing": false,
+   "statement": "(reported) the law's density at r_M is 10^3-10^5 rho_Lambda and scales as M^-1/2; a DE-like medium (1+w <= 0.333) must be volume-compressed by >= 10^10 to present it; at rest a w < -1/3 medium repels",
+   "measured": "C = 1.13e+04 .. 4.77e+05; slope -0.500; min log10 compression at 1+w = 0.333: 12.2"
+  },
+  {
+   "id": "H1",
+   "ok": false,
+   "load_bearing": true,
+   "statement": "a w = -1 medium flowing at beta = 0.5 carries zero momentum density and zero energy flux (and, S2, cannot be compacted): every flow observable is proportional to 1 + w",
+   "measured": "g/rho = 0.667"
+  },
+  {
+   "id": "S6",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "minisuperspace (sympy Euler-Lagrange in the lapse N and a, N -> 1): with a unit timelike flow along the Hubble flow, H^2 = 8 pi G (rho_m + rho_Lambda) / [3 (1 + beta/2)], beta = c1 + 3 c2 + c3, and a''/a = -(4 pi G_cos/3)(rho_m - 2 rho_Lambda): the flow's energy is rho_flow = -(beta/2) rho_crit(t), tracking H^2 with w_flow = w_total",
+   "measured": "Friedmann True; acceleration True; tracking True"
+  },
+  {
+   "id": "H5",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the 11C reading implies no w(z) of its own: the shape of H(z) is LambdaCDM's exactly (w_DE = -1); the only new content of a dynamical time-flow is G_cos = G/(1 + (c1 + 3c2 + c3)/2)",
+   "measured": "from S6"
+  },
+  {
+   "id": "R-Q2c",
+   "ok": true,
+   "load_bearing": false,
+   "statement": "(reported) the theta-channel needs |c1 + 3c2 + c3| >= 10^3 (G_cos/G would be ~10^-3); gradient terms around masses (the generalized-aether MOND route, CFG172's lane) are not scored here",
+   "measured": "min 1.55e+04"
+  },
+  {
+   "id": "H3",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the density-tie accumulation (a0 ~ t, so rho_DE ~ t^2) is phantom, w0 < -1.3, and lies outside every committed DESI DR2 chain (weighted p(w0 <= model) < 1e-3 for DESY5, Pantheon+, Union3)",
+   "measured": "w0 = -1.647; p = 0.0e+00, 0.0e+00, 0.0e+00"
+  },
+  {
+   "id": "H4",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the accumulation reading's a0(2.5) lies more than 0.3 dex below CFG6's DESI band",
+   "measured": "a0(2.5) -0.752 vs band low -0.153 (gap 0.599 dex)"
+  },
+  {
+   "id": "R-Q3II",
+   "ok": true,
+   "load_bearing": false,
+   "statement": "(reported) the vacuum-pays accumulation has wa > 0 (w rising into the past) for every f_dep, while every committed chain has p(wa > 0) < 0.05",
+   "measured": "wa: +0.040, +0.273, +0.443, +0.254; p(wa>0): 0.0000, 0.0006, 0.0000"
+  },
+  {
+   "id": "H2",
+   "ok": false,
+   "load_bearing": true,
+   "statement": "the committed dark-energy fits cannot carry CFG174's column: the time-integrated NEC-limited column (perfect-fluid bound, 97.5th percentile, every DESI combination; and the healthy thawing best nodes) is below R on both footings (LambdaCDM: exactly 0)",
+   "measured": "largest carried fraction 0.8402 vs R 0.293 / 0.354"
+  },
+  {
+   "id": "S7",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "Bianchi I: R^1_1 - (1/3) R^i_i = V^-1 d/dt[V (H_1 - H_bar)], so (Einstein) V^-1 d(V sigma_1)/dt = 8 pi G pi_1 with pi_1 = (2/3) Delta rho_DE for a flow along x",
+   "measured": "identity True"
+  },
+  {
+   "id": "R-Q4",
+   "ok": true,
+   "load_bearing": false,
+   "statement": "(reported) the requirement 1 + w_par >= 2R exceeds the largest committed 97.5th-percentile 1 + w0",
+   "measured": "2R = 0.586 / 0.708 vs 0.511"
+  },
+  {
+   "id": "S8",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "a medium with no rest mass (traceless T): the trace -rho + 3p is frame-invariant, so T^mu_mu = 0 forces the isotropic w_eff = 1/3 in EVERY frame; a null flow (Phi k k) has e = g = P_par = Phi, P_perp = 0 (w_par = 1, NEC saturated) and in FRW dilutes as a^-4 (radiation: rho ~ a^-3(1+w) = a^-4); its active density is 2e > 0",
+   "measured": "trace 3*p - rho -> p = [rho/3]; w_eff(1/3 fluid, any beta) = 1/3; null dust True; FRW a^-4 True"
+  },
+  {
+   "id": "S9",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "11A's river (PG metric, any steady v(r)): G^t_t = G^r_r = -(r v^2)'/r^2, G^th_th = -(r v^2)''/(2r), no flux: the medium is radially vacuum-like (p_r = -rho) with rho = (r v^2)'/(8 pi G r^2); v^2 = 2m/r + H^2 r^2 is pure Lambda (the river is a frame, not a medium); the LINEAR superposition v = -sqrt(2m/r) + H r needs an extra medium rho_x = -3H sqrt(2m)/(8 pi G r^1.5) < 0 (WEC violated) with p_r = -rho_x, p_perp = -rho_x/4",
+   "measured": "general True; superposition in v^2 True; linear True (rho_x = -3*sqrt(2)*H*sqrt(m)/(8*pi*G*r**(3/2)))"
+  },
+  {
+   "id": "H6",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "a massless (null or radiation-like) flow cannot be the dark energy (w_eff = 1/3, S8); carrying the column today it would dominate matter before z < 1 and raise H(2.5) by > 20% over LambdaCDM on both footings",
+   "measured": "canonical z_eq 0.54, H(2.5) x1.77, alt z_eq 0.28, H(2.5) x1.89"
+  }
+ ],
+ "numbers": {
+  "Q1_table": {
+   "canonical": {
+    "R": 0.2928037823223934,
+    "NEC_min_onepw_par": 0.5856075646447868,
+    "pf_min_onepw_eff": 0.3904050430965245,
+    "beta_min_DEC": 0.14968198094136004,
+    "rows": [
+     {
+      "beta": 0.0020013845711889123,
+      "onepw_rest": 146.38580732596384,
+      "onepw_eff": 146.30080469453623,
+      "Delta": 0.000586012972325795
+     },
+     {
+      "beta": 0.01,
+      "onepw_rest": 29.363427420522896,
+      "onepw_eff": 29.28135424484708,
+      "Delta": 0.002928037823223934
+     },
+     {
+      "beta": 0.1,
+      "onepw_rest": 2.9861943448848987,
+      "onepw_eff": 2.937797949301347,
+      "Delta": 0.02928037823223934
+     },
+     {
+      "beta": 0.3,
+      "onepw_rest": 0.9737026156614582,
+      "onepw_eff": 1.0052929859735507,
+      "Delta": 0.08784113469671802
+     },
+     {
+      "beta": 0.5,
+      "onepw_rest": 0.5145344968969834,
+      "onepw_eff": 0.6344081950318523,
+      "Delta": 0.1464018911611967
+     },
+     {
+      "beta": 0.9,
+      "onepw_rest": 0.08393224192990269,
+      "onepw_eff": 0.4131786706104885,
+      "Delta": 0.26352340409015407
+     },
+     {
+      "beta": 0.99,
+      "onepw_rest": 0.008288199903727297,
+      "onepw_eff": 0.39238664445163574,
+      "Delta": 0.2898757444991695
+     },
+     {
+      "beta": 0.999,
+      "onepw_rest": 0.0008281409940679411,
+      "onepw_eff": 0.39060053871495204,
+      "Delta": 0.292510978540071
+     }
+    ]
+   },
+   "alt": {
+    "R": 0.35385579368512915,
+    "NEC_min_onepw_par": 0.7077115873702583,
+    "pf_min_onepw_eff": 0.47180772491350553,
+    "beta_min_DEC": 0.18284286411868791,
+    "rows": [
+     {
+      "beta": 0.0020013845711889123,
+      "onepw_rest": 176.93009090284,
+      "onepw_eff": 176.80573301118488,
+      "Delta": 0.0007082015259072244
+     },
+     {
+      "beta": 0.01,
+      "onepw_rest": 35.50768681758366,
+      "onepw_eff": 35.386758887825195,
+      "Delta": 0.0035385579368512918
+     },
+     {
+      "beta": 0.1,
+      "onepw_rest": 3.6316815118619292,
+      "onepw_eff": 3.550353129974129,
+      "Delta": 0.035385579368512915
+     },
+     {
+      "beta": 0.3,
+      "onepw_rest": 1.2008398115607881,
+      "onepw_eff": 1.2149048916522769,
+      "Delta": 0.10615673810553874
+     },
+     {
+      "beta": 0.5,
+      "onepw_rest": 0.6448811574241468,
+      "onepw_eff": 0.7666875529844465,
+      "Delta": 0.17692789684256457
+     },
+     {
+      "beta": 0.9,
+      "onepw_rest": 0.10961060154262454,
+      "onepw_eff": 0.4993298422001267,
+      "Delta": 0.31847021431661626
+     },
+     {
+      "beta": 0.99,
+      "onepw_rest": 0.010948203145512156,
+      "onepw_eff": 0.47420250654753626,
+      "Delta": 0.35031723574827783
+     },
+     {
+      "beta": 0.999,
+      "onepw_rest": 0.0010952326679287763,
+      "onepw_eff": 0.472043982985966,
+      "Delta": 0.353501937891444
+     }
+    ]
+   }
+  },
+  "Q1_compaction": [
+   {
+    "footing": "canonical",
+    "logM": 9,
+    "rM_kpc": 1.2203009632729391,
+    "C": 358715.7089064599,
+    "log10_compression": {
+     "0.04": 138.86875989376068,
+     "0.162": 34.28858268981745,
+     "0.248": 22.39818707963882,
+     "0.333": 16.680932119370652,
+     "1.0": 5.554750395750427
+    }
+   },
+   {
+    "footing": "canonical",
+    "logM": 10,
+    "rM_kpc": 3.8589304748399686,
+    "C": 113435.8672626362,
+    "log10_compression": {
+     "0.04": 126.36875989376068,
+     "0.162": 31.202162936731032,
+     "0.248": 20.382058047380756,
+     "0.333": 15.179430617869151,
+     "1.0": 5.054750395750427
+    }
+   },
+   {
+    "footing": "canonical",
+    "logM": 11,
+    "rM_kpc": 12.203009632729389,
+    "C": 35871.570890646006,
+    "log10_compression": {
+     "0.04": 113.86875989376068,
+     "0.162": 28.115743183644614,
+     "0.248": 18.365929015122692,
+     "0.333": 13.677929116367649,
+     "1.0": 4.554750395750427
+    }
+   },
+   {
+    "footing": "canonical",
+    "logM": 12,
+    "rM_kpc": 38.58930474839969,
+    "C": 11343.586726263618,
+    "log10_compression": {
+     "0.04": 101.36875989376068,
+     "0.162": 25.029323430558193,
+     "0.248": 16.349799982864628,
+     "0.333": 12.176427614866148,
+     "1.0": 4.054750395750427
+    }
+   },
+   {
+    "footing": "alt",
+    "logM": 9,
+    "rM_kpc": 1.1100489745654571,
+    "C": 476567.95675964124,
+    "log10_compression": {
+     "0.04": 141.95312095286766,
+     "0.162": 35.05015332169572,
+     "0.248": 22.895664669817368,
+     "0.333": 17.051425940284403,
+     "1.0": 5.678124838114707
+    }
+   },
+   {
+    "footing": "alt",
+    "logM": 10,
+    "rM_kpc": 3.5102830739611623,
+    "C": 150704.02032131038,
+    "log10_compression": {
+     "0.04": 129.45312095286766,
+     "0.162": 31.9637335686093,
+     "0.248": 20.879535637559304,
+     "0.333": 15.549924438782902,
+     "1.0": 5.178124838114707
+    }
+   },
+   {
+    "footing": "alt",
+    "logM": 11,
+    "rM_kpc": 11.100489745654572,
+    "C": 47656.79567596413,
+    "log10_compression": {
+     "0.04": 116.95312095286766,
+     "0.162": 28.877313815522882,
+     "0.248": 18.863406605301236,
+     "0.333": 14.048422937281401,
+     "1.0": 4.678124838114707
+    }
+   },
+   {
+    "footing": "alt",
+    "logM": 12,
+    "rM_kpc": 35.102830739611626,
+    "C": 15070.402032131038,
+    "log10_compression": {
+     "0.04": 104.45312095286766,
+     "0.162": 25.79089406243646,
+     "0.248": 16.847277573043172,
+     "0.333": 12.5469214357799,
+     "1.0": 4.178124838114707
+    }
+   }
+  ],
+  "Q1_attraction_threshold_beta": {
+   "-0.667": 0.7749063840356435,
+   "-0.752": 0.8466965083009081,
+   "-0.838": 0.9075910071964419,
+   "-0.95": 0.9740215340114143,
+   "-0.99": 0.994962184579755
+  },
+  "Q1_tilt_decay": {
+   "-0.667": {
+    "exponent": -3.0010000000000003,
+    "log10_decay_from_z1100": -9.128403744234229,
+    "log10_decay_from_z2p5": -1.6327482010951775,
+    "efold_Gyr": 4.815579857855979
+   },
+   "-0.752": {
+    "exponent": -3.2560000000000002,
+    "log10_decay_from_z1100": -9.904059510572026,
+    "log10_decay_from_z2p5": -1.7714855524044977,
+    "efold_Gyr": 4.438438314934212
+   },
+   "-0.838": {
+    "exponent": -3.514,
+    "log10_decay_from_z1100": -10.688840638866736,
+    "log10_decay_from_z2p5": -1.9118551078468686,
+    "efold_Gyr": 4.112565496137107
+   },
+   "-0.95": {
+    "exponent": -3.8499999999999996,
+    "log10_decay_from_z1100": -11.710881178041245,
+    "log10_decay_from_z2p5": -2.094661970748561,
+    "efold_Gyr": 3.753650689201505
+   }
+  },
+  "Q2_theta_channel_beta_needed": [
+   {
+    "logM": 9,
+    "beta_needed": 491225.2917765062
+   },
+   {
+    "logM": 10,
+    "beta_needed": 155339.076629454
+   },
+   {
+    "logM": 11,
+    "beta_needed": 49122.52917765064
+   },
+   {
+    "logM": 12,
+    "beta_needed": 15533.9076629454
+   }
+  ],
+  "Q3_I": {
+   "n_power": 2,
+   "H0t0": 1.0301713727311113,
+   "w": {
+    "0.0": -1.6471415186963028,
+    "0.5": -1.9157110050009472,
+    "1.0": -1.982157045734447,
+    "2.5": -1.9993523593359162
+   },
+   "cpl": [
+    -1.7028124682791559,
+    -0.5159265987843081
+   ],
+   "dlog_a0": {
+    "0.85": -0.3393287916225641,
+    "1.5": -0.5328879611113938,
+    "2.5": -0.7516231794565323
+   },
+   "H_over_LCDM": {
+    "0.5": 0.868685476746486,
+    "1.0": 0.9051832558157149,
+    "2.5": 0.9759252733028727
+   },
+   "chains": {
+    "DESY5": {
+     "p_w0_le_model": 0.0,
+     "mahal_model": 36.05754666640097,
+     "mahal_LCDM": 4.314922859970701,
+     "p_w0_lt_m1": 0.0
+    },
+    "Pantheon+": {
+     "p_w0_le_model": 0.0,
+     "mahal_model": 33.95120678547533,
+     "mahal_LCDM": 3.0154849287060186,
+     "p_w0_lt_m1": 0.0012966551873178757
+    },
+    "Union3": {
+     "p_w0_le_model": 0.0,
+     "mahal_model": 27.47572681618803,
+     "mahal_LCDM": 3.809129503806821,
+     "p_w0_lt_m1": 5.19325396310193e-05
+    }
+   }
+  },
+  "Q3_band_CFG6_z2p5": [
+   -0.15290360364660077,
+   0.268417457781238
+  ],
+  "Q3_II": {
+   "rows": [
+    {
+     "f_dep": 0.01,
+     "H0t0": 0.9516544653425117,
+     "w0": -0.9964973281219948,
+     "cpl": [
+      -1.0014325998279108,
+      0.03951053932622149
+     ],
+     "dlog_a0_z2p5": -0.7215630245995115,
+     "rhoV_z2p5_over_0": 1.061587679262014,
+     "p_wa_ge_model": {
+      "DESY5": 0.0,
+      "Pantheon+": 0.00027885057791782273,
+      "Union3": 0.0
+     }
+    },
+    {
+     "f_dep": 0.1,
+     "H0t0": 0.9308207394220503,
+     "w0": -0.9641893095828203,
+     "cpl": [
+      -0.992174574672996,
+      0.2730857032622842
+     ],
+     "dlog_a0_z2p5": -0.7181540133901594,
+     "rhoV_z2p5_over_0": 1.611347753141479,
+     "p_wa_ge_model": {
+      "DESY5": 0.0,
+      "Pantheon+": 0.0,
+      "Union3": 0.0
+     }
+    },
+    {
+     "f_dep": 0.3,
+     "H0t0": 0.8985917075466751,
+     "w0": -0.8887147531407574,
+     "cpl": [
+      -0.9164117882296743,
+      0.44284652938040425
+     ],
+     "dlog_a0_z2p5": -0.7131440525176878,
+     "rhoV_z2p5_over_0": 2.8129678486073577,
+     "p_wa_ge_model": {
+      "DESY5": 0.0,
+      "Pantheon+": 0.0,
+      "Union3": 0.0
+     }
+    },
+    {
+     "f_dep": 1.0,
+     "H0t0": 0.8467149880110413,
+     "w0": -0.6063216807861838,
+     "cpl": [
+      -0.5929602689143002,
+      0.253541285951551
+     ],
+     "dlog_a0_z2p5": -0.7057613783694935,
+     "rhoV_z2p5_over_0": 6.93021620415183,
+     "p_wa_ge_model": {
+      "DESY5": 0.0,
+      "Pantheon+": 0.0,
+      "Union3": 0.0
+     }
+    }
+   ],
+   "p_wa_gt_0": {
+    "DESY5": 0.0,
+    "Pantheon+": 0.0006413563292109923,
+    "Union3": 0.0
+   }
+  },
+  "Q4_chains": {
+   "DESY5": {
+    "onepw0_pct": [
+     0.137301875,
+     0.19095393999999996,
+     0.24675400000000003,
+     0.30549807999999995,
+     0.3621737999999998
+    ],
+    "wa_pct": [
+     -1.317636,
+     -1.08511832,
+     -0.8529095,
+     -0.642384888,
+     -0.4367152000000001
+    ],
+    "today_iso_pct": [
+     0.5,
+     0.5
+    ],
+    "today_pf_pct": [
+     0.75,
+     0.75
+    ],
+    "p_today_pf_ge_R": {
+     "canonical": 1.0,
+     "alt": 1.0
+    },
+    "carried_iso_pct": [
+     0.4451808868542058,
+     0.4690116086682809,
+     0.4953861736745985
+    ],
+    "carried_pf_pct": [
+     0.6677713302813088,
+     0.7035174130024213,
+     0.7430792605118977
+    ]
+   },
+   "Pantheon+": {
+    "onepw0_pct": [
+     0.05554403750000002,
+     0.10686367999999996,
+     0.1614262272727273,
+     0.21665163999999998,
+     0.27379395
+    ],
+    "wa_pct": [
+     -1.0537075,
+     -0.82457064,
+     -0.6101758333333334,
+     -0.4099034733333333,
+     -0.227398771875
+    ],
+    "today_iso_pct": [
+     0.5,
+     0.5
+    ],
+    "today_pf_pct": [
+     0.75,
+     0.75
+    ],
+    "p_today_pf_ge_R": {
+     "canonical": 1.0,
+     "alt": 1.0
+    },
+    "carried_iso_pct": [
+     0.4404675992710404,
+     0.46590175408685,
+     0.49461250620428393
+    ],
+    "carried_pf_pct": [
+     0.6607013989065607,
+     0.698852631130275,
+     0.7419187593064259
+    ]
+   },
+   "Union3": {
+    "onepw0_pct": [
+     0.16365464166666666,
+     0.24616768,
+     0.3341901111111111,
+     0.4231724399999999,
+     0.5110794964285714
+    ],
+    "wa_pct": [
+     -1.6935537,
+     -1.3785261999999998,
+     -1.083152857142857,
+     -0.7969830000000001,
+     -0.5408072750000003
+    ],
+    "today_iso_pct": [
+     0.5,
+     0.5
+    ],
+    "today_pf_pct": [
+     0.75,
+     0.75
+    ],
+    "p_today_pf_ge_R": {
+     "canonical": 1.0,
+     "alt": 1.0
+    },
+    "carried_iso_pct": [
+     0.4568828079869773,
+     0.48194955470581136,
+     0.5076936122961134
+    ],
+    "carried_pf_pct": [
+     0.6853242119804659,
+     0.7229243320587171,
+     0.7615404184441701
+    ]
+   }
+  },
+  "Q4_thawing_best_nodes": {
+   "DESY5": {
+    "Om": 0.32,
+    "lam": 0.9,
+    "w0": -0.8794272965859895,
+    "carried_iso": 0.5601659344710481,
+    "carried_pf": 0.8402489017065722
+   },
+   "Pantheon+": {
+    "Om": 0.31,
+    "lam": 0.6,
+    "w0": -0.9458087997857159,
+    "carried_iso": 0.5234127062852788,
+    "carried_pf": 0.7851190594279183
+   },
+   "Union3": {
+    "Om": 0.31,
+    "lam": 0.65,
+    "w0": -0.9363008165437066,
+    "carried_iso": 0.5284632215102214,
+    "carried_pf": 0.7926948322653321
+   }
+  },
+  "Q4_shear": {
+   "coef": 0.36977571453362995,
+   "eps_max": 0.5110794964285714,
+   "Delta_req": {
+    "canonical": 0.11179210232432307,
+    "alt": 0.2949481364125303
+   },
+   "sigma_over_H0": {
+    "canonical": 0.04133800451619324,
+    "alt": 0.10906465789230596
+   }
+  },
+  "Q4_speed": [
+   {
+    "combo": "DESY5",
+    "eps": 0.3621737999999998,
+    "beta_max": {
+     "0.01": 0.9864906956512162,
+     "0.05": 0.9302635939632006,
+     "0.1": 0.8542249039091556,
+     "0.2": 0.6745560191755029
+    }
+   },
+   {
+    "combo": "Pantheon+",
+    "eps": 0.27379395,
+    "beta_max": {
+     "0.01": 0.9805027022615916,
+     "0.05": 0.8992158281825126,
+     "0.1": 0.7881954409792831,
+     "0.2": 0.5082224790087291
+    }
+   },
+   {
+    "combo": "Union3",
+    "eps": 0.5110794964285714,
+    "beta_max": {
+     "0.01": 0.9918947931825056,
+     "0.05": 0.9581928561904726,
+     "0.1": 0.9128621535890701,
+     "0.2": 0.8088101874443329
+    }
+   }
+  ],
+  "Q5_PG_linear": [
+   {
+    "logM": 9,
+    "rho_x_over_rhoL": -1233.6538662507342,
+    "g_cross_over_a0": 0.0008106001426795305
+   },
+   {
+    "logM": 10,
+    "rho_x_over_rhoL": -693.7345499736357,
+    "g_cross_over_a0": 0.0014414735435016226
+   },
+   {
+    "logM": 11,
+    "rho_x_over_rhoL": -390.1156061625047,
+    "g_cross_over_a0": 0.0025633427225247806
+   },
+   {
+    "logM": 12,
+    "rho_x_over_rhoL": -219.3781269468592,
+    "g_cross_over_a0": 0.004558339584338933
+   }
+  ],
+  "Q5_null_flow": {
+   "canonical": {
+    "Omega_null0": 0.20171252564189684,
+    "z_eq_matter": 0.542293910653324,
+    "H_over_LCDM": {
+     "0.5": 1.2129552573902662,
+     "1.0": 1.39719821385477,
+     "2.5": 1.7729964258251316
+    },
+    "over_Omega_r": 2207.7931029508413
+   },
+   "alt": {
+    "Omega_null0": 0.2437712562696855,
+    "z_eq_matter": 0.27619640133383205,
+    "H_over_LCDM": {
+     "0.5": 1.252805715564225,
+     "1.0": 1.4665253769579623,
+     "2.5": 1.894850183014592
+    },
+    "over_Omega_r": 2668.136232875006
+   }
+  },
+  "Q5_stress_by_reading": [
+   {
+    "reading": "11A inflow (control)",
+    "needs": "M1 (Lambda) if the river is GR's v^2 = 2GM/r + H^2 r^2: a frame, no medium, no new content; the linear superposition needs a negative-energy medium (S9)",
+    "bound": "WEC violated; |rho_x| = 219-1.23e+03 rho_L at r_M, and its pull there is only 8.1e-04-4.6e-03 a0"
+   },
+   {
+    "reading": "11B' directional, compressible",
+    "needs": "momentum and compaction, both prop. to (rho + p): M3 (1+w > 0, a field flow) or M2 (massless, w_eff = 1/3)",
+    "bound": "M3: DESI 1+w0 (Q4) -> carried column <= 0.8402 of the vacuum column vs R = 0.293; M2: not dark energy, H(z) (H6)"
+   },
+   {
+    "reading": "11C time direction",
+    "needs": "M1 or M4 (preferred-frame vacuum, T ~ g on the background)",
+    "bound": "w = -1 exactly; G_cos = G/(1+beta/2) (S6); PPN alpha1/alpha2 (door gate G6, not scored here)"
+   },
+   {
+    "reading": "CFG174 accumulation",
+    "needs": "3-I: phantom rho_DE ~ t^2; 3-II: a non-HT decaying vacuum",
+    "bound": "3-I outside the chains (H3); 3-II wa > 0 against the chains; a0(2.5) off CFG6's band (H4)"
+   }
+  ]
+ },
+ "summary": {
+  "n_checks": 26,
+  "n_pass": 23,
+  "n_load_bearing": 22,
+  "load_bearing_failures": [
+   "H1",
+   "H2"
+  ]
+ }
+}
