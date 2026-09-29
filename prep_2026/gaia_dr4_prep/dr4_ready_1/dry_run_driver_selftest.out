@@ -1,0 +1,8 @@
+  [PASS] S0 the socket guard blocks outgoing connections
+  [PASS] S1 each base has its own correlation cache path, never the builder's shared stage_G_corr.npz  -- dr3_extract/stage_G_corr_primary.npz vs dr3_extract_allsource_15c/stage_G_corr_allsource_15c.npz
+  [PASS] S2 the driver's copied stage G with the builder's own cut 13 reproduces the reference DR3 CSV byte-identically  -- 6,210 pairs, sha256 6fff64d964ebaa72; correlations [{'files': ['stage_G_corr.npz', 'stage_G_corr_elbadry.npz'], 'n_uncovered': 4}]
+  [PASS] S3 cut13.py's orbit-aware variant on the extract reproduces the builder's cut 13 exactly (same CSV)  -- 6,210 pairs
+  [PASS] S4 (reported) the literal PRIMARY criterion on the extract runs end to end  -- 6,189 pairs (orbit-aware 6,210); a code-path number, not a result
+  [PASS] S5 (planted control) a column the manifest marks unavailable makes its cut UNIMPLEMENTABLE: flagged, disabled, run completes  -- unimplementable [{'column': 'ruwe', 'cut': 'RUWE<1.4 both', 'reason': 'planted mis-mapping (test)'}]; 6,854 pairs (reference 6,210)
+  [PASS] S6 (WP3 inside the driver) a column joined from a second table by source_id leaves the CSV byte-identical  -- join report {'source': '_selftest_tmp_join.npz', 'n_matched': 4582547, 'n_unmatched': 0, 'overwrote_base': False}
+7/7 pass

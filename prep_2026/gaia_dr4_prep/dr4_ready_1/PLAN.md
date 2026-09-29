@@ -88,3 +88,16 @@ Row and size figures are estimates from the stellar density at |b| > 10° to G =
   - `manifest_template_dr4.json` holds every name and count to be confirmed before the data are opened. Its candidates come from the data chat's preview and are non-binding.
   - `test_wp1_wp4_offline.py` runs synthetic tests under a socket guard: 10/10 pass, and both removal controls bite.
   - The real DR3 dry runs of WP1 and WP4 still need queries Q1 and Q2.
+- **WP5 driver skeleton (added 2026-09-29): `dry_run_driver.py`.**
+  - Design:
+    - a socket guard unless `--allow-network` is given;
+    - a per-base correlation cache (`<extract>/stage_G_corr_<variant>.npz`);
+    - the manifest-driven WP3 joins, and the UNIMPLEMENTABLE rule (disable and flag, never substitute);
+    - cut 13 from the builder, or from `cut13.py`'s orbit-aware or literal criterion.
+  - `--self-test` passes 7/7 offline (about 15 s):
+    - the driver reproduces the DR3 reference CSV byte-identically (6,210 pairs, sha 6fff64d9…);
+    - `cut13.py`'s orbit-aware criterion on the extract equals the builder's cut 13 byte for byte;
+    - the literal PRIMARY criterion on the extract runs end to end (6,189 pairs; a code-path number only);
+    - a planted unavailable column (RUWE) is flagged UNIMPLEMENTABLE and the run completes;
+    - a second-table join inside the driver leaves the CSV byte-identical.
+  - No cache file is written by the self-test.
