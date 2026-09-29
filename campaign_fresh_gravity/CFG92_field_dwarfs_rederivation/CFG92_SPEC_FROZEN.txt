@@ -1,0 +1,64 @@
+CFG92 -- independent re-derivation of CFG58's field-dwarf / statistic-C headline (frozen before any run of L or S model code)
+Author: independent agent.  NOT opened, read, exec'd or imported: CFG58's script, .out, _results.json, MUTATE files.  Read: CFG58_README (incl. its
+referee corrections), CFG35/CFG42/CFG65/CFG64/CFG69 READMEs, CFG91's README + spec + cfg88.py (independent code, used for the Moster/DM14-NFW/edge-phantom
+definitions), hunt_lib lines 1-17 (constants, RAR nu), k_contrarian_dwarfefe docstring and its committed .out (the source of the statistic-C observed
+numbers), XR27 README (statistic-C definition), dsph/PROVENANCE.md and the data CSV headers.  "CFG58 frozen criteria" were not available outside the script
+(no FROZEN_CRITERIA file exists for CFG58): the pass lines below are frozen from the README's numbers.
+
+QUESTION
+Does CFG58's headline reproduce from my own code: (H-a) the sum rule S switches itself off (f_ex = 0) above M_b ~ 2.3e7 Msun (canonical; 1.5e7 alt) for
+M_* = M_b/2 (5.5e7 canonical for M_* = M_b); (H-b) for the 13 Local Volume field dwarfs the median offset log10(sigma_obs/sigma_pred) goes from -0.60 sigma
+(law L: -0.044 dex; error 0.073) to -3.47 sigma (sum S: -0.105 dex; S's own error 0.030) canonical, -0.85 to -2.70 alt; change 0.061 dex, = -1.4 (-1.3 alt) sigma
+when the S offset is read in L's own error; (H-c) statistic C (92 dwarfs; 86% below the switch-off): both L and S pass, L +1.41/+1.42 sigma, S +1.02/+1.13 sigma,
+delta slope 0.013.  And how do they move with the error recipe, the concentration relation, the Moster clamp, the kernel and the estimator; which dwarfs dominate?
+
+MODEL AS READ (readings R1-R10 frozen; README-silent places are assumptions A#)
+R1 Kernel: exponential RAR nu(y) = 1/(1-exp(-sqrt y)) (CFG64: what CFG58's LV code uses).  Footings a0 = 9.3603e-11 / 1.1312e-10 (FP0 exact, as CFG91).
+R2 Rule S (CFG35): g = nu g_N + G phi f_ex (1-f_b) M_NFW(<r)/r^2; phi=1 is S, phi=0 is L (control handle, not a fit).  f_ex = max(0, 1 - M_ph,edge/[(1-f_b) M_coll]),
+   f_b = 0.02237/0.14237; M_ph,edge = M_law(x_e r_ta) - M_b, M_law(r) = M_b nu(G M_b/(r^2 a0)); r_ta: 3 M_law/(4 pi r^3) = 11.81 rho_m,0 (Omega_m=0.3153, H0=67.4);
+   x_e = 0.40 (CFG91 R5, from CFG35/CFG4).  M_coll = Moster+13 inverse of M_* (Upsilon_V=2), grid log M_h 9..15.5, clamp 1e9 below M_*(1e9); NFW, Dutton-Maccio 14
+   200c concentration (default); R200 from rho_crit(67.4); M_h = M_200c.  M_* = 2 L_V (M_sun,V = 4.83); M_b = M_* + 1.33 M_HI (HI upper limits: zero gas; A1).
+R3 THE 13 FIELD DWARFS (lvd_dwarf_local_field.csv, rows with a measured vlos_sigma): estimator = FG001/CFG42's: sigma_pred^2 = g(r) r / 3 at r = (4/3) R_e, half the
+   baryons enclosed, g_N = G (M_b/2)/r^2 (M_b includes their current HI; no infall-gas expectation: these are the gas-rich calibration dwarfs).  R_e = rhalf_sph_physical
+   (CFG91's convention, A2).  Offset = log10(sigma_obs/sigma_pred), positive = data above the prediction; the headline statistic is the MEDIAN over the 13.
+R4 ERROR RECIPE (primary E1 = CFG42's, per CFG91): total^2 = stat^2 + fU^2 + fC^2; stat = 1.2533 std(offsets, ddof=1)/sqrt(n); fU = half the range of the median offset over
+   Upsilon_V in {1,2,4} in which only the stellar mass changes (M_coll, i.e. the halo, stays at the Upsilon=2 value); fC (rule rows only) = half the range of the median
+   when every dwarf with M_* < 1e5 has M_coll set to 1e8/1e9/1e10 (CFG42's R1 scan).  "In its own error" = S's total error for S rows, L's total error (fC=0) for L rows;
+   "S in L's error" = S offset / L's total error.  Variants (reported, no gate): E2 bootstrap SE (4000 draws, seed 92) in place of the analytic stat; E3 Upsilon propagated
+   into M_coll (and into M_b), i.e. the halo moves too; E4 = E2+E3.
+R5 STATISTIC C (k_contrarian_dwarfefe (C), leakage-free): the 92 dwarfs with a measured dispersion (45 MW-catalogue, 34 M31-catalogue, 13 field).  OLS of log10 sigma_obs
+   on [1, log10(gext), lM, lr, lM^2, lr^2, lM*lr]; the statistic is the coefficient of log10(gext).  lM = log10 M_b (M_b = 2 L_V + 1.33 M_HI, HI ul = 0), lr = log10 rhalf_physical
+   (pc, the catalogue's major-axis value).  gext = y_N nu(y_N) [the MOND-boosted external field, in units of a0], y_N = G M_host/D^2/a0, host = the stronger Newtonian field of
+   MW (M_b = 6.0e10, D = distance_gc) and M31 (M_b = 1.2e11, D = distance_m31).  THIS READING WAS SELECTED BEFORE ANY MODEL RUN by matching only the printed observed-side
+   numbers of hunt_2026/k_contrarian_dwarfefe.out (range 0.0070-4.876 / 0.0064-4.163, median 0.0931 / 0.0844, slope +0.0800 / +0.0803) in explore_gext.py, explore2.py,
+   explore3.py (kept, with their outputs).  It reproduces all six.  Observed error = bootstrap SD over dwarfs (4000 draws, seed 92); the target 0.0467 / 0.0469.
+   Predicted slope for L/S: the same OLS on log10 sigma_pred (the ISOLATED law: no external field enters the prediction; the slope is the design's curvature leakage, which
+   k_contrarian_dwarfefe quotes as +0.0143 for L).  Offset in sigma = (observed - predicted)/(observed bootstrap SD).  Prediction estimator (k_contrarian's own, A3):
+   sigma^2 = (2/9) [ nu(y) G M_b + phi f_ex (1-f_b) G M_NFW(<r)/... ] / r  with r = rhalf_physical, y = G M_b/(r^2 a0)  (beta = 2/9 cancels from the slope).  Sensitivity: the
+   FG001 estimator (R3) with the same design.
+R6 Switch-off masses: the M_b at which f_ex first reaches 0 with M_* = M_b/2 (Moster inverse at M_*), and with M_* = M_b; root-found on a log grid then brentq.  86% statement: fraction
+   of the 92 statistic-C dwarfs with f_ex > 0 (S differs from L) and, separately, fraction with M_b below my own switch-off mass.
+R7 Concentration sensitivity: DM14 (default); Duffy 200c full (5.71,-0.084), relaxed (6.71,-0.091), full z=0 (5.74,-0.097), relaxed z=0 (6.67,-0.092), 200m full (10.14,-0.081) applied
+   to a 200c mass (the inconsistent CFG65 A1 row); pivot 2e12/h Msun, h = 0.674.  Kernel sensitivity: P2 sqrt(1+1/y); simple (1+sqrt(1+4/y))/2.  Moster clamp: 1e8, 3e8, 1e9, 3e9,
+   1e10, and unclamped (grid to 1e6).
+R8 Field-dwarf robustness (reported): leave-one-out on the 13 (which dwarfs move the S median most; per-dwarf L/S offsets and f_ex); R_e = rhalf_physical; HI upper limits at the limit;
+   drop Antlia B (only dwarf with a named non-MW/M31 host); Upsilon 1/4.
+R9 Constants: hunt_lib's (G 6.674e-11, Msun 1.989e30, kpc 3.0857e19).
+R10 MUTATE=1: every M_coll / 100 after the clamp (CFG58's MUTATE as read from its README).
+
+PASS LINES ("exact" |d| <= 0.0005 dex (0.05 sigma for sigmas), "near" <= 0.005 dex (0.3 sigma), else "differs"; all differences are stated, none tuned away)
+ P1 switch-off masses: 2.3e7 (canonical) / 1.5e7 (alt) for M_* = M_b/2; 5.5e7 for M_* = M_b (canonical): reproduce to 5%.
+ P2 field dwarfs (n=13): L -0.044 / -0.60 sigma (canonical); alt L -0.85 sigma; S -0.105 dex / -3.47 sigma (own error 0.030), alt -2.70 sigma; change 0.061 dex; S in L's error -1.43 sigma
+    (task) / -1.4 canonical, -1.3 alt.
+ P3 statistic C: observed +0.0800 +/- 0.0467 (canonical), +0.0803 +/- 0.0469 (alt); L +1.41/+1.42 sigma (predicted +0.0143); S +1.02/+1.13 sigma; delta slope 0.013; 86% below the switch-off.
+ P4 structure: S == L exactly (to 1e-12 in log sigma) for every dwarf with f_ex = 0.
+CONTROLS (a failed control is a failure; the main run exits 1 if any fails)
+ C1 Newtonian limit (nu = 1) sigma^2 = G M_b/(6 r) to 1e-12; deep-MOND limit (P2, y -> 0): sigma^4 = G M_half a0/9 within the analytic correction, at a y above the kernel floor 1e-14.
+ C2 phi = 0 equals the bare law by an independent formula to 1e-12; phi = 1 equals S by an independent direct formula to 1e-12; f_ex in [0,1]; NFW M(<R200) = M_h and monotone;
+    the edge-phantom root-find equals the deep-MOND closed form (P2 kernel, M_b <= 1e5) to < 1e-3; f_ex(M_b) crossing 0 is single (monotone scan).
+ C3 counts: 13 field dwarfs (2 with HI upper limits), 92 statistic-C dwarfs (45/34/13).
+ C4 statistic C: nu == 1 with phi = 0 gives a predicted slope of exactly 0 (< 1e-12) [log sigma_pred is in the design span]; a0/100 collapses the predicted L slope; the observed-side
+    reproduction of the six printed k_contrarian numbers (an information gate only: it reports how well my reading of gext/design matches, and is kept whatever the outcome).
+ C5 MUTATE=1: M_coll/100: CFG58's README says every population change is < 0.01 dex and H1 ("S changes at least one population by > 0.05 dex") FAILS.  My MUTATE prints the field-dwarf and
+    statistic-C changes; the control is "field-dwarf S-L change < 0.01 dex and the switch-off mass (M_*=M_b/2) drops"; MUTATE exits 1 when the H1 line (change > 0.05 dex) fails, by design.
+ No knob is tuned to a target; no result changes any line above.  Nothing here says the data favour the framework; kappa = 1/2 is FITTED.
