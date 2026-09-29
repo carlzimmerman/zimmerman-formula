@@ -100,3 +100,10 @@ Take the puzzle literally: a Schwarzschild horizon with surface gravity a₀ has
 - **Gravitating-wall route closed** (Israel junction, checked over 20,000 random cases): a real wall needs 1/R² ≥ max(H_in², H_out²), so any wall's acceleration is ≥ H for every tension. a₀ = H/Z would need σ² < 0. A Brown-Teitelboim membrane in the gravitating regime therefore cannot supply a₀; only the probe limit (a = eE/σ, a free ratio) is left.
 Consequence for the search: a derivation cannot come from a real geometric object (horizon, wall, bubble) of the Λ-universe. It has to be a response coefficient (a normalisation of the medium/field, formulations 5-7 of section 6) or an analytic-continuation quantity. That narrows where the ½ can live; it does not supply it. κ = ½ stays FITTED.
 Not a result: `p06` check D2 is bookkeeping (the static-patch angle tanθ₀ = 1/Z has no special value), and Z ≤ 2 embeddability is a sharp fact about the *puzzle's* object, not evidence about the field-theory a₀.
+
+## 9. Membrane probe route: closed, and a correction to section 8 (`p07`, 6/6)
+Section 8 said a Brown-Teitelboim membrane "survives only in the probe limit, where the ratio is free". `p07` shows that was too generous.
+In the probe limit the wall's acceleration is 1/R = ΔP/(3σ) (Schwinger radius R = 3σ/ΔP, recovered from the Israel solution), so κ = ½ would need a charge-to-tension ratio e/σ = 3/(2√2) = 1.061
+(general κ: 3κ/√2), independent of E. But that formula is valid only when ΔP/(3σ) ≫ H, and at the target it equals H/Z ≪ H. The full junction solution at that ratio (σ → 0) gives 1/R = 2.077 vs H = 2.047 (E = 1):
+the wall sits at the horizon and accelerates at ≈ H, not H/Z. So no membrane, probe or gravitating, has proper acceleration a₀; the route is closed, not merely under-determined.
+The 1.061 is a convention-laden coupling ratio (Heaviside four-form, ρ = E²/2, ΔE = e) and matches none of 1, √(3/2), 3/2, √2; it is reported as a target only.
