@@ -1,0 +1,72 @@
+CFG88 -- DOES THE KiDS EARLY/LATE SPLIT SURVIVE A DATA-DRIVEN COVARIANCE?  The split in CFG61's seven 1-halo bins (K1), scored
+with the repo's own leave-one-patch-out jackknife covariance (50 sky patches) of its own June 2026 re-measurement from the KiDS-1000
+catalogues, for B's colour-blind law (zero difference) and for CFG67's colour-split LCDM.
+
+Criteria frozen and committed before any K1 number: campaign_fresh_gravity/CFG88_FROZEN_CRITERIA.md (7db367888).
+  data     real_research/data/lensing_rar/lr_esd_jackknife.npz: the estimator sums (wgE, W, NN) per (patch, class, g_bar bin), 50 patches x
+           2 classes (0 late, 1 early; u-r > 2.0) x 15 bins, built by real_research/reviews/lensing_rar/agentK_jackknife_stack.py from 181,477
+           isolated lenses (lr_lenses.npz) and 21.3 M KiDS-1000 SOM-gold sources; ESD = sum wgE / sum W in Msun/pc^2 (the June convention).
+  models   L (B's law, colour-blind): D = 0 (CFG61 C4 / CFG77: |D_L|/sigma < 3.3e-3; every colour-blind model's prediction).
+           LCDM: D = me - ml from CFG67's committed results (built lens by lens from the same lr_lenses; amplitude 1, no refit).
+  stat     K1 = [8..14]; C = the K1 block of Cd = (N-1)/N sum (D_(p) - Dbar)(D_(p) - Dbar)^T, N = 50; chi2 = D^T C^-1 D x h,
+           h = (N - p - 2)/(N - 1) = 41/49 (Hartlap, p = 7); p-value from chi2 with 7 dof.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  the June analysis reproduced from the per-patch sums (esd, d, all-15 chi2 raw 125.9599 / Hartlap 84.8301) to 1e-9 relative.
+  C2  CONTROL  K1 = CFG61's committed K1; the June g_bar edges = CFG61's EDGES to 1e-12.
+  C3  CONTROL  covariance calibration: 200 random halvings of the 50 patches (seed 88); for each, D_null = ESD_early(half A) -
+               ESD_early(half B) on K1 with its own leave-one-patch-out covariance and Hartlap factor; mean chi2_null in [4.9, 9.1].
+  H1  [HEADLINE; MUTATE must fail] the colour-blind zero model is rejected on K1 under the jackknife covariance: p < 0.0027.
+  H2  CFG67's LCDM colour-split difference is consistent on K1 under the jackknife covariance: p > 0.01.
+  R1-R7 (reported): raw and diagonal-only chi2; 25 merged patches; the error inflation to p = 0.0027 / 0.05; jackknife sigma vs
+               Brouwer's released sigma in K1; all 15 bins; LCDM's best-fit amplitude; K1 with each bin dropped.
+MUTATE=1: in each patch the early and late class sums are swapped with probability 1/2 (seed 88) before stacking -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: the June analysis reproduced from the per-patch sums (esd, d, all-15 chi2 raw 125.9599 / Hartlap 84.8301) to 1e-9
+         all-15 chi2 raw 125.9599 (June 125.9599), Hartlap 84.8301 (June 84.8301); max relative deviation 2.2e-16  [computed on the UNMUTATED sums]
+  [PASS] C2 CONTROL: K1 = CFG61's committed K1; the June g_bar edges = CFG61's EDGES to 1e-12 (in log10)
+         K1 [8, 9, 10, 11, 12, 13, 14] vs committed [8, 9, 10, 11, 12, 13, 14]; max |d log10 edge| 0.0e+00
+
+  K1 g_bar centres (log10 m/s^2): [-12.9, -12.66, -12.41, -12.16, -11.92, -11.67, -11.42]
+  measured early - late (Msun/pc^2): [3.259, 7.141, 5.605, 5.332, 11.924, 21.478, 33.277]
+  jackknife sigma of the difference:  [1.791, 2.141, 3.023, 3.178, 7.088, 7.89, 11.813]
+  LCDM (CFG67) early - late:          [4.178, 5.84, 7.917, 10.371, 13.081, 15.849, 18.426]
+  jackknife correlation of the difference, off-diagonal: max |r| 0.23, mean r -0.00
+
+======================================================================================================================
+C3  CONTROL: covariance calibration (random halvings of the patches, early class)
+======================================================================================================================
+  [PASS] C3 CONTROL: covariance calibration -- the mean Hartlap chi2 of 200 random-halving nulls (early class, K1) lies in [4.9, 9.1] (7 +- 30%)
+         mean 6.73, median 5.97, 16-84% 3.15-10.24; fraction with p < 0.0027: 0.005
+
+======================================================================================================================
+H1 / H2  THE SPLIT ON K1 UNDER THE JACKKNIFE COVARIANCE
+======================================================================================================================
+  [PASS] H1 [HEADLINE] THE COLOUR-BLIND ZERO MODEL (B's law) IS REJECTED ON K1 UNDER THE JACKKNIFE COVARIANCE: p < 0.0027
+         chi2_L = 35.04/7 (Hartlap 0.837), p = 1.10e-05 (4.40 sigma); released-covariance value (CFG61) 28.1/7, p 2.1e-4
+  [PASS] H2 CFG67's LCDM COLOUR-SPLIT DIFFERENCE IS CONSISTENT ON K1 UNDER THE JACKKNIFE COVARIANCE: p > 0.01
+         chi2_LCDM = 7.37/7, p = 0.391; released-covariance value (CFG67) 6.5/7, p 0.48
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) raw (no Hartlap) and diagonal-only chi2 on K1
+         L raw 41.88, diag 38.86; LCDM raw 8.81, diag 5.85
+  [PASS] (reported) R2 (reported) 25 merged patches (June's pairing; Hartlap N = 25, p = 7)
+         L 23.61/7 (p 1.33e-03); LCDM 5.14/7 (p 0.643)
+  [PASS] (reported) R3 (reported) the error inflation that brings L's Hartlap chi2 on K1 to p = 0.0027 and to p = 0.05
+         x 1.27 (p = 0.0027), x 1.58 (p = 0.05)  [CFG77, released covariance: x 1.5 gives p = 0.086]
+  [PASS] (reported) R4 (reported) jackknife sigma of each class vs Brouwer+2021's released sigma in K1 (plain ratio; samples differ: 181,477 vs 259,383 lenses, u-r 2.0 vs 2.5, isolation)
+         late: [1.19, 1.09, 1.25, 0.87, 1.57, 1.22, 1.39]; early: [1.1, 0.83, 0.86, 0.8, 1.11, 1.1, 1.05]; medians 1.22 / 1.05; sqrt(259383/181477) = 1.20
+  [PASS] (reported) R5 (reported) all 15 bins (the June number; the 2-halo bins are outside the isolation-reliable range and not modelled)
+         L 84.8/15 (p 9.0e-12); LCDM 17.1/15 (p 3.1e-01)
+  [PASS] (reported) R6 (reported) LCDM with its best-fit amplitude on K1 under the jackknife covariance
+         A_hat = 0.892 +- 0.141; chi2 6.96/6 (p 0.325)
+  [PASS] (reported) R7 (reported) K1 with each bin dropped in turn (L, chi2/6, Hartlap p = 6)
+         drop 8: 35.4 (p 3.5e-06); drop 9: 25.4 (p 2.9e-04); drop 10: 33.0 (p 1.1e-05); drop 11: 34.6 (p 5.2e-06); drop 12: 31.6 (p 2.0e-05); drop 13: 26.5 (p 1.8e-04); drop 14: 28.5 (p 7.5e-05)
+
+    READING (declared): the 1-halo split's rejection of every colour-blind dark mass survives a covariance with cosmic variance and patch-level systematics; calibration systematics common to all patches, colour-class contamination and satellites remain open; LCDM's colour-split halos stay consistent
+
+  12/12 checks pass; load-bearing failures: 0   (0 s)
