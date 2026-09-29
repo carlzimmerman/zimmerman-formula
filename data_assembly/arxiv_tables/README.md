@@ -1,4 +1,4 @@
-# Per-galaxy tables taken from the public TeX/FITS source of twelve arXiv papers
+# Per-galaxy tables taken from the public TeX/FITS source of thirteen arXiv papers
 
 Built 2026-09-29 by `build.py`. The source tarballs (arxiv.org/e-print/<id>, about 125 MB in total) are kept outside the
 repo in `~/new_physics/_external_data/arxiv_src/`; the exact table fragments and the two FITS files are
@@ -21,6 +21,7 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
 | `cristal2025_sample.csv`, `cristal2025_kinematics.csv`, `cristal2025_dynamics.csv` | 32 galaxies; 34 kinematic rows; 14 dynamical models | ALMA-CRISTAL, arXiv:2507.11600 ([CII], z 4.41-5.69) | positions, M*, SFR, beams; kinematic class (Best Disk 7, Disk 9, Non-Disk 18) and f_molgas; DysmalPy: M_tot, R_e,disk, V_rot(R_e), sigma0, f_DM(R_e), **R_out/R_e** and R_out/beam |
 | `romanoliveira2023_sample.csv`, `_gasmasses.csv`, `_kinematics.csv` | 5 sources (4 with kinematics) | Roman-Oliveira+2023, arXiv:2302.03049 ([CII] with ALMA, z 4.26-4.43: AzTEC 1, BRI1335-0417, J081740, SGP38326-1/2) | [CII] data properties; SFR and H2 masses from literature CO (7.6e10-1.9e11 Msun); V_rot,max 198-562 km/s, V_ext, sigma with errors |
 | `danhaive2025_gold.csv` | 41 | Danhaive+2025, arXiv:2503.21863 (geko, JWST NIRCam grism Halpha, gold sample, z 3.8-5.8) | log M*, SFR, r_e, v/sigma0, sigma0 (many upper limits), dynamical mass; NO gas mass |
+| `kurvs2023_integrated.csv`, `_kinematics.csv`, `_fdm.csv`, `_velocities_at_radii.csv` | 22 galaxies (10 rotation-supported f_DM rows) | KURVS-CDFS, Puglisi+2023, arXiv:2305.04382 (KMOS Halpha, z 1.22-1.62) | z, log M* (MAGPHYS), SFR, R_eff, inclinations; R_Halpha,max 7.9-15.2 kpc; sigma0, v/sigma0, t = v(6D)/v(3D); **rotation velocity at 3 and 6 disc scale radii (about 7 and 13 kpc) and at the last point**, f_DM(<R_eff) for 10 disks; NO gas mass |
 | `sharma2024_gs21b.csv` | 225 | Sharma+2024, arXiv:2406.08934 (KROSS, z 0.76-1.04) | inclination, R_e, **velocities at R_e, R_opt and R_out (about 5 R_D)**, M*, M_H2, M_HI, gas radius, quality flags |
 
 ## Cross-checks that passed
@@ -62,6 +63,9 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
 - **Big Wheel (arXiv:2409.17956, z = 3.245, JWST NIRSpec + ALMA CO(4-3)), one object, numbers from the paper's Table 1:** stellar mass 3.7e11 Msun (1.7e11 with a parametric star-formation history), H2 mass from CO 1.8e11 Msun (a
   conversion factor is assumed), half-light radius 9.6 kpc, stellar disk to at least 30 kpc in diameter, H-alpha v_rot 280 km/s, circular velocity 304 km/s, sigma_int 61 km/s. The rotation velocities come from three NIRSpec slits, and the paper
   FITS a two-parameter flat (pseudo-isothermal) rotation-curve model, so the outer velocity is a model assumption; the radii the slit velocities reach are not stated in the text (they are plotted). The table is not in a file here; no calculation was made.
+- **KURVS-CDFS (arXiv:2305.04382):** the deepest outer rotation curves I have found at z ~ 1.5 (70 h KMOS): velocities tabulated at R'_3D and R'_6D, i.e. 3 and 6 disc scale radii convolved with the seeing (about 7 and 13 kpc on average; the per-galaxy R' in kpc are NOT
+  tabulated, only R_eff and R_Halpha,max). No gas mass; stellar masses from MAGPHYS. The velocities are observed (inclination-corrected, beam-smearing-corrected) rotation velocities, NOT corrected for pressure support at these radii; sigma0 is 40-155 km/s and v/sigma0 is 0.2-4.4,
+  so an asymmetric-drift correction could be large and is model-dependent. The paper computes f_DM only at R_eff and only for the 10 rotation-supported galaxies. The COSMOS half of the survey is in a forthcoming paper.
 - **Mancera Pina:** stellar-mass sample with a flat circular velocity; no gas.
 - The CRC file (`sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits`, 16 rows) holds Burkert-halo fits to 16
   stacked bins (`bin_0`...`bin_15`), not to individual galaxies; it is in `raw_small/` but not parsed.

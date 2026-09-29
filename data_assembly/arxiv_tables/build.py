@@ -485,6 +485,53 @@ write("danhaive2025_gold.csv", gc, G)
 lim_sig = sum(1 for r in G if r[gc.index("sigma0_kms_lim")] == "<")
 log(f"Danhaive 2025 gold sample: 41 galaxies, sigma0 is only an upper limit for {lim_sig} of them; Halpha (ionised gas) kinematics with a dynamical mass, no gas mass")
 
+# ------------------------------------------------------------------ KURVS-CDFS (Puglisi+2023), arXiv:2305.04382: 22 galaxies at z 1.2-1.6 with rotation curves to 3 and 6 disc scale radii
+def kurvs_rows(fn):
+    out = []
+    for l in active_lines(fn):
+        s = re.sub(r"\s*\\\\.*$", "", l.strip())
+        c = [x.strip() for x in s.split("&")]
+        if len(c) >= 2 and re.match(r"^\d+(\$\^\{\\star\}\$)?$", c[0]):
+            out.append([int(re.match(r"\d+", c[0]).group(0)), "*" if "star" in c[0] else ""] + c[1:])
+    return out
+
+
+K1 = kurvs_rows("kurvs2023_2305.04382_table_integrated.tex")
+check(len(K1) == 22, f"KURVS integrated-properties table has 22 galaxies (got {len(K1)})")
+k1 = []
+for r in K1:
+    # r = [id, star, CANDELS, RA, Dec, z, logM*, SFR, R_eff, i_star, i_SFR]
+    re_ = cell(r[8]); ist = cell(r[9]); isf = cell(r[10])
+    k1.append([r[0], r[2].replace("\\_", "_"), float(r[5]), float(r[6]), float(r[7]), re_[0], re_[1], ist[0], isf[0]])
+kz = np.array([r[2] for r in k1]); check(bool(kz.min() > 1.2 and kz.max() < 1.7), f"KURVS z in (1.2, 1.7): {kz.min()}-{kz.max()}")
+write("kurvs2023_integrated.csv", ["kurvs_id", "candels_id", "z_halpha", "logMstar", "sfr_msun_yr", "reff_kpc", "e_reff", "inc_star_deg", "inc_sfr_deg"], k1)
+K2 = kurvs_rows("kurvs2023_2305.04382_table_kinematics.tex")
+check(len(K2) == 22, f"KURVS kinematics table has 22 galaxies (got {len(K2)})")
+k2 = []
+for r in K2:
+    # r = [id, star, R_max, sigma0, v/sigma0, t, '']
+    a, b_, c_, d_ = cell(r[2]), cell(r[3]), cell(r[4]), cell(r[5])
+    k2.append([r[0], r[1], a[0], b_[0], b_[1], c_[0], c_[1], d_[0], d_[1]])
+write("kurvs2023_kinematics.csv", ["kurvs_id", "flag_star", "R_halpha_max_kpc", "sigma0_kms", "e_sigma0", "vrot_over_sigma0", "e", "t_v6D_over_v3D", "e_t"], k2)
+K3 = kurvs_rows("kurvs2023_2305.04382_table_fdm.tex")
+check(len(K3) == 10, f"KURVS dark-matter-fraction table has 10 rotationally supported galaxies (got {len(K3)})")
+write("kurvs2023_fdm.csv", ["kurvs_id", "flag_star", "fDM_within_reff", "e_fDM"], [[r[0], r[1], cell(r[2])[0], cell(r[2])[1]] for r in K3])
+K4 = kurvs_rows("kurvs2023_2305.04382_table_radii.tex")
+check(len(K4) == 22, f"KURVS velocities-at-radii table has 22 galaxies (got {len(K4)})")
+k4 = []
+for r in K4:
+    v = [cell(x) for x in r[2:6]]
+    k4.append([r[0], v[0][0], v[1][0], v[1][1], v[2][0], v[2][1], v[3][0], v[3][1]])
+write("kurvs2023_velocities_at_radii.csv", ["kurvs_id", "R_halpha_max_kpc", "v_at_last_point_kms", "e_v_last", "v_at_R3D_kms", "e_v_R3D", "v_at_R6D_kms", "e_v_R6D"], k4)
+ids = lambda rows: [r[0] for r in rows]
+check(ids(K1) == ids(K2) == ids(K4), "KURVS IDs identical and in the same order in the three 22-row tables")
+check(set(r[0] for r in K3) <= set(ids(K1)), "every KURVS f_DM galaxy is among the 22")
+v6 = np.array([r[6] for r in k4], float); v3 = np.array([r[4] for r in k4], float)
+check(bool(np.all(v6 > 0) and np.all(v3 > 0)), f"KURVS v(R'_3D) and v(R'_6D) positive for all 22: v6 {v6.min():.0f}-{v6.max():.0f} km/s")
+log("KURVS-CDFS: 22 galaxies at z %.2f-%.2f; Halpha rotation curves reach R_Halpha,max = %.1f-%.1f kpc; velocities are tabulated at R'_3D (about 7 kpc) and R'_6D (about 13 kpc), which are 3 and 6 disc scale radii convolved with the seeing; "
+    "the per-galaxy R'_3D and R'_6D in kpc are NOT tabulated; stellar masses are from MAGPHYS SED fits; NO gas mass is tabulated; sigma0 is 40-155 km/s" % (
+    kz.min(), kz.max(), min(r[2] for r in k2), max(r[2] for r in k2)))
+
 # ------------------------------------------------------------------ manifest
 src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, tables/galaxy_parameters.tbl",
        "msa3d_2606.27853_fitted_parameters.tbl": "arXiv:2606.27853 source, tables/fitted_parameters.tbl",
@@ -507,6 +554,10 @@ src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, table
        "romanoliveira2023_2302.03049_table_gasmasses.tex": "arXiv:2302.03049 source, main.tex (SFR and gas-mass table)",
        "romanoliveira2023_2302.03049_table_kinematics.tex": "arXiv:2302.03049 source, main.tex (kinematic parameters)",
        "danhaive2025_2503.21863_table_gold.tex": "arXiv:2503.21863 source, main.tex lines 817-877",
+       "kurvs2023_2305.04382_table_integrated.tex": "arXiv:2305.04382 source, kurvs_I_arXiv_May2023.tex lines 213-261",
+       "kurvs2023_2305.04382_table_kinematics.tex": "arXiv:2305.04382 source, kurvs_I_arXiv_May2023.tex lines 458-507",
+       "kurvs2023_2305.04382_table_fdm.tex": "arXiv:2305.04382 source, kurvs_I_arXiv_May2023.tex lines 686-717",
+       "kurvs2023_2305.04382_table_radii.tex": "arXiv:2305.04382 source, kurvs_I_arXiv_May2023.tex lines 841-886",
        "sharma2024_2406.08934_GS21b_catalog.fits": "arXiv:2406.08934 source, extra_material/GS21b_catalog.fits",
        "sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits": "arXiv:2406.08934 source, extra_material/CRCs_FitsParam_Burkert.fits"}
 man = {"built_by": "data_assembly/arxiv_tables/build.py", "source_tarballs": "https://arxiv.org/e-print/<id>", "raw_small": {}}
