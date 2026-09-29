@@ -1,0 +1,71 @@
+[PASS] a1 P = n rho' - rho = Pc x^2/(1+x^2) x = m n/s
+[PASS] a2 0 <= P/Pc < 1                   monotone from 0, limit 1
+[PASS] a3 tie: 8 pi G Pcap = kappa^2 Lam/(8pi) = a0^2 Pcap = eps Mp2 Lam, Mp2=1/(8piG)
+   (info) a0 with OL = 0.6847: 9.36032e-11 m/s2
+[FAIL] a4 a0 numeric (H0=67.4, OL=0.685, kappa=1/2) a0 = 9.36238e-11 m/s2
+[PASS] a5 a0^2 = 8 pi G Pcap = kappa^2 c^2 (Lam/8pi)-tie rel -1.1e-16
+[PASS] a6 dimensional analysis: 5 variables, rank 2 -> 3 invariants invariants (exponents of Mp2,Lam,m,n,P): [[-1, 1/2, 1, 0, 0], [0, -3/2, 0, 1, 0], [-1, -1, 0, 0, 1]]
+[PASS] a7 with m,n only via mn: exactly 2 invariants -> P = Mp2 Lam f(nu), nu = mn/(Mp2 Lam) vectors: [[-1, -1, 1, 1, 0], [-1, -1, 0, 0, 1]]
+[PASS] a8 constraint entry P=Pcap => rho = -Pcap + C n dsolve: C1*nsym - Pcs
+   constraint entry shifts Lambda by -eps Lam: a0 -> a0 sqrt(1-eps): -0.00217 dex (CFG43 quotes 0.0022)
+[PASS] a9 slab: d/dz [P + g^2/(8 pi G)] = 0 (hydrostatic + Poisson) 
+[PASS] a10 slab column bound Sigma <= a0/(2 pi G) 106.90 Msun/pc^2 (CFG43 quotes 106.9)  [P0 = pi G Sigma^2/2 <= Pcap]
+[PASS] a11 Sigma_max follows Lambda0 (Sigma ~ sqrt(Lam0)) and is flat in z dev 2.2e-16 (flat in z: Lambda is a constant, A1/A2)
+[PASS] b-C1 nu*->inf recovers LCDM growth (ratio 1) ratio(nu*=1e40,k=30) - 1 = 0.0e+00
+[PASS] b-C2 LCDM growth vs closed form (Heath integral) numeric 0.78781260  closed form 0.78781260  rel 2.2e-09
+[PASS] b-C3 EdS constant-c_s^2 vs Bessel J_5/2 closed form beta=237.412 numeric 0.0002488029 closed 0.00024880289 rel 1.7e-08
+[PASS] b-C4 c_s^2 = nP_n/(rho+P) vs finite difference dP/drho max rel err 2.2e-16 over x=0.03..40
+[PASS] b-N3i nu*=1: c_s^2(z=0) ~ 6e-3     c_s^2 = 0.00579 (x0 = 0.388)
+   nu*=1 growth ratio D/D_LCDM at k=0.5,2,10,30 /Mpc: {0.5: 0.1393, 2.0: 0.0924, 10.0: 0.0836, 30.0: 0.0704}   (CFG43: 5-14%)
+[PASS] b-N3i nu*=1 growth suppressed to 5-14% band min 0.070 max 0.139
+   nu_min(k) table (d=5%%): 0.00631:22.48; 0.01:50.52; 0.0158:108.3; 0.0251:226; 0.0398:464.1; 0.0631:943.5; 0.1:1905; 0.158:3832; 0.251:7685; 0.398:1.539e+04; 0.5:2.168e+04; 0.631:3.076e+04; 1:6.147e+04; 1.58:1.228e+05; 2:1.741e+05; 2.51:2.451e+05; 3.98:4.892e+05; 6.31:9.763e+05; 10:1.948e+06; 15.8:3.888e+06; 25.1:7.757e+06; 30:1.012e+07; 39.8:1.548e+07; 63.1:3.088e+07
+   nu_min(k) at the reference k (own solver; d=5%%): referee 2.2e4, 1.8e5, 2.0e6, 1.0e7
+     k=  0.5  nu_min(5%)=2.168e+04 (referee 2.2e+04, ratio 0.986)   20%: 7304   30%: 5206   50%: 3281
+     k=  2.0  nu_min(5%)=1.741e+05 (referee 1.8e+05, ratio 0.967)   20%: 5.883e+04   30%: 4.199e+04   50%: 2.651e+04
+     k= 10.0  nu_min(5%)=1.948e+06 (referee 2e+06, ratio 0.974)   20%: 6.59e+05   30%: 4.706e+05   50%: 2.973e+05
+     k= 30.0  nu_min(5%)=1.012e+07 (referee 1e+07, ratio 1.012)   20%: 3.426e+06   30%: 2.446e+06   50%: 1.545e+06
+[PASS] b-1 nu_min(k) within factor 1.5 of the referee (4 k) ratios [0.986, 0.967, 0.974, 1.012]
+   d= 5%: nu_min ~ k^1.520 (global fit); local slope range 1.500 .. 1.759 over k=0.00631..63.1
+   d=20%: nu_min ~ k^1.542 (global fit); local slope range 1.500 .. 2.228 over k=0.00631..63.1
+   d=30%: nu_min ~ k^1.558 (global fit); local slope range 1.500 .. 2.787 over k=0.00631..63.1
+   d=50%: nu_min ~ k^1.548 (global fit); local slope range 1.500 .. 2.313 over k=0.01..63.1
+[PASS] b-2 exponent 1.5 +- 0.05 (d=5%, k=0.5..30 local) fit slope 1.5009
+[PASS] c-1 nu_M propto M_b^(-1/2) exactly log-log slope -0.500000000000000 ; nu_M(1e9) = 3.587e+05, nu_M(3e11) = 2.071e+04
+   DIRECT re-solves, primary conventions (k = pi/R_L(M_b/f_b), F>=1/2):
+     M_b=1e+09 d= 5%: k=9.311/Mpc nu_min=1.75e+06 nu_M=3.587e+05  g0=0.2049  window g0^2=EMPTY
+     M_b=3e+11 d= 5%: k=1.391/Mpc nu_min=1.009e+05 nu_M=2.071e+04  g0=0.2052  window g0^2=EMPTY
+     M_b=1e+09 d=20%: k=9.311/Mpc nu_min=5.921e+05 nu_M=3.587e+05  g0=0.6058  window g0^2=EMPTY
+     M_b=3e+11 d=20%: k=1.391/Mpc nu_min=3.408e+04 nu_M=2.071e+04  g0=0.6075  window g0^2=EMPTY
+   referee: g0 = 0.36/0.355 (5%), 1.06/1.04 (20%); CFG43 README: 1.08/1.04
+[PASS] c-2 g0 (5%) primary within factor 2 of referee 0.36/0.355 mine 0.205 / 0.205
+[PASS] c-3 g0 (20%) primary within factor 2 of referee 1.06/1.04 mine 0.606 / 0.608
+[PASS] c-4 g0 mass-independent (1e9 vs 3e11, 5%) within 10% ratio 0.998
+   GRID: 576 combinations; g0(1e9) range 0.00955 .. 3.86e+04 (referee/CFG43 quote 0.08 .. 3.3)
+   primary (d=5%, F=1/2, pi/R_L(M_b/f_b), f_h=1, 1/Mpc): g0 = 0.205 / 0.205
+   d in {5,20,30,50}%, F=1/2, pi/R, M_b/f_b, f_h=1, 1/Mpc     g0 in [0.205, 1.34]  max window 1.8
+   + F in {0.5,0.9} (hydrostatic-consistent), d<=20%          g0 in [0.0683, 0.606]  max window EMPTY
+   F=0.9 only (hydrostatic requirement), d=5%, primary rest   g0 in [0.0683, 0.0683]  max window EMPTY
+   all k conv / M_h / f_h / units, F>=0.9, d<=20%             g0 in [0.00955, 1.67e+03]  max window 2.8e+06
+   all F, d<=20%, f_h=1 kunits Mpc                            g0 in [0.00955, 33.6]  max window 1.13e+03
+   GLOBAL MAX corner: {'d': 0.5, 'F': 0.01, 'kconv': 1.0, 'Mh': 'fb', 'fh': 40.0, 'ku': 'h'} -> g0=3.86e+04, window g0^2 = 1.49e+09
+   grid points with window >= 1e4 (g0 >= 100): 158 of 576 ; >= 1e5: 100
+   one-at-a-time log10 change of g0 vs primary: d=20%: +0.47, 30%: +0.62, 50%: +0.82 | F=0.9: -0.48, 0.1: +0.48, 0.01: +1.00 | k=1/R: +0.75, 2pi/R: -0.45 | M_h=M_b: -0.40 | f_h=4: +0.90, 40: +2.41 | k as h/Mpc: +0.26
+   referee-style stack (d=30%, F>=0.01, f_h=40, k=1/R): g0 = 1.27e+04, window g0^2 = 1.62e+08   ; same stack with F>=0.9: g0=426
+   k=2: nu_min(5%) base 1.741e+05 | z_eval=1: 0.998 | z_i=1e3: 1.000 | z_i=1e5: 1.000   (ratios to base)
+   k=10: nu_min(5%) base 1.948e+06 | z_eval=1: 1.000 | z_i=1e3: 1.000 | z_i=1e5: 1.000   (ratios to base)
+[PASS] c-5 criterion redshift / z_i do not matter (within 50%) see ratios above
+   --- (d) hypotheses ---
+[PASS] d-C p=2 (numerical-integral EOS) reproduces arctan nu_min p=2 21682 vs atan 21682
+   shape F_p=x^p/(1+x^p), p=2: nu_min(5%) at k=0.5,2,10,30: ['2.17e+04', '1.74e+05', '1.95e+06', '1.01e+07'] ; exponent 1.501 ; g0(1e9)=0.205 g0(3e11)=0.205 (power-law extrapolation of the 4-k table)
+   shape F_p=x^p/(1+x^p), p=3: nu_min(5%) at k=0.5,2,10,30: ['1.46e+04', '1.17e+05', '1.31e+06', '6.81e+06'] ; exponent 1.500 ; g0(1e9)=0.305 g0(3e11)=0.305 (power-law extrapolation of the 4-k table)
+   shape F_p=x^p/(1+x^p), p=4: nu_min(5%) at k=0.5,2,10,30: ['1.3e+04', '1.04e+05', '1.17e+06', '6.06e+06'] ; exponent 1.500 ; g0(1e9)=0.342 g0(3e11)=0.342 (power-law extrapolation of the 4-k table)
+   kappa scaling (a0 ~ kappa, eps ~ kappa^2; direct solves at k(M), d=5%%): 
+     kappa=0.1592 M_b=1e+09: nu_min=3.142e+05 nu_M=6.441e+04 g0=0.2050 (kappa=1/2: 0.2049)
+     kappa=0.1592 M_b=3e+11: nu_min=1.806e+04 nu_M=3719 g0=0.2060 (kappa=1/2: 0.2052)
+     kappa=1.0000 M_b=1e+09: nu_min=4.952e+06 nu_M=1.014e+06 g0=0.2049 (kappa=1/2: 0.2049)
+     kappa=1.0000 M_b=3e+11: nu_min=2.856e+05 nu_M=5.857e+04 g0=0.2050 (kappa=1/2: 0.2052)
+[PASS] d-1 g0 is kappa-independent (pure number of the cosmology), within 10% ratios [1.001, 1.004, 1.0, 0.999]
+[PASS] d-2 non-barotropic (c_s,eff=0): no growth bound (ratio=1 for any nu*) ratio(nu*=1,1e-3; k=30) = [1.0, 1.0]
+     with no growth bound the window is one-sided: engaged iff nu* <= nu_M(M) (nu_M ~ M^-1/2), i.e. M <= M_engage(nu*) ~ nu*^-2; any span in mass is reachable by lowering nu*
+   total runtime 3 s
+SUMMARY MUTATE=0: 27 checks, 1 failed

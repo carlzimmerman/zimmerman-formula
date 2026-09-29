@@ -50,3 +50,6 @@ Group 5 of `closure_map/GATES.md`: 5.01 partly (one action for tie plus fluid, s
 ## Referee corrections (2026-09-29, README audit relayed from the Opus/Fable chat; appended)
 
 - The "about 11× in mass" ceiling in the obstruction's item 3 is contradicted by this README's own referee paragraph, where stacked convention choices reach 10⁴–10⁵. Read the window as convention-dependent, from about 11× up to 10⁴–10⁵, against the 10⁴ the BTFR needs; the body text and ledger row 52 were not amended (append-only).
+
+## Referee correction (CFG103's independent re-derivation; appended)
+- CFG103 reproduces the algebra and the obstruction. Notes: f_h is the halo-to-baryon MASS ratio (M_h = f_h M_b), not a size factor (the referee paragraph's 'f_h = 40' is easy to misread); a0 = 9.3603e-11 uses Omega_Lambda = 0.6847; 'at most about 11x' is a ceiling only under F = 1/2, d <= 50% and k in {pi, 2pi}/R (11.3), 353 with k = 1/R, and 1.4e4-1.1e5 needs F >= 0.01; with the hydrostatic F >= 0.9 it stays two to three decades short of 1e4 (best case 134 with a sharp cap); g0 is kappa-independent; the hydrostatic target needs P/P_cap >= 1 inside r_M, a stronger obstruction than the window; c_s^2 = n rho_nn/rho_n is the only propagating root. Open: nonlinear collapse in overdensities and non-barotropic caps. See CFG103.
