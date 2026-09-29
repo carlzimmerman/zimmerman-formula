@@ -68,7 +68,7 @@ class Model:
         V = self.pot(phi)[0]
         return math.sqrt((0.5 * v @ v + V + self.V0) / (3 * self.M))
 
-    def mats(self, y, k, factor=None):
+    def mats(self, y, k, scaled=True):
         """G, B, P (the a^3-weighted matrices) at background state y for COMOVING wavenumber k."""
         M, K, c2, al = self.M, self.K, self.c2, self.alpha
         phi, v, lna = y[:5], y[5:10], y[10]
@@ -86,6 +86,7 @@ class Model:
         u = np.concatenate([[M * K * H], -Q * v])
         w = np.concatenate([[-2 * M * x], -H * (3 + 2 / c2) * v - Q * Vp])
         G = np.diag(np.concatenate([[M * K], np.ones(5)])) - np.outer(u, u) / (M * Fd)
+        G[0, 0] = M * K * Delta / Fd                # = MK - (MKH)^2/(M F_d) exactly, but WITHOUT the catastrophic cancellation (it is ~ x -> 0)
         B0 = np.zeros((n, n)); B0[0, 1:] = -(2 / c2) * v
         B = B0 - np.outer(u, w) / (M * Fd)
         P = np.zeros((n, n))
@@ -98,7 +99,8 @@ class Model:
         if self.mut == 'ghost_kinetic':               # control: velocity matrix G0 - 3 u u^T/(M F_d) is indefinite when D/F_d < 2/3
             G = np.diag(np.concatenate([[M * K], np.ones(5)])) - 3 * np.outer(u, u) / (M * Fd)
         D = ae * x + 2 * r * (1 - r) * (T + V) / M     # the record's controlling coefficient D_R
-        return a3 * G, a3 * B, a3 * P, dict(x=x, H=H, D=D, Fd=Fd, T=T, V=V, r=r)
+        w3 = a3 if scaled else 1.0        # scaled=False returns the a^3-free matrices G0, B0, P0 (O(1) entries)
+        return w3 * G, w3 * B, w3 * P, dict(x=x, H=H, D=D, Fd=Fd, T=T, V=V, r=r)
 
 
 def bg_solve(model, y0, tmax):
@@ -149,29 +151,40 @@ def q1q2_scan(model, y0, label, xgrid_over_H2=np.logspace(-4, 3, 36), tgrid=(0.0
 
 # ------------------------------------------------------------------ Q3 : full time-dependent linear evolution
 def full_evolution(model, y0, k, tmax, dirderiv_h=1e-6, npts=13):
-    """propagate the 12 initial data (q; H*qd) through the exact time-dependent EOM (Gdot, Bdot by directional
-    derivative along the background flow). Returns the time series of sigma_max of the q-block of the propagator."""
+    """propagate the 12 initial data (q; H*qd) through the exact time-dependent EOM and return sigma_max of the q-block
+    of the propagator at npts times. The system is LINEAR and STIFF (G's psi-psi entry falls like a^-2, so cond G grows
+    ~ e^(4t)): the background is integrated once with dense output, then each column is solved with an implicit
+    method (Radau) using the exact Jacobian M(t). The a^3 factor is removed analytically (O(1) matrices):
+      G0 qdd + (3H G0 + G0dot + B0 - B0^T) qd + (3H B0 + B0dot + P0) q = 0 ."""
     n = 6
     H0_ = model.H_of(y0)
+    bg = solve_ivp(model.bg_rhs, (0, tmax), y0, rtol=1e-11, atol=1e-13, method='DOP853', dense_output=True)
 
-    def rhs(t, Y):
-        y = Y[:11]
-        Phi = Y[11:].reshape(2 * n, 2 * n)
-        G, B, P, _ = model.mats(y, k)
+    def Mq(t):
+        y = bg.sol(t)
+        G, B, P, _ = model.mats(y, k, scaled=False)
+        Hh = model.H_of(y)
         fy = model.bg_rhs(0.0, y)
         h = dirderiv_h
-        Gp, Bp, _, _ = model.mats(y + h * fy, k); Gm, Bm, _, _ = model.mats(y - h * fy, k)
+        Gp, Bp, _, _ = model.mats(y + h * fy, k, scaled=False); Gm, Bm, _, _ = model.mats(y - h * fy, k, scaled=False)
         Gd = (Gp - Gm) / (2 * h); Bd = (Bp - Bm) / (2 * h)
         Gi = np.linalg.inv(G)
-        # d/dt(G qd + B q) = B^T qd - P q  ->  G qdd = -(Gd + B - B^T) qd - (Bd + P) q
-        Mq = np.block([[np.zeros((n, n)), np.eye(n)], [-Gi @ (Bd + P), -Gi @ (Gd + B - B.T)]])
-        return np.concatenate([fy, (Mq @ Phi).ravel()])
+        return np.block([[np.zeros((n, n)), np.eye(n)],
+                         [-Gi @ (3 * Hh * B + Bd + P), -Gi @ (3 * Hh * G + Gd + B - B.T)]])
 
-    Y0 = np.concatenate([y0, np.diag(np.concatenate([np.ones(n), H0_ * np.ones(n)])).ravel()])
-    sol = solve_ivp(rhs, (0, tmax), Y0, rtol=1e-8, atol=1e-11, method='DOP853', dense_output=True)
     tt = np.linspace(0, tmax, npts)
-    ser = np.array([np.linalg.svd(sol.sol(t)[11:].reshape(2 * n, 2 * n)[:n, :], compute_uv=False).max() for t in tt])
-    return tt, ser, sol.status
+    cols = np.zeros((npts, 2 * n, 2 * n))
+    status = 0
+    for j in range(2 * n):
+        y_init = np.zeros(2 * n); y_init[j] = 1.0 if j < n else H0_
+        sol = solve_ivp(lambda t, yv: Mq(t) @ yv, (0, tmax), y_init, method='Radau', jac=lambda t, yv: Mq(t),
+                        rtol=1e-8, atol=1e-11, t_eval=tt)
+        if sol.status != 0 or sol.y.shape[1] != npts:
+            status = sol.status if sol.status != 0 else -2
+        else:
+            cols[:, :, j] = sol.y.T
+    ser = np.array([np.linalg.svd(cols[i][:n, :], compute_uv=False).max() for i in range(npts)])
+    return tt, ser, status
 
 
 def classify(tt, ser, thr=0.15):
@@ -235,7 +248,7 @@ if __name__ == '__main__':
 
     banner("Q1/Q2  frozen-coefficient stability -- 300 random parameter sets in the record's window x 4 snapshots x 36 wavenumbers")
     rng = np.random.default_rng(20260928)
-    nbadG = nbadD = nbadL = 0; lam_max = -1e9; gmin_all = 1e9; Dmin_all = 1e9; nsets = 0
+    nbadG = nbadD = nbadL = nlow = 0; lam_max = -1e9; gmin_all = 1e9; Dmin_all = 1e9; nsets = 0
     worst_case = None
     for _ in range(300):
         mm = random_model(rng)
@@ -250,13 +263,18 @@ if __name__ == '__main__':
             for xr in np.logspace(-4, 3, 36):
                 lam, gmin, _, d = frozen_growth(mm, y, math.sqrt(xr) * H * a)
                 gmin_all = min(gmin_all, gmin); Dmin_all = min(Dmin_all, d['D'])
-                nbadG += gmin <= 0; nbadD += d['D'] <= 0; nbadL += lam > 1e-3
+                nbadG += gmin <= 0; nbadD += d['D'] <= 0
+                if xr < 10:                       # frozen approximation invalid at x < H^2 (drops the time dependence of x)
+                    nlow += lam > 1e-3; continue
+                nbadL += lam > 1e-3
                 if lam > lam_max:
                     lam_max = lam; worst_case = (mm.alpha, mm.c2, mm.ell, mm.xi, math.sqrt(mm.mu2), xr)
     print(f"  {nsets} parameter sets scanned; min eigenvalue of G = {gmin_all:+.3e}; min D_R = {Dmin_all:.3e}")
-    print(f"  violations: G<=0: {nbadG}   D_R<=0: {nbadD}   frozen Re(lambda)/H > 1e-3: {nbadL}   (max Re lambda/H = {lam_max:+.4f})")
+    print(f"  violations: G<=0: {nbadG}   D_R<=0: {nbadD}   frozen Re(lambda)/H > 1e-3 at x/H^2 >= 10: {nbadL}   (max Re lambda/H there = {lam_max:+.4f})")
+    print(f"  frozen flags at x/H^2 < 10: {nlow} -- NOT EVALUATED as instabilities: the frozen approximation is invalid there "
+          f"(it drops the time dependence of x; the exact vacuum psi mode is healthy, see ../equations/eq02_vacuum_psi_mode.py)")
     check(nbadG == 0 and nbadD == 0, "Q1 velocity block positive definite and D_R > 0 at every scanned point")
-    print(f"  Q2 frozen (adiabatic) verdict: {'NO growing mode at any scanned (parameters, state, q)' if nbadL == 0 else 'GROWING MODES FOUND at ' + str(nbadL) + ' points; worst at (alpha,c2,ell,xi,mu,x/H2)=' + str(worst_case)}")
+    print(f"  Q2 frozen (adiabatic) verdict: {'NO growing mode at any scanned (parameters, state, q)' if nbadL == 0 else 'GROWING MODES FOUND at ' + str(nbadL) + ' sub-horizon' + ' points; worst at (alpha,c2,ell,xi,mu,x/H2)=' + str(worst_case)}")
 
     banner("CONTROLS -- known-wrong variants must be caught by the same detectors")
     for mut in ('gradient_sign', 'ghost_kinetic'):
@@ -264,30 +282,11 @@ if __name__ == '__main__':
         lm, gm, dm = q1q2_scan(mm, initial_background(mm, phi0, v0), f"MUTATE {mut}")
         check((lm > 1e-3) or (gm <= 0), f"C-{mut}: flagged (max Re lambda {lm:+.3f}, min eig G {gm:+.2e})")
 
-    banner("Q3  FULL time-dependent linear evolution -- exact Gdot, Bdot; all q; 10 e-folds")
-    print(f"  {'case':<26}{'k/(aH)_0':>9}{'sigma(T)':>12}{'dln s/dt':>10}{'index p':>9}   class")
-    rows = []
-    def run_case(label, mm, yy, krs, T=10.0):
-        Hh = mm.H_of(yy)
-        for kr in krs:
-            tt, ser, st = timed_evolution(mm, yy, kr * Hh, T)
-            if st == 'TIMEOUT':
-                print(f"  {label:<26}{kr:>9.2f}   TIMEOUT (stiff; not classified)")
-                rows.append((label, kr, float('nan'), float('nan'), float('nan'), 'TIMEOUT', st)); continue
-            sl, p, cl = classify(tt, ser)
-            rows.append((label, kr, ser[-1], sl, p, cl, st))
-            print(f"  {label:<26}{kr:>9.2f}{ser[-1]:>12.3e}{sl:>10.3f}{p:>9.2f}   {cl}" + ("" if st == 0 else "  [solver status %d]" % st))
-    run_case("baseline mu=0.6 (light s)", model, y0, (0.05, 1.0, 10.0))
-    mh = Model(mu=2.5)
-    run_case("heavy s, mu=2.5", mh, initial_background(mh, phi0, v0), (0.05, 1.0, 10.0))
-    n_exp = sum(1 for r in rows if r[5] == 'EXPONENTIAL')
-    print(f"\n  exponential growth found in {n_exp} of {len(rows)} runs")
-
-    banner("Q3 control -- same evolution on the tachyonic-gradient mutation")
+    banner("Q3 control -- exact evolution of the tachyonic-gradient mutation (detector check only; the case studies are in occ03)")
     mmut = Model(mut='gradient_sign')
-    tt, ser, st = full_evolution(mmut, initial_background(mmut, phi0, v0), 2.0 * H0, 3.0)
+    tt, ser, st = full_evolution(mmut, initial_background(mmut, phi0, v0), 30.0 * H0, 3.0)
     sl, p, cl = classify(tt, ser)
-    print(f"  MUTATE gradient_sign at k=2H: sigma(T)={ser[-1]:.3e}, dln s/dt={sl:.3f} -> {cl}")
+    print(f"  MUTATE gradient_sign at k=30H (a k=2H control redshifts out of the sub-horizon regime before it can grow): sigma(T)={ser[-1]:.3e}, dln s/dt={sl:.3f} -> {cl}")
     check(cl == 'EXPONENTIAL', "C3: the full-evolution classifier flags the tachyonic-gradient mutation as EXPONENTIAL")
 
     banner("RESULT")

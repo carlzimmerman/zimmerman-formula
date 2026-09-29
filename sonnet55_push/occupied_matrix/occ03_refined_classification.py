@@ -23,13 +23,20 @@ def check(c, m):
 def banner(t): print("\n" + "=" * 100 + f"\n  {t}\n" + "=" * 100)
 
 
-def classify2(tt, ser, thr=0.10):
+def classify2(tt, ser, thr=0.10, thr_transient=2.0):
+    """EXPONENTIAL if EITHER (a) sustained: late-window log-slope >= 0.8 x mid-window slope and > thr, OR (b) transient:
+    the steepest log-slope between ANY two adjacent samples exceeds thr_transient (per unit t ~ 1/H). (b) was ADDED after the
+    R3b control failed, and made per-sample (not per-quarter-run) after a synthetic burst control, exp(8(1-e^-t)) over a T=24 run,
+    was diluted below the threshold by a 6-unit window: a real tachyonic mode's rate ~ sqrt(x) falls as the mode redshifts, so its late slope is below its
+    mid slope and (a) alone calls it 'polynomial'. thr_transient = 2.0 was fixed from the known-answer controls (above the
+    fastest adjacent-sample slope of the t^3 control, 1.5, and of t^2, 0.9) BEFORE the case tables were re-run; it can only flag MORE cases, not fewer."""
     T = tt[-1]
     i1, i2 = np.searchsorted(tt, T / 3), np.searchsorted(tt, 2 * T / 3)
     s_mid = (math.log(ser[i2]) - math.log(ser[i1])) / (tt[i2] - tt[i1])
     s_late = (math.log(ser[-1]) - math.log(ser[i2])) / (tt[-1] - tt[i2])
-    if s_late > thr and s_late >= 0.8 * s_mid:
-        return s_mid, s_late, 'EXPONENTIAL'
+    s_max = max((math.log(ser[j + 1]) - math.log(ser[j])) / (tt[j + 1] - tt[j]) for j in range(len(tt) - 1))   # steepest slope between ADJACENT samples
+    if (s_late > thr and s_late >= 0.8 * s_mid) or s_max > thr_transient:
+        return s_mid, s_late, 'EXPONENTIAL' if s_max <= thr_transient else 'EXPONENTIAL(transient)'
     if ser[-1] > 3 * ser[i1] and s_late > 0:
         return s_mid, s_late, 'polynomial'
     return s_mid, s_late, 'bounded'
@@ -38,9 +45,11 @@ def classify2(tt, ser, thr=0.10):
 banner("R3  classifier controls with a known answer")
 tt = np.linspace(0.0, 24.0, 25)
 for nm, f, want in (("t^2 signal", lambda t: 1 + t**2, 'polynomial'), ("exp(0.3 t)", lambda t: np.exp(0.3 * t), 'EXPONENTIAL'),
-                    ("decaying oscillator", lambda t: np.exp(-0.2 * t) * (1.3 + np.cos(t)), 'bounded')):
+                    ("decaying oscillator", lambda t: np.exp(-0.2 * t) * (1.3 + np.cos(t)), 'bounded'),
+                    ("t^3 signal", lambda t: 1 + t**3, 'polynomial'),
+                    ("transient exp(8(1-e^-t))", lambda t: np.exp(8 * (1 - np.exp(-t))), 'EXPONENTIAL(transient)')):
     sm, sl, cl = classify2(tt, f(tt))
-    check(cl == want, f"R3 {nm:<20} -> {cl}  (mid slope {sm:.3f}, late slope {sl:.3f}; wanted {want})")
+    check(cl.startswith(want.split('(')[0]) and (('transient' in cl) == ('transient' in want)), f"R3 {nm:<20} -> {cl}  (mid slope {sm:.3f}, late slope {sl:.3f}; wanted {want})")
 
 banner("R1  frozen-coefficient test restricted to x/H^2 >= 10 (where it is valid) -- 300 random sets x 4 snapshots")
 rng = np.random.default_rng(20260928)
@@ -87,15 +96,15 @@ for lab, mm, yy in cases:
         if st == 'TIMEOUT':
             print(f"  {lab:<28}{kr:>9.2f}   TIMEOUT (stiff; not classified)"); n_run += 1; continue
         sm, sl, cl = classify2(tt, ser)
-        n_run += 1; n_exp += cl == 'EXPONENTIAL'
+        n_run += 1; n_exp += cl.startswith('EXPONENTIAL')
         print(f"  {lab:<28}{kr:>9.2f}{ser[-1]:>12.3e}{sm:>10.3f}{sl:>11.3f}   {cl}" + ("" if st == 0 else f"  [solver status {st}]"))
 print(f"\n  exponential growth in {n_exp} of {n_run} long runs")
 
-banner("R3b classifier on the tachyonic-gradient mutation in the exact evolution")
+banner("R3b classifier on the tachyonic-gradient mutation in the exact evolution (k = 30 H: a k = 2H control redshifts away before it can grow)")
 mmut = o.Model(mut='gradient_sign')
-tt, ser, st = o.full_evolution(mmut, o.initial_background(mmut, phi0, v0), 2.0 * mmut.H_of(o.initial_background(mmut, phi0, v0)), 4.0, npts=25)
+tt, ser, st = o.full_evolution(mmut, o.initial_background(mmut, phi0, v0), 30.0 * mmut.H_of(o.initial_background(mmut, phi0, v0)), 3.0, npts=25)
 sm, sl, cl = classify2(tt, ser)
-check(cl == 'EXPONENTIAL', f"R3b tachyonic mutation classified {cl} (mid {sm:.2f}, late {sl:.2f})")
+check(cl.startswith('EXPONENTIAL'), f"R3b tachyonic mutation classified {cl} (mid {sm:.2f}, late {sl:.2f})")
 
 banner("RESULT")
 print(f"  {sum(ok)}/{len(ok)} control checks held; findings are the R1 and R2 tables above.")

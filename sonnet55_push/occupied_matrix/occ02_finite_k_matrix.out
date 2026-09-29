@@ -1,0 +1,35 @@
+
+====================================================================================================
+  Setup -- units M_P^2 = 1, V0 = 3 (asymptotic H = 1), five real carrier fields, actual potential
+====================================================================================================
+  baseline occupied state: T+V = 0.4086, H(0) = 1.0659; alpha=1.0, c2=1.0, ell=2.0, xi=1.0, gamma=0.8, mu=0.6
+  [OK] S1 background obeys Raychaudhuri M Hdot = -T along the run (max residual 2.67e-11)
+
+====================================================================================================
+  Q1/Q2  frozen-coefficient stability -- 300 random parameter sets in the record's window x 4 snapshots x 36 wavenumbers
+====================================================================================================
+  300 parameter sets scanned; min eigenvalue of G = +3.625e-02; min D_R = 8.575e-05
+  violations: G<=0: 0   D_R<=0: 0   frozen Re(lambda)/H > 1e-3 at x/H^2 >= 10: 0   (max Re lambda/H there = -1.1520)
+  frozen flags at x/H^2 < 10: 1438 -- NOT EVALUATED as instabilities: the frozen approximation is invalid there (it drops the time dependence of x; the exact vacuum psi mode is healthy, see ../equations/eq02_vacuum_psi_mode.py)
+  [OK] Q1 velocity block positive definite and D_R > 0 at every scanned point
+  Q2 frozen (adiabatic) verdict: NO growing mode at any scanned (parameters, state, q)
+
+====================================================================================================
+  CONTROLS -- known-wrong variants must be caught by the same detectors
+====================================================================================================
+  MUTATE gradient_sign       min eig G = +1.696e-01   min D = 1.619e-03   max Re(lambda)/H = +22.9591 at x/H^2 = 1e+03
+  [OK] C-gradient_sign: flagged (max Re lambda +22.959, min eig G +1.70e-01)
+  MUTATE ghost_kinetic       min eig G = -2.711e+14   min D = 1.619e-03   max Re(lambda)/H = +3.9457 at x/H^2 = 15.8
+  [OK] C-ghost_kinetic: flagged (max Re lambda +3.946, min eig G -2.71e+14)
+
+====================================================================================================
+  Q3 control -- exact evolution of the tachyonic-gradient mutation (detector check only; the case studies are in occ03)
+====================================================================================================
+  MUTATE gradient_sign at k=30H (a k=2H control redshifts out of the sub-horizon regime before it can grow): sigma(T)=2.387e+08, dln s/dt=1.897 -> EXPONENTIAL
+  [OK] C3: the full-evolution classifier flags the tachyonic-gradient mutation as EXPONENTIAL
+
+====================================================================================================
+  RESULT
+====================================================================================================
+  5/5 consistency/control checks held.
+  Exit 0 (the checks are about the detectors and the algebra; the stability findings are the tables above).

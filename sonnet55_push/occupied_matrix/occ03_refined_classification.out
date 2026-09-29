@@ -1,0 +1,47 @@
+
+====================================================================================================
+  R3  classifier controls with a known answer
+====================================================================================================
+  [OK] R3 t^2 signal           -> polynomial  (mid slope 0.172, late slope 0.101; wanted polynomial)
+  [OK] R3 exp(0.3 t)           -> EXPONENTIAL  (mid slope 0.300, late slope 0.300; wanted EXPONENTIAL)
+  [OK] R3 decaying oscillator  -> bounded  (mid slope -0.352, late slope 0.002; wanted bounded)
+  [OK] R3 t^3 signal           -> polynomial  (mid slope 0.260, late slope 0.152; wanted polynomial)
+  [OK] R3 transient exp(8(1-e^-t)) -> EXPONENTIAL(transient)  (mid slope 0.000, late slope 0.000; wanted EXPONENTIAL(transient))
+
+====================================================================================================
+  R1  frozen-coefficient test restricted to x/H^2 >= 10 (where it is valid) -- 300 random sets x 4 snapshots
+====================================================================================================
+  18000 sub-horizon points; frozen Re(lambda)/H > 1e-3 at 0; max Re(lambda)/H = -1.1520; max Re(lambda)/sqrt(x) = -0.0474
+  R1 verdict: NO frozen growing mode at any sub-horizon point
+
+====================================================================================================
+  R2  exact time-dependent evolution, long run, two-window classifier
+====================================================================================================
+  case                         k/(aH)_0    sigma(T) mid slope late slope   class
+  baseline mu=0.6                  0.10   9.838e+01     0.104      0.053   polynomial
+  baseline mu=0.6                  1.00   8.016e+01     0.115      0.055   polynomial
+  baseline mu=0.6                  5.00   1.499e+01     0.144      0.061   polynomial
+  heavy s, mu=2.5                  0.10   3.177e+01     0.028      0.003   bounded
+  heavy s, mu=2.5                  1.00   2.422e+01     0.043      0.005   bounded
+  heavy s, mu=2.5                  5.00   2.811e+00     0.115      0.010   bounded
+  random #0 mu=0.12                0.10   9.300e+02     0.302      0.083   polynomial
+  random #0 mu=0.12                1.00   7.859e+02     0.307      0.083   polynomial
+  random #0 mu=0.12                5.00   1.426e+02     0.374      0.085   polynomial
+  random #1 mu=0.20                0.10   5.089e+01     0.101      0.059   polynomial
+  random #1 mu=0.20                1.00   3.978e+01     0.115      0.063   polynomial
+  random #1 mu=0.20                5.00   4.174e+00     0.150      0.071   polynomial
+  random #2 mu=2.56                0.10   1.818e+00    -0.000      0.000   bounded
+  random #2 mu=2.56                1.00   7.914e-01     0.000      0.000   bounded
+  random #2 mu=2.56                5.00   2.499e-01     0.000      0.000   bounded
+
+  exponential growth in 0 of 15 long runs
+
+====================================================================================================
+  R3b classifier on the tachyonic-gradient mutation in the exact evolution (k = 30 H: a k = 2H control redshifts away before it can grow)
+====================================================================================================
+  [OK] R3b tachyonic mutation classified EXPONENTIAL(transient) (mid 4.45, late 1.28)
+
+====================================================================================================
+  RESULT
+====================================================================================================
+  6/6 control checks held; findings are the R1 and R2 tables above.

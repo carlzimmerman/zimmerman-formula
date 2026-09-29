@@ -30,3 +30,7 @@ leaves items 3-6 open.
 - 2026-09-28  equations/ (EQ01 kappa convention, EQ02 empty-dS psi mode in closed form, EQ03 footing family) and
   occupied_matrix/ (vector-form check 5/5; finite-k scripts; exact evolution shows no exponential growth on the baseline
   case, final multi-case run pending). No verdict on CA5-GNC-R yet.
+- 2026-09-28  occupied_matrix final: within the scanned window (300 random parameter sets frozen; 5 cases x 3 wavenumbers exact,
+  T = 24 e-folds) no linear instability of the occupied CA5-GNC-R scalar sector: 0/15 exponential, light-carrier cases show
+  slow polynomial psi drift, heavy-carrier cases bounded; 5/5 + 6/6 controls. equations/LEDGER_VERIFICATION: independent
+  re-run of the closure-map ledger (26 runs + ChainCert) and of CFG48/CFG58/CFG59 (16 runs), 0 mismatches.
