@@ -1,0 +1,26 @@
+DR4-READY-1, WP3 DR3 dry run: the join path must reproduce the reference DR3 build EXACTLY.
+
+Plan: PLAN.md in this directory (c45c8d2ae).  NEW file; PREREGISTRATION_DR4.md, hash files, amendments,
+catalog_builder/*.py and wide_binary_pipeline.py are imported read-only (bytecode writing disabled) and never edited.
+No network: every input is the cached DR3 build (stage_A-F npz, the correlation cache, the A_V cache).
+
+  R0  reference: stage G re-run exactly as build_catalog.main() does it, from the cached stages  -> CSV bytes (sha256);
+      compared with the committed-to-disk wide_binaries_dr3.csv (reported; the join test compares with R0).
+  J1  the four join columns (ruwe, ipd_frac_multi_peak, radial_velocity, radial_velocity_error) are REMOVED from the
+      extract, written to a second table in shuffled order, rejoined by source_id with join_columns.py, and stage G is
+      re-run: the CSV must be byte-identical to R0 (the pass line), and the join report must show 0 unmatched ids.
+  Controls (each must be caught; exit 0 only if all are):
+      K1  a needed column absent from every table            -> the join must RAISE
+      K2  duplicated source_ids in the second table            -> the join must RAISE
+      K3  1% of the ids dropped from the second table          -> the report must COUNT them, and the CSV must DIFFER
+DR3 numbers here are a code-path test, not a result (Amendment 7(e)): no verdict word.
+
+[load] 4,582,547 sources, 213,097 pairs with R computed  (0 s)
+[R0] stage G re-run from the cached stages: 6,210 pairs; sha256 6fff64d964ebaa72; the on-disk wide_binaries_dr3.csv IS byte-identical (6,210 pairs, sha256 6fff64d964ebaa72)  (3 s)
+[J1] join path: columns ['ruwe', 'ipd_frac_multi_peak', 'radial_velocity', 'radial_velocity_error'] removed, rejoined from a shuffled second table; report ruwe: 4,582,547 matched / 0 unmatched, ipd_frac_multi_peak: 4,582,547 matched / 0 unmatched, radial_velocity: 4,582,547 matched / 0 unmatched, radial_velocity_error: 4,582,547 matched / 0 unmatched;  CSV BYTE-IDENTICAL to R0  -> PASS  (8 s)
+[K1] a needed column absent from every table -> the join RAISES (caught)
+[K2] duplicated source_ids in the second table -> the join RAISES (caught)
+[K3] 45,784 ids (1%) dropped from the second table -> unmatched counted per column: True; CSV differs from R0: True (6,107 pairs)  -> caught
+
+[verdict of the dry run, code path only] J1 PASS; controls K1 True, K2 True, K3 True  -> WP3 READY on DR3  (total 16 s)
+[corr] offline correlation source: ids in neither on-disk cache (zero correlation, identical in every run): [4, 4, 4]

@@ -65,3 +65,20 @@ Row and size figures are estimates from the stellar density at |b| > 10° to G =
 - Any DR4 table or column name. Those are read on release day, and names only (Amendment 15(d)).
 - Whether `crowded_field_source` and `gaia_source_environment` are also searched for cut 13. Amendment 16(b) records their counts and decides on release day, before the data are opened.
 - The `ap_*` extinction variant of cut 9. It is reported only, and its table is not yet known.
+
+## Appended 2026-09-29 (after WP3; the plan above is unchanged)
+
+- **WP3: READY on DR3, offline** (`wp3_join_dryrun_dr3.py`, `join_columns.py`).
+  - R0: stage G re-run from the cached stages is byte-identical to the on-disk `wide_binaries_dr3.csv` (6,210 pairs, sha256 6fff64d9…).
+  - J1: stripping `ruwe`, `ipd_frac_multi_peak`, `radial_velocity` and `radial_velocity_error` and rejoining them by source_id from a shuffled second table gives a byte-identical CSV, with 0 unmatched ids.
+  - Controls: K1 (a missing column) and K2 (duplicated ids) raise. K3 (1% of ids dropped) counts all 45,784 and changes the CSV (6,107 pairs).
+- **Incident, disclosed.**
+  - The first WP3 attempt called the frozen builder's `fetch_correlations`.
+  - Its cache did not cover 14 ids of today's primary selection, so it tried a Gaia archive query, without the owner's go. The process sat idle (6.6 s CPU in over 10 minutes) and was killed.
+  - The cache file is unchanged (mtime 2026-09-23), so no query completed.
+  - The dry run now blocks every outgoing connection by construction (socket guard) and reads correlations offline from the union of the two on-disk caches. Their values are identical on their 20,496 shared ids.
+  - 4 ids are in neither cache and get zero correlation, identically in every run. R0 is still byte-identical to the on-disk CSV.
+- **Release-day hazard found (not a frozen-file edit).** The frozen builder overwrites `stage_G_corr.npz` with only its latest query's ids; it does not merge them. So running a variant after the primary (or the reverse) forces a new archive query on the next run.
+  - WP5's driver must give each variant its own correlation cache file.
+  - A new driver can do that without editing `build_catalog.py`, because `fetch_correlations` takes the cache path.
+- **Correction to Q1's radius.** The cone radius is 30,000 AU/d = 30ϖ″. That is 120″ at 250 pc, but it grows past 300″ inside 100 pc (600″ at 50 pc; 3000″ at 10 pc), not "105–300″" as written above. The pilot's row counts will show whether the nearest pairs dominate the volume. (Noted by the orchestrator.)
