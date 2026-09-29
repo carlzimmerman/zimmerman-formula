@@ -1,0 +1,253 @@
+{
+ "slug": "CFG115_kids_colour_gradient_MUTATE",
+ "summary": {
+  "n_checks": 11,
+  "n_pass": 10,
+  "load_bearing_failures": 1,
+  "failed": [
+   "H1 [HEADLINE] A STEP: within each class the three amplitudes are constant (4 dof, p > 0.05"
+  ],
+  "seconds": 174.1
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: every lens matches the bright sample by exact (RA, Dec) (IDs row-aligned) and (u - r > 2.0) reproduces lr_lenses' typ for every lens",
+   "detail": "181,477 lenses; IDs aligned True; exact match True; typ reproduced True; u - r finite True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: the six bins partition the sample; their summed K1 sums reproduce the full-sample and per-class sums (relative 1e-12)",
+   "detail": "partition True; max relative deviation 3.3e-16; tertile edges late [1.507, 1.749], early [2.228, 2.351]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: mean Hartlap chi2 of the within-class constancy test (4 dof) over 200 random equal-count thirds in [2.5, 5.5]",
+   "detail": "mean 3.77, median 3.24, fraction p < 0.05: 0.030",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported) POWER: expected Delta chi2 of the within-class slope test for a pure linear gradient with the class difference (lambda >= 9 = distinguishable)",
+   "detail": "class amplitudes late -0.1281, early +0.0517 (the known split); class median u-r 1.633 / 2.298; beta_true +0.2704 dex/mag; sigma(beta_w) 0.1233; lambda = 4.81; jackknife sigma of the six amplitudes [0.0801, 0.0763, 0.0377, 0.035, 0.0307, 0.0235]",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 [HEADLINE] A STEP: within each class the three amplitudes are constant (4 dof, p > 0.05) and Delta chi2(step - step+slope) < 4  [MUTATE: gradient injected]",
+   "detail": "step chi2 40.96/4 (p 0.000); within-class slope beta_w +0.7391 +- 0.1233 dex/mag, Delta chi2 35.95",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) B's law (no colour dependence, A_c = 0): chi2, 6 dof",
+   "detail": "366.59/6 (p 4.23e-76)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the fits: step, gradient, step + within-class slope",
+   "detail": "step: s_L -0.0946, s_E +0.0554, s_E - s_L +0.1500 +- 0.0404, chi2 40.96/4; gradient: alpha -0.0451, beta +0.3804 +- 0.0613, chi2 16.27/4; step+slope chi2 5.01/3; chi2(step) - chi2(gradient) = +24.69",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the outer-tertile contrasts (boundary tertiles L3, E1 left out): A(L1) - A(L2), A(E3) - A(E2); chi2 against zero, 2 dof",
+   "detail": "+0.0162 +- 0.1042, +0.1056 +- 0.0468; chi2 4.81/2 (p 0.090)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) per bin: N, median u - r, median log M_gal, median z, ESD over K1 (Msun/pc^2)",
+   "detail": "L1: N 31,030, u-r 1.344, log M_gal 10.006, z 0.270, ESD [5.4, 12.2, 15.9, 20.5, 6.7, -18.4, -9.6]; L2: N 31,222, u-r 1.632, log M_gal 10.481, z 0.318, ESD [8.5, 2.2, 9.9, 15.0, 12.0, 37.9, 13.3]; L3: N 31,146, u-r 1.870, log M_gal 10.696, z 0.324, ESD [10.9, 15.2, 21.2, 22.8, 33.9, 39.0, 38.2]; E1: N 29,313, u-r 2.128, log M_gal 10.726, z 0.293, ESD [9.8, 9.7, 18.8, 12.9, 23.0, 32.2, 28.5]; E2: N 29,135, u-r 2.297, log M_gal 10.766, z 0.299, ESD [12.2, 17.1, 16.3, 24.6, 35.2, 57.4, 52.2]; E3: N 29,631, u-r 2.401, log M_gal 10.902, z 0.332, ESD [13.5, 23.0, 28.4, 35.0, 37.7, 50.1, 74.0]",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) the models' predicted amplitudes for the six bins (same definition) and chi2 against the data (6 dof)",
+   "detail": "B's law: [-0.0006, -0.0001, 0.0001, -0.0, -0.0001, 0.0002] chi2 365.0; colour-split LCDM: [-0.0404, -0.1576, -0.1667, 0.0539, 0.0444, 0.0674] chi2 244.0; colour-blind Moster: [-0.2238, -0.0956, -0.0051, -0.0007, -0.0028, 0.0794] chi2 40.3",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R6 (post hoc, reported only; added after the first run) amplitudes against a fixed (non-jackknifed) full-sample reference; every model with a free common offset",
+   "detail": "covariance condition number: frozen 2153 (smallest eigenvalue 3.3e-06), fixed reference 10.9; B's null + offset chi2 54.71/5 (p 1.5e-10); step 40.96/4; gradient 16.27/4; step+slope 5.01/3 (beta_w +0.7391 +- 0.1233); Delta chi2 (step - step+slope) 35.95; models + offset: B's law 54.6/5 (p 1.6e-10), colour-split LCDM 48.5/5 (p 2.9e-09), colour-blind Moster 19.3/5 (p 1.7e-03)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "R6": {
+   "cond": [
+    2153.4158545433593,
+    10.866680853172447
+   ],
+   "fits": {
+    "offset": 54.713843554754554,
+    "step": 40.957055079095824,
+    "gradient": 16.267448310961868,
+    "step+slope": 5.011940614530818
+   },
+   "models": {
+    "B's law": 54.585483687936446,
+    "colour-split LCDM": 48.45401558365465,
+    "colour-blind Moster": 19.346432071527808
+   },
+   "beta_w": [
+    0.7391061674615311,
+    0.12327837208193512
+   ]
+  },
+  "edges": {
+   "0": [
+    1.5069999694824219,
+    1.7490005493164062
+   ],
+   "1": [
+    2.227998733520508,
+    2.3509998321533203
+   ]
+  },
+  "umed": [
+   1.3439998626708984,
+   1.6319999694824219,
+   1.8700008392333984,
+   2.1279983520507812,
+   2.296998977661133,
+   2.4010009765625
+  ],
+  "A6": [
+   -0.259308267579776,
+   -0.2754927366023293,
+   0.007877910398530133,
+   -0.10641588784375715,
+   0.03876631884610566,
+   0.1444122604262064
+  ],
+  "C6": [
+   [
+    0.0064124334000228616,
+    0.0006881875566825886,
+    -0.00039032813964267287,
+    -0.0005483190288096555,
+    -0.0003050440812153643,
+    -2.1295675530358653e-05
+   ],
+   [
+    0.0006881875566825887,
+    0.005828908162622499,
+    -0.0006467866712947638,
+    -0.0005551107507057098,
+    -0.0004668432305483112,
+    -0.00014384779166096723
+   ],
+   [
+    -0.0003903281396426728,
+    -0.0006467866712947638,
+    0.0014250131911686195,
+    -0.0001940153423845481,
+    -0.00024863447393516555,
+    -0.00029478516990523023
+   ],
+   [
+    -0.0005483190288096556,
+    -0.0005551107507057098,
+    -0.00019401534238454814,
+    0.001226308601621837,
+    -0.00017724906977877622,
+    -0.000244228657543542
+   ],
+   [
+    -0.0003050440812153644,
+    -0.0004668432305483112,
+    -0.00024863447393516565,
+    -0.0001772490697787762,
+    0.0009442498574410055,
+    -0.0003472717159885856
+   ],
+   [
+    -2.1295675530358545e-05,
+    -0.00014384779166096742,
+    -0.00029478516990523023,
+    -0.000244228657543542,
+    -0.0003472717159885856,
+    0.0005513495636818486
+   ]
+  ],
+  "class": {
+   "A": [
+    -0.12805939466335609,
+    0.05173132964118479
+   ],
+   "umed": [
+    1.6329994201660156,
+    2.2979984283447266
+   ],
+   "beta_true": 0.27036239467025514
+  },
+  "power": {
+   "lam": 4.809708845993068,
+   "sig_beta": 0.12327837208193516
+  },
+  "fits": {
+   "step": {
+    "th": [
+     -0.09456527528665512,
+     0.05543181243324296
+    ],
+    "chi2": 40.957055079095575
+   },
+   "grad": {
+    "th": [
+     -0.04514567185681407,
+     0.3803540415089001
+    ],
+    "chi2": 16.26744831096181
+   },
+   "ss": {
+    "th": [
+     -0.17257113652267694,
+     0.04626614744499175,
+     0.7391061674615264
+    ],
+    "chi2": 5.011940614530811
+   }
+  },
+  "C3_mean": 3.7691254654182127,
+  "R3": {
+   "d": [
+    0.016184469022553327,
+    0.10564594158010074
+   ],
+   "chi2": 4.812280254706466
+  },
+  "R5": {
+   "B": [
+    -0.0005920486893395604,
+    -0.00014465081597075707,
+    6.789129842400253e-05,
+    -3.517012594935876e-05,
+    -5.405828496080079e-05,
+    0.00021712668529435774
+   ],
+   "L": [
+    -0.04036275143922189,
+    -0.15762358687931263,
+    -0.16666644676347647,
+    0.053943102254273075,
+    0.0443967412608605,
+    0.06735788240496808
+   ],
+   "M": [
+    -0.2238269131117964,
+    -0.09556664832043073,
+    -0.005071279071088914,
+    -0.0007012656172587349,
+    -0.0028199322333183592,
+    0.07940969070634371
+   ]
+  },
+  "reading": "non-discriminating: the data cannot tell a step from a gradient of the class-difference size (lambda < 9)"
+ }
+}

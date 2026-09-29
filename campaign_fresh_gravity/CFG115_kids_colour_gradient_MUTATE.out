@@ -1,0 +1,76 @@
+CFG115 -- IS THE KiDS COLOUR DEPENDENCE AT FIXED g_bar A STEP OR A GRADIENT?  Six within-class colour-tertile bins of the isolated KiDS
+lenses (the June lens stage's own LePhare rest-frame u - r, split at 2.0), common-weight lensing amplitudes over the 1-halo bins K1,
+leave-one-patch-out jackknife; B's null (no colour dependence), a step at the valley, a linear gradient, and a step plus a within-class slope.
+
+Criteria frozen and committed before any colour-binned lensing number: campaign_fresh_gravity/CFG115_FROZEN_CRITERIA.md (e416f3bea).
+  data     cfg110_perlens.npz + lr_lenses.npz + June patch labels (CFG110's script exec'd read-only up to its model controls, MUTATE forced 0);
+           u - r = MAG_ABS_u - MAG_ABS_r (KiDS_DR4_brightsample_LePhare.fits, row-aligned with KiDS_DR4_brightsample.fits), matched by exact
+           (RA, Dec).  Bins: each class at its own colour tertiles.  A_c = log10(sum_k w_k ESD_ck / sum_k w_k ESD_all,k), w_k = the full sample's
+           pair weights (the same for every bin), K1 = bins 8-14.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  every lens matches the bright sample by exact position and (u - r > 2.0) reproduces lr_lenses' typ for every lens.
+  C2  CONTROL  the six bins partition the sample; their summed K1 sums reproduce the full-sample and per-class sums (relative 1e-12).
+  C3  CONTROL  200 random equal-count thirds per class: mean Hartlap chi2 of the within-class constancy test (4 dof) in [2.5, 5.5].
+  R0  POWER (printed before any colour-bin amplitude): expected Delta chi2 of the within-class slope test for a pure linear gradient with the
+               observed class difference, beta_true = (s_E - s_L) / (u_E - u_L); lambda >= 9 means a gradient of that size is distinguishable.
+  H1  [HEADLINE; MUTATE must fail] a step: within each class the three amplitudes are constant (Hartlap chi2, 4 dof, p > 0.05) and
+               Delta chi2(step - step+slope) < 4.
+  R1-R5 (reported): B's null; the fits; the outer-tertile contrasts (boundary tertiles out); per-bin medians and profiles; the models'
+               predicted amplitudes (B, colour-split LCDM, colour-blind Moster).
+  R6  (POST HOC, added after the first run; reported only) the same amplitudes against a FIXED (non-jackknifed) full-sample reference:
+               the frozen definition's jackknifed denominator leaves a near-null covariance direction (a normalisation constraint) that
+               inflates zero-offset rows (R1, R5); the fixed reference is well-conditioned and every model gets a free common offset.
+               Every other line of both logs is unchanged apart from timing.
+MUTATE=1: every lens's K1 wgE x 10^(beta_inj (u - r - u_class)), beta_inj = (s_E - s_L)/(u_E - u_L) from the unmodified data -- H1 must FAIL.
+
+  *** MUTATE=1: a within-class colour gradient of the class-difference slope injected into the data -- H1 must FAIL ***
+
+======================================================================================================================
+C1 / C2  CONTROLS (colours and partition)
+======================================================================================================================
+  [PASS] C1 CONTROL: every lens matches the bright sample by exact (RA, Dec) (IDs row-aligned) and (u - r > 2.0) reproduces lr_lenses' typ for every lens
+         181,477 lenses; IDs aligned True; exact match True; typ reproduced True; u - r finite True
+  [PASS] C2 CONTROL: the six bins partition the sample; their summed K1 sums reproduce the full-sample and per-class sums (relative 1e-12)
+         partition True; max relative deviation 3.3e-16; tertile edges late [1.507, 1.749], early [2.228, 2.351]
+    MUTATE: beta_inj = +0.2704 dex per mag injected within each class (factor range 0.312-1.732)
+
+======================================================================================================================
+C3 / R0  COVARIANCE CALIBRATION AND POWER (printed before the colour-bin amplitudes)
+======================================================================================================================
+  [PASS] C3 CONTROL: mean Hartlap chi2 of the within-class constancy test (4 dof) over 200 random equal-count thirds in [2.5, 5.5]
+         mean 3.77, median 3.24, fraction p < 0.05: 0.030
+  [PASS] (reported) R0 (reported) POWER: expected Delta chi2 of the within-class slope test for a pure linear gradient with the class difference (lambda >= 9 = distinguishable)
+         class amplitudes late -0.1281, early +0.0517 (the known split); class median u-r 1.633 / 2.298; beta_true +0.2704 dex/mag; sigma(beta_w) 0.1233; lambda = 4.81; jackknife sigma of the six amplitudes [0.0801, 0.0763, 0.0377, 0.035, 0.0307, 0.0235]
+
+======================================================================================================================
+H1  STEP OR GRADIENT (six within-class colour-tertile amplitudes over K1)
+======================================================================================================================
+    bin   N        med u-r   A_c        +- jk
+    L1     31,030   1.344   -0.2593   0.0801
+    L2     31,222   1.632   -0.2755   0.0763
+    L3     31,146   1.870   +0.0079   0.0377
+    E1     29,313   2.128   -0.1064   0.0350
+    E2     29,135   2.297   +0.0388   0.0307
+    E3     29,631   2.401   +0.1444   0.0235
+  [FAIL] H1 [HEADLINE] A STEP: within each class the three amplitudes are constant (4 dof, p > 0.05) and Delta chi2(step - step+slope) < 4  [MUTATE: gradient injected]
+         step chi2 40.96/4 (p 0.000); within-class slope beta_w +0.7391 +- 0.1233 dex/mag, Delta chi2 35.95
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) B's law (no colour dependence, A_c = 0): chi2, 6 dof
+         366.59/6 (p 4.23e-76)
+  [PASS] (reported) R2 (reported) the fits: step, gradient, step + within-class slope
+         step: s_L -0.0946, s_E +0.0554, s_E - s_L +0.1500 +- 0.0404, chi2 40.96/4; gradient: alpha -0.0451, beta +0.3804 +- 0.0613, chi2 16.27/4; step+slope chi2 5.01/3; chi2(step) - chi2(gradient) = +24.69
+  [PASS] (reported) R3 (reported) the outer-tertile contrasts (boundary tertiles L3, E1 left out): A(L1) - A(L2), A(E3) - A(E2); chi2 against zero, 2 dof
+         +0.0162 +- 0.1042, +0.1056 +- 0.0468; chi2 4.81/2 (p 0.090)
+  [PASS] (reported) R4 (reported) per bin: N, median u - r, median log M_gal, median z, ESD over K1 (Msun/pc^2)
+         L1: N 31,030, u-r 1.344, log M_gal 10.006, z 0.270, ESD [5.4, 12.2, 15.9, 20.5, 6.7, -18.4, -9.6]; L2: N 31,222, u-r 1.632, log M_gal 10.481, z 0.318, ESD [8.5, 2.2, 9.9, 15.0, 12.0, 37.9, 13.3]; L3: N 31,146, u-r 1.870, log M_gal 10.696, z 0.324, ESD [10.9, 15.2, 21.2, 22.8, 33.9, 39.0, 38.2]; E1: N 29,313, u-r 2.128, log M_gal 10.726, z 0.293, ESD [9.8, 9.7, 18.8, 12.9, 23.0, 32.2, 28.5]; E2: N 29,135, u-r 2.297, log M_gal 10.766, z 0.299, ESD [12.2, 17.1, 16.3, 24.6, 35.2, 57.4, 52.2]; E3: N 29,631, u-r 2.401, log M_gal 10.902, z 0.332, ESD [13.5, 23.0, 28.4, 35.0, 37.7, 50.1, 74.0]
+  [PASS] (reported) R5 (reported) the models' predicted amplitudes for the six bins (same definition) and chi2 against the data (6 dof)
+         B's law: [-0.0006, -0.0001, 0.0001, -0.0, -0.0001, 0.0002] chi2 365.0; colour-split LCDM: [-0.0404, -0.1576, -0.1667, 0.0539, 0.0444, 0.0674] chi2 244.0; colour-blind Moster: [-0.2238, -0.0956, -0.0051, -0.0007, -0.0028, 0.0794] chi2 40.3
+  [PASS] (reported) R6 (post hoc, reported only; added after the first run) amplitudes against a fixed (non-jackknifed) full-sample reference; every model with a free common offset
+         covariance condition number: frozen 2153 (smallest eigenvalue 3.3e-06), fixed reference 10.9; B's null + offset chi2 54.71/5 (p 1.5e-10); step 40.96/4; gradient 16.27/4; step+slope 5.01/3 (beta_w +0.7391 +- 0.1233); Delta chi2 (step - step+slope) 35.95; models + offset: B's law 54.6/5 (p 1.6e-10), colour-split LCDM 48.5/5 (p 2.9e-09), colour-blind Moster 19.3/5 (p 1.7e-03)
+
+    READING (declared): non-discriminating: the data cannot tell a step from a gradient of the class-difference size (lambda < 9)
+
+  10/11 checks pass; load-bearing failures: 1   (174 s)
