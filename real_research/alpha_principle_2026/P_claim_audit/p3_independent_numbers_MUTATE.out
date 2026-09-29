@@ -1,0 +1,60 @@
+== chain row 1 / AH5: x = Lambda l_P^2
+  [PASS] S02 x = 2.85e-122: document 2.85e-122  recomputed 2.84852e-122  (tol 0.01) 
+== chain row 4 / AH6: KK relation numbers (n = 1, alpha_n = 4 l_P^2/R^2)
+  [PASS] S11 R/l_P = 23.41: document 23.41  recomputed 23.4125  (tol 0.001) 
+  [PASS] S11 M_KK = 5.2e17 GeV: document 5.2e+17  recomputed 5.2147e+17  (tol 0.01) 
+  [PASS] S11 m_e R c/hbar = 1e-21 (document rounds 9.8e-22): document 1e-21  recomputed 9.7992e-22  (tol 0.03) 
+  [PASS] S11 tree relation at alpha^-1 = 106.8 (F3 T5 scale) needs R/l_P = 20.67, not 23.41 (2 sqrt(106.8) = 20.669)
+== lane A: n_max and the minimal-object size
+  [PASS] S14 n ~ 3.5e61: document 3.5e+61  recomputed 3.46799e+61  (tol 0.02) 
+  [PASS] S14 required minimal-object size k = 1/(2 sqrt(alpha)) = 5.853 at Thomson; Z within 1.1% of it (Z/k = 0.9890)
+== lanes B/M: SM one-loop chain to the Planck mass, b_Y from field content (exact Fractions)
+  b_Y = 123/50 = 2.4600, b_2 = -19/6
+  [FAIL] b_Y = 41/6 and b_2 = -19/6 from field content 
+  input 1/alpha(m_Z) = 127.93: 1/alpha_Y(m_P) = 82.910, 1/alpha_2(m_P) = 49.455, 1/alpha_em(m_P) = 132.365
+  input 1/alpha(m_Z) = 127.95: 1/alpha_Y(m_P) = 82.925, 1/alpha_2(m_P) = 49.460, 1/alpha_em(m_P) = 132.385
+  [FAIL] S17/S35 1/alpha_em(m_P) = 104.94 (input 127.95): document 104.94  recomputed 132.385  (tol 0.0002) 
+  [FAIL] S17 1/alpha_em(m_P) ~ 105 (input 127.930, lane B prints 104.917): document 104.917  recomputed 132.365  (tol 0.0002) 
+  [FAIL] S35 required k at m_P = 5.12: document 5.12  recomputed 5.75294  (tol 0.001) 
+  Z = 5.7888: Z/k - 1 = 0.62 %, 1 - k/Z = 0.62 %  (document '12-13%'; lane A prints -12.0 = 2-significant-digit rounding of -11.5)
+  [FAIL] S35 the document's '12-13%' = 13.0% relative to k and 11.5% relative to Z 
+  [PASS] S35 the buggy b_Y = 3/5*41/10 gives 132.39 and Z/k = 1.006 (the VOID remark): document 132.39  recomputed 132.385  (tol 0.0002) Z/k_bug = 1.0062
+== lane B: precision needed of f_g and the universal-f sign statement (Eichhorn-Versteegen form beta_g = -f g + b g^3/(16 pi^2))
+  [FAIL] S41 f_g needed for alpha_Y(173 GeV) to 1e-3: 0.18%: document 0.0018  recomputed 0.0011832  (tol 0.05) (f_req = 0.002361, elasticity 0.8452)
+  [PASS] S41 universal f: U(1)_Y has an interacting fixed point only for f>0; SU(2), SU(3) only for f<0 
+== lane C / M4: fermion-only emergence toy and the proper SM chain at the species cutoff
+  [PASS] S19 fermion-only toy 1/alpha(0) ~ 70.4 (N = 118); 137.036/toy = 1.9 (1.91-1.95 across N): document 70.4444  recomputed 70.4444  (tol 0.0001) ratio 1.945
+  [FAIL] S20 proper SM chain at M_red/sqrt(118): 1/alpha_em = 107.25: document 107.25  recomputed 131.916  (tol 0.001) (1/alpha_Y = 84.48, 1/alpha_2 = 47.44; only the U(1)_Y piece can 'emerge')
+  [FAIL] S20 extra unit-Y Dirac fermions at 1 TeV: 8.6: document 8.6  recomputed 12.1199  (tol 0.01) (fixed-cutoff 12.047)
+  [PASS] S42 self-consistent cutoff shifts the requirement by 0.6%: document 0.006  recomputed 0.00603719  (tol 0.05) 
+== lane E: bounds
+  [PASS] S23 zeta_max(w0 = -0.752) = 6.5e-8: document 6.5e-08  recomputed 6.50429e-08  (tol 0.01) 
+  [PASS] S23 1+w allowed at zeta = 6.5e-8: 0.25: document 0.25  recomputed 0.248328  (tol 0.02) 
+  [PASS] S23 AH5 power family: (1+w)_max ~ 1e-6 (8.8e-7): document 8.8e-07  recomputed 8.80203e-07  (tol 0.01) 
+== lane F: radion potential numbers
+  [PASS] S24 extremum value V = 5c/R^4 and V'' = -30 c/R^6 (sign theorem: V>0 only at a maximum) 
+  |DN| = 5: R*/l_P = 1.028e+30; cancellation to reach R = 23.41 l_P: 114.57 decades
+  [PASS] S24 R* ~ 1e30 l_P (|DN| = 5, within a factor 1.1): document 1e+30  recomputed 1.02763e+30  (tol 0.1) 
+  [PASS] S24 ~115 decades (|DN| = 5): document 115  recomputed 114.57  (tol 0.005) 
+  |DN| = 4: R*/l_P = 9.719e+29; cancellation to reach R = 23.41 l_P: 114.47 decades
+  [PASS] S24 R* ~ 1e30 l_P (|DN| = 4, within a factor 1.1): document 1e+30  recomputed 9.71875e+29  (tol 0.1) 
+  [PASS] S24 ~115 decades (|DN| = 4): document 115  recomputed 114.473  (tol 0.005) 
+== lane M: MacDowell-Mansouri coupling
+  [PASS] S43 (16/3) x = 1.5e-121: document 1.5e-121  recomputed 1.51921e-121  (tol 0.02) 
+== lane J: log needed for 137.036 at N_eff = 8
+  [PASS] S29 Lambda/mu = 10^35 (10^35.06): document 35  recomputed 35.0566  (tol 0.002) 
+== Lean AH3: the eps* window
+  [PASS] S06 eps* in (1.64, 1.66), script value 1.6511 (1.6511)
+== lane K: closed forms and misses vs CODATA (independent formulas)
+  [PASS] S48 Gilson miss 4.45e-9: document 4.45e-09  recomputed 4.44919e-09  (tol 0.01) 
+  [PASS] S48 Gilson 27.8 sigma_CODATA: document 27.8  recomputed 27.8074  (tol 0.01) 
+  [PASS] S48 Gilson real parameter at b = 137 is 28.695: document 28.695  recomputed 28.6953  (tol 0.0001) 
+  [PASS] S48 Wyler miss 6.1e-7: document 6.1e-07  recomputed 6.07659e-07  (tol 0.02) 
+  [PASS] S48 Wyler 3800 sigma: document 3800  recomputed 3797.87  (tol 0.02) 
+  [PASS] S48 Eddington 137 miss 2.6e-4: document 0.00026  recomputed 0.000262699  (tol 0.02) 
+  [PASS] S48 Rosen N(N-1)/(4 pi), N = 42, miss 2.6e-5: document 2.6e-05  recomputed 2.62207e-05  (tol 0.03) 
+  [PASS] S48 Sherbon 4 pi^3 + pi^2 + pi miss 2.2e-6: document 2.2e-06  recomputed 2.22277e-06  (tol 0.03) 
+  [PASS] S48 combinatorial hierarchy 137/(1 - 1/(30*127)) miss 2.3e-7: document 2.3e-07  recomputed 2.31556e-07  (tol 0.03) 
+  [PASS] S48 Bleger closed form miss 3.3e-11 (formula as printed in lane K's table): document 3.3e-11  recomputed 3.2737e-11  (tol 0.05) 
+
+FAILED: ['b_Y = 41/6 and b_2 = -19/6 from field content', 'S17/S35 1/alpha_em(m_P) = 104.94 (input 127.95)', 'S17 1/alpha_em(m_P) ~ 105 (input 127.930, lane B prints 104.917)', 'S35 required k at m_P = 5.12', "S35 the document's '12-13%' = 13.0% relative to k and 11.5% relative to Z", 'S41 f_g needed for alpha_Y(173 GeV) to 1e-3: 0.18%', 'S20 proper SM chain at M_red/sqrt(118): 1/alpha_em = 107.25', 'S20 extra unit-Y Dirac fermions at 1 TeV: 8.6']
