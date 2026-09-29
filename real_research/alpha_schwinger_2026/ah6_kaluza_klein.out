@@ -1,0 +1,51 @@
+====================================================================================================
+AH6 Kaluza-Klein route to alpha -- mode: REAL RUN
+====================================================================================================
+
+K1  5D Ricci scalar of ds^2 = eta + (dw + kg A dy)^2 with A = A_y(x):
+     R_5 = -kg**2*Derivative(A(x), x)**2/2
+     R_5 / (kg^2 F_{mu nu}F^{mu nu}) = -1/4     (expected -1/4)
+  [PASS] K1 R_5 = R_4 - (kg^2/4) F^2 (coefficient -1/4) (tested against -1/4)
+
+K2  g^{MN} p_M p_N for the ansatz:
+     = kg**2*pw**2*A(x)**2 - 2*kg*pw*py*A(x) - pt**2 + pw**2 + px**2 + py**2 + pz**2
+  [PASS] K2 g^{MN}p_M p_N = eta^{mu nu}(p_mu - kg A_mu p_w)(p_nu - kg A_nu p_w) + p_w^2 (charge coupling kg n/R) 
+
+K3  canonical normalization:
+     kg^2 = 16*pi*G4;   e_n = 4*sqrt(pi)*sqrt(G4)*nn/R;   alpha_n = e_n^2/(4 pi) = 4*G4*nn**2/R**2   (l_P^2 = G4 in hbar = c = 1)
+  [PASS] K3 alpha_n = 4 n^2 G4/R^2 = 4 n^2 l_P^2/R^2 
+  [PASS] K3' e_n^2 = 16 pi G4 m_n^2 (extremal KK charge-to-mass ratio) 
+
+2. WHAT alpha = 1/137.036 REQUIRES (n = 1):
+     R/l_P = 2/sqrt(alpha) = 23.412475;  R = 3.7841e-34 m;  l_P = 1.6163e-35 m
+     carrier mass M_KK = hbar/(R c) = 5.215e+17 GeV;  m_e = 5.110e-04 GeV;  M_KK/m_e = 1.020e+21
+  [PASS] K4 requirement computed: R/l_P about 23.4 (23.4125)
+
+3. DECLARED HANDLES on k = R/l_P (alpha = 4/k^2; a hit is within 1e-3 of 1/137.035999177):
+     k                    alpha       alpha^-1     miss (rel)   hit?
+     1                    4.00000e+00      0.250    5.471e+02    no
+     2                    1.00000e+00      1.000    1.360e+02    no
+     sqrt(8 pi/3)         4.77465e-01      2.094    6.443e+01    no
+     Z = 2 sqrt(8 pi/3)   1.19366e-01      8.378    1.536e+01    no
+     2 pi                 1.01321e-01      9.870    1.288e+01    no
+     4 pi                 2.53303e-02     39.478    2.471e+00    no
+     Z^2 = 32 pi/3        3.56207e-03    280.735    5.119e-01    no
+  [PASS] K5 no declared handle hits alpha to 1e-3 (declared expectation) 
+
+4. INTEGER FLUX ROUTE (R = N l_P, alpha^-1 = N^2/4):
+     N = 23:  alpha^-1 = 132.250;  miss = 3.619e-02
+     N = 24:  alpha^-1 = 144.000;  miss = 4.836e-02
+  [PASS] K6 neither neighbouring integer N hits alpha to 1e-3 
+
+5. THE ELECTRON OBSTRUCTION: a KK momentum mode has m >= hbar/(R c).
+     m_e R c/hbar = m_e/M_KK = 9.799e-22  (needs >= 1 for the electron to carry graviphoton charge)
+  [PASS] K7 the electron obstruction is present: m_e R c/hbar << 1 (declared expectation: ~1e-21) (9.80e-22)
+
+====================================================================================================
+CHECKS: 8/8 passed
+VERDICT (against the declared criteria):
+  * The KK relation is derived (K1-K3): alpha_n = 4 n^2 l_P^2/R^2, e_n^2 = 16 pi G m_n^2.  Charge quantization is real, but it TRADES alpha for the modulus R.
+  * alpha = 1/137.036 needs R = 23.41 l_P; no declared handle or integer flux number hits (K5, K6).
+  * The carrier of the charge quantum would have M_KK ~ 5.2e+17 GeV; the electron is 1e-21 of the minimum mass a graviphoton-charged mode can have (K7).
+    So the electron's charge cannot be graviphoton charge; a 5D gauge field would make e a free 5D coupling.
+  * Not tested: radion stabilization, the 5D cosmological constant, non-abelian or higher-dimensional KK.  kappa = 1/2 stays FITTED; the SM-mass wall is unchanged.
