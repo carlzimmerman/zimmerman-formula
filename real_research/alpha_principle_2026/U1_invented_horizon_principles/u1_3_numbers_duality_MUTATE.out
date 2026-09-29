@@ -1,0 +1,55 @@
+======================================================================================================================
+U1-3 P15-P18 -- MUTATE CONTROL (target replaced by 4*108/pi)   target 1/alpha = 137.509870831
+======================================================================================================================
+
+P15 Nariai-reduced critical damping.  Derivations (sympy):
+    Nariai: Einstein equations give [{l1: 1/sqrt(Lambda), l2: 1/sqrt(Lambda)}]
+  [PASS] N1 dS_2 x S^2 with Lambda: both radii equal Lambda^(-1/2), so R H_2 = 1 
+    Dirac: alpha = pi*H_2**2*R**2/(4*N)  ->  at R H_2 = 1: alpha = pi/(4*N)
+    Weyl: alpha = pi*H_2**2*R**2/(2*N)  ->  at R H_2 = 1: alpha = pi/(2*N)
+  [PASS] N2 alpha = pi/(4N) (Dirac) and pi/(2N) (Weyl) at R H_2 = 1 
+    Dirac 1/alpha = 4N/pi: inverse map N* = 108.0000 (NOT a test)
+        N =  107: 1/alpha_pred = 136.236631, miss = 9.259e-03 (5.79e+07 sigma_CODATA), bar clears: False
+        N =  108: 1/alpha_pred = 137.509871, miss = 2.220e-16 (1.39e-06 sigma_CODATA), bar clears: True
+    Weyl 1/alpha = 2N/pi: inverse map N* = 216.0000 (NOT a test)
+        N =  215: 1/alpha_pred = 136.873251, miss = 4.630e-03 (2.89e+07 sigma_CODATA), bar clears: False
+        N =  216: 1/alpha_pred = 137.509871, miss = 2.220e-16 (1.39e-06 sigma_CODATA), bar clears: True
+  [FAIL] E1 P15: no (variant, integer) candidate clears lane D's bar (nearest-integer miss >= 1e-3) (best miss 2.220e-16)
+
+P16 membrane quantum Hall:  Z0 = R_K/N (a: 1/alpha = 2N)   or   Z0 = 2 R_K/N (b: 1/alpha = N)
+    a: 1/alpha = 2N: inverse map N* = 68.754935 (NOT a test)
+        N =   68: 1/alpha_pred = 136.000000, miss = 1.098e-02, bar clears: False
+        N =   69: 1/alpha_pred = 138.000000, miss = 3.564e-03, bar clears: False
+    b: 1/alpha = N: inverse map N* = 137.509871 (NOT a test)
+        N =  137: 1/alpha_pred = 137.000000, miss = 3.708e-03, bar clears: False
+        N =  138: 1/alpha_pred = 138.000000, miss = 3.564e-03, bar clears: False
+  [PASS] E2 P16: no candidate clears the bar (a: misses 7e-3; b: 137 misses 2.6e-4) (best miss 3.564e-03)
+  [FAIL] E2b P16 non-integrality: N*_a = 1/(2 alpha) is not an integer (distance from the nearest integer > 0.4), so 'Z0 = R_K/N' fails as an exact statement 
+
+P17 electric-magnetic self-duality: e = g_m with e g_m = 2 pi n (HL) -> alpha = n/2 (n=1: 1/2);  tau = i convention: e^2 = 4 pi -> alpha = 1
+    e g = 2 pi, e = g: alpha = 1/2: 1/alpha_pred = 2.000, miss = 0.9855, bar clears: False
+    tau = i: alpha = 1: 1/alpha_pred = 1.000, miss = 0.9927, bar clears: False
+  [PASS] E3 P17: neither self-dual coupling clears the bar (misses 0.985, 0.993) 
+
+P18 self-dual maps: is F(lambda') = F(lambda) an IDENTITY for a response function?  (fixed points of a map exist trivially for any F and select only a field value)
+  [PASS] C0 P18 variant count = 10 maps 
+    map                                  r_scalar(lambda,mu)          J_dirac/lambda
+    lambda -> 1/lambda                             3.083e+02               9.073e+01
+    lambda -> 1/2/lambda                           2.562e+01               9.480e+00
+    lambda -> 1/4/lambda                           1.865e+00               9.978e-01
+    lambda -> 1/pi/lambda                          4.790e+00               2.158e+00
+    lambda -> 1/(2 pi)/lambda                      9.998e-01               9.978e-01
+    lambda -> 1/(4 pi)/lambda                      9.999e-01               9.979e-01
+    lambda -> 2/lambda                             1.879e+03               5.622e+02
+    lambda -> 4/lambda                             4.782e+03               1.727e+03
+    lambda -> pi/lambda                            3.742e+03               1.255e+03
+    swap (lambda, mu) -> (mu, lambda)              1.079e+04               4.675e+03
+  [PASS] E4 P18: no map leaves either function exactly invariant on the mu > 0 grid (all worst deviations > 1e-6) (300 tests; invariant: [])
+    massless dS_2 Dirac J/(eH lambda) at mu -> 0: ['0.3183098862', '0.3183098862', '0.3183098862', '0.3183098862'] (1/pi = 0.3183098862): constant, so every map is a symmetry -- and nothing is selected
+  [PASS] E5 P18: the only invariant function is the constant massless dS_2 fermion (trivial: J/(eH lambda) = 1/pi at every lambda) 
+
+records written to u1_3_results_MUTATE.json
+CHECKS: 7/9 passed
+VERDICT: P15, P16, P17 DEAD (bar not cleared; integers do not hit 137.036); P18 DEAD (no identity-invariance except the trivial massless fermion). alpha stays an INPUT.
+
+MUTATE CONTROL: targeted check(s) E1 FAILED as required -- the control works (exit 1, the campaign standard)

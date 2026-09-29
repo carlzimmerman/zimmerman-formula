@@ -1,0 +1,35 @@
+======================================================================================================================
+U1-9 graveyard -- REAL RUN
+======================================================================================================================
+  [PASS] C1 record counts: sigma-type 16 variants x 2 species types = 32 records, P06 1, P07 2, P08 2, P09 10, P10 1, P11 2, P12 10, P13 10 + 1 scan, P14 18, P15 6, P16 6, P17 2, P18 20 
+  [PASS] C2 every stored verdict equals the verdict re-derived from its recorded numbers (mismatches: [])
+  [PASS] C3 declared count: 18 principles, 47 (principle, variant) pairs, all present in the records (found 47: {'P01': 1, 'P02': 5, 'P03': 4, 'P04': 4, 'P05': 2, 'P06': 1, 'P07': 2, 'P08': 2, 'P09': 1, 'P10': 1, 'P11': 2, 'P12': 2, 'P13': 2, 'P14': 2, 'P15': 2, 'P16': 2, 'P17': 2, 'P18': 10})
+
+GRAVEYARD (principle -> equation -> what it demands -> test -> verdict):
+  P01  stationary field: J=-2EH                       | alpha G_f(M)=-2                        | fermion M*=10^-280.6 (m*=10^-313.6 eV)                       | T-SPEC           | DEAD               | electron short by 1.3e+81; T1 reproduced
+  P02  membrane impedance match R_H G_vac=1           | |alpha G(M)|=1 (5 length conventions)  | fermion M*=10^-140..10^-1762; scalar M*=0.024..0.28          | T-SPEC           | DEAD               | shortfall 5e+79..8e+81
+  P03  critical damping, 4D oscillator (n,q)=(2,3)    | sigma/H=(2-q)^2/(4q)=1/12              | sigma>0 needed: fermion wrong sign; scalar M*=0.28           | T-SIGN, T-SPEC   | DEAD               | q=2 variant VACUOUS (holds for any alpha)
+  P04  plasma resonance w_p=H                         | sigma/H=1/q-2=-5/3                     | fermion M*=10^-234                                           | T-SPEC           | DEAD               | shortfall 7e+80..1e+81
+  P05  conductance quantum G_vac=n e^2/h              | G_X(M)=+-2 (alpha cancels)             | fermion M*=10^-2.22 (n=-1)                                   | T-SPEC           | DEAD               | alpha-blind: cannot fix alpha at all
+  P06  vacuum neutrality sum sigma_i=0                | sum Q^2N g_i/m_i^2=0                   | g_W*=9.4e+08 or 2.3e+04 pi+- per e                           | spectrum         | DEAD               | alpha-blind; electron carries 93% of the sum
+  P07  Landau pole at the horizon                     | alpha=3 pi/(2 ln(mu/m_e))              | alpha_pred=-0.0530 (negative)                                | T-SIGN, T-NUM    | DEAD               | no running below m_e (decoupling checked)
+  P08  pair-factor marginality rho=0                  | mu^2+lambda^2=1/4 (dS2), 9/4 (dS4)     | needs M<=1/2 (3/2); electron M=4.3e38                        | T-SPEC           | DEAD               | r->1 anchor verified
+  P09  Schwinger critical field                       | lambda=M^2                             | lambda*=1.8e+77 vs ceiling 1.5e+60                           | T-BACK           | DEAD               | rho_E/rho_L=1.5e+34 (electron)
+  P10  conformal threshold as the field               | lambda=1/2                             | E*=3.6e-60 V/m; rho_E/rho_L=1e-121                           | T-BACK, T-INERT  | UNDECIDED (inert)  | fixes E*=H^2/2e, not e
+  P11  Schwinger-Unruh (a0) matching                  | lambda=kappa M                         | E*(e)=1.5e-21 V/m (kappa=1/2)                                | T-BACK, T-INERT  | UNDECIDED (inert)  | fixes E*=kappa m H/e, not e
+  P12  nonlinear self-sustained field                 | |J|=2EH at finite lambda               | lambda*_est=2e+15 x ceiling (electron)                       | T-BACK           | DEAD               | rho_E/rho_L~5e+30
+  P13  zero of the renormalized current               | J(L*(M),M)=0                           | L*_est=1e+15 x ceiling (electron); scalar: no zero found     | T-BACK           | DEAD               | Q1's L*(M) show the M^2 scaling
+  P14  Schwinger-Unruh point that is the dark energy  | alpha=kappa^2 m^2/(3 M_P^2)            | alpha_pred(e)=1.5e-46                                        | T-NUM            | DEAD               | best of 18 misses 4.4e+32
+  P15  Nariai-reduced critical damping                | alpha=pi/(4N) (Dirac), pi/(2N) (Weyl)  | N*=107.63 / 215.26; nearest integers                         | T-NUM            | DEAD               | best miss 1.2e-03 (bar needs 5e-10)
+  P16  membrane quantum Hall                          | 1/alpha=2N or N                        | N*=68.518 / 137.036                                          | T-NUM            | DEAD               | best miss 2.6e-04 (N=137)
+  P17  EM self-duality                                | alpha=1/2 or 1                         | self-dual couplings                                          | T-NUM            | DEAD               | miss 0.985
+  P18  self-dual maps lambda->c/lambda, swap          | F(lambda')=F(lambda) identically       | no non-trivial invariance in 300 tests                       | identity test    | DEAD               | only the constant massless fermion is invariant (trivial)
+  [PASS] C4 tally: 16 DEAD, 2 UNDECIDED (inert), 0 SURVIVES (16 DEAD, 2 UNDECIDED, 0 SURVIVES)
+
+Structural facts computed in this lane:
+  * every known charged species has |sigma_i/H| <= 1.51e-81 (electron 1.40e-81); any principle of the form sigma/H = c with |c| > 1e-80 is dead for the whole SM spectrum.
+  * lambda_max = 1.518e+60: a field-value principle whose field grows like M^2 needs m < 1.47e-03 eV; the lightest charged particle known is 3e8 times heavier.
+  * no principle contains alpha in a way that a known charged particle can satisfy; the two that survive T-BACK (P10, P11) do not contain alpha at all (E* = lambda* H^2/e).
+
+written u1_9_graveyard.json
+CHECKS: 4/4 passed

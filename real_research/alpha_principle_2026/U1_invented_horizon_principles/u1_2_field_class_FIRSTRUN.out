@@ -1,0 +1,88 @@
+======================================================================================================================
+U1-2 field-value principles P08-P14 -- REAL RUN
+======================================================================================================================
+H_Lambda = 1.1899e-33 eV;  lambda_max = 1.5181e+60 (sqrt = 1.232e+30);  the heaviest charged particle a Schwinger-regime principle can use has m < sqrt(lambda_max) H = 1.466e-03 eV
+
+P08 marginality (rho = 0): anchor r -> 1 as rho -> 0 (dS_2 scalar), and the mass window it demands
+    (lambda, mu) = (0.400000, 0.3): rho = 1.00e-06,  r = 0.99999906,  pair number N = r/(1-r) = 1.062e+06
+  [PASS] A1 P08 anchor: r -> 1 (|1 - r| < 1e-4) and N > 1e3 as rho -> 0 (mu^2 + lambda^2 = 1/4) 
+    dS_2 scalar: mu^2 + lambda^2 = 1/4: needs M <= 0.500 (m <= 5.95e-34 eV); lambda*^2 = 0.25 - M^2 is negative for 10/10 species (lightest: electron M = 4.294e+38)
+    dS_4 scalar: mu^2 + lambda^2 = 9/4: needs M <= 1.500 (m <= 1.78e-33 eV); lambda*^2 = 2.25 - M^2 is negative for 10/10 species (lightest: electron M = 4.294e+38)
+  [PASS] E0 P08: no known species admits a real marginal field in either variant (lambda*^2 = c - M^2 < 0 for all 10) 
+
+P09 Schwinger critical field, lambda* = M^2.  Anchor (dS_2 scalar): -ln r at lambda = mu^2 -> ~pi (flat-space exponent pi m^2/eE)
+    mu =  20.0: -ln r(lambda = mu^2) = 3.18014  (pi = 3.14159)
+    mu =  40.0: -ln r(lambda = mu^2) = 3.18296  (pi = 3.14159)
+    mu =  80.0: -ln r(lambda = mu^2) = 3.18366  (pi = 3.14159)
+  [PASS] A2 P09 anchor: -ln r(lambda = mu^2) within 10% of pi at mu = 80 (declared) 
+    species        M            lambda* = M^2      lambda*/lambda_max     rho_E/rho_Lambda    E* [V/m]
+    electron   4.2944e+38      1.8442e+77       1.215e+17          1.476e+34     1.323e+18
+    muon       8.8794e+40      7.8844e+81       5.194e+21          2.697e+43     5.657e+22
+    tau        1.4933e+42      2.2298e+84       1.469e+24          2.157e+48     1.600e+25
+    up         1.8152e+39      3.2951e+78       2.171e+18          4.711e+36     2.364e+19
+    down       3.9246e+39      1.5403e+79       1.015e+19          1.029e+38     1.105e+20
+    strange    7.8492e+40      6.1610e+81       4.058e+21          1.647e+43     4.421e+22
+    charm      1.0673e+42      1.1391e+84       7.504e+23          5.630e+47     8.174e+24
+    bottom     3.5128e+42      1.2340e+85       8.129e+24          6.607e+49     8.855e+25
+    top        1.4503e+44      2.1032e+88       1.385e+28          1.919e+56     1.509e+29
+    pi+-       1.1729e+41      1.3758e+82       9.062e+21          8.213e+43     9.872e+22
+  [PASS] E1 P09 T-BACK: lambda* = M^2 exceeds the back-reaction ceiling for all 10 species (rho_E/rho_Lambda >> 1) (10/10; electron rho_E/rho_L = 1.48e+34)
+
+P10 conformal threshold as the horizon field, lambda = 1/2:  E* = H^2/(2e)
+    rho_E/rho_Lambda = 1.085e-121;  E* = 3.588e-60 V/m;  passes T-BACK for every species (it does not depend on M)
+  [PASS] E2 P10 passes T-BACK (rho_E/rho_Lambda < 1e-100) 
+  [PASS] T-INERT1 the pair-production factor depends on e only through lambda = eE/H^2 (same lambda at four alphas gives identical r) and P10 is back-reaction-consistent at each of them (r = 0.115056843951 at all four; the equation lambda = 1/2 contains no alpha)
+
+P11 Schwinger-Unruh (a0) matching, lambda* = kappa M, E* = kappa m H/e
+    kappa = 1/2:  species      lambda* = kappa M     rho_E/rho_Lambda    E* [V/m]
+        electron      2.1472e+38           2.001e-44     1.541e-21
+        top           7.2513e+43           2.282e-33     5.203e-16
+        pi+-          5.8647e+40           1.492e-39     4.208e-19
+    kappa = 1/(2 pi):  species      lambda* = kappa M     rho_E/rho_Lambda    E* [V/m]
+        electron      6.8347e+37           2.027e-45     4.904e-22
+        top           2.3082e+43           2.312e-34     1.656e-16
+        pi+-          1.8668e+40           1.512e-40     1.340e-19
+    at kappa = 1/2 the flat-space Schwinger exponent pi M^2/lambda = 2 pi M equals the Gibbons-Hawking exponent 2 pi M exactly (algebra: pi M^2/(M/2) = 2 pi M)
+  [PASS] E3 P11 passes T-BACK for every species and both kappa (lambda* <= lambda_max and rho_E/rho_Lambda < 1e-20) 
+  [PASS] T-INERT2 P11's equation lambda = kappa M contains no alpha either (E* = kappa m H/e for any e) 
+
+P12 / P13: nonlinear self-sustained field and zero of the current (ceiling argument; flat-space Schwinger estimate for information only)
+    species     M          (i) |alpha G|/2 (1+(lmax/M^2)^2)     (ii) log10[ exp(-pi M^2/lmax) ]    P12 satisfiable under ceiling?   lambda*_est/lambda_max   P13 zero under ceiling?
+    electron   4.294e+38           6.998e-82                        -1.657e+17                    False                         2.298e+15           False
+    muon       8.879e+40           1.637e-86                        -7.086e+21                    False                         9.237e+19           False
+    tau        1.493e+42           5.787e-89                        -2.004e+24                    False                         2.532e+22           False
+    up         1.815e+39           5.222e-83                        -2.961e+18                    False                         4.037e+16           False
+    down       3.925e+39           2.793e-84                        -1.384e+19                    False                         1.870e+17           False
+    strange    7.849e+40           6.982e-87                        -5.537e+21                    False                         7.228e+19           False
+    charm      1.067e+42           1.510e-88                        -1.024e+24                    False                         1.298e+22           False
+    bottom     3.513e+42           3.486e-90                        -1.109e+25                    False                         1.388e+23           False
+    top        1.450e+44           8.181e-93                        -1.890e+28                    False                         2.275e+26           False
+    pi+-       1.173e+41           3.283e-86                        -1.236e+22                    False                         1.613e+20           False
+  [PASS] E4 P12: under the ceiling J < 2EH for all 10 species (perturbative part ~1e-81 times (1 + 1e-34); non-perturbative part exp(-3e17)-suppressed) 
+  [PASS] E5 P13: under the ceiling no species (fermion) has a sign change of the current; the scalar current has no negative part 
+    electron estimate (information): lambda*_est/lambda_max = 2.298e+15, rho_E/rho_Lambda there = 5.28e+30
+  [PASS] E6 P12 estimate: for the electron the flat-space Schwinger lambda* exceeds the ceiling by > 1e10 (rho_E/rho_Lambda > 1e20) 
+    Q1's zero L*(M) (q1_3_physics_answers.out) over M^2: M=0.5: 22.662, M=1.0: 2.507, M=2.0: 0.529, M=5.0: 0.216   (L* grows to O(M^2) times a slowly falling factor; the estimate above is the same scaling)
+
+P13 scalar variant: sign scan of f(lambda, M) (dS_4 complex scalar, AH4 closed form)
+    M = 0.3: f(lambda=0.1,0.3,1,2,4) = +2.7283, +4.8005, +4.0491, +4.1826, +5.8987
+    M = 1.0: f(lambda=0.1,0.3,1,2,4) = +0.1309, +0.3850, -46.0000, +2.0752, +4.2995
+    M = 2.0: f(lambda=0.1,0.3,1,2,4) = +0.0142, +0.0428, +0.1522, +0.3650, +1.1588
+    non-positive values found: [(1.0, 1.0, -46.0)] among 15 scanned points
+  [FAIL] E7 P13 scalar: f > 0 at every scanned (lambda, M) (no zero to sit at) 
+
+P14: lambda = kappa M (P11) and E^2/2 = rho_Lambda  =>  alpha = kappa^2 m^2/(3 M_P^2)   (derived symbolically below)
+    sympy: E = sqrt(3)*H*M_P/(2*sqrt(pi));  e = 2*sqrt(3)*sqrt(pi)*kappa*m/(3*M_P);  alpha = kappa**2*m**2/(3*M_P**2)
+  [PASS] D1 P14 derivation: alpha = kappa^2 m^2/(3 M_P^2) 
+    kappa=1/2       electron : alpha_pred = 1.460e-46  (alpha_input = 7.29735e-03),  |1/alpha_pred / 137.036 - 1| = 4.999e+43,  bar clears: False
+    kappa=1/2       top      : alpha_pred = 1.665e-35  (alpha_input = 7.29735e-03),  |1/alpha_pred / 137.036 - 1| = 4.383e+32,  bar clears: False
+    kappa=1/(2 pi)  electron : alpha_pred = 1.479e-47  (alpha_input = 7.29735e-03),  |1/alpha_pred / 137.036 - 1| = 4.934e+44,  bar clears: False
+    kappa=1/(2 pi)  top      : alpha_pred = 1.687e-36  (alpha_input = 7.29735e-03),  |1/alpha_pred / 137.036 - 1| = 4.326e+33,  bar clears: False
+    best of the 18 (variant, species): kappa=1/2 top, miss 4.383e+32
+    inverse map (NOT a test): alpha = 1/137.036 would need m = 3.613e+27 eV = 3.61e+18 GeV at kappa=1/2; the electron is 7.07e+21 times lighter
+  [PASS] E8 P14: none of the 18 (kappa, species) pairs clears lane D's bar (best miss >> 5e-10) (best miss 4.383e+32)
+  [PASS] E9 P14: the electron's alpha_pred is more than 40 orders of magnitude below alpha 
+
+records written to u1_2_results.json
+CHECKS: 14/15 passed
+VERDICT: P08, P09, P12, P13, P14 DEAD on the known spectrum / back-reaction / number; P10, P11 pass T-BACK and are UNDECIDED-inert (they fix E*, not e). alpha stays an INPUT.
