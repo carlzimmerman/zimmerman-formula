@@ -82,3 +82,9 @@ Row and size figures are estimates from the stellar density at |b| > 10° to G =
   - WP5's driver must give each variant its own correlation cache file.
   - A new driver can do that without editing `build_catalog.py`, because `fetch_correlations` takes the cache path.
 - **Correction to Q1's radius.** The cone radius is 30,000 AU/d = 30ϖ″. That is 120″ at 250 pc, but it grows past 300″ inside 100 pc (600″ at 50 pc; 3000″ at 10 pc), not "105–300″" as written above. The pilot's row counts will show whether the nearest pairs dominate the volume. (Noted by the orchestrator.)
+- **WP1 and WP4, offline halves (added 2026-09-29).**
+  - `cut13_allsource.py` builds the cone-search upload table and ADQL (DR3: `gaia_source`; DR4 form: `all_source_astrometry` joined to `all_source_photometry` for G). It evaluates the returned neighbours with `cut13.py`'s literal and orbit-aware criteria.
+  - `cut12_nss_union.py` loads per-table id files named in the manifest and calls `cut12_stub`. Its table list is run-time data: DR4's NSS tables, per ESA's page, are not DR3's four (data chat, d9ac3a13f).
+  - `manifest_template_dr4.json` holds every name and count to be confirmed before the data are opened. Its candidates come from the data chat's preview and are non-binding.
+  - `test_wp1_wp4_offline.py` runs synthetic tests under a socket guard: 10/10 pass, and both removal controls bite.
+  - The real DR3 dry runs of WP1 and WP4 still need queries Q1 and Q2.

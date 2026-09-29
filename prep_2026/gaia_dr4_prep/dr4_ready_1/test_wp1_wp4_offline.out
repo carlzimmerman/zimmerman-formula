@@ -1,0 +1,11 @@
+  [PASS] T1 radius = 30 kAU / d(primary) = 30 * plx arcsec  -- plx 4 -> 120.0", plx 20 -> 600.0"
+  [PASS] T2 upload table: two rows per pair, radius in degrees from the PRIMARY's parallax  -- radius_deg [120.0, 120.0, 600.0, 600.0] arcsec
+  [PASS] T3 ADQL: server-side CONTAINS/CIRCLE cone join on the upload; DR4 form joins G from the photometry table
+  [PASS] T4 planted third (pair 0) flagged by BOTH criteria; field star and the star outside 30 kAU (pair 1) not; no-G third (pair 2) not flagged but counted  -- literal [True, False, False], orbit-aware [True, False, False], n_no_g 1, n_no_g_kin 1; manifest {"n_pairs": 3, "n_catalogue_rows": 10, "literal": {"n_hit": 1, "n_neigh": 3, "n_no_g": 1, "n_no_g_kin": 1, "n_no_kin": 0}, "orbit_aware": {"n_hit": 1, "n_neigh": 3, "n_no_g": 1, "n_no_g_kin": 1, "n_no_kin": 0}, "n_disagree": 0}
+  [PASS] M1 (control) removing the planted third removes the flag  -- literal [False, False, False]
+  [PASS] T5 planted NSS id (pair 1's component b in a counted table) flags pair 1 only; the excluded table flags nothing  -- flags [False, True, False]; row counts {'nss_two_body_orbit': 3, 'nss_acceleration_astro': 2, 'nss_multiplicity': 3}
+  [PASS] T6 undeclared counted_tables raises
+  [PASS] T7 a counted table without an id file raises
+  [PASS] T8 DR4-style table names are run-time data (no DR3 list assumed)  -- flags [False, True, True]
+  [PASS] M2 (control) removing the planted id removes the flag  -- flags [False, False, False]
+10/10 pass
