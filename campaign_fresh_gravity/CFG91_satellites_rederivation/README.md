@@ -38,3 +38,6 @@ Nothing here says the data favour the framework; kappa = 1/2 is FITTED. Run in p
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
 - **MUTATE exit code.** The MUTATE run's exit 1 comes from a hard-coded condition in the script (`sys.exit(1 if not (abs(rule_u['z']) < 2) else 0)`: exit 1 whenever the mutated rule does not close the UFDs), not from a failing control; the run prints 'FAILED CONTROLS: none'. The informative signal is the two C4 lines (the UFD rule median stays open at +0.322, +2.44 sigma; H3 fails at fraction 0.050). The post-reading scripts `cfg88_post.py` and `cfg88_post2.py` write `run_post.log` and `run_post2.log`.
+
+## Committed output names (appended)
+- The `.log` files named above are git-ignored by the repository's `.gitignore`, so the committed copies of the same outputs carry the `.out` extension (same names otherwise; content identical to the in-place runs). Nothing else changed.

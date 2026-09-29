@@ -17,3 +17,6 @@
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
 - **Outputs.** The committed outputs are `feas.log` and `toy.log` (the two scripts print to stdout); there is no separate .out file.
+
+## Committed output names (appended)
+- The `.log` files named above are git-ignored by the repository's `.gitignore`, so the committed copies of the same outputs carry the `.out` extension (same names otherwise; content identical to the in-place runs). Nothing else changed.

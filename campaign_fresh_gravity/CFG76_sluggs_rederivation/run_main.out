@@ -1,0 +1,98 @@
+CFG76  MUTATE=False  spec sha256 18d52fc88aacef0f
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG76_sluggs_rederivation/cfg76_sluggs_jam.py:187: IntegrationWarning: The maximum number of subdivisions (200) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  return quad(f, 0, math.pi / 2, limit=200)[0]
+
+== C1 closed-form limits ==
+  [PASS] C1a point-mass Newton gamma=3: sigma_r^2 = GM/(4r)   (max rel err 2.1e-04)
+  [PASS] C1b deep-MOND point mass: sigma_r^2 = sqrt(G M a0)/3, and sigma_los = sigma_r for constant sigma_r (beta=0)   (1.1e-04, 5.3e-05)
+  [PASS] C1c Newtonian limit of the calibration (a0 x1e-6): M* = M_JAM; deep limit (a0 x1e6): M* = MJ^2 G/(2 r^2 a0)   (1.8e-07, 6.2e-06 (deep-limit tolerance 1e-3: nu_mono -> y^-1/2 only up to 1/y))
+  [PASS] C1d EdS turnaround (3pi/4)^2   (5.55165248 vs 5.55165248; LCDM(0.3153) 1+delta_ta(a=1) = 11.7646)
+  [PASS] C1e M200m->M200c: the NFW mass in R200m equals 200 rho_m V; the inverse table round-trips   (6.2e-15, round trip 0.0e+00)
+  [PASS] C1f nu_mono == nu_RAR for y < 2 and h_mono monotone   (max rel diff 4.9e-09; Y_P 2.5396)
+
+== sample ==
+  galaxies in catalogue 27; GC RVs parsed with h50's key: 3440; dropped prefixes (top): NGC821:68, NGC720:65
+  h50-faithful sample: 19 galaxies: NGC1023, NGC1400, NGC1407, NGC2768, NGC3115, NGC3377, NGC3607, NGC4278, NGC4365, NGC4374, NGC4459, NGC4473, NGC4486, NGC4494, NGC4526, NGC4649, NGC4697, NGC5846, NGC7457
+  [PASS] C2 h50's committed sample: 27 galaxies, 3440 GC RVs, 19 in the dispersion sample   (27 / 3440 / 19)
+  with ATLAS3D JAM quality >= 1: 16; not in ATLAS3D: [1400, 1407, 3115]; in ATLAS3D but qual<1: []
+  [PASS] G2 sample = 16, the rest exactly NGC 1400/1407/3115   (16; outside ATLAS3D [1400, 1407, 3115])
+  corrected key: GC RVs 3573; extra galaxies entering: ['NGC720', 'NGC821']
+
+== MAIN: JAM-calibrated masses, N=16 ==
+  nu_mono  canonical: law +0.098 +- 0.025 (+3.98s; ddof0 0.024, +4.11s) N=16 | rule +0.047 +- 0.018 (+2.66s; ddof0 0.017, +2.75s) N=16; rule-excluded []; multi-root galaxies []
+  nu_mono  alt      : law +0.089 +- 0.024 (+3.64s; ddof0 0.024, +3.75s) N=16 | rule +0.048 +- 0.018 (+2.67s; ddof0 0.017, +2.76s) N=16; rule-excluded []; multi-root galaxies []
+  nu_rar   canonical: law +0.097 +- 0.025 (+3.95s; ddof0 0.024, +4.08s) N=16 | rule +0.046 +- 0.018 (+2.62s; ddof0 0.017, +2.71s) N=16; rule-excluded []; multi-root galaxies []
+  nu_rar   alt      : law +0.088 +- 0.024 (+3.62s; ddof0 0.024, +3.73s) N=16 | rule +0.047 +- 0.018 (+2.64s; ddof0 0.017, +2.73s) N=16; rule-excluded []; multi-root galaxies []
+
+== SLUGGS masses, same 16 (and 19 for the law) ==
+  nu_mono  canonical: 16: law +0.077 +- 0.028 (+2.75s; ddof0 0.027, +2.84s) N=16 | rule +0.006 +- 0.018 (+0.35s; ddof0 0.018, +0.37s) N=16
+                      19: law +0.079 +- 0.024 (+3.27s; ddof0 0.024, +3.36s) N=19 | rule +0.006 +- 0.017 (+0.39s; ddof0 0.016, +0.40s) N=19
+  nu_mono  alt      : 16: law +0.063 +- 0.028 (+2.23s; ddof0 0.027, +2.31s) N=16 | rule +0.002 +- 0.018 (+0.12s; ddof0 0.018, +0.12s) N=16
+                      19: law +0.065 +- 0.024 (+2.67s; ddof0 0.024, +2.74s) N=19 | rule +0.002 +- 0.017 (+0.10s; ddof0 0.016, +0.10s) N=19
+  nu_rar   canonical: 16: law +0.077 +- 0.028 (+2.75s; ddof0 0.027, +2.84s) N=16 | rule +0.007 +- 0.018 (+0.36s; ddof0 0.018, +0.37s) N=16
+                      19: law +0.080 +- 0.024 (+3.28s; ddof0 0.024, +3.37s) N=19 | rule +0.007 +- 0.017 (+0.39s; ddof0 0.016, +0.40s) N=19
+  nu_rar   alt      : 16: law +0.063 +- 0.028 (+2.23s; ddof0 0.027, +2.31s) N=16 | rule +0.002 +- 0.018 (+0.12s; ddof0 0.018, +0.13s) N=16
+                      19: law +0.065 +- 0.024 (+2.67s; ddof0 0.024, +2.75s) N=19 | rule +0.002 +- 0.017 (+0.10s; ddof0 0.016, +0.10s) N=19
+
+== gates ==
+  [PASS] G1 reproduction of CFG55 headline, kernel nu_mono, error ddof=1   (can law: +0.098(+0.001) err 0.025(+0.001) 3.98s; can rule: +0.047(+0.001) err 0.018(-0.000) 2.66s; alt law: +0.089(+0.001) err 0.024(+0.000) 3.64s; alt rule: +0.048(+0.001) err 0.018(-0.000) 2.67s)
+  [FAIL] G1 reproduction of CFG55 headline, kernel nu_mono, error ddof=0   (can law: +0.098(+0.001) err 0.024(-0.000) 4.11s; can rule: +0.047(+0.001) err 0.017(-0.001) 2.75s; alt law: +0.089(+0.001) err 0.024(-0.000) 3.75s; alt rule: +0.048(+0.001) err 0.017(-0.001) 2.76s)
+  [PASS] G1 reproduction of CFG55 headline, kernel nu_rar, error ddof=1   (can law: +0.097(-0.000) err 0.025(+0.001) 3.95s; can rule: +0.046(+0.000) err 0.018(-0.000) 2.62s; alt law: +0.088(+0.000) err 0.024(+0.000) 3.62s; alt rule: +0.047(+0.000) err 0.018(-0.000) 2.64s)
+  [FAIL] G1 reproduction of CFG55 headline, kernel nu_rar, error ddof=0   (can law: +0.097(-0.000) err 0.024(-0.000) 4.08s; can rule: +0.046(+0.000) err 0.017(-0.001) 2.71s; alt law: +0.088(+0.000) err 0.024(-0.000) 3.73s; alt rule: +0.047(+0.000) err 0.017(-0.001) 2.73s)
+  [PASS] G3 SLUGGS-mass rows (CFG55 16-galaxy law/rule; CFG38 19-galaxy law +0.080/+0.065), kernel nu_mono   (can 16: law +0.077 rule +0.006; 19: law +0.079 +-0.024 rule +0.006 +-0.017; alt 16: law +0.063 rule +0.002; 19: law +0.065 +-0.024 rule +0.002 +-0.017)
+  [PASS] G3 SLUGGS-mass rows (CFG55 16-galaxy law/rule; CFG38 19-galaxy law +0.080/+0.065), kernel nu_rar   (can 16: law +0.077 rule +0.007; 19: law +0.080 +-0.024 rule +0.007 +-0.017; alt 16: law +0.063 rule +0.002; 19: law +0.065 +-0.024 rule +0.002 +-0.017)
+
+== C3: JAM x 1/2 (own implementation) ==
+  nu_mono: law +0.216 +- 0.024 (+9.03s; ddof0 0.023, +9.33s) N=16 | rule +0.199 +- 0.025 (+7.85s; ddof0 0.025, +8.12s) N=15; excluded [7457]
+  nu_rar: law +0.216 +- 0.024 (+9.03s; ddof0 0.023, +9.32s) N=16 | rule +0.199 +- 0.025 (+7.84s; ddof0 0.025, +8.12s) N=15; excluded [7457]
+  [PASS] C3 JAM x1/2 law offset -> +0.216 (9.1 sigma), kernel nu_mono   (+0.216 +- 0.024 = 9.0s (ddof0 9.3s))
+  [PASS] C3 JAM x1/2 law offset -> +0.216 (9.1 sigma), kernel nu_rar   (+0.216 +- 0.024 = 9.0s (ddof0 9.3s))
+
+== reported sensitivities (canonical, primary kernel nu_mono unless stated; N=16) ==
+  primary                                                   : law +0.098 +- 0.025 (+3.98s; ddof0 0.024, +4.11s) N=16 | rule +0.047 +- 0.018 (+2.66s; ddof0 0.017, +2.75s) N=16
+  distance mode dyn (M_JAM ~ D)                             : law +0.098 +- 0.024 (+4.02s; ddof0 0.024, +4.15s) N=16 | rule +0.047 +- 0.018 (+2.62s; ddof0 0.017, +2.70s) N=16
+  Hernquist enclosed fraction at r_1/2                      : law +0.088 +- 0.023 (+3.77s; ddof0 0.023, +3.90s) N=16 | rule +0.035 +- 0.018 (+1.93s; ddof0 0.017, +1.99s) N=16
+  without NGC 7457                                          : law +0.097 +- 0.026 (+3.69s; ddof0 0.025, +3.82s) N=15 | rule +0.049 +- 0.019 (+2.60s; ddof0 0.018, +2.69s) N=15
+  Salpeter population masses (ATLAS3D logML_Salp x L)       : law +0.077 +- 0.027 (+2.84s; ddof0 0.026, +2.93s) N=16 | rule +0.022 +- 0.019 (+1.20s; ddof0 0.018, +1.24s) N=16
+  gamma = 2.4                                               : law +0.054 +- 0.025 (+2.19s; ddof0 0.024, +2.26s) N=16 | rule -0.003 +- 0.018 (-0.19s; ddof0 0.017, -0.20s) N=16
+  gamma = 2.7                                               : law +0.077 +- 0.025 (+3.13s; ddof0 0.024, +3.23s) N=16 | rule +0.023 +- 0.018 (+1.31s; ddof0 0.017, +1.36s) N=16
+  gamma = 3.3                                               : law +0.117 +- 0.025 (+4.76s; ddof0 0.024, +4.91s) N=16 | rule +0.069 +- 0.018 (+3.88s; ddof0 0.017, +4.01s) N=16
+  gamma = 3.6                                               : law +0.135 +- 0.025 (+5.47s; ddof0 0.024, +5.65s) N=16 | rule +0.088 +- 0.018 (+4.98s; ddof0 0.017, +5.14s) N=16
+  beta = -0.3                                               : law +0.096 +- 0.025 (+3.90s; ddof0 0.024, +4.03s) N=16 | rule +0.048 +- 0.018 (+2.71s; ddof0 0.017, +2.80s) N=16
+  beta = +0.3                                               : law +0.100 +- 0.025 (+4.09s; ddof0 0.024, +4.23s) N=16 | rule +0.046 +- 0.018 (+2.58s; ddof0 0.017, +2.67s) N=16
+  corrected-key sample, N=17                                : law +0.100 +- 0.023 (+4.32s; ddof0 0.023, +4.46s) N=17 | rule +0.053 +- 0.018 (+3.01s; ddof0 0.017, +3.10s) N=17
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG76_sluggs_rederivation/cfg76_sluggs_jam.py:340: RuntimeWarning: divide by zero encountered in scalar divide
+  return " | ".join(f"{k} {v[0]:+.3f} +- {v[1]:.3f} ({v[0]/v[1]:+.2f}s; ddof0 {v[2]:.3f}, {v[0]/v[2]:+.2f}s) N={v[3]}" for k, v in o.items())
+  corrected-key extras only ['NGC720', 'NGC821']            : law +0.142 +- nan (+nans; ddof0 0.000, +infs) N=1 | rule +0.142 +- nan (+nans; ddof0 0.000, +infs) N=1
+  r_1/2(ATLAS3D at SLUGGS D) / R_e(SLUGGS): median 1.23, range 0.61-1.70
+  D_SLUGGS/D_ATLAS3D: median 1.000, range 0.954-1.096
+  log10(M*_JAM-calibrated law / SLUGGS M*): median -0.100 (CFG55: -0.10)
+
+== per-galaxy (canonical, nu_mono): NGC, D, logM*_SLUGGS, logM*_law, logM*_rule, off_law, off_rule, off_law(SLUGGS M*) ==
+  NGC1023  D= 11.1 10.99 10.79 10.79  +0.104 +0.104  +0.037
+  NGC2768  D= 21.8 11.21 11.41 11.30  -0.005 -0.060  +0.058
+  NGC3377  D= 10.9 10.50 10.33 10.33  +0.064 +0.064  +0.011
+  NGC3607  D= 22.2 11.39 11.26 11.23  +0.028 -0.010  -0.014
+  NGC4278  D= 15.6 10.95 11.03 11.03  +0.131 +0.131  +0.158
+  NGC4365  D= 23.1 11.51 11.39 11.29  +0.208 +0.134  +0.171
+  NGC4374  D= 18.5 11.51 11.52 11.44  +0.201 +0.064  +0.205
+  NGC4459  D= 16.0 10.98 10.82 10.82  -0.022 -0.022  -0.073
+  NGC4473  D= 15.2 10.96 10.87 10.87  +0.064 +0.064  +0.033
+  NGC4486  D= 16.7 11.62 11.64 11.52  +0.279 +0.133  +0.284
+  NGC4494  D= 16.6 11.02 10.87 10.87  -0.103 -0.103  -0.149
+  NGC4526  D= 16.4 11.26 11.20 11.19  +0.078 +0.056  +0.056
+  NGC4649  D= 16.5 11.60 11.63 11.53  +0.133 -0.002  +0.142
+  NGC4697  D= 12.5 11.15 11.04 11.04  +0.078 +0.078  +0.044
+  NGC5846  D= 24.2 11.46 11.47 11.35  +0.213 +0.101  +0.215
+  NGC7457  D= 12.9 10.13 9.94 9.62  +0.115 +0.021  +0.059
+
+FAILED CHECKS (2): G1 reproduction of CFG55 headline, kernel nu_mono, error ddof=0; G1 reproduction of CFG55 headline, kernel nu_rar, error ddof=0

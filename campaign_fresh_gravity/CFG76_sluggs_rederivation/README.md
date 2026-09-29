@@ -22,3 +22,6 @@ Run in `CFG76_sluggs_rederivation/`: `python3 cfg76_sluggs_jam.py` (rc 1 by desi
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
 - **Exit codes.** The main run and the MUTATE run both exit 1 (the main run by design, the ddof = 0 reading of G1), so the exit code does not discriminate the control; the informative signal is the failing-check set (the MUTATE run fails the reproduction gate G1 and raises both offsets by 0.118-0.153 dex). The script header's 'MUTATE exit 1 intended' is true but not informative.
+
+## Committed output names (appended)
+- The `.log` files named above are git-ignored by the repository's `.gitignore`, so the committed copies of the same outputs carry the `.out` extension (same names otherwise; content identical to the in-place runs). Nothing else changed.
