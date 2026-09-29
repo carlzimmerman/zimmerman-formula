@@ -1,0 +1,39 @@
+== A1 ladder bifurcation equation ==
+[PASS] A1a  x^2 f'' + 2 x f' + lam f = 0 gives s(1-s) = lam  (indicial equation) (indicial polynomial: lambda + s**2 - s)
+[PASS] A1b  discriminant 1 - 4 lam vanishes at lam = 1/4 only 
+[PASS] A1c  lam = 3 alpha/(4 pi) = 1/4  =>  alpha_c = pi/3 
+   L =  10: lam_1 = 106.604931   lam_1 - 1/4 = 106.354931   (pi/L)^2 = 0.098696   ratio = 1077.601
+   L =  20: lam_1 = 79.950000   lam_1 - 1/4 = 79.700000   (pi/L)^2 = 0.024674   ratio = 3230.119
+   L =  40: lam_1 = 53.300000   lam_1 - 1/4 = 53.050000   (pi/L)^2 = 0.006169   ratio = 8600.142
+   L =  80: lam_1 = 47.980000   lam_1 - 1/4 = 47.730000   (pi/L)^2 = 0.001542   ratio = 30950.785
+   convergence: L = 80 with N = 3200: lam_1 = 63.980000 (N = 2400: 47.980000)
+[FAIL] A1d  numerics converged (|dlam| < 1e-4 between N = 2400 and 3200 at L = 80) 
+   Richardson extrapolation lam_c = (4 lam(80) - lam(40))/3 = 46.206667  ->  alpha_c = 4 pi lam_c/3 = 193.55003  (pi/3 = 1.04720)
+[FAIL] A1e  (ii) lam_1(L) - 1/4 within 15% of (pi/L)^2 at L = 40 and 80 (Miransky scaling, no O(1) shift) 
+[FAIL] A1f  (iii) extrapolated lam_c within 2% of 1/4  (alpha_c = pi/3 to 2%) 
+== A2 positive control (QCD) and SM scan ==
+   control: R = C_F alpha_s/(pi/3) reaches 1 at mu_c = None GeV (ladder estimate; one-loop running is unreliable there)
+[FAIL] A2a  POSITIVE CONTROL: the ladder criterion fires for the non-abelian SM sector in [0.15, 2] GeV 
+   mu = MZ   : R_Y(Y=1) = 0.0097   R_SU2 = 0.0242   R_SU3 = 0.1502   (two loop, alpha_c = pi/3)
+   mu = 1e10 : R_Y(Y=1) = 0.0122   R_SU2 = 0.0185   R_SU3 = 0.0432   (two loop, alpha_c = pi/3)
+   mu = X_G  : R_Y(Y=1) = 0.0154   R_SU2 = 0.0156   R_SU3 = 0.0278   (two loop, alpha_c = pi/3)
+   mu = M_P  : R_Y(Y=1) = 0.0173   R_SU2 = 0.0146   R_SU3 = 0.0241   (two loop, alpha_c = pi/3)
+   QED-only toy at M_P: 1/alpha = 59.805, R_em = alpha/alpha_c = 0.0160
+[PASS] A2b  no abelian factor is near-critical (R >= 0.5) at any mu <= M_P (declared expectation) (max abelian R at M_P = 0.0173)
+   INVERSE MAP (reported, not a test): R = 1 reached at mu = 10^34.14 GeV (QED-only toy, one loop) and 10^40.85 GeV (U(1)_Y, one loop); M_P = 10^19.09
+== A3 twelve hit-tests: C2_max alpha(X) = alpha_c ==
+   QED-toy Q=1   X = M_P    alpha_c = pi/3     : 1/alpha_pred(0) =    78.186  miss = -0.4295  tol = 0.0270  within tol: False
+   U(1)_Y Y=1    X = M_P    alpha_c = pi/3     : 1/alpha_pred(0) =    82.530  miss = -0.3978  tol = 0.0100  within tol: False
+   QED-toy Q=1   X = M_P    alpha_c = 0.933667 : 1/alpha_pred(0) =    78.302  miss = -0.4286  tol = 0.0270  within tol: False
+   U(1)_Y Y=1    X = M_P    alpha_c = 0.933667 : 1/alpha_pred(0) =    82.646  miss = -0.3969  tol = 0.0100  within tol: False
+   QED-toy Q=1   X = M_red  alpha_c = pi/3     : 1/alpha_pred(0) =    75.449  miss = -0.4494  tol = 0.0270  within tol: False
+   U(1)_Y Y=1    X = M_red  alpha_c = pi/3     : 1/alpha_pred(0) =    80.776  miss = -0.4105  tol = 0.0100  within tol: False
+   QED-toy Q=1   X = M_red  alpha_c = 0.933667 : 1/alpha_pred(0) =    75.565  miss = -0.4486  tol = 0.0270  within tol: False
+   U(1)_Y Y=1    X = M_red  alpha_c = 0.933667 : 1/alpha_pred(0) =    80.892  miss = -0.4097  tol = 0.0100  within tol: False
+   QED-toy Q=1   X = X_S    alpha_c = pi/3     : 1/alpha_pred(0) =    71.399  miss = -0.4790  tol = 0.0270  within tol: False
+   U(1)_Y Y=1    X = X_S    alpha_c = pi/3     : 1/alpha_pred(0) =    78.182  miss = -0.4295  tol = 0.0100  within tol: False
+   QED-toy Q=1   X = X_S    alpha_c = 0.933667 : 1/alpha_pred(0) =    71.515  miss = -0.4781  tol = 0.0270  within tol: False
+   U(1)_Y Y=1    X = X_S    alpha_c = 0.933667 : 1/alpha_pred(0) =    78.298  miss = -0.4286  tol = 0.0100  within tol: False
+[PASS] A3a  twelve variants scored 
+[PASS] A3b  no variant lies within its tolerance (declared expectation: all miss by > 20%) (smallest |miss| = 0.3969)
+[w2_a1 MUTATE] failed checks: ['A1d  numerics converged (|dlam| < 1e-4 between N = 2400 and 3200 at L = 80)', 'A1e  (ii) lam_1(L) - 1/4 within 15% of (pi/L)^2 at L = 40 and 80 (Miransky scaling, no O(1) shift)', 'A1f  (iii) extrapolated lam_c within 2% of 1/4  (alpha_c = pi/3 to 2%)', 'A2a  POSITIVE CONTROL: the ladder criterion fires for the non-abelian SM sector in [0.15, 2] GeV'] -> exit 1

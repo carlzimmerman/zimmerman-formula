@@ -1,0 +1,44 @@
+== D1 reproduce the source ==
+   1/N~^1 coefficient of A~^1: printed    0.3516   mine    0.3516   ok
+   1/N~^1 coefficient of A~^2: printed   -0.8057   mine   -0.8057   ok
+   1/N~^1 coefficient of A~^3: printed   -1.5670   mine   -1.5666   ok
+   1/N~^1 coefficient of A~^4: printed    5.3420   mine    5.3424   ok
+   1/N~^1 coefficient of A~^5: printed    1.6000   mine    1.5998   ok
+   1/N~^2 coefficient of A~^2: printed   -0.0206   mine   -0.0206   ok
+   1/N~^2 coefficient of A~^3: printed   -1.6020   mine   -1.6024   ok
+   1/N~^2 coefficient of A~^4: printed   -3.2440   mine   -3.2438   ok
+   1/N~^3 coefficient of A~^3: printed   -0.0555   mine   -0.0555   ok
+   1/N~^4 coefficient of A~^4: printed    0.1198   mine    0.1198   ok
+[PASS] D1a  all ten printed coefficients of Holdom's (12) reproduced to 1% 
+[PASS] D1b  the two-loop coefficient F_1 = (3/4) A + ... (matches 2-loop QED: ratio 3 alpha/4pi) and the three-loop N^2 coefficient -11/48 
+   A = 7.49: F_1 = -0.00717430936684,  F_1 - (7/15pi^2) ln(1 - 2A/15) = 0.30584406   (Holdom (8): 0.3056)
+   A = 7.499999: F_1 = -0.442991202033,  F_1 - (7/15pi^2) ln(1 - 2A/15) = 0.30552171   (Holdom (8): 0.3056)
+   A = 7.4999999999: F_1 = -0.878485775573,  F_1 - (7/15pi^2) ln(1 - 2A/15) = 0.30552168   (Holdom (8): 0.3056)
+[PASS] D1c  log singularity at A = 15/2 with coefficient 7/(15 pi^2) and constant 0.3056 (Holdom eq. (8)) 
+== D2 zeros of the 1/N beta function ==
+   N =  1: 15/2 - A* = 10^  -11.12   [Holdom (9) 0.0117 e^(-15 pi^2 N/7): ratio 1.002]   alpha* = pi A*/N = 23.5619   ladder A_crit = N/3 = 0.333   |1+F1/N| = 3.1e-41
+   N =  2: 15/2 - A* = 10^  -20.30   [Holdom (9) 0.0117 e^(-15 pi^2 N/7): ratio 1.002]   alpha* = pi A*/N = 11.7810   ladder A_crit = N/3 = 0.667   |1+F1/N| = 3.9e-32
+   N =  4: 15/2 - A* = 10^     nan   [Holdom (9) 0.0117 e^(-15 pi^2 N/7): ratio nan]   alpha* = pi A*/N = nan   ladder A_crit = N/3 = 1.333   |1+F1/N| = nan
+   N =  8: 15/2 - A* = 10^     nan   [Holdom (9) 0.0117 e^(-15 pi^2 N/7): ratio nan]   alpha* = pi A*/N = nan   ladder A_crit = N/3 = 2.667   |1+F1/N| = nan
+   N = 12: 15/2 - A* = 10^     nan   [Holdom (9) 0.0117 e^(-15 pi^2 N/7): ratio nan]   alpha* = pi A*/N = nan   ladder A_crit = N/3 = 4.000   |1+F1/N| = nan
+   N = 16: 15/2 - A* = 10^     nan   [Holdom (9) 0.0117 e^(-15 pi^2 N/7): ratio nan]   alpha* = pi A*/N = nan   ladder A_crit = N/3 = 5.333   |1+F1/N| = nan
+[FAIL] D2a  the zero of 1 + F_1/N lies within 10^-(9N) ... of A = 15/2 and matches Holdom's eq. (9) prefactor to 3% 
+[FAIL] D2b  for every N <= 16 the ladder chiral-breaking value A_crit = N/3 lies BELOW the fixed point (chi-SB is reached first if the ladder estimate is trusted) 
+   N =  1: zeros of the sum through F_4 (MS-bar, truncated in A beyond the printed terms), grid step 0.05: none in 0.05..7.45   [alpha* = []]
+   N =  2: zeros of the sum through F_4 (MS-bar, truncated in A beyond the printed terms), grid step 0.05: ['2.10', '3.14']   [alpha* = ['3.306', '4.928']]
+   N =  4: zeros of the sum through F_4 (MS-bar, truncated in A beyond the printed terms), grid step 0.05: ['2.33']   [alpha* = ['1.834']]
+   N =  8: zeros of the sum through F_4 (MS-bar, truncated in A beyond the printed terms), grid step 0.05: ['3.32']   [alpha* = ['1.304']]
+   N = 12: zeros of the sum through F_4 (MS-bar, truncated in A beyond the printed terms), grid step 0.05: ['4.15']   [alpha* = ['1.085']]
+   N = 16: zeros of the sum through F_4 (MS-bar, truncated in A beyond the printed terms), grid step 0.05: ['4.86']   [alpha* = ['0.955']]
+   READING: a zero of the truncated sum, where it exists, is an MS-bar, 1/N-truncated feature at A of order the radius of convergence; Holdom himself states that such zeros occur where higher orders cannot be ignored.
+   F_1 is derived for N identical charged fermions; the SM's sum N_c Q^2 = 8 does NOT make its charge spectrum equivalent to N = 8 (the 1/N terms involve sum Q^4 etc.). N = 8 is a magnitude only.
+== D3 running from alpha_0 with the all-order F_1 beta function (INVERSE MAP, reported) ==
+   N = 1: A_0 = N alpha_0/pi = 0.00232; ln(mu/m) needed to reach A = 5.0: all-order-in-A   639.120, one loop   645.467, difference -6.347
+   N = 1: A_0 = N alpha_0/pi = 0.00232; ln(mu/m) needed to reach A = 7.0: all-order-in-A   639.190, one loop   645.553, difference -6.362
+   N = 1: A_0 = N alpha_0/pi = 0.00232; ln(mu/m) needed to reach A = 7.4: all-order-in-A   639.200, one loop   645.564, difference -6.364
+   N = 8: A_0 = N alpha_0/pi = 0.01858; ln(mu/m) needed to reach A = 5.0: all-order-in-A    79.850, one loop    80.421, difference -0.570
+   N = 8: A_0 = N alpha_0/pi = 0.01858; ln(mu/m) needed to reach A = 7.0: all-order-in-A    79.934, one loop    80.507, difference -0.573
+   N = 8: A_0 = N alpha_0/pi = 0.01858; ln(mu/m) needed to reach A = 7.4: all-order-in-A    79.945, one loop    80.518, difference -0.573
+[PASS] D3a  1 + F_1/N > 0 on (0, 7.4] for N = 1, 8: the map alpha_0 <-> ln(Lambda/m) is one-to-one and monotone along the trajectory 
+[FAIL] D3b  the all-order correction to the one-loop scale ratio is < 1 e-fold for the electron-alone case (alpha_0 is the small parameter) 
+[w2_d1] failed checks: ["D2a  the zero of 1 + F_1/N lies within 10^-(9N) ... of A = 15/2 and matches Holdom's eq. (9) prefactor to 3%", 'D2b  for every N <= 16 the ladder chiral-breaking value A_crit = N/3 lies BELOW the fixed point (chi-SB is reached first if the ladder estimate is trusted)', 'D3b  the all-order correction to the one-loop scale ratio is < 1 e-fold for the electron-alone case (alpha_0 is the small parameter)'] -> exit 1

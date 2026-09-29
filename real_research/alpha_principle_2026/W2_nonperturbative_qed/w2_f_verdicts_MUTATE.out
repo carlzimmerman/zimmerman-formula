@@ -1,0 +1,38 @@
+[PASS] G1  toy S(M_P) reproduces lane I's 77.2304 (quark set A) to 1e-4 relative (77.2307)
+[PASS] G2  one-loop 1/alpha_Y(M_P) reproduces lane B/U3's 55.48 to 1e-3 (55.461)
+[PASS] G3  the bar's positive control (miss 1e-12, no fitted reals, 20-trial family) clears 
+[FAIL] G3m MUTATE: the same positive control with one fitted real must still clear (it must NOT) 
+[PASS] V0  twenty hit-tests collected (12 + 8) 
+== the bar (lane D) for every hit-test ==
+   A3  QED-toy Q=1 X=M_P alpha_c=pi/3             miss -0.4295 (tol 0.027)  bar: P = 0.349, precision ok: False, clears: False  -> DEAD
+   A3  U(1)_Y Y=1 X=M_P alpha_c=pi/3              miss -0.3978 (tol 0.010)  bar: P = 0.328, precision ok: False, clears: False  -> DEAD
+   A3  QED-toy Q=1 X=M_P alpha_c=0.933667         miss -0.4286 (tol 0.027)  bar: P = 0.349, precision ok: False, clears: False  -> DEAD
+   A3  U(1)_Y Y=1 X=M_P alpha_c=0.933667          miss -0.3969 (tol 0.010)  bar: P = 0.328, precision ok: False, clears: False  -> DEAD
+   A3  QED-toy Q=1 X=M_red alpha_c=pi/3           miss -0.4494 (tol 0.027)  bar: P = 0.362, precision ok: False, clears: False  -> DEAD
+   A3  U(1)_Y Y=1 X=M_red alpha_c=pi/3            miss -0.4105 (tol 0.010)  bar: P = 0.337, precision ok: False, clears: False  -> DEAD
+   A3  QED-toy Q=1 X=M_red alpha_c=0.933667       miss -0.4486 (tol 0.027)  bar: P = 0.361, precision ok: False, clears: False  -> DEAD
+   A3  U(1)_Y Y=1 X=M_red alpha_c=0.933667        miss -0.4097 (tol 0.010)  bar: P = 0.336, precision ok: False, clears: False  -> DEAD
+   A3  QED-toy Q=1 X=X_S alpha_c=pi/3             miss -0.4790 (tol 0.027)  bar: P = 0.381, precision ok: False, clears: False  -> DEAD
+   A3  U(1)_Y Y=1 X=X_S alpha_c=pi/3              miss -0.4295 (tol 0.010)  bar: P = 0.349, precision ok: False, clears: False  -> DEAD
+   A3  QED-toy Q=1 X=X_S alpha_c=0.933667         miss -0.4781 (tol 0.027)  bar: P = 0.38, precision ok: False, clears: False  -> DEAD
+   A3  U(1)_Y Y=1 X=X_S alpha_c=0.933667          miss -0.4286 (tol 0.010)  bar: P = 0.349, precision ok: False, clears: False  -> DEAD
+   B3  QED-toy pole at X=X_G                      miss -0.5159 (tol 0.027)  bar: P = 0.403, precision ok: False, clears: False  -> DEAD
+   B3  U(1)_Y pole at X=X_G                       miss -0.4556 (tol 0.010)  bar: P = 0.366, precision ok: False, clears: False  -> DEAD
+   B3  QED-toy pole at X=X_S                      miss -0.4859 (tol 0.027)  bar: P = 0.385, precision ok: False, clears: False  -> DEAD
+   B3  U(1)_Y pole at X=X_S                       miss -0.4364 (tol 0.010)  bar: P = 0.354, precision ok: False, clears: False  -> DEAD
+   B3  QED-toy pole at X=M_red                    miss -0.4564 (tol 0.027)  bar: P = 0.366, precision ok: False, clears: False  -> DEAD
+   B3  U(1)_Y pole at X=M_red                     miss -0.4175 (tol 0.010)  bar: P = 0.341, precision ok: False, clears: False  -> DEAD
+   B3  QED-toy pole at X=M_P                      miss -0.4364 (tol 0.027)  bar: P = 0.354, precision ok: False, clears: False  -> DEAD
+   B3  U(1)_Y pole at X=M_P                       miss -0.4047 (tol 0.010)  bar: P = 0.333, precision ok: False, clears: False  -> DEAD
+[PASS] V1  no hit-test is a LEAD (none within tolerance AND clearing the bar) 
+[PASS] V2  the closest hit-test misses by more than 20% (expected outcome, stated in advance) (closest: 0.3969)
+== joint test (lane U3 scorer) ==
+   Every rule above constrains ONE abelian coupling (alpha_em toy or alpha_Y). SU(2) and SU(3) are asymptotically free: no Landau pole, no near-critical value below M_P (A2: R_SU2 = 0.015, R_SU3 = 0.024 at M_P).
+   Lane U3's T-IND requires >= 3 absolute constraints including alpha_Y AND alpha_2; none of these rules can satisfy it, so none can be a LEAD regardless of the numerical miss.
+== verdicts ==
+   (a) critical coupling / chiral breaking    DEAD                                             alpha_c ~ 1 (pi/3 derived; 0.933667 unverified); SM abelian R <= 0.017 below M_P; control (QCD) fires at ~0.35 GeV; 12/12 variants miss by > 39%
+   (b) Landau pole / triviality               DEAD                                             the exact statement is 'pole scale = f(a_Y(m_Z), charged spectrum)'; content moves it over 260 decades; pole at any Planckian X misses by > 40% and needs >= 7 unforced multiplets; 8/8 miss
+   (c) compositeness / quasi-fixed points     DEAD                                             no IR focusing of gauge couplings (elasticity 0.56, additive in 1/alpha); Z3 = 0 is the pole equation; Yukawa QFP is real (control) but says nothing about an abelian coupling
+   (d) large-N_f QED                          UNDECIDED (existence of a UV zero) / DEAD (as a selector) F_1 reproduced; zeros within e^(-15 pi^2 N/7) of A = 15/2 (scheme dependent, 1/N-truncated); any UV fixed point trades alpha_0 for ln(Lambda_*/m)
+   (e) Ward identity Z1 = Z2, Z3              DEAD                                             identity e_R = sqrt(Z3) e_0, inequality Z3 <= 1 (bound), exact charge RATIOS; the bare coupling, cutoff and spectrum stay free
+[w2_f MUTATE] failed checks: ['G3m MUTATE: the same positive control with one fitted real must still clear (it must NOT)'] -> exit 1

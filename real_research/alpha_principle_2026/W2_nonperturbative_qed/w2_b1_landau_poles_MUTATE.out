@@ -1,0 +1,43 @@
+== B1 exact statement and cross-checks ==
+[PASS] B1a  one loop: 1/alpha(mu) = 1/alpha_0 - (2 S1/3pi) ln(mu/m) has its pole at ln(Lambda_L/m) = 3 pi/(2 S1 alpha_0) 
+[FAIL] B1b  ODE with the two-loop term switched off reproduces the closed-form one-loop pole (electron only; AMENDMENT 1: tolerance 5e-5 in ln, the ODE stops at u = 1e-6, offset u/b1 = 4.7e-6) (closed 1283.954722, ODE 638.187785)
+[PASS] B1c  two-loop ODE equals the closed form (single species set)  (274.0568 vs 274.0568 in log10 GeV)
+   electron only: log10(Lambda_L/GeV) = 557.614 (one loop), 274.057 (two loop)
+   the lattice paper (hep-th/9712244) quotes 10^227 GeV for the electron alone: difference 330.6 decades from my one-loop value
+[FAIL] B1d  PRE-REGISTERED PREDICTION: the quoted 10^227 is NOT reproduced; one-loop is 10^277 (a likely transposition), two-loop 10^274 
+   SM QED-only toy: log10 pole = 69.443 (one loop), 34.130 (two loop); the paper quotes ~10^34 GeV
+[FAIL] B1e  SM QED-only toy pole reproduces the quoted ~10^34 GeV within 2 decades 
+== B2 content dependence of the pole scale (log10 GeV) ==
+   e only, 1L                                          : 10^ 557.614 GeV   (=  +538.53 decades relative to M_P)
+   e only, 2L                                          : 10^ 274.057 GeV   (=  +254.97 decades relative to M_P)
+   e,mu,tau, 1L                                        : 10^ 185.629 GeV   (=  +166.54 decades relative to M_P)
+   e,mu,tau, 2L                                        : 10^  91.110 GeV   (=   +72.02 decades relative to M_P)
+   all SM fermions (set 1), 1L                         : 10^  69.443 GeV   (=   +50.36 decades relative to M_P)
+   all SM fermions (set 1), 2L                         : 10^  34.130 GeV   (=   +15.04 decades relative to M_P)
+   all SM fermions (set 2), 1L                         : 10^  69.916 GeV   (=   +50.83 decades relative to M_P)
+   all SM fermions (set 2), 2L                         : 10^  34.603 GeV   (=   +15.52 decades relative to M_P)
+   fermions (set 1) + W (b=-7), 1L, toy                : 10^-214.215 GeV   (=  -233.30 decades relative to M_P)
+   SM U(1)_Y, 1L, set A                                : 10^  41.234 GeV   (=   +22.15 decades relative to M_P)
+   SM U(1)_Y, 1L, set B                                : 10^  41.242 GeV   (=   +22.16 decades relative to M_P)
+   SM U(1)_Y, 2L (N1 runner), set A                    : 10^  40.705 GeV   (=   +21.62 decades relative to M_P)
+   SM U(1)_Y, 2L (N1 runner), set B                    : 10^  40.713 GeV   (=   +21.63 decades relative to M_P)
+   U(1)_Y + 1 unit-Y Dirac singlet(s) at 1 TeV, 1L     : 10^  34.992 GeV   (=   +15.91 decades relative to M_P)
+   U(1)_Y + 3 unit-Y Dirac singlet(s) at 1 TeV, 1L     : 10^  27.117 GeV   (=    +8.03 decades relative to M_P)
+   U(1)_Y + 9 unit-Y Dirac singlet(s) at 1 TeV, 1L     : 10^  16.873 GeV   (=    -2.21 decades relative to M_P)
+   span over the listed physical variants: 771.8 decades
+[PASS] B2a  the pole scale depends on the charged content by > 10 decades 
+[PASS] B2b  the SM U(1)_Y pole is above M_P for every SM-content variant, below M_P once >= 9 extra unit-Y singlets sit at 1 TeV 
+[PASS] B2c  two-loop shifts the SM U(1)_Y pole by < 1 decade relative to one loop (set A) 
+== B3 eight hit-tests: 'the Landau pole sits at X' ==
+   QED-toy  X = X_G   : 1/alpha_pred(0) =   66.342  miss = -0.5159  tol = 0.0270  within tol: False
+   U(1)_Y   X = X_G   : 1/alpha_pred(0) =   74.599  miss = -0.4556  tol = 0.0100  within tol: False  N_Y needed at 1 TeV = 9.61 (set B 9.61)
+   QED-toy  X = X_S   : 1/alpha_pred(0) =   70.444  miss = -0.4859  tol = 0.0270  within tol: False
+   U(1)_Y   X = X_S   : 1/alpha_pred(0) =   77.227  miss = -0.4364  tol = 0.0100  within tol: False  N_Y needed at 1 TeV = 8.53 (set B 8.53)
+   QED-toy  X = M_red : 1/alpha_pred(0) =   74.494  miss = -0.4564  tol = 0.0270  within tol: False
+   U(1)_Y   X = M_red : 1/alpha_pred(0) =   79.821  miss = -0.4175  tol = 0.0100  within tol: False  N_Y needed at 1 TeV = 7.61 (set B 7.61)
+   QED-toy  X = M_P   : 1/alpha_pred(0) =   77.231  miss = -0.4364  tol = 0.0270  within tol: False
+   U(1)_Y   X = M_P   : 1/alpha_pred(0) =   81.575  miss = -0.4047  tol = 0.0100  within tol: False  N_Y needed at 1 TeV = 7.06 (set B 7.06)
+[PASS] B3a  eight variants scored 
+[PASS] B3b  no variant within its tolerance (declared expectation: all miss by > 20%) (smallest |miss| = 0.4047)
+[PASS] B3c  the spectrum needed to move the U(1)_Y pole to M_P is >= 1 unforced multiplet (N_Y > 1) 
+[w2_b1 MUTATE] failed checks: ['B1b  ODE with the two-loop term switched off reproduces the closed-form one-loop pole (electron only; AMENDMENT 1: tolerance 5e-5 in ln, the ODE stops at u = 1e-6, offset u/b1 = 4.7e-6)', 'B1d  PRE-REGISTERED PREDICTION: the quoted 10^227 is NOT reproduced; one-loop is 10^277 (a likely transposition), two-loop 10^274', 'B1e  SM QED-only toy pole reproduces the quoted ~10^34 GeV within 2 decades'] -> exit 1

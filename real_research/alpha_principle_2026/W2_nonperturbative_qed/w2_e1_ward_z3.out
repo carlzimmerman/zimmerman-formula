@@ -1,0 +1,29 @@
+== E1 differential Ward identity (explicit Dirac matrices) ==
+[PASS] E1a  the matrices satisfy {gamma^mu, gamma^nu} = 2 g^{mu nu} 
+[PASS] E1b  S = (kslash + m)/(k^2 - m^2) is the inverse of (kslash - m) 
+   mu = 0: dS/dk_mu + S gamma^mu S = 0
+   mu = 1: dS/dk_mu + S gamma^mu S = 0
+   mu = 2: dS/dk_mu + S gamma^mu S = 0
+   mu = 3: dS/dk_mu + S gamma^mu S = 0
+[PASS] E1c  dS/dk_mu = -S gamma^mu S for mu = 0..3 (symbolic mass) 
+   Consequence: Sigma(p) = i e^2 Int gamma^nu S(p-k) gamma^rho D_{nu rho}(k) => dSigma/dp_mu = -i e^2 Int gamma^nu S gamma^mu S gamma^rho D = -Lambda^mu(p,p) at the integrand level.
+   Hence Z1 = Z2 for any regulator that commutes with d/dp (dimensional regularisation, Pauli-Villars); the vertex renormalisation cancels the wave-function renormalisation, leaving e_R = Z3^(1/2) e_0.
+== E3 per-species identity with independent masses ==
+[PASS] E3a  the identity holds species by species for arbitrary masses, and the charge Q_i multiplies both sides of the vertex relation: e_i^R/e_j^R = Q_i/Q_j exactly 
+   (statement about RATIOS of charges only; the overall scale e is renormalised by Z3 alone and is untouched by this identity.)
+== E2 Kaellen-Lehmann bound Z3 <= 1 with the one-loop spectral density ==
+   I(L) - ln L = -1.66666666667 (L = 1e12), -1.66666666667 (L = 1e14)
+   c = -1.66666666667;  identify with {1, ln 2}: -((5/3))
+[PASS] E2a  the spectral integral has the form ln L + c, and c is a pure number (stable to 1e-9 between L = 1e12 and 1e14) 
+   L = Lambda^2/m^2 =    1e2: 1/Z3 = 1 + (alpha_0/3pi)(ln L + c) = 1.0022752   Z3 = 0.997730
+   L = Lambda^2/m^2 =    1e6: 1/Z3 = 1 + (alpha_0/3pi)(ln L + c) = 1.0094065   Z3 = 0.990681
+   L = Lambda^2/m^2 =   1e30: 1/Z3 = 1 + (alpha_0/3pi)(ln L + c) = 1.0521944   Z3 = 0.950395
+   L = Lambda^2/m^2 =  1e100: 1/Z3 = 1 + (alpha_0/3pi)(ln L + c) = 1.1769925   Z3 = 0.849623
+[PASS] E2b  0 < Z3 < 1 for all L >= 4 at the one-loop level (positive spectral density => bare charge exceeds the physical charge, e_R^2 = Z3 e_0^2 <= e_0^2) 
+   with the physical charge alpha_R = alpha_0 the same one-loop expression Z3 = 1 - (alpha_R/3pi)(ln L + c) vanishes at ln(Lambda/m) = 646.60027 (electron only): the Landau ghost of B1 (645.7 - c/2)
+[PASS] E2c  the Z3 = 0 (ghost) location coincides with the B1 Landau pole ln(Lambda/m) = 3 pi/(2 alpha) up to the O(1) constant c/2 
+== E4 statements without computation ==
+   Z1 = Z2 and Z3 <= 1 give: (i) e_R = Z3^(1/2) e_0 (an identity), (ii) e_R^2 <= e_0^2 (an inequality); neither fixes e_0 (free: cutoff, regulator, spectrum).
+   Lattice (read): no UV zero of the beta function out to e_R^2 = e_c^2 (hep-th/9712244); functional RG (read, abstract and method): no fixed point at e^2 > 0 in their truncation (hep-ph/0405183).
+   Johnson-Baker-Willey / Adler eigenvalue conditions (RECALLED, not read) presuppose a zero of the Gell-Mann-Low function; even with one, D3 shows alpha_0 <-> ln(Lambda_*/m) stays free.
+[w2_e1] failed checks: none -> exit 0
