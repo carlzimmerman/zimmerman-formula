@@ -9,7 +9,7 @@ my earlier parse of that table had dropped them. `kurvs_positions.csv` takes the
 
 ## Negative control (kept so nobody repeats it)
 The paper's "CANDELS ID" (`cdfs_NNNNN`) is not the ZFOURGE sequence number. I queried VizieR J/ApJ/830/51 (ZFOURGE CDFS, Straatman+2016) for the 20 IDs; 14 of them came back, at redshifts
-that do not match the Hα redshifts (for example KURVS-2: z_Hα = 1.360, the ZFOURGE object with that number has z_phot = 0.88) and at positions up to 15 arcmin from the field. The raw output is
+that do not match the Hα redshifts (for example KURVS-2: z_Hα = 1.360, the ZFOURGE object with that number has z_phot = 0.88; 14 of 14 fail either the redshift or the position test) and 10.3–13.6 arcmin from the KURVS position of the same number (checked for all 14). The raw output is
 `zfourge_idtest_NEGATIVE_CONTROL.csv` and is NOT a set of KURVS positions.
 
 ## Files
