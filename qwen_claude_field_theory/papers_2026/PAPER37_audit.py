@@ -394,7 +394,7 @@ R("B46", "9", "LEANC", r"21 fail, (9) real sorry", "9 real")
 R("B46", "4", "LEANC", r"9 real sorry in (4) non-certificate", "4 non-certificate")
 # B47-B49 DR4
 R("B47", "2 December 2026", "STAND", r"released (2 December 2026)")
-R("B47", "13 and 14", "STAND", r"Amendments (13 and 14) filed", "13 and 14")
+R("B47", "13, 14 and 15", "STAND", r"Amendments (13, 14 and 15) filed", "13, 14 and 15")
 R("B47", "1.16–1.18", "STAND", r"\| (1\.16–1\.18) canonical", "1.16--1.18")
 R("B47", "1.19–1.23", "STAND", r"\((1\.19–1\.23) alt\)", "1.19--1.23")
 R("B48", "1.000", "STAND", r"\| (1\.000) exactly \|")
