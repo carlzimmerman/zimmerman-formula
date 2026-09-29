@@ -793,3 +793,7 @@ Each task inherits the [program evidence and coordination contract](PROGRAM.md).
 **Owned output directory:** `real_research/swarm_week_2026_09_20/work/Q4`
 
 **Deliverables:** `WEEK_ONE_REPORT.md`, `paper_outline.md`, `release_manifest.json`, `NEXT_QUEUE.json`.
+
+## Correction (2026-09-29): F2 input `real_research/data/SPARC_table.txt`
+
+F2's input list (here and in `TASKS.json`) includes `real_research/data/SPARC_table.txt`. That file is an HTML 404 page from a failed download, not a SPARC table (see `real_research/data/SPARC_table.README.md`). If F2 runs, use `real_research/data/SPARC_Lelli2016c.mrt` (SPARC Table 1) in its place, alongside `sparc_master_clean.csv`, which is a 10-column extract of the same table. F2 had not been run when this note was added (there is no `work/F2`). `INPUTS.json` still pins the 404 page's sha256; the page is kept unchanged so that pin still holds.

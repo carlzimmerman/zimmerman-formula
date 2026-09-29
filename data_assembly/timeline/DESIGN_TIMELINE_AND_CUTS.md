@@ -50,3 +50,6 @@ where the relation is sensitive to a0. This keeps CO, HI, Halpha and [CII] piece
 
 ## 8. What would move a piece up a tier
 Gas mass for KURVS (PHIBSS-type CO or an ALMA follow-up) moves it to A; the COSMOS half of KURVS adds 21 galaxies; gas conversion brackets and R_ext/R_e for ALPAKA I move it to A; a pressure-support-free tracer (HI, or CO with V/sigma > 5) at the KURVS radii would settle the correction.
+
+## Correction (2026-09-29): SPARC `repo_location` in `sample_ledger.csv`
+The SPARC row of `sample_ledger.csv` gives `real_research/data/SPARC_table.txt` as its `repo_location`. That file is an HTML 404 page, not data (see `real_research/data/SPARC_table.README.md`). The SPARC anchor's actual files are `real_research/data/SPARC_Lelli2016c.mrt` (Table 1, 175 galaxies) and `real_research/data/sparc_data/*_rotmod.dat` (the rotation curves). The ledger row itself is left unchanged; no script reads that column.

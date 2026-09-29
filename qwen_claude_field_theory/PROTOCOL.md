@@ -111,3 +111,5 @@ CLASS is installed (`from classy import Class`). numpy, scipy, sympy are availab
 **If a path in an idea does not exist, do not hunt for it.** Grade `NOT COMPUTED`, say the
 path was missing, and stop. That is a useful result — it tells us the idea needs data we do
 not have.
+
+**Correction (2026-09-29): `real_research/data/SPARC_table.txt` is not data.** The path table above calls it the "SPARC secondary table". It is actually an HTML 404 page from a failed download (see `real_research/data/SPARC_table.README.md`). Wherever an idea's DATA line names it (I102, I120, I129, I136, I158, I173, I180, I267, I318, I452, I453), use `real_research/data/SPARC_Lelli2016c.mrt` (SPARC Table 1: distances, inclinations, L[3.6], MHI, Vflat, Q for all 175 galaxies) and `real_research/data/sparc_data/*_rotmod.dat` (the rotation curves) instead, and say so in the result. None of those ideas had been run when this note was added.
