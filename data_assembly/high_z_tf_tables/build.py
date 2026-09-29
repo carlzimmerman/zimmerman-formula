@@ -11,7 +11,7 @@ Outputs: ubler2017.csv, budhies_hi.csv, budhies_optical.csv, budhies_joined.csv,
          checks.txt, manifest.json.   No fit, no derived physics beyond unit-free joins.
 Usage: python3 build.py
 """
-import csv, hashlib, json, os, sys
+import collections, csv, hashlib, json, os, sys
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -165,13 +165,110 @@ check(all(r[2] in (0, 1) for r in T), "Tiley sub-sample flag is 0 or 1 for every
 write("tiley2019.csv", ["survey", "id", "flag_disky", "logv22_kms", "e_logv22", "logMstar", "e_logMstar", "kmag_vega",
                         "e_kmag"], T)
 
+# ------------------------------------------------------------------ Harrison+2017 KROSS V2
+K = []
+for l in read("harrison2017_krossv2.dat"):
+    K.append([int(slc(l, 1, 3)), slc(l, 5, 26).strip(), fnum(slc(l, 28, 37)), fnum(slc(l, 39, 48)),
+              fnum(slc(l, 50, 57)), fnum(slc(l, 59, 66)), fnum(slc(l, 68, 75)), fnum(slc(l, 77, 82)),
+              fnum(slc(l, 84, 105)), fnum(slc(l, 132, 140)), fnum(slc(l, 142, 149)), fnum(slc(l, 151, 153)),
+              fnum(slc(l, 155, 162)), fnum(slc(l, 164, 171)), fnum(slc(l, 173, 180)), fnum(slc(l, 184, 191)),
+              fnum(slc(l, 239, 247)), fnum(slc(l, 249, 256)), fnum(slc(l, 273, 281)), fnum(slc(l, 283, 292)),
+              fnum(slc(l, 294, 302)), fnum(slc(l, 304, 313)), fnum(slc(l, 315, 324)), fnum(slc(l, 326, 335)),
+              slc(l, 339, 341).strip(), fnum(slc(l, 395, 402)), fnum(slc(l, 404, 411)), fnum(slc(l, 415, 424)),
+              fnum(slc(l, 437, 446))])
+kc = ["kid", "name", "ra_deg", "dec_deg", "col50_57_labelled_Kmag", "col59_66_labelled_rmag", "col68_75_labelled_zmag",
+      "abs_hmag", "mstar_msun", "rim_kpc", "e_rim_kpc", "f_rim", "b_over_a", "theta_im_deg", "e_theta_im_deg", "z_halpha",
+      "sfr_msun_yr", "sigma_tot_kms", "v22_obs_kms_at_1p3Rhalf", "v22_kms_intrinsic_at_1p3Rhalf",
+      "vc_obs_kms_at_2Rhalf", "vc_kms_intrinsic_at_2Rhalf", "e_vc_lower", "e_vc_upper", "kin_type", "sigma0_kms",
+      "e_sigma0", "rd_over_rpsf", "qg"]
+check(len(K) == 586, f"KROSS V2 has 586 rows (got {len(K)})")
+ka = {c: np.array([r[i] for r in K], dtype=object) for i, c in enumerate(kc)}
+check(len({r[0] for r in K}) == 586, "KROSS KID unique")
+kz = np.array([r[kc.index("z_halpha")] for r in K], float)
+check(bool(np.all(np.isfinite(kz)) and kz.min() > 0.5 and kz.max() < 1.1), f"KROSS z in (0.5, 1.1): {kz.min():.3f}-{kz.max():.3f}")
+kt = collections.Counter(r[kc.index("kin_type")] for r in K)
+check(set(kt) <= {"RT+", "RT", "DN", "X"}, f"KROSS KinType only RT+, RT, DN, X: {dict(kt)}")
+v22 = np.array([r[kc.index("v22_kms_intrinsic_at_1p3Rhalf")] for r in K], float)
+vc = np.array([r[kc.index("vc_kms_intrinsic_at_2Rhalf")] for r in K], float)
+check(bool(np.all(np.isfinite(v22)) and np.all(np.isfinite(vc)) and np.all(v22 > 0) and np.all(vc > 0)),
+      "KROSS v2.2 and vC finite and positive for every row (no -999 sentinels present)")
+cols_mag = ["col50_57_labelled_Kmag", "col59_66_labelled_rmag", "col68_75_labelled_zmag"]
+negs = {c: sorted({round(float(r[kc.index(c)]), 1) for r in K if float(r[kc.index(c)]) < 0}) for c in cols_mag}
+nneg = {c: int(sum(1 for r in K if float(r[kc.index(c)]) < 0)) for c in cols_mag}
+log(f"KROSS: negative values in the apparent-magnitude columns (implausible as apparent magnitudes; the ReadMe does not "
+    f"explain them, my reading is missing-data codes): rows {nneg}; distinct values {negs}. Kept under col*_labelled_* names; "
+    f"do not use these three columns without checking the source paper.")
+write("kross_v2.csv", kc, K)
+
+# ------------------------------------------------------------------ Forster Schreiber+2009 SINS
+S9 = []
+for l in read("forsterschreiber2009_table9.dat"):
+    S9.append([slc(l, 1, 12).strip(), slc(l, 13, 13).strip(), slc(l, 15, 37).strip(), slc(l, 39, 44).strip(),
+               fnum(slc(l, 46, 48)), fnum(slc(l, 50, 51)), fnum(slc(l, 53, 56)), fnum(slc(l, 68, 70)),
+               slc(l, 76, 76).strip(), fnum(slc(l, 77, 79)), fnum(slc(l, 81, 83)), fnum(slc(l, 85, 87)),
+               fnum(slc(l, 89, 92)), fnum(slc(l, 94, 97)), fnum(slc(l, 99, 102)), fnum(slc(l, 104, 108)),
+               slc(l, 120, 120).strip(), fnum(slc(l, 121, 125)), fnum(slc(l, 127, 131)), fnum(slc(l, 133, 137))])
+c9 = ["name", "flag_merger_main_disk", "method", "kin_class", "half_vobs_kms", "e_half_vobs", "v_over_2sig",
+      "vrot_over_sig", "l_vel", "vel_kms", "E_vel", "e_vel", "mgas_sfr0_1e10msun", "E_m0", "e_m0",
+      "mgas_sfr00_1e10msun", "l_mdyn", "mdyn_1e10msun", "E_mdyn", "e_mdyn"]
+check(len(S9) == 47, f"SINS table 9 has 47 rows (got {len(S9)})")
+meths = collections.Counter(r[2] for r in S9)
+check(set(meths) <= {"Kinematic modeling", "Velocity gradient+width", "Velocity width"},
+      f"SINS velocity methods are the three documented ones: {dict(meths)}")
+kin9 = collections.Counter(r[3] for r in S9)
+check(set(kin9) <= {"Disk", "Merger", ""}, f"SINS kinemetry class is Disk, Merger or blank: {dict(kin9)} (blank = no class printed; the ReadMe does not say why)")
+S6 = {}
+for l in read("forsterschreiber2009_table6.dat"):
+    S6[slc(l, 1, 12).strip()] = [fnum(slc(l, 14, 17)), fnum(slc(l, 19, 24)), fnum(slc(l, 41, 43)), slc(l, 53, 53).strip(),
+                                 fnum(slc(l, 54, 56)), fnum(slc(l, 58, 60)), fnum(slc(l, 62, 65))]
+S3 = {}
+for l in read("forsterschreiber2009_table3.dat"):
+    S3[slc(l, 1, 12).strip()] = [fnum(slc(l, 48, 52)), fnum(slc(l, 54, 57)), fnum(slc(l, 59, 62)), fnum(slc(l, 81, 86))]
+check(len(S6) == 62 and len(S3) == 62, f"SINS tables 6 and 3 have 62 rows each (got {len(S6)}, {len(S3)})")
+check(all(r[0] in S6 and r[0] in S3 for r in S9), "every SINS table-9 galaxy is present in tables 6 and 3")
+rows9 = []
+for r in S9:
+    a = S6[r[0]]; b = S3[r[0]]
+    rows9.append(r + [a[1], a[4], a[5], a[2], b[0], b[1], b[2], b[3]])
+write("sins2009_dynamics.csv", c9 + ["z_halpha", "r_half_halpha_kpc", "e_r_half_kpc", "sigma_int_kms",
+      "mstar_1e10msun", "E_mstar", "e_mstar", "sfr_sed_msun_yr"], rows9)
+log(f"SINS: {len(rows9)} galaxies with dynamics; methods {dict(meths)}; gas masses are Schmidt-Kennicutt estimates from the Halpha "
+    f"SFR surface density (a model, not a measurement); Vel/2 is half the observed maximum-minimum velocity across the source, "
+    f"uncorrected for inclination")
+
+# ------------------------------------------------------------------ Simons+2016 SIGMA
+sg1, sg2 = {}, {}
+for l in read("simons2016_table1.dat"):
+    sg1[int(slc(l, 1, 5))] = [fnum(slc(l, 32, 35)), fnum(slc(l, 37, 41)), fnum(slc(l, 43, 47)), fnum(slc(l, 49, 52)), fnum(slc(l, 54, 57))]
+for l in read("simons2016_table2.dat"):
+    sg2[int(slc(l, 1, 5))] = [int(slc(l, 7, 7)), fnum(slc(l, 32, 34)), fnum(slc(l, 36, 38)), fnum(slc(l, 40, 41)),
+                              fnum(slc(l, 43, 45)), fnum(slc(l, 47, 49)), fnum(slc(l, 51, 53)), fnum(slc(l, 55, 56))]
+check(len(sg1) == 49 and len(sg2) == 49 and set(sg1) == set(sg2), "SIGMA tables 1 and 2 have the same 49 galaxy IDs")
+z_s = np.array([v[0] for v in sg1.values()]); m_s = np.array([v[2] for v in sg1.values()])
+check(inrange(z_s, 1.3, 2.5) and inrange(m_s, 9.2, 11.8), "SIGMA z in [1.3, 2.5] and log M* in [9.2, 11.8] (ReadMe ranges)")
+rs = np.array([v[1] for v in sg2.values()])
+check(inrange(rs, 0.1, 0.4), "SIGMA fixed turnover radius rv in [0.1, 0.4] arcsec (ReadMe range)")
+write("simons2016_sigma.csv", ["id", "z_spec", "hmag_ab", "logMstar", "log_sfr", "b_over_a", "n_spectra", "rv_turnover_arcsec",
+      "vsini_kms", "e_vsini", "vrot_kms", "e_vrot", "sigma_g_kms", "e_sigma_g"],
+      [[k] + sg1[k] + sg2[k] for k in sorted(sg1)])
+log(f"SIGMA: 49 galaxies; {sum(1 for v in sg2.values() if np.isfinite(v[4]))} have an inclination-corrected Vrot; "
+    f"the model uses a FIXED turnover radius rv of 0.1-0.4 arcsec")
+
 # ------------------------------------------------------------------ manifest
 man = {"built_by": "data_assembly/high_z_tf_tables/build.py", "raw_small": {}}
 url = {"ubler2017_table3.dat": "https://cdsarc.cds.unistra.fr/ftp/J/ApJ/842/121/table3.dat",
        "ubler2017_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/ApJ/842/121/ReadMe",
        "tiley2019_tablea1.dat": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/482/2166/tablea1.dat",
        "tiley2019_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/482/2166/ReadMe",
-       "gogate2020_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/496/3531/ReadMe"}
+       "gogate2020_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/496/3531/ReadMe",
+       "harrison2017_krossv2.dat": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/467/1965/krossv2.dat",
+       "harrison2017_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/467/1965/ReadMe",
+       "forsterschreiber2009_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/ApJ/706/1364/ReadMe",
+       "simons2016_ReadMe.txt": "https://cdsarc.cds.unistra.fr/ftp/J/ApJ/830/14/ReadMe"}
+for t_ in ("table3", "table6", "table9"):
+    url[f"forsterschreiber2009_{t_}.dat"] = f"https://cdsarc.cds.unistra.fr/ftp/J/ApJ/706/1364/{t_}.dat"
+for t_ in ("table1", "table2"):
+    url[f"simons2016_{t_}.dat"] = f"https://cdsarc.cds.unistra.fr/ftp/J/ApJ/830/14/{t_}.dat"
 for t in ("tablea1", "tablea2", "tablea3", "tablea4"):
     url[f"gogate2020_{t}.dat"] = f"https://cdsarc.cds.unistra.fr/ftp/J/MNRAS/496/3531/{t}.dat"
 for fn in sorted(os.listdir(RAW)):

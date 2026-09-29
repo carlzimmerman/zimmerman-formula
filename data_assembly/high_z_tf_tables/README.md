@@ -11,6 +11,9 @@ that the a0(z) ledger (`prep_2026/highz_tfr_fork/DATA_LEDGER.md`) currently carr
 | `budhies_optical.csv` | 166 | same | optical redshift (where known), B and R magnitude, GALEX FUV/NUV |
 | `budhies_joined.csv` | 166 | same | HI + optical joined by the ReadMe's serial number |
 | `tiley2019.csv` | 754 | Tiley+2019, MNRAS 482, 2166, CDS J/MNRAS/482/2166 | KROSS (259), SAMI matched (186), SAMI original (309): v2.2, log M*, K-band mag |
+| `kross_v2.csv` | 586 | Harrison+2017, MNRAS 467, 1965 (KROSS V2), CDS J/MNRAS/467/1965 | Halpha z 0.58-1.04: observed and intrinsic velocity at **1.3 R_1/2 (v2.2) and at 2 R_1/2 (vC, with errors)**, half-light radius, inclination, sigma0, stellar mass (scaled from H-band with a fixed factor), Halpha SFR, KinType (RT+ 173, RT 282, DN 97, X 34) |
+| `sins2009_dynamics.csv` | 47 | Forster Schreiber+2009, ApJ 706, 1364 (SINS), CDS J/ApJ/706/1364 | z~2 Halpha: disk circular velocity **with the per-galaxy method** (kinematic modelling 18, velocity gradient+width 15, velocity width 14), Halpha half-light radius, SED stellar mass, gas mass from SFR (a model), dynamical mass |
+| `simons2016_sigma.csv` | 49 | Simons+2016, ApJ 830, 14 (SIGMA), CDS J/ApJ/830/14 | z 1.3-2.5 Keck/MOSFIRE slit spectra: vsini and inclination-corrected Vrot (45 of 49) from a rotation-curve model with a FIXED turnover radius of 0.1-0.4 arcsec; stellar mass, SFR, sigma_g |
 
 ## What the checks established
 - Ubler: the redshift split is 65 (z<1.3), 24 (1.3-1.8) and 46 (z>=1.8), so the ledger's 65 at z~0.9 and 46 at
@@ -34,5 +37,20 @@ that the a0(z) ledger (`prep_2026/highz_tfr_fork/DATA_LEDGER.md`) currently carr
 - **Tiley** is stellar-mass Tully-Fisher only (no gas); it is a same-pipeline z~0 versus z~1 control for the
   stellar relation, not a baryonic one.
 - None of these is a test of a0. Calculations belong to the calculation thread.
+
+## Notes on the three velocity samples added later
+- **KROSS V2** defines the radius of its velocities (1.3 and 2 half-light radii), unlike Tacconi+2013 (see
+  `../kmos3d_phibss/TACCONI2013_VROT_RADIUS_NOTE.md`). It has NO gas mass (only an Halpha SFR), and its stellar mass is a fixed-factor
+  scaling from the H-band. Nine rows carry negative values (-23.0, -23.7, -25.0) in the byte columns 59-66 that the
+  ReadMe labels as r-band apparent magnitude; two further columns have a few negative values too. They look like
+  missing-data codes (my reading, not stated in the ReadMe); the three columns are kept as `col*_labelled_*` and
+  should not be used without checking the source paper.
+- **SINS** gas masses are Schmidt-Kennicutt estimates from the Halpha SFR surface density (a model). For the 14
+  galaxies with the "Velocity width" method the tabulated "circular velocity" is the dispersion-based equivalent
+  (3 sigma_int)^0.5 (ReadMe note 7), not a rotation velocity. The kinemetry class is blank for 32 of 47 rows; the
+  ReadMe does not say why.
+- **SIGMA** velocities come from slit spectra with a fixed turnover radius in arcsec (0.1-0.4), not from resolved IFU curves.
+- None of these tables gives a measured gas mass together with a velocity at a radius where g_bar < a0, so none
+  is a test of a0 by itself.
 
 Cross-references: KMOS3D cubes and the PHIBSS gas set are in `../kmos3d_phibss/`.
