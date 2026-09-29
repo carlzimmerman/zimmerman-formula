@@ -43,7 +43,7 @@ with the 10′ side along PA 70° at 95% (73% for the other reading), so that re
 | 8 | outside (0.8′ beyond the nominal edge) | — |
 
 **Non-detections.** For 9, 11, 16 (inside; nearest sources 17.5″, 21.9″, 21.3″) and 13, 15, 17 the catalogue lists no source at their positions. Facts for the limit: slice-level combined rms 67.7–68.8 μJy/beam (uncorrected for primary beam); blind 100%-purity threshold σ_p ≥ 4.4 (≈ 0.30 mJy at 68.4); prior-based S/N ≥ ~3.5 but only at IRAC or VLA prior positions; the faintest blind-table source in the catalogue is 0.49 mJy (median 0.89), the faintest prior-based 0.25 mJy. The **local** rms at each position is not available (noise maps not in the HTML), and near the mosaic edge (13, 17, 3, 21, 7) the primary-beam-corrected noise rises toward the 20% response limit. A catalogue non-detection is not a measured limit at that position.
-**KURVS-15 note (fact only):** a prior-based source A2GS75 lies 6.9″ from it, catalogue z = 1.618, S = 0.69 mJy, versus z_Hα = 1.613 for KURVS-15; it is outside the 1.5″ rule. I have not looked at its S/N or position uncertainty.
+**KURVS-15 note (fact only):** a prior-based source A2GS75 lies 6.9″ from it, catalogue z = 1.618, S = 0.69 mJy, versus z_Hα = 1.613 for KURVS-15; it is outside the 1.5″ rule. its catalogue row: S/N_peak 3.96, log M* 11.25 (KURVS-15: 10.07), flagged 100%-pure in the low-resolution map; the position uncertainty is not tabulated.
 
 ## Not done
 No flux limits at positions, no maps, no gas conversion, no other surveys (ASAGAO's catalogue is only in its paper, A3GOODSS not fetched).
