@@ -83,3 +83,24 @@ A referee sweep re-ran this lane (outputs byte-identical apart from timing). Its
 So the law is acceptable at the 3σ line (p > 0.0027) from f_hot = 0.25 on this grid, and at p > 0.05 from 0.5. The values 1–1.5 are the best fit, not the threshold. **Corrected sentence:** a colour-blind dark mass survives the split if early-type lenses hold at least about 0.25–0.5 × their stellar plus cold mass in extra baryons. That is a lower bound, since the gas is a point mass. The best fit is at 1–1.5×, and f_hot ≥ 3 is rejected again.
 
 - **"Exits 1 as required" (the Script line) says nothing here.** The main run also exits 1, failing the same two checks (H1 and H2). See the MUTATE section above.
+
+
+## Addendum after CFG77's independent re-derivation (appended 2026-09-29; no committed number changed)
+
+CFG77 (a736715f8) rebuilt this lane from independently written code. It reproduced the headline exactly: law 28.074/7 (alt 28.075), Sérsic 20.92/7, all 15 bins 124.29/15, absolute K1 51.9 and 12.6. It also found three things, each checked here against this lane's code and CFG77's committed logs.
+
+- **The f_hot ladder (R4) does not implement the stated formula M_true = M_gal (1 + f_hot).**
+  - What the code (`hot_chi2`) does: it shifts the stellar-mass grid node by round(log10(1 + f)/0.05) whole 0.05-dex steps. It then takes that node's profile, which carries the node's own (lower) cold-gas fraction and its own edge.
+  - So f_hot is quantised, and the effective mass ratio is below 1 + f.
+  - CFG77's implementation of the stated formula gives 17.61, 10.58, 4.08, 5.09, 11.8, 38.3 and 78.3 at f_hot = 0.25, 0.5, 1, 1.5, 2, 3 and 4. This lane printed 18.2, 10.0, 4.8, 4.1, 10.4, 26.9 and 58.4.
+  - The corrected threshold above survives: p > 0.0027 from f_hot = 0.25 (p = 0.014), and p > 0.05 from 0.5 through 2. The best fit is near 1, and f_hot = 3 is rejected.
+- **The law's χ² is a pure data statement.**
+  - The law's predicted early-minus-late difference on K1 is below 3.3 × 10⁻³ σ. The zero-model χ² (D_obsᵀ C_D⁻¹ D_obs) is 28.085, against the law's 28.074.
+  - So 28.1 says that the released early and late profiles differ at fixed g_bar: the early/late ΔΣ ratio in K1 is 1.2–2.05.
+  - **Any colour-blind model fails it equally. It does not discriminate among colour-blind models.**
+- **It is fragile.**
+  - The released covariance is essentially diagonal: the cross-class correlation is at most 0.003, and the diagonal alone gives 28.14.
+  - Per CFG77, the covariance carries no systematic terms: none for intrinsic alignments, satellites, photo-z or colour-class contamination.
+  - Inflating every error by 1.2 gives 19.5/7 (p = 6.7 × 10⁻³); by 1.5, 12.5/7 (p = 0.086).
+  - The signal is concentrated in bins 11, 12 and 14. Dropping bin 11 or bin 12 leaves about 20/6.
+  - The stellar-mass floor and the IMF rescales do not enter the law's χ² (a change of at most 0.03). They enter only ΛCDM's.

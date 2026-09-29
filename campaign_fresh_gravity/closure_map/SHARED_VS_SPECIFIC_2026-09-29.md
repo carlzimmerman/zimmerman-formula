@@ -92,3 +92,13 @@ A class describes the machinery, not the universe. Nothing here says the data fa
 ## Not re-run by anyone this round
 
 CFG8, CFG20–CFG25, CFG27, CFG32, CFG33, CFG34 and CFG39 are carried from `GATES.md`. CFG57, CFG66 and CFG74 have been run only by their own lanes.
+
+
+## Addendum after CFG77 (appended 2026-09-29; the rows above are unchanged)
+
+- **The KiDS row is B-specific for the early-minus-late difference only, and that result is fragile** (CFG77, a736715f8, an independent re-derivation that reproduces CFG61 and CFG67 exactly).
+  - The law's χ² is the zero-model χ²: 28.085 against 28.074. So the split fails **every** colour-blind model equally and does not discriminate among them.
+  - The released covariance is essentially diagonal and carries no systematic terms. Errors × 1.5 give 12.5/7 (p = 0.086). Dropping bin 11 or bin 12 leaves about 20/6.
+  - ΛCDM's pass depends on the stellar-mass calibration (5.45–11.50/7). The law's χ² does not (a change of at most 0.03).
+  - The bottom line's "only one observational failure is cleanly B-specific" should read: **the one observational failure specific to B in shared machinery is the KiDS early/late split. It is a failure of any colour-blind dark mass, at face value of a covariance without systematic terms.**
+- **Re-run status of the KiDS row:** CFG61 and CFG67 have now also been independently re-derived (CFG77).

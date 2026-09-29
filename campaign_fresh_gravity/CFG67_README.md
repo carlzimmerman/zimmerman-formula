@@ -42,3 +42,17 @@ An independent in-place re-run by the equations session reproduced the outputs.
   **Corrected sentence:** CFG61's failure of the *difference* is specific to B's colour-blind, mass-independent dark mass; the machinery's absolute profiles fail for both models.
 - **"Exits 1 as required."** The main run also exits 1, because H2 fails (Â/σ_A = 1.64 under the frozen M_* floor).
   - The headline H1 does flip under the MUTATE (χ² 6.5/7 → 124.1/7). So the control is informative for the headline, but the exit code alone is not.
+
+
+## Addendum after CFG77's independent re-derivation (appended 2026-09-29; no committed number changed)
+
+- **CFG77 (a736715f8) reproduces this lane** from independently written code:
+  - ΛCDM 6.535/7 (p = 0.479), Â = 0.789 ± 0.164;
+  - early and late swapped, 124.16;
+  - absolute K1 ΛCDM 29.5 and 27.9.
+- **ΛCDM's pass depends on the stellar-mass calibration; the law's χ² does not.** Over the early class's M_* ± 0.1 dex and the IMF rescales, ΛCDM's χ² runs from 5.45 to 11.50/7 (p ≥ 0.12, still a pass). The law's moves by at most 0.03.
+- **What "B-specific" means here is narrow.**
+  - It holds for the early-minus-late difference only.
+  - Every colour-blind model fails that difference equally: the law's χ² is the zero-model χ², 28.085.
+  - Its significance rests on a near-diagonal released covariance with no systematic terms. With every error × 1.5 it is 12.5/7 (p = 0.086); see CFG61's addendum.
+  - So "standard halos reproduce the split and B's colour-blind dark mass cannot" holds at face value of the released errors.
