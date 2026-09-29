@@ -1,0 +1,113 @@
+G1 triple root: r0 = sqrt(2)/(2*sqrt(Lambda)), M = sqrt(2)/(3*sqrt(Lambda)), Q^2 = 1/(4*Lambda)
+PASS G1a Q_geo^2 Lambda = 1/4
+PASS G1b r0^2 Lambda = 1/2
+PASS G1c M_g^2 Lambda = 2/9
+PASS G1d horizon potential Phi_H = Q_geo/r0 = 1/sqrt 2  -> sqrt(2)/2
+PASS G1e z^2 = Q^2/M^2 = 9/8
+PASS G1f degenerate curve: P(r0) = P'(r0) = 0
+   P''(r0) along the curve = -2*(2*y - 1)  -> dS_2 radius^2 = 2 r0^2/|P''| = r0^2/|1-2y|; infinite at y = 1/2 (R^{1,1} x S^2)
+PASS G1g P''(r0) = 2(1-2y): dS_2 factor degenerates to flat exactly at the ultracold point
+PASS G1h Q^2 Lambda = y(1-y) and M^2 Lambda = y(1-2y/3)^2 are BOTH maximal at y = 1/2 (max charge = max mass; no separate max-charge Nariai point)
+PASS G2a S_uc = pi/(2x) = S_dS/6
+PASS G2b S_Bek = 2 pi M r0 = 2 pi/(3x) = (2/9) S_dS
+PASS G2c Coulomb-Bekenstein identity: 2 pi (Phi Q) r0 = S_uc (both sides prop. to alpha N^2; alpha-free)
+PASS G4a metric function invariant under N -> lam N, alpha -> alpha/lam^2
+PASS G3a N_max^2 = 1/(4 alpha x)
+PASS G4b S_uc = 2 pi alpha N_max^2 (holds for the integer N only through alpha N^2)
+PASS G4c S_uc, S_Bek, Phi*Q*r0, M^2/M_P^2 unchanged by (N, alpha) -> (lam N, alpha/lam^2)
+PASS G3b magnetic cap n_max^2 = alpha/x
+PASS G3c N_max n_max = 1/(2x), alpha-free (Dirac product)
+PASS G3d flat extremal S_ext = pi r_+^2/l_P^2 = pi alpha N^2
+PASS G3e on the degenerate curve N^2 = S_h(y) has the solution y = 1 - pi alpha for every alpha < 1/pi: the equality never constrains alpha
+
+F5 exponent table (alpha proportional to x^e, e = 2q/p - 1; only e = 0 can be O(1/100)):
+   exponent e verified for all 16 pairs; e = 0 only for (p,q) = [(2, 1), (4, 2)]
+PASS F5 exponent formula holds for 16 (p,q) pairs; O(1) alpha only when p = 2q
+
+x = Lambda l_P^2 = 2.8485e-122   S_dS = 3 pi/x = 3.3087e+122   N_max(alpha_T)^2/S_dS = 3.63499277509
+c_needed (INVERSE MAP, not a hit) = 1/(12 pi alpha) = 3.63499277509274
+PASS b_Y = (5/3) b_1 = 41/6 (GUT-normalisation pitfall)
+1/alpha_em(m_P), one loop, recomputed here = 104.917 ; value used as the Planck-scale target (from the status file) = 104.94
+PASS Planck-scale target reproduced to 0.1% by the recomputation
+   at the horizon scale (Hubble radius ~ 1e26 m) the Coulomb field is far below m_e, so the natural target is the THOMSON value; Planck-scale value is scored as a second target only.
+
+F1: 45 trials (c' = k u S_Y/S_dS); 1/alpha_pred = 12 pi c'
+  Y       unit           k    c'             1/alpha      missT      missP range 50-300
+  S_dS    cells(A/lP^2)  1    4              150.796  1.004e-01  4.370e-01 True
+  3 S_uc  cells(A/lP^2)  2    4              150.796  1.004e-01  4.370e-01 True
+  S_dS    bits           2    2/log(2)       108.777  2.062e-01  3.656e-02 True
+  2 S_uc  cells(A/lP^2)  2    8/3            100.531  2.664e-01  4.201e-02 True
+  S_dS    nats           2    2               75.398  4.498e-01  2.815e-01 True
+  S_dS    cells(A/lP^2)  1/2  2               75.398  4.498e-01  2.815e-01 True
+  3 S_uc  cells(A/lP^2)  1    2               75.398  4.498e-01  2.815e-01 True
+  S_Bek   cells(A/lP^2)  2    16/9            67.021  5.109e-01  3.613e-01 True
+  S_dS    bits           1    1/log(2)        54.388  6.031e-01  4.817e-01 True
+  3 S_uc  bits           2    1/log(2)        54.388  6.031e-01  4.817e-01 True
+  S_uc    cells(A/lP^2)  2    4/3             50.265  6.332e-01  5.210e-01 True
+  2 S_uc  cells(A/lP^2)  1    4/3             50.265  6.332e-01  5.210e-01 True
+  S_dS    nats           1    1               37.699  7.249e-01  6.408e-01 False
+  3 S_uc  nats           2    1               37.699  7.249e-01  6.408e-01 False
+  3 S_uc  cells(A/lP^2)  1/2  1               37.699  7.249e-01  6.408e-01 False
+  2 S_uc  bits           2    2/(3*log(2))    36.259  7.354e-01  6.545e-01 False
+  S_Bek   cells(A/lP^2)  1    8/9             33.510  7.555e-01  6.807e-01 False
+  S_dS    bits           1/2  1/(2*log(2))    27.194  8.016e-01  7.409e-01 False
+  3 S_uc  bits           1    1/(2*log(2))    27.194  8.016e-01  7.409e-01 False
+  S_uc    cells(A/lP^2)  1    2/3             25.133  8.166e-01  7.605e-01 False
+  2 S_uc  nats           2    2/3             25.133  8.166e-01  7.605e-01 False
+  2 S_uc  cells(A/lP^2)  1/2  2/3             25.133  8.166e-01  7.605e-01 False
+  S_Bek   bits           2    4/(9*log(2))    24.173  8.236e-01  7.697e-01 False
+  S_dS    nats           1/2  1/2             18.850  8.624e-01  8.204e-01 False
+  3 S_uc  nats           1    1/2             18.850  8.624e-01  8.204e-01 False
+  S_uc    bits           2    1/(3*log(2))    18.129  8.677e-01  8.272e-01 False
+  2 S_uc  bits           1    1/(3*log(2))    18.129  8.677e-01  8.272e-01 False
+  S_Bek   nats           2    4/9             16.755  8.777e-01  8.403e-01 False
+  S_Bek   cells(A/lP^2)  1/2  4/9             16.755  8.777e-01  8.403e-01 False
+  3 S_uc  bits           1/2  1/(4*log(2))    13.597  9.008e-01  8.704e-01 False
+  S_uc    nats           2    1/3             12.566  9.083e-01  8.803e-01 False
+  S_uc    cells(A/lP^2)  1/2  1/3             12.566  9.083e-01  8.803e-01 False
+  2 S_uc  nats           1    1/3             12.566  9.083e-01  8.803e-01 False
+  S_Bek   bits           1    2/(9*log(2))    12.086  9.118e-01  8.848e-01 False
+  3 S_uc  nats           1/2  1/4              9.425  9.312e-01  9.102e-01 False
+  S_uc    bits           1    1/(6*log(2))     9.065  9.339e-01  9.136e-01 False
+  2 S_uc  bits           1/2  1/(6*log(2))     9.065  9.339e-01  9.136e-01 False
+  S_Bek   nats           1    2/9              8.378  9.389e-01  9.202e-01 False
+  S_uc    nats           1    1/6              6.283  9.541e-01  9.401e-01 False
+  2 S_uc  nats           1/2  1/6              6.283  9.541e-01  9.401e-01 False
+  S_Bek   bits           1/2  1/(9*log(2))     6.043  9.559e-01  9.424e-01 False
+  S_uc    bits           1/2  1/(12*log(2)     4.532  9.669e-01  9.568e-01 False
+  S_Bek   nats           1/2  1/9              4.189  9.694e-01  9.601e-01 False
+  S_uc    nats           1/2  1/12             3.142  9.771e-01  9.701e-01 False
+  S_dS    cells(A/lP^2)  2    8              301.593  1.201e+00  1.874e+00 False
+distinct c' values: 28
+PASS F1 trial count is 45 as pre-registered
+in range 50 < 1/alpha < 300: 12 of 45 ; c' values: ['1.33333', '1.4427', '1.77778', '2.0', '2.66667', '2.88539', '4.0']
+within a factor 2 of c_needed (3.63499): 7 trials, distinct c' = ['2.0', '2.66667', '2.88539', '4.0']
+best vs Thomson: S_dS cells(A/lP^2) k=1 c'=4.0 1/alpha=150.79645 miss=0.1004
+best vs Planck : S_dS bits k=2 c'=2.8853901 1/alpha=108.77664 miss=0.03656
+PASS H3: every F1 miss vs Thomson exceeds 1e-2 (nothing near the CODATA bar)  (min miss 0.1004)
+
+Bar (lane D) for every F1 trial: size = 45, n_targets = 2 (Thomson, Planck-scale), fitted reals 0, scale stated
+   candidates clearing the bar (90 candidate-target pairs): 0
+PASS bar: no F1 candidate clears at either target
+   best Thomson candidate: look-elsewhere P = 0.363, precision ok = False, clears = False
+PASS positive control: a hypothetical exact c' (miss 1e-11, size 45, 2 targets) clears the bar
+   inverse-map c_needed = 3.63499277509 is NOT scored: it is found by solving for the target (miss 0 by construction, one fitted real)
+PASS inverse map (one fitted real) never clears
+
+F2 magnetic dual: alpha_pred = 3 pi c'_m over 45 trials ranges 0.7854 .. 75.4 (need 7.3e-3): all out of range
+PASS F2 all 45 magnetic-dual alpha_pred >= 0.1 (>= 13x the measured 7.3e-3; amended threshold, see Amendment 1)
+F3 flat extremal 1/alpha = pi k u over 9 trials: 1.571 .. 25.13 (need 137.04, k u = 43.62): all out of range
+PASS F3 all 9 flat-extremal 1/alpha_pred < 30
+
+H5 inequalities: real c' = N_max^2/S_dS = 3.634992775
+PASS H5a bound N_max^2 <= S_dS is violated by the measured alpha (c' > 1)
+PASS H5b bound N_max^2 <= A_dS/l_P^2 = 4 S_dS is satisfied, margin 10.04% (i.e. 1/alpha <= 48 pi = 150.796)
+   H4: minimal-choice candidate (nats, S_dS, k=1): c'=1 -> 1/alpha = 12 pi = 37.699, misses by factor 3.635
+   choices per F1 candidate: entropy reference Y (5), unit u (3), coefficient k (3): log2(45) = 5.49 bits; none is forced by the geometry (G4).
+
+D1: of 91 distinct rationals p/q (1<=p,q<=12): 19 within a factor 2 of c_needed, 3 within 10%, 1 within 1%
+    rationals within 10%: [(0.008713605097362733, '3.66667'), (0.03713701331615375, '3.5'), (0.08298763172967025, '3.33333')]
+    (a factor-2 coincidence for c' is the expectation for any small-integer coefficient; D1 is report-only, see Amendment 1)
+
+FAILS: none
+exit 0
