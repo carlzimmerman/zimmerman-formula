@@ -75,3 +75,8 @@ The alt footing moves these by 0.01 or less; the δ = ±0.2 dex stellar-mass bra
 - **B's decisive a₀(z) test therefore waits on the dispersion profile and the gas,** not on more galaxies of this kind.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## Correction (appended 2026-09-29; the text above is unchanged)
+
+- CFG140 correction (logic; the orchestrator's check). The observed velocity is a lower bound on the circular speed, because pressure support only raises V_c. A lower bound can exclude only a model that predicts V_c below V_obs. Under P0 both readings predict at or above the observed accelerations in every cell (the largest P0 Δ′ is −0.035 for flat and −0.196 for the rival), so the bound excludes neither. The P0 rows are the NO-PRESSURE-SUPPORT SCENARIO (V_c = V_obs), not a bound in the excluding direction. 'a₀ ∝ H(z) over-predicts in all 24 cells' holds only if the outer pressure support is zero; it means the rival needs substantial outer pressure support to survive. 'Flat a₀ under-predicts in 21 of 24 cells' holds only in the constant-σ Burkert scenario (P1); it means flat a₀ needs the outer pressure support well below that level. Neither reading is excluded by the data alone. The frozen verdict (NON-DIAGNOSTIC), the anchor, the KROSS control, the power row and the MUTATE are unchanged.
+- In the table and the Reading above, read '(a strict lower bound on the circular speed)' as 'the no-pressure-support scenario'. 'The one robust statement' is a statement about that scenario only.
