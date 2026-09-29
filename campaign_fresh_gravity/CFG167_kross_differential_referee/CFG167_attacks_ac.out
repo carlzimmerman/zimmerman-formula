@@ -1,0 +1,91 @@
+CFG167 attacks (a) and (c), seed 167, repo=<repo>
+nominal: D +0.1483 +- 0.0445  D_H +0.0722  z_flat +3.33 z_rival +1.71
+
+====================================================================================================
+(a1) nonparametric bootstrap of D (10 KURVS, 390 KROSS resampled independently), N = 20000
+====================================================================================================
+   SD(D_boot) = 0.0422 vs analytic sigma_D 0.0445: ratio 0.95;  mean +0.1481; percentiles 2.5/16/50/84/97.5: +0.067 +0.107 +0.147 +0.190 +0.233
+   bootstrap mean analytic sigma_D 0.0446; P(D_boot <= 0) = 0.0001; P(D_boot > D_H + 2 sigma_D... (manufactures edge +0.161)) = 0.369
+   class fractions over bootstrap draws (each with own D_H, sigma_D): {'both': 0.06855, 'flat': 0.0, 'rival': 0.56235, 'manuf': 0.3691}
+   (a1) VERDICT: ROBUST (ratio 0.95 in [0.75, 1.33]?)
+   KURVS leave-one-out: -3: +0.158 (lands on the rival); -7: +0.163 (manufactures evolution); -8: +0.155 (lands on the rival); -9: +0.158 (lands on the rival); -11: +0.143 (lands on the rival); -13: +0.139 (lands on the rival); -15: +0.162 (lands on the rival); -16: +0.146 (lands on the rival); -17: +0.118 (lands on the rival); -21: +0.140 (lands on the rival)
+
+====================================================================================================
+(a2) correlated-systematics Monte Carlo (N = 4000 draws; D re-evaluated through the pipeline)
+====================================================================================================
+   (i) common alpha scale lnN(0,0.4)             : sd_sys 0.0301  mean(D_draw)-D +0.0005  total sigma 0.0537  z_flat +2.76  z_rival +1.42   class of D_draw: {'both': 0.029, 'flat': 0.0, 'rival': 0.65175, 'manuf': 0.31925}
+   (ii) independent alpha scales, each lnN(0,0.4): sd_sys 0.0927  mean(D_draw)-D +0.0018  total sigma 0.1029  z_flat +1.44  z_rival +0.74   class of D_draw: {'both': 0.22725, 'flat': 0.0255, 'rival': 0.31425, 'manuf': 0.433}
+   (iii) common tilt t~N(0,0.15)                 : sd_sys 0.0226  mean(D_draw)-D -0.0007  total sigma 0.0499  z_flat +2.97  z_rival +1.52   class of D_draw: {'both': 0.00675, 'flat': 0.0, 'rival': 0.87175, 'manuf': 0.1215}
+   (iv) independent mass zero-points 0.15 dex each: sd_sys 0.1378  mean(D_draw)-D +0.0021  total sigma 0.1448  z_flat +1.02  z_rival +0.53   class of D_draw: {'both': 0.23525, 'flat': 0.0565, 'rival': 0.20325, 'manuf': 0.505}
+   (iv-c) common mass zero-point 0.15 dex        : sd_sys 0.0079  mean(D_draw)-D +0.0006  total sigma 0.0452  z_flat +3.28  z_rival +1.68   class of D_draw: {'both': 0.0, 'flat': 0.0, 'rival': 0.96725, 'manuf': 0.03275}
+   (v) gas ratio lnN(0,0.5)                      : sd_sys 0.0466  mean(D_draw)-D -0.0083  total sigma 0.0645  z_flat +2.30  z_rival +1.18   class of D_draw: {'both': 0.126, 'flat': 0.005, 'rival': 0.51025, 'manuf': 0.35875}
+   COMMON set = (i)+(iii)+(iv-c)                 : sd_sys 0.0387  mean(D_draw)-D +0.0001  total sigma 0.0589  z_flat +2.52  z_rival +1.29   class of D_draw: {'both': 0.05675, 'flat': 0.0, 'rival': 0.6215, 'manuf': 0.32175}
+   INDEPENDENT set = (ii)+(iii)+(iv)+(v)         : sd_sys 0.1720  mean(D_draw)-D -0.0094  total sigma 0.1777  z_flat +0.83  z_rival +0.43   class of D_draw: {'both': 0.22625, 'flat': 0.0775, 'rival': 0.17, 'manuf': 0.52625}
+   (a2) VERDICT: SOFT  (z_flat under common set 2.52, under independent set 0.83)
+
+====================================================================================================
+(a3) permutation null of the error model: 10 random KROSS galaxies as pseudo-KURVS, N = 20000
+====================================================================================================
+   SD(D_perm) = 0.1101; mean analytic hypot pooled error 0.0968 (median 0.0918); ratio 1.14; mean D_perm -0.0029
+   fraction of draws with |D_perm| > 2*analytic sigma: 0.0853 (nominal 0.0455); z-score SD 1.17
+   informational: real D = +0.148 sits at percentile 92.40 of D_perm (real KURVS have different x, sigma_out and errors)
+   (a3) VERDICT: ROBUST (ratio 1.14)
+
+====================================================================================================
+(a4) anchor-geometry adjustment: SPARC z=0 offset vs x = R/R_eff - 1 and vs R/R_d
+====================================================================================================
+   SPARC anchor n = 75; x range -0.28..10.18; R/R_d range 1.21..18.78; pooled offset +0.0967
+   x in [-9,1.5): n=16 pooled offset +0.135
+   x in [1.5,2.5): n= 7 pooled offset +0.168
+   x in [2.5,99): n=52 pooled offset +0.077
+   fit vs x    : offset(x) = +0.1228 + -0.0065*x; KURVS-weighted minus KROSS offset = -0.0064 (bootstrap sd 0.0066); D_adj = +0.1547  class lands on the rival;  |D_adj - D| = 0.0064
+   fit vs R/Rd : offset(x) = +0.1293 + -0.0039*R/Rd; KURVS-weighted minus KROSS offset = -0.0064 (bootstrap sd 0.0068); D_adj = +0.1547  class lands on the rival;  |D_adj - D| = 0.0064
+   (a4) VERDICT: ROBUST (|D_adj - D| <= 0.02 for both fits?)
+
+====================================================================================================
+(a5) gas-ratio surface (informational)
+====================================================================================================
+   g = 0.5 (mu_K = 0.34, mu_R = 0.67): D +0.195 +- 0.045  D_H +0.075  -> manufactures evolution
+   g = 1.0 (mu_K = 0.67, mu_R = 0.67): D +0.148 +- 0.044  D_H +0.072  -> lands on the rival
+   g = 1.5 (mu_K = 1.01, mu_R = 0.67): D +0.108 +- 0.044  D_H +0.070  -> lands on the rival
+   g = 2.0 (mu_K = 1.34, mu_R = 0.67): D +0.073 +- 0.044  D_H +0.068  -> consistent with both
+   g = 3.0 (mu_K = 2.01, mu_R = 0.67): D +0.012 +- 0.044  D_H +0.063  -> consistent with both
+   g = 4.0 (mu_K = 2.68, mu_R = 0.67): D -0.038 +- 0.045  D_H +0.060  -> lands on flat
+   break-even g for D = 0: [3.2266212757485775];  for D = D_H(g): [2.0801675506982704]
+   law flat mu_K >= mu_R  : best chi2 = 0.02 at mu_R = 0.63, mu_K = 2.03 (Dprime_K +0.006, Dprime_R +0.000)
+   law flat unconstrained : best chi2 = 0.02 at mu_R = 0.63, mu_K = 2.03 (Dprime_K +0.006, Dprime_R +0.000)
+   law H    mu_K >= mu_R  : best chi2 = 0.14 at mu_R = 0.10, mu_K = 0.68 (Dprime_K -0.007, Dprime_R -0.007)
+   law H    unconstrained : best chi2 = 0.14 at mu_R = 0.10, mu_K = 0.68 (Dprime_K -0.007, Dprime_R -0.007)
+   (a5) informational, no pass line. With 2 data points and 2 grid parameters chi2 -> 0 wherever both levels are reachable; the useful output is WHICH (mu_R, mu_K) each law needs.
+
+====================================================================================================
+(c) KROSS comparison sub-sample variants (min n = 30) and KURVS leave-one-out
+====================================================================================================
+   all 390 (main)                      : n = 390  D +0.1483 +- 0.0445  D_H +0.0722  -> lands on the rival
+   kin RT only                         : n = 217  D +0.2134 +- 0.0476  D_H +0.0740  -> manufactures evolution   [OUTSIDE +-0.05 or class differs]
+   kin RT+ only                        : n = 173  D +0.0900 +- 0.0459  D_H +0.0703  -> consistent with both   [OUTSIDE +-0.05 or class differs]
+   v/sigma0 >= 2                       : n = 284  D +0.0724 +- 0.0447  D_H +0.0724  -> consistent with both   [OUTSIDE +-0.05 or class differs]
+   v/sigma0 >= 3                       : n = 201  D +0.0252 +- 0.0459  D_H +0.0741  -> consistent with both   [OUTSIDE +-0.05 or class differs]
+   logM in KURVS range [9.55,10.68]    : n = 337  D +0.1567 +- 0.0448  D_H +0.0733  -> lands on the rival
+   logM < median                       : n = 195  D +0.1378 +- 0.0464  D_H +0.0668  -> lands on the rival
+   logM >= median                      : n = 195  D +0.1614 +- 0.0478  D_H +0.0790  -> lands on the rival
+   b/a > 0.5 (i < 60 deg)              : n = 305  D +0.1991 +- 0.0455  D_H +0.0757  -> manufactures evolution   [OUTSIDE +-0.05 or class differs]
+   z < 0.85                            : n = 193  D +0.1479 +- 0.0468  D_H +0.0792  -> lands on the rival
+   z >= 0.85                           : n = 197  D +0.1487 +- 0.0472  D_H +0.0658  -> lands on the rival
+   drop top 5% pressure correction     : n = 370  D +0.1472 +- 0.0447  D_H +0.0724  -> lands on the rival
+   drop lowest-error 5%                : n = 370  D +0.1654 +- 0.0448  D_H +0.0731  -> manufactures evolution   [OUTSIDE +-0.05 or class differs]
+   KURVS leave-one-out KURVS-3  : D +0.1584 +- 0.0470  D_H +0.0734  -> lands on the rival
+   KURVS leave-one-out KURVS-7  : D +0.1627 +- 0.0449  D_H +0.0725  -> manufactures evolution   [OUTSIDE +-0.05 or class differs]
+   KURVS leave-one-out KURVS-8  : D +0.1552 +- 0.0439  D_H +0.0724  -> lands on the rival
+   KURVS leave-one-out KURVS-9  : D +0.1583 +- 0.0483  D_H +0.0714  -> lands on the rival
+   KURVS leave-one-out KURVS-11 : D +0.1433 +- 0.0496  D_H +0.0764  -> lands on the rival
+   KURVS leave-one-out KURVS-13 : D +0.1385 +- 0.0472  D_H +0.0716  -> lands on the rival
+   KURVS leave-one-out KURVS-15 : D +0.1620 +- 0.0485  D_H +0.0699  -> lands on the rival
+   KURVS leave-one-out KURVS-16 : D +0.1460 +- 0.0503  D_H +0.0709  -> lands on the rival
+   KURVS leave-one-out KURVS-17 : D +0.1179 +- 0.0425  D_H +0.0707  -> lands on the rival
+   KURVS leave-one-out KURVS-21 : D +0.1397 +- 0.0483  D_H +0.0729  -> lands on the rival
+   range of D across all variants: +0.025 .. +0.213
+   KROSS-internal z split: Delta_flat(z>=0.85) - Delta_flat(z<0.85) = -0.0008 +- 0.0304 (flat predicts 0: -0.03s; rival pipeline prediction +0.0134: -0.47s)   [median z: 0.831 / 0.923]
+   mass-matched KROSS (one of the 20 nearest-logM per KURVS galaxy, N = 2000; n <= 10, informational, excluded from the verdict): mean D +0.1626, sd 0.1031, class fractions {'both': 0.7045, 'flat': 0.0005, 'rival': 0.2045, 'manuf': 0.0905}
+   (c) VERDICT: FRAGILE; variants outside: ['kin RT only', 'kin RT+ only', 'v/sigma0 >= 2', 'v/sigma0 >= 3', 'b/a > 0.5 (i < 60 deg)', 'drop lowest-error 5%', 'LOO KURVS-7']
+written results json; exit 0

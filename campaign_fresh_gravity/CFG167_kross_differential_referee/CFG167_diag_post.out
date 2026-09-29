@@ -1,0 +1,39 @@
+repo=<repo>
+== 1. per-row comparison with CFG161's committed json (D, sigma_D, D_H; exact differences)
+   P0       : dD -3.32e-06  dsigma +3.59e-07  dD_H +3.20e-07
+   P1       : dD -6.67e-06  dsigma -8.80e-07  dD_H -1.96e-07
+   P2       : dD -6.01e-06  dsigma -9.97e-07  dD_H +1.25e-07
+   P3       : dD -5.30e-06  dsigma -8.55e-07  dD_H +7.38e-08
+   P4       : dD -4.58e-06  dsigma -6.66e-07  dD_H +3.17e-07
+   P4 a0.6  : dD -4.19e-06  dsigma -3.82e-07  dD_H +3.35e-07
+   P4 a1.4  : dD -4.91e-06  dsigma -8.16e-07  dD_H +2.87e-07
+   P4 KU s0 : dD -5.36e-06  dsigma -4.80e-07  dD_H -7.17e-08
+   KURVS/KROSS raw pooled P4: dKf +5.82e-05 dKh +5.51e-05 dRf +6.28e-05 dRh +6.00e-05  errors dK -6.34e-07 dR -2.05e-07
+   max |difference| over the eight rows: 6.67e-06
+   (my run and CFG161's use different code paths for the pooling and the KROSS loader; agreement at this level is the check)
+
+== 2. KROSS-selection systematic (EXTRA, not frozen): spread of the KROSS mean Delta_flat across the deterministic (c) variants
+   RT         n=217  KROSS Delta_flat +0.027 +- 0.023
+   RT+        n=173  KROSS Delta_flat +0.151 +- 0.019
+   v/s>=2     n=284  KROSS Delta_flat +0.168 +- 0.016
+   v/s>=3     n=201  KROSS Delta_flat +0.216 +- 0.019
+   b/a>0.5    n=305  KROSS Delta_flat +0.042 +- 0.018
+   logM<med   n=195  KROSS Delta_flat +0.103 +- 0.020
+   logM>=med  n=195  KROSS Delta_flat +0.079 +- 0.023
+   z<0.85     n=193  KROSS Delta_flat +0.093 +- 0.021
+   z>=0.85    n=197  KROSS Delta_flat +0.092 +- 0.022
+   all: +0.093 +- 0.015;  sd of the sub-sample means 0.057; range +0.027..+0.216
+   RT minus RT+ : -0.123 +- 0.030 (-4.2 sigma of the pooled statistical error)
+   selection-systematic sd 0.057 added in quadrature to sigma_D: total 0.072; z_flat +2.05; z_rival +1.05
+
+== 3. joint gas profile at pinned KROSS gas (EXTRA, not frozen): each law's best KURVS gas, anchored joint chi2 with covariance
+   mu_R = 0.10:  flat: chi2  13.75 at mu_K = 1.73 (Dprime_R +0.074)  rival: chi2   0.13 at mu_K = 0.65 (Dprime_R -0.007)
+   mu_R = 0.17:  flat: chi2  10.04 at mu_K = 1.73 (Dprime_R +0.063)  rival: chi2   0.77 at mu_K = 0.70 (Dprime_R -0.018)
+   mu_R = 0.25:  flat: chi2   6.62 at mu_K = 1.83 (Dprime_R +0.052)  rival: chi2   2.07 at mu_K = 0.74 (Dprime_R -0.029)
+   mu_R = 0.27:  flat: chi2   5.89 at mu_K = 1.83 (Dprime_R +0.049)  rival: chi2   2.48 at mu_K = 0.74 (Dprime_R -0.032)
+   mu_R = 0.46:  flat: chi2   1.25 at mu_K = 1.95 (Dprime_R +0.022)  rival: chi2   7.92 at mu_K = 0.83 (Dprime_R -0.057)
+   mu_R = 0.67:  flat: chi2   0.06 at mu_K = 2.07 (Dprime_R -0.004)  rival: chi2  16.51 at mu_K = 0.94 (Dprime_R -0.082)
+   mu_R = 1.50:  flat: chi2  20.36 at mu_K = 2.64 (Dprime_R -0.092)  rival: chi2  66.08 at mu_K = 1.53 (Dprime_R -0.166)
+   mu_R = 4.00:  flat: chi2 165.44 at mu_K = 4.03 (Dprime_R -0.270)  rival: chi2 260.62 at mu_K = 4.03 (Dprime_R -0.334)
+   (mu_R = 0.27 with 16-84% 0.17-0.46 is the Sharma+2024 molecular median quoted in CFG165's README; total mu about 4.0 there; not re-derived here)
+exit 0

@@ -1,0 +1,56 @@
+====================================================================================================
+CFG167 referee re-derivation of CFG161.  MODE=0  repo=<repo>  (inc column: inc_star_deg primary)
+====================================================================================================
+
+-- controls
+  [PASS] C3 alpha(0)=1.475, alpha(1)=2.533, alpha(4)=3.955: (1.475, 2.5330000000000004, 3.955)
+  [PASS] C5 kernel limits < 1e-5: (5.029586807037134e-07, 1.4903633882568101e-12)
+  [PASS] C4a sample sizes KURVS 10, KROSS 390: (10, 390)
+      median z: KURVS 1.529, KROSS 0.850;  KROSS x = R/Reff-1 in [1.000,1.000] alpha 2.533
+  [PASS] C1 P0 differential +0.017+-0.058 (3-dec print): +0.0167+-0.0584
+  [PASS] C1 P1 differential +0.273+-0.070 (3-dec print): +0.2732+-0.0704
+  [PASS] C2 decision cell Dflat' +0.1441, DH' -0.0060 within 0.001: +0.1441 -0.0060
+
+-- R0 power (printed before D): sigma_D, D_H, |D_H|/sigma_D
+   sigma_D = 0.0445   D_H (exact, pipeline) = +0.0722   |D_H|/sigma_D = 1.62   deep-regime 0.5*log10[E(z_K)/E(z_R)] = +0.0835
+
+-- R1: D = Delta_flat(KURVS) - Delta_flat(KROSS), raw pooled, mu=0.67 both, canonical, delta=0  [README target in brackets]
+   P0                  D +0.0167 +- 0.0584  D_H +0.0690  z_flat +0.29  z_riv -0.89  -> consistent with both  [+0.017 +-0.058, D_H +0.069, consistent with both]
+   P1                  D +0.2732 +- 0.0704  D_H +0.0781  z_flat +3.88  z_riv +2.77  -> manufactures evolution  [+0.273 +-0.070, D_H +0.078, manufactures evolution]
+   P2                  D +0.2648 +- 0.0651  D_H +0.0769  z_flat +4.07  z_riv +2.89  -> manufactures evolution  [+0.265 +-0.065, D_H +0.077, manufactures evolution]
+   P3                  D +0.2178 +- 0.0697  D_H +0.0740  z_flat +3.12  z_riv +2.06  -> manufactures evolution  [+0.218 +-0.070, D_H +0.074, manufactures evolution]
+   P4                  D +0.1483 +- 0.0445  D_H +0.0722  z_flat +3.33  z_riv +1.71  -> lands on the rival  [+0.148 +-0.044, D_H +0.072, lands on the rival]
+   P4 a0.6             D +0.1102 +- 0.0454  D_H +0.0711  z_flat +2.43  z_riv +0.86  -> lands on the rival  [+0.110 +-0.045, D_H +0.071, lands on the rival]
+   P4 a1.4             D +0.1747 +- 0.0461  D_H +0.0732  z_flat +3.79  z_riv +2.20  -> manufactures evolution  [+0.175 +-0.046, D_H +0.073, manufactures evolution]
+   P4 KU s0            D +0.1257 +- 0.0503  D_H +0.0745  z_flat +2.50  z_riv +1.02  -> lands on the rival  [+0.126 +-0.050, D_H +0.074, lands on the rival]
+   P4 a0.6 KURVS-only  D +0.0602 +- 0.0452  D_H +0.0718  z_flat +1.33  z_riv -0.26  -> consistent with both
+   P4 a1.4 KURVS-only  D +0.2168 +- 0.0462  D_H +0.0726  z_flat +4.70  z_riv +3.12  -> manufactures evolution
+   (inclination column variant inc_sfr_deg, reported):  P0 +0.022+-0.060; P1 +0.274+-0.070; P2 +0.266+-0.065; P3 +0.226+-0.069; P4 +0.151+-0.045
+
+-- pass lines vs README targets (section 4 of the frozen criteria)
+   P0         numbers within 0.005: yes  (dD -0.0003, dD_H -0.0000, dsig +0.0004);  class = README
+   P1         numbers within 0.005: yes  (dD +0.0002, dD_H +0.0001, dsig +0.0004);  class = README
+   P2         numbers within 0.005: yes  (dD -0.0002, dD_H -0.0001, dsig +0.0001);  class = README
+   P3         numbers within 0.005: yes  (dD -0.0002, dD_H -0.0000, dsig -0.0003);  class = README
+   P4         numbers within 0.005: yes  (dD +0.0003, dD_H +0.0002, dsig +0.0005);  class = README
+   P4 a0.6    numbers within 0.005: yes  (dD +0.0002, dD_H +0.0001, dsig +0.0004);  class = README
+   P4 a1.4    numbers within 0.005: yes  (dD -0.0003, dD_H +0.0002, dsig +0.0001);  class = README
+   P4 KU s0   numbers within 0.005: yes  (dD -0.0003, dD_H +0.0005, dsig +0.0003);  class = README
+  [PASS] P3 all 8 rows D, D_H, sigma_D within 0.005: 
+  [PASS] P4 z vs flat / rival within 0.10 of 3.3 / 1.7: 3.33 / 1.71
+  [PASS] P5 class labels (EDGE-DIFFERS allowed): no edge: 
+  [PASS] P6 R0 sigma_D 0.044, D_H 0.072, ratio 1.6, deep +0.083: 0.0445 +0.0722 1.62 +0.0835
+
+-- R3: anchored absolute levels under P4 (mu=0.67, same anchor): [README targets: KURVS +0.144+-0.044 / -0.006; KROSS -0.004+-0.020 (-0.2s) / -0.082 (-4.1s)]
+   anchor P4 = +0.0967 +- 0.0133
+   KURVS: flat +0.1441 +- 0.0439 (+3.28s)   rival -0.0060 (-0.14s)
+   KROSS: flat -0.0042 +- 0.0202 (-0.21s)   rival -0.0821 (-4.06s)
+  [PASS] P7 R3 within 0.005 (values), KROSS sigma within 0.003, z within 0.15: 
+
+-- DECISION (P4 primary)
+   D = +0.1483 +- 0.0445;  D_H = +0.0722;  z_flat = +3.33, z_rival = +1.71;  class = lands on the rival
+   H1 (D within 2 sigma_D of at least one prediction): PASS
+   class map in D: consistent with both [-0.017, +0.089]; lands on rival (+0.089, +0.161]; lands on flat [-0.089, -0.017); manufactures D > +0.161 or D < -0.089. Observed distance to the manufactures edge: +0.013 (0.29 sigma_D)
+
+   controls/pass lines: 11/11 PASS
+exit 0

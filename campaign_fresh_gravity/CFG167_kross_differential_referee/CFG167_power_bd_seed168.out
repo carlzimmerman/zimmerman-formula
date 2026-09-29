@@ -1,0 +1,39 @@
+CFG167 power (b) and null (d), seed 168, N = 4000 per (truth, family), repo=<repo>
+observed: D +0.1483 +- 0.0445, D_H +0.0722
+
+====================================================================================================
+(b) power under flat truth and rival truth, same errors
+====================================================================================================
+   IDEAL    truth=flat: D mean -0.020 sd 0.040 (mean analytic sigma 0.046, mean D_H +0.076);  P(D >= 0.148) = 0.0000;  classes {'both': 0.4485, 'flat': 0.50425, 'rival': 0.003, 'manuf': 0.04425};  floored frac K/R 0.285/0.050
+   IDEAL    truth=H   : D mean +0.038 sd 0.037 (mean analytic sigma 0.042, mean D_H +0.075);  P(D >= 0.148) = 0.0013;  classes {'both': 0.77225, 'flat': 0.10975, 'rival': 0.11675, 'manuf': 0.00125};  floored frac K/R 0.116/0.027
+   GAS      truth=flat: D mean -0.013 sd 0.060 (mean analytic sigma 0.046, mean D_H +0.076);  P(D >= 0.148) = 0.0105;  classes {'both': 0.45175, 'flat': 0.412, 'rival': 0.043, 'manuf': 0.09325};  floored frac K/R 0.263/0.048
+   GAS      truth=H   : D mean +0.045 sd 0.060 (mean analytic sigma 0.042, mean D_H +0.075);  P(D >= 0.148) = 0.0480;  classes {'both': 0.5915, 'flat': 0.16075, 'rival': 0.19725, 'manuf': 0.0505};  floored frac K/R 0.109/0.027
+   CAL      truth=flat: D mean -0.006 sd 0.061 (mean analytic sigma 0.048, mean D_H +0.076);  P(D >= 0.148) = 0.0118;  classes {'both': 0.54175, 'flat': 0.34525, 'rival': 0.045, 'manuf': 0.068};  floored frac K/R 0.277/0.073
+   CAL      truth=H   : D mean +0.045 sd 0.065 (mean analytic sigma 0.044, mean D_H +0.076);  P(D >= 0.148) = 0.0530;  classes {'both': 0.5775, 'flat': 0.1515, 'rival': 0.21225, 'manuf': 0.05875};  floored frac K/R 0.150/0.046
+   CAL-IND  truth=flat: D mean -0.006 sd 0.097 (mean analytic sigma 0.048, mean D_H +0.077);  P(D >= 0.148) = 0.0560;  classes {'both': 0.38575, 'flat': 0.297, 'rival': 0.1215, 'manuf': 0.19575};  floored frac K/R 0.276/0.074
+   CAL-IND  truth=H   : D mean +0.046 sd 0.103 (mean analytic sigma 0.044, mean D_H +0.076);  P(D >= 0.148) = 0.1532;  classes {'both': 0.368, 'flat': 0.18775, 'rival': 0.229, 'manuf': 0.21525};  floored frac K/R 0.155/0.048
+
+   likelihood ratio at D_obs (rival-truth density / flat-truth density) and the frozen reading test
+   IDEAL   : LR Gaussian     91.8  KDE 3.87e+06;  P(lands on rival | flat) = 0.003, P(lands on rival | rival) = 0.117;  P(manufactures | flat) = 0.044, | rival = 0.001   -> INFORMATIVE
+   GAS     : LR Gaussian     8.58  KDE     5.44;  P(lands on rival | flat) = 0.043, P(lands on rival | rival) = 0.197;  P(manufactures | flat) = 0.093, | rival = 0.051   -> WEAK
+   CAL     : LR Gaussian     6.29  KDE     6.75;  P(lands on rival | flat) = 0.045, P(lands on rival | rival) = 0.212;  P(manufactures | flat) = 0.068, | rival = 0.059   -> WEAK
+   CAL-IND : LR Gaussian     2.04  KDE      2.3;  P(lands on rival | flat) = 0.121, P(lands on rival | rival) = 0.229;  P(manufactures | flat) = 0.196, | rival = 0.215   -> WEAK
+
+====================================================================================================
+(d) what a null would have looked like
+====================================================================================================
+   (i) class map in D (this run's sigma_D 0.0445, D_H +0.0722): lands on flat [-0.089, -0.017); both [-0.017, +0.089]; lands on rival (+0.089, +0.161]; manufactures D > +0.161 or D < -0.089
+       D_obs +0.148 is 0.29 sigma_D below the manufactures edge and 1.33 sigma_D above the flat edge
+   (ii) D deciles (5..95 step 10) per family/truth:
+       IDEAL    flat: -0.088 -0.061 -0.047 -0.035 -0.025 -0.015 -0.004 +0.007 +0.023 +0.045
+       IDEAL    H   : -0.024 -0.000 +0.013 +0.024 +0.033 +0.042 +0.052 +0.064 +0.077 +0.099
+       CAL      flat: -0.103 -0.066 -0.046 -0.029 -0.014 +0.000 +0.016 +0.032 +0.053 +0.092
+       CAL      H   : -0.060 -0.018 +0.004 +0.021 +0.037 +0.051 +0.067 +0.085 +0.109 +0.150
+   (iv) 'P4 is wrong' null: truth alpha scaled by a FIXED factor s in both samples (per-galaxy lnN(0,0.2), GAS nuisance), analysed with the assumed P4 alpha
+       true alpha x 0.6, truth=flat: D mean +0.017 sd 0.057; classes {'both': 0.60425, 'flat': 0.26525, 'rival': 0.0865, 'manuf': 0.044}; P(D >= D_obs) 0.020
+       true alpha x 0.6, truth=H   : D mean +0.077 sd 0.055; classes {'both': 0.51325, 'flat': 0.04875, 'rival': 0.3575, 'manuf': 0.0805}; P(D >= D_obs) 0.100
+       true alpha x 1.4, truth=flat: D mean -0.021 sd 0.063; classes {'both': 0.499, 'flat': 0.373, 'rival': 0.02725, 'manuf': 0.10075}; P(D >= D_obs) 0.010
+       true alpha x 1.4, truth=H   : D mean +0.025 sd 0.063; classes {'both': 0.60275, 'flat': 0.23325, 'rival': 0.11525, 'manuf': 0.04875}; P(D >= D_obs) 0.035
+   (v) a D that would have counted as a fail (CFG161 rule): D > +0.161 or D < -0.089; the observed +0.148 misses that by 0.013
+   (d) VERDICT: NULL-DISTINGUISHABLE  (P(D >= D_obs | flat, IDEAL) = 0.0000; | CAL = 0.0118; | CAL-IND = 0.0560)
+written results json; exit 0

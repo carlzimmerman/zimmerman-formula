@@ -1,0 +1,31 @@
+====================================================================================================
+CFG167 referee re-derivation of CFG161.  MODE=3  repo=<repo>  (inc column: inc_star_deg primary)
+====================================================================================================
+MUTATION: verdict labels swapped (D_H attached to 'flat', 0 to 'rival')
+
+-- controls
+  [PASS] C3 alpha(0)=1.475, alpha(1)=2.533, alpha(4)=3.955: (1.475, 2.5330000000000004, 3.955)
+  [PASS] C5 kernel limits < 1e-5: (5.029586807037134e-07, 1.4903633882568101e-12)
+  [PASS] C4a sample sizes KURVS 10, KROSS 390: (10, 390)
+      median z: KURVS 1.529, KROSS 0.850;  KROSS x = R/Reff-1 in [1.000,1.000] alpha 2.533
+  [PASS] C1 P0 differential +0.017+-0.058 (3-dec print): +0.0167+-0.0584
+  [PASS] C1 P1 differential +0.273+-0.070 (3-dec print): +0.2732+-0.0704
+  [PASS] C2 decision cell Dflat' +0.1441, DH' -0.0060 within 0.001: +0.1441 -0.0060
+
+-- R0 power (printed before D): sigma_D, D_H, |D_H|/sigma_D
+   sigma_D = 0.0445   D_H (exact, pipeline) = +0.0722   |D_H|/sigma_D = 1.62   deep-regime 0.5*log10[E(z_K)/E(z_R)] = +0.0835
+
+-- R1: D = Delta_flat(KURVS) - Delta_flat(KROSS), raw pooled, mu=0.67 both, canonical, delta=0  [README target in brackets]
+
+-- R3: anchored absolute levels under P4 (mu=0.67, same anchor): [README targets: KURVS +0.144+-0.044 / -0.006; KROSS -0.004+-0.020 (-0.2s) / -0.082 (-4.1s)]
+   anchor P4 = +0.0967 +- 0.0133
+   KURVS: flat +0.1441 +- 0.0439 (+3.28s)   rival -0.0060 (-0.14s)
+   KROSS: flat -0.0042 +- 0.0202 (-0.21s)   rival -0.0821 (-4.06s)
+
+-- DECISION (P4 primary)  [MUTATED: verdict labels swapped (D_H attached to 'flat', 0 to 'rival')]
+   D = +0.1483 +- 0.0445;  D_H = +0.0722;  z_flat = +3.33, z_rival = +1.71;  class = lands on flat
+   H1 (D within 2 sigma_D of at least one prediction): PASS
+   class map in D: consistent with both [-0.017, +0.089]; lands on rival (+0.089, +0.161]; lands on flat [-0.089, -0.017); manufactures D > +0.161 or D < -0.089. Observed distance to the manufactures edge: +0.013 (0.29 sigma_D)
+
+   MUTATE bite = (H1 fails) or (class != 'lands on the rival') -> BITES
+exit 1
