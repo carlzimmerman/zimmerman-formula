@@ -1,0 +1,74 @@
+{
+ "slug": "S_stability_solar_ownership_second",
+ "footing": "second",
+ "mutate": "",
+ "integrity_failures": 0,
+ "checks": [],
+ "verdicts": {
+  "S1_P2": {
+   "status": "PASS",
+   "why": "min h' = +1.256e-09 vs 0"
+  },
+  "S1_nu_mono": {
+   "status": "PASS",
+   "why": "min h' = +3.245e-06 vs 0"
+  },
+  "S1_simple": {
+   "status": "PASS",
+   "why": "min h' = +1.004e-08 vs 0"
+  },
+  "S1_standard": {
+   "status": "FAIL",
+   "why": "min h' = -8.144e-02 vs 0"
+  },
+  "S1_used": {
+   "status": "PASS",
+   "why": "the kernel used for G1 in this run is P2"
+  },
+  "S2_V_U": {
+   "status": "PASS",
+   "why": "kinetic matrix positive; potential Hessian non-negative iff h' > 0 for the kernel in use"
+  },
+  "S2_V_B": {
+   "status": "FAIL",
+   "why": "the (Phi_b, lambda) block has the indefinite [[0, D],[D, 0]] structure (frozen rule applied literally); Newtonian-sector dynamical fields (Pi) are healthy iff h' > 0 as for V_U; relativistic completion untested"
+  },
+  "S3_V_U": {
+   "status": "PASS",
+   "why": "omega_L^2, omega_T^2 >= 0 for all g_N and k, group velocity 0 <= c (kernel in use); Newtonian sector only"
+  },
+  "S3_V_B": {
+   "status": "PASS",
+   "why": "same for the Pi modes; the constraint block has no propagating mode; Newtonian sector only"
+  },
+  "S4_uncapped": {
+   "status": "FAIL",
+   "why": "uncapped P2 monopole pull 5.66e-11 m/s^2 vs generous line 1e-13: 566x over (1278x over the record's a0/2/1278); the external-field effect at g_ext = 1-3 a0 does NOT remove it (the Sun's field dominates: |g_N| >> a0)"
+  },
+  "S4_capped": {
+   "status": "PASS",
+   "why": "medium-density-capped |delta a| <= 1.12e-16 m/s^2 (generous 1e-13; tight 1e-15: pass)"
+  },
+  "S4": {
+   "status": "PASS",
+   "why": "safe ONLY through the medium-density cap (the same budget B1 that makes G1c fail), NOT through the external-field effect; ownership route of candidate B unavailable"
+  },
+  "O1_V_B": {
+   "status": "PASS",
+   "why": "literal frozen test at the declared kappa_I = 1 with B1 satisfied (Q = Q* = 9.68): window 1 <= tau/t_dyn <= 10 exists at [('1e+10', '[20.4,30.0]'), ('1e+12', '[20.4,30.0]')]"
+  },
+  "O1_V_U": {
+   "status": "FAIL",
+   "why": "V_U at Q* = 138.7, kappa_I = 1: window exists: False"
+  },
+  "G4_VB": {
+   "status": "FAIL",
+   "why": "no pass exists at Q = kappa_I = 1 (G1c fails); the smallest passing set needs Q* = 9.68 and kappa_I* = 0.67: new constants; tie PARTIAL"
+  },
+  "G4_VU": {
+   "status": "FAIL",
+   "why": "the smallest passing set needs Q* = 139; new constant; tie PARTIAL"
+  }
+ },
+ "numbers": {}
+}

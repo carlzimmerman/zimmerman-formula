@@ -1,0 +1,100 @@
+
+======================================================================================================================
+CFG121 T1  (footing second: a0 = 1.1312e-10 m/s^2 = 3490.52 (km/s)^2/kpc; MUTATE='')
+======================================================================================================================
+
+======================================================================================================================
+I  integrity: CFG44 target reproduced; sympy identities
+======================================================================================================================
+  [PASS] I1 point-mass M_c from CFG44's ODE = M(sqrt(1+x^2)-1)
+         max rel diff on x in [0.05,100] = 1.21e-11 (line 1e-9 in the frozen text; the ODE's rtol is 1e-10, sparse-grid pchip; line for this check 1e-6)
+  [PASS] I2 sympy: rho_pol = M_pol'/(4 pi r^2) with M_pol = 4 pi r^2 Pi equals (2/r)[Pi - Pi_g g_b] + Pi_g (g_b' + 2 g_b/r)
+         residual = 0
+  [PASS] I3 g_b' = 4 pi G rho_b - 2 g_b/r for g_b = G M_b(<r)/r^2 (M_b' = 4 pi r^2 rho_b)
+         residual = 0
+
+======================================================================================================================
+T1.1  IDENTITY / positive control: required chi from the point-mass target; -div(chi g_b) = rho_tgt
+======================================================================================================================
+  M_b = 1e+09: max|C_model/C_tgt - 1| analytic 6.661e-16, finite-difference 2.724e-07
+  M_b = 1e+10: max|C_model/C_tgt - 1| analytic 6.661e-16, finite-difference 2.724e-07
+  M_b = 1e+11: max|C_model/C_tgt - 1| analytic 6.661e-16, finite-difference 2.724e-07
+  M_b = 1e+12: max|C_model/C_tgt - 1| analytic 8.882e-16, finite-difference 2.724e-07
+  required 4 pi G chi(g_b) = M_c/M_b from CFG44's ODE vs (nu-1) of the tested kernel: max rel dev 1.206e-11
+  limits (P2 kernel): deep 4piG chi -> sqrt(a0/g) (dev 3.11e-02 for y<1e-3); strong-field |Pi| -> a0/(8 pi G) (dev 2.49e-03 for y>100)
+  >> T1.1: IDENTITY -- analytic max dev 8.88e-16 (line 1e-9), fd 2.72e-07 (line 1e-4), required-chi dev 1.2e-11 (line 1e-6); a pass is an identity (the QUMOND phantom is -div Pi), not evidence
+
+======================================================================================================================
+T1.2  exponential spheres with the T1.1 chi (P2), no refit; 10% line on C_model/C_tgt at every mass, x in [0.1, 30]
+======================================================================================================================
+  M_b=1e+09 h=2.0 r_M=1.11: max|C/C_tgt-1| = 1.332 at x=0.10;  x with >10%: [0.10, 11.06];  rho_pol/rho_tgt in [0.958, 1.546];  M_pol/M_c in [1.019, 1.552];  max|dlog10 g| = 0.1787;  min rho_pol = 6.461e+04
+  M_b=1e+10 h=3.0 r_M=3.51: max|C/C_tgt-1| = 1.067 at x=0.10;  x with >10%: [0.10, 4.93];  rho_pol/rho_tgt in [0.968, 1.483];  M_pol/M_c in [1.003, 1.501];  max|dlog10 g| = 0.1440;  min rho_pol = 2.043e+04
+  M_b=1e+11 h=4.0 r_M=11.10: max|C/C_tgt-1| = 0.499 at x=0.10;  x with >10%: [0.10, 1.65];  rho_pol/rho_tgt in [0.983, 1.299];  M_pol/M_c in [1.000, 1.339];  max|dlog10 g| = 0.0621;  min rho_pol = 6.461e+03
+  M_b=1e+12 h=5.0 r_M=35.10: max|C/C_tgt-1| = 0.079 at x=0.10;  x with >10%: none;  rho_pol/rho_tgt in [0.996, 1.068];  M_pol/M_c in [1.000, 1.094];  max|dlog10 g| = 0.0045;  min rho_pol = 2.043e+03
+  M_b=3e+09 h=2.5 r_M=1.92: max|C/C_tgt-1| = 1.239 at x=0.10;  x with >10%: [0.10, 7.93];  rho_pol/rho_tgt in [0.962, 1.525];  M_pol/M_c in [1.009, 1.535];  max|dlog10 g| = 0.1668;  min rho_pol = 3.730e+04
+  M_b=3e+10 h=3.5 r_M=6.08: max|C/C_tgt-1| = 0.826 at x=0.10;  x with >10%: [0.10, 3.06];  rho_pol/rho_tgt in [0.975, 1.416];  M_pol/M_c in [1.001, 1.444];  max|dlog10 g| = 0.1104;  min rho_pol = 1.180e+04
+  M_b=3e+11 h=4.5 r_M=19.23: max|C/C_tgt-1| = 0.237 at x=0.10;  x with >10%: [0.10, 0.53];  rho_pol/rho_tgt in [0.991, 1.172];  M_pol/M_c in [1.000, 1.214];  max|dlog10 g| = 0.0236;  min rho_pol = 3.730e+03
+  >> T1.2: FAIL -- per-mass max error 1e+09:1.332, 1e+10:1.067, 1e+11:0.499, 1e+12:0.079; rho_pol >= 0 everywhere: True
+
+======================================================================================================================
+T1.3  does ANY single monotone chi(g_b) reach 10%?  (12-knot and 6-knot log-spaced, monotone PCHIP, minimax by SLSQP epigraph)
+======================================================================================================================
+  12-knot free chi: max|log(C_model/C_tgt)| = 0.4181  ->  max |C/C_tgt - 1| ~ 0.519 (P2 start: 1.333)
+  6-knot free chi: max|log(C_model/C_tgt)| = 0.4265  ->  max |C/C_tgt - 1| ~ 0.532 (P2 start: 1.410)
+  >> T1.3: FAIL -- best free-form single chi(g_b): max dev 0.519 (12 knots 0.519, 6 knots 0.532); if it passed only for a free-form chi, G4 would fail (the shape is new information)
+
+======================================================================================================================
+T1.4  analytic obstruction: (a) the D(r) constant outside baryons; (b) profile degeneracy at fixed M_b(<r_test) and g_b(r_test)
+======================================================================================================================
+  (a) D(r) = (M_b+M_c)^2 - M_b^2 - (a0/G) r^2 M_b ;  dD/dr = M_b' (2 M_c - a0 r^2/G) (hand derivation) -- checked numerically on the target grid:
+    M_b=1e+09: identity dD/dr check median rel dev 3.32e-06;  D/(a0 r^2 M/G) at x=10,30,100: -2.272e-01, -3.627e-02, -3.266e-03;  M_c/M_pol(P2 local) - 1 at x=10,30,100: -1.323e-01, -1.891e-02, -1.651e-03
+  [PASS] I4 dD/dr identity M_b=1e+09
+         median rel dev 3.32e-06
+    M_b=1e+10: identity dD/dr check median rel dev 3.39e-06;  D/(a0 r^2 M/G) at x=10,30,100: -5.993e-02, -6.732e-03, -6.060e-04;  M_c/M_pol(P2 local) - 1 at x=10,30,100: -3.345e-02, -3.484e-03, -3.061e-04
+  [PASS] I4 dD/dr identity M_b=1e+10
+         median rel dev 3.39e-06
+    M_b=1e+11: identity dD/dr check median rel dev 2.93e-06;  D/(a0 r^2 M/G) at x=10,30,100: -6.662e-03, -7.403e-04, -6.665e-05;  M_c/M_pol(P2 local) - 1 at x=10,30,100: -3.668e-03, -3.826e-04, -3.366e-05
+  [PASS] I4 dD/dr identity M_b=1e+11
+         median rel dev 2.93e-06
+    M_b=1e+12: identity dD/dr check median rel dev 1.96e-06;  D/(a0 r^2 M/G) at x=10,30,100: -3.697e-04, -4.108e-05, -3.698e-06;  M_c/M_pol(P2 local) - 1 at x=10,30,100: -2.032e-04, -2.122e-05, -1.868e-06
+  [PASS] I4 dD/dr identity M_b=1e+12
+         median rel dev 1.96e-06
+  (b) profile degeneracy: same M_b(<r_test) = 1e10 Msun, same g_b(r_test); different interior; target M_c(r_test) by the ODE
+    x_test=  0.3: M_c(r_test)/M = point 0.04403, uniform(R=r/2) 0.04387, shell(R=r/2) 0.0332, exp(h=r/3) 0.04337;  spread max/min - 1 = 0.326
+    x_test=  1.0: M_c(r_test)/M = point 0.4142, uniform(R=r/2) 0.4052, shell(R=r/2) 0.3229, exp(h=r/3) 0.3775;  spread max/min - 1 = 0.283
+    x_test=  3.0: M_c(r_test)/M = point 2.162, uniform(R=r/2) 2.056, shell(R=r/2) 1.784, exp(h=r/3) 1.776;  spread max/min - 1 = 0.218
+    x_test= 10.0: M_c(r_test)/M = point 9.05, uniform(R=r/2) 8.436, shell(R=r/2) 7.718, exp(h=r/3) 7.031;  spread max/min - 1 = 0.287
+    x_test= 30.0: M_c(r_test)/M = point 29.02, uniform(R=r/2) 26.86, shell(R=r/2) 25, exp(h=r/3) 22.16;  spread max/min - 1 = 0.310
+  >> T1.4: FAIL -- profile-degeneracy spread by x_test 0.3:0.326, 1.0:0.283, 3.0:0.218, 10.0:0.287, 30.0:0.310; a local chi(g_b) cannot separate profiles with equal (M_b(<r), r) (scope: spherical, static, target = CFG44 ODE)
+
+======================================================================================================================
+T1.5  the committed nu_mono kernel (imported from CFG44 Bcommon / CFG4 canon)
+======================================================================================================================
+  point mass charge function R(x) = M_pol(nu_mono)/M_c : x=0.3,1,3,10 -> [1.3905 1.405  1.169  1.0507]   (CFG44 referee: R(1) = 1.46)
+  CFG44's own 'charge function' R = 4 pi G r rho_ph u/(a0 u_N) for the point mass, nu_mono, x = 1: 1.4565  (CFG44 referee: 1.46; the enclosed ratio above is a DIFFERENT quantity)
+  [PASS] (result) T1.5-x cross-check vs CFG44's quoted R(1) = 1.46
+         R(1) = 1.4565
+  exponential spheres, nu_mono: max|C/C_tgt-1| = 1e+09:1.466, 1e+10:1.415, 1e+11:1.227, 1e+12:0.627
+  >> T1.5: FAIL -- nu_mono: per-mass max dev 1.466; point-mass R(1) = 1.405
+
+======================================================================================================================
+T1.6  mass dependence of the T1.2 error with ONE chi (a0 the only scale)
+======================================================================================================================
+  M_b=1e+09  h/r_M =  1.802  max|C/C_tgt-1| = 1.332  at x = 0.10
+  M_b=1e+10  h/r_M =  0.855  max|C/C_tgt-1| = 1.067  at x = 0.10
+  M_b=1e+11  h/r_M =  0.360  max|C/C_tgt-1| = 0.499  at x = 0.10
+  M_b=1e+12  h/r_M =  0.142  max|C/C_tgt-1| = 0.079  at x = 0.10
+  M_b=3e+09  h/r_M =  1.288  max|C/C_tgt-1| = 1.239  at x = 0.10
+  M_b=3e+10  h/r_M =  0.572  max|C/C_tgt-1| = 0.826  at x = 0.10
+  M_b=3e+11  h/r_M =  0.233  max|C/C_tgt-1| = 0.237  at x = 0.10
+  >> T1.6: FAIL -- same constants at every mass hold by construction (chi has only a0); the gate is the per-mass error of T1.2 (see there)
+
+======================================================================================================================
+Q1  category theorems: can a bound charge BE the cold conserved component?
+======================================================================================================================
+  (i) a homogeneous isotropic vector field is invariant under 90-degree rotations about z and x: solution set [{a: 0, b: 0, c: 0}]  =>  Pi = 0, <rho_pol> = 0 (no Omega_c h^2 = 0.12 from a bound charge)
+  (ii) P2 halo: M_pol(<r)/M ~ x^1.013 at x = 10..1e4 (no finite total); bounded medium: bulk charge M_pol(R_D) + surface charge -4 pi R_D^2 |Pi(R_D)| = 0.0e+00 (divergence theorem: net bound charge of a finite medium is zero)
+  (iii) slaved to the local field: Pi = Pi_eq(g_b(x,t)) has no independent velocity or dispersion and follows the baryons -- STRUCTURAL statement, NOT tested numerically here (no merger run).
+  >> Q1: FAIL -- (i) and (ii) hold as theorems: the bound charge has zero cosmic mean and zero net charge for a bounded polarisation; the identification 'the cold conserved component IS the bound charge' fails; (iii) is structural, untested
+
+  integrity failures: 0   (38 s)   exit 0

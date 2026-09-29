@@ -1,0 +1,88 @@
+
+======================================================================================================================
+CFG121 S  (footing canonical: a0 = 9.3603e-11 m/s^2; MUTATE='kernel')
+======================================================================================================================
+
+======================================================================================================================
+S1  kernel stability: h(y) = (nu-1) y (= 4 pi G |Pi_eq|/a0, y = g_N/a0); longitudinal stiffness  dg/dPi - 4 pi G = 4 pi G / h'  (needs h' > 0)
+======================================================================================================================
+  P2       : min h' = +1.2556e-09; region with h' < 0: none;  h(1e4) = 0.5000 (P2 -> 0.5 from below)
+  >> S1_P2: PASS -- min h' = +1.256e-09 vs 0
+  nu_mono  : min h' = +3.2447e-06; region with h' < 0: none;  h(1e4) = 0.8939 (P2 -> 0.5 from below)
+  >> S1_nu_mono: PASS -- min h' = +3.245e-06 vs 0
+  simple   : min h' = +1.0042e-08; region with h' < 0: none;  h(1e4) = 0.9999 (P2 -> 0.5 from below)
+  >> S1_simple: PASS -- min h' = +1.004e-08 vs 0
+  standard : min h' = -8.1441e-02; region with h' < 0: y in [0.488, 1e+04];  h(1e4) = 0.0000 (P2 -> 0.5 from below)
+  >> S1_standard: FAIL -- min h' = -8.144e-02 vs 0
+  >> S1_used: FAIL -- the kernel used for G1 in this run is standard
+
+======================================================================================================================
+S2  Hessian of the declared action about the static state (V_U and V_B); S3  hyperbolicity of the linearised local system
+======================================================================================================================
+  V_U: kinetic coefficient kappa_I/(Q^2 rho_D) > 0; longitudinal potential Hessian 4 pi G/h' over y in [1e-4, 1e4]: min sign = NEGATIVE somewhere; transverse Hessian Gfun(P)/P > 0 for P > 0 (kernel standard).
+  V_U: no spatial-gradient term in the declared action, so omega^2(k) is independent of k (a local oscillator at each point; the Poisson constraint enters only through the -4 pi G already counted).
+  >> S2_V_U: FAIL -- kinetic matrix positive; potential Hessian non-negative iff h' > 0 for the kernel in use
+  V_B: quadratic form of the (Phi_b, lambda) block at k = 0.001/kpc: [[0, D],[D, 0]], D = k^2/(4 pi G): eigenvalues -1.850e-02, 1.850e-02 (signature +,-)
+  V_B: quadratic form of the (Phi_b, lambda) block at k = 1/kpc: [[0, D],[D, 0]], D = k^2/(4 pi G): eigenvalues -1.850e+04, 1.850e+04 (signature +,-)
+  V_B: quadratic form of the (Phi_b, lambda) block at k = 1000/kpc: [[0, D],[D, 0]], D = k^2/(4 pi G): eigenvalues -1.850e+10, 1.850e+10 (signature +,-)
+  V_B: in the declared Newtonian action this block has NO time derivatives (constraint variables); the +,- signature becomes a dipole-ghost KINETIC matrix only in a relativistic completion (CFG50: OPEN).  The frozen rule ('a dipole-ghost structure is a FAIL for that variant') is applied literally.
+  >> S2_V_B: FAIL -- the (Phi_b, lambda) block has the indefinite [[0, D],[D, 0]] structure (frozen rule applied literally); Newtonian-sector dynamical fields (Pi) are healthy iff h' > 0 as for V_U; relativistic completion untested
+  >> S3_V_U: FAIL -- omega_L^2, omega_T^2 >= 0 for all g_N and k, group velocity 0 <= c (kernel in use); Newtonian sector only
+  >> S3_V_B: FAIL -- same for the Pi modes; the constraint block has no propagating mode; Newtonian sector only
+
+======================================================================================================================
+S4  Solar System (the Sun in the Galaxy's field): monopole and anisotropy of the polarisation field at 9.5 AU, uncapped and medium-density-capped
+======================================================================================================================
+  g_ext = 1.0 a0: uncapped monopole pull (Gauss) = 4.6801e-11 m/s^2 (isolated limit a0/2 = 4.6802e-11), anisotropy amplitude of V_r = 7.325e-21 m/s^2, induced mass fraction = 7.123e-07 M_sun
+  g_ext = 1.9 a0: uncapped monopole pull (Gauss) = 4.6801e-11 m/s^2 (isolated limit a0/2 = 4.6802e-11), anisotropy amplitude of V_r = 7.388e-21 m/s^2, induced mass fraction = 7.123e-07 M_sun
+  g_ext = 3.0 a0: uncapped monopole pull (Gauss) = 4.6801e-11 m/s^2 (isolated limit a0/2 = 4.6802e-11), anisotropy amplitude of V_r = 7.524e-21 m/s^2, induced mass fraction = 7.123e-07 M_sun
+  capped |Pi| <= eps_c Q rho_D r with rho_D = 0.01 Msun/pc^3 (local DM density), eps_c = 1.0, Q = 1: |delta a| <= 8.067e-19 m/s^2
+  capped |Pi| <= eps_c Q rho_D r with rho_D = 0.01 Msun/pc^3 (local DM density), eps_c = 1.0, Q = 9.68 (V_B star): |delta a| <= 7.807e-18 m/s^2
+  capped |Pi| <= eps_c Q rho_D r with rho_D = 0.01 Msun/pc^3 (local DM density), eps_c = 1.0, Q = 139 (V_U star): |delta a| <= 1.119e-16 m/s^2
+  bounds: generous 1e-13, tight 1e-15, and the record's alpha = 1 ephemeris bound a0/2/1278 = 3.66e-14 m/s^2 (the 1278x is from the memory notes: unverified here)
+  >> S4_uncapped: FAIL -- uncapped P2 monopole pull 4.68e-11 m/s^2 vs generous line 1e-13: 468x over (1278x over the record's a0/2/1278); the external-field effect at g_ext = 1-3 a0 does NOT remove it (the Sun's field dominates: |g_N| >> a0)
+  >> S4_capped: PASS -- medium-density-capped |delta a| <= 1.12e-16 m/s^2 (generous 1e-13; tight 1e-15: pass)
+  >> S4: PASS -- safe ONLY through the medium-density cap (the same budget B1 that makes G1c fail), NOT through the external-field effect; ownership route of candidate B unavailable
+
+======================================================================================================================
+O1  Gap-1 side test: (i) instantaneous locality (external-field suppression of a satellite's bound charge); (ii) twin test and tau/t_dyn
+======================================================================================================================
+  (i) satellite of baryon mass Ms in the field of a point host Mh at distance d: monopole bound-charge mass within 3 r_M,sat (algebraic P2, Gauss-averaged) / isolated
+    Ms=1e+08, Mh=1e+11: d=50 kpc (g_h/a0 = 0.06): 0.924;  d=100 kpc (g_h/a0 = 0.01): 0.995;  d=200 kpc (g_h/a0 = 0.00): 1.000;  d=300 kpc (g_h/a0 = 0.00): 1.000;  
+    Ms=1e+08, Mh=1e+12: d=50 kpc (g_h/a0 = 0.60): 0.215;  d=100 kpc (g_h/a0 = 0.15): 0.624;  d=200 kpc (g_h/a0 = 0.04): 0.970;  d=300 kpc (g_h/a0 = 0.02): 0.994;  
+    Ms=1e+09, Mh=1e+11: d=50 kpc (g_h/a0 = 0.06): 0.924;  d=100 kpc (g_h/a0 = 0.01): 0.995;  d=200 kpc (g_h/a0 = 0.00): 1.000;  d=300 kpc (g_h/a0 = 0.00): 1.000;  
+    Ms=1e+09, Mh=1e+12: d=50 kpc (g_h/a0 = 0.60): 0.215;  d=100 kpc (g_h/a0 = 0.15): 0.624;  d=200 kpc (g_h/a0 = 0.04): 0.970;  d=300 kpc (g_h/a0 = 0.02): 0.994;  
+  (ii) twin test: two systems with the same instantaneous baryon state and different histories (accreted satellite vs formed-embedded dwarf) have the SAME adiabatic polarisation P = h(g_b(x)) -- a theorem of the declared model (state functional); CFG48 G2/G3.
+       tau/t_dyn = Omega_orb/omega at the minimal B1-satisfying medium (rho_D = M_c/(4 pi Q r^3), eps_c = 1); omega^2/Omega^2 = Q kappa_I^-1 (M_c/M_tot)/h' * ... computed exactly below
+    M_b=1e+10, Q=1, kappa_I=1: B1 satisfied everywhere: False; tau/t_dyn at x=0.3,1,3,10,30 = 1.22, 1.02, 1.17, 2.13, 3.81;  x with 1 <= tau/t_dyn <= 10: [0.3, 30.0]
+    M_b=1e+10, Q=9.68, kappa_I=1: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.393, 0.326, 0.378, 0.685, 1.22;  x with 1 <= tau/t_dyn <= 10: [20.4, 30.0]
+    M_b=1e+10, Q=9.68, kappa_I=0.667: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.321, 0.267, 0.308, 0.559, 1;  x with 1 <= tau/t_dyn <= 10: [30.0, 30.0]
+    M_b=1e+10, Q=139, kappa_I=1: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.104, 0.0862, 0.0997, 0.181, 0.323;  x with 1 <= tau/t_dyn <= 10: none
+    M_b=1e+10, Q=9.68, kappa_I=100: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 3.93, 3.26, 3.78, 6.85, 12.2;  x with 1 <= tau/t_dyn <= 10: [0.3, 19.7]
+    M_b=1e+10, Q=9.68, kappa_I=1e+04: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 39.3, 32.6, 37.8, 68.5, 122;  x with 1 <= tau/t_dyn <= 10: none
+    M_b=1e+12, Q=1, kappa_I=1: B1 satisfied everywhere: False; tau/t_dyn at x=0.3,1,3,10,30 = 0.233, 0.461, 1.04, 2.13, 3.81;  x with 1 <= tau/t_dyn <= 10: [2.9, 30.0]
+    M_b=1e+12, Q=9.68, kappa_I=1: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.075, 0.148, 0.334, 0.684, 1.22;  x with 1 <= tau/t_dyn <= 10: [20.4, 30.0]
+    M_b=1e+12, Q=9.68, kappa_I=0.667: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.0613, 0.121, 0.273, 0.558, 1;  x with 1 <= tau/t_dyn <= 10: [30.0, 30.0]
+    M_b=1e+12, Q=139, kappa_I=1: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.0198, 0.0392, 0.0883, 0.181, 0.323;  x with 1 <= tau/t_dyn <= 10: none
+    M_b=1e+12, Q=9.68, kappa_I=100: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 0.75, 1.48, 3.34, 6.84, 12.2;  x with 1 <= tau/t_dyn <= 10: [0.6, 19.7]
+    M_b=1e+12, Q=9.68, kappa_I=1e+04: B1 satisfied everywhere: True; tau/t_dyn at x=0.3,1,3,10,30 = 7.5, 14.8, 33.4, 68.4, 122;  x with 1 <= tau/t_dyn <= 10: [0.3, 0.6]
+  post-hoc note (declared after seeing the table): where tau/t_dyn is only 1-1.6 the dipoles respond to the drive with reduction ~ (omega^2/Omega^2)/(1 + omega^2/Omega^2) ~ 0.3-0.5, so B1 (which assumes the full equilibrium Pi) is not really met there; the frozen literal test does not include this factor.
+  >> O1_V_B: PASS -- literal frozen test at the declared kappa_I = 1 with B1 satisfied (Q = Q* = 9.68): window 1 <= tau/t_dyn <= 10 exists at [('1e+10', '[20.4,30.0]'), ('1e+12', '[20.4,30.0]')]
+  >> O1_V_U: FAIL -- V_U at Q* = 138.7, kappa_I = 1: window exists: False
+
+======================================================================================================================
+G4  constants beyond kappa and Omega_c h^2, and the a0-Lambda tie
+======================================================================================================================
+  table: kappa = 1/2 (FITTED), Omega_c h^2 = 0.12 (FITTED); Q = 1 (declared; a pass needs Q* != 1: NEW); kappa_I = 1 (declared; a pass needs kappa_I* != 1: NEW); kernel shape P2 (derived from the point-mass target, no fit; free-form chi = new information); eps_c, f_track analysis thresholds; Pi_sat = a0/(8 pi G) tied to a0.
+  V_B star: Q* = 9.68, kappa_I* = 0.667;  V_U star: Q* = 138.7, kappa_I* = 1.000
+  internal energy density scale at P = 0.25 a0: w/P_cap = 2 W/a0^2 = 0.0170 (V_B), 0.0795 (V_U);  P_cap = a0^2/(8 pi G) = (kappa^2/8 pi) rho_Lambda c^2 (CFG43)
+  internal energy density scale at P = 0.4 a0: w/P_cap = 2 W/a0^2 = 0.1224 (V_B), 0.2824 (V_U);  P_cap = a0^2/(8 pi G) = (kappa^2/8 pi) rho_Lambda c^2 (CFG43)
+  internal energy density scale at P = 0.499 a0: w/P_cap = 2 W/a0^2 = 1.1797 (V_B), 1.4287 (V_U);  P_cap = a0^2/(8 pi G) = (kappa^2/8 pi) rho_Lambda c^2 (CFG43)
+  strong-field coefficient: W_B ~ -(a0^2/8) ln(1 - 2P/a0), i.e. w ~ (1/4) P_cap ln(...): logarithmically unbounded at the saturation wall (a 'cap' only in the sense of a wall); the tie of the scale a0^2/(8 pi G) to Lambda is the CFG43 tie, POSTULATED not derived: PARTIAL.
+  >> G4_VB: FAIL -- no pass exists at Q = kappa_I = 1 (G1c fails); the smallest passing set needs Q* = 9.68 and kappa_I* = 0.67: new constants; tie PARTIAL
+  >> G4_VU: FAIL -- the smallest passing set needs Q* = 139; new constant; tie PARTIAL
+
+  MUTATE=kernel: headline cells changed vs the main run: {'S1_used': ('PASS', 'FAIL'), 'S2_V_U': ('PASS', 'FAIL'), 'S3_V_U': ('PASS', 'FAIL'), 'S3_V_B': ('PASS', 'FAIL')}
+  required cells ['S1_used']: ALL CHANGED -> control works (exit 1)
+
+  integrity failures: 0   (0 s)   exit 1

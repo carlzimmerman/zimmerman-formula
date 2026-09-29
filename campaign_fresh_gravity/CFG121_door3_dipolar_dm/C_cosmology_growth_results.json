@@ -1,0 +1,77 @@
+{
+ "slug": "C_cosmology_growth",
+ "footing": "canonical",
+ "mutate": "",
+ "integrity_failures": 0,
+ "checks": [
+  {
+   "name": "I1 reference (Q = 0) growth D(z=10)/D(z=100)",
+   "detail": "solver 9.0217; Meszaros matter+radiation analytic 9.0244 (Lambda suppression at z = 10 is O(1e-3))",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I2 convergence V_B (Q=3.0, k=2, A=1e-3, cold)",
+   "detail": "N 512->1024: 1.26e-06; rtol 1e-8 -> 1e-10: 4.78e-10 (line 1e-2)",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I2 convergence V_U (Q=3.0, k=2, A=1e-3, cold)",
+   "detail": "N 512->1024: 7.01e-11; rtol 1e-8 -> 1e-10: 2.03e-10 (line 1e-2)",
+   "ok": true,
+   "integrity": true
+  }
+ ],
+ "verdicts": {
+  "C1_V_U_central": {
+   "status": "FAIL",
+   "why": "worst deviation inf vs 0.05 (Q = 1, kappa_I = 1)"
+  },
+  "C1_V_U_star": {
+   "status": "FAIL",
+   "why": "worst deviation inf vs 0.05 (Q = 138.7, kappa_I = 1)"
+  },
+  "C1_V_B_central": {
+   "status": "FAIL",
+   "why": "worst deviation inf vs 0.05 (Q = 1, kappa_I = 1)"
+  },
+  "C1_V_B_star": {
+   "status": "FAIL",
+   "why": "worst deviation inf vs 0.05 (Q = 9.677, kappa_I = 0.667)"
+  },
+  "G2_V_U": {
+   "status": "FAIL",
+   "why": "both parameter sets must pass: central worst inf, star worst inf"
+  },
+  "G2_V_B": {
+   "status": "FAIL",
+   "why": "both parameter sets must pass: central worst inf, star worst inf"
+  },
+  "C2_V_U_central": {
+   "status": "FAIL",
+   "why": "|delta_eff/delta_D - 1| and medium growth <= 0.05 needed; worst 0.4494"
+  },
+  "C2_V_U_star": {
+   "status": "FAIL",
+   "why": "|delta_eff/delta_D - 1| and medium growth <= 0.05 needed; worst 4.083"
+  },
+  "C2_V_U": {
+   "status": "FAIL",
+   "why": "both parameter sets; c_eff^2 half of the line: the polarisation sector has no gradient term so the medium is pressureless (c_eff^2 = 0 by construction, a DEFINITION made at phase 2, not a computed sound speed; k = 1e-3 /Mpc is super-horizon at z = 1100 and is NOT evaluated)"
+  },
+  "C2_V_B_central": {
+   "status": "FAIL",
+   "why": "|delta_eff/delta_D - 1| and medium growth <= 0.05 needed; worst 0.1475"
+  },
+  "C2_V_B_star": {
+   "status": "FAIL",
+   "why": "|delta_eff/delta_D - 1| and medium growth <= 0.05 needed; worst 3.315"
+  },
+  "C2_V_B": {
+   "status": "FAIL",
+   "why": "both parameter sets; c_eff^2 half of the line: the polarisation sector has no gradient term so the medium is pressureless (c_eff^2 = 0 by construction, a DEFINITION made at phase 2, not a computed sound speed; k = 1e-3 /Mpc is super-horizon at z = 1100 and is NOT evaluated)"
+  }
+ },
+ "numbers": {}
+}

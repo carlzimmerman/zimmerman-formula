@@ -1,0 +1,51 @@
+
+======================================================================================================================
+CFG121 E  (footing canonical: a0 = 2888.29; MUTATE='')
+======================================================================================================================
+
+======================================================================================================================
+E1  reaction: max over x in [0.3, 30] of |g_model - g_tgt|/g_tgt   (line 0.10)
+======================================================================================================================
+  M_b=1e+09: (i) pure phantom 0.445 (at x = 0.30);  V_B Q=1: 0.797 (M_D/M_c at x=30: 0.795);  V_B Q=9.68: 0.481 (M_D/M_c at x=30: 0.082);  V_U Q=1: 4.005 (M_D/M_c at x=30: 0.795);  V_U Q=139: 0.458 (M_D/M_c at x=30: 0.006)
+  M_b=1e+10: (i) pure phantom 0.277 (at x = 0.30);  V_B Q=1: 0.840 (M_D/M_c at x=30: 0.866);  V_B Q=9.68: 0.305 (M_D/M_c at x=30: 0.089);  V_U Q=1: 4.189 (M_D/M_c at x=30: 0.866);  V_U Q=139: 0.281 (M_D/M_c at x=30: 0.006)
+  M_b=1e+11: (i) pure phantom 0.066 (at x = 0.30);  V_B Q=1: 0.868 (M_D/M_c at x=30: 0.898);  V_B Q=9.68: 0.090 (M_D/M_c at x=30: 0.093);  V_U Q=1: 4.276 (M_D/M_c at x=30: 0.898);  V_U Q=139: 0.090 (M_D/M_c at x=30: 0.006)
+  M_b=1e+12: (i) pure phantom 0.006 (at x = 0.91);  V_B Q=1: 0.875 (M_D/M_c at x=30: 0.905);  V_B Q=9.68: 0.090 (M_D/M_c at x=30: 0.093);  V_U Q=1: 4.296 (M_D/M_c at x=30: 0.905);  V_U Q=139: 0.091 (M_D/M_c at x=30: 0.007)
+  >> E1_V_B: FAIL -- worst reaction at Q = 1: 0.875; at Q* = 9.68: 0.481; pure phantom worst 0.445 (the phantom-only excess is the T1.2 mismatch, 0 for a point mass)
+  >> E1_V_U: FAIL -- worst reaction at Q = 1: 4.296; at Q* = 139: 0.458; pure phantom worst 0.445 (the phantom-only excess is the T1.2 mismatch, 0 for a point mass)
+
+======================================================================================================================
+E2  Noether check: 1D micro-model, pairwise gravity U = sum_{a<b} 2 pi G W_ab s_a s_b |x_a - x_b| (s = gravitational charge)
+======================================================================================================================
+  V_U: sum of all forces / max|F| = -2.56e-16;  force on baryon -2.702346e+13, force on (medium + dipole charges) 2.702346e+13, sum 3.91e-03
+  >> E2_V_U: PASS -- momentum conservation |sum F|/max|F| = 2.56e-16 (line 1e-12); force on baryon = minus force on (medium + bound charge)
+  V_B: sum of all forces / max|F| = -1.29e-15;  force on baryon -2.702346e+13, force on (medium + dipole charges) 2.702346e+13, sum -3.12e-02
+  >> E2_V_B: PASS -- momentum conservation |sum F|/max|F| = 1.29e-15 (line 1e-12); force on baryon = minus force on (medium + bound charge)
+  scope: this checks the reciprocity built into the declared pairwise action; it is close to a tautology (a translation-invariant pair potential conserves momentum), and it does NOT test the field-theory coupling of the relativistic action.
+  the reaction on the baryons from the bound charge is the field of that charge, G M_pol(<r)/r^2, which for the pure phantom IS the law's phantom force (E1 (i): 0 for a point mass).
+
+======================================================================================================================
+E3  energy: E_int = integral_{r<r_e} w 4 pi r^2 dr (w = W(P)/(4 pi G), P = 4 pi G |Pi|) vs E_orb = (1/2) M V_f^2, both r_ta conventions (r_e = 0.4 r_ta)
+======================================================================================================================
+  M_b=1e+09 CFG48    : r_ta =   148.0 kpc, x_e = r_e/r_M =   48.5:  E_int/E_orb  V_B     1.34   V_U     40.76   (V_U E_net/E_orb =    -2.83);  hand estimates: V_B (2/3) ln x_e = 2.59, V_U x_e = 48.5
+  M_b=1e+09 committed: r_ta =   646.0 kpc, x_e = r_e/r_M =  211.7:  E_int/E_orb  V_B     2.30   V_U    202.04   (V_U E_net/E_orb =    -4.78);  hand estimates: V_B (2/3) ln x_e = 3.57, V_U x_e = 211.7
+  M_b=1e+10 CFG48    : r_ta =   318.8 kpc, x_e = r_e/r_M =   33.0:  E_int/E_orb  V_B     1.41   V_U     27.58   (V_U E_net/E_orb =    -3.14);  hand estimates: V_B (2/3) ln x_e = 2.33, V_U x_e = 33.0
+  M_b=1e+10 committed: r_ta =  1148.7 kpc, x_e = r_e/r_M =  119.1:  E_int/E_orb  V_B     2.25   V_U    111.91   (V_U E_net/E_orb =    -4.82);  hand estimates: V_B (2/3) ln x_e = 3.19, V_U x_e = 119.1
+  M_b=1e+11 CFG48    : r_ta =   686.9 kpc, x_e = r_e/r_M =   22.5:  E_int/E_orb  V_B     1.39   V_U     18.16   (V_U E_net/E_orb =    -3.37);  hand estimates: V_B (2/3) ln x_e = 2.08, V_U x_e = 22.5
+  M_b=1e+11 committed: r_ta =  2042.7 kpc, x_e = r_e/r_M =   67.0:  E_int/E_orb  V_B     2.09   V_U     61.18   (V_U E_net/E_orb =    -4.80);  hand estimates: V_B (2/3) ln x_e = 2.80, V_U x_e = 67.0
+  M_b=1e+12 CFG48    : r_ta =  1479.8 kpc, x_e = r_e/r_M =   15.3:  E_int/E_orb  V_B     1.22   V_U     11.59   (V_U E_net/E_orb =    -3.36);  hand estimates: V_B (2/3) ln x_e = 1.82, V_U x_e = 15.3
+  M_b=1e+12 committed: r_ta =  3632.6 kpc, x_e = r_e/r_M =   37.7:  E_int/E_orb  V_B     1.79   V_U     32.74   (V_U E_net/E_orb =    -4.52);  hand estimates: V_B (2/3) ln x_e = 2.42, V_U x_e = 37.7
+  >> E3_V_B: FAIL -- worst E_int/E_orb over 1e9, 1e10, 1e12 and both r_ta conventions = 2.30 (line 1); a reversible store, not an unfunded reservoir; CFG48/CFG70 exchange energy was 23-318x
+  >> E3_V_U: FAIL -- worst E_int/E_orb over 1e9, 1e10, 1e12 and both r_ta conventions = 202.04 (line 1); a reversible store, not an unfunded reservoir; CFG48/CFG70 exchange energy was 23-318x
+
+======================================================================================================================
+G3-edge  Gauss neutral-charge: a finite medium (R_D = 0.4 r_ta) carries zero net bound charge -> negative shell phi_max M_c(R_D) at eps_c Q = 1
+======================================================================================================================
+  M_b=1e+10 CFG48    : x_e =   33.0, phi_max = 0.519, M_c(R_D) = 3.199e+11, negative shell = 1.659e+11 Msun;  CFG48-type flux-gated shell M_b(sqrt(1+x_e^2)-1) = 3.206e+11
+  M_b=1e+10 committed: x_e =  119.1, phi_max = 0.505, M_c(R_D) = 1.181e+12, negative shell = 5.957e+11 Msun;  CFG48-type flux-gated shell M_b(sqrt(1+x_e^2)-1) = 1.181e+12
+  M_b=1e+11 CFG48    : x_e =   22.5, phi_max = 0.521, M_c(R_D) = 2.153e+12, negative shell = 1.121e+12 Msun;  CFG48-type flux-gated shell M_b(sqrt(1+x_e^2)-1) = 2.154e+12
+  M_b=1e+11 committed: x_e =   67.0, phi_max = 0.507, M_c(R_D) = 6.596e+12, negative shell = 3.346e+12 Msun;  CFG48-type flux-gated shell M_b(sqrt(1+x_e^2)-1) = 6.597e+12
+  M_b=1e+12 CFG48    : x_e =   15.3, phi_max = 0.527, M_c(R_D) = 1.437e+13, negative shell = 7.576e+12 Msun;  CFG48-type flux-gated shell M_b(sqrt(1+x_e^2)-1) = 1.437e+13
+  M_b=1e+12 committed: x_e =   37.7, phi_max = 0.512, M_c(R_D) = 3.667e+13, negative shell = 1.878e+13 Msun;  CFG48-type flux-gated shell M_b(sqrt(1+x_e^2)-1) = 3.667e+13
+  >> G3edge: REPORTED -- no frozen pass line: a bounded polarised medium cannot carry its enclosed bound charge beyond its edge (net zero); the shell is phi_max M_c(R_D), the same order as CFG48's negative shell
+
+  integrity failures: 0   (2 s)   exit 0

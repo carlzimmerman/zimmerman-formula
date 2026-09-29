@@ -1,0 +1,72 @@
+
+======================================================================================================================
+CFG121 B  (footing canonical: a0 = 2888.29; Q_central = 1.0, kappa_I = 1.0; MUTATE='')
+======================================================================================================================
+
+======================================================================================================================
+Q2  relaxation: omega/Omega_orb and tau/t_dyn (Q = kappa_I = 1; medium density rho_D = rho_tgt, and the cosmic mean x 200)
+======================================================================================================================
+  M_b=1e+09 rho_D = rho_tgt                   : omega/Omega_orb at x=0.3,1,3,10,30 = 0.71, 0.88, 0.89, 0.541, 0.271
+  M_b=1e+09 rho_D = 200 x Omega_c rho_crit    : omega/Omega_orb at x=0.3,1,3,10,30 = 0.0127, 0.0237, 0.0405, 0.0642, 0.0995
+  M_b=1e+10 rho_D = rho_tgt                   : omega/Omega_orb at x=0.3,1,3,10,30 = 1.24, 1.43, 1.11, 0.505, 0.268
+  M_b=1e+10 rho_D = 200 x Omega_c rho_crit    : omega/Omega_orb at x=0.3,1,3,10,30 = 0.0254, 0.0487, 0.0757, 0.11, 0.176
+  M_b=1e+11 rho_D = rho_tgt                   : omega/Omega_orb at x=0.3,1,3,10,30 = 2.63, 2.34, 1.13, 0.494, 0.267
+  M_b=1e+11 rho_D = 200 x Omega_c rho_crit    : omega/Omega_orb at x=0.3,1,3,10,30 = 0.0675, 0.114, 0.134, 0.193, 0.312
+  M_b=1e+12 rho_D = rho_tgt                   : omega/Omega_orb at x=0.3,1,3,10,30 = 6.05, 2.86, 1.1, 0.493, 0.267
+  M_b=1e+12 rho_D = 200 x Omega_c rho_crit    : omega/Omega_orb at x=0.3,1,3,10,30 = 0.241, 0.236, 0.236, 0.343, 0.555
+
+======================================================================================================================
+B1  budget: F_req(x) = M_c/(4 pi eps_c Q r^3 rho_tgt) <= F_allow = 0.10 at every x in [0.3, 30]
+======================================================================================================================
+  M_b=1e+09: M_c/(4 pi r^3 rho_tgt) (= F_req at eps_c Q = 1): min 0.414, max 0.939; at x=0.3,1,3,10,30: 0.414, 0.438, 0.499, 0.721, 0.939
+  M_b=1e+10: M_c/(4 pi r^3 rho_tgt) (= F_req at eps_c Q = 1): min 0.432, max 0.962; at x=0.3,1,3,10,30: 0.432, 0.474, 0.588, 0.864, 0.962
+  M_b=1e+11: M_c/(4 pi r^3 rho_tgt) (= F_req at eps_c Q = 1): min 0.470, max 0.967; at x=0.3,1,3,10,30: 0.470, 0.528, 0.716, 0.905, 0.967
+  M_b=1e+12: M_c/(4 pi r^3 rho_tgt) (= F_req at eps_c Q = 1): min 0.501, max 0.968; at x=0.3,1,3,10,30: 0.501, 0.573, 0.757, 0.909, 0.968
+  eps_c = 0.3: worst F_req over masses and x = 3.226 at Q = 1.0  ->  FAIL
+  eps_c = 1.0: worst F_req over masses and x = 0.968 at Q = 1.0  ->  FAIL
+  eps_c = 3.0: worst F_req over masses and x = 0.323 at Q = 1.0  ->  FAIL
+  Q* (eps_c = 1) that makes B1 pass at every mass and x: 9.68   (a new constant unless it equals 1)
+  >> B1_VB: FAIL -- eps_c = 1, Q = 1.0: worst F_req = 0.968 vs 0.1; Q* = 9.68
+
+======================================================================================================================
+B2  V_U pincer (exact P2): largest M_D/M_c with the TOTAL dark mass within +10% of the target, compared with F_req
+======================================================================================================================
+  M_b=1e+09: F_allow_U (exp sphere, vs target) at x=0.3,1,3,10,30: 0, 0, 0, 0, 0.00584;  point mass: 0.0999, 0.0944, 0.0588, 0.0206, 0.00698;  F_req(Q=1.0): 0.414, 0.438, 0.499, 0.721, 0.939
+  M_b=1e+10: F_allow_U (exp sphere, vs target) at x=0.3,1,3,10,30: 0, 0, 0, 0.0147, 0.00677;  point mass: 0.0999, 0.0944, 0.0588, 0.0206, 0.00698;  F_req(Q=1.0): 0.432, 0.474, 0.588, 0.864, 0.962
+  M_b=1e+11: F_allow_U (exp sphere, vs target) at x=0.3,1,3,10,30: 0, 0, 0.0369, 0.02, 0.00695;  point mass: 0.0999, 0.0944, 0.0588, 0.0206, 0.00698;  F_req(Q=1.0): 0.47, 0.528, 0.716, 0.905, 0.967
+  M_b=1e+12: F_allow_U (exp sphere, vs target) at x=0.3,1,3,10,30: 0.0564, 0.0766, 0.0576, 0.0205, 0.00697;  point mass: 0.0999, 0.0944, 0.0588, 0.0206, 0.00698;  F_req(Q=1.0): 0.501, 0.573, 0.757, 0.909, 0.968
+  deep-regime hand estimate: F_allow_U ~ 0.2/x (x = 30 -> 0.0067); Q*_U from the POINT-mass F_allow_U (the exp-sphere F_allow_U is 0 wherever the local P2 phantom already exceeds 1.1 M_c) = 138.7
+  >> B2_VU: FAIL -- F_req <= F_allow_U at every x and mass: False; Q*_U (point-mass F_allow_U) = 138.7
+
+======================================================================================================================
+B3  adiabatic tracking: rho_track/rho_tgt = f^2 kappa_I h' Omega_orb^2 / (4 pi G Q^2 rho_tgt) <= 0.10;  minimum Q^2/kappa_I
+======================================================================================================================
+  f_track = 0.3: worst rho_track/rho_tgt at (Q, kappa_I) = (1.0, 1.0) = 1.26 (FAIL);  minimum Q^2/kappa_I = 12.6
+  f_track = 1.0: worst rho_track/rho_tgt at (Q, kappa_I) = (1.0, 1.0) = 14 (FAIL);  minimum Q^2/kappa_I = 140
+  f_track = 3.0: worst rho_track/rho_tgt at (Q, kappa_I) = (1.0, 1.0) = 126 (FAIL);  minimum Q^2/kappa_I = 1.26e+03
+  f_track = 10.0: worst rho_track/rho_tgt at (Q, kappa_I) = (1.0, 1.0) = 1.4e+03 (FAIL);  minimum Q^2/kappa_I = 1.4e+04
+  deep-regime check (M_b = 1e11, f = 1, Q = kappa_I = 1): rho_track/rho_tgt at x = 10, 30 = 4.09, 14.03 (hand: ~ x/2 = 5, 15)
+  >> B3: FAIL -- f = 1, Q = 1.0, kappa_I = 1: fails; minimum Q^2/kappa_I = 140 (f = 1), 12.6 (f = 0.3), 1.26e+03 (f = 3)
+
+======================================================================================================================
+B4  maximal polarised share phi_max(x): M' = 4 pi r^2 rho_tgt - M/(eps_c Q r)
+======================================================================================================================
+  eps_c Q =  0.3, M_b = 1e+10: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.420, 0.411, 0.392, 0.350, 0.269, 0.240, 0.233;  closed forms: 1/r regime 2q/(1+2q) = 0.375, 1/r^2 (deep) regime q/(1+q) = 0.231
+  eps_c Q =  0.3, M_b = 1e+12: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.384, 0.376, 0.352, 0.294, 0.253, 0.238, 0.233;  closed forms: 1/r regime 2q/(1+2q) = 0.375, 1/r^2 (deep) regime q/(1+q) = 0.231
+  eps_c Q =  1.0, M_b = 1e+10: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.707, 0.701, 0.685, 0.649, 0.566, 0.521, 0.506;  closed forms: 1/r regime 2q/(1+2q) = 0.667, 1/r^2 (deep) regime q/(1+q) = 0.500
+  eps_c Q =  1.0, M_b = 1e+12: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.676, 0.669, 0.648, 0.593, 0.539, 0.515, 0.505;  closed forms: 1/r regime 2q/(1+2q) = 0.667, 1/r^2 (deep) regime q/(1+q) = 0.500
+  eps_c Q =  3.0, M_b = 1e+10: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.879, 0.876, 0.868, 0.849, 0.803, 0.771, 0.757;  closed forms: 1/r regime 2q/(1+2q) = 0.857, 1/r^2 (deep) regime q/(1+q) = 0.750
+  eps_c Q =  3.0, M_b = 1e+12: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.863, 0.859, 0.848, 0.818, 0.783, 0.765, 0.755;  closed forms: 1/r regime 2q/(1+2q) = 0.857, 1/r^2 (deep) regime q/(1+q) = 0.750
+  eps_c Q = 10.0, M_b = 1e+10: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.960, 0.959, 0.956, 0.950, 0.933, 0.920, 0.913;  closed forms: 1/r regime 2q/(1+2q) = 0.952, 1/r^2 (deep) regime q/(1+q) = 0.909
+  eps_c Q = 10.0, M_b = 1e+12: phi_max at x=0.1,0.3,1,3,10,30,100 = 0.954, 0.953, 0.949, 0.938, 0.925, 0.916, 0.912;  closed forms: 1/r regime 2q/(1+2q) = 0.952, 1/r^2 (deep) regime q/(1+q) = 0.909
+  NOTE (my frozen text quoted only the 1/r-regime closed form): rho_tgt ~ 1/r for x << 1 but ~ 1/r^2 for x >> 1 (flat rotation curve), where the closed form is q/(1+q).
+  >> B4: FAIL -- at eps_c Q = 1 the polarisation can carry at most phi = 0.54 (x = 10), 0.51 (x = 30) of the enclosed target; the rest must be a real cold fluid with its own closure (Gap 2 relocated, not removed)
+
+======================================================================================================================
+G1c  the medium is self-consistent: PASS only if B1, B2, B3 all pass at Q = kappa_I = 1 (central), eps_c <= 1, f_track >= 1
+======================================================================================================================
+  >> G1c_VB: FAIL -- V_B needs B1 and B3: B1 fail, B3 fail
+  >> G1c_VU: FAIL -- V_U needs B1, B2, B3: B2 fail
+  P_star (used by G2): V_B: Q* = 9.68, kappa_I* = min(1, Q*^2/(Q^2/kappa_I)_min) = 0.667;  V_U: Q* = 138.7, kappa_I* = 1   (any Q* != 1 or kappa_I* != 1 is a new constant: G4 FAIL)
+
+  integrity failures: 0   (3 s)   exit 0

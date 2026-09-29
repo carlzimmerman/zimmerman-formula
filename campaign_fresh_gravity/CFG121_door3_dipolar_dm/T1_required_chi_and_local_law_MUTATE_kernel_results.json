@@ -1,0 +1,209 @@
+{
+ "slug": "T1_required_chi_and_local_law_MUTATE_kernel",
+ "footing": "canonical",
+ "mutate": "kernel",
+ "integrity_failures": 0,
+ "checks": [
+  {
+   "name": "I1 point-mass M_c from CFG44's ODE = M(sqrt(1+x^2)-1)",
+   "detail": "max rel diff on x in [0.05,100] = 1.21e-11 (line 1e-9 in the frozen text; the ODE's rtol is 1e-10, sparse-grid pchip; line for this check 1e-6)",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I2 sympy: rho_pol = M_pol'/(4 pi r^2) with M_pol = 4 pi r^2 Pi equals (2/r)[Pi - Pi_g g_b] + Pi_g (g_b' + 2 g_b/r)",
+   "detail": "residual = 0",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I3 g_b' = 4 pi G rho_b - 2 g_b/r for g_b = G M_b(<r)/r^2 (M_b' = 4 pi r^2 rho_b)",
+   "detail": "residual = 0",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I4 dD/dr identity M_b=1e+09",
+   "detail": "median rel dev 3.36e-06",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I4 dD/dr identity M_b=1e+10",
+   "detail": "median rel dev 3.36e-06",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I4 dD/dr identity M_b=1e+11",
+   "detail": "median rel dev 2.84e-06",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "I4 dD/dr identity M_b=1e+12",
+   "detail": "median rel dev 1.89e-06",
+   "ok": true,
+   "integrity": true
+  },
+  {
+   "name": "T1.5-x cross-check vs CFG44's quoted R(1) = 1.46",
+   "detail": "R(1) = 1.4565",
+   "ok": true,
+   "integrity": false
+  }
+ ],
+ "verdicts": {
+  "T1.1": {
+   "status": "FAIL",
+   "why": "analytic max dev 9.80e-01 (line 1e-9), fd 9.80e-01 (line 1e-4), required-chi dev 4.0e+02 (line 1e-6); a pass is an identity (the QUMOND phantom is -div Pi), not evidence"
+  },
+  "T1.2": {
+   "status": "FAIL",
+   "why": "per-mass max error 1e+09:1.305, 1e+10:0.974, 1e+11:0.221, 1e+12:0.824; rho_pol >= 0 everywhere: True"
+  },
+  "T1.3": {
+   "status": "FAIL",
+   "why": "best free-form single chi(g_b): max dev 0.510 (12 knots 0.510, 6 knots 0.523); if it passed only for a free-form chi, G4 would fail (the shape is new information)"
+  },
+  "T1.4": {
+   "status": "FAIL",
+   "why": "profile-degeneracy spread by x_test 0.3:0.326, 1.0:0.283, 3.0:0.218, 10.0:0.287, 30.0:0.310; a local chi(g_b) cannot separate profiles with equal (M_b(<r), r) (scope: spherical, static, target = CFG44 ODE)"
+  },
+  "T1.5": {
+   "status": "FAIL",
+   "why": "nu_mono: per-mass max dev 1.462; point-mass R(1) = 1.405"
+  },
+  "T1.6": {
+   "status": "FAIL",
+   "why": "same constants at every mass hold by construction (chi has only a0); the gate is the per-mass error of T1.2 (see there)"
+  },
+  "Q1": {
+   "status": "FAIL",
+   "why": "(i) and (ii) hold as theorems: the bound charge has zero cosmic mean and zero net charge for a bounded polarisation; the identification 'the cold conserved component IS the bound charge' fails; (iii) is structural, untested"
+  }
+ },
+ "numbers": {
+  "T1.2_table": {
+   "1e+09": {
+    "e": 1.3047068730255216,
+    "xmax": 0.1,
+    "rho_min": 48646.57780354365,
+    "rho_ratio_range": [
+     0.9603190495348527,
+     1.5387959675087197
+    ],
+    "M_ratio_range": [
+     1.015320740039851,
+     1.5469516469016003
+    ],
+    "dlogg": 0.1754341002695009,
+    "x_over_h": null
+   },
+   "1e+10": {
+    "e": 0.9737999709685099,
+    "xmax": 0.1,
+    "rho_min": 15383.167155276025,
+    "rho_ratio_range": [
+     0.9732188391846806,
+     1.4508060668850324
+    ],
+    "M_ratio_range": [
+     1.0025028916383256,
+     1.4757234382459523
+    ],
+    "dlogg": 0.1336933396459867,
+    "x_over_h": null
+   },
+   "1e+11": {
+    "e": 0.22080635063891163,
+    "xmax": 0.39686028191868955,
+    "rho_min": 4864.584583717837,
+    "rho_ratio_range": [
+     0.812642992663607,
+     1.0372301887003854
+    ],
+    "M_ratio_range": [
+     0.8428684416411328,
+     1.1365207607290282
+    ],
+    "dlogg": 0.023630094126116538,
+    "x_over_h": null
+   },
+   "1e+12": {
+    "e": 0.8243024086096744,
+    "xmax": 0.12094020724677898,
+    "rho_min": 1538.3167155090412,
+    "rho_ratio_range": [
+     0.1883192342334214,
+     1.0467507182105902
+    ],
+    "M_ratio_range": [
+     0.20819241458617477,
+     0.9997280187261118
+    ],
+    "dlogg": 0.046069065167896814,
+    "x_over_h": null
+   },
+   "3e+09": {
+    "e": 1.192358300193034,
+    "xmax": 0.1,
+    "rho_min": 28085.69299189872,
+    "rho_ratio_range": [
+     0.9650418955953857,
+     1.5117770905217969
+    ],
+    "M_ratio_range": [
+     1.007017948818505,
+     1.525041247446701
+    ],
+    "dlogg": 0.1614232593277796,
+    "x_over_h": null
+   },
+   "3e+10": {
+    "e": 0.6406963742935257,
+    "xmax": 0.1,
+    "rho_min": 8881.475697980459,
+    "rho_ratio_range": [
+     0.9843535619875501,
+     1.330691358008375
+    ],
+    "M_ratio_range": [
+     1.0007390685971775,
+     1.3787129115230419
+    ],
+    "dlogg": 0.0909505502846269,
+    "x_over_h": null
+   },
+   "3e+11": {
+    "e": 0.5678682709072347,
+    "xmax": 0.22434970927453454,
+    "rho_min": 2808.5692189051956,
+    "rho_ratio_range": [
+     0.47158627232408706,
+     1.0379683330055551
+    ],
+    "M_ratio_range": [
+     0.505619524205506,
+     0.9997915424317263
+    ],
+    "dlogg": 0.041077177780272985,
+    "x_over_h": null
+   }
+  },
+  "T1.4_spread": {
+   "0.3": 0.32626772832541273,
+   "1.0": 0.28288880030369445,
+   "3.0": 0.21752150236418344,
+   "10.0": 0.2872248203462269,
+   "30.0": 0.30958732730928995
+  },
+  "control_changed": {
+   "T1.1": [
+    "IDENTITY",
+    "FAIL"
+   ]
+  },
+  "control_ok": true
+ }
+}
