@@ -44,7 +44,8 @@ SKIP_FILES = {"rg_common.py", "bar_lib.py", "tower_lib.py", "clifford_lib.py", "
 IN_PROGRESS = set()     # lanes whose agent had not reported when this runner was written (S1 reported and was added back)
 NEEDS_ENV = {"r1_chronology.py": "R1_CACHE", "r2_program_history.py": "R1_CACHE", "r5_choice_inventory.py": "R1_CACHE",
              "q5_pajuhaan_checks.py": "Q4_CACHE", "q6_blandino_bleger_checks.py": "Q4_CACHE"}
-REAL_EXPECT_OVERRIDE = {("Q4_unaudited_claims", "q1_numeric_audit.py"): 1}
+REAL_EXPECT_OVERRIDE = {("Q4_unaudited_claims", "q1_numeric_audit.py"): 1,
+                        ("A2_kz_rule_search_tier2", "a2_kz_rule_search_tier2.py"): 1}     # A2 exits 1 BY DESIGN: it fails its own declared power criterion (P_chance 0.0143 > 1e-2)
 CONTROL_EXPECT_OVERRIDE = {("alpha_schwinger_2026", "ah1_schwinger_ds2.py"): 0, ("alpha_schwinger_2026", "ah2_induced_current_ds2.py"): 0,
                            ("alpha_schwinger_2026", "ah4_induced_current_ds4.py"): 0, ("alpha_schwinger_2026", "ah6_kaluza_klein.py"): 0}
 # Scripts whose real run is EXPECTED to fail against the CURRENT repo state by construction:
