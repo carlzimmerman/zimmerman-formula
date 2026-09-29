@@ -235,3 +235,13 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
   - The pooled N = 14 (flat +1.0σ, rival −0.3σ) excludes the +1.14-dex object GS4 01529. Keeping it gives flat +0.17 to +0.22 dex and flips the rival's sign.
   - PHIBSS's N = 0 is a knife-edge on an assumed velocity radius (lowest g_bar/a₀ = 1.097).
 - **Row 5.01, "a barotropic cap is excluded", overstates.** A barotropic saturating cap is a scoped screening result. In CFG43's own referee paragraph the window is convention-dependent, from about 11× up to 10⁴–10⁵ in mass (CFG43 README).
+
+
+## Addendum after CFG99 (appended 2026-09-29; the rows above are unchanged)
+
+- **Row 3.10: the a₀(z) test is NOT FEASIBLE from the KMOS3D cubes** (CFG99, run as CFG89; criteria 6eb7ae539, lane 029968534).
+  - A first Hα extraction from all 739 cubes measures rotation out to a median 0.6″ (4.9 kpc; 1.5 R_e; 1.3 PSF FWHM) at z ≥ 1.9.
+  - Of 74 clean discs, only 2 (canonical) and 3 (alt) have g_bar < a₀ at the last measured radius, against a gate of 5. The median disc is at g_bar ≈ 4 a₀.
+  - The count moves with the model gas: 1 to 8 across its factor-2 bracket.
+  - The velocities there come back about 28% low in injection tests (beam smearing; declared control C1c failed and kept).
+  - With the table-based lanes (CFG52, CFG54, CFG90), the on-disk data cannot run the z ≈ 2.5 test. It needs deeper or higher-resolution data with measured gas.
