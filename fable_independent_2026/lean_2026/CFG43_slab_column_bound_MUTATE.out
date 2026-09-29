@@ -1,0 +1,30 @@
+CFG43_slab_column_bound_MUTATE.lean:73:2: error: linarith failed to find a contradiction
+G a0 Pcap Sig ginf : ℝ
+hG : 0 < G
+ha : 0 < a0
+P g ρ : ℝ → ℝ
+hP : ∀ (z : ℝ), HasDerivAt P (-(ρ z * g z)) z
+hg : ∀ (z : ℝ), HasDerivAt g (4 * π * G * ρ z) z
+g0 : g 0 = 0
+hPinf : Tendsto P atTop (𝓝 0)
+hginf : Tendsto g atTop (𝓝 ginf)
+hcap : P 0 ≤ Pcap
+hPc : a0 ^ 2 = 8 * π * G * Pcap
+hSig : ginf = 2 * π * G * Sig
+hp : 0 < π
+key : ∀ (z : ℝ), P z + g z ^ 2 / (8 * π * G) = P 0 + g 0 ^ 2 / (8 * π * G)
+hlim : Tendsto (fun z => P z + g z ^ 2 / (8 * π * G)) atTop (𝓝 (0 + ginf ^ 2 / (8 * π * G)))
+hconst : Tendsto (fun z => P z + g z ^ 2 / (8 * π * G)) atTop (𝓝 (P 0 + g 0 ^ 2 / (8 * π * G)))
+heq : 0 + ginf ^ 2 / (8 * π * G) = P 0 + 0 ^ 2 / (8 * π * G)
+h1 : P 0 = ginf ^ 2 / (8 * π * G)
+hpos : 0 < 8 * π * G
+h2 : ginf ^ 2 ≤ a0 ^ 2
+h3 : |ginf| ≤ a0
+h4 : 2 * π * G * Sig ≤ a0
+a✝ : a0 < Sig * (4 * π * G)
+⊢ False
+failed
+'MineM1.slab_first_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MineM1.slab_column_bound' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'MineM1.cap_pressure_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MineM1.slab_column_bound_strict' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
