@@ -218,3 +218,8 @@ The KiDS early/late split, B-specific for the difference only and fragile, remai
 
 - "B's law gets the mass-independence right" rests on a non-detection in a power-limited test: the power between B and the colour-split ΛCDM is 8.8, below the declared 9.
 - The result is at the re-measurement's jackknife errors; satellites and calibration systematics are not covered.
+
+
+## Addendum after CFG111 (appended 2026-09-29; the rows above are unchanged)
+
+- **Row 1.20, SLUGGS:** With each SLUGGS galaxy's published GC density slope in place of the fixed γ = 3, the law's JAM-calibrated deficit stays at 3.6σ (alt 3.2σ; 2.2σ without the four centrals). The slopes come from Alabi+2017's literature relation, γ 2.49–3.43, verified against its Table 1. The γ that would null the massive centrals is far below their published values: NGC 4365 needs 1.06 against 2.56, and no γ ≥ 1 nulls M87. So the γ caveat does not rescue the law. B's derived rule fits with the same slopes: 1.55σ (alt 1.64σ), and −0.66σ with population masses. Isotropic orbits are assumed (CFG111 6e1b04092). The ΛCDM comparison (CFG69) was not recomputed with these slopes.
