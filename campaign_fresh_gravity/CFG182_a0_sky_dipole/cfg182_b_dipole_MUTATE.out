@@ -1,0 +1,141 @@
+CFG182 part B -- THE SKY DIPOLE OF a0 IN SPARC: global fit a0(n) = a0_bar (1 + D.n) over all points of the clean sample
+with the per-galaxy nuisances profiled (part A's curves), the permutation null (simple and Ursa-Major-block), the
+curve-level Gaussian-noise null, the galaxy bootstrap, fixed-direction fits (CMB, bulk flow, the two published
+directions), the hemisphere scan (the Zhou et al. 2017 statistic), the systematics (distance-method split, inclination
+split, footprint, peculiar-velocity template, distance trend), variants (no Birge scaling, kernels P2 and simple, all
+usable galaxies), the Neyman upper limit A95, the orientation-quadrupole reading, and the G8 translation.
+
+Frozen question, pass lines and MUTATE control: FROZEN_QUESTION.md (written before any script; Addendum 1 before this one).
+  SIGNAL only if S1 (p_A < 0.003, the larger of the simple and block permutation p) AND S2 (distance-split stability)
+  AND S3 (fitted direction not aligned with the footprint axis within the 95% bootstrap cone).  Otherwise NULL + A95.
+MUTATE=1 reads cfg182_a_profiles_MUTATE.npz (a dipole A = 0.20 injected at the point level in a random direction) and
+requires M1: D_mut - D_obs has amplitude 0.20 +- 0.05 and lies within 25 deg of the injected direction.
+kappa = 1/2 stays FITTED; a0_bar is fitted here.
+
+==============================================================================================================
+B0  SAMPLE, ERROR SCALING, FOOTPRINT
+==============================================================================================================
+  clean sample: 149 galaxies, 3150 points; f_D counts: 1: 81, 2: 37, 3: 3, 4: 26, 5: 2
+  Birge factors s_i: median 1.70, 84% 6.23, max 28.6; galaxies with s_i > 1: 105
+  per-galaxy (scaled) Delta chi2 = 1 half-width in log a0: median 0.261 dex, 16-84% [0.133, 0.462]
+  footprint: mean position vector |<n>| = 0.599 toward (l, b) = (142.2, 54.5); galaxies with b > 0: 117/149
+
+==============================================================================================================
+B1  PRIMARY: global fit a0_i = a0_bar (1 + D.n_i), nu_mono, Birge scaling, profiled nuisances
+==============================================================================================================
+  no-dipole fit: log a0_bar = -9.9432 (a0_bar = 1.140e-10 m/s^2), scaled chi2 = 593.56 over 149 curves
+  dipole fit:    log a0_bar = -9.8904; D = (-0.1272, -0.0860, -0.3016); A = 0.3385 toward (l, b) = (214.0, -63.0); Delta chi2 = 34.182 (3 extra parameters)
+  Fisher (curvature) sigma_A along the fitted direction = 0.0693 (reference only); least-constrained direction of D: (l, b) = (10.4, 7.0) with sigma 0.102, best-constrained sigma 0.044
+  (framework footings for reference: canonical 9.36e-11, alt 1.13e-10; the fitted a0_bar is kernel- and prior-conditional)
+  [PASS] K1 the one-start fit used in the nulls agrees with the seven-start fit (200 permutations, |dA| < 1e-3)
+         measured: max |dA| = 1.75e-06
+
+==============================================================================================================
+B2  GALAXY BOOTSTRAP (2000 resamples; positions travel with galaxies)
+==============================================================================================================
+  sigma of D components: [0.2076, 0.1833, 0.1547]; sigma_A along the fitted direction = 0.1660
+  bootstrap |D|: median 0.435, 16-84% [0.284, 0.574]; sigma(log a0_bar) = 0.0843
+  direction cone about (l, b) = (214.0, -63.0): 68% within 44.6 deg, 95% within 85.0 deg
+
+==============================================================================================================
+B3  PERMUTATION NULL (5000 each): simple, and Ursa-Major block (one unit, one position)
+==============================================================================================================
+  simple: A_obs = 0.3385; null A median 0.361, 95% 0.650, 99.7% 0.899; p_A = 0.5573; Delta chi2 34.18: null 95% 60.90, p = 0.2474
+  block:  A_obs = 0.3312 (UMa members at their mean position); null A median 0.355, 95% 0.643; p_A = 0.5595; Delta chi2 33.61: p = 0.3107  [65 s]
+  [FAIL] (reported) S1 p_A < 0.003 against the permutation null (larger of simple and block)
+         measured: p_A = 0.5595 (simple 0.5573, block 0.5595)
+
+==============================================================================================================
+B4  GAUSSIAN-NOISE NULL, curve level (5000): each galaxy's preferred a0 redrawn about a0_bar
+==============================================================================================================
+  galaxy-level reduced chi2 of the per-galaxy best log a0 about a0_bar (scaled widths): 4.34; ML extra inter-galaxy scatter tau = 0.340 dex (L = -10.055)
+  Gaussian null A: median 0.438, 95% 0.799, 99.7% 1.047; p_A = 0.7079  [87 s]
+
+==============================================================================================================
+B5  FIXED-DIRECTION AMPLITUDES (bootstrap sigma, 1000) and alignments with the fitted direction
+==============================================================================================================
+  CMB dipole (264.0, 48.3)                         A = -0.226 +- 0.152 (95%: [-0.523, +0.072]); angle to fit 118.1 deg (axis 61.9); in 68% cone: False; in 95% cone: False
+  bulk flow, Carrick+2015 (304, 6), from memory    A = -0.123 +- 0.199 (95%: [-0.513, +0.267]); angle to fit  95.3 deg (axis 84.7); in 68% cone: False; in 95% cone: False
+  Chang+2018 (171.30, -15.41)                      A = +0.313 +- 0.238 (95%: [-0.153, +0.779]); angle to fit  56.1 deg (axis 56.1); in 68% cone: False; in 95% cone: True
+  Zhou+2017 max hemisphere (175.5, -6.5)           A = +0.189 +- 0.256 (95%: [-0.313, +0.690]); angle to fit  63.0 deg (axis 63.0); in 68% cone: False; in 95% cone: True
+  Virgo (283.8, 74.5), from memory                 A = -0.256 +- 0.150 (95%: [-0.550, +0.039]); angle to fit 144.8 deg (axis 35.2); in 68% cone: False; in 95% cone: False
+  Ursa Major members' mean (145.5, 65.9)           A = -0.282 +- 0.155 (95%: [-0.587, +0.022]); angle to fit 138.2 deg (axis 41.8); in 68% cone: False; in 95% cone: False
+  footprint axis <n>                               A = -0.288 +- 0.171 (95%: [-0.623, +0.048]); angle to fit 130.0 deg (axis 50.0); in 68% cone: False; in 95% cone: False
+  least-constrained Fisher direction               A = -0.185 +- 0.253 (95%: [-0.681, +0.310]); angle to fit 121.4 deg (axis 58.6); in 68% cone: False; in 95% cone: False
+
+==============================================================================================================
+B6  HEMISPHERE SCAN (the Zhou et al. 2017 statistic; HEALPix nside 16; >= 10 galaxies per side)
+==============================================================================================================
+  H_max = 0.467 toward (l, b) = (295.3, 4.8); permutation null H_max: median 0.536, 95% 0.766; p = 0.7391  [122 s]
+  at Zhou's axis (175.5, -6.5): H = +0.212 +- 0.214 (a_N = 1.173e-10 with 121 galaxies, a_S = 9.480e-11 with 28)
+
+==============================================================================================================
+B7  SYSTEMATICS: distance-method split, inclination split, footprint, peculiar-velocity template, distance trend
+==============================================================================================================
+  H: Hubble flow (f_D = 1)           N =  81: A = 0.403 toward (233.3, 30.3); amplitude along the full-sample direction -0.228 +- 0.285; log a0_bar = -9.965
+  I: TRGB/Cepheid/SNIa (f_D = 2,3,5) N =  42: A = 0.529 toward (159.9, -67.7); amplitude along the full-sample direction +0.527 +- 0.200; log a0_bar = -9.897
+  UMa cluster (f_D = 4)              N =  26: A = 1.099 toward (230.9, -59.8); amplitude along the full-sample direction +0.950 +- 0.500; log a0_bar = -9.213
+  H vs I dipole vectors: chi2 = 5.99 (3 dof), p = 0.112; along-direction amplitudes H -0.80 sigma, I +2.64 sigma
+  [FAIL] (reported) S2 distance-split stability: H and I vectors agree (p > 0.05) AND both positive at >= 1 sigma along the full-sample direction
+         measured: p = 0.112 (S2a True); H -0.80 sigma, I +2.64 sigma (S2b False)
+  Inc < 63 deg                       N =  73: A = 0.538 toward (276.0, -55.7); amplitude along the full-sample direction +0.525 +- 0.237; log a0_bar = -9.847
+  Inc >= 63 deg                      N =  76: A = 0.344 toward (152.2, -28.7); amplitude along the full-sample direction +0.233 +- 0.217; log a0_bar = -9.933
+  inclination halves: chi2 = 2.35 (3 dof), p = 0.504
+  footprint axis +-<n> = (142.2, 54.5): angle to the fitted direction 130.0 deg (axis 50.0); 95% cone 85.0 deg -> aligned within errors: True
+  least-constrained Fisher direction (10.4, 7.0): axis angle to the fit 58.6 deg
+  [FAIL] (reported) S3 the fitted direction is NOT aligned with the footprint axis (axis outside the 95% bootstrap cone)
+         measured: axis angle 50.0 deg vs cone 85.0 deg
+  peculiar-velocity template: |W| = 199 km/s toward (12.0, -16.7); Delta chi2 = 6.40 vs the dipole's 34.18 (both 3 parameters); permutation p = 0.716
+  distance trend: beta alone = +0.017 dex per dex (Delta chi2 0.26); with the dipole: beta = +0.056, A = 0.356 toward (220.8, -63.0)  [211 s]
+
+==============================================================================================================
+B8  VARIANTS (reported; each with its own simple permutation null, 2000)
+==============================================================================================================
+  no Birge scaling                             N = 149: A = 0.635 toward (203.8, -26.5); null 95% 0.724; p_A = 0.1159
+  all usable galaxies (Q = 3 and Inc < 30 included) N = 171: A = 0.381 toward (236.8, -60.3); null 95% 0.634; p_A = 0.4313
+  [229 s]
+
+==============================================================================================================
+B9  NEYMAN UPPER LIMIT: dipoles injected into position-permuted data, random directions (300 per A_inj)
+==============================================================================================================
+  simple: A95 = 0.575 (A_obs = 0.338); P(A_hat >= A_obs) at A_inj = 0, 0.1, 0.2, 0.3, 0.4, 0.5: 0.57, 0.57, 0.61, 0.80, 0.82, 0.92
+          recovery <A_hat> at A_inj = 0, 0.1, 0.2, 0.3, 0.5, 0.7: 0.380, 0.384, 0.400, 0.467, 0.587, 0.758; median direction error at 0.2, 0.3, 0.5: 54, 44, 27 deg
+  block : A95 = 0.55 (A_obs = 0.331); P(A_hat >= A_obs) at A_inj = 0, 0.1, 0.2, 0.3, 0.4, 0.5: 0.54, 0.58, 0.68, 0.75, 0.83, 0.92
+          recovery <A_hat> at A_inj = 0, 0.1, 0.2, 0.3, 0.5, 0.7: 0.363, 0.386, 0.420, 0.457, 0.583, 0.739; median direction error at 0.2, 0.3, 0.5: 52, 45, 25 deg
+  A95 (the larger of the two schemes) = 0.575  [301 s]
+  [PASS] (reported) K2 the injection machinery recovers a large dipole (A_inj = 0.7: <A_hat> within 0.1)
+         measured: <A_hat> = 0.758
+
+==============================================================================================================
+B10  THE PUBLISHED CLAIMS
+==============================================================================================================
+  C1 Chang+2018 dipole 0.25 +- 0.04 toward (171.30, -15.41): this lane along that direction A = +0.313 +- 0.238; 0.25 lies -0.26 sigma above; excluded at 95%: False
+  C2 Zhou+2017 hemisphere anisotropy 0.37 +- 0.04 at (175.5, -6.5): this lane H = +0.212 +- 0.214; difference +0.73 sigma (combined); this lane's own H_max = 0.467 toward (295.3, 4.8), p = 0.7391
+
+==============================================================================================================
+B11  ORIENTATION READING (reported): a0_i = a0_bar (1 + eps [1/2 sin^2 i - 1/3 + P2(cos i) (n_i.f)^2])
+==============================================================================================================
+  best eps = -1.957 with flow axis (l, b) = (315.0, 9.6); Delta chi2 = 48.79; permutation p = 0.132 (500)  [372 s]
+
+==============================================================================================================
+B12  VERDICT AND THE G8 TRANSLATION
+==============================================================================================================
+  S1 (p_A < 0.003): False [p_A = 0.5595];  S2 (distance split stable): False;  S3 (not footprint-aligned): False
+  VERDICT: NULL (no directional signal passing the frozen lines)
+  A = 0.338 +- 0.166 (bootstrap, along the fitted direction) toward (214.0, -63.0); A95 (random direction) = 0.575
+  G8: a sky-direction modulation a0 (1 + eps f.n) of the owner's flow needs eps < 0.575 (95%, random direction); the deep-MOND force goes as sqrt(a0), so the force anisotropy is < 0.287; along named directions (95% two-sided upper ends): CMB dipole 0.07, bulk flow 0.27, Chang+2018 0.78, Zhou+2017 max hemisphere 0.69, Virgo 0.04, Ursa Major members' mean 0.02
+
+==============================================================================================================
+M1  MUTATE RECOVERY: the fitted dipole vector must move by the injected vector
+==============================================================================================================
+  injected D = [-0.0621, 0.1353, -0.1336] (A = 0.20 toward (114.6, -41.9)); unmutated D = [-0.0923, -0.1435, -0.166]; mutated D = [-0.1272, -0.086, -0.3016]
+  D_mut - D_obs: amplitude 0.1514, angle to the injected direction 22.1 deg
+  [PASS] M1 MUTATE recovery: |D_mut - D_obs| = 0.20 +- 0.05 and within 25 deg of the injected direction
+         measured: amplitude 0.1514, angle 22.1 deg
+  M2: real-data sigma_A (bootstrap, 500) = 0.197; 0.20 >= 4 sigma_A: False; mutated-data p_A = 0.5595
+  [PASS] (reported) M2 (power statement) mutated p_A < 0.003 is required only if 0.20 >= 4 sigma_A of the real data
+         measured: required: False; p_A = 0.5595
+  wrote cfg182_b_skymap_MUTATE.png
+
+  4/7 checks pass; load-bearing failures: 0; wrote cfg182_b_dipole_results_MUTATE.json (376 s)
+rc = 0

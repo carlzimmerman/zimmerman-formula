@@ -1,0 +1,47 @@
+CFG182 part D -- SECONDARY: the sky dipole on the repo's per-galaxy a0 table, real_research/data/sparc_a0_environment_table.csv
+(122 galaxies).  LABEL: this table INHERITS PER-GALAXY FITTING NOISE AND FIXED NUISANCES.  Its log10 a0 is the median over
+each galaxy's deep points (g_bar < 4e-11) of 2 log g_obs - log g_bar at fixed Upsilon_disk = 0.5, Upsilon_bul = 0.7, the
+catalogue distance and inclination (real_research/reviews/project_sparc_a0_vs_cosmicweb.py); it carries no errors, so every
+galaxy gets equal weight.  It is closest in spirit to per-galaxy a0 fits with nuisances held fixed.
+
+Statistic, null and lines as in part B (FROZEN_QUESTION.md): free-direction dipole log a0_i = L + log10(1 + D.n_i) (equal
+weights, least squares), permutation null (simple and Ursa-Major block, 5000 each), galaxy bootstrap (2000), hemisphere
+scan (HEALPix nside 16, >= 10 per side) with its permutation null (2000), fixed-direction amplitudes along the published
+and reference directions, the distance-method split (H: f_D = 1; I: f_D in {2, 3, 5}).  Reported; the PRIMARY is part B.
+Also the Q <= 2, Inc >= 30 subset.
+
+MUTATE=1: a dipole A = 0.20 in the random direction of seed 182 is added to the table's log a0 (log10(1 + D_inj.n_i));
+required (load-bearing): D_mut - D_obs has amplitude 0.20 +- 0.05 within 25 deg of the injected direction.
+
+  table rows with a value and a SPARC match: 122; log10 a0 mean -9.834, sd 0.271 dex
+  [PASS] T1 all 122 table rows matched to SPARC positions
+         measured: 122/122
+
+==============================================================================================================
+D1  FREE-DIRECTION DIPOLE, bootstrap, permutation nulls
+==============================================================================================================
+  log a0_bar = -9.834; dipole A = 0.304 +- 0.161 (bootstrap) toward (l, b) = (244.5, -16.4); cones 68% 35 deg, 95% 80 deg
+  permutation p_A: simple 0.1988 (null median 0.209, 95% 0.404); block 0.1652
+  [FAIL] (reported) S1sec p_A < 0.003 (secondary table; the larger of simple and block)
+         measured: p = 0.1988
+
+==============================================================================================================
+D2  FIXED DIRECTIONS and the hemisphere statistic (the published comparisons)
+==============================================================================================================
+  CMB (264.0, 48.3)              A = +0.025 +- 0.089
+  Chang+2018 (171.30, -15.41)    A = +0.072 +- 0.165
+  Zhou+2017 (175.5, -6.5)        A = +0.076 +- 0.174
+  bulk flow (304, 6), memory     A = +0.138 +- 0.140
+  hemisphere: H_max = 0.282 toward (266.2, -54.3), permutation p = 0.7311 (null median 0.322, 95% 0.479); at Zhou's axis H = +0.130 +- 0.133 (published 0.37 +- 0.04)
+  C1 (secondary): along Chang's direction A = +0.072 +- 0.165; 0.25 lies +1.08 sigma above
+
+==============================================================================================================
+D3  DISTANCE-METHOD SPLIT and the Q <= 2, Inc >= 30 subset
+==============================================================================================================
+  H f_D=1              N =  70: A = 0.432 toward (218.2, 0.1), permutation p = 0.1539; along the full-table direction +0.363 +- 0.182
+  I f_D=2,3,5          N =  33: A = 0.412 toward (345.1, -21.1), permutation p = 0.4798; along the full-table direction +0.232 +- 0.266
+  clean Q<=2 Inc>=30   N = 122: A = 0.304 toward (244.5, -16.4), permutation p = 0.1959; along the full-table direction +0.304 +- 0.154
+  H vs I: chi2 = 6.10 (3 dof), p = 0.107
+
+  1/2 checks pass; load-bearing failures: 0; wrote cfg182_d_pergalaxy_table_results.json (56 s)
+rc = 0

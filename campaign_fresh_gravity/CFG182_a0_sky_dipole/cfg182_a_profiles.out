@@ -1,0 +1,50 @@
+CFG182 part A -- the per-galaxy PROFILE likelihood curves chi2_i(log10 a0) for every usable SPARC galaxy.
+
+For each galaxy and each log10 a0 on the grid -11.30 ... -9.00 (step 0.01) the four nuisances are minimised with the
+Li, McGaugh & Lelli 2018 priors: Upsilon_disk (log-normal about 0.5, 0.1 dex), Upsilon_bul (about 0.7, 0.1 dex), distance
+(Gaussian, sigma = e_D; g_bar invariant, predicted observed velocity x sqrt(D'/D)), inclination (Gaussian, sigma = e_Inc;
+velocity x sin i'/sin i); chi2 in velocity space with the published e_V.  Kernels: nu_mono (primary, the 09-26
+decision), P2 = sqrt(1 + 1/y) (CFG4's definition), simple = 1/2 + sqrt(1/4 + 1/y).  Sky positions from the VizieR copy of
+Lelli et al. 2016 table 1, converted to Galactic and cross-checked against sparc_cosmicweb_match.csv.
+
+MUTATE=1: a dipole A = 0.20 in a random direction (seed 182) is injected into the DATA at the point level before the
+curves are built: V_obs -> V_obs sqrt(nu(y_i')/nu(y)), y = g_bar,fid/a0_ref, y_i' = g_bar,fid/(a0_ref (1 + D_inj.n_i)),
+a0_ref = 1.2e-10 (declared), e_V unchanged; nu_mono only.  Output: cfg182_a_profiles_MUTATE.npz.
+
+==============================================================================================================
+A1  DATA: SPARC curves, master table, sky positions
+==============================================================================================================
+  galaxies with master-table row and position: 175; usable (>= 5 points): 171; clean (Q <= 2, Inc >= 30, >= 5 pts): 149; points in clean sample: 3150
+  distance methods (clean): f_D=1: 81, f_D=2: 37, f_D=3: 3, f_D=4: 26, f_D=5: 2
+  [PASS] POS all 175 SPARC galaxies have a VizieR position and a master-table row
+         measured: 175/175
+  cross-check with sparc_cosmicweb_match.csv: 165 galaxies compared; max separation 0.028 deg (F565-V2); > 0.5 deg: 0  F565-V2 0.03, F579-V1 0.01, F563-V2 0.01, DDO168 0.01, D631-7 0.01
+  [PASS] (reported) POSX the VizieR positions agree with the cosmic-web table (<= 0.5 deg) for every galaxy resolved in both
+         measured: max 0.028 deg; 0 above 0.5 deg
+         reading:  any disagreement is listed; the VizieR (SPARC catalogue) position is the one used
+
+==============================================================================================================
+A2  PROFILE CURVES chi2_i(log10 a0), nuisances profiled (LML 2018 priors)
+==============================================================================================================
+  nu_mono : 171 curves x 231 grid points [13 s]; all finite: True; per-galaxy best log a0: median -10.060, 16-84% [-10.608, -9.570]; minima at a grid edge: 15
+  [PASS] FIN_nu_mono every profile curve is finite
+         measured: 0 non-finite values
+  P2      : 171 curves x 231 grid points [23 s]; all finite: True; per-galaxy best log a0: median -10.000, 16-84% [-10.464, -9.562]; minima at a grid edge: 14
+  [PASS] FIN_P2 every profile curve is finite
+         measured: 0 non-finite values
+  simple  : 171 curves x 231 grid points [31 s]; all finite: True; per-galaxy best log a0: median -10.070, 16-84% [-10.598, -9.560]; minima at a grid edge: 16
+  [PASS] FIN_simple every profile curve is finite
+         measured: 0 non-finite values
+
+==============================================================================================================
+A3  OPTIMIZER CHECK: warm-started profile vs 6 cold starts at 60 random (galaxy, grid point) pairs
+==============================================================================================================
+  largest (warm - best cold) chi2 over the 60 pairs: 0.0000
+  [PASS] OPT the warm-started profile is never worse than 6 cold starts by more than 0.05 in chi2
+         measured: 0.0000
+  median |second difference| per curve, worst galaxy: 0.255 (a smooth parabola of width 0.1 dex gives ~0.02)
+
+  wrote cfg182_a_profiles.npz
+
+  6/6 checks pass; load-bearing failures: 0; wrote cfg182_a_profiles_results.json (33 s)
+rc = 0

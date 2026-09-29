@@ -1,0 +1,34 @@
+CFG182 part C -- the POINT-LEVEL Gaussian-noise null (reported, not a pass line): 100 generative mock SPARC samples with
+NO dipole, each run through the full profile pipeline, to give the distribution of the free-direction dipole A_hat that
+pure measurement noise plus the declared nuisance priors produce at the real sky positions.
+
+Mock recipe (FROZEN_QUESTION.md, "The null"): for each clean galaxy the true nuisances are drawn from the LML 2018 priors
+(Upsilon_disk, Upsilon_bul log-normal about 0.5 and 0.7 with 0.1 dex; distance ~ N(D_SPARC, e_D); inclination
+~ N(Inc, e_Inc)), a0 is the same for every galaxy (the primary no-dipole fit, a0_bar), the velocities are the nu_mono law
+at those values plus Gaussian noise of width sqrt(s_i) e_V (s_i the galaxy's Birge factor from the real data), the
+profile curves are rebuilt on a 0.02-dex grid, Birge-scaled, and the free-direction dipole is fitted at the real
+positions.  The real data's A_hat is recomputed on the same 0.02-dex subgrid for a like-for-like comparison.
+Also reported: the galaxy-level reduced chi2 and the ML extra scatter tau of the mocks, next to the real data's.
+
+MUTATE=1: the mocks carry an injected dipole A = 0.20 in a random direction (seed 182); the mock A_hat distribution must
+move up (median A_hat of the MUTATE mocks above the median of the no-dipole mocks).
+
+  real data on the 0.02-dex subgrid: log a0_bar = -9.9463 (0.01 grid), A_hat = 0.2380
+  real data: galaxy-level reduced chi2 4.20, extra scatter tau = 0.342 dex
+
+==============================================================================================================
+C1  100 GENERATIVE MOCKS through the full profile pipeline (0.02-dex grid)
+==============================================================================================================
+    20 mocks [36 s]: A_hat median so far 0.110
+    40 mocks [73 s]: A_hat median so far 0.112
+    60 mocks [108 s]: A_hat median so far 0.109
+    80 mocks [142 s]: A_hat median so far 0.109
+    100 mocks [177 s]: A_hat median so far 0.107
+  mock A_hat: median 0.107, 84% 0.177, 95% 0.202, max 0.235; real A_hat = 0.238 -> p = 0.010 (resolution 0.01)
+  mocks: galaxy-level reduced chi2 median 0.68 (real 4.20); tau median 0.000 (real 0.342)
+  [FAIL] (reported) G1 the error model alone reproduces the real galaxy-to-galaxy scatter of a0 (mock reduced chi2 within 30% of real)
+         measured: mock 0.68 vs real 4.20
+         reading:  if this fails the Gaussian null is narrower than the data's own scatter, so its p is anti-conservative and the permutation null (which keeps the real scatter) is the right one
+
+  0/1 checks pass; load-bearing failures: 0; wrote cfg182_c_gaussnull_results.json (177 s)
+rc = 0

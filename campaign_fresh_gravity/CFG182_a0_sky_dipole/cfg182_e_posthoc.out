@@ -1,0 +1,47 @@
+CFG182 part E -- POST-HOC diagnostics, written AFTER parts A-D had run and their results were seen.  Nothing here is a
+pass line or changes a verdict; every number is labelled post hoc.
+
+E1  Why the MUTATE recovery was 0.15 rather than 0.20 (part B, M1 passed at the edge of its tolerance).  The same injection
+    is applied at the curve level to (a) the real profile curves, (b) quadratic curves with the real centres and widths,
+    (c) quadratic curves with every centre on the fitted model (no residuals), (d) quadratic curves all centred at one
+    value (no dipole, no residuals); and the per-galaxy curve minima are compared with the injected shifts.
+E2  The Hubble-flow subsample's best direction (part B: (259, 46)) lies near the CMB dipole: its amplitude along the CMB
+    direction, with bootstrap sigma and a within-subsample permutation p, next to the independent-distance subsample.
+E3  The galaxy-to-galaxy scatter of the per-galaxy a0 (part B: tau = 0.34 dex): the largest pulls, and the dipole with
+    the ten largest-|pull| galaxies removed.
+
+==============================================================================================================
+E1  MUTATE RECOVERY ATTENUATION (post hoc)
+==============================================================================================================
+  real curves, curve-level injection         move 0.1611 at  17.3 deg (projection on the injected axis 0.1539)
+  quadratic, real centres and widths         move 0.1589 at  18.7 deg (projection on the injected axis 0.1506)
+  quadratic, centres on the fitted model     move 0.1871 at   1.7 deg (projection on the injected axis 0.1871)
+  quadratic, one centre (no dipole)          move 0.2000 at   0.0 deg (projection on the injected axis 0.2000)
+  real curves, POINT-level injection (part B M1) move 0.1514 at  22.1 deg
+  per-galaxy curve minima move by 0.979 x the injected shift (slope over 143 galaxies with interior minima)
+  reading: the per-galaxy injection is carried through the profiles almost exactly (slope ~1; point level ~ curve level);
+  the global fit returns ~0.77 of it because the multiplicative dipole log10(1 + D.n) is fitted to per-galaxy values that
+  scatter far beyond their widths (the second-order terms residual x d2 log(1 + D.n)/dD2 are not small); with no
+  residuals the recovery is exact.  The Neyman A95 of part B is built by injecting into the same over-dispersed real
+  curves, so it already includes this attenuation.
+
+==============================================================================================================
+E2  HUBBLE-FLOW SUBSAMPLE vs THE CMB DIPOLE DIRECTION (post hoc)
+==============================================================================================================
+  H f_D=1      N =  81: free A = 0.468 toward (259.3, 45.5) (4.2 deg from the CMB dipole), within-subsample permutation p = 0.648; along the CMB direction A = +0.465 +- 0.229, two-sided permutation p = 0.051
+  I f_D=2,3,5  N =  42: free A = 0.403 toward (182.8, -61.7) (127.5 deg from the CMB dipole), within-subsample permutation p = 0.676; along the CMB direction A = -0.288 +- 0.198, two-sided permutation p = 0.183
+  reading (post hoc): the Hubble-flow galaxies' best direction sits near our own motion relative to the CMB, which is
+  where a Hubble-distance frame error would put an a0 dipole (a0 ~ D^2 at fixed data); it is not significant in this
+  sample and it is absent from the TRGB/Cepheid/SNIa galaxies.  A hint to watch, not a finding.
+
+==============================================================================================================
+E3  GALAXY-TO-GALAXY SCATTER OF a0 and the dipole without the ten largest pulls (post hoc)
+==============================================================================================================
+  per-galaxy best log a0: MAD-sigma 0.385 dex vs median width 0.264; galaxies with |pull| > 3: 19/149
+  largest pulls: UGC03580 +6.5 (f_D 1), NGC7814 +6.5 (f_D 2), UGC06786 +5.4 (f_D 1), UGC07577 -5.1 (f_D 2), CamB -5.0 (f_D 2), UGC12506 -4.4 (f_D 1), NGC5907 -4.4 (f_D 2), NGC0801 -4.3 (f_D 1), UGC07559 -4.2 (f_D 2), UGCA444 -4.1 (f_D 2)
+  without them: A = 0.185 toward (274.6, -62.4), permutation p = 0.742
+  [PASS] (reported) E0 post-hoc diagnostics ran (no pass line here)
+         measured: done
+
+  1/1 checks pass; load-bearing failures: 0; wrote cfg182_e_posthoc_results.json (59 s)
+rc = 0

@@ -1,0 +1,54 @@
+CFG182 part D -- SECONDARY: the sky dipole on the repo's per-galaxy a0 table, real_research/data/sparc_a0_environment_table.csv
+(122 galaxies).  LABEL: this table INHERITS PER-GALAXY FITTING NOISE AND FIXED NUISANCES.  Its log10 a0 is the median over
+each galaxy's deep points (g_bar < 4e-11) of 2 log g_obs - log g_bar at fixed Upsilon_disk = 0.5, Upsilon_bul = 0.7, the
+catalogue distance and inclination (real_research/reviews/project_sparc_a0_vs_cosmicweb.py); it carries no errors, so every
+galaxy gets equal weight.  It is closest in spirit to per-galaxy a0 fits with nuisances held fixed.
+
+Statistic, null and lines as in part B (FROZEN_QUESTION.md): free-direction dipole log a0_i = L + log10(1 + D.n_i) (equal
+weights, least squares), permutation null (simple and Ursa-Major block, 5000 each), galaxy bootstrap (2000), hemisphere
+scan (HEALPix nside 16, >= 10 per side) with its permutation null (2000), fixed-direction amplitudes along the published
+and reference directions, the distance-method split (H: f_D = 1; I: f_D in {2, 3, 5}).  Reported; the PRIMARY is part B.
+Also the Q <= 2, Inc >= 30 subset.
+
+MUTATE=1: a dipole A = 0.20 in the random direction of seed 182 is added to the table's log a0 (log10(1 + D_inj.n_i));
+required (load-bearing): D_mut - D_obs has amplitude 0.20 +- 0.05 within 25 deg of the injected direction.
+
+  table rows with a value and a SPARC match: 122; log10 a0 mean -9.834, sd 0.271 dex
+  [PASS] T1 all 122 table rows matched to SPARC positions
+         measured: 122/122
+  *** MUTATE=1: log a0 += log10(1 + D_inj.n), D_inj = [-0.0621, 0.1353, -0.1336] ***
+
+==============================================================================================================
+D1  FREE-DIRECTION DIPOLE, bootstrap, permutation nulls
+==============================================================================================================
+  log a0_bar = -9.841; dipole A = 0.317 +- 0.147 (bootstrap) toward (l, b) = (212.9, -42.2); cones 68% 36 deg, 95% 70 deg
+  permutation p_A: simple 0.1670 (null median 0.209, 95% 0.401); block 0.1542
+  [FAIL] (reported) S1sec p_A < 0.003 (secondary table; the larger of simple and block)
+         measured: p = 0.1670
+
+==============================================================================================================
+D2  FIXED DIRECTIONS and the hemisphere statistic (the published comparisons)
+==============================================================================================================
+  CMB (264.0, 48.3)              A = -0.151 +- 0.094
+  Chang+2018 (171.30, -15.41)    A = +0.282 +- 0.180
+  Zhou+2017 (175.5, -6.5)        A = +0.215 +- 0.190
+  bulk flow (304, 6), memory     A = -0.048 +- 0.159
+  hemisphere: H_max = 0.418 toward (266.2, -54.3), permutation p = 0.1394 (null median 0.328, 95% 0.468); at Zhou's axis H = +0.195 +- 0.135 (published 0.37 +- 0.04)
+  C1 (secondary): along Chang's direction A = +0.282 +- 0.180; 0.25 lies -0.18 sigma above
+
+==============================================================================================================
+D3  DISTANCE-METHOD SPLIT and the Q <= 2, Inc >= 30 subset
+==============================================================================================================
+  H f_D=1              N =  70: A = 0.498 toward (191.3, -15.1), permutation p = 0.0780; along the full-table direction +0.316 +- 0.125
+  I f_D=2,3,5          N =  33: A = 0.421 toward (2.4, -39.1), permutation p = 0.4878; along the full-table direction +0.337 +- 0.221
+  clean Q<=2 Inc>=30   N = 122: A = 0.317 toward (212.9, -42.2), permutation p = 0.1599; along the full-table direction +0.317 +- 0.106
+  H vs I: chi2 = 7.18 (3 dof), p = 0.066
+
+==============================================================================================================
+M1  MUTATE RECOVERY (secondary)
+==============================================================================================================
+  [PASS] M1sec D_mut - D_obs = 0.20 +- 0.05 within 25 deg of the injected direction
+         measured: amplitude 0.1994, angle 3.4 deg
+
+  2/3 checks pass; load-bearing failures: 0; wrote cfg182_d_pergalaxy_table_results_MUTATE.json (53 s)
+rc = 0
