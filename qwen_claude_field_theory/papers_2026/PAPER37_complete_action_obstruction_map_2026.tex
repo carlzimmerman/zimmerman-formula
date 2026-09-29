@@ -1,0 +1,327 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\def\UrlBreaks{\do\/\do\_\do-}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\newcommand{\fpath}[1]{\nolinkurl{#1}}
+\begin{document}
+
+\begin{center}
+{\Large\bfseries What a Complete Action for a $\Lambda$-Tied MOND Law Would Need: An Obstruction Map and a Frozen Gate List}\\[6pt]
+{\small The authors --- draft for review, 2026-09-28, version 0 --- AI-assisted research programme; not peer reviewed; nothing here is claimed closed.}
+\end{center}
+
+% Conventions of this draft. Every number quoted below is audited by PAPER37_audit.py against a committed file.
+% A line "% AUDIT: id id ..." after a paragraph, item or table row lists the audited numbers quoted in the text just above it.
+
+\begin{abstract}
+\noindent The programme ties the MOND acceleration scale to the vacuum, $a_0=\kappa c\sqrt{G\rho_\Lambda}$, with $\kappa=\tfrac12$ fitted, not derived [Z26a,Z26c]. Its best current version, candidate B, is an \emph{effective law}: no committed action produces it. This note records what one action would have to supply, and what is already known about each requirement. (i)~A gate list was frozen before any assembly attempt: 63 gates in five groups. B passes 42 of 48 harness gates by recount, inferred rather than established, and is short or marginal on a further list of rows that we give with their committed sizes. (ii)~Two objects are missing between B and one action: a legal, bound-only, owned switch (Gap~1), and a conserved cold fluid that \emph{is} the law's dark density (Gap~2) carrying the $a_0$--$\Lambda$ tie (Gap~3, partly filled). The tie can be written into a conserved fluid's stress cap in one action without a new local degree of freedom, but a barotropic saturating cap then engages over at most about $11\times$ in mass against the $10^4$ the baryonic Tully--Fisher relation needs (a scoped screening result; the referee's caveat that this is not a ceiling is given). The fluid's target, $C(r)=\rho_c r^3 g_{\rm tot}=(a_0/4\pi)M_b(<r)$, is excluded as an equation of state, a local closure, a second force, a constraint action, a coupling to the phantom potential, a density slaving and a tidal-tensor coupling, each under stated hypotheses; what is left reduces to Gap~1. (iii)~The derived cold-mass rule closes the ultra-faint offset (from +0.325\,dex to $-0.06$\,dex, a weak test by the referee's account) but over-predicts the classical satellites (M31 LVD $-2.67\sigma$); no one of four pre-declared readings passes all seven gates. (iv)~Lean certifies 52 theorems: that stated conclusions follow from stated premises, no empirical fact. (v)~What decides the rest: Gaia DR4 wide binaries (2~December 2026), $a_0$ at $z\approx2.5$ (not testable with the data on disk) and multi-epoch ultra-faint data. The document is a map, not a result.
+\end{abstract}
+% AUDIT: B01
+
+\section{The frozen gate list, and where candidate B stands on it}\label{sec:gates}
+
+\textbf{Provenance.} The gate list (\fpath{campaign_fresh_gravity/closure_map/GATES.md}) was compiled on 2026-09-28 by a delegated reader of the committed repository and spot-checked by hand; where it disagrees with a committed script output, the script wins. It was frozen before any assembly attempt, so an assembly cannot move the goalposts. Footings: canonical $a_0=9.3603\times10^{-11}$ and alternative $a_0=1.1312\times10^{-10}$\,m\,s$^{-2}$; pairs are written canonical/alternative; $\kappa=\tfrac12$ is fitted throughout.
+% AUDIT: B02
+
+\textbf{Group counts.} Recounted here from the tables of \fpath{GATES.md} (an agent-derived count, re-run by the audit script):
+\begin{center}
+\begin{tabular}{lcl}
+\toprule
+group & gates & content \\
+\midrule
+(1) Galactic dynamics & 24 & SPARC, dwarfs, ellipticals, lenses, binaries \\
+% AUDIT: B03
+(2) Groups and clusters & 5 & X-COP, Bullet, X-ray groups, Local Group \\
+% AUDIT: B04
+(3) Cosmology and lensing & 13 & CMB, growth, KiDS, budget, $a_0(z)$, forest \\
+% AUDIT: B05
+(4) Local and relativistic & 8 & Cassini, GW170817, PPN, wide binaries \\
+% AUDIT: B06
+(5) Theory consistency & 13 & stability, causality, Noether, FRW (the C-H/K branch) \\
+% AUDIT: B07
+total & 63 & \\
+\bottomrule
+\end{tabular}
+\end{center}
+% AUDIT: B08
+
+\textbf{Model-independent versus soft.} Each row carries the data-side class assigned by the programme's evidence audit (CFG1): MI (model-independent: the systematics budget is below the stake), SOFT (budget at or above the stake) and CONT (published analyses disagree); ``n.c.'' means not classed. That audit had 33 results, of which 14 were MI, 11 SOFT and 8 CONT. Counting the class column of the 63 rows (recounted here) gives MI on 14, SOFT on 10, CONT on 9, n.c.\ on 13, and no class on 17 (the 13 theory rows and 4 others). ``n.c.'' is a statement about the audit's coverage, not a finding that a row is model-independent; the lanes run after the audit (for example the ultra-faint referee) are unclassed.
+% AUDIT: B09
+
+\textbf{The harness and its thresholds.} The scored harness has 52 rows, of which 48 are scored and 4 are ``BUDGET strict (reported)'' rows that are not counted. Thresholds are the harness's own: SPARC rms $\le0.110$\,dex; KiDS $\Delta\chi^2\le+9$; lenient budget $\Omega_{\rm ph}\le\Omega_c=0.265$; X-COP identity within 20\%; Bullet collisionless mass $>2\times$ the aperture baryons; CMB-lensing $|{\rm pull}|\le2\sigma$; forest deviation $\le0.10$; every population gate $\le2.0\sigma$. B's own ledger in that harness is: fitted 2 ($\kappa$, $\Omega_ch^2$), declared 5 (kernel shape, edge $x_e=0.4$, the max rule T5, the switch criterion, the ownership rule), tied 1, derived 1 (Solar-System screening). The 6 failing scored rows are 3 distinct gates times 2 footings.
+% AUDIT: B10
+
+\textbf{The count.} Candidate B passes 42 of 48 harness gates \emph{by recount} (lane CFG19 substitutes four M31 rows). The harness's own control K2 failed, and X-COP and the Bullet cannot be re-scored under the derived cold-mass rule without circularity (CFG39), so 42 of 48 is inferred, not established. The strict cold-mass budget fails on all four cells (1.4--1.7$\times$), outside the 48.
+% AUDIT: B11
+
+\textbf{Where B fails or is marginal.} Sizes are the committed ones; ``can/alt'' are the two footings.
+\begin{center}\small
+\begin{tabular}{p{0.06\linewidth}p{0.20\linewidth}p{0.50\linewidth}p{0.15\linewidth}}
+\toprule
+id & observable & B's standing & class \\
+\midrule
+1.09 & MW ultra-faints & FAIL: 7.97/7.52$\sigma$ in the harness (statistical only); 3.8/3.5$\sigma$ refereed (+0.325/+0.304\,dex, Kaplan--Meier with a 0.077-dex floor) & n.c. \\
+% AUDIT: B12
+1.15 & Chae external-field signal & FAIL: 4.08/4.29$\sigma$ (Chae's fits); refit under the programme's law 1.7 (P2, can), 2.7 (P2, alt), 2.2 ($\nu_{\rm mono}$, can), 3.0 ($\nu_{\rm mono}$, alt)$\sigma$ & SOFT \\
+% AUDIT: B13
+3.06 & strict cold budget & FAIL on all four cells: 0.229/0.230 (can), 0.264/0.266 (alt) against 0.159; reported, not counted & n.c. \\
+% AUDIT: B14
+2.03 & 20 X-ray groups & $R_{500}$ marginal, 1.41/1.33 (1.80/1.49$\sigma$); $R_{2500}$ FAIL, 1.88 (2.57/2.63$\sigma$); shortfall tracks the baryon fraction, $\rho=-0.958$ & n.c. \\
+% AUDIT: B15
+2.04 & Local Group $R_0$ & FAIL: 3.0--4.8$\sigma$ high at the KiDS floor; not framework-specific (standard halos in the same machinery: $T=24.5$--$72.5$ against 26--28) & MI marginal \\
+% AUDIT: B16
+3.07 & budget against KiDS & FAIL as declared: 29.4/32.9 (can), 45.4/49.3 (alt); ``not decidable'' (smallest standard-halo spread $S=50.2$) & SOFT \\
+% AUDIT: B17
+1.17 & binary galaxies & undecided: circular orbits $A=1.511/1.443$; B's timing orbits 1.116/1.047 pass, the profile ($-4.2/-4.1\sigma$) does not & n.c. \\
+% AUDIT: B18
+1.18 & X-ray ellipticals (7) & marginal/fail: 1.70/1.58$\sigma$ (factor 1.91/1.79) & n.c. \\
+% AUDIT: B19
+1.19 & SLACS lenses & marginal: 1.5--1.7$\sigma$ with a 0.10-dex floor, 6.9--7.8$\sigma$ statistical & CONT \\
+% AUDIT: B20
+1.22 & UGC 2487 under the cold-mass rule & FAIL on one galaxy: +0.139\,dex & n.c. \\
+% AUDIT: B21
+1.08, 1.10, 1.11, 1.16 & M31 dSphs; LV dwarfs; cluster-infall zero point; Coma UDGs & marginal passes: 1.63/1.24 and 1.44/1.21$\sigma$; 1.71; 1.30; 1.33/1.11 (2.30/2.08 with stars only) & SOFT / MI / SOFT / MI \\
+% AUDIT: B22
+5.01--5.02 & one action; stability & the one covariant action on record (V0) is not complete: its region gate is obstructed when varied; the gate's second variation lands on the baryons, $c_{\rm gate}=1526$--3741\,km\,s$^{-1}$ at $z=0.25$ against gas at 37/117\,km\,s$^{-1}$ & --- \\
+% AUDIT: B23
+\bottomrule
+\end{tabular}
+\end{center}
+
+Two further items sit outside the frozen list. The most massive star-forming disks (23 super spirals, CFG40) run $+0.11$\,dex fast (1.4$\sigma$), the nine fastest $+0.17$\,dex (2.06$\sigma$), and the declared test fails at the margin; with Simard's measured bulge fractions (CFG56) the nine fastest are $+0.164$\,dex ($2.34\sigma$), so the baryon structure model is not a way out. Not scorable until data exist are Gaia DR4 wide binaries and $a_0$ at $z\approx2.5$ (Section~\ref{sec:decide}).
+% AUDIT: B24
+
+
+\textbf{Reading the table.} Of the rows above, the SOFT and CONT classes (1.15, 3.07, 1.19, 1.08, 1.11) mean that the data-side systematics are comparable to the stake, so the size of the failure is not decisive by itself. The ultra-faints (1.09) are the failure the programme's own lane README calls B's largest standing one; tides, noise and unresolved binaries do not explain it (CFG28, CFG29). None of these failures is a theorem about a complete action; they are gates any action would still have to pass on top of B.
+
+\section{The effective law B, and what an action must supply}\label{sec:law}
+
+Candidate B is CFG4's target law (T1--T6) plus a hierarchical ownership rule (FG001). It has no action.
+\begin{itemize}
+\item \textbf{T1:} $a_0=\kappa c\sqrt{G\rho_\Lambda}$, with $\kappa=\tfrac12$ fitted; the form is unique, $\kappa$ is not derived.
+\item \textbf{T2:} $g=\nu_{\rm mono}(g_{\rm bar}/a_0)\,g_{\rm bar}$ inside ``on'' regions.
+\item \textbf{T3:} a region is on iff (i) it is a top-level bound system that has turned around, (ii) a density edge $x_e\in[0.31,0.48]\,r_{\rm ta}$ (declared $0.4$), and (iii) $M_b\ge M_*$.
+\item \textbf{T4:} a cold fluid with $\Omega_ch^2=0.12$, fitted as in $\Lambda$CDM.
+\item \textbf{T5:} the dark mass is $\max\!\big(M_{\rm ph},(\Omega_c/\Omega_b)M_b\big)$; the max rule is declared.
+\item \textbf{T6:} a late allowance.
+\item \textbf{Ownership:} top-level systems only; accreted systems keep the isolated law of their infall baryons; systems formed embedded are Newtonian.
+\end{itemize}
+% AUDIT: B25
+
+An action that produces B has to supply, at least:
+\begin{enumerate}[label=(\alph*)]
+\item the tie of $a_0$ to $\Lambda$, with $\kappa$ entering as a datum;
+\item the kernel and the galaxy law inside on regions;
+\item a switch that is a legal action term: bound-only, top-level-owned, baryon-reading, frame-covariant, with a source-confined edge (Gap~1);
+\item a conserved fluid whose bound-region density \emph{is} the law's dark density, and is plain CDM elsewhere, without double counting (Gap~2);
+\item one action carrying both the tie and the fluid, with post-Newtonian and cosmological sectors closed (Gap~3);
+\item the stability, causality and conservation requirements of group (5) of the gate list.
+\end{enumerate}
+
+\textbf{What exists.} Its pieces sit in three separate places. The derivation-chain action holds the tie and a static kernel but a postulated fluid coupling, a squeezed separator and no ownership; V0 holds a region-local kernel and a baryon-reading gate but its varied gate is obstructed; the astra CA4/CA5 action holds a fluid, a heat gate and Ward/Dirac bookkeeping, but its $a_0$--vacuum relation is ``an optional input'', it has no bound-only switch, and every astra result is marked unreviewed. Switch constructions built on the MOND flux, on a Brown--Schutz dust turnaround gate (a ghost pole on 24/24 layers) and on generated phantoms were excluded or withdrawn. The committed verdicts are ``INCOMPLETE'' for each surviving row. \emph{No committed action produces candidate B.}
+% AUDIT: B26
+
+\section{The remaining gaps, and the reduction of Gap 2 to Gap 1}\label{sec:gaps}
+
+\textbf{Gap 1: a legal switch.} Missing is a gate variable equal to ``inside a turned-around, top-level bound system with $M_b\ge M_*$'' that enters as a Lagrangian term. The committed gates read the baryon flow $\theta_b$, a density, the khronon curvature $\langle K\rangle$ or a field energy; none reads boundness or hierarchy. Ownership adds history (accreted systems keep their infall halo), which no instantaneous state variable carries. A gate that is varied as an action term is unstable: its second variation lands on the field it reads (DE12, DE13), with $c_{\rm gate}=1500$--3700 against gas at 37--117\,km\,s$^{-1}$, and no single smoothing length works (it needs at least 500\,kpc while the flagship case holds only to 100\,kpc; XR15). The dynamical gate field (CV6) was never run.
+% AUDIT: B27
+
+\textbf{Gap 2: the target, exactly (CFG44).} Candidate B needs a cold fluid whose density is the law's phantom,
+\begin{equation}
+\rho_c\,g_{\rm tot}=\frac{a_0}{3}\,\bar\rho_b(<r)=\frac{a_0\,M_b(<r)}{4\pi r^3},\label{eq:target}
+\end{equation}
+a charge $a_0/4\pi G=53.4\,M_\odot\,{\rm pc}^{-2}$ per unit enclosed baryonic mass, half of the 106.9\,$M_\odot\,{\rm pc}^{-2}$ column ceiling. For a point mass with $x=r/r_M$: $M_c=M(\sqrt{1+x^2}-1)$, $P=a_0M/8\pi r^2$ and $\sigma^2=V_c^2/2$. For extended baryons $\rho_c$ depends only on $M_b(<r)$, and the target is equivalent to a locally virialised collisionless fluid with anisotropy $\beta=-\tfrac32\rho_b/\bar\rho_b$. An additive law (phantom plus a cosmic-share cold fluid) overshoots by +0.43\,dex at $x=3$ and +0.68\,dex at $x=1$. With the fluid feeling the Newtonian potential of all mass, hydrostatics is an identity, so the whole content of the target is the closure. The point-mass identities are certified in Lean (24 theorems, Section~\ref{sec:lean}).
+% AUDIT: B28
+
+\textbf{What was excluded, with the exact hypothesis of each.} Scripts were written by a delegated agent and re-run by the programme's hub; all main runs pass and all controls fail as required (CFG44: 40 checks and four controls; CFG50: 12 checks and two controls). Hypotheses for the whole class: spherical, static, Newtonian equilibrium (the GR correction is at most $3\times10^{-4}$ for $M_b\le10^{12}$), GR plus real mass.
+\begin{center}\small
+\begin{tabular}{p{0.24\linewidth}p{0.70\linewidth}}
+\toprule
+mechanism & exact reason it fails \\
+\midrule
+universal barotropic $P(\rho)$ in $g_{\rm tot}$ & the required $c_s^2$ scales as $M^e$ at fixed density with $e=(2x^4+4x^2+1)/(4x^4+4x^2+1)\in[\tfrac12,1]$; the spread over $M_b=10^8$--$10^{14}$ is at least $10^3$; the effective index runs from 2 to 1 \\
+a second potential or fixed-kernel force linear in $M_b$ & the deep regime forces $\beta=-1$ and $P\propto\rho^3$; the Newtonian regime then forces the felt force to zero \\
+local closures (constant charge, $P=a_0g_N/8\pi G$, field-energy $P$, $\sigma^2=r\nu g_N/2$) & far-shell theorem: identical local fields, yet $P$ differs by $(a_0/2)\,m/(4\pi R'^2)$ ($+65\%$ for a $10M_b$ shell at 40\,kpc); off by 0.3--1.4\,dex \\
+adiabatic maintenance & adding baryons outside $R'$ changes no force inside yet raises $P$ \\
+a Lagrange-constraint action & under GR plus real mass it is redundant with the barotropic case or overshoots ($M_\lambda/M_c$ up to 3.4) \\
+coupling to the phantom potential & reaction on the baryons 0.11--1.5\,$g_{\rm law}$ \\
+density slaving & reciprocity: the reaction on the baryons is inward, 1.2--4.2\,$g_{\rm law}$ \\
+a state-independent field-energy stress & $\omega^2=-igk$: Hadamard ill-posed \\
+tidal-tensor coupling (CFG50): stress $=\tfrac12\chi T_{ij}\Pi^{ij}$ with $T_{ij}$ the tidal tensor of a baryon-sourced auxiliary potential & $T_{ij}$ is divergence-free, so as a stress it exerts no force; by reciprocity the reaction on the baryons is $O(g_{\rm law})$ (at $r=h$: 1.3, 0.54, 0.03 for $M_b=10^9,10^{10},10^{12}$); the largest ghost-free outward force on the fluid is $0.505\,g_{\rm tot}$, mass-independent; the needed $\chi$ differs by a factor 64 across $10^9$--$10^{12}$; in FRW it renormalises the fluid inertia by 50--3400 at $z=1100$ unless $\Phi_b$ is built on the overdensity (postulated) \\
+\bottomrule
+\end{tabular}
+\end{center}
+% AUDIT: B29
+Two constructions survive, both as restatements: a temperature-slaved fluid (it postulates $\sigma_\infty^2=\tfrac12\sqrt{Ga_0M_b}$, the baryonic Tully--Fisher relation, the cusp amplitude and the nonlocal exterior term) and a locally virialised collisionless fluid with $\beta=-\tfrac32\rho_b/\bar\rho_b$ (the Jeans identity is derived, $\beta$ is postulated, and positivity of $f(E,L)$ is open). Not tested: anisotropic $f(E,L)$ positivity; non-spherical baryons beyond an estimate (a thin disc's tidal closure and enclosed-mass form differ by a factor 3--15); any relativistic completion. The tidal test assumes the coupling must carry the full closure force.
+% AUDIT: B30
+
+\textbf{The sharpest statement.} The single function of radius
+\begin{equation}
+C(r)=\rho_c\,r^3\,g_{\rm tot}=\frac{a_0}{4\pi}\,M_b(<r)\label{eq:C}
+\end{equation}
+has no dynamical origin in any construction tried. It is not an equation of state, a linear or Poisson coupling, a local function of the fields at $r$, a state-independent stress, a constraint under GR plus real mass, a coupling to the phantom potential, a density slaving, a tidal-tensor coupling, or adiabatically maintainable. What is left is a non-adiabatic, nonlocal exchange of energy between the baryons and the fluid that depends on the enclosed baryonic mass. The baryonic Tully--Fisher relation is the postulate.
+
+\textbf{The reduction of Gap 2 to Gap 1.} An enclosed-mass, non-adiabatic exchange that acts only where the system is bound and is set by the system's own baryons is the same kind of object as a bound-only, owned switch: both are functionals of the baryon history of a top-level system, not of the local instantaneous state. The committed maps therefore count the remaining gaps as two, a legal bound-only owned switch and the tie, and state that Gap~2 ``still reduces to Gap~1'' after the tidal test. We flag this as an identification made in the maps from the form of the missing object; it is not a theorem, and a construction that produced (\ref{eq:C}) without a bound-only switch would falsify it.
+
+\section{The tie: one action for $a_0(\Lambda)$ and a conserved fluid (CFG43)}\label{sec:tie}
+
+The construction (units $c=1$, $M_P^2=1/8\pi G$, $\epsilon=\kappa^2/8\pi$, $\kappa=\tfrac12$ fitted) is
+\begin{equation}
+S=\int d^4x\Big\{\sqrt{-g}\big[\tfrac12 M_P^2R-M_P^2\Lambda\big]+M_P^2\Lambda\,\partial_\mu T^\mu-\sqrt{-g}\,\rho(n;\Lambda)+J^\mu\partial_\mu\theta\Big\},
+\end{equation}
+with $\Lambda$ a Henneaux--Teitelboim [HT89] field with multiplier $T^\mu$, a Schutz--Sorkin [SS77] irrotational fluid with one conserved current, and the cap entering as $\rho(n;\Lambda)=mn+P_{\rm cap}\,x\arctan x$, $x=mn/(\nu_*M_P^2\Lambda)$, $P_{\rm cap}(\Lambda)=\epsilon M_P^2\Lambda=a_0^2/8\pi G$. That gives $P=P_{\rm cap}x^2/(1+x^2)\le P_{\rm cap}$; with $\kappa=\tfrac12$, $a_0=\sqrt{8\pi GP_{\rm cap}}=9.3603\times10^{-11}$\,m\,s$^{-2}$, so the kernel and the fluid's cap read the same constant.
+% AUDIT: B31
+
+\textbf{Derived by the scripts, from the action} (11, 5 and 11 checks in the three main runs; all six controls fail as required): $\Lambda$ is a global integration constant; number conservation; Friedmann equals GR plus $\Lambda$ plus dust; the Dirac count on a lattice (fluid alone $2N$; adding the HT sector $2N+2$ with $2N-1$ first-class constraints and no tertiary one, so the local degrees of freedom are unchanged and there is one global pair); $a_0(z)$ flat to $6\times10^{-11}$ for $z\le10$; $\Omega_c$ is initial data; a column bound $\Sigma\le a_0/2\pi G$ (106.9/129.2\,$M_\odot\,{\rm pc}^{-2}$).
+% AUDIT: B32
+\textbf{Postulated:} the tie function $P_{\rm cap}=(\kappa^2/8\pi)\rho_\Lambda c^2$ (so it agrees with the earlier kernel-only tie by construction); the saturating shape and its argument; irrotational flow; a hard bound; minimal coupling. \textbf{Fitted:} $\kappa=\tfrac12$; $\Omega_c$; and a new dimensionless constant $\nu_*$. \textbf{Open:} a cap that binds across the baryonic Tully--Fisher mass range; shell crossing; the galaxy law itself; the bound-only switch; T5's max rule; PPN.
+
+\textbf{The scoped obstruction.} Hypotheses: a single conserved current; an equation of state barotropic in $\nu=\rho/\rho_\Lambda$ with $P\le P_{\rm cap}$; linear growth close to $\Lambda$CDM; the cap reached at $r_M$. (1) At $\nu_*=1$, $c_s^2\approx6\times10^{-3}$ today and linear growth is 5--14\% of $\Lambda$CDM. (2) Growth within 5\% needs $\nu_*\ge2\times10^4$ to $1\times10^7$ at $k=0.5$--30\,Mpc$^{-1}$. (3) The density at $r_M$ in units of $\rho_\Lambda$ scales as $M_b^{-1/2}$ exactly, and the growth bound at the halo's own scale scales the same way, so $g_0=\nu_M/\nu_{\min}$ is a pure number and one $\nu_*$ engages the cap over a mass window $g_0^2$ whatever $\nu_*$ is: direct re-solves at $10^9$ and $3\times10^{11}\,M_\odot$ give $g_0=1.08$ and $1.04$; over convention choices $g_0$ ranges over 0.08--3.3, so the window is \emph{at most about} $11\times$ in mass, against the $10^4$ the baryonic Tully--Fisher relation needs. This is a screening estimate (two-fluid Newtonian growth).
+% AUDIT: B33
+
+\textbf{The referee's caveat, which limits how this is read.} An independent re-implementation with its own growth solver reproduced the obstruction ($\nu_{\min}=2.2\times10^4$, $1.8\times10^5$, $2.0\times10^6$, $1.0\times10^7$ at $k=0.5$, 2, 10, 30\,Mpc$^{-1}$; the lane's values differ by 5--12\%; the exponent 1.49--1.50; $g_0=0.36/0.355$ at the 5\% criterion, $1.06/1.04$ at 20\%). But ``at most about $11\times$'' is too strong as a ceiling: it holds only if suppression beyond 50\% is disallowed and $F\ge\tfrac12$ is kept; stacking the generous choices reaches $10^4$--$10^5$, each individually unmotivated, and $F\ge0.01$ contradicts the hydrostatic requirement. Other cap shapes were not tested. The obstruction stands as stated for the saturating barotropic equation of state; it does not touch a fluid whose cap is not a barotropic function of its own density, for example an order-parameter fluid.
+% AUDIT: B34
+
+\textbf{Status.} Gap~3 is partly filled: the tie can act on a conserved fluid in one action without adding local degrees of freedom. The cap's entry cannot be derived, and the natural saturating form needs a new constant. This is an existence result and a scoped no-go, not a mechanism. In addition the P2 point-mass pressure exceeds this cap for $r<r_M$ (its $P/P_{\rm cap}=g_N/a_0$), so the fluid of this section and the fluid of eq.~(\ref{eq:target}) are not one fluid.
+
+\section{The cold-mass rule on the dwarfs (CFG42, CFG45, CFG46, CFG51)}\label{sec:dwarfs}
+
+\textbf{The rule.} The cold fluid is conserved, so a bound system keeps the cold mass it collapsed with: the dark mass is the law's phantom plus leftover collapse debris. In lanes CFG42--CFG51 the rule adds $G f_{\rm ex}(1-f_b)M_{\rm NFW}(<r)/r^2$ to the law's acceleration, with the collapse mass from the Moster et al.\ relation [MNW13] and, where measured, from weak lensing [M16]. With weak-lensing collapse masses the rule leaves every star-forming spiral and passive disc below $\log M_*=11.2$ on the law and fits the SLUGGS massive early types at 0.4$\sigma$ against the law's 3.3$\sigma$ deficit (CFG35--CFG38). It is bookkeeping derived from T4, not a variation of an action: in Lean it is certified only as algebra of the rule as stated.
+% AUDIT: B35
+
+\textbf{Ultra-faints and classical satellites (CFG42).} Canonical footing; law and rule, offset in dex (significance):
+\begin{center}\small
+\begin{tabular}{lcc}
+\toprule
+population & the law & the rule \\
+\midrule
+MW ultra-faints (Kaplan--Meier, limits in) & +0.325 (3.77$\sigma$) & $-0.059$ ($-0.41\sigma$) \\
+% AUDIT: B36
+MW classical dSphs & +0.027 & $-0.118$ ($-1.78\sigma$) \\
+% AUDIT: B37
+M31 Collins+13 & +0.064 & $-0.024$ ($-0.22\sigma$) \\
+% AUDIT: B38
+M31 LVD & +0.044 & $-0.107$ ($-2.67\sigma$) \\
+% AUDIT: B39
+\bottomrule
+\end{tabular}
+\end{center}
+The headline (the ultra-faint offset is closed) passed; the classical-satellite check failed (H2). The collapse-mass floor on the ultra-faint result is 0.133\,dex; the offset crosses zero near $3\times10^8\,M_\odot$, three times below the clamped $10^9$. \emph{The referee's caveat:} the closure is a weak test. Every collapse mass from $2\times10^8$ to $10^{12}\,M_\odot$ passes the $2\sigma$ criterion, only masses below about $3\times10^7$ fail, and the significance falls from 3.8 to $-0.4$ partly because the error grows from 0.086 to 0.143; the clamp covers 33 of the 40 ultra-faints. The rule trades B's largest failure for a smaller one in $\sigma$ (1.8--2.7$\sigma$), spread over more objects; this is the cusp problem reached from B's side. The debris would have to switch off where the phantom already supplies the observed mass: a design constraint on T5's max rule (dark $=$ the larger of the phantom and the cold budget, not their sum), \emph{not} a fix.
+% AUDIT: B40
+
+\textbf{Four readings, one conjunction (CFG45).} Four pre-declared readings of ``the fluid keeps its collapse mass'' were scored on every population with the lanes' exact statistics (66 committed numbers reproduced): (L) the bare law, (S) the sum as committed, (M) the radial max and (E) the exterior leftover. Acceptance is the conjunction of seven gates. \textbf{No reading passes all seven.} (S) passes 6/7 and fails only the classical satellites (M31 LVD $-2.67\sigma$); (M) passes 4/7 (classical satellites, SPARC, where 36\% of the massive spirals move by more than 0.03\,dex, and SLUGGS at $-2.12\sigma$); (L) passes 5/7 (ultra-faints 3.8$\sigma$, SLUGGS 3.3$\sigma$); (E) passes 5/7 and is identical to the bare law in every lane, because the exterior shell never reaches a data radius. Control C2a failed as declared and is kept.
+% AUDIT: B41
+
+\textbf{A statistical binary correction (CFG46).} Arroyo-Polonio, Battaglia \& Thomas [AP26] correct single-epoch dispersions with a mixture model. Eight of their twelve ultra-faints are scorable. The bare law's median offset is +0.295\,$\pm$\,0.163 (1.81$\sigma$) at $f=0$, +0.206\,$\pm$\,0.164 (1.26$\sigma$) with $f$ free, and +0.171\,$\pm$\,0.172 (0.99$\sigma$) at $f=0.7$. The correction lowers each dispersion by $-0.068$ to $-0.104$\,dex, a quarter to a third of the offset, and seven of the eight offsets stay positive; but with eight systems against 40 the test lost power, so the pre-declared H1 and H2 failed largely for that reason. It neither confirms nor removes the failure. The rule with the corrected dispersions sits at $-0.151$ ($-1.17\sigma$).
+% AUDIT: B42
+
+\textbf{Multi-epoch, binary-cleaned dispersions (CFG51).} From per-epoch velocities (Walker et al.\ [W23]; 49,367 rows, 38 systems) only two ultra-faints are informative. Cleaned offsets: Bo\"otes~I +0.219\,$\pm$\,0.089 (2.46$\sigma$) and Tucana~II +0.465\,$\pm$\,0.128 (3.63$\sigma$); cleaning lowers the offset (single-epoch +0.310, +0.730) but does not remove it; the sum rule over-predicts both ($-0.205$, $-0.165$). The data lie between the bare law and the sum rule. Caveats: Bo\"otes~I's cold component alone (2.4\,km\,s$^{-1}$) would give +0.007, so its result rests on the hot component; Tucana~II is tidally disturbed; membership was re-derived, and control C1 failed as declared (Tucana~II single-epoch 7.48 against a literature value of 3.8, which is the binary inflation itself). Two objects are not a population result.
+% AUDIT: B43
+
+\textbf{What this means for an action.} No reading of the rule closes B, and the maps' only constraint is qualitative: a partial debris that vanishes where the phantom supplies the mass and survives where it does not. A fitted form of that constraint is a knob; the programme's rule is to derive it. No action yields it.
+
+\section{What Lean certifies, and what it cannot}\label{sec:lean}
+
+The composable Lean core is \fpath{fable_independent_2026/lean_2026/ChainCert}. Its verifier checks that it builds, has no \texttt{sorry}, and that all 52 theorems depend only on \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; the verifier's mutation control adds an unproved theorem and fails as required. \textbf{What Lean certifies here is that the conclusions follow from the stated premises; it certifies no empirical fact.} $\kappa=\tfrac12$ is fitted, $\Omega_c$ is fitted, the constancy of $\rho_\Lambda$ is a premise, and the kernel is declared.
+% AUDIT: B44
+
+\begin{center}\small
+\begin{tabular}{p{0.20\linewidth}p{0.74\linewidth}}
+\toprule
+link & what is certified, and its scope \\
+\midrule
+form of $a_0$ & the monomial $c^\alpha G^\beta\rho^\gamma$ has the units of an acceleration iff $(\alpha,\beta,\gamma)=(1,\tfrac12,\tfrac12)$, both directions; certified, conditional on the monomial family \\
+BTFR zero point, kernels & any kernel with $\nu(y)\sqrt y\to1$ gives $v^4\to GMa_0$; holds for $\nu_\beta$ and $\nu_{\rm mono}$ \\
+tie and flat $a_0(z)$ & flatness is the premise $\hat h_{\rm flat}$ (constant $\rho_\Lambda$, empirical) propagated; without it the conclusion is false \\
+rival $a_0\propto H(z)$ & $E(z)>1$ and increasing; $E(2.5)\in(3.76,3.761)$ at $\Omega_m=0.3138$ \\
+cold-mass rule & $f_{\rm ex}=\max(0,1-M_{\rm ph}/M_c)$ gives $M_{\rm ph}+f_{\rm ex}M_c=\max(M_{\rm ph},M_c)$: algebra of the rule as stated, not derived from an action \\
+fluid cap (CFG43) & $P=P_{\rm cap}x^2/(1+x^2)\in[0,P_{\rm cap})$ and $a_0^2=\kappa^2\Lambda/8\pi$: an identity inside the fluid module, \emph{not linked} to the kernel's $a_0$ in Lean; the cap's entry form is a postulate \\
+fluid $=$ phantom, point mass (CFG44) & exact real-analysis identities for the explicit-$\sqrt{\ }$ P2 law (24 theorems); Lean does not connect it to $\nu_\beta$ at $\beta=1$; \texttt{no\_single\_polytrope} is stated for $\Gamma(x)$ and needs one extra step for the effective-index form; the target itself is a declared law \\
+$\kappa$ & the zero point is linear in $\kappa$ by cancellation; the stated relation is onto, and that $Z_q$ is free is a premise, so $\kappa=\tfrac12$ is tuned, not derived \\
+\bottomrule
+\end{tabular}
+\end{center}
+% AUDIT: B45
+
+\textbf{Not certified.} Ownership and the bound-only switch (no formal statement exists without a written specification); the action itself (nothing formalises one); the relativistic sector (slip, PPN, Shapiro, stability beyond scoped certificates); the uniqueness of the form of $a_0$ over all dimensionally allowed forms (only the monomial family is covered); every empirical claim. The wider corpus is 137 files, of which 116 compile, 21 fail, and 9 real \texttt{sorry} occur in 4 non-certificate files; the compiling files are islands (no file imports another) apart from ChainCert, the first library whose theorems import each other and compose into a conclusion. The corpus's per-file descriptions were not independently re-verified.
+% AUDIT: B46
+
+\section{What decides the rest}\label{sec:decide}
+
+\textbf{Gaia DR4 wide binaries, 2 December 2026.} The pre-registration is frozen, with Amendments 13 and 14 filed. The test cuts both ways among the framework's own readings; every ``dies'' applies only if the frozen stability checks pass.
+\begin{center}\small
+\begin{tabular}{p{0.46\linewidth}p{0.24\linewidth}p{0.18\linewidth}}
+\toprule
+reading & prediction for $\hat\gamma$ (can/alt) & dies if \\
+\midrule
+Arm A: the kernel as strict MOND, with the external field & 1.16--1.18 / 1.19--1.23 & $\hat\gamma$ Newtonian \\
+% AUDIT: B47
+Arm C: hierarchical ownership (B's rule) & 1.000 exactly & $\hat\gamma\ge1.084$ \\
+% AUDIT: B48
+the derivation chain's law (Amendment 14) & ceiling 1.0725 / 1.0900 & $\hat\gamma\ge1.157/1.174$ \\
+% AUDIT: B49
+\bottomrule
+\end{tabular}
+\end{center}
+A MOND-like boost kills the ownership rule and the chain's law; a Newtonian result kills strict MOND, and leaves B standing but unconfirmed over Newton.
+
+\textbf{$a_0$ at $z\approx2.5$.} The flat law predicts a zero shift in the galaxy zero point and $\Lambda$CDM about +0.334\,dex; at 0.13\,dex per object the flat law is 2.57$\sigma$ from the $\Lambda$CDM-native value, and 1.5--2.4$\sigma$ if an evolving dark-energy branch holds (branches move $a_0(2.5)$ by $-0.10$ to $+0.14$\,dex). The registered test needs 3 rotators at $\pm0.10$\,dex or 4 at $\pm0.20$. \emph{It cannot be run on the data on disk} (CFG52, a feasibility count and not a test of B): at $z\ge1.5$ no clean object has $g_{\rm bar}<0.3\,a_0$; of 242 galaxies with $g_{\rm bar}<a_0$, 16 have a prediction gap between the flat law and $a_0E(z)$ above 1$\sigma$, none above 2$\sigma$; pooled at $z\ge1.5$ (N\,=\,14) the flat law sits at +0.135 and the rival at $-0.037$\,dex (+1.0$\sigma$ and $-0.3\sigma$ with a correlated mass calibration) and a selection mock absorbs most of it. MUSE-DARK~II at $z\approx1.2$ favours the flat law by about 1$\sigma$ but is gas-dominated, and MUSE-DARK~III's rising $a_0$ to $z\approx1.4$ is not diagnostic ($\Lambda$CDM simulations produce the same apparent rise). A decisive test needs 2--4 JWST integral-field plus ALMA discs at $z\approx2.5$ with the mass calibration below about 0.1\,dex; a correlated 0.2-dex systematic caps the significance near 2.3$\sigma$ whatever the number of discs.
+% AUDIT: B50
+
+\textbf{Multi-epoch ultra-faint data.} The multi-epoch, per-star dispersions are the decisive test of the largest failure. Only two systems allow it today (Section~\ref{sec:dwarfs}); Hydrus~I, Reticulum~II and Ursa Major~II have no repeat epochs in the catalogue used.
+
+None of the three data sets would supply what an action must: they test B, not the existence of an action.
+
+\section{Limitations and what is not claimed}\label{sec:not}
+
+\textbf{Limitations of this document.}
+\begin{itemize}
+\item It is a compilation of committed material and introduces no new calculation. The gate list and the action catalogue were compiled by delegated readers and spot-checked by hand; their own headers say that most rows were not independently re-verified, and that a committed script output overrides them. The group and class counts of Section~\ref{sec:gates} are agent-derived recounts, re-run by the audit script.
+\item The CFG43, CFG44 and CFG50 scripts were written by a delegated agent and re-run by the hub; the extended-profile, barotropic, reciprocity and growth results are numerical, and were run, not re-derived. Every astra-lane result is marked unreviewed and is not relied on.
+\item The obstructions are scoped. Each excludes a class under its stated hypotheses and none is a theorem against an arbitrary nonlocal, multi-metric or explicitly anisotropic action. The reduction of Gap~2 to Gap~1 is an identification, not a theorem.
+\item The 42 of 48 is a recount, not an established score; the harness's control K2 failed.
+\item Both footings are quoted where the source gives both; where a source gives one, it is canonical. $\kappa=\tfrac12$ is fitted; SPARC [LMS16] is the data behind the galaxy law; the $a_0$--$\Lambda$ link assumes $\Lambda$ is a real cosmological constant (a de Sitter horizon).
+\item The referee reproduced the CFG43 obstruction with its own solver, but concluded that ``at most about $11\times$'' is not a ceiling.
+\end{itemize}
+% AUDIT: B51
+
+\textbf{Never claim} (copied from the programme's standing page):
+\begin{itemize}
+\item That dark matter is gone. The mass is required.
+\item That $\kappa=\tfrac12$ is derived.
+\item That any data set favours the framework over $\Lambda$CDM.
+\item That the theory is closed or complete.
+\item Any Standard Model or theory-of-everything result. That sector is walled, and those claims were publicly retracted.
+\item That the Local Group or the budget tension excludes the framework (CFG23, CFG27).
+\end{itemize}
+% AUDIT: B52
+
+\section{Reproducibility}\label{sec:rep}
+
+Every number quoted here is re-read from a committed file by \fpath{PAPER37_audit.py}, which parses this source for the marked values, checks each against its committed source at the precision quoted, reports how many match, and has a mutation mode that alters one expected value and must fail. The sources are \fpath{campaign_fresh_gravity/closure_map/}, \fpath{campaign_fresh_gravity/STANDING_2026-09-28.md}, \fpath{campaign_fresh_gravity/LEDGER.md}, the READMEs and outputs of lanes CFG42, CFG43, CFG44, CFG45, CFG46, CFG50, CFG51 and CFG52, and \fpath{fable_independent_2026/lean_2026/ChainCert}.
+
+\section*{References}
+\small
+[AP26] Arroyo-Polonio, A., Battaglia, G. \& Thomas, G.\,F. 2026, arXiv:2603.03129.\par
+[HT89] Henneaux, M. \& Teitelboim, C. 1989, Phys.\ Lett.\ B 222, 195.\par
+[LMS16] Lelli, F., McGaugh, S.\,S. \& Schombert, J.\,M. 2016, AJ 152, 157 (SPARC).\par
+[M16] Mandelbaum, R., Wang, W., Zu, Y., White, S., Henriques, B. \& More, S. 2016, MNRAS 457, 3200.\par
+[MNW13] Moster, B.\,P., Naab, T. \& White, S.\,D.\,M. 2013, MNRAS 428, 3121.\par
+[SS77] Schutz, B.\,F. \& Sorkin, R. 1977, Ann.\ Phys.\ 107, 1.\par
+[W23] Walker, M.\,G. et al.\ 2023, ApJS 268, 19.\par
+[Z26a] The authors 2026, The coefficient of the $a_0$--$\Lambda$ relation: a zero-mode theorem for local MOND actions, DOI 10.5281/zenodo.22559892.\par
+[Z26c] The authors 2026, Does the MOND acceleration scale evolve? A pre-registered decisive measurement (PAPER7 v3), DOI 10.5281/zenodo.22833314.\par
+
+\end{document}
