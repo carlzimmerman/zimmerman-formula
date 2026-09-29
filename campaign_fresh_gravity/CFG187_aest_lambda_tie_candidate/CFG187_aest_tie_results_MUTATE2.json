@@ -1,0 +1,716 @@
+{
+ "lane": "CFG187",
+ "mode": "2",
+ "checks": [
+  {
+   "name": "L1 TIE: a0 is a function of the HT field Lambda alone (d alpha/d Lambda != 0, no independent a0), and kappa c sqrt(G rho_Lambda) reproduces FP0's canonical a0 to 1e-6",
+   "ok": false,
+   "load_bearing": true,
+   "detail": "d alpha/d Lambda = 0; functions in alpha: ['A_t', 'A_x']; a0 ratio - 1 = 0.00e+00"
+  },
+  {
+   "name": "L2 GLOBAL: varying T^mu gives d_t Lambda = d_x Lambda = 0 with no AeST field in those equations; varying Lambda only fixes d_mu T^mu (the unimodular clock); T appears in no other field equation",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "T-equations are -2 d Lambda: True; clean of AeST fields/functions: True"
+  },
+  {
+   "name": "L3 SAME AS AeST ON SHELL: with Lambda = Lambda_0 the phi, A^t, A^x and lambda equations of the tied action equal plain AeST's at a0 = alpha(Lambda_0), for generic j and K",
+   "ok": false,
+   "load_bearing": true,
+   "detail": "(generic j, K; symbolic expand, else a numeric identity test at 3 points)"
+  },
+  {
+   "name": "L4 NO LOCAL DOF: the HT constraints are first class (rank N - 1), generate no secondary constraint for a Hamiltonian with arbitrary Lambda-dependence, and leave one global pair; the local count is unchanged",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "rank 4, count 2"
+  },
+  {
+   "name": "L5 FLAT: on shell a0(z)/a0(0) = 1 to 1e-12 at z = 0.5, 1, 2.5, 5, 1100",
+   "ok": false,
+   "load_bearing": true,
+   "detail": "alpha reads theta = 3H(z)"
+  },
+  {
+   "name": "L6 FRW AND LINEAR ORDER: Y_bar = 0 on FRW and delta Y = 0 for a general linear perturbation, so the a0-sector does not enter the background or the linear equations",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "re-derives the record's bridge1 order counting with metric and aether perturbations included"
+  },
+  {
+   "name": "L7 COUNT: beyond AeST's own parameters the tie adds one dimensionless coupling (kappa, FITTED) and removes a0 as an independent constant: a0 is fixed by the HT integration constant Lambda_0",
+   "ok": false,
+   "load_bearing": true,
+   "detail": "a0 independent: False; fixed by Lambda_0: False"
+  },
+  {
+   "name": "L8 METRIC-FREE: the HT term 2 Lambda d_mu T^mu (T a vector density) has zero metric variation, so the tie changes neither the tensor sector (c_T) nor the PPN metric",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "delta/delta g: [0, 0, 0]"
+  },
+  {
+   "name": "R-theta: AeST's vector sector (K_B F^2 and J.grad phi) is blind to the aether's expansion theta = 3H on the cosmic background (F = 0, J = 0); the owner's 'compaction' has no dynamics in AeST's vector sector at the background level (its MOND force is the scalar's spatial gradient Y)",
+   "ok": true,
+   "load_bearing": false,
+   "detail": ""
+  },
+  {
+   "name": "C1 CONTROL: a0 = kappa c sqrt(G rho_Lambda) = 9.3603e-11 (FP0) and Lambda/alpha^2 = 8 pi/kappa^2 = 32 pi = 100.530965 (XR20 C3)",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "a0 = 9.360325e-11; Lambda/alpha^2 = 100.530965"
+  },
+  {
+   "name": "C2 CONTROL: without the multiplier Lambda's own equation is local; for the deep-MOND j it makes Lambda proportional to the local Y (so a0 varies in space) and pins s = Y/alpha^2 to a constant (MOND's y fixed everywhere): the multiplier is what makes the tie global (FP5 D3 / XR20 T1b, re-derived for AeST's J)",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "d Lambda/d Y != 0 and s independent of Y"
+  },
+  {
+   "name": "C3 CONTROL: the record's AeST overshoot with a CDM-clustering dust (mi_aest_jeans_nonlinear_verdict_2026.py E1: 2.06-4.42x, Route A kernel) is reproduced",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "min 2.062, max 4.419"
+  },
+  {
+   "name": "C4 CONTROL: P2's tail h -> 1/2 - 1/(8y) (sympy); the RAR kernel's h decays above Y_P; nu_mono's floor value H_P = 0.648; CFG185's committed Earth/Mars ratios (both footings) reproduced to 0.5%",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "P2 series ok True; RAR decays True; H_P = 0.6476; max deviation from CFG185 2.86e-04"
+  },
+  {
+   "name": "C5 CONTROL: E(z) = sqrt(Om (1+z)^3 + 1 - Om), Om = 0.3153, reproduces FP0's committed a0z_rival_E (1.322, 1.791, 3.769, 8.294, 20513.65) to 1e-6",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "max relative deviation 0.0e+00"
+  },
+  {
+   "name": "R-alpha1: IF the verdict's formula holds with J_Y the local AQUAL mu (<= 1 on every background, deep-MOND to Newtonian), no background rescues alpha_1: |alpha_1| >= 4; the escape needs J_Y >~ 8e4 (outside mu <= 1) and K_B < 2.5e-5 -- conditional; it does not discharge the verdict's named residual",
+   "ok": true,
+   "load_bearing": false,
+   "detail": ""
+  },
+  {
+   "name": "R-KM: kinematically the MOND argument Y of a galaxy moving at w through the aether frame shifts by at most gamma^2 beta^2 = 4.0e-6 at 600 km/s (G7's line is 10%), and a0 itself is frame-independent (Lambda global); a boosted gradient also enters Q (the dust sector) -- the dynamical aether response (KM1-type) is NOT computed",
+   "ok": true,
+   "load_bearing": false,
+   "detail": ""
+  },
+  {
+   "name": "C6 CONTROL: every carried number's anchor text is present in its cited committed file, and CFG7 H0's 14 gates are parsed on both footings",
+   "ok": true,
+   "load_bearing": true,
+   "detail": "41 anchors, missing []; CFG7 rows parsed 28"
+  },
+  {
+   "name": "R-DIFF: rows changed relative to the main construction are limited to the tie rows (3.10, 3.11, 5.13)",
+   "ok": true,
+   "load_bearing": false,
+   "detail": "changed ['3.10', '3.11', '5.13']"
+  }
+ ],
+ "numbers": {
+  "a0_from_tie_canonical": 9.360324825027975e-11,
+  "kappa_alt_on_rho_Lambda": 0.6042544263082886,
+  "time_L1_L2_s": 0.71,
+  "time_L3_s": 6.38,
+  "lattice": {
+   "N": 5,
+   "rank": 4,
+   "ht_phase_space": 2,
+   "local_phase_space": 10
+  },
+  "time_L4_s": 0.22,
+  "a0z_ratio": {
+   "0.5": 1.3224361988390971,
+   "1.0": 1.7908377927662795,
+   "2.5": 3.768711649887797,
+   "5.0": 8.293943573475769,
+   "1100.0": 20513.651076539252
+  },
+  "time_L5_L6_s": 1.47,
+  "overshoot": {
+   "route_A": [
+    2.06175675395566,
+    4.419490574950147,
+    2.73402439284381,
+    2.6447898595865875
+   ],
+   "P2": [
+    1.8084839051226635,
+    4.893671903606901,
+    2.6048904068546284,
+    2.5580220764165835
+   ],
+   "nu_mono": [
+    2.061756758850077,
+    4.491505392891243,
+    2.734024392269726,
+    2.6447898587485494
+   ]
+  },
+  "tails": {
+   "canonical/Earth/nu_mono": {
+    "y": 63353394.56490906,
+    "h": 1.177343399011132,
+    "a_anom": 1.1020316645346714e-10,
+    "ratio": 3011.0154768706866
+   },
+   "canonical/Earth/P2": {
+    "y": 63353394.56490906,
+    "h": 0.49999999802694073,
+    "a_anom": 4.6801623940455116e-11,
+    "ratio": 1278.732894547954
+   },
+   "canonical/Earth/RAR": {
+    "y": 63353394.56490906,
+    "h": 0.0,
+    "a_anom": 0.0,
+    "ratio": 0.0
+   },
+   "canonical/Mars/nu_mono": {
+    "y": 27287952.778731108,
+    "h": 1.1500698422501674,
+    "a_anom": 1.0765027294930248e-10,
+    "ratio": 2893.8245416479162
+   },
+   "canonical/Mars/P2": {
+    "y": 27287952.778731108,
+    "h": 0.499999995419224,
+    "a_anom": 4.680162369636436e-11,
+    "ratio": 1258.1081638807623
+   },
+   "canonical/Mars/RAR": {
+    "y": 27287952.778731108,
+    "h": 0.0,
+    "a_anom": 0.0,
+    "ratio": 0.0
+   },
+   "alt/Earth/nu_mono": {
+    "y": 52422780.70842494,
+    "h": 1.1712109458496751,
+    "a_anom": 1.3248779697199698e-10,
+    "ratio": 3619.885163169316
+   },
+   "alt/Earth/P2": {
+    "y": 52422780.70842494,
+    "h": 0.49999999761554054,
+    "a_anom": 5.656017680233421e-11,
+    "ratio": 1545.3600219216996
+   },
+   "alt/Earth/RAR": {
+    "y": 52422780.70842494,
+    "h": 0.0,
+    "a_anom": 0.0,
+    "ratio": 0.0
+   },
+   "alt/Mars/nu_mono": {
+    "y": 22579853.444721717,
+    "h": 1.1439373849774985,
+    "a_anom": 1.2940260210736487e-10,
+    "ratio": 3478.5645727786255
+   },
+   "alt/Mars/P2": {
+    "y": 22579853.444721717,
+    "h": 0.4999999944640918,
+    "a_anom": 5.6560176445841214e-11,
+    "ratio": 1520.4348506946562
+   },
+   "alt/Mars/RAR": {
+    "y": 22579853.444721717,
+    "h": 0.0,
+    "a_anom": 0.0,
+    "ratio": 0.0
+   }
+  },
+  "alpha1": {
+   "min_abs_alpha1_Jle1": 4.000000000002,
+   "J_needed_at_KB_1e-6": 83332.29166666667
+  },
+  "km_kinematic_frac_600kms": 4.005556246209602e-06,
+  "tally": {
+   "CONDITIONAL": 5,
+   "FAIL": 13,
+   "PASS": 12,
+   "UNSCORED": 9,
+   "MARGINAL": 3,
+   "N/A": 1,
+   "NS": 3,
+   "CONT": 1,
+   "MIXED": 1
+  },
+  "better_than_B": [
+   "1.15",
+   "5.01"
+  ],
+  "worse_than_B": [
+   "1.01",
+   "1.07",
+   "1.08",
+   "1.10",
+   "1.11",
+   "1.14",
+   "1.16",
+   "2.01",
+   "2.02",
+   "3.01",
+   "3.05",
+   "3.12",
+   "4.01"
+  ],
+  "same_as_B": [
+   "1.09",
+   "1.12",
+   "1.13",
+   "1.18",
+   "1.19",
+   "1.20",
+   "1.21",
+   "1.25",
+   "1.26",
+   "1.24"
+  ],
+  "rows_changed_vs_main": [
+   "3.10",
+   "3.11",
+   "5.13"
+  ]
+ },
+ "scorecard": [
+  {
+   "id": "1.01",
+   "observable": "SPARC RAR (the law)",
+   "candidate": "horn N: same law, same numbers, \u03bd_mono 0.1003/0.0991, P2 0.1083/0.1035 dex (no EFE in the carried rms); horn D: overshoot P2 1.81-4.89x, \u03bd_mono 2.06-4.49x (crude, cosmic ratio at the radius); N9 says horn N costs the forest (3.12)",
+   "status": "CONDITIONAL",
+   "physics": "SAME (N) / HERE (D)",
+   "B": "PASS (\u03bd_mono 0.1003/0.0991)",
+   "source": "CFG4_galaxy_law.out; this script C3"
+  },
+  {
+   "id": "1.07",
+   "observable": "MW classical dSphs",
+   "candidate": "external field applies: 3.53 / 3.34\u03c3 (FAIL)",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "PASS 1.06/0.74\u03c3",
+   "source": "CFG7_hierarchy_fg001.out H0 (rival column)"
+  },
+  {
+   "id": "1.08",
+   "observable": "M31 dSphs (LVD, Collins)",
+   "candidate": "LVD 5.96 / 5.70\u03c3 (FAIL); Collins 5.80 / 5.58\u03c3 (FAIL)",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "MARGINAL (1.21-1.63\u03c3, after CFG18)",
+   "source": "CFG7 H0 rival"
+  },
+  {
+   "id": "1.09",
+   "observable": "MW ultra-faints",
+   "candidate": "13.19 / 12.82\u03c3 (FAIL) (harness, statistical only; B's harness 7.97/7.52 was refereed to 3.8/3.5)",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "FAIL (refereed 3.8/3.5\u03c3)",
+   "source": "CFG7 H0 rival"
+  },
+  {
+   "id": "1.10",
+   "observable": "LV dwarfs, host statistic",
+   "candidate": "3.92 / 3.96\u03c3 (FAIL)",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "PASS 1.71\u03c3",
+   "source": "CFG7 H0 rival"
+  },
+  {
+   "id": "1.11",
+   "observable": "cluster-infall BTFR",
+   "candidate": "slope 2.35 / 2.38\u03c3 (FAIL); zero point 0.77 / 0.79\u03c3 (pass)",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "PASS",
+   "source": "CFG7 H0 rival"
+  },
+  {
+   "id": "1.12",
+   "observable": "tidal dwarfs",
+   "candidate": "0.86 / 1.24\u03c3 (pass)",
+   "status": "PASS",
+   "physics": "SAME",
+   "B": "PASS (rests on ownership, CFG58)",
+   "source": "CFG7 H0 rival"
+  },
+  {
+   "id": "1.13",
+   "observable": "outer-halo GCs",
+   "candidate": "the law with the host's field needs M/L_V 1.04/0.99, inside [1.0, 2.5] (does not discriminate)",
+   "status": "PASS",
+   "physics": "SAME",
+   "B": "PASS (does not discriminate)",
+   "source": "CFG7 H2"
+  },
+  {
+   "id": "1.14",
+   "observable": "NGC 1052-DF2 / DF4 at 20 Mpc",
+   "candidate": "DF2 2.95 / 3.12\u03c3 (FAIL); DF4 1.45 / 1.49\u03c3 (pass); distance CONTESTED",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "PASS (rests on ownership)",
+   "source": "CFG7 H0 rival (XR27)"
+  },
+  {
+   "id": "1.15",
+   "observable": "Chae external-field signal",
+   "candidate": "D1 0.76 / 0.76\u03c3 (pass), D2 0.00 / 0.00\u03c3 (pass) (CFG7's EFE column); CFG8 refit: median e > 0 at 1.7-3.0\u03c3, as an EFE theory expects; environmental slope 0.55-0.87 \u00b1 0.25 lies 0.5-1.8\u03c3 from the EFE's 1; no rank correlation (p 0.57-0.87)",
+   "status": "PASS",
+   "physics": "SAME",
+   "B": "FAIL (refit 1.7-3.0\u03c3)",
+   "source": "CFG7 H0 rival; CFG8_README.md"
+  },
+  {
+   "id": "1.16",
+   "observable": "Coma UDGs",
+   "candidate": "external-field prediction: +1.159/+1.112 dex = 4.9/4.7\u03c3",
+   "status": "FAIL",
+   "physics": "SAME",
+   "B": "PASS 1.33/1.11\u03c3",
+   "source": "CFG31 .out (L23)"
+  },
+  {
+   "id": "1.17",
+   "observable": "binary galaxies",
+   "candidate": "not computed for an EFE law",
+   "status": "UNSCORED",
+   "physics": "-",
+   "B": "UNDECIDED",
+   "source": "CFG30 (B only)"
+  },
+  {
+   "id": "1.18",
+   "observable": "X-ray ellipticals (bare law)",
+   "candidate": "+0.280/+0.254 dex = 1.70/1.58\u03c3; B's derived rule is not available (EFE omitted in the carried number)",
+   "status": "MARGINAL",
+   "physics": "CARRIED",
+   "B": "MARGINAL/FAIL (rule 1.04\u03c3)",
+   "source": "GATES.md 1.18"
+  },
+  {
+   "id": "1.19",
+   "observable": "SLACS lensing vs dynamics",
+   "candidate": "gap +0.15-0.17 dex = 1.5-1.7\u03c3 with the floor (law)",
+   "status": "MARGINAL",
+   "physics": "CARRIED",
+   "B": "MARGINAL",
+   "source": "GATES.md 1.19"
+  },
+  {
+   "id": "1.20",
+   "observable": "SLUGGS massive early types (bare law)",
+   "candidate": "+0.097 \u00b1 0.024 (4.0\u03c3, JAM masses); 3.6\u03c3 with published GC slopes; below 2\u03c3 only at the favourable slope-orbit corner (CFG114)",
+   "status": "FAIL",
+   "physics": "CARRIED",
+   "B": "FAIL (rule 1.55\u03c3 with published slopes)",
+   "source": "GATES_STATUS 1.20 + addenda"
+  },
+  {
+   "id": "1.21",
+   "observable": "passive disks",
+   "candidate": "+0.026 (0.3\u03c3)",
+   "status": "PASS",
+   "physics": "CARRIED",
+   "B": "PASS",
+   "source": "GATES.md 1.21"
+  },
+  {
+   "id": "1.25",
+   "observable": "super spirals",
+   "candidate": "+0.105 (1.67\u03c3); nine fastest 2.34\u03c3, shared with \u039bCDM (CFG68)",
+   "status": "MARGINAL",
+   "physics": "CARRIED",
+   "B": "MARGINAL/FAIL",
+   "source": "GATES_STATUS 1.25"
+  },
+  {
+   "id": "1.26",
+   "observable": "massive HI disks",
+   "candidate": "law \u22120.028 \u00b1 0.066",
+   "status": "PASS",
+   "physics": "CARRIED",
+   "B": "PASS",
+   "source": "GATES_STATUS 1.26"
+  },
+  {
+   "id": "1.24",
+   "observable": "environmental null (a0 vs ambient density)",
+   "candidate": "a0 global (Lambda constant, L2); the EFE is a different effect",
+   "status": "PASS",
+   "physics": "HERE",
+   "B": "consistent",
+   "source": "Part A L2/L5"
+  },
+  {
+   "id": "2.01",
+   "observable": "X-COP at 0.8 R500",
+   "candidate": "FAIL on both horns: D additive >= 1.27-1.37 (8.4-10.6\u03c3; a lower bound, since AeST's phantom is also sourced by the dust); N law alone short, eta 1.68-2.03 (13-17\u03c3); the middle (11-26% of the dust at R500) needs lambda_J ~ 2.7 Mpc, 22 orders from AeST's natural condensate scale",
+   "status": "FAIL",
+   "physics": "CARRIED",
+   "B": "PASS 0.946 \u00b1 0.080",
+   "source": "CFG4_README.md; CFG4_clusters.out; jeans verdict C1"
+  },
+  {
+   "id": "2.02",
+   "observable": "Bullet Cluster",
+   "candidate": "horn D: collisionless dust at the cosmic share, as B (4.6x/4.9x needed); horn N: no committed MOND-alone score (literature: fails, UNVERIFIED)",
+   "status": "CONDITIONAL",
+   "physics": "CARRIED (D)",
+   "B": "PASS 4.6x/4.9x",
+   "source": "CFG4_clusters.out H5"
+  },
+  {
+   "id": "2.03",
+   "observable": "Lovisari X-ray groups",
+   "candidate": "not computed for this candidate",
+   "status": "UNSCORED",
+   "physics": "-",
+   "B": "R500 MARGINAL; R2500 FAIL",
+   "source": "CFG34 (B only)"
+  },
+  {
+   "id": "2.04",
+   "observable": "Local Group R0",
+   "candidate": "B's edge construct; not framework-specific",
+   "status": "UNSCORED",
+   "physics": "-",
+   "B": "FAIL (shared)",
+   "source": "CFG20/23"
+  },
+  {
+   "id": "3.01",
+   "observable": "CMB TT/TE/EE",
+   "candidate": "AeST's published fit (LIT, UNVERIFIED); the tie is invisible at linear order (L6); the record reads SZ21 as: only the 'Exp' K meets the galactic mu bound; N9: a charge dust cannot be both CMB/forest-cold and absent from galaxies",
+   "status": "CONDITIONAL",
+   "physics": "LIT + HERE",
+   "B": "met by construction",
+   "source": "bridge1_aest_equations.md; AEST_BOUNDARY_CONDITION_CLOSURE.md; CONDENSATE_NOGO_THEOREM.md"
+  },
+  {
+   "id": "3.02",
+   "observable": "CMB lensing",
+   "candidate": "not computed",
+   "status": "UNSCORED",
+   "physics": "-",
+   "B": "PASS (bound-only switch)",
+   "source": "-"
+  },
+  {
+   "id": "3.03",
+   "observable": "growth, S8, RSD",
+   "candidate": "AeST's P(k) fit (LIT, UNVERIFIED); not computed here",
+   "status": "UNSCORED",
+   "physics": "LIT",
+   "B": "met by allowance",
+   "source": "-"
+  },
+  {
+   "id": "3.04",
+   "observable": "BAO, background",
+   "candidate": "FRW is AeST's with Lambda constant (L5, L6)",
+   "status": "PASS",
+   "physics": "HERE + LIT",
+   "B": "unchanged by construction",
+   "source": "Part A"
+  },
+  {
+   "id": "3.05",
+   "observable": "KiDS isolated lenses",
+   "candidate": "the record's AeST closure: charge-fixed boundary \u0394\u03c7\u00b2 >= +106 for every m\u00b2, both footings; passes (\u0394\u03c7\u00b2 \u22120.5 to \u22124.9) only with a free per-galaxy constant at m\u00b2 <= 1e-3 /Mpc\u00b2 (MMH23's regime); a kernel that sees the web's total field: +404/+415 (+47/+52 inside 0.3 Mpc; BS3, base model C-H/K)",
+   "status": "FAIL",
+   "physics": "SAME (closure) / CARRIED (BS3)",
+   "B": "PASS at x_e = 0.4",
+   "source": "aest_boundary_condition_closure_2026.out; BS3 .out"
+  },
+  {
+   "id": "KiDS-split",
+   "observable": "KiDS early/late split (CFG61/67/110)",
+   "candidate": "an EFE theory predicts an environment-correlated difference; its size and sign were not computed",
+   "status": "UNSCORED",
+   "physics": "-",
+   "B": "FAIL ~3.7\u03c3 (B-specific vs colour-split \u039bCDM)",
+   "source": "CFG61_README.md"
+  },
+  {
+   "id": "3.06-3.09",
+   "observable": "budget, edge",
+   "candidate": "B's constructs (phantom budget, edge x_e); this candidate has neither",
+   "status": "N/A",
+   "physics": "-",
+   "B": "mixed (see GATES_STATUS)",
+   "source": "-"
+  },
+  {
+   "id": "3.10",
+   "observable": "a0(z) at z \u2248 2.5",
+   "candidate": "prediction: a0 prop. to H(z): +0.576 dex at z = 2.5 (the rival law); no data can score it yet",
+   "status": "NS",
+   "physics": "HERE",
+   "B": "NS (flat, TIED)",
+   "source": "Part A L5"
+  },
+  {
+   "id": "3.11",
+   "observable": "a0 = kappa c sqrt(G rho_Lambda)",
+   "candidate": "tied to the flow's expansion theta, not to Lambda: a0 = kappa_theta H(z) (the rival footing)",
+   "status": "UNSCORED",
+   "physics": "HERE",
+   "B": "consistent; kappa FITTED",
+   "source": "Part A L1; GATES.md 3.11"
+  },
+  {
+   "id": "3.12",
+   "observable": "Lyman-alpha forest",
+   "candidate": "horn D: cold dust (as CDM, not scored numerically); horn N: FAIL by N9 F1 (a galaxy-shielding dust is >= 20 km/s at z = 3; min 23 km/s)",
+   "status": "CONDITIONAL",
+   "physics": "SAME (N9)",
+   "B": "PASS 0.00",
+   "source": "condensate_mu_pincer_2026.out"
+  },
+  {
+   "id": "3.13",
+   "observable": "shear, JWST, Li-7, BBN, tau",
+   "candidate": "not computed",
+   "status": "NS",
+   "physics": "-",
+   "B": "NS",
+   "source": "-"
+  },
+  {
+   "id": "4.01",
+   "observable": "Cassini, ephemeris",
+   "candidate": "the Sun owns its phantom: EFE quadrupole 3.99-5.69x the Q2 ceiling (strict P2 law); monopole \u03bd_mono 3011/3620x, P2 1279/1545x the Earth bound; the RAR kernel removes the monopole, not the quadrupole",
+   "status": "FAIL",
+   "physics": "SAME + HERE",
+   "B": "PASS via ownership",
+   "source": "CFG1_evidence_audit.out A01; CFG185; this script C4"
+  },
+  {
+   "id": "4.02",
+   "observable": "GW170817",
+   "candidate": "c_T = c by AeST's construction (LIT, as the record's transcription states; UNVERIFIED); the HT term is metric-free (L8)",
+   "status": "PASS",
+   "physics": "LIT + HERE",
+   "B": "NS (no action)",
+   "source": "bridge1_aest_equations.md; Part A L8"
+  },
+  {
+   "id": "4.03",
+   "observable": "gamma = 1 (lensing = dynamics)",
+   "candidate": "Phi = Psi in AeST's quasi-static limit (the record's completion script C1-C2, from LIT)",
+   "status": "PASS",
+   "physics": "LIT",
+   "B": "NS as derivation",
+   "source": "mi_relativistic_completion_aest_2026.py"
+  },
+  {
+   "id": "4.04",
+   "observable": "PPN alpha_1, alpha_2",
+   "candidate": "alpha_1 = \u22122(K_B+2), >= 4.4e4x over |alpha_1| < 1e-4 (the v9 kill, attributed there to AeST's J.grad phi term, which this candidate shares); named residual: the Sun's own background, unresolved (CFG172 \u00a73); if J_Y <= 1 on every background, |alpha_1| >= 4 everywhere (R-alpha1, conditional); alpha_2 UNSCORED (v9's number carries v9's own tie factor)",
+   "status": "FAIL",
+   "physics": "CARRIED",
+   "B": "NS",
+   "source": "V9_PPN_KILL_VERDICT.md; CFG172 README; R-alpha1"
+  },
+  {
+   "id": "4.05",
+   "observable": "wide binaries DR3",
+   "candidate": "contested (1.0-1.4)",
+   "status": "CONT",
+   "physics": "-",
+   "B": "CONT",
+   "source": "GATES.md 4.05"
+  },
+  {
+   "id": "4.06",
+   "observable": "wide binaries DR4 (2 Dec 2026)",
+   "candidate": "this candidate predicts Arm A: 1.1614-1.1814 (can) / 1.1917-1.2267 (alt); dies if Newtonian",
+   "status": "NS",
+   "physics": "SAME",
+   "B": "NS; B predicts Arm C 1.000",
+   "source": "PREREGISTRATION_DR4.md"
+  },
+  {
+   "id": "4.07",
+   "observable": "external-field effect",
+   "candidate": "present: supported by Chae (1.15), against the satellites, Coma UDGs and DF2 (1.07-1.16)",
+   "status": "MIXED",
+   "physics": "SAME",
+   "B": "absent by ownership (CONT)",
+   "source": "rows 1.07-1.16"
+  },
+  {
+   "id": "4.08",
+   "observable": "preferred frame / KM1",
+   "candidate": "a0 frame-independent (Lambda global); kinematic shift of Y <= 4.0e-06 at 600 km/s; the aether-drag response not computed; CFG186 (SPARC vs CMB speed) pending",
+   "status": "UNSCORED",
+   "physics": "HERE (kin.)",
+   "B": "NS",
+   "source": "R-KM; KM1 README"
+  },
+  {
+   "id": "5.01",
+   "observable": "one explicit action",
+   "candidate": "yes: AeST + HT (one action); not an action for B, and it fails rows above",
+   "status": "PASS",
+   "physics": "HERE",
+   "B": "FAIL/OPEN",
+   "source": "Part A"
+  },
+  {
+   "id": "5.02",
+   "observable": "stability",
+   "candidate": "not analysed here (the record: the dust condensate's c_s^2 in [0, 1/3]; AeST's ghost-freedom LIT, UNVERIFIED)",
+   "status": "UNSCORED",
+   "physics": "-",
+   "B": "FAIL as varied (V0)",
+   "source": "jeans verdict A1-A3"
+  },
+  {
+   "id": "5.05",
+   "observable": "local degrees of freedom",
+   "candidate": "the tie adds 0 local, +1 global (L4); AeST's own count not re-derived",
+   "status": "PASS",
+   "physics": "HERE",
+   "B": "orphaned",
+   "source": "Part A L4"
+  },
+  {
+   "id": "5.10",
+   "observable": "FLRW",
+   "candidate": "background = AeST's with constant Lambda (L6); growth UNSCORED",
+   "status": "PASS",
+   "physics": "HERE",
+   "B": "partial",
+   "source": "Part A L6"
+  },
+  {
+   "id": "5.11",
+   "observable": "dark mass as a state of the field",
+   "candidate": "structurally yes: the dust is the scalar's Q-sector (no particle; the mass still required); N9 excludes the version absent from galaxies",
+   "status": "CONDITIONAL",
+   "physics": "SAME (N9)",
+   "B": "OPEN",
+   "source": "CONDENSATE_NOGO_THEOREM.md"
+  },
+  {
+   "id": "5.13",
+   "observable": "a0-Lambda relation",
+   "candidate": "tied to theta, not to Lambda",
+   "status": "FAIL",
+   "physics": "HERE",
+   "B": "declared input; kappa FITTED",
+   "source": "Part A"
+  }
+ ],
+ "rc": 1
+}

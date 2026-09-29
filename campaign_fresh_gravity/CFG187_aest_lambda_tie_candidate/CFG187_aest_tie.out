@@ -1,0 +1,206 @@
+
+CFG187 -- AeST with a Henneaux-Teitelboim Lambda-tie: the time-flow reading assembled as one candidate, and its scorecard.
+
+Frozen question: FROZEN_QUESTION.md (sha256 in FROZEN_QUESTION_SHA256.txt), written before this script.
+
+Part A (load-bearing, sympy): the tie written into the record's transcription of the AeST action
+(real_research/bridge1_aest_equations.md): the MOND normalisation a0 -> alpha(Lambda) = kappa sqrt(Lambda/8 pi)
+(c = 1), Lambda the HT field with multiplier T^mu, as XR20 T1 / CFG43.  L1 tie, L2 Lambda global, L3 same as AeST on
+shell, L4 no local dof (lattice Dirac count), L5 flat a0(z), L6 FRW and linear order a0-blind, L7 constant count,
+L8 the HT term is metric-free.
+Part B (controls and reported numbers): C1 a0 and 32 pi; C2 without the multiplier Lambda is local; C3 the record's
+AeST overshoot; C4 the kernel tails (CFG185); C5 E(z) (FP0); C6 source anchors.  Reported: the Solar-System tails, the
+alpha_1 formula over backgrounds, the kinematic boost of Y, the horn-D overshoot with the current kernels, the aether's
+expansion in AeST's vector sector.
+Part C (reported): the scorecard against closure_map/GATES.md, candidate B beside it.
+
+MUTATE=1 unties a0 from Lambda (must fail L1, L7).  MUTATE=2 ties a0 to the aether's expansion theta = div A (must
+fail L1, L5).  Outputs are named by mode.  kappa = 1/2 is FITTED; the tie is POSTULATED.  Nothing here says the theory
+is closed.
+
+MODE = 0  (main)
+
+====================================================================================================================
+PART A -- the tie in the AeST action (sympy; 1+1 toys for the variations, FRW and a general linear perturbation)
+====================================================================================================================
+  alpha as written (mode 0): sqrt(2)*kappa*sqrt(Lam(t, x))/(4*sqrt(pi));  d alpha / d Lambda = sqrt(2)*kappa/(8*sqrt(pi)*sqrt(Lam(t, x)))
+  a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2, FP0 rho_Lambda = 5.842446e-27: 9.360325e-11 m/s^2 (FP0 canonical 9.360325e-11);  alt footing on rho_Lambda needs kappa = 0.6043
+  [PASS] L1 TIE: a0 is a function of the HT field Lambda alone (d alpha/d Lambda != 0, no independent a0), and kappa c sqrt(G rho_Lambda) reproduces FP0's canonical a0 to 1e-6
+         d alpha/d Lambda = sqrt(2)*kappa/(8*sqrt(pi)*sqrt(Lam(t, x))); functions in alpha: ['Lam']; a0 ratio - 1 = 0.00e+00
+  delta T^t : -2*Derivative(Lam(t, x), t) = 0;   delta T^x : -2*Derivative(Lam(t, x), x) = 0
+  delta Lambda : 2 d_mu T^mu + R_Lambda = 0, with R_Lambda free of T (so it fixes the clock T, not the AeST fields): True; T absent from the phi, A^t, A^x, lambda equations: True
+  [PASS] L2 GLOBAL: varying T^mu gives d_t Lambda = d_x Lambda = 0 with no AeST field in those equations; varying Lambda only fixes d_mu T^mu (the unimodular clock); T appears in no other field equation
+         T-equations are -2 d Lambda: True; clean of AeST fields/functions: True
+  on shell (Lambda = Lambda_0) minus plain AeST at a0 = alpha(Lambda_0): phi: 0 (numeric max 0.0e+00), A_t: 0 (numeric max 0.0e+00), A_x: 0 (numeric max 0.0e+00), lambda_u: 0 (numeric max 0.0e+00)
+  [PASS] L3 SAME AS AeST ON SHELL: with Lambda = Lambda_0 the phi, A^t, A^x and lambda equations of the tied action equal plain AeST's at a0 = alpha(Lambda_0), for generic j and K
+         (generic j, K; symbolic expand, else a numeric identity test at 3 points)
+  periodic lattice N = 5: constraints G_n = Lambda_(n+1) - Lambda_n, rank 4; {G_n, H} = [0, 0, 0, 0, 0]; all {G_a, G_b} = 0: True
+  HT sector phase-space dimension after constraints: 2N - 2 rank = 2 (one global pair: Lambda_0 and its conjugate 4-volume); local sector 2N = 10, unchanged
+  [PASS] L4 NO LOCAL DOF: the HT constraints are first class (rank N - 1), generate no secondary constraint for a Hamiltonian with arbitrary Lambda-dependence, and leave one global pair; the local count is unchanged
+         rank 4, count 2
+  aether expansion on FRW: theta = 3*Derivative(a(t), t)/(N(t)*a(t))  (= 3 H: True)
+  a0(z)/a0(0): z = 0.5: 1, z = 1: 1, z = 2.5: 1, z = 5: 1, z = 1100: 1
+  [PASS] L5 FLAT: on shell a0(z)/a0(0) = 1 to 1e-12 at z = 0.5, 1, 2.5, 5, 1100
+         Lambda is a global constant (L2) and alpha reads Lambda only
+  FRW (3+1): Y_bar = 0;  general linear perturbation (1+1: metric h, aether with the unit constraint, scalar): Y at O(1) = 0, O(eps) = 0, O(eps^2) != 0: True
+  so the a0-sector (prop. to Y^{3/2}) is O(eps^3): absent from the FRW background and from the second-order action (the linear equations), for any alpha -- the tie is invisible to the background and linear cosmology
+  [PASS] L6 FRW AND LINEAR ORDER: Y_bar = 0 on FRW and delta Y = 0 for a general linear perturbation, so the a0-sector does not enter the background or the linear equations
+         re-derives the record's bridge1 order counting with metric and aether perturbations included
+  dimensionful scales besides G: Lambda_0 (an integration constant); dimensionless couplings in alpha: ['kappa']
+  [PASS] L7 COUNT: beyond AeST's own parameters the tie adds one dimensionless coupling (kappa, FITTED) and removes a0 as an independent constant: a0 is fixed by the HT integration constant Lambda_0
+         a0 independent: False; fixed by Lambda_0: True
+  [PASS] L8 METRIC-FREE: the HT term 2 Lambda d_mu T^mu (T a vector density) has zero metric variation, so the tie changes neither the tensor sector (c_T) nor the PPN metric
+         delta/delta g: [0, 0, 0]
+  R-theta: on FRW the cosmic aether has theta = 3*Derivative(a(t), t)/(N(t)*a(t)), but F_mu nu = 0: True and J^mu = [0, 0, 0, 0]
+  [PASS] R-theta: AeST's vector sector (K_B F^2 and J.grad phi) is blind to the aether's expansion theta = 3H on the cosmic background (F = 0, J = 0); the owner's 'compaction' has no dynamics in AeST's vector sector at the background level (its MOND force is the scalar's spatial gradient Y) (reported)
+
+====================================================================================================================
+PART B -- controls C1-C6 (mode-independent) and reported numbers
+====================================================================================================================
+  [PASS] C1 CONTROL: a0 = kappa c sqrt(G rho_Lambda) = 9.3603e-11 (FP0) and Lambda/alpha^2 = 8 pi/kappa^2 = 32 pi = 100.530965 (XR20 C3)
+         a0 = 9.360325e-11; Lambda/alpha^2 = 100.530965
+  C2: without T^mu, Lambda's equation is algebraic: (-2*L**(3/2)*kappa - sqrt(2)*sqrt(pi)*Y**(3/2)*c_3*(K_B - 2))/(L**(3/2)*kappa) = 0  ->  (real root) Lambda = 2**(1/3)*(-sqrt(2)*sqrt(pi)*K_B*Y**(3/2)*c_3 + 2*sqrt(2)*sqrt(pi)*Y**(3/2)*c_3)**(2/3)/(2*kappa**(2/3));  s = Y/alpha^2 = 8*2**(1/3)*pi**(2/3)/(c_3**(2/3)*kappa**(4/3)*(2 - K_B)**(2/3))  (3 roots, all with d Lambda/d Y != 0)
+  [PASS] C2 CONTROL: without the multiplier Lambda's own equation is local; for the deep-MOND j it makes Lambda proportional to the local Y (so a0 varies in space) and pins s = Y/alpha^2 to a constant (MOND's y fixed everywhere): the multiplier is what makes the tie global (FP5 D3 / XR20 T1b, re-derived for AeST's J)
+         d Lambda/d Y != 0 and s independent of Y
+  horn D (dust clusters like CDM, the AQUAL sector sourced by the total density; the record's Part E arithmetic, cosmic ratio at the radius, crude): overshoot by regime cluster R500, bright spiral, dwarf, deep MOND, LSB dwarf
+    Route A (nu_RAR, the record's): 2.06, 4.42, 2.73, 2.64
+    P2: 1.81, 4.89, 2.60, 2.56;   nu_mono: 2.06, 4.49, 2.73, 2.64
+  [PASS] C3 CONTROL: the record's AeST overshoot with a CDM-clustering dust (mi_aest_jeans_nonlinear_verdict_2026.py E1: 2.06-4.42x, Route A kernel) is reproduced
+         min 2.062, max 4.419
+    canonical/Earth/nu_mono    y = 6.335e+07  h = 1.1773  a_anom = 1.102e-10 m/s^2  = 3011 x bound
+    canonical/Earth/P2         y = 6.335e+07  h = 0.5000  a_anom = 4.680e-11 m/s^2  = 1279 x bound
+    canonical/Earth/RAR        y = 6.335e+07  h = 0.0000  a_anom = 0.000e+00 m/s^2  = 0 x bound
+    canonical/Mars/nu_mono     y = 2.729e+07  h = 1.1501  a_anom = 1.077e-10 m/s^2  = 2894 x bound
+    canonical/Mars/P2          y = 2.729e+07  h = 0.5000  a_anom = 4.680e-11 m/s^2  = 1258 x bound
+    canonical/Mars/RAR         y = 2.729e+07  h = 0.0000  a_anom = 0.000e+00 m/s^2  = 0 x bound
+    alt/Earth/nu_mono          y = 5.242e+07  h = 1.1712  a_anom = 1.325e-10 m/s^2  = 3620 x bound
+    alt/Earth/P2               y = 5.242e+07  h = 0.5000  a_anom = 5.656e-11 m/s^2  = 1545 x bound
+    alt/Earth/RAR              y = 5.242e+07  h = 0.0000  a_anom = 0.000e+00 m/s^2  = 0 x bound
+    alt/Mars/nu_mono           y = 2.258e+07  h = 1.1439  a_anom = 1.294e-10 m/s^2  = 3479 x bound
+    alt/Mars/P2                y = 2.258e+07  h = 0.5000  a_anom = 5.656e-11 m/s^2  = 1520 x bound
+    alt/Mars/RAR               y = 2.258e+07  h = 0.0000  a_anom = 0.000e+00 m/s^2  = 0 x bound
+  [PASS] C4 CONTROL: P2's tail h -> 1/2 - 1/(8y) (sympy); the RAR kernel's h decays above Y_P; nu_mono's floor value H_P = 0.648; CFG185's committed Earth/Mars ratios (both footings) reproduced to 0.5%
+         P2 series ok True; RAR decays True; H_P = 0.6476; max deviation from CFG185 2.86e-04
+  [PASS] C5 CONTROL: E(z) = sqrt(Om (1+z)^3 + 1 - Om), Om = 0.3153, reproduces FP0's committed a0z_rival_E (1.322, 1.791, 3.769, 8.294, 20513.65) to 1e-6
+         max relative deviation 0.0e+00
+  R-alpha1: eta_K = (K_B J_Y + 2)/(J_Y + 1), d eta/d J_Y = (k_B - 2)/(J_Y**2 + 2*J_Y + 1) (< 0 for K_B < 2), eta(J_Y = 1) = k_B/2 + 1; min |alpha_1| over J_Y in [0, 1], K_B in (0, 0.25] = 4 eta(1) -> 4.0000; |alpha_1| < 1e-4 needs K_B < 2.5e-5 and J_Y > 8.33e+04 (at K_B = 1e-6)
+  [PASS] R-alpha1: IF the verdict's formula holds with J_Y the local AQUAL mu (<= 1 on every background, deep-MOND to Newtonian), no background rescues alpha_1: |alpha_1| >= 4; the escape needs J_Y >~ 8e4 (outside mu <= 1) and K_B < 2.5e-5 -- conditional; it does not discharge the verdict's named residual (reported)
+  R-KM: Y = (-g_x**2 + (beta**2 - 1)*(g_y**2 + g_z**2))/(beta**2 - 1);  Q = -beta*g_x/sqrt(1 - beta**2);  Y - |grad phi|^2 = -beta**2*g_x**2/(beta**2 - 1);  max fractional shift gamma^2 beta^2 at 600 km/s = 4.006e-06
+  [PASS] R-KM: kinematically the MOND argument Y of a galaxy moving at w through the aether frame shifts by at most gamma^2 beta^2 = 4.0e-6 at 600 km/s (G7's line is 10%), and a0 itself is frame-independent (Lambda global); a boosted gradient also enters Q (the dust sector) -- the dynamical aether response (KM1-type) is NOT computed (reported)
+  [PASS] C6 CONTROL: every carried number's anchor text is present in its cited committed file, and CFG7 H0's 14 gates are parsed on both footings
+         41 anchors, missing []; CFG7 rows parsed 28
+
+====================================================================================================================
+PART C -- the scorecard against closure_map/GATES.md (reported; statuses assembled from committed numbers and Part A)
+====================================================================================================================
+       1.01  CONDITIONAL | SPARC RAR (the law): horn N: same law, same numbers, ν_mono 0.1003/0.0991, P2 0.1083/0.1035 dex (no EFE in the carried rms); horn D: overshoot P2 1.81-4.89x, ν_mono 2.06-4.49x (crude, cosmic ratio at the radius); N9 says horn N costs the forest (3.12)
+                        B: PASS (ν_mono 0.1003/0.0991)   [SAME (N) / HERE (D); CFG4_galaxy_law.out; this script C3]
+       1.07  FAIL        | MW classical dSphs: external field applies: 3.53 / 3.34σ (FAIL)
+                        B: PASS 1.06/0.74σ   [SAME; CFG7_hierarchy_fg001.out H0 (rival column)]
+       1.08  FAIL        | M31 dSphs (LVD, Collins): LVD 5.96 / 5.70σ (FAIL); Collins 5.80 / 5.58σ (FAIL)
+                        B: MARGINAL (1.21-1.63σ, after CFG18)   [SAME; CFG7 H0 rival]
+       1.09  FAIL        | MW ultra-faints: 13.19 / 12.82σ (FAIL) (harness, statistical only; B's harness 7.97/7.52 was refereed to 3.8/3.5)
+                        B: FAIL (refereed 3.8/3.5σ)   [SAME; CFG7 H0 rival]
+       1.10  FAIL        | LV dwarfs, host statistic: 3.92 / 3.96σ (FAIL)
+                        B: PASS 1.71σ   [SAME; CFG7 H0 rival]
+       1.11  FAIL        | cluster-infall BTFR: slope 2.35 / 2.38σ (FAIL); zero point 0.77 / 0.79σ (pass)
+                        B: PASS   [SAME; CFG7 H0 rival]
+       1.12  PASS        | tidal dwarfs: 0.86 / 1.24σ (pass)
+                        B: PASS (rests on ownership, CFG58)   [SAME; CFG7 H0 rival]
+       1.13  PASS        | outer-halo GCs: the law with the host's field needs M/L_V 1.04/0.99, inside [1.0, 2.5] (does not discriminate)
+                        B: PASS (does not discriminate)   [SAME; CFG7 H2]
+       1.14  FAIL        | NGC 1052-DF2 / DF4 at 20 Mpc: DF2 2.95 / 3.12σ (FAIL); DF4 1.45 / 1.49σ (pass); distance CONTESTED
+                        B: PASS (rests on ownership)   [SAME; CFG7 H0 rival (XR27)]
+       1.15  PASS        | Chae external-field signal: D1 0.76 / 0.76σ (pass), D2 0.00 / 0.00σ (pass) (CFG7's EFE column); CFG8 refit: median e > 0 at 1.7-3.0σ, as an EFE theory expects; environmental slope 0.55-0.87 ± 0.25 lies 0.5-1.8σ from the EFE's 1; no rank correlation (p 0.57-0.87)
+                        B: FAIL (refit 1.7-3.0σ)   [SAME; CFG7 H0 rival; CFG8_README.md]
+       1.16  FAIL        | Coma UDGs: external-field prediction: +1.159/+1.112 dex = 4.9/4.7σ
+                        B: PASS 1.33/1.11σ   [SAME; CFG31 .out (L23)]
+       1.17  UNSCORED    | binary galaxies: not computed for an EFE law
+                        B: UNDECIDED   [-; CFG30 (B only)]
+       1.18  MARGINAL    | X-ray ellipticals (bare law): +0.280/+0.254 dex = 1.70/1.58σ; B's derived rule is not available (EFE omitted in the carried number)
+                        B: MARGINAL/FAIL (rule 1.04σ)   [CARRIED; GATES.md 1.18]
+       1.19  MARGINAL    | SLACS lensing vs dynamics: gap +0.15-0.17 dex = 1.5-1.7σ with the floor (law)
+                        B: MARGINAL   [CARRIED; GATES.md 1.19]
+       1.20  FAIL        | SLUGGS massive early types (bare law): +0.097 ± 0.024 (4.0σ, JAM masses); 3.6σ with published GC slopes; below 2σ only at the favourable slope-orbit corner (CFG114)
+                        B: FAIL (rule 1.55σ with published slopes)   [CARRIED; GATES_STATUS 1.20 + addenda]
+       1.21  PASS        | passive disks: +0.026 (0.3σ)
+                        B: PASS   [CARRIED; GATES.md 1.21]
+       1.25  MARGINAL    | super spirals: +0.105 (1.67σ); nine fastest 2.34σ, shared with ΛCDM (CFG68)
+                        B: MARGINAL/FAIL   [CARRIED; GATES_STATUS 1.25]
+       1.26  PASS        | massive HI disks: law −0.028 ± 0.066
+                        B: PASS   [CARRIED; GATES_STATUS 1.26]
+       1.24  PASS        | environmental null (a0 vs ambient density): a0 global (Lambda constant, L2); the EFE is a different effect
+                        B: consistent   [HERE; Part A L2/L5]
+       2.01  FAIL        | X-COP at 0.8 R500: FAIL on both horns: D additive >= 1.27-1.37 (8.4-10.6σ; a lower bound, since AeST's phantom is also sourced by the dust); N law alone short, eta 1.68-2.03 (13-17σ); the middle (11-26% of the dust at R500) needs lambda_J ~ 2.7 Mpc, 22 orders from AeST's natural condensate scale
+                        B: PASS 0.946 ± 0.080   [CARRIED; CFG4_README.md; CFG4_clusters.out; jeans verdict C1]
+       2.02  CONDITIONAL | Bullet Cluster: horn D: collisionless dust at the cosmic share, as B (4.6x/4.9x needed); horn N: no committed MOND-alone score (literature: fails, UNVERIFIED)
+                        B: PASS 4.6x/4.9x   [CARRIED (D); CFG4_clusters.out H5]
+       2.03  UNSCORED    | Lovisari X-ray groups: not computed for this candidate
+                        B: R500 MARGINAL; R2500 FAIL   [-; CFG34 (B only)]
+       2.04  UNSCORED    | Local Group R0: B's edge construct; not framework-specific
+                        B: FAIL (shared)   [-; CFG20/23]
+       3.01  CONDITIONAL | CMB TT/TE/EE: AeST's published fit (LIT, UNVERIFIED); the tie is invisible at linear order (L6); the record reads SZ21 as: only the 'Exp' K meets the galactic mu bound; N9: a charge dust cannot be both CMB/forest-cold and absent from galaxies
+                        B: met by construction   [LIT + HERE; bridge1_aest_equations.md; AEST_BOUNDARY_CONDITION_CLOSURE.md; CONDENSATE_NOGO_THEOREM.md]
+       3.02  UNSCORED    | CMB lensing: not computed
+                        B: PASS (bound-only switch)   [-; -]
+       3.03  UNSCORED    | growth, S8, RSD: AeST's P(k) fit (LIT, UNVERIFIED); not computed here
+                        B: met by allowance   [LIT; -]
+       3.04  PASS        | BAO, background: FRW is AeST's with Lambda constant (L5, L6)
+                        B: unchanged by construction   [HERE + LIT; Part A]
+       3.05  FAIL        | KiDS isolated lenses: the record's AeST closure: charge-fixed boundary Δχ² >= +106 for every m², both footings; passes (Δχ² −0.5 to −4.9) only with a free per-galaxy constant at m² <= 1e-3 /Mpc² (MMH23's regime); a kernel that sees the web's total field: +404/+415 (+47/+52 inside 0.3 Mpc; BS3, base model C-H/K)
+                        B: PASS at x_e = 0.4   [SAME (closure) / CARRIED (BS3); aest_boundary_condition_closure_2026.out; BS3 .out]
+  KiDS-split  UNSCORED    | KiDS early/late split (CFG61/67/110): an EFE theory predicts an environment-correlated difference; its size and sign were not computed
+                        B: FAIL ~3.7σ (B-specific vs colour-split ΛCDM)   [-; CFG61_README.md]
+  3.06-3.09  N/A         | budget, edge: B's constructs (phantom budget, edge x_e); this candidate has neither
+                        B: mixed (see GATES_STATUS)   [-; -]
+       3.10  NS          | a0(z) at z ≈ 2.5: prediction: flat a0(z) exactly (L5); no data can score it yet (CFG52/54/99/140-170: non-diagnostic; the KURVS lean is weak, CFG165)
+                        B: NS (flat, TIED)   [HERE; Part A L5]
+       3.11  PASS        | a0 = kappa c sqrt(G rho_Lambda): TIED in the action (L1-L4); kappa FITTED; consistent with the BTFR kappa 0.465 ± 0.076 (0.46σ) and 0.55 ± 0.17 (0.29σ)
+                        B: consistent; kappa FITTED   [HERE; Part A L1; GATES.md 3.11]
+       3.12  CONDITIONAL | Lyman-alpha forest: horn D: cold dust (as CDM, not scored numerically); horn N: FAIL by N9 F1 (a galaxy-shielding dust is >= 20 km/s at z = 3; min 23 km/s)
+                        B: PASS 0.00   [SAME (N9); condensate_mu_pincer_2026.out]
+       3.13  NS          | shear, JWST, Li-7, BBN, tau: not computed
+                        B: NS   [-; -]
+       4.01  FAIL        | Cassini, ephemeris: the Sun owns its phantom: EFE quadrupole 3.99-5.69x the Q2 ceiling (strict P2 law); monopole ν_mono 3011/3620x, P2 1279/1545x the Earth bound; the RAR kernel removes the monopole, not the quadrupole
+                        B: PASS via ownership   [SAME + HERE; CFG1_evidence_audit.out A01; CFG185; this script C4]
+       4.02  PASS        | GW170817: c_T = c by AeST's construction (LIT, as the record's transcription states; UNVERIFIED); the HT term is metric-free (L8)
+                        B: NS (no action)   [LIT + HERE; bridge1_aest_equations.md; Part A L8]
+       4.03  PASS        | gamma = 1 (lensing = dynamics): Phi = Psi in AeST's quasi-static limit (the record's completion script C1-C2, from LIT)
+                        B: NS as derivation   [LIT; mi_relativistic_completion_aest_2026.py]
+       4.04  FAIL        | PPN alpha_1, alpha_2: alpha_1 = −2(K_B+2), >= 4.4e4x over |alpha_1| < 1e-4 (the v9 kill, attributed there to AeST's J.grad phi term, which this candidate shares); named residual: the Sun's own background, unresolved (CFG172 §3); if J_Y <= 1 on every background, |alpha_1| >= 4 everywhere (R-alpha1, conditional); alpha_2 UNSCORED (v9's number carries v9's own tie factor)
+                        B: NS   [CARRIED; V9_PPN_KILL_VERDICT.md; CFG172 README; R-alpha1]
+       4.05  CONT        | wide binaries DR3: contested (1.0-1.4)
+                        B: CONT   [-; GATES.md 4.05]
+       4.06  NS          | wide binaries DR4 (2 Dec 2026): this candidate predicts Arm A: 1.1614-1.1814 (can) / 1.1917-1.2267 (alt); dies if Newtonian
+                        B: NS; B predicts Arm C 1.000   [SAME; PREREGISTRATION_DR4.md]
+       4.07  MIXED       | external-field effect: present: supported by Chae (1.15), against the satellites, Coma UDGs and DF2 (1.07-1.16)
+                        B: absent by ownership (CONT)   [SAME; rows 1.07-1.16]
+       4.08  UNSCORED    | preferred frame / KM1: a0 frame-independent (Lambda global); kinematic shift of Y <= 4.0e-06 at 600 km/s; the aether-drag response not computed; CFG186 (SPARC vs CMB speed) pending
+                        B: NS   [HERE (kin.); R-KM; KM1 README]
+       5.01  PASS        | one explicit action: yes: AeST + HT (one action); not an action for B, and it fails rows above
+                        B: FAIL/OPEN   [HERE; Part A]
+       5.02  UNSCORED    | stability: not analysed here (the record: the dust condensate's c_s^2 in [0, 1/3]; AeST's ghost-freedom LIT, UNVERIFIED)
+                        B: FAIL as varied (V0)   [-; jeans verdict A1-A3]
+       5.05  PASS        | local degrees of freedom: the tie adds 0 local, +1 global (L4); AeST's own count not re-derived
+                        B: orphaned   [HERE; Part A L4]
+       5.10  PASS        | FLRW: background = AeST's with constant Lambda (L6); growth UNSCORED
+                        B: partial   [HERE; Part A L6]
+       5.11  CONDITIONAL | dark mass as a state of the field: structurally yes: the dust is the scalar's Q-sector (no particle; the mass still required); N9 excludes the version absent from galaxies
+                        B: OPEN   [SAME (N9); CONDENSATE_NOGO_THEOREM.md]
+       5.13  PASS        | a0-Lambda relation: TIED via the HT multiplier (POSTULATED coupling alpha(Lambda)); kappa FITTED; not derived
+                        B: declared input; kappa FITTED   [HERE; Part A]
+
+  candidate status tally (rows are not equally weighted): CONDITIONAL 5, CONT 1, FAIL 12, MARGINAL 3, MIXED 1, N/A 1, NS 3, PASS 14, UNSCORED 8
+  head-to-head against B where both have a data status: better on ['1.15', '5.01']; worse on ['1.01', '1.07', '1.08', '1.10', '1.11', '1.14', '1.16', '2.01', '2.02', '3.01', '3.05', '3.12', '4.01']; same on ['1.09', '1.12', '1.13', '1.18', '1.19', '1.20', '1.21', '1.25', '1.26', '1.24', '3.11']
+  rows that differ from the main construction in this mode: none
+  [PASS] R-DIFF: rows changed relative to the main construction are limited to the tie rows (3.10, 3.11, 5.13) (reported)
+         changed []
+
+====================================================================================================================
+VERDICT
+====================================================================================================================
+  The tie can be written into AeST exactly as XR20 T1 / CFG43 write it: Lambda is a global constant, a0(z) is flat, no local degree of freedom is added, and on shell the theory IS AeST at a0 = alpha(Lambda_0). The tie is POSTULATED and kappa = 1/2 FITTED. Whether untying it changes any data row is MUTATE=1's R-DIFF line.
+  Scorecard: better than B on ['1.15', '5.01']; worse on ['1.01', '1.07', '1.08', '1.10', '1.11', '1.14', '1.16', '2.01', '2.02', '3.01', '3.05', '3.12', '4.01']. The EFE rows, the Solar System, X-COP and the KiDS closure go against it; Chae, GW170817/gamma and 'one action' go for it.
+
+  18/18 checks pass; load-bearing failures: 0 []; reported failures: []; 3.9 s
+  wrote campaign_fresh_gravity/CFG187_aest_lambda_tie_candidate/CFG187_aest_tie.out and campaign_fresh_gravity/CFG187_aest_lambda_tie_candidate/CFG187_aest_tie_results.json; rc = 0
