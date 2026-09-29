@@ -6,7 +6,7 @@ fable_independent_2026 without lean_2026, opus_48_extended_research) at HEAD so 
 runs each script main + MUTATE, and records: exact exit code, expected exit code, and whether the script's own final tally
 line equals the tally line in the lane's COMMITTED .out (timing fields stripped). Usage: ledger_rerun3.py SCRATCH [slug ...]
 Nothing under the working tree is touched. Expected exits come from the lanes' READMEs (stated in JOBS) or, where the README is
-silent, from the committed .out's own tally (failures > 0 => exit 1).
+silent, from the committed .out's own tally (see JOBS) (failures > 0 => exit 1).
 """
 import json, os, re, subprocess, sys, tempfile
 
@@ -24,6 +24,13 @@ JOBS = {
     "CFG65": (CF, "CFG65_debris_shape.py", 0, "CFG65_debris_shape.out", "env"),
     "CFG66": (CF, "CFG66_bootes_tucana_systematics.py", 0, "CFG66_bootes_tucana_systematics.out", "env"),
     "CFG67": (CF, "CFG67_lcdm_control_kids_split.py", None, "CFG67_lcdm_control_kids_split.out", "env"),
+    "CFG68": (CF, "CFG68_lcdm_super_spirals.py", 1, "CFG68_lcdm_super_spirals.out", "env"),                       # README: main exits 1 (H1 failed)
+    "CFG69": (CF, "CFG69_lcdm_comparator.py", None, "CFG69_lcdm_comparator.out", "env"),
+    "CFG70": (CF + "/CFG70_memory_kernel_exchange", "cfg70_memory_kernel_exchange.py", None, "cfg70_memory_kernel_exchange.out", "env", ("a", "b", "1")),
+    "CFG71": (CF, "CFG71_universal_fraction_dynamical_sluggs.py", None, "CFG71_universal_fraction_dynamical_sluggs.out", "env"),
+    "CFG72": (CF + "/CFG72_lightcone_exchange", "cfg72_lightcone_exchange.py", 1, "cfg72_lightcone_exchange.out", "env", ("a", "b", "c", "1")),   # README: rc 1 by design
+    "CFG73": (CF, "CFG73_lcdm_uf_rederive.py", 1, "CFG73_lcdm_uf_rederive.out", "env"),                             # README: rc 1 by design
+    "CFG74": (CF, "CFG74_lcdm_variants.py", 1, "CFG74_lcdm_variants.out", "env"),                                   # README: rc 1 by design
 }
 paths = [CF, "real_research", "prep_2026", "hunt_2026", "data_assembly", "opus_48_extended_research",
          "fable_independent_2026", ":(exclude)fable_independent_2026/lean_2026"]
@@ -45,7 +52,9 @@ def last_tally(out):
     return ""
 
 results = []
-for slug, (d, script, exp_main, out_name, style) in JOBS.items():
+for slug, spec in JOBS.items():
+    d, script, exp_main, out_name, style = spec[:5]
+    mut_modes = spec[5] if len(spec) > 5 else ("1",)
     if only and slug not in only:
         continue
     cwd = os.path.join(scratch, d)
@@ -53,11 +62,12 @@ for slug, (d, script, exp_main, out_name, style) in JOBS.items():
     if exp_main is None:
         m = re.search(r"failures\D*(\d+)", ctally)
         exp_main = 1 if (m and int(m.group(1)) > 0) else 0
-    for label, expect in (("main", exp_main), ("MUTATE", 1)):
+    runs = [("main", exp_main, None)] + [(("MUTATE" if m == "1" else f"MUTATE={m}"), 1, m) for m in mut_modes]
+    for label, expect, mval in runs:
         e = dict(os.environ); e.pop("MUTATE", None)
         args = [sys.executable, script]
-        if label == "MUTATE":
-            if style == "env": e["MUTATE"] = "1"
+        if label != "main":
+            if style == "env": e["MUTATE"] = mval
             else: args.append("MUTATE")
         try:
             p = subprocess.run(args, cwd=cwd, env=e, capture_output=True, text=True, timeout=1800)

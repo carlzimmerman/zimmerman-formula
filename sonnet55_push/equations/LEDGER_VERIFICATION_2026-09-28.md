@@ -119,3 +119,41 @@ committed number and not the Euler-Lagrange derivation (sympy in G1).
 
 ## Not covered
 CFG68-70 and the calc chat's CLAIMS_AUDIT (not committed when this ran); CFG49 has its own referee note (c402c10ae).
+
+---
+
+# Part 4 -- CFG68 to CFG74 and the CLAIMS_AUDIT (HEAD 74c0d08f4)
+
+## Lane re-runs: 19 runs, 0 differ (exit code, traceback or tally)
+Same method as Part 3 (`ledger_rerun3.py`, `git archive HEAD`, main + every named MUTATE mode, tally compared with the lane's
+committed `.out`); output in `ledger_rerun3b.out`. No git-ignored data was needed for these lanes.
+
+| lane | main exit (expected) | MUTATE exits | tally (main) | equals committed |
+|---|---|---|---|---|
+| CFG68 | 1 (1: H1 failed, README) | 1 | 10/11, 1 load-bearing failure | yes |
+| CFG69 | 0 (0, from its tally) | 1 | 9/9 | yes |
+| CFG70 | 0 (0) | a: 1, b: 1, combined: 1 | 18/19, 0 load-bearing failures | yes |
+| CFG71 | 0 (0) | 1 | 10/10 | yes |
+| CFG72 | 1 (1: "rc 1 by design", README) | a: 1, b: 1, c: 1, combined: 1 | 24/27, 1 load-bearing failure | yes |
+| CFG73 | 1 (1: "rc 1 by design") | 1 | 11/12 | yes |
+| CFG74 | 1 (1: "rc 1 by design") | 1 | 8/11 | yes |
+
+Note on exit codes. In CFG69, CFG73 and CFG74 the exit code of 1 is produced by the lanes' own DECLARED control failures (their
+READMEs say the MUTATE gate-fail control was not met and is kept). So "exit 1" there records an undemonstrated control, not a
+demonstrated one; the lanes disclose this and I reproduced it. `cfg72_stability.py` (CFG72's second script) has no committed
+`.out` and was not run separately.
+
+## CLAIMS_AUDIT_2026-09-29 (the calc chat's audit), independent mechanical check
+`claims_audit_check.py` / `claims_audit_check.out`, exit 0. It checks what a script can check; the REQUIRES-CORRECTION / SOFTEN /
+STILL-STANDS classes are editorial judgments and were NOT checked.
+- **V1 quotes:** all **61 of 61** quotes appear verbatim at their stated file:line in the files at the audit's own commit
+  (8f881c7d8). At HEAD **59 of 61** still match: the two that moved are PAPER37 lines 22 and 345, and PAPER37 was edited by four
+  later commits (the "referee corrections" and "brought up to date" commits). That is drift after the audit, consistent with
+  the audit's own REQUIRES-CORRECTION items being applied; the audit's line numbers for PAPER37 are now stale at HEAD.
+- **V2 evidence numbers:** the numbers the audit's evidence table attributes to committed lane results were found in the cited
+  lanes' committed outputs (E1 CFG55, E2 CFG61, E3 CFG67, E4 CFG59, E5 CFG58, E6 CFG66 [+0.219 / +0.465, which the audit rounds to
+  +0.22 / +0.47], E7 CFG56, E11 CFG48, E13 CFG47). E8-E10, E12, E14-E16 are descriptive and were not number-matched.
+- **V3 control:** an altered quote and an absent number are both rejected by the same code.
+
+## Not covered
+The editorial classifications; whether a quoted sentence is correctly characterised by its "reason" cell; E8-E10/E12/E14-E16 numbers.
