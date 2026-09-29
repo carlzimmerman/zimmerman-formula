@@ -1,0 +1,62 @@
+CFG189 -- the KURVS a0(z) test re-run with the MEASURED outer rotation markers in place of the model velocity, for three laws.
+
+Frozen criteria: FROZEN_CRITERIA.md in this directory (39846c92e), committed before any marker value was read.
+  primary   the farther side's outermost UNCLIPPED marker: V_out = |v_obs|/sin i_SFR at R_out; sigma interpolated on the same side at R_out.
+  variants  V-a outer three (weighted); V-b both sides at the shorter side's radius; V-c clipped included; V-d i*; BS sigma_int from
+            CFG184's forward model at R_out (the markers are observed line-of-sight values, not beam-smearing corrected).
+  laws      flat, a0 ~ H(z), a0 ~ t(z)/t0; decision cell mu = 0.67, s = 1 (and P0); CFG160's lean classes; break-evens; fit points.
+MUTATE=1: the measured V x 10^0.3 (the decision-cell class must change).
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour any model, or that the theory is closed.
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: with the table's model V at R_max and CFG141's sigma_out, the pipeline reproduces CFG160's cell and CFG175's T (1e-4)
+         flat +0.1441, rival -0.0060, T +0.3227
+  [FAIL] C2 CONTROL: marker radii match sigma-profile radii within 0.02 kpc wherever both exist (the ten discs)
+         max nearest-radius difference 1.6810 kpc over 231 markers; >0.02: 22
+
+======================================================================================================================
+PER DISC: model V (table, at R_max) vs the MEASURED outermost unclipped marker (primary), and sigma at the same radius
+======================================================================================================================
+  KURVS- 3: R_max 11.70 -> R_out 10.06 kpc (+ side);  V model  209.8 -> measured  231.9 +- 32.9 km/s (+10.5%);  sigma_out  55.3 -> sigma(R_out)  73.9 km/s;  i_SFR 42
+  KURVS- 7: R_max 11.40 -> R_out 11.37 kpc (- side);  V model  105.4 -> measured   89.3 +- 32.3 km/s (-15.2%);  sigma_out  69.1 -> sigma(R_out)  63.0 km/s;  i_SFR 78
+  KURVS- 8: R_max 11.00 -> R_out 11.04 kpc (- side);  V model   68.8 -> measured   64.2 +- 21.9 km/s (-6.6%);  sigma_out  27.9 -> sigma(R_out)  28.1 km/s;  i_SFR 68
+  KURVS- 9: R_max 10.20 -> R_out 10.15 kpc (- side);  V model  136.9 -> measured  137.5 +- 18.1 km/s (+0.4%);  sigma_out  51.3 -> sigma(R_out)  52.1 km/s;  i_SFR 48
+  KURVS-11: R_max 12.40 -> R_out 12.37 kpc (+ side);  V model  246.6 -> measured  238.5 +- 23.2 km/s (-3.3%);  sigma_out  65.8 -> sigma(R_out)  57.7 km/s;  i_SFR 73
+  KURVS-13: R_max 12.10 -> R_out 12.05 kpc (- side);  V model   94.3 -> measured  103.4 +- 31.5 km/s (+9.7%);  sigma_out  61.3 -> sigma(R_out)  46.7 km/s;  i_SFR 42
+  KURVS-15: R_max  9.20 -> R_out  9.18 kpc (- side);  V model  112.2 -> measured  105.0 +- 18.7 km/s (-6.5%);  sigma_out  67.1 -> sigma(R_out)  77.5 km/s;  i_SFR 38
+  KURVS-16: R_max 10.90 -> R_out 10.05 kpc (+ side);  V model  139.4 -> measured  131.3 +- 13.0 km/s (-5.8%);  sigma_out  73.0 -> sigma(R_out)  67.0 km/s;  i_SFR 73
+  KURVS-17: R_max  9.90 -> R_out  7.34 kpc (- side);  V model  120.9 -> measured   93.9 +- 22.0 km/s (-22.3%);  sigma_out  61.7 -> sigma(R_out)  62.5 km/s;  i_SFR 42
+  KURVS-21: R_max 12.70 -> R_out 12.73 kpc (+ side);  V model  145.6 -> measured  136.9 +- 11.0 km/s (-6.0%);  sigma_out  76.8 -> sigma(R_out)  76.7 km/s;  i_SFR 54
+
+======================================================================================================================
+THE THREE LAWS: model velocity (CFG160/175) vs the measured markers
+======================================================================================================================
+  [model V (table col 3)]  decision cell (mu 0.67, s 1): flat +0.144 +- 0.044 (+3.3);  rival -0.006 +- 0.044 (-0.1);  T +0.323 +- 0.047 (+6.9)   -> class: lean rival
+      P0 (s 0): flat -0.130 (-2.3);  rival -0.279 (-4.6);  T +0.046 (+0.9)
+      break-evens s 1.00: flat 2.109 (gas-allowed);  rival 0.621 (gas-allowed);  T 4.335 (gas-excluded)
+      break-evens s 1.42: flat 3.096 (gas-allowed);  rival 1.257 (gas-allowed);  T 5.655 (gas-excluded)
+      break-evens s 1.62: flat 3.565 (gas-allowed);  rival 1.567 (gas-allowed);  T 6.261 (gas-excluded)
+      break-evens s 1.69: flat 3.730 (gas-allowed);  rival 1.676 (gas-allowed);  T 6.470 (gas-excluded)
+      break-evens s 3.00: flat 6.845 (gas-excluded);  rival 3.829 (gas-allowed);  T 10.186 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.389;  rival 1.033;  T < 0
+  [MEASURED primary x 10^0.3 [MUTATE]]  decision cell (mu 0.67, s 1): flat +0.551 +- 0.053 (+10.4);  rival +0.406 +- 0.052 (+7.9);  T +0.719 +- 0.056 (+12.9)   -> class: neither
+      P0 (s 0): flat +0.488 (+8.5);  rival +0.345 (+6.2);  T +0.654 (+10.8)
+      break-evens s 1.00: flat 11.674 (gas-excluded);  rival 7.920 (gas-excluded);  T 15.014 (gas-excluded)
+      break-evens s 1.42: flat 12.794 (gas-excluded);  rival 8.817 (gas-excluded);  T 16.215 (gas-excluded)
+      break-evens s 1.62: flat 13.339 (gas-excluded);  rival 9.258 (gas-excluded);  T 16.791 (gas-excluded)
+      break-evens s 1.69: flat 13.530 (gas-excluded);  rival 9.415 (gas-excluded);  T 16.992 (gas-excluded)
+      break-evens s 3.00: flat 17.109 (gas-excluded);  rival 12.397 (gas-excluded);  T 20.660 (gas-excluded)
+      fit points s0 at mu 0.67: flat < 0;  rival < 0;  T < 0
+  shift at the decision cell, measured - model: flat +0.407 dex (+7.12 in z);  rival +0.412 dex (+8.02 in z);  T +0.396 dex (+5.95 in z)
+
+======================================================================================================================
+HEADLINE
+======================================================================================================================
+  [PASS] MUTATE=1 [control]: measured V x 10^0.3 changes the decision-cell class from the main run's
+         neither (main: lean rival)
+
+    SUMMARY (declared): MUTATE=1 class neither
+
+  2/3 checks pass; load-bearing failures: 1   (0 s)

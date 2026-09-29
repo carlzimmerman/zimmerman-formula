@@ -1,0 +1,107 @@
+CFG189 -- the KURVS a0(z) test re-run with the MEASURED outer rotation markers in place of the model velocity, for three laws.
+
+Frozen criteria: FROZEN_CRITERIA.md in this directory (39846c92e), committed before any marker value was read.
+  primary   the farther side's outermost UNCLIPPED marker: V_out = |v_obs|/sin i_SFR at R_out; sigma interpolated on the same side at R_out.
+  variants  V-a outer three (weighted); V-b both sides at the shorter side's radius; V-c clipped included; V-d i*; BS sigma_int from
+            CFG184's forward model at R_out (the markers are observed line-of-sight values, not beam-smearing corrected).
+  laws      flat, a0 ~ H(z), a0 ~ t(z)/t0; decision cell mu = 0.67, s = 1 (and P0); CFG160's lean classes; break-evens; fit points.
+MUTATE=1: the measured V x 10^0.3 (the decision-cell class must change).
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour any model, or that the theory is closed.
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: with the table's model V at R_max and CFG141's sigma_out, the pipeline reproduces CFG160's cell and CFG175's T (1e-4)
+         flat +0.1441, rival -0.0060, T +0.3227
+  [FAIL] C2 CONTROL: marker radii match sigma-profile radii within 0.02 kpc wherever both exist (the ten discs)
+         max nearest-radius difference 1.6810 kpc over 231 markers; >0.02: 22
+
+======================================================================================================================
+PER DISC: model V (table, at R_max) vs the MEASURED outermost unclipped marker (primary), and sigma at the same radius
+======================================================================================================================
+  KURVS- 3: R_max 11.70 -> R_out 10.06 kpc (+ side);  V model  209.8 -> measured  231.9 +- 32.9 km/s (+10.5%);  sigma_out  55.3 -> sigma(R_out)  73.9 km/s;  i_SFR 42
+  KURVS- 7: R_max 11.40 -> R_out 11.37 kpc (- side);  V model  105.4 -> measured   89.3 +- 32.3 km/s (-15.2%);  sigma_out  69.1 -> sigma(R_out)  63.0 km/s;  i_SFR 78
+  KURVS- 8: R_max 11.00 -> R_out 11.04 kpc (- side);  V model   68.8 -> measured   64.2 +- 21.9 km/s (-6.6%);  sigma_out  27.9 -> sigma(R_out)  28.1 km/s;  i_SFR 68
+  KURVS- 9: R_max 10.20 -> R_out 10.15 kpc (- side);  V model  136.9 -> measured  137.5 +- 18.1 km/s (+0.4%);  sigma_out  51.3 -> sigma(R_out)  52.1 km/s;  i_SFR 48
+  KURVS-11: R_max 12.40 -> R_out 12.37 kpc (+ side);  V model  246.6 -> measured  238.5 +- 23.2 km/s (-3.3%);  sigma_out  65.8 -> sigma(R_out)  57.7 km/s;  i_SFR 73
+  KURVS-13: R_max 12.10 -> R_out 12.05 kpc (- side);  V model   94.3 -> measured  103.4 +- 31.5 km/s (+9.7%);  sigma_out  61.3 -> sigma(R_out)  46.7 km/s;  i_SFR 42
+  KURVS-15: R_max  9.20 -> R_out  9.18 kpc (- side);  V model  112.2 -> measured  105.0 +- 18.7 km/s (-6.5%);  sigma_out  67.1 -> sigma(R_out)  77.5 km/s;  i_SFR 38
+  KURVS-16: R_max 10.90 -> R_out 10.05 kpc (+ side);  V model  139.4 -> measured  131.3 +- 13.0 km/s (-5.8%);  sigma_out  73.0 -> sigma(R_out)  67.0 km/s;  i_SFR 73
+  KURVS-17: R_max  9.90 -> R_out  7.34 kpc (- side);  V model  120.9 -> measured   93.9 +- 22.0 km/s (-22.3%);  sigma_out  61.7 -> sigma(R_out)  62.5 km/s;  i_SFR 42
+  KURVS-21: R_max 12.70 -> R_out 12.73 kpc (+ side);  V model  145.6 -> measured  136.9 +- 11.0 km/s (-6.0%);  sigma_out  76.8 -> sigma(R_out)  76.7 km/s;  i_SFR 54
+
+======================================================================================================================
+THE THREE LAWS: model velocity (CFG160/175) vs the measured markers
+======================================================================================================================
+  [model V (table col 3)]  decision cell (mu 0.67, s 1): flat +0.144 +- 0.044 (+3.3);  rival -0.006 +- 0.044 (-0.1);  T +0.323 +- 0.047 (+6.9)   -> class: lean rival
+      P0 (s 0): flat -0.130 (-2.3);  rival -0.279 (-4.6);  T +0.046 (+0.9)
+      break-evens s 1.00: flat 2.109 (gas-allowed);  rival 0.621 (gas-allowed);  T 4.335 (gas-excluded)
+      break-evens s 1.42: flat 3.096 (gas-allowed);  rival 1.257 (gas-allowed);  T 5.655 (gas-excluded)
+      break-evens s 1.62: flat 3.565 (gas-allowed);  rival 1.567 (gas-allowed);  T 6.261 (gas-excluded)
+      break-evens s 1.69: flat 3.730 (gas-allowed);  rival 1.676 (gas-allowed);  T 6.470 (gas-excluded)
+      break-evens s 3.00: flat 6.845 (gas-excluded);  rival 3.829 (gas-allowed);  T 10.186 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.389;  rival 1.033;  T < 0
+  [MEASURED primary]  decision cell (mu 0.67, s 1): flat +0.125 +- 0.051 (+2.4);  rival -0.021 +- 0.050 (-0.4);  T +0.295 +- 0.054 (+5.5)   -> class: lean rival
+      P0 (s 0): flat -0.112 (-1.9);  rival -0.255 (-4.5);  T +0.054 (+0.9)
+      break-evens s 1.00: flat 1.859 (gas-allowed);  rival 0.504 (gas-allowed);  T 3.800 (gas-allowed)
+      break-evens s 1.42: flat 2.760 (gas-allowed);  rival 1.100 (gas-allowed);  T 4.967 (gas-excluded)
+      break-evens s 1.62: flat 3.195 (gas-allowed);  rival 1.396 (gas-allowed);  T 5.508 (gas-excluded)
+      break-evens s 1.69: flat 3.348 (gas-allowed);  rival 1.501 (gas-allowed);  T 5.695 (gas-excluded)
+      break-evens s 3.00: flat 6.299 (gas-excluded);  rival 3.621 (gas-allowed);  T 9.109 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.424;  rival 1.119;  T < 0
+  shift at the decision cell, measured - model: flat -0.019 dex (-0.84 in z);  rival -0.015 dex (-0.29 in z);  T -0.027 dex (-1.46 in z)
+
+======================================================================================================================
+VARIANTS (reported)
+======================================================================================================================
+  [V-a]  decision cell (mu 0.67, s 1): flat +0.102 +- 0.042 (+2.4);  rival -0.040 +- 0.040 (-1.0);  T +0.268 +- 0.045 (+5.9)   -> class: lean rival
+      P0 (s 0): flat -0.153 (-2.7);  rival -0.293 (-4.9);  T +0.008 (+0.1)
+      break-evens s 1.00: flat 1.632 (gas-allowed);  rival 0.353 (gas-allowed);  T 3.455 (gas-allowed)
+      break-evens s 1.42: flat 2.501 (gas-allowed);  rival 0.930 (gas-allowed);  T 4.570 (gas-excluded)
+      break-evens s 1.62: flat 2.917 (gas-allowed);  rival 1.213 (gas-allowed);  T 5.084 (gas-excluded)
+      break-evens s 1.69: flat 3.063 (gas-allowed);  rival 1.314 (gas-allowed);  T 5.262 (gas-excluded)
+      break-evens s 3.00: flat 5.837 (gas-excluded);  rival 3.302 (gas-allowed);  T 8.447 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.526;  rival 1.233;  T < 0
+  [V-b]  decision cell (mu 0.67, s 1): flat +0.006 +- 0.044 (+0.1);  rival -0.132 +- 0.042 (-3.2);  T +0.162 +- 0.047 (+3.4)   -> class: lean flat
+      P0 (s 0): flat -0.223 (-4.0);  rival -0.357 (-6.1);  T -0.075 (-1.4)
+      break-evens s 1.00: flat 0.723 (gas-allowed);  rival nan (no break-even);  T 2.184 (gas-allowed)
+      break-evens s 1.42: flat 1.389 (gas-allowed);  rival 0.145 (gas-allowed);  T 3.041 (gas-allowed)
+      break-evens s 1.62: flat 1.706 (gas-allowed);  rival 0.362 (gas-allowed);  T 3.436 (gas-allowed)
+      break-evens s 1.69: flat 1.818 (gas-allowed);  rival 0.438 (gas-allowed);  T 3.572 (gas-allowed)
+      break-evens s 3.00: flat 3.891 (gas-allowed);  rival 1.923 (gas-allowed);  T 5.979 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.966;  rival 1.901;  T 0.281
+  [V-c]  decision cell (mu 0.67, s 1): flat +0.152 +- 0.054 (+2.8);  rival +0.004 +- 0.052 (+0.1);  T +0.327 +- 0.057 (+5.7)   -> class: lean rival
+      P0 (s 0): flat -0.081 (-1.1);  rival -0.225 (-3.1);  T +0.086 (+1.2)
+      break-evens s 1.00: flat 2.195 (gas-allowed);  rival 0.707 (gas-allowed);  T 4.345 (gas-allowed)
+      break-evens s 1.42: flat 3.204 (gas-allowed);  rival 1.368 (gas-allowed);  T 5.664 (gas-excluded)
+      break-evens s 1.62: flat 3.690 (gas-allowed);  rival 1.696 (gas-allowed);  T 6.276 (gas-excluded)
+      break-evens s 1.69: flat 3.862 (gas-allowed);  rival 1.812 (gas-allowed);  T 6.489 (gas-excluded)
+      break-evens s 3.00: flat 7.172 (gas-excluded);  rival 4.177 (gas-allowed);  T 10.360 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.344;  rival 0.976;  T < 0
+  [V-d]  decision cell (mu 0.67, s 1): flat +0.112 +- 0.051 (+2.2);  rival -0.034 +- 0.049 (-0.7);  T +0.283 +- 0.054 (+5.3)   -> class: lean rival
+      P0 (s 0): flat -0.143 (-2.1);  rival -0.287 (-3.9);  T +0.022 (+0.3)
+      break-evens s 1.00: flat 1.710 (gas-allowed);  rival 0.405 (gas-allowed);  T 3.612 (gas-allowed)
+      break-evens s 1.42: flat 2.614 (gas-allowed);  rival 1.001 (gas-allowed);  T 4.791 (gas-excluded)
+      break-evens s 1.62: flat 3.047 (gas-allowed);  rival 1.294 (gas-allowed);  T 5.337 (gas-excluded)
+      break-evens s 1.69: flat 3.200 (gas-allowed);  rival 1.399 (gas-allowed);  T 5.525 (gas-excluded)
+      break-evens s 3.00: flat 6.137 (gas-excluded);  rival 3.500 (gas-allowed);  T 8.946 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.510;  rival 1.189;  T < 0
+  [BS]  decision cell (mu 0.67, s 1): flat +0.114 +- 0.051 (+2.2);  rival -0.032 +- 0.050 (-0.6);  T +0.284 +- 0.054 (+5.2)   -> class: lean rival
+      P0 (s 0): flat -0.112 (-1.9);  rival -0.255 (-4.5);  T +0.054 (+0.9)
+      break-evens s 1.00: flat 1.736 (gas-allowed);  rival 0.424 (gas-allowed);  T 3.635 (gas-allowed)
+      break-evens s 1.42: flat 2.575 (gas-allowed);  rival 0.976 (gas-allowed);  T 4.731 (gas-excluded)
+      break-evens s 1.62: flat 2.979 (gas-allowed);  rival 1.248 (gas-allowed);  T 5.238 (gas-excluded)
+      break-evens s 1.69: flat 3.120 (gas-allowed);  rival 1.345 (gas-allowed);  T 5.414 (gas-excluded)
+      break-evens s 3.00: flat 5.846 (gas-excluded);  rival 3.287 (gas-allowed);  T 8.595 (gas-excluded)
+      fit points s0 at mu 0.67: flat 0.450;  rival 1.190;  T < 0
+      f_bs at R_out (CFG184 primary model): K3 0.046, K7 0.043, K8 0.085, K9 0.063, K11 0.242, K13 0.015, K15 0.019, K16 0.079, K17 0.085, K21 0.034
+
+======================================================================================================================
+HEADLINE
+======================================================================================================================
+  [PASS] (reported) H1 [HEADLINE, reported] the declared reading
+         CHANGED: with the measured outer markers the decision cell reads flat +2.4 sigma, rival -0.4, T +5.5 (model V: +3.3 / -0.1 / +6.9); class 'lean rival' (model V: 'lean rival'); z shifts flat -0.84, rival -0.29, T -1.46; 4 of 5 variants keep the model-V class
+
+    SUMMARY (declared): CHANGED: with the measured outer markers the decision cell reads flat +2.4 sigma, rival -0.4, T +5.5 (model V: +3.3 / -0.1 / +6.9); class 'lean rival' (model V: 'lean rival'); z shifts flat -0.84, rival -0.29, T -1.46; 4 of 5 variants keep the model-V class
+
+  2/3 checks pass; load-bearing failures: 1   (0 s)
