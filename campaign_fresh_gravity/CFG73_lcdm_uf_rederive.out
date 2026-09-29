@@ -1,0 +1,172 @@
+CFG73 -- INDEPENDENT RE-DERIVATION of CFG69's headline "the LCDM ultra-faint gate under the Dutton-Maccio concentration".
+(Declared BEFORE the first run.  Own implementation; no CFG69/CFG42/CFG7 analysis code is exec'd or imported.  The only committed
+code touched is the 6-line Moster/halo_mass snippet of hunt_2026/h48_h69b_relative_isolation.py, exec'd on its own as the CONTROL
+comparator, and the CSV data file real_research/data/dsph/lvd_dwarf_mw.csv.)
+
+QUESTION.  CFG69 reports, for the Milky Way ultra-faints (31 resolved + 9 upper limits; M_V > -7.7; Upsilon_V = 2; half of the
+stars enclosed; sigma^2 = g(r) r / 3 at r = (4/3) r_half; stars only), that with Moster halo masses and the Duffy full-200c
+concentration the LCDM Kaplan-Meier median offset log10(sigma_obs/sigma_pred) is +0.080 dex (0.6 sigma, gate passes), that the
+Dutton-Maccio version gives -0.043 (-0.4 sigma) and Duffy-relaxed +0.015 (0.1 sigma), and that the gate is NON-DISCRIMINATING
+(passes for every halo mass x0.1..x100).  Re-derive all of it.
+
+MODEL (mine).  Halo mass M_h = Moster+2013 (z = 0: N = 0.0351, log M1 = 11.590, beta = 1.376, gamma = 0.608;
+M_*/M_h = 2N[(M_h/M1)^-beta + (M_h/M1)^gamma]^-1) INVERTED at M_* = 2 L_V (exact root-finding on a bracket, not a grid) and FLOORED at
+M_h = 1e9 (the clamp: M_*(1e9) ~ 1.6e4, below that every satellite gets 1e9).  NFW, M(<r) = M_h m(c x)/m(c), m(t) = ln(1+t) - t/(1+t),
+x = r/R200 clipped to [1e-4, 5], R200 = (3 M_h / (4 pi 200 rho_c))^(1/3), rho_c from H0 = 67.4 (h = 0.674), G = 6.674e-11,
+Msun = 1.989e30, kpc = 3.0857e19 m.  Concentration, three relations:
+   DUFFY-FULL   c = 5.71 (M/(2e12/0.674))^-0.084     DUFFY-RELAXED  c = 6.71 (M/(2e12/0.674))^-0.091
+   DUTTON-MACCIO 2014  log10 c = 0.905 - 0.101 (log10(M h) - 12)
+Debris: (1 - f_b) M_NFW(<r), f_b = 0.02237/(0.02237 + 0.1200), nu = 1 (no phantom), no adiabatic contraction.
+Prediction: g = G [0.5 M_* + (1 - f_b) M_NFW(<r)] / r^2, sigma_pred = sqrt(g r / 3), r = (4/3) r_half (pc from rhalf_sph_physical, else
+rhalf_physical).  STARS ONLY (a variant with 1.33 M_HI is reported as a sensitivity).  Sample: rows with M_V > -7.7 and distance_host (else
+distance_gc) and r_half present; RESOLVED if vlos_sigma > 0 and no vlos_sigma_ul; LIMIT (left-censored: true sigma <= limit) if vlos_sigma_ul.
+Offset = log10(sigma_obs / sigma_pred), the limit's offset is its upper bound.
+
+STATISTIC.  Kaplan-Meier median for left-censored data = KM on the reflected offsets (y = -x, limits = right-censored), median = the
+first event time at which S <= 0.5, mapped back (my own vectorised product-limit; ties: events before censorings).  Bootstrap error:
+2000 resamples (resolved and limits resampled separately, as the lanes do; seed 20260928; joint resampling and 2 other seeds reported).
+COLLAPSE-MASS FLOOR: the KM median recomputed with the halo mass of every satellite with M_* < 1e5 SET to 1e8, 3e8, 1e9, 3e9, 1e10 (the lanes'
+scan); floor error = half the range.  Total error = sqrt(bootstrap^2 + floor^2) (the task's error model; the Upsilon_V 1-4 term is reported
+separately, not in the total).  Gate: |median| / total < 2.
+SENSITIVITY: every halo mass (floors included) multiplied by 0.01, 0.1, 1, 10, 100, 1000; gate recomputed at each multiple, for each concentration.
+
+CONTROLS (declared).  C1: my Moster halo_mass vs the committed h48 halo_mass at 10 stellar masses (agreement <= 3e-4 in dex; the committed one is a
+1301-point grid interpolation).  C2: my NFW/Dutton-Maccio vs h48's committed nfw_enclosed, 30 masses x 20 radii (<= 1e-9 relative).
+C3: NFW analytic enclosed mass vs direct numerical integration of the density (<= 1e-6), M(<R200) = M_h.  C4: my KM against a brute-force
+alternative (a direct product-limit written differently, plus a case with no censoring = ordinary median, plus a hand-worked example).
+C5 (pipeline check on the data, NOT part of the LCDM claim): the bare-law offset (nu = exponential RAR kernel, a0 = 9.36e-11 / 1.13e-10, isolated,
+stars only + 1.33 M_HI as the lanes' FG001 does, i.e. the committed lane definition) should reproduce CFG42's reference +0.325 / +0.304 KM
+median and +0.355 resolved-only median (the reference is read from CFG42's .out, not re-used as code).  C6: M_h -> 0 gives the closed-form Newtonian sigma.
+MUTATE=1: every observed dispersion (resolved AND limits) x 0.5.  Then the LCDM offset must shift by exactly log10(0.5) = -0.30103 (hard control,
+checked in both modes), and the declared gate must FAIL.  PRE-RUN EXPECTATION (declared honestly now): the shift is 0.301 dex against a total
+error of ~0.13 dex, starting from +0.08, i.e. landing near -0.22 / 0.13 = -1.7 sigma, which is INSIDE 2 sigma; I therefore expect the shift
+check to pass and the gate NOT to fail.  If so that is the requested MUTATE gate-fail control failing, and it is reported as such, not repaired.
+An additional REPORTED-ONLY ladder (obs x 0.5, 0.25, 0.1) shows where the gate does trip.
+NOTHING is tuned after a result is seen.  Nothing in the repository is edited; outputs go to the scratch directory only.
+
+==============================================================================================================
+SAMPLE
+==============================================================================================================
+  resolved 31, limits 9; log10 M_* range 2.55 - 5.08; Moster clamp: M_*(M_h=1e9) = 1.916e+04; satellites clamped: 33 of 40; M_* < 1e5: 39
+  [PASS] SAMPLE: 31 resolved + 9 limits
+         31 + 9
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  C1 table  M_*: mine vs committed halo_mass  (log10):
+      M_* = 1e+03: mine 9.000000, committed 9.000000
+      M_* = 1e+04: mine 9.000000, committed 9.000000
+      M_* = 3e+04: mine 9.081914, committed 9.081914
+      M_* = 1e+05: mine 9.301985, committed 9.301985
+      M_* = 1e+06: mine 9.722891, committed 9.722891
+      M_* = 1e+07: mine 10.143977, committed 10.143977
+      M_* = 1e+08: mine 10.566300, committed 10.566300
+      M_* = 1e+09: mine 10.997281, committed 10.997282
+      M_* = 1e+10: mine 11.498970, committed 11.498973
+      M_* = 1e+11: mine 13.029458, committed 13.029458
+  [PASS] C1 CONTROL: my Moster halo_mass (exact inversion, floor 1e9) equals the committed h48 halo_mass (grid interpolation, clamped) at 10 masses
+         max |d log10| 2.79e-06
+  [PASS] C2 CONTROL: my Dutton-Maccio NFW enclosed mass equals h48's committed nfw_enclosed (30 masses x 20 radii)
+         max rel dev 0.0e+00; rho_c mine 1.260474e+11 vs committed 1.260474e+11
+  [PASS] C3 CONTROL: NFW enclosed mass equals numerical integration of the density (3 c-relations x 3 masses x 4 radii); M(<R200) = M_h
+         max rel dev 3.6e-08; edge 2.2e-16
+  [PASS] C4 CONTROL: my KM = brute-force product-limit on 300 random left-censored data sets; uncensored = ordinary (lower-half convention) median; hand example = 2.0
+         max |diff| 0.0e+00; uncensored median of 1..5 -> 3.0; hand example 2.0
+  [PASS] C6 CONTROL: with the halo switched off the LCDM sigma is the closed-form Newtonian sqrt(G 0.5 M_*/(3 r)); the halo only adds
+         max rel dev 2.2e-16; min sigma ratio 5.768
+
+  C5 pipeline check: bare isolated law (exp kernel), stars + 1.33 M_HI, canonical a0 = 9.36e-11 / alt 1.13e-10
+      canonical: KM +0.3245 (ref +0.325), resolved-only median +0.3545 (ref +0.355)
+      alt: KM +0.3045 (ref +0.304), resolved-only median +0.3345 (ref +0.334)
+  [PASS] C5 CONTROL (pipeline/data): the bare-law KM and resolved-only medians reproduce CFG42's reference +0.325/+0.355 (canonical), +0.304/+0.334 (alt) to 3 decimals
+         see lines above
+
+==============================================================================================================
+(1)+(2) THE LCDM ULTRA-FAINT KM MEDIAN UNDER THREE CONCENTRATION RELATIONS (halo mass x1)
+==============================================================================================================
+  duffy_full    : KM median +0.0803 +- 0.1333 (bootstrap 0.0568, collapse floor 0.1206) -> +0.60 sigma; resolved-only +0.123; floors 1e8..1e10: +0.204, +0.143, +0.080, +0.023, -0.037
+  duffy_relaxed : KM median +0.0147 +- 0.1301 (bootstrap 0.0572, collapse floor 0.1169) -> +0.11 sigma; resolved-only +0.061; floors 1e8..1e10: +0.135, +0.077, +0.015, -0.041, -0.099
+  dutton_maccio : KM median -0.0434 +- 0.1251 (bootstrap 0.0573, collapse floor 0.1112) -> -0.35 sigma; resolved-only +0.001; floors 1e8..1e10: +0.071, +0.015, -0.043, -0.097, -0.151
+
+  comparison to CFG69's committed CFG69_lcdm_comparator.out (offset, sigma; 3-decimal agreement on the offset):
+    duffy_full    : CFG69 +0.080 (+0.6 sigma) | mine +0.080 (+0.60 sigma) | offset agrees to 3 decimals: True; z agrees to 0.05: True
+    duffy_relaxed : CFG69 +0.015 (+0.1 sigma) | mine +0.015 (+0.11 sigma) | offset agrees to 3 decimals: True; z agrees to 0.05: True
+    dutton_maccio : CFG69 -0.043 (-0.4 sigma) | mine -0.043 (-0.35 sigma) | offset agrees to 3 decimals: True; z agrees to 0.05: False
+    floor scan (Duffy full): CFG69 (0.204, 0.143, 0.08, 0.023, -0.037) | mine (0.204, 0.143, 0.08, 0.023, -0.037) | agree True
+    CFG69's total error for Duffy full: 0.132 (bootstrap 0.054, floor 0.121) | mine 0.133 (0.057, 0.121)
+  [PASS] HEADLINE reproduce: Duffy-full +0.080, Duffy-relaxed +0.015, Dutton-Maccio -0.043 (KM medians) to 3 decimals
+         duffy_full +0.080; duffy_relaxed +0.015; dutton_maccio -0.043
+  [PASS] GATE (|median| < 2 sigma) passes under all three concentrations (CFG69: passes)
+         duffy_full: +0.60 sigma -> pass; duffy_relaxed: +0.11 sigma -> pass; dutton_maccio: -0.35 sigma -> pass
+
+  Reported robustness (Duffy full):
+    bootstrap seed 1: 0.0560
+    bootstrap seed 2: 0.0565
+    bootstrap seed 3: 0.0559
+    joint (resolved+limits together) resampling: 0.0587
+    with 1.33 M_HI added to baryons: KM median +0.0803 (stars-only +0.0803)
+    Upsilon_V 1 / 2 / 4 (halo mass held at the Upsilon_V=2 Moster value): KM +0.080 / +0.080 / +0.080; half-range 0.000
+    alternative reading of the floor scan, M_h = max(Moster, f) (a true floor, Duffy full), f = 1e8..1e10: +0.080, +0.080, +0.080, +0.023, -0.037
+
+==============================================================================================================
+(3) GATE vs A COMMON MULTIPLE OF EVERY HALO MASS (floors multiplied too)
+==============================================================================================================
+  duffy_full:
+    x0.01   : KM median +0.381 +- 0.172 -> +2.22 sigma  gate FAIL   [CFG69 +0.381 (+2.22); offset agrees True]
+    x0.1    : KM median +0.213 +- 0.143 -> +1.49 sigma  gate PASS   [CFG69 +0.213 (+1.50); offset agrees True]
+    x1      : KM median +0.080 +- 0.134 -> +0.60 sigma  gate PASS   [CFG69 +0.080 (+0.61); offset agrees True]
+    x10     : KM median -0.037 +- 0.125 -> -0.30 sigma  gate PASS   [CFG69 -0.037 (-0.30); offset agrees True]
+    x100    : KM median -0.149 +- 0.121 -> -1.24 sigma  gate PASS   [CFG69 -0.149 (-1.25); offset agrees True]
+    x1000   : KM median -0.261 +- 0.125 -> -2.08 sigma  gate FAIL   [CFG69 -0.261 (-2.10); offset agrees True]
+  duffy_relaxed:
+    x0.01   : KM median +0.316 +- 0.176 -> +1.80 sigma  gate PASS
+    x0.1    : KM median +0.148 +- 0.143 -> +1.03 sigma  gate PASS
+    x1      : KM median +0.015 +- 0.130 -> +0.11 sigma  gate PASS
+    x10     : KM median -0.099 +- 0.121 -> -0.81 sigma  gate PASS
+    x100    : KM median -0.205 +- 0.116 -> -1.77 sigma  gate PASS
+    x1000   : KM median -0.310 +- 0.120 -> -2.58 sigma  gate FAIL
+  dutton_maccio:
+    x0.01   : KM median +0.253 +- 0.178 -> +1.42 sigma  gate PASS
+    x0.1    : KM median +0.089 +- 0.142 -> +0.62 sigma  gate PASS
+    x1      : KM median -0.043 +- 0.125 -> -0.35 sigma  gate PASS
+    x10     : KM median -0.151 +- 0.116 -> -1.30 sigma  gate PASS
+    x100    : KM median -0.250 +- 0.109 -> -2.28 sigma  gate FAIL
+    x1000   : KM median -0.347 +- 0.113 -> -3.06 sigma  gate FAIL
+  Duffy-full gate passes at multiples: [0.1, 1.0, 10.0, 100.0]; fails at: [0.01, 1000.0]
+  [PASS] R3 reproduce: Duffy-full ladder offsets at x0.01..x1000 agree with CFG69's R3 to 3 decimals
+         x0.01: +0.381; x0.1: +0.213; x1: +0.080; x10: -0.037; x100: -0.149; x1000: -0.261
+  slope d(KM median)/d log10(mult), x1 -> x100 (Duffy full): -0.1149 dex per decade; corresponding sigma_pred scaling ~ mass^0.057
+  [FAIL] NON-DISCRIMINATION reproduced: the gate passes for every halo-mass multiple x0.1..x100 (four decades: 0.1, 1, 10, 100), under each of the three concentrations
+         duffy_full: passes at [0.1, 1.0, 10.0, 100.0]; duffy_relaxed: passes at [0.01, 0.1, 1.0, 10.0, 100.0]; dutton_maccio: passes at [0.01, 0.1, 1.0, 10.0]
+
+==============================================================================================================
+MUTATE CONTROL (this run's observed-dispersion factor = 1.0)
+==============================================================================================================
+  [PASS] MUTATE shift: every observed dispersion x 0.5 moves the LCDM KM median by exactly log10(0.5) = -0.30103 (each concentration)
+         duffy_full: +0.0803 -> -0.2207 (shift -0.30103); duffy_relaxed: +0.0147 -> -0.2863 (shift -0.30103); dutton_maccio: -0.0434 -> -0.3444 (shift -0.30103)
+  gate on the (possibly mutated) run, Duffy full: +0.080 / 0.133 = +0.60 sigma -> PASS
+  (un-mutated run: for reference the mutated-mode numbers are computed here in-process)
+    obs x 0.5: duffy_full -0.221 (-1.66 sigma, gate PASS); duffy_relaxed -0.286 (-2.20 sigma, gate FAIL); dutton_maccio -0.344 (-2.75 sigma, gate FAIL)
+    obs x 0.25: duffy_full -0.522 (-3.91 sigma, gate FAIL); duffy_relaxed -0.587 (-4.51 sigma, gate FAIL); dutton_maccio -0.645 (-5.16 sigma, gate FAIL)
+    obs x 0.1: duffy_full -0.920 (-6.90 sigma, gate FAIL); duffy_relaxed -0.985 (-7.57 sigma, gate FAIL); dutton_maccio -1.043 (-8.34 sigma, gate FAIL)
+    (a uniform log shift leaves the bootstrap spread and the floor half-range identical, so the total error is unchanged by construction; verified below)
+    bootstrap (500) unshifted 0.054749 vs shifted 0.054749
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  PASS  SAMPLE: 31 resolved + 9 limits
+  PASS  C1 CONTROL: my Moster halo_mass (exact inversion, floor 1e9) equals the committed h48 halo_mass (grid interpolation, cla
+  PASS  C2 CONTROL: my Dutton-Maccio NFW enclosed mass equals h48's committed nfw_enclosed (30 masses x 20 radii)
+  PASS  C3 CONTROL: NFW enclosed mass equals numerical integration of the density (3 c-relations x 3 masses x 4 radii); M(<R200)
+  PASS  C4 CONTROL: my KM = brute-force product-limit on 300 random left-censored data sets; uncensored = ordinary (lower-half c
+  PASS  C6 CONTROL: with the halo switched off the LCDM sigma is the closed-form Newtonian sqrt(G 0.5 M_*/(3 r)); the halo only 
+  PASS  C5 CONTROL (pipeline/data): the bare-law KM and resolved-only medians reproduce CFG42's reference +0.325/+0.355 (canonic
+  PASS  HEADLINE reproduce: Duffy-full +0.080, Duffy-relaxed +0.015, Dutton-Maccio -0.043 (KM medians) to 3 decimals
+  PASS  GATE (|median| < 2 sigma) passes under all three concentrations (CFG69: passes)
+  PASS  R3 reproduce: Duffy-full ladder offsets at x0.01..x1000 agree with CFG69's R3 to 3 decimals
+  FAIL  NON-DISCRIMINATION reproduced: the gate passes for every halo-mass multiple x0.1..x100 (four decades: 0.1, 1, 10, 100), 
+  PASS  MUTATE shift: every observed dispersion x 0.5 moves the LCDM KM median by exactly log10(0.5) = -0.30103 (each concentrat
+
+  11/12 checks pass
