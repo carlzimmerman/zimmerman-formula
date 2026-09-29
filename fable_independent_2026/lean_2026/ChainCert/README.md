@@ -32,3 +32,12 @@
 ## Context
 
 The 116 compiling files in this directory (audit, 2026-09-28) are islands: no file imports another, and `lake build` compiled only `Mondlean` before this library was added. `ChainCert` is the first library whose theorems import each other and compose into a conclusion.
+
+## Added 2026-09-28 by the equations chat: `Gauss` (CFG48) and `Separation` (CFG63)
+
+Two new modules, each theorem on standard axioms only (`verify_chain.sh`: PASS, 131 theorems checked; `MUTATE=1` fails as required; a false-statement mutation of each module is also rejected by Lean).
+
+| link | statement | status | where |
+|---|---|---|---|
+| CFG48 Gauss lemma (G1, C1) | for `psi' = G M/r^2`, `Phi' = A psi'`: `r^2 Phi'/G = A M`; at the gate off (`W = 0`, `A = 1`) it equals `M`; `d/dr(r^2 psi') = 4 pi G r^2 rho`; the psi-momentum vanishes on `Phi' = A psi'`; a second real-mass source `M_c != 0` makes the `W = 0` mass `M + M_c`, not `M` | **certified: the algebra of the solution check.** NOT certified: the derivation of the Euler-Lagrange equations from the action (sympy in G1), the Helmholtz test (C3), the Noether budget (C4) | `Gauss` |
+| CFG63 separation algebra | `S(N) = Delta/sqrt(v/N + f^2)` is strictly increasing in `N`, `< Delta/f` for `f > 0`, tends to `Delta/f`; if `f < Delta/k` then `N(k) = v/((Delta/k)^2 - f^2)` reaches `k` sigma and is the only `N` that does; if `Delta/k <= f` no `N` does; with `f = 0`, `N(k) = v k^2/Delta^2` | **certified as algebra.** NOT certified: any committed number (`Delta`, `v`, `f`, the citations) or the significance model itself, which is CFG63's declaration | `Separation` |

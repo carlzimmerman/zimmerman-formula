@@ -1,0 +1,33 @@
+exported HEAD f3852db78 to /private/tmp/claude-501/-Users-carlzimmerman-new-physics-zimmerman-formula/43793931-5355-490e-b8bf-10395b5b019f/scratchpad/ledger_rerun3
+CFG61 main     exit   1 (expected 1) DIFFERS TRACEBACK  TALLY DIFFERS  C3 CONTROL lr_lenses: 93,398 late and 88,079 early; median logM 10.328 / 10.744.
+        committed tally: 12/14 checks pass; load-bearing failures: 2
+CFG61 MUTATE   exit   1 (expected 1) DIFFERS TRACEBACK  C3 CONTROL lr_lenses: 93,398 late and 88,079 early; median logM 10.328 / 10.744.
+CFG62 main     exit   0 (expected 0) OK   tally==committed  6/6 checks pass; load-bearing failures: 0
+CFG62 MUTATE   exit   1 (expected 1) OK   4/6 checks pass; load-bearing failures: 2
+CFG63 main     exit   0 (expected 0) OK   tally==committed  Nothing here says the theory is closed. kappa = 1/2 stays FITTED.
+CFG63 MUTATE   exit   1 (expected 1) OK   Nothing here says the theory is closed. kappa = 1/2 stays FITTED.
+CFG64 main     exit   1 (expected 1) OK   tally==committed  7/9 checks pass; load-bearing failures: 1
+CFG64 MUTATE   exit   1 (expected 1) OK   6/9 checks pass; load-bearing failures: 2
+CFG65 main     exit   0 (expected 0) OK   tally==committed  7/7 checks pass; load-bearing failures: 0
+CFG65 MUTATE   exit   1 (expected 1) OK   6/7 checks pass; load-bearing failures: 1
+CFG66 main     exit   0 (expected 0) OK   tally==committed  3/4 checks pass; load-bearing failures: 0
+CFG66 MUTATE   exit   1 (expected 1) OK   1/4 checks pass; load-bearing failures: 2
+CFG67 main     exit   1 (expected 1) DIFFERS TRACEBACK  TALLY DIFFERS  C1 CONTROL CFG61's committed law chi2_L = 28.1/7 (canonical) reproduced by the exec'd machinery (its committed law stacks) to +-0.1.
+        committed tally: 8/9 checks pass; load-bearing failures: 1
+CFG67 MUTATE   exit   1 (expected 1) DIFFERS TRACEBACK  C1 CONTROL CFG61's committed law chi2_L = 28.1/7 (canonical) reproduced by the exec'd machinery (its committed law stacks) to +-0.1.
+
+14 runs at HEAD f3852db78; 4 differ (exit code, traceback or tally)
+  DIFFERS: CFG61 main exit 1 expected 1 | tally same: False
+  DIFFERS: CFG61 MUTATE exit 1 expected 1 | tally same: None
+  DIFFERS: CFG67 main exit 1 expected 1 | tally same: False
+  DIFFERS: CFG67 MUTATE exit 1 expected 1 | tally same: None
+
+---- second run (CFG61, CFG67 only), after copying the git-ignored real_research/data/lensing_rar/ files into the scratch export ----
+exported HEAD 655b3a403
+CFG61 main     exit   1 (expected 1) OK   tally==committed  12/14 checks pass; load-bearing failures: 2
+CFG61 MUTATE   exit   1 (expected 1) OK   12/14 checks pass; load-bearing failures: 2
+CFG67 main     exit   1 (expected 1) OK   tally==committed  8/9 checks pass; load-bearing failures: 1
+CFG67 MUTATE   exit   1 (expected 1) OK   7/9 checks pass; load-bearing failures: 2
+
+4 runs at HEAD 655b3a403; 0 differ (exit code, traceback or tally)
+(The first run above shows CFG61/CFG67 tracebacks: FileNotFoundError on git-ignored data, see LEDGER_VERIFICATION Part 3 finding 1.)

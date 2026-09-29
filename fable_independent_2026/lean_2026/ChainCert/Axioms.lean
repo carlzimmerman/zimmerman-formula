@@ -3,6 +3,8 @@ import ChainCert.Fluid
 import ChainCert.PointMass
 import ChainCert.Profile
 import ChainCert.Cusp
+import ChainCert.Gauss
+import ChainCert.Separation
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -124,3 +126,17 @@ import ChainCert.Cusp
 #print axioms Cusp.m_c2_lo
 #print axioms Cusp.debris_corollary
 #print axioms Cusp.range_witness
+#print axioms gateA_off
+#print axioms gateA_on
+#print axioms gauss_dyn_mass
+#print axioms gauss_off_mass
+#print axioms gauss_flux_deriv
+#print axioms gauss_psi_momentum_zero
+#print axioms gauss_second_source
+#print axioms sep_strictMono
+#print axioms sep_lt_cap
+#print axioms sep_tendsto_cap
+#print axioms sep_solve
+#print axioms sep_solve_unique
+#print axioms sep_no_solution
+#print axioms sep_zero_floor

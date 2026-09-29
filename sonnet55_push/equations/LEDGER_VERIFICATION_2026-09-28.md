@@ -79,3 +79,43 @@ CFG48 referee note warns about for incomplete scratch copies.)
 CFG49 (`campaign_fresh_gravity/CFG49_gate_scalar/`) is not committed at HEAD. Whether the scripts' hypotheses are right is not
 tested; only reproduction and control behaviour. G-lane gate thresholds were frozen by the lane before the scripts ran (per
 the referee note's file-birth-time check); I did not re-check that.
+
+---
+
+# Part 3 -- CFG61 to CFG67 and the new ChainCert modules (HEAD 655b3a403)
+
+Requested by the orchestrating session; run by `ledger_rerun3.py` from a `git archive HEAD` export (broad dependency set),
+main + MUTATE for each lane, exit code AND the script's own final tally compared with the tally in the lane's committed `.out`.
+
+## Result: 14 runs, 0 differ once the git-ignored data is supplied
+| lane | main exit (expected) | MUTATE exit | tally (main) | equals committed .out |
+|---|---|---|---|---|
+| CFG61 | 1 (1: declared H1/H2) | 1 | 12/14, 2 load-bearing failures | yes |
+| CFG62 | 0 (0) | 1 | 6/6 | yes |
+| CFG63 (`forecast.py`; MUTATE is the argument `MUTATE`) | 0 (0) | 1 | 11/11 (per its README) | yes |
+| CFG64 | 1 (1: declared C3) | 1 | 7/9, 1 load-bearing failure | yes |
+| CFG65 | 0 (0) | 1 | 7/7 | yes |
+| CFG66 | 0 (0) | 1 | 3/4, 0 load-bearing failures | yes |
+| CFG67 | 1 (derived from its committed tally: 1 failure) | 1 | 8/9 | yes |
+
+## Two findings
+1. **CFG61 and CFG67 do not reproduce from a clean `git archive`.** They read third-party lensing data that is git-ignored
+   (`real_research/data/lensing_rar/.gitignore` excludes `brouwer2021_rar/`, `*.txt`, `*.npz`): the Brouwer+2021 Fig-8 tables and
+   the generated `lr_lenses.npz`. Without them both raise `FileNotFoundError`. With the local copies (the directory is 17 GB and
+   only the needed files are required) both reproduce exactly (exit codes and tallies above). This is a reproducibility note
+   for the lanes' READMEs, not a fault in their results.
+2. **CFG61's MUTATE control does not discriminate by exit code.** The main run already fails H1 and H2 (declared), and the
+   MUTATE run (early/late swapped) fails the same two checks with the same 12/14 tally, so "MUTATE must exit 1" is satisfied
+   whether or not the pipeline works. I did not check whether the swapped numbers differ; a numeric comparison of the swapped
+   result against the main result would give the control teeth.
+
+## New ChainCert modules (equations chat, this session)
+`ChainCert/Gauss.lean` (CFG48's Gauss lemma: the algebra of the solution check; 7 theorems) and `ChainCert/Separation.lean`
+(CFG63's separation algebra S(N), N(k), cap, no-solution case, zero floor; 7 theorems). Added append-only: two import lines in
+`ChainCert.lean` and `ChainCert/Axioms.lean`, 14 `#print axioms` lines, and a README section. `verify_chain.sh`: PASS,
+131 theorems checked, 0 non-standard axioms, 0 `sorry`; `MUTATE=1` FAILS (exit 1) as required. Two extra semantic mutations
+(a wrong solve value `2k`, a wrong cap `Delta/(2f)`) are rejected by Lean. Certified: premises => conclusions only; no
+committed number and not the Euler-Lagrange derivation (sympy in G1).
+
+## Not covered
+CFG68-70 and the calc chat's CLAIMS_AUDIT (not committed when this ran); CFG49 has its own referee note (c402c10ae).

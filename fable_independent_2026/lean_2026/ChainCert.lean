@@ -5,3 +5,5 @@ import ChainCert.Fluid
 import ChainCert.PointMass
 import ChainCert.Profile
 import ChainCert.Cusp
+import ChainCert.Gauss
+import ChainCert.Separation
