@@ -31,3 +31,6 @@ Two objects do not make a population result. The other multi-epoch UFDs need dat
 Nothing here says the theory is closed.
 
 **Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
+
+**Update (CFG66):** a two-Gaussian mixture fit to the binary-cleaned Boötes I members gives a cold-only offset of −0.07 ± 0.20 dex (consistent with zero), not the +0.007 quoted above from the literature's 2.4 km/s, and the split itself is not detected (bootstrap P = 0.155); the total-mixture offset is +0.22 (2.3σ). A linear-gradient fit to Tucana II finds no gradient (0.43 ± 3.4 km/s per half-light radius) and leaves its offset at +0.46 (3.6σ). See `CFG66_README.md`.
+

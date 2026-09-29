@@ -1,0 +1,92 @@
+CFG66 -- DO THE TWO CFG51 ULTRA-FAINT OFFSETS SURVIVE A TWO-COMPONENT FIT (BOOTES I) AND A VELOCITY-GRADIENT FIT (TUCANA II)?
+
+FROZEN QUESTIONS (verbatim).
+'CFG51 found that after per-star binary cleaning the bare isolated law under-predicts the ultra-faint dispersions of Bootes I (+0.219 dex, 2.46 sigma) and Tucana II
+(+0.465 dex, 3.63 sigma), and flagged two systematics: (Q1) Bootes I has a cold (~2.4 km/s) and a hot (~4.6 km/s) kinematic component in the literature (Koposov+2011)
+and CFG51's velocity window keeps both; the cold component alone would give about +0.007 dex. (Q2) Tucana II is tidally disturbed in the literature (an extended halo
+and a velocity gradient), and a gradient inflates a dispersion. Do the two offsets survive (a) a declared two-Gaussian mixture fit for Bootes I and (b) a declared
+linear-velocity-gradient fit for Tucana II?'
+
+DECLARED BEFORE THE FIRST RUN (nothing tuned afterwards; any result is valid; kappa = 1/2 is FITTED; nothing here closes or proves the theory).
+
+DATA / SAMPLE.  CFG51's reduction, imported READ-ONLY (campaign_fresh_gravity/CFG51_walker_multiepoch/reduce_walker.py: parse, build_stars, membership; the repo
+file is not edited and no bytecode is written).  Same membership (logg<4, Gaia PM, parallax, +-4 sigma_seed window, one recentring), same per-star binary cleaning
+(stars with >= 2 quality epochs and epoch-chi2 p < 0.01 removed), same per-star inputs: the inverse-variance mean velocity v_i over quality epochs and its error e_i.
+The only addition: field positions RA/Dec (ReadMe bytes 234-248, 250-264) are parsed for the same rows (COLS is extended in memory), averaged over a star's quality epochs.
+
+Q1  BOOTES I.  Binary-cleaned members.  Likelihood: p(v_i) = (1-f) N(v_i; mu, s_c^2+e_i^2) + f N(v_i; mu, s_h^2+e_i^2), COMMON mean mu, s_c <= s_h, f = f_hot in [0,1].
+    Maximum likelihood by multi-start L-BFGS-B (4 free parameters; s_h = s_c + d with d >= 0).  Profile-likelihood 1-sigma intervals (Delta(-2lnL) = 1, other
+    parameters re-optimised at each value, linear interpolation on a fixed grid) for s_c, s_h, f, and the total sigma_tot = sqrt((1-f) s_c^2 + f s_h^2) (profiled by
+    solving f from sigma_tot, s_c, s_h).  An interval end that the profile never reaches inside the grid is reported as open (>= / <=).  Improvement over the single
+    Gaussian: LR = -2lnL_single - (-2lnL_mix); NOT a formal chi2 significance (boundary, unidentified parameters); a parametric-bootstrap calibration of the LR (fixed
+    seed, 200 single-Gaussian datasets with the real errors and the fitted single-Gaussian mean and sigma; fit the mixture with a reduced multi-start) is reported
+    as a diagnostic only.  'The galaxy' component is the open question, so BOTH offsets are reported: cold-only log10(s_c/sigma_law), total log10(sigma_tot/sigma_law).
+Q2  TUCANA II.  Binary-cleaned members.  Model: single Gaussian dispersion sigma with mean(x,y) = v0 + g_x xi + g_y eta.  Coordinates: gnomonic tangent-plane
+    (xi east, eta north, degrees) about the LVD catalogue centre (RA 342.9796, Dec -58.5689); the gradient is reported in km/s/deg and km/s per half-light radius
+    (LVD rhalf in arcmin, 12.89'), amplitude |g| = sqrt(gx^2+gy^2) and direction (position angle of increasing velocity, degrees east of north).  At each sigma the
+    linear parameters are solved by weighted least squares (weights 1/(sigma^2+e_i^2)); sigma profiled on a fine grid.  Gradient significance = LR against g = 0 (2 dof;
+    chi2 tail quoted with the caveat of 12 stars).  Dispersion with gradient removed: sigma_g, profile 1-sigma interval.  Diagnostic (reported, not load-bearing): a
+    permutation null (2000 shuffles of positions among stars, fixed seed) for the LR and for sigma_g -- how much a gradient fit lowers sigma by chance with N ~ 12 stars.
+LAW PREDICTION AND ERROR MODEL: exactly CFG51's.  FG001 slices exec'd read-only from CFG7_hierarchy_fg001.py (a_int, A0H, UPS_V=2, G, Msun), sigma_law^2 = g(r) r/3 at
+    r = (4/3) r_half, half the baryons enclosed, stars only, both footings; error on the offset = sqrt(e_stat^2 + floor^2) with e_stat = 0.5 (log10(1+p/s) +
+    |log10 max(1-m/s,1e-3)|) from the asymmetric 1-sigma interval (here the profile-likelihood one) and floor = half the range of the offset over Upsilon_V in {1,2,4}
+    and the pure deep-MOND estimate.
+
+PRE-DECLARED ACCEPTANCE (gates; ALL on the law of CFG51, both footings)
+  C1 CONTROL  the single-Gaussian, gradient-free fits reproduce CFG51's cleaned dispersions, Bootes I 3.911 and Tucana II 4.064 km/s, to 5e-3 (and member counts 55/14,
+              cleaned 53/12 as CFG51 reports 2 removed each).
+  S1 [HEADLINE, MUTATE must fail]  Bootes I offset SURVIVES: the TOTAL-MIXTURE reading log10(sigma_tot/sigma_law) is positive at > 2 sigma on BOTH footings.
+  S2 [HEADLINE, MUTATE must fail]  Tucana II offset SURVIVES: the gradient-removed dispersion offset is positive at > 2 sigma on BOTH footings.
+  R1 (reported, separate)  whether the Bootes I COLD-ONLY reading survives (same > 2 sigma both-footing gate).
+  R2 (reported)  every fitted number, LR statistics, diagnostics.
+  READING (declared): S1 and S2 PASS -> the CFG51 offsets are not removed by these two systematics as modelled (two objects, a declared model each; not a population
+      result).  A FAIL of either says that system's offset is not established once the systematic is modelled; it does not say the law is right or wrong.
+MUTATE=1: every member velocity x 0.5 (errors unchanged) entering the Q1/Q2 fits -- S1 and S2 must FAIL (rc = 1).  C1 is evaluated on the unscaled data.
+
+  samples: Bootes I members 55, cleaned 53 (v_c 103.6); Tucana II members 14, cleaned 12 (v_c -125.3)
+
+======================================================================================================================
+C1  CONTROL  (unscaled data)
+======================================================================================================================
+  [PASS] C1 CONTROL: single-Gaussian gradient-free cleaned dispersions reproduce CFG51 (Bootes I 3.911, Tucana II 4.064 km/s, tol 5e-3) and member counts 55/14, cleaned 53/12
+         Bootes I 3.9108 (+0.450 -0.385); Tucana II 4.0641 (+1.162 -0.821) [own WLS engine, g=0: 4.0641]; members 55/14, cleaned 53/12
+
+======================================================================================================================
+Q1  BOOTES I: TWO-GAUSSIAN MIXTURE (common mean)
+======================================================================================================================
+    single Gaussian: sigma 3.911, mean 103.24, -2lnL 300.358
+    mixture MLE: mu 103.69, s_cold 2.000, s_hot 5.089, f_hot 0.525; sigma_tot 3.937; -2lnL 298.050
+    LR (single vs mixture) = 2.307  (2 extra parameters; NOT a formal significance: boundary and unidentified parameters at f->0 or s_c=s_h)
+    stability: independent 40-start refit gives -2lnL 298.0501 (delta +0.0000)
+    profile 1-sigma sc   : 2.000  [1.185, 2.817]
+    profile 1-sigma sh   : 5.089  [4.092, 6.638]
+    profile 1-sigma f    : 0.525  [0.290, 0.839]
+    profile 1-sigma stot : 3.937  [3.457, 4.555]
+    diagnostic (reported, not load-bearing): parametric bootstrap under the single-Gaussian null, 200 sets: P(LR >= 2.31) = 0.155; null LR median 0.29, 95th pct 4.25
+    canonical sigma_law 2.360:  COLD-ONLY  -0.072 +- 0.203 (-0.35 sigma) [e_stat 0.188, floor 0.076];  TOTAL-MIXTURE +0.222 +- 0.097 (+2.29 sigma) [e_stat 0.060, floor 0.076]
+    alt       sigma_law 2.472:  COLD-ONLY  -0.092 +- 0.203 (-0.45 sigma) [e_stat 0.188, floor 0.076];  TOTAL-MIXTURE +0.202 +- 0.097 (+2.09 sigma) [e_stat 0.060, floor 0.076]
+
+======================================================================================================================
+Q2  TUCANA II: LINEAR VELOCITY GRADIENT
+======================================================================================================================
+    members 12; projected offsets xi (E) [-0.138, 0.156] deg, eta (N) [-0.059, 0.105] deg; rhalf 12.89' = 0.2148 deg; radii in r_half: median 0.45, max 0.76
+    no gradient : sigma 4.064 (+1.162 -0.821), mean -123.88, -2lnL 48.758
+    with gradient: sigma_g 4.060 (+1.164 -0.821) [UL95 6.247], v0 -123.85, g_x(E) +1.88+-14.14, g_y(N) +0.68+-33.91 km/s/deg, -2lnL 48.738
+    gradient amplitude 2.00 +- 15.87 km/s/deg = 0.43 km/s per r_half, direction (velocity increases toward) PA 70 deg E of N; LR vs g=0: 0.020 (2 dof; chi2 tail p = 0.9902, nominal)
+    diagnostic (reported, not load-bearing): position-permutation null (2000 shuffles): P(LR >= 0.02) = 0.9915; null sigma_g median 3.65 (5-95%: 2.40-4.05) vs no-gradient 4.06 -- i.e. chance alone lowers sigma by that much with N=12
+    canonical sigma_law 1.393: no-gradient +0.465 +- 0.128 (+3.63);  GRADIENT-REMOVED +0.464 +- 0.128 (+3.62 sigma) [e_stat 0.104, floor 0.076]
+    alt       sigma_law 1.460: no-gradient +0.445 +- 0.128 (+3.47);  GRADIENT-REMOVED +0.444 +- 0.128 (+3.46 sigma) [e_stat 0.104, floor 0.076]
+
+======================================================================================================================
+S1 / S2 / R1  SURVIVAL GATES
+======================================================================================================================
+  [PASS] S1 [HEADLINE] BOOTES I OFFSET SURVIVES the two-Gaussian fit: total-mixture offset > 0 at > 2 sigma on both footings
+         can: +0.222 +- 0.097 (+2.29); alt: +0.202 +- 0.097 (+2.09)
+  [PASS] S2 [HEADLINE] TUCANA II OFFSET SURVIVES the gradient fit: gradient-removed offset > 0 at > 2 sigma on both footings
+         can: +0.464 +- 0.128 (+3.62); alt: +0.444 +- 0.128 (+3.46)
+  [FAIL] (reported) R1 (reported) Bootes I COLD-ONLY reading survives (> 2 sigma, both footings)
+         can: -0.072 +- 0.203 (-0.35); alt: -0.092 +- 0.203 (-0.45)
+
+    READING (declared form): S1 PASS, S2 PASS; Bootes I cold-only reading does not survive.  Two objects, one declared model each; nothing here is a population result and nothing closes or proves the theory.
+
+  3/4 checks pass; load-bearing failures: 0   (37 s)
