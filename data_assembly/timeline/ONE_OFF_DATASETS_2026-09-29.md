@@ -33,3 +33,12 @@ Flynn, arXiv:2605.25339, "High-z Kinematic Corpus Z1": 31 [CII] galaxies at z 4.
 1. A read-only ALMA-archive footprint query at the 22 KURVS positions.
 2. Any KGES cube or map download (filename, source, size to be stated first).
 3. Nothing else here requires a download.
+
+## 6. Second hunt (later 2026-09-29; abstract pages only; seven rows appended to `sample_ledger.csv`)
+- **MIGHTEE-HI, z > 0.25 (Jarvis+2025, arXiv:2506.11935):** 11 individually detected HI galaxies at z = 0.26–0.38 (highest z = 0.3841), the first bTFR with HI beyond z = 0.25; consistent with the local bTFR, with tentative flattening at high mass. This is the only individually HI-detected sample beyond z = 0.25 I found; the abstract gives no numbers and no data-release statement, so the tables in the paper must be read (HTML route, like GOODS-ALMA). Proposed tier: B candidate.
+- **MXDF [OII] discs (Bouche+2022, arXiv:2109.07545):** 9 z ≈ 1 galaxies, log M* 8.5–10.5, rotation curves to ~3 R_e from 3D forward modelling; the gas is a model component. Low-mass discs at 3 R_e are low-acceleration if the gas is known.
+- **ACE (Shivaei+, arXiv:2609.21604):** 25 z = 2.0–2.5 galaxies at log M* 9–10.5, 17 CO(3-2) and 17 Band 7 continuum detections: measured gas for low-mass, low-metallicity galaxies, but no dynamics in the abstract.
+- **GA-NIFS DLA0817g1 (Jones+, arXiv:2512.05213):** the z = 4.26 disc (the Neeleman+2020 object on my earlier not-fetched list): Hα and [CII] rotation nearly identical, gas mass re-derived from metallicity plus CO and [CII].
+- **Rybak+ (arXiv:2411.06474):** CO(1-0) in 19 z = 2–4.5 dusty galaxies with half-light radius 3.8 kpc, 2–3× more extended than the dust-obscured star formation; up to 80% of the gas outside the star-forming region. It bears on where the gas sits relative to the outer velocities, not on dynamics.
+- **LEGA-C (arXiv:2203.06194)** and **MAGPI (arXiv:2406.20017):** intermediate-z kinematics with no gas measurement.
+- **Context, not data:** Lelli+ (arXiv:2608.07290) is a forward-looking paper on SKA HI rotation curves out to z ~ 1, with no results; Lang+2017 (arXiv:1703.05491, 101 galaxies) and Genzel+2017 found declining outer curves at z = 0.6–2.6; Nelson & Williams (arXiv:2401.13783) argue that steeply falling curves would imply no dark matter; the python package RotCurves (arXiv:2601.08348) models high-z rotation curves. None of these was read beyond the abstract.
