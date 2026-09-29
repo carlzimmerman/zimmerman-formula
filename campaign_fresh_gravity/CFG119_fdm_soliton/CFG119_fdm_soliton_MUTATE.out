@@ -1,0 +1,287 @@
+
+======================================================================================================================
+CFG119 -- Door 7: FDM soliton plus baryons (Schrodinger-Poisson ground state) against the CFG44 target   [MUTATE: G1 evaluated on the target's own rho_c]
+======================================================================================================================
+  Frozen criteria: ../CFG119_FROZEN_CRITERIA.md.  Shared gates: ../closure_map/TEN_DOORS_GATES_2026-09-29.md.
+  Target: CFG44 Bcommon (read-only): C(r) = rho_c r^3 g_tot = (a0/4 pi) M_b(<r).  Pass band for C_SP/C_target: [0.9, 1.1]
+  over x = r/r_M in [0.1, 30] (601 log-spaced points), M_b = 1e9..1e12 Msun, point mass and exponential spheres
+  (h = 2, 3, 4, 5 kpc), ONE m at every mass.  m grid (frozen, not tuned): 1e-23, 1e-22, 1e-21, 1e-20 eV.
+  a0: canonical 9.36030e-11 m/s^2 (Bcommon), alt 1.13120e-10 m/s^2 (FP0).
+  Method: finite-difference (t = ln r, step 1e-3) inverse iteration for the lowest eigenpair inside a self-consistent
+  (Anderson-mixed) iteration on Phi_psi, started from the rescaled no-baryon soliton; eps converged to < 1e-11 between
+  iterations; tails in log space (no underflow).  Cross-checks: shooting (C1x), Newton on the coupled system (N2),
+  half the grid step (N3).  Departures from the frozen file are listed in the README.
+    m = 1e-23 eV: hbar/m = 191.715 kpc km/s
+    m = 1e-22 eV: hbar/m = 19.1715 kpc km/s
+    m = 1e-21 eV: hbar/m = 1.91715 kpc km/s
+    m = 1e-20 eV: hbar/m = 0.191715 kpc km/s
+
+======================================================================================================================
+N0  the imported target (CFG44 Bcommon.target_fields) and the rule-(i) halo mass M_h = M_cold(<30 r_M)
+======================================================================================================================
+  target identity rho_c r^3 g_tot = (a0/4 pi) M_b(<r) over x in [0.1, 30], 8 galaxies x 2 footings: worst 3.06e-10
+  analytic M_b(<r) used by the evaluator vs Bcommon's profile u_N/G: worst 3.06e-10
+  M_h/M_b (point mass) = 29.0166890  (analytic sqrt(901) - 1 = 29.0166620)
+  M_h/M_b point: 1e+09: 29.0167 (can) 29.0167 (alt)  1e+10: 29.0167 (can) 29.0167 (alt)  1e+11: 29.0167 (can) 29.0167 (alt)  1e+12: 29.0167 (can) 29.0167 (alt)
+  M_h/M_b exp  : 1e+09: 28.5706 (can) 28.4672 (alt)  1e+10: 28.9359 (can) 28.9155 (alt)  1e+11: 29.0082 (can) 29.0056 (alt)  1e+12: 29.0162 (can) 29.0161 (alt)
+  [PASS] N0 the imported target reproduces C = (a0/4 pi) M_b(<r) and M_h(point) = (sqrt(901) - 1) M_b to 1e-6
+         identity 3.06e-10; M_b(<r) 3.06e-10; M_h/M_b = 29.0166890
+
+======================================================================================================================
+C2  CONTROL: self-gravity off, point mass: the ground state is hydrogen-like, psi ~ exp(-r/a_B), a_B = hbar^2/(G M_b m^2)
+======================================================================================================================
+  on each galaxy's own solver grid; sup|psi - psi_H|/psi_H(0) (normalised), |eps/eps_H - 1| with eps_H = E_H/m = -(G M_b)^2/(2 beta^2), beta = hbar/m,
+  and the log-space tail: max |ln psi/ln psi_H - 1| over x in [0.1, 30] where |ln psi_H| > 1
+    m [eV]     M_b    a_B/r_M  n_grid      |de|  sup dpsi  tail rel  ln psi_H(30 r_M)
+     1e-23   1e+09  7.003e+00   28731  5.21e-08  8.21e-08  2.98e-08           -8.0743
+     1e-23   1e+10  2.215e-01   31443  5.21e-08  8.21e-08  1.43e-07            -135.8
+     1e-23   1e+11  7.003e-03   34897  5.21e-08  8.21e-08  1.51e-07           -4280.7
+     1e-23   1e+12  2.215e-04   38350  5.21e-08  8.21e-08  1.51e-07       -1.3546e+05
+     1e-22   1e+09  7.003e-02   32594  5.21e-08  8.21e-08  2.51e-07           -425.26
+     1e-22   1e+10  2.215e-03   36048  5.21e-08  8.21e-08  1.56e-07            -13540
+     1e-22   1e+11  7.003e-05   39502  5.21e-08  8.21e-08  1.51e-07       -4.2837e+05
+     1e-22   1e+12  2.215e-06   42956  5.21e-08  8.21e-08  1.51e-07       -1.3547e+07
+     1e-21   1e+09  7.003e-04   37199  5.21e-08  8.21e-08  1.55e-07            -42828
+     1e-21   1e+10  2.215e-05   40653  5.21e-08  8.21e-08  1.51e-07       -1.3546e+06
+     1e-21   1e+11  7.003e-07   44107  5.21e-08  8.21e-08  1.51e-07       -4.2838e+07
+     1e-21   1e+12  2.215e-08   47561  5.21e-08  8.21e-08  1.51e-07       -1.3547e+09
+     1e-20   1e+09  7.003e-06   41804  5.21e-08  8.21e-08  1.51e-07       -4.2838e+06
+     1e-20   1e+10  2.215e-07   45258  5.21e-08  8.21e-08  1.51e-07       -1.3547e+08
+     1e-20   1e+11  7.003e-09   48712  5.21e-08  8.21e-08  1.51e-07       -4.2838e+09
+     1e-20   1e+12  2.215e-10   52166  5.21e-08  8.21e-08  1.51e-07       -1.3547e+11
+  [PASS] C2 CONTROL: hydrogen-like ground state to 1e-6 (eigenvalue, wavefunction, and the log-space tail) for all 16 (m, M_b)
+         worst |eps/eps_H - 1| = 5.21e-08, sup|psi - psi_H|/psi_H(0) = 8.21e-08, tail |ln psi/ln psi_H - 1| = 2.51e-07; all nodeless
+
+======================================================================================================================
+C1  CONTROL: no baryons: the ground state vs Schive et al.'s empirical soliton rho ~ (1 + 0.091 (r/r_c)^2)^-8, within 3% to 3 r_c
+======================================================================================================================
+  M_sol = 1e9 Msun at each m (the shape is universal by the SP scaling; the four runs check that).  r_c = half-peak-density radius.
+  m = 1e-23: SCF it 49 (conv True, dE/E 3.0e-12); E hbar^2/(G^2 M^2 m^3) = -0.1627692478; r_c G M m^2/hbar^2 = 2.6794047; r_c = 22.898 kpc; f_c = M(<r_c)/M_sol = 0.236350
+         max |rho/rho_fit - 1| over r <= 3 r_c = 0.0629 (+0.0629) at r = 2.68 r_c; pointwise 3% holds to r = 1.76 r_c; max |rho - rho_fit|/rho0 = 0.0043; amplitude rho0 r_c^4 (m/1e-23 eV)^2 = 1.9379 Msun/pc^3 kpc^4 (Schive: 1.9)
+  m = 1e-22: SCF it 49 (conv True, dE/E 1.5e-12); E hbar^2/(G^2 M^2 m^3) = -0.1627692478; r_c G M m^2/hbar^2 = 2.6794047; r_c = 0.22898 kpc; f_c = M(<r_c)/M_sol = 0.236350
+         max |rho/rho_fit - 1| over r <= 3 r_c = 0.0629 (+0.0629) at r = 2.68 r_c; pointwise 3% holds to r = 1.76 r_c; max |rho - rho_fit|/rho0 = 0.0043; amplitude rho0 r_c^4 (m/1e-23 eV)^2 = 1.9379 Msun/pc^3 kpc^4 (Schive: 1.9)
+  m = 1e-21: SCF it 49 (conv True, dE/E 3.1e-12); E hbar^2/(G^2 M^2 m^3) = -0.1627692478; r_c G M m^2/hbar^2 = 2.6794047; r_c = 0.0022898 kpc; f_c = M(<r_c)/M_sol = 0.236350
+         max |rho/rho_fit - 1| over r <= 3 r_c = 0.0629 (+0.0629) at r = 2.68 r_c; pointwise 3% holds to r = 1.76 r_c; max |rho - rho_fit|/rho0 = 0.0043; amplitude rho0 r_c^4 (m/1e-23 eV)^2 = 1.9379 Msun/pc^3 kpc^4 (Schive: 1.9)
+  m = 1e-20: SCF it 49 (conv True, dE/E 1.0e-12); E hbar^2/(G^2 M^2 m^3) = -0.1627692478; r_c G M m^2/hbar^2 = 2.6794047; r_c = 2.2898e-05 kpc; f_c = M(<r_c)/M_sol = 0.236350
+         max |rho/rho_fit - 1| over r <= 3 r_c = 0.0629 (+0.0629) at r = 2.68 r_c; pointwise 3% holds to r = 1.76 r_c; max |rho - rho_fit|/rho0 = 0.0043; amplitude rho0 r_c^4 (m/1e-23 eV)^2 = 1.9379 Msun/pc^3 kpc^4 (Schive: 1.9)
+  profile (m = 1e-22):   r/r_c    rho/rho0 (SP)    fit (1+0.091 x^2)^-8    SP/fit - 1
+                         0.50        0.835093          0.835303          -0.0003
+                         1.00        0.500000          0.498198          +0.0036
+                         1.50        0.229475          0.225333          +0.0184
+                         2.00        0.086965          0.083461          +0.0420
+                         2.50        0.028924          0.027263          +0.0609
+                         3.00        0.008809          0.008343          +0.0558
+  [FAIL] C1 CONTROL: no-baryon ground state within 3% (pointwise) of Schive's rho ~ (1 + 0.091 (r/r_c)^2)^-8 out to 3 r_c
+         worst max |rho/rho_fit - 1| over r <= 3 r_c = 0.0629 (at r = 2.68 r_c); the 3% line holds only to r = 1.76 r_c.  Relative to rho0 the difference is 0.0043 (a reading NOT declared; not re-scored)
+  shooting (units beta = G = 1): eps/M^2 = -0.1627692079, r_c M = 2.6794052, f_c = 0.236350; profile at r/r_c = 0.5..3: 0.835093, 0.500000, 0.229475, 0.086965, 0.028924, 0.008809
+  [PASS] C1x the finite-difference self-consistent soliton agrees with an independent shooting integration (1e-5)
+         |d(eps/M^2)| = 2.5e-07, |d(r_c M)| = 1.7e-07, |d f_c| = 5.9e-07, max |d(rho/rho0)| at 0.5..3 r_c = 1.4e-07; spread over the four m = 3.2e-12
+  [PASS] (reported) C1a Schive's amplitude 1.9 Msun/pc^3 kpc^4 (m = 1e-23 eV, r_c = 1 kpc) and his two relations' M_c r_c, against the SP ground state
+         1.9379 (+2.0%); Schive's two relations imply M_c r_c = 1.6 x (1/4)(4.4e7)^(2/3) x 1e3 = 4.985e+07 m22^-2 Msun kpc; the SP ground state gives f_c (r_c M) hbar^2/(G m^2) = 5.412e+07 m22^-2 Msun kpc
+
+======================================================================================================================
+RULE (i)  Schive et al. 2014 core-halo relation at z = 0: M_c = (1/4)(M_h/M_min,0)^(1/3) M_min,0, M_min,0 = 4.4e7 m22^-3/2 Msun; M_sol = M_c/f_c, f_c = 0.236350
+======================================================================================================================
+  point M_b = 1e+09: M_h = 2.9017e+10 (canonical);  M_sol/M_b by m:  1e-23: 4.051e+00  1e-22: 4.051e-01  1e-21: 4.051e-02  1e-20: 4.051e-03
+  point M_b = 1e+10: M_h = 2.9017e+11 (canonical);  M_sol/M_b by m:  1e-23: 8.728e-01  1e-22: 8.728e-02  1e-21: 8.728e-03  1e-20: 8.728e-04
+  point M_b = 1e+11: M_h = 2.9017e+12 (canonical);  M_sol/M_b by m:  1e-23: 1.880e-01  1e-22: 1.880e-02  1e-21: 1.880e-03  1e-20: 1.880e-04
+  point M_b = 1e+12: M_h = 2.9017e+13 (canonical);  M_sol/M_b by m:  1e-23: 4.051e-02  1e-22: 4.051e-03  1e-21: 4.051e-04  1e-20: 4.051e-05
+  exp   M_b = 1e+09: M_h = 2.8571e+10 (canonical);  M_sol/M_b by m:  1e-23: 4.030e+00  1e-22: 4.030e-01  1e-21: 4.030e-02  1e-20: 4.030e-03
+  exp   M_b = 1e+10: M_h = 2.8936e+11 (canonical);  M_sol/M_b by m:  1e-23: 8.720e-01  1e-22: 8.720e-02  1e-21: 8.720e-03  1e-20: 8.720e-04
+  exp   M_b = 1e+11: M_h = 2.9008e+12 (canonical);  M_sol/M_b by m:  1e-23: 1.880e-01  1e-22: 1.880e-02  1e-21: 1.880e-03  1e-20: 1.880e-04
+  exp   M_b = 1e+12: M_h = 2.9016e+13 (canonical);  M_sol/M_b by m:  1e-23: 4.051e-02  1e-22: 4.051e-03  1e-21: 4.051e-04  1e-20: 4.051e-05
+
+======================================================================================================================
+MUTATE  the target's own rho_c (CFG44 target_fields) replaces the SP ground state in the evaluator, for every (m, rule) cell
+======================================================================================================================
+
+======================================================================================================================
+R1  per footing, geometry, M_b, m and rule: J = max |log10(C/C_target)| over x in [0.1, 30], where, and the failing region
+======================================================================================================================
+  (the pass band is log10 ratio in [-0.0458, +0.0414]; 'fails' = inner (x <= 1), outer (x >= 1), both, or none)
+
+  footing: canonical
+  geom      M_b       m rule  M_sol/M_b     J [dex]   at x      L(0.1)        L(1)       L(30) fails
+  point   1e+09   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  exp     1e+09   1e-23    i        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-23   ii        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-22    i        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-22   ii        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-21    i        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-21   ii        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-20    i        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+09   1e-20   ii        nan   2.122e-06  0.106   1.744e-06   1.245e-06    4.13e-07  none
+  exp     1e+10   1e-23    i        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-23   ii        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-22    i        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-22   ii        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-21    i        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-21   ii        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-20    i        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+10   1e-20   ii        nan   1.648e-06  0.106   1.363e-06   6.995e-07   3.934e-07  none
+  exp     1e+11   1e-23    i        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-23   ii        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-22    i        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-22   ii        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-21    i        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-21   ii        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-20    i        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+11   1e-20   ii        nan   7.365e-07  0.106   6.179e-07    2.23e-07   3.897e-07  none
+  exp     1e+12   1e-23    i        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-23   ii        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-22    i        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-22   ii        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-21    i        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-21   ii        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-20    i        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+  exp     1e+12   1e-20   ii        nan   3.894e-07   23.4    1.06e-07    6.12e-08   3.892e-07  none
+
+  footing: alt
+  geom      M_b       m rule  M_sol/M_b     J [dex]   at x      L(0.1)        L(1)       L(30) fails
+  point   1e+09   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+09   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+10   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+11   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-23    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-23   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-22    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-22   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-21    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-21   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-20    i        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  point   1e+12   1e-20   ii        nan   3.893e-07   23.4   3.142e-11   8.217e-08   3.892e-07  none
+  exp     1e+09   1e-23    i        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-23   ii        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-22    i        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-22   ii        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-21    i        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-21   ii        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-20    i        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+09   1e-20   ii        nan   2.159e-06  0.106   1.774e-06   1.309e-06   4.184e-07  none
+  exp     1e+10   1e-23    i        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-23   ii        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-22    i        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-22   ii        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-21    i        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-21   ii        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-20    i        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+10   1e-20   ii        nan   1.728e-06  0.106   1.428e-06   7.673e-07   3.945e-07  none
+  exp     1e+11   1e-23    i        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-23   ii        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-22    i        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-22   ii        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-21    i        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-21   ii        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-20    i        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+11   1e-20   ii        nan   8.379e-07  0.106   7.019e-07   2.611e-07   3.898e-07  none
+  exp     1e+12   1e-23    i        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-23   ii        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-22    i        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-22   ii        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-21    i        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-21   ii        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-20    i        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+  exp     1e+12   1e-20   ii        nan   3.894e-07   23.4   1.304e-07   5.926e-08   3.892e-07  none
+
+  closest cell anywhere: alt footing, point, M_b = 1e+11, m = 1e-23 eV, rule (i): J = 3.893e-07 dex (a factor 1) at x = 23.4
+
+======================================================================================================================
+H1  [HEADLINE; MUTATE must change it]  G1 holds: with ONE m at every mass, C/C_target in [0.9, 1.1] over x in [0.1, 30], for every mass and both geometries, under rule (i) or rule (ii)
+======================================================================================================================
+  [canonical] m = 1e-23: rule (i) PASS (worst galaxy J = 2.122e-06 dex);  rule (ii) PASS (worst galaxy J = 2.122e-06 dex)
+  [canonical] m = 1e-22: rule (i) PASS (worst galaxy J = 2.122e-06 dex);  rule (ii) PASS (worst galaxy J = 2.122e-06 dex)
+  [canonical] m = 1e-21: rule (i) PASS (worst galaxy J = 2.122e-06 dex);  rule (ii) PASS (worst galaxy J = 2.122e-06 dex)
+  [canonical] m = 1e-20: rule (i) PASS (worst galaxy J = 2.122e-06 dex);  rule (ii) PASS (worst galaxy J = 2.122e-06 dex)
+  [PASS] H1 [canonical] G1 holds with one m at every mass (rule i or ii)
+         best single m = 1e-23 eV under rule (ii): its worst galaxy misses by J = 2.122e-06 dex (a factor 1); pass needs J <= 0.0414 on every galaxy
+  [alt      ] m = 1e-23: rule (i) PASS (worst galaxy J = 2.159e-06 dex);  rule (ii) PASS (worst galaxy J = 2.159e-06 dex)
+  [alt      ] m = 1e-22: rule (i) PASS (worst galaxy J = 2.159e-06 dex);  rule (ii) PASS (worst galaxy J = 2.159e-06 dex)
+  [alt      ] m = 1e-21: rule (i) PASS (worst galaxy J = 2.159e-06 dex);  rule (ii) PASS (worst galaxy J = 2.159e-06 dex)
+  [alt      ] m = 1e-20: rule (i) PASS (worst galaxy J = 2.159e-06 dex);  rule (ii) PASS (worst galaxy J = 2.159e-06 dex)
+  [PASS] H1 [alt] G1 holds with one m at every mass (rule i or ii)
+         best single m = 1e-23 eV under rule (ii): its worst galaxy misses by J = 2.159e-06 dex (a factor 1); pass needs J <= 0.0414 on every galaxy
+
+======================================================================================================================
+R2  the best m per mass under rule (ii) (a single m could fit only if these agree)
+======================================================================================================================
+  MUTATE: the target does not depend on m; R2 is not defined here
+
+======================================================================================================================
+R3  G2 (Hu, Barkana & Gruzinov 2000 scaling), G3, G4, G5 as statements
+======================================================================================================================
+  m = 1e-23: k_Jeq = 2.846/Mpc, k_1/2 (power halves) = 1.617/Mpc; T_F >= 0.95 only to k = 1.249/Mpc; T_F(30/Mpc) = +0.0000: NOT within 5% to k = 30/Mpc
+  m = 1e-22: k_Jeq = 9.000/Mpc, k_1/2 (power halves) = 4.500/Mpc; T_F >= 0.95 only to k = 3.476/Mpc; T_F(30/Mpc) = -0.0000: NOT within 5% to k = 30/Mpc
+  m = 1e-21: k_Jeq = 28.460/Mpc, k_1/2 (power halves) = 12.522/Mpc; T_F >= 0.95 only to k = 9.672/Mpc; T_F(30/Mpc) = +0.0033: NOT within 5% to k = 30/Mpc
+  m = 1e-20: k_Jeq = 90.000/Mpc, k_1/2 (power halves) = 34.842/Mpc; T_F >= 0.95 only to k = 26.914/Mpc; T_F(30/Mpc) = +0.8973: NOT within 5% to k = 30/Mpc
+  [FAIL] (reported) G2 (statement from HBG's fit) linear growth within 5% of LCDM to k = 30/Mpc for some m on the declared grid
+         no: the largest m (1e-20 eV) is suppressed 10.3% at 30/Mpc; the 5% line to 30/Mpc needs m >= 1.28e-20 eV (above the grid); cold at z >~ 10 above the Jeans scale, but the frozen 5% line fails
+  [PASS] (reported) G3 (statement) reciprocity and energy: the field gravitates only through ordinary Newtonian gravity
+         action equals reaction exactly and no extra force acts on the baryons (reaction 0 <= 0.10 g_law); the ground state is the bound minimum-energy state at fixed M_sol, so no energy supply beyond ordinary gravitational collapse is needed. Not computed.
+  [FAIL] (reported) G4 (statement) constants: m is a new constant not tied to Lambda or kappa (none is declared); rule (ii) adds M_sol per galaxy
+         FAIL: m (and, under rule (i), Schive's simulation-calibrated normalisation) are constants beyond kappa and Omega_c h^2
+  [PASS] (reported) G5 (statement) well-posedness: a minimally coupled Klein-Gordon field with m^2 > 0
+         no ghost (positive kinetic term), no gradient instability, hyperbolic with light-cone characteristics; Solar System safe (no fifth force, PPN as GR; the local density is negligible for Cassini). The Jeans instability is gravitational, not a pathology.
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  H1 [canonical]: PASS  (best single m 1e-23 eV; its worst galaxy J = 2.122e-06 dex under rule (ii))
+  H1 [alt]: PASS  (best single m 1e-23 eV; its worst galaxy J = 2.159e-06 dex under rule (ii))
+  C1 FAIL (Schive's fit vs the exact ground state: 6.3% at 2.68 r_c); C2 PASS
+  closest single galaxy over every cell: J = 3.893e-07 dex (alt, point, M_b = 1e+11, m = 1e-23 eV, rule (i))
+  G1 (H1) above; G2 FAIL for every m on the grid; G3 PASS (statement); G4 FAIL (m); G5 PASS (statement).
+  kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour either model, or that the theory is closed.
+  wall time 27 s
+
+  8/11 checks pass; load-bearing failures: 1   (27 s)
