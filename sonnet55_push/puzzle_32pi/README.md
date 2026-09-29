@@ -82,3 +82,13 @@ Where a derivation could still hide (each is a statement of the ONE number; none
    p = ρ/3 component): the repo's action-route audit shows the checked actions leave Z_q/β² free, so the missing object is a principle or symmetry that fixes it;
 3. the mode-count form (8) needs n = Z, a non-integer: an integer count cannot give it, so if it is a count it must be a measure (a weight or a volume ratio), not a number of channels.
 Not established: that any of these can be derived; nothing here shows κ = ½ is anything but fitted.
+
+## 7. The ½ as a slope, and five structural origins that all say ½ at d = 3 (`p05`, 7/7)
+With s = c√(Gρ_Λ) and p = g/s, the interpolation function μ = 1 - (1-p)^N has μ'(0) = N, so a₀ = s/N. The natural, no-free-factor crossover is the Rindler distance
+c²/g = R* = c/√(Gρ_Λ): κ = 1, Z = √(8π/3) = 2.894 (the repo's "forced kernel"). The framework's ½ is N = 2. Read this way the literature coefficients are all "the forced kernel
+times about two": Milgrom 2π is N = 2.17, Verlinde 6 is N = 2.07, √(32π/3) is exactly N = 2, and the Nariai-shell 3√3 is N = 1.80. So the robust content is a factor of about 2,
+with the fine value (5.79, 6, 6.28) inside the data's 10%.
+Five natural structural origins of that 2 all give exactly ½ at d = 3 and different values elsewhere: two static response channels (½ for every d), the Tolman count d-1
+(1/(d-1)), the D-dimensional Schwarzschild surface gravity ((d-2)/2), the enthalpy premise ((2/3)d/(d+1)), and the fixed-Z rigidity form (√(3/(2d(d-1)))). At d = 4 they range
+from 0.33 to 1.00. So d = 3 alone cannot tell which, if any, is the real origin, and agreement of several rational functions at one point is weak evidence (many functions equal ½ at 3).
+That is the sharpest statement of the open problem I can make: find a principle for the 2 (a channel count, a horizon count, an enthalpy, a normalisation), and check it in a second dimension.
