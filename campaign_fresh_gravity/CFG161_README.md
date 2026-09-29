@@ -63,3 +63,27 @@
 - VELA's applicability to either sample.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## After CFG167's independent re-derivation (appended 2026-09-29; the text above is unchanged)
+
+- **Wording: "lands on the rival" is fragile, and the differential does not choose between the laws. The KURVS lean rests on a calibration and gas region the data cannot fix; it is not a detection either way.**
+- **What reproduces.** CFG167 (7738a1749) is the Opus chat's independent re-derivation. It reproduces every row to 7 × 10⁻⁶ in D, with equal class labels: D = +0.1483 ± 0.0445, D_H = +0.0722, 3.33σ from flat and 1.71σ from the rival.
+- **The label is a sliver.** The observed D is 0.013 (0.29 σ_D) below the "manufactures evolution" edge.
+- **The 3.3σ from flat holds only if the calibration errors are common to the two samples:**
+  - common calibration errors: total z_flat = 2.52;
+  - independent calibration errors: z_flat = 0.83;
+  - the KROSS sub-sample selection alone: 2.05.
+- **KROSS sub-samples.** Over 13 variants, D ranges from +0.025 to +0.213.
+  - Seven variants, including leaving out KURVS-7, leave the ±0.05 window or change class. Dropping KURVS-7 flips the class to "manufactures".
+  - KROSS's RT and RT+ sub-samples differ by 4.2σ: the sample is heterogeneous beyond its statistical error.
+- **Power.** With gas and calibration free (independent errors), the rule labels "lands on the rival" in 11% of flat-truth and 22% of rival-truth trials. It cannot identify the rival at this power.
+- **Absolute levels.** At the common μ = 0.67, the joint χ² of the two anchored levels is 16.5 for the rival and 0.06 for flat.
+  - Flat fits both samples at μ_KROSS ≈ 0.5–0.7 with μ_KURVS ≈ 2.
+  - The rival needs μ_KROSS ≲ 0.3 and μ_KURVS ≈ 0.7–0.75.
+  - With gas free, both laws fit. CFG170 (fdbdcf323) finds the same through the gas ratio.
+- **Label and provenance items (mine):**
+  - The README and the MUTATE text say "velocities × 2", but the code multiplies by 10^0.3. That is 0.5% in V, with no effect.
+  - The script prints "P4 manufactures evolution" on the P0–P3 rows too. The table above labels them correctly.
+  - The sentence "P4 does not manufacture evolution; P1, P2 and P3 do" omits α × 1.4, which manufactures in this README's own table.
+  - The anchor-corrected absolute rows (KURVS +0.144 / −0.006; KROSS −0.004 ± 0.020 / −0.082) were not printed by this lane's committed script. They came from an uncommitted probe. CFG167 reproduces them independently, and CFG170's C2 now prints the KROSS row from a committed script.
+  - This lane's frozen expectation that D "rises by about 0.6 dex" under MUTATE was wrong: the rise is 0.41.

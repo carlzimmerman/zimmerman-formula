@@ -83,3 +83,28 @@
 - the COSMOS half of KURVS.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## After CFG168's independent re-derivation (appended 2026-09-29; the text above is unchanged)
+
+- **Wording: the KURVS lean rests on a calibration and gas region the data cannot fix; it is not a detection either way. On this map, a flat world with more gas looks like a rival world.**
+- **What reproduces.** CFG168 (7c0d1f428) is the Opus chat's independent re-derivation. Every headline row reproduces within its frozen pass lines:
+  - s_mid 0.6693, s_f2 0.7257, s_h2 0.5993;
+  - bootstrap 0.513–0.844;
+  - gas-bracket crossings 0.444 / 1.108 / 2.387;
+  - break-evens 2.109 / 0.621;
+  - the placements 1.422 / 1.617 / 1.688 / 3.001, the counts and the power row.
+- **Corrections:**
+  1. **The break-evens are brentq roots.** They are bracketed on a μ grid of step 0.25 and then solved continuously, so "root-found on a μ grid of step 0.25" misleads. The bracket stops at μ = 4, so P2's flat break-even, printed "> 4", is 6.85 (CFG170 gets 6.845).
+  2. **With P2 included, the flat break-even range is 2.1–6.9 and the rival's 0.6–3.8.** The summary "flat 2.1–3.7, rival 0.6–1.7" covers K21, Dalcanton & Stilp, P3 and Price only.
+  3. **K21 as a band straddles the crossing.**
+     - Kretschmer's ±40% band edge (s = 0.6) lies below s_mid, and 33% of the ten-disc bootstrap resamples have s_mid < 0.6.
+     - With R_e = 2 R_eff, K21 at s = 1 falls to the flat side (s_mid = 1.058).
+     - The other four prescriptions stay above s_mid in every placement variant.
+  4. **The crossing moves at the 0.1 level with:**
+     - the gas-disc scale: +0.138 at 1 R_d, −0.109 at 3 R_d;
+     - the anchor-offset statistic: −0.105 with the median instead of the pooled mean;
+     - which discs are in: jackknife range 0.203;
+     - the velocity scale: −15% and −10% in V move s_mid to 1.03 and 0.91; +26% removes s_h2, and +50% removes the crossing.
+  5. **The region where both laws are within 1σ is empty** (minimum separation 2.24σ).
+  6. **The crossing does not identify the law.** A flat world at (s, μ) = (1, 2.14) and a rival world at (1, 0.65) give the same s_mid distribution.
+- **Label items:** the README's MUTATE says "velocities × 2", but the code uses 10^0.3. The MUTATE printout shows s_mid = nan (cosmetic). C2's wrong asymptotic is already disclosed above.
