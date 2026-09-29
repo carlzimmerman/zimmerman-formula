@@ -1,0 +1,133 @@
+CFG80 -- A LCDM COMPARATOR FOR CFG33 (the SLACS Einstein radii against ATLAS3D dynamics, a lensing-versus-dynamics consistency test inside
+candidate B).  Through CFG33's IDENTICAL pipeline, does a standard LCDM halo show B's lensing-dynamics gap?  SPECIFIC-TO-B, SHARED,
+LCDM-WORSE or NON-DISCRIMINATING?
+
+Criteria frozen and committed before this script existed and before any LCDM prediction for these data: campaign_fresh_gravity/
+CFG80_FROZEN_CRITERIA.md (commit fe0c1c040).  kappa = 1/2 is FITTED for B; nothing is tuned; nothing here says the data favour B or LCDM,
+and nothing says the theory is closed.
+
+IDENTICAL TO CFG33 (exec'd READ-ONLY with CFG69's exec_prefix pattern, a read-only open, its MUTATE forced off): h53's 70 SLACS lenses
+(R_E; h53's M_E = pi R_E^2 Sigma_crit in Auger's cosmology; Auger's Salpeter f_* and M_Salp; the SDSS dispersion); h9's ATLAS3D sample
+(258, of which 187 have JAM quality >= 1); log alpha_dyn fitted linearly in (log sigma_e - 2.3) and evaluated at each lens's dispersion; the
+median statistic; 2000 bootstrap resamples (lenses and calibration set, the fit redone); the 0.10-dex floor.  B's four cells come from it.
+
+THE LCDM MODEL (declared once; CFG69's "base"): stars alpha x the lane's Salpeter mass (lens: projected alpha f_*,Salp M_E, Auger's measured
+fraction; ATLAS3D: half the stars inside r_1/2) plus (1 - f_b) M_NFW.  M_h = h48's Moster+2013 halo_mass(M_*) (via CFG45's exec, as CFG69)
+at the stellar mass the model solves for, M_* = alpha M_Salp (CFG69's tie).  Duffy+2008 full 200c at z = 0 (rho_c(z = 0), H0 = 67.4:
+h48's RHO_C).  c_duffy_full, c_duffy_relaxed, c_dm, _m_nfw, make_nfw and jam_mass_lcdm are copied verbatim from CFG69.  Lensing uses the
+analytic untruncated projected NFW mass (Bartelmann 1996 / Wright & Brainerd 2000).  Newtonian; no adiabatic contraction and no SHMR
+scatter (both untested).  LCDM has no a0: one set of numbers serves both footings, and (no contraction) its V and I rows are identical by
+construction.
+  lens   kappa_bar(alpha) = alpha f_* + (1 - f_b) M_2D,NFW(<R_E; M_h(alpha M_Salp)) / M_E = 1, solved in log M_* in [8, 13.5]
+  JAM    0.5 M_* + (1 - f_b) M_NFW(<r_1/2; M_h(M_*)) = M_JAM / 2, log M_* in [8, 13.5] (CFG69's jam_mass_lcdm)
+  no root in the bracket -> the system is excluded and counted (as CFG69 does for SLUGGS).
+
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  CFG33's committed B numbers reproduced through this exec, to its printed precision (its four H2 lines verbatim in the
+               committed .out; the JSON within half a printed unit); and the generic estimator used for LCDM reproduces B's four differences
+               and bootstrap errors to 1e-12 with CFG33's seed and draw order.
+  C2  CONTROL  make_nfw: M(<R_200c) = M_h to 1e-12 (three c relations, M_h 1e9-1e17.5), monotone; the copied functions are CFG69's source
+               text; RHO_C = 3 H0^2 / (8 pi G) at H0 = 67.4 (z = 0) to 1e-12.
+  C3  CONTROL  the analytic projected NFW mass equals a direct numerical projection of the 3D NFW density (shells into the cylinder; the
+               line-of-sight Sigma integrated over the disc) to 1e-4.
+  C4  CONTROL  solve residuals 1e-9 (kappa_bar = 1; M(<r_1/2) = M_JAM / 2); halo off -> alpha_lens = 1 / f_*, alpha_dyn = M_JAM / M_Salp to
+               1e-9; the halo only lowers alpha.
+  C5  MUTATE WITNESS  the halo mass entering every base solve is the Moster value of its stellar mass (ratio 1 to 1e-12): passes in the main
+               run and FAILS under MUTATE by construction (ratio 100).  It guarantees rc = 1 and a different failing set under MUTATE; it
+               says nothing about whether the science responds.
+  H1  [HEADLINE] LCDM PASSES CFG33's GATE: H1a >= 35 of 70 lenses solved; H1b >= 94 of 187 calibration galaxies calibrated; H1c |Delta| <=
+               2 sigma_tot (bootstrap + 0.10 dex).  Outcome PASS / FAIL+ / FAIL- / UNFIT.  PASS -> SPECIFIC-TO-B; FAIL+ (B's sign) -> SHARED;
+               FAIL- -> LCDM-WORSE; UNFIT -> no class.
+  C6  (load-bearing in the MUTATE run only; R6 in the main run) the gate outcome changes when every M_h is x 100 (both multipliers
+               computed in-process in every run); unchanged -> NON-DISCRIMINATING.
+  R1-R7 (reported) the statistical-only z and class; B - LCDM (paired bootstrap); the variants V1 Dutton-Maccio c, V2 Duffy relaxed, V3 / V4
+               every M_h x 1/3, x 3; CFG33's dispersion bins and the slopes; diagnostics (M_h, dark fractions, the Moster-grid clamp,
+               make_nfw's inner clip, exclusions); the x 100 gate (C6 / R6); the 5 R_200 saturation of the projection.
+MUTATE=1: every LCDM halo mass x 100 (base and variants, lenses and ATLAS3D; B not mutated) -- rc = 1 (C5); C6 asks whether H1's outcome
+changes.
+
+  exec'd read-only: CFG45's prefix (f_b 0.1571; rho_c(z = 0) 1.2605e+11 Msun/Mpc^3; Moster grid top log M_* 11.969); CFG33 up to its reported rows: 70 lenses, 258 ATLAS3D, 187 with JAM quality >= 1 (H1a needs >= 35, H1b >= 94)   (6 s)
+
+======================================================================================================================
+C1  CONTROL: CFG33's committed B numbers through this script's exec of its pipeline (printed precision); the generic estimator
+======================================================================================================================
+    canonical V: median log alpha_lens +0.090 (x1.23 Salpeter); alpha_dyn at the lenses' dispersions -0.064 (x0.86); difference +0.159 +- 0.021 (stat) -> +1.56 sigma with the 0.1 dex floor (+7.6 without)
+    canonical I: median log alpha_lens +0.103 (x1.27 Salpeter); alpha_dyn at the lenses' dispersions -0.064 (x0.86); difference +0.171 +- 0.022 (stat) -> +1.68 sigma with the 0.1 dex floor (+7.8 without)
+    alt       V: median log alpha_lens +0.078 (x1.20 Salpeter); alpha_dyn at the lenses' dispersions -0.073 (x0.85); difference +0.152 +- 0.022 (stat) -> +1.49 sigma with the 0.1 dex floor (+6.9 without)
+    alt       I: median log alpha_lens +0.094 (x1.24 Salpeter); alpha_dyn at the lenses' dispersions -0.073 (x0.85); difference +0.168 +- 0.022 (stat) -> +1.64 sigma with the 0.1 dex floor (+7.5 without)
+  [PASS] C1 CONTROL: CFG33's committed B numbers reproduced through this exec to its printed precision (alpha_lens, alpha_dyn at the lenses' dispersions, the difference +- stat, z with and without the floor; four cells), and the generic estimator used for LCDM reproduces B's four differences and bootstrap errors to 1e-12 (CFG33's seed and draw order)
+         the four H2 lines rebuilt from the exec appear verbatim in the committed .out: True; max |exec - committed JSON|: lens_med 0.0e+00, dyn_at_lens 0.0e+00, delta 0.0e+00, err 0.0e+00, tot 0.0e+00, z 0.0e+00, z_nofloor 0.0e+00; generic estimator vs CFG33 (difference and bootstrap error): max dev 0.0e+00
+
+======================================================================================================================
+C2  CONTROL: the NFW profile (M(<R_200c) = M_h), the verbatim copies from CFG69, rho_c at z = 0
+======================================================================================================================
+  [PASS] C2 CONTROL: make_nfw gives M(<R_200c) = M_h to 1e-12 (Duffy full / relaxed / Dutton-Maccio c, M_h 1e9-1e17.5), monotone; the copied functions are CFG69's source text; RHO_C is rho_c(z = 0) at H0 = 67.4 in h48's constants to 1e-12
+         max |M(<R200)/M_h - 1| 2.2e-16; monotone True; verbatim: c_duffy_full True, c_duffy_relaxed True, c_dm True, _m_nfw True, make_nfw True, jam_mass_lcdm True; RHO_C 1.260474e+11 vs 1.260474e+11 Msun/Mpc^3 (dev 0.0e+00)
+
+======================================================================================================================
+C3  CONTROL: the analytic projected NFW mass against a direct numerical projection of the 3D density
+======================================================================================================================
+  [PASS] C3 CONTROL: the analytic projected NFW mass (Bartelmann 1996 / Wright & Brainerd 2000, untruncated) equals a direct numerical projection of the 3D NFW density to 1e-4 (shells into the cylinder; the line-of-sight Sigma integrated over the disc)
+         177 points (3 c relations x [8 masses 1e10-1e17 x 7 radii 0.3-100 kpc + 3 at X = 1 exactly]; X 7.3e-05 to 2.9e+01): max |analytic / shells - 1| 2.4e-15; max |analytic / line of sight - 1| 5.4e-13
+
+======================================================================================================================
+THE LCDM ENGINE: every configuration through CFG33's lenses and ATLAS3D calibration set
+======================================================================================================================
+    base: Moster + Duffy full 200c (THE declared LCDM)   (M_h x 1): lenses solved 70/70, calibrated 187/187; median log alpha_lens -0.087 (x0.82); alpha_dyn at the lenses' dispersions -0.117 (x0.76); Delta +0.037 +- 0.025 (stat) -> +0.36 sigma with the floor (+1.5 without); outcome PASS
+    V1 Moster + Dutton-Maccio c                          (M_h x 1): lenses solved 70/70, calibrated 187/187; median log alpha_lens -0.132 (x0.74); alpha_dyn at the lenses' dispersions -0.139 (x0.73); Delta +0.011 +- 0.027 (stat) -> +0.10 sigma with the floor (+0.4 without); outcome PASS
+    V2 Moster + Duffy relaxed 200c                       (M_h x 1): lenses solved 70/70, calibrated 187/187; median log alpha_lens -0.116 (x0.77); alpha_dyn at the lenses' dispersions -0.130 (x0.74); Delta +0.019 +- 0.026 (stat) -> +0.19 sigma with the floor (+0.7 without); outcome PASS
+    V3 base, every M_h x 1/3                             (M_h x 0.333333): lenses solved 70/70, calibrated 187/187; median log alpha_lens -0.022 (x0.95); alpha_dyn at the lenses' dispersions -0.098 (x0.80); Delta +0.075 +- 0.022 (stat) -> +0.73 sigma with the floor (+3.4 without); outcome PASS
+    V4 base, every M_h x 3                               (M_h x 3): lenses solved 70/70, calibrated 187/187; median log alpha_lens -0.170 (x0.68); alpha_dyn at the lenses' dispersions -0.139 (x0.73); Delta -0.033 +- 0.027 (stat) -> -0.31 sigma with the floor (-1.2 without); outcome PASS
+    base with every M_h x 100 (in-process; C6 / R6)      (M_h x 100): lenses solved 70/70, calibrated 187/187; median log alpha_lens -0.533 (x0.29); alpha_dyn at the lenses' dispersions -0.233 (x0.58); Delta -0.294 +- 0.052 (stat) -> -2.61 sigma with the floor (-5.6 without); outcome FAIL-
+    (LCDM has no a0: these numbers serve both footings; without adiabatic contraction the stellar profile does not enter, so V = I)
+    B (CFG33, exec'd): canonical V +0.159 +- 0.021 (+1.56 sigma with the floor, +7.6 stat); canonical I +0.171 +- 0.022 (+1.68 sigma with the floor, +7.8 stat); alt V +0.152 +- 0.022 (+1.49 sigma with the floor, +6.9 stat); alt I +0.168 +- 0.022 (+1.64 sigma with the floor, +7.5 stat)   (8 s)
+
+======================================================================================================================
+C4  CONTROL: the solves (residuals; the halo switched off; the halo only adds mass)
+======================================================================================================================
+  [PASS] C4 CONTROL: the solves -- kappa_bar(alpha_lens) = 1 and M(<r_1/2) = M_JAM / 2 to 1e-9; with the halo switched off alpha_lens = 1 / f_* and alpha_dyn = M_JAM / M_Salp to 1e-9 at every system; the halo only lowers alpha (it adds mass, never removes it)
+         max residual: lenses 5.2e-13 (70 solved), ATLAS3D 5.1e-13 (258 solved of 258); halo off: all solved True, max dev 2.9e-15 (lenses) / 0.0e+00 (ATLAS3D); alpha_LCDM <= the stars-only value everywhere: True
+
+======================================================================================================================
+C5  MUTATE WITNESS: the halo mass entering every base-model solve is the declared Moster value of its stellar mass
+======================================================================================================================
+  [PASS] C5 MUTATE WITNESS: the halo mass entering every base-model solve (lens and JAM) equals halo_mass(M_*) of that solve's stellar mass to 1e-12 -- passes in the main run and FAILS under MUTATE by construction (ratio 100); it guarantees rc = 1 and a failing set different from the main run's, and says nothing about whether the science responds
+         max |M_h entering / halo_mass(M_*) - 1| = 0.0e+00 over 257 solves
+
+======================================================================================================================
+H1  THE HEADLINE: CFG33's gate applied to the LCDM halo, through the identical pipeline
+======================================================================================================================
+  [PASS] H1 [HEADLINE] LCDM PASSES CFG33's GATE through the identical pipeline: H1a >= 35 of 70 lenses solved; H1b >= 94 of 187 calibration galaxies calibrated; H1c |Delta_LCDM| <= 2 sigma_tot (bootstrap + the 0.10-dex floor)
+         H1a 70/70 (pass); H1b 187/187 (pass); H1c Delta +0.037 +- 0.103 dex -> +0.36 sigma (pass); outcome PASS
+
+======================================================================================================================
+C6 / R6  DOES THE GATE SEE THE HALO?  the outcome with every M_h x 1 against x 100 (both computed in-process)
+======================================================================================================================
+  [PASS] (reported) C6 (load-bearing in the MUTATE run only; R6 in the main run) the LCDM gate outcome changes when every M_h is multiplied by 100; unchanged -> NON-DISCRIMINATING
+         x 1: PASS (Delta +0.037, +0.36 sigma); x 100: FAIL- (Delta -0.294, -2.61 sigma, 70/70 lenses, 187/187 calibrated); Delta moves -0.331 dex -> changed: the gate sees the halo mass
+
+======================================================================================================================
+THE CLASSIFICATION (reported): the declared model (x 1), with the x 100 test
+======================================================================================================================
+  [PASS] (reported) CLASS (reported) B's gap under CFG69's classes (floor-inclusive z; B's sign +): SPECIFIC-TO-B / SHARED / LCDM-WORSE, overridden by NON-DISCRIMINATING if the x 100 outcome is unchanged
+         B (CFG33): canonical V +0.159 (+1.56 / +7.6 stat); canonical I +0.171 (+1.68 / +7.8 stat); alt V +0.152 (+1.49 / +6.9 stat); alt I +0.168 (+1.64 / +7.5 stat) | LCDM x 1 (both footings, V = I): +0.037 (+0.36 / +1.5 stat), outcome PASS -> three-way SPECIFIC-TO-B; x 100 outcome FAIL- -> FINAL: SPECIFIC-TO-B
+
+======================================================================================================================
+R1-R7  REPORTED
+======================================================================================================================
+  [PASS] (reported) R1 (reported) LCDM's statistical-only z and the class it would give (NOT the classification)
+         Delta +0.037 +- 0.025 (stat) -> +1.5 sigma; class under the statistical z: SPECIFIC-TO-B
+  [PASS] (reported) R2 (reported) B minus LCDM per B cell (dex), paired bootstrap (the same 2000 resamples for both models; statistical only -- the floor's zero-point shift moves both alphas almost equally and is not added)
+         canonical V +0.122 +- 0.016 (+7.8 sigma); canonical I +0.135 +- 0.017 (+8.0 sigma); alt V +0.115 +- 0.015 (+7.5 sigma); alt I +0.132 +- 0.016 (+8.1 sigma)
+  [PASS] (reported) R3 (reported) the declared variants (not tuned): V1 Dutton-Maccio c; V2 Duffy relaxed 200c; V3 / V4 every M_h x 1/3 and x 3
+         V1: Delta +0.011 +- 0.027 -> +0.10 sigma (+0.4 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B); V2: Delta +0.019 +- 0.026 -> +0.19 sigma (+0.7 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B); V3: Delta +0.075 +- 0.022 -> +0.73 sigma (+3.4 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B); V4: Delta -0.033 +- 0.027 -> -0.31 sigma (-1.2 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B)
+  [PASS] (reported) R4 (reported) LCDM's alpha_lens and alpha_dyn in CFG33's dispersion bins; LCDM's dynamics slope (CFG33 H3's analogue) and the lenses' slope
+         log sigma 2.20-2.35: lenses 23 x0.81, ATLAS3D 61 x0.80; log sigma 2.35-2.45: lenses 33 x0.84, ATLAS3D 14 x0.76; log sigma 2.45-2.60: too few; d log alpha_dyn / d log sigma_e -0.066 +- 0.079 (-0.8 sigma; B canonical: +0.204 +- 0.076); lens slope -0.02 (B canonical V: +0.45)
+  [PASS] (reported) R5 (reported) diagnostics at the base solution: halo masses, dark fractions, the Moster-grid clamp, make_nfw's inner clip, exclusions
+         median log M_h: lenses 14.36 (range 12.51-15.50), calibration set 12.13; median projected dark fraction inside R_E 0.42; median 3D dark fraction inside r_1/2 0.12; stellar masses above the Moster grid (M_* > 10^11.97, M_h clamped): 1 lenses, 0 calibration galaxies; make_nfw's inner clip active at 0 calibration galaxies; excluded: 0 lenses (0 halo-overshoot), 0 calibration galaxies (0 halo-overshoot)
+  [PASS] (reported) R7 (reported) the projected halo with the line of sight saturated at 5 R_200 (make_nfw's outer clip) against the untruncated analytic form, at each lens's R_E and base solution
+         max relative difference in the halo's M_2D 3.2e-04; max |Delta kappa_bar| 2.0e-04
+
+    READING (declared; the declared model at x 1): SPECIFIC-TO-B -- a standard NFW halo shows no lensing-dynamics gap at > 2 sigma (with the floor) through CFG33's pipeline; B's statistical gap is a property of B's law (its projected phantom at R_E is small next to what the law supplies inside r_1/2), not of the pipeline, the two surveys' zero points, the aperture or the redshift difference.  B itself is within 2 sigma with the floor, so this is a statement about the statistical gap; R1 and R2 say how much of it LCDM shares
+
+  14/14 checks pass; load-bearing failures: 0   (9 s)

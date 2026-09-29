@@ -1,0 +1,2082 @@
+{
+ "slug": "CFG80_lcdm_slacs",
+ "summary": {
+  "n_checks": 14,
+  "n_pass": 14,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 8.8
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: CFG33's committed B numbers reproduced through this exec to its printed precision (alpha_lens, alpha_dyn at the lenses' dispersions, the difference +- stat, z with and without the floor; four cells), and the generic estimator used for LCDM reproduces B's four differences and bootstrap errors to 1e-12 (CFG33's seed and draw order)",
+   "detail": "the four H2 lines rebuilt from the exec appear verbatim in the committed .out: True; max |exec - committed JSON|: lens_med 0.0e+00, dyn_at_lens 0.0e+00, delta 0.0e+00, err 0.0e+00, tot 0.0e+00, z 0.0e+00, z_nofloor 0.0e+00; generic estimator vs CFG33 (difference and bootstrap error): max dev 0.0e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: make_nfw gives M(<R_200c) = M_h to 1e-12 (Duffy full / relaxed / Dutton-Maccio c, M_h 1e9-1e17.5), monotone; the copied functions are CFG69's source text; RHO_C is rho_c(z = 0) at H0 = 67.4 in h48's constants to 1e-12",
+   "detail": "max |M(<R200)/M_h - 1| 2.2e-16; monotone True; verbatim: c_duffy_full True, c_duffy_relaxed True, c_dm True, _m_nfw True, make_nfw True, jam_mass_lcdm True; RHO_C 1.260474e+11 vs 1.260474e+11 Msun/Mpc^3 (dev 0.0e+00)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the analytic projected NFW mass (Bartelmann 1996 / Wright & Brainerd 2000, untruncated) equals a direct numerical projection of the 3D NFW density to 1e-4 (shells into the cylinder; the line-of-sight Sigma integrated over the disc)",
+   "detail": "177 points (3 c relations x [8 masses 1e10-1e17 x 7 radii 0.3-100 kpc + 3 at X = 1 exactly]; X 7.3e-05 to 2.9e+01): max |analytic / shells - 1| 2.4e-15; max |analytic / line of sight - 1| 5.4e-13",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 CONTROL: the solves -- kappa_bar(alpha_lens) = 1 and M(<r_1/2) = M_JAM / 2 to 1e-9; with the halo switched off alpha_lens = 1 / f_* and alpha_dyn = M_JAM / M_Salp to 1e-9 at every system; the halo only lowers alpha (it adds mass, never removes it)",
+   "detail": "max residual: lenses 5.2e-13 (70 solved), ATLAS3D 5.1e-13 (258 solved of 258); halo off: all solved True, max dev 2.9e-15 (lenses) / 0.0e+00 (ATLAS3D); alpha_LCDM <= the stars-only value everywhere: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 MUTATE WITNESS: the halo mass entering every base-model solve (lens and JAM) equals halo_mass(M_*) of that solve's stellar mass to 1e-12 -- passes in the main run and FAILS under MUTATE by construction (ratio 100); it guarantees rc = 1 and a failing set different from the main run's, and says nothing about whether the science responds",
+   "detail": "max |M_h entering / halo_mass(M_*) - 1| = 0.0e+00 over 257 solves",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] LCDM PASSES CFG33's GATE through the identical pipeline: H1a >= 35 of 70 lenses solved; H1b >= 94 of 187 calibration galaxies calibrated; H1c |Delta_LCDM| <= 2 sigma_tot (bootstrap + the 0.10-dex floor)",
+   "detail": "H1a 70/70 (pass); H1b 187/187 (pass); H1c Delta +0.037 +- 0.103 dex -> +0.36 sigma (pass); outcome PASS",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C6 (load-bearing in the MUTATE run only; R6 in the main run) the LCDM gate outcome changes when every M_h is multiplied by 100; unchanged -> NON-DISCRIMINATING",
+   "detail": "x 1: PASS (Delta +0.037, +0.36 sigma); x 100: FAIL- (Delta -0.294, -2.61 sigma, 70/70 lenses, 187/187 calibrated); Delta moves -0.331 dex -> changed: the gate sees the halo mass",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "CLASS (reported) B's gap under CFG69's classes (floor-inclusive z; B's sign +): SPECIFIC-TO-B / SHARED / LCDM-WORSE, overridden by NON-DISCRIMINATING if the x 100 outcome is unchanged",
+   "detail": "B (CFG33): canonical V +0.159 (+1.56 / +7.6 stat); canonical I +0.171 (+1.68 / +7.8 stat); alt V +0.152 (+1.49 / +6.9 stat); alt I +0.168 (+1.64 / +7.5 stat) | LCDM x 1 (both footings, V = I): +0.037 (+0.36 / +1.5 stat), outcome PASS -> three-way SPECIFIC-TO-B; x 100 outcome FAIL- -> FINAL: SPECIFIC-TO-B",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R1 (reported) LCDM's statistical-only z and the class it would give (NOT the classification)",
+   "detail": "Delta +0.037 +- 0.025 (stat) -> +1.5 sigma; class under the statistical z: SPECIFIC-TO-B",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) B minus LCDM per B cell (dex), paired bootstrap (the same 2000 resamples for both models; statistical only -- the floor's zero-point shift moves both alphas almost equally and is not added)",
+   "detail": "canonical V +0.122 +- 0.016 (+7.8 sigma); canonical I +0.135 +- 0.017 (+8.0 sigma); alt V +0.115 +- 0.015 (+7.5 sigma); alt I +0.132 +- 0.016 (+8.1 sigma)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported) the declared variants (not tuned): V1 Dutton-Maccio c; V2 Duffy relaxed 200c; V3 / V4 every M_h x 1/3 and x 3",
+   "detail": "V1: Delta +0.011 +- 0.027 -> +0.10 sigma (+0.4 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B); V2: Delta +0.019 +- 0.026 -> +0.19 sigma (+0.7 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B); V3: Delta +0.075 +- 0.022 -> +0.73 sigma (+3.4 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B); V4: Delta -0.033 +- 0.027 -> -0.31 sigma (-1.2 stat), 70/70 lenses, 187/187 calibrated, outcome PASS (SPECIFIC-TO-B)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported) LCDM's alpha_lens and alpha_dyn in CFG33's dispersion bins; LCDM's dynamics slope (CFG33 H3's analogue) and the lenses' slope",
+   "detail": "log sigma 2.20-2.35: lenses 23 x0.81, ATLAS3D 61 x0.80; log sigma 2.35-2.45: lenses 33 x0.84, ATLAS3D 14 x0.76; log sigma 2.45-2.60: too few; d log alpha_dyn / d log sigma_e -0.066 +- 0.079 (-0.8 sigma; B canonical: +0.204 +- 0.076); lens slope -0.02 (B canonical V: +0.45)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported) diagnostics at the base solution: halo masses, dark fractions, the Moster-grid clamp, make_nfw's inner clip, exclusions",
+   "detail": "median log M_h: lenses 14.36 (range 12.51-15.50), calibration set 12.13; median projected dark fraction inside R_E 0.42; median 3D dark fraction inside r_1/2 0.12; stellar masses above the Moster grid (M_* > 10^11.97, M_h clamped): 1 lenses, 0 calibration galaxies; make_nfw's inner clip active at 0 calibration galaxies; excluded: 0 lenses (0 halo-overshoot), 0 calibration galaxies (0 halo-overshoot)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R7 (reported) the projected halo with the line of sight saturated at 5 R_200 (make_nfw's outer clip) against the untruncated analytic form, at each lens's R_E and base solution",
+   "detail": "max relative difference in the halo's M_2D 3.2e-04; max |Delta kappa_bar| 2.0e-04",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "B_cfg33": {
+   "canonical|V": {
+    "delta": 0.15895861350810658,
+    "err": 0.020976010326490532,
+    "tot": 0.10217628398614347,
+    "z": 1.5557290528364058,
+    "z_nofloor": 7.57811476224143,
+    "lens_med": 0.08991213758060541,
+    "dyn_at_lens": -0.06445679535211019
+   },
+   "canonical|I": {
+    "delta": 0.17149660469348932,
+    "err": 0.021852753329150897,
+    "tot": 0.10235986922649284,
+    "z": 1.6754281339888861,
+    "z_nofloor": 7.847825951740285,
+    "lens_med": 0.10310642309394227,
+    "dyn_at_lens": -0.06445679535211019
+   },
+   "alt|V": {
+    "delta": 0.15220562260945109,
+    "err": 0.022046263571124693,
+    "tot": 0.10240135613090044,
+    "z": 1.4863633486932093,
+    "z_nofloor": 6.903919211453313,
+    "lens_med": 0.07813551301331129,
+    "dyn_at_lens": -0.07285461069186983
+   },
+   "alt|I": {
+    "delta": 0.1684717606319623,
+    "err": 0.0223763259261816,
+    "tot": 0.10247292306728986,
+    "z": 1.6440612367555245,
+    "z_nofloor": 7.529017998206782,
+    "lens_med": 0.0942983043410073,
+    "dyn_at_lens": -0.07285461069186983
+   }
+  },
+  "C1": {
+   "lines_ok": true,
+   "json_dev": {
+    "lens_med": 0.0,
+    "dyn_at_lens": 0.0,
+    "delta": 0.0,
+    "err": 0.0,
+    "tot": 0.0,
+    "z": 0.0,
+    "z_nofloor": 0.0
+   },
+   "generic_dev": 0.0
+  },
+  "C2": {
+   "dev_r200": 2.220446049250313e-16,
+   "monotone": true,
+   "verbatim": {
+    "c_duffy_full": true,
+    "c_duffy_relaxed": true,
+    "c_dm": true,
+    "_m_nfw": true,
+    "make_nfw": true,
+    "jam_mass_lcdm": true
+   },
+   "rho_c": 126047403287.70271,
+   "dev_rho": 0.0
+  },
+  "C3": {
+   "n": 177,
+   "dev_shells": 2.4424906541753444e-15,
+   "dev_los": 5.400124791776761e-13,
+   "X_range": [
+    7.266422077101933e-05,
+    29.2094146004795
+   ]
+  },
+  "C4": {
+   "res_lens": 5.160316618457728e-13,
+   "res_jam": 5.127009927718973e-13,
+   "zero_all": true,
+   "zero_dev_lens": 2.886579864025407e-15,
+   "zero_dev_jam": 0.0,
+   "adds": true
+  },
+  "C5_witness": {
+   "dev": 0.0,
+   "n": 257,
+   "hmut": 1.0
+  },
+  "lcdm_this_run": {
+   "base": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.03694265143353024,
+    "err": 0.02487343601267112,
+    "tot": 0.10304701751664842,
+    "z": 0.35850286911566104,
+    "z_stat": 1.4852250977593435,
+    "slope": -0.0663891162928391,
+    "slope_err": 0.07895857309766369,
+    "lens_med": -0.0870247272681883,
+    "dyn_at_lens": -0.11655000931012821,
+    "outcome": "PASS",
+    "hmf": 1.0
+   },
+   "V1": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.010710534070227207,
+    "err": 0.02658748773280934,
+    "tot": 0.10347412480394452,
+    "z": 0.10350929848907417,
+    "z_stat": 0.40284114760531714,
+    "slope": -0.036893901615595484,
+    "slope_err": 0.08282969648607098,
+    "lens_med": -0.13201658301291183,
+    "dyn_at_lens": -0.13858778998406146,
+    "outcome": "PASS",
+    "hmf": 1.0
+   },
+   "V2": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.019415212330951913,
+    "err": 0.026070631767726497,
+    "tot": 0.10334252677754881,
+    "z": 0.18787243680178597,
+    "z_stat": 0.7447158359616932,
+    "slope": -0.056499451075830424,
+    "slope_err": 0.08102431830865074,
+    "lens_med": -0.11607259188205973,
+    "dyn_at_lens": -0.1300797729217124,
+    "outcome": "PASS",
+    "hmf": 1.0
+   },
+   "V3": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.07475675191813361,
+    "err": 0.022127518089150113,
+    "tot": 0.10241888037264256,
+    "z": 0.7299118253015205,
+    "z_stat": 3.378451736744458,
+    "slope": -0.06781101743253087,
+    "slope_err": 0.07673907925064044,
+    "lens_med": -0.02220797779333504,
+    "dyn_at_lens": -0.09799408291006112,
+    "outcome": "PASS",
+    "hmf": 0.3333333333333333
+   },
+   "V4": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": -0.03254020900567679,
+    "err": 0.027126517960628708,
+    "tot": 0.10361393717385858,
+    "z": -0.31405243245487413,
+    "z_stat": -1.1995719116218857,
+    "slope": -0.059568576118242775,
+    "slope_err": 0.08313547818865659,
+    "lens_med": -0.1695460851290917,
+    "dyn_at_lens": -0.1390104607409924,
+    "outcome": "PASS",
+    "hmf": 3.0
+   }
+  },
+  "lcdm_other": {
+   "n_lens": 70,
+   "n_cal": 187,
+   "delta": -0.2938741814957654,
+   "err": 0.05219250261667431,
+   "tot": 0.11280096333538804,
+   "z": -2.605245317116639,
+   "z_stat": -5.630582301333819,
+   "slope": 0.13324376809901145,
+   "slope_err": 0.142472272194172,
+   "lens_med": -0.5329876911243776,
+   "dyn_at_lens": -0.23331203760976238,
+   "outcome": "FAIL-",
+   "hmf": 100.0
+  },
+  "lcdm_x1": {
+   "n_lens": 70,
+   "n_cal": 187,
+   "delta": 0.03694265143353024,
+   "err": 0.02487343601267112,
+   "tot": 0.10304701751664842,
+   "z": 0.35850286911566104,
+   "z_stat": 1.4852250977593435,
+   "slope": -0.0663891162928391,
+   "slope_err": 0.07895857309766369,
+   "lens_med": -0.0870247272681883,
+   "dyn_at_lens": -0.11655000931012821,
+   "outcome": "PASS"
+  },
+  "lcdm_x100": {
+   "n_lens": 70,
+   "n_cal": 187,
+   "delta": -0.2938741814957654,
+   "err": 0.05219250261667431,
+   "tot": 0.11280096333538804,
+   "z": -2.605245317116639,
+   "z_stat": -5.630582301333819,
+   "slope": 0.13324376809901145,
+   "slope_err": 0.142472272194172,
+   "lens_med": -0.5329876911243776,
+   "dyn_at_lens": -0.23331203760976238,
+   "outcome": "FAIL-"
+  },
+  "class": {
+   "per_cell": {
+    "canonical|V": "SPECIFIC-TO-B",
+    "canonical|I": "SPECIFIC-TO-B",
+    "alt|V": "SPECIFIC-TO-B",
+    "alt|I": "SPECIFIC-TO-B"
+   },
+   "three_way": "SPECIFIC-TO-B",
+   "x100_unchanged": false,
+   "final": "SPECIFIC-TO-B",
+   "stat_only": {
+    "canonical|V": "SPECIFIC-TO-B",
+    "canonical|I": "SPECIFIC-TO-B",
+    "alt|V": "SPECIFIC-TO-B",
+    "alt|I": "SPECIFIC-TO-B"
+   }
+  },
+  "R2_B_minus_LCDM": {
+   "canonical|V": {
+    "diff": 0.12201596207457635,
+    "err": 0.015634408272234664
+   },
+   "canonical|I": {
+    "diff": 0.13455395325995909,
+    "err": 0.016771886167527332
+   },
+   "alt|V": {
+    "diff": 0.11526297117592085,
+    "err": 0.015327575891628175
+   },
+   "alt|I": {
+    "diff": 0.13152910919843205,
+    "err": 0.01632104482819644
+   }
+  },
+  "R3_variants": {
+   "V1": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.010710534070227207,
+    "err": 0.02658748773280934,
+    "tot": 0.10347412480394452,
+    "z": 0.10350929848907417,
+    "z_stat": 0.40284114760531714,
+    "slope": -0.036893901615595484,
+    "slope_err": 0.08282969648607098,
+    "lens_med": -0.13201658301291183,
+    "dyn_at_lens": -0.13858778998406146,
+    "outcome": "PASS",
+    "cls": "SPECIFIC-TO-B"
+   },
+   "V2": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.019415212330951913,
+    "err": 0.026070631767726497,
+    "tot": 0.10334252677754881,
+    "z": 0.18787243680178597,
+    "z_stat": 0.7447158359616932,
+    "slope": -0.056499451075830424,
+    "slope_err": 0.08102431830865074,
+    "lens_med": -0.11607259188205973,
+    "dyn_at_lens": -0.1300797729217124,
+    "outcome": "PASS",
+    "cls": "SPECIFIC-TO-B"
+   },
+   "V3": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": 0.07475675191813361,
+    "err": 0.022127518089150113,
+    "tot": 0.10241888037264256,
+    "z": 0.7299118253015205,
+    "z_stat": 3.378451736744458,
+    "slope": -0.06781101743253087,
+    "slope_err": 0.07673907925064044,
+    "lens_med": -0.02220797779333504,
+    "dyn_at_lens": -0.09799408291006112,
+    "outcome": "PASS",
+    "cls": "SPECIFIC-TO-B"
+   },
+   "V4": {
+    "n_lens": 70,
+    "n_cal": 187,
+    "delta": -0.03254020900567679,
+    "err": 0.027126517960628708,
+    "tot": 0.10361393717385858,
+    "z": -0.31405243245487413,
+    "z_stat": -1.1995719116218857,
+    "slope": -0.059568576118242775,
+    "slope_err": 0.08313547818865659,
+    "lens_med": -0.1695460851290917,
+    "dyn_at_lens": -0.1390104607409924,
+    "outcome": "PASS",
+    "cls": "SPECIFIC-TO-B"
+   }
+  },
+  "R4": {
+   "bins": [
+    "log sigma 2.20-2.35: lenses 23 x0.81, ATLAS3D 61 x0.80",
+    "log sigma 2.35-2.45: lenses 33 x0.84, ATLAS3D 14 x0.76",
+    "log sigma 2.45-2.60: too few"
+   ],
+   "lens_slope": -0.022789056120491077,
+   "lens_slope_B": 0.4542007522850713
+  },
+  "R5": {
+   "med_lMh_lens": 14.362702492097302,
+   "med_fdm_RE": 0.4213555131569454,
+   "med_lMh_cal": 12.13430729483147,
+   "med_fdm_r12": 0.12488608422359211,
+   "n_clamp_lens": 1,
+   "n_clamp_cal": 0,
+   "n_inner_clip": 0,
+   "excluded_lens": 0,
+   "excluded_lens_overshoot": 0,
+   "excluded_cal": 0,
+   "excluded_cal_overshoot": 0,
+   "lMh_lens_range": [
+    12.511745024850633,
+    15.5
+   ]
+  },
+  "R7": {
+   "max_rel": 0.00032404831430710596,
+   "max_dkappa": 0.0002046538279937536
+  },
+  "per_object_base": {
+   "lens": [
+    {
+     "name": "J0008-0004",
+     "alpha_lens": 0.80634345861685,
+     "sig": 193.0
+    },
+    {
+     "name": "J0029-0055",
+     "alpha_lens": 0.6485519946542386,
+     "sig": 229.0
+    },
+    {
+     "name": "J0037-0942",
+     "alpha_lens": 0.7373608865992622,
+     "sig": 279.0
+    },
+    {
+     "name": "J0044+0113",
+     "alpha_lens": 1.2303464300785867,
+     "sig": 266.0
+    },
+    {
+     "name": "J0157-0056",
+     "alpha_lens": 0.6024797109102799,
+     "sig": 295.0
+    },
+    {
+     "name": "J0216-0813",
+     "alpha_lens": 0.6877490214807743,
+     "sig": 333.0
+    },
+    {
+     "name": "J0252+0039",
+     "alpha_lens": 0.8188544889052644,
+     "sig": 164.0
+    },
+    {
+     "name": "J0330-0020",
+     "alpha_lens": 0.7365176527337534,
+     "sig": 212.0
+    },
+    {
+     "name": "J0728+3835",
+     "alpha_lens": 0.5958931708037849,
+     "sig": 214.0
+    },
+    {
+     "name": "J0737+3216",
+     "alpha_lens": 0.5980162467280539,
+     "sig": 338.0
+    },
+    {
+     "name": "J0819+4534",
+     "alpha_lens": 1.1545133145543536,
+     "sig": 225.0
+    },
+    {
+     "name": "J0822+2652",
+     "alpha_lens": 0.7460127937418113,
+     "sig": 259.0
+    },
+    {
+     "name": "J0841+3824",
+     "alpha_lens": 0.9978619257161043,
+     "sig": 225.0
+    },
+    {
+     "name": "J0903+4116",
+     "alpha_lens": 0.5992300589475495,
+     "sig": 223.0
+    },
+    {
+     "name": "J0912+0029",
+     "alpha_lens": 0.8171120196432526,
+     "sig": 326.0
+    },
+    {
+     "name": "J0935-0003",
+     "alpha_lens": 1.3399740320977522,
+     "sig": 396.0
+    },
+    {
+     "name": "J0936+0913",
+     "alpha_lens": 0.6012178118003257,
+     "sig": 243.0
+    },
+    {
+     "name": "J0946+1006",
+     "alpha_lens": 1.0782830012489604,
+     "sig": 263.0
+    },
+    {
+     "name": "J0955+0101",
+     "alpha_lens": 1.3263846145349871,
+     "sig": 192.0
+    },
+    {
+     "name": "J0956+5100",
+     "alpha_lens": 0.8179821212173558,
+     "sig": 334.0
+    },
+    {
+     "name": "J0959+4416",
+     "alpha_lens": 0.6113400360544963,
+     "sig": 244.0
+    },
+    {
+     "name": "J0959+0410",
+     "alpha_lens": 1.0888125416196461,
+     "sig": 197.0
+    },
+    {
+     "name": "J1016+3859",
+     "alpha_lens": 0.8421245981727231,
+     "sig": 247.0
+    },
+    {
+     "name": "J1020+1122",
+     "alpha_lens": 0.6714363054003941,
+     "sig": 282.0
+    },
+    {
+     "name": "J1023+4230",
+     "alpha_lens": 0.8628631816106175,
+     "sig": 242.0
+    },
+    {
+     "name": "J1029+0420",
+     "alpha_lens": 0.6727751457548223,
+     "sig": 210.0
+    },
+    {
+     "name": "J1032+5322",
+     "alpha_lens": 1.0824653804328208,
+     "sig": 296.0
+    },
+    {
+     "name": "J1100+5329",
+     "alpha_lens": 0.656577296804952,
+     "sig": 187.0
+    },
+    {
+     "name": "J1103+5322",
+     "alpha_lens": 0.5554939921320284,
+     "sig": 196.0
+    },
+    {
+     "name": "J1106+5228",
+     "alpha_lens": 0.8417220611900652,
+     "sig": 262.0
+    },
+    {
+     "name": "J1112+0826",
+     "alpha_lens": 0.8250983374012207,
+     "sig": 320.0
+    },
+    {
+     "name": "J1134+6027",
+     "alpha_lens": 0.7841153525021612,
+     "sig": 239.0
+    },
+    {
+     "name": "J1142+1001",
+     "alpha_lens": 0.9057342287116055,
+     "sig": 221.0
+    },
+    {
+     "name": "J1143-0144",
+     "alpha_lens": 1.2703072772777637,
+     "sig": 269.0
+    },
+    {
+     "name": "J1153+4612",
+     "alpha_lens": 0.8395432430601715,
+     "sig": 226.0
+    },
+    {
+     "name": "J1204+0358",
+     "alpha_lens": 0.9298309553413431,
+     "sig": 267.0
+    },
+    {
+     "name": "J1205+4910",
+     "alpha_lens": 0.8485180112493439,
+     "sig": 281.0
+    },
+    {
+     "name": "J1213+6708",
+     "alpha_lens": 0.9899280334382891,
+     "sig": 292.0
+    },
+    {
+     "name": "J1218+0830",
+     "alpha_lens": 0.8466646711818816,
+     "sig": 219.0
+    },
+    {
+     "name": "J1250+0523",
+     "alpha_lens": 0.4756829789342838,
+     "sig": 252.0
+    },
+    {
+     "name": "J1251-0208",
+     "alpha_lens": 0.9093007117858906,
+     "sig": 233.0
+    },
+    {
+     "name": "J1306+0600",
+     "alpha_lens": 1.3113586489870142,
+     "sig": 237.0
+    },
+    {
+     "name": "J1313+4615",
+     "alpha_lens": 0.9639713184186395,
+     "sig": 263.0
+    },
+    {
+     "name": "J1318-0313",
+     "alpha_lens": 0.8718013601923502,
+     "sig": 213.0
+    },
+    {
+     "name": "J1330-0148",
+     "alpha_lens": 1.3221045165960603,
+     "sig": 185.0
+    },
+    {
+     "name": "J1402+6321",
+     "alpha_lens": 0.7495459959660616,
+     "sig": 267.0
+    },
+    {
+     "name": "J1403+0006",
+     "alpha_lens": 0.7681042684455616,
+     "sig": 213.0
+    },
+    {
+     "name": "J1416+5136",
+     "alpha_lens": 0.8135651307847983,
+     "sig": 240.0
+    },
+    {
+     "name": "J1420+6019",
+     "alpha_lens": 0.7292137954534228,
+     "sig": 205.0
+    },
+    {
+     "name": "J1430+4105",
+     "alpha_lens": 0.6944071921801341,
+     "sig": 322.0
+    },
+    {
+     "name": "J1432+6317",
+     "alpha_lens": 0.7949985792724997,
+     "sig": 199.0
+    },
+    {
+     "name": "J1436-0000",
+     "alpha_lens": 0.7253035441472055,
+     "sig": 224.0
+    },
+    {
+     "name": "J1443+0304",
+     "alpha_lens": 0.9281178599031623,
+     "sig": 209.0
+    },
+    {
+     "name": "J1451-0239",
+     "alpha_lens": 0.9095179911375418,
+     "sig": 223.0
+    },
+    {
+     "name": "J1525+3327",
+     "alpha_lens": 0.5405423545594539,
+     "sig": 264.0
+    },
+    {
+     "name": "J1531-0105",
+     "alpha_lens": 0.8126851049486814,
+     "sig": 279.0
+    },
+    {
+     "name": "J1538+5817",
+     "alpha_lens": 0.9115657630924876,
+     "sig": 189.0
+    },
+    {
+     "name": "J1614+4522",
+     "alpha_lens": 0.7345017856255349,
+     "sig": 182.0
+    },
+    {
+     "name": "J1621+3931",
+     "alpha_lens": 0.832525175310199,
+     "sig": 236.0
+    },
+    {
+     "name": "J1627-0053",
+     "alpha_lens": 0.7239633025087459,
+     "sig": 290.0
+    },
+    {
+     "name": "J1630+4520",
+     "alpha_lens": 0.6171825361523363,
+     "sig": 276.0
+    },
+    {
+     "name": "J1636+4707",
+     "alpha_lens": 0.6389201781066691,
+     "sig": 231.0
+    },
+    {
+     "name": "J1644+2625",
+     "alpha_lens": 0.8719330226270701,
+     "sig": 229.0
+    },
+    {
+     "name": "J1719+2939",
+     "alpha_lens": 0.9273389416969225,
+     "sig": 286.0
+    },
+    {
+     "name": "J2238-0754",
+     "alpha_lens": 0.9168330927441525,
+     "sig": 198.0
+    },
+    {
+     "name": "J2300+0022",
+     "alpha_lens": 0.9773952523097578,
+     "sig": 279.0
+    },
+    {
+     "name": "J2303+1422",
+     "alpha_lens": 0.8959510236009669,
+     "sig": 255.0
+    },
+    {
+     "name": "J2321-0939",
+     "alpha_lens": 0.8443603079282155,
+     "sig": 249.0
+    },
+    {
+     "name": "J2341+0000",
+     "alpha_lens": 0.7246634708718371,
+     "sig": 207.0
+    },
+    {
+     "name": "J2347-0005",
+     "alpha_lens": 0.7501017371942716,
+     "sig": 404.0
+    }
+   ],
+   "atlas3d": [
+    {
+     "name": "IC0560",
+     "alpha_dyn": 1.0060484747953002,
+     "q": true
+    },
+    {
+     "name": "IC0598",
+     "alpha_dyn": 1.0364827380614285,
+     "q": true
+    },
+    {
+     "name": "IC0676",
+     "alpha_dyn": 1.3013834539187037,
+     "q": false
+    },
+    {
+     "name": "IC0719",
+     "alpha_dyn": 2.465318918540224,
+     "q": true
+    },
+    {
+     "name": "IC0782",
+     "alpha_dyn": 0.9935497493932286,
+     "q": true
+    },
+    {
+     "name": "IC1024",
+     "alpha_dyn": 2.684706223230479,
+     "q": true
+    },
+    {
+     "name": "IC3631",
+     "alpha_dyn": 0.1355473054574721,
+     "q": false
+    },
+    {
+     "name": "NGC0448",
+     "alpha_dyn": 0.635776574225115,
+     "q": true
+    },
+    {
+     "name": "NGC0474",
+     "alpha_dyn": 0.5398208510706903,
+     "q": true
+    },
+    {
+     "name": "NGC0502",
+     "alpha_dyn": 0.47030000540577666,
+     "q": true
+    },
+    {
+     "name": "NGC0509",
+     "alpha_dyn": 0.7442346576873534,
+     "q": false
+    },
+    {
+     "name": "NGC0516",
+     "alpha_dyn": 0.5632890294568248,
+     "q": true
+    },
+    {
+     "name": "NGC0524",
+     "alpha_dyn": 0.8898127201722842,
+     "q": false
+    },
+    {
+     "name": "NGC0525",
+     "alpha_dyn": 0.8878756884116199,
+     "q": true
+    },
+    {
+     "name": "NGC0661",
+     "alpha_dyn": 1.399795489933139,
+     "q": true
+    },
+    {
+     "name": "NGC0680",
+     "alpha_dyn": 0.8330150031838922,
+     "q": true
+    },
+    {
+     "name": "NGC0770",
+     "alpha_dyn": 0.6042730963077786,
+     "q": false
+    },
+    {
+     "name": "NGC0821",
+     "alpha_dyn": 0.8311195215679188,
+     "q": true
+    },
+    {
+     "name": "NGC0936",
+     "alpha_dyn": 0.7097375067481815,
+     "q": true
+    },
+    {
+     "name": "NGC1023",
+     "alpha_dyn": 0.47292033942434436,
+     "q": true
+    },
+    {
+     "name": "NGC1121",
+     "alpha_dyn": 1.0378331826546696,
+     "q": true
+    },
+    {
+     "name": "NGC1222",
+     "alpha_dyn": 4.273257756492121,
+     "q": false
+    },
+    {
+     "name": "NGC1248",
+     "alpha_dyn": 0.6346943680040776,
+     "q": true
+    },
+    {
+     "name": "NGC1266",
+     "alpha_dyn": 1.3284291889555466,
+     "q": false
+    },
+    {
+     "name": "NGC1289",
+     "alpha_dyn": 0.8489509309262085,
+     "q": true
+    },
+    {
+     "name": "NGC1665",
+     "alpha_dyn": 0.5801879517422561,
+     "q": true
+    },
+    {
+     "name": "NGC2481",
+     "alpha_dyn": 0.9171544145358933,
+     "q": true
+    },
+    {
+     "name": "NGC2549",
+     "alpha_dyn": 1.1037428753238907,
+     "q": true
+    },
+    {
+     "name": "NGC2577",
+     "alpha_dyn": 1.1225427574891027,
+     "q": true
+    },
+    {
+     "name": "NGC2592",
+     "alpha_dyn": 1.1169007719794188,
+     "q": true
+    },
+    {
+     "name": "NGC2594",
+     "alpha_dyn": 0.9449456727726493,
+     "q": true
+    },
+    {
+     "name": "NGC2679",
+     "alpha_dyn": 0.4561836867940829,
+     "q": false
+    },
+    {
+     "name": "NGC2685",
+     "alpha_dyn": 0.5825141318804139,
+     "q": true
+    },
+    {
+     "name": "NGC2695",
+     "alpha_dyn": 0.8076246356201767,
+     "q": true
+    },
+    {
+     "name": "NGC2698",
+     "alpha_dyn": 0.8318115579987548,
+     "q": true
+    },
+    {
+     "name": "NGC2699",
+     "alpha_dyn": 0.6583781297763266,
+     "q": true
+    },
+    {
+     "name": "NGC2764",
+     "alpha_dyn": 2.585901364227585,
+     "q": true
+    },
+    {
+     "name": "NGC2768",
+     "alpha_dyn": 0.8083777962802706,
+     "q": true
+    },
+    {
+     "name": "NGC2778",
+     "alpha_dyn": 1.1633700458760363,
+     "q": true
+    },
+    {
+     "name": "NGC2824",
+     "alpha_dyn": 1.8065271515885897,
+     "q": false
+    },
+    {
+     "name": "NGC2852",
+     "alpha_dyn": 1.0853199606742039,
+     "q": true
+    },
+    {
+     "name": "NGC2859",
+     "alpha_dyn": 0.5332733327188317,
+     "q": true
+    },
+    {
+     "name": "NGC2880",
+     "alpha_dyn": 0.9307255510406233,
+     "q": true
+    },
+    {
+     "name": "NGC2950",
+     "alpha_dyn": 0.8025227420357737,
+     "q": true
+    },
+    {
+     "name": "NGC2962",
+     "alpha_dyn": 0.7241422319611914,
+     "q": true
+    },
+    {
+     "name": "NGC2974",
+     "alpha_dyn": 1.4596551213522602,
+     "q": true
+    },
+    {
+     "name": "NGC3032",
+     "alpha_dyn": 1.8162734922350672,
+     "q": false
+    },
+    {
+     "name": "NGC3073",
+     "alpha_dyn": 0.735361425660617,
+     "q": false
+    },
+    {
+     "name": "NGC3098",
+     "alpha_dyn": 1.0879721774549107,
+     "q": false
+    },
+    {
+     "name": "NGC3156",
+     "alpha_dyn": 1.3546675835735853,
+     "q": true
+    },
+    {
+     "name": "NGC3182",
+     "alpha_dyn": 0.6787990776853693,
+     "q": false
+    },
+    {
+     "name": "NGC3193",
+     "alpha_dyn": 0.42055080910560655,
+     "q": true
+    },
+    {
+     "name": "NGC3226",
+     "alpha_dyn": 0.9081682710475417,
+     "q": true
+    },
+    {
+     "name": "NGC3230",
+     "alpha_dyn": 0.7966805050382875,
+     "q": true
+    },
+    {
+     "name": "NGC3245",
+     "alpha_dyn": 0.7236538079294907,
+     "q": true
+    },
+    {
+     "name": "NGC3248",
+     "alpha_dyn": 0.7184780433237524,
+     "q": true
+    },
+    {
+     "name": "NGC3301",
+     "alpha_dyn": 0.7681695214386396,
+     "q": true
+    },
+    {
+     "name": "NGC3377",
+     "alpha_dyn": 0.5873812491780664,
+     "q": true
+    },
+    {
+     "name": "NGC3379",
+     "alpha_dyn": 0.6525115222263177,
+     "q": true
+    },
+    {
+     "name": "NGC3384",
+     "alpha_dyn": 0.5216565417456303,
+     "q": true
+    },
+    {
+     "name": "NGC3400",
+     "alpha_dyn": 0.7537689650074804,
+     "q": true
+    },
+    {
+     "name": "NGC3412",
+     "alpha_dyn": 0.5124281311978431,
+     "q": true
+    },
+    {
+     "name": "NGC3414",
+     "alpha_dyn": 0.6999365127909336,
+     "q": true
+    },
+    {
+     "name": "NGC3457",
+     "alpha_dyn": 0.5244621010168345,
+     "q": false
+    },
+    {
+     "name": "NGC3458",
+     "alpha_dyn": 0.7498857383512524,
+     "q": true
+    },
+    {
+     "name": "NGC3489",
+     "alpha_dyn": 0.6906889681898226,
+     "q": true
+    },
+    {
+     "name": "NGC3499",
+     "alpha_dyn": 0.8691077356342771,
+     "q": false
+    },
+    {
+     "name": "NGC3522",
+     "alpha_dyn": 0.9545114531217195,
+     "q": false
+    },
+    {
+     "name": "NGC3530",
+     "alpha_dyn": 0.997054631286813,
+     "q": false
+    },
+    {
+     "name": "NGC3595",
+     "alpha_dyn": 0.6263254994817233,
+     "q": true
+    },
+    {
+     "name": "NGC3599",
+     "alpha_dyn": 0.33911698527637435,
+     "q": false
+    },
+    {
+     "name": "NGC3605",
+     "alpha_dyn": 0.5463328761403551,
+     "q": true
+    },
+    {
+     "name": "NGC3607",
+     "alpha_dyn": 0.5641948570528166,
+     "q": true
+    },
+    {
+     "name": "NGC3608",
+     "alpha_dyn": 0.6077856518983641,
+     "q": false
+    },
+    {
+     "name": "NGC3610",
+     "alpha_dyn": 0.7810867334774508,
+     "q": true
+    },
+    {
+     "name": "NGC3613",
+     "alpha_dyn": 0.8221373358937331,
+     "q": true
+    },
+    {
+     "name": "NGC3619",
+     "alpha_dyn": 0.7225859148212913,
+     "q": true
+    },
+    {
+     "name": "NGC3626",
+     "alpha_dyn": 1.2724768300249567,
+     "q": true
+    },
+    {
+     "name": "NGC3630",
+     "alpha_dyn": 0.7790904034567773,
+     "q": true
+    },
+    {
+     "name": "NGC3640",
+     "alpha_dyn": 0.5245366634332267,
+     "q": true
+    },
+    {
+     "name": "NGC3641",
+     "alpha_dyn": 1.4651951972236383,
+     "q": false
+    },
+    {
+     "name": "NGC3648",
+     "alpha_dyn": 1.0042436181139034,
+     "q": true
+    },
+    {
+     "name": "NGC3658",
+     "alpha_dyn": 0.6399020371803377,
+     "q": true
+    },
+    {
+     "name": "NGC3665",
+     "alpha_dyn": 0.6665356416902121,
+     "q": true
+    },
+    {
+     "name": "NGC3674",
+     "alpha_dyn": 1.0247221493917347,
+     "q": true
+    },
+    {
+     "name": "NGC3694",
+     "alpha_dyn": 1.2782877611423278,
+     "q": false
+    },
+    {
+     "name": "NGC3757",
+     "alpha_dyn": 0.8960856484140669,
+     "q": false
+    },
+    {
+     "name": "NGC3796",
+     "alpha_dyn": 1.0212516051077696,
+     "q": false
+    },
+    {
+     "name": "NGC3838",
+     "alpha_dyn": 0.7376175054213283,
+     "q": true
+    },
+    {
+     "name": "NGC3941",
+     "alpha_dyn": 0.47098808512367124,
+     "q": true
+    },
+    {
+     "name": "NGC3945",
+     "alpha_dyn": 0.6105812881398792,
+     "q": true
+    },
+    {
+     "name": "NGC3998",
+     "alpha_dyn": 1.3861010336215402,
+     "q": true
+    },
+    {
+     "name": "NGC4026",
+     "alpha_dyn": 0.7990736890182707,
+     "q": true
+    },
+    {
+     "name": "NGC4036",
+     "alpha_dyn": 0.7236666529288847,
+     "q": true
+    },
+    {
+     "name": "NGC4078",
+     "alpha_dyn": 1.219890866735772,
+     "q": true
+    },
+    {
+     "name": "NGC4111",
+     "alpha_dyn": 1.0370762283550272,
+     "q": true
+    },
+    {
+     "name": "NGC4119",
+     "alpha_dyn": 1.1017957612369933,
+     "q": true
+    },
+    {
+     "name": "NGC4143",
+     "alpha_dyn": 0.790042275281103,
+     "q": true
+    },
+    {
+     "name": "NGC4150",
+     "alpha_dyn": 1.0244321619416281,
+     "q": true
+    },
+    {
+     "name": "NGC4168",
+     "alpha_dyn": 0.991831622154382,
+     "q": false
+    },
+    {
+     "name": "NGC4179",
+     "alpha_dyn": 0.9317473578451092,
+     "q": true
+    },
+    {
+     "name": "NGC4191",
+     "alpha_dyn": 0.7655934064290338,
+     "q": true
+    },
+    {
+     "name": "NGC4203",
+     "alpha_dyn": 0.39951281257403964,
+     "q": false
+    },
+    {
+     "name": "NGC4215",
+     "alpha_dyn": 0.7655587690849848,
+     "q": true
+    },
+    {
+     "name": "NGC4233",
+     "alpha_dyn": 0.9658728798325101,
+     "q": true
+    },
+    {
+     "name": "NGC4249",
+     "alpha_dyn": 0.480069447090625,
+     "q": false
+    },
+    {
+     "name": "NGC4251",
+     "alpha_dyn": 0.46842299436154494,
+     "q": true
+    },
+    {
+     "name": "NGC4255",
+     "alpha_dyn": 1.0876976162600576,
+     "q": true
+    },
+    {
+     "name": "NGC4259",
+     "alpha_dyn": 0.7205790828909315,
+     "q": false
+    },
+    {
+     "name": "NGC4261",
+     "alpha_dyn": 0.7333045553182509,
+     "q": true
+    },
+    {
+     "name": "NGC4262",
+     "alpha_dyn": 0.9197726417535651,
+     "q": true
+    },
+    {
+     "name": "NGC4264",
+     "alpha_dyn": 0.7601072645453333,
+     "q": false
+    },
+    {
+     "name": "NGC4267",
+     "alpha_dyn": 0.5313560895361313,
+     "q": true
+    },
+    {
+     "name": "NGC4268",
+     "alpha_dyn": 1.33864670403029,
+     "q": true
+    },
+    {
+     "name": "NGC4270",
+     "alpha_dyn": 0.5792753585364163,
+     "q": true
+    },
+    {
+     "name": "NGC4278",
+     "alpha_dyn": 0.8498221367640404,
+     "q": true
+    },
+    {
+     "name": "NGC4281",
+     "alpha_dyn": 1.277958676365103,
+     "q": true
+    },
+    {
+     "name": "NGC4283",
+     "alpha_dyn": 0.5934144703047882,
+     "q": true
+    },
+    {
+     "name": "NGC4324",
+     "alpha_dyn": 0.6468921112964524,
+     "q": true
+    },
+    {
+     "name": "NGC4339",
+     "alpha_dyn": 0.7724851116983006,
+     "q": false
+    },
+    {
+     "name": "NGC4340",
+     "alpha_dyn": 0.5919327292358162,
+     "q": false
+    },
+    {
+     "name": "NGC4342",
+     "alpha_dyn": 1.55133486428124,
+     "q": true
+    },
+    {
+     "name": "NGC4346",
+     "alpha_dyn": 0.7713229155520483,
+     "q": true
+    },
+    {
+     "name": "NGC4350",
+     "alpha_dyn": 0.8310730322522017,
+     "q": true
+    },
+    {
+     "name": "NGC4365",
+     "alpha_dyn": 0.4227914970583011,
+     "q": true
+    },
+    {
+     "name": "NGC4371",
+     "alpha_dyn": 0.6796593796360431,
+     "q": true
+    },
+    {
+     "name": "NGC4374",
+     "alpha_dyn": 0.6628041204536484,
+     "q": true
+    },
+    {
+     "name": "NGC4377",
+     "alpha_dyn": 0.557445361941127,
+     "q": false
+    },
+    {
+     "name": "NGC4379",
+     "alpha_dyn": 0.6566683076577395,
+     "q": true
+    },
+    {
+     "name": "NGC4382",
+     "alpha_dyn": 0.5980278352277947,
+     "q": false
+    },
+    {
+     "name": "NGC4387",
+     "alpha_dyn": 0.5835329572891603,
+     "q": true
+    },
+    {
+     "name": "NGC4406",
+     "alpha_dyn": 0.2979440391356396,
+     "q": true
+    },
+    {
+     "name": "NGC4417",
+     "alpha_dyn": 0.6783608797631197,
+     "q": true
+    },
+    {
+     "name": "NGC4425",
+     "alpha_dyn": 0.7227282137199486,
+     "q": false
+    },
+    {
+     "name": "NGC4429",
+     "alpha_dyn": 0.7109575524967087,
+     "q": false
+    },
+    {
+     "name": "NGC4434",
+     "alpha_dyn": 0.39858167022743357,
+     "q": true
+    },
+    {
+     "name": "NGC4435",
+     "alpha_dyn": 0.6618895314923052,
+     "q": true
+    },
+    {
+     "name": "NGC4442",
+     "alpha_dyn": 0.6392051419505603,
+     "q": true
+    },
+    {
+     "name": "NGC4452",
+     "alpha_dyn": 0.9266396474468283,
+     "q": true
+    },
+    {
+     "name": "NGC4458",
+     "alpha_dyn": 0.47546817970983635,
+     "q": true
+    },
+    {
+     "name": "NGC4459",
+     "alpha_dyn": 0.6940813938227101,
+     "q": true
+    },
+    {
+     "name": "NGC4461",
+     "alpha_dyn": 0.6452488090066235,
+     "q": true
+    },
+    {
+     "name": "NGC4472",
+     "alpha_dyn": 0.45158295906638196,
+     "q": true
+    },
+    {
+     "name": "NGC4473",
+     "alpha_dyn": 0.7608202933272811,
+     "q": true
+    },
+    {
+     "name": "NGC4474",
+     "alpha_dyn": 0.5737247874246091,
+     "q": true
+    },
+    {
+     "name": "NGC4476",
+     "alpha_dyn": 0.983930997884412,
+     "q": false
+    },
+    {
+     "name": "NGC4477",
+     "alpha_dyn": 0.7457168160255621,
+     "q": true
+    },
+    {
+     "name": "NGC4478",
+     "alpha_dyn": 0.8358120368031787,
+     "q": true
+    },
+    {
+     "name": "NGC4483",
+     "alpha_dyn": 0.6447302986986676,
+     "q": true
+    },
+    {
+     "name": "NGC4486",
+     "alpha_dyn": 0.6108729537257547,
+     "q": true
+    },
+    {
+     "name": "NGC4486A",
+     "alpha_dyn": 0.869869455465572,
+     "q": true
+    },
+    {
+     "name": "NGC4489",
+     "alpha_dyn": 0.53512103306257,
+     "q": false
+    },
+    {
+     "name": "NGC4494",
+     "alpha_dyn": 0.6045773771166708,
+     "q": true
+    },
+    {
+     "name": "NGC4503",
+     "alpha_dyn": 0.7298012965668108,
+     "q": true
+    },
+    {
+     "name": "NGC4521",
+     "alpha_dyn": 0.9914895011223165,
+     "q": true
+    },
+    {
+     "name": "NGC4526",
+     "alpha_dyn": 0.8006876046321614,
+     "q": true
+    },
+    {
+     "name": "NGC4528",
+     "alpha_dyn": 0.8477881030711456,
+     "q": true
+    },
+    {
+     "name": "NGC4546",
+     "alpha_dyn": 0.79958946852276,
+     "q": true
+    },
+    {
+     "name": "NGC4550",
+     "alpha_dyn": 1.0446074443183953,
+     "q": true
+    },
+    {
+     "name": "NGC4551",
+     "alpha_dyn": 0.7704395816375815,
+     "q": true
+    },
+    {
+     "name": "NGC4552",
+     "alpha_dyn": 0.7579470940895905,
+     "q": true
+    },
+    {
+     "name": "NGC4564",
+     "alpha_dyn": 0.719883517326765,
+     "q": true
+    },
+    {
+     "name": "NGC4570",
+     "alpha_dyn": 0.6851633144740022,
+     "q": true
+    },
+    {
+     "name": "NGC4578",
+     "alpha_dyn": 0.6678661313079832,
+     "q": true
+    },
+    {
+     "name": "NGC4596",
+     "alpha_dyn": 0.6855387556171026,
+     "q": true
+    },
+    {
+     "name": "NGC4608",
+     "alpha_dyn": 0.6586172778333615,
+     "q": true
+    },
+    {
+     "name": "NGC4612",
+     "alpha_dyn": 0.695422109513673,
+     "q": false
+    },
+    {
+     "name": "NGC4621",
+     "alpha_dyn": 0.678236018231734,
+     "q": true
+    },
+    {
+     "name": "NGC4623",
+     "alpha_dyn": 0.6588368771850909,
+     "q": true
+    },
+    {
+     "name": "NGC4624",
+     "alpha_dyn": 0.5052917131444048,
+     "q": true
+    },
+    {
+     "name": "NGC4636",
+     "alpha_dyn": 0.6453112390213269,
+     "q": false
+    },
+    {
+     "name": "NGC4638",
+     "alpha_dyn": 0.546839151078937,
+     "q": true
+    },
+    {
+     "name": "NGC4643",
+     "alpha_dyn": 0.7203978615689598,
+     "q": true
+    },
+    {
+     "name": "NGC4649",
+     "alpha_dyn": 0.6539372048261904,
+     "q": true
+    },
+    {
+     "name": "NGC4660",
+     "alpha_dyn": 0.7191174681318876,
+     "q": true
+    },
+    {
+     "name": "NGC4684",
+     "alpha_dyn": 0.5287739842948579,
+     "q": true
+    },
+    {
+     "name": "NGC4690",
+     "alpha_dyn": 0.800290518921003,
+     "q": true
+    },
+    {
+     "name": "NGC4694",
+     "alpha_dyn": 0.8631116650341607,
+     "q": false
+    },
+    {
+     "name": "NGC4697",
+     "alpha_dyn": 0.6099649490336925,
+     "q": true
+    },
+    {
+     "name": "NGC4710",
+     "alpha_dyn": 0.9185436847391995,
+     "q": true
+    },
+    {
+     "name": "NGC4733",
+     "alpha_dyn": 0.309945344452268,
+     "q": false
+    },
+    {
+     "name": "NGC4753",
+     "alpha_dyn": 0.6618174275538387,
+     "q": true
+    },
+    {
+     "name": "NGC4754",
+     "alpha_dyn": 0.6660040595831452,
+     "q": true
+    },
+    {
+     "name": "NGC4762",
+     "alpha_dyn": 0.4339625593105007,
+     "q": true
+    },
+    {
+     "name": "NGC4803",
+     "alpha_dyn": 0.9211919484547878,
+     "q": false
+    },
+    {
+     "name": "NGC5103",
+     "alpha_dyn": 0.6235872631419969,
+     "q": false
+    },
+    {
+     "name": "NGC5173",
+     "alpha_dyn": 0.6911482029251972,
+     "q": false
+    },
+    {
+     "name": "NGC5198",
+     "alpha_dyn": 0.7814518751383988,
+     "q": true
+    },
+    {
+     "name": "NGC5273",
+     "alpha_dyn": 0.8961104172758916,
+     "q": true
+    },
+    {
+     "name": "NGC5308",
+     "alpha_dyn": 0.937728762723468,
+     "q": true
+    },
+    {
+     "name": "NGC5322",
+     "alpha_dyn": 0.5672273721120973,
+     "q": true
+    },
+    {
+     "name": "NGC5342",
+     "alpha_dyn": 1.099683181676256,
+     "q": false
+    },
+    {
+     "name": "NGC5353",
+     "alpha_dyn": 0.8315271631061595,
+     "q": true
+    },
+    {
+     "name": "NGC5355",
+     "alpha_dyn": 1.5557767177460442,
+     "q": false
+    },
+    {
+     "name": "NGC5358",
+     "alpha_dyn": 0.9695018057563138,
+     "q": false
+    },
+    {
+     "name": "NGC5379",
+     "alpha_dyn": 1.889525742308781,
+     "q": true
+    },
+    {
+     "name": "NGC5422",
+     "alpha_dyn": 0.8785403108215742,
+     "q": true
+    },
+    {
+     "name": "NGC5473",
+     "alpha_dyn": 0.6906679652007363,
+     "q": false
+    },
+    {
+     "name": "NGC5475",
+     "alpha_dyn": 1.18376610780202,
+     "q": true
+    },
+    {
+     "name": "NGC5481",
+     "alpha_dyn": 0.8975845650953963,
+     "q": false
+    },
+    {
+     "name": "NGC5485",
+     "alpha_dyn": 0.9198639614762405,
+     "q": false
+    },
+    {
+     "name": "NGC5493",
+     "alpha_dyn": 0.7836494672192249,
+     "q": true
+    },
+    {
+     "name": "NGC5500",
+     "alpha_dyn": 0.8515976541862418,
+     "q": false
+    },
+    {
+     "name": "NGC5507",
+     "alpha_dyn": 1.050942194099223,
+     "q": true
+    },
+    {
+     "name": "NGC5557",
+     "alpha_dyn": 0.5168740362234059,
+     "q": true
+    },
+    {
+     "name": "NGC5574",
+     "alpha_dyn": 0.8821111928269795,
+     "q": false
+    },
+    {
+     "name": "NGC5576",
+     "alpha_dyn": 0.4401461223658611,
+     "q": true
+    },
+    {
+     "name": "NGC5582",
+     "alpha_dyn": 0.7126989601435375,
+     "q": true
+    },
+    {
+     "name": "NGC5611",
+     "alpha_dyn": 1.0711078683586046,
+     "q": true
+    },
+    {
+     "name": "NGC5631",
+     "alpha_dyn": 0.7842309203946795,
+     "q": false
+    },
+    {
+     "name": "NGC5638",
+     "alpha_dyn": 0.584587859685076,
+     "q": false
+    },
+    {
+     "name": "NGC5687",
+     "alpha_dyn": 1.0392353148430715,
+     "q": true
+    },
+    {
+     "name": "NGC5770",
+     "alpha_dyn": 0.5260048021581694,
+     "q": false
+    },
+    {
+     "name": "NGC5813",
+     "alpha_dyn": 0.5563857485520497,
+     "q": false
+    },
+    {
+     "name": "NGC5831",
+     "alpha_dyn": 0.6399714020399927,
+     "q": false
+    },
+    {
+     "name": "NGC5838",
+     "alpha_dyn": 1.0823789785170779,
+     "q": true
+    },
+    {
+     "name": "NGC5839",
+     "alpha_dyn": 0.7109214863439275,
+     "q": false
+    },
+    {
+     "name": "NGC5845",
+     "alpha_dyn": 0.7571638385627387,
+     "q": true
+    },
+    {
+     "name": "NGC5846",
+     "alpha_dyn": 0.6604108437344414,
+     "q": true
+    },
+    {
+     "name": "NGC5854",
+     "alpha_dyn": 0.7787426677403204,
+     "q": true
+    },
+    {
+     "name": "NGC5864",
+     "alpha_dyn": 0.7258644819043504,
+     "q": true
+    },
+    {
+     "name": "NGC5866",
+     "alpha_dyn": 0.8984637458779248,
+     "q": false
+    },
+    {
+     "name": "NGC5869",
+     "alpha_dyn": 0.9728037087265902,
+     "q": true
+    },
+    {
+     "name": "NGC6010",
+     "alpha_dyn": 0.969749533821222,
+     "q": true
+    },
+    {
+     "name": "NGC6014",
+     "alpha_dyn": 1.1710084369331304,
+     "q": false
+    },
+    {
+     "name": "NGC6017",
+     "alpha_dyn": 0.7614241703673185,
+     "q": true
+    },
+    {
+     "name": "NGC6149",
+     "alpha_dyn": 0.9588520023686131,
+     "q": false
+    },
+    {
+     "name": "NGC6278",
+     "alpha_dyn": 0.7161340972268759,
+     "q": false
+    },
+    {
+     "name": "NGC6547",
+     "alpha_dyn": 1.3787391393351456,
+     "q": true
+    },
+    {
+     "name": "NGC6548",
+     "alpha_dyn": 1.2419886271337672,
+     "q": true
+    },
+    {
+     "name": "NGC6703",
+     "alpha_dyn": 0.8464459197791596,
+     "q": true
+    },
+    {
+     "name": "NGC6798",
+     "alpha_dyn": 0.8073483528893207,
+     "q": true
+    },
+    {
+     "name": "NGC7280",
+     "alpha_dyn": 0.9821368106625062,
+     "q": true
+    },
+    {
+     "name": "NGC7332",
+     "alpha_dyn": 0.568853148594685,
+     "q": true
+    },
+    {
+     "name": "NGC7454",
+     "alpha_dyn": 1.1316059676974164,
+     "q": false
+    },
+    {
+     "name": "NGC7457",
+     "alpha_dyn": 0.7438755951685866,
+     "q": true
+    },
+    {
+     "name": "NGC7465",
+     "alpha_dyn": 0.9462140607153947,
+     "q": false
+    },
+    {
+     "name": "NGC7693",
+     "alpha_dyn": 1.4350070650150721,
+     "q": true
+    },
+    {
+     "name": "NGC7710",
+     "alpha_dyn": 0.7717868114222955,
+     "q": true
+    },
+    {
+     "name": "PGC016060",
+     "alpha_dyn": 1.2867152575630765,
+     "q": true
+    },
+    {
+     "name": "PGC028887",
+     "alpha_dyn": 1.192261289940021,
+     "q": false
+    },
+    {
+     "name": "PGC029321",
+     "alpha_dyn": 1.135878519848004,
+     "q": false
+    },
+    {
+     "name": "PGC035754",
+     "alpha_dyn": 0.7610955813704924,
+     "q": true
+    },
+    {
+     "name": "PGC042549",
+     "alpha_dyn": 0.907151090337556,
+     "q": true
+    },
+    {
+     "name": "PGC044433",
+     "alpha_dyn": 1.089904308085636,
+     "q": true
+    },
+    {
+     "name": "PGC050395",
+     "alpha_dyn": 0.7826153742794987,
+     "q": false
+    },
+    {
+     "name": "PGC051753",
+     "alpha_dyn": 0.9851178729505341,
+     "q": true
+    },
+    {
+     "name": "PGC054452",
+     "alpha_dyn": 0.9156784201592959,
+     "q": true
+    },
+    {
+     "name": "PGC056772",
+     "alpha_dyn": 1.5114575635531715,
+     "q": true
+    },
+    {
+     "name": "PGC061468",
+     "alpha_dyn": 2.1455391126717736,
+     "q": false
+    },
+    {
+     "name": "PGC170172",
+     "alpha_dyn": 0.3184013744724061,
+     "q": false
+    },
+    {
+     "name": "UGC03960",
+     "alpha_dyn": 0.7731635158186694,
+     "q": false
+    },
+    {
+     "name": "UGC04551",
+     "alpha_dyn": 0.8597583654545202,
+     "q": true
+    },
+    {
+     "name": "UGC05408",
+     "alpha_dyn": 0.6694745296420109,
+     "q": false
+    },
+    {
+     "name": "UGC06062",
+     "alpha_dyn": 0.9125516535213755,
+     "q": true
+    },
+    {
+     "name": "UGC06176",
+     "alpha_dyn": 2.0974534607955726,
+     "q": false
+    },
+    {
+     "name": "UGC08876",
+     "alpha_dyn": 0.9764706750580164,
+     "q": true
+    },
+    {
+     "name": "UGC09519",
+     "alpha_dyn": 1.5126107913723967,
+     "q": true
+    }
+   ]
+  },
+  "reading": {
+   "final": "SPECIFIC-TO-B",
+   "text": "a standard NFW halo shows no lensing-dynamics gap at > 2 sigma (with the floor) through CFG33's pipeline; B's statistical gap is a property of B's law (its projected phantom at R_E is small next to what the law supplies inside r_1/2), not of the pipeline, the two surveys' zero points, the aperture or the redshift difference.  B itself is within 2 sigma with the floor, so this is a statement about the statistical gap; R1 and R2 say how much of it LCDM shares"
+  }
+ }
+}
