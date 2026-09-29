@@ -1,4 +1,5 @@
 import ChainCert.Chain
+import ChainCert.Fluid
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -25,3 +26,8 @@ import ChainCert.Chain
 #print axioms ChainPremises.btfr_limit
 #print axioms ChainPremises.btfr_limit_redshift_independent
 #print axioms zero_point_linear_in_kappa
+#print axioms rhoFluid_hasDeriv
+#print axioms fluid_pressure
+#print axioms fluid_pressure_bounds
+#print axioms cap_a0_tie
+#print axioms cap_a0_eq
