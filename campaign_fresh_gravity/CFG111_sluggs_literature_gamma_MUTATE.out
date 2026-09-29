@@ -1,0 +1,68 @@
+CFG111 -- DOES THE SLUGGS DEFICIT SURVIVE PUBLISHED PER-GALAXY GC DENSITY SLOPES?  CFG55's JAM-calibrated SLUGGS test with each
+galaxy's GC density slope gamma_i from Alabi et al. 2017's literature relation instead of the fixed gamma = 3 (CFG76: the law's offset
+is zero at gamma ~ 1.83, the rule's at ~ 2.45).
+
+Criteria frozen and committed before any number: campaign_fresh_gravity/CFG111_FROZEN_CRITERIA.md (d36b680bb).
+  slopes   gamma_i = clip(-0.63 log10 M*_SLUGGS,i + 9.81, 2, 4) (Alabi+2017, MNRAS 468, 3949, from a literature compilation of GC density
+           profiles); reproduces its Table 1 to 0.01 (C2).  A literature calibration, not a fit to the dispersions.
+  machinery CFG55's pipeline exec'd read-only (h50's GC bins and isotropic Jeans solution, CFG55's JAM calibration, the rule's debris);
+           only gamma in sigma_r2 / sigma_los changes, per galaxy.  The calibrated masses do not depend on gamma.  CFG55's 16 galaxies.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  with gamma_i = 3 for every galaxy the per-galaxy machinery reproduces CFG55's committed offsets (law and rule, canonical)
+               per galaxy to 1e-9, and the means +0.0970 / +0.0456.
+  C2  CONTROL  the relation reproduces Alabi+2017's Table 1 values (quoted in the frozen file) to 0.01 for all 18 galaxies.
+  H1  [HEADLINE; MUTATE must fail] with the literature slopes the law's JAM-calibrated SLUGGS deficit survives: mean > 2 sigma, both footings.
+  H2  with the same slopes the rule fits: |mean| < 2 sigma, both footings.
+  R1-R4 (reported): SLUGGS population masses; gamma_i +-0.2 / +-0.4; the per-galaxy gamma that nulls the law's offset; the four
+               group/cluster centrals excluded.
+MUTATE=1: gamma_i = 1.83 for every galaxy (CFG76's zero point for the law) -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: gamma_i = 1.83 for every galaxy -- H1 must FAIL ***
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: with gamma = 3 for every galaxy the per-galaxy machinery reproduces CFG55's offsets per galaxy (law, rule; canonical) to 1e-9 and the committed means
+         max |d offset| 0.0e+00; means law +0.096982 (committed +0.096982), rule +0.045640 (committed +0.045640); global GAMMA = 3.0
+  [PASS] C2 CONTROL: the relation reproduces Alabi+2017's Table 1 values (quoted in the frozen file) to 0.01 for all 18 galaxies
+         max |difference| 0.000; gamma_i for the 16: 1023 2.89, 2768 2.75, 3377 3.20, 3607 2.63, 4278 2.91, 4365 2.56, 4374 2.56, 4459 2.89, 4473 2.91, 4486 2.49, 4494 2.87, 4526 2.72, 4649 2.50, 4697 2.79, 5846 2.59, 7457 3.43
+
+======================================================================================================================
+H1 / H2  THE JAM-CALIBRATED SLUGGS TEST WITH PER-GALAXY LITERATURE SLOPES
+======================================================================================================================
+    NGC1023  gamma 1.83: law +0.006  rule +0.006
+    NGC2768  gamma 1.83: law -0.100  rule -0.179
+    NGC3377  gamma 1.83: law -0.036  rule -0.036
+    NGC3607  gamma 1.83: law -0.067  rule -0.121
+    NGC4278  gamma 1.83: law +0.040  rule +0.040
+    NGC4365  gamma 1.83: law +0.105  rule +0.014
+    NGC4374  gamma 1.83: law +0.097  rule -0.071
+    NGC4459  gamma 1.83: law -0.121  rule -0.121
+    NGC4473  gamma 1.83: law -0.030  rule -0.030
+    NGC4486  gamma 1.83: law +0.179  rule -0.005
+    NGC4494  gamma 1.83: law -0.202  rule -0.202
+    NGC4526  gamma 1.83: law -0.010  rule -0.044
+    NGC4649  gamma 1.83: law +0.032  rule -0.156
+    NGC4697  gamma 1.83: law -0.006  rule -0.006
+    NGC5846  gamma 1.83: law +0.111  rule -0.018
+    NGC7457  gamma 1.83: law +0.010  rule -0.118
+  [FAIL] H1 [HEADLINE] WITH THE LITERATURE SLOPES THE LAW'S JAM-CALIBRATED SLUGGS DEFICIT SURVIVES: mean > 2 sigma, both footings  [MUTATE: gamma = 1.83]
+         canonical: +0.0004 +- 0.0241 (+0.02 sigma); alt: -0.0105 +- 0.0240 (-0.44 sigma)  [gamma = 3 (CFG55): +0.0970, 3.99 sigma]
+  [FAIL] H2 WITH THE SAME SLOPES THE RULE FITS: |mean| < 2 sigma, both footings
+         canonical: -0.0655 +- 0.0186 (-3.52 sigma); alt: -0.0635 +- 0.0184 (-3.46 sigma)  [gamma = 3 (CFG55): +0.0456, 2.58 sigma]
+
+======================================================================================================================
+REPORTED ROWS (canonical)
+======================================================================================================================
+  [PASS] (reported) R1 (reported) SLUGGS population masses with the same slopes
+         law -0.0179 +- 0.0278 (-0.65 sigma); rule -0.1052 +- 0.0194 (-5.41 sigma)
+  [PASS] (reported) R2 (reported) every gamma_i shifted by -0.4 / -0.2 / +0.2 / +0.4
+         -0.4: law -0.0459 (-1.90), rule -0.1167 (-6.00); -0.2: law -0.0214 (-0.89), rule -0.0902 (-4.75); +0.2: law +0.0202 (+0.84), rule -0.0427 (-2.33); +0.4: law +0.0384 (+1.59), rule -0.0216 (-1.20)
+  [PASS] (reported) R3 (reported) per galaxy: the gamma that would null the law's offset, beside its literature gamma_i
+         1023 1.77 (lit 2.89); 2768 3.08 (lit 2.75); 3377 2.19 (lit 3.20); 3607 2.61 (lit 2.63); 4278 1.45 (lit 2.91); 4365 1.06 (lit 2.56); 4374 1.13 (lit 2.56); 4459 3.37 (lit 2.89); 4473 2.16 (lit 2.91); 4486 nan (lit 2.49); 4494 nan (lit 2.87); 4526 1.95 (lit 2.72); 4649 1.53 (lit 2.50); 4697 1.89 (lit 2.79); 5846 1.04 (lit 2.59); 7457 1.74 (lit 3.43)
+  [PASS] (reported) R4 (reported) the four group/cluster centrals (M87, NGC 4365, NGC 4374, NGC 5846) excluded
+         N = 12: law -0.0405 (-1.97 sigma); rule -0.0806 (-3.55 sigma)
+
+    READING (declared): with the published slopes the law's deficit falls below 2 sigma: the SLUGGS failure was an artefact of gamma = 3; the rule does not fit
+
+  6/8 checks pass; load-bearing failures: 2   (5 s)
