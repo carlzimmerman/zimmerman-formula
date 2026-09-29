@@ -1,0 +1,93 @@
+CFG107 -- independent re-derivation of CFG115 (KiDS: is the colour dependence of the lensing signal at fixed g_bar a step at the red/blue valley or a gradient?) plus an attack.
+FROZEN BEFORE ANY RUN of this lane's scoring script (written 2026-09-29).  Only the K1 row-alignment / position-match data join has NOT been looked at either; no colour-binned lensing number exists yet.
+
+QUESTION
+  (1) From CFG115_FROZEN_CRITERIA.md and CFG115_README.md (+ its LEDGER row) and my own code, do I reproduce: the six within-class u-r tertile amplitudes
+      (L1 -0.165, L2 -0.267, L3 -0.049, E1 -0.049, E2 +0.050, E3 +0.123; errors 0.077 0.077 0.039 0.034 0.031 0.024), the step-constant model chi2 = 18.1 / 4, the linear
+      colour gradient chi2 = 6.3 / 4 (slope +0.34 +- 0.06 dex/mag), step + within-class slope 5.34 / 3 (beta_w +0.44 +- 0.12, delta chi2 12.8), B's null 36.3 / 5 (free offset),
+      the power row lambda = 4.8 (< 9), and the R6 note (condition number of the jackknife covariance 3200 with a jackknifed reference, 10.8 with a fixed reference)?
+  (2) ATTACK: is the gradient a lensing signal or a colour-dependent systematic the released (jackknife) covariance cannot see?  How much do the amplitude definition, the
+      tertile edges and error inflation matter?  Which power computation gives 4.8?
+
+MATERIAL READ (declared): CFG115_FROZEN_CRITERIA.md (e416f3bea), CFG115_README.md and the CFG115 row of LEDGER.md (so the CFG115 numbers above were known before my run); the CFG100
+  README, cfg100_run.py and cfg100_lib.py (the latter copied here as cfg107_lib.py; only its kernel/projector/model tables are used, for R5); the CFG77, CFG61, CFG67 READMEs.
+  NOT read, run, exec'd or imported until my frozen main and MUTATE runs are complete: CFG115_kids_colour_gradient.py, any CFG115 .out / _results.json, CFG110 scripts/outputs.
+INDEPENDENCE LIMITS (declared): (i) the per-lens KiDS sums (WG, WW, NN per lens per g_bar bin) are the calc chat's on-disk staged product cfg110_perlens.npz (git-ignored, from
+  CFG110's staging pass, not re-staged from the 17 GB shear catalogue; the frozen CFG115 criteria also use that file).  It is verified only at the level of per-(patch, class, bin)
+  sums against the June file lr_esd_jackknife.npz (control K1) -- a mis-assignment of pair sums between lenses of the same patch and class, or an error inside the staging, is invisible
+  to it.  This is independent code on SHARED staged inputs.  (ii) The lens catalogue lr_lenses.npz, patch labels from lr_esd_jackknife.npz, and the model tables (cfg100_lib) are shared
+  with the calc chat / CFG100.  (iii) The DEFINITION of the amplitude, covariance, Hartlap factor and models is read from CFG115's frozen text, so definitional agreement is not
+  independent; what is independent is the code and its numerics.  (iv) The colour u-r = MAG_ABS_u - MAG_ABS_r comes from the on-disk KiDS_DR4_brightsample_LePhare.fits joined by me by
+  exact (RA, Dec) to lr_lenses.npz; agreement with the frozen text's join statistics is tested (K3).  Nothing is fetched.
+
+DATA.  Lenses lr_lenses.npz (181,477: ra, dec, z, logM, Mgal, typ), patch from lr_esd_jackknife.npz, per-lens WG (=wgE), WW (=W), NN from cfg110_perlens.npz (15 g_bar bins, edges
+  logspace(1e-15, 5e-12, 16) m/s^2).  ESD(subset, k) = sum_patches WG / sum_patches WW / KG,  KG = 1.98847e30/(3.0857e16)^2 [Msun/pc^2].  K1 = the seven bins {8..14} (control).
+  Class = typ (0 late = u-r <= 2.0, 1 early); u-r from LePhare; the class rule u-r > 2.0 == typ is a control.
+COLOUR BINS.  Six bins: each class split at its own u-r 1/3 and 2/3 quantiles (np.quantile, linear); bin 1: u < q1, bin 2: q1 <= u < q2, bin 3: u >= q2.  Order L1 L2 L3 E1 E2 E3.
+  Bin colour ubar_c = the bin's median u-r; class colour ubar_class = the class median u-r over the lenses.  Expected edges 1.507, 1.749 | 2.228, 2.351.
+AMPLITUDE (PRIMARY, "jackknifed reference", my reading of the frozen text).  A_c = log10[ sum_k w_k ESD_ck / sum_k w_k ESD_all,k ], k in K1, w_k = sum over ALL lenses of WW_k (fixed, the same
+  for every bin and for every jackknife sample), ESD_all = the full sample (both classes).  Central value from the full sample.  In the jackknife sample i (leave patch i out, 50 patches)
+  the numerator AND the ESD_all denominator are both recomputed without patch i.  Variants reported (not primary): "fixed reference" (denominator ESD_all always the full-sample value; the
+  numerator jackknifed) and "jackknifed weights" (w_k recomputed without patch i as well).
+COVARIANCE.  C = (N-1)/N sum_i (A_i - Abar)(A_i - Abar)^T, N = 50, over the six amplitudes jointly.  Hartlap h = (N - p - 2)/(N - 1), p = 6 (=> 42/49) for every chi2 on the six-vector; for a
+  p'-vector subset test (the 2-vector R3 contrast, the 12-vector z-split) h uses p'.  chi2 = h r^T C^-1 r,  P = h C^-1;  parameter errors are sqrt(diag (X^T P X)^-1) (they include 1/sqrt(h));
+  the same without h are also printed.  Amplitude errors quoted as sqrt(diag C) (no h).
+MODELS for the six amplitudes (GLS with P; design columns): M0: A_c = 0 (6 dof); M0off: constant (5 dof, "B's null with a free offset"); Step: (indicator late, indicator early) 4 dof;
+  Gradient: (1, ubar_c - 2.0) 4 dof; Step+slope: (ind late, ind early, ubar_c - ubar_class) 3 dof, delta chi2(step - step+slope) 1 dof.
+HEADLINE H1 (as in the frozen CFG115): the colour dependence is a step: step chi2 (4 dof) has p > 0.05 AND delta chi2(step - step+slope) < 4.  Both expected to FAIL (CFG115 reports 18.1 / 4, p 0.001).
+  A failed H1 is a finding not a control failure; the script exits 1 iff H1 fails or a control fails; the log prints which.
+POWER R0 (printed before any colour-bin amplitude in my script's output order is NOT possible for me because the amplitudes are needed for beta_true; instead it is computed from the same fitted
+  class amplitudes and its ingredients are printed with it).  PRIMARY: beta_true = (s_E - s_L)/(ubar_E - ubar_L) with s from the Step fit and ubar the class medians of u-r; the truth is a pure
+  linear gradient of that slope, mu_c = beta_true (ubar_c - ubar_ref) (the constant is irrelevant: the Step model contains a free offset per class); lambda = the chi2 (P weighted) of the best Step
+  fit to mu -- the expected delta chi2 of the within-class slope test (1 dof).  Closed-form control: lambda = beta_true^2 / sigma_beta_w^2 with sigma_beta_w from the Step+slope fit.  Threshold 9
+  (declared by CFG115).  Also printed: the variants (no Hartlap h; s from the class-level amplitudes rather than the Step fit; class mean rather than median colour; bin-median colour difference;
+  the gradient-fit slope as the truth) -- "which alternative gives 4.8" -- and the 1-dof test power at alpha = 0.05 and the detectable slope at 80% power.
+R6 (definition attack): for the three amplitude definitions: condition number and smallest / largest eigenvalue of C, the six errors, M0 chi2, M0off, Step, Gradient, Step+slope chi2 and parameters;
+  control: every model with a free common offset has EXACTLY the same chi2 under all definitions (identity A^{jk}_c = A^{fix}_c - d_i with d_i common to all c); also a pseudo-inverse of the
+  jackknifed-reference C that drops its smallest eigen direction (post hoc in CFG115, reported here as a row only).
+R3: outer-tertile contrasts A(L1) - A(L2) and A(E3) - A(E2) with the covariance T C T^T, h with p' = 2, 2-dof chi2 against zero (and with h at p = 6, reported).
+R4: per bin: N, median u-r, median log10 Mgal, median z, the seven K1 ESD values.
+R5: the model amplitudes for the six bins with the same amplitude definition on model stacks: B's law (kind B_canonical), colour-split LCDM (kind L), colour-blind Moster (kind Mo, halo mass taken as
+  M200c, cfg100_lib's assumption); stacks weighted by Mgal per lens through grouped cells (class x 0.01 dex log Mgal x 0.03 z; profile at the cell mean; cfg100_lib.v_one); chi2 for each: (a)
+  jackknifed-reference C, zero offset; (b) fixed-reference C, zero offset; (c) with a free common offset (5 dof).  CFG115's numbers: 304, 77.6, 29.2 for (a); 36.2, 21.1, 12.2 for (b)/(c) (as 'zero
+  offset with fixed ref' and 'free offset', which coincide only if the offset is ~0).  Variant: pair-weighted stacks (weights WW_ik of that bin) reported.
+
+CONTROLS (a failure invalidates the corresponding downstream number):
+  K1  per-(patch, class, bin) sums of the per-lens arrays reproduce the June sums (WG vs wgE, WW vs W, NN) to relative 1e-9.
+  K2  the six bins partition the sample (each lens in exactly one), summed per-lens K1 sums of the six bins reproduce the full-sample and per-class K1 sums to relative 1e-12; K1 = {8..14}
+      by the rule "lens-median R = sqrt(G Mgal/g_centre) of both classes < 0.3 Mpc".
+  K3  the LePhare join: all 181,477 lenses match the bright sample (KiDS_DR4_brightsample.fits) by exact (RA, Dec); the LePhare file's ID equals the bright sample's ID row by row; (u-r > 2.0) == typ
+      for every lens; tertile edges within 0.002 of 1.507, 1.749, 2.228, 2.351; bin N within 1 lens of 31030, 31222, 31146, 29313, 29135, 29631 is EXPECTED (CFG115 table; reported not pass/fail).
+  K4  closed-form projection limits: (a) GLS by normal equations == Cholesky-whitened least squares == scipy minimisation to 1e-8 for Step, Gradient, Step+slope; (b) Step chi2 - Step+slope chi2 =
+      (beta_w/sigma_beta_w)^2 to 1e-9; (c) lambda (power) = beta_true^2 / sigma_beta_w^2 to 1e-9; (d) the free-offset chi2 identity across the three amplitude definitions to 1e-9; (e) an exact
+      pure step (A = s_class) has Step chi2 0 and delta chi2 0; an exact pure gradient in ubar has Gradient chi2 0.
+  K5  SWAP control: permute the three bins within each class (L1<->L3, E1<->E3) in data and covariance, keeping the colour vector: the Step chi2 is unchanged to 1e-9 (the step model is invariant), the
+      within-class slope beta_w changes sign, and the Gradient chi2 increases by more than 10.
+  K6  calibration null: 200 random equal-count thirds within each class (seed 107), own jackknife covariance each, Hartlap p = 6: the mean chi2 of the 4-dof step test in [2.5, 5.5].
+  K7  MUTATE=1 (as in CFG115): every lens's WG in the K1 bins is multiplied by 10^(beta_inj (u-r - ubar_class)), beta_inj = (s_E - s_L)/(ubar_E - ubar_L) from the same run's unmodified data; expected: H1
+      fails (the script exits 1); reported: beta_w recovered (main + injected) -- the recovery passes if the increase in beta_w is within +-30% of beta_inj.  If the main run's H1 fails too, the control is
+      uninformative for H1 (declared, as CFG115).
+REPRODUCTION lines (against CFG115's printed digits; REPRODUCED = within display rounding; APPROXIMATE = within 10%; else NOT REPRODUCED, causes investigated post hoc and labelled):
+  P1 six amplitudes +-0.002, six errors +-0.002;  P2 chi2: step 18.1, gradient 6.3, step+slope 5.34, delta chi2 12.77 (+-0.06), B null (M0off) 36.3 (+-0.1);  P3 lambda 4.8 (+-0.05), beta_true 0.270 (+-0.002);
+  P4 gradient slope 0.34 +- 0.06, within-class slope 0.441 +- 0.123 (+-0.005);  P5 condition numbers 3200 (jackknifed reference, +-5%), 10.8 (fixed reference, +-0.1), smallest eigenvalue 2.2e-6 (+-5%);
+  P6 M0 (zero offset, jk reference) 305/6; R5 (a) 304 / 77.6 / 29.2, (b)/(c) 36.2 / 21.1 / 12.2 (Mo +-5% tolerated as declared model dependence);  P7 R3 +0.10 +- 0.10, +0.07 +- 0.05, chi2 3.25/2 p 0.20;
+  P8 MUTATE beta_w 0.739 +- 0.123 (main 0.441).
+
+ATTACK ROWS (reported, not pass/fail; all frozen now):
+  A1 amplitude definition: the full R6 table above; the six errors under each definition.
+  A2 error inflation x1.2, x1.5, x2 (chi2 / f^2): p of Step, Gradient, delta chi2, beta errors; the inflation f needed for Step p = 0.05 and for delta chi2 = 3.84.
+  A3 tertile edges: quantile cut pairs (1/3, 2/3) main, (0.30, 0.70), (0.25, 0.75), (0.40, 0.60), (0.35, 0.65) for both classes (6 bins each) and 2 and 4 bins per class (equal-count): Step chi2 / dof, delta
+     chi2 of the within-class slope, beta_w, gradient chi2, gradient slope; also the class split at 2.0 is held fixed (declared); one variant with the split moved to 1.9 and 2.1 (classes redefined by colour).
+  A4 colour-dependent systematic vs lensing signal (what the staged product allows): (a) MASS/z MATCHING: within each class, each colour bin's lenses reweighted to the class-wide (log10 Mgal in 0.2 dex, z in 0.1) distribution
+     (cells with < 20 lenses in a bin dropped for that bin), then the same tests -- if the gradient survives it is not simply the class mass-colour correlation; (b) RADIAL: the same six-bin amplitude with
+     K sets {inner 12-14, outer 8-11, 2-halo 0-7 (R>0.3 Mpc), all 0-14}: a satellite / 2-halo / IA term should grow outward; (c) REDSHIFT: z below / above the sample median, joint 12-vector jackknife, gradient slope
+     in each and their difference (photo-z systematics that depend on colour and z); (d) leave-one-K1-bin-out and inner-3 / outer-4 sets for the gradient significance; (e) the M/L-equivalent: the local
+     logarithmic slope d log ESD / d log g_bar of the full-sample K1 ESD profile per class and the colour-dependent Mgal (stellar-mass) bias delta in dex that would produce the whole gradient across the colour
+     span (E3 - L1) and the class step; (f) blurred step: amplitude model a_L + Delta <Phi((u - 2.0)/sigma)>_bin (weights = sum_K1 WW per lens) for sigma in {0.02, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5}: chi2 (3 dof)
+     vs sigma, best sigma; it is a smooth-transition width in the OBSERVED colour and cannot separate colour noise from an intrinsic gradient -- printed only as such.  What cannot be tested with the staged
+     product and is declared untested: intrinsic alignment (no cross-shear / no B-mode), satellite fraction per lens (no isolation flags used), photo-z bias per lens colour, stellar-mass calibration by colour.
+  A5 power computation: the list of variants above.
+Programme rules: no claim that the data favour the framework or that the theory is closed; kappa = 1/2 is FITTED; a non-reproduction is a valid outcome; controls that fail are failures; nothing is tuned after a result is seen -- any later addition is labelled "post hoc".
+PRE-RUN CLARIFICATION (appended 2026-09-29 before any run of the scoring script; nothing else changed): control K4(d) applies to the JACKKNIFED-REFERENCE versus FIXED-REFERENCE definitions only (the identity
+  A^{jk}_c = A^{fix}_c - d_i, d_i = log10(ESD_all^{(-i)}-weighted / full-sample) common to all c, is exact there); the "jackknifed weights" definition is not of that form, so its free-offset chi2 is only
+  reported, not asserted equal.  Frozen K1 also asserted only for the sums; the amplitude fits use the six-vector with the full-sample central value (not the jackknife mean).

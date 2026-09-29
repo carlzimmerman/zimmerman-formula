@@ -1,0 +1,196 @@
+CFG107  MUTATE=0  frozen-text sha256 0ff9cac341a905d9
+== controls on inputs
+  [PASS] K1 per-patch sums vs June: max relative deviation 3.10e-11 (<= 1e-9)
+  [PASS] K2a K1 bins: K1 = [8, 9, 10, 11, 12, 13, 14]
+  [PASS] K3 LePhare join: matched 181477/181477 exactly (multiple catalogue rows for 0 lenses); IDs+positions row-aligned True; (u-r>2.0)==typ for all: True; finite u-r 181477
+  [PASS] K3b tertile edges: edges [1.507 1.749 2.228 2.351] (expected 1.507 1.749 2.228 2.351 +-0.002)
+  bin N [31030 31222 31146 29313 29135 29631]   (CFG115: 31030 31222 31146 29313 29135 29631)
+  bin median u-r [1.344 1.632 1.87  2.128 2.297 2.401] (CFG115: 1.344 1.632 1.870 2.128 2.297 2.401); class medians [1.633 2.298]
+  [PASS] K2b partition / sums: each lens in exactly one bin: True; six-bin vs full K1 sums 5.2e-15; vs class sums 3.9e-15 (both <1e-12)
+== main analysis (unmodified data)
+  amplitudes A_c (dex): [-0.1652 -0.2669 -0.0491 -0.0487  0.0501  0.1226]
+  errors sqrt(diag C) : [0.0773 0.0767 0.0388 0.0344 0.0305 0.0241]
+  Hartlap h(p=6) = 0.85714
+  R0/R1-R2 fits (Hartlap P = h C^-1):
+    M0        chi2  304.992 / 6  p 6.97e-63   beta [] +- []
+    M0off     chi2   36.272 / 5  p 8.38e-07   beta [0.0124] +- [0.0008]
+    step      chi2   18.108 / 4  p 0.00118   beta [-0.118   0.0553] +- [0.0306 0.0101]
+    grad      chi2    6.290 / 4  p 0.179   beta [-0.0407  0.3365] +- [0.0097 0.0615]
+    stepslope chi2    5.340 / 3  p 0.149   beta [-0.1591  0.0545  0.4407] +- [0.0327 0.0101 0.1233]
+    dchi2(step - step+slope) = 12.768   chi2(step) - chi2(grad) = 11.818
+  power row: beta_true = 0.2606 dex/mag, sigma(beta_w) = 0.1233, lambda = 4.465 (threshold 9); 1-dof power at alpha 0.05 = 0.561
+  H1 (step: p(step)>0.05 [False] and dchi2<4 [False]) -> FAIL
+== reproduction lines (main data, primary definitions)
+    P1 A(L1)                                       mine -0.1652     CFG115 -0.165    tol 0.002    REPRODUCED
+    P1 err(L1)                                     mine 0.07732     CFG115 0.077     tol 0.002    REPRODUCED
+    P1 A(L2)                                       mine -0.2669     CFG115 -0.267    tol 0.002    REPRODUCED
+    P1 err(L2)                                     mine 0.076668    CFG115 0.077     tol 0.002    REPRODUCED
+    P1 A(L3)                                       mine -0.049104   CFG115 -0.049    tol 0.002    REPRODUCED
+    P1 err(L3)                                     mine 0.03879     CFG115 0.039     tol 0.002    REPRODUCED
+    P1 A(E1)                                       mine -0.048691   CFG115 -0.049    tol 0.002    REPRODUCED
+    P1 err(E1)                                     mine 0.034395    CFG115 0.034     tol 0.002    REPRODUCED
+    P1 A(E2)                                       mine 0.050112    CFG115 0.05      tol 0.002    REPRODUCED
+    P1 err(E2)                                     mine 0.030453    CFG115 0.031     tol 0.002    REPRODUCED
+    P1 A(E3)                                       mine 0.12264     CFG115 0.123     tol 0.002    REPRODUCED
+    P1 err(E3)                                     mine 0.024144    CFG115 0.024     tol 0.002    REPRODUCED
+    P2 chi2 step                                   mine 18.108      CFG115 18.1      tol 0.06     REPRODUCED
+    P2 chi2 gradient                               mine 6.2897      CFG115 6.3       tol 0.06     REPRODUCED
+    P2 chi2 step+slope                             mine 5.3403      CFG115 5.34      tol 0.06     REPRODUCED
+    P2 dchi2 slope                                 mine 12.768      CFG115 12.77     tol 0.06     REPRODUCED
+    P2 chi2 B null (free offset)                   mine 36.272      CFG115 36.3      tol 0.1      REPRODUCED
+    P3 lambda                                      mine 4.4653      CFG115 4.8       tol 0.05     APPROXIMATE
+    P3 beta_true                                   mine 0.26064     CFG115 0.27      tol 0.002    APPROXIMATE
+    P4 gradient slope                              mine 0.33653     CFG115 0.34      tol 0.005    REPRODUCED
+    P4 gradient slope err                          mine 0.06146     CFG115 0.06      tol 0.005    REPRODUCED
+    P4 within-class slope                          mine 0.44073     CFG115 0.441     tol 0.005    REPRODUCED
+    P4 within-class slope err                      mine 0.12334     CFG115 0.123     tol 0.005    REPRODUCED
+    P6 M0 zero offset (jk ref)                     mine 304.99      CFG115 305       tol 1        REPRODUCED
+== R6 / A1: amplitude-definition attack
+  [jkref] cond 3198.1  eig min 2.2e-06 max 0.00703  errors [0.0773 0.0767 0.0388 0.0344 0.0305 0.0241]
+      chi2: M0 304.99  M0off 36.27  step 18.108  grad 6.290  stepslope 5.340  dchi2 12.768  | beta_grad 0.3365+-0.0615 beta_w 0.4407+-0.1233
+  [fixref] cond 10.8  eig min 0.000827 max 0.00892  errors [0.0849 0.0816 0.0441 0.0368 0.0322 0.0319]
+      chi2: M0 38.81  M0off 36.27  step 18.108  grad 6.290  stepslope 5.340  dchi2 12.768  | beta_grad 0.3365+-0.0615 beta_w 0.4407+-0.1233
+  [jkw] cond 3193.6  eig min 2.2e-06 max 0.00703  errors [0.0773 0.0766 0.0388 0.0344 0.0304 0.0241]
+      chi2: M0 304.69  M0off 36.29  step 18.109  grad 6.294  stepslope 5.345  dchi2 12.764  | beta_grad 0.3364+-0.0614 beta_w 0.4406+-0.1233
+    P5 cond jkref                                  mine 3198.1      CFG115 3200      tol 160      REPRODUCED
+    P5 cond fixref                                 mine 10.781      CFG115 10.8      tol 0.1      REPRODUCED
+    P5 eigmin jkref                                mine 2.1988e-06  CFG115 2.2e-06   tol 1.1e-07  REPRODUCED
+  pseudo-inverse dropping the smallest eigen-direction of C_jkref: step chi2 1.816, step+slope 1.633, dchi2 0.183 (CFG115 post hoc: 0.19)
+== K4 closed-form controls
+    K4a step      |normal-eq - Cholesky-lstsq| 3.20e-14 ; |normal-eq - BFGS| 4.97e-07
+    K4a step      post hoc BFGS on the whitened problem with analytic gradient: 1.43e-15
+    K4a grad      |normal-eq - Cholesky-lstsq| 1.15e-14 ; |normal-eq - BFGS| 1.95e-06
+    K4a grad      post hoc BFGS on the whitened problem with analytic gradient: 1.05e-14
+    K4a stepslope |normal-eq - Cholesky-lstsq| 8.88e-15 ; |normal-eq - BFGS| 7.56e-07
+    K4a stepslope post hoc BFGS on the whitened problem with analytic gradient: 1.75e-15
+  [FAIL] K4a GLS = Cholesky = BFGS (frozen 1e-8): max deviation 1.95e-06 (see the per-model lines: the BFGS leg is a numerical-optimiser limit, the algebraic legs agree to ~1e-12; post hoc row above)
+  [PASS] K4b nested identity: dchi2 12.767609881 vs (beta_w/sigma)^2 12.767609881
+  [PASS] K4c power identity: lambda 4.465273472 vs beta_true^2/sigma^2 4.465273472
+  [PASS] K4d free-offset chi2 identical, jk ref vs fixed ref: max |delta chi2| 3.27e-13 over M0off, step, grad, step+slope
+  [PASS] K4e exact step / gradient: pure step: step chi2 1.3e-27 dchi2 -1.7e-28; pure gradient: grad chi2 9.6e-23
+  [PASS] K5 swap control: step chi2 18.107949 -> 18.107949; beta_w 0.441 -> -0.443; gradient chi2 6.29 -> 30.51
+== K6 calibration null: 200 random equal-count thirds per class
+  [PASS] K6 null calibration: mean step chi2 3.515 (4 dof; expected 4, CFG115 3.76), fraction p<0.05: 0.015, sd 2.51
+== R3 outer-tertile contrasts
+  A(L1)-A(L2) = +0.1017 +- 0.1009 ; A(E3)-A(E2) = +0.0725 +- 0.0469 ; chi2(2 dof) = 3.251 p 0.197 (h p'=2) ; 2.969 p 0.227 (h p=6)
+    P7 A(L1)-A(L2)                                 mine 0.10171     CFG115 0.1       tol 0.006    REPRODUCED
+    P7 err                                         mine 0.10092     CFG115 0.1       tol 0.01     REPRODUCED
+    P7 A(E3)-A(E2)                                 mine 0.072531    CFG115 0.07      tol 0.006    REPRODUCED
+    P7 err                                         mine 0.046936    CFG115 0.05      tol 0.006    REPRODUCED
+    P7 chi2 outer                                  mine 3.2513      CFG115 3.25      tol 0.06     REPRODUCED
+== R4 per-bin table
+  L1 N  31030  med u-r 1.344  med log10 Mgal 10.006  med z 0.270  ESD_K1 [  7.27  14.01  19.1   23.14   9.13 -24.27 -12.04]
+  L2 N  31222  med u-r 1.632  med log10 Mgal 10.481  med z 0.318  ESD_K1 [ 8.34  2.21 10.04 15.42 12.08 36.84 12.26]
+  L3 N  31146  med u-r 1.870  med log10 Mgal 10.696  med z 0.324  ESD_K1 [ 9.27 12.79 18.28 19.82 28.62 34.38 32.46]
+  E1 N  29313  med u-r 2.128  med log10 Mgal 10.726  med z 0.293  ESD_K1 [10.8  11.05 20.79 14.13 25.4  36.36 32.  ]
+  E2 N  29135  med u-r 2.297  med log10 Mgal 10.766  med z 0.299  ESD_K1 [12.13 17.01 16.41 24.59 35.2  57.44 52.51]
+  E3 N  29631  med u-r 2.401  med log10 Mgal 10.902  med z 0.332  ESD_K1 [12.6  21.21 26.25 32.53 34.59 46.76 68.95]
+  all    ESD_K1 [10.8  14.32 19.49 22.52 28.05 40.08 41.47]
+== A5 power variants (which alternative gives 4.8)
+  V1 primary (step-fit s, class median colour, Hartlap)                    lambda = 4.465
+  V2 no Hartlap h                                                          lambda = 5.209
+  V3 s from class-level amplitudes (-0.128, 0.052)                         lambda = 4.805
+  V4 class MEAN colour                                                     lambda = 4.329
+  V5 mean of bin-median colours                                            lambda = 4.533
+  V6 truth = gradient-fit slope 0.337                                      lambda = 7.444
+  V7 truth = observed within-class slope 0.441 (=> observed dchi2)         lambda = 12.768
+  V8 primary at half class difference                                      lambda = 1.116
+  power of the 1-dof slope test at alpha 0.05 for lambda 4.47: 0.561 ; sigma_beta_w 0.1233 => detectable slope at 80% power 0.346 dex/mag = 1.33 x beta_true; at 50% 0.242
+    P3 lambda (POST HOC reading V3: s from class-level amplitudes) mine 4.8045      CFG115 4.8       tol 0.05     REPRODUCED
+    P3 beta_true (POST HOC reading V3)             mine 0.27036     CFG115 0.27      tol 0.002    REPRODUCED
+== A2 error inflation
+  x1.0: step 18.11/4 (p 0.00118)  grad 6.29/4 (p 0.179)  stepslope 5.34  dchi2 12.77 (p 0.000353)  M0off 36.27/5  | beta_grad 0.337+-0.061  beta_w 0.441+-0.123
+  x1.2: step 12.57/4 (p 0.0136)  grad 4.37/4 (p 0.359)  stepslope 3.71  dchi2 8.87 (p 0.0029)  M0off 25.19/5  | beta_grad 0.337+-0.074  beta_w 0.441+-0.148
+  x1.5: step 8.05/4 (p 0.0898)  grad 2.80/4 (p 0.593)  stepslope 2.37  dchi2 5.67 (p 0.0172)  M0off 16.12/5  | beta_grad 0.337+-0.092  beta_w 0.441+-0.185
+  x2.0: step 4.53/4 (p 0.339)  grad 1.57/4 (p 0.814)  stepslope 1.34  dchi2 3.19 (p 0.074)  M0off 9.07/5  | beta_grad 0.337+-0.123  beta_w 0.441+-0.247
+  inflation for step p=0.05: x1.38; for dchi2(slope)=3.84: x1.82; for M0off p=0.05: x1.81
+== A3 tertile-edge / class-split sensitivity (jackknifed-reference definition)
+  1/3,2/3 (main)                 nb 6 step 18.11/4 (p 0.00118)  dchi2 12.77  beta_w 0.441+-0.123  grad 6.29/4 beta_g 0.337+-0.061  M0off 36.3
+  0.30,0.70                      nb 6 step 16.36/4 (p 0.00258)  dchi2 10.58  beta_w 0.368+-0.113  grad 5.99/4 beta_g 0.324+-0.059  M0off 36.5
+  0.25,0.75                      nb 6 step 20.00/4 (p 0.000499)  dchi2 12.00  beta_w 0.356+-0.103  grad 8.45/4 beta_g 0.301+-0.062  M0off 31.9
+  0.40,0.60                      nb 6 step 17.12/4 (p 0.00184)  dchi2 12.87  beta_w 0.475+-0.132  grad 5.49/4 beta_g 0.343+-0.059  M0off 39.6
+  0.35,0.65                      nb 6 step 14.44/4 (p 0.00602)  dchi2 9.71  beta_w 0.397+-0.128  grad 5.08/4 beta_g 0.332+-0.062  M0off 33.6
+  halves (2 per class)           nb 4 step 14.11/2 (p 0.000862)  dchi2 12.09  beta_w 0.542+-0.156  grad 3.60/2 beta_g 0.362+-0.062  M0off 37.9
+  quartiles (4 per class)        nb 8 step 25.80/6 (p 0.000242)  dchi2 13.10  beta_w 0.380+-0.105  grad 13.14/6 beta_g 0.325+-0.063  M0off 40.0
+  quintiles (5 per class)        nb 10 step 28.77/8 (p 0.000347)  dchi2 15.37  beta_w 0.415+-0.106  grad 13.93/8 beta_g 0.352+-0.059  M0off 49.6
+  class split at u-r=1.9         nb 6 step 11.42/4 (p 0.0222)  dchi2 6.00  beta_w 0.277+-0.113  grad 5.71/4 beta_g 0.329+-0.060  M0off 36.0
+  class split at u-r=2.1         nb 6 step 12.09/4 (p 0.0167)  dchi2 5.84  beta_w 0.333+-0.138  grad 6.27/4 beta_g 0.345+-0.061  M0off 38.5
+== A4 colour-dependent systematic vs lensing signal
+  (a) mass/z matching within class (cells 0.2 dex log10 Mgal x 0.1 in z; bin cells with < 20 lenses dropped)
+      fraction of lenses kept per bin: [0.998 0.999 0.999 1.    1.    0.999]
+      as frozen (cells with <20 lenses dropped): max omega per bin [34.6  9.6 63.9  2.3  3.7  8.1] ; Kish effective N per bin [ 4503. 19224.  4261. 26485. 26808. 17826.] (raw [31030 31222 31146 29313 29135 29631])
+      as frozen (cells with <20 lenses dropped): a weighted bin numerator sum_k w_k ESD_ck is <= 0 => the amplitude (a log) is UNDEFINED; row not computable as specified
+      POST HOC common-support matching (>=200 lenses per bin per cell): max omega per bin [15.6  1.6 10.3  1.6  2.1  6.2] ; Kish effective N per bin [ 5139. 23031.  9205. 23725. 24778. 18760.] (raw [31030 31222 31146 29313 29135 29631])
+      matched amplitudes [-0.261 -0.267 -0.056 -0.036  0.056  0.124]
+      step 10.61/4 (p 0.0313)  grad 1.30/4  stepslope 0.58  dchi2 10.03  beta_w 0.581+-0.183  beta_grad 0.456+-0.109  M0off 18.9
+  (b) radial sets
+  inner 12-14                    log amplitude UNDEFINED (a weighted bin numerator or jackknife-sample ratio is <= 0)
+      POST HOC linear-ratio amplitude (A = ratio - 1, same covariance recipe) for the same set:
+  inner 12-14 [lin]              nb 6 step 16.75/4 (p 0.00216)  dchi2 15.76  beta_w 1.796+-0.452  grad 3.79/4 beta_g 1.142+-0.228  M0off 29.0
+  outer 8-11                     nb 6 step 14.42/4 (p 0.00606)  dchi2 4.79  beta_w 0.286+-0.131  grad 9.69/4 beta_g 0.258+-0.064  M0off 26.0
+  2-halo 0-7                     nb 6 step 10.69/4 (p 0.0302)  dchi2 7.40  beta_w 0.393+-0.144  grad 3.56/4 beta_g 0.330+-0.074  M0off 23.4
+  all 0-14                       nb 6 step 13.46/4 (p 0.00923)  dchi2 9.59  beta_w 0.398+-0.129  grad 4.28/4 beta_g 0.328+-0.066  M0off 28.9
+  K1 8-14                        nb 6 step 18.11/4 (p 0.00118)  dchi2 12.77  beta_w 0.441+-0.123  grad 6.29/4 beta_g 0.337+-0.061  M0off 36.3
+  (c) redshift split (joint 12-vector jackknife)
+      z median 0.308. low-z: beta_w 0.302+-0.178, grad 0.148+-0.076, dchi2 2.89 ; high-z: beta_w 0.577+-0.185, grad 0.478+-0.097, dchi2 9.77
+      12-vector joint fit (h p=12): beta_w(low) - beta_w(high) = -0.299 +- 0.290 (-1.03 sigma)   [amps low [-0.064 -0.074 -0.019 -0.082  0.027  0.098] | high [-0.34  -0.484 -0.078  0.002  0.091  0.135]]
+  (d) K1 subsets
+  drop bin 8                     nb 6 step 24.11/4 (p 7.58e-05)  dchi2 15.28  beta_w 0.545+-0.139  grad 10.60/4 beta_g 0.381+-0.065  M0off 44.9
+  drop bin 9                     nb 6 step 7.80/4 (p 0.0992)  dchi2 7.33  beta_w 0.441+-0.163  grad 1.18/4 beta_g 0.318+-0.071  M0off 21.2
+  drop bin 10                    nb 6 step 17.28/4 (p 0.0017)  dchi2 14.02  beta_w 0.521+-0.139  grad 4.64/4 beta_g 0.380+-0.071  M0off 33.7
+  drop bin 11                    nb 6 step 13.84/4 (p 0.00782)  dchi2 10.06  beta_w 0.444+-0.140  grad 4.49/4 beta_g 0.342+-0.072  M0off 27.1
+  drop bin 12                    nb 6 step 16.17/4 (p 0.0028)  dchi2 10.78  beta_w 0.412+-0.126  grad 5.96/4 beta_g 0.329+-0.061  M0off 35.1
+  drop bin 13                    nb 6 step 17.67/4 (p 0.00143)  dchi2 8.57  beta_w 0.377+-0.129  grad 9.53/4 beta_g 0.305+-0.065  M0off 31.2
+  drop bin 14                    nb 6 step 15.86/4 (p 0.00321)  dchi2 10.10  beta_w 0.395+-0.124  grad 6.41/4 beta_g 0.308+-0.061  M0off 31.6
+  lowest-3 K1 bins (8-10)        nb 6 step 10.35/4 (p 0.0349)  dchi2 3.84  beta_w 0.290+-0.148  grad 6.57/4 beta_g 0.258+-0.076  M0off 18.0
+  (e) M/L-equivalent: local ESD slope in K1 and the stellar-mass bias that would mimic the gradient
+      late: d log ESD / d log g_bar over K1 = +0.287  (ESD [ 8.63  9.56 15.74 18.95 20.03 25.61 18.91])
+      early: d log ESD / d log g_bar over K1 = +0.435  (ESD [11.89 16.7  21.35 24.28 31.96 47.1  52.19])
+      all: d log ESD / d log g_bar over K1 = +0.406  (ESD [10.8  14.32 19.49 22.52 28.05 40.08 41.47])
+      gradient amplitude across E3-L1 (1.057 mag) = 0.356 dex => a colour-dependent bias in log g_bar (equivalently log Mgal) of 0.88 dex across the span would mimic it (0.828 dex/mag); the class step (s_E - s_L = 0.173) needs 0.43 dex
+  (f) smooth-transition (blurred step) model a_L + Delta <Phi((u-2)/sigma)>, weights sum_K1 WW per lens
+      sigma 0.02: chi2 17.04 /4 (p 0.0019)  a_L -0.126  Delta +0.184 +- 0.042   bin fractions [0.   0.   0.04 0.97 1.   1.  ]
+      sigma 0.05: chi2 15.31 /4 (p 0.0041)  a_L -0.138  Delta +0.200 +- 0.044   bin fractions [0.   0.   0.09 0.93 1.   1.  ]
+      sigma 0.10: chi2 12.12 /4 (p 0.0165)  a_L -0.159  Delta +0.229 +- 0.047   bin fractions [0.   0.   0.17 0.85 1.   1.  ]
+      sigma 0.15: chi2 9.26 /4 (p 0.055)  a_L -0.178  Delta +0.258 +- 0.050   bin fractions [0.   0.01 0.23 0.78 0.97 1.  ]
+      sigma 0.20: chi2 7.40 /4 (p 0.116)  a_L -0.194  Delta +0.287 +- 0.053   bin fractions [0.   0.04 0.28 0.73 0.93 0.98]
+      sigma 0.30: chi2 5.89 /4 (p 0.208)  a_L -0.225  Delta +0.349 +- 0.063   bin fractions [0.02 0.12 0.35 0.66 0.84 0.91]
+      sigma 0.40: chi2 5.55 /4 (p 0.235)  a_L -0.257  Delta +0.417 +- 0.075   bin fractions [0.06 0.19 0.38 0.62 0.77 0.85]
+      sigma 0.50: chi2 5.53 /4 (p 0.237)  a_L -0.291  Delta +0.488 +- 0.088   bin fractions [0.1  0.24 0.41 0.6  0.72 0.8 ]
+== R5 model amplitudes (model stacks through grouped cells; building tables ...)
+  groups 2901
+  table B_canonical  21s
+  table L            35s
+  table Mo           21s
+  B_canonical  Mgal-weighted model A [-0.001 -0.     0.    -0.    -0.     0.   ]  chi2 (a) jk-ref zero-offset 303.7 | (b) fixed-ref zero-offset 38.7 | (c) free offset 36.2 /5
+  B_canonical  pair-weighted model A [-0.001 -0.     0.    -0.    -0.     0.   ]  chi2 (a) jk-ref zero-offset 303.1 | (b) fixed-ref zero-offset 38.7 | (c) free offset 36.2 /5
+    P6 R5(a) B_canonical (Mgal-wtd)                mine 303.71      CFG115 304       tol 1        REPRODUCED
+    P6 R5(c) B_canonical free offset               mine 36.183      CFG115 36.2      tol 0.1      REPRODUCED
+  L            Mgal-weighted model A [-0.034 -0.151 -0.16   0.061  0.051  0.074]  chi2 (a) jk-ref zero-offset 22.7 | (b) fixed-ref zero-offset 21.1 | (c) free offset 21.1 /5
+  L            pair-weighted model A [ 0.033 -0.125 -0.171  0.047  0.037  0.058]  chi2 (a) jk-ref zero-offset 132.3 | (b) fixed-ref zero-offset 27.1 | (c) free offset 26.5 /5
+    P6 R5(a) L (Mgal-wtd)                          mine 22.681      CFG115 77.6      tol 1        NOT REPRODUCED
+    P6 R5(c) L free offset                         mine 21.087      CFG115 21.1      tol 0.1      REPRODUCED
+  Mo           Mgal-weighted model A [-0.224 -0.096 -0.006 -0.001 -0.003  0.08 ]  chi2 (a) jk-ref zero-offset 28.7 | (b) fixed-ref zero-offset 12.3 | (c) free offset 12.2 /5
+  Mo           pair-weighted model A [-0.214 -0.116 -0.026 -0.01   0.007  0.092]  chi2 (a) jk-ref zero-offset 17.8 | (b) fixed-ref zero-offset 8.0 | (c) free offset 7.9 /5
+    P6 R5(a) Mo (Mgal-wtd)                         mine 28.681      CFG115 29.2      tol 1.46     REPRODUCED
+    P6 R5(c) Mo free offset                        mine 12.163      CFG115 12.2      tol 0.61     REPRODUCED
+== summary of reproduction lines
+  {'REPRODUCED': 37, 'APPROXIMATE': 2, 'NOT REPRODUCED': 1}
+    P3 lambda                                      mine 4.4653 CFG115 4.8 tol 0.05  APPROXIMATE
+    P3 beta_true                                   mine 0.26064 CFG115 0.27 tol 0.002  APPROXIMATE
+    P6 R5(a) L (Mgal-wtd)                          mine 22.681 CFG115 77.6 tol 1  NOT REPRODUCED
+controls: 11/12 pass
+   PASS K1 per-patch sums vs June
+   PASS K2a K1 bins
+   PASS K3 LePhare join
+   PASS K3b tertile edges
+   PASS K2b partition / sums
+   FAIL K4a GLS = Cholesky = BFGS (frozen 1e-8)
+   PASS K4b nested identity
+   PASS K4c power identity
+   PASS K4d free-offset chi2 identical, jk ref vs fixed ref
+   PASS K4e exact step / gradient
+   PASS K5 swap control
+   PASS K6 null calibration
+elapsed 100s
+H1 FAIL ; RC 1
