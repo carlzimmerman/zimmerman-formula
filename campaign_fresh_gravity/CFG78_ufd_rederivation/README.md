@@ -13,3 +13,7 @@
 **Scope.** An internal check that CFG46's arithmetic is right; not evidence for or against the framework. Both the law and the rule sit within about 1.8 sigma of zero on these eight systems and cannot be separated. kappa = 1/2 is FITTED; nothing here says the theory is closed.
 
 Run: `python3 cfg78_ufd_rederivation.py` (rc 0), `MUTATE=1 python3 ...` (rc 0, see the disclosed defect). Re-run in place; output identical to the agent's.
+
+## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
+- **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
+- **Exit codes.** The main run and the MUTATE run both exit 0 with empty failure sets (disclosed above); the informative signal is the reproduction check and H3 (the rule), not the exit code. The script header's 'MUTATE exit 1 intended' does not hold.
