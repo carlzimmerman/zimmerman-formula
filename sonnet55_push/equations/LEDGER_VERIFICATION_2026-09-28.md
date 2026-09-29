@@ -211,3 +211,19 @@ R3/R5 lines; CFG94 R1 P x=0.3; CFG95 H1 and H2 (a result, not a bug).
 ## Not covered
 Whether the scripts' physics is right; the post-hoc/exploratory scripts beyond main-only reproduction (no controls exist); CFG99 and
 CFG96_stage_stack (above); anything committed after 4fa9f54e3.
+
+## Part 5 note (2026-09-29): reconciliation with the Opus chat's in-place observations -- a wording ambiguity, no discrepancy
+The orchestrator's message summarising Part 5 read my one-line list as "CFG76, 78, 79, 83, 93, 94, 95 ... both 0". My wording was
+ambiguous: the parenthesis "(both 0 with empty failure sets)" belonged to CFG78 only. The exit codes as recorded in the workers'
+tables (`rerun5_reports/`, exact rows) are, main / MUTATE:
+| lane | main rc | MUTATE rc | checks / failing set (main; MUTATE) |
+|---|---|---|---|
+| CFG76 | 1 | 1 | 14 pass, 2 fail (G1 at ddof=0); 14 pass, 4 fail |
+| CFG78 | 0 | 0 | FAILS: none; FAILS: none (README-disclosed defect) |
+| CFG83 | 1 | 1 | FAILS: [C1e]; FAILS: [C1e] |
+| CFG93 | 1 | 1 | 7 of 37 lines failed; 26 of 34 lines failed |
+| CFG94 | 1 | 1 (MUTATE=1), 1 (MUTATE=2) | reproduction 16/17; 0/17; 7/17 |
+| CFG89 | 0 | 0 (MUTATE=1), 0 (MUTATE=nu1) | CONTROL FAILURES: none in all three modes |
+This is the same as the Opus chat's in-place observation (CFG76, 83, 93, 94 exit 1 in both modes; CFG78 and CFG89 exit 0 in both). The
+environment (absolute paths, git-ignored data) did not change any exit code in these six lanes. I did not repeat the runs in the live
+tree: running there would overwrite tracked `.out` files, and there is no remaining difference to explain.
