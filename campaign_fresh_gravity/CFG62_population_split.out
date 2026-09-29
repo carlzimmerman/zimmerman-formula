@@ -1,0 +1,86 @@
+CFG62 -- CAN ONE DECLARED VARIABLE SPLIT THE RULE'S POPULATIONS INTO GROUPS THAT EACH ADMIT A COMMON DEBRIS FRACTION?
+
+Criteria frozen and committed before this script: campaign_fresh_gravity/CFG62_FROZEN_CRITERIA.md (commit dfe4d59ef).  Inputs are CFG59's committed
+per-population phi intervals (1 sigma of the lane's own offset; phi in [0, 1]) and per-population variables (log M_*, log(M_ph,edge / M_coll)), plus
+the declared support (rotation: U7, U8) and environment (satellite: U1-U4, U9, U10).  Nothing is refitted.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  CFG59's committed answer reproduced from its JSON by this script's own intersection code: no common intersection of all ten on either
+               footing; the binding pair SLUGGS vs M31 LVD with a 0.51 gap (canonical).
+  H1  [HEADLINE; MUTATE must fail]  no split of the TEN populations by any of the four variables at any threshold gives non-empty intersections in
+      both groups, either footing.
+  H2  (declared after seeing U6's empty interval; disclosed) the same for the NINE without U6 (X-ray ellipticals).
+  R1-R3 (reported) every split tested with each group's intersection; the fewest contiguous log M_* groups with non-empty intersections (nine) and
+      their phi ranges; the phi_ext values (roots on [0, 6]).
+MUTATE=1: every interval replaced by [0, 1] -- every split succeeds, so H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1  CONTROL: CFG59 reproduced
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG59's answer reproduced by this script's intersection code (all ten empty; SLUGGS vs M31 LVD gap 0.51 canonical)
+         canonical: all-ten intersection empty True (committed yes=False), gap 0.507 (committed 0.507); alt: all-ten intersection empty True (committed yes=False), gap 0.460 (committed 0.460)
+
+======================================================================================================================
+R1  EVERY SPLIT (canonical)
+======================================================================================================================
+    -- 10 populations --
+    log M_*                split                 3.81: U10                          [0.216,0.835]          | U1+U9+U3+U4+U2+U5+U7+U6+U8   EMPTY                  -> no
+    log M_*                split                 4.27: U10+U1                       [0.387,0.835]          | U9+U3+U4+U2+U5+U7+U6+U8      EMPTY                  -> no
+    log M_*                split                 5.14: U10+U1+U9                    [0.387,0.517]          | U3+U4+U2+U5+U7+U6+U8         EMPTY                  -> no
+    log M_*                split                 5.74: U10+U1+U9+U3                 [0.387,0.517]          | U4+U2+U5+U7+U6+U8            EMPTY                  -> no
+    log M_*                split                 5.96: U10+U1+U9+U3+U4              EMPTY                  | U2+U5+U7+U6+U8               EMPTY                  -> no
+    log M_*                split                 8.61: U10+U1+U9+U3+U4+U2           EMPTY                  | U5+U7+U6+U8                  EMPTY                  -> no
+    log M_*                split                11.25: U10+U1+U9+U3+U4+U2+U5        EMPTY                  | U7+U6+U8                     EMPTY                  -> no
+    log M_*                split                11.39: U10+U1+U9+U3+U4+U2+U5+U7     EMPTY                  | U6+U8                        EMPTY                  -> no
+    log M_*                split                11.46: U10+U1+U9+U3+U4+U2+U5+U7+U6  EMPTY                  | U8                           [0.000,0.963]          -> no
+    log(M_ph,edge/M_coll)  split                -1.56: U10                          [0.216,0.835]          | U1+U9+U2+U4+U8+U6+U3+U7+U5   EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -1.30: U10+U1                       [0.387,0.835]          | U9+U2+U4+U8+U6+U3+U7+U5      EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.78: U10+U1+U9                    [0.387,0.517]          | U2+U4+U8+U6+U3+U7+U5         EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2                 EMPTY                  | U4+U8+U6+U3+U7+U5            EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2+U4              EMPTY                  | U8+U6+U3+U7+U5               EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.45: U10+U1+U9+U2+U4+U8           EMPTY                  | U6+U3+U7+U5                  EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.43: U10+U1+U9+U2+U4+U8+U6        EMPTY                  | U3+U7+U5                     [0.808,1.000]          -> no
+    log(M_ph,edge/M_coll)  split                -0.36: U10+U1+U9+U2+U4+U8+U6+U3     EMPTY                  | U7+U5                        [0.808,1.000]          -> no
+    log(M_ph,edge/M_coll)  split                -0.20: U10+U1+U9+U2+U4+U8+U6+U3+U7  EMPTY                  | U5                           [0.808,1.000]          -> no
+    support                split  pressure | rotation: U1+U2+U3+U4+U5+U6+U9+U10     EMPTY                  | U7+U8                        [0.000,0.963]          -> no
+    environment            split  central | satellite: U5+U6+U7+U8                  EMPTY                  | U1+U2+U3+U4+U9+U10           EMPTY                  -> no
+    -- 9 populations --
+    log M_*                split                 3.81: U10                          [0.216,0.835]          | U1+U9+U3+U4+U2+U5+U7+U8      EMPTY                  -> no
+    log M_*                split                 4.27: U10+U1                       [0.387,0.835]          | U9+U3+U4+U2+U5+U7+U8         EMPTY                  -> no
+    log M_*                split                 5.14: U10+U1+U9                    [0.387,0.517]          | U3+U4+U2+U5+U7+U8            EMPTY                  -> no
+    log M_*                split                 5.74: U10+U1+U9+U3                 [0.387,0.517]          | U4+U2+U5+U7+U8               EMPTY                  -> no
+    log M_*                split                 5.96: U10+U1+U9+U3+U4              EMPTY                  | U2+U5+U7+U8                  EMPTY                  -> no
+    log M_*                split                 8.61: U10+U1+U9+U3+U4+U2           EMPTY                  | U5+U7+U8                     [0.808,0.963]          -> no
+    log M_*                split                11.25: U10+U1+U9+U3+U4+U2+U5        EMPTY                  | U7+U8                        [0.000,0.963]          -> no
+    log M_*                split                11.41: U10+U1+U9+U3+U4+U2+U5+U7     EMPTY                  | U8                           [0.000,0.963]          -> no
+    log(M_ph,edge/M_coll)  split                -1.56: U10                          [0.216,0.835]          | U1+U9+U2+U4+U8+U3+U7+U5      EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -1.30: U10+U1                       [0.387,0.835]          | U9+U2+U4+U8+U3+U7+U5         EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.78: U10+U1+U9                    [0.387,0.517]          | U2+U4+U8+U3+U7+U5            EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2                 EMPTY                  | U4+U8+U3+U7+U5               EMPTY                  -> no
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2+U4              EMPTY                  | U8+U3+U7+U5                  [0.808,0.963]          -> no
+    log(M_ph,edge/M_coll)  split                -0.44: U10+U1+U9+U2+U4+U8           EMPTY                  | U3+U7+U5                     [0.808,1.000]          -> no
+    log(M_ph,edge/M_coll)  split                -0.36: U10+U1+U9+U2+U4+U8+U3        EMPTY                  | U7+U5                        [0.808,1.000]          -> no
+    log(M_ph,edge/M_coll)  split                -0.20: U10+U1+U9+U2+U4+U8+U3+U7     EMPTY                  | U5                           [0.808,1.000]          -> no
+    support                split  pressure | rotation: U1+U2+U3+U4+U5+U9+U10        EMPTY                  | U7+U8                        [0.000,0.963]          -> no
+    environment            split  central | satellite: U5+U7+U8                     [0.808,0.963]          | U1+U2+U3+U4+U9+U10           EMPTY                  -> no
+
+======================================================================================================================
+H1 / H2
+======================================================================================================================
+  [PASS] H1 [HEADLINE] NO one-variable split reconciles the TEN populations (four variables, every threshold), either footing
+         canonical: 0 of 20 splits succeed; alt: 0 of 20 splits succeed
+  [PASS] H2 (declared after seeing U6's empty interval) NO one-variable split reconciles the NINE populations without the X-ray ellipticals, either footing
+         canonical: 0 of 18 splits succeed; alt: 0 of 18 splits succeed
+
+======================================================================================================================
+R2 / R3 (reported)
+======================================================================================================================
+  [PASS] (reported) R2 (reported, canonical) the fewest contiguous log M_* groups with a common phi (nine populations)
+         3 groups: U10+U1 (log M* 3.73-3.89) phi [0.387,0.835]; U9+U3+U4+U2 (log M* 4.64-6.08) phi [0.135,0.301]; U5+U7+U8 (log M* 11.15-11.48) phi [0.808,0.963]
+  [PASS] (reported) R2 (reported, alt) the fewest contiguous log M_* groups with a common phi (nine populations)
+         3 groups: U10+U1 (log M* 3.73-3.89) phi [0.385,0.833]; U9+U3+U4+U2 (log M* 4.64-6.08) phi [0.121,0.221]; U5+U7+U8 (log M* 11.15-11.48) phi [0.681,0.988]
+  [PASS] (reported) R3 (reported, canonical) phi_ext = the root of each population's offset on [0, 6] (phi > 1 is more debris than the collapse mass holds)
+         U1 0.74, U2 0.05, U3 0.80, U4 0.12, U5 1.14, U6 2.15, U7 0.03, U8 0.38, U9 0.29, U10 0.44
+
+    READING (declared): the rule's debris fraction is not a one-variable function of mass, the phantom/collapse ratio, support or environment on these lanes; a reconciliation needs at least 3 contiguous mass groups with their own phi (canonical)
+
+  6/6 checks pass; load-bearing failures: 0   (0 s)

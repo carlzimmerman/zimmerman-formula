@@ -1,0 +1,88 @@
+CFG62 -- CAN ONE DECLARED VARIABLE SPLIT THE RULE'S POPULATIONS INTO GROUPS THAT EACH ADMIT A COMMON DEBRIS FRACTION?
+
+Criteria frozen and committed before this script: campaign_fresh_gravity/CFG62_FROZEN_CRITERIA.md (commit dfe4d59ef).  Inputs are CFG59's committed
+per-population phi intervals (1 sigma of the lane's own offset; phi in [0, 1]) and per-population variables (log M_*, log(M_ph,edge / M_coll)), plus
+the declared support (rotation: U7, U8) and environment (satellite: U1-U4, U9, U10).  Nothing is refitted.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  CFG59's committed answer reproduced from its JSON by this script's own intersection code: no common intersection of all ten on either
+               footing; the binding pair SLUGGS vs M31 LVD with a 0.51 gap (canonical).
+  H1  [HEADLINE; MUTATE must fail]  no split of the TEN populations by any of the four variables at any threshold gives non-empty intersections in
+      both groups, either footing.
+  H2  (declared after seeing U6's empty interval; disclosed) the same for the NINE without U6 (X-ray ellipticals).
+  R1-R3 (reported) every split tested with each group's intersection; the fewest contiguous log M_* groups with non-empty intersections (nine) and
+      their phi ranges; the phi_ext values (roots on [0, 6]).
+MUTATE=1: every interval replaced by [0, 1] -- every split succeeds, so H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every interval set to [0, 1] -- H1 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL: CFG59 reproduced
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG59's answer reproduced by this script's intersection code (all ten empty; SLUGGS vs M31 LVD gap 0.51 canonical)
+         canonical: all-ten intersection empty False (committed yes=False), gap -1.000 (committed 0.507); alt: all-ten intersection empty False (committed yes=False), gap -1.000 (committed 0.460)
+
+======================================================================================================================
+R1  EVERY SPLIT (canonical)
+======================================================================================================================
+    -- 10 populations --
+    log M_*                split                 3.81: U10                          [0.000,1.000]          | U1+U9+U3+U4+U2+U5+U7+U6+U8   [0.000,1.000]          -> YES
+    log M_*                split                 4.27: U10+U1                       [0.000,1.000]          | U9+U3+U4+U2+U5+U7+U6+U8      [0.000,1.000]          -> YES
+    log M_*                split                 5.14: U10+U1+U9                    [0.000,1.000]          | U3+U4+U2+U5+U7+U6+U8         [0.000,1.000]          -> YES
+    log M_*                split                 5.74: U10+U1+U9+U3                 [0.000,1.000]          | U4+U2+U5+U7+U6+U8            [0.000,1.000]          -> YES
+    log M_*                split                 5.96: U10+U1+U9+U3+U4              [0.000,1.000]          | U2+U5+U7+U6+U8               [0.000,1.000]          -> YES
+    log M_*                split                 8.61: U10+U1+U9+U3+U4+U2           [0.000,1.000]          | U5+U7+U6+U8                  [0.000,1.000]          -> YES
+    log M_*                split                11.25: U10+U1+U9+U3+U4+U2+U5        [0.000,1.000]          | U7+U6+U8                     [0.000,1.000]          -> YES
+    log M_*                split                11.39: U10+U1+U9+U3+U4+U2+U5+U7     [0.000,1.000]          | U6+U8                        [0.000,1.000]          -> YES
+    log M_*                split                11.46: U10+U1+U9+U3+U4+U2+U5+U7+U6  [0.000,1.000]          | U8                           [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -1.56: U10                          [0.000,1.000]          | U1+U9+U2+U4+U8+U6+U3+U7+U5   [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -1.30: U10+U1                       [0.000,1.000]          | U9+U2+U4+U8+U6+U3+U7+U5      [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.78: U10+U1+U9                    [0.000,1.000]          | U2+U4+U8+U6+U3+U7+U5         [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2                 [0.000,1.000]          | U4+U8+U6+U3+U7+U5            [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2+U4              [0.000,1.000]          | U8+U6+U3+U7+U5               [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.45: U10+U1+U9+U2+U4+U8           [0.000,1.000]          | U6+U3+U7+U5                  [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.43: U10+U1+U9+U2+U4+U8+U6        [0.000,1.000]          | U3+U7+U5                     [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.36: U10+U1+U9+U2+U4+U8+U6+U3     [0.000,1.000]          | U7+U5                        [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.20: U10+U1+U9+U2+U4+U8+U6+U3+U7  [0.000,1.000]          | U5                           [0.000,1.000]          -> YES
+    support                split  pressure | rotation: U1+U2+U3+U4+U5+U6+U9+U10     [0.000,1.000]          | U7+U8                        [0.000,1.000]          -> YES
+    environment            split  central | satellite: U5+U6+U7+U8                  [0.000,1.000]          | U1+U2+U3+U4+U9+U10           [0.000,1.000]          -> YES
+    -- 9 populations --
+    log M_*                split                 3.81: U10                          [0.000,1.000]          | U1+U9+U3+U4+U2+U5+U7+U8      [0.000,1.000]          -> YES
+    log M_*                split                 4.27: U10+U1                       [0.000,1.000]          | U9+U3+U4+U2+U5+U7+U8         [0.000,1.000]          -> YES
+    log M_*                split                 5.14: U10+U1+U9                    [0.000,1.000]          | U3+U4+U2+U5+U7+U8            [0.000,1.000]          -> YES
+    log M_*                split                 5.74: U10+U1+U9+U3                 [0.000,1.000]          | U4+U2+U5+U7+U8               [0.000,1.000]          -> YES
+    log M_*                split                 5.96: U10+U1+U9+U3+U4              [0.000,1.000]          | U2+U5+U7+U8                  [0.000,1.000]          -> YES
+    log M_*                split                 8.61: U10+U1+U9+U3+U4+U2           [0.000,1.000]          | U5+U7+U8                     [0.000,1.000]          -> YES
+    log M_*                split                11.25: U10+U1+U9+U3+U4+U2+U5        [0.000,1.000]          | U7+U8                        [0.000,1.000]          -> YES
+    log M_*                split                11.41: U10+U1+U9+U3+U4+U2+U5+U7     [0.000,1.000]          | U8                           [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -1.56: U10                          [0.000,1.000]          | U1+U9+U2+U4+U8+U3+U7+U5      [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -1.30: U10+U1                       [0.000,1.000]          | U9+U2+U4+U8+U3+U7+U5         [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.78: U10+U1+U9                    [0.000,1.000]          | U2+U4+U8+U3+U7+U5            [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2                 [0.000,1.000]          | U4+U8+U3+U7+U5               [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.46: U10+U1+U9+U2+U4              [0.000,1.000]          | U8+U3+U7+U5                  [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.44: U10+U1+U9+U2+U4+U8           [0.000,1.000]          | U3+U7+U5                     [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.36: U10+U1+U9+U2+U4+U8+U3        [0.000,1.000]          | U7+U5                        [0.000,1.000]          -> YES
+    log(M_ph,edge/M_coll)  split                -0.20: U10+U1+U9+U2+U4+U8+U3+U7     [0.000,1.000]          | U5                           [0.000,1.000]          -> YES
+    support                split  pressure | rotation: U1+U2+U3+U4+U5+U9+U10        [0.000,1.000]          | U7+U8                        [0.000,1.000]          -> YES
+    environment            split  central | satellite: U5+U7+U8                     [0.000,1.000]          | U1+U2+U3+U4+U9+U10           [0.000,1.000]          -> YES
+
+======================================================================================================================
+H1 / H2
+======================================================================================================================
+  [FAIL] H1 [HEADLINE] NO one-variable split reconciles the TEN populations (four variables, every threshold), either footing  [MUTATE: all intervals [0,1]]
+         canonical: 20 of 20 splits succeed; alt: 20 of 20 splits succeed
+  [FAIL] H2 (declared after seeing U6's empty interval) NO one-variable split reconciles the NINE populations without the X-ray ellipticals, either footing
+         canonical: 18 of 18 splits succeed; alt: 18 of 18 splits succeed
+
+======================================================================================================================
+R2 / R3 (reported)
+======================================================================================================================
+  [PASS] (reported) R2 (reported, canonical) the fewest contiguous log M_* groups with a common phi (nine populations)
+         1 groups: U10+U1+U9+U3+U4+U2+U5+U7+U8 (log M* 3.73-11.48) phi [0.000,1.000]
+  [PASS] (reported) R2 (reported, alt) the fewest contiguous log M_* groups with a common phi (nine populations)
+         1 groups: U10+U1+U9+U3+U4+U2+U5+U7+U8 (log M* 3.73-11.48) phi [0.000,1.000]
+  [PASS] (reported) R3 (reported, canonical) phi_ext = the root of each population's offset on [0, 6] (phi > 1 is more debris than the collapse mass holds)
+         U1 0.74, U2 0.05, U3 0.80, U4 0.12, U5 1.14, U6 2.15, U7 0.03, U8 0.38, U9 0.29, U10 0.44
+
+    READING (declared): a one-variable split exists for the nine: reported as a hypothesis for independent data, not a rule
+
+  4/6 checks pass; load-bearing failures: 2   (0 s)
