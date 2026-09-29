@@ -24,3 +24,6 @@ Nothing here says the data favour B or LCDM; kappa = 1/2 is FITTED. Run in place
 
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- `cfg84_main_firstrun.out` is not a crashed run: it is a complete first run ('14/15 checks pass') lacking only the post-hoc rows. The permutation range '0.035 to 0.059' is the 5-95% range (median 0.047).

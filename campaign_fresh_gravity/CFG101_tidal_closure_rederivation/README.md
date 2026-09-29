@@ -24,3 +24,6 @@ None of this says the theory is closed; the CFG50 no-go is confirmed for the tid
 
 ## Corrections from the equations chat's re-run (appended; no result changed)
 - **Exit codes and which checks the MUTATE runs change.** The main run exits 1 (two frozen checks miss: the ceiling value 0.5008 vs 0.505 and the alternative g_tot convention sensitivity row), so the exit codes of the MUTATE runs (also 1) do not discriminate the controls; the informative signal is the failing-check tally: MUTATE=a (fluid-sourced target) fails 4 checks (the point-mass-target closure P6 lines) and MUTATE=b (reversed coupling sign) fails 6; the attack scripts exit 0 in the main run and 1 in MUTATE=1.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- 'MUTATE=a fails 4 checks and MUTATE=b 6' counts the two baseline misses (the ceiling value and the option-B g_tot convention): MUTATE=a fails 2 further checks (both P6 point-mass closure lines) and MUTATE=b 4 further. '29 to 2900' is 29.4-2935.7 (H0 = 67) and 32.0-3204.5 (H0 = 70) and is order-of-magnitude arithmetic with chi from CFG50, not a replication; chi_c agrees with 3 h^3/(GM) to 7.5e-6; CFG50's D1 does print a ghost-free maximum of 0.498 at 1 h (the same 0.01 h grid artefact).

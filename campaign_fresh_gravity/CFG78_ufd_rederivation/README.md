@@ -17,3 +17,6 @@ Run: `python3 cfg78_ufd_rederivation.py` (rc 0), `MUTATE=1 python3 ...` (rc 0, s
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
 - **Exit codes.** The main run and the MUTATE run both exit 0 with empty failure sets (disclosed above); the informative signal is the reproduction check and H3 (the rule), not the exit code. The script header's 'MUTATE exit 1 intended' does not hold.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- The frozen docstring says 'READMEs and data only (no exec/import)' but the whole CFG46 script was read (the error recipe is inherited: this README is honest, the header is not). 'Luminosity ordering untested' is superseded by CFG83 (40 systems: tau_c +0.18, p 0.093; 8 systems: tau_b +0.64 (p 0.031) at f = 0, +0.79 (p 0.0055) at f free and f = 0.7) and omits Leo IV (+0.307 at f = 0). 'Unweighted means 0.05-0.10 higher' is 0.070 / 0.078 / 0.077.

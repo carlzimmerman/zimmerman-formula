@@ -41,3 +41,6 @@ Nothing here says the data favour the framework; kappa = 1/2 is FITTED. Run in p
 
 ## Committed output names (appended)
 - The `.log` files named above are git-ignored by the repository's `.gitignore`, so the committed copies of the same outputs carry the `.out` extension (same names otherwise; content identical to the in-place runs). Nothing else changed.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- 'Scored under CFG42's recipe; the frozen recipe gives smaller |z| throughout' is true for the LVD, UFD and Collins rows but not for the MW classical sample, where the frozen recipe gives larger |z| (Dutton-Maccio -1.95 against -1.79; Duffy 200m -2.17 against -2.01; P2 -1.92 against -1.61). Recipe labels: the concentration, clamp and kernel rows are on CFG42's recipe; the sample rows (-1.35 without the ellipticals, -1.74 for M_V <= -7.7) are frozen-recipe values. The cusp factor '2.31' is the ratio at M0 = 1e9 (M0 = 1e8 gives 2.269, so the gap to CFG42's 2.27 is a base-mass choice) and is in no committed output. The post-hoc scripts print to stdout (the `run_post` logs are shell redirections). The RAR kernel was frozen a priori (spec R1); nu_mono was never built.

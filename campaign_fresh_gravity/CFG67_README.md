@@ -61,3 +61,6 @@ An independent in-place re-run by the equations session reproduced the outputs.
 ## Correction at adoption (appended 2026-09-29)
 
 - Read "every colour-blind dark mass" or "any colour-blind model" above as **"any model whose predicted early-minus-late difference at fixed g_bar is negligible"**. It is not every colour-blind model: CFG67's colour-blind Moster halo, whose halo mass depends on M* only, fits the split at 6.9/7.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- The IMF-rescale statement that the law chi2 is insensitive and LCDM 'still passes' should carry CFG77's ranges: IMF-type rescales give LCDM 4.24-25.92/7, and early-only x 0.7 fails (p 5e-4).

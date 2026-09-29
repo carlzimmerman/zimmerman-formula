@@ -32,3 +32,6 @@ Nothing here says the data favour B or LCDM; kappa = 1/2 is FITTED. Run in place
 
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- 'C6 holds (PASS at x1, FAIL at x100)' is evaluated only in the main run (script line 511 `if not MUTATE`). The '51 of 54 cells pass at 0.016' is an ad hoc probe: CFG87 measured 50/54 (per B cell 52/53/50/53). The sha256 in the header is the whole-file hash; the script prints a stripped-content prefix. Base z_stat +1.50 (here) against +1.49 (CFG87) is bootstrap-draw noise.

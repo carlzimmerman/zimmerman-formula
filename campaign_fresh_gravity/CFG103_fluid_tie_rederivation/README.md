@@ -33,3 +33,6 @@ Nothing here says the data favour the framework; kappa = 1/2 is FITTED; nothing 
 
 ## Corrections from the equations chat's re-run (appended; no result changed)
 - **Exit codes and which checks the MUTATE runs change.** A1 and A2 exit 0 in the main run and 1 in both MUTATE modes; A3 exits 1 in all three modes (the frozen a4 numerics check fails in every mode: Omega_Lambda 0.685 vs 0.6847), so for A3 the exit code does not discriminate: the informative signal is the mode-specific failing set (MUTATE1/2 add the no-new-dof and tie-across-universe checks to the a4 failure).
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- The A3 MUTATE runs add a11 ('Sigma_max(z) flat' for MUTATE1, 'follows Lambda0' for MUTATE2) to the a4 failure; the no-new-dof checks are A1's and the tie-across-universes check is A2's. The 'frozen 2e-4 tolerance' lives in `cfg103_A3.py` line 36, not in the hashed docstring. The rows labelled f_h in {10, 20, 40} carry the '39' and '2.3 / 11.3' values. Committed sharp-cap exponents exist only for p = 2, 3, 4.

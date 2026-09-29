@@ -34,3 +34,6 @@ Nothing here says the theory is closed.
 
 ## Referee correction (CFG90's independent re-derivation; appended)
 - CFG90 reproduces every count exactly, but only after adopting conventions this README does not state: the 242 is 241 + the ledger object; KROSS baryons are Mbar = Ms(1 + (Ms/1e10)^-0.4) (106 objects; stars only gives 197); KMOS3D needs a unique match at a stellar-mass tolerance 0.006; arcsec->kpc uses H0 = 70, Omega_m = 0.3; MSA-3D and MUSE velocity errors are floored at 5% (without it 20 gaps exceed 1 sigma, not 16; 'none above 2 sigma' is robust, maximum 1.47 to 1.63 sigma). The pooled N = 14 is the 15-object raw set (RC100 9 + MSA 3 + KMOS 2 + ledger 1) minus the +1.14 dex object GS4 01529, inverse-variance weighted: keeping it gives flat +0.17 to +0.22 and the rival's sign flips (+0.04 weighted, -0.003 unweighted); the README's '+0.135 / -0.037' and the mock bias '+0.03 to +0.11' are conditional on those choices. The alt footing has 19 discs at z >= 1.5 below a0 (15 canonical). See CFG90.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- 'None above 2 sigma is robust (maximum 1.47 to 1.63 sigma)': 1.63 occurs only in CFG90's a0 x 2 MUTATE run; the frozen run gives a maximum of 1.47 sigma (CFG90 audit).

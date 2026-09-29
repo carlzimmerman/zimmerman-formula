@@ -21,3 +21,6 @@ Nothing here says the data favour B or LCDM; kappa = 1/2 is FITTED. Run in place
 
 ## Portability and control-exit-code notes (from the equations chat's re-run of CFG75-99; appended, no result changed)
 - **Absolute input paths.** The script reads its inputs through a hard-coded absolute path into the live repository tree, so a clean checkout at another location fails until the path is derived from `__file__` (or the repo root); the fix is pending the user's permission to edit the scripts (a batch edit was declined), and the numbers are unaffected.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- The statistical significances are 6.9-7.8 sigma (7.52 / 7.81 / 6.87 (alt V) / 7.44), not 7.5-7.8. Alt gaps sit 1.7e-5 (alt I) to 2.9e-5 (alt V) above CFG33's JSON; 'within 1e-7' is 3e-7 for alt I; errors differ up to 1.2% (alt I). `body.py` is unreferenced by the runs, and `cfg86_lcdm_copy_reference.py` is byte-identical to CFG86's full script (the inlined LCDM functions in `CFG87_b_paired.py` are condensed re-typings, not a verbatim copy). The output carries no appended rc line.

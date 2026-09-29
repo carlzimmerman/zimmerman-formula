@@ -28,3 +28,6 @@ Nothing here says the data favour the framework; kappa = 1/2 is FITTED; the theo
 
 ## Corrections from the equations chat's re-run (appended; no result changed)
 - The Result line's '10 checks' is the count of pass-line groups R1/R2/H1 and the controls C0-C7; the run itself prints 13 PASS lines and 0 failed checks.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- 'Only a 0.75 saturation at r_a = 3 R_e gets the law under 2 sigma' holds for canonical only (alt also goes under 2 sigma at r_a = 1 (1.79) and r_a = 10 R_e (1.83)); the aperture change moves the law 0.00-0.01 and the rule 0.02-0.04 sigma; 'matches to 0.01 sigma' has the exception beta = 0.9 (0.036 sigma, about 0.0008 dex); the 11 check groups are R1/R2/H1 and C0-C7.

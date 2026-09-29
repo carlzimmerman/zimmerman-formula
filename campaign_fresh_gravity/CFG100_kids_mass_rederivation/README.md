@@ -32,3 +32,6 @@ Nothing here says the data favour the framework; kappa = 1/2 is FITTED. Run in p
 ## Corrections from the equations chat's re-run (appended; no result changed)
 - **Git-ignored inputs needed (about 77 MB together), all under `real_research/data/lensing_rar/`:** `lr_lenses.npz`, `lr_esd_jackknife.npz` and `cfg110_perlens.npz`; they are not in a clean checkout. Nothing was fetched.
 - **MUTATE exit code.** The MUTATE run exits 0 like the main run (the checks assert the expected changes: early-class M* and M_gal x 2 leave B at 22.20 to 22.22 and move Moster 105 to 397 and LCDM 25 to 57); the informative signal is the printed values and the three MUTATE control lines, not the exit code.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- The kernel, projector, turnaround solver and NFW/Mandelbaum recipe were adapted from CFG77's `cfg77_lib.py` (copied as source; `cfg100_FROZEN.txt`, `cfg100_lib.py` lines 1-3), so this lane shares CFG77's model code as well as the staged sums.

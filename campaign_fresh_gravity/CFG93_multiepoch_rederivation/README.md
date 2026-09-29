@@ -32,3 +32,6 @@ Nothing here says the data favour the framework; kappa = 1/2 is FITTED. Run in p
 
 ## Committed output names (appended)
 - The `.log` files named above are git-ignored by the repository's `.gitignore`, so the committed copies of the same outputs carry the `.out` extension (same names otherwise; content identical to the in-place runs). Nothing else changed.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- The simulation biases quoted ('+3-5% at sigma = 4, +13-18% at sigma = 2, coverage 0.30 at N = 100, +27% at f = 0.7') are Bootes I numbers; for Tucana II the bias is +0.2 to 2.2% at sigma = 4 and +3.2 to 9.0% at sigma = 2 (coverage 0.46; `cfg93.out` 205-208). The main run exits 1 through six frozen third-decimal lines plus C3b (7 of 37). 'Tucana II fails a stricter test' is a post-hoc 7-star subsample (+0.22 +/- 0.14, 1.55 sigma; the five untested stars give -0.077 +/- 0.404), not a pre-declared test; the sum-rule row is a consistency check only. The committed `cfg93.out` reports 62.0 s (the loaded re-run took 264 s); a third edit (a chi2/dof label) was made between the first run and the final script.

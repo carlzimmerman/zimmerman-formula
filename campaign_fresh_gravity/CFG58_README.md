@@ -35,3 +35,6 @@ Script: `CFG58_rule_more_populations.py` (about 5 s). Outputs: `.out`, `_results
 
 ## Referee correction (CFG92's independent re-derivation; appended)
 - CFG92 reproduces the offsets, switch-off masses and statistic-C slopes to about three decimals, but the field-dwarf -3.47 sigma (S in its own shrunken error 0.030) rests on this lane's error recipe (ddof = 0 std, fixed-halo Upsilon floor from the endpoints {1, 4}, Omega_m = 0.3134): under any recipe that propagates Upsilon into the halo it is -1.75 to -2.1 sigma, and Duffy 200c gives -2.1; the S offset (-0.085 to -0.119 dex) is robust, the significance is not, and the -1.4 sigma in L's own error is the like-for-like number. The Delta slope in statistic C is 0.0134 canonical, 0.0095 alt (0.013 is the canonical value). 'S = L above 2.3e7' holds only inside a window (off from 2.3e7 to about 2.2e11 for M_* = M_b/2; f_ex turns on again above that: CFG35's massive-spiral failure). See CFG92.
+
+## Round-3 documentation audit corrections (AUDIT-Q; appended, no result changed)
+- CFG92's 'under any propagated-Upsilon recipe -1.75 to -2.1 sigma' holds at Upsilon_V = 2; at Upsilon_V = 1 the propagated recipe gives -1.37 sigma and at Upsilon_V = 4 -4.64 sigma.
