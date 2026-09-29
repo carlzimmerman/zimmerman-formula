@@ -189,3 +189,17 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
   - ΛCDM reproduces the split through the same machinery: χ² 6.5/7 with colour-split halos and 6.9/7 with colour-blind Moster halos (CFG67, f1df7889a).
   - The failure belongs to B's mass-independent dark mass, not to the machinery.
 
+
+
+## Corrections, 2026-09-29, after a referee sweep and CFG57 (appended; the rows above are unchanged)
+
+- **Line 23 and row 1.20, "no single fraction of its debris reconciles the populations".** This is true at the frozen 1σ-per-population acceptance.
+  - At 2σ, CFG59's ten populations share φ in [0.52, 0.71] (canonical) and [0.33, 0.66] (alt).
+  - With CFG71's dynamical SLUGGS, the 2σ intersection is empty only because of SLUGGS (2.6σ at φ = 1).
+  - Source: CFG75, e17cf2cf8.
+- **Row 1.18 cited CFG57 as its hot-gas test, but CFG57's frozen question is the SLUGGS deficit (row 1.20).**
+  - CFG57 has now run (9b071a024; data d409c19be) and is non-diagnostic by its frozen map.
+  - The measured hot gas moves the law's SLUGGS mean by 0.010 dex: +0.163 → +0.153 ± 0.028, which is 5.4σ on the seven covered galaxies (alt 5.1σ). It moves the rule's mean to +0.066 (3.0σ).
+  - Row 1.20 stands: the measured gas cannot close the deficit. Gas beyond the X-ray fields is untested (M87's GCs reach 109 kpc against a 30-kpc field).
+  - Re-run status: this session only.
+- **The addendum's "KiDS split B-SPECIFIC" is about the early-minus-late difference.** The same machinery's absolute profiles fail for ΛCDM too (CFG67 H3: 29.6 and 27.9/7).

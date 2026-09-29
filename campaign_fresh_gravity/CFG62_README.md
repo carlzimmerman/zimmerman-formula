@@ -24,3 +24,12 @@ The X-ray ellipticals need φ ≈ 2.15, more debris than the collapse mass holds
 **The derived rule's debris fraction is not a one-variable function of mass, the phantom-to-collapse ratio, support or environment on these lanes.** Keeping the rule would take per-population retention (high, low, then high again with mass, plus more than 100% for the X-ray ellipticals). That is a fit, not a law. The control C1 reproduces CFG59's committed answer (the SLUGGS–M31 LVD gap is 0.507 canonical and 0.460 alt).
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections from the referee sweep (appended 2026-09-29; no result changed)
+
+- **"No split by one variable works" holds at the frozen acceptance only.** The intervals are CFG59's 1σ interval per population.
+  - At 2σ, CFG59's ten populations already share a common φ: [0.52, 0.71] canonical and [0.33, 0.66] alt. So no split is needed (CFG75, e17cf2cf8).
+  - With CFG71's dynamical SLUGGS, the 2σ intersection is empty only because of SLUGGS (2.6σ at φ = 1).
+- **How demanding the 1σ criterion is.** Requiring all ten populations to sit inside 1σ of a true universal φ has a probability of order 0.68¹⁰ ≈ 2% (CFG75). The three-group table and the X-ray φ ≈ 2.15 are 1σ statements too.
+- **The MUTATE is informative here:** the main run exits 0 and the MUTATE exits 1.

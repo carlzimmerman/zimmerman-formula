@@ -76,3 +76,13 @@ Hypotheses and scope:
 - No ΛCDM comparison is made.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections from the referee sweep (appended 2026-09-29; no result changed)
+
+- **The SLUGGS contrast above is stale.**
+  - It used CFG38's population-mass result: the law 3.3σ short, the rule at 0.4σ.
+  - With each galaxy's own JAM-calibrated stellar mass (CFG55, 791083f7f), the law is 4.0σ short and the rule still leaves +0.046 dex (2.6σ).
+  - The measured hot gas does not change that. CFG57 (9b071a024) is non-diagnostic: the gas shifts the mean by 0.01 dex.
+  - So SLUGGS no longer prefers the rule, and the remark about morphology versus colour loses its SLUGGS support.
+- **"Its MUTATE control exits 1 as required" says nothing here.** The main run also exits 1, failing the same two checks (H2 and H3). What the control shows is the statistic moving (to −0.24σ when the data are given the rule's shape), not the exit code.

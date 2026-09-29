@@ -29,3 +29,16 @@ Like CFG61, this script needs local data that git ignores, in `real_research/dat
 - `brouwer2021_rar/Fig-8_*.txt` and the covariance files. These are Brouwer+2021's public release, unpacked from `brouwer2021_rar.tar`; the source and DOI are in `real_research/reviews/lensing_rar/lr_data_acquisition.md`.
 - `lr_lenses.npz`, built by `real_research/reviews/lensing_rar/lr_esd_remeasure.py` (`stage_lens`) from the KiDS DR4 bright-sample catalogue in the same directory.
 An independent in-place re-run by the equations session reproduced the outputs.
+
+
+## Corrections from the referee sweep (appended 2026-09-29; no result changed)
+
+- **"Not an artefact of the machinery" overstates.** In the same machinery, ΛCDM's absolute profiles fail too:
+  - early 29.6/7 (p = 1.1e-4) and late 27.9/7 (p = 2.3e-4) on K1 (H3);
+  - all 15 bins, 45.8/15 (p = 5.7e-5; R3).
+
+  What is specific to B is the early-minus-late difference. In that statistic the limits shared by both models largely cancel: point-mass baryons with no stellar extent, no mis-centring, no satellites.
+
+  **Corrected sentence:** CFG61's failure of the *difference* is specific to B's colour-blind, mass-independent dark mass; the machinery's absolute profiles fail for both models.
+- **"Exits 1 as required."** The main run also exits 1, because H2 fails (Â/σ_A = 1.64 under the frozen M_* floor).
+  - The headline H1 does flip under the MUTATE (χ² 6.5/7 → 124.1/7). So the control is informative for the headline, but the exit code alone is not.

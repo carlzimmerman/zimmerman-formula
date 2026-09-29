@@ -61,3 +61,11 @@ Three of the four worst offenders are X-ray-bright group or cluster centrals: M8
 - **GC orbital anisotropy.** Isotropy is assumed.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections from the referee sweep (appended 2026-09-29; no result changed)
+
+- **"Its MUTATE control exits 1 as required" says nothing here.** The main run also exits 1, failing the same three checks (C3, H1 and H2). What the control shows is the statistic moving: with the JAM masses halved, the law's offset goes from +0.097 to +0.216 (9.1σ).
+- **Later: the measured hot gas does not change this deficit.**
+  - CFG57 (9b071a024) is non-diagnostic: on the seven galaxies with X-ray profiles, the gas moves the law's mean by 0.010 dex.
+  - M87's gas beyond its 30-kpc X-ray field is untested.

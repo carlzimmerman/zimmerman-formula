@@ -108,3 +108,8 @@ The bookkeeping choice does not flip the verdict. The halo relation and its +1σ
 - **Stellar masses.** The W1 masses stand in for Chabrier masses.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections from the referee sweep (appended 2026-09-29; no result changed)
+
+- **"The MUTATE control exits 1 as required" says nothing here.** The main run also exits 1, because its headline H1 fails (ΛCDM also misses the nine fastest). The MUTATE adds a failure of H2 and shifts the statistics (above), but the exit code does not tell the two runs apart.

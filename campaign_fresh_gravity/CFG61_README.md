@@ -65,3 +65,21 @@ An independent in-place re-run by the equations session reproduced the outputs.
 ## What the MUTATE control shows here (added on review)
 
 **CFG61's MUTATE control does not differ from the main run in substance.** Swapping the early and late classes flips the sign of the degenerate amplitude (Â −1709.6 → +1711.5, canonical) and swaps χ²_L and χ²_S (28.07 ↔ 28.10). It changes nothing else, because the law and the rule predict no split (D ≈ 0), and a χ² about a zero prediction is unchanged when the classes are swapped. Both runs exit 1 on the same two checks, so this control cannot tell a working pipeline from a broken one for this lane. The substantive control is CFG67's: through the same machinery, ΛCDM's predicted split moves from χ² 6.5/7 to 124.1/7 when the classes are swapped.
+
+
+## Corrections from the referee sweep (appended 2026-09-29; no result changed)
+
+A referee sweep re-ran this lane (outputs byte-identical apart from timing). Its wording findings, each re-checked here against `CFG61_kids_colour_split.out`:
+
+- **The 3.7σ in the bottom line is a reported χ² row evaluated after the first run.** The frozen amplitude statistic was degenerate, and H1 and H2 failed as coded (see Disclosures). The bottom line should have said so.
+- **The Sérsic replicate is weaker:** χ²_L = 20.9/7, p = 0.0039 (2.9σ), against 28.1/7 (3.7σ) for the u−r split.
+- **R4 was overstated** (the R4 bullet and the Reading). The grid printed in the `.out` is below: χ²_L of the difference (7 dof), with the early class's mass multiplied by (1 + f_hot).
+
+| f_hot | 0 | 0.25 | 0.5 | 1 | 1.5 | 2 | 3 | 4 |
+|---|---|---|---|---|---|---|---|---|
+| χ² / 7 | 28.1 | 18.2 | 10.0 | 4.8 | 4.1 | 10.4 | 26.9 | 58.4 |
+| p | 2.1e-4 | 0.011 | 0.19 | 0.68 | 0.77 | 0.17 | 3.5e-4 | 3e-10 |
+
+So the law is acceptable at the 3σ line (p > 0.0027) from f_hot = 0.25 on this grid, and at p > 0.05 from 0.5. The values 1–1.5 are the best fit, not the threshold. **Corrected sentence:** a colour-blind dark mass survives the split if early-type lenses hold at least about 0.25–0.5 × their stellar plus cold mass in extra baryons. That is a lower bound, since the gas is a point mass. The best fit is at 1–1.5×, and f_hot ≥ 3 is rejected again.
+
+- **"Exits 1 as required" (the Script line) says nothing here.** The main run also exits 1, failing the same two checks (H1 and H2). See the MUTATE section above.

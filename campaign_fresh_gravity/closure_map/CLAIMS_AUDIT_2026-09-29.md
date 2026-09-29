@@ -176,3 +176,17 @@ The line numbers are those of the files at HEAD. Each quote was checked verbatim
 - **Nothing was edited or deposited.** Correcting or depositing any paper is the owner's call.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections, 2026-09-29, after a referee sweep and CFG57 (appended; the rows above are unchanged)
+
+- **E4 needs the acceptance level.** "No universal debris fraction φ, and no split by one variable" holds at the frozen 1σ-per-population acceptance.
+  - At 2σ, CFG59's ten populations share φ in [0.52, 0.71] (canonical) and [0.33, 0.66] (alt).
+  - With CFG71's dynamical SLUGGS, the 2σ intersection is empty only because of SLUGGS (2.6σ at φ = 1).
+  - Source: CFG75, e17cf2cf8.
+- **PAPER36 line 27** ("No constant is added, but the collapse mass must be measured"). Its reason, "No universal debris fraction works", takes the same qualifier. The class stays SOFTEN: with dynamical SLUGGS masses no common φ exists even at 2σ, and at 1σ the populations pull apart (SLUGGS φ ≥ 0.81, M31 LVD φ ≤ 0.30).
+- **E3 (CFG67) is about the difference.** Standard halos reproduce the early-minus-late difference. In the same machinery, ΛCDM's absolute profiles fail too: 29.6 and 27.9/7, and 45.8/15 over all 15 bins (p = 5.7e-5).
+- **E16 has run.** CFG57 (9b071a024; data d409c19be) is non-diagnostic by its frozen map.
+  - On the seven SLUGGS galaxies with X-ray profiles, the measured hot gas moves the law's mean by 0.010 dex (+0.163 → +0.153 ± 0.028, 5.4σ). That is below the mean's error.
+  - The frozen headline "pass" is an extrapolation artefact.
+  - In the PAPER36 line-84 row, "Hot gas is the one untested escape" should now read: the measured hot gas is too small to matter; only gas beyond the X-ray fields is untested (above all M87's, whose GCs reach 109 kpc against a 30-kpc field). That row stays STILL-STANDS.
