@@ -1,0 +1,64 @@
+CFG170 -- the two-epoch gas-ratio test: the gas evolution each a0 law needs between KROSS (z ~ 0.85) and KURVS (z ~ 1.5).
+
+Frozen criteria: CFG170_FROZEN_CRITERIA.md (1caae1adb).  This lane analyses data already seen (CFG140, 141, 160, 161, 162, 164).
+  mu_be       the root in [0.01, 30] of Delta'(mu) = 0 per sample, law and s (CFG160's P4 functions, s x K21 alpha; SPARC anchor at the same s);
+              1-sigma interval from Delta' = +-sigma.  R_law = mu_be(KURVS)/mu_be(KROSS), conservative interval.
+  R_obs       in-repo: [(1+z_K)/(1+z_R)]^e x (M*_K/M*_R)^-0.30, e = 0.23 +- 0.52 (2-sigma bracket); literature ABSTRACT-LEVEL:
+              [(1+z_K)/(1+z_R)]^2.5 x (M*_K/M*_R)^-0.36 +- 20% (declared allowance).  Medians computed here.
+  rule        disfavoured iff the gap between R_law and the nearest bracket edge exceeds R_law's 1-sigma half-interval on that side.
+MUTATE=1: R_obs := R_flat(s = 1) (in-repo relative width) -> flat not disfavoured.  MUTATE=2: R_obs := 10 R_flat(s = 1) -> flat disfavoured.
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour either model, or that the theory is closed.
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: KURVS's break-evens at s = 1 reproduce CFG162's committed values (1e-3)
+         flat 2.1089 (CFG162 2.1089); rival 0.6211 (CFG162 0.6211)
+  [PASS] C2 CONTROL: KROSS's anchor-corrected Delta' at mu = 0.67, s = 1 reproduces CFG161's post-hoc row (3 decimals)
+         flat -0.0042 (-0.004), rival -0.0821 (-0.082)
+  medians: KURVS z 1.529, log M* 10.14; KROSS z 0.850, log M* 10.04; (1+z) ratio 1.3669
+  R_obs in-repo: 1.005, 2-sigma bracket [0.726, 1.391] (mass factor 0.935);  R_obs literature (ABSTRACT-LEVEL): 2.016, +-20% bracket [1.613, 2.419] (mass factor 0.923)
+
+======================================================================================================================
+BREAK-EVENS mu_be (1-sigma interval) and the required ratio R_law = mu_be(KURVS) / mu_be(KROSS)
+======================================================================================================================
+  s 0.00 (none           ) flat : KURVS mu_be nan [nan, 0.174]; KROSS nan [nan, nan];  R_flat = nan [nan, nan]
+  s 0.00 (none           ) rival: KURVS mu_be nan [nan, nan]; KROSS nan [nan, nan];  R_rival = nan [nan, nan]
+  s 1.00 (Kretschmer     ) flat : KURVS mu_be 2.109 [1.596, 2.705]; KROSS 0.636 [0.478, 0.805];  R_flat = 3.317 [1.983, 5.663]
+  s 1.00 (Kretschmer     ) rival: KURVS mu_be 0.621 [0.289, 1.006]; KROSS 0.052 [nan, 0.185];  R_rival = nan [nan, nan]
+  s 1.42 (Dalcanton&Stilp) flat : KURVS mu_be 3.096 [2.423, 3.887]; KROSS 0.998 [0.820, 1.188];  R_flat = 3.103 [2.040, 4.742]
+  s 1.42 (Dalcanton&Stilp) rival: KURVS mu_be 1.257 [0.822, 1.766]; KROSS 0.352 [0.211, 0.504];  R_rival = 3.570 [1.631, 8.388]
+  s 1.62 (fixed height   ) flat : KURVS mu_be 3.565 [2.808, 4.462]; KROSS 1.166 [0.979, 1.367];  R_flat = 3.057 [2.055, 4.556]
+  s 1.62 (fixed height   ) rival: KURVS mu_be 1.567 [1.076, 2.144]; KROSS 0.494 [0.344, 0.655];  R_rival = 3.171 [1.643, 6.229]
+  s 1.69 (Price n=1      ) flat : KURVS mu_be 3.730 [2.942, 4.665]; KROSS 1.225 [1.035, 1.429];  R_flat = 3.044 [2.059, 4.508]
+  s 1.69 (Price n=1      ) rival: KURVS mu_be 1.676 [1.165, 2.279]; KROSS 0.544 [0.391, 0.707];  R_rival = 3.083 [1.647, 5.829]
+  s 3.00 (self-grav      ) flat : KURVS mu_be 6.845 [5.407, 8.611]; KROSS 2.301 [2.050, 2.569];  R_flat = 2.974 [2.105, 4.200]
+  s 3.00 (self-grav      ) rival: KURVS mu_be 3.829 [2.873, 4.994]; KROSS 1.475 [1.267, 1.698];  R_rival = 2.596 [1.692, 3.943]
+  calibration scatter s 0.6: R_flat = 4.256 (KURVS 1.166, KROSS 0.274)
+  calibration scatter s 0.6: R_rival = nan (KURVS 0.035, KROSS nan)
+  calibration scatter s 1.4: R_flat = 3.109 (KURVS 3.049, KROSS 0.981)
+  calibration scatter s 1.4: R_rival = 3.630 (KURVS 1.226, KROSS 0.338)
+
+======================================================================================================================
+THE MATRIX (rule: disfavoured iff R_law lies outside the bracket by more than its 1-sigma root-find error)
+======================================================================================================================
+  s 0.00 flat : R = nan  ->  in-repo [0.73, 1.39]: no break-even;  literature [1.61, 2.42]: no break-even
+  s 0.00 rival: R = nan  ->  in-repo [0.73, 1.39]: no break-even;  literature [1.61, 2.42]: no break-even
+  s 1.00 flat : R = 3.317  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 1.00 rival: R = nan  ->  in-repo [0.73, 1.39]: no break-even;  literature [1.61, 2.42]: no break-even
+  s 1.42 flat : R = 3.103  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 1.42 rival: R = 3.570  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 1.62 flat : R = 3.057  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 1.62 rival: R = 3.171  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 1.69 flat : R = 3.044  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 1.69 rival: R = 3.083  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 3.00 flat : R = 2.974  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  s 3.00 rival: R = 2.596  ->  in-repo [0.73, 1.39]: disfavoured;  literature [1.61, 2.42]: not disfavoured
+  [PASS] (reported) R0 (reported) POWER: |log R_flat - log R_rival| at s = 1 against the log-width of the in-repo 2-sigma bracket
+         nan dex vs 0.28 dex
+  [PASS] (reported) H1 [HEADLINE, reported] the declared summary at s = 1
+         NON-DIAGNOSTIC: no law is disfavoured by both brackets at s = 1
+
+    SUMMARY (declared): NON-DIAGNOSTIC: no law is disfavoured by both brackets at s = 1
+
+  4/4 checks pass; load-bearing failures: 0   (4 s)
