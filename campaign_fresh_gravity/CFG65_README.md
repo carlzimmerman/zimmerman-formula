@@ -31,3 +31,5 @@ C1: DM reproduces CFG45's committed numbers to 1e-6 (48 comparisons); C2: the ge
 ## Standing
 
 **The debris result is robust to the concentration relation and to an Einasto profile, and it is not robust to a core.** A cusp is what closes the ultra-faints and what over-predicts the classical dwarfs; a core removes both. Nothing here says the theory is closed.
+
+**Correction (Lean, 2026-09-28).** The statement above that the enclosed debris mass "scales only as M_halo^0.13" is the leading exponent only. The Lean certificate (`ChainCert/Cusp.lean`) proves the exact identity K(M) = M^(1/3−2a) c₀²/(2k² m(c₀M^(−a))) for the small-radius coefficient, whose leading exponent is 1/3 − 2a = 0.1313 for a = 0.101, **but the concentration factor m(c) adds about 0.047 at c ≈ 17, so the effective slope is about 0.178**: a factor of 100 in halo mass changes the enclosed mass at fixed small radius by 2.27 (not 1.83). The dependence on the unmeasured collapse mass is therefore weaker than linear but stronger than the text said; the collapse-mass floor already scanned 10⁸–10¹⁰ M☉, so no number in this lane changes.

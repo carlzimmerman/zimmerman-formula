@@ -2,6 +2,7 @@ import ChainCert.Chain
 import ChainCert.Fluid
 import ChainCert.PointMass
 import ChainCert.Profile
+import ChainCert.Cusp
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -81,3 +82,45 @@ import ChainCert.Profile
 #print axioms ChainC.isothermal_config
 #print axioms ChainC.exp_profile_identity_P
 #print axioms ChainC.exp_profile_decay
+#print axioms Cusp.m_zero
+#print axioms Cusp.m_hasDerivAt
+#print axioms Cusp.le_of_deriv_nonneg
+#print axioms Cusp.m_strictMonoOn
+#print axioms Cusp.m_pos
+#print axioms Cusp.m_upper
+#print axioms Cusp.m_lower
+#print axioms Cusp.m_elastic
+#print axioms Cusp.m_div_sq_antitoneOn
+#print axioms Cusp.m_ratio_tendsto
+#print axioms Cusp.nfw_small_r_form1
+#print axioms Cusp.nfw_small_r_K
+#print axioms Cusp.nfw_rho_s_form
+#print axioms Cusp.nfw_small_r_rho_s
+#print axioms Cusp.Kfam_identity
+#print axioms Cusp.Kfam_ratio
+#print axioms Cusp.leading_exponent
+#print axioms Cusp.Kfam_bracket
+#print axioms Cusp.log_lo
+#print axioms Cusp.log_hi
+#print axioms Cusp.exp2_le
+#print axioms Cusp.exp3_le
+#print axioms Cusp.exp3_ge
+#print axioms Cusp.exp_4log2
+#print axioms Cusp.m5_ge
+#print axioms Cusp.m20_le
+#print axioms Cusp.m_ratio_range
+#print axioms Cusp.Kfam_bracket_range
+#print axioms Cusp.c_at_1e9
+#print axioms Cusp.R_at_1e9
+#print axioms Cusp.t_bounds
+#print axioms Cusp.u_bounds
+#print axioms Cusp.c_at_1e8
+#print axioms Cusp.c_at_1e10
+#print axioms Cusp.c1_bounds
+#print axioms Cusp.c2_bounds
+#print axioms Cusp.m_c1_lo
+#print axioms Cusp.m_c1_hi
+#print axioms Cusp.m_c2_hi
+#print axioms Cusp.m_c2_lo
+#print axioms Cusp.debris_corollary
+#print axioms Cusp.range_witness

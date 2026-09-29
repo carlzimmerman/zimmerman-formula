@@ -18,6 +18,12 @@ else
   OUT=$(lake env lean ChainCert/Axioms.lean 2>&1)
 fi
 N=$(printf '%s\n' "$OUT" | grep -c "depends on axioms")
+ERR=$(printf '%s\n' "$OUT" | grep -c -E "error")
+if [ "${MUTATE:-0}" != "1" ]; then
+  WANT=$(grep -c "^#print axioms" ChainCert/Axioms.lean)
+  if [ "$WANT" != "$N" ]; then echo "VERIFY: FAIL ($WANT #print axioms lines but $N results; errors: $ERR)"; exit 1; fi
+  if [ "$ERR" != "0" ]; then echo "VERIFY: FAIL ($ERR error lines)"; exit 1; fi
+fi
 BAD=$(printf '%s\n' "$OUT" | grep "depends on axioms" | grep -v -E "$STD" | wc -l | tr -d ' ')
 SORRY=$(printf '%s\n' "$OUT" | grep -c -E "sorry")
 echo "theorems checked: $N; with non-standard axioms: $BAD; sorry mentions: $SORRY"

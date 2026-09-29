@@ -51,3 +51,5 @@ Reproduced: KM median +0.325 / +0.304, resolved-only +0.355 / +0.334, 31 + 9 lim
 Nothing here says the theory is closed.
 
 **Kernel note (CFG64).** This lane's estimator uses the exponential RAR kernel (`hunt_lib.nu_s`, ν = 1/(1 − e^{−√y})), not ν_mono as the text above says; the two agree to 3 × 10⁻⁹ for y ≤ 0.1. Swapping the kernel to P2 leaves the headline verdict unchanged (see `CFG64_kernel_robustness/README.md`).
+
+**Correction (Lean, 2026-09-28).** The statement above that the enclosed debris mass "scales only as M_halo^0.13" is the leading exponent only. The Lean certificate (`ChainCert/Cusp.lean`) proves the exact identity K(M) = M^(1/3−2a) c₀²/(2k² m(c₀M^(−a))) for the small-radius coefficient, whose leading exponent is 1/3 − 2a = 0.1313 for a = 0.101, **but the concentration factor m(c) adds about 0.047 at c ≈ 17, so the effective slope is about 0.178**: a factor of 100 in halo mass changes the enclosed mass at fixed small radius by 2.27 (not 1.83). The dependence on the unmeasured collapse mass is therefore weaker than linear but stronger than the text said; the collapse-mass floor already scanned 10⁸–10¹⁰ M☉, so no number in this lane changes.
