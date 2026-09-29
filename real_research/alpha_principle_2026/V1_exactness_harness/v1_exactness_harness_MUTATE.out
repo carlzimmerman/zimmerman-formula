@@ -1,0 +1,29 @@
+V1: how precisely is alpha known, and what does 'exact' mean today?  (measured values RECALLED; MUTATE=True)
+  measurement                        alpha^-1                    sigma (abs)     sigma (ppb)
+  CODATA 2022                                 137.035999282         2.1e-8       0.1532
+  CODATA 2018                                 137.035999084         2.1e-8       0.1532
+  Cs recoil (Parker 2018)                     137.035999046         2.7e-8        0.197
+  Rb recoil (Morel 2020)                      137.035999206         1.1e-8      0.08027
+  electron g-2 (2023)                         137.035999166         1.5e-8       0.1095
+
+Cs-Rb: difference = 1.6e-7 (1.168 ppb) = 5.488 combined sigma
+  [PASS] A1 the Cs and Rb atom-interferometer values disagree by more than 5 combined sigma (5.488 sigma)
+best single relative uncertainty = 0.08027 ppb -> a claim beyond ~10.1 significant digits cannot be tested by the best single measurement
+full spread of the central values = 2.36e-7 in alpha^-1 = 1.722 ppb
+  [PASS] A2 all central values agree only to about 8-9 significant digits (spread between 1e-9 and 1e-8 relative) (relative spread 1.72e-9)
+  [PASS] A3 the best single measurement tests at most 10 significant digits (uncertainty > 5e-11 relative) (best 8.03e-11)
+
+selftest of the grader on the CODATA-2022 centre:
+candidate alpha^-1 = 137.035999177
+  measurement                        offset (sigma)   rel. uncertainty (ppb)
+  CODATA 2022                                  -5.0       0.1532
+  CODATA 2018                                4.4286       0.1532
+  Cs recoil (Parker 2018)                    4.8519        0.197
+  Rb recoil (Morel 2020)                    -2.6364      0.08027
+  electron g-2 (2023)                       0.73333       0.1095
+  joint verdict (|offset| < 2 sigma): consistent with SOME (1 of 5)
+  [FAIL] B1 a candidate placed at the published CODATA-2022 centre has zero offset from the CODATA-2022 reference (the mutated reference is shifted by +5 sigma, so this FAILS there) (offset -5.0 sigma)
+  [PASS] B2 a candidate at the CODATA-2022 centre is NOT within 2 sigma of ALL five measurements (the atom-interferometer values disagree with one another, so no single number satisfies all) (consistent with 1 of 5)
+
+VERDICT: a declared check FAILED
+MUTATE CONTROL: FAILED as required -- the control works (exit 1)
