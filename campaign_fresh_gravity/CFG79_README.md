@@ -114,3 +114,16 @@ Script: `CFG79_lcdm_xray_ellipticals.py` (about 5 s).
 **In CFG32's pipeline a standard halo does not share B's shortfall (SPECIFIC-TO-B).** But the gate is generous: σ ≈ 0.12 dex, and ΛCDM passes for halo masses from × 0.01 to × 33. The data are also in ΛCDM's own functional form. So this is not evidence for or against either model. What decides it is still the deprojected gas density and temperature profiles.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Corrections after CFG84's independent re-derivation (appended 2026-09-29; no committed number changed)
+
+CFG84 (68d166cea) re-derived this lane from independently written code. It reproduced ΛCDM +0.0598 dex (0.49σ) and B +0.2802 (1.70σ), along with the error budget, V1–V4, R4/R5 and the halo-mass ladder.
+
+- **The gate is wider than stated.** On a fine ladder, ΛCDM stays inside 2σ at every halo mass from × 0.007 to × 60.8. That span is about 3.9 dex of halo mass, roughly 1σ per dex, against a 0.12-dex error. This lane quoted × 0.01 to × 33 from its coarse committed rows.
+- **The circularity, quantified post hoc (CFG84):**
+  - Humphrey's own fitted NFW + stars halo scores −0.031 (z −0.48). That is the form-matched limit.
+  - The Moster/Duffy pass is form matching plus a cancellation. The Moster halos are 0.4–1.5 dex heavier than Humphrey's fits, while Duffy's concentrations are 0.2–0.4× Humphrey's in 6 of 7 galaxies. Moster's halo masses with Humphrey's own concentrations give −0.320 (z −2.58).
+  - Matching each galaxy to its own halo does not visibly help. The identity assignment's galaxy-to-galaxy error sits at the 74th percentile of all 5040 permutations.
+- **The class, reworded.** "SPECIFIC-TO-B through a weak gate" is replaced by: **a compatibility check, not a test of ΛCDM or of B.** The data are in ΛCDM's own functional form, and the pass rests on a cancellation between halo mass and concentration. B's shortfall stays marginal (CFG32).
+- **NGC 4472 (alt).** A referee's +0.32 against this lane's +0.31 is a double-rounding artefact of that check (unrounded 0.31465). This lane's numbers stand.
