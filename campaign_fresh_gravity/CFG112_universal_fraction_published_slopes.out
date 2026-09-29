@@ -1,0 +1,51 @@
+CFG112 -- WITH PUBLISHED GC SLOPES, DOES ONE DEBRIS FRACTION FIT ALL TEN POPULATIONS AT 2 SIGMA?  CFG75: with CFG71's dynamical SLUGGS
+masses (gamma = 3) the ten-population 2-sigma intersection is empty only through SLUGGS (2.6 sigma at phi = 1).  CFG111: with each galaxy's
+published GC density slope the rule's JAM-calibrated SLUGGS offset at phi = 1 is 1.55 sigma.  Does the 2-sigma intersection open?
+
+Criteria frozen and committed before any number: campaign_fresh_gravity/CFG112_FROZEN_CRITERIA.md (663f73877).
+  machinery CFG71's harness exec'd read-only up to its scan (MUTATE forced 0): calib_mass_phi (the phi-scaled JAM calibration), debris_phi,
+           CFG55's Jeans functions.  ONE change: U5d's prediction uses gamma_i per galaxy (CFG111's gamma_rel = clip(-0.63 log M* + 9.81, 2, 4))
+           in sigma_r2 / sigma_los.  The other nine populations' o(phi), e(phi) are read from CFG71's committed scan (101-point grid on [0, 1]).
+           Intersection at k sigma = CFG75's definition: the grid points where |o| <= k e for every population (edges = first / last point).
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  gamma_i = 3 for every galaxy: the patched U5d reproduces CFG71's committed U5d scan (o and e, 101 points, both footings) to 1e-9.
+  C2  CONTROL  published gamma_i: U5d at phi = 0 / phi = 1 reproduces CFG111's committed law / rule means and errors (both footings) to 1e-6.
+  C3  CONTROL  CFG75's committed 2-sigma intersection without SLUGGS ([0.23, 0.71] canonical, [0.21, 0.66] alt) reproduced from CFG71's JSON.
+  H1  [HEADLINE; MUTATE must fail] with the published slopes the ten-population 2-sigma intersection is non-empty on both footings.
+  R1-R4 (reported): U5d's 1 / 2 sigma intervals; the 1 / 3 sigma intersections; SLUGGS's own population masses (U5s); gamma_i +- 0.2.
+MUTATE=1: gamma_i = 3 for every galaxy (the lane's one change undone) -- the 2-sigma intersection must be empty (CFG75), H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2 / C3  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: with gamma = 3 for every galaxy the patched U5d reproduces CFG71's committed U5d scan (o, e; 101 points; both footings) to 1e-9
+         max |difference| 0.0e+00
+  [PASS] C2 CONTROL: with the published gamma_i, U5d at phi = 0 / 1 reproduces CFG111's committed law / rule means and errors (both footings) to 1e-6
+         max |difference| 0.0e+00; canonical law +0.082065 +- 0.022768 (CFG111 +0.082065 +- 0.022768); canonical rule +0.027558 +- 0.017815 (CFG111 +0.027558 +- 0.017815); alt law +0.072829 +- 0.022613 (CFG111 +0.072829 +- 0.022613); alt rule +0.028948 +- 0.017608 (CFG111 +0.028948 +- 0.017608)
+  [PASS] C3 CONTROL: CFG75's committed 2-sigma intersection without SLUGGS is reproduced from CFG71's JSON ([0.23, 0.71] canonical, [0.21, 0.66] alt)
+         canonical [0.23, 0.71] (49 pts); alt [0.21, 0.66] (46 pts)
+
+======================================================================================================================
+H1  THE TEN-POPULATION 2-SIGMA INTERSECTION WITH THE PUBLISHED SLOPES
+======================================================================================================================
+    canonical: U5d o(phi) / e(phi) at phi = 0, 0.25, 0.5, 0.71, 0.75, 1: +0.0821/0.0228 (+3.60), +0.0609/0.0195 (+3.13), +0.0468/0.0183 (+2.56), +0.0378/0.0179 (+2.11), +0.0363/0.0179 (+2.03), +0.0276/0.0178 (+1.55); galaxies excluded by the calibration: max 0
+    alt: U5d o(phi) / e(phi) at phi = 0, 0.25, 0.5, 0.71, 0.75, 1: +0.0728/0.0226 (+3.22), +0.0562/0.0197 (+2.85), +0.0449/0.0185 (+2.43), +0.0376/0.0180 (+2.09), +0.0363/0.0179 (+2.03), +0.0289/0.0176 (+1.64); galaxies excluded by the calibration: max 0
+  [FAIL] H1 [HEADLINE] WITH THE PUBLISHED SLOPES THE TEN-POPULATION 2-SIGMA INTERSECTION IS NON-EMPTY, both footings
+         canonical: empty; alt: empty  [gamma = 3 (CFG75): empty, both footings]
+    populations whose 2-sigma set is disjoint from SLUGGS's: canonical: U4; alt: U4
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) U5d's 1-sigma and 2-sigma sets with the published slopes (grid runs)
+         canonical: 1s empty, 2s [(0.77, 1.0)]; alt: 1s empty, 2s [(0.77, 1.0)]
+  [PASS] (reported) R2 (reported) the ten-population intersections at 1 sigma and 3 sigma with the published slopes
+         canonical: 1s empty, 3s [0.31, 1.00] (70 pts); alt: 1s empty, 3s [0.16, 1.00] (85 pts)
+  [PASS] (reported) R3 (reported) SLUGGS's own population masses for the 16 (U5s; debris phi-scaled in the prediction only), published slopes: 2-sigma set and intersection
+         canonical: U5s 2s [(0.17, 1.0)] (o(0) +2.40, o(1) -0.66 sigma); ten-population [0.23, 0.71] (49 pts); alt: U5s 2s [(0.0, 1.0)] (o(0) +1.83, o(1) -0.88 sigma); ten-population [0.21, 0.66] (46 pts)
+  [PASS] (reported) R4 (reported) the ten-population 2-sigma intersection with every gamma_i shifted by -0.2 / +0.2
+         -0.2: canonical [0.37, 0.71] (35 pts), alt [0.28, 0.66] (39 pts); +0.2: canonical empty, alt empty
+
+    READING (declared): with the published slopes the 2-sigma intersection stays empty; the clause stands
+
+  7/8 checks pass; load-bearing failures: 1   (472 s)
