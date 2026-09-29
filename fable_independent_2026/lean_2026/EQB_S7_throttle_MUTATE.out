@@ -1,0 +1,41 @@
+EQB_S7_throttle_MUTATE.lean:57:2: error: linarith failed to find a contradiction
+case h1
+y : ℝ
+hy : 0 < y
+h : nuQ y ^ 2 = 1 + 1 / y
+this : y * (nuQ y ^ 2 - 1) = 1
+a✝ : y * (nuQ y - 1) * (nuQ y + 1) < 2
+⊢ False
+failed
+EQB_S7_throttle_MUTATE.lean:63:2: error: linarith failed to find a contradiction
+case h2
+y : ℝ
+hy : 0 < y
+h : y * (nuQ y - 1) * (nuQ y + 1) = 2
+this : nuQ y + 1 ≠ 0
+a✝ : 1 < y * (nuQ y - 1) * (nuQ y + 1)
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+EQB_S7_throttle_MUTATE.lean:71:30: error: unsolved goals
+a0 Z y : ℝ
+hy : 0 < y
+h : y * (nuQ y - 1) * (nuQ y + 1) = 2
+this :
+  a0 * y * (a0 * (y + Z / 2 * (nuQ y - 1)) - a0 * y) * (a0 * (y + Z / 2 * (nuQ y - 1)) - a0 * y + Z * a0) =
+    a0 ^ 3 * (Z / 2) ^ 2 * (y * (nuQ y - 1) * (nuQ y + 1))
+⊢ a0 ^ 3 * Z ^ 2 * (1 / 2) = a0 ^ 3 * Z ^ 2 * (1 / 4)
+'throttle_cubic' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'throttle_general' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'throttle_continuous_at_kink' depends on axioms: [propext, Classical.choice, Quot.sound]
+'saturation' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'saturation_general' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'above_hasDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'slope_above_at_kink' depends on axioms: [propext, Classical.choice, Quot.sound]
+'slope_break' depends on axioms: [propext, Classical.choice, Quot.sound]
+'kink_lambda' depends on axioms: [propext, Classical.choice, Quot.sound]

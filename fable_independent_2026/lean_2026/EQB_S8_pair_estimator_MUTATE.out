@@ -1,0 +1,82 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+EQB_S8_pair_estimator_MUTATE.lean:60:58: error: unsolved goals
+a0 U s1 s2 R : ℝ
+ha : 0 < a0
+hU : 0 < U
+h1 : 0 < s1
+h2 : 0 < s2
+hne : s1 ≠ s2
+hR : R = gLaw a0 U s1 / gLaw a0 U s2
+hden : R * s2 - s1 = U * s1 * (s1 - s2) / (U * s2 + a0)
+hpos : U * s2 + a0 ≠ 0
+hd0 : R * s2 - s1 ≠ 0
+this : (U * s2) ^ 2 + a0 * (U * s2) ≠ 0
+⊢ U * s1 * a0 - U * s2 * a0 = U * s1 * a0 * 2 - U * s2 * a0 * 2
+EQB_S8_pair_estimator_MUTATE.lean:87:2: error: Type mismatch
+  pair_estimator ha hU h1 h2 hne hR
+has type
+  (s1 ^ 2 - Rpair v1 v2 θ1 θ2 * s2 ^ 2) / (Rpair v1 v2 θ1 θ2 * s2 - s1) = 2 * a0 / U
+but is expected to have type
+  (s1 ^ 2 - Rpair v1 v2 θ1 θ2 * s2 ^ 2) / (Rpair v1 v2 θ1 θ2 * s2 - s1) = a0 / U
+EQB_S8_pair_estimator_MUTATE.lean:93:2: error: Type mismatch: After simplification, term
+  this
+ has type
+  (s1 ^ 2 - R * s2 ^ 2) / (R * s2 - s1) = 2 * a0
+but is expected to have type
+  (s1 ^ 2 - R * s2 ^ 2) / (R * s2 - s1) = a0
+EQB_S8_pair_estimator_MUTATE.lean:119:4: error: linarith failed to find a contradiction
+case h1
+a0 U s1 s2 s3 R12 R23 : ℝ
+ha : 0 < a0
+hU : 0 < U
+h1 : 0 < s1
+h2 : 0 < s2
+h3 : 0 < s3
+n12 : s1 ≠ s2
+n23 : s2 ≠ s3
+hR12 : R12 = gLaw a0 U s1 / gLaw a0 U s2
+hR23 : R23 = gLaw a0 U s2 / gLaw a0 U s3
+e12 : (s1 ^ 2 - R12 * s2 ^ 2) * U = 2 * a0 * (R12 * s2 - s1)
+e23 : (s2 ^ 2 - R23 * s3 ^ 2) / (R23 * s3 - s2) = 2 * a0 / U
+d12 : R12 * s2 - s1 = U * s1 * (s1 - s2) / (U * s2 + a0)
+d23 : R23 * s3 - s2 = U * s2 * (s2 - s3) / (U * s3 + a0)
+hd12 : R12 * s2 - s1 ≠ 0
+hd23 : R23 * s3 - s2 ≠ 0
+a✝ : (s1 ^ 2 - R12 * s2 ^ 2) * U < a0 * (R12 * s2 - s1)
+⊢ False
+failed
+EQB_S8_pair_estimator_MUTATE.lean:123:4: error: linarith failed to find a contradiction
+case h1
+a0 U s1 s2 s3 R12 R23 : ℝ
+ha : 0 < a0
+hU : 0 < U
+h1 : 0 < s1
+h2 : 0 < s2
+h3 : 0 < s3
+n12 : s1 ≠ s2
+n23 : s2 ≠ s3
+hR12 : R12 = gLaw a0 U s1 / gLaw a0 U s2
+hR23 : R23 = gLaw a0 U s2 / gLaw a0 U s3
+e12 : (s1 ^ 2 - R12 * s2 ^ 2) / (R12 * s2 - s1) = 2 * a0 / U
+e23 : (s2 ^ 2 - R23 * s3 ^ 2) * U = 2 * a0 * (R23 * s3 - s2)
+d12 : R12 * s2 - s1 = U * s1 * (s1 - s2) / (U * s2 + a0)
+d23 : R23 * s3 - s2 = U * s2 * (s2 - s3) / (U * s3 + a0)
+hd12 : R12 * s2 - s1 ≠ 0
+hd23 : R23 * s3 - s2 ≠ 0
+n1 : s1 ^ 2 - R12 * s2 ^ 2 = a0 / U * (R12 * s2 - s1)
+a✝ : (s2 ^ 2 - R23 * s3 ^ 2) * U < a0 * (R23 * s3 - s2)
+⊢ False
+failed
+'pair_R_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'pair_denominator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'pair_estimator' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'pair_estimator_observables' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'pair_gas' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'polygon' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'distance_estimator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'inclination_estimator' depends on axioms: [propext, Classical.choice, Quot.sound]
