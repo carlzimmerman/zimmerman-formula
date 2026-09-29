@@ -22,3 +22,10 @@
 The colour-split relation is calibrated on SDSS lensing, so the headline pass is consistency between SDSS and KiDS under standard halos, not a first-principles prediction. The colour-blind Moster variant is the a-priori version, and it also fits.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+## Data requirements (not in git)
+
+Like CFG61, this script needs local data that git ignores, in `real_research/data/lensing_rar/` (about 17 GB), so **it cannot run from a clean git-archive export**:
+- `brouwer2021_rar/Fig-8_*.txt` and the covariance files. These are Brouwer+2021's public release, unpacked from `brouwer2021_rar.tar`; the source and DOI are in `real_research/reviews/lensing_rar/lr_data_acquisition.md`.
+- `lr_lenses.npz`, built by `real_research/reviews/lensing_rar/lr_esd_remeasure.py` (`stage_lens`) from the KiDS DR4 bright-sample catalogue in the same directory.
+An independent in-place re-run by the equations session reproduced the outputs.

@@ -54,3 +54,14 @@
 - A colour-blind dark mass survives only if early-type lenses hold about 1–1.5 × their stellar plus cold mass in additional (hot) baryons.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+## Data requirements (not in git)
+
+This script needs local data that git ignores, in `real_research/data/lensing_rar/` (about 17 GB), so **it cannot run from a clean git-archive export**:
+- `brouwer2021_rar/Fig-8_*.txt` and the covariance files. These are Brouwer+2021's public release, unpacked from `brouwer2021_rar.tar`; the source and DOI are in `real_research/reviews/lensing_rar/lr_data_acquisition.md`.
+- `lr_lenses.npz`, built by `real_research/reviews/lensing_rar/lr_esd_remeasure.py` (`stage_lens`) from the KiDS DR4 bright-sample catalogue in the same directory.
+An independent in-place re-run by the equations session reproduced the outputs.
+
+## What the MUTATE control shows here (added on review)
+
+**CFG61's MUTATE control does not differ from the main run in substance.** Swapping the early and late classes flips the sign of the degenerate amplitude (Â −1709.6 → +1711.5, canonical) and swaps χ²_L and χ²_S (28.07 ↔ 28.10). It changes nothing else, because the law and the rule predict no split (D ≈ 0), and a χ² about a zero prediction is unchanged when the classes are swapped. Both runs exit 1 on the same two checks, so this control cannot tell a working pipeline from a broken one for this lane. The substantive control is CFG67's: through the same machinery, ΛCDM's predicted split moves from χ² 6.5/7 to 124.1/7 when the classes are swapped.
