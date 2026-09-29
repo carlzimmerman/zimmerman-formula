@@ -1,0 +1,64 @@
+CFG104 -- INDEPENDENT RE-DERIVATION of CFG112's headline (universal debris fraction phi at 2 sigma with published SLUGGS GC slopes).
+FROZEN BEFORE THE FIRST RUN (written 2026-09-29; nothing of the CFG112 script or of any CFG112 .out / _results.json has been opened).
+
+QUESTION
+  CFG112 reports: with each SLUGGS galaxy's globular-cluster density slope gamma_i (instead of gamma = 3), the ten-population 2-sigma
+  intersection in the debris fraction phi in [0,1] stays empty: the SLUGGS (dynamical masses) 2-sigma window is phi in [0.77, 1] on both footings,
+  the other nine populations share [0.23, 0.71] (alt [0.21, 0.66]), and the M31 LVD is the binding population.  Does my own code reproduce this?
+
+MODEL AS READ (from CFG112_FROZEN_CRITERIA/README, CFG75/59/71 READMEs, CFG76 README + script)
+  * SLUGGS row: 16 galaxies (h50/CFG76 sample), JAM-calibrated stellar masses (ATLAS3D logML_JAM x L, CFG76's reading that reproduces CFG55/CFG71:
+    plain RAR kernel nu = 1/(1-exp(-sqrt y)) everywhere, dist_mode "dyn" i.e. M_JAM ~ D), Hernquist stars a_h = R_e/1.8153, half of M_JAM inside
+    r_1/2 (Menc fraction 1/2), spherical isotropic Jeans (beta = 0), tracer rho ~ r^-gamma_i, exact projection, offset = mean over outer bins of
+    log10(sigma_obs/sigma_pred), sample mean over galaxies, error = SEM (ddof = 1).  Footings: canonical a0 = 9.36e-11, alt 1.13e-10.
+  * phi: the sum rule's debris acceleration g_debris = G fex (1-f_b) M_NFW(<r)/r^2 is multiplied by phi (phi = 0 the law, phi = 1 the rule) in BOTH the
+    calibrating equation (f M nu + phi fex (1-f_b) M_NFW(r_1/2) = M_JAM/2, largest root, fex and Mh evaluated at the trial M as in CFG76's rule) and the
+    prediction (CFG71 README: 'the debris scaled by phi in both the calibrating mass and the prediction').  A galaxy with no calibration root at a phi
+    is dropped at that phi (n(phi) recorded).  Grid: 101 points 0, 0.01 ... 1 (CFG71's).
+  * Per-galaxy slope: gamma_i = clip(-0.63 log10 M*_SLUGGS,i + 9.81, 2, 4), exactly as the frozen criteria file writes it (CFG111's gamma_rel), M*_SLUGGS
+    = the catalogue logM* in sluggs_forbes2017_galaxies.tsv.  NOTE: this is a mass relation applied per galaxy, not 16 independent slope
+    measurements; the criteria's phrase 'published slope (Alabi+2017)' is read as 'this relation'.  gamma enters ONLY in the Jeans tracer weight
+    (sigma_r^2 and the LOS projection); the calibration does not depend on gamma.
+  * Other nine populations: their o(phi), e(phi) are read as DATA from CFG71's committed results JSON ('scan', both footings), which the criteria name; they
+    are NOT independently re-derived here (declared limitation).
+  * k-sigma intersection (CFG75's definition): grid points where |o_i| <= k e_i for every population in the set; edges = first and last such point; if the
+    set of points is not contiguous, the segments are listed.
+
+MY OWN CODE vs REUSE
+  The Jeans / kernel / halo / ATLAS3D / GC-dispersion estimator functions are the CFG76 estimator (cfg76_sluggs_jam.py), REUSED by copy (its data path is
+  hard-coded so it cannot be imported; functions are transcribed with the path derived from ZF_REPO).  New here: the phi layer (calibration and prediction with phi),
+  the per-galaxy gamma_i, the 101-point scans, the intersections, and the attack rows.  Speed-up (declared, controlled): the phi-independent rule term
+  T(lM) = fex(M)(1-f_b) M_NFW(Mh(M); r_1/2) is tabulated on a fine lM grid with a cubic spline for the calibration root search only; the prediction at each
+  (galaxy, phi) uses exact rule_parts at the calibrated mass.
+
+PASS LINES (main run; each printed PASS/FAIL; strict = exact at 2 decimals on the 0.01 grid)
+  P1  SLUGGS 2-sigma window with gamma_i is [0.77, 1.00] on both footings.
+  P2  the nine other populations' 2-sigma intersection is [0.23, 0.71] canonical and [0.21, 0.66] alt.
+  P3  the population whose 2-sigma upper edge sets the nine-set upper edge (the one that binds against SLUGGS) is the M31 LVD, both footings.
+  P4  [HEADLINE] the ten-population 2-sigma intersection is empty on both footings.
+  A one-grid-step (0.01) miss on an edge is a FAIL of the strict line; the difference is reported and discussed, not tuned away.
+CONTROLS (a failed control is a failure)
+  C1  gamma = 3 for every galaxy: my SLUGGS row reproduces CFG71's committed U5 scan (o and e, all 101 points, both footings) to 1e-4 absolute
+      (the criteria's 1e-9 is not expected of independently written code; CFG76 matched CFG55 to 2e-6 per galaxy).
+  C1b gamma = 3, phi = 0 and 1: means/errors = CFG76's (law +0.0970 +- 0.0243, rule +0.0456 +- 0.0177 canonical; alt +0.0880/+0.0466 to 1e-3 -- CFG76 / CFG71 alt: 0.0880 +-0.0241 and 0.0466 +-0.0179) within 5e-4.
+  C1c the spline-tabulated calibration equals exact-rule_parts calibration at 20 random (galaxy, phi, footing): relative mass diff < 1e-6.
+  C2  closed forms of the reused Jeans functions: point mass, isotropic, rho ~ r^-gamma: sigma_r^2 = GM/((gamma+1) r) for gamma in {2, 2.5, 3, 4}, 1e-3;
+      deep-MOND point mass, sigma_r^2 = sqrt(G M a0)/gamma ... derived value: g = sqrt(GMa0)/r gives sigma_r^2 = sqrt(GMa0)/gamma, 1e-3;
+      LOS projection of a constant-sigma_r isotropic tracer returns sigma_r, 1e-3.
+  C3  the nine-population intersection from CFG71's JSON reproduces CFG75's committed [0.23, 0.71] / [0.21, 0.66] (this is P2 with the JSON as input; declared as both control and pass line).
+  C4  every SLUGGS offset(phi) is non-increasing in phi (debris only adds acceleration) -- printed, informational, FAIL if violated by > 1e-6.
+MUTATE = 1 (as CFG112 states): gamma_i = 3 for every galaxy (undoes the one change).  Expected: SLUGGS 2-sigma window EMPTY (2.58 sigma at phi = 1), ten-set empty, the 3-sigma
+  SLUGGS-inclusive intersection [0.77,1] (alt [0.71,1]) as CFG75.  In MUTATE the pass lines P1 must FAIL (informative: distinguishes it from the main run); P4 also 'passes' (empty) in MUTATE, hence
+  uninformative for the headline P4 (declared in advance, as CFG112 declares).  The script exits 1 if any check fails; the MUTATE exit code is expected 1 and the informative part is the failing set {P1,...}.
+
+REPORTED ROWS (no pass lines; nothing tuned)
+  R1  SLUGGS o/e at phi = 0, .25, .5, .71, .75, 1 with gamma_i, both footings; 1-, 2-, 3-sigma SLUGGS sets; the ten- and nine-set intersections at 1, 2, 3 sigma.
+  R2  gap between the nine-set upper edge and the SLUGGS lower edge, on the 0.01 grid and on a 0.0005 grid with linear interpolation of o and e between grid points.
+  R3  minimax acceptance level k* = min_phi max_i |o_i/e_i| for the ten-set (and nine-set, and SLUGGS+LVD) with gamma_i and gamma = 3: is the 'conflict' a real empty intersection or a boundary at k* ~ 2?
+  R4  global shift of every gamma_i by delta in {-0.4, -0.3, ..., +0.4} (and +-1.0 informational, the projected-vs-3D question): SLUGGS window, ten-set, k*.
+  R5  gamma_i list per galaxy and per-galaxy offsets at phi = 0 and 1; how the window responds to leave-one-out of galaxies (leave-one-out SLUGGS windows).
+  R6  Monte Carlo: independent Gaussian scatter sigma_gamma in {0.2, 0.4} per galaxy around gamma_i (clipped to [1.5, 4.5]), 200 draws (seed 20260929): distribution of the SLUGGS lower edge and the fraction of draws with a non-empty ten-set at 2 sigma
+      (uses a gamma-grid table of per-galaxy offsets, gamma 1.5-5.0 step 0.1, cubic-interpolated; interpolation checked against direct evaluation).
+  R7  provenance discussion (text only): 3-D vs projected slopes; a fixed error e that ignores slope uncertainty.
+
+Programme rules: never claim the data favour the framework; kappa = 1/2 is fitted; alpha and the SM masses are inputs.  Non-reproduction is a valid outcome.

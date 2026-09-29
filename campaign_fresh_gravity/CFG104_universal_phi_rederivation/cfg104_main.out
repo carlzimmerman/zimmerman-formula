@@ -1,0 +1,97 @@
+CFG104  MUTATE=False  spec sha256 5af51396c6cfe89e  repo=<ZF_REPO>
+
+== C2 closed-form limits of the reused Jeans functions ==
+  [PASS] C2a point mass, isotropic, rho~r^-gamma: sigma_r^2 = GM/((gamma+1) r), gamma in {2,2.5,3,4}   (max rel err 1.2e-04, 1.6e-04, 2.1e-04, 3.1e-04)
+  [PASS] C2b deep-MOND point mass: sigma_r^2 = sqrt(G M a0)/gamma; LOS of constant sigma_r = sigma_r   (max rel err 1.1e-04)
+
+== sample ==
+  [PASS] S1 sample: 27 galaxies, 3440 GC RVs, 19 in dispersion sample, 16 with JAM quality >= 1   (27/3440/19/16)
+  gamma_i (relation -0.63 logM* + 9.81 clipped [2,4]): NGC1023 2.89(logM*=10.99), NGC2768 2.75(logM*=11.21), NGC3377 3.20(logM*=10.50), NGC3607 2.63(logM*=11.39), NGC4278 2.91(logM*=10.95), NGC4365 2.56(logM*=11.51), NGC4374 2.56(logM*=11.51), NGC4459 2.89(logM*=10.98), NGC4473 2.91(logM*=10.96), NGC4486 2.49(logM*=11.62), NGC4494 2.87(logM*=11.02), NGC4526 2.72(logM*=11.26), NGC4649 2.50(logM*=11.60), NGC4697 2.79(logM*=11.15), NGC5846 2.59(logM*=11.46), NGC7457 3.43(logM*=10.13)
+  used gamma_i: min 2.49 max 3.43 mean 2.79  
+
+== building calibrations and scans (exact) ==
+  canonical: scans done at 1s
+  alt: scans done at 2s
+  [PASS] J0 CFG71 JSON scan grid is my 101-point grid
+
+== controls ==
+  [PASS] C1 gamma=3: my SLUGGS scan == CFG71 committed U5 scan, all 101 points (canonical); tol 1e-4   (max|d o| 1.57e-06, max|d e| 6.24e-08, n(phi) 16-16)
+  [PASS] C1 gamma=3: my SLUGGS scan == CFG71 committed U5 scan, all 101 points (alt); tol 1e-4   (max|d o| 4.96e-05, max|d e| 3.00e-06, n(phi) 16-16)
+  [PASS] C1b gamma=3 law(phi=0)/rule(phi=1) means and errors (canonical) vs CFG76/CFG71, 5e-4   (law +0.09698+-0.02431, rule +0.04564+-0.01771)
+  [PASS] C1b gamma=3 law(phi=0)/rule(phi=1) means and errors (alt) vs CFG76/CFG71, 5e-4   (law +0.08805+-0.02414, rule +0.04664+-0.01792)
+  [PASS] C3/P2 nine-population 2-sigma intersection (canonical) = CFG75's (0.23, 0.71)   ([0.23, 0.71])
+  [PASS] C3/P2 nine-population 2-sigma intersection (alt) = CFG75's (0.21, 0.66)   ([0.21, 0.66])
+  [PASS] C4 SLUGGS offset non-increasing in phi (canonical)   (max step -3.29e-04; n(phi) 16-16)
+  [PASS] C4 SLUGGS offset non-increasing in phi (alt)   (max step -2.88e-04; n(phi) 16-16)
+
+== MAIN: SLUGGS with gamma_i ==
+  [canonical] SLUGGS offset(phi) / sigma: phi=0.00 +0.0821 (3.60s, n=16); phi=0.25 +0.0609 (3.13s, n=16); phi=0.50 +0.0468 (2.56s, n=16); phi=0.71 +0.0378 (2.11s, n=16); phi=0.75 +0.0363 (2.03s, n=16); phi=1.00 +0.0276 (1.55s, n=16)
+  [canonical] 1 sigma: SLUGGS empty | nine empty | ten empty
+  [canonical] 2 sigma: SLUGGS [0.77, 1.00] | nine [0.23, 0.71] | ten empty
+  [canonical] 3 sigma: SLUGGS [0.31, 1.00] | nine [0.12, 1.00] | ten [0.31, 1.00]
+  [canonical] individual 2-sigma windows: U1 [0.23, 1.00]; U2 [0.00, 1.00]; U3 [0.00, 1.00]; U4 [0.00, 0.71]; U6 [0.00, 1.00]; U7 [0.00, 1.00]; U8 [0.00, 1.00]; U9 [0.04, 0.86]; U10 [0.10, 1.00]
+  [canonical] nine-set lower edge set by U1 MW ultra-faints (KM median); upper edge set by U4 M31 LVD
+  [alt] SLUGGS offset(phi) / sigma: phi=0.00 +0.0729 (3.22s, n=16); phi=0.25 +0.0562 (2.85s, n=16); phi=0.50 +0.0449 (2.43s, n=16); phi=0.71 +0.0376 (2.09s, n=16); phi=0.75 +0.0363 (2.03s, n=16); phi=1.00 +0.0289 (1.64s, n=16)
+  [alt] 1 sigma: SLUGGS empty | nine empty | ten empty
+  [alt] 2 sigma: SLUGGS [0.77, 1.00] | nine [0.21, 0.66] | ten empty
+  [alt] 3 sigma: SLUGGS [0.16, 1.00] | nine [0.11, 1.00] | ten [0.16, 1.00]
+  [alt] individual 2-sigma windows: U1 [0.21, 1.00]; U2 [0.00, 1.00]; U3 [0.00, 1.00]; U4 [0.00, 0.66]; U6 [0.00, 1.00]; U7 [0.00, 1.00]; U8 [0.00, 1.00]; U9 [0.02, 0.86]; U10 [0.09, 1.00]
+  [alt] nine-set lower edge set by U1 MW ultra-faints (KM median); upper edge set by U4 M31 LVD
+  [PASS] P1 SLUGGS 2-sigma window with gamma_i = [0.77, 1.00] (canonical)   ([0.77, 1.00])
+  [PASS] P1 SLUGGS 2-sigma window with gamma_i = [0.77, 1.00] (alt)   ([0.77, 1.00])
+  [PASS] P3 the binding (upper-edge) population of the nine is the M31 LVD (canonical)   (U4 M31 LVD)
+  [PASS] P3 the binding (upper-edge) population of the nine is the M31 LVD (alt)   (U4 M31 LVD)
+  [PASS] P4 [HEADLINE] ten-population 2-sigma intersection is empty (canonical)   (empty)
+  [PASS] P4 [HEADLINE] ten-population 2-sigma intersection is empty (alt)   (empty)
+
+== R2/R3: fine-grid (0.0005, linear interpolation of o and e) windows, gap, and minimax level k* ==
+  [canonical] fine 2-sigma: SLUGGS [0.76, 1.00]; nine [0.23, 0.71]; gap (SLUGGS low - nine high) = +0.0525
+  [canonical] k* (min over phi of the largest |o/e|): ten 2.067 at phi 0.730 | ten with gamma=3 2.622 at 0.976 | nine 1.479 at 0.488 | SLUGGS+LVD only 2.067 at 0.730
+  [alt] fine 2-sigma: SLUGGS [0.77, 1.00]; nine [0.21, 0.66]; gap (SLUGGS low - nine high) = +0.1065
+  [alt] k* (min over phi of the largest |o/e|): ten 2.085 at phi 0.714 | ten with gamma=3 2.626 at 0.985 | nine 1.458 at 0.378 | SLUGGS+LVD only 2.085 at 0.714
+
+== gamma-grid table (1.5-5.0 step 0.1) of per-galaxy offsets for the sensitivity rows ==
+  canonical: table done at 6s
+  alt: table done at 11s
+  [PASS] R6c gamma-table cubic interpolation vs direct evaluation (36 checks), max |d offset| < 1e-4   (6.71e-09)
+  [PASS] R6d table reproduces the direct gamma_i scan (canonical), max |d| < 1e-4   (6.35e-09)
+  [PASS] R6d table reproduces the direct gamma_i scan (alt), max |d| < 1e-4   (6.65e-09)
+
+== R4: global shift of every gamma_i by delta ==
+  [canonical] delta -0.4: SLUGGS 2-sigma   [0.09, 1.00] | ten   [0.23, 0.71] | k* 1.479 | SLUGGS phi=1 -0.44s
+  [canonical] delta -0.3: SLUGGS 2-sigma   [0.22, 1.00] | ten   [0.23, 0.71] | k* 1.479 | SLUGGS phi=1 +0.08s
+  [canonical] delta -0.2: SLUGGS 2-sigma   [0.37, 1.00] | ten   [0.37, 0.71] | k* 1.573 | SLUGGS phi=1 +0.58s
+  [canonical] delta -0.1: SLUGGS 2-sigma   [0.55, 1.00] | ten   [0.55, 0.71] | k* 1.792 | SLUGGS phi=1 +1.07s
+  [canonical] delta +0.0: SLUGGS 2-sigma   [0.77, 1.00] | ten          empty | k* 2.067 | SLUGGS phi=1 +1.55s
+  [canonical] delta +0.1: SLUGGS 2-sigma          empty | ten          empty | k* 2.335 | SLUGGS phi=1 +2.01s
+  [canonical] delta +0.2: SLUGGS 2-sigma          empty | ten          empty | k* 2.564 | SLUGGS phi=1 +2.46s
+  [canonical] delta +0.3: SLUGGS 2-sigma          empty | ten          empty | k* 2.896 | SLUGGS phi=1 +2.90s
+  [canonical] delta +0.4: SLUGGS 2-sigma          empty | ten          empty | k* 3.318 | SLUGGS phi=1 +3.32s
+  [canonical] delta +1.0: SLUGGS 2-sigma          empty | ten          empty | k* 5.583 | SLUGGS phi=1 +5.58s
+  [alt] delta -0.4: SLUGGS 2-sigma   [0.00, 1.00] | ten   [0.21, 0.66] | k* 1.458 | SLUGGS phi=1 -0.35s
+  [alt] delta -0.3: SLUGGS 2-sigma   [0.10, 1.00] | ten   [0.21, 0.66] | k* 1.458 | SLUGGS phi=1 +0.17s
+  [alt] delta -0.2: SLUGGS 2-sigma   [0.28, 1.00] | ten   [0.28, 0.66] | k* 1.642 | SLUGGS phi=1 +0.68s
+  [alt] delta -0.1: SLUGGS 2-sigma   [0.50, 1.00] | ten   [0.50, 0.66] | k* 1.867 | SLUGGS phi=1 +1.17s
+  [alt] delta +0.0: SLUGGS 2-sigma   [0.77, 1.00] | ten          empty | k* 2.085 | SLUGGS phi=1 +1.64s
+  [alt] delta +0.1: SLUGGS 2-sigma          empty | ten          empty | k* 2.327 | SLUGGS phi=1 +2.10s
+  [alt] delta +0.2: SLUGGS 2-sigma          empty | ten          empty | k* 2.591 | SLUGGS phi=1 +2.55s
+  [alt] delta +0.3: SLUGGS 2-sigma          empty | ten          empty | k* 2.974 | SLUGGS phi=1 +2.97s
+  [alt] delta +0.4: SLUGGS 2-sigma          empty | ten          empty | k* 3.387 | SLUGGS phi=1 +3.39s
+  [alt] delta +1.0: SLUGGS 2-sigma          empty | ten          empty | k* 5.587 | SLUGGS phi=1 +5.59s
+
+== R5: per-galaxy offsets and leave-one-out of the SLUGGS window ==
+  [canonical] per-galaxy offset at phi=0/1 (gamma_i): NGC1023 +0.093/+0.093; NGC2768 -0.022/-0.081; NGC3377 +0.077/+0.077; NGC3607 +0.002/-0.039; NGC4278 +0.123/+0.123; NGC4365 +0.174/+0.092; NGC4374 +0.167/+0.020; NGC4459 -0.031/-0.031; NGC4473 +0.055/+0.055; NGC4486 +0.237/+0.076; NGC4494 -0.112/-0.112; NGC4526 +0.057/+0.032; NGC4649 +0.089/-0.066; NGC4697 +0.079/+0.079; NGC5846 +0.183/+0.065; NGC7457 +0.143/+0.057
+  [canonical] leave-one-out SLUGGS 2-sigma windows: -NGC1023 [0.63, 1.00] TEN=[0.63, 0.71]; -NGC2768 [1.00, 1.00]; -NGC3377 [0.64, 1.00] TEN=[0.64, 0.71]; -NGC3607 [0.86, 1.00]; -NGC4278 [0.60, 1.00] TEN=[0.60, 0.71]; -NGC4365 [0.61, 1.00] TEN=[0.61, 0.71]; -NGC4374 [0.68, 1.00] TEN=[0.68, 0.71]; -NGC4459 [0.85, 1.00]; -NGC4473 [0.67, 1.00] TEN=[0.67, 0.71]; -NGC4486 [0.61, 1.00] TEN=[0.61, 0.71]; -NGC4494 empty; -NGC4526 [0.70, 1.00] TEN=[0.70, 0.71]; -NGC4649 [0.94, 1.00]; -NGC4697 [0.64, 1.00] TEN=[0.64, 0.71]; -NGC5846 [0.63, 1.00] TEN=[0.63, 0.71]; -NGC7457 [0.62, 1.00] TEN=[0.62, 0.71]
+  [alt] per-galaxy offset at phi=0/1 (gamma_i): NGC1023 +0.081/+0.081; NGC2768 -0.029/-0.072; NGC3377 +0.070/+0.070; NGC3607 -0.007/-0.027; NGC4278 +0.113/+0.113; NGC4365 +0.165/+0.106; NGC4374 +0.155/+0.029; NGC4459 -0.040/-0.040; NGC4473 +0.045/+0.045; NGC4486 +0.226/+0.083; NGC4494 -0.120/-0.120; NGC4526 +0.048/+0.045; NGC4649 +0.078/-0.061; NGC4697 +0.071/+0.071; NGC5846 +0.172/+0.078; NGC7457 +0.138/+0.062
+  [alt] leave-one-out SLUGGS 2-sigma windows: -NGC1023 [0.61, 1.00] TEN=[0.61, 0.66]; -NGC2768 empty; -NGC3377 [0.62, 1.00] TEN=[0.62, 0.66]; -NGC3607 [0.86, 1.00]; -NGC4278 [0.57, 1.00] TEN=[0.57, 0.66]; -NGC4365 [0.56, 1.00] TEN=[0.56, 0.66]; -NGC4374 [0.65, 1.00] TEN=[0.65, 0.66]; -NGC4459 [0.91, 1.00]; -NGC4473 [0.67, 1.00]; -NGC4486 [0.56, 1.00] TEN=[0.56, 0.66]; -NGC4494 empty; -NGC4526 [0.67, 1.00]; -NGC4649 [0.98, 1.00]; -NGC4697 [0.62, 1.00] TEN=[0.62, 0.66]; -NGC5846 [0.58, 1.00] TEN=[0.58, 0.66]; -NGC7457 [0.57, 1.00] TEN=[0.57, 0.66]
+
+== R6: Monte Carlo scatter on the per-galaxy slopes (200 draws each, seed 20260929) ==
+  sigma_gamma 0.2 [canonical]: ten-set 2-sigma non-empty in 88/200 draws; SLUGGS lower edge quantiles 5/50/95% = 0.54/0.73/0.94 (SLUGGS window empty in 5); k* median 2.02
+  sigma_gamma 0.2 [alt]: ten-set 2-sigma non-empty in 70/200 draws; SLUGGS lower edge quantiles 5/50/95% = 0.48/0.72/0.94 (SLUGGS window empty in 11); k* median 2.06
+  sigma_gamma 0.4 [canonical]: ten-set 2-sigma non-empty in 132/200 draws; SLUGGS lower edge quantiles 5/50/95% = 0.32/0.59/0.91 (SLUGGS window empty in 13); k* median 1.91
+  sigma_gamma 0.4 [alt]: ten-set 2-sigma non-empty in 121/200 draws; SLUGGS lower edge quantiles 5/50/95% = 0.20/0.55/0.93 (SLUGGS window empty in 23); k* median 1.95
+
+R7 (text): the relation's values 2.49-3.43 are 3-D density slopes only if the source quotes 3-D slopes; if it quotes projected (surface-density) slopes Gamma, gamma_3D = Gamma+1 (R4 delta +1.0 row). The SLUGGS error e is the sample SEM of the offsets and contains no gamma uncertainty.
+
+seconds 14
+FAILED CHECKS (0): 
