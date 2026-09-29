@@ -81,3 +81,11 @@
 - the COSMOS half of KURVS.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour any model, or that the theory is closed.
+
+## After CFG183 (the referee of CFG175; appended 2026-09-29; the text above is unchanged)
+
+- **T's rows here carry CFG183's caveat on CFG175:**
+  - T's s = 1 status is fragile (it turns on a 2% margin to the declared gas ceiling in CFG175, and is already gas-allowed by the lower edge here);
+  - P0 is the uncorrected table, not a neutral null;
+  - the s = 1 exclusion label is not informative in mocks.
+- **Wording for T in this lane:** under Kretschmer at the decision cell, T under-predicts by 5.5σ with the measured markers; its gas status there is not robust to the gas ceiling, the sample or the calibration.

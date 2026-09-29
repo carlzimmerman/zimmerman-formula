@@ -88,3 +88,31 @@
 - **Where the record says otherwise.** Where this lane or CFG140 calls the velocity "measured" or "the velocity at the last observed point", read "the fitted model at R_max". The authors deprojected it with i_SFR; CFG140 uses i* only in its inclination-error term.
 - **The a₀(z) numbers here are therefore model-velocity numbers.** The measured outer markers can differ from the model: an indicative, unreconciled probe found −15% to +10% for seven discs.
 - **A re-run with the measured outer markers** is planned as a new frozen lane (proposed CFG189), after CFG184. The measured markers have not been read in the meantime.
+
+## After CFG183's independent re-derivation (appended 2026-09-29; the text above is unchanged)
+
+- **Wording (it replaces the "STRONGLY DISFAVOURED" label above): T is disfavoured under Kretschmer at the decision cell with a 2% margin; not robust to the gas ceiling, the sample or the calibration.**
+- **What reproduces.** CFG183 (73373cd0d) is the Opus chat's independent re-derivation. It reproduces every pass line and all 18 status labels:
+  - T's decision cell +0.3227 ± 0.0465;
+  - P0: T +0.0457 ± 0.0537, flat −2.28σ, rival −4.62σ;
+  - every break-even, fit point and R_T.
+- **(1) The s = 1 "gas-excluded" label is fragile.** T's lower 1σ edge is 3.547 against the declared ceiling of 3.47 (margin 0.077, 2.2%). It flips:
+  - for any ceiling ≥ 3.55;
+  - for 2 of 13 physical variants (gas-disc scale 1 R_d: 2.51; R_e = 2 R_eff: 2.50);
+  - for 4 of 10 leave-one-out samples (dropping KURVS-13, -16, -17 or -21);
+  - under one σ_out permutation (CFG183's M8).
+  - Only 52% of bootstrap resamples keep it, and in the six discs the σ-methods note does not flag, T reads gas-allowed (lower edge 2.58).
+  - At s ≥ 1.42 the margins are ≥ 1.17, and T stays excluded for ceilings up to about 4.6.
+- **(2) P0 is the uncorrected table, not a neutral null.** The tabulated outer velocities carry no pressure correction, and σ_out is an observed line width, an upper bound on the supporting dispersion. The corresponding phrasing above ("gas-allowed only without pressure support") should be read with that in mind.
+  - For T to fit at the PHIBSS-median gas, at least 85% of σ_obs² must be non-supporting (1σ; the central value needs all of it).
+  - At Kretschmer's own lower band edge (α × 0.6), T needs μ = 3.0 [2.4, 3.7], which is gas-ALLOWED.
+- **(3) The P0 fit does not repeat at KROSS at a common gas.** T over-predicts there: −0.041 ± 0.023 at μ = 0.67, P0. KROSS itself is heterogeneous: T's P0 level runs from −0.153 to +0.177 across the RT, RT+ and v/σ₀ sub-samples.
+- **(4) Mocks** (N = 10,000 per world):
+  - The s = 1 exclusion label is not informative. It fires in 0.28–0.47 of worlds where T fits at P0 with 1 M* of gas, and in 0.60–0.63 of worlds where T needs 4.3 M*.
+  - The observed P0 pattern is about 10× more frequent in a T-at-P0 world than in Kretschmer-pressure worlds, but only 1.5–1.9× more frequent than in a flat world at its own fit point (s = 0.4).
+- **(5) The onset of the flow is not a loophole.** T's amplitude at z = 1.5 varies by 0.102 dex over the flow-onset redshifts tested, and one-sidedly: a later onset lowers T further and widens the s = 1 margin.
+- **(6) Framing items, mine:**
+  - the bottom line quotes central break-evens (4.3–10.2), while the rule uses the lower 1σ edge (3.547 at s = 1);
+  - C3 cannot fail: SPARC's redshifts are exactly 0 in the loader, so t/t₀ = 1 and the control is vacuous;
+  - calling P0 "no pressure correction" reads it as a null, which it is not.
+- **CFG189's measured-marker re-run** (T +5.5σ; s = 1 break-even 3.80, lower edge below the ceiling) carries the same caveat.
