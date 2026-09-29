@@ -1,0 +1,74 @@
+== Sep-2025 construction: choice inventory (locations checked against the published program, Zenodo 17109113) ==
+  id  cl element                                        paper eq  line  printed value                alternatives [a_i]                         r3 shift April 2026
+  A1  A  chi (map) ladder                               (54)-(55) 53    on                           on/off [2]                                 2.03e-08 removed; replaced by the reduced 'return' factor R_chi = 1 + beta_chi F_chi (hand-set A_re
+  A2  A  self-feedback ladder                           (56)-(58) 57    on                           on/off [2]                                 6.82e-10 removed (see A1)
+  A3  A  exterior-term evaluator                        (41)-(45) 144   literal projection with T_l  literal / closed (44) / l=1 / physical ene 4.58e-03 kept (same literal projection); the April paper states the exact infinite sum = -1/2 ||J||
+  A4  A  gamma_geom                                     (50)      251   sinh(eta)/(2 eta) via a 12th with curvature / without [2]               1.47e-05 kept (GAMMA_GEOM = 1/2 sinh(eta0)/eta0)
+  A5  A  C_log target                                   (75),(80) 233   1/3 (enters as the 3/2 in G_ 1/3 / 2/3 [2]                              1.00e+00 kept
+  A6  A  zeta built from Lambda with sync               (62),(84) 391   Lambda_eff (with sync)       with / without sync [2]                    9.28e-04 kept (Lambda_geom includes the return factor)
+  A7  A  content of D_C                                 (33)      220   uniform + K + L_2m (m>=2)    full / K only / uniform only [3]           7.12e-06 replaced entirely by the 'rank-5 scalar evaluator' (radicand 1 - Theta D + D^2 Phi(D))
+  B1  B  thin-ring constant in Lambda_ind               (37)      68    -2                           -2 / -7/4 [2]                              2.66e-01 kept
+  B2  B  Gaussian UV constant                           (38)      67    (ln 2 + gamma)/2             (ln2+gamma)/2 / gamma/2 [2]                4.50e-02 kept
+  B3  B  weight for the near-shell energy C_uni         (25)-(28) 66    j0^2 weight on a uniformly c |u0|^2 / uniform volume [2]                3.73e-04 kept (theta1_core = 2 pi C_uni)
+  C1  C  coefficient of f_swirl in P_IR                 (47)      82    1/3                          1/3, 1/2, 2/3 [3]                          1.42e-02 kept
+  C2  C  Gaussian exponent in P_IR                      (47)      82    2                            2 / 1 [2]                                  4.06e-02 kept
+  C3  C  f_swirl profile                                (47)      74    (1-x)^2/((1-x)^2 + l^2)      two forms [2]                              4.96e-04 kept
+  C4  C  C_chi                                          (66)      233   2 pi^2                       2 pi^2 / 2 pi [2]                          2.15e+00 kept (C_CHI = 2 pi^2)
+  C5  C  dressing (1+zeta)                              (68)-(71) 233   present                      present / absent [2]                       7.84e-05 kept
+  C6  C  eps_Dy definition                              (56)      276   (alpha/pi)(K/2pi^2) P_IR Lam 3 forms [3]                                7.27e-09 removed with the ladders
+  C7  C  kappa                                          (53)      263   sinh(eta)/eta - 1            sinh(eta)/eta - 1 / eta^2/6 [2]            1.03e-10 kept inside beta_chi/gamma_geom only (A_ret, B_ret replace the ladder)
+  U1  C  node index n                                   (22)-(24) 28    n = 1 (r* = pi R, eta = 1/pi n = 1, 2, 3 [3] (not computed)             n/c      kept
+  U2  C  Gaussian width convention sigma_C = R/sqrt(pi) (13),(15) 27    epsilon = 1/sqrt(pi)         two conventions [2] (not computed)         n/c      kept
+  U3  C  weight function of P_IR and of |u0|^2          (47)      81    x^2 sin^2(pi x)              two [2] (not computed)                     n/c      kept
+  U4  C  evaluation point of D_C in X and alpha in eps_ (59) 'avoiding circularity' 396   the lock value D_C(alpha_k)  lock value / leading order alpha/pi [2] (n n/c      not applicable
+
+  computed choice points: 17 ; product of their a_i = 884736 ; uncomputed points U1-U4: product of a_i = 24 ; N_all = 21233664 = 2^24.3
+  (the 'max shift' column is the largest relative shift of alpha^-1 over the alternatives when swapped alone; n/c = not computed)
+
+== settings that are NOT choices but move the printed digits ==
+  line 24   dps, GL nodes, spectral depth SPEC_M_MAX, tail tolerance       no effect above 1e-16 (Table VI cfgs 2-5)
+  line 33   OUT_LMAX (odd cut-off of the literal exterior sum)             the literal sum converges algebraically: l<=19 vs l<=100 changes Delta Lambda_out by 5.3e-13 and alpha^-1 by 1.1e-10 (relative 8e-13): cfg-1 (137.0359991769773) vs cfg-2..5 (...770872/3)
+  line 166  Aitken extrapolation of three partial sums                     applied to partial sums (l = 19, 21, 23) of an algebraically decaying tail that differ by 4e-12 and 2e-12 (r3); leaves 5.3e-13 of Delta Lambda_out unremoved (Table VI cfg-1)
+  line 42   curvature series order                                         < 1e-15
+  line 63   Delta Lambda_dyn and eps_Lambda knobs (default 0)              eps_Lambda = +-1e-9 moves alpha^-1 by 4.3e-7 relative (lane Q4, T6): a load-bearing knob set to zero
+
+== where a measured quantity enters (Sep-2025) ==
+  line 50   Sep-2025: reference alpha in the program                     logging only: replacing it by None or 7.4e-3 leaves alpha^-1 unchanged (r2, 0 change)
+  line -    Sep-2025: CODATA values in tables (Table IV/V), lock deviati comparisons in the paper, not in the code; Table X's g_e uses the emergent alpha and reports a 1.462 ppb mismatch that the text says is 'removed by two surgical edits' (exclude Delta Lambda_sync when forming zeta; TT-A kernel instead of TT-chi): edits made in the g_e sector; applied to the alpha closure the first edit would move alpha by 9.3e-4 (r3, 'no sync'), so it is NOT part of the alpha value
+
+== April-2026 construction (GitHub 3a2614a): hand-set constants and forms read from the program (COUNT only; not re-implemented) ==
+  line 109   A_UV = ln2 eta^4
+  line 110   B_IR = eta^4/(8 pi^2)
+  line 111   N_omega = sqrt(2/pi)
+  line 113   C_chi = 2 pi^2
+  line 114   S_UV = ln 2
+  line 115   S_IR = 1/(8 pi^2)
+  line 143   K closed form
+  line 358   beta_cur = P_IR gamma_geom + P_IR Lambda_UV->IR/(2(1+A_UV))
+  line 398   phi_j = (1 + B m/2)/(1 + A m)
+  line 434   exterior memory = Lambda_out R_chi
+  line 562   theta1_core = 2 pi C_uni
+  line 563   theta1_coll = (gamma/pi^2) c11
+  line 564   theta1_log = eta^2/(8(1-eta^2/4))
+  line 565   a_shell = pi^2 c11 + gamma/4
+  line 548   gamma_clog(D, ell) closed form
+  line 588   N_c = sqrt(pi/8) ell0
+  line 637   Delta a_mix = (gamma/pi^2) c_1n^2/(n^2-1)
+  line 638   Delta a_0 = -(gamma/pi^2) c_1n^2 c_nn/(n^2-1)^3
+  line 654   Delta a_diag = -eta^2 Delta a_0
+  line 655   chi = (Delta a_mix)^2
+  line 66    article rank = 5
+  line 78    refined kernel powers {1, 2}
+  line 729   radicand 1 - Theta D + D^2 Phi
+  line 119   reference alpha^-1 (comparison layer)
+  line 130   pure-photonic QED coefficients A_1^(2n), n<=5 (comparison layer; A_1^(10) = 5.891)
+  entries located: 25 of 25. Of these, shared with the Sep-2025 construction: Lambda_ind, C_UV, gamma_geom, C_uni, C_chi, K (value), P_IR, eta, ell, the literal exterior projection; new in April: A_UV/A_ret, B_IR/B_ret, N_omega, S_UV, S_IR, the return factor, the rank-5 scalar evaluator
+  measured quantities in April: the comparison layer (alpha^-1 reference, QED A_1^(2n)) is 'reference-only' in 3a2614a; the default lock of a635b6e used alpha_exp (r2); the QED-assisted branch (alpha_QED->D = 137.035999174117) uses A_1^(2n), n<=5, as input and is labelled 'one-way reference check' by the author
+
+== changes between versions that matter for the look-elsewhere count ==
+  Sep-2025 (Aug 30 - Oct 18): D_C = uniform + K + L_2m series; Lambda = Lambda_ind + Delta Lambda_UV->IR + Delta Lambda_out + sync (order-one + chi ladder + self ladder); value 137.0359991770873 (0.004 sigma from the CODATA-2022 centre)
+  Apr-08-2026: D_C = rank-5 'mother' radicand; Lambda includes the return factor R_chi (a 'representative' value 1.0459313210773864 supplied as a fixed input in the paper, later reproduced by a formula with hand-set A_ret, B_ret to 1e-14); value 137.03599917315644 (headline) / 137.03599916349474 (lock table)
+  Apr-27-2026: headline 137.035999163494704; the text calls it a 'realization-level output ... not asserted to be a certified operator-limit value'; the primary claim is 'conditional on the explicit postulates, branch calibrations, scalar evaluator, and vector-shell datum'
+
+location failures: 0 ; computed choice points: 17 (expected 17)
+VERDICT of script: all registered locations found (exit 0)

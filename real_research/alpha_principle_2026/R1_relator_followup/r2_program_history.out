@@ -1,0 +1,42 @@
+== fetch and hash ==
+  zen17021330   Zenodo 17021330 (2025-09-01)               sha256 c956e8abdf66bdfa  lines 442
+  zen17109113   Zenodo 17109113 (2025-09-12)               sha256 8be1d48473556ad8  lines 445
+  gh3ebb273     GitHub 3ebb273 (2025-08-30)                sha256 c956e8abdf66bdfa  lines 442
+  gha635b6e     GitHub a635b6e (2026-04-08 10:51 UTC)      sha256 167e4addccd0bc23  lines 915
+  gh0468974     GitHub 0468974 (2026-04-08 15:02 UTC)      sha256 26261edcec952723  lines 1289
+  gh27da3a1     GitHub 27da3a1 (2026-04-08 17:06 UTC)      sha256 83a9af32abae98aa  lines 1380
+  gh3a2614a     GitHub 3a2614a (2026-04-16 12:02 UTC)      sha256 896b73b1908ad1d4  lines 1653
+  GitHub 3ebb273 program bytes == Zenodo 17021330 program bytes: True
+
+== September-2025 program as published (Zenodo 17109113 and 17021330, GitHub 3ebb273) ==
+  zen17109113  exit 0  12.0s  alpha^-1 = 137.0359991769773  Lambda_eff = 0.6916840202847290215451
+  zen17021330  exit 0  12.3s  alpha^-1 = 137.0359991769773  Lambda_eff = 0.6916840202847290215451
+  gh3ebb273    exit 0  12.9s  alpha^-1 = 137.0359991769773  Lambda_eff = 0.6916840202847290215451
+  all three Sept-2025 programs print the same alpha^-1 and it equals the printed cfg-1 value 137.0359991769773 (to 1e-9): True
+
+== April-2026 lineage: programs as published (defaults) ==
+  a635b6e (exit 0, 0.4s): rank-5 alpha^-1 = 137.03599916691764256520 ; refined rank-100 alpha^-1 = 137.035999177 ; Lambda_lock = 0.6916831460897698206480
+  0468974 (exit 0, 0.3s): alpha_article^-1 = 137.03599916349474199423 ; Lambda_geom = 0.6916831461069908356724
+  27da3a1 (exit 0, 0.4s): alpha_article^-1 = 137.03599916349474199423 ; Lambda_geom = 0.6916831461069908356724
+  3a2614a (exit 0, 49.4s): alpha_pred^-1 = 137.0359991634947040218 ; Lambda_geom = 0.6916831461069910267161
+
+== dependency test: does the reference alpha (alpha_exp) enter the value the program reports?  (alpha_exp^-1 := 137.035999177 -> 137.035999177 x (1 + 1e-9)) ==
+  perturbation: relative 1.005e-9 in alpha_exp^-1
+  a635b6e: rank-5 alpha^-1 137.035999166917642565 -> 137.035999304653642565 ; d ln(alpha_out)/d ln(alpha_exp) = 1.0 ; Lambda_lock shifts by -1.002e-9 relative
+  0468974: alpha_exp occurrences patched = 1 ; alpha_article^-1 137.035999163494741994 -> 137.035999163494741994 ; |change| = 0.0
+  27da3a1: alpha_exp occurrences patched = 1 ; alpha_article^-1 137.035999163494741994 -> 137.035999163494741994 ; |change| = 0.0
+  3a2614a (reduced settings, 17s+17s): alpha_pred 0.0072973525650514160727 -> 0.0072973525650514160727 ; |change| = 0.0
+  Sept-2025 program (ALPHA_REF 7.297352564311e-3 -> 7.4e-3): alpha^-1 137.0359991769773 -> 137.0359991769773 ; |change| = 0.0
+
+== derived comparisons (numbers from the programs above) ==
+  Lambda back-solved from alpha_exp (a635b6e, Apr 8 morning)      = 0.69168314608976982065
+  Lambda 'mean' representative pasted in 0468974 (Apr 8 afternoon) = 0.69168314610699083567
+  Lambda_geom computed by 3a2614a (Apr 16)                        = 0.69168314610699102672
+  relative difference Lambda_geom(3a2614a) vs Lambda_lock(alpha_exp) = 2.49e-11  (in alpha^-1 at the April elasticity 1.0032: 2.498e-11 relative)
+  Lambda_eff Sept-2025 program                                    = 0.69168402028472902155
+  Sep -> Apr:  Lambda changed by -1.2638e-6 (relative); alpha changed by 9.839e-11 (relative)
+               at the April elasticity d ln alpha/d ln Lambda = 1.003247 the Lambda change alone would move alpha by -1.2679e-6 ; so the scalar evaluator changed alpha by 1.268e-6 (compensation) ; residual/compensation = 7.76e-5
+
+flags   : {'sep_reproduces': True, 'aug30_bytes_equal_zenodo17021330': True, 'a635b6e_depends_on_alpha_exp': True, 'later_commits_independent_of_alpha_exp': True}
+expected: {'sep_reproduces': True, 'aug30_bytes_equal_zenodo17021330': True, 'a635b6e_depends_on_alpha_exp': True, 'later_commits_independent_of_alpha_exp': True}
+VERDICT of script: recorded flag vector reproduced (exit 0)

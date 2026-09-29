@@ -1,0 +1,59 @@
+== T1: versions of the concept record (Zenodo API) ==
+  16944533  created 2025-08-25T19:45:21  publication_date 2025-08-25  licence cc-by-4.0  access restricted  files NONE PUBLIC (restricted)
+  16951008  created 2025-08-30T16:35:25  publication_date 2025-08-30  licence cc-by-4.0  access restricted  files NONE PUBLIC (restricted)
+  17021330  created 2025-09-01T14:24:05  publication_date 2025-09-01  licence cc-by-4.0  access open  files [('Alpha.pdf', 738565), ('Full Alpha Geometry Calculation.py', 19832)]
+  17109113  created 2025-09-12T19:45:27  publication_date 2025-09-12  licence cc-by-4.0  access open  files [('Alpha.pdf', 1339004), ('Full Alpha Geometry Calculation.py', 19905)]
+  17385707  created 2025-10-18T12:34:30  publication_date 2025-10-18  licence cc-by-4.0  access open  files [('Alpha.pdf', 1347563)]
+  19462288  created 2026-04-07T21:08:43  publication_date 2026-04-08  licence cc-by-4.0  access open  files [('Alpha.pdf', 1715262)]
+  19819000  created 2026-04-27T12:36:30  publication_date 2026-04-27  licence cc-by-4.0  access open  files [('Alpha.pdf', 5839397)]
+  (files of 16944533 and 16951008 are restricted: the first two versions cannot be read; their abstracts claim 'sub-ppt accuracy')
+
+== T4: values of alpha^-1 printed in each version's PDF (regex over the whitespace-stripped text; strings 137.0 + 10..20 digits; digit groups printed with spaces in the PDF are joined) ==
+  17021330 (2025-09-01): 137.0359991769773 (x1), 137.0359991770872 (x3), 137.0359991770873 (x2)
+  17109113 (2025-09-12): 137.0359991769773 (x1), 137.0359991770872 (x3), 137.0359991770873 (x2)
+  17385707 (2025-10-18): 137.0359991769773 (x1), 137.0359991770872 (x3), 137.0359991770873 (x3)
+  19462288 (2026-04-08): 137.03599916349474199 (x2), 137.03599917315644 (x1), 137.03599917411693925 (x1)
+  19819000 (2026-04-27): 137.035999163494704 (x1), 137.035999163494704022 (x2), 137.035999174116901 (x1)
+  every transcribed headline value is found in the PDF of the version where it is attributed: True
+  NOTE: the April-8 PDF prints TWO different values of alpha^-1 (headline 137.03599917315644 and 'current article lock output' 137.03599916349474); the April-27 PDF's headline is the latter.
+
+== T2: offsets of each printed value from each reference: (value - ref) in units of the reference's stated uncertainty ==
+  value                                                                                      CODATA 2018     CODATA 2022    g-2 PRL 2023  Rb recoil 2020  Cs recoil 2018
+  Sep-2025 (17021330/17109113/17385707; printed headline) 137.0359991770873                       +4.433          +0.004          +0.739          -2.628          +4.855
+  Sep-2025 program default (cfg-1) 137.0359991769773                                              +4.427          -0.001          +0.732          -2.638          +4.851
+  Apr-08-2026 headline (Eq. 5) 137.03599917315644                                                 +4.246          -0.183          +0.477          -2.986          +4.709
+  Apr-08-2026 'current article lock' (Table XII) 137.03599916349474                               +3.785          -0.643          -0.167          -3.864          +4.352
+  Apr-27-2026 headline (Eq. 6) 137.035999163494704                                                +3.785          -0.643          -0.167          -3.864          +4.352
+  Apr-28-2026 separate note 19852220 (Dirac-QED closure; uses A_1^(10) = 5.891 as input) 137.035999174117          +4.291          -0.137          +0.541          -2.898          +4.745
+  and in units of 1e-10 relative to the CODATA-2022 centre (the bar's tolerance is 5): 2025-09-01 +0.01; 2025-08-30 -0.00; 2026-04-08 -0.28; 2026-04-08 -0.99; 2026-04-27 -0.99; 2026-04-28 -0.21
+
+== T3: tests ==
+  (a) earliest public version 2025-08-25 ; references released after it: none
+      H1: no version of the value pre-dates any reference it agrees with (chronology cannot show a prediction): True
+  (b) reference releases between consecutive versions: CODATA changed between 2019-05-20 and 2024-05-01 only; every dated version is after 2024-05-01 (reference constant over the whole record)
+      movement 2025-08-30 -> 2025-09-01 : +0.005 sigma_CODATA (reference unchanged)
+      movement 2025-09-01 -> 2026-04-08 : -0.187 sigma_CODATA (reference unchanged)
+      movement 2026-04-08 -> 2026-04-27 : -0.000 sigma_CODATA (reference unchanged)
+      movement 2026-04-27 -> 2026-04-28 : +0.506 sigma_CODATA (reference unchanged)
+      'tracks the reference' detector fired on: no consecutive pair
+      movement_not_explained_by_reference_release: True
+  (c) closeness to the CODATA-2022 centre (if the printed value were a correct theory's value, |z| would be a draw from N(0,1) in units of the CODATA uncertainty):
+      Sep-2025 (17021330/17109113/17385707; printed headline)                                |z| = 0.0042 sigma  ->  P(|draw| <= |z|) = 3.317e-03  (likelihood ratio 'centred by construction' : 'correct theory' = 301)
+      Sep-2025 program default (cfg-1)                                                       |z| = 0.0011 sigma  ->  P(|draw| <= |z|) = 8.625e-04  (likelihood ratio 'centred by construction' : 'correct theory' = 1.16e+03)
+      Apr-08-2026 headline (Eq. 5)                                                           |z| = 0.1830 sigma  ->  P(|draw| <= |z|) = 1.452e-01  (likelihood ratio 'centred by construction' : 'correct theory' = 6.89)
+      Apr-08-2026 'current article lock' (Table XII)                                         |z| = 0.6431 sigma  ->  P(|draw| <= |z|) = 4.798e-01  (likelihood ratio 'centred by construction' : 'correct theory' = 2.08)
+      Apr-27-2026 headline (Eq. 6)                                                           |z| = 0.6431 sigma  ->  P(|draw| <= |z|) = 4.798e-01  (likelihood ratio 'centred by construction' : 'correct theory' = 2.08)
+      Apr-28-2026 separate note 19852220 (Dirac-QED closure; uses A_1^(10) = 5.891 as input) |z| = 0.1373 sigma  ->  P(|draw| <= |z|) = 1.092e-01  (likelihood ratio 'centred by construction' : 'correct theory' = 9.16)
+      (the printed headline of Sep-2025 sits 0.004 sigma from the centre, the April headlines 0.18 and 0.64 sigma; relative to the g-2 value 137.035999166(15) the Sep value is +0.74 sigma and the Apr-27 value -0.17 sigma)
+
+== T5: statements of the Sep-2025 paper that can be checked against r3's numbers (short quotes) ==
+  [reported value equals the closedform evaluation]  exterior term, η = 1/π and Lmax denotes the multipole cuto used to crosscheck the closed form; the reported value equals the closedform evaluation at η . (χ) VI. EMERGENT ALPHA We posit a Coulomb-inductive equilibrium on the matching shell. The Coul
+  [crosschecked against the analytic closed form] ed in high precision; the exterior piece uses the boundary integral with Aitken acceleration and is crosschecked against the analytic closed form Eq. (H8) to machine tolerance. Independent toggles. Harness tests (series vs. exact OUT, Lmax → Lmax + 2
+  [curvature ladder on/o] ne tolerance. Independent toggles. Harness tests (series vs. exact OUT, Lmax → Lmax + 2, M → M + 2, curvature ladder on/o, truncation shifts) show negligible drift of α under wellposed structural changes; the only unacceptable degradation is replacin
+  [surgical edits] thogonality between the radial s-mode and tangential loop modes on the curved shell. With these two surgical edits the ge accuracy tightens to a few ppt, without any tting. X. MAGNETIC VECTOR VS. COULOMB SCALAR ENERGY ON THE SHELL We work in the uni 
+  r3 (independent re-implementation): Delta Lambda_out literal = -0.0139671580626 (the value the paper prints) ; printed closed form (44) = -0.0169241752760 ; they differ by 17.5% ; physical exterior energy = -0.0169710215524
+  r3: dropping the chi ladder moves alpha^-1 by 2.03e-8 relative and the self ladder by 6.8e-10 relative (author-lineage set), against the paper's 'negligible drift'
+
+flags   : {'H1_no_version_predates_a_reference': True, 'movement_not_explained_by_reference_release': True, 'printed_values_match_transcription': True}
+expected: {'H1_no_version_predates_a_reference': True, 'movement_not_explained_by_reference_release': True, 'printed_values_match_transcription': True}
+VERDICT of script: recorded flag vector reproduced (exit 0)

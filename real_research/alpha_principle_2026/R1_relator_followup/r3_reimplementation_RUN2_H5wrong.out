@@ -1,0 +1,129 @@
+== 1  spectrum K, L_2m  (eqs (30)-(32); Appendix M (M2)-(M4), (M16)) ==
+  K (own sum of (32)/(M3), mpmath nsum)      = 0.00223153891653197003
+  K (closed form of the April-2026 header)   = 0.0022315389165319709   |difference| = 8.67e-19
+  paper Table II: K = 0.00223153891653197018640879 ; |own - paper| = 0.00e+00
+  L_2m: printed definition (M4) [GL] | author recurrence (retyped) | paper Table II | (M4)/author
+    L_4 : 4.121882417701e-03 | 3.731554898371e-03 | 3.731554898371e-03 | 1.1046
+    L_6 : 1.737535261978e-03 | 1.438300135531e-03 | 1.438300135531e-03 | 1.2080
+    L_8 : 7.870651120837e-04 | 6.047041493135e-04 | 6.047041493135e-04 | 1.3016
+  author recurrence reproduces Table II to: L4 0.0e+00, L6 0.0e+00, L8 0.0e+00 (relative)
+  (M16) check: L_2 = 4K by the printed definition: L_2(M4) = 0.00892615566612769 ; 4K = 0.00892615566612788
+  second method for L_4 (partial sum n = 2..12): mpmath quad 4.121876050183399e-03 ; Gauss-Legendre 4.121876050183317e-03 ; |diff| 8.2e-17 ; author-recurrence partial sum (program normalisation, (2 I_nm)^2) 3.731553e-03
+  second method for L_6 (partial sum n = 2..12): mpmath quad 1.737521339413171e-03 ; Gauss-Legendre 1.737521339413138e-03 ; |diff| 3.3e-17 ; author-recurrence partial sum (program normalisation, (2 I_nm)^2) 1.438295e-03
+  recurrence check m=2 a=3: int x^m sin(ax): quad 0.213950649058 | author recurrence 0.547283982391 | corrected recurrence 0.213950649058
+  recurrence check m=4 a=7: int x^m sin(ax): quad -0.033908881798 | author recurrence 0.073962838319 | corrected recurrence -0.033908881798
+  recurrence check m=6 a=12: int x^m sin(ax): quad -0.076276331537 | author recurrence -0.008857350055 | corrected recurrence -0.076276331537
+  C_uni: printed (1/pi)(4/3 + 1/(4 pi^2)) = 0.4324760651866875 ; from quadrature of <3 - x^2> under the j0^2 weight: 0.4324760651866875
+
+== 2  vector chain ==
+  Lambda_ind = ln(8 sqrt(pi)) - 2 = 0.6518064846045357 (paper Table VIII 0.651806484604536)
+  C_UV = (ln2 + gamma)/2 = 0.6351814227307391 (paper 0.635181422730739)
+  P_IR(l0) own quadrature = 0.08577919258455564 (paper Table III 0.0857791925845556)  |diff| = 4.16e-17
+  Delta Lambda_UV->IR = C_UV P_IR = 0.05448534958655211 (paper 0.0544853495865521)
+  Delta Lambda_out, literal projection (41)-(43) [T_l = (1-x^2)P_l'], l <= 141 (own Biot-Savart, theta-quadrature) = -0.013967158062587132
+      author's converged value (Table VI cfg 2, April-2026 direct sum): -0.0139671580625860254655  |own - author| = 1.11e-15
+      partial sums l <= 19 / <= 41 / <= 101 / <= 141: -0.0139671580542230  -0.0139671580625359  -0.0139671580625870  -0.0139671580625871
+      author Table VI: l <= 19 (after his Aitken step) -0.01396715806205758 ; l <= 100 -0.01396715806258603
+      literal terms l = 1, 3, 5, 7, 9, 11, 21: -1.3683e-02, -2.8368e-04, -6.7729e-07, -6.0818e-08, -1.7781e-09, -6.4656e-10, -3.9940e-12
+  Delta Lambda_out, physical exterior energy (orthogonal basis sqrt(1-x^2)P_l', l <= 15) = -0.01697102155242102
+  direct volume integral  -int_(r>r*) |B|^2 dV                                    = -0.01697102155242059   (|volume - orthogonal sum| = 4.3e-16)
+  printed closed form (44) = -0.01692417527603591 ; printed series (45) l <= 19 = -0.01692417527603589 ; l = 1 term = -0.01688686394038963
+  orthogonal-basis terms (l = 1,3,5,7): -1.688686e-02, -8.358440e-05, -5.688004e-07, -4.371361e-09
+  terms of the printed series (45)    : -1.688686e-02, -3.714862e-05, -1.617921e-07, -9.135252e-10
+  relative differences: literal vs printed closed form (44): -0.1747 ; literal vs physical: -0.1770 ; (44) vs physical: -2.760e-03 ; series (45) vs (44): 1.0e-15
+
+== 3  the printed choice set (converged) vs the author's program values ==
+  own (Table-II/author-recurrence L_2m, literal exterior projection): alpha^-1 = 137.0359991770874 ; Lambda_eff = 0.691684020284175
+  author cfg-1 137.0359991769773 : own - author = +1.101e-10 (relative 8.04e-13)
+  author cfg-2..4 137.0359991770872 : own - author = +2.274e-13 (relative 1.55e-15)
+  author cfg-5 (headline) 137.0359991770873 : own - author = +1.421e-13 (relative 1.11e-15)
+  author Lambda_eff cfg-2 0.6916840202841763 : own - author = -1.33e-15
+  H2_author_table: the Table-II L values + literal projection reproduce the converged author value to 5e-12 relative: True
+  miss of that set vs CODATA 2022: 6.379e-13 relative (0.0042 sigma_CODATA)
+  --- what the printed definitions give (L_2m from (M4) instead of the author's recurrence), and other readings of the exterior term ---
+    L_2m = author L        exterior = literal (41)-(43)  -> alpha^-1 = 137.0359991771 ; miss vs CODATA 2022 = 6.379e-13 relative (0.0 sigma_CODATA)
+    L_2m = author L        exterior = closed (44)        -> alpha^-1 = 137.6535131556 ; miss vs CODATA 2022 = 4.506e-03 relative (29405427.6 sigma_CODATA)
+    L_2m = author L        exterior = physical energy    -> alpha^-1 = 137.6633408024 ; miss vs CODATA 2022 = 4.578e-03 relative (29873410.7 sigma_CODATA)
+    L_2m = printed (M4) L  exterior = literal (41)-(43)  -> alpha^-1 = 137.0359986396 ; miss vs CODATA 2022 = 3.921e-09 relative (25.6 sigma_CODATA)
+    L_2m = printed (M4) L  exterior = closed (44)        -> alpha^-1 = 137.6535126206 ; miss vs CODATA 2022 = 4.506e-03 relative (29405402.1 sigma_CODATA)
+    L_2m = printed (M4) L  exterior = physical energy    -> alpha^-1 = 137.6633402675 ; miss vs CODATA 2022 = 4.578e-03 relative (29873385.3 sigma_CODATA)
+  H2_printed_definitions: (M4) L_2m + literal projection lands within 1e-9 of CODATA 2022: False   [registered expectation: False]
+  effect of the L_2m recurrence error alone: alpha^-1 (printed L) - alpha^-1 (author L) = -5.374e-07 = 3.922e-09 relative
+
+== 4  H3: the printed closed form (44) in place of the literal projection ==
+  alpha^-1 with (44) = 137.6535131556 ; miss vs CODATA 2022 = 4.506e-03 relative
+  H3 (closed form does not reproduce the value used; alpha misses by > 1e-4): True
+
+== 5  stage-wise landing of the author-lineage set (relative alpha^-1 shift and miss vs target after each stage) ==
+  no sync (Lambda_base)                alpha^-1 = 136.9087754136   shift from previous = nan   miss vs CODATA 2022 = 9.284e-04
+  + geometric gain gamma_geom only     alpha^-1 = 137.0297496729   shift from previous = 8.836e-04   miss vs CODATA 2022 = 4.560e-05
+  + order-one map gain X               alpha^-1 = 137.0360018688   shift from previous = 4.563e-05   miss vs CODATA 2022 = 1.964e-08
+  + chi (map) ladder                   alpha^-1 = 137.0359990837   shift from previous = 2.032e-08   miss vs CODATA 2022 = 6.812e-10
+  + self ladder (= printed set)        alpha^-1 = 137.0359991771   shift from previous = 6.818e-10   miss vs CODATA 2022 = 6.379e-13
+    stage '+ order-one map gain X': correction size 4.563e-05, residual 1.964e-08 -> chance of landing that close if the correction's sign/magnitude were unconstrained within +-its size: 4.31e-04
+    stage '+ chi (map) ladder': correction size 2.032e-08, residual 6.812e-10 -> chance of landing that close if the correction's sign/magnitude were unconstrained within +-its size: 3.35e-02
+    stage '+ self ladder (= printed set)': correction size 6.818e-10, residual 6.379e-13 -> chance of landing that close if the correction's sign/magnitude were unconstrained within +-its size: 9.36e-04
+    product over stages 3-5 (heuristic, independent-stage reading; not a bar quantity): 1.35e-08
+
+== 6  every declared choice point swapped alone (relative shift of alpha^-1 from the author-lineage set, in units of 1e-10; miss vs CODATA 2022) ==
+  A1 A  alt=0          alpha^-1 = 137.036001962  shift =  2.032e-08 (= 203 x 1e-10)  miss vs CODATA 2022 = 2.032e-08
+  A2 A  alt=0          alpha^-1 = 137.035999084  shift =  6.818e-10 (= 6.82 x 1e-10)  miss vs CODATA 2022 = 6.812e-10
+  A3 A  alt=closed     alpha^-1 = 137.653513156  shift =  4.506e-03 (= 4.51e+07 x 1e-10)  miss vs CODATA 2022 = 4.506e-03
+  A3 A  alt=dipole     alpha^-1 = 137.645686799  shift =  4.449e-03 (= 4.45e+07 x 1e-10)  miss vs CODATA 2022 = 4.449e-03
+  A3 A  alt=true       alpha^-1 = 137.663340802  shift =  4.578e-03 (= 4.58e+07 x 1e-10)  miss vs CODATA 2022 = 4.578e-03
+  A4 A  alt=half       alpha^-1 = 137.033978169  shift =  1.475e-05 (= 1.47e+05 x 1e-10)  miss vs CODATA 2022 = 1.475e-05
+  A5 A  alt=23         alpha^-1 = 274.521037701  shift =  1.003e+00 (= 1e+10 x 1e-10)  miss vs CODATA 2022 = 1.003e+00
+  A6 A  alt=nosync     alpha^-1 = 136.908775414  shift =  9.284e-04 (= 9.28e+06 x 1e-10)  miss vs CODATA 2022 = 9.284e-04
+  A7 A  alt=Konly      alpha^-1 = 137.036004309  shift =  3.745e-08 (= 374 x 1e-10)  miss vs CODATA 2022 = 3.745e-08
+  A7 A  alt=uniform    alpha^-1 = 137.036975548  shift =  7.125e-06 (= 7.12e+04 x 1e-10)  miss vs CODATA 2022 = 7.125e-06
+  B1 B  alt=m74        alpha^-1 = 100.535305609  shift =  2.664e-01 (= 2.66e+09 x 1e-10)  miss vs CODATA 2022 = 2.664e-01
+  B2 B  alt=gamma_half alpha^-1 = 143.206915726  shift =  4.503e-02 (= 4.5e+08 x 1e-10)  miss vs CODATA 2022 = 4.503e-02
+  B3 B  alt=vol        alpha^-1 = 137.087072786  shift =  3.727e-04 (= 3.73e+06 x 1e-10)  miss vs CODATA 2022 = 3.727e-04
+  C1 C  alt=0.5        alpha^-1 = 138.001692739  shift =  7.047e-03 (= 7.05e+07 x 1e-10)  miss vs CODATA 2022 = 7.047e-03
+  C1 C  alt=0.66666666 alpha^-1 = 138.981137833  shift =  1.419e-02 (= 1.42e+08 x 1e-10)  miss vs CODATA 2022 = 1.419e-02
+  C2 C  alt=1          alpha^-1 = 131.473090571  shift =  4.059e-02 (= 4.06e+08 x 1e-10)  miss vs CODATA 2022 = 4.059e-02
+  C3 C  alt=b          alpha^-1 = 137.103982981  shift =  4.961e-04 (= 4.96e+06 x 1e-10)  miss vs CODATA 2022 = 4.961e-04
+  C4 C  alt=2pi        alpha^-1 = 431.487387488  shift =  2.149e+00 (= 2.15e+10 x 1e-10)  miss vs CODATA 2022 = 2.149e+00
+  C5 C  alt=none       alpha^-1 = 137.046749500  shift =  7.845e-05 (= 7.84e+05 x 1e-10)  miss vs CODATA 2022 = 7.845e-05
+  C6 C  alt=noP        alpha^-1 = 137.036000173  shift =  7.267e-09 (= 72.7 x 1e-10)  miss vs CODATA 2022 = 7.268e-09
+  C6 C  alt=half       alpha^-1 = 137.035999130  shift =  3.409e-10 (= 3.41 x 1e-10)  miss vs CODATA 2022 = 3.403e-10
+  C7 C  alt=eta2       alpha^-1 = 137.035999191  shift =  1.026e-10 (= 1.03 x 1e-10)  miss vs CODATA 2022 = 1.033e-10
+  choice points: 17 ; with a swap that moves alpha^-1 by more than the bar's 5e-10: 16 (94%) ; 'effective' (some swap > 1.7e-13): 17
+  H4 (>= 80% of choice points shift alpha^-1 by more than 5e-10): True
+
+== 7  H7: spread under the alternatives the source itself names (its own optional switches: chi ladder, self ladder, curvature on/off, literal vs closed-form exterior) ==
+  16 named-switch combinations: max relative shift from the author-lineage set = 4.506e-03 ; number within 5e-10 of that value = 1 ; within 5e-10 of CODATA 2022 = 1
+  spread (max-min)/alpha^-1 = 4.521e+07 x 1e-10 (bar = 5 x 1e-10)
+  H7 (spread over the source-named alternatives > 5e-10): True
+
+== 8  full factorial family of the declared alternatives (A1-A7, B1-B3, C1-C7; author-lineage L_2m; node index A8 declared, NOT computed) ==
+  family size |F| = 884736 (product of the a_i of the computed choice points)
+  computed in 28 s
+  finite values: 884736 ; alpha^-1 range [97.22, 913]
+  distinct values (resolution 1e-13 relative) : 230400
+  windows around the target (relative half-width w): number of members / DISTINCT values inside and local density n(w)/(2w)
+    |miss| <=    1e-01 : members   110592 , distinct   28800 , density 1.440e+05 per unit relative deviation
+    |miss| <=    1e-02 : members    14976 , distinct    3900 , density 1.950e+05 per unit relative deviation
+    |miss| <=    1e-03 : members     2304 , distinct     600 , density 3.000e+05 per unit relative deviation
+    |miss| <=    1e-04 : members      576 , distinct     150 , density 7.500e+05 per unit relative deviation
+    |miss| <=    1e-05 : members       96 , distinct      48 , density 2.400e+06 per unit relative deviation
+    |miss| <=    1e-06 : members       48 , distinct      24 , density 1.200e+07 per unit relative deviation
+    |miss| <=    1e-07 : members       48 , distinct      24 , density 1.200e+08 per unit relative deviation
+    |miss| <=    1e-08 : members       12 , distinct       8 , density 4.000e+08 per unit relative deviation
+    |miss| <=    1e-09 : members       10 , distinct       6 , density 3.000e+09 per unit relative deviation
+    |miss| <=    5e-10 : members        4 , distinct       4 , density 4.000e+09 per unit relative deviation
+    |miss| <=    1e-10 : members        1 , distinct       1 , density 5.000e+09 per unit relative deviation
+    |miss| <=    1e-11 : members        1 , distinct       1 , density 5.000e+10 per unit relative deviation
+    |miss| <=    1e-12 : members        1 , distinct       1 , density 5.000e+11 per unit relative deviation
+  distinct family values within 5e-10 of the target: 4 ; of which other than the author-lineage set's own value (allowing 3e-13 rounding): 3
+      other hit: relative miss -3.403e-10
+      other hit: relative miss -2.376e-10
+      other hit: relative miss +1.033e-10
+  H5 (no family member other than the author-lineage set lands within 5e-10): False
+  empirical local density (mean over |miss| <= 1e-3..1e-6) = 3.862e+06 per unit relative deviation
+  expected number of distinct family members within 5e-10 of the target by that density = 3.863e-03 ; within the author-lineage set's own miss (6.38e-13) = 4.928e-06
+
+flags   : {'H2_printed_definitions': False, 'H2_author_table': True, 'H3': True, 'H4': True, 'H5': False, 'H7': True}
+expected: {'H2_printed_definitions': False, 'H2_author_table': True, 'H3': True, 'H4': True, 'H5': True, 'H7': True}
+total runtime 29 s
+VERDICT of script: flag vector differs from the recorded one (exit 1)
