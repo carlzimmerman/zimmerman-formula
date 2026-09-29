@@ -1,0 +1,142 @@
+CFG79 -- A LCDM COMPARATOR FOR THE X-RAY ELLIPTICALS (CFG32): through CFG32's IDENTICAL pipeline, does a standard LCDM halo also fall short?
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG79_FROZEN_CRITERIA.md (commit 6cdfb9d8f), written before any LCDM
+prediction for these seven galaxies was computed.  CFG32 found candidate B's law short of Humphrey+2006's hydrostatic masses (NGC 720, 1407, 4125, 4261,
+4472, 4649, 6482) by +0.280 / +0.254 dex (a factor 1.91 / 1.79) at 1.70 / 1.58 sigma (canonical / alt), the shortfall growing outward in 7 of 7.
+
+IDENTICAL TO CFG32 (exec'd read-only, its MUTATE forced off): h10's data and fitted model for g_obs (Hernquist stars at Humphrey's fitted M/L + his best-fit
+NFW); the baryons (stars only, Hernquist a = R_e/1.8153, Kroupa population M/L; no hot gas); radii 5, 10, 20, 40, 70 kpc; a point's offset log10(g_obs /
+g_model); a galaxy's offset the median over its radii; the sample offset the mean of the seven; the galaxy-to-galaxy error std/sqrt(7); the floor (IMF:
+Kroupa -> Salpeter; radial range: r <= 40 kpc) recomputed by the same method through each model's pipeline, in quadrature.  B = CFG32's own numbers.
+THE LCDM MODEL (declared once, no tuning; CFG69's base): g = G [M_stars(<r) + (1 - f_b) M_NFW(<r)] / r^2, Newtonian (nu = 1); M_h = Moster+2013 `halo_mass`
+of the Kroupa M_* (h48's; obtained with FB and RHO_C exactly as CFG69 does, from CFG45's exec'd prefix); Duffy+2008 full-sample 200c concentration;
+CFG69's make_nfw copied verbatim (normalised to M_h at R200c, x clipped to [1e-4, 5]).  No adiabatic contraction, no SHMR scatter (declared untested).
+LCDM has no a0: identical on both footings.  The Salpeter floor row changes only the stars (the halo stays at the Kroupa-M_* Moster mass, CFG69's convention).
+CIRCULARITY (stated in the frozen file): CFG32's g_obs is itself a best-fit NFW + stars model -- not circular in value (no LCDM input comes from that fit),
+but FORM-MATCHED (LCDM is scored against data in its own functional form).  Caveat: group/cluster-central ellipticals; the Moster halo of the central
+galaxy's M_* may be smaller than the group halo; stated, not fixed.
+CLASSES (CFG69's): B FAIL |z| > 2 / MARGINAL 1 < |z| <= 2 / OK; for a FAIL or MARGINAL B: LCDM |z| <= 2 SPECIFIC-TO-B; same sign and |z| > 2 SHARED;
+opposite sign and |z| > 2 LCDM-WORSE; footings differ -> MIXED.  NON-DISCRIMINATING (overrides): every M_h x 100 leaves LCDM's three-way class unchanged.
+PRE-DECLARED
+  C1  CONTROL  CFG32's committed B numbers reproduced through the exec of its pipeline: (a) at its printed precision against its committed .out, (b) to
+               1e-9 against its committed JSON, (c) the generic estimator used for LCDM, run with B's law, reproduces them to 1e-12.  Both footings.
+  C2  CONTROL  NFW M(<R200c) = M_h to 1e-12 for every halo used; make_nfw equals the numerical integral of the NFW density to 1e-7 at the five radii
+               (every base, V1, V2 halo), monotone in r.
+  C3  CONTROL  M_h -> 0 gives CFG32's g_obs/g_bar (1e-12); LCDM identical with the canonical and the alt a0; g_LCDM >= g_bar everywhere.
+  C4  CONTROL  every M_* fed to halo_mass lies inside h48's Moster grid (no clamp); moster_mstar(halo_mass(M_*)) = M_* to 1e-6.
+  H1a [HEADLINE] NOT SHARED: LCDM (base) is not off in B's direction at > 2 sigma.
+  H1b [HEADLINE] NOT LCDM-WORSE: LCDM (base) is not off in the opposite direction at > 2 sigma.      (H1a and H1b pass <=> SPECIFIC-TO-B)
+  H1c [HEADLINE; the NON-DISCRIMINATING test] THE GATE SEES THE HALO: LCDM's class with every declared M_h x 100 differs from its class with the declared M_h
+      (both computed in every run).
+  M1  [MUTATE detector] THE SCORED CLASS IS THE DECLARED CLASS (passes by construction in the main run; under MUTATE fails exactly when H1c passes).
+  H1  (reported) the final label; B minus LCDM.
+  R1-R6 (reported): per-galaxy offsets; the halos beside Humphrey's fits; V1 Dutton-Maccio c, V2 Duffy relaxed, V3 / V4 every M_h x 1/3 and x 3; the floor
+      readings (M_h from the Salpeter M_*; B's floor on LCDM; CFG32's R1 row); LCDM's residual shape; the halo ladder x 1/100, x 1, x 100.
+MUTATE=1: every LCDM halo mass x 100 (base and V1-V4; B untouched; the R6 ladder and H1c stay relative to the declared halos).  The MUTATE run always exits 1
+(H1c or M1 fails); its failing set differs from the main run's exactly when H1c passes.
+ADDED AFTER THE FIRST MAIN RUN, BEFORE THE MUTATE RUN (disclosed; the first run's log is kept as CFG79_lcdm_xray_ellipticals_first_run.out; NO hypothesis, gate,
+  threshold, model choice or classification rule changed): control C4 FAILED as declared -- the round trip moster_mstar(halo_mass(M_*)) reproduces M_* to 1.1e-6,
+  not 1e-6 (the tolerance came from a pre-run estimate of h48's 0.005-dex interpolation error made at the high-mass end only; at NGC 720's lower mass the
+  relation curves more).  It is kept as a FAIL, tolerance unchanged.  Supplemental, REPORTED-ONLY row R7 to size it: the base LCDM with M_h from an exact
+  inversion of moster_mstar (brentq) in place of h48's interpolated halo_mass.  The declared model still uses h48's halo_mass.
+kappa = 1/2 and Omega_c h^2 stay FITTED.  Nothing here says the data favour either model, and nothing says the theory is closed.
+
+  exec'd read-only: CFG45 prefix (halo_mass, FB = 0.15713, RHO_C = 1.2605e+11 Msun/Mpc^3) and CFG32 (up to its write): 7 galaxies: NGC720, NGC1407, NGC4125, NGC4261, NGC4472, NGC4649, NGC6482   (4 s)
+
+======================================================================================================================
+C4 / C2  CONTROLS: the Moster grid and the NFW profile
+======================================================================================================================
+  [FAIL] C4 CONTROL: every M_* fed to halo_mass (Kroupa; Salpeter and fitted for R4) lies inside h48's Moster grid (no clamp), and moster_mstar(halo_mass(M_*)) = M_* to 1e-6
+         grid log M_* 4.28 - 11.97 (log M_h 9.0 - 15.5), monotone True; M_* used log 10.77 - 11.70; outside: none; max round-trip |dM/M| 1.1e-06
+  [PASS] C2 CONTROL: NFW M(<R200c) = M_h to 1e-12 for every halo used (base, V1-V4, the R6 ladder, the R4 mappings); make_nfw equals the numerical integral of the NFW density to 1e-7 at the five radii (every base, V1, V2 halo), monotone in r
+         70 halos: max |M(<R200c)/M_h - 1| 2.2e-16; max |closed form / integral - 1| 2.4e-14; monotone True
+
+======================================================================================================================
+C1  CONTROL: CFG32's committed B numbers reproduced through the exec of its pipeline
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG32's committed B numbers reproduced through the exec of its pipeline -- (a) printed precision against its .out (per-galaxy offsets, mean, error, floor, IMF, radial, z, factor, Salpeter / fitted / r<=40 / P2 means), (b) 1e-9 against its JSON, (c) the generic estimator used for LCDM, run with B's law, to 1e-12; both footings
+         (a) mismatches: none; (b) max |exec - JSON| 0.0e+00; (c) max |generic - exec| 0.0e+00 (sample), 0.0e+00 (per point, relative); canonical: +0.280 +- 0.165 (+1.70 sigma, B MARGINAL); alt: +0.254 +- 0.161 (+1.58 sigma, B MARGINAL)
+
+======================================================================================================================
+THE LCDM ENGINE: the declared model and its variants through CFG32's pipeline
+======================================================================================================================
+    base Moster + Duffy full 200c (THE declared LCDM)  : +0.060 +- 0.123 (galaxy-to-galaxy 0.091, IMF 0.081, radial 0.018) -> +0.49 sigma; class SPECIFIC-TO-B
+    V1   V1 Moster + Dutton-Maccio c                   : +0.006 +- 0.124 (galaxy-to-galaxy 0.090, IMF 0.083, radial 0.018) -> +0.05 sigma; class SPECIFIC-TO-B
+    V2   V2 Moster + Duffy relaxed 200c                : +0.028 +- 0.125 (galaxy-to-galaxy 0.090, IMF 0.085, radial 0.016) -> +0.22 sigma; class SPECIFIC-TO-B
+    V3   V3 base, every M_h x 1/3                      : +0.150 +- 0.127 (galaxy-to-galaxy 0.106, IMF 0.070, radial 0.004) -> +1.18 sigma; class SPECIFIC-TO-B
+    V4   V4 base, every M_h x 3                        : -0.012 +- 0.132 (galaxy-to-galaxy 0.090, IMF 0.095, radial 0.019) -> -0.09 sigma; class SPECIFIC-TO-B
+    (4 s)
+
+======================================================================================================================
+C3  CONTROL: the zero-halo limit, the footing independence, mass only added
+======================================================================================================================
+  [PASS] C3 CONTROL: with M_h -> 0 the LCDM ratio is CFG32's g_obs/g_bar (1e-12); LCDM identical with the canonical and the alt a0; g_LCDM >= g_bar everywhere
+         max |zero-halo ratio / (g_obs/g_bar) - 1| 0.0e+00; canonical == alt (bitwise): True; minimum g_LCDM/g_bar over every model and point 1.0490
+
+======================================================================================================================
+H1  THE CLASSIFICATION (base model; B's status from CFG32's own numbers)
+======================================================================================================================
+  [PASS] H1a [HEADLINE] NOT SHARED: LCDM (base) is not off in B's direction at > 2 sigma
+         LCDM +0.060 +- 0.123 dex -> +0.49 sigma (identical on both footings); B canonical +0.280 (+1.70 sigma, MARGINAL), alt +0.254 (+1.58 sigma, MARGINAL)
+  [PASS] H1b [HEADLINE] NOT LCDM-WORSE: LCDM (base) is not off in the opposite direction at > 2 sigma
+         LCDM +0.060 +- 0.123 dex -> +0.49 sigma (identical on both footings); B canonical +0.280 (+1.70 sigma, MARGINAL), alt +0.254 (+1.58 sigma, MARGINAL)
+  [PASS] H1c [HEADLINE; the NON-DISCRIMINATING test] THE GATE SEES THE HALO: LCDM's class with every declared M_h x 100 differs from its class with the declared M_h
+         declared (x1): +0.060 +- 0.123 (+0.49 sigma) SPECIFIC-TO-B; x100: -0.285 +- 0.116 (-2.46 sigma) LCDM-WORSE
+  [PASS] M1 [MUTATE detector] THE SCORED CLASS IS THE DECLARED CLASS: the class on the halos scored in H1a/H1b equals the class on the declared halos
+         scored (M_h x 1): SPECIFIC-TO-B; declared (x1): SPECIFIC-TO-B
+  [PASS] (reported) H1 (reported) THE LABEL for the declared model (per footing and combined) and B minus LCDM
+         FINAL: SPECIFIC-TO-B; per footing: canonical SPECIFIC-TO-B, alt SPECIFIC-TO-B; B - LCDM (declared): canonical +0.220 dex, alt +0.194 dex
+
+======================================================================================================================
+R1-R6  REPORTED (never enter a class)
+======================================================================================================================
+    galaxy      B can   B alt    LCDM   LCDM per radius (5, 10, 20, 40, 70 kpc) log10(g_obs/g_LCDM)
+    NGC720     +0.572  +0.539  +0.494   +0.445 +0.502 +0.526 +0.494 +0.444
+    NGC1407    +0.270  +0.246  -0.010   -0.125 -0.010 +0.060 +0.003 -0.128
+    NGC4125    +0.043  +0.016  -0.149   -0.149 -0.126 -0.131 -0.203 -0.306
+    NGC4261    +0.034  +0.009  -0.162   -0.061 -0.098 -0.162 -0.221 -0.246
+    NGC4472    +0.341  +0.315  +0.069   -0.058 +0.053 +0.144 +0.141 +0.069
+    NGC4649    +0.551  +0.525  +0.263   +0.122 +0.263 +0.358 +0.324 +0.214
+    NGC6482    +0.151  +0.126  -0.087   -0.087 -0.045 -0.052 -0.173 -0.344
+  [PASS] (reported) R1 (reported) per-galaxy offsets: B (CFG32, both footings), LCDM (base); B minus LCDM on the sample means
+         LCDM: NGC720 +0.49, NGC1407 -0.01, NGC4125 -0.15, NGC4261 -0.16, NGC4472 +0.07, NGC4649 +0.26, NGC6482 -0.09; B - LCDM: canonical +0.220, alt +0.194; LCDM galaxies above / below zero: 3 / 4
+    galaxy     logM*  logMh     c  R200c | logMvir_H Rvir_H   c_H Delta_H | LCDM dark/stars at 5, 70 kpc
+    NGC720     10.77  12.47  5.71    304 |     12.82    480  18.0     113 | 0.28, 11.37
+    NGC1407    11.53  14.39  3.94   1322 |     13.20    650  18.0     110 | 0.18, 13.62
+    NGC4125    11.30  13.78  4.43    832 |     12.79    470  10.0     113 | 0.19, 14.09
+    NGC4261    11.46  14.19  4.09   1138 |     13.83   1040   3.7     113 | 0.17, 13.75
+    NGC4472    11.42  14.11  4.16   1069 |     13.52    820  13.0     113 | 0.19, 13.99
+    NGC4649    11.44  14.15  4.13   1101 |     13.54    840  21.0     112 | 0.16, 13.77
+    NGC6482    11.53  14.37  3.96   1305 |     12.85    500  18.0     108 | 0.16, 13.45
+  [PASS] (reported) R2 (reported) the LCDM halos (declared Moster M_200c, Duffy c, R200c [kpc]) beside Humphrey's fitted M_vir, R_vir, c and the overdensity they imply (this repo's rho_c; context only)
+         NGC720 logMh 12.47 (H 12.82), c 5.7 (H 18.0); NGC1407 logMh 14.39 (H 13.20), c 3.9 (H 18.0); NGC4125 logMh 13.78 (H 12.79), c 4.4 (H 10.0); NGC4261 logMh 14.19 (H 13.83), c 4.1 (H 3.7); NGC4472 logMh 14.11 (H 13.52), c 4.2 (H 13.0); NGC4649 logMh 14.15 (H 13.54), c 4.1 (H 21.0); NGC6482 logMh 14.37 (H 12.85), c 4.0 (H 18.0)
+  [PASS] (reported) R3 (reported) the variants through the identical pipeline (each with its own recomputed floor): offset +- sigma (z) class
+         base: +0.060 +- 0.123 (+0.49) SPECIFIC-TO-B; V1: +0.006 +- 0.124 (+0.05) SPECIFIC-TO-B; V2: +0.028 +- 0.125 (+0.22) SPECIFIC-TO-B; V3: +0.150 +- 0.127 (+1.18) SPECIFIC-TO-B; V4: -0.012 +- 0.132 (-0.09) SPECIFIC-TO-B
+  [PASS] (reported) R4 (reported) the floor readings: (a) IMF term with M_h re-derived from the Salpeter M_*; (b) B's committed floor on LCDM's galaxy-to-galaxy error; (c) CFG32's R1 row for LCDM (Kroupa / Salpeter / fitted M/L, halo from the Kroupa M_* / r <= 40 kpc)
+         (a) Salpeter mean -0.106, IMF term 0.166, floor 0.167 -> +0.31 sigma, SPECIFIC-TO-B; (b) canonical: +- 0.169 -> +0.35 sigma, SPECIFIC-TO-B, alt: +- 0.165 -> +0.36 sigma, SPECIFIC-TO-B; (c) Kroupa +0.060, Salpeter -0.021, fitted +0.113, r <= 40 +0.078
+  [PASS] (reported) R5 (reported) LCDM's residual shape: per-galaxy slope of log(g_obs/g_LCDM) against log g_bar (CFG32's H2 statistic; negative = the shortfall grows outward)
+         NGC720 +0.00, NGC1407 -0.00, NGC4125 +0.08, NGC4261 +0.10, NGC4472 -0.07, NGC4649 -0.05, NGC6482 +0.12; 3 of 7 negative (B, CFG32 H2: 7 of 7)
+  [PASS] (reported) R6 (reported) the halo ladder relative to the DECLARED halos (every run): offset +- sigma (z) class
+         x0.01: +0.408 +- 0.207 (+1.98) SPECIFIC-TO-B; x1: +0.060 +- 0.123 (+0.49) SPECIFIC-TO-B; x100: -0.285 +- 0.116 (-2.46) LCDM-WORSE
+  [PASS] (reported) R7 (reported; ADDED AFTER THE FIRST MAIN RUN, disclosed) the size of C4's failure: the base LCDM with M_h from an exact inversion of moster_mstar (brentq) in place of h48's interpolated halo_mass
+         max |d log M_h| 1.1e-06 dex; offset +0.0598194 vs +0.0598193 (|d| 6.5e-08 dex); z +0.48586 vs +0.48586; class SPECIFIC-TO-B vs SPECIFIC-TO-B
+
+======================================================================================================================
+THE TABLE: offset [dex] (z); B canonical | alt; LCDM identical on both footings
+======================================================================================================================
+    model                                                offset   sigma       z  class
+    B (CFG32, law nu_mono) canonical                     +0.280   0.165   +1.70  B MARGINAL
+    B (CFG32, law nu_mono) alt                           +0.254   0.161   +1.58  B MARGINAL
+    LCDM Moster + Duffy full 200c (THE declared LCDM)    +0.060   0.123   +0.49  SPECIFIC-TO-B
+    LCDM V1 Moster + Dutton-Maccio c                     +0.006   0.124   +0.05  SPECIFIC-TO-B
+    LCDM V2 Moster + Duffy relaxed 200c                  +0.028   0.125   +0.22  SPECIFIC-TO-B
+    LCDM V3 base, every M_h x 1/3                        +0.150   0.127   +1.18  SPECIFIC-TO-B
+    LCDM V4 base, every M_h x 3                          -0.012   0.132   -0.09  SPECIFIC-TO-B
+    LCDM declared halos x 0.01                           +0.408   0.207   +1.98  SPECIFIC-TO-B
+    LCDM declared halos x 1                              +0.060   0.123   +0.49  SPECIFIC-TO-B
+    LCDM declared halos x 100                            -0.285   0.116   -2.46  LCDM-WORSE
+
+    FINAL LABEL (declared model): SPECIFIC-TO-B
+    kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour either model; nothing says the theory is closed.
+
+  15/16 checks pass; load-bearing failures: 1   (4 s)
