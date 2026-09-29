@@ -1,0 +1,183 @@
+{
+ "script": "cfg152_M2_frw",
+ "mode": "b",
+ "spec_sha256": "ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9",
+ "spec_sha256_match": true,
+ "lambda_bar": "Mp2*((1 - 6*gt)*a(t)*Derivative(a(t), (t, 2)) + (6*gt - 1)*Derivative(a(t), t)**2)/a(t)**2",
+ "V_background": "Mp2*(1 - 3*gt)*(2*a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/a(t)**2",
+ "route_U": {
+  "A": "Mp2*(3*gt - 1)*a(t)**3/(2*gt)",
+  "Ceff": "Mp2*k**2*a(t)/2",
+  "G": "-Mp2*a(t)**3/2",
+  "m2": "0",
+  "cs2": "-gt/(3*gt - 1)",
+  "alpha": "Mp2*gt*k**4*a(t)/2",
+  "beta0": "0",
+  "beta1": "Mp2*k**2*(1 - 3*gt)*a(t)**2"
+ },
+ "route_N": {
+  "P1": "Derivative(a(t), t)/a(t)",
+  "P0": "(-gt*k**2 + 3*gt*a(t)*Derivative(a(t), (t, 2)) - 3*gt*Derivative(a(t), t)**2 - a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/((3*gt - 1)*a(t)**2)",
+  "cs2": "-gt/(3*gt - 1)"
+ },
+ "windows_M2": {
+  "ghost": "Interval.open(0, 1/3)",
+  "gradient": "Union(Interval.open(-oo, 0), Interval.open(1/3, oo))",
+  "healthy": "EmptySet"
+ },
+ "checks": [
+  {
+   "name": "internal: expansion checks (det, R_bar = 6(a''/a + H^2), box phi two ways agree)",
+   "passed": true,
+   "kind": "internal",
+   "detail": "{'D0_is_a6': True, 'Rbar_is_6(add/a+H^2)': True, 'box_divergence_equals_christoffel_form': True}"
+  },
+  {
+   "name": "internal: the dphi first-order term vanishes identically on the background (Bianchi identity)",
+   "passed": true,
+   "kind": "internal",
+   "detail": "0"
+  },
+  {
+   "name": "internal: dlam and h first-order terms vanish",
+   "passed": true,
+   "kind": "internal",
+   "detail": ""
+  },
+  {
+   "name": "C2 (CMV eq. 77): 2 H' + 3 H^2 = 2 V / ((2 - 3 gt) M_P^2)",
+   "passed": false,
+   "kind": "control (literature)",
+   "detail": "nonzero: -3*Mp2*gt*(2*a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/(2*a(t)**2)"
+  },
+  {
+   "name": "C2 (CMV eq. 80 with lambda_CFG124 = -lambda_CMV): lambda_bar = (1 - 3 gt) M_P^2 H'",
+   "passed": false,
+   "kind": "control (literature)",
+   "detail": "nonzero: 3*Mp2*gt*(-a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/a(t)**2"
+  },
+  {
+   "name": "internal: tensor h decouples from the scalars on FRW",
+   "passed": true,
+   "kind": "internal",
+   "detail": ""
+  },
+  {
+   "name": "route U: dlambda couples only to Phi (imposes Phi = 0)",
+   "passed": true,
+   "kind": "method check",
+   "detail": ""
+  },
+  {
+   "name": "route U: B has no time derivatives after integration by parts (no B'^2, no B'Psi' term)",
+   "passed": true,
+   "kind": "method check",
+   "detail": "B'^2: 0; B'Psi': 0"
+  },
+  {
+   "name": "route U: Ceff is a polynomial a0 + a2 k^2 (no odd or higher powers)",
+   "passed": true,
+   "kind": "method check",
+   "detail": ""
+  },
+  {
+   "name": "H-a (M2 route U): c_s^2 = gt/(2 - 3 gt) exactly, independent of a, H, H', V",
+   "passed": false,
+   "kind": "pass line",
+   "detail": "-gt/(3*gt - 1) (nonzero: gt/((3*gt - 2)*(3*gt - 1)))"
+  },
+  {
+   "name": "H-b (M2 route U): A = -(2 - 3 gt)/gt times a positive factor",
+   "passed": false,
+   "kind": "pass line",
+   "detail": "A / (-(2-3gt)/gt) = Mp2*(3*gt - 1)*a(t)**3/(2*(3*gt - 2))"
+  },
+  {
+   "name": "C3 (FGM eq. 24): A = (M_P^2 a^3/2)(3 - 2/gt), Ceff = +(M_P^2 a/2) k^2 (so G = -(M_P^2 a^3/2), m^2 = 0)",
+   "passed": false,
+   "kind": "control (literature)",
+   "detail": "A: nonzero: Mp2*a(t)**3/(2*gt); Ceff: simplify"
+  },
+  {
+   "name": "C1 (M2 route U, gt = 0, any V): B enters linearly and its equation is Psi' = 0",
+   "passed": true,
+   "kind": "control",
+   "detail": "alpha = 0, B*Psi = 0, B*Psi' = Mp2*k**2*a(t)**2"
+  },
+  {
+   "name": "route N: the dlambda equation gives Phi = dphi'",
+   "passed": true,
+   "kind": "method check",
+   "detail": ""
+  },
+  {
+   "name": "route N: the traceless combination of the E and Psi equations gives Psi = Phi",
+   "passed": true,
+   "kind": "method check",
+   "detail": "[Phit(t)]"
+  },
+  {
+   "name": "C2 (CMV eq. 81): my route-N equation is dphi'' + H dphi' + (c_s^2 k^2/a^2 + H') dphi = 0 times f(t)",
+   "passed": false,
+   "kind": "control (literature)",
+   "detail": "H term: simplify; dphi term: nonzero: gt*k**2/((9*gt**2 - 9*gt + 2)*a(t)**2)"
+  },
+  {
+   "name": "H-a (M2 route N): c_s^2 (gradient coefficient of the dphi equation) = gt/(2 - 3 gt) exactly",
+   "passed": false,
+   "kind": "pass line",
+   "detail": "-gt/(3*gt - 1) (nonzero: gt/((3*gt - 2)*(3*gt - 1))); rest of dphi coefficient minus H' = 0"
+  },
+  {
+   "name": "C2 (CMV eq. 82): c_s^2 = gamma/(2 - 3 gamma) with gamma_CMV = gt",
+   "passed": false,
+   "kind": "control (literature)",
+   "detail": "-gt/(3*gt - 1)"
+  },
+  {
+   "name": "C1 (M2 route N, gt = 0, any V): dphi'' + H dphi' + H' dphi = 0 (no gradient term)",
+   "passed": true,
+   "kind": "control",
+   "detail": ""
+  },
+  {
+   "name": "route N: the Psi, E and dphi equations are then satisfied (consistency)",
+   "passed": true,
+   "kind": "method check",
+   "detail": "{'Psi': 0, 'E': 0, 'dphi': 0}"
+  },
+  {
+   "name": "H-c (M2): ghost set is exactly 0 < gt < 2/3",
+   "passed": false,
+   "kind": "pass line",
+   "detail": "Interval.open(0, 1/3)"
+  },
+  {
+   "name": "H-c (M2): gradient-unstable set is exactly gt < 0 or gt > 2/3",
+   "passed": false,
+   "kind": "pass line",
+   "detail": "Union(Interval.open(-oo, 0), Interval.open(1/3, oo))"
+  },
+  {
+   "name": "H-c (M2): ghost-free and gradient-stable set is empty",
+   "passed": true,
+   "kind": "pass line",
+   "detail": "EmptySet"
+  }
+ ],
+ "failed": [
+  "C2 (CMV eq. 77): 2 H' + 3 H^2 = 2 V / ((2 - 3 gt) M_P^2)",
+  "C2 (CMV eq. 80 with lambda_CFG124 = -lambda_CMV): lambda_bar = (1 - 3 gt) M_P^2 H'",
+  "H-a (M2 route U): c_s^2 = gt/(2 - 3 gt) exactly, independent of a, H, H', V",
+  "H-b (M2 route U): A = -(2 - 3 gt)/gt times a positive factor",
+  "C3 (FGM eq. 24): A = (M_P^2 a^3/2)(3 - 2/gt), Ceff = +(M_P^2 a/2) k^2 (so G = -(M_P^2 a^3/2), m^2 = 0)",
+  "C2 (CMV eq. 81): my route-N equation is dphi'' + H dphi' + (c_s^2 k^2/a^2 + H') dphi = 0 times f(t)",
+  "H-a (M2 route N): c_s^2 (gradient coefficient of the dphi equation) = gt/(2 - 3 gt) exactly",
+  "C2 (CMV eq. 82): c_s^2 = gamma/(2 - 3 gamma) with gamma_CMV = gt",
+  "H-c (M2): ghost set is exactly 0 < gt < 2/3",
+  "H-c (M2): gradient-unstable set is exactly gt < 0 or gt > 2/3"
+ ],
+ "n_failed": 10,
+ "exit_code": 1,
+ "runtime_s": 4.3
+}

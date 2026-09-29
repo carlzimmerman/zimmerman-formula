@@ -1,0 +1,61 @@
+spec sha256 = ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9
+committed spec sha256 (7be9ce713) = ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9; match = True
+mode = main; sympy 1.13.1
+c_box = Mp2*gt/2   (main run: gt*Mp2/2)
+
+== 1. brute-force second-order expansion about flat FRW (phi = t, lambda = lamb(t), V = V(t), a(t) arbitrary)
+   expansion (frw, mimetic=True) done in 0.4 s; L2 has 157 terms; internal checks {'D0_is_a6': True, 'Rbar_is_6(add/a+H^2)': True, 'box_divergence_equals_christoffel_form': True}
+[PASS] internal: expansion checks (det, R_bar = 6(a''/a + H^2), box phi two ways agree) (internal) {'D0_is_a6': True, 'Rbar_is_6(add/a+H^2)': True, 'box_divergence_equals_christoffel_form': True}
+
+== 2. background equations from the first-order terms (uniform fields)
+   E[Phit] = (6*Mp2*gt*a(t)*Derivative(a(t), (t, 2)) - 15*Mp2*gt*Derivative(a(t), t)**2 + 6*Mp2*Derivative(a(t), t)**2 - 2*V(t)*a(t)**2 + 4*a(t)**2*lamb(t))*a(t)/2
+   E[Psit] = 3*(6*Mp2*gt*a(t)*Derivative(a(t), (t, 2)) + 3*Mp2*gt*Derivative(a(t), t)**2 - 4*Mp2*a(t)*Derivative(a(t), (t, 2)) - 2*Mp2*Derivative(a(t), t)**2 + 2*V(t)*a(t)**2)*a(t)/2
+   E[dphit] = 3*Mp2*gt*a(t)**2*Derivative(a(t), (t, 3)) - 3*Mp2*gt*Derivative(a(t), t)**3 - a(t)**3*Derivative(V(t), t) + 2*a(t)**3*Derivative(lamb(t), t) + 6*a(t)**2*lamb(t)*Derivative(a(t), t)
+   E[dlamt] = 0
+   E[ht] = 0
+   lambda_bar = Mp2*((1 - 3*gt)*a(t)*Derivative(a(t), (t, 2)) + (3*gt - 1)*Derivative(a(t), t)**2)/a(t)**2
+   V          = Mp2*(2 - 3*gt)*(2*a(t)*Derivative(a(t), (t, 2)) + Derivative(a(t), t)**2)/(2*a(t)**2)
+[PASS] internal: the dphi first-order term vanishes identically on the background (Bianchi identity) (internal) 0
+[PASS] internal: dlam and h first-order terms vanish (internal) 
+[PASS] C2 (CMV eq. 77): 2 H' + 3 H^2 = 2 V / ((2 - 3 gt) M_P^2) (control (literature)) simplify
+[PASS] C2 (CMV eq. 80 with lambda_CFG124 = -lambda_CMV): lambda_bar = (1 - 3 gt) M_P^2 H' (control (literature)) simplify
+
+== 3. second-order Lagrangian of one mode cos(kx), x-averaged, background substituted
+[PASS] internal: tensor h decouples from the scalars on FRW (internal) 
+   scalar Lagrangian has 139 terms
+
+== 4. route U: unitary gauge dphi = E = 0 in the action
+   dlambda multiplies (a(t)**3) * Phi (so Phi = 0 at linear order)
+[PASS] route U: dlambda couples only to Phi (imposes Phi = 0) (method check) 
+[PASS] route U: B has no time derivatives after integration by parts (no B'^2, no B'Psi' term) (method check) B'^2: 0; B'Psi': 0
+   B^2 coefficient alpha = Mp2*gt*k**4*a(t)/4; B*Psi: 0; B*Psi': Mp2*k**2*(2 - 3*gt)*a(t)**2/2
+   reduced: A = Mp2*(3*gt - 2)*a(t)**3/(2*gt)
+            Ceff (coefficient of Psi^2) = Mp2*k**2*a(t)/2
+            G = -Mp2*a(t)**3/2, m^2 = 0, c_s^2 = G/A = -gt/(3*gt - 2)
+[PASS] route U: Ceff is a polynomial a0 + a2 k^2 (no odd or higher powers) (method check) 
+[PASS] H-a (M2 route U): c_s^2 = gt/(2 - 3 gt) exactly, independent of a, H, H', V (pass line) -gt/(3*gt - 2) (simplify)
+[PASS] H-b (M2 route U): A = -(2 - 3 gt)/gt times a positive factor (pass line) A / (-(2-3gt)/gt) = Mp2*a(t)**3/2
+[PASS] C3 (FGM eq. 24): A = (M_P^2 a^3/2)(3 - 2/gt), Ceff = +(M_P^2 a/2) k^2 (so G = -(M_P^2 a^3/2), m^2 = 0) (control (literature)) A: simplify; Ceff: simplify
+[PASS] C1 (M2 route U, gt = 0, any V): B enters linearly and its equation is Psi' = 0 (control) alpha = 0, B*Psi = 0, B*Psi' = Mp2*k**2*a(t)**2
+
+== 5. route N: Euler-Lagrange equations of all six scalar fields, then B = E = 0 (Newtonian gauge)
+   dlambda equation: -(-Phit(t) + Derivative(dphit(t), t))*a(t)**3  ->  Phi = [Derivative(dphit(t), t)]
+[PASS] route N: the dlambda equation gives Phi = dphi' (method check) 
+   reported: the E equation alone contains Psi undifferentiated: False; contains Phi undifferentiated: True
+   traceless combination 3 E_eq/k^2 - Psi_eq = Mp2*k**2*(Phit(t) - Psit(t))*a(t)
+[PASS] route N: the traceless combination of the E and Psi equations gives Psi = Phi (method check) [Phit(t)]
+   B (0i) equation after Phi = Psi = dphi': derivative orders of dphi present: [1, 2]
+   normalised: dphi'' + (Derivative(a(t), t)/a(t)) dphi' + ((-gt*k**2 + 3*gt*a(t)*Derivative(a(t), (t, 2)) - 3*gt*Derivative(a(t), t)**2 - 2*a(t)*Derivative(a(t), (t, 2)) + 2*Derivative(a(t), t)**2)/((3*gt - 2)*a(t)**2)) dphi = 0
+[PASS] C2 (CMV eq. 81): my route-N equation is dphi'' + H dphi' + (c_s^2 k^2/a^2 + H') dphi = 0 times f(t) (control (literature)) H term: simplify; dphi term: simplify
+[PASS] H-a (M2 route N): c_s^2 (gradient coefficient of the dphi equation) = gt/(2 - 3 gt) exactly (pass line) -gt/(3*gt - 2) (simplify); rest of dphi coefficient minus H' = 0
+[PASS] C2 (CMV eq. 82): c_s^2 = gamma/(2 - 3 gamma) with gamma_CMV = gt (control (literature)) -gt/(3*gt - 2)
+[PASS] C1 (M2 route N, gt = 0, any V): dphi'' + H dphi' + H' dphi = 0 (no gradient term) (control) 
+   dlambda from the Phi equation: 1 solution(s)
+[PASS] route N: the Psi, E and dphi equations are then satisfied (consistency) (method check) {'Psi': 0, 'E': 0, 'dphi': 0}
+
+== 6. H-c windows from route U (A and c_s^2), solved exactly as sets
+[PASS] H-c (M2): ghost set is exactly 0 < gt < 2/3 (pass line) Interval.open(0, 2/3)
+[PASS] H-c (M2): gradient-unstable set is exactly gt < 0 or gt > 2/3 (pass line) Union(Interval.open(-oo, 0), Interval.open(2/3, oo))
+[PASS] H-c (M2): ghost-free and gradient-stable set is empty (pass line) EmptySet
+   background coefficient V / (M_P^2 (2H' + 3H^2)/2) = 2 - 3*gt (vanishes at gt = 2/3 in the main run)
+== cfg152_M2_frw mode=main: 23 checks, 0 failed -> exit 0

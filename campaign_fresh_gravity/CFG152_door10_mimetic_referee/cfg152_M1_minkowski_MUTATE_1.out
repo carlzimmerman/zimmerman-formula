@@ -1,0 +1,110 @@
+spec sha256 = ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9
+committed spec sha256 (7be9ce713) = ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9; match = True
+mode = 1; sympy 1.13.1
+c_box = -Mp2*gt   (main run: gt*Mp2/2, i.e. CFG124's +(gamma/2)(box phi)^2 with gt = gamma/M_P^2)
+headline form under test: c_s^2 = gt/(2 - 3*gt); ghost window 0 < gt < 2/3
+
+== 1. brute-force second-order expansion about Minkowski (phi = t, lambda = 0, V = 0)
+   expansion (mink, mimetic=True) done in 0.3 s; L2 has 55 terms; internal checks {'D0_is_a6': True, 'Rbar_is_0': True, 'box_divergence_equals_christoffel_form': True}
+[PASS] internal: expansion checks (det, R_bar = 0, box phi two ways agree) (internal) {'D0_is_a6': True, 'Rbar_is_0': True, 'box_divergence_equals_christoffel_form': True}
+[PASS] internal: zeroth-order Lagrangian vanishes (internal) 
+[PASS] internal: Minkowski with phi = t, lambda = 0, V = 0 is a solution (all first-order EL terms vanish) (internal) []
+
+== 2. Fourier Hermitian form M(omega, k) in (Phi, B, Psi, E, dphi, dlam, h)
+[PASS] internal: M is Hermitian (internal) 
+[PASS] internal: the tensor mode h decouples from the scalars (internal) 
+   M[Phi,Phi] = -2*Mp2*gt*omega**2
+   M[Phi,B] = 2*I*Mp2*gt*k**2*omega
+   M[Phi,Psi] = -2*Mp2*(3*gt*omega**2 + k**2)
+   M[Phi,E] = -2*Mp2*gt*k**2*omega**2
+   M[Phi,dphi] = 2*I*Mp2*gt*omega*(k - omega)*(k + omega)
+   M[Phi,dlam] = 2
+   M[B,B] = -2*Mp2*gt*k**4
+   M[B,Psi] = -2*I*Mp2*k**2*omega*(3*gt + 1)
+   M[B,E] = -2*I*Mp2*gt*k**4*omega
+   M[B,dphi] = -2*Mp2*gt*k**2*(k - omega)*(k + omega)
+   M[Psi,Psi] = 2*Mp2*(-9*gt*omega**2 + k**2 - 3*omega**2)
+   M[Psi,E] = -2*Mp2*k**2*omega**2*(3*gt + 1)
+   M[Psi,dphi] = 6*I*Mp2*gt*omega*(k - omega)*(k + omega)
+   M[E,E] = -2*Mp2*gt*k**4*omega**2
+   M[E,dphi] = 2*I*Mp2*gt*k**2*omega*(k - omega)*(k + omega)
+   M[dphi,dphi] = -2*Mp2*gt*(k - omega)**2*(k + omega)**2
+   M[dphi,dlam] = -2*I*omega
+   M[h,h] = -Mp2*(k - omega)*(k + omega)/2
+
+== 3. step (i): scalar gauge vectors from -Lie_xi of the background
+   gauge vector (xi0): [I*omega, 1, 0, 0, -1, 0, 0]
+   gauge vector (zeta): [0, I*omega, 0, -1, 0, 0, 0]
+[PASS] step (i): both scalar gauge vectors are null vectors of M for all omega, k, gt (method check) [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]]
+
+== 4. step (ii): det of M in unitary (dphi = E = 0) and Newtonian (B = E = 0) gauge
+   det_unitary   = 16*Mp2**2*k**4*(gt*k**2 + 3*gt*omega**2 + omega**2)
+   det_Newtonian = 16*Mp2**2*k**4*(gt*k**2 + 3*gt*omega**2 + omega**2)
+   zero roots: unitary omega^0, Newtonian omega^0; remaining polynomials: 16*Mp2**2*gt*k**6 + omega**2*(48*Mp2**2*gt*k**4 + 16*Mp2**2*k**4) | 16*Mp2**2*gt*k**6 + omega**2*(48*Mp2**2*gt*k**4 + 16*Mp2**2*k**4)
+[PASS] step (ii): the nonzero roots agree between the two gauges (ratio of the reduced dets is omega-free) (method check) ratio = 1
+   c_s^2 (unitary det) = -gt/(3*gt + 1);  c_s^2 (Newtonian det) = -gt/(3*gt + 1)
+[FAIL] H-a (M1 step ii, unitary gauge): c_s^2 = gt/(2 - 3 gt) exactly (pass line) -gt/(3*gt + 1)
+[FAIL] H-a (M1 step ii, Newtonian gauge): c_s^2 = gt/(2 - 3 gt) exactly (pass line) -gt/(3*gt + 1)
+
+== 5. step (iii): unitary gauge, eliminate dlam, Phi, B by their own equations (Schur complement)
+   det of the auxiliary block (Phi, B, dlam) = 8*Mp2*gt*k**4
+   M_red(omega, k) = 2*Mp2*(gt*k**2 + 3*gt*omega**2 + omega**2)/gt
+[PASS] step (iii): one field is left, M_red = K (omega^2 - c_s^2 k^2) (polynomial of degree 2 in omega, even) (method check) K = 6*Mp2 + 2*Mp2/gt, c_s^2 = -gt/(3*gt + 1)
+[FAIL] H-a (M1 step iii, reduced action): c_s^2 = gt/(2 - 3 gt) exactly (pass line) -gt/(3*gt + 1)
+[FAIL] H-b (M1 step iii): K = -(2 - 3 gt)/gt times a positive factor (pass line) K / (-(2-3gt)/gt) = 2*Mp2*(3*gt + 1)/(3*gt - 2)
+
+== 6. H-c: windows solved exactly as sets in gt (M1: K and c_s^2 from step iii)
+[FAIL] H-c (M1): ghost set (K < 0, c_s^2 > 0) is exactly 0 < gt < 2/3 (pass line) Interval.open(-1/3, 0)
+[FAIL] H-c (M1): gradient-unstable set (K > 0, c_s^2 < 0) is exactly gt < 0 or gt > 2/3 (pass line) Union(Interval.open(-oo, -1/3), Interval.open(0, oo))
+[PASS] H-c (M1): ghost-free and gradient-stable set is empty (pass line) EmptySet
+[FAIL] H-c (M1) end points: K diverges at gt -> 0; K = 0 and c_s^2 has a pole at gt = 2/3 (pass line) K(gt->0+) = oo, K(gt->0-) = -oo, K(2/3) = 9, c_s^2(2/3+) = -2/9, c_s^2(2/3-) = -2/9
+   reported: superluminal set c_s^2 > 1 is Interval.open(-1/3, -1/4)
+
+== 7. C0: GR alone (phi, lambda, V, gamma removed)
+   expansion (mink, mimetic=False) done in 0.0 s; L2 has 32 terms; internal checks {'D0_is_a6': True, 'Rbar_is_0': True}
+   GR scalar det (Newtonian gauge) = -4*Mp2**2*k**4
+[PASS] C0: GR scalar sector has no propagating mode (gauge-fixed det has no root in omega) (control) -4*Mp2**2*k**4
+[PASS] C0: GR tensor mode has omega^2 = k^2 and positive energy (coefficient of omega^2 > 0) (control) M_hh = -Mp2*(k - omega)*(k + omega)/2
+
+== 8. C1: the higher-derivative term off (gt = 0): pure mimetic dust
+   gt = 0, unitary det = 16*Mp2**2*k**4*omega**2  (zero-root multiplicity 2)
+   gt = 0, Newtonian det = 16*Mp2**2*k**4*omega**2  (zero-root multiplicity 2)
+[PASS] C1 (M1): at gt = 0 every root of the det is omega = 0 (no wave, c_s^2 = 0), both gauges (control) 
+
+== 9. C4: canonical scalar L = -(s/2)(d chi)^2 through the same Fourier and Krein code
+   s = +1: M = -k**2 + omega**2, roots [ 1.+0.j -1.+0.j], Krein signs [None, None]
+   s = -1: M = k**2 - omega**2, roots [ 1.+0.j -1.+0.j], Krein signs [None, None]
+[FAIL] C4: canonical scalar gives omega^2 = k^2 and energy sign s for s = +1 and -1 (control) 
+   POST-HOC C4b (not counted): s = +1 with a decoupled algebraic field: roots [ 1.+0.j -1.+0.j], Krein signs [1, 1] (expected +1)
+   POST-HOC C4b (not counted): s = -1 with a decoupled algebraic field: roots [ 1.+0.j -1.+0.j], Krein signs [-1, -1] (expected -1)
+
+== 10. N1: numerical confirmation from the brute-force matrix (closed form not used)
+   gt =       -1, k = 1/2: imaginary roots, |Im omega|/k = 0.7071067811865475 (rel err 5.8e-01); tensor Krein [1, 1]; FAIL
+   gt =       -1, k =   2: imaginary roots, |Im omega|/k = 0.7071067811865475 (rel err 5.8e-01); tensor Krein [1, 1]; FAIL
+   gt =     -0.2, k = 1/2: real roots, omega^2/k^2 = 0.5000000000000002 (rel err 7.5e+00), null dim 3, nonzero 1, Krein signs [-1, -1]; tensor Krein [1, 1]; FAIL
+   gt =     -0.2, k =   2: real roots, omega^2/k^2 = 0.5000000000000002 (rel err 7.5e+00), null dim 3, nonzero 1, Krein signs [-1, -1]; tensor Krein [1, 1]; FAIL
+   gt =    -0.01, k = 1/2: real roots, omega^2/k^2 = 0.010309278350515469 (rel err 3.1e+00), null dim 3, nonzero 1, Krein signs [-1, -1]; tensor Krein [1, 1]; FAIL
+   gt =    -0.01, k =   2: real roots, omega^2/k^2 = 0.010309278350515469 (rel err 3.1e+00), null dim 3, nonzero 1, Krein signs [-1, -1]; tensor Krein [1, 1]; FAIL
+   gt =  8.5e-11, k = 1/2: imaginary roots, |Im omega|/k = 0.00000921954445611739 (rel err 4.1e-01); tensor Krein [1, 1]; FAIL
+   gt =  8.5e-11, k =   2: imaginary roots, |Im omega|/k = 0.00000921954445611739 (rel err 4.1e-01); tensor Krein [1, 1]; FAIL
+   gt =     0.01, k = 1/2: imaginary roots, |Im omega|/k = 0.09853292781642933 (rel err 3.8e-01); tensor Krein [1, 1]; FAIL
+   gt =     0.01, k =   2: imaginary roots, |Im omega|/k = 0.09853292781642933 (rel err 3.8e-01); tensor Krein [1, 1]; FAIL
+   gt =      0.2, k = 1/2: imaginary roots, |Im omega|/k = 0.35355339059327373 (rel err 6.5e-02); tensor Krein [1, 1]; FAIL
+   gt =      0.2, k =   2: imaginary roots, |Im omega|/k = 0.35355339059327384 (rel err 6.5e-02); tensor Krein [1, 1]; FAIL
+   gt =      0.4, k = 1/2: imaginary roots, |Im omega|/k = 0.4264014327112209 (rel err 4.0e-01); tensor Krein [1, 1]; FAIL
+   gt =      0.4, k =   2: imaginary roots, |Im omega|/k = 0.4264014327112209 (rel err 4.0e-01); tensor Krein [1, 1]; FAIL
+   gt =     0.55, k = 1/2: imaginary roots, |Im omega|/k = 0.45557345160942014 (rel err 6.4e-01); tensor Krein [1, 1]; FAIL
+   gt =     0.55, k =   2: imaginary roots, |Im omega|/k = 0.45557345160942014 (rel err 6.4e-01); tensor Krein [1, 1]; FAIL
+   gt =     0.65, k = 1/2: imaginary roots, |Im omega|/k = 0.4694027940381772 (rel err 8.7e-01); tensor Krein [1, 1]; FAIL
+   gt =     0.65, k =   2: imaginary roots, |Im omega|/k = 0.4694027940381772 (rel err 8.7e-01); tensor Krein [1, 1]; FAIL
+   gt =      0.7, k = 1/2: imaginary roots, |Im omega|/k = 0.47519096331149147 (rel err 8.2e-01); tensor Krein [1, 1]; FAIL
+   gt =      0.7, k =   2: imaginary roots, |Im omega|/k = 0.47519096331149147 (rel err 8.2e-01); tensor Krein [1, 1]; FAIL
+   gt =        1, k = 1/2: imaginary roots, |Im omega|/k = 0.49999999999999983 (rel err 5.0e-01); tensor Krein [1, 1]; FAIL
+   gt =        1, k =   2: imaginary roots, |Im omega|/k = 0.49999999999999983 (rel err 5.0e-01); tensor Krein [1, 1]; FAIL
+   gt =        3, k = 1/2: imaginary roots, |Im omega|/k = 0.5477225575051662 (rel err 1.6e-01); tensor Krein [1, 1]; FAIL
+   gt =        3, k =   2: imaginary roots, |Im omega|/k = 0.5477225575051662 (rel err 1.6e-01); tensor Krein [1, 1]; FAIL
+[FAIL] N1: roots match gt/(2 - 3 gt) (real: omega^2/k^2; imaginary: |Im omega|/k), 3-dim null space, one nonzero restricted eigenvalue, negative sign for 0 < gt < 2/3, tensor omega^2 = k^2 with positive sign, all 24 points (pass line (N1)) 
+[PASS] H-b (M1 step iv): the gauge-invariant (Krein) sign equals sign(K) of step (iii) at every real root in N1 (pass line) 
+   reported row: CFG124's G2 pair (gt_max 8.5e-11, c_s^2,max 4.2e-11): formula at 8.5e-11 gives 4.25000000054E-11; a gt in [8.45e-11, 8.55e-11) giving c_s^2 in [4.15e-11, 4.25e-11) exists: True
+== cfg152_M1_minkowski mode=1: 22 checks, 9 failed -> exit 1
+   failed: H-a (M1 step ii, unitary gauge): c_s^2 = gt/(2 - 3 gt) exactly; H-a (M1 step ii, Newtonian gauge): c_s^2 = gt/(2 - 3 gt) exactly; H-a (M1 step iii, reduced action): c_s^2 = gt/(2 - 3 gt) exactly; H-b (M1 step iii): K = -(2 - 3 gt)/gt times a positive factor; H-c (M1): ghost set (K < 0, c_s^2 > 0) is exactly 0 < gt < 2/3; H-c (M1): gradient-unstable set (K > 0, c_s^2 < 0) is exactly gt < 0 or gt > 2/3; H-c (M1) end points: K diverges at gt -> 0; K = 0 and c_s^2 has a pole at gt = 2/3; C4: canonical scalar gives omega^2 = k^2 and energy sign s for s = +1 and -1; N1: roots match gt/(2 - 3 gt) (real: omega^2/k^2; imaginary: |Im omega|/k), 3-dim null space, one nonzero restricted eigenvalue, negative sign for 0 < gt < 2/3, tensor omega^2 = k^2 with positive sign, all 24 points

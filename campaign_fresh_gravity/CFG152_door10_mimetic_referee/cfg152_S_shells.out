@@ -1,0 +1,24 @@
+spec sha256 = ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9
+committed spec sha256 (7be9ce713) = ed516168d11de161d4beea8fc8169c60204e08988035513861bed9d0db0233e9; match = True
+mode = main; sympy 1.13.1
+hydrostatic support (MUTATE=s): False
+
+== S0: u^nu nabla_nu u_mu = (1/2) d_mu X for u_mu = d_mu phi, general (t, x)-dependent 2-D metric
+[PASS] S0: u^nu nabla_nu u_mu - (1/2) d_mu X = 0 identically (so the flow is geodesic on X = -1, any V, gamma) (identity) [0, 0]
+
+== S: shells released from rest on the point-mass target, x0 in [0.3, 30] (200 log points)
+   canonical M_b = 1e+09: t_fall in [0.00359, 0.6695] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   canonical M_b = 1e+10: t_fall in [0.006384, 1.191] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   canonical M_b = 1e+11: t_fall in [0.01135, 2.117] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   canonical M_b = 1e+12: t_fall in [0.02019, 3.765] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   alt       M_b = 1e+09: t_fall in [0.003115, 0.5809] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   alt       M_b = 1e+10: t_fall in [0.005539, 1.033] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   alt       M_b = 1e+11: t_fall in [0.009849, 1.837] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+   alt       M_b = 1e+12: t_fall in [0.01751, 3.266] Gyr, cases with t_fall >= 10 Gyr: 0 of 200
+[PASS] S: t_fall rises with x0 on the grid (inner shells reach the centre first) (method check) 
+[PASS] S: analytic t_fall agrees with the integrated radial ODE to 1e-6 (every 20th x0) (method check) max rel err 4.21e-10
+[PASS] S pass line: number of cases with t_fall >= 10 Gyr is 0 (of 1600) (pass line) 0 of 1600 survive
+   reported: canonical: t_fall range 0.00359 - 3.765 Gyr
+   reported: alt: t_fall range 0.003115 - 3.266 Gyr
+   reported: overall t_fall range 0.003115 - 3.765 Gyr; printed CFG124 range 0.003-3.7 Gyr; agrees at the printed precision (min in [0.0025, 0.0035), max in [3.65, 3.75)): False
+== cfg152_S_shells mode=main: 4 checks, 0 failed -> exit 0
