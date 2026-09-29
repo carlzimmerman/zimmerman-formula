@@ -163,3 +163,7 @@ Whole set runs in under two minutes. `ZF_REPO` is required unless the scripts si
 ## In-place re-run (orchestrator)
 
 `./run_all.sh` was re-run in this directory with `ZF_REPO` set (`run_all.out`): main 0; MUTATE 1-4 exit 1 (bite); MUTATE 5 exit 0 (informational); attacks and power at seeds 167 and 168 and the post-comparison diagnostic exit 0. Every `.out` and `.json` is identical to the referee's. The frozen criteria are `../CFG167_FROZEN_CRITERIA.md` (665c7c4e4). Independence stops at the imported CFG165 pipeline (loaders, `per_object`, `pool`, `nu_mono`, Kretschmer alpha as quoted) and CFG140's set-up choices.
+
+## Provenance note (append-only; reported by the calc chat in 27bcce5a4, with the data chat's digitisation in 5e8617c81; no verdict changes)
+
+The KURVS outer velocity that every a0(z) lane read, `v_at_last_point_kms` (the paper's Table B1 column 3), is the authors' fitted exponential-disc MODEL evaluated at R_max, not a measured data point: the data chat's digitisation shows model(R_max)/sin i_SFR equals it to about 1% for all ten discs. This lane imports the same column through the CFG165 loader, so it reproduced its target as that lane ran it; the note changes what the column means, not what was reproduced. The calc chat re-runs the test with the measured markers as CFG189 (criteria frozen first). Recorded here as reported and not re-verified by this lane's author.

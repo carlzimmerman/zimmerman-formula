@@ -172,3 +172,7 @@ kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour eithe
 ## In-place re-run (orchestrator)
 
 `bash run_all.sh` was re-run in this directory with `ZF_REPO` set (`run_all.out`): main 0; MUTATE 1-6 exit 1 (bite); MUTATE 7 exit 0 (informational, does not bite); attacks, null, null-v0 and the post-comparison diagnostic exit 0. Every `.out`, `.err` and `_results.json` is identical to the referee's. The frozen criteria are `../CFG168_FROZEN_CRITERIA.md` (7ab29fb78). Independence stops at the imported CFG165 pipeline. `cfg168_null_v0_nooffset_as_run.py.txt` is the first mock run without the pipeline z = 0 offset, kept as run.
+
+## Provenance note (append-only; reported by the calc chat in 27bcce5a4, with the data chat's digitisation in 5e8617c81; no verdict changes)
+
+The KURVS outer velocity that every a0(z) lane read, `v_at_last_point_kms` (the paper's Table B1 column 3), is the authors' fitted exponential-disc MODEL evaluated at R_max, not a measured data point: the data chat's digitisation shows model(R_max)/sin i_SFR equals it to about 1% for all ten discs. This lane imports the same column through the CFG165 loader, so it reproduced its target as that lane ran it; the note changes what the column means, not what was reproduced. The calc chat re-runs the test with the measured markers as CFG189 (criteria frozen first). Recorded here as reported and not re-verified by this lane's author.

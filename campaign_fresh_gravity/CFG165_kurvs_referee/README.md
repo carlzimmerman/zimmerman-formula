@@ -165,3 +165,7 @@ Whole set runs in under 30 s.
 ## In-place re-run (orchestrator)
 
 All scripts were re-run in this directory with `ZF_REPO` set (`run_all.out`): main 0; MUTATE 1, 1b, 2, 3, 4, 5 exit 1 (bite); MUTATE 6 exit 0 (does not bite, informational, kept); attacks 0; power 0; diagnostics 0. Every `.out` and `_results.json` is identical to the referee's apart from timing. The frozen criteria are `../CFG165_FROZEN_CRITERIA.md` (3dc7f31bd). Read the README's attack (b) and (e) results as the caveats on CFG160's lean: the lean holds only below about 1.2 M* of gas and, once gas and calibration nuisance are allowed, P(lean rival | flat truth) is 0.31-0.45, so it is weak evidence, not a detection.
+
+## Provenance note (append-only; reported by the calc chat in 27bcce5a4, with the data chat's digitisation in 5e8617c81; no verdict changes)
+
+The KURVS outer velocity that every a0(z) lane read, `v_at_last_point_kms` (the paper's Table B1 column 3), is the authors' fitted exponential-disc MODEL evaluated at R_max, not a measured data point: the data chat's digitisation shows model(R_max)/sin i_SFR equals it to about 1% for all ten discs. This lane imports the same column through the CFG165 loader, so it reproduced its target as that lane ran it; the note changes what the column means, not what was reproduced. The calc chat re-runs the test with the measured markers as CFG189 (criteria frozen first). Recorded here as reported and not re-verified by this lane's author.
