@@ -103,3 +103,48 @@ Primary conversions throughout. The α_CO and R21 bracket is reported, with whet
 - the P4 model itself.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## Addendum (2026-09-29, before any number; at the orchestrator's check; the criteria above are otherwise unchanged)
+
+This addendum was written after the data chat reported the continuum image's header-level facts (no pixel value), and before any file was downloaded or read.
+
+**(1) The Band 6 continuum is at 227.3 GHz (1.32 mm), not 1.2 mm.**
+- **The image:** four windows at 219.4, 221.2, 233.4 and 235.2 GHz (mean 227.3 GHz), with a 1.0″ beam and 816 s on source.
+- **Rest frame:** at z = 1.613 the rest frequency is 594 GHz, i.e. a rest wavelength of 505 μm.
+- **The extrapolation:** Scoville et al. 2016's conversion is calibrated at rest 850 μm and carried to other rest frequencies by its ν^3.8 factor (β = 1.8) and the Rayleigh–Jeans correction Γ_RJ(T_d, ν_obs, z).
+  - At rest 505 μm and T_d = 25 K, Γ_RJ = 0.536 against Γ₀ = 0.699.
+  - The dust temperature bracket is declared as 25 K (primary) to 35 K.
+- **The requirement flux at 227.3 GHz** (nominal M*, dust-to-gas × 1):
+
+  | T_d | μ_dust = 2 | μ_dust = 0.65 | μ_dust = 2.14 |
+  |---|---|---|---|
+  | 25 K | 0.128 mJy | 0.042 mJy | 0.137 mJy |
+  | 35 K | 0.139 mJy | 0.045 mJy | 0.148 mJy |
+
+  This replaces the plan's 0.17 mJy, which was for 250 GHz.
+- **The power depends on the rms, which is not yet measured.** The archive's own estimate is 0.0646 per 1.875-GHz window (unit unstated, presumably mJy/beam).
+  - **If that averages down over the four windows to ≈ 32 μJy/beam:**
+    - μ_dust = 2 is a 3.9σ signal (4.3σ at 35 K);
+    - a 4σ detection needs μ_dust ≥ 2.03;
+    - a 3σ non-detection limits μ_dust ≤ 1.52;
+    - μ = 0.65 is only 1.3σ.
+  - **If 0.0646 mJy/beam is the combined rms:**
+    - μ_dust = 2 is 2.0σ;
+    - a detection needs μ_dust ≥ 4.05;
+    - a non-detection limits μ_dust ≤ 3.04.
+    - **The power then collapses at both break-evens.**
+  - **Either way,** the dust channel cannot reach the rival's break-even (0.65). At best it can tell whether the gas is near or above flat's break-even (2.14), and only at the nominal gas-to-dust ratio. With the ×2 bracket the 32-μJy limit becomes μ_total ≤ 3.0.
+
+**(2) The rms rule and a power gate (fixed now, applied before the source flux is read).**
+- **Measuring σ₀:** robust σ₀ = 1.4826 × MAD of (pbcor × pb) pixels in an annulus 3″–10″ from KURVS-15, restricted to pb ≥ 0.5, with 2″ excluded around every GOODS-ALMA 2.0 catalogue source and every KURVS position.
+- **The noise at the source:** σ = σ₀/pb(KURVS-15).
+- **The power gate:** μ_dust,3σ = 3σ/(S per unit μ_dust) at 25 K, nominal M*. If μ_dust,3σ ≥ 2.14, the dust channel is declared NON-DIAGNOSTIC and the flux at KURVS-15 is not read for a verdict (it may be reported afterwards, labelled). Otherwise the plan proceeds.
+- The archive estimate is reported beside the measured value.
+
+**(3) Beam against source size (as declared).**
+- At 1.0″ (8.6 kpc at z = 1.613) KURVS-15's dust is expected to be close to unresolved.
+- The peak pixel is primary, and the 1.0″ aperture sum is the declared variant. Their ratio is reported as a size check.
+
+**(4) Recommendation to the data chat** (a statement of expected value; the download decision is its user's):
+- **The continuum image and its pb** (about 0.4 MB) are cheap, and the power gate decides their value from the measured rms.
+- **The CO(2-1) cubes** (6.6 GB) are non-diagnostic at both break-evens by the plan's power row. They can only detect a disc with μ_mol ≳ 5.5. Their expected value for this question is low.
