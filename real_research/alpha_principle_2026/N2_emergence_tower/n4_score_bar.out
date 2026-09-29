@@ -1,0 +1,45 @@
+== checker integrity ==
+  [PASS] 4Z^2+3 rejected (chance-level, misses CODATA by 2e5 sigma)
+  [PASS] Wyler as free numerology rejected
+  [PASS] Wyler with N=1 (forced) passes P but fails precision -> rejected
+  [PASS] positive control: 1e-12 match in a 2^15 family clears
+  [PASS] same match in a 2^60 family is rejected
+  [PASS] a fitted real parameter is rejected
+  [PASS] target-scale multiplicity of 1e6 is rejected
+  [PASS] route that predicted only 1e-2 and hit 1e-5 is scored at 1e-2 (rejected at N=32)
+  [PASS] a 1e-3 match never clears (precision)
+  [PASS] a CODATA-precision match in a 2^12 family clears
+  [PASS] a CODATA-precision match in a 2^32 family does not clear
+FAILED: none
+[PASS] lane D checker self-test behaves as specified
+[PASS] positive control: a 1e-12 zero-parameter match in a family of 18 would clear the bar
+
+== scoring: 1/alpha_em(0) predicted by each closure vs 137.035999177 ==
+family size 18 (log2 4.17), fitted reals 1 (M_c), scale stated (Thomson). predicted precision = n3 band / 137.036 (pre-registered); the closure spread is a second, reported precision.
+TA closure Y: 1/alpha_em(0) = 128.056, miss 6.553e-02 (10.7 x its own band 0.615%); P(look-elsewhere, own band) = 0.0573; c1 False c2 False c3(zero fitted) False c4 True -> does not clear
+      with the closure spread as precision (8.82%): P = 0.0763, does not clear
+TA closure 2: 1/alpha_em(0) = 151.688, miss 1.069e-01 (10.5 x its own band 1.016%); P(look-elsewhere, own band) = 0.0917; c1 False c2 False c3(zero fitted) False c4 True -> does not clear
+      with the closure spread as precision (8.82%): P = 0.0917, does not clear
+TA closure 3: 1/alpha_em(0) = 152.240, miss 1.109e-01 (5.8 x its own band 1.914%); P(look-elsewhere, own band) = 0.095; c1 False c2 False c3(zero fitted) False c4 True -> does not clear
+      with the closure spread as precision (8.82%): P = 0.095, does not clear
+TB closure Y: 1/alpha_em(0) = 95.989, miss 2.995e-01 (94.6 x its own band 0.317%); P(look-elsewhere, own band) = 0.236; c1 False c2 False c3(zero fitted) False c4 True -> does not clear
+      with the closure spread as precision (185.66%): P = 0.812, does not clear
+TB closure 2: 1/alpha_em(0) = 604.839, miss 3.414e+00 (93.6 x its own band 3.647%); P(look-elsewhere, own band) = 0.954; c1 False c2 False c3(zero fitted) False c4 True -> does not clear
+      with the closure spread as precision (185.66%): P = 0.954, does not clear
+TB closure 3: no root (sign infeasible), no prediction; counted as FAIL
+[PASS] no closure clears the bar (expected outcome; a clear would have been a lead to be verified as hard as a fail)
+[PASS] every closure fails c3 (one fitted real: the modulus M_c is spent on a measured coupling)
+
+== criterion verdicts ==
+   TA closure Y: x = 31.47
+   TA closure 2: x = 38.44
+   TA closure 3: x = 38.60
+   TB closure Y: x = 31.52
+   TB closure 2: x = 250.80
+N1 content: PASS (n1_tower_content.out; per-level b tables, SM check, SU(5) gate, anomalies, closed form)
+N2 self-consistency: PASS at every solution (n2_emergence_solve.out; identity residual <= 2e-16)
+N3 sign feasibility: TA roots for all three closures (as expected); TB none for closure 3 (as expected) but a root for closure 2 at x = 251 (EXPECTATION WRONG); TC none for any (as expected)
+N4 emergence vs 0 at the Y-closure root: TA implied 1/alpha_(2,3)(Lambda_sp) = (8.98, 9.06), TB (41.05, 57.16). Band on these: the scale+scheme spread after refitting M_c is ~1 unit; the ABSOLUTE scheme-constant size kappa*sum(b) is (2, 3) = (5.58, 5.38) for TA and (0.74, -1.89) for TB. TA: residual/size = (1.6, 1.7) -> NOT consistent with 0 at the estimated size (marginal-to-failed; the non-fermion constants are not computed). TB: residual/size = (56, 30) decisively failed.
+N5 forcedness of x: geometric relation has no root (n_lvl >> 2 pi); TA closure moduli x = 31.47, 38.44, 38.60 (spread 22.7 % > 10 %): FAIL as a joint fix
+N6 bar: no closure clears; every closure has a fitted real; TA predictions of 1/alpha_em(0) = 128.1, 151.7, 152.2 lie outside their own bands (10.7, 10.5, 5.8 x) and disagree with each other; the misses (6.6%..11.1%) are 1.3e+08..2.2e+08 times the 5e-10 tolerance.
+SUMMARY: fails = []

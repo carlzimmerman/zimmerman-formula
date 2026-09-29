@@ -1,0 +1,42 @@
+== N1a: SM zero modes ==
+b_SM (Y,2,3) = (Fraction(41, 6), Fraction(-19, 6), Fraction(-7, 1)) ; fermions (Fraction(20, 3), Fraction(4, 1), Fraction(4, 1)) Higgs (Fraction(1, 6), Fraction(1, 6), Fraction(0, 1)) gauge (Fraction(0, 1), Fraction(-22, 3), Fraction(-11, 1))
+[PASS] SM b = (41/6, -19/6, -7) from explicit field content
+[PASS] GUT-normalised b_1 = 41/10 and b_Y = (5/3) b_1 = 41/6 (the lane-A pitfall is a factor 3/5) b_1=41/10 ; YN*b_1=41/6
+[PASS] lane B constants agree (B_Y, B_2, B_3)
+[PASS] SM species count: 28 bosonic (24 gauge dof + 4 Higgs) + 90 fermionic = 118
+== N1b: per-level tables ==
+TA matter tower                      per level: dof 189 (incl. 5 graviton), b(Y,2,3) = ('27/2', '49/6', '8') ; GUT-norm b1 = 81/10
+[PASS] TA per-level coefficients equal the hand expectation ('27/2', '49/6', '8')
+[PASS] TA levels identical for every j
+TB universal tower                   per level: dof 225 (incl. 5 graviton), b(Y,2,3) = ('27/2', '7/6', '-5/2') ; GUT-norm b1 = 81/10
+[PASS] TB per-level coefficients equal the hand expectation ('27/2', '7/6', '-5/2')
+[PASS] TB levels identical for every j
+[PASS] TA dof 189 and TB dof 225
+[PASS] TB = TA + massive SM-adjoint KK vectors (0,-7,-21/2), +36 dof
+[PASS] TA fermion part = 2 x SM fermions (Dirac KK levels): (40/3, 8, 8)
+TC even j: dof 45, b = ('1/6', '-41/6', '-21/2') ; odd j: dof 42, b = ('-523/18', '-21/2', '-41/6')
+[PASS] TC even: (1/6, -41/6, -21/2), 45 dof
+[PASS] TC odd: (-523/18, -21/2, -41/6) (the pre-registration wrote -521/18 with a question mark: an arithmetic slip, corrected by the SU(5) gate below), 42 dof
+== N1c: SU(5) universal-shift gate for TC (a complete SU(5) multiplet shifts 1/alpha_1 = 1/alpha_2 = 1/alpha_3 equally) ==
+massive 24 (SM part + X part), GUT-normalised (b1,b2,b3) = ('-35/2', '-35/2', '-35/2')
+[PASS] massive adjoint of SU(5) is universal: -(7/2) T(adj) = -35/2 in all three
+[PASS] 5_H (doublet + colour triplet) universal: 1/6 each ('1/6', '1/6', '1/6')
+[PASS] one generation 10 + 5bar universal: 4/3 each ('4/3', '4/3', '4/3')
+TC even+odd (a pair of levels) b = ('-260/9', '-52/3', '-52/3') ; GUT-norm (b1,b2,b3) = ('-52/3', '-52/3', '-52/3')
+[PASS] TC: every per-level coefficient is negative for SU(2) and SU(3) (no screening, emergence sign infeasible)
+== N1d: anomaly sums (SM Weyl content per generation, exact) ==
+sums: {'Y^3': '0', 'Y': '0', 'SU2^2 Y': '0', 'SU3^2 Y': '0'}
+[PASS] SM anomalies vanish generation by generation
+[PASS] KK levels are Dirac (each LH zero-mode field has a RH partner of the same rep): level anomaly = L - R = 0
+NOT derived: fixed-point (boundary) anomaly cancellation of the chiral zero modes on the orbifold (needs brane Chern-Simons terms; recalled from the literature, not read).
+== N1e: closed form of the one-loop tower sum ==
+S(K, x) = sum_{n<=K} ln(x/n) = K*log(Kx) - log(factorial(K))
+[PASS] sympy: S(K, x=K) = K ln K - ln K!, and equals sum for K=7 exactly
+   K=   10: S - [K - ln(2 pi K)/2] = -8.330563e-03 ; -1/(12K) = -8.333333e-03
+   K=  100: S - [K - ln(2 pi K)/2] = -8.333306e-04 ; -1/(12K) = -8.333333e-04
+   K= 1000: S - [K - ln(2 pi K)/2] = -8.333333e-05 ; -1/(12K) = -8.333333e-05
+   K=10000: S - [K - ln(2 pi K)/2] = -8.333333e-06 ; -1/(12K) = -8.333333e-06
+[PASS] Stirling: S(K,K) = K - (1/2) ln(2 pi K) - 1/(12 K) + O(1/K^3) (relative to the 1/12K term < 1e-2 at K >= 100)
+[PASS] lgamma closed form == brute-force sum for all three towers (k up to 101, fractional x) worst rel diff 1.34e-15
+[PASS] the SHARP-threshold sum is smooth in x: |S(floor x, x) - [x - (1/2) ln(2 pi x)]| < 0.01 for x >= 10 (no sawtooth; the linear term is what carries the size) max dev 0.0040
+SUMMARY: fails = []
