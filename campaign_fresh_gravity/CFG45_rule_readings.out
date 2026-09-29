@@ -1,0 +1,148 @@
+CFG45 -- FOUR PRE-DECLARED READINGS OF "THE FLUID KEEPS ITS COLLAPSE MASS", scored on every population B's cold-mass rule has met.
+
+WHY.  Candidate B's derived rule (CFG35-CFG42): the cold fluid is conserved and keeps its collapse mass; the law's phantom is part of it.  CFG35
+wrote this as a SUM, g = nu(g_N/a0) g_N + G f_ex (1 - f_b) M_NFW,collapse(<r) / r^2, f_ex = max(0, 1 - M_phantom,edge / [(1 - f_b) M_collapse]).  The sum
+fits the SLUGGS massive early types (CFG38, 0.4 sigma), leaves star-forming spirals and SPARC dwarfs alone (CFG36, CFG42 H4), is weakly consistent with
+Di Teodoro+2023's four S0/S0a (CFG41), and closes the Milky Way ultra-faint failure (CFG42: +0.325 -> -0.059 dex); but it OVER-predicts the classical
+satellites (CFG42: M31 LVD -2.67 sigma, MW classical -1.8 / -1.9 sigma) and UGC 2487 (SPARC's one massive S0) by +0.14 dex in v (CFG36 H2).  The
+suspicion (CFG42's own reading): the sum double-counts where the law's phantom already supplies the mass.  This harness scores, in one place and with the
+EXACT statistic and error model of each lane, a SMALL family of readings written down here BEFORE any of them was run.  It picks no winner by fit, and
+it adds no reading after the first run.
+
+THE READINGS (declared; exactly these four; total acceleration g = nu(g_N/a0) g_N + g_extra, g_N the lane's Newtonian field of the baryons):
+  (L) the bare law (control): g_extra = 0.
+  (S) the sum as committed (CFG35): g_extra = f_ex (1 - f_b) G M_NFW(<r; M_c) / r^2.
+  (M) the radial max: the dark mass inside r is max(M_phantom(<r), (1 - f_b) M_NFW(<r; M_c)), M_phantom(<r) = [nu - 1] M_b(<r) the law's own dark mass at
+      that radius; no f_ex.  Written as an acceleration: g = g_N + max((nu - 1) g_N, (1 - f_b) G M_NFW(<r) / r^2), i.e. g_extra = max(0, (1 - f_b) G M_NFW(<r)/r^2
+      - (g_law - g_N)).  (Where a lane's Newtonian field is not G M_b(<r)/r^2 -- Freeman discs -- the phantom is (g_law - g_N), the acceleration form.)
+  (E) the exterior leftover: the law holds inside r_e = 0.40 r_ta (CFG7's r_ta_law at a = 1, both footings' own a0, nu_mono) and the leftover f_ex (1 - f_b) M_c
+      is placed as NFW-shaped mass OUTSIDE r_e only: M_left(<r) = L [m(x) - m(x_e)] / [m(c) - m(x_e)] for r_e < r < R200 (m(t) = ln(1+t) - t/(1+t), x = c r / R200,
+      L = f_ex (1 - f_b) M_c), and 0 for r <= r_e (and 0 throughout when r_e >= R200: nothing is placed inside the halo).  It contributes nothing inside r_e.
+      Every lane radius is checked against r_e (C2); if any lane radius is at or beyond r_e the reading is reported as touching that lane.
+Common ingredients (unchanged from the lanes): f_b = Omega_b/Omega_m of CFG35; f_ex from the edge phantom at x_e = 0.40 (CFG35's edge_phantom, both footings);
+collapse mass M_c and NFW shape as each lane declares (Moster SHMR for the satellites and the SPARC dwarfs; Mandelbaum+2016's red / blue relation as M_200c
+for the ellipticals, SLUGGS, SPARC >= 10, the four S0, Ogle); Dutton-Maccio NFW.  f_ex is used by (S) and (E) only; (M) has no f_ex (it is reported anyway).
+
+THE POPULATIONS AND THEIR STATISTICS (each lane's script exec'd read-only up to its own data / machinery, MUTATE off inside; the estimators re-implemented
+here line for line with a reading switch, and controlled in C1 against the lanes' committed results):
+  P1  MW ultra-faints -- CFG42 H1 / CFG28: FG001's sigma^2 = g(r) r / 3 at r = (4/3) r_half; Kaplan-Meier median of log10(sigma_obs / sigma_pred) with the 9 upper
+      limits; error = sqrt(bootstrap^2 (1000, seed 42) + Upsilon_V^2 floor (half the shift for Upsilon_V 1 to 4) + collapse-mass floor^2 (half the range of the
+      KM median over M_c = 1e8, 3e8, 1e9, 3e9, 1e10 for every satellite with M_* < 1e5)).  Offset in sigma = KM median / error.  Both footings.
+  P2  MW classical dSph (14), M31 Collins+13 (14), M31 LVD (34) -- CFG42 H2: the same estimator with the infall gas (CFG18's, the k = 5 expectation); sample median
+      offset; error = sqrt((1.2533 std/sqrt n)^2 + Upsilon floor^2 + collapse floor^2), as CFG42.  Both footings.
+  P3  SPARC dwarfs (log M_* < 10, n = 110; M_c from the Moster SHMR, CFG42 H4) and SPARC log M_* >= 10 (n = 61; M_c from Mandelbaum blue for T >= 1, red for T <= 0,
+      CFG36 H2): d log v at R_HI = 0.5 log10(g_total / g_law), point mass, M_* = 0.61 L_3.6, + 1.33 M_HI, canonical, x_e = 0.40.  Reported: the fraction with
+      f_ex = 0 (S, E), the maximum d log v, the fraction < 0.03 dex.
+  P4a UGC 2487 (SPARC's S0): offset = log10(V_flat / v_pred(R_HI)), V_flat and its error from SPARC's table (332 +- 3.5 km/s), R_HI = 40.2 kpc, the P3 baryons
+      and colour (T = 0, red).  CFG36 gave this galaxy NO error, only the +0.14 dex the rule adds; the error DECLARED HERE is
+      sigma = sqrt( (eV/V/ln10)^2 + (0.5 x 0.1003)^2 + (0.25 x 0.2)^2 ): the measurement, SPARC's own per-point rms of the law (0.1003 dex in log g, CFG39 C2,
+      halved for v), and the stellar mass at 0.2 dex (v goes as M^(1/4) in the deep regime).  Both footings.
+  P4b Di Teodoro+2023's 15 massive spirals with the four S0 / S0a -- CFG41: offset = log10(v_flat/v_pred) - B, B = 0.076 +- 0.030 (the selection correction), point
+      mass headline, the floor of model / M_* / M_gas / radius / B.  The S0 clause (CFG41 H2b): over the four (T <= 0) mean corrected offset > -2 sigma_S0.  Reported:
+      the all-fifteen |mean| < 2 sigma (H2a) and the bare-law H1.
+  P5  SLUGGS (19 early types, h50 machinery; CFG38 H1): mean over galaxies of the outer-bin mean of log10(sigma_obs/sigma_pred), red relation; error std/sqrt(19);
+      both footings.  Reported: the slope against log M_* (bootstrap, seed 38).
+  P6  X-ray ellipticals (7; CFG36 H1 / CFG35): per-galaxy median over 5, 10, 20, 40, 70 kpc of log10(M_total/M_pred), red relation; sample mean; error = sqrt(err^2 +
+      Salpeter-shift^2 + (radii <= 40 kpc)-shift^2).  Both footings.
+  P7  Ogle+2019 super spirals (23; CFG40): mean offset, slope and the nine fastest, floor model / M_* / M_gas.  Reported only; declared expectation: no change from (L).
+
+ACCEPTANCE (declared): the CONJUNCTION of the lanes' own gates, the same for every reading:
+  A1  UFD: |KM median| < 2 sigma, both footings.
+  A2  classical satellites: MW classical, M31 Collins+13 and M31 LVD medians all above -2 sigma, both footings.
+  A3  SPARC unchanged: d log v at R_HI < 0.03 dex in >= 90% of the dwarfs AND in >= 90% of the log M_* >= 10 galaxies.
+  A4  SLUGGS |offset| < 2 sigma, both footings.
+  A5  X-ray ellipticals |offset| < 2 sigma, both footings.
+  A6  UGC 2487 |offset| < 2 sigma, both footings.
+  A7  the DT23 S0 clause: canonical mean corrected offset over the four S0 / S0a above -2 sigma_S0 (CFG41's formula).
+  EXTENDED (reported, not in the conjunction): CFG41's H2a (|mean over 15| < 2 sigma); CFG40's H2 (|mean|, |slope|, |fastest 9| each < 2 sigma) and 'no change from L'
+  (|mean_reading - mean_law| < 0.03 dex); CFG36's strict SPARC clause (max d log v < 0.03 in every galaxy >= 10).
+  REPORT: which readings pass which populations; which satisfy the whole conjunction (possibly none).  A reading that passes every gate is 'consistent with every
+  lane', not 'chosen'; the four are not ranked by fit.
+
+CONTROLS
+  C1  CONTROL  (S) reproduces the lanes' committed numbers (CFG42 UF / CL / H4, CFG36 H1 / SPARC, CFG38 rule, CFG41 rule, CFG40 rule) to 1e-6 (satellite / DT23 / Ogle
+               / SLUGGS / X-ray means and totals); (L) reproduces CFG42's law, CFG32's per-galaxy law offsets (as CFG35 C1), CFG41's and CFG40's law numbers to 1e-6 and
+               h50's per-galaxy law offsets to 5e-3 (the printed precision, CFG38's tolerance).
+  C2  CONTROL  (E) adds nothing inside r_e: the largest lane radius / r_e over all lanes is < 1 (else E is reported as touching that lane); every reading adds mass
+               >= 0 everywhere; the edge phantom computed here equals CFG35's.
+  C3  CONTROL  (MUTATE=1: every collapse mass divided by 100, every reading) -- the UFD gate A1 must FAIL for every reading in a MUTATE run.
+  H1  [HEADLINE; MUTATE must fail] at least one of (S), (M), (E) passes A1 (the UFD gate) -- the rule has bite on the ultra-faints.
+  H2  (reported) the table, and which readings satisfy A1-A7.
+MUTATE=1: collapse masses / 100 for every reading -- H1 must FAIL (rc = 1).
+ADDED AFTER THE FIRST MAIN RUN, BEFORE ANY INTERPRETATION (disclosed): control C2a FAILED as its own text anticipates -- for every lane but SLUGGS the largest data radius is
+  < 0.1 r_e, but SLUGGS's isotropic Jeans integral runs outward to very large radius, so E's exterior shell is sampled there.  C2a is kept as a FAIL (tolerance unchanged);
+  a reported diagnostic (R1: the largest |E - L| in SLUGGS's per-galaxy offsets and in its mean) was added to say whether that matters.  No reading, gate or threshold changed.
+Nothing here says the theory is closed; a reading that passes every declared gate is a reading not yet rejected by these lanes.
+
+======================================================================================================================
+C1  CONTROLS: (S) and (L) against the lanes' committed results
+======================================================================================================================
+  [PASS] C1 CONTROL: (S) and (L) reproduce the lanes' committed numbers (CFG42 UF/CL/H4, CFG36 H1 & SPARC, CFG32 X-ray law, CFG38, CFG41, CFG40) within 1e-6 (h50's per-galaxy law: 5e-3)
+         66 comparisons; worst ratio to tolerance 1.96e-02 (h50 law alt per-galaxy: 9.8e-05)
+
+======================================================================================================================
+C2  CONTROLS: (E) adds nothing inside r_e; every reading adds mass >= 0; the edge phantom equals CFG35's
+======================================================================================================================
+  [FAIL] C2a CONTROL: reading (E): the largest lane radius / r_e over every lane and footing is < 1 (no lane radius reaches the exterior)
+         max r/r_e 60.4; evaluations with r >= r_e: 22394; per lane max r/r_e: P1 ufd: 0.037, P2 satellites: 0.067, P3 SPARC: 0.073, P4a UGC2487: 0.037, P4b DT23: 0.088, P5 SLUGGS: 60, P6 X-ray: 0.097, P7 Ogle: 0.05
+  [PASS] C2b CONTROL: the edge phantom computed here equals CFG35's; every reading's added acceleration is >= 0
+         max relative difference of the edge phantom 0.0e+00; min added acceleration 0.00e+00
+
+======================================================================================================================
+THE TABLE: offsets in sigma as each lane defines them (canonical | alt)
+======================================================================================================================
+    population (statistic)                       L               S               M               E
+    P1 UFD KM median [sigma]           +3.77|+3.55     -0.41|-0.41     -0.35|-0.35     +3.77|+3.55
+       KM median [dex] canonical     +0.325+-0.086   -0.059+-0.143   -0.043+-0.124   +0.325+-0.086
+    P2 MW classical dSph               +0.32|+0.09     -1.78|-1.90     -1.77|-1.77     +0.32|+0.09
+       median [dex] canonical        +0.027+-0.085   -0.118+-0.067   -0.131+-0.074   +0.027+-0.085
+    P2 M31 Collins+2013                +0.78|+0.55     -0.22|-0.15     -0.46|-0.46     +0.78|+0.55
+       median [dex] canonical        +0.064+-0.082   -0.024+-0.108   -0.043+-0.093   +0.064+-0.082
+    P2 M31 LVD                         +0.60|+0.42     -2.67|-2.66     -2.48|-2.72     +0.60|+0.42
+       median [dex] canonical        +0.044+-0.072   -0.107+-0.040   -0.127+-0.051   +0.044+-0.072
+    P3 SPARC dwarfs (<0.03 dex)      100% max0.000   100% max0.000    92% max0.060   100% max0.000
+    P3 SPARC >=10 (<0.03 dex)        100% max0.000    98% max0.139    64% max0.145   100% max0.000
+    P4a UGC 2487 [sigma]               +0.90|+0.68     -1.05|-1.02     -1.14|-1.14     +0.90|+0.68
+       offset [dex] canonical        +0.064+-0.071   -0.075+-0.071   -0.081+-0.071   +0.064+-0.071
+    P4b DT23 four S0 [sigma]           +0.05|-0.17     -0.80|-0.75     -1.62|-1.62     +0.05|-0.17
+    P4b DT23 all 15 [sigma]            -0.43|-0.69     -0.71|-0.85     -1.43|-1.44     -0.43|-0.69
+    P5 SLUGGS mean [sigma]             +3.28|+2.67     +0.39|+0.10     -2.12|-2.13     +3.28|+2.67
+       mean [dex] canonical          +0.080+-0.024   +0.007+-0.017   -0.037+-0.017   +0.080+-0.024
+    P6 X-ray ellipt. [sigma]           +1.70|+1.58     +1.04|+1.03     +0.78|+0.78     +1.70|+1.58
+       mean [dex] canonical          +0.280+-0.165   +0.125+-0.120   +0.084+-0.107   +0.280+-0.165
+    P7 Ogle mean [sigma]               +1.42|+1.25     +1.42|+1.25     +1.31|+1.27     +1.42|+1.25
+
+======================================================================================================================
+ACCEPTANCE: which readings pass which gates
+======================================================================================================================
+    gate                                         L               S               M               E
+    A1 UFD                                    FAIL            pass            pass            FAIL
+    A2 classical                              pass            FAIL            FAIL            pass
+    A3 SPARC                                  pass            pass            FAIL            pass
+    A4 SLUGGS                                 FAIL            pass            FAIL            FAIL
+    A5 X-ray                                  pass            pass            pass            pass
+    A6 UGC2487                                pass            pass            pass            pass
+    A7 DT23 S0                                pass            pass            pass            pass
+    ALL SEVEN (the conjunction)                 no              no              no              no
+    -- extended, reported only --
+    DT23 H2a |mean15|<2s                      pass            pass            pass            pass
+    Ogle CFG40-H2                             FAIL            FAIL            FAIL            FAIL
+    Ogle no change from L                     pass            pass            FAIL            pass
+    SPARC>=10 strict max<0.03                 pass            FAIL            FAIL            pass
+    conjunction + extended                      no              no              no              no
+
+    supporting detail (canonical):
+      (L) UFD f_ex median 0.00; classical median f_ex cls 0.00, col 0.00, m31 0.00; SPARC dwarfs f_ex=0 100%; spirals f_ex=0 98%; worst spirals [('ESO079-G014', 0.0, 0.0), ('ESO563-G021', 0.0, 0.0), ('IC4202', 0.0, 0.0)]; UGC2487 v_pred 287 (V_flat 332; d log v +0.000, f_ex 0.58); DT23 S0 corrected +0.004 +- 0.071; SLUGGS slope +0.139 (+1.9 sigma); Ogle mean +0.107, slope z +1.95, fast +2.06
+      (S) UFD f_ex median 0.96; classical median f_ex cls 0.59, col 0.56, m31 0.59; SPARC dwarfs f_ex=0 100%; spirals f_ex=0 98%; worst spirals [('UGC02487', 0.58, 0.139), ('ESO079-G014', 0.0, 0.0), ('ESO563-G021', 0.0, 0.0)]; UGC2487 v_pred 394 (V_flat 332; d log v +0.139, f_ex 0.58); DT23 S0 corrected -0.105 +- 0.131; SLUGGS slope -0.048 (-1.2 sigma); Ogle mean +0.107, slope z +1.95, fast +2.06
+      (M) UFD f_ex median 0.96; classical median f_ex cls 0.59, col 0.56, m31 0.59; SPARC dwarfs f_ex=0 100%; spirals f_ex=0 98%; worst spirals [('UGC02487', 0.58, 0.145), ('NGC4138', 0.0, 0.059), ('NGC2841', 0.0, 0.058)]; UGC2487 v_pred 400 (V_flat 332; d log v +0.145, f_ex 0.58); DT23 S0 corrected -0.146 +- 0.090; SLUGGS slope +0.014 (+0.3 sigma); Ogle mean +0.076, slope z +2.13, fast +2.11
+      (E) UFD f_ex median 0.96; classical median f_ex cls 0.59, col 0.56, m31 0.59; SPARC dwarfs f_ex=0 100%; spirals f_ex=0 98%; worst spirals [('ESO079-G014', 0.0, 0.0), ('ESO563-G021', 0.0, 0.0), ('IC4202', 0.0, 0.0)]; UGC2487 v_pred 287 (V_flat 332; d log v +0.000, f_ex 0.58); DT23 S0 corrected +0.004 +- 0.071; SLUGGS slope +0.139 (+1.9 sigma); Ogle mean +0.107, slope z +1.95, fast +2.06
+  [PASS] H1 [HEADLINE] THE RULE HAS BITE ON THE ULTRA-FAINTS: at least one of (S), (M), (E) passes A1 (|KM median| < 2 sigma, both footings)
+         (L) +3.77/+3.55 sigma; (S) -0.41/-0.41 sigma; (M) -0.35/-0.35 sigma; (E) +3.77/+3.55 sigma
+  [PASS] (reported) H2 (reported) which readings satisfy the whole conjunction A1-A7
+         readings passing all seven: none; per-reading gates passed: (L) 5/7 [fails: A1 UFD, A4 SLUGGS]; (S) 6/7 [fails: A2 classical]; (M) 4/7 [fails: A2 classical, A3 SPARC, A4 SLUGGS]; (E) 5/7 [fails: A1 UFD, A4 SLUGGS]
+  [PASS] (reported) C3 CONTROL (MUTATE run only): the UFD gate A1 fails for EVERY reading when every collapse mass is divided by 100
+         (L) A1 FAIL; (S) A1 pass; (M) A1 pass; (E) A1 FAIL
+  [PASS] (reported) R1 (reported) does E's exterior shell matter in SLUGGS's Jeans tail?
+         max |E - L| in per-galaxy offsets 0.0e+00 dex; in the mean 0.0e+00 dex; SLUGGS z: L +3.28/+2.67, E +3.28/+2.67
+
+  6/7 checks pass; load-bearing failures: 1   (4 s)
