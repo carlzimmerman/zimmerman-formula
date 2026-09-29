@@ -1,0 +1,81 @@
+CFG184 -- how much of the KURVS outer sigma can be beam-smeared rotation, and what pressure-support scale the data then allow.
+
+Frozen criteria: FROZEN_CRITERIA.md in this directory (cb1e8a77b), committed before any number and before the measured V(R) markers
+(kurvs_rc_points.csv) were read; they are NOT read here (reserved for CFG189).
+  forward model  thin disc; V_los = V(R) sin i cos phi; I ~ exp(-R/R_d); intrinsic V(R) = the authors' exponential-disc model curve
+                 deprojected by sin i_SFR (primary) or a Freeman disc normalised to the tabulated V(R_max) (variant);
+                 kernel = Gaussian PSF (FWHM 0.57'', variants 0.32/0.82) x box spaxel bin (0.6'', variants 0.3/0.9); the profile value
+                 is the median over the +-0.3'' pseudo-slit; sigma_bs^2 = kernel- and intensity-weighted variance of V_los.
+  radii          exactly CFG141's: the side(s) reaching R_max (interpolated there), else the outermost three unclipped points (1/e^2).
+  outputs        f_bs = sigma_bs^2 / sigma_out^2 per disc; s_eff(s) = the uniform s giving the same Delta'_flat as the sigma_int
+                 pipeline; the three laws' cells, break-evens and fit points with sigma_int; the Girard+2021 scenario (reported only).
+MUTATE=1: FWHM x 3 (f_bs must rise, s_eff(1) fall).  MUTATE=2: FWHM -> 0.01'', bin -> 0.1'' (f_bs -> 0, s_eff(1) -> 1).
+Turbulent support cannot be separated from unresolved or non-circular motion with these data: sigma_int is an upper bound on the
+pressure-bearing dispersion, not a measurement.  kappa = 1/2 and Omega_c h^2 stay fitted.
+
+======================================================================================================================
+C0-C3  CONTROLS
+======================================================================================================================
+  [PASS] C0 CONTROL: the angular scale at z = 1.54 (H0 70, Om 0.3) is ~8.47 kpc/arcsec (groundwork value 8.463-8.472 at z 1.5-1.6)
+         8.4688 kpc/arcsec
+  [PASS] C1 CONTROL: my re-implementation of CFG141's radii/weights reproduces its sigma_out for every disc (1e-9)
+         K3 55.305/55.305; K7 69.118/69.118; K8 27.902/27.902; K9 51.339/51.339; K11 65.802/65.802; K13 61.330/61.330; K15 67.098/67.098; K16 72.955/72.955; K17 61.736/61.736; K21 76.834/76.834
+  [PASS] C2 CONTROL: a flat V(R) seen face-on (i = 0) gives sigma_bs = 0 (1e-6 km/s)
+         0.00e+00 km/s
+  [FAIL] C3 CONTROL: sigma_bs -> 0 as FWHM -> 0 and bin -> 0.1'' for a flat V(R) (0.5 km/s)
+         1.762 km/s
+  [PASS] (reported) C3-posthoc (reported) the same with bin -> 0.01'': sigma_bs -> 0
+         0.000 km/s
+
+======================================================================================================================
+PER DISC: sigma_bs at CFG141's radii and f_bs = sigma_bs^2/sigma_out^2  (primary: model V(R), FWHM 0.57'', bin 0.6'', R_d, i_SFR)
+======================================================================================================================
+  KURVS- 3 (outermost three radii 10.05, 9.21, 8.36 kpc): sigma_out  55.3  sigma_bs  67.0 km/s  f_bs 1.468
+  KURVS- 7 (outermost three radii 11.37, 10.53, 9.68 kpc): sigma_out  69.1  sigma_bs  44.3 km/s  f_bs 0.411
+  KURVS- 8 (reaches R_max   radii 11.00 kpc): sigma_out  27.9  sigma_bs  34.0 km/s  f_bs 1.489
+  KURVS- 9 (outermost three radii 10.15, 9.30, 8.46 kpc): sigma_out  51.3  sigma_bs  44.0 km/s  f_bs 0.735
+  KURVS-11 (outermost three radii 12.37, 11.53, 10.68 kpc): sigma_out  65.8  sigma_bs  88.1 km/s  f_bs 1.794
+  KURVS-13 (outermost three radii 12.05, 11.21, 10.37 kpc): sigma_out  61.3  sigma_bs  25.1 km/s  f_bs 0.168
+  KURVS-15 (outermost three radii 9.18, 8.61, 8.33 kpc): sigma_out  67.1  sigma_bs  31.5 km/s  f_bs 0.220
+  KURVS-16 (outermost three radii 10.04, 9.19, 8.34 kpc): sigma_out  73.0  sigma_bs  58.4 km/s  f_bs 0.641
+  KURVS-17 (outermost three radii 8.24, 7.40, 6.56 kpc): sigma_out  61.7  sigma_bs  25.0 km/s  f_bs 0.165
+  KURVS-21 (reaches R_max   radii 12.70 kpc): sigma_out  76.8  sigma_bs  36.4 km/s  f_bs 0.224
+  sample: mean f_bs 0.731, median 0.526, max 1.794
+
+======================================================================================================================
+C4  CONTROL: with sigma_int = sigma_out the pipeline reproduces CFG160's cell and CFG175's T cell
+======================================================================================================================
+  [PASS] C4 CONTROL: flat +0.1441 / rival -0.0060 (CFG160) and T +0.3227 (CFG175) at mu 0.67, s = 1 (1e-4)
+         flat +0.1441, rival -0.0060, T +0.3227
+
+======================================================================================================================
+THE PRESSURE-SUPPORT SCALE THE DATA ALLOW, AND THE THREE LAWS WITH sigma_int (CFG162's s_mid = 0.67; CFG175 fit points flat 0.39, rival 1.03, T < 0)
+======================================================================================================================
+  [MUTATE=1]  s_eff: s 1.00 -> 0.501, s 1.42 -> 0.677, s 1.62 -> 0.756, s 1.69 -> 0.783, s 3.00 -> 1.244
+      cell s 0.00: flat -0.130 (-2.3);  rival -0.279 (-4.6);  T +0.046 (+0.9)
+      cell s 1.00: flat +0.032 (+0.5);  rival -0.118 (-1.8);  T +0.212 (+3.3)
+      break-evens s 1.00: flat 0.932;  rival nan;  T 2.687
+      break-evens s 1.42: flat 1.345;  rival 0.144;  T 3.296
+      break-evens s 1.62: flat 1.531;  rival 0.258;  T 3.565
+      break-evens s 1.69: flat 1.594;  rival 0.297;  T 3.657
+      break-evens s 3.00: flat 2.678;  rival 0.975;  T 5.169
+      fit points s0 at mu 0.67: flat 0.751;  rival 2.390;  T < 0
+
+======================================================================================================================
+HEADLINE
+======================================================================================================================
+  [nominal (for the MUTATE comparison)]  s_eff: s 1.00 -> 0.931, s 1.42 -> 1.315, s 1.62 -> 1.498, s 1.69 -> 1.561, s 3.00 -> 2.747
+      cell s 0.00: flat -0.130 (-2.3);  rival -0.279 (-4.6);  T +0.046 (+0.9)
+      cell s 1.00: flat +0.131 (+3.0);  rival -0.019 (-0.4);  T +0.310 (+6.7)
+      break-evens s 1.00: flat 1.948;  rival 0.517;  T 4.117
+      break-evens s 1.42: flat 2.853;  rival 1.096;  T 5.345
+      break-evens s 1.62: flat 3.282;  rival 1.376;  T 5.906
+      break-evens s 1.69: flat 3.432;  rival 1.474;  T 6.099
+      break-evens s 3.00: flat 6.250;  rival 3.399;  T 9.518
+      fit points s0 at mu 0.67: flat 0.415;  rival 1.112;  T < 0
+  [PASS] MUTATE=1 [control]: FWHM x 3 raises the sample-mean f_bs and lowers s_eff(1)
+         f_bs 0.087 -> 0.731; s_eff(1) 0.931 -> 0.501
+
+    SUMMARY (declared): MUTATE=1: mean f_bs 0.731, s_eff(1) 0.501
+
+  6/7 checks pass; load-bearing failures: 1   (0 s)

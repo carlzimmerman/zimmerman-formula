@@ -1,0 +1,72 @@
+CFG184 -- how much of the KURVS outer sigma can be beam-smeared rotation, and what pressure-support scale the data then allow.
+
+Frozen criteria: FROZEN_CRITERIA.md in this directory (cb1e8a77b), committed before any number and before the measured V(R) markers
+(kurvs_rc_points.csv) were read; they are NOT read here (reserved for CFG189).
+  forward model  thin disc; V_los = V(R) sin i cos phi; I ~ exp(-R/R_d); intrinsic V(R) = the authors' exponential-disc model curve
+                 deprojected by sin i_SFR (primary) or a Freeman disc normalised to the tabulated V(R_max) (variant);
+                 kernel = Gaussian PSF (FWHM 0.57'', variants 0.32/0.82) x box spaxel bin (0.6'', variants 0.3/0.9); the profile value
+                 is the median over the +-0.3'' pseudo-slit; sigma_bs^2 = kernel- and intensity-weighted variance of V_los.
+  radii          exactly CFG141's: the side(s) reaching R_max (interpolated there), else the outermost three unclipped points (1/e^2).
+  outputs        f_bs = sigma_bs^2 / sigma_out^2 per disc; s_eff(s) = the uniform s giving the same Delta'_flat as the sigma_int
+                 pipeline; the three laws' cells, break-evens and fit points with sigma_int; the Girard+2021 scenario (reported only).
+MUTATE=1: FWHM x 3 (f_bs must rise, s_eff(1) fall).  MUTATE=2: FWHM -> 0.01'', bin -> 0.1'' (f_bs -> 0, s_eff(1) -> 1).
+Turbulent support cannot be separated from unresolved or non-circular motion with these data: sigma_int is an upper bound on the
+pressure-bearing dispersion, not a measurement.  kappa = 1/2 and Omega_c h^2 stay fitted.
+
+======================================================================================================================
+C0-C3  CONTROLS
+======================================================================================================================
+  [PASS] C0 CONTROL: the angular scale at z = 1.54 (H0 70, Om 0.3) is ~8.47 kpc/arcsec (groundwork value 8.463-8.472 at z 1.5-1.6)
+         8.4688 kpc/arcsec
+  [PASS] C1 CONTROL: my re-implementation of CFG141's radii/weights reproduces its sigma_out for every disc (1e-9)
+         K3 55.305/55.305; K7 69.118/69.118; K8 27.902/27.902; K9 51.339/51.339; K11 65.802/65.802; K13 61.330/61.330; K15 67.098/67.098; K16 72.955/72.955; K17 61.736/61.736; K21 76.834/76.834
+  [PASS] C2 CONTROL: a flat V(R) seen face-on (i = 0) gives sigma_bs = 0 (1e-6 km/s)
+         0.00e+00 km/s
+  [FAIL] C3 CONTROL: sigma_bs -> 0 as FWHM -> 0 and bin -> 0.1'' for a flat V(R) (0.5 km/s)
+         1.762 km/s
+  [PASS] (reported) C3-posthoc (reported) the same with bin -> 0.01'': sigma_bs -> 0
+         0.000 km/s
+
+======================================================================================================================
+PER DISC: sigma_bs at CFG141's radii and f_bs = sigma_bs^2/sigma_out^2  (primary: model V(R), FWHM 0.57'', bin 0.6'', R_d, i_SFR)
+======================================================================================================================
+  KURVS- 3 (outermost three radii 10.05, 9.21, 8.36 kpc): sigma_out  55.3  sigma_bs   1.2 km/s  f_bs 0.000
+  KURVS- 7 (outermost three radii 11.37, 10.53, 9.68 kpc): sigma_out  69.1  sigma_bs   3.7 km/s  f_bs 0.003
+  KURVS- 8 (reaches R_max   radii 11.00 kpc): sigma_out  27.9  sigma_bs   1.6 km/s  f_bs 0.003
+  KURVS- 9 (outermost three radii 10.15, 9.30, 8.46 kpc): sigma_out  51.3  sigma_bs   1.1 km/s  f_bs 0.000
+  KURVS-11 (outermost three radii 12.37, 11.53, 10.68 kpc): sigma_out  65.8  sigma_bs   4.7 km/s  f_bs 0.005
+  KURVS-13 (outermost three radii 12.05, 11.21, 10.37 kpc): sigma_out  61.3  sigma_bs   0.4 km/s  f_bs 0.000
+  KURVS-15 (outermost three radii 9.18, 8.61, 8.33 kpc): sigma_out  67.1  sigma_bs   0.6 km/s  f_bs 0.000
+  KURVS-16 (outermost three radii 10.04, 9.19, 8.34 kpc): sigma_out  73.0  sigma_bs   4.4 km/s  f_bs 0.004
+  KURVS-17 (outermost three radii 8.24, 7.40, 6.56 kpc): sigma_out  61.7  sigma_bs   1.4 km/s  f_bs 0.001
+  KURVS-21 (reaches R_max   radii 12.70 kpc): sigma_out  76.8  sigma_bs   1.1 km/s  f_bs 0.000
+  sample: mean f_bs 0.002, median 0.001, max 0.005
+
+======================================================================================================================
+C4  CONTROL: with sigma_int = sigma_out the pipeline reproduces CFG160's cell and CFG175's T cell
+======================================================================================================================
+  [PASS] C4 CONTROL: flat +0.1441 / rival -0.0060 (CFG160) and T +0.3227 (CFG175) at mu 0.67, s = 1 (1e-4)
+         flat +0.1441, rival -0.0060, T +0.3227
+
+======================================================================================================================
+THE PRESSURE-SUPPORT SCALE THE DATA ALLOW, AND THE THREE LAWS WITH sigma_int (CFG162's s_mid = 0.67; CFG175 fit points flat 0.39, rival 1.03, T < 0)
+======================================================================================================================
+  [MUTATE=2]  s_eff: s 1.00 -> 0.999, s 1.42 -> 1.418, s 1.62 -> 1.618, s 1.69 -> 1.688, s 3.00 -> 2.995
+      cell s 0.00: flat -0.130 (-2.3);  rival -0.279 (-4.6);  T +0.046 (+0.9)
+      cell s 1.00: flat +0.144 (+3.3);  rival -0.006 (-0.1);  T +0.322 (+6.9)
+      break-evens s 1.00: flat 2.106;  rival 0.619;  T 4.331
+      break-evens s 1.42: flat 3.091;  rival 1.254;  T 5.650
+      break-evens s 1.62: flat 3.560;  rival 1.563;  T 6.255
+      break-evens s 1.69: flat 3.725;  rival 1.672;  T 6.463
+      break-evens s 3.00: flat 6.835;  rival 3.821;  T 10.175
+      fit points s0 at mu 0.67: flat 0.390;  rival 1.034;  T < 0
+
+======================================================================================================================
+HEADLINE
+======================================================================================================================
+  [PASS] MUTATE=2 [control]: FWHM -> 0.01'', bin -> 0.1'' drives f_bs -> ~0 and s_eff(1) -> ~1; the headline changes if the main run found non-negligible smearing
+         mean f_bs 0.0017, s_eff(1) 0.9987; main: Beam smearing is minor: primary mean f_bs 0.087 (max disc 0.232), s_eff(1) = 0.931; K21 stays where CFG162 placed it; but the maximal-smearing variant gives s_eff(1) = 0.396 < 0.67 (the crossing)
+
+    SUMMARY (declared): minor
+
+  6/7 checks pass; load-bearing failures: 1   (0 s)

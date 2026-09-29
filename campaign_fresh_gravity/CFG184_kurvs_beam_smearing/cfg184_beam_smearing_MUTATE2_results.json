@@ -1,0 +1,250 @@
+{
+ "slug": "cfg184_beam_smearing_MUTATE2",
+ "summary": {
+  "n_checks": 7,
+  "n_pass": 6,
+  "load_bearing_failures": 1,
+  "failed": [
+   "C3 CONTROL: sigma_bs -> 0 as FWHM -> 0 and bin -> 0.1'' for a flat V(R) (0.5 km/s)"
+  ],
+  "seconds": 0.3
+ },
+ "checks": [
+  {
+   "name": "C0 CONTROL: the angular scale at z = 1.54 (H0 70, Om 0.3) is ~8.47 kpc/arcsec (groundwork value 8.463-8.472 at z 1.5-1.6)",
+   "detail": "8.4688 kpc/arcsec",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CONTROL: my re-implementation of CFG141's radii/weights reproduces its sigma_out for every disc (1e-9)",
+   "detail": "K3 55.305/55.305; K7 69.118/69.118; K8 27.902/27.902; K9 51.339/51.339; K11 65.802/65.802; K13 61.330/61.330; K15 67.098/67.098; K16 72.955/72.955; K17 61.736/61.736; K21 76.834/76.834",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: a flat V(R) seen face-on (i = 0) gives sigma_bs = 0 (1e-6 km/s)",
+   "detail": "0.00e+00 km/s",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: sigma_bs -> 0 as FWHM -> 0 and bin -> 0.1'' for a flat V(R) (0.5 km/s)",
+   "detail": "1.762 km/s",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3-posthoc (reported) the same with bin -> 0.01'': sigma_bs -> 0",
+   "detail": "0.000 km/s",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C4 CONTROL: flat +0.1441 / rival -0.0060 (CFG160) and T +0.3227 (CFG175) at mu 0.67, s = 1 (1e-4)",
+   "detail": "flat +0.1441, rival -0.0060, T +0.3227",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "MUTATE=2 [control]: FWHM -> 0.01'', bin -> 0.1'' drives f_bs -> ~0 and s_eff(1) -> ~1; the headline changes if the main run found non-negligible smearing",
+   "detail": "mean f_bs 0.0017, s_eff(1) 0.9987; main: Beam smearing is minor: primary mean f_bs 0.087 (max disc 0.232), s_eff(1) = 0.931; K21 stays where CFG162 placed it; but the maximal-smearing variant gives s_eff(1) = 0.396 < 0.67 (the crossing)",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "primary": {
+   "3": {
+    "sbs": 1.2354402296507918,
+    "sout": 55.30534023007041,
+    "f": 0.0004990101065521707,
+    "status": "outermost three",
+    "radii": [
+     10.053,
+     9.206,
+     8.359
+    ],
+    "scale": 8.468890333315892
+   },
+   "7": {
+    "sbs": 3.673085717726785,
+    "sout": 69.11771374908797,
+    "f": 0.0028241216384606825,
+    "status": "outermost three",
+    "radii": [
+     11.372,
+     10.525,
+     9.679
+    ],
+    "scale": 8.465780558002052
+   },
+   "8": {
+    "sbs": 1.6452735680744928,
+    "sout": 27.902314049586778,
+    "f": 0.0034769287911870757,
+    "status": "reaches R_max",
+    "radii": [
+     11.0
+    ],
+    "scale": 8.468776016815092
+   },
+   "9": {
+    "sbs": 1.0998226809758642,
+    "sout": 51.33932101111312,
+    "f": 0.00045892857747603807,
+    "status": "outermost three",
+    "radii": [
+     10.152,
+     9.305,
+     8.458
+    ],
+    "scale": 8.468776016815092
+   },
+   "11": {
+    "sbs": 4.730662331610939,
+    "sout": 65.80222174490589,
+    "f": 0.005168479342808494,
+    "status": "outermost three",
+    "radii": [
+     12.368,
+     11.525,
+     10.683
+    ],
+    "scale": 8.425553883095843
+   },
+   "13": {
+    "sbs": 0.38345210654848205,
+    "sout": 61.32959519310415,
+    "f": 3.909147519220366e-05,
+    "status": "outermost three",
+    "radii": [
+     12.053,
+     11.213,
+     10.373
+    ],
+    "scale": 8.399508220465995
+   },
+   "15": {
+    "sbs": 0.6272825004076676,
+    "sout": 67.09822495787421,
+    "f": 8.739856083977155e-05,
+    "status": "outermost three",
+    "radii": [
+     9.179,
+     8.613,
+     8.332
+    ],
+    "scale": 8.472420408683975
+   },
+   "16": {
+    "sbs": 4.428724326201645,
+    "sout": 72.95484605036741,
+    "f": 0.0036850976852037106,
+    "status": "outermost three",
+    "radii": [
+     10.037,
+     9.19,
+     8.343
+    ],
+    "scale": 8.471344704382673
+   },
+   "17": {
+    "sbs": 1.4423036913861362,
+    "sout": 61.73613694952439,
+    "f": 0.0005458012535533264,
+    "status": "outermost three",
+    "radii": [
+     8.244,
+     7.403,
+     6.562
+    ],
+    "scale": 8.410188466341499
+   },
+   "21": {
+    "sbs": 1.0824690814740157,
+    "sout": 76.83417556346382,
+    "f": 0.0001984824580468359,
+    "status": "reaches R_max",
+    "radii": [
+     12.7
+    ],
+    "scale": 8.42463732550433
+   }
+  },
+  "evaluations": {
+   "primary": {
+    "seff": {
+     "1.00": 0.9986560364701282,
+     "1.42": 1.4180360240080456,
+     "1.62": 1.617728689400324,
+     "1.69": 1.6876196550448757,
+     "3.00": 2.995485846445583
+    },
+    "s0": {
+     "flat": 0.389748030849526,
+     "rival": 1.0342012513064354,
+     "T": null
+    },
+    "cell": {
+     "0.00": {
+      "flat": [
+       -0.13017031178929345,
+       0.05716924270895299
+      ],
+      "rival": [
+       -0.27885486673010385,
+       0.06031466389353106
+      ],
+      "T": [
+       0.04571760314303519,
+       0.05368820664444677
+      ]
+     },
+     "1.00": {
+      "flat": [
+       0.1438649834599653,
+       0.043909378059844385
+      ],
+      "rival": [
+       -0.006264904638824051,
+       0.04430735495038642
+      ],
+      "T": [
+       0.32248729137004334,
+       0.04656175659052345
+      ]
+     }
+    },
+    "be": {
+     "1.00": {
+      "flat": 2.1057727198509926,
+      "rival": 0.6190346389092589,
+      "T": 4.330937241818609
+     },
+     "1.42": {
+      "flat": 3.0910251810618377,
+      "rival": 1.2539011637210267,
+      "T": 5.649782497999833
+     },
+     "1.62": {
+      "flat": 3.560183687155475,
+      "rival": 1.5631675937481333,
+      "T": 6.2547422561666
+     },
+     "1.69": {
+      "flat": 3.7245247248446542,
+      "rival": 1.6724888879105062,
+      "T": 6.463482999543998
+     },
+     "3.00": {
+      "flat": 6.8347270123579476,
+      "rival": 3.820968146865331,
+      "T": 10.174623989618555
+     }
+    }
+   }
+  },
+  "summary": "minor"
+ }
+}
