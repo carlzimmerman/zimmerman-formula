@@ -1,0 +1,148 @@
+CFG186 part B -- the speed dependence of SPARC's acceleration scale: a0_i = a0_bar (1 + beta (w_i/600 km/s)^2), fitted
+with the distance shared between each rotation curve and its CMB-frame speed; nulls (speed shuffle, noise injection),
+systematics, Neyman limits, the translation to KM1's khronon parameter (conditional on KM1's model), and G7.
+mode: MUTATE (curves built from data with beta = 0.30 injected)
+
+==============================================================================================================
+B0  THE POWER ROW (part A, computed before any beta fit) AND THE INPUTS
+==============================================================================================================
+  W1_H67.66 : sigma_beta Fisher 0.453, mocks 2.249 -> beta_det(2 sigma) 4.50 vs the G7 line 0.10: NON-DIAGNOSTIC
+  W2_H67.66 : sigma_beta Fisher 0.607, mocks 4.040 -> beta_det(2 sigma) 8.08 vs the G7 line 0.10: NON-DIAGNOSTIC
+  W1_H73    : sigma_beta Fisher 0.409, mocks 2.161 -> beta_det(2 sigma) 4.32 vs the G7 line 0.10: NON-DIAGNOSTIC
+  POWER VERDICT (declared before the fit): NON-DIAGNOSTIC
+  primary: 68 galaxies; L0 = -10.056, tau = 0.349 dex (Gaussian ML at beta = 0, as in part A)
+
+==============================================================================================================
+B1  FITTER EXACTNESS (M0: synthetic noiseless curves, beta = 0.30)
+==============================================================================================================
+  [PASS] M0 the fitter returns beta = 0.300 +- 0.005 on noiseless synthetic curves
+         measured: 0.3000
+
+==============================================================================================================
+B2  THE PRIMARY FIT (W1: w^2 -> u^2, H0 = 67.66, nu_mono, Birge + tau softening, distance shared)
+==============================================================================================================
+  beta_hat = +1.429, log10 a0_bar = -10.102 (a0_bar = 7.907e-11 m/s^2); F(beta = 0) - F_min = 6.188
+  single start from beta = 0 (the null ensembles' setting): beta = +1.4289
+  [PASS] CONV the single-start fit (used in every ensemble) finds the multi-start minimum (|d beta| <= 0.02 or dF <= 0.01)
+         measured: d beta = -0.0000, dF = 0.0000
+  profile F(beta) - F_min: -0.90:70.13, -0.60:19.15, -0.30:11.03, +0.00:6.19, +0.30:3.18, +0.60:1.42, +0.90:0.49, +1.40:0.00, +2.00:0.32, +2.60:1.13, +3.50:2.80, +5.00:5.85, +6.50:9.12, +8.00:12.44, +9.50:15.56
+  Delta F = 1 profile interval (reported): [+0.75, +2.50]
+  profiled distances at the best fit: t* median -0.04, |t*| > 2 for 0 galaxies
+
+==============================================================================================================
+B3  BOOTSTRAP (2000 galaxy resamples) AND THE NULLS
+==============================================================================================================
+  bootstrap: beta 16-84% [+0.905, +2.450] -> sigma_boot = 0.773; 2.5-97.5% [+0.352, +4.355] [3 s]
+  speed shuffle (2000)                  : null beta median -0.037, 16-84% [-0.523, +0.583]; p(|beta| >= |obs|) = 0.0310, p(beta >= obs) = 0.0310
+  shuffle within method groups (1000)   : null beta median +0.154, 16-84% [-0.322, +0.786]; p(|beta| >= |obs|) = 0.0539, p(beta >= obs) = 0.0539
+  noise injection (1000)                : null beta median +1.174, 16-84% [-0.011, +4.210]; p(|beta| >= |obs|) = 0.4496, p(beta >= obs) = 0.4496
+  [7 s]
+  [FAIL] (reported) S1 (reported) p < 0.003 against both the speed shuffle and the noise injection
+         measured: p_perm = 0.0310, p_noise = 0.4496
+
+==============================================================================================================
+B4  SYSTEMATICS (each: point estimate + 1000 bootstrap resamples)
+==============================================================================================================
+  H0 = 73                               N =  68: beta = +1.305 +- 0.767 (boot); shuffle p = 0.028; log a0_bar = -10.113  
+  W2 (LG-coherent transverse motion)    N =  68: beta = -0.406 +- 0.176 (boot); shuffle p = 0.621; log a0_bar = -9.761  
+  z frozen at catalogue distance        N =  68: beta = +1.179 +- 0.566 (boot); shuffle p = 0.020; log a0_bar = -10.093  (Addendum 3)
+  I: TRGB + Cepheid + SNIa              N =  42: beta = +1.313 +- 0.730 (boot); shuffle p = 0.054; log a0_bar = -10.093  
+  UMa (one cluster distance)            N =  26: beta = -5.000 +- 12.500 (boot); shuffle p = 0.533; log a0_bar = -9.823  
+  LG-apex hemisphere (n.V_LG > 0)       N =  48: beta = +3.286 +- 3.208 (boot); shuffle p = 0.016; log a0_bar = -10.179  
+  LG-antapex hemisphere (n.V_LG < 0)    N =  20: beta = +0.381 +- 0.846 (boot); shuffle p = 0.593; log a0_bar = -10.002  
+  Galactic north (b > 0)                N =  56: beta = +1.194 +- 0.581 (boot); shuffle p = 0.054; log a0_bar = -10.119  
+  Galactic south (b < 0)                N =  12: beta = -0.923 +- 0.256 (boot); shuffle p = 0.469; log a0_bar = -9.633  
+  no tau softening (tau = 0)            N =  68: beta = +1.968 +- 1.208 (boot); shuffle p = 0.118; log a0_bar = -10.117  
+  no Birge scaling                      N =  68: beta = +1.399 +- 0.960 (boot); shuffle p = 0.018; log a0_bar = -10.083  (tau = 0.384)
+  velocity-source disagreements dropped N =  67: beta = +1.442 +- 0.908 (boot); shuffle p = 0.012; log a0_bar = -10.102  (dropped: UGC01281)
+  beta with a free sky dipole        N =  68: beta = +0.722 +- 0.737 (boot 500); dipole |D| = 0.409 toward (l, b) = (249, -51)
+  beta with a distance term          N =  68: beta = +1.453 +- 1.076 (boot 500); gamma = +0.019 (log a0 per dex of D)
+  CIRCULAR: Hubble-flow galaxies only N =  75: beta = +20.000 +- 9.464 (tau = 0.330) -- NOT a measurement
+  CIRCULAR: all clean galaxies with v N = 143: beta = +3.304 +- 1.655 (tau = 0.342) -- NOT a measurement
+
+  S2: beta_I = +1.313 +- 0.730 (1.8 sigma, sign = primary); I vs UMa p = 0.614 -> fail
+  S3: |beta(H0 = 73) - beta| = 0.124 vs sigma_boot 0.773 -> pass
+  S4: apex vs antapex p = 0.381 -> pass
+
+==============================================================================================================
+B5  LIMITS BY NEYMAN CONSTRUCTION (curve-level mocks + injected beta, 200 trials per grid value)
+==============================================================================================================
+  17400 fits [39 s]
+  beta_inj : P(beta_hat >= beta_obs), median beta_hat
+     -0.90 : 0.060, -0.814
+     -0.70 : 0.130, -0.467
+     -0.50 : 0.175, -0.117
+     -0.30 : 0.285, +0.358
+     -0.10 : 0.360, +0.806
+     +0.10 : 0.500, +1.432
+     +0.30 : 0.625, +2.376
+     +0.50 : 0.640, +2.343
+     +0.70 : 0.725, +3.359
+     +0.90 : 0.800, +3.577
+     +1.20 : 0.845, +4.338
+     +1.60 : 0.870, +5.355
+     +2.00 : 0.890, +6.089
+     +2.40 : 0.950, +7.716
+     +2.80 : 0.940, +8.906
+     +3.50 : 0.970, +10.064
+     +4.50 : 0.980, +11.951
+     +5.50 : 0.990, +16.347
+     +6.50 : 1.000, +19.631
+     +7.50 : 1.000, +20.000
+     +8.50 : 0.990, +20.000
+     +9.50 : 0.995, +20.000
+    +10.00 : 0.995, +20.000
+  DECLARED (noise mocks): one-sided 95% upper limit 2.30; two-sided 95% interval [-inf, 3.25] ('-inf' = below the physical floor beta ~ -1/z_max, 'inf' = above 10)
+  ADDED (Addendum 4) Neyman on speed-shuffled real data: 17400 fits [49 s]
+  beta_inj : P(beta_hat >= beta_obs), median beta_hat
+     -0.90 : 0.000, -0.711
+     -0.70 : 0.000, -0.750
+     -0.50 : 0.000, -0.589
+     -0.30 : 0.000, -0.419
+     -0.10 : 0.025, -0.092
+     +0.10 : 0.035, +0.086
+     +0.30 : 0.105, +0.374
+     +0.50 : 0.160, +0.415
+     +0.70 : 0.220, +0.730
+     +0.90 : 0.350, +0.952
+     +1.20 : 0.400, +1.244
+     +1.60 : 0.610, +1.820
+     +2.00 : 0.810, +2.581
+     +2.40 : 0.865, +2.930
+     +2.80 : 0.960, +3.480
+     +3.50 : 0.955, +4.206
+     +4.50 : 0.985, +5.225
+     +5.50 : 0.995, +6.534
+     +6.50 : 1.000, +8.157
+     +7.50 : 1.000, +8.943
+     +8.50 : 1.000, +10.740
+     +9.50 : 1.000, +11.933
+    +10.00 : 1.000, +12.501
+  shuffle-Neyman: one-sided 95% upper limit 2.80; two-sided [0.00, 3.75]; bootstrap 95th percentile 3.58
+  QUOTED beta_95 = max(declared 2.30, shuffle 2.80, bootstrap 3.58) = 3.58 (the conservative choice, Addendum 4)
+  recovery (median beta_hat at beta_inj): {'0.00': 1.1111844694600381, '0.10': 1.4317322358545774, '0.30': 2.3759254979537334, '1.00': 3.6939134546285293, '2.00': 6.088740159438872, '3.00': 9.246919085085555, '4.00': 12.991535980808653, '5.00': 14.714574828573241, '6.00': 15.632757569921722, '7.00': 20.0, '8.00': 20.0, '9.00': 20.0, '10.00': 20.0}
+
+==============================================================================================================
+B6  TRANSLATION TO KM1'S KHRONON PARAMETER (conditional on KM1's model) AND G7
+==============================================================================================================
+  KM1 (C7): a0 -> a0 (1 + D/3), D = 2 w^2/(eps c^2)  =>  beta = 2 w_ref^2/(3 eps c^2) = 2.6704e-06/eps
+  KM1's window c14 in [1e-5, 2.5e-5] (eps = c2 = c14/(1 - 2 c14)) predicts beta in [0.107, 0.267]; G7's line beta = 0.10 is eps = 2.67e-05
+  SPARC's beta_95 = 3.58  =>  eps >= 7.46e-07 (c14 >= 7.46e-07) at 95%, conditional on KM1's model, the sphere average D/3, and W1 (independent velocity components)
+  KM1's window: NOT reached (beta_95 exceeds the window by 13-33x)
+
+  SIGNAL ('a0 tracks CMB-frame speed'): NOT declared (S1 False, S2 False, S3 True, S4 True)
+  G7 from SPARC: NO VERDICT (NON-DIAGNOSTIC)
+  [PASS] (reported) VERD (reported) the verdict follows the frozen pass lines (a NULL or NON-DIAGNOSTIC result is valid)
+         measured: POWER NON-DIAGNOSTIC; SIGNAL False; G7 NO VERDICT (NON-DIAGNOSTIC)
+
+==============================================================================================================
+M  MUTATE CONTROL: beta = 0.30 injected at the point level
+==============================================================================================================
+  [FAIL] M1 beta_hat_mut - beta_hat_obs lies in [0.24, 0.36] (injected 0.30)
+         measured: +0.542 (mut +1.429, obs +0.887)
+         reading:  the model is multiplicative in (1 + beta z): an injection on top of beta_obs moves beta_hat by 0.30 (1 + beta_obs z) to first order, so a large beta_obs inflates the shift
+  [PASS] (reported) M2 (reported) the mutated data's p values (< 0.003 required only if 0.30 >= 4 sigma_boot of the real data)
+         measured: p_perm = 0.0310, p_noise = 0.4496; 0.30 vs 4 sigma = 2.66 -> required: False
+
+  4/6 checks pass; load-bearing failures: 1; wrote cfg186_b_fit_results_MUTATE.json (135 s)
+rc = 1

@@ -1,0 +1,234 @@
+{
+ "lane": "CFG186",
+ "script": "cfg186_a_curves_power",
+ "mutate": false,
+ "checks": {
+  "SAMP": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "68",
+   "name": "SAMP the primary sample has >= 30 galaxies with a redshift-independent distance and a velocity"
+  },
+  "LG": {
+   "ok": true,
+   "load_bearing": false,
+   "measured": "633 km/s, 0.8 deg",
+   "name": "LG the declared V_LG agrees with v_sun,CMB - v_sun,LG to 30 km/s and 5 deg (both from memory: a consistency check)"
+  },
+  "FIN": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "0",
+   "name": "FIN every feasible cell of every 2D curve is finite"
+  },
+  "OPT": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "0.0000",
+   "name": "OPT the warm-started 2D profile is never worse than 6 cold starts by more than 0.05 in chi2"
+  },
+  "SPL": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "0.0398",
+   "name": "SPL the spline in t reproduces direct profiles near each galaxy's minimum (max |d chi2| <= 0.1; Addendum 1)"
+  },
+  "SPLR": {
+   "ok": true,
+   "load_bearing": false,
+   "measured": "0.0014",
+   "name": "SPLR relative spline error in random cells <= 1% (Addendum 1)"
+  },
+  "X182": {
+   "ok": true,
+   "load_bearing": false,
+   "measured": "median +0.0003, 95% 0.0267",
+   "name": "X182 the distance-profiled 2D curves reproduce CFG182's 1D curves near their minima (95% |d chi2| <= 0.1)"
+  },
+  "FIT0": {
+   "ok": true,
+   "load_bearing": true,
+   "measured": "0.3000",
+   "name": "FIT0 the fitter returns beta = 0.300 +- 0.005 on noiseless synthetic curves"
+  },
+  "PWR": {
+   "ok": true,
+   "load_bearing": false,
+   "measured": "NON-DIAGNOSTIC",
+   "name": "PWR the power row was computed before the fit (reported: DIAGNOSTIC is not required -- a NON-DIAGNOSTIC row is a valid result)"
+  },
+  "MOCK": {
+   "ok": false,
+   "load_bearing": false,
+   "measured": "+5.2120",
+   "name": "MOCK the beta = 0 mocks are unbiased (|mean beta_hat| < 0.25 sigma_mock)"
+  }
+ },
+ "numbers": {
+  "velocity_sources": {
+   "UNGC": 20,
+   "NED": 126,
+   "none": 11,
+   "KT17": 16,
+   "2MRS": 2
+  },
+  "KT17_diag": {
+   "UNGC_rows": 761,
+   "KT17_groups_multi": 1536,
+   "KT17_groups_distinct_frac": 0.9908854166666666,
+   "KT17_used": true
+  },
+  "velocity_overlap_median_abs_dv": 2.0,
+  "velocity_disagreements": [
+   [
+    "ESO563-G021",
+    "NED",
+    4579.0,
+    "2MRS",
+    4660.0
+   ],
+   [
+    "UGC01281",
+    "NED",
+    156.0,
+    "2MRS",
+    11512.0
+   ]
+  ],
+  "N_primary": 68,
+  "N_hubbleflow_clean_with_v": 75,
+  "V_LG_implied": {
+   "v": 632.8520633884806,
+   "l": 276.3913431852611,
+   "b": 29.26264889934988,
+   "angle_to_declared_deg": 0.8120318596135223
+  },
+  "velocity_by_method": {
+   "TRGB": {
+    "N": 37,
+    "D_med": 4.57,
+    "eD_frac_med": 0.05030181086519115,
+    "sigma_u_med": 15.5618,
+    "sigma_u_max": 112.31559999999999,
+    "u_med": -23.887653508594703,
+    "u16": -359.8611166325407,
+    "u84": 255.19378827402076
+   },
+   "Cepheid": {
+    "N": 3,
+    "D_med": 14.1,
+    "eD_frac_med": 0.10144927536231883,
+    "sigma_u_med": 94.72399999999999,
+    "sigma_u_max": 101.49,
+    "u_med": -145.13685194068972,
+    "u16": -386.0708683303312,
+    "u84": -81.71209563716528
+   },
+   "UMa": {
+    "N": 26,
+    "D_med": 18.0,
+    "eD_frac_med": 0.1388888888888889,
+    "sigma_u_med": 169.14999999999998,
+    "sigma_u_max": 169.14999999999998,
+    "u_med": -119.45152553002777,
+    "u16": -249.91544920406346,
+    "u84": 21.383987429184398
+   },
+   "SNIa": {
+    "N": 2,
+    "D_med": 20.299999999999997,
+    "eD_frac_med": 0.09290190497590692,
+    "sigma_u_med": 128.55399999999997,
+    "sigma_u_max": 155.61799999999997,
+    "u_med": -167.08155749009802,
+    "u16": -303.91911216920005,
+    "u84": -30.24400281099605
+   },
+   "HubbleFl": {
+    "N": 75,
+    "D_med": 17.0,
+    "eD_frac_med": 0.29850746268656714,
+    "sigma_u_med": 345.066,
+    "sigma_u_max": 866.048,
+    "u_med": 73.17359676325425,
+    "u16": -298.72785205309424,
+    "u84": 490.0092097592587
+   }
+  },
+  "z_W1_catalogue": {
+   "median": 0.11323499317674413,
+   "sd": 0.2350526656268966
+  },
+  "z_W2_catalogue": {
+   "median": 1.0825028854982608,
+   "sd": 0.16662950479864425
+  },
+  "corr_u_VLGproj": 0.7554113468374517,
+  "t_edge_minima": [
+   "DDO161",
+   "NGC1003",
+   "NGC2403",
+   "UGC06787"
+  ],
+  "x_edge_minima": [
+   "CamB",
+   "F571-8",
+   "NGC1003",
+   "NGC2976",
+   "UGC03580",
+   "UGC05764",
+   "UGC07577"
+  ],
+  "optimizer_worst_excess": 6.697482604067773e-07,
+  "spline_check": {
+   "near_median": 8.09587376515708e-06,
+   "near_max": 0.03980140492004125,
+   "random_rel_max": 0.0014435157810201505
+  },
+  "cfg182_crosscheck": {
+   "n": 8038,
+   "median": 0.00033455068483512207,
+   "p95_abs": 0.026743444026234145
+  },
+  "tau_without_edge_galaxies": 0.27007017924779303,
+  "primary_sigma_median": 0.17263849695327682,
+  "L0": -10.07541489201455,
+  "tau": 0.35336768475587066,
+  "power": {
+   "W1_H67.66": {
+    "sigma_fisher": 0.4698543181031852,
+    "sigma_mock": 5.174532142557193,
+    "mock_mean": 5.212041238923741,
+    "beta_det_2sigma": 10.349064285114386,
+    "beta_80pct": 14.695671284862428,
+    "diagnostic": false
+   },
+   "W2_H67.66": {
+    "sigma_fisher": 0.6263445956265613,
+    "sigma_mock": 9.617954833665339,
+    "mock_mean": 10.877581420331282,
+    "beta_det_2sigma": 19.235909667330677,
+    "beta_80pct": 27.31499172760956,
+    "diagnostic": false
+   },
+   "W1_H73": {
+    "sigma_fisher": 0.42343019355906464,
+    "sigma_mock": 4.31934262058695,
+    "mock_mean": 5.039051218623264,
+    "beta_det_2sigma": 8.6386852411739,
+    "beta_80pct": 12.266933042466936,
+    "diagnostic": false
+   }
+  },
+  "POWER_VERDICT": "NON-DIAGNOSTIC"
+ },
+ "summary": {
+  "n_checks": 10,
+  "n_pass": 9,
+  "load_bearing_failures": 0,
+  "failed": [
+   "MOCK"
+  ],
+  "seconds": 138.6
+ }
+}

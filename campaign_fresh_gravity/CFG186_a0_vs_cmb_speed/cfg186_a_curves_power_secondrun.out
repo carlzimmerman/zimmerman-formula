@@ -1,0 +1,86 @@
+CFG186 part A -- velocities, sample, the per-galaxy 2D profile curves C_i(log10 a0, distance), and the POWER ROW.
+mode: REAL DATA
+
+==============================================================================================================
+A1  DATA: SPARC curves, master table, positions, heliocentric velocities, the CMB frame
+==============================================================================================================
+  galaxies with master-table row and position: 175; clean (Q <= 2, Inc >= 30, >= 5 pts): 149
+  velocity source used (first available of NED > UNGC > KT17 > 2MRS): {'UNGC': 20, 'NED': 126, 'none': 11, 'KT17': 16, '2MRS': 2}
+  KT2017: 1536 multi-member groups, 0.991 carry distinct member velocities -> used as per-galaxy velocities: True
+  overlapping sources: 265 pairs, median |dv| = 2.0 km/s; |dv| > 50 km/s: 2
+     ESO563-G021  used NED 4579  vs  2MRS 4660 km/s
+     UGC01281     used NED 156  vs  2MRS 11512 km/s
+  no velocity in any source (11): F561-1, F567-2, F568-1, F568-3, F571-8, F574-1, F574-2, F583-4, UGC01230, UGC05005, UGC05750
+  PRIMARY (clean, f_D in {2,3,4,5}, velocity): 68  [TRGB 37, Cepheid 3, UMa 26, SNIa 2]; clean Hubble-flow with velocity (CIRCULAR rows only): 75
+  [PASS] SAMP the primary sample has >= 30 galaxies with a redshift-independent distance and a velocity
+         measured: 68
+  v_sun,CMB = 369.8 km/s toward (264.0, 48.3); declared V_LG = 627.0 toward (276.0, 30.0) [from memory]; v_sun,CMB - v_sun,LG (318 toward (106, -6), from memory) = 633 km/s toward (276.4, 29.3), 0.8 deg from the declared V_LG
+  [PASS] (reported) LG the declared V_LG agrees with v_sun,CMB - v_sun,LG to 30 km/s and 5 deg (both from memory: a consistency check)
+         measured: 633 km/s, 0.8 deg
+
+  line-of-sight CMB-frame peculiar velocity u = c (z_CMB - z_cos(D))/(1 + z_cos(D)) at the catalogue distance:
+  method       N  D med  e_D/D    sigma_u=H0 e_D (med, max)   u med       u 16-84%  |u| max
+  TRGB        37    4.6  0.050            16           112      -24 [ -360,  255]      648
+  Cepheid      3   14.1  0.101            95           101     -145 [ -386,  -82]      499
+  UMa         26   18.0  0.139           169           169     -119 [ -250,   21]      288
+  SNIa         2   20.3  0.093           129           156     -167 [ -304,  -30]      368
+  HubbleFl    75   17.0  0.299           345           866       73 [ -299,  490]      795
+
+  primary: z = (u/600)^2 at the catalogue distance: median 0.113, 16-84% [0.006, 0.357], sd 0.235; W2 z: sd 0.167 (median 1.083)
+  correlation of u with the LG-motion projection V_LG.n: r = 0.755 (u ~ V_LG.n + local => the los proxy mostly measures the sky pattern (V_LG.n)^2 if the local flow is coherent)
+
+==============================================================================================================
+A2  2D PROFILE CURVES C_i(log10 a0, t = (D - D_SPARC)/e_D); Upsilon_d, Upsilon_b, inclination profiled
+==============================================================================================================
+  149 galaxies x 33 t x 116 x cells [124 s]; non-finite feasible cells: 0; infeasible t cells (D < 0.3 D_SPARC): 383 (x-rows) in 64 galaxies
+  [PASS] FIN every feasible cell of every 2D curve is finite
+         measured: 0
+  joint minimum at a t edge (|t| = 4 or the D floor): 4 galaxies (1 primary): DDO161, NGC1003, NGC2403, UGC06787
+  joint minimum at an x edge: 7: CamB, F571-8, NGC1003, NGC2976, UGC03580, UGC05764, UGC07577
+
+==============================================================================================================
+A3  OPTIMIZER AND INTERPOLATION CHECKS
+==============================================================================================================
+  largest (warm - best of 6 cold starts) chi2 over 60 random (galaxy, t, x) cells: 0.0000
+  [PASS] OPT the warm-started 2D profile is never worse than 6 cold starts by more than 0.05 in chi2
+         measured: 0.0000
+  spline along t vs direct profiles, 40 off-grid cells within Delta chi2 <= 25 of the minimum: median |d| = 0.0000, max = 0.0398; 24 random cells: max relative error 0.0014
+  [PASS] SPL the spline in t reproduces direct profiles near each galaxy's minimum (max |d chi2| <= 0.1; Addendum 1)
+         measured: 0.0398
+  [PASS] (reported) SPLR relative spline error in random cells <= 1% (Addendum 1)
+         measured: 0.0014
+  min_t C_i(x, t) vs CFG182's distance-profiled curve (cells within Delta chi2 <= 9 of its minimum and |t_D| <= 3.5): 8038 cells, median (mine - CFG182) = +0.0003, 95% |d| = 0.0267
+  [PASS] (reported) X182 the distance-profiled 2D curves reproduce CFG182's 1D curves near their minima (95% |d chi2| <= 0.1)
+         measured: median +0.0003, 95% 0.0267
+
+==============================================================================================================
+A4  SCALED CURVES, WIDTHS, INTRINSIC SCATTER AT beta = 0 (no speed information)
+==============================================================================================================
+  primary (68): Birge s median 1.43 (max 14.2); distance-profiled half-widths sigma_i median 0.173 dex, 16-84% [0.102, 0.338]
+  preferred log a0: median -10.020, 16-84% [-10.458, -9.766]; ML (Gaussian approx.) L0 = -10.075, tau = 0.353 dex; weights q_i median 0.19
+  sensitivity (Addendum 1): without the 3 primary galaxies whose preferred value lies at a grid edge (CamB, NGC2976, UGC07577): L0 = -10.020, tau = 0.270 dex (declared tau kept)
+
+==============================================================================================================
+A5  FITTER EXACTNESS (synthetic noiseless curves with beta = 0.30)
+==============================================================================================================
+  synthetic: beta_hat = 0.3000, L_hat = -10.0754 (true 0.30, -10.0754)
+  [PASS] FIT0 the fitter returns beta = 0.300 +- 0.005 on noiseless synthetic curves
+         measured: 0.3000
+
+==============================================================================================================
+A6  POWER ROW (before any beta fit on the real speeds)
+==============================================================================================================
+  W1_H67.66 : sigma_beta Fisher = 0.470, mocks (500, beta = 0) = 5.175 (mean beta_hat +5.212) [2 s] -> beta_det(2 sigma) = 10.349, 80%-power 14.696; G7 line 0.10 -> NON-DIAGNOSTIC
+  W2_H67.66 : sigma_beta Fisher = 0.626, mocks (500, beta = 0) = 9.618 (mean beta_hat +10.878) [4 s] -> beta_det(2 sigma) = 19.236, 80%-power 27.315; G7 line 0.10 -> NON-DIAGNOSTIC
+  W1_H73    : sigma_beta Fisher = 0.423, mocks (500, beta = 0) = 4.319 (mean beta_hat +5.039) [3 s] -> beta_det(2 sigma) = 8.639, 80%-power 12.267; G7 line 0.10 -> NON-DIAGNOSTIC
+
+  POWER VERDICT (primary W1, H0 = 67.66): NON-DIAGNOSTIC for G7: the smallest beta detectable at 2 sigma is 10.35, 103.5x the G7 line (beta = 0.10 = 10% at 600 km/s).
+  [PASS] (reported) PWR the power row was computed before the fit (reported: DIAGNOSTIC is not required -- a NON-DIAGNOSTIC row is a valid result)
+         measured: NON-DIAGNOSTIC
+  [FAIL] (reported) MOCK the beta = 0 mocks are unbiased (|mean beta_hat| < 0.25 sigma_mock)
+         measured: +5.2120
+
+  wrote cfg186_a_curves.npz
+
+  9/10 checks pass; load-bearing failures: 0; wrote cfg186_a_curves_power_results.json (139 s)
+rc = 0

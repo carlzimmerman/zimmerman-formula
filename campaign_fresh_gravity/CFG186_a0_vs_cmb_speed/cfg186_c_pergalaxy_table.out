@@ -1,0 +1,27 @@
+CFG186 part C -- SECONDARY: the speed dependence on the record's per-galaxy a0 table.
+
+real_research/data/sparc_a0_environment_table.csv (122 galaxies), made by
+real_research/reviews/project_sparc_a0_vs_cosmicweb.py (fit_a0_per_galaxy + write_outputs): log10 a0 = median over the
+deep points (g_bar < 1.2e-10/3) of 2 log g_obs - log g_bar, fixed Upsilon_disk = 0.5 and Upsilon_bul = 0.7, catalogue
+distance and inclination, no errors.  It inherits fixed nuisances and per-galaxy fitting noise; SECONDARY everywhere.
+Refit here on its f_D != 1 galaxies (redshift-independent distances) with u at the catalogue distance (W1, H0 = 67.66;
+H0 = 73 reported): log10 a0_i = L + log10(1 + beta (u_i/600 km/s)^2), unweighted least squares, 2000 bootstrap
+resamples, 2000 speed shuffles.
+
+==============================================================================================================
+C1  THE TABLE, ITS PROVENANCE, THE SAMPLE
+==============================================================================================================
+  table rows: 122; with f_D != 1 and a velocity: 52 (clean among them: 52)
+  the table's cz vs this lane's velocity: median |d| = 0.0 km/s, max 0
+  log10 a0: median -9.876, sd 0.255 dex
+
+==============================================================================================================
+C2  FIT, BOOTSTRAP, SPEED SHUFFLE
+==============================================================================================================
+  H0 = 67.66 (primary)  : beta = +0.300 +- 0.290 (boot; 2.5-97.5% [-0.23, +1.05]); shuffle null 16-84% [-0.30, +0.40], p = 0.377; log a0_bar = -9.880; bootstrap 95th percentile 0.88
+  H0 = 73               : beta = +0.246 +- 0.268 (boot; 2.5-97.5% [-0.19, +0.91]); shuffle null 16-84% [-0.28, +0.36], p = 0.443; log a0_bar = -9.882; bootstrap 95th percentile 0.79
+  [PASS] (reported) SEC (reported) the SECONDARY table gives no speed dependence at p < 0.003
+         measured: {'beta': 0.3003665912756511, 'sigma_boot': 0.29006580131695253, 'p_shuffle': 0.3773113443278361, 'L': -9.880162643609381, 'boot95': 0.8801635405570252}
+
+  1/1 checks pass; load-bearing failures: 0; wrote cfg186_c_pergalaxy_table_results.json (14 s)
+rc = 0
