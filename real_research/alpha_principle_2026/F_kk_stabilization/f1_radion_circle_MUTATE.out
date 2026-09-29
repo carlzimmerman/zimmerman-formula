@@ -1,0 +1,45 @@
+====================================================================================================
+F1 radion potential on S^1 (Casimir + 5D vacuum energy) -- mode: MUTATE CONTROL (no Einstein-frame factor)
+====================================================================================================
+
+A1  Casimir energy of one periodic real dof on a circle of radius R=1 (per 4D volume, circle included)
+    closed form -3 zeta(5)/(64 pi^6)         = -5.05580766324041e-5
+    zeta'(-4) route (mode sum, no Poisson)   = -5.05580766324041e-5
+  [PASS] A1 two routes agree 
+    twisted a=0.3: Poisson 1.61350008467978e-5   Hurwitz-zeta 1.61350008467978e-5
+  [PASS] A1' twisted-dof formula agrees with Hurwitz-zeta mode sum 
+
+A2  Weyl rescaling to the 4D Einstein frame and the extremum
+  [PASS] A2a Einstein-frame condition 2a+b=0 is consistent (exponent of R4 coefficient vanishes for b=-2a) 
+    extremum condition:  2 pi rho5 = -4*c/R0**5   (R=R0=R*)
+    V_E at the extremum = -5*c/R0**4;   V_E'' there = -20*c/R0**6
+  [FAIL] A2b V_E(R*) = 5 c / R*^4 
+  [FAIL] A2c V_E''(R*) = -30 c/R*^6, i.e. sign(V'') = -sign(c) 
+    => c>0 (bosonic excess): rho5>0, V_min=+5c/R^4>0 (dS-type) but V''<0: a MAXIMUM (radion tachyon).
+       c<0 (fermionic excess): rho5<0, extremum is a MINIMUM but V=5c/R^4<0 (AdS4).  Sign theorem: no dS minimum from {rho5, Casimir}.
+  [FAIL] A2d sign theorem: sign(V_extremum)=sign(c) and sign(V'')=-sign(c), so V>0 <=> maximum 
+
+A3  match |V(R*)| to the observed vacuum energy: R*/l_P = (40 pi |c| / x)^(1/4)
+    x = Lambda l_P^2 = 2.8485e-122 (AH5 construction);  l_P = 1.6163e-35 m
+    DN=  +5: R*/l_P = 1.028e+30  (1.661e-05 m)  alpha_grav = 4 l_P^2/R*^2 = 3.788e-60   [max, dS-type (unstable radion)]
+    DN=  -4: R*/l_P = 9.719e+29  (1.571e-05 m)  alpha_grav = 4 l_P^2/R*^2 = 4.235e-60   [MIN but AdS (V<0)]
+    DN=  -8: R*/l_P = 1.156e+30  (1.868e-05 m)  alpha_grav = 4 l_P^2/R*^2 = 2.994e-60   [MIN but AdS (V<0)]
+    DN= -16: R*/l_P = 1.374e+30  (2.221e-05 m)  alpha_grav = 4 l_P^2/R*^2 = 2.117e-60   [MIN but AdS (V<0)]
+    DN=-100: R*/l_P = 2.173e+30  (3.512e-05 m)  alpha_grav = 4 l_P^2/R*^2 = 8.470e-61   [MIN but AdS (V<0)]
+  [PASS] A3a no declared DN gives R*/l_P = 23.4125 within 1e-3 
+  [PASS] A3b R* is ~1e30 l_P (tens of microns... 1e-5 m scale), i.e. the dark-dimension scale Lambda^(-1/4) rather than 23 l_P 
+    alpha_grav(x) = sqrt(10)*sqrt(xs)/(5*sqrt(pi)*sqrt(cs))  ->  d ln alpha/d ln x = 1/2
+  [PASS] A3c alpha_grav is EXACTLY a power x^(1/2) in x (exponent 1/2) 
+    AH5 says a pure power alpha = x^p would need p = 0.01758; this route gives 1/2  (mismatch factor 28.4)
+  [PASS] A3d the exponent 1/2 is not the p=0.0176 that would fix alpha 
+
+A3e  what R = 23.4125 l_P would demand of the vacuum energy
+    |DN|=5: extremum energy 5c/R^4 = 4.207e-09 l_P^-4  vs observed 1.133e-123: ratio 3.71e+114  (cancellation of 114.6 decades)
+    |DN|=4: extremum energy 5c/R^4 = 3.365e-09 l_P^-4  vs observed 1.133e-123: ratio 2.97e+114  (cancellation of 114.5 decades)
+  [PASS] A3e forcing R = 23.4 l_P needs a ~1e116-fold cancellation against another term (not forced) 
+
+====================================================================================================
+CHECKS: 8/11 passed
+VERDICT (Family A):
+  * PASS criterion (forced R = 23.4 l_P with a dS minimum) is NOT met: dS extremum is a maximum, the minimum is AdS, R* ~ x^(-1/4) ~ 1e30 l_P, alpha_grav ~ x^(1/2) ~ 1e-61.
+  * Not tested: twists/Scherk-Schwarz change c by O(1) factors only (c -> c*sum cos(2 pi k a)/k^5); R* moves by the 4th root; conclusion unchanged.

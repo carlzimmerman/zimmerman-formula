@@ -1,0 +1,34 @@
+MODE: NORMAL
+
+R1  naive QED-only threshold running from alpha^-1(0) = 137.036 up to M_Z (fermions lighter than M_Z, one loop)
+    SET (1): alpha^-1(M_Z) = 126.573  vs measured 127.93  (gap -1.357)
+    SET (2): alpha^-1(M_Z) = 128.422  vs measured 127.93  (gap +0.492)
+    the gap is the non-perturbative hadronic vacuum polarisation ambiguity; below, the measured alpha^-1(M_Z) is used as the anchor.
+
+R2  anchors at M_Z: alpha_Y^-1 = 98.350, alpha_1^-1(GUT) = 59.010, alpha_2^-1 = 29.580, alpha_3^-1 = 8.475;  alpha_em^-1 = alpha_Y^-1 + alpha_2^-1 = 127.930
+  [PASS] R2a  alpha_em^-1(M_Z) = alpha_Y^-1 + alpha_2^-1 identity
+  [PASS] R2b  ODE (one-loop switch) equals the analytic one-loop solution
+
+    alpha_1 = alpha_2 (SM, one-loop) at M = 1.027e+13 GeV with alpha^-1 = 42.405
+
+    Required boundary values (measured alpha at M_Z, SM content, thresholds as declared):
+    scale              M[GeV]      1-loop: aY^-1  a2^-1  a3^-1  aem^-1 | 2-loop: aY^-1  a2^-1  a3^-1  aem^-1 | rel(aem^-1) 2L/1L-1
+    M_Pl,red          2.435e+18    57.215 48.643 50.613 105.857 |         56.830 48.338 51.094 105.168 | -0.0065
+    M_Planck          1.221e+19    55.461 49.455 52.409 104.917 |         55.065 49.143 52.898 104.209 | -0.0067
+    M_GUT=2e16        2.000e+16    62.437 46.223 45.263 108.660 |         62.086 45.941 45.718 108.026 | -0.0058
+    a1=a2 crossing    1.027e+13    70.675 42.405 36.825 113.080 |         70.379 42.164 37.228 112.543 | -0.0047
+  [PASS] R2c  two-loop shifts alpha_em^-1(M_Planck) by 0.0067 > 1e-3: the one-loop required value cannot support a 1e-3 hit claim
+
+R3  do the three SM couplings meet at one scale? (best scale minimising the max relative spread of alpha_i^-1)
+    coefficients SM: best spread 8.80% at M = 2.403e+14 GeV
+    reference: SM best spread 8.80%; MSSM-coefficient best spread 0.22% (the MSSM would need unmeasured superpartner thresholds = new free inputs)
+  [PASS] R3  SM couplings do not unify: best spread 8.8% > 5%
+
+R4  U(1)_em-only toy (SM charged fermions, no W, no Higgs; anchored at measured alpha^-1(M_Z)); required alpha^-1 at scales:
+    M_Pl,red         alpha_em^-1(em-only toy) =   63.899   vs SM one-loop chain  105.857   ratio 0.604
+    M_Planck         alpha_em^-1(em-only toy) =   61.162   vs SM one-loop chain  104.917   ratio 0.583
+    M_GUT=2e16       alpha_em^-1(em-only toy) =   72.051   vs SM one-loop chain  108.660   ratio 0.663
+    a1=a2 crossing   alpha_em^-1(em-only toy) =   84.910   vs SM one-loop chain  113.080   ratio 0.751
+  [PASS] R4  required boundary value depends on the assumed charged/gauge content by >5% (it is not a property of the U(1) alone)
+
+CHECKS FAILED: none

@@ -1,0 +1,37 @@
+MODE: MUTATE (gravity-term sign flipped in HR numerics, beta_G sign flipped in E-V)
+
+HR  Harst-Reuter NGFP2 (Einstein-Hilbert, optimised cutoff Phi11(0)=1, Phi22(0)=1/2)
+    B1(0) = -(24 Phi22 - Phi11)/(3 pi) = -1.16714;  g*(lambda0=0) = -2/B1 = 1.7136   (paper: 1.71)
+  [PASS] H0  g* = 1.7136 vs paper 1.71
+    n_F=1, g*=1.7136: numeric 1/alpha_IR = 14606.4150; closed form (5.6) = 10.9138
+  [FAIL] H1  numeric vs closed form rel diff 1.34e+03 (tol 5e-3)
+  [FAIL] H2a  1/alpha_IR = 14606.415 vs quoted 10.91 (tol 2%)
+    g*=0.83 (quoted lambda0=lambda*): numeric 11.2501
+  [FAIL] H2b  1/alpha_IR = 11.250 vs quoted 10.96 (tol 2%)
+  [PASS] H5  alpha*/pi (n_F=13) = 0.3776 vs quoted 0.38
+  [NOTE-NOT-REPRODUCED] H3-SM  alpha_1^-1(M_Z) = 44905.70 vs quoted 25.7 (tol 3%; informational)
+  [NOTE-NOT-REPRODUCED] H3-MSSM  alpha_1^-1(M_Z) = 72286.91 vs quoted 41.3 (tol 3%; informational)
+    (measured alpha_1^-1(M_Z) [GUT-normalised, (5/3) alpha_Y] = 59.01; paper quotes 59.5)
+    sensitivity of 1/alpha_IR (n_F=1) to g* over [0.1,10] (coefficient c g* varies 100x):
+       g* =    0.100   1/alpha_IR = 9.5971
+       g* =    0.178   1/alpha_IR = 10.1605
+       g* =    0.316   1/alpha_IR = 10.5298
+       g* =    0.562   1/alpha_IR = 10.8436
+       g* =    1.000   1/alpha_IR = 12.1438
+       g* =    1.778   1/alpha_IR = 39135.7204
+       g* =    3.162   1/alpha_IR = 73918701199139.0000
+       g* =    5.623   1/alpha_IR = 1168518368922522964910994882560.0000
+       g* =   10.000   1/alpha_IR = 8689445551662351750217720467527343696083843325437438590976.0000
+  [FAIL] H4  relative spread over 100x in g*: 9.000 (gating < 0.20)
+    real n_F needed for alpha^-1 = 137.036: 0.009 (n_F = 13 gives 189883.40, off by 138464.61%; n_F=12: 175276.98)
+  [PASS] H4b  no integer n_F hits 137.036 to 1e-3 in the toy
+
+EV  Eichhorn-Versteegen: fixed point of (4.8)-(4.9), SM matter N_D=45/2, N_S=4, N_V=12
+    non-Gaussian roots found (G*, Lambda*): []
+  [FAIL] E1  fixed point (G*, Lambda*) = (None, None) vs paper (2.73, -3.76), tol 2%
+
+E4  SU(2): beta_2 = -b g^3/(16 pi^2) - f g with b = 19/6 > 0 (asymptotic freedom) and f >= 0
+    roots at f = 0.05: [0, -1.57904203345988*I, 1.57904203345988*I]
+  [PASS] E4  only g_2 = 0 is a real fixed point for f >= 0: no predictive interacting FP for SU(2)
+
+CHECKS FAILED: ['H1', 'H2a', 'H2b', 'H4', 'E1']

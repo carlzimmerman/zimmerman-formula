@@ -1,0 +1,55 @@
+====================================================================================================
+F3 light charged particles in KK -- mode: MUTATE CONTROL
+====================================================================================================
+
+T1  V1/V2: every graviphoton-charged mode has z = q/(e_0 m R) <= 1 (twist beta, bulk mass M5)
+    z^2 = q^2/(e_0^2 m^2 R^2) = (beta + n)**2/(M5R**2 + n**2)
+  [FAIL] T1a z^2 <= 1 for all sampled (n, beta, M5) (violations: 382)
+  [FAIL] T1a' z^2 = 1/(1 + (M5 R)^2/(n+beta)^2) identically (algebraic) 
+    M_P = 1.2209e+19 GeV;  electron z_e = e/(sqrt(16 pi G) m_e) = sqrt(alpha) M_P/(2 m_e) = 1.0205e+21
+    R and beta cancel: the condition e = e_0 (n+beta), m_e = (n+beta)/R (n=0 twisted mode) requires e/m_e = sqrt(16 pi G) for ANY R, beta.
+  [PASS] T1b z_e >> 1 (~1e21): no graviphoton-charged state (any R, beta, M5) can be the electron 
+  [PASS] T1c z_e equals M_KK/m_e for the alpha-fixing radius (same number as AH6 K7) 
+
+T2  V3: S^1/Z_2 orbifold projects out the graviphoton
+    invariance g'_(mu 5) = g_(mu 5) forces: {a0: 0, b1: 0}
+  [PASS] T2 Z_2 invariance forces a0 = b1 = 0 (zero mode and cos modes of g_{mu5} removed): no massless graviphoton, KK number not conserved 
+
+T3  V5: dynamical Wilson line beta from the one-loop Casimir potential (charge-1 and charge-2 species, integer multiplicities)
+    single charge-1 species (net weight d1 = N_b - N_f):
+      d=-8: beta_min=0.500, d=-4: beta_min=0.500, d=-1: beta_min=0.500, d=+1: beta_min=0.000, d=+4: beta_min=0.000, d=+8: beta_min=0.000
+  [PASS] T3a single charge: beta_min in {0, 1/2} only (boson excess -> 0, fermion excess -> 1/2) 
+    charges {1,2}, weights d1,d2 in [-8,8] (288 nonzero combos): distinct beta_min values: 79; generic (not 0 or 1/2): [0.062, 0.098, 0.118, 0.128, 0.137, 0.155, 0.168, 0.172, 0.176, 0.181, 0.186, 0.189]...
+    smallest generic beta_min = 0.062;  lightest charged mass = beta/R;  electron would need beta = m_e R
+  [PASS] T3b census only: no integer-weight combination (288 tried) gives 0 < beta_min < 0.05 (grid step 1e-4) 
+  [PASS] T3c census only: beta = m_e R ~ 1e-21 (R=23 l_P) is not among the minima; electron mass would need a separate source 
+
+T4  V6: S^2 with N flux quanta -- chiral zero modes and geometric couplings
+    D-slash^2 R^2 = k*(N + k),  multiplicity 2 ell+1 = N + 2*k
+  [PASS] T4a spectrum lambda^2 R^2 = k (k+N), lowest level k=0 is exactly zero with degeneracy N 
+    N=2: zero modes form an SU(2) doublet j = (N-1)/2 = 1/2 (massless, chirally protected by the index = flux number: Atiyah-Singer RECALLED).
+    alpha_SU2 = 6 l_P^2/R^2;   alpha_U1 (unit 6D charge) = Nn**2/2 l_P^2/R^2
+  [FAIL] T4b Minkowski identities alpha_SU2 = 3 l_P^2/R^2 and alpha_U1 = N^2 l_P^2/(2R^2) (needs the flux term in 1/g_SU2^2) 
+    the zero-mode fermions carry these charges with NO free coupling; R/l_P = sqrt2 pi N^2/chat (f2) remains set by the free 6D ratio chat = g_6^2/kappa_6.
+    for N=1 a 6D charge-1 zero mode has alpha_U1 = l_P^2/(2R^2) =: alpha at the compactification scale, exactly the KK-type relation with coefficient 1/2 instead of 4.
+
+T4c V4: 5D matter with its own U(1): e^2 = g_5^2/(2 pi R)
+    1/e_4^2 = 2*pi*Rq/g5**2  ->  e^2 = g5**2/(2*pi*Rq)  (g_5 has dimension length^(1/2) in 5D: an independent free constant)
+  [PASS] T4c e^2 = g5^2/(2 pi R): a zero mode (light, vector-like) exists but e is a free 5D constant 
+
+T5  V7: one-loop Standard-Model running of alpha^-1 from M_Z to M_KK = hbar/(R c) (order-of-magnitude, external PDG inputs)
+      mu = 1.000e+03 GeV: alpha^-1_em(mu) = 126.55
+      mu = 1.000e+10 GeV: alpha^-1_em(mu) = 117.15
+      mu = 5.215e+17 GeV: alpha^-1_em(mu) = 106.78
+      mu = 1.221e+19 GeV: alpha^-1_em(mu) = 104.94
+    if alpha_n = 4 l_P^2/R^2 held at mu = M_KK (tree level, threshold effects ignored): alpha^-1(M_KK) ~ 106.8 => R/l_P = 20.67 (vs 23.41 at the Thomson value)
+    Any 'principle' fixing alpha at the compactification scale must therefore state alpha(M_KK) ~ 1/107 (one-loop SM), not 1/137.036; the Thomson value follows only after running.
+  [PASS] T5 alpha^-1(M_KK) differs from 137.036 by >10% (the scale statement matters at the 10% level, dwarfing the 1e-3 hit window) 
+
+====================================================================================================
+CHECKS: 9/12 passed
+VERDICT (Part 2):
+  * V1/V2 graviphoton charge: z<=1 always; z_e ~ 1e21; R and beta cancel -> impossible for any twist/bulk mass.
+  * V3 orbifold: chirality bought, graviphoton lost (T2).  V4: light zero mode but e^2 = g5^2/(2 pi R) free.  V5: dynamical Wilson line picks beta in {0,1/2} or O(1) values, never 1e-21.
+  * V6 (S^2 flux): massless index-protected charged zero modes whose 4D couplings are geometric (alpha_U1 = N^2 l_P^2/(2R^2), alpha_SU2 = 3 l_P^2/R^2) -- but R is set by the free ratio chat; alpha is traded for chat.
+  * V7: the tree-level relation applies at the compactification scale; alpha(M_KK)^-1 ~ 107 in the SM one-loop picture, so R/l_P need not be 23.4 even if the relation were right.

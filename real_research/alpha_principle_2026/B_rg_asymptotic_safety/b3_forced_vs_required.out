@@ -1,0 +1,34 @@
+MODE: NORMAL
+Counted trials (8): predicted alpha_IR^-1 vs 137.035999177, and fixed-point boundary values vs the required boundary value at M_Planck
+
+  --- predictions of the IR value (5) ---
+    C1 HR toy n_F=1 g*=1.7136    predicted     10.91381  target    137.03600  rel -9.2036e-01  no hit   [one charged species, gravity FP]
+    C2 HR toy n_F=1 g*=0.83      predicted     10.95774  target    137.03600  rel -9.2004e-01  no hit   [quoted g* at lambda*]
+    C3 HR + SM fermions SET(i)   predicted     77.06477  target    137.03600  rel -4.3763e-01  no hit   [U(1)_em toy, 9 fermions, MSbar-type light masses]
+    C4 HR + SM fermions SET(ii)  predicted     75.21563  target    137.03600  rel -4.5113e-01  no hit   [same, constituent light quarks]
+    C5 EV FP + measured alpha_2  predicted     92.91408  target    137.03600  rel -3.2197e-01  no hit   [f_g=0.0480, g_Y*=1.0527; alpha_2 and the 0->M_Z offset are MEASURED inputs]
+
+  --- boundary comparisons at M_Planck (3) ---
+    required at M_Planck (SM one-loop from measured alpha(M_Z)): alpha_Y^-1 = 55.461, alpha_em^-1 = 104.917
+    B1 HR alpha* (n_F=1,g*=1.7136) predicted      0.06484  target    104.91654  rel -9.9938e-01  no hit   [fixed-point alpha*^-1 vs required alpha_em^-1(M_Pl)]
+    B2 HR alpha* (n_F=1,g*=0.83) predicted      0.13387  target    104.91654  rel -9.9872e-01  no hit   [same]
+    B3 EV alpha_Y*^-1            predicted     11.33938  target     55.46130  rel -7.9554e-01  no hit   [fixed-point alpha_Y*^-1 vs required alpha_Y^-1(M_Pl)]
+
+  --- control C6 (tuned after seeing the target; not a forced value) ---
+    f_g needed for alpha_em^-1(0) = 137.036 with measured alpha_2: 0.009805 = 0.0968/pi^2 (published-truncation f_g = 0.04795, ratio 4.89);
+    this reproduces the measured alpha_Y by construction: it fixes ONE number (f_g) with ONE measured number (alpha_Y), so it is a re-expression, not a prediction.
+    C6 gives alpha_em^-1(0) = 137.03600 (rel +2.22e-16) -> HIT (by construction)
+
+Statistics: N_trials = 8; hit window = +-0.001 relative; log-uniform prior on alpha over 3 decades gives p = 2.90e-04 per trial;
+            expected chance hits = 2.32e-03; observed hits = 0
+  [PASS] V1  no counted trial hits at 1e-3 (none)
+
+Structural checks
+    sum_f (2 N_c Q^2/3 pi) ln(M_Pl/m_f) (SET i) = 77.231;  C3 = 77.065;  (C3 - logsum) = -0.166 (the O(A) gravity-FP offset)
+  [PASS] S1  HR NGFP2 prediction equals the charged-content log sum up to <5%: content and measured masses, not a fixed-point number, set alpha_IR
+  [PASS] S2  C3 = 77.1, C4 = 75.2: order-of-magnitude close to 137 only through the mass hierarchy and content; brackets the target? False
+  [PASS] S3  EV interacting FP gives alpha_em^-1(0) = 92.91 (off by -32.2%); and even a perfect g_Y leaves alpha_2 as a measured input
+  [PASS] S5  observed alpha^-1(0) = 137.036 lies inside the EV-allowed region alpha^-1 >= 92.91 (bound satisfied, but a bound is not a value)
+    scale: all values above are the Thomson limit alpha(0) reached by running (no running below m_e in HR; +9.106 measured offset in C5).
+
+CHECKS FAILED: none
