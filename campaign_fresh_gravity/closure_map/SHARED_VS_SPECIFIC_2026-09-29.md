@@ -154,3 +154,17 @@ The KiDS early/late split, B-specific for the difference only and fragile, remai
   - **Result:** the colour-blind zero model is rejected at 35.0/7 (p = 1.1 × 10⁻⁵, 4.4σ), and the colour-split ΛCDM fits (7.4/7).
   - **Error size:** the jackknife errors match the released ones after scaling for sample size, so they show no 1.3–1.6× underestimate. The split would need errors 1.27× larger to fall to 3σ.
   - **Still open:** systematics common to all patches (shear calibration, photo-z), colour-class contamination and satellites, which a jackknife cannot see. It also remains a failure of every colour-blind dark mass, not of B specifically.
+
+
+## Addendum after CFG95 and CFG96 (appended 2026-09-29; the rows above are unchanged)
+
+**The KiDS row has now survived two more stress tests.**
+
+- **CFG95 (7214b5c62), B's own stellar-mass calibration.**
+  - B's ATLAS3D dynamics and SPARC fit make early-type lenses only 0.07 dex heavier than discs, relative to their catalogue masses. The split needs 0.18–0.5 dex.
+  - With the calibration, the law's rejection falls from 3.7σ to 2.8σ on the released data (alt 2.6σ), and from 4.4σ to 3.6σ on the re-measurement (alt 3.3σ). Reduced, not removed.
+- **CFG96 (d2e97eb53), satellites.**
+  - A twice-stricter photo-z isolation keeps 51% of the lenses and leaves the 1-halo split undiminished: amplitude 0.97 ± 0.19, 4.1σ.
+  - So satellites, as removed by this isolation, do not drive it.
+
+**It remains B's one failure specific to B in shared machinery**, and it is shared by every colour-blind dark mass (CFG77). Still open: calibration common to all patches, colour-class contamination, and satellites that photo-z isolation cannot catch.
