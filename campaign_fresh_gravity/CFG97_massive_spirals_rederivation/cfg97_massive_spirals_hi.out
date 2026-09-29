@@ -1,0 +1,86 @@
+PASS C1 data -- 15 galaxies, 216 points
+FAIL C2 Lelli algorithm within 3 km/s of tabulated v_flat for >=12/15 -- 10/15; misses: NGC1324(275 vs 261), NGC2599(184 vs 176), NGC5790(307 vs 292), UGC02885(273 vs 278), UGC12811(349 vs 346)
+FAIL C3a Freeman closed form vs independent ring integration (<1e-5) -- max rel diff inf
+PASS C3b Freeman peak 0.6218 sqrt(GM/Rd) at 2.15 Rd -- v_max 0.6221 at 2.150
+PASS C4 limits (Newton exact; deep MOND v^4=GMa0 at y~1e-6; nu_RAR(1)=1.582; P2(1)=sqrt2) -- deep ratio 1.000002, nu_RAR(1) 1.5820
+FAIL C5 selection MC: own controls pass and B_mine within 0.010 of 0.076 -- B_mine 0.0755 (MATCH 0.0662..0.0847, n=4)
+
+REPRODUCTION vs CFG41 README (law side)
+15 raw law (canonical)                       mine +0.048  CFG41 +0.048  diff +0.000  EXACT
+15 law corrected (canon)                     mine -0.028  CFG41 -0.028  diff +0.000  [-0.43s vs -0.43s] EXACT
+15 law sigma                                 mine +0.066  CFG41 +0.066  diff -0.000  EXACT
+15 law corrected (alt)                       mine -0.044  CFG41 -0.045  diff +0.001  [-0.69s vs -0.69s] EXACT
+S0 raw law                                   mine +0.079  CFG41 +0.080  diff -0.001  EXACT
+S0 law corrected                             mine +0.003  CFG41 +0.004  diff -0.001  [+0.05s vs +0.05s] EXACT
+S0 law sigma                                 mine +0.071  CFG41 +0.071  diff -0.000  EXACT
+15 law excl. 2 flagged                       mine -0.038  CFG41 -0.038  diff +0.000  [-0.60s vs -0.60s] EXACT
+15 law, WISE colours (law is colour-blind)   mine -0.028  CFG41 -0.028  diff +0.000  EXACT
+
+sigma components 15: {'structure': 0.0117, 'Mstar': 0.0532, 'gas': 0.0034, 'radius': 0.0115, 'B': 0.03, 'tot': 0.0633}  stat 0.0167
+sigma components S0: {'structure': 0.0108, 'Mstar': 0.059, 'gas': 0.002, 'radius': 0.015, 'B': 0.03, 'tot': 0.0688}  stat 0.0174
+PASS H1 law fits the 15 after B (|n sigma|<2) -- -0.028 +- 0.066 (-0.43 sigma)
+PASS H2 law fits the four S0/S0a after B (|n sigma|<2) -- +0.003 +- 0.071 (+0.05 sigma)
+
+per galaxy (canonical, raw offset log v_flat/v_law): name S0 R_f v_f(tab) v_L(mine) nflat offset
+NGC0338        43.3   234  235.0  7 -0.007
+NGC1167   S0   70.2   291  291.0  6 +0.078
+NGC1324        35.0   261  275.3  3 +0.035
+NGC2599        57.7   176  184.0  1 -0.090
+NGC2713        54.9   276  278.8  5 +0.022
+NGC2862        44.0   260  260.8 12 +0.069
+NGC5440        45.8   303  303.0 27 +0.123
+NGC5533        47.9   223  223.0 13 +0.020
+NGC5635        25.1   354  353.0  4 +0.178
+NGC5790   S0   46.6   292  306.7  3 +0.066
+UGC02849       56.2   231  231.0  1 -0.007
+UGC02885       41.4   278  272.8 16 +0.053
+UGC08179       50.7   318  318.0  8 +0.009
+UGC12591  S0   16.5   450  450.4  7 +0.046
+UGC12811  S0   71.6   346  349.1  7 +0.127
+
+RULE consistency-only (f_ex taken from README as INPUT): README rule-minus-law shift on four = 0.109  D1 (1+f): 0.082  D2 (1/(1-f)): 0.159
+
+A1 dependence on B (canonical law; sigma as headline, B error kept 0.030)
+  B=0                  +0.000: 15 +0.048 (+0.73s)   S0 +0.079 (+1.12s)
+  B=B_mine             +0.075: 15 -0.027 (-0.42s)   S0 +0.004 (+0.05s)
+  B=0.076 (CFG41)      +0.076: 15 -0.028 (-0.43s)   S0 +0.003 (+0.05s)
+  B=0.058 (referee)    +0.058: 15 -0.010 (-0.15s)   S0 +0.021 (+0.30s)
+  B=B_Mstar-err MC     +0.081: 15 -0.033 (-0.51s)   S0 -0.002 (-0.03s)
+
+A2 galaxy-specific bias b_i (avg over MC MATCH rows): mean over 15 0.078, over S0 0.060 -> corrected law 15 -0.030 (-0.46s), S0 +0.019 (+0.27s)
+
+A3 HI-to-baryon / stellar conversions (shift of the raw mean offset relative to canonical, dex)
+  gas x0.0                     15 +0.0158   S0 +0.0092
+  gas x1.0                     15 +0.0000   S0 +0.0000
+  gas x1.25                    15 -0.0036   S0 -0.0022
+  gas x1.5                     15 -0.0071   S0 -0.0043
+  gas x2.0                     15 -0.0139   S0 -0.0085
+  Ups 0.5                      15 +0.0207   S0 +0.0231
+  Ups 0.7                      15 -0.0181   S0 -0.0200
+  M* from RC decomposition     15 -0.0038   S0 -0.0114
+
+A4 inclination: shift of v_flat for a +3 deg common error (dex): {45: -0.0227, 60: -0.0131, 75: -0.0061}
+
+A5 distance: {'rand15_mean': 0.0016, 'rand15_sd': 0.0073, 'rand4_mean': 0.0008, 'rand4_sd': 0.0092, 'common_x0.95': array([0.0111, 0.0111]), 'common_x1.05': array([-0.0106, -0.0106])}
+  floor+ (adds random D, common D 5%, inclination 3deg at 60): sigma15 0.066 -> 0.068; sigma4 0.071 -> 0.074
+
+A6 LOO 15: full -0.028; range -0.037..-0.018; jackknife SE 0.017; sign flip False
+   -NGC0338 -0.024, -NGC1167 -0.030, -NGC1324 -0.027, -NGC2599 -0.018, -NGC2713 -0.026, -NGC2862 -0.029, -NGC5440 -0.033, -NGC5533 -0.026, -NGC5635 -0.037, -NGC5790 -0.029, -UGC02849 -0.024, -UGC02885 -0.028, -UGC08179 -0.025, -UGC12591 -0.028, -UGC12811 -0.034
+
+A6 LOO S0 four: full +0.003; range -0.013..+0.014; jackknife SE 0.017; sign flip True
+   -NGC1167 +0.004, -NGC5790 +0.008, -UGC12591 +0.014, -UGC12811 -0.013
+
+A7:
+  P2 kernel: (-0.004504451915830543, -0.07048162391614445, 0.023065386660387946, 0.3252897093302738)
+  a0 1.2e-10: (-0.04972676948774538, -0.7706394914234438, -0.01702991053356622, -0.24610203983413925)
+  a0 alt 1.13e-10: (-0.04439062730702236, -0.6855529731940263, -0.012076148152791108, -0.1735142746210454)
+  bracket freeman raw: (0.03420675298512391, 0.07911523257837266)
+  bracket sphere raw: (0.057696376379017, 0.10079364375696587)
+  bracket point raw: (0.048120206652007745, 0.07919669500705476)
+  inverse-variance weighted raw 15: (0.07324420565578636, 0.00891193764113294)
+
+CFG53 law-side shape (mine): red +0.033 +- 0.131 ; blue +0.042 +- 0.047 ; red abs 0.25 sigma ; points-used red/blue 4/11 galaxies
+   M_* +-0.2 dex moves red by 0.0226, blue by 0.0185
+   CFG53: red +0.014 +- 0.124 ; blue +0.052 +- 0.041 ; red absolute +0.11 sigma vs the law
+
+FAILED: ['C2 Lelli algorithm within 3 km/s of tabulated v_flat for >=12/15', 'C3a Freeman closed form vs independent ring integration (<1e-5)', 'C5 selection MC: own controls pass and B_mine within 0.010 of 0.076']
