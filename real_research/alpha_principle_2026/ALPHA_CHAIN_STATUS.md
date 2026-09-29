@@ -1,6 +1,6 @@
 # The fine-structure-constant chain: status as of 2026-09-28
 
-*Every line below points to a committed script or a cited source. Nothing here is a derivation of alpha. alpha stays an INPUT; kappa = 1/2 stays FITTED; the SM mass and coupling sector stays walled. Lane M (red team) has reported; lane K (literature audit) was still running.*
+*Every line below points to a committed script or a cited source. Nothing here is a derivation of alpha. alpha stays an INPUT; kappa = 1/2 stays FITTED; the SM mass and coupling sector stays walled. Lanes K (literature audit) and M (red team) have both reported.*
 
 ## The question
 
@@ -48,9 +48,6 @@ A principle that (i) forces one of those objects to a NUMBER without a choice ma
 * Agents disclosed their own slips in amendments (thresholds loosened after seeing numbers in E; script bugs in A; hand-derivation slips in F; an unregistered check removed in H; a post-hoc stellar scan in I).
 * Verification note: mutation-control invocation differs by lane (positional `MUTATE` for A, B, D, E, G, H, I, J; `--mutate` for AH scripts and lane F/C); every real run exits 0 and every control exits 1 when invoked correctly.
 
-## Pending at time of writing
-
-* Lane K: literature audit of published derivation claims through the lane-D checker.
 
 ## Red-team results (lane M, committed with this update)
 
@@ -71,3 +68,7 @@ Lane M attacked every negative result. Bottom line: the closures are SOUND; it f
 3. Graviton-inherited gauge coefficient: check whether the SO(10) kinetic coefficient is tied to G*Lambda (then it fails by ~121 orders) or free.
 4. Holographic count: N^2 = c' S_dS gives 1/alpha = 12 pi c', so c' = 3.635 would be needed; enumerate the geometrically forced c'.
 5. Charged fermions in dS_2, massless and massive: does sigma/H depend on alpha only through ln(mu_R/H)?
+
+## Literature audit (lane K)
+
+No published claim clears lane D's bar, and no structural idea scores 4/4. Misses against 137.035999177: Eddington 137 (2.6e-4); Gilson (4.45e-9, 27.8 sigma; with b = 137 fixed by the data the real parameter is 28.695, so the integer 29 is a rounding artefact, chance 0.61); Wyler (6.1e-7, 3800 sigma); Rosen (2.6e-5); Sherbon 4 pi^3 + pi^2 + pi (2.2e-6); combinatorial hierarchy (2.3e-7); Bleger 2026 (3.3e-11 but five integers, P = 0.90, so no evidence); Atiyah's printed recursion is self-inconsistent (the product of unit roots has modulus 1) and its leading digits are input, so there is no evaluable computation. Structural scoring: Eddington, Atiyah, the hierarchy, dilaton/BSBM, gravity-EM links and RG boundary values score 2/4; Wyler and Rosen 1/4. The one idea at 3/4, the Johnson-Baker-Willey/Adler eigenvalue condition, fails because it is dead in QED. BSBM predicts no alpha value (alpha_0 is an input). Six 2025-26 claims were named but not audited. Several sources were snippet, summary or abstract only (listed in `K_literature_audit/K_PREREGISTRATION.md`). Note: lane K's `--mutate-s2` control changes nothing (disclosed by the agent); its `--mutate` control does fail as required.
