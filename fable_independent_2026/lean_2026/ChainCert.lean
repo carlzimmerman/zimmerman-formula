@@ -8,3 +8,4 @@ import ChainCert.Cusp
 import ChainCert.Gauss
 import ChainCert.Separation
 import ChainCert.Exchange
+import ChainCert.Footing

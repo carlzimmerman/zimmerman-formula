@@ -6,6 +6,7 @@ import ChainCert.Cusp
 import ChainCert.Gauss
 import ChainCert.Separation
 import ChainCert.Exchange
+import ChainCert.Footing
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -171,3 +172,14 @@ import ChainCert.Exchange
 #print axioms exch_shell_integral
 #print axioms exch_hyd_reaction
 #print axioms exch_hyd_reaction_per_mass
+#print axioms footing_Z_factor
+#print axioms footing_kappaM_iff
+#print axioms footing_ratio_sq
+#print axioms foot_lam0
+#print axioms foot_lam1
+#print axioms foot_bounds
+#print axioms foot_strictMono
+#print axioms foot_kappa_cancels
+#print axioms foot_lambda_of_rise
+#print axioms foot_rise_of_lambda
+#print axioms foot_lambda_of_Omeff

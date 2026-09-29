@@ -89,6 +89,22 @@ for D in (0.0, 0.05, 0.13, 0.33, 0.576):
     print(f"      {D:>10.3f}{l:>9.3f}{kv:>9.4f}")
 print("      (kappa = a0(0)/(cH0) sqrt(8pi/3)/sqrt(Om_eff); at D = 0 kappa = 0.575, at D = 0.576 kappa = 0.476.)")
 
+
+# ---- E4b: the rise inverts in CLOSED FORM (certified in Lean: ChainCert/Footing.lean, foot_lambda_of_rise / foot_rise_of_lambda) ------
+#      R^2 = rho  <=>  lambda = Om_L (rho - 1) / (Om_m (u - rho)),   u = (1+z)^3,  rho = 10^(2 D)
+print("\n  E4b closed-form inverse lambda(D) = Om_L (10^(2D) - 1) / (Om_m ((1+z)^3 - 10^(2D))) against the bisection above:")
+u25 = 3.5 ** 3
+worst = 0.0
+for D in (0.0, 0.05, 0.13, 0.33, 0.5, 0.576):
+    rho = 10 ** (2 * D)
+    lam_cf = OmL * (rho - 1) / (Omm * (u25 - rho))
+    lam_bis = lam_from_D(D)
+    if not math.isnan(lam_bis):
+        worst = max(worst, abs(lam_cf - lam_bis))
+    print(f"      D = {D:5.3f}   closed form {lam_cf:.6f}   bisection {lam_bis:.6f}")
+check(worst < 1e-9, f"E4b  the closed-form inverse agrees with the bisection to {worst:.1e} at every D with a solution in [0,1]")
+check(abs(OmL * (10 ** 0.26 - 1) / (Omm * (u25 - 10 ** 0.26)) - 0.0434) < 5e-4, "E4c  lambda = 0.043 gives +0.13 dex at z = 2.5, from the closed form alone")
+
 # ---- E5: control -- a wrong evolution law must fail the E(z) cross-check ------------------------------------------
 wrong = math.sqrt((OmL + 1.0 * Omm * (1 + 2.5)**2) / 1.0)      # (1+z)^2 instead of (1+z)^3
 check(abs(wrong - Ez_cert) > 0.5, f"C1   control: a mutated matter scaling (1+z)^2 gives {wrong:.3f}, far from the certified E(2.5) = {Ez_cert:.3f}: the cross-check would catch it")

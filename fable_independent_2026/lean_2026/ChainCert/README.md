@@ -53,3 +53,10 @@ Two new modules, each theorem on standard axioms only (`verify_chain.sh`: PASS, 
 | CFG72 retardation and sigma-slaved / hydrostatic readings (D4, D6) | at value level, `E = E_qs + w` satisfies the wave equation iff `N (w_tt/c^2 - w_rr) = -(g_b M_tt + S_tt)/c^2`; `(3/8) a0 (2g + a0)/(g + a0)` is strictly increasing in `g` on `g > -a0`, lies in `((3/8) a0, (3/4) a0)` for `g > 0`, reduces to G4's `(3/8) a0 (2+x^2)/(1+x^2)` for `g = a0/x^2` and is strictly decreasing in `x`; `int_0^u r^2/u^2 dr = u/3`; the hydrostatic shell energy has reaction `a0/2` per unit mass | **certified as algebra.** D4's 'second-order retardation' implication is NOT certified (CFG72 records it as wrong for boundary-driven sources) | `Exchange.lean` |
 
 NOT certified: the Schwinger-Keldysh action and its Euler-Lagrange derivation (D1, D2), the lattice causality and reciprocity checks, all numerics (Q1 simulations, the Q2 table), the Q3 stability result (nothing here says the operator is stable or unstable), the target law, the P1-P4 verdicts, and that the theory is closed. kappa = 1/2 is FITTED.
+
+## Added 2026-09-29 by the equations chat: `Footing` (the kappa convention and the one-parameter footing family)
+
+| link | statement | status | where |
+|---|---|---|---|
+| kappa convention | `sqrt(32 pi/3) = 2 sqrt(8 pi/3)`; Milgrom's `cH/2pi` is `kappa = sqrt(2/(3 pi))` in the `kappa c sqrt(G rho)` convention (the only such kappa); `(kappa_F/kappa_M)^2 = 3 pi/8` at `kappa_F = 1/2` | **certified (algebra).** NOT certified: any committed number; kappa = 1/2 stays FITTED | `Footing` (sonnet55_push/equations/eq01) |
+| footing family | `R^2(lam) = (a + lam b u)/(a + lam b)`: 1 at lam = 0, `a + b u` at lam = 1 (a + b = 1), `1 <= R^2 <= u`, strictly increasing in lam, independent of kappa; the rise inverts in closed form `lam = a(rho - 1)/(b(u - rho))`; the z = 0 amplitude gives `lam = (Omega_eff - a)/b` | **certified (algebra).** NOT certified: that a0 sees any matter density (lam is a parametrisation), or any committed number | `Footing` (eq03) |
