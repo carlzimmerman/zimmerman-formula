@@ -1,0 +1,64 @@
+MUTATE = False   background f = (-Q + r)**2/r**2   r_+ = Q
+
+[E] R = 0  F^2 = -4*Q**2/r**4
+  c1: Delta z * Q^2 = 0    (expected (2/5) w = 0)
+  c2: Delta z * Q^2 = 2/5    (expected (2/5) w = 2/5)
+  c3: Delta z * Q^2 = 8/5    (expected (2/5) w = 8/5)
+  c4: Delta z * Q^2 = 0    (expected (2/5) w = 0)
+  c5: Delta z * Q^2 = 2/5    (expected (2/5) w = 2/5)
+  c6: Delta z * Q^2 = 2/5    (expected (2/5) w = 2/5)
+  c7: Delta z * Q^2 = 8/5    (expected (2/5) w = 8/5)
+  c8: Delta z * Q^2 = 4/5    (expected (2/5) w = 4/5)
+
+[B] R = 0  F^2 = 4*Q**2/r**4
+  c1: Delta z * Q^2 = 0    (expected (2/5) w = 0)
+  c2: Delta z * Q^2 = 2/5    (expected (2/5) w = 2/5)
+  c3: Delta z * Q^2 = 8/5    (expected (2/5) w = 8/5)
+  c4: Delta z * Q^2 = 0    (expected (2/5) w = 0)
+  c5: Delta z * Q^2 = 2/5    (expected (2/5) w = 2/5)
+  c6: Delta z * Q^2 = 6/5    (expected (2/5) w = 2/5)
+  c7: Delta z * Q^2 = 8/5    (expected (2/5) w = 8/5)
+  c8: Delta z * Q^2 = 4/5    (expected (2/5) w = 4/5)
+[PASS] Q1-H1 shift is a linear form in c1..c8 with Q-independent weights (all Delta z_i Q^2 free of Q)
+[PASS] Q1-H2 electric weights = (2/5)*(0,1,4,0,1,1,4,2): d0 = d2+4d3+d5+d6+4d7+2d8, Delta z = 2 d0/(5 m^2)  [CLR eq 61, 68]
+[PASS] Q1-H3a Gauss-Bonnet Riem^2-4Ric^2+R^2 gives Delta M_ext = 0 on the extremal background  Delta M_GB = 0
+  non-extremal GB integral: 16*pi*(rm - rp)/rp**2   T = (-rm + rp)/(4*pi*rp**2)   ratio/T = -64*pi**2
+[PASS] Q1-H3b non-extremal GB integral vanishes at r_+ = r_- (proportional to T), as argued
+[PASS] Q1-H4 c2, c5 equal their on-shell (c7,c8) replacements; c3 = 4 c2 (E and B)
+
+Q1-H5 magnetic weights (2/5)*w_mag: {'c1': 0, 'c2': 1, 'c3': 4, 'c4': 0, 'c5': 1, 'c6': 3, 'c7': 4, 'c8': 2}
+      electric == magnetic weights: False
+[PASS] Q1-H5 c1 and c4 absent; c7,c8 enter only as 4c7+2c8 in both backgrounds
+[PASS] Q1-H6a explicit E||B: F^2 = 2(B^2-E^2) and tr F^4 = (F^2)^2/2 + (F Ftilde)^2/4 (=> (FFt)^2 = 4F^4 - 2(F^2)^2)
+  EH map: c7 = -alpha**2/(36*m**4)  c8 = 7*alpha**2/(90*m**4)   4c7+2c8 = 2*alpha**2/(45*m**4)
+[PASS] Q1-H6b EH (recalled form): 4c7+2c8 = 2 alpha^2/(45 m^4) = E^4 coefficient > 0
+
+Q1-H7 Delta z * Q^2 = (2/5) * c2 + 4*c3 + c5 + c6 + 4*c7 + 2*c8  ; rank of the linear form = 1
+[PASS] Q1-H7 (structure, NOT a test) extremality shift is a rank-1 free linear form d0(c); the equality locus at any alpha is a hyperplane
+       WGC saturation z_p = 1 + (2/5) d0/Q^2  =>  d0 = (5/2)(z_p-1) Q^2 : solvable for d0 for ANY (alpha, m); e does not fix d0, d0 does not fix e
+
+Q1-H8/H9 sizes, Delta z = (2/5) delta l_P^2/Q^2 ; delta = d0/l_P^2 (dimensionless)
+  Thomson: l_P^2/Q_e^2 = 137.036 ; l_P^2/Q_m^2 = 0.02919
+     delta =    1e-04: Delta z electric n=1 =   0.005481   magnetic n=1 =  1.168e-06
+     delta =    1e-03: Delta z electric n=1 =    0.05481   magnetic n=1 =  1.168e-05
+     delta =    1e-02: Delta z electric n=1 =     0.5481   magnetic n=1 =  0.0001168
+     delta =    1e-01: Delta z electric n=1 =      5.481   magnetic n=1 =   0.001168
+     delta =    1e+00: Delta z electric n=1 =      54.81   magnetic n=1 =    0.01168
+     delta =    1e+01: Delta z electric n=1 =      548.1   magnetic n=1 =     0.1168
+     magnetic: n needed for |Delta z| < 5e-10 at delta=0.01: n >= 4.832e+02
+     magnetic: n needed for |Delta z| < 5e-10 at delta=0.1: n >= 1.528e+03
+     magnetic: n needed for |Delta z| < 5e-10 at delta=1: n >= 4.832e+03
+  alpha(m_P): l_P^2/Q_e^2 = 104.940 ; l_P^2/Q_m^2 = 0.03812
+     delta =    1e-04: Delta z electric n=1 =   0.004198   magnetic n=1 =  1.525e-06
+     delta =    1e-03: Delta z electric n=1 =    0.04198   magnetic n=1 =  1.525e-05
+     delta =    1e-02: Delta z electric n=1 =     0.4198   magnetic n=1 =  0.0001525
+     delta =    1e-01: Delta z electric n=1 =      4.198   magnetic n=1 =   0.001525
+     delta =    1e+00: Delta z electric n=1 =      41.98   magnetic n=1 =    0.01525
+     delta =    1e+01: Delta z electric n=1 =      419.8   magnetic n=1 =     0.1525
+     magnetic: n needed for |Delta z| < 5e-10 at delta=0.01: n >= 5.522e+02
+     magnetic: n needed for |Delta z| < 5e-10 at delta=0.1: n >= 1.746e+03
+     magnetic: n needed for |Delta z| < 5e-10 at delta=1: n >= 5.522e+03
+[PASS] Q1-H8 electric n=1 shift is O(1)+ for delta >= 1e-2 at Thomson alpha (EFT not valid there); magnetic n=1 shift ~ 4 alpha x smaller
+[PASS] Q1-H9 magnetic object needs n >~ 1e3-1e4 Dirac quanta for |Delta z| < 5e-10 at loop-natural delta ~ 1/(2 pi)  n_req = 1.933e+03
+
+SUMMARY: 11/11 checks pass (MUTATE=False)
