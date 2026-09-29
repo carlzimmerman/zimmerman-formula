@@ -1,0 +1,54 @@
+CFG150 post2 -- POST HOC.  Written after all three frozen runs AND after opening CFG102's outputs.  It reads CFG102's
+unrounded mu_uni(1e-12) from CFG102's committed cfg102_b_results.json (D) and cfg102_b_results_BCN.json (N), and evaluates
+MY potentials and flagship force at exactly that mu, with my own solver unchanged (2^17 elements, as in the frozen costs).
+This separates the potential comparison from the mu_uni comparison: CFG102 scored its costs at its own unrounded mu_uni,
+while my frozen P-lines use the printed 1.474e28.  Second question: the frozen control L4 passed, but its Sun value sat
++0.27% from DE13's committed N1; is that the Laplacian estimate (DE13's np.gradient on DE12's grid against my 5-point
+stencil at several steps, all at DE13's own mu_U)?  Third: on which layers can B |W''| exceed m2 (where the chi-only
+energy can be non-convex; post1 traced the unconverged solves to two layers)?  It changes no frozen number.
+Outputs: post2_costs_at_cfg102_mu.out and post2_costs_at_cfg102_mu_results.json next to this file.
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+  frozen criteria sha256 checked on import: bb3aad1500bc10eaf9edec7a4fa5e4d7f80069d2fe1b87dc1a84c54498a1542b
+
+  [D] at CFG102's unrounded mu_uni = 1.4736252534e+28 J/m:
+      flagship potential: mine -13.67130029  CFG102 -13.67130607  (rel -4.23e-07)
+      flagship force:     mine -45.599475  CFG102 -45.599660  (rel -4.06e-06)
+      Sun potential:      mine -9.28785946e+05  CFG102 -9.28777851e+05  (rel +8.72e-06)
+      my Newton: flagship 2 iterations (res 1.1e-16); Sun 1 (res 1.1e-16)
+
+  [N] at CFG102's unrounded mu_uni = 1.4736252534e+28 J/m:
+      flagship potential: mine -13.50073728  CFG102 -13.50074239  (rel -3.79e-07)
+      flagship force:     mine -44.018877  CFG102 -44.019052  (rel -3.98e-06)
+      Sun potential:      mine +7.64730511e+07  CFG102 +7.64730743e+07  (rel -3.02e-07)
+      my Newton: flagship 2 iterations (res 1.1e-16); Sun 1 (res 1.0e-16)
+
+  flagship D - N: mine -0.170563, CFG102 -0.170564 (rel -3.91e-06)
+
+  L4 flagship: |Phi|/v_f^2 with DE13's own mu_U = 1.543953e+29: DE13 committed 3.183054e+01
+      lap t by de13_way    : |Phi| = 3.183054e+01 (rel to DE13 +2.06e-11)
+      lap t by 5pt_h0.03   : |Phi| = 3.183089e+01 (rel to DE13 +1.09e-05)
+      lap t by 5pt_h0.01   : |Phi| = 3.183089e+01 (rel to DE13 +1.09e-05)
+      lap t by 5pt_h0.003  : |Phi| = 3.183121e+01 (rel to DE13 +2.09e-05)
+      lap t by 5pt_h0.001  : |Phi| = 3.182896e+01 (rel to DE13 -4.96e-05)
+      lap t by 5pt_h0.0003 : |Phi| = 3.179703e+01 (rel to DE13 -1.05e-03)
+
+  L4 Sun: |Phi|/v_f^2 with DE13's own mu_U = 1.543953e+29: DE13 committed 2.125657e+08
+      lap t by de13_way    : |Phi| = 2.125657e+08 (rel to DE13 -3.47e-10)
+      lap t by 5pt_h0.03   : |Phi| = 2.131032e+08 (rel to DE13 +2.53e-03)
+      lap t by 5pt_h0.01   : |Phi| = 2.131041e+08 (rel to DE13 +2.53e-03)
+      lap t by 5pt_h0.003  : |Phi| = 2.131099e+08 (rel to DE13 +2.56e-03)
+      lap t by 5pt_h0.001  : |Phi| = 2.136320e+08 (rel to DE13 +5.02e-03)
+      lap t by 5pt_h0.0003 : |Phi| = 2.170028e+08 (rel to DE13 +2.09e-02)
+
+  non-convexity: max |W''| = 9.8410; layers ranked by max B|W''|/m2 over the layer (m2 = 1e-12):
+      4.0/1e+12/alt          4.073  (B 2.07e-13 .. 4.14e-13 Pa)
+      4.0/1e+12/canonical    3.934  (B 2.01e-13 .. 4.00e-13 Pa)
+      4.0/1e+11/alt          0.985  (B 4.99e-14 .. 1.00e-13 Pa)
+      4.0/1e+11/canonical    0.969  (B 4.93e-14 .. 9.85e-14 Pa)
+      2.5/1e+12/alt          0.273  (B 1.39e-14 .. 2.77e-14 Pa)
+      2.5/1e+12/canonical    0.270  (B 1.38e-14 .. 2.75e-14 Pa)
+      layers above 1: 2 of 24
+
+  wrote post2_costs_at_cfg102_mu_results.json; elapsed 1s
+  kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.

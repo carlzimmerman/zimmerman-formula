@@ -1,0 +1,59 @@
+CFG150 post1 -- POST HOC.  Written after the frozen main run, whose R4 row reported 12 background solves that did not
+reach the frozen residual line (1e-13) within 60 Newton iterations (largest final residual 0.21; diagonal shifts up to
+tau = 1e3).  This script changes no frozen number.  It asks:
+  Q1  which layers, labels and trial mu the unconverged solves belong to (the frozen root searches are deterministic, so
+      re-running them with every background solve logged reproduces the same calls);
+  Q2  whether a more patient solve (continuation in B over 16 steps, up to 400 Newton iterations each) converges there,
+      and whether it changes the sign of Lambda (the stability decision) at those trial mu;
+  Q3  whether any layer's mu_min changes when every trial solve uses the patient fallback, and so whether mu_uni changes;
+  Q4  whether all 24 layers are stable just above the frozen mu_uni (1.0001 x) with patient solves (mu_uni = the largest
+      layer mu_min, as the headline needs).
+It imports cfg150_referee.py (its frozen-criteria hash check runs on import) and uses its functions unchanged.
+Outputs: post1_newton_diagnostic.out and post1_newton_diagnostic_results.json next to this file.
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+  frozen criteria sha256 checked on import: bb3aad1500bc10eaf9edec7a4fa5e4d7f80069d2fe1b87dc1a84c54498a1542b
+
+Q1  the frozen root searches at m2 = 1e-12, re-run with every background solve logged
+    1100 background solves in the searches; 12 unconverged
+    D 4.0/1e+12/canonical    x = 20.000000 (root at 27.379961; distance -7.3800 decades): iterations 60, final residual 1.97e-01, largest shift tau 10, halvings 0
+    D 4.0/1e+12/canonical    x = 20.000000 (root at 27.379961; distance -7.3800 decades): iterations 60, final residual 1.97e-01, largest shift tau 10, halvings 0
+    D 4.0/1e+12/canonical    x = 20.000066 (root at 27.379961; distance -7.3799 decades): iterations 60, final residual 1.97e-01, largest shift tau 10, halvings 0
+    D 4.0/1e+12/alt          x = 20.000000 (root at 27.302175; distance -7.3022 decades): iterations 60, final residual 2.07e-01, largest shift tau 10, halvings 0
+    D 4.0/1e+12/alt          x = 20.000000 (root at 27.302175; distance -7.3022 decades): iterations 60, final residual 2.07e-01, largest shift tau 10, halvings 0
+    D 4.0/1e+12/alt          x = 20.000072 (root at 27.302175; distance -7.3021 decades): iterations 60, final residual 2.07e-01, largest shift tau 10, halvings 0
+    N 4.0/1e+12/canonical    x = 20.000000 (root at 27.379961; distance -7.3800 decades): iterations 60, final residual 1.97e-01, largest shift tau 10, halvings 0
+    N 4.0/1e+12/canonical    x = 20.000000 (root at 27.379961; distance -7.3800 decades): iterations 60, final residual 1.97e-01, largest shift tau 10, halvings 0
+    N 4.0/1e+12/canonical    x = 20.000066 (root at 27.379961; distance -7.3799 decades): iterations 60, final residual 1.97e-01, largest shift tau 10, halvings 0
+    N 4.0/1e+12/alt          x = 20.000000 (root at 27.302175; distance -7.3022 decades): iterations 60, final residual 2.07e-01, largest shift tau 10, halvings 0
+    N 4.0/1e+12/alt          x = 20.000000 (root at 27.302175; distance -7.3022 decades): iterations 60, final residual 2.07e-01, largest shift tau 10, halvings 0
+    N 4.0/1e+12/alt          x = 20.000072 (root at 27.302175; distance -7.3021 decades): iterations 60, final residual 2.07e-01, largest shift tau 10, halvings 0
+    reproduced mu_uni(D) = 1.473875e+28, mu_uni(N) = 1.473875e+28
+
+Q2  at each unconverged trial mu: the patient solve (continuation in B, 16 x 400 iterations) and the sign of Lambda
+    D 4.0/1e+12/canonical    x = 20.000000: Lambda frozen -2.1249e-12 (res 2.0e-01); patient -1.4630e-12 (converged True, res 2.1e-15); same sign True
+    D 4.0/1e+12/canonical    x = 20.000000: Lambda frozen -2.1249e-12 (res 2.0e-01); patient -1.4630e-12 (converged True, res 2.1e-15); same sign True
+    D 4.0/1e+12/canonical    x = 20.000066: Lambda frozen -2.1249e-12 (res 2.0e-01); patient -1.5013e-12 (converged True, res 6.7e-14); same sign True
+    D 4.0/1e+12/alt          x = 20.000000: Lambda frozen -2.1907e-12 (res 2.1e-01); patient -1.5237e-12 (converged True, res 3.2e-15); same sign True
+    D 4.0/1e+12/alt          x = 20.000000: Lambda frozen -2.1907e-12 (res 2.1e-01); patient -1.5237e-12 (converged True, res 3.2e-15); same sign True
+    D 4.0/1e+12/alt          x = 20.000072: Lambda frozen -2.1907e-12 (res 2.1e-01); patient -1.4919e-12 (converged True, res 2.7e-15); same sign True
+    N 4.0/1e+12/canonical    x = 20.000000: Lambda frozen -2.1249e-12 (res 2.0e-01); patient -1.4630e-12 (converged True, res 2.1e-15); same sign True
+    N 4.0/1e+12/canonical    x = 20.000000: Lambda frozen -2.1249e-12 (res 2.0e-01); patient -1.4630e-12 (converged True, res 2.1e-15); same sign True
+    N 4.0/1e+12/canonical    x = 20.000066: Lambda frozen -2.1249e-12 (res 2.0e-01); patient -1.5013e-12 (converged True, res 6.7e-14); same sign True
+    N 4.0/1e+12/alt          x = 20.000000: Lambda frozen -2.1907e-12 (res 2.1e-01); patient -1.5237e-12 (converged True, res 3.2e-15); same sign True
+    N 4.0/1e+12/alt          x = 20.000000: Lambda frozen -2.1907e-12 (res 2.1e-01); patient -1.5237e-12 (converged True, res 3.2e-15); same sign True
+    N 4.0/1e+12/alt          x = 20.000072: Lambda frozen -2.1907e-12 (res 2.1e-01); patient -1.4919e-12 (converged True, res 2.7e-15); same sign True
+
+Q3  layers with an unconverged solve: mu_min recomputed with the patient solver at every trial mu
+    D 4.0/1e+12/alt         : frozen 2.005281e+27; patient 2.005281e+27 (-3.30e-11); monotone probes True; below unstable True   684.1s
+    D 4.0/1e+12/canonical   : frozen 2.398620e+27; patient 2.398620e+27 (+1.92e-11); monotone probes True; below unstable True   116.4s
+    N 4.0/1e+12/alt         : frozen 2.005281e+27; patient 2.005281e+27 (-4.64e-12); monotone probes True; below unstable True   610.7s
+    N 4.0/1e+12/canonical   : frozen 2.398620e+27; patient 2.398620e+27 (+1.25e-10); monotone probes True; below unstable True   90.3s
+    mu_uni with the patient values: D 1.473875e+28, N 1.473875e+28 (frozen 1.473875e+28)
+
+Q4  every layer at 1.0001 x the frozen mu_uni, with patient solves (D and N)
+    D: stable 24/24, converged 24/24; smallest Lambda +1.0460e-17 Pa (2.5/1e+12/alt)
+    N: stable 24/24, converged 24/24; smallest Lambda +1.0460e-17 Pa (2.5/1e+12/alt)
+
+  wrote post1_newton_diagnostic_results.json; elapsed 2832s
+  kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.

@@ -1,0 +1,195 @@
+CFG150 -- REFEREE OF CFG102's HEADLINE: the gate scalar's universal stiffness mu_uni and its costs at m2 = 1e-12 Pa under
+two background boundary conditions (D: chi0 = t at 1 kpc and 2e4 kpc; N: chi0' = 0 at both ends).
+
+Frozen criteria (checked FIRST, by sha256, before anything else runs): campaign_fresh_gravity/CFG150_FROZEN_CRITERIA.md.
+Targets (read from CFG102's README, so not blind): mu_uni = 1.474e28 J/m under D and N; flagship potential -13.67 (D) and
+-13.50 (N) v_f^2; Sun potential -9.29e5 (D) and +7.647e7 (N) v_f^2.
+
+Method (my own code; nothing of CFG102 or CFG49 is imported or executed):
+  * s = ln(r/kpc); fields piecewise linear in s (P1 finite elements).  The gradient term is integrated exactly on each
+    element; the (chi - t)^2 and W(chi) terms by 3-point Gauss-Legendre, with t, B and a evaluated exactly at the
+    quadrature radii (consistent, not lumped).
+  * Background chi0: the unknown is chi itself.  Newton on the exact gradient and tridiagonal Hessian of the discrete
+    energy, started from the B = 0 (linear) solution at the same mu; Armijo backtracking on an exactly-differenced energy as
+    a safeguard; a declared diagonal shift (tau m2 x lumped mass) if the Hessian is not positive definite.  Converged when
+    every nodal residual is <= 1e-13 of the summed absolute sizes of its terms.
+  * Stability: every window gets its own P1 grid (4000 elements, uniform in s) between the exact radii where the baryons'
+    t crosses the window limits; delta chi = 0 at both ends; lambda_min = smallest eigenvalue of the lumped-r^2-mass-scaled
+    window operator (LAPACK tridiagonal eigensolver); Lambda(mu) = min over the five windows.
+  * mu_min: Brent on Lambda(10^x), x = log10 mu in [20, 34], xtol 1e-7, then probes above the root (largest root kept).
+  * Costs: Phi_chi = -4 pi G t_U m2 (chi0 - t)/(H^2 x_c,eff), with chi0 - t formed at the nodes and interpolated in s.
+  * Layers: DE12's formulas re-typed here; L352's constants and tables come through DE12's own loader, executed read-only.
+
+Modes: MUTATE unset (main: P-lines, R-rows and every control); MUTATE=bc swaps the boundary conditions; MUTATE=slaved puts
+chi0 := t in the stability test.  The MUTATE runs compute only the P-lines and the R-rows.  Outputs next to this file:
+cfg150_<main|MUTATE_bc|MUTATE_slaved>.out and cfg150_<...>_results.json.
+Repository root: ZF_REPO, else a search up from this file.  One process; BLAS threads set to 1.
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+  frozen criteria campaign_fresh_gravity/CFG150_FROZEN_CRITERIA.md: sha256 bb3aad1500bc10eaf9edec7a4fa5e4d7f80069d2fe1b87dc1a84c54498a1542b == frozen value: OK
+  mode: MUTATE_slaved; python 3.13.9, numpy 1.26.4, scipy 1.14.1; threads OMP=1 VECLIB=1
+  *** MUTATE=slaved: chi0 := t in the stability test (CFG102's attack A2). Expected: mu_uni near 3.86e28, P1 fails, the cost lines (scored at mu_ref) pass; exit 1 ***
+  DE12's definitions loaded read-only (L352 constants and tables through DE12's loader)   [0s]
+  constants: G = 6.6743e-11, H0 = 2.182989e-18 1/s, a0 canonical 9.3619e-11, alt 1.1279e-10, c_s = 117.29 km/s, table LYG -14.0..14.0 (280001 nodes)
+
+======================================================================================================================
+LAYERS: the t-crossing radii (kpc) of the 24 DE12 layers (w = 0.25)
+======================================================================================================================
+    0.25/1e+10/canonical  : r(0.996)   687.565  r(0.5)   767.607  r(0.004)   884.518  (ln-width 0.2519; crossings of 0.5: 1)
+    0.25/1e+10/alt        : r(0.996)   719.749  r(0.5)   803.603  r(0.004)   926.083  (ln-width 0.2521; crossings of 0.5: 1)
+    0.25/1e+11/canonical  : r(0.996)  1230.509  r(0.5)  1372.931  r(0.004)  1580.929  (ln-width 0.2506; crossings of 0.5: 1)
+    0.25/1e+11/alt        : r(0.996)  1287.096  r(0.5)  1436.285  r(0.004)  1654.172  (ln-width 0.2509; crossings of 0.5: 1)
+    0.25/1e+12/canonical  : r(0.996)  2215.608  r(0.5)  2469.340  r(0.004)  2839.764  (ln-width 0.2482; crossings of 0.5: 1)
+    0.25/1e+12/alt        : r(0.996)  2314.092  r(0.5)  2579.793  r(0.004)  2967.727  (ln-width 0.2488; crossings of 0.5: 1)
+    1.0/1e+10/canonical   : r(0.996)   282.429  r(0.5)   315.003  r(0.004)   362.568  (ln-width 0.2498; crossings of 0.5: 1)
+    1.0/1e+10/alt         : r(0.996)   295.267  r(0.5)   329.385  r(0.004)   379.206  (ln-width 0.2502; crossings of 0.5: 1)
+    1.0/1e+11/canonical   : r(0.996)   510.315  r(0.5)   568.433  r(0.004)   653.244  (ln-width 0.2469; crossings of 0.5: 1)
+    1.0/1e+11/alt         : r(0.996)   532.543  r(0.5)   593.380  r(0.004)   682.174  (ln-width 0.2476; crossings of 0.5: 1)
+    1.0/1e+12/canonical   : r(0.996)   934.137  r(0.5)  1038.432  r(0.004)  1190.399  (ln-width 0.2424; crossings of 0.5: 1)
+    1.0/1e+12/alt         : r(0.996)   971.900  r(0.5)  1080.922  r(0.004)  1239.834  (ln-width 0.2435; crossings of 0.5: 1)
+    2.5/1e+10/canonical   : r(0.996)    67.195  r(0.5)    74.699  r(0.004)    85.623  (ln-width 0.2424; crossings of 0.5: 1)
+    2.5/1e+10/alt         : r(0.996)    69.880  r(0.5)    77.718  r(0.004)    89.133  (ln-width 0.2433; crossings of 0.5: 1)
+    2.5/1e+11/canonical   : r(0.996)   125.406  r(0.5)   139.134  r(0.004)   159.048  (ln-width 0.2377; crossings of 0.5: 1)
+    2.5/1e+11/alt         : r(0.996)   129.885  r(0.5)   144.173  r(0.004)   164.917  (ln-width 0.2388; crossings of 0.5: 1)
+    2.5/1e+12/canonical   : r(0.996)   239.317  r(0.5)   265.096  r(0.004)   302.305  (ln-width 0.2336; crossings of 0.5: 1)
+    2.5/1e+12/alt         : r(0.996)   246.661  r(0.5)   273.349  r(0.004)   311.908  (ln-width 0.2347; crossings of 0.5: 1)
+    4.0/1e+10/canonical   : r(0.996)    25.600  r(0.5)    28.415  r(0.004)    32.487  (ln-width 0.2382; crossings of 0.5: 1)
+    4.0/1e+10/alt         : r(0.996)    26.477  r(0.5)    29.398  r(0.004)    33.629  (ln-width 0.2391; crossings of 0.5: 1)
+    4.0/1e+11/canonical   : r(0.996)    48.901  r(0.5)    54.271  r(0.004)    62.005  (ln-width 0.2374; crossings of 0.5: 1)
+    4.0/1e+11/alt         : r(0.996)    50.360  r(0.5)    55.901  r(0.004)    63.888  (ln-width 0.2379; crossings of 0.5: 1)
+    4.0/1e+12/canonical   : r(0.996)    94.997  r(0.5)   105.607  r(0.004)   120.817  (ln-width 0.2404; crossings of 0.5: 1)
+    4.0/1e+12/alt         : r(0.996)    97.436  r(0.5)   108.309  r(0.004)   123.912  (ln-width 0.2404; crossings of 0.5: 1)
+
+======================================================================================================================
+m2 = INFINITY: chi0 = t, g_eff = a (DE13's form (i) in t units); per-layer mu_min [J/m]
+======================================================================================================================
+    0.25/1e+10/canonical  : mu_min = 6.149339e+24  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+10/alt        : mu_min = 6.467312e+24  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+11/canonical  : mu_min = 1.080398e+26  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+11/alt        : mu_min = 1.137529e+26  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+12/canonical  : mu_min = 1.865966e+27  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    0.25/1e+12/alt        : mu_min = 1.970932e+27  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+10/canonical   : mu_min = 1.455931e+25  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+10/alt         : mu_min = 1.538448e+25  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+11/canonical   : mu_min = 2.518931e+26  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+11/alt         : mu_min = 2.667967e+26  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+12/canonical   : mu_min = 4.207354e+27  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+12/alt         : mu_min = 4.482336e+27  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+10/canonical   : mu_min = 5.595559e+25  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+10/alt         : mu_min = 5.993601e+25  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+11/canonical   : mu_min = 9.263543e+26  (ok; 20 evaluations; monotone probes True; below unstable True)  0.2s
+    2.5/1e+11/alt         : mu_min = 9.961571e+26  (ok; 18 evaluations; monotone probes True; below unstable True)  0.2s
+    2.5/1e+12/canonical   : mu_min = 1.466504e+28  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+12/alt         : mu_min = 1.586087e+28  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+10/canonical   : mu_min = 1.348133e+26  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+10/alt         : mu_min = 1.461903e+26  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+11/canonical   : mu_min = 2.221164e+27  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+11/alt         : mu_min = 2.409730e+27  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+12/canonical   : mu_min = 3.546714e+28  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+12/alt         : mu_min = 3.860637e+28  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    mu_uni(inf) = 3.860637e+28 J/m (set by 4.0/1e+12/alt)   [7s]
+
+======================================================================================================================
+m2 = 1e-12 Pa, label D (ends actually used: D; stability background: chi0 := t (MUTATE=slaved)); per-layer mu_min [J/m]
+======================================================================================================================
+    0.25/1e+10/canonical  : mu_min = 6.149339e+24  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+10/alt        : mu_min = 6.467312e+24  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+11/canonical  : mu_min = 1.080398e+26  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+11/alt        : mu_min = 1.137529e+26  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+12/canonical  : mu_min = 1.865966e+27  ratio to m2=inf 1.0000  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    0.25/1e+12/alt        : mu_min = 1.970932e+27  ratio to m2=inf 1.0000  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+10/canonical   : mu_min = 1.455931e+25  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+10/alt         : mu_min = 1.538449e+25  ratio to m2=inf 1.0000  (ok; 23 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+11/canonical   : mu_min = 2.518931e+26  ratio to m2=inf 1.0000  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+11/alt         : mu_min = 2.667967e+26  ratio to m2=inf 1.0000  (ok; 22 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+12/canonical   : mu_min = 4.207354e+27  ratio to m2=inf 1.0000  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+12/alt         : mu_min = 4.482336e+27  ratio to m2=inf 1.0000  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+10/canonical   : mu_min = 5.595607e+25  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+10/alt         : mu_min = 5.993640e+25  ratio to m2=inf 1.0000  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+11/canonical   : mu_min = 9.263589e+26  ratio to m2=inf 1.0000  (ok; 20 evaluations; monotone probes True; below unstable True)  0.2s
+    2.5/1e+11/alt         : mu_min = 9.961608e+26  ratio to m2=inf 1.0000  (ok; 19 evaluations; monotone probes True; below unstable True)  0.2s
+    2.5/1e+12/canonical   : mu_min = 1.466509e+28  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+12/alt         : mu_min = 1.586091e+28  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+10/canonical   : mu_min = 1.348599e+26  ratio to m2=inf 1.0003  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+10/alt         : mu_min = 1.462274e+26  ratio to m2=inf 1.0003  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+11/canonical   : mu_min = 2.221678e+27  ratio to m2=inf 1.0002  (ok; 23 evaluations; monotone probes True; below unstable True)  0.2s
+    4.0/1e+11/alt         : mu_min = 2.410136e+27  ratio to m2=inf 1.0002  (ok; 23 evaluations; monotone probes True; below unstable True)  0.2s
+    4.0/1e+12/canonical   : mu_min = 3.547311e+28  ratio to m2=inf 1.0002  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+12/alt         : mu_min = 3.861109e+28  ratio to m2=inf 1.0001  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    mu_uni(D) = 3.861109e+28 J/m (set by 4.0/1e+12/alt); ell = sqrt(mu_uni/m2) = 6.3680 kpc; mu_uni/mu_uni(inf) = 1.0001   [13s]
+
+======================================================================================================================
+m2 = 1e-12 Pa, label N (ends actually used: N; stability background: chi0 := t (MUTATE=slaved)); per-layer mu_min [J/m]
+======================================================================================================================
+    0.25/1e+10/canonical  : mu_min = 6.149339e+24  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+10/alt        : mu_min = 6.467312e+24  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+11/canonical  : mu_min = 1.080398e+26  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+11/alt        : mu_min = 1.137529e+26  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    0.25/1e+12/canonical  : mu_min = 1.865966e+27  ratio to m2=inf 1.0000  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    0.25/1e+12/alt        : mu_min = 1.970932e+27  ratio to m2=inf 1.0000  (ok; 23 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+10/canonical   : mu_min = 1.455931e+25  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+10/alt         : mu_min = 1.538449e+25  ratio to m2=inf 1.0000  (ok; 23 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+11/canonical   : mu_min = 2.518931e+26  ratio to m2=inf 1.0000  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+11/alt         : mu_min = 2.667967e+26  ratio to m2=inf 1.0000  (ok; 22 evaluations; monotone probes True; below unstable True)  0.2s
+    1.0/1e+12/canonical   : mu_min = 4.207354e+27  ratio to m2=inf 1.0000  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    1.0/1e+12/alt         : mu_min = 4.482336e+27  ratio to m2=inf 1.0000  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+10/canonical   : mu_min = 5.595607e+25  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+10/alt         : mu_min = 5.993640e+25  ratio to m2=inf 1.0000  (ok; 25 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+11/canonical   : mu_min = 9.263589e+26  ratio to m2=inf 1.0000  (ok; 20 evaluations; monotone probes True; below unstable True)  0.2s
+    2.5/1e+11/alt         : mu_min = 9.961608e+26  ratio to m2=inf 1.0000  (ok; 19 evaluations; monotone probes True; below unstable True)  0.2s
+    2.5/1e+12/canonical   : mu_min = 1.466509e+28  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    2.5/1e+12/alt         : mu_min = 1.586091e+28  ratio to m2=inf 1.0000  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+10/canonical   : mu_min = 1.348599e+26  ratio to m2=inf 1.0003  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+10/alt         : mu_min = 1.462274e+26  ratio to m2=inf 1.0003  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+11/canonical   : mu_min = 2.221678e+27  ratio to m2=inf 1.0002  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+11/alt         : mu_min = 2.410136e+27  ratio to m2=inf 1.0002  (ok; 23 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+12/canonical   : mu_min = 3.547311e+28  ratio to m2=inf 1.0002  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    4.0/1e+12/alt         : mu_min = 3.861109e+28  ratio to m2=inf 1.0001  (ok; 24 evaluations; monotone probes True; below unstable True)  0.3s
+    mu_uni(N) = 3.861109e+28 J/m (set by 4.0/1e+12/alt); ell = sqrt(mu_uni/m2) = 6.3680 kpc; mu_uni/mu_uni(inf) = 1.0001   [19s]
+
+======================================================================================================================
+COSTS: flagship (z = 2.5, 1e11, canonical, r_F) and Sun (z = 0, 6e10, canonical, 8 kpc); 2^17 elements
+======================================================================================================================
+    r_F = 38.5904 kpc; v_f^2 = 3.525279e+10 (flagship), 2.730670e+10 (Sun) m^2/s^2; g_MOND = 3.453217e-11 m/s^2
+    [D] at mu_ref = 1.474e28: Phi(r_F) = -13.675188 v_f^2 (force -45.6126 g_MOND; chi0 - t = +6.845536e-01, t = 28.31620); Phi(Sun) = -9.297467e+05 v_f^2 (chi0 - t = +1.802981e+02, t = 7.804395e+04)
+         dPhi/dln mu: flagship -1.5294e+01, Sun -3.7793e+06 v_f^2;  at my own mu_uni(D) = 3.861109e+28: Phi(r_F) = -41.308683, force -132.7506 g_MOND, Phi(Sun) = -8.263584e+06
+    [N] at mu_ref = 1.474e28: Phi(r_F) = -13.504414 v_f^2 (force -44.0302 g_MOND; chi0 - t = +6.760050e-01, t = 28.31620); Phi(Sun) = +7.649158e+07 v_f^2 (chi0 - t = -1.483338e+04, t = 7.804395e+04)
+         dPhi/dln mu: flagship -1.4461e+01, Sun +7.2860e+07 v_f^2;  at my own mu_uni(N) = 3.861109e+28: Phi(r_F) = -34.202940, force -89.7420 g_MOND, Phi(Sun) = +1.570936e+08
+
+======================================================================================================================
+P-LINES (scored; a failure is kept)
+======================================================================================================================
+  [FAIL] P1 [headline] mu_uni(D) and mu_uni(N) each within 1% of 1.474e28 J/m
+         measured: D 3.861109e+28 (+1.62e+00); N 3.861109e+28 (+1.62e+00)
+  [PASS] P2 [headline] |mu_uni(D)/mu_uni(N) - 1| <= 1e-3
+         measured: +0.000e+00
+  [PASS] P3D flagship, D: negative and within the band of -13.67 v_f^2
+         measured: -1.367519e+01 vs -1.367000e+01 (diff -5.188e-03; band 2.786e-01 = 2% 2.734e-01 + 3.4e-4 x |dPhi/dln mu| 5.200e-03; rel diff +3.796e-04)
+  [PASS] P3N flagship, N: negative and within the band of -13.50 v_f^2
+         measured: -1.350441e+01 vs -1.350000e+01 (diff -4.414e-03; band 2.749e-01 = 2% 2.700e-01 + 3.4e-4 x |dPhi/dln mu| 4.917e-03; rel diff +3.270e-04)
+  [PASS] P4D Sun, D: negative and within the band of -9.29e5 v_f^2
+         measured: -9.297467e+05 vs -9.290000e+05 (diff -7.467e+02; band 1.986e+04 = 2% 1.858e+04 + 3.4e-4 x |dPhi/dln mu| 1.285e+03; rel diff +8.037e-04)
+  [PASS] P4N Sun, N: positive and within the band of +7.647e7 v_f^2
+         measured: +7.649158e+07 vs +7.647000e+07 (diff +2.158e+04; band 1.554e+06 = 2% 1.529e+06 + 3.4e-4 x |dPhi/dln mu| 2.477e+04; rel diff +2.822e-04)
+  [PASS] P5 [my addition] Phi_F(D) - Phi_F(N) in [-0.19, -0.15] v_f^2
+         measured: -0.17077 v_f^2
+
+======================================================================================================================
+R-ROWS (reported, not scored)
+======================================================================================================================
+  R1 mu_uni(1e-12): D 3.861109e+28 (set by 4.0/1e+12/alt), N 3.861109e+28 (set by 4.0/1e+12/alt); CFG102: z = 2.5, 1e12, alt
+     mu_uni(inf) 3.860637e+28 (set by 4.0/1e+12/alt); ratio mu_uni(1e-12)/mu_uni(inf): D 1.0001, N 1.0001 (CFG102: 0.382); ell: D 6.3680 kpc (CFG49: 3.9)
+  R2 at my own mu_uni: Phi_F D -41.308683 (+2.02e+00), N -34.202940 (+1.53e+00); D - N -7.10574; Phi_Sun D -8.263584e+06 (+7.90e+00), N +1.570936e+08 (+1.05e+00); flagship force D -132.7506, N -89.7420 g_MOND
+  R3 flagship force at mu_ref: D -45.6126 (CFG102 -45.60), N -44.0302 (CFG102 -44.02) g_MOND; dPhi/dln mu: flagship D -1.5294e+01, N -1.4461e+01; Sun D -3.7793e+06, N +7.2860e+07 v_f^2
+     t and chi0 - t at r_F: D t = 28.31620, delta +6.845536e-01; N delta +6.760050e-01; at 8 kpc: t = 7.804395e+04, delta D +1.802981e+02, N -1.483338e+04
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  R4 Newton: {'solves': 16, 'max_newton_iterations': 2, 'max_final_residual': 1.447432051247744e-16, 'unconverged': 0, 'max_shift_tau': 0.0, 'line_search_halvings': 0}
+  P-lines: 6/7 pass; failed: ['P1']
+  MUTATE=slaved: the mutation changes the headline (some P-line fails): exit 1 as required
+  wrote cfg150_MUTATE_slaved_results.json; elapsed 22s
+  exit code 1
+
+  kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
