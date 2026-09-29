@@ -1,0 +1,104 @@
+CFG53 -- THE MASSIVE PASSIVE DISKS BY SHAPE: does the outer rotation curve of a massive red disk rise, as B's derived cold-mass rule says
+it must, or keep the law's shape?
+
+WHY.  CFG41 scored Di Teodoro+2023's 15 massive HI disks (four S0 / S0a) by the AMPLITUDE of the flat part and could not separate the law
+from the rule: the 0.2-dex stellar-mass systematic enters the rule steeply through the collapse mass (the rule's error on the four is
+0.131 dex), and the sample's cut on HI width biases every amplitude high (B = 0.076 +- 0.030).  The rule's debris is an NFW component
+of the collapse mass, and inside 30-97 kpc an NFW circular speed RISES, while the law's outer curve is flat or gently falling.  The SHAPE
+of the outer curve (its logarithmic slope) is nearly blind to the stellar-mass normalisation under the law, fully blind to distance
+under the law (x_N = G M_b / R^2 a0 does not move when D does), and a cut on the flat SPEED does not select on it directly.  The rule makes
+debris for RED disks only (CFG36; CFG41 printed f_ex = 0 for every blue galaxy of this sample), so the red-minus-blue slope difference
+cancels what the two colours share (tilted-ring fitting, warps, beam, the estimator, the width cut).
+
+THE METHOD (declared before this script's first run).  CFG41's machinery exec'd read-only: the data, the colour convention (RC3 T <= 0 red),
+CFG36's collapse masses, the conservation form at x_e = 0.40, nu_mono, point-mass baryons with sphere / Freeman brackets at R_d = 8 kpc.
+Outer curve: the points with R >= R_max / 2 (every galaxy has >= 4).  Slope: weighted least squares of ln V on ln R, weights (V / dV)^2,
+formal error x sqrt(2) (adjacent tilted rings share the beam).  Predicted slopes: the SAME estimator with the SAME weights applied to the
+law's and the rule's speeds at the same radii.  Per galaxy r_i = s_obs - s_law (the observed slope relative to the law) and
+p_i = s_rule - s_law (the rule's predicted excess).  Groups: red (T <= 0) and blue (the rest); inverse-variance means with the
+observational errors, each group's error scaled by sqrt(chi2 / dof) when that exceeds 1.  D_obs = <r>_red - <r>_blue and
+D_rule = <p>_red - <p>_blue (same weights); the law predicts D = 0.  Systematics, each applied COHERENTLY to every galaxy, as half the
+spread of the quantity tested: the baryon model (point / sphere / Freeman), M_* +-0.2 dex, M_gas +-0.1 dex, distance +-dD (the paper's;
+moves R and M_b together).  sigma = the statistical error and the systematics in quadrature.
+
+PRE-DECLARED
+  C1  CONTROL  the data as CFG41 read them: 15 galaxies, 216 points; red (T <= 0) = NGC 1167, NGC 5790, UGC 12591, UGC 12811.
+  C2  CONTROL  CFG41's committed four-S0 amplitude numbers reproduced by the exec'd machinery (rule -0.105, law +0.004; to 1e-9), and this
+               script's radius-resolved speed equal to CFG41's at CFG41's radius for every galaxy, both predictions, three models (to 1e-9).
+  C3  CONTROL  the slope estimator: a flat curve gives 0 and a power law R^0.1 gives 0.1 at every galaxy's radii (to 1e-12).
+  H1  THE LAW FITS THE BLUE SHAPES: |<r>_blue| < 2 sigma, canonical.
+  H2  [HEADLINE; MUTATE must fail] THE RED DISKS' SHAPE REJECTS THE RULE'S DEBRIS: (D_obs - D_rule) / sigma < -2 on both footings.
+  H3  THE TEST HAS POWER: D_rule / sigma >= 2, canonical (the rule's and the law's predicted shapes differ by 2 sigma).
+  R1-R5 (reported): per-galaxy table; the absolute red test (<r>_red against <p>_red and against 0); the WISE colours (W2-W3 < 2.0 red);
+      the two flagged galaxies (NGC 5635, UGC 12591) removed; amplitude and shape together for the four (Stouffer of CFG41's rule z and
+      this script's absolute red rule z).
+  READING (declared): H3 FAIL -> the shape cannot decide either.  H3 PASS and H2 PASS -> massive passive disks do not rise as the rule's
+      debris requires: the derived rule is rejected on its own population by a test blind to the stellar-mass normalisation.  H3 PASS and
+      H2 FAIL -> the shape does not reject the rule; if D_obs also sits > 2 sigma above 0, the shape favours the rule over the law.
+MUTATE=1: every galaxy's observed speeds multiplied by v_rule / v_law (canonical, nominal) at each radius -- the data made to carry the
+rule's shape (the factor is 1 wherever f_ex = 0) -- H2 must FAIL (rc = 1).
+
+======================================================================================================================
+C1-C3  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: the data as CFG41 read them: 15 galaxies, 216 points; red (T <= 0) = NGC 1167, NGC 5790, UGC 12591, UGC 12811
+         15 galaxies, 216 points; red ['NGC1167', 'NGC5790', 'UGC12591', 'UGC12811']
+  [PASS] C2 CONTROL: CFG41's four-S0 numbers reproduced (rule -0.105, law +0.004) and the radius-resolved speed equals CFG41's at its radius
+         rule -0.105012 (committed -0.105012), law +0.003817 (committed +0.003817); max speed difference 0.0e+00 km/s
+  [PASS] C3 CONTROL: the slope estimator returns 0 for a flat curve and 0.1 for R^0.1 at every galaxy's radii
+         max error 6.9e-17
+
+======================================================================================================================
+PER GALAXY (canonical): outer slope d ln V / d ln R, observed vs the law and the rule (same estimator, same radii)
+======================================================================================================================
+    NGC0338   blue  7 pts  29.6- 56.9 kpc: obs -0.037 +- 0.240; law -0.096; rule -0.096 (f_ex 0.00); obs - law +0.059
+    NGC1167   red   6 pts  50.7- 89.7 kpc: obs +0.005 +- 0.298; law -0.066; rule +0.041 (f_ex 0.31); obs - law +0.071
+    NGC1324   blue  7 pts  21.0- 37.8 kpc: obs -0.214 +- 0.115; law -0.137; rule -0.137 (f_ex 0.00); obs - law -0.077
+    NGC2599   blue  5 pts  30.5- 57.7 kpc: obs -0.236 +- 0.260; law -0.088; rule -0.088 (f_ex 0.00); obs - law -0.148
+    NGC2713   blue 10 pts  31.6- 61.5 kpc: obs -0.157 +- 0.099; law -0.115; rule -0.115 (f_ex 0.00); obs - law -0.042
+    NGC2862   blue 13 pts  28.9- 56.7 kpc: obs -0.103 +- 0.118; law -0.087; rule -0.087 (f_ex 0.00); obs - law -0.015
+    NGC5440   blue 15 pts  43.1- 82.0 kpc: obs -0.102 +- 0.049; law -0.063; rule -0.063 (f_ex 0.00); obs - law -0.039
+    NGC5533   blue 11 pts  35.5- 66.4 kpc: obs +0.016 +- 0.119; law -0.070; rule -0.070 (f_ex 0.00); obs - law +0.085
+    NGC5635   blue  5 pts  17.2- 29.8 kpc: obs +0.139 +- 0.101; law -0.149; rule -0.149 (f_ex 0.00); obs - law +0.288
+    NGC5790   red   4 pts  32.3- 53.8 kpc: obs -0.303 +- 0.249; law -0.106; rule +0.017 (f_ex 0.31); obs - law -0.197
+    UGC02849  blue  6 pts  29.4- 56.2 kpc: obs -0.083 +- 0.157; law -0.102; rule -0.102 (f_ex 0.00); obs - law +0.019
+    UGC02885  blue 10 pts  36.2- 67.2 kpc: obs +0.141 +- 0.067; law -0.085; rule -0.085 (f_ex 0.00); obs - law +0.226
+    UGC08179  blue  5 pts  45.6- 86.2 kpc: obs -0.003 +- 0.232; law -0.105; rule -0.105 (f_ex 0.00); obs - law +0.102
+    UGC12591  red   4 pts  16.5- 30.7 kpc: obs -0.022 +- 0.292; law -0.262; rule -0.020 (f_ex 0.78); obs - law +0.240
+    UGC12811  red   6 pts  54.8- 96.9 kpc: obs -0.050 +- 0.197; law -0.067; rule +0.090 (f_ex 0.49); obs - law +0.018
+
+    canonical: red <r> +0.0137 +- 0.1241 (chi2 1.3/3), rule predicts +0.1554; blue <r> +0.0517 +- 0.0406 (chi2 18.9/10), rule predicts +0.0000
+    canonical: D_obs -0.0380, D_rule +0.1554; stat 0.1306; syst (D_obs - D_rule) model 0.0146, M_* 0.0832, M_gas 0.0014, distance 0.0324 -> sigma 0.1589
+    canonical: (D_obs - D_rule)/sigma -1.22; D_obs/sigma_law -0.29; D_rule/sigma +0.98; blue <r>/sigma +0.93
+
+    alt: red <r> +0.0048 +- 0.1241 (chi2 1.3/3), rule predicts +0.1275; blue <r> +0.0443 +- 0.0403 (chi2 18.7/10), rule predicts +0.0000
+    alt: D_obs -0.0394, D_rule +0.1275; stat 0.1305; syst (D_obs - D_rule) model 0.0126, M_* 0.0822, M_gas 0.0020, distance 0.0397 -> sigma 0.1598
+    alt: (D_obs - D_rule)/sigma -1.04; D_obs/sigma_law -0.30; D_rule/sigma +0.80; blue <r>/sigma +0.81
+
+======================================================================================================================
+H1-H3
+======================================================================================================================
+  [PASS] H1 THE LAW FITS THE BLUE SHAPES: |<r>_blue| < 2 sigma, canonical
+         <r>_blue +0.0517 -> +0.93 sigma
+  [FAIL] H2 [HEADLINE] THE RED DISKS' SHAPE REJECTS THE RULE'S DEBRIS: (D_obs - D_rule)/sigma < -2 on both footings
+         canonical: D_obs -0.0380 vs D_rule +0.1554 -> -1.22 sigma; alt: D_obs -0.0394 vs D_rule +0.1275 -> -1.04 sigma
+  [FAIL] H3 THE TEST HAS POWER: D_rule / sigma >= 2, canonical
+         D_rule +0.1554, sigma 0.1589 -> +0.98
+
+======================================================================================================================
+R2-R5 (reported)
+======================================================================================================================
+  [PASS] (reported) R2 (reported, canonical) the absolute red test: <r>_red against the rule's <p>_red and against the law's 0
+         <r>_red +0.0137 vs rule +0.1554: -0.96 sigma; vs law 0: +0.11 sigma
+  [PASS] (reported) R2 (reported, alt) the absolute red test: <r>_red against the rule's <p>_red and against the law's 0
+         <r>_red +0.0048 vs rule +0.1275: -0.82 sigma; vs law 0: +0.04 sigma
+  [PASS] (reported) R3 (reported) the WISE colours (W2-W3 < 2.0 red), canonical
+         red = ['NGC1167', 'NGC2862', 'NGC5440', 'NGC5635', 'UGC12591', 'UGC12811']; D_obs -0.0528, D_rule +0.0128: (D_obs - D_rule)/sigma -0.70; power +0.14
+  [PASS] (reported) R4 (reported) the two flagged galaxies (NGC 5635, UGC 12591) removed, canonical
+         D_obs -0.0655, D_rule +0.1362: (D_obs - D_rule)/sigma -1.10; power +0.74
+  [PASS] (reported) R5 (reported) amplitude (CFG41) and shape together for the four red disks, against the rule (Stouffer)
+         CFG41 amplitude z -0.80; shape (absolute red vs rule) z -0.96; combined -1.25
+
+    READING (declared): the shape cannot decide either: the rule's predicted red-blue slope difference is under 2 sigma
+
+  9/11 checks pass; load-bearing failures: 2   (19 s)
