@@ -1,6 +1,6 @@
 # ChainCert — the composable Lean core of the chain
 
-`lake build ChainCert` builds it; `ChainCert/verify_chain.sh` checks that it builds, has no `sorry`, and that all 131 theorems depend only on `propext`, `Classical.choice` and `Quot.sound` (`MUTATE=1` adds an unproved theorem and must fail). Outputs: `verify_chain.out`, `verify_chain_MUTATE.out`, `Axioms.out`.
+`lake build ChainCert` builds it; `ChainCert/verify_chain.sh` checks that it builds, has no `sorry`, and that all 161 theorems depend only on `propext`, `Classical.choice` and `Quot.sound` (`MUTATE=1` adds an unproved theorem and must fail). Outputs: `verify_chain.out`, `verify_chain_MUTATE.out`, `Axioms.out`.
 
 **What Lean certifies here is that the conclusions follow from the stated premises. It certifies no empirical fact.** κ = ½ is fitted; Ω_c is fitted; ρ_Λ constant is a premise; the kernel is declared.
 
@@ -41,3 +41,15 @@ Two new modules, each theorem on standard axioms only (`verify_chain.sh`: PASS, 
 |---|---|---|---|
 | CFG48 Gauss lemma (G1, C1) | for `psi' = G M/r^2`, `Phi' = A psi'`: `r^2 Phi'/G = A M`; at the gate off (`W = 0`, `A = 1`) it equals `M`; `d/dr(r^2 psi') = 4 pi G r^2 rho`; the psi-momentum vanishes on `Phi' = A psi'`; a second real-mass source `M_c != 0` makes the `W = 0` mass `M + M_c`, not `M` | **certified: the algebra of the solution check.** NOT certified: the derivation of the Euler-Lagrange equations from the action (sympy in G1), the Helmholtz test (C3), the Noether budget (C4) | `Gauss` |
 | CFG63 separation algebra | `S(N) = Delta/sqrt(v/N + f^2)` is strictly increasing in `N`, `< Delta/f` for `f > 0`, tends to `Delta/f`; if `f < Delta/k` then `N(k) = v/((Delta/k)^2 - f^2)` reaches `k` sigma and is the only `N` that does; if `Delta/k <= f` no `N` does; with `f = 0`, `N(k) = v k^2/Delta^2` | **certified as algebra.** NOT certified: any committed number (`Delta`, `v`, `f`, the citations) or the significance model itself, which is CFG63's declaration | `Separation` |
+
+## Added 2026-09-28: `Exchange` (CFG72 algebra, 30 theorems; 161 in the library)
+
+`verify_chain.sh`: PASS, 161 theorems checked, standard axioms only; `MUTATE=1` fails as required; 31 false variants of the statements (one per theorem, plus a weakened-hypothesis variant of `exch_fbb_gt_one`) are each rejected by Lean (`ExchangeMutate.lean.txt`, `ExchangeMutate.out`: 31 errors).
+
+| link | statement | status | where |
+|---|---|---|---|
+| CFG72 characteristic speed (D5) | `beta = c_f vt^2/N > 0`, so `sqrt(1+beta) > 1`; `c_m sqrt(1+beta) = c` iff `c_m = c/sqrt(1+beta)`; the characteristic polynomial of the declared 3x3 symbol is `lam (lam^2 - c_m^2 (1+beta))`, with distinct roots `0, +-c_m sqrt(1+beta)` for `c_m > 0`, `beta > -1` | **certified as algebra** | `Exchange.lean` |
+| CFG72 static structure (D3) | `theta = vartheta M - (1+beta) r_led/c_f`; the probe force `F/vartheta = r_led - 1/lam_t = (delta - 1)/lam_t`, never equal to `r_led`, negative for `delta < 1`; contamination `delta = lam_t r_led` and baryon-baryon ratio `f_bb = 1/(lam_t r_led)` satisfy `delta f_bb = 1` (for `lam_t r_led != 0`), so `0 < delta < 1` forces `f_bb > 1`, `delta <= eps` forces `f_bb >= 1/eps`, and `delta <= a`, `f_bb <= b` with `ab < 1` is impossible; in the open class `r_led = 0` gives `delta = 0` (the identity is not claimed there); `beta = eps_c lam_t`; `f_real = 1 - r/eps_c - delta` (1 in the open class, `< 1` for `r > 0`) | **certified as algebra.** The trade-off holds for any values of the free couplings `lam_t, beta, vt, c_f, N, g_b`; nothing ties them | `Exchange.lean` |
+| CFG72 retardation and sigma-slaved / hydrostatic readings (D4, D6) | at value level, `E = E_qs + w` satisfies the wave equation iff `N (w_tt/c^2 - w_rr) = -(g_b M_tt + S_tt)/c^2`; `(3/8) a0 (2g + a0)/(g + a0)` is strictly increasing in `g` on `g > -a0`, lies in `((3/8) a0, (3/4) a0)` for `g > 0`, reduces to G4's `(3/8) a0 (2+x^2)/(1+x^2)` for `g = a0/x^2` and is strictly decreasing in `x`; `int_0^u r^2/u^2 dr = u/3`; the hydrostatic shell energy has reaction `a0/2` per unit mass | **certified as algebra.** D4's 'second-order retardation' implication is NOT certified (CFG72 records it as wrong for boundary-driven sources) | `Exchange.lean` |
+
+NOT certified: the Schwinger-Keldysh action and its Euler-Lagrange derivation (D1, D2), the lattice causality and reciprocity checks, all numerics (Q1 simulations, the Q2 table), the Q3 stability result (nothing here says the operator is stable or unstable), the target law, the P1-P4 verdicts, and that the theory is closed. kappa = 1/2 is FITTED.

@@ -5,6 +5,7 @@ import ChainCert.Profile
 import ChainCert.Cusp
 import ChainCert.Gauss
 import ChainCert.Separation
+import ChainCert.Exchange
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -140,3 +141,33 @@ import ChainCert.Separation
 #print axioms sep_solve_unique
 #print axioms sep_no_solution
 #print axioms sep_zero_floor
+#print axioms exch_beta_pos
+#print axioms exch_speed_gt_one
+#print axioms exch_speed_eq_iff
+#print axioms exch_bare_speed_lt
+#print axioms exch_symbol_charpoly
+#print axioms exch_symbol_eigen_iff
+#print axioms exch_symbol_roots_distinct
+#print axioms exch_static_theta
+#print axioms exch_static_reaction
+#print axioms exch_reaction_via_delta
+#print axioms exch_reaction_ne_rled
+#print axioms exch_reaction_neg_of_delta_lt_one
+#print axioms exch_static_delta_fbb
+#print axioms exch_delta_mul_fbb
+#print axioms exch_open_delta_zero
+#print axioms exch_fbb_gt_one
+#print axioms exch_fbb_large
+#print axioms exch_not_both_small
+#print axioms exch_beta_eq_epsc_lamt
+#print axioms exch_freal_split
+#print axioms exch_freal_open
+#print axioms exch_freal_lt_one
+#print axioms exch_retardation_iff
+#print axioms exch_sigma_strictMono
+#print axioms exch_sigma_bounds
+#print axioms exch_sigma_pointmass
+#print axioms exch_sigma_pointmass_strictAnti
+#print axioms exch_shell_integral
+#print axioms exch_hyd_reaction
+#print axioms exch_hyd_reaction_per_mass

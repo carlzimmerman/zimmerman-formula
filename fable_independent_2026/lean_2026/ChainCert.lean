@@ -7,3 +7,4 @@ import ChainCert.Profile
 import ChainCert.Cusp
 import ChainCert.Gauss
 import ChainCert.Separation
+import ChainCert.Exchange

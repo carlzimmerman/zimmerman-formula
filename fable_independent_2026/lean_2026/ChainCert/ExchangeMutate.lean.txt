@@ -1,0 +1,34 @@
+import ChainCert.Exchange
+-- Each theorem below is a FALSE variant of the corresponding Exchange theorem, "proved" by the original's proof term.
+-- Lean must reject every one (30 errors expected, one per mutation).
+theorem m01 {cf vt N : ℝ} (hcf : 0 < cf) (hvt : vt ≠ 0) (hN : 0 < N) : cf * vt ^ 2 / N < 0 := exch_beta_pos hcf hvt hN
+theorem m02 {β : ℝ} (hβ : 0 < β) : Real.sqrt (1 + β) < 1 := exch_speed_gt_one hβ
+theorem m03 {c cm β : ℝ} (hβ : 0 < β) : cm * Real.sqrt (1 + β) = c ↔ cm = c * Real.sqrt (1 + β) := exch_speed_eq_iff hβ
+theorem m04 {c β : ℝ} (hc : 0 < c) (hβ : 0 < β) : c < c / Real.sqrt (1 + β) := exch_bare_speed_lt hc hβ
+theorem m05 (cm β lam : ℝ) : (lam • (1 : Matrix (Fin 3) (Fin 3) ℝ) - exchSymbol cm β).det = lam * (lam ^ 2 - cm ^ 2 * (1 - β)) := exch_symbol_charpoly cm β lam
+theorem m06 {cm β : ℝ} (hβ : -1 < β) (lam : ℝ) : (lam • (1 : Matrix (Fin 3) (Fin 3) ℝ) - exchSymbol cm β).det = 0 ↔ (lam = cm * Real.sqrt (1 + β) ∨ lam = -(cm * Real.sqrt (1 + β))) := exch_symbol_eigen_iff hβ lam
+theorem m07 {cm β : ℝ} (hcm : 0 < cm) (hβ : -1 < β) : cm * Real.sqrt (1 + β) < 0 := (exch_symbol_roots_distinct hcm hβ).1
+theorem m08 {cf vt gb N M rled eps S E θ ϑ β : ℝ} (hcf : cf ≠ 0) (hN : N ≠ 0) (hϑ : ϑ = vt * gb / N) (hβ : β = cf * vt ^ 2 / N) (heps : eps = -rled / cf) (hS : S = cf * vt * eps) (hE : E = (gb * M + S) / N) (hθ : θ = eps + vt * E) : θ = ϑ * M - (1 - β) * rled / cf := exch_static_theta hcf hN hϑ hβ heps hS hE hθ
+theorem m09 {cf vt gb N M rled eps S E F ϑ lamt : ℝ} (hcf : cf ≠ 0) (hN : N ≠ 0) (hvt : vt ≠ 0) (hgb : gb ≠ 0) (hM : M ≠ 0) (hϑ : ϑ = vt * gb / N) (hlam : lamt = vt / (gb * M)) (heps : eps = -rled / cf) (hS : S = cf * vt * eps) (hE : E = (gb * M + S) / N) (hF : F = -gb * E) : F / ϑ = rled + 1 / lamt := exch_static_reaction hcf hN hvt hgb hM hϑ hlam heps hS hE hF
+theorem m10 {r lamt : ℝ} (hl : lamt ≠ 0) : r - 1 / lamt = (lamt * r + 1) / lamt := exch_reaction_via_delta hl
+theorem m11 {r lamt : ℝ} (hl : lamt ≠ 0) : r - 1 / lamt = r := exch_reaction_ne_rled hl
+theorem m12 {r lamt : ℝ} (hl : 0 < lamt) (hd : lamt * r < 1) : 0 < r - 1 / lamt := exch_reaction_neg_of_delta_lt_one hl hd
+theorem m13 {vt gb M rled ϑ lamt : ℝ} (hvt : vt ≠ 0) (hgb : gb ≠ 0) (hM : M ≠ 0) (hr : rled ≠ 0) (hϑ : ϑ ≠ 0) (hlam : lamt = vt / (gb * M)) : (lamt * rled) * ((ϑ * M / (vt / gb)) / (ϑ * rled)) = 2 := (exch_static_delta_fbb hvt hgb hM hr hϑ hlam).2
+theorem m14 {lamt rled : ℝ} (h : lamt * rled ≠ 0) : (lamt * rled) * (1 / (lamt * rled)) = 2 := exch_delta_mul_fbb h
+theorem m15 (lamt : ℝ) : lamt * 0 = 1 := exch_open_delta_zero lamt
+theorem m16 {δ f : ℝ} (hδ0 : 0 < δ) (hδ1 : δ < 1) (h : δ * f = 1) : f < 1 := exch_fbb_gt_one hδ0 hδ1 h
+theorem m16b {δ f : ℝ} (hδ0 : 0 < δ) (hδ1 : δ < 2) (h : δ * f = 1) : 1 < f := exch_fbb_gt_one hδ0 hδ1 h
+theorem m17 {δ f ε : ℝ} (hδ : 0 < δ) (hε : δ ≤ ε) (h : δ * f = 1) : f ≤ 1 / ε := exch_fbb_large hδ hε h
+theorem m18 {δ f a b : ℝ} (hδ : 0 < δ) (hf : 0 < f) (h : δ * f = 1) (hab : a * b < 2) : ¬ (δ ≤ a ∧ f ≤ b) := exch_not_both_small hδ hf h hab
+theorem m19 {cf vt gb N M ϑ epsc lamt β : ℝ} (hN : N ≠ 0) (hgb : gb ≠ 0) (hM : M ≠ 0) (hϑ : ϑ = vt * gb / N) (hepsc : epsc = cf * (ϑ * M)) (hlam : lamt = vt / (gb * M)) (hβ : β = cf * vt ^ 2 / N) : β = epsc * lamt + 1 := exch_beta_eq_epsc_lamt hN hgb hM hϑ hepsc hlam hβ
+theorem m20 {β epsc lamt rled : ℝ} (he : epsc ≠ 0) (hβ : β = epsc * lamt) : 1 - (1 + β) * rled / epsc = 1 - rled / epsc + lamt * rled := exch_freal_split he hβ
+theorem m21 {β epsc : ℝ} : 1 - (1 + β) * 0 / epsc = 0 := exch_freal_open
+theorem m22 {β epsc rled : ℝ} (hr : 0 < rled) (he : 0 < epsc) (hβ : -1 < β) : 1 < 1 - (1 + β) * rled / epsc := exch_freal_lt_one hr he hβ
+theorem m23 {N c gb Mtt Stt Mrr Srr Eqt Eqr wt wr : ℝ} (hN : N ≠ 0) (hc : c ≠ 0) (hEt : N * Eqt = gb * Mtt + Stt) (hEr : N * Eqr = gb * Mrr + Srr) : N * ((Eqt + wt) / c ^ 2 - (Eqr + wr)) = -gb * Mrr - Srr ↔ N * (wt / c ^ 2 - wr) = (gb * Mtt + Stt) / c ^ 2 := exch_retardation_iff hN hc hEt hEr
+theorem m24 {a0 g₁ g₂ : ℝ} (ha : 0 < a0) (h1 : -a0 < g₁) (h12 : g₁ < g₂) : sigmaReact a0 g₂ < sigmaReact a0 g₁ := exch_sigma_strictMono ha h1 h12
+theorem m25 {a0 g : ℝ} (ha : 0 < a0) (hg : 0 < g) : sigmaReact a0 g < 3 / 8 * a0 ∧ sigmaReact a0 g < 3 / 4 * a0 := exch_sigma_bounds ha hg
+theorem m26 {a0 x : ℝ} (ha : 0 < a0) (hx : x ≠ 0) : sigmaReact a0 (a0 / x ^ 2) = 3 / 8 * a0 * (2 - x ^ 2) / (1 + x ^ 2) := exch_sigma_pointmass ha hx
+theorem m27 {a0 x₁ x₂ : ℝ} (ha : 0 < a0) (hx1 : 0 < x₁) (h12 : x₁ < x₂) : sigmaReact a0 (a0 / x₁ ^ 2) < sigmaReact a0 (a0 / x₂ ^ 2) := exch_sigma_pointmass_strictAnti ha hx1 h12
+theorem m28 {u : ℝ} (hu : u ≠ 0) : ∫ r in (0 : ℝ)..u, r ^ 2 / u ^ 2 = u / 2 := exch_shell_integral hu
+theorem m29 (a0 dm R u : ℝ) : HasDerivAt (hydShellE a0 dm R) (-(a0 / 3) * dm) u := exch_hyd_reaction a0 dm R u
+theorem m30 {a0 dm : ℝ} (hdm : dm ≠ 0) : -(-(a0 / 2) * dm) / dm = a0 / 3 := exch_hyd_reaction_per_mass hdm
