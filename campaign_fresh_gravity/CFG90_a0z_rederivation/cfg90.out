@@ -1,0 +1,212 @@
+CFG90 run MAIN   a0can=9.3603e-11 a0alt=1.1312e-10
+====================================================================================================
+PASS C1a a0_can closed form -- (1/2)cH0 sqrt(3 OL/8pi) = 9.3650e-11 vs 9.3603e-11 (+0.0503%)
+PASS C1b a0_alt closed form -- (1/2)cH0 sqrt(3/8pi) = 1.1305e-10 vs 1.1312e-10 (-0.0590%)
+PASS C1c alt/can = 1/sqrt(OL) -- 1.20851 vs 1.20719
+PASS C2a E(z) closed form vs Friedmann densities -- E(1)=1.787904, E(2)=3.026351, E(2.5)=3.760369
+PASS C2b angular scale at z=1 (7.8-8.4 kpc/arcsec) -- 8.256 kpc/arcsec
+PASS C3a Freeman closed form vs direct ring-sum potential -- max rel dev 3.00e-07 over R/Rd = 0.5..6
+PASS C3b Freeman v^2 peaks at 2.15 R_d -- peak at 2.150 R_d, v2max = 0.3870 GM/Rd
+PASS C3c Freeman -> GM/R^2 at large R -- f(60)*60^2 = 1.00126
+PASS C4a kernel round trip g_bar->g_obs->g_bar -- max rel 2.2e-14
+PASS C4b deep-MOND and Newton limits -- nu(1e-4) sqrt(y) = 1.00501, nu(1e4) = 1.00000
+
+loaded: RC100:100, MSA3D:30, KMOS3D:129, KROSS:381, MUSE2:95   KMOS3D matched 129 of 135, dropped 6
+PASS C8a KMOS3D R_half match >= 95% -- 129/135
+PASS C5 disc g_bar vs (1-fDM) g_obs on RC100 (README -0.01 dex; pass |median| < 0.03) -- median +0.011 dex, MAD 0.066, N=100
+
+====================================================================================================
+Q1: counts (canonical, native radii, disc baryons)
+set         N   <a0  <0.5a0  <0.3a0 | z>=1.5:  <a0  <0.3a0 | CFG52 README (<a0,<0.3a0,z>=1.5 <a0,<0.3a0)
+RC100     100    26      13       4 |             9       1 | (26, 4, 9, 1)
+MSA3D      30    19      12       4 |             3       0 | (19, 4, 3, 0)
+KMOS3D    129    20       8       7 |             3       0 | (16, 5, 2, 0)
+KROSS     381   197     116      61 |             0       0 | (106, 15, 0, 0)
+MUSE2      95    76      58      45 |             0       0 | (74, 43, 0, 0)
+total g_bar<a0, five surveys: 338   (README: 242 incl. ledger; the five README rows sum to 241)
+ledger PUB point-valued rows parsed: [('MACS0451-arc', 2.013, 1.55), ('DSFG850.95', 1.555, 0.95), ('Big Wheel', 3.245, 3.64)]; below a0: ['DSFG850.95']
+total including ledger PUB rows: 339
+
+====================================================================================================
+Q2: prediction gap flat vs a0 E(z) over the 338 discs with g_bar<a0 (five surveys)
+gap/sigma > 1 : 20     > 2 : 0     (CFG52 README: 16 and 0)
+gap dex: median 0.084 (p16 0.071, p84 0.107);  sigma_i median 0.154 (p16 0.136, p84 0.163)
+   RC100   N= 26 gap med 0.096  sigma med 0.158  n(>1sig)=7  max gap/sig=1.47
+   MSA3D   N= 19 gap med 0.095  sigma med 0.134  n(>1sig)=1  max gap/sig=1.05
+   KMOS3D  N= 20 gap med 0.089  sigma med 0.159  n(>1sig)=1  max gap/sig=1.23
+   KROSS   N=197 gap med 0.082  sigma med 0.156  n(>1sig)=0  max gap/sig=0.79
+   MUSE2   N= 76 gap med 0.096  sigma med 0.133  n(>1sig)=11  max gap/sig=1.36
+top gap/sigma objects:
+survey            name        z    y_can      gap    sigma   gapsig
+ RC100       zC 410041 2.450000 0.357063 0.225698 0.153795 1.467519
+ RC100       GS4 01529 2.120000 0.196354 0.212363 0.148562 1.429452
+ RC100       zC 405226 2.290000 0.381693 0.211546 0.154465 1.369541
+ MUSE2             939 1.428456 0.074049 0.159417 0.116968 1.362906
+ MUSE2            4506 1.449702 0.132614 0.155452 0.118792 1.308610
+ MUSE2            1390 1.303011 0.011714 0.156495 0.123674 1.265386
+ RC100      SSA22 MD41 2.170000 0.464189 0.196856 0.156536 1.257573
+KMOS3D K131:COS4_08515 2.454000 0.794804 0.201104 0.163092 1.233068
+ RC100         K20 ID9 2.040000 0.452611 0.187081 0.156260 1.197243
+ MUSE2            4583 1.429269 0.284057 0.142520 0.125057 1.139640
+ MUSE2           10419 1.367040 0.253686 0.138223 0.125676 1.099836
+ MUSE2             161 1.122728 0.030431 0.131407 0.121636 1.080332
+ MUSE2            3421 1.339769 0.291752 0.133337 0.124663 1.069579
+ MUSE2           11212 1.294124 0.036720 0.150047 0.140321 1.069314
+ RC100       zC 405501 2.150000 0.877578 0.175712 0.164443 1.068533
+ RC100        U3 10584 2.220000 0.997457 0.176233 0.166253 1.060025
+ MSA3D            8365 1.680000 0.723172 0.144925 0.137665 1.052732
+ MUSE2           11457 1.264266 0.250027 0.128135 0.123169 1.040317
+ MUSE2            8115 1.034508 0.046243 0.118825 0.115287 1.030685
+ MUSE2            9389 1.161211 0.152155 0.123574 0.120643 1.024296
+PASS C6 median sigma_i in 0.10-0.20 dex (README 0.13-0.16) -- 0.154
+
+====================================================================================================
+Q3: z>=1.5 objects with g_bar<0.3 a0
+[can] raw N=1; clean (f_DM consistency) N=0
+survey      name    z    y_can  clean_dfm
+ RC100 GS4 01529 2.12 0.196354      False
+[alt] raw N=2; clean (f_DM consistency) N=1
+survey      name    z    y_alt  clean_dfm
+ RC100 GS4 01529 2.12 0.162476      False
+ RC100 zC 410041 2.45 0.295457       True
+z>=1.5 objects with g_bar/a0 in [0.3,1.0), canonical (the whole z>=1.5 g_bar<a0 set):
+survey            name     z  y_can  y_alt  clean_dfm  dflat  drival   gap  sigma
+ RC100       GS4 01529 2.120  0.196  0.162      False  1.138   0.926 0.212  0.149
+ RC100       zC 410041 2.450  0.357  0.295       True  0.178  -0.048 0.226  0.154
+ RC100       zC 405226 2.290  0.382  0.316       True  0.278   0.066 0.212  0.154
+ RC100         K20 ID9 2.040  0.453  0.375      False  0.460   0.273 0.187  0.156
+ RC100      SSA22 MD41 2.170  0.464  0.384       True  0.243   0.046 0.197  0.157
+ RC100      COS4 10048 1.500  0.605  0.501       True  0.025  -0.109 0.134  0.160
+ MSA3D            6199 1.590  0.666  0.551      False -0.507  -0.646 0.140  0.268
+ MSA3D            8365 1.680  0.723  0.598       True  0.142  -0.003 0.145  0.138
+ MSA3D            8576 1.570  0.759  0.628       True  0.470   0.336 0.134  0.168
+KMOS3D    K77:U4_04939 1.534  0.789  0.653       True  0.183   0.053 0.130  0.163
+KMOS3D K131:COS4_08515 2.454  0.795  0.658       True -0.007  -0.208 0.201  0.163
+ RC100       zC 405501 2.150  0.878  0.726       True -0.574  -0.750 0.176  0.164
+ RC100       GS3 15675 2.000  0.982  0.813       True  0.105  -0.056 0.161  0.166
+ RC100        U3 10584 2.220  0.997  0.825       True  0.066  -0.110 0.176  0.166
+KMOS3D   K80:GS4_07584 1.551  1.000  0.827       True -0.151  -0.276 0.125  0.166
+z>=1.5 with g_bar<a0: canonical N=15, alt N=19; by survey can {'RC100': 9, 'MSA3D': 3, 'KMOS3D': 3} alt {'RC100': 12, 'KMOS3D': 4, 'MSA3D': 3}
+ledger PUB rows at z>=1.5 below a0: [('DSFG850.95', 1.555, 0.95)]
+zC 410041 row(s):
+survey      name    z    y_can    y_alt
+ RC100 zC 410041 2.45 0.357063 0.295457
+
+====================================================================================================
+Q4: pooled z>=1.5, g_bar<a0
+N=15: <D_flat> = +0.1366  <D_rival> = -0.0338   (CFG52 README: N=14, +0.135, -0.037)
+sigma_pool = 0.137; significance flat +1.00 sigma, rival -0.25 sigma   (README: +1.0, -0.3)
+by set: RC100: N=9 flat +0.213 rival +0.026; MSA3D: N=3 flat +0.035 rival -0.105; KMOS3D: N=3 flat +0.009 rival -0.144
+overlap diagnostics: RC100 rows whose ID is also a matched KMOS3D row: 26 of 100 (in the z>=1.5,g_bar<a0 pool: 0: [])
+
+====================================================================================================
+Q4-control C7: selection mock (flat law true, selection on noisy g_bar)
+noise 0.00 dex: bias +0.0000 (sd 0.023, MC se 0.0004, mean N 16.2)
+noise 0.20 dex: bias +0.0891 (sd 0.036, MC se 0.0006, mean N 19.6)   README: +0.03 to +0.11
+PASS C7 mock null (noise 0 -> bias 0 within 3 se) -- +0.0000 vs se 0.0004
+PASS C7 mock sign (noise 0.2 -> positive bias) -- +0.0891
+observed pooled flat offset +0.137 minus mock 0.2-dex selection bias +0.089 = +0.047 dex
+
+====================================================================================================
+Q5: PHIBSS (Tacconi+2013) at the frozen radius
+rows with vrot 65; with radius+z 52; after removing 6 upper limits and 3 inconsistent rows: 51   (CFG54: 51)
+g_bar/a0 at 1.31 r_h: N<1: 0   min 1.097, next [1.097 1.109 1.281 1.34 ], median 4.66, max 113.8  (CFG54: 0; lowest 1.10 then 1.11, 1.28; median 4.7; max 114)
+radius sweep (in r_h): N(g_bar<a0)  [min y]   canonical | alt | (rh_opt only)  -- CFG54 post-hoc line: 1.31:0, 2:7 (0.63), 3:20 (0.29), 4:31 (0.16)
+   1.00 r_h: can   0 [1.38] (<0.5: 0, <0.3: 0) | alt   0 [1.15] (<0.3: 0) | opt-only n=51 N<1 0
+   1.31 r_h: can   0 [1.10] (<0.5: 0, <0.3: 0) | alt   2 [0.91] (<0.3: 0) | opt-only n=51 N<1 0
+   2.00 r_h: can   7 [0.63] (<0.5: 0, <0.3: 0) | alt  11 [0.52] (<0.3: 0) | opt-only n=51 N<1 7
+   3.00 r_h: can  20 [0.29] (<0.5: 9, <0.3: 2) | alt  25 [0.24] (<0.3: 4) | opt-only n=51 N<1 20
+   4.00 r_h: can  31 [0.16] (<0.5: 19, <0.3: 11) | alt  33 [0.13] (<0.3: 14) | opt-only n=51 N<1 31
+   6.00 r_h: can  44 [0.06] (<0.5: 33, <0.3: 27) | alt  46 [0.05] (<0.3: 29) | opt-only n=51 N<1 44
+at 1.31 r_h: alt N<1 = 2, N<0.3 alt = 0, N<0.3 can = 0  (CFG54 referee note: alt ~2 rows below 0.3 a0 by scaling; not run)
+   PHIBSS rpeak    : can N<1 0 min 1.12 <0.3 
+   1.00 r_h: can   0 [1.38] (<0.5: 0, <0.3: 0) | alt   0 [1.15] (<0.3: 0) | opt-only n=51 N<1 0
+   1.31 r_h: can   0 [1.10] (<0.5: 0, <0.3: 0) | alt   2 [0.91] (<0.3: 0) | opt-only n=51 N<1 0
+   2.00 r_h: can   7 [0.63] (<0.5: 0, <0.3: 0) | alt  11 [0.52] (<0.3: 0) | opt-only n=51 N<1 7
+   3.00 r_h: can  20 [0.29] (<0.5: 9, <0.3: 2) | alt  25 [0.24] (<0.3: 4) | opt-only n=51 N<1 20
+   4.00 r_h: can  31 [0.16] (<0.5: 19, <0.3: 11) | alt  33 [0.13] (<0.3: 14) | opt-only n=51 N<1 31
+   6.00 r_h: can  44 [0.06] (<0.5: 33, <0.3: 27) | alt  46 [0.05] (<0.3: 29) | opt-only n=51 N<1 44
+at 1.31 r_h: alt N<1 = 2, N<0.3 alt = 0, N<0.3 can = 0  (CFG54 referee note: alt ~2 rows below 0.3 a0 by scaling; not run)
+   PHIBSS rpeak    : can N<1 0 min 1.12 <0.3 0; alt N<1 2 <0.3 0  (median x 2.1 R_d)
+   PHIBSS rflat    : can N<1 2 min 0.88 <0.3 0; alt N<1 5 <0.3 0  (median x 2.2 R_d)
+   PHIBSS rpeak_tot: can N<1 4 min 0.75 <0.3 0; alt N<1 6 <0.3 0  (median x 2.5 R_d)
+
+====================================================================================================
+SENSITIVITY: count of discs (g_bar < thr*a0) [all z / z>=1.5], five surveys, by radius definition and footing
+radius     foot  thr |     RC100     MSA3D    KMOS3D     KROSS     MUSE2 |   total    | z>=1.5 by set (RC,MSA,KMOS,KR,MUSE) total
+native     can   0.3 |         4         4         7        61        45 |  121      | [1, 0, 0, 0, 0] 1
+native     can   0.5 |        13        12         8       116        58 |  207      | [5, 0, 0, 0, 0] 5
+native     can   1.0 |        26        19        20       197        76 |  338      | [9, 3, 3, 0, 0] 15
+native     alt   0.3 |         5         7         7        75        53 |  147      | [2, 0, 0, 0, 0] 2
+native     alt   0.5 |        13        13        11       138        63 |  238      | [5, 0, 0, 0, 0] 5
+native     alt   1.0 |        32        23        26       215        77 |  373      | [12, 3, 4, 0, 0] 19
+1.31rh     can   0.3 |         6         8         7        61        29 |  111      | [2, 0, 0, 0, 0] 2
+1.31rh     can   0.5 |        14        13         8       116        44 |  195      | [6, 0, 0, 0, 0] 6
+1.31rh     can   1.0 |        34        23        20       197        63 |  337      | [14, 3, 3, 0, 0] 20
+1.31rh     alt   0.3 |        10        11         7        75        35 |  138      | [4, 0, 0, 0, 0] 4
+1.31rh     alt   0.5 |        18        18        11       138        52 |  237      | [6, 3, 0, 0, 0] 9
+1.31rh     alt   1.0 |        39        24        26       215        68 |  372      | [17, 3, 4, 0, 0] 24
+rpeak      can   0.3 |         6         7         6        58        29 |  106      | [2, 0, 0, 0, 0] 2
+rpeak      can   0.5 |        14        13         8       113        43 |  191      | [6, 0, 0, 0, 0] 6
+rpeak      can   1.0 |        33        23        19       193        63 |  331      | [13, 3, 2, 0, 0] 18
+rpeak      alt   0.3 |         9        10         7        74        33 |  133      | [3, 0, 0, 0, 0] 3
+rpeak      alt   0.5 |        18        16        11       133        52 |  230      | [6, 2, 0, 0, 0] 8
+rpeak      alt   1.0 |        38        24        25       213        67 |  367      | [16, 3, 3, 0, 0] 22
+rpeak_tot  can   0.3 |        14        13         8       122        45 |  202      | [6, 0, 0, 0, 0] 6
+rpeak_tot  can   0.5 |        25        19        12       168        55 |  279      | [8, 3, 0, 0, 0] 11
+rpeak_tot  can   1.0 |        46        24        35       227        69 |  401      | [19, 3, 8, 0, 0] 30
+rpeak_tot  alt   0.3 |        19        18        11       140        53 |  241      | [6, 3, 0, 0, 0] 9
+rpeak_tot  alt   0.5 |        32        21        18       192        62 |  325      | [12, 3, 2, 0, 0] 17
+rpeak_tot  alt   1.0 |        53        24        47       243        74 |  441      | [24, 3, 9, 0, 0] 36
+rflat      can   0.3 |        13        12         8        93        37 |  163      | [5, 0, 0, 0, 0] 5
+rflat      can   0.5 |        20        18        12       152        53 |  255      | [6, 3, 0, 0, 0] 9
+rflat      can   1.0 |        42        24        26       218        68 |  378      | [17, 3, 4, 0, 0] 24
+rflat      alt   0.3 |        16        13         9       125        45 |  208      | [6, 0, 0, 0, 0] 6
+rflat      alt   0.5 |        26        19        16       175        58 |  294      | [9, 3, 2, 0, 0] 14
+rflat      alt   1.0 |        48        24        39       237        72 |  420      | [21, 3, 8, 0, 0] 32
+
+other variants (canonical, native, thr 1.0 / 0.3): point-mass g_bar; alt kernel; KROSS with Tacconi gas
+   point mass : total<a0 298, <0.3a0 110; z>=1.5 <a0 8, <0.3 0; KROSS <a0 178
+   kross+gas  : total<a0 263, <0.3a0 85; z>=1.5 <a0 15, <0.3 1; KROSS <a0 122
+   simple kernel: gap>1 sigma: 20, >2 sigma: 0
+   alt footing: N<a0 373; gap>1 sigma 28, >2 sigma 0; z>=1.5 pooled: flat +0.116 rival -0.057 N=19
+   gap>1 sigma among g_bar<0.3a0: 12 of 121; >2 sigma 0; >1.5 sigma 0
+   gap>1 sigma among g_bar<0.5a0: 16 of 207; >2 sigma 0; >1.5 sigma 0
+   gap>1 sigma among g_bar<1.0a0: 20 of 338; >2 sigma 0; >1.5 sigma 0
+
+====================================================================================================
+REPRODUCTION SCORECARD (main-run values against CFG52/CFG54 README statements; compared BEFORE reading their scripts/outputs)
+   DIFFER  Q1 total g_bar<a0 = 242                       mine 339
+   DIFFER  Q1 five-survey total = 241                    mine 338
+   DIFFER  Q2 n(gap>1 sigma) = 16                        mine 20
+   MATCH   Q2 n(gap>2 sigma) = 0                         mine 0
+   MATCH   Q3 clean z>=1.5 <0.3a0 canonical = 0          mine 0
+   MATCH   Q3 raw z>=1.5 <0.3a0 alt = 2 (RC100)          mine 2
+   DIFFER  Q4 N pooled = 14                              mine 15
+   DIFFER  Q4 D_flat = +0.135                            mine 0.137
+   DIFFER  Q4 D_rival = -0.037                           mine -0.034
+   MATCH   Q5 PHIBSS usable N = 0                        mine 0
+   MATCH   Q5 PHIBSS sample N = 51                       mine 51
+   MATCH   RC100 <a0 = 26                                mine 26
+   MATCH   RC100 <0.3a0 = 4                              mine 4
+   MATCH   RC100 z15<a0 = 9                              mine 9
+   MATCH   RC100 z15<0.3a0 = 1                           mine 1
+   MATCH   MSA3D <a0 = 19                                mine 19
+   MATCH   MSA3D <0.3a0 = 4                              mine 4
+   MATCH   MSA3D z15<a0 = 3                              mine 3
+   MATCH   MSA3D z15<0.3a0 = 0                           mine 0
+   DIFFER  KMOS3D <a0 = 16                               mine 20
+   DIFFER  KMOS3D <0.3a0 = 5                             mine 7
+   DIFFER  KMOS3D z15<a0 = 2                             mine 3
+   MATCH   KMOS3D z15<0.3a0 = 0                          mine 0
+   DIFFER  KROSS <a0 = 106                               mine 197
+   DIFFER  KROSS <0.3a0 = 15                             mine 61
+   MATCH   KROSS z15<a0 = 0                              mine 0
+   MATCH   KROSS z15<0.3a0 = 0                           mine 0
+   DIFFER  MUSE2 <a0 = 74                                mine 76
+   DIFFER  MUSE2 <0.3a0 = 43                             mine 45
+   MATCH   MUSE2 z15<a0 = 0                              mine 0
+   MATCH   MUSE2 z15<0.3a0 = 0                           mine 0
+reproduced 18 of 31 items
+
+controls: 15/15 pass

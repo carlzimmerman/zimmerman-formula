@@ -25,3 +25,6 @@ Nothing here says the theory is closed.
 
 ## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
 - 'N = 0 of 51' is the canonical footing only (a0 = 9.3603e-11); the alt footing is not scored. Scaling the printed ratios (not re-run) gives about 2 rows below 0.3 a0 at a0 = 1.1312e-10, still below 5, so non-diagnostic holds either way. The 2.3 sigma cap comes from CFG52's generic correlated 0.2-dex floor, not from this sample's own systematics.
+
+## Referee correction (CFG90's independent re-derivation; appended)
+- N = 0 of 51 reproduces (lowest g_bar/a0 = 1.097, 1.109, 1.281) but is a knife-edge on an assumed velocity radius: Tacconi+13's Vrot defines no radius; the lowest object is 10% from the threshold and far inside the 0.2-dex mass floor; the N >= 5 gate fails at 1.31 r_h and passes from 2 r_h (N = 7; sweep 0 / 7 / 20 / 31 at 1.31 / 2 / 3 / 4 r_h), and on the alt footing at 1.31 r_h N = 2. 'Non-diagnostic' is a statement about the assumed radius. See CFG90.
