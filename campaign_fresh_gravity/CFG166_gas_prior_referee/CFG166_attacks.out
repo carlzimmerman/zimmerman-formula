@@ -1,0 +1,125 @@
+==============================================================================================================
+CFG166 attacks (a)-(e).  repo=<repo>
+==============================================================================================================
+primary (N=40000, seed 166), s=1.00: flat 0.210 rival 0.540 both 0.245 neither 0.005 ; s=1.62: flat 0.015 rival 0.743 both 0.075 neither 0.167
+
+####################################################################################################
+(a) matching rule / low-mass extrapolation
+####################################################################################################
+a0 vacuity: rows with log M* >= 10.40 among the 17: 17 of 17 (all): the restriction is vacuous
+a1 split of the 17 at median log M* = 10.613: low half n=7 row-mu median 1.179 ; high half n=10 median 0.914
+   low  half: mu-bar median 1.165; s=1: flat 0.252 rival 0.532 both 0.210 neither 0.006; s=1.62: rival 0.766
+   high half: mu-bar median 0.939; s=1: flat 0.181 rival 0.543 both 0.272 neither 0.004; s=1.62: rival 0.734
+   Spearman rho(mu, log M*): 17 matched rows -0.338; 38 z<1.7 rows -0.205
+a2 slope grid (a(10.5)=0.0243, scatter 0.277 fixed; N=4000, seed 166); fitted b=-0.219, se=0.196
+   b=+0.22        (+0.220): mu-bar median 0.857; s=1: flat 0.138 rival 0.531 both 0.330 neither 0.002; s=1.62: flat 0.006 rival 0.733
+   b=0            (+0.000): mu-bar median 1.068; s=1: flat 0.252 rival 0.431 both 0.311 neither 0.007; s=1.62: flat 0.019 rival 0.732
+   b=-0.11        (-0.110): mu-bar median 1.186; s=1: flat 0.310 rival 0.373 both 0.305 neither 0.012; s=1.62: flat 0.032 rival 0.717
+   b=-0.22 (fit)  (-0.219): mu-bar median 1.312; s=1: flat 0.370 rival 0.320 both 0.290 neither 0.020; s=1.62: flat 0.054 rival 0.705
+   b=-0.33        (-0.330): mu-bar median 1.456; s=1: flat 0.448 rival 0.262 both 0.257 neither 0.033; s=1.62: flat 0.084 rival 0.676
+   b=-0.44        (-0.440): mu-bar median 1.628; s=1: flat 0.503 rival 0.205 both 0.242 neither 0.050; s=1.62: flat 0.122 rival 0.632
+   b=-0.66        (-0.660): mu-bar median 2.000; s=1: flat 0.606 rival 0.108 both 0.186 neither 0.101; s=1.62: flat 0.219 rival 0.510
+   b=b_hat-se     (-0.415): mu-bar median 1.590; s=1: flat 0.493 rival 0.217 both 0.246 neither 0.045; s=1.62: flat 0.114 rival 0.643
+   b=b_hat+se     (-0.023): mu-bar median 1.093; s=1: flat 0.266 rival 0.418 both 0.307 neither 0.009; s=1.62: flat 0.022 rival 0.729
+   span of P(lean rival, s=1) across b in [b_hat-se, b_hat+se]: 0.202 (EXTRAPOLATION-DRIVEN if >= 0.20)
+a3 slope significance
+   b_hat -0.219 se 0.196 t -1.12; bootstrap 16-84%: -0.396 .. -0.051; permutation p (two-sided, 2000) 0.281
+a4 Variant M+ (bootstrap the 38 rows per draw, refit, then draw)
+  Variant M+                         N=  4000 mu-bar median 1.302 (16-84: 0.723-2.387) width 0.519 dex | P1 rival 0.580 flat 0.175 between 0.106 below 0.093 above 0.045
+      s=1.00: flat 0.363 rival 0.338 both 0.259 neither 0.040 | zf med +1.32 (-0.44,+2.82) zH med -1.63 (-3.21,-0.43)
+      s=1.62: flat 0.076 rival 0.671 both 0.161 neither 0.092 | zf med +3.27 (+1.43,+4.84) zH med +0.36 (-1.28,+1.64)
+   M+ minus M (s=1): {'flat': -0.007, 'rival': 0.019, 'both': -0.031, 'neither': 0.019}
+   M+ minus primary (s=1): {'flat': 0.153, 'rival': -0.202, 'both': 0.014, 'neither': 0.035}
+a5 each disc at its own mass: kernel prior on the 38 z<1.7 rows
+   w=0.2: ESS per disc [26.1, 9.5, 3.9, 7.2, 27.7, 4.0, 6.5, 7.8, 3.8, 8.0]; mu-bar median 1.148 (16-84 0.684-1.891); s=1: flat 0.239 rival 0.519 both 0.234 neither 0.008; s=1.62 rival 0.748
+   w=0.3: ESS per disc [33.1, 18.0, 7.0, 14.5, 34.2, 7.3, 13.3, 15.6, 6.8, 15.9]; mu-bar median 1.106 (16-84 0.653-1.814); s=1: flat 0.224 rival 0.529 both 0.240 neither 0.006; s=1.62 rival 0.747
+   w=0.5: ESS per disc [37.0, 31.1, 18.8, 28.7, 37.3, 19.4, 27.7, 29.5, 18.4, 29.7]; mu-bar median 1.013 (16-84 0.603-1.695); s=1: flat 0.206 rival 0.545 both 0.243 neither 0.005; s=1.62 rival 0.734
+   a5 span of P(lean rival, s=1) across kernel widths 0.026; kernel(w=0.3) minus primary rival -0.011; M+ max |class change vs primary| 0.202
+   VERDICT (a): EXTRAPOLATION-DRIVEN; mass trend UNDETERMINED (|b|/se < 2)   [span1 0.202, span5 0.026, M+ max change 0.202, |t| 1.12]
+
+####################################################################################################
+(b) selection biases
+####################################################################################################
+b2 in-repo fit log10 mu = c + b (logM-10.5) + gamma log10(1+z), 51 clean rows: b=-0.298+-0.161, gamma=+0.23+-0.52, scatter 0.281
+   |gamma-2.5| = 2.27 vs 2 se = 1.03: declared 2.5 INCONSISTENT (confounded: z~2.2 rows more massive)
+   Variant Z factor [(1+z_i)/(1+z_CO,j)]^2.5: median 1.247, mean 1.311
+   z-only fit gamma = +0.09+-0.52
+b3 flagged rows (upper limits / inconsistent / secondary): inventory
+   Q1623-MD66     UL   z_CO=nan logM*=10.59
+   Q1623-BX528    UL   z_CO=2.268 logM*=10.84
+   Q1623-BX663    UL   z_CO=nan logM*=10.81
+   Q1700-MD103    UL   z_CO=nan logM*=10.82
+   Q2343-BX389    UL   z_CO=nan logM*=10.61
+   Q2343-BX474    UL   z_CO=nan logM*=11.18
+   Q2346-BX482    SE   z_CO=2.264 logM*=9.78
+   PEPJ123712     INC  z_CO=nan logM*=10.62
+   PEPJ123709     INC  z_CO=nan logM*=10.36
+   PEPJ123759     INC  z_CO=nan logM*=10.58
+   flagged rows with NaN z and log M* in [9.5,10.8] (redshift unknown; bound only): 5; low-bound mu [0.0, 0.0, 0.45, 1.27, 1.11], high-bound mu [2.82, 2.93, 0.75, 1.48, 1.38]
+   primary only           n=17: mu-bar median 1.033; s=1 flat 0.209 rival 0.537 both 0.248 neither 0.005
+   +rows at low bound     n=22: mu-bar median 0.965; s=1 flat 0.119 rival 0.623 both 0.256 neither 0.002
+   +rows at high bound    n=22: mu-bar median 1.138; s=1 flat 0.282 rival 0.431 both 0.275 neither 0.011
+   => the detection bias cannot be tested from the matched rows (no flagged row has a z_CO in the window); the bound uses unknown-z rows and is labelled a bound.
+b4 sSFR (per Gyr): KURVS ten median 2.35 (range 0.76-9.36); PHIBSS 17 matched median 1.81 (n finite 17); tracers differ (H-alpha vs IR/UV): level offset only flagged
+   partial fit on 51 clean rows with SFR: log mu = c + b logM + gamma log(1+z) + beta log sSFR: beta = +0.51+-0.10, b=+0.03+-0.14, gamma=-0.01+-0.42
+   sSFR-reweighted prior (kernel 0.3 dex): ESS per disc [13.1, 13.3, 11.5, 12.9, 15.0, 6.7, 13.5, 16.5, 11.4, 16.1]; mu-bar median 1.045 (x1.02 vs primary); s=1 flat 0.231 rival 0.536 both 0.226 neither 0.007
+   VERDICT (b4): sSFR-INSENSITIVE (factor 1.02; threshold 1.25)
+b5 toy mass-dependent alpha_CO multiplier 10^(0.3(10.5-logM*_i)) (range x0.88-x1.93; a guess, no repo data): mu-bar median 1.358; s=1 flat 0.402 rival 0.361 both 0.214 neither 0.023; s=1.62 rival 0.742
+
+####################################################################################################
+(c) window-edge grid
+####################################################################################################
+   378 windows; 61 with < 8 rows skipped; 317 evaluated on 164 distinct row sets (identical row sets share draws)
+   (i) lean rival modal in 307/317 = 0.968 of windows with N>=8 (pass >= 0.80)
+   (ii) windows sharing >= 12 rows with the frozen 17: 105; max |P(lean rival)-0.55| = 0.199 at z[0.95,2.5] logM[9.5,10.7] (n=15, overlap 12) (pass <= 0.12)
+   windows with P(lean rival) >= 0.68: 4/317 = 0.013 (H1 edge-dependent if >= 0.20)
+   distinct row sets with lean rival modal: 156/164 = 0.951
+   VERDICT (c): NOT STABLE to its own edges (a pass line fails); H1 label stable
+   P(lean rival, s=1) over (z_lo rows) x (log M*_hi columns), log M*_lo = 9.5, z_hi = 1.7   [n rows in brackets]
+   z_lo \ M_hi        10.70        10.75        10.80        10.85        10.90        11.00        11.30
+   0.95           0.44[12]     0.50[15]     0.54[17]     0.56[20]     0.55[21]     0.54[28]     0.56[38]
+   1.00           0.44[12]     0.50[15]     0.54[17]     0.56[20]     0.55[21]     0.54[28]     0.56[38]
+   1.05           0.44[ 9]     0.51[12]     0.56[14]     0.58[17]     0.58[17]     0.55[22]     0.58[30]
+   1.10           0.46[ 8]     0.53[11]     0.58[13]     0.60[16]     0.60[16]     0.56[20]     0.57[28]
+   1.20             skipped     0.52[ 8]     0.57[10]     0.60[11]     0.60[11]     0.65[14]     0.59[17]
+   1.30             skipped       skipped     0.55[ 8]     0.58[ 9]     0.58[ 9]     0.60[11]     0.53[12]
+   single-step moves from the frozen window (all other edges frozen); largest change in each class:
+     edge zlo: max |dP| flat 0.048 rival 0.038 both 0.031
+     edge zhi: max |dP| flat 0.036 rival 0.069 both 0.031
+     edge mlo: max |dP| flat 0.010 rival 0.014 both 0.018
+     edge mhi: max |dP| flat 0.085 rival 0.094 both 0.021
+
+####################################################################################################
+(d) marginalisation definition
+####################################################################################################
+   1 frozen (empirical, per-disc independent)   mu-bar median 1.025 width 0.454 dex; s=1: flat 0.210 rival 0.540 both 0.245 neither 0.005
+   2 hyperprior bootstrap                       mu-bar median 1.011 width 0.471 dex; s=1: flat 0.212 rival 0.550 both 0.232 neither 0.006
+   3 lognormal fit                              mu-bar median 0.982 width 0.448 dex; s=1: flat 0.205 rival 0.535 both 0.255 neither 0.005
+   4 coherent one-row-per-draw                  mu-bar median 0.996 width 0.594 dex; s=1: flat 0.252 rival 0.588 both 0.127 neither 0.033
+   5 per-disc scatter off (row median)          mu-bar median 1.102 width 0.420 dex; s=1: flat 0.273 rival 0.539 both 0.179 neither 0.009
+   6 systematics off                            mu-bar median 1.048 width 0.175 dex; s=1: flat 0.013 rival 0.624 both 0.363 neither 0.000
+   7 constant mu = mu-bar (all discs equal)     s=1: flat 0.243 rival 0.590 both 0.158 neither 0.009
+   max class difference of item 2 vs item 1: 0.013
+   max class difference of item 3 vs item 1: 0.010
+   modal class of item 1: rival; kept by items 4,5,6: [True, True, True], item 7: True
+   VERDICT (d): DEFINITION-ROBUST (items 1-3 max diff 0.013; threshold 0.05)
+   width: with both systematics 0.454 dex; systematics only 0.420 dex; intrinsic scatter only 0.175 dex
+   class of a constant mu at s=1 (no systematics; the mu-bar values the probabilities integrate over):
+     mu=0.25: z_flat +4.61 z_H +1.13 -> lean rival
+     mu=0.50: z_flat +3.79 z_H +0.35 -> lean rival
+     mu=0.75: z_flat +3.06 z_H -0.35 -> lean rival
+     mu=1.00: z_flat +2.38 z_H -0.98 -> lean rival
+     mu=1.25: z_flat +1.77 z_H -1.56 -> non-diagnostic (both within)
+     mu=1.50: z_flat +1.21 z_H -2.09 -> lean flat
+     mu=2.00: z_flat +0.20 z_H -3.03 -> lean flat
+     mu=3.00: z_flat -1.44 z_H -4.56 -> lean flat
+
+####################################################################################################
+(e) extras
+####################################################################################################
+   inc_sfr_deg vs inc_star_deg (N=4000): inc_star flat 0.209 rival 0.537 both 0.248 neither 0.005; inc_sfr flat 0.192 rival 0.547 both 0.256 neither 0.004
+   s=3: P2 spec flat 0.000 rival 0.146 both 0.004 neither 0.850; alpha x 3.0 flat 0.001 rival 0.098 both 0.002 neither 0.899
+   anchor scaled vs unscaled at s=1.62 (N=1500): scaled flat 0.012 rival 0.756 both 0.076 neither 0.156; unscaled flat 0.012 rival 0.737 both 0.071 neither 0.180; median |dz_flat| 0.061
+   Variant M scatter ddof0 (0.270) vs ddof2 (0.277): s=1 flat 0.371 rival 0.325 both 0.284 neither 0.020 | flat 0.370 rival 0.320 both 0.290 neither 0.020
+
+elapsed 89.9 s

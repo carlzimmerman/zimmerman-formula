@@ -1,0 +1,16 @@
+==============================================================================================================
+CFG166 referee re-derivation of CFG164.  MODE=4.  repo=<repo>
+==============================================================================================================
+
+-- counts and controls
+  [PASS] C2 counts: 73 rows, 51 clean, 17 matched, 38 clean z<1.7: (73, 51, 17, 38)
+  [PASS] C2b every clean z<1.7 row has log M* >= 10.40 (rounded 2dp); KURVS discs below 10.40: 8 of 10: (10.397940008672037, 8)
+  [PASS] C3 fgas_recomputed = Mmol/(Mmol+M*) on the clean rows to 1e-6: 0.0
+  [PASS] C1 mu=0.67 for all discs reproduces CFG160's cell (+0.1441 / -0.0060) within 0.0005: (0.1441, -0.006)
+  17 matched rows: mu_mol median 1.100, 16-84 0.637-1.435, sd log10 0.220
+  Variant M fit (38 rows): a=0.0243 (mu at 10.5 = 1.058) b=-0.2190 se_b=0.1959 scatter(ddof2)=0.2770 (ddof0 0.2696)
+
+-- primary at N=10000, seed 166: flat 0.214 rival 0.538 both 0.242
+MUTATE 4: 200 permutations; median P(lean rival, s=1) 0.549 (16-84: 0.331-0.745); primary 0.538; bites if median >= primary-0.06; permutation p(|b|>=0.219) = 0.285; median |b_perm| 0.141
+
+MUTATE=4: CONTROL BITES (exit 1)
