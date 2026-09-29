@@ -1,0 +1,215 @@
+CFG65 -- IS THE SUM RULE'S DEBRIS TERM ROBUST TO THE HALO SHAPE AND CONCENTRATION IT ASSUMES?  (a robustness test; NOT a search for a shape that passes)
+
+FROZEN QUESTION (verbatim):
+  'The sum rule's debris term uses an NFW shape with the Dutton-Maccio concentration c(M) (h48_h69b_relative_isolation.py nfw_enclosed). Repeated review flagged the NFW
+  cusp and c(M) as the fragile assumption behind both the ultra-faint closure (CFG42: +0.325 -> -0.059 dex) and the classical-satellite over-prediction (CFG42/45: M31 LVD
+  -2.67 sigma; CFG59: SLUGGS wants phi >= 0.81, LVD phi <= 0.30). Are those two results robust to the halo-shape and concentration assumption? Test three alternatives
+  declared in advance, each with NO free parameter fitted to the data: (A) NFW with the Duffy+2008 relaxed/full-sample c(M) already used in campaign_fresh_gravity/CFG23
+  (read how it defines c); (B) the SAME NFW mass M200 but a cored profile of the Burkert form whose core radius is set by the fixed scaling r_core = r_s (declare: this is a
+  one-shot declared choice, not scanned), normalised to the same total M200; (C) the Einasto profile with alpha = 0.17 and the same M200 and r_-2 = r_s of the Dutton-Maccio
+  NFW. A verdict is SHAPE-ROBUST if the UFD offset stays within 2 sigma of zero AND the LVD/classical over-prediction stays beyond -2 sigma or remains within the same 0.05
+  dex under the alternative; otherwise SHAPE-SENSITIVE. Report, for each alternative: the ultra-faint KM median (with the CFG42 error model), the classical, Collins and LVD
+  medians, SLUGGS and X-ray ellipticals offsets (as CFG45 scores them) and phi_needed for the LVD and SLUGGS (as CFG59), both footings.'
+
+STANDING: kappa = 1/2 is FITTED; nothing here says the theory is closed; no tuning after seeing a result; any robustness result (robust, sensitive, mixed) is valid; every
+claim is this script plus a MUTATE control that must fail.  Nothing here selects, fits or recommends a shape.
+
+WHAT IS SWAPPED, AND ONLY THAT.  The committed harnesses are exec'd READ-ONLY: CFG45_rule_readings.py's prefix (everything up to its own controls; it exec's CFG42, CFG36/CFG35,
+CFG38, CFG40, CFG41 read-only), with ONE source edit in the exec'd text (no repo file is edited): the name `nfw_enclosed` in CFG45's namespace, which every reading-(S)
+estimator (sigma_read for the satellites, sluggs_sigma, xray_gal, ...) looks up, is bound to this script's profile function instead of h48's; and READ is cut to
+("L", "S") for speed (the (M), (E) readings are not needed; (E) uses the Dutton-Maccio c internally and is not touched).  The rule's structure is untouched: f_ex = max(0,
+1 - M_phantom,edge/[(1-f_b) M_c]) from the Moster collapse mass M_c = M_200c (clamped at 1e9, CFG42's declared trap), the added acceleration is G f_ex (1-f_b) M_prof(<r)/r^2, the
+estimators, samples, Kaplan-Meier statistic, bootstrap (seed 42), Upsilon_V floor, collapse-mass floor (M_c = 1e8...1e10 for M_* < 1e5) and error models are CFG42's / CFG45's
+own, evaluated with the swapped enclosed-mass function.  The phi analysis (LVD and SLUGGS only) is CFG59's `p_sat("m31")` and `p_sluggs` with its phi-scaled reading, its 101-
+point grid, brentq root and 1-sigma interval definition, copied line for line.
+
+THE PROFILES (declared before the first run; all: total mass M200 = the rule's M_h, R200 = h48's (200 x critical density, H0 = 67.4), r_s = R200 / c_DM with c_DM the Dutton-
+Maccio concentration of h48, c_DM = 10^(0.905 - 0.101 [log10(0.674 M_h) - 12]); x = r/R200 is clipped to [1e-4, 5] exactly as h48 does; mass normalised so M_prof(<R200) = M200):
+  DM  the committed NFW + Dutton-Maccio, re-expressed by this script's generic function (control: bit-identical to h48's function to 1e-9).
+  (A) NFW with a Duffy et al. 2008 concentration, c = A (M_h / [2e12 / h])^B (1+z)^C with h = 0.674 (as h48's) and z = 0 (the satellite samples are at z = 0; CFG23's (1+z_l)^C
+      factor, z_l = 0.25, is the KiDS lens redshift and is not applicable).  CFG23 defines c as a function of M200m, the mean-density mass: c_duffy(M200m) = 10.14 (M/(2e12/h))^-0.081
+      (1+z)^-1.01, the FULL-sample Delta = 200 x mean-density row.  Three sub-variants are declared (exactly these): A1 = CFG23's row literally (A, B, C = 10.14, -0.081, -1.01; the
+      argument is the rule's M_h, so this is the literal CFG23 function applied at z = 0, a convention mismatch with the 200c mass that is DISCLOSED, not corrected); A2 = the
+      Duffy FULL-sample Delta = 200 x CRITICAL row (5.71, -0.084, -0.47), the row whose convention matches h48's 200c R200; A3 = the Duffy RELAXED-sample 200c row (6.71, -0.091,
+      -0.44).  (Duffy's coefficients are transcribed here from memory of the paper's Table 1; A1's are CFG23's committed numbers.)  Shape: NFW, m(t) = ln(1+t) - t/(1+t).
+  (B) Burkert, rho = rho0 r0^3 / [(r + r0)(r^2 + r0^2)], core radius r0 = r_s = R200/c_DM (a ONE-SHOT declared choice, not scanned; no other core radius is run); enclosed mass
+      M(<r) = M200 f(r/r0)/f(c_DM), f(t) = ln(1+t^2) + 2 ln(1+t) - 2 arctan t.
+  (C) Einasto, alpha = 0.17, rho = rho_-2 exp{-(2/alpha)[(r/r_-2)^alpha - 1]}, r_-2 = r_s = R200/c_DM; enclosed mass M(<r) = M200 P(3/alpha, s)/P(3/alpha, s200), s = (2/alpha)(r/r_-2)^alpha,
+      P the regularised lower incomplete gamma function.
+  ABSURD (control only, never scored as an alternative): DM x 100 everywhere.
+
+THE STATISTICS (CFG45's, unchanged; each with both footings canonical | alt):
+  U   MW ultra-faint KM median offset (9 upper limits) and its error sqrt(bootstrap^2 + Upsilon_V^2 + collapse-mass-floor^2); z = median/error.
+  CL  MW classical dSph (14), M31 Collins+13 (14), M31 LVD (34): sample median offset with the CFG18 infall gas, error as CFG42's; z = median/error.
+  SL  SLUGGS (19): mean outer-bin offset, error std/sqrt(19).       XR  X-ray ellipticals (7): mean offset, CFG36's error.
+  PHI phi_needed for the M31 LVD and SLUGGS as CFG59 (root of the offset on [0,1], None if the signs agree; the 1-sigma interval {phi in [0,1]: |o| <= e} on the 101-point grid).
+
+VERDICT RULES (declared before the first run; per alternative, then per family):
+  V-UFD  the UFD result is SHAPE-ROBUST for an alternative iff |z_UFD| < 2 on BOTH footings.  (Reference: the DM/NFW rule's own values, CFG42: +0.325 -> -0.059 canonical.)
+  V-LVD  the M31 LVD over-prediction result is SHAPE-ROBUST for an alternative iff on EACH footing: z_LVD <= -2 (the over-prediction stays beyond -2 sigma) OR
+         |median_alt - median_DM| <= 0.05 dex (the offset is unchanged within 0.05 dex).  MW classical and Collins+13 are reported with the same two numbers but are NOT part of the
+         verdict (the -2.67 sigma headline is the LVD's).
+  V-ALL  the alternative is SHAPE-ROBUST iff V-UFD and V-LVD both hold; otherwise SHAPE-SENSITIVE (and the report says which of the two results moved).  Family (A) is SHAPE-ROBUST
+         iff A1, A2 and A3 all are; otherwise SHAPE-SENSITIVE, naming the sub-variants.
+  V-PHI  (declared companion reading of CFG59's conflict; not in the frozen rule): the phi conflict "no universal phi" is robust iff the LVD upper edge < the SLUGGS lower edge (the 1-sigma
+         intervals stay disjoint) on both footings; reported per alternative.
+  Reported only (no verdict): SLUGGS and X-ray offsets in dex and sigma against zero (2-sigma reading, as CFG45's A4/A5), the enclosed-mass ratio of each profile to the DM NFW at the
+  radii the satellites probe (0.03, 0.1, 0.3, 1, 3 kpc; M_h = 1e9, 1e10, 1e11).
+
+CONTROLS
+  C1  CONTROL  (non-MUTATE) the DM configuration reproduces CFG45's committed results (UF, CL, SLUGGS, X-ray; reading S and L; both footings) to 1e-6: the swap reaches every
+               estimator and the exec'd machinery is CFG45's.
+  C2  CONTROL  the generic profile function, configured as NFW + Dutton-Maccio, equals h48's committed nfw_enclosed to 1e-9 (relative) over a grid of 30 halo masses x 40 radii
+               (including the clip limits).
+  C3  CONTROL  every profile (DM, A1-A3, B, C) reproduces the ANALYTIC enclosed-mass formula, written independently as direct numerical integration of the density (scipy quad),
+               at 5 test radii for each of two halos (M_h = 3e9, 2e11), to relative 1e-7; and M_prof(<R200) = M200 to 1e-12, and the profile is monotone in r.
+  C4  CONTROL  the bare law is shape-independent: the (L) reading's UF/CL/SLUGGS/X-ray numbers are identical across every configuration (only the debris term is swapped).
+  C5  CONTROL  (non-MUTATE) the DM configuration's phi analysis reproduces CFG59's committed LVD and SLUGGS numbers (offsets at phi = 0 and 1, phi_needed, the 1-sigma intervals) to 1e-6.
+  C6  CONTROL  the ABSURD profile (DM x 100) flips the UFD gate: the DM reference passes it (both footings |z| < 2) and the ABSURD profile fails it on at least one footing (non-MUTATE run).
+  H1  [HEADLINE; MUTATE must fail] the harness's UFD gate is live on its reference: the DM-configured rule closes the ultra-faint failure (|z| < 2, both footings; CFG42 H1).  In the
+      MUTATE run every profile's enclosed mass is multiplied by 100, the DM reference over-predicts, and H1 must FAIL (rc = 1).
+  R   (reported, no gate) the per-alternative verdicts above and the full table.
+MUTATE=1: every configuration's enclosed mass x 100 (the ABSURD control config is skipped) -- H1 must FAIL (rc = 1).
+FIRST-RUN DISCLOSURE: before this docstring was final I ran ONLY a timing test of CFG45's prefix with h48's unmodified function (no output read: it printed the elapsed time and four
+  dictionary keys); no result of any profile was seen before the declarations above.
+CHANGED AFTER THE FIRST MAIN RUN, BEFORE ANY INTERPRETATION (disclosed): control C3's monotonicity clause first FAILED on a bug of mine -- it demanded a STRICTLY increasing enclosed mass on a
+  radius grid that starts at 0.01 kpc, but h48's function clips x = r/R200 at 1e-4 (for M_h = 2e11, R200 ~ 110 kpc, so r < 0.011 kpc is on the constant clip plateau).  The clause now demands
+  non-decreasing everywhere and strictly increasing on the unclipped range; the tolerance of every other clause (1e-7 analytic, 1e-12 normalisation) is unchanged.  The first run's log is kept
+  (run_main_FIRSTRUN_C3fail.log).  Its C3 analytic-formula difference was 1.6e-11 and every other control passed; no hypothesis, verdict rule or number in the table changed.
+
+  *** MUTATE=1: every configuration's enclosed mass x 100 -- H1 must FAIL ***
+
+======================================================================================================================
+C2 / C3  CONTROLS: the profile function against h48's and against the analytic formulas
+======================================================================================================================
+  [PASS] C2 CONTROL: the generic function configured as NFW + Dutton-Maccio equals h48's committed nfw_enclosed to 1e-9 (30 masses x 40 radii incl. the clip limits)
+         max relative difference 0.0e+00
+  [PASS] C3 CONTROL: each profile equals the analytic enclosed mass (direct numerical integration of its density) at 5 radii x 2 halos to 1e-7; M(<R200) = M200 to 1e-12; monotone in r
+         max relative difference 1.6e-11 (B M_h 2e+11 r 0.05); max |M(<R200)/M200 - 1| 0.0e+00; monotone True
+    machinery run for DM  done (6 s)
+    machinery run for A1  done (8 s)
+    machinery run for A2  done (10 s)
+    machinery run for A3  done (13 s)
+    machinery run for B   done (15 s)
+    machinery run for C   done (20 s)
+
+======================================================================================================================
+C1 / C4 / C5 / C6  CONTROLS: the swap reaches the estimators; the law is shape-blind; CFG59's intervals; the absurd profile
+======================================================================================================================
+  [PASS] (reported) C1 CONTROL: skipped in the MUTATE run (the committed numbers are for the unmutated rule)
+         -
+  [PASS] C4 CONTROL: the bare law (reading L) is identical across every configuration -- only the debris term was swapped
+         max |difference| over every UF / CL / SLUGGS / X-ray number 0.0e+00
+  [PASS] (reported) C5 CONTROL: skipped in the MUTATE run
+         -
+  [PASS] (reported) C6 CONTROL: skipped in the MUTATE run (the mutation IS the absurd profile)
+         -
+  [FAIL] H1 [HEADLINE; MUTATE must fail] THE HARNESS'S UFD GATE IS LIVE ON ITS REFERENCE: the DM-configured rule closes the ultra-faint failure (|z| < 2, both footings)  [MUTATE: enclosed mass x 100]
+         canonical: KM +0.325 (law) -> -1.039 (rule), z -5.44; alt: KM +0.304 (law) -> -1.037 (rule), z -5.21
+
+======================================================================================================================
+THE TABLE (both footings: canonical | alt).  offsets in dex +- error [sigma]
+======================================================================================================================
+
+  ---- DM (NFW, Dutton-Maccio c: the committed rule)
+    MW ultra-faint KM median  law +0.325|+0.304 (+3.77|+3.55 sigma)   RULE -1.039+-0.191|-1.037+-0.199  ->  -5.44|-5.21 sigma
+    MW classical (14)        law +0.027|+0.008   RULE -0.844+-0.157|-0.826+-0.164  ->  -5.36|-5.03 sigma
+    M31 Collins+13 (14)      law +0.064|+0.045   RULE -0.889+-0.183|-0.871+-0.186  ->  -4.86|-4.68 sigma
+    M31 LVD (34)             law +0.044|+0.031   RULE -0.896+-0.115|-0.858+-0.118  ->  -7.78|-7.24 sigma
+    SLUGGS (19)              law +0.080|+0.065   RULE -0.400+-0.100|-0.363+-0.097  ->  -4.00|-3.73 sigma
+    X-ray ellipticals (7)    law +0.280|+0.254   RULE -1.166+-0.337|-1.119+-0.400  ->  -3.46|-2.80 sigma
+    phi LVD   : canonical: phi_needed 0.001 1sig [0.000,0.003] (o0 +0.044, o1 -0.896)   |   alt: phi_needed 0.001 1sig [0.000,0.004] (o0 +0.031, o1 -0.858)
+    phi SLUGGS: canonical: phi_needed 0.011 1sig [0.008,0.015] (o0 +0.080, o1 -0.400)   |   alt: phi_needed 0.010 1sig [0.007,0.015] (o0 +0.065, o1 -0.363)
+
+  ---- A1 NFW + Duffy full 200m (CFG23's row, z=0)
+    MW ultra-faint KM median  law +0.325|+0.304 (+3.77|+3.55 sigma)   RULE -1.081+-0.207|-1.080+-0.213  ->  -5.22|-5.06 sigma
+    MW classical (14)        law +0.027|+0.008   RULE -0.899+-0.162|-0.878+-0.170  ->  -5.54|-5.16 sigma
+    M31 Collins+13 (14)      law +0.064|+0.045   RULE -0.938+-0.188|-0.919+-0.191  ->  -4.98|-4.80 sigma
+    M31 LVD (34)             law +0.044|+0.031   RULE -0.948+-0.119|-0.906+-0.121  ->  -7.96|-7.49 sigma
+    SLUGGS (19)              law +0.080|+0.065   RULE -0.436+-0.108|-0.396+-0.105  ->  -4.05|-3.76 sigma
+    X-ray ellipticals (7)    law +0.280|+0.254   RULE -1.314+-0.359|-1.266+-0.433  ->  -3.66|-2.93 sigma
+    phi LVD   : canonical: phi_needed 0.001 1sig [0.000,0.003] (o0 +0.044, o1 -0.948)   |   alt: phi_needed 0.001 1sig [0.000,0.003] (o0 +0.031, o1 -0.906)
+    phi SLUGGS: canonical: phi_needed 0.008 1sig [0.009,0.012] (o0 +0.080, o1 -0.436)   |   alt: phi_needed 0.008 1sig [0.009,0.011] (o0 +0.065, o1 -0.396)
+
+  ---- A2 NFW + Duffy full 200c
+    MW ultra-faint KM median  law +0.325|+0.304 (+3.77|+3.55 sigma)   RULE -0.916+-0.194|-0.915+-0.211  ->  -4.73|-4.33 sigma
+    MW classical (14)        law +0.027|+0.008   RULE -0.733+-0.147|-0.713+-0.153  ->  -4.97|-4.66 sigma
+    M31 Collins+13 (14)      law +0.064|+0.045   RULE -0.779+-0.174|-0.755+-0.178  ->  -4.47|-4.25 sigma
+    M31 LVD (34)             law +0.044|+0.031   RULE -0.799+-0.111|-0.753+-0.115  ->  -7.19|-6.52 sigma
+    SLUGGS (19)              law +0.080|+0.065   RULE -0.377+-0.095|-0.343+-0.093  ->  -3.96|-3.70 sigma
+    X-ray ellipticals (7)    law +0.280|+0.254   RULE -1.074+-0.323|-1.027+-0.378  ->  -3.33|-2.72 sigma
+    phi LVD   : canonical: phi_needed 0.002 1sig [0.000,0.005] (o0 +0.044, o1 -0.799)   |   alt: phi_needed 0.001 1sig [0.000,0.005] (o0 +0.031, o1 -0.753)
+    phi SLUGGS: canonical: phi_needed 0.014 1sig [0.010,0.015] (o0 +0.080, o1 -0.377)   |   alt: phi_needed 0.013 1sig [0.009,0.016] (o0 +0.065, o1 -0.343)
+
+  ---- A3 NFW + Duffy relaxed 200c
+    MW ultra-faint KM median  law +0.325|+0.304 (+3.77|+3.55 sigma)   RULE -0.982+-0.193|-0.980+-0.206  ->  -5.09|-4.76 sigma
+    MW classical (14)        law +0.027|+0.008   RULE -0.793+-0.153|-0.774+-0.159  ->  -5.19|-4.86 sigma
+    M31 Collins+13 (14)      law +0.064|+0.045   RULE -0.837+-0.179|-0.817+-0.182  ->  -4.67|-4.48 sigma
+    M31 LVD (34)             law +0.044|+0.031   RULE -0.851+-0.113|-0.809+-0.117  ->  -7.51|-6.91 sigma
+    SLUGGS (19)              law +0.080|+0.065   RULE -0.391+-0.098|-0.356+-0.096  ->  -3.98|-3.72 sigma
+    X-ray ellipticals (7)    law +0.280|+0.254   RULE -1.132+-0.332|-1.085+-0.391  ->  -3.41|-2.77 sigma
+    phi LVD   : canonical: phi_needed 0.001 1sig [0.000,0.003] (o0 +0.044, o1 -0.851)   |   alt: phi_needed 0.001 1sig [0.000,0.005] (o0 +0.031, o1 -0.809)
+    phi SLUGGS: canonical: phi_needed 0.012 1sig [0.009,0.015] (o0 +0.080, o1 -0.391)   |   alt: phi_needed 0.011 1sig [0.008,0.016] (o0 +0.065, o1 -0.356)
+
+  ---- B  Burkert, r_core = r_s
+    MW ultra-faint KM median  law +0.325|+0.304 (+3.77|+3.55 sigma)   RULE -0.398+-0.082|-0.398+-0.084  ->  -4.87|-4.76 sigma
+    MW classical (14)        law +0.027|+0.008   RULE -0.303+-0.134|-0.306+-0.132  ->  -2.26|-2.31 sigma
+    M31 Collins+13 (14)      law +0.064|+0.045   RULE -0.471+-0.156|-0.441+-0.157  ->  -3.02|-2.81 sigma
+    M31 LVD (34)             law +0.044|+0.031   RULE -0.478+-0.115|-0.368+-0.114  ->  -4.17|-3.24 sigma
+    SLUGGS (19)              law +0.080|+0.065   RULE -0.262+-0.071|-0.239+-0.068  ->  -3.70|-3.51 sigma
+    X-ray ellipticals (7)    law +0.280|+0.254   RULE -0.390+-0.232|-0.355+-0.235  ->  -1.68|-1.51 sigma
+    phi LVD   : canonical: phi_needed 0.007 1sig [0.000,0.031] (o0 +0.044, o1 -0.478)   |   alt: phi_needed 0.003 1sig [0.000,0.024] (o0 +0.031, o1 -0.368)
+    phi SLUGGS: canonical: phi_needed 0.037 1sig [0.026,0.054] (o0 +0.080, o1 -0.262)   |   alt: phi_needed 0.033 1sig [0.022,0.050] (o0 +0.065, o1 -0.239)
+
+  ---- C  Einasto alpha=0.17, r_-2 = r_s
+    MW ultra-faint KM median  law +0.325|+0.304 (+3.77|+3.55 sigma)   RULE -1.107+-0.200|-1.107+-0.204  ->  -5.53|-5.43 sigma
+    MW classical (14)        law +0.027|+0.008   RULE -0.914+-0.160|-0.894+-0.168  ->  -5.71|-5.33 sigma
+    M31 Collins+13 (14)      law +0.064|+0.045   RULE -0.954+-0.190|-0.935+-0.194  ->  -5.02|-4.82 sigma
+    M31 LVD (34)             law +0.044|+0.031   RULE -0.944+-0.118|-0.905+-0.121  ->  -8.00|-7.46 sigma
+    SLUGGS (19)              law +0.080|+0.065   RULE -0.415+-0.103|-0.377+-0.101  ->  -4.02|-3.74 sigma
+    X-ray ellipticals (7)    law +0.280|+0.254   RULE -1.258+-0.348|-1.211+-0.417  ->  -3.61|-2.90 sigma
+    phi LVD   : canonical: phi_needed 0.001 1sig [0.000,0.003] (o0 +0.044, o1 -0.944)   |   alt: phi_needed 0.001 1sig [0.000,0.003] (o0 +0.031, o1 -0.905)
+    phi SLUGGS: canonical: phi_needed 0.010 1sig [0.008,0.015] (o0 +0.080, o1 -0.415)   |   alt: phi_needed 0.009 1sig [0.008,0.014] (o0 +0.065, o1 -0.377)
+
+======================================================================================================================
+VERDICTS (rules declared in the docstring; reported, no gate)
+======================================================================================================================
+  A1 NFW + Duffy full 200m (CFG23's row, z=0)   : UFD SENSITIVE (z -5.22|-5.06);  LVD ROBUST  (z -7.96|-7.49; |d median vs DM| 0.052|0.048 dex);  ->  SHAPE-SENSITIVE;  phi conflict (LVD upper < SLUGGS lower) persists
+      reported: MW classical z -5.54|-5.16 (d median vs DM 0.055|0.053); Collins z -4.98|-4.80 (d 0.048|0.048); SLUGGS z -4.05|-3.76; X-ray z -3.66|-2.93
+  A2 NFW + Duffy full 200c                      : UFD SENSITIVE (z -4.73|-4.33);  LVD ROBUST  (z -7.19|-6.52; |d median vs DM| 0.097|0.105 dex);  ->  SHAPE-SENSITIVE;  phi conflict (LVD upper < SLUGGS lower) persists
+      reported: MW classical z -4.97|-4.66 (d median vs DM 0.111|0.113); Collins z -4.47|-4.25 (d 0.110|0.116); SLUGGS z -3.96|-3.70; X-ray z -3.33|-2.72
+  A3 NFW + Duffy relaxed 200c                   : UFD SENSITIVE (z -5.09|-4.76);  LVD ROBUST  (z -7.51|-6.91; |d median vs DM| 0.046|0.049 dex);  ->  SHAPE-SENSITIVE;  phi conflict (LVD upper < SLUGGS lower) persists
+      reported: MW classical z -5.19|-4.86 (d median vs DM 0.051|0.052); Collins z -4.67|-4.48 (d 0.053|0.054); SLUGGS z -3.98|-3.72; X-ray z -3.41|-2.77
+  B  Burkert, r_core = r_s                      : UFD SENSITIVE (z -4.87|-4.76);  LVD ROBUST  (z -4.17|-3.24; |d median vs DM| 0.418|0.490 dex);  ->  SHAPE-SENSITIVE;  phi conflict (LVD upper < SLUGGS lower) does NOT persist
+      reported: MW classical z -2.26|-2.31 (d median vs DM 0.540|0.520); Collins z -3.02|-2.81 (d 0.418|0.430); SLUGGS z -3.70|-3.51; X-ray z -1.68|-1.51
+  C  Einasto alpha=0.17, r_-2 = r_s             : UFD SENSITIVE (z -5.53|-5.43);  LVD ROBUST  (z -8.00|-7.46; |d median vs DM| 0.048|0.047 dex);  ->  SHAPE-SENSITIVE;  phi conflict (LVD upper < SLUGGS lower) persists
+      reported: MW classical z -5.71|-5.33 (d median vs DM 0.070|0.069); Collins z -5.02|-4.82 (d 0.064|0.064); SLUGGS z -4.02|-3.74; X-ray z -3.61|-2.90
+
+  FAMILY (A): UFD SENSITIVE, LVD ROBUST  =>  SHAPE-SENSITIVE   (sub-variants robust: ; sensitive: A1, A2, A3)
+  FAMILY (B): UFD SENSITIVE, LVD ROBUST  =>  SHAPE-SENSITIVE
+  FAMILY (C): UFD SENSITIVE, LVD ROBUST  =>  SHAPE-SENSITIVE
+
+======================================================================================================================
+ENCLOSED-MASS RATIO to the DM NFW at the radii the satellites probe (reported)
+======================================================================================================================
+    profile                                            M_h      0.03      0.10      0.30      1.00      3.00   kpc
+    A1 NFW + Duffy full 200m (CFG23's row, z=0)      1e+09     1.242     1.229     1.199     1.138     1.072
+    A1 NFW + Duffy full 200m (CFG23's row, z=0)      1e+10     1.328     1.321     1.302     1.251     1.169
+    A1 NFW + Duffy full 200m (CFG23's row, z=0)      1e+11     1.414     1.410     1.400     1.368     1.299
+    A2 NFW + Duffy full 200c                         1e+09     0.547     0.560     0.593     0.677     0.801
+    A2 NFW + Duffy full 200c                         1e+10     0.585     0.590     0.603     0.643     0.724
+    A2 NFW + Duffy full 200c                         1e+11     0.627     0.629     0.634     0.650     0.690
+    A3 NFW + Duffy relaxed 200c                      1e+09     0.752     0.761     0.784     0.836     0.905
+    A3 NFW + Duffy relaxed 200c                      1e+10     0.782     0.785     0.793     0.819     0.866
+    A3 NFW + Duffy relaxed 200c                      1e+11     0.813     0.814     0.817     0.827     0.850
+    B  Burkert, r_core = r_s                         1e+09     0.015     0.051     0.161     0.514     0.893
+    B  Burkert, r_core = r_s                         1e+10     0.005     0.018     0.056     0.199     0.553
+    B  Burkert, r_core = r_s                         1e+11     0.002     0.007     0.020     0.070     0.220
+    C  Einasto alpha=0.17, r_-2 = r_s                1e+09     1.446     1.405     1.209     1.018     0.974
+    C  Einasto alpha=0.17, r_-2 = r_s                1e+10     1.276     1.446     1.380     1.160     1.000
+    C  Einasto alpha=0.17, r_-2 = r_s                1e+11     0.999     1.317     1.444     1.344     1.138
+    concentrations used (M_h = 1e9 / 1e10 / 1e11): DM: 16.8/13.3/10.6; A1: 19.4/16.1/13.3; A2: 11.2/9.2/7.6; A3: 13.9/11.3/9.1; B: 16.8/13.3/10.6; C: 16.8/13.3/10.6
+
+  READING (declared): a SHAPE-ROBUST verdict means the result survives that alternative on the frozen rule; SHAPE-SENSITIVE means the shape/concentration assumption carries it.  Nothing here says the theory is closed; no profile is selected, fitted or recommended.
+
+  6/7 checks pass; load-bearing failures: 1   (20 s)
