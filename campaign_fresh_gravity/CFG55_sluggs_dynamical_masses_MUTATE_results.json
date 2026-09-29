@@ -1,0 +1,353 @@
+{
+ "slug": "CFG55_sluggs_dynamical_masses_MUTATE",
+ "summary": {
+  "n_checks": 10,
+  "n_pass": 7,
+  "load_bearing_failures": 3,
+  "failed": [
+   "C3 CONTROL: h50's R_e = SLUGGS's R_eff x SLUGGS's distance for all 16; the solver with the",
+   "H1 [HEADLINE] CALIBRATED ON ITS OWN INNER KINEMATICS, THE LAW FITS THE OUTER GLOBULAR CLUS",
+   "H2 THE RULE, CALIBRATED THE SAME WAY, STILL FITS: |mean| < 2 sigma over the 16, both footi"
+  ],
+  "seconds": 8.9
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: CFG38's committed means reproduced with SLUGGS's masses over the 19 (law +0.080, rule +0.007, canonical)",
+   "detail": "law +0.079503 (committed +0.079503); rule +0.006576 (committed +0.006576)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: CFG33's law calibration re-derived with this script's own solver (slope +0.204; x0.72 / x0.83 / x0.90)",
+   "detail": "slope +0.204; alpha_dyn at 100 / 200 / 300 km/s x0.72 / x0.83 / x0.90 (N = 187)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: h50's R_e = SLUGGS's R_eff x SLUGGS's distance for all 16; the solver with the kernel off returns M_JAM exactly",
+   "detail": "16 galaxies (qual >= 1: 16); max |R_e difference| 1.2e-05 kpc; kernel-off max |M/M_JAM - 1| 0.0e+00",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] CALIBRATED ON ITS OWN INNER KINEMATICS, THE LAW FITS THE OUTER GLOBULAR CLUSTERS: |mean| < 2 sigma over the 16, both footings  [MUTATE: JAM masses halved]",
+   "detail": "canonical: +0.2162 +- 0.0237 (+9.11 sigma); alt: +0.2085 +- 0.0236 (+8.83 sigma)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE RULE, CALIBRATED THE SAME WAY, STILL FITS: |mean| < 2 sigma over the 16, both footings",
+   "detail": "canonical: +0.1984 +- 0.0252 (+7.88 sigma); alt: +0.1954 +- 0.0257 (+7.62 sigma)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported, canonical) the same 16 with SLUGGS's masses",
+   "detail": "law +0.0774 +- 0.0281 (+2.75 sigma); rule +0.0065 +- 0.0182 (+0.36 sigma)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R1 (reported, alt) the same 16 with SLUGGS's masses",
+   "detail": "law +0.0625 +- 0.0280 (+2.23 sigma); rule +0.0022 +- 0.0183 (+0.12 sigma)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R3 (reported, canonical) population masses on the same 16: ATLAS3D's Salpeter M/L, and Salpeter - 0.25 dex (Chabrier-like)",
+   "detail": "Salpeter: law +0.0492 (+1.82 sigma), rule -0.0332 (-1.81 sigma); Salpeter - 0.25 dex: law +0.1288 (+4.80 sigma), rule +0.0777 (+4.34 sigma)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R4 (reported, canonical) calibration with the Hernquist enclosed fraction at r_1/2 in place of one half",
+   "detail": "stellar fraction inside r_1/2 0.28-0.57; law +0.2071 (+9.13 sigma), rule +0.1824 (+7.85 sigma)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R5 (reported; POST HOC, disclosed) without the galaxies whose calibrated rule mass lies below Mandelbaum's red range (log M_* < 10.28: clamped collapse masses, CFG36's standing caution)",
+   "detail": "removed ['NGC3377', 'NGC7457']; canonical: law +0.2158 (+7.97 sigma), rule +0.2074 (+8.21 sigma); alt: law +0.2077 (+7.72 sigma), rule +0.2038 (+7.82 sigma)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "R5_posthoc_inrange": {
+   "removed": [
+    "NGC3377",
+    "NGC7457"
+   ],
+   "canonical": {
+    "law": [
+     0.21579582431121194,
+     0.02707845312837522
+    ],
+    "rule": [
+     0.20737339039436664,
+     0.02525651731403304
+    ]
+   },
+   "alt": {
+    "law": [
+     0.2077038237306769,
+     0.026913782870882506
+    ],
+    "rule": [
+     0.2037859497246627,
+     0.02605506005089554
+    ]
+   }
+  },
+  "RES": {
+   "canonical": {
+    "law": {
+     "mean": 0.2161656441897762,
+     "err": 0.02373878120187421,
+     "per": [
+      0.2062752092993129,
+      0.1242012855195491,
+      0.1889076038092746,
+      0.14909318813493516,
+      0.2414189817711356,
+      0.32855214048312925,
+      0.3104788981901812,
+      0.0963354480795397,
+      0.1771570557508459,
+      0.38895847056543403,
+      0.019512259352459507,
+      0.19348194854501183,
+      0.23782308863845886,
+      0.21839528428534183,
+      0.3294582817416325,
+      0.2486011628701772
+     ]
+    },
+    "rule": {
+     "mean": 0.1983872279047705,
+     "err": 0.025171224858535082,
+     "per": [
+      0.2062752092993092,
+      0.12420128551954968,
+      0.07258095305042517,
+      0.14909318813499467,
+      0.24141898177113397,
+      0.3285521404831308,
+      0.29882649628015223,
+      0.09633544807954024,
+      0.1771570557508852,
+      0.3384469881896767,
+      0.019512259352438995,
+      0.19348194854501075,
+      0.18207289808838506,
+      0.2183952842852881,
+      0.3294582817416368
+     ]
+    },
+    "law_sluggs": {
+     "mean": 0.07744180456760977,
+     "err": 0.028116861870715815
+    },
+    "rule_sluggs": {
+     "mean": 0.006532775332226157,
+     "err": 0.018239915775979467
+    },
+    "logM_law": [
+     10.451981264885058,
+     10.992619481567337,
+     9.905760635512502,
+     10.88149400785373,
+     10.686668120106246,
+     10.97938734383894,
+     11.15472080573428,
+     10.435393288053595,
+     10.513214807432279,
+     11.280213046983565,
+     10.461523291066364,
+     10.850215987946925,
+     11.29511378426208,
+     10.57984712375631,
+     11.059348692853582,
+     9.461161893653573
+    ],
+    "logM_rule": [
+     10.45198126488507,
+     10.992619481567335,
+     9.613080135410266,
+     10.881494007853535,
+     10.686668120106251,
+     10.979387343838935,
+     11.145664558950449,
+     10.435393288053593,
+     10.513214807432151,
+     11.22304569490194,
+     10.461523291066435,
+     10.850215987946928,
+     11.242537470049028,
+     10.579847123756494,
+     11.059348692853566,
+     null
+    ]
+   },
+   "alt": {
+    "law": {
+     "mean": 0.20849004064769053,
+     "err": 0.02361438943909567,
+     "per": [
+      0.1945811814704251,
+      0.11919544763994604,
+      0.18291132154810863,
+      0.14206167414811047,
+      0.23165771340857758,
+      0.3219333176244098,
+      0.3005519069743417,
+      0.08895643071522848,
+      0.168499933652145,
+      0.3803369291818746,
+      0.01291923048196017,
+      0.18506073113835078,
+      0.22861428899757694,
+      0.2120977168380021,
+      0.3213870299585272,
+      0.2450757965854639
+     ]
+    },
+    "rule": {
+     "mean": 0.1954307584615474,
+     "err": 0.0256546270303216,
+     "per": [
+      0.19458118147042244,
+      0.11919544763994604,
+      0.07845808077793331,
+      0.14206167414811047,
+      0.23165771340857652,
+      0.3219333176244098,
+      0.3005519069743417,
+      0.08895643071521929,
+      0.16849993365218038,
+      0.35629076355967126,
+      0.012919230481931521,
+      0.18506073113834962,
+      0.1978102185356083,
+      0.21209771683800116,
+      0.32138702995850965
+     ]
+    },
+    "law_sluggs": {
+     "mean": 0.06248890324529072,
+     "err": 0.028004359965401005
+    },
+    "rule_sluggs": {
+     "mean": 0.0022253661561342335,
+     "err": 0.018273389121603558
+    },
+    "logM_law": [
+     10.434829868015285,
+     10.952697917390052,
+     9.863830282959878,
+     10.85053079565806,
+     10.665724360531,
+     10.939417511692504,
+     11.12770303301859,
+     10.401972415643598,
+     10.488798900197203,
+     11.252691317111486,
+     10.422594412013249,
+     10.828720460913441,
+     11.271983126327902,
+     10.541256746336822,
+     11.022273909177162,
+     9.404702657599568
+    ],
+    "logM_rule": [
+     10.434829868015294,
+     10.952697917390052,
+     9.59726304370619,
+     10.85053079565806,
+     10.665724360531003,
+     10.939417511692504,
+     11.12770303301859,
+     10.40197241564363,
+     10.488798900197086,
+     11.226020981046315,
+     10.42259441201335,
+     10.828720460913445,
+     11.243032421845827,
+     10.541256746336826,
+     11.022273909177226,
+     null
+    ]
+   }
+  },
+  "names": [
+   "NGC1023",
+   "NGC2768",
+   "NGC3377",
+   "NGC3607",
+   "NGC4278",
+   "NGC4365",
+   "NGC4374",
+   "NGC4459",
+   "NGC4473",
+   "NGC4486",
+   "NGC4494",
+   "NGC4526",
+   "NGC4649",
+   "NGC4697",
+   "NGC5846",
+   "NGC7457"
+  ],
+  "dlogM_law_minus_sluggs": [
+   -0.5380187351149424,
+   -0.21738051843266426,
+   -0.5942393644874979,
+   -0.5085059921462705,
+   -0.26333187989375334,
+   -0.5306126561610593,
+   -0.3552791942657194,
+   -0.5446067119464058,
+   -0.44678519256772203,
+   -0.3397869530164339,
+   -0.558476708933636,
+   -0.4097840120530752,
+   -0.3048862157379198,
+   -0.5701528762436912,
+   -0.40065130714641833,
+   -0.6688381063464277
+  ],
+  "R3_population": {
+   "Salpeter": {
+    "law": [
+     0.04921459694750556,
+     0.027078290277270333
+    ],
+    "rule": [
+     -0.03321322765977651,
+     0.018345111817087367
+    ]
+   },
+   "Salpeter - 0.25 dex": {
+    "law": [
+     0.12883313456992826,
+     0.02681914890578953
+    ],
+    "rule": [
+     0.07772699315469225,
+     0.017898068283365414
+    ]
+   }
+  },
+  "R4_hernquist": {
+   "law": [
+    0.20710427565471046,
+    0.02267537695922781
+   ],
+   "rule": [
+    0.1823506205768479,
+    0.02323303265937523
+   ]
+  },
+  "reading": "the deficit survives dynamical stellar masses: the massive early types want mass beyond the law independent of the IMF; the rule does not close it"
+ }
+}

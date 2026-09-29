@@ -1,0 +1,104 @@
+CFG55 -- THE DYNAMICAL STELLAR-MASS TEST: is the SLUGGS globular-cluster deficit -- the one population where B's derived cold-mass rule
+beats the bare law -- a stellar-mass artefact?
+
+WHY.  CFG38: with SLUGGS's own stellar masses the law under-predicts the outer globular-cluster dispersions of 19 massive early types by
++0.080 +- 0.024 dex (3.3 sigma, canonical) and the rule's collapse debris closes the gap (+0.007 +- 0.017).  It is the only population
+where the rule is preferred; the massive passive disks lean the other way (CFG41, CFG53: -1.25 sigma against the rule combined).  The
+standing objection is the stellar mass.  CFG33 found that B's law, calibrated on ATLAS3D's JAM masses, needs a stellar M/L that grows with
+dispersion, reaching x0.83-0.90 of Salpeter at sigma_e = 200-300 km/s -- heavier than a Chabrier population.  If SLUGGS's masses sit below
+that, the deficit is an IMF artefact.  This lane replaces the population masses by DYNAMICAL ones: each model's stellar mass is fixed by
+the galaxy's own inner stellar kinematics (the JAM mass inside the half-light sphere), and then the same model predicts the outer globular
+clusters.  No IMF enters.
+
+THE METHOD (declared before this script's first run).  CFG38's machinery exec'd read-only: h50's GC dispersion bins, isotropic Jeans with a
+gamma = 3 tracer, Hernquist stars at a = R_e / 1.8153 with SLUGGS's R_e, the outer bins R > max(R_e, 2 kpc); CFG36's red collapse masses
+and CFG35's conservation form at x_e = 0.40; nu_mono; hot gas omitted as in h50.  ATLAS3D (Cappellari+2013, XV): M_JAM = (M/L)_JAM L_r and
+the 3D half-light radius r_1/2, both moved to SLUGGS's distance (M_JAM and r_1/2 scale as D).  The calibration is CFG33's (h9's)
+convention: half the stars lie inside r_1/2, and the model's total mass there equals M_JAM / 2.  For the law that is
+nu(g_N(r_1/2) / a0) M_* / 2 = M_JAM / 2 with g_N = G (M_* / 2) / r_1/2^2; for the rule, the collapse debris inside r_1/2,
+f_ex (1 - f_b) M_NFW(< r_1/2; M_coll(M_*)), is added on the left.  Sample: the 16 of CFG38's 19 that are in ATLAS3D (NGC 1400, NGC 1407
+and NGC 3115 lie outside its declination range); JAM quality >= 1 (all 16).  Statistic: CFG38's -- the mean over galaxies of the
+per-galaxy mean of log(sigma_obs / sigma_pred) over the outer bins, with the galaxy-to-galaxy error.
+
+PRE-DECLARED
+  C1  CONTROL  CFG38's committed means reproduced by the exec'd machinery with SLUGGS's masses over the 19 (law +0.080, rule +0.007,
+               canonical; to 1e-9 of the committed values).
+  C2  CONTROL  CFG33's committed law calibration re-derived with this script's own code over ATLAS3D (quality >= 1): slope
+               d log alpha_dyn / d log sigma_e = +0.204 and alpha_dyn at sigma = 100 / 200 / 300 km/s = x0.72 / x0.83 / x0.90 (to the
+               printed precision).
+  C3  CONTROL  the distance: h50's R_e equals SLUGGS's R_eff (arcsec) x the SLUGGS distance for all 16 (to 1e-6), and the calibration
+               solver with the kernel switched off (nu = 1, no debris) returns M_* = M_JAM exactly (to 1e-10).
+  H1  [HEADLINE; MUTATE must fail] CALIBRATED ON ITS OWN INNER KINEMATICS, THE LAW FITS THE OUTER GLOBULAR CLUSTERS: |mean offset| < 2 sigma
+      over the 16, both footings.
+  H2  THE RULE, CALIBRATED THE SAME WAY, STILL FITS: |mean offset| < 2 sigma over the 16, both footings.
+  R1-R4 (reported): the same 16 with SLUGGS's masses (law, rule); per-galaxy table (log M_* from SLUGGS, JAM-law, JAM-rule; offsets;
+      f_ex); the population alternatives on the same 16 (ATLAS3D's Salpeter M/L, and Salpeter - 0.25 dex); the calibration with the
+      Hernquist enclosed fraction at r_1/2 in place of one half.
+  READING (declared): H1 PASS -> the SLUGGS deficit is a stellar-mass artefact: calibrated on its own inner kinematics the law fits the
+      outer globular clusters, and the derived rule loses its one supporting population (H2 then says whether the rule over-predicts).
+      H1 FAIL -> the sign decides: a deficit that survives (> +2 sigma) means the massive early types want mass beyond the law independent
+      of the IMF, and H2 says whether the rule supplies it; an over-prediction (< -2 sigma) means the inner kinematics carry more mass than
+      the law can hold at the globular clusters.
+MUTATE=1: every JAM mass halved (-0.30 dex) -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every JAM mass halved -- H1 must FAIL ***
+
+======================================================================================================================
+C1-C3  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG38's committed means reproduced with SLUGGS's masses over the 19 (law +0.080, rule +0.007, canonical)
+         law +0.079503 (committed +0.079503); rule +0.006576 (committed +0.006576)
+  [PASS] C2 CONTROL: CFG33's law calibration re-derived with this script's own solver (slope +0.204; x0.72 / x0.83 / x0.90)
+         slope +0.204; alpha_dyn at 100 / 200 / 300 km/s x0.72 / x0.83 / x0.90 (N = 187)
+  [FAIL] C3 CONTROL: h50's R_e = SLUGGS's R_eff x SLUGGS's distance for all 16; the solver with the kernel off returns M_JAM exactly
+         16 galaxies (qual >= 1: 16); max |R_e difference| 1.2e-05 kpc; kernel-off max |M/M_JAM - 1| 0.0e+00
+
+======================================================================================================================
+PER GALAXY (canonical): log M_* from SLUGGS, calibrated on JAM under the law and under the rule; outer offsets
+======================================================================================================================
+    NGC1023  sigma_e  167: log M_* SLUGGS 10.99, JAM-law 10.45, JAM-rule 10.45 (f_ex 0.00); offsets law +0.206, rule +0.206 (SLUGGS masses: law +0.037, rule +0.037)
+    NGC2768  sigma_e  198: log M_* SLUGGS 11.21, JAM-law 10.99, JAM-rule 10.99 (f_ex 0.00); offsets law +0.124, rule +0.124 (SLUGGS masses: law +0.058, rule +0.010)
+    NGC3377  sigma_e  128: log M_* SLUGGS 10.50, JAM-law 9.91, JAM-rule 9.61 (f_ex 0.57); offsets law +0.189, rule +0.073 (SLUGGS masses: law +0.011, rule +0.011)
+    NGC3607  sigma_e  207: log M_* SLUGGS 11.39, JAM-law 10.88, JAM-rule 10.88 (f_ex 0.00); offsets law +0.149, rule +0.149 (SLUGGS masses: law -0.014, rule -0.110)
+    NGC4278  sigma_e  213: log M_* SLUGGS 10.95, JAM-law 10.69, JAM-rule 10.69 (f_ex 0.00); offsets law +0.241, rule +0.241 (SLUGGS masses: law +0.158, rule +0.158)
+    NGC4365  sigma_e  221: log M_* SLUGGS 11.51, JAM-law 10.98, JAM-rule 10.98 (f_ex 0.00); offsets law +0.329, rule +0.329 (SLUGGS masses: law +0.171, rule -0.006)
+    NGC4374  sigma_e  258: log M_* SLUGGS 11.51, JAM-law 11.15, JAM-rule 11.15 (f_ex 0.04); offsets law +0.310, rule +0.299 (SLUGGS masses: law +0.205, rule +0.023)
+    NGC4459  sigma_e  158: log M_* SLUGGS 10.98, JAM-law 10.44, JAM-rule 10.44 (f_ex 0.00); offsets law +0.096, rule +0.096 (SLUGGS masses: law -0.073, rule -0.073)
+    NGC4473  sigma_e  187: log M_* SLUGGS 10.96, JAM-law 10.51, JAM-rule 10.51 (f_ex 0.00); offsets law +0.177, rule +0.177 (SLUGGS masses: law +0.033, rule +0.033)
+    NGC4486  sigma_e  264: log M_* SLUGGS 11.62, JAM-law 11.28, JAM-rule 11.22 (f_ex 0.21); offsets law +0.389, rule +0.338 (SLUGGS masses: law +0.284, rule +0.078)
+    NGC4494  sigma_e  150: log M_* SLUGGS 11.02, JAM-law 10.46, JAM-rule 10.46 (f_ex 0.00); offsets law +0.020, rule +0.020 (SLUGGS masses: law -0.149, rule -0.149)
+    NGC4526  sigma_e  209: log M_* SLUGGS 11.26, JAM-law 10.85, JAM-rule 10.85 (f_ex 0.00); offsets law +0.193, rule +0.193 (SLUGGS masses: law +0.057, rule +0.007)
+    NGC4649  sigma_e  268: log M_* SLUGGS 11.60, JAM-law 11.30, JAM-rule 11.24 (f_ex 0.25); offsets law +0.238, rule +0.182 (SLUGGS masses: law +0.142, rule -0.036)
+    NGC4697  sigma_e  169: log M_* SLUGGS 11.15, JAM-law 10.58, JAM-rule 10.58 (f_ex 0.00); offsets law +0.218, rule +0.218 (SLUGGS masses: law +0.044, rule +0.033)
+    NGC5846  sigma_e  223: log M_* SLUGGS 11.46, JAM-law 11.06, JAM-rule 11.06 (f_ex 0.00); offsets law +0.329, rule +0.329 (SLUGGS masses: law +0.215, rule +0.029)
+    NGC7457  the rule cannot be calibrated (its debris alone exceeds the JAM mass): excluded from the rule's mean
+
+    JAM-law minus SLUGGS masses: median -0.478 dex, mean -0.453 +- 0.033
+    canonical: JAM-calibrated law +0.2162 +- 0.0237 (+9.11 sigma); rule +0.1984 +- 0.0252 (+7.88 sigma) | SLUGGS masses, same 16: law +0.0774 (+2.75), rule +0.0065 (+0.36)
+    alt      : JAM-calibrated law +0.2085 +- 0.0236 (+8.83 sigma); rule +0.1954 +- 0.0257 (+7.62 sigma) | SLUGGS masses, same 16: law +0.0625 (+2.23), rule +0.0022 (+0.12)
+
+======================================================================================================================
+H1 / H2
+======================================================================================================================
+  [FAIL] H1 [HEADLINE] CALIBRATED ON ITS OWN INNER KINEMATICS, THE LAW FITS THE OUTER GLOBULAR CLUSTERS: |mean| < 2 sigma over the 16, both footings  [MUTATE: JAM masses halved]
+         canonical: +0.2162 +- 0.0237 (+9.11 sigma); alt: +0.2085 +- 0.0236 (+8.83 sigma)
+  [FAIL] H2 THE RULE, CALIBRATED THE SAME WAY, STILL FITS: |mean| < 2 sigma over the 16, both footings
+         canonical: +0.1984 +- 0.0252 (+7.88 sigma); alt: +0.1954 +- 0.0257 (+7.62 sigma)
+
+======================================================================================================================
+R1-R4 (reported)
+======================================================================================================================
+  [PASS] (reported) R1 (reported, canonical) the same 16 with SLUGGS's masses
+         law +0.0774 +- 0.0281 (+2.75 sigma); rule +0.0065 +- 0.0182 (+0.36 sigma)
+  [PASS] (reported) R1 (reported, alt) the same 16 with SLUGGS's masses
+         law +0.0625 +- 0.0280 (+2.23 sigma); rule +0.0022 +- 0.0183 (+0.12 sigma)
+  [PASS] (reported) R3 (reported, canonical) population masses on the same 16: ATLAS3D's Salpeter M/L, and Salpeter - 0.25 dex (Chabrier-like)
+         Salpeter: law +0.0492 (+1.82 sigma), rule -0.0332 (-1.81 sigma); Salpeter - 0.25 dex: law +0.1288 (+4.80 sigma), rule +0.0777 (+4.34 sigma)
+  [PASS] (reported) R4 (reported, canonical) calibration with the Hernquist enclosed fraction at r_1/2 in place of one half
+         stellar fraction inside r_1/2 0.28-0.57; law +0.2071 (+9.13 sigma), rule +0.1824 (+7.85 sigma)
+  [PASS] (reported) R5 (reported; POST HOC, disclosed) without the galaxies whose calibrated rule mass lies below Mandelbaum's red range (log M_* < 10.28: clamped collapse masses, CFG36's standing caution)
+         removed ['NGC3377', 'NGC7457']; canonical: law +0.2158 (+7.97 sigma), rule +0.2074 (+8.21 sigma); alt: law +0.2077 (+7.72 sigma), rule +0.2038 (+7.82 sigma)
+
+    READING (declared): the deficit survives dynamical stellar masses: the massive early types want mass beyond the law independent of the IMF; the rule does not close it
+
+  7/10 checks pass; load-bearing failures: 3   (9 s)
