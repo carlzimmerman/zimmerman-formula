@@ -143,3 +143,7 @@ Scored outside the 48:
 8. **DF2/DF4:** harness scores PASS at 20 Mpc; CFG1 classes the gate CONTESTED (distance).
 9. **Theory scope:** extra_crispy README's peer-review correction restricts the XC1/XC2 labels; STANDING does not mention G8 or the Cauchy problem.
 10. **Other control failures kept as run:** CFG30 C3 (marginal), CFG20 C1b (2.7e-6 Mpc), CFG7 FG004/FG016 controls, CFG39 H1 (threshold-scan artefact).
+
+## Addendum after CFG185 (appended 2026-09-29; the rows and addenda above are unchanged)
+
+- **Gate 4.01, the bare kernels' tails:** CFG185 (568107b4f): as BARE laws neither kernel is Solar-System safe. ν_mono's anomalous acceleration never decays — above the RAR peak FP1's derivative floor gives exactly h = h(Y_P) + 0.05 H_P ln((y + Y_P)/(2Y_P)), never below 0.648 a₀, 1.18 a₀ at Earth — 2894–3620× the verified planetary bound δA_R (3.66e-14 m/s² Earth, 3.72e-14 Mars); P2's a₀/2 is 1258–1545×. These are the Sun-carried MONOPOLE; the '4.0–5.7× the ceiling' in 4.01 is the Q₂ TIDAL quadrupole of the same strict law, a different quantity. Candidate B passes 4.01 by ownership (the Sun carries no phantom), so no verdict changes; what must not be said is that ν_mono or P2 is Solar-System safe as a bare law.
