@@ -1,0 +1,68 @@
+{
+ "title": "W2 exact thin-window law c00(q)=A0+A1*q",
+ "pre_registration": "Z11-WAVE_BRIEF.md (W2 door, registered before any run)",
+ "verdict": "BANKED: exact thin-window law c00(q) = A0 + A1*q, A0 = 2/5, A1 = 8/35 (K1 two-method quadrature <= 1e-11; K2 z = 1.38/1.50/0.10 at q = 0/1/3); q in {6,10} scope recorded (K3 z=1.06). Successors: W3 (exact c1(q)), LR8 (Lean certs of A0/A1)",
+ "exit": 0,
+ "elapsed_s": 2.7,
+ "log": [
+  "[    0.0s] K1: sympy exact derivation, cylindrical (rho,z) reduction",
+  "[    1.2s] K1: sympy A0 = 2/5 = 2/5",
+  "[    1.2s] K1: sympy A1 = 8/35 = 8/35",
+  "[    2.7s] K1: mpmath dev A0 0.00e+00  A1 0.00e+00 ; GL(400) dev A0 9.80e-14  A1 1.79e-13 (gate 1e-11)",
+  "[    2.7s] K1 PASS: A0 = 2/5, A1 = 8/35 (exact rationals)",
+  "[    2.7s] K2: q=0: exact 0.400000 vs MC7 0.401977+-0.001434, z=1.38 GATE",
+  "[    2.7s] K2: q=1: exact 0.628571 vs MC7 0.627066+-0.001004, z=1.50 GATE",
+  "[    2.7s] K2: q=3: exact 1.085714 vs MC7 1.085406+-0.003223, z=0.10 GATE",
+  "[    2.7s] K2: q=6: exact 1.771429 vs MC7 1.786688+-0.002758, z=5.53 scope",
+  "[    2.7s] K2: q=10: exact 2.685714 vs MC7 2.651924+-0.005149, z=6.56 scope",
+  "[    2.7s] K2 PASS at q in {0,1,3}; q in {6,10} recorded as scope (MC7 extrapolation bias)",
+  "[    2.7s] K3: q=6 refit (4 smallest tau0): intercept 1.791846+-0.019183 vs exact 1.771429, z=1.06"
+ ],
+ "A0": "2/5",
+ "A1": "8/35",
+ "k2": {
+  "0.0": {
+   "exact": 0.4,
+   "mc7": 0.40197706509608416,
+   "se": 0.0014343491040547344,
+   "z": 1.378370921343495
+  },
+  "1.0": {
+   "exact": 0.6285714285714286,
+   "mc7": 0.627066174478573,
+   "se": 0.0010037574380541243,
+   "z": 1.4996193659830659
+  },
+  "3.0": {
+   "exact": 1.0857142857142859,
+   "mc7": 1.0854062092940866,
+   "se": 0.0032231262625085325,
+   "z": 0.09558310630979794
+  },
+  "6.0": {
+   "exact": 1.7714285714285714,
+   "mc7": 1.786688276808191,
+   "se": 0.002757757644163044,
+   "z": 5.533374338357034
+  },
+  "10.0": {
+   "exact": 2.6857142857142855,
+   "mc7": 2.651923771401844,
+   "se": 0.005148916266133403,
+   "z": 6.562645917296377
+  }
+ },
+ "k3": {
+  "intercept": 1.791845947065876,
+  "se": 0.01918275520225091,
+  "exact": 1.7714285714285714,
+  "z": 1.0643609545154882,
+  "note": "fire => O(tau0)-bias explanation insufficient at q=6; records only"
+ },
+ "quad": {
+  "A0_mpmath": "0.4",
+  "A1_mpmath": "0.2285714285714285714285714285714285714286",
+  "A0_gl": "0.39999999999996083",
+  "A1_gl": "0.22857142857138762"
+ }
+}
