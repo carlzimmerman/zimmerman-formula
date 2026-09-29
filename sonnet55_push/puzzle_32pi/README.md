@@ -92,3 +92,11 @@ Five natural structural origins of that 2 all give exactly ½ at d = 3 and diffe
 (1/(d-1)), the D-dimensional Schwarzschild surface gravity ((d-2)/2), the enthalpy premise ((2/3)d/(d+1)), and the fixed-Z rigidity form (√(3/(2d(d-1)))). At d = 4 they range
 from 0.33 to 1.00. So d = 3 alone cannot tell which, if any, is the real origin, and agreement of several rational functions at one point is weak evidence (many functions equal ½ at 3).
 That is the sharpest statement of the open problem I can make: find a principle for the 2 (a channel count, a horizon count, an enthalpy, a normalisation), and check it in a second dimension.
+
+## 8. The puzzle's horizon cannot exist inside its own universe (`p06`, 14/14) -- a no-go, not a derivation
+Take the puzzle literally: a Schwarzschild horizon with surface gravity a₀ has r_s = ZL/2, mass M_s = ZL/4, area A_s = (8π/3)A_dS. Placed in the de Sitter universe with that Λ:
+- **Schwarzschild-de Sitter has no horizon at all** (M_s/M_Nariai = 3√3 Z/4 = 7.52). The object is not a solution of that universe. Its entropy A_s/4 = (8π/3) S_dS exceeds the dS bound.
+- **Embeddable iff Z ≤ 2** (r_s ≤ L), i.e. κ ≥ 1. The fitted κ = ½ (Z = 5.79), Milgrom's 2π and Verlinde's 6 all lie outside. So any a₀ on the data's scale is a *sub-Hubble* acceleration (a₀ ≈ H/6) that no real horizon of this universe carries.
+- **Gravitating-wall route closed** (Israel junction, checked over 20,000 random cases): a real wall needs 1/R² ≥ max(H_in², H_out²), so any wall's acceleration is ≥ H for every tension. a₀ = H/Z would need σ² < 0. A Brown-Teitelboim membrane in the gravitating regime therefore cannot supply a₀; only the probe limit (a = eE/σ, a free ratio) is left.
+Consequence for the search: a derivation cannot come from a real geometric object (horizon, wall, bubble) of the Λ-universe. It has to be a response coefficient (a normalisation of the medium/field, formulations 5-7 of section 6) or an analytic-continuation quantity. That narrows where the ½ can live; it does not supply it. κ = ½ stays FITTED.
+Not a result: `p06` check D2 is bookkeeping (the static-patch angle tanθ₀ = 1/Z has no special value), and Z ≤ 2 embeddability is a sharp fact about the *puzzle's* object, not evidence about the field-theory a₀.
