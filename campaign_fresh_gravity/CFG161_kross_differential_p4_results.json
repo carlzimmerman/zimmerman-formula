@@ -1,0 +1,146 @@
+{
+ "slug": "CFG161_kross_differential_p4",
+ "summary": {
+  "n_checks": 4,
+  "n_pass": 4,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 0.1
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: CFG140's committed R3 differentials reproduce (3-decimal print)",
+   "detail": "committed {'P0': (0.017, 0.058), 'P1': (0.273, 0.07)}; mine {'P0': (0.017, 0.058), 'P1': (0.273, 0.07)}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: the copied P4 functions reproduce CFG160's committed decision cell",
+   "detail": "D'_flat +0.1441 (CFG160 +0.1441); D'_H -0.0060 (CFG160 -0.0060)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R0 (reported) POWER: sigma_D, the rival's predicted differential D_H and |D_H| / sigma_D under P4",
+   "detail": "sigma_D 0.044; D_H +0.072 (CFG140's deep-regime approximation +0.083); |D_H|/sigma_D 1.62",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "H1 [HEADLINE] P4 does not manufacture evolution: D within 2 sigma_D of at least one prediction",
+   "detail": "D +0.148 +- 0.044, D_H +0.072: lands on the rival",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "P4": {
+   "D": 0.1483046465911957,
+   "sigma_D": 0.04448440282282216,
+   "D_H": 0.07222954524345196,
+   "D_H_approx": 0.0834512073551195,
+   "verdict": "lands on the rival",
+   "own": {
+    "KURVS_flat": 0.24078064907223834,
+    "KURVS_H": 0.09065323643070526,
+    "KROSS_flat": 0.09247600248104265,
+    "KROSS_H": 0.014578135082961553,
+    "eKURVS": 0.04181533025315448,
+    "eKROSS": 0.015176964463381066
+   }
+  },
+  "R1": {
+   "P0 (none)": {
+    "D": 0.016710700577612807,
+    "sigma_D": 0.058442082976773675,
+    "D_H": 0.06898165608852408,
+    "verdict": "consistent with both",
+    "own": {
+     "KURVS_flat": -0.03853549094386059,
+     "KURVS_H": -0.18722004588467095,
+     "KROSS_flat": -0.0552461915214734,
+     "KROSS_H": -0.13494909037375966,
+     "eKURVS": 0.055561319332364245,
+     "eKROSS": 0.018122275152726998
+    }
+   },
+   "P1 (sigma0 on KURVS)": {
+    "D": 0.2732252768897585,
+    "sigma_D": 0.07038061298387263,
+    "D_H": 0.0780750598801565,
+    "verdict": "P4 manufactures evolution",
+    "own": {
+     "KURVS_flat": 0.5134175854926091,
+     "KURVS_H": 0.35949720534655055,
+     "KROSS_flat": 0.24019230860285054,
+     "KROSS_H": 0.16434698833694852,
+     "eKURVS": 0.06884947990365327,
+     "eKROSS": 0.014600678100078283
+    }
+   },
+   "P2 (sigma_out on KURVS)": {
+    "D": 0.2648118045985961,
+    "sigma_D": 0.06507693295063932,
+    "D_H": 0.0768898128036456,
+    "verdict": "P4 manufactures evolution",
+    "own": {
+     "KURVS_flat": 0.5050041132014467,
+     "KURVS_H": 0.35226898013189906,
+     "KROSS_flat": 0.24019230860285054,
+     "KROSS_H": 0.16434698833694852,
+     "eKURVS": 0.06341787919254238,
+     "eKROSS": 0.014600678100078283
+    }
+   },
+   "P3 (fixed height)": {
+    "D": 0.2177559793511997,
+    "sigma_D": 0.06969594352797595,
+    "D_H": 0.07395097211807412,
+    "verdict": "P4 manufactures evolution",
+    "own": {
+     "KURVS_flat": 0.34503068729180136,
+     "KURVS_H": 0.1936533115231312,
+     "KROSS_flat": 0.12727470794060167,
+     "KROSS_H": 0.04984830429000563,
+     "eKURVS": 0.06808428027744896,
+     "eKROSS": 0.014901520840390285
+    }
+   },
+   "P4 (Kretschmer, primary)": {
+    "D": 0.1483046465911957,
+    "sigma_D": 0.04448440282282216,
+    "D_H": 0.07222954524345196,
+    "verdict": "lands on the rival",
+    "own": {
+     "KURVS_flat": 0.24078064907223834,
+     "KURVS_H": 0.09065323643070526,
+     "KROSS_flat": 0.09247600248104265,
+     "KROSS_H": 0.014578135082961553,
+     "eKURVS": 0.04181533025315448,
+     "eKROSS": 0.015176964463381066
+    }
+   }
+  },
+  "R2": {
+   "P4 alpha x 0.6": {
+    "D": 0.1101664249406964,
+    "sigma_D": 0.0454166205259725,
+    "D_H": 0.07111048136092983,
+    "verdict": "lands on the rival"
+   },
+   "P4 alpha x 1.4": {
+    "D": 0.1747383690020272,
+    "sigma_D": 0.04605862097457961,
+    "D_H": 0.07322009834161677,
+    "verdict": "P4 manufactures evolution"
+   },
+   "P4, KURVS sigma0": {
+    "D": 0.12573475437483317,
+    "sigma_D": 0.05026614601108553,
+    "D_H": 0.07446982556741014,
+    "verdict": "lands on the rival"
+   }
+  },
+  "reading": "the differential lands on the rival's prediction at ~1-2 sigma power: reported as that, not an a0 verdict"
+ }
+}
