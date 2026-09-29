@@ -1,0 +1,52 @@
+================================================================================================================
+Q1-2 induced current of a Dirac fermion in dS_4 -- mode: REAL RUN   comparator variant: printed
+================================================================================================================
+
+0. closed form (3.12) from the LaTeX source: finite and linear as L -> 0, odd in L, and -> the weak-field formula (4.3)
+     [printed] M = 0.5: J/L at 1e-3: -4.404458e+05   at 1e-4: -4.404415e+07   (4.3): -1.536492e-02   rel(1e-3 vs 1e-4) 9.9e+01   rel(1e-4 vs (4.3)) 2.9e+09
+     [printed] M = 1.0: J/L at 1e-3: -4.069295e+07   at 1e-4: -4.069263e+09   (4.3): -3.857169e-03   rel(1e-3 vs 1e-4) 9.9e+01   rel(1e-4 vs (4.3)) 1.1e+12
+     [printed] M = 2.0: J/L at 1e-3: -8.716257e+10   at 1e-4: -8.716195e+12   (4.3): -7.326422e-04   rel(1e-3 vs 1e-4) 9.9e+01   rel(1e-4 vs (4.3)) 1.2e+16
+     [printed] oddness: J(+0.4, 1.0) = -332.81886313, J(-0.4, 1.0) = +332.81886313, |J(+)+J(-)|/|J(+)| = 0.0e+00
+     [amended] M = 0.5: J/L at 1e-3: -1.536492e-02   at 1e-4: -1.536492e-02   (4.3): -1.536492e-02   rel(1e-3 vs 1e-4) 5.8e-08   rel(1e-4 vs (4.3)) 5.9e-10
+     [amended] M = 1.0: J/L at 1e-3: -3.857169e-03   at 1e-4: -3.857169e-03   (4.3): -3.857169e-03   rel(1e-3 vs 1e-4) 1.9e-07   rel(1e-4 vs (4.3)) 1.9e-09
+     [amended] M = 2.0: J/L at 1e-3: -7.326421e-04   at 1e-4: -7.326422e-04   (4.3): -7.326422e-04   rel(1e-3 vs 1e-4) 2.0e-07   rel(1e-4 vs (4.3)) 2.0e-09
+     [amended] oddness: J(+0.4, 1.0) = -0.00149662, J(-0.4, 1.0) = +0.00149662, |J(+)+J(-)|/|J(+)| = 0.0e+00
+  [FAIL] V0 the closed form (3.12) exactly as printed is finite and linear as L -> 0, odd, and equals (4.3) at L -> 0 
+
+1. DIRECT mode sum (order-2 adiabatic subtraction inside the integrand; K = 200; tail fitted) vs closed form (3.12) [printed]
+     (69 s)
+     L       M       direct J_HFY      closed J_HFY     ratio       tail c2
+      0.50   2.00   -0.000347731   -812695.021183369   +0.000000   +1.54e-05
+      1.00   1.50   -0.001047669   -414370.139890475   +0.000000   +1.39e-05
+      0.30   1.00   -0.001137589   -269.493937300   +0.000004   +5.11e-06
+      0.50   0.60   -0.005585608   -19.446150175   +0.000287   +5.21e-06
+      1.50   0.80   -0.007114353   -520433.623454434   +0.000000   -1.10e-05
+      0.40   1.40   -0.000640374   -7367.836314343   +0.000000   +9.03e-06
+      0.30   3.00   -0.000094135   -625348001.173416734   +0.000000   +2.13e-05
+      2.00   1.00   -0.002555362   -300989599.812201023   +0.000000   -4.72e-05
+      0.20   0.40   -0.004183996   -1.172526771   +0.003568   +1.65e-06
+      0.05   1.00   -0.000192768   -830.190123244   +0.000000   +9.28e-07
+      0.05   3.00   -0.000015819   -2137157994.171635628   +0.000000   +3.10e-06
+      0.30   0.15   -0.015215122   -0.083236993   +0.182793   +1.99e-06
+     worst | |ratio| - 1 | = 1.00e+00; sign of direct/closed: + (consistent)
+  [FAIL] V1 direct = closed form (3.12) on the twelve-point grid, worst relative difference <= 2e-3, one consistent sign (variant printed; worst 1.0e+00)
+
+1s. sign check independent of the comparator: large L, direct sum vs the Minkowski Schwinger asymptote of HFY (4.2): J ~ L^2 e^{-pi M^2/L}/(6 pi^3)
+     L = 8.0, M = 1.0: direct J_HFY = +0.161121   (4.2) asymptote +0.232291   ratio 0.694   closed (3.12)[printed] = -3238323420630499531349131831741660528640.000000
+  [PASS] V1s at L = 8, M = 1 the direct J_HFY is positive and within [0.6, 1.6] of the Schwinger asymptote (4.2) 
+
+1r. RAW exact-mode integrand G(k) = (k^2/(4 pi^2)) Int dr P_exact (no adiabatic terms): fit c1 k + c0 + c_{-1}/k + c_{-2}/k^2 + c_{-3}/k^3, (L, M) = (0.3, 1.0)
+     fit: c1 = -0.02026424 (expected -0.02026424, rel 5.3e-12);  c0 = -1.15e-10;  c_-1 = +0.01013216 (expected +0.01013212, rel 4.0e-06);  c_-2 = -5.848e-06, c_-3 = -3.378e-02
+  [PASS] V1r exact-mode raw integrand: c1 = -2L/(3 pi^2) and c_{-1} = +L/(3 pi^2) (the ln Lambda coefficient 1/(3 pi^2)) to 3%, |c0| <= 3e-3 |c1| 
+
+2. K-convergence of the truncated (no tail) subtracted integral at (L, M) = (0.3, 1.0): order 2 (real) and order 0 only (the control configuration, run here for the record)
+     K        order 2 truncated   order 2 +tail      order 0 truncated
+        100   -0.001136070    -0.001137586    +0.039038182
+        200   -0.001137209    -0.001137589    +0.046059669
+        400   -0.001137494    -0.001137590    +0.053082327
+     relative drift K = 100 -> 400: order 2 1.25e-03;  order 0 only 1.23e+01  (log divergence L ln4/(3 pi^2) = 0.01405 in absolute terms)
+  [FAIL] V2 the order-2-subtracted integral converges (drift K = 100 -> 400 < 1e-3 relative) whereas order 0 only drifts by > 5% (logarithmic divergence) 
+
+================================================================================================================
+CHECKS: 2/5 passed   (comparator variant: printed)
+Scope: one Dirac fermion, minimal coupling, dS_4 planar patch, in-vacuum, constant-energy-density field, order-2 adiabatic subtraction; no backreaction.

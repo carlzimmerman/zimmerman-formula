@@ -1,0 +1,36 @@
+================================================================================================================
+Q1-2 induced current of a Dirac fermion in dS_4 -- mode: MUTATE CONTROL (order-2 adiabatic term dropped)   comparator variant: amended
+================================================================================================================
+
+0. closed form (3.12) from the LaTeX source: finite and linear as L -> 0, odd in L, and -> the weak-field formula (4.3)
+     [printed] M = 0.5: J/L at 1e-3: -4.404458e+05   at 1e-4: -4.404415e+07   (4.3): -1.536492e-02   rel(1e-3 vs 1e-4) 9.9e+01   rel(1e-4 vs (4.3)) 2.9e+09
+     [printed] M = 1.0: J/L at 1e-3: -4.069295e+07   at 1e-4: -4.069263e+09   (4.3): -3.857169e-03   rel(1e-3 vs 1e-4) 9.9e+01   rel(1e-4 vs (4.3)) 1.1e+12
+     [printed] M = 2.0: J/L at 1e-3: -8.716257e+10   at 1e-4: -8.716195e+12   (4.3): -7.326422e-04   rel(1e-3 vs 1e-4) 9.9e+01   rel(1e-4 vs (4.3)) 1.2e+16
+     [printed] oddness: J(+0.4, 1.0) = -332.81886313, J(-0.4, 1.0) = +332.81886313, |J(+)+J(-)|/|J(+)| = 0.0e+00
+     [amended] M = 0.5: J/L at 1e-3: -1.536492e-02   at 1e-4: -1.536492e-02   (4.3): -1.536492e-02   rel(1e-3 vs 1e-4) 5.8e-08   rel(1e-4 vs (4.3)) 5.9e-10
+     [amended] M = 1.0: J/L at 1e-3: -3.857169e-03   at 1e-4: -3.857169e-03   (4.3): -3.857169e-03   rel(1e-3 vs 1e-4) 1.9e-07   rel(1e-4 vs (4.3)) 1.9e-09
+     [amended] M = 2.0: J/L at 1e-3: -7.326421e-04   at 1e-4: -7.326422e-04   (4.3): -7.326422e-04   rel(1e-3 vs 1e-4) 2.0e-07   rel(1e-4 vs (4.3)) 2.0e-09
+     [amended] oddness: J(+0.4, 1.0) = -0.00149662, J(-0.4, 1.0) = +0.00149662, |J(+)+J(-)|/|J(+)| = 0.0e+00
+  [PASS] V0a the AMENDED closed form (Ei prefactor e^{-2 pi r s}) is finite and linear as L -> 0, odd, and equals (4.3) at L -> 0 
+     (informational, registered in the first run: the closed form exactly as printed passes V0: False)
+
+1. DIRECT mode sum (order-0 adiabatic subtraction inside the integrand; K = 200; tail fitted) vs closed form (3.12) [amended]
+     (71 s)
+     L       M       direct J_HFY      closed J_HFY     ratio       tail c2
+      0.50   2.00   +0.092994139   -0.000347732   -267.430480   +3.00e+02
+      1.00   1.50   +0.195352168   -0.001047670   -186.463541   +6.00e+02
+      0.30   1.00   +0.061890583   -0.001137589   -54.405032   +1.80e+02
+      0.50   0.60   +0.108087588   -0.005585608   -19.351087   +3.00e+02
+      1.50   0.80   +0.319331090   -0.007114352   -44.885475   +9.00e+02
+      0.40   1.40   +0.078851619   -0.000640374   -123.133608   +2.40e+02
+      0.30   3.00   +0.051802765   -0.000094136   -550.297165   +1.80e+02
+      2.00   1.00   +0.417632450   -0.002555360   -163.433889   +1.20e+03
+      0.20   0.40   +0.044024096   -0.004183996   -10.522022   +1.20e+02
+      0.05   1.00   +0.010311928   -0.000192768   -53.494094   +3.00e+01
+      0.05   3.00   +0.008633664   -0.000015819   -545.771977   +3.00e+01
+      0.30   0.15   +0.067034894   -0.015215122   -4.405807   +1.80e+02
+     worst | |ratio| - 1 | = 5.49e+02; sign of direct/closed: - (consistent)
+  [FAIL] V1 direct = closed form (3.12) on the twelve-point grid, worst relative difference <= 2e-3, one consistent sign (variant amended; worst 5.5e+02)
+
+MUTATE CONTROL: the order-2 adiabatic term was dropped from the subtraction (order 0 only; s_1 cancels in the block sum).
+  V1 FAILED as required -- the control works
