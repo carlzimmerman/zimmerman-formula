@@ -1,0 +1,67 @@
+FROZEN_QUESTION.md sha256 = f9b5af880a220176f7ecaba6534a7dbb84b439b0fde9b84c646424c023d92a23
+MUTATE = 1
+
+D2 -- Door 8, deliverable 2: the background evolution, whether Lambda stays a global constant, and a0(z).
+
+  A (sympy, minisuperspace of CFG43's action): S = int { -3 Mp2 a a'^2/N - N a^3 Mp2 Lambda + Mp2 Lambda T0' - N a^3 rho(n; Lambda) + J theta' + l(T0) }.
+      Euler-Lagrange in T0:  Mp2 Lambda' = dl/dT0.   With l = 0 (CFG43: the matter Lagrangian has no T0 dependence) Lambda' = 0 whatever rho(n; Lambda) is
+      (CFG43's 'global integration constant', re-derived).  The shift T0 -> T0 + c is a symmetry iff dl/dT0 = 0 (Noether: Lambda' = 0 IS the shift charge).
+      => an exchange with Lambda' = -Q != 0 (covariant D1: d_mu rho_L = Q u_mu, i.e. rho_L' = -a Q) REQUIRES explicit T0 dependence (breaks the HT 4-form gauge symmetry),
+      so it is not the HT sector any more; Q does NOT keep Lambda a global constant.  No action is constructed here (untested: whether one exists).
+  B Q a function of Lambda only (the only cold-safe entry, D1/D3):  Q = xi H_L rho_L, H_L = sqrt(rho_L/3 Mp2).  Closed form (sympy): rho_L^(-1/2) rises linearly in t:
+        a0(t)/a0(0) = 1/(1 + xi sqrt(Omega_L) H0 (t - t0)/2)   (a0 = kappa c sqrt(G rho_L), so a0 is proportional to sqrt(rho_L)).
+      Numerical background (flat FRW, LCDM early data, a0(0) anchored) for a scan of xi: a0(z)/a0(0), H0 shift, comoving distance out to z = 999 (a theta_* proxy: reported, NOT a gate).
+  C The record's flat-a0(z) standing (< 1% for z <= 5): the largest |xi| that keeps it, and what Q buys at that size.
+
+MUTATE=1: Q dropped (xi = 0) in the claim 'Q != 0 makes a0(z) depart from flat by more than 1% at |xi| = 0.3': must FAIL (exit 1).
+MUTATE=2: the claim of A2 is replaced by 'Lambda is dynamical even with l = 0 (no explicit T0 dependence)': sympy shows Lambda' = 0 there, so the mutated claim must FAIL (exit 1).
+Run: python3 D2_background_and_lambda.py
+
+
+==============================================================================================================
+A  HT sector: Euler-Lagrange in T0 and the shift symmetry (sympy)
+==============================================================================================================
+  CFG43 action: E_T = -Mp2*Derivative(Lam(t), t)  (= -Mp2 Lambda')
+  [PASS] A1 with a matter Lagrangian that has no T0 dependence (CFG43), E_T reads Mp2 Lambda' = 0 for ANY rho(n; Lambda)
+         measured: sympy: E_T = -Mp2*Derivative(Lam(t), t) -> True
+         reading:  re-derives CFG43's 'Lambda is a global integration constant'
+  with an explicit T0 term l(T0): E_T = -Mp2*Derivative(Lam(t), t) + Derivative(ell(T0(t)), T0(t))   => Mp2 Lambda' = dl/dT0
+  [PASS] A2 Lambda' = (1/Mp2) dl/dT0: a nonzero exchange needs explicit T0 dependence, which breaks the shift T0 -> T0 + c (the HT 4-form gauge symmetry)
+         measured: Lambda' = Derivative(ell(T0(t)), T0(t))/Mp2 -> True
+         reading:  so Q != 0 makes Lambda a dynamical field on the fluid-orthogonal slicing (D1), NOT a global constant; the HT identification is lost.  Existence of an action realising it is untested
+
+==============================================================================================================
+B  Q a function of Lambda only: closed form for rho_L(t) and a0(z) (sympy)
+==============================================================================================================
+  d(rho_L^(-1/2))/dt = sqrt(3)*xi/6   (constant: xi/(2 sqrt 3) in units Mp2 = 1)
+  [PASS] B1 for Q = xi H_L rho_L: d(rho_L^(-1/2))/dt = xi/(2 sqrt 3 Mp): a0 ~ sqrt(rho_L) = 1/(1 + xi sqrt(Omega_L) H0 (t - t0)/2)
+         measured: sympy: True
+         reading:  a0 is no longer flat: a0(z) departs at first order in xi
+
+  numerical backgrounds (rho_L(a = 1) anchored to the LCDM value; rho_c a^3 at z = 999 equal to LCDM; Q = xi H_L rho_L):
+   xi     a0(z)/a0(0) at z = 0.5, 1, 2.5, 5, 10    H0/H0ref   rho_c0/ref   D_m(z<=999)/ref-1 [theta* proxy]
+  -0.30   0.95625  0.93484  0.91103  0.90090  0.89608    0.97819    0.83721     +8.12e-03
+  -0.10   0.98523  0.97764  0.96887  0.96503  0.96318    0.99252    0.94373     +2.81e-03
+  -0.03   0.99555  0.99323  0.99050  0.98929  0.98871    0.99773    0.98290     +8.55e-04
+  -0.01   0.99851  0.99774  0.99682  0.99641  0.99621    0.99924    0.99428     +2.86e-04
+  +0.00   1.00000  1.00000  1.00000  1.00000  1.00000    1.00000    1.00000     +0.00e+00
+  +0.01   1.00149  1.00227  1.00320  1.00361  1.00381    1.00076    1.00574     -2.87e-04
+  +0.03   1.00447  1.00683  1.00964  1.01090  1.01151    1.00229    1.01729     -8.65e-04
+  +0.10   1.01495  1.02300  1.03271  1.03710  1.03924    1.00771    1.05840     -2.92e-03
+  +0.30   1.04532  1.07094  1.10323  1.11837  1.12588    1.02383    1.18200     -9.13e-03
+  [PASS] B2 the integrated background reproduces the closed form a0(z)/a0(0) = 1/(1 + xi sqrt(rho_L0/3)(t_z - t0)/2) (xi = 0.1, z = 2.5)
+         measured: numeric 1.0327089 vs closed form 1.0327089 (rel. diff 7.5e-15)
+
+==============================================================================================================
+C  the flat-a0(z) standing (|a0(z)/a0(0) - 1| < 1% for z <= 5) against |xi|
+==============================================================================================================
+  |xi| for which max_z<=5 |a0(z)/a0(0) - 1| = 1%: 0.0275 (both signs are within 10% of each other by symmetry at this order)
+  [FAIL] C1 CLAIM: with Q != 0 (|xi| = 0.3) a0(z) departs from flat by more than 1% within z <= 5
+         measured: MUTATED (xi = 0): max deviation 0.00e+00
+         reading:  the control
+  [PASS] C2 with xi = 0 (no exchange) the background reproduces the flat a0(z) of CFG43 to 1e-6 and H0 to 1e-4 (the 9e-5 radiation term)
+         measured: max dev 0.00e+00, H0/1 - 1 = 4.55e-05
+         reading:  control agreeing with CFG43 A2
+
+SUMMARY D2_background_and_lambda (MUTATE=1): 5/6 checks pass; load-bearing failures = 1
+   failed: C1 (load-bearing)

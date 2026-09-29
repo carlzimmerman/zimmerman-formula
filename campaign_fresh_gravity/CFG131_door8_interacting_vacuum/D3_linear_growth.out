@@ -1,0 +1,98 @@
+FROZEN_QUESTION.md sha256 = f9b5af880a220176f7ecaba6534a7dbb84b439b0fde9b84c646424c023d92a23
+MUTATE = 0
+
+D3 -- Door 8, deliverable 3 (and G2): the linear perturbation equations for delta_c with Q(Lambda, rho_c) and the growth ratio to LCDM, in CFG43's two-fluid conventions.
+
+  A (sympy, conformal Newtonian gauge) the relativistic continuity equation of the cold fluid with the source, and its sub-horizon reduction:
+        delta_c' = -theta - a Gamma (1 - n) delta_c        (' = d/d eta; theta = div v; Gamma = Q/rho_c; n = rho_c Q_rho / Q; p = 0)
+     the Euler equation is UNCHANGED by Q (Q u^mu carries no force: the created matter is at rest in the fluid frame), so
+        d_c'' + (2 + dlnH/dlna + gamma/H) d_c' = (3/2)(Om_c d_c + Om_b d_b) - [c_s^2 k^2/(aH)^2 + 2 gamma/H + gamma'/H] d_c,    gamma = Gamma (1 - n)  (' = d/dln a)
+     and the vacuum-consistency constraint of D1-B:  Q_rho delta rho_com = Q delta p_com/(rho + p)  (c_s^2 = (rho + p) Q_rho/Q).
+     delta rho_Lambda = Q a v is O((aH/k)^2) relative to the cold density perturbation and is dropped (checked by scaling in sympy).
+  B RESULTS.  (R1) Dust with Q_rho != 0: delta rho_com = 0, the cold fluid sources no Poisson potential: only the baryons grow.
+              (R2) The Q-consistent barotropic fluid: largest constant c_s^2 (= n(1+w)) that keeps growth within 5% of LCDM at k = 0.5, 2, 10, 30 /Mpc (z = 0 and z = 10 versions).
+              (R3) Q = Q(Lambda) only (n = 0, so LCDM-like linear cold behaviour): the growth ratio against xi (dilution + background shift).
+              (R4) The Q-consistent fluid whose EOS IS the target's required EOS (point mass, c_s,req^2(x) with x fixed by rho_c(a)): growth ratio for 1e9..1e12 Msun.
+  Solver validation: the same solver run with CFG43's saturating-EOS c_s^2 at nu* = 1 must return CFG43's 0.140 / 0.099 / 0.080 at k = 0.5 / 2 / 10 (2%).
+  G2 PASS iff the ratio >= 0.95 at k = 0.5, 2, 10, 30.
+
+MUTATE=3: the vacuum-consistency constraint is dropped (dust with Q_rho != 0 keeps its normal Poisson source): the claim 'R1: growth collapses' must FAIL (exit 1).
+Run: python3 D3_linear_growth.py
+
+
+==============================================================================================================
+A  relativistic continuity with the source and its sub-horizon reduction (sympy)
+==============================================================================================================
+  continuity (first order):   (((Psi(eta, x)*Qb(eta) + dQ(eta, x))*a(eta) + 3*rb(eta)*Derivative(Phi(eta, x), eta) - rb(eta)*Derivative(v(eta, x), (x, 2)) - Derivative(drho(eta, x), eta))*a(eta) - 3*dp(eta, x)*Derivative(a(eta), eta) - 3*drho(eta, x)*Derivative(a(eta), eta))/a(eta) = 0
+  delta_c' (full linear GR, p_bar = 0, dQ = Q_rho drho) = Q_rho*a(eta)*delta(eta) - 3*c_s2*delta(eta)*Derivative(a(eta), eta)/a(eta) + k**2*V(eta) + Ps(eta)*Qb(eta)*a(eta)/rb(eta) - Qb(eta)*a(eta)*delta(eta)/rb(eta) + 3*Derivative(Ph(eta), eta)
+  coefficient of V: k**2    coefficient of delta: (Gamma*(n - 1)*a(eta)**2 - 3*c_s2*Derivative(a(eta), eta))/a(eta)    remaining (potential) terms: Gamma*Ps(eta)*a(eta) + 3*Derivative(Ph(eta), eta)
+  [PASS] A1 sub-horizon continuity: delta_c' = k^2 V (= -theta) + [-3 calH c_s^2 - a Gamma (1 - n)] delta_c + (Phi', Psi terms suppressed by (calH/k)^2)
+         measured: sympy: True
+         reading:  the source enters as a dilution rate a Gamma (1 - n): created matter is uniform on the comoving slice when Q_rho = 0 (n = 0)
+  [PASS] A2 eliminating theta: delta'' + (2H + gamma) delta' + (2 H gamma + gamma_dot + c_s^2 k^2/a^2) delta = 4 pi G sum rho_i delta_i
+         measured: sympy: True
+         reading:  this is D3's solver equation (converted to ln a in Dcommon.growth_ratio)
+  [PASS] A3 delta rho_Lambda = Q a v is O(Gamma/H (calH/k)^2) of rho_c delta_c on sub-horizon scales
+         measured: at k = 0.5/Mpc, z = 0, Gamma/H <= 0.03: (calH/k)^2 = 2.0e-07
+         reading:  so it is dropped in the Poisson equation (the vacuum does not cluster)
+
+==============================================================================================================
+B  growth results
+==============================================================================================================
+  [PASS] V solver validation: CFG43's nu* = 1 saturating-EOS fluid gives 0.140 / 0.099 / 0.080 at k = 0.5 / 2 / 10 (2%)
+         measured: 0.140 / 0.099 / 0.080
+  (R1) dust with Q_rho != 0 (delta rho_com = 0): total-matter growth ratio to LCDM at z = 0:  k=0.5: 2.69e-03, k=2: 2.69e-03, k=10: 2.69e-03, k=30: 2.69e-03
+  [PASS] R1 CLAIM: for dust with Q_rho != 0 the cold fluid sources no potential and the total growth ratio to LCDM is < 0.05 at every k (G2 fails)
+         measured: ratios {0.5: 0.00269, 2.0: 0.00269, 10.0: 0.00269, 30.0: 0.00269}
+         reading:  the cold sector has no linear growth; only baryons grow, from z = 1000 with delta_b = a (CFG43 convention, no photon drag included)
+
+  (R2) largest constant c_s^2 (units c^2) that keeps growth within 5% of LCDM:
+       k =   0.5 /Mpc : to z = 0: c_s^2 <= 1.66e-08 (c_s <= 38.64 km/s);   at z = 10: c_s^2 <= 1.53e-07
+       k =   2.0 /Mpc : to z = 0: c_s^2 <= 1.04e-09 (c_s <= 9.66 km/s);   at z = 10: c_s^2 <= 9.56e-09
+       k =  10.0 /Mpc : to z = 0: c_s^2 <= 4.15e-11 (c_s <= 1.93 km/s);   at z = 10: c_s^2 <= 3.82e-10
+       k =  30.0 /Mpc : to z = 0: c_s^2 <= 4.61e-12 (c_s <= 0.64 km/s);   at z = 10: c_s^2 <= 4.25e-11
+
+  the sound speed the target REQUIRES (point mass, exact): c_s,req^2/c^2 at x = 0.3, 1, 3, 10, 30 for M = 1e9, 1e11:
+       M = 1e+09:  x=0.3: 1.26e-07, x=1: 3.70e-08, x=3: 2.18e-08, x=10: 1.98e-08, x=30: 1.96e-08
+       M = 1e+11:  x=0.3: 1.26e-06, x=1: 3.70e-07, x=3: 2.18e-07, x=10: 1.98e-07, x=30: 1.96e-07
+       smallest required c_s^2 over the four masses and x in [0.1, 30]: 1.96e-08;  largest allowed (k = 30, z = 0): 4.61e-12, ratio = 4.3e+03
+  [PASS] R2 the Q-consistent fluid's c_s^2 must be <= the growth bound at every density it passes through, but the target requires c_s^2 above that bound at every x in [0.1, 30] for every mass 1e9..1e12
+         measured: required minimum 1.96e-08 vs allowed 4.61e-12 (k = 30) / 1.66e-08 (k = 0.5): factor 4.3e+03 / 1.2e+00
+         reading:  G2 fails for c_s^2 = the required value even at k = 0.5; the bound is a growth-history bound on the SAME density values the halo interior passes through (rho_c(z = 10) = 1331 mean today)
+
+  (R3) Q = xi H_L rho_L (Q_rho = 0, n = 0): total-matter growth ratio to LCDM at z = 0 (pressureless, k-independent) and at z = 10:
+       xi = -0.30 : ratio(z=0) = 1.1601   ratio(z=10) = 1.0001
+       xi = -0.10 : ratio(z=0) = 1.0500   ratio(z=10) = 1.0000
+       xi = -0.03 : ratio(z=0) = 1.0147   ratio(z=10) = 1.0000
+       xi = -0.01 : ratio(z=0) = 1.0049   ratio(z=10) = 1.0000
+       xi = +0.00 : ratio(z=0) = 1.0000   ratio(z=10) = 1.0000
+       xi = +0.01 : ratio(z=0) = 0.9952   ratio(z=10) = 1.0000
+       xi = +0.03 : ratio(z=0) = 0.9856   ratio(z=10) = 1.0000
+       xi = +0.10 : ratio(z=0) = 0.9530   ratio(z=10) = 1.0000
+       xi = +0.30 : ratio(z=0) = 0.8669   ratio(z=10) = 0.9999
+       growth ratio reaches 0.95 at xi = 0.106 (this is the dilution + background shift only; the flat-a0 law needs |xi| < 0.0275 from D2, comparable)
+  [PASS] R3 Q = Q(Lambda) only leaves the linear cold growth intact (ratio >= 0.95) for small |xi|; xi = 0 returns LCDM
+         measured: ratio(xi = 0) = 1.00000; ratio(0.01) = 0.9952, ratio(-0.01) = 1.0049
+         reading:  the only cold-safe Q is one with Q_rho = 0, and it then carries NO information about the halo: it is a homogeneous modification of the background
+
+  (R4) Q-consistent fluid with the point-mass target EOS: c_s^2(a) = c_s,req^2(x(rho_c(a)); M), x fixed by rho_c(a) = Om_c rho_crit / a^3 (LCDM background; analytic extension outside x in [0.1, 30]):
+       M = 1e+09: growth ratio at k = [0.5, 2.0, 10.0, 30.0]: 8.77e-01, 8.26e-02, 3.67e-03, 2.86e-03   (x(z=0) = 1144.9, x(z=10) = 31.373)
+       M = 1e+10: growth ratio at k = [0.5, 2.0, 10.0, 30.0]: 3.64e-01, 1.40e-02, 3.44e-03, 3.02e-03   (x(z=0) = 643.8, x(z=10) = 17.633)
+       M = 1e+11: growth ratio at k = [0.5, 2.0, 10.0, 30.0]: 9.66e-02, 4.83e-03, 3.10e-03, 2.57e-03   (x(z=0) = 362.0, x(z=10) = 9.899)
+       M = 1e+12: growth ratio at k = [0.5, 2.0, 10.0, 30.0]: 1.82e-02, 2.15e-03, 2.44e-03, 3.23e-03   (x(z=0) = 203.6, x(z=10) = 5.536)
+  [PASS] R4 the fluid whose EOS is the target's required EOS has G2 growth ratio < 0.95 (fails G2) for every mass and every k tested
+         measured: largest ratio over masses and k = 8.77e-01
+         reading:  the target's dispersion c_s^2 ~ V_f^2/2c^2 (2e-8 to 6e-7 for 1e9..1e12) is 4.3e+03 (k = 30) to 1.2e+00 (k = 0.5) times the growth bound; the analytic extension of the EOS beyond x in [0.1, 30] is an assumption, so R4b restricts it
+
+  (R4b) same, but c_s^2 = c_s,req^2 only where rho_c(a) lies inside the target's own density range (x in [0.1, 30]); zero elsewhere (an upper bound on growth):
+       M = 1e+09: ratio at z = 10, k = [0.5, 2.0, 10.0, 30.0]: 9.90e-01, 8.56e-01, 5.83e-02, 5.21e-02 ;  at z = 0: 9.88e-01, 8.22e-01, 4.75e-02, 4.83e-02
+       M = 1e+10: ratio at z = 10, k = [0.5, 2.0, 10.0, 30.0]: 9.66e-01, 5.58e-01, 3.29e-02, 9.23e-03 ;  at z = 0: 9.45e-01, 3.85e-01, 1.13e-03, 5.22e-02
+       M = 1e+11: ratio at z = 10, k = [0.5, 2.0, 10.0, 30.0]: 8.76e-01, 7.35e-02, 7.42e-02, 2.25e-02 ;  at z = 0: 7.68e-01, 4.86e-02, 1.21e-01, -2.65e-01
+       M = 1e+12: ratio at z = 10, k = [0.5, 2.0, 10.0, 30.0]: 5.85e-01, 1.60e-01, 1.84e-02, 1.58e-01 ;  at z = 0: 2.78e-01, 5.06e-02, -1.63e-01, 8.55e-02
+  [PASS] R4b restricted to the density range where the target defines the EOS, the growth ratio at z = 10 is still < 0.95 at k = 30 for every mass
+         measured: largest ratio at k = 30, z = 10: 1.58e-01
+         reading:  so G2's z >~ 10 clause fails for the target EOS with no extrapolation beyond the target's own range (k = 0.5 may pass for the lightest halo: see the table)
+
+  GATE G2: FAIL (R1: growth collapses for dust with Q_rho != 0; R2/R4: the forced c_s^2 kills growth unless it is below 4.6e-12, while the target needs >= 2.0e-08)
+
+SUMMARY D3_linear_growth (MUTATE=0): 9/9 checks pass; load-bearing failures = 0

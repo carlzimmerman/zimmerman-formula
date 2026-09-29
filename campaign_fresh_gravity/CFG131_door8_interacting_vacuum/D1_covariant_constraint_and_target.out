@@ -1,0 +1,118 @@
+FROZEN_QUESTION.md sha256 = f9b5af880a220176f7ecaba6534a7dbb84b439b0fde9b84c646424c023d92a23
+MUTATE = 0
+
+D1 -- Door 8, the covariant structure of a Q(Lambda, rho_c) exchange, and its collision with the target (deliverables 1, 4 and the G1 test).
+
+Hypotheses H1-H4 of FROZEN_QUESTION.md.  All derivations are sympy; each is checked against an explicit metric, not assumed.
+
+  A1 (sympy, explicit metric ds^2 = -N^2 dt^2 + A^2 dx^2, N, A general functions of (t,x,y,z), u^mu = (1/N, 0,0,0)):  the divergence of the cold fluid stress tensor is
+       nabla_mu T^mu_t = -(rho_t + 3 (rho+p) A_t/A),   nabla_mu T^mu_i = (rho+p) N_i/N + p_i     (i.e. (rho+p) a_i + p_i with a_i = d_i ln N).
+  A2 (sympy) vacuum T^{mu nu} = -rho_L g^{mu nu}: nabla_mu T^mu_nu = -d_nu rho_L.  Total conservation with nabla T_c = Q u  gives  d_mu rho_L = Q u_mu, i.e. in the
+       chart adapted to u:  d_i rho_L = 0 and d_t rho_L = -N Q.   [the vacuum is uniform on the hypersurfaces orthogonal to the fluid; N = -rho_L'(t)/Q]
+  A3 (sympy) Euler equation with N = -rho_L'(t)/Q(rho_L(t), rho_c):  p_i = (rho+p) d ln Q/d rho_c  rho_c,i.   => barotropic with  c_s^2 = dp/drho_c = (rho+p) Q_rho / Q.
+       DUST (p = 0) => Q_rho rho_c,i = 0: Q is a function of Lambda only, or rho_c is uniform (no structure).
+  A4 (sympy) power-law Q = xi rho_c^n rho_L^m:  the EOS forced by Q is  p = n rho/(1-n) + C rho^n  (constant w = n/(1-n) plus a constant-times-power).
+  B  (sympy, conformal Newtonian gauge, first order in epsilon) the same statement at linear order, with the fluid's own momentum equation, the vacuum constraint and
+       the background equations rho' = -3 H (rho+p) + a Q, Lambda' = -a Q:   the residual of the constraint equals EXACTLY
+             a [ Q_rho (drho + rho' v) - Q (dp + p' v)/(rho + p) ]     (v = velocity potential, u_i = a d_i v;  drho + rho' v = comoving-gauge density).
+       Q_Lambda drops out.  So  Q_rho drho_com = Q dp_com/(rho + p): for dust, delta rho_com = 0 (no growth) unless Q_rho = 0.
+  C  the hypothesis statement for deliverable 4 (locality): Q at an event depends on rho_L (uniform on fluid-orthogonal slices, A2) and on the local rho_c; so the EOS
+       p(rho_c) is the SAME function in every halo at the same epoch.  The target's required p(rho_c; M_b) is not (D below).
+  D  the target's required equation of state.  Hydrostatic target d p/dr = -rho_c g_tot = -a0 M_b(<r)/(4 pi r^3), rho_c = a0 M_b(<r)/(4 pi r^3 g_tot), g_tot = sqrt(g_N^2 + a0 g_N)
+       (P2).  Point mass, exact: p = a0^2/(8 pi G x^2), rho = a0/(4 pi G r_M x sqrt(1+x^2)), r_M^2 = G M/a0  => p_req(rho; M) proportional to M^(1/2) (deep, x >> 1) and M^1
+       (Newtonian, x << 1).  Extended baryons (3-D exponential sphere) numerically.  G1 is PASS iff p_req at fixed rho agrees across 1e9..1e12 Msun to 10%.
+
+Controls:  MUTATE=1 hand-feeds the enclosed baryon mass (the EOS is taken as a function of rho * r_M(M_b(<r)) instead of rho alone): G1 must flip (headline contradicted, exit 1).
+           MUTATE=2 gives the vacuum a spatial gradient (drops H1): the dust structure theorem must fail (exit 1).
+Run: python3 D1_covariant_constraint_and_target.py
+
+
+==============================================================================================================
+A1/A2/A3  covariant conservation in the chart adapted to the cold fluid (sympy, general N(t,x,y,z), A(t,x,y,z))
+==============================================================================================================
+  [PASS] A1 nabla_mu T_c^mu_t = -(rho_t + 3(rho+p)A_t/A) and nabla_mu T_c^mu_i = (rho+p) d_i ln N + d_i p on the general u-adapted chart
+         measured: sympy identity: True
+         reading:  so 'nabla T_c = Q u' gives: rho_t + 3 (rho+p) A_t/A = N Q  (energy) and (rho+p) d_i ln N + d_i p = 0 (Euler; Q u_i = 0 in this chart)
+  [PASS] A2 vacuum T^{mu nu} = -rho_L g^{mu nu}: nabla_mu T_vac^mu_nu = -d_nu rho_L (all four components)
+         measured: sympy identity: True
+         reading:  with nabla T_vac = -Q u: d_nu rho_L = Q u_nu: in this chart d_i rho_L = 0 and d_t rho_L = -N Q.  The vacuum is uniform on the hypersurfaces orthogonal to u_c.
+  Euler equation on the chart with N = -rho_L,t / Q(rho_L, rho_c)  [x-component]:
+       (-(p(t, x, y, z) + rho(t, x, y, z))*Derivative(Q(rLt(t), rho(t, x, y, z)), rho(t, x, y, z))*Derivative(rho(t, x, y, z), x) + Q(rLt(t), rho(t, x, y, z))*Derivative(p(t, x, y, z), x))/Q(rLt(t), rho(t, x, y, z))
+  dust (p = 0): -rho(t, x, y, z)*Derivative(Q(rLt(t), rho(t, x, y, z)), rho(t, x, y, z))*Derivative(rho(t, x, y, z), x)/Q(rLt(t), rho(t, x, y, z))
+  d_x ln N = -Derivative(Q(rLt(t), rho(t, x, y, z)), rho(t, x, y, z))*Derivative(rho(t, x, y, z), x)/Q(rLt(t), rho(t, x, y, z))
+  [PASS] A3-dust for DUST the Euler equation reads  rho_c Q_rho d_x rho_c / Q = 0: either Q_rho = 0 (Q a function of Lambda only) or rho_c has no spatial gradient on the fluid-orthogonal slice
+         measured: d_x ln N = -(Q_rho d_x rho_c)/Q  (sympy); no term from Lambda (d_x rho_L = 0)
+         reading:  STRUCTURE THEOREM: with a Lorentz-invariant vacuum and a Q u^mu exchange, dust with Q_rho != 0 cannot carry density contrasts
+  barotropic fluid: dp/drho_c = (rho + p) Q_rho / Q  =>  c_s^2 = Q_rho*(p + rho)/Q
+  power law Q = xi rho_c^n rho_L^m : c_s^2 = n*(p + rho)/rho
+  ODE  d(rho+p)/drho = 1 + n (rho+p)/rho  -> Eq(h(rho), (C1*rho**n*(n - 1) - rho)/(n - 1))
+  [PASS] A4 the EOS forced by Q = xi rho_c^n rho_L^m is p = n rho/(1-n) + C rho^n  (w = n/(1-n): a constant-w fluid plus C rho^n)
+         measured: sympy dsolve: True
+         reading:  so 'cold' (w -> 0, c_s^2 -> 0) requires n -> 0, i.e. Q independent of rho_c; the stiffness of the exchange IS the pressure
+  static fluid (rho_t = 0, A_t = 0, mean flow at rest): the energy equation Dc_t = Q u_t = -N Q gives  N Q = 0  -> Q = [0]
+  [PASS] A5 in a stationary halo with the mean flow at rest, the fluid energy equation forces Q = 0; with a definite sign (vacuum -> matter, Q >= 0) a stationary halo with no net radial flux has Q = 0 everywhere (integral of Q over the halo = the mass flux out)
+         measured: sympy: Q = [0]
+         reading:  so the exchange cannot SUSTAIN a profile: it can act only in time-dependent phases (formation history), which this door does not compute (untested); in equilibrium Q = 0, d_mu rho_L = 0 and N is unconstrained (the theorem A3 applies only where Q != 0)
+
+==============================================================================================================
+B  linear constraint in conformal Newtonian gauge: Q_rho (drho + rho' v) = Q (dp + p' v)/(rho + p)
+==============================================================================================================
+  [PASS] B-bg background: rho' = -3 H (rho + p) + a Q  and Lambda' = -a Q (from the vacuum constraint d_eta rho_L = Q u_eta = -a Q)
+         measured: sympy: True
+  [PASS] B the vacuum-consistency residual equals a [ Q_rho (drho + rho' v) - Q (dp + p' v)/(rho+p) ] exactly (Q_Lambda drops out)
+         measured: sympy identity: True (opposite sign: False)
+         reading:  comoving-gauge statement: Q_rho drho_com = Q dp_com/(rho + p).  For dust (dp_com = 0): drho_com = 0 whenever Q_rho != 0; the Poisson source of the cold fluid vanishes
+
+==============================================================================================================
+D  the required pressure at fixed density: p_req(rho_c; M_b) from the hydrostatic target
+==============================================================================================================
+  [PASS] D-pm point mass: rho_c g_tot = a0 M/(4 pi r^3) and dp/dr = -rho_c g_tot with p = a0 M/(8 pi r^2), rho_c = a0/(4 pi G r sqrt(1+x^2))
+         measured: sympy residuals 0, 0
+  exact point-mass required sound speed  c_s,req^2 = dp/drho  = sqrt(G)*sqrt(M)*sqrt(a0)*(x**2 + 1)**(3/2)/(2*x**3 + x)
+  deep regime  p_req = a0*r_M*rho_c/2  (proportional to r_M ~ M^(1/2));  Newtonian regime p_req = 2*pi*G*r_M**2*rho_c**2 (proportional to r_M^2 ~ M)
+  [PASS] D-scal at fixed rho_c the required point-mass pressure scales as M^(1/2) (deep) and M^1 (Newtonian): no single p(rho_c) exists
+         measured: p_deep/r_M and p_newt/r_M^2 are M-independent: True
+
+  point mass   [matching rho_c alone (the locality hypothesis)]
+    key = 4.863e+04 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 8.575e+07, 2.715e+08, 8.618e+08, 2.758e+09   max/min = 32.2
+    key = 1.246e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 2.200e+08, 6.977e+08, 2.228e+09, 7.265e+09   max/min = 33
+    key = 3.194e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 5.650e+08, 1.801e+09, 5.838e+09, 1.997e+10   max/min = 35.4
+    key = 8.186e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 1.456e+09, 4.699e+09, 1.584e+10, 6.106e+10   max/min = 41.9
+    key = 2.098e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 3.787e+09, 1.261e+10, 4.688e+10, 2.352e+11   max/min = 62.1
+    key = 5.377e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 1.007e+10, 3.634e+10, 1.694e+11, 1.236e+12   max/min = 123
+    key = 1.378e+07 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 2.840e+10, 1.240e+11, 8.348e+11, 7.718e+12   max/min = 272
+    GATE G1 (point mass): FAIL (worst max/min of the required pressure at matched density = 272; pass line 1.10)
+  [PASS] G1-pm CLAIM: G1 fails, i.e. the required p(rho_c) differs by more than 10% between 1e9 and 1e12 Msun at matched density (so no single p(rho_c) from Q can be the target's EOS)
+         measured: worst max/min over the density overlap = 272
+         reading:  the exchange's forced EOS (A3) is a function of rho_c (and the slice-uniform Lambda) only
+    fitted d ln p_req/d ln M at fixed rho over the grid: 0.50, 0.51, 0.52, 0.54, 0.59, 0.69, 0.81  (point-mass theory: 0.5 deep ... 1 Newtonian)
+
+  exp sphere, h = 2 kpc for all M (CFG44 style)   [matching rho_c alone (the locality hypothesis)]
+    key = 4.863e+04 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 8.575e+07, 2.715e+08, 8.618e+08, 2.758e+09   max/min = 32.2
+    key = 1.244e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 2.196e+08, 6.964e+08, 2.224e+09, 7.251e+09   max/min = 33
+    key = 3.182e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 5.669e+08, 1.794e+09, 5.816e+09, 1.989e+10   max/min = 35.1
+    key = 8.141e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 1.501e+09, 4.692e+09, 1.574e+10, 6.062e+10   max/min = 40.4
+    key = 2.082e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 3.909e+09, 1.282e+10, 4.656e+10, 2.325e+11   max/min = 59.5
+    key = 5.327e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 8.439e+09, 3.540e+10, 1.625e+11, 1.169e+12   max/min = 139
+    key = 1.363e+07 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 1.256e+10, 7.909e+10, 5.019e+11, 4.434e+12   max/min = 353
+    GATE G1 (exp sphere): FAIL (worst max/min of the required pressure at matched density = 353; pass line 1.10)
+  [PASS] G1-exp2 CLAIM: G1 fails, i.e. the required p(rho_c) differs by more than 10% between 1e9 and 1e12 Msun at matched density (so no single p(rho_c) from Q can be the target's EOS)
+         measured: worst max/min over the density overlap = 353
+         reading:  the exchange's forced EOS (A3) is a function of rho_c (and the slice-uniform Lambda) only
+    fitted d ln p_req/d ln M at fixed rho over the grid: 0.50, 0.51, 0.51, 0.53, 0.59, 0.71, 0.84  (point-mass theory: 0.5 deep ... 1 Newtonian)
+
+  exp sphere, h = 2 kpc (M/1e10)^(1/3) (fixed mean density)   [matching rho_c alone (the locality hypothesis)]
+    key = 4.863e+04 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 8.575e+07, 2.715e+08, 8.618e+08, 2.758e+09   max/min = 32.2
+    key = 1.171e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 2.066e+08, 6.553e+08, 2.091e+09, 6.807e+09   max/min = 32.9
+    key = 2.819e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 4.984e+08, 1.587e+09, 5.133e+09, 1.742e+10   max/min = 35
+    key = 6.787e+05 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 1.206e+09, 3.886e+09, 1.302e+10, 4.868e+10   max/min = 40.4
+    key = 1.634e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 2.961e+09, 9.839e+09, 3.525e+10, 1.435e+11   max/min = 48.4
+    key = 3.935e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 7.503e+09, 2.574e+10, 9.298e+10, 3.273e+11   max/min = 43.6
+    key = 9.473e+06 : p_req(M = 1e9, 1e10, 1e11, 1e12) = 1.866e+10, 6.045e+10, 1.850e+11, 5.079e+11   max/min = 27.2
+    GATE G1 (exp sphere): FAIL (worst max/min of the required pressure at matched density = 48.4; pass line 1.10)
+  [PASS] G1-expM CLAIM: G1 fails, i.e. the required p(rho_c) differs by more than 10% between 1e9 and 1e12 Msun at matched density (so no single p(rho_c) from Q can be the target's EOS)
+         measured: worst max/min over the density overlap = 48.4
+         reading:  the exchange's forced EOS (A3) is a function of rho_c (and the slice-uniform Lambda) only
+    fitted d ln p_req/d ln M at fixed rho over the grid: 0.50, 0.51, 0.51, 0.53, 0.56, 0.55, 0.48  (point-mass theory: 0.5 deep ... 1 Newtonian)
+
+SUMMARY D1_covariant_constraint_and_target (MUTATE=0): 12/12 checks pass; load-bearing failures = 0

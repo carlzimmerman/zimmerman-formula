@@ -1,0 +1,79 @@
+FROZEN_QUESTION.md sha256 = f9b5af880a220176f7ecaba6534a7dbb84b439b0fde9b84c646424c023d92a23
+MUTATE = 1
+
+D4 -- Door 8, G3 / G4 / G5 and the one channel D1 leaves for an M-dependence.
+
+  A  G3 reaction on the baryons.  Hypothesis H3/H4: the baryons couple only through gravity and Q^mu = Q u_c^mu touches only the cold fluid and the vacuum.  The exchange terms cancel
+     in the total (Q u^nu - Q u^nu = 0), so the baryon equation nabla_mu T_b^{mu nu} = 0 contains no Q: the non-gravitational reaction is ZERO by construction.  (A pass that costs
+     nothing because the target is not produced; see D1/D3.)  The energy an exchange along u can inject is rest-mass energy only: the orthogonal (heating) component of Q^mu is zero (D1-A1).
+  B  G3 energy: what the target would have to draw from the vacuum.  Rest mass in the target beyond the cosmic cold share, M_c(<r) - (Omega_c/Omega_b) M_b with the CFG44 point-mass
+     M_c = M_b (sqrt(1+x^2) - 1), against the vacuum energy in the Lagrangian volume of the baryons, rho_L V_L c^2 = (Omega_L/Omega_b) M_b c^2 (creation before collapse is the upper bound: the
+     vacuum energy density does not compress).  Reported against the baryons' orbital energy M_b V_c^2/2.  Independent of r_ta (evaluated at x = r/r_M, x in [0.3, 30]).
+  C  G4: constants.  D  G5: the sign condition c_s^2 >= 0, hyperbolicity, Solar System.
+  E  the channel D1 leaves: an M-dependence through the epoch of formation if Q makes Lambda dynamical and p = p(rho_c; Lambda).  The exponent s in p proportional to Lambda^s needed to span the
+     required factor, against the Lambda range the flat-a0 law (D2) and the growth (D3) allow.  UNTESTED as a construction; the number is a requirement, not a result.
+
+MUTATE=1: the vacuum budget is inflated tenfold; the claim 'the target's rest mass exceeds the vacuum budget at x = 30' must FAIL (exit 1).
+Run: python3 D4_energy_reaction_constants.py
+
+
+==============================================================================================================
+A  reaction on the baryons (G3, first clause)
+==============================================================================================================
+  [PASS] A the exchange terms cancel in the total: nabla T_c = +Q u, nabla T_vac = -Q u, nabla T_b = 0 (no Q in the baryon equation)
+         measured: sum of exchange terms = 0
+         reading:  reaction on the baryons beyond gravity = 0 <= 0.10 g_law: PASS at no cost (H3/H4); the dark mass still gravitates on the baryons as whatever fluid density results
+
+==============================================================================================================
+B  rest-mass budget against the vacuum in the Lagrangian volume (G3, energy clause)
+==============================================================================================================
+  Omega_c/Omega_b = 5.364 (CFG44), Omega_L/Omega_b = 139.11 (Omega_L = 0.685, Omega_b = 0.0492)   [MUTATE=1: x10]
+  the target exhausts the cosmic cold share at x_cap = 6.29 (CFG44: 6.29); it needs more rest mass than ALL the vacuum energy in the Lagrangian volume beyond x* = 145.47
+   x       Mc/Mb = sqrt(1+x^2)-1   extra/Mb = max(0, Mc/Mb - Oc/Ob)   fraction f of the Lagrangian vacuum used   a0 factor sqrt(1-f)   extra c^2 / (V_c^2/2) at M = 1e11
+   0.30      0.044                   0.000                                0.000                      1.000              0 (no conversion needed)
+   1.00      0.414                   0.000                                0.000                      1.000              0 (no conversion needed)
+   3.00      2.162                   0.000                                0.000                      1.000              0 (no conversion needed)
+   6.29      5.369                   0.005                                0.000                      1.000              2.4e+04
+  10.00      9.050                   3.686                                0.026                      0.987              1.9e+07
+  20.00     19.025                  13.661                                0.098                      0.950              7.0e+07
+  30.00     29.017                  23.652                                0.170                      0.911              1.2e+08
+  [FAIL] B1 CLAIM: at x = 30 the target needs more rest mass than the whole vacuum energy of the baryons' Lagrangian volume (f > 1); the conversion is impossible without Lambda -> 0
+         measured: f(x = 30) = 0.17; x* = 145.5
+         reading:  and Lambda is uniform on the fluid-orthogonal slices (D1), so the depletion f is not local to the halo: a0 = kappa c sqrt(G rho_L) falls by sqrt(1 - f) everywhere: the tie is circular
+  [PASS] B2 for x <= x_cap no conversion is needed (the cosmic share suffices): the exchange does nothing the standard cold fluid does not; beyond x_cap the energy demand is about c^2/V_c^2 ~ 1e6 times the orbital energy
+         measured: c^2/(V_f^2/2) at 1e11 Msun = 5.1e+06
+         reading:  G3's energy line (<= the baryons' orbital energy) fails for any x > x_cap in both r_ta conventions (the number does not depend on r_ta)
+
+==============================================================================================================
+C  G4 constants
+==============================================================================================================
+  Q = Q(Lambda) only (the only cold-safe entry, D1/D3): amplitude xi (1: not tied to kappa or Lambda in any derived way).
+  A Q with Q_rho != 0: the exponent n = rho Q_rho/Q is the sound speed; growth needs n <= 4.6e-12 (D3 R2, k = 30): a second constant, tuned below 1e-11.
+  The forced EOS p = n rho/(1-n) + C rho^n carries an integration constant C (dimensionful): a third.
+  The target itself: p_req(rho; M_b) is a function of M_b (D1): NO finite set of constants makes it a function of rho alone.
+  [PASS] C G4 count: xi, n, C are all new (kappa = 1/2 and Omega_c h^2 = 0.12 inherited); none is tied to Lambda or kappa by the action
+         measured: new constants >= 2 for the cold-safe entry (xi, C), 3 with n != 0
+         reading:  G4 FAIL, and moot: G1 fails first
+
+==============================================================================================================
+D  G5 well-posedness and Solar System
+==============================================================================================================
+  c_s^2 = (rho + p) Q_rho/Q: real sound speed (no gradient instability) needs Q_rho Q >= 0; the target needs c_s^2 ~ 2e-8..6e-7 > 0, so the SIGN is fine; the vacuum has no kinetic term (no ghost).
+  Hyperbolicity: the u-adapted chart has N = -rho_L'/Q: the constraint d_mu rho_L = Q u_mu is first order and consistent (D1-B derivation closes); with c_s^2 > 0 the fluid system is hyperbolic.
+  Solar System: Q u_c^mu does not act on baryons (H4) and |grad rho_L| = Q = xi H_L rho_L ~ 0.03 H rho_L is far below any PPN scale; NO PPN calculation is done: an explicit STATEMENT conditional on H4 (as the gate allows).
+  [PASS] D G5: c_s^2 >= 0 iff Q_rho Q >= 0 (sympy: c_s^2 = Q_rho*(p + rho)/Q); no ghost; hyperbolic; Solar System safe by statement
+         measured: the target's required c_s^2 is positive: PASS in sign
+         reading:  G5: PASS as stated; G5 does not rescue G1/G2
+
+==============================================================================================================
+E  the epoch channel (untested construction): how large an exponent would the Lambda-dependence need?
+==============================================================================================================
+  required factor F(rho) = p_req(1e12)/p_req(1e9) at matched density (D1): 31.6 at low density to 353 at the highest overlap (exp sphere, h = 2 kpc, D1); use the 31.6 (most generous).
+  xi = 0.03: rho_L(z = 2.5)/rho_L(0) = 1.0194 -> s = ln F / ln(rho_L ratio) = 180.0 (F = 31.6) or 305.2 (F = 350)
+  xi = 0.30: rho_L(z = 2.5)/rho_L(0) = 1.2171 -> s = ln F / ln(rho_L ratio) = 17.6 (F = 31.6) or 29.8 (F = 350)
+  [PASS] E an M-dependence through the formation epoch needs p proportional to rho_L^s with s >= 18 even at xi = 0.3 (where a0(2.5) is already 10% off flat and growth is 13% low), s ~ 180 at the flat-a0 limit xi = 0.03
+         measured: s_min = 17.6 (xi = 0.3), 180.0 (xi = 0.03)
+         reading:  a huge tuned exponent (a new constant), a0(z) off flat, an M(z_f) map not derived, and the EOS would drift as Lambda evolves at fixed rho (halos would not stay in the target's equilibrium): an untested completion, not a route
+
+SUMMARY D4_energy_reaction_constants (MUTATE=1): 5/6 checks pass; load-bearing failures = 1
+   failed: B1 (load-bearing)
