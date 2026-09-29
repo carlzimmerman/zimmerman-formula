@@ -1,0 +1,93 @@
+CV6-B -- THE DYNAMICAL GATE FIELD chi WITH ITS OWN CONSTANT STIFFNESS, ON DE12/DE13's 24 GALAXY LAYERS.
+
+MODEL (POSTULATED; see CV6_A):  E[chi] = int r^2 dr { (mu/2)|chi'|^2 + (m2/2)(chi - t)^2 - B W(chi) },  t = the baryon-only gate variable
+of DE12/DE13 (t = t_U (U - 1) + 1/2, U = C 4 pi G (rho_b + phantom); reading A+), coupled to the gas (sound speed 117 km/s) through t(rho_b).
+The layers, B(r), h, rho_b, the C-infinity step W (w = 0.25) and the gas are DE12's own (DE12's transition() is exec'd unedited, as DE13 does).
+
+WHAT THE CV6 "own stiffness" IS.  Two things: chi's mass m2 (its potential stiffness) and its gradient stiffness mu.  chi is an INDEPENDENT field,
+so the composite-gradient background term K0 of DE13's form (ii) is absent.  The exact second variation about the EXACT chi0(r) (solved on the full
+grid, not chi0 = t) after eliminating the algebraic gas displacement (Schur complement) is
+     E2[dchi] = (1/2) int r^2 { mu |dchi'|^2 + [ g_eff - B W''(chi0) ] dchi^2 },     g_eff = a m2 / (a + m2),   a = c_s^2/(rho h^2)  (gas modulus, eps = dt units)
+and a negative mode inside one of DE13's five half-layer Dirichlet windows (t-width 0.5) = unstable (DE13's lenient scale).
+
+  *** MUTATE=a: mu = 0 (the chi gradient term is dropped) ***
+
+======================================================================================================================
+C1 C2  CONTROLS: m2 = inf reproduces DE13's committed form-(i) results (lambda_U per layer, eta_U, N1)
+======================================================================================================================
+  [PASS] C1 CONTROL m2 = inf: the layer-by-layer minimal gradient stiffness reproduces DE13's committed form-(i) lambda_U (24 layers) and eta_U
+         measured: max |lambda_U/DE13 - 1| = 9.25e-07 (DE13 rounds to 2 digits: tolerance 3%); eta_U = 3.2062e-14 vs DE13 3.2062e-14
+  [PASS] C2 CONTROL m2 = inf: the flagship and Sun potentials reproduce DE13's committed N1
+         measured: r_F: 31.8 v_f^2 (DE13 31.8); Sun: 2.13e+08 v_f^2 (DE13 2.13e+08)
+
+======================================================================================================================
+C3  CONTROL: the discrete second-variation formula (chi sector alone, consistent chi0) against finite differences of the discrete functional
+======================================================================================================================
+  [PASS] C3 CONTROL the second variation used in the stability scan equals the finite-difference second derivative of the discrete chi functional
+         measured: rel. deviations 2.5e-11, 2.9e-10, 4.7e-10 (tolerance 1e-4)
+
+======================================================================================================================
+H1a  mu = 0: chi's own mass/potential stiffness alone repairs nothing (24 layers x the m2 scan)
+======================================================================================================================
+    unstable layers at mu = 0: {'1e-16': 24, '3e-16': 24, '1e-15': 24, '3e-15': 24, '1e-14': 24, '3e-14': 24, '1e-13': 24, '3e-13': 24, '1e-12': 24, '3e-12': 24, '1e-11': 24, '3e-11': 24, '1e-10': 24, '3e-10': 24, '1e-09': 24, 'inf': 24}
+  [PASS] H1a [load-bearing; not mutated: it is the mu = 0 case] at mu = 0 every layer is unstable at every m2 in the scan (uniform-limit theorem of CV6_A, numerically, on the real layers)
+         measured: 24/24 .. 24/24 unstable over 16 values of m2 (1e-16 .. 1e-9, inf)
+
+======================================================================================================================
+H2  the gradient stiffness needed, layer by layer, about the consistent chi0: does a finite chi mass lower it?
+======================================================================================================================
+    m2 =  1.0e-16: mu_uni/mu_uni(inf) = 8.926e-03;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 0.970] on the 14/24 layers whose gate survives
+    m2 =  3.2e-16: mu_uni/mu_uni(inf) = 3.780e-02;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 0.990] on the 16/24 layers whose gate survives
+    m2 =  1.0e-15: mu_uni/mu_uni(inf) = 4.666e-02;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 0.997] on the 18/24 layers whose gate survives
+    m2 =  3.2e-15: mu_uni/mu_uni(inf) = 7.515e-02;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 0.999] on the 21/24 layers whose gate survives
+    m2 =  1.0e-14: mu_uni/mu_uni(inf) = 1.028e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 1.000] on the 22/24 layers whose gate survives
+    m2 =  3.2e-14: mu_uni/mu_uni(inf) = 1.117e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 1.000] on the 24/24 layers whose gate survives
+    m2 =  1.0e-13: mu_uni/mu_uni(inf) = 1.262e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 1.000] on the 24/24 layers whose gate survives
+    m2 =  3.2e-13: mu_uni/mu_uni(inf) = 3.238e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.000, 1.000] on the 24/24 layers whose gate survives
+    m2 =  1.0e-12: mu_uni/mu_uni(inf) = 3.818e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.052, 1.000] on the 24/24 layers whose gate survives
+    m2 =  3.2e-12: mu_uni/mu_uni(inf) = 6.822e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.682, 1.000] on the 24/24 layers whose gate survives
+    m2 =  1.0e-11: mu_uni/mu_uni(inf) = 8.960e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.896, 1.000] on the 24/24 layers whose gate survives
+    m2 =  3.2e-11: mu_uni/mu_uni(inf) = 9.652e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.965, 1.000] on the 24/24 layers whose gate survives
+    m2 =  1.0e-10: mu_uni/mu_uni(inf) = 9.887e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.989, 1.000] on the 24/24 layers whose gate survives
+    m2 =  3.2e-10: mu_uni/mu_uni(inf) = 9.964e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.996, 1.000] on the 24/24 layers whose gate survives
+    m2 =  1.0e-09: mu_uni/mu_uni(inf) = 9.988e-01;  per-layer mu_min(m2)/mu_min(inf) in [0.999, 1.000] on the 24/24 layers whose gate survives
+    m2 =      inf: mu_uni/mu_uni(inf) = 1.000e+00;  per-layer mu_min(m2)/mu_min(inf) in [1.000, 1.000] on the 24/24 layers whose gate survives
+  [FAIL] H2 [load-bearing] a finite chi mass does not lower the needed gradient stiffness: mu_min(m2)/mu_min(inf) >= 0.98 on every layer whose gate survives
+         measured: lowest ratio over the scan = 0.000
+         reading:  DECLARED BEFORE THE RUN AND REFUTED BY IT (kept as run): the exploratory scan used chi0 = t; about the consistent chi0 a small m2 lets chi lag t, the lagged profile has smaller B W'' peaks and needs less stiffness.  The reduction is bought by a gate that no longer follows t: see H2b/H3
+
+======================================================================================================================
+H1b H3  mu = mu_uni(m2): stability, tracking, the flagship and Sun costs, the UV baryon sound speed
+======================================================================================================================
+    m2 =  1.0e-16: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%: 18/24 (max 0.13) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.023
+    m2 =  3.2e-16: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%: 14/24 (max 0.13) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.0409
+    m2 =  1.0e-15: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%: 14/24 (max 0.13) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.0727
+    m2 =  3.2e-15: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%: 12/24 (max 0.13) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.129
+    m2 =  1.0e-14: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%: 10/24 (max 0.12) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.23
+    m2 =  3.2e-14: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  8/24 (max 0.12) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.409
+    m2 =  1.0e-13: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  4/24 (max 0.12) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 0.727
+    m2 =  3.2e-13: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  2/24 (max 0.11) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 1.29
+    m2 =  1.0e-12: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  2/24 (max 0.11) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 2.3
+    m2 =  3.2e-12: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.04) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 4.09
+    m2 =  1.0e-11: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.01) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 7.27
+    m2 =  3.2e-11: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.00) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 12.9
+    m2 =  1.0e-10: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.00) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 23
+    m2 =  3.2e-10: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.00) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 40.9
+    m2 =  1.0e-09: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.00) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = 72.7
+    m2 =      inf: ell = sqrt(mu/m2) =      0.00 kpc | unstable 24/24 | edges off >10%:  0/24 (max 0.00) | Phi_chi(r_F) =        +0 v_f^2, force       +0 g_M | Phi_chi(Sun) =        +0 v_f^2 | max c_UV/c = inf
+  [FAIL] H1b [load-bearing; MUTATE=a and b must FAIL] with mu = mu_uni(m2) every layer is stable at every m2 in the scan (the gradient stiffness is the repair)
+         measured: unstable layers per m2: [24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24]
+    (T) tracking holds at m2 in ['3e-12', '1e-11', '3e-11', '1e-10', '3e-10', '1e-09', 'inf']
+    (F) flagship cost <= 0.1 v_f^2 & 0.023 g_M at m2 in ['1e-16', '3e-16', '1e-15', '3e-15', '1e-14', '3e-14', '1e-13', '3e-13', '1e-12', '3e-12', '1e-11', '3e-11', '1e-10', '3e-10', '1e-09', 'inf']
+    (S) Sun cost <= 0.1 v_f^2 at m2 in ['1e-16', '3e-16', '1e-15', '3e-15', '1e-14', '3e-14', '1e-13', '3e-13', '1e-12', '3e-12', '1e-11', '3e-11', '1e-10', '3e-10', '1e-09', 'inf']
+  [PASS] H3 [load-bearing; declared FAIL of the conjunction] some m2 has tracking (T) AND flagship cost (F) AND Sun cost (S) at mu = mu_uni(m2)
+         measured: T: 7 values, F: 16, S: 16, all three: 7
+         reading:  the load-bearing statement is the NO-GO: constant-mu chi cannot track the edge without paying DE13's N1 cost; a small m2 removes the cost but the gate no longer follows t
+    smallest tracking m2 = 3.2e-12: mu_uni = 0.000e+00 J/m, ell = 0.0 kpc, cost Phi_chi(r_F) = +0 v_f^2, Phi_chi(Sun) = +0 v_f^2, max c_UV/c = 4.1
+    natural units: l_mu = sqrt(mu_uni/(a0^2/8piG)) = 0.00 kpc;  m2/(a0^2/8piG) = 0.605
+  [PASS] H2b (reported) at the smallest tracking m2 the universal stiffness relative to the slaved (m2 = inf) value
+         measured: mu_uni(m2 = 3.2e-12) / mu_uni(inf) = nan; the cost potential at r_F is +0 v_f^2 against DE13's -31.8
+         reading:  a factor ~2.6 in stiffness and in the flagship cost, still >= 100x the 0.1 v_f^2 bar; the Sun is unchanged in order of magnitude
+
+  6/8 checks pass; load-bearing failures: 2; wrote CV6_B_results_MUTATE_a.json   [95s]
+rc=1

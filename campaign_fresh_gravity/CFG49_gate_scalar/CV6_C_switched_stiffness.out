@@ -1,0 +1,53 @@
+CV6-C -- CAN chi's STIFFNESS BE SWITCHED OFF INSIDE COLLAPSED REGIONS?  (the one repair N14 lists as 'unsized')
+
+CV6-B showed that a constant gradient stiffness mu stabilises every layer only at DE13's form-(i) price (Phi_chi ~ 32 v_f^2 at r_F, ~2e8 at the Sun):
+the gradient energy of chi acts wherever t varies, and t >> 1 (t ~ 28 at r_F, ~8e4 at the Sun) inside every galaxy.  The obvious repair is a field-dependent
+stiffness, mu(chi) = mu0 s(chi), s = 1 for chi <= c_a (the layer, 0 < chi < 1) and s = s_inf << 1 for chi >= c_b (deep in the ON plateau).  The cost then scales
+as s_inf.  This lane sizes what that repair does to stability.
+
+THE ALGEBRA.  E = int r^2 { (mu0/2) s(chi)|grad chi|^2 + (m2/2)(chi - t)^2 - B W(chi) }.  psi = int sqrt(s) dchi makes the gradient energy canonical
+(mu0/2)|grad psi|^2.  About the chi0 solution the second variation (chi sector; the gas adds g_eff = a m2/(a+m2) to the chi^2 coefficient exactly as in CV6-B) is
+     E2[dpsi] = (1/2) int r^2 { mu0 |dpsi'|^2 + [ chi_psi^2 (g_eff - B W''(chi0)) + F1 chi_psipsi ] dpsi^2 },   F1 = m2 (chi0 - t) - B W'(chi0) = mu0 lap(psi0)/chi_psi,
+     chi_psi = s^-1/2,  chi_psipsi = -s'/(2 s^2).
+The term K = F1 chi_psipsi is the SWITCH-OFF TERM, the analogue of DE13's K0: in chi-space it is -(1/2) mu'' |grad chi0|^2 - mu' lap chi0.  It is proportional to mu0
+(F1 ~ mu0 lap psi0), exactly as the stiffness is, and it is NEGATIVE wherever lap psi0 < 0 with s' < 0, i.e. on the falling profile inside the switch zone.
+
+======================================================================================================================
+C3  CONTROL: the psi-form second variation (chi sector, switch term included) against finite differences of the discrete psi-energy
+======================================================================================================================
+  [PASS] C3 CONTROL the psi-form second variation (with the switch-off term F1 chi_psipsi) equals finite differences of the discrete psi-energy
+         measured: rel. deviations 8.0e-09, 5.3e-09, 6.6e-09 (tolerance 1e-3)
+
+======================================================================================================================
+K1 K2  THE SWITCH-OFF TERM ON THE EXTENDED DOMAIN (layer + switch zone), 24 layers x 4 shapes x 6 values of mu0
+======================================================================================================================
+    m2 =     inf shape (1.5, 4.0, 1e-08): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 24, 0.03: 24, 0.1: 24, 0.2: 24, 0.4: 24, 0.7: 24, 1.0: 24, 3.0: 24, 10.0: 24, 100.0: 24, 10000.0: 24}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 4.1e+03
+    m2 =     inf shape (3.0, 30.0, 1e-08): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 24, 0.03: 24, 0.1: 24, 0.2: 24, 0.4: 24, 0.7: 24, 1.0: 24, 3.0: 24, 10.0: 24, 100.0: 24, 10000.0: 24}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 2.2e+04
+    m2 =     inf shape (1.5, 1000.0, 1e-08): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 22, 0.03: 22, 0.1: 20, 0.2: 20, 0.4: 20, 0.7: 20, 1.0: 20, 3.0: 20, 10.0: 20, 100.0: 20, 10000.0: 20}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 1.5e+06
+    m2 =     inf shape (1.5, 4.0, 0.001): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 24, 0.03: 24, 0.1: 24, 0.2: 24, 0.4: 24, 0.7: 24, 1.0: 24, 3.0: 24, 10.0: 24, 100.0: 24, 10000.0: 24}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 69
+    m2 = 1.0e-12 shape (1.5, 4.0, 1e-08): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 24, 0.03: 24, 0.1: 24, 0.2: 24, 0.4: 24, 0.7: 24, 1.0: 24, 3.0: 24, 10.0: 23, 100.0: 19, 10000.0: 13}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 4.3e+03
+    m2 = 1.0e-12 shape (3.0, 30.0, 1e-08): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 24, 0.03: 24, 0.1: 24, 0.2: 24, 0.4: 24, 0.7: 24, 1.0: 24, 3.0: 24, 10.0: 22, 100.0: 18, 10000.0: 10}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 2.3e+04
+    m2 = 1.0e-12 shape (1.5, 1000.0, 1e-08): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 22, 0.03: 22, 0.1: 19, 0.2: 18, 0.4: 18, 0.7: 18, 1.0: 18, 3.0: 17, 10.0: 18, 100.0: 12, 10000.0: 2}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 1.6e+06
+    m2 = 1.0e-12 shape (1.5, 4.0, 0.001): unstable layers per mu0/mu_uni {1e-06: 24, 0.0001: 24, 0.01: 24, 0.03: 24, 0.1: 24, 0.2: 24, 0.4: 24, 0.7: 24, 1.0: 24, 3.0: 24, 10.0: 24, 100.0: 22, 10000.0: 10}; first all-stable mu0/mu_uni = None (edge shift max None, ell = None kpc); windows with edges <= 10%: 0; median |K|/(mu0 k_zone^2) = 85
+  [FAIL] K1 [declared strong form, REFUTED as declared, kept as run; reported] on every layer, at every switch shape and every mu0, a negative mode exists
+         measured: layers unstable at all mu0: min 2/24 over the 8 (m2, shape) cells
+         reading:  refuted: at m2 = 1e-12 and mu0 >~ 1e2 mu_uni some cells stabilise; K1a/K1b (post-hoc) carry the claim
+  [PASS] K1a [POST-HOC, load-bearing; MUTATE=k must FAIL] at m2 = inf and the compact zones (c_b <= 30): 24/24 layers unstable at EVERY mu0 in 1e-6..1e4 mu_uni (no window)
+         measured: {'(1.5, 4.0, 1e-08)': 24, '(3.0, 30.0, 1e-08)': 24, '(1.5, 1000.0, 1e-08)': 20, '(1.5, 4.0, 0.001)': 24}
+         reading:  the wide zone (c_b = 1e3) leaves 4 layers stable at large mu0: the switch-off term shrinks as s' does, but at s_inf = 1e-8 the cost is then paid over a wider region
+  [PASS] K1b [POST-HOC, load-bearing; MUTATE=k must FAIL] at m2 = 1e-12 no mu0 in the scan stabilises all 24 layers with every gate edge within 10% of t = 1/2
+         measured: {'(1.5, 4.0, 1e-08)': (None, 0), '(3.0, 30.0, 1e-08)': (None, 0), '(1.5, 1000.0, 1e-08)': (None, 0), '(1.5, 4.0, 0.001)': (None, 0)}
+         reading:  in fact no mu0 up to 1e4 mu_uni (sqrt(mu0/m2) = 390 kpc) stabilises all 24 layers at all: the count of unstable layers only falls to 2-13, at smoothing lengths far above the edge scales
+  [PASS] K2 (reported) |K| against the stiffness on the zone's own scale
+         measured: median |K|/(mu0 k^2) over cells: 69 .. 1.6e+06
+
+======================================================================================================================
+K3  WHAT THE REPAIR WOULD BUY (if K were absent): the cost potential scales as s_inf
+======================================================================================================================
+    Phi_chi / v_f^2 at (r_F, Sun) for s_inf = 1e-4, 1e-6, 1e-8: [(-0.003183177103179145, -21307.616909191864), (-3.183795338285068e-05, -212.27539192424027), (-3.183818321418381e-07, -2.1174521855761155)]
+  [PASS] K3 (reported) the Sun potential scales linearly with s_inf (ratio s_inf = 1e-8 : 1e-6)
+         measured: 0.00998 (linear: 0.01)
+    Sun cost <= 0.01 v_f^2 would need s_inf <= 4.7e-11
+
+  5/6 checks pass; load-bearing failures: 0; wrote CV6_C_results.json   [189s]
+rc=0

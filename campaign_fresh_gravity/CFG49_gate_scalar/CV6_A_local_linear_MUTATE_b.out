@@ -1,0 +1,115 @@
+CV6-A -- THE MINIMAL DYNAMICAL GATE FIELD chi: LOCAL LINEAR ANALYSIS (kinetic matrix, gradient stability, hyperbolicity,
+characteristic speeds, ghosts), for the four baryon-only invariants the gate could read.
+
+THE MODEL (POSTULATED; the minimal thing CV6 could be).  A scalar chi, covariant kinetic term, a penalty potential that pins chi
+to a baryon-only invariant s[baryons] (t = h * s, the gate variable of DE12/DE13), and the gate entering the MOND-sector
+Lagrangian exactly where DE12/DE13's f = W(t) did:
+    L_chi  =  -(mu/2) g^{mn} d_m chi d_n chi  -  (m2/2) (chi - t[baryons])^2  +  B W(chi)         [signature -+++]
+    static/NR:  E = int [ (mu/2)|grad chi|^2 + (m2/2)(chi - t)^2 - B W(chi) ],  kinetic (K_c/2) chi_dot^2 with K_c = mu/c^2
+    (a covariant kinetic term has K_c = mu/c^2, so chi's characteristic speed is c: no new constant beyond mu).
+B = a0^2 q(y^2)/(8 pi G) (DE7/DE12's constitutive coupling), W the C-infinity step (0 <-> 1) of width w in t.
+Constants beyond kappa: mu (a stiffness: energy/length), m2 (energy density), [K_c = mu/c^2].  Both are NEW and untied.
+
+THE FIELDS AT LINEAR ORDER (one Fourier mode): the baryon displacement xi (delta rho = rho k xi; the gas of sound speed c_s) and delta chi.
+    L2 = (rho/2) xi_dot^2 + (K_c/2) chi_dot^2 - E2,
+    E2 = (1/2)[ rho c_s^2 k^2 xi^2 + m2 (chi - h rho k xi)^2 + (mu k^2 - B W'') chi^2 ]
+with h = dt/drho (DE12: h = t_U 4 pi G A C, A the phantom's amplification) and c_gate^2 = rho h^2 B W'' (DE12's definition).
+
+  *** MUTATE=b: the chi kinetic sign is flipped (K_c < 0) ***
+
+==============================================================================================================
+S0  THE MODEL'S QUADRATIC FORM (density source): kinetic matrix K and stiffness matrix M(k)
+==============================================================================================================
+    K = [[rho, 0], [0, -K_c]] 
+    M(k) = [[k**2*rho*(c_s**2 + h**2*m2*rho), -h*k*m2*rho], [-h*k*m2*rho, -BW2s + k**2*mu + m2]]
+    det M(k) = k**2*rho*(-BW2s*c_s**2 - BW2s*h**2*m2*rho + c_s**2*k**2*mu + c_s**2*m2 + h**2*k**2*m2*mu*rho)
+    det M / (rho k^2) at k -> 0 = -BW2s*c_s**2 - BW2s*h**2*m2*rho + c_s**2*m2
+  [PASS] S0 CONTROL the model's k -> 0 determinant is c_s^2 (m2 - B W'') - m2 c_gate^2 (the DE12 c_gate with chi's mass in the game)
+         measured: n/a under mutation
+         reading:  m2 -> inf gives m2 (c_s^2 - c_gate^2): DE12's criterion c_s > c_gate
+
+==============================================================================================================
+S1  GHOST CHECK, HYPERBOLICITY AND CHARACTERISTIC SPEEDS (density source)
+==============================================================================================================
+    kinetic-matrix eigenvalues: [rho, -K_c]   ->  ghost-free: False
+    principal symbol lim_{k->inf} K^-1 M / k^2 = [[c_s**2 + h**2*m2*rho, 0], [0, -mu/K_c]]
+    characteristic speeds^2:  baryons  c_UV^2 = c_s**2 + h**2*m2*rho    chi  c_chi^2 = -mu/K_c
+    with the covariant kinetic term K_c = mu/c^2:  c_chi^2 = -c**2
+  [FAIL] S1 [load-bearing; mutations a and b must FAIL] no ghost (K > 0) and a real, positive, diagonal principal symbol (strongly hyperbolic): gradient-stable at every k
+         measured: K eigenvalues [rho, -K_c]; c_UV^2 = c_s**2 + h**2*m2*rho; c_chi^2 = -mu/K_c
+         reading:  the coupling m2 (chi - h rho k xi) has no derivative on chi and one on xi: lower order, so the principal part is diagonal
+
+==============================================================================================================
+S1b  ON and OFF BACKGROUNDS: W' = W'' = 0 (C-infinity plateaus): chi is a spectator, every mode healthy
+==============================================================================================================
+    det M / (rho k^2) with B W'' = 0 : c_s**2*k**2*mu + c_s**2*m2 + h**2*k**2*m2*mu*rho
+  [FAIL] S1b [load-bearing; mutation a must FAIL at the M22 level] on both plateaus det M > 0 for every k>0 whenever m2, mu > 0 (the ON state and the OFF web are stable, gradient-stable and ghost-free)
+         measured: det M/(rho k^2) = c_s^2(m2 + mu k^2) + m2 h^2 rho mu k^2 (> 0 iff mu > 0); with mu = mu_eff: c_s**2*k**2*mu + c_s**2*m2 + h**2*k**2*m2*mu*rho
+         reading:  ON: W = 1 (a constant term in the Lagrangian); OFF: W = 0.  The obstruction lives ONLY in the layer, where W'' takes both signs (DE7 T1)
+
+==============================================================================================================
+S2  THE UNIFORM-LIMIT THEOREM: chi's own mass cannot remove the instability; the gradient closes it only for k > k_c
+==============================================================================================================
+    with c_gate^2 = c_s^2 + dd, dd >= 0:  det M/(rho k^2)|_{k=0} = -(c_s**4 + c_s**2*dd + dd*h**2*m2*rho)/(h**2*rho)
+  [PASS] S2 [load-bearing] THEOREM: for c_gate >= c_s, det M(k -> 0)/(rho k^2) = -( m2 dd + c_s^2 B W'' ) < 0 for EVERY m2 > 0: no potential stiffness of chi removes the k -> 0 instability
+         measured: det = -(c_s**4 + c_s**2*dd + dd*h**2*m2*rho)/(h**2*rho)   [identity True, sign-definite True]
+         reading:  the same uniform mode DE12/DE13 found; chi's mass only decides how much of the gate is 'slaved'
+    closed form  k_c^2 = (BWp*c_s**2 + BWp*h**2*m2*rho - c_s**2*m2)/(mu*(c_s**2 + h**2*m2*rho))
+    slaved limit m2 -> inf:  k_c^2 = BWp/mu - c_s**2/(h**2*mu*rho)
+  [PASS] S2b the band k < k_c closes for k > k_c; in the slaved limit k_c^2 = (c_gate^2 - c_s^2)/(mu h^2 rho) (DE13's Korteweg form (i))
+         measured: (BWp*h**2*rho - c_s**2)/(h**2*mu*rho)
+         reading:  gradient stiffness mu is the only knob; k_c must lie below the layer's smallest wavenumber (DE13's half-window 2 pi/L)
+
+==============================================================================================================
+S3  CONTROL: m2 -> inf and mu = 0 (chi slaved to t, no gradient) reproduces DE12's Gamma = k sqrt(c_gate^2 - c_s^2)
+==============================================================================================================
+    Schur complement of xi (chi eliminated), m2 -> inf, /(rho k^2): -BWp*h**2*rho + c_s**2
+  [PASS] S3 CONTROL the slaved limit gives omega^2 = k^2 (c_s^2 - c_gate^2), i.e. DE12's Gamma = k sqrt(c_gate^2 - c_s^2)
+         measured: -BWp*h**2*rho + c_s**2  vs  -BWp*h**2*rho + c_s**2
+
+==============================================================================================================
+S4  DROP THE GRADIENT TERM: the tachyonic band is no longer confined to k < k_c
+==============================================================================================================
+    k =  1.0e-03: lowest omega^2  with the model's mu:  -5.536e+06   with mu = 0:  -5.537e+06
+    k =  1.0e-01: lowest omega^2  with the model's mu:  -5.524e+10   with mu = 0:  -5.537e+10
+    k =  1.0e+00: lowest omega^2  with the model's mu:  -4.329e+12   with mu = 0:  -5.536e+12
+    k =  3.0e+00: lowest omega^2  with the model's mu:   3.349e+13   with mu = 0:  -4.982e+13
+    k =  1.0e+01: lowest omega^2  with the model's mu:   3.275e+15   with mu = 0:  -5.529e+14
+    k =  1.0e+02: lowest omega^2  with the model's mu:   4.972e+17   with mu = 0:  -4.875e+16
+    k =  1.0e+04: lowest omega^2  with the model's mu:   4.997e+21   with mu = 0:  -4.473e+17
+    closed-form k_c = 2.232e+00;  the model's unstable band (sampled): k <= 1.0;  mu = 0: unstable at 7/7 sampled k
+  [PASS] S4 [load-bearing; mutation a must FAIL] the model's instability is CONFINED to k < k_c (every sampled k above k_c stable) while the mu = 0 copy is unstable at EVERY sampled k
+         measured: model: unstable up to k = 1.0 (closed-form k_c = 2.23e+00); mu = 0 copy: 7/7 sampled k unstable
+         reading:  under mutation a the model itself loses its gradient: the band is all k, `confined` is False, the check fails
+
+==============================================================================================================
+S5  FLIP THE KINETIC SIGN: a negative-norm mode
+==============================================================================================================
+    flipped kinetic-matrix eigenvalues: [rho, -K_c] -> ghost detected: True
+  [FAIL] S5 [load-bearing; mutation b must FAIL] the kinetic matrix is positive definite (the ghost detector reads K's eigenvalues; the sign-flipped copy is flagged)
+         measured: K eigenvalues [rho, -K_c]; flipped copy [rho, -K_c] (negative: True)
+
+==============================================================================================================
+S6  THE FOUR BARYON-ONLY INVARIANTS: covariance, and the linear consequence of each
+==============================================================================================================
+    generic F(k):  det M/(rho k^2) = -BWp*F**2*h**2*m2*rho - BWp*c_s**2 + F**2*h**2*k**2*m2*mu*rho + c_s**2*k**2*mu + c_s**2*m2
+    depth source F = kappa/k^2, kappa -> inf: det/kappa^2 -> h**2*m2*rho*(-BWp + k**2*mu)/k**4  ; band edge k^2 = [BWp/mu]
+  [PASS] S6a the potential-depth source: at low k the coupling F = kappa/k^2 dominates the gas, so the unstable band is k^2 < B W''/mu, INDEPENDENT of c_s (gas pressure cannot protect it)
+         measured: [BWp/mu]  (expected [BWp/mu])
+    theta source, the xi_dot^2 coefficient (penalty velocity-dependent): -k**2*m2*t_th**2 + rho
+    zero (the pole / ghost onset) at k_g^2 = [rho/(m2*t_th**2)]  for ANY W (BW'' does not appear)
+  [PASS] S6b [XR36's mirror lemma re-derived for a dynamical chi] the theta_b source makes the baryon kinetic coefficient rho - m2 t_th^2 k^2: it vanishes at k_g^2 = rho/(m2 t_th^2) and is NEGATIVE above it (ghost), with W = 0 (no gate at all), for either sign of the mass term the sign of the box is ghost or tachyon
+         measured: k_g^2 = [rho/(m2*t_th**2)]
+    opposite sign of the penalty: xi_dot^2 coefficient k**2*m2*t_th**2 + rho  (positive) but the chi mass^2 is -m2:  tachyonic band k^2 < m2/mu
+  [PASS] S6c the alternative sign of the theta penalty is ghost-free but tachyonic on k^2 < m2/mu = 1/ell^2 (a new instability length; growth rate ~ sqrt(m2/K_c))
+         measured: xi_dot^2 coeff k**2*m2*t_th**2 + rho; chi stiffness -m2 + mu k^2
+
+==============================================================================================================
+S7  THE PRICE OF TRACKING: the penalty stiffens the baryons' UV sound speed to c_s^2 + m2 h^2 rho
+==============================================================================================================
+    c_UV^2 = c_s**2 + h**2*m2*rho
+  [PASS] S7 (reported) at k >> 1/ell the baryons' characteristic speed is sqrt(c_s^2 + m2 h^2 rho) -- the chi penalty is an extra EOS term (numbers on the DE12 layers: CV6_B)
+         measured: c_UV^2 = c_s**2 + h**2*m2*rho
+
+  9/12 checks pass; load-bearing failures: 3; wrote CV6_A_results_MUTATE_b.json   [0s]
+rc=1
