@@ -1,0 +1,1098 @@
+
+======================================================================================================================
+S0.1  sympy: static spherical reduction of L = P(X) - alpha (Lam/M_Pl) phi rho_b; flux law; N_a; deep-MOND limit
+======================================================================================================================
+  n = P'(X):  X>0 residual 0,  X<0 residual 0
+  gradient-dominated p = sqrt(2)*sqrt(M_b)*sqrt(alpha)/(4*sqrt(pi)*sqrt(M_Pl)*r)
+  a_phi^2 / [g_N * (alpha^3 Lam^2 / M_Pl)] = 1     => N_a = 1   (a0 = N_a alpha^3 Lam^2/M_Pl)
+  [PASS] S0.1a  n = P'(X) = Lam (2m)^(3/2) sqrt|X| in both signs of X (sympy)
+         residuals 0, 0
+  [PASS] S0.1b  the gradient-dominated phonon force is a_phi = sqrt(a0 g_N) with a0 = N_a alpha^3 Lam^2/M_Pl and N_a = 1 (derived)
+         N_a = 1
+  [PASS] S0.1c  numeric deep-MOND limit through the algebraic solver: a_phi = sqrt(a0 G M)/r, v^4 = G M a0 (both footings, 3 (m, alpha), 3 radii)
+         worst relative deviation 4.44e-16
+
+======================================================================================================================
+S0.2  EOS of the condensed phase (X>0): P = K rho^3, K = 1/(12 m^6 Lam^2); c_s^2 = dP/drho = 2X/m; polytropic index n = 1/2
+======================================================================================================================
+  P(rho) = rho**3/(12*Lambda**2*m**6);  K = 1/(12*Lambda**2*m**6);  c_s^2 = rho**2/(4*Lambda**2*m**6) = 2*X/m (in X)
+  [PASS] S0.2a  K = 1/(12 m^6 Lam^2) (the frozen file's hand value)
+         sympy K = 1/(12*Lambda**2*m**6)
+  [PASS] S0.2b  c_s^2 = 2X/m and c_s^2 = 3 K rho^2 = 3P/rho
+         c_s^2(X) = 2*X/m
+  [PASS] S0.2c  polytropic exponent dlnP/dlnrho = 3, i.e. n = 1/2
+         dlnP/dlnrho = 3
+
+======================================================================================================================
+S0.3  alpha -> 0 recovers Newton: p -> 0, a_phi/g_N -> 0, the condensate is the Newtonian polytrope
+======================================================================================================================
+  [PASS] S0.3  alpha_c = 1e-14 alpha: max a_phi/g_N and |X/Y - 1| (X = mu - m Phi, the Newtonian condensate)
+         a_phi/g_N max 8.64e-28; max |X/Y - 1| 0.00e+00
+
+======================================================================================================================
+S0.4  Lane-Emden n = 1/2 (P = K rho^3 self-gravitating): M-R exponent 1/5 (internal consistency, no external table)
+======================================================================================================================
+  [PASS] S0.4  d ln R / d ln M = (1-n)/(3-n) = 1/5 for the n = 1/2 polytrope (numerical hydrostatic integration, rho_c = 1 and 2)
+         exponent 0.20000; R(1) = 0.95104, M(1) = 1.96344
+
+======================================================================================================================
+S0.5  the target's point-mass identities; CFG44 B1 cross-check (repo read-only)
+======================================================================================================================
+  [PASS] S0.5 [canonical] ODE target = rho_c = a0/(4 pi G r sqrt(1+x^2)), M_c = M(sqrt(1+x^2) - 1), C(r) = a0 M/4pi
+         max dev rho 6.45e-13, M_c 1.05e-12, C(r) 2.22e-16
+  [PASS] S0.5 [alt] ODE target = rho_c = a0/(4 pi G r sqrt(1+x^2)), M_c = M(sqrt(1+x^2) - 1), C(r) = a0 M/4pi
+         max dev rho 6.71e-13, M_c 1.07e-12, C(r) 2.22e-16
+  [PASS] S0.5x  CFG44 Bcommon.target_fields (point mass 1e10, r near r_M) agrees with this lane's natural-unit target
+         relative deviation 2.57e-04 (units Msun/kpc^3 -> eV^4; A0 canonical)
+
+======================================================================================================================
+S0.6 (reported)  DM mass accumulated inside the solver's inner radius 0.1 r_M (the solver starts at M_DM = 0 there)
+======================================================================================================================
+  max over the coarse (m, alpha) plane and Y(r_lo) in {1e-2, 1, 1e2} x m G M/r_M, masses 1e9 and 1e12, starting from 1e-3 r_M, of M_DM(<0.1 r_M)/M_b:
+    ('canonical', 'B-'): 3.02e+18
+    ('canonical', 'B-', 'frac_cells_le_1e-2'): 0.516
+    ('canonical', 'B+hi'): 0
+    ('canonical', 'B+hi', 'frac_cells_le_1e-2'): 0
+    ('canonical', 'B+lo'): 0
+    ('canonical', 'B+lo', 'frac_cells_le_1e-2'): 0
+    ('alt', 'B-'): 2.27e+18
+    ('alt', 'B-', 'frac_cells_le_1e-2'): 0.516
+    ('alt', 'B+hi'): 0
+    ('alt', 'B+hi', 'frac_cells_le_1e-2'): 0
+    ('alt', 'B+lo'): 0
+    ('alt', 'B+lo', 'frac_cells_le_1e-2'): 0
+  [PASS] (reported) S0.6 (reported) neglected inner DM mass M_DM(<0.1 r_M)/M_b
+         see the table above; values >> 1e-2 mean the solver's M_DM(r_lo) = 0 start is not negligible for those (m, alpha, Y) cells (disclosed; each gate row states whether it uses such cells)
+
+======================================================================================================================
+S0.7  RK4 resolution control: N = 160 (used by the gates) against N = 640 on the same solutions (density and a_phi at common nodes), stratified
+======================================================================================================================
+  B-   : DM-subdominant solutions (M_DM <= 30 M_b everywhere): 1352 sets; agree to 1e-3: 1352; worst relative deviation 2.91e-10
+  B+hi : DM-subdominant solutions (M_DM <= 30 M_b everywhere): 452 sets; agree to 1e-3: 446; worst relative deviation 3.39e-03
+  B+lo : DM-subdominant solutions (M_DM <= 30 M_b everywhere): 606 sets; agree to 1e-3: 570; worst relative deviation 7.90e-02
+  DM-dominated solutions (M_DM > 30 M_b somewhere; the target has M_c <= 29 M_b at x = 30, so these cannot match it): 1858 sets, of which 518 disagree by > 1e-3 (stiff: not resolved; irrelevant to every pass line)
+  [PASS] S0.7a  branch B- (the MOND-carrying branch), DM-subdominant solutions: N = 160 agrees with N = 640 to 1e-3 in rho and a_phi
+         worst deviation 2.91e-10 over 1352 sets
+  [PASS] (reported) S0.7b (reported)  branches B+hi / B+lo, DM-subdominant: fraction agreeing to 1e-3 (the disagreements sit next to the fold Y^2 = 4D where the root is singular)
+         B+hi 446/452 (worst 3.39e-03); B+lo 570/606 (worst 7.90e-02)
+
+  14/14 checks pass; load-bearing check failures: 0   (9 s)
+  gate verdicts: 
+  ratio rho_grad/rho_t = 2*sqrt(2)*sqrt(pi)*sqrt(G)*Lambda*sqrt(alpha)*m**2*sqrt(G*M + a0*r**2)/(sqrt(M_Pl)*a0)
+  R0(M) = ratio at x -> 0 = sqrt(2)*Lambda*sqrt(M)*sqrt(alpha)*m**2/(4*sqrt(pi)*M_Pl**(5/2)*a0);   ratio/R0 = sqrt(x**2 + 1)
+  d ln R0/d ln M = 1/2   (so the ratio at fixed x scales as M^1/2)
+  [PASS] G1.1a-i  ratio(x, M) = R0(M) sqrt(1 + x^2) with R0 ∝ M^(1/2)  (sympy)
+         ratio/R0 = sqrt(x**2 + 1); dlnR0/dlnM = 1/2
+  deep regime x >> 1: ratio -> r/r_*,  r_* = M_Pl**(3/2)*sqrt(a0)/(Lambda*sqrt(alpha)*m**2)
+  [PASS] G1.1a-ii  r_*(m, alpha) is independent of M_b (deep regime)
+         d r_*/dM = 0
+  spread of the ratio at fixed x across 1e9..1e12: 31.62;  spread across x in [0.1, 30] at fixed M: 29.87   (the 10% line: 1.10)
+  [PASS] G1.1a-iii  the closed form matches the solver's algebra (Y = 0) at 2 (m, alpha) x 4 masses x 4 x, both footings
+         worst relative deviation 6.66e-16
+  [FAIL] (reported) G1.1a  the mass spread of rho_DM/rho_target at fixed x is <= 10%  [HEADLINE sub-check: the analytic spread is 31.6]
+         spread 31.62 (x-spread at fixed M 29.87)
+  >> G1.1a: FAIL -- ratio spread across masses at fixed x = 31.62 (1.10 line); across x in [0.1, 30] at fixed M = 29.87; the inner slope agrees with the target (both ∝ 1/r for x < 1), the outer does not (target ∝ 1/r^2)
+
+  3/4 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G1.1a=FAIL
+
+======================================================================================================================
+G2.1  perturbation equations (sympy), condensed phase: L2 for psi = delta phi about a homogeneous background, with the baryon source and Newtonian gravity
+======================================================================================================================
+  EL equation for one Fourier mode (a, P_XX, P_X slowly varying):
+    -Lambda*a**3*alpha*delta_rho_b/M_Pl - P_X*a*k**2*psi(t)/m - P_XX*a**3*Derivative(psi(t), (t, 2))
+  dispersion relation omega^2 = c_s^2 k^2/a^2 with c_s^2 = P_X/(m P_XX) = 2*X/m (X>0: P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(X) > 0)
+  [PASS] G2.1a  linear condensed phase: c_s^2 = 2X/m and the forcing of psi by the baryon density perturbation is (alpha Lam/M_Pl) delta rho_b (sympy)
+         c_s^2 = 2*X/m
+  Background (homogeneous, from the same L): d(a^3 n)/dt = a^3 J_b,  J_b = (alpha Lam/M_Pl) rho_b(z): the baryons inject condensate number when the condensate is present (G2.4).
+  Normal phase (declared, NOT derived): collisionless Vlasov CDM; no phonon exists there, so no coupling and no P(X) pressure.  The perturbation equations of that phase are those of LCDM (the door adds nothing to them).
+  >> G2.1: PASS -- equations written for both phases; the normal-phase equations are LCDM's by declaration; the condensed-phase equations carry c_s^2 = 2X/m and a baryon source
+
+======================================================================================================================
+G2.2  if the cosmic-mean DM were condensed: c_s^2(z) = A (1+z)^6 (c = 1) with A = rho_c0^2 alpha^3 /(4 a0 M_Pl m^6);  c_s <= c for z <= 1100 and growth within 5% at k = 30/Mpc
+======================================================================================================================
+  k =   0.5/Mpc: growth within 5% needs A <= 4.743e-28  (c_s^2(z=0) = A; c_s(z=0) <= 6.529e-09 km/s)
+  k =   2.0/Mpc: growth within 5% needs A <= 2.964e-29  (c_s^2(z=0) = A; c_s(z=0) <= 1.632e-09 km/s)
+  k =  10.0/Mpc: growth within 5% needs A <= 1.186e-30  (c_s^2(z=0) = A; c_s(z=0) <= 3.264e-10 km/s)
+  k =  30.0/Mpc: growth within 5% needs A <= 1.318e-31  (c_s^2(z=0) = A; c_s(z=0) <= 1.088e-10 km/s)
+  sensitivity (reported): start z = 1e3 (CFG43's) instead of 1e4: growth within 5% at k = 30/Mpc needs A <= 1.312e-26  (a factor 9.96e+04 looser; the plane bound moves by that factor^(1/6) = 6.81 in m/sqrt(alpha))
+  superluminality bound at z = 1100: A <= 5.614e-19;  growth bound (k=30): A <= 1.318e-31  -> binding growth: A <= 1.318e-31
+  [canonical] cells (of 3600) with A(m, alpha) <= 1.32e-31: 392;  the boundary is m >= alpha^(1/2) * 266.4 eV
+  [alt] cells (of 3600) with A(m, alpha) <= 1.32e-31: 392;  the boundary is m >= alpha^(1/2) * 258.2 eV
+  >> G2.2: PASS -- conditional statement: a region of the plane (m >= q sqrt(alpha), q above) keeps a condensed background cold enough; it is combined with G2.3/G2.4 below
+
+======================================================================================================================
+G2.4 (i)  number injection in the background if the coupling were active: fraction = (Omega_b/Omega_c) m alpha (Lam/M_Pl) t_age(z=1100 -> 0) <= 1%
+======================================================================================================================
+  t(z=1100 -> 0) = 13.810 Gyr (H0 = 67.4)
+  [canonical] cells with injected fraction <= 1%: 40/3600;  the condition is m/sqrt(alpha) <= 0.0002789 eV;  smallest fraction in the plane 0.00359, largest 3.59e+05
+        G2.2 needs m/sqrt(alpha) >= 266.4; G2.4(i) needs <= 0.0002789: INCOMPATIBLE (a condensed cosmological background is excluded in the plane)
+  [alt] cells with injected fraction <= 1%: 30/3600;  the condition is m/sqrt(alpha) <= 0.0002537 eV;  smallest fraction in the plane 0.00394, largest 3.94e+05
+        G2.2 needs m/sqrt(alpha) >= 258.2; G2.4(i) needs <= 0.0002537: INCOMPATIBLE (a condensed cosmological background is excluded in the plane)
+  >> G2.4-i: FAIL -- a condensed, active-coupling background needs m/sqrt(alpha) in [[266.449, 258.17], [0.00028, 0.00025]] eV: compatible = [False, False]
+
+======================================================================================================================
+G2.3  the phase at recombination: (a) thermal, T > T_c(n(z)); (b) cold and non-thermalised (rate not fixed by the EFT)
+======================================================================================================================
+  m [eV]     sigma_c0 [km/s]   lambda_fs(z: 1e8 -> 10) [Mpc]
+      0.001       1.164e+06           4526
+    0.00398       1.845e+05           4516
+     0.0158       2.924e+04           4213
+     0.0631            4635           2595
+      0.251           734.6           1095
+          1           116.4          371.3
+       3.98           18.45          103.2
+       15.8           2.924          24.36
+       63.1          0.4635          5.168
+        251         0.07346          1.024
+      1e+03         0.01164         0.1916
+   3.98e+03        0.001845        0.03275
+   1.58e+04       0.0002924       0.005228
+   6.31e+04       4.635e-05      0.0008287
+   2.51e+05       7.346e-06      0.0001313
+      1e+06       1.164e-06      2.082e-05
+  free-streaming option (a) passes (lambda_fs <= 0.01 Mpc) for m >= 1e+04 eV (on the log grid)
+  [canonical] largest m for which the NFW halo still has a condensate out to >= 3 r_M (n_DM(r) >= n_c(sigma_halo)): 1e+09: 42.2 eV, 1e+10: 20 eV, 1e+11: 12.6 eV, 1e+12: 10 eV
+  [alt] largest m for which the NFW halo still has a condensate out to >= 3 r_M (n_DM(r) >= n_c(sigma_halo)): 1e+09: 42.2 eV, 1e+10: 21.1 eV, 1e+11: 12.6 eV, 1e+12: 10 eV
+  option (a) [thermal, T > T_c at recombination, free-streaming small enough] needs m >= 1e+04 eV; a condensed halo core at all four masses needs m <= 10 eV: INCOMPATIBLE
+  option (b) [cold, non-thermalised background]: whether cold degenerate bosons condense needs the thermalisation (2->2 / 3->3) rate, which the P(X) EFT does not fix; not computed.
+  >> G2.3: UNDECIDED -- (a) thermal at recombination: INCOMPATIBLE with a condensed halo core (m >= 1e+04 eV for free streaming vs m <= 10 eV for condensation); (b) cold non-thermalised: rate not fixed by the EFT -> UNDECIDED
+
+======================================================================================================================
+G2.5  CMB lensing and TT/TE/EE (statement, not computed)
+======================================================================================================================
+  By declaration unchanged if and only if G2.3 resolves to the normal phase (then the DM is LCDM's CDM at recombination and in the linear regime).  Not computed.  Option (a) is not compatible with the condensed halo core (above); option (b) is undecided.
+  >> G2.5: UNDECIDED -- conditional on G2.3, which is UNDECIDED / option (a) incompatible with a condensed halo
+  >> G2: UNDECIDED -- G2.1 PASS (statement), G2.2 conditional region, G2.4(i) region, G2.3 UNDECIDED (option a INCOMPATIBLE with halo condensation, option b undecidable): G2 is not an unconditional PASS (frozen rule)
+
+  1/1 checks pass; load-bearing check failures: 0   (1 s)
+  gate verdicts: G2.1=PASS, G2.2=PASS, G2.4-i=FAIL, G2.3=UNDECIDED, G2.5=UNDECIDED, G2=UNDECIDED
+  one-sided derivatives at plate 1: -0.866903, -0.318624;  F_field = 0.53941512, F_action (virtual work) = 0.57787268;  relative difference 7.13e-02
+  [FAIL] (reported) G3.3-plates (reported, first draft; kept as it fell)  virtual work vs the MEAN of the one-sided derivatives for two THIN plates (delta sources) with the nonlinear |phi'|^3 term
+         relative difference 7.13e-02 (limit 1e-2): for a delta source sitting on a kink of the minimiser the action's force is a nonlinear weighted mean of the one-sided derivatives, not their average (the singular self-force of a point source; the smooth-source check below is the one that matches how a_phi is used)
+  rigid-shift derivative of E_min (vanishes by translation invariance away from the walls): 6.165e-01  (box +-10.0); F1 + F2 from the field: -1.669e-01
+
+======================================================================================================================
+G3.3 (gate)  the same check for SMOOTH sources (Gaussian slabs, width 0.4): F_action = -dE_min/dz1 vs F_field = -(alpha Lam/M_Pl) int rho_1 phi' dz
+======================================================================================================================
+  smooth sources: F_field = 0.59477585, F_action = 0.59477585, relative difference 3.18e-09
+  [PASS] G3.3  reaction on a smooth baryon distribution from virtual work on the action = the field force (nonlinear |phi'|^3 kinetic term, two Gaussian slabs)
+         relative difference 3.18e-09 (limit 1e-2)
+  >> G3.3: PASS -- virtual-work force equals the field force on smooth sources to 3.2e-09; the thin-plate variant differs by 7.1e-02 (reported)
+
+  1/2 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G3.3=PASS
+
+======================================================================================================================
+G4  constants beyond kappa = 1/2 and Omega_c h^2 = 0.12
+======================================================================================================================
+  - m                                     : the mass of the condensate field's quanta (still required; nothing fixes it)  [untied]
+  - alpha (or Lam)                        : after the a0 tie alpha^3 Lam^2/M_Pl = a0, one of the pair remains free (a0 fixes only the combination)  [untied]
+  - a0 tie                                : alpha^3 Lam^2 N_a/M_Pl = kappa c sqrt(G rho_Lambda), N_a = 1 derived (S0.1); a RELATION among BK constants: postulated, not derived from the action  [admitted as the stated equivalent (postulated)]
+  - T = m sigma^2 factor                  : convention factor between the halo dispersion and the condensate temperature (reported at x 1/2 and x 2)  [convention, not tied]
+  - normal-phase halo mass and concentration: imported LCDM functions (Moster+2013: 4 numbers, Duffy+2008: 2 numbers), not derived by the door  [external per-halo function]
+  - thermalisation rate                   : needed to say whether the cold cosmological background condenses; not fixed by the EFT  [untied (UV-completion dependent)]
+  >> G4: FAIL -- 3 independent untied new constants (m; one of alpha/Lambda; plus, outside the EFT, the thermalisation rate), against the line 0; the a0 tie is a postulated relation, not a derivation; the imported halo functions are additional per-halo inputs
+
+======================================================================================================================
+G5.4  Solar System: 1 AU and MICROSCOPE altitude, both footings, readings A (a0-line anomaly, saturating) and B (BK unscreened sqrt(a0 g))
+======================================================================================================================
+  g_sun(1 AU) = 5.9313e-03 m/s^2;  g(MICROSCOPE, 710 km) = 7.9497 m/s^2;  Delta(B/mu): Ti-Pt 9.052e-04, Fe-Si 3.385e-04   [recalled isotope masses, unverified]
+  [canonical] reading A: a_phi(1 AU) = 4.6802e-11 m/s^2 = 0.5 a0;  eps = 7.891e-09;  |gamma - 1| = 1.578e-08 (0.000686 x Cassini);  eta_MICROSCOPE = 5.329e-15 (5.33 x);  eta_LLR = 2.671e-12 (19.1 x);  sunward anomaly / (s a0) = 3.94e+04
+  [canonical] reading B: a_phi(1 AU) = 7.4511e-07 m/s^2 = 7960 a0;  eps = 1.256e-04;  |gamma - 1| = 2.512e-04 (10.9 x Cassini);  eta_MICROSCOPE = 3.106e-09 (3.11e+06 x);  eta_LLR = 4.253e-08 (3.04e+05 x);  sunward anomaly / (s a0) = 6.27e+08
+  [alt] reading A: a_phi(1 AU) = 5.6560e-11 m/s^2 = 0.5 a0;  eps = 9.536e-09;  |gamma - 1| = 1.907e-08 (0.000829 x Cassini);  eta_MICROSCOPE = 6.440e-15 (6.44 x);  eta_LLR = 3.228e-12 (23.1 x);  sunward anomaly / (s a0) = 3.94e+04
+  [alt] reading B: a_phi(1 AU) = 8.1912e-07 m/s^2 = 7241 a0;  eps = 1.381e-04;  |gamma - 1| = 2.762e-04 (12 x Cassini);  eta_MICROSCOPE = 3.414e-09 (3.41e+06 x);  eta_LLR = 4.675e-08 (3.34e+05 x);  sunward anomaly / (s a0) = 5.7e+08
+  pass (i) Cassini: {('canonical', 'A'): True, ('canonical', 'B'): False, ('alt', 'A'): True, ('alt', 'B'): False};  (ii) WEP: {('canonical', 'A'): False, ('canonical', 'B'): False, ('alt', 'A'): False, ('alt', 'B'): False};  (iii) ephemeris ceiling: {('canonical', 'A'): False, ('canonical', 'B'): False, ('alt', 'A'): False, ('alt', 'B'): False}
+
+======================================================================================================================
+G5.4 (iv)  phase-boundary screening: is the condensate absent at 1 AU and present at the galaxy's r_M?
+======================================================================================================================
+  MW-like halo (M_* = 6e10): NFW density at r_M(6e10) = 9.45 kpc is 0.833 of that at the Sun's 8.2 kpc; local DM density 0.4 GeV/cm^3 = 3.073e-06 eV^4 (recalled, unverified)
+  m =    0.001 eV: T/T_c at 1 AU (ambient) = 3.575e-12;  at the galaxy's r_M = 4.037e-12;  condensate at 1 AU: YES;  at r_M: YES
+  m =     0.01 eV: T/T_c at 1 AU (ambient) = 1.659e-09;  at the galaxy's r_M = 1.874e-09;  condensate at 1 AU: YES;  at r_M: YES
+  m =      0.1 eV: T/T_c at 1 AU (ambient) = 7.703e-07;  at the galaxy's r_M = 8.698e-07;  condensate at 1 AU: YES;  at r_M: YES
+  m =        1 eV: T/T_c at 1 AU (ambient) = 0.0003575;  at the galaxy's r_M = 0.0004037;  condensate at 1 AU: YES;  at r_M: YES
+  m =       10 eV: T/T_c at 1 AU (ambient) = 0.1659;  at the galaxy's r_M = 0.1874;  condensate at 1 AU: YES;  at r_M: YES
+  m =      100 eV: T/T_c at 1 AU (ambient) = 77.03;  at the galaxy's r_M = 86.98;  condensate at 1 AU: no;  at r_M: no
+  m =    1e+03 eV: T/T_c at 1 AU (ambient) = 3.575e+04;  at the galaxy's r_M = 4.037e+04;  condensate at 1 AU: no;  at r_M: no
+  a screening plane point (absent at 1 AU AND present at r_M) among these m: False. Same density (to a factor 0.83) and the same dispersion => the same phase at both places.
+
+======================================================================================================================
+G5.4 (post hoc, labelled)  the door's own algebra at 1 AU: gradient term p^2/2m against the ambient galactic X-bar (<= m V^2, V = 250 km/s)
+======================================================================================================================
+  p^2/(2m) at 1 AU divided by the ambient m V^2 (>> 1: the gradient regime = unscreened sqrt(a0 g_N), Reading B):
+    m =    0.001 eV, alpha =   0.01: 2.28e+11
+    m =    0.001 eV, alpha =      1: 2.28e+13
+    m =    0.001 eV, alpha =    100: 2.28e+15
+    m =      0.1 eV, alpha =   0.01: 2.28e+07
+    m =      0.1 eV, alpha =      1: 2.28e+09
+    m =      0.1 eV, alpha =    100: 2.28e+11
+    m =        1 eV, alpha =   0.01: 2.28e+05
+    m =        1 eV, alpha =      1: 2.28e+07
+    m =        1 eV, alpha =    100: 2.28e+09
+    m =       10 eV, alpha =   0.01: 2.28e+03
+    m =       10 eV, alpha =      1: 2.28e+05
+    m =       10 eV, alpha =    100: 2.28e+07
+    m =    1e+03 eV, alpha =   0.01: 0.228
+    m =    1e+03 eV, alpha =      1: 22.8
+    m =    1e+03 eV, alpha =    100: 2.28e+03
+  cells of this sample where the ambient term would dominate at 1 AU (screened, linear regime): 1/15
+  >> G5.4: FAIL -- Reading B (BK unscreened): Cassini ['10.9', '12'] x bound, MICROSCOPE ['3.11e+06', '3.41e+06'] x, ephemeris ['6.27e+08', '5.7e+08'] x; Reading A: Cassini ['0.000686', '0.000829'] x, MICROSCOPE ['5.33', '6.44'] x, ephemeris ['3.94e+04', '3.94e+04'] x; phase-boundary screening: False
+
+  0/0 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G4=FAIL, G5.4=FAIL
+
+======================================================================================================================
+G5.1 second variation  (MUTATE='')
+======================================================================================================================
+  region X > 0:  n = P_X = 2*sqrt(2)*Lambda*sqrt(Xp)*m**(3/2);  K_t = P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(Xp);  c_s^2 = P_X/(m P_XX) = 2*Xp/m
+  region X < 0:  n = P_X = 2*sqrt(2)*Lambda*sqrt(Xp)*m**(3/2);  K_t = P_XX = -sqrt(2)*Lambda*m**(3/2)/sqrt(Xp);  c_s^2 = P_X/(m P_XX) = -2*Xp/m
+    pos: density n > 0: True;  kinetic P_XX > 0: True;  c_s^2 > 0: True
+    neg: density n > 0: True;  kinetic P_XX > 0: False;  c_s^2 > 0: False
+  [PASS] G5.1a  region X > 0 is well-posed (n > 0, K_t > 0, c_s^2 > 0)  [positive control: the harness can see a healthy region]
+         {'n_positive': True, 'kinetic_positive': True, 'cs2_positive': True}
+  [FAIL] (reported) G5.1b  region X < 0 (the gradient-dominated, MOND-carrying region) is well-posed
+         {'n_positive': True, 'kinetic_positive': False, 'cs2_positive': False}
+  >> G5.1-wellposed(X>0): PASS -- healthy for X > 0: P_XX > 0, c_s^2 = 2X/m
+  >> G5.1-wellposed(X<0): FAIL -- the gradient-dominated (MOND-carrying) regime X<0 has P_XX<0 and c_s^2 = 2X/m < 0: L2 = -(1/2)(|P_XX| psi_t^2 + (P_X/m) psi'^2), omega^2 = -|c_s^2| k^2: elliptic, growth rate Gamma = |c_s| k unbounded in k (Hadamard ill-posed)
+  size of the instability in the gradient regime at r_M: |X| = alpha M_Pl a0/(2 m), |c_s|^2 = alpha M_Pl a0/m^2 (c = 1); growth rate Gamma = |c_s| k
+    m = 1 eV, alpha = 1: |c_s| = 7.074e-04 c = 212.1 km/s; a mode of wavelength 2 pi kpc grows as exp(0.217 t/Myr)
+    m = 0.01 eV, alpha = 1: |c_s| = 7.074e-02 c = 2.121e+04 km/s; a mode of wavelength 2 pi kpc grows as exp(21.7 t/Myr)
+    m = 1 eV, alpha = 100: |c_s| = 7.074e-03 c = 2121 km/s; a mode of wavelength 2 pi kpc grows as exp(2.17 t/Myr)
+  >> G5.1: FAIL -- the MOND-carrying regime (X<0) is ill-posed; the healthy regime (X>0) carries the linear fifth force, not the MOND force (see cfg122_g1_plane.py G5.1 rows)
+
+  1/2 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G5.1-wellposed(X>0)=PASS, G5.1-wellposed(X<0)=FAIL, G5.1=FAIL
+
+======================================================================================================================
+G5.1 second variation  (MUTATE='b')
+======================================================================================================================
+  region X > 0:  n = P_X = 2*sqrt(2)*Lambda*sqrt(Xp)*m**(3/2);  K_t = P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(Xp);  c_s^2 = P_X/(m P_XX) = 2*Xp/m
+  region X < 0:  n = P_X = -2*sqrt(2)*Lambda*sqrt(Xp)*m**(3/2);  K_t = P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(Xp);  c_s^2 = P_X/(m P_XX) = -2*Xp/m
+    pos: density n > 0: True;  kinetic P_XX > 0: True;  c_s^2 > 0: True
+    neg: density n > 0: False;  kinetic P_XX > 0: True;  c_s^2 > 0: False
+  [PASS] G5.1a  region X > 0 is well-posed (n > 0, K_t > 0, c_s^2 > 0)  [positive control: the harness can see a healthy region]
+         {'n_positive': True, 'kinetic_positive': True, 'cs2_positive': True}
+  [FAIL] (reported) G5.1b  region X < 0 (the gradient-dominated, MOND-carrying region) is well-posed
+         {'n_positive': False, 'kinetic_positive': True, 'cs2_positive': False}
+  MUTATE=b: the even P(|X|) removes the sign change of P_XX at X < 0 (K_t > 0) but P_X < 0 there (n < 0, negative DM density) and c_s^2 = P_X/(m P_XX) is still negative: the frozen control 'G5.1 must flip to well-posed' is checked below.
+  >> G5.1-wellposed(X>0): PASS -- healthy for X > 0: P_XX > 0, c_s^2 = 2X/m
+  >> G5.1-wellposed(X<0): FAIL -- the gradient-dominated (MOND-carrying) regime X<0 has P_XX<0 and c_s^2 = 2X/m < 0: L2 = -(1/2)(|P_XX| psi_t^2 + (P_X/m) psi'^2), omega^2 = -|c_s^2| k^2: elliptic, growth rate Gamma = |c_s| k unbounded in k (Hadamard ill-posed)
+  size of the instability in the gradient regime at r_M: |X| = alpha M_Pl a0/(2 m), |c_s|^2 = alpha M_Pl a0/m^2 (c = 1); growth rate Gamma = |c_s| k
+    m = 1 eV, alpha = 1: |c_s| = 7.074e-04 c = 212.1 km/s; a mode of wavelength 2 pi kpc grows as exp(0.217 t/Myr)
+    m = 0.01 eV, alpha = 1: |c_s| = 7.074e-02 c = 2.121e+04 km/s; a mode of wavelength 2 pi kpc grows as exp(21.7 t/Myr)
+    m = 1 eV, alpha = 100: |c_s| = 7.074e-03 c = 2121 km/s; a mode of wavelength 2 pi kpc grows as exp(2.17 t/Myr)
+  >> G5.1: FAIL -- MUTATE=b control: does the even P(|X|) flip G5.1 to well-posed?  (frozen expectation: yes)
+
+  1/2 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G5.1-wellposed(X>0)=PASS, G5.1-wellposed(X<0)=FAIL, G5.1=FAIL
+
+======================================================================================================================
+G6 control: sympy check of the required c_s^2(x) against dP/drho along the target
+======================================================================================================================
+  [PASS] G6.0  c_s,req^2 = rho g_tot/|d rho/dr| = V_f^2 (1+x^2)^(3/2)/(x(1+2x^2))  (CFG44 B2 E1, sympy)
+         (x**2 + 1)**(3/2)/(2*x**3 + x)
+  required c_s^2/V_f^2 at x = 0.1, 1, 10, 30: 9.951, 0.9428, 0.505, 0.5006   (deep limit 1/2 = V_f^2/2 = sigma^2; inner: proportional to M rho)
+  [canonical] T = m sigma^2 (frozen): cells matching at all four masses within 10%: 0/3600; closest approach (worst-mass error) 0.95 at m = 154 eV, Lam = 1e-07 eV; per-mass best ['0.95', '0.95', '0.95', '0.95']
+  [canonical] x 1/2 (reported): cells matching at all four masses within 10%: 0/3600; closest approach (worst-mass error) 0.975 at m = 194 eV, Lam = 1e-07 eV; per-mass best ['0.975', '0.975', '0.975', '0.975']
+  [canonical] x 2 (reported): cells matching at all four masses within 10%: 0/3600; closest approach (worst-mass error) 0.998 at m = 122 eV, Lam = 1e-07 eV; per-mass best ['0.998', '0.998', '0.998', '0.998']
+  [alt] T = m sigma^2 (frozen): cells matching at all four masses within 10%: 0/3600; closest approach (worst-mass error) 0.95 at m = 154 eV, Lam = 1e-07 eV; per-mass best ['0.95', '0.95', '0.95', '0.95']
+  [alt] x 1/2 (reported): cells matching at all four masses within 10%: 0/3600; closest approach (worst-mass error) 0.975 at m = 194 eV, Lam = 1e-07 eV; per-mass best ['0.975', '0.975', '0.975', '0.975']
+  [alt] x 2 (reported): cells matching at all four masses within 10%: 0/3600; closest approach (worst-mass error) 0.998 at m = 122 eV, Lam = 1e-07 eV; per-mass best ['0.998', '0.998', '0.998', '0.998']
+  [canonical] reported: the isothermal normal component alone (c_s^2 = sigma^2 = V_f^2/2) matches the required c_s^2 within 10% for x >= 3.03 (all x above); the required c_s^2 is 9.95 V_f^2 at x = 0.1: the inner region needs a stiffer, mass-dependent EOS
+  [alt] reported: the isothermal normal component alone (c_s^2 = sigma^2 = V_f^2/2) matches the required c_s^2 within 10% for x >= 3.03 (all x above); the required c_s^2 is 9.95 V_f^2 at x = 0.1: the inner region needs a stiffer, mass-dependent EOS
+  >> G6: FAIL -- cells matching at all four masses within 10%: [0, 0]; closest approach [0.95, 0.95] (worst-mass error); cost even if it passed: the BTFR postulate for T, uniform T in equilibrium, the per-halo R_c
+
+  1/1 checks pass; load-bearing check failures: 0   (2 s)
+  gate verdicts: G6=FAIL
+CFG122 G1 plane scan  MUTATE='a'  plane 60x60  N=160  Y0 grid 27  masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0)
+  *** MUTATE=a: the target is replaced by the door's own gradient-dominated condensate density 2 m^2 Lam |grad phi| (G1.1 must flip to PASS) ***
+CFG122 G1 plane scan  MUTATE='c'  plane 60x60  N=160  Y0 grid 27  masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0)
+  *** MUTATE=c: alpha_c = 1e-12 alpha in the flux law and the force (G3.1 must flip to PASS, G1.3 must collapse) ***
+CFG122 G1 plane scan  MUTATE=''  plane 60x60  N=160  Y0 grid 27  masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0)
+[canonical] M_b = 1e+09: r_M = 1.22 kpc; NFW M_h = 9.94e+10 Msun, c = 7.60, R200 = 98 kpc; R_c(m): none for 5/60 values of m, capped at R200 for 39; grid to 81.9 r_M
+[canonical] M_b = 1e+09: r_M = 1.22 kpc; NFW M_h = 9.94e+10 Msun, c = 7.60, R200 = 98 kpc; R_c(m): none for 5/60 values of m, capped at R200 for 39; grid to 81.9 r_M
+    B-   : 1205 converged roots in 1205 (m, alpha) cells (15 s)
+    B-   : 1307 converged roots in 1307 (m, alpha) cells (15 s)
+  done canonical point M=1e+09  (20 s)
+  done canonical point M=1e+09  (20 s)
+  done canonical point M=1e+09  (21 s)
+    B+hi : no roots
+    B+hi : 3 converged roots in 3 (m, alpha) cells (25 s)
+    B+lo : 538 converged roots in 538 (m, alpha) cells (35 s)
+[canonical] M_b = 1e+10: r_M = 3.86 kpc; NFW M_h = 3.15e+11 Msun, c = 6.89, R200 = 144 kpc; R_c(m): none for 7/60 values of m, capped at R200 for 37; grid to 38.1 r_M
+    B+lo : 363 converged roots in 363 (m, alpha) cells (39 s)
+[canonical] M_b = 1e+10: r_M = 3.86 kpc; NFW M_h = 3.15e+11 Msun, c = 6.89, R200 = 144 kpc; R_c(m): none for 7/60 values of m, capped at R200 for 37; grid to 38.1 r_M
+  done canonical point M=1e+10  (43 s)
+  done canonical point M=1e+10  (44 s)
+  done canonical point M=1e+10  (44 s)
+    B-   : 1145 converged roots in 1145 (m, alpha) cells (52 s)
+    B-   : 1252 converged roots in 1252 (m, alpha) cells (56 s)
+    B+hi : no roots
+  done canonical point M=1e+11  (68 s)
+    B+hi : 12 converged roots in 12 (m, alpha) cells (68 s)
+  done canonical point M=1e+11  (68 s)
+  done canonical point M=1e+11  (69 s)
+    B+lo : 608 converged roots in 608 (m, alpha) cells (76 s)
+[canonical] M_b = 1e+11: r_M = 12.2 kpc; NFW M_h = 1.07e+13 Msun, c = 5.13, R200 = 466 kpc; R_c(m): none for 9/60 values of m, capped at R200 for 35; grid to 39 r_M
+    B+lo : 418 converged roots in 418 (m, alpha) cells (82 s)
+[canonical] M_b = 1e+11: r_M = 12.2 kpc; NFW M_h = 1.07e+13 Msun, c = 5.13, R200 = 466 kpc; R_c(m): none for 9/60 values of m, capped at R200 for 35; grid to 39 r_M
+  done canonical point M=1e+12  (93 s)
+  done canonical point M=1e+12  (93 s)
+    B-   : 1177 converged roots in 1177 (m, alpha) cells (94 s)
+  done canonical point M=1e+12  (95 s)
+    B-   : 1280 converged roots in 1280 (m, alpha) cells (101 s)
+    B+hi : no roots
+    B+hi : 19 converged roots in 19 (m, alpha) cells (116 s)
+    B+lo : 458 converged roots in 458 (m, alpha) cells (121 s)
+[canonical] M_b = 1e+12: r_M = 38.6 kpc; NFW M_h = 3.79e+15 Msun, c = 3.13, R200 = 3.3e+03 kpc; R_c(m): none for 12/60 values of m, capped at R200 for 33; grid to 87.2 r_M
+  done canonical exp_compact M=1e+09  (122 s)
+  done canonical exp_compact M=1e+09  (122 s)
+  done canonical exp_compact M=1e+09  (124 s)
+    B+lo : 313 converged roots in 313 (m, alpha) cells (131 s)
+[canonical] M_b = 1e+12: r_M = 38.6 kpc; NFW M_h = 3.79e+15 Msun, c = 3.13, R200 = 3.3e+03 kpc; R_c(m): none for 12/60 values of m, capped at R200 for 33; grid to 87.2 r_M
+    B-   : 1456 converged roots in 1456 (m, alpha) cells (140 s)
+  done canonical exp_compact M=1e+10  (148 s)
+  done canonical exp_compact M=1e+10  (148 s)
+    B+hi : no roots
+  done canonical exp_compact M=1e+10  (150 s)
+    B-   : 1550 converged roots in 1550 (m, alpha) cells (150 s)
+    B+lo : 363 converged roots in 363 (m, alpha) cells (162 s)
+[alt] M_b = 1e+09: r_M = 1.11 kpc; NFW M_h = 9.94e+10 Msun, c = 7.60, R200 = 98 kpc; R_c(m): none for 5/60 values of m, capped at R200 for 39; grid to 90 r_M
+    B+hi : 50 converged roots in 50 (m, alpha) cells (163 s)
+  done canonical exp_compact M=1e+11  (172 s)
+  done canonical exp_compact M=1e+11  (173 s)
+  done canonical exp_compact M=1e+11  (175 s)
+    B+lo : 243 converged roots in 243 (m, alpha) cells (176 s)
+[alt] M_b = 1e+09: r_M = 1.11 kpc; NFW M_h = 9.94e+10 Msun, c = 7.60, R200 = 98 kpc; R_c(m): none for 5/60 values of m, capped at R200 for 39; grid to 90 r_M
+    B-   : 1217 converged roots in 1217 (m, alpha) cells (180 s)
+    B+hi : no roots
+    B-   : 1316 converged roots in 1316 (m, alpha) cells (193 s)
+  done canonical exp_compact M=1e+12  (196 s)
+  done canonical exp_compact M=1e+12  (197 s)
+  done canonical exp_compact M=1e+12  (199 s)
+    B+lo : 542 converged roots in 542 (m, alpha) cells (201 s)
+[alt] M_b = 1e+10: r_M = 3.51 kpc; NFW M_h = 3.15e+11 Msun, c = 6.89, R200 = 144 kpc; R_c(m): none for 7/60 values of m, capped at R200 for 37; grid to 41.8 r_M
+    B+hi : 3 converged roots in 3 (m, alpha) cells (205 s)
+    B-   : 1103 converged roots in 1103 (m, alpha) cells (216 s)
+    B+lo : 369 converged roots in 369 (m, alpha) cells (217 s)
+[alt] M_b = 1e+10: r_M = 3.51 kpc; NFW M_h = 3.15e+11 Msun, c = 6.89, R200 = 144 kpc; R_c(m): none for 7/60 values of m, capped at R200 for 37; grid to 41.8 r_M
+  done canonical exp_diffuse M=1e+09  (218 s)
+  done canonical exp_diffuse M=1e+09  (219 s)
+  done canonical exp_diffuse M=1e+09  (221 s)
+    B+hi : no roots
+    B-   : 1200 converged roots in 1200 (m, alpha) cells (233 s)
+    B+lo : 563 converged roots in 563 (m, alpha) cells (237 s)
+[alt] M_b = 1e+11: r_M = 11.1 kpc; NFW M_h = 1.07e+13 Msun, c = 5.13, R200 = 466 kpc; R_c(m): none for 10/60 values of m, capped at R200 for 35; grid to 42.8 r_M
+  done canonical exp_diffuse M=1e+10  (241 s)
+  done canonical exp_diffuse M=1e+10  (243 s)
+  done canonical exp_diffuse M=1e+10  (244 s)
+    B+hi : 6 converged roots in 6 (m, alpha) cells (245 s)
+    B-   : 1191 converged roots in 1191 (m, alpha) cells (255 s)
+    B+lo : 377 converged roots in 377 (m, alpha) cells (260 s)
+[alt] M_b = 1e+11: r_M = 11.1 kpc; NFW M_h = 1.07e+13 Msun, c = 5.13, R200 = 466 kpc; R_c(m): none for 10/60 values of m, capped at R200 for 35; grid to 42.8 r_M
+    B+hi : no roots
+  done canonical exp_diffuse M=1e+11  (267 s)
+  done canonical exp_diffuse M=1e+11  (270 s)
+  done canonical exp_diffuse M=1e+11  (270 s)
+    B+lo : 472 converged roots in 472 (m, alpha) cells (278 s)
+[alt] M_b = 1e+12: r_M = 35.1 kpc; NFW M_h = 3.79e+15 Msun, c = 3.13, R200 = 3.3e+03 kpc; R_c(m): none for 13/60 values of m, capped at R200 for 33; grid to 95.9 r_M
+    B-   : 1290 converged roots in 1290 (m, alpha) cells (280 s)
+    B+hi : 18 converged roots in 18 (m, alpha) cells (294 s)
+  done canonical exp_diffuse M=1e+12  (295 s)
+  done canonical exp_diffuse M=1e+12  (297 s)
+  done canonical exp_diffuse M=1e+12  (297 s)
+    B-   : 1463 converged roots in 1463 (m, alpha) cells (300 s)
+    B+lo : 318 converged roots in 318 (m, alpha) cells (310 s)
+[alt] M_b = 1e+12: r_M = 35.1 kpc; NFW M_h = 3.79e+15 Msun, c = 3.13, R200 = 3.3e+03 kpc; R_c(m): none for 13/60 values of m, capped at R200 for 33; grid to 95.9 r_M
+    B+hi : no roots
+  done alt point M=1e+09  (324 s)
+    B+lo : 366 converged roots in 366 (m, alpha) cells (325 s)
+
+======================================================================================================================
+root census: cells with an edge-fixed solution (n_DM(R_c) = n_c with R_c from the NFW halo)
+======================================================================================================================
+  [canonical] B-   : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [1205, 1145, 1177, 1456]
+  [canonical] B+hi : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [0, 0, 0, 0]
+  [canonical] B+lo : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [538, 608, 458, 363]
+  [alt] B-   : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [1217, 1103, 1191, 1463]
+  [alt] B+hi : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [0, 0, 0, 0]
+  [alt] B+lo : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [542, 563, 472, 366]
+
+======================================================================================================================
+G1.4  edge step at R_c: |M(R_c^-) - M(R_c^+)| / M <= 10%  (S: real mass M_b + M_DM vs M_b + M_NFW ;  F: dynamical mass incl. the phonon force vs M_b + M_NFW)
+======================================================================================================================
+  [canonical] Branch S (real mass): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [192, 270, 185, 146]; best step per mass ['0.000732', '0.00295', '1.82e-05', '0.000284']
+  [alt] Branch S (real mass): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [197, 225, 184, 147]; best step per mass ['0.000471', '0.000284', '0.000322', '0.00193']
+  [canonical] Branch F (dynamical): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [0, 0, 13, 35]; best step per mass ['1.37', '1.07', '0.0227', '0.0022']
+  [alt] Branch F (dynamical): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [0, 0, 11, 30]; best step per mass ['1.61', '1.77', '0.012', '0.00134']
+  >> G1.4-S: FAIL -- cells [0, 0]; best steps [['0.000732', '0.00295', '1.82e-05', '0.000284'], ['0.000471', '0.000284', '0.000322', '0.00193']]
+  >> G1.4-F: FAIL -- cells [0, 0]; best steps [['1.37', '1.07', '0.0227', '0.0022'], ['1.61', '1.77', '0.012', '0.00134']]
+
+======================================================================================================================
+G1.6  crossover universality: a_x(M_b) (g_N at which a_phi = g_N) across 1e9..1e12, spread max/min <= 1.10; existence over roots, branches and the plane
+======================================================================================================================
+  [canonical] cells with a crossover inside the covered range at all four masses: 446; smallest spread over roots/branches: 1.171 at m = 2.27 eV, alpha = 100, a_x/a0 = ['1.2', '1.15', '1.06', '1.24']
+  [alt] cells with a crossover inside the covered range at all four masses: 459; smallest spread over roots/branches: 1.155 at m = 2.27 eV, alpha = 100, a_x/a0 = ['1.16', '1.12', '1.05', '1.22']
+  >> G1.6: FAIL -- smallest spread [1.1711, 1.1549] (canonical, alt) against the 1.10 line; cells with a crossover at all masses [446, 459]
+
+======================================================================================================================
+G2.4 (ii) number injection inside a halo over one Hubble time: Ndot t_H / N_DM(<R_c) <= 10%   [(i) background is in cfg122_g2.py]
+======================================================================================================================
+  [canonical] cells passing at all masses: 0; per-mass cell counts [0, 0, 0, 12]; smallest injected fraction per mass ['5.79', '9.53', '3.82', '0.0355']
+  [alt] cells passing at all masses: 0; per-mass cell counts [0, 0, 0, 31]; smallest injected fraction per mass ['5.83', '9.43', '3.87', '0.00114']
+  >> G2.4-ii: FAIL -- cells [0, 0]; smallest fractions [['5.79', '9.53', '3.82', '0.0355'], ['5.83', '9.43', '3.87', '0.00114']]
+
+======================================================================================================================
+G3.2  energy of the injected number: |mu| Ndot t vs (1/2) M_b V_f^2, t = t_dyn(r_e) = r_e/V_f in both r_ta conventions (r_e = 0.4 r_ta) and t = 1/H0; PASS iff <= 1 (all)
+======================================================================================================================
+  done alt point M=1e+09  (326 s)
+  done alt point M=1e+09  (326 s)
+    B-   : 1560 converged roots in 1560 (m, alpha) cells (333 s)
+  [canonical] cells passing at all masses: t_dyn(CFG48 r_ta) 0, t_dyn(committed r_ta) 0, t_H 0; all three 0
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (t48): ['1.36', '0.645', '0.143', '6.26']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tcm): ['5.93', '2.33', '0.428', '15.4']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tH): ['20.2', '7.92', '1.45', '52.4']
+        t_dyn(r_e) [Gyr] (CFG48 | committed): 1e+09: 0.97 | 4.27, 1e+10: 1.18 | 4.27, 1e+11: 1.43 | 4.27, 1e+12: 1.73 | 4.27
+        reference (reported): CFG44's own target energy E_c/(1/2 M V_f^2) = 1.5 r_e/r_M: 1e+09: 72.8 | 318.3, 1e+10: 49.6 | 179.1, 1e+11: 33.8 | 100.8, 1e+12: 23.0 | 56.7
+        reported: smallest rest-mass energy m Ndot t_H/(1/2 M V_f^2) per mass: ['5.74e+08', '1.14e+08', '1.78e+07', '1.38e+06']
+  [alt] cells passing at all masses: t_dyn(CFG48 r_ta) 0, t_dyn(committed r_ta) 0, t_H 0; all three 0
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (t48): ['1.26', '0.361', '3.5', '6.39']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tcm): ['5.49', '1.3', '10.4', '15.8']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tH): ['19.6', '4.64', '37.2', '56.1']
+        t_dyn(r_e) [Gyr] (CFG48 | committed): 1e+09: 0.93 | 4.07, 1e+10: 1.13 | 4.07, 1e+11: 1.36 | 4.07, 1e+12: 1.65 | 4.08
+        reference (reported): CFG44's own target energy E_c/(1/2 M V_f^2) = 1.5 r_e/r_M: 1e+09: 80.0 | 349.9, 1e+10: 54.5 | 196.9, 1e+11: 37.1 | 110.8, 1e+12: 25.3 | 62.4
+        reported: smallest rest-mass energy m Ndot t_H/(1/2 M V_f^2) per mass: ['4.54e+08', '1.14e+08', '1.78e+07', '1.38e+06']
+  >> G3.2: FAIL -- cells passing all three timescales at all masses [0, 0]; smallest ratios (t_H) [['20.2', '7.92', '1.45', '52.4'], ['19.6', '4.64', '37.2', '56.1']]
+
+======================================================================================================================
+G1.5  far-shell test: add a shell of 10 M_b at R' = 40 kpc; r* = min(3 r_M, R'/2); target rho unchanged; PASS iff |d rho/rho| <= 1% (case 2 decides)
+======================================================================================================================
+    B+hi : 48 converged roots in 48 (m, alpha) cells (346 s)
+  done alt point M=1e+10  (352 s)
+  done alt point M=1e+10  (354 s)
+  done alt point M=1e+10  (354 s)
+    B+lo : 247 converged roots in 247 (m, alpha) cells (361 s)
+
+======================================================================================================================
+root census: cells with an edge-fixed solution (n_DM(R_c) = n_c with R_c from the NFW halo)
+======================================================================================================================
+  [canonical] B-   : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [1307, 1252, 1280, 1550]
+  [canonical] B+hi : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [3, 12, 19, 50]
+  [canonical] B+lo : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [363, 418, 313, 243]
+  [alt] B-   : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [1316, 1200, 1290, 1560]
+  [alt] B+hi : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [3, 6, 18, 48]
+  [alt] B+lo : cells with >= 1 root at masses (1000000000.0, 10000000000.0, 100000000000.0, 1000000000000.0): [369, 377, 318, 247]
+
+======================================================================================================================
+G1.4  edge step at R_c: |M(R_c^-) - M(R_c^+)| / M <= 10%  (S: real mass M_b + M_DM vs M_b + M_NFW ;  F: dynamical mass incl. the phonon force vs M_b + M_NFW)
+======================================================================================================================
+  [canonical] Branch S (real mass): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [182, 249, 165, 138]; best step per mass ['7.81e-05', '6.27e-05', '3.86e-07', '0.00454']
+  [alt] Branch S (real mass): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [196, 200, 165, 138]; best step per mass ['0.0001', '0.000215', '0.000322', '0.00466']
+  [canonical] Branch F (dynamical): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [38, 52, 48, 68]; best step per mass ['0.00426', '0.00498', '0.000225', '0.0022']
+  [alt] Branch F (dynamical): (m, alpha) cells passing at all four masses: 0; per-mass cell counts [40, 43, 47, 70]; best step per mass ['0.00272', '0.00243', '0.000468', '0.000718']
+  >> G1.4-S: FAIL -- cells [0, 0]; best steps [['7.81e-05', '6.27e-05', '3.86e-07', '0.00454'], ['0.0001', '0.000215', '0.000322', '0.00466']]
+  >> G1.4-F: FAIL -- cells [0, 0]; best steps [['0.00426', '0.00498', '0.000225', '0.0022'], ['0.00272', '0.00243', '0.000468', '0.000718']]
+
+======================================================================================================================
+G1.6  crossover universality: a_x(M_b) (g_N at which a_phi = g_N) across 1e9..1e12, spread max/min <= 1.10; existence over roots, branches and the plane
+======================================================================================================================
+  [canonical] cells with a crossover inside the covered range at all four masses: 516; smallest spread over roots/branches: 1.007 at m = 1.8 eV, alpha = 761, a_x/a0 = ['1.01', '1.01', '1', '1.01']
+  [alt] cells with a crossover inside the covered range at all four masses: 525; smallest spread over roots/branches: 1.005 at m = 1.8 eV, alpha = 761, a_x/a0 = ['1.01', '1.01', '1', '1.01']
+  >> G1.6: PASS -- smallest spread [1.0069, 1.0048] (canonical, alt) against the 1.10 line; cells with a crossover at all masses [516, 525]
+
+======================================================================================================================
+G2.4 (ii) number injection inside a halo over one Hubble time: Ndot t_H / N_DM(<R_c) <= 10%   [(i) background is in cfg122_g2.py]
+======================================================================================================================
+  [canonical] cells passing at all masses: 0; per-mass cell counts [0, 0, 0, 110]; smallest injected fraction per mass ['0.837', '1.85', '0.299', '0.00417']
+  [alt] cells passing at all masses: 0; per-mass cell counts [0, 0, 0, 120]; smallest injected fraction per mass ['0.798', '1.82', '0.335', '0.00114']
+  >> G2.4-ii: FAIL -- cells [0, 0]; smallest fractions [['0.837', '1.85', '0.299', '0.00417'], ['0.798', '1.82', '0.335', '0.00114']]
+
+======================================================================================================================
+G3.2  energy of the injected number: |mu| Ndot t vs (1/2) M_b V_f^2, t = t_dyn(r_e) = r_e/V_f in both r_ta conventions (r_e = 0.4 r_ta) and t = 1/H0; PASS iff <= 1 (all)
+======================================================================================================================
+  [canonical] case 1 (mu fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 7 (per mass [96, 79, 52, 48]); smallest |d rho/rho| per mass ['1.76e-07', '6.37e-07', '2.05e-06', '5.66e-06']
+  [canonical] case 2 (edge re-fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 0 (per mass [0, 0, 0, 0]); smallest |d rho/rho| per mass ['0.57', '0.77', '0.501', '0.0551']
+        fraction of roots with R_c > R' (shell inside the condensate; otherwise case 2 is trivially 0): {'1e+09': [0.5555555555555556, 0.5396825396825397], '1e+10': [0.6694214876033058, 0.609375], '1e+11': [0.8373983739837398, 0.7954545454545454], '1e+12': [0.8757763975155279, 0.6304347826086957]}
+  done alt point M=1e+11  (380 s)
+  [canonical] cells passing at all masses: t_dyn(CFG48 r_ta) 0, t_dyn(committed r_ta) 0, t_H 0; all three 0
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (t48): ['0.00366', '0.0179', '0.132', '0.339']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tcm): ['0.016', '0.0647', '0.394', '0.836']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tH): ['0.0545', '0.22', '1.34', '2.84']
+        t_dyn(r_e) [Gyr] (CFG48 | committed): 1e+09: 0.97 | 4.27, 1e+10: 1.18 | 4.27, 1e+11: 1.43 | 4.27, 1e+12: 1.73 | 4.27
+        reference (reported): CFG44's own target energy E_c/(1/2 M V_f^2) = 1.5 r_e/r_M: 1e+09: 72.8 | 318.3, 1e+10: 49.6 | 179.1, 1e+11: 33.8 | 100.8, 1e+12: 23.0 | 56.7
+        reported: smallest rest-mass energy m Ndot t_H/(1/2 M V_f^2) per mass: ['2.25e+07', '5.63e+06', '8.81e+05', '6.84e+04']
+  [alt] cells passing at all masses: t_dyn(CFG48 r_ta) 0, t_dyn(committed r_ta) 0, t_H 0; all three 0
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (t48): ['0.0299', '0.347', '0.109', '0.907']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tcm): ['0.131', '1.25', '0.326', '2.24']
+        smallest |mu| Ndot t/(1/2 M V_f^2) per mass (tH): ['0.466', '4.47', '1.16', '7.96']
+        t_dyn(r_e) [Gyr] (CFG48 | committed): 1e+09: 0.93 | 4.07, 1e+10: 1.13 | 4.07, 1e+11: 1.36 | 4.07, 1e+12: 1.65 | 4.08
+        reference (reported): CFG44's own target energy E_c/(1/2 M V_f^2) = 1.5 r_e/r_M: 1e+09: 80.0 | 349.9, 1e+10: 54.5 | 196.9, 1e+11: 37.1 | 110.8, 1e+12: 25.3 | 62.4
+        reported: smallest rest-mass energy m Ndot t_H/(1/2 M V_f^2) per mass: ['2.25e+07', '5.63e+06', '8.81e+05', '6.84e+04']
+  >> G3.2: FAIL -- cells passing all three timescales at all masses [0, 0]; smallest ratios (t_H) [['0.0545', '0.22', '1.34', '2.84'], ['0.466', '4.47', '1.16', '7.96']]
+
+======================================================================================================================
+G1.5  far-shell test: add a shell of 10 M_b at R' = 40 kpc; r* = min(3 r_M, R'/2); target rho unchanged; PASS iff |d rho/rho| <= 1% (case 2 decides)
+======================================================================================================================
+  done alt point M=1e+11  (381 s)
+  done alt point M=1e+11  (381 s)
+  [alt] case 1 (mu fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 7 (per mass [98, 81, 53, 46]); smallest |d rho/rho| per mass ['1.94e-07', '7.01e-07', '1.41e-06', '6.22e-06']
+  [alt] case 2 (edge re-fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 0 (per mass [0, 0, 0, 0]); smallest |d rho/rho| per mass ['0.565', '0.757', '0.507', '0.0536']
+        fraction of roots with R_c > R' (shell inside the condensate; otherwise case 2 is trivially 0): {'1e+09': [0.5555555555555556, 0.53125], '1e+10': [0.6694214876033058, 0.5806451612903226], '1e+11': [0.84, 0.7727272727272727], '1e+12': [0.8757763975155279, 0.6]}
+  >> G1.5: FAIL -- case 2 cells [0, 0]; case 1 cells [7, 7]
+
+  0/0 checks pass; load-bearing check failures: 0   (400 s)
+  gate verdicts: G1.4-S=FAIL, G1.4-F=FAIL, G1.6=FAIL, G2.4-ii=FAIL, G3.2=FAIL, G1.5=FAIL
+  done alt point M=1e+12  (407 s)
+  done alt point M=1e+12  (407 s)
+  done alt point M=1e+12  (408 s)
+  [canonical] case 1 (mu fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 23 (per mass [101, 85, 63, 74]); smallest |d rho/rho| per mass ['2.8e-07', '5.04e-07', '2.59e-06', '5.6e-07']
+  [canonical] case 2 (edge re-fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 3 (per mass [5, 3, 6, 22]); smallest |d rho/rho| per mass ['0.00101', '0.000878', '0.000286', '0.00013']
+        fraction of roots with R_c > R' (shell inside the condensate; otherwise case 2 is trivially 0): {'1e+09': [0.5833333333333334, 0.5348837209302325], '1e+10': [0.6992481203007519, 0.6136363636363636], '1e+11': [0.849624060150376, 0.0, 0.7931034482758621], '1e+12': [0.8823529411764706, 0.2, 0.6206896551724138]}
+  done alt exp_compact M=1e+09  (436 s)
+  done alt exp_compact M=1e+09  (437 s)
+  done alt exp_compact M=1e+09  (437 s)
+  [alt] case 1 (mu fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 24 (per mass [106, 86, 68, 75]); smallest |d rho/rho| per mass ['1.53e-07', '5.54e-07', '1.41e-06', '5.85e-07']
+  [alt] case 2 (edge re-fixed): sub-plane cells with |d rho/rho| <= 1% at all four masses: 3 (per mass [5, 4, 6, 22]); smallest |d rho/rho| per mass ['0.000826', '0.000771', '0.000245', '0.000113']
+        fraction of roots with R_c > R' (shell inside the condensate; otherwise case 2 is trivially 0): {'1e+09': [0.5918367346938775, 0.5454545454545454], '1e+10': [0.6992481203007519, 0.5813953488372093], '1e+11': [0.8529411764705882, 0.0, 0.78125], '1e+12': [0.884393063583815, 0.2, 0.6129032258064516]}
+  >> G1.5: PASS -- case 2 cells [3, 3]; case 1 cells [23, 24]
+
+  0/0 checks pass; load-bearing check failures: 0   (442 s)
+  gate verdicts: G1.4-S=FAIL, G1.4-F=FAIL, G1.6=PASS, G2.4-ii=FAIL, G3.2=FAIL, G1.5=PASS
+  done alt exp_compact M=1e+10  (464 s)
+  done alt exp_compact M=1e+10  (464 s)
+  done alt exp_compact M=1e+10  (465 s)
+  done alt exp_compact M=1e+11  (489 s)
+  done alt exp_compact M=1e+11  (489 s)
+  done alt exp_compact M=1e+11  (490 s)
+  done alt exp_compact M=1e+12  (513 s)
+  done alt exp_compact M=1e+12  (514 s)
+  done alt exp_compact M=1e+12  (514 s)
+  done alt exp_diffuse M=1e+09  (539 s)
+  done alt exp_diffuse M=1e+09  (539 s)
+  done alt exp_diffuse M=1e+09  (539 s)
+  done alt exp_diffuse M=1e+10  (566 s)
+  done alt exp_diffuse M=1e+10  (568 s)
+  done alt exp_diffuse M=1e+10  (568 s)
+  done alt exp_diffuse M=1e+11  (594 s)
+  done alt exp_diffuse M=1e+11  (594 s)
+  done alt exp_diffuse M=1e+11  (595 s)
+  done alt exp_diffuse M=1e+12  (620 s)
+  done alt exp_diffuse M=1e+12  (620 s)
+  done alt exp_diffuse M=1e+12  (621 s)
+
+======================================================================================================================
+G1.1 / G1.2 [Branch S]  rho_DM vs rho_c^target within 10% over x in [0.1, min(30, x_edge)], x_edge >= 3, same (m, alpha) at 1e9..1e12
+======================================================================================================================
+  [canonical] G1.1 point mass: plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.896 at m = 2.87 eV, alpha = 0.0298
+        point        M=1e+09: min over plane of the best error 0.809 (m = 23.6, alpha = 7.04); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.817 (m = 4.58, alpha = 0.791); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.811 (m = 5.79, alpha = 4.41); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.805 (m = 2.87, alpha = 3.22); cells <= tol: 0
+  [alt] G1.1 point mass: plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.894 at m = 2.87 eV, alpha = 0.265
+        point        M=1e+09: min over plane of the best error 0.818 (m = 23.6, alpha = 7.04); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.812 (m = 11.7, alpha = 5.15); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.806 (m = 5.79, alpha = 3.77); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.815 (m = 2.87, alpha = 3.22); cells <= tol: 0
+  [canonical] G1.2 exp. spheres (compact & diffuse): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.999 at m = 1.42 eV, alpha = 0.01
+        exp_compact  M=1e+09: min over plane of the best error 0.868 (m = 29.8, alpha = 0.0117); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.873 (m = 11.7, alpha = 0.0557); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.871 (m = 9.25, alpha = 0.0117); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.869 (m = 2.27, alpha = 0.0218); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.99 (m = 0.0536, alpha = 0.0117); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.991 (m = 0.349, alpha = 1.73); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.991 (m = 0.0265, alpha = 0.0298); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.992 (m = 0.00823, alpha = 0.01); cells <= tol: 0
+  [alt] G1.2 exp. spheres (compact & diffuse): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.999 at m = 1.42 eV, alpha = 0.01
+        exp_compact  M=1e+09: min over plane of the best error 0.874 (m = 29.8, alpha = 0.0117); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.87 (m = 18.7, alpha = 0.0137); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.867 (m = 9.25, alpha = 0.01); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.875 (m = 1.8, alpha = 0.0137); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.991 (m = 0.0536, alpha = 0.0117); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.991 (m = 0.0335, alpha = 0.0137); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.992 (m = 0.0166, alpha = 0.0117); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.991 (m = 0.0104, alpha = 0.0137); cells <= tol: 0
+  >> G1.1: FAIL -- cells passing [0, 0] (canonical, alt); closest approach [0.896, 0.894]
+  >> G1.2: FAIL -- cells passing [0, 0]; closest [0.999, 0.999]
+
+======================================================================================================================
+G1.3 [Branch F]  g_b = G(M_b + M_DM)/r^2 + a_phi vs the P2 law within 10% (same conventions); double counting M_DM/M_dyn
+======================================================================================================================
+  [canonical] G1.3 point mass (P2 law): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 15.4
+        point        M=1e+09: min over plane of the best error 0.414 (m = 0.00651, alpha = 21); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.414 (m = 0.001, alpha = 15.4); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.414 (m = 0.001, alpha = 0.495); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.414 (m = 0.001, alpha = 15.4); cells <= tol: 0
+  [alt] G1.3 point mass (P2 law): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 4.41
+        point        M=1e+09: min over plane of the best error 0.414 (m = 0.001, alpha = 4.41); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.414 (m = 0.001, alpha = 0.142); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.414 (m = 0.00408, alpha = 73.2); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.414 (m = 0.001, alpha = 1.48); cells <= tol: 0
+  [canonical] G1.3 exp spheres (reported: same test): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 15.4
+        exp_compact  M=1e+09: min over plane of the best error 0.413 (m = 0.00126, alpha = 0.791); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.413 (m = 0.0016, alpha = 39.2); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.413 (m = 0.137, alpha = 0.925); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.413 (m = 0.00126, alpha = 24.5); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0849 (m = 0.0677, alpha = 0.265); cells <= tol: 1370
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0848 (m = 0.00823, alpha = 0.122); cells <= tol: 1230
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0849 (m = 0.0016, alpha = 1.48); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0848 (m = 0.001, alpha = 18); cells <= tol: 930
+  [alt] G1.3 exp spheres (reported: same test): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 4.41
+        exp_compact  M=1e+09: min over plane of the best error 0.413 (m = 0.001, alpha = 4.41); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.413 (m = 0.0265, alpha = 0.01); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.413 (m = 0.001, alpha = 4.41); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.413 (m = 0.0166, alpha = 0.0408); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0847 (m = 0.021, alpha = 0.227); cells <= tol: 1390
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0849 (m = 0.001, alpha = 0.166); cells <= tol: 1250
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0848 (m = 0.00322, alpha = 53.6); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0849 (m = 0.00126, alpha = 0.265); cells <= tol: 950
+  [canonical] G1.3 diffuse exp. sphere only (h = 3 r_M, deep regime; reported, NOT the gate): plane cells passing at all masses/profiles: 930/3600; closest approach (worst-mass best error) 0.0896 at m = 0.0166 eV, alpha = 1.48
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0849 (m = 0.0677, alpha = 0.265); cells <= tol: 1370
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0848 (m = 0.00823, alpha = 0.122); cells <= tol: 1230
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0849 (m = 0.0016, alpha = 1.48); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0848 (m = 0.001, alpha = 18); cells <= tol: 930
+  [alt] G1.3 diffuse exp. sphere only (h = 3 r_M, deep regime; reported, NOT the gate): plane cells passing at all masses/profiles: 950/3600; closest approach (worst-mass best error) 0.0896 at m = 0.0016 eV, alpha = 39.2
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0847 (m = 0.021, alpha = 0.227); cells <= tol: 1390
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0849 (m = 0.001, alpha = 0.166); cells <= tol: 1250
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0848 (m = 0.00322, alpha = 53.6); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0849 (m = 0.00126, alpha = 0.265); cells <= tol: 950
+  >> G1.3: FAIL -- point-mass cells passing [0, 0]; closest [0.414, 0.414]
+    [canonical] M=1e+09 B-   : best F error 0.414 at (m, alpha) = (0.00651, 21); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.55e-06
+    [canonical] M=1e+09 B+hi : best F error 0.766 at (m, alpha) = (0.00823, 0.0218); g_b/g_law at x=1: 0.735, x=3: 0.35; max M_DM/M_dyn 0.979
+    [canonical] M=1e+09 B+lo : best F error 45.1 at (m, alpha) = (11.7, 100); g_b/g_law at x=1: 11.2, x=3: 41.1; max M_DM/M_dyn 0.000672
+    [canonical] M=1e+10 B-   : best F error 0.414 at (m, alpha) = (0.001, 15.4); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.73e-07
+    [canonical] M=1e+10 B+hi : best F error 0.777 at (m, alpha) = (0.00823, 0.0761); g_b/g_law at x=1: 0.736, x=3: 0.348; max M_DM/M_dyn 0.975
+    [canonical] M=1e+10 B+lo : best F error 44.7 at (m, alpha) = (5.79, 73.2); g_b/g_law at x=1: 11.5, x=3: 42.3; max M_DM/M_dyn 0.000677
+    [canonical] M=1e+11 B-   : best F error 0.414 at (m, alpha) = (0.001, 0.495); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.58e-05
+    [canonical] M=1e+11 B+hi : best F error 0.771 at (m, alpha) = (0.0855, 24.5); g_b/g_law at x=1: 0.736, x=3: 0.349; max M_DM/M_dyn 0.978
+    [canonical] M=1e+11 B+lo : best F error 40.9 at (m, alpha) = (2.87, 62.6); g_b/g_law at x=1: 11, x=3: 40.3; max M_DM/M_dyn 0.000669
+    [canonical] M=1e+12 B-   : best F error 0.414 at (m, alpha) = (0.001, 15.4); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.73e-06
+    [canonical] M=1e+12 B+hi : best F error 0.764 at (m, alpha) = (0.001, 0.01); g_b/g_law at x=1: 0.735, x=3: 0.35; max M_DM/M_dyn 0.979
+    [canonical] M=1e+12 B+lo : best F error 40.5 at (m, alpha) = (1.42, 45.8); g_b/g_law at x=1: 11.3, x=3: 41.5; max M_DM/M_dyn 0.000674
+    [alt] M=1e+09 B-   : best F error 0.414 at (m, alpha) = (0.001, 4.41); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.75e-07
+    [alt] M=1e+09 B+hi : best F error 0.777 at (m, alpha) = (0.00823, 0.0218); g_b/g_law at x=1: 0.736, x=3: 0.348; max M_DM/M_dyn 0.976
+    [alt] M=1e+09 B+lo : best F error 43.6 at (m, alpha) = (23.6, 28.7); g_b/g_law at x=1: 12.2, x=3: 44.6; max M_DM/M_dyn 0.00724
+    [alt] M=1e+10 B-   : best F error 0.414 at (m, alpha) = (0.001, 0.142); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.6e-05
+    [alt] M=1e+10 B+hi : best F error 0.77 at (m, alpha) = (0.00408, 0.016); g_b/g_law at x=1: 0.736, x=3: 0.349; max M_DM/M_dyn 0.978
+    [alt] M=1e+10 B+lo : best F error 45 at (m, alpha) = (11.7, 21); g_b/g_law at x=1: 12.6, x=3: 46; max M_DM/M_dyn 0.0073
+    [alt] M=1e+11 B-   : best F error 0.414 at (m, alpha) = (0.00408, 73.2); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.76e-06
+    [alt] M=1e+11 B+hi : best F error 0.764 at (m, alpha) = (0.00202, 0.0117); g_b/g_law at x=1: 0.735, x=3: 0.35; max M_DM/M_dyn 0.979
+    [alt] M=1e+11 B+lo : best F error 45.7 at (m, alpha) = (2.87, 53.6); g_b/g_law at x=1: 11.4, x=3: 41.6; max M_DM/M_dyn 0.000674
+    [alt] M=1e+12 B-   : best F error 0.414 at (m, alpha) = (0.001, 1.48); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.25e-05
+    [alt] M=1e+12 B+hi : best F error 0.775 at (m, alpha) = (0.001, 0.01); g_b/g_law at x=1: 0.736, x=3: 0.349; max M_DM/M_dyn 0.976
+    [alt] M=1e+12 B+lo : best F error 45.2 at (m, alpha) = (1.42, 39.2); g_b/g_law at x=1: 11.7, x=3: 42.8; max M_DM/M_dyn 0.000679
+
+======================================================================================================================
+G3.1 [Branch S, same solution as G1.1]  reaction on baryons a_phi/g_law over x in [0.3, 30] <= 0.10 (1e9, 1e10, 1e12)
+======================================================================================================================
+    [canonical] M=1e+09 B-   : at the closest G1.1 solution ((m, alpha) = (23.6, 7.04), err 0.809): max a_phi/g_law = 132; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.97e-12
+    [canonical] M=1e+09 B+hi : at the closest G1.1 solution ((m, alpha) = (0.00408, 0.01), err 1): max a_phi/g_law = 0.0594; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000402
+    [canonical] M=1e+09 B+lo : at the closest G1.1 solution ((m, alpha) = (23.6, 7.04), err 0.809): max a_phi/g_law = 132; unconditional plane minimum of the max reaction (full coverage to x=30) = 424
+    [canonical] M=1e+10 B-   : at the closest G1.1 solution ((m, alpha) = (4.58, 0.791), err 0.817): max a_phi/g_law = 890; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.99e-13
+    [canonical] M=1e+10 B+hi : at the closest G1.1 solution ((m, alpha) = (0.00255, 0.0137), err 1): max a_phi/g_law = 0.0624; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.00039
+    [canonical] M=1e+10 B+lo : at the closest G1.1 solution ((m, alpha) = (11.7, 6.02), err 0.817): max a_phi/g_law = 117; unconditional plane minimum of the max reaction (full coverage to x=30) = 404
+    [canonical] M=1e+12 B-   : at the closest G1.1 solution ((m, alpha) = (2.87, 3.22), err 0.805): max a_phi/g_law = 119; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.02e-15
+    [canonical] M=1e+12 B+hi : at the closest G1.1 solution ((m, alpha) = (0.001, 0.0187), err 1): max a_phi/g_law = 0.0588; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000398
+    [canonical] M=1e+12 B+lo : at the closest G1.1 solution ((m, alpha) = (2.87, 3.22), err 0.805): max a_phi/g_law = 119; unconditional plane minimum of the max reaction (full coverage to x=30) = 426
+    [alt] M=1e+09 B-   : at the closest G1.1 solution ((m, alpha) = (23.6, 7.04), err 0.818): max a_phi/g_law = 131; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.59e-12
+    [alt] M=1e+09 B+hi : at the closest G1.1 solution ((m, alpha) = (0.00408, 0.01), err 1): max a_phi/g_law = 0.0623; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000389
+    [alt] M=1e+09 B+lo : at the closest G1.1 solution ((m, alpha) = (23.6, 7.04), err 0.818): max a_phi/g_law = 131; unconditional plane minimum of the max reaction (full coverage to x=30) = 404
+    [alt] M=1e+10 B-   : at the closest G1.1 solution ((m, alpha) = (11.7, 5.15), err 0.812): max a_phi/g_law = 130; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.61e-13
+    [alt] M=1e+10 B+hi : at the closest G1.1 solution ((m, alpha) = (0.00255, 0.0117), err 1): max a_phi/g_law = 0.0605; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000378
+    [alt] M=1e+10 B+lo : at the closest G1.1 solution ((m, alpha) = (11.7, 5.15), err 0.812): max a_phi/g_law = 130; unconditional plane minimum of the max reaction (full coverage to x=30) = 416
+    [alt] M=1e+12 B-   : at the closest G1.1 solution ((m, alpha) = (2.87, 3.22), err 0.815): max a_phi/g_law = 118; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.65e-15
+    [alt] M=1e+12 B+hi : at the closest G1.1 solution ((m, alpha) = (0.001, 0.0187), err 1): max a_phi/g_law = 0.0617; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000386
+    [alt] M=1e+12 B+lo : at the closest G1.1 solution ((m, alpha) = (2.87, 3.22), err 0.815): max a_phi/g_law = 118; unconditional plane minimum of the max reaction (full coverage to x=30) = 408
+  unconditional plane minimum of the max reaction over x in [0.3,30] (any branch, any Y, full coverage): {'canonical': {1000000000.0: 2.9718490083303485e-12, 10000000000.0: 2.9923069267503187e-13, 1000000000000.0: 3.021224829299332e-15}, 'alt': {1000000000.0: 3.589121587924818e-12, 10000000000.0: 3.6144393564781096e-13, 1000000000000.0: 3.649983909054693e-15}}
+  reported reference (analytic, labelled POST-HOC: the pure-gradient B- solution Y = 0, point mass): a_phi/g_law = 1/sqrt(1 + 1/x^2): x=0.3: 0.287, x=1: 0.707, x=3: 0.949, x=10: 0.995, x=30: 0.999  -> max over x in [0.3, 30] = 0.9994 (the frozen hand estimate 'about 1' in the deep regime)
+  [canonical] closest-approach G1.1 solutions at 1e9, 1e10, 1e12: err 0.809 on B+lo at (m, alpha) = (23.6, 7.04): max a_phi/g_law = 132; err 0.817 on B- at (m, alpha) = (4.58, 0.791): max a_phi/g_law = 890.1; err 0.805 on B+lo at (m, alpha) = (2.87, 3.22): max a_phi/g_law = 119
+  [alt] closest-approach G1.1 solutions at 1e9, 1e10, 1e12: err 0.818 on B+lo at (m, alpha) = (23.6, 7.04): max a_phi/g_law = 130.8; err 0.812 on B+lo at (m, alpha) = (11.7, 5.15): max a_phi/g_law = 129.7; err 0.815 on B+lo at (m, alpha) = (2.87, 3.22): max a_phi/g_law = 117.9
+  >> G3.1: FAIL -- closest-approach reading (primary): reactions [[132.0289, 890.0911, 119.0257], [130.7552, 129.6701, 117.9277]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exist): FAIL; unconditional minimum over the plane {'canonical': {1000000000.0: 2.9718490083303485e-12, 10000000000.0: 2.9923069267503187e-13, 1000000000000.0: 3.021224829299332e-15}, 'alt': {1000000000.0: 3.589121587924818e-12, 10000000000.0: 3.6144393564781096e-13, 1000000000000.0: 3.649983909054693e-15}} (reached only where the phonon force is negligible)
+
+======================================================================================================================
+G5.1-G5.3 on the same solutions (literal frozen reading: kinetic > 0 and c_s^2 > 0 wherever a_phi >= 0.1 a0 over x in [0.3, 30]; non-vacuous = a_phi >= 0.1 a0 somewhere)
+======================================================================================================================
+    [canonical] B-   : (cell, mass) pairs with a non-vacuous phonon force 11776; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [canonical] B+hi : (cell, mass) pairs with a non-vacuous phonon force 7017; of which literal-pass (X>0 throughout, coverage to x=30) 4457, lenient (coverage >= 3) 5637
+    [canonical] B+lo : (cell, mass) pairs with a non-vacuous phonon force 8693; of which literal-pass (X>0 throughout, coverage to x=30) 4930, lenient (coverage >= 3) 6821
+    [alt] B-   : (cell, mass) pairs with a non-vacuous phonon force 11807; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [alt] B+hi : (cell, mass) pairs with a non-vacuous phonon force 7096; of which literal-pass (X>0 throughout, coverage to x=30) 4457, lenient (coverage >= 3) 5657
+    [alt] B+lo : (cell, mass) pairs with a non-vacuous phonon force 8685; of which literal-pass (X>0 throughout, coverage to x=30) 4918, lenient (coverage >= 3) 6811
+  (cell, mass) pairs where BOTH G1.3 (F within 10%) and the literal well-posed G5.1 hold: {('canonical', 'B-'): 0, ('canonical', 'B+hi'): 0, ('canonical', 'B+lo'): 0, ('alt', 'B-'): 0, ('alt', 'B+hi'): 0, ('alt', 'B+lo'): 0}
+  reported, loosened MOND-like reading (F within 50%) AND literal well-posed: {('canonical', 'B-'): 0, ('canonical', 'B+hi'): 0, ('canonical', 'B+lo'): 0, ('alt', 'B-'): 0, ('alt', 'B+hi'): 0, ('alt', 'B+lo'): 0}
+  literal reading alone (existence): (cell, mass, branch) triples with a non-vacuous phonon force and X > 0 throughout: {'canonical': 12458, 'alt': 12468} -- these are the LINEAR-regime (Newtonian-like fifth force) solutions of the branches B+hi/B+lo; none reproduces the P2 dynamics (best F error on B+hi 0.76)
+  >> G5.1: FAIL -- primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution reading is satisfiable only by the X > 0 branches, which do not carry the MOND force (declared interpretation)
+  G5.2 Landau: existence of a solution (any cell, any Y, covered to x >= 3) with min_x c_s^2/V_f^2 >= 1 (baryons subsonic), per branch (B- has X < 0: c_s^2 < 0, criterion moot / ill-posed):
+    [canonical] B-   : largest min_x c_s^2/V_f^2 over the plane -inf; at the closest G1.3 solutions (per mass) ['nan', 'nan', 'nan', 'nan']
+    [canonical] B+hi : largest min_x c_s^2/V_f^2 over the plane 2e+06; at the closest G1.3 solutions (per mass) ['1.24', '0.508', '0.975', '0.116']
+    [canonical] B+lo : largest min_x c_s^2/V_f^2 over the plane 0.00139; at the closest G1.3 solutions (per mass) ['1.16e-15', '2.48e-15', '6.11e-15', '1.21e-14']
+    [alt] B-   : largest min_x c_s^2/V_f^2 over the plane -inf; at the closest G1.3 solutions (per mass) ['nan', 'nan', 'nan', 'nan']
+    [alt] B+hi : largest min_x c_s^2/V_f^2 over the plane 2e+06; at the closest G1.3 solutions (per mass) ['1.17', '0.436', '0.899', '0.0418']
+    [alt] B+lo : largest min_x c_s^2/V_f^2 over the plane 0.00151; at the closest G1.3 solutions (per mass) ['1.39e-15', '2.57e-15', '6.36e-15', '1.37e-14']
+  >> G5.2: FAIL -- a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999957.006), (('alt', 'B+hi'), 1999956.906)]
+  G5.3 smallest max c_s^2 (c=1) over the plane per branch (inf = no X>0 solution): {('canonical', 'B-'): inf, ('canonical', 'B+hi'): 7.342279855653849e-06, ('canonical', 'B+lo'): 6.703037191337328e-17, ('alt', 'B-'): inf, ('alt', 'B+hi'): 8.051569565689801e-06, ('alt', 'B+lo'): 3.490329359375902e-17}; c_s^2 at the closest G1.3 solutions:
+     [canonical] B-   : ['nan', 'nan', 'nan', 'nan']
+     [canonical] B+hi : ['0.0784', '0.248', '0.784', '2.48']
+     [canonical] B+lo : ['0.022', '0.107', '0.252', '0.653']
+     [alt] B-   : ['nan', 'nan', 'nan', 'nan']
+     [alt] B+hi : ['0.0862', '0.273', '0.862', '2.73']
+     [alt] B+lo : ['0.0363', '0.0866', '0.225', '1.02']
+  >> G5.3: PASS -- subluminal X>0 solutions exist (smallest max c_s^2 3.49e-17 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)
+  [PASS] harness: every branch/profile/mass/footing produced a result array
+         72 result sets (expected 72)
+
+  1/1 checks pass; load-bearing check failures: 0   (621 s)
+  gate verdicts: G1.1=FAIL, G1.2=FAIL, G1.3=FAIL, G3.1=FAIL, G5.1=FAIL, G5.2=FAIL, G5.3=PASS
+
+======================================================================================================================
+G1.1 / G1.2 [Branch S]  rho_DM vs rho_c^target within 10% over x in [0.1, min(30, x_edge)], x_edge >= 3, same (m, alpha) at 1e9..1e12
+======================================================================================================================
+  [canonical] G1.1 point mass: plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 1 at m = 0.0424 eV, alpha = 0.0137
+        point        M=1e+09: min over plane of the best error 0.919 (m = 14.8, alpha = 53.6); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.911 (m = 2.27, alpha = 3.77); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.923 (m = 0.173, alpha = 0.0761); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.916 (m = 0.704, alpha = 3.77); cells <= tol: 0
+  [alt] G1.1 point mass: plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 1 at m = 0.0424 eV, alpha = 0.0137
+        point        M=1e+09: min over plane of the best error 0.911 (m = 0.704, alpha = 0.104); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.923 (m = 0.704, alpha = 0.363); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.916 (m = 0.349, alpha = 0.265); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.928 (m = 0.704, alpha = 3.77); cells <= tol: 0
+  [canonical] G1.2 exp. spheres (compact & diffuse): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 1 at m = 0.00651 eV, alpha = 0.0117
+        exp_compact  M=1e+09: min over plane of the best error 1 (m = 0.0335, alpha = 0.0137); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 1 (m = 0.349, alpha = 5.15); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 1 (m = 0.0104, alpha = 0.0137); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 1 (m = 0.00515, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.832 (m = 0.349, alpha = 0.0349); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.816 (m = 0.349, alpha = 0.104); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.841 (m = 5.79, alpha = 100); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.827 (m = 2.87, alpha = 73.2); cells <= tol: 0
+  [alt] G1.2 exp. spheres (compact & diffuse): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 1 at m = 0.00515 eV, alpha = 0.01
+        exp_compact  M=1e+09: min over plane of the best error 1 (m = 0.0335, alpha = 0.0137); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 1 (m = 0.0166, alpha = 0.01); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 1 (m = 0.0104, alpha = 0.0117); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 1 (m = 0.00515, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.815 (m = 14.8, alpha = 53.6); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.874 (m = 0.704, alpha = 0.495); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.826 (m = 5.79, alpha = 85.5); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.849 (m = 0.349, alpha = 1.08); cells <= tol: 0
+  >> G1.1: FAIL -- cells passing [0, 0] (canonical, alt); closest approach [1.0, 1.0]
+  >> G1.2: FAIL -- cells passing [0, 0]; closest [1.0, 1.0]
+
+======================================================================================================================
+G1.3 [Branch F]  g_b = G(M_b + M_DM)/r^2 + a_phi vs the P2 law within 10% (same conventions); double counting M_DM/M_dyn
+======================================================================================================================
+  [canonical] G1.3 point mass (P2 law): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.77 at m = 0.0016 eV, alpha = 0.0117
+        point        M=1e+09: min over plane of the best error 0.344 (m = 0.557, alpha = 0.0761); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.322 (m = 0.557, alpha = 0.227); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.35 (m = 1.8, alpha = 8.23); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.329 (m = 0.173, alpha = 0.227); cells <= tol: 0
+  [alt] G1.3 point mass (P2 law): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.777 at m = 0.0016 eV, alpha = 0.0255
+        point        M=1e+09: min over plane of the best error 0.322 (m = 1.12, alpha = 0.265); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.35 (m = 1.8, alpha = 2.36); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.329 (m = 0.557, alpha = 0.677); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.358 (m = 3.63, alpha = 100); cells <= tol: 0
+  [canonical] G1.3 exp spheres (reported: same test): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.975 at m = 0.001 eV, alpha = 0.01
+        exp_compact  M=1e+09: min over plane of the best error 0.68 (m = 0.0016, alpha = 0.0218); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.68 (m = 0.001, alpha = 0.0349); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.68 (m = 0.001, alpha = 0.0349); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.68 (m = 0.00126, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+  [alt] G1.3 exp spheres (reported: same test): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.975 at m = 0.001 eV, alpha = 0.01
+        exp_compact  M=1e+09: min over plane of the best error 0.68 (m = 0.0016, alpha = 0.0255); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.68 (m = 0.00126, alpha = 0.0117); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.68 (m = 0.00126, alpha = 0.0117); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.69 (m = 0.00126, alpha = 0.0117); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+  [canonical] G1.3 diffuse exp. sphere only (h = 3 r_M, deep regime; reported, NOT the gate): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.975 at m = 0.001 eV, alpha = 0.01
+        exp_diffuse  M=1e+09: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+  [alt] G1.3 diffuse exp. sphere only (h = 3 r_M, deep regime; reported, NOT the gate): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.975 at m = 0.001 eV, alpha = 0.01
+        exp_diffuse  M=1e+09: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+10: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+11: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+        exp_diffuse  M=1e+12: min over plane of the best error 0.975 (m = 0.001, alpha = 0.01); cells <= tol: 0
+  >> G1.3: FAIL -- point-mass cells passing [0, 0]; closest [0.77, 0.777]
+    [canonical] M=1e+09 B-   : best F error 0.68 at (m, alpha) = (0.0016, 0.0218); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 6.11e-18
+    [canonical] M=1e+09 B+hi : best F error 0.344 at (m, alpha) = (0.557, 0.0761); g_b/g_law at x=1: 0.775, x=3: 0.667; max M_DM/M_dyn 0.527
+    [canonical] M=1e+09 B+lo : best F error 0.68 at (m, alpha) = (0.0016, 0.0218); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 6.11e-18
+    [canonical] M=1e+10 B-   : best F error 0.68 at (m, alpha) = (0.0016, 0.0218); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 1.09e-16
+    [canonical] M=1e+10 B+hi : best F error 0.322 at (m, alpha) = (0.557, 0.227); g_b/g_law at x=1: 0.781, x=3: 0.678; max M_DM/M_dyn 0.527
+    [canonical] M=1e+10 B+lo : best F error 0.68 at (m, alpha) = (0.0016, 0.0218); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 1.09e-16
+    [canonical] M=1e+11 B-   : best F error 0.68 at (m, alpha) = (0.0016, 0.0255); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 1.87e-15
+    [canonical] M=1e+11 B+hi : best F error 0.35 at (m, alpha) = (1.8, 8.23); g_b/g_law at x=1: 0.771, x=3: 0.657; max M_DM/M_dyn 0.522
+    [canonical] M=1e+11 B+lo : best F error 0.68 at (m, alpha) = (0.0016, 0.0255); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 1.87e-15
+    [canonical] M=1e+12 B-   : best F error 0.68 at (m, alpha) = (0.00202, 0.016); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 5.99e-14
+    [canonical] M=1e+12 B+hi : best F error 0.329 at (m, alpha) = (0.173, 0.227); g_b/g_law at x=1: 0.777, x=3: 0.671; max M_DM/M_dyn 0.522
+    [canonical] M=1e+12 B+lo : best F error 0.68 at (m, alpha) = (0.00202, 0.016); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 5.99e-14
+    [alt] M=1e+09 B-   : best F error 0.68 at (m, alpha) = (0.0016, 0.0255); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 5.39e-18
+    [alt] M=1e+09 B+hi : best F error 0.322 at (m, alpha) = (1.12, 0.265); g_b/g_law at x=1: 0.782, x=3: 0.678; max M_DM/M_dyn 0.527
+    [alt] M=1e+09 B+lo : best F error 0.68 at (m, alpha) = (0.0016, 0.0255); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 5.39e-18
+    [alt] M=1e+10 B-   : best F error 0.68 at (m, alpha) = (0.00126, 0.0117); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 3.55e-17
+    [alt] M=1e+10 B+hi : best F error 0.35 at (m, alpha) = (1.8, 2.36); g_b/g_law at x=1: 0.771, x=3: 0.658; max M_DM/M_dyn 0.523
+    [alt] M=1e+10 B+lo : best F error 0.68 at (m, alpha) = (0.00126, 0.0117); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 3.55e-17
+    [alt] M=1e+11 B-   : best F error 0.68 at (m, alpha) = (0.00126, 0.0117); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 6.33e-16
+    [alt] M=1e+11 B+hi : best F error 0.329 at (m, alpha) = (0.557, 0.677); g_b/g_law at x=1: 0.777, x=3: 0.671; max M_DM/M_dyn 0.523
+    [alt] M=1e+11 B+lo : best F error 0.68 at (m, alpha) = (0.00126, 0.0117); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 6.33e-16
+    [alt] M=1e+12 B-   : best F error 0.69 at (m, alpha) = (0.00202, 0.0187); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 5.57e-14
+    [alt] M=1e+12 B+hi : best F error 0.358 at (m, alpha) = (3.63, 100); g_b/g_law at x=1: 0.767, x=3: 0.647; max M_DM/M_dyn 0.516
+    [alt] M=1e+12 B+lo : best F error 0.69 at (m, alpha) = (0.00202, 0.0187); g_b/g_law at x=1: 0.702, x=3: 0.32; max M_DM/M_dyn 5.57e-14
+
+======================================================================================================================
+G3.1 [Branch S, same solution as G1.1]  reaction on baryons a_phi/g_law over x in [0.3, 30] <= 0.10 (1e9, 1e10, 1e12)
+======================================================================================================================
+    [canonical] M=1e+09 B-   : at the closest G1.1 solution ((m, alpha) = (0.0104, 0.0137), err 1): max a_phi/g_law = 2.72e-25; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.97e-36
+    [canonical] M=1e+09 B+hi : at the closest G1.1 solution ((m, alpha) = (14.8, 53.6), err 0.919): max a_phi/g_law = 4.44e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 4.02e-28
+    [canonical] M=1e+09 B+lo : at the closest G1.1 solution ((m, alpha) = (0.021, 0.01), err 1): max a_phi/g_law = 1.44e-13; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.17e-16
+    [canonical] M=1e+10 B-   : at the closest G1.1 solution ((m, alpha) = (0.0104, 0.01), err 1): max a_phi/g_law = 1.27e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.99e-37
+    [canonical] M=1e+10 B+hi : at the closest G1.1 solution ((m, alpha) = (2.27, 3.77), err 0.911): max a_phi/g_law = 4.22e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.9e-28
+    [canonical] M=1e+10 B+lo : at the closest G1.1 solution ((m, alpha) = (0.00823, 0.01), err 1): max a_phi/g_law = 1.2e-13; unconditional plane minimum of the max reaction (full coverage to x=30) = 1.15e-15
+    [canonical] M=1e+12 B-   : at the closest G1.1 solution ((m, alpha) = (0.00126, 0.0137), err 1): max a_phi/g_law = 1.26e-25; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.02e-39
+    [canonical] M=1e+12 B+hi : at the closest G1.1 solution ((m, alpha) = (0.704, 3.77), err 0.916): max a_phi/g_law = 2.53e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.98e-28
+    [canonical] M=1e+12 B+lo : at the closest G1.1 solution ((m, alpha) = (0.00202, 0.01), err 1): max a_phi/g_law = 8.13e-14; unconditional plane minimum of the max reaction (full coverage to x=30) = inf
+    [alt] M=1e+09 B-   : at the closest G1.1 solution ((m, alpha) = (0.021, 0.0117), err 1): max a_phi/g_law = 1.26e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.59e-36
+    [alt] M=1e+09 B+hi : at the closest G1.1 solution ((m, alpha) = (0.704, 0.104), err 0.911): max a_phi/g_law = 4.55e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.89e-28
+    [alt] M=1e+09 B+lo : at the closest G1.1 solution ((m, alpha) = (0.021, 0.01), err 1): max a_phi/g_law = 1.4e-13; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.07e-16
+    [alt] M=1e+10 B-   : at the closest G1.1 solution ((m, alpha) = (0.00823, 0.0117), err 1): max a_phi/g_law = 5.91e-25; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.61e-37
+    [alt] M=1e+10 B+hi : at the closest G1.1 solution ((m, alpha) = (0.704, 0.363), err 0.923): max a_phi/g_law = 2.66e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.78e-28
+    [alt] M=1e+10 B+lo : at the closest G1.1 solution ((m, alpha) = (0.0104, 0.01), err 1): max a_phi/g_law = 1.16e-13; unconditional plane minimum of the max reaction (full coverage to x=30) = 1.01e-15
+    [alt] M=1e+12 B-   : at the closest G1.1 solution ((m, alpha) = (0.00408, 0.0137), err 1): max a_phi/g_law = 1.25e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.65e-39
+    [alt] M=1e+12 B+hi : at the closest G1.1 solution ((m, alpha) = (0.704, 3.77), err 0.928): max a_phi/g_law = 3.38e-24; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.86e-28
+    [alt] M=1e+12 B+lo : at the closest G1.1 solution ((m, alpha) = (0.00202, 0.01), err 1): max a_phi/g_law = 8.07e-14; unconditional plane minimum of the max reaction (full coverage to x=30) = inf
+  unconditional plane minimum of the max reaction over x in [0.3,30] (any branch, any Y, full coverage): {'canonical': {1000000000.0: 2.971849008330349e-36, 10000000000.0: 2.9923069267503183e-37, 1000000000000.0: 3.0212248292993317e-39}, 'alt': {1000000000.0: 3.589121587924817e-36, 10000000000.0: 3.6144393564781094e-37, 1000000000000.0: 3.649983909054693e-39}}
+  reported reference (analytic, labelled POST-HOC: the pure-gradient B- solution Y = 0, point mass): a_phi/g_law = 1/sqrt(1 + 1/x^2): x=0.3: 0.287, x=1: 0.707, x=3: 0.949, x=10: 0.995, x=30: 0.999  -> max over x in [0.3, 30] = 0.9994 (the frozen hand estimate 'about 1' in the deep regime)
+  [canonical] closest-approach G1.1 solutions at 1e9, 1e10, 1e12: err 0.919 on B+hi at (m, alpha) = (14.8, 53.6): max a_phi/g_law = 4.443e-24; err 0.911 on B+hi at (m, alpha) = (2.27, 3.77): max a_phi/g_law = 4.224e-24; err 0.916 on B+hi at (m, alpha) = (0.704, 3.77): max a_phi/g_law = 2.529e-24
+  [alt] closest-approach G1.1 solutions at 1e9, 1e10, 1e12: err 0.911 on B+hi at (m, alpha) = (0.704, 0.104): max a_phi/g_law = 4.554e-24; err 0.923 on B+hi at (m, alpha) = (0.704, 0.363): max a_phi/g_law = 2.659e-24; err 0.928 on B+hi at (m, alpha) = (0.704, 3.77): max a_phi/g_law = 3.382e-24
+  >> G3.1: PASS -- closest-approach reading (primary): reactions [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exist): FAIL; unconditional minimum over the plane {'canonical': {1000000000.0: 2.971849008330349e-36, 10000000000.0: 2.9923069267503183e-37, 1000000000000.0: 3.0212248292993317e-39}, 'alt': {1000000000.0: 3.589121587924817e-36, 10000000000.0: 3.6144393564781094e-37, 1000000000000.0: 3.649983909054693e-39}} (reached only where the phonon force is negligible)
+
+======================================================================================================================
+G5.1-G5.3 on the same solutions (literal frozen reading: kinetic > 0 and c_s^2 > 0 wherever a_phi >= 0.1 a0 over x in [0.3, 30]; non-vacuous = a_phi >= 0.1 a0 somewhere)
+======================================================================================================================
+    [canonical] B-   : (cell, mass) pairs with a non-vacuous phonon force 0; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [canonical] B+hi : (cell, mass) pairs with a non-vacuous phonon force 0; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [canonical] B+lo : (cell, mass) pairs with a non-vacuous phonon force 0; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [alt] B-   : (cell, mass) pairs with a non-vacuous phonon force 0; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [alt] B+hi : (cell, mass) pairs with a non-vacuous phonon force 0; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [alt] B+lo : (cell, mass) pairs with a non-vacuous phonon force 0; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+  (cell, mass) pairs where BOTH G1.3 (F within 10%) and the literal well-posed G5.1 hold: {('canonical', 'B-'): 0, ('canonical', 'B+hi'): 0, ('canonical', 'B+lo'): 0, ('alt', 'B-'): 0, ('alt', 'B+hi'): 0, ('alt', 'B+lo'): 0}
+  reported, loosened MOND-like reading (F within 50%) AND literal well-posed: {('canonical', 'B-'): 0, ('canonical', 'B+hi'): 0, ('canonical', 'B+lo'): 0, ('alt', 'B-'): 0, ('alt', 'B+hi'): 0, ('alt', 'B+lo'): 0}
+  literal reading alone (existence): (cell, mass, branch) triples with a non-vacuous phonon force and X > 0 throughout: {'canonical': 0, 'alt': 0} -- these are the LINEAR-regime (Newtonian-like fifth force) solutions of the branches B+hi/B+lo; none reproduces the P2 dynamics (best F error on B+hi 0.76)
+  >> G5.1: FAIL -- primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution reading is satisfiable only by the X > 0 branches, which do not carry the MOND force (declared interpretation)
+  G5.2 Landau: existence of a solution (any cell, any Y, covered to x >= 3) with min_x c_s^2/V_f^2 >= 1 (baryons subsonic), per branch (B- has X < 0: c_s^2 < 0, criterion moot / ill-posed):
+    [canonical] B-   : largest min_x c_s^2/V_f^2 over the plane -inf; at the closest G1.3 solutions (per mass) ['nan', 'nan', 'nan', 'nan']
+    [canonical] B+hi : largest min_x c_s^2/V_f^2 over the plane 2e+06; at the closest G1.3 solutions (per mass) ['0.000729', '0.000194', '0.000753', '8.72e-05']
+    [canonical] B+lo : largest min_x c_s^2/V_f^2 over the plane 2.83e-10; at the closest G1.3 solutions (per mass) ['3.02e-24', '2.95e-23', '2.98e-22', '2.85e-21']
+    [alt] B-   : largest min_x c_s^2/V_f^2 over the plane -inf; at the closest G1.3 solutions (per mass) ['nan', 'nan', 'nan', 'nan']
+    [alt] B+hi : largest min_x c_s^2/V_f^2 over the plane 2e+06; at the closest G1.3 solutions (per mass) ['0.000475', '0.000627', '0.00079', '0.000473']
+    [alt] B+lo : largest min_x c_s^2/V_f^2 over the plane 2.76e-10; at the closest G1.3 solutions (per mass) ['2.74e-24', '2.68e-23', '2.71e-22', '2.78e-21']
+  >> G5.2: FAIL -- a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999980.067), (('alt', 'B+hi'), 1999980.067)]
+  G5.3 smallest max c_s^2 (c=1) over the plane per branch (inf = no X>0 solution): {('canonical', 'B-'): inf, ('canonical', 'B+hi'): 7.843815944380491e-07, ('canonical', 'B+lo'): 4.90544497696828e-25, ('alt', 'B-'): inf, ('alt', 'B+hi'): 8.622804140909055e-07, ('alt', 'B+lo'): 6.517076982207733e-25}; c_s^2 at the closest G1.3 solutions:
+     [canonical] B-   : ['nan', 'nan', 'nan', 'nan']
+     [canonical] B+hi : ['0.0784', '0.248', '0.784', '2.48']
+     [canonical] B+lo : ['1.92e-12', '1.01e-11', '3.19e-12', '1.18e-16']
+     [alt] B-   : ['nan', 'nan', 'nan', 'nan']
+     [alt] B+hi : ['0.0862', '0.273', '0.862', '2.73']
+     [alt] B+lo : ['2.55e-12', '1.34e-11', '4.24e-12', '2.14e-16']
+  >> G5.3: PASS -- subluminal X>0 solutions exist (smallest max c_s^2 4.91e-25 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)
+  [PASS] harness: every branch/profile/mass/footing produced a result array
+         72 result sets (expected 72)
+
+  1/1 checks pass; load-bearing check failures: 0   (621 s)
+  gate verdicts: G1.1=FAIL, G1.2=FAIL, G1.3=FAIL, G3.1=PASS, G5.1=FAIL, G5.2=FAIL, G5.3=PASS
+
+======================================================================================================================
+G1.1 / G1.2 [Branch S]  rho_DM vs rho_c^target within 10% over x in [0.1, min(30, x_edge)], x_edge >= 3, same (m, alpha) at 1e9..1e12
+======================================================================================================================
+  [canonical] G1.1 point mass: plane cells passing at all masses/profiles: 1010/3600; closest approach (worst-mass best error) 3.72e-07 at m = 0.001 eV, alpha = 100
+        point        M=1e+09: min over plane of the best error 1.18e-08 (m = 0.001, alpha = 100); cells <= tol: 1450
+        point        M=1e+10: min over plane of the best error 3.72e-08 (m = 0.001, alpha = 100); cells <= tol: 1310
+        point        M=1e+11: min over plane of the best error 1.18e-07 (m = 0.001, alpha = 100); cells <= tol: 1150
+        point        M=1e+12: min over plane of the best error 3.72e-07 (m = 0.001, alpha = 100); cells <= tol: 1010
+  [alt] G1.1 point mass: plane cells passing at all masses/profiles: 1010/3600; closest approach (worst-mass best error) 3.38e-07 at m = 0.001 eV, alpha = 100
+        point        M=1e+09: min over plane of the best error 1.07e-08 (m = 0.001, alpha = 100); cells <= tol: 1470
+        point        M=1e+10: min over plane of the best error 3.38e-08 (m = 0.001, alpha = 100); cells <= tol: 1310
+        point        M=1e+11: min over plane of the best error 1.07e-07 (m = 0.001, alpha = 100); cells <= tol: 1170
+        point        M=1e+12: min over plane of the best error 3.38e-07 (m = 0.001, alpha = 100); cells <= tol: 1010
+  [canonical] G1.2 exp. spheres (compact & diffuse): plane cells passing at all masses/profiles: 670/3600; closest approach (worst-mass best error) 6.77e-06 at m = 0.001 eV, alpha = 100
+        exp_compact  M=1e+09: min over plane of the best error 2.14e-07 (m = 0.001, alpha = 100); cells <= tol: 1110
+        exp_compact  M=1e+10: min over plane of the best error 6.77e-07 (m = 0.001, alpha = 100); cells <= tol: 950
+        exp_compact  M=1e+11: min over plane of the best error 2.14e-06 (m = 0.001, alpha = 100); cells <= tol: 810
+        exp_compact  M=1e+12: min over plane of the best error 6.77e-06 (m = 0.001, alpha = 100); cells <= tol: 670
+        exp_diffuse  M=1e+09: min over plane of the best error 4.36e-08 (m = 0.001, alpha = 100); cells <= tol: 1290
+        exp_diffuse  M=1e+10: min over plane of the best error 1.38e-07 (m = 0.001, alpha = 100); cells <= tol: 1150
+        exp_diffuse  M=1e+11: min over plane of the best error 4.36e-07 (m = 0.001, alpha = 100); cells <= tol: 1010
+        exp_diffuse  M=1e+12: min over plane of the best error 1.38e-06 (m = 0.001, alpha = 100); cells <= tol: 850
+  [alt] G1.2 exp. spheres (compact & diffuse): plane cells passing at all masses/profiles: 670/3600; closest approach (worst-mass best error) 6.16e-06 at m = 0.001 eV, alpha = 100
+        exp_compact  M=1e+09: min over plane of the best error 1.95e-07 (m = 0.001, alpha = 100); cells <= tol: 1110
+        exp_compact  M=1e+10: min over plane of the best error 6.16e-07 (m = 0.001, alpha = 100); cells <= tol: 970
+        exp_compact  M=1e+11: min over plane of the best error 1.95e-06 (m = 0.001, alpha = 100); cells <= tol: 830
+        exp_compact  M=1e+12: min over plane of the best error 6.16e-06 (m = 0.001, alpha = 100); cells <= tol: 670
+        exp_diffuse  M=1e+09: min over plane of the best error 3.97e-08 (m = 0.001, alpha = 100); cells <= tol: 1310
+        exp_diffuse  M=1e+10: min over plane of the best error 1.25e-07 (m = 0.001, alpha = 100); cells <= tol: 1170
+        exp_diffuse  M=1e+11: min over plane of the best error 3.97e-07 (m = 0.001, alpha = 100); cells <= tol: 1010
+        exp_diffuse  M=1e+12: min over plane of the best error 1.25e-06 (m = 0.001, alpha = 100); cells <= tol: 870
+  >> G1.1: PASS -- cells passing [1010, 1010] (canonical, alt); closest approach [0.0, 0.0]
+  >> G1.2: PASS -- cells passing [670, 670]; closest [0.0, 0.0]
+
+======================================================================================================================
+G1.3 [Branch F]  g_b = G(M_b + M_DM)/r^2 + a_phi vs the P2 law within 10% (same conventions); double counting M_DM/M_dyn
+======================================================================================================================
+  [canonical] G1.3 point mass (P2 law): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 15.4
+        point        M=1e+09: min over plane of the best error 0.414 (m = 0.00651, alpha = 21); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.414 (m = 0.001, alpha = 15.4); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.414 (m = 0.001, alpha = 0.495); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.414 (m = 0.001, alpha = 15.4); cells <= tol: 0
+  [alt] G1.3 point mass (P2 law): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 4.41
+        point        M=1e+09: min over plane of the best error 0.414 (m = 0.001, alpha = 4.41); cells <= tol: 0
+        point        M=1e+10: min over plane of the best error 0.414 (m = 0.001, alpha = 0.142); cells <= tol: 0
+        point        M=1e+11: min over plane of the best error 0.414 (m = 0.00408, alpha = 73.2); cells <= tol: 0
+        point        M=1e+12: min over plane of the best error 0.414 (m = 0.001, alpha = 1.48); cells <= tol: 0
+  [canonical] G1.3 exp spheres (reported: same test): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 15.4
+        exp_compact  M=1e+09: min over plane of the best error 0.413 (m = 0.00126, alpha = 0.791); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.413 (m = 0.0016, alpha = 39.2); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.413 (m = 0.137, alpha = 0.925); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.413 (m = 0.00126, alpha = 24.5); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0849 (m = 0.0677, alpha = 0.265); cells <= tol: 1370
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0848 (m = 0.00823, alpha = 0.122); cells <= tol: 1230
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0849 (m = 0.0016, alpha = 1.48); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0848 (m = 0.001, alpha = 18); cells <= tol: 930
+  [alt] G1.3 exp spheres (reported: same test): plane cells passing at all masses/profiles: 0/3600; closest approach (worst-mass best error) 0.414 at m = 0.001 eV, alpha = 4.41
+        exp_compact  M=1e+09: min over plane of the best error 0.413 (m = 0.001, alpha = 4.41); cells <= tol: 0
+        exp_compact  M=1e+10: min over plane of the best error 0.413 (m = 0.0265, alpha = 0.01); cells <= tol: 0
+        exp_compact  M=1e+11: min over plane of the best error 0.413 (m = 0.001, alpha = 4.41); cells <= tol: 0
+        exp_compact  M=1e+12: min over plane of the best error 0.413 (m = 0.0166, alpha = 0.0408); cells <= tol: 0
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0847 (m = 0.021, alpha = 0.227); cells <= tol: 1390
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0849 (m = 0.001, alpha = 0.166); cells <= tol: 1250
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0848 (m = 0.00322, alpha = 53.6); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0849 (m = 0.00126, alpha = 0.265); cells <= tol: 950
+  [canonical] G1.3 diffuse exp. sphere only (h = 3 r_M, deep regime; reported, NOT the gate): plane cells passing at all masses/profiles: 930/3600; closest approach (worst-mass best error) 0.0896 at m = 0.0166 eV, alpha = 1.48
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0849 (m = 0.0677, alpha = 0.265); cells <= tol: 1370
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0848 (m = 0.00823, alpha = 0.122); cells <= tol: 1230
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0849 (m = 0.0016, alpha = 1.48); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0848 (m = 0.001, alpha = 18); cells <= tol: 930
+  [alt] G1.3 diffuse exp. sphere only (h = 3 r_M, deep regime; reported, NOT the gate): plane cells passing at all masses/profiles: 950/3600; closest approach (worst-mass best error) 0.0896 at m = 0.0016 eV, alpha = 39.2
+        exp_diffuse  M=1e+09: min over plane of the best error 0.0847 (m = 0.021, alpha = 0.227); cells <= tol: 1390
+        exp_diffuse  M=1e+10: min over plane of the best error 0.0849 (m = 0.001, alpha = 0.166); cells <= tol: 1250
+        exp_diffuse  M=1e+11: min over plane of the best error 0.0848 (m = 0.00322, alpha = 53.6); cells <= tol: 1090
+        exp_diffuse  M=1e+12: min over plane of the best error 0.0849 (m = 0.00126, alpha = 0.265); cells <= tol: 950
+  >> G1.3: FAIL -- point-mass cells passing [0, 0]; closest [0.414, 0.414]
+    [canonical] M=1e+09 B-   : best F error 0.414 at (m, alpha) = (0.00651, 21); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.55e-06
+    [canonical] M=1e+09 B+hi : best F error 0.766 at (m, alpha) = (0.00823, 0.0218); g_b/g_law at x=1: 0.735, x=3: 0.35; max M_DM/M_dyn 0.979
+    [canonical] M=1e+09 B+lo : best F error 45.1 at (m, alpha) = (11.7, 100); g_b/g_law at x=1: 11.2, x=3: 41.1; max M_DM/M_dyn 0.000672
+    [canonical] M=1e+10 B-   : best F error 0.414 at (m, alpha) = (0.001, 15.4); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.73e-07
+    [canonical] M=1e+10 B+hi : best F error 0.777 at (m, alpha) = (0.00823, 0.0761); g_b/g_law at x=1: 0.736, x=3: 0.348; max M_DM/M_dyn 0.975
+    [canonical] M=1e+10 B+lo : best F error 44.7 at (m, alpha) = (5.79, 73.2); g_b/g_law at x=1: 11.5, x=3: 42.3; max M_DM/M_dyn 0.000677
+    [canonical] M=1e+11 B-   : best F error 0.414 at (m, alpha) = (0.001, 0.495); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.58e-05
+    [canonical] M=1e+11 B+hi : best F error 0.771 at (m, alpha) = (0.0855, 24.5); g_b/g_law at x=1: 0.736, x=3: 0.349; max M_DM/M_dyn 0.978
+    [canonical] M=1e+11 B+lo : best F error 40.9 at (m, alpha) = (2.87, 62.6); g_b/g_law at x=1: 11, x=3: 40.3; max M_DM/M_dyn 0.000669
+    [canonical] M=1e+12 B-   : best F error 0.414 at (m, alpha) = (0.001, 15.4); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.73e-06
+    [canonical] M=1e+12 B+hi : best F error 0.764 at (m, alpha) = (0.001, 0.01); g_b/g_law at x=1: 0.735, x=3: 0.35; max M_DM/M_dyn 0.979
+    [canonical] M=1e+12 B+lo : best F error 40.5 at (m, alpha) = (1.42, 45.8); g_b/g_law at x=1: 11.3, x=3: 41.5; max M_DM/M_dyn 0.000674
+    [alt] M=1e+09 B-   : best F error 0.414 at (m, alpha) = (0.001, 4.41); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.75e-07
+    [alt] M=1e+09 B+hi : best F error 0.777 at (m, alpha) = (0.00823, 0.0218); g_b/g_law at x=1: 0.736, x=3: 0.348; max M_DM/M_dyn 0.976
+    [alt] M=1e+09 B+lo : best F error 43.6 at (m, alpha) = (23.6, 28.7); g_b/g_law at x=1: 12.2, x=3: 44.6; max M_DM/M_dyn 0.00724
+    [alt] M=1e+10 B-   : best F error 0.414 at (m, alpha) = (0.001, 0.142); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.6e-05
+    [alt] M=1e+10 B+hi : best F error 0.77 at (m, alpha) = (0.00408, 0.016); g_b/g_law at x=1: 0.736, x=3: 0.349; max M_DM/M_dyn 0.978
+    [alt] M=1e+10 B+lo : best F error 45 at (m, alpha) = (11.7, 21); g_b/g_law at x=1: 12.6, x=3: 46; max M_DM/M_dyn 0.0073
+    [alt] M=1e+11 B-   : best F error 0.414 at (m, alpha) = (0.00408, 73.2); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.76e-06
+    [alt] M=1e+11 B+hi : best F error 0.764 at (m, alpha) = (0.00202, 0.0117); g_b/g_law at x=1: 0.735, x=3: 0.35; max M_DM/M_dyn 0.979
+    [alt] M=1e+11 B+lo : best F error 45.7 at (m, alpha) = (2.87, 53.6); g_b/g_law at x=1: 11.4, x=3: 41.6; max M_DM/M_dyn 0.000674
+    [alt] M=1e+12 B-   : best F error 0.414 at (m, alpha) = (0.001, 1.48); g_b/g_law at x=1: 1.41, x=3: 1.26; max M_DM/M_dyn 5.25e-05
+    [alt] M=1e+12 B+hi : best F error 0.775 at (m, alpha) = (0.001, 0.01); g_b/g_law at x=1: 0.736, x=3: 0.349; max M_DM/M_dyn 0.976
+    [alt] M=1e+12 B+lo : best F error 45.2 at (m, alpha) = (1.42, 39.2); g_b/g_law at x=1: 11.7, x=3: 42.8; max M_DM/M_dyn 0.000679
+
+======================================================================================================================
+G3.1 [Branch S, same solution as G1.1]  reaction on baryons a_phi/g_law over x in [0.3, 30] <= 0.10 (1e9, 1e10, 1e12)
+======================================================================================================================
+    [canonical] M=1e+09 B-   : at the closest G1.1 solution ((m, alpha) = (0.001, 100), err 1.18e-08): max a_phi/g_law = 0.999; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.97e-12
+    [canonical] M=1e+09 B+hi : at the closest G1.1 solution ((m, alpha) = (60.2, 100), err 33.4): max a_phi/g_law = 0.07; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000402
+    [canonical] M=1e+09 B+lo : at the closest G1.1 solution ((m, alpha) = (11.7, 100), err 0.979): max a_phi/g_law = 45.8; unconditional plane minimum of the max reaction (full coverage to x=30) = 424
+    [canonical] M=1e+10 B-   : at the closest G1.1 solution ((m, alpha) = (0.001, 100), err 3.72e-08): max a_phi/g_law = 0.999; unconditional plane minimum of the max reaction (full coverage to x=30) = 2.99e-13
+    [canonical] M=1e+10 B+hi : at the closest G1.1 solution ((m, alpha) = (1.8, 0.265), err 32.9): max a_phi/g_law = 0.085; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.00039
+    [canonical] M=1e+10 B+lo : at the closest G1.1 solution ((m, alpha) = (5.79, 73.2), err 0.979): max a_phi/g_law = 45.4; unconditional plane minimum of the max reaction (full coverage to x=30) = 404
+    [canonical] M=1e+12 B-   : at the closest G1.1 solution ((m, alpha) = (0.001, 100), err 3.72e-07): max a_phi/g_law = 0.999; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.02e-15
+    [canonical] M=1e+12 B+hi : at the closest G1.1 solution ((m, alpha) = (0.173, 0.0255), err 33.3): max a_phi/g_law = 0.105; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000398
+    [canonical] M=1e+12 B+lo : at the closest G1.1 solution ((m, alpha) = (1.42, 45.8), err 0.977): max a_phi/g_law = 41.2; unconditional plane minimum of the max reaction (full coverage to x=30) = 426
+    [alt] M=1e+09 B-   : at the closest G1.1 solution ((m, alpha) = (0.001, 100), err 1.07e-08): max a_phi/g_law = 0.999; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.59e-12
+    [alt] M=1e+09 B+hi : at the closest G1.1 solution ((m, alpha) = (14.8, 5.15), err 32.9): max a_phi/g_law = 0.0906; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000389
+    [alt] M=1e+09 B+lo : at the closest G1.1 solution ((m, alpha) = (23.6, 28.7), err 0.979): max a_phi/g_law = 44.2; unconditional plane minimum of the max reaction (full coverage to x=30) = 404
+    [alt] M=1e+10 B-   : at the closest G1.1 solution ((m, alpha) = (0.001, 100), err 3.38e-08): max a_phi/g_law = 0.999; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.61e-13
+    [alt] M=1e+10 B+hi : at the closest G1.1 solution ((m, alpha) = (0.704, 0.0349), err 32.5): max a_phi/g_law = 0.133; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000378
+    [alt] M=1e+10 B+lo : at the closest G1.1 solution ((m, alpha) = (11.7, 21), err 0.979): max a_phi/g_law = 45.5; unconditional plane minimum of the max reaction (full coverage to x=30) = 416
+    [alt] M=1e+12 B-   : at the closest G1.1 solution ((m, alpha) = (0.001, 100), err 3.38e-07): max a_phi/g_law = 0.999; unconditional plane minimum of the max reaction (full coverage to x=30) = 3.65e-15
+    [alt] M=1e+12 B+hi : at the closest G1.1 solution ((m, alpha) = (2.27, 3.77), err 32.8): max a_phi/g_law = 0.384; unconditional plane minimum of the max reaction (full coverage to x=30) = 0.000386
+    [alt] M=1e+12 B+lo : at the closest G1.1 solution ((m, alpha) = (1.42, 39.2), err 0.979): max a_phi/g_law = 45.9; unconditional plane minimum of the max reaction (full coverage to x=30) = 408
+  unconditional plane minimum of the max reaction over x in [0.3,30] (any branch, any Y, full coverage): {'canonical': {1000000000.0: 2.9718490083303485e-12, 10000000000.0: 2.9923069267503187e-13, 1000000000000.0: 3.021224829299332e-15}, 'alt': {1000000000.0: 3.589121587924818e-12, 10000000000.0: 3.6144393564781096e-13, 1000000000000.0: 3.649983909054693e-15}}
+  reported reference (analytic, labelled POST-HOC: the pure-gradient B- solution Y = 0, point mass): a_phi/g_law = 1/sqrt(1 + 1/x^2): x=0.3: 0.287, x=1: 0.707, x=3: 0.949, x=10: 0.995, x=30: 0.999  -> max over x in [0.3, 30] = 0.9994 (the frozen hand estimate 'about 1' in the deep regime)
+  [canonical] closest-approach G1.1 solutions at 1e9, 1e10, 1e12: err 1.18e-08 on B- at (m, alpha) = (0.001, 100): max a_phi/g_law = 0.9994; err 3.72e-08 on B- at (m, alpha) = (0.001, 100): max a_phi/g_law = 0.9994; err 3.72e-07 on B- at (m, alpha) = (0.001, 100): max a_phi/g_law = 0.9994
+  [alt] closest-approach G1.1 solutions at 1e9, 1e10, 1e12: err 1.07e-08 on B- at (m, alpha) = (0.001, 100): max a_phi/g_law = 0.9994; err 3.38e-08 on B- at (m, alpha) = (0.001, 100): max a_phi/g_law = 0.9994; err 3.38e-07 on B- at (m, alpha) = (0.001, 100): max a_phi/g_law = 0.9994
+  >> G3.1: FAIL -- closest-approach reading (primary): reactions [[0.9994, 0.9994, 0.9994], [0.9994, 0.9994, 0.9994]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exist): FAIL; unconditional minimum over the plane {'canonical': {1000000000.0: 2.9718490083303485e-12, 10000000000.0: 2.9923069267503187e-13, 1000000000000.0: 3.021224829299332e-15}, 'alt': {1000000000.0: 3.589121587924818e-12, 10000000000.0: 3.6144393564781096e-13, 1000000000000.0: 3.649983909054693e-15}} (reached only where the phonon force is negligible)
+
+======================================================================================================================
+G5.1-G5.3 on the same solutions (literal frozen reading: kinetic > 0 and c_s^2 > 0 wherever a_phi >= 0.1 a0 over x in [0.3, 30]; non-vacuous = a_phi >= 0.1 a0 somewhere)
+======================================================================================================================
+    [canonical] B-   : (cell, mass) pairs with a non-vacuous phonon force 11776; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [canonical] B+hi : (cell, mass) pairs with a non-vacuous phonon force 7017; of which literal-pass (X>0 throughout, coverage to x=30) 4457, lenient (coverage >= 3) 5637
+    [canonical] B+lo : (cell, mass) pairs with a non-vacuous phonon force 8693; of which literal-pass (X>0 throughout, coverage to x=30) 4930, lenient (coverage >= 3) 6821
+    [alt] B-   : (cell, mass) pairs with a non-vacuous phonon force 11807; of which literal-pass (X>0 throughout, coverage to x=30) 0, lenient (coverage >= 3) 0
+    [alt] B+hi : (cell, mass) pairs with a non-vacuous phonon force 7096; of which literal-pass (X>0 throughout, coverage to x=30) 4457, lenient (coverage >= 3) 5657
+    [alt] B+lo : (cell, mass) pairs with a non-vacuous phonon force 8685; of which literal-pass (X>0 throughout, coverage to x=30) 4918, lenient (coverage >= 3) 6811
+  (cell, mass) pairs where BOTH G1.3 (F within 10%) and the literal well-posed G5.1 hold: {('canonical', 'B-'): 0, ('canonical', 'B+hi'): 0, ('canonical', 'B+lo'): 0, ('alt', 'B-'): 0, ('alt', 'B+hi'): 0, ('alt', 'B+lo'): 0}
+  reported, loosened MOND-like reading (F within 50%) AND literal well-posed: {('canonical', 'B-'): 0, ('canonical', 'B+hi'): 0, ('canonical', 'B+lo'): 0, ('alt', 'B-'): 0, ('alt', 'B+hi'): 0, ('alt', 'B+lo'): 0}
+  literal reading alone (existence): (cell, mass, branch) triples with a non-vacuous phonon force and X > 0 throughout: {'canonical': 12458, 'alt': 12468} -- these are the LINEAR-regime (Newtonian-like fifth force) solutions of the branches B+hi/B+lo; none reproduces the P2 dynamics (best F error on B+hi 0.76)
+  >> G5.1: FAIL -- primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution reading is satisfiable only by the X > 0 branches, which do not carry the MOND force (declared interpretation)
+  G5.2 Landau: existence of a solution (any cell, any Y, covered to x >= 3) with min_x c_s^2/V_f^2 >= 1 (baryons subsonic), per branch (B- has X < 0: c_s^2 < 0, criterion moot / ill-posed):
+    [canonical] B-   : largest min_x c_s^2/V_f^2 over the plane -inf; at the closest G1.3 solutions (per mass) ['nan', 'nan', 'nan', 'nan']
+    [canonical] B+hi : largest min_x c_s^2/V_f^2 over the plane 2e+06; at the closest G1.3 solutions (per mass) ['1.24', '0.508', '0.975', '0.116']
+    [canonical] B+lo : largest min_x c_s^2/V_f^2 over the plane 0.00139; at the closest G1.3 solutions (per mass) ['1.16e-15', '2.48e-15', '6.11e-15', '1.21e-14']
+    [alt] B-   : largest min_x c_s^2/V_f^2 over the plane -inf; at the closest G1.3 solutions (per mass) ['nan', 'nan', 'nan', 'nan']
+    [alt] B+hi : largest min_x c_s^2/V_f^2 over the plane 2e+06; at the closest G1.3 solutions (per mass) ['1.17', '0.436', '0.899', '0.0418']
+    [alt] B+lo : largest min_x c_s^2/V_f^2 over the plane 0.00151; at the closest G1.3 solutions (per mass) ['1.39e-15', '2.57e-15', '6.36e-15', '1.37e-14']
+  >> G5.2: FAIL -- a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999957.006), (('alt', 'B+hi'), 1999956.906)]
+  G5.3 smallest max c_s^2 (c=1) over the plane per branch (inf = no X>0 solution): {('canonical', 'B-'): inf, ('canonical', 'B+hi'): 7.342279855653849e-06, ('canonical', 'B+lo'): 6.703037191337328e-17, ('alt', 'B-'): inf, ('alt', 'B+hi'): 8.051569565689801e-06, ('alt', 'B+lo'): 3.490329359375902e-17}; c_s^2 at the closest G1.3 solutions:
+     [canonical] B-   : ['nan', 'nan', 'nan', 'nan']
+     [canonical] B+hi : ['0.0784', '0.248', '0.784', '2.48']
+     [canonical] B+lo : ['0.022', '0.107', '0.252', '0.653']
+     [alt] B-   : ['nan', 'nan', 'nan', 'nan']
+     [alt] B+hi : ['0.0862', '0.273', '0.862', '2.73']
+     [alt] B+lo : ['0.0363', '0.0866', '0.225', '1.02']
+  >> G5.3: PASS -- subluminal X>0 solutions exist (smallest max c_s^2 3.49e-17 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)
+  [PASS] harness: every branch/profile/mass/footing produced a result array
+         72 result sets (expected 72)
+
+  1/1 checks pass; load-bearing check failures: 0   (622 s)
+  gate verdicts: G1.1=PASS, G1.2=PASS, G1.3=FAIL, G3.1=FAIL, G5.1=FAIL, G5.2=FAIL, G5.3=PASS
+
+======================================================================================================================
+R5a  the prior pricing script's Solar-System numbers (its own footing a0 = 9.3619e-11 / 1.1279e-10) against this lane's G5.4 (a0 = 9.3603e-11 / 1.1312e-10)
+======================================================================================================================
+  [canonical] reading A: Cassini (x bound) prior 0.0006863 vs here 0.0006861;  MICROSCOPE (x 1e-15) prior 4.98 vs here 5.329;  ephemeris ceiling (x) prior 3.937e+04 vs here 3.937e+04
+  [canonical] reading B: Cassini (x bound) prior 10.92 vs here 10.92;  MICROSCOPE (x 1e-15) prior 2.91e+06 vs here 3.106e+06;  ephemeris ceiling (x) prior 6.267e+08 vs here 6.268e+08
+  [alt] reading A: Cassini (x bound) prior 0.0008268 vs here 0.0008292;  MICROSCOPE (x 1e-15) prior 6 vs here 6.44;  ephemeris ceiling (x) prior 3.937e+04 vs here 3.937e+04
+  [alt] reading B: Cassini (x bound) prior 11.99 vs here 12.01;  MICROSCOPE (x 1e-15) prior 3.19e+06 vs here 3.414e+06;  ephemeris ceiling (x) prior 5.71e+08 vs here 5.702e+08
+  Disagreements: MICROSCOPE differs by ~7% (this lane uses 48Ti/195Pt isotope masses for Delta(B/mu), the prior script mean-element proxies; both recalled, unverified); Cassini and the ephemeris ratios agree to the digits shown.
+
+======================================================================================================================
+R5b  the prior superfluid_2026 lane (sfD, on the framework's OWN DBI kernel, not the BK P ~ X^(3/2)): headline lines
+======================================================================================================================
+  | 
+  | sfD_superfluid_phonon_2026.py   -- MECHANISM D, on Carl's OWN kernel
+  | ====================================================================
+  | QUESTION: Berezhiani-Khoury get MOND from a phonon-mediated force in a condensate with
+  | L ~ X^{3/2}.  Carl's dark sector is ALSO a condensate, with the DBI kernel
+  | K(Q) = -M^4 sqrt(1-(Q-Q_0)^2/Lambda_D^2).  Does ITS phonon sector produce the a_0-line?
+  ...
+  Comparison: sfD studies the DBI kernel K(Q) = -M^4 sqrt(1 - (Q-Q0)^2/Lam_D^2), a different EFT from the BK P(X) used here; its headline (the a0-line shape available but keyed to the potential, and the condensate density ∝ the potential, not 1/r^2) is consistent in spirit with this lane's finding that the P(X) condensate density does not follow the target's r-dependence, but the two are not the same computation and no number transfers.
+  sf06 (prior theorem: an ENVIRONMENTAL phase boundary cannot screen the Solar System because the Sun is at 0.67 of the MW's r_M) is reproduced independently in G5.4(iv): the NFW density at the MW's r_M is 0.83 of that at the Sun, the dispersion is the same, T/T_c differs by <20%.
+  [PASS] (reported) R5 (reported) prior-art comparison recorded
+         see the table above
+
+  1/1 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: 

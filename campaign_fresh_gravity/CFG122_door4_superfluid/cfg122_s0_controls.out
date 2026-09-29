@@ -1,0 +1,80 @@
+
+======================================================================================================================
+S0.1  sympy: static spherical reduction of L = P(X) - alpha (Lam/M_Pl) phi rho_b; flux law; N_a; deep-MOND limit
+======================================================================================================================
+  n = P'(X):  X>0 residual 0,  X<0 residual 0
+  gradient-dominated p = sqrt(2)*sqrt(M_b)*sqrt(alpha)/(4*sqrt(pi)*sqrt(M_Pl)*r)
+  a_phi^2 / [g_N * (alpha^3 Lam^2 / M_Pl)] = 1     => N_a = 1   (a0 = N_a alpha^3 Lam^2/M_Pl)
+  [PASS] S0.1a  n = P'(X) = Lam (2m)^(3/2) sqrt|X| in both signs of X (sympy)
+         residuals 0, 0
+  [PASS] S0.1b  the gradient-dominated phonon force is a_phi = sqrt(a0 g_N) with a0 = N_a alpha^3 Lam^2/M_Pl and N_a = 1 (derived)
+         N_a = 1
+  [PASS] S0.1c  numeric deep-MOND limit through the algebraic solver: a_phi = sqrt(a0 G M)/r, v^4 = G M a0 (both footings, 3 (m, alpha), 3 radii)
+         worst relative deviation 4.44e-16
+
+======================================================================================================================
+S0.2  EOS of the condensed phase (X>0): P = K rho^3, K = 1/(12 m^6 Lam^2); c_s^2 = dP/drho = 2X/m; polytropic index n = 1/2
+======================================================================================================================
+  P(rho) = rho**3/(12*Lambda**2*m**6);  K = 1/(12*Lambda**2*m**6);  c_s^2 = rho**2/(4*Lambda**2*m**6) = 2*X/m (in X)
+  [PASS] S0.2a  K = 1/(12 m^6 Lam^2) (the frozen file's hand value)
+         sympy K = 1/(12*Lambda**2*m**6)
+  [PASS] S0.2b  c_s^2 = 2X/m and c_s^2 = 3 K rho^2 = 3P/rho
+         c_s^2(X) = 2*X/m
+  [PASS] S0.2c  polytropic exponent dlnP/dlnrho = 3, i.e. n = 1/2
+         dlnP/dlnrho = 3
+
+======================================================================================================================
+S0.3  alpha -> 0 recovers Newton: p -> 0, a_phi/g_N -> 0, the condensate is the Newtonian polytrope
+======================================================================================================================
+  [PASS] S0.3  alpha_c = 1e-14 alpha: max a_phi/g_N and |X/Y - 1| (X = mu - m Phi, the Newtonian condensate)
+         a_phi/g_N max 8.64e-28; max |X/Y - 1| 0.00e+00
+
+======================================================================================================================
+S0.4  Lane-Emden n = 1/2 (P = K rho^3 self-gravitating): M-R exponent 1/5 (internal consistency, no external table)
+======================================================================================================================
+  [PASS] S0.4  d ln R / d ln M = (1-n)/(3-n) = 1/5 for the n = 1/2 polytrope (numerical hydrostatic integration, rho_c = 1 and 2)
+         exponent 0.20000; R(1) = 0.95104, M(1) = 1.96344
+
+======================================================================================================================
+S0.5  the target's point-mass identities; CFG44 B1 cross-check (repo read-only)
+======================================================================================================================
+  [PASS] S0.5 [canonical] ODE target = rho_c = a0/(4 pi G r sqrt(1+x^2)), M_c = M(sqrt(1+x^2) - 1), C(r) = a0 M/4pi
+         max dev rho 6.45e-13, M_c 1.05e-12, C(r) 2.22e-16
+  [PASS] S0.5 [alt] ODE target = rho_c = a0/(4 pi G r sqrt(1+x^2)), M_c = M(sqrt(1+x^2) - 1), C(r) = a0 M/4pi
+         max dev rho 6.71e-13, M_c 1.07e-12, C(r) 2.22e-16
+  [PASS] S0.5x  CFG44 Bcommon.target_fields (point mass 1e10, r near r_M) agrees with this lane's natural-unit target
+         relative deviation 2.57e-04 (units Msun/kpc^3 -> eV^4; A0 canonical)
+
+======================================================================================================================
+S0.6 (reported)  DM mass accumulated inside the solver's inner radius 0.1 r_M (the solver starts at M_DM = 0 there)
+======================================================================================================================
+  max over the coarse (m, alpha) plane and Y(r_lo) in {1e-2, 1, 1e2} x m G M/r_M, masses 1e9 and 1e12, starting from 1e-3 r_M, of M_DM(<0.1 r_M)/M_b:
+    ('canonical', 'B-'): 3.02e+18
+    ('canonical', 'B-', 'frac_cells_le_1e-2'): 0.516
+    ('canonical', 'B+hi'): 0
+    ('canonical', 'B+hi', 'frac_cells_le_1e-2'): 0
+    ('canonical', 'B+lo'): 0
+    ('canonical', 'B+lo', 'frac_cells_le_1e-2'): 0
+    ('alt', 'B-'): 2.27e+18
+    ('alt', 'B-', 'frac_cells_le_1e-2'): 0.516
+    ('alt', 'B+hi'): 0
+    ('alt', 'B+hi', 'frac_cells_le_1e-2'): 0
+    ('alt', 'B+lo'): 0
+    ('alt', 'B+lo', 'frac_cells_le_1e-2'): 0
+  [PASS] (reported) S0.6 (reported) neglected inner DM mass M_DM(<0.1 r_M)/M_b
+         see the table above; values >> 1e-2 mean the solver's M_DM(r_lo) = 0 start is not negligible for those (m, alpha, Y) cells (disclosed; each gate row states whether it uses such cells)
+
+======================================================================================================================
+S0.7  RK4 resolution control: N = 160 (used by the gates) against N = 640 on the same solutions (density and a_phi at common nodes), stratified
+======================================================================================================================
+  B-   : DM-subdominant solutions (M_DM <= 30 M_b everywhere): 1352 sets; agree to 1e-3: 1352; worst relative deviation 2.91e-10
+  B+hi : DM-subdominant solutions (M_DM <= 30 M_b everywhere): 452 sets; agree to 1e-3: 446; worst relative deviation 3.39e-03
+  B+lo : DM-subdominant solutions (M_DM <= 30 M_b everywhere): 606 sets; agree to 1e-3: 570; worst relative deviation 7.90e-02
+  DM-dominated solutions (M_DM > 30 M_b somewhere; the target has M_c <= 29 M_b at x = 30, so these cannot match it): 1858 sets, of which 518 disagree by > 1e-3 (stiff: not resolved; irrelevant to every pass line)
+  [PASS] S0.7a  branch B- (the MOND-carrying branch), DM-subdominant solutions: N = 160 agrees with N = 640 to 1e-3 in rho and a_phi
+         worst deviation 2.91e-10 over 1352 sets
+  [PASS] (reported) S0.7b (reported)  branches B+hi / B+lo, DM-subdominant: fraction agreeing to 1e-3 (the disagreements sit next to the fold Y^2 = 4D where the root is singular)
+         B+hi 446/452 (worst 3.39e-03); B+lo 570/606 (worst 7.90e-02)
+
+  14/14 checks pass; load-bearing check failures: 0   (9 s)
+  gate verdicts: 

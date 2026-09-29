@@ -1,0 +1,148 @@
+CFG109  MUTATE=1  frozen-text sha256 e229c2b69e47ac75
+== C1 flags
+  [PASS] C1 flags boolean, length, nested: n10 181477  n20 93020  n30 57265 ; f30 subset of f20: True
+   counts: 181477 / 93020 / 57265  (shares 51.3% / 31.6%)
+   staged n in isoflags file (for reference): [181477, 93020, 57265]
+== C1b lens-lens recomputation of the isolation rule (necessary condition only)
+   lens-lens pairs within the physical-3-Mpc angle: 4424892
+   reading comoving Mgal     : lenses with a qualifying lens neighbour: W10 7  W20 47453  W30 77378
+   reading comoving 10^logM  : lenses with a qualifying lens neighbour: W10 0  W20 46288  W30 75772
+   reading physical Mgal     : lenses with a qualifying lens neighbour: W10 31114  W20 86486  W30 116768
+   reading physical 10^logM  : lenses with a qualifying lens neighbour: W10 30453  W20 84898  W30 115028
+   readings with ZERO qualifying lens-lens pairs at W=10 (consistent with the base rule): [('comoving', '10^logM')]
+   ('comoving', '10^logM'): flagged-isolated with a lens neighbour: W20 0 of 93020 (0.000%), W30 0 of 57265 (0.000%);  share of ~f20 lenses with a lens nb: 52.3%, of ~f30: 61.0%
+  [PASS] C1b flags consistent with lens-lens necessary condition: selected readings [('comoving', '10^logM')]
+== C2 / C3 / C4 sums
+  [PASS] C2 base sums vs June sums: max relative deviation 3.10e-11 (<=1e-9)
+  [PASS] C2b patch labels equal cfg96_stack's: 0 differing labels
+  [PASS] C3 my window sums (cfg110 x flags) vs cfg96_stack: max rel dev W10 3.10e-11  W20 3.09e-12  W30 6.74e-12
+  [PASS] C3b cfg96_stack window-10 sums vs June: max rel dev 0.00e+00
+  [FAIL] C4 shells partition the base sums: max rel dev 6.27e-12 ; counts 88457 + 35755 + 57265 = 181477
+  [PASS] K1 bins = 8..14: K1 = [8, 9, 10, 11, 12, 13, 14]
+  MUTATE=1: early/late labels swapped in the iso20 and iso30 sums (window 10 and the non-isolated shell sums unchanged)
+== main statistic per window (K1)
+  W10  D = [ 3.26  7.14  5.61  5.33 11.93 21.48 33.29]
+       err = [ 1.79  2.14  3.02  3.18  7.09  7.89 11.82]   chi2 35.04 / 7  p 1.1e-05 (4.40 sigma)
+  W20  D = [ -5.99  -6.64  -4.19 -14.17 -13.95 -20.77 -14.49]
+       err = [ 2.43  3.17  3.88  5.16  8.35 10.8  16.23]   chi2 32.02 / 7  p 4.02e-05 (4.11 sigma)
+  W30  D = [ -2.43 -11.12  -8.21 -19.4  -10.03 -20.04 -12.77]
+       err = [ 3.85  4.48  5.69  6.9  11.19 13.79 20.43]   chi2 19.12 / 7  p 0.00781 (2.66 sigma)
+  A_20 = -0.968 +- 0.187
+  A_30 = -1.174 +- 0.273
+  W10 all-15-bin chi2 (Hartlap 33/49) 84.83 / 15  p 9.04e-12
+  W20 all-15-bin chi2 (Hartlap 33/49) 54.61 / 15  p 2.08e-06
+  W30 all-15-bin chi2 (Hartlap 33/49) 26.14 / 15  p 0.0365
+  R2 W10: N 181477  early frac 48.5%  median log M_gal late 10.448 early 10.810
+  R2 W20: N 93020  early frac 48.0%  median log M_gal late 10.584 early 10.841
+  R2 W30: N 57265  early frac 46.4%  median log M_gal late 10.647 early 10.861
+  R3 per-bin D_20/D_10 = [-1.84 -0.93 -0.75 -2.66 -1.17 -0.97 -0.44]   (min -2.66 max -0.44)
+  R3 per-bin D_30/D_10 = [-0.75 -1.56 -1.46 -3.64 -0.84 -0.93 -0.38]
+  H1: p<0.0027: True ; |A_20-1| <= 2 sigma_A: False  ->  H1 FAIL
+== C5 covariance algebra
+  [PASS] C5 chi2 solve == Cholesky == inverse: 32.0225011761 32.0225011761 32.0225011761
+  [PASS] C5 cov(D20-D10) == T C14 T^T: max dev / max element 3.40e-16
+  [PASS] C5 C symmetric, positive definite: min eig C20 3.928e+00, C14 6.688e-01
+  [PASS] C5 mean of LOO D within 1e-3 of D: max rel 1.07e-04
+== A2 difference of splits (correct jackknife covariance)
+  W20 (a) nested  D_20 - D_10: chi2 37.06/7 p 4.56e-06 ; GLS shape A-1 = -2.108 +- 0.363  (H1 jackknife A = -0.968 +- 0.187)
+  W20 (b) disjoint D_non - D_iso: [ 5.99 14.32 11.28 10.27 23.55 42.24 68.95]
+       errors [ 3.55  4.34  6.15  6.48 14.27 15.84 23.8 ]  chi2 34.79/7 p 1.22e-05 ;  delta (non-iso shape amp on D_10) = +1.998 +- 0.339 (5.90 sigma)
+  W20 (c) late  E_non - E_iso chi2 18.03/7 p 0.0118 ; ratio-shape beta = -0.432 +- 0.161
+  W20 (c) early E_non - E_iso chi2 21.31/7 p 0.00333 ; ratio-shape beta = +0.425 +- 0.099
+  W20 (d) K1 pair-weight share of iso: late 0.536 early 0.486
+  W30 (a) nested  D_30 - D_10: chi2 37.58/7 p 3.63e-06 ; GLS shape A-1 = -2.279 +- 0.386  (H1 jackknife A = -1.174 +- 0.273)
+  W30 (b) disjoint D_non - D_iso: [ 5.66 16.27 12.81 18.15 23.03 42.37 56.63]
+       errors [ 3.95  4.56  6.12  6.93 14.69 17.01 25.48]  chi2 42.41/7 p 4.34e-07 ;  delta (non-iso shape amp on D_10) = +2.154 +- 0.335 (6.42 sigma)
+  W30 (c) late  E_non - E_iso chi2 19.26/7 p 0.00742 ; ratio-shape beta = -0.473 +- 0.171
+  W30 (c) early E_non - E_iso chi2 31.15/7 p 5.84e-05 ; ratio-shape beta = +0.496 +- 0.093
+  W30 (d) K1 pair-weight share of iso: late 0.341 early 0.278
+== A1 power of the isolation test (contamination model, eps x eta grid)
+  pair-weighted K1 means: <D> = 6.10, <ESD_early> = 18.01  (<ESD_E>/<D> = 2.96)
+  W20: w_iso(early) = 0.486, w_non = 0.514, sigma_A = 0.187, sigma_delta = 0.339 (delta_obs = +1.998)
+     eps  eta | A-shift  delta_true | power A-cond   power 1-dof   power 7-dof omnibus
+     0.25 0.60 | +0.044  +0.086 | 0.039         0.082         0.052
+     0.25 0.75 | +0.121  +0.237 | 0.088         0.172         0.068
+     0.25 0.90 | +0.199  +0.387 | 0.173         0.307         0.103
+     0.25 1.00 | +0.250  +0.487 | 0.252         0.417         0.141
+     0.50 0.60 | +0.089  +0.173 | 0.063         0.128         0.059
+     0.50 0.75 | +0.243  +0.473 | 0.241         0.402         0.135
+     0.50 0.90 | +0.397  +0.773 | 0.547         0.738         0.328
+     0.50 1.00 | +0.500  +0.973 | 0.748         0.890         0.517
+     0.75 0.60 | +0.133  +0.259 | 0.099         0.189         0.072
+     0.75 0.75 | +0.364  +0.710 | 0.478         0.673         0.276
+     0.75 0.90 | +0.596  +1.160 | 0.881         0.962         0.698
+     0.75 1.00 | +0.750  +1.460 | 0.977         0.996         0.905
+     1.00 0.60 | +0.178  +0.346 | 0.146         0.266         0.092
+     1.00 0.75 | +0.486  +0.946 | 0.723         0.874         0.489
+     1.00 0.90 | +0.794  +1.547 | 0.987         0.998         0.939
+     1.00 1.00 | +1.000  +1.947 | 1.000         1.000         0.996
+     eta 0.60: eps_min (80% power, 1-dof, one-sided .05) = 2.44 ;  95% upper limit on eps from the observed delta = 7.39 ;  A-condition: eps for 80% power = 3.00 (need shift >= 0.53)
+     eta 0.75: eps_min (80% power, 1-dof, one-sided .05) = 0.89 ;  95% upper limit on eps from the observed delta = 2.70 ;  A-condition: eps for 80% power = 1.10 (need shift >= 0.53)
+     eta 0.90: eps_min (80% power, 1-dof, one-sided .05) = 0.54 ;  95% upper limit on eps from the observed delta = 1.65 ;  A-condition: eps for 80% power = 0.67 (need shift >= 0.53)
+     eta 1.00: eps_min (80% power, 1-dof, one-sided .05) = 0.43 ;  95% upper limit on eps from the observed delta = 1.31 ;  A-condition: eps for 80% power = 0.53 (need shift >= 0.53)
+     conversion (xi = 1, satellites add their host signal equal to the early class's own ESD): f_s = eps <D>/<ESD_E> = 0.34 eps
+  W30: w_iso(early) = 0.278, w_non = 0.722, sigma_A = 0.273, sigma_delta = 0.335 (delta_obs = +2.154)
+     eps  eta | A-shift  delta_true | power A-cond   power 1-dof   power 7-dof omnibus
+     0.25 0.60 | -0.110  -0.152 | 0.008         0.018         0.057
+     0.25 0.75 | +0.025  +0.035 | 0.028         0.062         0.050
+     0.25 0.90 | +0.160  +0.222 | 0.079         0.162         0.066
+     0.25 1.00 | +0.250  +0.346 | 0.139         0.270         0.093
+     0.50 0.60 | -0.220  -0.305 | 0.003         0.005         0.082
+     0.50 0.75 | +0.050  +0.069 | 0.035         0.075         0.051
+     0.50 0.90 | +0.320  +0.443 | 0.204         0.373         0.125
+     0.50 1.00 | +0.500  +0.692 | 0.434         0.662         0.268
+     0.75 0.60 | -0.330  -0.457 | 0.001         0.001         0.130
+     0.75 0.75 | +0.075  +0.104 | 0.042         0.091         0.053
+     0.75 0.90 | +0.480  +0.665 | 0.405         0.632         0.248
+     0.75 1.00 | +0.750  +1.038 | 0.773         0.927         0.592
+     1.00 0.60 | -0.440  -0.609 | 0.000         0.000         0.210
+     1.00 0.75 | +0.100  +0.138 | 0.051         0.109         0.056
+     1.00 0.90 | +0.640  +0.886 | 0.635         0.841         0.439
+     1.00 1.00 | +1.000  +1.385 | 0.952         0.993         0.874
+     eta 0.60: eps_min (80% power, 1-dof, one-sided .05) = 1.37 ;  95% upper limit on eps from the observed delta = -4.44 ;  A-condition: eps for 80% power = -1.76 (need shift >= 0.78)
+     eta 0.75: eps_min (80% power, 1-dof, one-sided .05) = 6.03 ;  95% upper limit on eps from the observed delta = 19.55 ;  A-condition: eps for 80% power = 7.75 (need shift >= 0.78)
+     eta 0.90: eps_min (80% power, 1-dof, one-sided .05) = 0.94 ;  95% upper limit on eps from the observed delta = 3.05 ;  A-condition: eps for 80% power = 1.21 (need shift >= 0.78)
+     eta 1.00: eps_min (80% power, 1-dof, one-sided .05) = 0.60 ;  95% upper limit on eps from the observed delta = 1.95 ;  A-condition: eps for 80% power = 0.78 (need shift >= 0.78)
+     conversion (xi = 1, satellites add their host signal equal to the early class's own ESD): f_s = eps <D>/<ESD_E> = 0.34 eps
+== A3 dose-response over the disjoint shells
+  G0 (nb at 10-20)           N= 88457  amplitude rel. to D_10 = 1.030 +- 0.205   (pair-weight share K1 late/early 0.464/0.514)
+  G1 (iso20, nb at 20-30)    N= 35755  amplitude rel. to D_10 = 0.663 +- 0.384   (pair-weight share K1 late/early 0.194/0.209)
+  G2 (iso30)                 N= 57265  amplitude rel. to D_10 = 1.174 +- 0.273   (pair-weight share K1 late/early 0.341/0.278)
+  equality of the three shell amplitudes: contrasts [-0.367  0.144]  chi2 0.87 / 2  p 0.648
+== A4 composition-matched control (class x 8 mass quantiles x 5 z bins)
+  cells with iso lenses but no non-isolated lens: 1 ; effective N of reweighted G0 = 48380
+  matched D_non - D_iso: [ 8.11 15.76 10.34 23.55 26.03 30.52 88.47]  chi2 25.50/7 p 0.00062 ; delta = +2.008 +- 0.425  (unmatched +1.998 +- 0.339)
+== A5 isolation criterion
+  staged: windows |dchi| = 10, 20, 30 Mpc at fixed 3 Mpc radius and 0.1 M* ratio; radius / mass thresholds are NOT variable from the staged data.
+== A6 error inflation
+  chi2 / f^2 (p)           f=1.0           f=1.2           f=1.5           f=1.8           f=2.0           
+  zero W10                  35.04 (1.1e-05)  24.33 (0.00099)  15.57 (0.029  )  10.82 (0.15   )   8.76 (0.27   ) 
+  zero W20                  32.02 (4e-05  )  22.24 (0.0023 )  14.23 (0.047  )   9.88 (0.2    )   8.01 (0.33   ) 
+  zero W30                  19.12 (0.0078 )  13.28 (0.066  )   8.50 (0.29   )   5.90 (0.55   )   4.78 (0.69   ) 
+  nested r20 (D20-D10)      37.06 (4.6e-06)  25.74 (0.00056)  16.47 (0.021  )  11.44 (0.12   )   9.27 (0.23   ) 
+  disjoint r20 (non-iso)    34.79 (1.2e-05)  24.16 (0.0011 )  15.46 (0.031  )  10.74 (0.15   )   8.70 (0.28   ) 
+  disjoint r30              42.41 (4.3e-07)  29.45 (0.00012)  18.85 (0.0087 )  13.09 (0.07   )  10.60 (0.16   ) 
+  H1 p-condition (p<0.0027) at each f, window 20: [True, True, False, False, False]
+  A_20 z-score vs 1 at each f: [-10.5, -8.75, -7.0, -5.83, -5.25]
+  f at which zero W10  reaches p = 0.0027 / 0.05 / 0.15: 1.27 / 1.58 / 1.81
+  f at which zero W20  reaches p = 0.0027 / 0.05 / 0.15: 1.21 / 1.51 / 1.73
+  f at which zero W30  reaches p = 0.0027 / 0.05 / 0.15: 0.94 / 1.17 / 1.33
+== C6 swap controls
+  [PASS] C6a early<->late swap: chi2 unchanged, A unchanged: max |dchi2| 0.00e+00, max |dA| 0.00e+00
+  [PASS] C6b iso<->non swap: chi2(r) unchanged, delta flips: dchi2 0.00e+00, delta -1.9976 vs +1.9976
+== C7 injected-systematic recovery (lens-level injection into WG of early lenses)
+  eps 0.50 eta 1.00: exact bookkeeping D10 rise 1.7e-15, D_iso shift 0.0e+00, D_non shift 1.8e-15 (relative, <=1e-9) ; A_20 0.968 -> 0.645 (analytic 0.645; H1 A-cond: |A-1|<=2 sigma_A ? False) ; delta +0.009 -> +0.981 (analytic +0.982, 2.8 sigma, 1-dof detect: True)
+  eps 0.50 eta 0.75: exact bookkeeping D10 rise 3.0e-15, D_iso shift 2.6e-15, D_non shift 2.7e-15 (relative, <=1e-9) ; A_20 0.968 -> 0.817 (analytic 0.817; H1 A-cond: |A-1|<=2 sigma_A ? True) ; delta +0.009 -> +0.481 (analytic +0.482, 1.4 sigma, 1-dof detect: False)
+  [PASS] C7 injection recovery: exact bookkeeping and first-order analytic (10 % / 0.02 abs) for both (eps, eta)
+== C8 power machinery
+  [FAIL] C8a analytic vs MC omnibus power (eps .5, eta 1, W20): analytic 0.5167, MC 0.4546, lambda 8.25
+  [FAIL] C8b MC GLS delta_hat unbiased and correctly scaled: mean +0.0036 std 0.9153
+== A7/C9 skipped in MUTATE (declared: permutation nulls are a main-run control)
+  [PASS] C10 MUTATE: difference-of-splits (b) rejects: chi2 34.79 p 1.22e-05
+  [PASS] C10 MUTATE: A_20 = -A_20(main): A_20 -0.9679
+== reproduction against CFG96's printed numbers
+    P5 MUTATE A_20                                 mine -0.96788    CFG96 -0.97     tol 0.005  REPRODUCED
+  [PASS] P5 MUTATE H1 fails as required: H1 False
+== summary: controls failed: ['C4 shells partition the base sums', 'C8a analytic vs MC omnibus power (eps .5, eta 1, W20)', 'C8b MC GLS delta_hat unbiased and correctly scaled']
+MUTATE exit 2 (control failure)
+elapsed 10 s

@@ -1,0 +1,23 @@
+
+======================================================================================================================
+G5.1 second variation  (MUTATE='b')
+======================================================================================================================
+  region X > 0:  n = P_X = 2*sqrt(2)*Lambda*sqrt(Xp)*m**(3/2);  K_t = P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(Xp);  c_s^2 = P_X/(m P_XX) = 2*Xp/m
+  region X < 0:  n = P_X = -2*sqrt(2)*Lambda*sqrt(Xp)*m**(3/2);  K_t = P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(Xp);  c_s^2 = P_X/(m P_XX) = -2*Xp/m
+    pos: density n > 0: True;  kinetic P_XX > 0: True;  c_s^2 > 0: True
+    neg: density n > 0: False;  kinetic P_XX > 0: True;  c_s^2 > 0: False
+  [PASS] G5.1a  region X > 0 is well-posed (n > 0, K_t > 0, c_s^2 > 0)  [positive control: the harness can see a healthy region]
+         {'n_positive': True, 'kinetic_positive': True, 'cs2_positive': True}
+  [FAIL] (reported) G5.1b  region X < 0 (the gradient-dominated, MOND-carrying region) is well-posed
+         {'n_positive': False, 'kinetic_positive': True, 'cs2_positive': False}
+  MUTATE=b: the even P(|X|) removes the sign change of P_XX at X < 0 (K_t > 0) but P_X < 0 there (n < 0, negative DM density) and c_s^2 = P_X/(m P_XX) is still negative: the frozen control 'G5.1 must flip to well-posed' is checked below.
+  >> G5.1-wellposed(X>0): PASS -- healthy for X > 0: P_XX > 0, c_s^2 = 2X/m
+  >> G5.1-wellposed(X<0): FAIL -- the gradient-dominated (MOND-carrying) regime X<0 has P_XX<0 and c_s^2 = 2X/m < 0: L2 = -(1/2)(|P_XX| psi_t^2 + (P_X/m) psi'^2), omega^2 = -|c_s^2| k^2: elliptic, growth rate Gamma = |c_s| k unbounded in k (Hadamard ill-posed)
+  size of the instability in the gradient regime at r_M: |X| = alpha M_Pl a0/(2 m), |c_s|^2 = alpha M_Pl a0/m^2 (c = 1); growth rate Gamma = |c_s| k
+    m = 1 eV, alpha = 1: |c_s| = 7.074e-04 c = 212.1 km/s; a mode of wavelength 2 pi kpc grows as exp(0.217 t/Myr)
+    m = 0.01 eV, alpha = 1: |c_s| = 7.074e-02 c = 2.121e+04 km/s; a mode of wavelength 2 pi kpc grows as exp(21.7 t/Myr)
+    m = 1 eV, alpha = 100: |c_s| = 7.074e-03 c = 2121 km/s; a mode of wavelength 2 pi kpc grows as exp(2.17 t/Myr)
+  >> G5.1: FAIL -- MUTATE=b control: does the even P(|X|) flip G5.1 to well-posed?  (frozen expectation: yes)
+
+  1/2 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G5.1-wellposed(X>0)=PASS, G5.1-wellposed(X<0)=FAIL, G5.1=FAIL

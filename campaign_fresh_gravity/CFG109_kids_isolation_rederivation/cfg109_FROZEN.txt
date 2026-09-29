@@ -1,0 +1,102 @@
+CFG109 -- independent re-derivation of CFG96 (do satellites drive the KiDS early/late split? the isolation test), plus a power and difference-of-splits attack.
+FROZEN BEFORE ANY RUN of this lane's scoring script (written 2026-09-29). Before this text was written I looked only at: array names/shapes/ranges of the staged files, and the
+ranges (min/median/max) of lr_lenses columns (chi is in Mpc, comoving, h~0.7 convention; Mgal and logM differ by a lens-dependent offset, median +0.083 dex). No split,
+chi2, amplitude or per-window sum of this lane existed.
+
+QUESTION
+ (1) From CFG96_FROZEN_CRITERIA.md, CFG96_README.md and my own code, do I reproduce the headline: with |dchi| windows 10 (June base, 181,477 lenses), 20 (93,020) and 30 (57,265),
+     the 7-bin 1-halo (K1) zero-model chi2 of the early-minus-late ESD difference is 35.04 / 32.02 / 19.12 (p 1.1e-5 / 4.0e-5 / 7.8e-3), the early fractions 48.5 / 48.0 / 46.4 %,
+     A_20 = 0.97 +- 0.19, A_30 = 1.17 +- 0.27, all-15-bin chi2 84.8 / 54.6 / 26.1, per-bin D_20/D_10 range 0.44-2.66, MUTATE A_20 = -0.97?
+ (2) ATTACK: (a) power: what satellite contamination fraction could the isolation test detect, as a function of the fraction eta of contaminant signal that the stricter window removes;
+     (b) does the isolated subsample's split differ from the full sample's, tested with the correct (jackknife) covariance of the difference, not by comparing p-values;
+     (c) dose-response over the three disjoint shells and composition (mass/z) matching; (d) the isolation criterion: what can and cannot be varied from the staged data;
+     (e) error inflation x1.2, x1.5, x1.8, x2 and the factor at which each conclusion changes; (f) permutation-calibrated p-values.
+
+MATERIAL READ (declared): CFG96_FROZEN_CRITERIA.md, CFG96_README.md (the LEDGER.md row for CFG96 was searched and not found: content = the README), CFG100/CFG107/CFG108 committed
+READMEs and code (cfg108_run.py used as a reference for the jackknife/Hartlap/chi2 conventions; the code below is my own), CFG61/CFG77/CFG88/CFG95 READMEs.
+NOT read, exec'd or imported until my frozen main and MUTATE runs are complete: CFG96_kids_split_isolation.py, CFG96_stage_stack.py, any CFG96 .out or _results.json.
+Nothing is fetched or re-staged; the 17.7 GB shear catalogue and the bright-sample catalogues are not opened.
+
+INDEPENDENCE LIMITS (declared)
+ Staged inputs (git-ignored, real_research/data/lensing_rar/), all products of the calc chat's staging:
+  lr_lenses.npz (ra dec z logM Mgal typ chi; 181,477 base lenses; typ 1 = early, 0 = late), lr_esd_jackknife.npz (patch labels; June per-(patch,class,bin) sums wgE, W, NN),
+  cfg110_perlens.npz (per-lens per-bin sums WG, WW, NN; a separate staging pass, CFG110's), cfg96_isoflags.npz (f20, f30 booleans: the isolation flags), cfg96_stack.npz (CFG96's window sums).
+ ROUTE A (primary, mine): my per-window sums = cfg110_perlens (per lens) x the isolation flags, summed by (patch, class, bin).  ROUTE B (cross-check): cfg96_stack.npz sums.
+ Checked: my base sums against the June sums (C2); my window-20/30 sums against cfg96_stack (C3, so the stage's stacking pass is consistent with the flags and with cfg110);
+ flag nesting and counts (C1); the flags' NECESSARY condition against a lens-catalogue recomputation of the isolation rule (C1b: lens-lens neighbours only).
+ NOT independent / NOT checkable here: (i) the isolation flags themselves. f20 and f30 come from the calc chat's staging; they need the neighbours from the KiDS bright sample
+ (photo-z chi, LePhare M*, the +0.15 dex flux scale) which I do not open.  C1b can only show that no lens flagged isolated has a *lens* neighbour that qualifies (a necessary condition);
+ it cannot show that the flag is complete or correct for non-lens neighbours.  (ii) the base isolation rule itself (Dchi<10, 3 Mpc, 0.1 M*) and whether the transverse 3 Mpc is comoving or physical
+ (C1b tests the three readings against the base window, in which zero qualifying pairs may exist: that selects the reading, it does not validate the catalogue).  (iii) the shear
+ estimator, source weights, m-bias and photo-z inside WG/WW (shared with CFG61-108).  (iv) radius and mass thresholds of the criterion cannot be varied at all: only the three dchi windows
+ are staged.  (v) definitions (statistic, Hartlap, H1) are read from CFG96's frozen text: agreement there is not independent; code and numerics are.  Run with ZF_REPO set.
+
+DATA AND ESTIMATOR
+ typ, patch (50 sky patches, lr_esd_jackknife patch labels, assigned on the base sample and kept for all subsets).  15 g_bar bins, edges logspace(1e-15, 5e-12, 16) m/s^2.
+ Per (patch p, class c, bin k) sums S_X[p,c,k] for sample X: WG, WW, NN.  ESD_X(c,k) = sum_p WG / sum_p WW / KG, KG = 1.98847e30 / (3.0857e16)^2 [Msun/pc^2].
+ K1 = bins where the lens-median R = sqrt(G Mgal / g_centre) of BOTH classes in the BASE sample is < 0.3 Mpc (expected 8..14; asserted).  G = 4.30091727e-9 Mpc (km/s)^2/Msun.
+ D_X = ESD_X(early) - ESD_X(late) on K1 (7 numbers).
+SAMPLES: base B = window 10 = all 181,477.  iso20 = flag f20 (no qualifying neighbour with |dchi|<20); iso30 = f30.  Nested by construction: iso30 in iso20 in B.
+ Non-isolated at 20: N20 = B minus iso20 (has a qualifying neighbour at 10 < |dchi| < 20).  N30 = B minus iso30.  Disjoint shells: G0 = B minus iso20; G1 = iso20 minus iso30; G2 = iso30.
+COVARIANCE: leave-one-patch-out, N = 50: C = (N-1)/N sum_p (v_(-p) - mean)(v_(-p) - mean)^T for each statistic vector v (ESD recomputed from the sums without patch p).
+ Hartlap h = (N - n - 2)/(N - 1) with n the vector length (7: 41/49; 14: 34/49; 15: 33/49).  chi2 = h v^T C^-1 v, n dof; p from the chi2 survival function; sigma-equivalent = norm.isf(p/2).
+ Quoted errors sqrt(diag C), no h.
+AMPLITUDE A_W (CFG96's definition as I read it): A_W = (D_10^T C_10^-1 D_W) / (D_10^T C_10^-1 D_10) with C_10 the FULL-sample jackknife covariance of D_10 held fixed (the Hartlap factor cancels);
+ sigma_A = sqrt((N-1)/N sum_p (A_W(-p) - mean)^2) with A_W(-p) = (D_10(-p)^T C_10^-1 D_W(-p)) / (D_10(-p)^T C_10^-1 D_10(-p)).  Variant V2 (reported only): C_10 recomputed... NOT used.
+H1 (as CFG96; MUTATE must fail): p(zero-model, K1, window 20) < 0.0027 AND |A_20 - 1| <= 2 sigma_A(20).  Reported R1: the same at window 30.
+ R2: per window N, early fraction, median log10 Mgal per class.  R3: D_W / D_10 per K1 bin.  R4: zero-model chi2 on all 15 bins (Hartlap 33/49).
+
+ATTACK ROWS (reported; no pass line except where stated)
+ A2 DIFFERENCE OF SPLITS (correct covariance).  For W in {20, 30}:
+   (a) nested: r = D_W - D_10 (7 numbers, jackknifed directly): chi2 (7 dof, Hartlap 41/49), p; 1-dof shape fit r = (A-1) D_10 by GLS, A-1 +- sigma with P = h C_r^-1 (analytic (s^T P s)^-1/2) and the jackknife sigma of A (H1's).
+   (b) disjoint: r = D_iso_W - D_non_W (non_W = B minus iso_W), 7 dof chi2, and the 1-dof fit r = delta * D_10: delta = s^T P r / s^T P s, sigma_delta = (s^T P s)^-1/2, P = h C_r^-1.
+   (c) per class: the ESD difference E_iso - E_non for early and for late (7 dof chi2, p).  A satellite excess should make E_non(early) > E_iso(early).
+   (d) K1 pair-weight shares w_iso(class) = sum_K1 WW_iso / sum_K1 WW_base.
+ A1 POWER.  Contamination model: the base split contains a contaminant piece c = eps D_10 (eps = fraction of the base split carried by satellites of unmodelled hosts); the stricter window removes
+   a fraction eta of the contaminant signal (all of it from the removed set N_W); w_iso = pair-weight share of iso_W (early class, K1-pooled).  Then, to first order,
+     A_W = 1 - eps [1 - (1 - eta)/w_iso],     delta = D_non-D_iso shape amplitude (sign: non minus iso) = eps [eta/w_non - (1 - eta)/w_iso],   w_non = 1 - w_iso.
+   eta = w_non is random removal (no discrimination, zero shift).  Power of (i) H1's A condition (fail if A_W < 1 - 2 sigma_A): Phi(shift/sigma_A - 2), shift = eps[1-(1-eta)/w_iso];
+   (ii) the 1-dof delta test (one-sided, alpha = 0.05): Phi(delta_true/sigma_delta - 1.645); (iii) the 7-dof omnibus test on r (alpha = 0.05): non-central chi2 with lambda = delta_true^2 s^T P s.
+   Grid eps in {0.25, 0.5, 0.75, 1.0} x eta in {0.6, 0.75, 0.9, 1.0}, window 20 and 30.  Minimum detectable eps at 80% power (one-sided alpha 0.05, 1 dof): eps_min = (1.645 + 0.842) sigma_delta / |eta/w_non - (1-eta)/w_iso|.
+   Upper limit: the observed delta -> 95% upper limit on eps for each eta.  Conversion to a satellite fraction: if a fraction f_s of early lenses are satellites whose extra signal is xi x the early class's own K1 ESD,
+   eps = f_s xi <ESD_E>/<D> (pair-weight-weighted K1 means); reported for xi = 1 as f_s = eps <D>/<ESD_E>.
+ A3 DOSE-RESPONSE: the disjoint shells G0, G1, G2: for each, D_G, its amplitude relative to D_10 (GLS with C_10 fixed, jackknife sigma), and a joint chi2 (2 dof) that the three amplitudes are equal (jackknife covariance of the 3-vector of amplitudes); the amplitude vs the shell's mean window.
+ A4 COMPOSITION MATCH: weights on G0 lenses so that its (class x 8 log Mgal quantile bins of the base within class x 5 uniform z bins 0.1..0.5) counts match iso20's; delta and 7-dof chi2 of D_iso20 - D_G0(weighted).
+ A5 ISOLATION CRITERION: only the three dchi windows are staged (10, 20, 30); the 3 Mpc radius and the 0.1 M* threshold cannot be varied.  Reported: composition (R2) and the dose-response (A3); C1b's lens-lens proxy.
+ A6 ERROR INFLATION f in {1, 1.2, 1.5, 1.8, 2}: chi2/f^2 and p of the zero model in each window; H1's p condition; A_20 z-score vs 1 (/f); the difference-of-splits p (a, b) /f^2; and the f at which each of the K1 zero-model splits
+   reaches p = 0.0027, 0.05, 0.15.
+ A7 PERMUTATION calibration (seed 109, 1000 permutations each): (a) class labels shuffled within patch (counts per patch kept), same shuffle applied to base and to iso20 (nested): null mean/99th percentile of the zero-model chi2 for B, iso20, and empirical p of the observed;
+   (b) group labels (iso20 vs N20) shuffled within blocks patch x class x composition cell (the A4 cells), same estimators: null mean of the 7-dof chi2 of r = D_iso - D_non and of the 1-dof z of delta, empirical p of the observed.
+
+CONTROLS (a failing control is a failure; failed controls invalidate the downstream number)
+ C1  flags: f20, f30 boolean of length 181,477, f30 in f20; counts n10, n20, n30 printed and compared with 181,477 / 93,020 / 57,265 (reproduction lines P0, tolerance 0).
+ C1b partial recomputation (lens catalogue only): for each lens i, does a lens j != i exist with M_j > 0.1 M_i, transverse separation chi_i x theta_ij < 3 Mpc (three readings: comoving, physical = x(1+z), and mass = Mgal or 10^logM) and |chi_j - chi_i| < W?
+     (i) at W = 10 the count of qualifying lens-lens pairs among base lenses must be 0 under the reading(s) consistent with the base rule; the reading(s) with 0 are selected (if several, all are used);
+     (ii) then with W = 20 and W = 30: the number of lenses flagged isolated (f20 / f30) that nonetheless have a qualifying lens neighbour must be <= 0.5 % of the flagged lenses under the selected reading.  Reported: the share of ~f20 (and ~f30) lenses that have a lens neighbour.
+     PASS if (i) has a selected reading and (ii) holds; otherwise FAIL (the flags are then not necessary-condition-consistent with the lens list).
+ C2  my base sums (cfg110 per lens summed by patch, class, bin) reproduce the June sums wgE, W, NN to relative 1e-9; the patch labels of lr_esd_jackknife equal cfg96_stack's patch labels exactly.
+ C3  my window-20/30 sums (cfg110 x flags) reproduce cfg96_stack's wgE_20/W_20/NN_20 and _30 to relative 1e-9 (floor 1e-300); cfg96_stack's _10 sums equal the June sums to 1e-9.
+ C4  the shells partition the base sums: S_G0 + S_G1 + S_G2 = S_10 to 1e-12 relative; N20 = B - iso20 sums; counts add.
+ C5  covariance algebra: chi2 by solve == Cholesky whitening == explicit inverse to 1e-8; the covariance of r = D_W - D_10 equals T C_14 T^T (C_14 = jackknife covariance of [D_10, D_W]) to 1e-9 relative to its largest element; C symmetric positive definite; the mean of the leave-one-out D over the 50 patches within 1e-3 (relative) of the full D.
+ C6  SWAP controls: (a) early <-> late swapped everywhere: every zero-model chi2 unchanged to 1e-9, every A and delta unchanged to 1e-9; (b) iso <-> non swapped: chi2 of r unchanged to 1e-9, delta flips sign to 1e-9.
+ C7  INJECTED-SYSTEMATIC RECOVERY.  Add to the per-lens sums a contaminant ESD: WG(early lenses in N20) += a_k KG WW, a_k = eps eta D_10,k / w_non,k(early) and WG(early lenses in iso20) += b_k KG WW, b_k = eps (1-eta) D_10,k / w_iso,k(early) (k in K1;
+     eps = 0.5, eta = 1.0 and 0.75; w_iso,k = the per-bin early pair-weight share of iso20 in the K1 bin).  Recompute the pipeline.  The base D_10 must rise by eps D_10 (exact to 1e-9 relative, since it is the exact bookkeeping); then A_20 shifts and delta shifts by
+     the analytic first-order amounts within 10 % (the analytic uses the K1-pooled w; the ratio tolerance 10 % is declared) and the injected-model expectation computed exactly from the sums to 1e-8.  The injected run's H1 A-condition and delta test outcome are reported.
+     (Injection into WG only, the injected sums used only for this control.)
+ C8  power machinery: analytic non-central chi2 power (7 dof, alpha 0.05, lambda for eps = 0.5, eta = 1) vs Monte Carlo (2e5 draws, seed 109) agree to 1 % absolute; and MC coverage: draw r ~ N(delta_true s, C_r), the GLS delta_hat has mean within 0.02 sigma_delta... (declared: mean of (delta_hat - delta_true)/sigma_delta in [-0.02, 0.02], std in [0.98, 1.02], 2e5 draws).
+ C9  permutation nulls (A7): the mean of each permuted chi2 (7 dof, Hartlap) lies in [5.5, 8.5]; the mean of the permuted z of delta lies within +-0.1 and their std in [0.9, 1.1].
+ C10 MUTATE=1 as declared: the early/late labels are swapped in the strict windows' sums (iso20 and iso30) before scoring (window 10 untouched).  D_20 and D_30 change sign, A_20 = -A_20(main) exactly; H1 must FAIL and the script must exit 1.
+     If H1 fails in the main run too, the control is uninformative (declared).  Also in MUTATE the difference-of-splits (b) at window 20 must reject (p < 0.0027): a teeth check on that statistic.  MUTATE writes separate outputs.
+
+REPRODUCTION lines (tolerance = the displayed digits; REPRODUCED within tolerance, APPROXIMATE within 10 %, else NOT REPRODUCED; causes investigated afterwards and labelled post hoc):
+ P0  counts 181,477 / 93,020 / 57,265 (tol 0); early fractions 48.5 / 48.0 / 46.4 % (tol 0.05).
+ P1  zero-model K1 chi2 35.04 / 32.02 / 19.12 (tol 0.01); p 1.1e-5 / 4.0e-5 / 7.8e-3 (tol: 2 significant digits); sigma-equivalent 4.4 / 4.1 / 2.7 (tol 0.05).
+ P2  A_20 = 0.97 +- 0.19, A_30 = 1.17 +- 0.27 (tol 0.005 each; errors tol 0.005).
+ P3  all-15-bin chi2 84.8 / 54.6 / 26.1 (tol 0.05).
+ P4  per-bin D_20/D_10 range 0.44 to 2.66 (tol 0.005).
+ P5  MUTATE A_20 = -0.97 (tol 0.005), H1 fails, exit 1.
+ P6  H1 passes in the main run.
+
+READINGS (declared): H1 PASS: as CFG96's frozen reading.  For the attack rows: 'the isolated split differs from the full split' if p(r) < 0.01 or |A-1| > 2 sigma.  A power statement is 'at 80 % power' in the one-sided alpha 0.05 delta-test sense unless stated.
+Exit codes: main run 0 iff all controls C1-C9 pass and H1 passes; MUTATE 1 if H1 fails (as required) and all controls pass.
+Nothing here says the data favour the framework; kappa = 1/2 is FITTED.

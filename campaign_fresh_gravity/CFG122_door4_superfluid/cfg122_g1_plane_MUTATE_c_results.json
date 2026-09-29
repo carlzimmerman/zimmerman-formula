@@ -1,0 +1,249 @@
+{
+ "slug": "cfg122_g1_plane_MUTATE_c",
+ "mutate": "c",
+ "check_failures": 0,
+ "gate_fail": 5,
+ "checks": [
+  {
+   "name": "harness: every branch/profile/mass/footing produced a result array",
+   "detail": "72 result sets (expected 72)",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "verdicts": {
+  "G1.1": {
+   "status": "FAIL",
+   "why": "cells passing [0, 0] (canonical, alt); closest approach [1.0, 1.0]"
+  },
+  "G1.2": {
+   "status": "FAIL",
+   "why": "cells passing [0, 0]; closest [1.0, 1.0]"
+  },
+  "G1.3": {
+   "status": "FAIL",
+   "why": "point-mass cells passing [0, 0]; closest [0.77, 0.777]"
+  },
+  "G3.1": {
+   "status": "PASS",
+   "why": "closest-approach reading (primary): reactions [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exist): FAIL; unconditional minimum over the plane {'canonical': {1000000000.0: 2.971849008330349e-36, 10000000000.0: 2.9923069267503183e-37, 1000000000000.0: 3.0212248292993317e-39}, 'alt': {1000000000.0: 3.589121587924817e-36, 10000000000.0: 3.6144393564781094e-37, 1000000000000.0: 3.649983909054693e-39}} (reached only where the phonon force is negligible)"
+  },
+  "G5.1": {
+   "status": "FAIL",
+   "why": "primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution reading is satisfiable only by the X > 0 branches, which do not carry the MOND force (declared interpretation)"
+  },
+  "G5.2": {
+   "status": "FAIL",
+   "why": "a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999980.067), (('alt', 'B+hi'), 1999980.067)]"
+  },
+  "G5.3": {
+   "status": "PASS",
+   "why": "subluminal X>0 solutions exist (smallest max c_s^2 4.91e-25 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)"
+  }
+ },
+ "numbers": {
+  "G1.1": {
+   "canonical": {
+    "npass": 0,
+    "closest": 0.9995302927092776,
+    "m": 0.04237587160604064,
+    "alpha": 0.013664483492953258
+   },
+   "alt": {
+    "npass": 0,
+    "closest": 0.9995924883019772,
+    "m": 0.04237587160604064,
+    "alpha": 0.013664483492953258
+   }
+  },
+  "G1.2": {
+   "canonical": {
+    "npass": 0,
+    "closest": 0.9998090990925738,
+    "m": 0.00650967523045817,
+    "alpha": 0.011689518164985783
+   },
+   "alt": {
+    "npass": 0,
+    "closest": 0.9998156127271179,
+    "m": 0.005150678076168122,
+    "alpha": 0.01
+   }
+  },
+  "G1.3_diffuse_only_reported": {
+   "canonical": {
+    "npass": 0,
+    "closest": 0.975470559148097,
+    "m": 0.001,
+    "alpha": 0.01
+   },
+   "alt": {
+    "npass": 0,
+    "closest": 0.9754705591480983,
+    "m": 0.001,
+    "alpha": 0.01
+   }
+  },
+  "G1.3": {
+   "canonical": {
+    "npass": 0,
+    "closest": 0.7696757609493277,
+    "m": 0.001597312280060254,
+    "alpha": 0.011689518164985783
+   },
+   "alt": {
+    "npass": 0,
+    "closest": 0.7772311557864675,
+    "m": 0.001597312280060254,
+    "alpha": 0.025514065200312887
+   }
+  },
+  "G1.3_exp_reported": {
+   "canonical": {
+    "npass": 0,
+    "closest": 0.975470559148097,
+    "m": 0.001,
+    "alpha": 0.01
+   },
+   "alt": {
+    "npass": 0,
+    "closest": 0.9754705591480983,
+    "m": 0.001,
+    "alpha": 0.01
+   }
+  },
+  "G3.1_cond_canonical": [
+   false,
+   false,
+   false
+  ],
+  "G3.1_cond_alt": [
+   false,
+   false,
+   false
+  ],
+  "G3.1_unconditional_min_reaction": {
+   "canonical": {
+    "1e+09": 2.971849008330349e-36,
+    "1e+10": 2.9923069267503183e-37,
+    "1e+12": 3.0212248292993317e-39
+   },
+   "alt": {
+    "1e+09": 3.589121587924817e-36,
+    "1e+10": 3.6144393564781094e-37,
+    "1e+12": 3.649983909054693e-39
+   }
+  },
+  "G3.1_posthoc_pure_gradient_reaction_max": 0.9994449069791544,
+  "G3.1_closest_approach": {
+   "canonical": [
+    {
+     "err": 0.9188823357421627,
+     "branch": "B+hi",
+     "m": 14.773776525985127,
+     "alpha": 53.55666917706897,
+     "reaction": 4.4426249905478624e-24
+    },
+    {
+     "err": 0.9114372629379427,
+     "branch": "B+hi",
+     "m": 2.269510536694671,
+     "alpha": 3.7693909753883594,
+     "reaction": 4.223532825098122e-24
+    },
+    {
+     "err": 0.9164729196163318,
+     "branch": "B+hi",
+     "m": 0.7038135554931562,
+     "alpha": 3.7693909753883594,
+     "reaction": 2.529223755728027e-24
+    }
+   ],
+   "alt": [
+    {
+     "err": 0.9110546740550374,
+     "branch": "B+hi",
+     "m": 0.7038135554931562,
+     "alpha": 0.103979841848149,
+     "reaction": 4.5540285526585756e-24
+    },
+    {
+     "err": 0.9231641661209917,
+     "branch": "B+hi",
+     "m": 0.7038135554931562,
+     "alpha": 0.3625117049988533,
+     "reaction": 2.6591371548942168e-24
+    },
+    {
+     "err": 0.9275330338056174,
+     "branch": "B+hi",
+     "m": 0.7038135554931562,
+     "alpha": 3.7693909753883594,
+     "reaction": 3.381625186985338e-24
+    }
+   ]
+  },
+  "G5.1_canonical_B-": {
+   "nonvacuous": 0,
+   "literal_pass": 0,
+   "lenient_pass": 0
+  },
+  "G5.1_canonical_B+hi": {
+   "nonvacuous": 0,
+   "literal_pass": 0,
+   "lenient_pass": 0
+  },
+  "G5.1_canonical_B+lo": {
+   "nonvacuous": 0,
+   "literal_pass": 0,
+   "lenient_pass": 0
+  },
+  "G5.1_alt_B-": {
+   "nonvacuous": 0,
+   "literal_pass": 0,
+   "lenient_pass": 0
+  },
+  "G5.1_alt_B+hi": {
+   "nonvacuous": 0,
+   "literal_pass": 0,
+   "lenient_pass": 0
+  },
+  "G5.1_alt_B+lo": {
+   "nonvacuous": 0,
+   "literal_pass": 0,
+   "lenient_pass": 0
+  },
+  "G5.1_and_G1.3": {
+   "('canonical', 'B-')": 0,
+   "('canonical', 'B+hi')": 0,
+   "('canonical', 'B+lo')": 0,
+   "('alt', 'B-')": 0,
+   "('alt', 'B+hi')": 0,
+   "('alt', 'B+lo')": 0
+  },
+  "G5.1_and_F_within_50pct": {
+   "('canonical', 'B-')": 0,
+   "('canonical', 'B+hi')": 0,
+   "('canonical', 'B+lo')": 0,
+   "('alt', 'B-')": 0,
+   "('alt', 'B+hi')": 0,
+   "('alt', 'B+lo')": 0
+  },
+  "G5.2_best_min_cs2_over_Vf2": {
+   "('canonical', 'B-')": "-inf",
+   "('canonical', 'B+hi')": 1999980.066666646,
+   "('canonical', 'B+lo')": 2.830768798771897e-10,
+   "('alt', 'B-')": "-inf",
+   "('alt', 'B+hi')": 1999980.0666666478,
+   "('alt', 'B+lo')": 2.762243637113456e-10
+  },
+  "G5.3_smallest_max_cs2": {
+   "('canonical', 'B-')": "inf",
+   "('canonical', 'B+hi')": 7.843815944380491e-07,
+   "('canonical', 'B+lo')": 4.90544497696828e-25,
+   "('alt', 'B-')": "inf",
+   "('alt', 'B+hi')": 8.622804140909055e-07,
+   "('alt', 'B+lo')": 6.517076982207733e-25
+  }
+ }
+}

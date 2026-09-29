@@ -1,0 +1,45 @@
+{
+ "slug": "cfg122_g1a_scaling",
+ "mutate": "",
+ "check_failures": 0,
+ "gate_fail": 1,
+ "checks": [
+  {
+   "name": "G1.1a-i  ratio(x, M) = R0(M) sqrt(1 + x^2) with R0 \u221d M^(1/2)  (sympy)",
+   "detail": "ratio/R0 = sqrt(x**2 + 1); dlnR0/dlnM = 1/2",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.1a-ii  r_*(m, alpha) is independent of M_b (deep regime)",
+   "detail": "d r_*/dM = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.1a-iii  the closed form matches the solver's algebra (Y = 0) at 2 (m, alpha) x 4 masses x 4 x, both footings",
+   "detail": "worst relative deviation 6.66e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G1.1a  the mass spread of rho_DM/rho_target at fixed x is <= 10%  [HEADLINE sub-check: the analytic spread is 31.6]",
+   "detail": "spread 31.62 (x-spread at fixed M 29.87)",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "G1.1a": {
+   "status": "FAIL",
+   "why": "ratio spread across masses at fixed x = 31.62 (1.10 line); across x in [0.1, 30] at fixed M = 29.87; the inner slope agrees with the target (both \u221d 1/r for x < 1), the outer does not (target \u221d 1/r^2)"
+  }
+ },
+ "numbers": {
+  "G1.1a": {
+   "spread_mass": 31.622776601683793,
+   "spread_x": 29.86769505537366,
+   "R0_scaling": "1/2"
+  }
+ }
+}

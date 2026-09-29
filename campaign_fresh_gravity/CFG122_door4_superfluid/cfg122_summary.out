@@ -1,0 +1,74 @@
+==============================================================================================================
+main
+==============================================================================================================
+cfg122_g1_edge  (harness check failures 0)
+    G1.4-S                   FAIL       cells [0, 0]; best steps [['0.000732', '0.00295', '1.82e-05', '0.000284'], ['0.000471', '0.000284', '0.000322', '0.00193']]
+    G1.4-F                   FAIL       cells [0, 0]; best steps [['1.37', '1.07', '0.0227', '0.0022'], ['1.61', '1.77', '0.012', '0.00134']]
+    G1.6                     FAIL       smallest spread [1.1711, 1.1549] (canonical, alt) against the 1.10 line; cells with a crossover at all masses [446, 459]
+    G2.4-ii                  FAIL       cells [0, 0]; smallest fractions [['5.79', '9.53', '3.82', '0.0355'], ['5.83', '9.43', '3.87', '0.00114']]
+    G3.2                     FAIL       cells passing all three timescales at all masses [0, 0]; smallest ratios (t_H) [['20.2', '7.92', '1.45', '52.4'], ['19.6', '4.64', '37.2', '56.1']]
+    G1.5                     FAIL       case 2 cells [0, 0]; case 1 cells [7, 7]
+cfg122_g1_plane  (harness check failures 0)
+    G1.1                     FAIL       cells passing [0, 0] (canonical, alt); closest approach [0.896, 0.894]
+    G1.2                     FAIL       cells passing [0, 0]; closest [0.999, 0.999]
+    G1.3                     FAIL       point-mass cells passing [0, 0]; closest [0.414, 0.414]
+    G3.1                     FAIL       closest-approach reading (primary): reactions [[132.0289, 890.0911, 119.0257], [130.7552, 129.6701, 117.9277]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exi
+    G5.1                     FAIL       primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution r
+    G5.2                     FAIL       a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999957.006), (('alt', 'B+hi'), 1999956.906)]
+    G5.3                     PASS       subluminal X>0 solutions exist (smallest max c_s^2 3.49e-17 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)
+cfg122_g1a_scaling  (harness check failures 0)
+    G1.1a                    FAIL       ratio spread across masses at fixed x = 31.62 (1.10 line); across x in [0.1, 30] at fixed M = 29.87; the inner slope agrees with the target (both ∝ 1/r for x < 1), the outer does not (target ∝ 1/r^2)
+cfg122_g2  (harness check failures 0)
+    G2.1                     PASS       equations written for both phases; the normal-phase equations are LCDM's by declaration; the condensed-phase equations carry c_s^2 = 2X/m and a baryon source
+    G2.2                     PASS       conditional statement: a region of the plane (m >= q sqrt(alpha), q above) keeps a condensed background cold enough; it is combined with G2.3/G2.4 below
+    G2.4-i                   FAIL       a condensed, active-coupling background needs m/sqrt(alpha) in [[266.449, 258.17], [0.00028, 0.00025]] eV: compatible = [False, False]
+    G2.3                     UNDECIDED  (a) thermal at recombination: INCOMPATIBLE with a condensed halo core (m >= 1e+04 eV for free streaming vs m <= 10 eV for condensation); (b) cold non-thermalised: rate not fixed by the EFT -> UNDECIDED
+    G2.5                     UNDECIDED  conditional on G2.3, which is UNDECIDED / option (a) incompatible with a condensed halo
+    G2                       UNDECIDED  G2.1 PASS (statement), G2.2 conditional region, G2.4(i) region, G2.3 UNDECIDED (option a INCOMPATIBLE with halo condensation, option b undecidable): G2 is not an unconditional PASS (frozen rule)
+cfg122_g3_virtualwork  (harness check failures 0)
+    G3.3                     PASS       virtual-work force equals the field force on smooth sources to 3.2e-09; the thin-plate variant differs by 7.1e-02 (reported)
+cfg122_g4_g5solar  (harness check failures 0)
+    G4                       FAIL       3 independent untied new constants (m; one of alpha/Lambda; plus, outside the EFT, the thermalisation rate), against the line 0; the a0 tie is a postulated relation, not a derivation; the imported halo functions are addi
+    G5.4                     FAIL       Reading B (BK unscreened): Cassini ['10.9', '12'] x bound, MICROSCOPE ['3.11e+06', '3.41e+06'] x, ephemeris ['6.27e+08', '5.7e+08'] x; Reading A: Cassini ['0.000686', '0.000829'] x, MICROSCOPE ['5.33', '6.44'] x, ephemer
+cfg122_g5_wellposed  (harness check failures 0)
+    G5.1-wellposed(X>0)      PASS       healthy for X > 0: P_XX > 0, c_s^2 = 2X/m
+    G5.1-wellposed(X<0)      FAIL       the gradient-dominated (MOND-carrying) regime X<0 has P_XX<0 and c_s^2 = 2X/m < 0: L2 = -(1/2)(|P_XX| psi_t^2 + (P_X/m) psi'^2), omega^2 = -|c_s^2| k^2: elliptic, growth rate Gamma = |c_s| k unbounded in k (Hadamard ill-
+    G5.1                     FAIL       the MOND-carrying regime (X<0) is ill-posed; the healthy regime (X>0) carries the linear fifth force, not the MOND force (see cfg122_g1_plane.py G5.1 rows)
+cfg122_g6_twofluid  (harness check failures 0)
+    G6                       FAIL       cells matching at all four masses within 10%: [0, 0]; closest approach [0.95, 0.95] (worst-mass error); cost even if it passed: the BTFR postulate for T, uniform T in equilibrium, the per-halo R_c
+cfg122_reported_rows  (harness check failures 0)
+cfg122_s0_controls  (harness check failures 0)
+==============================================================================================================
+MUTATE
+==============================================================================================================
+cfg122_g1_plane_MUTATE_a  (harness check failures 0)
+    G1.1                     PASS       cells passing [1010, 1010] (canonical, alt); closest approach [0.0, 0.0]
+    G1.2                     PASS       cells passing [670, 670]; closest [0.0, 0.0]
+    G1.3                     FAIL       point-mass cells passing [0, 0]; closest [0.414, 0.414]
+    G3.1                     FAIL       closest-approach reading (primary): reactions [[0.9994, 0.9994, 0.9994], [0.9994, 0.9994, 0.9994]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exist): FAIL; u
+    G5.1                     FAIL       primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution r
+    G5.2                     FAIL       a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999957.006), (('alt', 'B+hi'), 1999956.906)]
+    G5.3                     PASS       subluminal X>0 solutions exist (smallest max c_s^2 3.49e-17 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)
+cfg122_g1_plane_MUTATE_c  (harness check failures 0)
+    G1.1                     FAIL       cells passing [0, 0] (canonical, alt); closest approach [1.0, 1.0]
+    G1.2                     FAIL       cells passing [0, 0]; closest [1.0, 1.0]
+    G1.3                     FAIL       point-mass cells passing [0, 0]; closest [0.77, 0.777]
+    G3.1                     PASS       closest-approach reading (primary): reactions [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]] against the 0.10 line; conditional reading (solutions within 10% of the target AND reaction <= 0.10; none exist): FAIL; unconditional minim
+    G5.1                     FAIL       primary reading (the solutions that carry the MOND-like force): every branch-B- solution (the only ones within 41% of the P2 dynamics) has X < 0 throughout, where P_XX < 0 and c_s^2 = 2X/m < 0; the literal per-solution r
+    G5.2                     FAIL       a solution that is BOTH within 10% of the P2 dynamics (G1.3) and Landau-safe exists: False; Landau-safe solutions alone exist on the X>0 branches: [(('canonical', 'B+hi'), 1999980.067), (('alt', 'B+hi'), 1999980.067)]
+    G5.3                     PASS       subluminal X>0 solutions exist (smallest max c_s^2 4.91e-25 c^2); the branch B- (the MOND-carrying one) has c_s^2 = 2X/m < 0: not a speed, an elliptic instability (see G5.1)
+cfg122_g5_wellposed_MUTATE_b  (harness check failures 0)
+    G5.1-wellposed(X>0)      PASS       healthy for X > 0: P_XX > 0, c_s^2 = 2X/m
+    G5.1-wellposed(X<0)      FAIL       the gradient-dominated (MOND-carrying) regime X<0 has P_XX<0 and c_s^2 = 2X/m < 0: L2 = -(1/2)(|P_XX| psi_t^2 + (P_X/m) psi'^2), omega^2 = -|c_s^2| k^2: elliptic, growth rate Gamma = |c_s| k unbounded in k (Hadamard ill-
+    G5.1                     FAIL       MUTATE=b control: does the even P(|X|) flip G5.1 to well-posed?  (frozen expectation: yes)
+==============================================================================================================
+POST-HOC
+==============================================================================================================
+cfg122_g1_edge_POSTHOC_alphaHI4  (harness check failures 0)
+    G1.4-S                   FAIL       cells [0, 0]; best steps [['7.81e-05', '6.27e-05', '3.86e-07', '0.00454'], ['0.0001', '0.000215', '0.000322', '0.00466']]
+    G1.4-F                   FAIL       cells [0, 0]; best steps [['0.00426', '0.00498', '0.000225', '0.0022'], ['0.00272', '0.00243', '0.000468', '0.000718']]
+    G1.6                     PASS       smallest spread [1.0069, 1.0048] (canonical, alt) against the 1.10 line; cells with a crossover at all masses [516, 525]
+    G2.4-ii                  FAIL       cells [0, 0]; smallest fractions [['0.837', '1.85', '0.299', '0.00417'], ['0.798', '1.82', '0.335', '0.00114']]
+    G3.2                     FAIL       cells passing all three timescales at all masses [0, 0]; smallest ratios (t_H) [['0.0545', '0.22', '1.34', '2.84'], ['0.466', '4.47', '1.16', '7.96']]
+    G1.5                     PASS       case 2 cells [3, 3]; case 1 cells [23, 24]
+cfg122_posthoc_prior_art  (harness check failures 0)

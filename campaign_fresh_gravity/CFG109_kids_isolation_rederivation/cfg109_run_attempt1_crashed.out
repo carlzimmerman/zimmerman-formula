@@ -1,0 +1,24 @@
+CFG109  MUTATE=0  frozen-text sha256 e229c2b69e47ac75
+== C1 flags
+  [PASS] C1 flags boolean, length, nested: n10 181477  n20 93020  n30 57265 ; f30 subset of f20: True
+   counts: 181477 / 93020 / 57265  (shares 51.3% / 31.6%)
+   staged n in isoflags file (for reference): [181477, 93020, 57265]
+== C1b lens-lens recomputation of the isolation rule (necessary condition only)
+   lens-lens pairs within the physical-3-Mpc angle: 4424892
+   reading comoving Mgal     : lenses with a qualifying lens neighbour: W10 7  W20 47453  W30 77378
+   reading comoving 10^logM  : lenses with a qualifying lens neighbour: W10 0  W20 46288  W30 75772
+   reading physical Mgal     : lenses with a qualifying lens neighbour: W10 31114  W20 86486  W30 116768
+   reading physical 10^logM  : lenses with a qualifying lens neighbour: W10 30453  W20 84898  W30 115028
+   readings with ZERO qualifying lens-lens pairs at W=10 (consistent with the base rule): [('comoving', '10^logM')]
+   ('comoving', '10^logM'): flagged-isolated with a lens neighbour: W20 0 of 93020 (0.000%), W30 0 of 57265 (0.000%);  share of ~f20 lenses with a lens nb: 52.3%, of ~f30: 61.0%
+  [PASS] C1b flags consistent with lens-lens necessary condition: selected readings [('comoving', '10^logM')]
+== C2 / C3 / C4 sums
+  [PASS] C2 base sums vs June sums: max relative deviation 3.10e-11 (<=1e-9)
+  [PASS] C2b patch labels equal cfg96_stack's: 0 differing labels
+  [PASS] C3 my window sums (cfg110 x flags) vs cfg96_stack: max rel dev W10 3.10e-11  W20 3.09e-12  W30 6.74e-12
+  [PASS] C3b cfg96_stack window-10 sums vs June: max rel dev 0.00e+00
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-carlzimmerman-new-physics-zimmerman-formula/62f6c161-039d-4f56-a025-0306c68f003d/scratchpad/cfg109/cfg109_run.py", line 156, in <module>
+    check("C4 shells partition the base sums", part <= 1e-12 and cn == nL, "max rel dev %.2e ; counts %d + %d + %d = %d" % (int((~f20).sum()), int((f20 & ~f30).sum()), n30, cn))
+                                                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TypeError: not enough arguments for format string

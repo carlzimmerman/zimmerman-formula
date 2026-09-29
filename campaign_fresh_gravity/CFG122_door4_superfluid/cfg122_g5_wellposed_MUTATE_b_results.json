@@ -1,0 +1,60 @@
+{
+ "slug": "cfg122_g5_wellposed_MUTATE_b",
+ "mutate": "b",
+ "check_failures": 0,
+ "gate_fail": 2,
+ "checks": [
+  {
+   "name": "G5.1a  region X > 0 is well-posed (n > 0, K_t > 0, c_s^2 > 0)  [positive control: the harness can see a healthy region]",
+   "detail": "{'n_positive': True, 'kinetic_positive': True, 'cs2_positive': True}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "G5.1b  region X < 0 (the gradient-dominated, MOND-carrying region) is well-posed",
+   "detail": "{'n_positive': False, 'kinetic_positive': True, 'cs2_positive': False}",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "G5.1-wellposed(X>0)": {
+   "status": "PASS",
+   "why": "healthy for X > 0: P_XX > 0, c_s^2 = 2X/m"
+  },
+  "G5.1-wellposed(X<0)": {
+   "status": "FAIL",
+   "why": "the gradient-dominated (MOND-carrying) regime X<0 has P_XX<0 and c_s^2 = 2X/m < 0: L2 = -(1/2)(|P_XX| psi_t^2 + (P_X/m) psi'^2), omega^2 = -|c_s^2| k^2: elliptic, growth rate Gamma = |c_s| k unbounded in k (Hadamard ill-posed)"
+  },
+  "G5.1": {
+   "status": "FAIL",
+   "why": "MUTATE=b control: does the even P(|X|) flip G5.1 to well-posed?  (frozen expectation: yes)"
+  }
+ },
+ "numbers": {
+  "wellposed": {
+   "pos": {
+    "n_positive": true,
+    "kinetic_positive": true,
+    "cs2_positive": true
+   },
+   "neg": {
+    "n_positive": false,
+    "kinetic_positive": true,
+    "cs2_positive": false
+   }
+  },
+  "cs_growth_m1.0_a1.0": {
+   "cs_over_c": 0.0007074499194853305,
+   "rate_per_Myr_at_k_1_over_kpc": 0.2169051312992672
+  },
+  "cs_growth_m0.01_a1.0": {
+   "cs_over_c": 0.07074499194853305,
+   "rate_per_Myr_at_k_1_over_kpc": 21.690513129926718
+  },
+  "cs_growth_m1.0_a100.0": {
+   "cs_over_c": 0.007074499194853304,
+   "rate_per_Myr_at_k_1_over_kpc": 2.1690513129926714
+  }
+ }
+}

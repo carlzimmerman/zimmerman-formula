@@ -1,0 +1,131 @@
+{
+ "slug": "cfg122_g2",
+ "mutate": "",
+ "check_failures": 0,
+ "gate_fail": 1,
+ "checks": [
+  {
+   "name": "G2.1a  linear condensed phase: c_s^2 = 2X/m and the forcing of psi by the baryon density perturbation is (alpha Lam/M_Pl) delta rho_b (sympy)",
+   "detail": "c_s^2 = 2*X/m",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "verdicts": {
+  "G2.1": {
+   "status": "PASS",
+   "why": "equations written for both phases; the normal-phase equations are LCDM's by declaration; the condensed-phase equations carry c_s^2 = 2X/m and a baryon source"
+  },
+  "G2.2": {
+   "status": "PASS",
+   "why": "conditional statement: a region of the plane (m >= q sqrt(alpha), q above) keeps a condensed background cold enough; it is combined with G2.3/G2.4 below"
+  },
+  "G2.4-i": {
+   "status": "FAIL",
+   "why": "a condensed, active-coupling background needs m/sqrt(alpha) in [[266.449, 258.17], [0.00028, 0.00025]] eV: compatible = [False, False]"
+  },
+  "G2.3": {
+   "status": "UNDECIDED",
+   "why": "(a) thermal at recombination: INCOMPATIBLE with a condensed halo core (m >= 1e+04 eV for free streaming vs m <= 10 eV for condensation); (b) cold non-thermalised: rate not fixed by the EFT -> UNDECIDED"
+  },
+  "G2.5": {
+   "status": "UNDECIDED",
+   "why": "conditional on G2.3, which is UNDECIDED / option (a) incompatible with a condensed halo"
+  },
+  "G2": {
+   "status": "UNDECIDED",
+   "why": "G2.1 PASS (statement), G2.2 conditional region, G2.4(i) region, G2.3 UNDECIDED (option a INCOMPATIBLE with halo condensation, option b undecidable): G2 is not an unconditional PASS (frozen rule)"
+  }
+ },
+ "numbers": {
+  "A_max_5pct": {
+   "0.5": 4.742983121793616e-28,
+   "2.0": 2.9643642796471334e-29,
+   "10.0": 1.1857392989154036e-30,
+   "30.0": 1.3175030952187012e-31
+  },
+  "A_max_30_zi1e3": 1.3115834218903738e-26,
+  "G2.2_cells_canonical": 392,
+  "G2.2_m_over_sqrt_alpha_min_canonical": 266.44946679961424,
+  "G2.2_cells_alt": 392,
+  "G2.2_m_over_sqrt_alpha_min_alt": 258.1704811353737,
+  "G2.4_i_q_canonical": 0.00027890099865804965,
+  "G2.4_i_cells_canonical": 40,
+  "G2.2_and_G2.4i_compatible_canonical": false,
+  "G2.4_i_q_alt": 0.0002537027970012383,
+  "G2.4_i_cells_alt": 30,
+  "G2.2_and_G2.4i_compatible_alt": false,
+  "G2.3a_m_min_eV": 10000.0,
+  "G2.3a_table": {
+   "m": [
+    0.001,
+    0.003981071705534973,
+    0.01584893192461114,
+    0.06309573444801933,
+    0.25118864315095824,
+    1.0,
+    3.981071705534973,
+    15.848931924611142,
+    63.09573444801943,
+    251.18864315095823,
+    1000.0,
+    3981.0717055349774,
+    15848.93192461114,
+    63095.73444801943,
+    251188.6431509582,
+    1000000.0
+   ],
+   "sigma0": [
+    1164253.2886999731,
+    184521.71115610504,
+    29244.720387258672,
+    4634.975825719502,
+    734.594163340466,
+    116.42532886999733,
+    18.45217111561051,
+    2.924472038725867,
+    0.46349758257194934,
+    0.07345941633404661,
+    0.011642532886999735,
+    0.0018452171115610485,
+    0.00029244720387258677,
+    4.634975825719494e-05,
+    7.345941633404663e-06,
+    1.1642532886999736e-06
+   ],
+   "lam": [
+    4525.831256074941,
+    4515.766193758655,
+    4213.219555038422,
+    2594.6579997625836,
+    1095.1955449825741,
+    371.2733533250452,
+    103.17500862651023,
+    24.358455964532254,
+    5.167762395153202,
+    1.0241838721832237,
+    0.1916349459650166,
+    0.032754502065273444,
+    0.0052279493811794985,
+    0.0008287397942264182,
+    0.00013134706765431385,
+    2.0817109972554593e-05
+   ]
+  },
+  "G2.3_m_max_halo_condensate": {
+   "canonical": [
+    42.169650342858226,
+    19.952623149688787,
+    12.589254117941687,
+    10.0
+   ],
+   "alt": [
+    42.169650342858226,
+    21.134890398366476,
+    12.589254117941687,
+    10.0
+   ]
+  },
+  "G2.3a_compatible_with_halo_condensate": false
+ }
+}

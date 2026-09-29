@@ -1,0 +1,133 @@
+{
+ "slug": "cfg122_s0_controls",
+ "mutate": "",
+ "check_failures": 0,
+ "gate_fail": 0,
+ "checks": [
+  {
+   "name": "S0.1a  n = P'(X) = Lam (2m)^(3/2) sqrt|X| in both signs of X (sympy)",
+   "detail": "residuals 0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.1b  the gradient-dominated phonon force is a_phi = sqrt(a0 g_N) with a0 = N_a alpha^3 Lam^2/M_Pl and N_a = 1 (derived)",
+   "detail": "N_a = 1",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.1c  numeric deep-MOND limit through the algebraic solver: a_phi = sqrt(a0 G M)/r, v^4 = G M a0 (both footings, 3 (m, alpha), 3 radii)",
+   "detail": "worst relative deviation 4.44e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.2a  K = 1/(12 m^6 Lam^2) (the frozen file's hand value)",
+   "detail": "sympy K = 1/(12*Lambda**2*m**6)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.2b  c_s^2 = 2X/m and c_s^2 = 3 K rho^2 = 3P/rho",
+   "detail": "c_s^2(X) = 2*X/m",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.2c  polytropic exponent dlnP/dlnrho = 3, i.e. n = 1/2",
+   "detail": "dlnP/dlnrho = 3",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.3  alpha_c = 1e-14 alpha: max a_phi/g_N and |X/Y - 1| (X = mu - m Phi, the Newtonian condensate)",
+   "detail": "a_phi/g_N max 8.64e-28; max |X/Y - 1| 0.00e+00",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.4  d ln R / d ln M = (1-n)/(3-n) = 1/5 for the n = 1/2 polytrope (numerical hydrostatic integration, rho_c = 1 and 2)",
+   "detail": "exponent 0.20000; R(1) = 0.95104, M(1) = 1.96344",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.5 [canonical] ODE target = rho_c = a0/(4 pi G r sqrt(1+x^2)), M_c = M(sqrt(1+x^2) - 1), C(r) = a0 M/4pi",
+   "detail": "max dev rho 6.45e-13, M_c 1.05e-12, C(r) 2.22e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.5 [alt] ODE target = rho_c = a0/(4 pi G r sqrt(1+x^2)), M_c = M(sqrt(1+x^2) - 1), C(r) = a0 M/4pi",
+   "detail": "max dev rho 6.71e-13, M_c 1.07e-12, C(r) 2.22e-16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.5x  CFG44 Bcommon.target_fields (point mass 1e10, r near r_M) agrees with this lane's natural-unit target",
+   "detail": "relative deviation 2.57e-04 (units Msun/kpc^3 -> eV^4; A0 canonical)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.6 (reported) neglected inner DM mass M_DM(<0.1 r_M)/M_b",
+   "detail": "see the table above; values >> 1e-2 mean the solver's M_DM(r_lo) = 0 start is not negligible for those (m, alpha, Y) cells (disclosed; each gate row states whether it uses such cells)",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "S0.7a  branch B- (the MOND-carrying branch), DM-subdominant solutions: N = 160 agrees with N = 640 to 1e-3 in rho and a_phi",
+   "detail": "worst deviation 2.91e-10 over 1352 sets",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S0.7b (reported)  branches B+hi / B+lo, DM-subdominant: fraction agreeing to 1e-3 (the disagreements sit next to the fold Y^2 = 4D where the root is singular)",
+   "detail": "B+hi 446/452 (worst 3.39e-03); B+lo 570/606 (worst 7.90e-02)",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {},
+ "numbers": {
+  "N_a": "1",
+  "S0.6_MDM_inner_over_Mb_max": {
+   "('canonical', 'B-')": 3.0208215953971333e+18,
+   "('canonical', 'B-', 'frac_cells_le_1e-2')": 0.51625,
+   "('canonical', 'B+hi')": 0.0,
+   "('canonical', 'B+hi', 'frac_cells_le_1e-2')": 0.0,
+   "('canonical', 'B+lo')": 0.0,
+   "('canonical', 'B+lo', 'frac_cells_le_1e-2')": 0.0,
+   "('alt', 'B-')": 2.2738168548808328e+18,
+   "('alt', 'B-', 'frac_cells_le_1e-2')": 0.51625,
+   "('alt', 'B+hi')": 0.0,
+   "('alt', 'B+hi', 'frac_cells_le_1e-2')": 0.0,
+   "('alt', 'B+lo')": 0.0,
+   "('alt', 'B+lo', 'frac_cells_le_1e-2')": 0.0
+  },
+  "S0.7": {
+   "stat": {
+    "B-": {
+     "n": 1352,
+     "ok": 1352,
+     "worst": 2.9108893073725994e-10
+    },
+    "B+hi": {
+     "n": 452,
+     "ok": 446,
+     "worst": 0.003392105758077024
+    },
+    "B+lo": {
+     "n": 606,
+     "ok": 570,
+     "worst": 0.0790341078042307
+    }
+   },
+   "dm_dominated": {
+    "n": 1858,
+    "bad": 518
+   }
+  }
+ }
+}

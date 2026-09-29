@@ -1,0 +1,72 @@
+
+======================================================================================================================
+G2.1  perturbation equations (sympy), condensed phase: L2 for psi = delta phi about a homogeneous background, with the baryon source and Newtonian gravity
+======================================================================================================================
+  EL equation for one Fourier mode (a, P_XX, P_X slowly varying):
+    -Lambda*a**3*alpha*delta_rho_b/M_Pl - P_X*a*k**2*psi(t)/m - P_XX*a**3*Derivative(psi(t), (t, 2))
+  dispersion relation omega^2 = c_s^2 k^2/a^2 with c_s^2 = P_X/(m P_XX) = 2*X/m (X>0: P_XX = sqrt(2)*Lambda*m**(3/2)/sqrt(X) > 0)
+  [PASS] G2.1a  linear condensed phase: c_s^2 = 2X/m and the forcing of psi by the baryon density perturbation is (alpha Lam/M_Pl) delta rho_b (sympy)
+         c_s^2 = 2*X/m
+  Background (homogeneous, from the same L): d(a^3 n)/dt = a^3 J_b,  J_b = (alpha Lam/M_Pl) rho_b(z): the baryons inject condensate number when the condensate is present (G2.4).
+  Normal phase (declared, NOT derived): collisionless Vlasov CDM; no phonon exists there, so no coupling and no P(X) pressure.  The perturbation equations of that phase are those of LCDM (the door adds nothing to them).
+  >> G2.1: PASS -- equations written for both phases; the normal-phase equations are LCDM's by declaration; the condensed-phase equations carry c_s^2 = 2X/m and a baryon source
+
+======================================================================================================================
+G2.2  if the cosmic-mean DM were condensed: c_s^2(z) = A (1+z)^6 (c = 1) with A = rho_c0^2 alpha^3 /(4 a0 M_Pl m^6);  c_s <= c for z <= 1100 and growth within 5% at k = 30/Mpc
+======================================================================================================================
+  k =   0.5/Mpc: growth within 5% needs A <= 4.743e-28  (c_s^2(z=0) = A; c_s(z=0) <= 6.529e-09 km/s)
+  k =   2.0/Mpc: growth within 5% needs A <= 2.964e-29  (c_s^2(z=0) = A; c_s(z=0) <= 1.632e-09 km/s)
+  k =  10.0/Mpc: growth within 5% needs A <= 1.186e-30  (c_s^2(z=0) = A; c_s(z=0) <= 3.264e-10 km/s)
+  k =  30.0/Mpc: growth within 5% needs A <= 1.318e-31  (c_s^2(z=0) = A; c_s(z=0) <= 1.088e-10 km/s)
+  sensitivity (reported): start z = 1e3 (CFG43's) instead of 1e4: growth within 5% at k = 30/Mpc needs A <= 1.312e-26  (a factor 9.96e+04 looser; the plane bound moves by that factor^(1/6) = 6.81 in m/sqrt(alpha))
+  superluminality bound at z = 1100: A <= 5.614e-19;  growth bound (k=30): A <= 1.318e-31  -> binding growth: A <= 1.318e-31
+  [canonical] cells (of 3600) with A(m, alpha) <= 1.32e-31: 392;  the boundary is m >= alpha^(1/2) * 266.4 eV
+  [alt] cells (of 3600) with A(m, alpha) <= 1.32e-31: 392;  the boundary is m >= alpha^(1/2) * 258.2 eV
+  >> G2.2: PASS -- conditional statement: a region of the plane (m >= q sqrt(alpha), q above) keeps a condensed background cold enough; it is combined with G2.3/G2.4 below
+
+======================================================================================================================
+G2.4 (i)  number injection in the background if the coupling were active: fraction = (Omega_b/Omega_c) m alpha (Lam/M_Pl) t_age(z=1100 -> 0) <= 1%
+======================================================================================================================
+  t(z=1100 -> 0) = 13.810 Gyr (H0 = 67.4)
+  [canonical] cells with injected fraction <= 1%: 40/3600;  the condition is m/sqrt(alpha) <= 0.0002789 eV;  smallest fraction in the plane 0.00359, largest 3.59e+05
+        G2.2 needs m/sqrt(alpha) >= 266.4; G2.4(i) needs <= 0.0002789: INCOMPATIBLE (a condensed cosmological background is excluded in the plane)
+  [alt] cells with injected fraction <= 1%: 30/3600;  the condition is m/sqrt(alpha) <= 0.0002537 eV;  smallest fraction in the plane 0.00394, largest 3.94e+05
+        G2.2 needs m/sqrt(alpha) >= 258.2; G2.4(i) needs <= 0.0002537: INCOMPATIBLE (a condensed cosmological background is excluded in the plane)
+  >> G2.4-i: FAIL -- a condensed, active-coupling background needs m/sqrt(alpha) in [[266.449, 258.17], [0.00028, 0.00025]] eV: compatible = [False, False]
+
+======================================================================================================================
+G2.3  the phase at recombination: (a) thermal, T > T_c(n(z)); (b) cold and non-thermalised (rate not fixed by the EFT)
+======================================================================================================================
+  m [eV]     sigma_c0 [km/s]   lambda_fs(z: 1e8 -> 10) [Mpc]
+      0.001       1.164e+06           4526
+    0.00398       1.845e+05           4516
+     0.0158       2.924e+04           4213
+     0.0631            4635           2595
+      0.251           734.6           1095
+          1           116.4          371.3
+       3.98           18.45          103.2
+       15.8           2.924          24.36
+       63.1          0.4635          5.168
+        251         0.07346          1.024
+      1e+03         0.01164         0.1916
+   3.98e+03        0.001845        0.03275
+   1.58e+04       0.0002924       0.005228
+   6.31e+04       4.635e-05      0.0008287
+   2.51e+05       7.346e-06      0.0001313
+      1e+06       1.164e-06      2.082e-05
+  free-streaming option (a) passes (lambda_fs <= 0.01 Mpc) for m >= 1e+04 eV (on the log grid)
+  [canonical] largest m for which the NFW halo still has a condensate out to >= 3 r_M (n_DM(r) >= n_c(sigma_halo)): 1e+09: 42.2 eV, 1e+10: 20 eV, 1e+11: 12.6 eV, 1e+12: 10 eV
+  [alt] largest m for which the NFW halo still has a condensate out to >= 3 r_M (n_DM(r) >= n_c(sigma_halo)): 1e+09: 42.2 eV, 1e+10: 21.1 eV, 1e+11: 12.6 eV, 1e+12: 10 eV
+  option (a) [thermal, T > T_c at recombination, free-streaming small enough] needs m >= 1e+04 eV; a condensed halo core at all four masses needs m <= 10 eV: INCOMPATIBLE
+  option (b) [cold, non-thermalised background]: whether cold degenerate bosons condense needs the thermalisation (2->2 / 3->3) rate, which the P(X) EFT does not fix; not computed.
+  >> G2.3: UNDECIDED -- (a) thermal at recombination: INCOMPATIBLE with a condensed halo core (m >= 1e+04 eV for free streaming vs m <= 10 eV for condensation); (b) cold non-thermalised: rate not fixed by the EFT -> UNDECIDED
+
+======================================================================================================================
+G2.5  CMB lensing and TT/TE/EE (statement, not computed)
+======================================================================================================================
+  By declaration unchanged if and only if G2.3 resolves to the normal phase (then the DM is LCDM's CDM at recombination and in the linear regime).  Not computed.  Option (a) is not compatible with the condensed halo core (above); option (b) is undecided.
+  >> G2.5: UNDECIDED -- conditional on G2.3, which is UNDECIDED / option (a) incompatible with a condensed halo
+  >> G2: UNDECIDED -- G2.1 PASS (statement), G2.2 conditional region, G2.4(i) region, G2.3 UNDECIDED (option a INCOMPATIBLE with halo condensation, option b undecidable): G2 is not an unconditional PASS (frozen rule)
+
+  1/1 checks pass; load-bearing check failures: 0   (1 s)
+  gate verdicts: G2.1=PASS, G2.2=PASS, G2.4-i=FAIL, G2.3=UNDECIDED, G2.5=UNDECIDED, G2=UNDECIDED

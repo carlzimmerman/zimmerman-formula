@@ -1,0 +1,17 @@
+  ratio rho_grad/rho_t = 2*sqrt(2)*sqrt(pi)*sqrt(G)*Lambda*sqrt(alpha)*m**2*sqrt(G*M + a0*r**2)/(sqrt(M_Pl)*a0)
+  R0(M) = ratio at x -> 0 = sqrt(2)*Lambda*sqrt(M)*sqrt(alpha)*m**2/(4*sqrt(pi)*M_Pl**(5/2)*a0);   ratio/R0 = sqrt(x**2 + 1)
+  d ln R0/d ln M = 1/2   (so the ratio at fixed x scales as M^1/2)
+  [PASS] G1.1a-i  ratio(x, M) = R0(M) sqrt(1 + x^2) with R0 ∝ M^(1/2)  (sympy)
+         ratio/R0 = sqrt(x**2 + 1); dlnR0/dlnM = 1/2
+  deep regime x >> 1: ratio -> r/r_*,  r_* = M_Pl**(3/2)*sqrt(a0)/(Lambda*sqrt(alpha)*m**2)
+  [PASS] G1.1a-ii  r_*(m, alpha) is independent of M_b (deep regime)
+         d r_*/dM = 0
+  spread of the ratio at fixed x across 1e9..1e12: 31.62;  spread across x in [0.1, 30] at fixed M: 29.87   (the 10% line: 1.10)
+  [PASS] G1.1a-iii  the closed form matches the solver's algebra (Y = 0) at 2 (m, alpha) x 4 masses x 4 x, both footings
+         worst relative deviation 6.66e-16
+  [FAIL] (reported) G1.1a  the mass spread of rho_DM/rho_target at fixed x is <= 10%  [HEADLINE sub-check: the analytic spread is 31.6]
+         spread 31.62 (x-spread at fixed M 29.87)
+  >> G1.1a: FAIL -- ratio spread across masses at fixed x = 31.62 (1.10 line); across x in [0.1, 30] at fixed M = 29.87; the inner slope agrees with the target (both ∝ 1/r for x < 1), the outer does not (target ∝ 1/r^2)
+
+  3/4 checks pass; load-bearing check failures: 0   (0 s)
+  gate verdicts: G1.1a=FAIL
