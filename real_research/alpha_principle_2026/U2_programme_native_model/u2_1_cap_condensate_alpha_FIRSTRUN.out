@@ -1,0 +1,50 @@
+U2 / u2_1: cap-stiffness winding-charge model; alpha_c = w F^2 xi^2/(hbar c), F^2 = 2 P_cap xi^2
+inputs: Lambda = 1.0904327e-52 m^-2, l_P = 1.616255e-35 m, x = Lambda l_P^2 = 2.8485159e-122, ln(1/x) = 279.86858
+  [PASS] A0 x reproduces AH5's 2.8485e-122 to 1e-3 
+  [PASS] A1 alpha_c = w F^2 xi^2/(hbar c) = (w kappa^2/32 pi^2) x (xi/l_P)^4 (exact, sympy) 
+  [PASS] A2a under P3 (P_cap xi^4 = s hbar c): alpha_c = 2 w s exactly (alpha_c = 2*s*w)
+  [PASS] A2b alpha_c independent of kappa, Lambda, G, c, hbar (derivatives vanish) 
+
+A3 footings: P_cap(rho_Lambda) = 5.2232e-12 J/m^3, P_cap(rho_crit) = 7.62844e-12 J/m^3;  a0 = 9.3603e-11 and 1.1312e-10 m/s^2 (c H0/Z = 1.1312e-10)
+  [PASS] A3a a0 = sqrt(8 pi G P_cap) = 9.36e-11 (rho_Lambda footing) within 0.5% 
+  [PASS] A3b a0 = 1.13e-10 (rho_crit footing, = c H0/Z) within 0.5% 
+  [PASS] A3c alpha_c(xi_cap, w = pi) is identical on both footings to 1e-12 (P_cap and xi_cap differ) (alpha_c = 6.28318530718 vs 6.28318530718; xi_cap = 0.00027893 m vs 0.00025373 m)
+
+A4 exponent of alpha_c in x (Lambda -> 2 Lambda at fixed l_P), w = pi:
+    xi = l_P            xi/l_P =          1.0   alpha_c = 7.08368e-125   1/alpha_c =  1.4117e+124   exponent in x = 1.0
+    xi = xi_cap         xi/l_P =   1.7258e+31   alpha_c =      6.28319   1/alpha_c =     0.159155   exponent in x = 3.8559844e-51
+    xi = sqrt(l_P r_H)  xi/l_P =   3.2035e+30   alpha_c =   0.00746039   1/alpha_c =      134.041   exponent in x = -1.3495945e-50
+    xi = r_H            xi/l_P =   1.0262e+61   alpha_c = 7.85713e+119   1/alpha_c = 1.27273e-120   exponent in x = -1.0
+  [PASS] A4 exponents are 1, 0, 0, -1 (only xi_cap and the geometric mean avoid 1e+-122) 
+
+A5 family: 15 lengths x 3 w = 45 members; target 1/alpha = 137.035999177
+    sqrt(l_P r_H)[sqrt(3/L)]   w=pi    alpha_c =    0.007460388  1/alpha_c =      134.04129  miss = 0.02185
+    sqrt(l_P r_H)[1/sqrt(L)]   w=2pi   alpha_c =    0.004973592  1/alpha_c =      201.06193  miss = 0.4672
+    sqrt(l_P r_H)[sqrt(3/L)]   w=2pi   alpha_c =    0.014920776  1/alpha_c =      67.020643  miss = 0.5109
+    xi_cap[s=1/4pi]            w=1     alpha_c =     0.15915494  1/alpha_c =      6.2831853  miss = 0.9541
+    xi_cap[s=1/2pi]            w=1     alpha_c =     0.31830989  1/alpha_c =      3.1415927  miss = 0.9771
+    xi_cap[s=3/4pi]            w=1     alpha_c =     0.47746483  1/alpha_c =      2.0943951  miss = 0.9847
+  [PASS] A5a family has 45 members 
+  [PASS] A5b no member is within 1e-3 of the target (pre-registered expectation 0 hits) (hits = 0)
+  [PASS] A5c the closest member is the post-observation geometric mean sqrt(l_P r_H), R = sqrt(3/Lambda), w = pi, miss 2.2% (miss = 0.021853)
+  [PASS] A5d every xi_cap member has alpha_c >= 0.159 (1/alpha <= 6.3): the Q sub-family is O(1) (min alpha_c = 0.159155, 1/alpha max = 6.28319)
+  [PASS] A5e the primary member is alpha_c = 2 pi (alpha_c = 6.28318530717959, 1/alpha_c = 0.15915494; it exceeds the target alpha by 861.023x)
+    family spread max/min alpha_c = 6.969e+244 (dominated by the l_P and r_H members at 1e-123 and 1e+121)
+
+A6 inversions (each trades alpha for one number; NOT evidence):
+    (w = pi) xi* = 0.184606 xi_cap = 5.14916e-5 m;  s* = 0.00116141;  m* = hbar/(xi* c) = 0.0038322 eV (FL1 window 2e-19 .. 3 eV)
+    geometric-mean member (R = sqrt(3/Lambda), w = pi) would need kappa* = 0.494506 instead of 1/2 (a -1.099% change)
+    fourth-power sensitivity: d alpha/alpha = 4 d xi/xi, so a 441.7% larger xi_cap than xi* moves alpha by the whole factor 861.02
+  [PASS] A6a xi* = 0.19 xi_cap (a factor 5.4 below the quantum-limited core), s* = 1.2e-3: no natural convention 
+  [PASS] A6b m* inside FL1's allowed window (so the re-labelled model is not excluded by FL1's own window; it is still a re-labelling) (m* = 0.0038322 eV)
+  [PASS] A6c required kappa for the geometric-mean member is 0.4945 (1.1% below the fitted 1/2) 
+  [PASS] A7a at kappa = 1/2 the geometric-mean member is 1/alpha = 32 pi/(3 kappa^2) = 128 pi/3 = 4 Z^2 exactly (1/alpha = 134.041286553, 4Z^2 = 134.041286553)
+    residual to the target: 2.9947126 (the '+3' of the old formula 1/alpha = 4Z^2 + 3, scored as chance by lane D). This model does NOT produce it.
+  [PASS] A7b the residual is 2.996 (not 3 exactly), i.e. 4Z^2+3 misses by 3.9e-5 
+
+checks: 18/18 pass
+
+VERDICT (against the pre-registered criteria):
+  f(x) implied: alpha_c = C x^(1-4p); only p = 1/4 (xi_cap and the geometric mean) is not 1e+-122, and then f is a CONSTANT (2 w s, or 3 w kappa^2/(32 pi^2) for the geometric mean): no x dependence, no logarithm, not forced.
+  Primary member (Q, s=1, w=pi): alpha_c = 2 pi. It misses the target by 860x. No member within 1e-3. The nearest (geometric mean, 1/134.04 = 4 Z^2) is post-observation and 2.2% off; it needs a +3 in 1/alpha the model does not supply.
+  Zero NEW free constants in the primary model; the freedom is in the pure-number conventions (s, w, R, which length), all counted (45). Re-labelled with xi free, alpha is a 4th-power function of xi.

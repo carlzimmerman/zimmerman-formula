@@ -1,0 +1,34 @@
+U2 / u2_2: far field of a unit winding. shape used for B1/B2: closed ring
+  [PASS] B1 oint dl = 0 (so the Coulomb 1/d coefficient (oint dl1).(oint dl2) vanishes) (oint dl = [0, 0, 0])
+
+B2 Neumann energy U(d)/F^2 (a = 1):
+    d/a =   10.0   U =    0.06020847635   d*U =     0.6020847635   U d^3/(2 pi^3) = 0.9709078741
+    d/a =   30.0   U =   0.002289131852   d*U =    0.06867395555   U d^3/(2 pi^3) = 0.9966781989
+    d/a =  100.0   U =   6.199395541e-5   d*U =   0.006199395541   U d^3/(2 pi^3) = 0.9997000937
+    d/a =  300.0   U =    2.29668468e-6   d*U =  0.0006890054039   U d^3/(2 pi^3) = 0.9999666678
+    d/a = 1000.0   U =   6.201236732e-8   d*U =   6.201236732e-5   U d^3/(2 pi^3) = 0.999997
+    local exponent d ln U / d ln d between d = 300 and 1000: -2.9999748
+  [PASS] B2a local exponent is -3.000 +- 0.02 (dipole-dipole) (exponent = -2.99997)
+  [PASS] B2b U d^3 / (2 pi^3 F^2 a^4) -> 1 to 1e-3 at d/a = 1000 (= 0.999997)
+  [PASS] B2c d*U falls as d^-2 (>= 50x smaller at d = 1000 than at d = 100, expected 100x), so D1 e_far^2 = lim d U = 0 (d U at 100: 0.0061994, at 1000: 6.20124e-5)
+
+B3 Stokes flux check (Gamma = 1; U/F^2 = 4 pi^2 Phi/Gamma):
+    d = 3: 4 pi^2 Phi = 1.72669696807   Neumann double integral = 1.72669696807   rel diff = 1.11e-16
+    d = 10: 4 pi^2 Phi = 0.0602084763493   Neumann double integral = 0.0602084763493   rel diff = 0.0
+  [PASS] B3 flux of ring 2's velocity through ring 1's disk reproduces the Neumann energy to 1e-6 
+
+B4 on-axis velocity of a ring (Gamma = 1, a = 1): closed form Gamma a^2 / (2 (a^2 + z^2)^(3/2))
+    z =   10.0: numeric = 0.000492592668421, closed form = 0.000492592668421
+    z =  100.0: numeric = 4.99925009374e-7, closed form = 4.99925009374e-7
+    z = 1000.0: numeric = 4.99999250001e-10, closed form = 4.99999250001e-10
+  [PASS] B4 numeric Biot-Savart equals the closed form (1e-10) and the far-field exponent is -3.000 +- 0.01 (a dipole field, not the 1/r^2 of a monopole) (exponent = -2.99994)
+
+B5 open parallel segments (l = 1): U d /(pi F^2 l^2) at d = 1000 = 0.9999999167,  local exponent -0.999999
+  [PASS] B5 open segments DO give a Coulomb law U -> pi F^2 l^2/d (exponent -1.000 +- 0.005, coefficient 1 to 1e-6): that is the D2 bypass, and it needs div(omega) != 0 (a line ending in the fluid), which a phase-winding cannot have (exponent -0.999999)
+
+checks: 7/7 pass
+
+VERDICT (against the pre-registered criteria):
+  D1: the interaction energy of two unit-winding rings is dipole-dipole, U ~ 2 pi^3 F^2 a^4/d^3; the 1/d coefficient is (oint dl1).(oint dl2) = 0 exactly (Helmholtz: vorticity has no sources).
+  So e_far = 0: a closed unit winding of a phase field has NO Coulomb charge. The winding-charge model has no charge quantum at large distance and dies at step (iii).
+  A Coulomb 1/d needs open segments (B5), i.e. a monopole source of vorticity, which the U(1) phase does not have; that is the bypass behind D2, not part of the model.

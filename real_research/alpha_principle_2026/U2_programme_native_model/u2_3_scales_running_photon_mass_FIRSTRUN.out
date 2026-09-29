@@ -1,0 +1,42 @@
+U2 / u2_3: spectrum, running and photon-mass consequences
+m_e c^2 = 510998.95 eV;  hbar c = 1.9732698e-7 eV m;  r_H = 1.65867e+26 m
+
+--- primary (Q, s=1): xi = 0.000278927 m, s = 1.0, hbar c/xi = 0.000707451 eV, hbar c/xi over m_e c^2 = 1.384e-9
+C1: E_ring(a = xi) = 0.00221873 eV = 4.342e-9 m_e c^2 ;  E_ring(2 xi) = 0.043155 eV, E_ring(10 xi) = 0.66528 eV
+    ring radius that would reach m_e c^2: k = 1.2929e+6, a = 360.61 m (0.36061 km)
+C2: one complex-scalar loop d(1/alpha)/d ln mu = -1/(6 pi); window from the cutoff 2 pi hbar c/xi to the lightest ring: Delta(1/alpha) = 0.036863
+    this member's contact value alpha_c = 2 pi s = 6.28319 (1/alpha_c = 0.15915494); Delta(1/alpha) needed to reach 137.036: 136.87684
+    e-folds needed: scalar 2580.07, Dirac 645.017  (ratio Lambda/m = e^that); the window supplies 0.69486 e-folds
+C3: charged-condensate (London) variant: f = sqrt(F^2 hbar c) = sqrt(2 s) hbar c/xi = 0.0010005 eV;  m_gamma c^2 = e f = 0.0088901 eV for e = sqrt(4 pi alpha_c);  bound 1e-18 eV exceeded by 10^15.95;  largest allowed e = 9.995e-16 => alpha_max = 7.95e-32
+
+--- geometric mean sqrt(l_P r_H) [post-observation]: xi = 5.17768e-5 m, s = 0.00118736, hbar c/xi = 0.00381111 eV, hbar c/xi over m_e c^2 = 7.458e-9
+C1: E_ring(a = xi) = 1.41919e-5 eV = 2.777e-11 m_e c^2 ;  E_ring(2 xi) = 0.00027604 eV, E_ring(10 xi) = 0.0042554 eV
+    ring radius that would reach m_e c^2: k = 1.5123e+8, a = 7830.4 m (7.8304 km)
+C2: one complex-scalar loop d(1/alpha)/d ln mu = -1/(6 pi); window from the cutoff 2 pi hbar c/xi to the lightest ring: Delta(1/alpha) = 0.39422
+    this member's contact value alpha_c = 2 pi s = 0.00746039 (1/alpha_c = 134.04129); Delta(1/alpha) needed to reach 137.036: 2.9947126
+    e-folds needed: scalar 56.449, Dirac 14.1123  (ratio Lambda/m = e^that); the window supplies 7.4309 e-folds
+C3: charged-condensate (London) variant: f = sqrt(F^2 hbar c) = sqrt(2 s) hbar c/xi = 0.00018572 eV;  m_gamma c^2 = e f = 5.6865e-5 eV for e = sqrt(4 pi alpha_c);  bound 1e-18 eV exceeded by 10^13.75;  largest allowed e = 5.384e-15 => alpha_max = 2.307e-30
+
+model-wide range check: a massless unit-charge species from the cutoff xi_cap all the way to the horizon
+    ln(r_H/xi_cap) = 68.5578: max shift of 1/alpha = 3.6371 (scalar), 14.548 (Dirac); Dirac species needed to move 1/alpha_c to 137.036: 9.4084
+    (that is lane J's N_eff structure, not this model: the model has no massless charged species, and every SM charged fermion has m >> hbar c/xi.)
+
+  [PASS] C1a primary: E_ring(a = xi) < 1e-3 m_e c^2 (pre-registered exclusion; expected >= 5 orders) (8.362 orders below m_e)
+  [PASS] C1b geometric-mean member: E_ring(a = xi) < 1e-3 m_e c^2 (10.56 orders below m_e)
+  [FAIL] C1c reaching m_e c^2 needs a ring of macroscopic size (> 1 km) for both members 
+  [PASS] C1d m_e c^2 exceeds the condensate's own cutoff 2 pi hbar c/xi by > 1e6 for both members (electron is outside the EFT) (m_e/(2 pi hbar c/xi) = 1.15e+8 primary, 2.134e+7 geometric mean)
+  [PASS] C2a primary: the running window is <= 0.1 in 1/alpha (expected about 0.04) (window = 0.036863)
+  [PASS] C2b sign: screening (1/alpha decreases toward higher energy, so the IR value is larger than the UV one; window > 0 for both) 
+  [PASS] C2c geometric-mean member: the window is smaller than the +2.995 residual it would need (cannot supply it; N_species >= residual/window) (window 0.3942 vs need 2.9947; ratio 7.597 scalar species)
+  [PASS] C2d even a massless Dirac species from xi_cap to the horizon shifts 1/alpha by only ~14 (needs about 10 species to reach 137) (shift 14.55)
+  [PASS] C3a a charged condensate is excluded by >= 10 orders for the model's own D2 coupling (both members) 
+  [FAIL] C3b largest allowed coupling if theta carried charge: alpha_max < 1e-30 (both members) 
+C4 (structural, not a check): the Goldstone theta enters only through its windings, so m_gamma = 0 exactly; a charged theta (London/Higgs) is what C3 excludes. FL1's neutrality is consistent.
+
+checks: 8/10 pass
+
+VERDICT (against the pre-registered criteria):
+  The condensate's own scale is hbar c/xi_cap ~ 0.7 meV: 9 orders below m_e. Any charged excitation it hosts sits at meV-and-below (E_ring(xi) ~ 2 meV primary, ~1e-5 eV geometric mean) -- excluded by the absence of any charged particle lighter than the electron;
+  the electron and every SM charged fermion lie far above the cutoff, so the condensate cannot be their charge source. The running window between the cutoff and the ring mass is 0.04 (primary) / 0.39 (geometric mean) in 1/alpha, so the UV value IS the Thomson value:
+  the model cannot convert an O(1) core coupling into 1/137, and cannot supply the +2.995 that the geometric-mean member is missing. A charged theta is excluded by ~15 orders (C3), so the charge must be topological, and u2_2 shows topological rings carry no Coulomb charge.
+  Caveats: thin-ring formula at k = 1 is an order-of-magnitude bound; the m_gamma bound (1e-18 eV) and 'no charged particle lighter than the electron' are recalled, not re-derived here; the D2 world assumes a charge that D1 says does not exist.

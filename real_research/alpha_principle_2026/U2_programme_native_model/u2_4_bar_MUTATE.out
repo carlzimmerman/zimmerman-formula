@@ -1,0 +1,32 @@
+U2 / u2_4: lane D's bar applied to the U2 model   [MUTATED: closest member given a fake miss of 1e-11]
+primary member: alpha_c = 2 pi, 1/alpha_c = 0.15915494, miss = 0.998839
+closest member (geometric mean, post-observation): alpha_c = 3 kappa^2/(32 pi), 1/alpha_c = 134.0412866, miss = 1e-11
+checker density rho = 0.0250; bar: P < 0.001, miss <= 5e-10 (or within 2x own predicted precision), 0 fitted reals, scale stated
+expected chance hits in the 45-member family at tolerance 1e-3: 0.002249
+
+scoring (official reading first):
+  primary, N=45, predicted precision 1.0 (official)                              lam = 2.249  P = 0.8945  c1 False c2 True   -> does not clear
+  primary, N=45, claims exactness (predicted precision 0)                        lam = 2.247  P = 0.8943  c1 False c2 False  -> does not clear
+  closest member, N=45, predicted precision 1.0 (official)                       lam = 2.249  P = 0.8945  c1 False c2 True   -> does not clear
+  closest member, N=45, predicted precision 0.3 (kappa's fit spread, generous)   lam = 0.6748  P = 0.4908  c1 False c2 True   -> does not clear
+  closest member alone, N=1, predicted precision 0.3 (most generous reading)     lam = 0.015  P = 0.01488  c1 False c2 True   -> does not clear
+  closest member alone, N=1, predicted precision 0.0219 (= its own miss; not a-priori) lam = 0.001095  P = 0.001094  c1 False c2 True   -> does not clear
+  closest member, N=45, claims exactness (predicted precision 0)                 lam = 2.249e-11  P = 2.249e-11  c1 True  c2 True   -> CLEARS
+  POSITIVE CONTROL: a 1e-12 match in a 2^6 family                                lam = 3.199e-12  P = 3.199e-12  c1 True  c2 True   -> CLEARS
+  control: the same 1e-12 match with one fitted real (the xi-relabelled model)   lam = 3.199e-12  P = 3.199e-12  c1 True  c2 True   -> does not clear
+
+  [PASS] D1 the primary member (alpha_c = 2 pi) does not clear the bar under either reading 
+  [FAIL] D2 the closest member does not clear the bar (official, generous, N=1 and exactness readings) 
+  [PASS] D3 even the most generous non-a-priori reading (N=1, predicted precision = own miss) has P above the 1e-3 threshold or fails the fixed-precision rule 
+  [PASS] D4 positive control: the checker accepts a 1e-12 match in a 2^6 family (so the rejections are not a broken checker) 
+  [PASS] D5 the xi-relabelled model (alpha traded for one fitted length) fails on 'zero fitted reals' 
+  [PASS] D6 the checker's own selftest exits 0 
+
+checks: 5/6 pass
+
+VERDICT (against the pre-registered criteria):
+  Neither the primary member (misses by a factor 861) nor the closest member (2.2% off) clears the bar. Even the most generous reading (the closest member alone, N=1, predicted precision set equal to its own 2.19% miss, which is not a-priori) gives P = 1.09e-3, just above the 1e-3 threshold, and the model's real a-priori precision is O(1).
+  The model reaches the target in NO reading. The O(1)-to-fourth-power structure means the nearest member is a near coincidence of the kind lane D's bar is built to discount (it reproduces 4 Z^2, the part of the old formula that lane D scored as chance).
+
+MUTATE CONTROL: the closest member was given a fake miss of 1e-11; D2 (the model does not clear) must FAIL.
+  FAILED as required -- the control works (exit 1)
