@@ -1,0 +1,1115 @@
+{
+ "slug": "cfg173_directional_flow",
+ "summary": {
+  "n_checks": 27,
+  "n_pass": 27,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 8.2
+ },
+ "checks": [
+  {
+   "name": "aux: M(<r) as gammainc(3, r/h) equals the frozen closed form M[1 - e^{-q}(1 + q + q^2/2)]",
+   "detail": "max |difference| over q in [0.05, 0.5, 2.0, 7.0, 30.0] = 1.11e-16",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: CFG4_common.nu_p2 is P2 (nu = sqrt(1 + 1/y), erratum 1)",
+   "detail": "max |nu_p2 - sqrt(1+1/y)| = 0.0e+00",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "S1a: a boost Lambda along x (rapidity phi) leaves eta = diag(-1,1,1,1) invariant, so T = -rho c^2 eta is the same in every frame",
+   "detail": "Lambda eta Lambda^T - eta simplifies to the zero matrix",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S1b' (control): for general w, T^{01} = (1 + w) rho gamma^2 c v",
+   "detail": "T^01 - (1 + w) rho gamma^2 c v simplifies to 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S1b: at the variant's w = -1, T^{01} = 0 for every v (no momentum or energy flux in any frame)",
+   "detail": "T^01(w = -1) = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S1c: at w = -1 the relativistic Euler coefficient (energy density + p) = (1 + w) rho c^2 vanishes",
+   "detail": "(rho c^2 + p) = 0;  so (eps + p) u^nu d_nu u^mu = -h^{mu nu} d_nu p reduces to h^{mu nu} d_nu p = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "aux: the numerical enclosure int |Phi_N| 4 pi r^2 dr (exp sphere) equals its closed form",
+   "detail": "max relative difference over the G1 grid (both footings) = 1.28e-11",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: V3's exp-sphere g_ach tends to the point-mass value far outside h (M = 1e12, x = 30: r/h = 579; expected 1 - 4 (h/r)^2)",
+   "detail": "ratio = 0.99998806; 1 - 4(h/r)^2 = 0.99998806",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "S2 (V1', Lambda tie u = rho_L c^2): the flow's own gravity is short everywhere on the G1 grid (max R < 1)",
+   "detail": "max R = g_ach/a_ph = 1.199e-06 at V1p|-|P2|canonical|point (M = 1e+12, x = 30);  min over the grid of C_req/C_ach = 1/max R = 8.339e+05",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S2 (V2, Lambda tie u = rho_L c^2): the flow's own gravity is short everywhere on the G1 grid (max R < 1)",
+   "detail": "max R = g_ach/a_ph = 4.795e-09 at V2|rhoLc2|P2|canonical|point (M = 1e+12, x = 30);  min over the grid of C_req/C_ach = 1/max R = 2.085e+08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S2 (V3, Lambda tie u = rho_L c^2): the flow's own gravity is short everywhere on the G1 grid (max R < 1)",
+   "detail": "max R = g_ach/a_ph = 9.591e-09 at V3|rhoLc2|P2|canonical|point (M = 1e+12, x = 30);  min over the grid of C_req/C_ach = 1/max R = 1.043e+08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "aux: the 2D numerical <Sigma_up> equals the analytic M/(24 pi h^2) (identity int rho Sigma_up dz = Sigma_tot^2/2 and int beta^3 K1^2 = 2/3), i.e. <S> = 1/3",
+   "detail": "<S> numeric = 0.3333333577; 1/3 = 0.3333333333; rel. diff 7.32e-08",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C4 (control): S3's normalisation reproduces the target g_tot at M = 1e11, x = 1, theta* = 180 deg to 1e-6",
+   "detail": "a_in/g_tot - 1 = 0.00e+00 (grid path), 4.44e-16 (independent SI quadrature of the column);  K = k^2 u_F = 3.66267e-11 m^3 kg^-1 s^-2 (0.5488 G)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S3a: at fixed r (M = 1e11, x = 1) the radial component of V2's relative push changes sign over theta (inward upstream, outward downstream outside the shadow)",
+   "detail": "a_in/g_tot: upstream (theta < 90) min +0.0009, max +0.1989;  downstream min -0.1109, max +1.0000;  outward for theta in [90.25, 154.50] deg",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 (control): F(s(x)) x^2 = 1 -- P2 F = s^2/(1-2s) with s = (sqrt(1+x^2)-1)/x^2 (sympy), and numerically for P2 and simple (F = s^2/(1-s)) to 1e-12 on x in [0.1, 30]",
+   "detail": "sympy: P2 residual 0, simple residual 0;  numeric max |F x^2 - 1|: P2 7.2e-14, simple 1.7e-14 (s in the cancellation-free form 1/(sqrt(1+x^2)+1); the naive form gives 1.1e-11)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "aux: the closed-form F_s, F_ss, F/s (functions of x) equal sympy's derivatives of F at s(x)",
+   "detail": "max relative difference at x = 0.3, 1, 3, 10 (P2 and simple) = 1.7e-13",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "C2 (control): in the deep regime (F = s^2, s = 1/x) the l = 1 ODE has exactly the solutions x and 1/x (sympy)",
+   "detail": "residual(f = x) = 0, residual(f = 1/x) = 0; dsolve: f = C1/x + C2*x",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 (control): J = F(|S|) S/|S|, S = (s + d_r, d_th), to second order: J_r = F + F_s d_r + Q_r, J_th = (F/s) d_th + Q_th with Q_r = F_s d_th^2/(2s) + F_ss d_r^2/2 - F d_th^2/(2s^2), Q_th = (F_s/s - F/s^2) d_r d_th (sympy)",
+   "detail": "residuals (J_r at orders 0, 1, 2; J_th at 0, 1, 2) = [0, 0, 0, 0, 0, 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5b (control): with d_r = lam fh' cos(th), d_th = -lam (fh/x) sin(th): <Q_r> = lam^2[(F_s/3s - F/3s^2)(fh/x)^2 + F_ss fh'^2/6] (so F_s <eps_r> = -<Q_r>: G7), the P2 projection of Q_r = lam^2 q_r2, and (1/(x sin))d_th(sin Q_th) = -2 lam^2 (F_s/s - F/s^2) fh' (fh/x)/x P2(cos) (the l = 2 source)",
+   "detail": "residuals = [0, 0, 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C6 (control): deep regime (F = s^2, s = 1/x, fh = x): the l = 2 particular solution is g = (2/3) x^2 (sympy)",
+   "detail": "residual = 0; homogeneous exponents [-sqrt(3), sqrt(3)] (x^(+-sqrt 3), excluded by the BC at x_b)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "aux: l = 1 (P2) Radau and DOP853 agree on fh' over x in [0.1, 30]",
+   "detail": "max relative difference 1.4e-12",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: l = 1 (simple) Radau and DOP853 agree on fh' over x in [0.1, 30]",
+   "detail": "max relative difference 1.5e-12",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: l = 2 (P2) solve_bvp agrees with a superposition shooting solution (x_b = 1e4) on g' over x in [0.1, 30]",
+   "detail": "max |difference| / max|g'| = 2.4e-09",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: G7 deep-regime check (P2): <eps_r>/s -> -lambda^2 x^2/3",
+   "detail": "ratio to -lambda^2 x^2/3 at x = 1e3: 1.003105; at x = 1e4: 1.000400",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: l = 2 (simple) solve_bvp agrees with a superposition shooting solution (x_b = 1e4) on g' over x in [0.1, 30]",
+   "detail": "max |difference| / max|g'| = 2.4e-09",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "aux: G7 deep-regime check (simple): <eps_r>/s -> -lambda^2 x^2/3",
+   "detail": "ratio to -lambda^2 x^2/3 at x = 1e3: 1.001551; at x = 1e4: 1.000200",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "S4-D: the first-order l = 1 dipole is nonzero (max |D| at U = 600 km/s over x in [0.1, 30] > 1e-6)",
+   "detail": "max |D| = 1.2028e-01 (P2)",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "constants": {
+   "a0": {
+    "canonical": 9.360324825027975e-11,
+    "alt": 1.1312035414413022e-10
+   },
+   "rho_L": 5.8424459306123106e-27,
+   "u_L": 5.25092853662766e-10,
+   "P_cap": 5.223195202666153e-12,
+   "t_H": 4.580875269434928e+17,
+   "Omega_m": 0.3153,
+   "h_exp_kpc": 2.0,
+   "eps_V1p": 0.1,
+   "cs2_over_c2_V1p": 0.0001,
+   "alpha2": 1.6e-09,
+   "alpha1": 3.5e-05,
+   "mode": ""
+  },
+  "S1": {
+   "w": "-1",
+   "T01": "0",
+   "euler_coef": "0",
+   "no_flow": true
+  },
+  "S2": {
+   "summary": {
+    "V1p|-|P2|canonical|point": {
+     "maxR": 1.1992177875193755e-06,
+     "minR": 7.752016465116724e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851686080955,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 1.1592660505162072e-06
+    },
+    "V1p|-|P2|canonical|exp": {
+     "maxR": 1.1992034708241935e-06,
+     "minR": 1.3880516136868953e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666852035389382,
+     "g1_frac_within_10pct": 0.07,
+     "max_gach_over_gtot": 1.1592522107792946e-06
+    },
+    "V1p|-|P2|alt|point": {
+     "maxR": 9.92311959422486e-07,
+     "minR": 6.414530144593156e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851688081082,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 9.59253254956509e-07
+    },
+    "V1p|-|P2|alt|exp": {
+     "maxR": 9.92297642727304e-07,
+     "minR": 1.1924597561711196e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666853214736042,
+     "g1_frac_within_10pct": 0.07,
+     "max_gach_over_gtot": 9.592394152195963e-07
+    },
+    "V1p|-|simple|canonical|point": {
+     "maxR": 1.1794028276305702e-06,
+     "minR": 3.904650933017973e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175917733109,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 1.1407391640168641e-06
+    },
+    "V1p|-|simple|canonical|exp": {
+     "maxR": 1.1793887474935375e-06,
+     "minR": 1.3469774255989486e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672176256108749,
+     "g1_frac_within_10pct": 0.06,
+     "max_gach_over_gtot": 1.1407255454606158e-06
+    },
+    "V1p|-|simple|alt|point": {
+     "maxR": 9.759157535975114e-07,
+     "minR": 3.230965933401233e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.967217591970127,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 9.439228860814859e-07
+    },
+    "V1p|-|simple|alt|exp": {
+     "maxR": 9.75901673460479e-07,
+     "minR": 1.161714856775796e-11,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672177398567341,
+     "g1_frac_within_10pct": 0.06,
+     "max_gach_over_gtot": 9.439092675252375e-07
+    },
+    "V2|rhoLc2|P2|canonical|point": {
+     "maxR": 4.795421021698218e-09,
+     "minR": 3.0998170479714195e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697627258,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 4.6356623844663166e-09
+    },
+    "V2|rhoLc2|P2|alt|point": {
+     "maxR": 3.968047029023891e-09,
+     "minR": 2.5649887713413484e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697635256,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 3.835852215896834e-09
+    },
+    "V2|rhoLc2|simple|canonical|point": {
+     "maxR": 4.716185142958095e-09,
+     "minR": 1.5613619479540638e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929094884,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 4.561577241708934e-09
+    },
+    "V2|rhoLc2|simple|alt|point": {
+     "maxR": 3.902482046970345e-09,
+     "minR": 1.291971688175177e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929102754,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 3.7745492918609515e-09
+    },
+    "V2|Pcap|P2|canonical|point": {
+     "maxR": 4.770093498812866e-11,
+     "minR": 3.083445036657364e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697673154,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 4.6111786437061026e-11
+    },
+    "V2|Pcap|P2|alt|point": {
+     "maxR": 3.947089369314136e-11,
+     "minR": 2.5514415120886426e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697673233,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 3.815592757062383e-11
+    },
+    "V2|Pcap|simple|canonical|point": {
+     "maxR": 4.6912761127396116e-11,
+     "minR": 1.5531154498279992e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929140047,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 4.5374847894591885e-11
+    },
+    "V2|Pcap|simple|alt|point": {
+     "maxR": 3.8818706756419277e-11,
+     "minR": 1.2851480031741266e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929140124,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 3.754613610898022e-11
+    },
+    "V3|rhoLc2|P2|canonical|point": {
+     "maxR": 9.590865040642806e-09,
+     "minR": 6.19975324611954e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697580902,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 9.271347000029643e-09
+    },
+    "V3|rhoLc2|P2|canonical|exp": {
+     "maxR": 9.590750541431117e-09,
+     "minR": 1.1101082584719745e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666852046752051,
+     "g1_frac_within_10pct": 0.07,
+     "max_gach_over_gtot": 9.271236315339755e-09
+    },
+    "V3|rhoLc2|P2|alt|point": {
+     "maxR": 7.936114840927606e-09,
+     "minR": 5.130085090147478e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697596898,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 7.671724522295379e-09
+    },
+    "V3|rhoLc2|P2|alt|exp": {
+     "maxR": 7.936000341715917e-09,
+     "minR": 9.536817004267676e-14,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666853224114609,
+     "g1_frac_within_10pct": 0.07,
+     "max_gach_over_gtot": 7.671613837605489e-09
+    },
+    "V3|rhoLc2|simple|canonical|point": {
+     "maxR": 9.432392903173603e-09,
+     "minR": 3.122783911241005e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929049268,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 9.123176359227141e-09
+    },
+    "V3|rhoLc2|simple|canonical|exp": {
+     "maxR": 9.432280295859542e-09,
+     "minR": 1.0772587628503036e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672176267289825,
+     "g1_frac_within_10pct": 0.06,
+     "max_gach_over_gtot": 9.12306744345189e-09
+    },
+    "V3|rhoLc2|simple|alt|point": {
+     "maxR": 7.80498453342006e-09,
+     "minR": 2.5839975474567487e-13,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929065009,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 7.549118353145939e-09
+    },
+    "V3|rhoLc2|simple|alt|exp": {
+     "maxR": 7.804871926105999e-09,
+     "minR": 9.290931574733947e-14,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672177407796024,
+     "g1_frac_within_10pct": 0.06,
+     "max_gach_over_gtot": 7.549009437370688e-09
+    },
+    "V3|Pcap|P2|canonical|point": {
+     "maxR": 9.540209873409716e-11,
+     "minR": 6.167008594187181e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697672693,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 9.22237940109333e-11
+    },
+    "V3|Pcap|P2|canonical|exp": {
+     "maxR": 9.540095978937711e-11,
+     "minR": 1.1042451043934384e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666852046842747,
+     "g1_frac_within_10pct": 0.07,
+     "max_gach_over_gtot": 9.222269300996324e-11
+    },
+    "V3|Pcap|P2|alt|point": {
+     "maxR": 7.894199411741121e-11,
+     "minR": 5.102990003618767e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666851697672852,
+     "g1_frac_within_10pct": 0.28,
+     "max_gach_over_gtot": 7.63120549851637e-11
+    },
+    "V3|Pcap|P2|alt|exp": {
+     "maxR": 7.894085517269114e-11,
+     "minR": 9.48644729745026e-16,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9666853224189469,
+     "g1_frac_within_10pct": 0.07,
+     "max_gach_over_gtot": 7.631095398419363e-11
+    },
+    "V3|Pcap|simple|canonical|point": {
+     "maxR": 9.382574723281203e-11,
+     "minR": 3.106290598011553e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929139593,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 9.074991339188255e-11
+    },
+    "V3|Pcap|simple|canonical|exp": {
+     "maxR": 9.382462710714568e-11,
+     "minR": 1.0715691068542851e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672176267379071,
+     "g1_frac_within_10pct": 0.06,
+     "max_gach_over_gtot": 9.074882998663177e-11
+    },
+    "V3|Pcap|simple|alt|point": {
+     "maxR": 7.763761682809957e-11,
+     "minR": 2.570349891344225e-15,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672175929139749,
+     "g1_frac_within_10pct": 0.24,
+     "max_gach_over_gtot": 7.509246886805781e-11
+    },
+    "V3|Pcap|simple|alt|exp": {
+     "maxR": 7.763649670243322e-11,
+     "minR": 9.241860537796717e-16,
+     "argmax": "M = 1e+12, x = 30",
+     "g1_max_err": 0.9672177407869688,
+     "g1_frac_within_10pct": 0.06,
+     "max_gach_over_gtot": 7.509138546280702e-11
+    }
+   },
+   "max_R_at_tie": {
+    "V1p": 1.1992177875193755e-06,
+    "V2": 4.795421021698218e-09,
+    "V3": 9.590865040642806e-09
+   },
+   "Creq_minus1_min": 25.860603369363975,
+   "Creq_minus1_max": 10010378.732301775,
+   "Creq_minus1_V1p_min": 258.60603369363974,
+   "Creq_minus1_V1p_max": 100103787.32301775
+  },
+  "S3": {
+   "S_mean": 0.3333333577327939,
+   "V2": {
+    "K": 3.662673955551838e-11,
+    "K_over_G": 0.5487727485357023,
+    "theta_star": 180.0,
+    "frac_within_10pct": {
+     "canonical|P2": 0.012,
+     "alt|P2": 0.014,
+     "canonical|simple": 0.012
+    },
+    "mass_ratio_push": [
+     2096.0594404768976,
+     2132.0377834543315,
+     2133.5031413686274,
+     2101.7404550078863,
+     2042.414125666609,
+     1963.0454854502295,
+     1870.3562773546803,
+     1769.229456349063,
+     1663.3544562775528,
+     1556.2140925168178,
+     1451.4635867688714,
+     1352.7708575563381,
+     1263.48392551766,
+     1186.3187328573756,
+     1123.1171118285777,
+     1074.6637762532343,
+     1040.542223108782,
+     1019.0665931989153,
+     1007.4343618117647,
+     1002.2728698260173,
+     1000.5080383507631,
+     1000.0761098840597,
+     1000.0068550829623,
+     1000.0003237110539,
+     1000.0000067392599
+    ],
+    "mass_ratio_target": [
+     513.2118515039884,
+     415.13905490694964,
+     313.773793740279,
+     220.61979039472195,
+     144.6703792561103,
+     89.63601187286764,
+     53.73347486015412,
+     32.045316818318646,
+     19.44333045392416,
+     12.162521595542039,
+     7.8986814906474,
+     5.343924729275004,
+     3.7701288964989437,
+     2.7722834966841092,
+     2.1234758104063935,
+     1.6945398046986277,
+     1.4101312113817999,
+     1.2248386010998487,
+     1.109881715072134,
+     1.0451713369951203,
+     1.0144124315063177,
+     1.003215359835507,
+     1.00044215385715,
+     1.000032317558216,
+     1.0000010504221082
+    ],
+    "S3a_ok": true,
+    "up_min": 0.0008547494276733657,
+    "down_min": -0.11094540357263054,
+    "outward_theta": [
+     90.25,
+     154.5
+    ],
+    "energy": {
+     "rhoLc2": {
+      "k": 0.2641077079886705,
+      "E_over_Eorb": {
+       "1000000000.0": 10807083.472127665,
+       "10000000000.0": 3417499.8635484236,
+       "100000000000.0": 1080708.3472127665,
+       "1000000000000.0": 341749.9863548424
+      },
+      "tau_sun": 345387201127.4878,
+      "tau_earth": 12369034261.122177,
+      "drag": 2.755187568093819e-14,
+      "power_per_kg": 0.04157553887198822
+     },
+     "Pcap": {
+      "k": 2.648079393569557,
+      "E_over_Eorb": {
+       "1000000000.0": 1077850.6312148108,
+       "10000000000.0": 340846.2972088983,
+       "100000000000.0": 107785.06312148109,
+       "1000000000000.0": 34084.62972088983
+      },
+      "tau_sun": 3463029296167.3003,
+      "tau_earth": 124018284035.23366,
+      "drag": 2.7479020283725645e-15,
+      "power_per_kg": 0.004146560071627347
+     }
+    },
+    "doppler": 0.004006774682579373
+   },
+   "V3": {
+    "fit": {
+     "P2": {
+      "GLS_over_G": 0.4142135623730951,
+      "g1_max_err": 82.04930406161955,
+      "g1_err_x01": 82.04930406161955,
+      "g1_err_x30": 0.9857249754707244
+     },
+     "simple": {
+      "GLS_over_G": 0.6180339887498948,
+      "g1_max_err": 61.415373124487715,
+      "g1_err_x01": 61.415373124487715,
+      "g1_err_x30": 0.9790526537559032
+     }
+    },
+    "mass_ratio": [
+     1.0000000000000002,
+     1.0000000000000007
+    ],
+    "energy": {
+     "rhoLc2": {
+      "k": 0.8133957470526607,
+      "E_over_Eorb": {
+       "1000000000.0": 33283525.881224297,
+       "10000000000.0": 10525175.034583166,
+       "100000000000.0": 3328352.58812243,
+       "1000000000000.0": 1052517.5034583167
+      },
+      "tau_sun": 1063719353831.0966,
+      "tau_earth": 38094003161.683624,
+      "drag": 5.656929054404351e-14,
+      "T_bath": 28.863350806682607,
+      "power_per_kg": 0.1280438452835631
+     },
+     "Pcap": {
+      "k": 8.155523112107218,
+      "E_over_Eorb": {
+       "1000000000.0": 3319551.428713931,
+       "10000000000.0": 1049734.3324802092,
+       "100000000000.0": 331955.14287139307,
+       "1000000000000.0": 104973.43324802091
+      },
+      "tau_sun": 10665396034340.977,
+      "tau_earth": 381950021675.8356,
+      "drag": 5.6419704425829795e-15,
+      "T_bath": 9.11531717908638,
+      "power_per_kg": 0.012770525907198224
+     }
+    },
+    "doppler": 5.340720269057369e-06,
+    "dipole": 0.00800553828475565
+   },
+   "G2": {
+    "rhoLc2": 2390.912464319695,
+    "Pcap": 23.782846074781524
+   },
+   "G2_V1p_cmb": 1.3303030778779753e-08,
+   "G2_V1p_growth": 0.2171582619727244,
+   "alpha2_scale": 7.226466138475827e-18,
+   "alpha1_scale": 1.2723219013738774e-14
+  },
+  "S4": {
+   "law": "P2",
+   "l1": {
+    "P2": {
+     "law": "P2",
+     "m": 3,
+     "A": 2.9998527348498376,
+     "B": -15025.220154529961,
+     "BA": -5008.652584834993,
+     "A3": 2.9985012394832946,
+     "BA3": -506.34418576341426,
+     "c3": 0.33334969693105837,
+     "fhp_core": 1.0000490907931751e-06,
+     "nfev": 59826,
+     "dop_diff": 1.364797164171705e-12
+    },
+    "simple": {
+     "law": "simple",
+     "m": 3,
+     "A": 0.7499839989925969,
+     "B": -1876.7123629868365,
+     "BA": -2502.336537189724,
+     "A3": 0.7498151552430785,
+     "BA3": -251.7600856579763,
+     "c3": 1.3333617801756208,
+     "fhp_core": 4.000085340526862e-06,
+     "nfev": 57404,
+     "dop_diff": 1.5234480343906398e-12
+    }
+   },
+   "per_law": {
+    "P2": {
+     "rows": {
+      "150": {
+       "Dmax": 0.030068756417882748,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.031105014702065795,
+       "G7max": 0.0003210369929913788,
+       "x_G7max": 30.0
+      },
+      "300": {
+       "Dmax": 0.060137512835765496,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.06221002940413159,
+       "G7max": 0.0012841479719655153,
+       "x_G7max": 30.0
+      },
+      "370": {
+       "Dmax": 0.07416959916411078,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.07672570293176229,
+       "G7max": 0.001953331748467545,
+       "x_G7max": 30.0
+      },
+      "600": {
+       "Dmax": 0.12027502567153099,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.12442005880826318,
+       "G7max": 0.005136591887862061,
+       "x_G7max": 30.0
+      }
+     },
+     "g8a": {
+      "1e+03": {
+       "max": 0.001965172717612969,
+       "x_at": 30.0,
+       "l2_dex_max": 0.0018485467897560682,
+       "l0_dex_max": 0.0006669172183508806
+      },
+      "1e+04": {
+       "max": 0.001963264985697247,
+       "x_at": 30.0,
+       "l2_dex_max": 0.001846518569614705,
+       "l0_dex_max": 0.0006669172183508806
+      }
+     },
+     "g8a_Uavg": 0.001062218746808657,
+     "bvp": {
+      "1e+03": {
+       "status": 0,
+       "nodes": 1998
+      },
+      "1e+04": {
+       "status": 0,
+       "nodes": 3768
+      }
+     },
+     "shoot_diff": 2.384281126273432e-09,
+     "xb_sens": 0.0011007415442261465,
+     "xb_sens_rel1": 0.0056832123593062445,
+     "deep_ratio": {
+      "1e+03": 1.0031048342776376,
+      "1e+04": 1.0004000925409777
+     }
+    },
+    "simple": {
+     "rows": {
+      "150": {
+       "Dmax": 0.029547054751658273,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.030548508389553166,
+       "G7max": 0.0003054887736483277,
+       "x_G7max": 30.0
+      },
+      "300": {
+       "Dmax": 0.05909410950331655,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.06109701677910633,
+       "G7max": 0.0012219550945933109,
+       "x_G7max": 30.0
+      },
+      "370": {
+       "Dmax": 0.0728827350540904,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.0753529873608978,
+       "G7max": 0.0018587294716647142,
+       "x_G7max": 30.0
+      },
+      "600": {
+       "Dmax": 0.1181882190066331,
+       "x_Dmax": 30.0,
+       "Dfrozen_max": 0.12219403355821266,
+       "G7max": 0.0048878203783732435,
+       "x_G7max": 30.0
+      }
+     },
+     "g8a": {
+      "1e+03": {
+       "max": 0.0019328190516762675,
+       "x_at": 30.0,
+       "l2_dex_max": 0.001825687874243353,
+       "l0_dex_max": 0.0006345496610695918
+      },
+      "1e+04": {
+       "max": 0.0019318763617185391,
+       "x_at": 30.0,
+       "l2_dex_max": 0.0018246898379185778,
+       "l0_dex_max": 0.0006345496610695918
+      }
+     },
+     "g8a_Uavg": 0.0010344561717649879,
+     "bvp": {
+      "1e+03": {
+       "status": 0,
+       "nodes": 2002
+      },
+      "1e+04": {
+       "status": 0,
+       "nodes": 3606
+      }
+     },
+     "shoot_diff": 2.3935455872971397e-09,
+     "xb_sens": 0.0005481126424736685,
+     "xb_sens_rel1": 0.0016341072085219732,
+     "deep_ratio": {
+      "1e+03": 1.0015512066421932,
+      "1e+04": 1.000200023130382
+     }
+    }
+   },
+   "G8b": {
+    "Dmax": 0.12027502567153099,
+    "label": "FAIL"
+   },
+   "G7max": 0.005136591887862061,
+   "G8a_max": 0.001963264985697247,
+   "sigma_E": {
+    "rhoLc2": 0.7052636210873564,
+    "Pcap": 0.00701538696743389
+   },
+   "b_min": {
+    "rhoLc2": {
+     "1000000000.0": 183325172.19834143,
+     "10000000000.0": 57972509.65893363,
+     "100000000000.0": 18332517.21983414,
+     "1000000000000.0": 5797250.965893364
+    },
+    "Pcap": {
+     "1000000000.0": 1823569.209283684,
+     "10000000000.0": 576663.217228871,
+     "100000000000.0": 182356.92092836837,
+     "1000000000000.0": 57666.3217228871
+    }
+   },
+   "b_max_8b": 0.8314278000912532,
+   "b_max_7": 4.412273950674691,
+   "window": {
+    "rhoLc2": {
+     "spec_empty": true,
+     "strict_empty": true
+    },
+    "Pcap": {
+     "spec_empty": true,
+     "strict_empty": true
+    }
+   },
+   "G3a": {
+    "rhoLc2": {
+     "a_react": 4.70826964521255e-12,
+     "frac_exceeds": 0.5686078480379905,
+     "x_from": 2.1883725307637056,
+     "b_min_3a": 15.081707757651998
+    },
+    "Pcap": {
+     "a_react": 4.683402421531886e-14,
+     "frac_exceeds": 0.0,
+     "x_from": null,
+     "b_min_3a": 0.15002052124360626
+    }
+   },
+   "G5a": {
+    "L": "-1/(2*s - 1)",
+    "cs2q2_min": -0.9355185288008727,
+    "cs2q2_max": -0.0024875775821946444
+   },
+   "G5b": {
+    "canonical": {
+     "earth": 1278.7328995939854,
+     "mars": 1258.1081754069858
+    },
+    "alt": {
+     "earth": 1545.3600292913964,
+     "mars": 1520.434867528632
+    }
+   },
+   "G6": {
+    "canonical": {
+     "x_sun": 0.0001256343764605717,
+     "fhp_sun": 1.5784771397546703e-08,
+     "delta_a": 3.647037538272142e-21,
+     "delta_a_literal": 2.2741215757965604e-19,
+     "label": "PASS",
+     "label_literal": "PASS"
+    },
+    "alt": {
+     "x_sun": 0.00013811263359554367,
+     "fhp_sun": 1.907603597046413e-08,
+     "delta_a": 5.32647515447954e-21,
+     "delta_a_literal": 2.7391060762399764e-19,
+     "label": "PASS",
+     "label_literal": "PASS"
+    }
+   }
+  },
+  "matrix": {
+   "V1": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "no flow exists: T = -rho c^2 eta is boost-invariant, T^0i = 0 for every v, (eps + p) = 0 (S1a-c)"
+    },
+    "G2": {
+     "verdict": "NOT REACHED",
+     "reason": "no flow (G1 structural); V1 is Lambda itself"
+    },
+    "G3": {
+     "verdict": "NOT REACHED",
+     "reason": "no flow: no reaction, no energy flux (T^0i = 0)"
+    },
+    "G4": {
+     "verdict": "NOT REACHED",
+     "reason": "no mechanism whose constants could be counted"
+    },
+    "G5": {
+     "verdict": "NOT REACHED",
+     "reason": "no flow"
+    },
+    "G6": {
+     "verdict": "UNDEFINED",
+     "reason": "no rest frame: nothing to prefer"
+    },
+    "G7": {
+     "verdict": "UNDEFINED",
+     "reason": "no frame for a0 to depend on"
+    },
+    "G8": {
+     "verdict": "UNDEFINED",
+     "reason": "no flow direction"
+    }
+   },
+   "V1'(T1)": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "max R = g_ach/a_ph = 1.2e-06 (all kernels, footings, profiles); max |g_N + g_ach - g_tot|/g_tot = 0.967"
+    },
+    "G2": {
+     "verdict": "UNDECIDED",
+     "reason": "CMB: rho/rho_m(1100) = 1.3e-08 (< 0.01); growth eps Omega_L/Omega_m = 0.217 > 0.05, no Boltzmann code"
+    },
+    "G3": {
+     "verdict": "NOT REACHED",
+     "reason": "G1 fails structurally (max R = 1e-06); a static compression/focusing absorbs no power"
+    },
+    "G4": {
+     "verdict": "FAIL",
+     "reason": "eps = 0.1 and c_s^2 = 1e-4 c^2 are new constants (not Lambda-tied)"
+    },
+    "G5": {
+     "verdict": "NOT REACHED",
+     "reason": "G1 fails structurally (max R = 1e-06)"
+    },
+    "G6": {
+     "verdict": "PASS",
+     "reason": "trivial bound: the Sun's whole T1 extra gravity at 1 AU = 3.6e-30 m/s^2 vs alpha2 scale 7.2e-18"
+    },
+    "G7": {
+     "verdict": "PASS",
+     "reason": "trivial bound: the whole T1 force <= 1.2e-06 g_tot over the grid (line 0.10)"
+    },
+    "G8": {
+     "verdict": "PASS",
+     "reason": "trivial bound: any anisotropy <= the whole T1 force, 1.2e-06 g_tot (5.0e-07 dex)"
+    }
+   },
+   "V2(T1)": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "max R = g_ach/a_ph = 4.8e-09 (all kernels, footings, profiles; P_cap max R 4.8e-11); max |g_N + g_ach - g_tot|/g_tot = 0.967"
+    },
+    "G2": {
+     "verdict": "FAIL",
+     "reason": "Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap) > 0.01"
+    },
+    "G3": {
+     "verdict": "NOT REACHED",
+     "reason": "G1 fails structurally (max R = 5e-09); a static compression/focusing absorbs no power"
+    },
+    "G4": {
+     "verdict": "PASS",
+     "reason": "only u (Lambda-tied: rho_L c^2 or P_cap), G and c; no opacity k in the T1 reading"
+    },
+    "G5": {
+     "verdict": "NOT REACHED",
+     "reason": "G1 fails structurally (max R = 5e-09)"
+    },
+    "G6": {
+     "verdict": "PASS",
+     "reason": "trivial bound: the Sun's whole T1 extra gravity at 1 AU = 1.4e-32 m/s^2 vs alpha2 scale 7.2e-18"
+    },
+    "G7": {
+     "verdict": "PASS",
+     "reason": "trivial bound: the whole T1 force <= 4.6e-09 g_tot over the grid (line 0.10)"
+    },
+    "G8": {
+     "verdict": "PASS",
+     "reason": "trivial bound: any anisotropy <= the whole T1 force, 4.6e-09 g_tot (2.0e-09 dex)"
+    }
+   },
+   "V2(T2)": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "0.012 of the 500 grid points within 10% (alt 0.014, simple 0.012); mass scaling a_in(1e12)/a_in(1e9) at theta* = 1451 at x ~ 1 (target 1; exp sphere 7.9); sign change (S3a)"
+    },
+    "G2": {
+     "verdict": "FAIL",
+     "reason": "Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap)"
+    },
+    "G3": {
+     "verdict": "FAIL",
+     "reason": "absorbed energy over t_H / orbital energy = 3.4e+05-1.1e+07 (rho_L c^2), 3.4e+04-1.1e+06 (P_cap)"
+    },
+    "G4": {
+     "verdict": "FAIL",
+     "reason": "the opacity k = 0.264 m^2/kg (rho_L c^2), 2.65 (P_cap) is a new constant"
+    },
+    "G5": {
+     "verdict": "FAIL",
+     "reason": "G5c: k Sigma_sun = 3.5e+11, k Sigma_earth = 1.2e+10 (P_cap 1.2e+11): saturated, push not proportional to mass (EP broken)"
+    },
+    "G6": {
+     "verdict": "FAIL",
+     "reason": "ESTIMATE (not in the frozen S3): Doppler drag 2 k u_F v_E/c = 2.8e-14 m/s^2 (P_cap 2.7e-15 -> UNDECIDED); scales alpha2 7.2e-18, alpha1 1.3e-14; thin-absorber k (the Earth is saturated)"
+    },
+    "G7": {
+     "verdict": "PASS",
+     "reason": "ESTIMATE: the beam's Doppler factor changes the monopole by (1 + U/c)^2 - 1 = 4.0e-03 at 600 km/s"
+    },
+    "G8": {
+     "verdict": "FAIL",
+     "reason": "the radial push changes sign over theta at fixed r (S3a: outward for theta in 90-154 deg); O(1) anisotropy (range/max = 1.11)"
+    }
+   },
+   "V3(T1)": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "max R = g_ach/a_ph = 9.6e-09 (all kernels, footings, profiles; P_cap max R 9.5e-11); max |g_N + g_ach - g_tot|/g_tot = 0.967"
+    },
+    "G2": {
+     "verdict": "FAIL",
+     "reason": "Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap) > 0.01"
+    },
+    "G3": {
+     "verdict": "NOT REACHED",
+     "reason": "G1 fails structurally (max R = 1e-08); a static compression/focusing absorbs no power"
+    },
+    "G4": {
+     "verdict": "PASS",
+     "reason": "only u (Lambda-tied: rho_L c^2 or P_cap), G and c; no opacity k in the T1 reading"
+    },
+    "G5": {
+     "verdict": "NOT REACHED",
+     "reason": "G1 fails structurally (max R = 1e-08)"
+    },
+    "G6": {
+     "verdict": "PASS",
+     "reason": "trivial bound: the Sun's whole T1 extra gravity at 1 AU = 2.9e-32 m/s^2 vs alpha2 scale 7.2e-18"
+    },
+    "G7": {
+     "verdict": "PASS",
+     "reason": "trivial bound: the whole T1 force <= 9.3e-09 g_tot over the grid (line 0.10)"
+    },
+    "G8": {
+     "verdict": "PASS",
+     "reason": "trivial bound: any anisotropy <= the whole T1 force, 9.3e-09 g_tot (4.0e-09 dex)"
+    }
+   },
+   "V3(T2)": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "shape: max |a_LS/a_ph - 1| = 82.0 over x in [0.1, 30] (x = 30: 0.986); G_LS/G = 0.4142; mass scaling universal (ratio 1.000000)"
+    },
+    "G2": {
+     "verdict": "FAIL",
+     "reason": "Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap)"
+    },
+    "G3": {
+     "verdict": "FAIL",
+     "reason": "absorbed energy over t_H / orbital energy = 1.1e+06-3.3e+07 (rho_L c^2), 1.0e+05-3.3e+06 (P_cap)"
+    },
+    "G4": {
+     "verdict": "FAIL",
+     "reason": "the opacity k = 0.813 m^2/kg (rho_L c^2), 8.16 (P_cap) is a new constant"
+    },
+    "G5": {
+     "verdict": "FAIL",
+     "reason": "G5c: k Sigma_sun = 1.1e+12, k Sigma_earth = 3.8e+10 (P_cap 3.8e+11): saturated (EP broken)"
+    },
+    "G6": {
+     "verdict": "FAIL",
+     "reason": "drag (4/3) k u_R v_E/c = 5.7e-14 m/s^2 (P_cap 5.6e-15 -> UNDECIDED); scales alpha2 7.2e-18, alpha1 1.3e-14; thin-absorber k (the Earth is saturated)"
+    },
+    "G7": {
+     "verdict": "PASS",
+     "reason": "ESTIMATE: an isotropic bath seen at U = 600 km/s changes the monopole by (4/3)(U/c)^2 = 5.3e-06"
+    },
+    "G8": {
+     "verdict": "PASS",
+     "reason": "ESTIMATE: the bath's dipole 4U/c = 8.0e-03 bounds the l = 1 asymmetry (b: <= 0.02); l = 2 and l = 0 are O((U/c)^2)"
+    }
+   },
+   "V4(T3)": {
+    "G1": {
+     "verdict": "FAIL",
+     "reason": "by rule: a restatement (n(q) reverse-engineered from P2); G1-with-stream at U = 600: max D = 0.120 (> 0.10) at x = 30.0"
+    },
+    "G2": {
+     "verdict": "UNDEFINED",
+     "reason": "no cosmological perturbation equations for the flux law (background-only)"
+    },
+    "G3": {
+     "verdict": "FAIL",
+     "reason": "G3a: sigma_E U/c^2 > 0.1 g_law over 0.57 of x in [0.3, 30] (P_cap 0.00); G3b: E/E_orb = 5.8e+06-1.8e+08 at b = 1 (P_cap 5.8e+04-1.8e+06); b-window empty: True (P_cap True)"
+    },
+    "G4": {
+     "verdict": "FAIL",
+     "reason": "n(q) ~ s^2/(1-2s) is a reverse-engineered function; b = 1 fails G3b and any b != 1 is a new constant (b-window empty: True by max b_max < min b_min, True by min b_max < max b_min)"
+    },
+    "G5": {
+     "verdict": "FAIL",
+     "reason": "G5a: c_s^2/q^2 = -1/L = -0.936..-0.002 < 0 (imaginary sound speed); G5b inherited (CFG185): the Sun carries a0/2, 1258-1545x the planetary bound"
+    },
+    "G6": {
+     "verdict": "PASS",
+     "reason": "delta_a(1 AU) = lambda_w a0 |fh'(x_sun) - fh'(0)| = 3.6e-21 m/s^2 (alt 5.3e-21; with fh'_core = fh'(x0): 2.3e-19 -> PASS) vs alpha2 scale 7.2e-18"
+    },
+    "G7": {
+     "verdict": "PASS",
+     "reason": "max |<eps_r>|/(s + 1/x^2) at U = 600 = 5.14e-03 (line 0.10)"
+    },
+    "G8": {
+     "verdict": "FAIL",
+     "reason": "G8a PASS: 2.0e-03 dex (line 0.048); G8b FAIL: max D = 0.120 at U = 600 (PASS <= 0.02, FAIL > 0.10; frozen /s variant 0.124)"
+    }
+   }
+  }
+ }
+}

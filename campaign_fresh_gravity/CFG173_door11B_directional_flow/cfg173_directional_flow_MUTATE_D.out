@@ -1,0 +1,259 @@
+CFG173 -- door 11B': a compressible directional flow of a massless Lambda-medium   (mode: MUTATE_D)
+  CFG dir: campaign_fresh_gravity (read-only imports: CFG4_common, CFG7_common)
+  a0: canonical 9.36032e-11, alt 1.13120e-10 m/s^2;  rho_Lambda = 5.84245e-27 kg/m^3;  kappa = 1/2 FITTED
+  rho_L c^2 = 5.25093e-10 J/m^3;  P_cap = kappa^2/(8 pi) rho_L c^2 = 5.22320e-12 J/m^3;  sqrt(G rho_L) = 6.24454e-19 1/s
+  kappa c sqrt(G rho_L) = 9.36032e-11 (canonical a0 check);  t_H = 1/H0 (67.36) = 4.5809e+17 s;  Omega_m = 0.3153
+  [PASS] (reported) aux: M(<r) as gammainc(3, r/h) equals the frozen closed form M[1 - e^{-q}(1 + q + q^2/2)]
+         max |difference| over q in [0.05, 0.5, 2.0, 7.0, 30.0] = 1.11e-16
+  [PASS] (reported) aux: CFG4_common.nu_p2 is P2 (nu = sqrt(1 + 1/y), erratum 1)
+         max |nu_p2 - sqrt(1+1/y)| = 0.0e+00
+
+======================================================================================================================
+S1 (H-A, variant V1: w = -1) -- does a vacuum-like medium flow at all?  (sympy)
+======================================================================================================================
+  variant w = -1
+  [PASS] S1a: a boost Lambda along x (rapidity phi) leaves eta = diag(-1,1,1,1) invariant, so T = -rho c^2 eta is the same in every frame
+         Lambda eta Lambda^T - eta simplifies to the zero matrix
+  [PASS] S1b' (control): for general w, T^{01} = (1 + w) rho gamma^2 c v
+         T^01 - (1 + w) rho gamma^2 c v simplifies to 0
+  [PASS] S1b: at the variant's w = -1, T^{01} = 0 for every v (no momentum or energy flux in any frame)
+         T^01(w = -1) = 0
+  [PASS] S1c: at w = -1 the relativistic Euler coefficient (energy density + p) = (1 + w) rho c^2 vanishes
+         (rho c^2 + p) = 0;  so (eps + p) u^nu d_nu u^mu = -h^{mu nu} d_nu p reduces to h^{mu nu} d_nu p = 0
+  S1 reading: no rest frame, no energy or momentum flux, no compression -- a w = -1 medium cannot flow (H-A holds)
+
+======================================================================================================================
+S2 (H-B, reading T1): the gravity of the flow's own energy, g_ach, against the phantom a_ph on the G1 grid
+======================================================================================================================
+  V3  radiation fluid, hydrostatic: du/u = 4|Phi_N|/c^2, active density 2 du/c^2; point mass g = 16 pi G^2 M u/c^4
+  V1' near-vacuum field (eps = 0.1, c_s^2 = 1e-4 c^2): d rho = eps rho_L |Phi_N|/c_s^2, active factor (1 + 3 c_s^2/c^2)
+  V2  null flux lensed by a point mass: excess u_F (A(u) - 1) downstream, zero upstream (point mass only, as declared)
+  both profiles for V1', V3 (point mass, exp sphere h = 2 kpc); u in {rho_L c^2, P_cap} for V2, V3
+  [PASS] (reported) aux: the numerical enclosure int |Phi_N| 4 pi r^2 dr (exp sphere) equals its closed form
+         max relative difference over the G1 grid (both footings) = 1.28e-11
+  [PASS] (reported) aux: V3's exp-sphere g_ach tends to the point-mass value far outside h (M = 1e12, x = 30: r/h = 579; expected 1 - 4 (h/r)^2)
+         ratio = 0.99998806; 1 - 4(h/r)^2 = 0.99998806
+  V2 lensing: J(Q) = int t I dt (-> 1/2) at (1e9, x=0.1), (1e9, 30), (1e12, 0.1), (1e12, 30): 0.499990391, 0.499999953, 0.499781771, 0.499998801
+
+  mech  u       kern    foot       profile       max R        at (M, x)       min R   max |gN+g_ach-g_tot|/g_tot
+  V1p   -       P2      canonical  point    1.199e-06      (1e+12, 30)   7.752e-11                       0.9667
+  V1p   -       P2      canonical  exp      1.199e-06      (1e+12, 30)   1.388e-11                       0.9667
+  V1p   -       P2      alt        point    9.923e-07      (1e+12, 30)   6.415e-11                       0.9667
+  V1p   -       P2      alt        exp      9.923e-07      (1e+12, 30)   1.192e-11                       0.9667
+  V1p   -       simple  canonical  point    1.179e-06      (1e+12, 30)   3.905e-11                       0.9672
+  V1p   -       simple  canonical  exp      1.179e-06      (1e+12, 30)   1.347e-11                       0.9672
+  V1p   -       simple  alt        point    9.759e-07      (1e+12, 30)   3.231e-11                       0.9672
+  V1p   -       simple  alt        exp      9.759e-07      (1e+12, 30)   1.162e-11                       0.9672
+  V2    rhoLc2  P2      canonical  point    4.795e-09      (1e+12, 30)   3.100e-13                       0.9667
+  V2    rhoLc2  P2      alt        point    3.968e-09      (1e+12, 30)   2.565e-13                       0.9667
+  V2    rhoLc2  simple  canonical  point    4.716e-09      (1e+12, 30)   1.561e-13                       0.9672
+  V2    rhoLc2  simple  alt        point    3.902e-09      (1e+12, 30)   1.292e-13                       0.9672
+  V2    Pcap    P2      canonical  point    4.770e-11      (1e+12, 30)   3.083e-15                       0.9667
+  V2    Pcap    P2      alt        point    3.947e-11      (1e+12, 30)   2.551e-15                       0.9667
+  V2    Pcap    simple  canonical  point    4.691e-11      (1e+12, 30)   1.553e-15                       0.9672
+  V2    Pcap    simple  alt        point    3.882e-11      (1e+12, 30)   1.285e-15                       0.9672
+  V3    rhoLc2  P2      canonical  point    9.591e-09      (1e+12, 30)   6.200e-13                       0.9667
+  V3    rhoLc2  P2      canonical  exp      9.591e-09      (1e+12, 30)   1.110e-13                       0.9667
+  V3    rhoLc2  P2      alt        point    7.936e-09      (1e+12, 30)   5.130e-13                       0.9667
+  V3    rhoLc2  P2      alt        exp      7.936e-09      (1e+12, 30)   9.537e-14                       0.9667
+  V3    rhoLc2  simple  canonical  point    9.432e-09      (1e+12, 30)   3.123e-13                       0.9672
+  V3    rhoLc2  simple  canonical  exp      9.432e-09      (1e+12, 30)   1.077e-13                       0.9672
+  V3    rhoLc2  simple  alt        point    7.805e-09      (1e+12, 30)   2.584e-13                       0.9672
+  V3    rhoLc2  simple  alt        exp      7.805e-09      (1e+12, 30)   9.291e-14                       0.9672
+  V3    Pcap    P2      canonical  point    9.540e-11      (1e+12, 30)   6.167e-15                       0.9667
+  V3    Pcap    P2      canonical  exp      9.540e-11      (1e+12, 30)   1.104e-15                       0.9667
+  V3    Pcap    P2      alt        point    7.894e-11      (1e+12, 30)   5.103e-15                       0.9667
+  V3    Pcap    P2      alt        exp      7.894e-11      (1e+12, 30)   9.486e-16                       0.9667
+  V3    Pcap    simple  canonical  point    9.383e-11      (1e+12, 30)   3.106e-15                       0.9672
+  V3    Pcap    simple  canonical  exp      9.382e-11      (1e+12, 30)   1.072e-15                       0.9672
+  V3    Pcap    simple  alt        point    7.764e-11      (1e+12, 30)   2.570e-15                       0.9672
+  V3    Pcap    simple  alt        exp      7.764e-11      (1e+12, 30)   9.242e-16                       0.9672
+  [PASS] S2 (V1', Lambda tie u = rho_L c^2): the flow's own gravity is short everywhere on the G1 grid (max R < 1)
+         max R = g_ach/a_ph = 1.199e-06 at V1p|-|P2|canonical|point (M = 1e+12, x = 30);  min over the grid of C_req/C_ach = 1/max R = 8.339e+05
+  [PASS] S2 (V2, Lambda tie u = rho_L c^2): the flow's own gravity is short everywhere on the G1 grid (max R < 1)
+         max R = g_ach/a_ph = 4.795e-09 at V2|rhoLc2|P2|canonical|point (M = 1e+12, x = 30);  min over the grid of C_req/C_ach = 1/max R = 2.085e+08
+  [PASS] S2 (V3, Lambda tie u = rho_L c^2): the flow's own gravity is short everywhere on the G1 grid (max R < 1)
+         max R = g_ach/a_ph = 9.591e-09 at V3|rhoLc2|P2|canonical|point (M = 1e+12, x = 30);  min over the grid of C_req/C_ach = 1/max R = 1.043e+08
+
+  required compaction C_req - 1 = a_ph/((4 pi/3) G (2 rho_L) r) over the grid (both kernels, footings, profiles): min 2.586e+01, max 1.001e+07
+    (V1', rho_act = 2 eps rho_L: min 2.586e+02, max 1.001e+08)
+  reading: to supply a_ph the medium would need a density excess of 2.6e+01 to 1.0e+07 times rho_L; the mechanisms achieve R <= 1.2e-06 of it
+
+======================================================================================================================
+S3 (H-C, reading T2: push) -- V2's directional shadow push, V3's isotropic Le Sage bath
+======================================================================================================================
+  [PASS] (reported) aux: the 2D numerical <Sigma_up> equals the analytic M/(24 pi h^2) (identity int rho Sigma_up dz = Sigma_tot^2/2 and int beta^3 K1^2 = 2/3), i.e. <S> = 1/3
+         <S> numeric = 0.3333333577; 1/3 = 0.3333333333; rel. diff 7.32e-08
+  [PASS] C4 (control): S3's normalisation reproduces the target g_tot at M = 1e11, x = 1, theta* = 180 deg to 1e-6
+         a_in/g_tot - 1 = 0.00e+00 (grid path), 4.44e-16 (independent SI quadrature of the column);  K = k^2 u_F = 3.66267e-11 m^3 kg^-1 s^-2 (0.5488 G)
+  theta* = 180 deg (a_in per unit K at theta = (0.0, 45.0, 90.0, 135.0, 180.0): 0.199, 0.140, 0.000, -0.111, 1.000 of the maximum)
+  G1 (canonical, P2): fraction of the 500 grid points (4 M x 25 x x 5 theta) within 10% of the exp sphere's g_tot = 0.012
+  G1 (alt, P2): fraction of the 500 grid points (4 M x 25 x x 5 theta) within 10% of the exp sphere's g_tot = 0.014
+  G1 (canonical, simple): fraction of the 500 grid points (4 M x 25 x x 5 theta) within 10% of the exp sphere's g_tot = 0.012
+    mass scaling at theta*, x = 0.1: a_in(1e12)/a_in(1e9) = 2096   (target: point mass 1; exp sphere's own g_tot ratio 513.2)
+    mass scaling at theta*, x = 1.08: a_in(1e12)/a_in(1e9) = 1451   (target: point mass 1; exp sphere's own g_tot ratio 7.899)
+    mass scaling at theta*, x = 9.14: a_in(1e12)/a_in(1e9) = 1002   (target: point mass 1; exp sphere's own g_tot ratio 1.045)
+    mass scaling at theta*, x = 30: a_in(1e12)/a_in(1e9) = 1000   (target: point mass 1; exp sphere's own g_tot ratio 1)
+  shadow geometry (M = 1e11, x = 1, r = 6.10 h): upstream on axis Sigma_up(test)/<Sigma_up> = 6.72e-03 (no shadow); downstream on axis 5.993
+  [PASS] S3a: at fixed r (M = 1e11, x = 1) the radial component of V2's relative push changes sign over theta (inward upstream, outward downstream outside the shadow)
+         a_in/g_tot: upstream (theta < 90) min +0.0009, max +0.1989;  downstream min -0.1109, max +1.0000;  outward for theta in [90.25, 154.50] deg
+  V2 u_F = rhoLc2: k = sqrt(K/u_F) = 2.6411e-01 m^2/kg; absorbed power ~ k u_F c = 4.158e-02 W/kg; E/E_orb over t_H = 1.08e+07 (1e9), 3.42e+06 (1e10), 1.08e+06 (1e11), 3.42e+05 (1e12)
+      G5c optical depths: k Sigma_sun = 3.454e+11, k Sigma_earth = 1.237e+10  (saturated);  G6 drag estimate 2 k u_F v_E/c = 2.755e-14 m/s^2
+  V2 u_F = Pcap  : k = sqrt(K/u_F) = 2.6481e+00 m^2/kg; absorbed power ~ k u_F c = 4.147e-03 W/kg; E/E_orb over t_H = 1.08e+06 (1e9), 3.41e+05 (1e10), 1.08e+05 (1e11), 3.41e+04 (1e12)
+      G5c optical depths: k Sigma_sun = 3.463e+12, k Sigma_earth = 1.240e+11  (saturated);  G6 drag estimate 2 k u_F v_E/c = 2.748e-15 m/s^2
+  V2 G7 estimate: a galaxy moving at U = 600 km/s sees the beam Doppler-scaled, (1 + U/c)^2 - 1 = 4.007e-03
+
+  V3 (P2): G_LS/G = s(1) = 0.414214; G1 max |a_LS/a_ph - 1| over x in [0.1, 30] = 82.05 (x = 0.1: 82.05; x = 30: 0.9857)
+  V3 (simple): G_LS/G = s(1) = 0.618034; G1 max |a_LS/a_ph - 1| over x in [0.1, 30] = 61.42 (x = 0.1: 61.42; x = 30: 0.9791)
+  V3 mass scaling a_LS(x; 1e12)/a_LS(x; 1e9) over the x grid: min 1.000000000000, max 1.000000000000 -- universal (a_LS = (G_LS/G) a0/x^2 at every mass)
+  V3 u_R = rhoLc2: k = sqrt(4 pi G_LS/u_R) = 8.1340e-01 m^2/kg; E/E_orb over t_H = 3.33e+07 (1e9), 1.05e+07 (1e10), 3.33e+06 (1e11), 1.05e+06 (1e12)
+      G5c: k Sigma_sun = 1.064e+12, k Sigma_earth = 3.809e+10;  G6 drag (4/3) k u_R v_E/c = 5.657e-14 m/s^2 -> FAIL;  bath temperature if EM (u_R/a_rad)^(1/4) = 28.86 K (reported only)
+  V3 u_R = Pcap  : k = sqrt(4 pi G_LS/u_R) = 8.1555e+00 m^2/kg; E/E_orb over t_H = 3.32e+06 (1e9), 1.05e+06 (1e10), 3.32e+05 (1e11), 1.05e+05 (1e12)
+      G5c: k Sigma_sun = 1.067e+13, k Sigma_earth = 3.820e+11;  G6 drag (4/3) k u_R v_E/c = 5.642e-15 m/s^2 -> UNDECIDED;  bath temperature if EM (u_R/a_rad)^(1/4) = 9.12 K (reported only)
+  G6 scales at 1 AU: alpha2-type (alpha2/2)(w/c)^2 GM_sun/AU^2 = 7.2265e-18; alpha1-type (alpha1/2)(w v_E/c^2) GM_sun/AU^2 = 1.2723e-14 m/s^2
+  V3 G7/G8 estimates at U = 600 km/s: monopole change (4/3)(U/c)^2 = 5.34e-06; the bath's intensity dipole 4U/c = 8.01e-03
+  G2: Omega_flow/Omega_m at z = 1100 = (u/(rho_m0 c^2)) 1101: rho_L c^2 -> 2391; P_cap -> 23.78  (FAIL line 0.01)
+  G2 (V1', eps = 0.1): rho_V1'/rho_m at z = 1100 = 1.330e-08; growth estimate eps Omega_L/Omega_m = 0.2172 (PASS line 0.05; eps <= 0.0230 would pass)
+
+======================================================================================================================
+S4 (H-D, reading T3: V4, the granted flux law -- a declared RESTATEMENT) -- what a stream does to the best flow law
+======================================================================================================================
+  [MUTATE D: F = s^2 everywhere (s = 1/x), no stiff core; the l = 1 ODE starts at f = x0, f' = 1]
+  [PASS] C1 (control): F(s(x)) x^2 = 1 -- P2 F = s^2/(1-2s) with s = (sqrt(1+x^2)-1)/x^2 (sympy), and numerically for P2 and simple (F = s^2/(1-s)) to 1e-12 on x in [0.1, 30]
+         sympy: P2 residual 0, simple residual 0;  numeric max |F x^2 - 1|: P2 7.2e-14, simple 1.7e-14 (s in the cancellation-free form 1/(sqrt(1+x^2)+1); the naive form gives 1.1e-11)
+  [PASS] (reported) aux: the closed-form F_s, F_ss, F/s (functions of x) equal sympy's derivatives of F at s(x)
+         max relative difference at x = 0.3, 1, 3, 10 (P2 and simple) = 1.7e-13
+  [PASS] C2 (control): in the deep regime (F = s^2, s = 1/x) the l = 1 ODE has exactly the solutions x and 1/x (sympy)
+         residual(f = x) = 0, residual(f = 1/x) = 0; dsolve: f = C1/x + C2*x
+  [PASS] C5 (control): J = F(|S|) S/|S|, S = (s + d_r, d_th), to second order: J_r = F + F_s d_r + Q_r, J_th = (F/s) d_th + Q_th with Q_r = F_s d_th^2/(2s) + F_ss d_r^2/2 - F d_th^2/(2s^2), Q_th = (F_s/s - F/s^2) d_r d_th (sympy)
+         residuals (J_r at orders 0, 1, 2; J_th at 0, 1, 2) = [0, 0, 0, 0, 0, 0]
+  [PASS] C5b (control): with d_r = lam fh' cos(th), d_th = -lam (fh/x) sin(th): <Q_r> = lam^2[(F_s/3s - F/3s^2)(fh/x)^2 + F_ss fh'^2/6] (so F_s <eps_r> = -<Q_r>: G7), the P2 projection of Q_r = lam^2 q_r2, and (1/(x sin))d_th(sin Q_th) = -2 lam^2 (F_s/s - F/s^2) fh' (fh/x)/x P2(cos) (the l = 2 source)
+         residuals = [0, 0, 0]
+  [PASS] C6 (control): deep regime (F = s^2, s = 1/x, fh = x): the l = 2 particular solution is g = (2/3) x^2 (sympy)
+         residual = 0; homogeneous exponents [-sqrt(3), sqrt(3)] (x^(+-sqrt 3), excluded by the BC at x_b)
+  l = 1 (deep): A = 1.00000000, B/A = 0 at x1 = 1e4 (B/A = 0 at 1e3; 2B/(A x1) = 0.00000 -- see note); c3 = fh(x0)/x0^1 = 1.00000000; fh'_core = fh'(x0) = 1.000e+00; Radau nfev 35694
+      fh'(x) at x = 0.1, 1, 3, 10, 30: 1.000000, 1.000000, 1.000000, 1.000000, 1.000000;  fh(x) - x at x = 30, 1e3: -0.00000, -0.00000
+  [PASS] (reported) aux: l = 1 (deep) Radau and DOP853 agree on fh' over x in [0.1, 30]
+         max relative difference 2.3e-12
+
+  V4 [deep] per U (b = 1), maxima over x in [0.1, 30]:
+     U km/s     lambda  G8b max D   at x  D (frozen /s)     G7 max   at x
+        150 1.0007e-03     0.0000  29.74         0.0000  2.907e-04  30.00
+        300 2.0014e-03     0.0000  29.74         0.0000  1.163e-03  30.00
+        370 2.4684e-03     0.0000  29.74         0.0000  1.769e-03  30.00
+        600 4.0028e-03     0.0000  29.74         0.0000  4.652e-03  30.00
+    l = 2 BVP x_b = 1e+03: status 0 (The algorithm converged to the desired accuracy.), 1970 nodes; G8a max = 1.902e-03 dex at x = 30.00 (l=2 part max 1.80e-03, l=0 spread max 6.04e-04)
+    l = 2 BVP x_b = 1e+04: status 0 (The algorithm converged to the desired accuracy.), 3638 nodes; G8a max = 1.902e-03 dex at x = 30.00 (l=2 part max 1.80e-03, l=0 spread max 6.04e-04)
+    x_b sensitivity: max |g'(x_b=1e3) - g'(x_b=1e4)| / max|g'| over x in [0.1, 30] = 8.12e-11 (relative, x in [1, 30]: 3.32e-10); G8a max changes by 1.2e-13 dex;  BVP vs shooting (x_b = 1e4): 4.13e-09
+    if the l = 2 part is also RMS'd over U uniform in [0, 600] (a reading, not scored): G8a max = 1.008e-03 dex
+  [PASS] (reported) aux: l = 2 (deep) solve_bvp agrees with a superposition shooting solution (x_b = 1e4) on g' over x in [0.1, 30]
+         max |difference| / max|g'| = 4.1e-09
+  [PASS] (reported) aux: G7 deep-regime check (deep): <eps_r>/s -> -lambda^2 x^2/3
+         ratio to -lambda^2 x^2/3 at x = 1e3: 1.000000; at x = 1e4: 1.000000
+  [FAIL] S4-D: the first-order l = 1 dipole is nonzero (max |D| at U = 600 km/s over x in [0.1, 30] > 1e-6)
+         max |D| = 1.2788e-14 (deep)  [MUTATE D: a uniform stream is an exact solution of F = s^2]
+
+  G8b (deep, U = 600): max D = 0.0000 at x = 29.74 -> PASS  (frozen variant lambda(fh'-fh'_core)/s: 0.0000 -> PASS)
+  G7  (deep, U = 600): max |<eps_r>|/(s + 1/x^2) = 4.652e-03 -> PASS (line 0.10)
+  G8a (deep, x_b = 1e4): max over x in [0.1, 30] = 1.902e-03 dex -> PASS (line 0.048); x_b = 1e3: 1.902e-03
+
+  G3b: sigma_E = 4 pi c^2 sqrt(G rho_L)/b = 7.0526e-01 W/kg (n1 = rho_L c^2), 7.0154e-03 W/kg (P_cap), at b = 1
+    n1 = rhoLc2: E/E_orb over t_H at b = 1 (= b_min) = 1.833e+08 (1e9), 5.797e+07 (1e10), 1.833e+07 (1e11), 5.797e+06 (1e12)
+      window: b_max_8b = 0.10/max D = 7.82e+12, b_max_7 = sqrt(0.10/G7) = 4.637;  min b_min = 5.797e+06; empty (max b_max < min b_min): False  (and min b_max < max b_min: True)
+    n1 = Pcap  : E/E_orb over t_H at b = 1 (= b_min) = 1.824e+06 (1e9), 5.767e+05 (1e10), 1.824e+05 (1e11), 5.767e+04 (1e12)
+      window: b_max_8b = 0.10/max D = 7.82e+12, b_max_7 = sqrt(0.10/G7) = 4.637;  min b_min = 5.767e+04; empty (max b_max < min b_min): False  (and min b_max < max b_min: True)
+  G3a (n1 = rhoLc2): a_react = sigma_E U/c^2 (U = 600, b = 1) = 4.708e-12 m/s^2; exceeds 0.1 g_law over a fraction 0.521 of x in [0.3, 30] (log-uniform), for x >= 2.720  (G3a alone would need b >= 14.6)
+  G3a (n1 = Pcap): a_react = sigma_E U/c^2 (U = 600, b = 1) = 4.683e-14 m/s^2; exceeds 0.1 g_law over a fraction 0.000 of x in [0.3, 30] (log-uniform)  (G3a alone would need b >= 0.145)
+
+  G5a: L = d ln(F/s)/d ln s = 1 (deep; P2 -1/(2*s - 1), simple -1/(s - 1)); c_s^2/q^2 = -1/L over x in [0.1, 30]: min -1.0000, max -1.0000 -> imaginary sound speed everywhere
+  G5b (inherited, CFG185; the main law -- not recomputed under MUTATE D): V4 reproduces P2, so the Sun carries a0/2 = 4.680e-11 m/s^2: 1258-1545x the planetary delta A_R bound (canonical Earth 1279x, Mars 1258x; alt Earth 1545x, Mars 1520x)
+  G6 (canonical): x_sun(1 AU) = 1.2563e-04 (< x0: core asymptotic fh = c3 x^1); lambda_w = w/(kappa c) = 2.4684e-03; delta_a = lambda_w a0 |fh'(x_sun) - fh'(0)| = 0.000e+00 m/s^2 -> PASS  [with fh'_core = fh'(x0): 5.130e-29 -> PASS]
+  G6 (alt): x_sun(1 AU) = 1.3811e-04 (< x0: core asymptotic fh = c3 x^1); lambda_w = w/(kappa c) = 2.4684e-03; delta_a = lambda_w a0 |fh'(x_sun) - fh'(0)| = 0.000e+00 m/s^2 -> PASS  [with fh'_core = fh'(x0): 6.200e-29 -> PASS]
+
+======================================================================================================================
+GATE MATRIX -- variant x G1..G8 (primary: canonical footing, P2, u = rho_L c^2; reasons carry the alternatives)
+======================================================================================================================
+                G1     G2     G3     G4     G5     G6     G7     G8
+  V1          FAIL    N/R    N/R    N/R    N/R  UNDEF  UNDEF  UNDEF
+  V1'(T1)     FAIL  UNDEC    N/R   FAIL    N/R   PASS   PASS   PASS
+  V2(T1)      FAIL   FAIL    N/R   PASS    N/R   PASS   PASS   PASS
+  V2(T2)      FAIL   FAIL   FAIL   FAIL   FAIL   FAIL   PASS   FAIL
+  V3(T1)      FAIL   FAIL    N/R   PASS    N/R   PASS   PASS   PASS
+  V3(T2)      FAIL   FAIL   FAIL   FAIL   FAIL   FAIL   PASS   PASS
+  V4(T3)      FAIL  UNDEF   FAIL   FAIL   FAIL   PASS   PASS   PASS
+  (UNDEC = UNDECIDED, UNDEF = UNDEFINED, N/R = NOT REACHED)
+
+  V1
+    G1 FAIL        no flow exists: T = -rho c^2 eta is boost-invariant, T^0i = 0 for every v, (eps + p) = 0 (S1a-c)
+    G2 NOT REACHED no flow (G1 structural); V1 is Lambda itself
+    G3 NOT REACHED no flow: no reaction, no energy flux (T^0i = 0)
+    G4 NOT REACHED no mechanism whose constants could be counted
+    G5 NOT REACHED no flow
+    G6 UNDEFINED   no rest frame: nothing to prefer
+    G7 UNDEFINED   no frame for a0 to depend on
+    G8 UNDEFINED   no flow direction
+
+  V1'(T1)
+    G1 FAIL        max R = g_ach/a_ph = 1.2e-06 (all kernels, footings, profiles); max |g_N + g_ach - g_tot|/g_tot = 0.967
+    G2 UNDECIDED   CMB: rho/rho_m(1100) = 1.3e-08 (< 0.01); growth eps Omega_L/Omega_m = 0.217 > 0.05, no Boltzmann code
+    G3 NOT REACHED G1 fails structurally (max R = 1e-06); a static compression/focusing absorbs no power
+    G4 FAIL        eps = 0.1 and c_s^2 = 1e-4 c^2 are new constants (not Lambda-tied)
+    G5 NOT REACHED G1 fails structurally (max R = 1e-06)
+    G6 PASS        trivial bound: the Sun's whole T1 extra gravity at 1 AU = 3.6e-30 m/s^2 vs alpha2 scale 7.2e-18
+    G7 PASS        trivial bound: the whole T1 force <= 1.2e-06 g_tot over the grid (line 0.10)
+    G8 PASS        trivial bound: any anisotropy <= the whole T1 force, 1.2e-06 g_tot (5.0e-07 dex)
+
+  V2(T1)
+    G1 FAIL        max R = g_ach/a_ph = 4.8e-09 (all kernels, footings, profiles; P_cap max R 4.8e-11); max |g_N + g_ach - g_tot|/g_tot = 0.967
+    G2 FAIL        Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap) > 0.01
+    G3 NOT REACHED G1 fails structurally (max R = 5e-09); a static compression/focusing absorbs no power
+    G4 PASS        only u (Lambda-tied: rho_L c^2 or P_cap), G and c; no opacity k in the T1 reading
+    G5 NOT REACHED G1 fails structurally (max R = 5e-09)
+    G6 PASS        trivial bound: the Sun's whole T1 extra gravity at 1 AU = 1.4e-32 m/s^2 vs alpha2 scale 7.2e-18
+    G7 PASS        trivial bound: the whole T1 force <= 4.6e-09 g_tot over the grid (line 0.10)
+    G8 PASS        trivial bound: any anisotropy <= the whole T1 force, 4.6e-09 g_tot (2.0e-09 dex)
+
+  V2(T2)
+    G1 FAIL        0.012 of the 500 grid points within 10% (alt 0.014, simple 0.012); mass scaling a_in(1e12)/a_in(1e9) at theta* = 1451 at x ~ 1 (target 1; exp sphere 7.9); sign change (S3a)
+    G2 FAIL        Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap)
+    G3 FAIL        absorbed energy over t_H / orbital energy = 3.4e+05-1.1e+07 (rho_L c^2), 3.4e+04-1.1e+06 (P_cap)
+    G4 FAIL        the opacity k = 0.264 m^2/kg (rho_L c^2), 2.65 (P_cap) is a new constant
+    G5 FAIL        G5c: k Sigma_sun = 3.5e+11, k Sigma_earth = 1.2e+10 (P_cap 1.2e+11): saturated, push not proportional to mass (EP broken)
+    G6 FAIL        ESTIMATE (not in the frozen S3): Doppler drag 2 k u_F v_E/c = 2.8e-14 m/s^2 (P_cap 2.7e-15 -> UNDECIDED); scales alpha2 7.2e-18, alpha1 1.3e-14; thin-absorber k (the Earth is saturated)
+    G7 PASS        ESTIMATE: the beam's Doppler factor changes the monopole by (1 + U/c)^2 - 1 = 4.0e-03 at 600 km/s
+    G8 FAIL        the radial push changes sign over theta at fixed r (S3a: outward for theta in 90-154 deg); O(1) anisotropy (range/max = 1.11)
+
+  V3(T1)
+    G1 FAIL        max R = g_ach/a_ph = 9.6e-09 (all kernels, footings, profiles; P_cap max R 9.5e-11); max |g_N + g_ach - g_tot|/g_tot = 0.967
+    G2 FAIL        Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap) > 0.01
+    G3 NOT REACHED G1 fails structurally (max R = 1e-08); a static compression/focusing absorbs no power
+    G4 PASS        only u (Lambda-tied: rho_L c^2 or P_cap), G and c; no opacity k in the T1 reading
+    G5 NOT REACHED G1 fails structurally (max R = 1e-08)
+    G6 PASS        trivial bound: the Sun's whole T1 extra gravity at 1 AU = 2.9e-32 m/s^2 vs alpha2 scale 7.2e-18
+    G7 PASS        trivial bound: the whole T1 force <= 9.3e-09 g_tot over the grid (line 0.10)
+    G8 PASS        trivial bound: any anisotropy <= the whole T1 force, 9.3e-09 g_tot (4.0e-09 dex)
+
+  V3(T2)
+    G1 FAIL        shape: max |a_LS/a_ph - 1| = 82.0 over x in [0.1, 30] (x = 30: 0.986); G_LS/G = 0.4142; mass scaling universal (ratio 1.000000)
+    G2 FAIL        Omega_flow/Omega_m(1100) = 2391 (rho_L c^2), 23.8 (P_cap)
+    G3 FAIL        absorbed energy over t_H / orbital energy = 1.1e+06-3.3e+07 (rho_L c^2), 1.0e+05-3.3e+06 (P_cap)
+    G4 FAIL        the opacity k = 0.813 m^2/kg (rho_L c^2), 8.16 (P_cap) is a new constant
+    G5 FAIL        G5c: k Sigma_sun = 1.1e+12, k Sigma_earth = 3.8e+10 (P_cap 3.8e+11): saturated (EP broken)
+    G6 FAIL        drag (4/3) k u_R v_E/c = 5.7e-14 m/s^2 (P_cap 5.6e-15 -> UNDECIDED); scales alpha2 7.2e-18, alpha1 1.3e-14; thin-absorber k (the Earth is saturated)
+    G7 PASS        ESTIMATE: an isotropic bath seen at U = 600 km/s changes the monopole by (4/3)(U/c)^2 = 5.3e-06
+    G8 PASS        ESTIMATE: the bath's dipole 4U/c = 8.0e-03 bounds the l = 1 asymmetry (b: <= 0.02); l = 2 and l = 0 are O((U/c)^2)
+
+  V4(T3)
+    G1 FAIL        by rule: a restatement (n(q) reverse-engineered from P2); G1-with-stream at U = 600: max D = 0.000 (<= 0.10) at x = 29.7
+    G2 UNDEFINED   no cosmological perturbation equations for the flux law (background-only)
+    G3 FAIL        G3a: sigma_E U/c^2 > 0.1 g_law over 0.52 of x in [0.3, 30] (P_cap 0.00); G3b: E/E_orb = 5.8e+06-1.8e+08 at b = 1 (P_cap 5.8e+04-1.8e+06); b-window empty: False (P_cap False)
+    G4 FAIL        n(q) ~ s^2/(1-2s) is a reverse-engineered function; b = 1 fails G3b and any b != 1 is a new constant (b-window empty: False by max b_max < min b_min, True by min b_max < max b_min)
+    G5 FAIL        G5a: c_s^2/q^2 = -1/L = -1.000..-1.000 < 0 (imaginary sound speed); G5b inherited (CFG185): the Sun carries a0/2, 1258-1545x the planetary bound
+    G6 PASS        delta_a(1 AU) = lambda_w a0 |fh'(x_sun) - fh'(0)| = 0.0e+00 m/s^2 (alt 0.0e+00; with fh'_core = fh'(x0): 5.1e-29 -> PASS) vs alpha2 scale 7.2e-18
+    G7 PASS        max |<eps_r>|/(s + 1/x^2) at U = 600 = 4.65e-03 (line 0.10)
+    G8 PASS        G8a PASS: 1.9e-03 dex (line 0.048); G8b PASS: max D = 0.000 at U = 600 (PASS <= 0.02, FAIL > 0.10; frozen /s variant 0.000)
+
+  Reading: a scoped statement for V1-V4 under T1-T3 as frozen. kappa = 1/2 and Omega_c h^2 stay FITTED; nothing here touches candidate B, says the theory is closed, or says the data favour any model.
+  run time 3.0 s
+
+  23/24 checks pass; load-bearing failures: 1   (3 s)
