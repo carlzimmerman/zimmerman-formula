@@ -32,3 +32,8 @@ CFG48 found that **local** gates fail the stiffness test on 44 of 48 layer × wi
 ## Standing
 
 **As a varied term the gate cannot be stable without new tuned scales.** It is a scoped no-go for this construction class (a local scalar with constant kinetic stiffness and a baryon-trace source), not a closure of the theory, and it says nothing about the nonlocal gates of CFG48. Nothing here says the theory is closed.
+
+## Process disclosure
+
+CFG49 has **no separate frozen-criteria file**. Its hypotheses and thresholds are declared in each script's docstring, and `CV6_B` and `CV6_C` say they were declared "before the final run", **after** disclosed exploratory scans (two scans preceded the final scripts; `CV6_B` lists them under DISCLOSED, and its H2 was declared before the run and refuted by it). The files were also bulk-copied into the repository in one operation (one creation time), so **"declared before the scripts were written" cannot be verified for this lane.** It is below the standard of CFG48 (which froze its gates in `GATES_FROZEN.md` before any script). Read CFG49's declarations as "declared in the scripts, after exploratory scans", not as pre-registered. The results reproduce (the CFG49 referee note re-ran all ten runs and re-derived the key numbers by hand); the process caveat concerns only the pre-registration status.
+
