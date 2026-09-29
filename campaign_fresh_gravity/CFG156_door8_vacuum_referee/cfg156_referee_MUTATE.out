@@ -1,0 +1,102 @@
+CFG156 frozen criteria sha256 = 55e58db81d29610acb8ad2a256c5ed4f317fdbc924f2468b5abb0506e146c834  (../CFG156_FROZEN_CRITERIA.md)
+CFG156 -- independent re-derivation of CFG131's sound-speed headline (door 8, interacting vacuum). MODE = MUTATE=1 (pressure term x 1e-5 inside every bound search)
+python 3.13.9, numpy 1.26.4, scipy 1.14.1, sympy 1.13.1
+a0 canonical 9.3603e-11, alt 1.1312e-10 m/s^2; GM_sun 1.32712440018e+20; G 6.67430e-11; c 299792458
+growth: flat, Omega_c 0.265, Omega_b 0.05, Omega_L 0.685, no radiation, H0 67.4 (H0/c = 2.248222e-04 /Mpc), start z = 1000 with delta = a, k in Mpc^-1, ratio line 0.95
+amended after the first run (cfg156_referee_firstrun.out kept): CB1 zero test strengthened (trig identity), post-hoc rows CB1' and CM3' added; no pass line, tolerance or physics input changed
+
+CB1 / B1 -- the covariant chain (sympy) on ds^2 = -N(t,r)^2 dt^2 + A(t,r)^2 dr^2 + B(t,r)^2 dOmega^2,
+            the cold fluid comoving, u = N^-1 d_t (a hypersurface-orthogonal congruence in comoving coordinates)
+     sympy dsolve of dp/drho = n(rho+p)/rho at n = 3/10: Eq(p(rho), C1*rho**(3/10) + 3*rho/7)
+  [PASS] CB1 step 1  nabla_mu(-rho_L g^{mu nu}) = -d^nu rho_L: zero residual
+  [PASS] CB1 step 2  exchange -> d_r rho_L = 0, N = -d_t rho_L / Q: zero residual
+  [PASS] CB1 step 3  a_mu = (0, d_r ln N, 0, 0): zero residual
+  [PASS] CB1 step 4  Euler: A^2 E^r = d_r p + (rho+p) d_r ln N, no Q term: zero residual
+  [PASS] CB1 step 4b energy: N E^t = [d_t rho + (rho+p) d_t ln(A B^2)]/N - Q: zero residual
+  [PASS] CB1 step 5  d_r p = (rho+p)(Q_rho/Q) d_r rho  [general Q(L,R)]: zero residual
+  [PASS] CB1 step 5  d_r p = (rho+p)(Q_rho/Q) d_r rho  [power law xi R^n L^m]: zero residual
+  [PASS] CB1 step 5  d_r p = (rho+p)(Q_rho/Q) d_r rho  [non-power xi L^m exp(alpha R)(1+R/rho_s)^n]: zero residual
+  [PASS] CB1 step 6  power law: p = n rho/(1-n) + C rho^n, c_s^2 = n(1+w): zero residual
+  [PASS] (reported) B1 step 7 (static limit forces Q = 0; CFG131 A5): static N E^t = -Q(t, r); solve -> Q = [0]
+  [PASS] (reported) CB1' (post hoc) zero-test self-check: is_zero(theta residual of step 1) = True and is_zero(same + rho_L cos(theta)/B^2) = False
+
+(a) TARGET SIDE -- CFG44 point mass, P2 law; hydrostatics dP/dr = -rho_c g_tot; P(inf) = 0 by quadrature;
+    dP/drho by centred differences on a 2001-point ln-x grid in [0.1, 30] (one ghost point at each end)
+  [PASS] CT2 SIS solver: P/rho = sigma^2: max rel dev 6.66e-16 (line 1e-8)
+  [PASS] CT2 SIS solver: dP/drho = sigma^2: max rel dev 6.91e-14 (line 1e-5)
+  [PASS] CT1 target identity C(r) = rho_c r^3 g_tot = a0 M_b/4pi: max rel dev 7.77e-16 over 4 masses x 2 footings x 2001 points (line 1e-12)
+  [PASS] CT1 M_c(<r) by quadrature = M_b(sqrt(1+x^2) - 1): max rel dev 2.72e-14 (line 1e-8)
+  [PASS] CT1 G(M_b + M_c)/r^2 = sqrt(g_N^2 + g_N a0): max rel dev 1.33e-15 (line 1e-8)
+  [PASS] CT3 numeric P = a0 M_b/(8 pi r^2): max rel dev 8.88e-16 (line 1e-8)
+  [PASS] CT3 numeric dP/drho = V_c^2 (1+x^2)/(1+2x^2): max rel dev 4.53e-06 (line 1e-5)
+  [PASS] (reported) CT3b numeric P/rho = V_c^2/2: max rel dev 8.88e-16
+
+    required c_s^2 (units of c^2) per mass: dP/drho [min over x (at x), max over x (at x)], P/rho [min, max], and the x -> inf value V_f^2/2c^2
+    footing canonical (a0 = 9.3603e-11):
+      M_b = 1e+09: r_M =   1.220 kpc, V_f =  59.37 km/s | dP/drho min 1.963e-08 (x = 30.00), max 3.903e-07 (x = 0.10) | P/rho min 1.962e-08, max 1.971e-07 | V_f^2/2c^2 = 1.961e-08 | min/flat = 1.00111
+      M_b = 1e+10: r_M =   3.859 kpc, V_f = 105.57 km/s | dP/drho min 6.207e-08 (x = 30.00), max 1.234e-06 (x = 0.10) | P/rho min 6.204e-08, max 6.231e-07 | V_f^2/2c^2 = 6.201e-08 | min/flat = 1.00111
+      M_b = 1e+11: r_M =  12.203 kpc, V_f = 187.74 km/s | dP/drho min 1.963e-07 (x = 30.00), max 3.903e-06 (x = 0.10) | P/rho min 1.962e-07, max 1.971e-06 | V_f^2/2c^2 = 1.961e-07 | min/flat = 1.00111
+      M_b = 1e+12: r_M =  38.589 kpc, V_f = 333.85 km/s | dP/drho min 6.207e-07 (x = 30.00), max 1.234e-05 (x = 0.10) | P/rho min 6.204e-07, max 6.231e-06 | V_f^2/2c^2 = 6.201e-07 | min/flat = 1.00111
+    footing alt (a0 = 1.1312e-10):
+      M_b = 1e+09: r_M =   1.110 kpc, V_f =  62.25 km/s | dP/drho min 2.158e-08 (x = 30.00), max 4.290e-07 (x = 0.10) | P/rho min 2.157e-08, max 2.166e-07 | V_f^2/2c^2 = 2.156e-08 | min/flat = 1.00111
+      M_b = 1e+10: r_M =   3.510 kpc, V_f = 110.69 km/s | dP/drho min 6.824e-08 (x = 30.00), max 1.357e-06 (x = 0.10) | P/rho min 6.820e-08, max 6.850e-07 | V_f^2/2c^2 = 6.816e-08 | min/flat = 1.00111
+      M_b = 1e+11: r_M =  11.100 kpc, V_f = 196.84 km/s | dP/drho min 2.158e-07 (x = 30.00), max 4.290e-06 (x = 0.10) | P/rho min 2.157e-07, max 2.166e-06 | V_f^2/2c^2 = 2.156e-07 | min/flat = 1.00111
+      M_b = 1e+12: r_M =  35.102 kpc, V_f = 350.04 km/s | dP/drho min 6.824e-07 (x = 30.00), max 1.357e-05 (x = 0.10) | P/rho min 6.820e-07, max 6.850e-06 | V_f^2/2c^2 = 6.816e-07 | min/flat = 1.00111
+
+(b) MODEL SIDE -- sub-horizon two-fluid growth, Gamma = 0, constant c_s^2 in the cold fluid, baryons pressureless
+  [PASS] CM1 LCDM: delta_m(z=0) = growth integral D(a), normalised to delta = a at z = 1000: solver 0.7878126028, integral 0.7878126025, rel dev 4.47e-10 (line 1e-6)
+  [PASS] CM2a J_(5/2) growing mode solves the EdS Jeans equation: sympy: delta'' + delta'/2 - (3/2) delta + beta a delta simplifies to 0
+  [PASS] CM2b solver = exact EdS Jeans solution at a = 1 for beta = 0.2, 1, 5: beta 0.2: delta(1)/[pressureless] = 0.944166, rel dev 7.9e-12; beta 1.0: delta(1)/[pressureless] = 0.744392, rel dev 3.1e-12; beta 5.0: delta(1)/[pressureless] = 0.165460, rel dev 2.5e-11 (line 1e-6)
+  [FAIL] CM3 two-fluid EdS first order: (1 - ratio)/beta = 2 f_c/7: solver 0.240024, 2f_c/7 = 0.240363, rel dev 1.41e-03 (line 1e-3)
+  [PASS] (reported) CM3' (post hoc) the same with the delta = a start: (2f_c/7)(1 - 1.4 a_i + 0.4 a_i^3.5): solver 0.240024, start-corrected closed form 0.240027, rel dev 1.06e-05 (the O(beta) term is ~1e-4 x O(0.1))
+
+    B3 bound search (pressure factor 1e-05): smallest constant c_s^2 with growth ratio = 0.95
+      k =   0.5/Mpc: z = 0 bound 1.659e-03 (x k^2 = 4.1469e-04); z = 10 bound 1.514e-02 (x k^2 = 3.7848e-03)
+      k =   2.0/Mpc: z = 0 bound 1.037e-04 (x k^2 = 4.1469e-04); z = 10 bound 9.462e-04 (x k^2 = 3.7848e-03)
+      k =  10.0/Mpc: z = 0 bound 4.147e-06 (x k^2 = 4.1469e-04); z = 10 bound 3.785e-05 (x k^2 = 3.7848e-03)
+      k =  30.0/Mpc: z = 0 bound 4.608e-07 (x k^2 = 4.1469e-04); z = 10 bound 4.205e-06 (x k^2 = 3.7848e-03)
+  [PASS] CM4 convergence: bound(k = 30) at rtol 1e-12 vs 1e-10 (unmutated): 4.608e-12 vs 4.608e-12, rel change 8.5e-11 (line 1e-5)
+
+HEADLINE (canonical footing)
+  [FAIL] H1 model side: c_s,max^2(k = 30, z = 0) within 10% of 4.6e-12: 4.608e-07 vs 4.6e-12 (ratio 100165.8849)
+  [PASS] H2 target side: smallest required dP/drho within 10% of 2e-8 (1e9) and 6e-7 (1e12): 1e9: 1.963e-08 (ratio 0.9815); 1e12: 6.207e-07 (ratio 1.0346)
+  [FAIL] H3 ordering: smallest requirement > c_s,max^2(30), factor within 10% of 4.3e3: smallest requirement 1.963e-08 (1e9 Msun, x = 30.00) / bound 4.608e-07 = 4.2602e-02 (ratio to 4.3e3: 0.0000)
+    (the same factor with the x -> inf value V_f^2/2c^2 = 1.961e-08: 4.2555e-02)
+
+SECONDARY ROWS (same 10% line; not in the exit code)
+  [FAIL] (reported) S1 bound k = 0.5, z = 0 vs 1.7e-08: 1.659e-03 (ratio 97573.3561)
+  [FAIL] (reported) S1 bound k = 2, z = 0 vs 1.0e-09: 1.037e-04 (ratio 103671.6909)
+  [FAIL] (reported) S1 bound k = 10, z = 0 vs 4.2e-11: 4.147e-06 (ratio 98734.9437)
+  [FAIL] (reported) S1 bound k = 0.5, z = 10 vs 1.5e-07: 1.514e-02 (ratio 100928.0087)
+  [FAIL] (reported) S1 bound k = 30, z = 10 vs 4.3e-11: 4.205e-06 (ratio 97798.4580)
+    S1 ordering at k =  0.5: smallest requirement / z = 0 bound = 1.1834e-05; / z = 10 bound = 1.2966e-06
+    S1 ordering at k =  2.0: smallest requirement / z = 0 bound = 1.8934e-04; / z = 10 bound = 2.0746e-05
+    S1 ordering at k = 10.0: smallest requirement / z = 0 bound = 4.7336e-03; / z = 10 bound = 5.1864e-04
+    S1 ordering at k = 30.0: smallest requirement / z = 0 bound = 4.2602e-02; / z = 10 bound = 4.6678e-03
+  [PASS] (reported) S2 P_req(1e12)/P_req(1e9) at matched rho_c: min, max vs 32, 272: min 32.17, max 271.71 over rho_c in [3.291e-24, 9.326e-22] kg/m^3; the same ratio for dP/drho: 32.71 to 465.72
+
+REPORTED-ONLY ROWS (declared in the spec; no pass line)
+    R-alt: smallest dP/drho 1e9 2.158e-08 (ratio to 2e-8 1.0790), 1e12 6.824e-07 (ratio to 6e-7 1.1373); H3 factor 4.6834e-02
+    R-z10: k = 0.5: 1.514e-02, k = 2: 9.462e-04, k = 10: 3.785e-05, k = 30: 4.205e-06
+    R-units (k = 30 read in h/Mpc, physical k = 20.220/Mpc): bound 1.014e-06 (x2.2013 of the main reading)
+    R-h (H0 = 70, k in Mpc^-1): bound 4.970e-07 (x1.0786)
+    R-rad (Omega_r = 9.2015e-05, Omega_L = 0.684908): bound 4.615e-07 (x1.0015)
+    R-w (full constant-w fluid, w = c_s^2): bound 4.608e-07 (rel change 1.18e-04)
+    R-req (c_s^2 = smallest requirement 1.963e-08, unmutated): growth ratio at z = 0: k = 0.5: 0.9411, k = 2: 0.3604, k = 10: 0.0199, k = 30: 0.0059
+    R-dens (beyond CFG131; unmutated): rho_bar_c(z=0) = 2.2612e-27 kg/m^3; c_s^2(rho_bar_c(z)) > 0 for z in [2.58, 234.39], applied c_s^2 from 1.963e-08 to 6.222e-07
+           growth ratio at z = 0: k = 0.5: 0.6715, k = 2: -0.2283, k = 10: 0.0123, k = 30: -0.0097
+    R-sub: smallest k/(aH/c) over the integration at k = 0.5/Mpc = 125.2 (at z = 1000)
+    R-prof: the requirement falls monotonically from x = 0.1 to x = 30 for every mass (see the table above): 1e+09: max/min = 19.881, 1e+10: max/min = 19.881, 1e+11: max/min = 19.881, 1e+12: max/min = 19.881
+           dP/drho strictly decreasing in x on the grid for all four masses: True
+
+SUMMARY: 21/24 load-bearing checks pass; reported rows failing their line: 5
+  load-bearing FAIL: CM3 two-fluid EdS first order: (1 - ratio)/beta = 2 f_c/7
+  load-bearing FAIL: H1 model side: c_s,max^2(k = 30, z = 0) within 10% of 4.6e-12
+  load-bearing FAIL: H3 ordering: smallest requirement > c_s,max^2(30), factor within 10% of 4.3e3
+  reported-row miss: S1 bound k = 0.5, z = 0 vs 1.7e-08
+  reported-row miss: S1 bound k = 2, z = 0 vs 1.0e-09
+  reported-row miss: S1 bound k = 10, z = 0 vs 4.2e-11
+  reported-row miss: S1 bound k = 0.5, z = 10 vs 1.5e-07
+  reported-row miss: S1 bound k = 30, z = 10 vs 4.3e-11
+exit code 1 (main must exit 0; MUTATE must exit 1).  Runtime 6.1 s
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
