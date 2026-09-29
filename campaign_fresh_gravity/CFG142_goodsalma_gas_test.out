@@ -1,0 +1,64 @@
+CFG142 -- does the dust continuum exclude the gas CFG141's P2 model needs? The KURVS-CDFS discs inside GOODS-ALMA 1.1 mm.
+
+Frozen criteria: CFG142_FROZEN_CRITERIA.md (ae867cd1d), committed before the data chat's cross-match (b25d5c902, README fix fef5d64ed).
+Data: data_assembly/goodsalma_crossmatch/ (placement on the mosaic, catalogue matches, the survey's stated frequency and thresholds).
+
+  conversion  Scoville et al. 2016 eqs. A4/A8 (alpha_850 = 6.7e19), T_d = 25 K, nu_obs = the survey's stated 265.0 GHz, Planck18 d_L.
+  S_req,gen   the 1.1-mm flux at mu_total = 4 at the generous end: gas-to-dust x 2 (mu_dust = 2) and M* 0.2 dex below MAGPHYS.
+  covered     inside the mosaic under both of the data chat's orientation readings; edge-flagged if within 0.5' of the edge.
+  detected    a catalogue source within 0.6".  not detected: the limit is N_det x rms, N_det = 4.4 (the paper's blind 100%-purity
+              threshold in the combined map), rms = the survey average 68.4 uJy/beam (APPROXIMATE: no local rms is available).
+  powered     S_req,gen > N_det x rms (a point source; the extended-source sensitivity is a reported row).
+  H1          no scored disc excludes the requirement; FAIL needs >= 2 excluding discs as the majority; < 2 scored -> NON-DIAGNOSTIC.
+MUTATE=1: every scored disc's flux set to S_req,gen with its measured error -> no scored disc may exclude.
+MUTATE=2: every scored disc a detection of zero flux with its error / 10 -> every scored disc must exclude (sample verdict only if >= 2).
+Each MUTATE run exits 0 when it behaves as required. kappa = 1/2 and Omega_c h^2 stay fitted.
+  [PASS] C-0 CONTROL: the conversion reproduces CFG142's committed pre-data table at 272.5 GHz (S(mu_dust = 2) and S(mu_dust = 4), 3-digit print)
+         max relative deviation 7.1e-04 over KURVS 3, 9, 11, 16
+  [PASS] C1 CONTROL: CFG141's pipeline (exec'd read-only) reproduces its committed per-disc P2 D_flat and D_H at mu = 0.67 (2-decimal print)
+         10/10 discs match: 3: +0.26/+0.12, 7: +0.37/+0.22, 8: +0.22/+0.04, 9: +0.32/+0.16, 11: +0.38/+0.25, 13: +0.73/+0.58, 15: +0.44/+0.28, 16: +0.54/+0.38, 17: +0.85/+0.70, 21: +0.72/+0.57
+
+======================================================================================================================
+R1  per disc (the ten rotation-supported KURVS discs)
+======================================================================================================================
+  KURVS- 3 z 1.541 logM* 10.64  placement outside, within 0.5' of the edge   / inside, within 0.5' of the edge     covered False edge True   match none (nearest 44.72")  S_req,gen 0.479 nom 1.517 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 0.79
+  KURVS- 7 z 1.518 logM* 10.24  placement inside, within 0.5' of the edge    / outside, within 0.5' of the edge    covered False edge True   match none (nearest 61.85")  S_req,gen 0.191 nom 0.604 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 1.99
+  KURVS- 8 z 1.540 logM*  9.58  placement outside                            / outside                             covered False edge False  match none (nearest 114.15")  S_req,gen 0.042 nom 0.132 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 9.11
+  KURVS- 9 z 1.540 logM* 10.12  placement inside                             / inside                              covered True  edge False  match none (nearest 17.54")  S_req,gen 0.145 nom 0.458 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 2.63
+  KURVS-11 z 1.384 logM* 10.68  placement inside                             / inside                              covered True  edge False  match none (nearest 21.88")  S_req,gen 0.528 nom 1.674 mJy  limit 0.301  powered True   scored True   excludes True   mu_dust,max(nominal) 0.72
+  KURVS-13 z 1.334 logM*  9.62  placement inside                             / inside, within 0.5' of the edge     covered True  edge True   match none (nearest 41.28")  S_req,gen 0.046 nom 0.146 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 8.22
+  KURVS-15 z 1.613 logM* 10.07  placement inside                             / inside                              covered True  edge False  match none (nearest 6.94")  S_req,gen 0.129 nom 0.408 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 2.95
+  KURVS-16 z 1.569 logM* 10.16  placement inside                             / inside                              covered True  edge False  match none (nearest 21.32")  S_req,gen 0.158 nom 0.502 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 2.40
+  KURVS-17 z 1.353 logM*  9.55  placement inside                             / inside, within 0.5' of the edge     covered True  edge True   match none (nearest 42.19")  S_req,gen 0.039 nom 0.124 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 9.68
+  KURVS-21 z 1.382 logM* 10.17  placement outside, within 0.5' of the edge   / inside, within 0.5' of the edge     covered False edge True   match none (nearest 27.92")  S_req,gen 0.163 nom 0.517 mJy  limit 0.301  powered False  scored False  excludes False  mu_dust,max(nominal) 2.33
+  [PASS] (reported) H1 [HEADLINE, reported verdict] the dust continuum does not exclude CFG141's P2 gas requirement in the scored covered discs
+         scored ['11']; excluding ['11']: NON-DIAGNOSTIC for the sample (fewer than two scored discs); reported per disc.  Every limit is APPROXIMATE (survey-average rms, point source).
+
+======================================================================================================================
+R2  per scored disc: CFG141's P2 D_flat, D_H (unanchored; anchor-corrected) at mu_total = mu_dust,max x {1, 2}  (lower bounds)
+======================================================================================================================
+  KURVS-11: mu_total = 0.72 (x1): D_flat +0.371, D_H +0.246; anchor-corrected +0.256, +0.131
+  KURVS-11: mu_total = 1.44 (x2): D_flat +0.293, D_H +0.174; anchor-corrected +0.178, +0.059
+  KURVS-11: at the P2 requirement mu = 4 for comparison: D_flat +0.107, D_H +0.004; anchor-corrected -0.008, -0.112
+
+======================================================================================================================
+R3 and declared variants (reported only)
+======================================================================================================================
+  T_d = 35 K, S_req,gen (mJy): 3: 0.535, 7: 0.213, 8: 0.047, 9: 0.162, 11: 0.582, 13: 0.051, 15: 0.145, 16: 0.178, 17: 0.043, 21: 0.180
+  limit N_det 4.4 (primary)               , peak/total 1.0 (effective total-flux limit 0.301 mJy): powered covered discs ['11']
+  limit N_det 4.4 (primary)               , peak/total 0.5 (effective total-flux limit 0.602 mJy): powered covered discs []
+  limit N_det 4.4 (primary)               , peak/total 0.3 (effective total-flux limit 1.003 mJy): powered covered discs []
+  limit N_det 5.2 (high-res)              , peak/total 1.0 (effective total-flux limit 0.356 mJy): powered covered discs ['11']
+  limit N_det 5.2 (high-res)              , peak/total 0.5 (effective total-flux limit 0.711 mJy): powered covered discs []
+  limit N_det 5.2 (high-res)              , peak/total 0.3 (effective total-flux limit 1.186 mJy): powered covered discs []
+  limit N_det 3.5 (prior-based)           , peak/total 1.0 (effective total-flux limit 0.239 mJy): powered covered discs ['11']
+  limit N_det 3.5 (prior-based)           , peak/total 0.5 (effective total-flux limit 0.479 mJy): powered covered discs ['11']
+  limit N_det 3.5 (prior-based)           , peak/total 0.3 (effective total-flux limit 0.798 mJy): powered covered discs []
+  limit faintest blind-table flux 0.49 mJy, peak/total 1.0 (effective total-flux limit 0.490 mJy): powered covered discs ['11']
+  limit faintest blind-table flux 0.49 mJy, peak/total 0.5 (effective total-flux limit 0.980 mJy): powered covered discs []
+  limit faintest blind-table flux 0.49 mJy, peak/total 0.3 (effective total-flux limit 1.633 mJy): powered covered discs []
+  context (not in the ten, not scored): KURVS-12 detected, 0.74 mJy, z 1.613, logM* 11.52: mu_dust 0.26 (nominal), mu_total 0.82 at the generous end
+  context (not in the ten, not scored): KURVS-22 detected, 1.36 mJy, z 1.618, logM* 11.12: mu_dust 1.19 (nominal), mu_total 3.77 at the generous end
+  KURVS-15 note: a prior-based source (A2GS75, 0.69 mJy, catalogue z 1.618) lies 6.9" away, outside the 0.6" rule; not used.
+
+  3/3 checks pass; load-bearing failures: 0   (0 s)
