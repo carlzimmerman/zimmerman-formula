@@ -377,3 +377,7 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
 ## Addendum after CFG185 (appended 2026-09-29; the rows and addenda above are unchanged)
 
 - **Gate 4.01, the bare kernels' tails:** CFG185 (568107b4f): as BARE laws neither kernel is Solar-System safe. ν_mono's anomalous acceleration never decays — above the RAR peak FP1's derivative floor gives exactly h = h(Y_P) + 0.05 H_P ln((y + Y_P)/(2Y_P)), never below 0.648 a₀, 1.18 a₀ at Earth — 2894–3620× the verified planetary bound δA_R (3.66e-14 m/s² Earth, 3.72e-14 Mars); P2's a₀/2 is 1258–1545×. These are the Sun-carried MONOPOLE; the '4.0–5.7× the ceiling' in 4.01 is the Q₂ TIDAL quadrupole of the same strict law, a different quantity. Candidate B passes 4.01 by ownership (the Sun carries no phantom), so no verdict changes; what must not be said is that ν_mono or P2 is Solar-System safe as a bare law.
+
+## Addendum: KURVS velocity provenance (appended 2026-09-29; the rows and addenda above are unchanged)
+
+- **§4, a₀ at high z, provenance correction (KURVS velocities):** every KURVS lane (CFG140–142, 160–164, 170, 175; and the referees CFG165–168 through the same column) used the paper's Table B1 col 3 outer velocity, which is the authors' fitted exponential-disc MODEL at R_max, not a measured data point (the data chat's control file 5e8617c81: model(R_max)/sin i_SFR equals the table to ~1% for all ten discs). The KURVS a₀(z) readings are model-velocity readings; a re-run with the measured outer markers is proposed as a new frozen lane (CFG189), after CFG184's beam-smearing lane.

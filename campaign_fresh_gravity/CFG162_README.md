@@ -108,3 +108,11 @@
   5. **The region where both laws are within 1σ is empty** (minimum separation 2.24σ).
   6. **The crossing does not identify the law.** A flat world at (s, μ) = (1, 2.14) and a rival world at (1, 0.65) give the same s_mid distribution.
 - **Label items:** the README's MUTATE says "velocities × 2", but the code uses 10^0.3. The MUTATE printout shows s_mid = nan (cosmetic). C2's wrong asymptotic is already disclosed above.
+
+## Provenance correction: the KURVS outer velocity is a model value (appended 2026-09-29; the text above is unchanged)
+
+- **The KURVS outer velocity this lane uses is the authors' fitted exponential-disc MODEL evaluated at R_max, not the last measured data point.** It is Table B1 col 3, read as `v_at_last_point_kms` through CFG140's loader.
+- **How this was established.** The data chat's digitisation of the paper's figures (5e8617c81, `data_assembly/arxiv_tables/kurvs_rc_profiles/`) includes a control file (`kurvs_rc_control_vs_table.csv`). In it, the authors' model curve at R_max divided by sin i_SFR equals the tabulated velocity to about 1% for all ten discs (for example KURVS-3: 208.6 against 209.8 km/s; KURVS-15: 113.2 against 112.2). I checked this from the control file alone.
+- **Where the record says otherwise.** Where this lane or CFG140 calls the velocity "measured" or "the velocity at the last observed point", read "the fitted model at R_max". The authors deprojected it with i_SFR; CFG140 uses i* only in its inclination-error term.
+- **The a₀(z) numbers here are therefore model-velocity numbers.** The measured outer markers can differ from the model: an indicative, unreconciled probe found −15% to +10% for seven discs.
+- **A re-run with the measured outer markers** is planned as a new frozen lane (proposed CFG189), after CFG184. The measured markers have not been read in the meantime.

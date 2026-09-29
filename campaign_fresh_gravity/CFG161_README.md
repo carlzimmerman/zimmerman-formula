@@ -87,3 +87,11 @@
   - The sentence "P4 does not manufacture evolution; P1, P2 and P3 do" omits α × 1.4, which manufactures in this README's own table.
   - The anchor-corrected absolute rows (KURVS +0.144 / −0.006; KROSS −0.004 ± 0.020 / −0.082) were not printed by this lane's committed script. They came from an uncommitted probe. CFG167 reproduces them independently, and CFG170's C2 now prints the KROSS row from a committed script.
   - This lane's frozen expectation that D "rises by about 0.6 dex" under MUTATE was wrong: the rise is 0.41.
+
+## Provenance correction: the KURVS outer velocity is a model value (appended 2026-09-29; the text above is unchanged)
+
+- **The KURVS outer velocity this lane uses is the authors' fitted exponential-disc MODEL evaluated at R_max, not the last measured data point.** It is Table B1 col 3, read as `v_at_last_point_kms` through CFG140's loader.
+- **How this was established.** The data chat's digitisation of the paper's figures (5e8617c81, `data_assembly/arxiv_tables/kurvs_rc_profiles/`) includes a control file (`kurvs_rc_control_vs_table.csv`). In it, the authors' model curve at R_max divided by sin i_SFR equals the tabulated velocity to about 1% for all ten discs (for example KURVS-3: 208.6 against 209.8 km/s; KURVS-15: 113.2 against 112.2). I checked this from the control file alone.
+- **Where the record says otherwise.** Where this lane or CFG140 calls the velocity "measured" or "the velocity at the last observed point", read "the fitted model at R_max". The authors deprojected it with i_SFR; CFG140 uses i* only in its inclination-error term.
+- **The a₀(z) numbers here are therefore model-velocity numbers.** The measured outer markers can differ from the model: an indicative, unreconciled probe found −15% to +10% for seven discs.
+- **A re-run with the measured outer markers** is planned as a new frozen lane (proposed CFG189), after CFG184. The measured markers have not been read in the meantime.

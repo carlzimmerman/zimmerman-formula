@@ -91,3 +91,11 @@ The alt footing moves these by 0.01 or less; the δ = ±0.2 dex stellar-mass bra
   - something neither reading predicts.
 - **With the measured σ, both readings need about 4 M* of cold gas at z ≈ 1.5.** That is a requirement of the P2 dispersion model, not a prediction of the framework (CFG141 README, correction).
 - The frozen verdict (NON-DIAGNOSTIC) and every number above are unchanged.
+
+## Provenance correction: the KURVS outer velocity is a model value (appended 2026-09-29; the text above is unchanged)
+
+- **The KURVS outer velocity this lane uses is the authors' fitted exponential-disc MODEL evaluated at R_max, not the last measured data point.** It is Table B1 col 3, read as `v_at_last_point_kms` through CFG140's loader.
+- **How this was established.** The data chat's digitisation of the paper's figures (5e8617c81, `data_assembly/arxiv_tables/kurvs_rc_profiles/`) includes a control file (`kurvs_rc_control_vs_table.csv`). In it, the authors' model curve at R_max divided by sin i_SFR equals the tabulated velocity to about 1% for all ten discs (for example KURVS-3: 208.6 against 209.8 km/s; KURVS-15: 113.2 against 112.2). I checked this from the control file alone.
+- **Where the record says otherwise.** Where this lane or CFG140 calls the velocity "measured" or "the velocity at the last observed point", read "the fitted model at R_max". The authors deprojected it with i_SFR; CFG140 uses i* only in its inclination-error term.
+- **The a₀(z) numbers here are therefore model-velocity numbers.** The measured outer markers can differ from the model: an indicative, unreconciled probe found −15% to +10% for seven discs.
+- **A re-run with the measured outer markers** is planned as a new frozen lane (proposed CFG189), after CFG184. The measured markers have not been read in the meantime.
