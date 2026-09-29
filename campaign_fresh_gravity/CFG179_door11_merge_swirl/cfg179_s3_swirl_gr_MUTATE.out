@@ -1,0 +1,62 @@
+cfg179_s3_swirl_gr  mode = MUTATE  (kappa = 1/2 FITTED; P2 nu = sqrt(1 + 1/y); footings canonical 9.3603e-11, alt 1.1312e-10 m/s^2)
+vorticity term weight = 0.0  (MUTATE: irrotational river)
+
+==============================================================================================================
+W1  the river law with vorticity: rigid rotation
+==============================================================================================================
+  [FAIL] W1 a rigidly rotating flow v = Omega x r gives exactly the rotating-frame law xddot = 2 Omega x xdot - Omega x (Omega x r) (the river's vorticity 2 Omega IS the Coriolis term); a body at rest in the flow is carried round (centripetal Omega x (Omega x r))
+         residual [2*Omega*(-Omega*x + yd), 2*Omega*(-Omega*y - xd), 0]
+
+==============================================================================================================
+W2  a disc swirling the river: v = lambda_c V(R) phi-hat
+==============================================================================================================
+    a_R(tracer at u phi-hat) = -V0**2*lambda_c**2/R
+    retrograde minus prograde = 0
+  [FAIL] W2a [HEADLINE] a_R = -lambda_c^2 V^2/R - (u - lambda_c V) lambda_c (V/R)(1 + s): prograde (u = V) and retrograde (u = -V) tracers differ by 2 lambda_c (1 + s) V^2/R; for a flat curve prograde gets -lambda_c V^2/R (inward) and retrograde +lambda_c V^2/R (outward)
+         a_R(prograde, s=0) = -V0**2*lambda_c**2/R; a_R(retrograde, s=0) = -V0**2*lambda_c**2/R
+  [PASS] (reported) W2b a vertical vorticity exerts no force on vertical motion: the tracer's z-acceleration is zero for any w_z (a swirl changes the radial force only)
+         a_z = 0
+    reading: lambda_c = 1 means the river co-rotates with the stars and carries them (it supplies all of V^2/R): a prescribed swirl is a restatement of the rotation curve, as door 11 warns for prescribed flows.
+
+==============================================================================================================
+W3  GR's swirl: the 1PN gravitomagnetic term is a river shift v_s = 4U/c^2
+==============================================================================================================
+  [FAIL] W3 from g_0j = -4U_j/c^3 the test-body Lagrangian carries -(4/c^2) U.v, and its Euler-Lagrange force is a_GM = -(4/c^2) v x (curl U) -- the river law's -w x curl(v_s) with shift v_s = 4U/c^2, U_j = G Int rho v_j/|x-x'|
+         Euler-Lagrange solved and compared component by component (static U)
+
+==============================================================================================================
+W4  GR's swirl for a Milky-Way-like disc (thin exponential disc, prograde tracer at 220 km/s)
+==============================================================================================================
+  [PASS] C1 CONTROL: the ring kernels Int cos(phi') dphi'/|x-x'| = (4/(k sqrt(R R')))[(1 - k^2/2)K - E] and Int dphi'/|x-x'| = 4K/sqrt((R+R')^2 + z^2) agree with direct quadrature to 1e-8 (4 points)
+         max relative deviation 2.3e-15
+  R_d 3.0  h 0.05  R  8.2 kpc: g_N -3874.89 (Freeman -3905.91) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.111 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 5.66 mas/yr
+  R_d 3.0  h 0.05  R 10.0 kpc: g_N -2902.66 (Freeman -2919.71) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.084 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 4.64 mas/yr
+  R_d 3.0  h 0.20  R  8.2 kpc: g_N -3782.45 (Freeman -3905.91) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.109 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 5.66 mas/yr
+  R_d 3.0  h 0.20  R 10.0 kpc: g_N -2851.44 (Freeman -2919.71) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.082 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 4.64 mas/yr
+  R_d 2.5  h 0.05  R  8.2 kpc: g_N -4282.82 (Freeman -4313.90) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.102 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 5.66 mas/yr
+  R_d 2.5  h 0.05  R 10.0 kpc: g_N -3053.00 (Freeman -3068.17) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.073 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 4.64 mas/yr
+  R_d 2.5  h 0.20  R  8.2 kpc: g_N -4189.54 (Freeman -4313.90) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.100 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 5.66 mas/yr
+  R_d 2.5  h 0.20  R 10.0 kpc: g_N -3006.99 (Freeman -3068.17) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.072 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 4.64 mas/yr
+  R_d 3.5  h 0.05  R  8.2 kpc: g_N -3434.38 (Freeman -3463.22) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.115 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 5.66 mas/yr
+  R_d 3.5  h 0.05  R 10.0 kpc: g_N -2684.85 (Freeman -2702.11) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.091 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 4.64 mas/yr
+  R_d 3.5  h 0.20  R  8.2 kpc: g_N -3348.76 (Freeman -3463.22) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.113 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 5.66 mas/yr
+  R_d 3.5  h 0.20  R 10.0 kpc: g_N -2633.26 (Freeman -2702.11) (km/s)^2/kpc; a_GM +0.000e+00; a_GM/g_N = -0.00e+00 (opposite to gravity (outward)); swirl speed |4U/c^2| = 0.089 m/s; frame rotation 0.00e+00 mas/yr vs Omega_gal 4.64 mas/yr
+  [PASS] C2 CONTROL: the disc's Newtonian radial force at h = 0.05 kpc agrees with Freeman's exact thin-disc formula to 2% (R = 8.2, 10 kpc; R_d = 2.5, 3, 3.5)
+         max |g_N/g_Freeman - 1| = 0.0083
+  [FAIL] W4 [HEADLINE] GR's swirl is negligible: |a_GM/g_N| below the frozen 1e-5 line (and nonzero) at 8.2 and 10 kpc for every R_d and h
+         base (R_d 3, h 0.05, R 8.2): -0.00e+00; range 0.00e+00 - 0.00e+00; 4V^2/c^2 = 2.15e-06; swirl speed 0.111 m/s; frame rotation 0.00e+00 mas/yr = 0.0e+00 of Omega_gal
+
+==============================================================================================================
+VERDICT (W1-W4)
+==============================================================================================================
+  A swirled river pushes co-moving (prograde) and counter-moving (retrograde) bodies oppositely: that sign flip is the
+  swirl's fingerprint.  GR's own swirl of the Milky Way's river (frame dragging, baryons only) is 0.0e+00 - 0.0e+00 of Newtonian gravity
+  at 8-10 kpc (pushing co-rotating stars outward), a river turning at ~0.11 m/s, with local frames rotating at 0.0e+00 mas/yr; no galactic observable can see it.
+  (First run: the prose here was hard-coded as 'about a millionth' and '~a metre per second', which overstated the printed
+  numbers; it now prints them.  Checks and numbers are unchanged; see cfg179_s3_swirl_gr_firstrun.out.)
+
+3/7 checks pass; load-bearing failures: 4   (0.4 s, mode MUTATE)
+   load-bearing FAIL: W1 a rigidly rotating flow v = Omega x r gives exactly the rotating-frame law xddot = 2 Omega x xdot - Omega x (Omega x r) (the river's vorticity 2 Omega IS the Coriolis term); a body at rest in the flow is carried round (centripetal Omega x (Omega x r))
+   load-bearing FAIL: W2a [HEADLINE] a_R = -lambda_c^2 V^2/R - (u - lambda_c V) lambda_c (V/R)(1 + s): prograde (u = V) and retrograde (u = -V) tracers differ by 2 lambda_c (1 + s) V^2/R; for a flat curve prograde gets -lambda_c V^2/R (inward) and retrograde +lambda_c V^2/R (outward)
+   load-bearing FAIL: W3 from g_0j = -4U_j/c^3 the test-body Lagrangian carries -(4/c^2) U.v, and its Euler-Lagrange force is a_GM = -(4/c^2) v x (curl U) -- the river law's -w x curl(v_s) with shift v_s = 4U/c^2, U_j = G Int rho v_j/|x-x'|
+   load-bearing FAIL: W4 [HEADLINE] GR's swirl is negligible: |a_GM/g_N| below the frozen 1e-5 line (and nonzero) at 8.2 and 10 kpc for every R_d and h

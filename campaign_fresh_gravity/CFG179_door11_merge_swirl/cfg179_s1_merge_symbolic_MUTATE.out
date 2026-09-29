@@ -1,0 +1,54 @@
+cfg179_s1_merge_symbolic  mode = MUTATE  (kappa = 1/2 FITTED; P2 nu = sqrt(1 + 1/y); footings canonical 9.3603e-11, alt 1.1312e-10 m/s^2)
+
+==============================================================================================================
+M1  GR's river: Painleve-Gullstrand with a general flow speed v(r)  (c = 1, signature -+++)
+==============================================================================================================
+  [PASS] M1a G^t_t = G^r_r = -(r f)'/r^2 and G^th_th = G^ph_ph = -(r f)''/(2r) with f = v^2; all off-diagonal G^a_c = 0 (the geometry depends on the flow only through v^2)
+         G^t_t - claim = 0; G^th_th - claim = 0; off-diagonal zero: True
+  [PASS] M1b the Einstein-Lambda vacuum G^a_c = -Lambda delta^a_c is LINEAR in f = v^2: general solution f = C1/r + Lambda r^2/3, i.e. v^2 = 2M/r + Lambda r^2/3 -- the squared flows ADD, no cross term
+         dsolve: f = (C1 + Lambda*r**3/3)/r; residuals of 2M/r + Lambda r^2/3: tt 0, thth 0
+  [PASS] M1c a LINEAR velocity sum v = sqrt(2M/r) + sqrt(Lambda/3) r is NOT a solution: cross term f_x = 2 sqrt(2 M Lambda/3) r^(1/2), residual != 0, and the cross term's pull -d(f_x/2)/dr scales as r^(-1/2) (rotation speed ~ r^(1/4)), not deep-MOND r^(-1)
+         f_x = 2*sqrt(6)*sqrt(Lambda)*sqrt(M)*sqrt(r)/3; G^t_t + Lambda = -sqrt(6)*sqrt(Lambda)*sqrt(M)/r**(3/2); cross-term acceleration = -sqrt(6)*sqrt(Lambda)*sqrt(M)/(6*sqrt(r)); d ln|a|/d ln r = -1/2
+
+==============================================================================================================
+M2  the Newtonian river law, and two rivers added as velocities
+==============================================================================================================
+  [PASS] M2a Newtonian limit of the river metric ds^2 = -dt^2 + |dx - v dt|^2, L = |xdot - v|^2/2, gives exactly xddot = d_t v + (v.grad) v - w x (curl v), w = xdot - v (a body carried by the flow, plus a Coriolis-like term from the flow's vorticity)
+         Euler-Lagrange solved for xddot and compared component by component
+  [PASS] M2b two point masses (GM = 1 each at x = -+1/2), field point (0.3, 0.4, 0): the summed infall v1 + v2 is irrotational, its pull (v.grad)v equals Newton + grad(v1.v2) exactly, and the cross term grad(v1.v2) is not small (pass line |cross|/|a_N| > 0.01)
+         |curl| = 0.0e+00; a_lin = (+5.8615, +1.2934), a_N = (+1.1180, -5.0312); identity residual 0.0e+00; |grad(v1.v2)|/|a_N| = 1.534
+    reading: in the weak field it is v^2 = -2 Phi that adds (the potentials add); the merged river is the solution of the eikonal |grad chi|^2 = v1^2 + v2^2, not v1 + v2.  No exact GR two-body river is known to this lane.
+  [PASS] (reported) M2c GR's own merge nonlinearity (1PN, beta = 1): g_00 carries -2 beta U^2/c^4 = -2(U1 + U2)^2/c^4, a cross term -4 U1 U2/c^4, i.e. relative size U_ext/c^2; for the Milky Way at the Sun V_c^2/c^2 (a floor on |Phi|/c^2)
+         V_c^2/c^2 = 5.39e-07 (|Phi|/c^2 is a few times this); GR obeys the strong equivalence principle, so beyond tides its merged rivers carry no external-field effect
+
+==============================================================================================================
+M3  THE NO-GO: a local merged law with no external-field effect must be linear
+==============================================================================================================
+  [PASS] M3a d/dz_e of the no-EFE identity F(z + z_e) - F(z_e) - F(z) = 0 is F'(z + z_e) - F'(z_e) = 0 for all z, z_e: F' takes one value on (0, inf), so F(z) = k z (Newton with G -> kG); any nonlinear F makes merged rivers interact
+         d/dz_e I = -Derivative(F(z_e), z_e) + Subs(Derivative(F(_xi_1), _xi_1), _xi_1, z + z_e)
+  [FAIL] M3b [HEADLINE] merged P2 rivers interact: the no-EFE residual F(z + z_e) - F(z_e) - F(z) is nonzero at all 6 declared points, F' is not constant, and F'(0+) is infinite (kernel: LINEAR nu == 2 (MUTATE))
+         residuals (0.01,0.1): +0.0000, (0.01,1): +0.0000, (0.1,0.1): +0.0000, (0.1,1): +0.0000, (1,0.1): +0.0000, (1,1): +0.0000; F'(z) = 2; F'(0+) = 2
+  [PASS] M3c deep-MOND homogeneity: F_deep(lambda z) = lambda^(1/2) F_deep(z); two equal sources at one place give sqrt2, not 2, times one source's field -- the flow law is nonlinear in the source
+         F_deep(lambda z)/F_deep(z) = sqrt(lambda); at lambda = 2: 1.4142 vs linear 2
+
+==============================================================================================================
+M4  the external-field law merged P2 rivers imply
+==============================================================================================================
+  [PASS] M4a aligned 1-D AQUAL [M(x+e) - M(e) = b] and QUMOND [x = F(b + z_e) - e, e = F(z_e)] are one law for P2 (F and M exact inverses) -- Chae 2020's eq. 6 construction, the one CFG8 fitted; its susceptibility dx/de at e = 0 is -1 for every b
+         F(M(X)) = X: True (simplify); M(F(X)) = X: True (factor+denest); AQUAL residual zero: True (40-digit numeric at 6 points); dx/de|0 = -1
+  [PASS] M4b E7 re-derived (independently of eqbook_S5_efe.py): clearing the radical of mu_fw(x + e7) x = b gives 4(x + e7)[x^3 + e7 x^2 - b(b+1)x - b^2 e7]; its unique positive root satisfies the unsquared balance (4 points); susceptibility -1/(2(1+b)) per unit e7 = sqrt2 g_ext/a0, i.e. -1/(sqrt2 (1+b)) per unit g_ext/a0 (deep limit 0.707 of the 1-D law's -1)
+         factorisation residual 0; balance on 4 points True; chi_E7 = -1/(2*b + 2)
+  [PASS] M4c external-dominated limits: E7 G_eff/G = 1/mu_fw(e7) = (1 + sqrt(1 + 4 e7^2))/(2 e7); P2 1-D (parallel) F'(z_e) = nu(1 + L) with L = -1/(2(1+z_e)); the isotropic average of (parallel, perp, perp) = (nu(1+L), nu, nu) is nu(1 + L/3) (L23's E3 coupling)
+         E7 residual 0; F' - nu(1+L) zero: True (factor+denest); L = -1/(2*zeta + 2); isotropic residual 0
+
+==============================================================================================================
+VERDICT (M1-M4)
+==============================================================================================================
+  GR's rivers add in v^2 (potentials add), never in v; GR's merge carries no external-field effect beyond tides (SEP).
+  Any flow law with the deep-MOND limit is nonlinear in its source, so a river inside a larger river obeys a modified
+  internal law (M3): merged rivers MUST interact unless the boost is keyed to something other than the local total flow
+  (e.g. candidate B's ownership of the enclosed baryons -- a nonlocal rule, not a merging flow).  For P2 the implied
+  quench is the aligned 1-D law (susceptibility -1) or the equation book's E7 (-1/(sqrt2 (1+b)) per unit g_ext/a0).
+
+11/12 checks pass; load-bearing failures: 1   (1.5 s, mode MUTATE)
+   load-bearing FAIL: M3b [HEADLINE] merged P2 rivers interact: the no-EFE residual F(z + z_e) - F(z_e) - F(z) is nonzero at all 6 declared points, F' is not constant, and F'(0+) is infinite (kernel: LINEAR nu == 2 (MUTATE))

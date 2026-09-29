@@ -1,0 +1,191 @@
+{
+ "slug": "cfg179_s3_swirl_gr",
+ "mode": "main",
+ "summary": {
+  "n_checks": 7,
+  "n_pass": 7,
+  "load_bearing_failures": 0,
+  "failed": [],
+  "seconds": 1.380842924118042
+ },
+ "checks": [
+  {
+   "name": "W1 a rigidly rotating flow v = Omega x r gives exactly the rotating-frame law xddot = 2 Omega x xdot - Omega x (Omega x r) (the river's vorticity 2 Omega IS the Coriolis term); a body at rest in the flow is carried round (centripetal Omega x (Omega x r))",
+   "ok": true,
+   "detail": "residual [0, 0, 0]",
+   "load_bearing": true
+  },
+  {
+   "name": "W2a [HEADLINE] a_R = -lambda_c^2 V^2/R - (u - lambda_c V) lambda_c (V/R)(1 + s): prograde (u = V) and retrograde (u = -V) tracers differ by 2 lambda_c (1 + s) V^2/R; for a flat curve prograde gets -lambda_c V^2/R (inward) and retrograde +lambda_c V^2/R (outward)",
+   "ok": true,
+   "detail": "a_R(prograde, s=0) = -1.0*V0**2*lambda_c/R; a_R(retrograde, s=0) = 1.0*V0**2*lambda_c/R",
+   "load_bearing": true
+  },
+  {
+   "name": "W2b a vertical vorticity exerts no force on vertical motion: the tracer's z-acceleration is zero for any w_z (a swirl changes the radial force only)",
+   "ok": true,
+   "detail": "a_z = 0",
+   "load_bearing": false
+  },
+  {
+   "name": "W3 from g_0j = -4U_j/c^3 the test-body Lagrangian carries -(4/c^2) U.v, and its Euler-Lagrange force is a_GM = -(4/c^2) v x (curl U) -- the river law's -w x curl(v_s) with shift v_s = 4U/c^2, U_j = G Int rho v_j/|x-x'|",
+   "ok": true,
+   "detail": "Euler-Lagrange solved and compared component by component (static U)",
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CONTROL: the ring kernels Int cos(phi') dphi'/|x-x'| = (4/(k sqrt(R R')))[(1 - k^2/2)K - E] and Int dphi'/|x-x'| = 4K/sqrt((R+R')^2 + z^2) agree with direct quadrature to 1e-8 (4 points)",
+   "ok": true,
+   "detail": "max relative deviation 2.3e-15",
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: the disc's Newtonian radial force at h = 0.05 kpc agrees with Freeman's exact thin-disc formula to 2% (R = 8.2, 10 kpc; R_d = 2.5, 3, 3.5)",
+   "ok": true,
+   "detail": "max |g_N/g_Freeman - 1| = 0.0083",
+   "load_bearing": true
+  },
+  {
+   "name": "W4 [HEADLINE] GR's swirl is negligible: |a_GM/g_N| below the frozen 1e-5 line (and nonzero) at 8.2 and 10 kpc for every R_d and h",
+   "ok": true,
+   "detail": "base (R_d 3, h 0.05, R 8.2): -2.31e-07; range 5.05e-08 - 4.35e-07; 4V^2/c^2 = 2.15e-06; swirl speed 0.111 m/s; frame rotation 4.29e-07 mas/yr = 7.6e-08 of Omega_gal",
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "W4": {
+   "Rd3.0_h0.05_R8.2": {
+    "U_phi": 2502018.323623107,
+    "B_z": -91416.58805901321,
+    "g_N": -3874.89331010147,
+    "a_GM": 0.0008950891120872063,
+    "ratio": -2.3099709861786286e-07,
+    "v_swirl_ms": 0.11135483312105723,
+    "Omega_drag_masyr": 4.291332373465639e-07,
+    "Omega_gal_masyr": 5.659621444552893,
+    "freeman": -3905.909113705648
+   },
+   "Rd3.0_h0.05_R10.0": {
+    "U_phi": 1878973.092627488,
+    "B_z": -110042.91737433523,
+    "g_N": -2902.6590491612296,
+    "a_GM": 0.001077465472026749,
+    "ratio": -3.711994601426234e-07,
+    "v_swirl_ms": 0.08362558067340864,
+    "Omega_drag_masyr": 5.165700709528172e-07,
+    "Omega_gal_masyr": 4.6408895845333715,
+    "freeman": -2919.7135032092697
+   },
+   "Rd3.0_h0.2_R8.2": {
+    "U_phi": 2441499.826217332,
+    "B_z": -79074.05026166177,
+    "g_N": -3782.448451878736,
+    "a_GM": 0.0007742393688130168,
+    "ratio": -2.0469264252060155e-07,
+    "v_swirl_ms": 0.10866139673982458,
+    "Omega_drag_masyr": 3.7119415523347326e-07,
+    "Omega_gal_masyr": 5.659621444552893,
+    "freeman": -3905.909113705648
+   },
+   "Rd3.0_h0.2_R10.0": {
+    "U_phi": 1845357.3414431722,
+    "B_z": -102406.11737091094,
+    "g_N": -2851.439182935792,
+    "a_GM": 0.001002691115650202,
+    "ratio": -3.516438722069635e-07,
+    "v_swirl_ms": 0.08212947797582809,
+    "Omega_drag_masyr": 4.807209457773935e-07,
+    "Omega_gal_masyr": 4.6408895845333715,
+    "freeman": -2919.7135032092697
+   },
+   "Rd2.5_h0.05_R8.2": {
+    "U_phi": 2293256.5270975768,
+    "B_z": -155714.38855037277,
+    "g_N": -4282.819849289808,
+    "a_GM": 0.0015246494837105596,
+    "ratio": -3.559919719629071e-07,
+    "v_swirl_ms": 0.10206368013681782,
+    "Omega_drag_masyr": 7.309638335760865e-07,
+    "Omega_gal_masyr": 5.659621444552893,
+    "freeman": -4313.900374024586
+   },
+   "Rd2.5_h0.05_R10.0": {
+    "U_phi": 1638099.7048262917,
+    "B_z": -135688.77923022956,
+    "g_N": -3052.999741415988,
+    "a_GM": 0.0013285723247839856,
+    "ratio": -4.351694848712273e-07,
+    "v_swirl_ms": 0.07290526913585557,
+    "Omega_drag_masyr": 6.369584157426949e-07,
+    "Omega_gal_masyr": 4.6408895845333715,
+    "freeman": -3068.168848068647
+   },
+   "Rd2.5_h0.2_R8.2": {
+    "U_phi": 2242383.9338794756,
+    "B_z": -142040.4449675414,
+    "g_N": -4189.540037517872,
+    "a_GM": 0.0013907635196841398,
+    "ratio": -3.3196090912837036e-07,
+    "v_swirl_ms": 0.09979954438898929,
+    "Omega_drag_masyr": 6.667747864722207e-07,
+    "Omega_gal_masyr": 5.659621444552893,
+    "freeman": -4313.900374024586
+   },
+   "Rd2.5_h0.2_R10.0": {
+    "U_phi": 1612944.9564750267,
+    "B_z": -128355.00351386145,
+    "g_N": -3006.991000574999,
+    "a_GM": 0.0012567649763192512,
+    "ratio": -4.1794770123320345e-07,
+    "v_swirl_ms": 0.0717857318493336,
+    "Omega_drag_masyr": 6.02531765372556e-07,
+    "Omega_gal_masyr": 4.6408895845333715,
+    "freeman": -3068.168848068647
+   },
+   "Rd3.5_h0.05_R8.2": {
+    "U_phi": 2594983.7748373565,
+    "B_z": -27550.81382602817,
+    "g_N": -3434.3827420234447,
+    "a_GM": 0.0002697588480211069,
+    "ratio": -7.854653027465783e-08,
+    "v_swirl_ms": 0.11549235370124063,
+    "Omega_drag_masyr": 1.2933068472281774e-07,
+    "Omega_gal_masyr": 5.659621444552893,
+    "freeman": -3463.217002859961
+   },
+   "Rd3.5_h0.05_R10.0": {
+    "U_phi": 2034161.6242116906,
+    "B_z": -75006.10714033246,
+    "g_N": -2684.8476783397928,
+    "a_GM": 0.0007344088339636809,
+    "ratio": -2.735383611847251e-07,
+    "v_swirl_ms": 0.0905324018080503,
+    "Omega_drag_masyr": 3.520981723482794e-07,
+    "Omega_gal_masyr": 4.6408895845333715,
+    "freeman": -2702.1148473013177
+   },
+   "Rd3.5_h0.2_R8.2": {
+    "U_phi": 2529577.804280888,
+    "B_z": -17262.058222848107,
+    "g_N": -3348.7585439397662,
+    "a_GM": 0.00016901834443342444,
+    "ratio": -5.047194123305671e-08,
+    "v_swirl_ms": 0.11258139542900478,
+    "Omega_drag_masyr": 8.103259031778442e-08,
+    "Omega_gal_masyr": 5.659621444552893,
+    "freeman": -3463.217002859961
+   },
+   "Rd3.5_h0.2_R10.0": {
+    "U_phi": 1994654.4421715068,
+    "B_z": -67867.27783232927,
+    "g_N": -2633.258962587206,
+    "a_GM": 0.0006645102682622596,
+    "ratio": -2.523527984537347e-07,
+    "v_swirl_ms": 0.08877409507558906,
+    "Omega_drag_masyr": 3.1858665111506167e-07,
+    "Omega_gal_masyr": 4.6408895845333715,
+    "freeman": -2702.1148473013177
+   }
+  }
+ }
+}
