@@ -1,0 +1,54 @@
+CFG96 -- DO SATELLITES DRIVE THE KiDS EARLY/LATE SPLIT?  The June re-measurement's 1-halo split (CFG61's K1) re-stacked with stricter
+isolation windows (|dchi| < 20 and < 30 Mpc; nested subsets of the June |dchi| < 10 sample), scored as in CFG88.
+
+Criteria frozen and committed before any flag, stack or number: campaign_fresh_gravity/CFG96_FROZEN_CRITERIA.md (cb2876df0).
+  inputs   CFG96_stage_stack.py's outputs (git-ignored): real_research/data/lensing_rar/cfg96_isoflags.npz (the W = 20 / 30 flags on the
+           June lens list; C1) and cfg96_stack.npz (per-window sums per (patch, class, g_bar bin); C2 against lr_esd_jackknife.npz).
+  stat     per window W: D_W = early - late ESD on K1; C_W its leave-one-patch-out covariance (50 June patches); zero-model chi2 =
+           D_W^T C_W^-1 D_W x 41/49 (Hartlap); A_W = (D_10^T C_10^-1 D_W) / (D_10^T C_10^-1 D_10) with sigma_A from a JOINT
+           leave-one-patch-out jackknife (both D_W and D_10 rebuilt without each patch).
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  the recomputed W = 10 isolated set reproduces lr_lenses.npz exactly (order and every column).
+  C2  CONTROL  the W = 10 re-stack reproduces the June per-patch sums (wgE, W, NN) to 1e-9 relative, and the June patch labels exactly.
+  C3  CONTROL  nesting: W = 30 within 20 within 10 (counts printed).
+  H1  [HEADLINE; MUTATE must fail] at |dchi| < 20 Mpc the 1-halo split persists: the zero model is rejected on K1 at p < 0.0027 AND
+      A_20 is within 2 sigma_A of 1.
+  R1-R4 (reported): the same at |dchi| < 30 Mpc; class composition per window; per-bin D_W / D_10; all-15-bin zero-model chi2.
+MUTATE=1: the early/late labels are swapped in the stricter windows' sums before scoring (D_W -> -D_W, A_W ~ -1) -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: early/late labels swapped in the stricter windows' sums -- H1 must FAIL ***
+
+======================================================================================================================
+C1-C3  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: the recomputed |dchi| < 10 isolated set reproduces lr_lenses.npz exactly (order and every column)
+         stage verdict True; 181,477 lenses vs lr_lenses 181,477
+  [PASS] C2 CONTROL: the |dchi| < 10 re-stack reproduces the June per-patch sums (wgE, W, NN) to 1e-9 relative, and the June patch labels exactly
+         max relative deviation 0.0e+00; patch labels equal: True
+  [PASS] C3 CONTROL: nesting |dchi| < 30 within < 20 within < 10
+         counts 10: 181,477; 20: 93,020 (51.3%); 30: 57,265 (31.6%); nested True
+
+======================================================================================================================
+H1  THE SPLIT UNDER STRICTER ISOLATION (K1)
+======================================================================================================================
+  |dchi| < 10 Mpc: D = [3.26, 7.14, 5.6, 5.33, 11.92, 21.48, 33.28]; jackknife sigma [1.79, 2.14, 3.02, 3.18, 7.09, 7.89, 11.81]; zero-model chi2 35.04/7 (p 1.10e-05, 4.40 sigma); A = 1.000 +- 0.000
+  |dchi| < 20 Mpc: D = [-5.98, -6.64, -4.19, -14.17, -13.95, -20.77, -14.49]; jackknife sigma [2.43, 3.17, 3.88, 5.16, 8.35, 10.8, 16.23]; zero-model chi2 32.02/7 (p 4.02e-05, 4.11 sigma); A = -0.968 +- 0.187
+  |dchi| < 30 Mpc: D = [-2.43, -11.11, -8.21, -19.39, -10.03, -20.03, -12.76]; jackknife sigma [3.85, 4.47, 5.68, 6.9, 11.19, 13.79, 20.43]; zero-model chi2 19.12/7 (p 7.81e-03, 2.66 sigma); A = -1.174 +- 0.273
+  [FAIL] H1 [HEADLINE] AT |dchi| < 20 Mpc THE 1-HALO SPLIT PERSISTS: zero model rejected on K1 at p < 0.0027 AND A_20 within 2 sigma of 1  [MUTATE: labels swapped]
+         chi2 32.02/7, p 4.02e-05 (4.11 sigma); A_20 = -0.968 +- 0.187 ((A-1)/sigma -10.50); base (|dchi| < 10): 35.04/7
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) the same at |dchi| < 30 Mpc
+         chi2 19.12/7, p 7.81e-03 (2.66 sigma); A_30 = -1.174 +- 0.273 ((A-1)/sigma -7.97)
+  [PASS] (reported) R2 (reported) class composition per window
+         10: N 181,477, early 48.5%, median log M_gal early 10.81 / late 10.45; 20: N 93,020, early 48.0%, median log M_gal early 10.84 / late 10.58; 30: N 57,265, early 46.4%, median log M_gal early 10.86 / late 10.65
+  [PASS] (reported) R3 (reported) per-bin D_W / D_10 on K1
+         20: [-1.84, -0.93, -0.75, -2.66, -1.17, -0.97, -0.44]; 30: [-0.75, -1.56, -1.46, -3.64, -0.84, -0.93, -0.38]
+  [PASS] (reported) R4 (reported) all-15-bin zero-model chi2 per window (Hartlap p = 15)
+         10: 84.8/15 (p 9.0e-12); 20: 54.6/15 (p 2.1e-06); 30: 26.1/15 (p 3.7e-02)
+
+    READING (declared): the split shrinks under stricter isolation: satellite contamination contributes; it needs a quantified satellite model before the split counts against B
+
+  7/8 checks pass; load-bearing failures: 1   (0 s)
