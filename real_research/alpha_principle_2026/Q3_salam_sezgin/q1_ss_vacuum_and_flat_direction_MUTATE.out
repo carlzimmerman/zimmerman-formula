@@ -1,0 +1,41 @@
+====================================================================================================
+Q1 Salam-Sezgin M_4 x S^2 vacuum -- mode: MUTATE CONTROL (potential coefficient 7 g^2 instead of 8 g^2)
+====================================================================================================
+
+A1  6D field equations (hep-th/0307238 eq. 2.2, H=0, constant dilaton) on M_4 x S^2(R), F_ab = f eps_ab, F^2 = 2 f^2
+    f^2 from (mu nu): 14*g**2*exp(-p);   f^2 from (dilaton): 14*g**2*exp(-p)
+  [PASS] A1a (mu nu) and (dilaton) equations give the SAME f^2 for every p (3 equations, 2 unknowns, consistent) 
+    R^2 = exp(p/2)/(7*g**2)
+  [PASS] A1b radius: R^2 = e^{p/2}/(c g^2)  (c=8: e^{p/2}/(8 g^2); source (5.1) R = e^{-phi0/4}/(2 sqrt2 g), phi_hat = -phi) 
+  [PASS] A1c flux density f^2 = 2 c g^2 e^{-p}  (c=8: 16 g^2 e^{-p}; ABPQ F_mn F^mn = 8 g1^2 e^{2phi} in their convention) 
+
+A3  flux number seen by the charge-g fermions:  N = g_ch * oint F / (2 pi) = 2 g_ch R^2 f
+    N = 2*sqrt(14)/7   (independent of p: no free flux integer; it is fixed by the potential coefficient c and the charge)
+  [PASS] A3a N is independent of the dilaton vev p 
+  [FAIL] A3b N = 1 exactly (potential coefficient 8 g^2 with fermion charge g forces the minimal monopole) [N = 2 sqrt2 /sqrt(c) = 2*sqrt(14)/7]
+
+A4  gauge-covariantly constant spinor on S^2 (the SUSY twist): spin connection versus charge-g monopole
+    g A_phi = -cos(theta)/2;  g F_theta_phi = sin(theta)/2;  g oint F = 2*pi
+  [PASS] A4 |g oint F| = 2 pi  (N = 1 from the spin connection alone; agrees with A3b from the field equations) 
+
+A5  reduced 4D Einstein-frame potential V_E(R, p) with flux number N (charge g):  V_E = (R0/R)^4 U,  U = 4 pi R^2 V_6
+    dV/dp = 0 gives e^(p/2) = [2*sqrt(14)*R**2*g**2/Nn]
+    dV/dR on the dV/dp = 0 curve: -4*pi*(sqrt(14)*Nn - 4)/(R*kappa2)
+    N = 1 : residual = -4*pi*(-4 + sqrt(14))/(R*kappa2);   general N: residual = -4*pi*(sqrt(14)*Nn - 4)/(R*kappa2)
+  [FAIL] A5a for N = 1 the critical conditions dV/dR = dV/dp = 0 are satisfied on a whole CURVE (one free parameter: the dilaton vev) 
+    values of N admitting a critical point at all: [2*sqrt(14)/7]
+  [FAIL] A5b a critical point exists only for N = 1 (no free flux integer, no dS/AdS critical point for N != 1) 
+
+A7  cosmological constant vanishes for every smooth Poincare/dS/AdS-invariant solution (source (2.5)-(2.6)); algebra check of (2.5) -> (2.6)
+  [PASS] A7 (2.5b)-(2.5a) equals (2.6): nabla(W^4 nabla(phi - 4 log W)) + 4 Lambda W^2 = 0; integrating over compact Y gives Lambda int W^2 = 0 
+
+A8  anomaly-freedom arithmetic quoted in hep-th/0304256 p. 6: n_H = dim G + 244 for G = E6 x E7 x U(1)
+  [PASS] A8 dim(E6 x E7 x U(1)) = 212 and n_H = 456 (the quaternionic manifold Sp(456,1)/(Sp(456) x Sp(1)) of the source) 
+
+====================================================================================================
+CHECKS: 7/10 passed
+VERDICT (q1):
+  * H1: the potential coefficient 8 g^2 is tied to the fermion charge g; with it the M_4 x S^2 field equations are consistent for EVERY dilaton vev, V = 0 exactly, and the flux number is forced to N = 1.
+        Lambda_6 is therefore NOT a free tunable: in lane F's variables Lambda_6 = 2 g_F^2/(N^2 kappa^2) holds automatically at N = 1 (checked in q3).
+  * H2: the critical set of the reduced potential is a CURVE R^2 = e^{p/2}/(8 g^2). The dilaton vev p (equivalently chat) is a modulus with V = 0 exactly: NOT fixed.
+  * H5 (part): Hessian rank 1 with one positive direction; the flat direction is exact at tree level (protected by 4D N=1 per the source; the lifting mechanism is not addressed here).

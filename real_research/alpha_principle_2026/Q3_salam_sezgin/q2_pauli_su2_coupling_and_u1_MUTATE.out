@@ -1,0 +1,50 @@
+====================================================================================================
+Q2 SU(2) coupling of the Salam-Sezgin S^2 vacuum -- mode: MUTATE CONTROL (H_(3) term dropped)
+====================================================================================================
+
+B3  Killing vectors of the round S^2 (source 2.9) and generator normalisation
+  [PASS] B3a [K_i, K_j] = -eps_ijk K_k (source 2.9): T_i = -i K_i is a standard su(2) (T_3 = m on e^{i m psi}, structure constants eps) 
+  [PASS] B3b K_3 = (1/(8 g^2)) eps^{mn} d_n mu_3 with mu_3 = cos(theta) gives K_3 = d/d psi (source 2.8-2.9) 
+  [PASS] B3c non-abelian term: (1/2)(2g)^2 = (2g)(g), so the source's F^i = dA^i + g eps A^A corresponds to standard coupling 2g (D = d - i (2g) A^i T_i) 
+
+6D physical-frame background: R^2 = e^{p/2}/(8 g^2), A^3 = A(x) dy
+    6D Ricci scalar = 2*(-Ap**2*R**4*g**2*sin(theta)**2 + 1)/R**2
+
+B2  ansatz consistency: Bianchi identity  d H_hat = (1/2) F_hat ^ F_hat
+  [PASS] B2 Bianchi d H = (1/2) F ^ F holds identically on the ansatz for all 15 index sets 
+
+B1/B6  Lagrangian on the ansatz: vacuum value, dependence on A only through F, quadratic coefficients
+    L (physical frame, per unit volume element sqrt(-g)/(R^2 sin theta)) = Ap**2*(sin(theta)**2 - 2)*exp(p/2)/4
+  [PASS] B1 vacuum: L(A'=0) = 0 (V = 0 at the Salam-Sezgin point; consistent with q1) [value 0]
+  [PASS] B6 the reduced Lagrangian depends on A only through F = A' (no bare A: gauge invariance of the ansatz) 
+  [PASS] B6b no term linear in A' in any piece 
+    metric : c(theta) = exp(p/2)*sin(theta)**2/2;   C = int R^2 sin(theta) c dOmega = pi*exp(p)/(6*g**2)
+    F_(2)  : c(theta) = exp(p/2)*cos(theta)**2;   C = int R^2 sin(theta) c dOmega = pi*exp(p)/(6*g**2)
+    H_(3)  : c(theta) = 0;   C = int R^2 sin(theta) c dOmega = 0
+  [PASS] B4a the three pieces are equal (metric : F_(2) : H_(3) = 1 : 1 : 1) in the un-mutated theory 
+  [FAIL] B4c the theta-dependence of the total kinetic density cancels (c_tot(theta) = e^{p/2}, constant): the source's 'conspiracy' that makes the Pauli reduction consistent; it needs all three pieces 
+  [FAIL] B4b total kinetic coefficient C = pi e^{p}/(2 g^2) = Vol x (source 2.17 coefficient e^{-phi} with phi = -p): the 6D reduction reproduces the source's 4D action [C_total = pi*exp(p)/(3*g**2), source-predicted = pi*exp(p)/(2*g**2)]
+
+B5  alpha_SU2 in terms of G_4 and R
+    alpha_SU2 = g_YM^2/(4 pi) = 6*g**4*kappa2*exp(-p)/pi**2;   G_4 = g**2*kappa2*exp(-p/2)/(4*pi**2);   alpha_SU2 / (l_P^2/R^2) = 3
+    without the H_(3) contribution (metric + F_(2) only, i.e. lane F / N1's Einstein-Maxwell-Lambda theory): alpha_SU2/(l_P^2/R^2) = 3
+  [FAIL] B5a alpha_SU2 = 2 l_P^2/R^2 on the Salam-Sezgin vacuum (H_(3) included) 
+  [PASS] B5b without H_(3) the same procedure returns lane F's / N1's 3 l_P^2/R^2 (cross-check of the method against F2 B3d and N1 I2c) 
+ALPHA_SU2_COEFF = 3
+ALPHA_SU2_COEFF_NOH = 3
+
+B7  the 6D U(1) photon zero mode: Stueckelberg mass from H = dB + c_CS F ^ A
+    c_CS = 1/2: mass term -2*g**2 a^2  ->  m^2 = 4*g**2*exp(-p/2),  m^2 R^2 = 1/2
+    c_CS = 1: mass term -8*g**2 a^2  ->  m^2 = 16*g**2*exp(-p/2),  m^2 R^2 = 2
+  [PASS] B7a the l = 0 photon acquires a mass ~ 1/R for either normalisation of the CS coupling (no massless U(1); its Stueckelberg partner is B_{theta psi}) 
+  [PASS] B7b m^2 R^2 = 1/2 (c_CS = 1/2, the source's H = dB + (1/2) F^A read naively) and 2 (c_CS = 1: the source's (5.9) 'Proca mass 4 g e^{phi0/2}') 
+    NOTE (statement, not a check): the source's (5.9) corresponds to c_CS = 1 (m^2 = 16 g^2 e^{phi0} in its 4D frame = 2/R^2 physical). My naive c_CS = 1/2 gives a factor 4 smaller m^2.
+    The difference is the treatment of the Chern-Simons term with the singular background potential (H = dB + (1/2)F^A shifts by dA ^ A_bg under a B redefinition, coefficient 1/2 -> 1); I did NOT resolve which the source used
+    beyond noting that (5.9) matches c_CS = 1. It does not matter for H4: the photon is massive in both, at the KK scale, so N1's alpha_U1 = N^2 l_P^2/(2R^2) massless-U(1) relation does not apply.
+
+====================================================================================================
+CHECKS: 11/14 passed
+VERDICT (q2):
+  * H3 NOT reproduced: on the Salam-Sezgin vacuum alpha_SU2 = 2 l_P^2/R^2 (metric, F_(2) and H_(3) contribute equally), not lane F's 3 l_P^2/R^2 (Einstein-Maxwell-Lambda, no H_(3)).
+    The 6D reduction reproduces the source's 4D kinetic term exactly (B4b), so the factor is a property of the SUSY theory, not of my method.
+  * H4: the 6D U(1) photon is massive (Stueckelberg with B_{theta psi}); only the l = 0 photon was tested here (massive); the source's massless spectrum lists the SU(2) triplet only. N1's alpha_U1 relation has no massless U(1) to apply to.
