@@ -1,0 +1,108 @@
+sha256 FROZEN.md: 55dd0dea509b0fa4
+sha256 AMENDMENT0_prerun.md: 1749488d4250f4c1
+MODE = 2
+H0 = 67.360 km/s/Mpc; rho_m = 3.9705e+10 Msun/Mpc^3; Omega_c/Omega_b = 5.3643; lambda = 1.5
+Delta_ta(EdS) = 5.551652 (analytic 5.551652); Delta_ta(Om=0.3153) own = 11.76458 (time residual 2.2e-16)
+  [PASS] C6a EdS turnaround (3pi/4)^2 rel 2.22e-16
+  [PASS] C6b time residual < 1e-8 2.2e-16
+y_p (h_RAR' = 0) = 2.53964, h_p = 0.64761
+  [PASS] C7a nu_mono = nu_RAR for y<=1 (<=1e-3) max rel dev 1.32e-09; (1,y_p] reported dev 2.09e-04
+  [PASS] C7b nu_mono/nu_RAR-1 <= 3% up to y=30 2.416e-02
+  [PASS] C7c h_mono nondecreasing 
+  [PASS] C8a r_M(1e10) = 3.86 kpc 3.8589
+  [PASS] C8b r_ta(A, 1e10) = 319 kpc within 1% 319.21 kpc (Delta 11.765); with 11.81: 318.80
+
+== C1/C2 target profile from C(r) = rho_c r^3 g_tot = (a0/4pi) M_b(<r), point mass ==
+    x=  0.3: M_c(<r)/[M(sqrt(1+x^2)-1)] - 1 = 4.66e-15
+    x=    1: M_c(<r)/[M(sqrt(1+x^2)-1)] - 1 = -3.33e-16
+    x=    3: M_c(<r)/[M(sqrt(1+x^2)-1)] - 1 = 5.33e-15
+    x=   30: M_c(<r)/[M(sqrt(1+x^2)-1)] - 1 = 2.00e-15
+  [PASS] C1 M_c closed form 
+    x=  0.3: hydrostatic 2.00e-08; sigma^2/(V_c^2/2)-1 = 0.00e+00
+    x=    1: hydrostatic 2.00e-08; sigma^2/(V_c^2/2)-1 = 0.00e+00
+    x=    3: hydrostatic 2.00e-08; sigma^2/(V_c^2/2)-1 = -1.11e-16
+    x=   30: hydrostatic 2.00e-08; sigma^2/(V_c^2/2)-1 = 2.22e-16
+  [PASS] C2 hydrostatics + sigma^2=V_c^2/2 
+
+sympy: a_P/g_law = X**2*lam/(2*sqrt(X**2 + 1));   a_sigma/g_law = X**2*lam*(X**2 + 2)/(4*(X**2 + 1)**(3/2))
+  sympy result equals the closed forms used below to 1e-12 (lam = 3/2) at the five x
+
+== Reaction on the baryons, a/g_law, lambda = 1.5 (point mass, canonical a0) ==
+   x      P numeric   P closed    P printed | S numeric   S closed    S printed
+    0.3     0.00000     0.06465     0.065   |    0.00000     0.06198     0.062   (num/closed-1: -1.0e+00, -1.0e+00)
+      1     0.00000     0.53033      0.53   |    0.00000     0.39775     0.398   (num/closed-1: -1.0e+00, -1.0e+00)
+      3     0.00000     2.13454      2.13   |    0.00000     1.17400      1.17   (num/closed-1: -1.0e+00, -1.0e+00)
+     10     0.00000     7.46278      7.46   |    0.00000     3.76833      3.77   (num/closed-1: -1.0e+00, -1.0e+00)
+     30     0.00000    22.48751      22.5   |    0.00000    11.25623      11.3   (num/closed-1: -1.0e+00, -1.0e+00)
+  [FAIL] C3 numerical bilocal-energy derivative = closed form (1e-3) 
+  asymptotics P: lo/(3/4 x^2) = 1.000000, hi/(coefficient * x) = 1.000000
+  asymptotics S: lo/(3/4 x^2) = 0.999999, hi/(coefficient * x) = 1.000000
+  [PASS] C4 x->0, x->inf asymptotics 
+  0.10 g_law crossing: pressure x = 0.3775, sigma x = 0.3917
+
+== R1 gates: numerical reaction vs printed (relative <= 0.5%) ==
+  [NO-MATCH] R1 P x=0.3 0.0000 vs 0.065
+  [NO-MATCH] R1 P x=1 0.0000 vs 0.53
+  [NO-MATCH] R1 P x=3 0.0000 vs 2.13
+  [NO-MATCH] R1 P x=10 0.0000 vs 7.46
+  [NO-MATCH] R1 P x=30 0.0000 vs 22.5
+  [NO-MATCH] R1 sigma x=0.3 0.0000 vs 0.062
+  [NO-MATCH] R1 sigma x=1 0.0000 vs 0.398
+  [NO-MATCH] R1 sigma x=3 0.0000 vs 1.17
+  [NO-MATCH] R1 sigma x=10 0.0000 vs 3.77
+  [NO-MATCH] R1 sigma x=30 in [11.0,12.0) 0.0000 vs 11.x (CFG70 11.3)
+  [MATCH] R1 crossing x=0.38 (2 digits, pressure) 0.3775
+
+== Energy the exchange must supply, E_c(<r_e) / (1/2 M V_f^2), V_f^4 = G M a0, r_e = 0.4 r_ta ==
+  convention A (CFG48: collapse mass), Delta_ta = own / 11.81
+   M=1e+09: own: P 72.851 sigma 72.851 (x_e=48.57; 1.5 x_e/1.5*lam = 72.851);  Delta 11.81: 72.758   printed 72.8
+  [MATCH] R2 A M=1e+09 (own Delta) 72.851 vs 72.8 (+0.07%); with 11.81: 72.758 (-0.06%)
+   M=1e+10: own: P 49.633 sigma 49.633 (x_e=33.09; 1.5 x_e/1.5*lam = 49.633);  Delta 11.81: 49.569   printed 49.6
+  [MATCH] R2 A M=1e+10 (own Delta) 49.633 vs 49.6 (+0.07%); with 11.81: 49.569 (-0.06%)
+   M=1e+12: own: P 23.038 sigma 23.038 (x_e=15.36; 1.5 x_e/1.5*lam = 23.038);  Delta 11.81: 23.008   printed 23.0
+  [MATCH] R2 A M=1e+12 (own Delta) 23.038 vs 23.0 (+0.16%); with 11.81: 23.008 (+0.03%)
+  convention B (committed: law's enclosed mass, phantom included), canonical a0
+   M=1e+09: nu_mono 318.35 (11.81: 317.74) | P2 318.20 | RAR 318.35   printed 318
+  [MATCH] R2 B nu_mono M=1e+09 318.35 vs 318 (+0.11%); with 11.81: 317.74 (-0.08%)
+   M=1e+10: nu_mono 179.09 (11.81: 178.74) | P2 178.94 | RAR 179.09   printed 179
+  [MATCH] R2 B nu_mono M=1e+10 179.09 vs 179 (+0.05%); with 11.81: 178.74 (-0.14%)
+   M=1e+12: nu_mono 56.73 (11.81: 56.63) | P2 56.59 | RAR 56.73   printed 57
+  [MATCH] R2 B nu_mono M=1e+12 56.73 vs 57 (-0.46%); with 11.81: 56.63 (-0.66%)
+  [PASS] C5a lambda->0: energy and reaction vanish E 0.0e+00, 0.0e+00; a 0.0e+00
+  [PASS] C5b E_c = a_react(P) M r_e (locked) -3.0e-10; a/a0 = 0.750000; sigma/P E identical: -1.1e-16
+  [PASS] C5c 1.5 x_e closed form 49.6330 vs 49.6330
+
+== Convention sweep and the pass-line test (declared S1-S10) ==
+  combinations scanned: 64512; combinations passing BOTH lines: 0
+  best (smallest max(R/0.10, E)) = 1.724  ->  {'M': 100000000000000.0, 'conv': 'BP2', 'Delta': 'r200c', 'a0': 'canonical', 'frac': 0.31, 'reading': 'S', 'lam': 0.5, 'ref': 'gLaw', 'range': 'edge', 'Vmult': 1.0}  R=0.1724 g, E=0.639, x_e=1.277
+  headline-convention energy ratio E_c/(1/2 M V_f^2) (P, lambda=3/2, canonical, own Delta, 0.40) by mass and r_ta convention:
+     M=1e+08: A:   106.93  Bmono:   566.00  BP2:   565.85  BRAR:   566.00
+     M=1e+09: A:    72.85  Bmono:   318.35  BP2:   318.20  BRAR:   318.35
+     M=1e+10: A:    49.63  Bmono:   179.09  BP2:   178.94  BRAR:   179.09
+     M=1e+11: A:    33.81  Bmono:   100.77  BP2:   100.63  BRAR:   100.77
+     M=1e+12: A:    23.04  Bmono:    56.73  BP2:    56.59  BRAR:    56.73
+     M=1e+13: A:    15.70  Bmono:    31.97  BP2:    31.82  BRAR:    31.97
+     M=1e+14: A:    10.69  Bmono:    18.04  BP2:    17.90  BRAR:    18.04
+  one-at-a-time sensitivity of the energy ratio at M=1e10 (headline A, own Delta, canonical, 0.40, lambda 3/2 = 49.63):
+     edge 0.31       :    38.466
+     edge 0.48       :    59.560
+     Delta 11.81     :    49.569
+     Delta EdS 5.552 :    63.751
+     Delta r200c     :    13.138
+     a0 alt          :    54.563
+     B nu_mono       :   179.088
+     B P2            :   178.939
+  lambda thresholds (u = lambda P): 
+     reaction pass over x in [0.3,30] (P, ref gLaw): lambda <= 0.0067  (thermal 3/2 is 225x too large)
+     reaction pass over x in [0.3,30] (P, ref gN): lambda <= 0.0002  (thermal 3/2 is 6750x too large)
+     reaction pass over x in [0.3,30] (S, ref gLaw): lambda <= 0.0133  (thermal 3/2 is 113x too large)
+     reaction pass over x in [0.3,30] (S, ref gN): lambda <= 0.0004  (thermal 3/2 is 3379x too large)
+     energy pass: lambda <= V_mult/x_e; at x_e(A, 1e10) = 33.09: 0.0302; at the smallest x_e in the scan: 1.277
+     what edge would pass both lines at lambda=3/2: energy needs x_e <= 0.667; reaction (P) needs x_e <= 0.378; (sigma) 0.392
+     x_e scales as M^(-1/6): from x_e = 33.1 at 1e10, x_e = 0.378 needs M ~ 4.5e+21 Msun (CFG48 r_ta convention)
+  [PASS] SW no combination passes both (result, not a control) npass = 0
+
+== SUMMARY ==
+controls failed: ['C3 numerical bilocal-energy derivative = closed form (1e-3)']
+reproduction gates: 7/17 match; non-matching: ['R1 P x=0.3', 'R1 P x=1', 'R1 P x=3', 'R1 P x=10', 'R1 P x=30', 'R1 sigma x=0.3', 'R1 sigma x=1', 'R1 sigma x=3', 'R1 sigma x=10', 'R1 sigma x=30 in [11.0,12.0)']
+exit code 1
