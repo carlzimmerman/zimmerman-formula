@@ -23,3 +23,9 @@ does not depend on the last digits.
 
 ## Reading rules
 alpha stays an INPUT; this lane derives nothing. It is a measuring stick.
+
+## Amendment 1 (2026-09-29, after an independent re-run; disclosed, no result changed)
+
+(a) The declared digit-count criterion (item 2) was NOT computed in the first version; it is now check A4 (the five central values share exactly 9 leading significant digits, 137.035999). (b) The first B1 compared a candidate with the reference that was built from the same literal,
+so it was a tautology in the real run; B1 now tests that a bare decimal candidate is parsed exactly (no float round-trip), which also fixes a real defect (a bare decimal --candidate had been converted through a float). B3 adds a decoy (137) that must be inconsistent with all five measurements.
+(c) The control was changed from shifting the CODATA reference to forcing the float parse, and it now exits 1 only if EXACTLY B1 fails, exit 3 if the control is broken. (d) The measured values remain RECALLED inputs.

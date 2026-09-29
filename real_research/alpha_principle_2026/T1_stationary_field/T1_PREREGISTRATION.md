@@ -33,3 +33,8 @@ First run (kept as `t1_stationary_field_FIRSTRUN.out`): checks C1 and C2 FAILED 
 change: at M ~ 1e38-1e44 the quantity ln M - Re psi(iM) must cancel to ~ -1/(12 M^2) ~ 1e-79; at 40 digits of precision it returned 5.7e-40 (garbage) while at >= 90 digits it returns -6.5975685e-79
 (the expected value). The failure was in MY script's precision, not in the physics and not in a threshold. Change made: mp.dps 40 -> 250. No criterion or threshold was changed
 (C1, C2 keep the declared '1e70'). My in-head estimate of the shortfall (~80 orders) was in the right range; the pre-registration did not state a number.
+
+## Amendment 2 (2026-09-29, after an independent re-run; disclosed, no result changed)
+
+(a) The control was tightened: `--mutate` now exits 1 only if EXACTLY check B1 fails, and exits 3 if the control is broken (it previously counted ANY failed check as 'control works'). A first attempt compared full check labels
+instead of check IDs and wrongly reported 'broken'; fixed to compare IDs. (b) The status wording 'falls short by 1e81 or more' is corrected to: the electron falls short by a factor of 9.8e80 (about 1e81); the muon, tau and top by more.

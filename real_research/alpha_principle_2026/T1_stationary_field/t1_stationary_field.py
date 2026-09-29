@@ -3,7 +3,7 @@
 
 G_f(M) = (4/(3 pi)) [ ln M - Re psi(i M) - pi M (4 M^2 + 1) / (3 sinh(2 pi M)) ]   (Q1, validated by S2 in the light- and heavy-mass limits).
 Run:   python3 t1_stationary_field.py            (real run, exit 0 iff all checks pass)
-       python3 t1_stationary_field.py --mutate   (control: flips the sign requirement; must FAIL and exit 1)
+       python3 t1_stationary_field.py --mutate   (control: flips the sign requirement; exit 1 iff EXACTLY check B1 fails, exit 3 if the control is broken)
 """
 import sys
 import math
@@ -17,10 +17,13 @@ HBAR_EV_S = mp.mpf("6.582119569e-16")
 H0 = mp.mpf("67.4e3") / mp.mpf("3.0856775814913673e22")          # 1/s
 H0_EV = H0 * HBAR_EV_S
 CH = []
+FAILED = []
 
 
 def chk(tag, ok, detail=""):
     CH.append(bool(ok))
+    if not ok:
+        FAILED.append(tag)
     print(f"  [{'PASS' if ok else 'FAIL'}] {tag} {detail}")
 
 
@@ -77,6 +80,8 @@ print("  Structural by-product: alpha G_f = -2 is exactly ln(H/m) = 3 pi/(2 alph
 print("  an equality of the cosmological scale with a UV scale, which the real spectrum does not satisfy. alpha stays an INPUT; kappa = 1/2 FITTED.")
 ok = all(CH)
 if MUT:
-    print("\nMUTATE CONTROL: the requirement was flipped to sigma = +2H; B1 must FAIL.")
-    print("  " + ("FAILED as required -- the control works (exit 1, the campaign standard)" if not ok else "DID NOT FAIL -- the check has no power"))
+    print("\nMUTATE CONTROL: the requirement was flipped to sigma = +2H; check B1 (and only B1) must FAIL.")
+    works = [t.split()[0] for t in FAILED] == ["B1"]
+    print("  failed checks:", FAILED, "->", "the control works (exit 1)" if works else "CONTROL BROKEN (exit 3): it must fail exactly B1")
+    sys.exit(1 if works else 3)
 sys.exit(0 if ok else 1)

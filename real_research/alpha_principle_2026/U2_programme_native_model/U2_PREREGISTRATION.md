@@ -144,3 +144,8 @@ Scripts and outputs: `u2_1_cap_condensate_alpha` (18/18 checks), `u2_2_vortex_fa
 ## What is left
 Nothing survives to be "untested". What the lane adds: (1) a clean structural map for programme-native condensate charges: the only lengths are l_P, sqrt(l_P r_H) (about 50 um to 0.3 mm, the dark-energy length) and r_H, so alpha is either 1e+-122 or an O(1) pure-number convention to the 4th power; (2) the topological obstruction (no monopole of vorticity) is independent of every convention; (3) the near-coincidence alpha_GM = 1/(4 Z^2) is the old 4 Z^2 in new clothes and stays chance-level under lane D's bar.
 Not tested: a relativistic P(X) completion beyond the static sector, a 2-form (Kalb-Ramond) dual, vortex lines coupled to an independent photon (which adds a free coupling, AH5), 3He-A-type texture gauge fields (lane J territory), the smooth arctan cap shape of CFG43 (irrelevant to the quantities used: only the linear branch and the cap value enter), and any quantum treatment of the ring (the thin-ring formula is used at a = xi as a bound only).
+
+## Amendment 6 (2026-09-29, exit-code semantics; disclosed, no result changed)
+
+The `--mutate` controls of the u2 scripts exit 1 when the control works and exit 0 when the control FAILS to fail (the script then prints 'the control is broken'). Exit 0 from a control is therefore the broken-control signal, the same code as a normal pass;
+`run_all_checks.py` treats any control exit other than 1 as a mismatch, so the broken case is caught there. (Lanes T1 and V1 now use exit 3 for a broken control.)

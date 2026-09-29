@@ -15,6 +15,8 @@ Usage:
   python3 run_all_checks.py                        run everything (parallel; several scripts take many minutes)
   python3 run_all_checks.py --only A_wgc_extremal  run one lane / directory name fragment
   python3 run_all_checks.py --lean                 also compile the Lean certificates (needs `lake` in fable_independent_2026/lean_2026)
+Ordering: lanes run concurrently, but the scripts of one lane run sequentially in filename order (the bar checker last), because later scripts read
+JSON written by earlier ones (U1: u1_9 reads u1_1..3; the D lane: calibration.json).  Helper libraries (*_lib.py) are skipped.
 Environment: R1_CACHE and Q4_CACHE must point at the downloaded-source caches for the scripts that read them (R1 and Q4 lanes);
 those scripts are SKIPPED with a note when the variable is not set.  Scripts write their own .out/.json files in place; this runner
 only captures exit codes and writes RUN_ALL_RESULTS.json/.md next to itself.
@@ -73,8 +75,8 @@ def manifest():
         lane = os.path.basename(d)
         if lane in IN_PROGRESS:
             continue
-        for f in sorted(os.listdir(d)):
-            if not f.endswith(".py") or f in SKIP_FILES:
+        for f in sorted(os.listdir(d), key=lambda n: ("checker" in n, n)):
+            if not f.endswith(".py") or f in SKIP_FILES or f.endswith("_lib.py"):
                 continue
             path = os.path.join(d, f)
             key = (lane, f)
@@ -127,8 +129,15 @@ def main():
             print(f"  {r['lane']:34s} {r['file']:44s} control: {r['convention']:20s} real->{r['real_expect']} control->{r['ctl_expect']}"
                   + (f"  needs {r['env']}" if r["env"] else ""))
         return 0
+    lanes = {}
+    for r in rows:
+        lanes.setdefault(r["lane"], []).append(r)          # rows are already in the deterministic per-lane order
+
+    def run_lane(lane_rows):
+        return [one(r) for r in lane_rows]                 # sequential within a lane: u1_9 needs u1_1..3, the bar checker needs d1..d3, etc.
+
     with ThreadPoolExecutor(max_workers=max(2, (os.cpu_count() or 4) - 2)) as ex:
-        results = list(ex.map(one, rows))
+        results = [r for lane_res in ex.map(run_lane, lanes.values()) for r in lane_res]
     bad = [r for r in results if not r["status"].startswith("OK") and not r["status"].startswith("SKIPPED")]
     md = ["# Campaign re-run (run_all_checks.py)", "", "| lane | script | control convention | real | control | status | secs |", "|---|---|---|---|---|---|---|"]
     for r in results:
