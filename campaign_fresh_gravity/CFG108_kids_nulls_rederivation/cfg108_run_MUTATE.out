@@ -1,0 +1,108 @@
+CFG108  MUTATE=1  frozen-text sha256 f9038ded0f9b591f
+== controls on inputs
+  [PASS] K2a K1 bins: K1 = [8, 9, 10, 11, 12, 13, 14]
+  [PASS] K1 near+far vs June per-(patch,class,bin): max relative deviation 3.11e-11 (<= 1e-9)
+  [PASS] K1b near+far vs cfg110_perlens per lens per bin: max |a-b|/(|b|+1e-6 median|b|) 1.04e-10 (<= 1e-9)
+  [PASS] K2 WX[:2000] == WGrot (staging's own control) and WX != tangential: max |WX-WGrot|/row scale 2.66e-15; max |WX-WG|/row scale 6.08
+  MUTATE=1: WX[early] += 0.3 WG_all[early] (every bin)
+== R0 POWER (printed before any cross / near-far null number).  D_t (all-source early-late, K1) = [ 3.26  7.14  5.61  5.33 11.93 21.48 33.29]
+   tangential all-source split chi2 (Hartlap, 7 dof) = 35.04
+   eps 0.10  cross: lambda(A: own cov) 0.33  (7+lambda 7.33)   lambda(B: tangential cov) 0.35   near/far lambda(A) 0.12 (7+lambda 7.12)
+   eps 0.25  cross: lambda(A: own cov) 2.05  (7+lambda 9.05)   lambda(B: tangential cov) 2.19   near/far lambda(A) 0.76 (7+lambda 7.76)
+   eps 0.50  cross: lambda(A: own cov) 8.20  (7+lambda 15.20)   lambda(B: tangential cov) 8.76   near/far lambda(A) 3.04 (7+lambda 10.04)
+   eps 0.75  cross: lambda(A: own cov) 18.46  (7+lambda 25.46)   lambda(B: tangential cov) 19.71   near/far lambda(A) 6.84 (7+lambda 13.84)
+   eps 1.00  cross: lambda(A: own cov) 32.81  (7+lambda 39.81)   lambda(B: tangential cov) 35.04   near/far lambda(A) 12.16 (7+lambda 19.16)
+== HEADLINE
+  cross-shear early-late difference over K1: D_x = [ 1.05  3.82 11.09  6.8  10.72 18.01 13.22]
+  errors (sqrt diag C) [ 2.22  2.38  3.55  4.39  5.91 10.08  9.24]
+  chi2 = 21.44 / 7  p = 0.003
+  cross profile late  [ 0.2  0.5 -3.1  0.6 -0.8 -3.  -6. ]  chi2 2.17 / 7 p 0.950
+  cross profile early [ 1.3  4.3  8.   7.4  9.9 15.   7.2]  chi2 40.04 / 7 p 0.000
+  R4 whole-sample cross over all 15 bins: chi2 76.92 / 15  p 0.000
+  near-minus-far difference D_nf = [ 1.56 -8.52  2.82 -3.55 14.82 14.24 -0.33]   chi2 = 5.37 / 7  p = 0.615
+  H1 (cross null) FAIL   H2 (near/far) PASS
+== R1/R2 tangential rows
+  near early-late D = [ 4.1  2.8  7.1  3.5 19.4 28.5 32.9]   errors [ 2.4  3.4  5.4  6.1  8.7 12.5 14.8]   chi2 18.82 / 7  p 0.008761
+        late  profile [ 6.4 11.7 11.7 16.7 13.4 16.3 14.4]
+        early profile [10.5 14.4 18.7 20.2 32.8 44.8 47.3]
+  far  early-late D = [ 2.5 11.3  4.2  7.1  4.6 14.3 33.3]   errors [ 2.7  2.8  4.3  5.2  8.5  8.9 15.2]   chi2 23.15 / 7  p 0.001603
+        late  profile [10.7  7.5 19.6 21.1 26.6 35.1 23.9]
+        early profile [13.2 18.8 23.9 28.2 31.2 49.4 57.2]
+  all  early-late D = [ 3.3  7.1  5.6  5.3 11.9 21.5 33.3]   errors [ 1.8  2.1  3.   3.2  7.1  7.9 11.8]   chi2 35.04 / 7  p 1.098e-05
+        late  profile [ 8.6  9.6 15.7 19.  20.  25.6 18.9]
+        early profile [11.9 16.7 21.3 24.3 32.  47.1 52.2]
+  cross late  profile [ 0.2  0.5 -3.1  0.6 -0.8 -3.  -6. ]
+  cross early profile [ 1.3  4.3  8.   7.4  9.9 15.   7.2]
+  jackknife errors of the cross difference: min 2.22 max 10.08
+== amplitudes (early - late, dex)
+  near V1 +0.202 +- 0.064    V2 +0.204 +- 0.064
+  far  V1 +0.163 +- 0.045    V2 +0.165 +- 0.045
+  all  V1 +0.180 +- 0.038    V2 +0.182 +- 0.038
+== dilution (far over near, dex)
+  late  V1 0.133 +- 0.081    V2 0.130 +- 0.081
+  early V1 0.094 +- 0.035    V2 0.091 +- 0.035
+  far share of K1 pair weight: late 0.511 early 0.513
+== reproduction against CFG116's printed numbers
+== controls
+  [PASS] K3a chi2 solve/Cholesky/inverse; C SPD: chi2 41.879228 41.879228 41.879228; min eig 2.401e+00
+  [PASS] K3b D_nf covariance == T C28 T^T: max relative deviation 1.47e-16
+  [PASS] K3c jackknife mean vs full D: max relative deviation 6.37e-05
+  [PASS] K5a near<->far swap: H2 chi2 unchanged: H2 5.366148015 vs swapped 5.366148015
+  [PASS] K5b early<->late swap: chi2 unchanged, amplitude flips: cross 21.444905/21.444905, far 23.152897/23.152897, amp +0.162505/-0.162505
+    injection eps 0.25: cross chi2 34.40 (pred 34.40, A_hat 0.665 -> 0.915, cov dev 5.6e-16) | near-only into H2: chi2 6.29 (pred 6.29, A_hat 0.028 -> 0.278)
+    injection eps 0.50: cross chi2 51.46 (pred 51.46, A_hat 0.665 -> 1.165, cov dev 5.8e-16) | near-only into H2: chi2 8.74 (pred 8.74, A_hat 0.028 -> 0.528)
+  [PASS] K6 exact-injection recovery (cross and near-only): chi2 == prediction, A_hat shift == eps, C unchanged
+  [PASS] K7 power machinery (ncx2 vs MC): analytic 0.2813, MC 0.2816 (lambda 8.20)
+  [PASS] K8a NNn+NNf == cfg110 NN, integer: exact equality True
+  [PASS] K8b weights non-negative: min WWn 0.000e+00 WWf 0.000e+00
+  [FAIL] K8c near weight per pair < far weight per pair: fraction of lens-bins 0.641 (> 0.90), N 381358
+  [PASS] K8d far pair fraction falls with lens z: Spearman rho = -0.315
+  [PASS] K8e cross/tangential noise ratio per K1 bin in [0.7, 1.4]: ratios [1.24 1.11 1.17 1.38 0.83 1.28 0.78]
+== K4/A7 permutation of class labels within patch (2000 perms, seed 108)
+   all-source split   perm mean 7.09 sd 4.17  q99 20.14 | observed 35.04  empirical p 0.0005 (chi2-7dof p 1.098e-05)
+   far-only split     perm mean 7.01 sd 4.14  q99 20.35 | observed 23.15  empirical p 0.0055 (chi2-7dof p 0.001603)
+   near-only split    perm mean 7.13 sd 4.18  q99 20.70 | observed 18.82  empirical p 0.0180 (chi2-7dof p 0.008761)
+   cross difference   perm mean 7.08 sd 4.20  q99 20.22 | observed 21.44  empirical p 0.0075 (chi2-7dof p 0.003165)
+   near-minus-far     perm mean 7.04 sd 4.18  q99 20.41 | observed 5.37  empirical p 0.5917 (chi2-7dof p 0.6154)
+  [PASS] K4 permutation calibration (mean of each in [5.5, 8.5]): 206 s
+== A7 half-lens subsamples (keep prob 0.51, classes intact): all-source split chi2 median 21.3, 16-84% [14.7, 29.6]; observed far-only 23.2; P(sub >= far-only) = 0.39; P(sub <= 7 chi2 q99) = 0.337
+== ATTACK ROWS
+  A1/A2 power (lambda A: own covariance), unit-eps lambda: cross 32.8, near/far 12.2
+   eps    lam_x  pow(.01) pow(.05) | lam_nf pow(.01) pow(.05)
+   0.10    0.33  0.014   0.062  |   0.12  0.011   0.054
+   0.25    2.05  0.043   0.140  |   0.76  0.019   0.079
+   0.50    8.20  0.281   0.514  |   3.04  0.068   0.195
+   0.75   18.46  0.759   0.903  |   6.84  0.214   0.431
+   1.00   32.81  0.979   0.996  |  12.16  0.488   0.717
+  detectable eps at 80% power, alpha 0.01: cross omnibus 0.78, 1-dof 0.60 | near/far omnibus 1.28, 1-dof 0.98
+  1-dof leak fit: cross diff A_hat = +0.665 +- 0.175 (95% UL 0.952)  |  near/far A_hat = +0.028 +- 0.287 (95% UL 0.499)
+   per-class leak fraction eps_late = -0.046 +- 0.085
+   per-class leak fraction eps_early = +0.273 +- 0.045
+  A3a additive (E~B) systematic eps = 1: lambda_x 32.8  -> p 1.4e-06 if present at the full split
+  A3b class-dependent multiplicative shear bias needed for the whole split (V1 all): m_diff = 10^0.180 - 1 = 0.51 (KiDS-1000 calibration uncertainty ~0.01-0.02: literature)
+  A3c cross noise calibration: joint 14-vector chi2 40.95/14 (p 0.000) -> 95% UL on jackknife under-estimate s = 2.50; whole-sample 76.92/15 -> s <= 3.25; cross difference 21.44/7 -> s <= 3.15
+  A4 covariance inflation (chi2/f^2, p):
+   f 1.00  all-source 35.0 (p 1.1e-05)  far-only s 23.2 (p 0.0016)  near-only  18.8 (p 0.00876)  cross diff 21.4 (p 0.00316)  near-minus 5.4 (p 0.615)  | power at eps 0.5 (a=.01): cross 0.281 near/far 0.068
+   f 1.20  all-source 24.3 (p 0.000995)  far-only s 16.1 (p 0.0244)  near-only  13.1 (p 0.0704)  cross diff 14.9 (p 0.0374)  near-minus 3.7 (p 0.811)  | power at eps 0.5 (a=.01): cross 0.163 near/far 0.044
+   f 1.50  all-source 15.6 (p 0.0293)  far-only s 10.3 (p 0.173)  near-only  8.4 (p 0.301)  cross diff 9.5 (p 0.217)  near-minus 2.4 (p 0.936)  | power at eps 0.5 (a=.01): cross 0.086 near/far 0.029
+   f 1.81  all-source 10.7 (p 0.152)  far-only s 7.1 (p 0.422)  near-only  5.7 (p 0.57)  cross diff 6.5 (p 0.478)  near-minus 1.6 (p 0.977)  | power at eps 0.5 (a=.01): cross 0.053 near/far 0.022
+   f 2.00  all-source 8.8 (p 0.27)  far-only s 5.8 (p 0.565)  near-only  4.7 (p 0.696)  cross diff 5.4 (p 0.616)  near-minus 1.3 (p 0.987)  | power at eps 0.5 (a=.01): cross 0.043 near/far 0.019
+   the far-only split reaches p = 0.05 at f = 1.28 and p = 0.01 at f = 1.12; all-source split: 1.58, 1.38; cross-noise 95% UL s: 2.50 (14-vector), 3.25 (15-bin)
+  A5a far-source early-late amplitude in lens-z terciles (z edges [0.268 0.347]): [0.103 0.172 0.202] +- [0.087 0.058 0.089] ; constancy chi2 0.66 / 2 (p 0.719)
+      z tercile 0: N 60492  cross difference chi2 8.73/7 (p 0.272)   far-only split chi2 11.32/7
+      z tercile 1: N 60492  cross difference chi2 19.02/7 (p 0.008)   far-only split chi2 13.97/7
+      z tercile 2: N 60493  cross difference chi2 8.55/7 (p 0.286)   far-only split chi2 14.72/7
+  A5b Sigma_crit sensitivity to a lens redshift error dz (own flat LCDM) at z_l = 0.308:
+     far z_s=0.8          ESD_est/ESD_true for dz = -0.05,-0.02,+0.02,+0.05: [1.012 1.    1.005 1.024]
+     near z_s=z_l+0.35    ESD_est/ESD_true for dz = -0.05,-0.02,+0.02,+0.05: [0.976 0.985 1.023 1.073]
+     class-dependent lens z offset that would give the whole split (ratio 1.51): dz = +0.243 (far z_s=0.8)
+  A6 far  amplitude inner(12-14) +0.155 +- 0.077, outer(8-11) +0.164 +- 0.051 ; inner-outer -0.009 +- 0.088 (-0.1 sigma)
+  A6 near amplitude inner(12-14) +0.430 +- 0.171, outer(8-11) +0.155 +- 0.071 ; inner-outer +0.276 +- 0.189 (1.5 sigma)
+  A6 all  amplitude inner(12-14) +0.269 +- 0.081, outer(8-11) +0.160 +- 0.040 ; inner-outer +0.108 +- 0.084 (1.3 sigma)
+  A8 D_nf per bin [ 1.6 -8.5  2.8 -3.5 14.8 14.2 -0.3]; z-scores [ 0.43 -1.88  0.37 -0.38  1.51  0.95 -0.02]
+     drop-one-bin chi2/6: [5.41 3.46 5.21 5.49 3.67 5.21 5.46]
+== A9 V2 rows: near +0.204, far +0.165, all +0.182 ; dilution late 0.130 early 0.091
+  [PASS] K9 MUTATE: early leak fraction recovered 0.30 +- 0.05: eps_E = 0.273
+  K9 MUTATE: H1 FAIL as required (must FAIL)
+== SUMMARY controls 18/19 pass; H1 FAIL H2 PASS; reproduction lines: 0 reproduced, 0 approximate, 0 not reproduced; 243 s
+exit code 2

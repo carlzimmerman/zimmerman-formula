@@ -1,0 +1,104 @@
+CFG108 -- independent re-derivation of CFG116 (KiDS early/late split at fixed g_bar: cross-shear null and near/far source-separation null), plus a power attack.
+FROZEN BEFORE ANY RUN of this lane's scoring script (written 2026-09-29). No cross-shear, near-source or far-source number of this lane exists when this text is written.
+
+QUESTION
+ (1) From CFG116_FROZEN_CRITERIA.md, CFG116_README.md (and the LEDGER row), and my own code, do I reproduce:
+     - the cross-shear null: early-minus-late cross difference over K1 (7 bins) 5.3/7 (p 0.63); late cross profile 2.2/7; early 4.7/7; whole-sample cross over all 15 bins 12.1/15;
+     - the power row R0: a leak of a fraction eps of the early-late tangential difference gives an expected chi2 (non-centrality) ~9 (eps = 0.5) and 2.2 (eps = 0.25) in the cross difference,
+       ~3 (eps = 0.5) in the near-minus-far difference;
+     - near/far: D_near - D_far consistent with zero, 5.4/7 (p 0.62); the far-only early-late split 23.2/7 (p 0.0016);
+     - early-late amplitudes (dex) +0.20 +- 0.06 (near), +0.17 +- 0.05 (far), +0.18 +- 0.04 (all);
+     - dilution (far over near, dex): late 0.13 +- 0.08, early 0.09 +- 0.04; far share of K1 pair weight 51% in both classes?
+ (2) ATTACK the power of the two nulls and what 'passes both nulls' does and does not exclude (rows A1-A9 below); test that the far-only 23.2/7 is not merely a smaller-N noise
+     fluctuation (label permutation within patch, empirical p; half-lens subsample comparison).
+
+MATERIAL READ (declared): CFG116_FROZEN_CRITERIA.md (e4083bd4f), CFG116_README.md; CFG100 and CFG107 committed READMEs and code (cfg107_run.py head, cfg100_lib.py/cfg107_lib.py -- only their
+  repo-finding and unit constants are used; no model code is needed here); CFG77 and CFG61 READMEs; CFG61_FROZEN_CRITERIA.md; the CFG116 row of LEDGER.md was searched for and NOT found
+  (grep returned nothing), so its content is the README's.  NOT read, exec'd or imported until my frozen main and MUTATE runs are complete: CFG116_kids_split_nulls.py,
+  CFG116_stage_perlens.py, any CFG116 .out or _results.json, CFG110 scripts/README/outputs (so CFG110's definition of 'R2b', the pair-weighted amplitude, is NOT known to me; see AMPLITUDE).
+  Nothing is fetched; the 17.7 GB shear catalogue is not opened.
+
+INDEPENDENCE LIMITS (declared): the per-lens sums are the calc chat's staged products on disk, git-ignored under real_research/data/lensing_rar/:
+  cfg116_perlens.npz (WGn WWn NNn WGf WWf NNf WX WGrot; 181,477 lenses x 15 g_bar bins) and cfg110_perlens.npz (WG WW NN), plus lr_lenses.npz (ra, dec, z, logM, Mgal, typ; typ 1 = early,
+  0 = late) and lr_esd_jackknife.npz (patch labels, the June per-(patch, class, bin) sums wgE, W, NN).  This is independent code on SHARED staged inputs.
+  What is checked: near+far all-source sums (WGn+WGf, WWn+WWf, NNn+NNf) against the June per-(patch, class, bin) sums (control K1) and, per lens per bin, against cfg110_perlens (K1b).
+  What CANNOT be checked with the staged products: (i) the near/far assignment (the z_B boundary z_l + 0.5 and the z_l + 0.2 floor) inside the staging -- only plausibility checks (K8: per-pair weight
+  and far fraction behaviour, near+far = all); (ii) that WX is the cross-shear (e_x = e1 sin2phi + e2 cos2phi with the same weights and background cut) rather than some other quantity -- the
+  file's own WGrot (first 2000 lenses) is compared to WX (K2) but that is the staging's own control, and I cannot recompute the position angles; K8 also checks that WX's jackknife noise per bin
+  matches the tangential noise (shape noise is the same for the two components); (iii) any shear-catalogue-level operation (m-bias, z_B point estimates, blending).  Definitions (estimator, near/far
+  boundary, Hartlap, pass lines) are read from CFG116's frozen text/README, so definitional agreement is not independent; the code and numerics are.  Run with ZF_REPO set (or from inside the repo); no
+  hard-coded home directory.
+
+DATA AND ESTIMATOR
+  Lenses lr_lenses.npz; patch from lr_esd_jackknife.npz (50 patches, ~3630 lenses each).  Class typ (0 late, 1 early).  Per-lens sums (15 g_bar bins, edges logspace(1e-15, 5e-12, 16) m/s^2):
+  tangential near (z_l+0.2 < z_B <= z_l+0.5) WGn, WWn, NNn; far (z_B > z_l+0.5) WGf, WWf, NNf; all = near + far; cross WX (all background sources, e_x = tangential estimator at phi+45 deg).
+  Sums per (patch p, class c, bin k):  S[p,c,k] = sum over lenses.  ESD(subset, k) = sum_p WG / sum_p WW / KG,  KG = 1.98847e30/(3.0857e16)^2  [Msun/pc^2].  Cross ESD_x = sum WX / sum WW_all / KG (the
+  cross uses the all-source weights, no separate cross weight is staged).  K1 = the 1-halo bins where the lens-median R = sqrt(G Mgal/g_centre) of BOTH classes is < 0.3 Mpc (expected {8..14}, 7 bins).
+  Data vector for a null: D = ESD(early) - ESD(late) on K1 (7 numbers).  Near/far statistic: D_nf = D_near - D_far (7 numbers).  Each class's cross profile: ESD_x(c, K1) (7 each).
+  Whole-sample cross: ESD_x over all lenses, all 15 bins.
+COVARIANCE.  Leave-one-patch-out, N = 50: for each statistic vector v the sample v_(-p) is formed from the sums with patch p left out, ESD recomputed; C = (N-1)/N sum_p (v_(-p) - mean)(v_(-p) - mean)^T;
+  Hartlap h = (N - n - 2)/(N - 1), n = length of the vector (7 -> 40/49; 14 -> 34/49; 15 -> 33/49); chi2 = h v^T C^-1 v with n dof; p-value = chi2 survival function with n dof.  Errors quoted: sqrt(diag C), no h.
+AMPLITUDE (my reading; CFG110's R2b definition is not known to me).  PRIMARY V1: A = log10[ sum_{k in K1} w_k ESD_early,k / sum_{k in K1} w_k ESD_late,k ] with fixed weights w_k = the full-sample
+  sum over all lenses (both classes) and all patches of WW_all,k (the same w for near, far, all and for every jackknife sample); central value from the full sample; error = jackknife sqrt((N-1)/N sum (A_(-p) - mean)^2).
+  Variant V2: each class's K1-pooled ESD, A = log10[(sum_K1 WG_e/sum_K1 WW_e)/(sum_K1 WG_l/sum_K1 WW_l)].  Dilution (per class): A_dil = log10[sum w ESD_far / sum w ESD_near] with the same w (V1) and the V2 analogue.
+  Far share of pair weight: sum_K1 WWf / sum_K1 (WWn + WWf) per class.  If V1 and V2 differ from CFG116's digits in different ways, both are reported; V1 is the reproduction line.
+POWER ROW R0 (printed first, before any cross-shear or near/far null number).  Ingredients: D_t = the all-source early-late tangential difference over K1.  Two readings:
+  R0-A (the null's own covariance, the correct power computation): lambda_x(eps) = eps^2 D_t^T P_x D_t, P_x = h C_x^-1, C_x the jackknife covariance of the cross difference; lambda_nf(eps) = eps^2 D_t^T P_nf D_t, C_nf the
+    covariance of D_nf (a near-source-only systematic carrying eps of the tangential split shifts D_nf by eps D_t).
+  R0-B (the reading of CFG116's frozen sentence 'from the tangential jackknife covariance'): lambda = eps^2 D_t^T h C_t^-1 D_t with C_t the covariance of the tangential early-late difference (= eps^2 x the all-source split chi2).
+  eps = 0.25, 0.5 (and 1.0, and 0.10, 0.75 for the A rows).  'Expected chi2' = 7 + lambda; the printed CFG116 numbers (9, 2.2, ~3) are matched to lambda or to 7 + lambda -- BOTH are printed and which one matches is reported.
+  Power = P(ncx2(7, lambda) > chi2 critical for alpha = 0.01, and 0.05).  1-dof amplitude-fit power: shape s = D_t, residual r, A_hat = s^T P r/(s^T P s), sigma_A = (s^T P s)^-1/2, one-sided 95% upper limit
+  A_hat + 1.645 sigma_A; detectable eps at 80% power, alpha = 0.01: omnibus 7 dof (root of ncx2 power) and 1 dof ((z_0.995 + z_0.8) sigma_A).
+HEADLINE H1 (as CFG116's frozen text; MUTATE must fail): cross difference chi2 (7 dof) p > 0.01 AND late-class cross profile p > 0.01 AND early-class cross profile p > 0.01.
+H2: D_near - D_far chi2 (7 dof) p > 0.01.
+REPORTED ROWS.  R1: D_early-late from far only and near only (chi2 vs 0, 7 dof, p; the amplitude), and the all-source split (chi2, p).  R2: class tangential profiles near/far and cross profiles over K1 (Msun/pc^2),
+  D per bin near/far/all, jackknife errors of the cross difference (min, max).  R3: dilution rows above.  R4: whole-sample cross null over all 15 bins.
+
+CONTROLS (a failure invalidates the corresponding downstream number; failed controls are failures)
+  K1  near+far sums per (patch, class, bin) reproduce the June sums wgE, W, NN (lr_esd_jackknife) to relative 1e-9 (relative to the June value, floor 1e-300).
+  K1b near+far per lens per bin reproduce cfg110_perlens WG, WW, NN: max |a-b| / (|b| + 1e-6 median|b| of the bin) <= 1e-9.
+  K2  the file's own WGrot equals WX on the first 2000 lenses to 1e-9 relative to the row scale (this is the staging's own control, reported as such); WX is not the tangential sum (max relative difference > 0.5 somewhere).
+  K3  covariance algebra: (a) chi2 by solve == Cholesky whitening == explicit inverse to 1e-8; (b) the directly jackknifed D_nf covariance equals T C_28 T^T with C_28 the jackknife covariance of
+      [E_near, L_near, E_far, L_far] (28 numbers) and T the +1,-1,-1,+1 block map, to 1e-9 relative to the largest element; C symmetric positive definite; (c) the leave-one-out tangential D over the 50 patches:
+      the mean of the jackknife samples is within 1e-3 (relative) of the full-sample D.
+  K4  label-permutation calibration null (seed 108, 2000 permutations of class labels within patch, keeping the class counts per patch; the same estimator and jackknife applied): the mean of the permuted
+      chi2 (each of: all-source D, far-only D, near-only D, cross D, D_nf; 7 dof, Hartlap) lies in [5.5, 8.5].  The empirical p of each observed statistic is reported.
+  K5  SWAP controls: (a) swapping the near and far sets: the H2 chi2 unchanged to 1e-9, the near-only and far-only rows interchanged; (b) swapping early and late: every chi2 unchanged to 1e-9, every amplitude flips
+      sign to 1e-12.
+  K6  EXACT-INJECTION recovery control: adding a shape eps D_t to the early cross ESD through the sums (WX_early += eps D_t,k KG WW_all for early lenses in K1) shifts D_x by exactly eps D_t and leaves C unchanged; the
+      resulting chi2 equals (D_x + eps D_t)^T P (D_x + eps D_t) to 1e-8 and the fitted 1-dof leak amplitude A_hat rises by eps to 1e-8 (eps = 0.25, 0.5); the same for a near-only injection into the early class
+      (WGn_early += eps D_t,k KG WWn) and the H2 statistic.  The injected chi2 values themselves (one noise realisation) are reported next to the R0 expectations.
+  K7  power machinery: Monte Carlo (2e5 draws of the whitened non-central chi2 with the R0-A lambda, eps = 0.5) reproduces the analytic power at alpha = 0.01 to 1% (absolute).
+  K8  plausibility of the staged near/far/cross content (NOT proofs): (a) NNn + NNf equals NN of cfg110 (integer counts) exactly; (b) all weights non-negative; (c) mean weight per pair (WW/NN) of the near set is below the far
+      set's in the K1 bins for > 90% of lens-bins with pairs in both; (d) the far fraction of pairs falls with lens redshift (Spearman rho < 0 over lenses, K1 pooled); (e) the ratio of the jackknife noise of the cross
+      difference to that of the tangential difference is in [0.7, 1.4] for every K1 bin (shape noise is the same for the two components).
+  K9  MUTATE=1 as declared: WX += 0.3 WG_all for early-type lenses (every bin).  H1 must FAIL and the script must exit 1.  Recovery control: the early-class leak fraction eps_E = (t_E^T P_E x_E)/(t_E^T P_E t_E)
+      (t_E = the early tangential profile over K1, x_E its cross profile, P_E = h C_xE^-1) rises to 0.30 +- 0.05 in MUTATE from its main-run value.  If H1 also fails in the main run the control is uninformative (declared).
+REPRODUCTION lines (tolerance = the displayed digits; REPRODUCED within tolerance, APPROXIMATE within 10%, else NOT REPRODUCED, causes investigated post hoc and labelled as such):
+  P1 cross difference 5.3 (+-0.05) / 7, p 0.63 (+-0.005);  P2 late 2.2, early 4.7 (+-0.05);  P3 whole-sample cross 12.1 (+-0.05)/15;  P4 R0: 9 (+-0.5) at eps 0.5 and 2.2 (+-0.05) at eps 0.25 for the cross difference (R0-A or R0-B,
+  whichever CFG116's phrase reads to), ~3 (+-0.5) at eps 0.5 for near/far;  P5 near/far 5.4 (+-0.05) / 7, p 0.62 (+-0.005);  P6 far-only 23.2 (+-0.05) / 7, p 0.0016 (+-0.0001);  P7 amplitudes +0.20/+0.17/+0.18 (+-0.005),
+  errors 0.06/0.05/0.04 (+-0.005);  P8 dilution 0.13 +- 0.08 (late), 0.09 +- 0.04 (early) (+-0.005);  P9 far share 51% (+-1%);  P10 the K1 table rows of the README (values to +-0.06) and the cross-difference errors 2.1-9.7 (+-0.06).
+
+ATTACK ROWS (reported, not pass/fail; frozen now)
+  A1 Near/far power: lambda_nf(eps), power at alpha 0.01/0.05 for eps in {0.1, 0.25, 0.5, 0.75, 1.0}; the 1-dof amplitude limit on a near-only leak (A_hat +- sigma, one-sided 95% upper limit); detectable eps at 80% power (omnibus
+     and 1 dof); note that a systematic acting equally on near and far sources (E-mode shape calibration by class, lens photo-z, isolation/satellite contamination that is source-separation independent) gives D_nf = 0 by construction.
+  A2 Cross-shear power: the same for lambda_x, the 1-dof leak-amplitude fit of the cross difference against D_t (A_hat +- sigma, 95% upper limit), and the per-class leak fractions eps_c; detectable eps at 80% power.
+  A3 What the cross null constrains: (a) additive/PSF-type (E ~ B) systematics: the eps = 1.0 lambda; (b) E-mode-only class-dependent multiplicative shape bias: NOT constrained by either null; the a-priori size needed is
+     m_diff = 10^A_all - 1 (V1, the whole early-late amplitude), to be compared with KiDS-1000 shear calibration uncertainty ~ 0.01-0.02 (literature value, not derived here); (c) noise calibration: from Q = the joint 14-vector
+     [cross_late(K1), cross_early(K1)] chi2 and the 15-bin whole-sample cross chi2, the 95% upper limit on a jackknife under-estimate factor s (true error = s x jackknife error): s_ul = sqrt(chi2_obs/chi2.ppf(0.05, n)); this tests
+     shape noise only, not the tangential-only terms (cosmic variance, IA, photo-z).
+  A4 Covariance inflation f in {1.2, 1.5, 1.81, 2.0}: chi2/f^2 for the far-only split, near-only split, all-source split, cross difference, D_nf (p-values), power lambda/f^2 of the two nulls at eps = 0.5; the f at which the far-only split
+     reaches p = 0.05 and p = 0.01 (and in the units of the cross bound s_ul of A3c: is that f allowed by the cross noise calibration?).
+  A5 Lens photo-z: (a) the early-late far-source amplitude (V1 with w recomputed for the subset, fixed under the jackknife) in lens-redshift terciles (edges = tercile quantiles of z of the whole sample), joint 3-vector jackknife
+     covariance, chi2 of constancy (2 dof, Hartlap p = 3), and the cross difference chi2 in each tercile (7 dof); (b) analytic Sigma_crit sensitivity in my own flat LCDM (Om 0.3153, h 0.6736): the fractional ESD bias from a lens
+     redshift error dz, ESD_est/ESD_true = Sigma_crit(z_l + dz, z_s)/Sigma_crit(z_l, z_s), at z_l = the lens median z, z_s = 0.8 (far) and z_l + 0.35 (near), for dz = +-0.02, +-0.05, and the class-dependent dz that would produce the
+     whole early-late split (V1 A_all).  The staged product carries no per-lens photo-z quality or class-dependent z error: a class-dependent lens z offset is untested beyond this.
+  A6 Satellite / 2-halo contamination: the early-late far-source amplitude in inner bins {12, 13, 14} and outer bins {8, 9, 10, 11}, and their difference with its jackknife error (a satellite or 2-halo term grows outward); isolation flags
+     (cfg96) are NOT read in this lane; per-lens satellite fractions are untested; direction of boost/dilution/IA: stated from the near/far amplitudes.
+  A7 Permutation / smaller-N check (K4 provides the permutation nulls): empirical p of the observed far-only, near-only, all-source, cross, D_nf statistics; plus 300 random half-lens subsamples (each lens kept with probability 0.51 in
+     the full-source sums, the classes intact, own jackknife): the distribution of the all-source split chi2 (median, 16-84%) against the observed far-only 23.2 and P(subsample chi2 >= observed far-only).
+  A8 Radial/bin dependence of the near-vs-far test: D_nf per bin and z-scores; drop-one-bin chi2.
+  A9 Amplitude definition: V2 rows for every amplitude (near, far, all, dilution).
+Programme rules: no claim that the data favour the framework or that the theory is closed; kappa = 1/2 is FITTED; a non-reproduction is a valid outcome; controls that fail are failures; nothing is tuned after a result is seen --
+  any later addition is labelled 'post hoc'.
+EXIT CODE: 1 iff a control fails or H1 fails or H2 fails (so MUTATE exits 1 through H1).
