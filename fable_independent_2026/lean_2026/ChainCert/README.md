@@ -1,6 +1,6 @@
 # ChainCert — the composable Lean core of the chain
 
-`lake build ChainCert` builds it; `ChainCert/verify_chain.sh` checks that it builds, has no `sorry`, and that all 27 theorems depend only on `propext`, `Classical.choice` and `Quot.sound` (`MUTATE=1` adds an unproved theorem and must fail). Outputs: `verify_chain.out`, `verify_chain_MUTATE.out`, `Axioms.out`.
+`lake build ChainCert` builds it; `ChainCert/verify_chain.sh` checks that it builds, has no `sorry`, and that all 51 theorems depend only on `propext`, `Classical.choice` and `Quot.sound` (`MUTATE=1` adds an unproved theorem and must fail). Outputs: `verify_chain.out`, `verify_chain_MUTATE.out`, `Axioms.out`.
 
 **What Lean certifies here is that the conclusions follow from the stated premises. It certifies no empirical fact.** κ = ½ is fitted; Ω_c is fitted; ρ_Λ constant is a premise; the kernel is declared.
 
@@ -16,6 +16,7 @@
 | rival a₀ ∝ H(z) | E(z) > 1 for z > 0, strictly increasing; E(2.5) ∈ (3.76, 3.761) at Ω_m = 0.3138 | **certified** | `Certificates` C4 |
 | (d) cold-mass rule | f_ex = max(0, 1 − M_ph/M_c) gives M_ph + f_ex M_c = max(M_ph, M_c), monotone in M_c | **certified as algebra of the rule as stated**; the rule is a declared law, not derived from an action | `Certificates` C3 |
 | fluid cap (CFG43) | the saturating cap's pressure is P = P_cap x²/(1+x²) ∈ [0, P_cap); with P_cap = (κ²/8π) M_P² Λ the cap's acceleration satisfies a₀² = κ²Λ/8π, the kernel's α(Λ)c² | **certified as algebra**; the cap's entry FORM is a postulate of the CFG43 action; the field equations and the obstruction are numerical (CFG43 scripts) | `Fluid` |
+| fluid = phantom, point mass (CFG44) | for the P2 point-mass law with x² = a₀r²/GM: M_c = M(√(1+x²) − 1), ρ_c = a₀/(4πG r √(1+x²)) = (1/4πr²) dM_c/dr; the shell-theorem charge ρ_c g_tot = a₀M/(4πr³); P = a₀M/(8πr²) is hydrostatic in g_tot; σ² = V_c²/2; the effective polytropic index Γ = 2(1+x²)/(1+2x²) is strictly decreasing from 2 to 1, so no single polytrope | **certified as exact real-analysis identities**; the target ρ_c g = a₀M_b/(4πr³) is CFG10's declared law, not derived; extended baryon profiles and the general barotropic no-go are numerical (CFG44 scripts) | `PointMass` |
 | κ | the BTFR zero point is linear in κ; in the four-form closure every κ with 0 < κ²b < 1 is realised | **certified: κ is a tuned ratio, not derived** | `Chain`, `Certificates` C5 |
 
 ## Not certified (open)

@@ -1,5 +1,6 @@
 import ChainCert.Chain
 import ChainCert.Fluid
+import ChainCert.PointMass
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -31,3 +32,27 @@ import ChainCert.Fluid
 #print axioms fluid_pressure_bounds
 #print axioms cap_a0_tie
 #print axioms cap_a0_eq
+#print axioms ChainB.sx_sq
+#print axioms ChainB.sx_pos
+#print axioms ChainB.sx_hasDeriv
+#print axioms ChainB.Mc_hasDerivAt
+#print axioms ChainB.rhoC_eq_dMc
+#print axioms ChainB.target_ODE
+#print axioms ChainB.total_u_sq
+#print axioms ChainB.gtot_eq_P2
+#print axioms ChainB.charge_identity
+#print axioms ChainB.hydrostatic
+#print axioms ChainB.dispersion_half_vc_sq
+#print axioms ChainB.rhoC_hasDeriv
+#print axioms ChainB.Pfun_logderiv
+#print axioms ChainB.rhoC_logderiv
+#print axioms ChainB.GammaEff_eq
+#print axioms ChainB.GammaX_eq
+#print axioms ChainB.GammaX_bounds
+#print axioms ChainB.GammaX_eq_two_iff
+#print axioms ChainB.GammaX_strictAntiOn
+#print axioms ChainB.GammaX_tendsto_zero
+#print axioms ChainB.GammaX_tendsto_atTop
+#print axioms ChainB.no_single_polytrope
+#print axioms ChainB.GammaEff_tendsto_zero
+#print axioms ChainB.GammaEff_tendsto_atTop
