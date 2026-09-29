@@ -1,0 +1,40 @@
+=== C1 cone check (WKB): measured phase speed vs cones ===
+profiles: N in [1.0000,1.0600], b in [0.9500,1.0000], t_c = e^z in [1.0001,1.3000]
+max |c_meas/c_g - 1| over x in [-7,7]: 4.357e-05
+max |c_meas/c_g_d - 1| (FALSE photon cone on g_d): 3.001e-01
+NC1 verdict: g-cone residual 4.36e-05 (~0: cone matches); g_d mismatch 3.00e-01 != 0 -> false speed mismatch IDENTIFIED
+
+=== C2 amplitude law (static): leading WKB Amp*N/b^2 residual = 6.185e-02
+   exact 1D current |psi|^2 * d(phase)/dx residual = 4.411e-05
+   (amplitude changes with the carrier density; speed does not: 'amplitude vs speed' distinction verified)
+
+=== C3 mass refraction: analytic delta_phi = int delta_kappa dx vs measured
+   max residual (slope-removed): 1.589e-04
+   m_T^2 = 2 P_d/M = -4.0000e-02 (P_d < 0 static clump; refraction, not speed change)
+
+=== C4 (NC1) quantified mismatch over the clump (sample t_c set) ===
+   t_c = 1.3: z = +0.2624: false speed^2 mismatch factor = -0.4083, speed ratio e^-z = 0.7692  (detected iff z != 0)
+   t_c = 1.0: z = +0.0000: false speed^2 mismatch factor = +0.0000, speed ratio e^-z = 1.0000  (detected iff z != 0)
+   t_c = 0.7: z = -0.3567: false speed^2 mismatch factor = +1.0408, speed ratio e^-z = 1.4286  (detected iff z != 0)
+
+=== C5 (NC2) shear diagnostic: extracted speed^2 -> M/(M+kappa) = 0.6667
+   max |c_shear/c^(M/(M+k)) - 1| = 3.972e-05  (fits the shear law)
+   max |c_shear/c_g - 1| (pure-Einstein cone check FAILS): 1.835e-01  -> control would have detected the modified theory
+
+=== C6 FRW time-domain amplitude law (physical normalization) ===
+   max(omega*dt) = 0.0295 (Nyquist margin ok)
+   max |env/a - <env/a>|/<env/a> = 1.293e-02
+   u (metric perturbation in comoving coordinates) ~ a  <=>  q = u/a^2 ~ a^-1 (strain normalization of AS238/240: same invariant)
+   median |phase frequency|/(k/a) = 0.996634  (speed 1)
+
+=== C7 dimensional examples: a0 = (c/2) sqrt(G_bare rho_Lambda), kappa = 1/2 ===
+G_bare = 6.67430e-11 (SI), c = 2.997925e+08 (SI)
+footing 1 (canonical):  a0 = 9.3619e-11 m/s^2  ->  rho_Lambda = 5.8444e-27 kg/m^3
+footing 2 (alternative):a0 = 1.1279e-10 m/s^2  ->  rho_Lambda = 8.4831e-27 kg/m^3
+(alternative footing interpreted as changed vacuum density with kappa = 1/2 fixed; interpreted as changed kappa = 1/2*a0_alt/a0_canon = 0.6024 with rho fixed: the two footings cannot share both.)
+  [canonical footing] r_M(1e12 M_sun) = 1.1906e+21 m = 38586.01 kpc ; v_flat = (G M_b a0)^(1/4) = 333865.9979 m/s = 333.87 km/s ; lambda_T(100 Hz)/r_M = 2.518e-15 << 1 : WKB domain holds
+  [alternative footing] r_M(1e12 M_sun) = 1.0847e+21 m = 35154.15 kpc ; v_flat = (G M_b a0)^(1/4) = 349783.1149 m/s = 349.78 km/s ; lambda_T(100 Hz)/r_M = 2.764e-15 << 1 : WKB domain holds
+  -> the dimensionless result (tensor cone = photon null cone of g) applies  identically to both footings; only dimensioned scales (r_M, rho_Lambda)  shift.
+
+--- bounds ---
+wall time numeric: 0.2 s ; grid Nx = 12001, nt = 61000 ; threads: 1 (env set) ; omega0 = 40.0 ; k = 30.0

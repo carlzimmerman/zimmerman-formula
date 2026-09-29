@@ -1,0 +1,51 @@
+=== AS239: quadratic tensor Lagrangian on the inhomogeneous carrier bg ===
+A  (qdot^2) = M/(4*N(x)*b(x))    > 0 : no ghost (kinetic positive)
+C  (q'^2)   = -M*N(x)/(4*b(x)**3)    < 0 : no gradient instability
+E  (q q')   = 0 (x-only background, e_xx = 0 transverse gradients)
+D_EH        = M*(2*Lambda - Rbg(x))*N(x)/(4*b(x))  (cancels on FRW via Friedmann, AS238/240; O(lambda/L)^2 on the slab)
+D_car       = -N(x)*P(x)/(2*b(x))  : carrier measure coupling, exact
+D total     = (2*Lambda*M - M*Rbg(x) - 2*P(x))*N(x)/(4*b(x))
+
+--- local tensor cone ---
+c_T^2 = -C/A = N(x)**2/b(x)**2   = N^2/b^2 = photon null cone of g
+cone equality residual (symbol level): 0
+t_c = e^z does not appear: carrier density induces NO speed change at leading WKB order.
+flat limit (N=b=1): speed^2 = 1
+
+--- WKB: eikonal + amplitude transport ---
+static WKB flux: d_x[2 (-C) theta' Amp^2] = M*omega*(-2*Am(x)*N(x)*Derivative(b(x), x) + Am(x)*b(x)*Derivative(N(x), x) + N(x)*b(x)*Derivative(Am(x), x))*Am(x)*N(x)/b(x)**5
+with Amp = Amp0*b^2/N: residual = 0   =>  Amp(x) = Amp0 * b(x)^2/N(x): exact static amplitude law in the slab
+conserved static current: 2(-C) theta' Amp^2 = Amp0**2*M*omega/2  = 2 (M/4) w Amp0^2  (x-independent)
+general current form: d_t(2 A w Amp^2) + d_x(2(-C) theta' Amp^2) = 0  [derived]
+
+--- FRW limit (cross-check AS238/AS240) ---
+FRW: A = M/(4*a)  ; C = -M/(4*a**3)  ; D_car = -P(x)/(2*a)
+FRW eikonal: omega^2 = -C/A k^2 = k^2/a^2 -> speed 1 (c_T = c)
+FRW amplitude law: current 2 A w Amp^2 with A = M/(4a), w = k/a,
+  Amp = Amp0*a (metric-perturbation normalization): 2AwAmp^2 = M k Amp0^2/2 = const
+  <=> strain normalization q = Amp/a^2 ~ a^{-1}   [AS238/240 amplitude transport]
+FRW tensor mass^2: m_T^2 = -D/A = 2*P(x)/M  = 2 P_d/M
+
+--- sub-leading mass: m_T^2(x) on the slab ---
+m_T^2 = -D/A = -D_car/A + O((lambda/L)^2) = 2*N(x)**2*P(x)/M x N^2/b^2-normalized = 2 P_d/M  (proper units)
+refraction at finite omega: |delta c/c| ~ |m_T^2|/(2 omega^2) = P_d/(M omega^2)
+-> carrier clump: amplitude law + low-frequency refraction, NO cone change.
+
+--- NC1: photons compared on g_d (carrier composite metric) ---
+g_d = g + (1 - e^{-2z}) n n  ->  ds_d^2 = -N^2 e^{-2z} dt^2 + b^2 dx^2
+false photon speed^2 (g_d) = (N/b)^2 e^{-2z} ; true speed^2 = (N/b)^2
+false mismatch/speed^2 = e^{-2z} - 1   (zero iff z = 0)
+  t_c = 1.3: z = ln t_c = +0.2624, e^(-z) = 0.7692, s^2-1 = -0.4083, speed ratio = 0.7692
+  t_c = 1.0: z = ln t_c = +0.0000, e^(-z) = 1.0000, s^2-1 = +0.0000, speed ratio = 1.0000
+  t_c = 0.7: z = ln t_c = -0.3567, e^(-z) = 1.4286, s^2-1 = +1.0408, speed ratio = 1.4286
+ -> with S_b[g] minimal coupling the photon cone is g's; the g_d comparison  is IDENTIFIED as a false speed mismatch (fires off for every t_c != 1).
+
+--- NC2: shear-squared diagnostic (extraction capable of failing) ---
+speed^2 with shear operator added: M/(M + kappa)  (-> M/(M+kappa) ; fires iff kappa != 0)
+pure-Einstein symbol residual under shear kinetic: kappa*omega**2/(2*N(x)*b(x))
+
+--- dimension / sign / measure checks ---
+[A qdot^2] = M_P^2 L^3 T^-2 (action density);  [m_T^2] = [P_d]/[M_P^2] = 1/L^2
+measure coupling used: delta^2 sqrt(-g)/sqrt(-g) = -(1/4)(e2 q^2)/b^4 for traceless TT (det(1+A) = 1 - tr(A^2)/2, tr A = 0) - exact
+
+wall time sympy: 0.1 s

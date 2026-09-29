@@ -1,0 +1,171 @@
+[engine] D1 built, sizes = [190, 190, 190]
+[engine] D2 built, sizes = [1338, 1338, 1338]
+nonzero shapes at O(s^1) (D1):
+   i=1  d_t(rho) * vx : 1
+   i=1  d_t(Nx) * 1 : 1
+   i=1  d_t(vx) * 1 : 1
+   i=1  d_x(Phi) * 1 : -1
+   i=2  d_t(rho) * vy : 1
+   i=2  d_t(Ny) * 1 : 1
+   i=2  d_t(vy) * 1 : 1
+   i=2  d_y(Phi) * 1 : -1
+   i=3  d_t(rho) * vz : 1
+   i=3  d_t(Nz) * 1 : 1
+   i=3  d_t(vz) * 1 : 1
+   i=3  d_z(Phi) * 1 : -1
+nonzero shapes at O(s^2) (D2):
+   i=1  d_t(rho) * Phi*vx : 2
+   i=1  d_t(Nx) * Phi : 2
+   i=1  d_t(Nx) * Psi : 2
+   i=1  d_t(Phi) * Nx : -1
+   i=1  d_t(Phi) * vx : 3
+   i=1  d_t(Psi) * vx : -5
+   i=1  d_t(vx) * Phi : 2
+   i=1  d_x(rho) * vx*vx : 1
+   i=1  d_x(Ny) * vy : -1
+   i=1  d_x(Nz) * vz : -1
+   i=1  d_x(Phi) * Phi : -2
+   i=1  d_x(Phi) * Psi : -2
+   i=1  d_x(vx) * vx : 2
+   i=1  d_y(rho) * vx*vy : 1
+   i=1  d_y(Nx) * vy : 1
+   i=1  d_y(vx) * vy : 1
+   i=1  d_y(vy) * vx : 1
+   i=1  d_z(rho) * vx*vz : 1
+   i=1  d_z(Nx) * vz : 1
+   i=1  d_z(vx) * vz : 1
+   i=1  d_z(vz) * vx : 1
+   i=2  d_t(rho) * Phi*vy : 2
+   i=2  d_t(Ny) * Phi : 2
+   i=2  d_t(Ny) * Psi : 2
+   i=2  d_t(Phi) * Ny : -1
+   i=2  d_t(Phi) * vy : 3
+   i=2  d_t(Psi) * vy : -5
+   i=2  d_t(vy) * Phi : 2
+   i=2  d_x(rho) * vx*vy : 1
+   i=2  d_x(Ny) * vx : 1
+   i=2  d_x(vx) * vy : 1
+   i=2  d_x(vy) * vx : 1
+   i=2  d_y(rho) * vy*vy : 1
+   i=2  d_y(Nx) * vx : -1
+   i=2  d_y(Nz) * vz : -1
+   i=2  d_y(Phi) * Phi : -2
+   i=2  d_y(Phi) * Psi : -2
+   i=2  d_y(vy) * vy : 2
+   i=2  d_z(rho) * vy*vz : 1
+   i=2  d_z(Ny) * vz : 1
+   i=2  d_z(vy) * vz : 1
+   i=2  d_z(vz) * vy : 1
+   i=3  d_t(rho) * Phi*vz : 2
+   i=3  d_t(Nz) * Phi : 2
+   i=3  d_t(Nz) * Psi : 2
+   i=3  d_t(Phi) * Nz : -1
+   i=3  d_t(Phi) * vz : 3
+   i=3  d_t(Psi) * vz : -5
+   i=3  d_t(vz) * Phi : 2
+   i=3  d_x(rho) * vx*vz : 1
+   i=3  d_x(Nz) * vx : 1
+   i=3  d_x(vx) * vz : 1
+   i=3  d_x(vz) * vx : 1
+   i=3  d_y(rho) * vy*vz : 1
+   i=3  d_y(Nz) * vy : 1
+   i=3  d_y(vy) * vz : 1
+   i=3  d_y(vz) * vy : 1
+   i=3  d_z(rho) * vz*vz : 1
+   i=3  d_z(Nx) * vx : -1
+   i=3  d_z(Ny) * vy : -1
+   i=3  d_z(Phi) * Phi : -2
+   i=3  d_z(Phi) * Psi : -2
+   i=3  d_z(vz) * vz : 2
+i=1: O1[c(d_t v)=1 c(d_i Phi)=-1 c(d_t N)=1]  O2[c(v.d v)=4 c(v.d_j N_i)=2 c(v.d_i N_j)=-2]
+i=2: O1[c(d_t v)=1 c(d_i Phi)=-1 c(d_t N)=1]  O2[c(v.d v)=4 c(v.d_j N_i)=2 c(v.d_i N_j)=-2]
+i=3: O1[c(d_t v)=1 c(d_i Phi)=-1 c(d_t N)=1]  O2[c(v.d v)=4 c(v.d_j N_i)=2 c(v.d_i N_j)=-2]
+[PASS] M1 exact identity (D1,D2 reconstructed from extracted coefficients) vanishes on fresh probes  |residual| = 0
+physical reading (exact, extracted coefficients):
+  i=1: O1: rho d_t v_i (c=1), rho d_i Phi_t (c=-1), rho d_t N_i (c=1)
+        O2 shift-curl pairs v^j(d_j N_i, d_i N_j): [(0, 0, 0), (1, 1, -1), (2, 1, -1)]
+[PASS] M1a i=1: O1[c(d_t v_i)] = 1  |residual| = 0
+[PASS] M1b i=1: O1 divergence-balance rho d_t v_i = rho d_i Phi_t - rho d_t N_i  |residual| = 0
+[PASS] M1c i=1: O2 kinetic-flux divergence: rho d_j(v_i v_j) pieces, coeff 1 per j (diag 2 from 2 v d v)  |residual| = 0
+[PASS] M1d i=1: O2 pairwise shift-curl v^j(d_j N_i - d_i N_j), coefficient +1 per pair, trace pair 0  |residual| = 0
+  i=2: O1: rho d_t v_i (c=1), rho d_i Phi_t (c=-1), rho d_t N_i (c=1)
+        O2 shift-curl pairs v^j(d_j N_i, d_i N_j): [(0, 1, -1), (1, 0, 0), (2, 1, -1)]
+[PASS] M1a i=2: O1[c(d_t v_i)] = 1  |residual| = 0
+[PASS] M1b i=2: O1 divergence-balance rho d_t v_i = rho d_i Phi_t - rho d_t N_i  |residual| = 0
+[PASS] M1c i=2: O2 kinetic-flux divergence: rho d_j(v_i v_j) pieces, coeff 1 per j (diag 2 from 2 v d v)  |residual| = 0
+[PASS] M1d i=2: O2 pairwise shift-curl v^j(d_j N_i - d_i N_j), coefficient +1 per pair, trace pair 0  |residual| = 0
+  i=3: O1: rho d_t v_i (c=1), rho d_i Phi_t (c=-1), rho d_t N_i (c=1)
+        O2 shift-curl pairs v^j(d_j N_i, d_i N_j): [(0, 1, -1), (1, 1, -1), (2, 0, 0)]
+[PASS] M1a i=3: O1[c(d_t v_i)] = 1  |residual| = 0
+[PASS] M1b i=3: O1 divergence-balance rho d_t v_i = rho d_i Phi_t - rho d_t N_i  |residual| = 0
+[PASS] M1c i=3: O2 kinetic-flux divergence: rho d_j(v_i v_j) pieces, coeff 1 per j (diag 2 from 2 v d v)  |residual| = 0
+[PASS] M1d i=3: O2 pairwise shift-curl v^j(d_j N_i - d_i N_j), coefficient +1 per pair, trace pair 0  |residual| = 0
+
+M1 (exact): rho (d_t v_i + v^j d_j v_i) = rho d_i Phi_t
+            - rho d_t N_i - rho v^j (d_j N_i - d_i N_j)
+            + (Phi, Psi)-weighted 1PN companions (extracted above,
+              vanish in the spherical-body integrals by oddness)
+  Integrated:  dP_i/dt + oint (rho v_i v^j + sigma_ij) dS_j
+     = int_V rho d_i Phi_t dV - int_V rho[d_t N_i + v^j(d_j N_i - d_i N_j)] dV
+
+==============================================================================
+M2: null self-acceleration at O(w) — isolated spherical body
+==============================================================================
+[PASS] M2a int rho d_i Phi_t dV = 0 (angular oddness)  |residual| = 0
+[PASS] M2b i=x shift integrand vanishes identically  |residual| = 0
+[PASS] M2c i=y oddness -> integral 0  |residual| = 0
+[PASS] M2d i=z oddness -> integral 0  |residual| = 0
+[PASS] M2e internal-motion shift-force density vanishes identically  |residual| = 0
+[PASS] M2f companion rho Phi d_i Phi integrates to 0 (oddness)  |residual| = 0
+M2: every O(w) (and 1PN-companion) force integral over the isolated
+    spherical stationary-stress body vanishes => NO net self-acceleration
+    at O(w): the alpha3 content is a coefficient (M3a, M3b), not a
+    residual self-force.
+
+==============================================================================
+M3a: 1PN g_00 velocity-squared coefficient
+==============================================================================
+[PASS] M3a1 CT = 1: v^2-coefficient of T^{00}/rho in the (Phi, N=0, Psi=0) sector  |residual| = 0
+[PASS] M3a1b CT|_{Psi=0,N=0} = 1 (Psi-weighted part is O(eps^3): reported, not counted)  |residual| = 0
+      extracted: T^{00} = rho (1 + v^2 + 2 Phi_t + ...),  v^2-coeff (N=0,Psi=0): 1
+      general v^2-coeff incl. Psi-piece: 1  (Psi*rho*v^2 ~ O(eps^3))
+[PASS] M3a2 A_v2 := 2*CT = 2 (framework normalization)  |residual| = 0
+[PASS] M3a3 linear-order alpha3-equivalent excess: A_v2 - 2*CT = 0 at O(eps^2)  |residual| = 0
+M3a: Phi_t = -T^{00}/(2 M_P^2 c_N k^2) (Z->0 at high k, AS226 cell);
+     T^{00} = rho(1 + v^2 + 2 Phi_t + ...) exactly => CT = 1, A_v2 = 2;
+     linear-order alpha3-equivalent EXCESS over the framework's Einstein
+     limit (alpha=0, c_N=1) = 0.
+
+==============================================================================
+M3b: O(w) momentum constraint — residual, shift solve, closure
+==============================================================================
+[PASS] M3b1 -2 D_j pi^j_i identity form (definitional; pi^j_i algebra in derivation.md)  |residual| = 0
+[PASS] M3b2 closed form truncated residual (i=0)  |residual| = 0
+[PASS] M3b2 closed form truncated residual (i=1)  |residual| = 0
+[PASS] M3b2 closed form truncated residual (i=2)  |residual| = 0
+[PASS] M3b3 mu = 1 + (2+3c2-2cN)/(2cN): explicit 1-remainder nonzero for c2>0, cN<1  |residual| = 0
+[PASS] M3b4 transverse shift is transverse: k.N^T = 0  |residual| = 0
+[PASS] M3b5 transverse closure (i=0): k^2 N^T_i = +rho~ w^T_i/MP^2  |residual| = 0
+[PASS] M3b5 transverse closure (i=1): k^2 N^T_i = +rho~ w^T_i/MP^2  |residual| = 0
+[PASS] M3b5 transverse closure (i=2): k^2 N^T_i = +rho~ w^T_i/MP^2  |residual| = 0
+[PASS] M3b6 gravitomagnetic coefficient: (N_fw/N_GR) = G_bare/G_N = c_N (AS226: G_N = G_bare/c_N)  |residual| = 0
+M3b7: c_N = 1 - alpha/2 (AS233/AS234 sibling cell, adopted input; kappa = c_N)
+M3b: C~_i(truncated) = rhok[w_i - mu k_i(k.w)/k2], mu = (2+3c2)/(2cN);
+     N~^T_i = +rho~ w^T_i/(MP^2 k2) = +8 pi G_bare rho~ w^T_i/k2;
+     kappa := N_fw/N_GR(measured G_N) = c_N: the O(w) preferred-frame
+     response is depressed by c_N = 1 - alpha/2.
+
+==============================================================================
+M4: negative control — Newtonian continuity alone infers alpha3 = 0?
+==============================================================================
+[PASS] M4a perpendicular mode (k perp w): residual = 1 (full matter momentum)  |residual| = 0
+[PASS] M4b parallel mode (k || w): residual = 1 - mu, mu != 1 -> FIRES  |residual| = 0
+M4: Newtonian-continuity inference of alpha3=0 leaves exact residual
+    C~_i = rhok[w_i - mu k_i(k.w)/k2], mu != 1: nonzero on every mode.
+    Missing relativistic balance terms: (i) shift N^T (M3b);
+    (ii) O(w) auxiliaries dZ,dU (FINAL_ACTION eqs (6)-(7));
+    (iii) 1PN velocity potential Phi_1 (A_v2 channel, M3a);
+    (iv) c2 Q_K mean-projector stress (eq (9); dust: vanishes);
+    (v) gate/heat terms (inactive on this branch: absent).
+
+ALL_SYMBOLIC_CHECKS_PASS: True

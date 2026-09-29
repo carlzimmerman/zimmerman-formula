@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "task_id": "AS239",
+  "task_sha256": "154a242ce3ccba4b8189ee7bd80a91efb05e5d8798b745d4c3f0536ed163347d",
+  "run_id": "AS239-r1-20260928T223448Z-dsv4f-hermes",
+  "worker": "deepseek/deepseek-v4-flash-0731 via openrouter (platform: subagent/agentic worker; worker process: hermes agent on macOS host)",
+  "started_utc": "2026-09-28T22:34:48Z",
+  "finished_utc": "2026-09-28T23:20:30Z",
+  "execution_status": "completed",
+  "outcome": "supports_scoped_claim",
+  "exact_claim": "On the CA5-GNC-R physical-metric branch (FINAL_ACTION.md b8c04d4e..., occupied-branch conventions of AS238/AS240: M=M_P^2=1/(8pi G_bare), Lambda=0, P_d=T-V-V0=L_d) with static inhomogeneous carrier background ds^2 = -N(x)^2 dt^2 + b(x)^2 dx^2 in adapted foliation (one slowly varying weak carrier overdensity, wavelength L >> lambda_T, t_c=e^z bounded positive, heat gate closed: f=G=G'=G''=0), the quadratic tensor action for an x-propagating TT plane-polarized probe is L_T^(2) = A qdot^2 + C q'^2 + D q^2 with A = M/(4 N b) > 0, C = -M N/(4 b^3) < 0, D = D_EH + D_car, D_car = -N P_d/(2 b) exact, D_EH = O((lambda_T/L)^2) bounded (Friedmann-cancelled on FRW), and: (i) the local tensor cone equals the null cone of the physical metric g, c_T^2 = -C/A = N^2/b^2, coefficient by coefficient, independent of t_c = e^z (flat limit c_T = c: exact); (ii) the carrier clump changes tensor AMPLITUDE not speed: static amplitude law Amp(x) = Amp0 b(x)^2/N(x), conserved static current 2(-C) theta' Amp^2 = 2 (M/4) omega Amp0^2, general transport d_t(2 A omega Amp^2) + d_x(2(-C) theta' Amp^2) = 0; FRW limit reproduces the AS238/240 amplitude law (strain q ~ a^{-1}); (iii) sub-leading mass m_T^2 = -D/A = 2 N^2 P_d/M (proper units 2 P_d/M_P^2): low-frequency refraction only, no cone change; (iv) negative control NC1: evaluating photons on the carrier composite metric g_d instead of g produces a false speed mismatch e^{-2z} - 1 (samples: t_c=1.3 -> -0.4083, t_c=0.7 -> +1.0408, t_c=1 -> 0) which is IDENTIFIED as false (numeric: g-cone residual 4.4e-5 vs g_d mismatch 0.30). Domain: static, one-dimensional x-propagation, TT polarization, WKB domain lambda_T/L <~ 2.8e-15 at both footings, weak carriers |delta N/N| <= 0.06, |delta b/b| <= 0.05; dimensionless claim applies identically to both a0 footings 9.3619e-11 and 1.1279e-10 m/s^2 (kappa = 1/2 adopted as input).",
+  "framework_cell": {
+    "action_source": "real_research/common_action_2026_09_26/action/FINAL_ACTION.md (sha256 b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e)",
+    "branch": "CA5-GNC-R physical-metric branch (= CA4-GNC equation (4)); Q algebraic, RAR, historical EXP, MU2 and filtered MONO branches NOT used for conclusions (causality criterion B of the amended thirteen-item target referenced only as consistency statement)",
+    "kernel_occupied_branch": "3 M H^2 = T + V + V0, M Gbar = -T, rho_d = T+V+V0, P_d = T-V-V0 = L_d, Lambda = 0, M = M_P^2 = 1/(8 pi G_bare)",
+    "carrier_coupling": "minimal coupling of carriers (Z, U, W_b, heat, tensor probe) to the physical metric g (S_b[g]); photons on g",
+    "gate": "photon-tensor cone equality / thirteen-item causality criterion B: tensor cone = photon null cone of g on the declared domain (static, weak, slowly varying)",
+    "filter": "static inhomogeneous carrier region; heat gate closed Y_h(x) < 0 -> f = G = G' = G'' = 0",
+    "parameters": "M = M_P^2; a0 = (c/2) sqrt(G_bare rho_Lambda) with kappa = 1/2 ADOPTED as input (not derived); r_M = sqrt(G_bare M_b / a0); v_flat^4 = G_bare M_b a0",
+    "footings": "canonical a0 = 9.3619e-11 m/s^2 -> rho_Lambda = 5.844e-27 kg/m^3, r_M(1e12 M_sun) = 1.1906e21 m; alternative a0 = 1.1279e-10 m/s^2 -> rho_Lambda = 8.483e-27 kg/m^3, r_M = 1.0847e21 m; footings cannot share both fixed rho and fixed kappa (kappa_eff = 0.6024 stated as interpretation only)",
+    "boundary": "adapted foliation, zero shift; x-only data; probe entry at x = -8 (slab domain [-10, 10])",
+    "units": "SI (m, s, kg) for dimensional block; M=1 test units in wave code (overall rescaling only)"
+  },
+  "new_assumptions": [
+    "Static carrier clump: K_d = 0, W_d = W_d(x), P_d(x) = -exp(-z) W_d(x) < 0 (static condensate-like clump); t_c = e^z bounded positive",
+    "Heat gate closed pointwise: Y_h(x) < 0, so f = G = G' = G'' = 0 at the background",
+    "X-propagating TT probe (e_ij = diag(0,1,-1)): transverse gradients of Z, U, W_b, phi contract with e_xx = 0, so Z/U, compensator and heat sectors couple to the probe only through q^2-masses with identically vanishing coefficients (verified zero in the derivation); stated residual coupling is a declared-small mass, not a new law",
+    "D_EH (background-curvature mass) modeled at leading order only as O((lambda_T/L)^2)-bounded, Friedmann-cancelled on FRW per AS238/240; not computed to full order on the slab",
+    "kappa = 1/2 adopted as input per the task (not derived)"
+  ],
+  "input_sha256": {
+    "deepseek_push/astra_spawn_ideas/AS239_test_tensor_propagation_through_an_inhomogeneous_carrier_region.md": "154a242ce3ccba4b8189ee7bd80a91efb05e5d8798b745d4c3f0536ed163347d",
+    "real_research/common_action_2026_09_26/action/FINAL_ACTION.md": "b8c04d4e365f1c8e1c2ec3bf8d14629618d1ac162e97e3fdf809382fb147546e",
+    "real_research/breakthrough_review_2026_09_26/vacuum/ACTION.md": "290e5cbe83eca682fb68888375bb60f9230f677cbb3176ae6ec27557e777211d",
+    "qwen_claude_field_theory/closure_2026/FRIED_CHICKEN_SPEC.md": "98d9149fcebb3a15a1d01b0142587b7d346b3471b007b52457b17a3bcb5d8e3f"
+  },
+  "artifacts_sha256": {
+    "derivation.md": "3308d2e1fc97363d36688ffa30fe45a625adb9dd1d2c6d15c813812a446f2f19",
+    "as239_derive.py": "4ff9c51385fba00f3943e98cb32a9b5345b154e71c5fc87d8d7f05c4bda5340d",
+    "derive_raw.out": "0172f6319da15f0dba2352e2954544d080599704f8fee976599de174b7cb0e91",
+    "as239_numeric.py": "59416ad86ba5a7248a45e1682fd0d68ce0457502a53265a753dd065282bf1551",
+    "numeric_raw.out": "a0e401cd533e9a9e0454c0806c39cd4d2b7ca8997c682b2f1312c6ed7a027b60",
+    "as239_cert.lean": "1637a66789ab89eff11596e3b543a40f6e9bff72e208c4ada90161896ffd6955",
+    "as239_debug_flat.py": "518e141b43596a12abde4a025150927863226af397ead018a05473b04a40b5ed",
+    "as239_debug_components.py": "73e610e322e45cd12a1530fdd567fa57c918ee9c7cf67c70b98446f7abadd0ed",
+    "time_mem_derive.txt": "b4b345c2d59f5b6cff480292091090daedbcbdd6800db5069d2f617bb82affee",
+    "time_mem_numeric.txt": "415138ea321af5d4409be41da0edc32ffc14b235c8f0325b1e3191edd3ed7ff8"
+  },
+  "commands": [
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS239/AS239-r1-20260928T223448Z-dsv4f-hermes && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l python3 as239_derive.py > derive_raw.out 2> time_mem_derive.txt",
+    "cd <run_dir> && OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1 /usr/bin/time -l python3 as239_numeric.py > numeric_raw.out 2> time_mem_numeric.txt",
+    "cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026 && /usr/bin/time -l lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/deepseek_push/astra_spawn_ideas/results/AS239/AS239-r1-20260928T223448Z-dsv4f-hermes/as239_cert.lean && echo COMPILE_OK",
+    "cd <repo> && shasum -a 256 <seed + pinned sources + all artifacts>"
+  ],
+  "execution_bounds": {
+    "declared": "wall <= 120 s, memory <= 512 MB, threads = 1",
+    "actually_enforced": "env OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1; /usr/bin/time -l timing",
+    "observed": "derive: real 0.22 s, peak RSS 56.9 MB; numeric: real 0.28 s, peak RSS 53.7 MB (time_mem_derive.txt / time_mem_numeric.txt)",
+    "grids": "slab Nx = 12001, x in [-10, 10], mask [-7, 7]; FRW nt = 61000, t in [1, 61], omega*dt <= 0.0295; omega0 = 40, k = 30"
+  },
+  "checks": [
+    {"name": "C1_local_tensor_cone", "observed": "max |c_meas/(N/b) - 1| = 4.357e-05 over x in [-7,7]", "tolerance_pre": "1e-3", "pass": true},
+    {"name": "C1_symbol_cone_identity", "observed": "-C/A - N^2/b^2 = 0 (sympy exact); flat limit speed^2 = 1", "tolerance_pre": "0 (symbolic)", "pass": true},
+    {"name": "C2_static_amplitude_law_leading", "observed": "max |Amp*N/b^2 - mean|/mean = 6.185e-02 (leading-order WKB error at profile strength 5-6%)", "tolerance_pre": "0.1", "pass": true},
+    {"name": "C2_exact_current", "observed": "max | |psi|^2 * d(phase)/dx * |C| - mean |/mean = 4.411e-05", "tolerance_pre": "1e-3", "pass": true},
+    {"name": "C3_mass_refraction", "observed": "max |delta_phi_meas - int delta_kappa dx| (slope-removed) = 1.589e-04; m_T^2 = 2 P_d/M = -0.04 clump", "tolerance_pre": "1e-3", "pass": true},
+    {"name": "C4_NC1_false_speed_mismatch_identified", "observed": "g-cone residual 4.357e-05 vs g_d mismatch 3.001e-01 (t_c up to 1.3); samples t_c=1.3: e^{-2z}-1 = -0.4083; t_c=0.7: +1.0408; t_c=1: 0", "tolerance_pre": "g-residual < 1e-3 AND g_d-mismatch > 1e-2", "pass": true},
+    {"name": "C5_NC2_shear_diagnostic", "observed": "extracted speed^2 fits M/(M+kappa) = 2/3 law to 3.972e-05; pure-Einstein cone check fails at 1.835e-01", "tolerance_pre": "shear fit < 1e-3 AND Einstein residual > 1e-2", "pass": true},
+    {"name": "C6_FRW_time_domain", "observed": "median phase frequency/(k/a) = 0.996634; max |env/a - mean|/mean = 1.293e-02 (metric-perturbation normalization u ~ a equiv. AS238/240 strain q ~ a^{-1})", "tolerance_pre": "|1 - speed| < 1e-2", "pass": true},
+    {"name": "DIM_dimensions_signs_measure", "observed": "[A qdot^2] = M_P^2 L^3 T^-2; A > 0, C < 0; delta^2 sqrt(-g)/sqrt(-g) = -1/4 gamma^2 exact for traceless TT (det(1+A) = 1 - tr A^2/2)", "tolerance_pre": "0 / sign rules", "pass": true},
+    {"name": "FRW_limit_substitution", "observed": "substitution N=1, b=a into the quadratic action reproduces the AS238/240 tensor sector: EOM speed 1, amplitude invariant, mass 2 P_d/M", "tolerance_pre": "0 (symbolic)", "pass": true},
+    {"name": "C7_footings", "observed": "lambda_T(100 Hz)/r_M = 2.518e-15 (canonical) and 2.764e-15 (alternative): WKB domain holds at both; rho_Lambda = 5.844e-27 / 8.483e-27 kg/m^3", "tolerance_pre": "lambda_T/r_M < 1e-2", "pass": true},
+    {"name": "LEAN_certificate", "observed": "7 theorems compile (cone_of_principal, static_transport, static_current, frw_current, nc1_mismatch_tc13, nc1_mismatch_tc710, nc1_mismatch_tc1); COMPILE_OK; zero sorry; #print axioms = [propext, Classical.choice, Quot.sound] for each theorem", "tolerance_pre": "axioms subset {propext, Classical.choice, Quot.sound}, zero sorry", "pass": true}
+  ],
+  "tested_domain": {
+    "slab": "x in [-7,7] masked (grid [-10,10], Nx=12001); N = 1 + 0.06*G(x; L=2.5), b = 1 - 0.05*G, z = ln(1.3)*G, P_d = -0.02*G (G = unit Gaussian); max |N'|/N ~ 1.5e-2, kappa_reference = omega*N/b ~ 42; omega 40; mass refraction run at same domain with P_d on",
+    "fRW": "t in [1,61], a = t^(2/3), k = 30, m^2 = -0.05, RK4 step omega*dt <= 0.03",
+    "flat_limit": "N = b = 1: c_T^2 = 1 exact (symbolic)",
+    "footings": "kappa = 1/2, G_bare = 6.67430e-11, c = 299792458, M_sun = 1.98847e30, pc = 3.085677581491367e16",
+    "exclusions": "no time-dependent carrier, no oblique/2D propagation, no long-wavelength k^2 < 2|W_d|/M regime, no piecewise-smooth b-steps (children), no coupled z/U back-reaction"
+  },
+  "failed_attempts": [
+    {"path": "as239_debug_flat.py", "cause": "numeric finite-difference validator of a hand-rolled Ricci engine; engine failed component-level symmetry checks (see next)"},
+    {"path": "as239_debug_components.py", "cause": "component-level Ricci check: R00/R11 matched hand values exactly but R01 != 0 and R22/R33 eps^2 mismatched -> index-bookkeeping bug in the general Ricci loop; engine ABANDONED in favor of the covariant (M/8) quadratic-action form (which reduces to the AS238/240-verified homogeneous sector) for the principal block; no coefficient from the engine is used in the result"},
+    {"path": "as239_derive.py (v1, v2 of the same run dir)", "cause": "early versions built the quadratic action from the buggy engine and produced c_T^2 = 7N^2/3b^2 in flat space (GR contradiction flag) plus wrong amplitude law Amp = Amp0/N (corrected to Amp0*b^2/N after the exact-current analysis)"}
+  ],
+  "limitations": [
+    "The tensorial mass on general backgrounds (D_EH) is only established as Friedmann-cancelled on FRW and bounded O((lambda_T/L)^2) on the declared slowly varying slab; it is not computed to full order for arbitrary backgrounds",
+    "The result is static, one-dimensional, TT-polarized and within the WKB domain; it says nothing about the long-wavelength regime k^2 < 2|W_d|/M at the clump (tachyonic window for P_d < 0) nor about the coupled mixed (gamma, z, U, W_b) sector there",
+    "Sector couplings (Z/U, compensator, heat) are shown to have vanishing coefficients for the x-propagating TT probe on the x-only background; this is not a proof of vanishing coupling for oblique probes or time-dependent carriers",
+    "Numeric checks are finite-domain (single slab profile family, single FRW evolution); synthetic agreement is not an empirical test",
+    "kappa = 1/2 remains an adopted input, not a derived result",
+    "The g_d comparison is identified as a false speed mismatch (control), not as a modification of the photon sector; no claim about the composite metric's physical role is made"
+  ],
+  "next_unresolved_implication": "Coupled reduction of the mixed (gamma, z, U) block at the static carrier clump: the scalar and carrier-source responses (projected source equation (7)) renormalize m_T^2 = 2 P_d/M and decide the sign/light-mass regime near the tachyonic window k^2 < 2|W_d|/M (P_d < 0 static condensate); the effective mass and the resulting refraction spectrum are not derivable from the single-probe quadratic block used here",
+  "suggested_followup": "Dispatch AS239.C01: derive the coupled 2-field system (gamma, z) on the clump background at the tachyonic boundary, targeting m_T^2_eff including the (M/2)-scaled z-response; controls: NC1 rerun in the coupled sector, FRW-limit mass recovery, and a C3-style wave-code residual for the coupled refraction",
+  "acceptance_state": "unreviewed",
+  "ancestry": null,
+  "first_principles_inputs": {
+    "primitive_assumptions": [
+      "CA5-GNC-R physical-metric branch of the pinned action (occupation 3MH^2 = T+V+V0, M Gbar = -T, Lambda = 0)",
+      "Covariant (M/8) quadratic tensor kinetic: S_T^(2) = (M/8) int sqrt(-g)[-g^00 d_t gamma d_t gamma - h^kl d_k gamma d_l gamma] (indices raised with g; test-field prescription)",
+      "Carrier sector couples to the physical metric through sqrt(-g) L_d with L_d = P_d; delta^2 sqrt(-g) = sqrt(-g)(-1/4) gamma_ij gamma^ij for traceless TT",
+      "Static, x-only, weak, slowly varying background data (declared domain)",
+      "kappa = 1/2 adopted as input"
+    ],
+    "measured_inputs": ["G_bare = 6.67430e-11 (SI)", "c = 299792458 m/s", "M_sun = 1.98847e30 kg", "pc = 3.085677581491367e16 m", "a0 footings 9.3619e-11 and 1.1279e-10 m/s^2"],
+    "derived_equations": ["A = M/(4Nb), C = -MN/(4b^3), D_car = -N P_d/(2b) (exact), D_EH bound", "c_T^2 = -C/A = N^2/b^2 (cone identity)", "static amplitude law Amp = Amp0 b^2/N and conserved current 2(-C)theta'Amp^2 = (M/2)omega Amp0^2", "transport d_t(2A omega Amp^2) + d_x(2(-C)theta'Amp^2) = 0", "m_T^2 = -D/A = 2N^2 P_d/M (proper units 2 P_d/M_P^2)", "false g_d speed mismatch e^{-2z} - 1 (NC1)", "shear-modified speed^2 = (M/(M+kappa)) N^2/b^2 (NC2)"]
+  },
+  "closure_implication": {
+    "gate": "causality criterion B (photon-tensor cone equality) of the amended thirteen-item same-action target; auxiliary: amplitude-vs-speed separation for the common action's tensor sector",
+    "exact_implication": "On the CA5-GNC-R occupied physical-metric branch, the local tensor cone equals the null cone of the physical metric g (c_T = c), coefficient by coefficient, on the declared static inhomogeneous carrier domain; amplitude changes decouple from speed changes; the carrier composite-metric photon comparison is identified as a false mismatch (NC1). This is a scoped consistency statement for the gate - NOT a complete gravity closure",
+    "domain_compatibility": "static, weak, slowly varying, x-propagating TT, WKB lambda_T/L <~ 3e-15 at both footings; kappa = 1/2 adopted; G_N/G_bare/G_cosmo kept separate (only G_bare enters)",
+    "remaining_open": "coupled mixed-sector reduction at the clump; long-wavelength regime; time-dependent carriers; oblique propagation (see next_unresolved_implication and child_proposals)"
+  },
+  "child_proposals": [
+    {
+      "id": "AS239.C01",
+      "state": "not dispatched (written for orchestrator; runner cannot spawn from this worker)",
+      "new_target": "Coupled (gamma, z) 2-field reduction on the clump background: m_T^2_eff = (2/M)(P_d + (M/2) * z-response), resolving the sign/light-mass regime at k^2 < 2|W_d|/M",
+      "controls": "NC1 rerun with the coupled sector; FRW-limit recovery of 2P_d/M; C3-style wave-code residual for coupled refraction",
+      "dependencies": ["AS191", "AS238", "AS239 (this result)", "projected source equation (7)"],
+      "scientific_fingerprint": "sum of scalar second-order couplings contracted with e2 = 2 at the clump, static"
+    },
+    {
+      "id": "AS239.C02",
+      "state": "not dispatched (written for orchestrator; runner cannot spawn from this worker)",
+      "new_target": "Refraction time-delay observable Delta_tau = int m_T^2/(2 omega^2 N/b) dx for a binary-inspiral GW (100 Hz) through a galaxy-scale static clump, dimensioned at both footings",
+      "controls": "C3 wave-code residual for both + polarizations; footing independence of the dimensionless ratio",
+      "dependencies": ["AS238", "AS239 (this result)"],
+      "scientific_fingerprint": "integrated phase shift at fixed omega, static clump profile W_d"
+    },
+    {
+      "id": "AS239.C03",
+      "state": "not dispatched (written for orchestrator; runner cannot spawn from this worker)",
+      "new_target": "Domain extension to piecewise-smooth b(x) (slab boundary step): WKB matching conditions and transmitted/reflected amplitude ratios",
+      "controls": "amplitude ratios vs current conservation 2(-C)theta'Amp^2; flat-limit reflection coefficient -> 0",
+      "dependencies": ["AS239 (this result)", "AS240"],
+      "scientific_fingerprint": "jump conditions of the quadratic action coefficients at the step"
+    }
+  ],
+  "closure_candidate": null
+}
