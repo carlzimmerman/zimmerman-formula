@@ -23,3 +23,13 @@ Not tested: whether the DF is REACHED (formation history, violent relaxation, se
 - Constraints are integrated per radial bin; a bin-scale departure smaller than the bin width is not tested.
 
 Nothing here says the theory is closed.
+
+## Referee note (CFG155, lane bdbcf3fe1; appended 2026-09-29, nothing above edited)
+
+An independent re-derivation reproduces the headline: Eddington's isotropic f(E) for the point-mass target in its own P2 potential is strictly positive at all 1201 energies from x_E = 1e-6 to 1e6, one decade past this lane's window at each end. It holds analytically (d²ρ/dΦ² = x⁵/(π(1+x²)^(7/2)) > 0, no boundary term); three routes agree to 1.8e-8 and every f printed here agrees within 2e-5; its MUTATE (a cored tracer) gives f < 0 at 515 energies. Five minor findings about this lane, none changing the headline:
+1. the script's window is r_E = 1e-5 to 1e5, not the frozen 1e-6 to 1e6;
+2. the t-integral is cut at Φ(1e7 r_M) with no tail, which lowers f by 1.8e-5;
+3. the isothermal control checks only the shape;
+4. d ln f/dE comes from np.gradient, 3.4% off at r_E = 1;
+5. the lambdified ρ'' cancels catastrophically below r ≈ 1e-4 and returns negative noise there (effect on f under 2.2e-12), so 'the integrand is positive at every point' holds analytically, not as this code evaluates it at small r.
+The extended-baryon orbit-superposition LP was not re-derived by CFG155. Independence in CFG155 stops at the read targets and CFG44's target definition.
