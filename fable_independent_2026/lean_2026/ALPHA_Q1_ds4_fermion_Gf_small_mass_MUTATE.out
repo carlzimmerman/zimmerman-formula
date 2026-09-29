@@ -1,0 +1,39 @@
+ALPHA_Q1_ds4_fermion_Gf_small_mass_MUTATE.lean:99:2: error: Type mismatch
+  Tendsto.congr' ?m.214 h3
+has type
+  Tendsto ?m.211 (𝓝[>] 0) (𝓝 (-Real.eulerMascheroniConstant))
+but is expected to have type
+  Tendsto (fun M => (I * ↑M).digamma.re) (𝓝[>] 0) (𝓝 Real.eulerMascheroniConstant)
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ALPHA_Q1_ds4_fermion_Gf_small_mass_MUTATE.lean:138:24: error: unsolved goals
+hR : Tendsto (fun x => (I * ↑x).digamma.re - Real.eulerMascheroniConstant) (𝓝[>] 0) (𝓝 0)
+hS : Tendsto (fun x => Real.pi * x * (4 * x ^ 2 + 1) / (3 * Real.sinh (2 * Real.pi * x)) - 1 / 6) (𝓝[>] 0) (𝓝 0)
+h :
+  Tendsto
+    (fun x =>
+      -(4 / (3 * Real.pi)) *
+        ((I * ↑x).digamma.re - Real.eulerMascheroniConstant +
+          (Real.pi * x * (4 * x ^ 2 + 1) / (3 * Real.sinh (2 * Real.pi * x)) - 1 / 6)))
+    (𝓝[>] 0) (𝓝 0)
+M : ℝ
+⊢ Real.pi * Real.pi⁻¹ * M * (Real.sinh (Real.pi * M * 2))⁻¹ * (-4 / 9) +
+            Real.pi * Real.pi⁻¹ * M ^ 3 * (Real.sinh (Real.pi * M * 2))⁻¹ * (-16 / 9) +
+          Real.pi⁻¹ * (2 / 9) +
+        Real.pi⁻¹ * (I * ↑M).digamma.re * (-4 / 3) +
+      Real.pi⁻¹ * Real.eulerMascheroniConstant * (4 / 3) =
+    Real.pi * Real.pi⁻¹ * M * (Real.sinh (Real.pi * M * 2))⁻¹ * (-4 / 9) +
+            Real.pi * Real.pi⁻¹ * M ^ 3 * (Real.sinh (Real.pi * M * 2))⁻¹ * (-16 / 9) +
+          Real.pi⁻¹ * (2 / 9) +
+        Real.pi⁻¹ * (I * ↑M).digamma.re * (-4 / 3) +
+      Real.pi⁻¹ * Real.eulerMascheroniConstant * (-4 / 3)
+'M6H.re_digamma_ix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6H.digamma_cont_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6H.re_digamma_limit' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'M6H.sinh_term_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6H.Gf_small_mass' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'M6H.Gf_tendsto_atBot' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

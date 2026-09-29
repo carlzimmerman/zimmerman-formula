@@ -1,0 +1,83 @@
+ALPHA_F_freund_rubin_s2_minkowski_MUTATE.lean:54:58: error: unsolved goals
+Lam kap g N R0 : ℝ
+hk : kap ≠ 0
+hg : g ≠ 0
+R : ℝ
+hR : R ≠ 0
+⊢ R0 ^ 4 * 4 * (R ^ 2 * (R ^ 2 * Lam - 1) * 8 * g ^ 2 + kap ^ 2 * N ^ 2) =
+    R0 ^ 4 * 8 * (R ^ 2 * 4 * (R ^ 2 * Lam - 1) * g ^ 2 + kap ^ 2 * N ^ 2)
+ALPHA_F_freund_rubin_s2_minkowski_MUTATE.lean:67:100: error: unsolved goals
+Lam kap g N R0 : ℝ
+hk : kap ≠ 0
+hg : g ≠ 0
+R : ℝ
+hR : R ≠ 0
+hA :
+  HasDerivAt (fun R => 4 * π * R0 ^ 4 * Lam / kap ^ 2 / R ^ 2)
+    (-(4 * π * R0 ^ 4 * Lam / kap ^ 2 * (↑2 * R ^ (2 - 1))) / (R ^ 2) ^ 2) R
+hB :
+  HasDerivAt (fun R => 4 * π * R0 ^ 4 / kap ^ 2 / R ^ 4)
+    (-(4 * π * R0 ^ 4 / kap ^ 2 * (↑4 * R ^ (4 - 1))) / (R ^ 4) ^ 2) R
+hC :
+  HasDerivAt (fun R => 4 * π * R0 ^ 4 * N ^ 2 / (8 * g ^ 2) / R ^ 6)
+    (-(4 * π * R0 ^ 4 * N ^ 2 / (8 * g ^ 2) * (↑6 * R ^ (6 - 1))) / (R ^ 6) ^ 2) R
+h1 :
+  HasDerivAt
+    (((fun R => 4 * π * R0 ^ 4 * Lam / kap ^ 2 / R ^ 2) - fun R => 4 * π * R0 ^ 4 / kap ^ 2 / R ^ 4) + fun R =>
+      4 * π * R0 ^ 4 * N ^ 2 / (8 * g ^ 2) / R ^ 6)
+    (-(4 * π * R0 ^ 4 * Lam / kap ^ 2 * (↑2 * R ^ (2 - 1))) / (R ^ 2) ^ 2 -
+        -(4 * π * R0 ^ 4 / kap ^ 2 * (↑4 * R ^ (4 - 1))) / (R ^ 4) ^ 2 +
+      -(4 * π * R0 ^ 4 * N ^ 2 / (8 * g ^ 2) * (↑6 * R ^ (6 - 1))) / (R ^ 6) ^ 2)
+    R
+this : ∀ᶠ (y : ℝ) in nhds R, y ≠ 0
+y : ℝ
+hy : y ≠ 0
+⊢ 4 * π * R0 ^ 4 * N ^ 2 / (4 * g ^ 2) / y ^ 6 = 4 * π * R0 ^ 4 * N ^ 2 / (8 * g ^ 2) / y ^ 6
+ALPHA_F_freund_rubin_s2_minkowski_MUTATE.lean:122:23: error: Application type mismatch: The argument
+  hp4
+has type
+  4 * π ≠ 0
+but is expected to have type
+  ¬π = 0
+in the application
+  absurd h hp4
+ALPHA_F_freund_rubin_s2_minkowski_MUTATE.lean:123:8: error: Type mismatch
+  h
+has type
+  4 * R0 ^ 2 * (R0 ^ 2 * Lam - 1) * g ^ 2 + kap ^ 2 * N ^ 2 = 0
+but is expected to have type
+  R0 ^ 2 * (R0 ^ 2 * Lam - 1) * 8 * g ^ 2 + kap ^ 2 * N ^ 2 = 0
+ALPHA_F_freund_rubin_s2_minkowski_MUTATE.lean:126:27: error: Application type mismatch: The argument
+  e2
+has type
+  4 * π * (R0 ^ 2 * g ^ 2 * (-(R0 ^ 2 * Lam * 2) + 4) * 8 - kap ^ 2 * N ^ 2 * 6) = 0 * 8
+but is expected to have type
+  ?m.418 * ?m.419 = 0
+in the application
+  mul_eq_zero.mp e2
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ALPHA_F_freund_rubin_s2_minkowski_MUTATE.lean:141:2: error: unsolved goals
+case mpr.left
+N kap g R0 : ℝ
+hk : 0 < kap
+hg : 0 < g
+hR0 : 0 < R0
+h0 : R0 ≠ 0
+hk0 : kap ≠ 0
+hg0 : g ≠ 0
+hp : 0 < π
+hw : R0 ^ 2 = N ^ 2 * kap ^ 2 / (4 * g ^ 2)
+hN : N ^ 2 = 4 * g ^ 2 * R0 ^ 2 / kap ^ 2
+⊢ π * 4 = 0
+'M6I.Vfr_hasDerivAt' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'M6I.Vfr1_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6I.minkowski_point' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'M6I.V2_minkowski' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6I.W_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6I.Lambda_of_y' depends on axioms: [propext, Classical.choice, Quot.sound]
+'M6I.Lambda_max' depends on axioms: [propext, Classical.choice, Quot.sound]
