@@ -2,7 +2,7 @@
 """A2 -- tier 2 of the decoy-calibrated zero-knob rule search (34,992,000 rules).  Pre-registered in A2_PREREGISTRATION.md; same method as lane A1 with a different declared grammar.
 Imports lane Y1's validated running READ-ONLY (path-relative).
 Run:    python3 a2_kz_rule_search_tier2.py            (exit 0 iff all declared checks pass; the number of real hits is REPORTED, not asserted)
-MUTATE: python3 a2_kz_rule_search_tier2.py MUTATE     (the search grammar loses its largest multiplier while planted rules still use it; exactly S3 must fail: exit 1; exit 3 if broken)
+MUTATE: python3 a2_kz_rule_search_tier2.py MUTATE     (the search grammar loses its largest multiplier while planted rules still use it; S3 must fail in addition to S1, which already fails by design: exit 1; exit 3 if broken)
 """
 import sys
 sys.dont_write_bytecode = True
@@ -121,7 +121,7 @@ else:
     print(f"  {real_hits} real hit(s) listed above. LEAD only if P_chance < 1e-3 (here {p_chance:.3g}); no physical reading is claimed; goes to adversarial follow-up.")
 print("  alpha stays an INPUT; kappa = 1/2 FITTED.")
 if MUT:
-    works = [t.split()[0] for t in FAILED] == ["S3"]
-    print("\nMUTATE CONTROL: search grammar missing its largest multiplier; failed:", [t.split()[0] for t in FAILED], "->", "the control works (exit 1)" if works else "CONTROL BROKEN (exit 3): it must fail exactly S3")
+    works = sorted(t.split()[0] for t in FAILED) == ["S1", "S3"]      # S1 already fails in this tier by design (Amendment 1); the control must add exactly S3
+    print("\nMUTATE CONTROL: search grammar missing its largest multiplier; failed:", [t.split()[0] for t in FAILED], "->", "the control works (exit 1)" if works else "CONTROL BROKEN (exit 3): it must fail exactly S1 (already failing by design) and S3")
     sys.exit(1 if works else 3)
 sys.exit(0 if not FAILED else 1)
