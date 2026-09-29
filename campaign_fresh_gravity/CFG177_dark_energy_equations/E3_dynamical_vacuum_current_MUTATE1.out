@@ -1,0 +1,64 @@
+
+E3 -- the minimal addition that makes the vacuum current PHYSICAL: CFG43's HT action plus the 3-form mass term (dual form), its field
+equations, the Koivisto-Nunes dual identities, the Dirac count, ghost/gradient stability, and its background cosmology (w(z), growth).
+
+THE ACTION (c = 1, Mp2 = M_P^2; t^m = T^m/sqrt(-g); U = -(sigma/2) g_mn t^m t^n, the dual of a 3-form mass term V(A^2), A^2 = -6 t^2):
+  S = Int d^4x { sqrt(-g)[(Mp2/2) R - Mp2 Lambda - rho(n; Lambda) - U] + Mp2 Lambda d_m T^m + J^m d_m theta },
+  sigma(Lambda) = s Mp2 Lambda^2.   Dimensional analysis: sigma has mass dimension 6; built from M_P and the HT field alone it is
+  s M_P^(6-2b) Lambda^b; b = 2 is the only power whose dimensionless slope today is O(1) (b = 0, 1 need s ~ 1e-240, 1e-120; b = 3 gives
+  a slope ~ sqrt(s) 1e-60).  s is a NEW pure number (G4).  Declared illustration (FROZEN_QUESTION, not scanned): s = kappa^2, i.e. lambda = 1/2.
+
+MUTATE=1  s < 0 (s = -kappa^2): the ghost sign; E3-HEALTH must fail (the background is integrated on the mutated, phantom-signed action).
+MUTATE=2  s = 0 (the HT limit): the current is gauge again; the Dirac count must fall back to CFG43's 2N + 2 and w = -1 (E3-DIRAC, E3-BG fail).
+
+MUTATE mode = 1 ; s = -0.25
+
+======================================================================================================================
+A  FLAT-FRW MINISUPERSPACE (sympy Euler-Lagrange): the vacuum current's equations, Friedmann, and the canonical scalar they hide
+======================================================================================================================
+  [PASS] E3-FRW Euler-Lagrange on the minisuperspace: T0 = -Mp2 a^3 Lambda'/(N sigma) (the current is locked to Lambda's rate); Friedmann 3 Mp2 H^2 = Mp2 Lambda + Mp2^2 Lambda'^2/(2 sigma) + rho; the flow's energy sigma (t^0)^2/2 = phi'^2/2; after eliminating T0 the action IS a canonical scalar phi = (M_P/sqrt s) ln Lambda with V(phi) = Mp2 Lambda = Mp2 Lambda_* e^{sqrt(s) phi/M_P}; the Lambda equation is the Gauss law (1/N a^3) T0' = 1 - P/rho_vac + (sigma'/2Mp2)(t^0)^2
+         measured: T0: True; Friedmann: True; flow energy = phi'^2/2: True; reduced Lagrangian == canonical scalar: True; Gauss law: True
+         reading:  the vacuum 'flowing in time' is the dark energy's kinetic energy; in the HT limit s -> 0 the flow carries no energy (E3-BG)
+  [PASS] E3-COV covariantly: t_m = d_m Lambda/(s Lambda^2) = -d_m(1/(s Lambda)) and nabla.t = 1 - P/rho_vac - s Lambda t^2 are together EXACTLY  box(phi) = V'(phi) - (sqrt(s)/M_P) P (identity nabla.t + s Lambda t^2 = box(phi)/(sqrt(s) M_P Lambda) for generic phi)
+         measured: identity: True
+         reading:  the vacuum flows down its own density gradient (a Darcy law); the unimodular clock becomes 1/(s Lambda)
+
+======================================================================================================================
+B  THE 3-FORM DUAL: A_npq = eps_mnpq t^m gives A^2 = -6 t^2 (mass term <-> U); a quadratic W(Lambda) is the -F^2/48 kinetic term; HT's LINEAR W fixes *F
+======================================================================================================================
+  [PASS] E3-KN Lorentzian identities: A_npq A^npq = -6 t_m t^m (so a 3-form mass term V(A^2) is exactly a U(t^2)); Legendre: max_Lambda[Mp2 Lambda psi - Mp2^2 Lambda^2/2] = psi^2/2 = -F^2/48 for F = psi eps; i.e. Koivisto-Nunes' massive 3-form (from memory, unverified) = this family with QUADRATIC W; CFG43's HT = LINEAR W (Lambda then enforces *F = 1 - P/rho_vac); the minimal promotion keeps CFG43's linear W and adds only U
+         measured: A^2 + 6 t^2 = 0; Legendre value psi**2/2; -F^2/48 = psi**2/2
+
+======================================================================================================================
+C  DIRAC CONSTRAINT COUNT on a periodic 1-D lattice (CFG43's method, re-implemented): fluid + HT, and fluid + HT + U
+======================================================================================================================
+    HT (CFG43)                 dim= 36 K= 23 S= 18 F=  5 D=  8 closure=2.3e-14 max|C|=6.7e-16
+    HT + U (now)               dim= 36 K= 24 S= 24 F=  0 D= 12 closure=5.0e-15 max|C|=3.3e-16
+  [PASS] E3-DIRAC HT reproduces CFG43 (D = 2N + 2: fluid + one GLOBAL pair); with the mass term every constraint is second class and D = 4N: the fluid's sound mode plus ONE LOCAL dark-energy mode per site (the longitudinal part of the current; its curl part is zero on shell), no tertiary constraint
+         measured: HT: D = 8 (target 8); HT+U: D = 12 (target 12), F = 0, closure 5.0e-15
+
+======================================================================================================================
+D  GHOST AND GRADIENT STABILITY: the reduced Hamiltonian after solving the second-class constraints, and the dispersion relation
+======================================================================================================================
+  [FAIL] E3-HEALTH reduced Hamiltonian density H = rho_vac + (sigma/2) Q^2 + (d_x rho_vac)^2/(2 sigma) (Q = the unimodular clock density, conjugate to rho_vac = Mp2 Lambda): kinetic and gradient energies are both positive iff sigma = s Mp2 Lambda^2 > 0; omega^2 = k^2 (c_s = 1, causal)
+         measured: H_red identity: True; c_s^2 = 1: True; sigma on the background = -0.208: kinetic coefficient -0.104, gradient coefficient -2.404
+         reading:  MUTATE=1 (s < 0): both signs flip -- a ghost relative to gravity and matter
+
+======================================================================================================================
+E  BACKGROUND COSMOLOGY: thawing from rest at a = 1e-6; flat; Omega_m = 0.3153, Omega_r = 9.2e-5; units H0 = 1, M_P = 1 (rho_crit0 = 3)
+======================================================================================================================
+  lambda = sqrt|s| = 0.5000, kinetic sign -1: w(z) = {'z=0': -1.0366, 'z=0.5': -1.0169, 'z=1': -1.0083, 'z=2': -1.0027, 'z=5': -1.0004}; w0 = -1.0366, wa = 0.0555; D(z=0)/D_LCDM = 1.0048; Gauss-law residual along the solution = 5.0e-09
+  limit check lambda = 1e-3: 1 + w0 = 1.47e-07 (-> 0: LCDM)
+  [FAIL] E3-BG background of the promoted dark energy: a thawing exponential quintessence, w0 in (-1, -0.8), linear growth within 5% of LCDM (sub-horizon quintessence does not cluster: quasi-static active-density ratio 18 s (a H_L/k)^4), the Gauss law satisfied along the numerical solution, and w0 -> -1 as s -> 0
+         measured: w0 = -1.0366, wa = 0.0555, D/D_LCDM = 1.0048, Gauss residual 5.0e-09; clustering ratio {'k=0.01/Mpc': '5.4e-07', 'k=0.1/Mpc': '5.4e-11', 'k=1/Mpc': '5.4e-15', 'k=30/Mpc': '6.7e-21'}
+         reading:  G2: background + growth PASS for the declared illustration; the CMB is NOT computed (OPEN); the background current t^mu is along the Hubble flow (t_m proportional to d_m phi, phi homogeneous); the cold mass Omega_c stays as in candidate B
+  [PASS] E3-TIEPOWER sigma = s M_P^(6-2b) Lambda^b (no dimensionful constant beyond M_P and the HT field): the dark energy's slope today is lambda_eff = sqrt(s) (Lambda/M_P^2)^(b/2-1); only b = 2 gives an O(1) slope for an O(1) number s, so s is a genuinely new pure number (it cannot be removed by choosing b)
+         measured: symbolic form: True; Lambda l_P^2 = 7.159e-121; lambda_eff by b: {'b=0': 'sqrt(s) x 1.40e+120', 'b=1': 'sqrt(s) x 1.18e+60', 'b=2': 'sqrt(s) x 1.00e+00', 'b=3': 'sqrt(s) x 8.46e-61'}
+
+  THE PROMOTED DARK ENERGY, AS DERIVED:  t_m = d_m Lambda/(s Lambda^2)  [the vacuum flows down its own density gradient];  nabla.t = 1 - P/rho_vac - s Lambda t^2;
+  equivalently box(phi) = V'(phi) - (sqrt(s)/M_P) P,  phi = (M_P/sqrt s) ln(Lambda/Lambda_0),  V = rho_vac,0 e^{sqrt(s) phi/M_P};  T_mn = d_m phi d_n phi - g_mn[(d phi)^2/2 + V];
+  the flow's energy density = (1 + w) rho_DE/2; one local dof; healthy iff s > 0; c_s = 1.
+
+SUMMARY E3_dynamical_vacuum_current (MUTATE=1): 5/7 checks pass; load-bearing failures = 2   (2.3 s)
+   failed: E3-HEALTH (load-bearing)
+   failed: E3-BG (load-bearing)

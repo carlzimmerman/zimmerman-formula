@@ -1,0 +1,67 @@
+
+E1 -- CFG43's committed action read as a dark-energy CURRENT: the full field equations for Lambda and T^m on an explicit metric,
+the 3-form dual, the gauge freedom of the current, the metric equations, and exactly which part of the vacuum 'flow' is physical.
+
+THE ACTION (CFG43, c = 1, Mp2 = M_P^2 = 1/(8 pi G), rho_vac = Mp2 Lambda, eps = kappa^2/(8 pi), kappa = 1/2 FITTED):
+  S = Int d^4x { sqrt(-g)[(Mp2/2) R - Mp2 Lambda - rho(n; Lambda)] + Mp2 Lambda d_m T^m + J^m d_m theta }
+  rho(n; Lambda) = m n + P_cap x atan x,  x = m n/(nu_s Mp2 Lambda),  P_cap = eps Mp2 Lambda      (CFG43's cap fluid; POSTULATED there)
+  T^m is a vector DENSITY (the Henneaux-Teitelboim multiplier); t^m = T^m/sqrt(-g) is the vector ('the vacuum current').
+
+Blocks: A the 3-form dual and the gauge (4-D, generic functions); B the Lambda/T^m field equations on the explicit static metric
+(-e^{2 alpha(r)}, e^{2 beta(r)}, r^2, r^2 sin^2 theta), all fields functions of all four coordinates; C the fluid (reduced t-r);
+D the metric equations (Weyl reduction, Ricci scalar computed); E the physical/gauge split (clock, river, inflow, stream gauges).
+
+MUTATE=1  the 3-form mass term U = -(sigma/2) g_mn t^m t^n (sigma const) is added to the action: Lambda is no longer forced constant,
+          the action is no longer gauge invariant, and T^m enters the metric equations.  (E1-FIELD, E1-GAUGE-S, E1-NOMETRIC must fail.)
+
+MUTATE mode = 0  (0 = CFG43's HT action; 1 = plus the 3-form mass term U = -(sigma/2) g_mn t^m t^n)
+
+======================================================================================================================
+A  THE 3-FORM DUAL AND THE GAUGE FREEDOM OF THE CURRENT (4-D, generic component functions)
+======================================================================================================================
+  [PASS] E1-DUAL T^m = (1/3!) eps^{mnpq} A_npq  =>  d_m T^m = (1/4!) eps^{mnpq} F_mnpq with F = dA (the HT current IS the dual of a 3-form; Lambda multiplies *F)
+         measured: identity for 4 generic components: True
+  [PASS] E1-GAUGE A -> A + d lambda leaves F invariant and shifts T^m by d_n omega^{mn} with omega^{mn} = (1/2) eps^{mnpq} lambda_pq (antisymmetric); ANY antisymmetric omega leaves d_m T^m unchanged; the transformation is reducible (omega -> omega + eps d xi does nothing)
+         measured: dF = 0: True; omega antisymmetric: True; delta T = d_n omega^{mn}: True; delta(div T) = 0 (from dlambda), 0 (generic omega); reducibility zero: ['0', '0', '0', '0']
+         reading:  counting: T^m has 4 components; omega has 6, minus the 4 - 1 = 3 of its own reducibility = 3 effective; 4 - 3 = 1 = the divergence
+
+======================================================================================================================
+B  FIELD EQUATIONS FOR Lambda AND T^m ON THE EXPLICIT STATIC SPHERICAL METRIC (all fields depend on t, r, theta, phi)
+======================================================================================================================
+  [PASS] E1-EOS CFG43's cap fluid: P = n rho_n - rho = P_cap x^2/(1+x^2) and d rho/d Lambda |_n = -P/Lambda (re-derived here)
+         measured: P closed form: True; rho_Lambda = -P/Lambda: True
+         reading:  this identity is what puts the cap fluid's PRESSURE into the vacuum current's divergence
+  [PASS] E1-FIELD Euler-Lagrange: E_{T^m} = -Mp2 d_m Lambda (so d_m Lambda = 0 in all four directions: Lambda is a global constant whatever the matter) and E_Lambda  =>  d_m T^m = sqrt(-g) [1 - P/rho_vac]  (the vacuum current's divergence, with the cap fluid's pressure as its only matter source)
+         measured: E_T^m = -Mp2 d_m Lambda for m = t, r, theta, phi: True;  E_Lambda  <=>  d_m T^m = sqrt(-g)(1 - P/(Mp2 Lambda)): True;  det: sqrt(-g) = e^(alpha+beta) r^2 sin(theta): True
+         reading:  covariantly: nabla_m t^m = 1 - P/rho_vac; dust baryons (rho = m n, no Lambda) do not enter at all; P <= P_cap = eps rho_vac, eps = 0.00995
+
+======================================================================================================================
+C  THE FLUID EQUATIONS (reduced t-r sector, densities per sin(theta)): number conservation and the same divergence law
+======================================================================================================================
+  [PASS] E1-FLUID with the Schutz-Sorkin current: E_theta = -(d_t J^t + d_r J^r) (number conservation) and the Lambda equation again gives d_t T^t + d_r T^r = sqrt(-g)(1 - P(n)/rho_vac) with n = sqrt(-g_mn J^m J^n)/sqrt(-g)
+         measured: number conservation: True; divergence law with the fluid's own n: True
+
+======================================================================================================================
+D  THE METRIC EQUATIONS: is the vacuum current in them?  (Weyl reduction of the static spherical metric, Ricci scalar computed)
+======================================================================================================================
+  [PASS] E1-NOMETRIC the HT term Mp2 Lambda d_m T^m contains no metric function: it contributes NOTHING to the metric equations (the vacuum current carries no stress; only -Mp2 Lambda sqrt(-g) gravitates, T_mn = -rho_vac g_mn, w = -1)
+         measured: d L_T/d(alpha, alpha', alpha'', beta, beta', beta'') = all 0
+         reading:  the 'flow' is invisible to the geometry
+  [PASS] E1-SdS the reduced metric equations (GR + Lambda) are solved by Schwarzschild-de Sitter, e^{2 alpha} = e^{-2 beta} = 1 - 2 m/r - Lambda r^2/3, for ANY T^m
+         measured: residuals of E_alpha, E_beta on SdS: ['0', '0']
+         reading:  the only thing the dark-energy sector does to a point mass's geometry is the constant Lambda
+
+======================================================================================================================
+E  WHICH PART OF THE 'FLOW' IS PHYSICAL: clock, river, inflow and 'from the top' stream are gauge copies of ONE solution
+======================================================================================================================
+  [PASS] E1-SPLIT on the SAME solution (same Lambda, same metric) the vacuum current can be a clock with no flow, a radial outflow, an inflow converging on the galaxy, or a uniform stream 'from the top': all differ by d_n omega^{mn}; the instantaneous flux through a sphere is shifted by -4 pi d_t h(t,R) (any function); the invariant is d/dt Q_ball + Flux = Int_ball d_m T^m
+         measured: same divergence in all three radial gauges: True; clock->river omega^{tr} = t W sin(theta): True; river->inflow omega^{tr} = C t sin(theta): True; uniform stream omega^{zt} = v t: True; flux shift = -4*pi*R0**2*Derivative(k(t, R0), t) (free); delta(dQ/dt + Flux) = 0
+         reading:  PHYSICAL: the local scalar nabla.t = 1 - P/rho_vac (fixed by the matter, no freedom) and fluxes through CLOSED 3-surfaces (4-volumes; global zero mode = CFG43's one global pair).  GAUGE: direction, speed, where it passes, converging or streaming.
+  [PASS] E1-GAUGE-S the action is invariant under T^m -> T^m + d_n omega^{mn} identically (Lagrangian shift = Mp2 Lambda d_m d_n omega^{mn} = 0)
+         measured: first-order Lagrangian shift: 0
+         reading:  so the committed action cannot tell a flowing vacuum from a static one
+
+  EQUATIONS OF THE DARK ENERGY IN THE COMMITTED ACTION (HT form):  d_m Lambda = 0;  nabla_m t^m = 1 - P/rho_vac;  t^m ~ t^m + (1/sqrt(-g)) d_n omega^{mn};
+  T_mn(vacuum) = -rho_vac g_mn (w = -1, no rest mass, no particle); the current contributes no stress.  Local dof: none (CFG43 H-DIRAC, and E3 below).
+
+SUMMARY E1_ht_current_equations_gauge (MUTATE=0): 9/9 checks pass; load-bearing failures = 0   (6.6 s)

@@ -1,0 +1,73 @@
+{
+ "name": "E1_ht_current_equations_gauge",
+ "mutate": 0,
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "tag": "E1-DUAL",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "T^m = (1/3!) eps^{mnpq} A_npq  =>  d_m T^m = (1/4!) eps^{mnpq} F_mnpq with F = dA (the HT current IS the dual of a 3-form; Lambda multiplies *F)",
+   "measured": "identity for 4 generic components: True"
+  },
+  {
+   "tag": "E1-GAUGE",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "A -> A + d lambda leaves F invariant and shifts T^m by d_n omega^{mn} with omega^{mn} = (1/2) eps^{mnpq} lambda_pq (antisymmetric); ANY antisymmetric omega leaves d_m T^m unchanged; the transformation is reducible (omega -> omega + eps d xi does nothing)",
+   "measured": "dF = 0: True; omega antisymmetric: True; delta T = d_n omega^{mn}: True; delta(div T) = 0 (from dlambda), 0 (generic omega); reducibility zero: ['0', '0', '0', '0']"
+  },
+  {
+   "tag": "E1-EOS",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "CFG43's cap fluid: P = n rho_n - rho = P_cap x^2/(1+x^2) and d rho/d Lambda |_n = -P/Lambda (re-derived here)",
+   "measured": "P closed form: True; rho_Lambda = -P/Lambda: True"
+  },
+  {
+   "tag": "E1-FIELD",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "Euler-Lagrange: E_{T^m} = -Mp2 d_m Lambda (so d_m Lambda = 0 in all four directions: Lambda is a global constant whatever the matter) and E_Lambda  =>  d_m T^m = sqrt(-g) [1 - P/rho_vac]  (the vacuum current's divergence, with the cap fluid's pressure as its only matter source)",
+   "measured": "E_T^m = -Mp2 d_m Lambda for m = t, r, theta, phi: True;  E_Lambda  <=>  d_m T^m = sqrt(-g)(1 - P/(Mp2 Lambda)): True;  det: sqrt(-g) = e^(alpha+beta) r^2 sin(theta): True"
+  },
+  {
+   "tag": "E1-FLUID",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "with the Schutz-Sorkin current: E_theta = -(d_t J^t + d_r J^r) (number conservation) and the Lambda equation again gives d_t T^t + d_r T^r = sqrt(-g)(1 - P(n)/rho_vac) with n = sqrt(-g_mn J^m J^n)/sqrt(-g)",
+   "measured": "number conservation: True; divergence law with the fluid's own n: True"
+  },
+  {
+   "tag": "E1-NOMETRIC",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the HT term Mp2 Lambda d_m T^m contains no metric function: it contributes NOTHING to the metric equations (the vacuum current carries no stress; only -Mp2 Lambda sqrt(-g) gravitates, T_mn = -rho_vac g_mn, w = -1)",
+   "measured": "d L_T/d(alpha, alpha', alpha'', beta, beta', beta'') = all 0"
+  },
+  {
+   "tag": "E1-SdS",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the reduced metric equations (GR + Lambda) are solved by Schwarzschild-de Sitter, e^{2 alpha} = e^{-2 beta} = 1 - 2 m/r - Lambda r^2/3, for ANY T^m",
+   "measured": "residuals of E_alpha, E_beta on SdS: ['0', '0']"
+  },
+  {
+   "tag": "E1-SPLIT",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "on the SAME solution (same Lambda, same metric) the vacuum current can be a clock with no flow, a radial outflow, an inflow converging on the galaxy, or a uniform stream 'from the top': all differ by d_n omega^{mn}; the instantaneous flux through a sphere is shifted by -4 pi d_t h(t,R) (any function); the invariant is d/dt Q_ball + Flux = Int_ball d_m T^m",
+   "measured": "same divergence in all three radial gauges: True; clock->river omega^{tr} = t W sin(theta): True; river->inflow omega^{tr} = C t sin(theta): True; uniform stream omega^{zt} = v t: True; flux shift = -4*pi*R0**2*Derivative(k(t, R0), t) (free); delta(dQ/dt + Flux) = 0"
+  },
+  {
+   "tag": "E1-GAUGE-S",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the action is invariant under T^m -> T^m + d_n omega^{mn} identically (Lagrangian shift = Mp2 Lambda d_m d_n omega^{mn} = 0)",
+   "measured": "first-order Lagrangian shift: 0"
+  }
+ ],
+ "numbers": {
+  "eps": 0.009947183943243459
+ }
+}

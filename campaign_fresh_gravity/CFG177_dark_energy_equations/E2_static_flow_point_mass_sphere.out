@@ -1,0 +1,75 @@
+
+E2 -- the HT vacuum current around a static point mass (Schwarzschild-de Sitter) and CFG44's exponential sphere: does the vacuum flow converge
+on / pass through matter, what is its (gauge-invariant) flux through a sphere around the galaxy in terms of M_b(<r), does the metric respond,
+and how much 'compaction' would the owner's picture need.
+
+Equations used (derived in E1):  nabla_m t^m = 1 - P/rho_vac  (P = the cap fluid's pressure; 0 for dust baryons);  T^m ~ T^m + d_n omega^{mn}.
+The gauge-invariant statement is the integrated divergence = the 4-volume per unit Killing time inside the areal sphere R:
+      Phi_inv(R) = Int_0^R 4 pi r^2 e^{alpha+beta} (1 - P/rho_vac) dr        ('river gauge' flux; the clock gauge has zero flux, same physics)
+
+Hypotheses: static, spherical; weak field inside extended matter (GR correction <= 3e-4, CFG44); the cold fluid is CFG43's cap fluid holding
+CFG44's hydrostatic target pressure P(r) = (a0/4 pi) Int_r^inf M_b(<r') r'^-3 dr' (the target EXCEEDS P_cap inside r_M, so the true CFG43
+fluid's contribution is bounded by eps; both are reported); P2 kernel primary, nu_mono reported (CFG44 Bcommon, read-only); both footings.
+
+MUTATE=1  the baryons are made Lambda-dependent (m -> m Lambda^beta_b, beta_b = 1): the divergence gains + beta_b rho_b/rho_vac, so the point-mass
+          flux is no longer M-independent (E2-SdS-FLUX must fail).
+
+MUTATE mode = 0  (0 = dust baryons, Lambda-independent as in CFG43; 1 = baryon masses proportional to Lambda, beta_b = 1)
+
+======================================================================================================================
+A  POINT MASS (Schwarzschild-de Sitter, exact): the river-gauge current and its flux; the static test-body acceleration
+======================================================================================================================
+  [PASS] E2-SdS-FLUX SdS has sqrt(-g) = r^2 sin(theta) EXACTLY, so the static river-gauge vacuum current around a point mass is t^r = r/3 and its flux per unit Killing time through the areal sphere r is 4 pi r^3/3, independent of the mass: the vacuum current passes through a point mass as if it were not there
+         measured: sqrt(-g) = r^2 sin(theta): True; div (r>0) = sqrt(-g): True; t^r = r/3; flux = 4*pi*r**3/3; d flux/dM = 0
+         reading:  (the invariant statement: the 4-volume inside an areal sphere per unit Killing time is (4 pi/3) r^3 for every M)
+  [PASS] E2-NORESP a test body released at rest in SdS accelerates at d^2r/dtau^2 = -GM/r^2 + Lambda c^2 r/3: Newton plus the repulsive Lambda term, with NO term from the vacuum current (T^m is absent from the metric equations, E1-NOMETRIC)
+         measured: d^2r/dtau^2 = Lambda0*r/3 - m/r**2
+         reading:  the committed dark-energy current is locally unobservable: its only physical content is the divergence (fixed) and one global number
+
+======================================================================================================================
+B  CFG44's EXPONENTIAL SPHERE (dust, weak field): the only M-dependence of the 4-volume is GR's own volume distortion
+======================================================================================================================
+  [PASS] E2-GR-DEFICIT inside dust, alpha + beta = -(G/c^2) Int_r^inf 4 pi r' rho_b dr' (exp sphere: -G M (r+h) e^{-r/h}/(2 h^2 c^2)); the 4-volume deficit outside the matter is D = 4 pi G M <r^2>/(3 c^2) (= 16 pi G M h^2/c^2 for the exp sphere): GR's volume distortion, fractionally ~ GM/(R c^2)
+         measured: closed form: True; D(inf) = 16 pi G M h^2/c^2: True; = 4 pi G M<r^2>/(3c^2): True; max fractional deficit over x in [0.1,30], 1e9-1e12 Msun, both h: 5.96e-06
+         reading:  a 1e-6-level GR effect, linear in M, falling as R^-3: nothing of the MOND form sqrt(M)/r
+
+======================================================================================================================
+C  WITH CFG43's CAP FLUID AT CFG44's TARGET PRESSURE: the divergence deficit (1/rho_vac c^2) Int P dV in terms of M_b(<r)
+======================================================================================================================
+  [PASS] E2-CAP-FLUX Int_0^r 4 pi r'^2 P dr' = (4 pi/3) r^3 P(r) + (a0/3) Int_0^r M_b(<r') dr' for ANY M_b (the flux deficit in terms of M_b(<r)); point mass: a0 M r/2, i.e. a fraction 3 eps (rho_foot/rho_L)/x^2 of the volume; CFG43's cap P <= eps rho_vac c^2 bounds it by eps = 0.0099
+         measured: identity (sympy, arbitrary M_b): True; point mass a0 M r/2: True; fraction = 3 kappa^2/(8 pi x^2): True; exp sphere (1e11, h = 0.5 r_M) direct/formula - 1 = 4.4e-16, fraction at x = 3: 0.0022; point-mass fractions (canonical) {'x=0.1': 2.98416, 'x=1': 0.02984, 'x=3': 0.00332, 'x=30': 3e-05}
+         reading:  the ONLY place the committed action lets matter 'compact' the vacuum current: a <= 1 percent change of its divergence inside the cap fluid, zero in baryons. Locally P_target/(rho_vac c^2) = eps/x^2, so at the TARGET pressure the divergence 1 - eps/x^2 would reverse sign inside x = sqrt(eps) = 0.0997; CFG43's cap (P <= eps rho_vac c^2) forbids that, which is the same fact as CFG43's obstruction (the target needs P/P_cap = 1/x^2 > 1 inside r_M)
+
+======================================================================================================================
+D  HOW MUCH 'COMPACTION' THE PICTURE WOULD NEED (cross-check of CFG176 Q1f): rho_phantom/rho_Lambda, and the sign of a compacted w = -1 medium
+======================================================================================================================
+  rho_phantom/rho_Lambda over x in [0.1, 30]  (min, max):
+    canonical P2 1e+09 point                       566   5.04e+06
+    canonical P2 1e+09 exp h=0.5rM                 566   2.82e+06
+    canonical P2 1e+09 exp h=3kpc                  567   3.99e+05
+    canonical P2 1e+10 point                       179   1.59e+06
+    canonical P2 1e+10 exp h=0.5rM                 179   8.91e+05
+    canonical P2 1e+10 exp h=3kpc                  179   5.71e+05
+    canonical P2 1e+11 point                      56.6   5.04e+05
+    canonical P2 1e+11 exp h=0.5rM                56.6   2.82e+05
+    canonical P2 1e+11 exp h=3kpc                 56.6   4.31e+05
+    canonical P2 1e+12 point                      17.9   1.59e+05
+    canonical P2 1e+12 exp h=0.5rM                17.9   8.91e+04
+    canonical P2 1e+12 exp h=3kpc                 17.9   1.57e+05
+    alt P2 1e+09 point                             751   6.69e+06
+    alt P2 1e+10 point                             238   2.12e+06
+    alt P2 1e+11 point                            75.1   6.69e+05
+    alt P2 1e+12 point                            23.8   2.12e+05
+  point mass P2 canonical 1e11 at x = 1, analytic a0/(4 pi G r_M sqrt2)/rho_L = 3.587e+04
+  [PASS] E2-COMPACTION to BE the law's phantom, the vacuum would have to reach rho_ph/rho_Lambda >> 1 everywhere in x in [0.1, 30] for 1e9-1e12 Msun (both kernels, both footings, point mass and exp spheres); the committed action's Lambda is a global constant, so its actual compaction is exactly 1
+         measured: needed range 17.9 .. 9.6e+06 (min over all rows > 1: True); available: 1 (d_m Lambda = 0, E1-FIELD)
+         reading:  scales as M^-1/2 at fixed x; the full table is in the results JSON
+  [PASS] E2-ACTIVE the focusing (attraction) a medium exerts on free-falling matter is R_mn u^m u^n = 8 pi G (T_mn - g_mn T/2) u^m u^n = 4 pi G (rho + 3p) at rest (Raychaudhuri; sympy: T_00 - g_00 T/2 = (rho + 3p)/2); for a w = -1 medium rho + 3p = -2 rho: COMPACTING the Lambda-vacuum DEFOCUSES (repels).  To mimic the phantom's focusing with a w = -1 medium the local vacuum energy would have to DROP by rho_ph/2, i.e. go negative by 10^1.0 - 10^6.7 rho_Lambda (and a w = -1 medium cannot be inhomogeneous at all without an energy exchange: nabla(rho g) = 0 forces d rho = 0, cf. CFG176 1b)
+         measured: (rho+3p)/2 identity: True; w = -1: rho + 3p = -2*rho; required delta rho_vac/rho_Lambda < -1 in every row: True
+         reading:  so under Addendum 2 (no rest mass) the flow's boost must come from a non-vacuum stress (w > -1/3) or a non-metric coupling; E3/E4 test the minimal one
+
+  THE FLOW AROUND A GALAXY, AS DERIVED:  the flux through a sphere is a gauge choice (any value, E1-SPLIT); the gauge-invariant 4-volume per unit Killing
+  time inside the areal sphere R is  (4 pi/3) R^3  -  4 pi G M <r^2>/(3 c^2) [GR, R outside the matter]  -  [(4 pi/3) R^3 P(R) + (a0/3) Int_0^R M_b dr]/(rho_vac c^2)
+  [cap fluid at the target pressure; <= eps (4 pi/3) R^3].  Nothing in the metric responds to it; baryons do not source it.
+
+SUMMARY E2_static_flow_point_mass_sphere (MUTATE=0): 6/6 checks pass; load-bearing failures = 0   (2.2 s)

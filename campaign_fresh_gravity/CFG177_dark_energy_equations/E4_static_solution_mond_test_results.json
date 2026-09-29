@@ -1,0 +1,375 @@
+{
+ "name": "E4_static_solution_mond_test",
+ "mutate": 0,
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "tag": "E4-KG",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "linearised box(phi) = V'(phi) on -(1+2Phi)dt^2 + (1-2Phi)dx^2 with a rolling background (phib'' = -V'): laplacian(dphi) - dphi_tt = V'' dphi + 2 Phi V'  (static: the baryons source the dark energy ONLY through their potential, with strength V')",
+   "measured": "identity: True"
+  },
+  {
+   "tag": "E4-DRHO",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the scalar's first-order density: delta rho = phib' dphi' - Phi phib'^2 + V' dphi (the -Phi phib'^2 term is the time-FLOW's own response, nonzero only when the dark energy rolls); a static gradient energy (grad dphi)^2/2 has rho + sum p_i = 0, i.e. it does not focus (Tolman)",
+   "measured": "first-order delta rho: True; rho + sum p of static gradient energy = 0"
+  },
+  {
+   "tag": "E4-G1-DUST",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the DYN vacuum current (the time flow made physical) exerts on test baryons an extra acceleration < 1e-10 of the law's boost at every x in [0.1, 30], every mass, profile, kernel and footing (so G1 FAILS: the total stays Newtonian to that precision)",
+   "measured": "max ratio over all 48 rows = 4.48e-11 (dust) and 8.55e-14 (cap fluid, bound); the smallest G1 residual over rows = 0.967 (> 0.10: G1 FAIL in every row); point-mass analytic cross-check at x = 1: pot 2.098e-33 vs 2.098e-33, kin 1.341e-23 vs 1.341e-23 m/s^2"
+  },
+  {
+   "tag": "E4-G1-CAP",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "even with CFG43's cap fluid held at CFG44's TARGET pressure (which exceeds the cap inside r_M, so this is an upper bound) sourcing the vacuum, and its gradient energy counted at full weight, the extra acceleration is < 1e-10 of the boost",
+   "measured": "max ratio 8.55e-14"
+  },
+  {
+   "tag": "E4-SCALING",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the DYN extra acceleration scales as M^1 r^2 (potential term) and M^1 r^0 (time-flow kinetic term); deep MOND needs M^(1/2) r^-1: wrong in BOTH exponents, so no value of s or (1+w) can fit all masses",
+   "measured": "log-slopes: {'pot_M': 1.0, 'kin_M': 1.0, 'pot_r': 2.0, 'kin_r': 0.0}"
+  },
+  {
+   "tag": "E4-INVERT",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "to reach the P2 boost at x = 1 the potential term needs lambda^2 >= 4.6e+19 and the kinetic term needs 1 + w >= 1.1e+10; the scalar-dominated fixed point of an exponential potential has w = -1 + lambda^2/3 (sympy), so lambda^2 >= 2 cannot accelerate (w >= -1/3) and 1 + w <= 2 always: NO choice of the new constant s rescues G1",
+   "measured": "fixed point verified: True; w = lambda**2/3 - 1; needed (by mass): {'1e+09': {'lambda2_needed': '4.62e+25', 'one_plus_w_needed': '1.07e+13'}, '1e+10': {'lambda2_needed': '4.62e+23', 'one_plus_w_needed': '1.07e+12'}, '1e+11': {'lambda2_needed': '4.62e+21', 'one_plus_w_needed': '1.07e+11'}, '1e+12': {'lambda2_needed': '4.62e+19', 'one_plus_w_needed': '1.07e+10'}}"
+  },
+  {
+   "tag": "E4-SOLAR",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "Solar System: the DYN anomaly at 1 AU is far below the ephemeris bound (Q2 <= 5.2e-27 s^-2, GATES 4.01); a minimally coupled scalar leaves PPN = GR",
+   "measured": "potential-term acceleration 3.31e-63 m/s^2, its gradient 4.43e-74 s^-2; kinetic-term (uniform, no tide) 1.34e-34 m/s^2"
+  },
+  {
+   "tag": "E4-TIMEFLOW-SOURCED",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "if the baryons source the time flow's divergence (m ~ Lambda^beta_b, alpha = beta_b sqrt(s)), the static force is Newtonian in shape: G_eff = G (1 + 2 alpha^2), a = -2 alpha^2 G M/r^2 extra, and gamma_PPN = (1 - 2 alpha^2)/(1 + 2 alpha^2): the compaction of the time flow by matter gives M/r^2, never sqrt(G M a0)/r, and with beta_b = 1, s = kappa^2 it fails Cassini by orders of magnitude",
+   "measured": "Gauss/harmonic: True/True; fifth force -2 alpha^2 G M/r^2: True; gamma form: True (G_eff/G = 2*alpha**2 + 1, gamma = (1 - 2*alpha**2)/(2*alpha**2 + 1)); at beta_b = 1, s = 0.250: gamma - 1 = -0.667; Cassini |gamma - 1| < 2.3e-5 (commonly quoted, from memory) needs alpha^2 < 5.75e-06, i.e. beta_b < 4.80e-03 at s = kappa^2"
+  },
+  {
+   "tag": "E4-KHRONON",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "in DYN the vacuum current is exactly the gradient of a clock field, t_m = d_m tau with tau = -1/(s Lambda) (curl-free, hypersurface-orthogonal): the level sets of the unimodular clock (= of rho_vac) are a PHYSICAL foliation with a khronon-type normal u_m = d_m tau/sqrt(-(d tau)^2); its field equation is box(tau) - (d tau)^2/tau = 1 - P/rho_vac; unlike a khronon the action is NOT invariant under tau -> f(tau) (the clock's RATE is rho_vac, physical)",
+   "measured": "t_m = d_m tau: True; curl-free: True; clock equation (nabla.t + s Lambda t^2 = box tau - (d tau)^2/tau): True; action changes under tau -> 2 tau: True"
+  },
+  {
+   "tag": "E4-DAQ",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "with m ~ Lambda^beta_b and U = -u0 (t^2)^(3/4) the static fifth force is EXACTLY sqrt(G M a0)/r for u0 = (2/3) sqrt(4 pi G a0) rho_vac^(3/2) beta_b^(-3/2) (c = 1): the MOND form appears only because a0 is written into U; beta_b is a new constant; the interpolation (Newtonian regime) is a further postulated U; and a conformal coupling bends no light (the refractive index of A^2 g is A-independent), so this boost would be invisible to lensing",
+   "measured": "Gauss law: True; a r/sqrt(M) independent of r and M: True; u0 = [4*sqrt(pi)*sqrt(G)*sqrt(a_0)*rho_vac**(3/2)/(3*beta_b**(3/2))] (matches: True); lensing index A-independent: True"
+  },
+  {
+   "tag": "E4-DAQ-NULL",
+   "ok": true,
+   "load_bearing": false,
+   "statement": "embedded in cosmology, the Gauss law makes the background current timelike, t^0 = c Int a^3 dt/a^3 + beta_b (Omega_b/Omega_L) c t_age; the galaxy's spacelike current t_r = beta_b M/(4 pi rho_vac r^2) equals it at r_c, where the vacuum current turns NULL and a |t|^(3/2) law is singular; outside r_c the cosmic flow dominates U's argument and the response linearises (no deep regime); r_c/r_M saturates as beta_b -> infinity",
+   "measured": "r_c/r_M by beta_b: {'beta_b=1': 0.643, 'beta_b=10': 1.209, 'beta_b=100': 1.399, 'beta_b=1000': 1.423, 'beta_b=10000': 1.426}; ceiling 1.426 (t0_Lambda = 3.677e+25 m, t_age = 4.351e+17 s)"
+  },
+  {
+   "tag": "E4-DAQ-BRANCH",
+   "ok": true,
+   "load_bearing": false,
+   "statement": "of the two continuations of -u0|t^2|^(3/4) to the timelike (cosmological) branch, U = -u0 t^2 |t^2|^(-1/4) is healthy on both branches and the other is a ghost/gradient-unstable there; either way U'' diverges at t^2 = 0, i.e. at r_c (strong coupling where the current is null)",
+   "measured": "health (U_QQ > 0, U_T1T1 < 0) by continuation: {'c=+1': {'spacelike': True, 'timelike': False}, 'c=-1': {'spacelike': True, 'timelike': True}}"
+  }
+ ],
+ "numbers": {
+  "s": 0.25,
+  "one_plus_w0": 0.037072112572015925,
+  "ratio_rows": {
+   "canonical P2 1e+09 point": [
+    4.4425081631922426e-14,
+    2.7045859919465523e-18
+   ],
+   "canonical P2 1e+09 exp h=0.5rM": [
+    4.4375660938481005e-14,
+    2.670066514317762e-18
+   ],
+   "canonical P2 1e+09 exp h=3kpc": [
+    4.323989506476228e-14,
+    2.536893017557936e-18
+   ],
+   "canonical P2 1e+10 point": [
+    4.445152455669769e-13,
+    8.552651862336925e-17
+   ],
+   "canonical P2 1e+10 exp h=0.5rM": [
+    4.4402103835613557e-13,
+    8.44349168939072e-17
+   ],
+   "canonical P2 1e+10 exp h=3kpc": [
+    4.433204938305809e-13,
+    8.383016848042953e-17
+   ],
+   "canonical P2 1e+11 point": [
+    4.453514058569288e-12,
+    2.704585991946556e-15
+   ],
+   "canonical P2 1e+11 exp h=0.5rM": [
+    4.448571976899478e-12,
+    2.6700665143177665e-15
+   ],
+   "canonical P2 1e+11 exp h=3kpc": [
+    4.452319304521603e-12,
+    2.6876085998843677e-15
+   ],
+   "canonical P2 1e+12 point": [
+    4.47995192733059e-11,
+    8.55265186233693e-14
+   ],
+   "canonical P2 1e+12 exp h=0.5rM": [
+    4.475009807224983e-11,
+    8.443491689390696e-14
+   ],
+   "canonical P2 1e+12 exp h=3kpc": [
+    4.479832450996823e-11,
+    8.535673672380049e-14
+   ],
+   "canonical nu_mono 1e+09 point": [
+    4.3692567433864965e-14,
+    2.6599907415566338e-18
+   ],
+   "canonical nu_mono 1e+09 exp h=0.5rM": [
+    4.364396162603082e-14,
+    2.6260404470681717e-18
+   ],
+   "canonical nu_mono 1e+09 exp h=3kpc": [
+    4.2527079219327697e-14,
+    2.495071973857917e-18
+   ],
+   "canonical nu_mono 1e+10 point": [
+    4.3718574347785015e-13,
+    8.411629298279274e-17
+   ],
+   "canonical nu_mono 1e+10 exp h=0.5rM": [
+    4.366996851276395e-13,
+    8.304269040462274e-17
+   ],
+   "canonical nu_mono 1e+10 exp h=3kpc": [
+    4.360106917077324e-13,
+    8.244791353836233e-17
+   ],
+   "canonical nu_mono 1e+11 point": [
+    4.380081165273123e-12,
+    2.6599907415566382e-15
+   ],
+   "canonical nu_mono 1e+11 exp h=0.5rM": [
+    4.375220572367275e-12,
+    2.6260404470681774e-15
+   ],
+   "canonical nu_mono 1e+11 exp h=3kpc": [
+    4.3789061112298255e-12,
+    2.6432932855187567e-15
+   ],
+   "canonical nu_mono 1e+12 point": [
+    4.4060831065465564e-11,
+    8.411629298279273e-14
+   ],
+   "canonical nu_mono 1e+12 exp h=0.5rM": [
+    4.40122247583867e-11,
+    8.304269040462246e-14
+   ],
+   "canonical nu_mono 1e+12 exp h=3kpc": [
+    4.4059656002285464e-11,
+    8.394931057502987e-14
+   ],
+   "alt P2 1e+09 point": [
+    3.675934842778512e-14,
+    2.4602331633957554e-18
+   ],
+   "alt P2 1e+09 exp h=0.5rM": [
+    3.6718454465067445e-14,
+    2.4288320912792243e-18
+   ],
+   "alt P2 1e+09 exp h=3kpc": [
+    3.5584664198948446e-14,
+    2.293562807154942e-18
+   ],
+   "alt P2 1e+10 point": [
+    3.677925222236187e-13,
+    7.779940371411783e-17
+   ],
+   "alt P2 1e+10 exp h=0.5rM": [
+    3.67383582389189e-13,
+    7.680641462552355e-17
+   ],
+   "alt P2 1e+10 exp h=3kpc": [
+    3.665977705773099e-13,
+    7.610336093892375e-17
+   ],
+   "alt P2 1e+11 point": [
+    3.6842190917169935e-12,
+    2.4602331633957634e-15
+   ],
+   "alt P2 1e+11 exp h=0.5rM": [
+    3.6801296862573265e-12,
+    2.428832091279222e-15
+   ],
+   "alt P2 1e+11 exp h=3kpc": [
+    3.683024337991962e-12,
+    2.443255841947486e-15
+   ],
+   "alt P2 1e+12 point": [
+    3.704119424437659e-11,
+    7.779940371411788e-14
+   ],
+   "alt P2 1e+12 exp h=0.5rM": [
+    3.700029990862675e-11,
+    7.680641462552344e-14
+   ],
+   "alt P2 1e+12 exp h=3kpc": [
+    3.703999948243904e-11,
+    7.762961825757682e-14
+   ],
+   "alt nu_mono 1e+09 point": [
+    3.61532326110987e-14,
+    2.4196669864407932e-18
+   ],
+   "alt nu_mono 1e+09 exp h=0.5rM": [
+    3.611301293883148e-14,
+    2.3887836788463435e-18
+   ],
+   "alt nu_mono 1e+09 exp h=3kpc": [
+    3.499824258953952e-14,
+    2.2557657723105885e-18
+   ],
+   "alt nu_mono 1e+10 point": [
+    3.6172808216922896e-13,
+    7.651658856268669e-17
+   ],
+   "alt nu_mono 1e+10 exp h=0.5rM": [
+    3.613258852427213e-13,
+    7.553997262590646e-17
+   ],
+   "alt nu_mono 1e+10 exp h=3kpc": [
+    3.6055303048771434e-13,
+    7.484851141789139e-17
+   ],
+   "alt nu_mono 1e+11 point": [
+    3.6234709131138086e-12,
+    2.4196669864408003e-15
+   ],
+   "alt nu_mono 1e+11 exp h=0.5rM": [
+    3.6194489368506855e-12,
+    2.388783678846341e-15
+   ],
+   "alt nu_mono 1e+11 exp h=3kpc": [
+    3.6222958593878453e-12,
+    2.4029695998524946e-15
+   ],
+   "alt nu_mono 1e+12 point": [
+    3.643043114163616e-11,
+    7.651658856268674e-14
+   ],
+   "alt nu_mono 1e+12 exp h=0.5rM": [
+    3.639021110248761e-11,
+    7.553997262590635e-14
+   ],
+   "alt nu_mono 1e+12 exp h=3kpc": [
+    3.642925607983308e-11,
+    7.634960265660165e-14
+   ]
+  },
+  "G1_residual_rows": {
+   "canonical P2 1e+09 point": 0.9666610480375342,
+   "canonical P2 1e+09 exp h=0.5rM": 0.9666610480375342,
+   "canonical P2 1e+09 exp h=3kpc": 0.9670327780043124,
+   "canonical P2 1e+10 point": 0.9666610480371474,
+   "canonical P2 1e+10 exp h=0.5rM": 0.9666610480371478,
+   "canonical P2 1e+10 exp h=3kpc": 0.9666610480371488,
+   "canonical P2 1e+11 point": 0.966661048033272,
+   "canonical P2 1e+11 exp h=0.5rM": 0.9666610480332768,
+   "canonical P2 1e+11 exp h=3kpc": 0.9666610480332732,
+   "canonical P2 1e+12 point": 0.9666610479942711,
+   "canonical P2 1e+12 exp h=0.5rM": 0.966661047994319,
+   "canonical P2 1e+12 exp h=3kpc": 0.9666610479942723,
+   "canonical nu_mono 1e+09 point": 0.967192731043856,
+   "canonical nu_mono 1e+09 exp h=0.5rM": 0.967192731043856,
+   "canonical nu_mono 1e+09 exp h=3kpc": 0.967552926224719,
+   "canonical nu_mono 1e+10 point": 0.9671927310434753,
+   "canonical nu_mono 1e+10 exp h=0.5rM": 0.9671927310434758,
+   "canonical nu_mono 1e+10 exp h=3kpc": 0.9671927310434767,
+   "canonical nu_mono 1e+11 point": 0.9671927310396617,
+   "canonical nu_mono 1e+11 exp h=0.5rM": 0.9671927310396664,
+   "canonical nu_mono 1e+11 exp h=3kpc": 0.9671927310396629,
+   "canonical nu_mono 1e+12 point": 0.9671927310012829,
+   "canonical nu_mono 1e+12 exp h=0.5rM": 0.9671927310013299,
+   "canonical nu_mono 1e+12 exp h=3kpc": 0.967192731001284,
+   "alt P2 1e+09 point": 0.9666610480375416,
+   "alt P2 1e+09 exp h=0.5rM": 0.9666610480375416,
+   "alt P2 1e+09 exp h=3kpc": 0.9713548982766543,
+   "alt P2 1e+10 point": 0.9666610480372215,
+   "alt P2 1e+10 exp h=0.5rM": 0.966661048037222,
+   "alt P2 1e+10 exp h=3kpc": 0.9666610480372291,
+   "alt P2 1e+11 point": 0.9666610480340156,
+   "alt P2 1e+11 exp h=0.5rM": 0.9666610480340196,
+   "alt P2 1e+11 exp h=3kpc": 0.9666610480340169,
+   "alt P2 1e+12 point": 0.9666610480017708,
+   "alt P2 1e+12 exp h=0.5rM": 0.9666610480018103,
+   "alt P2 1e+12 exp h=3kpc": 0.966661048001772,
+   "alt nu_mono 1e+09 point": 0.9671927310438632,
+   "alt nu_mono 1e+09 exp h=0.5rM": 0.9671927310438633,
+   "alt nu_mono 1e+09 exp h=3kpc": 0.9717498524638055,
+   "alt nu_mono 1e+10 point": 0.9671927310435483,
+   "alt nu_mono 1e+10 exp h=0.5rM": 0.9671927310435486,
+   "alt nu_mono 1e+10 exp h=3kpc": 0.9671927310435555,
+   "alt nu_mono 1e+11 point": 0.9671927310403936,
+   "alt nu_mono 1e+11 exp h=0.5rM": 0.9671927310403975,
+   "alt nu_mono 1e+11 exp h=3kpc": 0.9671927310403947,
+   "alt nu_mono 1e+12 point": 0.9671927310086629,
+   "alt nu_mono 1e+12 exp h=0.5rM": 0.9671927310087018,
+   "alt nu_mono 1e+12 exp h=3kpc": 0.9671927310086641
+  },
+  "scalings": {
+   "pot_M": 0.9999959255188254,
+   "kin_M": 0.9999999999767177,
+   "pot_r": 2.000003066215483,
+   "kin_r": 6.445294125661217e-12
+  },
+  "inversion": {
+   "1e+09": {
+    "lambda2_needed": 4.62095904497927e+25,
+    "one_plus_w_needed": 10716521565137.748
+   },
+   "1e+10": {
+    "lambda2_needed": 4.620959044979273e+23,
+    "one_plus_w_needed": 1071652156513.7747
+   },
+   "1e+11": {
+    "lambda2_needed": 4.6209590449792735e+21,
+    "one_plus_w_needed": 107165215651.37749
+   },
+   "1e+12": {
+    "lambda2_needed": 4.620959044979271e+19,
+    "one_plus_w_needed": 10716521565.137749
+   }
+  },
+  "timeflow_sourced": {
+   "gamma_minus_1_at_beta1": -0.6666666666666666,
+   "alpha2_cassini": 5.750066125760447e-06
+  },
+  "DAQ_rc_over_rM": {
+   "beta_b=1": 0.6432737654977968,
+   "beta_b=10": 1.2089803712126186,
+   "beta_b=100": 1.3990179066884088,
+   "beta_b=1000": 1.4233579648386505,
+   "beta_b=10000": 1.4258624538702667
+  },
+  "DAQ_rc_ceiling": 1.4261415472498986
+ }
+}

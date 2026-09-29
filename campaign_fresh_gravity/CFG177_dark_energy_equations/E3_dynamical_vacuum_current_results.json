@@ -1,0 +1,106 @@
+{
+ "name": "E3_dynamical_vacuum_current",
+ "mutate": 0,
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "tag": "E3-FRW",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "Euler-Lagrange on the minisuperspace: T0 = -Mp2 a^3 Lambda'/(N sigma) (the current is locked to Lambda's rate); Friedmann 3 Mp2 H^2 = Mp2 Lambda + Mp2^2 Lambda'^2/(2 sigma) + rho; the flow's energy sigma (t^0)^2/2 = phi'^2/2; after eliminating T0 the action IS a canonical scalar phi = (M_P/sqrt s) ln Lambda with V(phi) = Mp2 Lambda = Mp2 Lambda_* e^{sqrt(s) phi/M_P}; the Lambda equation is the Gauss law (1/N a^3) T0' = 1 - P/rho_vac + (sigma'/2Mp2)(t^0)^2",
+   "measured": "T0: True; Friedmann: True; flow energy = phi'^2/2: True; reduced Lagrangian == canonical scalar: True; Gauss law: True"
+  },
+  {
+   "tag": "E3-COV",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "covariantly: t_m = d_m Lambda/(s Lambda^2) = -d_m(1/(s Lambda)) and nabla.t = 1 - P/rho_vac - s Lambda t^2 are together EXACTLY  box(phi) = V'(phi) - (sqrt(s)/M_P) P (identity nabla.t + s Lambda t^2 = box(phi)/(sqrt(s) M_P Lambda) for generic phi)",
+   "measured": "identity: True"
+  },
+  {
+   "tag": "E3-KN",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "Lorentzian identities: A_npq A^npq = -6 t_m t^m (so a 3-form mass term V(A^2) is exactly a U(t^2)); Legendre: max_Lambda[Mp2 Lambda psi - Mp2^2 Lambda^2/2] = psi^2/2 = -F^2/48 for F = psi eps; i.e. Koivisto-Nunes' massive 3-form (from memory, unverified) = this family with QUADRATIC W; CFG43's HT = LINEAR W (Lambda then enforces *F = 1 - P/rho_vac); the minimal promotion keeps CFG43's linear W and adds only U",
+   "measured": "A^2 + 6 t^2 = 0; Legendre value psi**2/2; -F^2/48 = psi**2/2"
+  },
+  {
+   "tag": "E3-DIRAC",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "HT reproduces CFG43 (D = 2N + 2: fluid + one GLOBAL pair); with the mass term every constraint is second class and D = 4N: the fluid's sound mode plus ONE LOCAL dark-energy mode per site (the longitudinal part of the current; its curl part is zero on shell), no tertiary constraint",
+   "measured": "HT: D = 8 (target 8); HT+U: D = 12 (target 12), F = 0, closure 4.6e-15"
+  },
+  {
+   "tag": "E3-HEALTH",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "reduced Hamiltonian density H = rho_vac + (sigma/2) Q^2 + (d_x rho_vac)^2/(2 sigma) (Q = the unimodular clock density, conjugate to rho_vac = Mp2 Lambda): kinetic and gradient energies are both positive iff sigma = s Mp2 Lambda^2 > 0; omega^2 = k^2 (c_s = 1, causal)",
+   "measured": "H_red identity: True; c_s^2 = 1: True; sigma on the background = 0.208: kinetic coefficient 0.104, gradient coefficient 2.404"
+  },
+  {
+   "tag": "E3-BG",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "background of the promoted dark energy: a thawing exponential quintessence, w0 in (-1, -0.8), linear growth within 5% of LCDM (sub-horizon quintessence does not cluster: quasi-static active-density ratio 18 s (a H_L/k)^4), the Gauss law satisfied along the numerical solution, and w0 -> -1 as s -> 0",
+   "measured": "w0 = -0.9629, wa = -0.0525, D/D_LCDM = 0.9949, Gauss residual 4.3e-09; clustering ratio {'k=0.01/Mpc': '5.4e-07', 'k=0.1/Mpc': '5.4e-11', 'k=1/Mpc': '5.4e-15', 'k=30/Mpc': '6.7e-21'}"
+  },
+  {
+   "tag": "E3-TIEPOWER",
+   "ok": true,
+   "load_bearing": false,
+   "statement": "sigma = s M_P^(6-2b) Lambda^b (no dimensionful constant beyond M_P and the HT field): the dark energy's slope today is lambda_eff = sqrt(s) (Lambda/M_P^2)^(b/2-1); only b = 2 gives an O(1) slope for an O(1) number s, so s is a genuinely new pure number (it cannot be removed by choosing b)",
+   "measured": "symbolic form: True; Lambda l_P^2 = 7.159e-121; lambda_eff by b: {'b=0': 'sqrt(s) x 1.40e+120', 'b=1': 'sqrt(s) x 1.18e+60', 'b=2': 'sqrt(s) x 1.00e+00', 'b=3': 'sqrt(s) x 8.46e-61'}"
+  }
+ ],
+ "numbers": {
+  "s": 0.25,
+  "dirac": {
+   "HT": {
+    "nq": 18,
+    "K": 23,
+    "S": 18,
+    "F": 5,
+    "D": 8,
+    "closure": 2.253976081563171e-14,
+    "maxC": 6.661338147750939e-16
+   },
+   "HTU": {
+    "nq": 18,
+    "K": 24,
+    "S": 24,
+    "F": 0,
+    "D": 12,
+    "closure": 4.599748752927148e-15,
+    "maxC": 3.3306690738754696e-16
+   }
+  },
+  "background": {
+   "w": {
+    "z=0": -0.9629278874279841,
+    "z=0.5": -0.9821298826983081,
+    "z=1": -0.9909848722134101,
+    "z=2": -0.9970181739166669,
+    "z=5": -0.9996105653590066
+   },
+   "w0": -0.9629278874279841,
+   "wa": -0.0525120578842575,
+   "growth_ratio": 0.9949132317654811,
+   "Vstar": 2.1674856820086705,
+   "gauss_residual": 4.251123913630859e-09,
+   "w0_lambda_1e-3": -0.9999998525851717
+  },
+  "clustering_ratio": {
+   "k=0.01/Mpc": 5.389681672434577e-07,
+   "k=0.1/Mpc": 5.3896816724345764e-11,
+   "k=1/Mpc": 5.389681672434578e-15,
+   "k=30/Mpc": 6.653927990659973e-21
+  },
+  "lambda_eff_by_power": {
+   "b=0": "sqrt(s) x 1.40e+120",
+   "b=1": "sqrt(s) x 1.18e+60",
+   "b=2": "sqrt(s) x 1.00e+00",
+   "b=3": "sqrt(s) x 8.46e-61"
+  }
+ }
+}

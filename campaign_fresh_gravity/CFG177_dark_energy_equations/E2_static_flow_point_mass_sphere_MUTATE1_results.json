@@ -1,0 +1,270 @@
+{
+ "name": "E2_static_flow_point_mass_sphere",
+ "mutate": 1,
+ "load_bearing_failures": 1,
+ "checks": [
+  {
+   "tag": "E2-SdS-FLUX",
+   "ok": false,
+   "load_bearing": true,
+   "statement": "SdS has sqrt(-g) = r^2 sin(theta) EXACTLY, so the static river-gauge vacuum current around a point mass is t^r = r/3 and its flux per unit Killing time through the areal sphere r is 4 pi r^3/3, independent of the mass: the vacuum current passes through a point mass as if it were not there",
+   "measured": "sqrt(-g) = r^2 sin(theta): True; div (r>0) = sqrt(-g): True; t^r = M_b*beta_b/(4*pi*r**2*rho_vac) + r/3; flux = 2*pi*(M_b*beta_b/(2*pi*rho_vac) + 2*r**3/3); d flux/dM = beta_b/rho_vac"
+  },
+  {
+   "tag": "E2-NORESP",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "a test body released at rest in SdS accelerates at d^2r/dtau^2 = -GM/r^2 + Lambda c^2 r/3: Newton plus the repulsive Lambda term, with NO term from the vacuum current (T^m is absent from the metric equations, E1-NOMETRIC)",
+   "measured": "d^2r/dtau^2 = Lambda0*r/3 - m/r**2"
+  },
+  {
+   "tag": "E2-GR-DEFICIT",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "inside dust, alpha + beta = -(G/c^2) Int_r^inf 4 pi r' rho_b dr' (exp sphere: -G M (r+h) e^{-r/h}/(2 h^2 c^2)); the 4-volume deficit outside the matter is D = 4 pi G M <r^2>/(3 c^2) (= 16 pi G M h^2/c^2 for the exp sphere): GR's volume distortion, fractionally ~ GM/(R c^2)",
+   "measured": "closed form: True; D(inf) = 16 pi G M h^2/c^2: True; = 4 pi G M<r^2>/(3c^2): True; max fractional deficit over x in [0.1,30], 1e9-1e12 Msun, both h: 5.96e-06"
+  },
+  {
+   "tag": "E2-CAP-FLUX",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "Int_0^r 4 pi r'^2 P dr' = (4 pi/3) r^3 P(r) + (a0/3) Int_0^r M_b(<r') dr' for ANY M_b (the flux deficit in terms of M_b(<r)); point mass: a0 M r/2, i.e. a fraction 3 eps (rho_foot/rho_L)/x^2 of the volume; CFG43's cap P <= eps rho_vac c^2 bounds it by eps = 0.0099",
+   "measured": "identity (sympy, arbitrary M_b): True; point mass a0 M r/2: True; fraction = 3 kappa^2/(8 pi x^2): True; exp sphere (1e11, h = 0.5 r_M) direct/formula - 1 = 4.4e-16, fraction at x = 3: 0.0022; point-mass fractions (canonical) {'x=0.1': 2.98416, 'x=1': 0.02984, 'x=3': 0.00332, 'x=30': 3e-05}"
+  },
+  {
+   "tag": "E2-COMPACTION",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "to BE the law's phantom, the vacuum would have to reach rho_ph/rho_Lambda >> 1 everywhere in x in [0.1, 30] for 1e9-1e12 Msun (both kernels, both footings, point mass and exp spheres); the committed action's Lambda is a global constant, so its actual compaction is exactly 1",
+   "measured": "needed range 17.9 .. 9.6e+06 (min over all rows > 1: True); available: 1 (d_m Lambda = 0, E1-FIELD)"
+  },
+  {
+   "tag": "E2-ACTIVE",
+   "ok": true,
+   "load_bearing": true,
+   "statement": "the focusing (attraction) a medium exerts on free-falling matter is R_mn u^m u^n = 8 pi G (T_mn - g_mn T/2) u^m u^n = 4 pi G (rho + 3p) at rest (Raychaudhuri; sympy: T_00 - g_00 T/2 = (rho + 3p)/2); for a w = -1 medium rho + 3p = -2 rho: COMPACTING the Lambda-vacuum DEFOCUSES (repels).  To mimic the phantom's focusing with a w = -1 medium the local vacuum energy would have to DROP by rho_ph/2, i.e. go negative by 10^1.0 - 10^6.7 rho_Lambda (and a w = -1 medium cannot be inhomogeneous at all without an energy exchange: nabla(rho g) = 0 forces d rho = 0, cf. CFG176 1b)",
+   "measured": "(rho+3p)/2 identity: True; w = -1: rho + 3p = -2*rho; required delta rho_vac/rho_Lambda < -1 in every row: True"
+  }
+ ],
+ "numbers": {
+  "GR_deficit_max_fraction": {
+   "1e+09 h=0.5rM": 3.8794715229981366e-08,
+   "1e+09 h=3kpc": 7.972063483255344e-09,
+   "1e+10 h=0.5rM": 1.2267966130436403e-07,
+   "1e+10 h=3kpc": 7.939059135971828e-08,
+   "1e+11 h=0.5rM": 3.879471523000275e-07,
+   "1e+11 h=3kpc": 7.658828214307711e-07,
+   "1e+12 h=0.5rM": 1.2267966130436404e-06,
+   "1e+12 h=3kpc": 5.9579169132410546e-06
+  },
+  "cap_flux_fraction": {
+   "canonical": {
+    "x=0.1": 2.9841551829730375,
+    "x=1": 0.029841551829730376,
+    "x=3": 0.003315727981081153,
+    "x=30": 3.3157279810811526e-05
+   },
+   "alt": {
+    "x=0.1": 4.358339685954488,
+    "x=1": 0.04358339685954488,
+    "x=3": 0.004842599651060543,
+    "x=30": 4.842599651060542e-05
+   }
+  },
+  "cap_flux_fraction_expsphere_1e11_x3": 0.0022214494921224807,
+  "compaction_needed": {
+   "canonical P2 1e+09 point": [
+    565.5373480918338,
+    5038320.263217068
+   ],
+   "canonical P2 1e+09 exp h=0.5rM": [
+    565.5373480918338,
+    2817655.0257834545
+   ],
+   "canonical P2 1e+09 exp h=3kpc": [
+    566.6378772233764,
+    399314.0683074414
+   ],
+   "canonical P2 1e+10 point": [
+    178.83861218617076,
+    1593256.7613144836
+   ],
+   "canonical P2 1e+10 exp h=0.5rM": [
+    178.83861218617076,
+    891020.7542095357
+   ],
+   "canonical P2 1e+10 exp h=3kpc": [
+    178.83861218620814,
+    570692.3125035238
+   ],
+   "canonical P2 1e+11 point": [
+    56.553734809186736,
+    503832.0263224622
+   ],
+   "canonical P2 1e+11 exp h=0.5rM": [
+    56.553734809186736,
+    281765.50257834647
+   ],
+   "canonical P2 1e+11 exp h=3kpc": [
+    56.553734809186736,
+    430900.3801808922
+   ],
+   "canonical P2 1e+12 point": [
+    17.883861218617078,
+    159325.67613140753
+   ],
+   "canonical P2 1e+12 exp h=0.5rM": [
+    17.883861218617078,
+    89102.07542095818
+   ],
+   "canonical P2 1e+12 exp h=3kpc": [
+    17.883861218617078,
+    157494.14801403173
+   ],
+   "canonical nu_mono 1e+09 point": [
+    565.8000824918205,
+    7229584.715152954
+   ],
+   "canonical nu_mono 1e+09 exp h=0.5rM": [
+    565.8000824918205,
+    3389164.76643945
+   ],
+   "canonical nu_mono 1e+09 exp h=3kpc": [
+    566.9424105284281,
+    407246.808454818
+   ],
+   "canonical nu_mono 1e+10 point": [
+    178.92169609852365,
+    2286195.423700859
+   ],
+   "canonical nu_mono 1e+10 exp h=0.5rM": [
+    178.92169609852365,
+    1071748.0027540745
+   ],
+   "canonical nu_mono 1e+10 exp h=3kpc": [
+    178.92169609855355,
+    632901.5756866712
+   ],
+   "canonical nu_mono 1e+11 point": [
+    56.580008249179066,
+    722958.4715145192
+   ],
+   "canonical nu_mono 1e+11 exp h=0.5rM": [
+    56.580008249179066,
+    338916.4766439471
+   ],
+   "canonical nu_mono 1e+11 exp h=3kpc": [
+    56.580008249179066,
+    612532.5194841857
+   ],
+   "canonical nu_mono 1e+12 point": [
+    17.892169609853564,
+    228619.54236961107
+   ],
+   "canonical nu_mono 1e+12 exp h=0.5rM": [
+    17.892169609853564,
+    107174.80027541002
+   ],
+   "canonical nu_mono 1e+12 exp h=3kpc": [
+    17.892169609853564,
+    220285.33322092023
+   ],
+   "alt P2 1e+09 point": [
+    751.3386555414527,
+    6693607.036786352
+   ],
+   "alt P2 1e+09 exp h=0.5rM": [
+    751.3386555414527,
+    3743365.7442111475
+   ],
+   "alt P2 1e+09 exp h=3kpc": [
+    754.6027429497641,
+    463536.9654094411
+   ],
+   "alt P2 1e+10 point": [
+    237.59414456397863,
+    2116704.39983753
+   ],
+   "alt P2 1e+10 exp h=0.5rM": [
+    237.59414456397863,
+    1183756.1866759392
+   ],
+   "alt P2 1e+10 exp h=3kpc": [
+    237.59414456538806,
+    679775.6629554152
+   ],
+   "alt P2 1e+11 point": [
+    75.13386555414301,
+    669360.7036796036
+   ],
+   "alt P2 1e+11 exp h=0.5rM": [
+    75.13386555414301,
+    374336.5744211248
+   ],
+   "alt P2 1e+11 exp h=3kpc": [
+    75.13386555414301,
+    552918.2374861445
+   ],
+   "alt P2 1e+12 point": [
+    23.759414456398947,
+    211670.4399836966
+   ],
+   "alt P2 1e+12 exp h=0.5rM": [
+    23.759414456398947,
+    118375.6186675892
+   ],
+   "alt P2 1e+12 exp h=3kpc": [
+    23.759414456398947,
+    208643.58599634675
+   ],
+   "alt nu_mono 1e+09 point": [
+    751.6877085465593,
+    9604788.221916458
+   ],
+   "alt nu_mono 1e+09 exp h=0.5rM": [
+    751.6877085465593,
+    4502638.956452252
+   ],
+   "alt nu_mono 1e+09 exp h=3kpc": [
+    755.0773385759795,
+    471533.4185419647
+   ],
+   "alt nu_mono 1e+10 point": [
+    237.70452481600594,
+    3037300.7224796363
+   ],
+   "alt nu_mono 1e+10 exp h=0.5rM": [
+    237.70452481600594,
+    1423859.4583794281
+   ],
+   "alt nu_mono 1e+10 exp h=3kpc": [
+    237.70452481746054,
+    744340.7295105408
+   ],
+   "alt nu_mono 1e+11 point": [
+    75.16877085464962,
+    960478.8221905993
+   ],
+   "alt nu_mono 1e+11 exp h=0.5rM": [
+    75.16877085464962,
+    450263.89564525423
+   ],
+   "alt nu_mono 1e+11 exp h=3kpc": [
+    75.16877085464962,
+    773143.5721326445
+   ],
+   "alt nu_mono 1e+12 point": [
+    23.770452481601495,
+    303730.0722473293
+   ],
+   "alt nu_mono 1e+12 exp h=0.5rM": [
+    23.770452481601495,
+    142385.9458379368
+   ],
+   "alt nu_mono 1e+12 exp h=3kpc": [
+    23.770452481601495,
+    290735.87020998955
+   ]
+  }
+ }
+}

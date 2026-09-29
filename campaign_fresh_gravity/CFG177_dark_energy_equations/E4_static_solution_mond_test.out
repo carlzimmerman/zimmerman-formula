@@ -1,0 +1,88 @@
+
+E4 -- the dynamical vacuum current (E3's DYN) around baryons: its static solution, the acceleration it gives test bodies, and whether any
+consequence reaches the MOND form sqrt(G M a0)/r with a0 = kappa c sqrt(G rho_Lambda), kappa = 1/2 FITTED, and no other constant.
+Also (FROZEN_QUESTION Note 2): the time flow COMPACTED BY BARYONS (m proportional to Lambda^beta_b), the relation to a khronon, and the
+dual-AQUAL (DAQ) scoping of what the MOND form would need.
+
+Weak field, static, spherical; the DYN scalar phi = (M_P/sqrt s) ln Lambda, V = rho_vac c^2 e^{sqrt(s) phi/M_P}; psi = phi/M_P.
+s = kappa^2 (the declared illustration of E3; every DYN force scales as s or (1+w0), so the G1 verdict does not depend on it -- E4-INVERT).
+(1+w0) is read from E3's committed results JSON (main run).  Targets: P2 primary, nu_mono reported (CFG44 Bcommon, read-only); both footings;
+M_b = 1e9..1e12 Msun; point mass, exponential sphere h = 0.5 r_M and h = 3 kpc; x = r/r_M in [0.1, 30].
+
+MUTATE=1  POSITIVE CONTROL: the G1 scorer is fed the DAQ force with U built to reproduce P2 (a restatement by construction); the
+          'no MOND force' headline (E4-G1-DUST) must flip, proving the scorer, the targets and the grids are live.
+
+MUTATE mode = 0  (0 = the DYN current's own force; 1 = positive control: the DAQ force built to reproduce P2)
+  from E3 (main run): s = 0.2500, lambda = 0.5000, 1 + w0 = 0.03707
+
+======================================================================================================================
+A  SYMBOLIC: the linearised Klein-Gordon equation on a weak static metric; the scalar's density perturbation; the gradient energy's focusing
+======================================================================================================================
+  [PASS] E4-KG linearised box(phi) = V'(phi) on -(1+2Phi)dt^2 + (1-2Phi)dx^2 with a rolling background (phib'' = -V'): laplacian(dphi) - dphi_tt = V'' dphi + 2 Phi V'  (static: the baryons source the dark energy ONLY through their potential, with strength V')
+         measured: identity: True
+  [PASS] E4-DRHO the scalar's first-order density: delta rho = phib' dphi' - Phi phib'^2 + V' dphi (the -Phi phib'^2 term is the time-FLOW's own response, nonzero only when the dark energy rolls); a static gradient energy (grad dphi)^2/2 has rho + sum p_i = 0, i.e. it does not focus (Tolman)
+         measured: first-order delta rho: True; rho + sum p of static gradient energy = 0
+
+======================================================================================================================
+B  THE DYN VACUUM CURRENT AROUND BARYONS: (i) dust baryons only (they source it only through Phi); (ii) plus CFG43's cap fluid at CFG44's target pressure
+======================================================================================================================
+  max over x in [0.1, 30] of (DYN extra acceleration)/(the law's boost g_law - g_N):   [dust-only | with cap fluid (bound)]
+    canonical P2 1e+09 point                4.44e-14 |  2.70e-18   G1 residual 0.967
+    canonical P2 1e+09 exp h=0.5rM          4.44e-14 |  2.67e-18   G1 residual 0.967
+    canonical P2 1e+09 exp h=3kpc           4.32e-14 |  2.54e-18   G1 residual 0.967
+    canonical P2 1e+10 point                4.45e-13 |  8.55e-17   G1 residual 0.967
+    canonical P2 1e+10 exp h=0.5rM          4.44e-13 |  8.44e-17   G1 residual 0.967
+    canonical P2 1e+10 exp h=3kpc           4.43e-13 |  8.38e-17   G1 residual 0.967
+    canonical P2 1e+11 point                4.45e-12 |  2.70e-15   G1 residual 0.967
+    canonical P2 1e+11 exp h=0.5rM          4.45e-12 |  2.67e-15   G1 residual 0.967
+    canonical P2 1e+11 exp h=3kpc           4.45e-12 |  2.69e-15   G1 residual 0.967
+    canonical P2 1e+12 point                4.48e-11 |  8.55e-14   G1 residual 0.967
+    canonical P2 1e+12 exp h=0.5rM          4.48e-11 |  8.44e-14   G1 residual 0.967
+    canonical P2 1e+12 exp h=3kpc           4.48e-11 |  8.54e-14   G1 residual 0.967
+    alt P2 1e+09 point                      3.68e-14 |  2.46e-18   G1 residual 0.967
+    alt P2 1e+10 point                      3.68e-13 |  7.78e-17   G1 residual 0.967
+    alt P2 1e+11 point                      3.68e-12 |  2.46e-15   G1 residual 0.967
+    alt P2 1e+12 point                      3.70e-11 |  7.78e-14   G1 residual 0.967
+  [PASS] E4-G1-DUST the DYN vacuum current (the time flow made physical) exerts on test baryons an extra acceleration < 1e-10 of the law's boost at every x in [0.1, 30], every mass, profile, kernel and footing (so G1 FAILS: the total stays Newtonian to that precision)
+         measured: max ratio over all 48 rows = 4.48e-11 (dust) and 8.55e-14 (cap fluid, bound); the smallest G1 residual over rows = 0.967 (> 0.10: G1 FAIL in every row); point-mass analytic cross-check at x = 1: pot 2.098e-33 vs 2.098e-33, kin 1.341e-23 vs 1.341e-23 m/s^2
+         reading:  the flow's kinetic term does pull (delta rho = -Phi phib'^2 > 0), but with (1+w0) rho_Lambda it is ~1e-12 of a0
+  [PASS] E4-G1-CAP even with CFG43's cap fluid held at CFG44's TARGET pressure (which exceeds the cap inside r_M, so this is an upper bound) sourcing the vacuum, and its gradient energy counted at full weight, the extra acceleration is < 1e-10 of the boost
+         measured: max ratio 8.55e-14
+  [PASS] E4-SCALING the DYN extra acceleration scales as M^1 r^2 (potential term) and M^1 r^0 (time-flow kinetic term); deep MOND needs M^(1/2) r^-1: wrong in BOTH exponents, so no value of s or (1+w) can fit all masses
+         measured: log-slopes: {'pot_M': 1.0, 'kin_M': 1.0, 'pot_r': 2.0, 'kin_r': 0.0}
+  [PASS] E4-INVERT to reach the P2 boost at x = 1 the potential term needs lambda^2 >= 4.6e+19 and the kinetic term needs 1 + w >= 1.1e+10; the scalar-dominated fixed point of an exponential potential has w = -1 + lambda^2/3 (sympy), so lambda^2 >= 2 cannot accelerate (w >= -1/3) and 1 + w <= 2 always: NO choice of the new constant s rescues G1
+         measured: fixed point verified: True; w = lambda**2/3 - 1; needed (by mass): {'1e+09': {'lambda2_needed': '4.62e+25', 'one_plus_w_needed': '1.07e+13'}, '1e+10': {'lambda2_needed': '4.62e+23', 'one_plus_w_needed': '1.07e+12'}, '1e+11': {'lambda2_needed': '4.62e+21', 'one_plus_w_needed': '1.07e+11'}, '1e+12': {'lambda2_needed': '4.62e+19', 'one_plus_w_needed': '1.07e+10'}}
+  [PASS] E4-SOLAR Solar System: the DYN anomaly at 1 AU is far below the ephemeris bound (Q2 <= 5.2e-27 s^-2, GATES 4.01); a minimally coupled scalar leaves PPN = GR
+         measured: potential-term acceleration 3.31e-63 m/s^2, its gradient 4.43e-74 s^-2; kinetic-term (uniform, no tide) 1.34e-34 m/s^2
+
+======================================================================================================================
+C  THE TIME FLOW COMPACTED BY BARYONS (m proportional to Lambda^beta_b): the Gauss law gains + beta_b rho_b/rho_vac; the force it gives
+======================================================================================================================
+  [PASS] E4-TIMEFLOW-SOURCED if the baryons source the time flow's divergence (m ~ Lambda^beta_b, alpha = beta_b sqrt(s)), the static force is Newtonian in shape: G_eff = G (1 + 2 alpha^2), a = -2 alpha^2 G M/r^2 extra, and gamma_PPN = (1 - 2 alpha^2)/(1 + 2 alpha^2): the compaction of the time flow by matter gives M/r^2, never sqrt(G M a0)/r, and with beta_b = 1, s = kappa^2 it fails Cassini by orders of magnitude
+         measured: Gauss/harmonic: True/True; fifth force -2 alpha^2 G M/r^2: True; gamma form: True (G_eff/G = 2*alpha**2 + 1, gamma = (1 - 2*alpha**2)/(2*alpha**2 + 1)); at beta_b = 1, s = 0.250: gamma - 1 = -0.667; Cassini |gamma - 1| < 2.3e-5 (commonly quoted, from memory) needs alpha^2 < 5.75e-06, i.e. beta_b < 4.80e-03 at s = kappa^2
+         reading:  beta_b is a new constant (G4); linear sourcing of the clock cannot make sqrt(M): the Gauss law is linear in the source for ANY clock kinetic law, so the MOND form needs a nonlinear constitutive law (section E, DAQ)
+
+======================================================================================================================
+D  THE VACUUM CURRENT AS A CLOCK FIELD: t_m = d_m tau with tau = -1/(s Lambda); the relation to a khronon
+======================================================================================================================
+  [PASS] E4-KHRONON in DYN the vacuum current is exactly the gradient of a clock field, t_m = d_m tau with tau = -1/(s Lambda) (curl-free, hypersurface-orthogonal): the level sets of the unimodular clock (= of rho_vac) are a PHYSICAL foliation with a khronon-type normal u_m = d_m tau/sqrt(-(d tau)^2); its field equation is box(tau) - (d tau)^2/tau = 1 - P/rho_vac; unlike a khronon the action is NOT invariant under tau -> f(tau) (the clock's RATE is rho_vac, physical)
+         measured: t_m = d_m tau: True; curl-free: True; clock equation (nabla.t + s Lambda t^2 = box tau - (d tau)^2/tau): True; action changes under tau -> 2 tau: True
+         reading:  in HT the same foliation is pure gauge (E1-SPLIT); nothing here couples to u_m, so no preferred-frame effect (G6/G7 vacuous); adding the khronon's couplings to u_m is door 11C (CFG172), where FC-KH, KM1, KM3 and the V0 region-gate exclusions of the record apply (not run here)
+
+======================================================================================================================
+E  SCOPING (DAQ): the MOND form needs baryons coupled to Lambda AND a nonlinear clock law U ~ |t|^(3/2) with a0 put in by hand
+======================================================================================================================
+  [PASS] E4-DAQ with m ~ Lambda^beta_b and U = -u0 (t^2)^(3/4) the static fifth force is EXACTLY sqrt(G M a0)/r for u0 = (2/3) sqrt(4 pi G a0) rho_vac^(3/2) beta_b^(-3/2) (c = 1): the MOND form appears only because a0 is written into U; beta_b is a new constant; the interpolation (Newtonian regime) is a further postulated U; and a conformal coupling bends no light (the refractive index of A^2 g is A-independent), so this boost would be invisible to lensing
+         measured: Gauss law: True; a r/sqrt(M) independent of r and M: True; u0 = [4*sqrt(pi)*sqrt(G)*sqrt(a_0)*rho_vac**(3/2)/(3*beta_b**(3/2))] (matches: True); lensing index A-independent: True
+         reading:  AQUAL in dual variables (Lambda = the potential, the vacuum current = the displacement field): a restatement (G1 p* at most), G4 FAIL (beta_b), and it fails the record's lensing standing (the boost is seen in weak lensing; cited from the record, not recomputed here)
+  [PASS] E4-DAQ-NULL embedded in cosmology, the Gauss law makes the background current timelike, t^0 = c Int a^3 dt/a^3 + beta_b (Omega_b/Omega_L) c t_age; the galaxy's spacelike current t_r = beta_b M/(4 pi rho_vac r^2) equals it at r_c, where the vacuum current turns NULL and a |t|^(3/2) law is singular; outside r_c the cosmic flow dominates U's argument and the response linearises (no deep regime); r_c/r_M saturates as beta_b -> infinity
+         measured: r_c/r_M by beta_b: {'beta_b=1': 0.643, 'beta_b=10': 1.209, 'beta_b=100': 1.399, 'beta_b=1000': 1.423, 'beta_b=10000': 1.426}; ceiling 1.426 (t0_Lambda = 3.677e+25 m, t_age = 4.351e+17 s)
+         reading:  so even DAQ cannot give a deep-MOND tail out to 30 r_M once the vacuum current's cosmic time component is included
+  [PASS] E4-DAQ-BRANCH of the two continuations of -u0|t^2|^(3/4) to the timelike (cosmological) branch, U = -u0 t^2 |t^2|^(-1/4) is healthy on both branches and the other is a ghost/gradient-unstable there; either way U'' diverges at t^2 = 0, i.e. at r_c (strong coupling where the current is null)
+         measured: health (U_QQ > 0, U_T1T1 < 0) by continuation: {'c=+1': {'spacelike': True, 'timelike': False}, 'c=-1': {'spacelike': True, 'timelike': True}}
+
+  BOTTOM LINE (E4):  the dark energy made dynamical is a clock field whose flow is its kinetic energy; baryons feel it only through gravity, at < 1e-10 of the
+  law's boost, with the wrong M and r scaling; letting baryons compact the flow gives a Newtonian-shaped fifth force (Cassini-excluded at beta_b = 1); the MOND
+  form needs a0 written into a nonlinear clock law (AQUAL relabelled), a new beta_b, no lensing, and it is cut off where the local current turns null.
+
+SUMMARY E4_static_solution_mond_test (MUTATE=0): 12/12 checks pass; load-bearing failures = 0   (1.8 s)
