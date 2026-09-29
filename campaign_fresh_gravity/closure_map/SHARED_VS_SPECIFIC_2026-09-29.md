@@ -144,3 +144,13 @@ The KiDS early/late split, B-specific for the difference only and fragile, remai
   - Over 54 declared convention cells, ΛCDM's statistical gap is inside 2σ in only 52%. B minus ΛCDM has a median of +0.118 dex (+0.023 to +0.266) and is never negative.
   - Lighter halos, a Chabrier-equivalent tie, a zero-point offset below −0.012 dex, or redshift-consistent halos (−0.020) each change ΛCDM's statistical verdict.
   - It is a difference between the models, not a failure of either.
+
+
+## Addendum after CFG88 (appended 2026-09-29; the rows above are unchanged)
+
+- **The KiDS row's fragility is partly answered.** CFG88 (ef7c1d303) scored the split in the seven 1-halo bins with a data-driven covariance.
+  - **Data:** the repo's own KiDS-1000 re-measurement, 181,477 lenses.
+  - **Covariance:** a 50-patch jackknife that passes a calibration null (mean null χ² 6.73 against 7).
+  - **Result:** the colour-blind zero model is rejected at 35.0/7 (p = 1.1 × 10⁻⁵, 4.4σ), and the colour-split ΛCDM fits (7.4/7).
+  - **Error size:** the jackknife errors match the released ones after scaling for sample size, so they show no 1.3–1.6× underestimate. The split would need errors 1.27× larger to fall to 3σ.
+  - **Still open:** systematics common to all patches (shear calibration, photo-z), colour-class contamination and satellites, which a jackknife cannot see. It also remains a failure of every colour-blind dark mass, not of B specifically.
