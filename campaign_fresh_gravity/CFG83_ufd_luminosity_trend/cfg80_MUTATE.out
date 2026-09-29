@@ -1,0 +1,137 @@
+sample (i): 40 systems, 31 resolved + 9 limits; sample (ii): 8 systems (Boo I, Car II, Hyd I, Leo IV, Leo V, Ret II, Seg 1, Wil 1)
+
+=== CONTROLS (synthetic / closed form) ===
+  [PASS] C1a my Spearman == scipy.spearmanr and my tau_c == scipy.kendalltau (tau-b) on tied data  rho 0.200509621011/0.200509621011; tau 0.140284348397/0.140284348397
+  [PASS] C1b uncensored Kendall permutation p (1e5) agrees with scipy asymptotic p within 0.01  tau 0.238; perm p 0.0301 vs scipy 0.0302
+  [PASS] C1c hand-worked censored example S = +2, tau_c = 2/6; two limits indeterminate  S 2.0, tau 0.3333
+  [PASS] C1d injected slope +0.08 (n=200, 45 censored): censored-Kendall p < 1e-3, ATS slope within 0.02 of 0.08; zero injection gives slope 0 +- 0.02  p 1.0e-05, tau 0.299, ATS +0.0653; null-injection ATS -0.0117
+  [FAIL] C1e null calibration: fraction of 300 null data sets (n=40, 9 censored) with p < 0.05 lies in [0.02, 0.09]  fraction 0.117
+  [PASS] C1e2 [post-hoc, A2] null calibration with censoring INDEPENDENT of x: fraction with p < 0.05 lies in [0.02, 0.09]  fraction 0.037
+  C1e3 [info, A2] x-dependent censoring gave fraction 0.117 (C1e) vs independent censoring 0.037 (C1e2) at nominal 0.05
+  [PASS] C1f injected data with (y, flag) randomly permuted among systems lose the trend (p > 0.01)  p 0.329, tau -0.042
+  [PASS] C2 law closed forms: Newtonian (a0 -> 0) to 1e-9, deep-MOND (a0 -> inf) to 1e-4  +2.2e-16, -2.2e-16
+  [PASS] C2 LCDM with the halo off is the Newtonian closed form; the halo only adds  3.3e-16
+  [PASS] C2 rule >= law for every system (the sum rule only adds) and LAW alt >= LAW canonical  
+
+=== per-system offsets (LAW canonical; sample (i), sorted by M_V) ===   [MUTATED: offsets permuted among systems]
+  Eridanus II        M_V  -7.12 rh   178.9 pc  offset +0.276 (limit, upper bound)
+  Bootes I           M_V  -6.02 rh   160.9 pc  offset +0.432
+  Bootes III         M_V  -5.83 rh   466.6 pc  offset +0.660
+  Hercules           M_V  -5.81 rh   118.5 pc  offset +0.643 (limit, upper bound)
+  Centaurus I        M_V  -5.35 rh    71.0 pc  offset +0.475
+  Canes Venatici II  M_V  -5.17 rh    54.0 pc  offset +0.436
+  Ursa Major I       M_V  -5.14 rh   150.1 pc  offset +0.199
+  Hydra II           M_V  -5.10 rh    56.7 pc  offset +0.564 (limit, upper bound)
+  Leo IV             M_V  -4.95 rh   101.1 pc  offset +1.295 (limit, upper bound)
+  Hydrus I           M_V  -4.71 rh    52.4 pc  offset +0.580
+  Carina II          M_V  -4.57 rh    76.5 pc  offset +0.355
+  Ursa Major II      M_V  -4.42 rh    92.1 pc  offset +0.218
+  Leo V              M_V  -4.40 rh    35.2 pc  offset -0.124
+  Aquarius II        M_V  -4.36 rh   123.7 pc  offset +0.303
+  Coma Berenices     M_V  -4.29 rh    54.9 pc  offset +0.253
+  Pisces II          M_V  -4.28 rh    56.3 pc  offset +0.251
+  Pegasus IV         M_V  -4.25 rh    41.6 pc  offset +0.508
+  Columba I          M_V  -4.20 rh    97.3 pc  offset +0.371
+  Grus II            M_V  -4.19 rh    94.2 pc  offset +0.215
+  Pegasus III        M_V  -4.17 rh    82.1 pc  offset +0.646
+  Grus I             M_V  -4.13 rh   113.4 pc  offset -0.000
+  Tucana II          M_V  -3.75 rh   161.7 pc  offset +0.322
+  Leo VI             M_V  -3.56 rh    86.9 pc  offset +0.698
+  Eridanus IV        M_V  -3.55 rh    56.2 pc  offset +0.313
+  Horologium I       M_V  -3.38 rh    31.7 pc  offset +0.585
+  Reticulum III      M_V  -3.30 rh    62.2 pc  offset +0.329
+  Reticulum II       M_V  -3.10 rh    36.5 pc  offset +0.564
+  Tucana IV          M_V  -3.00 rh    98.1 pc  offset +0.315
+  Bootes II          M_V  -2.94 rh    33.0 pc  offset +0.330 (limit, upper bound)
+  Pictor II          M_V  -2.65 rh    31.9 pc  offset +0.736
+  Phoenix II         M_V  -2.60 rh    26.9 pc  offset +0.349 (limit, upper bound)
+  Willman 1          M_V  -2.53 rh    20.0 pc  offset +0.229
+  Aquarius III       M_V  -2.50 rh    36.3 pc  offset +0.587
+  Carina III         M_V  -2.40 rh    19.5 pc  offset +0.188
+  Segue 2            M_V  -1.95 rh    35.0 pc  offset +0.571
+  Segue 1            M_V  -1.30 rh    19.5 pc  offset +0.112 (limit, upper bound)
+  Triangulum II      M_V  -1.30 rh    17.2 pc  offset +0.819 (limit, upper bound)
+  Tucana III         M_V  -1.30 rh    30.0 pc  offset +0.325
+  Tucana V           M_V  -1.10 rh    22.8 pc  offset +0.524 (limit, upper bound)
+  Draco II           M_V  -0.80 rh    16.1 pc  offset +0.466
+
+======================================================================================================================
+(a)/(b) SAMPLE (i): 31 resolved + 9 limits.  censored Kendall (BHK/AML), ATS slope (68% boot), Spearman bracket (R = resolved only, B = limits at bound, L = limits at bottom)
+======================================================================================================================
+  LAW  canonical  vs M_V (faint = +)    : tau_c +0.003 p 0.9867 | ATS slope +0.0012 [-0.0292,+0.0282] | rho_R +0.087 (p 0.6371) rho_B -0.006 (p 0.9717) rho_L -0.001 (p 0.9942)
+  LAW  canonical  vs log10 r_half       : tau_c -0.023 p 0.8466 | ATS slope -0.0243 [-0.1817,+0.1018] | rho_R -0.134 (p 0.4699) rho_B -0.052 (p 0.7518) rho_L +0.043 (p 0.7931)
+  LAW  canonical  vs catalogue log M_*  : tau_c -0.006 p 0.9617 | ATS slope -0.0051 [-0.0731,+0.0722] | rho_R -0.090 (p 0.6269) rho_B +0.005 (p 0.9783) rho_L +0.000 (p 0.9997)
+  LAW  alt        vs M_V (faint = +)    : tau_c +0.003 p 0.9867 | ATS slope +0.0012 [-0.0293,+0.0282] | rho_R +0.087 (p 0.6371) rho_B -0.006 (p 0.9717) rho_L -0.001 (p 0.9942)
+  LAW  alt        vs log10 r_half       : tau_c -0.023 p 0.8466 | ATS slope -0.0234 [-0.1817,+0.1019] | rho_R -0.134 (p 0.4699) rho_B -0.052 (p 0.7518) rho_L +0.043 (p 0.7931)
+  LAW  alt        vs catalogue log M_*  : tau_c -0.006 p 0.9617 | ATS slope -0.0051 [-0.0733,+0.0724] | rho_R -0.090 (p 0.6269) rho_B +0.005 (p 0.9783) rho_L +0.000 (p 0.9997)
+  RULE canonical  vs M_V (faint = +)    : tau_c +0.012 p 0.9205 | ATS slope +0.0033 [-0.0288,+0.0341] | rho_R +0.073 (p 0.6948) rho_B -0.002 (p 0.9895) rho_L -0.008 (p 0.9616)
+  RULE canonical  vs log10 r_half       : tau_c +0.007 p 0.9570 | ATS slope +0.0035 [-0.1401,+0.1478] | rho_R -0.073 (p 0.6957) rho_B -0.023 (p 0.8863) rho_L +0.073 (p 0.6511)
+  RULE canonical  vs catalogue log M_*  : tau_c -0.012 p 0.9185 | ATS slope -0.0092 [-0.0858,+0.0723] | rho_R -0.075 (p 0.6878) rho_B +0.001 (p 0.9938) rho_L +0.007 (p 0.9651)
+  RULE alt        vs M_V (faint = +)    : tau_c +0.015 p 0.8994 | ATS slope +0.0033 [-0.0299,+0.0344] | rho_R +0.084 (p 0.6534) rho_B +0.004 (p 0.9833) rho_L -0.002 (p 0.9902)
+  RULE alt        vs log10 r_half       : tau_c +0.004 p 0.9785 | ATS slope +0.0042 [-0.1391,+0.1503] | rho_R -0.081 (p 0.6636) rho_B -0.028 (p 0.8657) rho_L +0.069 (p 0.6704)
+  RULE alt        vs catalogue log M_*  : tau_c -0.015 p 0.8972 | ATS slope -0.0085 [-0.0863,+0.0723] | rho_R -0.086 (p 0.6461) rho_B -0.005 (p 0.9782) rho_L +0.001 (p 0.9939)
+  LCDM -          vs M_V (faint = +)    : tau_c +0.006 p 0.9653 | ATS slope +0.0024 [-0.0288,+0.0334] | rho_R +0.075 (p 0.6887) rho_B -0.011 (p 0.9438) rho_L -0.008 (p 0.9607)
+  LCDM -          vs log10 r_half       : tau_c +0.025 p 0.8251 | ATS slope +0.0401 [-0.1199,+0.1677] | rho_R -0.045 (p 0.8086) rho_B -0.003 (p 0.9847) rho_L +0.089 (p 0.5838)
+  LCDM -          vs catalogue log M_*  : tau_c -0.006 p 0.9629 | ATS slope -0.0069 [-0.0834,+0.0721] | rho_R -0.077 (p 0.6808) rho_B +0.010 (p 0.9493) rho_L +0.007 (p 0.9651)
+
+  PRIMARY FAMILY (LAW canonical, censored Kendall, threshold 0.01): M_V: p 0.9867 -> no trend; logrh: p 0.8466 -> no trend
+  secondary rows flagged (p < 0.01): none ; below Bonferroni 3.3e-4: none
+
+======================================================================================================================
+(a)/(b) SAMPLE (ii): 8 binary-corrected systems; exact permutation p over all 8! = 40320 permutations
+======================================================================================================================
+  f = 0    LAW  canonical  vs M_V (faint = +)    : tau_b +0.143 p 0.7196 | rho +0.143 p 0.7520 | ATS slope +0.0140 [-0.0861,+0.0803]
+  f = 0    LAW  canonical  vs log10 r_half       : tau_b -0.143 p 0.7196 | rho -0.119 p 0.7930 | ATS slope -0.1193 [-0.4880,+0.1125]
+  f = 0    LAW  canonical  vs catalogue log M_*  : tau_b -0.143 p 0.7196 | rho -0.143 p 0.7520 | ATS slope -0.0578 [-0.3114,+0.0674]
+  f = 0    LAW  alt        vs M_V (faint = +)    : tau_b +0.143 p 0.7196 | rho +0.143 p 0.7520 | ATS slope +0.0139 [-0.0863,+0.0803]
+  f = 0    LAW  alt        vs log10 r_half       : tau_b -0.143 p 0.7196 | rho -0.119 p 0.7930 | ATS slope -0.1190 [-0.4880,+0.1121]
+  f = 0    LAW  alt        vs catalogue log M_*  : tau_b -0.143 p 0.7196 | rho -0.143 p 0.7520 | ATS slope -0.0577 [-0.3107,+0.0671]
+  f = 0    RULE canonical  vs M_V (faint = +)    : tau_b +0.000 p 1.0000 | rho -0.071 p 0.8820 | ATS slope -0.0011 [-0.0882,+0.0201]
+  f = 0    RULE canonical  vs log10 r_half       : tau_b +0.000 p 1.0000 | rho +0.119 p 0.7930 | ATS slope -0.0426 [-0.0839,+0.2243]
+  f = 0    RULE canonical  vs catalogue log M_*  : tau_b +0.000 p 1.0000 | rho +0.071 p 0.8820 | ATS slope -0.0200 [-0.0502,+0.1080]
+  f = 0    RULE alt        vs M_V (faint = +)    : tau_b +0.000 p 1.0000 | rho -0.071 p 0.8820 | ATS slope -0.0006 [-0.0879,+0.0191]
+  f = 0    RULE alt        vs log10 r_half       : tau_b +0.000 p 1.0000 | rho +0.119 p 0.7930 | ATS slope -0.0514 [-0.0798,+0.2214]
+  f = 0    RULE alt        vs catalogue log M_*  : tau_b +0.000 p 1.0000 | rho +0.071 p 0.8820 | ATS slope -0.0268 [-0.0478,+0.1066]
+  f = 0    LCDM -          vs M_V (faint = +)    : tau_b -0.071 p 0.9049 | rho -0.095 p 0.8401 | ATS slope -0.0068 [-0.0913,+0.0318]
+  f = 0    LCDM -          vs log10 r_half       : tau_b +0.071 p 0.9049 | rho +0.143 p 0.7520 | ATS slope +0.0096 [-0.1326,+0.2571]
+  f = 0    LCDM -          vs catalogue log M_*  : tau_b +0.071 p 0.9049 | rho +0.095 p 0.8401 | ATS slope +0.0047 [-0.0794,+0.1238]
+  f free   LAW  canonical  vs M_V (faint = +)    : tau_b +0.143 p 0.7196 | rho +0.262 p 0.5364 | ATS slope +0.0126 [-0.0628,+0.0775]
+  f free   LAW  canonical  vs log10 r_half       : tau_b -0.143 p 0.7196 | rho -0.238 p 0.5822 | ATS slope -0.0677 [-0.2711,+0.0791]
+  f free   LAW  canonical  vs catalogue log M_*  : tau_b -0.143 p 0.7196 | rho -0.262 p 0.5364 | ATS slope -0.0373 [-0.1952,+0.0371]
+  f free   LAW  alt        vs M_V (faint = +)    : tau_b +0.143 p 0.7196 | rho +0.262 p 0.5364 | ATS slope +0.0125 [-0.0628,+0.0775]
+  f free   LAW  alt        vs log10 r_half       : tau_b -0.143 p 0.7196 | rho -0.238 p 0.5822 | ATS slope -0.0675 [-0.2710,+0.0806]
+  f free   LAW  alt        vs catalogue log M_*  : tau_b -0.143 p 0.7196 | rho -0.262 p 0.5364 | ATS slope -0.0372 [-0.1951,+0.0378]
+  f free   RULE canonical  vs M_V (faint = +)    : tau_b +0.000 p 1.0000 | rho +0.048 p 0.9349 | ATS slope -0.0117 [-0.0616,+0.0740]
+  f free   RULE canonical  vs log10 r_half       : tau_b +0.000 p 1.0000 | rho +0.000 p 1.0000 | ATS slope -0.0083 [-0.2850,+0.3395]
+  f free   RULE canonical  vs catalogue log M_*  : tau_b +0.000 p 1.0000 | rho -0.048 p 0.9349 | ATS slope -0.0046 [-0.1857,+0.1538]
+  f free   RULE alt        vs M_V (faint = +)    : tau_b +0.000 p 1.0000 | rho +0.048 p 0.9349 | ATS slope -0.0112 [-0.0613,+0.0744]
+  f free   RULE alt        vs log10 r_half       : tau_b +0.000 p 1.0000 | rho +0.000 p 1.0000 | ATS slope -0.0101 [-0.2868,+0.3380]
+  f free   RULE alt        vs catalogue log M_*  : tau_b +0.000 p 1.0000 | rho -0.048 p 0.9349 | ATS slope -0.0055 [-0.1869,+0.1531]
+  f free   LCDM -          vs M_V (faint = +)    : tau_b -0.071 p 0.9049 | rho -0.071 p 0.8820 | ATS slope -0.0174 [-0.0649,+0.0687]
+  f free   LCDM -          vs log10 r_half       : tau_b +0.071 p 0.9049 | rho +0.095 p 0.8401 | ATS slope +0.0110 [-0.2647,+0.3565]
+  f free   LCDM -          vs catalogue log M_*  : tau_b +0.071 p 0.9049 | rho +0.071 p 0.8820 | ATS slope +0.0060 [-0.1725,+0.1626]
+  f = 0.7  LAW  canonical  vs M_V (faint = +)    : tau_b +0.143 p 0.7196 | rho +0.262 p 0.5364 | ATS slope +0.0123 [-0.0669,+0.0731]
+  f = 0.7  LAW  canonical  vs log10 r_half       : tau_b -0.143 p 0.7196 | rho -0.238 p 0.5822 | ATS slope -0.0659 [-0.2558,+0.2558]
+  f = 0.7  LAW  canonical  vs catalogue log M_*  : tau_b -0.143 p 0.7196 | rho -0.262 p 0.5364 | ATS slope -0.0363 [-0.1842,+0.1199]
+  f = 0.7  LAW  alt        vs M_V (faint = +)    : tau_b +0.143 p 0.7196 | rho +0.262 p 0.5364 | ATS slope +0.0123 [-0.0669,+0.0731]
+  f = 0.7  LAW  alt        vs log10 r_half       : tau_b -0.143 p 0.7196 | rho -0.238 p 0.5822 | ATS slope -0.0657 [-0.2557,+0.2573]
+  f = 0.7  LAW  alt        vs catalogue log M_*  : tau_b -0.143 p 0.7196 | rho -0.262 p 0.5364 | ATS slope -0.0362 [-0.1841,+0.1207]
+  f = 0.7  RULE canonical  vs M_V (faint = +)    : tau_b +0.000 p 1.0000 | rho +0.048 p 0.9349 | ATS slope -0.0120 [-0.0668,+0.0749]
+  f = 0.7  RULE canonical  vs log10 r_half       : tau_b +0.000 p 1.0000 | rho +0.000 p 1.0000 | ATS slope -0.0065 [-0.2887,+0.3476]
+  f = 0.7  RULE canonical  vs catalogue log M_*  : tau_b +0.000 p 1.0000 | rho -0.048 p 0.9349 | ATS slope -0.0036 [-0.1881,+0.1673]
+  f = 0.7  RULE alt        vs M_V (faint = +)    : tau_b +0.000 p 1.0000 | rho +0.048 p 0.9349 | ATS slope -0.0115 [-0.0662,+0.0754]
+  f = 0.7  RULE alt        vs log10 r_half       : tau_b +0.000 p 1.0000 | rho +0.000 p 1.0000 | ATS slope -0.0082 [-0.2905,+0.3446]
+  f = 0.7  RULE alt        vs catalogue log M_*  : tau_b +0.000 p 1.0000 | rho -0.048 p 0.9349 | ATS slope -0.0045 [-0.1893,+0.1659]
+  f = 0.7  LCDM -          vs M_V (faint = +)    : tau_b -0.071 p 0.9049 | rho -0.071 p 0.8820 | ATS slope -0.0177 [-0.0731,+0.0697]
+  f = 0.7  LCDM -          vs log10 r_half       : tau_b +0.071 p 0.9049 | rho +0.095 p 0.8401 | ATS slope +0.0128 [-0.2684,+0.3792]
+  f = 0.7  LCDM -          vs catalogue log M_*  : tau_b +0.071 p 0.9049 | rho +0.071 p 0.8820 | ATS slope +0.0070 [-0.1749,+0.1831]
+
+  sample (ii) smallest exact p over all 45 rows: 0.7196; rows with p < 0.05: 0; with p < 0.01: 0
+
+=== MUTATE calibration: 200 random permutations of the real offsets; primary rows ===
+  [PASS] MUTATE calibration (M_V): fraction of 200 permuted real data sets with p < 0.01 is <= 0.05  fraction 0.000 (nominal 0.01)
+  [PASS] MUTATE calibration (logrh): fraction of 200 permuted real data sets with p < 0.01 is <= 0.05  fraction 0.015 (nominal 0.01)
+  primary rows on the seeded mutated data: M_V p 0.9867; logrh p 0.8466
+  (if the un-mutated real data show no trend, this MUTATE run on the real data is uninformative; the synthetic C1d/C1f controls carry the bite.)
+
+FAILS: ['C1e null calibration: fraction of 300 null data sets (n=40, 9 censored) with p < 0.05 lies in [0.02, 0.09]']; elapsed 73 s
