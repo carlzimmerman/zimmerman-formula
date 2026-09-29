@@ -64,3 +64,27 @@ It is still a failure that every colour-blind dark mass shares (CFG77).
 - **Data requirements (not in git)**, all in `real_research/data/lensing_rar/`:
   - The stage: `KiDS_DR4.1_SOM_gold_WL_cat.fits` (17.7 GB), `KiDS_DR4_brightsample.fits`, `KiDS_DR4_brightsample_LePhare.fits`, `lr_lenses.npz` and `lr_esd_jackknife.npz`.
   - The scoring: `cfg96_isoflags.npz` and `cfg96_stack.npz` (written by the stage), `lr_lenses.npz` and `lr_esd_jackknife.npz`.
+
+## Corrections after CFG109's independent re-derivation (appended 2026-09-29; no result changed)
+
+CFG109 (b7d41c302; the Opus chat) reproduces this lane to every printed digit with independent code:
+- the lens counts, 181,477 / 93,020 / 57,265;
+- the K1 zero-model χ²/7, 35.04 / 32.02 / 19.12, which is 4.40 / 4.11 / 2.66σ;
+- A_20 = 0.968 ± 0.188 and A_30 = 1.174 ± 0.273;
+- the MUTATE flipping H1.
+
+It weakens the reading:
+
+- **The isolated split does not differ from the full split within errors.** The difference of splits (the isolated set against the disjoint neighbour set) is 8.75/7 (p 0.27), with shape amplitude δ = +0.009 ± 0.350. Comparing p-values (4 × 10⁻⁵ against 10⁻⁵) says nothing.
+- **Power:**
+  - If the stricter window removes every satellite, the smallest satellite piece detectable at 80% power is ε = 0.45 of the base split. The observed 95% upper limit is 0.30.
+  - If it removes 75%, the detectable piece is 0.92, with upper limit 0.62.
+  - Near 60% removal the test is uninformative.
+  - The removal fraction itself is undetermined, because the Δχ windows are photo-z proxies. H1's amplitude condition is not a detection test.
+- **Fragility:** the split's significance is fragile to error inflation. W20 reaches p = 0.05 at errors × 1.51.
+- **Independence** stops at the staged per-lens sums and this lane's isolation flags. Flag correctness and the radius and mass thresholds cannot be checked; only the three Δχ windows are staged.
+- **CFG109's own controls:** four failed as frozen.
+  - C4: a float-roundoff tolerance.
+  - C8a/b: a Hartlap factor inside a true-covariance power simulation, redone post hoc.
+  - C9: a group-permutation null biased for an unidentified reason. It is unresolved.
+- **How to read the headline:** read "Satellites, as removed by a stricter isolation cut, do not drive the split" above as: **the split persists under stricter photo-z isolation, but the test is not powered to exclude a satellite contribution below ε ≈ 0.3–0.45 of the split at complete removal (about 0.6–0.9 at 75% removal).**
