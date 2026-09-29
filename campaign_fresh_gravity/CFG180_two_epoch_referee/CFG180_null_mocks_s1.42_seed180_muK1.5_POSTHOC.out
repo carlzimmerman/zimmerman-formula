@@ -1,0 +1,29 @@
+====================================================================================================
+CFG180 mock nulls: s=1.42  N=200 per family  seed=180  repo=<repo>  (mu_true KROSS 1.5; anchor offset 0.0988)
+====================================================================================================
+truth flat  F1 (R_true 1.0, D 0.0): R_flat 0.87 [0.71, 1.08] (no-be 0/200); R_rival 0.33 [0.19, 0.55] (no-be 4/200)
+      label (in-repo width): {CORRECT-ONLY 0.65, WRONG-ONLY 0.01, BOTH 0.00, NEITHER 0.34}   (+-20% width): {CORRECT-ONLY 0.71, WRONG-ONLY 0.01, BOTH 0.00, NEITHER 0.28}   observed-pattern 0.00   floored discs U/K 2.44/16.5
+truth flat  F2 (R_true 2.0, D 0.0): R_flat 1.48 [1.23, 1.77] (no-be 0/200); R_rival 0.96 [0.71, 1.28] (no-be 0/200)
+      label (in-repo width): {CORRECT-ONLY 0.45, WRONG-ONLY 0.00, BOTH 0.01, NEITHER 0.55}   (+-20% width): {CORRECT-ONLY 0.56, WRONG-ONLY 0.00, BOTH 0.05, NEITHER 0.39}   observed-pattern 0.00   floored discs U/K 1.21/16.4
+truth flat  F3 (R_true 1.0, D 0.15): R_flat 1.81 [1.55, 2.18] (no-be 0/200); R_rival 1.30 [1.04, 1.70] (no-be 0/200)
+      label (in-repo width): {CORRECT-ONLY 0.00, WRONG-ONLY 0.38, BOTH 0.03, NEITHER 0.59}   (+-20% width): {CORRECT-ONLY 0.00, WRONG-ONLY 0.64, BOTH 0.10, NEITHER 0.26}   observed-pattern 0.00   floored discs U/K 0.73/16.6
+truth flat  F4 (R_true 1.0, D draw): R_flat 0.82 [0.31, 2.18] (no-be 0/200); R_rival 0.71 [0.20, 2.04] (no-be 64/200)
+      label (in-repo width): {CORRECT-ONLY 0.24, WRONG-ONLY 0.33, BOTH 0.12, NEITHER 0.31}   (+-20% width): {CORRECT-ONLY 0.27, WRONG-ONLY 0.39, BOTH 0.16, NEITHER 0.18}   observed-pattern 0.07   floored discs U/K 2.55/16.2
+truth rival F1 (R_true 1.0, D 0.0): R_flat 1.24 [1.07, 1.44] (no-be 0/200); R_rival 0.80 [0.63, 1.00] (no-be 0/200)
+      label (in-repo width): {CORRECT-ONLY 0.02, WRONG-ONLY 0.01, BOTH 0.00, NEITHER 0.96}   (+-20% width): {CORRECT-ONLY 0.06, WRONG-ONLY 0.04, BOTH 0.01, NEITHER 0.91}   observed-pattern 0.00   floored discs U/K 0.73/8.8
+truth rival F2 (R_true 2.0, D 0.0): R_flat 1.96 [1.70, 2.25] (no-be 0/200); R_rival 1.52 [1.28, 1.82] (no-be 0/200)
+      label (in-repo width): {CORRECT-ONLY 0.00, WRONG-ONLY 0.02, BOTH 0.00, NEITHER 0.98}   (+-20% width): {CORRECT-ONLY 0.00, WRONG-ONLY 0.07, BOTH 0.00, NEITHER 0.93}   observed-pattern 0.00   floored discs U/K 0.13/9.0
+truth rival F3 (R_true 1.0, D 0.15): R_flat 2.35 [2.03, 2.62] (no-be 0/200); R_rival 1.93 [1.59, 2.21] (no-be 0/200)
+      label (in-repo width): {CORRECT-ONLY 0.42, WRONG-ONLY 0.00, BOTH 0.54, NEITHER 0.04}   (+-20% width): {CORRECT-ONLY 0.20, WRONG-ONLY 0.00, BOTH 0.81, NEITHER 0.00}   observed-pattern 0.06   floored discs U/K 0.03/8.9
+truth rival F4 (R_true 1.0, D draw): R_flat 1.32 [0.58, 2.55] (no-be 1/200); R_rival 0.98 [0.29, 2.25] (no-be 19/200)
+      label (in-repo width): {CORRECT-ONLY 0.20, WRONG-ONLY 0.18, BOTH 0.26, NEITHER 0.36}   (+-20% width): {CORRECT-ONLY 0.26, WRONG-ONLY 0.19, BOTH 0.29, NEITHER 0.26}   observed-pattern 0.11   floored discs U/K 1.28/8.6
+
+-- frozen meaning tests
+  power at s=1.42 truth flat: F1 P(CORRECT-ONLY)=0.65, P(WRONG-ONLY)=0.01  -> HAS POWER
+  power at s=1.42 truth rival: F1 P(CORRECT-ONLY)=0.02, P(WRONG-ONLY)=0.01  -> NO POWER
+  observed pattern reproducible by a null: truth flat F3: P(pattern)=0.00 
+  observed pattern reproducible by a null: truth flat F4: P(pattern)=0.07 
+  observed pattern reproducible by a null: truth rival F3: P(pattern)=0.06 
+  observed pattern reproducible by a null: truth rival F4: P(pattern)=0.11 
+
+runtime 55.8 s

@@ -1,0 +1,53 @@
+====================================================================================================
+CFG180 referee re-derivation of CFG170.  MODE=6.  repo=<repo>
+====================================================================================================
+MUTATION: mu search range [0.01, 1.0]
+KURVS n=10  KROSS n=390  SPARC anchor n=75
+
+-- R_obs: median z KURVS 1.529 KROSS 0.850; median log M* KURVS 10.140 KROSS 10.043; (1+z) ratio 1.3669
+   mass factors in-repo 0.9352  literature 0.9228
+   in-repo   R_obs = 1.005   2 sigma bracket [0.726, 1.391]
+   literature R_obs = 2.016  (+-20%) bracket [1.613, 2.419]  (ABSTRACT-LEVEL constants; INPUTS)
+
+-- controls (frozen C1, C2)
+  [FAIL] C1 KURVS s=1 break-evens None / 0.6210711024474767 vs 2.109 / 0.621 (1e-3)
+  [PASS] C2 KROSS anchor-corrected D' at mu=0.67, s=1: -0.0042 / -0.0821 vs -0.0042 / -0.0821 (1e-3)
+
+-- R0 power (before any comparison): |log10 R_flat - log10 R_rival|
+
+-- break-even gas fraction mu_be [1 sigma root interval, convention A: sigma frozen at the central root]
+  s=0.00  flat  KURVS no be                      KROSS no be                      | rival KURVS no be                      KROSS no be
+  s=1.00  flat  KURVS no be                      KROSS 0.636 [0.477, 0.805]       | rival KURVS 0.621 [0.293, >30]         KROSS 0.052 [<0.01, 0.185]
+  s=1.42  flat  KURVS no be                      KROSS 0.998 [0.819, >30]         | rival KURVS no be                      KROSS 0.352 [0.210, 0.503]
+  s=1.62  flat  KURVS no be                      KROSS no be                      | rival KURVS no be                      KROSS 0.494 [0.344, 0.654]
+  s=1.69  flat  KURVS no be                      KROSS no be                      | rival KURVS no be                      KROSS 0.544 [0.391, 0.707]
+  s=3.00  flat  KURVS no be                      KROSS no be                      | rival KURVS no be                      KROSS no be
+
+-- R_law = mu_be(KURVS)/mu_be(KROSS) [conservative interval]
+  s=0.00  flat no break-even              rival no break-even    nroots(U,K flat)=0,0 (rival)=0,0
+  s=1.00  flat no break-even              rival 11.94 [1.58, open]    nroots(U,K flat)=0,1 (rival)=1,1
+  s=1.42  flat no break-even              rival no break-even    nroots(U,K flat)=0,1 (rival)=0,1
+  s=1.62  flat no break-even              rival no break-even    nroots(U,K flat)=0,0 (rival)=0,1
+  s=1.69  flat no break-even              rival no break-even    nroots(U,K flat)=0,0 (rival)=0,1
+  s=3.00  flat no break-even              rival no break-even    nroots(U,K flat)=0,0 (rival)=0,0
+  s=0.60  flat no break-even              rival no break-even    nroots(U,K flat)=0,1 (rival)=1,0
+  s=1.40  flat no break-even              rival no break-even    nroots(U,K flat)=0,1 (rival)=0,1
+
+-- disfavoured matrix (frozen rule; literal form / overlap form must agree)   [flat, rival] x [in-repo, literature]
+  s=1.00: in-repo flat n/a    rival DISFAV | literature flat n/a    rival not
+  s=1.42: in-repo flat n/a    rival n/a    | literature flat n/a    rival n/a
+  s=1.62: in-repo flat n/a    rival n/a    | literature flat n/a    rival n/a
+  s=1.69: in-repo flat n/a    rival n/a    | literature flat n/a    rival n/a
+  s=3.00: in-repo flat n/a    rival n/a    | literature flat n/a    rival n/a
+  laws disfavoured by BOTH brackets at s=1: []  ->  summary NON-DIAGNOSTIC
+  literal form and overlap form agree in every cell: True
+
+-- explanatory checks
+   s=1 rival: R in (1+mu) = 1.541
+   KROSS rival D' at mu=0.01, s=1: +0.0065 +- 0.0197
+
+-- PASS LINES vs the CFG170 README targets (targets read, not predicted)
+
+-- MUTATE=6 report (baseline in the same run)
+   KURVS flat mu_be at s=1 with range [0.01, 1.0]: None (baseline 2.109)
+MUTATE=6: CONTROL BITES (exit 1)

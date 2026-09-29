@@ -1,0 +1,88 @@
+====================================================================================================
+CFG180 attacks A1-A8.  seed=180  repo=<repo>
+====================================================================================================
+
+=== A1 structural required precision: distance (dex) of the truth law's R to the OTHER law's 1-sigma interval ===
+   w* = that distance; a bracket half-width w on R_obs disfavours the wrong law only if w < w*.
+   s=1.00: flat-truth (R=3.32) w*=0.000 dex   rival-truth (R=11.94) w*=0.324 dex   -> R_obs-limited
+   s=1.42: flat-truth (R=3.10) w*=0.000 dex   rival-truth (R=3.57) w*=0.000 dex   -> STRUCTURALLY NON-DIAGNOSTIC
+   s=1.62: flat-truth (R=3.06) w*=0.000 dex   rival-truth (R=3.17) w*=0.000 dex   -> STRUCTURALLY NON-DIAGNOSTIC
+   s=1.69: flat-truth (R=3.04) w*=0.000 dex   rival-truth (R=3.08) w*=0.000 dex   -> STRUCTURALLY NON-DIAGNOSTIC
+   s=3.00: flat-truth (R=2.97) w*=0.000 dex   rival-truth (R=2.60) w*=0.000 dex   -> STRUCTURALLY NON-DIAGNOSTIC
+   descriptive: zero-width R_obs ranges where EXACTLY ONE law is disfavoured (frozen conservative intervals)
+   s=1.00: flat only: R_obs in [1.58, 1.98]; flat only: R_obs in [5.66, 30.00]
+   s=1.42: flat only: R_obs in [1.64, 2.04]; flat only: R_obs in [4.74, 8.40]
+   s=1.62: flat only: R_obs in [1.65, 2.05]; flat only: R_obs in [4.55, 6.23]
+   s=1.69: flat only: R_obs in [1.65, 2.05]; flat only: R_obs in [4.50, 5.83]
+   s=3.00: flat only: R_obs in [1.69, 2.10]; rival only: R_obs in [3.94, 4.18]
+
+=== A2 sample-size requirement: sigma_f = sqrt(f^2 sigma_raw^2 + sigma_anchor^2); intervals recomputed ===
+   s=1.00: disjoint (conservative) at f = [];  quadrature-disjoint at f = [0.25, 0.15, 0.1, 0.05, 0.0];  f=0 disjoint False  -> floor-limited (not disjoint even at f=0)
+           at f=0: flat (2.6067391839848235, 3.3164590232750233, 4.3010095233137475)  rival (3.660962672413481, 11.939171594176962, inf)
+   s=1.42: disjoint (conservative) at f = [];  quadrature-disjoint at f = [];  f=0 disjoint False  -> floor-limited (not disjoint even at f=0)
+           at f=0: flat (2.5763852340898965, 3.103075559376322, 3.768600126647996)  rival (2.469255348151215, 3.5699908618146314, 5.4994587546116)
+   s=1.62: disjoint (conservative) at f = [];  quadrature-disjoint at f = [];  f=0 disjoint False  -> floor-limited (not disjoint even at f=0)
+           at f=0: flat (2.5755641840805428, 3.0565097646980695, 3.649946417399989)  rival (2.352106235187823, 3.171142657991908, 4.415200067176874)
+   s=1.69: disjoint (conservative) at f = [];  quadrature-disjoint at f = [];  f=0 disjoint False  -> floor-limited (not disjoint even at f=0)
+           at f=0: flat (2.576186897372064, 3.044208233201122, 3.6178313810316887)  rival (2.3254345021947453, 3.082777394837049, 4.19743107140427)
+   s=3.00: disjoint (conservative) at f = [];  quadrature-disjoint at f = [];  f=0 disjoint False  -> floor-limited (not disjoint even at f=0)
+           at f=0: flat (2.625330650625154, 2.974277565463789, 3.375906090102674)  rival (2.203625117530834, 2.595482704283312, 3.069813404820908)
+   A2x (POST-HOC, labelled; not frozen): the same with NO anchor floor, sigma_f = f sigma_raw (the SPARC anchor error is common to both epochs, so treating it as an independent floor per sample double-counts it)
+   s=1.00: disjoint (conservative) at f = [0.5, 0.35, 0.25, 0.15, 0.1, 0.07, 0.05, 0.03, 0.02, 0.01];  (quadrature) at f = [0.7, 0.5, 0.35, 0.25, 0.15, 0.1, 0.07, 0.05, 0.03, 0.02, 0.01];  largest f -> N factor 1/f^2: cons 4, quad 2
+   s=1.42: disjoint (conservative) at f = [0.1, 0.07, 0.05, 0.03, 0.02, 0.01];  (quadrature) at f = [0.15, 0.1, 0.07, 0.05, 0.03, 0.02, 0.01];  largest f -> N factor 1/f^2: cons 100, quad 44
+   s=1.62: disjoint (conservative) at f = [0.03, 0.02, 0.01];  (quadrature) at f = [0.05, 0.03, 0.02, 0.01];  largest f -> N factor 1/f^2: cons 1111, quad 400
+   s=1.69: disjoint (conservative) at f = [0.01];  (quadrature) at f = [0.01];  largest f -> N factor 1/f^2: cons 10000, quad 10000
+   s=3.00: disjoint (conservative) at f = [0.15, 0.1, 0.07, 0.05, 0.03, 0.02, 0.01];  (quadrature) at f = [0.25, 0.15, 0.1, 0.07, 0.05, 0.03, 0.02, 0.01];  largest f -> N factor 1/f^2: cons 44, quad 16
+
+=== A3 R_obs precision from data already in the repo ===
+   PHIBSS rows total 73; clean (no CO limit, no inconsistent f_gas, no secondary component, z_CO finite) 51  (target 51)
+   fit mass+z (n=51)     : e = +0.228 +- 0.517  (n=51); mass coeff -0.298 +- 0.161   1-sigma half-width on R_obs = 0.070 dex
+   fit z only (n=51)     : e = +0.089 +- 0.524  (n=51)   1-sigma half-width on R_obs = 0.071 dex
+   fit mass+z, z<1.7     : e = -0.455 +- 1.581  (n=38); mass coeff -0.224 +- 0.199   1-sigma half-width on R_obs = 0.215 dex
+   in-repo e vs abstract-level 2.5: separation 4.40 sigma (README target: exponent 0.23 +- 0.52; algebra 4.4 sigma with the README constants)
+   A1 w* values: [(1.0, 0.0, 0.324), (1.42, 0.0, 0.0), (1.62, 0.0, 0.0), (1.69, 0.0, 0.0), (3.0, 0.0, 0.0)]
+   se needed on e for a 1-sigma-bracket half-width equal to w*: se_e = w*/log10(1+z ratio); rows needed ~ n_now (se_now/se_e)^2
+     s=1.00: w*=0.324 dex -> se_e <= 2.388 (now 0.517) -> ~2 clean rows if the PHIBSS scatter stays and selection is uniform
+     s=1.42: w*=0 for both truths -> no R_obs precision suffices
+     s=1.62: w*=0 for both truths -> no R_obs precision suffices
+     s=1.69: w*=0 for both truths -> no R_obs precision suffices
+     s=3.00: w*=0 for both truths -> no R_obs precision suffices
+   -> 1-sigma half-width 0.070 dex <= smallest w*>0 0.324 dex
+   descriptive (NOT used): sharma2024_gs21b.csv rows 225, usable 225, z 0.76-1.04; median MH2/M* 0.27, MHI/M* 4.07; KROSS-epoch only, scaling-derived (CFG165), no z ~ 1.5 counterpart, so no ratio.
+   other candidates by name: romanoliveira2023_gasmasses.csv (6 rows, high-z ALMA), budhies_hi.csv and mightee_hi_highz (z < 0.5): none brackets z ~ 0.85 -> 1.5.
+
+=== A4 reconciling offset: KURVS anchor-corrected D'(mu_U = R_obs mu_be(KROSS)) in dex (and in sigma) ===
+   s=1.00: in-repo/flat: +0.148 (+3.4 sigma); in-repo/rival: +0.082 (+1.8 sigma); literature/flat: +0.074 (+1.7 sigma); literature/rival: +0.074 (+1.6 sigma)
+   s=1.42: in-repo/flat: +0.174 (+3.8 sigma); in-repo/rival: +0.104 (+2.3 sigma); literature/flat: +0.078 (+1.7 sigma); literature/rival: +0.058 (+1.3 sigma)
+   s=1.62: in-repo/flat: +0.184 (+3.9 sigma); in-repo/rival: +0.113 (+2.4 sigma); literature/flat: +0.080 (+1.7 sigma); literature/rival: +0.054 (+1.2 sigma)
+   s=1.69: in-repo/flat: +0.187 (+4.0 sigma); in-repo/rival: +0.116 (+2.5 sigma); literature/flat: +0.080 (+1.7 sigma); literature/rival: +0.053 (+1.1 sigma)
+   s=3.00: in-repo/flat: +0.231 (+4.2 sigma); in-repo/rival: +0.155 (+2.9 sigma); literature/flat: +0.092 (+1.6 sigma); literature/rival: +0.047 (+0.9 sigma)
+   check: common-mu (0.67) flat differential D = D'_KURVS - D'_KROSS = +0.1483 (CFG161/167: +0.148 +- 0.044)
+
+=== A5 interval convention: quadrature interval  R exp(-+ hypot(...)) instead of the frozen conservative one ===
+   s=1.00: flat q-int [2.30, 4.84] rival q-int [2.73, open] | in-repo flat/rival True/True  lit flat/rival False/True  both-bracket laws ['rival'] -> DIAGNOSTIC
+   s=1.42: flat q-int [2.29, 4.19] rival q-int [2.05, 6.62] | in-repo flat/rival True/True  lit flat/rival False/False  both-bracket laws [] -> NON-DIAGNOSTIC
+   s=1.62: flat q-int [2.29, 4.06] rival q-int [1.99, 5.12] | in-repo flat/rival True/True  lit flat/rival False/False  both-bracket laws [] -> NON-DIAGNOSTIC
+   s=1.69: flat q-int [2.29, 4.02] rival q-int [1.97, 4.84] | in-repo flat/rival True/True  lit flat/rival False/False  both-bracket laws [] -> NON-DIAGNOSTIC
+   s=3.00: flat q-int [2.29, 3.83] rival q-int [1.88, 3.52] | in-repo flat/rival True/True  lit flat/rival False/False  both-bracket laws [] -> NON-DIAGNOSTIC
+
+=== A6 bracket width: in-repo k*sigma_e, literature +-a; summary at s=1 and 1.42 (frozen | quadrature intervals) ===
+   s=1.00: DIAGNOSTIC (exactly one law disfavoured by both) at (k, a): frozen intervals []
+           quadrature intervals [(1.0, 0.2, 'rival'), (1.0, 0.3, 'rival'), (1.5, 0.2, 'rival'), (1.5, 0.3, 'rival'), (2.0, 0.2, 'rival'), (2.0, 0.3, 'rival'), (2.5, 0.2, 'rival'), (2.5, 0.3, 'rival'), (3.0, 0.2, 'rival'), (3.0, 0.3, 'rival')]  (third entry = the disfavoured law)
+   s=1.42: DIAGNOSTIC (exactly one law disfavoured by both) at (k, a): frozen intervals []
+           quadrature intervals [(1.0, 0.1, 'flat'), (1.5, 0.1, 'flat'), (2.0, 0.1, 'flat'), (2.5, 0.1, 'flat'), (3.0, 0.1, 'flat')]  (third entry = the disfavoured law)
+
+=== A7 bootstrap of the root-find error (B=300, seed=180): 16-84% of log10 R_law vs the frozen conservative interval ===
+   s=1.00 flat : bootstrap 16/50/84% R = 2.38 / 3.48 / 4.81 (n=300, no-root 0); frozen [1.98, 5.66] -> adequate (frozen is at least as wide); bootstrap width 0.306 dex
+   s=1.00 rival: bootstrap 16/50/84% R = 2.24 / 5.91 / 16.37 (n=174, no-root 126); frozen [1.58, open] -> adequate (frozen is at least as wide); bootstrap width 0.864 dex
+   s=1.42 flat : bootstrap 16/50/84% R = 2.29 / 3.00 / 4.04 (n=300, no-root 0); frozen [2.04, 4.73] -> adequate (frozen is at least as wide); bootstrap width 0.246 dex
+   s=1.42 rival: bootstrap 16/50/84% R = 2.08 / 3.36 / 5.72 (n=300, no-root 0); frozen [1.64, 8.41] -> adequate (frozen is at least as wide); bootstrap width 0.440 dex
+
+=== A8 e-scan: point R_obs(e) = (1+z ratio)^e x mass factor; which laws are NOT disfavoured (R_obs inside the frozen interval) ===
+   s=1.00: e range both ok [+2.50,+3.50]; flat-only-ok none; rival-only-ok [+1.75,+2.25]; both disfavoured [-1.00,+1.50]
+   s=1.42: e range both ok [+2.50,+3.50]; flat-only-ok none; rival-only-ok [+2.00,+2.25]; both disfavoured [-1.00,+1.75]
+   s=1.62: e range both ok [+2.75,+3.50]; flat-only-ok none; rival-only-ok [+2.00,+2.50]; both disfavoured [-1.00,+1.75]
+   s=1.69: e range both ok [+2.75,+3.50]; flat-only-ok none; rival-only-ok [+2.00,+2.50]; both disfavoured [-1.00,+1.75]
+   s=3.00: e range both ok [+2.75,+3.50]; flat-only-ok none; rival-only-ok [+2.00,+2.50]; both disfavoured [-1.00,+1.75]
+
+runtime 529.7 s

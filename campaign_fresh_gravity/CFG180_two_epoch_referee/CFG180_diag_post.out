@@ -1,0 +1,29 @@
+====================================================================================================
+CFG180 post-comparison with CFG170 (results json); repo=<repo>
+====================================================================================================
+
+convention A: worst relative differences  centre 0.0005  edge 0.0113  R 0.0005  R-edge 0.0126
+    (0.0, 'flat', 'U', 'edge', None, 0.17434439878578675, 'presence differs')
+
+convention B: worst relative differences  centre 0.0005  edge 0.0002  R 0.0005  R-edge 0.0002
+    (0.0, 'flat', 'U', 'edge', None, 0.17434439878578675, 'presence differs')
+
+calibration scatter rows (centre only) CFG170 vs mine
+   s=0.6 flat: CFG170 R 4.256477804014451 KURVS 1.1657585629578953 KROSS 0.27387868952550926 | mine R 4.2559 KURVS 1.1658032488944372 KROSS 0.273925565129982
+   s=0.6 rival: CFG170 R None KURVS 0.03455049478088866 KROSS None | mine R None KURVS 0.03454644420734685 KROSS None
+   s=1.4 flat: CFG170 R 3.109071050438255 KURVS 3.0485938684805194 KROSS 0.9805481505643909 | mine R 3.1089 KURVS 3.0487084834508615 KROSS 0.980631006268731
+   s=1.4 rival: CFG170 R 3.6295193042431224 KURVS 1.2262338519288765 KROSS 0.33785020801386473 | mine R 3.6292 KURVS 1.2262443945512618 KROSS 0.337885343339277
+
+R_obs numbers: CFG170 vs mine
+   in-repo 1.0049 vs 1.0049; bracket [0.7260407729678332, 1.3909021306898977] vs (0.7260407729678332, 1.3909021306898977); lit 2.0157 vs 2.0157; [1.612599076643344, 2.418898614965016] vs (1.612599076643344, 2.418898614965016)
+
+matrix flags: CFG170 vs mine (conservative interval)
+   flag differences: 0
+
+first-run json vs final json: rows that differ
+    1.00|rival firstrun R None final R 11.94485284249475 final interval 1.5621135023579884 None
+    matrix 1.00|rival {'in_repo': 'no break-even', 'literature': 'no break-even', 'R': None} -> {'in_repo': 'disfavoured', 'literature': 'not disfavoured', 'R': 11.94485284249475}
+
+summary strings: CFG170: NON-DIAGNOSTIC: no law is disfavoured by both brackets at s = 1
+
+CFG170's own MUTATE controls: evaluator-only. M1 sets R_obs := R_flat (in-repo relative width), M2 sets R_obs := 10 R_flat; neither touches Delta', the break-even, or the interval code.
