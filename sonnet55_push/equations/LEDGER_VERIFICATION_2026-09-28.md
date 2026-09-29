@@ -157,3 +157,57 @@ STILL-STANDS classes are editorial judgments and were NOT checked.
 
 ## Not covered
 The editorial classifications; whether a quoted sentence is correctly characterised by its "reason" cell; E8-E10/E12/E14-E16 numbers.
+
+---
+
+# Part 5 -- CFG75 to CFG99 (HEAD 4fa9f54e3): five parallel verifier workers
+
+Method: one `git archive HEAD` export (campaign_fresh_gravity, real_research, prep_2026, hunt_2026, data_assembly, opus_48,
+fable_independent_2026 without lean_2026); five read-only workers, each on a disjoint lane group, each reading its lanes' READMEs
+for the declared exit codes and MUTATE conventions, running main plus every control from the export, and comparing exit code and
+tally with the lane's COMMITTED output (`git show HEAD:`, timing fields ignored). Workers were told never to edit the repo, never to
+copy git-ignored data larger than 200 MB, and to report plainly. Their reports are in `rerun5_reports/report_A.md` ... `report_E.md`
+(A: CFG75, CFG57, CFG55 helpers, CFG79-81; B: CFG76-78; C: CFG82-87; D: CFG88-91; E: CFG92-96, CFG99).
+
+## Result: 77 runs, 0 exit-code mismatches and 0 tally mismatches in every run that had its data; 2 lanes not verifiable
+Every main and MUTATE run of CFG55 helpers, CFG57, CFG75-CFG95 and CFG96 (isolation) matches its declared exit code and its
+committed output line for line (CFG77's results JSON is byte-identical; others identical apart from timing). No Python traceback in
+any run. **Not verified:** CFG99 (its KMOS3D cubes, 739 files / 3.8 GB, are git-ignored and outside the repo; without them the
+script still exits 1 as declared but with 16/25 against the committed 22/25, which is a data absence, not a reproduction) and
+`CFG96_stage_stack.py` (needs a 17.7 GB KiDS catalogue; not run; CFG95 and CFG96-isolation reproduced on copies of six small
+git-ignored `.npz` files, the inputs themselves not regenerated).
+
+## Findings (none changes a verdict)
+**Portability**
+1. Absolute paths. CFG76, CFG77, CFG78 and CFG82-CFG87 read their inputs from the live working-tree path
+   (`/Users/carlzimmerman/.../real_research/data/...`), not from wherever the script sits. The tracked inputs made the runs valid,
+   but the "clean export" read them from the live tree, and a checkout elsewhere would raise FileNotFoundError.
+2. Git-ignored data. CFG77 needs `brouwer2021_rar/` (2.3 MB) and `lr_lenses.npz` (9.7 MB); CFG88 needs `lr_esd_jackknife*.npz`
+   (1.4 MB) and `brouwer2021_rar/`; CFG95 / CFG96-isolation need six small `.npz` (about 26 MB); CFG96_stage_stack and CFG99 need the
+   large files above. None of these is in a clean archive.
+
+**Controls that cannot discriminate by exit code (the lanes mostly disclose this)**
+3. Same exit code in main and MUTATE: CFG76 (1/1, but 2 vs 4 failures), CFG79 (1/1; declared C4 fails in both; MUTATE adds H1b, M1),
+   CFG83 (1/1, identical failure set {C1e}; its injection controls carry the bite), CFG93 (1/1; 7 vs 26 failed lines), CFG94 (1/1/1;
+   1 vs 17 vs 7 failed gates), CFG95 (1/1; both fail exactly H1, H2; only its exact-reproduction control C1 acts as a machinery check),
+   CFG78 (0/0, both failure sets empty: the README discloses the defect but the script header still says a MUTATE exit 1 is intended),
+   CFG89 (0/0/0, discriminating only by asserted PASS checks C6, C6b).
+4. Exit 1 guaranteed by construction: CFG80 and CFG81's MUTATE exit through a construction detector (C5), so the code says nothing
+   about the science; the headline discrimination comes from C6 (CFG80) and H1 flipping to +3.30 sigma (CFG81). CFG91's MUTATE has an
+   empty failed-control set like main and exits 1 from a hard-coded condition (`cfg88.py` line 295). CFG90's MUTATE exit reads the main run's
+   results JSON (main must run first) and is partly by construction, as its README says.
+
+**Committed-output artefacts (numbers reproduce; the files are stale)**
+5. CFG90 `cfg90.out` and `cfg90_MUTATE.out` contain stale duplicated blocks (8 and 12 lines) and lack the trailing exit line; all
+   counts and tallies are identical to a fresh run (18/31 main, 9/31 MUTATE, controls 15/15). CFG94 `posthoc.out` has 20 lines against
+   the script's 15 (a duplicated tail with a truncated first line). CFG55_h50_keyfix prints one header line the committed `.out` lacks.
+   CFG91 `cfg88_post.py` / `cfg88_post2.py` have no committed `.out` (only untracked `run_post*.log`); CFG82 has no committed output
+   (its `toy.log` / `feas.log` are not in git; the toy sigma(gamma) values 0.25 / 0.16 / 0.09 / 0.06 match the README, the naive-MLE table is
+   unverified); CFG76's post-hoc scripts have no committed log. `FIRSTRUN_cfg93.py` and `cfg93.py` write the same filenames.
+
+**Declared failures, reproduced as declared:** CFG76 G1 at ddof=0; CFG79 C4; CFG83 C1e; CFG84 P2; CFG93 C3b and the frozen third-decimal
+R3/R5 lines; CFG94 R1 P x=0.3; CFG95 H1 and H2 (a result, not a bug).
+
+## Not covered
+Whether the scripts' physics is right; the post-hoc/exploratory scripts beyond main-only reproduction (no controls exist); CFG99 and
+CFG96_stage_stack (above); anything committed after 4fa9f54e3.
