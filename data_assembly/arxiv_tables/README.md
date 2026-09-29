@@ -70,3 +70,6 @@ Commented-out LaTeX (lines starting with `%`) is ignored: these files keep super
 - The CRC file (`sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits`, 16 rows) holds Burkert-halo fits to 16
   stacked bins (`bin_0`...`bin_15`), not to individual galaxies; it is in `raw_small/` but not parsed.
 - None of these is a test of a0 by itself. Calculations belong to the calculation thread.
+
+## Added 2026-09-29
+- `kurvs_sigma_profiles/`: the observed Hα σ(R) major-axis profiles of all 22 KURVS-CDFS galaxies, extracted from the paper's vector figures (`extract.py`, 134 checks PASS, README there). Observed, not beam-smearing corrected; the authors' clipped points are flagged.
