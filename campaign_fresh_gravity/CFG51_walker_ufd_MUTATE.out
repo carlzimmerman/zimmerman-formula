@@ -1,0 +1,59 @@
+CFG51 -- THE ULTRA-FAINT FAILURE WITH MULTI-EPOCH, BINARY-CLEANED DISPERSIONS (Walker+2023 Hectochelle/M2FS, reduced here).
+
+WHY.  CFG28-CFG29 found B's ultra-faint failure robust to published binary bounds; CFG46 applied Arroyo-Polonio+2026's STATISTICAL binary correction to single-epoch
+data (offset lowered 0.07-0.10 dex, test power lost on eight systems).  The decisive test is per-star MULTI-EPOCH data: stars whose velocity varies between epochs
+are removed, and the dispersion is computed from the rest.  Walker et al. 2023 (ApJS 268, 19; VizieR J/ApJS/268/19; real_research/data/walker2023/, fetched with
+the owner's approval) give per-epoch velocities for 16,369 stars in 38 systems, with up to 15 epochs per source.  CFG51/CFG51_walker_multiepoch/reduce_walker.py
+reduces them (declared rules in its docstring) to dispersions: single-epoch, all-epoch mean, and binary-cleaned (stars with >= 2 epochs and chi^2 p < 0.01 removed).
+Only TWO ultra-faints have enough multi-epoch coverage to be informative (n_multi >= 8 and >= half of the members): Bootes I (33 of 55 members multi-epoch, baseline
+median 1900 d) and Tucana II (9 of 14, up to 15 epochs, baseline median 2500 d).  This lane scores B on those two.  It is a two-object test: no sample statistic.
+
+CAVEATS DECLARED BEFORE THE RUN.  (i) The catalogue has no membership column; the reduction re-derives it (a velocity window of +-4 sigma_seed about the LVD systemic
+velocity, logg < 4, Gaia PM and parallax), so it can remove large-excursion binaries BEFORE the cleaning step and bias sigma low; the count is in n_vreject (Bootes I 20).
+(ii) Bootes I has two kinematic components in the literature (cold 2.4, hot 4.6 km/s, Koposov+2011) and the window keeps both; Arroyo-Polonio+2026's cold-only 2.18-2.55
+is not comparable.  (iii) Tucana II is tidally disturbed in the literature (extended halo, velocity gradient); a gradient inflates a dispersion.  (iv) No wavelength
+zero-point offset between epochs or instruments is modelled.
+
+THE METHOD.  FG001's estimator (exec'd read-only): sigma^2 = g(r) r / 3 at r = (4/3) r_half, half of the baryons enclosed, Upsilon_V = 2, stars only, the isolated law
+(nu_mono, both footings); M_V and r_half from the repo's LVD table.  Offset = log10(sigma_obs / sigma_law) for the single-epoch, all-epoch-mean and cleaned dispersions.
+Per-system error: the reduction's asymmetric 1-sigma interval converted to dex, plus a floor in quadrature (half the range of the offset over Upsilon_V 1 to 4 and the
+pure deep-MOND estimator).  The rule (CFG42's sum, Moster collapse mass clamped at 1e9) is reported.
+
+PRE-DECLARED
+  C1  CONTROL  the reduction is reproducible: the two informative systems' cleaned dispersions are 3.911 (Bootes I) and 4.064 km/s (Tucana II) and the repository's LVD
+               literature values (4.0, 3.8) agree with the single-epoch ones to within 30%.
+  H1  [HEADLINE; MUTATE must fail] the failure survives multi-epoch cleaning in both systems: the bare law's cleaned offset is positive at more than 2 sigma for
+      Bootes I AND for Tucana II, on both footings.
+  H2  the cleaning lowers but does not remove the offset: cleaned offset > 0 for both, and less than the single-epoch offset for both.
+  R1  (reported) all three offsets per system; the rule; the paper-flag variant (Bootes I 3.95, Tucana II 3.45 km/s).
+  READING (declared): H1 PASS -> in the two systems where multi-epoch cleaning is possible, the ultra-faint failure survives it at > 2 sigma each (two objects: not a
+      population result).  H1 FAIL -> at least one system no longer shows a > 2 sigma failure.  Nothing here is a sample statistic.
+MUTATE=1: every dispersion multiplied by 0.5 -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: every dispersion x 0.5 -- H1 must FAIL ***
+
+======================================================================================================================
+C1  CONTROL
+======================================================================================================================
+  [FAIL] C1 CONTROL: the reduction's cleaned dispersions are 3.911 (Bootes I) and 4.064 km/s (Tucana II); the LVD literature values agree with the single-epoch ones to 30%
+         Bootes I 3.911 (single 4.82, LVD 4.0); Tucana II 4.064 (single 7.48, LVD 3.8)
+
+======================================================================================================================
+H1 / H2  THE TWO INFORMATIVE SYSTEMS
+======================================================================================================================
+    Bootes I   (33 of 55 multi-epoch) sigma_law 2.36 km/s; single 4.82, all-epoch mean 3.92, cleaned 3.91 (+0.45 -0.38)
+       canonical offsets: single +0.009, allmean -0.081, clean -0.082; cleaned -0.082 +- 0.089 (-0.92 sigma); rule -0.506
+       alt       offsets: single -0.011, allmean -0.101, clean -0.102; cleaned -0.102 +- 0.089 (-1.14 sigma); rule -0.506
+    Tucana II  (9 of 14 multi-epoch) sigma_law 1.39 km/s; single 7.48, all-epoch mean 5.30, cleaned 4.06 (+1.16 -0.82)
+       canonical offsets: single +0.429, allmean +0.279, clean +0.164; cleaned +0.164 +- 0.128 (+1.28 sigma); rule -0.466
+       alt       offsets: single +0.408, allmean +0.259, clean +0.144; cleaned +0.144 +- 0.128 (+1.12 sigma); rule -0.466
+  [FAIL] H1 [HEADLINE] THE FAILURE SURVIVES MULTI-EPOCH CLEANING: the cleaned offset is positive at > 2 sigma for Bootes I AND Tucana II, both footings  [MUTATE: sigma x 0.5]
+         Bootes I can: -0.082 +- 0.089 (-0.92); Bootes I alt: -0.102 +- 0.089 (-1.14); Tucana II can: +0.164 +- 0.128 (+1.28); Tucana II alt: +0.144 +- 0.128 (+1.12)
+  [FAIL] H2 THE CLEANING LOWERS BUT DOES NOT REMOVE THE OFFSET: 0 < cleaned < single-epoch, both systems and footings
+         Bootes I can: single +0.009 -> cleaned -0.082; Bootes I alt: single -0.011 -> cleaned -0.102; Tucana II can: single +0.429 -> cleaned +0.164; Tucana II alt: single +0.408 -> cleaned +0.144
+  [PASS] (reported) R1 (reported) the paper-flag variant of the cleaning (Bootes I 3.95, Tucana II 3.45 km/s) and the rule
+         paper flag: Bootes I -0.077, Tucana II +0.093; rule (cleaned): Bootes I -0.506, Tucana II -0.466
+
+    READING (declared): at least one of the two systems no longer shows a > 2 sigma failure after multi-epoch cleaning
+
+  1/4 checks pass; load-bearing failures: 3   (5 s)
