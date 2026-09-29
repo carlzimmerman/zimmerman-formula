@@ -52,3 +52,7 @@ With realistic GC density slopes, the SLUGGS row reads:
 - **The rule's other failures stand:** the satellites and the KiDS split.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## Addendum after the independent re-derivations CFG104–CFG106 (appended 2026-09-29; the text above is unchanged)
+
+- **The slopes are 3-D.** Alabi+2017 define γ as the slope of the de-projected GC number-density profile, as checked in the paper's arXiv HTML on 2026-09-29. So the Jeans solution's ρ ∝ r^−γ uses it as intended; the case of projected slopes, which would put SLUGGS at +5.6σ at φ = 1, does not arise. The 'published slopes' are one mass relation, γ = clip(−0.63 log M* + 9.81, 2, 4) (2.49–3.43), not per-galaxy measurements.
