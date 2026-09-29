@@ -1,0 +1,67 @@
+spec campaign_fresh_gravity/CFG155_FROZEN_CRITERIA.md sha256 = edff822845717fd34cb8cb41132470739c17d4cc4557ff58d171bc595583de52
+R5 (post hoc): CFG130 D5_A printed numbers against CFG155 (read-only; CFG130 was not re-run)
+
+== f(E) at CFG130's printed energies (CFG130 cuts its t-integral at Phi(1e7 r_M), no tail, no boundary term) ==
+  r_E          E(CFG130)      f(CFG130)     f(CFG155, full)   rel diff    f(CFG155, cut 1e7)  rel diff    tol 1e-3
+  1.0000e-05  -1.00000e+05  9.01458e-06   9.014578e-06      +2.3e-07     9.014578e-06        +2.3e-07   E match True
+  1.0000e-03  -1.00000e+03  9.01458e-05   9.014584e-05      -3.9e-07     9.014584e-05        -3.9e-07   E match True
+  1.0000e-02  -9.99950e+01  2.85084e-04   2.850839e-04      +3.4e-07     2.850839e-04        +3.4e-07   E match True
+  1.0000e-01  -9.95004e+00  9.07550e-04   9.075504e-04      -4.8e-07     9.075504e-04        -4.8e-07   E match True
+  3.0142e-01  -3.16807e+00  1.66765e-03   1.667648e-03      +1.4e-06     1.667648e-03        +1.4e-06   E match True
+  1.0000e+00  -5.32840e-01  3.13057e-03   3.130567e-03      +9.9e-07     3.130567e-03        +9.9e-07   E match True
+  3.0142e+00  +7.69317e-01  1.23595e-03   1.235951e-03      -1.2e-06     1.235951e-03        -1.2e-06   E match True
+  1.0000e+01  +1.99324e+00  1.39640e-04   1.396404e-04      -2.8e-06     1.396404e-04        -2.8e-06   E match True
+  1.0000e+02  +4.29829e+00  1.42878e-06   1.428776e-06      +2.7e-06     1.428776e-06        +2.7e-06   E match True
+  1.0000e+03  +6.60090e+00  1.42911e-08   1.429106e-08      +3.1e-06     1.429106e-08        +3.1e-06   E match True
+  1.0000e+05  +1.12061e+01  1.42908e-12   1.429109e-12      -2.0e-05     1.429084e-12        -2.5e-06   E match True
+  worst |rel diff|: against the full f 2.0e-05; against the matched cut 3.1e-06 (CFG130 prints 6 significant digits, so ~5e-6 is its print resolution).  Within 1e-3: True
+
+== min f: CFG130 1.4290835966e-12 (at r_E = 1e5, its window end);  CFG155 full 1.4291089098e-12 (rel -1.77e-05);  CFG155 with the cut at 1e7 1.4290835966e-12 (rel +8.88e-16) ==
+   CFG155 min over its own grid [1e-6, 1e6]: 1.429109e-14 at x_E = 1e6
+
+== Kepler limit at r_E = 1e-4: CFG130 f/f_K = 1.0000 (criterion 5%; README "to 4 digits"); CFG155 1.000000003750 (|.-1| = 3.8e-09); CFG155 at 1e-6 and 1e-5: 3.8e-13, 3.8e-11 ==
+
+== round trip rho(f)/rho_c - 1 ==
+   r =   1e-03: CFG130 +7.29e-08   CFG155 +8.88e-16
+   r =   1e-02: CFG130 +3.75e-08   CFG155 +1.11e-15
+   r =   1e-01: CFG130 +7.52e-08   CFG155 +4.44e-16
+   r =   1e+00: CFG130 -1.49e-07   CFG155 -6.66e-16
+   r =   1e+01: CFG130 +3.17e-07   CFG155 -1.55e-15
+   r =   1e+02: CFG130 -3.98e-06   CFG155 -8.88e-16
+   r =   1e+03: CFG130 -3.60e-04   CFG155 +0.00e+00
+
+== d ln f/dE (CFG130: np.gradient on its 48-per-decade grid, r_E in (1e-3, 1e3); CFG155: 5-point, Route A) ==
+   r_E = 1.049e-03: CFG130 +5.3725e-04   CFG155 +5.2457e-04   diff +1.3e-05
+   r_E = 1.000e-02: CFG130 +5.0049e-03   CFG155 +5.0010e-03   diff +3.9e-06
+   r_E = 1.000e-01: CFG130 +5.1186e-02   CFG155 +5.1142e-02   diff +4.4e-05
+   r_E = 1.000e+00: CFG130 +2.8734e-02   CFG155 +2.9756e-02   diff -1.0e-03
+   r_E = 1.000e+01: CFG130 -1.9442e+00   CFG155 -1.9443e+00   diff +6.6e-05
+   r_E = 1.000e+02: CFG130 -1.9994e+00   CFG155 -1.9994e+00   diff +3.4e-05
+   r_E = 9.532e+02: CFG130 -2.0000e+00   CFG155 -2.0000e+00   diff -6.2e-06
+   range: CFG130 [-2.0000, +0.3056];  CFG155 max +0.3061 at x_E = 0.589, -2.0000 at x_E = 1e5
+   CFG130's np.gradient on its grid applied to CFG155's f: +2.873441e-02 at r_E = 1, range [-1.999993, +0.305602]  (reproduces CFG130's printed values: the r_E = 1 gap is the coarse-grid gradient, not f)
+
+== CFG130's rho'' as its code builds it (unsimplified sympy, then lambdify) against x^5/(pi (1+x^2)^(7/2)) ==
+   r =   1e-08: CFG130 form -3.7253e-25   exact 3.1831e-41   rel err -1.2e+16
+   r =   1e-07: CFG130 form -2.3283e-24   exact 3.1831e-36   rel err -7.3e+11
+   r =   1e-06: CFG130 form +0.0000e+00   exact 3.1831e-31   rel err -1.0e+00
+   r =   1e-05: CFG130 form -3.6380e-22   exact 3.1831e-26   rel err -1.1e+04
+   r =   1e-04: CFG130 form +0.0000e+00   exact 3.1831e-21   rel err -1.0e+00
+   r =   1e-03: CFG130 form +3.1827e-16   exact 3.1831e-16   rel err -1.3e-04
+   r =   1e-02: CFG130 form +3.1820e-11   exact 3.1820e-11   rel err +2.3e-09
+   r =   1e-01: CFG130 form +3.0742e-06   exact 3.0742e-06   rel err +1.7e-13
+   r =   1e+00: CFG130 form +2.8135e-02   exact 2.8135e-02   rel err -4.4e-16
+   r =   1e+01: CFG130 form +3.0742e-03   exact 3.0742e-03   rel err +2.2e-16
+   r =   1e+02: CFG130 form +3.1820e-05   exact 3.1820e-05   rel err +2.2e-16
+   r =   1e+03: CFG130 form +3.1831e-07   exact 3.1831e-07   rel err +2.2e-16
+   r =   1e+04: CFG130 form +3.1831e-09   exact 3.1831e-09   rel err +2.2e-16
+   r =   1e+05: CFG130 form +3.1831e-11   exact 3.1831e-11   rel err -2.2e-16
+   r =   1e+06: CFG130 form +3.1831e-13   exact 3.1831e-13   rel err -1.1e-16
+   r =   1e+07: CFG130 form +3.1831e-15   exact 3.1831e-15   rel err -3.3e-16
+   max |error| on r in [1e-5, 1e-2]: 8.9e-19;  its effect on f at r_E = 1e-5 (CFG130's inner end) is below C2 N T / f = 2.2e-12 (T = sqrt(Phi(1e-2) - E) = 316)
+
+== MUTATE controls (different mutations) ==
+   CFG130: shell bump x (1 + 3 exp(-(ln r - 1)^2/0.18)); f < 0 at r_E in [1.6155980984398728, 2.6101572156825332], min f -7.6077e-03, 11 of 481 energies; load-bearing failures 1
+   CFG155: cored tracer (x_core = 0.1); f < 0 with certainty at 515 of 1201 energies, x_E from 1e-6 to 0.138; min f -2.9424e-04 at x_E = 7.762e-02; exit code 1
+
+R5 verdict: every f CFG130 prints for this headline agrees with CFG155 within 1e-3: True (worst 2.0e-05; 3.1e-06 once CFG130's cut is matched)

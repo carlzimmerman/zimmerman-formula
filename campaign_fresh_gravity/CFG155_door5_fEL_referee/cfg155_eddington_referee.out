@@ -1,0 +1,113 @@
+spec campaign_fresh_gravity/CFG155_FROZEN_CRITERIA.md sha256 = edff822845717fd34cb8cb41132470739c17d4cc4557ff58d171bc595583de52
+expected prefix edff8228 (commit c702dde54): MATCH
+CFG155 referee of CFG130 (Door 5): Eddington f(E) for the point-mass target.  mode = main
+units G = M_b = a0 = 1 (r_M = 1); f in M_b r_M^-3 v_M^-3, v_M = (G M_b a0)^(1/4)
+
+== profiles (sympy; simplified before lambdify) ==
+  target       dPhi/dx == g: True;  drho/dPhi = (-2*x**2 - 1)/(4*pi*(x**2 + 1)**2);  d2rho/dPhi2 = x**5/(pi*(x**2 + 1)**(7/2));  lim_(x->inf) drho/dPhi = 0
+  mutate_cored dPhi/dx == g: True;  drho/dPhi = x**3*(-500*x**2 - 505/2)/(pi*(x**2 + 1)**2*(100*x**2 + 1)**(3/2));  d2rho/dPhi2 = 5*x**4*(40000*x**6 + 200*x**4 - 899*x**2 - 303)/(2*pi*sqrt(100*x**4 + 101*x**2 + 1)*(10000*x**10 + 30200*x**8 + 30601*x**6 + 10603*x**4 + 203*x**2 + 1));  lim_(x->inf) drho/dPhi = 0
+  hernquist    dPhi/dx == g: True;  drho/dPhi = (-4*x - 1)/(2*pi*x**2*(x + 1)**2);  d2rho/dPhi2 = (6*x**2 + 4*x + 1)/(pi*x**3*(x + 1));  lim_(x->inf) drho/dPhi = 0
+  sis          dPhi/dx == g: True;  drho/dPhi = -1/(2*pi*x**2);  d2rho/dPhi2 = 1/(pi*x**2);  lim_(x->inf) drho/dPhi = 0
+  N1 (diagnostic) max rel. error of the numpy forms vs 50-digit mpmath on x in [1e-8, 1e8]: target 5.0e-16, mutate_cored 4.5e-16, hernquist 4.2e-16, sis 2.0e-16
+
+== C5 CONTROL: closed forms of the target ==
+  sympy: d(rho)/dPhi - hand = 0: True;  d2(rho)/dPhi2 - hand = 0: True;  profile forms == hand: True
+  finite differences at 25 radii in [1e-2, 1e2]: max rel err d(rho)/dPhi 1.81e-10, d2(rho)/dPhi2 1.31e-10 (tol 1e-6)
+  C5 PASS
+
+== H1(a): sign of d2rho/dPhi2 for the tracer (target) on 16001 points, x in [1e-8, 1e8] ==
+  sympy form: min 3.183e-41, points <= 0: 0;  hand form all > 0: True
+  lim_(Phi->+inf) drho/dPhi = 0 (sympy);  drho/dPhi at x = 1e14: -1.592e-29  ->  boundary term 0
+  H1(a) PASS
+
+== the grid: x_E = 10^(-6..6), 100 per decade (1201 energies); Route B at all, Routes A and C at every 10th ==
+  Route B done in 1.9 s; QUADPACK warnings so far: 0
+  Routes A and C done in 0.5 s
+  x_E        E              f (Route B)     f/Int|integrand|   f/f_K or f/f_iso
+    1.0e-06  -1.000000e+06  +2.850660e-06   +1.00000000        f/f_K = 1.00000000
+    1.0e-05  -1.000000e+05  +9.014578e-06   +1.00000000        f/f_K = 1.00000000
+    1.0e-04  -1.000000e+04  +2.850660e-05   +1.00000000        f/f_K = 1.00000000
+    1.0e-03  -9.999995e+02  +9.014584e-05   +1.00000000        f/f_K = 1.00000038
+    1.0e-02  -9.999500e+01  +2.850839e-04   +1.00000000        f/f_K = 1.00003786
+    1.0e-01  -9.950042e+00  +9.075504e-04   +1.00000000        f/f_K = 1.00424070
+    1.0e+00  -5.328400e-01  +3.130567e-03   +1.00000000        f/f_K = 0.80163375
+    1.0e+01  +1.993235e+00  +1.396404e-04   +1.00000000        f/f_iso = 0.97224774
+    1.0e+02  +4.298292e+00  +1.428776e-06   +1.00000000        f/f_iso = 0.99971721
+    1.0e+03  +6.600902e+00  +1.429106e-08   +1.00000000        f/f_iso = 0.99999717
+    1.0e+04  +8.903488e+00  +1.429109e-10   +1.00000000        f/f_iso = 0.99999997
+    1.0e+05  +1.120607e+01  +1.429109e-12   +1.00000000        f/f_iso = 1.00000000
+    1.0e+06  +1.350866e+01  +1.429109e-14   +1.00000000        f/f_iso = 1.00000000
+  dropped tail beyond x_max: max bound/|f| = 9.30e-18, max bound/Int|integrand| = 9.30e-18 (must be < 1e-10 of f)
+  min f over the grid = 1.429109e-14 at x_E = 1.000e+06 (E = +13.5087); over CFG130 README window [1e-5, 1e5]: 1.429109e-12 at x_E = 1.000e+05
+  min f/Int|integrand| = +1.0000000000 at x_E = 1.000e-06;  energies with f > +1e-6 Int|.|: 1201/1201;  with f < -1e-6 Int|.| (negative by CFG130 M1): 0
+  H1(b) PASS
+  H1(c): max |f_A/f_B - 1| = 2.66e-15, max |f_C/f_B - 1| = 1.78e-08 (tol 1e-5);  relative to Int|integrand|: 2.70e-15, 1.78e-08
+  H1(c) PASS
+  Q1 no f < 0: True;  Q2 min f/Int|.| >= 1 - 1e-10: True;  Q3 |f/f_K - 1| at x_E = 1e-6, 1e-5: 3.75e-13, 3.75e-11 (tol 1e-4): True
+  E range check (convention): Phi(1e-5) = -1.000000e+05, Phi(1e5) = +11.2061, Phi(1e-6) = -1.000000e+06, Phi(1e6) = +13.5087
+
+== C1 CONTROL: Hernquist (G = M = a = 1), closed form of Hernquist (1990), q^2 = -E = 0.01 ... 0.99 ==
+  Route B max rel err 1.68e-13 (tol 1e-6) at q^2 = 0.01;  Routes A, C (10 energies) 1.68e-13, 1.40e-11 (tol 1e-5);  boundary term -0.0e+00
+    q^2 = 0.01: f_closed = 7.4033498349e-07, f_B = 7.4033498349e-07
+    q^2 = 0.50: f_closed = 3.7995443866e-02, f_B = 3.7995443866e-02
+    q^2 = 0.99: f_closed = 1.3432696041e+03, f_B = 1.3432696041e+03
+  C1 PASS
+== C1b CONTROL: the closed-form Hernquist f integrated back to rho ==
+    x =   0.01: rho(f) = 1.5447421976e+01, rho = 1.5447421976e+01, rel 4.4e-16
+    x =   0.10: rho(f) = 1.1957546438e+00, rho = 1.1957546438e+00, rel 7.8e-16
+    x =   1.00: rho(f) = 1.9894367886e-02, rho = 1.9894367886e-02, rel 2.2e-16
+    x =  10.00: rho(f) = 1.1957546438e-05, rho = 1.1957546438e-05, rel 2.2e-16
+    x = 100.00: rho(f) = 1.5447421976e-09, rho = 1.5447421976e-09, rel 7.1e-14
+  C1b PASS (max rel 7.13e-14, tol 1e-6)
+
+== C2 CONTROL: singular isothermal sphere, Phi = ln x, Phi_max = +inf; Maxwellian e^(-2E)/(4 pi^(5/2)) ==
+  max rel err: Route B 6.66e-16 (tol 1e-8), Route A 5.55e-16, Route C 5.33e-09 (tol 1e-6)
+  C2 PASS
+
+== C3 CONTROL: the target's own identities (no f) ==
+  closure ODE vs P2 law: max rel 8.6e-13 (tol 1e-8);  Poisson (cold part): 3.0e-13 (tol 1e-7)
+  C(r) = (a0/4pi) M_b: 2.2e-16 (tol 1e-12);  M_c(<r) by quadrature: 4.4e-16 (tol 1e-8)
+  Phi closed form vs quadrature of g_tot from x = 1: 3.6e-16 (tol 1e-10, scaled by max(1,|Phi|))
+  hydrostatics: P = rho V_c^2/2: 2.2e-16 (tol 1e-12);  dP/dr = -rho g: 1.2e-11 (tol 1e-7);  P(1e8)/P(1) = 1.0e-16
+  beta = -(1/2) dlnM_b/dlnr = 0 for r > 0 (point mass): a statement.   C3 PASS
+
+== C4 CONTROL: identities through f (target) at x = 1e-4 ... 1e4 ==
+    x =   1e-04: rho(f)/rho - 1 = +1.11e-15;  sigma^2(f)/(V_c^2/2) - 1 = +2.22e-16
+    x =   1e-03: rho(f)/rho - 1 = +8.88e-16;  sigma^2(f)/(V_c^2/2) - 1 = +0.00e+00
+    x =   1e-02: rho(f)/rho - 1 = +1.11e-15;  sigma^2(f)/(V_c^2/2) - 1 = +2.22e-16
+    x =   1e-01: rho(f)/rho - 1 = +4.44e-16;  sigma^2(f)/(V_c^2/2) - 1 = +4.44e-16
+    x =   1e+00: rho(f)/rho - 1 = -6.66e-16;  sigma^2(f)/(V_c^2/2) - 1 = +8.88e-16
+    x =   1e+01: rho(f)/rho - 1 = -1.55e-15;  sigma^2(f)/(V_c^2/2) - 1 = +1.33e-15
+    x =   1e+02: rho(f)/rho - 1 = -8.88e-16;  sigma^2(f)/(V_c^2/2) - 1 = +1.33e-15
+    x =   1e+03: rho(f)/rho - 1 = +0.00e+00;  sigma^2(f)/(V_c^2/2) - 1 = +1.11e-15
+    x =   1e+04: rho(f)/rho - 1 = -2.22e-16;  sigma^2(f)/(V_c^2/2) - 1 = -1.69e-14
+  outer limit |f/f_iso - 1| at x_E = 1e3, 1e4, 1e5, 1e6: 2.8e-06, 2.8e-08, 2.8e-10, 2.8e-12 (tol 1e-4);  3.3 s
+  round trip True, sigma^2 = V_c^2/2 True, isothermal limit True, Kepler limit (Q3) True.   C4 PASS
+  Q4 round trip <= 4e-4: True (1.6e-15)
+
+== C6 CONTROL: both footings in kpc, km/s, Msun (target) ==
+  sympy: dPhi/dr == g_tot: True;  K = d(drho/dPhi)/dr = a0**3*r**3/(pi*G*(G*M + a0*r**2)**3)
+    a0 = 9.3603e-11 m/s^2 = 2888.29 (km/s)^2/kpc, M_b = 1e+09: r_M = 1.2203 kpc, v_M = 59.368 km/s
+    a0 = 9.3603e-11 m/s^2 = 2888.29 (km/s)^2/kpc, M_b = 1e+12: r_M = 38.5887 kpc, v_M = 333.849 km/s
+    a0 = 1.1300e-10 m/s^2 = 3486.82 (km/s)^2/kpc, M_b = 1e+09: r_M = 1.1106 kpc, v_M = 62.230 km/s
+    a0 = 1.1300e-10 m/s^2 = 3486.82 (km/s)^2/kpc, M_b = 1e+12: r_M = 35.1209 kpc, v_M = 349.943 km/s
+  max |f_phys r_M^3 v_M^3 / M_b / f - 1| = 2.8e-15 (tol 1e-8).   C6 PASS
+
+== R1-R4 reported rows (no pass line) ==
+  R1: min f = 1.4291e-14 at x_E = 1.00e+06;  f/f_K over x_E <= 1 in [0.801634, 1.076059];  f/f_iso over x_E >= 1 in [0.139402, 1.000000]
+  R2: d ln f/dE max = +0.3061 at x_E = 5.888e-01 (E = -1.4116);  at x_E = 1e5: -2.0000;  at x_E = 1e-5: +5.00e-06;  at x_E = 1e6: -2.0000  (CFG130: +0.3 to -2.0; +-0.05: max True, end True)  [3.4 s]
+  R3 (outer boundary; relative change of f):
+    xE=1e+03,xout=1e+05: second form cut -1.771e-05;  first form cut +8.768e-07
+    xE=1e+03,xout=1e+06: second form cut -1.468e-07;  first form cut +3.972e-09
+    xE=1e+04,xout=1e+05: second form cut -2.407e-03;  first form cut +2.225e-04
+    xE=1e+04,xout=1e+06: second form cut -1.771e-05;  first form cut +8.745e-07
+    xE=1e+05,xout=1e+05: degenerate (x_out <= x_E)
+    xE=1e+05,xout=1e+06: second form cut -2.407e-03;  first form cut +2.225e-04
+  R4: lim drho/dPhi at Phi_max: target 0, mutate_cored 0, hernquist 0, sis 0  -> every boundary term is zero
+
+== summary ==
+  H1 [headline] f(E) > 0 for the point-mass target: PASS  (a True, b True, c True, Q1 True, Q2 True, Q3 True, Q4 True)
+  controls: C1 PASS, C1b PASS, C2 PASS, C3 PASS, C4 PASS, C5 PASS, C6 PASS
+  QUADPACK IntegrationWarnings (Route B, all calls): 0
+  exit code 0;  run time 9.7 s
+  kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
