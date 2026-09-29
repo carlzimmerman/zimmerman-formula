@@ -197,3 +197,18 @@ The KiDS early/late split, B-specific for the difference only and fragile, remai
   - CFG87 re-derived B's side and paired it: B's gaps reproduce (+0.159 / +0.172 / +0.152 / +0.168).
   - The paired base cell gives B − ΛCDM = +0.115 to +0.135 (7.5–8.2σ statistical).
   - Across the cells it stays CONDITIONAL: a difference between the models.
+
+
+## Addendum after CFG110 (appended 2026-09-29; the rows and addenda above are unchanged)
+
+- **A second KiDS test in the same machinery: the within-class mass split at fixed g_bar** (CFG110, 2f05b5303). Within each colour class, the 1-halo lensing signal at fixed g_bar shows no detectable dependence on stellar mass.
+  - **B's law** (mass-independence in the deep regime) is consistent: 22.2/14, p = 0.075.
+  - **The colour-split ΛCDM** is consistent too: 25.2/14, p = 0.033. The power between these two is only 8.8, so the test is non-discriminating between them.
+  - **The colour-blind ΛCDM (Moster) is rejected:** 105/14, p ≈ 4 × 10⁻¹⁶.
+- **So the KiDS picture in shared machinery is:**
+  - the signal depends on galaxy type, and not detectably on mass within a type;
+  - B's law gets the mass-independence right and misses the type dependence;
+  - the colour-blind halo matches the colour split only through mass, and fails the mass split;
+  - colour-dependent halos fit both.
+- **The KiDS row stays B-specific relative to the colour-split ΛCDM.** Relative to the colour-blind ΛCDM, the two models each fail one KiDS test.
+- **The lens photo-z check:** the within-class redshift split is consistent with zero (19.2/14, p = 0.16).
