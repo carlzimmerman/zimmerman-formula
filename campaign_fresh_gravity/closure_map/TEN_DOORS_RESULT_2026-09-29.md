@@ -29,3 +29,13 @@ Where cold matter is dynamical (6, 8, 10), its scale comes from the turnaround, 
 - Doors 5 and 8: the frozen question preceded the scripts by file times but was not committed first.
 - Literature facts in the lanes are from memory and unverified.
 - The seven independent referee lanes CFG150-156 are pending; an appended note will say what reproduced.
+
+## Appended note: what the independent referee lanes reproduced (2026-09-29)
+Each referee re-derived one headline per door from the frozen criteria and README with its own code, opened the original lane's scripts only after its own runs were saved, and was re-run in place by a second session. None changed a verdict. Referees were not blind to the README numbers.
+- Door 1 CFG151 (db335c0e7), door 4 CFG154 (2f6845de3), door 5 CFG155 (bdbcf3fe1), door 8 CFG156 (bb7bd135d), door 9 CFG153 (9ce8b61c5), door 10 CFG152 (7cb9ba39e): reported by the calc chat as reproducing their headlines, each with README-level corrections (for example door 4 counts about 237 independent tests, not about 36; door 9's A4 carries a background term A2/A3 omit; door 10's T0.4a label). Not re-verified here.
+- Door 3 CFG157 (0bbd62cd7): reproduces T1.2 (1.310 / 1.016 / 0.434 / 0.063), B1 and T1.5; does not test T1.3, T1.4, Q1, G1c B2-B4, G2-G5 or O1, on which the scoped no-go mostly rests.
+- Door 6 CFG158 (c868ad276): reproduces the cumulative-mass envelopes and the M^(1/3) exponent; three of the referee's own controls (EdS slope, shell-count and time-step convergence at a ~10% chaotic floor) fail and are kept.
+- Door 7 CFG159 (a1fb4a128): every rule-(ii) miss agrees with CFG119 to 1e-7 to 1e-6; three of the referee's own frozen lines failed on definitions and rounding.
+- Door 2 (CFG117): no referee lane.
+- Door 11: the four time-flow sub-variants CFG172 (f1585212e) and CFG172D (249fa4ec8) are scoped no-gos; CFG188 (058296d6f) re-derived the field-equation core of 11C-a, b and c (21 AGREE, 5 CONDITIONAL, 1 NOT DONE, 0 DISAGREE). 11C-a and 11C-c pass the G1 law only through the declared kernel. 11C-d (CFG172D) has no independent re-derivation.
+- The matrix above is unchanged. What the referees changed is how much weight the cells carry: several rest on definitions or on sub-lines the referees did not test.
