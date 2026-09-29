@@ -1,0 +1,118 @@
+CFG100  MUTATE=0  frozen-text sha256 4c89e883e352b511
+== controls on inputs
+  [PASS] K1 per-patch sums vs June: max relative deviation 3.10e-11 (<= 1e-9)
+  [PASS] K2 partition/medians/K1: medians 10.4484 late 10.8105 early; K1 = [8, 9, 10, 11, 12, 13, 14]; median R late [0.177 0.133 0.1   0.076 0.057 0.043 0.032]
+  class counts: late 93398 early 88079
+  groups: 2901
+  table B_canonical    7.7s
+  table B_alt          8.0s
+  table L             18.8s
+  table Mo            17.8s
+  table Mo_m          18.6s
+  table L+            19.2s
+  table L-            18.1s
+  table Mo+           18.1s
+  table Mo-           19.9s
+== main statistic: 14 bins, h = 0.693878
+  D late : [-5.616  9.565 -7.707 -9.888 -0.672 -3.56  20.896]
+  D early: [ 0.233  0.781 -1.209  5.48  15.169 -2.188 10.989]
+  sigma  : [ 3.532  3.889  5.511  7.654  9.539 12.099 18.31 ] [ 2.121  2.62   3.539  5.971  6.116  9.825 12.186]
+  D_B_canonical  late [0.036 0.018 0.01  0.005 0.003 0.002 0.001] | early [0.028 0.014 0.007 0.004 0.002 0.001 0.001]
+  D_B_alt        late [0.033 0.017 0.009 0.005 0.003 0.002 0.001] | early [0.026 0.013 0.007 0.004 0.002 0.001 0.001]
+  D_L            late [ -4.204  -5.537  -6.994  -8.422  -9.604 -10.295 -10.287] | early [1.377 1.989 2.799 3.825 5.059 6.463 7.965]
+  D_Mo           late [ 4.842  6.756  9.157 12.022 15.257 18.689 22.097] | early [ 6.834  9.367 12.431 15.921 19.631 23.272 26.534]
+  D_Mo_m         late [ 3.896  5.496  7.544 10.042 12.931 16.082 19.303] | early [ 5.549  7.699 10.359 13.47  16.877 20.337 23.563]
+  D_L+           late [-2.667 -3.388 -4.081 -4.609 -4.802 -4.496 -3.585] | early [ 3.189  4.409  5.913  7.674  9.615 11.621 13.557]
+  D_L-           late [ -5.113  -6.826  -8.772 -10.796 -12.657 -14.067 -14.75 ] | early [-0.261 -0.248 -0.152  0.076  0.491  1.135  2.019]
+  D_Mo+          late [ 8.787 11.965 15.783 20.114 24.72  29.285 33.474] | early [11.102 14.819 19.099 23.704 28.282 32.438 35.833]
+  D_Mo-          late [ 2.393  3.427  4.786  6.498  8.557 10.907 13.442] | early [ 3.878  5.441  7.414  9.776 12.439 15.239 17.959]
+  --- R0 (power row, printed before data comparison as frozen) ---
+  lambda(L-B) = 8.768   lambda(Mo-B) = 86.671   lambda(L-Mo)=91.172
+  chi2 B_canonical  =   22.200 / 14   p = 0.0746
+  chi2 B_alt        =   22.198 / 14   p = 0.0746
+  chi2 L            =   25.163 / 14   p = 0.033
+  chi2 Mo           =  105.035 / 14   p = 5.1e-16
+  chi2 Mo_m         =   79.232 / 14   p = 3.93e-11
+  chi2 L+           =   30.702 / 14   p = 0.0061
+  chi2 L-           =   28.983 / 14   p = 0.0105
+  chi2 Mo+          =  230.218 / 14   p = 3.48e-41
+  chi2 Mo-          =   49.090 / 14   p = 8.67e-06
+== controls on machinery
+  [PASS] K3 projector: point 0.0e+00, SIS 1.1e-11, NFW-WB 1.4e-05, M(<R200c) 2.2e-16
+  [PASS] K4 law deep-regime mass independence (dark part, g<=1e-12): max |ratio-1| = 1.09e-02 (R inside edge)
+  [PASS] K6 covariance algebra: T C60 T^T vs C: 3.4e-16; solve/chol/inv 22.199656 22.199656 22.199656; eig min 3.31 max 346
+  [PASS] K5 grouped vs exact per-lens: max stack rel err 1.19e-03; max |dD|/sigma_D 8.41e-03
+  [PASS] K7 calibration null (200 random halvings): mean chi2 13.77 (14), frac p<0.05 = 0.065, sd 5.69 (expect ~5.3)
+  [PASS] K8 swapped-class control: swapped chi2 B 22.21 (was 22.20), L 44.83 (25.16), Mo 90.62 (105.04)
+== reproduction against CFG110's stated numbers
+  P1 B canonical chi2/14             mine 22.2       CFG110 22.2     REPRODUCED
+  P1 B alt chi2/14                   mine 22.2       CFG110 22.2     REPRODUCED
+  P1 p(B canonical)                  mine 0.0746     CFG110 0.075    REPRODUCED
+  P2 Moster chi2/14                  mine 105        CFG110 105      REPRODUCED
+  P3 lambda(L-B)                     mine 8.768      CFG110 8.8      REPRODUCED
+  L chi2/14                          mine 25.16      CFG110 25.2     REPRODUCED
+  p(L)                               mine 0.03299    CFG110 0.033    REPRODUCED
+  lambda(Mo-B)                       mine 86.67      CFG110 87       REPRODUCED
+  R1 B_canonical late chi2/7         mine 13.43      CFG110 13.4     REPRODUCED
+  R1 B_canonical early chi2/7        mine 6.535      CFG110 6.5      REPRODUCED
+  R1 L late chi2/7                   mine 21.85      CFG110 21.8     REPRODUCED
+  R1 L early chi2/7                  mine 5.08       CFG110 5.1      REPRODUCED
+  R1 Mo late chi2/7                  mine 25.07      CFG110 25.2     APPROXIMATE
+  R1 Mo early chi2/7                 mine 54.85      CFG110 55       APPROXIMATE
+  per-class chi2 (7 bins, own Hartlap): B_canonical late 13.43 early 6.54; L late 21.85 early 5.08; Mo late 25.07 early 54.85; Mo_m late 21.15 early 37.45
+  variants: Mo_m chi2 79.23 (p 3.9e-11), lambda(Mo_m-B) = 60.76;  B_alt-B_canonical dchi2 -0.002
+  readings: H1 canon True alt True (p 0.075 / 0.075);  H2 L True (p 0.033);  lambda(L-B) 8.77 < 9
+== R6 pair-weighted (WW) model stacks: B_canonical chi2 22.20 (p 0.0746), L chi2 26.48 (p 0.0225), Mo chi2 97.28 (p 1.57e-14);  lambda(L-B) 10.35 lambda(Mo-B) 79.59
+== R7 amplitude fits  D - D_B = A (D_shape - D_B)   [A=0 B, A=1 shape; stat error only]
+  shape L   : A = +0.331 +- 0.338  (z(A=0) +0.98;  A=1 is 1.98 sigma away; one-sided 95% UL 0.887; lambda 8.77; chi2 25.16)
+  shape L-  : A = +0.208 +- 0.294  (z(A=0) +0.71;  A=1 is 2.70 sigma away; one-sided 95% UL 0.691; lambda 11.60; chi2 28.98)
+  shape L+  : A = +0.208 +- 0.262  (z(A=0) +0.79;  A=1 is 3.02 sigma away; one-sided 95% UL 0.639; lambda 14.56; chi2 30.70)
+  shape Mo  : A = +0.022 +- 0.107  (z(A=0) +0.21;  A=1 is 9.10 sigma away; one-sided 95% UL 0.199; lambda 86.67; chi2 105.04)
+  shape Mo- : A = +0.055 +- 0.182  (z(A=0) +0.30;  A=1 is 5.19 sigma away; one-sided 95% UL 0.354; lambda 30.21; chi2 49.09)
+  shape Mo+ : A = +0.008 +- 0.069  (z(A=0) +0.11;  A=1 is 14.42 sigma away; one-sided 95% UL 0.121; lambda 211.31; chi2 230.22)
+== POWER of B's mass-independence chi2 (14 dof, alpha 0.05; Hartlap-consistent lambda = mu^T h C^-1 mu)
+  chi2_crit(14, 0.05) = 23.685
+  (a) colour-split LCDM    lambda   8.77  E[chi2_B]  22.77  power(14dof) 0.412 (MC 0.414, MC mean 22.78)  power(1dof amp) 0.842  NP equal-error rate 0.069
+      per-bin contribution c_i (late, K1 bins 8..14 from low-g/large-R to high-g): [0.64 1.65 1.43 0.61 1.19 0.31 0.32]
+                                 (early):                                       [ 0.2   0.59  0.4  -0.01  0.74  0.11  0.58]   class sums 6.16 | 2.61
+      lambda dropping bin j (both classes) j=8..14: [8.24 6.75 6.83 8.45 6.87 8.59 7.5 ]   (full 8.77)
+      single-bin z^2 (late): [1.   1.42 1.12 0.84 0.7  0.5  0.22]   (early): [0.28 0.39 0.43 0.28 0.47 0.3  0.3 ]
+  (b) half of (a)          lambda   2.19  E[chi2_B]  16.19  power(14dof) 0.114 (MC 0.114, MC mean 16.20)  power(1dof amp) 0.316  NP equal-error rate 0.230
+      per-bin contribution c_i (late, K1 bins 8..14 from low-g/large-R to high-g): [0.16 0.41 0.36 0.15 0.3  0.08 0.08]
+                                 (early):                                       [ 0.05  0.15  0.1  -0.    0.19  0.03  0.15]   class sums 1.54 | 0.65
+      lambda dropping bin j (both classes) j=8..14: [2.06 1.69 1.71 2.11 1.72 2.15 1.88]   (full 2.19)
+      single-bin z^2 (late): [0.25 0.35 0.28 0.21 0.18 0.13 0.05]   (early): [0.07 0.1  0.11 0.07 0.12 0.08 0.07]
+  (c) Moster               lambda  86.67  E[chi2_B] 100.67  power(14dof) 1.000 (MC 1.000, MC mean 100.64)  power(1dof amp) 1.000  NP equal-error rate 0.000
+      per-bin contribution c_i (late, K1 bins 8..14 from low-g/large-R to high-g): [1.27 2.24 3.81 3.94 3.96 3.23 1.01]
+                                 (early):                                       [14.12 16.06 14.02 11.18 -1.03  4.35  8.51]   class sums 19.46 | 67.22
+      lambda dropping bin j (both classes) j=8..14: [64.87 60.61 63.64 68.02 80.42 77.14 70.03]   (full 86.67)
+      single-bin z^2 (late): [1.28 2.08 1.91 1.71 1.77 1.66 1.01]   (early): [7.14 8.84 8.55 4.93 7.15 3.89 3.29]
+  [PASS] K10 power machinery (MC vs analytic): (a): mean 22.777 vs 22.768, power 0.414 vs 0.412; (b): mean 16.197 vs 16.192, power 0.114 vs 0.114; (c): mean 100.643 vs 100.671, power 1.000 vs 1.000
+  shape L: amplitude with 80% power: omnibus 14-dof test A = 1.45 (lambda* 18.34);  1-dof amplitude test A = 0.95
+  shape Mo: amplitude with 80% power: omnibus 14-dof test A = 0.46 (lambda* 18.34);  1-dof amplitude test A = 0.30
+== wording tests: W1 (p_B>0.01) True | W2 (UL_L<1) True | W3 (UL_L<0.5) False | W4 (UL_Mo<1) True  => 'B gets mass-independence right' allowed: False
+== SENSITIVITY: error inflation (chi2/f^2; lambda/f^2)
+  x1.0: B 22.20 (p 0.075)  L 25.16 (p 0.033)  Mo 105.04 (p 5.1e-16)  lambda(L-B) 8.77 power 0.41  lambda(Mo-B) 86.7 power 1.00
+  x1.2: B 15.42 (p 0.350)  L 17.47 (p 0.232)  Mo 72.94 (p 5.6e-10)  lambda(L-B) 6.09 power 0.28  lambda(Mo-B) 60.2 power 1.00
+  x1.5: B 9.87 (p 0.772)  L 11.18 (p 0.672)  Mo 46.68 (p 2.2e-05)  lambda(L-B) 3.90 power 0.18  lambda(Mo-B) 38.5 power 0.99
+  x2.0: B 5.55 (p 0.977)  L 6.29 (p 0.959)  Mo 26.26 (p 0.024)  lambda(L-B) 2.19 power 0.11  lambda(Mo-B) 21.7 power 0.88
+== SENSITIVITY: bin sets (main mass split), local Hartlap
+  K1 (8-14)              dof 14: B  22.20 (p 0.075) L  25.16 (p 0.033) Mo  105.04  lambda(L-B)  8.77 lambda(Mo-B)   86.7
+  K1 minus 8             dof 12: B  22.23 (p 0.035) L  25.50 (p 0.013) Mo   79.23  lambda(L-B)  8.73 lambda(Mo-B)   68.7
+  K1 minus 9             dof 12: B  13.85 (p 0.311) L   6.61 (p 0.882) Mo   79.87  lambda(L-B)  7.14 lambda(Mo-B)   64.2
+  K1 minus 10            dof 12: B  20.51 (p 0.058) L  26.08 (p 0.010) Mo   78.24  lambda(L-B)  7.24 lambda(Mo-B)   67.4
+  K1 minus 11            dof 12: B  16.82 (p 0.156) L  22.61 (p 0.031) Mo   75.56  lambda(L-B)  8.95 lambda(Mo-B)   72.0
+  K1 minus 12            dof 12: B  13.34 (p 0.345) L  20.88 (p 0.052) Mo   91.31  lambda(L-B)  7.27 lambda(Mo-B)   85.1
+  K1 minus 13            dof 12: B  21.64 (p 0.042) L  23.61 (p 0.023) Mo   98.18  lambda(L-B)  9.10 lambda(Mo-B)   81.7
+  K1 minus 14            dof 12: B  22.95 (p 0.028) L  24.74 (p 0.016) Mo   97.58  lambda(L-B)  7.95 lambda(Mo-B)   74.2
+  highest-g 4 (11-14)    dof  8: B   9.02 (p 0.341) L   5.74 (p 0.676) Mo   30.04  lambda(L-B)  4.66 lambda(Mo-B)   29.2
+  lowest-g 3 (8-10)      dof  6: B   8.89 (p 0.180) L  16.49 (p 0.011) Mo   54.85  lambda(L-B)  5.83 lambda(Mo-B)   43.3
+  bins 8-11              dof  8: B  12.37 (p 0.135) L  17.59 (p 0.025) Mo   71.37  lambda(L-B)  6.03 lambda(Mo-B)   56.1
+== SENSITIVITY: mass-split edges (K1, 14 bins; own jackknife)
+  q50      n=[46698, 46700, 44035, 44044]: B  22.20 (p 0.075) L  25.16 (p 0.033) Mo  105.04  lambda(L-B)  8.77 lambda(Mo-B)   86.7
+  q40|q60  n=[37359, 37360, 35232, 35232]: B  28.53 (p 0.012) L  20.48 (p 0.116) Mo  103.67  lambda(L-B) 12.64 lambda(Mo-B)   92.1
+  q33|q67  n=[30822, 30824, 29063, 29073]: B  22.19 (p 0.075) L  21.73 (p 0.084) Mo   67.27  lambda(L-B) 13.48 lambda(Mo-B)   66.6
+  q25|q75  n=[23350, 23355, 22003, 22034]: B  25.66 (p 0.029) L  38.36 (p 0.000) Mo   63.10  lambda(L-B) 12.22 lambda(Mo-B)   62.8
+  s-0.1    n=[39528, 53870, 29391, 58688]: B  31.57 (p 0.005) L  27.13 (p 0.019) Mo   54.98  lambda(L-B) 11.09 lambda(Mo-B)   58.8
+  s+0.1    n=[55016, 38382, 66371, 21708]: B  21.84 (p 0.082) L  35.38 (p 0.001) Mo   96.71  lambda(L-B)  7.39 lambda(Mo-B)   67.7
+elapsed 189s; checks 9/9; rc 0

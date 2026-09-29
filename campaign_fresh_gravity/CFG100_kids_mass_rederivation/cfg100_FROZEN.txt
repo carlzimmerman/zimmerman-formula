@@ -1,0 +1,74 @@
+CFG100 -- independent re-derivation of CFG110's within-colour-class stellar-mass test on the KiDS-1000 lensing signal, plus a power attack.
+FROZEN BEFORE ANY RUN of this lane's scoring script (written 2026-09-29).
+
+QUESTION
+  (1) From CFG110_FROZEN_CRITERIA.md / CFG110_README.md (the only CFG110 material read) and my own code, do I reproduce: B's law mass-independence
+      chi2 = 22.2/14 (p 0.075); the colour-blind Moster rejection 105/14; the power row R0 = 8.8 between B and colour-split LCDM?
+  (2) ATTACK on the wording "B gets mass-independence right": is a p = 0.075 pass at 14 dof only a non-detection?  How much mass dependence could
+      B's pass still hide (power / upper limits), where in the bins does the discriminating power sit, and how robust is the verdict to error
+      inflation, the bin set and the mass-split edges?
+
+MATERIAL READ (declared): CFG110_FROZEN_CRITERIA.md and CFG110_README.md (numbers in the README were therefore known before the run); the READMEs and
+  docstrings of CFG61, CFG67, CFG77; CFG77's cfg77_lib.py (source of the kernel, projector, turnaround solver, NFW/Mandelbaum pieces; own copies, no
+  import); the ESD normalisation lines of the June estimator agentK_jackknife_stack.py (KG = Msun/(3.0857e16)^2 and the leave-one-patch-out formula,
+  jackknife factor (N-1)/N) -- read via grep because the per-lens sums do not carry the unit conversion.  NOT read, run or imported: any CFG110 script,
+  .out or _results.json, CFG61/CFG67 code.
+  ONE INDEPENDENCE LIMIT, DECLARED: the per-lens KiDS sums (WG, WW, NN per lens per g_bar bin) are taken from the on-disk data product
+  real_research/data/lensing_rar/cfg110_perlens.npz (written by CFG110's staging pass; I did NOT re-stage from the 17 GB shear catalogue).  It is
+  verified only at the level of per-(patch, class, bin) sums against the June file (control K1).  A mis-assignment of pair sums between lenses of the
+  same patch and class would be invisible to K1; that is an untested shared-input dependency.
+
+DATA.  ESD(class, subset, bin) = sum_patches WG / sum_patches WW / KG  [Msun/pc^2], Msun = 1.98847e30 kg.  Lenses: lr_lenses.npz (181,477), patch labels
+  from lr_esd_jackknife.npz, class = typ (0 late, 1 early).  No m-bias correction (as June; it is a common constant).
+BINS.  15 g_bar bins logspace(1e-15, 5e-12, 16) m/s^2.  K1 = the 1-halo bins where the M_gal-unweighted lens median R = sqrt(G M_gal/g_centre) of BOTH classes is
+  < 0.3 Mpc; expected {8..14} (0-based), 7 bins (control K2).  Data vector D = [D_late(7), D_early(7)], 14 entries.
+MASS BINS / CLASSES.  Within each class, split at the class median of log10 M_gal (number median, whole lr sample of that class); a lens at the median goes to
+  the upper half.  D_c = ESD(c, high) - ESD(c, low).  Expected medians 10.448 (late), 10.810 (early).
+COVARIANCE.  Leave-one-patch-out over the 50 June patches for each of the four ESDs (late-hi, late-lo, early-hi, early-lo); D_(-p) formed per patch; C = (N-1)/N
+  sum_p (D_(-p) - mean)(D_(-p) - mean)^T.  Hartlap h = (50 - 14 - 2)/49 = 34/49; chi2 = h (D - D_m)^T C^-1 (D - D_m), dof 14.  For other bin sets p = 2 n_bins.
+MODELS (nothing fitted; lens by lens through grouped cells, cell = class x 0.01 dex in log M_gal x 0.03 in z, evaluated at the cell means; lens weight M_gal;
+  within a bin uniform in ln g with weight 1/g; pairs at R = sqrt(G M_gal / g), 6-point Gauss-Legendre in ln g per bin):
+  B : point baryon M_gal + dark mass M_gal (nu_mono(G M_gal/(r^2 a0)) - 1) to r_e = 0.4 r_ta, frozen beyond; r_ta where the untruncated enclosed mean density =
+      (1+delta_ta(a)) rho_m(a) at the lens z (own spherical-collapse solution); nu_mono re-implemented from its 8-line definition; a0 canonical 9.3603e-11 and alt
+      1.1312e-10 m/s^2; flat LCDM Om 0.3153, h 0.6736.
+  L (colour-split LCDM): point M_gal + NFW(M200c) truncated at 5 R200c, M200c from Mandelbaum+2016 (real_research/data/mandelbaum2016_lbg_halo_mass.tsv), red for early,
+      blue for late, converted M200m -> M200c (h 0.673, Om 0.315), Dutton-Maccio c; clamped at the table ends; M_* = 10^logM.
+  Mo (colour-blind Moster+13): M_* -> halo mass by inversion of the z = 0 Moster+13 relation (log M1 = 11.590, N = 0.0351, beta = 1.376, gamma = 0.608), the halo mass
+      TAKEN AS M200c (declared assumption: I did not read CFG35's halo_mass; the 105/14 may depend on it).  Variant Mo_m (reported): the same halo mass taken as
+      M200m and converted to M200c as for Mandelbaum.
+PASS LINES.
+ CONTROLS (a failure invalidates the corresponding downstream number):
+  K1  per-(patch, class, bin) sums of the per-lens arrays reproduce the June sums (wgE, W, NN) to relative 1e-9.
+  K2  the mass halves partition each class exactly; median log M_gal = 10.448 (late), 10.810 (early) to 5e-4; K1 bins = {8..14}.
+  K3  projector: point mass DeltaSigma = M/(pi R^2) to 1e-12; SIS (M = k r) DeltaSigma = k/(4R) to 1e-3; NFW vs Wright & Brainerd closed form to 1e-3 (own
+      formula); NFW enclosed mass at R200c equals M200c to 1e-6.
+  K4  the law at fixed g <= 1e-12 (g = 1e-13, 1e-12): DeltaSigma at M_gal = 1e10 vs 1e11 agrees to 3% (edge excluded).
+  K5  grouped-cell stacking vs exact per-lens on 300 random lenses per class: relative stack error < 1% (B, L, Mo) and |Delta D| < 0.05 sigma_D.
+  K6  covariance algebra: the directly jackknifed D covariance equals T C60 T^T (the transformed 60x60 four-ESD jackknife covariance) to 1e-9 relative; chi2 by
+      solve = Cholesky whitening = explicit inverse to 1e-8; C symmetric positive definite.
+  K7  calibration null: 200 random within-class halvings (seed 100), D_null per class on K1, own jackknife covariance each, Hartlap: mean chi2 in [9.8, 18.2].
+  K8  SWAPPED-CLASS control: the late and early data blocks (D and the covariance blocks) swapped, models kept with their classes: B chi2 moves by < 0.5 (B predicts
+      D ~ 0) while at least one of L, Mo moves by > 2.
+  K9  MUTATE=1 (early-class lens M_* and M_gal multiplied by 2; data untouched; the median partition is invariant): B chi2 (both footings) changes by < 0.1 against the
+      main run and the Mo chi2 changes by > 3 (L reported).  Failed => the control failed; report as such.
+  K10 power machinery: Monte Carlo (2e5 draws of N(mu, C/h)) reproduces the analytic non-central chi2 mean 14 + lambda and the power at alpha = 0.05 to 1%.
+ REPRODUCTION against CFG110's stated numbers (tolerance = the displayed digits; APPROXIMATE if within 10% [chi2] and non-reproduction otherwise; causes to be
+  investigated post hoc and labelled as such):
+  P1 B chi2 = 22.2 (canonical; alt the same), p = 0.075;   P2 Mo chi2 = 105 (p ~ 4e-16);   P3 R0 = (D_L - D_B)^T h C^-1 (D_L - D_B) = 8.8;
+  reported comparisons: L chi2 25.2 (p 0.033); Mo-B power 87; per-class chi2 (7 bins, p = 7 Hartlap): B 13.4 / 6.5, L 21.8 / 5.1, Mo 25.2 / 55.0 (late / early).
+ READING lines (as CFG110's, not judged as pass/fail here): H1 = B p > 0.01 on both footings; H2 = L p > 0.01.
+REPORTED ROWS (frozen now):
+  R0  power row: lambda_LB = (D_L - D_B)^T h C^-1 (D_L - D_B); also lambda_MoB and the per-class / per-bin decomposition.
+  R6  pair-weighted model stacks (weights = the data's own WW_ik instead of M_gal): chi2 for B, L, Mo.
+  R7  amplitude fits D = A D_shape (shape = L or Mo, B's D subtracted): A_hat = (s^T P r)/(s^T P s), sigma_A = (s^T P s)^-1/2 with P = h C^-1, r = D - D_B; the 1-dof z for A = 0 and the
+      one-sided 95% upper limit A_hat + 1.645 sigma_A; the L and Mo shapes recomputed with M_* shifted +-0.1 dex for all lenses (stellar-mass calibration).
+POWER ANALYSIS (the attack).  Test statistic = B's mass-independence chi2 (h C^-1, 14 dof).  Alternatives (true D): (a) D_L, (b) D_B + 0.5 (D_L - D_B), (c) D_Mo.
+  mu = D_alt - D_B; lambda = mu^T h C^-1 mu; expected chi2_B = 14 + lambda; power = P(nc-chi2(14, lambda) > chi2_crit(14, 0.05) = 23.685); also the same for the
+  1-dof optimal amplitude test of A = 0 and the Neyman-Pearson B-vs-alt discrimination error rate Phi(-sqrt(lambda)/2).  Bin decomposition: c_i = mu_i (P mu)_i, per
+  class, leave-one-bin-out lambda, single-bin z^2.  Detectable amplitude at 80% power (omnibus 14 dof and 1 dof) for the L and Mo shapes.
+  Wording tests (declared): W1 "consistent with B" = p_B > 0.01.  W2 "data exclude LCDM-size (colour-split) mass dependence" = A_hat_L + 1.645 sigma < 1.  W3 the same for half-size (< 0.5).
+  W4 = W2 for the Mo shape.  The phrase "B gets the mass-independence right" is allowed only if W3 holds; otherwise the only supported statement is W1 (a non-rejection).
+SENSITIVITIES (reported, not pass/fail): error inflation x1.2, x1.5, x2 (chi2/f^2, power lambda/f^2) for B, L, Mo; bin sets (K1; K1 minus each bin; the 4 highest-g bins; the 3
+  lowest-g K1 bins); mass-split edges (median [main]; q40|q60; q33|q67; q25|q75; single split at the class median shifted by -0.1 and +0.1 dex), each with its own
+  jackknife covariance, models restricted to the same lenses, chi2 for B, L, Mo, lambda_LB, lambda_MoB.
+Programme rules: no claim that the data favour the framework; kappa = 1/2 and Omega_c h^2 are fitted; a non-reproduction is a valid outcome; controls that fail are failures.
