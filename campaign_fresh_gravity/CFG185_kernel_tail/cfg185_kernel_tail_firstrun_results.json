@@ -1,0 +1,206 @@
+{
+ "slug": "cfg185_kernel_tail",
+ "summary": {
+  "n_checks": 8,
+  "n_pass": 6,
+  "load_bearing_failures": 2,
+  "failed": [
+   "C1 CONTROL: my rebuild of nu_mono's phantom equals CFG4_common's nu_mono to 1e-6 over y in",
+   "C2 CONTROL: P2's phantom y (sqrt(1 + 1/y) - 1) -> 1/2 - 1/(8 y) at large y (sympy)"
+  ],
+  "seconds": 1.7
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: my rebuild of nu_mono's phantom equals CFG4_common's nu_mono to 1e-6 over y in [1e-6, 1e14]",
+   "detail": "max |h_mine - h_CFG4| = 1.04e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: P2's phantom y (sqrt(1 + 1/y) - 1) -> 1/2 - 1/(8 y) at large y (sympy)",
+   "detail": "series: (8*y**2 - 2*y + 1)/(16*y**2)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 CONTROL: the RAR kernel's phantom y/(e^sqrt(y) - 1) decreases for y > Y_P",
+   "detail": "Y_P = 2.5396, H_P = 0.6476; h_rar(10) = 0.4420, h_rar(100) = 4.54e-03",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "Q1a non-decaying: h(y) >= H_P - 1e-3 for every y in [Y_P, 1e14]",
+   "detail": "min h = 0.6483 (H_P = 0.6476); h(Y_P) = 0.6483",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "Q1b (reported) the analytic tail h(Y_P) + 0.05 H_P ln((y + Y_P)/(2 Y_P)) matches the table for y >= Y_P",
+   "detail": "max |table - analytic| = 8.47e-09",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "Q1c '1.18 a0 at Earth' (canonical): h(Earth) within 0.02 of 1.18",
+   "detail": "h(Earth) = 1.1773",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "Q2a (reported) nu_mono's ratio range vs the relayed 2.9-3.6e3 (confirmed if within 5% of that range)",
+   "detail": "2894-3620x",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "Q2b (reported) P2's ratio range vs the relayed 1257-1540 (confirmed if within 5% of that range)",
+   "detail": "1258-1545x",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "Q2": {
+   "h_mono|canonical|Earth": 3011.017981118121,
+   "h_mono|canonical|Mars": 2893.7949196754043,
+   "h_mono|alt|Earth": 3619.888181514767,
+   "h_mono|alt|Mars": 3478.5287800229944,
+   "h_p2|canonical|Earth": 1278.7328820574376,
+   "h_p2|canonical|Mars": 1258.1081700043549,
+   "h_p2|alt|Earth": 1545.3600065426685,
+   "h_p2|alt|Mars": 1520.4348556067291
+  },
+  "tab": {
+   "canonical|Sun (photosphere)": {
+    "y": 2929475296693.253,
+    "h_mono": 1.5251620820966074,
+    "h_mono_cfg4": 1.5253619635714872,
+    "h_p2": 0.4995641739969732,
+    "h_rar": 0.0
+   },
+   "canonical|Mercury": {
+    "y": 423020186.79563785,
+    "h_mono": 1.238823998302446,
+    "h_mono_cfg4": 1.2388239621790713,
+    "h_p2": 0.5000000207957987,
+    "h_rar": 0.0
+   },
+   "canonical|Venus": {
+    "y": 121201062.79964553,
+    "h_mono": 1.1983493604700943,
+    "h_mono_cfg4": 1.1983493683444761,
+    "h_p2": 0.49999998750223423,
+    "h_rar": 0.0
+   },
+   "canonical|Earth": {
+    "y": 63355310.35619589,
+    "h_mono": 1.177344378202109,
+    "h_mono_cfg4": 1.1773443809683268,
+    "h_p2": 0.4999999931429981,
+    "h_rar": 0.0
+   },
+   "canonical|Mars": {
+    "y": 27278035.40387737,
+    "h_mono": 1.150058069823483,
+    "h_mono_cfg4": 1.1500580702194199,
+    "h_p2": 0.4999999978528751,
+    "h_rar": 0.0
+   },
+   "canonical|Jupiter": {
+    "y": 2340320.683726976,
+    "h_mono": 1.0705382392709213,
+    "h_mono_cfg4": 1.070538239406972,
+    "h_p2": 0.4999999464978815,
+    "h_rar": 0.0
+   },
+   "canonical|Saturn": {
+    "y": 696561.4852013966,
+    "h_mono": 1.0312967947078335,
+    "h_mono_cfg4": 1.031296794683638,
+    "h_p2": 0.4999998205731701,
+    "h_rar": 0.0
+   },
+   "canonical|Uranus": {
+    "y": 172041.44169287593,
+    "h_mono": 0.9860155768152652,
+    "h_mono_cfg4": 0.98601557681857,
+    "h_p2": 0.4999992734140843,
+    "h_rar": 0.0
+   },
+   "canonical|Neptune": {
+    "y": 70067.42648286454,
+    "h_mono": 0.9569295910064177,
+    "h_mono_cfg4": 0.9569295910109228,
+    "h_p2": 0.49999821602344124,
+    "h_rar": 0.0
+   },
+   "alt|Sun (photosphere)": {
+    "y": 2424041239210.2563,
+    "h_mono": 1.5190296260567873,
+    "h_mono_cfg4": 1.5189281781350024,
+    "h_p2": 0.5000298644533725,
+    "h_rar": 0.0
+   },
+   "alt|Mercury": {
+    "y": 350034826.70378846,
+    "h_mono": 1.2326915423031581,
+    "h_mono_cfg4": 1.2326915491042467,
+    "h_p2": 0.4999999509375953,
+    "h_rar": 0.0
+   },
+   "alt|Venus": {
+    "y": 100289760.01063594,
+    "h_mono": 1.1922169045717452,
+    "h_mono_cfg4": 1.1922169118379915,
+    "h_p2": 0.4999999888685576,
+    "h_rar": 0.0
+   },
+   "alt|Earth": {
+    "y": 52424365.9605997,
+    "h_mono": 1.171211922432929,
+    "h_mono_cfg4": 1.1712119186041974,
+    "h_p2": 0.4999999926396674,
+    "h_rar": 0.0
+   },
+   "alt|Mars": {
+    "y": 22571647.154108066,
+    "h_mono": 1.1439256144122494,
+    "h_mono_cfg4": 1.1439256142085439,
+    "h_p2": 0.4999999960794431,
+    "h_rar": 0.0
+   },
+   "alt|Jupiter": {
+    "y": 1936535.8215290525,
+    "h_mono": 1.064405790557727,
+    "h_mono_cfg4": 1.0644057906232747,
+    "h_p2": 0.4999999354948515,
+    "h_rar": 0.0
+   },
+   "alt|Saturn": {
+    "y": 576380.9538451054,
+    "h_mono": 1.0251643632840952,
+    "h_mono_cfg4": 1.0251643632906982,
+    "h_p2": 0.4999997831660066,
+    "h_rar": 0.0
+   },
+   "alt|Uranus": {
+    "y": 142358.44555079928,
+    "h_mono": 0.979883220439814,
+    "h_mono_cfg4": 0.9798832204535056,
+    "h_p2": 0.49999912193131285,
+    "h_rar": 0.0
+   },
+   "alt|Neptune": {
+    "y": 57978.413919897685,
+    "h_mono": 0.9507973796736813,
+    "h_mono_cfg4": 0.9507973796739582,
+    "h_p2": 0.499997844039564,
+    "h_rar": 0.0
+   }
+  },
+  "Q4_hits": [
+   "campaign_fresh_gravity/CFG121_door3_dipolar_dm/README.md:7"
+  ]
+ }
+}

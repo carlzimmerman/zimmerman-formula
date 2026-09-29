@@ -1,0 +1,81 @@
+CFG185 -- the high-g tails of nu_mono and P2 against the Solar System, reconciled with GATES 4.01.
+
+Frozen criteria: FROZEN_CRITERIA.md in this directory (572c4aefc).
+  Q1  nu_mono's phantom h(y) = y (nu - 1) rebuilt from FP1's definition with my own code (the RAR phantom y/(e^sqrt(y) - 1),
+      its derivative floored at 0.05 H_P/(y + Y_P), integrated by the trapezoid rule on the same log grid) vs CFG4_common's;
+      the tail derived from the floor: for y >= Y_P, h(y) = h(Y_P) + 0.05 H_P ln((y + Y_P)/(2 Y_P)).
+  Q2  a_anom = h a0 at Earth / Mars (the Sun's g_N) vs the record's verified delta A_R bounds 3.66e-14 / 3.72e-14 m/s^2.
+  Q3  the monopole ratios vs GATES 4.01's Q2 tide (a different quantity); which applies to candidate B.
+  Q4  a committed grep of the record for 'Solar-System safe' statements about nu_mono or P2.
+MUTATE=1 removes the floor (the pure RAR kernel): the tail must then decay.
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [FAIL] C1 CONTROL: my rebuild of nu_mono's phantom equals CFG4_common's nu_mono to 1e-6 over y in [1e-6, 1e14]  [MUTATE: floor removed, must FAIL]
+         max |h_mine - h_CFG4 table| = 1.64e+00; as nu: max |nu_mine - nu_mono| = 2.48e-02
+  [PASS] C2 CONTROL: P2's phantom y (sqrt(1 + 1/y) - 1) -> 1/2 - 1/(8 y) at large y (sympy)
+         series: (4*y - 1)/(8*y)
+  [PASS] C3 CONTROL: the RAR kernel's phantom y/(e^sqrt(y) - 1) decreases for y > Y_P
+         Y_P = 2.5396, H_P = 0.6476; h_rar(10) = 0.4420, h_rar(100) = 4.54e-03
+
+======================================================================================================================
+Q1  THE TAIL: h(y) = y (nu - 1) for y >= Y_P (anomalous acceleration in units of a0)
+======================================================================================================================
+  [FAIL] Q1a non-decaying: h(y) >= H_P - 1e-3 for every y in [Y_P, 1e14]  [MUTATE: must FAIL]
+         min h = -0.0000 (H_P = 0.6476); h(Y_P) = 0.6476
+  [PASS] (reported) Q1b (reported) the analytic tail h(Y_P) + 0.05 H_P ln((y + Y_P)/(2 Y_P)) matches the table for y >= Y_P
+         max |table - analytic| = 1.64e+00
+  footing canonical (a0 = 9.3603e-11 m/s^2):
+    Sun (photosphere)  y = 2.929e+12:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.4996;  RAR h = 0.00e+00
+    Mercury            y = 4.230e+08:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Venus              y = 1.212e+08:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Earth              y = 6.336e+07:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Mars               y = 2.728e+07:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Jupiter            y = 2.340e+06:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Saturn             y = 6.966e+05:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Uranus             y = 1.720e+05:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Neptune            y = 7.007e+04:  nu_mono h = -0.0000 (a_anom -1.049e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+  footing alt (a0 = 1.1312e-10 m/s^2):
+    Sun (photosphere)  y = 2.424e+12:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Mercury            y = 3.500e+08:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Venus              y = 1.003e+08:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Earth              y = 5.242e+07:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Mars               y = 2.257e+07:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Jupiter            y = 1.937e+06:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Saturn             y = 5.764e+05:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Uranus             y = 1.424e+05:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+    Neptune            y = 5.798e+04:  nu_mono h = -0.0000 (a_anom -1.267e-22 m/s^2);  P2 h = 0.5000;  RAR h = 0.00e+00
+  the table's clamp: h(1e14) = -0.0000 (nu_mono is constant in h beyond y = 1e14: the interpolation clamps)
+  [FAIL] Q1c '1.18 a0 at Earth' (canonical): h(Earth) within 0.02 of 1.18  [MUTATE: must FAIL]
+         h(Earth) = -0.0000
+
+======================================================================================================================
+Q2  a_anom = h a0 vs the verified delta A_R bounds (Earth 3.66e-14, Mars 3.72e-14 m/s^2, 2 sigma)
+======================================================================================================================
+  h_mono : canonical Earth -0x;  canonical Mars -0x;  alt Earth -0x;  alt Mars -0x   (range -0--0x)
+  h_p2   : canonical Earth 1279x;  canonical Mars 1258x;  alt Earth 1545x;  alt Mars 1520x   (range 1258-1545x)
+  [PASS] (reported) Q2a (reported) nu_mono's ratio range vs the relayed 2.9-3.6e3 (confirmed if within 5% of that range)
+         -0--0x
+  [PASS] (reported) Q2b (reported) P2's ratio range vs the relayed 1257-1540 (confirmed if within 5% of that range)
+         1258-1545x
+
+======================================================================================================================
+Q3  RECONCILIATION
+======================================================================================================================
+  - The ratios above are the MONOPOLE: a constant (P2) or slowly growing (nu_mono) SUNWARD anomalous acceleration h a0, carried
+    by the Sun in the strict (bare) law, against the planetary radial-acceleration bound delta A_R (ranging).
+  - GATES 4.01's '4.0-5.7x the ceiling' is Q2: the TIDAL quadrupole (s^-2) of the Solar-System field in the Galaxy's external
+    field, against the ephemeris bound Q2 <= 5.2e-27 s^-2. A different observable of the same strict law; both hold together.
+  - Candidate B passes 4.01 by OWNERSHIP (the phantom belongs to the host; the Sun carries none): the host-phantom tide is
+    1.6-2.6e-31 s^-2 (GATES 4.01). Under ownership the Sun carries no monopole either, so neither bare-law number applies to B.
+  - So: as a BARE law, neither kernel is Solar-System safe; nu_mono's tail is non-decaying and larger than P2's a0/2.
+
+======================================================================================================================
+Q4  GREP: 'Solar-System safe' statements about nu_mono or P2 in the record (*.md)
+======================================================================================================================
+  scope: 565 files (the record's documents; see the comment in the script)
+    campaign_fresh_gravity/CFG121_door3_dipolar_dm/README.md:7: **A scoped no-go for the missing object.** Fails G1 (extended baryons, any single polarisation law, the committed ν_mono kernel), G1c (medium self-consistency, 
+  1 line(s) found
+
+  5/8 checks pass; load-bearing failures: 3   (1 s)
