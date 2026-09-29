@@ -288,6 +288,125 @@ write("alpaka1_kinematics.csv", ["id", "vmax_kms", "vmax_errhi", "vmax_errlo", "
       "sigma_m_errlo", "sigma_m_lim", "vext_kms", "vext_errhi", "vext_errlo", "vext_lim", "sigma_ext_kms", "sigma_ext_errhi",
       "sigma_ext_errlo", "sigma_ext_lim", "vmax_over_sigma_m", "e1", "e2", "lim", "vext_over_sigma_ext", "e1", "e2", "lim2"], A5)
 
+# ------------------------------------------------------------------ helpers for the 2023-2026 papers below
+def generic_rows(fn, first_regex, ncell_min=3):
+    out = []
+    for l in active_lines(fn):
+        s = re.sub(r"\\noalign\{[^}]*\}", "", l)
+        s = re.sub(r"\\vspace\{[^}]*\}", "", s)
+        s = re.sub(r"\s*\\\\.*$", "", s.strip()) if not re.search(r"\\substack", s) else re.sub(r"\s*\\\\\s*$", "", s.strip())
+        c = [x.strip() for x in s.split("&")]
+        if len(c) >= ncell_min and re.match(first_regex, c[0]):
+            out.append(c)
+    return out
+
+
+def cellf(s):
+    v, hi, lo, fl = cell(s)
+    fixed = "fixed" if re.search(r"^\s*\[.*\]\s*$", s.strip()) else ""
+    lim = "<" if "lesssim" in s else (">" if "gtrsim" in s else "")
+    return v, hi, lo, fixed or lim
+
+
+# ------------------------------------------------------------------ Lelli+2023, arXiv:2302.00030 (two cosmic-noon discs with ALMA CO)
+# 3DBarolo geometry table (two columns)
+L3 = {}
+for l in active_lines("lelli2023_2302.00030_table_3dfits.tex"):
+    s = re.sub(r"\s*\\\\.*$", "", l.strip())
+    c = [x.strip() for x in s.split("&")]
+    if len(c) == 3 and c[0].startswith("$") or (len(c) == 3 and "sigma" in c[0]):
+        L3[c[0]] = (c[1], c[2])
+write("lelli2023_3dbarolo.csv", ["parameter", "zC-400569", "zC-488879"], [[k, v[0].replace("$", ""), v[1].replace("$", "")] for k, v in L3.items()])
+# mass-model table: a row can wrap across two source lines (a line ending in '&')
+txt = "\n".join(active_lines("lelli2023_2302.00030_table_massmodels.tex"))
+txt = re.sub(r"&\s*\n\s*", "& ", txt)
+LM = []; gal = None
+for s in txt.split("\n"):
+    s = re.sub(r"\s*\\\\.*$", "", s.strip())
+    if "&" in s and "Galaxy" not in s and "multicolumn" not in s and "Model" not in s:
+        c = [x.strip() for x in s.split("&")]
+        if re.match(r"^zC-\d+", c[0]):
+            gal = c[0]; c = c[1:]
+        else:
+            c = c[1:]
+        LM.append([gal] + c)
+check(len(LM) == 6, f"Lelli 2023 mass-model table has 6 rows (2 galaxies x 3 models) (got {len(LM)})")
+lm_cols = ["galaxy", "model"] + [f"{n}{s}" for n in ("inc_deg", "Mgas_1e10", "Mdisk_1e10", "Mbul_1e10", "M200_1e12", "C200", "Mbar_1e10", "Mbul_over_Mbar") for s in ("", "_errhi", "_errlo")]
+rows_lm = []
+for r in LM:
+    vals = [cell(x) for x in r[2:10]]
+    rows_lm.append([r[0], re.sub(r"[\$]", "", r[1])] + [y for v in vals for y in v[:3]])
+check({r[0] for r in rows_lm} == {"zC-400569", "zC-488879"}, "Lelli 2023: the two galaxies are zC-400569 (z 2.24) and zC-488879 (z 1.47)")
+write("lelli2023_massmodels.csv", lm_cols, rows_lm)
+mb = {(r[0], r[1]): r for r in rows_lm}
+mbar_i = lm_cols.index("Mbar_1e10")
+log("Lelli 2023: baryonic mass (1e10 Msun) in the baryons-only fits: zC-400569 %.1f, zC-488879 %.1f; MOND fits use a0 = 1.2e-10 (the z = 0 value); "
+    "the paper states the rotation curves are limited to high-acceleration regions with V_obs^2/R > 3-4 a0" % (
+    mb[("zC-400569", "Baryons only")][mbar_i], mb[("zC-488879", "Baryons only")][mbar_i]))
+
+# ------------------------------------------------------------------ ALPAKA discs with JWST + CO/[CI] decomposition, arXiv:2601.03338
+J1 = generic_rows("alpaka_jwst2026_2601.03338_table_data.tex", r"^\d+$", 8)
+check(len(J1) == 3, f"arXiv:2601.03338 data table has 3 discs (got {len(J1)})")
+jrows = []
+for c in J1:
+    ms = cell(c[7]); sf = cell(c[8]); lp = cell(c[3])
+    jrows.append([int(c[0]), float(c[1]), re.sub(r"[\$\\ ]", "", c[2]), lp[0], lp[1], float(c[4]), c[5].strip(), float(c[6]), ms[0], ms[1], ms[2], sf[0], sf[1]])
+check([r[0] for r in jrows] == [1, 3, 13], "arXiv:2601.03338 discs are ALPAKA IDs 1, 3 and 13")
+write("alpaka_jwst2026_data.csv", ["alpaka_id", "z", "line", "Lprime_1e10", "e_Lprime", "n_resolution_elements", "jwst_filter", "rest_wavelength_um",
+      "logMstar_sed", "errhi", "errlo", "sfr_msun_yr", "e_sfr"], jrows)
+J2 = generic_rows("alpaka_jwst2026_2601.03338_table_fiducial.tex", r"^ID\d+$", 8)
+check(len(J2) == 3, f"arXiv:2601.03338 fiducial-fit table has 3 rows (got {len(J2)})")
+frows = []
+for c in J2:
+    vals = [cell(x) for x in c[1:9]]
+    frows.append([int(c[0][2:])] + [y for v in vals for y in v[:3]])
+write("alpaka_jwst2026_fiducial_fit.csv", ["alpaka_id"] + [f"{n}{s}" for n in ("logMstar_dyn", "logMbulge", "logMdisk", "logMgas", "alphaCO_times_rl", "logM200", "log_fbar", "c200") for s in ("", "_errhi", "_errlo")], frows)
+mgas = {r[0]: r[1 + 3 * 3] for r in frows}; mst = {r[0]: r[1] for r in frows}
+log(f"arXiv:2601.03338 fiducial decompositions (JWST NIRCam stars + CO/[CI] gas, free gas normalisation): "
+    f"ID1 log M* {mst[1]}, log M_gas {mgas[1]}; ID3 log M* {mst[3]}, log M_gas {mgas[3]}; ID13 log M* {mst[13]}, log M_gas {mgas[13]}. "
+    f"ID1's dynamical stellar mass exceeds its SED value (the paper says the pre-JWST SED mass is 2-3 times too low)")
+
+# ------------------------------------------------------------------ ALMA-CRISTAL kinematics, arXiv:2507.11600 (z 4-6, [CII])
+def cristal_id(x):
+    return re.sub(r"\\tablefootmark\{\w\}", "", re.sub(r"^CRISTAL-", "", x)).strip()
+
+C1 = generic_rows("cristal2025_2507.11600_table_main.tex", r"^CRISTAL-\d+[a-z]?(-E)?(\\tablefootmark\{\w\})?$", 8)
+C1r = []
+for c in C1:
+    beam = re.sub(r"\\farcs", '"', c[7]).replace("$\\times$", "x").replace("$", "").strip()
+    C1r.append([cristal_id(c[0]), c[1].replace("\\_", "_"), float(c[2]), float(c[3]), float(c[4]), cell(c[5])[0], cell(c[6])[0], beam, cell(c[8])[0]])
+check(len(C1r) == 32, f"CRISTAL main table has 32 rows (the paper's 32 galaxies of the kinematics sample) (got {len(C1r)})")
+cz = np.array([r[2] for r in C1r]); check(bool(cz.min() > 4.0 and cz.max() < 6.0), f"CRISTAL z in (4, 6): {cz.min()}-{cz.max()}")
+nan_ms = [r[0] for r in C1r if not np.isfinite(r[5])]
+log(f"CRISTAL sample rows with no stellar mass printed ('...'): {nan_ms}; with no SFR: {[r[0] for r in C1r if not np.isfinite(r[6])]}")
+write("cristal2025_sample.csv", ["id", "name", "z_cii", "ra_deg", "dec_deg", "logMstar", "logSFR", "beam_arcsec", "cube_noise_mjy_beam"], C1r)
+C2 = generic_rows("cristal2025_2507.11600_table_kinematics.tex", r"^\d+[a-z]?(-E)?(\\tablefootmark\{\w\})?$", 8)
+C2r = []
+for c in C2:
+    fm = cell(c[5])
+    C2r.append([cristal_id(c[0]), c[1].strip(), cell(c[2])[0], cell(c[3])[0], cell(c[3])[1], cell(c[4])[0], cell(c[4])[1], fm[0], fm[1], fm[2], cell(c[6])[0], cell(c[7])[0]])
+check(len(C2r) >= 30, f"CRISTAL kinematics table has {len(C2r)} rows")
+cls = collections.Counter(r[1] for r in C2r)
+log(f"CRISTAL kinematic classes: {dict(cls)}")
+write("cristal2025_kinematics.csv", ["id", "classification", "pa_kin_deg", "vobs_over_2_kms", "e", "vobs_over_2sigma", "e", "f_molgas", "errhi", "errlo", "k_asym", "disk_score"], C2r)
+C3 = generic_rows("cristal2025_2507.11600_table_dynamics.tex", r"^\d+[a-z]?(-E)?(\\tablefootmark\{\w\})?$", 8)
+C3r = []
+for c in C3:
+    vals = [cellf(x) for x in c[1:10]]
+    C3r.append([cristal_id(c[0])] + [y for v in vals for y in v[:4]])
+cols3 = ["id"] + [f"{n}{s}" for n in ("logMtot", "Re_disk_kpc", "BT", "Vrot_Re_kms", "sigma0_kms", "fDM_Re", "inc_deg", "Rout_over_Re", "Rout_over_beam") for s in ("", "_errhi", "_errlo", "_flag")]
+check(len(C3r) == 14, f"CRISTAL dynamical-model table has 14 rows as printed (got {len(C3r)}); the kinematics table classifies 16 galaxies as Disk or Best Disk")
+ro = np.array([r[cols3.index("Rout_over_Re")] for r in C3r], float)
+check(bool(np.all(np.isfinite(ro))), f"CRISTAL R_out/R_e,disk finite for all {len(C3r)} disks: {np.nanmin(ro):.1f}-{np.nanmax(ro):.1f}")
+write("cristal2025_dynamics.csv", cols3, C3r)
+ids3 = {r[0] for r in C3r}; ids1 = {r[0] for r in C1r}
+alias = {i: (i + "a") for i in ids3 if i not in ids1 and (i + "a") in ids1}
+check(all(i in ids1 or i in alias for i in ids3), f"every CRISTAL dynamical-model ID appears in the sample table (aliases used: {alias})")
+disk_ids = {r[0] for r in C2r if r[1] in ("Disk", "Best Disk")}
+no_dyn = sorted(d for d in disk_ids if d not in ids3 and d not in {v for v in alias.values()} | {k + "a" for k in ids3})
+log(f"CRISTAL: 16 galaxies are classified Disk or Best Disk; {sorted(disk_ids - ids3 - set(alias.values()))} have no row in the dynamical-model table (the table lists 14; ID '09' there is '09a' elsewhere)")
+log(f"CRISTAL: {len(C3r)} disks with a dynamical model; median R_out/R_e = {np.median(ro):.1f}; velocities are Vrot at R_e; gas is [CII]-based (f_molgas), not CO")
+
 # ------------------------------------------------------------------ manifest
 src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, tables/galaxy_parameters.tbl",
        "msa3d_2606.27853_fitted_parameters.tbl": "arXiv:2606.27853 source, tables/fitted_parameters.tbl",
@@ -299,6 +418,13 @@ src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, table
        "alpaka1_2303.16227_table3_properties.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 332-381",
        "alpaka1_2303.16227_table4_geometry.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 415-461",
        "alpaka1_2303.16227_table5_kinematics.tex": "arXiv:2303.16227 source, alpaka_v2.tex lines 684-723",
+       "lelli2023_2302.00030_table_3dfits.tex": "arXiv:2302.00030 source, ColdGasDiskCosmicNoon.tex lines 274-294",
+       "lelli2023_2302.00030_table_massmodels.tex": "arXiv:2302.00030 source, ColdGasDiskCosmicNoon.tex lines 338-359",
+       "alpaka_jwst2026_2601.03338_table_data.tex": "arXiv:2601.03338 source, main.tex lines 198-212",
+       "alpaka_jwst2026_2601.03338_table_fiducial.tex": "arXiv:2601.03338 source, main.tex lines 588-611",
+       "cristal2025_2507.11600_table_main.tex": "arXiv:2507.11600 source, main_arxiv.tex lines 241-297",
+       "cristal2025_2507.11600_table_kinematics.tex": "arXiv:2507.11600 source, main_arxiv.tex lines 317-393",
+       "cristal2025_2507.11600_table_dynamics.tex": "arXiv:2507.11600 source, main_arxiv.tex lines 761-815",
        "sharma2024_2406.08934_GS21b_catalog.fits": "arXiv:2406.08934 source, extra_material/GS21b_catalog.fits",
        "sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits": "arXiv:2406.08934 source, extra_material/CRCs_FitsParam_Burkert.fits"}
 man = {"built_by": "data_assembly/arxiv_tables/build.py", "source_tarballs": "https://arxiv.org/e-print/<id>", "raw_small": {}}
