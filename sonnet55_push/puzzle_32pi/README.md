@@ -107,3 +107,12 @@ In the probe limit the wall's acceleration is 1/R = ΔP/(3σ) (Schwinger radius 
 (general κ: 3κ/√2), independent of E. But that formula is valid only when ΔP/(3σ) ≫ H, and at the target it equals H/Z ≪ H. The full junction solution at that ratio (σ → 0) gives 1/R = 2.077 vs H = 2.047 (E = 1):
 the wall sits at the horizon and accelerates at ≈ H, not H/Z. So no membrane, probe or gravitating, has proper acceleration a₀; the route is closed, not merely under-determined.
 The 1.061 is a convention-laden coupling ratio (Heaviside four-form, ρ = E²/2, ΔE = e) and matches none of 1, √(3/2), 3/2, √2; it is reported as a target only.
+
+## 10. Gauss-law / four-form flux form of the puzzle (`p08`, 6/6): it exists and is the same identity
+Raised by a peer session (the dark-energy field-equation lane) as a question for this lane. In Henneaux-Teitelboim / Brown-Teitelboim language F₄ = E vol₄ with E constant, ρ = E²/2 = Λ/8π, and the dual current obeys div T = √g (flux = 4-volume).
+Result: A_{a₀} = π/a₀² = 4 Vol(S⁴_L)/L² = (4/3) Λ Vol(S⁴_L), equivalently A_{a₀}/S_dS = Z² and S_{a₀}/S_dS = 8π/3; the four-form flux through S⁴ is Φ = E·Vol = 4√3 π^{3/2} L³/3.
+- This is the known reduction 32π² = 12 Vol(S⁴₁) = ∫R dV (section 1), rewritten with the flux. Check 5 shows it is an identity once a₀ := H/Z is defined; it restates Z² = 32π/3, it does not derive it.
+- Flux quantisation Φ = n·e fixes L³ (that is, Λ) for given n, e. It contains no relation between a₀ and Λ: a₀ enters only through Z, the input.
+- The a₀ "horizon" is a 2-surface whose radius exceeds L (`p06`); a 3-form flux needs a 3-volume, and the Gauss law counts 4-volume. So there is no flux *through the a₀-horizon*; the only Gauss-law statement is about Vol(S⁴).
+- The one thing the form does show is the π-counting result again: with Z² ∝ π (framework, forced kernel) the coefficient of ΛVol₄ is rational (4/3, 1/3); with Milgrom's Z = 2π it is π/2 and with Verlinde's Z = 6 it is 27/(2π). Rationality is a property of Z² ∝ π, not a selection of the ½.
+So the answer to "is there a Gauss-law form of 32π?" is yes, and it carries no new content: the coefficient must still be supplied by the field's coupling. κ = ½ stays FITTED.
