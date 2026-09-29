@@ -1,0 +1,103 @@
+{
+ "slug": "CFG172D_A1_theta_equation",
+ "mutate": null,
+ "checks": [
+  {
+   "name": "H-i (static limit) the MOND-sector, C-H chassis, alpha_c, projected-gradient and eps_d terms give NO O(pi) source when the background is static and non-expanding",
+   "detail": "E-L[REST] = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H-i (expanding background, quasi-static fields): E-L[REST] = 0",
+   "detail": "FALSE as written: E-L[REST] is a polynomial of degree 2 in adot with zero adot^0 part, i.e. an O(H) MOND-sector source of theta exists; H-i holds only in the static limit (its size is estimated in A2)",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "H-ii alpha_c enters the theta-equation's remainder only multiplied by adot (a time derivative)",
+   "detail": "lam^0 coefficient of dE/d(alpha_c) = 0; nonzero adot-part: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "the theta channel gives div[h grad Pi / sqrt(-X)] (the khronon's flow equation), Pi = dL/dtheta per unit sqrt(-g)",
+   "detail": "difference 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T-d1: on any plateau of f (f' = 0), Pi = Pi0 forces theta = thetabar - Pi0/(2 c2), the same number on the bound and the web plateaus (so d1 cannot be a region gate)",
+   "detail": "theta = -Pi0/(2*c2) + thetabar",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "d2 pincer (frozen criteria 3.2): c_s^2/c^2 = -zeta^2 eps_b/(3 c2 eps_Lambda)",
+   "detail": "derived -epsb*zeta**2/(3*c2*epsL); frozen -epsb*zeta**2/(3*c2*epsL)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "d2 pincer formula: -c_s^2/c^2 = 3 c2 Delta^2 eps_L/eps_b, independent of zeta",
+   "detail": "3*Delta**2*c2*epsL/epsb",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C7 W'' takes both signs on (0,1), extrema +-9.84 at t = 0.218 / 0.782, W'(1/2) = 2",
+   "detail": "9.841, -9.841, 2.0000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "O3a the NR E-L equations give: baryons feel Phi = u + f P (P = Psi/2), lam = -f Psi (the dark component feels u only), the kernel reads w with (lap - M^2) w = 4 pi G f (rho_b - <rho_b>)",
+   "detail": "all residuals 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "O3b for w = 0.25 and w = 1 the background gate variable sits at or below the off-plateau edge t <= 0 for every z (W = W' = ... = 0)",
+   "detail": "{'w=0.25': -1.5, 'w=1.0': 0.0}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "O3c the theta-theta Hessian entry is -2 c2 + Bcal f'' with Bcal = dL/df = a0^2 q + Psi(m^2 w - lap(u - v)) + sigma m^2 w^2 (V0's own gate coefficient)",
+   "detail": "entry - expected = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "O3c the (Psi, w) constraint block has determinant -(k^2 + M^2)^2 (times the common 1/16 of the period average) for every gate shape: no f'', no c2, no f' in it",
+   "detail": "det = -f0**2*m2s**2/16 + f0*k**2*m2s/8 + f0*m2s**2/8 - k**4/16 - k**2*m2s/8 - m2s**2/16",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "O3c at high k the theta stiffness is -2 c2 + Bcal f'' (the constraint couplings drop out as 1/k^2)",
+   "detail": "limit - expected = 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "the theta sector is not a ghost: the c2 part of the theta stiffness is negative",
+   "detail": "coefficient -1/2",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "H_i_static_zero": true,
+  "H_i_expanding_nonzero": true,
+  "Wpp_max": 9.84104223261963,
+  "Wp_max": 2.0,
+  "O3b_tmax": {
+   "0.25": -1.5,
+   "1.0": 0.0
+  },
+  "schur_theta": "(-a0q**2*f1**2*(Ssrc - m2s*w0)*(Psi0*m2s + 2*I*gw*k*q1 + 2*m2s*sigs*w0)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2) + a0q**2*(-f0*m2s + k**2 + m2s)*(-Psi0*Ssrc*f2 + Psi0*f2*m2s*w0 + a0q**2*f2*q0 - 2*c2 + f2*m2s*sigs*w0**2)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2) + f1**2*(Ssrc - m2s*w0)*(-a0q**2*(Psi0*m2s - 2*I*gw*k*q1 + 2*m2s*sigs*w0)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2) + 2*(Ssrc - m2s*w0)*(-f0*m2s + k**2 + m2s)*(a0q**2*f0*k**2*q1 + a0q**2*f0*m2s*sigs - a0q**2*m2s*sigs + 2*f0*gw**2*k**2*q2)))/(4*a0q**2*(-f0*m2s + k**2 + m2s)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2))",
+  "theta_theta": "-Psi0*Ssrc*f2/4 + Psi0*f2*m2s*w0/4 + a0q**2*f2*q0/4 - c2/2 + f2*m2s*sigs*w0**2/4"
+ },
+ "verdicts": {}
+}

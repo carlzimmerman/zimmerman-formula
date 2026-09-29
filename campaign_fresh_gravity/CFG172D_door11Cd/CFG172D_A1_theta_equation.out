@@ -1,0 +1,113 @@
+CFG172D_A1 -- the theta equation of 11C-d, re-derived (not assumed): H-i, H-ii, T-d1, the d2 pincer formula, O3 (a,b,c), C7.
+
+WHAT THIS SCRIPT DOES (frozen criteria section 6, A1; nothing here is tuned):
+  S1 [sympy, spherical, exact] The khronon's tau-variation of V0's covariant brace with f = F(theta): tau = t + eps*pi(t,r) on the
+     metric -N^2 dt^2 + a(t)^2 A(r)^2 (dr^2 + r^2 dOmega^2), all leafwise auxiliaries generic functions of (t,r).  L1 = dL/deps at
+     eps = 0 is split into the theta channel (dL/dTheta * delta theta: gives the conjugate Pi and the operator
+     div[h grad Pi / sqrt(-X)]) and the REST (every other tau-dependence: leafwise Laplacians, projected gradients, the
+     4-acceleration, eps_d = u u T).  H-i (criteria 1.3) says REST = 0.  It is tested (i) in the static, non-expanding limit and
+     (ii) with adot != 0 (quasi-static fields).  H-ii says alpha_c enters only through time derivatives: tested by extracting the
+     alpha_c-dependence of REST.
+  S2 [sympy] T-d1 (Pi constant on a leaf when REST = 0 => the same theta on both plateaus) and the d2 reduction: integrate out
+     delta-theta, the interaction energy, c_gate^2, and the pincer formula -c_s^2/c^2 = 3 c2 Delta^2 eps_L/eps_b.
+  S3 [numeric] C7: any C^2 flat-flat gate has f'' of both signs; W'' extrema.
+  O3a [sympy] the NR Lagrangian's Euler-Lagrange equations with f = f(r) generic (Phi = u + f P, lam = -f Psi, kernel reads w).
+  O3b [numeric] homogeneous background off-plateau for u_theta, w in {0.25, 1}, z in [-0.5..20] (criteria O3b).
+  O3c [sympy] the local Hessian of the constraint system with the theta row (Schur complement on theta).
+MUTATE=M6 (drop the leaf-mean offset): O3b must FAIL for w = 1.     MUTATE=M7 (c2 -> -c2, a ghost theta sector): the theta-theta
+Hessian entry changes sign; the stability claim must FAIL.   exit 1 when the control bites.
+
+  repo: <repo>/.   MUTATE=None
+
+==============================================================================================================
+S1  THE TAU-VARIATION OF V0 WITH f = F(theta), DERIVED SYMBOLICALLY (H-i, H-ii)
+==============================================================================================================
+  Lagrangian, theta channel and REST built (2 s); theta_0 = 3*Derivative(a(t), t)/(N(r)*a(t)) (the background expansion 3 adot/(N a)), theta_1 = -div of the tilt: (-r*A(r)*N(r)*Derivative(pi(t, r), (r, 2)) - 2*r*A(r)*Derivative(N(r), r)*Derivative(pi(t, r), r) - r*N(r)*Derivative(A(r), r)*Derivative(pi(t, r), r) - 2*A(r)*N(r)*Derivative(pi(t, r), r))/(r*A(r)**3*a(t)**2)
+  E-L operators built (11 s)
+  E-L[REST] in the static, non-expanding limit (all time derivatives and adot set to 0): 0
+  [PASS] H-i (static limit) the MOND-sector, C-H chassis, alpha_c, projected-gradient and eps_d terms give NO O(pi) source when the background is static and non-expanding
+         E-L[REST] = 0
+  E-L[REST] with adot != 0 (fields static in comoving r): a polynomial in adot of degree 2; lam^0 coefficient = 0
+  [FAIL] (reported) H-i (expanding background, quasi-static fields): E-L[REST] = 0
+         FALSE as written: E-L[REST] is a polynomial of degree 2 in adot with zero adot^0 part, i.e. an O(H) MOND-sector source of theta exists; H-i holds only in the static limit (its size is estimated in A2)
+  alpha_c dependence: d(E-L[REST])/d alpha_c has lam^0 coefficient 0 (i.e. zero without adot) and degree 1 in adot
+  [PASS] H-ii alpha_c enters the theta-equation's remainder only multiplied by adot (a time derivative)
+         lam^0 coefficient of dE/d(alpha_c) = 0; nonzero adot-part: True
+  theta channel: E-L[Pihat*sqrt(-g)*delta theta] = r*(-r*A(r)*N(r)*Derivative(Pihat(t, r), (r, 2)) - 2*r*A(r)*Derivative(N(r), r)*Derivative(Pihat(t, r), r) - r*N(r)*Derivative(A(r), r)*Derivative(Pihat(t, r), r) - 2*A(r)*N(r)*Derivative(Pihat(t, r), r))*N(r)*a(t)
+  compared with -d/dr(a N^2 A r^2 dPihat/dr): difference = 0
+  [PASS] the theta channel gives div[h grad Pi / sqrt(-X)] (the khronon's flow equation), Pi = dL/dtheta per unit sqrt(-g)
+         difference 0
+  REST with V = Lm = Ld = 0 (no dark component, no filter), quasi-static: 295 operations; saved for A2's size estimate
+
+==============================================================================================================
+S2  T-d1 AND THE d2 PINCER (symbolic)
+==============================================================================================================
+  Pi(theta) = Bcal*Derivative(f(theta), theta) - 16*pi*G*rho*zeta*Subs(Derivative(h(_xi_1), _xi_1), _xi_1, (theta - thetabar)/thetaL)/(c**2*thetaL) - c2*(2*theta - 2*thetabar)
+  plateau (f' = 0, zeta = 0): Pi = Pi0 => theta = [-Pi0/(2*c2) + thetabar]: independent of position => the same value on every plateau
+  [PASS] T-d1: on any plateau of f (f' = 0), Pi = Pi0 forces theta = thetabar - Pi0/(2 c2), the same number on the bound and the web plateaus (so d1 cannot be a region gate)
+         theta = -Pi0/(2*c2) + thetabar
+  d2(lin): delta theta* = -8*pi*G*rho*zeta/(c**2*c2*thetaL); energy density E_int = -4*pi*G*rho**2*zeta**2/(c2*thetaL**2)
+  E_int (thetaL^2 = 3 Lambda) = -4*pi*G*rho**2*zeta**2/(3*Lambda*c2);  c_s^2 = rho d2E/drho2 = -8*pi*G*rho*zeta**2/(3*Lambda*c2)
+  c_s^2/c^2 with rho -> eps_b/c^2: -epsb*zeta**2/(3*c2*epsL)
+  [PASS] d2 pincer (frozen criteria 3.2): c_s^2/c^2 = -zeta^2 eps_b/(3 c2 eps_Lambda)
+         derived -epsb*zeta**2/(3*c2*epsL); frozen -epsb*zeta**2/(3*c2*epsL)
+  eliminating zeta through the depletion Delta = |delta theta|/thetaL = zeta eps_b/(3 c2 eps_L): -c_s^2/c^2 = 3*Delta**2*c2*epsL/epsb
+  [PASS] d2 pincer formula: -c_s^2/c^2 = 3 c2 Delta^2 eps_L/eps_b, independent of zeta
+         3*Delta**2*c2*epsL/epsb
+  L_thth = Bcal*Derivative(f(theta), (theta, 2)) - 16*pi*G*rho*zeta*Subs(Derivative(h(_xi_1), (_xi_1, 2)), _xi_1, theta/thetaL - thetabar/thetaL)/(c**2*thetaL**2) - 2*c2 (the gate adds B f''; a fold where L_thth -> 0 divides c_gate^2 by |L_thth|)
+
+==============================================================================================================
+S3  C7: a smooth gate flat at both ends has f'' of both signs; W'' extrema
+==============================================================================================================
+  W' max = 2.0000 at t = 0.500;  W'' max = 9.841 at t = 0.218; W'' min = -9.841 at t = 0.782
+  [PASS] C7 W'' takes both signs on (0,1), extrema +-9.84 at t = 0.218 / 0.782, W'(1/2) = 2
+         9.841, -9.841, 2.0000
+
+==============================================================================================================
+O3a  PLATEAU REDUCTIONS: the NR Euler-Lagrange equations with f = f(r) generic (spherical)
+==============================================================================================================
+  Euler-Lagrange equations derived; checking the stated field equations:
+    dPhi: lap u = 4 pi G (rho_b + rho_d): residual 0
+    du: lap(Phi - u - f Psi/2) = 0: residual 0
+    dv: lap(lam + f Psi) = 0: residual 0
+    dlam: lap v = 4 pi G rho_d: residual 0
+    dPsi: (lap - M^2) w = f lap(u - v): residual 0
+    dw: -2 div(f q' grad w) + lap Psi - M^2 Psi - 2 sigma M^2 w = 0: residual 0
+  [PASS] O3a the NR E-L equations give: baryons feel Phi = u + f P (P = Psi/2), lam = -f Psi (the dark component feels u only), the kernel reads w with (lap - M^2) w = 4 pi G f (rho_b - <rho_b>)
+         all residuals 0
+  the P equation used by A2:  (1/r^2)(r^2 P')' - M^2 P = (1/r^2)(r^2 f (nu - 1) w')' + sigma M^2 w,  nu = nu(|w'|/a0)  [from dw with q' = nu - 1]
+
+==============================================================================================================
+O3b  THE HOMOGENEOUS BACKGROUND IS OFF-PLATEAU FOR u_theta (each other gate variable must show its own; CV2 A6)
+==============================================================================================================
+    w = 0.25: max over z in [-0.5, 20] of t(u_bg) = -1.5000  (needs <= 0 for W = 0 with all derivatives)
+    w = 1.0: max over z in [-0.5, 20] of t(u_bg) = 0.0000  (needs <= 0 for W = 0 with all derivatives)
+  [PASS] O3b for w = 0.25 and w = 1 the background gate variable sits at or below the off-plateau edge t <= 0 for every z (W = W' = ... = 0)
+         {'w=0.25': -1.5, 'w=1.0': 0.0}
+
+==============================================================================================================
+O3c  THE CONSTRAINT SYSTEM WITH THE THETA ROW: the local Hessian derived from the Lagrangian; the Schur complement on theta
+==============================================================================================================
+  Hermitian Hessian in (Psi, w, theta) derived from the Lagrangian (columns: dPsi, dw, dtheta):
+    [0, f0*m2s/4 - k**2/4 - m2s/4, f1*(-Ssrc + m2s*w0)/4]
+    [f0*m2s/4 - k**2/4 - m2s/4, (a0q**2*(f0*k**2*q1 + f0*m2s*sigs - m2s*sigs)/2 + f0*gw**2*k**2*q2)/a0q**2, f1*(Psi0*m2s + 2*I*gw*k*q1 + 2*m2s*sigs*w0)/4]
+    [f1*(-Ssrc + m2s*w0)/4, f1*(Psi0*m2s - 2*I*gw*k*q1 + 2*m2s*sigs*w0)/4, -Psi0*Ssrc*f2/4 + Psi0*f2*m2s*w0/4 + a0q**2*f2*q0/4 - c2/2 + f2*m2s*sigs*w0**2/4]
+  det of the (Psi, w) constraint block = -f0**2*m2s**2/16 + f0*k**2*m2s/8 + f0*m2s**2/8 - k**4/16 - k**2*m2s/8 - m2s**2/16
+  theta-theta entry = -Psi0*Ssrc*f2/4 + Psi0*f2*m2s*w0/4 + a0q**2*f2*q0/4 - c2/2 + f2*m2s*sigs*w0**2/4
+  Schur complement on theta (constraints eliminated) = (-a0q**2*f1**2*(Ssrc - m2s*w0)*(Psi0*m2s + 2*I*gw*k*q1 + 2*m2s*sigs*w0)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2) + a0q**2*(-f0*m2s + k**2 + m2s)*(-Psi0*Ssrc*f2 + Psi0*f2*m2s*w0 + a0q**2*f2*q0 - 2*c2 + f2*m2s*sigs*w0**2)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2) + f1**2*(Ssrc - m2s*w0)*(-a0q**2*(Psi0*m2s - 2*I*gw*k*q1 + 2*m2s*sigs*w0)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2) + 2*(Ssrc - m2s*w0)*(-f0*m2s + k**2 + m2s)*(a0q**2*f0*k**2*q1 + a0q**2*f0*m2s*sigs - a0q**2*m2s*sigs + 2*f0*gw**2*k**2*q2)))/(4*a0q**2*(-f0*m2s + k**2 + m2s)*(f0**2*m2s**2 - 2*f0*k**2*m2s - 2*f0*m2s**2 + k**4 + 2*k**2*m2s + m2s**2))
+  [PASS] O3c the theta-theta Hessian entry is -2 c2 + Bcal f'' with Bcal = dL/df = a0^2 q + Psi(m^2 w - lap(u - v)) + sigma m^2 w^2 (V0's own gate coefficient)
+         entry - expected = 0
+  [PASS] O3c the (Psi, w) constraint block has determinant -(k^2 + M^2)^2 (times the common 1/16 of the period average) for every gate shape: no f'', no c2, no f' in it
+         det = -f0**2*m2s**2/16 + f0*k**2*m2s/8 + f0*m2s**2/8 - k**4/16 - k**2*m2s/8 - m2s**2/16
+  high-k limit of the Schur complement on theta: -Psi0*Ssrc*f2/4 + Psi0*f2*m2s*w0/4 + a0q**2*f2*q0/4 - c2/2 + f2*m2s*sigs*w0**2/4
+  [PASS] O3c at high k the theta stiffness is -2 c2 + Bcal f'' (the constraint couplings drop out as 1/k^2)
+         limit - expected = 0
+
+==============================================================================================================
+ghost check: the sign of the c2 part of the theta-theta entry (M7 flips it)
+==============================================================================================================
+  d(high-k theta stiffness)/d c2 = -1/2   (negative = healthy theta sector for c2 > 0; positive = a ghost)
+  [PASS] (reported) the theta sector is not a ghost: the c2 part of the theta stiffness is negative
+         coefficient -1/2
+
+  13/14 checks pass; load-bearing failures: 0   (14 s)

@@ -1,0 +1,74 @@
+CFG172D_A4 -- G2, G5, G6, G7 for the 11C-d arms (frozen criteria 2.2), controls C3, M4 (G7 side).
+
+G2  (i) homogeneous background off-plateau: A1's O3b;  (ii) d1: the gate is never on (f = 0 at every radius, A2), so the web is untouched;
+    (iii) d2: the contact interaction acts in the WEB on the baryons: c_s^2/c^2 = -zeta^2 eps_b/(3 c2 eps_L) at the cosmic mean baryon density,
+    growth rate Gamma = k |c_s| against H at k = 0.1, 1, 10, 30 /Mpc, z = 0, 1, 3, 10 (pass iff |Gamma|/H <= 0.05: growth of the baryon
+    perturbations within 5%); CMB: UNDEFINED (no Boltzmann treatment).
+G5  ghost sign (A1), O1 (A3), criterion B (NOT ADDRESSED: no characteristic-cone analysis was done), Q2: the isolated Sun's anomalous
+    acceleration at Saturn from V0's kernel (unfiltered), evaluated only if the gate is ON at the Sun (theta root at the solar density);
+    the heat-filtered remainder (KM3) is INHERITED from the record and not re-derived here.
+G6  KM3's V0 formulas alpha_1 = -4 alpha_c, alpha_2 = alpha_c (alpha_c - c2)/(2 c2), printed against |alpha_1| <= 3.4e-5, 3.5e-5, 2.1e-5 and
+    |alpha_2| <= 1.6e-9 (quoted, from memory, unverified; the data chat verifies).  d2's coupling contribution is NOT derived (UNDEFINED).
+G7  KM1: D = 2 w^2/(c^2 c2) with the record's control numbers; the gate-edge shift from CV4's K3 dipole (record input, not re-derived).
+
+  repo: <repo>/.   MUTATE=M4
+  zeta_min (reference cell) from A3: {'lin/even': 1.778279410038923e-05, 'sat/even': 3.1622776601683795e-05, 'lin/mono': 1.778279410038923e-05, 'sat/mono': 3.1622776601683795e-05}
+
+==============================================================================================================
+G2  (i) background (A1 O3b), (ii) d1, (iii) d2's contact instability in the web
+==============================================================================================================
+  O3b (A1): max t(u_bg) over z in [-0.5, 20]: {'0.25': -1.5, '1.0': 0.0}   (<= 0 means off-plateau with all derivatives zero)
+  [d2_lin_even] zeta = 1.78e-05: |c_s| at the mean baryon density: z = 0 9.66 km/s, z = 3 77.3 km/s; Gamma/H over k in [0.1, 30]/Mpc, z in [0, 10]: 0.014 .. 7.7  (pass line 0.05)
+  [d2_sat_even] zeta = 3.16e-05: |c_s| at the mean baryon density: z = 0 17.2 km/s, z = 3 137 km/s; Gamma/H over k in [0.1, 30]/Mpc, z in [0, 10]: 0.025 .. 14  (pass line 0.05)
+  [d2_lin_mono] zeta = 1.78e-05: |c_s| at the mean baryon density: z = 0 9.66 km/s, z = 3 77.3 km/s; Gamma/H over k in [0.1, 30]/Mpc, z in [0, 10]: 0.014 .. 7.7  (pass line 0.05)
+  [d2_sat_mono] zeta = 3.16e-05: |c_s| at the mean baryon density: z = 0 17.2 km/s, z = 3 137 km/s; Gamma/H over k in [0.1, 30]/Mpc, z in [0, 10]: 0.025 .. 14  (pass line 0.05)
+  >> G2_d2_lin_even: FAIL -- web growth Gamma/H max 7.7 (line 0.05); CMB UNDEFINED
+  >> G2_d2_sat_even: FAIL -- web growth Gamma/H max 14 (line 0.05); CMB UNDEFINED
+  >> G2_d2_lin_mono: FAIL -- web growth Gamma/H max 7.7 (line 0.05); CMB UNDEFINED
+  >> G2_d2_sat_mono: FAIL -- web growth Gamma/H max 14 (line 0.05); CMB UNDEFINED
+  >> G2_d1: PASS (trivially: the gate is never on, so V0's web is untouched; but MOND is never on either) -- background O3b PASS; CMB UNDEFINED
+
+==============================================================================================================
+G5  ghost (A1), stability (A3), criterion B, Q2 at the Sun
+==============================================================================================================
+  Sun at Saturn: g_N = 6.458e-05 m/s^2, y = g_N/a0 = 6.898e+05, h(y) = 1.0310 (V0's nu_mono, L352 table): a_anom = h a0 = 9.652e-11 m/s^2; Q2 = a_anom/R = 6.73e-23 s^-2 vs bound 5.2e-27: 1.29e+04 x
+  [PASS] (reported) C-Q2 the unfiltered V0 kernel leaves an acceleration ~ a0 at Saturn: Q2 = a_anom/R_Saturn (the record's 'constant ~a0 tail')
+         1.29e+04 x the bound
+  [d2_lin_even] solar-neighbourhood baryon density 0.1 Msun/pc^3, z = 0: theta/thetabar = -777, gate f = 0  => gate OFF at the Sun (band-pass artefact of the even variant)
+  [d2_sat_even] solar-neighbourhood baryon density 0.1 Msun/pc^3, z = 0: theta/thetabar = -8.29, gate f = 0  => gate OFF at the Sun (band-pass artefact of the even variant)
+  [d2_lin_mono] solar-neighbourhood baryon density 0.1 Msun/pc^3, z = 0: theta/thetabar = -777, gate f = 1  => gate ON: Q2 as above
+  [d2_sat_mono] solar-neighbourhood baryon density 0.1 Msun/pc^3, z = 0: theta/thetabar = -8.29, gate f = 1  => gate ON: Q2 as above
+  >> G5_Q2_unfiltered_isolated_Sun: FAIL where the gate is ON at the Sun (d2 mono, sat); 0 where OFF -- 1.29e+04 x the bound
+  >> G5_Q2_filtered: NOT ADDRESSED -- V0's heat-filtered remainder (KM3, eta_N <= 1.2e-8) is inherited from the record; not re-derived here
+  >> G5_MW_tide: NOT ADDRESSED -- CFG7 H1's Milky-Way tide (4.0-5.7 x for the strict law, record) needs its baryon budget; not reproduced
+  >> G5_criterion_B: NOT ADDRESSED -- no characteristic-cone analysis of the theta sector was done
+  >> G5_ghost: PASS for c2 > 0 (A1 ghost check); FAIL under M7 -- the c2 part of the theta stiffness is negative for c2 > 0
+
+==============================================================================================================
+G6  PREFERRED FRAME: KM3's V0 formulas against the quoted PPN limits (from memory, unverified)
+==============================================================================================================
+  alpha_c = 1e-13, c2 = 0.0073: alpha1 = -4.000e-13 (PASS, PASS, PASS at 3.4e-5, 3.5e-5, 2.1e-5); alpha2 = -5.0000e-14 (PASS at 1.6e-9; margin +1.00e+00)
+  alpha_c = 1e-13, c2 = 0.067: alpha1 = -4.000e-13 (PASS, PASS, PASS at 3.4e-5, 3.5e-5, 2.1e-5); alpha2 = -5.0000e-14 (PASS at 1.6e-9; margin +1.00e+00)
+  alpha_c = 3.2e-09, c2 = 0.0073: alpha1 = -1.280e-08 (PASS, PASS, PASS at 3.4e-5, 3.5e-5, 2.1e-5); alpha2 = -1.6000e-09 (PASS at 1.6e-9; margin +4.38e-07)
+  alpha_c = 3.2e-09, c2 = 0.067: alpha1 = -1.280e-08 (PASS, PASS, PASS at 3.4e-5, 3.5e-5, 2.1e-5); alpha2 = -1.6000e-09 (PASS at 1.6e-9; margin +4.78e-08)
+  [PASS] (reported) C3 (control) KM3's alpha_2 -> -alpha_c/2 for c2 >> alpha_c, and |alpha_2| <= 1.6e-9 iff alpha_c <= 3.2e-9 (the record's window)
+         ['ac1e-13/c20.0073', 'ac1e-13/c20.067', 'ac3.2e-09/c20.0073', 'ac3.2e-09/c20.067']
+  >> G6_d1: PASS (inherited: V0's static block, KM3; the gate never turns on) -- alpha1, alpha2 at both c2 ends as printed; borderline: |alpha_2| = 1.5999e-9 at alpha_c = 3.2e-9, c2 = 7.3e-3
+  >> G6_d2: UNDEFINED -- the added matter-theta coupling's contribution to alpha_1, alpha_2 was not derived
+
+==============================================================================================================
+G7  a0 versus the frame speed (KM1) and the gate-edge shift (CV4 K2/K3 dipole)
+==============================================================================================================
+  KM1 control (record: D/3 = 0.114 at c2 = 2.5e-5, 0.285 at c2 = 1e-5, w = 620 km/s): 0.114, 0.285
+  [PASS] (reported) C3 KM1's D/3 numbers reproduced (record: 0.114, 0.285)
+         {'D3_c2_2p5e5': 0.11405404841253625, 'D3_c2_1e5': 0.2851351210313406}
+  c2 = 0.0073, w = 600 km/s: D = 0.0011, isotropic part D/3 = 0.000366 (PASS at 10%; D itself PASS)
+  c2 = 0.067, w = 600 km/s: D = 0.00012, isotropic part D/3 = 3.99e-05 (PASS at 10%; D itself PASS)
+  c2 = 7.3e-05, w = 600 km/s: D = 0.11, isotropic part D/3 = 0.0366 (PASS at 10%; D itself FAIL)
+  gate edge: CV4's K3 dipole |K/3H - 1| <= 4.8e-3 shifts the gate variable by a fraction ~ 0.00932 of the depletion the gate needs => radius shift ~ 3.7e-03..9.3e-03 (record input, not re-derived)
+  >> G7_d1: PASS on record inputs (a0 shift D/3 <= 1.1e-3 at c2 = 7.3e-3; no gate to shift) -- KM1's formula and CV4's numbers are inputs, not re-derived here
+  >> G7_d2: UNDEFINED for the coupling's own dipole; PASS on record inputs for a0 -- the moving-matter response of theta with the d2 coupling was not derived; edge shift from CV4 K3 only
+  MUTATE=M4 (c2 x 0.01): D = 0.11, D/3 = 0.0366: D itself crosses 10% (True), the primary metric D/3 does not
+  M4's G7 side BITES on D but NOT on the primary metric D/3 (declared control failure)
+
+  3/3 checks pass; load-bearing failures: 0   (0 s)

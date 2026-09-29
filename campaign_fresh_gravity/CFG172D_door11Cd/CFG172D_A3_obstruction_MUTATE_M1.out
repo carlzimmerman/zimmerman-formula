@@ -1,0 +1,66 @@
+CFG172D_A3 -- THE OBSTRUCTION TEST under the replacement (frozen criteria 2.1: O1, O2, the zeta-interval test), controls C4, M1, M4, M5.
+
+Grid (DE12's): point-mass baryons M_b = 1e10, 1e11, 1e12; z = 0.25, 1, 2.5, 4; both footings; gate widths w = 0.25 and 1; c2 = 7.3e-3 and 0.067
+(L340's window ends); gas c_s = 37 / 117 / 10 km/s.  The gas around each system is DE12's f_b (NFW + mean) continued past r200.
+ARMS (never pooled):  d1 (gate-sourced, no new term);  d2 lin and d2 sat (the explicit source, one constant zeta) in the FROZEN 'even' gate variable
+u_theta = D(theta) E^-2, D = (thetabar/theta)^2 - 1  AND in a monotone SENSITIVITY variant ('mono': f = 1 for theta <= 0), added after the
+even variant was found band-pass (see README: wrong expectation kept).
+B (the gate's coefficient dL/df) is taken from V0's own static solution with the prescribed original gate (a reference solve per cell): a
+declared approximation for the zeta scan ('frozen B', as DE12).  The scan is an EXISTENCE test (interval intersection), never a fit.
+
+  repo: <repo>/.   MUTATE=M1
+
+==============================================================================================================
+C4  CONTROL: this lane's re-implementation of DE12 (V0's ORIGINAL gate, MOND-sector reading A+) reproduces DE12's committed numbers
+==============================================================================================================
+  [PASS] C4 DE12's 24 cells (c_gate_max, Gamma/H) reproduced to 2%
+         max relative deviation 0.00e+00
+  original gate, z = 0.25, w = 0.25: min c_gate = 1526 km/s, min Gamma(k = 1/kpc)/H = 2.0e+04 (record: 1526 km/s, 2.0e4)
+
+==============================================================================================================
+REFERENCE: V0's own B = dL/df on the original-gate layer; and d1 (gate-sourced compaction)
+==============================================================================================================
+  B / (2 a0^2 q/c^4) on the transition layers of the original gate (median per cell): min 0.938, median 1, max 1.07   (the record's DE7 says 'within ~10%'; frozen criteria 1.5/3.1 used B ~ 2 alpha^2 q)
+  [PASS] (reported) (reported) V0's full B on the layers is within 10% of the a0^2 q part alone (the record's DE7 statement)
+         median ratio 1, range [0.938, 1.07]
+  d1 ALTERNATIVE (upper, stable S-curve) branch: gate reaches f > 1/2 somewhere in 91/96 cells; outermost radius with f > 1/2: median 0.783 r_M, max 7.62 r_M; lowest local acceleration y = g_N/a0 with f > 1/2: median 1.63, min 0.0172 (the law needs the gate ON down to y ~ 1e-3)
+  d1: continuation branch has theta = thetabar exactly (f' = 0 there) => f = 0 at every radius in every one of 96 cells; c_eff = 0 (no baryon coupling, frozen B)
+  d1: alternative branches of the local equation (S-curve) exist at some r in 93/96 cells (fraction of radii with an extra root: max 0.56)
+  d1: hypothetical margin  B f_thth / (2 c2)  on the original layer if theta were placed there: max over cells 4.17; cells with ratio > 1 (fold): 4/96
+  d1: |delta theta|/thetabar the gate source could make IF theta sat at the layer: median 6.03e-05, max 4.32e-02  (needed depletion 0.5-0.9)
+  [FAIL] (reported) HYPOTHESIS (frozen 3.1: bump <~ 2e-3 at the edge): the gate-sourced bump, IF theta sat at the layer, is at most 1e-2 of the depletion the gate needs in every cell
+         max bump 4.32e-02
+
+==============================================================================================================
+d2: THE zeta-INTERVAL TEST (existence, not a fit) -- O2 (region selective) against O1 (stable), four coupling/gate variants
+==============================================================================================================
+    variant lin/mono: scanned 96 cells x 45 zeta values   [79 s]
+
+  [lin/mono] ADDED (not frozen) reach test: the gate ON (f >= 0.99) out to 30 r_M for SOME zeta in 35/96 cells; together with O1 (c_eff <= 37 km/s) in 0/96; jointly (one zeta, all cells): 0/4 (w,c2) combinations
+
+  [lin/mono] cells 96: O2 achievable for SOME zeta in 96/96; O1 & O2 together for some zeta in 0/96; joint (one zeta, all 24 (z,M,foot) cells): both-holds in 0/4 (w,c2) combinations
+    c_eff at the smallest zeta that makes the gate region-selective (zeta_min): median 5.16e+03 km/s, min 0, max 4.62e+04  (gas 37/117 km/s)
+    zeta_min/zeta_max (>1 means the intervals do not meet): median 3.16e+03, min 1.78e+03, max 5.62e+03
+  zeta_min of the reference cell (1e11, z = 0.25, canonical, w = 0.25, c2 = 7.3e-3): {'lin/mono': 1.778279410038923e-05}
+
+==============================================================================================================
+PINCER (hand formula) against the numbers: reference cell (1e11, z = 0.25, canonical, w = 0.25, c2 = 7.3e-3), d2 lin/mono
+==============================================================================================================
+  zeta_min (reference cell, lin/mono) = 1.778279410038923e-05
+  at the layer point of max c_eff: r = 43 kpc, eps_b/eps_L = 935, Delta = 0.759; c_eff(numerical) = 1098 km/s; hand pincer sqrt(3 c2 Delta^2 eps_L/eps_b) c = 1101 km/s (they differ by the gate's fold factor 1/|L_thth|/2c2 and by the exact h')
+
+==============================================================================================================
+VERDICT GRAMMAR (per arm; frozen criteria 2.1):  REMOVED iff O1 PASS and O2 PASS and O3 PASS in the same cell with the same constants
+==============================================================================================================
+  >> d1: MOVED (blind) -- PASS (stable because blind: continuation branch f = 0, c_eff = 0; hypothetical fold ratio max 4.17); FAIL (f = 0 at every radius on the continuation branch in all cells)
+  >> d2_lin_mono: STILL PRESENT (no zeta satisfies O1 and O2 in any cell) -- c_eff at zeta_min median 5.16e+03 km/s (line 37 km/s); achievable for some zeta in 96/96 cells
+
+==============================================================================================================
+M1 (restore the original gate): V0's original gate on the same cells gives the record's obstruction (STILL PRESENT); reported for the table
+==============================================================================================================
+  [FAIL] M1 with the original gate the obstruction bites (min c_gate > 117 km/s and Gamma/H > 1e3 on every z = 0.25 galaxy layer)
+         min c_gate 1526 km/s, min Gamma/H 2.0e+04
+
+  2/4 checks pass; load-bearing failures: 1   (86 s)
+
+  MUTATE=M1: control BITES

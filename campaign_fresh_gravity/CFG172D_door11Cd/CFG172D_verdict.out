@@ -1,0 +1,106 @@
+CFG172D_verdict -- reads the JSON results of A1..A5 and prints the gate table per arm.  No physics; every cell cites its script.
+Run:  ZF_REPO=<repo> python3 CFG172D_verdict.py     (after A1, A3, A2, A4, A5)
+
+  repo: <repo>/.
+
+  === d1 (frozen: continuation branch) ===
+    O3 (A1)                                     : PASS
+    O2 region-selective (A2)                    : FAIL (f(3 r_M) >= 0.99 in 0/56 solves; web off 56/56; f >= 0.99 on the whole G1 grid 0/56)
+    G1 strict, P2 / nu_mono (A2)                : FAIL / FAIL
+    G1 edge (x <= x_ta), P2 / nu_mono (A2)      : FAIL / FAIL
+    G1 mechanism                                : FAIL as mechanism (kernel declared, gate shape declared: at best M1 'P-declared'; no pass to re-derive)
+    O1 stable (A3)                              : PASS (blind: c_eff = 0 on the continuation branch)
+    obstruction (A3)                            : MOVED (blind): stable because the gate is never on
+    G2 (A4)                                     : PASS (trivially: the gate is never on, so V0's web is untouched; but MOND is never on either) -- background O3b PASS; CMB UNDEFINED
+    G3 (A2)                                     : PASS trivially (gate never on / no coupling)
+    G4 constants (A5 ledger; criteria 1.5)      : FAIL strict (inherited V0 constants); new constants: 0
+    G5 (A4)                                     : Q2: gate off => 0 (d1); ghost PASS; criterion B, filtered remainder, MW tide NOT ADDRESSED
+    G6 (A4)                                     : PASS (inherited: V0's static block, KM3; the gate never turns on)
+    G7 (A4)                                     : PASS on record inputs (a0 shift D/3 <= 1.1e-3 at c2 = 7.3e-3; no gate to shift)
+    S2 owner's picture (A5)                     : PASS: no flow mass, Q = 0, functional of baryons; d2 = matter-flow coupling (labelled)
+
+  === d1-alt (sensitivity: upper S-curve branch) ===
+    O3 (A1)                                     : PASS
+    O2 region-selective (A2)                    : FAIL (f(3 r_M) >= 0.99 in 0/56 solves; web off 56/56; f >= 0.99 on the whole G1 grid 0/56)
+    G1 strict, P2 / nu_mono (A2)                : FAIL / FAIL
+    G1 edge (x <= x_ta), P2 / nu_mono (A2)      : FAIL / FAIL
+    G1 mechanism                                : FAIL as mechanism (kernel declared, gate shape declared: at best M1 'P-declared'; no pass to re-derive)
+    O1 stable (A3)                              : NOT ADDRESSED (the alternative branch's c_eff was not computed; hypothetical fold ratio in A3)
+    obstruction (A3)                            : NOT ADDRESSED beyond O2 (gate ON only at y >~ 0.3, A3/A2)
+    G2 (A4)                                     : PASS (trivially: the gate is never on, so V0's web is untouched; but MOND is never on either) -- background O3b PASS; CMB UNDEFINED
+    G3 (A2)                                     : NOT ADDRESSED
+    G4 constants (A5 ledger; criteria 1.5)      : FAIL strict (inherited V0 constants); new constants: 0
+    G5 (A4)                                     : Q2: gate off => 0 (d1); ghost PASS; criterion B, filtered remainder, MW tide NOT ADDRESSED
+    G6 (A4)                                     : PASS (inherited: V0's static block, KM3; the gate never turns on)
+    G7 (A4)                                     : PASS on record inputs (a0 shift D/3 <= 1.1e-3 at c2 = 7.3e-3; no gate to shift)
+    S2 owner's picture (A5)                     : PASS: no flow mass, Q = 0, functional of baryons; d2 = matter-flow coupling (labelled)
+
+  === d2 lin (frozen 'even' gate) ===
+    O3 (A1)                                     : PASS
+    O2 region-selective (A2)                    : FAIL (f(3 r_M) >= 0.99 in 19/56 solves; web off 56/56; f >= 0.99 on the whole G1 grid 0/56)
+    G1 strict, P2 / nu_mono (A2)                : FAIL / FAIL
+    G1 edge (x <= x_ta), P2 / nu_mono (A2)      : FAIL / FAIL
+    G1 mechanism                                : FAIL as mechanism (kernel declared, gate shape declared: at best M1 'P-declared'; no pass to re-derive)
+    O1 stable (A3)                              : FAIL: c_eff at each cell's zeta_min: median 9.06e+03 km/s (line 37); ratio zeta_min/zeta_max median 1.78e+03
+    obstruction (A3)                            : STILL PRESENT (no zeta satisfies O1 and O2 in any cell)
+    added reach test (A3, not frozen)           : gate ON to 30 r_M for some zeta in 34/96 cells; together with O1: 0/96
+    G2 (A4)                                     : FAIL -- web growth Gamma/H max 7.7 (line 0.05); CMB UNDEFINED
+    G3 (A2)                                     : FAIL: reaction (gate) 0.247, (contact) 5.65e+04 x g_law (line 0.10); energy 2.97e+04 x orbital (line 1)
+    G4 constants (A5 ledger; criteria 1.5)      : FAIL strict (inherited V0 constants); new constants: 1 (zeta)
+    G5 (A4)                                     : O1 as above; Q2 (isolated Sun, unfiltered) per gate-at-Sun (A4); criterion B / filtered / MW tide NOT ADDRESSED; ghost PASS
+    G6 (A4)                                     : UNDEFINED
+    G7 (A4)                                     : UNDEFINED for the coupling's own dipole; PASS on record inputs for a0
+    S2 owner's picture (A5)                     : PASS: no flow mass, Q = 0, functional of baryons; d2 = matter-flow coupling (labelled)
+
+  === d2 sat (frozen 'even' gate) ===
+    O3 (A1)                                     : PASS
+    O2 region-selective (A2)                    : FAIL (f(3 r_M) >= 0.99 in 31/56 solves; web off 56/56; f >= 0.99 on the whole G1 grid 0/56)
+    G1 strict, P2 / nu_mono (A2)                : FAIL / FAIL
+    G1 edge (x <= x_ta), P2 / nu_mono (A2)      : FAIL / FAIL
+    G1 mechanism                                : FAIL as mechanism (kernel declared, gate shape declared: at best M1 'P-declared'; no pass to re-derive)
+    O1 stable (A3)                              : FAIL: c_eff at each cell's zeta_min: median 6.12e+03 km/s (line 37); ratio zeta_min/zeta_max median 1e+05
+    obstruction (A3)                            : STILL PRESENT (no zeta satisfies O1 and O2 in any cell)
+    added reach test (A3, not frozen)           : gate ON to 30 r_M for some zeta in 33/96 cells; together with O1: 0/96
+    G2 (A4)                                     : FAIL -- web growth Gamma/H max 14 (line 0.05); CMB UNDEFINED
+    G3 (A2)                                     : FAIL: reaction (gate) 5.27, (contact) 49.1 x g_law (line 0.10); energy 209 x orbital (line 1)
+    G4 constants (A5 ledger; criteria 1.5)      : FAIL strict (inherited V0 constants); new constants: 1 (zeta) + h shape
+    G5 (A4)                                     : O1 as above; Q2 (isolated Sun, unfiltered) per gate-at-Sun (A4); criterion B / filtered / MW tide NOT ADDRESSED; ghost PASS
+    G6 (A4)                                     : UNDEFINED
+    G7 (A4)                                     : UNDEFINED for the coupling's own dipole; PASS on record inputs for a0
+    S2 owner's picture (A5)                     : PASS: no flow mass, Q = 0, functional of baryons; d2 = matter-flow coupling (labelled)
+
+  === d2 lin, monotone gate (sensitivity) ===
+    O3 (A1)                                     : PASS
+    O2 region-selective (A2)                    : FAIL (f(3 r_M) >= 0.99 in 50/56 solves; web off 56/56; f >= 0.99 on the whole G1 grid 0/56)
+    G1 strict, P2 / nu_mono (A2)                : FAIL / FAIL
+    G1 edge (x <= x_ta), P2 / nu_mono (A2)      : FAIL / FAIL
+    G1 mechanism                                : FAIL as mechanism (kernel declared, gate shape declared: at best M1 'P-declared'; no pass to re-derive)
+    O1 stable (A3)                              : FAIL: c_eff at each cell's zeta_min: median 5.16e+03 km/s (line 37); ratio zeta_min/zeta_max median 3.16e+03
+    obstruction (A3)                            : STILL PRESENT (no zeta satisfies O1 and O2 in any cell)
+    added reach test (A3, not frozen)           : gate ON to 30 r_M for some zeta in 35/96 cells; together with O1: 0/96
+    G2 (A4)                                     : FAIL -- web growth Gamma/H max 7.7 (line 0.05); CMB UNDEFINED
+    G3 (A2)                                     : FAIL: reaction (gate) 1.28, (contact) 5.65e+04 x g_law (line 0.10); energy 2.97e+04 x orbital (line 1)
+    G4 constants (A5 ledger; criteria 1.5)      : FAIL strict (inherited V0 constants); new constants: 1 (zeta)
+    G5 (A4)                                     : O1 as above; Q2 (isolated Sun, unfiltered) per gate-at-Sun (A4); criterion B / filtered / MW tide NOT ADDRESSED; ghost PASS
+    G6 (A4)                                     : UNDEFINED
+    G7 (A4)                                     : UNDEFINED for the coupling's own dipole; PASS on record inputs for a0
+    S2 owner's picture (A5)                     : PASS: no flow mass, Q = 0, functional of baryons; d2 = matter-flow coupling (labelled)
+
+  === d2 sat, monotone gate (sensitivity) ===
+    O3 (A1)                                     : PASS
+    O2 region-selective (A2)                    : FAIL (f(3 r_M) >= 0.99 in 40/56 solves; web off 56/56; f >= 0.99 on the whole G1 grid 0/56)
+    G1 strict, P2 / nu_mono (A2)                : FAIL / FAIL
+    G1 edge (x <= x_ta), P2 / nu_mono (A2)      : FAIL / FAIL
+    G1 mechanism                                : FAIL as mechanism (kernel declared, gate shape declared: at best M1 'P-declared'; no pass to re-derive)
+    O1 stable (A3)                              : FAIL: c_eff at each cell's zeta_min: median 4.21e+03 km/s (line 37); ratio zeta_min/zeta_max median 1e+05
+    obstruction (A3)                            : STILL PRESENT (no zeta satisfies O1 and O2 in any cell)
+    added reach test (A3, not frozen)           : gate ON to 30 r_M for some zeta in 33/96 cells; together with O1: 0/96
+    G2 (A4)                                     : FAIL -- web growth Gamma/H max 14 (line 0.05); CMB UNDEFINED
+    G3 (A2)                                     : FAIL: reaction (gate) 1.4, (contact) 141 x g_law (line 0.10); energy 209 x orbital (line 1)
+    G4 constants (A5 ledger; criteria 1.5)      : FAIL strict (inherited V0 constants); new constants: 1 (zeta) + h shape
+    G5 (A4)                                     : O1 as above; Q2 (isolated Sun, unfiltered) per gate-at-Sun (A4); criterion B / filtered / MW tide NOT ADDRESSED; ghost PASS
+    G6 (A4)                                     : UNDEFINED
+    G7 (A4)                                     : UNDEFINED for the coupling's own dipole; PASS on record inputs for a0
+    S2 owner's picture (A5)                     : PASS: no flow mass, Q = 0, functional of baryons; d2 = matter-flow coupling (labelled)
+
+  0/0 checks pass; load-bearing failures: 0   (0 s)

@@ -1,0 +1,43 @@
+CFG172D_A3 -- THE OBSTRUCTION TEST under the replacement (frozen criteria 2.1: O1, O2, the zeta-interval test), controls C4, M1, M4, M5.
+
+Grid (DE12's): point-mass baryons M_b = 1e10, 1e11, 1e12; z = 0.25, 1, 2.5, 4; both footings; gate widths w = 0.25 and 1; c2 = 7.3e-3 and 0.067
+(L340's window ends); gas c_s = 37 / 117 / 10 km/s.  The gas around each system is DE12's f_b (NFW + mean) continued past r200.
+ARMS (never pooled):  d1 (gate-sourced, no new term);  d2 lin and d2 sat (the explicit source, one constant zeta) in the FROZEN 'even' gate variable
+u_theta = D(theta) E^-2, D = (thetabar/theta)^2 - 1  AND in a monotone SENSITIVITY variant ('mono': f = 1 for theta <= 0), added after the
+even variant was found band-pass (see README: wrong expectation kept).
+B (the gate's coefficient dL/df) is taken from V0's own static solution with the prescribed original gate (a reference solve per cell): a
+declared approximation for the zeta scan ('frozen B', as DE12).  The scan is an EXISTENCE test (interval intersection), never a fit.
+
+  repo: <repo>/.   MUTATE=M5
+
+==============================================================================================================
+C4  CONTROL: this lane's re-implementation of DE12 (V0's ORIGINAL gate, MOND-sector reading A+) reproduces DE12's committed numbers
+==============================================================================================================
+  [PASS] C4 DE12's 24 cells (c_gate_max, Gamma/H) reproduced to 2%
+         max relative deviation 0.00e+00
+  original gate, z = 0.25, w = 0.25: min c_gate = 1526 km/s, min Gamma(k = 1/kpc)/H = 2.0e+04 (record: 1526 km/s, 2.0e4)
+
+==============================================================================================================
+REFERENCE: V0's own B = dL/df on the original-gate layer; and d1 (gate-sourced compaction)
+==============================================================================================================
+  B / (2 a0^2 q/c^4) on the transition layers of the original gate (median per cell): min 0.938, median 1, max 1.07   (the record's DE7 says 'within ~10%'; frozen criteria 1.5/3.1 used B ~ 2 alpha^2 q)
+  [PASS] (reported) (reported) V0's full B on the layers is within 10% of the a0^2 q part alone (the record's DE7 statement)
+         median ratio 1, range [0.938, 1.07]
+  d1 ALTERNATIVE (upper, stable S-curve) branch: gate reaches f > 1/2 somewhere in 91/96 cells; outermost radius with f > 1/2: median 0.783 r_M, max 7.62 r_M; lowest local acceleration y = g_N/a0 with f > 1/2: median 1.63, min 0.0172 (the law needs the gate ON down to y ~ 1e-3)
+  d1: continuation branch has theta = thetabar exactly (f' = 0 there) => f = 0 at every radius in every one of 96 cells; c_eff = 0 (no baryon coupling, frozen B)
+  d1: alternative branches of the local equation (S-curve) exist at some r in 93/96 cells (fraction of radii with an extra root: max 0.56)
+  d1: hypothetical margin  B f_thth / (2 c2)  on the original layer if theta were placed there: max over cells 4.17; cells with ratio > 1 (fold): 4/96
+  d1: |delta theta|/thetabar the gate source could make IF theta sat at the layer: median 6.03e-05, max 4.32e-02  (needed depletion 0.5-0.9)
+  [FAIL] (reported) HYPOTHESIS (frozen 3.1: bump <~ 2e-3 at the edge): the gate-sourced bump, IF theta sat at the layer, is at most 1e-2 of the depletion the gate needs in every cell
+         max bump 4.32e-02
+
+==============================================================================================================
+M5 (prescribed gate, f not varied): the record's data-pass mode: no stiffness, O2 by construction
+==============================================================================================================
+  prescribed original gate: O1 passes trivially (no varied gate, no stiffness); O2 (f(3 r_M) >= 0.99, web off) holds in 18/48 cells (fails: ['z0.25/1e+10/canonical/w0.25', 'z0.25/1e+10/canonical/w1.0', 'z0.25/1e+10/alt/w0.25', 'z0.25/1e+10/alt/w1.0', 'z0.25/1e+11/canonical/w0.25', 'z0.25/1e+11/canonical/w1.0', 'z0.25/1e+11/alt/w0.25', 'z0.25/1e+11/alt/w1.0', 'z0.25/1e+12/canonical/w0.25', 'z0.25/1e+12/canonical/w1.0', 'z0.25/1e+12/alt/w0.25', 'z0.25/1e+12/alt/w1.0'] ...): the prescribed original gate itself is not ON at 3 r_M at high z and large M (DE1's flagship-edge problem)
+  [PASS] M5 with the gate prescribed (not varied) O1 and O2 both pass in every cell: the obstruction is a property of VARYING the gate
+         O2 all cells: False
+
+  3/4 checks pass; load-bearing failures: 0   (7 s)
+
+  MUTATE=M5: control DOES NOT BITE

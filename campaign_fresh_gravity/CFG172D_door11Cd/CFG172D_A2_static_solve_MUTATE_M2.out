@@ -1,0 +1,80 @@
+CFG172D_A2 -- V0's static spherical system with the theta-gate: d1, d2 (lin/sat x even/mono): G1 (three lines), O2, G3 (reaction, energy),
+the d1 residual of the prescribed solution, the size of the O(H) MOND-sector source found in A1, controls C1, C5, C6, mutations M2, M3.
+
+The system (frozen criteria 1.4; O3a derived it): with f = f(theta(r)),
+   (r^2 w')'/r^2 - M^2 w = 4 pi G f rho_b ,  M^2 = m^2 (1 - f);   (r^2 P')'/r^2 - M^2 P = (r^2 f (nu-1) w')'/r^2 + sigma M^2 w ;   g_bar = u' + (f P)'.
+theta(r) is the FIRST root below thetabar of  Pi = -2 c2 (theta - thetabar) + B f'(t) t'(theta) - (16 pi G/c^2)(rho_b - rho_bar) zeta h'(vartheta)/theta_L = 0
+(d1: zeta = 0); the root is the continuation branch (the one continuous with the background), the others are counted (S-curve).
+B comes from the same solution (fixed point in f, damped).  zeta for d2 is NOT tuned to G1: it is zeta_min of the reference cell
+(1e11 Msun, z = 0.25, canonical, w = 0.25, c2 = 7.3e-3) read from A3's result JSON (the smallest zeta that makes that cell region-selective),
+the same at every mass, redshift, footing and profile.  Baryon source of theta = the galaxy + DE12's gas (declared); the region kernel is
+sourced by the galaxy only (G1's definition).  Background contrast neglected in the w/P solves; 1/m = 100 kpc, sigma = 1 (V0's declared values).
+
+  repo: <repo>/.   MUTATE=M2
+
+==============================================================================================================
+C1, C5, C6  CONTROLS
+==============================================================================================================
+  [PASS] C1 CFG44 identity: M_dyn(<r) = M_b sqrt(1 + x^2) for the point-mass P2 law (Bcommon read-only)
+         max rel dev 2.9e-16
+  [PASS] C5a plateau (f = 1, M = 0): g_bar = nu_mono(g_N/a0) g_N (CV1 A2: '1e-4')
+         max rel dev 3.0e-05
+  [PASS] C5b gate off (f = 0): g_bar = g_N exactly (CV1 A5)
+         max rel dev 0.0e+00
+  [FAIL] (reported) C6 DE1 edge closed form r_e = v_f/(H sqrt(x_c,eff + 1.5 Omega_m(z))) against the numeric edge of the original gate (z = 0.25, 1e11)
+         numeric 1373 kpc, closed form 1198 kpc, ratio 0.873  (DE1's own control used L352's on-branch point-mass profile with the mean-density term; this lane's numeric edge is DE12's gas-inclusive construction, so the two are not the same object: control NOT reproduced, kept)
+
+  zeta_min of the reference cell from A3: {'lin/even': 1.778279410038923e-05, 'sat/even': 3.1622776601683795e-05, 'lin/mono': 1.778279410038923e-05, 'sat/mono': 3.1622776601683795e-05}
+
+==============================================================================================================
+G1 / O2 / G3 : self-consistent solves (7 masses x 2 profiles x 2 footings x z in {0, 0.25}); zeta fixed at the reference-cell zeta_min
+==============================================================================================================
+
+  [d2_lin_mono] zeta = 1.778279410038923e-05; 56 solves (11 s)
+    G1-strict (whole grid x in [0.1, 30]): max dev vs P2 = 2.88, vs nu_mono = 2.67; cells within 10%: P2 0/56, nu_mono 0/56
+    G1-edge (grid cut at x_ta, both r_ta conventions): vs P2 within 10%: 0/56; vs nu_mono: 0/56
+    O2: f(3 r_M) >= 0.99 in 50/56 solves; f in the web <= 0.01 in 56/56; f on the whole grid x in [0.1, 30] within [0.99, 1]: 0/56
+    half-gate radius in units of r_M (where f = 1/2): min 2.54, median 5.14, max 10.9; solves not converged (max |df| > 1e-3): 0/56; S-curve (>1 root) somewhere: 37/56
+  >> G1_d2_lin_mono: FAIL -- strict P2 F/nu_mono F; edge P2 F/nu_mono F; O2(region selective, all solves) F
+
+==============================================================================================================
+d1: the prescribed (V0 original-gate) solution is NOT a solution of the theta equation: residual
+==============================================================================================================
+    z = 0.25, M_b = 1e+10: at r = 3 r_M the prescribed gate has t = 1.01e+04 (f = 1.000); it would need theta/thetabar = 0.00779; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 0.25, M_b = 1e+11: at r = 3 r_M the prescribed gate has t = 3.37e+03 (f = 1.000); it would need theta/thetabar = 0.0135; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 0.25, M_b = 1e+12: at r = 3 r_M the prescribed gate has t = 1.14e+03 (f = 1.000); it would need theta/thetabar = 0.0233; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 1.0, M_b = 1e+10: at r = 3 r_M the prescribed gate has t = 1.73e+03 (f = 1.000); it would need theta/thetabar = 0.012; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 1.0, M_b = 1e+11: at r = 3 r_M the prescribed gate has t = 582 (f = 1.000); it would need theta/thetabar = 0.0207; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 1.0, M_b = 1e+12: at r = 3 r_M the prescribed gate has t = 198 (f = 1.000); it would need theta/thetabar = 0.0354; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 2.5, M_b = 1e+10: at r = 3 r_M the prescribed gate has t = 94.9 (f = 1.000); it would need theta/thetabar = 0.0242; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 2.5, M_b = 1e+11: at r = 3 r_M the prescribed gate has t = 31.7 (f = 1.000); it would need theta/thetabar = 0.0412; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 2.5, M_b = 1e+12: at r = 3 r_M the prescribed gate has t = 10.2 (f = 1.000); it would need theta/thetabar = 0.0694; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 4.0, M_b = 1e+10: at r = 3 r_M the prescribed gate has t = 11.6 (f = 1.000); it would need theta/thetabar = 0.0391; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 4.0, M_b = 1e+11: at r = 3 r_M the prescribed gate has t = 3.08 (f = 1.000); it would need theta/thetabar = 0.066; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+    z = 4.0, M_b = 1e+12: at r = 3 r_M the prescribed gate has t = 0.147 (f = 0.004); it would need theta/thetabar = 0.11; the theta equation gives 1 (+ <1e-3 bump) since f' = 0 on the plateau
+  [PASS] d1 the depletion required by V0's original gate at 3 r_M is >20% in every cell, the theta equation's plateau value is thetabar (T-d1 realised numerically)
+         required theta/thetabar range [0.00779, 0.11]
+
+==============================================================================================================
+SIZE OF THE O(H) MOND-SECTOR SOURCE FOUND IN A1 (E-L[REST], quasi-static, N = 1 + Phi/c^2 weak field), on the original-gate solution
+==============================================================================================================
+  expression reduced to 17 symbols: ['F0s', 'F1s', 'S0', 'S1', 'S10', 'S11', 'S12', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'alpha_c', 'r']
+    z = 0.25, M_b = 1e+11: |delta theta_H|/thetabar <= 1.76e-04  (H-source only; needed depletion ~0.5)
+    z = 2.5, M_b = 1e+11: |delta theta_H|/thetabar <= 9.53e-05  (H-source only; needed depletion ~0.5)
+    z = 0.25, M_b = 1e+12: |delta theta_H|/thetabar <= 4.84e-04  (H-source only; needed depletion ~0.5)
+    z = 4.0, M_b = 1e+10: |delta theta_H|/thetabar <= 2.56e-05  (H-source only; needed depletion ~0.5)
+  [PASS] the O(H) MOND-sector source of theta (H-i's failure in the expanding case) is < 1e-3 of the depletion the gate needs (so T-d1 stands to that accuracy)
+         max |delta theta_H|/thetabar = 4.84e-04
+
+==============================================================================================================
+G3  REACTION AND ENERGY (d2 arms, reference solve 1e11 Msun exponential sphere, z = 0.25, canonical)
+==============================================================================================================
+  [d2_lin_mono] gate force |f' P| / g_law max over x in [0.3, 30]: 1.28; contact force / g_law: 5.65e+04; |E_theta+coupling(<r_e)| / (M_b V_f^2 / 2): 2.97e+04 (r_ta), 2.97e+04 (0.4 r_ta)
+
+==============================================================================================================
+SUMMARY LINES for the README
+==============================================================================================================
+
+  5/6 checks pass; load-bearing failures: 0   (11 s)
+
+  MUTATE=M2: control BITES
