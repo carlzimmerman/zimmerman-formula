@@ -84,3 +84,8 @@
 - Dalcanton & Stilp's (2010) prescription.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## Governing wording (appended 2026-09-29, the orchestrator's check; the text above is unchanged)
+
+- **Read the Bottom line and Readings above in this sense:** Under the simulation-calibrated (Kretschmer+2021) pressure correction, the pre-declared decision cell (μ = 0.67) leans toward a₀ ∝ H(z) at 3.3σ. It is conditional, not robust and not a kill: it flips with gas (at μ = 1.5 flat is +1.2σ and the rival −2.1σ); it moves within the calibration's 40% scatter (α × 0.6 is non-diagnostic); and it rests on ONE published calibration, adopted after CFG141's P2 result was known (a forking-path risk). The GOODS-ALMA limit (μ < 0.72 nominal) is a point-source approximation, and no total gas is measured. The decisive quantities are the outer pressure support at 2–4.5 R_e and the total cold gas. The decision cell was fixed with the CFG141 grid already known. At that cell a confirming result for flat a₀ would have been Δ′_flat within 2σ with Δ′_H below −2σ (for example α × 0.6 gives +1.3σ / −2.0σ); a disconfirming result is Δ′_H within 2σ with Δ′_flat above +2σ, which is what occurred; anything else is non-diagnostic. Nothing here is evidence against flat a₀ beyond this statement. CFG140's and CFG141's rows are not superseded: they stand as the P1 and P2 results. An independent re-derivation (CFG165, the Opus chat) is pending, and this wording holds until it reports.
+- **The phrase 'the first in-regime reading in this record whose central value favours the rival' is descriptive only.** It adds nothing to the statement above.
