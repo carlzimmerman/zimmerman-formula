@@ -33,3 +33,8 @@ One function of radius, **C(r) = ρ_c r³ g_tot = (a₀/4π) M_b(<r)**, has no d
 Not tested: anisotropic f(E,L) positivity, non-spherical baryons beyond an estimate (a thin disc's tidal closure and enclosed-mass form differ 3–15×), and any relativistic completion. Hypotheses: spherical, static, Newtonian (GR correction ≤ 3 × 10⁻⁴ for M_b ≤ 10¹²).
 
 Nothing here says the theory is closed.
+
+## Referee corrections (2026-09-29, README audit relayed from the Opus/Fable chat; appended)
+
+- Line 9's "ν_mono's phantom departs by up to 2% in the charge function" is wrong as stated: B1 N5 gives a charge function R(x = 1) = 1.46 for a point mass under ν_mono and up to 2.5 on extended profiles (P2 gives R = 1 exactly on a point mass).
+- Line 31's statement that C(r) is not "a local function of the fields at r" is loose: B3 shows that for spherical baryons the target equals a local tidal closure, ρ_c g = (a₀/4πG) T_⊥; the dynamical-origin problem is that no committed action makes the fluid follow it (CFG50, CFG60, CFG70, CFG72).

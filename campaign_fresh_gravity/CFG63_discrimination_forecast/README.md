@@ -62,3 +62,8 @@ Only Gaia DR4 separates B from anything, and only from the bare MOND-type law (A
 - **Normality and independence** of the systems are assumed. Ranking by effort is qualitative, since no committed number prices an observation.
 
 Nothing here says the theory is closed.
+
+## Referee corrections (2026-09-29, README audit relayed from the Opus/Fable chat; appended)
+
+- Check C2e (the a₀(z) floor bridge) is circular by construction: the effective 0.25 dex floor is derived from CFG52's committed 2.3σ cap and then used to reproduce that cap. It shows the bridge is self-consistent, not that the floor is independently right; the alternative reading (the 0.2 dex floor directly) gives caps of 2.9 and 1.7.
+- In the DR4 row, "4.9" is S(30,000 pairs) with Arm A's own ±0.0175 included (S = 0.1614/√(0.0276² + 0.0175²) = 4.94), not a cap; the corresponding cap at infinite N is about 6.1 by the referee's calculation (8.1 without Arm A's own error). The 3σ pair counts in the row are the primary numbers.

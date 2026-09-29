@@ -86,3 +86,10 @@ Main runs (re-run by the orchestrating session from a scratch copy with the repo
 
 ## What this leaves for Gap 1
 Gap 1 and Gap 2 collapse into one object: the cold fluid's dispersion (or stress) set by the ENCLOSED baryon mass at the edge. As a field-only gate it is impossible (Gauss). As an exchange action it has a reaction on the baryons of order or larger than the law itself and an energy budget 23-50 times the baryons' orbital kinetic energy, so the energy cannot be drawn from the baryons. As a history it is either acausal inside an action or a prescribed label. The surviving readings are all of the form "the fluid's state is initial data from collapse", which is what CFG44's temperature-slaved and locally-virialised survivors already were. The one clean positive result is negative: the DE12/DE13 stability wall is not what stops a nonlocal enclosed-mass gate.
+
+## Referee corrections (2026-09-29, README audit relayed from the Opus/Fable chat; appended, nothing above edited)
+
+- The bottom line does not carry the CFG48 referee note (35eebbe99): the top-level-ball gate's edge sits at 0.11–0.24 of B's committed r_ta, not at 0.4 r_ta, so "no new constant" is weaker than stated; the exchange energy is 18–179× the baryons' orbital energy in B's convention.
+- The 48/48 pass of the nonlocal enclosed-mass gate is a second-variation result for the baryon-mass reading, not a stability certificate; the dynamical-mass reading fails 29/48.
+- "History ⇒ acausal" is superseded by CFG70, which builds a causal, reciprocal doubled-field (Schwinger-Keldysh) action for the exchange; the exchange's reaction and energy costs (CFG70, CFG72) are unchanged.
+- The ledger row 64 for CFG48 carries the same wording and is append-only; this section is the correction.

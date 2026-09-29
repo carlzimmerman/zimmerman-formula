@@ -46,3 +46,7 @@ Group 5 of `closure_map/GATES.md`: 5.01 partly (one action for tie plus fluid, s
 ## Standing
 
 **Gap 3 is partly filled and Gap 2 is untouched.** The tie can act on a conserved fluid in one action without adding local degrees of freedom. But the cap's entry cannot be derived, and the natural saturating form needs a new constant and covers about one decade in mass. It is an existence result and a scoped no-go, not a mechanism. Nothing here says the theory is closed.
+
+## Referee corrections (2026-09-29, README audit relayed from the Opus/Fable chat; appended)
+
+- The "about 11× in mass" ceiling in the obstruction's item 3 is contradicted by this README's own referee paragraph, where stacked convention choices reach 10⁴–10⁵. Read the window as convention-dependent, from about 11× up to 10⁴–10⁵, against the 10⁴ the BTFR needs; the body text and ledger row 52 were not amended (append-only).
