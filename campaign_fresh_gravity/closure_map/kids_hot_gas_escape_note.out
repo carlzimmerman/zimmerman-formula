@@ -1,0 +1,41 @@
+Data note (no lane number): can X-ray data test B's hot-gas escape from the KiDS early/late split?
+
+CFG61's escape: early-type lenses carry extra baryons Delta_f x M* (0.25 acceptable, ~1 best fit) at the M* node, i.e. enclosed within
+the smallest 1-halo lensing radius (~50 kpc for early types).  This script prints the numbers quoted in KIDS_HOT_GAS_ESCAPE_NOTE_2026-09-29.md:
+  (1) the eROSITA eRASS:4 hot-CGM luminosities (Zhang et al. 2025, A&A 693, A197, arXiv:2411.19945, Table 3; read from the arXiv HTML v1
+      on 2026-09-29, no file downloaded) and their internal consistency (L_mask - L_AGN+XRB+SAT = L_CGM);
+  (2) an ESTIMATE, not a result: the 0.5-2 keV bremsstrahlung luminosity of the escape's extra gas in its X-ray-faintest geometry
+      (uniform density inside radius R), metal lines omitted (Gaunt factor 1; lines only add emission), with its bremsstrahlung cooling time;
+  (3) measured context: the hot-gas fraction M_gas(<20 kpc) / M* of CFG57's seven X-ray-covered SLUGGS early types (CFG57's committed
+      output, Lakhchaura+2018 / Fukazawa+2006 profiles, SLUGGS distances and stellar masses).
+
+(1) eROSITA eRASS:4 hot CGM, 0.5-2 keV within R500c (Zhang+2025 Table 3)
+    log M* 10.5-11.0  SF: L_CGM = 8.00e+39 +- 5.0e+39   consistency L_mask - L_AGN+XRB+SAT = 7.80e+39 (-3%)
+    log M* 10.5-11.0  QU: L_CGM = 1.10e+40 +- 4.0e+39   consistency L_mask - L_AGN+XRB+SAT = 1.16e+40 (+5%)
+    log M* 11.0-11.25 SF: L_CGM = 2.30e+40 +- 1.5e+40   consistency L_mask - L_AGN+XRB+SAT = 2.40e+40 (+4%)
+    log M* 11.0-11.25 QU: L_CGM = 6.20e+40 +- 8.0e+39   consistency L_mask - L_AGN+XRB+SAT = 6.20e+40 (+0%)
+    log M* 10.5-11.0: QU - SF = +3.00e+39 +- 6.40e+39 erg/s (+0.5 sigma)
+    log M* 11.0-11.25: QU - SF = +3.90e+40 +- 1.70e+40 erg/s (+2.3 sigma)
+    QU 2-sigma upper bound, log M* 10.5-11.0: 1.90e+40 erg/s
+
+(2) ESTIMATE (not a result): bremsstrahlung-only 0.5-2 keV luminosity of Delta_f x M* (log M* 10.81) spread uniformly inside R
+    (metal lines omitted: a lower bound at fixed T; uniform density is the X-ray-faintest way to put the mass inside R)
+    Delta_f 0.25, R  50 kpc (n_e 1.1e-03 cm^-3, t_cool,ff at 0.1 keV 7.7 Gyr): T 0.10: 2.2e+38 (0.011x); T 0.15: 1.4e+39 (0.074x); T 0.20: 3.7e+39 (0.2x); T 0.30: 1.0e+40 (0.55x)
+    Delta_f 0.25, R 100 kpc (n_e 1.4e-04 cm^-3, t_cool,ff at 0.1 keV 61.7 Gyr): T 0.10: 2.7e+37 (0.0014x); T 0.15: 1.7e+38 (0.0092x); T 0.20: 4.6e+38 (0.024x); T 0.30: 1.3e+39 (0.068x)
+    Delta_f 0.25, R 180 kpc (n_e 2.3e-05 cm^-3, t_cool,ff at 0.1 keV 359.6 Gyr): T 0.10: 4.6e+36 (0.00024x); T 0.15: 3.0e+37 (0.0016x); T 0.20: 8.0e+37 (0.0042x); T 0.30: 2.2e+38 (0.012x)
+    Delta_f 1.00, R  50 kpc (n_e 4.4e-03 cm^-3, t_cool,ff at 0.1 keV 1.9 Gyr): T 0.10: 3.4e+39 (0.18x); T 0.15: 2.2e+40 (1.2x); T 0.20: 5.9e+40 (3.1x); T 0.30: 1.7e+41 (8.8x)
+    Delta_f 1.00, R 100 kpc (n_e 5.5e-04 cm^-3, t_cool,ff at 0.1 keV 15.4 Gyr): T 0.10: 4.3e+38 (0.023x); T 0.15: 2.8e+39 (0.15x); T 0.20: 7.4e+39 (0.39x); T 0.30: 2.1e+40 (1.1x)
+    Delta_f 1.00, R 180 kpc (n_e 9.4e-05 cm^-3, t_cool,ff at 0.1 keV 89.9 Gyr): T 0.10: 7.4e+37 (0.0039x); T 0.15: 4.8e+38 (0.025x); T 0.20: 1.3e+39 (0.067x); T 0.30: 3.6e+39 (0.19x)
+    (x = the ratio to the QU 2-sigma upper bound; above 1 would be excluded if the emission were pure bremsstrahlung)
+
+(3) measured context: hot-gas fraction within 20 kpc of CFG57's X-ray-covered SLUGGS early types (M_gas from CFG57's committed output)
+    NGC3607: log M* 11.39, M_gas(<20 kpc) 1.02e+09 Msun, M_gas / M* = 0.0042
+    NGC4365: log M* 11.51, M_gas(<20 kpc) 7.89e+08 Msun, M_gas / M* = 0.0024
+    NGC4374: log M* 11.51, M_gas(<20 kpc) 1.57e+09 Msun, M_gas / M* = 0.0049
+    NGC4486: log M* 11.62, M_gas(<20 kpc) 1.25e+10 Msun, M_gas / M* = 0.0300
+    NGC4649: log M* 11.60, M_gas(<20 kpc) 1.86e+09 Msun, M_gas / M* = 0.0047
+    NGC4697: log M* 11.15, M_gas(<20 kpc) 4.86e+08 Msun, M_gas / M* = 0.0034
+    NGC5846: log M* 11.46, M_gas(<20 kpc) 4.91e+09 Msun, M_gas / M* = 0.0170
+    range 0.0024 - 0.0300 (N = 7)
+
+(2b) ESTIMATE: B's flat v_c for log M* 10.81: 179 km/s; hydrostatic isothermal kT = 0.100 (slope 2) to 0.134 keV (slope 1.5)
