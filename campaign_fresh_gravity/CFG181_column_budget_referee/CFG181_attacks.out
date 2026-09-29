@@ -1,0 +1,57 @@
+=== A: genuine test or restatement ===
+Q1 accepts a0 in [3.198e-11, 3.198e-10] m/s^2 (1.00 dex wide); c*H0 = 6.548e-10; a0(A)/(cH0) = 0.143
+literature-scale a0: 8.00e-11:R=0.250(pass), 1.00e-10:R=0.313(pass), 1.13e-10:R=0.353(pass), 1.20e-10:R=0.375(pass), 1.40e-10:R=0.438(pass)
+kappa grid: 0.35:R=0.205(pass), 0.465:R=0.272(pass), 0.5:R=0.293(pass), 0.55:R=0.322(pass), 0.72:R=0.422(pass)
+null-world count (informational): a0 log-uniform 1e-13..1e-7 -> fraction passing Q1 = 0.167
+A verdict (Q1): RESTATEMENT: every literature a0 and kappa value passes = True; no galaxy-scale quantity enters R (sympy: mass-free, see main).
+Q2: a requirement (deposit shape), not a test. Q3: the only falsifiable statement; a rival to (not a consequence of) the framework's flat-a0 law (noted, not scored). Q4: see F.
+
+=== B: declared choices, one-at-a-time and joint grid ===
+axis column: CFG174 M_c/pi r^2: R=0.2927; shell M_c/4pi r^2: R=0.07318 FLIP; central rho_c r: R=0.1464; projected Z/R=1: R=0.258; projected Z/R=3: R=0.5323; projected Z/R=10: R=0.8776; projected Z/R=100: R=1.551 FLIP
+axis speed: u/c=1: R=0.2927; u/c=0.3: R=0.9757; u/c=0.1: R=2.927 FLIP; u/c=0.01: R=29.27 FLIP; 600 km/s: R=146.3 FLIP; 370 km/s: R=237.2 FLIP
+axis duration: t0: R=0.2927; t0/2: R=0.5854; t(z=1): R=0.6905; t(z=2): R=1.233 FLIP; 1 Gyr: R=4.036 FLIP
+axis kernel: CFG44 P2: R=0.2927; simple 1/2+sqrt(1/4+1/y): R=0.5854
+axis a0 footing: A 9.36e-11: R=0.2927; B 1.13e-10: R=0.3534
+axis cosmology (own flat age): H0=67.40,OL=0.685: R=0.2926; H0=67.66,OL=0.6889: R=0.2888; H0=70.00,OL=0.7: R=0.2719; H0=73.00,OL=0.7: R=0.2607
+one-at-a-time axes with at least one flipping cell: ['column', 'speed', 'duration']
+joint plausible set: 48 cells, R range 0.130-1.285, passing 42/48
+one-sided line R<=1 instead of two-sided: shell column R=0.073 would PASS; a0 x 0.1 R=0.029 would PASS; the two-sided lower bound 0.1 is what makes them fail
+B verdict: DEFINITION-DEPENDENT
+
+=== C: scale-free or circular ===
+sympy: R = kappa/(2 pi) * 1/(H0 t) * 1/sqrt(3 Omega_L/8 pi) -> identity True; contains no mass or radius symbol
+numerical: kappa=0.5 -> R = 0.2928; cosmology-only factor (per unit kappa) = 0.5855; H0*t0 = 0.9506
+d ln R / d ln a0 = 1.000000000
+R(t) at fixed a0: t0*0.1: 2.927, t0*1.0: 0.293, t0*10.0: 0.029; the line holds for t in [4.04, 40.4] Gyr
+C verdict: SCALE-FREE (mass-independent) and NOT a0-independent
+
+=== D: kernel dependence of the column (point mass; unit a0/(2 pi G)) ===
+CFG44 P2                     sup column   1.0000 at x=0.001; at x=1e-3,1e-2,0.1,1: 1, 1, 0.9975, 0.8284 -> plateau; R at sup 0.293, at x=0.1 0.2920
+simple                       sup column   2.0000 at x=0.001; at x=1e-3,1e-2,0.1,1: 2, 2, 1.98, 1.236 -> plateau; R at sup 0.585, at x=0.1 0.5797
+McGaugh RAR                  sup column   1.2952 at x=0.627; at x=1e-3,1e-2,0.1,1: 0, 0, 0.00908, 1.164 -> NO plateau (column -> 0); R at sup 0.379, at x=0.1 0.0027
+nu_mono (shared definition)  sup column   2.0860 at x=0.001; at x=1e-3,1e-2,0.1,1: 2.086, 1.788, 1.491, 1.164 -> NO plateau (keeps growing); R at sup 0.611, at x=0.1 0.4365
+D verdict: P2-specific constant: RAR column -> 0 at small x (no plateau); nu_mono plateau at small x: False (frozen expectation was that BOTH RAR and nu_mono columns vanish at small x: RAR does; nu_mono does NOT, its monotone repair adds a slowly (log) growing extra acceleration, so its column grows toward small x: WRONG expectation, kept)
+
+=== E: Q3 assumptions ===
+z_on=None: dex at (0.85,1.5,2.5) for the 4 cosmologies: (-0.326, -0.509, -0.722) | (-0.326, -0.510, -0.723) | (-0.323, -0.506, -0.719) | (-0.323, -0.506, -0.719)
+z_on=20: dex at (0.85,1.5,2.5) for the 4 cosmologies: (-0.332, -0.522, -0.747) | (-0.333, -0.523, -0.748) | (-0.330, -0.519, -0.744) | (-0.330, -0.519, -0.744)
+z_on=10: dex at (0.85,1.5,2.5) for the 4 cosmologies: (-0.343, -0.545, -0.794) | (-0.344, -0.546, -0.795) | (-0.341, -0.542, -0.790) | (-0.341, -0.542, -0.790)
+z_on=5: dex at (0.85,1.5,2.5) for the 4 cosmologies: (-0.373, -0.610, -0.942) | (-0.374, -0.611, -0.943) | (-0.371, -0.607, -0.938) | (-0.371, -0.607, -0.938)
+radiation included (Omega_r=9.2e-5, Om=0.3111 with flat closure): t0 = 13.786 Gyr; dex z=0.85: -0.326, z=1.5: -0.509, z=2.5: -0.722
+sign robust (falls with z in every cell): True; z=1.5 amplitude range -0.611 to -0.506 (spread 0.105 dex; frozen threshold 0.1 -> assumption-dependent amplitude)
+consistency with Q1: the present-day match a0(t0) fixes u/c = R independent of z, so Q3 does not depend on u.
+
+=== F: Q4 borders and scaling ===
+baseline (need, 500 rho_crit, fb 0.15, A): 2.068, 1.409, 0.960 pass_line False
+reference 'need': 2/24 cells pass the factor-2 line at all three masses (baseline cell fails)
+need (1-fb) M500: exponent d log(ratio)/d logM500 over cells: -0.333 to -0.333
+law phantom (P2, M_b=fb M500): exponent d log(ratio)/d logM500 over cells: -0.144 to -0.124
+law-phantom reference, baseline: ratio 2.97, 2.56, 2.22; law's own phantom at R500 vs the ΛCDM need: 14: 0.70, 14.5: 0.55, 15: 0.43
+F verdict: FAIL label FRAGILE; M^(2/3) scaling CONFIRMED (2 of 24 'need' cells flip the baseline FAIL, e.g. ['need (1-fb) M500|500 rho_crit|fb=0.1|A', 'need (1-fb) M500|500 rho_crit|fb=0.12|A'])
+
+=== G: Q2 label ===
+README numbers (targets read): x=0.1: 1.0, x=1: 0.83, x=10: 0.18, x=30: 0.064
+f normalised to Sigma_M: 0.1: 0.9975, 1: 0.8284, 10: 0.1810, 30: 0.0645; fraction of the swept column R*f: 0.1: 0.2920, 1: 0.2425, 10: 0.0530, 30: 0.0189
+README numbers match Sigma_M-normalised f: True; match fraction of swept column: False
+local slope -> -1 at x = 30,100,1000: -0.967, -0.990, -0.999
+G verdict: LABEL DISCREPANCY (README wording 'fraction of the swept column'; numbers are Sigma_M-normalised)
