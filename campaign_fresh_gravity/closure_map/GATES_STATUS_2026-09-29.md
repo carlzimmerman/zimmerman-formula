@@ -203,3 +203,12 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
   - Row 1.20 stands: the measured gas cannot close the deficit. Gas beyond the X-ray fields is untested (M87's GCs reach 109 kpc against a 30-kpc field).
   - Re-run status: this session only.
 - **The addendum's "KiDS split B-SPECIFIC" is about the early-minus-late difference.** The same machinery's absolute profiles fail for ΛCDM too (CFG67 H3: 29.6 and 27.9/7).
+
+
+## Addendum after CFG76 (appended 2026-09-29; the rows above are unchanged)
+
+- **Line 22 and row 1.20: the SLUGGS significances rest on a fixed GC density slope, γ = 3.** This comes from CFG76 (276c78784, post hoc).
+  - The law's JAM-calibrated offset is +0.017 (0.7σ) at γ = 2.0 and +0.134 at 3.6. It is zero at γ ≈ 1.83. The rule's offset is zero at γ ≈ 2.45.
+  - Without the four group and cluster centrals (N = 12), the law is at +0.055 (2.7σ) and the rule at +0.026 (1.3σ).
+  - Row 1.20 stays FAIL at γ = 3 as run, with this qualifier. The "2.6σ at φ = 1" in the corrections above is the same γ = 3 number.
+- **h50's name-key artefact drops NGC 720 and NGC 821.** A disclosed re-run of CFG55 (`CFG55_h50_keyfix.py`) corrects the keys: the JAM sample of 17 gives law +0.0996 (4.3σ) and rule +0.0513 (2.9σ). It was re-run independently by CFG76 (+0.100 / +0.053) and by this session.

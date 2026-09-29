@@ -86,3 +86,8 @@ Hypotheses and scope:
   - The measured hot gas does not change that. CFG57 (9b071a024) is non-diagnostic: the gas shifts the mean by 0.01 dex.
   - So SLUGGS no longer prefers the rule, and the remark about morphology versus colour loses its SLUGGS support.
 - **"Its MUTATE control exits 1 as required" says nothing here.** The main run also exits 1, failing the same two checks (H2 and H3). What the control shows is the statistic moving (to −0.24σ when the data are given the rule's shape), not the exit code.
+
+
+## Addendum after CFG76 (appended 2026-09-29)
+
+- The SLUGGS 4.0σ and 2.6σ quoted in the correction above are statistical errors at a fixed GC density slope, γ = 3. The law's offset is zero at γ ≈ 1.83 and the rule's at ≈ 2.45 (CFG76; see CFG55's appended section).

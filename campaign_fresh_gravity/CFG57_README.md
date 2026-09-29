@@ -123,3 +123,12 @@ What stays open is unmeasured mass beyond the X-ray fields, above all M87's clus
 B's derived rule leaves 3.0σ with the gas (alt 3.3σ). For comparison (CFG69): ΛCDM fits the JAM-calibrated SLUGGS at 0.0σ, largely by construction, and over-predicts with population masses (−2.4σ).
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the theory is closed.
+
+
+## Addendum after CFG76 (appended 2026-09-29; no result changed)
+
+- **Every offset in this lane is at CFG55's fixed GC density slope, γ = 3.**
+  - The deficit's size depends on γ. For CFG55's 16, the law's offset is zero at γ ≈ 1.83 and the rule's at ≈ 2.45 (CFG76, post hoc).
+  - The deficit also leans on the group and cluster centrals, four of which are among this lane's seven: M87, NGC 4365, NGC 4374 and NGC 5846.
+  - So the 5.4σ and 3.0σ here are statistical errors at γ = 3. The gas shift (0.010 dex) was computed at γ = 3 only.
+- **h50's name-key artefact does not change this lane's sample.** NGC 821 is in neither gas source. NGC 720 is in Fukazawa's table but lies outside ATLAS3D, so it is not in CFG55's JAM sample.

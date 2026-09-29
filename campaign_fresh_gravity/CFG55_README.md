@@ -69,3 +69,36 @@ Three of the four worst offenders are X-ray-bright group or cluster centrals: M8
 - **Later: the measured hot gas does not change this deficit.**
   - CFG57 (9b071a024) is non-diagnostic: on the seven galaxies with X-ray profiles, the gas moves the law's mean by 0.010 dex.
   - M87's gas beyond its 30-kpc X-ray field is untested.
+
+
+## Corrections after CFG76's independent re-derivation (appended 2026-09-29; no committed number changed)
+
+CFG76 (276c78784) re-derived this lane from independently written code. It reproduced the headline exactly: law +0.09698 (3.99σ) and rule +0.04564 (2.58σ), to 2e-6 per galaxy. It also found four problems, each checked here against this lane's code.
+
+- **The kernel.** The prediction uses h50's plain RAR kernel, ν = 1/(1 − e^{−√y}) (`nu_h`, from h50 through CFG38), not ν_mono as the Method says.
+  - ν_mono enters only the calibration (`law_mass`). There it equals the RAR kernel for y < 2.
+  - With ν_mono everywhere, the offsets are about 0.001 dex higher (CFG76). The conclusions are unchanged.
+- **The distance.** The code rescales M_JAM ∝ D and r_1/2 ∝ D (the `G16` block). That is the dynamical-mass scaling, since (M/L)_JAM ∝ 1/D and L ∝ D².
+  - The Method's "M_JAM = (M/L)_JAM L_r and r_1/2, both moved to the SLUGGS distance" reads as L ∝ D² at fixed M/L. The code does not do that.
+  - That literal reading gives +0.098 / +0.047 (CFG76's frozen primary).
+- **The Salpeter row was undefined.** It takes ATLAS3D's (M/L)_Salp × L_r, moved at fixed M/L (L ∝ D²), and uses it directly as the stellar mass, with no kinematic calibration. That gives law +0.049 and rule −0.033.
+  - CFG76 used the same mass as the calibration target in place of M_JAM, and got +0.076 / +0.021.
+  - `CFG55_salpeter_definition_check.py` (and its `.out`) reproduces both from this lane's own functions. Neither is an error.
+- **Post hoc: the size of the residual rests on the fixed GC density slope, γ = 3.** The 4.0σ and 2.6σ are statistical errors at one slope used for every galaxy. The values below are from CFG76 (`cfg76_posthoc_attack.py`, `posthoc_attack.log`):
+
+| γ | 2.0 | 2.4 | 3.0 | 3.6 |
+|---|---|---|---|---|
+| law | +0.017 (0.7σ) | +0.053 (2.2σ) | +0.097 (4.0σ) | +0.134 (5.5σ) |
+| rule | −0.046 (−2.5σ) | −0.005 (−0.3σ) | +0.046 (2.6σ) | +0.087 (4.9σ) |
+
+  - The law's offset is zero at γ ≈ 1.83, and the rule's at γ ≈ 2.45.
+  - Without the four group and cluster centrals (M87, NGC 4365, NGC 4374, NGC 5846; N = 12), the law is at +0.055 (2.7σ) and the rule at +0.026 (1.3σ).
+  - Per-galaxy measured GC density slopes would decide this. None are used here.
+- **h50 silently drops NGC 720 and NGC 821** (133 GC velocities). It keys galaxies as `NGC0720` but reads the catalogue's `NGC720_…`. This lane's SLUGGS-table key has the same inconsistency.
+  - A disclosed re-run goes through this lane's own code: `CFG55_h50_keyfix.py`, with outputs `_H50KEYFIX`. It corrects the keys in memory; h50, CFG38 and this script are unchanged on disk.
+  - The JAM sample becomes 17 (NGC 821 added; NGC 720 lies outside ATLAS3D). **Law +0.0996 ± 0.0230 (4.3σ; alt 3.97σ); rule +0.0513 ± 0.0176 (2.9σ; alt 2.9σ).** CFG76's independent code gives +0.100 / +0.053.
+  - With SLUGGS masses over 21 galaxies: law +0.0799 and rule +0.0109, against +0.0795 and +0.0066 for the committed 19.
+  - In the variant, C1 and C3 fail by construction because the sample changes. The H1 and H2 labels still say "16".
+  - h50 itself is left as committed, so every lane that executes it (CFG38, CFG55, CFG57, CFG59, CFG69, CFG71, CFG76) stays reproducible. Correcting h50 in place would change all of them.
+
+**Reading, as qualified:** the deficit survives dynamical stellar masses at γ = 3. Its size depends on γ, and it leans on the group and cluster centrals.

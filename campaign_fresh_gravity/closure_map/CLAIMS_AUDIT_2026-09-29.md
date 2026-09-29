@@ -190,3 +190,13 @@ The line numbers are those of the files at HEAD. Each quote was checked verbatim
   - On the seven SLUGGS galaxies with X-ray profiles, the measured hot gas moves the law's mean by 0.010 dex (+0.163 → +0.153 ± 0.028, 5.4σ). That is below the mean's error.
   - The frozen headline "pass" is an extrapolation artefact.
   - In the PAPER36 line-84 row, "Hot gas is the one untested escape" should now read: the measured hot gas is too small to matter; only gas beyond the X-ray fields is untested (above all M87's, whose GCs reach 109 kpc against a 30-kpc field). That row stays STILL-STANDS.
+
+
+## Addendum after CFG76 (appended 2026-09-29; the rows above are unchanged)
+
+- **E1 and every row that cites it.** The SLUGGS 4.0σ (alt 3.65σ) and 2.6σ are statistical errors at a fixed GC density slope, γ = 3.
+  - CFG76 (276c78784, post hoc) finds the law's offset zero at γ ≈ 1.83 and the rule's at γ ≈ 2.45.
+  - Without the four group and cluster centrals (N = 12), the law is at +0.055 (2.7σ) and the rule at +0.026 (1.3σ).
+  - No class changes. The REQUIRES-CORRECTION items replace a superseded 0.4σ, and that still holds, but any corrected text should carry the γ qualifier.
+- **E1's sample.** h50's name-key artefact dropped NGC 720 and NGC 821. With the keys corrected (`CFG55_h50_keyfix.py`), the JAM sample of 17 gives law +0.0996 (4.3σ) and rule +0.0513 (2.9σ).
+- **CFG55's README errors** (the kernel, the distance wording and the undefined Salpeter row) are corrected in its appended section. No audit class depends on them.

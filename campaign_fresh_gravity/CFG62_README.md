@@ -33,3 +33,8 @@ The X-ray ellipticals need φ ≈ 2.15, more debris than the collapse mass holds
   - With CFG71's dynamical SLUGGS, the 2σ intersection is empty only because of SLUGGS (2.6σ at φ = 1).
 - **How demanding the 1σ criterion is.** Requiring all ten populations to sit inside 1σ of a true universal φ has a probability of order 0.68¹⁰ ≈ 2% (CFG75). The three-group table and the X-ray φ ≈ 2.15 are 1σ statements too.
 - **The MUTATE is informative here:** the main run exits 0 and the MUTATE exits 1.
+
+
+## Addendum after CFG76 (appended 2026-09-29)
+
+- The SLUGGS "2.6σ at φ = 1" above is at CFG55's fixed GC density slope, γ = 3. At γ ≲ 2.45 the rule's SLUGGS residual is zero or negative (CFG76), and SLUGGS would no longer be the population that empties the 2σ intersection.
