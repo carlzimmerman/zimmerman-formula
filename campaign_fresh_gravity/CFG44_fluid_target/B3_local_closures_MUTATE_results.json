@@ -1,0 +1,128 @@
+{
+ "slug": "B3_local_closures_MUTATE",
+ "load_bearing_failures": 4,
+ "checks": [
+  {
+   "name": "A1 CONTROL: for a point mass the numerical (T) closure and the constant-charge closure both reproduce P2 to 1e-5  [MUTATE: a0 x 10 in the ODEs]",
+   "detail": "{'encl': 2.162276237001735, 'const': 2.162276237001735}",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "A2 L1: local fields at r* identical (< 1e-9) for A and B, yet the (T) pressure differs by exactly (a0/2) m/(4 pi R'^2): no local closure P = Pi(local fields) can be (T)  [MUTATE: shell inside r*]",
+   "detail": "max local-field difference 9.2e-01; pressure difference / predicted - 1 = -7.50e-01; relative pressure change 10.42",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "A2b the (T) pressure inside R' rises by the uniform (a0/2) m/(4 pi R'^2) when baryons are added outside R' (no force change inside, shell theorem): the inner fluid must be HEATED by (3/2) Int Delta P dV = a0 m R'/4 (numeric within 1%), i.e. a0 R'/4 per unit accreted baryon mass -- more than the flat-speed V_f^2 once R' > 4 r_M and more than G M_b/R' once R' > 2 r_M  [MUTATE: a0 x 10 in the ODE]",
+   "detail": "numeric/predicted - 1 = +2.61e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "A3 (T) is within 0.25 dex of the P2 law on every extended profile (positive control); the constant-charge closure and the local-temperature closure depart from (T) by > 0.1 dex somewhere on every extended profile  [MUTATE: a0 x 10 in (T)]",
+   "detail": "max (T)-P2 0.500; min over profiles of max const-(T) 0.431, omega-(T) 1.877",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "A4 the (T) fluid is a locally virialised (sigma_r^2 = V_c^2/2) collisionless equilibrium with tangential bias beta(r) = -(3/2) rho_b/rhobar_b (Jeans residual < 1e-3)  [MUTATE: not applicable]",
+   "detail": "residual 2.65e-06",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A5a (sympy) for spherical baryons T_perp = g_N/r, (a0/4 pi G) T_perp = (a0/8 pi G)(lap Phi_N - Phi_N,ghat ghat), and beta = -lap Phi_N/(2 T_perp) = -(1/2) dlnM_b/dlnr: the enclosed-mass closure IS a local tidal closure for spherical baryons",
+   "detail": "residuals 0, 0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A5b (reported, estimate) for a thin exponential disc the local tidal closure gives 3-15x the enclosed-mass closure at the midplane: the two readings of (T) split for flattened baryons",
+   "detail": "ratios {0.05: [13.3, 14.5, 10.8], 0.1: [6.7, 7.5, 5.9], 0.2: [3.4, 4.0, 3.4]}",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A6 (reported) the field-energy pressure (g_tot^2 - g_N^2)/(8 pi G) equals the (T) pressure only outside the baryons (ratio -> 1); inside it is low by the column term (min ratio < 0.9 on every profile)",
+   "detail": "ranges {'compact exp. sphere': (0.10601265391847596, 0.9980309190258745), 'diffuse exp. sphere': (0.0729588142671867, 0.7128599173767334), 'compact Freeman disc': (0.21326992847227075, 0.9988107698277799), 'diffuse Freeman disc': (0.14176952826688605, 0.763470309145879)}",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "A7 (reported) the (T) pressure is NOT a function of g_N alone: at fixed g_N/a0 in {10, 1, 0.3, 0.1} it spans >= 0.3 dex across seven baryon systems (compare N20's 0.51-0.55 dex on SPARC)",
+   "detail": "spreads {10.0: (0.0, 1), 1.0: (1.4436375812813351, 4), 0.3: (1.9879962034028322, 8), 0.1: (1.4859322780416686, 7)}",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "A2": {
+   "local_field_diff": 0.9195108070340275,
+   "dP_over_P": 10.42028000921861
+  },
+  "A2b": {
+   "dU_num": 237082738585244.72,
+   "dU_pred": 231059332569785.9,
+   "per_mass": 3610.3584832542056,
+   "Vf2": 11145.529382319717,
+   "GM_over_R": 8601.83454
+  },
+  "A3_compact exp. sphere": {
+   "T_vs_P2": 0.49914115682492066,
+   "const_vs_P2": 0.8962400463664839,
+   "omega_vs_P2": 1.462931848855681,
+   "T_vs_nu_mono": 0.4921641602190339,
+   "const_vs_nu_mono": 0.8417530963806115,
+   "omega_vs_nu_mono": 1.4699088454615679,
+   "const_vs_T": 0.5724598320216138,
+   "omega_vs_T": 1.9620730056806017,
+   "gauss_neg_fraction": 0.2245
+  },
+  "A3_diffuse exp. sphere": {
+   "T_vs_P2": 0.43471075412564325,
+   "const_vs_P2": 0.9222991201071246,
+   "omega_vs_P2": 1.4923887236881026,
+   "T_vs_nu_mono": 0.42798077997779554,
+   "const_vs_nu_mono": 0.9127515988933215,
+   "omega_vs_nu_mono": 1.4991186978359503,
+   "const_vs_T": 0.6029898225346225,
+   "omega_vs_T": 1.9270994778137458,
+   "gauss_neg_fraction": 0.435
+  },
+  "A3_compact Freeman disc": {
+   "T_vs_P2": 0.4993031610655587,
+   "const_vs_P2": 0.5885603861080514,
+   "omega_vs_P2": 1.4242512524097786,
+   "T_vs_nu_mono": 0.4916839949936973,
+   "const_vs_nu_mono": 0.531704398794631,
+   "omega_vs_nu_mono": 1.43187041848164,
+   "const_vs_T": 0.4986952509337256,
+   "omega_vs_T": 1.9235544134753373,
+   "gauss_neg_fraction": 0.0925
+  },
+  "A3_diffuse Freeman disc": {
+   "T_vs_P2": 0.4409113951421647,
+   "const_vs_P2": 0.6262967038419354,
+   "omega_vs_P2": 1.4360179573820209,
+   "T_vs_nu_mono": 0.4333524529106376,
+   "const_vs_nu_mono": 0.6127536798317451,
+   "omega_vs_nu_mono": 1.443576899613548,
+   "const_vs_T": 0.43066150477728726,
+   "omega_vs_T": 1.8769293525241857,
+   "gauss_neg_fraction": 0.197
+  },
+  "A3_Plummer": {
+   "T_vs_P2": 0.4996274476278432,
+   "const_vs_P2": 0.3104920562662378,
+   "omega_vs_P2": 1.4760185635355176,
+   "T_vs_nu_mono": 0.4926508272762257,
+   "const_vs_nu_mono": 0.29694721976159555,
+   "omega_vs_nu_mono": 1.4829951838871351,
+   "const_vs_T": 0.49943892601297524,
+   "omega_vs_T": 1.975646011163361,
+   "gauss_neg_fraction": 0.064
+  }
+ }
+}

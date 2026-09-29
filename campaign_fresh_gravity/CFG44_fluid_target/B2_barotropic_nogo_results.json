@@ -1,0 +1,76 @@
+{
+ "slug": "B2_barotropic_nogo",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "E1 (sympy) at FIXED rho the required c_s^2 scales as M^e with e(0) = 1, e(inf) = 1/2 and e in [1/2, 1] for all x: no universal Pi(rho)",
+   "detail": "c_s^2 formula residual 0; e(0) = 1, e(inf) = 1/2; range [0.5000, 1.0000]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E2 (sympy) the required effective index Gamma = dlnP/dlnrho = 2(1+x^2)/(1+2x^2) runs from 2 (x << 1) to 1 (x >> 1): not a polytrope for any K(M_b)",
+   "detail": "Gamma range [1.000, 2.000]; direct-vs-claimed residual 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1n numeric: at every common density the fitted exponent of the required c_s^2 with M is in [0.45, 1.05] and the M = 1e8 .. 1e14 spread is >= 30x",
+   "detail": "exponent in [0.500, 0.985]; spread >= 1001.5x",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1m the nu_mono phantom is no more barotropic than the P2 target: the required c_s^2 scales as M^e with e in [0.45, 1.05] at every common density and spreads >= 30x over M = 1e8 .. 1e14",
+   "detail": "exponent in [0.501, 0.837]; spread >= 1022x",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E3 (sympy + scan) no symmetric Poisson-type force (any a, b) makes the target barotropic-universal: the condition S_ab = k x sqrt(1+x^2) is unsatisfiable, and sup_x |e(x;a,b)| stays > 0.05 on the whole coupling scan",
+   "detail": "a = 0 branch leaves x^3 coefficient -7*b/8; e(inf) = 1/2 (b != 0) or 3/4 (b = 0); min sup|e| = 0.500 at (a, b) = [ 0.    -0.611]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E4 (sympy) a universal barotropic fluid with ANY fixed-kernel force linear in M_b: deep regime forces beta = -1, Gamma_tot = lambda r^-5 (Pi ~ rho^3); the Newtonian regime then forces lambda = 0, i.e. g_felt = 0 (a fluid that feels no gravity at all): contradiction with H2/GR",
+   "detail": "beta = [-1]; d(r^5 Gamma_tot)/dr = [0]; Newtonian lambda = [{lambda: 0}]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E4i the asymptotic forms fed into E4 (rho = V_f^2/(4 pi G r^2), g r = V_f^2, slope -2 deep; rho = a0/(4 pi G r), slope -1 Newtonian) hold on the ODE solution to 1e-3",
+   "detail": "max deviation 9.0e-06",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E5 at equal density and equal M_b the required c_s^2 differs between baryon shapes (median max/min >= 1.2): no universal Pi even at fixed baryonic mass",
+   "detail": "median ratio 31.21, max 139122.28",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E6 (reported) tuning a universal sigma0 at M_b = 1e10 misses the law's flat speed by 0.5 dex in V at M_b = 1e8 and 1e12 (BTFR slope 4 vs 0)",
+   "detail": "offsets [0.5, 0.0, -0.5]",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "E1n": {
+   "exp_min": 0.5000863749314004,
+   "exp_max": 0.9845614929308111,
+   "spread_min": 1001.499342874092
+  },
+  "E1m": {
+   "exp_min": 0.5014388132980603,
+   "exp_max": 0.8365918061396707,
+   "spread_min": 1021.9816630722054
+  },
+  "E5": {
+   "ratio_median": 31.210262507347693,
+   "ratio_max": 139122.2768798523
+  }
+ }
+}

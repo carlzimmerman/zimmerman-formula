@@ -1,0 +1,220 @@
+{
+ "slug": "B4_actions_reciprocity_MUTATE",
+ "load_bearing_failures": 5,
+ "checks": [
+  {
+   "name": "C1 (sympy) Q1: a fluid whose stress is a prescribed function of position (independent of its state) obeys rho0 xi_tt = g (rho0 xi)' -- omega^2 = -i g k, Hadamard ill-posed (growth ~ sqrt(k)); a barotropic fluid and a state-dependent temperature P = rho sigma^2(x) are self-adjoint (real omega^2)  [MUTATE: barotropic fluid used as Q1]",
+   "detail": "(b) not self-adjoint and first order: True; (a) symmetric and (c) Sturm-Liouville: True",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 (sympy + numbers) implementing (T) as a Lagrange constraint on a barotropic fluid makes the multiplier gravitate: g = G (M_b + M_c + 4 pi r^2 lambda rho_c)/r^2; for an isothermal fluid M_lambda/M_c reaches >= 0.1 (GR + real mass needs lambda rho_c = 0, i.e. a redundant constraint)",
+   "detail": "multiplier source structure True; max |M_lambda/M_c| = 3.41",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2b Q2b the functional-derivative machinery reproduces the analytic Q3 derivative to 5e-3 (bump quadrature), and the reaction of the density-slaved fluid on the baryons is >= 0.5 g_law in magnitude at r = 0.5, 1, 3, 10 h of the compact exponential sphere (inward, 1.2-4.2 g_law)  [MUTATE: rho_T made baryon-independent]",
+   "detail": "control deviation 1.3e-03; a_b/g_law = [0.0, 0.0, 0.0, 0.0]",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 Q3 the reaction formula -kappa(y) G M_c(<r)/r^2 per unit baryon mass reproduces the finite-difference derivative of the nonlinear energy to 1e-3, and the reaction reaches >= 0.3 of g_law somewhere on the compact exponential sphere for both kernels  [MUTATE: kappa = 0]",
+   "detail": "max formula deviation 9.4e+06; max reaction/g_law: P2 0.00, nu_mono 0.00",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3b an isothermal fluid with a universal sigma0^2 in the law's potential (test-fluid limit) has density slope -V_c^2/sigma0^2: at 1e8 and 1e12 the deep slope is off by 10x (-0.20 and -20 vs -2); even at the tuned mass 1e10 it is wrong inside r_M-scale radii (x = 1: -2.83 vs -1.50)",
+   "detail": "deep-slope errors at M = 1e8, 1e12: [0.9  9.01]; tuned mass at x = 0.3, 1, 3, 30: [5.43 0.89 0.11 0.  ]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 Q4 an additive law (phantom + real cold fluid at the cosmic share) overshoots g by >= 0.2 dex at x = 3; the fluid = phantom reading exhausts the cosmic cold share at x_cap = 6.29",
+   "detail": "overshoot at x = 3: +0.431 dex; x_cap = 6.285",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C5 Q5 the outer profile is an ATTRACTOR (amplitude x0.5, x2, x4 change g_tot by < 2% at x = 1000 but by >= 5% at x = 1) and V_f^2 follows sigma^2 (x 1.2 -> g_flat x 1.2 within 5%)  [MUTATE: fluid without self-gravity]",
+   "detail": "attractor False; sigma^2 scaling False",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C5b Q5 on the compact exponential sphere: with (T)'s own sigma^2(r) prescribed, the outer profile is again an attractor (amplitude x2, x0.5: < 2% at x = 1000) while the inner region (x = 1) keeps the amplitude (>= 2%)  [MUTATE: no self-gravity]",
+   "detail": "deviations at x = 1000: {'amp x2': 170667.8348, 'amp x0.5': 42666.1385}",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "C2_rows": [
+   [
+    10000000000.0,
+    [
+     -1.6069942872589573,
+     -1.06789667539362,
+     0.43143542404306373,
+     0.4313746344423134,
+     0.4117805841473997
+    ]
+   ],
+   [
+    1000000000000.0,
+    [
+     -1.843202186208127,
+     -1.4495073230587896,
+     1.5006681129887527,
+     2.5304213619507094,
+     3.412042070568584
+    ]
+   ]
+  ],
+  "C2b": [
+   [
+    0.5,
+    0.0,
+    1252.7948971692192,
+    0.0
+   ],
+   [
+    1.0,
+    0.0,
+    1592.5883251296862,
+    0.0
+   ],
+   [
+    3.0,
+    0.0,
+    1435.988618916911,
+    0.0
+   ],
+   [
+    10.0,
+    0.0,
+    549.1225458261026,
+    0.0
+   ]
+  ],
+  "C3_rows": [
+   [
+    "P2",
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    2538275.343188868
+   ],
+   [
+    "P2",
+    2.0,
+    0.0,
+    0.0,
+    1.0,
+    2057096.798513362
+   ],
+   [
+    "P2",
+    6.0,
+    0.0,
+    0.0,
+    1.0,
+    2678913.924696198
+   ],
+   [
+    "P2",
+    20.0,
+    0.0,
+    0.0,
+    1.0,
+    7677588.839337371
+   ],
+   [
+    "nu_mono",
+    1.0,
+    0.0,
+    0.0,
+    1.0,
+    4043342.0091591687
+   ],
+   [
+    "nu_mono",
+    2.0,
+    0.0,
+    0.0,
+    1.0,
+    3516514.6943474426
+   ],
+   [
+    "nu_mono",
+    6.0,
+    0.0,
+    0.0,
+    1.0,
+    4364064.255494128
+   ],
+   [
+    "nu_mono",
+    20.0,
+    0.0,
+    0.0,
+    1.0,
+    9364432.822073933
+   ]
+  ],
+  "C5": {
+   "amp x2": [
+    0.0049251388619280245,
+    0.3359107919335993,
+    0.9911311673525944,
+    0.9995978596978181,
+    0.9999883569506587,
+    0.9999999903803034
+   ],
+   "amp x0.5": [
+    -0.0024625694271479537,
+    -0.16795539569580697,
+    -0.49556558221712943,
+    -0.499798928029457,
+    -0.49999417645359145,
+    -0.4999999938709304
+   ],
+   "amp x4": [
+    0.014775416567861077,
+    1.0077323738239197,
+    2.973393496301943,
+    2.9987935720818997,
+    2.9999650638163167,
+    2.9999999669095185
+   ],
+   "sigma^2 x1.2": [
+    0.004215104611648535,
+    0.9540644675362284,
+    4.5033936617172765,
+    4.746672721610844,
+    4.818589732275546,
+    4.8451581410747036
+   ]
+  },
+  "C5b": {
+   "amp x2": [
+    0.6816197521090919,
+    0.9582597260813741,
+    22.479132520464045,
+    1752.9360935854743,
+    170667.8348107498
+   ],
+   "amp x0.5": [
+    -0.2880256965445648,
+    -0.11044334336972195,
+    4.94506586606906,
+    437.49079885657227,
+    42666.13854322761
+   ]
+  }
+ }
+}

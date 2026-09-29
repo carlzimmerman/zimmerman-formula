@@ -1,0 +1,124 @@
+B1 -- THE TARGET OF GAP 2, EXACTLY, AND THE HYPOTHESES UNDER WHICH "FLUID DENSITY = THE LAW'S PHANTOM DENSITY" IS A HYDROSTATIC
+EQUILIBRIUM OF THE FLUID IN THE TOTAL FIELD.   (kappa = 1/2 FITTED; a0 = 9.3603e-11 m/s^2; nothing is fitted here.)
+
+THE TARGET (CFG10 (ii), spherical-equivalent baryons; u = G M_tot(<r) = r^2 g, u_N = G M_b(<r) = r^2 g_N, w = u - u_N = G M_c(<r)):
+
+      rho_c(r) g_tot(r) = (a0/3) rhobar_b(<r) = a0 M_b(<r) / (4 pi r^3)          <=>   w' = a0 r u_N / u        (T)
+
+  (a) POINT MASS (x = r/r_M, r_M^2 = G M/a0):   rho_c = a0 / (4 pi G r sqrt(1 + x^2)),   M_c(<r) = M (sqrt(1 + x^2) - 1),
+      g_tot = sqrt(g_N^2 + a0 g_N) (= the law P2),  P = a0 M/(8 pi r^2),  sigma^2 = P/rho_c = V_c^2/2.
+  (b) EXTENDED BARYONS:  (T) is a first-order nonlinear ODE for M_c, integrated outward from the centre (rho_c at r depends ONLY on
+      the baryons inside r).  The hydrostatic pressure in the total field, P(r) = Int_r^inf rho_c g_tot dr', is then EXACTLY
+            P(r) = a0 g_N(r)/(8 pi G)  +  (a0/2) Sigma_out(r),     Sigma_out(r) = Int_r^inf rho_b dr'        (P)
+      i.e. the local 'pressure Gauss law' of CFG10 (i) PLUS half a0 times the radial column density of the baryons OUTSIDE r.
+  (c) Isotropic dispersion:   sigma^2 / (V_c^2/2) = 1 + 4 pi r^2 Sigma_out / M_b(<r)                                  (S)
+      Equivalent restatement with locally virialised RADIAL dispersion sigma_r^2 = V_c^2/2 (Jeans with anisotropy beta):
+            beta(r) = - (1/2) dln M_b/dln r = - (3/2) rho_b / rhobar_b(<r)  ( = -1 - (1/2) dln g_N/dln r  <= 0 )     (B)
+
+HYPOTHESES under which 'fluid = phantom' is consistent with the fluid's own hydrostatic equilibrium in the TOTAL field:
+  H1 spherical symmetry, static, Newtonian limit (GR corrections are ~ v^2/c^2 <~ 1e-4 -- checked N7);
+  H2 the fluid feels only the Newtonian potential of ALL matter, g_felt = G (M_b + M_c)/r^2 (kernel-invisible fluid, L353/N11);
+  H3 rho_c(r) >= 0 for the law considered (P2: proved by CFG10's AM-GM identity; nu_mono: checked here, N5);
+  H4 an isotropic pressure exists: P(r) = Int_r^inf rho_c g dr' > 0 always (hydrostatics is then an IDENTITY -- consistency is automatic;
+     the content of the target is the CLOSURE, not the equilibrium);
+  H5 (collisionless reading) a non-negative isotropic f(E) exists (Eddington positivity, N6).  Anisotropic f(E,L) with (B): OPEN.
+
+CHECKS (PRE-DECLARED)
+  S1 (sympy) point-mass closed forms solve (T); S2 (sympy) identity (P) for an arbitrary M_b(r); S3 (sympy) identity (B) and (S).
+  N1 CONTROL: numeric ODE for a point mass equals the closed form to 1e-5.
+  N2 (T) holds pointwise for extended profiles (exp. sphere, Plummer, Hernquist, Freeman disc; compact and diffuse): residual < 1e-4.
+  N3 numeric hydrostatic pressure (quadrature of rho_c g + analytic tail) equals (P) to 1e-3, and sigma^2 obeys (S).
+  N4 rho_c >= 0 and P > 0 (P2-target, i.e. (T)) on every profile.
+  N5 the law's own phantom (P2 and nu_mono): sign of rho_ph; charge function R = 4 pi r^3 rho_ph g/(a0 M_b): identically 1 for P2 on a point
+     mass (control) and NOT 1 for nu_mono (reported); CFG10's identity rho_P2 - rho_(T) = rho_b (u_N + a0 r^2/2 - u)/u >= 0 (control).
+  N6 isotropic Eddington f(E) >= 0 for the point-mass target and the compact exponential sphere; control: the singular isothermal sphere.
+  N7 GR weak-field correction to the required c_s^2 <= 1e-3 for M_b up to 1e15 Msun.
+MUTATE=1: the closure's charge is made CONSTANT (C = a0 M_b,tot/4 pi, CFG9's constant-charge closure) -- i.e. the enclosed-baryon dependence is
+  broken.  For a point mass this is identical (no bite), for every extended profile N2 and N3 must FAIL (rc = 1).
+
+======================================================================================================================
+S1-S3  SYMPY: closed forms and the exact identities
+======================================================================================================================
+  [PASS] S1 (sympy) point mass: u^2 = u_N^2 + a0 u_N r^2 solves (T); rho_c = a0/(4 pi G r sqrt(1+x^2)); M_c = M(sqrt(1+x^2)-1); P = a0 M/(8 pi r^2) is hydrostatic in g_tot; sigma^2 = V_c^2/2; rho_c g = a0 M/(4 pi r^3)
+         residuals [0, 0, 0, 0, 0, 0]
+  [PASS] S2 (sympy) for an ARBITRARY M_b(r): d/dr [ a0 g_N/(8 pi G) + (a0/2) Sigma_out ] = - a0 M_b(<r)/(4 pi r^3) = - rho_c g_tot (identity (P))
+         residual 0
+  [PASS] S3 (sympy) (B): locally-virial radial dispersion + Jeans gives beta = -(1/2) dlnM_b/dlnr = -(3/2) rho_b/rhobar_b = -1 - (1/2) dln g_N/dln r; (S): sigma^2/(V_c^2/2) = 1 + 4 pi r^2 Sigma_out/M_b
+         Jeans residual 0, beta forms 0, 0, (S) residual 0
+  [PASS] S4 (sympy) (T) is the universal isothermal cusp times the enclosed baryon fraction:  rho_c(r) r = (a0/4 pi G) f_b(<r),  f_b = M_b/(M_b + M_c);  a0/(4 pi G) = 53.4 Msun/pc^2 (half of CFG2's halo column ceiling a0/(2 pi G) = 106.9)
+         symbolic residual 0; a0/(4 pi G) = 53.44 Msun/pc^2, a0/(2 pi G) = 106.9
+
+======================================================================================================================
+N1  CONTROL: numeric ODE for a point mass vs closed form
+======================================================================================================================
+  [PASS] N1 CONTROL: numeric ODE (T) for a point mass equals u_N sqrt(1+x^2) to 1e-5 over x in [1e-3, 1e4]
+         max deviation 6.98e-12
+
+======================================================================================================================
+N2-N4  EXTENDED PROFILES: (T) pointwise, the hydrostatic pressure (P), sigma^2 (S), positivity
+======================================================================================================================
+    compact  expsphere  r_M   3.859 kpc: max|(T) residual| 7.00e-06; max|P_num/P_(P) - 1| 8.42e-06; max|sigma^2/(S) - 1| 7.22e-06; min rho_c 1.54e+02; sigma^2/(V_c^2/2) at r = 0.5, 1, 3, 10 h: 6.27, 3.29, 1.39, 1.00; at 2 kpc 3.289 (S: 3.289); M_c/M_b at 2 kpc 0.844
+    compact  plummer    r_M   3.859 kpc: max|(T) residual| 5.59e-06; max|P_num/P_(P) - 1| 8.42e-06; max|sigma^2/(S) - 1| 7.22e-06; min rho_c 1.54e+02; sigma^2/(V_c^2/2) at r = 0.5, 1, 3, 10 h: 3.09, 1.66, 1.08, 1.01; at 2 kpc 1.180 (S: 1.180); M_c/M_b at 2 kpc 0.168
+    compact  hernquist  r_M   3.859 kpc: max|(T) residual| 4.76e-06; max|P_num/P_(P) - 1| 8.45e-06; max|sigma^2/(S) - 1| 7.25e-06; min rho_c 1.54e+02; sigma^2/(V_c^2/2) at r = 0.5, 1, 3, 10 h: 1.94, 1.55, 1.21, 1.07; at 2 kpc 1.545 (S: 1.545); M_c/M_b at 2 kpc 0.413
+    compact  freeman    r_M   3.859 kpc: max|(T) residual| 6.22e-06; max|P_num/P_(P) - 1| 8.43e-06; max|sigma^2/(S) - 1| 8.07e-06; min rho_c 1.69e+02; sigma^2/(V_c^2/2) at r = 0.5, 1, 3, 10 h: 3.60, 2.13, 1.09, 1.00; at 2 kpc 2.889 (S: 2.889); M_c/M_b at 2 kpc 0.631
+    diffuse  expsphere  r_M   0.386 kpc: max|(T) residual| 7.49e-06; max|P_num/P_(P) - 1| 8.42e-06; max|sigma^2/(S) - 1| 7.22e-06; min rho_c 1.55e+03; sigma^2/(V_c^2/2) at r = 0.5, 1, 3, 10 h: 6.27, 3.29, 1.39, 1.00; at 2 kpc 3.290 (S: 3.290); M_c/M_b at 2 kpc 11.838
+    diffuse  freeman    r_M   0.386 kpc: max|(T) residual| 6.99e-06; max|P_num/P_(P) - 1| 8.70e-06; max|sigma^2/(S) - 1| 8.54e-06; min rho_c 1.69e+03; sigma^2/(V_c^2/2) at r = 0.5, 1, 3, 10 h: 3.60, 2.13, 1.09, 1.00; at 2 kpc 2.890 (S: 2.890); M_c/M_b at 2 kpc 9.595
+  [PASS] N2 (T) rho_c g = a0 M_b(<r)/(4 pi r^3) holds pointwise on every extended profile (compact and diffuse), residual < 1e-4
+         worst residual 7.49e-06
+  [PASS] N3 the hydrostatic pressure of the target in the TOTAL field equals a0 g_N/(8 pi G) + (a0/2) Sigma_out to 1e-3, and sigma^2 obeys (S) to 1e-3
+         worst P residual 8.70e-06; worst sigma^2 residual 8.54e-06
+  [PASS] N4 rho_c >= 0 and P > 0 on every profile (hydrostatics is then an identity: any rho_c >= 0 has an isotropic P)
+         min rho_c 1.54e+02; min P 8.59e+05
+
+======================================================================================================================
+N5  THE LAW'S OWN PHANTOM (P2, nu_mono): sign, charge function, CFG10's identity
+======================================================================================================================
+    point mass, P2      : max|R - 1| over x in [1e-3,1e3] = 4.999e-07; min rho_ph 1.38e+01; R(x=1) = 1.0000
+    point mass, nu_mono : max|R - 1| over x in [1e-3,1e3] = 1.021e+00; min rho_ph 1.38e+01; R(x=1) = 1.4629
+  [PASS] N5a CONTROL: for a point mass the P2 phantom obeys (T) exactly (charge function R = 1 to 1e-5); the nu_mono phantom does not (R departs by > 1%)
+         P2 max|R-1| = 5.00e-07; nu_mono max|R-1| = 1.021
+    fraction of radii with rho_ph < 0 / range of R = 4 pi r^3 rho_ph g/(a0 M_b):
+      compact  expsphere  P2      : neg fraction 0.000; R in [1.000, 2.279]
+      compact  expsphere  nu_mono : neg fraction 0.000; R in [1.002, 2.475]
+      compact  plummer    P2      : neg fraction 0.000; R in [1.000, 1.528]
+      compact  plummer    nu_mono : neg fraction 0.000; R in [1.002, 2.293]
+      compact  hernquist  P2      : neg fraction 0.000; R in [1.002, 1.100]
+      compact  hernquist  nu_mono : neg fraction 0.000; R in [1.003, 1.682]
+      compact  freeman    P2      : neg fraction 0.000; R in [1.000, 2.000]
+      compact  freeman    nu_mono : neg fraction 0.000; R in [1.002, 2.364]
+      diffuse  expsphere  P2      : neg fraction 0.000; R in [1.000, 2.484]
+      diffuse  expsphere  nu_mono : neg fraction 0.000; R in [1.002, 2.497]
+      diffuse  freeman    P2      : neg fraction 0.000; R in [1.000, 2.388]
+      diffuse  freeman    nu_mono : neg fraction 0.000; R in [1.002, 2.418]
+  [PASS] N5b H3: the P2 phantom density is >= 0 on every profile (CFG10's AM-GM identity); the nu_mono phantom is reported (H3 for nu_mono is a per-profile fact)
+         P2 negative fractions [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; nu_mono [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+  [PASS] N5c CONTROL (CFG10 C4): rho_P2 = a0 u_N/(4 pi G r u_P2) + rho_b (u_N + a0 r^2/2 - u_P2)/u_P2 with the second term >= 0
+         max relative deviation of the identity 6.98e-07; min of the local term 5.07e-17
+    compact exponential sphere: the P2 law's cold mass vs the target (T)'s:
+      r =   0.3 r_M: M_c(T)/M_c(P2 law) = 0.7496
+      r =   1.0 r_M: M_c(T)/M_c(P2 law) = 0.8177
+      r =   3.0 r_M: M_c(T)/M_c(P2 law) = 0.9079
+      r =  10.0 r_M: M_c(T)/M_c(P2 law) = 0.9901
+      r =  30.0 r_M: M_c(T)/M_c(P2 law) = 0.9990
+
+======================================================================================================================
+N6  H5: an isotropic collisionless equilibrium (Eddington f(E) >= 0) with rho_c(Phi_tot)
+======================================================================================================================
+  [PASS] N6 CONTROL: the singular isothermal sphere gives f(E) proportional to exp(-E/sigma^2) (numeric Eddington within 5%)
+         f ratios / exp-law = [1. 1. 1.]
+    point mass 1e10     : f(E) over 17 energies between Phi quantiles 5%..85%: min/max = 6.318e-04 (all positive: True)
+    compact exp. sphere : f(E) over 17 energies between Phi quantiles 5%..85%: min/max = 2.437e-14 (all positive: True)
+  [PASS] (reported) N6 H5: the target density is a non-negative isotropic Eddington equilibrium in its own total potential (point mass and compact exp. sphere)
+         min f/max f: {'point mass 1e10': (0.0006317956893799778, 0.00026538427586159915), 'compact exp. sphere': (2.4371561155829653e-14, 0.00026551848059984607)}
+
+======================================================================================================================
+N7  H1: the weak-field (Newtonian) limit -- GR correction to the required sound speed
+======================================================================================================================
+    M_b = 1e+08: max |(1 + P/rho c^2)(1 + 4 pi r^3 P/m c^2)/(1 - 2Gm/rc^2) - 1| over x in [1e-2, 30] = 3.10e-06
+    M_b = 1e+10: max |(1 + P/rho c^2)(1 + 4 pi r^3 P/m c^2)/(1 - 2Gm/rc^2) - 1| over x in [1e-2, 30] = 3.10e-05
+    M_b = 1e+12: max |(1 + P/rho c^2)(1 + 4 pi r^3 P/m c^2)/(1 - 2Gm/rc^2) - 1| over x in [1e-2, 30] = 3.10e-04
+    M_b = 1e+15: max |(1 + P/rho c^2)(1 + 4 pi r^3 P/m c^2)/(1 - 2Gm/rc^2) - 1| over x in [1e-2, 30] = 9.88e-03
+  [PASS] N7 H1: the largest weak-field relativistic correction (TOV weak-field factor) to the hydrostatic weight is <= 2e-2 for M_b <= 1e15 out to 30 r_M (and <= 1e-3 for M_b <= 1e12) -- two orders below the M-dependence of the required sound speed found in B2
+         worst 9.88e-03
+
+  14/14 checks pass; load-bearing failures: 0   (11 s)

@@ -1,0 +1,148 @@
+{
+ "slug": "B1_target_and_hydrostatics_MUTATE",
+ "load_bearing_failures": 2,
+ "checks": [
+  {
+   "name": "S1 (sympy) point mass: u^2 = u_N^2 + a0 u_N r^2 solves (T); rho_c = a0/(4 pi G r sqrt(1+x^2)); M_c = M(sqrt(1+x^2)-1); P = a0 M/(8 pi r^2) is hydrostatic in g_tot; sigma^2 = V_c^2/2; rho_c g = a0 M/(4 pi r^3)",
+   "detail": "residuals [0, 0, 0, 0, 0, 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S2 (sympy) for an ARBITRARY M_b(r): d/dr [ a0 g_N/(8 pi G) + (a0/2) Sigma_out ] = - a0 M_b(<r)/(4 pi r^3) = - rho_c g_tot (identity (P))",
+   "detail": "residual 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S3 (sympy) (B): locally-virial radial dispersion + Jeans gives beta = -(1/2) dlnM_b/dlnr = -(3/2) rho_b/rhobar_b = -1 - (1/2) dln g_N/dln r; (S): sigma^2/(V_c^2/2) = 1 + 4 pi r^2 Sigma_out/M_b",
+   "detail": "Jeans residual 0, beta forms 0, 0, (S) residual 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "S4 (sympy) (T) is the universal isothermal cusp times the enclosed baryon fraction:  rho_c(r) r = (a0/4 pi G) f_b(<r),  f_b = M_b/(M_b + M_c);  a0/(4 pi G) = 53.4 Msun/pc^2 (half of CFG2's halo column ceiling a0/(2 pi G) = 106.9)",
+   "detail": "symbolic residual 0; a0/(4 pi G) = 53.44 Msun/pc^2, a0/(2 pi G) = 106.9",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N1 CONTROL: numeric ODE (T) for a point mass equals u_N sqrt(1+x^2) to 1e-5 over x in [1e-3, 1e4]",
+   "detail": "max deviation 6.98e-12",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N2 (T) rho_c g = a0 M_b(<r)/(4 pi r^3) holds pointwise on every extended profile (compact and diffuse), residual < 1e-4  [MUTATE: constant charge]",
+   "detail": "worst residual 1.04e+08",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "N3 the hydrostatic pressure of the target in the TOTAL field equals a0 g_N/(8 pi G) + (a0/2) Sigma_out to 1e-3, and sigma^2 obeys (S) to 1e-3  [MUTATE]",
+   "detail": "worst P residual 1.34e+05; worst sigma^2 residual 9.99e-01",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "N4 rho_c >= 0 and P > 0 on every profile (hydrostatics is then an identity: any rho_c >= 0 has an isotropic P)",
+   "detail": "min rho_c 1.54e+02; min P 8.60e+05",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N5a CONTROL: for a point mass the P2 phantom obeys (T) exactly (charge function R = 1 to 1e-5); the nu_mono phantom does not (R departs by > 1%)",
+   "detail": "P2 max|R-1| = 5.00e-07; nu_mono max|R-1| = 1.021",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N5b H3: the P2 phantom density is >= 0 on every profile (CFG10's AM-GM identity); the nu_mono phantom is reported (H3 for nu_mono is a per-profile fact)",
+   "detail": "P2 negative fractions [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; nu_mono [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N5c CONTROL (CFG10 C4): rho_P2 = a0 u_N/(4 pi G r u_P2) + rho_b (u_N + a0 r^2/2 - u_P2)/u_P2 with the second term >= 0",
+   "detail": "max relative deviation of the identity 6.98e-07; min of the local term 5.07e-17",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N6 CONTROL: the singular isothermal sphere gives f(E) proportional to exp(-E/sigma^2) (numeric Eddington within 5%)",
+   "detail": "f ratios / exp-law = [1. 1. 1.]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N6 H5: the target density is a non-negative isotropic Eddington equilibrium in its own total potential (point mass and compact exp. sphere)",
+   "detail": "min f/max f: {'point mass 1e10': (0.0006317956893799778, 0.00026538427586159915), 'compact exp. sphere': (2.4371561155829653e-14, 0.00026551848059984607)}",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "N7 H1: the largest weak-field relativistic correction (TOV weak-field factor) to the hydrostatic weight is <= 2e-2 for M_b <= 1e15 out to 30 r_M (and <= 1e-3 for M_b <= 1e12) -- two orders below the M-dependence of the required sound speed found in B2",
+   "detail": "worst 9.88e-03",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "N3_table": [
+   [
+    "compact",
+    "expsphere",
+    3.858872129324422,
+    1.0000074471203613,
+    3.288834977512238,
+    6.174293207128009,
+    1.000007572431391
+   ],
+   [
+    "compact",
+    "plummer",
+    3.858872129324422,
+    1.0000069059601284,
+    1.180133445400752,
+    0.4268377563960871,
+    1.0000081964595051
+   ],
+   [
+    "compact",
+    "hernquist",
+    3.858872129324422,
+    1.0000072717739377,
+    1.544907628889848,
+    1.6814463677692113,
+    1.0000073835608387
+   ],
+   [
+    "compact",
+    "freeman",
+    3.858872129324422,
+    1.000007486171814,
+    2.8893397052895713,
+    4.19493950682717,
+    1.000007605013613
+   ],
+   [
+    "diffuse",
+    "expsphere",
+    0.3858872129324422,
+    1.0000071170801081,
+    3.289969020315272,
+    64.23501389178215,
+    1.0000072223198957
+   ],
+   [
+    "diffuse",
+    "freeman",
+    0.3858872129324422,
+    1.000007158823397,
+    2.8901817346431566,
+    44.546373886077866,
+    1.0000072197915262
+   ]
+  ]
+ }
+}

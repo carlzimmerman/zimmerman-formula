@@ -1,0 +1,93 @@
+B2 -- CLASS (i): CAN A BAROTROPIC FLUID P = Pi(rho_c) IN GR (WEAK-FIELD LIMIT: NEWTONIAN, N7 of B1) REPRODUCE THE TARGET (T) OF B1?
+     Extension of N20 (which treated P = Pi(|g|) and P = Pi(g_N)) to the fluid's own density, and to fluids that feel an extra symmetric force.
+
+EXACT HYPOTHESES.  (a) static, spherical, weak-field; (b) the fluid's stress is barotropic, P = Pi(rho_c), with Pi UNIVERSAL (the same function for every
+baryonic system: it may contain G, a0, the fluid's constants m, eps, lambda, but NOT the baryon mass M_b or the baryon profile); (c) the fluid feels
+g_felt = g_tot (+ optionally a static extra force, see E3/E4); (d) the fluid density is the target (T).
+THEN  Pi'(rho_c) = c_s^2(rho) = rho g_felt / |drho_c/dr|  is fixed pointwise by (T), and must be the SAME function of rho for every system.
+
+RESULTS (all sympy-derived, then checked numerically):
+  E1  point mass:  c_s^2 = sqrt(G M a0) (1 + x^2)^(3/2) / (x (1 + 2 x^2)),  x = r/r_M.  At FIXED rho it scales as M^e with
+      e(x) = 1/2 - (1/2) [(1+x^2)/(1+2x^2)] dlnS/dlnx in [1/2, 1]  (deep: 1/2 [c_s^2 -> V_f^2/2 = sqrt(G M a0)/2];  Newtonian: 1 [c_s^2 = 4 pi G^2 M rho/a0]);
+      a universal EOS needs e = 0.   => EXCLUDED, for every Pi.
+  E2  the required effective index Gamma = dln P/dln rho = 2 (1 + x^2)/(1 + 2 x^2) runs from 2 (inside r_M) to 1 (outside): not a polytrope even with a
+      system-dependent normalisation K(M_b).
+  E3  extra Poisson-type force g_felt = G [a M_b + b M_c]/r^2 (a = 1 + beta_bc, b = 1 + beta_cc; symmetric second-potential couplings): the universality condition
+      S_ab(x) = k x sqrt(1+x^2) is unsatisfiable (sympy series); numerically e(x; a, b) never vanishes identically.
+  E4  ANY fixed-kernel force linear in M_b, g_x = M_b gamma(r) (plus a fluid self-force beta G M_c/r^2), any kernel gamma: deep regime forces beta = -1,
+      gamma = lambda r^-5, Pi ~ rho^3;  the Newtonian regime then forces gamma = -(1 + beta_bc) G/r^2: contradiction (sympy).
+  E5  same M_b, different baryon SHAPE (point / Plummer / Hernquist / exp. sphere): c_s^2 at equal rho differs.
+CHECKS: E1 e in [0.45, 1.05] over x and numerically over M = 1e8..1e14; E2; E3; E4; E5.
+MUTATE=1: the target is replaced by the singular isothermal sphere family with a UNIVERSAL sigma0 (a genuinely barotropic system: c_s^2 = sigma0^2 for every M):
+  E1 (e >= 0.45), E2 (Gamma varies) and E5 must FAIL (rc = 1).
+
+======================================================================================================================
+E1/E2  SYMPY: required c_s^2, its mass exponent at fixed density, the effective polytropic index (point mass)
+======================================================================================================================
+    c_s^2/sqrt(G M a0) = (x**2 + 1)**(3/2)/(2*x**3 + x);  exponent e(x) = (2*x**4 + 4*x**2 + 1)/(4*x**4 + 4*x**2 + 1);  Gamma(x) = 2*(x**2 + 1)/(2*x**2 + 1)
+    e(0) = 1, e(inf) = 1/2; min/max of e over x in [1e-4,1e4]: 0.5000, 1.0000; Gamma direct - claimed = 0
+  [PASS] E1 (sympy) at FIXED rho the required c_s^2 scales as M^e with e(0) = 1, e(inf) = 1/2 and e in [1/2, 1] for all x: no universal Pi(rho)
+         c_s^2 formula residual 0; e(0) = 1, e(inf) = 1/2; range [0.5000, 1.0000]
+  [PASS] E2 (sympy) the required effective index Gamma = dlnP/dlnrho = 2(1+x^2)/(1+2x^2) runs from 2 (x << 1) to 1 (x >> 1): not a polytrope for any K(M_b)
+         Gamma range [1.000, 2.000]; direct-vs-claimed residual 0
+
+======================================================================================================================
+E1 numeric: c_s^2(rho) for point masses of different M (target integrated as an ODE, not the closed form)
+======================================================================================================================
+    common density window: rho in [2.08e+02, 9.23e+07] Msun/kpc^3 (25 points) for M = 1e8..1e14
+    fitted exponent d ln c_s^2/d ln M at fixed rho: min 0.500, median 0.550, max 0.985
+    ratio c_s^2(M = 1e14)/c_s^2(M = 1e8) at fixed rho: min 1001.50, max 730125.73  (a universal EOS needs exactly 1)
+  [PASS] E1n numeric: at every common density the fitted exponent of the required c_s^2 with M is in [0.45, 1.05] and the M = 1e8 .. 1e14 spread is >= 30x
+         exponent in [0.500, 0.985]; spread >= 1001.5x
+
+======================================================================================================================
+E1m  the same test with the nu_mono phantom (fluid density = the law's phantom for nu_mono), point masses of different M
+======================================================================================================================
+    nu_mono phantom: exponent d ln c_s^2/d ln M at fixed rho in [0.501, 0.837] (deep 1/2, rising toward the Newtonian side); spread M = 1e8..1e14: min 1022x, max 83779x
+  [PASS] E1m the nu_mono phantom is no more barotropic than the P2 target: the required c_s^2 scales as M^e with e in [0.45, 1.05] at every common density and spreads >= 30x over M = 1e8 .. 1e14
+         exponent in [0.501, 0.837]; spread >= 1022x
+
+======================================================================================================================
+E3  barotropic fluid + extra Poisson-type force g_felt = G [a M_b + b M_c]/r^2 (a = 1 + beta_bc, b = 1 + beta_cc)
+======================================================================================================================
+    small-x expansion of S_ab - k x sqrt(1+x^2): coefficients {-1: a, 0: 0, 1: -a + b/2 - k, 2: 0, 3: 2*a - 5*b/8 - k/2}
+    with a = 0: order x^1 gives k = [b/2]; order x^3 then leaves -7*b/8 (= 0 only if b = 0, i.e. no force at all)
+    min over (a, b) in [-1, 6]^2 (a = b = 0 excluded) of sup_x |e(x; a, b)|: grid 0.500 at (a, b) = (0.0, -0.6666666666666667); refined 0.500 at [ 0.    -0.611]
+    deep-regime exponent e(inf; a, b) = 1/2 for b != 0 and 3/4 for b = 0: the exponent cannot be brought to 0 by ANY choice of (a, b)
+  [PASS] E3 (sympy + scan) no symmetric Poisson-type force (any a, b) makes the target barotropic-universal: the condition S_ab = k x sqrt(1+x^2) is unsatisfiable, and sup_x |e(x;a,b)| stays > 0.05 on the whole coupling scan
+         a = 0 branch leaves x^3 coefficient -7*b/8; e(inf) = 1/2 (b != 0) or 3/4 (b = 0); min sup|e| = 0.500 at (a, b) = [ 0.    -0.611]
+
+======================================================================================================================
+E4  SYMPY: ANY fixed-kernel force linear in M_b (g_felt = M_b Gam_tot(r) + (1 + beta) G M_c/r^2) on a universal barotropic fluid
+======================================================================================================================
+    deep regime, d c_s^2/dr = 0 for ALL rho: coefficients of rho^1, rho^2: 4*pi*r*(beta + 1), 8*pi**2*Gp  =>  beta = [-1], d(r^5 Gamma_tot)/dr = [0]
+    => Gamma_tot = lambda r^-5 and c_s^2 = 8*pi**2*lambda*rho**2: a Gamma = 3 polytrope (P ~ rho^3), a force kernel r^-5, and the fluid's own gravity cancelled (beta = -1,
+       i.e. G_cc = 0: for a symmetric second potential that needs a WRONG-SIGN (ghost) coupling G_tilde s_c^2 = -G)
+    Newtonian regime: c_s^2 = r g_felt = M lambda r^-4 must be M-independent at fixed r  =>  lambda = [{lambda: 0}] => g_felt = 0 identically
+  [PASS] E4 (sympy) a universal barotropic fluid with ANY fixed-kernel force linear in M_b: deep regime forces beta = -1, Gamma_tot = lambda r^-5 (Pi ~ rho^3); the Newtonian regime then forces lambda = 0, i.e. g_felt = 0 (a fluid that feels no gravity at all): contradiction with H2/GR
+         beta = [-1]; d(r^5 Gamma_tot)/dr = [0]; Newtonian lambda = [{lambda: 0}]
+
+======================================================================================================================
+E4 inputs: the deep-regime and Newtonian-regime forms used above, checked on the ODE solution
+======================================================================================================================
+    deep (x = 3e3): |rho r^2 4 pi G/V_f^2 - 1| = 5.6e-08, |g r/V_f^2 - 1| = 5.6e-08, |dln rho/dln r + 2| = 1.1e-07;  Newtonian (x = 3e-3): |rho r 4 pi G/a0 - 1| = 4.5e-06, |dln rho/dln r + 1| = 9.0e-06
+  [PASS] E4i the asymptotic forms fed into E4 (rho = V_f^2/(4 pi G r^2), g r = V_f^2, slope -2 deep; rho = a0/(4 pi G r), slope -1 Newtonian) hold on the ODE solution to 1e-3
+         max deviation 9.0e-06
+
+======================================================================================================================
+E5  same baryonic mass, different baryon SHAPE: c_s^2 at equal rho
+======================================================================================================================
+    density window [3.46e+04, 1.38e+08]; max/min c_s^2 across the five shapes: min 1.26, median 31.21, max 139122.28
+  [PASS] E5 at equal density and equal M_b the required c_s^2 differs between baryon shapes (median max/min >= 1.2): no universal Pi even at fixed baryonic mass
+         median ratio 31.21, max 139122.28
+
+======================================================================================================================
+Cost of class (i): a self-gravitating barotropic fluid with universal sigma0 has V_f = const (BTFR slope 0)
+======================================================================================================================
+    M_b = 1e+08: V_f(law) =   33.4 km/s; universal-isothermal V_f =  105.6 km/s; offset +0.500 dex in V (= +2.00 dex in g_flat)
+    M_b = 1e+10: V_f(law) =  105.6 km/s; universal-isothermal V_f =  105.6 km/s; offset +0.000 dex in V (= +0.00 dex in g_flat)
+    M_b = 1e+12: V_f(law) =  333.8 km/s; universal-isothermal V_f =  105.6 km/s; offset -0.500 dex in V (= -2.00 dex in g_flat)
+  [PASS] (reported) E6 (reported) tuning a universal sigma0 at M_b = 1e10 misses the law's flat speed by 0.5 dex in V at M_b = 1e8 and 1e12 (BTFR slope 4 vs 0)
+         offsets [0.5, 0.0, -0.5]
+
+  9/9 checks pass; load-bearing failures: 0   (6 s)

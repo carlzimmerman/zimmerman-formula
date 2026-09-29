@@ -1,0 +1,98 @@
+B3 -- CLASS (ii)/(iii), LOCAL CLOSURES: does any closure that is LOCAL in the fields at r (dispersion, pressure or charge as a function of g_N, g_tot, rho_b,
+rho_c and their derivatives at the same point) produce the target (T)?    And what is (T) as a closure?
+
+EXACT STATEMENTS
+  L1  LOCALITY NO-GO (numeric + exact).  Take baryon profile A and profile B = A + a thin baryon shell of mass m at R' > r*.  At r* every local field
+      (rho_c, g_tot, g_N, rho_b and their radial derivatives) is IDENTICAL for A and B: (T) makes rho_c(r) depend only on M_b(<r), and the ODE is integrated
+      outward.  But the target pressure (P) differs by (a0/2) m/(4 pi R'^2).  So NO local equation of state P = Pi(local fields at r) -- and no local
+      dispersion law sigma^2 = F(local fields) -- can produce (T): the required pressure/dispersion carries the OUTER baryon column.
+      (It is harmless for a hydrostatic fluid, whose pressure is the weight of the overlying fluid: the content of (T) is a closure for the DENSITY.)
+  L2  (T) as a density closure:  rho_c g_tot = (a0/4 pi G) g_N / r.  It is local in (g_N, g_tot) but contains the position r explicitly.  A covariant local form needs the
+      TRANSVERSE tidal eigenvalue of the baryonic potential, T_perp = (1/2)(lap Phi_N - Phi_N,ghat ghat) (= g_N/r for spherical baryons):
+            rho_c g_tot = (a0/4 pi G) T_perp ,      beta = - lap Phi_N /(2 T_perp)     (anisotropy of the locally virialised reading)
+      For flattened baryons T_perp and the enclosed-mass form g_N/r differ (thin-disc estimate, reported): the enclosed-mass form is a SPHERICAL statement.
+  L3  CATALOGUE.  Closures integrated for compact/diffuse exponential spheres and the Freeman disc and compared with the law (P2, nu_mono; canonical a0):
+        (T)  enclosed charge (target)                      : within 0.03-0.2 dex of P2 (positive control), 0.03-0.2 of nu_mono
+        const  constant charge C = a0 M_b,tot/4 pi (CFG9)   : overshoots (central isothermal core)
+        gauss  local pressure P = a0 g_N/(8 pi G) (CFG10 i) : demands rho_c < 0 where r u_N' > 2 u_N (analytic fraction reported)
+        omega  local prescribed temperature sigma^2 = (1/2) r nu(g_N/a0) g_N (dispersion 'sourced by the baryonic field', hydrostatic in the total field):
+               the fluid is too cold inside the baryons and collapses.
+      Each is exact for a point mass; none is exact for extended baryons except (T).
+CHECKS (PRE-DECLARED)
+  A1 CONTROL  the numerical (T) closure equals P2 for a point mass to 1e-5, and the constant-charge closure equals it too (no bite on point masses).
+  A2 L1: local fields at r* identical (< 1e-9 relative) between A and B; the (T) hydrostatic pressures differ by (a0/2) m/(4 pi R'^2) to 1e-3 (relative to the difference).
+  A3 L3: the constant-charge closure departs from (T) by > 0.1 dex somewhere on every extended profile; the local-temperature closure by > 0.1 dex; (T) is within 0.25 dex
+     of the P2 law on every extended profile (positive control).
+  A4 the Jeans equation with sigma_r^2 = V_c^2/2 and beta = -(3/2) rho_b/rhobar_b is satisfied by the (T) solution (numeric, exp. sphere), 1e-4.
+  A5 L2: spherical identity (sympy) and the thin-disc estimate (reported).
+  A2b the (T) pressure inside R' rises uniformly by (a0/2) m/(4 pi R'^2) when a shell m is added at R' (no force change inside): the fluid must be heated by a0 m R'/4 (numeric, 1%).
+  A6 (reported) the field-energy pressure (g_tot^2 - g_N^2)/(8 pi G) is low against the (T) pressure inside the baryons.   A7 (reported) P is not a function of g_N alone (1-2 dex scatter).
+MUTATE=1: (i) the shell of L1 is placed INSIDE r* (R' < r*), so the local fields are no longer identical: A2 must FAIL; (ii) the a0 inside the (T) ODE is multiplied by 10: A1 and A3 must FAIL.
+
+======================================================================================================================
+A1  CONTROL: point mass -- (T) and the constant-charge closure both equal P2
+======================================================================================================================
+    max relative deviation from P2:  (T) 6.97e-12;  constant charge 6.97e-12
+  [PASS] A1 CONTROL: for a point mass the numerical (T) closure and the constant-charge closure both reproduce P2 to 1e-5
+         {'encl': 6.973310817670608e-12, 'const': 6.973310817670608e-12}
+
+======================================================================================================================
+A2  L1: two baryon profiles identical for r < R' but different beyond: identical local fields at r*, different (T) pressure
+======================================================================================================================
+    local fields at r* = 10 kpc, A vs B (relative difference): rho_c 0.0e+00, g_tot 0.0e+00, g_N 0.0e+00, rho_b 0.0e+00, drho_c 0.0e+00, dg_tot 0.0e+00, drho_b 0.0e+00
+    (T) hydrostatic pressure at r*: P_A = 1.101619e+10, P_B = 1.820154e+10; difference 7.185354e+09; predicted (a0/2) m/(4 pi R'^2) = 7.182580e+09; (P_B-P_A)/P_A = 0.652
+  [PASS] A2 L1: local fields at r* identical (< 1e-9) for A and B, yet the (T) pressure differs by exactly (a0/2) m/(4 pi R'^2): no local closure P = Pi(local fields) can be (T)
+         max local-field difference 0.0e+00; pressure difference / predicted - 1 = +3.86e-04; relative pressure change 0.65
+    Delta P(r < R') = 7.1854e+09 (uniform: spread 9.4e-08); thermal energy the inner fluid must gain: 2.2843e+15 vs 2 pi Delta P R'^3 = 2.2859e+15
+    per unit accreted baryon mass: a0 R'/4 = 2.888e+04 (km/s)^2  vs  V_f^2 = 1.115e+04  and  G M_b/R' = 1.075e+03  (ratios 2.59, 26.9)
+  [PASS] A2b the (T) pressure inside R' rises by the uniform (a0/2) m/(4 pi R'^2) when baryons are added outside R' (no force change inside, shell theorem): the inner fluid must be HEATED by (3/2) Int Delta P dV = a0 m R'/4 (numeric within 1%), i.e. a0 R'/4 per unit accreted baryon mass -- more than the flat-speed V_f^2 once R' > 4 r_M and more than G M_b/R' once R' > 2 r_M
+         numeric/predicted - 1 = -7.29e-04
+
+======================================================================================================================
+A3  L3: closures on extended baryons vs (T) and vs the law (canonical a0)
+======================================================================================================================
+    max |Delta log10 g_tot| over r in [0.5 h, 30 r_M]:
+      compact exp. sphere    (T)-P2 0.070, (T)-nu_mono 0.125 | const-(T) 0.967 | omega-(T) 1.463 | gauss (i): rho_c<0 on 22% of the radii
+      diffuse exp. sphere    (T)-P2 0.170, (T)-nu_mono 0.179 | const-(T) 1.092 | omega-(T) 1.431 | gauss (i): rho_c<0 on 44% of the radii
+      compact Freeman disc   (T)-P2 0.038, (T)-nu_mono 0.095 | const-(T) 0.626 | omega-(T) 1.424 | gauss (i): rho_c<0 on 9% of the radii
+      diffuse Freeman disc   (T)-P2 0.145, (T)-nu_mono 0.159 | const-(T) 0.772 | omega-(T) 1.381 | gauss (i): rho_c<0 on 20% of the radii
+      Plummer                (T)-P2 0.003, (T)-nu_mono 0.060 | const-(T) 0.313 | omega-(T) 1.476 | gauss (i): rho_c<0 on 6% of the radii
+  [PASS] A3 (T) is within 0.25 dex of the P2 law on every extended profile (positive control); the constant-charge closure and the local-temperature closure depart from (T) by > 0.1 dex somewhere on every extended profile
+         max (T)-P2 0.170; min over profiles of max const-(T) 0.313, omega-(T) 1.381
+
+======================================================================================================================
+A4  the anisotropic Jeans reading of (T): sigma_r^2 = V_c^2/2 and beta = -(3/2) rho_b/rhobar_b (numeric)
+======================================================================================================================
+    max |d(rho s_r^2)/dr + 2 beta rho s_r^2/r + rho g| / (rho g) = 2.65e-06;  beta range [-1.493, -0.000]  (-3/2 inside a core, 0 outside)
+  [PASS] A4 the (T) fluid is a locally virialised (sigma_r^2 = V_c^2/2) collisionless equilibrium with tangential bias beta(r) = -(3/2) rho_b/rhobar_b (Jeans residual < 1e-3)
+         residual 2.65e-06
+
+======================================================================================================================
+A5  L2: the covariant (tidal) restatement of (T) and its disc limit
+======================================================================================================================
+  [PASS] A5a (sympy) for spherical baryons T_perp = g_N/r, (a0/4 pi G) T_perp = (a0/8 pi G)(lap Phi_N - Phi_N,ghat ghat), and beta = -lap Phi_N/(2 T_perp) = -(1/2) dlnM_b/dlnr: the enclosed-mass closure IS a local tidal closure for spherical baryons
+         residuals 0, 0, 0
+    Freeman-like disc, h_z/h = 0.05: T_perp(local, midplane)/T_sph(enclosed-mass form) at R = 1, 2, 4 h: 13.3, 14.5, 10.8
+    Freeman-like disc, h_z/h = 0.1: T_perp(local, midplane)/T_sph(enclosed-mass form) at R = 1, 2, 4 h: 6.7, 7.5, 5.9
+    Freeman-like disc, h_z/h = 0.2: T_perp(local, midplane)/T_sph(enclosed-mass form) at R = 1, 2, 4 h: 3.4, 4.0, 3.4
+  [PASS] (reported) A5b (reported, estimate) for a thin exponential disc the local tidal closure gives 3-15x the enclosed-mass closure at the midplane: the two readings of (T) split for flattened baryons
+         ratios {0.05: [13.3, 14.5, 10.8], 0.1: [6.7, 7.5, 5.9], 0.2: [3.4, 4.0, 3.4]}
+
+======================================================================================================================
+A6  the 'field-energy' closure P = (g_tot^2 - g_N^2)/(8 pi G) (CFG2's stress law read as a fluid pressure) against the (T) pressure
+======================================================================================================================
+      compact exp. sphere   : P_E/P_T over r in [0.5 h, 30 r_M]: min 0.106, max 0.998
+      diffuse exp. sphere   : P_E/P_T over r in [0.5 h, 30 r_M]: min 0.073, max 0.713
+      compact Freeman disc  : P_E/P_T over r in [0.5 h, 30 r_M]: min 0.213, max 0.999
+      diffuse Freeman disc  : P_E/P_T over r in [0.5 h, 30 r_M]: min 0.142, max 0.763
+  [PASS] (reported) A6 (reported) the field-energy pressure (g_tot^2 - g_N^2)/(8 pi G) equals the (T) pressure only outside the baryons (ratio -> 1); inside it is low by the column term (min ratio < 0.9 on every profile)
+         ranges {'compact exp. sphere': (0.10601265391847596, 0.9980309190258745), 'diffuse exp. sphere': (0.0729588142671867, 0.7128599173767334), 'compact Freeman disc': (0.21326992847227075, 0.9988107698277799), 'diffuse Freeman disc': (0.14176952826688605, 0.763470309145879)}
+
+======================================================================================================================
+A7  N20 extended: is the (T) pressure a single-valued function of the baryonic field g_N?  (P = Pi(g_N), any Pi)
+======================================================================================================================
+    dex spread of the (T) pressure at fixed g_N/a0 across seven baryon systems (all crossings): y = 10.0: 0.00 dex (n = 1), y = 1.0: 1.44 dex (n = 4), y = 0.3: 1.99 dex (n = 8), y = 0.1: 1.49 dex (n = 7)
+  [PASS] (reported) A7 (reported) the (T) pressure is NOT a function of g_N alone: at fixed g_N/a0 in {10, 1, 0.3, 0.1} it spans >= 0.3 dex across seven baryon systems (compare N20's 0.51-0.55 dex on SPARC)
+         spreads {10.0: (0.0, 1), 1.0: (1.4436375812813351, 4), 0.3: (1.9879962034028322, 8), 0.1: (1.4859322780416686, 7)}
+
+  9/9 checks pass; load-bearing failures: 0   (16 s)

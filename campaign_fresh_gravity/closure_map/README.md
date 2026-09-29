@@ -10,3 +10,5 @@ The gate list was frozen before any assembly attempt, so the assembly cannot mov
 
 **Update 2026-09-28 (CFG43).** Gap 3 is partly filled: the a₀–Λ tie can be written into a conserved fluid's stress cap in one action with no new local degree of freedom (`../CFG43_fluid_tie/`). The cap's entry form is postulated, and a barotropic saturating cap is excluded as a mechanism (it needs a new constant and covers about one decade in mass). Gap 2 is untouched.
 
+**Update 2026-09-28 (CFG44).** Gap 2 has an exact target and a scoped no-go: no barotropic EOS, local closure, second force, constraint action, phantom-potential coupling or density slaving produces it. Only a temperature-slaved fluid (postulating the BTFR) and a locally virialised collisionless fluid with a postulated anisotropy survive, as restatements. The missing object, C(r) = ρ_c r³ g_tot = (a₀/4π) M_b(<r), is a non-adiabatic, nonlocal enclosed-mass energy exchange — which is Gap 1's ownership object. The three gaps are therefore two: a legal bound-only, owned switch, and the tie (partly filled, CFG43). (`../CFG44_fluid_target/`)
+
