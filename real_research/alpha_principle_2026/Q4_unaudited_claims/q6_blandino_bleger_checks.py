@@ -16,7 +16,7 @@ import mpmath as mp
 import bar_lib as B
 mp.mp.dps = 40
 MUTATE = "--mutate" in sys.argv
-CACHE = os.environ.get("Q4_CACHE", "/private/tmp/claude-501/-Users-carlzimmerman-new-physics-zimmerman-formula/793c1fd8-1e45-422e-9945-5ff5dd91f1bd/scratchpad/q4/q5cache")
+CACHE = os.environ.get("Q4_CACHE", "./q4_cache")
 os.makedirs(CACHE, exist_ok=True)
 out = []
 def P(*a):
