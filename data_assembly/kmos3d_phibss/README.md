@@ -45,8 +45,11 @@ PHIBSS https://cdsarc.cds.unistra.fr/ftp/J/ApJ/768/74/ (Tacconi et al. 2013, ApJ
 
 ## What is not here
 
-- Cubes: `fetch_cubes.sh` fetches them. At the time of writing the download was partial (see the session
-  report); rerun the script to resume, then `python3 build.py --cubes DEST` to record hashes.
+- Cubes: `fetch_cubes.sh` fetches them. Local copy (outside the repo, never committed):
+  `~/new_physics/_external_data/kmos3d/`. The download was still in progress when this was written; if
+  `KMOS3D_cubes_*.tar.gz` there are smaller than 1,154,934,387 / 996,771,994 / 996,315,607 bytes, run
+  `./fetch_cubes.sh ~/new_physics/_external_data/kmos3d` to resume (`curl -C -`), then
+  `python3 build.py --cubes ~/new_physics/_external_data/kmos3d` to record hashes.
 - HIGHz / BUDHIES (z~0.2 HI), MSA-3D and GA-NIFS tables, RC100 and Genzel+2020 rotation-curve tables:
   none obtained; per-galaxy machine-readable availability is unverified for all of them.
 
