@@ -1,0 +1,68 @@
+CFG105 -- independent re-derivation of CFG113's headline.  FROZEN SPEC (written before any run of any CFG105 script).
+
+QUESTION
+Does globular-cluster (GC) orbital anisotropy rescue the law's SLUGGS deficit?  CFG113 (calc chat) reports: with a constant GC anisotropy
+beta = -0.5..+0.5 at the per-galaxy published GC density slopes gamma_i, the law's JAM-calibrated deficit is never below 3.4 sigma
+(canonical; 2.9 sigma alt), and the rule is 0.56 sigma at beta=+0.5 and 2.06 sigma at beta=-0.5.  Reproduce with own code.
+
+INPUTS READ (only): CFG113_FROZEN_CRITERIA.md, CFG113_README.md (+ LEDGER row), CFG76 README + cfg76_sluggs_jam.py, CFG55 README,
+CFG111_FROZEN_CRITERIA.md (for the Alabi+2017 slope relation and its Table-1 values; the slopes are not in any data file: they are the
+relation gamma_i = clip(-0.63 log10 M*_SLUGGS + 9.81, 2, 4) applied to sluggs_forbes2017_galaxies.tsv), and real_research/data/*.
+NOT read/executed/imported before the frozen main and MUTATE runs finish: CFG113 script, any CFG113 .out/_results.json.
+
+MODEL
+Baseline estimator (REUSED, copied with the absolute data path replaced): CFG76's data loading, GC velocity clipping/binning (h50-faithful
+key, 19 galaxies, 16 with ATLAS3D JAM quality>=1), kernels, Hernquist stars, JAM calibration (half the stars inside r_1/2, total model
+mass = M_JAM/2), NFW/collapse-debris 'rule' machinery, edge phantom.  Configuration = the one CFG76 showed reproduces CFG55 to 2e-6:
+plain RAR kernel nu=1/(1-exp(-sqrt y)) everywhere, M_JAM scaled ~D ('dyn'), enclosed fraction 1/2.  Offset per galaxy = mean over the
+outer bins (R > max(1 Re, 2 kpc)) of log10(sigma_obs/sigma_pred) at the bin's median projected radius (point evaluation);
+mean and SEM (ddof=1) over the 16 galaxies; sigma = mean/SEM.  Two footings a0 = 9.36e-11 (canonical) and 1.13e-10 (alt).
+NEW (written independently for CFG105, NOT taken from CFG76): the anisotropic Jeans solver.
+  spherical Jeans: d(nu s_r^2)/dr + 2 beta nu s_r^2/r = -nu g ;  integrating factor F(r)=exp(2 int beta dln r) ;
+  s_r^2(r) = int_r^inf [F(s)/F(r)] [nu(s)/nu(r)] g(s) ds, evaluated ON DEMAND at each needed radius by Gauss-Legendre in x=ln(s/r),
+  x in [0,40] (no tabulated grid, no grid-edge truncation);  line of sight with z=sqrt(r^2-R^2):
+  s_los^2(R) = int_0^inf (1-beta(r)R^2/r^2) nu s_r^2 dz / int_0^inf nu dz, r=R cosh u, z=R sinh u, Gauss-Legendre in u on [0,25].
+  Tracer nu = r^-gamma_i (3D slope), constant beta (main), total g = baryons(Hernquist, calibrated M*) through the law (+ NFW debris for the rule).
+MAIN: beta in {-0.5,-0.25,0,0.25,0.5} (bracket) and {0.75,0.9} (beyond), both footings, law and rule, N=16.
+
+PASS LINES (reproduction of CFG113's stated numbers; agreement means |diff| <= 0.01 sigma at the stated 2 decimals; differences are
+reported, non-reproduction is a valid outcome and exits 1):
+  R1 law minimum over the bracket = 3.38 sigma (canonical) at beta=+0.5; alt 2.93 sigma.
+  R2 rule at beta=+0.5 = 0.56 sigma (canonical), at beta=-0.5 = 2.06 sigma (canonical); alt 0.69 / 2.10.
+  H1 (declared physics pass, as CFG113's): the law's offset exceeds 2 sigma at every beta in the bracket on both footings.
+
+CONTROLS (all must pass; failed controls are failures):
+  C0  own baseline (own solver) at gamma=3, beta=0 reproduces CFG76's headline: canonical law +0.09698 +- 0.02431 (3.989 s), rule
+      +0.04564 +- 0.01771 (2.577 s), tolerance 3e-4 on the means; alt law/rule ~ +0.088/+0.047 within 1.5e-3 (CFG76's tolerance).
+  C1  isotropic limit: own solver vs the copied CFG76 estimator (sigma_r2/sigma_los, unmodified) at the published gamma_i, beta=0,
+      per-galaxy per-footing offsets agree to 1e-3 dex (max |diff|); also at beta=+-0.5 reported (tolerance 2e-3; that one is not
+      independent of the projection kernel, only of the numerics).
+  C2  isothermal sphere g=v_c^2/r, power-law tracer, constant beta: s_r^2 = v_c^2/(gamma-2 beta) at all radii and
+      s_los^2/v_c^2 = (gamma-beta(gamma-1))/(gamma(gamma-2 beta)), relative tolerance 1e-4, for gamma in {2.5,3,3.43} and beta in
+      {-0.5,0,0.5,0.9}, R in {1,5,50}.  The closed form is derived independently in the script comments (Beta-function ratio).
+  C3  power-law halo g = A r^-p (p in {0,1,2}): s_r^2 = A r^(1-p)/(gamma-2beta+p-1) and the los dispersion from the Gamma-function
+      closed form, tolerance 1e-4; the Kepler case reproduces GM/(4r) at gamma=3, beta=0.
+  C4  Jeans-equation residual: in the real (Hernquist+law and Hernquist+law+NFW) potentials of two galaxies at all bracket betas and for
+      an Osipkov-Merritt profile: |d(nu s_r^2)/dln r + 2 beta(r) nu s_r^2 + nu g r| / |nu g r| < 1e-4 at r = 1, 5, 30 kpc (central
+      differences in ln r of the on-demand solution).
+  C5  the Alabi+2017 relation reproduces the 18 Table-1 gammas quoted in CFG111's frozen file to 0.01.
+  C6  sample = 16 galaxies, the rest exactly NGC 1400/1407/3115 outside ATLAS3D (CFG76's G2).
+  C7  convergence: main headline (law, beta=+0.5, canonical) unchanged to 1e-5 dex when the quadrature order/range is doubled.
+
+MUTATE
+  MUTATE=1 (data mutation, declared): on each footing every galaxy's observed bin dispersions are multiplied by 10^(-D), D = that
+  footing's law mean offset at (gamma_i, beta=+0.5) from the unmodified data, computed in the same run.  Then the law's mean at
+  beta=+0.5 is 0 (to 1e-9), H1 must FAIL (min sigma < 2) and R1/R2 reproduction lines must fail; exit 1.
+  MUTATE=2 (solver mutation, declared): the anisotropy projection factor (1 - beta R^2/r^2) is dropped.  Control C2 must FAIL.
+
+ATTACKS / REPORTED ROWS (post-run reporting only; none feeds a pass line; declared now, not tuned):
+  A1 beta at beyond-bracket values; R3: the single constant beta in [-1,0.99] that nulls the law mean (or none), both footings.
+  A2 radially varying beta: Osipkov-Merritt beta(r)=r^2/(r^2+ra^2), ra/Re in {1,2,3,5,10} (declared; ra=3Re ~ beta 0.1 at Re, 0.5 at 3Re,
+     the NGC 5846 red-GC pattern).  Also OM with ra in kpc-free units only.
+  A3 slope-radius dependence: nu = r^-gamma_i [1+(r/(5 Re))^2]^(-Delta/2), Delta in {-0.5,+0.5,+1.0}, beta in {0,+0.5}.
+  A4 tracer slope reading: gamma_3D = gamma_i + 1 (if the published slope had been the projected one), beta in {0,+-0.5}.
+  A5 aperture convention: point evaluation at the bin median R (baseline) vs member-averaged sigma_los^2 over the bin's GC radii.
+  A6 which galaxies drive the rule's beta dependence: per galaxy law and rule offsets at beta=-0.5, 0, +0.5, and the change from -0.5 to +0.5
+     with each galaxy's gamma_i, mass, Re; leave-one-out on the rule's sigma at beta=+-0.5.
+  A7 gamma=3 for all (CFG55 baseline) at beta=+-0.5; SLUGGS population masses at beta=+-0.5; four group/cluster centrals removed at +0.5.
+Programme rules: nothing here says the data favour the framework; kappa=1/2 is FITTED; theory not closed.

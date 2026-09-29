@@ -1,0 +1,69 @@
+CFG106 -- INDEPENDENT RE-DERIVATION of CFG114's headline: the SLUGGS deficit in the 5 x 5 box of GC density-slope shift x GC anisotropy.
+FROZEN BEFORE THE FIRST RUN (2026-09-29; no number of this lane existed when written).
+Read before freezing: CFG114_FROZEN_CRITERIA.md, CFG114_README.md (+ LEDGER row), CFG111_FROZEN_CRITERIA.md (only for the slope relation and data path),
+CFG112/113/55 READMEs, CFG76 README + spec + script cfg76_sluggs_jam.py.  NOT read/executed: any CFG114/CFG112/CFG113 script, .out or _results.json.
+Consequence to declare: the CFG114 README (which I read) already prints the headline numbers (23/25, corner 0.59, 13/25, canonical 25-cell table, four alt cells).
+So this is a REPRODUCTION test with known targets, not a blind prediction; the pass lines below are the printed targets; what the run adds is independent code.
+
+QUESTION
+  Does independently written Jeans/anisotropy code reproduce, on CFG55's JAM-calibrated 16 SLUGGS early types, that (i) the law's outer-GC-dispersion deficit exceeds 2 sigma
+  in 23 of 25 (gamma shift, beta) cells (alt 21), (ii) at the corner (gamma_i - 0.4, beta = +0.5) it is +0.013 +- 0.022 dex, 0.6 sigma (canonical), (iii) the rule fits (|z| < 2)
+  in 13 of 25 cells on each footing?
+
+MODEL
+  Pipeline (reused from CFG76's independently written estimator, disclosed): h50-style GC dispersion bins from sluggs_forbes2017_*.tsv (3-sigma-clipped MLE, equal-number bins,
+  outer bins R > max(1 R_e, 2 kpc)), ATLAS3D JAM calibration (half the stars inside r_1/2, total model mass there = M_JAM/2), the rule = law + collapse debris (conservation form,
+  x_e = 0.40, Mandelbaum red masses).  Configuration = CFG76's reproduction of CFG55 to 2e-6: plain RAR kernel nu = 1/(1-exp(-sqrt y)) everywhere, M_JAM ~ D (dist_mode 'dyn'),
+  Hernquist stars a_h = R_e/1.8153, hot gas omitted.  Both footings: a0 = 9.36e-11 (canonical), 1.13e-10 (alt).  Sample: 16 galaxies (h50-faithful 19 intersect ATLAS3D qual >= 1).
+  NEW CODE (mine, not in CFG76): the Jeans solver.
+    Spherical Jeans with tracer nu(r) = r^-gamma and constant beta:  d(nu s_r^2)/dr + 2 beta nu s_r^2 / r = -nu g,
+      => s_r^2(r) = r^(gamma-2beta) INT_r^inf r'^(2beta-gamma) g(r') dr'.
+    LOS projection: s_los^2(R) = INT_R^inf (1 - beta R^2/r^2) nu s_r^2 r dr/sqrt(r^2-R^2) / INT_R^inf nu r dr/sqrt(r^2-R^2)  (the Binney-Mamon kernel, constant beta),
+      evaluated at r = R cosh u by composite Gauss-Legendre (segments u in [0,1],[1,3],[3,8],[8,22], 24 nodes each).
+    Radial integral: log-r grid (4000 points, 0.03 - 1e5 kpc), trapezoid in ln r, PLUS an analytic tail beyond the grid edge (g -> C/r, C = g r at the edge:
+      tail = C R^(2beta-gamma)/(gamma-2beta)); s_r^2 beyond the grid = its edge value (the exact deep-MOND asymptote).
+    Aperture convention: sigma_los evaluated at the median projected radius of each equal-number bin (point aperture, as in the h50/CFG76 baseline); no bin averaging;
+      predictions and bins are in kpc at the SLUGGS distance.
+  Slopes: gamma_i = clip(-0.63 log10 M*_SLUGGS,i + 9.81, 2, 4) (Alabi+2017 relation, as CFG111), then gamma_i + delta with NO re-clip (shifted values stay in [2.09, 3.83], inside 2..4).
+  Anisotropy: one constant beta for every GC of every galaxy.
+  BOX: delta in {-0.4,-0.2,0,+0.2,+0.4}  x  beta in {-0.5,-0.25,0,+0.25,+0.5}; 25 cells per footing.
+  STATISTIC: o_i = mean over the outer bins of log10(sigma_obs/sigma_pred) (galaxy i); m = mean_i o_i; err = std(o_i, ddof=1)/sqrt(N); z = m/err (N=16 law; rule N = number of galaxies
+    whose rule calibration has a root, expected 16).  'Above 2 sigma' = z > 2 strictly; 'rule fits' = |z| < 2 strictly.  Error = galaxy-to-galaxy SEM, ignores bin errors (as CFG55).
+
+PASS LINES (declared now; from the numbers printed in CFG55/76/111/113/114 READMEs and LEDGER rows; tolerance in mean 0.0015 dex, in z 0.02 unless stated)
+  G0  baseline: gamma = 3, beta = 0: law +0.0970 (z 3.99 +-0.05), rule +0.0456 (z 2.58 +-0.05) canonical; alt law z 3.65 +-0.1, rule z 2.6 +-0.1 (means +-0.0015).
+  G1  gamma_i published, beta = 0 (the CFG111 cell): law +0.082 (z 3.60, alt 3.22), rule +0.028 (z 1.55, alt 1.64).
+  G2  gamma_i published, beta row (CFG113): law z canonical 3.66,3.64,3.60,3.53,3.38 ; alt 3.31,3.28,3.22,3.12,2.93 ; rule canonical 2.06,1.84,1.55,1.13,0.56 ; alt 2.10,1.91,1.64,1.26,0.69
+      for beta = -0.5,-0.25,0,+0.25,+0.5; law means +0.086,+0.084,+0.082,+0.079,+0.074 (canonical).
+  G3  [HEADLINE] counts: law z > 2 in exactly 23 of 25 cells canonical and 21 of 25 alt; rule |z| < 2 in exactly 13 of 25 cells on EACH footing.
+  G4  corner (delta -0.4, beta +0.5): law canonical +0.013 +- 0.022, z 0.59 (+-0.02); alt z 0.08 (+-0.03); rule canonical z -2.59 (+-0.03).
+  G5  canonical law z table (rows delta -0.4..+0.4; columns beta -0.5..+0.5):
+        -0.4: 2.95 2.68 2.28 1.66 0.59 | -0.2: 3.31 3.17 2.97 2.65 2.09 | 0: 3.66 3.64 3.60 3.53 3.38 | +0.2: 4.00 4.09 4.19 4.33 4.51 | +0.4: 4.34 4.52 4.74 5.06 5.51  (each +-0.02).
+      alt cells below 2 sigma: exactly (-0.4,0) 1.86, (-0.4,+0.25) 1.20, (-0.4,+0.5) 0.08, (-0.2,+0.5) 1.61 (each +-0.03).
+  G6  rule pattern: rule |z| >= 2 in every cell with delta = +0.2 or +0.4 (both footings), and at (delta 0, beta -0.5), and at the corner; nowhere else (canonical: |z| range 2.06-3.47 for the steep cells).
+  Controls (all can fail; a failed control is a failure):
+   C1  closed form, Newtonian point mass: s_r^2 = GM/((gamma+1-2beta) r), 0.5 - 1000 kpc, rel err < 1e-4 at (gamma,beta) = (2.5,-0.5),(3,0),(2.09,0.5),(3.83,0.25).
+   C2  closed form, flat rotation curve g = v^2/r: s_r^2 = v^2/(gamma-2beta) (< 1e-4) and s_los^2 = v^2 (gamma - beta(gamma-1))/(gamma (gamma-2beta)) (< 1e-4) at the same four (gamma,beta).
+   C3  closed form, point mass, LOS: s_los^2(R) = K[G_a(gamma) - beta G_b(gamma)] / G_den(gamma) via Gamma functions (K = GM/(gamma+1-2beta)), < 1e-4 at the same four.
+   C4  beta = 0, constant s_r^2  =>  s_los = s_r to < 1e-6; the projection denominator equals its Gamma-function closed form to < 1e-6.
+   C5  resolution: doubling the radial grid (8000 points) and the Gauss-Legendre nodes (48) moves the box's law and rule means by < 1e-5 dex in every cell.
+   C6  the (delta=0,beta=0) cell equals CFG111's numbers (G1) and the beta = 0 row at published slopes is monotone as in G2.
+  MUTATE=1: per footing D = the law's mean offset in the box cell with the smallest law z, computed in the same run from the unmodified data; then every observed bin dispersion of every galaxy
+      is multiplied by 10^(-D) (the deficit removed at that cell, scatter kept) and everything is recomputed.  REQUIRED: G3 fails, G4 fails, G5 fails (counts collapse); exit 1.
+      (Unlike CFG114's own H1, this control is informative: the main run must PASS G3-G5, the MUTATE run must FAIL them.)
+  H1_CFG114 (the criterion CFG114 declared, reported only): the law exceeds 2 sigma in EVERY cell on both footings.  Expected FALSE on the main run.
+
+REPORTED, NOT GATED (the attacks; nothing here changes a gate):
+  R1  full law and rule boxes (mean, err, z, rms of o_i) on both footings.
+  R2  corner variants: SLUGGS's own population masses; the four group/cluster centrals (NGC 4486, 4365, 4374, 5846) excluded; ddof = 0 error; Hernquist enclosed fraction in the calibration
+      (instead of 1/2); each also as a 25-cell count of z > 2.
+  R3  nulling loci beyond the box: for each beta the shift delta* that nulls the law mean; for each delta the beta* (< 1) that nulls it; whether the box contains the zero.
+  R4  the slope relation's uncertainty: sigma_gamma(log M*) from (a,b) = (-0.63 +- 0.17, 9.81 +- 1.94) with correlation rho in {0, -0.9, -0.99}; the 1-sigma of the coherent shift of the 16-galaxy mean
+      slope; how many sigma the box's +-0.4 is; Monte-Carlo draws of (a,b) (1000, seed 106) and the fraction of draws with law z < 2 at beta = 0 and +0.5 (both footings).
+  R5  the coherent-shift assumption: independent per-galaxy shifts delta_i ~ N(0, 0.2^2) and N(0, 0.4^2) (and U(-0.4,0.4)), with independent beta_i ~ U(-0.5,+0.5) or beta_i = +0.5;
+      500 draws each; the fraction with law z < 2 and the z distribution.
+  R6  per-galaxy: at the four box corners and at the published cell, the number of galaxies with o_i > +0.05, |o_i| <= 0.05, o_i < -0.05 dex; rms of o_i; for each galaxy the minimum o_i over
+      the box and whether it can be nulled in the box (min o_i <= 0); the number of galaxies nulled within the box at (beta = 0) and at (beta = +0.5).
+  R7  parameter counting: N data (galaxies; total outer bins), 2 free shifts tuned, best-fit cell and its position relative to the box edge, z^2 improvement, and 'the box minimum sits on a corner'.
+  R8  solver cross-check: max |s_los(mine)/s_los(CFG76 copy) - 1| over the 16 galaxies' bins at (gamma_i, beta) = the corner and the published cell.
+RULES: nothing here says the data favour the framework or the theory is closed; kappa = 1/2 is FITTED; non-reproduction is a valid outcome; no tuning after seeing results.

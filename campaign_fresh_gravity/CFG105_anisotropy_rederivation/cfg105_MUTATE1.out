@@ -1,0 +1,58 @@
+CFG105  MUTATE=1 STAGE=all  spec sha256 43ec64fc51c3d457  repo=zimmerman-formula
+
+== C2 isothermal sphere, constant beta: closed forms ==
+  [PASS] C2 isothermal: s_r^2 = v_c^2/(gamma-2beta) and s_los^2/v_c^2 = (gamma-beta(gamma-1))/(gamma(gamma-2beta)), 12 (gamma,beta) x 3 radii   (max rel err s_r^2 6.9e-13, s_los^2 6.9e-13)
+
+== C3 power-law halo g = A r^-p (r in kpc) ==
+  [PASS] C3 power-law halo p=0,1,2, 4 (gamma,beta): s_r^2 and Gamma-function s_los^2 closed forms   (max rel err s_r^2 2.1e-09, s_los^2 4.8e-06)
+  [PASS] C3b Kepler point mass, gamma=3, beta=0: s_r^2 = GM/(4r)   (9.1e-15)
+
+== sample ==
+  galaxies 27, GC RVs 3440, dispersion sample 19, JAM sample 16: NGC1023, NGC2768, NGC3377, NGC3607, NGC4278, NGC4365, NGC4374, NGC4459, NGC4473, NGC4486, NGC4494, NGC4526, NGC4649, NGC4697, NGC5846, NGC7457
+  [PASS] C6 sample = 16, the rest exactly NGC 1400/1407/3115 outside ATLAS3D (and 27/3440/19 catalogue counts)   (16, [1400, 1407, 3115], 27/3440/19)
+  [PASS] C5 Alabi+2017 relation reproduces the 18 Table-1 gammas quoted in CFG111's frozen file to 0.01   (max |diff| 0.0050)
+  gamma_i: 1023:2.89, 2768:2.75, 3377:3.20, 3607:2.63, 4278:2.91, 4365:2.56, 4374:2.56, 4459:2.89, 4473:2.91, 4486:2.49, 4494:2.87, 4526:2.72, 4649:2.50, 4697:2.79, 5846:2.59, 7457:3.43
+  calibrations done in 0.3s
+
+== C4 Jeans-equation residual in the real potentials ==
+  [PASS] C4 Jeans residual |d(nu s_r^2)/dln r + 2 beta nu s_r^2 + nu g r|/|nu g r| < 1e-4 (2 galaxies x law/rule x 5 profiles x 3 radii)   (max 4.3e-06 at NGC7457 law OM 3Re r=30.0)
+
+== C0 own baseline (own solver) at gamma = 3, beta = 0 vs CFG76's headline ==
+  canonical: law +0.0970 +- 0.0243 (+3.99s) | rule +0.0457 +- 0.0177 (+2.58s)
+  alt      : law +0.0881 +- 0.0241 (+3.65s) | rule +0.0467 +- 0.0179 (+2.60s)
+  [PASS] C0 baseline reproduces CFG76 (law +0.09698+-0.02431, rule +0.04564+-0.01771 canonical; alt ~+0.088/+0.047)   (canonical law +0.09701+-0.02431, rule +0.04566+-0.01771)
+
+== C1 own solver vs CFG76's solver (copied) at the published gamma_i ==
+  beta +0.0: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 3.04e-05 dex
+  beta -0.5: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 5.11e-05 dex
+  beta +0.5: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 9.16e-05 dex
+  [PASS] C1 isotropic limit: own solver == CFG76 estimator at the published slopes (max per-galaxy diff < 1e-3 dex)   (3.0e-05)
+  [PASS] C1b same at beta = +-0.5 (< 2e-3 dex; numerics only, same projection kernel)   (9.2e-05)
+  [PASS] C7 headline (law, beta=+0.5, canonical) unchanged to 1e-5 dex when the quadrature order/panels are doubled   (+0.0737875 vs +0.0737875)
+  MUTATE=1 canonical: D = law mean offset at (gamma_i, beta=+0.5) = +0.07379 dex removed from every observed dispersion
+  MUTATE=1 alt: D = law mean offset at (gamma_i, beta=+0.5) = +0.06363 dex removed from every observed dispersion
+
+== MAIN: constant beta at the published gamma_i (JAM-calibrated masses, N=16) ==  [MUTATE=1]
+  beta    | law canonical             | law alt        | rule canonical            | rule alt
+  -0.50   | +0.0119 +- 0.0234 (0.51s) | 0.58s | -0.0378 +- 0.0175 (-2.16s) | -1.52s
+  -0.25   | +0.0104 +- 0.0231 (0.45s) | 0.51s | -0.0414 +- 0.0176 (-2.36s) | -1.72s
+  +0.00   | +0.0083 +- 0.0228 (0.36s) | 0.41s | -0.0462 +- 0.0178 (-2.59s) | -1.97s
+  +0.25   | +0.0052 +- 0.0223 (0.23s) | 0.26s | -0.0529 +- 0.0184 (-2.88s) | -2.29s
+  +0.50   | -0.0000 +- 0.0218 (-0.00s) | 0.00s | -0.0628 +- 0.0196 (-3.20s) | -2.68s
+  +0.75   | -0.0098 +- 0.0214 (-0.46s) | -0.50s | -0.0785 +- 0.0223 (-3.51s) | -3.12s   [beyond the bracket]
+  +0.90   | -0.0213 +- 0.0217 (-0.98s) | -1.05s | -0.0931 +- 0.0254 (-3.67s) | -3.38s   [beyond the bracket]
+  sigma differences (own - CFG113 README table), law / rule, canonical then alt:
+    law  canonical: -0.50:-3.151  -0.25:-3.190  +0.00:-3.235  +0.25:-3.299  +0.50:-3.380  +0.75:-3.449  +0.90:-3.443
+    law  alt      : -0.50:-2.733  -0.25:-2.771  +0.00:-2.810  +0.25:-2.862  +0.50:-2.930  +0.75:-2.979  +0.90:-2.962
+    rule canonical: -0.50:-4.224  -0.25:-4.197  +0.00:-4.144  +0.25:-4.008  +0.50:-3.759  +0.75:-3.304  +0.90:-2.922
+    rule alt      : -0.50:-3.620  -0.25:-3.627  +0.00:-3.609  +0.25:-3.550  +0.50:-3.374  +0.75:-3.024  +0.90:-2.698
+  law minimum over the bracket: canonical -0.000s at beta=+0.5, alt 0.000s
+  [FAIL] R1 law minimum over the bracket = 3.38 s (canonical) and 2.93 s (alt)   (-0.000, 0.000)
+  [FAIL] R2 rule at beta=+0.5 / -0.5 = 0.56 / 2.06 s canonical (alt 0.69 / 2.10)   (-3.199 / -2.164; alt -2.684 / -1.520)
+  [FAIL] H1 law's offset exceeds 2 sigma at every beta in the bracket on both footings   (min canonical -0.00, alt 0.00)
+  [PASS] MUTATE=1 sanity: law mean at beta=+0.5 is 0 on canonical   (-1.39e-17)
+  [PASS] MUTATE=1 sanity: law mean at beta=+0.5 is 0 on alt   (+2.43e-17)
+
+(MUTATE run: attack rows skipped.)
+
+FAILED CHECKS (3): R1 law minimum over the bracket = 3.38 s (canonical) and 2.93 s (alt); R2 rule at beta=+0.5 / -0.5 = 0.56 / 2.06 s canonical (alt 0.69 / 2.10); H1 law's offset exceeds 2 sigma at every beta in the bracket on both footings

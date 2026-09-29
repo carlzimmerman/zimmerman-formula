@@ -1,0 +1,130 @@
+CFG105  MUTATE=0 STAGE=all  spec sha256 43ec64fc51c3d457  repo=zimmerman-formula
+
+== C2 isothermal sphere, constant beta: closed forms ==
+  [PASS] C2 isothermal: s_r^2 = v_c^2/(gamma-2beta) and s_los^2/v_c^2 = (gamma-beta(gamma-1))/(gamma(gamma-2beta)), 12 (gamma,beta) x 3 radii   (max rel err s_r^2 6.9e-13, s_los^2 6.9e-13)
+
+== C3 power-law halo g = A r^-p (r in kpc) ==
+  [PASS] C3 power-law halo p=0,1,2, 4 (gamma,beta): s_r^2 and Gamma-function s_los^2 closed forms   (max rel err s_r^2 2.1e-09, s_los^2 4.8e-06)
+  [PASS] C3b Kepler point mass, gamma=3, beta=0: s_r^2 = GM/(4r)   (9.1e-15)
+
+== sample ==
+  galaxies 27, GC RVs 3440, dispersion sample 19, JAM sample 16: NGC1023, NGC2768, NGC3377, NGC3607, NGC4278, NGC4365, NGC4374, NGC4459, NGC4473, NGC4486, NGC4494, NGC4526, NGC4649, NGC4697, NGC5846, NGC7457
+  [PASS] C6 sample = 16, the rest exactly NGC 1400/1407/3115 outside ATLAS3D (and 27/3440/19 catalogue counts)   (16, [1400, 1407, 3115], 27/3440/19)
+  [PASS] C5 Alabi+2017 relation reproduces the 18 Table-1 gammas quoted in CFG111's frozen file to 0.01   (max |diff| 0.0050)
+  gamma_i: 1023:2.89, 2768:2.75, 3377:3.20, 3607:2.63, 4278:2.91, 4365:2.56, 4374:2.56, 4459:2.89, 4473:2.91, 4486:2.49, 4494:2.87, 4526:2.72, 4649:2.50, 4697:2.79, 5846:2.59, 7457:3.43
+  calibrations done in 0.2s
+
+== C4 Jeans-equation residual in the real potentials ==
+  [PASS] C4 Jeans residual |d(nu s_r^2)/dln r + 2 beta nu s_r^2 + nu g r|/|nu g r| < 1e-4 (2 galaxies x law/rule x 5 profiles x 3 radii)   (max 4.3e-06 at NGC7457 law OM 3Re r=30.0)
+
+== C0 own baseline (own solver) at gamma = 3, beta = 0 vs CFG76's headline ==
+  canonical: law +0.0970 +- 0.0243 (+3.99s) | rule +0.0457 +- 0.0177 (+2.58s)
+  alt      : law +0.0881 +- 0.0241 (+3.65s) | rule +0.0467 +- 0.0179 (+2.60s)
+  [PASS] C0 baseline reproduces CFG76 (law +0.09698+-0.02431, rule +0.04564+-0.01771 canonical; alt ~+0.088/+0.047)   (canonical law +0.09701+-0.02431, rule +0.04566+-0.01771)
+
+== C1 own solver vs CFG76's solver (copied) at the published gamma_i ==
+  beta +0.0: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 3.04e-05 dex
+  beta -0.5: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 5.11e-05 dex
+  beta +0.5: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 9.16e-05 dex
+  [PASS] C1 isotropic limit: own solver == CFG76 estimator at the published slopes (max per-galaxy diff < 1e-3 dex)   (3.0e-05)
+  [PASS] C1b same at beta = +-0.5 (< 2e-3 dex; numerics only, same projection kernel)   (9.2e-05)
+  [PASS] C7 headline (law, beta=+0.5, canonical) unchanged to 1e-5 dex when the quadrature order/panels are doubled   (+0.0737875 vs +0.0737875)
+
+== MAIN: constant beta at the published gamma_i (JAM-calibrated masses, N=16) ==
+  beta    | law canonical             | law alt        | rule canonical            | rule alt
+  -0.50   | +0.0857 +- 0.0234 (3.66s) | 3.32s | +0.0360 +- 0.0175 (+2.06s) | +2.11s
+  -0.25   | +0.0842 +- 0.0231 (3.64s) | 3.28s | +0.0324 +- 0.0176 (+1.84s) | +1.91s
+  +0.00   | +0.0821 +- 0.0228 (3.61s) | 3.22s | +0.0276 +- 0.0178 (+1.55s) | +1.64s
+  +0.25   | +0.0789 +- 0.0223 (3.54s) | 3.12s | +0.0209 +- 0.0184 (+1.14s) | +1.26s
+  +0.50   | +0.0738 +- 0.0218 (3.38s) | 2.93s | +0.0110 +- 0.0196 (+0.56s) | +0.69s
+  +0.75   | +0.0640 +- 0.0214 (2.99s) | 2.48s | -0.0047 +- 0.0223 (-0.21s) | -0.11s   [beyond the bracket]
+  +0.90   | +0.0525 +- 0.0217 (2.42s) | 1.88s | -0.0193 +- 0.0254 (-0.76s) | -0.70s   [beyond the bracket]
+  sigma differences (own - CFG113 README table), law / rule, canonical then alt:
+    law  canonical: -0.50:+0.000  -0.25:+0.001  +0.00:+0.006  +0.25:+0.005  +0.50:+0.002  +0.75:-0.003  +0.90:-0.036
+    law  alt      : -0.50:+0.006  -0.25:+0.000  +0.00:+0.004  +0.25:+0.005  +0.50:+0.000  +0.75:-0.002  +0.90:-0.029
+    rule canonical: -0.50:-0.001  -0.25:+0.003  +0.00:-0.002  +0.25:+0.006  +0.50:-0.000  +0.75:-0.002  +0.90:-0.012
+    rule alt      : -0.50:+0.006  -0.25:+0.004  +0.00:+0.005  +0.25:-0.003  +0.50:+0.003  +0.75:-0.007  +0.90:-0.024
+  law minimum over the bracket: canonical 3.382s at beta=+0.5, alt 2.930s
+  [PASS] R1 law minimum over the bracket = 3.38 s (canonical) and 2.93 s (alt)   (3.382, 2.930)
+  [PASS] R2 rule at beta=+0.5 / -0.5 = 0.56 / 2.06 s canonical (alt 0.69 / 2.10)   (0.560 / 2.059; alt 0.693 / 2.106)
+  [PASS] H1 law's offset exceeds 2 sigma at every beta in the bracket on both footings   (min canonical 3.38, alt 2.93)
+
+== A1/R3: the single constant beta nulling the law's mean ==
+  canonical law : no sign change on [-1, 0.99]: mean +0.0877 (beta=-1) ... +0.0409 (beta=0.99)
+  canonical rule: mean nulled at beta = +0.687
+  alt       law : no sign change on [-1, 0.99]: mean +0.0794 (beta=-1) ... +0.0287 (beta=0.99)
+  alt       rule: mean nulled at beta = +0.721
+
+== A2: Osipkov-Merritt beta(r) = r^2/(r^2+ra^2), ra = k * R_e ==
+  ra =  1 Re : can: law +0.0091 (0.40s) rule -0.0613 (-2.20s) | alt: law -0.0029 (-0.13s) rule -0.0591 (-2.25s)
+  ra =  2 Re : can: law -0.0126 (-0.56s) rule -0.0808 (-3.03s) | alt: law -0.0242 (-1.08s) rule -0.0787 (-3.12s)
+  ra =  3 Re : can: law -0.0167 (-0.77s) rule -0.0832 (-3.29s) | alt: law -0.0280 (-1.29s) rule -0.0811 (-3.39s)
+  ra =  5 Re : can: law -0.0082 (-0.39s) rule -0.0719 (-3.12s) | alt: law -0.0191 (-0.91s) rule -0.0700 (-3.21s)
+  ra = 10 Re : can: law +0.0192 (0.93s) rule -0.0404 (-2.01s) | alt: law +0.0090 (0.44s) rule -0.0387 (-2.01s)
+  (a mixture: OM ra=3Re with beta=const 0.5 for comparison is in the main table at beta=+0.5)
+
+== A3: slope-radius dependence  nu = r^-gamma_i [1+(r/5Re)^2]^(-Delta/2) ==
+  Delta -0.5 beta +0.0: can: law +0.0607 (2.71s) rule +0.0023 (+0.13s) | alt: law +0.0510 (2.30s) rule +0.0041 (+0.23s)
+  Delta -0.5 beta +0.5: can: law +0.0236 (1.12s) rule -0.0435 (-2.06s) | alt: law +0.0127 (0.61s) rule -0.0412 (-2.06s)
+  Delta +0.5 beta +0.0: can: law +0.0992 (4.30s) rule +0.0476 (+2.67s) | alt: law +0.0903 (3.94s) rule +0.0487 (+2.74s)
+  Delta +0.5 beta +0.5: can: law +0.1087 (4.85s) rule +0.0500 (+2.62s) | alt: law +0.0990 (4.44s) rule +0.0517 (+2.78s)
+  Delta +1.0 beta +0.0: can: law +0.1137 (4.87s) rule +0.0643 (+3.57s) | alt: law +0.1050 (4.53s) rule +0.0652 (+3.62s)
+  Delta +1.0 beta +0.5: can: law +0.1356 (5.92s) rule +0.0802 (+4.22s) | alt: law +0.1263 (5.55s) rule +0.0815 (+4.38s)
+
+== A4: tracer slope reading  gamma_3D = gamma_i + 1 (if the published slope were the projected one), and gamma_i -1 ==
+  shift +1 beta -0.5: can: law +0.1252 (5.30s) rule +0.0816 (+4.66s) | alt: law +0.1172 (5.00s) rule +0.0821 (+4.62s)
+  shift +1 beta +0.0: can: law +0.1441 (6.21s) rule +0.0975 (+5.58s) | alt: law +0.1358 (5.89s) rule +0.0982 (+5.59s)
+  shift +1 beta +0.5: can: law +0.1801 (7.97s) rule +0.1283 (+7.20s) | alt: law +0.1712 (7.62s) rule +0.1294 (+7.34s)
+  shift -1 beta -0.5: can: law +0.0457 (1.95s) rule -0.0153 (-0.84s) | alt: law +0.0355 (1.53s) rule -0.0135 (-0.75s)
+  shift -1 beta +0.0: can: law -0.0045 (-0.21s) rule -0.0707 (-3.59s) | alt: law -0.0156 (-0.71s) rule -0.0686 (-3.63s)
+  shift -1 beta +0.5: can: law -0.1278 (-5.92s) rule -0.1949 (-7.53s) | alt: law -0.1404 (-6.47s) rule -0.1935 (-7.95s)
+
+== A5: aperture convention: bin-median point evaluation vs member-averaged s_los^2 ==
+  beta -0.5: can: law +0.0855 (3.66s; point 3.66s) rule +0.0352 (+2.02s; point +2.06s) | alt: law +0.0769 (3.32s; point 3.32s) rule +0.0363 (+2.08s; point +2.11s)
+  beta +0.0: can: law +0.0818 (3.60s; point 3.61s) rule +0.0269 (+1.51s; point +1.55s) | alt: law +0.0727 (3.22s; point 3.22s) rule +0.0284 (+1.62s; point +1.64s)
+  beta +0.5: can: law +0.0734 (3.37s; point 3.38s) rule +0.0105 (+0.54s; point +0.56s) | alt: law +0.0634 (2.92s; point 2.93s) rule +0.0127 (+0.67s; point +0.69s)
+
+== A6: per galaxy (canonical): gamma_i, logM*, Re, offsets at beta = -0.5, 0, +0.5 and the change -0.5 -> +0.5 ==
+  NGC   gamma  logM*   Re_kpc |  law(-.5) law(0) law(+.5) d_law | rule(-.5) rule(0) rule(+.5) d_rule
+  4649  2.50  11.60    6.34 | +0.100 +0.089 +0.065 -0.0352 | -0.039 -0.066 -0.119 -0.0794
+  4486  2.49  11.62    7.01 | +0.249 +0.237 +0.210 -0.0393 | +0.100 +0.076 +0.028 -0.0728
+  4374  2.56  11.51   12.47 | +0.179 +0.167 +0.140 -0.0391 | +0.044 +0.020 -0.026 -0.0694
+  4365  2.56  11.51    8.71 | +0.186 +0.174 +0.148 -0.0374 | +0.111 +0.093 +0.057 -0.0540
+  5846  2.59  11.46   10.54 | +0.194 +0.183 +0.159 -0.0352 | +0.083 +0.065 +0.030 -0.0530
+  3607  2.63  11.39    5.19 | +0.009 +0.002 -0.014 -0.0232 | -0.027 -0.039 -0.065 -0.0376
+  2768  2.75  11.21    6.37 | -0.018 -0.022 -0.031 -0.0131 | -0.069 -0.081 -0.103 -0.0338
+  4526  2.72  11.26    2.58 | +0.060 +0.058 +0.051 -0.0083 | +0.038 +0.032 +0.021 -0.0168
+  4697  2.79  11.15    5.81 | +0.084 +0.079 +0.070 -0.0141 | +0.084 +0.079 +0.070 -0.0141
+  4494  2.87  11.02    4.23 | -0.110 -0.112 -0.116 -0.0054 | -0.110 -0.112 -0.116 -0.0054
+  4459  2.89  10.98    3.75 | -0.031 -0.031 -0.032 -0.0017 | -0.031 -0.031 -0.032 -0.0017
+  1023  2.89  10.99    2.58 | +0.093 +0.093 +0.093 +0.0002 | +0.093 +0.093 +0.093 +0.0002
+  4473  2.91  10.96    2.23 | +0.053 +0.055 +0.057 +0.0043 | +0.053 +0.055 +0.057 +0.0043
+  4278  2.91  10.95    2.14 | +0.121 +0.123 +0.127 +0.0061 | +0.121 +0.123 +0.127 +0.0061
+  7457  3.43  10.13    2.13 | +0.132 +0.143 +0.164 +0.0319 | +0.055 +0.057 +0.063 +0.0086
+  3377  3.20  10.50    2.40 | +0.071 +0.078 +0.090 +0.0190 | +0.071 +0.078 +0.090 +0.0190
+  mean d_rule -0.0250, mean d_law -0.0119; corr(d, gamma): rule +0.86, law +0.97
+  galaxies with gamma_i > 3 (beta-sensitivity of opposite sign): [3377, 7457]
+  leave-one-out on the rule's sigma at beta = -0.5 / +0.5 (canonical):
+    without NGC1023 : +1.76 / +0.27   (law 3.41 / 3.11)
+    without NGC2768 : +2.51 / +0.96   (law 3.87 / 3.66)
+    without NGC3377 : +1.82 / +0.28   (law 3.47 / 3.12)
+    without NGC3607 : +2.22 / +0.79   (law 3.72 / 3.55)
+    without NGC4278 : +1.72 / +0.17   (law 3.35 / 3.05)
+    without NGC4365 : +1.73 / +0.38   (law 3.29 / 3.03)
+    without NGC4374 : +1.90 / +0.64   (law 3.29 / 3.04)
+    without NGC4459 : +2.24 / +0.67   (law 3.96 / 3.66)
+    without NGC4473 : +1.87 / +0.38   (law 3.53 / 3.21)
+    without NGC4486 : +1.75 / +0.47   (law 3.38 / 3.05)
+    without NGC4494 : +2.95 / +1.03   (law 4.76 / 4.55)
+    without NGC4526 : +1.92 / +0.49   (law 3.50 / 3.23)
+    without NGC4649 : +2.29 / +1.04   (law 3.39 / 3.19)
+    without NGC4697 : +1.78 / +0.34   (law 3.43 / 3.18)
+    without NGC5846 : +1.79 / +0.46   (law 3.30 / 3.02)
+    without NGC7457 : +1.86 / +0.36   (law 3.33 / 3.02)
+  the four group/cluster centrals removed (M87, 4365, 4374, 5846), beta +0.5 canonical N=12: law +0.0436 +- 0.0226 (+1.93s) | rule +0.0072 +- 0.0259 (+0.28s)
+
+== A7: gamma = 3 for every galaxy (CFG55 baseline); SLUGGS population masses; four centrals removed ==
+  beta -0.5: can: gamma=3 law 3.87s rule +2.66s | pop.masses law 2.45s rule -0.23s | alt: gamma=3 law 3.55s rule +2.65s | pop.masses law 1.91s rule -0.47s
+  beta +0.5: can: gamma=3 law 4.20s rule +2.40s | pop.masses law 2.24s rule -1.31s | alt: gamma=3 law 3.82s rule +2.49s | pop.masses law 1.60s rule -1.53s
+
+FAILED CHECKS (0): 

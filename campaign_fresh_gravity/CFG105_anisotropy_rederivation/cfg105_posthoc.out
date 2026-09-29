@@ -1,0 +1,62 @@
+CFG105  MUTATE=0 STAGE=controls  spec sha256 43ec64fc51c3d457  repo=zimmerman-formula
+
+== C2 isothermal sphere, constant beta: closed forms ==
+  [PASS] C2 isothermal: s_r^2 = v_c^2/(gamma-2beta) and s_los^2/v_c^2 = (gamma-beta(gamma-1))/(gamma(gamma-2beta)), 12 (gamma,beta) x 3 radii   (max rel err s_r^2 6.9e-13, s_los^2 6.9e-13)
+
+== C3 power-law halo g = A r^-p (r in kpc) ==
+  [PASS] C3 power-law halo p=0,1,2, 4 (gamma,beta): s_r^2 and Gamma-function s_los^2 closed forms   (max rel err s_r^2 2.1e-09, s_los^2 4.8e-06)
+  [PASS] C3b Kepler point mass, gamma=3, beta=0: s_r^2 = GM/(4r)   (9.1e-15)
+
+== sample ==
+  galaxies 27, GC RVs 3440, dispersion sample 19, JAM sample 16: NGC1023, NGC2768, NGC3377, NGC3607, NGC4278, NGC4365, NGC4374, NGC4459, NGC4473, NGC4486, NGC4494, NGC4526, NGC4649, NGC4697, NGC5846, NGC7457
+  [PASS] C6 sample = 16, the rest exactly NGC 1400/1407/3115 outside ATLAS3D (and 27/3440/19 catalogue counts)   (16, [1400, 1407, 3115], 27/3440/19)
+  [PASS] C5 Alabi+2017 relation reproduces the 18 Table-1 gammas quoted in CFG111's frozen file to 0.01   (max |diff| 0.0050)
+  gamma_i: 1023:2.89, 2768:2.75, 3377:3.20, 3607:2.63, 4278:2.91, 4365:2.56, 4374:2.56, 4459:2.89, 4473:2.91, 4486:2.49, 4494:2.87, 4526:2.72, 4649:2.50, 4697:2.79, 5846:2.59, 7457:3.43
+  calibrations done in 0.3s
+
+== C4 Jeans-equation residual in the real potentials ==
+  [PASS] C4 Jeans residual |d(nu s_r^2)/dln r + 2 beta nu s_r^2 + nu g r|/|nu g r| < 1e-4 (2 galaxies x law/rule x 5 profiles x 3 radii)   (max 4.3e-06 at NGC7457 law OM 3Re r=30.0)
+
+== C0 own baseline (own solver) at gamma = 3, beta = 0 vs CFG76's headline ==
+  canonical: law +0.0970 +- 0.0243 (+3.99s) | rule +0.0457 +- 0.0177 (+2.58s)
+  alt      : law +0.0881 +- 0.0241 (+3.65s) | rule +0.0467 +- 0.0179 (+2.60s)
+  [PASS] C0 baseline reproduces CFG76 (law +0.09698+-0.02431, rule +0.04564+-0.01771 canonical; alt ~+0.088/+0.047)   (canonical law +0.09701+-0.02431, rule +0.04566+-0.01771)
+
+== C1 own solver vs CFG76's solver (copied) at the published gamma_i ==
+  beta +0.0: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 3.04e-05 dex
+  beta -0.5: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 5.11e-05 dex
+  beta +0.5: max per-galaxy |own - CFG76 solver| over both footings, law and rule = 9.16e-05 dex
+  [PASS] C1 isotropic limit: own solver == CFG76 estimator at the published slopes (max per-galaxy diff < 1e-3 dex)   (3.0e-05)
+  [PASS] C1b same at beta = +-0.5 (< 2e-3 dex; numerics only, same projection kernel)   (9.2e-05)
+  [PASS] C7 headline (law, beta=+0.5, canonical) unchanged to 1e-5 dex when the quadrature order/panels are doubled   (+0.0737875 vs +0.0737875)
+
+== P0 outer-bin projected radii in units of R_e (bins entering the offset) ==
+  N bins 55; R/Re percentiles 10/50/90/max: 1.4 3.1 8.0 15.5
+
+== P1 saturating OM: beta(r) = bm r^2/(r^2+ra^2), canonical | alt ==
+  bm 0.5 ra  1 Re: law +0.0669 (+3.05s) rule +0.0048 (+0.24s) | law +0.0569 (+2.60s) rule +0.0068 (+0.36s)
+  bm 0.5 ra  3 Re: law +0.0580 (+2.62s) rule -0.0023 (-0.12s) | law +0.0482 (+2.19s) rule -0.0004 (-0.02s)
+  bm 0.5 ra 10 Re: law +0.0647 (+2.91s) rule +0.0074 (+0.40s) | law +0.0552 (+2.50s) rule +0.0090 (+0.51s)
+  bm 0.75 ra  1 Re: law +0.0494 (+2.28s) rule -0.0181 (-0.81s) | law +0.0386 (+1.79s) rule -0.0156 (-0.74s)
+  bm 0.75 ra  3 Re: law +0.0335 (+1.54s) rule -0.0309 (-1.45s) | law +0.0231 (+1.07s) rule -0.0286 (-1.41s)
+  bm 0.75 ra 10 Re: law +0.0491 (+2.27s) rule -0.0100 (-0.53s) | law +0.0394 (+1.83s) rule -0.0082 (-0.45s)
+
+== P2 outer tracer cutoff  nu = r^-gamma_i exp[-(r/rc)^2], rc = 20 Re / 50 Re / none ==
+  beta=0     rc=20Re : law +0.1025 (+4.28s) rule +0.0518 (+2.75s) | law +0.0937 (+3.94s) rule +0.0527 (+2.82s)
+  beta=0     rc=50Re : law +0.0880 (+3.79s) rule +0.0346 (+1.92s) | law +0.0789 (+3.43s) rule +0.0359 (+2.00s)
+  beta=0     rc=none : law +0.0821 (+3.61s) rule +0.0276 (+1.55s) | law +0.0729 (+3.22s) rule +0.0290 (+1.64s)
+  beta=+0.5  rc=20Re : law +0.1205 (+4.98s) rule +0.0638 (+3.09s) | law +0.1110 (+4.61s) rule +0.0652 (+3.23s)
+  beta=+0.5  rc=50Re : law +0.0907 (+3.97s) rule +0.0297 (+1.51s) | law +0.0808 (+3.56s) rule +0.0316 (+1.65s)
+  beta=+0.5  rc=none : law +0.0738 (+3.38s) rule +0.0110 (+0.56s) | law +0.0636 (+2.93s) rule +0.0130 (+0.69s)
+  beta=+0.9  rc=20Re : law +0.1671 (+6.52s) rule +0.1023 (+4.15s) | law +0.1566 (+6.14s) rule +0.1044 (+4.41s)
+  beta=+0.9  rc=50Re : law +0.1068 (+4.56s) rule +0.0357 (+1.49s) | law +0.0957 (+4.10s) rule +0.0384 (+1.69s)
+  beta=+0.9  rc=none : law +0.0525 (+2.42s) rule -0.0193 (-0.76s) | law +0.0408 (+1.88s) rule -0.0167 (-0.70s)
+  OM ra=3Re  rc=20Re : law +0.1020 (+3.66s) rule +0.0417 (+1.59s) | law +0.0921 (+3.32s) rule +0.0435 (+1.70s)
+  OM ra=3Re  rc=50Re : law +0.0466 (+1.88s) rule -0.0204 (-0.84s) | law +0.0361 (+1.47s) rule -0.0179 (-0.77s)
+  OM ra=3Re  rc=none : law -0.0167 (-0.77s) rule -0.0832 (-3.29s) | law -0.0280 (-1.29s) rule -0.0811 (-3.39s)
+  OM ra=10Re rc=20Re : law +0.0941 (+3.76s) rule +0.0402 (+1.94s) | law +0.0850 (+3.42s) rule +0.0415 (+2.03s)
+  OM ra=10Re rc=50Re : law +0.0608 (+2.63s) rule +0.0018 (+0.09s) | law +0.0512 (+2.23s) rule +0.0036 (+0.19s)
+  OM ra=10Re rc=none : law +0.0192 (+0.93s) rule -0.0404 (-2.01s) | law +0.0090 (+0.44s) rule -0.0387 (-2.01s)
+
+== P3 rule with the nulling beta: leave rule ==
+done
