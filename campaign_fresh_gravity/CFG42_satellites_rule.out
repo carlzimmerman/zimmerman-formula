@@ -1,0 +1,93 @@
+CFG42 -- B's derived cold-mass rule on the DWARFS: does the leftover collapse debris close the ultra-faint failure (CFG28-29: 3.5-3.8 sigma),
+or does it over-predict the classical dwarfs?
+
+WHY.  The rule (CFG35-39) says the cold fluid is conserved and keeps its collapse mass: dark = phantom + leftover collapse debris (an NFW shape
+carrying f_ex (1 - f_b) M_collapse, f_ex = max(0, 1 - M_phantom,edge / [(1 - f_b) M_collapse])).  CFG36-41 tested it where a MEASURED collapse mass
+exists (weak lensing, log M_* > 10.2).  It has never been applied to the satellites, where the largest standing failure of B sits: the Milky Way's
+ultra-faints, whose measured dispersions are 0.30-0.33 dex above the isolated law of their stars (3.5-3.8 sigma, CFG28).  An NFW cusp has a property
+that makes the answer nearly independent of the (unmeasured) halo mass: inside a small radius the enclosed mass scales only as M_halo^~0.13.  So the
+rule makes a nearly parameter-free prediction for the ultra-faints.  The classical dwarfs are the other side of the same coin: with a full NFW
+added to the law their dispersions could be over-predicted (the cusp problem).
+
+THE METHOD (declared before this script's first run).  CFG36's machinery (exec'd read-only): the conservation form at x_e = 0.40, the Dutton-Maccio
+NFW, nu_mono, both footings.  Collapse mass: the Moster+2013 stellar-to-halo relation of CFG35 (h48's halo_mass), at the satellite's M_* = Upsilon_V L_V
+(Upsilon_V = 2, FG001's).  THE TRAP, declared: that function is CLAMPED at M_halo = 1e9 M_sun for M_* <~ 1.6e4 (its grid floor), so all ultra-faints
+below that mass get 1e9; it is an extrapolation, not a measurement.  Sensitivity: the collapse mass of every satellite with M_* < 1e5 set to 1e8, 3e8,
+1e9, 3e9, 1e10 (R1).  Estimator: FG001's (committed): sigma^2 = g(r) r / 3 at r = (4/3) r_half with the half of the baryons enclosed; the rule
+adds G f_ex (1 - f_b) M_NFW(<r) / r^2 to g.  Baryons: M_* (+ current gas; for the classical satellites also the CFG18 infall gas, here the
+deterministic expectation: the mean of the k = 5 nearest field-dwarf gas ratios, non-detections as zero).  Samples: FG001's MW ultra-faints (31
+resolved, plus the 9 upper limits by Kaplan-Meier as in CFG28), MW classical dSphs (14), M31 Collins+13 (14), M31 LVD (34).  Offset = log10(sigma_obs /
+sigma_pred).  Errors: the sample's error of the median (1.2533 rms / sqrt n; the bootstrap for the Kaplan-Meier median) plus a floor in quadrature: Upsilon_V
+1 to 4 (half the shift of the median) and the collapse-mass floor variants above (half the range).
+
+PRE-DECLARED
+  C1  CONTROL  FG001's committed isolated medians (current stars) are reproduced for the four samples, both footings.
+  C2  CONTROL  the rule is a strict addition: for f_ex = 0 the prediction equals FG001's, and the NFW piece is non-negative and monotone in radius.
+  H1  [HEADLINE; MUTATE must fail] THE RULE CLOSES THE ULTRA-FAINT FAILURE: the Kaplan-Meier median offset (limits included), with the floor, is
+      within 2 sigma of zero on both footings (the bare law's is +0.325 / +0.304, 3.8 / 3.5 sigma).
+  H2  THE RULE DOES NOT OVER-PREDICT THE CLASSICAL SATELLITES: for the MW classical dSphs, M31 Collins+13 and M31 LVD, the median offset is not
+      below -2 sigma on either footing (the floor included).
+  H3  THE RULE BITES: f_ex > 0.5 for at least 80% of the ultra-faints.
+  H4  THE RULE LEAVES SPARC DWARFS ALONE: over SPARC galaxies with log M_* < 10 (M_* = 0.61 L_3.6, R_HI, point mass), the rule raises v_c at R_HI by
+      < 0.03 dex in at least 90% (CFG36's criterion, extended below the measured table's range where the Moster relation is used).
+  R1-R3 (reported): the collapse-mass floor variants; the halo mass that would zero the ultra-faint offset (against Moster's); per-sample offsets and
+      f_ex.
+  READING (declared): H1, H2, H4 PASS -> B's derived rule closes B's largest failure without breaking the dwarfs; B adopts it everywhere.
+      H1 PASS and H2 or H4 FAIL -> the rule fixes the ultra-faints by adding a cusp that the classical dwarfs reject (a double count): B needs a rule
+      that switches off the debris where the phantom already supplies the mass.  H1 FAIL -> the debris is not enough.  H3 FAIL -> the ultra-faints do not test it.
+MUTATE=1: every collapse mass divided by 100 -- H1 must FAIL (rc = 1).
+CHANGED AFTER THE FIRST MAIN RUN, BEFORE ANY INTERPRETATION (disclosed): control C2 first failed on a bug of mine -- its f_ex = 0 override (floor_mh) only reached
+  satellites with M_* < 1e5, so the three classical dSphs it tested kept their rule.  The override now applies to every satellite (mh_all); the control's
+  tolerance is unchanged.  No hypothesis or threshold changed.
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: FG001's committed isolated medians (current stars) reproduced for the four samples, both footings
+         max |d| 5.6e-17
+  [PASS] C2 CONTROL: the rule is a strict addition (f_ex = 0 reproduces FG001's prediction); the NFW piece is non-negative and monotone in radius
+         f_ex=0 identical: True; NFW(<r) at 0.1/0.3/1/3 kpc for 1e10: 2.37e+06, 1.98e+07, 1.74e+08, 9.37e+08
+
+======================================================================================================================
+H1 / H3  THE ULTRA-FAINTS
+======================================================================================================================
+    canonical law : KM median +0.325 (resolved-only median +0.355) +- 0.086 (bootstrap 0.038, Upsilon 0.077, collapse-mass floor 0.000) -> +3.77 sigma
+    canonical rule: KM median -0.059 (resolved-only median -0.027) +- 0.143 (bootstrap 0.053, Upsilon 0.002, collapse-mass floor 0.133) -> -0.41 sigma
+    alt       law : KM median +0.304 (resolved-only median +0.334) +- 0.086 (bootstrap 0.038, Upsilon 0.077, collapse-mass floor 0.000) -> +3.55 sigma
+    alt       rule: KM median -0.059 (resolved-only median -0.030) +- 0.146 (bootstrap 0.053, Upsilon 0.002, collapse-mass floor 0.136) -> -0.41 sigma
+  [PASS] H1 [HEADLINE] THE RULE CLOSES THE ULTRA-FAINT FAILURE: KM median (limits included) within 2 sigma of zero, both footings
+         canonical: law +0.325 (+3.77), rule -0.059 (-0.41); alt: law +0.304 (+3.55), rule -0.059 (-0.41)
+  [PASS] H3 THE RULE BITES: f_ex > 0.5 for at least 80% of the ultra-faints
+         100% (median f_ex 0.96)
+
+======================================================================================================================
+H2  THE CLASSICAL SATELLITES
+======================================================================================================================
+    MW classical dSph  canonical law : median +0.027 +- 0.085 -> +0.32 sigma
+    MW classical dSph  canonical rule: median -0.118 +- 0.067 -> -1.78 sigma; median f_ex 0.59
+    MW classical dSph  alt       law : median +0.008 +- 0.084 -> +0.09 sigma
+    MW classical dSph  alt       rule: median -0.123 +- 0.065 -> -1.90 sigma; median f_ex 0.53
+    M31 Collins+2013   canonical law : median +0.064 +- 0.082 -> +0.78 sigma
+    M31 Collins+2013   canonical rule: median -0.024 +- 0.108 -> -0.22 sigma; median f_ex 0.56
+    M31 Collins+2013   alt       law : median +0.045 +- 0.082 -> +0.55 sigma
+    M31 Collins+2013   alt       rule: median -0.016 +- 0.105 -> -0.15 sigma; median f_ex 0.49
+    M31 LVD            canonical law : median +0.044 +- 0.072 -> +0.60 sigma
+    M31 LVD            canonical rule: median -0.107 +- 0.040 -> -2.67 sigma; median f_ex 0.59
+    M31 LVD            alt       law : median +0.031 +- 0.073 -> +0.42 sigma
+    M31 LVD            alt       rule: median -0.109 +- 0.041 -> -2.66 sigma; median f_ex 0.53
+  [FAIL] H2 THE RULE DOES NOT OVER-PREDICT THE CLASSICAL SATELLITES: median offset not below -2 sigma (MW classical, Collins+13, M31 LVD; both footings)
+         MW classical dSph can -0.118 (-1.78); MW classical dSph alt -0.123 (-1.90); M31 Collins+2013 can -0.024 (-0.22); M31 Collins+2013 alt -0.016 (-0.15); M31 LVD can -0.107 (-2.67); M31 LVD alt -0.109 (-2.66)
+
+======================================================================================================================
+H4  SPARC DWARFS
+======================================================================================================================
+  [PASS] H4 THE RULE LEAVES SPARC DWARFS ALONE: v_c at R_HI raised by < 0.03 dex in >= 90% of SPARC galaxies with log M_* < 10
+         110 galaxies; f_ex > 0 in 0; d log v < 0.03 in 100%; max +0.000; largest: CamB (log M_* 7.7, f_ex 0.00, +0.000), DDO064 (log M_* 8.0, f_ex 0.00, +0.000), DDO154 (log M_* 7.5, f_ex 0.00, +0.000), DDO161 (log M_* 8.5, f_ex 0.00, +0.000)
+  [PASS] (reported) R1 (reported) the ultra-faint KM median offset against the collapse mass set for every satellite with M_* < 1e5 (canonical)
+         3e+07: +0.279; 2e+08: +0.052; 1e+09: -0.059; 6e+09: -0.142; 3e+10: -0.208; 2e+11: -0.279; 1e+12: -0.350; zero near 3.0e+08
+  [PASS] (reported) R2 (reported) the Moster relation's collapse mass for the ultra-faints (clamped at 1e9)
+         median M_h 1.0e+09; log M_* range 2.7-5.1
+
+    READING (declared): the rule fixes the ultra-faints by adding a cusp that the dwarfs reject (a double count)
+
+  7/8 checks pass; load-bearing failures: 1   (3 s)

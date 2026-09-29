@@ -1,0 +1,203 @@
+{
+ "slug": "CFG42_satellites_rule",
+ "summary": {
+  "n_checks": 8,
+  "n_pass": 7,
+  "load_bearing_failures": 1,
+  "failed": [
+   "H2 THE RULE DOES NOT OVER-PREDICT THE CLASSICAL SATELLITES: median offset not below -2 sig"
+  ],
+  "seconds": 3.0
+ },
+ "checks": [
+  {
+   "name": "C1 CONTROL: FG001's committed isolated medians (current stars) reproduced for the four samples, both footings",
+   "detail": "max |d| 5.6e-17",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: the rule is a strict addition (f_ex = 0 reproduces FG001's prediction); the NFW piece is non-negative and monotone in radius",
+   "detail": "f_ex=0 identical: True; NFW(<r) at 0.1/0.3/1/3 kpc for 1e10: 2.37e+06, 1.98e+07, 1.74e+08, 9.37e+08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H1 [HEADLINE] THE RULE CLOSES THE ULTRA-FAINT FAILURE: KM median (limits included) within 2 sigma of zero, both footings",
+   "detail": "canonical: law +0.325 (+3.77), rule -0.059 (-0.41); alt: law +0.304 (+3.55), rule -0.059 (-0.41)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H3 THE RULE BITES: f_ex > 0.5 for at least 80% of the ultra-faints",
+   "detail": "100% (median f_ex 0.96)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "H2 THE RULE DOES NOT OVER-PREDICT THE CLASSICAL SATELLITES: median offset not below -2 sigma (MW classical, Collins+13, M31 LVD; both footings)",
+   "detail": "MW classical dSph can -0.118 (-1.78); MW classical dSph alt -0.123 (-1.90); M31 Collins+2013 can -0.024 (-0.22); M31 Collins+2013 alt -0.016 (-0.15); M31 LVD can -0.107 (-2.67); M31 LVD alt -0.109 (-2.66)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "H4 THE RULE LEAVES SPARC DWARFS ALONE: v_c at R_HI raised by < 0.03 dex in >= 90% of SPARC galaxies with log M_* < 10",
+   "detail": "110 galaxies; f_ex > 0 in 0; d log v < 0.03 in 100%; max +0.000; largest: CamB (log M_* 7.7, f_ex 0.00, +0.000), DDO064 (log M_* 8.0, f_ex 0.00, +0.000), DDO154 (log M_* 7.5, f_ex 0.00, +0.000), DDO161 (log M_* 8.5, f_ex 0.00, +0.000)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 (reported) the ultra-faint KM median offset against the collapse mass set for every satellite with M_* < 1e5 (canonical)",
+   "detail": "3e+07: +0.279; 2e+08: +0.052; 1e+09: -0.059; 6e+09: -0.142; 3e+10: -0.208; 2e+11: -0.279; 1e+12: -0.350; zero near 3.0e+08",
+   "ok": true,
+   "load_bearing": false
+  },
+  {
+   "name": "R2 (reported) the Moster relation's collapse mass for the ultra-faints (clamped at 1e9)",
+   "detail": "median M_h 1.0e+09; log M_* range 2.7-5.1",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "UF": {
+   "canonical|law": {
+    "km": 0.32450745070728154,
+    "resolved_median": 0.3545388256738597,
+    "err": 0.03826787693131348,
+    "f_ups": 0.07699068255294717,
+    "f_mh": 0.0,
+    "tot": 0.08597671548040689,
+    "z": 3.7743643600950665,
+    "floors": [
+     0.32450745070728154
+    ]
+   },
+   "canonical|rule": {
+    "km": -0.05857153145645302,
+    "resolved_median": -0.0274636670081433,
+    "err": 0.052967808483771806,
+    "f_ups": 0.0020753626717651477,
+    "f_mh": 0.132887812571222,
+    "tot": 0.14307014571795584,
+    "z": -0.40939031104308204,
+    "floors": [
+     0.10134623654355679,
+     -0.0050267210411585285,
+     -0.05857153145645302,
+     -0.11586577860210176,
+     -0.1644293885988872
+    ]
+   },
+   "alt|law": {
+    "km": 0.3044977656083742,
+    "resolved_median": 0.33447319576297657,
+    "err": 0.03825419069679346,
+    "f_ups": 0.0768360540736879,
+    "f_mh": 0.0,
+    "tot": 0.08583217526942521,
+    "z": 3.547594647957631,
+    "floors": [
+     0.3044977656083742
+    ]
+   },
+   "alt|rule": {
+    "km": -0.0591107149831875,
+    "resolved_median": -0.02954924166548484,
+    "err": 0.052833854078214504,
+    "f_ups": 0.0020040128645844937,
+    "f_mh": 0.13564506607742108,
+    "tot": 0.14558508218724683,
+    "z": -0.40602178530325794,
+    "floors": [
+     0.10474615452700385,
+     -0.00490873765395762,
+     -0.0591107149831875,
+     -0.11687118671405397,
+     -0.16654397762783832
+    ]
+   }
+  },
+  "CL": {
+   "cls|canonical|law": {
+    "med": 0.027005451155909445,
+    "tot": 0.08468323355219205,
+    "z": 0.31889962183913795,
+    "fex": 0.593634910528928
+   },
+   "cls|canonical|rule": {
+    "med": -0.11832586436665873,
+    "tot": 0.0665859661969647,
+    "z": -1.7770390838310397,
+    "fex": 0.593634910528928
+   },
+   "cls|alt|law": {
+    "med": 0.007595534013544351,
+    "tot": 0.08432687024762792,
+    "z": 0.09007252363617764,
+    "fex": 0.5315919123505188
+   },
+   "cls|alt|rule": {
+    "med": -0.12326015660069237,
+    "tot": 0.06474801206135648,
+    "z": -1.9036902088034553,
+    "fex": 0.5315919123505188
+   },
+   "col|canonical|law": {
+    "med": 0.06402851827101053,
+    "tot": 0.08245344615902239,
+    "z": 0.7765414455512635,
+    "fex": 0.5565643179239255
+   },
+   "col|canonical|rule": {
+    "med": -0.024037756570714306,
+    "tot": 0.1082383079506753,
+    "z": -0.222081784405466,
+    "fex": 0.5565643179239255
+   },
+   "col|alt|law": {
+    "med": 0.045033027986457946,
+    "tot": 0.08232358350146142,
+    "z": 0.5470246322022475,
+    "fex": 0.48885982999894373
+   },
+   "col|alt|rule": {
+    "med": -0.016058982321536443,
+    "tot": 0.10541482178654021,
+    "z": -0.15234083831261494,
+    "fex": 0.48885982999894373
+   },
+   "m31|canonical|law": {
+    "med": 0.04351096192934267,
+    "tot": 0.07240587544045785,
+    "z": 0.6009313700671076,
+    "fex": 0.5900419226811932
+   },
+   "m31|canonical|rule": {
+    "med": -0.10686686437501049,
+    "tot": 0.04006284871198656,
+    "z": -2.667480416664344,
+    "fex": 0.5900419226811932
+   },
+   "m31|alt|law": {
+    "med": 0.030762526541358283,
+    "tot": 0.07344335390454713,
+    "z": 0.41886058990905733,
+    "fex": 0.5274534122141826
+   },
+   "m31|alt|rule": {
+    "med": -0.10863775394943305,
+    "tot": 0.04087157060344307,
+    "z": -2.6580273854286696,
+    "fex": 0.5274534122141826
+   }
+  },
+  "H4": {
+   "n": 110,
+   "nfex": 0,
+   "max": 0.0,
+   "frac": 1.0
+  },
+  "reading": "the rule fixes the ultra-faints by adding a cusp that the dwarfs reject (a double count)"
+ }
+}
