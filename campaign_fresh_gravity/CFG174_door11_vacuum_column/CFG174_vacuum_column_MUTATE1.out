@@ -1,0 +1,43 @@
+CFG174 (MUTATE=1): t0 = 1.000 Gyr; rho_L = 5.8424e-27 kg/m3; H0 = 67.66, Om = 0.3111
+
+== Q1: the law's inner column vs the vacuum column swept at c over t0 ==
+  M_c(<r) for r << r_M (P2 point mass): a0*r**2/(2*G)  (mass-independent: True)
+  R = Sigma_M/(rho_L c t) with a0 = kappa c sqrt(G rho_L):  R = kappa/(2*pi*sqrt(G)*sqrt(rho)*t)
+  [PASS] Q1a the inner column M_c(<r)/(pi r^2) = a0/(2 pi G) is independent of the baryon mass
+         measured: a0*r**2/(2*G)
+  canonical Sigma_M = 106.9 Msun/pc2; rho_L c t0 = 26.5 Msun/pc2; R = 4.038; u_min = 4.038 c
+  [FAIL] Q1b-canonical 0.1 <= R <= 1 (a light-speed flow over t0 carries enough vacuum column, no extra constant)
+         measured: R = 4.038
+  alt       Sigma_M = 129.2 Msun/pc2; rho_L c t0 = 26.5 Msun/pc2; R = 4.880; u_min = 4.880 c
+  [FAIL] Q1b-alt 0.1 <= R <= 1 (a light-speed flow over t0 carries enough vacuum column, no extra constant)
+         measured: R = 4.880
+  (declared in advance: this is the a0 ~ c sqrt(G rho_L) coincidence restated; a pass is not new evidence)
+
+== Q2: deposit fraction the picture must supply, f(x) = M_c(<r) / (Sigma_M pi r^2) ==
+  x =   0.1  f = 0.9975
+  x =   0.3  f = 0.9785
+  x =   1.0  f = 0.8284
+  x =   3.0  f = 0.4805
+  x =  10.0  f = 0.1810
+  x =  30.0  f = 0.0645
+  [PASS] Q2 the needed deposit fraction falls as ~1/x at large x (a requirement the picture does not yet supply)
+         measured: d ln f / d ln x (x 3-30) = -0.871
+
+== Q3: accumulation reading, a0(z)/a0(0) = t(z)/t0 ==
+  z = 0.85  t/t0 = 0.473  dlog a0 = -0.326  dlog v_flat = -0.081   (flat: 0; a0 ~ H(z): +0.212)
+  z = 1.50  t/t0 = 0.310  dlog a0 = -0.509  dlog v_flat = -0.127   (flat: 0; a0 ~ H(z): +0.372)
+  z = 2.50  t/t0 = 0.190  dlog a0 = -0.722  dlog v_flat = -0.181   (flat: 0; a0 ~ H(z): +0.573)
+  [PASS] Q3 the accumulation reading predicts a0 FALLING with z, opposite to both tested readings
+         measured: dlog a0(1.5) = -0.509
+
+== Q4: clusters, column mass inside R500 vs needed dark mass (1 - 0.15) M500 ==
+  logM500 14.0 canonical R500 0.72 Mpc  steady column/need = 2.06   full swept column/need = 0.51
+  logM500 14.0 alt       R500 0.72 Mpc  steady column/need = 2.49   full swept column/need = 0.51
+  logM500 14.5 canonical R500 1.06 Mpc  steady column/need = 1.40   full swept column/need = 0.35
+  logM500 14.5 alt       R500 1.06 Mpc  steady column/need = 1.69   full swept column/need = 0.35
+  logM500 15.0 canonical R500 1.55 Mpc  steady column/need = 0.95   full swept column/need = 0.24
+  logM500 15.0 alt       R500 1.55 Mpc  steady column/need = 1.15   full swept column/need = 0.24
+  [FAIL(reported)] Q4 steady column Sigma_M within a factor 2 of the needed cluster dark mass for logM500 14-15 (order-of-magnitude, cylinder vs sphere)
+         measured: 2.06, 2.49, 1.40, 1.69, 0.95, 1.15
+
+SUMMARY CFG174 (MUTATE=1): 3/6 checks pass; load-bearing failures = 2

@@ -11,3 +11,7 @@ Door 11 (closure_map/DOOR11_FLOWING_VACUUM_GATES_2026-09-29.md, addendum 1): the
 **Declared in advance.** R is expected to be O(0.1–1) because a₀ ≈ κ c √(Gρ_Λ) is itself the a₀–cH coincidence; a pass on Q1 is therefore a restatement of that coincidence in the owner's language, not new evidence. Q3's accumulation reading predicts a₀ FALLING with redshift, opposite to both readings already tested; if the data prefer rising or flat, the accumulation reading is disfavoured and only a steady-state (non-accumulating) compaction survives.
 
 **Control.** MUTATE=1 sets t₀ to 1 Gyr; the Q1 pass line must then fail. κ = ½ stays FITTED. Nothing here says the theory is closed.
+
+## Addendum 1 (added before any script or number; the owner asked how the picture handles clusters)
+
+**Q4 (clusters, budget order only).** If the compacted vacuum forms a dark column of order Σ_M = a₀/(2πG) (steady state) or up to ρ_Λ c t₀ (the full swept column), compute the dark mass it puts inside R500 for self-similar clusters with M500 = 10¹⁴–10¹⁵ M☉ (R500 from 500 ρ_crit, Planck18), compared with the dark mass clusters need, taken as (1 − 0.15) M500 (a declared baryon fraction; the record's X-COP analysis, CFG4_clusters, is the detailed test and is not redone here). Pass line (declared): the column mass within a factor of 2 of the needed dark mass across the mass range. This compares a projected column (cylinder) with a spherical mass, which is an order-of-magnitude check only, and says so.
