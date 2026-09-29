@@ -1,0 +1,77 @@
+CFG87 -- INDEPENDENT RE-DERIVATION OF CANDIDATE B'S SLACS GAPS (CFG33 pipeline) AND A PAIRED B-MINUS-LCDM TEST, FROZEN BEFORE ANY RUN
+=====================================================================================================================================
+
+Written before any B-side or paired quantity was computed.  Disclosed reading before writing: CFG33_README.md; CFG80_FROZEN_CRITERIA.md; CFG80_README.md; CFG86 README,
+FROZEN text and script (copied as the LCDM side, see below); the docstring AND helper code of hunt_2026/h53_h54_slacs_lenses.py lines 1-215 (its cyl_mass / boost / M2D_star / M3D_star
+helpers and its sample definition -- this is the shared piece CFG33 execs, so my B-side architecture follows it; my quadrature is different); hunt_2026/h9_h11_pressure_supported.py
+docstring and item-11 code (the M_JAM/2 = M_dyn(<r_1/2), M_bar = M_*/2 convention); real_research/derivation_chain_2026/FP1_static_sector.py lines 1-175 (nu_mono and nu_RAR definitions);
+hunt_2026/hunt_lib.py constants and nu; the two data tables' headers.  NOT opened: the CFG33 script, the CFG80 script, and every CFG33/CFG80 .out and _results.json.
+No B-side alpha, boost, kappa-bar or gap, and no paired quantity, had been computed when this text was written.
+
+QUESTION.  (1) Do B's four SLACS gaps (canonical/alt a0 x V/I effective-radius band: +0.159 / +0.171 / +0.152 / +0.168 dex, errors 0.021-0.022, z with the 0.10-dex floor 1.56 / 1.68 / 1.49 / 1.64,
+statistical z 7.6 / 7.8 / 6.9 / 7.5; alpha_lens 1.23/1.27/1.20/1.24, alpha_dyn at the lenses' sigma 0.86/0.86/0.85/0.85) reproduce from my own code?  (2) Pairing B and the LCDM comparator on the SAME
+bootstrap resamples, what is B-minus-LCDM and its PAIRED error in the base LCDM cell (Moster+2013 SHMR tied to solved alpha x Salpeter, Duffy+2008 c, z = 0, halo x1) and across CFG86's 54 declared
+convention cells, in how many is S_b (paired) above 2 sigma, and does "B-specific statistically" remain CONDITIONAL?  Nothing here says the data favour B or LCDM; kappa = 1/2 is FITTED.
+
+B's MODEL as I read it (all code mine)
+  Kernel nu_mono exactly as FP1 builds it: nu_RAR(y) = 1/(1-exp(-sqrt y)); h(y) = y/expm1(sqrt y) for y<1e4 (0 above); Y_P = root of h'(y) in [1,5], H_P = h(Y_P); on the grid log10 y = linspace(-14,14,280001)
+  DH = max(h'(y), 0.05 H_P/(y+Y_P)); H_M = h(y_0) + cumulative trapezoid (in linear y) of DH; nu_mono(y) = 1 + interp(log10 y, grid, H_M)/y, y clamped >= 1e-14.  (My h' is analytic, theirs a 1e-6 finite difference.)
+  Footings a0 = 9.36e-11 (canonical) and 1.13e-10 (alt) m/s^2 (hunt_lib values).  Constants G = 6.674e-11, kpc = 3.0857e19 m, Msun = 1.989e30 kg, arcsec = 1/206264.806 (hunt_lib / h53; shared inputs).
+  Static spherical law, no EFE, no halo: M_tot(r) = nu_mono(g_N/a0) M_b(r), g_N = G M_b(r)/r^2.
+  LENS: stars = spherical de Vaucouleurs (Sersic n=4, b_n Ciotti-Bertin 2n-1/3+4/(405n)+46/(25515 n^2)), 2-D mass fraction EXACT regularised gamma(2n, b x^(1/n)), 3-D enclosed fraction Prugniel-Simien
+  (p = 1-0.6097/n+0.05463/n^2) regularised gamma(n(3-p), b x^(1/n)), x = r/R_e; R_e = Re(V) or Re(I) [arcsec] x D_A(z_l) (Auger flat Om=0.3, h=0.7; the other band if one is missing).  Phantom
+  M_ph(r) = (nu-1) M_b(r) projected through a cylinder of radius R_E with an infinite line of sight TRUNCATED at r_max = 3000 kpc (h53's default) -- BASE; the untruncated cylinder (r_max = 1e7 kpc) is a reported variant.
+  I project by the exact identity M2D(R) = M(r_max) w(r_max) + int_0^{theta_max} M(R/cos t) cos t dt, theta_max = arccos(R/r_max), w = 1 - sqrt(1-R^2/r^2), evaluated by Gauss-Legendre on
+  t in [0, pi/3] and on u = ln(r/R) in [ln 2, ln(r_max/R)] (integrand M e^-2u / sqrt(1-e^-2u)).  Boost B(alpha) = 1 + M2D_ph(<R_E)/(M_* M2D_star(R_E/R_e)), M_* = alpha M_Salp (Auger logMs); kappa-bar(alpha) = alpha F_s B(alpha)
+  (F_s = Auger's Salpeter projected stellar fraction, exactly as h53/CFG33 use it).  alpha_lens = root of kappa-bar = 1 (brentq in log alpha over [-3, 1.5]).
+  DYNAMICS (h9's convention): nu_mono(y) M_* = M_JAM with y = G M_*/(2 r_1/2^2 a0) (half of M_* inside the 3-D half-light sphere, M_dyn(<r_1/2) = M_JAM/2); alpha_dyn = M_*/M_Salp,ATLAS3D (brentq log M_* in [3,14.5]).
+  Samples: 70 SLACS lenses (finite zlens, zsrc, sigma, RE, Mass, Fs, logMs and at least one of Re(V), Re(I); must equal the CFG86 70); ATLAS3D 258 usable rows, 187 with Q>=1 (CFG86 loader logic).
+  Statistic (as CFG33/CFG86): y = log10 alpha_dyn on x = log10 sigma_e - 2.3 by unweighted least squares over the calibrators; Delta = median over lenses of [log10 alpha_lens - fit(log10 sigma_SDSS - 2.3)];
+  error = std of the bootstrap; sigma_tot = sqrt(err^2+0.10^2); z = Delta/sigma_tot; z_stat = Delta/err.
+LCDM SIDE: the CFG86 code (independent of CFG80, copied verbatim in its model functions, docstring/CLI dropped; file cfg86_lcdm_copy_reference.py) supplies the 54 + 18 declared cells; it is
+  REUSED, not re-derived, so the LCDM side is independent of CFG80 but not new to this lane.  Its constants (Moster parameters from memory, Duffy/Dutton-Maccio coefficients) are shared inputs.
+
+PAIRING DEFINITION.  B (4 cells) and LCDM (every cell) are evaluated on the SAME bootstrap resamples: N_B = 2000 resample pairs (ic, il) are drawn ONCE (numpy default_rng(87); ic = 187 calibrator
+  indices with replacement, il = 70 lens indices with replacement; both models' fit AND median are computed on that (ic, il), each model dropping any drawn object it could not solve).  Within each resample
+  D^b = Delta_B^b - Delta_L^b; the paired error is std_b(D^b); the point estimate is D = Delta_B - Delta_L on the full samples; z_pair = D/err_pair (statistical only; a Salpeter zero-point offset d between
+  Auger and ATLAS3D moves B's and LCDM's Delta by exactly -d each (identity; verified by re-solve for both), so D is d-invariant and the 0.10 floor is not added to D).  A secondary PER-LENS paired estimator
+  (median_i[(la^B_i - fit_B(x_i)) - (la^L_i - fit_L(x_i))], same resamples) is reported in the base cell.  Unpaired comparison: err_unp = sqrt(errB^2+errL^2).  Shuffle control: pairing resample b of B with
+  resample b+1 of LCDM must give an error within 10% of err_unp.
+
+CELLS.  LCDM cells = CFG86's 54 declared: halo multiplier {1/3,1,3} x tie {solved Salpeter (base), solved Chabrier-equivalent (s = median 10^(logMc-logMs)), fixed Chabrier-equivalent} x
+  {z=0, z-consistent} x {Duffy full, Duffy relaxed, Dutton-Maccio}; extended context m in {0.1, 10} (not in the verdict).  Base cell = (1, solved_salp, z0, duffy).
+  Per (B cell, LCDM cell): S_a: |Delta_L| <= 2 err_L;  S_b(paired): D > 2 err_pair;  S_b(unpaired): D > 2 err_unp;  W = S_a AND S_b(paired).  B cells: canonical V, canonical I, alt V, alt I;
+  the PRIMARY B cell in each LCDM cell is the one with the SMALLEST D (worst case over B cells); each B cell is also reported alone and "all four B cells".
+  VERDICT on 'B-specific statistically' over the 54 cells: ROBUST if W in >=90% of cells, CONDITIONAL if 50-90%, NOT SUPPORTED if <50%; report which axis levels flip S_a and S_b, and whether S_b (paired) ever flips.
+
+PASS LINES (targets are the numbers printed in the CFG33 / CFG80 / CFG86 READMEs, read before this text was written)
+  P1 counts: 85 rows -> 70 lenses; 258 ATLAS; 187 Q>=1; 70/70 B lenses and 187/187 B calibrators solved.
+  P2 kappa-bar at alpha=1 (median over lenses of F_s B(M_Salp)), nu_mono: canonical V/I 0.834/0.807, alt V/I 0.859/0.825; nu_RAR (h53's kernel): 0.8246/0.7938 canonical, 0.8542/0.8124 alt.
+     REPRODUCED-3dp if |diff| <= 0.0006 (0.0005 x 1.2 for the 4-dp h53 targets), within-resolution if <= 0.005, else stated as a non-reproduction.
+  P3 gaps: +0.159/+0.171/+0.152/+0.168 (canonical V, canonical I, alt V, alt I): REPRODUCED-3dp if |diff| <= 0.0006, within-resolution <= 0.005, else non-reproduction and the difference is stated.
+     Errors 0.021/0.022/0.022/0.022 (+-0.003); z with floor 1.56/1.68/1.49/1.64 (+-0.05); z_stat 7.6/7.8/6.9/7.5 (+-0.2); alpha_lens 1.23/1.27/1.20/1.24 and alpha_dyn(at lenses' sigma; 10^median of the fit) 0.86/0.86/0.85/0.85 (2 dp).
+     B's dynamics slope d log alpha_dyn/d log sigma_e = +0.204 +- 0.076 (CFG33 H3 / CFG80 R4; reported).
+  P4 LCDM base (copy): +0.0370 +- 0.0247 (z_stat +1.50) within 0.0015 / 0.003; this checks the copy and my resamples, not the physics.
+  P5 paired B-minus-LCDM (CFG80's paired bootstrap, base cell), canonical V/I, alt V/I: +0.122+-0.016 (7.8), +0.135+-0.017 (8.0), +0.115+-0.015 (7.5), +0.132+-0.016 (8.1); reported against mine (+-0.003 on values and errors).
+CONTROLS (a failed control is a failure and makes the run exit 1; nothing is tuned after seeing results)
+  C0  data/plumbing: counts of P1; my log M_E vs tabulated 'Mass' <= 0.01 dex; the 70-lens set by my sample rule equals the CFG86 rule's set; Re(V), Re(I) both finite for >= 60 of 70 lenses (reported).
+  C1  kernel closed forms: nu_mono = nu_RAR to 1e-5 relative for 1e-8 <= y <= 1 (below the peak the monotone rearrangement is inactive); nu_mono >= 1; nu_mono - 1 < 2e-3 at y = 1e3;
+      the map y -> y nu_mono(y) is strictly increasing on 1e-12..1e8; Y_P = 2.5396 +- 1e-3 (root of 1 - e^-s = s/2, s = sqrt y).
+  C2  projection closed forms: point mass -> M2D = M to 1e-9; singular isothermal M = k r, truncated at r_max -> k[r_max(1-sqrt(1-R^2/r_max^2)) + R arccos(R/r_max)] to 1e-7 and untruncated -> (pi/2) k R to 1e-6;
+      quadrature convergence (nodes x2) <= 1e-7 relative for 6 lenses; a brute-force trapezoid projection of dM/dr on a 6000-point geometric grid (a different method) agrees with mine to <= 5e-3 relative in M2D_ph
+      at 6 lenses; untruncated (1e6 vs 1e7 kpc) stable to 1e-4.
+  C3  Sersic: regularised M2D_star(x->1e3) = 1 and M3D_star(x->1e3) = 1 to 1e-9; numerical projection of the Prugniel-Simien 3-D law returns the exact Sersic 2-D law within 3% at x = 0.3, 0.6, 1, 2 (h53's own tolerance).
+  C4  dynamics closed forms: deep-MOND limit (y <= 1e-8): M_* = G M_JAM^2/(2 r^2 a0) to 2e-4 relative; Newtonian limit (y >= 1e3): M_* = M_JAM to 3e-3; residual |nu M_* - M_JAM|/M_JAM <= 1e-9 at every calibrator;
+      kappa-bar(alpha_lens) = 1 to 1e-9 at every lens.
+  C5  phantom off: with nu == 1 AND with a0 = 1e-30 through the table: alpha_lens = 1/F_s and alpha_dyn = M_JAM/M_Salp to 1e-9; the B-code gap equals the LCDM-code gap with the halo x1e-30 to 1e-9 (two codes, one number);
+      that halo-free gap = +0.191 +- 0.0006 (CFG86 prints +0.191, 9.6 sigma stat).
+  C6  estimator: lens alphas on the fit line -> Delta = 0 (1e-12); lens alphas = 10^k x fit -> Delta = k (1e-12); the fit recovers a synthetic log-linear law (1e-10); the bootstrap with identical resamples for B := L gives D^b == 0.
+  C7  zero point: a Salpeter zero-point rescale of the lens table (M_Salp -> 10^d M_Salp, F_s -> 10^d F_s) shifts Delta_B and Delta_L by exactly -d (1e-9, d = +-0.1, full re-solve).
+  C8  pairing: shuffle (resample b of B against b+1 of LCDM) error within 10% of sqrt(errB^2+errL^2) in the base cell for each B cell; reported (not a control): the paired error relative to it.
+  H2  [HEADLINE, CFG33's own gate] B passes |Delta_B| <= 2 sigma_tot in all four cells (with the floor).  Reported: the same gate for LCDM.
+  MUTATE=1 doubles every lens Einstein mass at fixed stars (F_s -> F_s/2, M_E -> 2 M_E) for BOTH models.  The run must exit 1 with H2 failing (B's gap grows by about log10 2) and C5 (halo-free +0.191) failing;
+      the failing set must differ from the main run's (which is expected empty).
+B VARIANTS (reported, not tuned, paired against LCDM base): P2 kernel nu = sqrt(1+1/y) (CFG33 says the difference is +0.165); the untruncated cylinder; a0 from the FP0 formula (0.5 c sqrt(G Om_L rho_c), H0 = 67.4,
+  Om_L = 0.6847 and Om_L -> 1); h53's nu_RAR.
+STANDING: kappa = 1/2 is FITTED; nothing here says the data favour B or LCDM; no claim that the theory is closed.  Non-reproduction is a valid outcome.
+Run: python3 CFG87_b_paired.py (rc 0 iff no control or headline fails)   MUTATE=1 python3 CFG87_b_paired.py

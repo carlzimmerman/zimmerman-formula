@@ -1,0 +1,242 @@
+PASS [control] FROZEN docstring == CFG87_FROZEN.txt  sha256 d7524908822afc42
+MODE MUTATE
+PASS [control] C0 counts: 85 rows -> 70 lenses (my rule)  85,70
+PASS [control] C0 my 70-lens set == CFG86 rule's set  70
+PASS [control] C0 counts: 258 ATLAS usable  258
+PASS [control] C0 counts: 187 Q>=1  187
+  lenses with both Re(V) and Re(I): 70/70
+PASS [reported] C0 Re(V),Re(I) both finite for >=60 of 70 (reported)  70
+PASS [control] C0 M_E vs tabulated Mass <=0.01 dex  max 0.0076 median 0.0026
+
+=== CONTROLS: kernel ===
+PASS [control] C1 nu_mono == nu_RAR to 1e-5 for 1e-8<=y<=1  max rel 4.97e-09
+PASS [control] C1 nu_mono >= 1 and y*nu_mono strictly increasing (1e-12..1e8)
+PASS [control] C1 nu_mono-1 < 2e-3 at y=1e3  8.19e-04
+PASS [control] C1 Y_P = 2.5396 +- 1e-3  2.53964, H_P 0.64761
+  (nu_mono at y=1,3,10,30: [1.58198, 1.21703, 1.06775, 1.02361]; nu_RAR: [1.58198, 1.21495, 1.0442, 1.0042])
+
+=== CONTROLS: projection and stars ===
+PASS [control] C2 point mass -> M2D = M to 1e-9  8.1e-15 3.4e-15
+PASS [control] C2 SIS truncated closed form (1e-7)  3.6e-15
+PASS [control] C2 SIS untruncated (pi/2) k R (1e-6)  1.6e-07
+PASS [control] C2 quadrature convergence (nodes x2) <= 1e-7 (6 lenses)  max 1.3e-08
+PASS [control] C2 brute-force trapezoid projection agrees <= 5e-3 (6 lenses)  max 2.9e-05
+PASS [control] C2 untruncated 1e6 vs 1e7 kpc stable to 1e-4  max 6.3e-06
+PASS [control] C3 Sersic 2D and 3D fractions -> 1 at large x (1e-9)
+PASS [control] C3 numerical projection of the PS density vs exact Sersic within 3% (x=0.3..2)  worst 0.0050
+PASS [reported] C3x (extra, not frozen: reported only) regularised-gamma M3D_star == numerically integrated PS density to 1e-4  2.5e-07
+
+=== B SOLVES ===
+  B can V: solved lenses 70/70, calibrators 187/187
+  B can I: solved lenses 70/70, calibrators 187/187
+  B alt V: solved lenses 70/70, calibrators 187/187
+  B alt I: solved lenses 70/70, calibrators 187/187
+PASS [control] P1 B: 70/70 lenses and 187/187 calibrators solved (all cells)
+PASS [control] C4 kbar(alpha_lens)=1 (1e-9) and nu M_*=M_JAM (1e-9)  5.3e-14 1.1e-13
+PASS [control] C4 deep-MOND limit M_*=G M_JAM^2/(2 r^2 a0) (y<=1e-8, 2e-4)  y 5.5e-09 rel 7.4e-05
+PASS [control] C4 Newtonian limit M_*=M_JAM (y>=1e3, 3e-3)  y 1.9e+03 rel 4.5e-04
+
+=== P2: kappa-bar at Salpeter (alpha=1) ===
+  NOT-REPRODUCED               nu_mono kbar(1) can V: mine +0.4171  target +0.8340  diff -0.4169
+  NOT-REPRODUCED               nu_mono kbar(1) can I: mine +0.4036  target +0.8070  diff -0.4034
+  NOT-REPRODUCED               nu_mono kbar(1) alt V: mine +0.4293  target +0.8590  diff -0.4297
+  NOT-REPRODUCED               nu_mono kbar(1) alt I: mine +0.4123  target +0.8250  diff -0.4127
+  NOT-REPRODUCED               nu_RAR kbar(1) can V (h53): mine +0.4123  target +0.8246  diff -0.4123
+  NOT-REPRODUCED               nu_RAR kbar(1) can I (h53): mine +0.3969  target +0.7938  diff -0.3969
+  NOT-REPRODUCED               nu_RAR kbar(1) alt V (h53): mine +0.4271  target +0.8542  diff -0.4271
+  NOT-REPRODUCED               nu_RAR kbar(1) alt I (h53): mine +0.4062  target +0.8124  diff -0.4062
+
+=== LCDM BASE (CFG86 code) ===
+  LCDM base: n=70/187 Delta +0.3648 err 0.0231 zstat +15.77 z +3.55
+PASS [control] P1 LCDM 70/70 and 187/187
+
+=== C5: phantom off ===
+PASS [control] C5 phantom off (nu==1): alpha_lens=1/Fs, alpha_dyn=M_JAM/M_Salp (1e-9)  4.2e-14 2.2e-16
+PASS [control] C5 a0=1e-30 through the nu_mono table == phantom off (1e-9)  4.7e-14
+PASS [control] C5 B-code halo-free gap == LCDM-code halo x1e-30 gap (1e-9): two codes, one number  +0.491651 vs +0.491651
+FAIL [control] C5 halo-free gap = +0.191 +- 0.0006 (CFG86) [must FAIL under MUTATE]  +0.4917
+
+=== C6: estimator closed forms ===
+PASS [control] C6 lenses on the fit line -> Delta=0 (1e-12)
+PASS [control] C6 lenses = fit + k -> Delta=k (1e-12)
+PASS [control] C6 fit recovers synthetic law (1e-10)
+PASS [control] C6 identical resamples for B:=L give D^b == 0
+
+=== C7: zero point ===
+
+=== B GAPS (P3) ===
+  B can V   : Delta +0.4907 err 0.0216 z(floor) +4.80 z_stat +22.73  alpha_lens 2.657  alpha_dyn@lenses 0.862  slope +0.204+-0.077
+  NOT-REPRODUCED               gap can V: mine +0.4907  target +0.1590  diff +0.3317
+  REPRODUCED-3dp               err can V: mine +0.0216  target +0.0210  diff +0.0006
+  NOT-REPRODUCED               z(floor) can V: mine +4.7969  target +1.5600  diff +3.2369
+  NOT-REPRODUCED               z_stat can V: mine +22.7288  target +7.6000  diff +15.1288
+  NOT-REPRODUCED               alpha_lens can V: mine +2.6571  target +1.2300  diff +1.4271
+  REPRODUCED-3dp               alpha_dyn@lenses can V: mine +0.8621  target +0.8600  diff +0.0021
+  B can I   : Delta +0.4997 err 0.0220 z(floor) +4.88 z_stat +22.66  alpha_lens 2.679  alpha_dyn@lenses 0.862  slope +0.204+-0.077
+  NOT-REPRODUCED               gap can I: mine +0.4997  target +0.1710  diff +0.3287
+  REPRODUCED-3dp               err can I: mine +0.0220  target +0.0220  diff +0.0000
+  NOT-REPRODUCED               z(floor) can I: mine +4.8793  target +1.6800  diff +3.1993
+  NOT-REPRODUCED               z_stat can I: mine +22.6642  target +7.8000  diff +14.8642
+  NOT-REPRODUCED               alpha_lens can I: mine +2.6792  target +1.2700  diff +1.4092
+  REPRODUCED-3dp               alpha_dyn@lenses can I: mine +0.8621  target +0.8600  diff +0.0021
+  B alt V   : Delta +0.4934 err 0.0227 z(floor) +4.81 z_stat +21.74  alpha_lens 2.616  alpha_dyn@lenses 0.846  slope +0.243+-0.078
+  NOT-REPRODUCED               gap alt V: mine +0.4934  target +0.1520  diff +0.3414
+  REPRODUCED-within-resolution err alt V: mine +0.0227  target +0.0220  diff +0.0007
+  NOT-REPRODUCED               z(floor) alt V: mine +4.8119  target +1.4900  diff +3.3219
+  NOT-REPRODUCED               z_stat alt V: mine +21.7447  target +6.9000  diff +14.8447
+  NOT-REPRODUCED               alpha_lens alt V: mine +2.6164  target +1.2000  diff +1.4164
+  REPRODUCED-3dp               alpha_dyn@lenses alt V: mine +0.8457  target +0.8500  diff -0.0043
+  B alt I   : Delta +0.5029 err 0.0230 z(floor) +4.90 z_stat +21.83  alpha_lens 2.645  alpha_dyn@lenses 0.846  slope +0.243+-0.078
+  NOT-REPRODUCED               gap alt I: mine +0.5029  target +0.1680  diff +0.3349
+  REPRODUCED-within-resolution err alt I: mine +0.0230  target +0.0220  diff +0.0010
+  NOT-REPRODUCED               z(floor) alt I: mine +4.9006  target +1.6400  diff +3.2606
+  NOT-REPRODUCED               z_stat alt I: mine +21.8252  target +7.5000  diff +14.3252
+  NOT-REPRODUCED               alpha_lens alt I: mine +2.6450  target +1.2400  diff +1.4050
+  REPRODUCED-3dp               alpha_dyn@lenses alt I: mine +0.8457  target +0.8500  diff -0.0043
+  REPRODUCED-3dp               B dynamics slope canonical V (H3): mine +0.2043  target +0.2040  diff +0.0003
+FAIL [headline] H2 [HEADLINE] B passes CFG33's gate with the floor in all four cells  z = +4.80, +4.88, +4.81, +4.90
+  LCDM gate with floor: Delta +0.3648 z +3.55 -> FAIL
+
+=== PAIRED B - LCDM, base LCDM cell (P5) ===
+  can V   : D = +0.1260 +- 0.0138 (paired) [9.1 sigma]   unpaired 0.0316 [4.0]   shuffled 0.0317   per-lens estimator +0.1103 +- 0.0102
+  NOT-REPRODUCED               paired D can V (CFG80): mine +0.1260  target +0.1220  diff +0.0040
+  REPRODUCED-within-resolution paired err can V (CFG80): mine +0.0138  target +0.0160  diff -0.0022
+PASS [control] C8 shuffle error within 10% of quadrature (can V)  shuffled 0.0317 vs quadrature 0.0316; paired/unpaired 0.44
+  can I   : D = +0.1349 +- 0.0143 (paired) [9.4 sigma]   unpaired 0.0320 [4.2]   shuffled 0.0320   per-lens estimator +0.1142 +- 0.0104
+  REPRODUCED-3dp               paired D can I (CFG80): mine +0.1349  target +0.1350  diff -0.0001
+  REPRODUCED-within-resolution paired err can I (CFG80): mine +0.0143  target +0.0170  diff -0.0027
+PASS [control] C8 shuffle error within 10% of quadrature (can I)  shuffled 0.0320 vs quadrature 0.0320; paired/unpaired 0.45
+  alt V   : D = +0.1287 +- 0.0138 (paired) [9.3 sigma]   unpaired 0.0324 [4.0]   shuffled 0.0324   per-lens estimator +0.1137 +- 0.0096
+  NOT-REPRODUCED               paired D alt V (CFG80): mine +0.1287  target +0.1150  diff +0.0137
+  REPRODUCED-within-resolution paired err alt V (CFG80): mine +0.0138  target +0.0150  diff -0.0012
+PASS [control] C8 shuffle error within 10% of quadrature (alt V)  shuffled 0.0324 vs quadrature 0.0324; paired/unpaired 0.43
+  alt I   : D = +0.1381 +- 0.0143 (paired) [9.7 sigma]   unpaired 0.0327 [4.2]   shuffled 0.0326   per-lens estimator +0.1194 +- 0.0106
+  NOT-REPRODUCED               paired D alt I (CFG80): mine +0.1381  target +0.1320  diff +0.0061
+  REPRODUCED-within-resolution paired err alt I (CFG80): mine +0.0143  target +0.0160  diff -0.0017
+PASS [control] C8 shuffle error within 10% of quadrature (alt I)  shuffled 0.0326 vs quadrature 0.0327; paired/unpaired 0.44
+
+=== B VARIANTS (paired vs LCDM base; reported) ===
+  P2 kernel              gaps +0.4904 +0.4949 +0.4919 +0.4977   | paired D +0.1256+-0.0143 +0.1302+-0.0150 +0.1271+-0.0140 +0.1330+-0.0147
+  nu_RAR (h53)           gaps +0.4929 +0.5004 +0.4961 +0.5069   | paired D +0.1281+-0.0138 +0.1357+-0.0143 +0.1314+-0.0139 +0.1421+-0.0143
+  untruncated cylinder   gaps +0.4907 +0.4996 +0.4933 +0.5028   | paired D +0.1259+-0.0138 +0.1348+-0.0143 +0.1285+-0.0138 +0.1381+-0.0142
+  a0 from FP0 formula    gaps +0.4907 +0.4997 +0.4934 +0.5029   | paired D +0.1260+-0.0138 +0.1349+-0.0143 +0.1287+-0.0138 +0.1382+-0.0143
+  (FP0-formula a0: canonical 9.3603e-11, alt 1.1312e-10)
+
+=== GRID: LCDM cells, paired against B ===
+  grid time 4s
+    m tie          z     c         DeltaL   errL  Sa | D(min B)  err_pair  z_pair  Sb_pair Sb_unp  W_min  [D canV canI altV altI]
+ 0.33 solved_salp  z0    duffy    +0.4048 0.0206 0  | +0.0859  0.0111     7.8   1      1     0   +0.086 +0.095 +0.089 +0.098
+ 0.33 solved_salp  z0    relaxed  +0.3948 0.0206 0  | +0.0959  0.0119     8.0   1      1     0   +0.096 +0.105 +0.099 +0.108
+ 0.33 solved_salp  z0    dm       +0.3937 0.0213 0  | +0.0970  0.0124     7.8   1      1     0   +0.097 +0.106 +0.100 +0.109
+ 0.33 solved_salp  full  duffy    +0.3840 0.0196 0  | +0.1068  0.0115     9.3   1      1     0   +0.107 +0.116 +0.109 +0.119
+ 0.33 solved_salp  full  relaxed  +0.3722 0.0217 0  | +0.1185  0.0130     9.1   1      1     0   +0.118 +0.127 +0.121 +0.131
+ 0.33 solved_salp  full  dm       +0.3655 0.0234 0  | +0.1253  0.0143     8.8   1      1     0   +0.125 +0.134 +0.128 +0.137
+ 0.33 solved_chab  z0    duffy    +0.4198 0.0219 0  | +0.0709  0.0120     5.9   1      1     0   +0.071 +0.080 +0.074 +0.083
+ 0.33 solved_chab  z0    relaxed  +0.4149 0.0222 0  | +0.0759  0.0119     6.4   1      1     0   +0.076 +0.085 +0.079 +0.088
+ 0.33 solved_chab  z0    dm       +0.4146 0.0222 0  | +0.0761  0.0118     6.5   1      1     0   +0.076 +0.085 +0.079 +0.088
+ 0.33 solved_chab  full  duffy    +0.3982 0.0203 0  | +0.0926  0.0119     7.8   1      1     0   +0.093 +0.101 +0.095 +0.105
+ 0.33 solved_chab  full  relaxed  +0.3919 0.0209 0  | +0.0989  0.0120     8.3   1      1     0   +0.099 +0.108 +0.102 +0.111
+ 0.33 solved_chab  full  dm       +0.3875 0.0218 0  | +0.1033  0.0125     8.2   1      1     0   +0.103 +0.112 +0.106 +0.115
+ 0.33 fixed_chab   z0    duffy    +0.4952 0.0222 0  | -0.0044  0.0103    -0.4   0      0     0   -0.004 +0.004 -0.002 +0.008
+ 0.33 fixed_chab   z0    relaxed  +0.4981 0.0251 0  | -0.0074  0.0138    -0.5   0      0     0   -0.007 +0.002 -0.005 +0.005
+ 0.33 fixed_chab   z0    dm       +0.5121 0.0336 0  | -0.0213  0.0242    -0.9   0      0     0   -0.021 -0.012 -0.019 -0.009
+ 0.33 fixed_chab   full  duffy    +0.4823 0.0234 0  | +0.0084  0.0115     0.7   0      0     0   +0.008 +0.017 +0.011 +0.021
+ 0.33 fixed_chab   full  relaxed  +0.4820 0.0268 0  | +0.0087  0.0155     0.6   0      0     0   +0.009 +0.018 +0.011 +0.021
+ 0.33 fixed_chab   full  dm       +0.4894 0.0359 0  | +0.0014  0.0263     0.1   0      0     0   +0.001 +0.010 +0.004 +0.014
+ 1.00 solved_salp  z0    duffy    +0.3648 0.0231 0  | +0.1260  0.0138     9.1   1      1     0   +0.126 +0.135 +0.129 +0.138
+ 1.00 solved_salp  z0    relaxed  +0.3586 0.0248 0  | +0.1322  0.0152     8.7   1      1     0   +0.132 +0.141 +0.135 +0.144
+ 1.00 solved_salp  z0    dm       +0.3562 0.0256 0  | +0.1346  0.0161     8.4   1      1     0   +0.135 +0.144 +0.137 +0.147
+ 1.00 solved_salp  full  duffy    +0.3322 0.0240 0  | +0.1586  0.0156    10.2   1      1     0   +0.159 +0.167 +0.161 +0.171
+ 1.00 solved_salp  full  relaxed  +0.3118 0.0282 0  | +0.1790  0.0200     9.0   1      1     0   +0.179 +0.188 +0.182 +0.191
+ 1.00 solved_salp  full  dm       +0.2981 0.0292 0  | +0.1926  0.0222     8.7   1      1     0   +0.193 +0.202 +0.195 +0.205
+ 1.00 solved_chab  z0    duffy    +0.3951 0.0219 0  | +0.0956  0.0119     8.0   1      1     0   +0.096 +0.105 +0.098 +0.108
+ 1.00 solved_chab  z0    relaxed  +0.3920 0.0223 0  | +0.0988  0.0121     8.1   1      1     0   +0.099 +0.108 +0.101 +0.111
+ 1.00 solved_chab  z0    dm       +0.3906 0.0230 0  | +0.1001  0.0126     7.9   1      1     0   +0.100 +0.109 +0.103 +0.112
+ 1.00 solved_chab  full  duffy    +0.3672 0.0230 0  | +0.1235  0.0139     8.9   1      1     0   +0.124 +0.132 +0.126 +0.136
+ 1.00 solved_chab  full  relaxed  +0.3587 0.0245 0  | +0.1321  0.0156     8.4   1      1     0   +0.132 +0.141 +0.135 +0.144
+ 1.00 solved_chab  full  dm       +0.3484 0.0256 0  | +0.1423  0.0170     8.4   1      1     0   +0.142 +0.151 +0.145 +0.154
+ 1.00 fixed_chab   z0    duffy    +0.4807 0.0239 0  | +0.0101  0.0121     0.8   0      0     0   +0.010 +0.019 +0.013 +0.022
+ 1.00 fixed_chab   z0    relaxed  +0.4826 0.0259 0  | +0.0081  0.0142     0.6   0      0     0   +0.008 +0.017 +0.011 +0.020
+ 1.00 fixed_chab   z0    dm       +0.4872 0.0272 0  | +0.0035  0.0155     0.2   0      0     0   +0.004 +0.012 +0.006 +0.016
+ 1.00 fixed_chab   full  duffy    +0.4495 0.0259 0  | +0.0412  0.0153     2.7   1      0     0   +0.041 +0.050 +0.044 +0.053
+ 1.00 fixed_chab   full  relaxed  +0.4496 0.0275 0  | +0.0411  0.0175     2.4   1      0     0   +0.041 +0.050 +0.044 +0.053
+ 1.00 fixed_chab   full  dm       +0.4555 0.0281 0  | +0.0353  0.0184     1.9   0      0     0   +0.035 +0.044 +0.038 +0.047
+ 3.00 solved_salp  z0    duffy    +0.3046 0.0272 0  | +0.1862  0.0192     9.7   1      1     0   +0.186 +0.195 +0.189 +0.198
+ 3.00 solved_salp  z0    relaxed  +0.2941 0.0283 0  | +0.1967  0.0207     9.5   1      1     0   +0.197 +0.206 +0.199 +0.209
+ 3.00 solved_salp  z0    dm       +0.2941 0.0291 0  | +0.1967  0.0215     9.2   1      1     0   +0.197 +0.206 +0.199 +0.209
+ 3.00 solved_salp  full  duffy    +0.2653 0.0310 0  | +0.2255  0.0253     8.9   1      1     0   +0.225 +0.234 +0.228 +0.238
+ 3.00 solved_salp  full  relaxed  +0.2486 0.0332 0  | +0.2421  0.0278     8.7   1      1     0   +0.242 +0.251 +0.245 +0.254
+ 3.00 solved_salp  full  dm       +0.2330 0.0359 0  | +0.2578  0.0310     8.3   1      1     0   +0.258 +0.267 +0.260 +0.270
+ 3.00 solved_chab  z0    duffy    +0.3639 0.0235 0  | +0.1269  0.0140     9.1   1      1     0   +0.127 +0.136 +0.130 +0.139
+ 3.00 solved_chab  z0    relaxed  +0.3558 0.0244 0  | +0.1349  0.0150     9.0   1      1     0   +0.135 +0.144 +0.138 +0.147
+ 3.00 solved_chab  z0    dm       +0.3527 0.0252 0  | +0.1381  0.0159     8.7   1      1     0   +0.138 +0.147 +0.141 +0.150
+ 3.00 solved_chab  full  duffy    +0.3228 0.0259 0  | +0.1679  0.0192     8.8   1      1     0   +0.168 +0.177 +0.171 +0.180
+ 3.00 solved_chab  full  relaxed  +0.3107 0.0266 0  | +0.1801  0.0204     8.8   1      1     0   +0.180 +0.189 +0.183 +0.192
+ 3.00 solved_chab  full  dm       +0.2987 0.0271 0  | +0.1921  0.0212     9.0   1      1     0   +0.192 +0.201 +0.195 +0.204
+ 3.00 fixed_chab   z0    duffy    +0.4637 0.0285 0  | +0.0271  0.0176     1.5   0      0     0   +0.027 +0.036 +0.030 +0.039
+ 3.00 fixed_chab   z0    relaxed  +0.4719 0.0319 0  | +0.0188  0.0215     0.9   0      0     0   +0.019 +0.028 +0.022 +0.031
+ 3.00 fixed_chab   z0    dm       +0.4779 0.0347 0  | +0.0128  0.0245     0.5   0      0     0   +0.013 +0.022 +0.016 +0.025
+ 3.00 fixed_chab   full  duffy    +0.4467 0.0277 0  | +0.0441  0.0185     2.4   1      0     0   +0.044 +0.053 +0.047 +0.056
+ 3.00 fixed_chab   full  relaxed  +0.4539 0.0305 0  | +0.0368  0.0215     1.7   0      0     0   +0.037 +0.046 +0.040 +0.049
+ 3.00 fixed_chab   full  dm       +0.4505 0.0356 0  | +0.0402  0.0264     1.5   0      0     0   +0.040 +0.049 +0.043 +0.052
+ 0.10 solved_salp  z0    duffy    +0.4409 0.0213 0  | +0.0499  0.0099     5.0   1      0     0   +0.050 +0.059 +0.053 +0.062
+ 0.10 solved_salp  z0    relaxed  +0.4347 0.0223 0  | +0.0561  0.0107     5.2   1      0     0   +0.056 +0.065 +0.059 +0.068
+ 0.10 solved_salp  z0    dm       +0.4340 0.0227 0  | +0.0567  0.0111     5.1   1      0     0   +0.057 +0.066 +0.059 +0.069
+ 0.10 solved_salp  full  duffy    +0.4315 0.0213 0  | +0.0592  0.0097     6.1   1      0     0   +0.059 +0.068 +0.062 +0.071
+ 0.10 solved_salp  full  relaxed  +0.4225 0.0216 0  | +0.0682  0.0100     6.8   1      1     0   +0.068 +0.077 +0.071 +0.080
+ 0.10 solved_salp  full  dm       +0.4146 0.0209 0  | +0.0762  0.0103     7.4   1      1     0   +0.076 +0.085 +0.079 +0.088
+ 0.10 solved_chab  z0    duffy    +0.4452 0.0200 0  | +0.0455  0.0100     4.6   1      0     0   +0.046 +0.054 +0.048 +0.058
+ 0.10 solved_chab  z0    relaxed  +0.4395 0.0205 0  | +0.0513  0.0106     4.8   1      0     0   +0.051 +0.060 +0.054 +0.063
+ 0.10 solved_chab  z0    dm       +0.4373 0.0209 0  | +0.0534  0.0109     4.9   1      0     0   +0.053 +0.062 +0.056 +0.066
+ 0.10 solved_chab  full  duffy    +0.4296 0.0216 0  | +0.0611  0.0115     5.3   1      1     0   +0.061 +0.070 +0.064 +0.073
+ 0.10 solved_chab  full  relaxed  +0.4243 0.0210 0  | +0.0665  0.0116     5.7   1      1     0   +0.066 +0.075 +0.069 +0.079
+ 0.10 solved_chab  full  dm       +0.4166 0.0199 0  | +0.0741  0.0116     6.4   1      1     0   +0.074 +0.083 +0.077 +0.086
+ 0.10 fixed_chab   z0    duffy    +0.4931 0.0204 0  | -0.0023  0.0088    -0.3   0      0     0   -0.002 +0.007 +0.000 +0.010
+ 0.10 fixed_chab   z0    relaxed  +0.4977 0.0210 0  | -0.0069  0.0091    -0.8   0      0     0   -0.007 +0.002 -0.004 +0.005
+ 0.10 fixed_chab   z0    dm       +0.5009 0.0217 0  | -0.0102  0.0096    -1.1   0      0     0   -0.010 -0.001 -0.007 +0.002
+ 0.10 fixed_chab   full  duffy    +0.4853 0.0205 0  | +0.0055  0.0090     0.6   0      0     0   +0.005 +0.014 +0.008 +0.018
+ 0.10 fixed_chab   full  relaxed  +0.4903 0.0215 0  | +0.0005  0.0095     0.0   0      0     0   +0.000 +0.009 +0.003 +0.013
+ 0.10 fixed_chab   full  dm       +0.4910 0.0225 0  | -0.0003  0.0103    -0.0   0      0     0   -0.000 +0.009 +0.002 +0.012
+10.00 solved_salp  z0    duffy    +0.2409 0.0321 0  | +0.2499  0.0262     9.5   1      1     0   +0.250 +0.259 +0.253 +0.262
+10.00 solved_salp  z0    relaxed  +0.2226 0.0351 0  | +0.2682  0.0295     9.1   1      1     0   +0.268 +0.277 +0.271 +0.280
+10.00 solved_salp  z0    dm       +0.2199 0.0370 0  | +0.2708  0.0317     8.5   1      1     0   +0.271 +0.280 +0.273 +0.283
+10.00 solved_salp  full  duffy    +0.1835 0.0415 0  | +0.3072  0.0377     8.2   1      1     0   +0.307 +0.316 +0.310 +0.319
+10.00 solved_salp  full  relaxed  +0.1688 0.0431 0  | +0.3219  0.0388     8.3   1      1     0   +0.322 +0.331 +0.325 +0.334
+10.00 solved_salp  full  dm       +0.1499 0.0461 0  | +0.3408  0.0422     8.1   1      1     0   +0.341 +0.350 +0.344 +0.353
+10.00 solved_chab  z0    duffy    +0.3038 0.0256 0  | +0.1869  0.0179    10.5   1      1     0   +0.187 +0.196 +0.190 +0.199
+10.00 solved_chab  z0    relaxed  +0.2943 0.0262 0  | +0.1965  0.0194    10.1   1      1     0   +0.196 +0.205 +0.199 +0.209
+10.00 solved_chab  z0    dm       +0.2930 0.0274 0  | +0.1977  0.0209     9.4   1      1     0   +0.198 +0.207 +0.200 +0.210
+10.00 solved_chab  full  duffy    +0.2640 0.0291 0  | +0.2267  0.0246     9.2   1      1     0   +0.227 +0.236 +0.229 +0.239
+10.00 solved_chab  full  relaxed  +0.2522 0.0320 0  | +0.2386  0.0278     8.6   1      1     0   +0.239 +0.247 +0.241 +0.251
+10.00 solved_chab  full  dm       +0.2472 0.0353 0  | +0.2436  0.0312     7.8   1      1     0   +0.244 +0.252 +0.246 +0.256
+10.00 fixed_chab   z0    duffy    +0.4712 0.0385 0  | +0.0195  0.0296     0.7   0      0     0   +0.020 +0.028 +0.022 +0.032
+10.00 fixed_chab   z0    relaxed  +0.4651 0.0452 0  | +0.0256  0.0370     0.7   0      0     0   +0.026 +0.035 +0.028 +0.038
+10.00 fixed_chab   z0    dm       +0.5127 0.0664 0  | -0.0220  0.0601    -0.4   0      0     0   -0.022 -0.013 -0.019 -0.010
+10.00 fixed_chab   full  duffy    +0.4378 0.0432 0  | +0.0529  0.0345     1.5   0      0     0   +0.053 +0.062 +0.056 +0.065
+10.00 fixed_chab   full  relaxed  +0.4134 0.0479 0  | +0.0774  0.0408     1.9   0      0     0   +0.077 +0.086 +0.080 +0.090
+10.00 fixed_chab   full  dm       +0.4478 0.0719 0  | +0.0430  0.0662     0.6   0      0     0   +0.043 +0.052 +0.046 +0.055
+
+DECLARED RANGE (54 cells): S_a 0.000 (0/54)  S_b(paired, worst B cell) 0.722 (39/54)  S_b(unpaired, worst B cell) 0.667  W_min 0.000 (0/54)  W_all-four-B-cells 0.000
+   B cell can V   : S_b(paired) 39/54  W 0/54  D range -0.021..+0.258  median +0.099  err_pair range 0.0103..0.0310
+   B cell can I   : S_b(paired) 42/54  W 0/54  D range -0.012..+0.267  median +0.108  err_pair range 0.0106..0.0314
+   B cell alt V   : S_b(paired) 40/54  W 0/54  D range -0.019..+0.260  median +0.102  err_pair range 0.0107..0.0306
+   B cell alt I   : S_b(paired) 43/54  W 0/54  D range -0.009..+0.270  median +0.111  err_pair range 0.0110..0.0309
+EXTENDED context (36 cells): S_a 0.000  S_b(paired, worst) 0.667  W_min 0.000
+gap range over the 54 cells: LCDM Delta +0.233 .. +0.512 ; D(worst B cell) -0.021 .. +0.258, median +0.099; min z_pair -0.9
+axis marginals in the 54 cells (fraction with S_a | S_b_pair(worst B) | W_min):
+   m=0.3333333333333333 n=18  S_a 0.00  S_b 0.67  W 0.00   mean D(worst B) +0.063  mean err_pair 0.0138
+   m=1            n=18  S_a 0.00  S_b 0.78  W 0.00   mean D(worst B) +0.097  mean err_pair 0.0155
+   m=3            n=18  S_a 0.00  S_b 0.72  W 0.00   mean D(worst B) +0.135  mean err_pair 0.0212
+   tie=solved_salp  n=18  S_a 0.00  S_b 1.00  W 0.00   mean D(worst B) +0.159  mean err_pair 0.0179
+   tie=solved_chab  n=18  S_a 0.00  S_b 1.00  W 0.00   mean D(worst B) +0.119  mean err_pair 0.0145
+   tie=fixed_chab   n=18  S_a 0.00  S_b 0.17  W 0.00   mean D(worst B) +0.017  mean err_pair 0.0180
+   z=z0           n=27  S_a 0.00  S_b 0.67  W 0.00   mean D(worst B) +0.082  mean err_pair 0.0153
+   z=full         n=27  S_a 0.00  S_b 0.78  W 0.00   mean D(worst B) +0.115  mean err_pair 0.0183
+   c=duffy        n=18  S_a 0.00  S_b 0.78  W 0.00   mean D(worst B) +0.094  mean err_pair 0.0147
+   c=relaxed      n=18  S_a 0.00  S_b 0.72  W 0.00   mean D(worst B) +0.100  mean err_pair 0.0166
+   c=dm           n=18  S_a 0.00  S_b 0.67  W 0.00   mean D(worst B) +0.102  mean err_pair 0.0191
+VERDICT on 'B-specific statistically' (S_a and S_b(paired), worst B cell) over the 54 cells: NOT SUPPORTED (0.000)
+   S_b(paired) flips (fails) in 15 of 54 cells: (0.3333333333333333, 'fixed_chab', 'z0', 'duffy'); (0.3333333333333333, 'fixed_chab', 'z0', 'relaxed'); (0.3333333333333333, 'fixed_chab', 'z0', 'dm'); (0.3333333333333333, 'fixed_chab', 'full', 'duffy'); (0.3333333333333333, 'fixed_chab', 'full', 'relaxed'); (0.3333333333333333, 'fixed_chab', 'full', 'dm'); (1, 'fixed_chab', 'z0', 'duffy'); (1, 'fixed_chab', 'z0', 'relaxed'); (1, 'fixed_chab', 'z0', 'dm'); (1, 'fixed_chab', 'full', 'dm'); (3, 'fixed_chab', 'z0', 'duffy'); (3, 'fixed_chab', 'z0', 'relaxed'); (3, 'fixed_chab', 'z0', 'dm'); (3, 'fixed_chab', 'full', 'relaxed'); (3, 'fixed_chab', 'full', 'dm')
+
+FAILED CHECKS (2): ['C5 halo-free gap = +0.191 +- 0.0006 (CFG86) [must FAIL under MUTATE]', "H2 [HEADLINE] B passes CFG33's gate with the floor in all four cells"]
+total time 126s
