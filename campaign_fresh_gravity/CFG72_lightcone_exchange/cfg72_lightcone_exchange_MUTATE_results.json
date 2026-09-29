@@ -1,0 +1,978 @@
+{
+ "slug": "cfg72_lightcone_exchange_MUTATE",
+ "load_bearing_failures": 6,
+ "checks": [
+  {
+   "name": "D1 the Delta-variations at Delta = 0 are N(phi_tt/c_m^2 - phi_rr) = g_b rho + d_r(c_f vt eps) and r_led + c_f eps + J = 0 (up to an overall sign; sympy residual 0)",
+   "detail": "residuals 0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D2 the Sigma-equations vanish identically at Delta = 0 (no advanced or extra equation)",
+   "detail": "0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D3 static structure of GS: theta = vartheta M - (1+beta) r_led/c_f; the probe force is F/vartheta = r_led - 1/lam_t (r_led is G4's reaction, 1/lam_t the mediator's baryon-baryon force); delta*f_bb = 1 exactly",
+   "detail": "residuals 0, 0, 0, 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D4 (algebra) E = E_qs + w with N(w_tt/c_m^2 - w_rr) = -(g_b M_tt + S_tt)/c_m^2 (sympy residual 0); its stated implication 'second order' does NOT hold for boundary-driven sources (see N2b)",
+   "detail": "residual 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D5 the GS principal symbol has real distinct eigenvalues {0, +-c_m sqrt(1+beta)}: hyperbolic; the exchange (theta relaxation, r_led) is zeroth order",
+   "detail": "[0, -c_m*sqrt(beta + 1), c_m*sqrt(beta + 1)]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "D6 sigma-slaved reaction (3/8) a0 (2 g_N + a0)/(g_N + a0) reduces to G4's for a point mass; the hydrostatic (Sigma_out) reading gives a0/2 for a shell (sympy, and a finite difference of the discretised functional to 2e-3)",
+   "detail": "residuals 0, 0, 6.6e-11",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1 CAUSALITY (stencil): the EL residuals depend on no data outside the closed past light cone of their update point (widened by the 1-site vertex stencil): c_adv < 1e-12  [MUTATE a: spacelike kernel added]",
+   "detail": "c_adv = 5.08e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C1r CAUSALITY (response): the inverse of the linearised residual map (the discrete retarded Green function) is supported in the future light cone of its source (widened by 1 site): c_resp < 1e-12  [MUTATE a: spacelike kernel added]",
+   "detail": "c_resp = 4.42e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 (context) a non-retarded (elliptic) scalar has response outside the light cone: c_resp > 1e-4 (the check can fail)",
+   "detail": "c_resp = 2.75e-01",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "R1 RECIPROCITY: the mixed blocks dR^theta/dphi = (dR^phi/dtheta)^T and dR^q/dphi = (dR^phi/dq)^T (1e-12), and independently hand-coded residuals equal the action's (1e-12): the coupling is DERIVED from F  [MUTATE b: partners dropped]  [MUTATE a: the mutated kernel changes the residual]",
+   "detail": "asymmetry 1.00e+00; hand-coded deviation 1.68e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "N1 CONTROL: light-cone width -> 0 (chi -> 0, beta = 0), point mass: the late-time reaction/g_law equals CFG70's committed values (results JSON) to 1e-6, both slavings, x in {0.3,1,3,10,30}",
+   "detail": "R_late = 1.0000000000 (r_led = 1); worst relative deviation from the JSON 1.33e-13",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N1b the simulated GS at chi = 0.005 reproduces the quasi-static (CFG70 with eps_c -> eps_c/(1+beta), tau -> (1+beta) tau) reaction time series (misfit-at-the-probe R_local within 1e-2 of the peak; the propagated R_force is reported: its baryon-only reference has an O(chi/lam_t) ambiguity because the fluid renormalises the mediator speed)",
+   "detail": "{'closed': (0.0097, 0.0095), 'open': (0.0105, 0.0102)}",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "N2 the late-time reaction on the probe equals r_led (G4's value at r_led = 1, zero at r_led = 0) to 1e-6 for every light-cone speed simulated (chi = 0.5, 0.05, 0.005), closed and open",
+   "detail": "late values {'closed': [(1.0000000000002895, 1.0000000000002451, 0.979999999999996), (1.000000000003487, 1.000000000002732, 0.9799999999999378), (1.0000000000382814, 1.0000000000387366, 0.9799999999992279)], 'open': [(5.551115123125783e-16, 2.220446049250313e-15, 0.9999999999999954), (4.3298697960381105e-14, 3.9968028886505635e-14, 0.9999999999999165), (4.1733283495659634e-13, 4.1533443351227106e-13, 0.9999999999991669)]}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E2 the heat delivered to the fluid by the GS memory law at late times is f_real E_c with f_real = 1 - (1+beta) r_led/eps_c (0.98 closed, 1.0 open), independent of the light-cone speed",
+   "detail": "delivered/E_c: {'closed': [0.98, 0.98, 0.98], 'open': [1.0, 1.0, 1.0]}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N2b the transient deviation of the light-cone misfit reaction R_local from the chi -> 0 (instantaneous-in-space) reaction shrinks with chi (measured at three speeds; extrapolated, not solved, to chi_phys ~ 1e-3)",
+   "detail": "deviations closed ['5.83e-01', '7.27e-02', '9.74e-03'], open ['6.19e-01', '7.81e-02', '1.05e-02']",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N4 extended baryons (exp sphere) in the coupled light-cone simulation: the late-time reaction on the probe is r_led = 1 again (the exchange reaction is local at the probe: profile-independent)",
+   "detail": "late reaction 1.000000; baryon-only field 1.000000 vs enclosed fraction 1.000000",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N3 CLAIM (Q1/Q2, P1): with a light-cone kernel and with extended baryons the late-time reaction still exceeds 0.10 g_law somewhere on x in [0.3, 30] in EVERY (mass, profile, reading) cell -- P1 stays FAIL",
+   "detail": "cells passing P1: 0 of 45; crossing x = 0.38/0.39 (point)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "N3b (control) the point-mass rows equal CFG48/CFG70's G4 numbers (0.0647, 0.530, 2.13, 7.46, 22.5 pressure; 0.0620, 0.398, 1.17, 3.77, 11.3 sigma) to 1e-6",
+   "detail": "[0.0647, 0.5303, 2.1345, 7.4628, 22.4875]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1 (control) the point-mass energy ratios E_c/((1/2) M_b V_f^2) reproduce CFG70's committed values (72.8/49.6/23.0 in CFG48's r_ta; 318/179/57 in B's) to 1e-6, and equal 1.5 x_e to 2e-3",
+   "detail": "worst deviation from the JSON 2.22e-16; closed-form agreement 6.52e-05",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "E1b CLAIM (Q1/Q2, P2): the energy the exchange must supply exceeds (1/2) M_b V_f^2 in BOTH r_ta conventions for every mass and every profile/reading (P2 stays FAIL); extended/point energy ratio within a factor 2",
+   "detail": "smallest ratio over all cells 20.8; extended/point energy ratio range [0.899, 1.198]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T2 the principal symbol of the coupled fluid+bath system has real distinct eigenvalues {0, +-c_s}: hyperbolic; the exchange changes only lower-order terms",
+   "detail": "[-sqrt(P0)*sqrt(gamma)/sqrt(rho), sqrt(P0)*sqrt(gamma)/sqrt(rho), 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "T0 control: the discrete equilibrium is a fixed point of the ideal operator and the ideal spectrum has no growing mode (max Re lambda <= 1e-8 max|lambda|): no gradient instability, no ghost  [MUTATE c: kinetic sign flipped]",
+   "detail": "residual 6.9e-14; growth 1.00e+00; discretisation error 4.7e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T3 the GS half-line operator (mediator + fluid heat relaxation) has no growing Fourier mode (max Re lambda <= 1e-8 |lambda|) and a positive energy Hessian (no negative-norm mode)  [MUTATE c: N flipped]",
+   "detail": "worst Re lambda 1.00e+00; Hessian min eigenvalue -1.84e-02",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "T4 (reported) the spectra are computed at every declared tau for both readings; the growth rates are converged between N = 60 and N = 120 to 20% where nonzero",
+   "detail": "{('P', 'r_e/c'): ['+2.83e+04', '+6.64e+04'], ('P', '0.01 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', '0.1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', '1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', 't_dyn(r_e) = 1.18 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', '10 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', 'r_e/c'): ['+2.91e+04', '+6.71e+04'], ('S', '0.01 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', '0.1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', '1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', 't_dyn(r_e) = 1.18 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', '10 Gyr'): ['+2.95e+04', '+6.76e+04']}",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "T5c (reported) the growth of the label and S baths switches on with the DENSITY CONTRAST of the target (stable below ~20, growing above ~40; the canonical isothermal-sphere threshold is 32): the gravothermal instability of an isothermal-like self-gravitating fluid held at fixed temperature by a bath",
+   "detail": "stable at contrast < 20: True; growing at contrast > 40: False",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "T5a (reported) a LABEL-slaved bath (no position dependence of the target) has no growing mode at any tau: the growth of readings P and S comes from the position dependence of the target (heat added in phase with compression)",
+   "detail": "growing cells: ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "T5b (reported) with the action-derived exchange force on the fluid shells included (reciprocal completion, open class r_led = 0, eps_c = 1) the growing modes of readings P and S remain",
+   "detail": "growing cells: [('P', '0.01 Gyr'), ('P', '0.1 Gyr'), ('P', '1 Gyr'), ('P', '10 Gyr'), ('P', 'r_e/c'), ('P', 't_dyn(r_e) = 1.18 Gyr'), ('S', '0.01 Gyr'), ('S', '0.1 Gyr'), ('S', '1 Gyr'), ('S', '10 Gyr'), ('S', 'r_e/c'), ('S', 't_dyn(r_e) = 1.18 Gyr')]",
+   "ok": true,
+   "load_bearing": false
+  }
+ ],
+ "verdicts": {
+  "Q1 light-cone kernel (space and time), point-mass baryons": {
+   "status": "DOES NOT CHANGE IT",
+   "why": "late-time reaction = r_led (G4/CFG70) to 1e-6 at every speed simulated; transient deviation ~ chi^0.9, extrapolated to chi_phys 8e-04-5e-03 it is 2e-03-1e-02 of the peak; P2 ratios unchanged"
+  },
+  "Q2 extended baryons": {
+   "status": "CHANGES THE FIGURES; does NOT change the verdict",
+   "why": "reaction/g_law ratio (extended/point) in [0.852, 116]; energy ratio in [0.899, 1.198]; P1 passes in 0 cells, P2 passes in 0 cells"
+  },
+  "Q3 stability (declared operator)": {
+   "status": "CHANGES THE VERDICT (growing mode)",
+   "why": "reading P growing at tau in ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']; reading S growing at tau in ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']; GS Fourier symbol worst Re lambda 1.0e+00; ideal control 1.0e+00; hyperbolic (T2, D5); (T5, reported) label-slaved bath growing: ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']; reciprocal open class growing at [('P', '0.01 Gyr'), ('P', '0.1 Gyr'), ('P', '1 Gyr'), ('P', '10 Gyr'), ('P', 'r_e/c'), ('P', 't_dyn(r_e) = 1.18 Gyr'), ('S', '0.01 Gyr'), ('S', '0.1 Gyr'), ('S', '1 Gyr'), ('S', '10 Gyr'), ('S', 'r_e/c'), ('S', 't_dyn(r_e) = 1.18 Gyr')]; closed-class static imbalance {'P': 6.811431685738868, 'S': 0.7477205801212741}"
+  },
+  "P1": {
+   "status": "FAIL",
+   "why": "late-time reaction exceeds 0.10 g_law in all cells; point-mass crossing x = 0.38/0.39; extra mediator baryon-baryon force 1/lam_t against the reaction r_led: delta*f_bb = 1"
+  },
+  "P2": {
+   "status": "FAIL",
+   "why": "energy ratios 72.8/49.6/23.0 (CFG48) and 318/179/57 (committed) unchanged by kernel speed; extended baryons within a factor 2"
+  },
+  "P3": {
+   "status": "FAIL",
+   "why": "discrete GS action: c_adv 5.1e-02, c_resp 4.4e-02 (elliptic context 2.8e-01); reciprocity 1.0e+00; the price: characteristic speed c_m sqrt(1+beta) and delta*f_bb = 1"
+  },
+  "P4": {
+   "status": "see Q3",
+   "why": "growth: P ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr'], S ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']"
+  }
+ },
+ "numbers": {
+  "chi_phys": {
+   "1000000000.0": 0.0008447018255083077,
+   "10000000000.0": 0.0015026660995340311,
+   "1000000000000.0": 0.004760428452993326
+  },
+  "transient_deviation": {
+   "closed": {
+    "measured": [
+     0.5827245988109419,
+     0.07272672138807154,
+     0.009741335353899276
+    ],
+    "chis": [
+     0.5,
+     0.05,
+     0.005
+    ],
+    "slope": 0.8730755149057352,
+    "extrapolated": {
+     "1000000000.0": 0.0020623931613069565,
+     "10000000000.0": 0.003410194947002288,
+     "1000000000000.0": 0.009332565903031628
+    }
+   },
+   "open": {
+    "measured": [
+     0.6191343221537202,
+     0.07814323658855914,
+     0.010468293230984985
+    ],
+    "chis": [
+     0.5,
+     0.05,
+     0.005
+    ],
+    "slope": 0.8730155158477872,
+    "extrapolated": {
+     "1000000000.0": 0.002216537993701761,
+     "10000000000.0": 0.0036649488456708696,
+     "1000000000000.0": 0.010029048454957418
+    }
+   }
+  },
+  "reaction_table": {
+   "1e+09/point/P": [
+    0.0646532742524277,
+    0.5303300858899106,
+    2.134537420613656,
+    7.462778926574918,
+    22.48751040703097
+   ],
+   "1e+09/point/S": [
+    0.061984102379621056,
+    0.3977475644174329,
+    1.173995581337511,
+    3.768333913419018,
+    11.256234399079876
+   ],
+   "1e+09/point/hyd": [
+    0.043102182834951805,
+    0.35355339059327373,
+    1.4230249470757708,
+    4.975185951049946,
+    14.991673604687314
+   ],
+   "1e+09/exp h=2kpc/P": [
+    7.498297512946985,
+    4.771058012700142,
+    4.206543872467413,
+    7.689629509118745,
+    22.48753403375868
+   ],
+   "1e+09/exp h=2kpc/S": [
+    3.7859250206256263,
+    2.44173317715724,
+    2.166191623613107,
+    3.8807102383628207,
+    11.256246199390494
+   ],
+   "1e+09/exp h=2kpc/hyd": [
+    4.998865008631324,
+    3.1807053418000955,
+    2.8043625816449422,
+    5.126419672745831,
+    14.99168935583912
+   ],
+   "1e+09/exp h=0.5rM/P": [
+    1.3200593831821303,
+    1.1465936840691147,
+    2.2107770837106178,
+    7.46278064310786,
+    22.48751040703097
+   ],
+   "1e+09/exp h=0.5rM/S": [
+    0.7949078017651815,
+    0.7133686973490804,
+    1.209723989694877,
+    3.768334763521046,
+    11.256234399079876
+   ],
+   "1e+09/exp h=0.5rM/hyd": [
+    0.880039588788087,
+    0.7643957893794099,
+    1.473851389140412,
+    4.97518709540524,
+    14.991673604687314
+   ],
+   "1e+09/freeman h=3kpc/P": [
+    4.738981247284412,
+    3.5452624573539158,
+    3.5222286736711403,
+    6.829381045136306,
+    20.515980487226184
+   ],
+   "1e+09/freeman h=3kpc/S": [
+    2.426039867716226,
+    1.8455683911726588,
+    1.8344524304961292,
+    3.454908505422019,
+    10.271662550171364
+   ],
+   "1e+09/freeman h=3kpc/hyd": [
+    3.1593208315229417,
+    2.3635083049026107,
+    2.3481524491140937,
+    4.552920696757537,
+    13.677320324817456
+   ],
+   "1e+09/freeman h=0.5rM/P": [
+    0.48410807667204064,
+    0.6415472693368663,
+    1.928316529120074,
+    6.802489365138606,
+    20.515979546392725
+   ],
+   "1e+09/freeman h=0.5rM/S": [
+    0.37035698984657206,
+    0.46047117723046954,
+    1.0776854855294815,
+    3.4416142102640412,
+    10.271662080378288
+   ],
+   "1e+09/freeman h=0.5rM/hyd": [
+    0.32273871778136043,
+    0.4276981795579109,
+    1.2855443527467159,
+    4.534992910092405,
+    13.67731969759515
+   ],
+   "1e+10/point/P": [
+    0.06465327425242771,
+    0.5303300858899106,
+    2.134537420613656,
+    7.462778926574917,
+    22.48751040703097
+   ],
+   "1e+10/point/S": [
+    0.06198410237962106,
+    0.397747564417433,
+    1.173995581337511,
+    3.7683339134190175,
+    11.256234399079876
+   ],
+   "1e+10/point/hyd": [
+    0.04310218283495181,
+    0.35355339059327373,
+    1.4230249470757708,
+    4.975185951049945,
+    14.991673604687314
+   ],
+   "1e+10/exp h=2kpc/P": [
+    1.3950922450023566,
+    1.1906423642421688,
+    2.2239584423933407,
+    7.462782173626758,
+    22.48751040703097
+   ],
+   "1e+10/exp h=2kpc/S": [
+    0.8298998896116657,
+    0.7341889488256991,
+    1.2159082429332548,
+    3.768335521500803,
+    11.256234399079876
+   ],
+   "1e+10/exp h=2kpc/hyd": [
+    0.9300614966682378,
+    0.7937615761614459,
+    1.4826389615955606,
+    4.975188115751172,
+    14.991673604687314
+   ],
+   "1e+10/exp h=0.5rM/P": [
+    1.3200593831821306,
+    1.146593684069115,
+    2.2107770837106173,
+    7.46278064310786,
+    22.48751040703097
+   ],
+   "1e+10/exp h=0.5rM/S": [
+    0.7949078017651816,
+    0.7133686973490807,
+    1.2097239896948766,
+    3.768334763521046,
+    11.256234399079876
+   ],
+   "1e+10/exp h=0.5rM/hyd": [
+    0.8800395887880871,
+    0.7643957893794101,
+    1.4738513891404117,
+    4.97518709540524,
+    14.991673604687314
+   ],
+   "1e+10/freeman h=3kpc/P": [
+    0.9678185052338893,
+    0.9629093152221914,
+    1.9462202526661212,
+    6.802489680373451,
+    20.515980487226184
+   ],
+   "1e+10/freeman h=3kpc/S": [
+    0.6275744993190985,
+    0.6251800938744587,
+    1.0860290135765354,
+    3.44161436609847,
+    10.271662550171364
+   ],
+   "1e+10/freeman h=3kpc/hyd": [
+    0.6452123368225929,
+    0.6419395434814609,
+    1.2974801684440809,
+    4.534993120248968,
+    13.677320324817456
+   ],
+   "1e+10/freeman h=0.5rM/P": [
+    0.4841080766720408,
+    0.6415472693368666,
+    1.9283165291200797,
+    6.802489365138625,
+    20.515979546392778
+   ],
+   "1e+10/freeman h=0.5rM/S": [
+    0.3703569898465723,
+    0.4604711772304697,
+    1.0776854855294842,
+    3.4416142102640506,
+    10.271662080378313
+   ],
+   "1e+10/freeman h=0.5rM/hyd": [
+    0.32273871778136054,
+    0.42769817955791106,
+    1.2855443527467199,
+    4.5349929100924165,
+    13.677319697595186
+   ],
+   "1e+12/point/P": [
+    0.06465327425242771,
+    0.5303300858899106,
+    2.134537420613656,
+    7.462778926574918,
+    22.48751040703097
+   ],
+   "1e+12/point/S": [
+    0.06198410237962106,
+    0.397747564417433,
+    1.173995581337511,
+    3.768333913419018,
+    11.256234399079876
+   ],
+   "1e+12/point/hyd": [
+    0.04310218283495181,
+    0.35355339059327373,
+    1.4230249470757708,
+    4.975185951049946,
+    14.991673604687314
+   ],
+   "1e+12/exp h=2kpc/P": [
+    0.06945514748866356,
+    0.5303304286161762,
+    2.134537420613656,
+    7.462778926574918,
+    22.48751040703097
+   ],
+   "1e+12/exp h=2kpc/S": [
+    0.06638460245926066,
+    0.39774776434106535,
+    1.173995581337511,
+    3.768333913419018,
+    11.256234399079876
+   ],
+   "1e+12/exp h=2kpc/hyd": [
+    0.046303431659109044,
+    0.35355361907745086,
+    1.4230249470757708,
+    4.975185951049946,
+    14.991673604687314
+   ],
+   "1e+12/exp h=0.5rM/P": [
+    1.3200593831821301,
+    1.146593684069115,
+    2.2107770837106173,
+    7.46278064310786,
+    22.48751040703097
+   ],
+   "1e+12/exp h=0.5rM/S": [
+    0.7949078017651814,
+    0.7133686973490806,
+    1.2097239896948766,
+    3.768334763521046,
+    11.256234399079876
+   ],
+   "1e+12/exp h=0.5rM/hyd": [
+    0.8800395887880867,
+    0.76439578937941,
+    1.4738513891404117,
+    4.97518709540524,
+    14.991673604687314
+   ],
+   "1e+12/freeman h=3kpc/P": [
+    0.05507413365881296,
+    0.4612482458219951,
+    1.9283166278307358,
+    6.802489680373451,
+    20.515980487226184
+   ],
+   "1e+12/freeman h=3kpc/S": [
+    0.053124908200442925,
+    0.3564743944328695,
+    1.077685531522148,
+    3.44161436609847,
+    10.271662550171364
+   ],
+   "1e+12/freeman h=3kpc/hyd": [
+    0.03671608910587531,
+    0.30749883054799676,
+    1.2855444185538238,
+    4.534993120248968,
+    13.677320324817456
+   ],
+   "1e+12/freeman h=0.5rM/P": [
+    0.48410807667204064,
+    0.6415472693368666,
+    1.9283165291200743,
+    6.802489365138608,
+    20.51597954639273
+   ],
+   "1e+12/freeman h=0.5rM/S": [
+    0.3703569898465721,
+    0.4604711772304697,
+    1.0776854855294817,
+    3.441614210264042,
+    10.27166208037829
+   ],
+   "1e+12/freeman h=0.5rM/hyd": [
+    0.32273871778136043,
+    0.42769817955791106,
+    1.2855443527467163,
+    4.534992910092405,
+    13.677319697595154
+   ]
+  },
+  "E1": {
+   "1e+09/CFG48": {
+    "point": 72.7594714796541,
+    "exp h=2kpc": [
+     65.38563018798976,
+     67.84407729693866
+    ],
+    "exp h=0.5rM": [
+     70.51097147856194,
+     71.26097148156512
+    ],
+    "freeman h=3kpc": [
+     79.6785937355713,
+     82.2516113077444
+    ],
+    "freeman h=0.5rM": [
+     85.82774987233073,
+     86.3510513859043
+    ]
+   },
+   "1e+09/committed": {
+    "point": 318.35112037755096,
+    "exp h=2kpc": [
+     310.9772790846686,
+     313.43572619761323
+    ],
+    "exp h=0.5rM": [
+     316.1026203761398,
+     316.85262038031266
+    ],
+    "freeman h=3kpc": [
+     374.67372169359317,
+     377.2467392720589
+    ],
+    "freeman h=0.5rM": [
+     380.8229048513203,
+     381.34620636594127
+    ]
+   },
+   "1e+10/CFG48": {
+    "point": 49.569972806040845,
+    "exp h=2kpc": [
+     47.23918510579023,
+     48.01661434178498
+    ],
+    "exp h=0.5rM": [
+     47.32147280502495,
+     48.071472807748535
+    ],
+    "freeman h=3kpc": [
+     57.102344571202345,
+     57.916004168349765
+    ],
+    "freeman h=0.5rM": [
+     57.97342426395555,
+     58.496725777758556
+    ]
+   },
+   "1e+10/committed": {
+    "point": 179.0869117448417,
+    "exp h=2kpc": [
+     176.75612404431521,
+     177.53355328132128
+    ],
+    "exp h=0.5rM": [
+     176.83841174355973,
+     177.58841174725893
+    ],
+    "freeman h=3kpc": [
+     212.67304962778175,
+     213.4867092261254
+    ],
+    "freeman h=0.5rM": [
+     213.54414357014485,
+     214.06744508414164
+    ]
+   },
+   "1e+12/CFG48": {
+    "point": 23.007539464225864,
+    "exp h=2kpc": [
+     22.775810693772033,
+     22.853553525677967
+    ],
+    "exp h=0.5rM": [
+     20.759039463373245,
+     21.509039465550106
+    ],
+    "freeman h=3kpc": [
+     27.393464599640573,
+     27.474830400291605
+    ],
+    "freeman h=0.5rM": [
+     26.067660466886878,
+     26.590961980286966
+    ]
+   },
+   "1e+12/committed": {
+    "point": 56.73349729154041,
+    "exp h=2kpc": [
+     56.50176852106889,
+     56.57951135303971
+    ],
+    "exp h=0.5rM": [
+     54.484997290498,
+     55.23499729331877
+    ],
+    "freeman h=3kpc": [
+     67.90377221577656,
+     67.98513801663861
+    ],
+    "freeman h=0.5rM": [
+     66.5779717934662,
+     67.10127330728656
+    ]
+   }
+  },
+  "spectra_max_Re_lambda_per_Gyr": {
+   "P/r_e/c": [
+    28332.35657027259,
+    66405.66107219625
+   ],
+   "P/0.01 Gyr": [
+    29476.676582538,
+    67550.97271088147
+   ],
+   "P/0.1 Gyr": [
+    29522.255492946348,
+    67596.10268972299
+   ],
+   "P/1 Gyr": [
+    29526.817038245536,
+    67600.61732277884
+   ],
+   "P/t_dyn(r_e) = 1.18 Gyr": [
+    29526.894670543545,
+    67600.69415356626
+   ],
+   "P/10 Gyr": [
+    29527.27322931872,
+    67601.06880243556
+   ],
+   "S/r_e/c": [
+    29066.834582544518,
+    67130.5625824038
+   ],
+   "S/0.01 Gyr": [
+    29507.117242434724,
+    67581.0778682296
+   ],
+   "S/0.1 Gyr": [
+    29525.29896320676,
+    67599.11299190934
+   ],
+   "S/1 Gyr": [
+    29527.121379241762,
+    67600.91835084818
+   ],
+   "S/t_dyn(r_e) = 1.18 Gyr": [
+    29527.152399075636,
+    67600.94907662946
+   ],
+   "S/10 Gyr": [
+    29527.30366335784,
+    67601.09890522112
+   ]
+  },
+  "T5": {
+   "label_bath": {
+    "r_e/c": [
+     [
+      29064.41105156486,
+      true
+     ],
+     [
+      67130.09047030444,
+      true
+     ]
+    ],
+    "0.01 Gyr": [
+     [
+      29507.012453002415,
+      true
+     ],
+     [
+      67581.05786602564,
+      true
+     ]
+    ],
+    "0.1 Gyr": [
+     [
+      29525.288468775983,
+      true
+     ],
+     [
+      67599.11099026233,
+      true
+     ]
+    ],
+    "1 Gyr": [
+     [
+      29527.120329643833,
+      true
+     ],
+     [
+      67600.9181506688,
+      true
+     ]
+    ],
+    "t_dyn(r_e) = 1.18 Gyr": [
+     [
+      29527.15151023022,
+      true
+     ],
+     [
+      67600.94890710928,
+      true
+     ]
+    ],
+    "10 Gyr": [
+     [
+      29527.30355839653,
+      true
+     ],
+     [
+      67601.09888520313,
+      true
+     ]
+    ]
+   },
+   "recip_open": {
+    "P/r_e/c": [
+     [
+      45733.19016262108,
+      true
+     ],
+     [
+      105822.02503344012,
+      true
+     ]
+    ],
+    "P/0.01 Gyr": [
+     [
+      46876.67467345193,
+      true
+     ],
+     [
+      106969.00700078881,
+      true
+     ]
+    ],
+    "P/0.1 Gyr": [
+     [
+      46921.90487113492,
+      true
+     ],
+     [
+      107014.05775767133,
+      true
+     ]
+    ],
+    "P/1 Gyr": [
+     [
+      46926.430235855594,
+      true
+     ],
+     [
+      107018.56387102809,
+      true
+     ]
+    ],
+    "P/t_dyn(r_e) = 1.18 Gyr": [
+     [
+      46926.50725038703,
+      true
+     ],
+     [
+      107018.64055589044,
+      true
+     ]
+    ],
+    "P/10 Gyr": [
+     [
+      46926.88279577724,
+      true
+     ],
+     [
+      107019.01449274045,
+      true
+     ]
+    ],
+    "S/r_e/c": [
+     [
+      29044.267220015034,
+      true
+     ],
+     [
+      67118.92883857862,
+      true
+     ]
+    ],
+    "S/0.01 Gyr": [
+     [
+      29483.76654426094,
+      true
+     ],
+     [
+      67569.2904804032,
+      true
+     ]
+    ],
+    "S/0.1 Gyr": [
+     [
+      29501.917978105903,
+      true
+     ],
+     [
+      67587.31966475051,
+      true
+     ]
+    ],
+    "S/1 Gyr": [
+     [
+      29503.737367234815,
+      true
+     ],
+     [
+      67589.12443003495,
+      true
+     ]
+    ],
+    "S/t_dyn(r_e) = 1.18 Gyr": [
+     [
+      29503.768335560908,
+      true
+     ],
+     [
+      67589.1551457149,
+      true
+     ]
+    ],
+    "S/10 Gyr": [
+     [
+      29503.91934867841,
+      true
+     ],
+     [
+      67589.30492504584,
+      true
+     ]
+    ]
+   },
+   "closed_static_imbalance": {
+    "P": 6.811431685738868,
+    "S": 0.7477205801212741
+   }
+  },
+  "T5c_density_contrast": {
+   "2/L": [
+    -0.20003354586780808,
+    3.1622776601683795,
+    false
+   ],
+   "2/S": [
+    -0.20002793778266872,
+    3.1622776601683795,
+    false
+   ],
+   "3/L": [
+    -0.20008579215239955,
+    6.70820393249937,
+    false
+   ],
+   "3/S": [
+    -0.20007114092834102,
+    6.70820393249937,
+    false
+   ],
+   "5/L": [
+    -0.12279544532926077,
+    18.027756377319946,
+    false
+   ],
+   "5/S": [
+    -0.19635517092221602,
+    18.027756377319946,
+    false
+   ],
+   "8/L": [
+    0.017333394679542178,
+    45.60701700396551,
+    true
+   ],
+   "8/S": [
+    -0.04984217293710815,
+    45.60701700396551,
+    false
+   ],
+   "15/L": [
+    0.16844086457387966,
+    159.45218719101973,
+    true
+   ],
+   "15/S": [
+    0.1138869175118295,
+    159.45218719101973,
+    true
+   ],
+   "30/L": [
+    0.28724526061565153,
+    636.7495583037336,
+    true
+   ],
+   "30/S": [
+    0.24680025459679306,
+    636.7495583037336,
+    true
+   ]
+  }
+ }
+}

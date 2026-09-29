@@ -1,0 +1,283 @@
+CFG72 -- does relaxing CFG70's three restrictions (time-kernel only, point-mass baryons, stability untested) change its verdict on the enclosed-mass exchange?
+
+FROZEN QUESTION (verbatim, declared before the first run):
+ 'Does relaxing CFG70's three restrictions change its verdict? (Q1) With a retarded kernel supported inside the past light cone in SPACE and time
+  (a 1+1 radial or a spherical-shell model with speed c), does the late-time reaction on the baryons at x = r/r_M in [0.3, 30] still equal CFG48's
+  G4 (pass line 0.10 g_law) for M_b = 1e9, 1e10, 1e12 Msun, and does the energy budget (P2) change from CFG70's kernel-independent value?
+  (Q2) With EXTENDED baryons (an exponential sphere as CFG44's exp_sphere, scale h chosen as CFG44 did; also the Freeman disc reading if CFG44 provides
+  it) rather than a point mass, do the reaction and energy figures change by more than a factor 2 at any x? (Q3) Is the coupled fluid+baryon+exchange
+  operator STABLE (no negative-norm mode, no gradient instability, hyperbolic: compute the linearised operator about the static target on a radial
+  grid, its principal symbol and its spectrum, for the r = 1 closed action and for CFG70's open class r = 0 with eps_c = 1)?'
+PASS LINES (declared):  P1 reaction <= 0.10 g_law for all x in [0.3, 30];  P2 energy <= (1/2) M_b V_f^2 in BOTH r_ta conventions (CFG48's and B's committed
+  CFG4 r_ta_law);  P3 retarded in space AND time (advanced / spacelike dependence 0 on the discrete action) and reciprocal;  P4 stable (all eigenvalues
+  real / no growing mode; no ghost).  Each of Q1-Q3 is classified CHANGES THE VERDICT / DOES NOT CHANGE IT (rules below).
+
+INHERITED (read-only): CFG48 G4 (target theta^T = (3 a0/4) M_b(<r) pressure-slaved, (3/2) 4 pi r^2 rho_c sigma^2 sigma-slaved, reaction a = r_led theta^T_M),
+ CFG70 (SK cross term, a/theta^T_M = r Theta_K + eps_c (Thetabar * mdot), F = r theta + (c/2)(theta - theta^T)^2, K1 = Newton kernel; committed results JSON).
+ theta = fluid heat per unit radius; r_led in {0,1} the ledger fraction (r_led = 1 closed, 0 open); eps_c = c_f theta^T_full; theta^T_M = d theta^T / d M_b at the probe.
+
+THE MODEL (declared: 'GS', a Gauss-law scalar mediator, 1+1 radial half-line r >= 0, characteristic speed c).
+ CFG70's cross term was instantaneous in space.  A causal completion with light-cone support needs a MEDIATOR (a local hyperbolic field), because a nonlocal
+ time-kernel action has no unique retarded reading.  Choose a scalar phi(r,t) with the enclosed mass as its Gauss law:  E = -d_r phi, Neumann/Gauss at r = 0,
+ static limit E(r) = (g_b/N) M_b(<r).  Doubled fields phi_pm = phi_S +- phi_D/2 etc. (Galley type; physical limit D = 0):
+   S = int dt { (m/2)(qdot_+^2 - qdot_-^2) - m[Phi(q_+) - Phi(q_-)] }
+     + int dr dt { (N/2)[ (phi_{+,t}^2 - phi_{-,t}^2)/c_m^2 - (phi_{+,r}^2 - phi_{-,r}^2) ] + g_b [ rho(r;q_+) phi_+ - rho(r;q_-) phi_- ]
+                   - [ F(theta_+, E_+) - F(theta_-, E_-) ] - theta_D (Gamma * thetadot_S) }
+   F(theta, E) = r_led theta + (c_f/2)(theta - vt E)^2,      vt = vartheta' the fluid-to-mediator coupling,  E = -d_r phi.
+ Physical (D = 0) equations (sympy, S1):  N (phi_tt/c_m^2 - phi_rr) = g_b rho + d_r( c_f vt eps ),  eps = theta - vt E;  r_led + c_f eps + Gamma*thetadot = 0;
+   m qddot = -m Phi' + g_b d_q(phi at q)  (the baryon feels the mediator at its own position).   Retarded by construction (finite characteristic speed).
+ Target identification: theta^T = vt E^(b) = vartheta M_b(<r) with vartheta = vt g_b / N = 3 a0/4 (pressure-slaved; the sigma reading is the same vertex with a
+ nonlinear target).  Two dimensionless couplings appear, which the action leaves FREE (flagged NEW, untied):  lam = vt/g_b (mediator fluid-to-baryon strength,
+ lam_t = lam/M_b) and beta = c_f vt^2/N = eps_c lam_t (mediator back-reaction).  Derived consequences to be verified: characteristic speed^2 = c_m^2 (1+beta) (declared
+ to equal c^2, i.e. the BARE speed is c_m = c/sqrt(1+beta)); the fluid enters the static enclosed field only through the offset (theta = vartheta M - (1+beta) r_led/c_f);
+ the reaction on a baryon is F/vartheta = r_led - 1/lam_t  (the -1/lam_t is the mediator's own baryon-baryon force);  contamination delta = lam_t r_led and relative
+ baryon-baryon force f_bb = 1/(lam_t r_led):  delta * f_bb = 1  (a structural trade-off of this completion, not an added knob).
+
+READINGS AND PROFILES (declared).  Pressure-slaved (linear; theta^T = vartheta M_b(<r)), sigma-slaved (theta^T_M = (3/8) a0 (2 g_N + a0)/(g_N + a0), g_N = G M_b(<u)/u^2,
+ = G4's (3/8) a0 (2+x^2)/(1+x^2) for a point mass), and for extended baryons also the CFG44 exact hydrostatic reading 'hyd' (theta^T = vartheta M_b(<r) + 3 pi a0 r^2 Sigma_out(r);
+ STATIC value only: no retarded completion is built).  Extended profiles: CFG44's exp_sphere with h = 2.0 kpc (the value CFG44 B1 uses for its exp. sphere at every mass),
+ CFG44's freeman_disc with h = 3.0 kpc (B1's value; the helper's monotone envelope saturates at 1.20 M_b, an artefact of its running maximum, used AS IS and flagged),
+ and, declared here as the self-similar family, h = 0.5 r_M(M_b) for both.  x = r/r_M(M_tot).  g_law for extended baryons = sqrt(g_N^2 + a0 g_N), g_N = G M_b(<u)/u^2 (P2 kernel).
+
+Q3 MODEL (declared; a Lagrangian shell gas, cfg72_stability.py):  spherical cold fluid, gamma = 5/3, self-gravity in the conservative shell form, fixed central point mass M_b, inner
+ wall pinned at r_in = 0.05 r_M, outer edge r_out = 0.4 r_ta (CFG48) held at the target pressure P_ext = a0 M_b/(8 pi r_out^2); static state = the exact DISCRETE equilibrium (node
+ force balance solved from the edge, discretisation error vs the CFG44 target printed); heat bath dU/dt = -P dV/dt + (U^T - U)/tau, K1 (CFG70's Newton kernel), tau = gamma_diss/c_f the
+ fluid's own relaxation time.  Reading P: Eulerian pressure target P^T(r) = a0 M/(8 pi r^2) at the cell's CURRENT centre (state-independent pressure: CFG44 B2's ill-posed structure,
+ regularised by tau).  Reading S: temperature bath, target specific energy fixed by the position (G4's sigma-slaved with fixed shell mass).  ASSUMPTION A_fluid: the exchange free energy F
+ depends on the Eulerian site heat and the BARYONS only, so it exerts no force on fluid shells; this is exact for reading P with a point mass (theta^T is constant in r) and an approximation
+ for reading S in the closed class (the derived force -r_led d theta^T/dr is omitted).  Closed (r_led = 1, eps_c = 100) and open (r_led = 0, eps_c = 1) differ only in the probe/mediator sector
+ (S3 of this file); the fluid+bath operator depends on tau only.  tau list (declared, no scan): r_e/c, 0.01, 0.1, 1 Gyr, t_dyn(r_e), 10 Gyr and inf (ideal control), with M_b = 1e10 (1e9, 1e12 reported).
+ Grids N = 60 and 120 nodes (log-spaced).  The dissipative half-line operator of GS is analysed by its Fourier symbol.
+
+CHECKS AND PASS LINES (frozen here, before the first run)
+ S1 (sympy)  D1 the doubled GS action's Delta-variations at Delta = 0 give exactly the phi, theta equations above (residual 0); D2 Sigma-equations vanish at Delta = 0; D3 the static
+       structure (E, theta_static, reaction F/vartheta = r_led - 1/lam_t, contamination, delta*f_bb = 1); D4 quasi-static retardation: E = E_qs + w with
+       N(w_tt/c_m^2 - w_rr) = -(g_b M_tt + S_tt)/c_m^2 (the retardation correction is SECOND order in 1/c); D5 principal symbol: eigenvalues {0, +-c_m sqrt(1+beta)} (hyperbolic);
+       D6 G4's closed forms, extended: (3/4) a0, (3/8) a0 (2 g_N + a0)/(g_N + a0), and the hyd reaction (2/3)(3/4) a0 = a0/2 by finite difference of the discretised functional (2e-3).
+ S2 (discrete SK action on the LIGHT-CONE LATTICE, c_eff dt = dr, 5 x 5 sites, doubled fields phi, theta (on links), q, CIC baryon vertex, retarded time memory on theta, fixed test values):
+       C1 CAUSALITY (residual stencil, CFG70's measure extended to space): the EL residual at an update point (i_u, j_u) has no dependence on data outside the closed past cone widened by the
+          vertex stencil (|dj| <= (i_u - i') + 1): c_adv < 1e-12.   C1r (response support, the real test): the inverse of the linearised residual map (the discrete retarded Green function)
+          has support only in the future cone widened by 1: c_resp < 1e-12.   C2 (context, load-bearing): the same wave operator with the instantaneous (elliptic) space term has c_resp > 1e-4.
+       R1 RECIPROCITY: (i) the mixed blocks dR^theta/dphi = (dR^phi/dtheta)^T and dR^q/dphi = (dR^phi/dq)^T to 1e-12; (ii) independently hand-coded residuals equal the action's to 1e-12.
+ S3 (Q1 numerics)  N1 CONTROL: the reaction in the light-cone width -> 0 limit (beta = 0, chi = R_f/(c t_f) -> 0, point mass) equals CFG70's committed late-time reaction (results JSON) to 1e-6, both slavings, and
+          the quasi-static reduction of GS is CFG70's closed form with eps_c -> eps_c/(1+beta), tau -> (1+beta) tau (to 1e-3); N2 the coupled wave+fluid+probe simulation (staggered leapfrog, J = 100 sites, R_f = 1,
+          t_f = 1, c_eff = R_f/(chi t_f), K1 kernel tau = 0.1 t_f, beta = 1, closed (r_led=1, eps_c=100) and open (r_led=0, eps_c=1)) at chi in {0.5, 0.05, 0.005}: late-time reaction = r_led (1e-6); the peak/transient
+          deviation from the chi -> 0 solution is measured and extrapolated to chi_phys = R_f/(c t_f) (an EXTRAPOLATION, declared, not a solve); N3 the late-time reaction/g_law table, x in {0.3,1,3,10,30},
+          M_b = 1e9,1e10,1e12, point / exp_sphere / freeman, all readings, and the x at which 0.10 is crossed; N4 (extended baryons in the simulation, M_b = 1e10, exp sphere) same late-time limit.
+ S4 (P2)  E1 E_c/((1/2) M_b V_f^2) by quadrature (closed form 1.5 x_e for the point mass) in CFG48's r_ta and B's committed r_ta, point vs extended (enc and hyd), control vs CFG70's JSON (1e-6);
+       E2 the energy delivered by the GS memory law = f_real E_c with f_real = 1 - (1+beta) r_led/eps_c (simulation), kernel- and speed-independent.
+ S5 (Q3)  T0 control: the discrete equilibrium is a fixed point (|f| < 1e-9 relative) and the ideal (tau = inf) operator has NO growing mode: max Re lambda <= 1e-8 max|lambda| (MUTATE c must fail this);
+       T1 hydrostatic discretisation error (reported); T2 the principal symbol of the fluid+bath system (sympy) has real eigenvalues {0, +-c_s} (hyperbolic), relaxation only zeroth order;
+       T3 the Fourier symbol of the GS half-line dissipative operator: max Re lambda <= 1e-8 max|lambda| over k, the energy Hessian positive (no ghost); MUTATE c flips N and must fail;
+       T4 (reported, classification) spectra at the tau list, readings P and S, N = 60 and 120: max Re lambda in 1/Gyr, growth rate vs tau, convergence of the growth rate between N = 60 and 120.
+CLASSIFICATION RULES (declared).  Q1 DOES NOT CHANGE iff the late-time reaction equals G4's/CFG70's to 1e-6 for every kernel speed simulated AND the P2 ratios equal CFG70's to 1e-6 AND P1 stays FAIL.
+ Q2 CHANGES THE FIGURES iff the extended/point ratio of reaction/g_law or of the energy ratio leaves [1/2, 2] at some x or mass; it CHANGES THE VERDICT iff P1 or P2 flips to PASS in some reading.
+ Q3 CHANGES THE VERDICT iff the operator has a growing mode (max Re lambda > 1e-8 max|lambda| of that operator, converged between N = 60 and 120) in a reading/tau CFG70's passing cells use, or a ghost.
+MUTATE controls (each must exit rc = 1):  MUTATE=a: a kernel with SPACELIKE support (an instantaneous long-range theta-E coupling) is added to the discrete action -> C1/C1r must FAIL;
+ MUTATE=b: the reciprocity partners are dropped (prescribed drives, no phi_D/q_D partners) -> R1 must FAIL;  MUTATE=c: the sign of the fluid's kinetic term (and of the mediator's N) is flipped -> T0/T3 must FAIL;
+ MUTATE=1: all three.  Outputs are named by mode.
+DISCLOSED.  Before this file was written a one-line numpy check of the LOCAL pressure-bath dispersion cubic (planar, gravity g) was run; it showed growth for the pressure bath at every tau tried.
+ The model, readings and pass lines above were NOT changed after it.  No parameter is fitted; beta = 1 (and lam_t = beta/eps_c) is a declared representative value of an UNTIED coupling.
+DISCLOSED AFTER THE FIRST RUN (the declared model, pass lines and classification rules above were not changed; these are corrections and additions, each reported as such):
+ (i) the first run showed a slowly decaying ringing at chi = 0.5 from the outflow boundary (late R_force 1.0074); a damping sponge layer was tried and REJECTED (it reflects the low frequencies), and the run time after the formation was extended to 40 light-crossings instead;  (ii) D4's stated IMPLICATION (retardation is second order) is wrong for
+ boundary-driven (point-mass) sources: N2b measures FIRST-order scaling in chi (the algebraic identity D4 stands);  (iii) A_fluid's claim of exactness for reading P was wrong for the Lagrangian implementation (the target depends on the cell
+ volume and position, so F has a derived force on the shells): added T5: a label-slaved control bath, the reciprocal completion with the derived shell force for the open class, the closed-class static imbalance, and a density-contrast control
+ (T5c, r_out/r_in in {2, 3, 5, 8, 15, 30}, chosen before it was coded but AFTER an informal scan of the same values had been seen).  The T5a hypothesis printed with its check (that a label bath would be stable, so that the growth came from the position
+ dependence of the target) was written after the first run and is REFUTED by its own result: the label bath grows too; the density-contrast control points to the canonical (fixed-temperature-bath) gravothermal instability of a high-contrast isothermal-like sphere;
+ (iv) N1b's 1e-2 line is marginally missed by the open class (1.05e-2); it is kept as a failure (the deviation is O(chi), N2b).
+SCOPE.  Spherical Newtonian, canonical a0, P2 law; GS is ONE causal completion (a Gauss-law scalar with a derivative fluid vertex): other mediators (a different spatial kernel or vertex) are untested;
+ the fluid shells feel no exchange force (A_fluid); point-mass baryons in Q3; the hyd reading has no retarded completion; the probe is a test shell.  kappa = 1/2 FITTED.  Nothing here says the theory is closed.
+
+  *** MUTATE=c: spacelike kernel = False, reciprocity partners dropped = False, kinetic sign flipped = True; the corresponding claims must FAIL ***
+
+======================================================================================================================
+S1  the GS action -> equations, static structure, retardation order, principal symbol (sympy)
+======================================================================================================================
+    phi_D-equation: (-N*Derivative(phS(r, t), (t, 2)) + c_m**2*(N*Derivative(phS(r, t), (r, 2)) + c_f*vt*(vt*Derivative(phS(r, t), (r, 2)) + Derivative(thS(r, t), r)) + g_b*rho(r, t)))/c_m**2 = 0
+    theta_D-equation: -c_f*(vt*Derivative(phS(r, t), r) + thS(r, t)) - r_led - Jmem(r, t) = 0
+    Sigma-equations at Delta = 0: 0, 0
+  [PASS] D1 the Delta-variations at Delta = 0 are N(phi_tt/c_m^2 - phi_rr) = g_b rho + d_r(c_f vt eps) and r_led + c_f eps + J = 0 (up to an overall sign; sympy residual 0)
+         residuals 0, 0
+  [PASS] D2 the Sigma-equations vanish identically at Delta = 0 (no advanced or extra equation)
+         0, 0
+    static: theta - (vartheta M - (1+beta) r_led/c_f) = 0;  F/vartheta - (r_led - 1/lam_t) = 0;  delta * f_bb - 1 = 0;  Gauss ODE residual 0
+  [PASS] D3 static structure of GS: theta = vartheta M - (1+beta) r_led/c_f; the probe force is F/vartheta = r_led - 1/lam_t (r_led is G4's reaction, 1/lam_t the mediator's baryon-baryon force); delta*f_bb = 1 exactly
+         residuals 0, 0, 0, 0
+    E = E_qs + w: N(w_tt/c^2 - w_rr) = -(g_b M_tt + S_tt)/c^2 (algebraic residual 0).  NOTE (added after the first run): for a source that changes AT THE BOUNDARY (the point mass) the homogeneous solution fixed by the Gauss boundary condition is a pure delay m(t - r/c), FIRST order in R/(c t_f); the second-order statement holds only for bulk sources with no boundary-driven part (N2b measures first order)
+  [PASS] D4 (algebra) E = E_qs + w with N(w_tt/c_m^2 - w_rr) = -(g_b M_tt + S_tt)/c_m^2 (sympy residual 0); its stated implication 'second order' does NOT hold for boundary-driven sources (see N2b)
+         residual 0
+    GS principal symbol eigenvalues: [0, -c_m*sqrt(beta + 1), c_m*sqrt(beta + 1)]  (characteristic speed c_m sqrt(1+beta))
+  [PASS] D5 the GS principal symbol has real distinct eigenvalues {0, +-c_m sqrt(1+beta)}: hyperbolic; the exchange (theta relaxation, r_led) is zeroth order
+         [0, -c_m*sqrt(beta + 1), c_m*sqrt(beta + 1)]
+    sigma-slaved theta^T_M (general g_N) reduces to G4's (residual 0); hyd (Sigma_out) reaction of a shell = a0/2  (= a0/2, residual 0); finite difference of the discretised functional 0.50000 a0 (rel. dev. 6.6e-11)
+  [PASS] D6 sigma-slaved reaction (3/8) a0 (2 g_N + a0)/(g_N + a0) reduces to G4's for a point mass; the hydrostatic (Sigma_out) reading gives a0/2 for a shell (sympy, and a finite difference of the discretised functional to 2e-3)
+         residuals 0, 0, 6.6e-11
+
+======================================================================================================================
+S2  discrete GS action on the light-cone lattice: retardation in space and time, reciprocity
+======================================================================================================================
+    building the doubled discrete action (sympy) ...
+    residual-stencil causality measure (dependence outside the closed past cone of the update point, widened by 1 site): c_adv = 0.00e+00
+  [PASS] C1 CAUSALITY (stencil): the EL residuals depend on no data outside the closed past light cone of their update point (widened by the 1-site vertex stencil): c_adv < 1e-12
+         c_adv = 0.00e+00
+    response-support measure (the discrete retarded Green function outside the future cone of its source, widened by 1): c_resp = 2.01e-18  (scale 6.250e+00)
+  [PASS] C1r CAUSALITY (response): the inverse of the linearised residual map (the discrete retarded Green function) is supported in the future light cone of its source (widened by 1 site): c_resp < 1e-12
+         c_resp = 2.01e-18
+    context: the same wave term with an instantaneous (elliptic) space Laplacian at the new time: c_resp = 2.50e-01
+  [PASS] C2 (context) a non-retarded (elliptic) scalar has response outside the light cone: c_resp > 1e-4 (the check can fail)
+         c_resp = 2.50e-01
+    reciprocity: mixed-block asymmetry (theta-phi and q-phi) = 0.00e+00;  hand-coded (independent) residuals vs the action's: 2.06e-15
+  [PASS] R1 RECIPROCITY: the mixed blocks dR^theta/dphi = (dR^phi/dtheta)^T and dR^q/dphi = (dR^phi/dq)^T (1e-12), and independently hand-coded residuals equal the action's (1e-12): the coupling is DERIVED from F
+         asymmetry 0.00e+00; hand-coded deviation 2.06e-15
+
+======================================================================================================================
+S3  Q1: the reaction with a light-cone kernel (coupled wave + fluid + probe simulation), the late-time table, the control against CFG70
+======================================================================================================================
+  [PASS] N1 CONTROL: light-cone width -> 0 (chi -> 0, beta = 0), point mass: the late-time reaction/g_law equals CFG70's committed values (results JSON) to 1e-6, both slavings, x in {0.3,1,3,10,30}
+         R_late = 1.0000000000 (r_led = 1); worst relative deviation from the JSON 1.33e-13
+    closed (r_led = 1, eps_c = 100, beta = 1, tau = 0.1, chi = 0.005): |R_force - R_qs|/peak = 9.51e-03, |R_local - R_qs|/peak = 9.74e-03; R_qs peak 14.022; late R_force = 1.000000, R_local = 1.000000
+    open   (r_led = 0, eps_c = 1, beta = 1, tau = 0.1, chi = 0.005): |R_force - R_qs|/peak = 1.02e-02, |R_local - R_qs|/peak = 1.05e-02; R_qs peak 0.131; late R_force = 0.000000, R_local = 0.000000
+  [FAIL] N1b the simulated GS at chi = 0.005 reproduces the quasi-static (CFG70 with eps_c -> eps_c/(1+beta), tau -> (1+beta) tau) reaction time series (misfit-at-the-probe R_local within 1e-2 of the peak; the propagated R_force is reported: its baryon-only reference has an O(chi/lam_t) ambiguity because the fluid renormalises the mediator speed)
+         {'closed': (0.0097, 0.0095), 'open': (0.0105, 0.0102)}
+      closed chi = 0.5   : late R_force = 1.00000000, R_local = 1.00000000 (want r_led = 1); max_t |R_local - R_qs|/peak = 5.827e-01; delivered heat/E_c = 0.98000 (want 0.98000)
+      closed chi = 0.05  : late R_force = 1.00000000, R_local = 1.00000000 (want r_led = 1); max_t |R_local - R_qs|/peak = 7.273e-02; delivered heat/E_c = 0.98000 (want 0.98000)
+      closed chi = 0.005 : late R_force = 1.00000000, R_local = 1.00000000 (want r_led = 1); max_t |R_local - R_qs|/peak = 9.741e-03; delivered heat/E_c = 0.98000 (want 0.98000)
+      open   chi = 0.5   : late R_force = 0.00000000, R_local = 0.00000000 (want r_led = 0); max_t |R_local - R_qs|/peak = 6.191e-01; delivered heat/E_c = 1.00000 (want 1.00000)
+      open   chi = 0.05  : late R_force = 0.00000000, R_local = 0.00000000 (want r_led = 0); max_t |R_local - R_qs|/peak = 7.814e-02; delivered heat/E_c = 1.00000 (want 1.00000)
+      open   chi = 0.005 : late R_force = 0.00000000, R_local = 0.00000000 (want r_led = 0); max_t |R_local - R_qs|/peak = 1.047e-02; delivered heat/E_c = 1.00000 (want 1.00000)
+  [PASS] N2 the late-time reaction on the probe equals r_led (G4's value at r_led = 1, zero at r_led = 0) to 1e-6 for every light-cone speed simulated (chi = 0.5, 0.05, 0.005), closed and open
+         late values {'closed': [(1.0000000000002895, 1.0000000000002451, 0.979999999999996), (1.000000000003487, 1.000000000002732, 0.9799999999999378), (1.0000000000382814, 1.0000000000387366, 0.9799999999992279)], 'open': [(5.551115123125783e-16, 2.220446049250313e-15, 0.9999999999999954), (4.3298697960381105e-14, 3.9968028886505635e-14, 0.9999999999999165), (4.1733283495659634e-13, 4.1533443351227106e-13, 0.9999999999991669)]}
+  [PASS] E2 the heat delivered to the fluid by the GS memory law at late times is f_real E_c with f_real = 1 - (1+beta) r_led/eps_c (0.98 closed, 1.0 open), independent of the light-cone speed
+         delivered/E_c: {'closed': [0.98, 0.98, 0.98], 'open': [1.0, 1.0, 1.0]}
+    closed: transient deviation from the chi -> 0 reaction ~ chi^0.87; measured ['5.83e-01', '7.27e-02', '9.74e-03'] at chi = (0.5, 0.05, 0.005); EXTRAPOLATED to chi_phys 1e+09: 8.4e-04 -> 2.1e-03, 1e+10: 1.5e-03 -> 3.4e-03, 1e+12: 4.8e-03 -> 9.3e-03
+    open: transient deviation from the chi -> 0 reaction ~ chi^0.87; measured ['6.19e-01', '7.81e-02', '1.05e-02'] at chi = (0.5, 0.05, 0.005); EXTRAPOLATED to chi_phys 1e+09: 8.4e-04 -> 2.2e-03, 1e+10: 1.5e-03 -> 3.7e-03, 1e+12: 4.8e-03 -> 1.0e-02
+  [PASS] N2b the transient deviation of the light-cone misfit reaction R_local from the chi -> 0 (instantaneous-in-space) reaction shrinks with chi (measured at three speeds; extrapolated, not solved, to chi_phys ~ 1e-3)
+         deviations closed ['5.83e-01', '7.27e-02', '9.74e-03'], open ['6.19e-01', '7.81e-02', '1.05e-02']
+    extended baryons (exp sphere, h/R_f = 0.0157, J = 200, chi = 0.05, closed): baryon-only late field at the probe 1.000000 (M_b(<u)/M_b = 1.000000); late reaction (e_b - e)/lam_t = 1.000000 (want r_led = 1)
+  [PASS] N4 extended baryons (exp sphere) in the coupled light-cone simulation: the late-time reaction on the probe is r_led = 1 again (the exchange reaction is local at the probe: profile-independent)
+         late reaction 1.000000; baryon-only field 1.000000 vs enclosed fraction 1.000000
+
+======================================================================================================================
+N3  late-time reaction / g_law at x = r/r_M(M_tot):  point mass (control) vs extended baryons (CFG44 exp_sphere, freeman_disc), readings pressure (enc), sigma, hyd
+======================================================================================================================
+    M_b = 1e+09   (r_M = 1.22 kpc)   reaction/g_law at x = 0.3, 1, 3, 10, 30
+      point            P:    0.0647      0.53      2.13      7.46      22.5 | S:     0.062     0.398      1.17      3.77      11.3 | hyd:    0.0431     0.354      1.42      4.98        15
+      exp h=2kpc       P:       7.5      4.77      4.21      7.69      22.5 | S:      3.79      2.44      2.17      3.88      11.3 | hyd:         5      3.18       2.8      5.13        15
+      exp h=0.5rM      P:      1.32      1.15      2.21      7.46      22.5 | S:     0.795     0.713      1.21      3.77      11.3 | hyd:      0.88     0.764      1.47      4.98        15
+      freeman h=3kpc   P:      4.74      3.55      3.52      6.83      20.5 | S:      2.43      1.85      1.83      3.45      10.3 | hyd:      3.16      2.36      2.35      4.55      13.7
+      freeman h=0.5rM  P:     0.484     0.642      1.93       6.8      20.5 | S:      0.37      0.46      1.08      3.44      10.3 | hyd:     0.323     0.428      1.29      4.53      13.7
+    M_b = 1e+10   (r_M = 3.86 kpc)   reaction/g_law at x = 0.3, 1, 3, 10, 30
+      point            P:    0.0647      0.53      2.13      7.46      22.5 | S:     0.062     0.398      1.17      3.77      11.3 | hyd:    0.0431     0.354      1.42      4.98        15
+      exp h=2kpc       P:       1.4      1.19      2.22      7.46      22.5 | S:      0.83     0.734      1.22      3.77      11.3 | hyd:      0.93     0.794      1.48      4.98        15
+      exp h=0.5rM      P:      1.32      1.15      2.21      7.46      22.5 | S:     0.795     0.713      1.21      3.77      11.3 | hyd:      0.88     0.764      1.47      4.98        15
+      freeman h=3kpc   P:     0.968     0.963      1.95       6.8      20.5 | S:     0.628     0.625      1.09      3.44      10.3 | hyd:     0.645     0.642       1.3      4.53      13.7
+      freeman h=0.5rM  P:     0.484     0.642      1.93       6.8      20.5 | S:      0.37      0.46      1.08      3.44      10.3 | hyd:     0.323     0.428      1.29      4.53      13.7
+    M_b = 1e+12   (r_M = 38.59 kpc)   reaction/g_law at x = 0.3, 1, 3, 10, 30
+      point            P:    0.0647      0.53      2.13      7.46      22.5 | S:     0.062     0.398      1.17      3.77      11.3 | hyd:    0.0431     0.354      1.42      4.98        15
+      exp h=2kpc       P:    0.0695      0.53      2.13      7.46      22.5 | S:    0.0664     0.398      1.17      3.77      11.3 | hyd:    0.0463     0.354      1.42      4.98        15
+      exp h=0.5rM      P:      1.32      1.15      2.21      7.46      22.5 | S:     0.795     0.713      1.21      3.77      11.3 | hyd:      0.88     0.764      1.47      4.98        15
+      freeman h=3kpc   P:    0.0551     0.461      1.93       6.8      20.5 | S:    0.0531     0.356      1.08      3.44      10.3 | hyd:    0.0367     0.307      1.29      4.53      13.7
+      freeman h=0.5rM  P:     0.484     0.642      1.93       6.8      20.5 | S:      0.37      0.46      1.08      3.44      10.3 | hyd:     0.323     0.428      1.29      4.53      13.7
+    the point-mass reaction reaches 0.10 g_law at x = 0.38 (pressure) / 0.39 (sigma); extended/point ratio of reaction/g_law over the table: min 0.852, max 116; P1 (<= 0.10 at every x in [0.3,30]) passes in 0 of 45 (mass, profile, reading) cells
+  [PASS] N3 CLAIM (Q1/Q2, P1): with a light-cone kernel and with extended baryons the late-time reaction still exceeds 0.10 g_law somewhere on x in [0.3, 30] in EVERY (mass, profile, reading) cell -- P1 stays FAIL
+         cells passing P1: 0 of 45; crossing x = 0.38/0.39 (point)
+  [PASS] N3b (control) the point-mass rows equal CFG48/CFG70's G4 numbers (0.0647, 0.530, 2.13, 7.46, 22.5 pressure; 0.0620, 0.398, 1.17, 3.77, 11.3 sigma) to 1e-6
+         [0.0647, 0.5303, 2.1345, 7.4628, 22.4875]
+
+======================================================================================================================
+S4  energy budget (P2): kernel, speed and profile dependence, in CFG48's r_ta and B's committed r_ta
+======================================================================================================================
+    M_b        conv.        r_e    x_e   ratio(point) | exp h=2 enc / hyd | exp h=.5rM enc / hyd | freeman h=3 enc / hyd | freeman h=.5rM enc / hyd   (ratio = E_c/((1/2) M_b V_f^2))
+    1e+09  CFG48         59.2   48.5       72.8 |     65.4 /     67.8 |     70.5 /     71.3 |     79.7 /     82.3 |     85.8 /     86.4
+    1e+09  committed    259.0  212.2      318.4 |    311.0 /    313.4 |    316.1 /    316.9 |    374.7 /    377.2 |    380.8 /    381.3
+    1e+10  CFG48        127.5   33.0       49.6 |     47.2 /     48.0 |     47.3 /     48.1 |     57.1 /     57.9 |     58.0 /     58.5
+    1e+10  committed    460.7  119.4      179.1 |    176.8 /    177.5 |    176.8 /    177.6 |    212.7 /    213.5 |    213.5 /    214.1
+    1e+12  CFG48        591.9   15.3       23.0 |     22.8 /     22.9 |     20.8 /     21.5 |     27.4 /     27.5 |     26.1 /     26.6
+    1e+12  committed   1459.6   37.8       56.7 |     56.5 /     56.6 |     54.5 /     55.2 |     67.9 /     68.0 |     66.6 /     67.1
+  [PASS] E1 (control) the point-mass energy ratios E_c/((1/2) M_b V_f^2) reproduce CFG70's committed values (72.8/49.6/23.0 in CFG48's r_ta; 318/179/57 in B's) to 1e-6, and equal 1.5 x_e to 2e-3
+         worst deviation from the JSON 2.22e-16; closed-form agreement 6.52e-05
+  [PASS] E1b CLAIM (Q1/Q2, P2): the energy the exchange must supply exceeds (1/2) M_b V_f^2 in BOTH r_ta conventions for every mass and every profile/reading (P2 stays FAIL); extended/point energy ratio within a factor 2
+         smallest ratio over all cells 20.8; extended/point energy ratio range [0.899, 1.198]
+
+======================================================================================================================
+S5  Q3: the coupled operator about the static target -- principal symbol, ideal control, Fourier symbol, spectra (readings P and S, tau list, N = 60 and 120)
+======================================================================================================================
+    fluid+bath principal symbol eigenvalues: [-sqrt(P0)*sqrt(gamma)/sqrt(rho), sqrt(P0)*sqrt(gamma)/sqrt(rho), 0]  (0, +-c_s; the bath (U^T - U)/tau, gravity and the ledger are zeroth order)
+  [PASS] T2 the principal symbol of the coupled fluid+bath system has real distinct eigenvalues {0, +-c_s}: hyperbolic; the exchange changes only lower-order terms
+         [-sqrt(P0)*sqrt(gamma)/sqrt(rho), sqrt(P0)*sqrt(gamma)/sqrt(rho), 0]
+    ideal (tau = inf) control, M_b = 1e10, N = 60: hydrostatic discretisation error vs CFG44 target 4.65e-02; residual at the static state 6.9e-14; max Re lambda / max|lambda| = 1.00e+00; max |Im| = 5.246e-13; 180 zero modes
+  [FAIL] T0 control: the discrete equilibrium is a fixed point of the ideal operator and the ideal spectrum has no growing mode (max Re lambda <= 1e-8 max|lambda|): no gradient instability, no ghost  [MUTATE c: kinetic sign flipped]
+         residual 6.9e-14; growth 1.00e+00; discretisation error 4.7e-02
+    GS Fourier symbol: max over k, tau, beta of Re lambda/|lambda|_max = 1.00e+00; energy Hessian (e, p, y) min eigenvalue -1.839e-02 (positive: no ghost)
+  [FAIL] T3 the GS half-line operator (mediator + fluid heat relaxation) has no growing Fourier mode (max Re lambda <= 1e-8 |lambda|) and a positive energy Hessian (no negative-norm mode)  [MUTATE c: N flipped]
+         worst Re lambda 1.00e+00; Hessian min eigenvalue -1.84e-02
+    M_b = 1e10 (r_M = 3.86 kpc, r_e = 127.5 kpc, discretisation error of the hydrostatic target N=60: 4.7e-02, N=120: 2.5e-02); max Re lambda in 1/Gyr (positive = growth), converged?
+      reading P:
+        tau = r_e/c                   : N=60 +2.833e+04  N=120 +6.641e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.51e-05 Gyr)
+        tau = 0.01 Gyr                : N=60 +2.948e+04  N=120 +6.755e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = 0.1 Gyr                 : N=60 +2.952e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = 1 Gyr                   : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = t_dyn(r_e) = 1.18 Gyr   : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = 10 Gyr                  : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+      reading S:
+        tau = r_e/c                   : N=60 +2.907e+04  N=120 +6.713e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.49e-05 Gyr)
+        tau = 0.01 Gyr                : N=60 +2.951e+04  N=120 +6.758e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = 0.1 Gyr                 : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = 1 Gyr                   : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = t_dyn(r_e) = 1.18 Gyr   : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+        tau = 10 Gyr                  : N=60 +2.953e+04  N=120 +6.760e+04   (1/H0 = 14.5 Gyr; growth e-folding 1.48e-05 Gyr)
+    unstable cells (max Re lambda > 1e-8 max|lambda| of the operator): [('P', '0.01 Gyr'), ('P', '0.1 Gyr'), ('P', '1 Gyr'), ('P', '10 Gyr'), ('P', 'r_e/c'), ('P', 't_dyn(r_e) = 1.18 Gyr'), ('S', '0.01 Gyr'), ('S', '0.1 Gyr'), ('S', '1 Gyr'), ('S', '10 Gyr'), ('S', 'r_e/c'), ('S', 't_dyn(r_e) = 1.18 Gyr')]
+      M_b = 1e+09, reading P, tau = 0.1 Gyr: max Re lambda = +4.886e+04 /Gyr
+      M_b = 1e+09, reading P, tau = 1 Gyr: max Re lambda = +4.887e+04 /Gyr
+      M_b = 1e+09, reading S, tau = 0.1 Gyr: max Re lambda = +4.886e+04 /Gyr
+      M_b = 1e+09, reading S, tau = 1 Gyr: max Re lambda = +4.887e+04 /Gyr
+      M_b = 1e+12, reading P, tau = 0.1 Gyr: max Re lambda = +1.090e+04 /Gyr
+      M_b = 1e+12, reading P, tau = 1 Gyr: max Re lambda = +1.091e+04 /Gyr
+      M_b = 1e+12, reading S, tau = 0.1 Gyr: max Re lambda = +1.091e+04 /Gyr
+      M_b = 1e+12, reading S, tau = 1 Gyr: max Re lambda = +1.091e+04 /Gyr
+  [FAIL] (reported) T4 (reported) the spectra are computed at every declared tau for both readings; the growth rates are converged between N = 60 and N = 120 to 20% where nonzero
+         {('P', 'r_e/c'): ['+2.83e+04', '+6.64e+04'], ('P', '0.01 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', '0.1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', '1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', 't_dyn(r_e) = 1.18 Gyr'): ['+2.95e+04', '+6.76e+04'], ('P', '10 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', 'r_e/c'): ['+2.91e+04', '+6.71e+04'], ('S', '0.01 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', '0.1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', '1 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', 't_dyn(r_e) = 1.18 Gyr'): ['+2.95e+04', '+6.76e+04'], ('S', '10 Gyr'): ['+2.95e+04', '+6.76e+04']}
+
+======================================================================================================================
+T5  (disclosed after the first run, reported) what drives the growth: a label-slaved bath, the action-derived shell force, the closed-class static imbalance
+======================================================================================================================
+      reading L (label-slaved: each shell relaxes to its OWN constant energy), tau = r_e/c                   : max Re lambda N=60 +2.906e+04, N=120 +6.713e+04 /Gyr   growing = True
+      reading L (label-slaved: each shell relaxes to its OWN constant energy), tau = 0.01 Gyr                : max Re lambda N=60 +2.951e+04, N=120 +6.758e+04 /Gyr   growing = True
+      reading L (label-slaved: each shell relaxes to its OWN constant energy), tau = 0.1 Gyr                 : max Re lambda N=60 +2.953e+04, N=120 +6.760e+04 /Gyr   growing = True
+      reading L (label-slaved: each shell relaxes to its OWN constant energy), tau = 1 Gyr                   : max Re lambda N=60 +2.953e+04, N=120 +6.760e+04 /Gyr   growing = True
+      reading L (label-slaved: each shell relaxes to its OWN constant energy), tau = t_dyn(r_e) = 1.18 Gyr   : max Re lambda N=60 +2.953e+04, N=120 +6.760e+04 /Gyr   growing = True
+      reading L (label-slaved: each shell relaxes to its OWN constant energy), tau = 10 Gyr                  : max Re lambda N=60 +2.953e+04, N=120 +6.760e+04 /Gyr   growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading P, tau = r_e/c                   : N=60 +4.573e+04, N=120 +1.058e+05 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading P, tau = 0.01 Gyr                : N=60 +4.688e+04, N=120 +1.070e+05 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading P, tau = 0.1 Gyr                 : N=60 +4.692e+04, N=120 +1.070e+05 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading P, tau = 1 Gyr                   : N=60 +4.693e+04, N=120 +1.070e+05 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading P, tau = t_dyn(r_e) = 1.18 Gyr   : N=60 +4.693e+04, N=120 +1.070e+05 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading P, tau = 10 Gyr                  : N=60 +4.693e+04, N=120 +1.070e+05 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading S, tau = r_e/c                   : N=60 +2.904e+04, N=120 +6.712e+04 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading S, tau = 0.01 Gyr                : N=60 +2.948e+04, N=120 +6.757e+04 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading S, tau = 0.1 Gyr                 : N=60 +2.950e+04, N=120 +6.759e+04 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading S, tau = 1 Gyr                   : N=60 +2.950e+04, N=120 +6.759e+04 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading S, tau = t_dyn(r_e) = 1.18 Gyr   : N=60 +2.950e+04, N=120 +6.759e+04 /Gyr  growing = True
+      reciprocal OPEN class (r_led = 0, eps_c = 1, derived shell force kappa eps dU^T/dr included), reading S, tau = 10 Gyr                  : N=60 +2.950e+04, N=120 +6.759e+04 /Gyr  growing = True
+      CLOSED class (r_led = 1): the static exchange force on the fluid nodes at the CFG44 target is 6.81 x the pressure force per node (reading P; independent of eps_c, since kappa eps = -r_led): the CFG44 target is NOT a static solution of the closed reciprocal action
+      CLOSED class (r_led = 1): the static exchange force on the fluid nodes at the CFG44 target is 0.748 x the pressure force per node (reading S; independent of eps_c, since kappa eps = -r_led): the CFG44 target is NOT a static solution of the closed reciprocal action
+      density-contrast control (tau = 1 Gyr, fluid from r_in = r_M to r_out = ratio r_M; contrast = rho_c(r_in)/rho_c(r_out) of the target): 2/L: contrast 3, max Re lambda -0.200/Gyr; 2/S: contrast 3, max Re lambda -0.200/Gyr; 3/L: contrast 7, max Re lambda -0.200/Gyr; 3/S: contrast 7, max Re lambda -0.200/Gyr; 5/L: contrast 18, max Re lambda -0.123/Gyr; 5/S: contrast 18, max Re lambda -0.196/Gyr; 8/L: contrast 46, max Re lambda +0.017/Gyr; 8/S: contrast 46, max Re lambda -0.050/Gyr; 15/L: contrast 159, max Re lambda +0.168/Gyr; 15/S: contrast 159, max Re lambda +0.114/Gyr; 30/L: contrast 637, max Re lambda +0.287/Gyr; 30/S: contrast 637, max Re lambda +0.247/Gyr
+  [FAIL] (reported) T5c (reported) the growth of the label and S baths switches on with the DENSITY CONTRAST of the target (stable below ~20, growing above ~40; the canonical isothermal-sphere threshold is 32): the gravothermal instability of an isothermal-like self-gravitating fluid held at fixed temperature by a bath
+         stable at contrast < 20: True; growing at contrast > 40: False
+  [FAIL] (reported) T5a (reported) a LABEL-slaved bath (no position dependence of the target) has no growing mode at any tau: the growth of readings P and S comes from the position dependence of the target (heat added in phase with compression)
+         growing cells: ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']
+  [PASS] (reported) T5b (reported) with the action-derived exchange force on the fluid shells included (reciprocal completion, open class r_led = 0, eps_c = 1) the growing modes of readings P and S remain
+         growing cells: [('P', '0.01 Gyr'), ('P', '0.1 Gyr'), ('P', '1 Gyr'), ('P', '10 Gyr'), ('P', 'r_e/c'), ('P', 't_dyn(r_e) = 1.18 Gyr'), ('S', '0.01 Gyr'), ('S', '0.1 Gyr'), ('S', '1 Gyr'), ('S', '10 Gyr'), ('S', 'r_e/c'), ('S', 't_dyn(r_e) = 1.18 Gyr')]
+
+======================================================================================================================
+VERDICTS
+======================================================================================================================
+  >> Q1 light-cone kernel (space and time), point-mass baryons: DOES NOT CHANGE IT -- late-time reaction = r_led (G4/CFG70) to 1e-6 at every speed simulated; transient deviation ~ chi^0.9, extrapolated to chi_phys 8e-04-5e-03 it is 2e-03-1e-02 of the peak; P2 ratios unchanged
+  >> Q2 extended baryons: CHANGES THE FIGURES; does NOT change the verdict -- reaction/g_law ratio (extended/point) in [0.852, 116]; energy ratio in [0.899, 1.198]; P1 passes in 0 cells, P2 passes in 0 cells
+  >> Q3 stability (declared operator): CHANGES THE VERDICT (growing mode) -- reading P growing at tau in ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']; reading S growing at tau in ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']; GS Fourier symbol worst Re lambda 1.0e+00; ideal control 1.0e+00; hyperbolic (T2, D5); (T5, reported) label-slaved bath growing: ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']; reciprocal open class growing at [('P', '0.01 Gyr'), ('P', '0.1 Gyr'), ('P', '1 Gyr'), ('P', '10 Gyr'), ('P', 'r_e/c'), ('P', 't_dyn(r_e) = 1.18 Gyr'), ('S', '0.01 Gyr'), ('S', '0.1 Gyr'), ('S', '1 Gyr'), ('S', '10 Gyr'), ('S', 'r_e/c'), ('S', 't_dyn(r_e) = 1.18 Gyr')]; closed-class static imbalance {'P': 6.811431685738868, 'S': 0.7477205801212741}
+  >> P1: FAIL -- late-time reaction exceeds 0.10 g_law in all cells; point-mass crossing x = 0.38/0.39; extra mediator baryon-baryon force 1/lam_t against the reaction r_led: delta*f_bb = 1
+  >> P2: FAIL -- energy ratios 72.8/49.6/23.0 (CFG48) and 318/179/57 (committed) unchanged by kernel speed; extended baryons within a factor 2
+  >> P3: PASS as a structure -- discrete GS action: c_adv 0.0e+00, c_resp 2.0e-18 (elliptic context 2.5e-01); reciprocity 0.0e+00; the price: characteristic speed c_m sqrt(1+beta) and delta*f_bb = 1
+  >> P4: see Q3 -- growth: P ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr'], S ['r_e/c', '0.01 Gyr', '0.1 Gyr', '1 Gyr', 't_dyn(r_e) = 1.18 Gyr', '10 Gyr']
+
+  21/27 checks pass; load-bearing failures: 3   (22 s)
