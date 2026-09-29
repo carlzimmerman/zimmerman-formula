@@ -1,0 +1,66 @@
+B1: Multiple Point Principle vs lane Y1 Planck-scale couplings   (MUTATE=False)
+  Y1 targets at M_P = 1.22089e+19 GeV: 1/alpha = (55.234, 49.203, 52.971) (Y, SU(2), SU(3)), 1-sigma (0.127, 0.010, 0.064)
+
+Internal checks (transcription and arithmetic; these do not decide the physics):
+  [PASS] C1 Y1 targets equal the pre-registered ones to 0.01 
+    SU2: full(no cont.) = 21.80   not exponentiated 15.83 (printed 15.7)   exponentiated 16.59 (printed 16.5)   x3: 47.48 / 49.78 (printed Planck value 49.5)
+  [PASS] C2 SU2 recomputed per-group values match the printed ones within 0.2 
+  [PASS] C2b SU2 3 x printed exponentiated per-group value equals printed Planck value within 0.15 
+    SU3: full(no cont.) = 27.12   not exponentiated 18.02 (printed 17.7)   exponentiated 19.41 (printed 18.9)   x3: 54.06 / 58.24 (printed Planck value 56.7)
+    REPORTED discrepancy SU3: unrounded recomputation minus printed = +0.32 (not exponentiated), +0.51 (exponentiated); x3 = +1.54 at the Planck scale
+  [PASS] C2r SU3 printed rounded intermediates (25, 1.7, factors 0.65/0.84 and 0.70/0.85) reproduce the printed per-group values within 0.05 (the paper rounded 4 pi (3/8) 5.4 = 25.45 to 25) (17.68, 18.95)
+  [PASS] C2b SU3 3 x printed exponentiated per-group value equals printed Planck value within 0.15 
+  [PASS] C3 U(1) Table 12 rows: (1/alpha_cont) x (enhancement) = printed prediction (both tau) and 1/alpha_cont = 1/alpha_cont within rounding (bad rows: [])
+  [PASS] C4 mean of the four starred rows = 56.25, consistent with the abstract's 56 +- 5 and with 99.4 at M_Z (56.25 + 43.1) (mean 56.250; 43.1 = 109.3 - 66.2 from Table 13)
+  [PASS] C5 the paper's own sum 99.4 + 29.2 + 8.2 = 136.8 and its quadrature 5, 6, 3.5 gives ~9 (sum 136.80, quadrature 8.56)
+  [PASS] C6 the paper's SU(5)-normalised 32.9 = (3/5) x 54.8: Y-normalised couplings are the ones compared 
+  [PASS] C7 the paper's own 'experimental' values agree with Y1 to the paper's accuracy (< 1.5 in 1/alpha) (paper 54.8, 49.2, 53.6  vs Y1 55.23, 49.20, 52.97)
+
+Scale ambiguity of the target (papers do not give a number for M_Planck):
+    M = 0.333 M_P : (56.437, 48.654, 51.742)   shift from M_P: (+1.202, -0.549, -1.229)
+    M = 1 M_P : (55.234, 49.203, 52.971)   shift from M_P: (+0.000, +0.000, +0.000)
+    M = 3 M_P : (54.032, 49.751, 54.201)   shift from M_P: (-1.202, +0.549, +1.229)
+
+REAL conversion (papers' own factors: U(1) weakening ~6.5, non-Abelian N_gen = 3):
+  coupling |   MPP prediction (primary)   | Y1 target | z (primary) | status (primary)   | alt prediction (secondary)   | z (alt) | status (alt)   | robust
+  Y        |  56.25 +- 4.50 ( 8.0%) |   55.234  |  +0.23      | PASS-WEAK        |  59.70 +- 3.50 ( 5.9%) |  +1.28  | PASS-WEAK        | True
+  SU2      |  49.50 +- 6.95 (14.0%) |   49.203  |  +0.04      | PASS-WEAK        |  49.50 +- 3.74 ( 7.6%) |  +0.08  | PASS-WEAK        | True
+  SU3      |  56.70 +- 8.49 (15.0%) |   52.971  |  +0.44      | PASS-WEAK        |  56.70 +- 5.63 ( 9.9%) |  +0.66  | PASS-WEAK        | True
+  ROUTE PASSES (all three couplings within 2 sigma of the stated MPP uncertainty) -- every pass is WEAK
+  (secondary column: SU(2), SU(3) with uncertainty propagated from the printed Monte Carlo errors: see below; U(1) = the authors' viewpoint b, 59.7 +- 3.5)
+    derived sigma SU2: 3.74  (from beta_adj 2.89, beta_f 0.56, exp-vs-not spread 2.31); paper's stated Planck-scale sigma 6.95
+    derived sigma SU3: 5.63  (from beta_adj 3.62, beta_f 1.10, exp-vs-not spread 4.18); paper's stated Planck-scale sigma 8.49
+
+Chance-pass context (Amendment 3; prior 1/alpha_i(M_P) ~ U[20,100], independent; not a criterion):
+    Y: window +-9.0 -> chance of a pass 0.23
+    SU2: window +-13.9 -> chance of a pass 0.35
+    SU3: window +-17.0 -> chance of a pass 0.42
+    all three by chance ~ 0.033  (the three targets lie within 49-55, so a flat 'about 52 +- 8' claim for all three would also pass: the test has little power)
+
+Sensitivity to the paper's rounding (Amendment 2): unrounded recomputed centrals, primary sigma:
+    SU2: central 49.78 (printed 49.5), z = +0.08, PASS-WEAK
+    SU3: central 58.24 (printed 56.7), z = +0.62, PASS-WEAK
+
+U(1) variants printed by the authors (tau = 0.79), tested with the primary sigma = 4.5 against Y1:
+    Wilson   Z2 only    pred  54.7  z = -0.12 
+    Wilson   Z2+Z3      pred  66.2  z = +2.44 
+    Wilson   (Z2+Z3)/2  pred  53.8  z = -0.32 starred
+    Wilson   Z2/2+Z3    pred  59.7  z = +0.99 starred
+    Villain  Z2 only    pred  52.9  z = -0.52 
+    Villain  Z2+Z3      pred  69.3  z = +3.12 
+    Villain  (Z2+Z3)/2  pred  51.8  z = -0.76 starred
+    Villain  Z2/2+Z3    pred  59.7  z = +0.99 starred
+    6 of 8 variants within 2 sigma; range 51.8 to 69.3 (the choice among them is a knob unless the authors' starred set is taken as fixed)
+
+Optional step: what MPP implies for the low-energy alpha through Y1's running (boundary shift is additive at one loop; two-loop boundary dependence neglected and NOT checked here):
+    1/alpha(0) = 137.035999177 + [(56.25 - 55.234) + (49.5 - 49.203)] = 138.35 +- 8.28  (6.0%);  the paper's own value is 136.8 +- 9
+    digits supported: log10(137/sigma) = 1.22  -> the first digit and a fraction of the second; the measured value has ~11 digits.  The 'measured running constant' is measured input (hadronic vacuum polarisation, charged masses), so this is NOT a derivation of alpha.
+    hypothetical: to reach the 5e-10 bar, the Planck-scale couplings would need to be known to ~1e-8 absolute; the MPP stated uncertainty is ~8.3, i.e. ~8.3e+08 times too large
+
+VERDICT (against the declared criteria):
+  Y: PASS-WEAK (z = +0.23; sigma/pred = 8.0%); alt-uncertainty status PASS-WEAK (z = +1.28); robust = True
+  SU2: PASS-WEAK (z = +0.04; sigma/pred = 14.0%); alt-uncertainty status PASS-WEAK (z = +0.08); robust = True
+  SU3: PASS-WEAK (z = +0.44; sigma/pred = 15.0%); alt-uncertainty status PASS-WEAK (z = +0.66); robust = True
+  ROUTE PASSES (all three couplings within 2 sigma of the stated MPP uncertainty) -- every pass is WEAK
+  Zero-knob: only in the sense that the authors' choices are fixed by their papers; SU(2)/SU(3) triple points are graphical extractions with 5-20% MC errors; the U(1) result is the paper's own number (not recomputable here) and depends on a choice among printed variants.
+  Ceiling: even a full pass leaves 1/alpha(0) uncertain at the ~6% level; alpha stays an INPUT; kappa = 1/2 FITTED.
