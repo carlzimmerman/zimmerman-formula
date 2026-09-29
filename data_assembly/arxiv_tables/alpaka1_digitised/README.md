@@ -27,7 +27,7 @@ These checks would expose a mis-transcribed label; none fails.
 - `debug_overlay.png`: the figure with every detected marker circled, for a visual check.
 
 ## Results and what they do not say
-- R_ext runs from 1.4 to 6.4 kpc (0.18 to 0.84 arcsec). The outermost ring is the outermost radius at which the rotation velocity
+- R_ext runs from 1.4 to 6.3 kpc (0.18 to 0.84 arcsec). The outermost ring is the outermost radius at which the rotation velocity
   was measured in the paper (footnote to its dynamical-time estimate).
 - **R_e is available for only 7 disks** (ID 1, 6, 8, 9, 18, 20, 28): the paper drew it only for galaxies with HST data whose R_e is
   comparable to or smaller than the CO/[CI] extent. R_ext/R_e is 1.23, 1.00, 1.63, 0.79, 3.50, 0.94 and 2.34 for those. For the other 12
