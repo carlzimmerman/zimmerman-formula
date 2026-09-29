@@ -1,0 +1,68 @@
+CFG88 -- independent re-derivation of CFG42's satellites headline (frozen before any run of the model code)
+Author: independent agent; the CFG42/CFG45 scripts, .out and _results.json were NOT opened, exec'd or imported (only the READMEs).
+Read before freezing: CFG42_README, CFG45_README, CFG35_README, CFG36_README (head), CFG65_README, CFG64 README, CFG69_README, CFG28_README,
+CFG18_README, CFG7_README, CFG4_README (edge lines), CFG78_README (style), docstrings of CFG7_hierarchy_fg001.py and h43_h44_ufd_m31_sigma.py,
+hunt_lib.py lines 9-17 (constants, nu, nu_s), h48_h69_binary_galaxies.py lines 92-110 (Moster + Dutton-Maccio NFW definitions), the data files'
+headers, PROVENANCE.md.  Data-count exploration done before freezing: MW LVD table has 45 measured sigma, 9 upper limits, 31 with M_V > -7.7 and 14 with
+M_V <= -7.7 (31 + 14 = 45; 31 + 9 = 40 as CFG28); M31 LVD 34 measured; Collins 18 rows, 4 with sigma = 0 -> 14; field table: 32 HI detections with M_V
++ 10 upper limits.  Mass_stellar column = 2 L_V with M_sun,V = 4.83 (checked on three rows, within the column's 0.005 dex rounding).
+
+QUESTION
+Does CFG42's headline reproduce from independently written code: the derived cold-mass rule S (the sum, CFG35) closes the MW ultra-faint (UFD)
+offset from +0.325 to -0.059 dex, and over-predicts the classical satellites, M31 LVD median offset -0.107 dex = -2.67 sigma (alt footing -0.109,
+-2.66 sigma)?  And how do those numbers move with the concentration relation, the kernel, the Moster clamp and the M31 sample?
+
+MODEL AS READ FROM THE READMEs (readings, R1-R9, are frozen; any place a README is silent is listed as an assumption A#)
+R1 Estimator (FG001/CFG28): sigma_pred^2 = g(r) r / 3 at r = (4/3) R_e, R_e = circularised half-light radius; half the baryons enclosed,
+   g_N = G (M_b/2)/r^2, law g = nu(g_N/a0) g_N.  Offset = log10(sigma_obs/sigma_pred).  Both footings a0 = 9.3603e-11 / 1.1312e-10.
+   Kernel: exponential RAR nu = 1/(1-exp(-sqrt(y))) (CFG64: what CFG42's code uses; nu_mono cannot be built without L340's table, not read).
+R2 Samples: MW LVD (host mw or lmc, kept): UFD = M_V > -7.7 (resolved 31; the 9 upper limits by Kaplan-Meier, left-censored), classical =
+   M_V <= -7.7 (14).  M31 LVD = the 34 with a measured vlos_sigma, all of them (including M32, NGC 147/185/205).  M31 Collins+13 = 14 with sigV > 0.
+   R_e: LVD rhalf_sph_physical (pc); Collins rh (pc, no ellipticity in the table).  L_V from M_V with M_sun,V = 4.83.  sigma error: mean of em, ep.
+R3 M_* = Upsilon_V L_V with Upsilon_V = 2 (the collapse mass also uses this M_*).
+R4 Infall gas (CFG18, "as an expectation"): applied to MW classical, M31 LVD, Collins ONLY (UFD stars only: CFG42's UFD law number equals CFG28's
+   no-gas +0.325).  Calibration = 42 field dwarfs (32 HI detections with M_V, 10 upper limits counted as zero gas), ratio_i = 1.33 M_HI/M_*(Ups=2),
+   range log M_*(Ups=2) in [4.98, 9.65]; a satellite in range takes its 5 nearest calibration dwarfs in log M_*(Ups=2); primary A1 = the EXPECTATION
+   over those 5 of max(current gas ratio, neighbour ratio); current gas = 1.33 M_HI from the LVD table (Collins: none).  Out of range: current gas only.
+   M_b = M_*(1 + ratio).  This M_b is used in g_N and in the edge phantom.
+R5 The rule (CFG35): dark(<r) = M_ph(<r) + f_ex (1-f_b) M_NFW(<r; M_coll), f_ex = max(0, 1 - M_ph,edge/[(1-f_b) M_coll]).  Satellite estimator:
+   g = nu g_N + G phi f_ex (1-f_b) M_NFW(<r)/r^2  (phi = 1 is the rule S; phi = 0 the bare law; phi is a control handle, not a fit).
+   f_b = 0.02237/0.14237 = 0.1571 (Planck, hunt_lib's OM_B/OM_M).  M_ph,edge = M_law(r_e) - M_b with M_law(r) = M_b nu(G M_b/(r^2 a0)), r_e = x_e r_ta,
+   x_e = 0.40, r_ta = radius where the law's mean enclosed density 3 M_law/(4 pi r^3) = 11.81 x rho_m,0 (CFG4 T3, z = 0), rho_m = Omega_m rho_c,
+   Omega_m = 0.3153, H0 = 67.4 km/s/Mpc.
+R6 M_coll: Moster+13 z=0 (N=0.0351, logM1=11.590, beta=1.376, gamma=0.608; M_* = 2 N M_h/[(M_h/M1)^-beta + (M_h/M1)^gamma]), inverted on a
+   log M_h grid 9.0..15.5 by monotone interpolation, clamped at 1e9 below M_*(1e9); M_h = M_200c.  NFW: Dutton-Maccio 2014 200c,
+   c = 10^(0.905 - 0.101 (log10(0.674 M_h) - 12)), R200 from rho_c(67.4), M(<r) = M_h m(cx)/m(c), m(t) = ln(1+t) - t/(1+t).  (Read from h48 lines 92-110.)
+R7 Statistics (A2, the README gives numbers not a recipe): bootstrap over systems (4000 draws, seed 88; KM median for the UFDs); sigma_tot^2 =
+   stat^2 + floor_Ups^2 + floor_coll^2.  floor_Ups = half the range of the point median over Upsilon_V in {1,2,4} (each row re-evaluated).
+   floor_coll (rule rows only) = half the range of the median when every satellite with M_* < 1e5 has M_coll set to 1e8 / 1e9 / 1e10 (CFG42's R1 scan).
+   Reference readings: CFG42 law UFD error 0.086 = sqrt(0.038^2 + 0.077^2); rule 0.143; LVD rule 0.040.
+R8 Constants: hunt_lib's (G = 6.674e-11, Msun = 1.989e30, kpc = 3.0857e19).
+R9 Kaplan-Meier: flip x -> -x (left-censored -> right-censored); event-before-censor at ties; median = smallest t with S(t) <= 0.5.
+
+PASS LINES (reproduce to 3 decimals or state the difference; "exact" |d| <= 0.0005, "near" <= 0.005, else "differs")
+ P1 [HEADLINE] M31 LVD rule offset -0.107 / -0.109 dex, -2.67 / -2.66 sigma (canonical / alt).
+ P2 UFD (KM, limits in): law +0.325 / +0.304 (3.77 / 3.55 sigma, error 0.086); rule -0.059 both footings, error 0.143, -0.41 sigma.
+ P3 MW classical: law +0.027 / +0.008; rule -0.118 (-1.78 sigma) / -0.123 (-1.90 sigma).
+ P4 M31 Collins: law +0.064 / +0.045; rule -0.024 (-0.22 sigma) / -0.016.   P5 M31 LVD law +0.044 / +0.031 (0.6 sigma), error of the rule 0.040.
+ P6 f_ex > 0.5 in 100% of UFDs, median 0.96; classical median f_ex 0.5-0.6.
+ P7 clamp: 33 of 40 UFDs clamped; unclamped Moster 1.9e8-2.2e9, median 6.9e8 (referee's numbers).
+ P8 UFD collapse-mass scan KM median: +0.279 at 3e7, +0.052 at 2e8, -0.059 at 1e9, -0.142 at 6e9, zero crossing near 3e8, floor 0.133.
+ P9 factor in enclosed NFW mass at a fixed small radius for 100x in M_h: 2.27 (Lean-corrected README).
+CONTROLS (a failed control is a failure; the main run exits 1 if any fails)
+ C1 closed-form limits: Newtonian (a0 -> 0, nu = 1): sigma^2 = G M_b/(6 r)... (g r/3 with g = G M_b/2/r^2) to 1e-12; deep MOND (y -> 0, P2 exact and
+    RAR with its sqrt(y)/2 correction): sigma^4 = G M_half a0/9 within the analytic correction.
+ C2 phi = 0 reproduces the bare law to 1e-14 and phi = 1 reproduces the sum computed by an independent direct formula; f_ex in [0,1]; NFW m(c) and
+    M(<R200) = M_h to 1e-12; M_NFW monotone; edge phantom via root-find equals the deep-MOND closed form for M_b << 1e6 to <1e-3.
+ C3 the data counts: 31 + 9 + 14 + 34 + 14 (P-lines' sample sizes).
+ C4 MUTATE=1 (every M_coll / 100 after clamp): the UFD KM rule median must stay OPEN (|z| > 2 with the same error recipe) -- as CFG42's MUTATE reports
+    (H1 and H3 fail); H3 (f_ex > 0.5 in >= 80% of UFDs) must fail.  MUTATE exits 1 when the rule's UFD closure fails, by design.
+SENSITIVITIES (reported, no gate, no tuning; same statistics for each; ALL numbers are printed)
+ S1 concentration: Dutton-Maccio (default); Duffy+08 200c full (5.71, -0.084) and relaxed (6.71, -0.091) and their z = 0 fits (5.74, -0.097 / 6.67,
+    -0.092), pivot 2e12/h Msun; Duffy 200m full (10.14, -0.081) applied to the 200c mass (the inconsistent CFG65 A1 row).
+ S2 kernel: RAR (default), P2 sqrt(1+1/y), Milgrom simple (1+sqrt(1+4/y))/2.
+ S3 Moster clamp value 1e8, 3e8, 1e9, 3e9, 1e10 for every satellite the clamp touches; and the unclamped extension (grid down to 1e6).
+ S4 M31 LVD sample: all 34; minus the 4 dwarf ellipticals (M32, NGC 147/185/205); minus systems not hosted by M31 (M33 satellite And XXII, And XVIII
+    with host NaN); minus those with M_V < -9 or a huge R_e; rhalf_physical (major axis) in place of the circularised; Collins-overlap only with
+    Collins' own distances/sizes; leave-one-out (largest influence); gas convention A1/A2 (max of expectations)/none/upper-limits-at-limit.
+No knob is tuned to a target; no result changes any line above.  Nothing here says the data favour the framework; kappa = 1/2 is FITTED.

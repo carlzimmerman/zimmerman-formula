@@ -1,0 +1,50 @@
+CFG88 main
+spec sha256: e2bdf7990b0e3f3a91b899c858f9cc3c204011de0f7b49ee628491f16acbcc50
+[PASS] C3 sample sizes: UFD 40 (31 resolved + 9 limits), classical 14, M31 LVD 34, Collins 14, calibration 42 (32 det + 10 ul)  (40, 9, 14, 34, 14, 42, 32)
+[PASS] C1a Newtonian limit nu=1 equals sqrt(G M_half/(3 r)) to 1e-12  1.104697 vs 1.104697
+[FAIL] C1b deep-MOND limit (RAR): sigma^4 = G M_half a0/9 within the analytic sqrt(y)/2 correction (y=8.0e-15)  ratio-1=-5.54e-02 bound 1.8e-07
+[FAIL] C1b deep-MOND limit (P2): sigma^4 = G M_half a0/9 within the analytic sqrt(y)/2 correction (y=8.0e-15)  ratio-1=-5.54e-02 bound 1.8e-07
+[PASS] C2a phi=0 reproduces the bare law (independent formula) to 1e-12  max 3.3e-16
+[PASS] C2b phi=1 reproduces the sum by an independent direct formula to 1e-12  max 2.5e-13
+[PASS] C2c f_ex in [0,1] everywhere
+[PASS] C2d NFW: M(<R200) = M_h to 1e-12 and monotone
+[PASS] C2e edge phantom (root-find) equals the deep-MOND closed form for Mb<=1e5 (P2 kernel) to <1e-3  max 1.2e-07
+
+=== P1-P5: offsets log10(sigma_obs/sigma_pred): law | rule (canonical / alt)  [CFG42: numbers in the spec] ===
+ufd        canonical n=40(lim 9)  LAW  +0.325 +/- 0.087 (+3.71s)  [stat 0.042 U 0.077 C 0.000]
+                                    RULE -0.059 +/- 0.145 (-0.40s)  [stat 0.057 U 0.002 C 0.133]
+ufd        alt       n=40(lim 9)  LAW  +0.304 +/- 0.087 (+3.49s)  [stat 0.042 U 0.077 C 0.000]
+                                    RULE -0.059 +/- 0.147 (-0.40s)  [stat 0.057 U 0.002 C 0.136]
+classical  canonical n=14(lim 0)  LAW  +0.027 +/- 0.113 (+0.24s)  [stat 0.081 U 0.079 C 0.000]
+                                    RULE -0.119 +/- 0.061 (-1.95s)  [stat 0.030 U 0.053 C 0.000]
+classical  alt       n=14(lim 0)  LAW  +0.007 +/- 0.113 (+0.07s)  [stat 0.080 U 0.079 C 0.000]
+                                    RULE -0.121 +/- 0.062 (-1.94s)  [stat 0.035 U 0.052 C 0.000]
+collins    canonical n=14(lim 0)  LAW  +0.064 +/- 0.109 (+0.59s)  [stat 0.073 U 0.081 C 0.000]
+                                    RULE -0.024 +/- 0.178 (-0.14s)  [stat 0.166 U 0.030 C 0.057]
+collins    alt       n=14(lim 0)  LAW  +0.045 +/- 0.109 (+0.41s)  [stat 0.073 U 0.080 C 0.000]
+                                    RULE -0.016 +/- 0.174 (-0.09s)  [stat 0.162 U 0.036 C 0.054]
+m31lvd     canonical n=34(lim 0)  LAW  +0.043 +/- 0.090 (+0.48s)  [stat 0.037 U 0.083 C 0.000]
+                                    RULE -0.107 +/- 0.072 (-1.49s)  [stat 0.054 U 0.047 C 0.006]
+m31lvd     alt       n=34(lim 0)  LAW  +0.031 +/- 0.090 (+0.34s)  [stat 0.036 U 0.083 C 0.000]
+                                    RULE -0.108 +/- 0.071 (-1.51s)  [stat 0.048 U 0.051 C 0.013]
+
+P6 f_ex: UFD median 0.963, fraction > 0.5 = 1.000; classical median 0.595; LVD median 0.591; Collins median 0.558
+P7 clamp: M_*(1e9) = 1.916e+04; UFDs clamped 33/40; unclamped Moster (grid to 1e6): min 1.87e+08 median 6.86e+08 max 2.17e+09
+P8 UFD rule KM median vs collapse mass (all UFDs, M_coll set directly; canonical):
+    M_coll = 1.0e+08: +0.124
+    M_coll = 3.0e+07: +0.303
+    M_coll = 2.0e+08: +0.053
+    M_coll = 3.0e+08: +0.016
+    M_coll = 1.0e+09: -0.059
+    M_coll = 6.0e+09: -0.145
+    M_coll = 1.0e+10: -0.164
+    half-range over 1e8..1e10 = 0.144  [CFG42 floor 0.133]
+P9 enclosed NFW mass at fixed small radius, ratio for 100x halo mass (DM14):
+    M 1e+09 -> 1e+11 at r=0.05 kpc: 2.417 (slope 0.192); c(M0) = 16.8
+    M 1e+09 -> 1e+11 at r=0.1 kpc: 2.523 (slope 0.201); c(M0) = 16.8
+    M 1e+09 -> 1e+11 at r=0.3 kpc: 2.953 (slope 0.235); c(M0) = 16.8
+    M 1e+08 -> 1e+10 at r=0.1 kpc: 2.839 (slope 0.227); c(M0) = 21.2
+    M 1e+10 -> 1e+12 at r=0.1 kpc: 2.439 (slope 0.194); c(M0) = 13.3
+H1 (UFD rule within 2 sigma): pass; H2 (classical not below -2 sigma): classical:-1.95/-1.94, m31lvd:-1.49/-1.51, collins:-0.14/-0.09
+
+FAILED CONTROLS: ['C1b deep-MOND limit (RAR): sigma^4 = G M_half a0/9 within the analytic sqrt(y)/2 correction (y=8.0e-15)', 'C1b deep-MOND limit (P2): sigma^4 = G M_half a0/9 within the analytic sqrt(y)/2 correction (y=8.0e-15)']
