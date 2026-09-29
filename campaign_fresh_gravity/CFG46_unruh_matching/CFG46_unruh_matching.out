@@ -1,0 +1,42 @@
+CFG46 -- Unruh / de Sitter matching with a mode count n (MUTATE=0)
+constants: G=6.6743e-11 c=299792458.0 rho_L=5.8424e-27 kg/m3 hbar=1.054572e-34 ; sqrt(8pi/3)=2.894405  Z=5.788810
+
+== U1: T_Unruh = T_dS ==
+  a = 2*sqrt(6)*sqrt(pi)*sqrt(G)*c*sqrt(rho)/3 ; a/(c sqrt(G rho)) = 2*sqrt(6)*sqrt(pi)/3 = 2.894405
+  [PASS] U1 matching gives a = c H_L (hbar and k cancel), kappa_match = sqrt(8 pi/3)
+         measured: kappa_match = 2.894405
+
+== U2: divide by n = 2 (two helicities) ==
+  kappa(n=2) = 1.4472  ->  a0 = 2.7092e-10 m/s^2
+  [PASS] U2 n=2 kappa 1.447 vs BTFR measured 0.465 +- 0.076 is excluded (> 3 sigma)
+         measured: 12.9 sigma
+  [PASS] U2 n=2 kappa 1.447 vs a0 ties measured 0.550 +- 0.170 is excluded (> 3 sigma)
+         measured: 5.3 sigma
+  [PASS] U2 footing canonical: kappa = 0.500, n=2 matching is 2.89x above it
+         measured: ratio 2.89
+  [PASS] U2 footing alt: kappa = 0.604, n=2 matching is 2.40x above it
+         measured: ratio 2.40
+
+== U3: what n would the footing need? ==
+  footing canonical: n_required = 5.7888
+  footing alt: n_required = 4.7900
+  [PASS] U3 n_required (canonical) = Z = 5.789 to 0.3%, so not 2 and not an integer
+         measured: n_req = 5.7888 vs Z = 5.7888
+
+== U4: thermal energy density over n modes = rho_L c^2 ==
+  n=2: a = 7.1179e+21 m/s^2 ; measured a0 = 9.3603e-11 ; ratio 7.604e+31 ; d ln a/d ln rho = 0.250
+  [PASS] U4 energy matching scales as rho^(1/4) with hbar in the answer (exponent 1/4, not 1/2; not in the (c,G,rho) family)
+         measured: exponent 0.250
+  [PASS] U4 and misses the measured a0 by orders of magnitude
+         measured: ratio 7.60e+31
+
+== U5: DISCLOSURE, the measured band cannot choose n ==
+  integers n with sqrt(8pi/3)/n inside the BTFR 2-sigma band [0.313, 0.617]: [5, 6, 7, 8, 9]
+  n = 6 gives kappa = 0.4824 (0.23 sigma from 0.465): the closest integer, but with no mechanism; picking it post hoc would be numerology
+  [PASS] U5 several integers fit the band, so a fit cannot select the mode count (reported)
+         measured: n in [5, 6, 7, 8, 9]
+
+RESULT: the Unruh/de Sitter matching lands at a = c H_L (kappa = 2.894/n). The footing needs n = Z = 5.79; n = 2 is off by 2.9x.
+The energy-matching variant has the wrong functional form. kappa = 1/2 stays FITTED; this route is retired as stated.
+
+SUMMARY CFG46 (MUTATE=0): 9/9 checks pass; load-bearing failures = 0
