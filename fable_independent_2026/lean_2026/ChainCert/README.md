@@ -1,6 +1,6 @@
 # ChainCert — the composable Lean core of the chain
 
-`lake build ChainCert` builds it; `ChainCert/verify_chain.sh` checks that it builds, has no `sorry`, and that all 117 theorems depend only on `propext`, `Classical.choice` and `Quot.sound` (`MUTATE=1` adds an unproved theorem and must fail). Outputs: `verify_chain.out`, `verify_chain_MUTATE.out`, `Axioms.out`.
+`lake build ChainCert` builds it; `ChainCert/verify_chain.sh` checks that it builds, has no `sorry`, and that all 131 theorems depend only on `propext`, `Classical.choice` and `Quot.sound` (`MUTATE=1` adds an unproved theorem and must fail). Outputs: `verify_chain.out`, `verify_chain_MUTATE.out`, `Axioms.out`.
 
 **What Lean certifies here is that the conclusions follow from the stated premises. It certifies no empirical fact.** κ = ½ is fitted; Ω_c is fitted; ρ_Λ constant is a premise; the kernel is declared.
 
