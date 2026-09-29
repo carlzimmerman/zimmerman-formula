@@ -35,3 +35,6 @@ C1a/C1b pass (φ = 1 reproduces CFG45's S and φ = 0 its L, 100 + 40 comparisons
 
 ## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
 - Superseded in part by CFG71: with JAM-calibrated SLUGGS masses no phi in [0,1] brings SLUGGS within 1 sigma, and the binding pair becomes the ultra-faints against the LVD (gap 0.087 | 0.164). 'The most massive early types want nearly all of it' no longer holds. The [0.22, 0.30] group exists only after dropping the ultra-faints (KM median needs phi >= 0.39), SLUGGS and the X-ray ellipticals.
+
+## Referee correction (09-28 audit of the peer lanes; appended)
+- The NO holds at the frozen 1 sigma-per-population acceptance. At 2 sigma the ten populations share a common phi (canonical [0.52, 0.71], alt [0.33, 0.66]), see CFG75. A 1 sigma band is the strict criterion, so the remark above that 'the 1 sigma band is loose ... a YES would have been weak' is imprecise: at 1 sigma a YES would have been demanding.
