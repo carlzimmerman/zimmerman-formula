@@ -1,0 +1,60 @@
+CFG141 -- KURVS a0(z) WITH EACH GALAXY'S MEASURED OUTER DISPERSION: the pressure-support correction from sigma(R) at R_max.
+CFG140 was NON-DIAGNOSTIC because the outer pressure support was unmeasured.  Here the constant sigma0 is replaced by each galaxy's own
+Halpha sigma at R_max, read from the paper's plotted major-axis profiles (the data chat's extraction, 94e4a5181; observed sigma, both sides).
+
+Criteria frozen and committed before the extraction was opened: campaign_fresh_gravity/CFG141_FROZEN_CRITERIA.md (4da622ccf).
+  physics  isotropic isothermal self-gravitating layer: rho sigma^2 ~ Sigma^2, so V_c^2 = V^2 + 2 sigma(R)^2 R/R_d with the LOCAL sigma (P2);
+           fixed-scale-height variant V_c^2 = V^2 + sigma^2 R/R_d - R dsigma^2/dR, capped at >= 0 (P3).
+  sigma_out interpolated at R_max on each side that reaches it (sides averaged); else the error-weighted mean of the outermost three
+           points; dropped if the profile does not reach 0.5 R_max.  Error from the plotted bars.
+  pipeline CFG140's, exec'd read-only (samples, baryons, grid mu x delta x footing, SPARC anchor at sigma = 10 km/s, pooling, errors).
+PRE-DECLARED (from the frozen file)
+  C1 CONTROL  P2 with sigma_out = the tabulated sigma0 reproduces CFG140's committed P1 grid exactly (1e-12).
+  C2 CONTROL  every selected profile finite and positive, its radius range consistent with R_max; per galaxy: reaches R_max / 0.5 R_max / dropped.
+  R0 POWER    (printed before any g_obs) as CFG140, with sigma_out's error under P2.
+  H1 [HEADLINE; MUTATE must change it] under P2 flat a0 NOT disfavoured: NOT (Delta'_flat > +2 sigma in every one of the 24 P2 cells).
+  H2          (reported verdict) under P2 the rival disfavoured: Delta'_H < -2 sigma in every P2 cell.
+  R1-R4 (reported): the P2 and P3 grids; per galaxy; sigma_out/sigma0; the P3 verdicts.
+MUTATE=1: every KURVS v_last x 10^0.3 (inherited from CFG140's exec'd prefix) -- H1 must FAIL (rc = 1).
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: P2 with sigma_out = the tabulated sigma0 reproduces CFG140's committed P1 grid exactly (1e-12)
+         max |difference| 0.0e+00 over 24 cells
+  [PASS] C2 CONTROL: every selected profile finite and positive and consistent with R_max; per galaxy status
+         3: outermost three (inside R_max) (profile to 10.1 kpc vs R_max 11.7); 7: outermost three (inside R_max) (profile to 11.4 kpc vs R_max 11.4); 8: reaches R_max (profile to 11.0 kpc vs R_max 11.0); 9: outermost three (inside R_max) (profile to 10.2 kpc vs R_max 10.2); 11: outermost three (inside R_max) (profile to 12.4 kpc vs R_max 12.4); 13: outermost three (inside R_max) (profile to 12.1 kpc vs R_max 12.1); 15: outermost three (inside R_max) (profile to 9.2 kpc vs R_max 9.2); 16: outermost three (inside R_max) (profile to 10.0 kpc vs R_max 10.9); 17: outermost three (inside R_max) (profile to 8.2 kpc vs R_max 9.9); 21: reaches R_max (profile to 12.7 kpc vs R_max 12.7); used N = 10 of 10
+
+======================================================================================================================
+R0  POWER (baryons, sigma_out and quoted errors only; no observed velocity enters)
+======================================================================================================================
+  [PASS] (reported) R0 (reported) POWER under P2: expected separation flat vs rival over the pooled error
+         central cell +0.149 dex / 0.042 = 3.53 sigma; range 2.71-3.91 sigma (CFG52's correlated floor about 2.3 sigma)
+
+======================================================================================================================
+H1 / H2  UNDER P2 (the measured outer sigma), anchor-corrected
+======================================================================================================================
+    canonical P2 (delta 0): mu 0.25: D'_flat +0.449+-0.065, D'_H +0.293+-0.064; mu 0.67: D'_flat +0.390+-0.065, D'_H +0.237+-0.063; mu 1.5: D'_flat +0.300+-0.064, D'_H +0.153+-0.063; mu 4.0: D'_flat +0.126+-0.065, D'_H -0.009+-0.063
+    alt P2 (delta 0): mu 0.25: D'_flat +0.451+-0.065, D'_H +0.292+-0.064; mu 0.67: D'_flat +0.392+-0.064, D'_H +0.237+-0.063; mu 1.5: D'_flat +0.304+-0.063, D'_H +0.153+-0.062; mu 4.0: D'_flat +0.133+-0.064, D'_H -0.006+-0.062
+  [PASS] H1 [HEADLINE] UNDER P2 THE FRAMEWORK'S FLAT a0 IS NOT DISFAVOURED: NOT (Delta'_flat > +2 sigma in every one of the 24 P2 cells)
+         cells flat > +2 sigma: 21/24; flat within 2 sigma: 3/24; central Delta'_flat +0.390 +- 0.065
+  [FAIL] (reported) H2 (reported verdict) UNDER P2 THE RIVAL a0 ~ H(z) IS DISFAVOURED: Delta'_H < -2 sigma in every P2 cell
+         cells rival < -2 sigma: 0/24; rival within 2 sigma: 6/24; central Delta'_H +0.237 +- 0.063
+
+======================================================================================================================
+REPORTED ROWS
+======================================================================================================================
+  [PASS] (reported) R1 (reported) the P2 and P3 grids (anchor-corrected): ranges and cell counts
+         P2: Delta'_flat +0.087 .. +0.480, Delta'_H -0.037 .. +0.317; P3: Delta'_flat -0.063 .. +0.333, Delta'_H -0.186 .. +0.171
+  [PASS] (reported) R2 (reported) per galaxy (central cell, P2, unanchored)
+         3: sigma0 51, sigma_out 55+-8 (outermost three (inside R_max)), R/R_d 4.7, V_c^2/V^2 1.65, D_flat +0.26, D_H +0.12; 7: sigma0 61, sigma_out 69+-13 (outermost three (inside R_max)), R/R_d 4.3, V_c^2/V^2 4.66, D_flat +0.37, D_H +0.22; 8: sigma0 40, sigma_out 28+-20 (reaches R_max), R/R_d 7.4, V_c^2/V^2 3.43, D_flat +0.22, D_H +0.04; 9: sigma0 48, sigma_out 51+-5 (outermost three (inside R_max)), R/R_d 3.4, V_c^2/V^2 1.96, D_flat +0.32, D_H +0.16; 11: sigma0 62, sigma_out 66+-5 (outermost three (inside R_max)), R/R_d 3.5, V_c^2/V^2 1.50, D_flat +0.38, D_H +0.25; 13: sigma0 62, sigma_out 61+-10 (outermost three (inside R_max)), R/R_d 6.0, V_c^2/V^2 6.06, D_flat +0.73, D_H +0.58; 15: sigma0 68, sigma_out 67+-4 (outermost three (inside R_max)), R/R_d 4.1, V_c^2/V^2 3.91, D_flat +0.44, D_H +0.28; 16: sigma0 69, sigma_out 73+-4 (outermost three (inside R_max)), R/R_d 4.7, V_c^2/V^2 3.57, D_flat +0.54, D_H +0.38; 17: sigma0 65, sigma_out 62+-6 (outermost three (inside R_max)), R/R_d 6.9, V_c^2/V^2 4.61, D_flat +0.85, D_H +0.70; 21: sigma0 74, sigma_out 77+-9 (reaches R_max), R/R_d 7.6, V_c^2/V^2 5.24, D_flat +0.72, D_H +0.57
+  [PASS] (reported) R3 (reported) sigma_out / sigma0 across the sample (the constant-sigma assumption at R_max)
+         median 1.05, range 0.70-1.13 (N 10)
+  [PASS] (reported) R4 (reported) the verdicts under P3 (fixed scale height, gradient term, capped)
+         flat > +2 sigma in 16/24; rival < -2 sigma in 4/24; flat within 2 sigma 8/24; rival within 2 sigma 16/24; central D'_flat +0.242, D'_H +0.090
+  [PASS] (reported) R5 (reported; disclosed variant) the authors' clipped (white-marker) pixels INCLUDED in sigma_out
+         N 10; flat > +2 sigma in 22/24; rival < -2 sigma in 0/24; central D'_flat +0.405, D'_H +0.250
+
+    READING (declared): NON-DIAGNOSTIC under P2: the gas bracket (no measured gas exists) remains the dominant ambiguity
+
+  9/10 checks pass; load-bearing failures: 0   (0 s)
