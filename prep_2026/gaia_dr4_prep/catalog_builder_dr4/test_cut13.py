@@ -311,6 +311,16 @@ def t3_boundaries():
     rl, ro = one_case(d, np.nan, 50.0, 20.0)
     check("NaN G with PM far off: counted in n_no_g but NOT in n_no_g_kin",
           rl.n_no_g == 1 and rl.n_no_g_kin == 0 and ro.n_no_g_kin == 0)
+    # a co-moving third with NO parallax/PM (2-parameter solution): never flagged, never in n_no_g, counted in n_no_kin
+    c = Cat(); c.add(d, 19.0, 0.01, 20.0)
+    cat, a_, b_ = c.arrays()
+    cat["parallax"][2] = np.nan; cat["pmra"][2] = np.nan
+    rl = cut13.third_star_literal(cat, a_, b_); ro = cut13.third_star_orbit_aware(cat, a_, b_)
+    check("third with NaN parallax/PM (G = 19): not flagged, n_no_g = 0, n_no_kin = 1 (both criteria)",
+          (not rl.flags[0]) and (not ro.flags[0]) and rl.n_no_g == 0 and ro.n_no_g == 0 and rl.n_no_kin == 1 and ro.n_no_kin == 1,
+          f"{(rl.flags[0], rl.n_no_g, rl.n_no_kin, ro.flags[0], ro.n_no_g, ro.n_no_kin)}")
+    rl, ro = one_case(d, 17.0, 0.01, 20.0)
+    check("normal third: n_no_kin = 0", rl.n_no_kin == 0 and ro.n_no_kin == 0)
     rl, ro = one_case(d, 17.0, 0.01, 20.0)
     check("normal third: n_no_g = 0 and n_neigh = 1", rl.n_no_g == 0 and rl.n_neigh == 1 and ro.n_neigh == 1)
     # parallax 3 sigma edge

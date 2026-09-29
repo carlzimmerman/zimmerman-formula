@@ -21,6 +21,12 @@ ThirdResult:
                           criterion in force, i.e. third stars that the
                           G < 20 lookup would silently drop
     n_hit                 number of flagged pairs (= flags.sum())
+    n_no_kin              of the candidate neighbours, how many have a
+                          non-finite parallax, proper motion or one of their
+                          errors (a 2-parameter solution): such a source can
+                          never satisfy either criterion, so it is neither
+                          flagged nor in n_no_g; it is counted here so that
+                          the 'G < 20 depth' claim is not overstated
 The no-G counts are reported separately, never folded into `flags`
 (Amendment 16 draft (b): "the count of such sources is recorded in the
 manifest").
@@ -88,6 +94,7 @@ class ThirdResult(NamedTuple):
     n_no_g: int
     n_no_g_kin: int
     n_hit: int
+    n_no_kin: int = 0
 
 
 # ------------------------------------------------------------------ maths
@@ -166,7 +173,7 @@ def _run(cat, a, b, radius_kau, g_max, n_sigma_par, kind, reference):
         raise ValueError("reference must be 'primary' or 'mean'")
     f = {k: np.asarray(cat[k], float) for k in REQUIRED}
     flags = np.zeros(len(a), bool)
-    n_neigh = n_no_g = n_no_g_kin = 0
+    n_neigh = n_no_g = n_no_g_kin = n_no_kin = 0
     for i, js in _search(cat, a, b, radius_kau):
         if len(js) == 0:
             continue
@@ -198,9 +205,13 @@ def _run(cat, a, b, radius_kau, g_max, n_sigma_par, kind, reference):
             nog = ~np.isfinite(g)
             hit = kin & (g < g_max)
         n_no_g += int(nog.sum())
+        nk = np.zeros(len(js), bool)
+        for key in ("parallax", "parallax_error", "pmra", "pmdec", "pmra_error", "pmdec_error"):
+            nk |= ~np.isfinite(f[key][js])
+        n_no_kin += int(nk.sum())
         n_no_g_kin += int((kin & nog).sum())
         flags[i] = bool(hit.any())
-    return ThirdResult(flags, n_neigh, n_no_g, n_no_g_kin, int(flags.sum()))
+    return ThirdResult(flags, n_neigh, n_no_g, n_no_g_kin, int(flags.sum()), n_no_kin)
 
 
 # --------------------------------------------------------------- public API

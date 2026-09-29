@@ -69,3 +69,8 @@ The synthetic grid's top column is planted at G = 19.999, because G < 20 is stri
 - The literal reading of "of the pair" (primary vs mean reference) has not been measured against the alternative on
   data.
 - Cuts 9 (SFD98 vs `ap_*`), 11, variant (c) and the join code of checklist items C/D are not addressed here.
+
+## Added after the data chat's fact check
+
+`ThirdResult` now has `n_no_kin`: neighbours with a non-finite parallax, proper motion or error (2-parameter solutions). Such a source can satisfy neither criterion, so it is never flagged and is not in `n_no_g`; without this counter the 'G < 20 depth' claim would be overstated for faint thirds near G = 19-20. Tested in `test_cut13.py` T3 (now 38 checks). The primary-versus-mean reference for 'the pair' is still only tested for identical components.
+
