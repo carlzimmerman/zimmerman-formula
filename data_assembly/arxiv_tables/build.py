@@ -455,6 +455,36 @@ write("romanoliveira2023_kinematics.csv", ["id"] + [f"{n}{s}" for n in ("vrot_ma
 vmx = [k[1] for k in kk]; check(all(150 < v < 700 for v in vmx), f"Roman-Oliveira Vrot,max in 150-700 km/s: {vmx}")
 log("Roman-Oliveira: V_ext is the mean of the last two radial points; the outermost radius is not tabulated (plotted only); H2 masses are literature CO-based; external velocities 125-548 km/s (massive submillimetre galaxies); the acceleration at the outer radius is not assessed here")
 
+# ------------------------------------------------------------------ Danhaive+2025 (geko, JWST NIRCam grism), arXiv:2503.21863: the gold sample at z ~ 3.8-4.9
+def err2(s):
+    """value, upper, lower from '$a^{+u}_{-l}$' with optional missing signs; upper-limit flag from '<'"""
+    lim = "<" if "<" in s else ""
+    m = re.search(r"(-?\d+\.?\d*)\s*\^\{\+?(\d+\.?\d*)\}\s*_\{-?(\d+\.?\d*)\}", s)
+    if m:
+        return float(m.group(1)), float(m.group(2)), float(m.group(3)), lim
+    m = re.search(r"(-?\d+\.?\d*)\s*_\{-?(\d+\.?\d*)\}\s*\^\{\+?(\d+\.?\d*)\}", s)
+    if m:
+        return float(m.group(1)), float(m.group(3)), float(m.group(2)), lim
+    m = re.search(r"(-?\d+\.?\d*)", s)
+    return (float(m.group(1)) if m else NAN, NAN, NAN, lim)
+
+
+G = []
+for l in active_lines("danhaive2025_2503.21863_table_gold.tex"):
+    s = re.sub(r"\s*\\\\.*$", "", l.strip())
+    c = [x.strip() for x in s.split("&")]
+    if len(c) == 8 and re.match(r"^\d{6,7}$", c[0]):
+        row = [int(c[0]), float(c[1])]
+        for x in c[2:]:
+            row += list(err2(x))
+        G.append(row)
+check(len(G) == 41, f"Danhaive 2025 gold-sample table has 41 galaxies as the paper's sample table states (got {len(G)})")
+gz = np.array([r[1] for r in G]); check(bool(gz.min() > 3.7 and gz.max() < 6.0), f"gold-sample z in (3.7, 6.0): {gz.min()}-{gz.max()}")
+gc = ["jades_id", "z"] + [f"{n}{s}" for n in ("logMstar", "logSFR", "re_kpc", "v_over_sigma0", "sigma0_kms", "logMdyn") for s in ("", "_errhi", "_errlo", "_lim")]
+write("danhaive2025_gold.csv", gc, G)
+lim_sig = sum(1 for r in G if r[gc.index("sigma0_kms_lim")] == "<")
+log(f"Danhaive 2025 gold sample: 41 galaxies, sigma0 is only an upper limit for {lim_sig} of them; Halpha (ionised gas) kinematics with a dynamical mass, no gas mass")
+
 # ------------------------------------------------------------------ manifest
 src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, tables/galaxy_parameters.tbl",
        "msa3d_2606.27853_fitted_parameters.tbl": "arXiv:2606.27853 source, tables/fitted_parameters.tbl",
@@ -476,6 +506,7 @@ src = {"msa3d_2606.27853_galaxy_parameters.tbl": "arXiv:2606.27853 source, table
        "romanoliveira2023_2302.03049_table_sample.tex": "arXiv:2302.03049 source, main.tex (sample table)",
        "romanoliveira2023_2302.03049_table_gasmasses.tex": "arXiv:2302.03049 source, main.tex (SFR and gas-mass table)",
        "romanoliveira2023_2302.03049_table_kinematics.tex": "arXiv:2302.03049 source, main.tex (kinematic parameters)",
+       "danhaive2025_2503.21863_table_gold.tex": "arXiv:2503.21863 source, main.tex lines 817-877",
        "sharma2024_2406.08934_GS21b_catalog.fits": "arXiv:2406.08934 source, extra_material/GS21b_catalog.fits",
        "sharma2024_2406.08934_CRCs_FitsParam_Burkert.fits": "arXiv:2406.08934 source, extra_material/CRCs_FitsParam_Burkert.fits"}
 man = {"built_by": "data_assembly/arxiv_tables/build.py", "source_tarballs": "https://arxiv.org/e-print/<id>", "raw_small": {}}
