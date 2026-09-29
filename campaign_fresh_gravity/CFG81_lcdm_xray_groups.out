@@ -1,0 +1,185 @@
+CFG81 -- A LCDM COMPARATOR FOR CFG34'S X-RAY GROUPS: is B's R2500 shortfall SPECIFIC-TO-B, SHARED, LCDM-WORSE or NON-DISCRIMINATING?
+
+Criteria frozen and committed before this script: campaign_fresh_gravity/CFG81_FROZEN_CRITERIA.md (commit 27b4bf414).  CFG34 (and h7 through it) is exec'd
+READ-ONLY with CFG69's exec_prefix pattern (its own MUTATE forced off, `open` replaced by CFG4's read-only _ro_open); FB, RHO_C and halo_mass come from CFG45's
+prefix exactly as CFG69 obtains them; c_duffy_full, c_duffy_relaxed, c_dm and make_nfw are copied verbatim from CFG69.
+
+CIRCULARITY (the design decision): CFG34's stars are h7's mstar500(M500) = 1.7e12 (M500/1e14)^0.6 evaluated at the HYDROSTATIC M500 (Kravtsov+2018: the group's
+TOTAL stars, BCG + ICL + satellites; 0.65 of it inside R2500).  CFG69's base (M_h = Moster halo_mass(M_*)) would therefore return a function of M500_HSE --
+circular -- and would feed a group total into a central-galaxy relation.  The lane's data permit NO non-circular LCDM mass at R500; they permit the SHAPE.
+THE SHAPE DESIGN (declared once, no tuning): M_L(<r) = M_b(<r) + (1 - f_b) M_NFW(<r; M_h, c_duffy_full(M_h)), the lane's own baryons (identical to B's), M_h = M_200c
+solved per group so that M_L(<R500) = M500_HSE at the measured R500; every overdensity in the data's own critical density rho_c,g = 3 M500 / (4 pi 500 R500^3);
+the prediction M_L(<R2500) at the measured R2500.  Newtonian; no adiabatic contraction; no concentration scatter; c at z = 0.  LCDM has no a0: one number, both footings.
+STATISTIC (CFG34's, same floor): median over the 20 groups of log10(M_HSE / M_L); err = std/sqrt(20); star = half the bracket spread (x/1.5, whole chain re-run);
+HSE = log10 1.2; z = median / sqrt(err^2 + star^2 + HSE^2).  At R500 the comparator is normalised: NOT A TEST (offset 0 by construction).
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  CFG34's committed B numbers reproduced through the exec (RES to 1e-12; the four printed lines character for character; its checks fall as committed).
+  C2  CONTROL  the NFW engine: M(<R_200c) = M_h to 1e-12; nfw_M = CFG69's verbatim make_nfw at RHO_C to 1e-12; the 200c -> 500c / 2500c conversion (fixed point)
+               = a direct brentq root solve to 1e-9; M(<r) = the integral of the NFW density to 1e-7.
+  C3  CONTROL  the data's rho_c from (M500, R500) and from (M2500, R2500) agree to 2% in every group.
+  C4  CONTROL  every LCDM run is normalised: |M_L(<R500) / target - 1| < 1e-9 for all groups (base, bracket ends, variants, RM).
+  C5  CONTROL  the base's c equals c_duffy_full at the solved M_h to 1e-12 (FAILS under the MUTATE by construction: the mutation detector).
+  C6  CONTROL  (MUTATE run only) the MUTATE's base R2500 median and z equal the main run's RM row to 1e-9 (read from the main run's JSON).
+  H1  [HEADLINE] LCDM reproduces the groups inside R2500: |z| < 2 (the MUTATE is expected, NOT guaranteed, to fail it).
+  H2  (reported; NOT A TEST) LCDM at R500: |z| < 2 -- passes by construction.
+  R0-R5, RM (reported): the circularity diagnostic; the class table; the variants V1 V2 V3 V4 V3u V4u V5 V6; B's shape-only offset; the MUTATE's model inside
+  the main run; the per-group table; the concentration each group's own profile implies.
+CLASSES (CFG69's, at R2500, per footing): |z_L| <= 2 SPECIFIC-TO-B; B's sign and |z_L| > 2 SHARED; opposite sign and |z_L| > 2 LCDM-WORSE; footings differ MIXED;
+NON-DISCRIMINATING if the MUTATE (every concentration x 0.1) leaves LCDM's R2500 gate outcome unchanged.
+MUTATE=1: every LCDM concentration x 0.1 -- C5 fails by construction (rc = 1); H1 is expected, not guaranteed, to fail.
+ADDED AFTER THE FIRST MAIN AND MUTATE RUNS, BEFORE THE README (disclosed; NO check, threshold, model, variant or class rule changed; every check fell as in the
+first runs: main 14/14, MUTATE 13/15 failing C5 and H1): R6 (reported only) -- the R2500 class with the 0.079-dex hydrostatic allowance removed from BOTH sides
+(err and star only), because that allowance is almost all of LCDM's error and the frozen file itself calls it generous to LCDM in the shape design.
+
+  exec'd read-only: CFG45 prefix (FB = 0.15713, RHO_C = 1.2605e+11 Msun/Mpc^3); CFG34 prefix up to its H3 banner (20 groups via h7); stars inside R2500 = 0.65 M_*,500; bracket x/1.5; HSE allowance 0.0792 dex
+
+======================================================================================================================
+C1  CONTROL: CFG34's committed B numbers reproduced through the read-only exec of its pipeline
+======================================================================================================================
+    canonical R500 : median M_HSE/M_B = 1.41 (+0.150 dex) +- 0.084 (groups 0.014, stars 0.023, HSE 0.079) -> +1.80 sigma; the phantom wins the max in 18 of 20; median f_b 0.099; the phantom-only law alone 1.45
+    canonical R2500: median M_HSE/M_B = 1.88 (+0.275 dex) +- 0.107 (groups 0.017, stars 0.070, HSE 0.079) -> +2.57 sigma; the phantom wins the max in 1 of 20; median f_b 0.083; the phantom-only law alone 2.24
+    alt       R500 : median M_HSE/M_B = 1.33 (+0.124 dex) +- 0.083 (groups 0.014, stars 0.020, HSE 0.079) -> +1.49 sigma; the phantom wins the max in 20 of 20; median f_b 0.099; the phantom-only law alone 1.33
+    alt       R2500: median M_HSE/M_B = 1.88 (+0.274 dex) +- 0.104 (groups 0.016, stars 0.066, HSE 0.079) -> +2.63 sigma; the phantom wins the max in 5 of 20; median f_b 0.083; the phantom-only law alone 2.05
+  [PASS] C1 CONTROL: CFG34's committed B numbers reproduced through the read-only exec (RES to 1e-12; the four printed lines character for character; its C1/C2/H1 pass and H2 fails as committed)
+         RES: 4 entries x 8 fields, max |d| = 0.0e+00; printed lines identical: True (4 of 4); CFG34's own checks ['PASS', 'PASS', 'PASS', 'FAIL'] vs committed ['PASS', 'PASS', 'PASS', 'FAIL']
+
+======================================================================================================================
+C2  CONTROL: the NFW engine (M(<R_200c) = M_h; nfw_M = CFG69's verbatim make_nfw; 200c -> 500c / 2500c vs a direct root solve; the density integral)
+======================================================================================================================
+  [PASS] C2 CONTROL: the NFW engine -- (i) M(<R_200c) = M_h; (ii) nfw_M = CFG69's verbatim make_nfw at RHO_C; (iii) the 200c -> 500c / 2500c fixed-point conversion = a direct brentq root solve; (iv) M(<r) = the integral of the NFW density
+         (i) max |d| 2.2e-16 (tol 1e-12); (ii) 0.0e+00 over 4 masses x 30 radii x 3 relations (tol 1e-12); (iii) 3.6e-14 over 84 conversions (7 masses x 3 relations x (1, 0.1) x Delta 500, 2500; tol 1e-9); (iv) 2.2e-15 over 3 masses x 5 radii (tol 1e-7)
+
+======================================================================================================================
+C3  CONTROL: the data's own critical density (the convention in which R500 and R2500 are the 500c and 2500c radii)
+======================================================================================================================
+  [PASS] C3 CONTROL: in every group the critical density implied by (M500, R500) and by (M2500, R2500) agree to 2%
+         max |d| 0.0087 over 20 groups; rho_c,g / RHO_C (H0 = 67.4, z = 0) spans 1.020-1.085 (median 1.078)
+
+======================================================================================================================
+R0  THE CIRCULARITY DIAGNOSTIC (why CFG69's base cannot be used here)
+======================================================================================================================
+  [PASS] (reported) R0 (reported) the lane's stars ARE the Kravtsov relation at the hydrostatic M500; CFG69's Moster halo_mass at those (group-total) stellar masses
+         max |M_* / 1.7e12 (M500_HSE/1e14)^0.6 - 1| = 0.0e+00 over 20 groups (M_* = 6.61e+11-2.12e+12 Msun); halo_mass(M_*) = 1.32e+15-3.16e+15 Msun, 10 of 20 clamped at the grid ceiling 10^15.5, for groups of M500 = 2.1e+13-1.4e+14: circular and a central/total mismatch (no ratio to the data is formed)
+
+======================================================================================================================
+C4 / C5  CONTROLS: the normalisation at R500 and the declared concentration
+======================================================================================================================
+  [PASS] C4 CONTROL: every LCDM run is normalised at the measured R500 (|M_L(<R500)/target - 1| < 1e-9; base, bracket ends, every variant, RM)
+         max |d| 7.7e-15 over 10 runs x 3 stellar settings x 20 groups; worst run V2
+  [PASS] C5 CONTROL: the base's concentration equals c_duffy_full at the solved M_h (the declared relation) in every group
+         max |c / c_duffy_full(M_h) - 1| = 0.0e+00 over 20 groups; c = 3.96-4.69
+
+======================================================================================================================
+H1 / H2  THE SHAPE DESIGN ON THE TWENTY X-RAY GROUPS (LCDM has no a0: one number for both footings)
+======================================================================================================================
+    LCDM R2500: median M_HSE/M_L = 1.05 (+0.020 dex) +- 0.081 (groups 0.016, stars 0.003, HSE 0.079) -> +0.25 sigma
+    LCDM R500 : median M_HSE/M_L = 1.00 (+0.000 dex) +- 0.079 (groups 0.000, stars 0.000, HSE 0.079) -> +0.00 sigma   [normalised here: NOT A TEST]
+  [PASS] H1 [HEADLINE] LCDM (NFW + Duffy full c normalised at R500, the lane's baryons) REPRODUCES THE GROUPS INSIDE R2500: |z| < 2
+         median M_HSE/M_L = 1.05 (+0.020 dex, +0.25 sigma); B (CFG34): canonical 1.88 (+2.57 sigma), alt 1.88 (+2.63 sigma)
+  [PASS] (reported) H2 (reported; NOT A TEST: passes by construction) LCDM at R500: |z| < 2
+         median +1.4e-16 dex (+0.00 sigma) -- the comparator is normalised at R500; B (CFG34): canonical 1.41 (+1.80 sigma), alt 1.33 (+1.49 sigma)
+
+======================================================================================================================
+R1  THE CLASS TABLE (B from CFG34, both footings; LCDM the shape design)
+======================================================================================================================
+    R2500 canonical: B 1.88 (+0.275 dex, tot 0.107, +2.57 sigma, FAIL) | LCDM 1.05 (+0.020 dex, tot 0.081, +0.25 sigma) | B - LCDM +0.255 dex | class SPECIFIC-TO-B
+    R2500 alt      : B 1.88 (+0.274 dex, tot 0.104, +2.63 sigma, FAIL) | LCDM 1.05 (+0.020 dex, tot 0.081, +0.25 sigma) | B - LCDM +0.254 dex | class SPECIFIC-TO-B
+    R500  canonical: B 1.41 (+0.150 dex, tot 0.084, +1.80 sigma, MARGINAL) | LCDM 1.00 (+0.000 dex, tot 0.079, +0.00 sigma) | B - LCDM +0.150 dex | class NOT TESTED (normalised at R500)
+    R500  alt      : B 1.33 (+0.124 dex, tot 0.083, +1.49 sigma, MARGINAL) | LCDM 1.00 (+0.000 dex, tot 0.079, +0.00 sigma) | B - LCDM +0.124 dex | class NOT TESTED (normalised at R500)
+    R2500 combined class: SPECIFIC-TO-B; the MUTATE's model (RM, every c x 0.1): +0.265 dex (+3.30 sigma) -> gate FAIL vs the base's PASS: NON-DISCRIMINATING = False
+    HEADLINE CLASS at R2500: SPECIFIC-TO-B
+    R500: NOT TESTED -- the lane's data contain no non-circular LCDM prediction at R500 (the comparator is normalised there)
+  [PASS] (reported) R1 (reported) the class at R2500 (CFG69's rule per footing, NON-DISCRIMINATING from the MUTATE's model) and at R500
+         R2500: SPECIFIC-TO-B (canonical SPECIFIC-TO-B, alt SPECIFIC-TO-B); R500: NOT TESTED; B - LCDM at R2500 = +0.255 / +0.254 dex (canonical / alt)
+
+======================================================================================================================
+R2  THE VARIANTS (reported only; never change H1 or the class)
+======================================================================================================================
+    V1 Dutton-Maccio c                                         R2500: 0.98 (-0.008 dex) +- 0.081 (groups 0.017, stars 0.002) -> -0.10 sigma; class SPECIFIC-TO-B; R500 offset -0.000 (by construction); median c 5.53
+    V2 Duffy relaxed 200c                                      R2500: 1.00 (+0.002 dex) +- 0.081 (groups 0.017, stars 0.003) -> +0.02 sigma; class SPECIFIC-TO-B; R500 offset -0.000 (by construction); median c 5.10
+    V3 R500 normalisation x 1.2 (differential HSE bias)        R2500: 0.90 (-0.044 dex) +- 0.081 (groups 0.016, stars 0.003) -> -0.55 sigma; class SPECIFIC-TO-B; R500 offset +0.000 (by construction); median c 4.31
+    V4 R500 normalisation x 0.8 (differential HSE bias)        R2500: 1.26 (+0.100 dex) +- 0.081 (groups 0.017, stars 0.003) -> +1.23 sigma; class SPECIFIC-TO-B; R500 offset -0.000 (by construction); median c 4.55
+    V3u M500 and M2500 x 1.2 (uniform HSE bias)                R2500: 1.08 (+0.035 dex) +- 0.081 (groups 0.016, stars 0.003) -> +0.43 sigma; class SPECIFIC-TO-B; R500 offset +0.000 (by construction); median c 4.31
+    V4u M500 and M2500 x 0.8 (uniform HSE bias)                R2500: 1.01 (+0.003 dex) +- 0.081 (groups 0.017, stars 0.003) -> +0.04 sigma; class SPECIFIC-TO-B; R500 offset -0.000 (by construction); median c 4.55
+    V5 total mass as ONE NFW (no separate baryons)             R2500: 1.03 (+0.011 dex) +- 0.081 (groups 0.017, stars 0.000) -> +0.14 sigma; class SPECIFIC-TO-B; R500 offset +0.000 (by construction); median c 4.46
+    V6 CFG45's RHO_C in CFG69's verbatim make_nfw              R2500: 1.06 (+0.025 dex) +- 0.081 (groups 0.016, stars 0.003) -> +0.31 sigma; class SPECIFIC-TO-B; R500 offset +0.000 (by construction); median c 4.42
+  [PASS] (reported) R2 (reported) the variants V1 V2 V3 V4 V3u V4u V5 V6 at R2500, each with its class
+         V1 -0.008 (-0.10) SPECIFIC-TO-B; V2 +0.002 (+0.02) SPECIFIC-TO-B; V3 -0.044 (-0.55) SPECIFIC-TO-B; V4 +0.100 (+1.23) SPECIFIC-TO-B; V3u +0.035 (+0.43) SPECIFIC-TO-B; V4u +0.003 (+0.04) SPECIFIC-TO-B; V5 +0.011 (+0.14) SPECIFIC-TO-B; V6 +0.025 (+0.31) SPECIFIC-TO-B  -- every variant gives the base's class
+
+======================================================================================================================
+R3  B's SHAPE-ONLY OFFSET: log(M_HSE/M_B) at R2500 minus at R500 (B normalised at R500 the way LCDM is), both footings
+======================================================================================================================
+    canonical: B's shape-only offset +0.126 dex +- 0.092 (groups 0.016, stars 0.043, HSE 0.079) -> +1.37 sigma   | LCDM's (its R500 offset is 0): +0.020 dex (+0.25 sigma)
+    alt      : B's shape-only offset +0.161 dex +- 0.090 (groups 0.016, stars 0.041, HSE 0.079) -> +1.79 sigma   | LCDM's (its R500 offset is 0): +0.020 dex (+0.25 sigma)
+  [PASS] (reported) R3 (reported) B's shape-only offset beside LCDM's R2500 offset (the like-for-like shape comparison)
+         canonical: B +0.126 (+1.37 sigma); alt: B +0.161 (+1.79 sigma); LCDM +0.020 (+0.25 sigma)
+
+======================================================================================================================
+RM  THE MUTATE's MODEL INSIDE THE MAIN RUN (every concentration x 0.1)
+======================================================================================================================
+  [PASS] (reported) RM (reported) the base with every concentration x 0.1: its R2500 gate
+         median 1.84 (+0.265 dex) +- 0.080 -> +3.30 sigma: gate FAIL (the base: PASS); shift +0.245 dex; median c 0.41
+
+======================================================================================================================
+R4  PER GROUP (base; B from CFG34's own run)
+======================================================================================================================
+    group                   M500  R25/R5 rho_g/RHO_C       M_h     c M_L(<R2500)     M2500  lg M/M_L lg M/M_B can     alt
+    NGC4936             2.07e+13   0.448       1.081  3.11e+13  4.69    8.97e+12  9.30e+12    +0.016       +0.201  +0.201
+    S0753               4.67e+13   0.386       1.081  7.30e+13  4.36    1.63e+13  1.33e+13    -0.087       +0.200  +0.200
+    HCG62               2.39e+13   0.462       1.085  3.60e+13  4.63    1.05e+13  1.17e+13    +0.045       +0.283  +0.281
+    S0805               2.22e+13   0.363       1.080  3.37e+13  4.66    7.31e+12  5.30e+12    -0.139       +0.130  +0.130
+    NGC3402             2.95e+13   0.447       1.076  4.76e+13  4.52    1.28e+13  1.32e+13    +0.015       +0.308  +0.303
+    A194                2.83e+13   0.425       1.080  4.21e+13  4.57    1.11e+13  1.09e+13    -0.009       +0.239  +0.239
+    RXCJ1840.6-7709     3.31e+13   0.449       1.079  5.32e+13  4.48    1.42e+13  1.49e+13    +0.020       +0.328  +0.322
+    WBL154              3.53e+13   0.459       1.020  5.46e+13  4.47    1.52e+13  1.71e+13    +0.050       +0.353  +0.338
+    S0301               3.49e+13   0.463       1.077  5.30e+13  4.48    1.54e+13  1.73e+13    +0.051       +0.259  +0.259
+    NGC1132             3.35e+13   0.439       1.079  5.20e+13  4.49    1.39e+13  1.41e+13    +0.005       +0.244  +0.244
+    IC1633              1.44e+14   0.363       1.077  2.32e+14  3.96    4.40e+13  3.43e+13    -0.108       +0.259  +0.259
+    NGC4325             2.34e+13   0.471       1.077  3.59e+13  4.63    1.08e+13  1.22e+13    +0.053       +0.248  +0.248
+    RXCJ2315.7-0222     4.78e+13   0.458       1.077  7.43e+13  4.36    2.07e+13  2.30e+13    +0.046       +0.291  +0.291
+    NGC6338             8.59e+13   0.440       1.077  1.37e+14  4.14    3.49e+13  3.66e+13    +0.020       +0.287  +0.287
+    IIIZw054            9.51e+13   0.442       1.078  1.47e+14  4.11    3.84e+13  4.11e+13    +0.029       +0.267  +0.267
+    IC1262              6.96e+13   0.333       1.080  1.10e+14  4.22    1.97e+13  1.28e+13    -0.186       +0.125  +0.125
+    AWM4                1.08e+14   0.427       1.078  1.78e+14  4.05    4.23e+13  4.19e+13    -0.004       +0.298  +0.298
+    A3390               4.37e+13   0.466       1.034  7.17e+13  4.37    1.94e+13  2.22e+13    +0.060       +0.458  +0.420
+    CID28               8.00e+13   0.450       1.078  1.27e+14  4.17    3.33e+13  3.66e+13    +0.040       +0.323  +0.323
+    UGC03957            1.21e+14   0.475       1.082  1.97e+14  4.01    5.38e+13  6.47e+13    +0.080       +0.375  +0.375
+  [PASS] (reported) R4 (reported) the per-group table (above)
+         20 groups; LCDM log ratio at R2500 spans -0.186 to +0.080; B canonical +0.125 to +0.458
+
+======================================================================================================================
+R5  THE CONCENTRATION EACH GROUP's OWN PROFILE IMPLIES (a single total-mass NFW with M_500c = M500, rho_c,g)
+======================================================================================================================
+    NGC4936            M2500/M500 = 0.449: c_200c(data) =   4.94 vs Duffy full 4.72
+    S0753              M2500/M500 = 0.285: c_200c(data) =   2.40 vs Duffy full 4.35
+    HCG62              M2500/M500 = 0.490: c_200c(data) =   5.90 vs Duffy full 4.67
+    S0805              M2500/M500 = 0.239: c_200c(data) =   1.95 vs Duffy full 4.60
+    NGC3402            M2500/M500 = 0.447: c_200c(data) =   4.95 vs Duffy full 4.58
+    A194               M2500/M500 = 0.385: c_200c(data) =   3.76 vs Duffy full 4.58
+    RXCJ1840.6-7709    M2500/M500 = 0.450: c_200c(data) =   4.96 vs Duffy full 4.54
+    WBL154             M2500/M500 = 0.484: c_200c(data) =   5.85 vs Duffy full 4.52
+    S0301              M2500/M500 = 0.496: c_200c(data) =   6.14 vs Duffy full 4.53
+    NGC1132            M2500/M500 = 0.421: c_200c(data) =   4.37 vs Duffy full 4.52
+    IC1633             M2500/M500 = 0.238: c_200c(data) =   1.94 vs Duffy full 3.93
+    NGC4325            M2500/M500 = 0.521: c_200c(data) =   6.91 vs Duffy full 4.69
+    RXCJ2315.7-0222    M2500/M500 = 0.481: c_200c(data) =   5.73 vs Duffy full 4.41
+    NGC6338            M2500/M500 = 0.426: c_200c(data) =   4.50 vs Duffy full 4.18
+    IIIZw054           M2500/M500 = 0.432: c_200c(data) =   4.60 vs Duffy full 4.15
+    IC1262             M2500/M500 = 0.184: c_200c(data) =   1.44 vs Duffy full 4.14
+    AWM4               M2500/M500 = 0.388: c_200c(data) =   3.79 vs Duffy full 4.09
+    A3390              M2500/M500 = 0.508: c_200c(data) =   6.55 vs Duffy full 4.45
+    CID28              M2500/M500 = 0.458: c_200c(data) =   5.16 vs Duffy full 4.21
+    UGC03957           M2500/M500 = 0.535: c_200c(data) =   7.38 vs Duffy full 4.09
+  [PASS] (reported) R5 (reported) the concentration each group's own M2500/M500 implies (single total-mass NFW) vs Duffy full at the same M_200c
+         20 of 20 solved; median c(data) 4.95 (range 1.44-7.38) vs Duffy 4.49; 13 of 20 above Duffy; 0 without a solution
+
+======================================================================================================================
+R6  (ADDED AFTER THE FIRST RUNS; reported only) THE R2500 CLASS WITHOUT THE 0.079-dex HYDROSTATIC ALLOWANCE (err and star only, both sides)
+======================================================================================================================
+  [PASS] (reported) R6 (reported; ADDED AFTER THE FIRST RUNS) the R2500 class with the hydrostatic allowance removed from both sides (err and star only)
+         LCDM +0.020 dex -> +1.21 sigma; B canonical +3.83, alt +4.06 sigma; class SPECIFIC-TO-B (with the allowance: SPECIFIC-TO-B)
+
+    READING (declared): SPECIFIC-TO-B: a standard NFW normalised at R500 reproduces the mass inside R2500 where B is 1.88x short; B's R2500 shortfall is B's own (a cosmic share tied to today's baryons)
+    R500: NOT TESTED (no non-circular LCDM prediction at R500 in the lane's data).  kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the theory is closed.
+
+  15/15 checks pass; load-bearing failures: 0   (4 s)
