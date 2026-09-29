@@ -1,0 +1,73 @@
+Building E1/E2 for N = 6 and 12 ...
+
+=== A1: 1/alpha = 4 Z^2 + 3,  Z = 2 sqrt(8 pi/3) ===
+  value = 137.041286553 (= 128 pi/3 + 3);  relative miss = 3.858e-05;  in sigma_CODATA = 2.41e+05
+  [PASS] A1 stated precision equals computed precision claimed 3.86e-05 vs computed 3.86e-05
+  E2(6): member=True;  chance hits at its own precision delta=3.86e-05: lambda=11.8 (count 3047 in window 0.01)  P(>=1)=1  size=8,820,869
+  [PASS] A1 is an E2(6) member 
+  E2(12): member=True;  chance hits at its own precision delta=3.86e-05: lambda=85.3 (count 22099 in window 0.01)  P(>=1)=1  size=44,208,847
+  [PASS] A1 is an E2(12) member 
+  MDL size of the shape of the expression: 2^28.97 = 5.27e+08  (E2(12) syntactic count 2^28.97)
+  [PASS] MDL size reproduces the E2(12) syntactic count for a two-op expression (within 2^0.01) 
+  Template a*Z^s + c (a in 1..12, s in {1,2,3,1/2,-1,-2}, c in 0..12; 936 members, 936 distinct): count within 25% of target=27; lambda at delta=3.86e-05 = 0.00417;  P(>=1)=0.00416
+  Bar on E2(12): p=1 (c1 False), precision c2=False (delta 3.9e-05 vs limit 5e-10), clears=False
+  Bar on the a Z^s + c template: p=0.00416, precision c2=False, clears=False  (the family was defined AFTER seeing the formula: its size is a post-hoc choice)
+  [PASS] A1 does not clear the bar 
+
+=== A2: Wyler, alpha = (9/(8 pi^4)) (pi^5/(2^4 5!))^(1/4) ===
+  1/alpha_W = 137.03608244816; literature value quoted by arXiv:1411.4673 Eq.8 = 137.0360824
+  [PASS] A2 formula reproduces 137.0360824 (7 dp) got 137.0360824482
+  relative miss = 6.077e-07 (0.608 ppm);  = 3798 sigma_CODATA (sigma_rel 1.6e-10); abs miss 8.327e-05
+  MDL size (free numerology language, integers up to 1920): 2^129.0 trees; binary ops = 10, integer bound 12
+  W1 (k in 1..2000): syntactic 262,144,000, distinct 92,837,265; Wyler member=True; count in 1e-3 window=18,745 (decoy mean 18814); lambda at delta_W=6.08e-07: 11.4  P(>=1)=1;  lambda at 1e-9: 0.0187;  found within delta_W of target: 13
+  W2 (k = 2^i j!, i<=8, j<=8): syntactic 6,684,672, distinct 1,659,530; Wyler member=True; count in 1e-3 window=353 (decoy mean 336); lambda at delta_W=6.08e-07: 0.215  P(>=1)=0.193;  lambda at 1e-9: 0.000353;  found within delta_W of target: 1
+  [PASS] Wyler is a member of W1 
+  [PASS] Wyler is a member of W2 
+  W0 (all integers forced by a derivation, N=1; rho assumed = E2's 0.025): lambda=3.04e-08, p=3.04e-08; c1 True; precision c2 False (miss 6.1e-07 vs 5e-10); clears=False
+  [PASS] A2 (Wyler) does not clear the bar even with N=1 (precision fails) 
+  [PASS] A2 miss exceeds 1000 sigma_CODATA (exact-formula reading falsified) 3798 sigma
+
+=== A3: alpha = x^p (x = 2.8485e-122 from AH5), p fitted ===
+  p needed = 0.017581; AH5 reported 0.017581
+  [PASS] A3 p reproduces AH5's 0.017581 to 2e-5 
+  A fitted real exponent reaches the target with delta = 0 by construction: chance probability 1 (fails c3: one real parameter fitted to one number).
+  nearest simple rational exponent p = 1/57: alpha^-1 = 135.6361, miss = 1.02e-02 (alpha-miss = |ln alpha| x dp/p: a 2.1e-3 miss in p is a 1.0e-2 miss in alpha; NOT a 1e-3 hit)
+  target 0.017581 (relative tolerance on the grammar value = alpha-tolerance x 0.2032)
+    E1(6): nearest value gives alpha-miss 2.17e-02; tol1e-03: lam=0.0793 found=0; tol1e-05: lam=0.000793 found=0; tol1e-09: lam=7.93e-08 found=0
+    E2(6): nearest value gives alpha-miss 1.25e-05; tol1e-03: lam=62.3 found=56; tol1e-05: lam=0.623 found=0; tol1e-09: lam=6.23e-05 found=0
+    E1(12): nearest value gives alpha-miss 5.44e-03; tol1e-03: lam=0.305 found=0; tol1e-05: lam=0.00305 found=0; tol1e-09: lam=3.05e-07 found=0
+    E2(12): nearest value gives alpha-miss 2.98e-06; tol1e-03: lam=341 found=320; tol1e-05: lam=3.41 found=2; tol1e-09: lam=0.000341 found=0
+
+=== A4/A5: 1/alpha = a ln(1/x) (a fitted), equivalently 1/alpha = b ln(1/sqrt x), b = 2a ===
+  a needed = 0.489644 (AH5: 0.489644); b needed = 0.979288
+  [PASS] A4 a reproduces AH5's 0.489644 to 1e-5 
+  target 0.489644 (relative tolerance on the grammar value = alpha-tolerance x 1.0000)
+    E1(6): nearest value gives alpha-miss 2.59e-04; tol1e-03: lam=3.5 found=8; tol1e-05: lam=0.035 found=0; tol1e-09: lam=3.5e-06 found=0
+    E2(6): nearest value gives alpha-miss 2.70e-08; tol1e-03: lam=2.35e+03 found=2359; tol1e-05: lam=23.5 found=19; tol1e-09: lam=0.00235 found=0
+    E1(12): nearest value gives alpha-miss 1.13e-05; tol1e-03: lam=8.2 found=14; tol1e-05: lam=0.082 found=0; tol1e-09: lam=8.2e-06 found=0
+    E2(12): nearest value gives alpha-miss 2.70e-08; tol1e-03: lam=9.54e+03 found=9607; tol1e-05: lam=95.4 found=95; tol1e-09: lam=0.00954 found=0
+  natural a = 1/2: 1/alpha = 139.9343, miss = 2.115e-02 (a 2.1% miss, i.e. 21 x the 1e-3 hit level);  b = 1: same number
+  ILLUSTRATIVE (the number m of candidate constants is a free choice; probability is ~0.0092 x m): chance that a fitted a lands within 2.1% of one of m=10 'natural' constants, log-range of a-values ~ ln(10/0.1)=4.6: ~ 0.09
+  [PASS] A4 natural a=1/2 does not hit at 1e-3 
+
+=== A6: AH6 Kaluza-Klein handles, alpha = 4/k^2, k = R/l_P ===
+  k needed = 23.4125 (AH6: 23.41)
+  [PASS] A6 k reproduces AH6's 23.41 
+  misses: 1:9.98e-01, 2:9.93e-01, sqrt(8pi/3):9.85e-01, Z:9.39e-01, 2pi:9.28e-01, 4pi:7.12e-01, Z^2:1.05e+00, N=23:3.49e-02, N=24:5.08e-02
+  best of the 9 declared trials = N=23 with alpha-miss 3.49e-02
+  [PASS] A6 no declared handle within 1e-3 (matches AH6 K5) 
+  target 23.412475 (relative tolerance on the grammar value = alpha-tolerance x 0.5000)
+    E1(6): nearest value gives alpha-miss 1.87e-03; tol1e-03: lam=0.8 found=0; tol1e-05: lam=0.008 found=0; tol1e-09: lam=8e-07 found=0
+    E2(6): nearest value gives alpha-miss 9.80e-07; tol1e-03: lam=444 found=467; tol1e-05: lam=4.44 found=4; tol1e-09: lam=0.000444 found=0
+    E1(12): nearest value gives alpha-miss 2.44e-04; tol1e-03: lam=2.25 found=2; tol1e-05: lam=0.0225 found=0; tol1e-09: lam=2.25e-06 found=0
+    E2(12): nearest value gives alpha-miss 2.55e-07; tol1e-03: lam=2.02e+03 found=2002; tol1e-05: lam=20.2 found=21; tol1e-09: lam=0.00202 found=0
+  9 declared trials at their best miss: lambda=0.0153, p=0.0152: an unremarkable outcome either way
+  E2(12) expressions within alpha-1e-3 of the KK requirement: expected by chance 2.02e+03
+
+=== Hypotheses ===
+  H3 (4Z^2+3 in E2, chance P at its precision ~1): TRUE  (E2(6) p=1, E2(12) p=1; but in the post-hoc template a Z^s+c, p=0.00416)
+  H4 (Wyler: miss ~6e-7, ~4000 sigma; W1 p=1, W2 p=0.193 both >= 0.1; N=1 passes c1, fails precision): TRUE
+  H5 (fitted real parameter: chance probability 1 by construction (delta=0 always reachable); natural-constant coincidence probability for 10 candidates = 0.092 > 0.05): TRUE
+  H6 (no declared handle within 1e-3 [True] and E2(12) expects 2016 > 100 chance expressions at the KK requirement): TRUE
+
+FAILED: none
