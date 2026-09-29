@@ -38,7 +38,7 @@ DIRS += [os.path.join(HERE, d) for d in sorted(os.listdir(HERE))
          if os.path.isdir(os.path.join(HERE, d)) and re.match(r"^[A-Z][0-9]?_", d)]
 
 SKIP_FILES = {"rg_common.py", "bar_lib.py", "tower_lib.py", "clifford_lib.py", "q1_lib.py", "n1_lib.py", "s1_lib.py", "s1_modesum.py",
-              "p2_rerun_all.py", "w1_run_all.py",     # driver scripts that themselves call the others (no control of their own)
+              "p2_rerun_all.py", "w1_run_all.py", "y1_run_all.py",     # driver scripts that themselves call the others (no control of their own)
                               # re-runs everything itself; excluded to avoid recursion
               "run_all_checks.py"}
 IN_PROGRESS = set()     # lanes whose agent had not reported when this runner was written (S1 reported and was added back)

@@ -1,0 +1,83 @@
+========================================================================================================================
+Y1-2 validation against published numbers -- mode: MUTATE (one-loop running)
+========================================================================================================================
+
+V1  Buttazzo matching at mu = M_t (M_t = 173.34, M_h = 125.15, M_W = 80.384, alpha_3(M_Z) = 0.1184, M_Z = 91.1876)
+  [PASS] V1 interpolation formula reproduces the printed NNLO g2 mine 0.647790 printed 0.64779
+  [PASS] V1 interpolation formula reproduces the printed NNLO gY mine 0.358300 printed 0.3583
+  [PASS] V1 interpolation formula reproduces the printed NNLO yt mine 0.936900 printed 0.9369
+  [PASS] V1 interpolation formula reproduces the printed NNLO lam mine 0.126040 printed 0.12604
+  [PASS] V1 tree-level g_2 = 2 M_W / V equals the printed LO 0.65294 mine 0.652945
+  [PASS] V1 tree-level g_Y = 2 sqrt(M_Z^2 - M_W^2) / V equals the printed LO 0.34972 mine 0.349715
+  [PASS] V1 one-loop threshold (Buttazzo Appendix A, analytic) reproduces the printed NLO g_2 = 0.64754 mine 0.647545 (one-loop term -0.005400)
+  [FAIL] V1 one-loop threshold (Buttazzo Appendix A, analytic) reproduces the printed NLO g_Y = 0.35940 mine 0.358571 (one-loop term +0.008856)
+
+V2  Buttazzo Planck-scale couplings (like-for-like: three-loop gauge betas + pure-QCD four-loop term, y_t and lambda at three loops)
+      quantity     printed     mine(M_Pl=1.22089e19)  mine(1.2e19)   rel.diff in 1/alpha_i (%): primary   alt
+      g1          0.6154     0.61323              0.61312        +0.7060   +0.7396
+      g2          0.5055     0.50386              0.50391        +0.6477   +0.6302
+      g3          0.4873     0.48946              0.48955        -0.8883   -0.9252
+      yt          +0.3825    +0.40486             +0.40495
+      lam         -0.0143    -0.03371             -0.03372
+  [FAIL] V2 g1(M_Pl): closer Planck-mass definition within rounding + 2e-4 in 1/alpha min diff 7.06e-03 allowed 5.25e-04
+  [FAIL] V2 g2(M_Pl): closer Planck-mass definition within rounding + 2e-4 in 1/alpha min diff 6.30e-03 allowed 5.96e-04
+  [FAIL] V2 g3(M_Pl): closer Planck-mass definition within rounding + 2e-4 in 1/alpha min diff 8.88e-03 allowed 6.10e-04
+  [FAIL] V2 y_t(M_Pl) within 2e-3 relative 0.40486 / 0.40495 vs 0.3825
+  [FAIL] V2 lambda(M_Pl) within 3e-4 absolute -0.03371 / -0.03372 vs -0.0143
+      sensitivities at M_Pl (mine | printed):  g1: dMt +0.00030|+0.0003  dMW -0.00060|-0.0006 ;  g3: das +0.00023|+0.0002 ;  yt: dMt +0.00550|+0.0051  das -0.00213|-0.0021 ;  lambda: dMt -0.00678|-0.0066  das +0.00186|+0.0018  dMh +0.00250|+0.0029
+  [PASS] V2 sensitivity g1 per GeV M_t mine +0.00030 printed +0.0003
+  [PASS] V2 sensitivity g1 per sigma M_W mine -0.00060 printed -0.0006
+  [PASS] V2 sensitivity g3 per sigma alpha_3 mine +0.00023 printed +0.0002
+  [PASS] V2 sensitivity yt per GeV M_t mine +0.00550 printed +0.0051
+  [PASS] V2 sensitivity yt per sigma alpha_3 mine -0.00213 printed -0.0021
+  [PASS] V2 sensitivity lambda per GeV M_t mine -0.00678 printed -0.0066
+  [PASS] V2 sensitivity lambda per sigma alpha_3 mine +0.00186 printed +0.0018
+  [PASS] V2 sensitivity lambda per GeV M_h mine +0.00250 printed +0.0029
+      Y1 full four-loop gauge run (same inputs): g1 0.61323 g2 0.50386 g3 0.48946  (difference to the like-for-like run in 1/alpha_i: -0.00e+00 -0.00e+00 -0.00e+00)
+
+V3  Antusch-Maurer Table 1 (two-loop REAP): start at their M_Z column, run two loops to 1, 3, 10 TeV
+      lambda(M_Z) 0.13 -> 0.17 moves g_i(1000) by at most 3.0e-13
+      lambda(M_Z) 0.13 -> 0.17 moves g_i(3000) by at most 1.4e-14
+      lambda(M_Z) 0.13 -> 0.17 moves g_i(10000) by at most 1.0e-14
+      mu(GeV)  quantity  printed     mine       rel.diff    allowed
+          1000  g1     0.467774   0.467658   2.49e-04    1.72e-05  OUT
+          1000  g2     0.639350   0.638933   6.52e-04    3.02e-05  OUT
+          1000  g3     1.056000   1.059699   3.50e-03    9.37e-05  OUT
+          3000  g1     0.470767   0.470603   3.49e-04    1.72e-05  OUT
+          3000  g2     0.633830   0.633263   8.95e-04    3.01e-05  OUT
+          3000  g3     1.001700   1.006105   4.40e-03    9.32e-05  OUT
+         10000  g1     0.474110   0.473895   4.54e-04    1.72e-05  OUT
+         10000  g2     0.627920   0.627219   1.12e-03    3.01e-05  OUT
+         10000  g3     0.951000   0.955794   5.04e-03    9.31e-05  OUT
+  [FAIL] V3 all nine g_1, g_2, g_3 at 1, 3, 10 TeV reproduced within the rounding-aware allowance (amendments A1, A5) 
+
+V4  SMDR reference point (M_t = 173.1, M_h = 125.1, alpha_3(M_Z) = 0.1181; Q0 = 173.1): g_2 = 0.64765961, g' = 0.35853877, g_3 = 1.1636241, y_t = 0.93480082, lambda = 0.12603842
+      M_W fixed by g_2: 80.3686 GeV ; Buttazzo g_Y there 0.358493 vs SMDR 0.358539 -> -1.27e-04 ; Buttazzo g_3 1.165365 vs SMDR 1.163624 -> +1.50e-03
+      Degrassi et al. g_s(M_t) at the same inputs: 1.163194 -> -3.69e-04 relative to SMDR
+      informational: y_t Buttazzo 0.93575 vs SMDR 0.93480 (+1.0e-03); lambda 0.12595 vs 0.126038 (-7.3e-04)
+  [PASS] V4-A Buttazzo g_Y at the M_W fixed by g_2 agrees with SMDR g' within 3e-4 -1.27e-04
+  [FAIL] V4-B Buttazzo g_3 agrees with SMDR g_3 within 5e-4 +1.50e-03
+
+V5  independent QCD 5 -> 6 flavour check of g_3(M_t)   [RunDec: four-loop running, three-loop decoupling, pole-mass form eq. 25, mu_dec = M_t]
+      (a) Buttazzo inputs: QCD-only g_3(M_t) = 1.164777 (alpha_3 = 0.107963) vs Buttazzo 1.1666 -> -1.56e-03 ; vs Degrassi-form 1.1645+... at (0.1184, 173.34): -3.13e-04
+      (b) SMDR inputs:     QCD-only g_3(M_t) = 1.163546 vs SMDR 1.1636241 -> SMDR/QCD-only - 1 = +6.72e-05 (this is the electroweak + Yukawa + scheme remainder)
+      (c) mu_dec = 0.5000 M_t : g_3(M_t) = 1.164796
+      (c) mu_dec = 0.7071 M_t : g_3(M_t) = 1.164789
+      (c) mu_dec = 1.0000 M_t : g_3(M_t) = 1.164777
+      (c) mu_dec = 1.4142 M_t : g_3(M_t) = 1.164759
+      (c) mu_dec = 2.0000 M_t : g_3(M_t) = 1.164735
+      half-range of g_3(M_t) under mu_dec in [M_t/2, 2 M_t]: 2.62e-05 relative
+      (c') consistency of eq. (24) [decouple at m_t(m_t) = 162.69, run up] and eq. (25) [decouple at M_t = 172.5]: alpha_3(172.5) = 0.108050 vs 0.108035 -> +1.32e-04
+      decision rule (pre-registered): |QCD-only vs Buttazzo| = 1.56e-03, |QCD-only vs SMDR| = 6.72e-05  (agreement threshold 3e-4)
+  [FAIL] V5-a QCD-only g_3(M_t) agrees with Buttazzo's 1.1666 within 3e-4 1.56e-03
+  [PASS] V5-b QCD-only g_3(M_t) agrees with SMDR's 1.1636241 within 3e-4 6.72e-05
+  [PASS] V5-c eqs. (24) and (25) give the same alpha_3(M_t) within 1e-3 +1.32e-04
+
+V6  Mihaila et al. qualitative statement: the alpha_1^2 alpha_3^2 term dominates the three-loop shift of alpha_1 (running to 1e16 GeV, their inputs)
+      a_1(1e16): 2-loop 37.790682, 3-loop 37.786028, 2-loop + only the alpha_1^2 alpha_3^2 3-loop term 37.785670: that term is 107.7% of the shift
+  [PASS] V6 the alpha_1^2 alpha_3^2 term carries more than 50% of the three-loop shift of alpha_1 107.7%
+
+SUMMARY
+  failures: 9  (documented in amendment A6: ['V1 one-loop threshold (Buttazzo Appendix A, analytic) reproduces the printed NLO g_Y = 0.35940', 'V4-B Buttazzo g_3 agrees with SMDR g_3 within 5e-4', "V5-a QCD-only g_3(M_t) agrees with Buttazzo's 1.1666 within 3e-4"])
+  unexpected failures: ['V2 g1(M_Pl): closer Planck-mass definition within rounding + 2e-4 in 1/alpha', 'V2 g2(M_Pl): closer Planck-mass definition within rounding + 2e-4 in 1/alpha', 'V2 g3(M_Pl): closer Planck-mass definition within rounding + 2e-4 in 1/alpha', 'V2 lambda(M_Pl) within 3e-4 absolute', 'V2 y_t(M_Pl) within 2e-3 relative', 'V3 all nine g_1, g_2, g_3 at 1, 3, 10 TeV reproduced within the rounding-aware allowance (amendments A1, A5)']   documented failures that no longer fail: []
+MUTATE control: BITES (V2/V3 failed as required) -> exit 1
