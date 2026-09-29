@@ -177,3 +177,15 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=0] rc=0 diff=0
 CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=a] rc=0 diff=0
 CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
 ```
+
+## Addendum, 2026-09-29, after CFG67 and CFG68 (appended; the rows above are unchanged)
+
+- **Row 1.25 (super spirals): SHARED by standard halos.** Through CFG56's exact machinery, ΛCDM with Mandelbaum's blue halos also misses the nine fastest: +0.121 dex, z₉ = 2.26 against the law's +0.164, z₉ = 2.34.
+  - CFG68's H1 failed as declared.
+  - The verdict depends on the halo relation (Moster over-predicts) and on the lensing error at these masses (the +1σ halos pass).
+  - Source: CFG68, 358564486. Its criteria were frozen in 1808d8bee, and its main and MUTATE runs were re-run by this session.
+- **The new KiDS colour-split failure (next to gate 3.05): B-SPECIFIC.**
+  - CFG61 (3c03f9678) gives ~3.7σ, which is a reported χ² row (LEDGER CFG61-note).
+  - ΛCDM reproduces the split through the same machinery: χ² 6.5/7 with colour-split halos and 6.9/7 with colour-blind Moster halos (CFG67, f1df7889a).
+  - The failure belongs to B's mass-independent dark mass, not to the machinery.
+
