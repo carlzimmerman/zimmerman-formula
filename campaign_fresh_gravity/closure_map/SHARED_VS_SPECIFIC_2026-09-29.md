@@ -102,3 +102,36 @@ CFG8, CFG20–CFG25, CFG27, CFG32, CFG33, CFG34 and CFG39 are carried from `GATE
   - ΛCDM's pass depends on the stellar-mass calibration (5.45–11.50/7). The law's χ² does not (a change of at most 0.03).
   - The bottom line's "only one observational failure is cleanly B-specific" should read: **the one observational failure specific to B in shared machinery is the KiDS early/late split. It is a failure of any colour-blind dark mass, at face value of a covariance without systematic terms.**
 - **Re-run status of the KiDS row:** CFG61 and CFG67 have now also been independently re-derived (CFG77).
+
+
+## Addendum after CFG79, CFG80 and CFG81, the ΛCDM comparators for the "NOT COMPARED" rows (appended 2026-09-29; the rows above are unchanged)
+
+Each lane ran CFG69's base halo (Moster+2013 halo mass, Duffy+2008 full 200c concentration, (1 − f_b) NFW, Newtonian, no contraction, no scatter) through its source lane's own pipeline. Criteria were frozen before any ΛCDM number.
+
+| Gate | B | ΛCDM, same pipeline | Class, after the independent re-derivations | Lanes (commits) | Re-run |
+|---|---|---|---|---|---|
+| 1.18 X-ray ellipticals | +0.280 dex (1.70σ; alt 1.58σ), marginal | +0.060 ± 0.123 (+0.49σ) | **COMPATIBILITY CHECK only, not a test of ΛCDM or of B** | CFG79 (criteria 6cdfb9d8f; lane b3141df7b; corrections c690392c1) | independent: CFG84 (68d166cea) |
+| 1.19 SLACS, lensing against dynamics | gap +0.15–0.17 dex: 1.5–1.7σ with the floor, 7–8σ statistically | gap +0.037: +0.36σ with the floor, +1.5σ statistically | **SPECIFIC-TO-B for the statistical gap only;** both models pass with the floor | CFG80 (criteria fe0c1c040; lane 1af8de3ce) | **this lane only so far** |
+| 2.03 X-ray groups | R2500: 1.88 (2.57σ; alt 2.63σ). Shape only, on equal footing: 1.37σ (alt 1.79σ) | R2500 shape test: 1.05 (+0.25σ). R500: normalised there, NOT TESTED | **NOT SEPARATED at 2σ on equal footing** (shape only); the halo-mass test is circular | CFG81 (criteria 27b4bf414; lane 698c35a33; corrections 5ab0919e4) | independent: CFG85 (8115c1189) |
+| 1.15 Chae external field | refit 1.7–3.0σ | **ΛCDM has no external-field effect, so there is nothing to compare in this machinery** | **no ΛCDM counterpart** | CFG8 (302ff4bd9) | NOT RE-RUN this round |
+
+**Caveats.**
+
+- **X-ray ellipticals.** CFG32's "observed" masses are Humphrey's best-fit NFW + stars models, which are ΛCDM's own functional form. Humphrey's own fitted halo scores −0.031.
+  - The Moster/Duffy pass is a cancellation: the halos are 0.4–1.5 dex too heavy, and the concentrations 0.2–0.4× too low in 6 of 7 galaxies.
+  - With Moster's masses and Humphrey's concentrations, ΛCDM is at −2.58σ.
+  - The gate passes at every halo mass from × 0.007 to × 60.8, about 3.9 dex.
+- **SLACS.**
+  - The gate sees the halo only weakly: halo mass × 100 fails at −2.61σ, while × 33 passes.
+  - Moster's relation tied to α × Salpeter masses gives group- to cluster-scale halos, median 10^14.4 M☉. With every halo × 1/3, ΛCDM keeps about half of B's statistical gap (3.4σ).
+  - The halos are defined at z = 0, while the lenses sit at a median z of 0.19.
+- **Groups.** CFG34's stars are assigned from the hydrostatic M500, so a Moster halo would be circular. The frozen shape design hands ΛCDM each group's M500 and does not hand it to B.
+  - ΛCDM's R2500 offset does not depend on the stellar level (+0.005 to +0.027 dex).
+  - B's does. With +0.2 dex in stars, B is at 1.45σ; B closes at about 3.2× the Kravtsov relation (CFG85).
+
+**Bottom line of this addendum.** None of the three comparators adds a clean B-specific failure.
+- **The X-ray ellipticals** are a compatibility check.
+- **SLACS** separates B from ΛCDM only statistically, where the 0.10-dex floor is not applied. With the floor, both pass.
+- **The groups' shape test** does not separate them at 2σ.
+
+The KiDS early/late split, B-specific for the difference only and fragile, remains the one B-specific observational failure in shared machinery. κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model or that the theory is closed.
