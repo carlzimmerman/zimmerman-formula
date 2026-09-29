@@ -1,0 +1,72 @@
+CFG67 -- THE LCDM CONTROL FOR CFG61: do standard halos, run through CFG61's exact machinery, reproduce the KiDS-1000 early/late lensing split?
+
+Criteria frozen and committed before this script: campaign_fresh_gravity/CFG67_FROZEN_CRITERIA.md (commit 5f9c56bc8).  CFG61's data, lenses, forward
+model, projector, K1 bins and floor are exec'd read-only from CFG61_kids_colour_split.py (up to its model-profile section; its MUTATE forced off).
+Comparator: Delta Sigma = point mass M_gal + NFW(M_200c), M_200c = CFG36 collapse(M_*, red for early / blue for late) (Mandelbaum+2016; HEADLINE),
+Dutton-Maccio concentration and the enclosed mass as implemented in CFG36's nfw_enclosed (saturating at 5 R_200c); the colour-blind Moster+13
+halo_mass as a reported variant.
+PRE-DECLARED (from the frozen file)
+  C1  CONTROL  CFG61's committed law chi2_L = 28.1/7 (canonical) reproduced by the exec'd machinery (its committed law stacks) to +-0.1.
+  C2  CONTROL  CFG36's NFW gives M(<R_200c) = M_200c to 1e-6, and the projector reproduces Wright & Brainerd's untruncated NFW to 1e-3.
+  H1  [HEADLINE; MUTATE must fail] LCDM with the colour-split relation reproduces the difference: chi2_Lambda p > 0.01 and |A_hat - 1| < 2 sigma_A.
+  H2  the data prefer LCDM's split over a colour-blind prediction: A_hat / sigma_A > 3.
+  H3  (reported) the absolute profiles on K1 against LCDM (early with C_ee, late with C_ll).
+  R1-R4 (reported) the colour-blind Moster variant; the Sersic replicate; all 15 bins; the clamped weight fraction.
+MUTATE=1: early and late data swapped -- H1 must FAIL (rc = 1).
+
+  *** MUTATE=1: early and late data swapped -- H1 must FAIL ***
+
+======================================================================================================================
+C1 / C2  CONTROLS
+======================================================================================================================
+  [PASS] C1 CONTROL: CFG61's committed law chi2_L = 28.1/7 (canonical) reproduced by the exec'd machinery (its committed law stacks)
+         chi2_L 28.07 (CFG61 committed 28.07); K1 = [8, 9, 10, 11, 12, 13, 14]
+  [PASS] C2 CONTROL: CFG36's NFW gives M(<R_200c) = M_200c (1e-6); the projector reproduces Wright & Brainerd (1e-3)
+         M(<R200)/M200 - 1 = 2.2e-16; projector vs WB max rel. dev. 2.6e-05
+
+======================================================================================================================
+THE STACKS: LCDM (colour-split SHMR) against the data [Msun/pc^2], and CFG61's law
+======================================================================================================================
+       g_bar 1.38e-15: late    1.00 (LCDM    0.16, law    0.19) | early    0.44 (LCDM    0.29, law    0.18)
+       g_bar 2.44e-15: late    1.76 (LCDM    0.28, law    0.34) | early    0.64 (LCDM    0.50, law    0.31)
+       g_bar 4.30e-15: late    2.57 (LCDM    0.47, law    0.60) | early    0.95 (LCDM    0.86, law    0.55)
+       g_bar 7.59e-15: late    3.29 (LCDM    0.77, law    1.05) | early    1.81 (LCDM    1.32, law    0.96)
+       g_bar 1.34e-14: late    4.06 (LCDM    1.18, law    1.78) | early    1.99 (LCDM    2.05, law    1.69)
+       g_bar 2.36e-14: late    5.77 (LCDM    1.83, law    2.80) | early    2.85 (LCDM    3.15, law    2.82)
+       g_bar 4.17e-14: late    7.33 (LCDM    2.81, law    3.74) | early    5.34 (LCDM    4.79, law    3.79)
+       g_bar 7.36e-14: late    8.86 (LCDM    4.25, law    4.74) | early    4.40 (LCDM    7.16, law    4.75)
+    K1 g_bar 1.30e-13: late   10.73 (LCDM    6.32, law    6.25) | early    8.96 (LCDM   10.50, law    6.26)
+    K1 g_bar 2.29e-13: late   12.45 (LCDM    9.24, law    8.33) | early   10.61 (LCDM   15.08, law    8.34)
+    K1 g_bar 4.04e-13: late   17.62 (LCDM   13.26, law   11.16) | early   12.39 (LCDM   21.17, law   11.16)
+    K1 g_bar 7.13e-13: late   23.39 (LCDM   18.63, law   15.01) | early   11.53 (LCDM   29.00, law   15.02)
+    K1 g_bar 1.26e-12: late   30.45 (LCDM   25.65, law   20.29) | early   15.11 (LCDM   38.73, law   20.29)
+    K1 g_bar 2.22e-12: late   36.82 (LCDM   34.67, law   27.57) | early   26.96 (LCDM   50.51, law   27.57)
+    K1 g_bar 3.92e-12: late   47.72 (LCDM   46.15, law   37.74) | early   23.28 (LCDM   64.58, law   37.74)
+
+    LCDM (colour-split): A_hat -0.789 +- 0.164 (stat) +- 0.452 (early M* +-0.1 dex) = +- 0.480; chi2_Lambda 124.1/7 (p 1.05e-23)
+
+======================================================================================================================
+H1 / H2
+======================================================================================================================
+  [FAIL] H1 [HEADLINE] LCDM with the colour-split SHMR reproduces the early-minus-late difference: chi2 p > 0.01 and |A_hat - 1| < 2 sigma_A  [MUTATE: early/late swapped]
+         chi2_Lambda 124.1/7 p 1.05e-23; A_hat -0.789 +- 0.480 ((A-1)/sigma -3.72)
+  [FAIL] H2 the data prefer LCDM's split over a colour-blind prediction: A_hat / sigma_A > 3
+         A_hat / sigma_A = -1.64
+
+======================================================================================================================
+H3, R1-R4 (reported)
+======================================================================================================================
+  [PASS] (reported) H3 (reported) absolute profiles on K1 against LCDM (colour-split): early (C_ee), late (C_ll)
+         early chi2 135.0, late 26.1 (dof 7); CFG61's law: early 51.9, late 12.6
+  [PASS] (reported) R1 (reported) the colour-blind Moster+13 variant (the a-priori LCDM: halo mass depends on M_* only)
+         A_hat -1.36 +- 0.28 (stat); chi2 73.9/7 (p 2.4e-13)
+  [PASS] (reported) R2 (reported) the Sersic replicate (same colour-proxy LCDM stacks)
+         A_hat -0.697 +- 0.165 (stat); chi2 108.6/7 (p 1.8e-20)
+  [PASS] (reported) R3 (reported) all 15 bins (out of the isolation-reliable range; no 2-halo term)
+         A_hat -1.195 +- 0.137; chi2 300.7/15 (p 4.0e-55)
+  [PASS] (reported) R4 (reported) the M_gal-weighted fraction of lenses below Mandelbaum's measured range (clamped collapse mass)
+         early (red, < 10.28): 0.019; late (blue, < 10.24): 0.149
+
+    READING (declared): LCDM with measured halos also misses: CFG61's failure is not (only) framework-specific; H2 and R1 say how
+
+  7/9 checks pass; load-bearing failures: 2   (4 s)
