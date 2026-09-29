@@ -60,3 +60,24 @@
 - II's offset read as along the mass axis at fixed V, as its text says (Sect. 7.1, through the summariser).
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour any model, or that the theory is closed.
+
+## After the MUSE-DARK table extraction (appended 2026-09-29; the text above is unchanged)
+
+- **Two relayed input corrections, checked against the papers' arXiv HTML text** (three reads; reading only, nothing downloaded). Script: `cfg190_posthoc_errors.py` (POST HOC, labelled).
+- **(1) VERIFIED: III's errors are 95% confidence intervals, not 1σ.**
+  - Sect. 3.1: "with the errors denoting the 95% confidence intervals (CI) from our MCMC fits". Sect. 3.2: "the 95% CI".
+  - The frozen run took them as 1σ. With 1σ = the half-width divided by 1.96, σ(log ratio) falls from 0.0252 to 0.0129 dex.
+  - The pulls against III roughly double: flat −14.9 → −29.3; a₀ ∝ E(z) −6.2 → −12.2; T −28 → −55.
+  - The pulls against II are unchanged. **The headline stands: no law fits both at any declared y.**
+- **(2) NOT FOUND: the claim that II adds a ±0.16 dex uncertainty for the local (Lelli+2019) zero point (Sect. 7.3).**
+  - In II's text the only 0.16 dex is the bTFR's orthogonal intrinsic scatter (Table 3, Sect. 7.1).
+  - Section 7.3 ("Evolution of the bTFR") contains no such statement, and II adds no uncertainty to Δb = 0.00 ± 0.06 dex for the local reference.
+  - The frozen II input therefore stands.
+- **Sensitivity (reported, not a correction).** II's ±0.06 is a statistical error, and II calls its bTFR "more indirect". Its systematic floor against the local relation is not quantified: different M*, gas and velocity definitions enter at the two epochs.
+  - If an unstated ±0.16 dex were added in quadrature (0.17 in total), III's own law would fit both at y ≥ 0.3: pulls against II of −1.9 at y = 0.3 and −1.2 at y = 1, against −2.4 in the deep regime.
+  - So **"mutually inconsistent" holds as stated only if II's quoted error is its whole error against the local relation.** If II has an unstated systematic of about 0.16 dex, the inconsistency survives only in the deep regime.
+- **Circularity (Q2) stays UNDECIDED.** The extracted tables (7e43e4fdd, `data_assembly/arxiv_tables/musedark_II_III/`) include no per-galaxy table in II or III.
+  - The extraction reads III's DC14 fits as parameterised by log(M*/M_halo), with no SED prior, so III's M* is tied to the halo by construction.
+  - Paper I's raster figure shows dynamical M* about 0.11 dex below the SED values.
+  - III gives a₀ only for DC14 (2.38), the best-evidence halo (2.61) and MOND (2.19). There is no baryon-only fit.
+- **Also corrected:** II's bTFR intrinsic scatter is 0.16 dex. The 0.10–0.12 dex in the data chat's timeline note is the sTFR's.
