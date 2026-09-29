@@ -102,3 +102,7 @@ CFG76 (276c78784) re-derived this lane from independently written code. It repro
   - h50 itself is left as committed, so every lane that executes it (CFG38, CFG55, CFG57, CFG59, CFG69, CFG71, CFG76) stays reproducible. Correcting h50 in place would change all of them.
 
 **Reading, as qualified:** the deficit survives dynamical stellar masses at γ = 3. Its size depends on γ, and it leans on the group and cluster centrals.
+
+## Correction after the round-3 documentation audit (appended 2026-09-29; no result changed)
+
+- CFG55's calibration, like its prediction, uses h50's plain RAR kernel ν_h (`law_mass_g`, `rule_mass`, `sigma_pred`). ν_mono enters only the C2 control (`law_mass`, CFG33's calibration re-derived); C3 calls `law_mass` with the kernel off. The AUDIT-N sentence 'ν_mono enters only the calibration' is therefore wrong; CFG76's statement is right. The offsets and conclusions above are unchanged.

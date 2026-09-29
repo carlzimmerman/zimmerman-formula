@@ -58,3 +58,8 @@ Nothing here says the theory is closed.
 
 ## Referee corrections (09-28 audit of the lane READMEs against their outputs; appended, the text above is unchanged)
 - '-0.105 dex' is a 27% speed over-prediction (10^0.105 = 1.27), not 10%; the '5-9% before' figure (-0.02 to -0.04 dex) is right. CFG53's shape test on the same 15 disks is not cross-referenced (every measurement leans against the debris, none at 2 sigma).
+
+## Pointer: the independent re-derivation CFG97 and its referee note (appended 2026-09-29; the text above is unchanged)
+
+- **CFG97** (`CFG97_massive_spirals_rederivation/`) reproduces the law side (−0.028 ± 0.066, S0/S0a +0.004) and the selection-bias Monte Carlo from this lane's extracted inputs. Its qualifiers: The selection-bias correction B is not fixed by the data: with the mock run at the law test's own a₀ (9.36e-11), the matched B is 0.119, giving −0.071 (−1.08σ) for the 15 disks and −0.040 for the four S0/S0a. B is not additive: it shrinks by about 0.35 × the true offset. The S0/S0a sign flips under leave-one-out. No verdict flips. The rule side (−0.105 ± 0.131) was not reproduced by CFG97. CFG97_REFEREE.md (a76cfebc9) reproduces its arithmetic given CFG41's f_ex, but f_ex and the ±0.131 budget are not independently re-derived.
+- CFG53's law-side shape numbers reproduce once CFG53's weighting is used (CFG97, post hoc); its rule-shape numbers are not reproduced.

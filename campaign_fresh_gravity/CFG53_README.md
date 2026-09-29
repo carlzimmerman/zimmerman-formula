@@ -92,3 +92,8 @@ Hypotheses and scope:
 
 - The SLUGGS 4.0σ and 2.6σ quoted in the correction above are statistical errors at a fixed GC density slope, γ = 3. The law's offset is zero at γ ≈ 1.83 and the rule's at ≈ 2.45 (CFG76; see CFG55's appended section).
 - With h50's name-key artefact corrected (NGC 821 restored; 17 galaxies; `CFG55_h50_keyfix.py`), the same numbers are law +0.0996 (4.3σ) and rule +0.0513 (2.9σ).
+
+## Pointer: the independent re-derivation CFG97 (appended 2026-09-29; the text above is unchanged)
+
+- **CFG97** (`CFG97_massive_spirals_rederivation/`) reproduces this lane's law-side shape numbers (red +0.0135 ± 0.1241, blue +0.0517 ± 0.0406) to three decimals, but only after a post-hoc rerun with this lane's weighting (inverse variance, error scaled by √(χ²/dof)); its frozen unweighted pooling differed. The rule-shape numbers (+0.155, the power, −1.22σ) are not reproduced.
+- For the 15-disk pass this lane shares with CFG41, see CFG41's README (appended pointer): B is not fixed by the data, it is not additive, and the S0/S0a sign flips under leave-one-out.
