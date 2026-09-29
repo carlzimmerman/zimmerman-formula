@@ -1,4 +1,6 @@
-# CFG90 — does B's own stellar-mass calibration account for the KiDS early/late split? FROZEN CRITERIA
+# CFG95 — does B's own stellar-mass calibration account for the KiDS early/late split? FROZEN CRITERIA
+
+**Renumbered (bookkeeping only).** This file was first committed as CFG90 in 32abb6e12 (07:02), before any number of this lane was computed. Another session had committed its own CFG90 (0137d584d, 07:00) moments earlier, so the lane moved to CFG95. Apart from this note and the lane number, the criteria are unchanged.
 
 Written 2026-09-29, before any number of this lane was computed. Nothing below may change after a result is seen; any later deviation goes in the README as a disclosed departure.
 
