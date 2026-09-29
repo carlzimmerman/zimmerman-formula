@@ -1,0 +1,77 @@
+frozen spec campaign_fresh_gravity/CFG154_FROZEN_CRITERIA.md  sha256 7b58a9210ff13ac851ca118e28f61d4a74933cb7035716f4f0b43e1036a07d60
+cfg154_headline  mode = MUTATE
+constants: M_Pl = 2.435323e+27 eV (reduced, from G), 1 eV^-1 = 1.973269803e-07 m, Msun = 1.115416e+66 eV, 1 eV^4 = 2.320115e-16 kg/m^3
+
+==============================================================================================================
+A. SYMBOLIC (sympy, my own derivation from the Lagrangian as frozen in CFG122)
+==============================================================================================================
+S1 X < 0: Euler-Lagrange == d/dr[r^2 n phi'/m] - alpha Lambda r^2 rho_b/M_Pl: True;  P'(X) == Lambda (2m)^(3/2) sqrt|X|: True
+S1 X > 0: Euler-Lagrange == d/dr[r^2 n phi'/m] - alpha Lambda r^2 rho_b/M_Pl: True;  P'(X) == Lambda (2m)^(3/2) sqrt|X|: True
+S1 Gauss: 4 pi r^2 n phi'/m = alpha Lambda M_b(<r)/M_Pl solves the EL equation: True
+S2 B-: True
+S2 B+a: True
+S2 B+b: True
+S2 BK eq57: True
+S2 flux: n phi' = 4 m^2 Lambda sqrt(s|Y-s|): True
+S2 flux: 4 m^2 Lambda J = m alpha Lambda M/(4 pi r^2 M_Pl): True
+S3 |X| -> J as Y -> 0: True; rho_DM = 2 m^2 Lambda sqrt(kappa): True; kappa = 2 m J: True; a_phi^2/(g_N alpha^3 Lambda^2/M_Pl) = N_a = 1
+S4 R (no tie) = sqrt(2)*Lambda*sqrt(M)*sqrt(alpha)*m**2*sqrt(x**2 + 1)/(4*sqrt(pi)*M_Pl**(5/2)*a_0)
+S4 R (tie)    = sqrt(2)*sqrt(M)*m**2*sqrt(x**2 + 1)/(4*sqrt(pi)*M_Pl**2*sqrt(a_0)*alpha)
+S4 R = eps sqrt(1+x^2) (tie): True
+S4 kappa at fixed x = alpha a0 M_Pl/x^2: True
+S4 d ln rho_DM/d ln M at fixed x = 0;  d ln rho_target/d ln M = -1/2
+S4 d ln R/d ln M at fixed x: no tie 1/2, tie 1/2;  spread R(1e12)/R(1e9) = 10*sqrt(10) = 31.622777
+S4 x-spread sqrt(1+30^2)/sqrt(1+0.1^2) = 10*sqrt(91001)/101 = 29.867695;  single-mass minimax error (b-a)/(b+a) = 0.935207
+S4 MUTATE alpha -> alpha_0 (M/M_12)^(1/2): d ln R/d ln M = 0
+[PASS] (mutate) MUTATE symbolic: the exponent becomes 0: exponent 0
+S5 extended self-similar profile: R = eps u_t/sqrt(f): True; d ln R/d ln M at fixed x = 1/2
+S6 dyhat/dx coefficient = 2 eps: True
+S6 dmu/dx coefficient = eps (tie): True
+S6 4 pi x^2 r_M^3 rho_target/M = x/sqrt(1+x^2): True
+S6 R = eps x sqrt(1+x^2) sqrt|xhat|: True
+S7 K = P/rho^3 = 1/(12*Lambda**2*m**6)  (== 1/(12 Lambda^2 m^6): True);  rho = m P'(X): True;  LE scale a^2 = sqrt(Y_c)/(4 pi G m^2 Lambda (2m)^(3/2)) consistent: True
+[PASS] (control) S1-S7 symbolic steps: N_a = 1; all identities hold = True
+[PASS] (headline) H1a symbolic headline: d ln R/d ln M_b at fixed x = 1/2 (tie), 1/2 (no tie); spread = sqrt(1000) = 31.6228; x-spread = 29.8677
+
+==============================================================================================================
+H1b / H1c. MY RADIAL SOLVER (solver B) AT THE HEADLINE CELL  --  MUTATE: alpha(M_b) = 10 (M_b/1e12 Msun)^(1/2)
+==============================================================================================================
+canonical point            eps = 2.4778e-07, 2.4778e-07, 2.4778e-07, 2.4778e-07 | S(x): min 1.000000 max 1.000000 | p(x): min -0.000000 max 0.000000 | max|Y|/J = 1.49e-05 | R(x=0.1)/sqrt(1.01) = 2.4778e-07, 2.4778e-07, 2.4778e-07, 2.4778e-07
+    H1c canonical M_b = 1e+09: max/min of R over x = 29.867584 (exact 29.867695)
+    H1c canonical M_b = 1e+10: max/min of R over x = 29.867584 (exact 29.867695)
+    H1c canonical M_b = 1e+11: max/min of R over x = 29.867584 (exact 29.867695)
+    H1c canonical M_b = 1e+12: max/min of R over x = 29.867584 (exact 29.867695)
+canonical exp h=0.3 r_M    eps = 2.4778e-07, 2.4778e-07, 2.4778e-07, 2.4778e-07 | S(x): min 1.000000 max 1.000000 | p(x): min -0.000000 max 0.000000 | max|Y|/J = 1.49e-05
+canonical exp h=3 r_M      eps = 2.4778e-07, 2.4778e-07, 2.4778e-07, 2.4778e-07 | S(x): min 1.000000 max 1.000000 | p(x): min -0.000000 max 0.000000 | max|Y|/J = 1.37e-04
+alt       point            eps = 2.2539e-07, 2.2539e-07, 2.2539e-07, 2.2539e-07 | S(x): min 1.000000 max 1.000000 | p(x): min -0.000000 max 0.000000 | max|Y|/J = 1.35e-05 | R(x=0.1)/sqrt(1.01) = 2.2539e-07, 2.2539e-07, 2.2539e-07, 2.2539e-07
+    H1c alt M_b = 1e+09: max/min of R over x = 29.867594 (exact 29.867695)
+    H1c alt M_b = 1e+10: max/min of R over x = 29.867594 (exact 29.867695)
+    H1c alt M_b = 1e+11: max/min of R over x = 29.867594 (exact 29.867695)
+    H1c alt M_b = 1e+12: max/min of R over x = 29.867594 (exact 29.867695)
+alt       exp h=0.3 r_M    eps = 2.2539e-07, 2.2539e-07, 2.2539e-07, 2.2539e-07 | S(x): min 1.000000 max 1.000000 | p(x): min -0.000000 max 0.000000 | max|Y|/J = 1.35e-05
+alt       exp h=3 r_M      eps = 2.2539e-07, 2.2539e-07, 2.2539e-07, 2.2539e-07 | S(x): min 1.000000 max 1.000000 | p(x): min -0.000000 max 0.000000 | max|Y|/J = 1.25e-04
+[PASS] (precondition) P1 precondition: max |Y|/J <= 1e-2 over the range (every mass, geometry, footing): max |Y|/J = 1.37e-04
+[PASS] (control) C3 the tie: a_phi = alpha (Lambda/M_Pl) phi' equals sqrt(a0 g_N) (point mass): max |a_phi/sqrt(a0 g_N) - 1| = 3.72e-06 (line 1e-4)
+[FAIL] (headline) H1b numeric: |S(x)/31.623 - 1| <= 0.02 and |p(x) - 1/2| <= 0.01 at all 200 x (3 geometries x 2 footings): max |S/sqrt(1000) - 1| = 9.684e-01; max |p - 1/2| = 5.000e-01
+[PASS] (headline) H1c numeric: point-mass x-spread within 2% of 29.868 at each mass (both footings): exact sqrt(901/1.01) = 29.867695
+The door's own line (CFG122 G1.1a: spread <= 1.10): PASS (largest numeric spread 1.000000)
+[PASS] (mutate) MUTATE: the spread collapses to 1 (to 1e-6): max |S - 1| = 1.37e-13
+[PASS] (mutate) MUTATE: the exponent p collapses to 0 (to 1e-6): max |p| = 6.20e-15
+[PASS] (mutate) MUTATE: H1c (the x-shape) does not move: see the H1c lines above
+
+==============================================================================================================
+SUMMARY
+==============================================================================================================
+  PASS  [mutate] MUTATE symbolic: the exponent becomes 0
+  PASS  [control] S1-S7 symbolic steps
+  PASS  [headline] H1a symbolic headline
+  PASS  [precondition] P1 precondition: max |Y|/J <= 1e-2 over the range (every mass, geometry, footing)
+  PASS  [control] C3 the tie: a_phi = alpha (Lambda/M_Pl) phi' equals sqrt(a0 g_N) (point mass)
+  FAIL  [headline] H1b numeric: |S(x)/31.623 - 1| <= 0.02 and |p(x) - 1/2| <= 0.01 at all 200 x (3 geometries x 2 footings)
+  PASS  [headline] H1c numeric: point-mass x-spread within 2% of 29.868 at each mass (both footings)
+  PASS  [mutate] MUTATE: the spread collapses to 1 (to 1e-6)
+  PASS  [mutate] MUTATE: the exponent p collapses to 0 (to 1e-6)
+  PASS  [mutate] MUTATE: H1c (the x-shape) does not move
+MUTATE mode: H1b is expected to FAIL (exit 1); an exit 0 would mean the MUTATE did not change the headline.
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+elapsed 0.9 s; exit code 1

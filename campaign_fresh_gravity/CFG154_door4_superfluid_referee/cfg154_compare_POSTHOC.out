@@ -1,0 +1,53 @@
+frozen spec campaign_fresh_gravity/CFG154_FROZEN_CRITERIA.md  sha256 7b58a9210ff13ac851ca118e28f61d4a74933cb7035716f4f0b43e1036a07d60
+cfg154_compare_POSTHOC  mode = main
+constants: M_Pl = 2.435323e+27 eV (reduced, from G), 1 eV^-1 = 1.973269803e-07 m, Msun = 1.115416e+66 eV, 1 eV^4 = 2.320115e-16 kg/m^3
+POST-HOC comparison with CFG122; not a frozen check.
+
+==============================================================================================================
+Q1. CFG122's own plane arrays: is the best error a function of eps0 alone?
+==============================================================================================================
+canonical M_b = 1e+09: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 186 shared groups whose best error is < 2: largest relative within-group spread 7.95e+15; groups differing by > 1e-6: 79; groups whose best solutions have different edges: 79. Cells whose best solution is cut by the thermal edge (x_edge < 30): 17.4%
+canonical M_b = 1e+10: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 177 shared groups whose best error is < 2: largest relative within-group spread 3.64e+15; groups differing by > 1e-6: 78; groups whose best solutions have different edges: 78. Cells whose best solution is cut by the thermal edge (x_edge < 30): 17.7%
+canonical M_b = 1e+11: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 166 shared groups whose best error is < 2: largest relative within-group spread 1.67e+15; groups differing by > 1e-6: 74; groups whose best solutions have different edges: 74. Cells whose best solution is cut by the thermal edge (x_edge < 30): 17.8%
+canonical M_b = 1e+12: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 158 shared groups whose best error is < 2: largest relative within-group spread 2.18e+14; groups differing by > 1e-6: 73; groups whose best solutions have different edges: 73. Cells whose best solution is cut by the thermal edge (x_edge < 30): 18.1%
+alt       M_b = 1e+09: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 186 shared groups whose best error is < 2: largest relative within-group spread 5.93e+15; groups differing by > 1e-6: 78; groups whose best solutions have different edges: 79. Cells whose best solution is cut by the thermal edge (x_edge < 30): 17.5%
+alt       M_b = 1e+10: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 177 shared groups whose best error is < 2: largest relative within-group spread 2.72e+15; groups differing by > 1e-6: 77; groups whose best solutions have different edges: 77. Cells whose best solution is cut by the thermal edge (x_edge < 30): 17.6%
+alt       M_b = 1e+11: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 168 shared groups whose best error is < 2: largest relative within-group spread 1.25e+15; groups differing by > 1e-6: 75; groups whose best solutions have different edges: 75. Cells whose best solution is cut by the thermal edge (x_edge < 30): 17.9%
+alt       M_b = 1e+12: 3600 cells -> 237 distinct eps0 (231 shared by >1 cell). In the 158 shared groups whose best error is < 2: largest relative within-group spread 1.77e+14; groups differing by > 1e-6: 73; groups whose best solutions have different edges: 73. Cells whose best solution is cut by the thermal edge (x_edge < 30): 18.3%
+
+==============================================================================================================
+Q2. My solver C on CFG122's own 27-value per-halo grid (no thermal edge), against my two-stage search
+==============================================================================================================
+CFG122 grid in my solver: min over eps of the per-mass best error = 0.8118 at eps = 6.3096e+00 (B+b, Y0/(m G M/r_M) = 100)
+my two-stage search, same eps range [0.1, 30]: min E* = 0.4160 at eps = 1.4125e+00 (B-, yhat(0.1) = 35.892, i.e. Y0/(m G M/r_M) = 12.7)
+   log eps = -0.50: CFG122 grid 0.9580 (B-, Y0 = 100 m G M/r_M)
+   log eps =  0.00: CFG122 grid 0.9253 (B+b, Y0 = 100 m G M/r_M)
+   log eps =  0.15: CFG122 grid 0.9112 (B+b, Y0 = 100 m G M/r_M)
+   log eps =  0.50: CFG122 grid 0.8669 (B+b, Y0 = 100 m G M/r_M)
+
+==============================================================================================================
+Q3. Lower bound under any thermal edge: the best single-mass error scored only over [0.1, 3]
+==============================================================================================================
+min over eps of the best single-mass error over [0.1, 3] = 0.1914 at eps = 1.2589e+00 (B-, yhat(0.1) = 28.184); count of eps with E <= 0.10: 0
+   log eps =  -9.50: best over [0.1, 3] = 1.0000 (B-)
+   log eps =  -8.50: best over [0.1, 3] = 0.9999 (B-)
+   log eps =  -7.50: best over [0.1, 3] = 0.9990 (B-)
+   log eps =  -6.50: best over [0.1, 3] = 0.9900 (B-)
+   log eps =  -5.50: best over [0.1, 3] = 0.9784 (B-)
+   log eps =  -4.50: best over [0.1, 3] = 0.9784 (B-)
+   log eps =  -3.50: best over [0.1, 3] = 0.9784 (B-)
+   log eps =  -2.50: best over [0.1, 3] = 0.9784 (B-)
+   log eps =  -1.50: best over [0.1, 3] = 0.9645 (B-)
+   log eps =  -0.50: best over [0.1, 3] = 0.6873 (B-)
+   log eps =   0.50: best over [0.1, 3] = 0.7775 (B-)
+   log eps =   1.50: best over [0.1, 3] = 0.8080 (B+b)
+   log eps =   2.50: best over [0.1, 3] = 0.8098 (B+b)
+   log eps =   3.50: best over [0.1, 3] = 0.8100 (B-)
+   log eps =   4.50: best over [0.1, 3] = 0.8100 (B-)
+   log eps =   5.50: best over [0.1, 3] = 9.0499 (B-)
+   log eps =   6.50: best over [0.1, 3] = 99.4988 (B-)
+   log eps =   7.50: best over [0.1, 3] = 1003.9876 (B-)
+   log eps =   8.50: best over [0.1, 3] = 237743313748962758583386112.0000 (B-)
+   (a lower bound on G1.1 under any thermal edge with x_edge >= 3; the edge also removes solutions, which only raises it)
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+elapsed 44.2 s; exit code 0

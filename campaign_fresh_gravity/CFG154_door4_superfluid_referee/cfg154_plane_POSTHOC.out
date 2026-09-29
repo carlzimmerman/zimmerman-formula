@@ -1,0 +1,31 @@
+frozen spec campaign_fresh_gravity/CFG154_FROZEN_CRITERIA.md  sha256 7b58a9210ff13ac851ca118e28f61d4a74933cb7035716f4f0b43e1036a07d60
+cfg154_plane_POSTHOC  mode = main
+constants: M_Pl = 2.435323e+27 eV (reduced, from G), 1 eV^-1 = 1.973269803e-07 m, Msun = 1.115416e+66 eV, 1 eV^4 = 2.320115e-16 kg/m^3
+POST-HOC diagnosis; not a frozen check.  N_a = 1 (derived in cfg154_headline S3 and cfg154_plane).
+
+==============================================================================================================
+P1. C4's failing cell: which solver is off?
+==============================================================================================================
+M_b = 1e+09 eps = 7.8355e+01: solver B rtol 1e-10 -> 1e-12 changes R by 2.8e-11; solver C vs B(1e-12): nsub 6 1.48e-09, 12 9.41e-11, 24 6.58e-12, 48 2.51e-12; R spans 7.855e+01 .. 3.902e+10
+M_b = 1e+10 eps = 2.4778e+02: solver B rtol 1e-10 -> 1e-12 changes R by 8.3e-11; solver C vs B(1e-12): nsub 6 4.25e-09, 12 2.68e-10, 24 1.69e-11, 48 1.31e-12; R spans 2.484e+02 .. 1.232e+12
+M_b = 1e+11 eps = 7.8355e+02: solver B rtol 1e-10 -> 1e-12 changes R by 4.2e-10; solver C vs B(1e-12): nsub 6 1.88e-07, 12 1.22e-08, 24 7.77e-10, 48 4.97e-11; R spans 7.855e+02 .. 3.895e+13
+M_b = 1e+12 eps = 2.4778e+03: solver B rtol 1e-10 -> 1e-12 changes R by 4.2e-10; solver C vs B(1e-12): nsub 6 6.65e-06, 12 8.05e-07, 24 5.57e-08, 48 3.59e-09; R spans 2.484e+03 .. 1.231e+15
+
+==============================================================================================================
+P2. C5b per eps (the frozen search, re-run identically, then its best solutions at twice the steps)
+==============================================================================================================
+|dE| > 1e-3 at 16 of 433 eps; their log eps: 7.89, 7.90, 7.95, 8.00, 8.05, 8.10, 8.15, 8.20, 8.25, 8.30, 8.35, 8.35, 8.39, 8.40, 8.45, 8.50
+   of those, the smallest E* is 3.665e+28; the largest |dE| where E* < 2 is 5.21e-13
+   log eps in [-9.6, -2): max |dE| = 0.00e+00; E* range 0.991 .. 1
+   log eps in [-2, 2): max |dE| = 5.21e-13; E* range 0.416 .. 0.99
+   log eps in [2, 4.6): max |dE| = 6.66e-16; E* range 0.8183 .. 0.8198
+   log eps in [4.6, 7.6): max |dE| = 4.44e-16; E* range 0.819 .. 1127
+   log eps in [7.6, 9): max |dE| = 2.05e+25; E* range 1264 .. 2.556e+30
+
+==============================================================================================================
+P3. The search at nsub = 12 (twice the steps): the lattice (H2) and log eps in [-1, 1] (R2's minimum)
+==============================================================================================================
+lattice at nsub = 12: min single-mass E* = 0.5162; cells passing: 0; verdicts changed vs nsub = 6: 0; best worst-mass error canonical 0.8118, alt 0.8102
+log eps in [-1, 1] (41 values): min E* nsub 6 = 0.41598 at eps = 1.4125 (B-, yhat(0.1) = 35.892); nsub 12 = 0.41598 at eps = 1.4125; max |dE*| over the 41 values = 5.20e-13
+kappa = 1/2 and Omega_c h^2 stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+elapsed 56.9 s; exit code 0
