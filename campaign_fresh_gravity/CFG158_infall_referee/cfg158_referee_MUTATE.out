@@ -1,0 +1,28 @@
+CFG158 referee (MUTATE): independent re-derivation of CFG118's infall headline
+Frozen criteria: CFG158_FROZEN_CRITERIA.md (commit 240bcd976). Shells: Julia kernel, DP5(4) test bodies in a rebuilt enclosed-mass profile.
+==============================================================================================================
+
+[set-up] z=0 turnaround mass, radius, and shell extent (single-shell ODE, scipy DOP853)
+  point M_b=1e+09  M_ta/M_b=23.632  r_ta=235.8 kpc  r_M=1.220 kpc  x_ta=193.2  M_out/M_b=77.77
+  point M_b=1e+10  M_ta/M_b=23.632  r_ta=507.9 kpc  r_M=3.859 kpc  x_ta=131.6  M_out/M_b=77.77
+  point M_b=1e+11  M_ta/M_b=23.632  r_ta=1094.3 kpc  r_M=12.203 kpc  x_ta=89.7  M_out/M_b=77.77
+  point M_b=1e+12  M_ta/M_b=23.632  r_ta=2357.6 kpc  r_M=38.589 kpc  x_ta=61.1  M_out/M_b=77.77
+  exp   M_b=1e+09  M_ta/M_b=19.708  r_ta=222.5 kpc  r_M=1.220 kpc  x_ta=182.3  M_out/M_b=68.08
+  exp   M_b=1e+10  M_ta/M_b=22.239  r_ta=498.2 kpc  r_M=3.859 kpc  x_ta=129.1  M_out/M_b=74.56
+  exp   M_b=1e+11  M_ta/M_b=23.467  r_ta=1091.9 kpc  r_M=12.203 kpc  x_ta=89.5  M_out/M_b=77.41
+  exp   M_b=1e+12  M_ta/M_b=23.629  r_ta=2357.6 kpc  r_M=38.589 kpc  x_ta=61.1  M_out/M_b=77.76
+  EdS control (point seed 1e10, Om=1, no smooth background): M_ta/M_seed=56.375, r_ta(a=1)=580.6 kpc, M_out/M_seed=336.59
+  M3 set-up (no smooth baryon background, shells carry Om=0.315): M_ta/M_b=36.812, r_ta=578.0 kpc, M_out/M_b=130.15
+
+[runs]
+  runs requested: 4, cached: 0, to run: 4
+  julia workers finished in 20.5 min wall
+
+[MUTATE controls]
+  M1 drop the core: R(1.12)=8.718e-04, shells that turned around=0  -> BITES (H-A and H-E fail)
+  M2 near-radial q=0.002: R(1.12)=2.605, R(28.2)=0.290 vs q=0.05 (N=20000) R(1.12)=2.106: ratio 1.237  -> does not bite (<1.3) (informative)
+  M3 no smooth baryon background: M_ta/M_b=36.81 (single shell; line > 27.1); sim zero-velocity r=577.9 kpc vs r_ta=578.0; R(28.2)=0.665  -> BITES (H-E fails)
+  M4 sub-Hubble initial velocity (v=0.9 H r), no core, run truncated at interval 6000 (a=0.060, z=15.7, 0.25 Gyr; the full run collapses and is impractical): max |r/r_Hubble - 1| = 2.296e-01 (line > 1e-2)  -> BITES (C1 fails)
+  M5 evaluator on the target's own M_c: see C8 in the main run (R = 1 identically; H-A and H-C fail by construction).
+
+  MUTATE verdict: M1 True, M3 True, M4 True; M2 (informative) False -> exit 1
