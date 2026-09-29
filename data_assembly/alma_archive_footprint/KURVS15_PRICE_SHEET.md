@@ -26,3 +26,15 @@ Whether the line is detected is unknown; an archive window is not a detection.
 1. **READMEs only**: the three `member.uid___..README.txt` files, 3.5 kB each, from almascience.nrao.edu (one call each). Tells us what is in each package before we commit to it.
 2. **Ibar Band 3 package** (`2018.1.00164.S_uid___A001_X133d_X7a8_001_of_001.tar`, 8.63 GB) and/or **Band 6** (`..._X7ac_001_of_001.tar`, 3.89 GB): 12.5 GB together, fits on this disk.
 3. **Molina Band 3 package** (`2019.1.01238.S_uid___A001_X1465_X137f_001_of_001.tar`, 43.60 GB): needs disk space first.
+
+## Update after the three READMEs and the file-level DataLink lists (2026-09-29; the READMEs are the only files fetched, 3.5 kB each, stored in `~/new_physics/_external_data/alma_kurvs15/`)
+The READMEs are the generic ALMA text. They say the FITS products can be downloaded **file by file** ("download files individually from the 'product' category"), and the DataLink file lists (`kurvs15_product_file_list.csv`, 514 files with sizes and direct URLs) confirm it. So the full tars are not needed. Pipeline products are already imaged, primary-beam-corrected, continuum-subtracted cubes, so no CASA and no re-imaging are required.
+| what | file (member.uid___...) | size |
+|---|---|---|
+| Ibar Band 3, CO(2-1) window (spw 29, 87.1–88.9 GHz) | `A001_X133d_X7a8.cdfs_31127_sci.spw29.cube.I.pbcor.fits` + `...spw29.cube.I.pb.fits.gz` | 273 MB + 91 MB |
+| Ibar Band 6, CO(5-4) window (spw 29, 220.3–222.2 GHz; CO(5-4) at 220.5 GHz) | `A001_X133d_X7ac.cdfs_31127_sci.spw29.cube.I.pbcor.fits` + `...pb.fits.gz` | 69 MB + 23 MB |
+| Molina Band 3, CO(2-1) window (spw 23, 86.9–88.8 GHz), coarse-channel version | `A001_X1465_X137f.CDFS_31127_sci.spw23.repBW.I.pbcor.fits` + `...repBW.I.pb.fits.gz` | 4.76 GB + 1.37 GB |
+| Molina Band 3, full-resolution cube (optional) | `...spw23.cube.I.pbcor.fits` + `...pb.fits.gz` | 28.8 GB + 8.3 GB |
+| continuum images of all three (`*cont.I.tt0.pbcor.fits`, `*cont.I.pb.tt0.fits`) | spw-combined | ~40 MB each for Molina, under 1 MB to a few MB for Ibar |
+**Minimum set (three line cubes with their beam responses, no full-resolution Molina cube): about 6.6 GB.** With all continuum images about 6.8 GB. It fits on this disk (101 GB free). The optional full-resolution Molina cube is +37 GB and is not needed for an integrated flux.
+Tools: Python with numpy and astropy (checked below); no CASA.

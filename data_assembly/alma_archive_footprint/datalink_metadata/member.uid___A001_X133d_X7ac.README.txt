@@ -1,0 +1,77 @@
+LMA Member ObsUnitSet README
+=============================
+A brief description of the main actions, categories and files of the ALMA data at the Member Observing Unit Set (OUS) level.
+
+
+HOW TO
+======
+* Get the FITS products:
+     Download and untar the product/*001_of_001.tar file or download files individually from the 'product' category
+
+* Check the quality or processing of the data:
+     Download and untar the auxiliary/*auxiliary.tar or download the qa/*.qa2_report.pdf and qa/*.weblog.tgz individually
+     from the 'auxiliary' category
+
+* Create the calibrated Measurement Sets (MS):
+     1) Download and untar the *auxiliary.tar and *asdm.tar files
+     2) Install the latest CASA software (or for manually reduced data the CASA version specified in the QA2 report)
+     3) Change into the 'script' subdirectory, and run 'casa --pipeline -c *scriptForPI.py' 
+
+     A more detailed description of how to create the calibrated MS can be found in the 'Instructions' section
+     of qa/*.qa2_report.pdf.
+
+
+DATA CATEGORIES
+===============
+* auxiliary                             calibration tables, scripts, logs and quality assurance reports
+
+* product                               FITS products for science targets and calibrators (potentially incomplete)
+
+* raw                                   uncalibrated raw data that were used to make the final products
+
+* raw (semipass)                        uncalibrated raw data that are flawed or incomplete and were not used
+
+* external                              externally contributed data products (may be present in some cases)
+
+
+FILES
+=====
+For a full description of the ALMA data products see https://almascience.org/processing/qa2-data-products.
+Depending on the type of data or processing, not all of the following files may be present.
+
+Main science imaging products:
+
+     product/*_sci*cont*pbcor.fits      primary beam corrected aggregate interferometric continuum images
+     product/*_sci*cube*pbcor.fits      primary beam corrected, continuum subtracted interferometric spectral line cubes
+     product/*sd.im.fits                single-dish images
+
+
+Main quality reports:
+
+     qa/*.qa2_report.{pdf,html}         QA2 data quality evaluation report and instructions for calibrating the raw data
+     qa/*.weblog.tgz                    data calibration and imaging diagnostic tables and plots
+
+
+Selected additional data products:
+
+     *.README.txt                       this file
+
+     calibration/*                      files needed for the restoring of the calibrated MS
+
+     log/*.casa_commands.log            list of equivalent CASA commands for pipeline processed data
+     log/*.casa-*.log                   processing log files if they are not included in the weblog
+
+     product/*spw#.mfs.*.fits           per-spectral window (SPW) "multifrequency synthesis" (=continuum) product
+     product/*.pb.fits.gz               primary beam response
+     product/*.mask.fits.gz             mask used in the imaging process
+     product/*spw#.repBW.*.fits         optional product made with a channel spacing equal to the PI-specification
+
+     qa/*.qa0_report.{pdf,html}         observing conditions and initial quality assessment
+
+     raw/*asdm.sdm.tar                  uncalibrated raw data
+
+     script/*.casa_pipescript.py        script to create pipeline-imaged data products
+     script/*.ms.scriptForImaging.py    script to create manually-imaged data products
+     script/*.scriptForPI.py            script to generate the calibrated MS
+
+
