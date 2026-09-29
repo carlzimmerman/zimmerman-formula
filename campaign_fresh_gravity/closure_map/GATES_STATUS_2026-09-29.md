@@ -212,3 +212,10 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
   - Without the four group and cluster centrals (N = 12), the law is at +0.055 (2.7σ) and the rule at +0.026 (1.3σ).
   - Row 1.20 stays FAIL at γ = 3 as run, with this qualifier. The "2.6σ at φ = 1" in the corrections above is the same γ = 3 number.
 - **h50's name-key artefact drops NGC 720 and NGC 821.** A disclosed re-run of CFG55 (`CFG55_h50_keyfix.py`) corrects the keys: the JAM sample of 17 gives law +0.0996 (4.3σ) and rule +0.0513 (2.9σ). It was re-run independently by CFG76 (+0.100 / +0.053) and by this session.
+
+
+## Clarification to row 3.10 (appended 2026-09-29; the row above is unchanged)
+
+- **"A decisive test needs 2–4 JWST IFU + ALMA discs at z ≈ 2.5 with mass calibration ≲ 0.1 dex"** paraphrases CFG52 (9ffb95d57). It applies to flat a₀ against a₀ ∝ H(z).
+  - CFG52's own sentence: 2–4 discs with 5–10% velocity errors and independent mass errors of 0.1–0.2 dex would give 3σ, but a correlated mass-scale systematic caps the test near 2.3σ whatever the sample size. So the calibration must reach about 0.1 dex.
+  - **Against ΛCDM-native (+0.334 dex) the cap is 1.3σ** at the 0.25-dex floor. Reaching 3σ there needs the floor to fall to about 0.11 dex (CFG63 7b8640ded).
