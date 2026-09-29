@@ -1,0 +1,70 @@
+====================================================================================================
+AH2 induced current in dS_2 -- mode: REAL RUN
+====================================================================================================
+
+1. DIRECT mode sum vs the published closed form  (J/(eH); sign is a convention, found from the data)
+     lambda    mu     rho^2      direct J/(eH)    closed form      ratio    tail(c2)
+      0.30   0.90    0.6500   -0.01041907     +0.01041909    -1.00000   +9.805e-06
+      0.60   0.60    0.4700   -0.12742655     +0.12742656    -1.00000   +5.586e-06
+      1.00   0.30    0.8400   -0.49294916     +0.49294915    -1.00000   -1.354e-05
+      1.50   1.00    3.0000   -0.12829262     +0.12829256    -1.00000   -4.600e-05
+      2.00   1.50    6.0000   -0.04627870     +0.04627851    -1.00000   -1.440e-04
+      0.10   0.30   -0.1500   -0.12505976     +0.12708558    -0.98406   +1.005e-06
+      0.20   0.40   -0.0500   -0.11650573     +0.11651162    -0.99995   +2.283e-06
+      0.35   2.00    3.8725   -0.00002370     +0.00002381    -0.99561   +8.155e-05
+      0.50   0.50    0.2500   -0.15915494     +0.15915494    -1.00000   +4.441e-06
+  [FAIL] V1 direct current equals the closed form on the whole grid, one consistent sign (worst |ratio| - 1 = 1.6e-02; sign of direct/closed = -)
+
+2. EXACT LINEAR RESPONSE at mu^2 = 1/4:  J = e^2 E/(pi H)  <=>  J/(eH) = lambda/pi
+     lambda = 0.15:  |direct| = 0.04774648   lambda/pi = 0.04774648   rel diff 6.2e-08
+     lambda = 0.40:  |direct| = 0.12732395   lambda/pi = 0.12732395   rel diff 5.1e-08
+     lambda = 0.80:  |direct| = 0.25464791   lambda/pi = 0.25464791   rel diff 9.5e-10
+     lambda = 1.60:  |direct| = 0.50929592   lambda/pi = 0.50929582   rel diff 2.0e-07
+  [PASS] V2 exactly linear at mu^2 = 1/4 for four field strengths (worst 2.0e-07)
+  [PASS] V3 J is odd in lambda (direct computation at +0.6 and -0.6) (J(+) = -0.08227908, J(-) = +0.08227908)
+
+4. HEAVY FIELDS: exponentially small current
+     mu = 3, lambda = 0.3:  |direct| = 2.804741e-07   closed form = 4.692535e-08   ratio 5.97703
+     small-lambda slope J/(eH lambda) over the published heavy-field form 4 mu e^{-2 pi mu}:
+       mu =   5.0:  ratio = 1.16468
+       mu =  10.0:  ratio = 1.08041
+       mu =  20.0:  ratio = 1.03973
+       mu =  40.0:  ratio = 1.01975
+  [FAIL] V4 the exponentially small heavy-field current is resolved by the direct sum (mu = 3) and tends to 4 mu e^{-2 pi mu} 
+
+5. LINEAR CONDUCTIVITY  sigma H / e^2 = g(mu) = 2 rho / sinh(2 pi rho):
+     mu       g(mu)
+      0.05   6.318672e+01
+      0.10   1.544678e+01
+      0.30   1.361041e+00
+      0.50   3.183099e-01
+      1.00   1.501169e-02
+      2.00   4.025953e-05
+      5.00   5.290227e-13
+     limits: g(1/2) = 1/pi = 0.318310;  mu -> 0: g -> 1/(2 pi mu^2), e.g. mu = 0.05: 63.6620 vs 63.1867
+
+   Tie sigma/H = c: required e^2/H^2 = c / g(mu)
+     c            mu=0.3      mu=0.5      mu=1.0      mu=2.0      mu=5.0        spread (max/min)
+     kappa        3.6737e-01  1.5708e+00  3.3307e+01  1.2419e+04  9.4514e+11    2.57e+12
+     kappa/pi     1.1694e-01  5.0000e-01  1.0602e+01  3.9532e+03  3.0085e+11    2.57e+12
+     1/(2 pi)     1.1694e-01  5.0000e-01  1.0602e+01  3.9532e+03  3.0085e+11    2.57e+12
+     1/pi         2.3387e-01  1.0000e+00  2.1204e+01  7.9064e+03  6.0169e+11    2.57e+12
+     1            7.3473e-01  3.1416e+00  6.6615e+01  2.4839e+04  1.8903e+12    2.57e+12
+     2 kappa      7.3473e-01  3.1416e+00  6.6615e+01  2.4839e+04  1.8903e+12    2.57e+12
+  [PASS] V5 no tie on the conductivity fixes e^2/H^2 independently of the mass (declared: spread < 2 would count) 
+
+   Electron-mass reading (2D-toy statement): mu_e = m_e/H0 = 3.554e+38
+     ln g(mu_e) = ln(4 mu) - 2 pi mu = -2.233e+39
+     so any tie sigma/H = c needs ln(e^2/H^2) = ln c + 2.233e+39  (e^2/H^2 ~ e^(2 pi m/H)): unreachable
+  [PASS] V6 heavy charged field: ln g = ln(4 mu) - 2 pi mu up to O(1/mu) (checked at mu = 5, 10, 20) 
+
+====================================================================================================
+CHECKS: 4/6 passed
+VERDICT (against the declared criteria):
+  * The dS_2 induced current is computed directly and matches the published closed form (V1-V4).
+  * The current does carry e^2: sigma H = e^2/H^2 * g(mu).  But g depends steeply on the mass, so a tie on the conductivity
+    fixes only the combination (e^2/H^2) g(mu), one equation for two unknowns.  No tie fixes the coupling (V5).
+  * For a heavy charged field the response is Boltzmann-suppressed, g ~ 4 mu e^{-2 pi mu}; at the electron mass over H0
+    the required coupling is exponentially large in 10^39.  No O(1) horizon-conductivity tie can hold for a known charged particle (V6).
+  * This is a 2D toy: e has mass dimension there, so e^2/H^2 is not the 4D alpha.  dS_4, fermions, and charge renormalization untested.
+  * kappa = 1/2 stays FITTED.  The SM-mass wall is unchanged.
