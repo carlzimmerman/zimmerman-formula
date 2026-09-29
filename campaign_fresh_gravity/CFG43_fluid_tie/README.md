@@ -35,6 +35,10 @@ Hypotheses: a single conserved current, an EOS that is barotropic in the density
 
 **What the obstruction does not touch:** a fluid whose cap is not a barotropic function of its own density (for example a non-barotropic or phase-space-dependent stress, or an order-parameter fluid such as FL1).
 
+## Independent referee (2026-09-28)
+
+A hostile re-implementation with its own linear-growth solver reproduced the obstruction: ν_min(k) = 2.2e4, 1.8e5, 2.0e6, 1.0e7 at k = 0.5, 2, 10, 30 /Mpc (the lane's values differ by 5–12%, from its coarse log grid), the exponent 1.49–1.50, ν_M ∝ M_b^(−1/2) exactly, and g₀ = 0.36 / 0.355 at 10⁹ / 3 × 10¹¹ M☉ (5% criterion; 1.06 / 1.04 at 20%). The criterion's redshift and the barotropic Jeans treatment do not matter. If the k values are in h/Mpc, ν_min is a factor 0.55 lower. Caveats: **"at most about 11×" is too strong as a ceiling.** It holds only if suppression beyond 50% is disallowed and F ≥ ½ is kept; stacking the generous choices (30% suppression, F ≥ 0.01, f_h = 40, k = 1/R) reaches 10⁴–10⁵, but each is individually unmotivated and F ≥ 0.01 contradicts the hydrostatic requirement (the P2 phantom needs P/P_cap = g_N/a₀ ≥ 1 inside r_M, which needs F → 1, cutting g₀ by about 3 more). Other cap shapes were not tested. The obstruction survives as stated for the saturating barotropic EOS.
+
 ## Which gates it touches
 
 Group 5 of `closure_map/GATES.md`: 5.01 partly (one action for tie plus fluid, still not V0), 5.05 for the dof count of fluid + HT, 5.10 (Friedmann = GR + Λ + dust, growth fine only for ν\* ≥ ν_min), 5.13 (the tie now covers the fluid's cap; tied, not derived), 3.10/3.11 (flat a₀(z) inherits the unimodular branch). It does not touch 5.03, 5.04, 5.07, 5.08, 5.11, 5.12, the bound-only switch, the max rule or PPN.
