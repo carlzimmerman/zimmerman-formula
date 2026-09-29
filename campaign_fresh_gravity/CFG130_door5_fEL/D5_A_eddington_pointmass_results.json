@@ -1,0 +1,54 @@
+{
+ "slug": "D5_A_eddington_pointmass",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "A1 (sympy) Phi' = g_tot; rho g 4 pi r^3 = a0 M (exact charge); Jeans with beta = 0 and sigma^2 = V_c^2/2; M_c = M(sqrt(1+x^2) - 1)",
+   "detail": "residuals [0, 0, 0, 0]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A2 CONTROL: isothermal sphere f(E)/exp(-E/s2) constant to 2% over E = -1, 0, 1",
+   "detail": "ratios [1. 1. 1.]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3 (D1) f(E) >= 0 over E = Phi(r_E), r_E in [1e-5, 1e5] r_M",
+   "detail": "min f = 1.4291e-12; min f/Int|integrand| = 1.000e+00; negative points 0",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A4 the analytic Kepler-cusp limit f -> (8 sqrt2 pi^3)^-1 (-E)^(-1/2) is met to 5% at r_E = 1e-4 (rho -> 1/(4 pi r), slope gamma = 1)",
+   "detail": "f / f_Kepler = 1.0000 at E = -1e+04",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A5 round trip: f(E) regenerates the target density to 1% at r = 1e-3 .. 1e3 (grid-limited; the isotropic f is unique given rho and Phi)",
+   "detail": "worst |ratio - 1| = 3.60e-04",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A6 (D4) the point-mass target is a Lynden-Bell (Maxwell-Boltzmann or Fermi-Dirac) entropy extremum: best fit reproduces rho_c to 10% over x in [0.1, 30]",
+   "detail": "isothermal fit max deviation 1803.4%; Fermi-Dirac fit 33.9%; extremum = False",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "fE_min": 1.4290835966469118e-12,
+  "n_negative": 0,
+  "negative_r_range": null,
+  "iso_fit_max_dev": 18.03410962685935,
+  "fd_fit_max_dev": 0.3386088831887999,
+  "dlnf_dE_range": [
+   -1.9999934673410165,
+   0.3056021409129457
+  ],
+  "entropy_extremum": false
+ }
+}

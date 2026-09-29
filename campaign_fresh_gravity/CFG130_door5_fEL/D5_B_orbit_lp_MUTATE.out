@@ -1,0 +1,197 @@
+D5_B -- Door 5, part B: a general orbit-superposition (Schwarzschild-type) linear programme for the existence of a NON-NEGATIVE f(E, L)
+in the CFG44 target's own potential, for ANY anisotropy beta(r): point mass and the exponential sphere at several h/r_M.
+See FROZEN_QUESTION.md (written before this script).  Units a0 = G = M_b = 1, r_M = 1.
+
+Orbits are labelled (r_c, eta = L/L_c), weights w >= 0; for each log radial bin the exact time-fraction integrals of an orbit give
+   mass rows        sum_i w_i M_i,j          = Int_bin 4 pi r^2 rho_c dr                                    (V1: does ANY f >= 0 generate rho_c)
+   beta rows        sum_i w_i Kb_i,j         = 0 ,  Kb = Int [L^2/r^2 - 2(1 - beta(r)) v_r^2] dt/T           (V2: plus the anisotropy beta(r))
+   radial-energy    sum_i w_i Kr_i,j         = Int_bin 4 pi r^2 rho_c (V_c^2/2) dr                            (V3: plus sigma_r^2 = V_c^2/2, CFG44's restatement)
+min-max relative residual eps* by HiGHS.  FEASIBLE if eps* <= 0.02 at the finest level; INFEASIBLE if eps* >= 0.10 and it does not shrink under refinement.
+V2iso imposes beta = 0 (the isotropic-moment reading, for comparison with CFG44 B1's Eddington f(E) >= 0).
+
+CHECKS (PRE-DECLARED)
+  B1 CONTROL C1: the isotropic Plummer sphere (a known f(E) >= 0) is FEASIBLE in V2 (beta = 0) and V3 with its true sigma_r^2 = 1/(6 sqrt(1+r^2)).
+  B2 CONTROL C2: the same Plummer with sigma_r^2 doubled (Jeans-inconsistent) is INFEASIBLE in V3.
+  B3 CONTROL C3: the point-mass V2 verdict agrees with D5_A's Eddington sign (f >= 0 everywhere => FEASIBLE).
+  B4 point mass V1, V2, V3: FEASIBLE at the finest level (window [1e-2, 1e2]; convergence window [1e-3, 1e3] at L1).
+  B5 exponential sphere h/r_M in {0.03, 0.1, 0.3, 1, 3}, V1, V2, V3: FEASIBLE at the finest level.
+  B6 M4 (b): beta(r) != 0 inside the baryons, so a stationary Maxwell-Boltzmann f(E) (beta = 0) is not the target.
+MUTATE=1 (D7): the radial-energy rows are doubled (sigma_r^2 pinned at V_c^2 instead of V_c^2/2, a Jeans-inconsistent target, rho and beta unchanged):
+  every V3 result of B4/B5 must turn INFEASIBLE (rc = 1 if the normal headline is feasible).
+
+  *** MUTATE=1: sigma_r^2 pinned at V_c^2 (doubled radial-energy rows) -- every V3 result must turn INFEASIBLE ***
+
+======================================================================================================================
+C1-C3  CONTROLS OF THE LINEAR PROGRAMME (known answers)
+======================================================================================================================
+  orbit (h=0.3 exp sphere) rc=1, eta=0.4: rp = 0.2377, ra = 1.5626; time fractions per bin (direct / moments): 0.0000/0.0000, 0.0000/0.0000, 0.1310/0.1310, 0.2346/0.2346, 0.6344/0.6344, 0.0000/0.0000, 0.0000/0.0000, 0.0000/0.0000
+  [PASS] B0 the orbit moment integrals (time fraction and Int v_r^2 dt) agree with a direct orbit integration to 1% in every bin holding > 2% of the orbit's time
+         max |ratio - 1|: time fraction 1.36e-05, v_r^2 moment 3.87e-05
+      [Plummer isotropic L1: 1392 orbits, 33 bins, 0 s]  V1: 0.0000  V2: 0.0000  V3: 0.0000
+      [Plummer isotropic L2: 5568 orbits, 67 bins, 2 s]  V1: 0.0000  V2: 0.0000  V3: 0.0000
+  [PASS] B1 CONTROL C1: the isotropic Plummer sphere (known f(E) >= 0, true sigma_r^2) is FEASIBLE in V1, V2, V3
+         eps* (finest): V1: 0.0000 -> FEASIBLE, V2: 0.0000 -> FEASIBLE, V3: 0.0000 -> FEASIBLE
+      [Plummer sigma_r^2 doubled L1: 1392 orbits, 33 bins, 0 s]  V3: 0.2629
+      [Plummer sigma_r^2 doubled L2: 5568 orbits, 67 bins, 6 s]  V3: 0.2660
+  [PASS] B2 CONTROL C2: the Plummer with sigma_r^2 doubled (Jeans-inconsistent) is INFEASIBLE in V3
+         eps* = 0.2629 (L1), 0.2660007505738118 (L2) -> INFEASIBLE
+      [Plummer with beta=+0.5 L1: 1392 orbits, 33 bins, 0 s]  V2: 0.1520
+      [Plummer with beta=+0.5 L2: 5568 orbits, 67 bins, 2 s]  V2: 0.1621
+  [PASS] B2b CONTROL C4: a cored isotropic Plummer with a constant radial bias beta = +0.5 imposed is INFEASIBLE (central cusp-anisotropy theorem: beta_0 <= gamma_0/2 = 0 for a core)
+         eps* = 0.1520 (L1), 0.1621379705557758 (L2) -> INFEASIBLE
+      [Plummer with beta=-0.5 L1: 1392 orbits, 33 bins, 0 s]  V2: 0.0000
+      [Plummer with beta=-0.5 L2: 5568 orbits, 67 bins, 1 s]  V2: 0.0000
+    (reported, no frozen expectation) Plummer with constant beta = -0.5: eps* = 0.0000 (L1), 0.0 -> FEASIBLE
+
+======================================================================================================================
+B4  POINT-MASS TARGET (beta = 0 exactly): V1, V2, V3, V2iso
+======================================================================================================================
+      [point mass [1e-2,1e2] L1: 1704 orbits, 48 bins, 1 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1978
+      [point mass [1e-2,1e2] L2: 6720 orbits, 96 bins, 9 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1992
+    point mass  V1   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    point mass  V2   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    point mass  V2iso: eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    point mass  V3   : eps* L1 = 0.1978, L2 = 0.1992  ->  INFEASIBLE
+      [point mass wide [1e-3,1e3] L1: 2184 orbits, 72 bins, 2 s]  V2: 0.0000  V3: 0.1983
+    point mass wide window [1e-3, 1e3] L1: V2: eps* = 0.0000
+    point mass wide window [1e-3, 1e3] L1: V3: eps* = 0.1983
+    SUPPLEMENT (added after the first LP result; not a frozen criterion): interior margin of V3 at 2% tolerance, min weight / mean weight = nan  (> 0 means a strictly positive weight function exists)
+  [FAIL] B3 CONTROL C3 + B4: the point-mass V2 verdict agrees with D5_A's Eddington sign (f(E) >= 0 everywhere => FEASIBLE), and V1, V2, V3 are FEASIBLE (also in the wide window)
+         V1 FEASIBLE, V2 FEASIBLE, V2iso FEASIBLE, V3 INFEASIBLE; wide: V2 0.0000, V3 0.1983
+
+======================================================================================================================
+B5  EXTENDED TARGET: exponential sphere, beta(r) = -(3/2) rho_b/rhobar_b, h/r_M in {0.03, 0.1, 0.3, 1, 3}
+======================================================================================================================
+
+  h/r_M = 0.03: window [0.0006, 50]; beta from -1.493 to -0.000
+      [exp sphere h=0.03 L1: 1920 orbits, 59 bins, 1 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1977
+      [exp sphere h=0.03 L2: 7632 orbits, 118 bins, 12 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1992
+    h =  0.03  V1   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.03  V2   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.03  V2iso: eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.03  V3   : eps* L1 = 0.1977, L2 = 0.1992  ->  INFEASIBLE
+    SUPPLEMENT: interior margin of V3 at 2% tolerance, min weight / mean weight = nan (nan when V3 is infeasible at 2%)
+    localisation for V3 (eps* on sub-windows of the L1 grid; bins are 12/decade):
+       r in [0.0006, 0.01]: eps* = 0.1346  
+       r in [0.0006, 0.1]: eps* = 0.1616  
+       r in [0.0006, 1]: eps* = 0.1941  
+       r in [0.0006, 10]: eps* = 0.1974  
+       r in [0.0006, 50]: eps* = 0.1977  
+       r in [0.001, 0.01]: eps* = 0.1269  
+       r in [0.001, 0.1]: eps* = 0.1616  
+       r in [0.001, 1]: eps* = 0.1941  
+       r in [0.001, 10]: eps* = 0.1974  
+       r in [0.001, 50]: eps* = 0.1977  
+       r in [0.01, 0.1]: eps* = 0.1588  
+       r in [0.01, 1]: eps* = 0.1941  
+       r in [0.01, 10]: eps* = 0.1974  
+       r in [0.01, 50]: eps* = 0.1977  
+       r in [0.1, 1]: eps* = 0.1868  
+       r in [0.1, 10]: eps* = 0.1960  
+       r in [0.1, 50]: eps* = 0.1970  
+       r in [1, 10]: eps* = 0.1859  
+       r in [1, 50]: eps* = 0.1945  
+    largest feasible sub-window found for V3: none of >= 1 decade
+
+  h/r_M = 0.1: window [0.002, 50]; beta from -1.493 to -0.000
+      [exp sphere h=0.1 L1: 1800 orbits, 53 bins, 1 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1972
+      [exp sphere h=0.1 L2: 7104 orbits, 106 bins, 10 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1989
+    h =  0.10  V1   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.10  V2   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.10  V2iso: eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.10  V3   : eps* L1 = 0.1972, L2 = 0.1989  ->  INFEASIBLE
+    SUPPLEMENT: interior margin of V3 at 2% tolerance, min weight / mean weight = nan (nan when V3 is infeasible at 2%)
+    localisation for V3 (eps* on sub-windows of the L1 grid; bins are 12/decade):
+       r in [0.002, 0.1]: eps* = 0.1449  
+       r in [0.002, 1]: eps* = 0.1826  
+       r in [0.002, 10]: eps* = 0.1963  
+       r in [0.002, 50]: eps* = 0.1972  
+       r in [0.01, 0.1]: eps* = 0.1334  
+       r in [0.01, 1]: eps* = 0.1826  
+       r in [0.01, 10]: eps* = 0.1963  
+       r in [0.01, 50]: eps* = 0.1972  
+       r in [0.1, 1]: eps* = 0.1808  
+       r in [0.1, 10]: eps* = 0.1962  
+       r in [0.1, 50]: eps* = 0.1972  
+       r in [1, 10]: eps* = 0.1868  
+       r in [1, 50]: eps* = 0.1946  
+    largest feasible sub-window found for V3: none of >= 1 decade
+
+  h/r_M = 0.3: window [0.006, 50]; beta from -1.493 to -0.000
+      [exp sphere h=0.3 L1: 1680 orbits, 47 bins, 1 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1963
+      [exp sphere h=0.3 L2: 6672 orbits, 94 bins, 7 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1984
+    h =  0.30  V1   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.30  V2   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.30  V2iso: eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  0.30  V3   : eps* L1 = 0.1963, L2 = 0.1984  ->  INFEASIBLE
+    SUPPLEMENT: interior margin of V3 at 2% tolerance, min weight / mean weight = nan (nan when V3 is infeasible at 2%)
+    localisation for V3 (eps* on sub-windows of the L1 grid; bins are 12/decade):
+       r in [0.006, 0.1]: eps* = 0.1364  
+       r in [0.006, 1]: eps* = 0.1607  
+       r in [0.006, 10]: eps* = 0.1928  
+       r in [0.006, 50]: eps* = 0.1963  
+       r in [0.01, 0.1]: eps* = 0.1294  
+       r in [0.01, 1]: eps* = 0.1607  
+       r in [0.01, 10]: eps* = 0.1928  
+       r in [0.01, 50]: eps* = 0.1963  
+       r in [0.1, 1]: eps* = 0.1571  
+       r in [0.1, 10]: eps* = 0.1928  
+       r in [0.1, 50]: eps* = 0.1963  
+       r in [1, 10]: eps* = 0.1856  
+       r in [1, 50]: eps* = 0.1944  
+    largest feasible sub-window found for V3: none of >= 1 decade
+
+  h/r_M = 1.0: window [0.02, 50]; beta from -1.493 to -0.000
+      [exp sphere h=1.0 L1: 1560 orbits, 41 bins, 1 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1938
+      [exp sphere h=1.0 L2: 6144 orbits, 82 bins, 5 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1971
+    h =  1.00  V1   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  1.00  V2   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  1.00  V2iso: eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  1.00  V3   : eps* L1 = 0.1938, L2 = 0.1971  ->  INFEASIBLE
+    SUPPLEMENT: interior margin of V3 at 2% tolerance, min weight / mean weight = nan (nan when V3 is infeasible at 2%)
+    localisation for V3 (eps* on sub-windows of the L1 grid; bins are 12/decade):
+       r in [0.02, 1]: eps* = 0.1456  
+       r in [0.02, 10]: eps* = 0.1819  
+       r in [0.02, 50]: eps* = 0.1938  
+       r in [0.1, 1]: eps* = 0.1337  
+       r in [0.1, 10]: eps* = 0.1819  
+       r in [0.1, 50]: eps* = 0.1938  
+       r in [1, 10]: eps* = 0.1797  
+       r in [1, 50]: eps* = 0.1936  
+    largest feasible sub-window found for V3: none of >= 1 decade
+
+  h/r_M = 3.0: window [0.02, 150]; beta from -1.498 to -0.000
+      [exp sphere h=3.0 L1: 1656 orbits, 47 bins, 1 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1938
+      [exp sphere h=3.0 L2: 6624 orbits, 93 bins, 10 s]  V1: 0.0000  V2: 0.0000  V2iso: 0.0000  V3: 0.1971
+    h =  3.00  V1   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  3.00  V2   : eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  3.00  V2iso: eps* L1 = 0.0000, L2 = 0.0000  ->  FEASIBLE
+    h =  3.00  V3   : eps* L1 = 0.1938, L2 = 0.1971  ->  INFEASIBLE
+    SUPPLEMENT: interior margin of V3 at 2% tolerance, min weight / mean weight = nan (nan when V3 is infeasible at 2%)
+    localisation for V3 (eps* on sub-windows of the L1 grid; bins are 12/decade):
+       r in [0.02, 1]: eps* = 0.1440  
+       r in [0.02, 10]: eps* = 0.1609  
+       r in [0.02, 100]: eps* = 0.1922  
+       r in [0.02, 150]: eps* = 0.1938  
+       r in [0.1, 1]: eps* = 0.1338  
+       r in [0.1, 10]: eps* = 0.1609  
+       r in [0.1, 100]: eps* = 0.1922  
+       r in [0.1, 150]: eps* = 0.1938  
+       r in [1, 10]: eps* = 0.1562  
+       r in [1, 100]: eps* = 0.1922  
+       r in [1, 150]: eps* = 0.1938  
+       r in [10, 100]: eps* = 0.1840  
+       r in [10, 150]: eps* = 0.1883  
+    largest feasible sub-window found for V3: none of >= 1 decade
+      [exp sphere h=0.3, beta flipped L1: 1680 orbits, 47 bins, 0 s]  V2: 0.5316
+    (reported) h = 0.3 with the sign of beta flipped, beta = +(3/2) rho_b/rhobar_b: V2 eps* = 0.5316 -> INFEASIBLE(L1 only)
+  [FAIL] B5 exponential sphere, h/r_M in {0.03, 0.1, 0.3, 1, 3}: V1, V2, V3 all FEASIBLE at the finest level
+         classification: h=0.03: FEASIBLE/FEASIBLE/INFEASIBLE; h=0.1: FEASIBLE/FEASIBLE/INFEASIBLE; h=0.3: FEASIBLE/FEASIBLE/INFEASIBLE; h=1.0: FEASIBLE/FEASIBLE/INFEASIBLE; h=3.0: FEASIBLE/FEASIBLE/INFEASIBLE; worst eps*: {'V1': 0.0, 'V2': 0.0, 'V3': 0.19921886409538933}
+
+======================================================================================================================
+B6  M4(b): the stationary Maxwell-Boltzmann f(E) has beta = 0; the extended target has beta != 0
+======================================================================================================================
+  [PASS] (reported) B6 (reported) the extended target has |beta| up to 3/2 inside the baryons, so it is not the Boltzmann entropy extremum (f = f(E) only, beta = 0)
+         largest |beta| over the h list = 1.498
+
+  5/7 checks pass; load-bearing failures: 2   (112 s)
