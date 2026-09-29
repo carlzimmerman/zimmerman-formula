@@ -100,3 +100,11 @@ The pooled value is the inverse-variance weighted mean over objects. If χ²/dof
 MUTATE=1 multiplies every KURVS v_last by 10^0.3 (g_obs × 4). The anchor-corrected Δ′_flat must then exceed +2σ in every cell, so H1 fails and the script exits 1.
 
 κ = ½ and Ω_c h² stay fitted. Nothing here says the data favour either model, or that the theory is closed.
+
+## Pre-run correction (appended 2026-09-29, before the scoring script existed and before any lane number was computed)
+
+C2 as frozen cannot pass for a correct kernel. ν_mono approaches its limits with sub-leading terms:
+- in the deep regime, g_pred = √(g_bar a) + g_bar/2 + …, so the relative deviation at y = 10⁻⁴ is about √y/2 = 5 × 10⁻³;
+- at high acceleration, ν − 1 ≈ 0.9/y, which is 9 × 10⁻⁵ at y = 10⁴.
+
+The limits were checked on the kernel alone, which is not a lane result. **C2 is corrected to:** at y = 10⁻¹², g_pred/√(g_bar a) − 1 < 10⁻⁵; at y = 10¹², g_pred/g_bar − 1 < 10⁻⁵. Nothing else changes.
