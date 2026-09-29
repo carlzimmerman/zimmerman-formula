@@ -1,0 +1,275 @@
+CFG74 -- WHICH CHOICES IN THE LCDM COMPARATOR DRIVE THE ULTRA-FAINT GATE?   (frozen docstring, written BEFORE the first run)
+Base: CFG73's re-derivation (own Moster inversion, NFW, Kaplan-Meier; sample 31 resolved + 9 limits from lvd_dwarf_mw.csv;
+Upsilon_V = 2; sigma^2 = g r/3 at r = (4/3) r_half; half of the stars enclosed; debris (1-f_b) M_NFW; three concentration
+relations Duffy-full [declared primary], Duffy-relaxed, Dutton-Maccio).  Code copied (not imported) from CFG73_lcdm_uf_rederive.py.
+Nothing in the repository is edited; no data fetched; no constant is fitted; nothing is tuned after a result is seen.
+
+QUESTIONS.
+  Q1  Under which comparator choice, if any, does the LCDM ultra-faint gate become DISCRIMINATING?
+      DISCRIMINATING (declared, primary reading, Duffy-full concentration) := |z| >= 2 at BOTH the x0.1 and the x10 multiple of
+      every halo mass (floors included), i.e. the gate fails when the halo mass is wrong by a factor ten either way.  Secondary
+      readings reported: (a) fails at x0.1 OR x10; (b) the same under Duffy-relaxed / Dutton-Maccio; (c) the full pass window
+      over x0.01..x1000.
+  Q2  How large is each choice's effect on the KM median (V - V0), and is it larger than the bootstrap error?
+  All variants are run ONE AT A TIME (no combination of variants is run; combinations are untested and stated as such).
+
+VARIANTS (exact).  Let Mstar = 2 L_V, Mbase = the halo mass before the x-multiple; every ladder multiple m in {0.01,0.1,1,10,100,1000}
+multiplies the final halo mass (floors included), as in CFG73.
+  V0  BASELINE = CFG73.  Mbase = Moster inversion (exact root) clamped at 1e9 (33 of 40 clamped); NFW; debris (1-f_b) M_NFW.
+      Floor scan for the error: Mbase of every satellite with Mstar < 1e5 (39 of 40) SET to f in {1e8,3e8,1e9,3e9,1e10}; floor error =
+      half the range of the KM medians; total error = sqrt(bootstrap^2 + floor^2); gate |median|/total < 2.
+      Bootstrap: 2000 resamples, resolved and limits resampled separately, seed 20260928 (all rungs of the ladder use 2000).
+  V1  SHMR SCATTER, log-normal 0.2 dex, MARGINALISED.  Convention (declared): the halo mass of object i is Mbase_i x 10^delta_i with
+      delta_i ~ N(0, 0.2) independent per object (scatter in log halo mass at fixed stellar mass; the Eddington-bias correction from the
+      steep halo mass function is NOT applied -- declared limitation).  2000 Monte-Carlo draws (delta matrix seed 20260928, bootstrap-index
+      seed 20260929), each draw ALSO carries one bootstrap resample of the objects, so std over draws = scatter + sampling.  Reported:
+      marginalised median = MEAN over draws of the KM median; scatter-only std (no resampling); combined std; floor half-range = half the
+      range of the draw-mean medians over the SAME five floors (common random numbers); total = sqrt(combined std^2 + floor^2).
+      The Moster floor is the V0 floor (clamp 1e9 central, scan 1e8..1e10).  Expected (declared): |V1 - V0| < 0.03 dex and total error
+      up by < 15%; not discriminating.
+  V2  ADIABATIC CONTRACTION, Blumenthal (1986) standard form  r_i M_i(r_i) = r_f M_f(r_f),  M_f(r_f) = M_dm,i(r_i) + M_b,f(<r_f)
+      (baryons redistribute, dark matter shells conserve mass and do not cross).  Evaluated at r_f = (4/3) r_half with M_b,f(<r_f) =
+      0.5 Mstar (the code's half-of-the-stars-enclosed convention); the contracted dark mass at r_f is M_dm,i(r_i).  Two readings, both
+      frozen:
+        V2b  (PRIMARY: "contraction by the stars") the initial mass profile is the debris halo itself, M_i = M_dm,i = (1-f_b) M_NFW; so
+             r_i M_dm(r_i) = r_f [M_dm(r_i) + 0.5 Mstar]  (zero stars => r_i = r_f => V0 exactly).
+        V2a  (reported) the initial total mass is the full NFW halo, M_i = M_NFW, dark share (1-f_b): r_i M_NFW(r_i) = r_f[(1-f_b) M_NFW(r_i)
+             + 0.5 Mstar]; this ALSO contains the expansion from the cosmic-baryon fraction that the halo does not keep (zero stars => an
+             expansion of dark shells by 1/(1-f_b)), so it is not "contraction by the stars" alone.
+      Solved per object by log-bisection (100 iterations).  Same floor scan, bootstrap, ladder as V0.  The size is verified: log10
+      sigma_AC/sigma_V0 (median, max over the 40 objects).  Expected (declared): NOT negligible for the brightest ultra-faints (0.5 Mstar
+      is comparable to M_dm(<r) there), effect on the KM median negative (sigma_pred up) of order 0.02-0.10 dex.
+  V3  THE FLOOR AS A TRUE FLOOR.  Mbase = max(M_Moster,unclamped, f) for ALL 40 objects (Moster inverted WITHOUT the 1e9 clamp; bracket
+      log M_h in [5,11]), f in {1e8, 3e8, 1e9, 3e9, 1e10}; central value f = 1e9; error = sqrt(bootstrap^2 + (half the range of the KM medians
+      over f)^2).  Compared with the V0 set-scan (which OVERWRITES the halo mass of the 39 objects with Mstar < 1e5 by f).  Reported-only
+      extras: f = 0 (pure unclamped Moster, no floor) and the CFG73 'true floor' reading max(clamped Moster, f), which must reproduce
+      CFG73's +0.080,+0.080,+0.080,+0.023,-0.037 (control).
+  V4  BURKERT (cored) HALO OF EQUAL MASS.  rho = rho0 r0^3 / ((r+r0)(r^2+r0^2)), M(<r) = 4 pi rho0 r0^3 F(r/r0),
+      F(x) = 1/4 ln[(1+x)^2 (1+x^2)] - 1/2 arctan x; EQUAL MASS := M(<R200) = M_h, R200 as for the NFW of the same M_h; debris factor
+      (1-f_b) as V0.  Core radius: no fitted constant; r0 = r_s(NFW, same M_h, declared concentration) = R200/c (kpc).  Two mappings:
+        V4b  (PRIMARY) r0 and R200 are frozen at the x1 Mbase; a multiple m scales the density (rho0 -> m rho0), so 'halo mass x m' means
+             m x the mass everywhere at the same core.  Equal-mass normalisation holds at m = 1.
+        V4a  (reported) r0 = R200/c(M_h) recomputed at the multiplied mass (the halo is a rescaled Burkert of that mass).  Expected
+             (declared) to be nearly mass-INDEPENDENT at r << r0 (M(<r) -> (4 pi/3) rho0 r^3, rho0 r0^3 ~ M_h, r0^3 ~ M_h/(c^3 ...)), so
+             the multiples are a weak test by construction.
+      Reported sensitivity: V4b with r0 = 0.5 r_s and 2 r_s (an inspection of the core-size dependence, NOT a fit).  Expected
+      (declared): sigma_pred falls by a large factor at the smallest radii, the x1 median rises to roughly +0.2..+0.5, and the gate may FAIL at
+      x1 (this is the direction in which the gate could become discriminating).  Same floor scan (Mbase set), bootstrap, ladder.
+
+CONTROLS (hard: a failure makes the runner exit 1 and is reported, not repaired).
+  C0  V0 reproduces CFG73: Duffy-full KM medians +0.080 (x1), +0.213 (x0.1), -0.037 (x10), floors (+0.204,+0.143,+0.080,+0.023,-0.037);
+      Duffy-relaxed +0.015; Dutton-Maccio -0.043; all to 5.5e-4.
+  C1  V1 with sigma_scatter = 0 equals V0 to 1e-12; the drawn deltas have |mean| < 0.02 and std within 0.01 of 0.2.
+  C2  V2: zero stars => V2b = V0 sigma to 1e-9; the solved r_i satisfies its defining equation to 1e-9 relative; r_i >= r_f in V2b.
+  C3  V3: max(clamped Moster, f) reproduces CFG73's +0.080,+0.080,+0.080,+0.023,-0.037 to 5.5e-4.
+  C4  V4: Burkert enclosed mass = numerical integration of the density (<1e-6, 3 r0 x 3 R200 x 4 radii); M(<R200) = M_h to 1e-12;
+      small-radius limit M -> (4 pi/3) rho0 r^3 within 1e-6 relative at x = 1e-3.
+  C5  MUTATE: every observed dispersion (resolved and limits) x 0.5.  For EVERY variant (V0, V1, V2a, V2b, V3, V4a, V4b, three
+      concentrations) the KM median shifts by exactly log10(0.5) = -0.30103 (tolerance 1e-9), checked in-process in both modes.  env MUTATE=1
+      mutates the whole run; the gate outcome under MUTATE is reported, not required (CFG73: baseline Duffy-full still passes, -1.66 sigma).
+  C6  KM = brute-force product-limit on 300 random left-censored sets; halo switched off = closed-form Newtonian sigma.
+
+PASS/FAIL LINES for the answer to Q1 (no thresholds are adjusted after the run):
+  - Gate PASS at a rung  := |KM median| / total < 2.        - Variant X is DISCRIMINATING := gate FAILS at x0.1 AND x10 (Duffy full).
+  - Effect on the median negligible := |V - V0| < 0.5 x V0 bootstrap error (0.028 dex).
+  - A null / non-discriminating outcome is a valid outcome.  Nothing here says the data favour any model.
+
+AMENDMENT A1 (written AFTER the first run; the first-run output is kept as first_run_before_amendment.out).  Two declared controls FAILED
+in the first run and are KEPT as failures below; both failures are errors in the CONTROL as declared, not in a variant, and are diagnosed here:
+  C2 (zero stars => V2b = V0): the control switched the stars off in the SIGMA formula of the contracted case but not in V0, so it compared
+      different systems (dev 1.5e-2).  C2b (added) compares like with like: the contraction solved with M_b = 0 in the Blumenthal equation
+      but stars kept in g, against V0 (must agree to 1e-9), and the whole system with stars removed in both.
+  C4 (small-radius Burkert limit 1e-6 at x = 1e-3): the leading correction is F = x^3/3 (1 - 3x/4 + ...), so the relative deviation at
+      x = 1e-3 is 7.5e-4 = 3x/4 by analysis; my tolerance was wrong.  C4b (added) checks the limit at x = 1e-5 against 3x/4 to 1%.
+REPORTED-ONLY ADDITIONS (chosen after seeing the first run, NOT part of the frozen pass/fail): (i) the Newtonian stars-only KM median (no halo)
+as the reference for how far a cored halo can push the median; (ii) a finer 25-point ladder x0.01..x1e4 (Duffy full, 500 resamples per point) to
+give the continuous width of the gate's pass window per variant.
+
+
+======================================================================================================================
+SAMPLE + CONTROLS
+======================================================================================================================
+  resolved 31, limits 9; clamped (Moster < 1e9) 33 of 40; M_*<1e5: 39; unclamped Moster masses of the 40: min 1.87e+08, median 6.86e+08, max 2.17e+09
+  [PASS] SAMPLE 31 + 9
+         31 + 9
+  [PASS] C6 CONTROL: KM = brute force on 300 random sets; sigma with the halo removed = closed-form Newtonian; halo only adds
+         KM max|diff| 0.0e+00; closed-form dev 0.0e+00; min sigma ratio 5.768
+  [PASS] C0 CONTROL: V0 reproduces CFG73 (Duffy-full +0.080 x1, +0.213 x0.1, -0.037 x10; floors 0.204/0.143/0.080/0.023/-0.037; relaxed +0.015; D-M -0.043)
+         Duffy full x0.1/x1/x10 = +0.2126/+0.0803/-0.0373; floors +0.204,+0.143,+0.080,+0.023,-0.037; relaxed +0.0147; D-M -0.0434
+  [PASS] C1 CONTROL: V1 with zero scatter = V0 (sigma to 1e-12; scatter-only std exactly 0; median = V0 median); drawn delta mean/std sane
+         sigma dev 0.0e+00; scat std 1.4e-17; median +0.08034 vs V0 +0.08034; delta mean -0.0003, std 0.1992
+  [FAIL] C2 CONTROL: V2 zero stars => V2b = V0 (1e-9); solved r_i satisfies the Blumenthal equation (1e-9); r_i >= r_f in V2b; bisection = scipy brentq (1e-9)
+         zero-star dev 1.5e-02; max residual 4.4e-16; r_i>=r_f True; brentq dev 2.3e-14
+  [PASS] C3 CONTROL: max(clamped Moster, f) reproduces CFG73's +0.080,+0.080,+0.080,+0.023,-0.037
+         +0.080, +0.080, +0.080, +0.023, -0.037
+  [FAIL] C4 CONTROL: Burkert enclosed = numerical integral of the density (3 masses x 3 r0 x 4 radii); M(<R200)=M_h; small-radius limit
+         integral dev 5.9e-08; edge 2.2e-16; small-x limit dev 7.5e-04
+  [PASS] C2b CONTROL (amended C2): V2b with zero stars = V0 with zero stars (whole system); contraction with M_b=0 in the equation, stars kept in g = V0
+         whole-system dev 0.0e+00; equation-only dev 0.0e+00
+  [FAIL] C4b CONTROL (amended C4): Burkert small-radius limit F(x) = x^3/3 (1 - 3x/4) at x = 1e-5 (deviation from 1 matches 3x/4 within 1%)
+         relative mismatch of the correction 1.99e-01
+
+======================================================================================================================
+SIZE OF THE INNER-MASS CHANGE (V0 -> V2/V4), sigma_pred at halo mass x1 (Mbase = clamp 1e9), Duffy full
+======================================================================================================================
+  V2b Blumenthal (stars)    : log10(sigma/sigma_V0) median +0.0027, min +0.0003, max +0.0120; r_i/r_f median 1.007, max 1.029
+  V2a Blumenthal (cosmic)   : log10(sigma/sigma_V0) median -0.0674, min -0.0716, max -0.0544; r_i/r_f median 0.851, max 0.877
+  V4b Burkert r0=r_s        : log10(sigma/sigma_V0) median -0.6926, min -0.9562, max -0.3497
+  V4b Burkert r0=0.5 r_s    : log10(sigma/sigma_V0) median -0.4078, min -0.6715, max -0.0315
+  V4b Burkert r0=2 r_s      : log10(sigma/sigma_V0) median -0.9375, min -1.1512, max -0.6749
+  stars/dark inside r (V0): 0.5 M_*/M_dm median 0.007, max 0.031; halo fraction of total g inside r: median 0.993
+
+======================================================================================================================
+RESULTS (KM median of log10 sigma_obs/sigma_pred; z = median / total error; gate PASS if |z| < 2)
+======================================================================================================================
+
+  ---- concentration duffy_full ----
+  V0 baseline (set-scan, NFW)       : x1 median +0.080 (V-V0 +0.000) +- 0.133 [boot 0.057, floor 0.121] z +0.60 PASS;  floors 1e8..1e10: +0.204,+0.143,+0.080,+0.023,-0.037
+  V1 SHMR scatter 0.2 dex           : x1 median +0.079 (V-V0 -0.002) +- 0.126 [boot+scat 0.055, scatter-only 0.015, floor 0.113] z +0.63 PASS;  floors 1e8..1e10: +0.189,+0.132,+0.079,+0.023,-0.037
+  V2b Blumenthal, by the stars      : x1 median +0.080 (V-V0 -0.001) +- 0.130 [boot 0.056, floor 0.117] z +0.62 PASS;  floors 1e8..1e10: +0.196,+0.139,+0.080,+0.023,-0.038
+  V2a Blumenthal, cosmic-fraction   : x1 median +0.150 (V-V0 +0.069) +- 0.126 [boot 0.056, floor 0.113] z +1.18 PASS;  floors 1e8..1e10: +0.262,+0.207,+0.150,+0.095,+0.035
+  V3 true floor, unclamped Moster   : x1 median +0.080 (V-V0 +0.000) +- 0.089 [boot 0.057, floor 0.069] z +0.90 PASS;  floors 1e8..1e10: +0.101,+0.101,+0.080,+0.023,-0.037
+  V4b Burkert r0=r_s fixed core     : x1 median +0.764 (V-V0 +0.684) +- 0.080 [boot 0.041, floor 0.069] z +9.55 FAIL;  floors 1e8..1e10: +0.697,+0.724,+0.764,+0.797,+0.834
+  V4a Burkert r0=r_s rescaled       : x1 median +0.764 (V-V0 +0.684) +- 0.080 [boot 0.041, floor 0.069] z +9.55 FAIL;  floors 1e8..1e10: +0.697,+0.724,+0.764,+0.797,+0.834
+  V4b r0=0.5 r_s                    : x1 median +0.437 (V-V0 +0.357) +- 0.091 [boot 0.050, floor 0.076] z +4.82 FAIL;  floors 1e8..1e10: +0.369,+0.386,+0.437,+0.474,+0.521
+  V4b r0=2 r_s                      : x1 median +0.945 (V-V0 +0.865) +- 0.043 [boot 0.031, floor 0.030] z +21.89 FAIL;  floors 1e8..1e10: +0.923,+0.923,+0.945,+0.964,+0.982
+   ladder (median / z / gate):
+   V0 baseline (set-scan, NFW)       : x0.01 +0.381/+2.23/F | x0.1 +0.213/+1.49/P | x1 +0.080/+0.60/P | x10 -0.037/-0.30/P | x100 -0.149/-1.24/P | x1000 -0.261/-2.08/F
+   V1 SHMR scatter 0.2 dex           : x0.01 +0.358/+2.12/F | x0.1 +0.207/+1.46/P | x1 +0.079/+0.63/P | x10 -0.038/-0.32/P | x100 -0.150/-1.29/P | x1000 -0.261/-2.05/F
+   V2b Blumenthal, by the stars      : x0.01 +0.364/+2.32/F | x0.1 +0.211/+1.54/P | x1 +0.080/+0.62/P | x10 -0.038/-0.30/P | x100 -0.150/-1.24/P | x1000 -0.261/-2.09/F
+   V2a Blumenthal, cosmic-fraction   : x0.01 +0.420/+2.89/F | x0.1 +0.275/+2.10/F | x1 +0.150/+1.18/P | x10 +0.035/+0.29/P | x100 -0.076/-0.64/P | x1000 -0.187/-1.50/P
+   V3 true floor, unclamped Moster   : x0.01 +0.381/+3.67/F | x0.1 +0.213/+2.25/F | x1 +0.080/+0.90/P | x10 -0.037/-0.42/P | x100 -0.149/-1.67/P | x1000 -0.261/-2.75/F
+   V4b Burkert r0=r_s fixed core     : x0.01 +1.068/+22.18/F | x0.1 +1.000/+22.97/F | x1 +0.764/+9.55/F | x10 +0.307/+3.08/F | x100 -0.178/-1.61/P | x1000 -0.677/-6.06/F
+   V4a Burkert r0=r_s rescaled       : x0.01 +0.624/+11.04/F | x0.1 +0.686/+8.65/F | x1 +0.764/+9.55/F | x10 +0.834/+12.07/F | x100 +0.885/+16.79/F | x1000 +0.919/+20.00/F
+   V4b r0=0.5 r_s                    : x0.01 +1.029/+25.53/F | x0.1 +0.846/+14.24/F | x1 +0.437/+4.82/F | x10 -0.055/-0.56/P | x100 -0.552/-5.48/F | x1000 -1.052/-10.41/F
+   V4b r0=2 r_s                      : x0.01 +1.076/+23.07/F | x0.1 +1.052/+22.01/F | x1 +0.945/+21.89/F | x10 +0.645/+6.94/F | x100 +0.169/+1.66/P | x1000 -0.323/-3.02/F
+
+  ---- concentration duffy_relaxed ----
+  V0 baseline (set-scan, NFW)       : x1 median +0.015 (V-V0 +0.000) +- 0.130 [boot 0.057, floor 0.117] z +0.11 PASS;  floors 1e8..1e10: +0.135,+0.077,+0.015,-0.041,-0.099
+  V1 SHMR scatter 0.2 dex           : x1 median +0.013 (V-V0 -0.002) +- 0.123 [boot+scat 0.055, scatter-only 0.015, floor 0.110] z +0.11 PASS;  floors 1e8..1e10: +0.122,+0.067,+0.013,-0.041,-0.098
+  V2b Blumenthal, by the stars      : x1 median +0.014 (V-V0 -0.001) +- 0.127 [boot 0.056, floor 0.114] z +0.11 PASS;  floors 1e8..1e10: +0.129,+0.072,+0.014,-0.041,-0.099
+  V2a Blumenthal, cosmic-fraction   : x1 median +0.084 (V-V0 +0.069) +- 0.124 [boot 0.056, floor 0.111] z +0.68 PASS;  floors 1e8..1e10: +0.195,+0.141,+0.084,+0.031,-0.026
+  V3 true floor, unclamped Moster   : x1 median +0.015 (V-V0 +0.000) +- 0.087 [boot 0.057, floor 0.066] z +0.17 PASS;  floors 1e8..1e10: +0.033,+0.033,+0.015,-0.041,-0.099
+  V4b Burkert r0=r_s fixed core     : x1 median +0.672 (V-V0 +0.657) +- 0.090 [boot 0.045, floor 0.078] z +7.43 FAIL;  floors 1e8..1e10: +0.603,+0.623,+0.672,+0.715,+0.760
+  V4a Burkert r0=r_s rescaled       : x1 median +0.672 (V-V0 +0.657) +- 0.090 [boot 0.045, floor 0.078] z +7.43 FAIL;  floors 1e8..1e10: +0.603,+0.623,+0.672,+0.715,+0.760
+  V4b r0=0.5 r_s                    : x1 median +0.321 (V-V0 +0.306) +- 0.091 [boot 0.050, floor 0.076] z +3.53 FAIL;  floors 1e8..1e10: +0.261,+0.264,+0.321,+0.363,+0.412
+  V4b r0=2 r_s                      : x1 median +0.907 (V-V0 +0.892) +- 0.049 [boot 0.030, floor 0.039] z +18.43 FAIL;  floors 1e8..1e10: +0.864,+0.884,+0.907,+0.919,+0.942
+   ladder (median / z / gate):
+   V0 baseline (set-scan, NFW)       : x0.01 +0.316/+1.81/P | x0.1 +0.148/+1.04/P | x1 +0.015/+0.11/P | x10 -0.099/-0.82/P | x100 -0.205/-1.78/P | x1000 -0.310/-2.59/F
+   V1 SHMR scatter 0.2 dex           : x0.01 +0.295/+1.67/P | x0.1 +0.141/+0.98/P | x1 +0.013/+0.11/P | x10 -0.099/-0.87/P | x100 -0.205/-1.84/P | x1000 -0.310/-2.55/F
+   V2b Blumenthal, by the stars      : x0.01 +0.302/+1.83/P | x0.1 +0.147/+1.07/P | x1 +0.014/+0.11/P | x10 -0.099/-0.82/P | x100 -0.205/-1.78/P | x1000 -0.310/-2.59/F
+   V2a Blumenthal, cosmic-fraction   : x0.01 +0.359/+2.33/F | x0.1 +0.211/+1.60/P | x1 +0.084/+0.68/P | x10 -0.026/-0.22/P | x100 -0.132/-1.15/P | x1000 -0.236/-1.98/P
+   V3 true floor, unclamped Moster   : x0.01 +0.316/+3.03/F | x0.1 +0.148/+1.55/P | x1 +0.015/+0.17/P | x10 -0.099/-1.14/P | x100 -0.205/-2.36/F | x1000 -0.310/-3.37/F
+   V4b Burkert r0=r_s fixed core     : x0.01 +1.056/+22.10/F | x0.1 +0.959/+20.32/F | x1 +0.672/+7.43/F | x10 +0.197/+1.85/P | x100 -0.294/-2.58/F | x1000 -0.793/-6.92/F
+   V4a Burkert r0=r_s rescaled       : x0.01 +0.525/+9.64/F | x0.1 +0.577/+6.71/F | x1 +0.672/+7.43/F | x10 +0.760/+8.66/F | x100 +0.836/+11.51/F | x1000 +0.890/+16.92/F
+   V4b r0=0.5 r_s                    : x0.01 +1.002/+24.55/F | x0.1 +0.766/+9.68/F | x1 +0.321/+3.53/F | x10 -0.174/-1.76/P | x100 -0.672/-6.71/F | x1000 -1.172/-11.68/F
+   V4b r0=2 r_s                      : x0.01 +1.075/+23.25/F | x0.1 +1.039/+23.67/F | x1 +0.907/+18.43/F | x10 +0.540/+5.29/F | x100 +0.065/+0.58/P | x1000 -0.430/-3.74/F
+
+  ---- concentration dutton_maccio ----
+  V0 baseline (set-scan, NFW)       : x1 median -0.043 (V-V0 +0.000) +- 0.125 [boot 0.057, floor 0.111] z -0.35 PASS;  floors 1e8..1e10: +0.071,+0.015,-0.043,-0.097,-0.151
+  V1 SHMR scatter 0.2 dex           : x1 median -0.045 (V-V0 -0.001) +- 0.120 [boot+scat 0.055, scatter-only 0.014, floor 0.106] z -0.37 PASS;  floors 1e8..1e10: +0.062,+0.008,-0.045,-0.097,-0.151
+  V2b Blumenthal, by the stars      : x1 median -0.045 (V-V0 -0.001) +- 0.123 [boot 0.056, floor 0.109] z -0.36 PASS;  floors 1e8..1e10: +0.067,+0.011,-0.045,-0.097,-0.151
+  V2a Blumenthal, cosmic-fraction   : x1 median +0.025 (V-V0 +0.069) +- 0.120 [boot 0.057, floor 0.106] z +0.21 PASS;  floors 1e8..1e10: +0.133,+0.079,+0.025,-0.025,-0.079
+  V3 true floor, unclamped Moster   : x1 median -0.043 (V-V0 +0.000) +- 0.084 [boot 0.057, floor 0.062] z -0.51 PASS;  floors 1e8..1e10: -0.027,-0.027,-0.043,-0.097,-0.151
+  V4b Burkert r0=r_s fixed core     : x1 median +0.583 (V-V0 +0.626) +- 0.103 [boot 0.048, floor 0.091] z +5.66 FAIL;  floors 1e8..1e10: +0.507,+0.524,+0.583,+0.634,+0.689
+  V4a Burkert r0=r_s rescaled       : x1 median +0.583 (V-V0 +0.626) +- 0.103 [boot 0.048, floor 0.091] z +5.66 FAIL;  floors 1e8..1e10: +0.507,+0.524,+0.583,+0.634,+0.689
+  V4b r0=0.5 r_s                    : x1 median +0.216 (V-V0 +0.260) +- 0.101 [boot 0.050, floor 0.087] z +2.15 FAIL;  floors 1e8..1e10: +0.150,+0.168,+0.216,+0.267,+0.325
+  V4b r0=2 r_s                      : x1 median +0.864 (V-V0 +0.908) +- 0.074 [boot 0.034, floor 0.066] z +11.62 FAIL;  floors 1e8..1e10: +0.793,+0.826,+0.864,+0.888,+0.926
+   ladder (median / z / gate):
+   V0 baseline (set-scan, NFW)       : x0.01 +0.253/+1.42/P | x0.1 +0.089/+0.63/P | x1 -0.043/-0.35/P | x10 -0.151/-1.30/P | x100 -0.250/-2.29/F | x1000 -0.347/-3.07/F
+   V1 SHMR scatter 0.2 dex           : x0.01 +0.237/+1.30/P | x0.1 +0.080/+0.56/P | x1 -0.045/-0.37/P | x10 -0.151/-1.39/P | x100 -0.249/-2.37/F | x1000 -0.346/-3.02/F
+   V2b Blumenthal, by the stars      : x0.01 +0.242/+1.44/P | x0.1 +0.088/+0.64/P | x1 -0.045/-0.36/P | x10 -0.151/-1.31/P | x100 -0.250/-2.29/F | x1000 -0.347/-3.07/F
+   V2a Blumenthal, cosmic-fraction   : x0.01 +0.299/+1.89/P | x0.1 +0.152/+1.15/P | x1 +0.025/+0.21/P | x10 -0.079/-0.70/P | x100 -0.176/-1.63/P | x1000 -0.273/-2.43/F
+   V3 true floor, unclamped Moster   : x0.01 +0.253/+2.44/F | x0.1 +0.089/+0.92/P | x1 -0.043/-0.51/P | x10 -0.151/-1.81/P | x100 -0.250/-2.99/F | x1000 -0.347/-3.90/F
+   V4b Burkert r0=r_s fixed core     : x0.01 +1.041/+22.98/F | x0.1 +0.916/+16.96/F | x1 +0.583/+5.66/F | x10 +0.098/+0.86/P | x100 -0.396/-3.33/F | x1000 -0.896/-7.49/F
+   V4a Burkert r0=r_s rescaled       : x0.01 +0.419/+6.73/F | x0.1 +0.471/+5.01/F | x1 +0.583/+5.66/F | x10 +0.689/+6.31/F | x100 +0.784/+8.31/F | x1000 +0.863/+10.98/F
+   V4b r0=0.5 r_s                    : x0.01 +0.967/+19.74/F | x0.1 +0.679/+7.16/F | x1 +0.216/+2.15/F | x10 -0.279/-2.62/F | x100 -0.778/-7.25/F | x1000 -1.278/-11.90/F
+   V4b r0=2 r_s                      : x0.01 +1.073/+23.06/F | x0.1 +1.031/+25.41/F | x1 +0.864/+11.62/F | x10 +0.446/+3.92/F | x100 -0.030/-0.24/P | x1000 -0.527/-4.14/F
+
+======================================================================================================================
+Q1: IS THE GATE DISCRIMINATING?  (FAIL at x0.1 AND x10 = primary; also x0.1 OR x10; pass window over the ladder)
+======================================================================================================================
+  duffy_full:
+    V0 baseline (set-scan, NFW)       : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.1,1,10,100}
+    V1 SHMR scatter 0.2 dex           : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.1,1,10,100}
+    V2b Blumenthal, by the stars      : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.1,1,10,100}
+    V2a Blumenthal, cosmic-fraction   : fails x0.1 True   x10 False  x1 False  -> DISCRIMINATING(and) False  (or) True ;  pass window x{1,10,100,1000}
+    V3 true floor, unclamped Moster   : fails x0.1 True   x10 False  x1 False  -> DISCRIMINATING(and) False  (or) True ;  pass window x{1,10,100}
+    V4b Burkert r0=r_s fixed core     : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{100}
+    V4a Burkert r0=r_s rescaled       : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{}
+    V4b r0=0.5 r_s                    : fails x0.1 True   x10 False  x1 True   -> DISCRIMINATING(and) False  (or) True ;  pass window x{10}
+    V4b r0=2 r_s                      : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{100}
+  duffy_relaxed:
+    V0 baseline (set-scan, NFW)       : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10,100}
+    V1 SHMR scatter 0.2 dex           : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10,100}
+    V2b Blumenthal, by the stars      : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10,100}
+    V2a Blumenthal, cosmic-fraction   : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.1,1,10,100,1000}
+    V3 true floor, unclamped Moster   : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.1,1,10}
+    V4b Burkert r0=r_s fixed core     : fails x0.1 True   x10 False  x1 True   -> DISCRIMINATING(and) False  (or) True ;  pass window x{10}
+    V4a Burkert r0=r_s rescaled       : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{}
+    V4b r0=0.5 r_s                    : fails x0.1 True   x10 False  x1 True   -> DISCRIMINATING(and) False  (or) True ;  pass window x{10}
+    V4b r0=2 r_s                      : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{100}
+  dutton_maccio:
+    V0 baseline (set-scan, NFW)       : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10}
+    V1 SHMR scatter 0.2 dex           : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10}
+    V2b Blumenthal, by the stars      : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10}
+    V2a Blumenthal, cosmic-fraction   : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.01,0.1,1,10,100}
+    V3 true floor, unclamped Moster   : fails x0.1 False  x10 False  x1 False  -> DISCRIMINATING(and) False  (or) False;  pass window x{0.1,1,10}
+    V4b Burkert r0=r_s fixed core     : fails x0.1 True   x10 False  x1 True   -> DISCRIMINATING(and) False  (or) True ;  pass window x{10}
+    V4a Burkert r0=r_s rescaled       : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{}
+    V4b r0=0.5 r_s                    : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{}
+    V4b r0=2 r_s                      : fails x0.1 True   x10 True   x1 True   -> DISCRIMINATING(and) True   (or) True ;  pass window x{100}
+
+======================================================================================================================
+Q2: EFFECT ON THE MEDIAN vs 0.5 x V0 bootstrap error (negligible if |V-V0| < 0.5 boot)
+======================================================================================================================
+  duffy_full: V0 boot 0.057, threshold 0.028: V1 -0.002 (negl); V2b -0.001 (negl); V2a +0.069 (NOT negl); V3 +0.000 (negl); V4b +0.684 (NOT negl); V4a +0.684 (NOT negl); V4b_h +0.357 (NOT negl); V4b_2 +0.865 (NOT negl)
+  duffy_relaxed: V0 boot 0.057, threshold 0.028: V1 -0.002 (negl); V2b -0.001 (negl); V2a +0.069 (NOT negl); V3 +0.000 (negl); V4b +0.657 (NOT negl); V4a +0.657 (NOT negl); V4b_h +0.306 (NOT negl); V4b_2 +0.892 (NOT negl)
+  dutton_maccio: V0 boot 0.057, threshold 0.028: V1 -0.001 (negl); V2b -0.001 (negl); V2a +0.069 (NOT negl); V3 +0.000 (negl); V4b +0.626 (NOT negl); V4a +0.626 (NOT negl); V4b_h +0.260 (NOT negl); V4b_2 +0.908 (NOT negl)
+
+  V3 extras (reported only, Duffy full, x1):
+    no floor at all (pure unclamped Moster): KM median +0.101
+    true floor max(unclamped Moster, f), f=1e8..1e10: +0.101, +0.101, +0.080, +0.023, -0.037
+    CFG73 reading max(clamped Moster, f):              +0.080, +0.080, +0.080, +0.023, -0.037
+    set-scan (V0):                                     +0.204, +0.143, +0.080, +0.023, -0.037
+    number of the 40 objects whose unclamped Moster halo mass is below 1e8 / 3e8 / 1e9: 0 / 6 / 33
+
+======================================================================================================================
+REPORTED-ONLY ADDITIONS (A1; chosen after the first run)
+======================================================================================================================
+  Newtonian stars-only (no halo) KM median: +1.078 (this is the ceiling a cored halo can approach; the V0 cusp sits at +0.080)
+  fine ladder, Duffy full, 500 resamples per point: pass window (|z|<2) as contiguous runs of the multiple
+    V0 baseline (set-scan, NFW)       : pass window x0.0316..x562 (4.25 dex), x1e+04..x1e+04 (0.00 dex)
+    V2b Blumenthal, by the stars      : pass window x0.0562..x562 (4.00 dex), x1e+04..x1e+04 (0.00 dex)
+    V2a Blumenthal, cosmic-fraction   : pass window x0.178..x1e+04 (4.75 dex)
+    V3 true floor, unclamped Moster   : pass window x0.178..x100 (2.75 dex)
+    V4b Burkert r0=r_s fixed core     : pass window x17.8..x100 (0.75 dex)
+    V4a Burkert r0=r_s rescaled       : pass window EMPTY over x0.01..x1e4
+    V4b r0=0.5 r_s                    : pass window x5.62..x17.8 (0.50 dex)
+    V4b r0=2 r_s                      : pass window x100..x562 (0.75 dex)
+    (V1 omitted from the fine ladder: its rungs at x0.01..x1000 above already track V0 to <0.02 dex.)
+
+======================================================================================================================
+C5 MUTATE SHIFT: observed dispersions x0.5 => every variant's KM median moves by exactly log10(0.5)
+======================================================================================================================
+  [PASS] C5 MUTATE shift: obs x0.5 moves every variant's KM median (3 concentrations) by exactly log10(0.5) = -0.30103
+         V0: +0.0803->-0.2207; V1: +0.0670->-0.2340; V2b: +0.0798->-0.2212; V2a: +0.1495->-0.1515; V3: +0.0803->-0.2207; V4b: +0.7641->+0.4630; V4a: +0.7641->+0.4630; V4b_h: +0.4372->+0.1362; V4b_2: +0.9451->+0.6441; worst |shift - log10(0.5)| = 5.55e-17
+  gate on the (this-run) x1 rung, Duffy full: V0 +0.60 PASS; V1 +0.63 PASS; V2b +0.62 PASS; V2a +1.18 PASS; V3 +0.90 PASS; V4b +9.55 FAIL; V4a +9.55 FAIL; V4b_h +4.82 FAIL; V4b_2 +21.89 FAIL
+  reported-only: gate at obs x0.5 (uniform shift; total errors unchanged), Duffy full x1: V0 -1.66; V1 -1.77; V2b -1.71; V2a -1.20; V3 -2.47; V4b +5.79; V4a +5.79; V4b_h +1.50; V4b_2 +14.92
+
+======================================================================================================================
+SUMMARY
+======================================================================================================================
+  PASS  SAMPLE 31 + 9
+  PASS  C6 CONTROL: KM = brute force on 300 random sets; sigma with the halo removed = closed-form Newtonian; halo only adds
+  PASS  C0 CONTROL: V0 reproduces CFG73 (Duffy-full +0.080 x1, +0.213 x0.1, -0.037 x10; floors 0.204/0.143/0.080/0.023/-0.037; relaxed +0.015; 
+  PASS  C1 CONTROL: V1 with zero scatter = V0 (sigma to 1e-12; scatter-only std exactly 0; median = V0 median); drawn delta mean/std sane
+  FAIL  C2 CONTROL: V2 zero stars => V2b = V0 (1e-9); solved r_i satisfies the Blumenthal equation (1e-9); r_i >= r_f in V2b; bisection = scipy
+  PASS  C3 CONTROL: max(clamped Moster, f) reproduces CFG73's +0.080,+0.080,+0.080,+0.023,-0.037
+  FAIL  C4 CONTROL: Burkert enclosed = numerical integral of the density (3 masses x 3 r0 x 4 radii); M(<R200)=M_h; small-radius limit
+  PASS  C2b CONTROL (amended C2): V2b with zero stars = V0 with zero stars (whole system); contraction with M_b=0 in the equation, stars kept i
+  FAIL  C4b CONTROL (amended C4): Burkert small-radius limit F(x) = x^3/3 (1 - 3x/4) at x = 1e-5 (deviation from 1 matches 3x/4 within 1%)
+  PASS  C5 MUTATE shift: obs x0.5 moves every variant's KM median (3 concentrations) by exactly log10(0.5) = -0.30103
+
+  7/10 checks pass
+  Q1 primary (Duffy full, fails at x0.1 AND x10): V0 False; V1 False; V2b False; V2a False; V3 False; V4b True; V4a True; V4b_h False; V4b_2 True
