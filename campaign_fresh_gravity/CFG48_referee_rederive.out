@@ -1,0 +1,33 @@
+R1  top-hat turnaround contrast at z = 0 (flat LCDM, Omega_m = 0.3153), the referee's own integration
+  [OK ] R1 Delta_ta(z=0) = 1 + delta_NL at turnaround: mine [11.7646] vs CFG48 [11.81]
+
+R2  B's edge (0.4 r_ta of the cosmic-share collapse mass) and the flux-gated negative shell M_b (sqrt(1 + x_e^2) - 1)
+    M_b = 1e+10: r_ta =   319.2 kpc, r_e =  127.7 kpc, r_M =   3.9 kpc, x_e = 33.09
+    M_b = 1e+11: r_ta =   687.7 kpc, r_e =  275.1 kpc, r_M =  12.2 kpc, x_e = 22.54
+    M_b = 1e+12: r_ta =  1481.7 kpc, r_e =  592.7 kpc, r_M =  38.6 kpc, x_e = 15.36
+  [OK ] R2 negative shell (Msun) at M_b = 1e10, 1e11, 1e12 (G1's printed values; the README rounds the last to 1.4e13): mine [321038908651.0138, 2156529455142.3025, 14390973711132.715] vs CFG48 [321000000000.0, 2150000000000.0, 14400000000000.0]
+
+R3  Gauss with a smooth gate W(r) = 1/2 erfc((r - r_e)/w): M_dyn = r^2 g / G for a point mass
+    beyond the edge (W < 1e-12): max |M_dyn / M_b - 1| = 1.2e-11 for both forms
+  [OK ] R3 Gauss holds to 1.2e-11
+
+R4  the exchange reaction per unit baryon mass, derived here: F = 4 pi s^2 d eps/dM at fixed r
+    sigma-slaved: a/a0 = [0.719, 0.5625, 0.3754] (closed [0.719, 0.5625, 0.3754]); a/g_law = [0.062, 0.398, 11.256]
+    P-slaved: a/a0 = [0.75, 0.75, 0.75] (closed [0.75, 0.75, 0.75]); a/g_law = [0.065, 0.53, 22.488]
+  [OK ] R4 sigma-slaved a/g_law at x = 0.3, 1, 30: mine [0.062, 0.3977, 11.2562] vs CFG48 [0.062, 0.398, 11.26]
+  [OK ] R4 P-slaved a/g_law at x = 1, 30: mine [0.5303, 22.4875] vs CFG48 [0.53, 22.49]
+
+R5  E_c(<r_e) / (1/2 M_b V_f^2) = 1.5 x_e
+  [OK ] R5 energy ratio at M_b = 1e10, 1e11, 1e12: mine [49.6332, 33.8147, 23.0377] vs CFG48 [49.6, 33.8, 23.0]
+
+R6  alpha_req = x_e^2 / 2
+  [OK ] R6 alpha_req at M_b = 1e10, 1e12, 1e13, 1e14: mine [547.4338, 117.941, 54.7434, 25.4096] vs CFG48 [546, 118, 55, 25]
+
+R7  sensitivity to the r_ta convention: CFG48's (cosmic-share collapse mass) vs the committed one (the law's enclosed mass, P2)
+    M_b = 1e+10: r_ta     319 ->    1151 kpc; x_e  33.1 -> 119.3; shell/M_b  32.1 -> 118.3; energy ratio  49.6 -> 178.9; alpha_req    547 ->   7115
+    M_b = 1e+11: r_ta     688 ->    2047 kpc; x_e  22.5 ->  67.1; shell/M_b  21.6 ->  66.1; energy ratio  33.8 -> 100.6; alpha_req    254 ->   2250
+    M_b = 1e+12: r_ta    1482 ->    3639 kpc; x_e  15.4 ->  37.7; shell/M_b  14.4 ->  36.7; energy ratio  23.0 ->  56.6; alpha_req    118 ->    712
+    M_b = 1e+13: r_ta    3192 ->    6472 kpc; x_e  10.5 ->  21.2; shell/M_b   9.5 ->  20.2; energy ratio  15.7 ->  31.8; alpha_req     55 ->    225
+    M_b = 1e+14: r_ta    6877 ->   11512 kpc; x_e   7.1 ->  11.9; shell/M_b   6.2 ->  11.0; energy ratio  10.7 ->  17.9; alpha_req     25 ->     71
+
+  7/7 CFG48 numbers reproduced by the referee's own code
