@@ -389,3 +389,7 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
 ## Addendum after CFG189 (appended 2026-09-29; the rows and addenda above are unchanged)
 
 - **§4, a₀ at high z, the measured outer markers:** CFG189 (8f15187c7): replacing the model velocity (Table B1 col 3) by the MEASURED outermost unclipped markers leaves the decision-cell lean unchanged (lean rival; flat +2.4σ, rival −0.4σ, T +5.5σ, against +3.3 / −0.1 / +6.9 with the model velocity) and moves all three laws toward the data by 0.3–1.5σ; one of five variants — both sides at the shorter side's radius (~7 kpc) — reads lean flat (flat +0.1σ, rival −3.2σ). The verdict now also depends on which radius is 'the outer point'. Standing unchanged: the KURVS lean rests on a calibration, gas and radius choice the data cannot fix; not a detection either way.
+
+## Addendum after CFG190 (appended 2026-09-29; the rows and addenda above are unchanged)
+
+- **§4, a₀ at high z, MUSE-DARK II against III:** CFG190 (3149c42ea; abstract-level inputs): no single a₀(z) law fits both the collaboration's null bTFR evolution at z ≈ 1 (II: 0.00 ± 0.06 dex) and its rising RAR a₀ (III: a₀(0.87)/a₀(0) = 2.38): flat fits II but misses III (−14.9σ); III's own law misses II by 3.4–6.9σ; a₀ ∝ E(z) misses III (−6.2σ). So a robust rise is not established; the June non-diagnostic (method-split) grade of III stands, now within one collaboration; the kill rule for flat a₀ is not triggered, and nothing here favours flat. III's circularity (M* fitted inside its disc–halo model) is undecided without the per-galaxy tables.
