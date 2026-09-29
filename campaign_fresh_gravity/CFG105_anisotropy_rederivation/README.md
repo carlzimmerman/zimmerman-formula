@@ -25,3 +25,6 @@ Pass lines met: R1 the law's minimum over the bracket is 3.382 sigma canonical (
 **What the agent would attack next.** (1) The tracer's outer extent and slope: its convergence at infinity decides the sign of the anisotropy effect, so a truncated or measured GC profile beyond 5-10 R_e is the priority. (2) Radially varying beta with measured saturation (about 0.4 outside 3 R_e). (3) One beta for red and blue GCs (different anisotropy and slope; not modelled). (4) Whether Alabi's mass-slope relation (coefficient errors +-0.17 and +-1.94) holds for the massive centrals. (5) Leverage: NGC 4494 (offset -0.11 to -0.12) has the largest leverage on the significance (law 4.76 sigma without it) and the deficit leans on the four group and cluster centrals.
 
 Nothing here says the data favour the framework; kappa = 1/2 is FITTED; the theory is not closed. Run in place in `CFG105_anisotropy_rederivation/`: `ZF_REPO=<repo root> python3 cfg105_aniso.py` (about 66 s, rc 0), `MUTATE=1|2 ...` (rc 1), `python3 cfg105_posthoc.py`; numbers identical to the agent's.
+
+## Corrections from the equations chat's re-run (appended; no result changed)
+- The Result line's '10 checks' is the count of pass-line groups R1/R2/H1 and the controls C0-C7; the run itself prints 13 PASS lines and 0 failed checks.

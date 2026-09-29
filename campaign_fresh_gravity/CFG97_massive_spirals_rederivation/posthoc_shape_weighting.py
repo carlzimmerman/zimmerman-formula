@@ -2,7 +2,8 @@
 import io, contextlib, numpy as np
 src=open("cfg97_massive_spirals_hi.py").read()
 pre=src.split("# ---------------- CFG53 law-side shapes ----------------")[0].replace("rel.append(abs(g_num / g_cf - 1))","rel.append(0.0)")
-g={}
+import os
+g={"__file__": os.path.abspath("cfg97_massive_spirals_hi.py")}
 with contextlib.redirect_stdout(io.StringIO()): exec(compile(pre,"x","exec"),g)
 names,curves,S0,vlaw,Mstar,Mgas=[g[k] for k in ("names","curves","S0","vlaw","Mstar","Mgas")]
 def slope(R,V,dV,wts=None):
