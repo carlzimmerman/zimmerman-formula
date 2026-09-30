@@ -13,7 +13,7 @@ Root: `https://data.desi.lbl.gov/public/dr1/vac/dr1/mws/iron/v1.0/` (README poin
 | HDU SCORES | 172 B/row, 42 columns, 1.10 GB | spectral scores |
 | HDU GAIA | 640 B/row, 153 columns, 4.08 GB | **SOURCE_ID (Gaia DR3, int64 at byte 36)**, RA, DEC, PARALLAX, PMRA, PMDEC, PHOT_G/BP/RP_MEAN_MAG, RUWE, RADIAL_VELOCITY and its error |
 | `rv_output/240520/rvpix-<survey>-<program>.fits` | main-bright 4.22 GB, main-backup 1.67 GB, main-dark 1.87 GB, sv1 (backup/bright/dark) 85/64/59 MB, special, cmx (kB-MB) | the same RV tables by program; `rv_output/240521/rvpix_exp-*` are the per-exposure tables (main-bright 5.65 GB, main-backup 3.40 GB, main-dark 2.87 GB) |
-| **per-pixel files** `rv_output/240520/healpix/<survey>/<program>/<hpx//100>/<hpx>/rvtab_coadd-<survey>-<program>-<hpx>.fits` (+ `rvmod_coadd-*`) | rvtab **66 kB to ~0.65 GB-scale is NOT the case: 66-657 kB in the 50 files sampled** (rvmod spectra models are 1-25 MB and not needed) | one small RV table per sky pixel and program |
+| **per-pixel files** `rv_output/240520/healpix/<survey>/<program>/<hpx//100>/<hpx>/rvtab_coadd-<survey>-<program>-<hpx>.fits` (+ `rvmod_coadd-*`) | rvtab **66-657 kB in the 52 files examined** (the `rvmod` model files are 1-25 MB and not needed) | one small RV table per sky pixel and program |
 | `sp_output/230211/...` | (FERRE products) | not needed |
 The table is **not sorted by pixel** (HEALPIX jumps in a sample of 41 rows), so a row range for our pixels cannot be found by bisection. A FITS row-major table also means a column subset still costs the whole HDU.
 
