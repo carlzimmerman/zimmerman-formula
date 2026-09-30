@@ -182,6 +182,28 @@ K("C12 the driver with --seed-offset k --stage-dir wp2_gamma_k reproduces WP2-ga
   all(eqs), f"identical for k = {[k for k in range(10) if eqs[k]]}; uncovered correlation ids per build {unc}")
 RES_EXTRA = dict(uncovered_correlation_ids_wp2_gamma_builds=unc)
 
+# ---------------------------------------------------------------- C13 ladder post-filter rungs against independent direct counts
+import csv as _csv
+refp = REPO / "real_research" / "data" / "widebinaries" / "dr3_extract" / "wide_binaries_dr3.csv"
+head_, rungs_ = SS.ladder_rungs(refp, ext / "stage_A.npz")
+rows_ = list(_csv.DictReader(open(refp)))
+zA = np.load(ext / "stage_A.npz")
+ruwe_of = dict(zip(zA["source_id"].tolist(), zA["ruwe"].tolist()))
+nR = sum(float(r["R_chance"]) < 0.001 for r in rows_)
+nS = sum(3.0 < float(r["sep_kAU"]) < 20.0 for r in rows_)
+nW = sum(ruwe_of[int(r["source_id1"])] < 1.2 and ruwe_of[int(r["source_id2"])] < 1.2 for r in rows_)
+_, rungs_planted = SS.ladder_rungs(refp, ext / "stage_A.npz", ruwe_max=1.25)
+if MUT == "3":
+    nW += 1                                                                               # (a planted miscount must fail the check)
+K("C13 the ladder post-filter rungs (R_chance < 0.001; separation 3-20 kAU; RUWE < 1.2 on both components) have the pair counts of independent direct counts on the reference CSV, and a planted wrong RUWE threshold changes the count",
+  len(rungs_["R_chance<0.001"]) == nR and len(rungs_["sep 3-20 kAU"]) == nS and len(rungs_["RUWE<1.2 both"]) == nW and len(rungs_planted["RUWE<1.25 both"]) > len(rungs_["RUWE<1.2 both"]),
+  f"counts {len(rungs_['R_chance<0.001'])} / {len(rungs_['sep 3-20 kAU'])} / {len(rungs_['RUWE<1.2 both'])} (direct {nR} / {nS} / {nW}) of {len(rows_):,d}; RUWE < 1.25 gives {len(rungs_planted['RUWE<1.25 both'])}")
+
+# ---------------------------------------------------------------- C14 the committed seed list
+sl = json.load(open(HERE / "seed_sets_dr4.json"))
+K("C14 seed_sets_dr4.json (committed before DR4) equals the seed list the code produces for k = 0..10 and carries the frozen builder hash", sl == json.loads(json.dumps(SB.seed_list(10, None, B))) and sl["builder_sha256"] == SB.FROZEN_BUILDER_SHA256 and sl["K"] == 10,
+  f"{len(sl['seed_sets'])} seed sets; builder {sl['builder_sha256'][:16]}; fit seed {sl['fit_seed']}; control seeds {sl['fit_only_control_seeds'][:3]} ...")
+
 # ---------------------------------------------------------------- C2, C2b, C11 (FULL)
 if FULL:
     work = tmpd / "k0_rebuild"

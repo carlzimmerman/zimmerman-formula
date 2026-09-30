@@ -61,20 +61,47 @@ def pair_set(csv_bytes_or_path):
     return {tuple(sorted((int(c[i1]), int(c[i2])))) for c in (l.split(",") for l in lines[1:])}
 
 
-def ladder_post_filters(csv_path, work, fit_seed=FIT_SEED):
-    """the ladder rungs that are post-filters of the final table with the columns the CSV carries: R_chance 0.01 -> 0.001 and separation 2-30 -> 3-20 kAU.  RUWE 1.2, the RV-screened subsample and the
-    NSS-off rung are NOT implemented (they need columns or a superset table the final CSV does not carry)."""
+def ruwe_lookup(stage_a_path):
+    """source_id -> ruwe from stage A (only the two arrays are read)."""
+    z = np.load(stage_a_path)
+    sid, ruwe = z["source_id"], z["ruwe"]
+    o = np.argsort(sid)
+    sid, ruwe = sid[o], ruwe[o]
+
+    def get(ids):
+        ids = np.asarray(ids, dtype=np.int64)
+        pos = np.clip(np.searchsorted(sid, ids), 0, len(sid) - 1)
+        ok = sid[pos] == ids
+        return np.where(ok, ruwe[pos], np.nan)
+    return get
+
+
+def ladder_rungs(csv_path, stage_a_path=None, ruwe_max=1.2):
+    """(header, {rung name: rows}) for the ladder rungs that are post-filters of the final table with the columns the CSV carries: R_chance 0.01 -> 0.001, separation 2-30 -> 3-20 kAU and (with stage A)
+    RUWE 1.4 -> 1.2 on both components.  RUWE 1.2 needs stage_a_path (a join by source_id); the RV-screened subsample and NSS-off are NOT implemented."""
     lines = Path(csv_path).read_text().strip().split("\n")
     head = lines[0].split(",")
     iR, iS = head.index("R_chance"), head.index("sep_kAU")
     rows = [l.split(",") for l in lines[1:]]
+    rungs = {"R_chance<0.001": [c for c in rows if float(c[iR]) < 0.001], "sep 3-20 kAU": [c for c in rows if 3.0 < float(c[iS]) < 20.0]}
+    if stage_a_path is not None:
+        rl = ruwe_lookup(stage_a_path)
+        i1, i2 = head.index("source_id1"), head.index("source_id2")
+        r1 = rl([int(c[i1]) for c in rows])
+        r2 = rl([int(c[i2]) for c in rows])
+        rungs[f"RUWE<{ruwe_max} both"] = [c for c, x, y in zip(rows, r1, r2) if x < ruwe_max and y < ruwe_max]
+    return head, rungs
+
+
+def ladder_post_filters(csv_path, work, fit_seed=FIT_SEED, stage_a_path=None, ruwe_max=1.2):
+    """each post-filter rung of the final table fitted by the pipeline's own --catalog run."""
+    head, rungs = ladder_rungs(csv_path, stage_a_path, ruwe_max)
     out = {}
-    for name, keep in (("R_chance<0.001", lambda c: float(c[iR]) < 0.001), ("sep 3-20 kAU", lambda c: 3.0 < float(c[iS]) < 20.0)):
+    for name, sel in rungs.items():
         p = Path(work) / ("ladder_" + re.sub(r"[^0-9A-Za-z]+", "_", name) + ".csv")
-        sel = [c for c in rows if keep(c)]
         p.write_text("\n".join([",".join(head)] + [",".join(c) for c in sel]) + "\n")
         out[name] = dict(n=len(sel), fit=fit_via_pipeline_cli(p, fit_seed))
-    out["NOT_IMPLEMENTED"] = ["RUWE 1.4 -> 1.2 (needs ruwe by source_id)", "RV-screened subsample only (definition not fixed in code)", "NSS screen OFF (needs the superset table)"]
+    out["NOT_IMPLEMENTED"] = ["RV-screened subsample only (definition not fixed in code)", "NSS screen OFF (needs the superset table)"] + ([] if stage_a_path is not None else ["RUWE 1.4 -> 1.2 (pass stage_a_path)"])
     return out
 
 
@@ -88,6 +115,7 @@ def main():
     ap.add_argument("--n-shift", type=int, default=None, help="full mode: N_SHIFT (default the builder's own, 30)")
     ap.add_argument("--rebuild-k0", action="store_true", help="full mode: also rebuild k = 0 from the shared A-D inputs instead of using the extract's own stage_F")
     ap.add_argument("--fit", action="store_true", help="fit every build (and the fit-only control) by the pipeline's own --catalog run")
+    ap.add_argument("--jobs", type=int, default=1, help="run this many pipeline fits at a time (each is a single-threaded subprocess)")
     ap.add_argument("--ladder", action="store_true", help="also the two ladder rungs that are post-filters of the final table (needs --fit)")
     ap.add_argument("--tag", default="")
     ap.add_argument("--allow-network", action="store_true")
@@ -139,10 +167,13 @@ def main():
     P(f"  one-way flips against k = 0 (in k = 0 only, in build k only): {flips}")
     res = dict(plan=plan, builds=builds, flips_vs_k0=flips, builder_sha256_after=SB.assert_builder_frozen("sweep end"))
     if args.fit:
-        for b in builds:
-            b["fit"] = fit_via_pipeline_cli(REPO / b["csv"], FIT_SEED)
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max(1, args.jobs)) as ex:
+            fits = list(ex.map(lambda b: fit_via_pipeline_cli(REPO / b["csv"], FIT_SEED), builds))
+            ctl = list(ex.map(lambda j: fit_via_pipeline_cli(REPO / builds[0]["csv"], FIT_SEED + j), range(1, args.K + 1))) if args.K >= 1 else []
+        for b, f_ in zip(builds, fits):
+            b["fit"] = f_
             P(f"  fit k = {b['k']}: canonical {b['fit']['canonical']['g']:.4f} +- {b['fit']['canonical']['s']:.4f} (kappa {b['fit']['canonical']['kappa']:.4f}); alt {b['fit']['alt']['g']:.4f} +- {b['fit']['alt']['s']:.4f} (kappa {b['fit']['alt']['kappa']:.4f})")
-        ctl = [fit_via_pipeline_cli(REPO / builds[0]["csv"], FIT_SEED + j) for j in range(1, args.K + 1)] if args.K >= 1 else []
         res["fit_only_control"] = ctl
         sb, st = {}, {}
         for f in ("canonical", "alt"):
@@ -154,7 +185,7 @@ def main():
         res["sigma_build"] = sb
         if args.ladder:
             for b in builds:
-                b["ladder"] = ladder_post_filters(REPO / b["csv"], D.build_dir(ext, b["k"]) if not mut else out_dir)
+                b["ladder"] = ladder_post_filters(REPO / b["csv"], D.build_dir(ext, b["k"]) if not mut else out_dir, stage_a_path=ext / "stage_A.npz")
                 P(f"  ladder k = {b['k']}: " + "; ".join(f"{n} N={v['n']:,d} gamma {v['fit']['canonical']['g']:.4f} (shift {v['fit']['canonical']['g'] - b['fit']['canonical']['g']:+.4f} = {(v['fit']['canonical']['g'] - b['fit']['canonical']['g']) / b['fit']['canonical']['s']:+.2f} sigma_fit)"
                                                     for n, v in b["ladder"].items() if n != "NOT_IMPLEMENTED"))
     res["status"] = "done"

@@ -155,11 +155,25 @@ def rebuild_EF(ext, work, k, n_shift=None, reuse=False):
     return E, F, time.time() - t0
 
 
+def seed_list(K=10, n_shift=None, B=None):
+    """the pre-registered seed list of Amendment 18 (k = 0..K) with the builder's hash: a pure function of the rule, to be committed BEFORE the data are opened."""
+    B = B or import_builder()
+    return dict(about="Amendment 18 (draft, NOT FILED) seed list: build k re-seeds stage-E shifts r + 1 + 100 k, and the stage-E mask, the stage-F fold and stage G with SEED + k (G passed explicitly); k = 0 is the frozen builder",
+                builder_sha256=assert_builder_frozen("seed list"), SEED=int(B.SEED), n_shift=int(B.N_SHIFT if n_shift is None else n_shift), K=int(K), fit_seed=20261216,
+                fit_only_control_seeds=[20261216 + j for j in range(1, K + 1)], seed_sets=[seed_set(k, n_shift, B) for k in range(K + 1)])
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, default=1)
+    ap.add_argument("--write-list", default=None, help="write the seed list for k = 0..K to this JSON file and exit")
+    ap.add_argument("--K", type=int, default=10)
     a = ap.parse_args()
     B = import_builder()
+    if a.write_list:
+        Path(a.write_list).write_text(json.dumps(seed_list(a.K, None, B), indent=1) + "\n")
+        print("wrote", a.write_list)
+        sys.exit(0)
     print("builder sha256", assert_builder_frozen("print"))
     print(json.dumps(seed_set(a.k, B=B), indent=1)[:1500])
     print("per-block stage-E seeds of builds 0..10 at N_SHIFT 30: (n, duplicates) =", seed_sets_disjoint(range(11)))
