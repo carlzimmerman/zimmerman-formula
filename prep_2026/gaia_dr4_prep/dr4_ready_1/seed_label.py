@@ -197,7 +197,7 @@ def format_report(rep):
         out.append(f"  {f:9s}: {r['label']}" + (f"; primary gamma-hat {r['primary']:.4f}, sigma_fit {r['sigma_fit']:.4f}, sigma_tot {r['sigma_tot']:.4f}, sigma_build {r['sigma_build']:.4f}" + (f" (full-rebuild SD {r['sigma_build_full']:.4f})" if r.get("sigma_build_full") is not None else "")
                                                    + f"; width {r['width']:.4f} set by {r['width_governed_by']}; K = {r['K']}" if "sigma_build" in r else ""))
         for e in r.get("flagged", []):
-            out.append(f"      edge {e['edge']} = {e['value']:.4f} (distance {e['distance']:.4f}): {e['builds_below']} builds below, {e['builds_at_or_above']} at or above" + (f"; full rebuilds {e['full_builds_below']} / {e['full_builds_at_or_above']}" if "full_builds_below" in e else ""))
+            out.append(f"      edge {e['edge']} = {e['value']:.4f} (distance {e['distance']:.4f}): {e['builds_below']} builds below, {e['builds_at_or_above']} at or above (of {e['builds_below'] + e['builds_at_or_above']} builds INCLUDING the primary)" + (f"; full rebuilds {e['full_builds_below']} / {e['full_builds_at_or_above']} (of {e['full_builds_below'] + e['full_builds_at_or_above']})" if "full_builds_below" in e else ""))
         for k, v in r.get("stability", {}).items():
             out.append(f"      stability {k}: {v['passes']} pass, {v['fails']} fail -> {v['label']}")
     return out
