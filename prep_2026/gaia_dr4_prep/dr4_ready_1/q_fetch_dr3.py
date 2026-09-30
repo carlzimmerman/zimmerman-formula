@@ -77,6 +77,9 @@ def main():
     ap.add_argument("--q3-pilot", action="store_true")
     ap.add_argument("--owner-go-recorded", action="store_true", help="required: the owner's go for exactly these three")
     ap.add_argument("--n-pilot-pairs", type=int, default=500)
+    ap.add_argument("--q1-batches", type=int, default=1,
+                    help="split the Q1 pilot's pairs into this many separate jobs (same pairs, same query form; owner's go 2026-09-29 "
+                         "after the single 1,000-cone job timed out at the archive after ~1h45m)")
     args = ap.parse_args()
     if not args.owner_go_recorded:
         raise SystemExit("refused: pass --owner-go-recorded (the owner's go for Q2 + the two pilots, given in the calculation chat)")
@@ -119,11 +122,32 @@ def main():
         q = W1.adql_cones("gaiadr3.gaia_source", upload="pairs")
         p = OUT / "q1_pilot_neighbours.fits"
         t0 = time.time()
-        run(q, p, upload=up, upload_name="pairs")
+        if args.q1_batches <= 1:
+            run(q, p, upload=up, upload_name="pairs")
+            batches = None
+        else:
+            from astropy.table import vstack
+            parts, batches = [], []
+            for kb, sub in enumerate(np.array_split(np.arange(len(pick)), args.q1_batches)):
+                ub = Table({k: v[np.repeat(sub, 2) * 2 + np.tile([0, 1], len(sub))] for k, v in upt.items()})
+                upb = OUT / f"q1_pilot_upload_b{kb}.xml"
+                ub.write(upb, format="votable", overwrite=True)
+                pb = OUT / f"q1_pilot_neighbours_b{kb}.fits"
+                tb = time.time()
+                run(q, pb, upload=upb, upload_name="pairs")
+                parts.append(Table.read(pb, format="fits"))
+                batches.append(dict(batch=kb, n_pairs=int(len(sub)), rows=nrows(pb), sha256=sha256(pb), bytes=pb.stat().st_size,
+                                    seconds=round(time.time() - tb, 1), file=str(pb.relative_to(REPO))))
+                print(f"  Q1 batch {kb}: {batches[-1]['rows']:,d} rows in {batches[-1]['seconds']:.0f} s", flush=True)
+            vstack(parts).write(p, format="fits", overwrite=True)
         man["queries"]["Q1_pilot"] = dict(query=q, n_pairs=int(len(pick)), n_upload_rows=int(len(upt["pair_id"])), rows=nrows(p),
                                           sha256=sha256(p), bytes=p.stat().st_size, seconds=round(time.time() - t0, 1),
                                           seed=20261202, file=str(p.relative_to(REPO)),
-                                          radius_arcsec_range=[float(upt["radius_deg"].min() * 3600), float(upt["radius_deg"].max() * 3600)])
+                                          radius_arcsec_range=[float(upt["radius_deg"].min() * 3600), float(upt["radius_deg"].max() * 3600)],
+                                          batches=batches,
+                                          history="2026-09-29: the single 1,000-cone job timed out after ~1h45m (TimeoutError); its "
+                                                  "automatic retry was stopped and, on the owner's go, the same 500 pairs were resubmitted "
+                                                  "as separate batch jobs")
         print(f"Q1 pilot: {man['queries']['Q1_pilot']['rows']:,d} rows ({p.stat().st_size / 1e6:.1f} MB)", flush=True)
 
     if args.q3_pilot:
