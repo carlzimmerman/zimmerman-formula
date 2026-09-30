@@ -24,7 +24,11 @@ finally:
 MODE = (_mut or "").strip()
 assert MODE in ("", "0", "1")
 MUT = MODE == "1"
-R = C.Report("cfg218_ladder", MUT)
+CORR = os.environ.get("RC100_INPUT", "").strip() == "corrected"      # input-correction switch (data chat's provenance check 03922e8c7)
+RC100_PATH = (os.path.join(REPO, "data_assembly", "rc100_provenance", "rc100_table3_six_fields_paper_values.csv") if CORR
+              else os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"))
+SFX = "_corrected" if CORR else ""
+R = C.Report("cfg218_ladder" + SFX, MUT)
 P, check = R.P, R.check
 P(__doc__.split("Run:")[0].strip())
 
@@ -56,17 +60,24 @@ if _e is not None:
     os.environ["MUTATE"] = _e
 SAMPLES = {"MUSE-DARK": ns["muse_ind"], "RC41": ns["rc41"], "NOEMA3D": ns["noe_ind"], "CRISTAL": ns["cri_ind"]}
 rc = []
-for r in csv.DictReader(open(os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"), newline="")):
+for r in csv.DictReader(open(RC100_PATH, newline="")):
     z, Re, Vc, fd = (float(r[k]) for k in ("z", "Re_kpc", "Vc_Re_kms", "fDM_within_Re"))
     if 0 < fd < 1:
         g = Vc ** 2 / Re * G2SI
-        rc.append(dict(z=z, gbar=(1 - fd) * g, D=1 / (1 - fd)))
+        rc.append(dict(z=z, gbar=(1 - fd) * g, D=1 / (1 - fd), name=r["name"], lm=float(r["logMbar_Msun"])))
 SAMPLES["RC100"] = rc
 J215 = json.load(open(os.path.join(CFG, "CFG215_decomposition_timeline", "cfg215_timeline_results.json")))["numbers"]
-J216 = json.load(open(os.path.join(CFG, "CFG216_rc100_within_sample", "cfg216_rc100_results.json")))["numbers"]
-J217 = json.load(open(os.path.join(CFG, "CFG217_rc100_attack", "cfg217_attack_results.json")))["numbers"]
+J216 = json.load(open(os.path.join(CFG, "CFG216_rc100_within_sample", "cfg216_rc100" + SFX + "_results.json")))["numbers"]
+J217 = json.load(open(os.path.join(CFG, "CFG217_rc100_attack", "cfg217_attack" + SFX + "_results.json")))["numbers"]
 BIAS = dict(J215["mock"]["bias"])
-BIAS["RC100"] = -float(J217["G2"].get("median_delta_prior", -0.100)) if "median_delta_prior" in J217["G2"] else 0.100     # CFG217 G2: median Delta_prior -0.100 dex
+if CORR:
+    # corrected mode: b_RC100 = -(median Delta_prior) over the RC41 overlap, computed here from the corrected table (CFG217's G2 JSON does not store it)
+    rc41t = {r["id"].replace("_", " "): r for r in csv.DictReader(open(os.path.join(REPO, "data_assembly", "price2021_rc41", "price2021_rc41.csv")))}
+    dpr = [r["lm"] - math.log10(10 ** float(rc41t[r["name"]]["logMstar_SED"]) + 10 ** float(rc41t[r["name"]]["logMgas"])) for r in rc if r["name"] in rc41t]
+    BIAS["RC100"] = -float(np.median(dpr))
+    P(f"  (corrected mode: b_RC100 = {BIAS['RC100']:+.3f} dex from the {len(dpr)} RC41 overlaps)")
+else:
+    BIAS["RC100"] = -float(J217["G2"].get("median_delta_prior", -0.100)) if "median_delta_prior" in J217["G2"] else 0.100     # CFG217 G2: median Delta_prior -0.100 dex (committed run)
 CTX = {"MUSE-DARK": "no SED prior in the DC14 fit; independent route = SED + main-sequence H2", "RC41": "0.2-dex prior on SED + gas", "NOEMA3D": "measured CO gas",
        "CRISTAL": "1-dex prior on the fit; independent route = SED + dust gas", "RC100": "0.2-dex prior on SED + gas (b_s from the RC41 overlap)"}
 STAT = {}
@@ -177,8 +188,8 @@ if not MUT:
     ax.grid(alpha=0.25, axis="y")
     fig.text(0.01, 0.008, "A forecast from quantities already in the record; no data are scored against a law here. κ = ½ fitted.", fontsize=8, color="0.3")
     plt.tight_layout(rect=(0, 0.03, 1, 1))
-    plt.savefig(os.path.join(LANE, "cfg218_ladder.png"), dpi=150)
-    P("  wrote cfg218_ladder.png")
+    plt.savefig(os.path.join(LANE, "cfg218_ladder" + SFX + ".png"), dpi=150)
+    P("  wrote cfg218_ladder" + SFX + ".png")
 if MUT:
     R.banner("MUTATE RESPONSE")
     smax = max(v["S"] for v in LAD.values())

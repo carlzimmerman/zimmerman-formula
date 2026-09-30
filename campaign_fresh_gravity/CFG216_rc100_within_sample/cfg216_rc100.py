@@ -25,7 +25,12 @@ finally:
 MODE = (_mut or "").strip()
 assert MODE in ("", "0", "1")
 MUT = MODE == "1"
-R = C.Report("cfg216_rc100", MUT)
+# INPUT-CORRECTION switch (2026-09-29, after the data chat's provenance check 03922e8c7): RC100_INPUT=corrected reads the corrected six-field copy instead of the
+# repo CSV and writes cfg216_rc100_corrected* outputs; the default is unchanged and the original outputs are kept.
+CORR = os.environ.get("RC100_INPUT", "").strip() == "corrected"
+RC100_PATH = (os.path.join(REPO, "data_assembly", "rc100_provenance", "rc100_table3_six_fields_paper_values.csv") if CORR
+              else os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"))
+R = C.Report("cfg216_rc100" + ("_corrected" if CORR else ""), MUT)
 P, check = R.P, R.check
 P(__doc__.split("Run:")[0].strip())
 
@@ -71,7 +76,7 @@ def verdict(lo, hi):
 
 
 # ------------------------------------------------------------------------------------------------ data
-raw = list(csv.DictReader(open(os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"), newline="")))
+raw = list(csv.DictReader(open(RC100_PATH, newline="")))
 rows = []
 excl = {"non-finite": 0, "fDM outside (0, 1)": 0}
 for r in raw:

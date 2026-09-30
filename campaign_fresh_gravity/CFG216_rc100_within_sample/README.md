@@ -63,3 +63,18 @@
   - The alt footing gives the same p (−0.72 [−1.47, +0.16]).
   - The wide interval reflects D's weak dependence on a₀ at these accelerations: δ = +0.03 corresponds to about ×1.4 in a₀.
 - **Caveat from CFG217.** A differential baryon-mass systematic of about 0.15 to 0.25 dex between z ≈ 0.6 and 2.5 moves p by about 1 to 1.5. So the index inherits the gas-route limit and should be quoted with it.
+
+## Input correction (appended 2026-09-29; the text above is unchanged)
+
+- **Why.** The data chat's provenance check (03922e8c7) found that the RC100 CSV differs from the paper's Table 3 in 16 rows and 17 cells. Seven rows carry log M_bulge in place of log M_baryon, rows 24 and 90 have small log M_baryon typos, V_c is wrong in rows 43 and 44, f_DM in row 36, and five names are wrong. z, R_e and σ₀ match in all 100 rows.
+- **What was run.** `RC100_INPUT=corrected python3 cfg216_rc100.py` reads the corrected six-field copy. Outputs are `cfg216_rc100_corrected*`, and the default run still reproduces the committed outputs.
+- **Result.** The outcome is W-flat in both runs, and the slopes move by less than 0.003.
+  - δ_flat: −0.029 [−0.071, +0.002] → −0.030 [−0.073, +0.002].
+  - δ_rival: −0.092 [−0.128, −0.055] → −0.091 [−0.129, −0.055].
+  - The distance of the observed slopes from the rival's expectations: **5.5σ → 5.3σ** (δ_flat) and **4.9σ → 4.8σ** (δ_rival).
+- **Biggest mover: variant (d)**, the only variant using the M_bar column.
+  - The flat median goes from +0.049 [+0.010, +0.074] (DISFAVOURED-over) to +0.026 [−0.008, +0.060] (CONSISTENT).
+  - The flat slope goes from −0.040 [−0.099, +0.019] to −0.056 [−0.113, −0.006], which now excludes 0 on the negative side.
+- **Other moves:** the RC41 overlap is 41 galaxies (was 38), and the low-z half's flat median is +0.061 (was +0.041).
+- **Post hoc index:** p = −0.71 [−1.52, +0.15]; the rival is 4.7σ away and flat 1.7σ.
+- The full comparison is in `INPUT_CORRECTION_2026-09-29.md`, made by `rc100_input_correction_compare.py`.

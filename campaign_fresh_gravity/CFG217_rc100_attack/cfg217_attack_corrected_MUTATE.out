@@ -1,0 +1,88 @@
+CFG217 -- the attack on CFG216: does RC100's "the rival's z-dependence is not in the data" survive gas-prior, pressure and selection
+systematics?  Frozen criteria: FROZEN_CRITERIA.md here (0c2aa7da9 + addendum 04a8a927f), committed before any number.
+kappa = 1/2 FITTED, NOT DERIVED.  The aim is to break CFG216's result.  Author decompositions, not a direct a0 measurement.
+  MUTATE=1: D_obs x 10^(0.2 (z - z_med)) in the baseline
+  RC100: 100 galaxies; z 0.61-2.52 (median 1.53)
+  RC41 galaxies found in RC100 by name: 41
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 a synthetic galaxy placed exactly on each law returns delta = 0
+         max 0.0e+00
+  (C2 not applicable under MUTATE)
+
+======================================================================================================================
+G1 -- the gas prior and its z-dependence
+======================================================================================================================
+  C-recon: reconstructed log M* - SED log M* for the 41 RC41 overlaps: median -0.016, median |diff| 0.223 dex, range [-0.56, +0.55]
+  [FAIL] (reported) C-recon (reported) the reconstruction of M* from M_bar under the Tacconi+18 scaling: median |Delta log M*| <= 0.15 dex
+         0.223 dex -> REJECTED: G1 runs on the RC41 overlap only, with actual M* and M_gas
+  G1 sample: the RC41 overlap only (n = 41), with the actual M* and M_gas
+  V0 baseline                        flat: slope +0.209 [+0.145, +0.268] (z: flat-true +6.6, rival-true +5.3); rival: slope +0.149 [+0.082, +0.215] (z: flat-true +5.4, rival-true +4.4)
+  V1 gas fraction fixed with z (mu_T18 at z = 1.5) flat: slope +0.296 [+0.209, +0.394] (z: flat-true +6.4, rival-true +5.5); rival: slope +0.236 [+0.157, +0.335] (z: flat-true +6.2, rival-true +5.4)
+  V2 0.5 mu                          flat: slope +0.237 [+0.165, +0.310] (z: flat-true +6.5, rival-true +5.3); rival: slope +0.169 [+0.092, +0.248] (z: flat-true +5.3, rival-true +4.5)
+  V3 2 mu                            flat: slope +0.176 [+0.119, +0.227] (z: flat-true +6.0, rival-true +4.5); rival: slope +0.129 [+0.068, +0.186] (z: flat-true +5.3, rival-true +4.2)
+  V4 0.18 mu (alpha_CO 0.8)          flat: slope +0.268 [+0.190, +0.355] (z: flat-true +6.5, rival-true +5.5); rival: slope +0.206 [+0.119, +0.283] (z: flat-true +5.9, rival-true +5.1)
+  V5 1.49 mu (alpha_CO 6.5)          flat: slope +0.198 [+0.134, +0.246] (z: flat-true +7.0, rival-true +5.5); rival: slope +0.138 [+0.080, +0.203] (z: flat-true +5.5, rival-true +4.5)
+
+  the median baryon-mass factor (1 + mu')/(1 + mu) in the low-z / high-z halves: V0 1.00 / 1.00; V1 1.07 / 0.77; V2 0.80 / 0.71; V3 1.40 / 1.57; V4 0.67 / 0.53; V5 1.19 / 1.28
+  the rival's deficit survives (CI upper < 0 and z >= 3 from 0): V0 NO; V1 NO; V2 NO; V3 NO; V4 NO; V5 NO
+
+======================================================================================================================
+G2 -- is f_DM prior-driven?  (RC41 overlap, actual SED + gas)
+======================================================================================================================
+  Delta_prior = log M_bar,fit - log(M* + M_gas): median -0.097 dex (n = 41); Spearman rho(delta_flat, Delta_prior) = +0.07 (p = 0.682)
+  Theil-Sen slope of delta_flat on Delta_prior +0.053; z-slope of delta_flat after removing it: +0.212 [+0.155, +0.271] (n = 41)
+  -> prior-driven (|rho| >= 0.3 and p < 0.05): no
+
+======================================================================================================================
+G3 -- the pressure term (V_c'^2 = V_c^2 - (3.36 - alpha) sigma0^2; g_bar fixed)
+======================================================================================================================
+  (G3 not run under MUTATE)
+
+======================================================================================================================
+G4 -- the negative flat slope in the non-RC41 galaxies (n = 59)
+======================================================================================================================
+  (reconstruction rejected: the non-RC41 galaxies have no actual M* and gas, so G4's gas variants cannot be formed)
+  -> gas-scaling-sensitive (the CI contains 0 under V1): n/a
+
+======================================================================================================================
+G5 -- can a z-dependent gas mis-scaling ALONE produce the pattern?  g_bar,analysis = g_bar,true x 10^(beta log10((1 + z)/2.5))
+======================================================================================================================
+  [PASS] C4 machinery: the flat-truth mock at beta = 0 gives slopes (0, expected) equal to the baseline expectations to 1e-9
+         +5.48e-17, -0.038968 vs -0.038968
+  M1 (flat truth): the mis-scaling that reproduces the observed delta_flat slope +0.170: beta = -1.247 -> differential dlog M_bar (z 0.6 -> 2.5) = -0.424 dex; the rival's slope there +0.121 (observed +0.109)
+  M2 (rival truth): best beta = -0.913 (dlog M_bar = -0.310 dex) with chi2 = 0.01 (slopes +0.171, +0.107 vs observed +0.170, +0.109); within the plausible range |dlog M_bar| <= 0.2 dex (|beta| <= 0.59): best chi2 = 9.16 at beta = -0.58; at beta = 0: chi2 = 69.9
+  -> M2 produces the pattern at a plausible mis-scaling (chi2 < 2 with |dlog M_bar| <= 0.2 dex): no; the stress variant V1 (gas fraction fixed with z) corresponds to about -0.18 dex of differential M_bar
+
+======================================================================================================================
+G7 -- regress delta on log g_bar first (Theil-Sen), then the z-slope of the residuals
+======================================================================================================================
+  flat : slope on log g_bar +0.022 [-0.073, +0.101]; residual z-slope +0.168 [+0.122, +0.202] (expected if flat true +0.000, if rival true +0.066; z: +8.2 / +5.0)
+  rival: slope on log g_bar +0.060 [-0.017, +0.149]; residual z-slope +0.104 [+0.060, +0.139] (expected if flat true -0.053, if rival true +0.000; z: +8.0 / +5.3)
+  -> the rival's residual z-slope stays negative (CI upper < 0): NO
+
+======================================================================================================================
+DECISION ROWS (frozen, with addendum 1)
+======================================================================================================================
+  D2 gas prior: survives V2-V5 (the plausible variants): False; survives V1 (the stress variant): False
+  D2 pressure: survives alpha = 1.68 and 0: True
+  G4: gas-scaling-sensitive negative flat slope: None
+  D3 (headline): CFG216's outcome is ATTACK-BROKEN
+
+  NOTE (written after the numbers above were seen): the literal D3 is driven by G1 on the 38-galaxy RC41 overlap, where even V0 (the baseline)
+  fails the survival rule (the deficit is not significant in that subsample: CFG216's own sensitivity (a) has the same weakness). So G1's frozen version
+  cannot discriminate, and the literal ATTACK-BROKEN is a power artefact, not evidence against the deficit. The informative rows are G3, G5 and G7 and the post hoc block below.
+
+======================================================================================================================
+POST HOC (written after the frozen numbers were seen; reported only)
+======================================================================================================================
+
+======================================================================================================================
+MUTATE RESPONSE
+======================================================================================================================
+  [PASS] MUTATE: the injected 0.2 (z - z_med) slope moves the baseline delta_flat slope by +0.2 (>= +0.19) and every G1 variant's slope by within 0.05 of +0.2
+         baseline shift +0.2000; G1 variant shifts +0.200, +0.200, +0.200, +0.200, +0.200, +0.200
+
+  3/4 checks pass; load-bearing failures: 0   (7 s)

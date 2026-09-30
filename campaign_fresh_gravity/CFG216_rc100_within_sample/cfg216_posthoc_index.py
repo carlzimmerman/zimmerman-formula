@@ -26,7 +26,10 @@ def P(s=""):
     print(s); out.append(s)
 
 
-raw = list(csv.DictReader(open(os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"), newline="")))
+CORR = os.environ.get("RC100_INPUT", "").strip() == "corrected"      # input-correction switch, as in cfg216_rc100.py
+RC100_PATH = (os.path.join(REPO, "data_assembly", "rc100_provenance", "rc100_table3_six_fields_paper_values.csv") if CORR
+              else os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"))
+raw = list(csv.DictReader(open(RC100_PATH, newline="")))
 z, D, gb = [], [], []
 for r in raw:
     zz, Re, Vc, fd = (float(r[k]) for k in ("z", "Re_kpc", "Vc_Re_kms", "fDM_within_Re"))
@@ -71,4 +74,4 @@ for foot, a0 in (("canonical", K.A0["canonical"]), ("alt", K.A0["alt"])):
     ps = np.std(bs[:, 1])
     P(f"  {foot:9s}: p = {p:+.2f} [{plo:+.2f}, {phi:+.2f}] (sigma {ps:.2f}; {len(bs)} of {NB} resamples solved);  c = {c:+.3f} [{clo:+.3f}, {chi:+.3f}] dex "
       f"(a0(z=0) x {10 ** c:.2f});  flat (p = 0) is {abs(p) / ps:.1f} sigma away, the rival (p = {rival_p:.2f}) {abs(p - rival_p) / ps:.1f} sigma away")
-open(os.path.join(LANE, "cfg216_posthoc_index.out"), "w").write("\n".join(out) + "\n")
+open(os.path.join(LANE, "cfg216_posthoc_index" + ("_corrected" if CORR else "") + ".out"), "w").write("\n".join(out) + "\n")

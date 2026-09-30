@@ -24,7 +24,11 @@ finally:
 MODE = (_mut or "").strip()
 assert MODE in ("", "0", "1")
 MUT = MODE == "1"
-R = C.Report("cfg217_attack", MUT)
+CORR = os.environ.get("RC100_INPUT", "").strip() == "corrected"      # input-correction switch (data chat's provenance check 03922e8c7)
+RC100_PATH = (os.path.join(REPO, "data_assembly", "rc100_provenance", "rc100_table3_six_fields_paper_values.csv") if CORR
+              else os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"))
+SFX = "_corrected" if CORR else ""
+R = C.Report("cfg217_attack" + SFX, MUT)
 P, check = R.P, R.check
 P(__doc__.split("Run:")[0].strip())
 
@@ -61,7 +65,7 @@ def fnum(x):
 
 
 # ------------------------------------------------------------------------------------------------ data (CFG216's sample)
-raw = list(csv.DictReader(open(os.path.join(REPO, "real_research", "data", "rc100_nestorshachar2023_table3.csv"), newline="")))
+raw = list(csv.DictReader(open(RC100_PATH, newline="")))
 rows = []
 for r in raw:
     z, Re, Vc, fd, lm, s0 = (fnum(r[k]) for k in ("z", "Re_kpc", "Vc_Re_kms", "fDM_within_Re", "logMbar_Msun", "sigma0_kms"))
@@ -164,7 +168,7 @@ R.banner("CONTROLS")
 c1 = max(abs(math.log10(nu1(3.0 * A0 / fac) / nu1(3.0 * A0 / fac))) for fac in (1.0, E(1.5), E(2.5)))
 check("C1 a synthetic galaxy placed exactly on each law returns delta = 0", f"max {c1:.1e}", c1 < 1e-12)
 BASE = analyse("baseline (CFG216)", z, gobs0, gbar0, verbose=False)
-J216 = json.load(open(os.path.join(CFG, "CFG216_rc100_within_sample", "cfg216_rc100_results.json")))["numbers"]["results"]
+J216 = json.load(open(os.path.join(CFG, "CFG216_rc100_within_sample", "cfg216_rc100" + SFX + "_results.json")))["numbers"]["results"]
 if not MUT:
     dmax = 0.0
     for law in ("flat", "rival"):

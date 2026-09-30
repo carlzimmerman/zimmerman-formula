@@ -34,3 +34,9 @@ All values are in dex of log D or δ (ν_mono, canonical). The signal is the med
 - **C1:** the signal is 0 at z = 0. **C2:** Y(0) = 0 and Y is monotone in |e|. **C3:** CRISTAL's signal median (12 fit-route rows) reproduces the separation implied by CFG213's printed D_flat and D_rival to their rounding (0.2355 vs 0.2355).
 - **Post hoc, reported only:** the sample sizes needed for the statistical band alone (CRISTAL 13, NOEMA3D 210, MUSE-DARK 371; RC41 and RC100 already suffice), and the figure.
 - **Fixes, kept:** the first MUTATE run crashed on a solver bracket when the signal is 0, and then on a division by zero in the post hoc block. Both cases are now handled (`None`). No output was written by the crashed runs.
+
+## Input correction (appended 2026-09-29; the text above is unchanged)
+
+- Only the RC100 row uses the corrected table. `RC100_INPUT=corrected python3 cfg218_ladder.py` writes `cfg218_ladder_corrected*`.
+- **RC100:** the statistical band goes from 0.028 to 0.032 dex, b_s (computed here from the 41 corrected overlaps) from +0.100 to +0.097, and S_sys from 0.080 to 0.078. The signal (0.094) and the calibration needed (±0.040 dex) do not move, and the classification stays "marginal".
+- The other four samples are unchanged by construction.

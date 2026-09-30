@@ -58,3 +58,14 @@
   - The rival's slope is zero at −0.25 dex, where the flat slope (+0.070) equals the rival-true expectation (+0.073).
   - The two hypotheses' calibrations are therefore about 0.18 dex apart. A 3σ separation needs the differential baryon-mass calibration known to about ±0.06 dex, on top of the statistical band (about ±0.04 in slope, i.e. ±0.06 dex).
 - Bands are 95%, from 500 galaxy resamples per point. The variants' ticks use the median baryon-mass factors of the post hoc block.
+
+## Input correction (appended 2026-09-29; the text above is unchanged)
+
+- The RC100 CSV was corrected against the paper's Table 3 (data chat, 03922e8c7; details in `../CFG216_rc100_within_sample/INPUT_CORRECTION_2026-09-29.md`). `RC100_INPUT=corrected python3 cfg217_attack.py` writes `cfg217_attack_corrected*` and `cfg217_calibration_sensitivity_corrected.png`.
+- **The headline is unchanged: the literal D3 is still ATTACK-BROKEN, the same power artefact.** The C-recon is still rejected (0.229 → 0.223 dex against 0.15), so G1 still runs on the RC41 overlap only (now 41 galaxies, was 38), where even the baseline fails.
+- **What moves:**
+  - **G2 flips from "no" to "yes" by the frozen line:** Spearman ρ(δ_flat, Δ_prior) goes from +0.28 (p = 0.093) to **+0.33 (p = 0.036)**. The z-slope of δ_flat after removing that dependence stays near zero: +0.014 [−0.027, +0.069].
+  - **The mock:** the best χ² within the plausible 0.2 dex is 3.02 (was 3.14), still above the frozen 2. M2's best differential is +0.259 dex in both.
+  - **The pressure variants, G7 and the data-side calibration** (rival slope exactly 0 at −0.250 dex, flat slope exactly 0 at −0.076 dex) move by 0.003 dex or less.
+  - **Post hoc V2:** the rival's deficit reaches 3.1σ (was 2.99σ), so V2 flips from NO to YES, borderline either way. V1 and V4 still reverse the result.
+- **Reading.** The gas-route limit stands. The prior-driven flag now also fires on the RC41 overlap, so RC100's δ partly reflects how far each fitted M_bar sits above its prior centre.

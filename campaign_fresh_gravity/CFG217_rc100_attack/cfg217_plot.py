@@ -82,6 +82,6 @@ fig.text(0.01, 0.008, "Reading: at the adopted gas scaling (dashed line at 0) th
          "brings both slopes to the rival-true expectations; raising them (right) drives BOTH laws negative. The dependence on gas fraction / α_CO is the crux.\n"
          "Author decompositions, not a direct a₀ measurement. κ = ½ fitted.", fontsize=8, color="0.3")
 plt.tight_layout(rect=(0, 0.08, 1, 1))
-outp = os.path.join(LANE, "cfg217_calibration_sensitivity.png")
+outp = os.path.join(LANE, "cfg217_calibration_sensitivity" + ("_corrected" if os.environ.get("RC100_INPUT", "").strip() == "corrected" else "") + ".png")
 plt.savefig(outp, dpi=150)
 print("wrote", os.path.basename(outp))
