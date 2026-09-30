@@ -1,0 +1,55 @@
+CFG217 POST HOC (a referee question relayed by the orchestrator, 2026-09-29; written after the frozen numbers were seen; reported only, never a verdict).
+Question: is V1's differential factor (the '1.20 / 0.85' of the README) larger than the 'about 0.15 to 0.25 dex between z ~ 0.6 and z ~ 2.5' it is labelled with, and is
+the '3.6 sigma' a per-sample CI or a tension against the flat expectation?
+What this computes, from the lane's own data and functions (cfg217_attack.py exec'd read-only up to its POST HOC block; MUTATE=1 passes through to the lane's own injection and is checked), on all N galaxies with the
+reconstructed M* (the post hoc block's sample):
+  (1) for each gas variant Vk the per-galaxy factor (1 + mu')/(1 + mu): the half-median differential the README quoted (median in z <= z_med vs z > z_med), the
+      z < 1 vs z > 2 differential (the G5 line), and the ENDPOINT-EQUIVALENT tilt on the chart's own axis: beta from the regression of log10(factor) on
+      x = log10((1 + z)/2.5), tilt = beta x log10(3.5/1.6) (the change between z = 0.6 and z = 2.5);
+  (2) the pure log-linear tilt that reproduces the variant's flat slope (the 'effective tilt', on the same axis as the chart), and the variant's own z-scores;
+  (3) for a PURE tilt t on that axis: the flat slope, its bootstrap sd (2,000 galaxy resamples, seed 217) and the z-score |slope - 0| / sd against the flat expectation
+      (0), for t = -0.10 ... -0.40 dex, and the tilt at which the z-score reaches 2, 3 and 3.6.
+Definition of the README's '3.6 sigma' (analyse() in cfg217_attack.py): z_vs_flat_true = (observed flat slope - 0) / sd of the slope over 10,000 galaxy resamples of the
+SAME sample, i.e. a TENSION AGAINST THE FLAT EXPECTATION using the observed-sample bootstrap sd; it is not a per-sample CI test (the CI excluding 0 is a separate, equivalent
+statement).  It does not include mock-to-mock variation beyond the observed sample's own scatter.
+
+  input: the committed RC100 CSV; N = 100; z 0.61-2.52; median z 1.53; DLOG = log10(3.5/1.6) = 0.340
+
+(3) a PURE log-linear tilt t (dex change of the analysis baryon mass, z = 0.6 -> 2.5; negative = lighter at high z, the direction that helps the rival):
+     t (dex)   flat slope   sd(flat)   z_flat = |slope|/sd    rival slope   sd(rival)   z(rival vs 0)
+     -0.400     +0.3305     0.0204     16.16                +0.2551     0.0199     12.81
+     -0.375     +0.3206     0.0203     15.78                +0.2458     0.0198     12.39
+     -0.350     +0.3105     0.0202     15.37                +0.2370     0.0198     11.98
+     -0.325     +0.3005     0.0200     15.01                +0.2271     0.0197     11.53
+     -0.300     +0.2902     0.0198     14.67                +0.2178     0.0196     11.09
+     -0.275     +0.2801     0.0195     14.33                +0.2089     0.0195     10.69
+     -0.250     +0.2699     0.0193     13.96                +0.1996     0.0195     10.24
+     -0.225     +0.2601     0.0193     13.47                +0.1910     0.0194      9.83
+     -0.200     +0.2503     0.0192     13.03                +0.1814     0.0194      9.34
+     -0.175     +0.2399     0.0190     12.61                +0.1721     0.0194      8.89
+     -0.150     +0.2300     0.0190     12.10                +0.1631     0.0193      8.46
+     -0.125     +0.2205     0.0189     11.64                +0.1544     0.0191      8.07
+     -0.100     +0.2107     0.0188     11.20                +0.1453     0.0191      7.62
+     -0.075     +0.2009     0.0187     10.75                +0.1361     0.0190      7.14
+     -0.050     +0.1910     0.0185     10.31                +0.1262     0.0191      6.62
+     -0.025     +0.1809     0.0185      9.77                +0.1172     0.0190      6.16
+     +0.000     +0.1707     0.0185      9.21                +0.1084     0.0189      5.72
+     the flat law's tension against its own expectation (0) reaches: 
+
+CONTROLS
+  PASS  CONTROL A1 a synthetic variant with a known endpoint tilt of -0.200 dex is recovered by the regression: -0.200000
+  PASS  CONTROL A2 the pure-tilt table reproduces that variant's flat slope at t = -0.200 (interpolation tolerance 0.005): -0.2000
+  PASS  MUTATE the lane's injected 0.2 (z - z_med) slope moves the zero-tilt flat slope by >= +0.19 (measured against CFG216's unmutated value): +0.2000
+
+(1) and (2) the gas variants (all N galaxies, reconstructed M*):
+     variant                              half-median    z<1 vs z>2    endpoint-equivalent   flat slope [sd]    z_flat   rival slope [sd]   z(rival vs 0)   pure-tilt t
+                                          differential   differential  tilt (z 0.6->2.5)                                                                     that reproduces the flat slope
+     V0 baseline                            +0.000        +0.000       +0.000                 +0.171 [0.019]    9.21     +0.108 [0.019]       5.72          +0.000
+     V1 gas fraction fixed with z (mu_T18   -0.148        -0.183       -0.251                 +0.266 [0.019]   14.15     +0.197 [0.019]      10.38          -0.241
+     V2 0.5 mu                              -0.064        -0.077       -0.103                 +0.212 [0.019]   10.99     +0.144 [0.019]       7.45          -0.103
+     V3 2 mu                                +0.069        +0.084       +0.111                 +0.118 [0.019]    6.07     +0.068 [0.019]       3.64          +nan
+     V4 0.18 mu (alpha_CO 0.8)              -0.129        -0.153       -0.211                 +0.254 [0.022]   11.61     +0.181 [0.020]       8.96          -0.210
+     V5 1.49 mu (alpha_CO 6.5)              +0.040        +0.049       +0.064                 +0.139 [0.019]    7.47     +0.087 [0.019]       4.69          +nan
+
+  V1 in numbers: the README's factor 1.20/0.85 is the ratio of the median factors of the two z halves (median z of the halves 0.99 and 2.19): -0.148 dex between those medians, -0.183 dex between the z < 1 and z > 2 medians; on the chart's axis (a log-linear tilt in log10 (1 + z), the change between z = 0.6 and z = 2.5) its regression tilt is -0.251 dex and the pure tilt that reproduces its flat slope is -0.241 dex.
+  ratio (regression endpoint tilt) / (half-median differential) = 1.70; the same ratio for a pure log-linear tilt is 1.66 (the z baselines' ratio: 0.340 / 0.205).

@@ -1,5 +1,7 @@
 # CFG217 — the attack on CFG216: gas prior, pressure, prior-driven f_DM and a mis-scaling mock
 
+> **Read the last section first (added 2026-09-29):** the 'about 0.15 to 0.25 dex between z ≈ 0.6 and z ≈ 2.5' below mixes two z baselines. On the chart's own axis V1 sits at −0.25 dex and V4 at −0.21 dex, not −0.15 and −0.13; the chart ticks are fixed.
+
 - **Criteria:** `FROZEN_CRITERIA.md` (0c2aa7da9 + addendum 04a8a927f), committed before any number. **κ = ½ FITTED, NOT DERIVED.** The aim was to break CFG216's "the rival's z-dependence is not in the data".
 - **Run:** `python3 campaign_fresh_gravity/CFG217_rc100_attack/cfg217_attack.py`, about 20 s. C1, C2 (the baseline reproduces CFG216 to 1e-16) and C4 pass. `C-recon` is a reported check and failed (0.229 dex). `MUTATE=1` passes: every slope moves by exactly +0.200.
 
@@ -69,3 +71,24 @@
   - **The pressure variants, G7 and the data-side calibration** (rival slope exactly 0 at −0.250 dex, flat slope exactly 0 at −0.076 dex) move by 0.003 dex or less.
   - **Post hoc V2:** the rival's deficit reaches 3.1σ (was 2.99σ), so V2 flips from NO to YES, borderline either way. V1 and V4 still reverse the result.
 - **Reading.** The gas-route limit stands. The prior-driven flag now also fires on the RC41 overlap, so RC100's δ partly reflects how far each fitted M_bar sits above its prior centre.
+
+## Correction: V1's differential and the 3.6σ (appended 2026-09-29, after a referee question relayed by the orchestrator; the text above is unchanged except for the pointer under the title)
+
+- **The label was on two baselines.** V1's "1.20 / 0.85" is the ratio of the median baryon-mass factors of the two z halves (median z 0.99 and 2.19, a baseline of about 1.2 in z): **−0.148 dex**, or −0.183 dex between the z < 1 and z > 2 medians. The chart's axis is the change between z = 0.6 and z = 2.5 of a tilt that is log-linear in log10 (1 + z) (baseline 1.9 in z; log10 (3.5/1.6) = 0.340). Regressing each variant's per-galaxy factor on that axis (`cfg217_label_check.py`, all 100 galaxies, reconstructed M★) gives the endpoint-equivalent positions:
+
+| variant | half-median differential (what the README quoted) | endpoint-equivalent tilt (the chart's axis) | flat slope [sd] | flat tension \|slope\|/sd |
+|---|---|---|---|---|
+| V1 gas fraction fixed with z | −0.148 | **−0.251** | +0.066 [0.019] | 3.5 |
+| V2 0.5 μ | −0.064 | −0.103 | +0.012 [0.019] | 0.6 |
+| V3 2 μ | +0.069 | +0.111 | −0.082 [0.019] | 4.3 |
+| V4 0.18 μ (α_CO 0.8) | −0.129 | **−0.211** | +0.054 [0.022] | 2.5 |
+| V5 1.49 μ | +0.040 | +0.064 | −0.061 [0.019] | 3.3 |
+
+  - The ratio is 1.6 to 1.7 for every variant, as expected from the two baselines (0.340 / 0.205 = 1.66 in log10 (1 + z)). The corrected-input copy gives the same picture (`cfg217_label_check_corrected.out`): V1 −0.248 (half-median −0.147), V4 −0.193, V2 −0.095, V3 +0.104, V5 +0.060; V1's flat tension 3.3σ.
+  - **So the README's "about 0.15 to 0.25 dex" put V1's half-median figure at the low end and the data-side −0.25 (endpoint) at the high end.** On one axis, V1 is at −0.25 and V4 at −0.21: both at or beyond the frozen "plausible" ±0.2 dex band. V2 (−0.10) is inside it and is the borderline case (rival's deficit 2.9σ here, 2.99σ in the frozen post hoc block). The "stress test, not a plausible reading" verdict on V1 stands, and V4's position is now consistent with the same verdict.
+  - **The chart's ticks were wrong by the same factor** (drawn at the half-median values on the endpoint axis, so V1 sat at −0.15 where the curves give a flat slope of +0.03, not V1's actual +0.066). `cfg217_plot.py` now computes each variant's tick from the regression; V1 sits where the rival's slope crosses zero. The first-version charts are kept as `cfg217_calibration_sensitivity_firstrun.png` and `..._corrected_firstrun.png`.
+- **What the 3.6σ is.** It is `z_vs_flat_true` in `analyse()`: (the modified sample's flat slope − 0) / the standard deviation of that slope over 10,000 galaxy resamples of the SAME 100 galaxies. It is a tension against the flat expectation (slope 0), not a per-sample CI test (the CI excluding 0, [+0.027, +0.101], is the same statement). It contains only the observed sample's own scatter; it does not include mock-to-mock variation or the uncertainty of the calibration.
+- **On the chart's axis, a pure tilt gives** (2,000 resamples, seed 217; original input): flat slope +0.011 / +0.030 / +0.050 / +0.070 / +0.090 / +0.110 at t = −0.10 / −0.15 / −0.20 / −0.25 / −0.30 / −0.35 dex, sd 0.019–0.020, so the flat tension is **0.6σ / 1.6σ / 2.6σ / 3.6σ / 4.6σ / 5.5σ**, reaching 2σ at −0.170, 3σ at −0.219 and 3.6σ at −0.249 dex (corrected input: 3.6σ at −0.258). The rival's slope is exactly 0 at −0.250 dex. The full table is in `cfg217_label_check.out`.
+  - **This machinery therefore ties 3.6σ to about 0.25 dex, and at 0.15 dex it gives 1.6σ.** The referee's mock (0.5–1.9σ for 0.15 to 0.25 dex; 3.6σ near 0.35 dex) is about 0.1 dex to the right of this table (with the same sd, about 0.03 to 0.04 lower in slope at each tilt). The label does not explain that. Two candidates the referee's code can test directly: (a) the zero-tilt row (here flat slope −0.029 [0.0185], rival −0.092 [0.019]); (b) whether the mock's sd is the observed-sample bootstrap sd used here or a mock-to-mock sd with extra noise.
+- **PHIBSS, from the referee's numbers (not recomputed here).** A baryon tilt of −0.19 ± 0.14 dex sits 0.8σ of its own error from the flat law's zero-slope tilt (−0.076) and 0.4σ from the rival's (−0.250), so it cannot separate them; this is the calibration limit the chart shows. The referee's tilt has to be put on this axis (the change between z = 0.6 and z = 2.5, log-linear in log10 (1 + z), of the analysis baryon mass, not of the gas alone) before the comparison is exact.
+- **Disclosure.** `cfg217_label_check.py` and the corrected chart were written after the frozen numbers were seen; they are reported only and change no frozen verdict. The frozen G5 line's "about −0.18 dex" for V1 (median factor at z > 2 over z < 1) is a third baseline (median z 0.82 and 2.22, 0.249 in log10 (1 + z) against 0.340 for the endpoints) and is also not an endpoint figure.

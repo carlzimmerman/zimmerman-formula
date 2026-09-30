@@ -2,7 +2,10 @@
 """CFG217 figure: how RC100's verdict depends on the differential baryon-mass calibration between z ~ 0.6 and z ~ 2.5.
 x: the change applied to the analysis baryon mass at z = 2.5 relative to z = 0.6 (dex), g_bar x 10^(beta log10((1 + z)/2.5)), beta = x / log10(3.5/1.6).
 y: the Theil-Sen slope of delta on z, for the flat law and the rival a0 ~ E(z), with 95% bands (500 galaxy resamples per point).
-Dotted lines: the slopes each law would show if it were exactly true.  Ticks: the CFG217 gas variants' median baryon-mass differentials.
+Dotted lines: the slopes each law would show if it were exactly true.  Ticks: the CFG217 gas variants at their ENDPOINT-EQUIVALENT tilt on this axis (regression of each variant's
+per-galaxy baryon-mass factor on log10((1 + z)/2.5) x log10(3.5/1.6)).  CORRECTED 2026-09-29 after a referee question: the first version placed the ticks at the variants'
+half-median differentials (median factor of the z > z_med half over that of the z <= z_med half, a baseline of about 1.2 in z), which understates the variants' position on
+this axis (a baseline of 1.9 in z) by about 1.7; the first-version charts are kept as *_firstrun.png.
 Reads the lane's data and functions through cfg217_attack.py (exec'd read-only up to G1; MUTATE off).
 Run: python3 campaign_fresh_gravity/CFG217_rc100_attack/cfg217_plot.py -> cfg217_calibration_sensitivity.png
 """
@@ -19,7 +22,7 @@ src = open(path).read()
 ns = {"__file__": path, "__name__": "cfg217"}
 _e = os.environ.pop("MUTATE", None)
 with contextlib.redirect_stdout(io.StringIO()):
-    exec(compile(src[:src.index('R.banner("G1 -- the gas prior')], "cfg217", "exec"), ns)
+    exec(compile(src[:src.index('R.banner("G2')], "cfg217", "exec"), ns)               # through the G1 block (VAR, the reconstruction), not beyond
 if _e is not None:
     os.environ["MUTATE"] = _e
 z, gobs0, gbar0, delta_arr, ts, BASE = (ns[k] for k in ("z", "gobs0", "gbar0", "delta_arr", "ts", "BASE"))
@@ -63,13 +66,20 @@ ax.text(0.595, exp["rival"]["flat"] + 0.004, "δ_flat slope if the RIVAL were ex
 ax.axhline(exp["flat"]["rival"], color="#d1541f", ls=":", lw=1.4)
 ax.text(0.595, exp["flat"]["rival"] - 0.012, "δ_rival slope if the FLAT law were exactly true", color="#d1541f", fontsize=8.5, ha="right")
 ax.text(0.595, 0.004, "0 = the law is right", fontsize=8.5, ha="right", color="0.3")
-# gas-variant differentials (median baryon-mass factor in the low-z and high-z halves, from the CFG217 post hoc block)
-VAR = {"V1 gas fraction\nfixed with z": (1.20, 0.85), "V2 0.5μ": (0.84, 0.72), "V3 2μ": (1.33, 1.56), "V4 0.18μ\n(α_CO 0.8)": (0.73, 0.54), "V5 1.49μ": (1.16, 1.27)}
-for k, (lo, hi) in VAR.items():
-    xd = math.log10(hi / lo)
+# gas-variant ticks at their ENDPOINT-EQUIVALENT tilt on this axis (regression of log10 factor on log10((1 + z)/2.5) times DLOG), all N galaxies with the reconstructed M*
+xz = np.log10((1 + z) / 2.5)
+Mfull = 10 ** ns["logMs"]
+ticks = {}
+for name, f in ns["VAR"].items():
+    fac = np.array([(1 + f(zz, m, mu)) / (1 + mu) for zz, m, mu in zip(z, Mfull, ns["mu0"])])
+    ticks[name.split(" ")[0]] = float(np.polyfit(xz, np.log10(fac), 1)[0]) * DLOG
+LAB = {"V1": "V1 gas fraction\nfixed with z", "V2": "V2 0.5μ", "V3": "V3 2μ", "V4": "V4 0.18μ\n(α_CO 0.8)", "V5": "V5 1.49μ"}
+for k, xd in ticks.items():
+    if k == "V0":
+        continue
     ax.axvline(xd, color="0.55", lw=0.8, ls="--")
-    right = k.startswith("V4") or k.startswith("V3")
-    ax.text(xd + (0.004 if right else -0.004), -0.215, k, rotation=90, fontsize=7.8, va="bottom", ha="left" if right else "right", color="0.35")
+    right = k in ("V3", "V4")
+    ax.text(xd + (0.004 if right else -0.004), -0.215, LAB[k], rotation=90, fontsize=7.8, va="bottom", ha="left" if right else "right", color="0.35")
 ax.axvline(0, color="0.2", lw=1.2, ls="--")
 ax.text(0.0, -0.215, "adopted\nTacconi+18", rotation=90, fontsize=7.8, va="bottom", ha="right", color="0.2")
 ax.set_xlim(-0.6, 0.6); ax.set_ylim(-0.22, 0.2)
