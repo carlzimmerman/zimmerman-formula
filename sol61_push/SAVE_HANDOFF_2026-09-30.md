@@ -2,6 +2,19 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Newest structural audit: EXPANSION_BRIDGE_COMPLETENESS_RESULTS.md supplies an
+explicit covariant T/B-field completion of the expansion action. Restoring
+the radius field before variation yields a radial Noether identity: exact
+N,sigma,V,P equations imply the angular equation wherever R' is nonzero.
+The covariant identity then implies the T equation when metric/polarization
+equations hold and grad T is timelike. Six symbolic certificates pass.
+This resolves an independent-equation gap for smooth regular vacuum patches
+of this specified completion, not for different theories or approximate
+numerical profiles. Source conservation, residual-derivative control at the
+critical point, global boundaries, full health and beta/U selection remain
+unproved. Next: smooth critical connection and conserved source matching;
+exact 32π is still unresolved.
+
 Newest critical checkpoint: EXPANSION_BRIDGE_CRITICAL_RESULTS.md proves a
 local C=D=R critical-state family for every beta>0, using the scaled map
 and Jacobian det=8beta(3lambda−1)>0. Seven symbolic identities and six
