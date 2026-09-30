@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EXPANSION_BRIDGE_TRACE_SHOOT",
+  "repository": {
+    "commit": "da55ac3fa9745c12a7192a12dfd0b65d8d801f68",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/expansion_bridge_trace_shoot.py",
+    "--output",
+    "sol61_push/runs/expansion_bridge_trace_shoot/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite event classification and 12-step bisection of initial trace data at fixed beta",
+    "coefficient_domain": "Scipy/numpy double precision",
+    "conventions": "EXPANSION_BRIDGE_OUTER_RESULTS.md",
+    "inputs": [
+      "sol61_push/expansion_bridge_trace_shoot.py",
+      "sol61_push/expansion_bridge_radial_ivp.py"
+    ],
+    "bounds": {
+      "beta": 10,
+      "lambda": 2,
+      "H": 1,
+      "GM_initial_flux": 1e-16,
+      "initial_radius": 1e-06,
+      "outer_radius": 0.01,
+      "D_cutoff": -1e-06,
+      "bisection_steps": 12,
+      "initial_factor_bracket": [
+        0.305,
+        0.31
+      ]
+    },
+    "non_claims": [
+      "No exact compatibility root or smooth crossing",
+      "No global de Sitter or material matching",
+      "No selected 32pi"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T22:59:35.189633+00:00",
+    "runtime_seconds": 3.768049,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/expansion_bridge_trace_shoot.py",
+    "sol61_push/expansion_bridge_radial_ivp.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/expansion_bridge_trace_shoot.py",
+      "sha256": "99c93167bc2b8cba47c36e351d15ad035af08c181f70f16d4c8df87e0b1077e4",
+      "sha256_after": "99c93167bc2b8cba47c36e351d15ad035af08c181f70f16d4c8df87e0b1077e4"
+    },
+    {
+      "path": "sol61_push/expansion_bridge_radial_ivp.py",
+      "sha256": "e36db73c74b54bced39addf2110d88fa6e0f381bc714f8c62a1232a05e4f6c52",
+      "sha256_after": "e36db73c74b54bced39addf2110d88fa6e0f381bc714f8c62a1232a05e4f6c52"
+    }
+  ],
+  "output_directory": "sol61_push/runs/expansion_bridge_trace_shoot",
+  "declared_results": [
+    "sol61_push/runs/expansion_bridge_trace_shoot/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/expansion_bridge_trace_shoot/stdout.txt",
+      "sha256": "97b5a7ef64c406bcc1ccbde2f73e710172b985309a36bd772734016df38aed32",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_trace_shoot/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_trace_shoot/results.json",
+      "sha256": "d99ad751d0c087975bd028522640fea4767310cd3b19f65f393606a78c60d30a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

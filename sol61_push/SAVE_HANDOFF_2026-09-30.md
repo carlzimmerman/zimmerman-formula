@@ -2,6 +2,18 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Newest boundary work: EXPANSION_BRIDGE_OUTER_RESULTS.md derives the outer
+linear modes from the full necessary radial equations (13 exact identities).
+For the specifically normalized flat-spatial de Sitter boundary, Ctheta=0
+and P=Cp/r²; this is a boundary choice, not a universal geometry theorem.
+A fixed-beta=10 trace scan brackets a finite denominator-event transition
+near factor 0.306219, but lower-endpoint cutoffs down to D=−1e−8 retain
+nonzero R≈−2.069e−7 and divergent P'. No smooth crossing or cosmological
+match has been achieved. Next: solve C=D=R=0 and finite critical slopes,
+then connect inner and outer manifolds via desingularization or a BVP.
+The event bisection is not a coupling prediction. Beta, U, conserved source,
+full covariant completeness and health remain unresolved; no exact 32π.
+
 Latest coupled checkpoint: EXPANSION_BRIDGE_RADIAL_RESULTS.md closes the
 necessary radial vacuum system with C'=D P'+R−2C/r and P'=−R/D. Three
 symbolic identities pass. A finite weak annulus matches the reduced force
