@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_32PI_CONSTRAINTS",
+  "repository": {
+    "commit": "cb6a4d24336ea0eff0897948ef2b273f24bcaa02",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/coefficient_constraints.py",
+    "--mutate-product",
+    "--output",
+    "sol61_push/runs/coefficient_mutation/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact P2 primitive, charge-constrained dipole coefficient bound, random-phase diagnostic, magnetic vacuum kinetic degeneracy, and constant linear stream orientation obstruction",
+    "coefficient_domain": "Exact symbolic real algebra with positive branches; deterministic IEEE float64 numerical evaluations",
+    "conventions": "c=1 algebra except explicitly restored units; magnetic X=sum F_a^2/4; PUZZLE_32PI_CONTRACT.md and PUZZLE_32PI_RESULTS.md",
+    "inputs": [
+      "sol61_push/coefficient_constraints.py"
+    ],
+    "bounds": {
+      "q": [
+        0.1,
+        1,
+        10,
+        100
+      ],
+      "relative_phase_windows": [
+        0.02,
+        0.04,
+        0.13
+      ],
+      "magnetic_species": 3,
+      "electric_components": 9,
+      "polynomial_metric_check_degree": 2,
+      "charge_species": 3,
+      "response_order": "linear dipoles; quadratic induction"
+    },
+    "non_claims": [
+      "32pi has not been derived",
+      "No global no-go for a complete action",
+      "No measured exactness or new empirical likelihood",
+      "No full nonlinear or perturbative health certificate"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T01:55:35.467542+00:00",
+    "runtime_seconds": 0.937969,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/coefficient_constraints.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/coefficient_constraints.py",
+      "sha256": "f00cb8cf1b9f4e999765fe3e820bfd0f1851d59fd1d57627a1eab9cc16401fd9",
+      "sha256_after": "f00cb8cf1b9f4e999765fe3e820bfd0f1851d59fd1d57627a1eab9cc16401fd9"
+    }
+  ],
+  "output_directory": "sol61_push/runs/coefficient_mutation",
+  "declared_results": [
+    "sol61_push/runs/coefficient_mutation/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/coefficient_mutation/stdout.txt",
+      "sha256": "143d1053068aff922e68b2d92329ff0f7185fb92f9f82c767df61775775616f9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/coefficient_mutation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/coefficient_mutation/results.json",
+      "sha256": "d1a22a2a4bfdce90693aca11c9af92842203caae1eed3408b96391b147ce4f66",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
