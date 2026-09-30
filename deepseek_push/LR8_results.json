@@ -1,0 +1,49 @@
+{
+ "title": "LR8 Lean certificates of the W2 rationals A0=2/5, A1=8/35",
+ "pre_registration": "Z12-WAVE_BRIEF.md (registered before any run)",
+ "verdict": "BANKED: A0 = 2/5 and A1 = 8/35 now certificate-grade (zero-sorry Lean assembly over LR7's unconditional 1D cores; reduction leg numeric-audited: R0b dev <= 8.1e-14, R0c MC z = 0.16/0.29). W2's c00(q) = 2/5 + (8/35)q is certificate-grade on the 1D+assembly legs",
+ "exit": 0,
+ "elapsed_s": 239.8,
+ "log": [
+  "[    0.0s] R0a: sympy exact, Beta-function mechanism (independent of W2)",
+  "[    4.0s] R0a: sympy A0 = 2/5, A1 = 8/35",
+  "[    4.0s] R0a PASS: A0 = 2/5, A1 = 8/35 exact",
+  "[    4.0s] R0b: mpmath + Gauss-Legendre(500) on the (rho,w) integrands",
+  "[   52.5s] R0b: dev A0 0.00e+00/5.00e-14 (mp/gl)  A1 0.00e+00/8.08e-14 (gate 1e-12)",
+  "[   52.5s] R0b PASS",
+  "[   52.5s] R0c: MC geometric reduction, n=2e7, seed 20260929",
+  "[   99.4s] R0c: MC A0 = 0.400015 +- 0.000096 (z=0.16)   A1 = 0.228584 +- 0.000045 (z=0.29) (gate 5)",
+  "[   99.4s] R0c PASS: the geometric reduction leg is MC-consistent with the exact values",
+  "[   99.4s] G1: lake env lean LR8_w2_rationals.lean",
+  "[  239.8s] G1: lake rc=0, sorry_count=0",
+  "[  239.8s] G1: axiom dump {\"'w2_A0_law'\": ['Classical.choice', 'Quot.sound', 'propext'], \"'w2_A1_law'\": ['Classical.choice', 'Quot.sound', 'propext']}",
+  "[  239.8s] G1 PASS: w2_A0_law, w2_A1_law compile zero-sorry, axioms clean",
+  "[  239.8s] G2: sympy mechanical assembly constants",
+  "[  239.8s] G2: (3/2)(4/3)=2, (3/2)(8/15)=4/5; assembly = 8/35; lean states 2*(1/5) and (3/2)((4/3)(2/35)+(8/15)(1/7)) = 8/35",
+  "[  239.8s] G2 PASS"
+ ],
+ "devs": {
+  "A0_mp": 0.0,
+  "A1_mp": 0.0,
+  "A0_gl": 4.9960036108132044e-14,
+  "A1_gl": 8.075137780672037e-14
+ },
+ "mc": {
+  "A0": 0.4000153143168316,
+  "A0_se": 9.5632809341055e-05,
+  "A1": 0.22858439729431593,
+  "A1_se": 4.5001686078193604e-05
+ },
+ "axioms": {
+  "'w2_A0_law'": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ],
+  "'w2_A1_law'": [
+   "Classical.choice",
+   "Quot.sound",
+   "propext"
+  ]
+ }
+}
