@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_RELAXING_DENSITY",
+  "repository": {
+    "commit": "50d8c274e810af2b01064b682cbbec29977137dd",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/relaxing_density.py",
+    "--output",
+    "sol61_push/runs/relaxing_density/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Common uniform density-energy stationarity, response and proxy ratio, plus conserved-material stress/phonon obstruction",
+    "coefficient_domain": "Exact symbolic algebra and double precision bracketed roots",
+    "conventions": "RELAXING_DENSITY_CONTRACT.md",
+    "inputs": [
+      "sol61_push/relaxing_density.py"
+    ],
+    "bounds": {
+      "parameter_triples": [
+        [
+          0.5,
+          0.25,
+          0.1
+        ],
+        [
+          2,
+          3,
+          0.7
+        ]
+      ],
+      "G": 0.1,
+      "P": [
+        0.0001,
+        0.01,
+        1,
+        10,
+        10000.0
+      ],
+      "root_residual_tolerance": 1e-09,
+      "force_slope_relative_tolerance": 1e-05
+    },
+    "non_claims": [
+      "No physical Lambda from a constant-density vacuum state",
+      "No complete covariant polarization action",
+      "No coefficient selection",
+      "Critical matching and potential assumed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T20:00:20.042856+00:00",
+    "runtime_seconds": 0.778551,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/relaxing_density.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/relaxing_density.py",
+      "sha256": "d0f91ba7c6943086aefb5b861e88c31303407c8761b413831b0caf8cd0328643",
+      "sha256_after": "d0f91ba7c6943086aefb5b861e88c31303407c8761b413831b0caf8cd0328643"
+    }
+  ],
+  "output_directory": "sol61_push/runs/relaxing_density",
+  "declared_results": [
+    "sol61_push/runs/relaxing_density/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/relaxing_density/stdout.txt",
+      "sha256": "200382b07175ba0be04de2fcbf1c7ccf4f91b246a1996cbfb96d335381fc2213",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/relaxing_density/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/relaxing_density/results.json",
+      "sha256": "a3e4c4730e2e6e83c60b6cbcf054d10ed44e8948be8ebb548f06e6ea3ab58b46",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
