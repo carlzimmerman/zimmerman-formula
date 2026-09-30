@@ -1,0 +1,47 @@
+# CFG236 attack (b): velocity column and drift term
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[DAT] v_f(R_e) median 36.0, sigma_f(R_e) median 30.7; at 2.2 R_d: v 42.2, sigma 30.3; v22 (derived) 69.4; median sin i 0.85
+ratio v_f(2.2 R_d)/v22: median 0.696 [16-84: 0.511, 0.836]; divided by sin i: median 0.863; r(ratio, sin i) = +0.49
+implied s_AD at 2.2 R_d from the file's sigma (D1): median 0.370  (data chat inferred ~0.52 if v_table = v_perp)
+B1: ratio test v_f(2.2 R_d) vs v22 under four readings
+   B1 (a) v_perp, drift D1         n= 82 median resid -0.052  median|r| 0.077  MAD 0.063  slope vs log sin i +0.73 [+0.29,+1.06]
+   B1 (a) v_perp, drift D2         n=109 median resid -0.147  median|r| 0.147  MAD 0.067  slope vs log sin i +0.33 [-0.76,+0.87]
+   B1 (b) projected                n=109 median resid -0.064  median|r| 0.064  MAD 0.039  slope vs log sin i -0.67 [-1.76,-0.13]
+   B1 (c) projected + drift D1     n= 82 median resid +0.008  median|r| 0.045  MAD 0.050  slope vs log sin i -0.27 [-0.71,+0.06]
+   B1 (c) projected + drift D2     n=109 median resid -0.054  median|r| 0.054  MAD 0.039  slope vs log sin i -0.67 [-1.76,-0.13]
+   B1 (d) already v_c              n=109 median resid -0.157  median|r| 0.157  MAD 0.067  slope vs log sin i +0.33 [-0.76,+0.87]
+   B1 best supported (smallest median|r| among readings with null sin-i slope): (c) projected + drift D1
+B2: Spearman of (v_f/v_c) against sin i, three comparators
+   comparator CFG198 reconstruction at R_e       reading (a): rho = +0.40 (p=0.000); median ratio 0.404
+   comparator CFG198 reconstruction at R_e       reading (b): rho = -0.01 (p=0.934); median ratio 0.501
+   comparator v22 at 2.2 R_d                     reading (a): rho = +0.60 (p=0.000); median ratio 0.696
+   comparator v22 at 2.2 R_d                     reading (b): rho = -0.21 (p=0.027); median ratio 0.863
+   comparator v_dyn=sqrt(G M_dyn/R_e) at R_e     reading (a): rho = +0.56 (p=0.000); median ratio 0.681
+   comparator v_dyn=sqrt(G M_dyn/R_e) at R_e     reading (b): rho = -0.16 (p=0.092); median ratio 0.817
+B3: slopes, R199, reading x drift (Theil-Sen [CI B=2000] and OLS)
+   reading (a) drift None: b_i +0.645  b_ii -0.200 [-0.74,+0.30]  b_iii -0.128  Delta b (TS) -1.022 [-1.34,-0.75]  Delta b (OLS) -0.901  level -10.38
+   reading (a) drift D1  : b_i +0.677  b_ii -0.213 [-0.64,+0.13]  b_iii -0.010  Delta b (TS) -0.946 [-1.27,-0.69]  Delta b (OLS) -0.901  level -10.05
+   reading (a) drift D2  : b_i +0.645  b_ii -0.200 [-0.74,+0.30]  b_iii -0.128  Delta b (TS) -1.022 [-1.34,-0.75]  Delta b (OLS) -0.901  level -10.36
+   reading (b) drift None: b_i +0.633  b_ii -0.217 [-0.80,+0.25]  b_iii -0.124  Delta b (TS) -1.029 [-1.34,-0.74]  Delta b (OLS) -0.901  level -10.14
+   reading (b) drift D1  : b_i +0.667  b_ii -0.216 [-0.64,+0.18]  b_iii -0.008  Delta b (TS) -0.960 [-1.26,-0.69]  Delta b (OLS) -0.901  level -9.93
+   reading (b) drift D2  : b_i +0.633  b_ii -0.217 [-0.80,+0.25]  b_iii -0.124  Delta b (TS) -1.029 [-1.34,-0.74]  Delta b (OLS) -0.901  level -10.13
+B3 structural prediction: b's move together and Delta b unchanged within 0.03:
+   a|None: shift b_i +0.000, b_ii +0.000, Delta b(TS) +0.000, Delta b(OLS) +0.000
+   a|D1: shift b_i +0.032, b_ii -0.013, Delta b(TS) +0.076, Delta b(OLS) +0.000
+   a|D2: shift b_i +0.000, b_ii +0.000, Delta b(TS) +0.000, Delta b(OLS) -0.000
+   b|None: shift b_i -0.011, b_ii -0.018, Delta b(TS) -0.007, Delta b(OLS) -0.000
+   b|D1: shift b_i +0.022, b_ii -0.017, Delta b(TS) +0.061, Delta b(OLS) -0.000
+   b|D2: shift b_i -0.011, b_ii -0.018, Delta b(TS) -0.007, Delta b(OLS) -0.000
+B5: level (lowest z-third, route (i)) against the footings, per reading/drift (bootstrap CI B=2000):
+   (a, None): -10.38 [-10.71,-10.12] -> below both
+   (a, D1): -10.05 [-10.14,-9.88] -> consistent with footing(s)
+   (a, D2): -10.36 [-10.69,-10.11] -> below both
+   (b, None): -10.14 [-10.45,-9.92] -> consistent with footing(s)
+   (b, D1): -9.93 [-10.06,-9.74] -> consistent with footing(s)
+   (b, D2): -10.13 [-10.43,-9.90] -> consistent with footing(s)
+B4 (CSV only): outermost row of the positive side against v22 (flat-curve stand-in, weak)
+   outermost R/R_e median 7.04; sigma_maxR median 28.4; v/v22 median 1.244; s_AD (D1, R=r_max) median 1.86 (>1 for 70 rows)
+   (a) v_perp, D1         n= 39 median resid +0.069 median|r| 0.108 slope vs log sin i +0.47 [-0.02,+1.46]
+   (b) projected          n=108 median resid +0.209 median|r| 0.222 slope vs log sin i +15.25 [-5.37,+51.93]
+   (c) projected + D1     n= 39 median resid +0.109 median|r| 0.109 slope vs log sin i -0.53 [-1.02,+0.46]
+   (d) already v_c        n=108 median resid +0.100 median|r| 0.177 slope vs log sin i +16.25 [-4.37,+52.93]

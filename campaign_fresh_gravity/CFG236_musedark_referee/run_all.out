@@ -1,0 +1,775 @@
+# CFG236 main: reproduction of CFG198 / CFG199
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+seed 236, B 10000, [DAT] rows ON
+sample chain: {'n_rows': 126, 'n_finite': 124, 'bulge_all': 15, 'bulge_in_finite': 14, 'n_disc': 110, 'n_S': 109}
+PASS N1: rows: mine 126  target 126
+PASS N2: finite: mine 124  target 124
+PASS N3: bulge among the 124: mine 14  target 14
+PASS N3b: bulge among all 126: mine 15  target 15
+PASS N4: disc-only: mine 110  target 110
+PASS N5: S (0<fDM<1): mine 109  target 109
+S: z range 0.280-1.438, median 0.863; logM*_SED median 9.17
+C1 disc: peak at R/Rd = 2.150; v2max Rd/(GM) = 0.3870
+C1 disc: at R=50 Rd, v^2 R/(GM) = 1.0018  (should be ~1)
+C2 kernel round trip (max rel err): {'RAR': 8.881784197001252e-16, 'P2': 1.1102230246251565e-15}
+C3 route identity (R198): PASS
+C4 interpolation: 40.000000000000 (expect 40) err 0.0e+00
+hash verification of external files vs the repo manifests: {'n_listed': 882, 'n_ok': 882, 'n_bad': 0, 'n_missing': 0, 'cat_ok': 9, 'cat_bad': 0, 'cat_missing': 0} []
+P1 drift (n=109): Delta* slope -0.723 [-0.970,-0.499] median -0.112
+P1 drift: Delta*-log(1+mu) slope -0.868 [-1.109,-0.616] median -0.512
+PASS T1: Delta* slope: mine -0.7232  target -0.7230  (tol 0.03)
+PASS T1m: Delta* median: mine -0.1120  target -0.1120  (tol 0.01)
+INFO PASS T1lo: Delta* CI lo: mine -0.9696  target -0.9660  (tol 0.05)
+INFO PASS T1hi: Delta* CI hi: mine -0.4985  target -0.4980  (tol 0.05)
+PASS T2: Delta*-log(1+mu) slope: mine -0.8683  target -0.8680  (tol 0.03)
+PASS T2m: Delta*-log(1+mu) median: mine -0.5123  target -0.5120  (tol 0.03)
+INFO PASS T2lo: CI lo: mine -1.1088  target -1.1070  (tol 0.05)
+INFO PASS T2hi: CI hi: mine -0.6162  target -0.6160  (tol 0.05)
+slope of log10(1+mu) = +0.145 (target 0.145)
+[R198 primary (nu_RAR, fitted Sigma_HI, mu x1)]
+   route (i): n=108  b=+0.789 [+0.516,+1.075] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=85  b=-0.040 [-0.448,+0.348] sd 0.204  excludes: none
+   route (iii): n=99  b=+0.075 [-0.222,+0.354] sd 0.147  excludes: none
+   paired d_ii_i: n=84  -0.938 [-1.255,-0.642]
+   paired d_iii_i: n=98  -0.692 [-0.929,-0.480]
+PASS N6: n route (i): mine 108  target 108
+PASS N7: n route (ii): mine 85  target 85
+PASS N8: n route (iii): mine 99  target 99
+PASS N9: paired (ii-i): mine 84  target 84
+PASS N10: paired (iii-i): mine 98  target 98
+PASS N11: D<=1.05 route (ii) low-z half: mine 9  target 9
+PASS N12: D<=1.05 route (ii) high-z half: mine 15  target 15
+PASS T3: b_i (R198): mine +0.7889  target +0.7890  (tol 0.05)
+PASS T4: b_ii (R198): mine -0.0398  target -0.0410  (tol 0.05)
+PASS T5: b_iii (R198): mine +0.0755  target +0.0750  (tol 0.05)
+PASS T6: paired Delta b (ii-i): mine -0.9383  target -0.9390  (tol 0.05)
+PASS T6b: paired b_iii - b_i: mine -0.6916  target -0.6930  (tol 0.05)
+INFO PASS T-CI-i-lo: CI lo: mine +0.5159  target +0.5140  (tol 0.05)
+INFO PASS T-CI-i-hi: CI hi: mine +1.0753  target +1.0710  (tol 0.05)
+INFO PASS T-CI-ii-lo: CI lo: mine -0.4475  target -0.4670  (tol 0.05)
+INFO PASS T-CI-ii-hi: CI hi: mine +0.3478  target +0.3600  (tol 0.05)
+INFO PASS T-CI-iii-lo: CI lo: mine -0.2222  target -0.2330  (tol 0.05)
+INFO PASS T-CI-iii-hi: CI hi: mine +0.3543  target +0.3490  (tol 0.05)
+INFO PASS T-CI-d_ii_i-lo: CI lo: mine -1.2546  target -1.2610  (tol 0.05)
+INFO PASS T-CI-d_ii_i-hi: CI hi: mine -0.6419  target -0.6330  (tol 0.05)
+INFO PASS T-CI-d_iii_i-lo: CI lo: mine -0.9290  target -0.9310  (tol 0.05)
+INFO PASS T-CI-d_iii_i-hi: CI hi: mine -0.4804  target -0.4800  (tol 0.05)
+reference slopes over S: flat 0, E(z) +0.2576, III +0.2980
+PASS T7a: E(z) reference slope: mine +0.2576  target +0.2580  (tol 0.005)
+PASS T7b: III-law reference slope: mine +0.2980  target +0.2980  (tol 0.005)
+R1 (route ii): excluded = []  classification: {'flat': {'inside': True, 'dist_sd': -0.19489997975601}, 'Ez': {'inside': True, 'dist_sd': -1.4570612457504337}, 'III': {'inside': True, 'dist_sd': -1.661071147423951}}
+R0 (route i): excluded = ['flat', 'Ez', 'III']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (i) ['-9.65', '-9.30', '-9.07']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (ii) ['-9.68', '-9.62', '-9.67']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (iii) ['-9.41', '-9.14', '-9.23']
+footings -10.029 / -9.946; median z of lowest third 0.523
+PASS T9i: level low third route (i): mine -9.6465  target -9.6500  (tol 0.05)
+PASS T9ii: level low third route (ii): mine -9.6804  target -9.6900  (tol 0.05)
+PASS T9iii: level low third route (iii): mine -9.4097  target -9.3800  (tol 0.05)
+[R198 robustness Sig0]
+   route (i): n=108  b=+0.775 [+0.490,+1.089] sd 0.155  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=87  b=-0.181 [-0.628,+0.221] sd 0.218  excludes: ['Ez', 'III']
+   route (iii): n=99  b=-0.088 [-0.455,+0.264] sd 0.181  excludes: ['III']
+   paired d_ii_i: n=86  -1.111 [-1.489,-0.772]
+   paired d_iii_i: n=98  -0.869 [-1.156,-0.594]
+PASS T8-Sig0-bi: b_i: mine +0.7750  target +0.7750  (tol 0.05)
+PASS T8-Sig0-bii: b_ii: mine -0.1814  target -0.1820  (tol 0.05)
+PASS T8-Sig0-d: Delta b: mine -1.1110  target -1.1110  (tol 0.05)
+PASS R1-Sig0: excluded ['Ez', 'III'], target ['Ez', 'III']
+[R198 robustness Sig15]
+   route (i): n=108  b=+0.822 [+0.574,+1.097] sd 0.133  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=84  b=+0.104 [-0.321,+0.451] sd 0.206  excludes: none
+   route (iii): n=99  b=+0.217 [-0.100,+0.472] sd 0.148  excludes: none
+   paired d_ii_i: n=83  -0.827 [-1.131,-0.565]
+   paired d_iii_i: n=98  -0.580 [-0.814,-0.398]
+PASS T8-Sig15-bi: b_i: mine +0.8216  target +0.8220  (tol 0.05)
+PASS T8-Sig15-bii: b_ii: mine +0.1044  target +0.1060  (tol 0.05)
+PASS T8-Sig15-d: Delta b: mine -0.8266  target -0.8190  (tol 0.05)
+PASS R1-Sig15: excluded [], target []
+[R198 robustness mu0.5]
+   route (i): n=108  b=+0.789 [+0.516,+1.075] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=94  b=-0.011 [-0.356,+0.334] sd 0.175  excludes: none
+   route (iii): n=99  b=+0.075 [-0.222,+0.354] sd 0.147  excludes: none
+   paired d_ii_i: n=93  -0.866 [-1.142,-0.607]
+   paired d_iii_i: n=98  -0.692 [-0.929,-0.480]
+PASS T8-mu0.5-bi: b_i: mine +0.7889  target +0.7890  (tol 0.05)
+PASS T8-mu0.5-bii: b_ii: mine -0.0105  target -0.0110  (tol 0.05)
+PASS T8-mu0.5-d: Delta b: mine -0.8663  target -0.8660  (tol 0.05)
+PASS R1-mu0.5: excluded [], target []
+[R198 robustness mu2]
+   route (i): n=108  b=+0.789 [+0.516,+1.075] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=69  b=-0.202 [-0.678,+0.286] sd 0.241  excludes: ['III']
+   route (iii): n=99  b=+0.075 [-0.222,+0.354] sd 0.147  excludes: none
+   paired d_ii_i: n=69  -1.127 [-1.557,-0.727]
+   paired d_iii_i: n=98  -0.692 [-0.929,-0.480]
+PASS T8-mu2-bi: b_i: mine +0.7889  target +0.7890  (tol 0.05)
+PASS T8-mu2-bii: b_ii: mine -0.2024  target -0.2020  (tol 0.05)
+PASS T8-mu2-d: Delta b: mine -1.1271  target -1.1270  (tol 0.05)
+PASS R1-mu2: excluded ['III'], target ['III']
+R1-primary: excluded [] vs target []
+R1-route(iii): excluded [] vs target []
+kernel P2: b_i +0.739, b_ii +0.008, b_iii +0.098
+kernel mono (IMPORT from CFG4_common, shared object): b_i +0.789, b_ii -0.041, b_iii +0.075
+PASS K-mono: nu_mono (import) b_i within 0.005 of nu_RAR primary: mine +0.7889  target +0.7889  (tol 0.005)
+PASS K-mono2: nu_mono (import) b_ii within 0.005 of nu_RAR primary: mine -0.0408  target -0.0398  (tol 0.005)
+decomposition route (i): slope log g_obs +0.306, slope log g_bar -0.024, 2 s_obs - s_bar +0.636 vs b +0.789
+decomposition route (ii): slope log g_obs +0.306, slope log g_bar +0.683, 2 s_obs - s_bar -0.071 vs b -0.040
+decomposition route (iii): slope log g_obs +0.306, slope log g_bar +0.488, 2 s_obs - s_bar +0.125 vs b +0.075
+v_f(R_e) median 36.0 km/s; finite 109/109
+[R199 reading (a), drift OFF]
+   route (i): n=108 b=+0.645 [+0.241,+1.082] excludes ['flat']
+   route (ii): n=85 b=-0.200 [-0.771,+0.357] excludes none
+   route (iii): n=99 b=-0.128 [-0.544,+0.281] excludes ['III']
+   paired Delta b: n=84 -1.022 [-1.320,-0.748]
+PASS T10a-bi: b_i: mine +0.6448  target +0.6500  (tol 0.05)
+PASS T10a-bii: b_ii: mine -0.1996  target -0.2000  (tol 0.05)
+PASS T10a-d: Delta b: mine -1.0216  target -1.0300  (tol 0.05)
+   L1 level lowest third: -10.38 [-10.71,-10.12] -> below both
+PASS T11a: level lowest third: mine -10.3761  target -10.3800  (tol 0.05)
+PASS L1a-class: below both
+   L3: spearman(v_perp/v_c,198 , sin i) = +0.40; share s median 0.84 [16-84: 0.63, 0.93]; median log10(g_perp/g_obs198) = -0.79
+PASS T12a-rho: rho with sin i: mine +0.4010  target +0.4000  (tol 0.1)
+PASS T12a-s: share s median: mine +0.8368  target +0.8400  (tol 0.03)
+[R199 reading (b), drift OFF]
+   route (i): n=108 b=+0.633 [+0.244,+0.997] excludes ['flat']
+   route (ii): n=85 b=-0.217 [-0.779,+0.295] excludes ['III']
+   route (iii): n=99 b=-0.124 [-0.534,+0.261] excludes ['III']
+   paired Delta b: n=84 -1.029 [-1.324,-0.743]
+PASS T10b-bi: b_i: mine +0.6333  target +0.6300  (tol 0.05)
+PASS T10b-bii: b_ii: mine -0.2173  target -0.2200  (tol 0.05)
+PASS T10b-d: Delta b: mine -1.0288  target -1.0300  (tol 0.05)
+   L1 level lowest third: -10.14 [-10.45,-9.94] -> consistent with footing(s)
+PASS T11b: level lowest third: mine -10.1435  target -10.1400  (tol 0.05)
+PASS L1b-class: consistent with footing(s)
+   route (ii) CI upper edge +0.2950 vs III slope +0.2993: below (excludes III)
+   L3: spearman(v_perp/v_c,198 , sin i) = -0.01; share s median 0.75 [16-84: 0.51, 0.88]; median log10(g_perp/g_obs198) = -0.60
+PASS T12b-rho: rho with sin i: mine -0.0080  target -0.0100  (tol 0.1)
+PASS T12b-s: share s median: mine +0.7493  target +0.7500  (tol 0.03)
+
+PASS LINES: 61 pass, 0 fail (non-info); fails: []; info misses: []
+# CFG236 main: reproduction of CFG198 / CFG199
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+seed 237, B 10000, [DAT] rows ON
+sample chain: {'n_rows': 126, 'n_finite': 124, 'bulge_all': 15, 'bulge_in_finite': 14, 'n_disc': 110, 'n_S': 109}
+PASS N1: rows: mine 126  target 126
+PASS N2: finite: mine 124  target 124
+PASS N3: bulge among the 124: mine 14  target 14
+PASS N3b: bulge among all 126: mine 15  target 15
+PASS N4: disc-only: mine 110  target 110
+PASS N5: S (0<fDM<1): mine 109  target 109
+S: z range 0.280-1.438, median 0.863; logM*_SED median 9.17
+C1 disc: peak at R/Rd = 2.150; v2max Rd/(GM) = 0.3870
+C1 disc: at R=50 Rd, v^2 R/(GM) = 1.0018  (should be ~1)
+C2 kernel round trip (max rel err): {'RAR': 8.881784197001252e-16, 'P2': 1.1102230246251565e-15}
+C3 route identity (R198): PASS
+C4 interpolation: 40.000000000000 (expect 40) err 0.0e+00
+hash verification of external files vs the repo manifests: {'n_listed': 882, 'n_ok': 882, 'n_bad': 0, 'n_missing': 0, 'cat_ok': 9, 'cat_bad': 0, 'cat_missing': 0} []
+P1 drift (n=109): Delta* slope -0.723 [-0.966,-0.499] median -0.112
+P1 drift: Delta*-log(1+mu) slope -0.868 [-1.104,-0.617] median -0.512
+PASS T1: Delta* slope: mine -0.7232  target -0.7230  (tol 0.03)
+PASS T1m: Delta* median: mine -0.1120  target -0.1120  (tol 0.01)
+INFO PASS T1lo: Delta* CI lo: mine -0.9657  target -0.9660  (tol 0.05)
+INFO PASS T1hi: Delta* CI hi: mine -0.4995  target -0.4980  (tol 0.05)
+PASS T2: Delta*-log(1+mu) slope: mine -0.8683  target -0.8680  (tol 0.03)
+PASS T2m: Delta*-log(1+mu) median: mine -0.5123  target -0.5120  (tol 0.03)
+INFO PASS T2lo: CI lo: mine -1.1036  target -1.1070  (tol 0.05)
+INFO PASS T2hi: CI hi: mine -0.6168  target -0.6160  (tol 0.05)
+slope of log10(1+mu) = +0.145 (target 0.145)
+[R198 primary (nu_RAR, fitted Sigma_HI, mu x1)]
+   route (i): n=108  b=+0.789 [+0.514,+1.070] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=85  b=-0.040 [-0.449,+0.357] sd 0.207  excludes: none
+   route (iii): n=99  b=+0.075 [-0.229,+0.345] sd 0.147  excludes: none
+   paired d_ii_i: n=84  -0.938 [-1.254,-0.634]
+   paired d_iii_i: n=98  -0.692 [-0.930,-0.477]
+PASS N6: n route (i): mine 108  target 108
+PASS N7: n route (ii): mine 85  target 85
+PASS N8: n route (iii): mine 99  target 99
+PASS N9: paired (ii-i): mine 84  target 84
+PASS N10: paired (iii-i): mine 98  target 98
+PASS N11: D<=1.05 route (ii) low-z half: mine 9  target 9
+PASS N12: D<=1.05 route (ii) high-z half: mine 15  target 15
+PASS T3: b_i (R198): mine +0.7889  target +0.7890  (tol 0.05)
+PASS T4: b_ii (R198): mine -0.0398  target -0.0410  (tol 0.05)
+PASS T5: b_iii (R198): mine +0.0755  target +0.0750  (tol 0.05)
+PASS T6: paired Delta b (ii-i): mine -0.9383  target -0.9390  (tol 0.05)
+PASS T6b: paired b_iii - b_i: mine -0.6916  target -0.6930  (tol 0.05)
+INFO PASS T-CI-i-lo: CI lo: mine +0.5144  target +0.5140  (tol 0.05)
+INFO PASS T-CI-i-hi: CI hi: mine +1.0700  target +1.0710  (tol 0.05)
+INFO PASS T-CI-ii-lo: CI lo: mine -0.4492  target -0.4670  (tol 0.05)
+INFO PASS T-CI-ii-hi: CI hi: mine +0.3568  target +0.3600  (tol 0.05)
+INFO PASS T-CI-iii-lo: CI lo: mine -0.2288  target -0.2330  (tol 0.05)
+INFO PASS T-CI-iii-hi: CI hi: mine +0.3447  target +0.3490  (tol 0.05)
+INFO PASS T-CI-d_ii_i-lo: CI lo: mine -1.2541  target -1.2610  (tol 0.05)
+INFO PASS T-CI-d_ii_i-hi: CI hi: mine -0.6335  target -0.6330  (tol 0.05)
+INFO PASS T-CI-d_iii_i-lo: CI lo: mine -0.9299  target -0.9310  (tol 0.05)
+INFO PASS T-CI-d_iii_i-hi: CI hi: mine -0.4768  target -0.4800  (tol 0.05)
+reference slopes over S: flat 0, E(z) +0.2576, III +0.2980
+PASS T7a: E(z) reference slope: mine +0.2576  target +0.2580  (tol 0.005)
+PASS T7b: III-law reference slope: mine +0.2980  target +0.2980  (tol 0.005)
+R1 (route ii): excluded = []  classification: {'flat': {'inside': True, 'dist_sd': -0.19243671633608583}, 'Ez': {'inside': True, 'dist_sd': -1.4386460274844324}, 'III': {'inside': True, 'dist_sd': -1.6400775290538356}}
+R0 (route i): excluded = ['flat', 'Ez', 'III']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (i) ['-9.65', '-9.30', '-9.07']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (ii) ['-9.68', '-9.62', '-9.67']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (iii) ['-9.41', '-9.14', '-9.23']
+footings -10.029 / -9.946; median z of lowest third 0.523
+PASS T9i: level low third route (i): mine -9.6465  target -9.6500  (tol 0.05)
+PASS T9ii: level low third route (ii): mine -9.6804  target -9.6900  (tol 0.05)
+PASS T9iii: level low third route (iii): mine -9.4097  target -9.3800  (tol 0.05)
+[R198 robustness Sig0]
+   route (i): n=108  b=+0.775 [+0.480,+1.085] sd 0.155  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=87  b=-0.181 [-0.619,+0.231] sd 0.220  excludes: ['Ez', 'III']
+   route (iii): n=99  b=-0.088 [-0.439,+0.262] sd 0.180  excludes: ['III']
+   paired d_ii_i: n=86  -1.111 [-1.493,-0.764]
+   paired d_iii_i: n=98  -0.869 [-1.155,-0.592]
+PASS T8-Sig0-bi: b_i: mine +0.7750  target +0.7750  (tol 0.05)
+PASS T8-Sig0-bii: b_ii: mine -0.1814  target -0.1820  (tol 0.05)
+PASS T8-Sig0-d: Delta b: mine -1.1110  target -1.1110  (tol 0.05)
+PASS R1-Sig0: excluded ['Ez', 'III'], target ['Ez', 'III']
+[R198 robustness Sig15]
+   route (i): n=108  b=+0.822 [+0.565,+1.096] sd 0.133  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=84  b=+0.104 [-0.321,+0.458] sd 0.207  excludes: none
+   route (iii): n=99  b=+0.217 [-0.101,+0.468] sd 0.147  excludes: none
+   paired d_ii_i: n=83  -0.827 [-1.132,-0.561]
+   paired d_iii_i: n=98  -0.580 [-0.813,-0.394]
+PASS T8-Sig15-bi: b_i: mine +0.8216  target +0.8220  (tol 0.05)
+PASS T8-Sig15-bii: b_ii: mine +0.1044  target +0.1060  (tol 0.05)
+PASS T8-Sig15-d: Delta b: mine -0.8266  target -0.8190  (tol 0.05)
+PASS R1-Sig15: excluded [], target []
+[R198 robustness mu0.5]
+   route (i): n=108  b=+0.789 [+0.514,+1.070] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=94  b=-0.011 [-0.359,+0.335] sd 0.176  excludes: none
+   route (iii): n=99  b=+0.075 [-0.229,+0.345] sd 0.147  excludes: none
+   paired d_ii_i: n=93  -0.866 [-1.140,-0.605]
+   paired d_iii_i: n=98  -0.692 [-0.930,-0.477]
+PASS T8-mu0.5-bi: b_i: mine +0.7889  target +0.7890  (tol 0.05)
+PASS T8-mu0.5-bii: b_ii: mine -0.0105  target -0.0110  (tol 0.05)
+PASS T8-mu0.5-d: Delta b: mine -0.8663  target -0.8660  (tol 0.05)
+PASS R1-mu0.5: excluded [], target []
+[R198 robustness mu2]
+   route (i): n=108  b=+0.789 [+0.514,+1.070] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=69  b=-0.202 [-0.680,+0.286] sd 0.242  excludes: ['III']
+   route (iii): n=99  b=+0.075 [-0.229,+0.345] sd 0.147  excludes: none
+   paired d_ii_i: n=69  -1.127 [-1.551,-0.730]
+   paired d_iii_i: n=98  -0.692 [-0.930,-0.477]
+PASS T8-mu2-bi: b_i: mine +0.7889  target +0.7890  (tol 0.05)
+PASS T8-mu2-bii: b_ii: mine -0.2024  target -0.2020  (tol 0.05)
+PASS T8-mu2-d: Delta b: mine -1.1271  target -1.1270  (tol 0.05)
+PASS R1-mu2: excluded ['III'], target ['III']
+R1-primary: excluded [] vs target []
+R1-route(iii): excluded [] vs target []
+kernel P2: b_i +0.739, b_ii +0.008, b_iii +0.098
+kernel mono (IMPORT from CFG4_common, shared object): b_i +0.789, b_ii -0.041, b_iii +0.075
+PASS K-mono: nu_mono (import) b_i within 0.005 of nu_RAR primary: mine +0.7889  target +0.7889  (tol 0.005)
+PASS K-mono2: nu_mono (import) b_ii within 0.005 of nu_RAR primary: mine -0.0408  target -0.0398  (tol 0.005)
+decomposition route (i): slope log g_obs +0.306, slope log g_bar -0.024, 2 s_obs - s_bar +0.636 vs b +0.789
+decomposition route (ii): slope log g_obs +0.306, slope log g_bar +0.683, 2 s_obs - s_bar -0.071 vs b -0.040
+decomposition route (iii): slope log g_obs +0.306, slope log g_bar +0.488, 2 s_obs - s_bar +0.125 vs b +0.075
+v_f(R_e) median 36.0 km/s; finite 109/109
+[R199 reading (a), drift OFF]
+   route (i): n=108 b=+0.645 [+0.243,+1.089] excludes ['flat']
+   route (ii): n=85 b=-0.200 [-0.774,+0.361] excludes none
+   route (iii): n=99 b=-0.128 [-0.545,+0.281] excludes ['III']
+   paired Delta b: n=84 -1.022 [-1.317,-0.742]
+PASS T10a-bi: b_i: mine +0.6448  target +0.6500  (tol 0.05)
+PASS T10a-bii: b_ii: mine -0.1996  target -0.2000  (tol 0.05)
+PASS T10a-d: Delta b: mine -1.0216  target -1.0300  (tol 0.05)
+   L1 level lowest third: -10.38 [-10.71,-10.12] -> below both
+PASS T11a: level lowest third: mine -10.3761  target -10.3800  (tol 0.05)
+PASS L1a-class: below both
+   L3: spearman(v_perp/v_c,198 , sin i) = +0.40; share s median 0.84 [16-84: 0.63, 0.93]; median log10(g_perp/g_obs198) = -0.79
+PASS T12a-rho: rho with sin i: mine +0.4010  target +0.4000  (tol 0.1)
+PASS T12a-s: share s median: mine +0.8368  target +0.8400  (tol 0.03)
+[R199 reading (b), drift OFF]
+   route (i): n=108 b=+0.633 [+0.237,+1.001] excludes ['flat']
+   route (ii): n=85 b=-0.217 [-0.765,+0.304] excludes none
+   route (iii): n=99 b=-0.124 [-0.533,+0.262] excludes ['III']
+   paired Delta b: n=84 -1.029 [-1.322,-0.735]
+PASS T10b-bi: b_i: mine +0.6333  target +0.6300  (tol 0.05)
+PASS T10b-bii: b_ii: mine -0.2173  target -0.2200  (tol 0.05)
+PASS T10b-d: Delta b: mine -1.0288  target -1.0300  (tol 0.05)
+   L1 level lowest third: -10.14 [-10.45,-9.95] -> consistent with footing(s)
+PASS T11b: level lowest third: mine -10.1435  target -10.1400  (tol 0.05)
+PASS L1b-class: consistent with footing(s)
+   route (ii) CI upper edge +0.3039 vs III slope +0.2993: not below
+   L3: spearman(v_perp/v_c,198 , sin i) = -0.01; share s median 0.75 [16-84: 0.51, 0.88]; median log10(g_perp/g_obs198) = -0.60
+PASS T12b-rho: rho with sin i: mine -0.0080  target -0.0100  (tol 0.1)
+PASS T12b-s: share s median: mine +0.7493  target +0.7500  (tol 0.03)
+
+PASS LINES: 61 pass, 0 fail (non-info); fails: []; info misses: []
+# CFG236 MUTATE M1
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+[R198 g x 10^(0.30 (z-zmed)) at fixed D] n=[108, 85, 99] b_i +1.089 [+0.823,+1.381]  b_ii +0.260 [-0.148,+0.657]  b_iii +0.375  Delta b -0.938
+   shifts {'i': 0.30000000000000104, 'ii': 0.2999999999999997, 'iii': 0.2999999999999999}; Delta b change -0.0000; frozen prediction (+0.300 +- 0.03 each, Delta b within 0.02): as predicted
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+[R199 g x 10^(0.30 (z-zmed)) at fixed D] n=[108, 85, 99] b_i +0.945 [+0.555,+1.375]  b_ii +0.100 [-0.465,+0.661]  b_iii +0.172  Delta b -1.022
+   shifts {'i': 0.30000000000000004, 'ii': 0.30000000000000027, 'iii': 0.30000000000000016}; Delta b change +0.0000; frozen prediction (+0.300 +- 0.03 each, Delta b within 0.02): as predicted
+MUTATE M1: control BITES (exit 1)
+MUTATE M1 exit 1
+# CFG236 MUTATE M2
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+[R198 routes swapped] n=[85, 108, 99] b_i -0.040 [-0.448,+0.357]  b_ii +0.789 [+0.523,+1.081]  b_iii +0.075  Delta b +0.938
+   Delta b -0.938 -> +0.938; sign flips: True; frozen prediction: +0.6 to +0.95
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+[R199 routes swapped] n=[108, 108, 99] b_i +0.645 [+0.255,+1.075]  b_ii +1.352 [+0.971,+1.822]  b_iii +1.189  Delta b +0.707
+   Delta b -1.022 -> +0.707; sign flips: True; frozen prediction: +0.6 to +0.95
+MUTATE M2: control BITES (exit 1)
+MUTATE M2 exit 1
+# CFG236 MUTATE M3
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+[R198 SED M* bias tau=+0.72 dex/z (true = SED - tau (z-zmed))] n=[108, 84, 102] b_i +0.789 [+0.523,+1.081]  b_ii +0.321 [-0.080,+0.711]  b_iii +0.661  Delta b -0.435
+   |Delta b| 0.435 <= 0.35: False;  |b_ii - b_i| 0.468 <= 0.40: False
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+[R199 SED M* bias tau=+0.72 dex/z (true = SED - tau (z-zmed))] n=[108, 84, 102] b_i +0.645 [+0.255,+1.075]  b_ii +0.076 [-0.458,+0.539]  b_iii +0.437  Delta b -0.460
+   |Delta b| 0.460 <= 0.35: False;  |b_ii - b_i| 0.569 <= 0.40: False
+MUTATE M3: control DOES NOT BITE (exit 0)
+MUTATE M3 exit 0
+# CFG236 MUTATE M4
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+   (drift term acts on R199 only)
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+   drift D1 ON: b_i +0.645->+0.677 (+0.032); b_ii ->-0.213 (-0.013); Delta b change +0.076; |di-dii| 0.046 (frozen < 0.02); |dd| < 0.03: False
+MUTATE M4: control BITES (exit 1)
+MUTATE M4 exit 1
+# CFG236 MUTATE M5
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+[R198 axis shuffled (a0, mu at true z)] n=[108, 85, 99] b_i -0.021 [-0.331,+0.295]  b_ii +0.040 [-0.298,+0.426]  b_iii +0.033  Delta b +0.015
+   axis shuffle: every |b| < 2 SD: True; Delta* slope after shuffle -0.068
+   both shuffled: b_i -0.021, b_ii -0.320, b_iii +0.033 (SD 0.16,0.19,0.15)
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+[R199 axis shuffled (a0, mu at true z)] n=[108, 85, 99] b_i -0.013 [-0.432,+0.384]  b_ii +0.076 [-0.425,+0.614]  b_iii -0.027  Delta b +0.032
+   axis shuffle: every |b| < 2 SD: True; Delta* slope after shuffle -0.068
+   both shuffled: b_i -0.013, b_ii -0.248, b_iii -0.027 (SD 0.20,0.26,0.21)
+MUTATE M5: control BITES (exit 1)
+MUTATE M5 exit 1
+# CFG236 MUTATE M6
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+   [R198] Theil-Sen antisymmetry |b(z)+b(-z)| max 0.00e+00
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+   [R199] Theil-Sen antisymmetry |b(z)+b(-z)| max 0.00e+00
+MUTATE M6: control BITES (exit 1)
+MUTATE M6 exit 1
+# CFG236 MUTATE M7
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198 baseline] n=[108, 85, 99] b_i +0.789 [+0.523,+1.081]  b_ii -0.040 [-0.448,+0.357]  b_iii +0.075  Delta b -0.938
+[R198 D floor 1.5] n=[105, 71, 96] b_i +0.742 [+0.468,+1.049]  b_ii +0.061 [-0.318,+0.427]  b_iii +0.155  Delta b -0.890
+   n(ii) 85 -> 71 (drop 14); b_ii -0.040 -> +0.061
+[R199 baseline] n=[108, 85, 99] b_i +0.645 [+0.255,+1.075]  b_ii -0.200 [-0.765,+0.361]  b_iii -0.128  Delta b -1.022
+[R199 D floor 1.5] n=[105, 71, 96] b_i +0.594 [+0.187,+1.006]  b_ii -0.124 [-0.565,+0.361]  b_iii -0.035  Delta b -0.962
+   n(ii) 85 -> 71 (drop 14); b_ii -0.200 -> -0.124
+MUTATE M7: control BITES (exit 1)
+MUTATE M7 exit 1
+# CFG236 attack (b): velocity column and drift term
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[DAT] v_f(R_e) median 36.0, sigma_f(R_e) median 30.7; at 2.2 R_d: v 42.2, sigma 30.3; v22 (derived) 69.4; median sin i 0.85
+ratio v_f(2.2 R_d)/v22: median 0.696 [16-84: 0.511, 0.836]; divided by sin i: median 0.863; r(ratio, sin i) = +0.49
+implied s_AD at 2.2 R_d from the file's sigma (D1): median 0.370  (data chat inferred ~0.52 if v_table = v_perp)
+B1: ratio test v_f(2.2 R_d) vs v22 under four readings
+   B1 (a) v_perp, drift D1         n= 82 median resid -0.052  median|r| 0.077  MAD 0.063  slope vs log sin i +0.73 [+0.29,+1.06]
+   B1 (a) v_perp, drift D2         n=109 median resid -0.147  median|r| 0.147  MAD 0.067  slope vs log sin i +0.33 [-0.76,+0.87]
+   B1 (b) projected                n=109 median resid -0.064  median|r| 0.064  MAD 0.039  slope vs log sin i -0.67 [-1.76,-0.13]
+   B1 (c) projected + drift D1     n= 82 median resid +0.008  median|r| 0.045  MAD 0.050  slope vs log sin i -0.27 [-0.71,+0.06]
+   B1 (c) projected + drift D2     n=109 median resid -0.054  median|r| 0.054  MAD 0.039  slope vs log sin i -0.67 [-1.76,-0.13]
+   B1 (d) already v_c              n=109 median resid -0.157  median|r| 0.157  MAD 0.067  slope vs log sin i +0.33 [-0.76,+0.87]
+   B1 best supported (smallest median|r| among readings with null sin-i slope): (c) projected + drift D1
+B2: Spearman of (v_f/v_c) against sin i, three comparators
+   comparator CFG198 reconstruction at R_e       reading (a): rho = +0.40 (p=0.000); median ratio 0.404
+   comparator CFG198 reconstruction at R_e       reading (b): rho = -0.01 (p=0.934); median ratio 0.501
+   comparator v22 at 2.2 R_d                     reading (a): rho = +0.60 (p=0.000); median ratio 0.696
+   comparator v22 at 2.2 R_d                     reading (b): rho = -0.21 (p=0.027); median ratio 0.863
+   comparator v_dyn=sqrt(G M_dyn/R_e) at R_e     reading (a): rho = +0.56 (p=0.000); median ratio 0.681
+   comparator v_dyn=sqrt(G M_dyn/R_e) at R_e     reading (b): rho = -0.16 (p=0.092); median ratio 0.817
+B3: slopes, R199, reading x drift (Theil-Sen [CI B=2000] and OLS)
+   reading (a) drift None: b_i +0.645  b_ii -0.200 [-0.74,+0.30]  b_iii -0.128  Delta b (TS) -1.022 [-1.34,-0.75]  Delta b (OLS) -0.901  level -10.38
+   reading (a) drift D1  : b_i +0.677  b_ii -0.213 [-0.64,+0.13]  b_iii -0.010  Delta b (TS) -0.946 [-1.27,-0.69]  Delta b (OLS) -0.901  level -10.05
+   reading (a) drift D2  : b_i +0.645  b_ii -0.200 [-0.74,+0.30]  b_iii -0.128  Delta b (TS) -1.022 [-1.34,-0.75]  Delta b (OLS) -0.901  level -10.36
+   reading (b) drift None: b_i +0.633  b_ii -0.217 [-0.80,+0.25]  b_iii -0.124  Delta b (TS) -1.029 [-1.34,-0.74]  Delta b (OLS) -0.901  level -10.14
+   reading (b) drift D1  : b_i +0.667  b_ii -0.216 [-0.64,+0.18]  b_iii -0.008  Delta b (TS) -0.960 [-1.26,-0.69]  Delta b (OLS) -0.901  level -9.93
+   reading (b) drift D2  : b_i +0.633  b_ii -0.217 [-0.80,+0.25]  b_iii -0.124  Delta b (TS) -1.029 [-1.34,-0.74]  Delta b (OLS) -0.901  level -10.13
+B3 structural prediction: b's move together and Delta b unchanged within 0.03:
+   a|None: shift b_i +0.000, b_ii +0.000, Delta b(TS) +0.000, Delta b(OLS) +0.000
+   a|D1: shift b_i +0.032, b_ii -0.013, Delta b(TS) +0.076, Delta b(OLS) +0.000
+   a|D2: shift b_i +0.000, b_ii +0.000, Delta b(TS) +0.000, Delta b(OLS) -0.000
+   b|None: shift b_i -0.011, b_ii -0.018, Delta b(TS) -0.007, Delta b(OLS) -0.000
+   b|D1: shift b_i +0.022, b_ii -0.017, Delta b(TS) +0.061, Delta b(OLS) -0.000
+   b|D2: shift b_i -0.011, b_ii -0.018, Delta b(TS) -0.007, Delta b(OLS) -0.000
+B5: level (lowest z-third, route (i)) against the footings, per reading/drift (bootstrap CI B=2000):
+   (a, None): -10.38 [-10.71,-10.12] -> below both
+   (a, D1): -10.05 [-10.14,-9.88] -> consistent with footing(s)
+   (a, D2): -10.36 [-10.69,-10.11] -> below both
+   (b, None): -10.14 [-10.45,-9.92] -> consistent with footing(s)
+   (b, D1): -9.93 [-10.06,-9.74] -> consistent with footing(s)
+   (b, D2): -10.13 [-10.43,-9.90] -> consistent with footing(s)
+B4 (CSV only): outermost row of the positive side against v22 (flat-curve stand-in, weak)
+   outermost R/R_e median 7.04; sigma_maxR median 28.4; v/v22 median 1.244; s_AD (D1, R=r_max) median 1.86 (>1 for 70 rows)
+   (a) v_perp, D1         n= 39 median resid +0.069 median|r| 0.108 slope vs log sin i +0.47 [-0.02,+1.46]
+   (b) projected          n=108 median resid +0.209 median|r| 0.222 slope vs log sin i +15.25 [-5.37,+51.93]
+   (c) projected + D1     n= 39 median resid +0.109 median|r| 0.109 slope vs log sin i -0.53 [-1.02,+0.46]
+   (d) already v_c        n=108 median resid +0.100 median|r| 0.177 slope vs log sin i +16.25 [-4.37,+52.93]
+# CFG236 attack (c): which mass is right
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+C1: gain S(D) = dln a0/dln g_bar at fixed g_obs = 1 - 1/eta, and f_d, on route (ii) rows (R198)
+   S(D): median -1.48, 16-84 [-2.75,-1.16], min -11.21; f_d median 0.91 [0.76,0.97]; median |S| f_d 1.30
+   prediction Delta b ~ -(S f_d) x 0.868 = -1.125 (observed -0.938)
+C2 [R198]: SED-M* z-dependent bias tau (true = SED - tau (z - zmed)), frozen grid then EXTENDED grid (post-frozen extension, labelled)
+   tau -0.4: b_ii -0.161 [-0.56,+0.22]  Delta b -1.223  n(ii) 82  b_iii -0.175
+   tau -0.2: b_ii -0.096 [-0.50,+0.25]  Delta b -1.075  n(ii) 83  b_iii -0.035
+   tau +0.0: b_ii -0.040 [-0.45,+0.34]  Delta b -0.938  n(ii) 85  b_iii +0.075
+   tau +0.2: b_ii -0.008 [-0.43,+0.38]  Delta b -0.827  n(ii) 88  b_iii +0.213
+   tau +0.4: b_ii +0.089 [-0.32,+0.47]  Delta b -0.685  n(ii) 84  b_iii +0.390
+   tau +0.6: b_ii +0.223 [-0.19,+0.61]  Delta b -0.563  n(ii) 85  b_iii +0.543
+   tau +0.8: b_ii +0.410 [-0.01,+0.80]  Delta b -0.347  n(ii) 84  b_iii +0.736
+   tau +1.0: b_ii +0.564 [+0.13,+0.97]  Delta b -0.144  n(ii) 85  b_iii +0.887
+   tau +1.2: b_ii +0.598 [+0.15,+1.00]  Delta b -0.039  n(ii) 83  b_iii +1.067
+   tau +1.4 [EXT]: b_ii +0.664  Delta b +0.049  n(ii) 81  b_iii +1.272
+   tau +1.6 [EXT]: b_ii +0.701  Delta b +0.181  n(ii) 78  b_iii +1.391
+   tau +1.8 [EXT]: b_ii +0.812  Delta b +0.293  n(ii) 78  b_iii +1.436
+   tau +2.0 [EXT]: b_ii +0.924  Delta b +0.432  n(ii) 77  b_iii +1.396
+   tau +2.4 [EXT]: b_ii +1.083  Delta b +0.692  n(ii) 76  b_iii +1.582
+   tau +3.0 [EXT]: b_ii +1.433  Delta b +1.016  n(ii) 75  b_iii +1.775
+   b_i = +0.789.  tau*_i = 1.76 (frozen grid alone: None);  tau*_III (b_ii = +0.298) = 0.68 (frozen grid alone: 0.68)
+   constant offset -0.3: b_ii -0.069  Delta b -0.961  n(ii) 65
+   constant offset +0.0: b_ii -0.040  Delta b -0.938  n(ii) 85
+   constant offset +0.3: b_ii -0.089  Delta b -0.921  n(ii) 95
+   H2-only tilt t_H:
+      t_H -0.6: b_ii +0.136  Delta b -0.629  n(ii) 84
+      t_H -0.3: b_ii +0.023  Delta b -0.794  n(ii) 87
+      t_H +0.0: b_ii -0.040  Delta b -0.938  n(ii) 85
+      t_H +0.3: b_ii -0.134  Delta b -1.099  n(ii) 84
+      t_H +0.6: b_ii -0.261  Delta b -1.337  n(ii) 82
+   combined: tH = -0.3: tau*_i = 1.45
+   combined: tH = +0.0: tau*_i = 1.76
+   combined: tH = +0.3: tau*_i = 2.09
+   combined: tg = -0.3: tau*_i = 1.65
+   combined: tg = +0.0: tau*_i = 1.76
+   combined: tg = +0.3: tau*_i = 1.89
+C2 [R199a]: SED-M* z-dependent bias tau (true = SED - tau (z - zmed)), frozen grid then EXTENDED grid (post-frozen extension, labelled)
+   tau -0.4: b_ii -0.243 [-0.69,+0.36]  Delta b -1.327  n(ii) 82  b_iii -0.357
+   tau -0.2: b_ii -0.236 [-0.70,+0.31]  Delta b -1.168  n(ii) 83  b_iii -0.243
+   tau +0.0: b_ii -0.200 [-0.77,+0.34]  Delta b -1.022  n(ii) 85  b_iii -0.128
+   tau +0.2: b_ii -0.186 [-0.80,+0.33]  Delta b -0.860  n(ii) 88  b_iii -0.006
+   tau +0.4: b_ii -0.120 [-0.70,+0.35]  Delta b -0.707  n(ii) 84  b_iii +0.193
+   tau +0.6: b_ii -0.012 [-0.59,+0.47]  Delta b -0.598  n(ii) 85  b_iii +0.324
+   tau +0.8: b_ii +0.153 [-0.41,+0.61]  Delta b -0.382  n(ii) 84  b_iii +0.503
+   tau +1.0: b_ii +0.289 [-0.29,+0.80]  Delta b -0.182  n(ii) 85  b_iii +0.623
+   tau +1.2: b_ii +0.306 [-0.25,+0.77]  Delta b -0.032  n(ii) 83  b_iii +0.835
+   tau +1.4 [EXT]: b_ii +0.341  Delta b +0.068  n(ii) 81  b_iii +1.034
+   tau +1.6 [EXT]: b_ii +0.345  Delta b +0.145  n(ii) 78  b_iii +1.128
+   tau +1.8 [EXT]: b_ii +0.459  Delta b +0.249  n(ii) 78  b_iii +1.159
+   tau +2.0 [EXT]: b_ii +0.580  Delta b +0.406  n(ii) 77  b_iii +1.092
+   tau +2.4 [EXT]: b_ii +0.739  Delta b +0.676  n(ii) 76  b_iii +1.257
+   tau +3.0 [EXT]: b_ii +1.126  Delta b +1.060  n(ii) 75  b_iii +1.443
+   b_i = +0.645.  tau*_i = 2.16 (frozen grid alone: None);  tau*_III (b_ii = +0.298) = 1.11 (frozen grid alone: 1.11)
+   constant offset -0.3: b_ii -0.283  Delta b -1.011  n(ii) 65
+   constant offset +0.0: b_ii -0.200  Delta b -1.022  n(ii) 85
+   constant offset +0.3: b_ii -0.235  Delta b -0.993  n(ii) 95
+   H2-only tilt t_H:
+      t_H -0.6: b_ii -0.108  Delta b -0.687  n(ii) 84
+      t_H -0.3: b_ii -0.160  Delta b -0.831  n(ii) 87
+      t_H +0.0: b_ii -0.200  Delta b -1.022  n(ii) 85
+      t_H +0.3: b_ii -0.261  Delta b -1.212  n(ii) 84
+      t_H +0.6: b_ii -0.332  Delta b -1.397  n(ii) 82
+   combined: tH = -0.3: tau*_i = 2.0
+   combined: tH = +0.0: tau*_i = 2.16
+   combined: tH = +0.3: tau*_i = 2.36
+   combined: tg = -0.3: tau*_i = 2.35
+   combined: tg = +0.0: tau*_i = 2.16
+   combined: tg = +0.3: tau*_i = 1.98
+C3: mass-z confound
+   TS slopes on z: log M_fit +0.134; log M*_SED +0.947; Delta* -0.723; corr(z, log M*_SED) = +0.41; corr(z, log M_fit) = +0.08
+   beta = slope of log M_fit on log M*_SED: OLS 0.63; corrected for the SED errors (lambda 0.978, median err 0.08) 0.64; inverse-regression bracket 1.52; quoted M_fit 1-sigma median 0.35
+   Delta* OLS slope on z alone -0.672 [-0.952,-0.382];  with covariate (log M*_SED - 9.24): d_M = -0.434 [-0.719,-0.151]; mass coefficient -0.285
+   M* tercile 1 (log M*_SED 7.33-8.91, n=37, z range 0.28-1.42): Delta* slope -0.817 [-1.484,-0.048]
+   M* tercile 2 (log M*_SED 8.91-9.40, n=36, z range 0.52-1.43): Delta* slope -0.657 [-1.298,-0.189]
+   M* tercile 3 (log M*_SED 9.42-10.89, n=36, z range 0.34-1.44): Delta* slope -0.580 [-1.070,+0.056]
+   [R198] log a0,i: OLS z slope alone +0.697; with M* covariate +0.521 [+0.11,+0.93]; M* coefficient +0.210
+   [R198] log a0,ii: OLS z slope alone -0.100; with M* covariate -0.276 [-0.71,+0.20]; M* coefficient +0.207
+   [R199a] log a0,i: OLS z slope alone +0.613; with M* covariate -0.012 [-0.83,+0.60]; M* coefficient +0.748
+   [R199a] log a0,ii: OLS z slope alone -0.150; with M* covariate -0.573 [-1.09,-0.06]; M* coefficient +0.500
+C4: enclosed-mass overshoot (impossibility test): 0.5 M_r + pi R_e^2 Sigma_HI > M_dyn(<R_e)?  (log_Mdyn read as the total mass within R_e: UNVERIFIED)
+   fit     enclosed > M_dyn         : low-z 3/54 = 0.06 [0.02,0.15]; high-z 1/54 = 0.02 [0.00,0.10]; diff z-stat -1.02
+   fit     enclosed > (1-fDM) M_dyn : low-z 52/54 = 0.96 [0.87,0.99]; high-z 54/54 = 1.00 [0.93,1.00]; diff z-stat +1.43
+   SED+H2  enclosed > M_dyn         : low-z 16/54 = 0.30 [0.19,0.43]; high-z 28/54 = 0.52 [0.39,0.65]; diff z-stat +2.35
+   SED+H2  enclosed > (1-fDM) M_dyn : low-z 44/54 = 0.81 [0.69,0.90]; high-z 53/54 = 0.98 [0.90,1.00]; diff z-stat +2.86
+   SED     enclosed > M_dyn         : low-z 9/54 = 0.17 [0.09,0.29]; high-z 13/54 = 0.24 [0.15,0.37]; diff z-stat +0.96
+   SED     enclosed > (1-fDM) M_dyn : low-z 32/54 = 0.59 [0.46,0.71]; high-z 45/54 = 0.83 [0.71,0.91]; diff z-stat +2.77
+C4 sensitivity (POST-FROZEN, labelled): does O4's condition (f_high >= 25% and diff >= 2 SD) hold for SED+H2 under other geometries?
+   f_enc 0.4, M_dyn x0.8: SED+H2 low 0.31 high 0.54 z +2.34 O4 True;  fit low 0.07 high 0.04
+   f_enc 0.4, M_dyn x1.0: SED+H2 low 0.24 high 0.50 z +2.79 O4 True;  fit low 0.06 high 0.02
+   f_enc 0.4, M_dyn x1.25: SED+H2 low 0.24 high 0.46 z +2.42 O4 True;  fit low 0.06 high 0.00
+   f_enc 0.5, M_dyn x0.8: SED+H2 low 0.39 high 0.59 z +2.12 O4 True;  fit low 0.11 high 0.11
+   f_enc 0.5, M_dyn x1.0: SED+H2 low 0.30 high 0.52 z +2.35 O4 True;  fit low 0.06 high 0.02
+   f_enc 0.5, M_dyn x1.25: SED+H2 low 0.24 high 0.50 z +2.79 O4 True;  fit low 0.06 high 0.02
+   f_enc 0.6, M_dyn x0.8: SED+H2 low 0.44 high 0.63 z +1.93 O4 False;  fit low 0.26 high 0.13
+   f_enc 0.6, M_dyn x1.0: SED+H2 low 0.39 high 0.57 z +1.93 O4 False;  fit low 0.11 high 0.11
+   f_enc 0.6, M_dyn x1.25: SED+H2 low 0.30 high 0.52 z +2.35 O4 True;  fit low 0.06 high 0.02
+   O4 holds in 7 of 9 cells
+C5: baryons-only fit as an upper bound (no halo): M*_SED(1+mu) above M_disc,bo + M_gas,bo ?
+   SED+H2  > M_disc,bo + M_gas,bo: low-z 1/55, high-z 2/54
+   SED+H2  > M_disc,bo alone: low-z 9/55, high-z 15/54
+   SED     > M_disc,bo + M_gas,bo: low-z 1/55, high-z 1/54
+   SED     > M_disc,bo alone: low-z 6/55, high-z 4/54
+   fit     > M_disc,bo + M_gas,bo: low-z 0/55, high-z 0/54
+   fit     > M_disc,bo alone: low-z 2/55, high-z 1/54
+   M_disc,bo - M*_SED: median +0.77; TS slope on z -0.410; M_disc,bo - M_fit TS slope +0.304
+C6: sSFR test (WEAK; main-sequence evolution expected about +0.67 +- 0.3 dex/z is FROM MEMORY, UNVERIFIED; SFR read as log10 SFR)
+   window log M*_SED in [8.71,9.53] (n=55): TS slope of log sSFR on z +0.181 [-0.09,+0.44]; OLS with M* covariate +0.224 [-0.03,+0.44]
+   implied tau ~ expected - observed = +0.49 dex/z (vs the tau needed, section C2); caveat: SFR and M* likely from the same SED fit; selection
+
+DECISION TABLE (frozen section 9; conditions evaluated as written)
+   tau*_i per construction: {'R198': 1.7578790417850867, 'R199a': 2.1636941862185526}; B_pl = 0.25
+   O1: tau*_i > 0.4 on all constructions True; d_M <= -0.4 with upper CI < -0.1: True (d_M -0.43, upper -0.15); C4 silent (f_low 0.30, f_high 0.52, z +2.35): False  -> O1 = False
+   O2: tau*_i <= 0.25 on all constructions: False
+   O3: |d_M| <= 0.25 and CI contains 0: False
+   O4: f_high >= 25% and diff >= 2 SD: True
+   OUTCOME: ['O4'] (O5 is the default when none of O1-O4 holds)
+   weak counter-check C6: implied tau +0.49 vs the O1/O2 call: differs from tau*_i by more than B_pl? {'R198': True, 'R199a': True}
+# CFG236 attack (d): prior-dominated gas
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+prior-dominated (hi95 >= 14 and lo95 < 1): 97 of 109 rows in S (all 126 rows: 110 of 126)
+constrained rows (not prior-dominated), ids: [11, 12, 863, 884, 909, 931, 934, 937, 963, 982, 1000, 1131]
+fitted Sigma_HI: median 7.66, 16-84 [6.9,8.1]; hi95 >= 14: 104; lo95 < 1: 102; Sigma within 5..10: 94
+  Spearman(z, fitted Sigma_HI) = +0.07 (a z-trend in the gas prior would feed route (ii))
+
+=== R198 ===
+primary: b_i +0.789; b_ii -0.040 [-0.450,+0.356] (half-width 0.403); Delta b -0.938
+   G0 fitted median  : b_i +0.789  b_ii -0.040  b_iii +0.075  Delta b -0.938  n(ii) 85
+   G1 Sigma=0        : b_i +0.775  b_ii -0.181  b_iii -0.088  Delta b -1.111  n(ii) 87
+   G2 Sigma=15       : b_i +0.822  b_ii +0.104  b_iii +0.217  Delta b -0.827  n(ii) 84
+   G3 Sigma=7.5      : b_i +0.809  b_ii +0.003  b_iii +0.105  Delta b -0.930  n(ii) 85
+   G6 tilt +0.3      : b_i +0.696  b_ii -0.106  b_iii -0.027  Delta b -0.900  n(ii) 85
+   G6 tilt -0.3      : b_i +0.868  b_ii +0.028  b_iii +0.178  Delta b -0.979  n(ii) 85
+   G8 coeff x0.5     : b_i +0.764  b_ii -0.173  b_iii -0.074  Delta b -1.054  n(ii) 82
+   G8 coeff x2       : b_i +0.787  b_ii +0.174  b_iii +0.223  Delta b -0.766  n(ii) 91
+   G9 H2 x0.5        : b_i +0.789  b_ii -0.011  b_iii +0.075  Delta b -0.866  n(ii) 94
+   G9 H2 x2          : b_i +0.789  b_ii -0.202  b_iii +0.075  Delta b -1.127  n(ii) 69
+   G9 H2 tilt +0.3   : b_i +0.789  b_ii -0.134  b_iii +0.075  Delta b -1.099  n(ii) 84
+   G9 H2 tilt -0.3   : b_i +0.789  b_ii +0.023  b_iii +0.075  Delta b -0.794  n(ii) 87
+   G7 constrained rows only (n=12): b_i +0.772  b_ii -0.517 (n_ii 10)  b_iii -0.269  Delta b -1.316
+   prior-dominated rows only (n=97): b_i +0.783  b_ii -0.005  b_iii +0.094  Delta b -0.888
+   G4 U(0,15): b_ii mean -0.027 SD 0.035, 2.5/50/97.5 = -0.097/-0.026/+0.041; Delta b mean -0.955 SD 0.035
+   G5 posterior quantile: b_ii mean -0.054 SD 0.033, 2.5/50/97.5 = -0.118/-0.055/+0.010; Delta b mean -0.953 SD 0.034
+   R_g (half-range of b_ii over G0-G3, G6, G8) = 0.178; with the G4/G5 2.5-97.5 half-ranges 0.178; bootstrap half-width 0.403; ratio 0.44 -> 'partly'
+   total interval (bootstrap CI widened linearly by R_g): [-0.628,+0.534]
+   with the gas range included: laws inside/outside the widened interval: {'flat': True, 'Ez': True, 'III': True}
+
+=== R199a ===
+primary: b_i +0.645; b_ii -0.200 [-0.771,+0.361] (half-width 0.566); Delta b -1.022
+   G0 fitted median  : b_i +0.645  b_ii -0.200  b_iii -0.128  Delta b -1.022  n(ii) 85
+   G1 Sigma=0        : b_i +0.645  b_ii -0.025  b_iii -0.406  Delta b -1.072  n(ii) 73
+   G2 Sigma=15       : b_i +0.645  b_ii +0.031  b_iii -0.014  Delta b -0.819  n(ii) 91
+   G3 Sigma=7.5      : b_i +0.645  b_ii -0.193  b_iii -0.111  Delta b -1.020  n(ii) 85
+   G6 tilt +0.3      : b_i +0.645  b_ii -0.141  b_iii -0.166  Delta b -0.968  n(ii) 86
+   G6 tilt -0.3      : b_i +0.645  b_ii -0.274  b_iii -0.127  Delta b -1.084  n(ii) 85
+   G8 coeff x0.5     : b_i +0.645  b_ii -0.266  b_iii -0.215  Delta b -1.124  n(ii) 82
+   G8 coeff x2       : b_i +0.645  b_ii +0.027  b_iii -0.041  Delta b -0.826  n(ii) 91
+   G9 H2 x0.5        : b_i +0.645  b_ii -0.175  b_iii -0.128  Delta b -0.928  n(ii) 94
+   G9 H2 x2          : b_i +0.645  b_ii -0.357  b_iii -0.128  Delta b -1.163  n(ii) 69
+   G9 H2 tilt +0.3   : b_i +0.645  b_ii -0.261  b_iii -0.128  Delta b -1.212  n(ii) 84
+   G9 H2 tilt -0.3   : b_i +0.645  b_ii -0.160  b_iii -0.128  Delta b -0.831  n(ii) 87
+   G7 constrained rows only (n=12): b_i +0.430  b_ii -0.482 (n_ii 10)  b_iii -0.362  Delta b -1.522
+   prior-dominated rows only (n=97): b_i +0.671  b_ii -0.149  b_iii -0.094  Delta b -0.967
+   G4 U(0,15): b_ii mean -0.150 SD 0.069, 2.5/50/97.5 = -0.280/-0.151/-0.023; Delta b mean -1.014 SD 0.054
+   G5 posterior quantile: b_ii mean -0.155 SD 0.066, 2.5/50/97.5 = -0.277/-0.156/-0.020; Delta b mean -1.016 SD 0.051
+   R_g (half-range of b_ii over G0-G3, G6, G8) = 0.153; with the G4/G5 2.5-97.5 half-ranges 0.153; bootstrap half-width 0.566; ratio 0.27 -> 'partly'
+   total interval (bootstrap CI widened linearly by R_g): [-0.923,+0.513]
+   with the gas range included: laws inside/outside the widened interval: {'flat': True, 'Ez': True, 'III': True}
+# CFG236 attack (e): III's law anchor
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+[R198] route (i) all S: n=108  linear TS: B = +7.29, A(z=0) = -0.96 (x1e-10), B/A = -7.57 (bootstrap SD 4525.17; III 1.59);  log slope +0.789 [+0.51,+1.07] vs III +0.298 (OUTSIDE);  lowest-third level 2.26e-10 at z=0.52 vs III 1.83e-10: +0.09 dex  -> FAIL
+      E1b third-median ratio (z 0.52 -> 1.20): observed +0.57 dex, III +0.20 dex, difference +2.8 SD (SD 0.13)
+[R198] route (ii) all S: n=85  linear TS: B = -0.14, A(z=0) = +2.28 (x1e-10), B/A = -0.06 (bootstrap SD 2.06; III 1.59);  log slope -0.040 [-0.43,+0.35] vs III +0.299 (inside);  lowest-third level 2.04e-10 at z=0.52 vs III 1.83e-10: +0.05 dex  -> PASS
+      E1b third-median ratio (z 0.52 -> 1.16): observed +0.06 dex, III +0.19 dex, difference -0.8 SD (SD 0.17)
+[R198] route (i) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=76  linear TS: B = +7.21, A(z=0) = -0.74 (x1e-10), B/A = -9.70 (bootstrap SD 2239.36; III 1.59);  log slope +0.653 [+0.29,+1.06] vs III +0.286 (OUTSIDE);  lowest-third level 4.15e-10 at z=0.67 vs III 2.06e-10: +0.30 dex  -> FAIL
+      E1b third-median ratio (z 0.67 -> 1.29): observed +0.31 dex, III +0.17 dex, difference +1.2 SD (SD 0.11)
+[R198] route (ii) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=56  linear TS: B = -1.22, A(z=0) = +3.67 (x1e-10), B/A = -0.33 (bootstrap SD 0.95; III 1.59);  log slope -0.270 [-0.91,+0.32] vs III +0.284 (inside);  lowest-third level 3.42e-10 at z=0.66 vs III 2.06e-10: +0.22 dex  -> FAIL
+      E1b third-median ratio (z 0.66 -> 1.30): observed -0.16 dex, III +0.17 dex, difference -1.4 SD (SD 0.25)
+[R199a] route (i) all S: n=108  linear TS: B = +1.01, A(z=0) = +0.07 (x1e-10), B/A = +14.11 (bootstrap SD 252.59; III 1.59);  log slope +0.645 [+0.25,+1.09] vs III +0.298 (inside);  lowest-third level 0.42e-10 at z=0.52 vs III 1.83e-10: -0.64 dex  -> PARTIAL
+      E1b third-median ratio (z 0.52 -> 1.20): observed +0.57 dex, III +0.20 dex, difference +2.4 SD (SD 0.16)
+[R199a] route (ii) all S: n=85  linear TS: B = -0.11, A(z=0) = +0.59 (x1e-10), B/A = -0.18 (bootstrap SD 1.37; III 1.59);  log slope -0.200 [-0.76,+0.36] vs III +0.299 (inside);  lowest-third level 0.43e-10 at z=0.52 vs III 1.83e-10: -0.63 dex  -> PARTIAL
+      E1b third-median ratio (z 0.52 -> 1.16): observed +0.07 dex, III +0.19 dex, difference -0.5 SD (SD 0.27)
+[R199a] route (i) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=76  linear TS: B = +0.74, A(z=0) = +0.68 (x1e-10), B/A = +1.09 (bootstrap SD 102.76; III 1.59);  log slope +0.374 [-0.16,+1.04] vs III +0.286 (inside);  lowest-third level 0.80e-10 at z=0.67 vs III 2.06e-10: -0.41 dex  -> PARTIAL
+      E1b third-median ratio (z 0.67 -> 1.29): observed +0.37 dex, III +0.17 dex, difference +0.8 SD (SD 0.25)
+[R199a] route (ii) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=56  linear TS: B = -0.57, A(z=0) = +1.21 (x1e-10), B/A = -0.47 (bootstrap SD 4.23; III 1.59);  log slope -0.504 [-1.28,+0.14] vs III +0.284 (OUTSIDE);  lowest-third level 1.58e-10 at z=0.66 vs III 2.06e-10: -0.11 dex  -> FAIL
+      E1b third-median ratio (z 0.66 -> 1.30): observed -0.50 dex, III +0.17 dex, difference -1.6 SD (SD 0.41)
+[R199b] route (i) all S: n=108  linear TS: B = +1.63, A(z=0) = -0.01 (x1e-10), B/A = -131.96 (bootstrap SD 363.77; III 1.59);  log slope +0.633 [+0.24,+1.01] vs III +0.298 (inside);  lowest-third level 0.72e-10 at z=0.52 vs III 1.83e-10: -0.40 dex  -> PARTIAL
+      E1b third-median ratio (z 0.52 -> 1.20): observed +0.53 dex, III +0.20 dex, difference +2.0 SD (SD 0.16)
+[R199b] route (ii) all S: n=85  linear TS: B = -0.19, A(z=0) = +0.83 (x1e-10), B/A = -0.23 (bootstrap SD 0.48; III 1.59);  log slope -0.217 [-0.78,+0.30] vs III +0.299 (inside);  lowest-third level 0.68e-10 at z=0.52 vs III 1.83e-10: -0.43 dex  -> FAIL
+      E1b third-median ratio (z 0.52 -> 1.16): observed +0.01 dex, III +0.19 dex, difference -0.7 SD (SD 0.28)
+[R199b] route (i) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=76  linear TS: B = +1.43, A(z=0) = +0.83 (x1e-10), B/A = +1.72 (bootstrap SD 90.17; III 1.59);  log slope +0.445 [-0.05,+0.97] vs III +0.286 (inside);  lowest-third level 1.33e-10 at z=0.67 vs III 2.06e-10: -0.19 dex  -> PARTIAL
+      E1b third-median ratio (z 0.67 -> 1.29): observed +0.37 dex, III +0.17 dex, difference +1.0 SD (SD 0.20)
+[R199b] route (ii) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=56  linear TS: B = -0.98, A(z=0) = +1.90 (x1e-10), B/A = -0.51 (bootstrap SD 0.59; III 1.59);  log slope -0.504 [-1.20,+0.13] vs III +0.284 (OUTSIDE);  lowest-third level 1.82e-10 at z=0.66 vs III 2.06e-10: -0.05 dex  -> FAIL
+      E1b third-median ratio (z 0.66 -> 1.30): observed -0.34 dex, III +0.17 dex, difference -1.5 SD (SD 0.34)
+[R199a+D1] route (i) all S: n=108  linear TS: B = +2.63, A(z=0) = +0.03 (x1e-10), B/A = +91.47 (bootstrap SD 109.69; III 1.59);  log slope +0.677 [+0.45,+0.93] vs III +0.298 (OUTSIDE);  lowest-third level 0.88e-10 at z=0.52 vs III 1.83e-10: -0.32 dex  -> FAIL
+      E1b third-median ratio (z 0.52 -> 1.20): observed +0.56 dex, III +0.20 dex, difference +4.3 SD (SD 0.08)
+[R199a+D1] route (ii) all S: n=85  linear TS: B = -0.27, A(z=0) = +1.06 (x1e-10), B/A = -0.25 (bootstrap SD 0.27; III 1.59);  log slope -0.213 [-0.61,+0.14] vs III +0.299 (OUTSIDE);  lowest-third level 0.80e-10 at z=0.52 vs III 1.83e-10: -0.36 dex  -> FAIL
+      E1b third-median ratio (z 0.52 -> 1.16): observed -0.04 dex, III +0.19 dex, difference -1.1 SD (SD 0.22)
+[R199a+D1] route (i) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=76  linear TS: B = +2.30, A(z=0) = +0.67 (x1e-10), B/A = +3.44 (bootstrap SD 146.07; III 1.59);  log slope +0.500 [+0.12,+0.90] vs III +0.286 (inside);  lowest-third level 2.15e-10 at z=0.67 vs III 2.06e-10: +0.02 dex  -> PASS
+      E1b third-median ratio (z 0.67 -> 1.29): observed +0.17 dex, III +0.17 dex, difference +0.0 SD (SD 0.14)
+[R199a+D1] route (ii) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=56  linear TS: B = -0.95, A(z=0) = +1.79 (x1e-10), B/A = -0.53 (bootstrap SD 0.89; III 1.59);  log slope -0.490 [-1.17,+0.11] vs III +0.284 (OUTSIDE);  lowest-third level 1.90e-10 at z=0.66 vs III 2.06e-10: -0.04 dex  -> FAIL
+      E1b third-median ratio (z 0.66 -> 1.30): observed -0.41 dex, III +0.17 dex, difference -1.7 SD (SD 0.35)
+[R199b+D1] route (i) all S: n=108  linear TS: B = +3.47, A(z=0) = -0.17 (x1e-10), B/A = -19.85 (bootstrap SD 117.32; III 1.59);  log slope +0.667 [+0.43,+0.91] vs III +0.298 (OUTSIDE);  lowest-third level 1.17e-10 at z=0.52 vs III 1.83e-10: -0.19 dex  -> FAIL
+      E1b third-median ratio (z 0.52 -> 1.20): observed +0.56 dex, III +0.20 dex, difference +3.8 SD (SD 0.09)
+[R199b+D1] route (ii) all S: n=85  linear TS: B = -0.34, A(z=0) = +1.32 (x1e-10), B/A = -0.26 (bootstrap SD 0.51; III 1.59);  log slope -0.216 [-0.63,+0.20] vs III +0.299 (OUTSIDE);  lowest-third level 1.30e-10 at z=0.52 vs III 1.83e-10: -0.15 dex  -> FAIL
+      E1b third-median ratio (z 0.52 -> 1.16): observed -0.13 dex, III +0.19 dex, difference -1.3 SD (SD 0.25)
+[R199b+D1] route (i) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=76  linear TS: B = +3.12, A(z=0) = +0.46 (x1e-10), B/A = +6.82 (bootstrap SD 96.04; III 1.59);  log slope +0.529 [+0.20,+0.89] vs III +0.286 (inside);  lowest-third level 2.57e-10 at z=0.67 vs III 2.06e-10: +0.10 dex  -> PASS
+      E1b third-median ratio (z 0.67 -> 1.29): observed +0.25 dex, III +0.17 dex, difference +0.6 SD (SD 0.13)
+[R199b+D1] route (ii) III-like cuts (M*_SED>10^8.8, 0.33<z<1.44): n=56  linear TS: B = -1.15, A(z=0) = +2.37 (x1e-10), B/A = -0.48 (bootstrap SD 0.75; III 1.59);  log slope -0.424 [-1.07,+0.19] vs III +0.284 (OUTSIDE);  lowest-third level 2.16e-10 at z=0.66 vs III 2.06e-10: +0.02 dex  -> FAIL
+      E1b third-median ratio (z 0.66 -> 1.30): observed -0.23 dex, III +0.17 dex, difference -1.3 SD (SD 0.31)
+
+E5: III's 79-galaxy multi-radius RAR fit is not this R_e-only per-galaxy construction; a failed match here is 'not reproduced at R_e on this construction', not a failure of III.
+# CFG236 extras F1-F8
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+F1: duplicates
+   duplicated muse_id in the numeric CSV: []; distinct ids 126 of 126; ids in CSV but not in joined: []; in joined but not in CSV: [69]
+   id 26 rows in CSV: 1; in S: True
+   id 26 CSV: Vvir 103.30, DC14_log_X -2.010, DC14_logMvir 11.340; dup row A: V_vir 141.03, log_X -2.473, log_Mvir 11.747; dup row B: V_vir 103.41, log_X -2.009, log_Mvir 11.343
+   |CSV V_vir - row| = 37.73, 0.11 -> matches row B (DC14_bestfit.txt), tolerance check 0.11 km/s
+   [R198] with / without id 26: b_i +0.789/+0.767, b_ii -0.040/-0.042, Delta b -0.938/-0.922
+   [R199a] with / without id 26: b_i +0.645/+0.623, b_ii -0.200/-0.204, Delta b -1.022/-0.992
+   [R199b] with / without id 26: b_i +0.633/+0.608, b_ii -0.217/-0.233, Delta b -1.029/-0.997
+   source absences: DC14 halo file lacks id 36; in the numeric set id 36 present: True; id 69 (baryons-only lacks): False
+
+F2: selection and influence
+   exclusion missing z                       : n=0 (low-z half 0)
+   exclusion missing logMstar_phot           : n=2 (low-z half 0)
+   exclusion missing DC14_logMdisk           : n=0 (low-z half 0)
+   exclusion missing fDM_at_Re               : n=0 (low-z half 0)
+   exclusion missing Re_kpc                  : n=0 (low-z half 0)
+   exclusion missing gas_density_Msun_pc2    : n=0 (low-z half 0)
+   exclusion bulge component                 : n=15 (low-z half 5)
+   exclusion fDM outside (0,1) (any)         : n=2 (low-z half 2)
+   route (i) undefined (D<=1.05): 1  (low-z half 1, high-z half 0)
+   route (ii) undefined (D<=1.05): 24  (low-z half 9, high-z half 15)
+   route (iii) undefined (D<=1.05): 10  (low-z half 5, high-z half 5)
+   fDM<=0 or >=1 ids in the 110 disc rows: [876]; fDM median 0.79, fDM<0.2: 2, fDM>0.9: 24
+   [R198] leave-one-out i: full +0.789; max |change| 0.035; top five ids by |change| [1127, 1390, 1041, 1266, 918]
+   [R198] leave-one-out ii: full -0.040; max |change| 0.057; top five ids by |change| [1390, 1065, 859, 1266, 6927]
+   [R198] leave-one-out d: full -0.938; max |change| 0.046; top five ids by |change| [6879, 1198, 925, 975, 1091]
+   [R198] drop the 10 whose removal raises b_ii most: b_i +1.020  b_ii +0.382  Delta b -0.851
+   [R198] drop the 10 whose removal lowers b_ii most: b_i +0.636  b_ii -0.451  Delta b -1.188
+   [R199a] leave-one-out i: full +0.645; max |change| 0.055; top five ids by |change| [6927, 961, 887, 859, 1127]
+   [R199a] leave-one-out ii: full -0.200; max |change| 0.070; top five ids by |change| [6927, 1198, 1091, 859, 1065]
+   [R199a] leave-one-out d: full -1.022; max |change| 0.046; top five ids by |change| [975, 13, 1081, 6879, 1127]
+   [R199a] drop the 10 whose removal raises b_ii most: b_i +1.039  b_ii +0.425  Delta b -0.892
+   [R199a] drop the 10 whose removal lowers b_ii most: b_i +0.323  b_ii -0.767  Delta b -1.265
+   [R199b] leave-one-out i: full +0.633; max |change| 0.048; top five ids by |change| [6927, 1127, 1198, 961, 1041]
+   [R199b] leave-one-out ii: full -0.217; max |change| 0.077; top five ids by |change| [1198, 1065, 1390, 925, 975]
+   [R199b] leave-one-out d: full -1.029; max |change| 0.050; top five ids by |change| [1081, 6879, 1127, 13, 982]
+   [R199b] drop the 10 whose removal raises b_ii most: b_i +0.972  b_ii +0.348  Delta b -0.885
+   [R199b] drop the 10 whose removal lowers b_ii most: b_i +0.359  b_ii -0.778  Delta b -1.250
+
+F3: censoring (D<=1.05 rows are upper limits on a0)
+   [R198] (lo) set to the a0 bound: b_ii (n=109) = -0.237
+   [R198] (hi) bound - 1 dex: b_ii (n=109) = -0.353
+   [R198] Spearman(z, a0_ii) with the censored rows at the bottom rank: -0.14 (p=0.143); uncensored only: -0.02
+   [R199a] (lo) set to the a0 bound: b_ii (n=109) = -0.420
+   [R199a] (hi) bound - 1 dex: b_ii (n=109) = -0.544
+   [R199a] Spearman(z, a0_ii) with the censored rows at the bottom rank: -0.19 (p=0.055); uncensored only: -0.09
+   [R199b] (lo) set to the a0 bound: b_ii (n=109) = -0.452
+   [R199b] (hi) bound - 1 dex: b_ii (n=109) = -0.585
+   [R199b] Spearman(z, a0_ii) with the censored rows at the bottom rank: -0.19 (p=0.049); uncensored only: -0.09
+
+F4: Monte Carlo through the tabulated errors (seed 2365; fDM, v, R_e NOT propagated: no errors in the CSV; g_obs held fixed)
+   sigma(log M*_SED) joined: median 0.080 [0.024,0.141]; sigma(log M_fit) median 0.350
+   [R198] joined errors: MC mean shift b_i -0.014 (SD 0.097); b_ii -0.040 (SD 0.083); Delta b mean -0.951 (SD 0.124); bootstrap SD b_ii 0.201; quadrature total 0.217 = 1.08 x bootstrap
+   [R198] floored at 0.15: MC mean shift b_i -0.014 (SD 0.097); b_ii -0.030 (SD 0.097); Delta b mean -0.939 (SD 0.133); bootstrap SD b_ii 0.201; quadrature total 0.223 = 1.11 x bootstrap
+   [R199a] joined errors: MC mean shift b_i -0.000 (SD 0.000); b_ii +0.008 (SD 0.150); Delta b mean -0.952 (SD 0.135); bootstrap SD b_ii 0.265; quadrature total 0.304 = 1.15 x bootstrap
+   [R199a] floored at 0.15: MC mean shift b_i -0.000 (SD 0.000); b_ii +0.010 (SD 0.155); Delta b mean -0.938 (SD 0.141); bootstrap SD b_ii 0.265; quadrature total 0.307 = 1.16 x bootstrap
+   [R199b] joined errors: MC mean shift b_i +0.000 (SD 0.000); b_ii +0.010 (SD 0.147); Delta b mean -0.957 (SD 0.134); bootstrap SD b_ii 0.260; quadrature total 0.299 = 1.15 x bootstrap
+   [R199b] floored at 0.15: MC mean shift b_i +0.000 (SD 0.000); b_ii +0.013 (SD 0.153); Delta b mean -0.942 (SD 0.140); bootstrap SD b_ii 0.260; quadrature total 0.302 = 1.16 x bootstrap
+
+F5: kernels
+   [R198] RAR: b_i +0.789  b_ii -0.040  b_iii +0.075  Delta b -0.938
+   [R198] P2: b_i +0.739  b_ii +0.008  b_iii +0.098  Delta b -0.834
+   [R198] mono (IMPORT, shared): b_i +0.789  b_ii -0.041  b_iii +0.075  Delta b -0.939
+   [R198] max |P2 - RAR| over b_i, b_ii, Delta b = 0.104 (frozen prediction: within 0.03)
+   [R198] max |mono - RAR| over b_i, b_ii, Delta b = 0.001 (frozen prediction: within 0.03)
+   [R199a] RAR: b_i +0.645  b_ii -0.200  b_iii -0.128  Delta b -1.022
+   [R199a] P2: b_i +0.599  b_ii -0.141  b_iii -0.100  Delta b -0.921
+   [R199a] mono (IMPORT, shared): b_i +0.646  b_ii -0.201  b_iii -0.127  Delta b -1.027
+   [R199a] max |P2 - RAR| over b_i, b_ii, Delta b = 0.100 (frozen prediction: within 0.03)
+   [R199a] max |mono - RAR| over b_i, b_ii, Delta b = 0.006 (frozen prediction: within 0.03)
+   [R199b] RAR: b_i +0.633  b_ii -0.217  b_iii -0.124  Delta b -1.029
+   [R199b] P2: b_i +0.585  b_ii -0.188  b_iii -0.111  Delta b -0.909
+   [R199b] mono (IMPORT, shared): b_i +0.633  b_ii -0.216  b_iii -0.124  Delta b -1.031
+   [R199b] max |P2 - RAR| over b_i, b_ii, Delta b = 0.119 (frozen prediction: within 0.03)
+   [R199b] max |mono - RAR| over b_i, b_ii, Delta b = 0.002 (frozen prediction: within 0.03)
+
+F6: placement against flat (0), E(z), III for every route and row (95% bootstrap CI, B=2000)
+   R198 primary    route (i): b +0.789 [+0.52,+1.08] SD 0.14 | flat +5.6 SD OUT | E(z) +3.7 OUT | III +3.5 OUT
+   R198 primary    route (ii): b -0.040 [-0.43,+0.34] SD 0.20 | flat -0.2 SD in  | E(z) -1.5 in  | III -1.7 in 
+   R198 primary    route (iii): b +0.075 [-0.22,+0.36] SD 0.15 | flat +0.5 SD in  | E(z) -1.2 in  | III -1.5 in 
+   R198 Sigma=0    route (i): b +0.775 [+0.49,+1.12] SD 0.16 | flat +4.9 SD OUT | E(z) +3.3 OUT | III +3.0 OUT
+   R198 Sigma=0    route (ii): b -0.181 [-0.64,+0.21] SD 0.22 | flat -0.8 SD in  | E(z) -2.0 OUT | III -2.2 OUT
+   R198 Sigma=0    route (iii): b -0.088 [-0.45,+0.27] SD 0.18 | flat -0.5 SD in  | E(z) -1.9 in  | III -2.1 OUT
+   R198 Sigma=15   route (i): b +0.822 [+0.58,+1.10] SD 0.13 | flat +6.2 SD OUT | E(z) +4.2 OUT | III +3.9 OUT
+   R198 Sigma=15   route (ii): b +0.104 [-0.32,+0.46] SD 0.20 | flat +0.5 SD in  | E(z) -0.8 in  | III -1.0 in 
+   R198 Sigma=15   route (iii): b +0.217 [-0.09,+0.48] SD 0.15 | flat +1.5 SD in  | E(z) -0.3 in  | III -0.5 in 
+   R198 mu x0.5    route (i): b +0.789 [+0.52,+1.08] SD 0.14 | flat +5.6 SD OUT | E(z) +3.7 OUT | III +3.5 OUT
+   R198 mu x0.5    route (ii): b -0.011 [-0.35,+0.32] SD 0.17 | flat -0.1 SD in  | E(z) -1.5 in  | III -1.8 in 
+   R198 mu x0.5    route (iii): b +0.075 [-0.22,+0.36] SD 0.15 | flat +0.5 SD in  | E(z) -1.2 in  | III -1.5 in 
+   R198 mu x2      route (i): b +0.789 [+0.52,+1.08] SD 0.14 | flat +5.6 SD OUT | E(z) +3.7 OUT | III +3.5 OUT
+   R198 mu x2      route (ii): b -0.202 [-0.66,+0.29] SD 0.24 | flat -0.8 SD in  | E(z) -1.9 in  | III -2.1 OUT
+   R198 mu x2      route (iii): b +0.075 [-0.22,+0.36] SD 0.15 | flat +0.5 SD in  | E(z) -1.2 in  | III -1.5 in 
+   R199a           route (i): b +0.645 [+0.26,+1.08] SD 0.21 | flat +3.1 SD OUT | E(z) +1.9 OUT | III +1.7 in 
+   R199a           route (ii): b -0.200 [-0.75,+0.34] SD 0.26 | flat -0.8 SD in  | E(z) -1.7 in  | III -1.9 in 
+   R199a           route (iii): b -0.128 [-0.54,+0.27] SD 0.21 | flat -0.6 SD in  | E(z) -1.8 in  | III -2.0 OUT
+   R199b           route (i): b +0.633 [+0.26,+1.00] SD 0.19 | flat +3.4 SD OUT | E(z) +2.0 OUT | III +1.8 in 
+   R199b           route (ii): b -0.217 [-0.78,+0.29] SD 0.26 | flat -0.8 SD in  | E(z) -1.8 in  | III -2.0 OUT
+   R199b           route (iii): b -0.124 [-0.54,+0.26] SD 0.20 | flat -0.6 SD in  | E(z) -1.9 in  | III -2.1 OUT
+   R199a Sigma=0   route (i): b +0.645 [+0.26,+1.08] SD 0.21 | flat +3.1 SD OUT | E(z) +1.9 OUT | III +1.7 in 
+   R199a Sigma=0   route (ii): b -0.025 [-0.53,+0.53] SD 0.27 | flat -0.1 SD in  | E(z) -1.0 in  | III -1.2 in 
+   R199a Sigma=0   route (iii): b -0.406 [-0.85,-0.01] SD 0.21 | flat -1.9 SD OUT | E(z) -3.1 OUT | III -3.3 OUT
+   R199a mu x2     route (i): b +0.645 [+0.26,+1.08] SD 0.21 | flat +3.1 SD OUT | E(z) +1.9 OUT | III +1.7 in 
+   R199a mu x2     route (ii): b -0.357 [-0.93,+0.21] SD 0.28 | flat -1.3 SD in  | E(z) -2.2 OUT | III -2.4 OUT
+   R199a mu x2     route (iii): b -0.128 [-0.54,+0.27] SD 0.21 | flat -0.6 SD in  | E(z) -1.8 in  | III -2.0 OUT
+
+F7: multi-covariate OLS  log a0 ~ z + (log M*_SED - 9.24) + (log R_e - med) + (log g_bar - med)   (bootstrap B=2000)
+   [R198] route (i) z only                : partial z slope +0.697 [+0.39,+1.01]
+   [R198] route (i) z + M*                : partial z slope +0.521 [+0.14,+0.94]
+   [R198] route (i) z + M* + R_e          : partial z slope +0.525 [+0.23,+0.86]
+   [R198] route (i) z + M* + R_e + g_bar  : partial z slope +0.319 [+0.05,+0.62]
+   [R198] route (ii) z only                : partial z slope -0.100 [-0.48,+0.28]
+   [R198] route (ii) z + M*                : partial z slope -0.276 [-0.68,+0.18]
+   [R198] route (ii) z + M* + R_e          : partial z slope -0.287 [-0.58,+0.04]
+   [R198] route (ii) z + M* + R_e + g_bar  : partial z slope -0.929 [-1.53,-0.29]
+   [R199a] route (i) z only                : partial z slope +0.613 [+0.17,+1.07]
+   [R199a] route (i) z + M*                : partial z slope -0.012 [-0.80,+0.60]
+   [R199a] route (i) z + M* + R_e          : partial z slope -0.003 [-0.81,+0.46]
+   [R199a] route (i) z + M* + R_e + g_bar  : partial z slope +0.754 [+0.04,+1.21]
+   [R199a] route (ii) z only                : partial z slope -0.150 [-0.74,+0.44]
+   [R199a] route (ii) z + M*                : partial z slope -0.573 [-1.06,-0.04]
+   [R199a] route (ii) z + M* + R_e          : partial z slope -0.588 [-0.96,-0.24]
+   [R199a] route (ii) z + M* + R_e + g_bar  : partial z slope -0.565 [-0.84,-0.26]
+   [R199b] route (i) z only                : partial z slope +0.579 [+0.14,+1.04]
+   [R199b] route (i) z + M*                : partial z slope -0.042 [-0.82,+0.56]
+   [R199b] route (i) z + M* + R_e          : partial z slope -0.034 [-0.83,+0.46]
+   [R199b] route (i) z + M* + R_e + g_bar  : partial z slope +0.753 [+0.02,+1.21]
+   [R199b] route (ii) z only                : partial z slope -0.188 [-0.77,+0.42]
+   [R199b] route (ii) z + M*                : partial z slope -0.604 [-1.10,-0.08]
+   [R199b] route (ii) z + M* + R_e          : partial z slope -0.618 [-1.00,-0.24]
+   [R199b] route (ii) z + M* + R_e + g_bar  : partial z slope -0.560 [-0.83,-0.25]
+
+F8: M*_SED terciles and z-halves
+   [R198] M* tercile 1 (log M* 7.33-8.91): b_i +0.87 [+0.26,+1.55] (n=36); b_ii +0.12 [-0.56,+0.71] (n=32)
+   [R198] M* tercile 2 (log M* 8.91-9.40): b_i +0.64 [-0.19,+1.51] (n=36); b_ii +0.13 [-1.10,+1.52] (n=28)
+   [R198] M* tercile 3 (log M* 9.42-10.89): b_i +0.53 [+0.12,+1.10] (n=36); b_ii -0.53 [-1.23,+0.10] (n=25)
+   [R198] low-z half: n_i 54, n_ii 46; median log a0 route (i) -9.52, route (ii) -9.68; b_i +0.83, b_ii +0.19
+   [R198] high-z half: n_i 54, n_ii 39; median log a0 route (i) -9.08, route (ii) -9.65; b_i +0.53, b_ii -0.01
+   [R199a] M* tercile 1 (log M* 7.33-8.91): b_i +0.50 [-0.28,+1.44] (n=36); b_ii -0.53 [-1.29,+0.57] (n=32)
+   [R199a] M* tercile 2 (log M* 8.91-9.40): b_i +0.19 [-0.79,+1.35] (n=36); b_ii -0.25 [-1.31,+1.41] (n=28)
+   [R199a] M* tercile 3 (log M* 9.42-10.89): b_i +0.31 [-0.33,+1.08] (n=36); b_ii -0.85 [-1.55,+0.09] (n=25)
+   [R199a] low-z half: n_i 54, n_ii 46; median log a0 route (i) -10.26, route (ii) -10.34; b_i +0.55, b_ii +0.23
+   [R199a] high-z half: n_i 54, n_ii 39; median log a0 route (i) -9.81, route (ii) -10.30; b_i +0.27, b_ii -0.27
+   [R199b] M* tercile 1 (log M* 7.33-8.91): b_i +0.52 [-0.32,+1.39] (n=36); b_ii -0.46 [-1.30,+0.57] (n=32)
+   [R199b] M* tercile 2 (log M* 8.91-9.40): b_i +0.23 [-0.60,+1.15] (n=36); b_ii -0.14 [-1.39,+1.22] (n=28)
+   [R199b] M* tercile 3 (log M* 9.42-10.89): b_i +0.39 [-0.18,+1.07] (n=36); b_ii -0.75 [-1.56,+0.07] (n=25)
+   [R199b] low-z half: n_i 54, n_ii 46; median log a0 route (i) -10.06, route (ii) -10.14; b_i +0.66, b_ii +0.16
+   [R199b] high-z half: n_i 54, n_ii 39; median log a0 route (i) -9.63, route (ii) -10.20; b_i +0.26, b_ii -0.30
+compare rc=0

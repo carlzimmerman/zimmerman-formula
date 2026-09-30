@@ -1,0 +1,149 @@
+# CFG236 main: reproduction of CFG198 / CFG199
+repo=<repo>  ext=<ext>  numpy 1.26.4  scipy 1.14.1
+seed 236, B 10000, [DAT] rows ON
+sample chain: {'n_rows': 126, 'n_finite': 124, 'bulge_all': 15, 'bulge_in_finite': 14, 'n_disc': 110, 'n_S': 109}
+PASS N1: rows: mine 126  target 126
+PASS N2: finite: mine 124  target 124
+PASS N3: bulge among the 124: mine 14  target 14
+PASS N3b: bulge among all 126: mine 15  target 15
+PASS N4: disc-only: mine 110  target 110
+PASS N5: S (0<fDM<1): mine 109  target 109
+S: z range 0.280-1.438, median 0.863; logM*_SED median 9.17
+C1 disc: peak at R/Rd = 2.150; v2max Rd/(GM) = 0.3870
+C1 disc: at R=50 Rd, v^2 R/(GM) = 1.0018  (should be ~1)
+C2 kernel round trip (max rel err): {'RAR': 8.881784197001252e-16, 'P2': 1.1102230246251565e-15}
+C3 route identity (R198): PASS
+C4 interpolation: 40.000000000000 (expect 40) err 0.0e+00
+hash verification of external files vs the repo manifests: {'n_listed': 882, 'n_ok': 882, 'n_bad': 0, 'n_missing': 0, 'cat_ok': 9, 'cat_bad': 0, 'cat_missing': 0} []
+P1 drift (n=109): Delta* slope -0.723 [-0.970,-0.499] median -0.112
+P1 drift: Delta*-log(1+mu) slope -0.868 [-1.109,-0.616] median -0.512
+PASS T1: Delta* slope: mine -0.7232  target -0.7230  (tol 0.03)
+PASS T1m: Delta* median: mine -0.1120  target -0.1120  (tol 0.01)
+INFO PASS T1lo: Delta* CI lo: mine -0.9696  target -0.9660  (tol 0.05)
+INFO PASS T1hi: Delta* CI hi: mine -0.4985  target -0.4980  (tol 0.05)
+PASS T2: Delta*-log(1+mu) slope: mine -0.8683  target -0.8680  (tol 0.03)
+PASS T2m: Delta*-log(1+mu) median: mine -0.5123  target -0.5120  (tol 0.03)
+INFO PASS T2lo: CI lo: mine -1.1088  target -1.1070  (tol 0.05)
+INFO PASS T2hi: CI hi: mine -0.6162  target -0.6160  (tol 0.05)
+slope of log10(1+mu) = +0.145 (target 0.145)
+[R198 primary (nu_RAR, fitted Sigma_HI, mu x1)]
+   route (i): n=108  b=+0.789 [+0.516,+1.075] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=85  b=-0.040 [-0.448,+0.348] sd 0.204  excludes: none
+   route (iii): n=99  b=+0.075 [-0.222,+0.354] sd 0.147  excludes: none
+   paired d_ii_i: n=84  -0.938 [-1.255,-0.642]
+   paired d_iii_i: n=98  -0.692 [-0.929,-0.480]
+PASS N6: n route (i): mine 108  target 108
+PASS N7: n route (ii): mine 85  target 85
+PASS N8: n route (iii): mine 99  target 99
+PASS N9: paired (ii-i): mine 84  target 84
+PASS N10: paired (iii-i): mine 98  target 98
+PASS N11: D<=1.05 route (ii) low-z half: mine 9  target 9
+PASS N12: D<=1.05 route (ii) high-z half: mine 15  target 15
+PASS T3: b_i (R198): mine +0.7889  target +0.7890  (tol 0.05)
+PASS T4: b_ii (R198): mine -0.0398  target -0.0410  (tol 0.05)
+PASS T5: b_iii (R198): mine +0.0755  target +0.0750  (tol 0.05)
+PASS T6: paired Delta b (ii-i): mine -0.9383  target -0.9390  (tol 0.05)
+PASS T6b: paired b_iii - b_i: mine -0.6916  target -0.6930  (tol 0.05)
+INFO PASS T-CI-i-lo: CI lo: mine +0.5159  target +0.5140  (tol 0.05)
+INFO PASS T-CI-i-hi: CI hi: mine +1.0753  target +1.0710  (tol 0.05)
+INFO PASS T-CI-ii-lo: CI lo: mine -0.4475  target -0.4670  (tol 0.05)
+INFO PASS T-CI-ii-hi: CI hi: mine +0.3478  target +0.3600  (tol 0.05)
+INFO PASS T-CI-iii-lo: CI lo: mine -0.2222  target -0.2330  (tol 0.05)
+INFO PASS T-CI-iii-hi: CI hi: mine +0.3543  target +0.3490  (tol 0.05)
+INFO PASS T-CI-d_ii_i-lo: CI lo: mine -1.2546  target -1.2610  (tol 0.05)
+INFO PASS T-CI-d_ii_i-hi: CI hi: mine -0.6419  target -0.6330  (tol 0.05)
+INFO PASS T-CI-d_iii_i-lo: CI lo: mine -0.9290  target -0.9310  (tol 0.05)
+INFO PASS T-CI-d_iii_i-hi: CI hi: mine -0.4804  target -0.4800  (tol 0.05)
+reference slopes over S: flat 0, E(z) +0.2576, III +0.2980
+PASS T7a: E(z) reference slope: mine +0.2576  target +0.2580  (tol 0.005)
+PASS T7b: III-law reference slope: mine +0.2980  target +0.2980  (tol 0.005)
+R1 (route ii): excluded = []  classification: {'flat': {'inside': True, 'dist_sd': -0.19489997975601}, 'Ez': {'inside': True, 'dist_sd': -1.4570612457504337}, 'III': {'inside': True, 'dist_sd': -1.661071147423951}}
+R0 (route i): excluded = ['flat', 'Ez', 'III']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (i) ['-9.65', '-9.30', '-9.07']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (ii) ['-9.68', '-9.62', '-9.67']
+level (R198, z-thirds of route-(i) galaxies; median log10 a0): route (iii) ['-9.41', '-9.14', '-9.23']
+footings -10.029 / -9.946; median z of lowest third 0.523
+PASS T9i: level low third route (i): mine -9.6465  target -9.6500  (tol 0.05)
+PASS T9ii: level low third route (ii): mine -9.6804  target -9.6900  (tol 0.05)
+PASS T9iii: level low third route (iii): mine -9.4097  target -9.3800  (tol 0.05)
+[R198 robustness Sig0]
+   route (i): n=108  b=+0.775 [+0.490,+1.089] sd 0.155  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=87  b=-0.181 [-0.628,+0.221] sd 0.218  excludes: ['Ez', 'III']
+   route (iii): n=99  b=-0.088 [-0.455,+0.264] sd 0.181  excludes: ['III']
+   paired d_ii_i: n=86  -1.111 [-1.489,-0.772]
+   paired d_iii_i: n=98  -0.869 [-1.156,-0.594]
+PASS T8-Sig0-bi: b_i: mine +0.7750  target +0.7750  (tol 0.05)
+PASS T8-Sig0-bii: b_ii: mine -0.1814  target -0.1820  (tol 0.05)
+PASS T8-Sig0-d: Delta b: mine -1.1110  target -1.1110  (tol 0.05)
+PASS R1-Sig0: excluded ['Ez', 'III'], target ['Ez', 'III']
+[R198 robustness Sig15]
+   route (i): n=108  b=+0.822 [+0.574,+1.097] sd 0.133  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=84  b=+0.104 [-0.321,+0.451] sd 0.206  excludes: none
+   route (iii): n=99  b=+0.217 [-0.100,+0.472] sd 0.148  excludes: none
+   paired d_ii_i: n=83  -0.827 [-1.131,-0.565]
+   paired d_iii_i: n=98  -0.580 [-0.814,-0.398]
+PASS T8-Sig15-bi: b_i: mine +0.8216  target +0.8220  (tol 0.05)
+PASS T8-Sig15-bii: b_ii: mine +0.1044  target +0.1060  (tol 0.05)
+PASS T8-Sig15-d: Delta b: mine -0.8266  target -0.8190  (tol 0.05)
+PASS R1-Sig15: excluded [], target []
+[R198 robustness mu0.5]
+   route (i): n=108  b=+0.789 [+0.516,+1.075] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=94  b=-0.011 [-0.356,+0.334] sd 0.175  excludes: none
+   route (iii): n=99  b=+0.075 [-0.222,+0.354] sd 0.147  excludes: none
+   paired d_ii_i: n=93  -0.866 [-1.142,-0.607]
+   paired d_iii_i: n=98  -0.692 [-0.929,-0.480]
+PASS T8-mu0.5-bi: b_i: mine +0.7889  target +0.7890  (tol 0.05)
+PASS T8-mu0.5-bii: b_ii: mine -0.0105  target -0.0110  (tol 0.05)
+PASS T8-mu0.5-d: Delta b: mine -0.8663  target -0.8660  (tol 0.05)
+PASS R1-mu0.5: excluded [], target []
+[R198 robustness mu2]
+   route (i): n=108  b=+0.789 [+0.516,+1.075] sd 0.141  excludes: ['flat', 'Ez', 'III']
+   route (ii): n=69  b=-0.202 [-0.678,+0.286] sd 0.241  excludes: ['III']
+   route (iii): n=99  b=+0.075 [-0.222,+0.354] sd 0.147  excludes: none
+   paired d_ii_i: n=69  -1.127 [-1.557,-0.727]
+   paired d_iii_i: n=98  -0.692 [-0.929,-0.480]
+PASS T8-mu2-bi: b_i: mine +0.7889  target +0.7890  (tol 0.05)
+PASS T8-mu2-bii: b_ii: mine -0.2024  target -0.2020  (tol 0.05)
+PASS T8-mu2-d: Delta b: mine -1.1271  target -1.1270  (tol 0.05)
+PASS R1-mu2: excluded ['III'], target ['III']
+R1-primary: excluded [] vs target []
+R1-route(iii): excluded [] vs target []
+kernel P2: b_i +0.739, b_ii +0.008, b_iii +0.098
+kernel mono (IMPORT from CFG4_common, shared object): b_i +0.789, b_ii -0.041, b_iii +0.075
+PASS K-mono: nu_mono (import) b_i within 0.005 of nu_RAR primary: mine +0.7889  target +0.7889  (tol 0.005)
+PASS K-mono2: nu_mono (import) b_ii within 0.005 of nu_RAR primary: mine -0.0408  target -0.0398  (tol 0.005)
+decomposition route (i): slope log g_obs +0.306, slope log g_bar -0.024, 2 s_obs - s_bar +0.636 vs b +0.789
+decomposition route (ii): slope log g_obs +0.306, slope log g_bar +0.683, 2 s_obs - s_bar -0.071 vs b -0.040
+decomposition route (iii): slope log g_obs +0.306, slope log g_bar +0.488, 2 s_obs - s_bar +0.125 vs b +0.075
+v_f(R_e) median 36.0 km/s; finite 109/109
+[R199 reading (a), drift OFF]
+   route (i): n=108 b=+0.645 [+0.241,+1.082] excludes ['flat']
+   route (ii): n=85 b=-0.200 [-0.771,+0.357] excludes none
+   route (iii): n=99 b=-0.128 [-0.544,+0.281] excludes ['III']
+   paired Delta b: n=84 -1.022 [-1.320,-0.748]
+PASS T10a-bi: b_i: mine +0.6448  target +0.6500  (tol 0.05)
+PASS T10a-bii: b_ii: mine -0.1996  target -0.2000  (tol 0.05)
+PASS T10a-d: Delta b: mine -1.0216  target -1.0300  (tol 0.05)
+   L1 level lowest third: -10.38 [-10.71,-10.12] -> below both
+PASS T11a: level lowest third: mine -10.3761  target -10.3800  (tol 0.05)
+PASS L1a-class: below both
+   L3: spearman(v_perp/v_c,198 , sin i) = +0.40; share s median 0.84 [16-84: 0.63, 0.93]; median log10(g_perp/g_obs198) = -0.79
+PASS T12a-rho: rho with sin i: mine +0.4010  target +0.4000  (tol 0.1)
+PASS T12a-s: share s median: mine +0.8368  target +0.8400  (tol 0.03)
+[R199 reading (b), drift OFF]
+   route (i): n=108 b=+0.633 [+0.244,+0.997] excludes ['flat']
+   route (ii): n=85 b=-0.217 [-0.779,+0.295] excludes ['III']
+   route (iii): n=99 b=-0.124 [-0.534,+0.261] excludes ['III']
+   paired Delta b: n=84 -1.029 [-1.324,-0.743]
+PASS T10b-bi: b_i: mine +0.6333  target +0.6300  (tol 0.05)
+PASS T10b-bii: b_ii: mine -0.2173  target -0.2200  (tol 0.05)
+PASS T10b-d: Delta b: mine -1.0288  target -1.0300  (tol 0.05)
+   L1 level lowest third: -10.14 [-10.45,-9.94] -> consistent with footing(s)
+PASS T11b: level lowest third: mine -10.1435  target -10.1400  (tol 0.05)
+PASS L1b-class: consistent with footing(s)
+   route (ii) CI upper edge +0.2950 vs III slope +0.2993: below (excludes III)
+   L3: spearman(v_perp/v_c,198 , sin i) = -0.01; share s median 0.75 [16-84: 0.51, 0.88]; median log10(g_perp/g_obs198) = -0.60
+PASS T12b-rho: rho with sin i: mine -0.0080  target -0.0100  (tol 0.1)
+PASS T12b-s: share s median: mine +0.7493  target +0.7500  (tol 0.03)
+
+PASS LINES: 61 pass, 0 fail (non-info); fails: []; info misses: []
