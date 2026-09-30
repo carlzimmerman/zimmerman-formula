@@ -1,0 +1,74 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = none
+sigma_int = 0.15; mocks per (group, truth) = 1000; seeds 237 (main), 238 (check), 239 (marginalised, 20,000)
+
+=== S1: n = 9; gas share of g_bar: [0.18 0.14 0.05 0.67 0.79 0.2  0.07 0.7  0.72]; g_bar/a0: [15.6 16.7 52.8 21.5 29.6 11.1 75.1  6.   4.1]
+   seed 237: SD 0.0786 | signal H(z) 0.0542  proxy 0.0252 | S_half 0.1526  S_max 0.2335 (+B -0.234, -B +0.072, no shift +0.000)
+   seed 238: SD 0.0771 | signal H(z) 0.0537  proxy 0.0289
+   (S_half/S_max with truth H(z): 0.1526 / 0.2210)
+   R-lin [half]: needs > 0.310; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-lin [max]: needs > 0.391; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-marg (tau_true ~ U(-0.671, 0.671), 20,000 mocks): H(z) separable False (5th pct H(z) -0.146, 95th pct FLAT +0.323; FLAT IQR -0.099..+0.146); proxy separable False
+PASS  T S1 SD within 10% of README 0.077 :: mine 0.0786
+PASS  T S1 signal H(z) within 10% of README 0.05 :: mine 0.0542
+FAIL  T S1 signal proxy within 10% of README 0.022 :: mine 0.0252
+PASS  T S1 calibration systematic within 10% of README 0.233 (either convention) :: S_half 0.1526 (no), S_max 0.2335 (match)
+PASS  T S1 class: NOT possible vs H(z) under R-lin in both conventions
+PASS  T S1 needs > README 0.388 within 10% (either convention) :: half 0.310 max 0.391
+PASS  C6 S1: flat-true mocks centred on 0 (|median| < 2 SD in >= 90%) :: 0.953
+PASS  C6 S1: H(z)-true median within 3 SD of its noise-free value in >= 90% :: 0.998
+
+=== CRISTAL_Re: n = 6; gas share of g_bar: [0.43 0.13 0.43 0.73 0.7  0.47]; g_bar/a0: [ 4.2 11.5  1.5  6.   1.7  1.5]
+   seed 237: SD 0.0783 | signal H(z) 0.2511  proxy 0.1928 | S_half 0.2560  S_max 0.3635 (+B -0.364, -B +0.148, no shift +0.000)
+   seed 238: SD 0.0791 | signal H(z) 0.2531  proxy 0.1867
+   (S_half/S_max with truth H(z): 0.2695 / 0.3533)
+   R-lin [half]: needs > 0.413; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-lin [max]: needs > 0.520; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-marg (tau_true ~ U(-0.671, 0.671), 20,000 mocks): H(z) separable False (5th pct H(z) +0.061, 95th pct FLAT +0.346; FLAT IQR -0.101..+0.162); proxy separable False
+PASS  T CRISTAL_Re SD within 10% of README 0.08 :: mine 0.0783
+PASS  T CRISTAL_Re signal H(z) within 10% of README 0.275 :: mine 0.2511
+PASS  T CRISTAL_Re signal proxy within 10% of README 0.209 :: mine 0.1928
+PASS  T CRISTAL_Re calibration systematic within 10% of README 0.363 (either convention) :: S_half 0.2560 (no), S_max 0.3635 (match)
+PASS  T CRISTAL_Re class: NOT possible vs H(z) under R-lin in both conventions
+PASS  T CRISTAL_Re needs > README 0.523 within 10% (either convention) :: half 0.413 max 0.520
+PASS  C6 CRISTAL_Re: flat-true mocks centred on 0 (|median| < 2 SD in >= 90%) :: 0.949
+PASS  C6 CRISTAL_Re: H(z)-true median within 3 SD of its noise-free value in >= 90% :: 0.996
+
+=== CRISTAL_Rout: n = 6; gas share of g_bar: [0.43 0.13 0.43 0.73 0.7  0.47]; g_bar/a0: [0.8 4.4 1.1 1.6 1.  1.1]
+   seed 237: SD 0.0783 | signal H(z) 0.3172  proxy 0.2469 | S_half 0.2284  S_max 0.3243 (+B -0.324, -B +0.133, no shift +0.000)
+   seed 238: SD 0.0791 | signal H(z) 0.3175  proxy 0.2454
+   (S_half/S_max with truth H(z): 0.2337 / 0.3212)
+   R-lin [half]: needs > 0.385; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) POSSIBLE, proxy NOT possible
+   R-lin [max]: needs > 0.481; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-marg (tau_true ~ U(-0.671, 0.671), 20,000 mocks): H(z) separable False (5th pct H(z) +0.136, 95th pct FLAT +0.316; FLAT IQR -0.092..+0.147); proxy separable False
+PASS  T CRISTAL_Rout SD within 10% of README 0.077 :: mine 0.0783
+PASS  T CRISTAL_Rout signal H(z) within 10% of README 0.34 :: mine 0.3172
+PASS  T CRISTAL_Rout signal proxy within 10% of README 0.264 :: mine 0.2469
+PASS  T CRISTAL_Rout calibration systematic within 10% of README 0.324 (either convention) :: S_half 0.2284 (no), S_max 0.3243 (match)
+PASS  T CRISTAL_Rout class: NOT possible vs H(z) under R-lin in both conventions
+PASS  T CRISTAL_Rout needs > README 0.479 within 10% (either convention) :: half 0.385 max 0.481
+PASS  C6 CRISTAL_Rout: flat-true mocks centred on 0 (|median| < 2 SD in >= 90%) :: 0.949
+PASS  C6 CRISTAL_Rout: H(z)-true median within 3 SD of its noise-free value in >= 90% :: 0.999
+
+=== sensitivity: S1 g_bar rescaled (so D rises) ===
+   s_gb 1.0: signal H(z) 0.054 proxy 0.025 | SD 0.079 | S_half 0.153 S_max 0.234 | R-lin needs 0.310 / 0.391: NOT possible (half:False, max:False)
+   s_gb 0.75: signal H(z) 0.066 proxy 0.031 | SD 0.079 | S_half 0.150 S_max 0.230 | R-lin needs 0.307 / 0.387: NOT possible (half:False, max:False)
+   s_gb 0.5: signal H(z) 0.087 proxy 0.042 | SD 0.079 | S_half 0.146 S_max 0.224 | R-lin needs 0.303 / 0.381: NOT possible (half:False, max:False)
+   s_gb 0.3: signal H(z) 0.119 proxy 0.059 | SD 0.079 | S_half 0.138 S_max 0.213 | R-lin needs 0.295 / 0.370: NOT possible (half:False, max:False)
+
+=== sensitivity: S1 f_gas +-0.2 ===
+   f_gas -0.2: signal H(z) 0.054 | S_half 0.004 S_max 0.007 | R-lin half:False max:False
+   f_gas +0.2: signal H(z) 0.054 | S_half 0.269 S_max 0.382 | R-lin half:False max:False
+
+=== post hoc separable band B* (R-lin, vs H(z) and vs proxy) ===
+   S1: B*(H(z)) half 0.000, max 0.000 | B*(proxy) half 0.000, max 0.000   README: H(z) None, proxy None
+PASS  T S1 'never separable' (B* = 0 against H(z) under both conventions) :: 0.000, 0.000
+   CRISTAL_Re: B*(H(z)) half 0.259, max 0.225 | B*(proxy) half 0.100, max 0.094   README: H(z) 0.27, proxy 0.13
+PASS  T CRISTAL_Re B*(H(z)) within 10% of README 0.27 (either convention)
+FAIL  T CRISTAL_Re B*(proxy) within 10% of README 0.13 (either convention)
+   CRISTAL_Rout: B*(H(z)) half 0.484, max 0.388 | B*(proxy) half 0.277, max 0.239   README: H(z) 0.44, proxy 0.28
+PASS  T CRISTAL_Rout B*(H(z)) within 10% of README 0.44 (either convention)
+PASS  T CRISTAL_Rout B*(proxy) within 10% of README 0.28 (either convention)
+
+SUMMARY: 29 lines, 2 FAIL (0 counted for the exit code)
+   FAILED: T S1 signal proxy within 10% of README 0.022 :: mine 0.0252
+   FAILED: T CRISTAL_Re B*(proxy) within 10% of README 0.13 (either convention) :: 

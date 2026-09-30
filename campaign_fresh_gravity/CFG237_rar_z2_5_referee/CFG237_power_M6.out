@@ -1,0 +1,41 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = 6
+sigma_int = 0.3; mocks per (group, truth) = 1000; seeds 237 (main), 238 (check), 239 (marginalised, 20,000)
+
+=== S1: n = 9; gas share of g_bar: [0.18 0.14 0.05 0.67 0.79 0.2  0.07 0.7  0.72]; g_bar/a0: [15.6 16.7 52.8 21.5 29.6 11.1 75.1  6.   4.1]
+   seed 237: SD 0.1340 | signal H(z) 0.0554  proxy 0.0239 | S_half 0.1526  S_max 0.2335 (+B -0.234, -B +0.072, no shift +0.000)
+   seed 238: SD 0.1312 | signal H(z) 0.0548  proxy 0.0328
+   (S_half/S_max with truth H(z): 0.1526 / 0.2210)
+   R-lin [half]: needs > 0.421; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-lin [max]: needs > 0.502; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-marg (tau_true ~ U(-0.671, 0.671), 20,000 mocks): H(z) separable False (5th pct H(z) -0.216, 95th pct FLAT +0.368; FLAT IQR -0.114..+0.165); proxy separable False
+PASS  C6 S1: flat-true mocks centred on 0 (|median| < 2 SD in >= 90%) :: 0.953
+PASS  C6 S1: H(z)-true median within 3 SD of its noise-free value in >= 90% :: 0.995
+FAIL  M6 S1: statistical SD within 10% of README 0.077 :: mine 0.1340 (sigma_int 0.30)
+
+=== CRISTAL_Re: n = 6; gas share of g_bar: [0.43 0.13 0.43 0.73 0.7  0.47]; g_bar/a0: [ 4.2 11.5  1.5  6.   1.7  1.5]
+   seed 237: SD 0.1430 | signal H(z) 0.2500  proxy 0.1909 | S_half 0.2560  S_max 0.3635 (+B -0.364, -B +0.148, no shift +0.000)
+   seed 238: SD 0.1445 | signal H(z) 0.2459  proxy 0.1824
+   (S_half/S_max with truth H(z): 0.2695 / 0.3533)
+   R-lin [half]: needs > 0.542; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-lin [max]: needs > 0.649; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-marg (tau_true ~ U(-0.671, 0.671), 20,000 mocks): H(z) separable False (5th pct H(z) -0.023, 95th pct FLAT +0.400; FLAT IQR -0.118..+0.180); proxy separable False
+PASS  C6 CRISTAL_Re: flat-true mocks centred on 0 (|median| < 2 SD in >= 90%) :: 0.949
+PASS  C6 CRISTAL_Re: H(z)-true median within 3 SD of its noise-free value in >= 90% :: 0.999
+FAIL  M6 CRISTAL_Re: statistical SD within 10% of README 0.08 :: mine 0.1430 (sigma_int 0.30)
+
+=== CRISTAL_Rout: n = 6; gas share of g_bar: [0.43 0.13 0.43 0.73 0.7  0.47]; g_bar/a0: [0.8 4.4 1.1 1.6 1.  1.1]
+   seed 237: SD 0.1430 | signal H(z) 0.3152  proxy 0.2437 | S_half 0.2284  S_max 0.3243 (+B -0.324, -B +0.133, no shift +0.000)
+   seed 238: SD 0.1445 | signal H(z) 0.3111  proxy 0.2414
+   (S_half/S_max with truth H(z): 0.2337 / 0.3212)
+   R-lin [half]: needs > 0.514; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-lin [max]: needs > 0.610; vs H(z): NOT possible; vs proxy: NOT possible   | R-quad: H(z) NOT possible, proxy NOT possible
+   R-marg (tau_true ~ U(-0.671, 0.671), 20,000 mocks): H(z) separable False (5th pct H(z) +0.049, 95th pct FLAT +0.375; FLAT IQR -0.111..+0.167); proxy separable False
+PASS  C6 CRISTAL_Rout: flat-true mocks centred on 0 (|median| < 2 SD in >= 90%) :: 0.949
+PASS  C6 CRISTAL_Rout: H(z)-true median within 3 SD of its noise-free value in >= 90% :: 0.999
+FAIL  M6 CRISTAL_Rout: statistical SD within 10% of README 0.077 :: mine 0.1430 (sigma_int 0.30)
+
+SUMMARY: 9 lines, 3 FAIL (3 counted for the exit code)
+   FAILED: M6 S1: statistical SD within 10% of README 0.077 :: mine 0.1340 (sigma_int 0.30)
+   FAILED: M6 CRISTAL_Re: statistical SD within 10% of README 0.08 :: mine 0.1430 (sigma_int 0.30)
+   FAILED: M6 CRISTAL_Rout: statistical SD within 10% of README 0.077 :: mine 0.1430 (sigma_int 0.30)
+MUTATE 6 bites

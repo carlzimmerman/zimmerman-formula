@@ -1,0 +1,82 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = none
+ids ['007.1', '022.1', '041.1', '049.1', '065.1', '066.1', '071.1', '075.1', '122.1']
+
+== algebra (frozen 5.3): at r = 2 R_e, y = r/(2 R_d) = 1.678 for every source, so g_bar = c0 G M_bar / R_e^2 ==
+   y = 1.6784, f(y) = 0.168993, c0 = f * 1.67835 = 0.283629 (g_bar = c0 G M_bar/R_e^2)
+PASS  algebra: g_bar = c0 G M_bar / R_e^2 for all nine (1e-10) :: 2.22e-16
+PASS  algebra: D scales exactly with R_e (x1.5 -> D x1.5) at fixed V, M
+PASS  algebra: D scales as (sin i / sin i_new)^2
+PASS  algebra: D(alpha) = D / (1 + gas share (alpha/0.92 - 1)), per galaxy
+
+== per-galaxy baseline ==
+   id      z     re_kpc  inc   V   logM*  logMgas  gas share  D(base)  D(stars only)  M_bar/M_dyn(10kpc)
+   007.1  2.692   4.96    34  399  11.87  11.22    0.18     0.357     0.436         2.33   (R_2re 2.10)
+   022.1  2.263   3.71    34  334  11.67  10.89    0.14     0.311     0.363         1.95   (R_2re 2.40)
+   041.1  2.547   2.39    69  400  11.83  10.57    0.05     0.220     0.232         1.78   (R_2re 3.40)
+   049.1  2.945   1.51    90  350  10.58  10.89    0.67     0.654     1.990         0.23   (R_2re 1.14)
+   065.1  4.445   1.43    58  371  10.48  11.05    0.79     0.565     2.664         0.30   (R_2re 1.32)
+   066.1  2.553   3.54    52  344  11.42  10.83    0.20     0.519     0.653         0.87   (R_2re 1.44)
+   071.1  3.709   3.52    71  381  12.31  11.20    0.07     0.095     0.103         6.11   (R_2re 7.86)
+   075.1  2.552   2.63    55  389  10.48  10.84    0.70     1.644     5.410         0.21   (R_2re 0.45)
+   122.1  2.024   5.31    55  533  10.89  11.30    0.72     2.233     7.973         0.43   (R_2re 0.33)
+   median D 0.519; stars-only (alpha = 0) median D 0.653, n(D_star>=1) = 4
+   mass-level: R_M = M_bar/M_dyn(<10 kpc): median 0.87, n(R_M >= 1) = 4 of 9; R_2re (enclosed baryons / V^2 2r_e/G): median 1.44, n(R_2re >= 1) = 7
+   M* only vs M_dyn(10 kpc): median 0.69, n(M*/Mdyn >= 1) = 4
+   V^2 (2 r_e)/G  /  M_dyn(10 kpc) (flat-curve test, expect ~ 2 r_e / 10 kpc): [0.94 0.69 0.44 0.17 0.19 0.51 0.66 0.39 1.08]  vs 2 r_e/10 kpc: [0.99 0.74 0.48 0.3  0.29 0.71 0.7  0.53 1.06]
+
+== grid: 9800 cells (alpha 10 x b 7 x di 7 x s 5 x m* 2 x k 2) ==
+   baseline cell (0.92, 0, 0, 1, 1, 0): median D 0.519
+   cells with median D >= 1 and n(D>=1) >= 5: 3238 of 9800
+   lowest-cost restoring cells:
+ alpha    b  di    s  m    k     Dmed  n1     dflat        C  restore
+  0.60  0.0  -5 1.00  2 0.00 1.009907   5 -0.020246 1.744076     True
+  0.80 -0.2  -5 1.33  1 0.00 1.034448   5 -0.006515 1.791053     True
+  0.80  0.0  -5 1.33  2 0.00 1.056310   6  0.002147 1.791053     True
+  0.92 -0.1 -10 1.00  2 0.00 1.135760   5  0.022747 1.814061     True
+  0.60 -0.1  -5 1.00  2 0.00 1.049915   5  0.004689 1.814332     True
+  0.92 -0.1  -5 1.33  2 0.00 1.075382   6  0.002871 1.814973     True
+  0.80 -0.1 -10 1.00  2 0.00 1.178002   5  0.037486 1.858645     True
+  0.80 -0.1  -5 1.33  1 3.36 1.028580   5 -0.008178 1.859535     True
+
+-- single-axis moves (others at baseline) --
+   axis alpha: 0.15: D 0.63, n1 4; 0.3: D 0.60, n1 4; 0.46: D 0.58, n1 2; 0.6: D 0.56, n1 2; 0.8: D 0.53, n1 2; 0.92: D 0.52, n1 2; 1.5: D 0.38, n1 2; 2.5: D 0.27, n1 0; 3.6: D 0.22, n1 0; 4.3: D 0.20, n1 0
+   axis b    : -0.3: D 0.63, n1 2; -0.2: D 0.61, n1 2; -0.1: D 0.59, n1 2; 0.0: D 0.52, n1 2; 0.1: D 0.43, n1 2; 0.2: D 0.35, n1 2; 0.3: D 0.29, n1 2
+   axis di   : -15: D 0.89, n1 3; -10: D 0.67, n1 2; -5: D 0.60, n1 2; 0: D 0.52, n1 2; 5: D 0.46, n1 2; 10: D 0.41, n1 2; 15: D 0.38, n1 2
+   axis s    : 0.75: D 0.39, n1 2; 1.0: D 0.52, n1 2; 1.33: D 0.69, n1 2; 1.5: D 0.78, n1 2; 2.0: D 1.04, n1 5 *RESTORES*
+   axis m    : 1: D 0.52, n1 2; 2: D 0.62, n1 2
+   axis k    : 0.0: D 0.52, n1 2; 3.36: D 0.59, n1 2
+
+-- continuous single-axis value at which median D reaches 1 (None = not reachable within the bracket) --
+   alpha_CO needed: None  (alpha = 0 gives median D 0.653)
+   M* zero point needed (dex): -0.7060407743273063
+   R_e scale needed (x): 1.9261274722973916
+   inclination shift needed (deg; bounded 15..max(85,i)): -17.403568766034077  (di=-60 gives D 2.857)
+
+-- which galaxies carry D < 1, and through what --
+   007.1: D 0.36 (stars-only D 0.44); baryons dominated by stars; M*/M_dyn(10kpc) 1.90
+   022.1: D 0.31 (stars-only D 0.36); baryons dominated by stars; M*/M_dyn(10kpc) 1.67
+   041.1: D 0.22 (stars-only D 0.23); baryons dominated by stars; M*/M_dyn(10kpc) 1.69
+   049.1: D 0.65 (stars-only D 1.99); baryons dominated by gas; M*/M_dyn(10kpc) 0.07
+   065.1: D 0.56 (stars-only D 2.66); baryons dominated by gas; M*/M_dyn(10kpc) 0.06
+   066.1: D 0.52 (stars-only D 0.65); baryons dominated by stars; M*/M_dyn(10kpc) 0.69
+   071.1: D 0.10 (stars-only D 0.10); baryons dominated by stars; M*/M_dyn(10kpc) 5.67
+   075.1: D 1.64 (stars-only D 5.41); baryons dominated by gas; M*/M_dyn(10kpc) 0.06
+   122.1: D 2.23 (stars-only D 7.97); baryons dominated by gas; M*/M_dyn(10kpc) 0.12
+   n(D<1) = 7; of these, n with stars-only D < 1 (no gas at all would still overshoot): 5
+
+-- cells inside the 'ordinary' ranges (alpha 0.6-1.5, |b|<=0.2, |di|<=5 deg (grid step below 7), s<=1.33) that restore: 69 --
+   restoring cells with C <= 2: 20; axes used by them: alpha, b, di, k, m, s
+   cells with |median delta_FLAT| < 0.1: 2227; with restore also: 1576; lowest cost among them: 1.39
+
+DECISION (frozen rule): mass-level test R_M>=1 in 4/9 -> False; alpha-only restores (alpha>=0.46): False; geometry-only C<=2 restores: False; min cost of any restoring cell: 1.74; => JOINT / NOT DECIDABLE
+PASS  frozen H13 as WORDED (single-axis moves inside the ordinary ranges): none restores D >= 1 (P 0.7) :: []
+FAIL  frozen H13 as CODED by me (any JOINT cell inside the ordinary ranges): none restores -- a STRONGER claim than the wording; kept :: 69 joint cells restore (they use m*=2 and/or k=3.36 or corner combinations)
+PASS  frozen H13 expectation: alpha_CO alone at >= 0.6 does not restore (P 0.97)
+PASS  frozen H13 expectation: verdict JOINT / NOT DECIDABLE (P 0.6) :: JOINT / NOT DECIDABLE
+FAIL  frozen H13 expectation: mass-level overshoot R_M >= 1 in >= 5 of 9 (P 0.5) :: 4 of 9
+FAIL  frozen H13 expectation: alpha_CO alone needs about 0.3 (the phase-1 guess from three gas-rich rows) :: alpha needed = None
+
+SUMMARY: 10 lines, 3 FAIL (frozen expectations that did not hold are kept)
+   FAILED: frozen H13 as CODED by me (any JOINT cell inside the ordinary ranges): none restores -- a STRONGER claim than the wording; kept :: 69 joint cells restore (they use m*=2 and/or k=3.36 or corner combinations)
+   FAILED: frozen H13 expectation: mass-level overshoot R_M >= 1 in >= 5 of 9 (P 0.5) :: 4 of 9
+   FAILED: frozen H13 expectation: alpha_CO alone needs about 0.3 (the phase-1 guess from three gas-rich rows) :: alpha needed = None

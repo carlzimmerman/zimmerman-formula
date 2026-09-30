@@ -1,0 +1,63 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = none
+Dunne+22 master rows 408; z>=2: 127; of these with >=1 optimised-conversion row (opt_ad/dax/xa/xd): 122
+Corpus Z1 columns: ['galaxy', 'survey', 'telescope', 'instrument', 'tracer_line', 'redshift', 'e_redshift', 'redshift_source', 'class_jones2021', 'class_lefevre2020', 'class_description', 'is_rotator', 'is_merger', 'is_dispersion_dom', 'is_uncertain', 'inc_morph_deg', 'e_inc_morph_deg', 'inc_kin_deg', 'e_inc_kin_deg', 'pa_morph_deg']
+kinematic-table records: 310; by set: {'ALPAKA': 10, 'CRISTAL': 14, 'KMOS3D': 192, 'Lelli23': 1, 'RC100': 41, 'RomanOliveira': 5, 'S1': 9, 'SINS': 38}
+
+cross-match hits (name or 2 arcsec & |dz|<0.02): 12
+   set          id            kname      kz   K1    K2    K5    dunne    dz      sep  byname  bypos            tables
+    S1       122.1         ALESS122 2.02400 True  True False ALESS122 2.020      NaN    True  False              [ad]
+ALPAKA          15          GS30274 2.22500 True  True False  GS30274 2.240 0.336498    True   True              [xd]
+ALPAKA          18 HATLAS J084933-W 2.40700 True  True False HA08493W 2.410 1.283320   False   True              [ad]
+ALPAKA          19   CLJ1001-131077 2.49400 True  True False HCOS02.0 2.504 0.083893   False   True              [ad]
+ALPAKA          20   CLJ1001-130949 2.50400 True  True False HCOS02.2 2.504 0.099927   False   True              [ad]
+ALPAKA          22             Gal3 2.93500 True  True False   K19_10 2.934 0.225338   False   True              [ad]
+  SINS Q2343-BX610      Q2343-BX610 2.21070 True  True False    BX610 2.210 0.531535   False   True [ad, dax, xa, xd]
+ RC100          78            BX610 2.21000 True  True  True    BX610 2.210      NaN    True  False [ad, dax, xa, xd]
+KMOS3D  COS4_03206       COS4_03206 2.10260 True False False    K19_4 2.104 0.671879   False   True              [ad]
+KMOS3D   GS4_01529        GS4_01529 2.12224 True False False  ALESS67 2.120 0.497513   False   True              [ad]
+KMOS3D   GS4_29606        GS4_29606 2.54192 True False False ASPEC.C1 2.540 0.557176   False   True              [ad]
+KMOS3D   GS4_30274        GS4_30274 2.22453 True False False  GS30274 2.240 0.013745   False   True              [xd]
+
+-- decision path for every matched galaxy (frozen order: D if K5; M if K1&K2&K3(opt)>=2; else S/L/none) --
+   S1         122.1        z=2.024 <-> Dunne ALESS122     z=2.020 sep=  nan" tables=['ad'] logMH2(ad)=11.26+-0.10  => M
+   ALPAKA     15           z=2.225 <-> Dunne GS30274      z=2.240 sep= 0.34" tables=['xd'] logMH2(xd)=10.67+-0.09  => M
+   ALPAKA     18           z=2.407 <-> Dunne HA08493W     z=2.410 sep= 1.28" tables=['ad'] logMH2(ad)=11.68+-0.10  => M
+   ALPAKA     19           z=2.494 <-> Dunne HCOS02.0     z=2.504 sep= 0.08" tables=['ad'] logMH2(ad)=11.07+-0.10  => M
+   ALPAKA     20           z=2.504 <-> Dunne HCOS02.2     z=2.504 sep= 0.10" tables=['ad'] logMH2(ad)=10.59+-0.11  => M
+   ALPAKA     22           z=2.935 <-> Dunne K19_10       z=2.934 sep= 0.23" tables=['ad'] logMH2(ad)=11.15+-0.11  => M
+   SINS       Q2343-BX610  z=2.211 <-> Dunne BX610        z=2.210 sep= 0.53" tables=['ad', 'dax', 'xa', 'xd'] logMH2(dax)=11.08+-0.09  => M
+   RC100      78           z=2.210 <-> Dunne BX610        z=2.210 sep=  nan" tables=['ad', 'dax', 'xa', 'xd'] logMH2(dax)=11.08+-0.09  => D (K5: baryon normalisation fitted/prior-anchored); Dunne gas would qualify as M-gas
+   KMOS3D     COS4_03206   z=2.103 <-> Dunne K19_4        z=2.104 sep= 0.67" tables=['ad'] logMH2(ad)=11.28+-0.11  => none (K1=True K2=False)
+   KMOS3D     GS4_01529    z=2.122 <-> Dunne ALESS67      z=2.120 sep= 0.50" tables=['ad'] logMH2(ad)=11.29+-0.10  => none (K1=True K2=False)
+   KMOS3D     GS4_29606    z=2.542 <-> Dunne ASPEC.C1     z=2.540 sep= 0.56" tables=['ad'] logMH2(ad)=10.69+-0.11  => none (K1=True K2=False)
+   KMOS3D     GS4_30274    z=2.225 <-> Dunne GS30274      z=2.240 sep= 0.01" tables=['xd'] logMH2(xd)=10.67+-0.09  => none (K1=True K2=False)
+
+class-M (literal rule R0): unique (Dunne, set, id): [('ALESS122', 'S1', '122.1'), ('BX610', 'SINS', 'Q2343-BX610'), ('GS30274', 'ALPAKA', '15'), ('HA08493W', 'ALPAKA', '18'), ('HCOS02.0', 'ALPAKA', '19'), ('HCOS02.2', 'ALPAKA', '20'), ('K19_10', 'ALPAKA', '22')]
+   R0: {'M': 7, 'S': 8, 'L': 6, 'D': 60, 'other_gas_S1': 0, 'none': 5}
+   R1: {'M': 7, 'S': 5, 'L': 6, 'D': 60, 'other_gas_S1': 3, 'none': 5}
+   R2: {'M': 7, 'S': 0, 'L': 6, 'D': 68, 'other_gas_S1': 0, 'none': 5}
+   R3: {'M': 7, 'S': 8, 'L': 6, 'D': 48, 'other_gas_S1': 0, 'none': 5}
+   R4: {'M': 7, 'S': 8, 'L': 1, 'D': 48, 'other_gas_S1': 0, 'none': 5}
+   CFG227 reading (no cross-match): M 0, S 9, L 6, D 41+12+6 rows, ALPAKA 10 none
+   R5: Dunne+22 z>=2 galaxies with optimised multi-tracer conversions (no kinematics needed): 122 rows (118 unique OName); by table: CO+dust 103, CO+[CI]+dust 34, CO+[CI] 34, dust+[CI] 53
+
+-- gas masses: Dunne optimised M_H2 against the compilation's adopted gas (S1 only; ALPAKA has no gas mass) --
+   S1 122.1: Amvrosiadis log M_gas (CO, alpha 0.92 as tabulated) = 11.30; Dunne optimised logM_H2 (ad) = 11.26; difference +0.04 dex
+
+-- class-M candidate points (extension; gas-inclusive, Dunne optimised M_H2; class-M band +-0.03 / +-0.093) --
+   ALPAKA 15 z=2.225 table xd logMH2 10.67: g_bar/a0 148.72 D 0.22; delta_FLAT -0.669 (band +-0.093: -0.656..-0.685), delta_Hz -0.674
+   ALPAKA 18 z=2.407 table ad logMH2 11.68: g_bar/a0 42.29 D 0.36; delta_FLAT -0.454 (band +-0.093: -0.383..-0.529), delta_Hz -0.472
+   ALPAKA 19 z=2.494 table ad logMH2 11.07: g_bar/a0 25.99 D 0.36; delta_FLAT -0.459 (band +-0.093: -0.408..-0.516), delta_Hz -0.488
+   ALPAKA 20 z=2.504 table ad logMH2 10.59: g_bar/a0 25.19 D 0.30; delta_FLAT -0.535 (band +-0.093: -0.526..-0.546), delta_Hz -0.564
+   ALPAKA 22 z=2.935 table ad logMH2 11.15: g_bar/a0 121.86 D 0.33; delta_FLAT -0.478 (band +-0.093: -0.419..-0.542), delta_Hz -0.487
+FAIL  R0 N_M = 0 (CFG227's statement) :: mine N_M = 7: [('ALESS122', 'S1', '122.1'), ('BX610', 'SINS', 'Q2343-BX610'), ('GS30274', 'ALPAKA', '15'), ('HA08493W', 'ALPAKA', '18'), ('HCOS02.0', 'ALPAKA', '19'), ('HCOS02.2', 'ALPAKA', '20'), ('K19_10', 'ALPAKA', '22')]
+FAIL  R0 S = 9 :: mine S = 8
+PASS  R0 L = 6 :: mine L = 6
+PASS  C1 RC100 z>=2 N = 41 (D)
+PASS  C1 S1 N = 9; ALPAKA 10 (9 with M*); CRISTAL 14
+PASS  R4 (z<=5): CRISTAL class L reduces to one disc (CRISTAL-11, z 4.44) :: mine 1
+PASS  CRISTAL class-A discs above z=5: 5 of 6
+
+SUMMARY: 7 lines, 2 FAIL (2 counted for the exit code)
+   FAILED: R0 N_M = 0 (CFG227's statement) :: mine N_M = 7: [('ALESS122', 'S1', '122.1'), ('BX610', 'SINS', 'Q2343-BX610'), ('GS30274', 'ALPAKA', '15'), ('HA08493W', 'ALPAKA', '18'), ('HCOS02.0', 'ALPAKA', '19'), ('HCOS02.2', 'ALPAKA', '20'), ('K19_10', 'ALPAKA', '22')]
+   FAILED: R0 S = 9 :: mine S = 8

@@ -1,0 +1,45 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = none
+
+=== gas share mode: const (mean f = 0.50; g_bar/a0 median 4.7) ===
+   tau_c = 0: group median delta_FLAT mean over mocks -0.0002 (SD 0.0052); slope of delta vs z -0.0000 +- 0.0001
+   common-mode tau_c -0.30: level +0.1056  slope +0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c -0.15: level +0.0585  slope +0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.00: level -0.0002  slope -0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.15: level -0.0713  slope -0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.30: level -0.1551  slope -0.0001  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   level shift at +0.30: -0.1549 ; slope change -0.0001 per unit z (MC s.e. 0.0001)
+PASS  C7 d_AB and d_AC unchanged to 1e-9 under a common-mode +0.30 dex :: 0.00e+00
+PASS  C7 within-class slope unchanged (|d slope| < 0.02 per unit z) for z-independent gas share :: -0.0001
+FAIL  C7 (frozen H15, P 0.5) level shift at +0.30 within 0.02 of the README's about -0.07 :: mine -0.1549 in a regime with gas share 0.5 and g_bar/a0 ~ 4-20; the level depends on the regime
+
+=== gas share mode: rising (mean f = 0.52; g_bar/a0 median 4.7) ===
+   tau_c = 0: group median delta_FLAT mean over mocks -0.0002 (SD 0.0054); slope of delta vs z -0.0000 +- 0.0001
+   common-mode tau_c -0.30: level +0.1098  slope +0.0042  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c -0.15: level +0.0606  slope +0.0022  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.00: level -0.0002  slope -0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.15: level -0.0735  slope -0.0023  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.30: level -0.1596  slope -0.0045  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   level shift at +0.30: -0.1594 ; slope change -0.0044 per unit z (MC s.e. 0.0001)
+PASS  C7 (frozen H15) slope NOT unchanged when the gas share rises with z (expected to change) :: -0.0044 (s.e. 0.0001)
+
+=== gas share mode: low (mean f = 0.20; g_bar/a0 median 4.7) ===
+   tau_c = 0: group median delta_FLAT mean over mocks -0.0001 (SD 0.0021); slope of delta vs z -0.0000 +- 0.0001
+   common-mode tau_c -0.30: level +0.0391  slope +0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c -0.15: level +0.0224  slope +0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.00: level -0.0001  slope -0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.15: level -0.0300  slope -0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   common-mode tau_c +0.30: level -0.0689  slope -0.0000  max|d_AB shift| 0.00e+00  max|d_AC shift| 0.00e+00
+   level shift at +0.30: -0.0688 ; slope change -0.0000 per unit z (MC s.e. 0.0000)
+PASS  C7 POST-HOC (not frozen): at gas share 0.2 the level shift at +0.30 is within 0.02 of the README's about -0.07 :: mine -0.0688
+
+=== C7b tracer-specific bias: only the CO tracer +0.30 dex: d_AB (CO-dust) shift +0.3000, d_AC (CO-[CI]) shift +0.3000; the group-median level moves -0.0460 (a third of the common-mode shift: the pooled mean moves by tau/3)
+PASS  C7b a tracer-specific bias IS detected by d_AB (shift = +0.30 to 1e-9)
+
+=== z-dependent common-mode bias tau_c(z) = b_z log10((1+z)/3.5): the degeneracy with a0 proportional to E(z) ===
+   H(z)-true, no bias: mean slope +0.0419 per unit z; level +0.1536
+   b_z that equalises the FLAT-true slope with the H(z)-true slope: -1.124 (slope +0.0419 vs +0.0419; level +0.0471 vs +0.1536); d_AB shift 1.78e-15
+   i.e. tau_c(z=2) = +0.075, tau_c(z=5) = -0.263 dex on the gas of every tracer; the class-M band (+-0.03 / +-0.093) does not contain it, and d_AB does not see it
+PASS  C7 a z-dependent common-mode bias is invisible to d_AB (<1e-9) yet reproduces the H(z) slope (equalised slope within 1e-3) :: b_z = -1.124
+
+SUMMARY: 7 lines, 1 FAIL (1 counted for the exit code)
+   FAILED: C7 (frozen H15, P 0.5) level shift at +0.30 within 0.02 of the README's about -0.07 :: mine -0.1549 in a regime with gas share 0.5 and g_bar/a0 ~ 4-20; the level depends on the regime

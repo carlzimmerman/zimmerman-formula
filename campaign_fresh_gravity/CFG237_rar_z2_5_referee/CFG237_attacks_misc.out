@@ -1,0 +1,64 @@
+<repo> = <repo> | <scratch> = <scratch> | MUTATE = none
+== (a) gas-bracket: sign of each law's median across the band ==
+   S1: median crosses 0 inside +-0.671 for: FLAT False, PROXY False, Hz False, MDEC False
+   CRISTAL R_e: median crosses 0 inside +-0.671 for: FLAT True, PROXY False, Hz False, MDEC True
+   CRISTAL R_out: median crosses 0 inside +-0.671 for: FLAT True, PROXY False, Hz False, MDEC True
+FAIL  CFG227 claim: for CRISTAL class L every law's median crosses zero inside the outer band (R_e and R_out, four laws) :: {'S1': {'FLAT': False, 'PROXY': False, 'Hz': False, 'MDEC': False}, 'CRISTAL R_e': {'FLAT': True, 'PROXY': False, 'Hz': False, 'MDEC': True}, 'CRISTAL R_out': {'FLAT': True, 'PROXY': False, 'Hz': False, 'MDEC': True}}
+   inner band +-0.213 (CRISTAL R_e): {'FLAT': (0.179, 0.035), 'PROXY': (-0.052, -0.131), 'Hz': (-0.113, -0.188), 'MDEC': (0.231, 0.077)}
+
+== (c) S1 leave-one-out (FLAT, Hz medians) ==
+   drop 007.1: FLAT -0.284 (+0.026), Hz -0.342
+   drop 022.1: FLAT -0.284 (+0.026), Hz -0.342
+   drop 041.1: FLAT -0.284 (+0.026), Hz -0.342
+   drop 049.1: FLAT -0.389 (-0.078), Hz -0.445
+   drop 065.1: FLAT -0.389 (-0.078), Hz -0.445
+   drop 066.1: FLAT -0.363 (-0.052), Hz -0.414
+   drop 071.1: FLAT -0.284 (+0.026), Hz -0.342
+   drop 075.1: FLAT -0.389 (-0.078), Hz -0.445
+   drop 122.1: FLAT -0.389 (-0.078), Hz -0.445
+   max |shift| 0.078
+   sign of the S1 median under LOO: all negative
+
+== (d) ALPAKA variants ==
+   R_ext/R_e = 1.0: median upper bound +0.003, range -0.501 to +0.220
+   R_ext/R_e = 1.2: median upper bound -0.081, range -0.595 to +0.220
+   R_ext/R_e = 1.23: median upper bound -0.092, range -0.606 to +0.220
+   R_ext/R_e = 1.5: median upper bound -0.167, range -0.685 to +0.220
+   R_ext/R_e = 2.0: median upper bound -0.237, range -0.758 to +0.220
+   bound direction: a gas mass can only RAISE g_bar and LOWER delta; so the stars-only delta is an upper bound; discs whose bound is already below 0: 7 of 9
+
+== (f) kernels and footings (medians; CI labels) ==
+   S1               canonical mono : FLAT -0.310 [-0.664,+0.171] | Hz -0.373 [-0.680,+0.070]
+   S1               canonical p2   : FLAT -0.303 [-0.662,+0.183] | Hz -0.349 [-0.674,+0.109]
+   S1               alt       mono : FLAT -0.315 [-0.665,+0.162] | Hz -0.389 [-0.684,+0.049]
+   S1               alt       p2   : FLAT -0.307 [-0.663,+0.176] | Hz -0.360 [-0.677,+0.092]
+   RC100 z>=2       canonical mono : FLAT +0.008 [-0.010,+0.064] | Hz -0.105 [-0.147,-0.053]
+   RC100 z>=2       canonical p2   : FLAT +0.031 [+0.013,+0.087] | Hz -0.059 [-0.092,-0.026]
+   RC100 z>=2       alt       mono : FLAT -0.004 [-0.025,+0.051] | Hz -0.136 [-0.171,-0.077]
+   RC100 z>=2       alt       p2   : FLAT +0.018 [+0.002,+0.073] | Hz -0.090 [-0.118,-0.033]
+   CRISTAL L R_e    canonical mono : FLAT +0.117 [-0.060,+0.384] | Hz -0.144 [-0.319,+0.141]
+   CRISTAL L R_e    canonical p2   : FLAT +0.157 [-0.048,+0.409] | Hz -0.095 [-0.264,+0.194]
+   CRISTAL L R_e    alt       mono : FLAT +0.096 [-0.068,+0.370] | Hz -0.173 [-0.350,+0.112]
+   CRISTAL L R_e    alt       p2   : FLAT +0.140 [-0.054,+0.398] | Hz -0.123 [-0.297,+0.165]
+   CRISTAL L R_out  canonical mono : FLAT +0.106 [-0.138,+0.343] | Hz -0.203 [-0.477,+0.029]
+   CRISTAL L R_out  canonical p2   : FLAT +0.153 [-0.103,+0.387] | Hz -0.150 [-0.431,+0.080]
+   CRISTAL L R_out  alt       mono : FLAT +0.082 [-0.156,+0.320] | Hz -0.235 [-0.513,-0.004]
+   CRISTAL L R_out  alt       p2   : FLAT +0.132 [-0.119,+0.368] | Hz -0.183 [-0.469,+0.045]
+
+== CRISTAL R_e pressure variants k = 3.36 / 1.68 / 0 (class L, D_ind = g_obs/g_bar,ind with g_bar,ind held at the k=3.36 value, as CFG213's H-g) ==
+   k=3.36: FLAT +0.117  Hz -0.144
+   k=1.68: FLAT -0.007  Hz -0.249
+   k=0.0: FLAT -0.168  Hz -0.388
+
+== (g) lean-is-not-a-detection labels (canonical, nu_mono, 10,000 bootstrap, seed 237) ==
+   S1               FLAT : -0.310 [-0.664, +0.171] n=9 -> contains 0 -> not a detection
+   S1               Hz   : -0.373 [-0.680, +0.070] n=9 -> contains 0 -> not a detection
+   RC100 z>=2       FLAT : +0.008 [-0.010, +0.064] n=41 -> contains 0 -> not a detection   [class D: flagged, never scored]
+   RC100 z>=2       Hz   : -0.105 [-0.147, -0.053] n=41 -> excludes 0 (below)   [class D: flagged, never scored]
+   CRISTAL L R_e    FLAT : +0.117 [-0.060, +0.384] n=6 -> contains 0 -> not a detection
+   CRISTAL L R_e    Hz   : -0.144 [-0.319, +0.141] n=6 -> contains 0 -> not a detection
+   CRISTAL L R_out  FLAT : +0.106 [-0.138, +0.343] n=6 -> contains 0 -> not a detection
+   CRISTAL L R_out  Hz   : -0.203 [-0.477, +0.029] n=6 -> contains 0 -> not a detection
+
+SUMMARY: 1 lines, 1 FAIL
+   FAILED: CFG227 claim: for CRISTAL class L every law's median crosses zero inside the outer band (R_e and R_out, four laws) :: {'S1': {'FLAT': False, 'PROXY': False, 'Hz': False, 'MDEC': False}, 'CRISTAL R_e': {'FLAT': True, 'PROXY': False, 'Hz': False, 'MDEC': True}, 'CRISTAL R_out': {'FLAT': True, 'PROXY': False, 'Hz': False, 'MDEC': True}}
