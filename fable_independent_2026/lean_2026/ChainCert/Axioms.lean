@@ -11,6 +11,9 @@ import ChainCert.Ownership
 import ChainCert.Theory
 import ChainCert.A0Numeric
 import ChainCert.DoorEleven
+import ChainCert.Action
+import ChainCert.Dimension
+import ChainCert.FluidLink
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -234,3 +237,65 @@ import ChainCert.DoorEleven
 #print axioms DoorEleven.vacuum_boost_invariant
 #print axioms DoorEleven.eta4_mul_self
 #print axioms DoorEleven.vacuum_momentum_density_zero
+#print axioms AqualAction.aqual_momentum
+#print axioms AqualAction.gauss_form
+#print axioms AqualAction.AqualMu.mu_pos
+#print axioms AqualAction.AqualMu.inv_spec
+#print axioms AqualAction.AqualMu.inv_pos
+#print axioms AqualAction.AqualMu.inv_mul_mu
+#print axioms AqualAction.AqualMu.inv_unique
+#print axioms AqualAction.AqualMu.nu_mul
+#print axioms AqualAction.AqualMu.mu_mul_nu
+#print axioms AqualAction.AqualMu.kernel_of_gauss
+#print axioms AqualAction.AqualMu.gauss_of_kernel
+#print axioms AqualAction.AqualMu.gauss_iff_kernel
+#print axioms AqualAction.AqualMu.spherical_kernel
+#print axioms AqualAction.AqualMu.inv_tendsto_zero
+#print axioms AqualAction.AqualMu.nu_deep
+#print axioms AqualAction.onto_of_regimes
+#print axioms AqualAction.muP2_mul
+#print axioms AqualAction.muP2_to_nuP2
+#print axioms AqualAction.nuP2_to_muP2
+#print axioms AqualAction.muP2_iff
+#print axioms AqualAction.P2_gauss_iff_kernel
+#print axioms AqualAction.muP2_deep
+#print axioms AqualAction.muP2_newton
+#print axioms AqualAction.muP2_onto_from_regimes
+#print axioms AqualAction.nuP2_of_action
+#print axioms AqualAction.nuP2_of_action_nuBeta
+#print axioms AqualAction.P2_deep_from_action
+#print axioms CandidateB_Action.kernel_deep
+#print axioms CandidateB_Action.predictions
+#print axioms CandidateB_Action.top_solves_gauss
+#print axioms CandidateB_Action.top_unique_gauss
+#print axioms CandidateB_Action.top_from_field_equation
+#print axioms CandidateB_Action.kernel_P2
+#print axioms CandidateB_Action.nonempty_fin2
+#print axioms Dimension.C1_in_framework
+#print axioms Dimension.length_GMc_iff
+#print axioms Dimension.length_GMc_mass_exp
+#print axioms Dimension.no_sqrtM_length_GMc
+#print axioms Dimension.velocity_GMc_iff
+#print axioms Dimension.no_quarterM_velocity_GMc
+#print axioms Dimension.massExp_mono
+#print axioms Dimension.basis_decomp
+#print axioms Dimension.GcSpan_iff
+#print axioms Dimension.sqrtM_length_iff
+#print axioms Dimension.acc_from_GcX_iff
+#print axioms Dimension.sqrtM_length_iff_acc
+#print axioms Dimension.sqrtM_length_acc
+#print axioms Dimension.acc_unique
+#print axioms Dimension.acc_c_family
+#print axioms Dimension.hbar_admissible
+#print axioms Dimension.hbar_not_acc_c
+#print axioms Dimension.not_only_accelerations
+#print axioms Dimension.force_not_admissible
+#print axioms Dimension.rho_length
+#print axioms Dimension.quarterM_velocity_iff
+#print axioms Dimension.quarterM_velocity_acc
+#print axioms FluidLink.link_general
+#print axioms FluidLink.link_general_iff
+#print axioms FluidLink.link_units
+#print axioms FluidLink.link_sq
+#print axioms FluidLink.link_flat
+#print axioms CandidateB.fluid_cap_a0

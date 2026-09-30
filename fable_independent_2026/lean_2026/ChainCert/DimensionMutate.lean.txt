@@ -1,0 +1,48 @@
+import ChainCert.Dimension
+-- Each theorem below is a FALSE variant of the corresponding Dimension theorem, "proved" by the original's proof term.
+-- Lean must reject every one (22 errors expected, one per mutation).
+open Dimension
+-- C1_in_framework: gamma = 1/3
+theorem m01 (α β γ : ℚ) : α • dc + β • dG + γ • dρ = dAcc ↔ (α = 1 ∧ β = 1 / 2 ∧ γ = 1 / 3) := C1_in_framework α β γ
+-- length_GMc_iff: a length with mass exponent 1/2
+theorem m02 (a b d : ℚ) : mono a b d = dLen ↔ (a = 1 ∧ b = 1 / 2 ∧ d = -2) := length_GMc_iff a b d
+-- length_GMc_mass_exp: b = 1/2
+theorem m03 {a b d : ℚ} (h : mono a b d = dLen) : b = 1 / 2 := length_GMc_mass_exp h
+-- no_sqrtM_length_GMc: an M^(1/2) length from (G, M, c) exists
+theorem m04 : ∃ a d : ℚ, mono a (1 / 2) d = dLen := no_sqrtM_length_GMc
+-- velocity_GMc_iff: a velocity with mass exponent 1/4
+theorem m05 (a b d : ℚ) : mono a b d = dc ↔ (a = 1 / 4 ∧ b = 1 / 4 ∧ d = 1) := velocity_GMc_iff a b d
+-- no_quarterM_velocity_GMc: an M^(1/4) velocity from (G, M, c) exists
+theorem m06 : ∃ a d : ℚ, mono a (1 / 4) d = dc := no_quarterM_velocity_GMc
+-- massExp_mono: b dropped
+theorem m07 (a b d e : ℚ) (x : Dim) : massExp (mono a b d + e • x) = e * massExp x := massExp_mono a b d e x
+-- basis_decomp: wrong G coefficient
+theorem m08 (x : Dim) : x = (x.1 - x.2.1) • dG + massExp x • dM + (-2 * x.1 - 3 * x.2.1) • dc := basis_decomp x
+-- GcSpan_iff: mass exponent 1
+theorem m09 (x : Dim) : (∃ p s : ℚ, x = p • dG + s • dc) ↔ massExp x = 1 := GcSpan_iff x
+-- sqrtM_length_iff: reversed condition
+theorem m10 (x : Dim) : (∃ a d e : ℚ, mono a (1 / 2) d + e • x = dLen) ↔ massExp x = 0 := sqrtM_length_iff x
+-- acc_from_GcX_iff: reversed condition
+theorem m11 (x : Dim) : (∃ u v w : ℚ, u • x + v • dG + w • dc = dAcc) ↔ massExp x = 0 := acc_from_GcX_iff x
+-- sqrtM_length_iff_acc: iff NO acceleration
+theorem m12 (x : Dim) : (∃ a d e : ℚ, mono a (1 / 2) d + e • x = dLen) ↔ ¬ ∃ u v w : ℚ, u • x + v • dG + w • dc = dAcc := sqrtM_length_iff_acc x
+-- sqrtM_length_acc: A would be a length, not an acceleration
+theorem m13 {a d e : ℚ} {x : Dim} (h : mono a (1 / 2) d + e • x = dLen) : (1 - 2 * a) • dG + (-2 * d) • dc + (-2 * e) • x = dLen := sqrtM_length_acc h
+-- acc_unique: e = +1/2 (r* = sqrt(G M a0))
+theorem m14 (a d e : ℚ) : mono a (1 / 2) d + e • dAcc = dLen ↔ (a = 1 / 2 ∧ d = 0 ∧ e = 1 / 2) := acc_unique a d e
+-- acc_c_family: d = k
+theorem m15 (k a d e : ℚ) : mono a (1 / 2) d + e • (dAcc + k • dc) = dLen ↔ (a = 1 / 2 ∧ d = k ∧ e = -1 / 2) := acc_c_family k a d e
+-- hbar_admissible: exponent 1/2 on hbar
+theorem m16 : mono (3 / 4) (1 / 2) (-7 / 4) + (1 / 2 : ℚ) • dHbar = dLen := hbar_admissible
+-- hbar_not_acc_c: hbar IS an acceleration power times a c power
+theorem m17 : ∃ j k : ℚ, dHbar = j • dAcc + k • dc := hbar_not_acc_c
+-- not_only_accelerations: the conjecture "X admissible => X an acceleration power times a c power" (false: hbar)
+theorem m18 : ∀ x : Dim, (∃ a d e : ℚ, mono a (1 / 2) d + e • x = dLen) → ∃ j k : ℚ, x = j • dAcc + k • dc := not_only_accelerations
+-- force_not_admissible: the Planck force admissible
+theorem m19 : ∃ a d e : ℚ, mono a (1 / 2) d + e • dForce = dLen := force_not_admissible
+-- rho_length: exponent -1/2 on rho
+theorem m19b : mono (1 / 4) (1 / 2) (-1 / 2) + (-1 / 2 : ℚ) • dρ = dLen := rho_length
+-- quarterM_velocity_iff: reversed condition
+theorem m20 (x : Dim) : (∃ a d e : ℚ, mono a (1 / 4) d + e • x = dc) ↔ massExp x = 0 := quarterM_velocity_iff x
+-- quarterM_velocity_acc: A would be a length
+theorem m21 {a d e : ℚ} {x : Dim} (h : mono a (1 / 4) d + e • x = dc) : (4 * a - 1) • dG + (4 * d) • dc + (4 * e) • x = dLen := quarterM_velocity_acc h

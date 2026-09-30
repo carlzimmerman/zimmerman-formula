@@ -1,0 +1,16 @@
+import ChainCert.FluidLink
+-- Each theorem below is a FALSE variant of the corresponding FluidLink theorem, "proved" by the original's proof term.
+-- Lean must reject every one (6 errors expected, one per mutation).
+open FluidLink
+-- link_general: the c^2 dropped (only right when c = 1)
+theorem f01 (P : ChainPremises) (z : ℝ) {Λ : ℝ} (hΛ : Λ = 8 * Real.pi * P.G * P.ρΛ z / P.c ^ 2) : P.κ * Real.sqrt (Λ / (8 * Real.pi)) = P.a0 z := link_general P z hΛ
+-- link_general_iff: the tie without the 1/c^2
+theorem f02 (P : ChainPremises) (z : ℝ) {Λ : ℝ} (hΛ0 : 0 ≤ Λ) : P.κ * P.c ^ 2 * Real.sqrt (Λ / (8 * Real.pi)) = P.a0 z ↔ Λ = 8 * Real.pi * P.G * P.ρΛ z := link_general_iff P z hΛ0
+-- link_units: twice the chain's a0
+theorem f03 (P : ChainPremises) (hc1 : P.c = 1) (z : ℝ) {Λ : ℝ} (hΛ : Λ = 8 * Real.pi * P.G * P.ρΛ z) : capA0 P.G P.κ Λ = 2 * P.a0 z := link_units P hc1 z hΛ
+-- link_sq: the 1/(8 pi) dropped
+theorem f04 (P : ChainPremises) (hc1 : P.c = 1) (z : ℝ) {Λ : ℝ} (hΛ : Λ = 8 * Real.pi * P.G * P.ρΛ z) : P.a0 z ^ 2 = P.κ ^ 2 * Λ := link_sq P hc1 z hΛ
+-- link_flat: the cap's acceleration doubles between z and 0
+theorem f05 (P : ChainPremises) (z : ℝ) : 8 * Real.pi * P.G * P.ρΛ z / P.c ^ 2 = 8 * Real.pi * P.G * P.ρΛ 0 / P.c ^ 2 ∧ capA0 P.G P.κ (8 * Real.pi * P.G * P.ρΛ z) = 2 * capA0 P.G P.κ (8 * Real.pi * P.G * P.ρΛ 0) := link_flat P z
+-- CandidateB.fluid_cap_a0: kappa = 1 instead of the FITTED 1/2
+theorem f06 {ι : Type*} (B : CandidateB ι) (hc1 : B.chain.c = 1) {Λ : ℝ} (hΛ : Λ = 8 * Real.pi * B.chain.G * B.chain.ρΛ 0) : FluidLink.capA0 B.chain.G 1 Λ = B.chain.a0 0 ∧ B.chain.a0 0 = 1 / 2 * Real.sqrt (B.chain.G * B.chain.ρΛ 0) := B.fluid_cap_a0 hc1 hΛ

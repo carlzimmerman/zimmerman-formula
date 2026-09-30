@@ -13,3 +13,6 @@ import ChainCert.Ownership
 import ChainCert.Theory
 import ChainCert.A0Numeric
 import ChainCert.DoorEleven
+import ChainCert.Action
+import ChainCert.Dimension
+import ChainCert.FluidLink
