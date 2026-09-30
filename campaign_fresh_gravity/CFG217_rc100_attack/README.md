@@ -50,3 +50,11 @@
 - **The frozen text's D3 needed an erratum** ("mixed" was unreachable). It was resolved before the run in addendum 1.
 - The post hoc block (A, B) and the note under the decision rows were written after the frozen numbers were seen.
 - The assumptions A1 (the prior centre is SED + Tacconi+18 molecular gas, with no HI) and A2 (V_c includes the Burkert term) are unverified for RC100.
+
+## Chart (added 2026-09-29; drawn from the lane's own data and functions, no new statistic)
+
+- `cfg217_calibration_sensitivity.png`, from `cfg217_plot.py`: the slopes of δ_flat and δ_rival on z for RC100, as functions of the change applied to the analysis baryon mass at z ≈ 2.5 relative to z ≈ 0.6.
+  - The flat law's slope is zero at −0.075 dex, where the rival's slope (−0.065) equals the flat-true expectation (−0.060).
+  - The rival's slope is zero at −0.25 dex, where the flat slope (+0.070) equals the rival-true expectation (+0.073).
+  - The two hypotheses' calibrations are therefore about 0.18 dex apart. A 3σ separation needs the differential baryon-mass calibration known to about ±0.06 dex, on top of the statistical band (about ±0.04 in slope, i.e. ±0.06 dex).
+- Bands are 95%, from 500 galaxy resamples per point. The variants' ticks use the median baryon-mass factors of the post hoc block.
