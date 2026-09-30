@@ -1,0 +1,37 @@
+CFG216 POST HOC (referee notes of CFG233, c5adc0f82, relayed by the orchestrator 2026-09-30; written after the frozen numbers were seen; reported only, never a verdict).
+Checks the referee's items against the lane's own files and functions (cfg216_rc100.py exec'd read-only through its data block and its primary/expected-slope block):
+  (1) the README sentence 'the sign of the flat slope is negative in every variant, and the rival's slope excludes 0 in all of them': the committed sensitivity table is parsed
+      and each clause is tested per variant;
+  (2) C1 ('a synthetic galaxy placed exactly on each law returns delta = 0') computes log10 of a quantity divided by itself, so it cannot fail (its printed value is exactly 0):
+      a NON-VACUOUS replacement is run here: synthetic table rows are placed exactly on each law (both kernels, both footings, five z, five g_bar/a0) by solving for the table's OWN
+      observables (V_c, R_e, f_DM), written to a CSV in the RC100 six-field format, read by the lane's actual loader code, and delta is evaluated by the lane's actual delta();
+      every on-law row must give |delta| < 1e-9, and (sensitivity) the same rows scored under the OTHER law must not (>= 90 % with |delta| > 1e-3);
+  (3) the z-scores of the primary block treat each hypothesis' expected slope as a constant (the full-sample value) over the bootstrap: here the expected slope is recomputed on
+      every resample (the same 10,000 index sets), and z = (observed - expected) / sd(observed_k - expected_k) is compared with the lane's z for the four (observed law, true law) cells;
+  (4) C2 is flagged load_bearing=False in the lane's code (a reported check, it cannot gate a verdict): read from the source.
+MUTATE=1 passes through to the lane's injection (D x 10^(0.2 (z - z_med))): the non-vacuous C1 must then FAIL (the injected drift is caught), the observed flat slope must move to
+>= +0.15 (the unmutated value is about -0.03), and outputs are named *_MUTATE.  RC100_INPUT=corrected reads the corrected six-field copy.
+
+(1) the sentence 'the sign of the flat slope is negative in every variant, and the rival's slope excludes 0 in all of them'
+    (a) n =  41: flat slope +0.009 [-0.056, +0.068] -> NOT negative; rival slope -0.051 [-0.118, +0.015] -> INCLUDES 0
+    (b) n =  59: flat slope -0.063 [-0.113, -0.012] -> negative; rival slope -0.118 [-0.162, -0.071] -> excludes 0
+    (c) n =  67: flat slope -0.036 [-0.094, +0.020] -> negative; rival slope -0.105 [-0.160, -0.052] -> excludes 0
+    (d) n = 100: flat slope -0.056 [-0.113, -0.006] -> negative; rival slope -0.112 [-0.170, -0.066] -> excludes 0
+    -> 'negative in every variant': NOT supported; 'the rival's slope excludes 0 in all of them': NOT supported
+
+(2) non-vacuous C1: 200 synthetic table rows placed exactly on a law through V_c, R_e, f_DM (2 kernels x 2 footings x 2 laws x 5 z x 5 g_bar/a0), read by the lane's loader, scored by the lane's delta()
+  PASS  C1' every on-law row returns |delta| < 1e-9: max |delta| 1.45e-16
+  PASS  C1'-sensitivity: scored under the OTHER law, >= 90 % of the rows have |delta| > 1e-3 (the control can discriminate): 100 %
+
+(3) z-scores with the expected slope recomputed on every resample (n = 100, 10000 resamples, the lane's own index sets); nu_mono, canonical
+     observed law  true law    observed slope  expected slope   z (lane: constant expected slope)   z (expected recomputed per resample)    sd_obs    sd(obs_k - exp_k)
+     delta_flat     flat -true   -0.0304          +0.0000            -1.57                               -1.57                              0.0194    0.0194
+     delta_flat     rival-true   -0.0304          +0.0725            -5.29                               -5.02                              0.0194    0.0205
+     delta_rival    flat -true   -0.0915          -0.0591            -1.71                               -1.79                              0.0190    0.0181
+     delta_rival    rival-true   -0.0915          +0.0000            -4.82                               -4.82                              0.0190    0.0190
+     (a hypothesis' own delta has an expected slope of exactly 0 on every resample, so its two columns agree; the cross cells are the ones the recomputation moves)
+     |z| in the four cells, recomputed: delta_flat vs flat-true 1.57, delta_flat vs rival-true 5.02, delta_rival vs flat-true 1.79, delta_rival vs rival-true 4.82
+
+(4) C2 in the lane's code:
+     load_bearing=False (C2 is printed as '[PASS] (reported)' and cannot gate the lane's verdict); its comparison values come from exec'ing CFG215's code prefix (its RC41 f_DM and g_bar), not from an independent re-derivation of CFG215's geometry
+  PASS  C2 is non-load-bearing in the lane's code: load_bearing=False

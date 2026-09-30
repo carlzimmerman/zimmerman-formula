@@ -78,3 +78,22 @@
 - **Other moves:** the RC41 overlap is 41 galaxies (was 38), and the low-z half's flat median is +0.061 (was +0.041).
 - **Post hoc index:** p = −0.71 [−1.52, +0.15]; the rival is 4.7σ away and flat 1.7σ.
 - The full comparison is in `INPUT_CORRECTION_2026-09-29.md`, made by `rc100_input_correction_compare.py`.
+
+## Referee notes (CFG233, c5adc0f82; appended 2026-09-30; the text above is unchanged)
+
+The referee's five items, each checked against this lane's own files by `cfg216_referee_checks.py` (post hoc, reported only, no frozen verdict changes). Its controls pass in all four modes (original and corrected input, normal and MUTATE); outputs `cfg216_referee_checks*.out`.
+
+1. **"The sign of the flat slope is negative in every variant" is not supported.** The sensitivity table's own row (a), the RC41 subset, has a flat slope of **+0.005 [−0.062, +0.068]** (corrected input +0.009 [−0.056, +0.068]). The second clause of the same sentence fails for (a) as well: "the rival's slope excludes 0 in all of them" is contradicted by (a)'s **−0.056 [−0.124, +0.015]** (corrected −0.051 [−0.118, +0.015]). What the table supports: the flat slope is negative in (b), (c), (d) and the primary, and the rival's slope excludes 0 in (b), (c), (d) and the primary; in the RC41 subset (38 galaxies, 41 corrected) neither holds. The frozen route/selection label (variant (d), or a z-half disagreeing in sign) still does not fire, because it was not defined on (a).
+2. **C1 cannot fail.** It evaluates log10 of ν(x)/ν(x) at identical arguments, and its printed value is exactly 0. (CFG217's C1 was written the same way; see its README.) A non-vacuous replacement is in the new script: 200 synthetic table rows are placed exactly on a law through the table's own observables V_c, R_e and f_DM (2 kernels × 2 footings × 2 laws × 5 z × 5 g_bar/a0), read by this lane's own loader code and scored by this lane's own `delta()`. Every on-law row returns |δ| ≤ 1.5e-16; scored under the other law, 100% of the rows exceed 1e-3; and with the lane's MUTATE injection the control fails as it must (max |δ| 0.198). The lane's outputs are unchanged.
+3. **The z-scores hold the expected slope constant.** The primary block divides (observed − expected) by the bootstrap sd of the observed slope, with the expected slope fixed at its full-sample value. Recomputed with the expected slope on every resample (the same 10,000 index sets; z = (observed − expected) / sd(observed_k − expected_k)), for ν_mono and the canonical footing:
+
+| observed δ | if this law were true | lane's z | recomputed z |
+|---|---|---|---|
+| flat | flat | −1.59 | −1.59 |
+| flat | rival | −5.53 | **−5.23** |
+| rival | flat | −1.72 | −1.81 |
+| rival | rival | −4.93 | −4.93 |
+
+  A law's own δ has an expected slope of exactly 0 on every resample, so the two own-law rows cannot move; the "4.9σ" quoted above is the rival row and stands. The referee's 5.19σ is within 0.04σ of the flat-δ-against-rival cell (5.23σ here; corrected input 5.02σ); I have not identified the last 0.04σ.
+4. **C2 is read, not reproduced.** C2 is flagged `load_bearing=False` in the code (it prints as "[PASS] (reported)"), so it cannot gate the lane's verdict, and its comparison values come from exec'ing CFG215's code prefix (its RC41 f_DM and g_bar), not from an independent re-derivation of CFG215's geometry. I have taken the referee's phrase to mean this; if it meant something narrower, the referee should say what.
+5. **The referee's gas-calibration verdict (relayed, not recomputed here).** No defensible gas calibration separates the laws independently of the authors' gas trend; the measured PHIBSS tilt is −0.19 ± 0.14 dex, which gives W-none; and a 0.26 dex rival-truth mock reproduces both slopes. This is consistent with CFG217's finding that RC100's δ(z) measures the differential baryon-mass calibration (its M2 mock: +0.259 dex; its chart, with the corrected ticks, in `../CFG217_rc100_attack/`).
