@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SPECTRAL_BALANCE_PRESSURE_CORRECTED",
+  "repository": {
+    "commit": "93cc619dca635aac368dd74e1ad36508b4b227ba",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/spectral_balance_pressure_corrected.py",
+    "--output",
+    "sol61_push/runs/spectral_balance_pressure_corrected/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Spectral moment cancellation, small and large field jets, finite energy and rest-frame pressure, and response-scale freedom",
+    "coefficient_domain": "Exact real identities and deterministic double-precision quadrature",
+    "conventions": "SPECTRAL_BALANCE_CONTRACT.md; c=hbar=1; signed effective energy weights",
+    "inputs": [
+      "sol61_push/spectral_balance_pressure_corrected.py"
+    ],
+    "bounds": {
+      "integer_masses": [
+        0,
+        8
+      ],
+      "multiset_lengths": [
+        2,
+        5
+      ],
+      "P": [
+        0,
+        0.2,
+        1
+      ],
+      "K": [
+        20,
+        40,
+        80
+      ],
+      "absolute_tolerance": 1e-07
+    },
+    "non_claims": [
+      "No covariant theory",
+      "No protected spectral mass relations",
+      "No 32pi derivation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T18:20:11.503326+00:00",
+    "runtime_seconds": 0.981648,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/spectral_balance_pressure_corrected.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/spectral_balance_pressure_corrected.py",
+      "sha256": "8c924979599530a8dc5b2fc3930a92cd23efd381764551981c427e6d400303a0",
+      "sha256_after": "8c924979599530a8dc5b2fc3930a92cd23efd381764551981c427e6d400303a0"
+    }
+  ],
+  "output_directory": "sol61_push/runs/spectral_balance_pressure_corrected",
+  "declared_results": [
+    "sol61_push/runs/spectral_balance_pressure_corrected/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/spectral_balance_pressure_corrected/stdout.txt",
+      "sha256": "e885f61303306063aa636baaea137873e689b6c212dde5ccd00f2a57495e6e85",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/spectral_balance_pressure_corrected/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/spectral_balance_pressure_corrected/results.json",
+      "sha256": "251f07d8375d254c327181e08f3d2eb8a10069b7a0ccfef67f92c396d8fb5fd7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
