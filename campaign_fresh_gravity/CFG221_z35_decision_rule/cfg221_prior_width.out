@@ -1,0 +1,77 @@
+CFG221 ADDENDUM 3 (frozen 5398e74b9 before any operating-characteristics table was read): the prior-width sweep and the C2 diagnostic.
+(1) The noise-free control C2 of cfg221_decision_rule.py failed (6 of 12): here, for the frozen sigma and for each swept sigma, the per-(truth, N) verdict and the status of each law in
+each of the four cells for the noise-free mock (no measurement noise, no extra scatter, true offset 0), to show WHICH cell breaks it.
+(2) The sweep: the same rule, mocks and controls with sigma scaled by s in {1 (the frozen widths, for reference), 0.5, 0.33} in both the rule and the PRIOR draws, REAL scenario, true offsets
+c in {0, PRIOR}, N in {13, 20, 36, 50}, both truths, K = 100 mocks, seed 221, B = 500.  Reports P(correct)/P(wrong), FEASIBLE (P(correct) >= 0.8 for both truths at c = 0),
+FALSE-SEPARATION-CONTROLLED (wrong <= 0.094 at c = 0 and PRIOR) and sigma_required = the largest tested scale with FEASIBLE at some N <= 50 and false separation controlled.
+
+(1) NOISE-FREE MOCK (no measurement noise, no extra scatter, true offset 0), statuses (flat / rival) per cell [primary, mono-alt, P2-can, P2-alt] and the verdict, by sigma scale
+  sigma scale 1.0 (sigma_dust 0.30 dex):
+    truth FLAT  N =  6: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.21 -0.24 -0.16 -0.19; flat CI [-0.29,+0.15 -0.30,+0.12 ...]
+    truth FLAT  N = 13: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.23 -0.26 -0.17 -0.20; flat CI [-0.25,+0.11 -0.26,+0.09 ...]
+    truth FLAT  N = 20: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.19 -0.22 -0.14 -0.18; flat CI [-0.36,+0.18 -0.38,+0.16 ...]
+    truth FLAT  N = 30: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.22 -0.26 -0.17 -0.20; flat CI [-0.27,+0.12 -0.28,+0.10 ...]
+    truth FLAT  N = 36: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.22 -0.26 -0.17 -0.20; flat CI [-0.31,+0.13 -0.32,+0.11 ...]
+    truth FLAT  N = 50: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.22 -0.26 -0.17 -0.20; flat CI [-0.29,+0.13 -0.30,+0.10 ...]
+    truth H(z)  N =  6: verdict NONE o/n  n/n  o/n  o/n   rival CI upper by cell +0.13 +0.10 +0.18 +0.14; flat CI [+0.01,+0.48 -0.00,+0.45 ...]
+    truth H(z)  N = 13: verdict NONE o/n  n/n  o/n  o/n   rival CI upper by cell +0.12 +0.09 +0.17 +0.13; flat CI [+0.01,+0.47 -0.01,+0.45 ...]
+    truth H(z)  N = 20: verdict NONE o/n  o/n  o/n  o/n   rival CI upper by cell +0.14 +0.10 +0.18 +0.14; flat CI [+0.04,+0.48 +0.02,+0.46 ...]
+    truth H(z)  N = 30: verdict NONE o/n  n/n  o/n  o/n   rival CI upper by cell +0.15 +0.11 +0.19 +0.15; flat CI [+0.00,+0.49 -0.01,+0.46 ...]
+    truth H(z)  N = 36: verdict NONE o/n  o/n  o/n  o/n   rival CI upper by cell +0.15 +0.12 +0.19 +0.15; flat CI [+0.04,+0.50 +0.02,+0.47 ...]
+    truth H(z)  N = 50: verdict NONE o/n  o/n  o/n  o/n   rival CI upper by cell +0.10 +0.06 +0.15 +0.11; flat CI [+0.07,+0.46 +0.06,+0.44 ...]
+    -> correct separation 6/12
+  sigma scale 0.5 (sigma_dust 0.15 dex):
+    truth FLAT  N =  6: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.24 -0.27 -0.19 -0.22; flat CI [-0.13,+0.09 -0.15,+0.06 ...]
+    truth FLAT  N = 13: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.24 -0.27 -0.18 -0.21; flat CI [-0.10,+0.07 -0.12,+0.04 ...]
+    truth FLAT  N = 20: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.24 -0.27 -0.19 -0.23; flat CI [-0.16,+0.11 -0.18,+0.08 ...]
+    truth FLAT  N = 30: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.25 -0.28 -0.20 -0.24; flat CI [-0.11,+0.08 -0.13,+0.05 ...]
+    truth FLAT  N = 36: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.24 -0.27 -0.19 -0.23; flat CI [-0.14,+0.08 -0.16,+0.06 ...]
+    truth FLAT  N = 50: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.25 -0.29 -0.21 -0.24; flat CI [-0.12,+0.08 -0.14,+0.05 ...]
+    truth H(z)  N =  6: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.08 +0.04 +0.13 +0.09; flat CI [+0.20,+0.42 +0.18,+0.40 ...]
+    truth H(z)  N = 13: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.07 +0.03 +0.11 +0.08; flat CI [+0.22,+0.42 +0.20,+0.40 ...]
+    truth H(z)  N = 20: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.07 +0.03 +0.11 +0.08; flat CI [+0.22,+0.43 +0.20,+0.40 ...]
+    truth H(z)  N = 30: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.06 +0.03 +0.11 +0.08; flat CI [+0.20,+0.42 +0.18,+0.40 ...]
+    truth H(z)  N = 36: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.07 +0.04 +0.12 +0.08; flat CI [+0.18,+0.41 +0.16,+0.39 ...]
+    truth H(z)  N = 50: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.06 +0.03 +0.11 +0.07; flat CI [+0.22,+0.42 +0.20,+0.39 ...]
+    -> correct separation 12/12
+  sigma scale 0.33 (sigma_dust 0.10 dex):
+    truth FLAT  N =  6: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.25 -0.28 -0.19 -0.23; flat CI [-0.08,+0.06 -0.10,+0.04 ...]
+    truth FLAT  N = 13: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.24 -0.27 -0.19 -0.22; flat CI [-0.06,+0.05 -0.08,+0.02 ...]
+    truth FLAT  N = 20: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.27 -0.30 -0.22 -0.26; flat CI [-0.10,+0.07 -0.12,+0.05 ...]
+    truth FLAT  N = 30: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.27 -0.31 -0.22 -0.26; flat CI [-0.07,+0.06 -0.09,+0.03 ...]
+    truth FLAT  N = 36: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.27 -0.30 -0.22 -0.26; flat CI [-0.09,+0.06 -0.11,+0.03 ...]
+    truth FLAT  N = 50: verdict LO   n/u  n/u  n/u  n/u   rival CI upper by cell -0.28 -0.31 -0.23 -0.26; flat CI [-0.07,+0.06 -0.09,+0.03 ...]
+    truth H(z)  N =  6: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.06 +0.02 +0.11 +0.07; flat CI [+0.23,+0.40 +0.22,+0.37 ...]
+    truth H(z)  N = 13: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.05 +0.01 +0.09 +0.06; flat CI [+0.26,+0.40 +0.24,+0.37 ...]
+    truth H(z)  N = 20: verdict NONE o/n  o/n  o/n  o/n   rival CI upper by cell +0.05 +0.01 +0.10 +0.06; flat CI [+0.25,+0.40 +0.23,+0.38 ...]
+    truth H(z)  N = 30: verdict NONE o/n  o/n  o/n  o/n   rival CI upper by cell +0.04 +0.01 +0.09 +0.05; flat CI [+0.24,+0.39 +0.22,+0.36 ...]
+    truth H(z)  N = 36: verdict NONE o/n  o/n  o/n  o/n   rival CI upper by cell +0.04 +0.01 +0.09 +0.06; flat CI [+0.24,+0.38 +0.22,+0.36 ...]
+    truth H(z)  N = 50: verdict HI   o/n  o/n  o/n  o/n   rival CI upper by cell +0.05 +0.02 +0.10 +0.06; flat CI [+0.22,+0.40 +0.21,+0.37 ...]
+    -> correct separation 9/12
+
+(2) SWEEP: 48 cells x 100 mocks (REAL; the true offset 0 or drawn from the same scaled prior)
+
+  sigma scale 1.0 (sigma_dust = sigma_CO = 0.30, sigma_[CII] = 0.40 dex): P(correct)/P(wrong) at N =        13        20        36        50
+    FLAT  c = 0.0     0.72/0.00 0.81/0.00 0.98/0.00 0.97/0.00
+    FLAT  c = PRIOR   0.54/0.00 0.66/0.00 0.80/0.00 0.87/0.00
+    H(z)  c = 0.0     0.07/0.00 0.14/0.00 0.10/0.00 0.08/0.00
+    H(z)  c = PRIOR   0.17/0.02 0.27/0.00 0.24/0.00 0.21/0.00
+    FEASIBLE (P(correct) >= 0.8 for both truths at c = 0): no (best min power 0.14);  false separation CONTROLLED (line 0.094)
+
+  sigma scale 0.5 (sigma_dust = sigma_CO = 0.15, sigma_[CII] = 0.20 dex): P(correct)/P(wrong) at N =        13        20        36        50
+    FLAT  c = 0.0     0.76/0.00 0.79/0.00 0.86/0.00 0.96/0.00
+    FLAT  c = PRIOR   0.62/0.00 0.75/0.00 0.77/0.00 0.75/0.00
+    H(z)  c = 0.0     0.47/0.00 0.56/0.00 0.74/0.00 0.82/0.00
+    H(z)  c = PRIOR   0.38/0.00 0.48/0.00 0.67/0.00 0.60/0.00
+    FEASIBLE (P(correct) >= 0.8 for both truths at c = 0): yes, N_feasible = 50;  false separation CONTROLLED (line 0.094)
+
+  sigma scale 0.33 (sigma_dust = sigma_CO = 0.10, sigma_[CII] = 0.13 dex): P(correct)/P(wrong) at N =        13        20        36        50
+    FLAT  c = 0.0     0.61/0.00 0.73/0.00 0.79/0.00 0.80/0.00
+    FLAT  c = PRIOR   0.66/0.00 0.73/0.00 0.80/0.00 0.66/0.00
+    H(z)  c = 0.0     0.59/0.00 0.58/0.00 0.68/0.00 0.64/0.00
+    H(z)  c = PRIOR   0.47/0.01 0.54/0.01 0.70/0.00 0.55/0.00
+    FEASIBLE (P(correct) >= 0.8 for both truths at c = 0): no (best min power 0.68);  false separation CONTROLLED (line 0.094)
+
+  sigma_required (the largest tested scale with FEASIBLE at some N <= 50 and false separation controlled): scale 0.5 (sigma_dust = sigma_CO = 0.15 dex)
+
+96 s

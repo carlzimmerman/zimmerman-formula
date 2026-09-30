@@ -1,0 +1,68 @@
+CFG221 -- the frozen decision rule for the pooled z > 3.5 two-sided test, and its operating characteristics on mocks.
+Frozen criteria: FROZEN_CRITERIA.md here (46df63032 + ADDENDUM 1 70fff09bb + ADDENDUM 2 cde8112c9), committed before any run.  kappa = 1/2 FITTED, NOT DERIVED.
+The rule: marginal bootstrap (discs resampled and the shared gas calibration tau_k ~ N(0, sigma_k^2) redrawn in every resample); DISFAVOURED-under / -over / NOT from the marginal 95% CI of the median delta;
+FLAT-SEPARATED / RIVAL-SEPARATED only if the status holds in all four kernel/footing cells and after dropping any one disc.  Mocks: the six CRISTAL detections' z, radius and baryon errors (CFG219's template) at R_out.
+A description of THIS rule on THIS template, not a claim about any real sample.  No sentence says the data favour a framework.
+
+CONTROLS
+  [FAIL] C2 noise-free mock (no measurement noise, no extra scatter, true offset 0): the correct separation at every N for both truths: 6/12
+  [PASS] C4 the rule's machinery on the six real detections with the calibration collapsed (sigma = 0) reproduces CFG220's headline cell: medians (flat +0.106, rival -0.203) and both laws NOT-DISFAVOURED: medians +0.106, -0.203 (max diff 8.3e-17); statuses ('not', 'not')
+
+ILLUSTRATION (the six real CRISTAL detections at table R_out; NOT blind, no verdict; sigma_dust = 0.30, B = 10,000): NO-SEPARATION
+    nu_mono canonical flat not   [-0.215, +0.436]   rival not   [-0.514, +0.085]
+    nu_mono alt       flat not   [-0.232, +0.409]   rival not   [-0.547, +0.050]
+    P2      canonical flat not   [-0.185, +0.489]   rival not   [-0.464, +0.131]
+    P2      alt       flat not   [-0.199, +0.464]   rival not   [-0.499, +0.094]
+
+OPERATING CHARACTERISTICS: 172 cells x 100 mocks, B = 500, 16 cores
+[168 s]
+
+  scenario REAL: P(correct separation) / P(WRONG separation), by truth, true offset c (dex on the gas mass) and N =         6        13        20        30        36        50
+    FLAT  c = 0.0     0.24/0.00 0.71/0.00 0.91/0.00 0.94/0.00 0.96/0.00 1.00/0.00
+    FLAT  c = 0.3     0.32/0.00 0.63/0.00 0.76/0.00 0.79/0.00 0.85/0.00 0.74/0.00
+    FLAT  c = -0.3    0.15/0.00 0.49/0.00 0.61/0.00 0.74/0.00 0.87/0.00 0.97/0.00
+    FLAT  c = 0.6     0.24/0.00 0.30/0.00 0.23/0.00 0.16/0.00 0.16/0.00 0.05/0.00
+    FLAT  c = -0.6    0.12/0.00 0.27/0.00 0.23/0.01 0.39/0.00 0.30/0.00 0.29/0.00
+    FLAT  c = PRIOR   0.27/0.00 0.57/0.00 0.70/0.00 0.80/0.00 0.78/0.00 0.77/0.00
+    H(z)  c = 0.0     0.08/0.00 0.10/0.00 0.13/0.00 0.12/0.00 0.13/0.00 0.07/0.00
+    H(z)  c = 0.3     0.00/0.00 0.00/0.00 0.00/0.00 0.00/0.01 0.00/0.00 0.00/0.00
+    H(z)  c = -0.3    0.20/0.00 0.51/0.00 0.74/0.00 0.73/0.00 0.79/0.00 0.85/0.00
+    H(z)  c = 0.6     0.00/0.06 0.00/0.05 0.00/0.07 0.00/0.05 0.00/0.05 0.00/0.05
+    H(z)  c = -0.6    0.24/0.00 0.43/0.00 0.47/0.00 0.35/0.00 0.21/0.00 0.15/0.00
+    H(z)  c = PRIOR   0.08/0.01 0.19/0.01 0.21/0.00 0.25/0.00 0.23/0.00 0.26/0.00
+
+  scenario OPT: P(correct separation) / P(WRONG separation), by truth, true offset c (dex on the gas mass) and N =         6        13        20        30        36        50
+    FLAT  c = 0.0     0.82/0.00 0.99/0.00 1.00/0.00 1.00/0.00 1.00/0.00 1.00/0.00
+    FLAT  c = 0.3     0.76/0.00 0.80/0.00 0.84/0.00 0.88/0.00 0.84/0.00 0.89/0.00
+    FLAT  c = -0.3    0.77/0.00 0.91/0.00 0.96/0.00 0.99/0.00 0.97/0.00 0.99/0.00
+    FLAT  c = 0.6     0.34/0.00 0.21/0.00 0.05/0.00 0.02/0.00 0.00/0.00 0.00/0.00
+    FLAT  c = -0.6    0.19/0.00 0.25/0.00 0.15/0.00 0.13/0.00 0.03/0.00 0.05/0.00
+    FLAT  c = PRIOR   0.71/0.00 0.91/0.00 0.87/0.00 0.86/0.00 0.89/0.00 0.86/0.00
+    H(z)  c = 0.0     0.10/0.00 0.21/0.00 0.21/0.00 0.18/0.00 0.19/0.00 0.17/0.00
+    H(z)  c = 0.3     0.01/0.00 0.00/0.00 0.00/0.00 0.00/0.00 0.00/0.00 0.00/0.00
+    H(z)  c = -0.3    0.46/0.00 0.79/0.00 0.81/0.00 0.84/0.00 0.84/0.00 0.87/0.00
+    H(z)  c = 0.6     0.00/0.02 0.00/0.00 0.00/0.00 0.00/0.00 0.00/0.01 0.00/0.00
+    H(z)  c = -0.6    0.19/0.00 0.07/0.00 0.04/0.00 0.00/0.00 0.02/0.00 0.00/0.00
+    H(z)  c = PRIOR   0.14/0.00 0.24/0.00 0.20/0.00 0.27/0.00 0.31/0.01 0.31/0.00
+
+  sensitivities (P(correct)/P(wrong)):
+    REAL27 FLAT  c = 0.0    N = 20: 0.73/0.00, N = 36: 0.97/0.00   |  MISMATCH (truth from P2, alt) N = 20: 0.79/0.00, N = 36: 0.96/0.00
+    REAL27 FLAT  c = PRIOR  N = 20: 0.68/0.00, N = 36: 0.79/0.00   |  MISMATCH (truth from P2, alt) N = 20: 0.74/0.00, N = 36: 0.80/0.00
+    REAL27 H(z)  c = 0.0    N = 20: 0.16/0.00, N = 36: 0.08/0.00   |  MISMATCH (truth from P2, alt) N = 20: 0.03/0.00, N = 36: 0.07/0.00
+    REAL27 H(z)  c = PRIOR  N = 20: 0.26/0.02, N = 36: 0.28/0.02   |  MISMATCH (truth from P2, alt) N = 20: 0.21/0.00, N = 36: 0.13/0.01
+
+  extra pair FLAT vs HORIZON (REAL; P(correct)/P(wrong)):
+    FLAT     c = +0.00 N = 13: 0.91/0.00, N = 20: 0.98/0.00  c = +0.30 N = 13: 0.81/0.00, N = 20: 0.75/0.00  c = -0.30 N = 13: 0.78/0.00, N = 20: 0.90/0.00
+    HORIZON  c = +0.00 N = 13: 0.33/0.00, N = 20: 0.37/0.00  c = +0.30 N = 13: 0.02/0.00, N = 20: 0.01/0.01  c = -0.30 N = 13: 0.79/0.00, N = 20: 0.78/0.00
+
+  [PASS] C1 FALSE-SEPARATION-CONTROLLED: the WRONG-separation rate at c = 0, +-0.30 and PRIOR is <= 0.094 for every N, both truths, both scenarios: worst 0.01 at ('REAL', 'H(z)', 0.3, 30)
+
+  FEASIBLE (REAL, c = 0, P(correct) >= 0.8 for both truths): NOT FEASIBLE up to N = 50; the best min(P(correct) over the two truths) is 0.13
+    N =  6: REAL c = 0: FLAT 0.24, H(z) 0.08;  OPT c = 0: FLAT 0.82, H(z) 0.10
+    N = 13: REAL c = 0: FLAT 0.71, H(z) 0.10;  OPT c = 0: FLAT 0.99, H(z) 0.21
+    N = 20: REAL c = 0: FLAT 0.91, H(z) 0.13;  OPT c = 0: FLAT 1.00, H(z) 0.21
+    N = 30: REAL c = 0: FLAT 0.94, H(z) 0.12;  OPT c = 0: FLAT 1.00, H(z) 0.18
+    N = 36: REAL c = 0: FLAT 0.96, H(z) 0.13;  OPT c = 0: FLAT 1.00, H(z) 0.19
+    N = 50: REAL c = 0: FLAT 1.00, H(z) 0.07;  OPT c = 0: FLAT 1.00, H(z) 0.17
+
+2/3 controls pass; 168 s
