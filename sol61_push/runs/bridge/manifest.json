@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SELECTION_BRIDGE",
+  "repository": {
+    "commit": "1872777a21b86428039e9ab49419d3b29fe241bc",
+    "dirty": true
+  },
+  "command": [
+    "env",
+    "MPLCONFIGDIR=/private/tmp/sol61_mpl",
+    "python3",
+    "sol61_push/pump_bridge.py",
+    "--output",
+    "sol61_push/runs/bridge/results.json",
+    "--figure",
+    "sol61_push/runs/bridge/stream_pump.png"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional virial pump scaling and coefficient selection obligations; plot from verified finite PIC data",
+    "coefficient_domain": "Exact symbolic real algebra; deterministic float64/complex128 and retained PIC data",
+    "conventions": "SELECTION_CONTRACT.md, SELECTION_RESULTS_2026-09-29.md, and script docstrings",
+    "inputs": [
+      "sol61_push/pump_bridge.py",
+      "sol61_push/runs/pic/results.json"
+    ],
+    "bounds": {
+      "q_example": 1,
+      "carrier_dictionary": "rho=zeta*g/(4piGr)",
+      "stream_dictionary": "v^2=B*r*g",
+      "chirality_assumption": "maximal in the conditional bound",
+      "data_cases": [
+        "fine",
+        "multimode_larger_box"
+      ]
+    },
+    "non_claims": [
+      "No complete theory or 32pi coefficient",
+      "No full covariant multistream action",
+      "No dark-medium nonlinear saturation simulation",
+      "Witness fields and force dictionary are not dynamically derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T02:55:46.788162+00:00",
+    "runtime_seconds": 0.949293,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/pump_bridge.py",
+    "sol61_push/runs/pic/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/pump_bridge.py",
+      "sha256": "a3d106f276bada66e7a19d1807bc0a1e62ed5e4ecc4ac4a76b50379d2a528031",
+      "sha256_after": "a3d106f276bada66e7a19d1807bc0a1e62ed5e4ecc4ac4a76b50379d2a528031"
+    },
+    {
+      "path": "sol61_push/runs/pic/results.json",
+      "sha256": "79d925985342b596c5bc633ee745272c9034b39d8034815550297c42618c2ca7",
+      "sha256_after": "79d925985342b596c5bc633ee745272c9034b39d8034815550297c42618c2ca7"
+    }
+  ],
+  "output_directory": "sol61_push/runs/bridge",
+  "declared_results": [
+    "sol61_push/runs/bridge/results.json",
+    "sol61_push/runs/bridge/stream_pump.png"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/bridge/stdout.txt",
+      "sha256": "8af313bfa7bbc95c298980069904a0049bc105ba7adc43b56d12e733725293ee",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bridge/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bridge/results.json",
+      "sha256": "7b538d49ee4f6006f0f4c5de72d62dbe414561bb8ad062033339c63e1bc28969",
+      "kind": "result"
+    },
+    {
+      "path": "sol61_push/runs/bridge/stream_pump.png",
+      "sha256": "f8db55683d247a4cbd82fadb29f77008f12f63927729db7e4b21f120eca0c247",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

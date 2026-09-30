@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SELECTION_PIC",
+  "repository": {
+    "commit": "73b108e18bec7af7839d85f992fdc2795390b2dc",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/two_stream_pic.py",
+    "--output",
+    "sol61_push/runs/pic/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Nonlinear electrostatic stream-to-field energy transfer; bounded seed, resolution, stable-wavelength and multimode controls",
+    "coefficient_domain": "Exact symbolic real identities and deterministic IEEE float64/complex128 numerics",
+    "conventions": "SELECTION_CONTRACT.md and script docstring; charged plasma total-density frequency Omega_p=1",
+    "inputs": [
+      "sol61_push/two_stream_pic.py"
+    ],
+    "bounds": {
+      "grids": [
+        256,
+        512,
+        1024
+      ],
+      "particles": [
+        4096,
+        16384,
+        32768
+      ],
+      "dt": [
+        0.04,
+        0.02
+      ],
+      "seed": [
+        0.0001,
+        0.0002
+      ],
+      "total_plasma_frequency": 1,
+      "end": 80,
+      "growth_fit_window": [
+        8,
+        18
+      ],
+      "cold_stream_velocity": [
+        -1,
+        1
+      ],
+      "box_fundamental_k": [
+        0.6123724356957945,
+        1.2,
+        0.15309310892394862
+      ],
+      "seed_harmonics": [
+        1,
+        8
+      ],
+      "tracked_modes": [
+        1,
+        4
+      ]
+    },
+    "non_claims": [
+      "No complete theory or 32pi coefficient",
+      "No mapping of electrostatic plasma to the full dark dipole action",
+      "No universal nonlinear attractor",
+      "No full Poisson/galaxy/cosmology feedback"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T02:33:22.641855+00:00",
+    "runtime_seconds": 6.12142,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/two_stream_pic.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/two_stream_pic.py",
+      "sha256": "5854834f50d84b31a61dfc389652d75934c2d167b588cda440c1c52fdda41bb2",
+      "sha256_after": "5854834f50d84b31a61dfc389652d75934c2d167b588cda440c1c52fdda41bb2"
+    }
+  ],
+  "output_directory": "sol61_push/runs/pic",
+  "declared_results": [
+    "sol61_push/runs/pic/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/pic/stdout.txt",
+      "sha256": "81bd29cf0be420d8821e1b620e09748a7371649019f5ab3b49e0632d55ee1608",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/pic/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/pic/results.json",
+      "sha256": "79d925985342b596c5bc633ee745272c9034b39d8034815550297c42618c2ca7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

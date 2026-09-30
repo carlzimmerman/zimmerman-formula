@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SELECTION_PASSAGE",
+  "repository": {
+    "commit": "bb7d14eb8afa8e5664f88fee6b23052087eeec53",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/passage_pump.py",
+    "--output",
+    "sol61_push/runs/passage/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Planar passage pumps first-order amplitudes, but radial quadratic response vanishes and radial cubic response survives",
+    "coefficient_domain": "Exact symbolic real identities and deterministic IEEE float64/complex128 numerics",
+    "conventions": "SELECTION_CONTRACT.md and script docstring; charged plasma total-density frequency Omega_p=1",
+    "inputs": [
+      "sol61_push/passage_pump.py"
+    ],
+    "bounds": {
+      "amplitudes": [
+        0.002,
+        0.004,
+        0.008
+      ],
+      "frequency_scales": [
+        1,
+        3,
+        10
+      ],
+      "start": [
+        -20,
+        -40
+      ],
+      "end": 40,
+      "retained_orders": [
+        1,
+        2,
+        3
+      ],
+      "rtol": 2e-10,
+      "atol": 1e-14
+    },
+    "non_claims": [
+      "No complete theory or 32pi coefficient",
+      "No mapping of electrostatic plasma to the full dark dipole action",
+      "No universal nonlinear attractor",
+      "No full Poisson/galaxy/cosmology feedback"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T02:33:09.959210+00:00",
+    "runtime_seconds": 5.672385,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/passage_pump.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/passage_pump.py",
+      "sha256": "811fa82fb3fcafec2b490f3b91b07e19ca77a1091bd388b60366106db317bd69",
+      "sha256_after": "811fa82fb3fcafec2b490f3b91b07e19ca77a1091bd388b60366106db317bd69"
+    }
+  ],
+  "output_directory": "sol61_push/runs/passage",
+  "declared_results": [
+    "sol61_push/runs/passage/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/passage/stdout.txt",
+      "sha256": "4dfc64b585346549ae5b56d0b258b194f098c8615b406f23cf9899c14971411a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/passage/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/passage/results.json",
+      "sha256": "39591d7b6a2513b420bba0dc4a56c8bf11343fd47230e4d8c9ae609da85523a8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

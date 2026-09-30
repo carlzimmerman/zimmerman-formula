@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SELECTION_SELECTION",
+  "repository": {
+    "commit": "bb7d14eb8afa8e5664f88fee6b23052087eeec53",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/selection_dynamics.py",
+    "--output",
+    "sol61_push/runs/selection/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local aligned Hessian and damped energy budget; passive damping erases seeded response",
+    "coefficient_domain": "Exact symbolic real identities and deterministic IEEE float64/complex128 numerics",
+    "conventions": "SELECTION_CONTRACT.md and script docstring; charged plasma total-density frequency Omega_p=1",
+    "inputs": [
+      "sol61_push/selection_dynamics.py"
+    ],
+    "bounds": {
+      "g": [
+        0.0002,
+        0.002
+      ],
+      "gamma": [
+        0,
+        0.04
+      ],
+      "chirality": [
+        -1,
+        1
+      ],
+      "time": [
+        0,
+        600
+      ],
+      "omega": [
+        0.3,
+        1,
+        1.002
+      ],
+      "rtol": 1e-09,
+      "atol": 1e-12
+    },
+    "non_claims": [
+      "No complete theory or 32pi coefficient",
+      "No mapping of electrostatic plasma to the full dark dipole action",
+      "No universal nonlinear attractor",
+      "No full Poisson/galaxy/cosmology feedback"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T02:33:09.959216+00:00",
+    "runtime_seconds": 4.10572,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/selection_dynamics.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/selection_dynamics.py",
+      "sha256": "455f86b71891e4c3d4b4fb1f4361d75f809f763195dbf502e4e9130475be412c",
+      "sha256_after": "455f86b71891e4c3d4b4fb1f4361d75f809f763195dbf502e4e9130475be412c"
+    }
+  ],
+  "output_directory": "sol61_push/runs/selection",
+  "declared_results": [
+    "sol61_push/runs/selection/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/selection/stdout.txt",
+      "sha256": "02d3a423c08224c223497401b7f2bab257d5e8571f5158ddb0b8f00b1fefde56",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/selection/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/selection/results.json",
+      "sha256": "14a71408133b16e9d5abfd8d4fc6a11a5f4553e1b5436493bba61a10332fac17",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

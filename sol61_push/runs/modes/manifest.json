@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SELECTION_MODES",
+  "repository": {
+    "commit": "1872777a21b86428039e9ab49419d3b29fe241bc",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/dipole_stream_modes.py",
+    "--output",
+    "sol61_push/runs/modes/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact color decomposition and independent spectral growth; quadratic longitudinal obstruction plus a smooth angular-weight witness",
+    "coefficient_domain": "Exact symbolic real algebra; deterministic float64/complex128 and retained PIC data",
+    "conventions": "SELECTION_CONTRACT.md, SELECTION_RESULTS_2026-09-29.md, and script docstrings",
+    "inputs": [
+      "sol61_push/dipole_stream_modes.py"
+    ],
+    "bounds": {
+      "colors": 3,
+      "streams_per_color": 2,
+      "eta": "sqrt(3)",
+      "k_v_over_Omega": [
+        0.2,
+        0.6123724356957945,
+        0.9,
+        1.2
+      ],
+      "linear_state_dimension": 12,
+      "homogeneous_longitudinal_only": true,
+      "smooth_witness_core_positive": true
+    },
+    "non_claims": [
+      "No complete theory or 32pi coefficient",
+      "No full covariant multistream action",
+      "No dark-medium nonlinear saturation simulation",
+      "Witness fields and force dictionary are not dynamically derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T02:55:45.733060+00:00",
+    "runtime_seconds": 0.655074,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/dipole_stream_modes.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/dipole_stream_modes.py",
+      "sha256": "d485e5db829b161e93762e3281ee5fc9b58c49ea9b061270070823d42f8cd504",
+      "sha256_after": "d485e5db829b161e93762e3281ee5fc9b58c49ea9b061270070823d42f8cd504"
+    }
+  ],
+  "output_directory": "sol61_push/runs/modes",
+  "declared_results": [
+    "sol61_push/runs/modes/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/modes/stdout.txt",
+      "sha256": "e618e0dd8fbeb13532efcfca76f853c20e05f9a3fc22abcd8c0ce898533b1801",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/modes/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/modes/results.json",
+      "sha256": "2d70be46f9f95bd0e51015a49da54a8a0241538f5f839bda039be268322d22e6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

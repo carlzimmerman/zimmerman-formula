@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SELECTION_INSTABILITY",
+  "repository": {
+    "commit": "bb7d14eb8afa8e5664f88fee6b23052087eeec53",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/streaming_instability.py",
+    "--output",
+    "sol61_push/runs/instability/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Cold two-stream dispersion and independent matrix growth; saturation mapping is conditional",
+    "coefficient_domain": "Exact symbolic real identities and deterministic IEEE float64/complex128 numerics",
+    "conventions": "SELECTION_CONTRACT.md and script docstring; charged plasma total-density frequency Omega_p=1",
+    "inputs": [
+      "sol61_push/streaming_instability.py"
+    ],
+    "bounds": {
+      "k_v_over_Omega": [
+        0.01,
+        0.2,
+        0.6123724356957945,
+        0.9,
+        1.2,
+        2,
+        10
+      ],
+      "seeds": [
+        1e-08,
+        -1e-08,
+        2e-08
+      ],
+      "time": [
+        0,
+        12
+      ],
+      "cold": true,
+      "total_plasma_frequency": 1
+    },
+    "non_claims": [
+      "No complete theory or 32pi coefficient",
+      "No mapping of electrostatic plasma to the full dark dipole action",
+      "No universal nonlinear attractor",
+      "No full Poisson/galaxy/cosmology feedback"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T02:33:09.959199+00:00",
+    "runtime_seconds": 0.549763,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/streaming_instability.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/streaming_instability.py",
+      "sha256": "e28035f5579bc2c958269adb4a90a47fb425ad09da3a7252f58e27ea59dda789",
+      "sha256_after": "e28035f5579bc2c958269adb4a90a47fb425ad09da3a7252f58e27ea59dda789"
+    }
+  ],
+  "output_directory": "sol61_push/runs/instability",
+  "declared_results": [
+    "sol61_push/runs/instability/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/instability/stdout.txt",
+      "sha256": "8718ef35486894dc50b1f22fbf50e18632b4e4a37f8c5c0260da243f4e2665db",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/instability/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/instability/results.json",
+      "sha256": "38c5f69acdc91a2f0892cb09b372369bcaa1919980a88da9c60a157fc54364f0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
