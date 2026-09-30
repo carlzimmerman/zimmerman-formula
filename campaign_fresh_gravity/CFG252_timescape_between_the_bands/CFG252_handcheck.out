@@ -1,0 +1,134 @@
+CFG252 hand-check (MUTATE=0). Parameter set: f_v0 = 0.695, dressed H0 = 61.70 km/s/Mpc [Wiltshire 2009 PRD 80 123512; Duley, Nazer & Wiltshire 2013 CQG 30 175006] -- FROM MEMORY, UNVERIFIED
+kappa = 1/2 FITTED. Footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (FP0, committed). Label: NON-DIAGNOSTIC.
+
+== C0: the framework's kappa-to-H conversion reproduces FP0 ==
+  [PASS] C0: a0_can = kappa c H_Lambda sqrt(3/8pi) reproduces FP0 (rel < 1e-9); alt gives H0 = 67.40 and Omega_L = 0.6847
+         measured: a0_can 9.360325e-11 vs FP0 9.360325e-11; H0 = 67.4000 km/s/Mpc; Omega_L = 0.68470; kappa'_can = 0.14294, kappa'_tot = 0.17275
+
+== C1: the SPARC band, parsed from the committed kappa like-for-like note ==
+  [PASS] C1: committed table parsed: 33 rows; minimum at 1.0766e-10 and Dchi2(0.9361e-10) = 63.90
+         measured: best 1.0766e-10, Dchi2(canonical row) 63.90; S1 (Dchi2/19.314 <= 4) = [9.2287e-11, 1.2662e-10]; S2 = [9.5947e-11, 1.1937e-10]
+  kappa window BTFR          0.465 +- 0.076 -> a0 2-sigma [5.860e-11, 1.155e-10] (reported, not verdict-changing)
+  kappa window distance-free 0.550 +- 0.170 -> a0 2-sigma [3.931e-11, 1.666e-10] (reported, not verdict-changing)
+
+== C2: tracker identities T1-T7 (sympy; internal consistency only, not the literature) ==
+  [PASS] C2: all 12 tracker identities hold symbolically; T5 (1+z) equals a(t0)/a(t), a = abar/gamma, numerically
+         measured: failed identities: none; T5 max rel error 2.2e-16
+
+== C3 (reported): the recalled literature sets are internally consistent with the tracker (memory check only) ==
+  P-A f_v0 0.695 H0 61.7 -> Hbar0 50.18, gamma0 1.3475, OmM dressed 0.411, bare 0.168, t0(volume) 17.50 Gyr; recalled {'Hbar0': 50.1, 'gam0': 1.35, 'OmM_dressed': 0.41}
+  P-B f_v0 0.760 H0 61.7 -> Hbar0 48.17, gamma0 1.3800, OmM dressed 0.331, bare 0.126, t0(volume) 18.67 Gyr; recalled {'OmM_dressed': 0.33, 'gam0': 1.38}
+  [PASS] C3: P-A and P-B reproduce the recalled derived values (memory consistency, not literature verification)
+         measured: P-A True; P-B True
+
+== The run's tracker at z = 0 ==
+  H1 =   61.700 km/s/Mpc   dressed H0 (wall observer, global)
+  H2 =   50.182 km/s/Mpc   bare Hbar0 (volume average; own-clock rate everywhere)
+  H3 =   55.862 km/s/Mpc   void rate, volume time (1/t0)
+  H4 =   75.273 km/s/Mpc   void rate timed by wall clocks (gamma0/t0)
+  H5 =   37.241 km/s/Mpc   wall rate, volume time (2/(3 t0))
+  f_v0 0.695; gamma0 1.3475; OmM dressed 0.4110; OmM bare 0.1680; non-matter share dressed 0.5890, bare 0.8320; t0(volume) 17.504 Gyr
+  [PASS] C2n: run's tracker: fv(t0) = f_v0, z(t0) = 0, H_dressed(t0) = input H0, Hbar decomposition, t(z) round trip
+         measured: fv(t0) 0.695000; 1+z(t0) 1.000000000000; Hd(t0) 61.7000 km/s/Mpc; round-trip max rel 5.2e-15
+
+== L1 (load-bearing premise): the parameter set is inhomogeneous, so the mutation has something to tie to ==
+  [PASS] L1: f_v0 > 0, a non-matter Friedmann share 1 - OmM > 0 and a lapse gamma0 - 1 > 0
+         measured: f_v0 0.695; 1 - OmM_dressed 0.5890; gamma0 - 1 0.3475
+
+== (a) and (b2): a0 = kappa' c H (kappa' fixed a priori) and the lapse rate; G-T1 against S1 ==
+  reading                                           H   kappa'   a0 [m/s2]    /can    /alt   k_eq    S1    S2  class
+  a-0 literal (Omega_L_eq = 0)                    any  0.00000  0.0000e+00   0.000   0.000  0.000   out   out  DIES
+  a-1 total density x H1                           H1  0.17275  1.0355e-10   1.106   0.915  0.553    in    in  p*
+  a-1 total density x H2                           H2  0.17275  8.4223e-11   0.900   0.745  0.450   out   out  FAIL
+  a-1 total density x H3                           H3  0.17275  9.3755e-11   1.002   0.829  0.501    in   out  PASS(G-T1 only)
+  a-1 total density x H4                           H4  0.17275  1.2633e-10   1.350   1.117  0.675    in   out  PASS(G-T1 only)
+  a-1 total density x H5                           H5  0.17275  6.2503e-11   0.668   0.553  0.334   out   out  FAIL
+  a-2 non-matter x H1 (dressed, 1-OmM)             H1  0.13258  7.9475e-11   0.849   0.703  0.425   out   out  FAIL
+  a-2 non-matter x H2 (bare, Omk+OmQ)              H2  0.15757  7.6824e-11   0.821   0.679  0.410   out   out  FAIL
+  a-2 non-matter x H3 (void, OmM=0)                H3  0.17275  9.3755e-11   1.002   0.829  0.501    in   out  PASS(G-T1 only)
+  a-2 non-matter x H4 (void, wall clock)           H4  0.17275  1.2633e-10   1.350   1.117  0.675    in   out  PASS(G-T1 only)
+  a-2 non-matter x H5 (wall, OmM=1 locally)        H5  0.00000  0.0000e+00   0.000   0.000  0.000   out   out  DIES
+  a-3 borrowed Omega_L 0.6847 x H1                 H1  0.14294  8.5687e-11   0.915   0.757  0.458   out   out  FAIL
+  a-3 borrowed Omega_L 0.6847 x H3                 H3  0.14294  7.7579e-11   0.829   0.686  0.414   out   out  FAIL
+  a-3 borrowed Omega_L 0.6847 x H4                 H4  0.14294  1.0454e-10   1.117   0.924  0.558    in    in  p*
+  b2 c dgamma/dt (volume time)                      -        -  5.7522e-11   0.615   0.509  0.307   out   out  FAIL
+  b2 c gamma dgamma/dt (wall time)                  -        -  7.7512e-11   0.828   0.685  0.414   out   out  FAIL
+  (class p* = restatement: borrowed Omega_L, post-hoc b2, or the same a0 within 1% in the homogeneous twin; S1 = [9.2287e-11, 1.2662e-10])
+
+== robustness sweep over the premise's own literature uncertainty (verdicts stay at the run's set) ==
+  a-0 literal (Omega_L_eq = 0)                 a0 range [0.000e+00, 0.000e+00]; classes {'DIES': 21}
+  a-1 total density x H1                       a0 range [1.007e-10, 1.074e-10]; classes {'p*': 21}
+  a-1 total density x H2                       a0 range [7.416e-11, 9.511e-11]; classes {'FAIL': 19, 'PASS(G-T1 only)': 2}  -> PARAMETER-DEPENDENT
+  a-1 total density x H3                       a0 range [7.806e-11, 1.119e-10]; classes {'PASS(G-T1 only)': 11, 'FAIL': 10}  -> PARAMETER-DEPENDENT
+  a-1 total density x H4                       a0 range [1.112e-10, 1.427e-10]; classes {'FAIL': 9, 'PASS(G-T1 only)': 12}  -> PARAMETER-DEPENDENT
+  a-1 total density x H5                       a0 range [5.204e-11, 7.459e-11]; classes {'FAIL': 21}
+  a-2 non-matter x H1 (dressed, 1-OmM)         a0 range [6.575e-11, 9.524e-11]; classes {'FAIL': 20, 'PASS(G-T1 only)': 1}  -> PARAMETER-DEPENDENT
+  a-2 non-matter x H2 (bare, Omk+OmQ)          a0 range [7.137e-11, 8.088e-11]; classes {'FAIL': 21}
+  a-2 non-matter x H3 (void, OmM=0)            a0 range [7.806e-11, 1.119e-10]; classes {'PASS(G-T1 only)': 11, 'FAIL': 10}  -> PARAMETER-DEPENDENT
+  a-2 non-matter x H4 (void, wall clock)       a0 range [1.112e-10, 1.427e-10]; classes {'FAIL': 9, 'PASS(G-T1 only)': 12}  -> PARAMETER-DEPENDENT
+  a-2 non-matter x H5 (wall, OmM=1 locally)    a0 range [0.000e+00, 0.000e+00]; classes {'DIES': 21}
+  a-3 borrowed Omega_L 0.6847 x H1             a0 range [8.333e-11, 8.888e-11]; classes {'FAIL': 21}
+  a-3 borrowed Omega_L 0.6847 x H3             a0 range [6.459e-11, 9.258e-11]; classes {'FAIL': 20, 'p*': 1}  -> PARAMETER-DEPENDENT
+  a-3 borrowed Omega_L 0.6847 x H4             a0 range [9.205e-11, 1.180e-10]; classes {'p*': 20, 'FAIL': 1}  -> PARAMETER-DEPENDENT
+  b2 c dgamma/dt (volume time)                 a0 range [2.881e-11, 8.015e-11]; classes {'FAIL': 21}
+  b2 c gamma dgamma/dt (wall time)             a0 range [4.105e-11, 1.022e-10]; classes {'p*': 5, 'FAIL': 16}  -> PARAMETER-DEPENDENT
+
+== (b1): spatial lapse gradient a = c^2 Delta / L ==
+  gamma0 - 1 (wall vs volume average)    Delta 0.3475 L   10 Mpc: a = 1.012e-07 m/s^2 =   1081.32 a0_can (+3.03 dex); dv in 1 Gyr = 3.194e+06 km/s; DIES
+  gamma0 - 1 (wall vs volume average)    Delta 0.3475 L   30 Mpc: a = 3.374e-08 m/s^2 =    360.44 a0_can (+2.56 dex); dv in 1 Gyr = 1.065e+06 km/s; DIES
+  gamma0 - 1 (wall vs volume average)    Delta 0.3475 L   50 Mpc: a = 2.024e-08 m/s^2 =    216.26 a0_can (+2.33 dex); dv in 1 Gyr = 6.388e+05 km/s; DIES
+  Hv/Hw - 1 (wall vs void)               Delta 0.5000 L   10 Mpc: a = 1.456e-07 m/s^2 =   1555.86 a0_can (+3.19 dex); dv in 1 Gyr = 4.596e+06 km/s; DIES
+  Hv/Hw - 1 (wall vs void)               Delta 0.5000 L   30 Mpc: a = 4.854e-08 m/s^2 =    518.62 a0_can (+2.71 dex); dv in 1 Gyr = 1.532e+06 km/s; DIES
+  Hv/Hw - 1 (wall vs void)               Delta 0.5000 L   50 Mpc: a = 2.913e-08 m/s^2 =    311.17 a0_can (+2.49 dex); dv in 1 Gyr = 9.192e+05 km/s; DIES
+  (reported only: observed void outflows are a few hundred km/s -- from memory, unverified; c = 3.0e5 km/s)
+
+== (c) environment ==
+  c-own   : own-clock H is Hbar in every region (tracker postulate) -> contrast 0 (p*, premise-enforced); its a0 is the H2 rows above
+  c-common: void/wall a0 ratio Hv/Hw = 1.5000 -> voids higher by +0.1761 dex; two-phase delta_w = f_v0/(1-f_v0) = 2.2787
+  c-local : wall regions have OmM = 1 locally -> Omega_L_eq,wall = 0 -> a0 = 0 where the idealised model puts every galaxy: DIES
+  c-common delta_v -0.8  2M++ clean (primary)   b=1.0: predicted slope -0.1450 vs -0.0832 +- 0.1352 (N=52): z = -0.46 -> CONSISTENT, UNDERPOWERED
+  c-common delta_v -0.8  2MRS clean (secondary) b=1.0: predicted slope -0.1450 vs +0.0286 +- 0.0751 (N=38): z = -2.31 -> TENSION, UNDERPOWERED
+  c-common delta_v -0.8  2MRS clean (secondary) b=1.3: predicted slope -0.1115 vs +0.0286 +- 0.0751 (N=38): z = -1.87 -> CONSISTENT, UNDERPOWERED
+  c-common delta_v -0.9  2M++ clean (primary)   b=1.0: predicted slope -0.1162 vs -0.0832 +- 0.1352 (N=52): z = -0.24 -> CONSISTENT, UNDERPOWERED
+  c-common delta_v -0.9  2MRS clean (secondary) b=1.0: predicted slope -0.1162 vs +0.0286 +- 0.0751 (N=38): z = -1.93 -> CONSISTENT, UNDERPOWERED
+  c-common delta_v -0.9  2MRS clean (secondary) b=1.3: predicted slope -0.0894 vs +0.0286 +- 0.0751 (N=38): z = -1.57 -> CONSISTENT, UNDERPOWERED
+  the record's clean sample has 0 deep-void galaxies (committed); N needed for 3 sigma on the alt-sized slope: 266 (committed)
+  rho_local exclusion (13 sigma SBeff, ~34 sigma kNN, ~7.5 sigma UMa; slope +0.5): opposite sign to c-common -> N/A (reported)
+  SPARC-self kNN slope -0.010 +- 0.015: not mapped (kNN density among SPARC galaxies is not 1+delta of matter) -> reported only
+  sky dipole: a rate-tied a0 inherits a local-H anisotropy of 0.01-0.05 (memory, unverified) vs CFG182 A95 = 0.425 -> CONSISTENT, NON-DIAGNOSTIC
+  global void-rate ties (a-1/a-2 x H3, H4): every galaxy reads the cosmic void rate -> contrast 0 by construction; read locally they
+  become c-common, and a wall galaxy then reads the wall rate (the a-1 x H5 row).
+
+== reported only: the 'slip' as a differential expansion speed (Hv - Hw) R ==
+  R =   10 Mpc: 186.2 km/s (volume time), 250.9 km/s (wall clocks)
+  R =   30 Mpc: 558.6 km/s (volume time), 752.7 km/s (wall clocks)
+
+== G-T3: a0(z)/a0(0) for each reading with a0 > 0, vs flat (1) and the rival E(z) (Om = 0.3153) ==
+  reading                                      z=0.85  z=1.5   z=2.2   z=2.5   z=5.0    class@1.5   z=5 vs E(5)
+  rival E(z) [dex]                              +0.214  +0.375  +0.521  +0.576  +0.919
+  a-1 total density x H1                        +0.266  +0.409  +0.535  +0.584  +0.899  rising (rival-like)      INHERITS CFG213
+  a-1 total density x H2                        +0.313  +0.476  +0.617  +0.669  +0.995  rising (steeper than rival) INHERITS CFG213
+  a-1 total density x H3                        +0.344  +0.526  +0.681  +0.739  +1.092  rising (steeper than rival) INHERITS CFG213
+  a-1 total density x H4                        +0.313  +0.476  +0.617  +0.669  +0.995  rising (steeper than rival) INHERITS CFG213
+  a-1 total density x H5                        +0.344  +0.526  +0.681  +0.739  +1.092  rising (steeper than rival) INHERITS CFG213
+  a-2 non-matter x H1 (dressed, 1-OmM)          +0.173  +0.250  +0.314  +0.338  +0.491  rising (shallower than rival) partially bears
+  a-2 non-matter x H2 (bare, Omk+OmQ)           +0.271  +0.401  +0.505  +0.541  +0.753  rising (rival-like)      partially bears
+  a-2 non-matter x H3 (void, OmM=0)             +0.344  +0.526  +0.681  +0.739  +1.092  rising (steeper than rival) INHERITS CFG213
+  a-2 non-matter x H4 (void, wall clock)        +0.313  +0.476  +0.617  +0.669  +0.995  rising (steeper than rival) INHERITS CFG213
+  a-3 borrowed Omega_L 0.6847 x H1              +0.266  +0.409  +0.535  +0.584  +0.899  rising (rival-like)      INHERITS CFG213
+  a-3 borrowed Omega_L 0.6847 x H3              +0.344  +0.526  +0.681  +0.739  +1.092  rising (steeper than rival) INHERITS CFG213
+  a-3 borrowed Omega_L 0.6847 x H4              +0.313  +0.476  +0.617  +0.669  +0.995  rising (steeper than rival) INHERITS CFG213
+  b2 c dgamma/dt (volume time)                  +0.415  +0.581  +0.694  +0.729  +0.884  rising (steeper than rival) INHERITS CFG213
+  b2 c gamma dgamma/dt (wall time)              +0.384  +0.532  +0.629  +0.659  +0.787  rising (steeper than rival) partially bears
+  dressed H(z)/H0 vs LCDM E(z): z=0.85: 1.845 vs 1.637, z=1.5: 2.562 vs 2.369, z=2.2: 3.431 vs 3.319, z=2.5: 3.836 vs 3.769, z=5.0: 7.924 vs 8.294
+  any reading flat-like: False -> the premise swap FORFEITS the framework's distinctive flat a0(z)
+  committed a0(z) results bearing: KURVS z~1.5 lean to the rival, fragile and calibration-bound (CFG140-194); CFG213 z~5 rival
+  DISFAVOURED-under on the fit route, ROUTE-DEPENDENT; z~1.4 no separation; CFG197 z>3.5 both consistent (one-sided); CFG196
+  z~2.2 cannot discriminate; MUSE-DARK nothing established (CFG190/198). Grade for every reading: NOT DECIDED.
+
+== G-T4: premise (from memory, unverified; not tested here) -> PREMISE CONTESTED; see README for the list ==
+
+== HEADLINE (MUTATE=0) ==
+HEADLINE: at P-A, PASS(G-T1 only) at 2 distinct value(s): 9.3755e-11 = 1.002 a0_can (a-1 total density x H3 and a-2 non-matter x H3 (void, OmM=0); S1 margin +1.6% / -26.0%; in S1 in 11 of 21 sweep cells, PARAMETER-DEPENDENT) | 1.2633e-10 = 1.350 a0_can (a-1 total density x H4 and a-2 non-matter x H4 (void, wall clock); S1 margin +36.9% / -0.2%; in S1 in 12 of 21 sweep cells, PARAMETER-DEPENDENT). p* = [a-1 total density x H1; a-3 borrowed Omega_L 0.6847 x H4] (a-1 x H1 is the a0/(cH0) coincidence: unchanged in the homogeneous twin). FAIL = 8 rows; DIES = [a-0 literal (Omega_L_eq = 0); a-2 non-matter x H5 (wall, OmM=1 locally); b1 (all cells); c-local]. c-common: CONSISTENT, UNDERPOWERED on the primary limit. Every reading with a0 > 0 RISES with z (no reading flat-like: True). G-T4 PREMISE CONTESTED. NON-DIAGNOSTIC.
+
+SUMMARY CFG252 (MUTATE=0): 6/6 checks pass; load-bearing failures = 0
