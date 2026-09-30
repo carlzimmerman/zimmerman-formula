@@ -1,0 +1,15 @@
+# High-z literature tables parsed from arXiv HTML (data front, 2026-09-29)
+
+Each subfolder has a `build.py` that regenerates its CSVs from the saved HTML page in `raw_small/` (sha256 in the subfolder's `manifest.json`) and writes `checks.txt`. No acceleration, a0 or verdict is computed anywhere here.
+
+| folder | paper | what | rows |
+|---|---|---|---|
+| `sins_ao/` | Forster Schreiber+2018, arXiv:1802.07276 (SINS/zC-SINF AO survey) | Tables 1 (sample, M*, SFR, positions), 2 (observations), 4 (integrated Halpha), 5 (sizes), 6 (R_e, sin i, PA_kin, V_rot, sigma_0, V_c, M_dyn, disc criteria), 7 (N2/Halpha gradients); cube inventory (names and sizes of the 176 FITS files, 6.73 GB, outside the repo, not opened) | 38 rows (35 galaxies plus the N/S components of ZC400569 and ZC407376) |
+| `girard2021/` | Girard+2021, arXiv:2101.04122 | Table 1 (z, M*, SFR, f_gas, v_rot and sigma_0 ionised and molecular) and Table 2 (radii, pressures) | 21 and 27 galaxies; 12 have both sigma_ion and sigma_mol |
+| `ubler2018/` | Ubler+2018, arXiv:1802.02135 | Table 1: one galaxy (EGS_13011166) fitted with Halpha+CO, Halpha only, CO only and four other setups (M_bar, R_e, B/T, i, sigma_0, M_halo, c, f_DM) | 56 cells |
+
+## Notes for use
+- **SINS**: the release has no gas measurement. Six names match the local PHIBSS 2013 table (Q1623-BX599, Q2343-BX389, Q2343-BX513, Q2343-BX610, Q2346-BX482, ZC406690), the set the calc thread's CFG196 used. The table's z range is 1.446-2.521 (the abstract-level 1.3-2.6 in the ledger was too wide). 10 rows are 'Irr' (irregular kinematics), as the paper states.
+- **Girard 2021**: the high-z rows come from mixed sources (this work, PHIBSS Tacconi+2013 with molecular values only, Swinbank+2011, Molina+2019, Patricio+2019). PHIBSS rows carry only the molecular sigma and V_rot (EGS_13035123: v_rot 193, sigma 20.4), i.e. the same numbers as Tacconi+2013, so they are NOT independent of the PHIBSS table. EGS_13035123 is NOEMA3D's G4_38065 (whose resolved CO sigma_0 in the NOEMA3D table is 18.3 km/s), EGS_13011166 is the Ubler+2018 galaxy, and G3_10098 (z 0.66) has the same ID number as Price+2021's EGS3_10098 (probable, not verified). Only 9 galaxies in the table have BOTH an ionised and a molecular sigma from resolved data at z > 0.5 or local; the paper's own ratio and its thermal correction are not recomputed here.
+- **Ubler 2018**: one galaxy only; its Halpha and CO fits give f_DM(<=R_e) 0.18-0.20 with the fiducial priors, 0.11-0.25 for concentration 2-8, and 0.008 for two fixed disks (a different model class).
+- **Not parsed, and why**: RC100 (Nestor Shachar+2023) and Genzel+2020 are already handled by the calc thread (CFG216/217/233, the PDF is in `_external_data/papers/`), and Genzel+2020's 41 galaxies are the Price+2021 RC41 sample already in `../price2021_rc41/`. The SINS and KMOS3D cubes are not parsed: extracting kinematics from them is an analysis step for the calc thread under frozen criteria, and the tables above carry the published per-galaxy results.
