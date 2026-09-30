@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CLOSED_SURFACE",
+  "repository": {
+    "commit": "254adb2f07a2cac335e294cfe65cd7e3ad603ca5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/closed_surface.py",
+    "--output",
+    "sol61_push/runs/closed_surface/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Uniform neutral massive Dirac response on round sphere, quartic small-m response and continuum cubic limit",
+    "coefficient_domain": "Symbolic real algebra, double precision bounded spectral sum",
+    "conventions": "CLOSED_SURFACE_CONTRACT.md",
+    "inputs": [
+      "sol61_push/closed_surface.py"
+    ],
+    "bounds": {
+      "N": 30000,
+      "x": [
+        0.01,
+        0.1,
+        1,
+        10,
+        100,
+        300
+      ],
+      "tail_error_bound": "x^6/(48N^3)",
+      "truncated_comparison_tolerance": 1e-10
+    },
+    "non_claims": [
+      "No physical horizon identification",
+      "No inhomogeneous determinant",
+      "No 32pi selection",
+      "Quadratic subtraction assumed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T19:38:31.067774+00:00",
+    "runtime_seconds": 0.833562,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/closed_surface.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/closed_surface.py",
+      "sha256": "130e384df7400146c2b8ac42a60088fc4630c1d1fafc36dba4efda03b36e8528",
+      "sha256_after": "130e384df7400146c2b8ac42a60088fc4630c1d1fafc36dba4efda03b36e8528"
+    }
+  ],
+  "output_directory": "sol61_push/runs/closed_surface",
+  "declared_results": [
+    "sol61_push/runs/closed_surface/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/closed_surface/stdout.txt",
+      "sha256": "8868607b1cfa06e4e78aa65e1e72919d89d8c71f1a33f4a738bc29f88dba59ce",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/closed_surface/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/closed_surface/results.json",
+      "sha256": "c4723672d2fd5555c6629986ec26d56ffa58c090df92c41468d0c0cc38b7f016",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

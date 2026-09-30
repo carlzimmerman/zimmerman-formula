@@ -1,0 +1,7 @@
+# Closed-surface response contract
+
+Use the untwisted spin Dirac operator on a round sphere of radius R, at zero temperature and cone neutrality. A spatially uniform anticommuting internal mass m has energies sqrt(v^2 n^2/R^2+m^2), n=1,2,..., with 2n states per sign per Dirac species. nu counts species, matching the planar positive-band degeneracy. Subtract the m=0 energy and the entire analytic m^2 term mode by mode; this is an assumed matching prescription, not a selected counterterm.
+
+Test the resulting dimensionless convergent spectral sum F(x), x=mR/v. Exact algebra verifies a cancellation-free summand, small-x expansion and continuum integral. Double precision summation uses N=30000, x in {0.01,0.1,1,10,100,300}, plus the exact leading tail via trigamma. The remaining tail is bounded by x^6/(48N^3). Test small-x bounds and approach to the planar cubic, not an exact asymptotic remainder fit. Independent truncated direct summation checks x=1,N=100 with 1e-10 tolerance. Timeout 30 seconds, one thread, no random inputs.
+
+Source-dependent spectrum is checked against Abrikosov hep-th/0212134v1 Sections 2.1-2.2. No curved galaxy polarization profile, horizon dynamics, bulk stress, physical selection of R, or 32pi selection is claimed. The sphere is a hypothetical physical mode support; a cosmological horizon is not assumed to supply it. Pass validates only this uniform free spectral model.
