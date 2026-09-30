@@ -1,0 +1,70 @@
+CFG215 -- the decomposition delta(z) timeline: one two-sided statistic, delta = log10(D_obs / nu(g_bar / a0_L)) at R_e, across four
+disc-halo decomposition samples (MUSE-DARK z 0.3-1.4, Price+2021 RC41 z 0.66-2.45, NOEMA3D z 1.1-1.6, ALMA-CRISTAL z 4.4-5.7).
+Frozen criteria: FROZEN_CRITERIA.md here (f5950bd4b), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.
+"Author decompositions, not a direct a0 measurement."  The primary series uses only anchored / independent routes; the fit-route
+series is separate and never pooled.  No sentence says the data favour the framework.
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 a synthetic galaxy placed exactly on each law returns delta = 0 to 1e-12
+         max 0.0e+00
+  calibration gate: 22 decompositions (NOEMA3D + CRISTAL); V_bary^2(model shape) / V_bary^2(table) median 1.185, range 0.883-1.554; per galaxy: NG4_38065 1.15, NG4_38232 1.00, NG4_20371 1.18, NG4_23011 1.25, NGN4_24517 1.10, NGN4_18574 1.18, NG4_24078 1.55, NGN4_32842 1.24, NG4_17555 1.04, NG4_37375 1.21, C02 1.08, C03 1.04, C06b 1.24, C07a 1.22, C08 1.13, C10a-E 1.29, C11 1.22, C12 1.24, C19 1.11, C20 1.20, C23b 1.19, C23c 0.88
+  [PASS] (reported) C2 calibration gate: the median model/table V_bary^2 ratio lies in [0.8, 1.25] (RC41 enters as is); otherwise it is calibrated by the median factor
+         median 1.185 -> PASS: RC41 as is
+  [PASS] C3a CRISTAL's and NOEMA3D's per-sample medians (fit and route; both kernels, footings and laws) equal CFG213's committed medians to 1e-9
+         max |difference| 0.0e+00
+  [PASS] C3b CFG199's reading-(b) route-(i) lowest-z-third median log10 a0 is reproduced from the copied formulas to 1e-3
+         -10.1435 vs -10.1435
+
+======================================================================================================================
+SERIES: primary  (anchored / independent routes only)
+======================================================================================================================
+  sample              n median z  law   ν_mono canonical: median δ [95% CI]  verdict       | ν_mono alt | P2 canonical | P2 alt
+  MUSE-DARK         109     0.86  flat  -0.157 [-0.293, -0.072] DISFAVOURED-under  | -0.190 DISFAVOURED-under | -0.110 DISFAVOURED-under | -0.147 DISFAVOURED-under
+  MUSE-DARK         109     0.86  rival -0.249 [-0.356, -0.173] DISFAVOURED-under  | -0.286 DISFAVOURED-under | -0.211 DISFAVOURED-under | -0.248 DISFAVOURED-under
+  RC41               41     1.50  flat  +0.102 [+0.058, +0.145] DISFAVOURED-over   | +0.088 DISFAVOURED-over | +0.125 DISFAVOURED-over | +0.111 DISFAVOURED-over
+  RC41               41     1.50  rival +0.017 [-0.037, +0.058] CONSISTENT         | -0.007 CONSISTENT | +0.057 DISFAVOURED-over | +0.044 CONSISTENT
+  NOEMA3D            10     1.24  flat  +0.046 [-0.081, +0.205] CONSISTENT         | +0.033 CONSISTENT | +0.067 CONSISTENT | +0.057 CONSISTENT
+  NOEMA3D            10     1.24  rival -0.011 [-0.134, +0.149] CONSISTENT         | -0.031 CONSISTENT | +0.020 CONSISTENT | +0.007 CONSISTENT
+  CRISTAL             9     5.23  flat  +0.043 [-0.076, +0.377] CONSISTENT         | +0.023 CONSISTENT | +0.075 CONSISTENT | +0.061 CONSISTENT
+  CRISTAL             9     5.23  rival -0.198 [-0.321, +0.107] CONSISTENT         | -0.222 CONSISTENT | -0.153 CONSISTENT | -0.173 CONSISTENT
+
+======================================================================================================================
+SERIES: fit-route  (fit routes; reported separately, never pooled)
+======================================================================================================================
+  sample              n median z  law   ν_mono canonical: median δ [95% CI]  verdict       | ν_mono alt | P2 canonical | P2 alt
+  MUSE-DARK         109     0.86  flat  +0.047 [-0.008, +0.168] CONSISTENT         | +0.012 CONSISTENT | +0.093 DISFAVOURED-over | +0.053 CONSISTENT
+  MUSE-DARK         109     0.86  rival -0.038 [-0.102, +0.055] CONSISTENT         | -0.074 CONSISTENT | +0.001 CONSISTENT | -0.036 CONSISTENT
+  NOEMA3D            10     1.24  flat  +0.033 [-0.034, +0.226] CONSISTENT         | +0.026 CONSISTENT | +0.046 CONSISTENT | +0.038 CONSISTENT
+  NOEMA3D            10     1.24  rival -0.002 [-0.090, +0.124] CONSISTENT         | -0.017 CONSISTENT | +0.018 CONSISTENT | +0.009 CONSISTENT
+  CRISTAL            12     5.19  flat  +0.053 [+0.005, +0.234] DISFAVOURED-over   | +0.036 CONSISTENT | +0.082 DISFAVOURED-over | +0.069 DISFAVOURED-over
+  CRISTAL            12     5.19  rival -0.161 [-0.207, -0.055] DISFAVOURED-under  | -0.186 DISFAVOURED-under | -0.112 DISFAVOURED-under | -0.134 DISFAVOURED-under
+  RC41 (anchored)    41     1.50  flat  +0.102 [+0.058, +0.145] DISFAVOURED-over   | +0.088 DISFAVOURED-over | +0.125 DISFAVOURED-over | +0.111 DISFAVOURED-over
+  RC41 (anchored)    41     1.50  rival +0.017 [-0.037, +0.058] CONSISTENT         | -0.007 CONSISTENT | +0.057 DISFAVOURED-over | +0.044 CONSISTENT
+
+======================================================================================================================
+T1 / T2
+======================================================================================================================
+  T1 [primary] (nu_mono, canonical): CONSISTENT in all four samples: no law fits all four; verdicts flat ['DISFAVOURED-under', 'DISFAVOURED-over', 'CONSISTENT', 'CONSISTENT'], rival ['DISFAVOURED-under', 'CONSISTENT', 'CONSISTENT', 'CONSISTENT']
+  T1 [fit-route] (nu_mono, canonical): CONSISTENT in all four samples: no law fits all four; verdicts flat ['CONSISTENT', 'CONSISTENT', 'DISFAVOURED-over', 'DISFAVOURED-over'], rival ['CONSISTENT', 'CONSISTENT', 'DISFAVOURED-under', 'CONSISTENT']
+  T2 flat  primary series (nu_mono, canonical): across-sample slope +0.134 [-0.004, +0.356] /z; within MUSE-DARK -0.180 [-0.397, +0.037]; within RC41 +0.007 [-0.068, +0.078]  -> no significant across-sample trend
+  T2 rival primary series (nu_mono, canonical): across-sample slope +0.061 [-0.051, +0.338] /z; within MUSE-DARK -0.283 [-0.491, -0.061]; within RC41 -0.051 [-0.113, +0.030]  -> no significant across-sample trend
+
+======================================================================================================================
+ROUTE-MIXING MOCK (every sample given true delta_flat = 0 per galaxy, then its own route bias b_s = median log10(M_ind/M_fit))
+======================================================================================================================
+  b_s (dex): MUSE-DARK +0.512, RC41 +0.051, NOEMA3D +0.048, CRISTAL +0.044
+Traceback (most recent call last):
+  File "<repo>/campaign_fresh_gravity/CFG215_decomposition_timeline/cfg215_timeline.py", line 394, in <module>
+    sig = mock(SERIES["primary"], 0.0, law)                    # no bias: the signal slope
+  File "<repo>/campaign_fresh_gravity/CFG215_decomposition_timeline/cfg215_timeline.py", line 383, in mock
+    gt = gbar_of_gobs(gobs, A0F["canonical"], K.nu_mono)
+  File "<repo>/campaign_fresh_gravity/CFG215_decomposition_timeline/cfg215_timeline.py", line 60, in gbar_of_gobs
+    return a0 * 10 ** brentq(lambda ly: nu1(nu, 10 ** ly) * 10 ** ly - q, -12, 14, xtol=1e-14, rtol=1e-14)
+                      ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 806, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs
+
+[absolute repository paths in the traceback were replaced by <repo>/ before committing; nothing else was edited]
