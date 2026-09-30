@@ -1,0 +1,429 @@
+{
+ "slug": "cfg198_musedark_a0z_MUTATE",
+ "summary": {
+  "n_checks": 4,
+  "n_pass": 3,
+  "load_bearing_failures": 1,
+  "failed": [
+   "MUTATE: the injected fitted-mass drift raises b_i by >= 0.1 dex/z and lowers db by >= 0.1"
+  ],
+  "seconds": 107.1
+ },
+ "checks": [
+  {
+   "name": "C1 exponential disc: peak at R/Rd in [2.1, 2.3] with v^2max Rd/(GM) = 0.3877 +- 0.001; Keplerian at 50 Rd within 0.5%",
+   "detail": "peak R/Rd = 2.1500, v^2max Rd/GM = 0.38705; v^2 R/GM at 50 Rd = 1.00181",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 kernel round trip nu(y*(D)) = D to 1e-9 for D in [1.06, 100] (nu_mono and nu_RAR)",
+   "detail": "max rel error {'nu_mono': 1.199040866595169e-14, 'nu_RAR': 1.1102230246251565e-14}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 route identity: with M*_SED := M_fit and mu_mol := 0, route (ii) equals route (i) (every a0 ratio 1 to 1e-12)",
+   "detail": "max |ratio - 1| = 0.00e+00 over 108 galaxies",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "MUTATE: the injected fitted-mass drift raises b_i by >= 0.1 dex/z and lowers db by >= 0.1",
+   "detail": "b_i +0.789 -> +0.481 (change -0.308); db -0.939 -> -1.236 (change -0.297)",
+   "ok": false,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "sample_counts": {
+   "rows": 126,
+   "with_columns": 124,
+   "bulge_set_aside": 14,
+   "disc_only": 110,
+   "S": 109
+  },
+  "P1": {
+   "delta_star = log M_fit - log M*_SED": {
+    "b": -1.1232076840226435,
+    "ci": [
+     -1.3657341700791126,
+     -0.8980904160181621
+    ],
+    "median": -0.12433949910947639
+   },
+   "delta_star - log(1 + mu_mol) (fitted disc vs SED + H2)": {
+    "b": -1.2683001439252681,
+    "ci": [
+     -1.5073162704577574,
+     -1.0161761433610677
+    ],
+    "median": -0.557296573232078
+   }
+  },
+  "primary": {
+   "i": {
+    "n": 108,
+    "b": 0.48109224262179456,
+    "ci": [
+     0.21625666002357294,
+     0.7780464918377457
+    ],
+    "refs": {
+     "flat": -0.0,
+     "E(z)": 0.2575756299194278,
+     "III law": 0.2979894167304771
+    },
+    "inside": {
+     "flat": false,
+     "E(z)": true,
+     "III law": true
+    },
+    "spearman_rho_with_undefined_at_bottom": 0.3428041886757483,
+    "undefined_low_z": 1,
+    "undefined_high_z": 0,
+    "median_log_a0_by_z_third": [
+     -9.54953624282567,
+     -9.300302212958483,
+     -9.18384789529673
+    ],
+    "median_z_by_third": [
+     0.5228596860521563,
+     0.8783890509097113,
+     1.2040456083994318
+    ]
+   },
+   "ii": {
+    "n": 83,
+    "b": -0.5183252920493278,
+    "ci": [
+     -0.9024025910031592,
+     -0.10775144322872175
+    ],
+    "refs": {
+     "flat": -0.0,
+     "E(z)": 0.25801535217623656,
+     "III law": 0.3012053909044678
+    },
+    "inside": {
+     "flat": false,
+     "E(z)": false,
+     "III law": false
+    },
+    "spearman_rho_with_undefined_at_bottom": -0.3982505251216301,
+    "undefined_low_z": 6,
+    "undefined_high_z": 20,
+    "median_log_a0_by_z_third": [
+     -9.384579150362372,
+     -9.626422562960727,
+     -9.80723847056949
+    ],
+    "median_z_by_third": [
+     0.5225364362191439,
+     0.7361762315611582,
+     1.097684212530618
+    ]
+   },
+   "iii": {
+    "n": 98,
+    "b": -0.4722042876782296,
+    "ci": [
+     -0.7991892707866378,
+     -0.19000297382942313
+    ],
+    "refs": {
+     "flat": -0.0,
+     "E(z)": 0.2576534395466209,
+     "III law": 0.2988295405038201
+    },
+    "inside": {
+     "flat": false,
+     "E(z)": false,
+     "III law": false
+    },
+    "spearman_rho_with_undefined_at_bottom": -0.32115344215550434,
+    "undefined_low_z": 4,
+    "undefined_high_z": 7,
+    "median_log_a0_by_z_third": [
+     -9.12456327978967,
+     -9.121961005457617,
+     -9.520949551659147
+    ],
+    "median_z_by_third": [
+     0.5228010216521959,
+     0.8588471991863575,
+     1.1619918350000726
+    ]
+   },
+   "db": {
+    "n": 82,
+    "db": -1.2362077994959262,
+    "ci": [
+     -1.5926649333725926,
+     -0.9026586040764185
+    ],
+    "excludes_zero": true
+   },
+   "db_iii": -0.9976364193039167
+  },
+  "primary_verdicts": {
+   "R0": "reproduces III's rise",
+   "R1": "not excluded: []; excluded: ['flat', 'E(z)', 'III law']",
+   "R2": "changes the slope: db < 0"
+  },
+  "robustness": {
+   "Sigma_HI = 0": {
+    "verdicts": {
+     "R0": "reproduces III's rise",
+     "R1": "not excluded: []; excluded: ['flat', 'E(z)', 'III law']",
+     "R2": "changes the slope: db < 0"
+    },
+    "b": {
+     "i": 0.3205431268847294,
+     "ii": -0.9234663822566583,
+     "iii": -1.104413227712374
+    },
+    "ci": {
+     "i": [
+      0.08242712484836384,
+      0.5491191921442083
+     ],
+     "ii": [
+      -1.3391797928602638,
+      -0.47888761174479816
+     ],
+     "iii": [
+      -1.4495163310104013,
+      -0.7775191664268956
+     ]
+    },
+    "db": {
+     "n": 69,
+     "db": -1.4322464512008493,
+     "ci": [
+      -1.827557081561084,
+      -1.0206330281808755
+     ],
+     "excludes_zero": true
+    },
+    "n": {
+     "i": 108,
+     "ii": 70,
+     "iii": 96
+    }
+   },
+   "Sigma_HI = 15": {
+    "verdicts": {
+     "R0": "reproduces III's rise",
+     "R1": "not excluded: ['flat']; excluded: ['E(z)', 'III law']",
+     "R2": "changes the slope: db < 0"
+    },
+    "b": {
+     "i": 0.5138989465546626,
+     "ii": -0.33663752074740905,
+     "iii": -0.23057006592149545
+    },
+    "ci": {
+     "i": [
+      0.22300781386404184,
+      0.8495323464870002
+     ],
+     "ii": [
+      -0.7249311673332062,
+      0.06584026895924744
+     ],
+     "iii": [
+      -0.5377466130117022,
+      0.09482266182265708
+     ]
+    },
+    "db": {
+     "n": 87,
+     "db": -1.0961600082359637,
+     "ci": [
+      -1.3991244503524483,
+      -0.7871764956374389
+     ],
+     "excludes_zero": true
+    },
+    "n": {
+     "i": 108,
+     "ii": 88,
+     "iii": 99
+    }
+   },
+   "mu_mol x 0.5": {
+    "verdicts": {
+     "R0": "reproduces III's rise",
+     "R1": "not excluded: []; excluded: ['flat', 'E(z)', 'III law']",
+     "R2": "changes the slope: db < 0"
+    },
+    "b": {
+     "i": 0.48109224262179456,
+     "ii": -0.5715353958956103,
+     "iii": -0.4722042876782296
+    },
+    "ci": {
+     "i": [
+      0.21625666002357294,
+      0.7780464918377457
+     ],
+     "ii": [
+      -0.9426115243539568,
+      -0.20008019746728561
+     ],
+     "iii": [
+      -0.7991892707866378,
+      -0.19000297382942313
+     ]
+    },
+    "db": {
+     "n": 91,
+     "db": -1.2006019721773442,
+     "ci": [
+      -1.4993662027894554,
+      -0.9090581534827565
+     ],
+     "excludes_zero": true
+    },
+    "n": {
+     "i": 108,
+     "ii": 92,
+     "iii": 98
+    }
+   },
+   "mu_mol x 2": {
+    "verdicts": {
+     "R0": "reproduces III's rise",
+     "R1": "not excluded: []; excluded: ['flat', 'E(z)', 'III law']",
+     "R2": "changes the slope: db < 0"
+    },
+    "b": {
+     "i": 0.48109224262179456,
+     "ii": -0.6677860064529493,
+     "iii": -0.4722042876782296
+    },
+    "ci": {
+     "i": [
+      0.21625666002357294,
+      0.7780464918377457
+     ],
+     "ii": [
+      -1.1197646411153632,
+      -0.18129396823850716
+     ],
+     "iii": [
+      -0.7991892707866378,
+      -0.19000297382942313
+     ]
+    },
+    "db": {
+     "n": 65,
+     "db": -1.467634511265943,
+     "ci": [
+      -1.9150389390400648,
+      -1.0271804399622946
+     ],
+     "excludes_zero": true
+    },
+    "n": {
+     "i": 108,
+     "ii": 66,
+     "iii": 98
+    }
+   },
+   "nu_RAR": {
+    "verdicts": {
+     "R0": "reproduces III's rise",
+     "R1": "not excluded: []; excluded: ['flat', 'E(z)', 'III law']",
+     "R2": "changes the slope: db < 0"
+    },
+    "b": {
+     "i": 0.48109224314092863,
+     "ii": -0.5128996419530458,
+     "iii": -0.472204288340987
+    },
+    "ci": {
+     "i": [
+      0.21625666033045268,
+      0.7783374965367712
+     ],
+     "ii": [
+      -0.9024025914751386,
+      -0.10775144329090562
+     ],
+     "iii": [
+      -0.7991892717764573,
+      -0.1900029753275089
+     ]
+    },
+    "db": {
+     "n": 82,
+     "db": -1.2341805217200643,
+     "ci": [
+      -1.5863457641683447,
+      -0.9021332985855702
+     ],
+     "excludes_zero": true
+    },
+    "n": {
+     "i": 108,
+     "ii": 83,
+     "iii": 98
+    }
+   },
+   "route (iii) in place of (ii)": {
+    "verdicts": {
+     "R0": "reproduces III's rise",
+     "R1": "not excluded: []; excluded: ['flat', 'E(z)', 'III law']",
+     "R2": "changes the slope: db < 0"
+    },
+    "db": {
+     "n": 97,
+     "db": -0.9976364193039167,
+     "ci": [
+      -1.2556500082838766,
+      -0.7728228122761871
+     ],
+     "excludes_zero": true
+    }
+   }
+  },
+  "robust": {
+   "R0": true,
+   "R1": false,
+   "R2": true
+  },
+  "v22_variant": {
+   "verdicts": {
+    "R0": "does not reproduce III's rise",
+    "R1": "not excluded: ['flat', 'E(z)', 'III law']; excluded: []",
+    "R2": "changes the slope: db < 0"
+   },
+   "gobs_ratio_median": 0.42570386479196753,
+   "gobs_ratio_16_84": [
+    0.2209251764738002,
+    0.6257269226336648
+   ],
+   "b": {
+    "i": 0.7470458652212859,
+    "ii": -0.08187657814287425,
+    "iii": -0.11862192804391351
+   },
+   "ci": {
+    "i": [
+     0.33699354568328754,
+     1.161479174058041
+    ],
+    "ii": [
+     -0.5424793950829931,
+     0.416961299474739
+    ],
+    "iii": [
+     -0.5097144774877348,
+     0.27118805580009725
+    ]
+   }
+  }
+ }
+}

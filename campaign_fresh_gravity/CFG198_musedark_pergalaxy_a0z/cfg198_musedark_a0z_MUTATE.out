@@ -1,0 +1,130 @@
+CFG198 -- MUSE-DARK per galaxy: a0(z) at R_e from III's own DC14 products (route i), and whether III's rise survives
+swapping the DC14-fitted disc mass for the SED stellar mass + main-sequence H2 (route ii, primary) or SED stars only
+(route iii).  Frozen criteria: FROZEN_CRITERIA.md in this directory (d5a73127b), committed before any number.
+kappa = 1/2 FITTED, NOT DERIVED.  Nothing here is graded as support for the framework.
+
+Data: data_assembly/musedark_catalogues/musedark_numeric.csv (data chat, be78f2054 / f17dae96c); definitions as read, marked.
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 exponential disc: peak at R/Rd in [2.1, 2.3] with v^2max Rd/(GM) = 0.3877 +- 0.001; Keplerian at 50 Rd within 0.5%
+         peak R/Rd = 2.1500, v^2max Rd/GM = 0.38705; v^2 R/GM at 50 Rd = 1.00181
+  [PASS] C2 kernel round trip nu(y*(D)) = D to 1e-9 for D in [1.06, 100] (nu_mono and nu_RAR)
+         max rel error {'nu_mono': 1.199040866595169e-14, 'nu_RAR': 1.1102230246251565e-14}
+
+======================================================================================================================
+DATA AND SAMPLE
+======================================================================================================================
+  rows 126; with all needed columns 124; bulge galaxies set aside 14; disc-only 110; 0 < fDM_at_Re < 1: 109
+  MUTATE=1: log M_fit -> log M_fit - 0.4 (z - 0.863) (an injected fitted-mass drift at fixed g_obs)
+
+======================================================================================================================
+C3 ROUTE IDENTITY
+======================================================================================================================
+  [PASS] C3 route identity: with M*_SED := M_fit and mu_mol := 0, route (ii) equals route (i) (every a0 ratio 1 to 1e-12)
+         max |ratio - 1| = 0.00e+00 over 106 galaxies
+
+======================================================================================================================
+P1 -- the fitted disc mass against the SED mass, in z
+======================================================================================================================
+  delta_star = log M_fit - log M*_SED: Theil-Sen slope -1.123 dex/z, 95% CI [-1.366, -0.898]; median -0.124 dex (n = 109)
+  delta_star - log(1 + mu_mol) (fitted disc vs SED + H2): Theil-Sen slope -1.268 dex/z, 95% CI [-1.507, -1.016]; median -0.557 dex (n = 109)
+
+======================================================================================================================
+PRIMARY -- a0 at R_e per route (nu_mono; Sigma_HI fitted; mu_mol x1)
+======================================================================================================================
+
+  [primary]
+    route i  : n = 106  b = +1.126 dex/z  95% CI [+0.853, +1.422]  refs flat -0.000 E(z) +0.257 III +0.297  inside []  undefined (D<=1.05) low/high z 3/0  rho +0.64
+               median log10 a0 by z-third (z~0.52, 0.91, 1.22): -9.694, -9.260, -8.915   [footings log10 -10.029 / -9.946]
+    route ii : n =  85  b = -0.041 dex/z  95% CI [-0.467, +0.360]  refs flat -0.000 E(z) +0.258 III +0.299  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 9/15  rho -0.14
+               median log10 a0 by z-third (z~0.52, 0.83, 1.16): -9.691, -9.680, -9.630   [footings log10 -10.029 / -9.946]
+    route iii: n =  99  b = +0.075 dex/z  95% CI [-0.233, +0.349]  refs flat -0.000 E(z) +0.257 III +0.297  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 5/5  rho +0.04
+               median log10 a0 by z-third (z~0.52, 0.86, 1.19): -9.383, -9.147, -9.215   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.315  95% CI [-1.631, -0.993]  (n = 83); excludes 0: True;  b_iii - b_i = -1.043
+
+  R0 (closure, route i): does not reproduce III's rise
+  R1 (route ii): not excluded: ['flat', 'E(z)', 'III law']; excluded: []
+  R2 (circularity): changes the slope: db < 0
+
+======================================================================================================================
+ROBUSTNESS (reported): R0-R2 repeated
+======================================================================================================================
+
+  [Sigma_HI = 0]
+    route i  : n = 106  b = +1.228 dex/z  95% CI [+0.902, +1.531]  refs flat -0.000 E(z) +0.257 III +0.297  inside []  undefined (D<=1.05) low/high z 3/0  rho +0.62
+               median log10 a0 by z-third (z~0.52, 0.91, 1.22): -9.573, -9.128, -8.740   [footings log10 -10.029 / -9.946]
+    route ii : n =  87  b = -0.182 dex/z  95% CI [-0.640, +0.233]  refs flat -0.000 E(z) +0.258 III +0.300  inside ['flat']  undefined (D<=1.05) low/high z 9/13  rho -0.17
+               median log10 a0 by z-third (z~0.52, 0.83, 1.13): -9.632, -9.584, -9.601   [footings log10 -10.029 / -9.946]
+    route iii: n =  99  b = -0.089 dex/z  95% CI [-0.454, +0.264]  refs flat -0.000 E(z) +0.257 III +0.297  inside ['flat', 'E(z)']  undefined (D<=1.05) low/high z 5/5  rho -0.05
+               median log10 a0 by z-third (z~0.52, 0.86, 1.19): -9.273, -9.016, -9.132   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.595  95% CI [-1.984, -1.242]  (n = 85); excludes 0: True;  b_iii - b_i = -1.354
+    -> R0 does not reproduce III's rise; R1 not excluded: ['flat']; excluded: ['E(z)', 'III law']; R2 changes the slope: db < 0
+
+  [Sigma_HI = 15]
+    route i  : n = 106  b = +1.126 dex/z  95% CI [+0.861, +1.402]  refs flat -0.000 E(z) +0.257 III +0.297  inside []  undefined (D<=1.05) low/high z 3/0  rho +0.65
+               median log10 a0 by z-third (z~0.52, 0.91, 1.22): -9.825, -9.365, -9.036   [footings log10 -10.029 / -9.946]
+    route ii : n =  84  b = +0.106 dex/z  95% CI [-0.330, +0.461]  refs flat -0.000 E(z) +0.258 III +0.299  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 9/16  rho -0.10
+               median log10 a0 by z-third (z~0.52, 0.80, 1.16): -9.908, -9.730, -9.683   [footings log10 -10.029 / -9.946]
+    route iii: n =  99  b = +0.217 dex/z  95% CI [-0.112, +0.466]  refs flat -0.000 E(z) +0.257 III +0.297  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 5/5  rho +0.12
+               median log10 a0 by z-third (z~0.52, 0.86, 1.19): -9.507, -9.239, -9.297   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.132  95% CI [-1.443, -0.861]  (n = 82); excludes 0: True;  b_iii - b_i = -0.897
+    -> R0 does not reproduce III's rise; R1 not excluded: ['flat', 'E(z)', 'III law']; excluded: []; R2 changes the slope: db < 0
+
+  [mu_mol x 0.5]
+    route i  : n = 106  b = +1.126 dex/z  95% CI [+0.853, +1.422]  refs flat -0.000 E(z) +0.257 III +0.297  inside []  undefined (D<=1.05) low/high z 3/0  rho +0.64
+               median log10 a0 by z-third (z~0.52, 0.91, 1.22): -9.694, -9.260, -8.915   [footings log10 -10.029 / -9.946]
+    route ii : n =  94  b = -0.011 dex/z  95% CI [-0.357, +0.336]  refs flat -0.000 E(z) +0.258 III +0.298  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 6/9  rho -0.08
+               median log10 a0 by z-third (z~0.52, 0.83, 1.19): -9.605, -9.462, -9.567   [footings log10 -10.029 / -9.946]
+    route iii: n =  99  b = +0.075 dex/z  95% CI [-0.233, +0.349]  refs flat -0.000 E(z) +0.257 III +0.297  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 5/5  rho +0.04
+               median log10 a0 by z-third (z~0.52, 0.86, 1.19): -9.383, -9.147, -9.215   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.229  95% CI [-1.513, -0.947]  (n = 92); excludes 0: True;  b_iii - b_i = -1.043
+    -> R0 does not reproduce III's rise; R1 not excluded: ['flat', 'E(z)', 'III law']; excluded: []; R2 changes the slope: db < 0
+
+  [mu_mol x 2]
+    route i  : n = 106  b = +1.126 dex/z  95% CI [+0.853, +1.422]  refs flat -0.000 E(z) +0.257 III +0.297  inside []  undefined (D<=1.05) low/high z 3/0  rho +0.64
+               median log10 a0 by z-third (z~0.52, 0.91, 1.22): -9.694, -9.260, -8.915   [footings log10 -10.029 / -9.946]
+    route ii : n =  69  b = -0.202 dex/z  95% CI [-0.683, +0.289]  refs flat -0.000 E(z) +0.258 III +0.302  inside ['flat', 'E(z)']  undefined (D<=1.05) low/high z 18/22  rho -0.17
+               median log10 a0 by z-third (z~0.45, 0.83, 1.11): -9.727, -9.760, -9.971   [footings log10 -10.029 / -9.946]
+    route iii: n =  99  b = +0.075 dex/z  95% CI [-0.233, +0.349]  refs flat -0.000 E(z) +0.257 III +0.297  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 5/5  rho +0.04
+               median log10 a0 by z-third (z~0.52, 0.86, 1.19): -9.383, -9.147, -9.215   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.486  95% CI [-1.910, -1.082]  (n = 69); excludes 0: True;  b_iii - b_i = -1.043
+    -> R0 does not reproduce III's rise; R1 not excluded: ['flat', 'E(z)']; excluded: ['III law']; R2 changes the slope: db < 0
+
+  [nu_RAR]
+    route i  : n = 106  b = +1.126 dex/z  95% CI [+0.853, +1.422]  refs flat -0.000 E(z) +0.257 III +0.297  inside []  undefined (D<=1.05) low/high z 3/0  rho +0.64
+               median log10 a0 by z-third (z~0.52, 0.91, 1.22): -9.694, -9.260, -8.915   [footings log10 -10.029 / -9.946]
+    route ii : n =  85  b = -0.040 dex/z  95% CI [-0.465, +0.360]  refs flat -0.000 E(z) +0.258 III +0.299  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 9/15  rho -0.14
+               median log10 a0 by z-third (z~0.52, 0.83, 1.16): -9.691, -9.680, -9.630   [footings log10 -10.029 / -9.946]
+    route iii: n =  99  b = +0.075 dex/z  95% CI [-0.232, +0.349]  refs flat -0.000 E(z) +0.257 III +0.297  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 5/5  rho +0.04
+               median log10 a0 by z-third (z~0.52, 0.86, 1.19): -9.383, -9.147, -9.215   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.309  95% CI [-1.629, -0.993]  (n = 83); excludes 0: True;  b_iii - b_i = -1.042
+    -> R0 does not reproduce III's rise; R1 not excluded: ['flat', 'E(z)', 'III law']; excluded: []; R2 changes the slope: db < 0
+
+  [route (iii) SED stars only, in place of (ii)] -> R1 not excluded: ['flat', 'E(z)', 'III law']; excluded: []; R2 changes the slope: db < 0 (db -1.043, CI [-1.304, -0.822])
+
+  robust (same verdict in the primary and every robustness row): R0 ROBUST, R1 NOT robust, R2 ROBUST
+
+======================================================================================================================
+VARIANT (reported): the v22 route at 2.2 R_d (v22 read as v_c there; A3, unverified)
+======================================================================================================================
+  g_obs(v22 at 2.2 Rd) / g_obs(R_e, from fDM): median 0.441, 16-84% 0.218-0.609 (n = 109); a flat curve between the radii would give R_e/(2.2 Rd) = 0.763
+
+  [v22 variant]
+    route i  : n =  98  b = +0.747 dex/z  95% CI [+0.337, +1.161]  refs flat -0.000 E(z) +0.257 III +0.296  inside []  undefined (D<=1.05) low/high z 10/1  rho +0.41
+               median log10 a0 by z-third (z~0.56, 0.95, 1.23): -10.440, -10.081, -9.651   [footings log10 -10.029 / -9.946]
+    route ii : n =  59  b = -0.082 dex/z  95% CI [-0.542, +0.417]  refs flat -0.000 E(z) +0.259 III +0.306  inside ['flat', 'E(z)', 'III law']  undefined (D<=1.05) low/high z 19/31  rho -0.27
+               median log10 a0 by z-third (z~0.45, 0.73, 1.10): -10.292, -9.912, -10.339   [footings log10 -10.029 / -9.946]
+    route iii: n =  86  b = -0.119 dex/z  95% CI [-0.510, +0.271]  refs flat -0.000 E(z) +0.258 III +0.298  inside ['flat', 'E(z)']  undefined (D<=1.05) low/high z 8/15  rho -0.17
+               median log10 a0 by z-third (z~0.52, 0.83, 1.16): -9.989, -9.717, -9.948   [footings log10 -10.029 / -9.946]
+    paired db = b_ii - b_i = -1.316  95% CI [-1.669, -0.963]  (n = 56); excludes 0: True;  b_iii - b_i = -1.126
+    -> R0 does not reproduce III's rise; R1 not excluded: ['flat', 'E(z)', 'III law']; excluded: []; R2 changes the slope: db < 0
+
+======================================================================================================================
+MUTATE RESPONSE
+======================================================================================================================
+  [PASS] MUTATE: the injected fitted-mass drift raises b_i by >= 0.1 dex/z and lowers db by >= 0.1
+         b_i +0.789 -> +1.126 (change +0.337); db -0.939 -> -1.315 (change -0.376)
+
+  4/4 checks pass; load-bearing failures: 0   (93 s)
