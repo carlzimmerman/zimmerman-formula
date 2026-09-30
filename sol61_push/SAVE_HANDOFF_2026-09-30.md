@@ -2,6 +2,20 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Newest source obstruction: EXPANSION_BRIDGE_SOURCE_CENTER_RESULTS.md derives
+a covariant zero-current stationary fluid source including its pressure and
+preferred-frame momentum. Fifteen exact identities pass. A regular finite-
+curvature center with finite positive Theta obeys rho_c+3p_c<2U in the
+original xi=1 action, independently of beta. Thus its vacuum continuations
+cannot be promoted to arbitrary regular dense sources. This is not a global
+observational exclusion: U/lambda/local coupling calibration is unfinished,
+and nonspherical, time-dependent or nonregular centers are outside scope.
+Detuning the quadratic polarization to xi>1 removes the central cancellation
+but gives a Newtonian strict infrared limit, retaining at most a finite MOND
+window in the reduced action. Next: a physically determined regularization
+or additional dynamics, tested for source/galaxy/health compatibility before
+more vacuum shooting. Exact 32π and vacuum-energy protection remain open.
+
 Newest structural audit: EXPANSION_BRIDGE_COMPLETENESS_RESULTS.md supplies an
 explicit covariant T/B-field completion of the expansion action. Restoring
 the radius field before variation yields a radial Noether identity: exact
