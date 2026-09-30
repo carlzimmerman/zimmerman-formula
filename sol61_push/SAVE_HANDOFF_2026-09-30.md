@@ -2,6 +2,22 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Next completed audit: DERIVATIVE_BRIDGE_RESULTS.md derives the f(X) bridge's
+polarization equation, new lapse stress, scalar current and properly relaxed
+local kinetic coefficient. Eight exact identities and four finite sign checks
+pass in derivative_bridge_audit_v3.py; two failed attempts are retained.
+The fixed-metric sector is not a full Horndeski/gravity stability analysis.
+On the checked exponential rolling background, power-law f(X) gives an
+evolving bare a0 unless its exponent is zero, under a fixed Newton dictionary.
+A new conditional candidate couples P³ to beta M²/Theta, with Theta the unit
+normal expansion: Theta=3H gives a0bare=2H/beta and Cbare=3beta²/4.
+This ties the scales functionally but leaves beta free, has a Theta=0
+singularity, and needs a full action/constraint audit. Because P³ vanishes
+through quadratic order on the vacuum, vacuum health cannot select beta.
+Next: a microscopic or genuinely nonlinear/global rule fixing that coupling,
+or a different interaction entering both sectors without destroying health.
+Exact 32π remains unresolved; no full sourced galaxy dictionary is established.
+
 Subsequent source/bridge check: SELF_TUNING_GALAXY_BRIDGE_RESULTS.md verifies
 arXiv:2009.01720v1 Secs. 2 and 5.1. Its well-tempered construction cancels
 vacuum energy with a rolling scalar but contains the de Sitter scale in the
