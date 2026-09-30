@@ -1,0 +1,53 @@
+PASS A0 normal is unit and spacelike: n^a n_a = 1
+PASS A1 K symmetric (nabla n is a gradient-like field of a hypersurface-orthogonal normal)
+PASS A2 K^t_t = a = sqrt(f) N'/N (acceleration of static observers)
+PASS A3 K^theta_theta = K^phi_phi = sqrt(f)/r
+PASS A4 eps = tau_ab u^a u^b = -k/(8 pi G), k = 2 sqrt(f)/r
+PASS A5 s = tau^theta_theta = (k_n + a)/(8 pi G), k_n = sqrt(f)/r
+PASS A6 no momentum density: tau_{t theta} = 0 (static, spherical)
+PASS A7 control: with tau -> +tau the energy density is +k/(8 pi G) (sign convention matters and is fixed)
+PASS B0 SdS (f = 1 - 2M/r - Lambda r^2/3, N = alpha sqrt f): R = 4 Lambda (vacuum, on shell)
+PASS B0b Einstein eq: R_{mu nu} = Lambda g_{mu nu}
+PASS B1 on-shell action per unit t = (alpha/G)[R2 f(R2) - R1 f(R1)] = (1/G)[N2 R2 sqrt(f2) - N1 R1 sqrt(f1)]
+PASS B2 Hamilton-Jacobi: dS/dM at fixed data vanishes on the constraint surface (alpha1 = alpha2)
+PASS B3 eps from dS/dN_b equals covariant -k/(8 pi G)
+PASS B4 s from dS/dR|_N equals covariant (k_n + a)/(8 pi G)
+PASS B5 control: with the GHY term halved the on-shell action differs from the correct one by a non-vanishing boundary term
+PASS B6 control: halved GHY -> dS/dM at fixed (N2, R1, R2) does not vanish on the constraint surface (well-posedness lost)
+PASS C1 first law, r_b-variation at fixed R (BH-horizon side, with Lambda): dE/dr_b = T_loc dS/dr_b
+PASS C2 first law, R-variation at fixed r_b: dE/dR = -s dA/dR = -8 pi R s
+PASS C3 control: with s -> -s the R-variation of the first law fails
+PASS C4 the reference-subtracted energy violates the R-variation by exactly the reference piece 1/G (so the first law is for the unreferenced tensor)
+PASS C5 dS ball (M = 0, regular centre): dE/dR = -8 pi R s
+PASS C6 Schwarzschild stretched horizon: s / (T_loc sigma_BH) -> 1 as R -> r_s (membrane pressure = T x entropy density)
+PASS C7 the stretched-horizon energy density eps -> 0 while s diverges like 1/sqrt(delta)
+PASS C8 identity eps + s = (a - k_n)/(8 pi G) exactly
+PASS C9 dS static patch: (2 pi T_loc)^2 = a^2 + H^2 exactly (Tolman with kappa = H)
+PASS C10 near the cosmological horizon the BY pressure seen from inside is NEGATIVE: s -> -T_loc sigma_BH (a tension)
+PASS D1 reference-subtracted BY energy at a horizon (f = 0): (R/G)(1 - 0) = R/G = 2 M_MS(R), M_MS = R/2G
+PASS D2 Schwarzschild: E_BY(R) = M + G M^2/(2R) + G^2 M^3/(2R^2)+ ...
+PASS D3 exterior field energy magnitude int_R^inf 4 pi r^2 g^2/(8 pi G) dr = G M^2/(2R) equals M - E_BY(R) up to sign: M - E_BY = -GM^2/(2R): NEGATIVE-energy density -g^2/(8 pi G)
+PASS D4 dS ball: E_BY = E_vac(R) + R^5/(8 G L^4) + ... (positive gravitational self-energy for p = -rho)
+PASS D5 dS horizon: E_BY(L) = L/G = 2 E_vac(L) = 2 M_dS (E_vac(L) = L/2G)
+PASS D6 |a(x0)| = a0 at x0 = 1/sqrt(1 + Z^2) (Z = H/a0)
+  s(x0) 8 pi G = a0*(Z**2 - 1)  (interior view; sqrt(f)/R - |a|, in units of a0)
+  u_g(a0)/a0 = a0/(8 pi G):  s_BY(a0-membrane) = a0/(8 pi G) = T_U sigma_BH = u_g(a0)/a0  (identity, see s02/s04)
+  E_BY(r_sa)/E_BY(L) = r_sa/L = Z/2 = sqrt(8 pi/3) at the puzzle value (restatement of A_s/A_dS = 8 pi/3)
+
+--- FORMULA SHEET (G explicit, c = 1; M below is the geometric mass G M_phys; tube at r = R, normal towards increasing r, tau_ab = -(K_ab - K gamma_ab)/(8 pi G)) ---
+de Sitter static patch f(R) = 1 - R**2/L**2
+    eps = -sqrt(f)/(4 pi G R) = -sqrt(L**2 - R**2)/(4*pi*G*L*R)
+    s   = (sqrt(f)/R + a)/(8 pi G),  a = f'/(2 sqrt f) = -R/(L*sqrt(L**2 - R**2))
+    E_unref = -R sqrt(f)/G ;  E_ref = (R/G)(1 - sqrt f) ;  T_loc = kappa/(2 pi sqrt f)
+Schwarzschild          f(R) = (-2*M_s + R)/R
+    eps = -sqrt(f)/(4 pi G R) = -sqrt(-2*M_s + R)/(4*pi*G*R**(3/2))
+    s   = (sqrt(f)/R + a)/(8 pi G),  a = f'/(2 sqrt f) = M_s/(R**(3/2)*sqrt(-2*M_s + R))
+    E_unref = -R sqrt(f)/G ;  E_ref = (R/G)(1 - sqrt f) ;  T_loc = kappa/(2 pi sqrt f)
+Schwarzschild-de Sitter f(R) = -2*M/R + 1 - R**2/L**2
+    eps = -sqrt(f)/(4 pi G R) = -sqrt(-2*L**2*M + L**2*R - R**3)/(4*pi*G*L*R**(3/2))
+    s   = (sqrt(f)/R + a)/(8 pi G),  a = f'/(2 sqrt f) = (L**2*M - R**3)/(L*R**(3/2)*sqrt(-2*L**2*M + L**2*R - R**3))
+    E_unref = -R sqrt(f)/G ;  E_ref = (R/G)(1 - sqrt f) ;  T_loc = kappa/(2 pi sqrt f)
+    exact identity at the a0-radius of dS (|a| = a0, Z = H/a0): k_n = sqrt(f)/R = H^2/a0, eps = -(2/3) rho/a0, 8 pi G s = a0 (Z^2 - 1) = H^2/a0 - a0  (no puzzle input)
+PASS D7 at the a0-radius of dS: eps = -(2/3) rho/a0 exactly, for any a0 and rho (an identity, no principle)
+
+TOTAL 33 / 33 pass; 0 fail

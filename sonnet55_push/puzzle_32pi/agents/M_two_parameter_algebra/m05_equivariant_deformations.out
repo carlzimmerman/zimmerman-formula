@@ -1,0 +1,35 @@
+A: with_D=False : 83 Jacobi residual entries, 16 structure constants, n = 10
+A: with_D=True : 154 Jacobi residual entries, 25 structure constants, n = 11
+
+B: exact rotation-covariant H^2(g0,g0) and the surviving directions (parameters that can be turned on)
+   Galilei                          ker  8  orbit  4  ->  H2 = 4   directions: [{'a1': 1}, {'b1': 1}, {'c3': 1}, {'c1': 1, 'h1': 1}]
+   Newton-Hooke expanding           ker  7  orbit  5  ->  H2 = 2   directions: [{'a1': 1}, {'c1': 1, 'd1': -1, 'h1': 1}]
+   Newton-Hooke oscillating         ker  7  orbit  5  ->  H2 = 2   directions: [{'a1': 1}, {'c1': 1, 'd1': 1, 'h1': 1}]
+   Poincare-type (b1=0,h1=-1)       ker  6  orbit  5  ->  H2 = 1   directions: [{'b1': 1, 'd1': 1}]
+   Euclid-type (b1=0,h1=+1)         ker  6  orbit  5  ->  H2 = 1   directions: [{'b1': -1, 'd1': 1}]
+   (b1=+1,h1=-1)                    ker  6  orbit  6  ->  H2 = 0   directions: []
+   (b1=-1,h1=-1)                    ker  6  orbit  6  ->  H2 = 0   directions: []
+   Galilei x| D_z, z = 0            ker  9  orbit  7  ->  H2 = 2   directions: [{'b1': 1}, {'p1': -1, 'f1': 1}]
+   Galilei x| D_z, z = 1/2          ker  9  orbit  7  ->  H2 = 2   directions: [{'p1': 1, 'q2': 1}, {'c3': 1}]
+   Galilei x| D_z, z = 1            ker  9  orbit  7  ->  H2 = 2   directions: [{'p1': 1, 'q2': 1}, {'c1': 1, 'h1': 1}]
+   Galilei x| D_z, z = 3/2          ker  8  orbit  7  ->  H2 = 1   directions: [{'p1': 1, 'q2': 1}]
+   Galilei x| D_z, z = 2            ker  8  orbit  7  ->  H2 = 1   directions: [{'p1': 1, 'q2': 1}]
+   Galilei x| D_z, z = 3            ker  8  orbit  7  ->  H2 = 1   directions: [{'p1': 1, 'q2': 1}]
+   NH expanding x| D_0              ker  8  orbit  8  ->  H2 = 0   directions: []
+   NH oscillating x| D_0            ker  8  orbit  8  ->  H2 = 0   directions: []
+   Poincare x| Weyl (z=1)           ker  8  orbit  8  ->  H2 = 0   directions: []
+PASS B0 sanity: every orbit direction lies in the kernel of the linearised Jacobi map (the infinitesimal equivalences are exact automorphisms of the ansatz)
+PASS B1 CROSS-CHECK: the exact rotation-covariant H^2 equals the numerical full-complex H^2(g,g) of m04 for all 16 base algebras (reductive-subalgebra spectral-sequence with so(3)); mismatches: {}
+
+C: reading the directions
+PASS C1 Galilei: the four directions include the Lambda direction b1 (Newton-Hooke) and the c-direction h1 (with c1 = a2 h1)
+   z = 1   directions: [{'p1': 1, 'q2': 1}, {'c1': 1, 'h1': 1}]
+   z = 1/2 directions: [{'p1': 1, 'q2': 1}, {'c3': 1}]
+PASS C2 Galilei x| D_1 (MOND kinematics): NO direction contains b1 (Lambda) or d1: the Lambda deformation is obstructed at first order for z = 1
+PASS C3 Galilei x| D_1: a direction with h1 / c1 exists (deformation to the Weyl-Poincare algebra: c can be switched on, Lambda cannot)
+PASS C4 Galilei x| D_{1/2} (a0-invariant scaling): NO direction contains b1, h1, c1 or d1: neither Lambda nor 1/c^2 can be switched on
+PASS C5 z = 1/2: the two surviving directions are (i) a change of the D-action (p1,q2: moves along the z family) and (ii) c3: [K_i,K_j] = c3 eps_ijk P_k with c3 ~ 1/acceleration
+PASS C6 rigid points: (b1,h1 both nonzero) dS/AdS-type, NH x| D_0 and Poincare x| Weyl have H^2 = 0: no further parameter (in particular no a0) can be added at first order
+PASS C7 at every z tested (0, 1/2, 1, 3/2, 2, 3) there is a direction that only changes the D-weights (f1,p1,q2): the dilatation exponent z is a genuine continuous modulus of Galilei x| D_z (the only D-invariant dimensionless one)
+
+9/9 checks pass

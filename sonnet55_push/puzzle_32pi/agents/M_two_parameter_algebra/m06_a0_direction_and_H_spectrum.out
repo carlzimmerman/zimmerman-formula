@@ -1,0 +1,40 @@
+A: constants invariant under K->K+wJ, P->P+w'J: ['a1', 'a2', 'b1', 'b2', 'c3', 'd2', 'h1']
+PASS A1 the J-shifts leave a1,a2,b1,b2,h1 and the two dimensionful deformation constants c3 (1/acceleration) and d2 invariant
+PASS A2 they act as c2 -> c2 + 2w, d3 -> d3 + 2w', e3 -> e3 + w', e4 -> e4 + w: the gauge e3 = e4 = 0 is always reachable (w = -e4, w' = -e3)
+PASS B1 one of the 20 Jacobi polynomials is exactly -3 c3 h1 : c3 h1 = 0.  A finite Lorentz c (h1 != 0) forbids the inverse-acceleration deformation, and vice versa
+PASS C1 linear part of Jacobi (h1 = 0, gauge e3=e4=0, a2 != 0) fixes c2, a3, d3, c1, e2, d1, b3 and (via one quadratic) d2 in terms of (a1,a2,b1,b2,c3)
+PASS C2 after that, EVERY remaining Jacobi polynomial is a multiple of the single condition Q = -(c3/(3 a2)) det(ad_H) (2 tr^2 - 9 det) = 0
+C: Q in terms of the eigenvalues l1,l2 of ad_H on span(K,P): -c3*l1*l2*(l1 - 2*l2)*(2*l1 - l2)/3
+PASS C3 Q = -(c3/3) l1 l2 (2 l1 - l2)(l1 - 2 l2): with c3 != 0 the H-action on (K,P) must have a ZERO eigenvalue or eigenvalues in the exact ratio 2:1
+PASS C4 in terms of invariants: 2 tr^2 - 9 det = 2 (l1 - 2 l2)(2 l1 - l2)... ie the ratio 2 is where the discriminant relation 2 tr^2 = 9 det holds
+D: a2 = 0 solutions: [{a3: -b1*c3, b2: 2*a1, b3: -3*b1**2*c3/a1, c1: -3*b1**2*c3**2/a1**2, c2: 3*b1*c3/a1, d1: -3*b1**4*c3**2/a1**4, d2: b1**3*c3/a1**3, d3: 3*b1**2*c3/a1**2, e2: b1**3*c3**2/a1**3}]
+PASS D1 a2 = 0, c3 != 0, a1 != 0: Jacobi forces b2 = 2 a1: ad_H = [[a1,b1],[0,2a1]] has eigenvalues (a1, 2 a1): the 2:1 ratio again
+   a2 = 0 and a1 = 0: []
+PASS D2 a2 = 0 and a1 = 0: b2 c3 = 0 so b2 = 0: ad_H nilpotent (both eigenvalues 0): the degenerate branch
+PASS E1 EXPLICIT: for 16 pairs (omega, c3) spanning 12 orders of magnitude each, spectrum (omega, 2 omega) and (2 omega, omega) satisfy ALL Jacobi identities: c3 and the rate scale are independent
+PASS E2 spectrum (0,0) (Galilei + c3) and (omega, 0) (a friction-type H action) with c3 != 0 satisfy Jacobi
+PASS E3 MUTATION: spectrum (omega, 3 omega) with the same construction violates Jacobi
+PASS E4 MUTATION: expanding Newton-Hooke spectrum (omega, -omega) [b1 = omega^2] with c3 != 0 violates Jacobi: Lambda_NH and the a0-direction cannot coexist
+PASS E5 MUTATION: oscillating Newton-Hooke (+-i omega) with c3 != 0 violates Jacobi (b1 = -omega^2... spectrum +-i: Q != 0)
+PASS E6 MUTATION: c3 != 0 together with h1 != 0 violates Jacobi (B1) even at Galilei-like rates
+PASS F1 c3 has dimensions (L,T) = (-1, 2): T^2/L = 1/ACCELERATION (mass cancels)
+PASS F2 the 11-dimensional algebra 'Galilei + c3 x| D_{1/2}' satisfies Jacobi: a0 (c3 = 1/a0) is a D-invariant deformation exactly at z = 1/2
+PASS F3 MUTATION: the same c3 with z = 1 (the MOND scaling) or z = 0 or z = 2 violates Jacobi (weight of c3 is 2z - 1)
+F: derivation space of  Galilei+c3 with H-spectrum (1,2): 1 [{f1: 0, p1: 0, p2: -q3/5, p3: q3/5, q1: 2*q3/5, q2: -3*q3/5}]
+PASS F4 with c3 != 0 AND a nonzero H-spectrum (1,2) the ONLY derivation is the inner one, ad_H (weights of H fixed to 0): there is NO scalar dilatation D: a0 and the rate together break every scaling
+G: dim Der(Galilei) = 12    dim Der(Galilei + c3) = 11
+PASS G1 Galilei + c3 is NOT isomorphic to Galilei: their derivation algebras have different dimensions (12 vs 11)
+H: under K->aK, P->bP, H->gH: c3 -> alpha**2*c3/beta ; a2 -> a2*alpha*gamma/beta ; a1 -> a1*gamma
+PASS H1 c3 -> (alpha^2/beta) c3, a2 -> (gamma alpha/beta) a2, rates -> gamma * rates: three independent weights => NO monomial of (c3, a2, rate) is rescaling-invariant: the magnitude of c3 relative to a rate is a unit convention
+PASS H2 the ratio of the two ad_H eigenvalues is invariant under every K/P mixing (similarity: trace and det unchanged) and every H-rescaling (2 tr^2 - 9 det is homogeneous): the ONLY dimensionless number Jacobi forces is this ratio, 2
+   of the c3 != 0 solutions, 99 have det(ad_H|K,P) != 0; their |l_max/l_min| values: min 2.000000 max 2.000000
+I: c3 = 1.7, h1 = 0: 400 random Jacobi solutions found; max |det (2 tr^2 - 9 det)|/|M|^4 = 4.01e-14
+   control c3 = 0     : 390 solutions, 117 of them with a generic spectrum (defect > 1e-3), max defect 2.17e+00
+PASS I1 INDEPENDENT numerical solutions of the full 16-constant system (no gauge fixing, random starts, c3 = 1.7, h1 = 0): every one has l1 l2 (2 l1 - l2)(l1 - 2 l2) = 0 to 1e-8 (400 solutions)
+PASS I1b among the c3 != 0 solutions, the nondegenerate ones (det != 0) all have |l_max/l_min| = 2 to 1e-6 (99 found)
+PASS I2 CONTROL: with c3 = 0 the same sampler finds solutions with GENERIC spectra (the constraint is caused by c3, not by the solver): 117 of 390 generic
+PASS I3 CONTROL: with c3 = 1.7 and h1 = 0.9 (both nonzero) the sampler finds NO solution (0 found), as B1 requires
+J: c3 under parity -> -c3 ; under time reversal -> c3  (a2 under P, T -> 1 1 )
+PASS J1 the a0-direction is PARITY-ODD (c3 -> -c3 under K,P -> -K,-P) and T-even: any algebra with c3 != 0 is chiral (the pair c3, -c3 are isomorphic, but neither is mapped to itself by parity); this is why the P,T-symmetric P,T-symmetric classification of m01 does not contain it
+
+27/27 checks pass

@@ -1,0 +1,119 @@
+loaded 175 galaxies, 3391 points
+
+C0  every IF has the same normalisation (sqrt(g a0) deep, g Newtonian)
+  [OK] C0 alpha1 (record kernel): deep-MOND and Newtonian limits both correct
+  [OK] C0 RAR (MLS16): deep-MOND and Newtonian limits both correct
+  [OK] C0 simple: deep-MOND and Newtonian limits both correct
+  [OK] C0 standard: deep-MOND and Newtonian limits both correct
+
+R  reproduce the record's profile likelihood (alpha1 kernel, Upsilon free per galaxy 0.05-3.0)
+   sig_int (chi2/dof = 1 at canonical a0) = 0.0808 dex   (record: 0.0808)   chi2 = 3204.0, npts = 3380  (record: 3204.0, 3380)
+  [OK] R1 sig_int, n_pts and chi2 at canonical a0 reproduce the record's P2b
+   record's grid: a0_hat(grid min) = 1.0766e-10 (record 1.0766), sigma_ind = 1.24% (record 1.24%), x4.39 = 5.44% (record 5.44%)
+  [OK] R2 the record's own grid procedure reproduces 1.0766e-10, 1.24% and 5.44%
+   fine local grid (73 pts, +-9%): a0_hat = 1.0806e-10, sigma_ind = 1.59% (Dchi2 = 1 crossings) / 1.55% (parabola); x4.39 = 6.99%
+   -> the record's 1.24% is an interpolation underestimate (true ~1.59%); its 5.44% is ~7.0% by the same crude rule.  Immaterial to any verdict; corrected here.
+  [OK] R3 the fine-grid sigma_ind exceeds the record's (coarse-grid interpolation bias) and a0_hat moves by < 2%
+
+B  galaxy bootstrap / jackknife of the profile (per-galaxy profiled chi2 on a grid, resampled galaxies)
+  [OK] B1 per-galaxy profiled chi2 sums to the total profile (max diff < 1e-6)
+   bootstrap sigma(ln a0) = 8.21%   68% interval [0.9974, 1.1740]e-10;  jackknife sigma = 8.43%
+   compare: points-independent 1.59%, crude x4.39 rule 6.99%, record 5.44%
+  [OK] B2 galaxy-clustered error is > 2x the points-independent error (clustering matters)
+  [OK] B3 bootstrap and jackknife agree within 25%
+
+I  a0_hat [1e-10 m/s^2] for each IF x Upsilon treatment (all 175 galaxies, sig_int fixed at the record's 0.0808 dex; chi2 in brackets)
+                                               alpha1 (record kernel)                   RAR (MLS16)                        simple                      standard
+   Upsilon free 0.05-3 (record)                  1.0833 (   3140)            0.8725 (   2972)            0.8812 (   3015)            1.1171 (   3244)  
+   Upsilon in [0.25,1.0] (factor-2)              1.1794 (   4312)            0.9440 (   4077)            0.9413 (   4102)            1.2460 (   4532)  
+   Upsilon in [0.3,0.8]                          1.2518 (   4995)            1.0020 (   4735)            0.9967 (   4745)            1.3302 (   5266)  
+   Upsilon fixed 0.5 (bulge 0.7)                 1.4111 (   8847)            1.1064 (   8599)            1.0788 (   8587)            1.5481 (   9326)  
+   chi2_min (Upsilon free): alpha1 3140, RAR 2972, simple 3015, standard 3244
+   the record's own likelihood prefers RAR over its alpha1 kernel by d chi2 = 168 (points-independent; /19.3 = 9 on the crude clustered rule) at equal parameter count
+  [OK] I1 (control that the fit is IF-sensitive) a0_hat differs by > 2% between IFs in every Upsilon treatment
+  [OK] I2 the standard IF returns a0 > 1.3x the RAR IF at fixed Upsilon (ESR paper: 1.54 vs 1.13)
+   recalibrating sig_int at each IF's own best a0 (chi2/dof = 1): alpha1 sig_int 0.0795 -> a0 1.0847 (+0.13%), RAR sig_int 0.0760 -> a0 0.8778 (+0.60%), simple sig_int 0.0769 -> a0 0.8853 (+0.47%), standard sig_int 0.0816 -> a0 1.1163 (-0.08%)
+  [OK] I3 recalibrating sig_int per IF changes a0_hat by < 1% (max 0.60%)
+
+F  fixed-Upsilon fit done the published way (Upsilon = 0.5/0.7, MLS16 cuts Q<=2 & inc>=30) -- validation against papers
+  [OK] F1 the MLS16 cuts select exactly 153 SPARC galaxies (got 153)
+   alpha1 1.419, RAR 1.113, simple 1.086, standard 1.557   (1e-10 m/s^2; 153 galaxies, sig_int = 0.11 dex)
+   published: MLS16 RAR 1.20 +- 0.02 +- 0.24 (ODR);  Desmond-Bartlett-Ferreira 2023 Table 1 (Simple 1.11, RAR 1.13, Standard 1.54, prior-max galaxy parameters)
+  [OK] F2 RAR IF fixed-Upsilon a0 = 1.113 is within 12% of MLS16's 1.20 (methods differ: LSQ vs ODR)
+  [OK] F3 simple / RAR / standard fixed-Upsilon a0 reproduce the ESR paper's 1.11 / 1.13 / 1.54 within 6%
+
+S  subsample consistency: a0_hat for gas-dominated (T>=8, n=81) vs star-dominated (T<=5, n=62) galaxies, per IF and Upsilon treatment
+   Upsilon free 0.05-3 (record)      alpha1 (record kernel)   gas-dom 0.707  star-dom 1.644  ratio  2.32  (+20.1 sigma, independent points)
+   Upsilon free 0.05-3 (record)      RAR (MLS16)              gas-dom 0.570  star-dom 1.323  ratio  2.32  (+17.9 sigma, independent points)
+   Upsilon free 0.05-3 (record)      simple                   gas-dom 0.568  star-dom 1.370  ratio  2.41  (+18.9 sigma, independent points)
+   Upsilon free 0.05-3 (record)      standard                 gas-dom 0.738  star-dom 1.659  ratio  2.25  (+20.3 sigma, independent points)
+   Upsilon in [0.25,1.0] (factor-2)  alpha1 (record kernel)   gas-dom 0.882  star-dom 1.657  ratio  1.88  (+20.2 sigma, independent points)
+   Upsilon in [0.25,1.0] (factor-2)  RAR (MLS16)              gas-dom 0.717  star-dom 1.287  ratio  1.80  (+16.7 sigma, independent points)
+   Upsilon in [0.25,1.0] (factor-2)  simple                   gas-dom 0.710  star-dom 1.306  ratio  1.84  (+17.0 sigma, independent points)
+   Upsilon in [0.25,1.0] (factor-2)  standard                 gas-dom 0.922  star-dom 1.738  ratio  1.88  (+20.6 sigma, independent points)
+   most consistent split: Upsilon in [0.25,1.0] (factor-2) | RAR (MLS16) (ratio 1.80);  least: Upsilon free 0.05-3 (record) | simple (ratio 2.41)
+  [OK] S1 the gas-/star-dominated a0 split is IF-INDEPENDENT (Upsilon free: ratio 2.25-2.41 for all four IFs): a different kernel does not remove it
+   cleanest published-style split (RAR IF, Upsilon fixed 0.5/0.7, MLS16 cuts, 0.11 dex): gas-dominated 0.856 (n=63), star-dominated 1.248 (n=58); ratio 1.46
+  [OK] S2 even in the cleanest published-style fit the two galaxy classes disagree on a0 by 46% (half-range in ln a0 = 19%): a class-heterogeneity systematic no statistical error covers
+
+D  systematic perturbations of the baseline fit (alpha1 kernel, Upsilon free, sig_int fixed 0.0808), all 175 galaxies
+  [OK] D0 transform unit test: a distance rescale leaves g_bar invariant and scales g_obs by 1/s (max deviation 5.6e-16)
+  [OK] D0m the unit test FAILS for a wrongly-implemented transform (the test has teeth)
+   distance methods: f_D=1: 97, f_D=2: 45, f_D=3: 3, f_D=4: 28, f_D=5: 2   (f_D = 1 is Hubble flow at H0 = 73; 97 of 175 galaxies)
+   all distances x 1.05                                          a0_hat = 0.9959e-10   d ln a0 =  -8.42%
+   all distances x 0.95                                          a0_hat = 1.1829e-10   d ln a0 =  +8.79%
+   all distances x 1.10                                          a0_hat = 0.9190e-10   d ln a0 = -16.46%
+   all distances x 0.90                                          a0_hat = 1.2970e-10   d ln a0 = +18.00%
+   Hubble-flow (f_D=1) distances x 1.0831 (H0 73 -> 67.4)        a0_hat = 1.0076e-10   d ln a0 =  -7.25%
+   ALL distances x 1.0831 (ladder biased if H0 = 67.4)           a0_hat = 0.9440e-10   d ln a0 = -13.77%
+   Hubble-flow (f_D=1) distances x 0.95                          a0_hat = 1.1337e-10   d ln a0 =  +4.55%
+   Hubble-flow (f_D=1) distances x 1.05                          a0_hat = 1.0372e-10   d ln a0 =  -4.35%
+   gas mass x 1.10                                               a0_hat = 1.0174e-10   d ln a0 =  -6.28%
+   gas mass x 0.90                                               a0_hat = 1.1575e-10   d ln a0 =  +6.62%
+   gas mass x 1.20                                               a0_hat = 0.9592e-10   d ln a0 = -12.17%
+   inclination + 1 sigma_i (coherent, per-galaxy e_Inc)          a0_hat = 1.0466e-10   d ln a0 =  -3.45%
+   inclination - 1 sigma_i (coherent, per-galaxy e_Inc)          a0_hat = 1.2454e-10   d ln a0 = +13.94%
+  [OK] D1 a global distance rescale x1.05 shifts a0 by -8.42%, inside the analytic bracket [-9.76%, -4.88%] (deep-MOND a0 ~ D^-2, Newtonian ~ D^-1)
+  [OK] D2 signs: smaller distances -> larger a0; more gas mass -> smaller a0 (a0 ~ 1/M_gas where the gas anchors it)
+  [OK] D3 rescaling ALL distances moves a0 more than rescaling only the Hubble-flow subset
+  [OK] D4 the coherent inclination shift moves a0 in OPPOSITE directions for +/-1 sigma_i (-3.4%, +13.9%); an earlier version with an edge-on singularity moved both down and was fixed
+
+   H0-coupled a0_obs per IF (Upsilon free): baseline / Hubble-flow distances x 73/67.4 / ALL distances x 73/67.4   [1e-10 m/s^2]
+   alpha1 (record kernel)       1.0833      1.0076          0.9440   (d ln: -7.2%, -13.8%)
+   RAR (MLS16)                  0.8725      0.8067          0.7547   (d ln: -7.8%, -14.5%)
+   simple                       0.8812      0.8165          0.7617   (d ln: -7.6%, -14.6%)
+   standard                     1.1171      1.0416          0.9781   (d ln: -7.0%, -13.3%)
+  [OK] H1 for every IF: a0_obs(all distances x 1.083) < a0_obs(HF only) < a0_obs(baseline)
+
+K  the record's headline comparison (framework Z_F vs Milgrom 2 pi vs Verlinde 6 ...) re-run with each IF: d chi2 of the point a0 = c H_eff/Z relative to the IF's own best fit (Upsilon free);
+   deflated sigma = sqrt(d chi2 / (N_pts/N_gal = 19.3)) as in the record's P3 table.  H0 = 67.4.
+   IF                          a0_hat |    tot F 5.789       tot V 6     tot M 2pi  tot N 3sqrt3   tot P 4.943 |    Lam F 5.789       Lam V 6     Lam M 2pi  Lam N 3sqrt3   Lam P 4.943
+   alpha1 (record kernel)      1.0833 |         +0.62s        +0.15s        -0.52s        +1.94s        +2.57s |         -1.82s        -2.26s        -2.83s        -0.51s        +0.22s
+   RAR (MLS16)                 0.8725 |         +2.94s        +2.53s        +1.99s        +4.21s        +4.81s |         +0.73s        +0.34s        -0.06s        +2.00s        +2.58s
+   simple                      0.8812 |         +2.82s        +2.40s        +1.87s        +4.08s        +4.67s |         +0.73s        +0.35s        -0.29s        +1.88s        +2.46s
+   standard                    1.1171 |         +0.18s        -0.37s        -0.95s        +1.62s        +2.30s |         -2.36s        -2.82s        -3.42s        -0.94s        -0.30s
+   (signed: + = the hypothesis's a0 lies ABOVE the IF's best fit)
+  [OK] K1 with the record's alpha1 kernel the SPARC profile prefers the framework Z_F over Milgrom's 2 pi on the rho_Lambda footing (the record's P3-KEY)
+  [OK] K2 with the RAR IF the ORDER FLIPS on the rho_Lambda footing: 2 pi fits better than Z_F (the record's P3-KEY is kernel-conditional)
+
+   a0 systematics measured here (half-ranges of the perturbations above; d ln a0; NOT applied to anything):
+     interpolating function, data-preferred pair (RAR vs simple, Upsilon free)  0.49%
+     interpolating function, all four IFs (half-range, Upsilon free)        12.36%
+     Upsilon treatment (free vs fixed 0.5, RAR IF; half-range)              11.87%
+     global distance scale +-5% (calibrator zero point)                      8.60%
+     Hubble-flow subset +-5%                                                 4.45%
+     gas mass +-10% (HI calibration, H2, helium)                             6.45%
+     coherent inclination bias +-1 sigma_i (upper bound)                     8.69%
+     galaxy-class heterogeneity (gas- vs star-dominated, cleanest fit; half-range) 18.83%
+
+M  mocks from the SPARC baryon content (true Upsilon ~ 0.5 x lognormal 0.1 dex, scatter 0.06 dex, SPARC errV); 16 mocks per truth
+   truth RAR    : fit with RAR -> bias  +0.04% (+-0.52);  fit with alpha1 -> bias +20.28%;  chi2(alpha1)-chi2(RAR) = +44 [+22, +70]
+   truth alpha1 : fit with RAR -> bias -22.95% (+-0.45);  fit with alpha1 -> bias  -0.69%;  chi2(alpha1)-chi2(RAR) = -44 [-62, -18]
+  [OK] M1 estimator unbiased when the fitted kernel is the true one (RAR truth, RAR fit)
+  [OK] M2 estimator unbiased when the fitted kernel is the true one (alpha1 truth, alpha1 fit)
+  [OK] M3 a wrong kernel biases a0 by >10% in the expected direction (alpha1 fit to RAR truth: high; RAR fit to alpha1 truth: low)
+  [OK] M4 the chi2 preference follows the truth: alpha1 - RAR chi2 is >0 for RAR-truth mocks and <0 for alpha1-truth mocks
+   real data: alpha1/RAR a0 ratio = 1.242 (ln = +0.216); RAR-truth mocks predict ln = +0.202; alpha1-truth mocks predict +0.223
+   real data: chi2(alpha1)-chi2(RAR) = +168: RAR-truth mocks give +44, alpha1-truth mocks -44
+
+  31/31 checks held.   (111 s)

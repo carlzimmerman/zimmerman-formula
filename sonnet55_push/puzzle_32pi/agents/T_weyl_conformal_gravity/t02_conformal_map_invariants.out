@@ -1,0 +1,51 @@
+PASS A1 g'_tt = -B~(r') with B~(r') = (1 - a r')^2 B(r'/(1 - a r'))
+PASS A2 g'_r'r' = 1/B~(r')  (the gauge g_tt g_rr = -1 is preserved)
+PASS A3 g'_thth = r'^2  (areal-radius gauge preserved)
+PASS A4 MUTATION rejected: the map r' = r/(1 + a r^2) does NOT preserve g_tt g_rr = -1 (product != -1 for generic B)
+PASS B1 transformed constants: w' = w - 3 a v
+PASS B2 transformed constants: v' = v
+PASS B3 transformed constants: u' = u - 2 a w + 3 a^2 v
+PASS B4 transformed constants: k' = k - a^2 w + a^3 v + a u
+PASS B5 group law: T_a2 o T_a1 = T_(a1 + a2)
+PASS B6 invariant: v' = v
+PASS B7 invariant: w'^2 - 3 u' v' = w^2 - 3 u v  (so the MK constraint w^2 - 3uv = 1 is conformally invariant)
+PASS B8 invariant: discriminant of the cubic v x^3 + w x^2 + u x - k
+PASS B9 CONTROL: u is NOT invariant under the map
+PASS B9 CONTROL: k is NOT invariant under the map
+PASS B9 CONTROL: w is NOT invariant under the map
+PASS B9 CONTROL: u^2/k  (a0^2/k) is NOT invariant under the map
+PASS B9 CONTROL: u^2 - 4k is NOT invariant under the map
+PASS B9 CONTROL: u^2 + k is NOT invariant under the map
+PASS B9 CONTROL: u^2 + 2k (evaluated on the beta=0 slice) is NOT invariant under the map
+PASS B10 the map takes the cubic family to the cubic family (B~ has exactly the 4 monomials rp^-1..rp^2; no others)
+PASS B11 Weyl^2 transforms as Omega^-4 under the map (formula for Weyl^2; verified against the Riemann tensor in t01)
+PASS B12 the Bach code is conformally covariant: b~^a_b(r') = Omega^-4 b^a_b(r) for a NON-solution (B = 1 + c r^3)
+PASS B13 MUTATION rejected: with the wrong weight Omega^-2 the covariance check fails
+PASS C1 beta = 0: B = 1 + gamma r - k r^2 has vanishing Weyl tensor (all 256 components) for symbolic gamma, k: conformally flat
+PASS C1b control: adding a mass term v/r breaks conformal flatness
+PASS C2 on the beta = 0 slice the map is gamma' = gamma - 2a, k' = k + a gamma - a^2 (from B1-B4 with w = 1, v = 0)
+PASS C3 invariant: gamma^2 + 4k  (the discriminant of the quadratic 1 + gamma r - k r^2)
+PASS C3b CONTROL: gamma^2 - 4k and gamma^2 + k are not invariant
+PASS C4 surface gravity of the horizon at r_+ = (gamma + sqrt(gamma^2+4k))/(2k): kappa_h^2 = (gamma^2 + 4k)/4 = (gamma/2)^2 + k
+PASS C4b pure de Sitter (gamma = 0, k = H^2): kappa_h^2 = H^2
+PASS C5a g_tt / r^2 = -(y^2 - Delta/4)
+PASS C5b g_rr (dr/dy)^2 / r^2 = 1/(y^2 - Delta/4)
+PASS C6 AdS2 (unit radius) x S^2 (unit radius) is conformally flat (Weyl = 0)
+PASS C6b CONTROL: AdS2 x S^2 with S^2 radius^2 = L2 != 1 is NOT conformally flat
+PASS C7 for the Killing vector d/dt of AdS2 with f = y^2 - Delta/4: (f'/2)^2 - f = Delta/4 = kappa_h^2 for all y (a constant, the twist^2 - norm^2 Casimir-type invariant; hyperbolic for Delta > 0)
+PASS C7b CONTROL: the combination (f'/2)^2 + f is NOT constant in y
+PASS D1 a* = (w-1)/(3v) = gamma/(2 - 3 beta gamma)
+PASS D2 at a* the linear term vanishes (u' = 0) and w' = 1: the image is Schwarzschild-de Sitter
+PASS D3 k' = k + gamma^2 (1 - beta gamma)/(2 - 3 beta gamma)^2  (the SdS 'Lambda/3' of the conformal class)
+PASS D4 the invariant discriminant equals 4 k'(1 - 27 M'^2 k') (the SdS Nariai discriminant) with M' = beta (2 - 3 beta gamma)/2
+PASS D5a u'(a) = u - 2 a w + 3 a^2 v is a quadratic in a with discriminant 4 (w^2 - 3 u v)
+PASS D5b for every MK solution w^2 - 3uv = 1, so the discriminant is 4 > 0: the linear term is removable by a real map for ALL beta, gamma
+PASS D6 beta -> 0 limit: k' -> k + gamma^2/4  (the (gamma/2)^2 + k sum rule of section C)
+PASS E1 B(r(rho)) = F^2  (time-time part of the static metric = (1/R^2) F^2 (-d tau^2) with dt = d tau/R)
+PASS E2 r^2 = F^2 rho^2/(1 + K rho^2/4)^2 with K = -(gamma^2/4 + k)  (angular part of an isotropic RW metric of 3-curvature K)
+PASS E3 (dr/d rho)^2/B = F^2/(1 + K rho^2/4)^2  (radial part)
+PASS E4 MUTATION rejected: K = -(gamma^2/4 - k) fails the angular-part identity
+PASS E5 K depends on (gamma, k) only through gamma^2 + 4k: -4K = gamma^2 + 4k is exactly the invariant of section C
+PASS E6 the CG papers' k_static = 0 choice: K = -gamma0^2/4, i.e. gamma0/2 = sqrt(-K)
+
+PASS 49 / 49

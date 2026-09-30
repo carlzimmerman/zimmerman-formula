@@ -1,0 +1,68 @@
+0  algebra
+  [OK] A1 Omega = 32 pi a0^2/(3 H0^2 c^2) = Z_F^2 (a0/cH0)^2 (Z_F^2 = 32 pi/3)
+  [OK] A2 identity: a0 = c H0 sqrt(0.685)/Z_F = 9.3624e-11 returns Omega = 0.685 exactly
+  [OK] A3 Omega ~ a0^2 and ~ H0^-2 (doubling a0 quadruples Omega; H0 67.4 -> 73 scales by (67.4/73)^2)
+  [OK] A4 (mutation) using Milgrom's Z = 2 pi in place of Z_F would multiply the prediction by (2 pi)^2/(32 pi/3) = 3 pi/8 = 1.178: the check separates the coefficients
+
+1  the record's SPARC a0 = 1.0766e-10 (5.44% clustered-crude, 1.24% independent)
+   Omega_pred = 0.9058   (audit: 0.906);   measured 0.685 +- 0.007
+  [OK] R1 reproduces the audit's 0.906
+   the same tension in different parametrisations / estimators:
+     a0 linear, sigma = 5.44% of the fit (the record's convention)   : 2.40 sigma
+     Omega linear, sigma_Omega = 2 x 5.44% x Omega_pred (+0.007)     : 2.23 sigma
+     ln a0, sigma = 5.44%                                             : 2.57 sigma
+     profile d chi2 = 63.9 deflated by N_pts/N_gal = 19.3              : 1.82 sigma   (the record's P3 table: 1.82)
+     ln a0 with the galaxy-bootstrap sigma = 8.2% (v02)                : 1.75 sigma  (a0_hat = 1.0806e-10)
+  [OK] R2 reproduces the record's 2.40 sigma (a0-linear) and 1.82 sigma (deflated d chi2)
+   -> WHY THEY DIFFER: Omega ~ a0^2 doubles the fractional error and makes the mapping non-linear; the record divides by 5.44% of the FITTED value (not of the
+      prediction), and the profile is asymmetric.  The honest range is 1.7-2.6 sigma; none of them uses the systematic budget, which (below) is larger than the offset.
+
+2  Omega_Lambda predicted by the framework from each a0 (Z_F = sqrt(32pi/3)); error = 2 x fractional a0 error (+ 2 x H0 error), 0.685 +- 0.007 measured
+   determination  a0[1e-10]    err |              H0=67.4             H0=70.2             H0=73.0
+   Rec               1.0766   5.4% |    0.906 +-0.099 (+2.2s)   0.835 +-0.113 (+1.3s)   0.772 +-0.087 (+1.0s)
+   thisA1            1.0833   8.2% |    0.917 +-0.151 (+1.5s)   0.845 +-0.154 (+1.0s)   0.782 +-0.130 (+0.7s)
+   MLS16             1.2000  20.1% |    1.125 +-0.452 (+1.0s)   1.037 +-0.425 (+0.8s)   0.959 +-0.386 (+0.7s)
+   Des23             1.1900   8.3% |    1.107 +-0.184 (+2.3s)   1.020 +-0.187 (+1.8s)   0.943 +-0.158 (+1.6s)
+   McG12             1.3000  23.1% |    1.321 +-0.610 (+1.0s)   1.217 +-0.570 (+0.9s)   1.126 +-0.521 (+0.8s)
+   thisR0            0.8725    n/a |    0.595               0.548               0.507            
+   thisR1            0.9440    n/a |    0.696               0.642               0.594            
+   thisR2            1.1064    n/a |    0.957               0.882               0.815            
+   Rod18-RAR         1.0990    n/a |    0.944               0.870               0.805            
+   CZ19-RAR          1.0990    n/a |    0.944               0.870               0.805            
+   DBF23-RAR         1.1300    n/a |    0.998               0.920               0.851            
+   DBF23-std         1.5400    n/a |    1.853               1.708               1.580            
+   ENSEMBLE E        1.0974  12.2% |    0.941 +-0.230 (+1.1s)   0.868 +-0.223 (+0.8s)   0.802 +-0.197 (+0.6s)
+   (s = (Omega_pred - 0.685)/sqrt(sigma_pred^2 + 0.007^2); rows with no printed error: the papers give none, or it is the analysis-choice scatter of E.)
+  [OK] T1 the record's row is the audit's 0.906
+   spread of Omega_pred at H0 = 67.4 over the galaxy-scale RAR-family analyses: 0.59 - 1.32  (measured 0.685)
+  [OK] T2 the measured 0.685 lies INSIDE the range of predictions from the different published/own a0 analyses (the prediction is analysis-choice-dependent, sign included)
+
+3  Omega_pred by fitting choice (this work, v02) and by H0 'world':  P = Planck H0 = 67.4 with SPARC Hubble-flow distances rescaled 73 -> 67.4;  S = SH0ES H0 = 73 with SPARC distances as published
+   IF (Upsilon free 0.05-3)   a0 as published  Om @67.4  a0 (P, HF only)     Om  a0 (P, all dist.)     Om  Om (S: a0 as pub., 73)
+   alpha1 (record kernel)              1.0833     0.917           1.0076  0.793             0.9440  0.696                   0.782
+   RAR (MLS16)                         0.8725     0.595           0.8067  0.509             0.7547  0.445                   0.507
+   simple                              0.8812     0.607           0.8165  0.521             0.7617  0.453                   0.517
+   standard                            1.1171     0.975           1.0416  0.848             0.9781  0.748                   0.831
+   record kernel: the 0.906 becomes 0.793 (Hubble-flow distances re-scaled) or 0.696 (all distances) in a self-consistent Planck-H0 world, and 0.782 at H0 = 73.
+  [OK] W1 in the Planck-H0 world the predicted Omega falls monotonically as more distances are rescaled
+  [OK] W2 the prediction flips sign with the interpolating function: RAR gives Omega_pred < 0.685, the record's alpha1 kernel gives > 0.685
+   CAUTION: the P-world rescaling assumes SPARC's distances were biased low by exactly 73/67.4; the S-world assumes Omega_Lambda = 0.685 (a Planck-fit number) is compared at a
+   non-Planck H0.  Both are sensitivity statements about how much H0-coupling matters, not corrections to the record.
+
+4  the fractional shift of a0_obs that would remove the tension (record kernel, H0 = 67.4), and what the systematic budget offers
+   to Omega_pred = 0.685 exactly: a0_obs must fall by -13.0% (a0 = 0.9362e-10);  to within 1 sigma (5.44%): -7.6%;  to within 2 sigma: -2.2%
+   systematic (v02, measured on the record kernel)             d ln a0    fraction of needed shift
+   Hubble-flow distances x 73/67.4 (H0 = 67.4 world)             -7.2%                        52%
+   ALL distances x 73/67.4 (ladder biased if H0 = 67.4)         -13.8%                        99%
+   all distances x 1.05                                          -8.4%                        60%
+   gas mass x 1.10                                               -6.3%                        45%
+   gas mass x 1.20                                              -12.2%                        87%
+   coherent inclination + 1 sigma_i                              -3.4%                        25%
+   interpolating function alpha1 -> RAR (data-preferred, d chi2 = 168)   -21.6%                       155%   (overshoots: Omega_pred = 0.595 < 0.685)
+   measured 1-sigma-ish budget (v02, quadrature): distance+gas+inclination = 13.8%;  adding IF + Upsilon treatment + class heterogeneity = 29.0%;  published: MLS16 20%, Desmond 2023 7.6% (sys)
+   needed shift 13.0% = 1.01 x the distance+gas+inclination budget, 0.48 x the full budget, 0.65 x MLS16's quoted 20%
+  [OK] B1 the shift needed to remove the tension is INSIDE the systematic budget (measured full budget and MLS16's 20%); the tension is not evidence against Omega_Lambda = 32 pi a0^2/(3 H0^2 c^2)
+  [OK] B2 a single systematic (rescaling all SPARC distances by the H0 ratio) is by itself as large as the needed shift (>= 95% of it)
+   The other side of the ledger: the same systematics, applied the other way, would push Omega_pred UP; and the IF choice alone spans Omega_pred = 0.59-0.98.  The 'prediction' Omega_Lambda inherits twice the fractional error of a0.
+
+  12/12 checks held.

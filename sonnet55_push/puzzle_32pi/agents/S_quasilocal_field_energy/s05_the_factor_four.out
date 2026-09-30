@@ -1,0 +1,48 @@
+PASS A1 rho/u_g(a0) = 32 pi  <=>  G rho/a0^2 = 4  (xi = 1/4)
+PASS A2 u_g(a)/a = a/(8 pi G) = T_U sigma_BH (T_U = a/2pi, sigma = 1/4G)  [d = 3]
+PASS A3 rho_Lambda = 32 pi a0 T_U(a0) sigma_BH at xi = 1/4
+   factorisations 32 pi = k x (32 pi/k): [(1, '32*pi'), (2, '16*pi'), (4, '8*pi'), (8, '4*pi'), (16, '2*pi'), (32, 'pi')]
+   the split 8 pi x 4 is one of six integer splits; 8 pi = 2 pi (Unruh) x 4 (BH quarter) = 16 pi (EH) x 1/2 (Newtonian trace-reversal, part B)
+PASS B3.1 D = 4: EL operators have the form (A1 lap psi + A2 lap phi, B1 lap psi - rho) exactly
+PASS B3.2 psi = phi/(d-2) from the psi-equation (d = 3: ratio 1)
+PASS B3.3 Poisson: lap phi = 8 pi G (d-2)/(d-1) rho = 4*pi*G rho
+PASS B3.4 reduced field action = -k_d (grad phi)^2 with k_d = (d-1)/(16 pi G (d-2)) = 1/(2 Omega_{d-1} G_N) (EL operators agree)
+PASS B4.1 D = 5: EL operators have the form (A1 lap psi + A2 lap phi, B1 lap psi - rho) exactly
+PASS B4.2 psi = phi/(d-2) from the psi-equation (d = 4: ratio 1/2)
+PASS B4.3 Poisson: lap phi = 8 pi G (d-2)/(d-1) rho = 16*pi*G/3 rho
+PASS B4.4 reduced field action = -k_d (grad phi)^2 with k_d = (d-1)/(16 pi G (d-2)) = 1/(2 Omega_{d-1} G_N) (EL operators agree)
+PASS B5.1 D = 6: EL operators have the form (A1 lap psi + A2 lap phi, B1 lap psi - rho) exactly
+PASS B5.2 psi = phi/(d-2) from the psi-equation (d = 5: ratio 1/3)
+PASS B5.3 Poisson: lap phi = 8 pi G (d-2)/(d-1) rho = 6*pi*G rho
+PASS B5.4 reduced field action = -k_d (grad phi)^2 with k_d = (d-1)/(16 pi G (d-2)) = 1/(2 Omega_{d-1} G_N) (EL operators agree)
+PASS B6 field-energy normalisation: 1/(2 Omega_{d-1} G_N) = (d-1)/(16 pi G (d-2)); equals 1/(8 pi G) ONLY at d = 3 (values {3: '1/(8*pi*G)', 4: '3/(32*pi*G)', 5: '1/(12*pi*G)'})
+PASS C1 d = 4: eps = -(d-1) sqrt(f)/(8 pi G r)  (k = (d-1) sqrt(f)/r for S^{d-1})
+PASS C2 d = 4: s = (a + (d-2) sqrt(f)/r)/(8 pi G)
+PASS C3 Tangherlini d = 4: s / (T_loc / 4G) -> 1 at the horizon (membrane pressure = T x entropy density, sigma_BH = 1/4G in every D)
+PASS C4 [u_g(a)/a]/[T_U sigma_BH] = (d-1)/(2(d-2)): equals 1 only at d = 3 (3/4 at d = 4, 2/3 at d = 5)
+PASS C5a D = 5 Tangherlini f = 1 - (r_h/r)^2 is a vacuum solution (Ricci flat, from the metric)
+PASS C5 E_BY(horizon) = 2 M_ADM in every dimension d = 3..6 (Tangherlini normalisation): the 'BY/mass = 2' factor is d-independent
+
+   d : rho/u_g(a0) under (A) xi = 1/4   |   xi_d under (B) rho/u_g = 32 pi   |   H^2 = 16 pi G rho/(d(d-1)) => Z_d^2 (A) = 64 pi/(d(d-1))
+   3 : 32*pi          | 1/4        | 32*pi/3
+   4 : 128*pi/3       | 1/3        | 16*pi/3
+   5 : 48*pi          | 3/8        | 16*pi/5
+   6 : 256*pi/5       | 2/5        | 32*pi/15
+PASS D1 (A): rho/u_g(a0) = 64 pi (d-2)/(d-1), equals 32 pi at d = 3 only; the '8 pi x 4' split has 8 pi = 16 pi (d-2)/(d-1) x ... : the chain is 16 pi x [(d-2)/(d-1)] x [1/xi]
+PASS D2 (B): keeping rho/u_g = 32 pi in every d gives xi_d = (d-2)/(2(d-1)) (1/4 at d = 3, 1/3 at d = 4)
+PASS D3 the record's Z_d^2 = 64 pi/(d(d-1)) is (A): it needs xi_d = 1/4 in all d, which makes the Poisson normalisation (d-2)/(d-1), not the '4', carry the d-dependence
+PASS D0 Friedmann in d spatial dims (from the metric, d = 3, 4, 5): G_00 = d(d-1)/2 H^2, hence H^2 = 16 pi G rho/(d(d-1)) and Z_d^2 = H^2/a0^2 = 64 pi/(d(d-1)) at xi = 1/4
+
+   candidate '4' vs d:
+   Q1 trace count d+1                       d=3..6: [4.0000, 5.0000, 6.0000, 7.0000]
+   Q2 (1/(kappa r_s))^2 = (2/(d-2))^2       d=3..6: [4.0000, 1.0000, 0.44444, 0.25000]
+   Q3 area/disc Omega_{d-1}/V_{d-1}         d=3..6: [4.0000, 4.7124, 5.3333, 5.8905]
+   Q4 BH quarter 1/(1/4)                    d=3..6: [4.0000, 4.0000, 4.0000, 4.0000]
+   Q5 (E_BY(horizon)/M_ADM)^2               d=3..6: [4.0000, 4.0000, 4.0000, 4.0000]
+   Q6 [1/xi under (B)] = 2(d-1)/(d-2)       d=3..6: [4.0000, 3.0000, 2.6667, 2.5000]
+PASS D4 all six candidates equal 4 at d = 3 (six structures agree at one point, four of them d-dependent: uninformative), but differ at d = 4 in at least three distinct values
+PASS D5 under reading (B) the '4' IS the trace-reversal ratio 2(d-1)/(d-2) (a derived function of d equal to 4 at d = 3); under reading (A) it is the constant 1/xi = 4 and carries no derived content
+PASS E1 (post hoc) G rho A_dS = 3/2 EXACTLY (pi-free): the Friedmann pi cancels the area's pi
+PASS E2 (post hoc) for the a0-horizon (r = 1/(2 a0)): G rho A = pi/xi; a rational area budget G rho A = q gives xi = pi/q (pi-class Q x pi); xi = 1/4 needs q = 4 pi, the Gauss-Bonnet constant (restatement V3)
+
+TOTAL 30 / 30 pass; 0 fail

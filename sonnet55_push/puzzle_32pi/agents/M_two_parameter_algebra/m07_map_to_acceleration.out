@@ -1,0 +1,61 @@
+A: dimensionless group of (c, G, rho, hbar): [{'c': -5, 'G': 2, 'rho': 1, 'hbar': 1}]
+PASS A1 (c,G,rho,hbar) have exactly ONE dimensionless group, Pi = hbar G^2 rho / c^5
+   a0 = c^x G^y rho^z : [{x_G: 1/2, x_c: 1, x_rho: 1/2}]
+PASS A2 without hbar the acceleration built from (c,G,rho) is UNIQUE: a0 = nu c sqrt(G rho) with nu a dimensionless number: the whole content of kappa is nu
+   rho_Lambda = 5.845e-27 kg/m^3 ; Pi = hbar G^2 rho_L / c^5 = 1.134e-123
+   framework scale c H / Z = 1.131e-10 m/s^2 (sanity)
+PASS A3 Pi ~ 1e-122: any dependence a0 ~ Pi^n with n != 0 is 122n orders of magnitude away from an O(1) coefficient; a hbar-carrying number (spin 1/2 x hbar, zero-point hbar w/2) can therefore enter a0 only if hbar CANCELS in a ratio
+PASS A4 sanity: c H0 / Z with Z = sqrt(32 pi/3) is 1.1e-10 m/s^2 (the framework a0)
+PASS A5 from the kinematical scales alone (c, a rate H) the only acceleration is c H: a0 = nu c H, nu dimensionless (one relation among (a0,c,H))
+PASS A6 from (c, hbar) alone NO acceleration exists (a mass is needed: Compton m c^3/hbar): a central charge m adds the scale m c^3/hbar, which is not a0 unless m is set by G and rho (G-dependent)
+   Hubble mass c^3/(G H) = 1.85e+53 kg ; Compton acceleration of a mass m_H*Z: m c^3/hbar = 2.73e+113 m/s^2 (vs a0 = 1.13e-10)
+PASS B1 the two d-dependent candidates are the SAME function: higher-dimensional Schwarzschild kappa_s r_s = (d-2)/2 = inversion weight (both are the fall-off exponent of the Green function over 2): one origin, not two
+
+B: declared candidates (all evaluated to 1/2 at d = 3):
+   inversion weight (d-2)/2 of the Newton potential     value 1/2 | hbar-free True | d-independent False | forced by: harmonic Green function r^-(d-2)
+        d = 2..6: [0, 1/2, 1, 3/2, 2]
+   Schwarzschild surface gravity x r_s in d+1 dims      value 1/2 | hbar-free True | d-independent False | forced by: f = 1 + 2 phi/c^2 and the same exponent d-2
+        d = 2..6: [0, 1/2, 1, 3/2, 2]
+   dilatation exponent z_a0 (a0 invariant)              value 1/2 | hbar-free True | d-independent True | forced by: dimension of a0 = L/T^2 (and [K,K] = P/a0: w(P) = 2 w(K))
+   spin-1/2 J_z eigenvalue (times hbar)                 value 1/2 | hbar-free False | d-independent False | forced by: SU(2) fundamental
+   ad_H eigenvalue ratio 1:2 with c3 != 0 (m06)         value 1/2 | hbar-free True | d-independent True | forced by: weight additivity of [K,K] = c3 P
+   zero-point energy hbar w/2                           value 1/2 | hbar-free False | d-independent False | forced by: [a,a^dag] = 1
+   z = 2/N at N = 4 (conformal Galilei level l = 2)     value 1/2 | hbar-free True | d-independent True | forced by: finite-dimensional cg_l requires 2l = N integer; a0-invariant scaling is N = 4
+PASS B2 all seven candidates equal 1/2 at d = 3 (declared before the classification)
+   hbar-free AND d-independent: ['dilatation exponent z_a0 (a0 invariant)', 'ad_H eigenvalue ratio 1:2 with c3 != 0 (m06)', 'z = 2/N at N = 4 (conformal Galilei level l = 2)']
+PASS B3 only three candidates are hbar-free and d-independent: z_a0 = 1/2, the ad_H ratio 1:2, and z = 2/N at N = 4 - and these are ONE origin (a bilinear bracket [K,K] -> P gives w(P) = 2 w(K); N = 4 <-> z = 1/2 is the same scaling)
+PASS B4 hbar-carrying candidates (spin 1/2, zero-point) are excluded from a0 by A3 unless hbar cancels; d-dependent ones (inversion, Schwarzschild) are not 1/2 at d = 4 (value 1): they do not survive the p05-type second-setting test
+
+   The map needed for ANY of them: kappa := a0/(c sqrt(G rho_Lambda)) = candidate value.  The algebra contains: rates (H), 1/c^2 (h1) OR 1/a0 (c3) [never both: m06 B1], central charges m,theta.
+   It does NOT contain G or rho_Lambda; and kappa uses c AND a0 at once, which the class of kinematical algebras excludes (c3 h1 = 0).
+   puzzle relation in the algebra's own constants: 1/c3^2 = kappa^2 b1/h1 ; with the Jacobi condition c3 h1 = 0 the solutions (all three nonzero) are: []
+PASS B5 the relation a0^2 = kappa^2 c^2 (G rho) written with a0 = 1/c3, c^2 = 1/h1 and G rho -> b1 (the only structure constant of dimension T^-2) has NO solution with c3, h1, b1 all nonzero once Jacobi's c3 h1 = 0 is imposed: it cannot be a relation among the structure constants of any algebra in the class
+   also dimensionally: the rate^2 b1 has the dimensions of G rho (T^-2) but the algebra does not say WHICH density: identifying b1 with G rho_Lambda (or 8 pi G rho_Lambda = Lambda) is the Newton-Hooke 'Lambda' reading, an assumption
+
+C: integer N required by the puzzle for a reduced constant X/omega^2 = N, with omega = xi * a0 (c = 1); Lambda = 32 pi a0^2:
+   X = Lambda                   N = 32*pi   {'omega = a0': 100.531, 'omega = a0/2': 402.124, 'omega = 2 a0': 25.1327}
+   X = Lambda/3 = H^2           N = 32*pi/3   {'omega = a0': 33.5103, 'omega = a0/2': 134.041, 'omega = 2 a0': 8.37758}
+   X = 4 pi G rho = Lambda/2    N = 16*pi   {'omega = a0': 50.2655, 'omega = a0/2': 201.062, 'omega = 2 a0': 12.5664}
+   X = 8 pi G rho/3 = H^2       N = 32*pi/3   {'omega = a0': 33.5103, 'omega = a0/2': 134.041, 'omega = 2 a0': 8.37758}
+   X = G rho = Lambda/(8 pi)    N = 4   {'omega = a0': 4.00000, 'omega = a0/2': 16.0000, 'omega = 2 a0': 1.00000}
+PASS C1 for every convention that contains Einstein's 8 pi (Lambda, H^2, 4 pi G rho) the required N is a nonzero rational multiple of pi (transcendental): NOT an integer, for every algebraic xi
+PASS C2 only the pi-free normalisation X = G rho_Lambda gives an integer, N = 4 (at omega = a0, z = 2/N = 1/2): this is the SAME statement as G rho_Lambda = 4 a0^2, not evidence for it
+   Caveats stated plainly: (i) the normalisation of the 'reduced cosmological constant' in the source (arXiv:1104.1502, abstract and Sections 1, 5 opened) was not verified; the table lists what each convention would need.
+   (ii) in the Galilean algebra omega = a0 is dimensionally impossible (a0 is L/T^2, omega is 1/T): it needs a velocity, i.e. c, which is not in the algebra (c3 h1 = 0).
+PASS C3 dimensional check of (ii): a0/omega has dimensions L/T (a velocity), so 'omega = xi a0' in the c=1 statement silently inserts c
+   near-integer remark: 32 pi = 100.531; every real number in [50,150] is within 0.5 of an integer, so 'N = 100 or 101 nearly works' has no content
+
+D: dS4 = stab of a unit timelike vector in R^{2,4}.  (dim stab v1, dim stab v2, dim of the intersection, |(v1.v2)|):
+   rot 0.0298 (10, 10, 6, 0.9995560128579875)
+   rot 0.1727 (10, 10, 6, 0.9851243826677893)
+   rot 0.5000 (10, 10, 6, 0.8775825618903728)
+   rot 1.0000 (10, 10, 6, 0.5403023058681398)
+   rot 2.5000 (10, 10, 6, -0.8011436155469337)
+   boost 0.3  (10, 10, 6, 1.0453385141288605)
+   boost 1.0  (10, 10, 6, 1.5430806348152437)
+   boost 2.0  (10, 10, 6, 3.7621956910836314)
+PASS D1 the stabiliser of a unit timelike vector in R^{2,4} is 10-dimensional (de Sitter algebra so(1,4)); two such, at ANY generic relative angle (compact or hyperbolic, 8 values incl. |v1.v2| = 0.9996 and 0.985), meet in a 6-dimensional SEMISIMPLE subalgebra (Killing rank 6, 6): the relative modulus is a continuous parameter that no incidence/dimension count selects
+   degenerate pair (v2 = v1 + null, orthogonal): dim of intersection = 6, Killing rank = 3
+PASS D2 CONTROL: a degenerate pair (Gram determinant 0) also has dimension 6 but a DEGENERATE Killing form (rank 3 != 6: it is iso(3), not semisimple): the invariant used does detect special positions; they sit at the boundary |v1.v2| = 1, not at generic values
+
+16/16 checks pass

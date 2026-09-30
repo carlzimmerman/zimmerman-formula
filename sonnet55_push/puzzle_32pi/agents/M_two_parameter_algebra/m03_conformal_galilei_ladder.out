@@ -1,0 +1,32 @@
+l = 1/2  N = 1  z = 2   dim = 12   closed under [,] : True
+l = 1  N = 2  z = 1.0   dim = 15   closed under [,] : True
+l = 3/2  N = 3  z = 2/3   dim = 18   closed under [,] : True
+l = 2  N = 4  z = 0.5   dim = 21   closed under [,] : True
+PASS A1 closure: cg_l(3) closes for l = 1/2, 1, 3/2, 2 with dimensions 12, 15, 18, 21
+PASS A2 dimension of l = 1 equals dim so(4,2) = 15 (the Galilean conformal algebra is a contraction of the relativistic conformal algebra, same dimension)
+PASS A3 MUTATION: C with the wrong coefficient (3/2 instead of 2l = 1 at l=1/2) does not close
+PASS A4 MUTATION: non-integer 2l (l = 1/3 with a truncated multiplet n=0..1) does not close: finite-dimensional cg_l needs 2l = N integer
+PASS B1 sl(2) relations [D,H] = -H, [C,H] = -2D, [D,C] = C hold at every level
+PASS B2 ad_D eigenvalue on P^(n) is n - l at every level: the weights are -l..l in integer steps
+l = 1/2  elliptic H + w^2 C :  eigenvalues of ad on the multiplet = [-I*w, I*w]
+l = 1/2  hyperbolic H - w^2 C :  eigenvalues of ad on the multiplet = [-w, w]
+l = 1  elliptic H + w^2 C :  eigenvalues of ad on the multiplet = [-2*I*w, 0, 2*I*w]
+l = 1  hyperbolic H - w^2 C :  eigenvalues of ad on the multiplet = [-2*w, 0, 2*w]
+l = 3/2  elliptic H + w^2 C :  eigenvalues of ad on the multiplet = [-3*I*w, -I*w, I*w, 3*I*w]
+l = 3/2  hyperbolic H - w^2 C :  eigenvalues of ad on the multiplet = [-3*w, -w, w, 3*w]
+l = 2  elliptic H + w^2 C :  eigenvalues of ad on the multiplet = [-4*I*w, -2*I*w, 0, 2*I*w, 4*I*w]
+l = 2  hyperbolic H - w^2 C :  eigenvalues of ad on the multiplet = [-4*w, -2*w, 0, 2*w, 4*w]
+PASS C1 spectrum of ad(H + w^2 C) [oscillating] on the multiplet is 2 m w i, m = -l..l ; of ad(H - w^2 C) [expanding] is 2 m w
+PASS C2 the top frequency of the multiplet is N w = 2l w : an INTEGER multiple of the sl(2) unit w  (N = 1, 2, 3, 4)
+l = 1/2, e = H + w^2 C:   [e,P0] = {'P1_1': -w**2} ;  [e,P1] = {'P0_1': 1}
+PASS C3a NH (a2 = 1, b1 = -w**2): b1 = - w^2 with a2 = 1 : oscillating Newton-Hooke of frequency w
+l = 1/2, e = H - w^2 C:   [e,P0] = {'P1_1': w**2} ;  [e,P1] = {'P0_1': 1}
+PASS C3b NH (a2 = 1, b1 = w**2): b1 = + w^2 with a2 = 1 : expanding Newton-Hooke of frequency w
+PASS D1 [D, H + w^2 C] = -H + w^2 C : e^{s ad D}(H + w^2 C) = e^{-s} (H + w^2 e^{2s} C): every w is conjugate to every other up to an overall scale of the generator
+D: e^{s ad D}(H + w0^2 C) has components [exp(-s), w0**2*exp(s)]
+PASS D2 computed from the structure constants: e^{s ad D}(H + w^2 C) = e^{-s} (H + wp^2 C) with wp = w e^{s}: the whole family of frequencies is ONE D-orbit (up to an overall factor e^{-s} on the generator), so the magnitude w is a unit; the spectrum of the conjugated element is unchanged (conjugation) while N is not touched
+E: tr(X Y) for two hyperbolic unit elements related by a rapidity theta: 2*cosh(2*theta)
+PASS E1 tr(XY) = 2 cosh(2 theta): the relative position of two hyperbolic (dilatation-type) elements of sl(2,R) is a continuous invariant in [2, inf): not fixed by the algebra
+PASS E2 control: theta = 0 gives tr(XY) = 2 = tr(X^2) (same element); mutation: tr(XY) can never be < 2 for hyperbolic pairs of equal norm (it is 2 cosh)
+
+14/14 checks pass

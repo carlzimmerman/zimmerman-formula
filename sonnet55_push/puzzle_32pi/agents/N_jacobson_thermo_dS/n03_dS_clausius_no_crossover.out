@@ -1,0 +1,42 @@
+C1  Tolman cancellation
+  [OK] C1a T_loc = T_H / N
+  [OK] C1b Delta S = E_K/T_H = m/T_loc = 2 pi L m N   (the a-dependence cancels between energy and temperature)
+  [OK] CONTROL (wrong claim must be rejected): C1c Delta S = m/T_H (rest energy over the horizon temperature, i.e. ignoring the lapse)
+C2  exact first law of the (S)dS horizons, S = A/4G, T = kappa/2pi (Killing vector d_t, f-normalisation: M is its energy)
+  [OK] C2a f(r_c) = 0  <=>  M = r_c (1 - H^2 r_c^2)/(2G)
+  [OK] C2b  dM/dr_c = (f'/4pi) dS/dr_c   (signed: T = f'(r_c)/4pi;  f'>0 black hole, f'<0 cosmological => dM = -T_c dS_c)
+  [OK] C2c small-M cosmological horizon: dS_c/dM = -2 pi L = -1/T_H at M -> 0 (r_c -> L)
+  [OK] C2d flat limit H -> 0: Schwarzschild dM = T dS with T = 1/(8 pi G M), S = 4 pi G M^2
+  [OK] CONTROL (wrong claim must be rejected): C2e S = A/(2G) (wrong quarter):  dM = T dS
+  [OK] CONTROL (wrong claim must be rejected): C2f T = kappa/pi (wrong Unruh 2 pi): dM = T dS
+C3  entropic force in exact de Sitter with the exact temperature
+  [OK] C3a F = T_loc dS_c/dl = m a   for every r0 (every a/H)
+  [OK] C3b in angle form: F = m kappa_obs sin(theta) = m a
+  [OK] C3c naive F = 2 pi m T_loc = m sqrt(a^2+H^2) = m a / sin(theta) (>= m H even for a = 0)
+  [OK] CONTROL (wrong claim must be rejected): C3d naive F equals m a
+  [OK] C3e ratio F_naive/F = sqrt(1 + (H/a)^2) -> 1 for a >> H, -> infinity for a << H (a geodesic observer would feel a force m H)
+C4  same in Schwarzschild-de Sitter (Tolman with the cosmological-horizon temperature)
+  [OK] C4a T_loc dS/dl = m * (free-fall proper acceleration, = -f'/(2 sqrt f))
+  [OK] C4b = m (H^2 r - GM/r^2)/sqrt(f): Newton + cosmological repulsion, no other term
+  [OK] CONTROL (wrong claim must be rejected): C4c T_loc dS/dl = m G M/r^2 only (drop the cosmological piece)
+C5  Jacobson chain with separate normalisations for the heat (kappa_h) and the temperature (kappa_T)
+  [OK] C5a R_kk = 8 pi G (kappa_h/kappa_T) T_kk
+  [OK] C5b kappa_obs = a/sin(theta) in these units
+  [OK] C5c consistent bookkeeping kappa_h = kappa_T = kappa_a: G_eff/G = 1 for ALL theta
+  [OK] C5c consistent bookkeeping kappa_h = kappa_T = kappa_kobs: G_eff/G = 1 for ALL theta
+  [OK] C5c consistent bookkeeping kappa_h = kappa_T = kappa_H: G_eff/G = 1 for ALL theta
+     mismatched pairs (heat normalisation, temperature normalisation): G_eff/G as a function of theta, limits at a >> H (theta->pi/2) and a << H (theta->0)
+     (   a,kobs): G_eff/G =       sin(theta)   theta->pi/2:   1   theta->0:   0   Newton at a>>H: True   enhanced at a<<H: False
+     (   a,   H): G_eff/G =       tan(theta)   theta->pi/2:  oo   theta->0:   0   Newton at a>>H: False   enhanced at a<<H: False
+     (kobs,   a): G_eff/G =     1/sin(theta)   theta->pi/2:   1   theta->0:  oo   Newton at a>>H: True   enhanced at a<<H: True
+     (kobs,   H): G_eff/G =     1/cos(theta)   theta->pi/2:  oo   theta->0:   1   Newton at a>>H: False   enhanced at a<<H: False
+     (   H,   a): G_eff/G =     1/tan(theta)   theta->pi/2:   0   theta->0:  oo   Newton at a>>H: False   enhanced at a<<H: True
+     (   H,kobs): G_eff/G =       cos(theta)   theta->pi/2:   0   theta->0:   1   Newton at a>>H: False   enhanced at a<<H: False
+  [OK] C5d exactly ONE mismatched pair has both a Newtonian limit (G_eff -> G at a >> H) and an enhancement at a << H: (kobs, a)
+  [OK] C5e that pair is G_eff/G = 1/sin(theta) = sqrt(1 + H^2/a^2) (heat with the FULL kappa_obs, temperature with the acceleration part only, T_U = a/2pi)
+  [OK] C5f the pair (a, kobs) is the opposite: G_eff/G = sin(theta) < 1, weaker gravity at low a (wrong direction for MOND)
+  [OK] C5g (H, a): G_eff/G = cot(theta): a = g_N cot(theta) => a^2 = g_N H for ALL g_N: no Newtonian regime at all
+  [OK] CONTROL (wrong claim must be rejected): C5h claim 'every mismatched pair has a Newtonian limit'
+     NOTE: the selection in C5d is by OUTCOME (Newton limit + MOND direction). Nothing in the Clausius chain selects the pair; it is an INPUT.
+
+n03: 27/27 checks passed

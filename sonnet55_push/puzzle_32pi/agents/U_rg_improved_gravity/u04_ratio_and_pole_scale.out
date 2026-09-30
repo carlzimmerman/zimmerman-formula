@@ -1,0 +1,75 @@
+====================================================================================================
+PART A  where does the EH flow terminate?  (Phi's diverge when min_z [z + R0(z)] + w = 0, w = -2 lambda)
+====================================================================================================
+  shape                    min_z (z+R0)  lambda_pole = min/2  monotone P?
+  exp s=1                      1.000000             0.500000  True
+  exp s=3                      0.915215             0.457607  False
+  z^2/(e^(z^2)-1)              1.000000             0.500000  True
+  optimised                    1.000000             0.500000  True
+  exp(-z)                      1.000000             0.500000  True
+  rational 1/(1+z)^2           0.889882             0.444941  False
+  [OK] every regulator with monotone P = z + R0 (the standard admissibility, R0'(0) >= -1) has its pole at lambda = 1/2 exactly
+  [OK] CONTROL: regulators with non-monotone P (exp s=3 has R0'(0) = -3/2; 1/(1+z)^2) have their pole strictly below 1/2 (0.458, 0.445): the '1/2' is a property of the normalisation R0(0)=1 with monotone P, not of gravity
+  optimised cutoff Phi^2_2(-2 lambda) at lambda = 1/2 - (0.1, 0.01, 0.001): ['12.500', '1250.000', '125000.000']  (exact 1/(2(2 delta)^2))
+  [OK] optimised cutoff: Phi^2_2 blows up like 1/(1-2 lambda)^2 as lambda -> 1/2
+  [OK] MUTATION: R0(0) = a = 1.7 puts the pole at lambda = a/2 = 0.85: the number 1/2 is a normalisation convention (k -> sqrt(a) k), degenerate with zeta
+  Consequence: k_term^2 = 2 Lambda holds in the convention R_k(0) = k^2; in another convention k_term^2 = 2 Lambda/a.  Only the product (convention) x zeta below is meaningful.
+
+====================================================================================================
+PART B  R(X, zeta) = G rho_Lambda / a0^2 with a0 = c^2 k_X/zeta
+====================================================================================================
+  UV-fixed-point lambda* read from u01_eh_fixed_points.out (9 shapes): {'exp s=1': 0.359, 'exp s=2': 0.2604, 'exp s=3': 0.2087, 'exp s=5': 0.1536, 'z^b/(e^(z^b)-1), b=2': 0.3139, 'z^b/(e^(z^b)-1), b=4': 0.2919, 'optimised (1-z)theta(1-z)': 0.1932, 'rational 1/(1+z)^2': 0.2711, 'exp(-z)': 0.2854}
+  [OK] u01 output parsed: 9 shapes
+
+  X1 (UV fixed point, scheme spread lambda* in [0.154, 0.359]):  R = lambda* zeta^2/(8 pi)
+         zeta      R min      R max
+       1.0000     0.0061     0.0143
+       2.0000     0.0244     0.0571
+       3.1416     0.0603     0.1410
+       6.2832     0.2413     0.5640
+      12.5664     0.9652     2.2559
+     zeta_req = sqrt(32 pi/lambda*) in [16.73, 25.58]
+
+  X2 (EH termination scale, Lambda = k_term^2/2):  R = zeta^2/(16 pi)
+     zeta =   1.0000:  R =   0.0199
+     zeta =   2.0000:  R =   0.0796
+     zeta =   3.1416:  R =   0.1963
+     zeta =   6.2832:  R =   0.7854
+     zeta =  12.5664:  R =   3.1416
+     zeta_req = sqrt(64 pi) = 8 sqrt(pi) = 14.1796
+  [OK] X2: zeta_req = 8 sqrt(pi) = 14.18
+
+  X3 (Bonanno-Reuter fixed-point era, w = 0, k -> 1/t, Lambda t^2 = 8/3):  R = (8/3) zeta^2/(8 pi) = zeta^2/(3 pi)
+     zeta =   1.0000:  R =   0.1061
+     zeta =   2.0000:  R =   0.4244
+     zeta =   3.1416:  R =   1.0472
+     zeta =   6.2832:  R =   4.1888
+     zeta =  12.5664:  R =  16.7552
+     zeta_req = sqrt(12 pi) = 6.1400   (2 pi = 6.2832; ratio 0.9772)
+  [OK] X3: zeta_req = sqrt(12 pi) = 6.14
+     NB: a0 = c^2/(2 pi t) with the cosmic time t (Milgrom's 2 pi applied to 1/t, not to H = 4/(3t)) gives R = 4 pi/3 = 4.19, 4.7% above 4.  Reported as a near-miss, not a result (see decoys).
+
+====================================================================================================
+PART C  pre-declared menu hit test and decoy base rate
+====================================================================================================
+  hits of the true target R = 4 within 5%: [('X3 cosmic', 6.283185307179586)]
+  base rate: fraction of decoy targets in [2, 8] (log-uniform) hit within 5% by the same menu: 0.240
+  [OK] the menu can express 4 within 5% (X3 with zeta = 2 pi, 4.7%): reported honestly as a near-miss
+  [OK] but the base rate of random targets being 'hit' by the same menu is >= 20% (uninformative)
+  [OK] NO (X, zeta) in the menu gives exactly R = 4
+
+====================================================================================================
+PART D  what the RG lane would have to supply, in one line
+====================================================================================================
+  G rho_Lambda = 4 a0^2  <=>  zeta^2 lambda_X = 32 pi.   Required: X2: zeta = 8 sqrt(pi); X3: zeta = sqrt(12 pi); X1: zeta in [16.7, 25.6] (scheme dependent).
+  Every RG paper leaves the cutoff-identification constant free (xi, kappa, zeta); where Bianchi consistency fixes it (X3) the fixed quantity is Lambda t^2, not an acceleration.
+
+====================================================================================================
+PART E  a warning against a decoy: the '32 pi^2' in the Shapiro-Sola-Stefancic running of rho_Lambda
+====================================================================================================
+  SSS: rho_Lambda(H) = C0 + C1 H^2, C1 G = 3 nu/(8 pi); with their 'conservative' nu_0 = 1/(12 pi):  C1 G = 1/(32*pi**2)
+  [OK] 3 nu_0/(8 pi) = 1/(32 pi^2)  (the standard one-loop factor 1/(2 (4 pi)^2), NOT the puzzle's 32 pi^2)
+  It would give G rho_Lambda^run = H^2/(32 pi^2) => 'a0' = (1/2) sqrt(.) = H/(8 sqrt(2) pi) = 0.0281 H, vs needed ~0.12-0.17 H: no relation.  nu is free (nu ~ 1e-6 in their galaxy section vs 1e-2 in cosmology).
+  [OK] that 'a0' is >3x below the framework's a0/(cH) = 0.14 (0.028 vs 0.145 at Omega_L = 0.7)
+
+RESULT: 12 checks passed, 0 failed

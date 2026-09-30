@@ -1,0 +1,30 @@
+PASS A1 Weyl^2 = (r^2 B'' - 2 r B' + 2B - 2)^2 / (3 r^4) for generic B(r)
+PASS A2a Bach tensor is diagonal for generic B(r)
+PASS A2b Bach tensor is traceless for generic B(r)
+PASS A2c b^theta_theta = b^phi_phi (spherical symmetry)
+PASS A3 b^t_t - b^r_r = -(B/6)(B'''' + 4B'''/r)  [= -(B/6)(rB)''''/r : the nabla^4 B of the MK literature]
+PASS A3b the operator identity B'''' + 4B'''/r = (rB)''''/r
+PASS A4a control PASS: Schwarzschild B = 1-2M/r has Bach = 0
+PASS A4b control PASS: de Sitter B = 1-k r^2 has Bach = 0
+PASS A4c control PASS: Schwarzschild-de Sitter B = 1-2M/r-k r^2 has Bach = 0
+PASS A4d control PASS: Minkowski B = 1 has Bach = 0
+PASS A4e control FAIL (must be detected): Reissner-Nordstrom B = 1-2M/r+Q^2/r^2 has Bach != 0
+PASS A4f control FAIL (must be detected): B = 1 + r^3 has Bach != 0
+PASS A5 Weyl^2 of Schwarzschild = 48 M^2/r^6 (equals its Kretschmann scalar)
+   dsolve((rB)'''' = 0): Eq(B(r), C1 + C2/r + C3*r + C4*r**2)
+PASS B1 (rB)'''' = 0 has a four-constant general solution, and r*B is a cubic polynomial in r (so B = c0/r + c1 + c2 r + c3 r^2)
+PASS B1b control: an r^3 term in B violates (rB)'''' = 0, so it is outside the family
+   Bach components on B = w + v/r + u r - k r^2: [-(3*u*v - w**2 + 1)/(6*r**4), -(3*u*v - w**2 + 1)/(6*r**4), (3*u*v - w**2 + 1)/(6*r**4), (3*u*v - w**2 + 1)/(6*r**4)]
+PASS B2 every Bach component = -+(1 + 3uv - w^2)/(6 r^4): the cubic family solves the full nonlinear Bach equation iff w^2 = 1 + 3uv
+PASS B3 the MK parametrisation w = 1-3 beta gamma, v = -beta(2-3 beta gamma), u = gamma gives Bach = 0 identically (3 free constants beta, gamma, k)
+PASS B3b the constraint is w^2 = 1+3uv in the MK parametrisation (polynomial identity in beta, gamma)
+PASS B4 MUTATION rejected: w = 1 - 2 beta gamma does not solve Bach = 0
+PASS B4 MUTATION rejected: v = -beta(2 - 2 beta gamma) does not solve Bach = 0
+PASS B4 MUTATION rejected: u = -gamma with w, v unchanged does not solve Bach = 0
+PASS B4 MUTATION rejected: extra m r^3 term does not solve Bach = 0
+PASS B4 MUTATION rejected: v -> +beta(2-3 beta gamma) does not solve Bach = 0
+PASS B5a beta = 0: B = 1 + gamma r - k r^2 solves Bach = 0 for every gamma, k
+PASS B5b gamma = 0: SdS with M = beta solves Bach = 0
+PASS B6 parameter count: the general solution has 4 - 1 = 3 free constants (w,v,u,k with one algebraic constraint)
+
+PASS 26 / 26

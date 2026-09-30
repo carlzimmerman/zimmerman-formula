@@ -1,0 +1,70 @@
+== A. reproduce the numbers quoted in the papers from the quoted inputs
+   gamma0 c^2/2 = 1.3751e-09 cm/s^2 = 1.3751e-11 m/s^2   (paper: 1.4e-9 cm/s^2)
+PASS A1 gamma0 c^2/2 reproduces the quoted 1.4e-9 cm/s^2 within 2%
+PASS A1b MUTATION: gamma0 c^2 (no 1/2) does NOT reproduce it
+   K = -(gamma0/2)^2 = -2.341e-60 cm^-2   (paper: -2.3e-60)
+PASS A2 K = -(gamma0/2)^2 reproduces the quoted -2.3e-60 cm^-2 within 2%
+   4 gamma0 c^2 = 1.1001e-08 cm/s^2   (paper: 1.1e-8)
+PASS A3 4 gamma0 c^2 reproduces the quoted 1.1e-8 cm/s^2 within 1%
+   N*_crit = gamma0/gamma* = 5.646e+10   (paper: 5.65e10)
+PASS A4 N*_crit = gamma0/gamma* reproduces the quoted 5.65e10 within 1%
+   watershed gamma0/kappa = 3.208e+23 cm   (paper: 3.21e23)
+PASS A5 gamma0/kappa reproduces the quoted 3.21e23 cm within 1%
+   c H/2 at H = 72 = 3.498e-08 cm/s^2   (paper: 3.5e-8)
+PASS A6 cH/2 at H = 72 km/s/Mpc reproduces the quoted 3.5e-8 cm/s^2 within 2%
+   kappa^-1/2 = 3.238e+26 cm = 104.9 Mpc  (paper: ~(100 Mpc)^-2)
+PASS A7 kappa = 9.54e-54 cm^-2 is (104 Mpc)^-2, consistent with the quoted (100 Mpc)^-2
+
+== B. the CG acceleration scale gamma0 c^2/2 against the puzzle a0
+   framework  c H_L / Z = 9.3624e-11 m/s^2 ;  c H0 / Z = 1.1312e-10 ;  SPARC a0_hat = 1.0766e-10 +- 5.4%
+   gamma0 c^2/2 = 1.3751e-11 m/s^2 : ratio to SPARC 0.128 (factor 7.8 low), to c H_L/Z 0.147, to c H0/Z 0.122
+PASS B1 gamma0 c^2/2 is more than 5 sigma below the SPARC a0_hat (statistical error only)
+PASS B1b it is a factor 6-9 below the SPARC a0 and the framework values (an order of magnitude, minus a bit)
+   the CG paper's own mapping a0(MOND) = 4 gamma0 c^2 = 1.1001e-10 m/s^2, ratio to SPARC 1.022
+PASS B2 the factor '4' (footnote 81 of astro-ph/0505266) closes the gap to SPARC to within 5 percent: 4 gamma0 c^2 / a0_hat = 1.022
+   gamma needed for a0 = c H_L/Z: 2 a0/c^2 = 2.083e-29 cm^-1  = 6.81 x gamma0
+
+== C. the crossing-point a0 is galaxy dependent: a0_eff(N*) = 2 c^2 (gamma0 + gamma* N*)
+   (generalises footnote 81: g_N = g_lin = c^2 gamma_tot/2 at the crossing; MOND sqrt(a0 g_N) = c^2 gamma_tot  =>  a0 = 2 c^2 gamma_tot)
+PASS C1 at N* = N*_crit the generalised formula gives 4 gamma0 c^2 (the CG paper's value)
+   N* = 1e+08 : a0_eff = 5.510e-11 m/s^2  (x 0.51 of SPARC a0_hat)
+   N* = 1e+09 : a0_eff = 5.598e-11 m/s^2  (x 0.52 of SPARC a0_hat)
+   N* = 1e+10 : a0_eff = 6.475e-11 m/s^2  (x 0.60 of SPARC a0_hat)
+   N* = 1e+11 : a0_eff = 1.524e-10 m/s^2  (x 1.42 of SPARC a0_hat)
+   N* = 1e+12 : a0_eff = 1.029e-09 m/s^2  (x 9.56 of SPARC a0_hat)
+PASS C2 a0_eff varies by more than a factor 10 between N* = 1e9 and N* = 1e12 (no universal acceleration)
+PASS C2b CONTROL: a universal a0 (constant) would give ratio 1
+
+== D. is gamma0 cosmologically consistent?  gamma0/2 = sqrt(-K) = (H/c) sqrt(Omega_k)  (the CG papers' identification)
+   H0 = 67.4: Omega_k implied by the galactic gamma0 = 4.410e-04 ; Omega_k(Hubble plot, footnote 97) = 0.63 -> gamma0(cosmic) = 1.157e-28 cm^-1 = 37.8 x galactic
+   H0 = 72.0: Omega_k implied by the galactic gamma0 = 3.864e-04 ; Omega_k(Hubble plot, footnote 97) = 0.63 -> gamma0(cosmic) = 1.236e-28 cm^-1 = 40.4 x galactic
+PASS D1 the galactic gamma0 implies Omega_k ~ 4e-4 (H0 = 72), not 0.63: the two determinations of the same spatial curvature differ by > 1000 in |K|
+PASS D1b the same conclusion holds for H0 = 67.4 (ratio 1429)
+PASS D1c MUTATION: if Omega_k were the galactic value the ratio would be 1
+   puzzle: (a0/H_Lambda)^2 = 3/(32 pi) = 0.02984  (Omega_k/Omega_Lambda-bar in the CG cosmology of t03 E)
+   (i)  Hubble-plot values: Omega_k/Omega_Lambda-bar = 1.703  -> 57 x the puzzle value
+   (ii) galactic gamma0 with H_Lambda^2 = (H0/c)^2 Omega_Lambda: (gamma0/2)^2/H_L^2 = 6.437e-04 -> 0.022 x the puzzle value
+PASS D2 neither reading gives the puzzle ratio: (i) is 57x too big, (ii) is 46x too small (my pre-run guess of 76x for (ii) was wrong: it used H0 instead of H_Lambda)
+
+== E. the quadratic coefficient kappa against H^2, Lambda/3 and the puzzle relation k' = (a0)^2 + k
+   (H0/c)^2 = 5.309e-57 cm^-2 ; Lambda/3 = (H0/c)^2 Omega_L = 3.636e-57 cm^-2 ; kappa = 9.540e-54 cm^-2
+   kappa/(H0/c)^2 = 1797 ; kappa/(Lambda/3) = 2623
+PASS E1 kappa exceeds Lambda/3 by a factor > 2000 (the fitted quadratic term is not the cosmological Lambda)
+   if the fitted kappa were the frame invariant k' = (gamma0/2)^2 + k: (a0)^2/k' = 2.454e-07 vs puzzle 0.02984
+PASS E2 (gamma0/2)^2 / k' with k' = kappa + (gamma0/2)^2 is ~2.5e-7, i.e. 1e5 below the puzzle 3/(32 pi)
+   the puzzle needs k/a0^2 = 32 pi/3 - 1 = 32.5103; the CG galactic fit has kappa/(gamma0/2)^2 = 4.075e+06
+PASS E3 kappa/(gamma0/2)^2 = 4.08e+06 is 1.3e+05 times the puzzle's 32.51
+   G rho_Lambda/a0^2 with a0 = gamma0/2 and the observed Lambda: (3/8pi) (Lambda/3)/(gamma0/2)^2 = 185.4 (puzzle: 4)
+PASS E4 that ratio is ~2e2, not 4 (a factor ~50; the CG a0 is not tuned to the observed Lambda)
+   signs: k' = -2 lambda phi0^2 > 0 needs lambda < 0; G_eff = -3/(4 pi phi0^2) < 0; fitted kappa > 0 (repulsive, de Sitter-like: B has -kappa r^2)
+PASS E5 sign bookkeeping: G_eff < 0 and rho_V = lambda phi0^4 < 0 (lambda < 0) give G_eff rho_V > 0
+
+== F. what curvature the SPARC a0 would need in the CG identification a0 = c H sqrt(Omega_k)
+   a0_hat = c H0 sqrt(Omega_k)  =>  Omega_k = (a0_hat/(c H0))^2 = 0.0270  (H0 = 67.4)
+PASS F1 the SPARC a0 corresponds to Omega_k = 0.027 in that identification: between the galactic-gamma0 value (4e-4) and the Hubble-plot value (0.63)
+   Hubble-plot CG cosmology: a0/(c H_dS) = sqrt(Omega_k/Omega_Lambda-bar) = 1.305 vs puzzle 1/Z = 0.1727  (ratio 7.6)
+PASS F2 in the Hubble-plot CG cosmology a0/(c H_dS) = 1.30, i.e. 7.5 times the puzzle's 1/Z
+   epoch u = atanh(sqrt(Omega_Lambda-bar)) = 0.706 for Omega_Lambda-bar = 0.37; the puzzle needs u = asinh(Z) = 2.4565 (Omega_Lambda-bar = 0.9710)
+PASS F3 the puzzle epoch u = asinh(Z) = 2.46 is far from the Hubble-plot epoch u = 0.70 of the same cosmology
+
+PASS 26 / 26

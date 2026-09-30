@@ -1,0 +1,42 @@
+PART A  solve the coupled system with the fixed-point running
+  rho(t) from Bianchi (2.1c) = lambda_star*xi**4/(8*pi*g_star*t**4)
+  [OK] matter conservation (2.1b) holds with alpha = 4/(3(1+w))
+  Friedmann residual (2.1a) = 2*(-3*lambda_star*xi**2*(w + 1)**2 + 8)/(9*t**2*(w + 1)**2)
+  [OK] Friedmann holds iff xi^2 = 8/(3(1+w)^2 lambda*)  (BR 4.1)
+  [OK] CONTROL (i): with xi^2 = 9/(3(1+w)^2 lambda*) (mutated) the Friedmann residual is NOT zero
+  G(t)      = 3*g_star*lambda_star*t**2*(w + 1)**2/8
+  Lambda(t) = 8/(3*t**2*(w + 1)**2)
+  rho(t)    = 8/(9*pi*g_star*lambda_star*t**4*(w + 1)**4)
+  [OK] BR (4.2c): G = (3/8)(1+w)^2 g* lambda* t^2
+  [OK] BR (4.2d): Lambda = 8/(3(1+w)^2 t^2)
+  [OK] BR (4.2b): rho = 8/(9 pi (1+w)^4 g* lambda* t^4)
+  [OK] rho_Lambda = rho  (Omega_M = Omega_Lambda = 1/2)
+  [OK] Omega_Lambda = 1/2 for every w
+  [OK] BR (4.10): rho G t^2 = 1/(3 pi (1+w)^2)
+
+PART B  what enters the physical vacuum quantities
+  G rho_Lambda = 1/(3*pi*t**2*(w + 1)**2)  ; Lambda t^2 = 8/(3*(w + 1)**2)
+  [OK] G(t) rho_Lambda(t) contains neither g* nor lambda*
+  [OK] Lambda(t) contains neither g* nor lambda*
+  [OK] G(t) depends on g* and lambda* ONLY through the product g* lambda*  (G/(g* lambda*) has neither)
+  [OK] SYMBOLIC IDENTITY for ANY RG running: G(k) rho_Lambda(k) = Lambda(k)/(8 pi); at the fixed point = lambda* k^2/(8 pi), g* cancels
+
+PART C  the only fixed-point-fixed ratio: G rho_Lambda / H^2
+  G rho_Lambda / H^2 = 3/(16*pi)
+  [OK] G rho_Lambda/H^2 = 3/(16 pi) for every w
+  [OK] CONTROL (iii): pure de Sitter (Lambda const) has G rho_Lambda/H^2 = 3/(8 pi), Omega_Lambda = 1 -- twice the fixed-point value
+  [OK] CONTROL (ii): the Friedmann residual is nonzero for ANY xi other than the consistent one (xi -> 1.1 xi)
+
+PART D  the RG scale k = xi/t is NOT fixed: k/H depends on lambda*
+  k/H = sqrt(6)/(2*sqrt(lambda_star))   ; at w=0: sqrt(6)/(2*sqrt(lambda_star))
+  [OK] k/H = sqrt(3/(2 lambda*)) at w = 0
+  [OK] Lambda = lambda* k^2 = (3/2) H^2 at w = 0, whatever lambda* is
+
+PART E  IF the puzzle relation a0 = (c/2) sqrt(G rho_Lambda) is imposed on the running rho_Lambda (an input, not a result)
+  a0/(cH) = sqrt(3)/(8*sqrt(pi))  =  0.122150627975730
+  [OK] a0/(cH) = sqrt(3/(64 pi)) = 1/(sqrt(2) Z),  Z = sqrt(32 pi/3) = 5.7888
+  Z = 5.7888;  sqrt(2) Z = 8.1866;  framework with Omega_Lambda = 0.7: a0/(cH0) = sqrt(0.7)/Z = 0.1445; fixed-point cosmology (Omega_Lambda = 1/2): 0.1222; ratio 0.845
+  [OK] a0(t) ~ H(t) ~ 1/t in the fixed-point era (rho_Lambda ~ rho_matter ~ (1+z)^3): NOT a flat a0(z)
+  (framework's distinctive law is FLAT a0(z); the fixed-point cosmology would give a0 ~ H(z) if a0 tracks its running vacuum density -- conditional on the imposed relation.)
+
+RESULT: 20 checks passed, 0 failed

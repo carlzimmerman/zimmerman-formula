@@ -1,0 +1,76 @@
+====================================================================================================
+PART A  dimensions and hbar
+====================================================================================================
+  [OK] g = hbar G k^2/c^3 is dimensionless
+  [OK] MUTATION: hbar G k^2/c^2 is NOT dimensionless (checker has power)
+  [OK] G(k) = g* c^3/(hbar k^2) has the dimension of G
+  naive force  a = G(k=xi/r) M/r^2 = M*c**3*g_star/(hbar*xi**2)
+  [OK] naive force is an acceleration
+  [OK] naive force is independent of r
+  [OK] naive force is linear in M and proportional to 1/hbar
+  improved-action extra acceleration = c**5*g_star*r/(G*hbar*xi**2)   (= g* c^2 r/(xi^2 l_Pl^2) with l_Pl^2 = hbar G/c^3)
+  [OK] improved-action extra term is an acceleration, M-independent, linear in r
+  hbar-free requirement  a = c^2 r/L^2  =>  g* = G*hbar*xi**2/(L_c**2*c**3)
+  [OK] g*_needed = xi^2 hbar G/(c^3 L^2) = xi^2 l_Pl^2/L^2  (proportional to hbar)
+  l_Pl = 1.6163e-35 m;  (l_Pl H0/c)^2 = 1.387e-122;  Reuter-Weyer eq (5.25) with xi_hat = 1, z_tr = 1: g*_IR = (9/16)(2^(3/2)) eps = 2.21e-122
+  [OK] the required g*_IR is ~1e-122 (not O(1)): (l_Pl H0/c)^2 in [1e-123, 1e-121]
+  acceleration monomials (free exponents e, f): {a: e + f, b: -2*e - 3*f + 2, d: e/2 + f + 1/2}
+  hbar-free and M-free: {a: 0, b: 2, d: 1/2}
+  [OK] hbar-free, M-free acceleration is UNIQUE: c^2 Lambda^(1/2)  (G^0)
+  [OK] with M allowed (hbar-free): exponent of G equals exponent of M (family c^2 sqrt(Lambda) (G M sqrt(Lambda)/c^2)^e)
+  [OK] hbar enters only through the dimensionless eps = hbar G Lambda/c^3:  f multiplies (a,b,d) by (f, -3f, f)
+  => the RG (which supplies hbar only through g = hbar G k^2/c^3) can change a0 = c^2 sqrt(Lambda) x number only by a number; g*_IR is not that number: it IS eps up to O(1).
+  [OK] IDENTITY (restatement only): 32 pi (a0/a_Pl)^2 = hbar G Lambda/c^3 = g*_IR lambda*_IR
+  a_Pl = 5.561e+51 m/s^2;  32 pi (a0/a_Pl)^2 = 4.68e-122 (a0 = 1.2e-10);  3 Omega_L (l_Pl H0/c)^2 = 2.91e-122 (Omega_L = 0.7)  -- Bonanno-Reuter quote 'O(1e-120)' for g*_IR lambda*_IR and say it is NOT computed
+  [OK] both are ~1e-122: the RG converts the puzzle into a statement about the undetermined IR fixed-point product g*lambda*, nothing more
+  a0/(c^2 sqrt(Lambda)) = 0.126;  eps = hbar G Lambda/c^3 = 2.91e-122;  a0 = c^2 sqrt(Lambda) eps^f (no coefficient) needs f = 0.0074;  allowing an O(1)-to-10 coefficient, |f| < 0.0082
+  [OK] the observed a0 leaves an hbar-dependence exponent |f| < 0.01: it is hbar-free to ~1 part in 10^2 of the exponent (a0 ~ c^2 sqrt(Lambda), not a Planck-suppressed quantity)
+
+====================================================================================================
+PART B  force-law exponents for G(k) = G0 (k_tr/k)^q
+====================================================================================================
+  identification         reading                     dln a/dln r    dln a/dln M
+  k = xi/r               naive  G(k(r)) M/r^2              q - 2              1
+  k = xi/r               improved-action                   q - 1              0
+  k = zeta g_N/c^2       naive  G(k(r)) M/r^2            2*q - 2          1 - q
+  k = zeta g_N/c^2       improved-action                 2*q - 1             -q
+  [OK] RW: k = xi/r, improved action: force exponent q-1 in r, M-independent (their plateau v^2 = q/2, universal, no Tully-Fisher)
+  [OK] RW: q -> 0 limit: v^2 = a r = c^2 q/2 (a r / q -> c^2/2)
+  [OK] RW IR fixed point q = 2, k = xi/r: force ~ r^1 and M-independent (their eq 5.14, linear 'confinement' force)
+  acceleration identification, naive reading: solve (r-exponent, M-exponent) = (-1, 1/2) for q -> [{q: 1/2}]
+  [OK] deep-MOND scaling a ~ sqrt(M)/r arises here ONLY for q = 1/2 (both exponents consistent)
+  q = 1/2, k = zeta g_N/c^2:  a^2 = a0 G M/r^2  with  a0 = c**2*k_tr/zeta
+  [OK] a0 = c^2 k_tr/zeta  (hbar-free: k_tr is a wavenumber, zeta a pure number)
+  [OK] fixed-point exponent q = 2 with this identification: force ~ r^2/M (grows with r, DEcreases with M): not gravity-like
+  acceleration identification, improved-action reading: exponents (r, M) = (2*q - 1, -q)   -> extra force ~ M^(-q): no BTFR either
+  [OK] acceleration identification + improved-action reading: M-exponent is -q (never +1/2 for q > 0)
+  So: a0 = c^2 k_tr/zeta needs THREE inserted ingredients: q = 1/2 (eta_N = -1/2: neither Gaussian (0) nor UV/IR fixed-point (-2)), the identification k ~ g/c^2 (RW: 'critical acceleration, not distance', beyond their scheme), and k_tr, zeta.
+
+====================================================================================================
+PART C  Reuter-Weyer IR fixed point: crossover radius and transition acceleration
+====================================================================================================
+    M [Msun]   r_nc [kpc]   G M/r_nc^2 [m/s^2]        /a0
+       1e+08         57.4            4.227e-15   3.52e-05
+       1e+10        266.5            1.962e-14   1.64e-04
+       1e+11        574.2            4.227e-14   3.52e-04
+       1e+12       1237.2            9.107e-14   7.59e-04
+  d ln a_nc / d ln M = 0.3333  (exact 1/3)
+  [OK] transition acceleration scales as M^(1/3): no universal a0 from the IR fixed point
+  [OK] for M = 1e11 Msun (H0 = 67.4): r_nc ~ 500-600 kpc (Reuter-Weyer quote 560 kpc at H0 = 70)
+  [OK] ... and the transition acceleration is < 1e-3 a0 (they themselves call the hierarchy 2 orders of magnitude too small)
+
+====================================================================================================
+PART D  a 2025 'marginal IR running' proposal (Kumar, arXiv:2509.05246, opened): G(k) = G_N (1 + k*/k), k = 1/r -> q = 1 row of Part B
+====================================================================================================
+    M_bar [Msun]  V0 [km/s]  k* (paper)  pi V0^2/(2GM)  V0^4/(G M) / a0
+       1.010e+12      271.4   2.660e-02      2.664e-02            0.337
+       5.850e+11      210.4   2.760e-02      2.764e-02            0.210
+       3.550e+11      158.9   2.600e-02      2.598e-02            0.113
+  [OK] the paper's tabulated k* equals pi V0^2/(2 G M) for all three galaxies (2%)
+  d ln V0 / d ln M over the three galaxies = 0.512   (v^2 ~ M means 0.5; the baryonic Tully-Fisher relation v^4 ~ M means 0.25)
+  [OK] a universal k* (the 'single crossover parameter') means V0^2 ~ M (slope 0.5), not BTFR (0.25): this is the naive-reading q = 1 row of Part B (v^2 = G M/r_tr)
+  V0^4/(G M a0) for the three galaxies: [0.34, 0.21, 0.11]  (BTFR/MOND would give the same number for all)
+  [OK] the implied MOND-like a0_eff varies by a factor > 2.5 across only a 3x mass range
+  k* is fitted (their words: predicting it 'from first principles' is left to future work); it is a wavenumber, so no hbar enters -- but then nothing ties it to Lambda or a0.
+
+RESULT: 28 checks passed, 0 failed

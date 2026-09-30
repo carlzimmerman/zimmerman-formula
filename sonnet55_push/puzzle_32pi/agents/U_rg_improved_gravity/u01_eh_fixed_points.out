@@ -1,0 +1,112 @@
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:70: RuntimeWarning: divide by zero encountered in scalar divide
+  f = lambda z: z**(n - 1) * R(z) / (z + R(z) + w)**p
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:72: IntegrationWarning: The integral is probably divergent, or slowly convergent.
+  v, _ = quad(f, 0.0, zmax, epsabs=1e-13, epsrel=1e-12, limit=400, points=pts)
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:63: RuntimeWarning: divide by zero encountered in scalar divide
+  f = lambda z: z**(n - 1) * (R(z) - z * Rp(z)) / (z + R(z) + w)**p
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:65: IntegrationWarning: The integral is probably divergent, or slowly convergent.
+  v, _ = quad(f, 0.0, zmax, epsabs=1e-13, epsrel=1e-12, limit=400, points=pts)
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:72: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
+  in the extrapolation table.  It is assumed that the requested tolerance
+  cannot be achieved, and that the returned result (if full_output = 1) is 
+  the best which can be obtained.
+  v, _ = quad(f, 0.0, zmax, epsabs=1e-13, epsrel=1e-12, limit=400, points=pts)
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:65: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
+  in the extrapolation table.  It is assumed that the requested tolerance
+  cannot be achieved, and that the returned result (if full_output = 1) is 
+  the best which can be obtained.
+  v, _ = quad(f, 0.0, zmax, epsabs=1e-13, epsrel=1e-12, limit=400, points=pts)
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:72: IntegrationWarning: Extremely bad integrand behavior occurs at some points of the
+  integration interval.
+  v, _ = quad(f, 0.0, zmax, epsabs=1e-13, epsrel=1e-12, limit=400, points=pts)
+<repo>/sonnet55_push/puzzle_32pi/agents/U_rg_improved_gravity/u01_eh_fixed_points.py:65: IntegrationWarning: Extremely bad integrand behavior occurs at some points of the
+  integration interval.
+  v, _ = quad(f, 0.0, zmax, epsabs=1e-13, epsrel=1e-12, limit=400, points=pts)
+====================================================================================================
+PART 1  controls on the threshold functions
+====================================================================================================
+  [OK] exp s=1: Phi^1_1(0) = pi^2/6  (BR 2.17)
+  [OK] exp s=1: Phi^2_2(0) = 1       (BR 2.17)
+  [OK] exp s=1: Phit^1_1(0) = 1      (BR 2.18)
+  [OK] exp s=1: Phit^2_2(0) = 1/2    (BR 2.18)
+  [OK] exp s=1: omega = -B1(0)/2 = (4/pi)(1 - pi^2/144)  (BR 2.16, 2.19)
+  [OK] exp s=1: B2(0) = 2/(3 pi)     (BR 2.19)
+  [OK] MUTATION (omega with 144 -> 140) is rejected
+  [OK] optimised cutoff, w=+0.0: six thresholds equal their closed forms
+  [OK] optimised cutoff, w=-0.3: six thresholds equal their closed forms
+  [OK] optimised cutoff, w=-0.7: six thresholds equal their closed forms
+
+====================================================================================================
+PART 2  lambda = 0 truncation:  omega and g*(lambda=0) = 1/(omega + B2)  -- the coefficient of the k^2 term in G(k) = G0/(1 + omega G0 k^2)
+====================================================================================================
+  shape                                omega     B2(0)   g*(lam=0)=1/(omega+B2)
+  exp s=1                            1.18597   0.21221                  0.71522
+  exp s=2                            0.81709   0.10916                  1.07962
+  exp s=3                            0.64490   0.06948                  1.39981
+  exp s=5                            0.46970   0.03595                  1.97766
+  z^b/(e^(z^b)-1), b=2               0.97546   0.10012                  0.92973
+  z^b/(e^(z^b)-1), b=4               0.88414   0.04828                  1.07248
+  optimised (1-z)theta(1-z)          0.58357   0.02653                  1.63909
+  rational 1/(1+z)^2                 0.82390   0.15349                  1.02314
+  exp(-z)                            0.90671   0.14211                  0.95345
+  omega spread over admissible shapes: min 0.4697, max 1.1860, ratio 2.52
+  [OK] omega is NOT universal: spread > factor 1.5 over the admissible shapes
+  [OK] optimised cutoff: omega = 11/(6 pi) (pure 1/pi, no pi in the numerator)
+  [OK] optimised cutoff: B2(0) = 1/(12 pi)
+  [OK] optimised cutoff: g*(lam=0) = 12 pi/23
+
+====================================================================================================
+PART 3  full EH non-Gaussian fixed point (g*, lambda*) for each shape; g*lambda*; the derived requirement zeta_req = sqrt(32 pi/lambda*)
+====================================================================================================
+  shape                                   g*   lambda*    g*lam*     eta*  |beta_lam|  zeta_req
+  exp s=1                            0.27230   0.35904   0.09777  -2.0000    6.66e-16    16.733
+  exp s=2                            0.43888   0.26043   0.11430  -2.0000    4.44e-16    19.647
+  exp s=3                            0.58175   0.20866   0.12139  -2.0000    2.33e-15    21.950
+  exp s=5                            0.83442   0.15361   0.12818  -2.0000    1.20e-14    25.582
+  z^b/(e^(z^b)-1), b=2               0.39245   0.31390   0.12319  -2.0000    2.22e-16    17.896
+  z^b/(e^(z^b)-1), b=4               0.46204   0.29192   0.13488  -2.0000    2.44e-15    18.557
+  optimised (1-z)theta(1-z)          0.70732   0.19320   0.13665  -2.0000    7.33e-15    22.811
+  rational 1/(1+z)^2                 0.34144   0.27109   0.09256  -2.0000    5.11e-15    19.257
+  exp(-z)                            0.37401   0.28545   0.10676  -2.0000    4.44e-16    18.767
+  [OK] a positive non-Gaussian fixed point exists for every shape tried (9/9)
+  [OK] eta* = -2 and beta_lambda = 0 at every fixed point (residual < 1e-9)
+  [OK] independent 2-d fsolve (perturbed start) reproduces every fixed point to 1e-7
+
+  spread (max-min)/mean:  g*: 1.15   lambda*: 0.79   g*lambda*: 0.38
+  ranges: g* in [0.272, 0.834], lambda* in [0.154, 0.359], g*lambda* in [0.0926, 0.1367]
+  zeta_req = sqrt(32 pi/lambda*) in [16.73, 25.58]   (a0 := c^2 k/zeta with Lambda(k) = lambda* k^2; needs G rho_L/a0^2 = lambda* zeta^2/(8 pi) = 4)
+  [OK] g*lambda* is far less scheme dependent than g* or lambda* separately (Lauscher-Reuter's universality claim, reproduced qualitatively)
+  [OK] all lambda* are O(0.1-0.4): none is anywhere near 32 pi (the value needed for zeta = 1)
+
+  Reference (opened source, Lauscher-Reuter hep-th/0108040, their type-B cutoff with both gauge choices, exponential and compact-support shape families):
+    universal g*lambda* plateau reported as ~0.12 (alpha=1) and ~0.14 (alpha=0);  (lambda*, g*) = (0.287, 0.751) for their one-loop-expanded exponential s=1, alpha=1 (their H8).
+  my type-A products: [0.0978, 0.1143, 0.1214, 0.1282, 0.1232, 0.1349, 0.1367, 0.0926, 0.1068]  -> 9/9 inside [0.09, 0.16]  (their plateau +- a generous margin; shapes far from the exponential are outside their scan)
+
+====================================================================================================
+PART 4  exact optimised-cutoff fixed point (pi-content)
+====================================================================================================
+  real roots x = 1-2lam of 14x^3 - 41x^2 + 59x - 24 in (0,1): [0.6135989856984285]
+  lambda* = 0.1932005072   g* = 0.7073208810   g*/pi = 0.2251472291   g*lambda* = 0.1366547529
+  [OK] closed-form optimised fixed point equals the numerical one (1e-9)
+  pi-content: lambda* is a root of a cubic with RATIONAL coefficients (algebraic, no pi); g* = pi x (algebraic).  The pi in g* is the loop factor 1/(4 pi)^(d/2-1); it cancels in lambda*.
+  [OK] cubic residual < 1e-12 at the root
+  [OK] MUTATION (cubic constant 24 -> 25) no longer reproduces the numerical lambda*
+
+====================================================================================================
+PART 6  a second, independent scheme: Litim hep-th/0312114 (opened), optimised cutoff, gauge alpha -> infinity, d = 4 limit of his eq (9)
+====================================================================================================
+  d = 4 +- 0.001:  (lambda*, g*) = (0.250039, 1.179667) / (0.249961, 1.176530)
+  d = 4 +- 1e-05:  (lambda*, g*) = (0.250000, 1.178113) / (0.250000, 1.178082)
+  [OK] Litim eq (9) at d -> 4: lambda* -> 1/4 (rational) and g* -> 3 pi/8 (his Fig. 2 shows the UV point near (0.25, 1.2))
+  Litim alpha->inf: lambda* = 1/4, g* = 3 pi/8 = 1.1781, g*lambda* = 3 pi/32 = 0.2945;  zeta_req = sqrt(32 pi/lambda*) = 20.053
+  compare my type-A optimised cutoff (gauge alpha=1 flow of Reuter): g*lambda* = 0.1367, lambda* = 0.1932  -> the GAUGE/scheme choice alone moves g*lambda* by x2.16
+  [OK] scheme spread including Litim: lambda* stays in [0.15, 0.36] (zeta_req in [16.7, 25.6] all the same)
+  [OK] scheme spread including Litim: g*lambda* is NOT universal to better than a factor 2 across gauge choices (0.093 ... 0.29)
+
+====================================================================================================
+PART 5  mutant flow: drop the eta*Phit term in beta_lambda -> the fixed point must move (the test is not blind)
+====================================================================================================
+  optimised cutoff, mutant fixed point(s): [(1.1305, 0.1042)]   (true: 0.7073, 0.1932)
+  [OK] mutant flow gives a different lambda* (>5% away) or none
+
+RESULT: 26 checks passed, 0 failed

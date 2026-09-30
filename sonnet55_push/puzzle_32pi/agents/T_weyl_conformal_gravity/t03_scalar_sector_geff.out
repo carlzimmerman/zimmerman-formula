@@ -1,0 +1,39 @@
+PASS A1 trace identity T^m_m = phi E for generic B(r) and generic phi(r) (sign/implementation check of T_mn and the EOM)
+PASS A2 CONTROL: a non-conformal coupling xi = 1/5 breaks the trace identity
+PASS B0 T_mn is diagonal on the static spherical MK metric with phi(r)
+   solve T = 0 for (a, lambda phi0^2): [{a: 0}, {Lam2: -beta*gamma**3/(2*(3*beta*gamma - 2)**3) + gamma**2/(18*beta*gamma - 12) + gamma**2/(3*(3*beta*gamma - 2)**3) - k/2, a: -3*beta + 2/gamma}]
+PASS B1 solving T_mn = 0 (all components) for (a, lambda phi0^2) gives a = (2 - 3 beta gamma)/gamma and lambda phi0^2 = -k'/2 with k' = k + gamma^2(1-beta gamma)/(2-3 beta gamma)^2
+PASS B2 with those values every mixed component T^m_n vanishes identically in r
+PASS B3 and the scalar EOM E = 0 holds (it follows from T = 0 through the trace identity)
+PASS B4 MUTATION rejected: a = (2 - 2 beta gamma)/gamma does not give T = 0
+PASS B5 MUTATION rejected: the opposite sign of lambda does not give T = 0
+PASS B6 MUTATION rejected: using k + gamma^2/4 (the beta = 0 form) instead of k' at beta != 0 does not give T = 0
+PASS B7 beta = 0 slice: the exponent p = -1 works (a = 2/gamma, lambda phi0^2 = -(gamma^2/4 + k)/2); p = -2 and p = +1 fail
+PASS C1 the Einstein-frame metric (phi = phi0) has B~(r') = 1 - 2M'/r' - k' r'^2: Schwarzschild-de Sitter with M' = beta(2-3 beta gamma)/2 and the SAME k' (cf. t02 D3)
+PASS C2 curvature of SdS: R = 12 k' (mostly plus)
+PASS C3 constant phi = phi0 on SdS: EOM reads -R phi0/6 - 4 lambda phi0^3 = 0, i.e. k' = -2 lambda phi0^2
+PASS C4 constant phi = phi0 on SdS: T_mn = -phi0^2 (k'/2 + lambda phi0^2) g_mn; it vanishes iff k' = -2 lambda phi0^2 (same condition as B1)
+PASS C5 the two routes agree: MK-frame T = 0 (B1) and Einstein-frame EOM (C3) both give k' = -2 lambda phi0^2
+PASS C6 at fixed lambda phi0^2 = -1 (k' = 2) the beta = 0 solutions gamma = 2 (k = 1), 4 (k = -2), 1/3 (k = 2 - 1/36) ALL satisfy T = 0: a0 = gamma/2 is a free integration constant
+PASS C6b CONTROL: gamma = 2 with k = 5 (violating (gamma/2)^2 + k = 2) does NOT satisfy T = 0
+PASS D1 G_eff = -3/(4 pi phi0^2)  (negative for the standard-sign kinetic term)
+PASS D2 Lambda = 8 pi G_eff rho_V = -6 lambda phi0^2 and Lambda/3 = -2 lambda phi0^2 = k'
+PASS D3 alpha_g appears in neither G_eff, rho_V nor k' (they are functions of lambda, phi0 only)
+PASS D4 G_eff rho_V = 3 k'/(8 pi) exactly (this is just the de Sitter Friedmann relation)
+PASS D5 G_eff rho_V / a0^2 = (3/(8 pi)) (1 + k/a0^2) at beta = 0: it depends on the free ratio k/a0^2
+PASS D6 the puzzle value G rho_V = 4 a0^2 requires k/a0^2 = 32 pi/3 - 1 = 32.51...: not implied by anything in the action
+PASS D7 CONTROL: for k/a0^2 = 1 the ratio is 3/(4 pi) = 0.239, not 4
+PASS E1 dS in open slicing a = sinh(Ht)/H has constant R = 12 H^2 and vanishing Weyl tensor (Einstein space, conformally flat)
+PASS E2 Friedmann with K = -1: adot^2 - 1 = H^2 a^2
+PASS E3 Omega_Lambda-bar = tanh^2 u and Omega_k = sech^2 u
+PASS E4 (a0_phys/H)^2 = Omega_k/Omega_Lambda-bar = 1/sinh^2 u  (the CG papers' identification a0 = c^2 sqrt(-K_phys))
+PASS E5 a0/H = 1/Z (the puzzle) <=> sinh u = Z: an epoch condition u = asinh(Z) = 2.4565 (Omega_k = 1/(1+Z^2) = 0.0290); a0 = H/sinh(Ht) is NOT constant in time
+PASS E6 CONTROL: a0/H = 1/sinh u changes with the epoch: u = 1 gives 0.8509, u = 2 gives 0.2757
+PASS F1 from R^2(t) of eq (230) and beta of eq (232): tanh^2(u) = (1 - T^2/T_m^2)/(1 + T^2 T_m^2/T_V^4), reproducing the paper's eq (232)
+PASS F2 CONTROL: with beta -> (Tm^4 - TV^4)/(Tm^4 + TV^4) (inverted) the paper's eq (232) is NOT reproduced
+PASS F3 hence (a0/H_dS)^2 = 1/sinh^2 u = T^2 (T_m^4 + T_V^4)/(T_V^4 (T_m^2 - T^2)) -> T^2 T_m^2/T_V^4 for T_m >> T_V, T
+PASS F4 the puzzle a0/H = 1/Z would read T_0 T_max = T_V^2/Z (T_max = bounce temperature, an integration constant of the cosmology, not a coupling); numerically Z = 5.7888
+PASS G1 the variable-mass particle Lagrangian (m = mu phi) equals the GEODESIC Lagrangian of the Einstein-frame metric g~ = (phi/phi0)^2 g, identically for any B(r): phi^2 (B td^2 - rd^2/B - r^2 phid^2) = phi0^2 (B~ td^2 - rd'^2/B~ - r'^2 phid^2)
+PASS G1b CONTROL: with a constant mass (no phi factor) the same integrand is NOT the Einstein-frame geodesic Lagrangian
+
+PASS 36 / 36

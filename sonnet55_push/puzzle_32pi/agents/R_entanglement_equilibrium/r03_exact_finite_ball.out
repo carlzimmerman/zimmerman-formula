@@ -1,0 +1,54 @@
+E1  exact ball in dS: A(x), V(x)
+  [OK] V'(x) = A(x) L  (d = 4: d/dx of 2 pi L^3 (x - sin(2x)/2) = 4 pi L^3 sin^2 x)
+  [OK] V(pi) = 2 pi^2 L^3 = Vol(S^3)
+  [OK] CONTROL (wrong claim must be rejected): E1c the task-text expression pi L^3 (x - sin(2x)/2) for V (its V(pi) is pi^2 L^3, half the volume of S^3)
+  [OK] dA/dV|_L = 2 cot(x)/L  (mean curvature of the ball boundary; vanishes at the equator)
+  [OK] A_dS(V)/A_flat(V) - 1 = -y**2/5 = -(d-2)/(2(d+1)) (l_f/L)^2 = -(1/5) (l_f/L)^2: eq (22) leading term with G_00 = lambda = 3/L^2, d = 4
+  [OK] CONTROL (wrong claim must be rejected): E1d the coefficient -1/10 (my first, wrong, hand value: an extra 1/(d-2))
+E2  PROPOSITION: exact first-order fixed-V area response = -8 pi G int xi delta_rho dV_0   (spherical symmetry)
+  [OK] n=2: R[L sin(chi/L)] = n(n-1)/L^2
+  [OK] n=3: R[L sin(chi/L)] = n(n-1)/L^2
+  [OK] n=5: R[L sin(chi/L)] = n(n-1)/L^2
+  [OK] 180 cases (n=2..7, L in {1, 2.3}, 3 profiles, x = 0.2 ... 2.9): max |LHS-RHS|/|LHS| = 2.35e-30
+  [OK] CONTROL (wrong claim must be rejected): E2b flat-space weight (l^2-r^2)/(2l) at x = 2.1 (rel err 2.07e-01)
+  [OK] CONTROL (wrong claim must be rejected): E2c fixed-radius area change (no fixed-V correction) (rel err 2.69e-01)
+  [OK] CONTROL (wrong claim must be rejected): E2d coefficient 4 pi G (rhs/2) instead of 8 pi G
+  (b) fully non-linear check: finite eps, exact V(chi') = V_0(chi_b) by root finding, derivative by central difference
+  [OK] n=3, x=2.1: non-linear dA_V/d eps = 85.7716494983 vs RHS 85.7716494983 (rel 5.9e-37)
+  [OK] n=4, x=1.0: non-linear dA_V/d eps = 0.783847531573 vs RHS 0.783847531573 (rel 2.28e-40)
+  [OK] n=5, x=2.7: non-linear dA_V/d eps = 797.778232427 vs RHS 797.778232427 (rel 4.48e-33)
+E3  uniform density: exact closed family S^3(L'), and the response function F_d(x)
+  [OK] EXACT: dA_V/d(L^-2) = -3 L^4 I_4(x) with I_4 = int xi dV_0 (uniform density; first-order 8 pi G delta_rho = 3 delta(L^-2)); LHS uses only S^3 closed forms
+  [OK] CONTROL (wrong claim must be rejected): E3b same with the flat weight: -3 L^4 (4 pi x^4/15)
+      F_4(x) = 1 + x**2*(-2*x**4 + 99*x**2 - 990)/10395 + ...
+  [OK] F_4(x) -> 1 as x -> 0 (small ball reproduces eq (7)/(8) exactly)
+  [OK] F_4 series: coefficient of x^2 = -2/21 = -0.095238 (independent numeric estimate from F_4(0.02): -0.0952343)
+  [OK] d=3: F_d(1e-3) = 1.0 -> 1
+  [OK] d=4: F_d(1e-3) = 0.9999999048 -> 1
+  [OK] d=5: F_d(1e-3) = 0.9999997917 -> 1
+  [OK] d=6: F_d(1e-3) = 0.9999996667 -> 1
+  [OK] d=8: F_d(1e-3) = 0.9999993939 -> 1
+  [OK] CONTROL (wrong claim must be rejected): E3c F_4 is identically 1 (i.e. the small-ball formula is exact at all radii)
+      F_4 at x = 0.5, 1, pi/2, 2, 2.5: ['0.97678281', '0.91412183', '0.82127858', '0.76861305', '0.81162829']
+E4  non-spherical first-order perturbation (n = 3, conformal factor psi = 1 + eps phi, phi generic axisymmetric)
+  [OK] the conformal constraint dR = -8 lap(phi) - 24 phi agrees with the s(chi)-form of E2 for a spherical phi (diffs [3.552713678800501e-15, -2.4868995751603507e-14, 4.263256414560601e-14])
+  [OK] x = 0.6: non-spherical dA|_V = 0.4222726540, RHS = 0.4222726540 (rel 2.0e-15)
+  [OK] x = 1.4: non-spherical dA|_V = 8.1371717469, RHS = 8.1371717469 (rel 6.5e-15)
+  [OK] x = 2.3: non-spherical dA|_V = 43.7914900669, RHS = 43.7914900669 (rel 6.3e-15)
+  [OK] CONTROL (wrong claim must be rejected): E4b flat-space weight (l^2-r^2)/(2l) at x = 1.4 (rel err 1.16e-01)
+  [OK] E4c quadrature-order stability (80 vs 120 nodes)
+E5  the equator x = pi/2: the ball is the static patch, xi is the static Killing weight, no fixed-V term
+  [OK] mean curvature term 2 cot(x)/L vanishes at x = pi/2, so dA|_V = dA (paper: 'first law of dS horizons', eq C1)
+  [OK] xi(theta) at x = pi/2 equals L cos(theta) = L sqrt(f) (static patch lapse times L: unit surface gravity)
+  [OK] modular temperature at the centre T_c = 1/(2 pi xi_c) = 1/(2 pi L tan(x/2)) equals T_dS = 1/(2 pi L) at x = pi/2
+E6  matter side: the conformal Killing vector of a cap of the Einstein static universe (dS is conformal to it), unit surface gravity, t = 0 weight
+  [OK] zeta = [(cos t cos th - cos x) d_t - sin t sin th d_th]/sin x is a conformal Killing vector of R x S^3: L_zeta g = -(2 sin t cos th / sin x) g
+  [OK] zeta vanishes on the edge of the cap (t = 0, th = x)
+  [OK] zeta^2 = 0 on the future null boundary t = x - th of the diamond
+  [OK] surface gravity from d_a zeta^2 = -2 kappa zeta_a on that boundary: components give [1, 1]
+  [OK] restriction to t = 0: zeta^t = (cos th - cos x)/sin x (times the dS scale factor L at t = 0, the conformal factor of dS -> ESU): the weight used in E2-E4
+  [OK] small-x limit of the weight: L (cos th - cos x)/sin x -> (l^2 - r^2)/(2 l) (the flat-space weight of eq (10)): checked as the series in x at fixed th/x = q
+   (NOT re-derived here: that the CFT modular Hamiltonian of a cap in the dS vacuum is 2 pi times the conformal-Killing charge of this vector; it is the conformal image of the flat
+    Hislop-Longo/Bisognano-Wichmann statement the paper uses, taken as an assumption, as is the state-independent UV term eta A)
+
+r03: 41/41 checks passed
