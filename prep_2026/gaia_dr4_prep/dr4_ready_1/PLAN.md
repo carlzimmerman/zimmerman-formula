@@ -101,3 +101,21 @@ Row and size figures are estimates from the stellar density at |b| > 10° to G =
     - a planted unavailable column (RUWE) is flagged UNIMPLEMENTABLE and the run completes;
     - a second-table join inside the driver leaves the CSV byte-identical.
   - No cache file is written by the self-test.
+- **Owner's go and Q2 (added 2026-09-29).**
+  - The owner approved, in the calculation chat, Q2 plus the Q1 pilot (500 pairs) and the Q3 pilot (one chunk). Full-size Q1 and Q3 need a separate go.
+  - `q_fetch_dr3.py` is the only DR4-READY-1 script that opens the network. It refuses a pilot larger than 500 pairs and records query text, row counts and sha256 in `manifest_q_dr3.json`. The data files stay gitignored.
+  - **Q2 result: 0 rows** in each of DR3's four NSS tables for the sample's 12,420 components. This is expected by construction: the frozen build required `non_single_star = 0`. In the extract, 84,906 of 4,582,547 sources are nonzero, and none of them is a sample component.
+  - `wp4_nss_dryrun_dr3.py` reads the real archive FITS through both loaders. Every reading flags 0 pairs, in agreement with the frozen proxy.
+    - This is a mechanics check, not an independent test of the query. A positive control (a query on known NSS sources) was not in the approved scope.
+    - Its readings were written after the zero row counts were printed. With zero rows, no reading can differ.
+    - The first run crashed before writing output: the script passed a table as counted in one reading and excluded in another, which `run_a17` refuses. The fix is in the script.
+- **Amendment 17 readings (the amendment is a DRAFT, NOT FILED; added 2026-09-29).**
+  - New in `cut12_nss_union.py`:
+    - `run_a17` runs every reading declared in the manifest.
+    - A two-source row is own-pair when its ids match the pair's two components as an unordered pair; otherwise it is third-source. The exemption applies only to the declared, recorded `solution_type` strings.
+    - A17 (c)'s diagnostic is reported, never used to reject.
+    - `adql_nss` is the release-day query text, searching both id columns.
+    - `run()` now refuses two-source tables, because it matches `source_id` only.
+  - `test_wp4_a17.py`: 19/19 pass, and all three MUTATE controls are caught. The harness had two bugs of its own, kept and disclosed: the first run is in `test_wp4_a17_firstrun.out`.
+  - `manifest_template_dr4.json` now carries the draft data model's names (every one "draft 2026-06-26, confirm on release day") and the A17 draft's readings as NOT-FILED candidates.
+  - The template's `join_by_source_id` key is renamed to `join_file`, the key the driver actually reads. This was a latent mismatch in this template, found while editing it.

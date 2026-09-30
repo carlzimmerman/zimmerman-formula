@@ -1,46 +1,107 @@
 {
- "_about": "DR4-READY-1 release-day manifest TEMPLATE (new file). Fill every null BEFORE the data are opened (Amendments 15(d), 16(b)-(c)). Candidate names are from the data chat's preview data_assembly/DR4_DATAMODEL_PREVIEW_2026-09-29.md (d9ac3a13f) and are NOT binding: each is re-confirmed from the published DR4 data model on 2 Dec 2026. No cut value, threshold, estimator setting or decision row is set here.",
+ "_about": "DR4-READY-1 release-day manifest TEMPLATE (new file). Fill every null BEFORE the data are opened (Amendments 15(d), 16(b)-(c)). Candidate names come from ESA's DRAFT DR4 data model (zip 2026-06-26, PDF issue D rev. 0 2026-05-20; data_assembly/DR4_DRAFT_DATAMODEL_COLUMNS_2026-09-29.md, aa9c48a9f) and the earlier web preview (d9ac3a13f). They are NOT binding: each is re-confirmed from the published DR4 data model on 2 Dec 2026. No cut value, threshold, estimator setting or decision row is set here.",
  "release": "dr4",
  "data_model": {
   "version_or_date": null,
   "source_url": null,
-  "read_at_utc": null
+  "read_at_utc": null,
+  "draft_read_before_release": {
+   "zip": "gaia-dr4-prerelease-draft-data-model_2026-06-26.zip",
+   "sha256": "d807eae98acbeec0a0af2ce6a5d7d352298df6f270a1f13207cc8d1becf42c66",
+   "pdf_issue": "D rev. 0, 2026-05-20",
+   "summary": "data_assembly/DR4_DRAFT_DATAMODEL_COLUMNS_2026-09-29.md (aa9c48a9f)"
+  }
  },
  "tables": {
   "base_curated": {
    "candidate": "gaiadr4.gaia_source",
    "confirmed": null,
-   "row_count": null
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
   },
   "all_source_astrometry": {
    "candidate": "gaiadr4.all_source_astrometry",
    "confirmed": null,
-   "row_count": null
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
   },
   "all_source_photometry": {
    "candidate": "gaiadr4.all_source_photometry",
    "confirmed": null,
-   "row_count": null
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
   },
   "all_source_flags": {
    "candidate": "gaiadr4.all_source_flags",
    "confirmed": null,
-   "row_count": null
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
   },
   "all_source_rvs": {
    "candidate": "gaiadr4.all_source_rvs",
    "confirmed": null,
-   "row_count": null
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
   },
   "crowded_field_source": {
    "candidate": "gaiadr4.crowded_field_source",
    "confirmed": null,
-   "row_count": null
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
   },
   "gaia_source_environment": {
    "candidate": "gaiadr4.gaia_source_environment",
    "confirmed": null,
+   "row_count": null,
+   "candidate_status": "draft 2026-06-26, confirm on release day"
+  },
+  "crowded_field_source_environment_match": {
+   "candidate": "gaiadr4.crowded_field_source_environment_match",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "confirmed": null,
    "row_count": null
+  },
+  "all_source_match": {
+   "candidate": "gaiadr4.all_source_match",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "confirmed": null,
+   "row_count": null
+  },
+  "ap_xp": {
+   "candidate": "gaiadr4.ap_xp",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "confirmed": null,
+   "row_count": null
+  },
+  "total_galactic_extinction_map": {
+   "candidate": "gaiadr4.total_galactic_extinction_map",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "confirmed": null,
+   "row_count": null
+  },
+  "dr3_neighbourhood": {
+   "candidate": "gaiadr4.dr3_neighbourhood",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "confirmed": null,
+   "row_count": null
+  },
+  "nss_group": {
+   "_note": "the ten tables of the draft's chapter 10 (A17 draft section 1); nss_epoch_flags is served by DataLink, not TAP",
+   "candidates": {
+    "nss_acceleration_astro": "gaiadr4.nss_acceleration_astro",
+    "nss_epoch_flags": "gaiadr4.nss_epoch_flags",
+    "nss_masses": "gaiadr4.nss_masses",
+    "nss_multiple_orbits": "gaiadr4.nss_multiple_orbits",
+    "nss_multiplicity": "gaiadr4.nss_multiplicity",
+    "nss_non_linear_spectro": "gaiadr4.nss_non_linear_spectro",
+    "nss_resolved_pair": "gaiadr4.nss_resolved_pair",
+    "nss_two_body_orbit": "gaiadr4.nss_two_body_orbit",
+    "nss_vim_fl": "gaiadr4.nss_vim_fl",
+    "optical_pair": "gaiadr4.optical_pair"
+   },
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "confirmed": null,
+   "row_counts": null
   }
  },
  "columns": {
@@ -61,37 +122,118 @@
   "phot_g_mean_mag": null,
   "bp_rp": null,
   "ruwe": {
-   "candidate": "all_source_flags (inferred, not documented)",
+   "candidate": "gaia_source.ruwe (stays in gaia_source per the draft; also all_source_astrometry, nss_acceleration_astro)",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "draft_note": "the draft says astrometric_gof_al is probably more useful than ruwe from DR4 on; the frozen cut reads ruwe",
    "confirmed": null,
-   "join_by_source_id": null
+   "join_file": null
   },
   "ipd_frac_multi_peak": {
-   "candidate": "all_source_astrometry or all_source_flags (inferred)",
+   "candidate": "gaia_source.ipd_frac_multi_peak (stays per the draft; also all_source_astrometry)",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
    "confirmed": null,
-   "join_by_source_id": null
+   "join_file": null
   },
   "radial_velocity": {
-   "candidate": "all_source_rvs (inferred)",
+   "candidate": "gaia_source.radial_velocity (stays per the draft, with radial_velocity_origin; all_source_rvs is the per-module table)",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
    "confirmed": null,
-   "join_by_source_id": null
+   "join_file": null
   },
   "radial_velocity_error": {
-   "candidate": "all_source_rvs (inferred)",
+   "candidate": "gaia_source.radial_velocity_error (stays per the draft)",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
    "confirmed": null,
-   "join_by_source_id": null
+   "join_file": null
+  },
+  "non_single_star": {
+   "candidate": "all_source_flags.non_single_star only (not in gaia_source per the draft)",
+   "candidate_status": "draft 2026-06-26, confirm on release day",
+   "use": "not read for DR4: cut 12 is the nss_* union (cut12_nss)",
+   "confirmed": null
   }
  },
  "cut9_extinction": {
   "primary": "SFD98, local maps (Amendment 16(a)); unchanged",
   "variant_reported_only": "an ap_* or total_galactic_extinction_map value, table and column to be named here before opening",
-  "variant_table": null
+  "variant_table": null,
+  "variant_candidates": {
+   "per_source": "gaia_source.ag, gaia_source.ebpminrp with gaia_source.extinction_origin (consolidated); or ap_xp.ag_gspphot, ap_xp.ebpminrp_gspphot",
+   "map": "total_galactic_extinction_map (HEALPix, monochromatic A0; not per source)",
+   "candidate_status": "draft 2026-06-26, confirm on release day"
+  }
  },
  "cut12_nss": {
-  "_rule": "declare counted_tables and a written reason for every excluded table BEFORE opening any id file (cut12_stub refuses otherwise); ESA's DR4 page names nss_acceleration_astro, nss_two_body_orbit, nss_resolved_pair, nss_multiplicity, nss_multiple_orbits, nss_masses",
+  "_rule": "declare counted_tables and a written reason for every excluded table BEFORE opening any id file (cut12_stub refuses otherwise). A two-source table (rows with source_id and source_id_secondary) must go through cut12_nss_union.run_a17, which searches both id columns; run() refuses it. Query text: cut12_nss_union.adql_nss().",
   "counted_tables": null,
   "excluded": {},
   "id_files": {},
-  "row_counts": null
+  "row_counts": null,
+  "two_source_tables": null,
+  "solution_types_recorded": null,
+  "diagnostic": null,
+  "readings": null,
+  "primary_reading": null,
+  "a17_draft_candidates_NOT_FILED": {
+   "_status": "Amendment 17 is a DRAFT, NOT FILED (AMENDMENT17_DRAFT_NOT_FILED.md revision 2, 6bc58d468). Copy into the fields above only if the owner files it; otherwise the pre-amendment reading applies. Table names: draft 2026-06-26, confirm on release day.",
+   "two_source_tables": [
+    "nss_resolved_pair",
+    "optical_pair"
+   ],
+   "solution_types_recorded": {
+    "nss_resolved_pair": "record the stored strings on release day, before opening (A17 (d)); the draft names ResolvedPairFixed, ResolvedPairLinear, ResolvedPairAcceleration, ResolvedPairJerk, DiverseAcceleration, DiverseJerk"
+   },
+   "diagnostic": {
+    "uncounted_tables": [
+     "nss_masses",
+     "nss_multiplicity"
+    ],
+    "optical_pair_table": "optical_pair",
+    "optical_pair_flag_column": "acceleration_flag"
+   },
+   "excluded": {
+    "nss_epoch_flags": "DataLink-only, not TAP; per-transit flags with a model label, no solution parameters (A17 (a))"
+   },
+   "readings": {
+    "A17_primary": {
+     "counted_tables": [
+      "nss_acceleration_astro",
+      "nss_multiple_orbits",
+      "nss_non_linear_spectro",
+      "nss_resolved_pair",
+      "nss_two_body_orbit",
+      "nss_vim_fl"
+     ],
+     "own_pair_exempt": {
+      "nss_resolved_pair": [
+       "ResolvedPairFixed",
+       "ResolvedPairLinear"
+      ]
+     }
+    },
+    "V17a": {
+     "counted_tables": [
+      "nss_acceleration_astro",
+      "nss_multiple_orbits",
+      "nss_non_linear_spectro",
+      "nss_resolved_pair",
+      "nss_two_body_orbit",
+      "nss_vim_fl"
+     ],
+     "own_pair_exempt": {}
+    },
+    "V17b": {
+     "counted_tables": [
+      "nss_acceleration_astro",
+      "nss_multiple_orbits",
+      "nss_non_linear_spectro",
+      "nss_two_body_orbit",
+      "nss_vim_fl"
+     ],
+     "own_pair_exempt": {}
+    }
+   }
+  }
  },
  "cut13_third_star": {
   "primary": "literal (Amendment 16(b)): dpar < 3 sigma, dmu < 5 sigma_dmu, G < 20, 30 kAU of either component",
@@ -103,7 +245,15 @@
    "sources_only_in_crowded_field_source": null,
    "sources_only_in_gaia_source_environment": null
   },
-  "search_environment_tables": null
+  "search_environment_tables": null,
+  "search_table_candidate": "gaiadr4.all_source_astrometry (draft 2026-06-26, confirm on release day)",
+  "g_table_candidate": "gaiadr4.all_source_photometry.phot_g_mean_mag (draft 2026-06-26, confirm on release day)",
+  "search_environment_tables_candidates": [
+   "crowded_field_source",
+   "crowded_field_source_environment_match",
+   "all_source_match",
+   "gaia_source_environment"
+  ]
  },
  "variant_15c_all_source_base": {
   "extract_dir": null,
@@ -136,5 +286,5 @@
   "radial_velocity_error",
   "non_single_star (cut 12's DR3 proxy; DR4: the nss_* union)"
  ],
- "every_dr4_name_here": "a candidate from d9ac3a13f: CONFIRM ON RELEASE DAY"
+ "every_dr4_name_here": "a candidate from the draft data model (2026-06-26; aa9c48a9f) or the web preview (d9ac3a13f): CONFIRM ON RELEASE DAY"
 }

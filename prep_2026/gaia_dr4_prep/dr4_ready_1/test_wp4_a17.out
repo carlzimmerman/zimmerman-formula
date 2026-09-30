@@ -1,0 +1,23 @@
+  [PASS] A1 own-pair ResolvedPairLinear stored in swapped order is matched as an unordered pair and KEPT by the primary  -- primary [False, True, True, True, False, False]
+  [PASS] A2 own-pair DiverseAcceleration REJECTS under the primary
+  [PASS] A3 third-source ResolvedPairFixed REJECTS under the primary
+  [PASS] A4 a one-source counted row (nss_two_body_orbit on component 14) rejects under every reading
+  [PASS] A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]  -- primary [False, True, True, True, False, False], V17a [True, True, True, True, False, False], V17b [False, False, False, True, False, False]
+  [PASS] A6 the diagnostic counts the component found only in nss_masses (5) and the nonzero optical flag without a counted row (6); V17b also counts 1 and 11 (in nss_multiplicity, whose resolved-pair row is not counted there); nothing is rejected for it  -- {"A17_primary": {"n_components_only_in_uncounted_tables": 1, "n_components_nonzero_optical_flag_without_counted_row": 1, "flag_nonzero": true, "expected": 0}, "V17a": {"n_components_only_in_uncounted_tables": 1, "n_components_nonzero_optical_flag_without_counted_row": 1, "flag_nonzero": true, "expected": 0}, "V17b": {"n_components_only_in_uncounted_tables": 3, "n_components_nonzero_optical_flag_without_counted_row": 1, "flag_nonzero": true, "expected": 0}}
+  [PASS] A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type  -- {"rows_loaded": 4, "rows_touching_sample": 3, "by_solution_type": {"ResolvedPairLinear": 1, "DiverseAcceleration": 1, "ResolvedPairFixed": 1}, "two_source": true}
+  [PASS] A8 optical_pair: the own-pair row (16,6) is reported, the null flag on a sample row is counted, neither rejects
+  [PASS] A9 a solution_type not in the recorded list is reported and never exempt; a recorded linear own-pair row is still kept  -- {'nss_resolved_pair': ['ResolvedPairWeird']}
+  [PASS] G1 an exempt type missing from the recorded strings raises (a typo cannot silently disable the exemption)
+  [PASS] G2 an exemption without recorded solution_type strings raises (A17 (d))
+  [PASS] G3 a two-source table not declared two-source raises (it would otherwise be half-matched)
+  [PASS] G4 a declared two-source table without source_id_secondary raises
+  [PASS] G5 a supplied table that is neither counted, diagnostic nor excluded with a reason raises
+  [PASS] G6 undeclared readings raise
+  [PASS] G7 the pre-amendment run() refuses a two-source table (it matches source_id only)
+  [PASS] Q1 release-day query text: a two-source table is searched on BOTH id columns, a one-source table on source_id
+  [PASS] B1 one-source tables only: run_a17 reproduces the pre-amendment run() pair flags  -- run [False, False, False, True, False, False], run_a17 [False, False, False, True, False, False]
+  [PASS] F1 FITS loader: masked source_id_secondary -> None (a one-source row), strings decoded  -- [1, None], ['ResolvedPairLinear', 'ResolvedPairFixed']
+  [DETECTED] MUTATE ordered: failing tests ['A1 own-pair ResolvedPairLinear stored in swapped order is matched as an unordered pair and KEPT by the primary', 'A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]', 'A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type', 'A9 a solution_type not in the recorded list is reported and never exempt; a recorded linear own-pair row is still kept']
+  [DETECTED] MUTATE exempt_all: failing tests ['A2 own-pair DiverseAcceleration REJECTS under the primary', 'A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]', 'A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type']
+  [DETECTED] MUTATE third_as_own: failing tests ['A3 third-source ResolvedPairFixed REJECTS under the primary', 'A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]', 'A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type']
+19/19 pass; mutations detected 3/3

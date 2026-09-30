@@ -1,0 +1,56 @@
+{
+ "results": {
+  "A1 own-pair ResolvedPairLinear stored in swapped order is matched as an unordered pair and KEPT by the primary": true,
+  "A2 own-pair DiverseAcceleration REJECTS under the primary": true,
+  "A3 third-source ResolvedPairFixed REJECTS under the primary": true,
+  "A4 a one-source counted row (nss_two_body_orbit on component 14) rejects under every reading": true,
+  "A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]": true,
+  "A6 the diagnostic counts the component found only in nss_masses (5) and the nonzero optical flag without a counted row (6); V17b also counts 1 and 11 (in nss_multiplicity, whose resolved-pair row is not counted there); nothing is rejected for it": true,
+  "A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type": true,
+  "A8 optical_pair: the own-pair row (16,6) is reported, the null flag on a sample row is counted, neither rejects": true,
+  "A9 a solution_type not in the recorded list is reported and never exempt; a recorded linear own-pair row is still kept": true,
+  "G1 an exempt type missing from the recorded strings raises (a typo cannot silently disable the exemption)": true,
+  "G2 an exemption without recorded solution_type strings raises (A17 (d))": true,
+  "G3 a two-source table not declared two-source raises (it would otherwise be half-matched)": true,
+  "G4 a declared two-source table without source_id_secondary raises": true,
+  "G5 a supplied table that is neither counted, diagnostic nor excluded with a reason raises": true,
+  "G6 undeclared readings raise": true,
+  "G7 the pre-amendment run() refuses a two-source table (it matches source_id only)": true,
+  "Q1 release-day query text: a two-source table is searched on BOTH id columns, a one-source table on source_id": true,
+  "B1 one-source tables only: run_a17 reproduces the pre-amendment run() pair flags": true,
+  "F1 FITS loader: masked source_id_secondary -> None (a one-source row), strings decoded": true
+ },
+ "mutate": {
+  "ordered": {
+   "failed": [
+    "A1 own-pair ResolvedPairLinear stored in swapped order is matched as an unordered pair and KEPT by the primary",
+    "A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]",
+    "A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type",
+    "A9 a solution_type not in the recorded list is reported and never exempt; a recorded linear own-pair row is still kept"
+   ],
+   "detected": true,
+   "expected_to_fail": "A1",
+   "expected_failed": true
+  },
+  "exempt_all": {
+   "failed": [
+    "A2 own-pair DiverseAcceleration REJECTS under the primary",
+    "A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]",
+    "A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type"
+   ],
+   "detected": true,
+   "expected_to_fail": "A2",
+   "expected_failed": true
+  },
+  "third_as_own": {
+   "failed": [
+    "A3 third-source ResolvedPairFixed REJECTS under the primary",
+    "A5 primary = [F,T,T,T,F,F]; V17a (no exemption) = [T,T,T,T,F,F]; V17b (nss_resolved_pair not counted) = [F,F,F,T,F,F]",
+    "A7 per-table / per-solution_type counts of rows touching the sample; own-pair and third-source entries by type"
+   ],
+   "detected": true,
+   "expected_to_fail": "A3",
+   "expected_failed": true
+  }
+ }
+}
