@@ -25,6 +25,10 @@ ap.add_argument("--constant-radius", action="store_true",
                 help="use ONE literal radius (the maximum of the pairs' cones) in CIRCLE() instead of the per-row u.radius_deg: the archive's documented "
                      "upload cone-join form, expected to use the spatial index; the result is a superset of the exact cones (re-filtered locally)")
 ap.add_argument("--tag", default="probe")
+ap.add_argument("--healpix", action="store_true",
+                help="index-friendly source_id RANGE join: upload the level-11 HEALPix source_id ranges covering the pairs' cones and select s.source_id in the ranges "
+                     "(gaia source_id encodes the level-12 pixel); the result is a superset, re-filtered locally to the exact cones")
+ap.add_argument("--sync", action="store_true", help="use the SYNCHRONOUS TAP endpoint (bypasses the async queue; the archive limits it to short jobs)")
 a = ap.parse_args()
 if not a.owner_go_recorded or a.n > 10:
     raise SystemExit("refused: needs --owner-go-recorded (the Q1 pilot go) and n <= 10")
@@ -38,7 +42,30 @@ row = lambda s: order[np.searchsorted(S["source_id"][order], s)]
 ia, ib = row(sa), row(sb)
 upt = W1.upload_table(pick, S["ra"][ia], S["dec"][ia], S["ra"][ib], S["dec"][ib], S["parallax"][ia])
 up = OUT / f"q1_{a.tag}_upload.xml"
-if a.constant_radius:
+if a.healpix:
+    import healpy as hp
+    LEVEL = 11
+    DIV = 2 ** 35 * 4 ** (12 - LEVEL)
+    va = np.stack([np.cos(np.radians(S["dec"][ia])) * np.cos(np.radians(S["ra"][ia])), np.cos(np.radians(S["dec"][ia])) * np.sin(np.radians(S["ra"][ia])),
+                   np.sin(np.radians(S["dec"][ia]))], 1)
+    vb = np.stack([np.cos(np.radians(S["dec"][ib])) * np.cos(np.radians(S["ra"][ib])), np.cos(np.radians(S["dec"][ib])) * np.sin(np.radians(S["ra"][ib])),
+                   np.sin(np.radians(S["dec"][ib]))], 1)
+    pix = set()
+    Rarc = W1.radius_arcsec(S["parallax"][ia])
+    for k in range(len(pick)):
+        for v in (va[k], vb[k]):
+            pix.update(hp.query_disc(2 ** LEVEL, v, np.radians(Rarc[k] / 3600), inclusive=True, nest=True).tolist())
+    pix = np.array(sorted(pix), np.int64)
+    brk = np.flatnonzero(np.diff(pix) != 1)
+    starts = np.concatenate([[0], brk + 1]); ends = np.concatenate([brk, [len(pix) - 1]])
+    lo, hi = pix[starts] * DIV, (pix[ends] + 1) * DIV
+    Table({"lo": lo, "hi": hi}).write(up, format="votable", overwrite=True)
+    cols = ", ".join(f"s.{c}" for c in W1.COLS)
+    q = (f"SELECT {cols}, s.phot_g_mean_mag AS phot_g_mean_mag FROM tap_upload.rng AS u JOIN gaiadr3.gaia_source AS s "
+         f"ON s.source_id >= u.lo AND s.source_id < u.hi")
+    upt = dict(pair_id=np.repeat(pick, 2), radius_deg=np.repeat(Rarc / 3600, 2))
+    print(f"healpix level {LEVEL}: {len(pix)} pixels in {len(lo)} source_id ranges for {len(pick)} pairs", flush=True)
+elif a.constant_radius:
     rmax = float(upt["radius_deg"].max())
     Table({k: v for k, v in upt.items() if k != "radius_deg"}).write(up, format="votable", overwrite=True)
     cols = ", ".join(f"s.{c}" for c in W1.COLS)
@@ -49,13 +76,18 @@ else:
     q = W1.adql_cones("gaiadr3.gaia_source", upload="pairs")
 p = OUT / f"q1_{a.tag}_neighbours.fits"
 t0 = time.time()
-job = Gaia.launch_job_async(q, upload_resource=str(up), upload_table_name="pairs", dump_to_file=True, output_file=str(p), output_format="fits")
+upname = "rng" if a.healpix else "pairs"
+if a.sync:
+    job = Gaia.launch_job(q, upload_resource=str(up), upload_table_name=upname, dump_to_file=True, output_file=str(p), output_format="fits")
+else:
+    job = Gaia.launch_job_async(q, upload_resource=str(up), upload_table_name=upname, dump_to_file=True, output_file=str(p), output_format="fits")
 jid = getattr(job, "jobid", None)
 res = job.get_results()
 dt = time.time() - t0
-rec = dict(n_pairs=int(a.n), n_cones=int(len(upt["pair_id"])), radius_arcsec=[float(upt["radius_deg"].min() * 3600), float(upt["radius_deg"].max() * 3600)],
+rec = dict(n_pairs=int(a.n), n_cones=int(len(upt["pair_id"])), radius_arcsec=[float(np.min(upt["radius_deg"]) * 3600), float(np.max(upt["radius_deg"]) * 3600)],
            rows=int(len(res)), seconds=round(dt, 1), sha256=hashlib.sha256(open(p, "rb").read()).hexdigest(), query=q, jobid=str(jid),
            note="timing probe for the approved Q1 pilot (owner's go, 2026-09-29): the same pairs and ADQL as the pilot's first pairs")
 rec["constant_radius_deg"] = float(rmax) if a.constant_radius else None
+rec["healpix"] = bool(a.healpix)
 (HERE / f"manifest_q1_{a.tag}.json").write_text(json.dumps(rec, indent=1) + "\n")
 print(json.dumps({k: v for k, v in rec.items() if k != "query"}))

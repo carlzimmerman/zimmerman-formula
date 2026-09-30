@@ -1,0 +1,13 @@
+synthetic archive: 171,412 sources (2161 real local-extract ones), 96 of 500 pairs 3x denser
+brute-force truth: 244,336 (pair, comp, source) rows inside the exact cones
+main run completed
+fetch: 323 queries, 12 truncated by the endpoint, result sizes max 2000; script rows 244,336
+T1 exact set equals the brute-force truth (missing 0, spurious 0): PASS
+T2 the truncation path was exercised (12 truncated results): PASS
+T3 no truncated result reached the output (manifest counts 12 discarded, endpoint truncated 12): PASS
+T4 every local-extract source in the cones is in the output (script count: missing 0 of 3513): PASS
+T6 the flaky query was retried (hit 1, run completed): PASS
+T7 a hung query was cut by the client timeout and retried (hangs 1, run completed): PASS
+T5 the accepted-bytes cap stops the run and writes the reason (STOPPED: accepted 0.21 MB (2,723 rows) after 5 queries against the 0.2): PASS
+T5b the transfer cap stops the run (STOPPED: received 0.33 MB in 8 queries against the 0.30 MB transfer ca): PASS
+RESULT: all checks behave as required

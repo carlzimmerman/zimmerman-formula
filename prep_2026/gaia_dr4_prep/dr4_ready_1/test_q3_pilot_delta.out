@@ -1,0 +1,11 @@
+synthetic archive: 403,500 rows; rows passing the frozen WHERE without the G condition 183,101; with a G magnitude (the 'frozen chunk 0') 180,071; without G (the delta the script must fetch) 3,030
+main run completed
+fetch: 54 queries, 17 truncated by the endpoint; union rows 183,101
+T1 the union equals the rows the approved query would return (missing 0, spurious 0): PASS
+T2 the truncation path was exercised (17 truncated results; manifest counts 17 discarded): PASS
+T3 the union starts with the 180,071 frozen rows unchanged and its 3,030 appended rows all lack G: PASS
+T4 the union's column names, order and dtypes equal the frozen file's: PASS
+T6 the dropped connection was retried (hit 1, run completed): PASS
+T7 the hung query was cut by the client timeout and retried (hangs 1, run completed): PASS
+T5 the byte cap stops the run and writes the reason (STOPPED: received 0.04 MB after 4 queries against the 0.03 MB cap -- r): PASS
+RESULT: all checks behave as required
