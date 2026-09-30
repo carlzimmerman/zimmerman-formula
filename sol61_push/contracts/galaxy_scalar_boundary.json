@@ -1,0 +1,83 @@
+{
+  "claim_id": "SOL61_GALAXY_SCALAR_BOUNDARY",
+  "mathematics": {
+    "assertion_tested": "Finite frozen-curvature radial BVP compared with pointwise scalar relaxation; no full metric or clock matching",
+    "coefficient_domain": "Double precision positive scalar",
+    "conventions": "GALAXY_SCALAR_MATCHING_RESULTS.md",
+    "inputs": [
+      "sol61_push/galaxy_scalar_boundary.py"
+    ],
+    "bounds": {
+      "A_B_M2": 1,
+      "G": "1/(8pi)",
+      "Kcoupling": 16,
+      "ell": 10,
+      "GM_over_source_radius": 0.001,
+      "source_radii": [
+        0.001,
+        0.0001,
+        1e-05,
+        1e-06
+      ],
+      "Z": [
+        1,
+        1e-14
+      ],
+      "small_Z_only_source_radius": 1e-06,
+      "inner_radius_over_source_radius": [
+        1e-06,
+        1e-07
+      ],
+      "outer_radii": [
+        0.01,
+        0.02
+      ],
+      "method": "scipy solve_bvp in log radius",
+      "relative_collocation_tolerance": 1e-06,
+      "initial_geometric_mesh_count": 1000,
+      "extra_outer_layer_mesh_count": 180,
+      "max_nodes": 20000,
+      "sample_count": 1000,
+      "weak_potential_estimate_limit": 0.01,
+      "static_curvature_proxy_limit": 0.01,
+      "boundary_field_comparison_relative_tolerance": 1e-05
+    },
+    "non_claims": [
+      "No full metric or foliation solution",
+      "No BVP uniqueness or stability proof",
+      "No observed Newton constant determination",
+      "No calibrated physical length or EFT cutoff",
+      "No exact 32pi selection"
+    ]
+  },
+  "execution_artifacts": [
+    "sol61_push/galaxy_scalar_boundary.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

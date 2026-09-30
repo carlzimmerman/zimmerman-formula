@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_GALAXY_SCALAR_BOUNDARY_INITIAL",
+  "repository": {
+    "commit": "7f1ab954204ee7af508200e6b6fd23381df93fa2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/galaxy_scalar_boundary_initial.py",
+    "--output",
+    "sol61_push/runs/galaxy_scalar_boundary_initial/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite frozen-curvature radial BVP compared with pointwise scalar relaxation; no full metric or clock matching",
+    "coefficient_domain": "Double precision positive scalar",
+    "conventions": "GALAXY_SCALAR_MATCHING_RESULTS.md",
+    "inputs": [
+      "sol61_push/galaxy_scalar_boundary_initial.py"
+    ],
+    "bounds": {
+      "A_B_M2": 1,
+      "G": "1/(8pi)",
+      "Kcoupling": 16,
+      "ell": 10,
+      "GM_over_R": 0.001,
+      "source_radii": [
+        0.01,
+        0.001,
+        0.0001,
+        1e-06
+      ],
+      "Z": [
+        1,
+        1e-14
+      ],
+      "outer_radius": 0.1,
+      "method": "singular radial solve_bvp",
+      "mesh_count": 800,
+      "max_nodes": 20000,
+      "tolerance": 1e-06,
+      "extra_outer_layer_points": 0
+    },
+    "non_claims": [
+      "No full metric or foliation solution",
+      "No BVP uniqueness or stability proof",
+      "No observed Newton constant determination",
+      "No calibrated physical length or EFT cutoff",
+      "No exact 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T21:37:18.945357+00:00",
+    "runtime_seconds": 0.524742,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "sol61_push/runs/galaxy_scalar_boundary_initial/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/galaxy_scalar_boundary_initial.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/galaxy_scalar_boundary_initial.py",
+      "sha256": "8a75cf7cc3c831ac7fc9fca83209faa3a918a768b4b6fc098cbb8ee5ffa368df",
+      "sha256_after": "8a75cf7cc3c831ac7fc9fca83209faa3a918a768b4b6fc098cbb8ee5ffa368df"
+    }
+  ],
+  "output_directory": "sol61_push/runs/galaxy_scalar_boundary_initial",
+  "declared_results": [
+    "sol61_push/runs/galaxy_scalar_boundary_initial/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/galaxy_scalar_boundary_initial/stdout.txt",
+      "sha256": "285ba6896f6f5cb429defb797b308d9a45db417d3188d682d0fbcb1225397c6b",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/galaxy_scalar_boundary_initial/stderr.txt",
+      "sha256": "94c41c3ffc65af69bfee6571efc08643d418e2b2d87b98a0fc84b65367ad52b1",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "Declared results were not produced: sol61_push/runs/galaxy_scalar_boundary_initial/results.json"
+  ]
+}

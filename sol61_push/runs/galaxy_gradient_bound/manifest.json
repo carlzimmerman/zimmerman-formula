@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_GALAXY_GRADIENT_BOUND",
+  "repository": {
+    "commit": "7f1ab954204ee7af508200e6b6fd23381df93fa2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/galaxy_gradient_bound.py",
+    "--output",
+    "sol61_push/runs/galaxy_gradient_bound/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Beta-function source integral and conditional Poisson bound compared with five retained near-vacuum BVP samples",
+    "coefficient_domain": "Positive real parameters and double precision quadrature",
+    "conventions": "GALAXY_SCALAR_MATCHING_RESULTS.md",
+    "inputs": [
+      "sol61_push/galaxy_gradient_bound.py",
+      "sol61_push/runs/galaxy_scalar_boundary/results.json"
+    ],
+    "bounds": {
+      "quadrature_domain": [
+        0,
+        "infinity"
+      ],
+      "quadrature_absolute_relative_tolerances": 1e-12,
+      "comparison_tolerance": 1e-10,
+      "BVP_Z_filter": 1,
+      "required_q_lower_bound": "qstar/2",
+      "source_compactness": 0.001
+    },
+    "non_claims": [
+      "No proof every BVP branch stays above qstar/2",
+      "No full metric or clock solution",
+      "No observational calibration"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T21:40:03.160069+00:00",
+    "runtime_seconds": 0.367068,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/galaxy_gradient_bound.py",
+    "sol61_push/runs/galaxy_scalar_boundary/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/galaxy_gradient_bound.py",
+      "sha256": "609b6c0b2a59546eb3e55c71737749b1a4616fd06ae3a133948d410d4381b474",
+      "sha256_after": "609b6c0b2a59546eb3e55c71737749b1a4616fd06ae3a133948d410d4381b474"
+    },
+    {
+      "path": "sol61_push/runs/galaxy_scalar_boundary/results.json",
+      "sha256": "876535baebe1ce30253f8a8b8ded4f756a8ac2011093510902df3457bbedd348",
+      "sha256_after": "876535baebe1ce30253f8a8b8ded4f756a8ac2011093510902df3457bbedd348"
+    }
+  ],
+  "output_directory": "sol61_push/runs/galaxy_gradient_bound",
+  "declared_results": [
+    "sol61_push/runs/galaxy_gradient_bound/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/galaxy_gradient_bound/stdout.txt",
+      "sha256": "87e1feb79eabfd7cbf9a6be29cdafaff69dd412f26693ceb8dc0cde5f6bfdad1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/galaxy_gradient_bound/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/galaxy_gradient_bound/results.json",
+      "sha256": "d9132640a4b4d7c48c7e15f0d1b4d1086aa9ceb6cfd58f96dd255b34f53d8f6c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
