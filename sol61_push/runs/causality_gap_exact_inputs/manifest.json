@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CAUSALITY_GAP_EXACT_INPUTS",
+  "repository": {
+    "commit": "893dbe50764e6a9cd40abeec7eca3ebc1de2abd7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/causality_gap_exact_inputs.py",
+    "--output",
+    "sol61_push/runs/causality_gap_exact_inputs/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Single-pole fixed-time nonanalyticity and common squared-mass gap destabilizing quadratic critical response",
+    "coefficient_domain": "Exact real symbolic series; exact rational gap inputs evaluated at 50 digits then rounded to double",
+    "conventions": "CAUSALITY_GAP_CONTRACT.md",
+    "inputs": [
+      "sol61_push/causality_gap_exact_inputs.py"
+    ],
+    "bounds": {
+      "series_order": 4,
+      "gap_ratios": [
+        1e-08,
+        1e-06,
+        0.0001,
+        0.01
+      ],
+      "small_gap_error_bound": "absolute error < (Delta/M²)^2"
+    },
+    "non_claims": [
+      "No full causal completion",
+      "No actual radiative self-energy",
+      "No 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T18:33:03.319622+00:00",
+    "runtime_seconds": 0.558962,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/causality_gap_exact_inputs.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/causality_gap_exact_inputs.py",
+      "sha256": "7428848a1d19f7a1b3c752bff91b2e68c8d43e3d42d34d594071a127e0c359a6",
+      "sha256_after": "7428848a1d19f7a1b3c752bff91b2e68c8d43e3d42d34d594071a127e0c359a6"
+    }
+  ],
+  "output_directory": "sol61_push/runs/causality_gap_exact_inputs",
+  "declared_results": [
+    "sol61_push/runs/causality_gap_exact_inputs/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/causality_gap_exact_inputs/stdout.txt",
+      "sha256": "2d2bc41862924fc214c4e808b518a9dcaa0b6c3d08a4dcfe613f8a7d7bbfea24",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/causality_gap_exact_inputs/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/causality_gap_exact_inputs/results.json",
+      "sha256": "1a6fbd31162c0d215c8e76e3c8d63f4e69cc1bfb55d6bde743a3780c8750bc9d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
