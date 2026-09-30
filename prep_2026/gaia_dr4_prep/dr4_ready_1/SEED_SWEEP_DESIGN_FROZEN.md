@@ -32,3 +32,11 @@ Changed IN MEMORY: the source text of `main()`'s `_e` / `_f` closures and of `r_
 
 ## Limits (written before the run)
 DR3 stage-G-only sweeps flip far fewer pairs than full E/F/G rebuilds (the tests use stage-G-only builds for speed and the full rebuild only for C2); a stage-G-only sigma_build is NOT the WP2-gamma quantity. The correlation coverage of the DR3 caches is limited (uncovered ids get zero correlation, counted and reported per build).
+
+## Addendum 1 (written after the code existed but BEFORE any test of it ran; additions only, no control above is weakened)
+Four controls are added, three of which use WP2-gamma's independent earlier implementation (its ten per-build directories `dr3_extract/wp2_gamma_k`, k = 0..9, hold each build's `stage_E.npz`, `stage_F.npz` and `final.csv`, built with the SAME seed-set definition by in-memory text substitution of the wp2_variant machinery):
+- **C2b E/F seeds at k = 1.** `rebuild_EF(k = 1)` at N_SHIFT = 30 reproduces `wp2_gamma_1/stage_E.npz` and `stage_F.npz` exactly (every key). (FULL; about 15 min.)
+- **C6b delta fetch.** The per-build correlation fetch queries only the ids its cache (primed from the primary's file, read-only) lacks, merges into the build's own file, leaves the primary's file byte-identical, and a repeat queries nothing (tested with an injected query function, no network).
+- **C11 full-path smoke.** k = 0 and k = 1 both rebuilt through E, F and G at N_SHIFT = 3 and fitted by the pipeline CLI: the builds differ, the fits parse, the builder hash holds. (FULL.)
+- **C12 driver fidelity.** For k = 0..9 the driver with `--seed-offset k --stage-dir dr3_extract/wp2_gamma_k` reproduces `wp2_gamma_k/final.csv` BYTE FOR BYTE (the G seed SEED + k, explicit; the same offline correlations; the same cuts), and the per-build uncovered-correlation count is recorded (item 9 of the read-through).
+Also fixed before running: the fit-only control reported is the SD over the registered fit and the K controls (K + 1 values) as well as the K controls alone; the stage-E per-k rebuild directory name carries N_SHIFT so a smoke build can never be reused as a real one.
