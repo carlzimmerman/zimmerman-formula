@@ -1,0 +1,94 @@
+==============================================================================================================
+CFG194 referee re-derivation of CFG189.  MODE=3.  repo=<repo>
+==============================================================================================================
+
+-- controls
+  [PASS] C1 model col 3, i_star error term, my sigma_out: flat +0.1441 / rival -0.0060 / T +0.3227 to 5e-4: +0.1441 / -0.0060 / +0.3227
+  [PASS] C3 E:=1 makes H = flat (0.0); original E replays the rival (0.0); t/t0 dex 0 / -0.3264 / -0.5099 to 0.002: (0.0, 0.0, 0.0, -0.3264, -0.5099)
+  [PASS] C4 digitisation: model curve at R_max / sin i_SFR = Table B1 col 3 within 1.5% (ten discs): ratios 0.9944..1.0087
+  [PASS] C5 structure: 511 markers, 18 clipped, ten discs present, 231 markers in them, every side has an unclipped marker: (511, 18, 10, 231, True)
+  sign structure (markers with sign(v)=sign(R), of all): {3: (26, 26), 7: (23, 23), 8: (22, 22), 9: (22, 22), 11: (25, 25), 13: (26, 26), 15: (21, 22), 16: (23, 23), 17: (20, 20), 21: (22, 22)}
+
+-- primary: farther side's outermost UNCLIPPED marker; V=|v|/sin i_SFR; error = mean bar/sin i_SFR; sigma at R_out, same side
+  KURVS-3  R_out= 10.06 (table R_max 11.70) side +1  V_out= 155.2+- 22.0 vs model  209.8:  -26.0%   sigma= 73.9+-20.6 (CFG165 sigma_out at R_max  55.3+- 7.6)
+  KURVS-7  R_out= 11.37 (table R_max 11.40) side -1  V_out=  87.4+- 31.6 vs model  105.4:  -17.1%   sigma= 63.0+-31.5 (CFG165 sigma_out at R_max  69.1+-13.1)
+  KURVS-8  R_out= 11.04 (table R_max 11.00) side -1  V_out=  59.5+- 20.4 vs model   68.8:  -13.4%   sigma= 28.1+-20.7 (CFG165 sigma_out at R_max  27.9+-20.3)
+  KURVS-9  R_out= 10.15 (table R_max 10.20) side -1  V_out= 102.2+- 13.4 vs model  136.9:  -25.4%   sigma= 52.1+-11.8 (CFG165 sigma_out at R_max  51.3+- 5.2)
+  KURVS-11 R_out= 12.37 (table R_max 12.40) side +1  V_out= 228.1+- 22.2 vs model  246.6:   -7.5%   sigma= 57.7+-18.8 (CFG165 sigma_out at R_max  65.8+- 4.7)
+  KURVS-13 R_out= 12.05 (table R_max 12.10) side -1  V_out=  69.2+- 21.1 vs model   94.3:  -26.6%   sigma= 46.7+-20.7 (CFG165 sigma_out at R_max  61.3+- 9.7)
+  KURVS-15 R_out=  9.18 (table R_max  9.20) side -1  V_out=  64.6+- 11.5 vs model  112.2:  -42.4%   sigma= 77.5+-10.5 (CFG165 sigma_out at R_max  67.1+- 4.2)
+  KURVS-16 R_out= 10.05 (table R_max 10.90) side +1  V_out= 125.5+- 12.4 vs model  139.4:   -9.9%   sigma= 67.0+-11.9 (CFG165 sigma_out at R_max  73.0+- 4.0)
+  KURVS-17 R_out=  7.34 (table R_max  9.90) side -1  V_out=  62.9+- 14.7 vs model  120.9:  -48.0%   sigma= 62.5+-12.9 (CFG165 sigma_out at R_max  61.7+- 6.3)
+  KURVS-21 R_out= 12.73 (table R_max 12.70) side +1  V_out= 110.7+-  8.9 vs model  145.6:  -23.9%   sigma= 76.7+- 8.6 (CFG165 sigma_out at R_max  76.8+- 8.5)
+  decision cell (mu=0.67, s=1): flat: +0.0277 +- 0.0519 (+0.53) | rival: -0.1178 +- 0.0504 (-2.34) | T: +0.1973 +- 0.0548 (+3.60) | lean flat
+  model-value : flat: +0.1441 +- 0.0439 (+3.28) | rival: -0.0060 +- 0.0443 (-0.14) | T: +0.3227 +- 0.0465 (+6.94) | lean rival
+
+-- variants (decision cell)
+  V-a outer three                            flat: +0.0050 +- 0.0471 (+0.11) | rival: -0.1370 +- 0.0484 (-2.83) | T: +0.1698 +- 0.0476 (+3.57) | lean flat
+  V-b both sides, shorter radius             flat: -0.0928 +- 0.0451 (-2.06) | rival: -0.2297 +- 0.0462 (-4.97) | T: +0.0611 +- 0.0470 (+1.30) | non-diagnostic (both outside)
+  V-c clipped included                       flat: +0.0738 +- 0.0545 (+1.35) | rival: -0.0736 +- 0.0531 (-1.39) | T: +0.2472 +- 0.0575 (+4.30) | non-diagnostic (both within)
+  V-d i_star deprojection and error term     flat: +0.0272 +- 0.0518 (+0.53) | rival: -0.1184 +- 0.0504 (-2.35) | T: +0.1969 +- 0.0548 (+3.60) | lean flat
+  V-d' i_star error term only (diagnostic)   flat: +0.0272 +- 0.0518 (+0.53) | rival: -0.1184 +- 0.0504 (-2.35) | T: +0.1969 +- 0.0548 (+3.60) | lean flat
+  V-b radii: [9.41, 7.25, 6.74, 7.63, 7.85, 8.95, 8.61, 6.89, 5.28, 4.96]
+  V-c outer radii / V: [(11.76, 275.6), (11.37, 87.4), (11.04, 59.6), (10.15, 102.2), (12.37, 228.1), (12.05, 69.2), (9.18, 64.6), (10.9, 171.7), (9.02, 32.5), (12.73, 110.7)]
+
+-- shifts (measured primary minus model) and the headline
+  flat   shift -0.1164 dex, dz -2.75
+  rival  shift -0.1118 dex, dz -2.20
+  T      shift -0.1255 dex, dz -3.34
+  class model lean rival; measured lean flat; HEADLINE = CHANGED; variants (excl. BS, deferred, and V-d') whose class differs from the primary: 2 of 4
+
+-- break-evens mu_be [1-sigma edges], gas status vs ceiling 3.47, across s (decision-cell footing)
+  model    s=0.00 flat   mu_be=none (over)                      status over
+  model    s=0.00 rival  mu_be=none (over)                      status over
+  model    s=0.00 T      mu_be=1.007 [0.616, 1.465]             status allowed
+  model    s=1.00 flat   mu_be=2.109 [1.596, 2.705]             status allowed
+  model    s=1.00 rival  mu_be=0.621 [0.289, 1.006]             status allowed
+  model    s=1.00 T      mu_be=4.335 [3.547, 5.268]             status excluded
+  model    s=1.42 flat   mu_be=3.096 [2.423, 3.887]             status allowed
+  model    s=1.42 rival  mu_be=1.257 [0.822, 1.766]             status allowed
+  model    s=1.42 T      mu_be=5.656 [4.636, 6.877]             status excluded
+  model    s=1.62 flat   mu_be=3.566 [2.809, 4.462]             status allowed
+  model    s=1.62 rival  mu_be=1.567 [1.076, 2.144]             status allowed
+  model    s=1.62 T      mu_be=6.262 [5.127, 7.627]             status excluded
+  model    s=1.69 flat   mu_be=3.730 [2.942, 4.665]             status allowed
+  model    s=1.69 rival  mu_be=1.676 [1.165, 2.279]             status allowed
+  model    s=1.69 T      mu_be=6.471 [5.295, 7.888]             status excluded
+  model    s=3.00 flat   mu_be=6.846 [5.408, 8.611]             status excluded
+  model    s=3.00 rival  mu_be=3.829 [2.873, 4.994]             status allowed
+  model    s=3.00 T      mu_be=10.187 [8.227, 12.603]           status excluded
+  measured s=0.00 flat   mu_be=none (over)                      status over
+  measured s=0.00 rival  mu_be=none (over)                      status over
+  measured s=0.00 T      mu_be=none (over)                      status over
+  measured s=1.00 flat   mu_be=0.893 [0.493, 1.375]             status allowed
+  measured s=1.00 rival  mu_be=none (over)                      status over
+  measured s=1.00 T      mu_be=2.466 [1.851, 3.197]             status allowed
+  measured s=1.42 flat   mu_be=1.711 [1.162, 2.374]             status allowed
+  measured s=1.42 rival  mu_be=0.408 [0.070, 0.824]             status allowed
+  measured s=1.42 T      mu_be=3.584 [2.784, 4.534]             status allowed
+  measured s=1.62 flat   mu_be=2.115 [1.492, 2.870]             status allowed
+  measured s=1.62 rival  mu_be=0.673 [0.282, 1.154]             status allowed
+  measured s=1.62 T      mu_be=4.115 [3.228, 5.170]             status allowed
+  measured s=1.69 flat   mu_be=2.259 [1.609, 3.046]             status allowed
+  measured s=1.69 rival  mu_be=0.768 [0.358, 1.272]             status allowed
+  measured s=1.69 T      mu_be=4.301 [3.383, 5.391]             status allowed
+  measured s=3.00 flat   mu_be=5.124 [3.942, 6.561]             status excluded
+  measured s=3.00 rival  mu_be=2.767 [1.955, 3.768]             status allowed
+  measured s=3.00 T      mu_be=7.745 [6.259, 9.520]             status excluded
+
+-- fit points s0 (Delta'=0) at mu = 0.67
+  model    {'flat': 0.3892124855293557, 'rival': 1.032784358788476, 'T': '<0'}
+  measured {'flat': 0.8813314213661468, 'rival': 1.6177221012644418, 'T': 0.32703887375701285}
+
+-- P0 (s=0) at mu=0.67
+  measured P0: flat: -0.2915 +- 0.0695 (-4.20) | rival: -0.4326 +- 0.0723 (-5.98) | T: -0.1294 +- 0.0655 (-1.98) | non-diagnostic (both outside)
+  model    P0: flat: -0.1302 +- 0.0572 (-2.28) | rival: -0.2789 +- 0.0603 (-4.62) | T: +0.0457 +- 0.0537 (+0.85) | non-diagnostic (both outside)
+
+-- C2': velocity-marker radius against the nearest sigma-profile marker radius (same side, any sigma marker)
+  markers with |R_v - R_sigma| > 0.02 kpc: 22 of 231; per disc {3: 2, 17: 20}
+  offsets (kpc) per disc: {3: [-1.681, -0.834], 17: [0.066, 0.066, 0.066, 0.066, 0.066, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.065, 0.906]}
+
+-- pass lines (targets = CFG189 README numbers, read, not blind)
+
+-- MUTATE evaluation (exit 1 iff the control bites)
+  class without deprojection: lean flat -> bite=True

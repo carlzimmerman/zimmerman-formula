@@ -1,0 +1,162 @@
+====================================================================================================
+CFG194 attacks A/B.  repo=<repo>
+====================================================================================================
+
+-- A1 primary
+  A1 primary                                                 n=10 flat:+0.125(+2.45) rival:-0.021(-0.42) T:+0.295(+5.47)  lean rival
+
+-- A2 each side alone
+  A2 + side alone                                            n=10 flat:+0.075(+1.55) rival:-0.069(-1.46) T:+0.239(+4.66)  non-diagnostic (both within)
+  A2 - side alone                                            n=10 flat:+0.060(+1.06) rival:-0.080(-1.46) T:+0.221(+3.68)  non-diagnostic (both within)
+  A2 nearer side (shorter reach)                             n=10 flat:+0.009(+0.17) rival:-0.128(-2.53) T:+0.162(+2.88)  lean flat
+
+-- A3 annulus (both sides pooled; sigma from the farther side at the mean radius)
+  A3 annulus [0.8,1] x R_far weighted mean                   n=10 flat:+0.097(+2.29) rival:-0.046(-1.10) T:+0.263(+5.75)  lean rival
+  A3 annulus [0.8,1] x R_far median                          n=10 flat:+0.102(+2.40) rival:-0.041(-0.98) T:+0.268(+5.85)  lean rival
+  A3 annulus [0.7,1] x R_far weighted mean                   n=10 flat:+0.074(+1.80) rival:-0.067(-1.58) T:+0.237(+5.44)  non-diagnostic (both within)
+  A3 annulus [0.7,1] x R_far median                          n=10 flat:+0.082(+1.93) rival:-0.059(-1.38) T:+0.244(+5.60)  non-diagnostic (both within)
+  A3 annulus [0.6,1] x R_far weighted mean                   n=10 flat:+0.042(+1.08) rival:-0.098(-2.60) T:+0.203(+4.82)  lean flat
+  A3 annulus [0.6,1] x R_far median                          n=10 flat:+0.052(+1.31) rival:-0.088(-2.14) T:+0.213(+5.07)  lean flat
+
+-- A4 outer k markers on the farther side
+  A4 outer 2                                                 n=10 flat:+0.113(+2.52) rival:-0.031(-0.73) T:+0.281(+5.87)  lean rival
+  A4 outer 3                                                 n=10 flat:+0.102(+2.44) rival:-0.040(-1.00) T:+0.268(+5.93)  lean rival
+  A4 outer 5                                                 n=10 flat:+0.064(+1.61) rival:-0.076(-1.95) T:+0.224(+5.18)  non-diagnostic (both within)
+
+-- A5 both sides at the shorter radius (V-b), A5x the farther side alone at that same radius, A5y both sides at 0.8 R_max
+  A5 V-b both sides, shorter radius                          n=10 flat:+0.006(+0.14) rival:-0.132(-3.15) T:+0.162(+3.43)  lean flat
+  A5x farther side alone at the shorter radius               n=10 flat:+0.015(+0.37) rival:-0.124(-3.06) T:+0.175(+3.98)  lean flat
+  A5y both sides at 0.8 R_max                                n= 2 flat:+0.002(+0.02) rival:-0.143(-1.61) T:+0.155(+1.52)  non-diagnostic (both within)
+  per-disc |v| at the shorter radius: (id, R, v+, v-, (v+/v- -1)%) [(3, 9.41, 152.0, 140.0, 8.5), (7, 7.25, 107.3, 90.7, 18.4), (8, 6.74, 68.1, 65.3, 4.3), (9, 7.63, 90.4, 89.8, 0.7), (11, 7.85, 195.5, 195.7, -0.1), (13, 8.94, 57.2, 60.6, -5.7), (15, 8.61, 57.9, 64.6, -10.5), (16, 6.89, 122.2, 90.9, 34.4), (17, 5.28, 62.8, 54.3, 15.8), (21, 4.96, 70.2, 47.7, 47.3)]
+  V-b radii: [9.41, 7.25, 6.74, 7.63, 7.85, 8.95, 8.61, 6.89, 5.28, 4.96]  A5x V: [227.1, 92.7, 70.4, 120.8, 204.4, 90.6, 105.0, 127.8, 81.1, 86.8]  primary V: [231.9, 89.3, 64.2, 137.5, 238.5, 103.4, 105.0, 131.3, 93.9, 136.9]
+
+-- A6 radius scan: farther side, V at f * R_max(table) (discs where it reaches)
+  A6 f=0.5                                                   n=10 flat:-0.022(-0.58) rival:-0.157(-4.33) T:+0.127(+3.01)  lean flat
+  A6 f=0.6                                                   n=10 flat:+0.005(+0.14) rival:-0.132(-3.56) T:+0.162(+3.79)  lean flat
+  A6 f=0.7                                                   n=10 flat:+0.039(+0.96) rival:-0.101(-2.57) T:+0.200(+4.50)  lean flat
+  A6 f=0.8                                                   n= 9 flat:+0.078(+1.74) rival:-0.062(-1.44) T:+0.239(+4.91)  non-diagnostic (both within)
+  A6 f=0.9                                                   n= 8 flat:+0.097(+1.99) rival:-0.047(-1.00) T:+0.265(+5.08)  non-diagnostic (both within)
+  f=1.0: only 2 discs reach
+  A6b both sides at 0.6 R_max (extra, labelled)              n= 8 flat:-0.020(-0.43) rival:-0.157(-3.54) T:+0.131(+2.57)  lean flat
+
+-- A7 inclination
+  A7 V-d i_star deprojection and error term                  n=10 flat:+0.112(+2.20) rival:-0.034(-0.70) T:+0.283(+5.26)  lean rival
+  A7 V-d' i_star error term only                             n=10 flat:+0.125(+2.45) rival:-0.022(-0.44) T:+0.295(+5.49)  lean rival
+  A7 i_SFR +5 deg, coherent (V scale sin i/sin(i+5))         n=10 flat:+0.097(+1.90) rival:-0.049(-0.98) T:+0.267(+4.95)  non-diagnostic (both within)
+  A7 i_SFR -5 deg, coherent (V scale sin i/sin(i-5))         n=10 flat:+0.161(+3.14) rival:+0.015(+0.29) T:+0.331(+6.13)  lean rival
+
+-- A8 coherent V-scale grid and crossing scales (primary)
+  v_s : class, z_flat, z_rival
+   0.90: non-diagnostic (both within)       +1.46 -1.42
+   0.91: non-diagnostic (both within)       +1.56 -1.32
+   0.92: non-diagnostic (both within)       +1.66 -1.22
+   0.93: non-diagnostic (both within)       +1.76 -1.12
+   0.94: non-diagnostic (both within)       +1.85 -1.02
+   0.95: non-diagnostic (both within)       +1.95 -0.92
+   0.96: lean rival                         +2.05 -0.82
+   0.97: lean rival                         +2.15 -0.72
+   0.98: lean rival                         +2.25 -0.62
+   0.99: lean rival                         +2.35 -0.52
+   1.00: lean rival                         +2.45 -0.42
+   1.01: lean rival                         +2.54 -0.32
+   1.02: lean rival                         +2.64 -0.23
+   1.03: lean rival                         +2.74 -0.13
+   1.04: lean rival                         +2.83 -0.03
+   1.05: lean rival                         +2.93 +0.07
+   1.06: lean rival                         +3.03 +0.17
+   1.07: lean rival                         +3.12 +0.27
+   1.08: lean rival                         +3.22 +0.36
+   1.09: lean rival                         +3.31 +0.46
+   1.10: lean rival                         +3.41 +0.56
+  crossing V scales: {'flat=+2 (lean rival ends below)': 0.9547, 'rival=-2 (lean flat begins below)': 0.8422, 'rival=+2 (lean rival ends above)': 1.252}
+  model-value column crossing scales: {'flat=+2': 0.8905, 'rival=-2': 0.8313}
+
+-- A9 chain: model at R_max (i_star) -> i_SFR error term -> model at R_out (R, sigma, V move) -> measured V (model errors) -> measured V and marker errors
+  extra split of S2 (from S1): radius and model-V move only: flat: +0.1326 +- 0.0404 (+3.28) | rival: -0.0148 +- 0.0391 (-0.38) | T: +0.3067 +- 0.0435 (+7.06) | lean rival
+  extra split of S2 (from S1): sigma at R_out same side only : flat: +0.1462 +- 0.0458 (+3.19) | rival: -0.0013 +- 0.0443 (-0.03) | T: +0.3204 +- 0.0488 (+6.56) | lean rival
+  step                                                                              flat                    rival                        T
+  S0 model col 3 at R_max (C1, i_star error term)               +0.1441+-0.0439 (+3.28)   -0.0060+-0.0443 (-0.14)   +0.3227+-0.0465 (+6.94)
+  S1 + i_SFR in the error term                                  +0.1467+-0.0442 (+3.32)   -0.0027+-0.0445 (-0.06)   +0.3247+-0.0468 (+6.94)
+  S2 model curve read at R_out (radius and sigma effect)        +0.1321+-0.0461 (+2.87)   -0.0135+-0.0445 (-0.30)   +0.3023+-0.0492 (+6.14)
+  S3 measured V, table (model) errors (value effect)            +0.1220+-0.0465 (+2.63)   -0.0235+-0.0449 (-0.52)   +0.2922+-0.0496 (+5.89)
+  S4 measured V and marker errors (= primary; error effect)     +0.1249+-0.0511 (+2.45)   -0.0211+-0.0496 (-0.42)   +0.2953+-0.0540 (+5.47)
+  step changes (dz, dDelta'):
+   S1 + i_SFR in the error term                                flat: +0.04 (+0.0026)  rival: +0.08 (+0.0034)  T: +0.00 (+0.0019)
+   S2 model curve read at R_out (radius and sigma effect)      flat: -0.46 (-0.0147)  rival: -0.24 (-0.0109)  T: -0.79 (-0.0223)
+   S3 measured V, table (model) errors (value effect)          flat: -0.24 (-0.0100)  rival: -0.22 (-0.0099)  T: -0.25 (-0.0101)
+   S4 measured V and marker errors (= primary; error effect)   flat: -0.18 (+0.0028)  rival: +0.10 (+0.0024)  T: -0.42 (+0.0031)
+  total dz: {'flat': -0.84, 'rival': -0.29, 'T': -1.46}
+  value-only vs sigma-only decomposition of the flat z drop (C-c):
+   flat: z +3.28 -> +2.45; value-only -0.44, sigma-only -0.46
+   rival: z -0.14 -> -0.42; value-only -0.34, sigma-only +0.01
+   T: z +6.94 -> +5.47; value-only -0.59, sigma-only -0.96
+  model curve at R_out vs table col 3 (radius effect on V per disc, %): [0.4, 0.1, 0.2, -0.4, 0.0, -0.2, 0.9, -0.6, -14.9, 0.2]
+  measured / model-at-R_out (%): [10.0, -15.3, -6.8, 0.8, -3.3, 9.9, -7.3, -5.3, -8.7, -6.2]
+
+-- A10 pressure axis: Delta'(s) z for flat / rival / T, crossings, placements vs s_mid (mu = 0.67)
+  A1 primary                                           s_mid=0.736 s_f2=0.878 s_h2=0.616 all placed above s_mid: True  class@s=0/1: lean flat / lean rival
+  A2 + side alone                                      s_mid=0.983 s_f2=1.13 s_h2=0.862 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A2 - side alone                                      s_mid=1.059 s_f2=1.345 s_h2=0.838 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A2 nearer side (shorter reach)                       s_mid=1.399 s_f2=1.689 s_h2=1.17 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A3 annulus [0.8,1] x R_far weighted mean             s_mid=0.867 s_f2=0.933 s_h2=0.806 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / lean rival
+  A3 annulus [0.8,1] x R_far median                    s_mid=0.843 s_f2=0.908 s_h2=0.776 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / lean rival
+  A3 annulus [0.7,1] x R_far weighted mean             s_mid=0.98 s_f2=1.045 s_h2=0.907 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A3 annulus [0.7,1] x R_far median                    s_mid=0.942 s_f2=1.015 s_h2=0.859 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A3 annulus [0.6,1] x R_far weighted mean             s_mid=1.156 s_f2=1.2 s_h2=1.124 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A3 annulus [0.6,1] x R_far median                    s_mid=1.099 s_f2=1.157 s_h2=1.032 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A4 outer 2                                           s_mid=0.788 s_f2=0.873 s_h2=0.725 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / lean rival
+  A4 outer 3                                           s_mid=0.84 s_f2=0.902 s_h2=0.792 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / lean rival
+  A4 outer 5                                           s_mid=1.032 s_f2=1.086 s_h2=0.989 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A5 V-b both sides, shorter radius                    s_mid=1.383 s_f2=1.51 s_h2=1.287 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A5x farther side alone at the shorter radius         s_mid=1.301 s_f2=1.383 s_h2=1.234 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A5y both sides at 0.8 R_max                          s_mid=1.557 s_f2=2.659 s_h2=0.73 all placed above s_mid: False  class@s=0/1: lean flat / non-diagnostic (both within)
+  A6 f=0.5                                             s_mid=1.529 s_f2=1.607 s_h2=1.472 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A6 f=0.6                                             s_mid=1.369 s_f2=1.434 s_h2=1.315 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A6 f=0.7                                             s_mid=1.176 s_f2=1.247 s_h2=1.125 all placed above s_mid: False  class@s=0/1: non-diagnostic (both outside) / lean flat
+  A6 f=0.8                                             s_mid=0.955 s_f2=1.069 s_h2=0.866 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A6 f=0.9                                             s_mid=0.869 s_f2=1.003 s_h2=0.749 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A7 V-d                                               s_mid=0.811 s_f2=0.948 s_h2=0.7 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / lean rival
+  A7 i_SFR +5                                          s_mid=0.879 s_f2=1.027 s_h2=0.757 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / non-diagnostic (both within)
+  A7 i_SFR -5                                          s_mid=0.548 s_f2=0.689 s_h2=0.419 all placed above s_mid: True  class@s=0/1: lean flat / lean rival
+  MODEL col 3 (C1)                                     s_mid=0.669 s_f2=0.726 s_h2=0.599 all placed above s_mid: True  class@s=0/1: non-diagnostic (both outside) / lean rival
+  s_mid over the measured-marker grid rows: min 0.548 max 1.557 range 1.009; model-value 0.669
+
+-- (a) verdict: rows A2-A5, A7 (n=19): lean rival in 7 (0.37); line >= 0.80 -> FAIL; no row has rival above +2 sigma: True
+   rows not lean rival: [('A2 + side alone', 'non-diagnostic (both within)'), ('A2 - side alone', 'non-diagnostic (both within)'), ('A2 nearer side (shorter reach)', 'lean flat'), ('A3 annulus [0.7,1] x R_far weighted mean', 'non-diagnostic (both within)'), ('A3 annulus [0.7,1] x R_far median', 'non-diagnostic (both within)'), ('A3 annulus [0.6,1] x R_far weighted mean', 'lean flat'), ('A3 annulus [0.6,1] x R_far median', 'lean flat'), ('A4 outer 5', 'non-diagnostic (both within)'), ('A5 V-b both sides, shorter radius', 'lean flat'), ('A5x farther side alone at the shorter radius', 'lean flat'), ('A5y both sides at 0.8 R_max', 'non-diagnostic (both within)'), ('A7 i_SFR +5 deg, coherent (V scale sin i/sin(i+5))', 'non-diagnostic (both within)')]
+   V-b flip: A5 (both sides at shorter radius) = lean flat; A5x (farther side alone at the same radius) = lean flat; A6 scan classes: {0.5: 'lean flat', 0.6: 'lean flat', 0.7: 'lean flat', 0.8: 'non-diagnostic (both within)', 0.9: 'non-diagnostic (both within)'}
+
+====================================================================================================
+-- B1 leave-one-out (decision cell; T status and break-evens at s=1)
+  drop KURVS-3  lean rival                         z +2.32 -0.46 +5.29  mu_be(s=1) 1.86 0.48 3.91  T lower edge 3.04 -> allowed
+  drop KURVS-7  lean rival                         z +2.55 -0.28 +5.54  mu_be(s=1) 1.95 0.56 3.93  T lower edge 3.09 -> allowed
+  drop KURVS-8  lean rival                         z +2.58 -0.26 +5.55  mu_be(s=1) 1.96 0.57 3.93  T lower edge 3.10 -> allowed
+  drop KURVS-9  lean rival                         z +2.44 -0.24 +5.25  mu_be(s=1) 1.92 0.57 3.82  T lower edge 2.97 -> allowed
+  drop KURVS-11 lean rival                         z +2.24 -0.50 +5.16  mu_be(s=1) 1.83 0.46 3.85  T lower edge 2.98 -> allowed
+  drop KURVS-13 lean rival                         z +2.36 -0.45 +5.29  mu_be(s=1) 1.83 0.49 3.72  T lower edge 2.91 -> allowed
+  drop KURVS-15 lean rival                         z +2.34 -0.30 +5.14  mu_be(s=1) 1.88 0.54 3.80  T lower edge 2.94 -> allowed
+  drop KURVS-16 lean rival                         z +2.39 -0.23 +5.16  mu_be(s=1) 1.93 0.57 3.88  T lower edge 3.00 -> allowed
+  drop KURVS-17 lean rival                         z +2.09 -0.66 +4.95  mu_be(s=1) 1.70 0.41 3.53  T lower edge 2.74 -> allowed
+  drop KURVS-21 non-diagnostic (both within)       z +1.93 -0.70 +4.69  mu_be(s=1) 1.71 0.37 3.63  T lower edge 2.77 -> allowed
+  lean rival persists in 9 of 10 (line >= 8 -> PASS); z_flat range +1.93 .. +2.58; T gas-allowed at s=1 in 10 of 10
+
+-- B2 bootstrap of the ten discs (N=2000, seed 194)
+  class fractions: {'lean rival': 0.764, 'non-diagnostic (both within)': 0.234, 'lean flat': 0.002}
+  P(z_flat > 2) = 0.764; P(z_rival within 2) = 0.999; z_flat 16/50/84% = [1.82 2.43 2.97]; P(T gas-allowed at s=1) = 0.928; P(z_T > 2) = 1.000
+
+-- B3 named subsets
+  drop KURVS-17                                                                    n= 9 flat:+0.112(+2.09) rival:-0.034(-0.66) T:+0.280(+4.95) lean rival
+  drop discs whose outermost plotted marker is clipped [3, 16, 17]                 n= 7 flat:+0.114(+1.85) rival:-0.031(-0.52) T:+0.285(+4.36) non-diagnostic (both within)
+  drop |measured/model-1| > 15%                                                    n= 8 flat:+0.119(+2.20) rival:-0.027(-0.51) T:+0.288(+5.01) lean rival
+  keep discs whose farther side reaches >= 0.9 R_max(table) (n=8)                  n= 8 flat:+0.109(+1.95) rival:-0.038(-0.70) T:+0.281(+4.74) non-diagnostic (both within)
+  drop KURVS-21 (flagged asymmetric)                                               n= 9 flat:+0.109(+1.93) rival:-0.038(-0.70) T:+0.279(+4.69) non-diagnostic (both within)
+  drop KURVS-13, -17, -21                                                          n= 7 flat:+0.085(+1.39) rival:-0.061(-1.03) T:+0.250(+3.84) non-diagnostic (both within)
+
+-- B4 extension (labelled, not the headline): all 22 discs with V/sigma0 >= 1.0 and a measured outer point, mu = 0.67
+  ids: [2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+  x = R_out/R_eff - 1 range 0.51..7.66 (alpha_K clips at [0,4]); V range 31..239
+  extension, primary rule: flat: +0.0960 +- 0.0464 (+2.07) | rival: -0.0472 +- 0.0453 (-1.04) | T: +0.2632 +- 0.0486 (+5.42) | lean rival
+  extension, model-value column: flat: +0.0852 +- 0.0477 (+1.79) | rival: -0.0595 +- 0.0465 (-1.28) | T: +0.2563 +- 0.0510 (+5.02) | non-diagnostic (both within)
+  extension, primary rule, P0: flat: -0.1438 +- 0.0534 (-2.69) | rival: -0.2857 +- 0.0534 (-5.35) | T: +0.0210 +- 0.0558 (+0.38) | non-diagnostic (both outside)
+  the 9 discs NOT in the ten alone: flat: -0.0290 +- 0.1154 (-0.25) | rival: -0.1662 +- 0.1121 (-1.48) | T: +0.1364 +- 0.1227 (+1.11) | non-diagnostic (both within)
+
+done

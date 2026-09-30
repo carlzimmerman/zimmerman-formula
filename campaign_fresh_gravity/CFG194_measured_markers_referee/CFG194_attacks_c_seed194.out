@@ -1,0 +1,84 @@
+====================================================================================================
+CFG194 attacks C/D.  seed=194 N=10000  repo=<repo>
+====================================================================================================
+primary: flat: +0.1249 +- 0.0511 (+2.45) | rival: -0.0211 +- 0.0496 (-0.42) | T: +0.2953 +- 0.0540 (+5.47) | lean rival
+
+-- C-a: measured V_out against the digitised model curve read at R_out (both deprojected by sin i_SFR)
+  pulls: [0.64, -0.5, -0.21, 0.06, -0.35, 0.3, -0.44, -0.57, -0.41, -0.82]
+  chi2 = 2.27 for 10 dof, p = 0.994; rms pull 0.48; mean pull -0.23; fractional (meas/model-1) mean -0.032
+  pooled chi2/dof inside pool (flat): model-value run 1.25, measured primary 0.36
+
+-- C-b: sign-flip test of the value-only shift (baseline = model curve at R_out; primary errors and sigma held fixed)
+  observed value-only shifts (flat, rival, T): [-0.0126 -0.0126 -0.0126]
+  random signs N=10000: sd of the shift [0.0107 0.0108 0.0105]; two-sided p (flat, rival, T) = [0.257 0.262 0.251]
+  exact enumeration (1024 sign vectors): p (flat, rival, T) = [0.256 0.26  0.249]
+
+-- C-d: error-model variants (decision cell)
+  E1 mean bar (primary)                                       flat:+0.125+-0.051(+2.45) rival:-0.021+-0.050(-0.42) T:+0.295+-0.054(+5.47)  lean rival
+  E2 larger bar                                               flat:+0.125+-0.051(+2.45) rival:-0.021+-0.050(-0.42) T:+0.295+-0.054(+5.47)  lean rival
+  E3 smaller bar                                              flat:+0.125+-0.051(+2.45) rival:-0.021+-0.050(-0.42) T:+0.295+-0.054(+5.47)  lean rival
+  E4 errors x 1.5 (correlated neighbours)                     flat:+0.126+-0.057(+2.21) rival:-0.020+-0.056(-0.36) T:+0.297+-0.060(+4.97)  lean rival
+  E5 5 km/s floor in quadrature                               flat:+0.125+-0.052(+2.42) rival:-0.021+-0.050(-0.42) T:+0.295+-0.055(+5.41)  lean rival
+  E6 common V-scale error ln s ~ N(0, 0.03) as covariance     flat:+0.125+-0.053(+2.35) rival:-0.021+-0.052(-0.41) T:+0.295+-0.056(+5.28)  lean rival
+  (E6 added sigma: {'flat': 0.0148, 'rival': 0.0149, 'T': 0.0148} )
+
+-- C-e: mock null worlds, three laws x families; truth = real baryons, sigma_out, R_out, marker errors; analysis = primary pipeline
+  N1x extra per-marker scatter factor sqrt(max(0, rms_pull^2 - 1)) = 0.000 (x marker error)
+  mock worlds carry the anchor's z=0 pipeline offset +0.0967 dex (first draft of this script omitted it: flat-truth ideal mocks then sat at Delta' = -0.069; kept as a note)
+  meas     ideal truth=flat   mean Delta' +0.013 -0.135 +0.185  sd_flat 0.023  P(z_flat>=2.45)=0.000  P(lean rival)=0.000  T allowed@s=1: 1.00  [13s]
+  meas     ideal truth=rival  mean Delta' +0.155 +0.007 +0.329  sd_flat 0.023  P(z_flat>=2.45)=0.919  P(lean rival)=0.989  T allowed@s=1: 0.45  [12s]
+  meas     ideal truth=T      mean Delta' -0.108 -0.255 +0.063  sd_flat 0.021  P(z_flat>=2.45)=0.000  P(lean rival)=0.000  T allowed@s=1: 1.00  [12s]
+  meas     N1    truth=flat   mean Delta' +0.070 -0.077 +0.242  sd_flat 0.054  P(z_flat>=2.45)=0.140  P(lean rival)=0.259  T allowed@s=1: 0.95  [12s]
+  meas     N1    truth=rival  mean Delta' +0.200 +0.052 +0.373  sd_flat 0.052  P(z_flat>=2.45)=0.913  P(lean rival)=0.760  T allowed@s=1: 0.17  [12s]
+  meas     N1    truth=T      mean Delta' -0.049 -0.195 +0.121  sd_flat 0.050  P(z_flat>=2.45)=0.001  P(lean rival)=0.001  T allowed@s=1: 1.00  [17s]
+  modelerr ideal truth=flat   mean Delta' +0.011 -0.139 +0.189  sd_flat 0.009  P(z_flat>=2.45)=0.000  P(lean rival)=0.000  T allowed@s=1: 1.00  [14s]
+  modelerr ideal truth=rival  mean Delta' +0.151 +0.001 +0.329  sd_flat 0.009  P(z_flat>=2.45)=1.000  P(lean rival)=1.000  T allowed@s=1: 0.06  [13s]
+  modelerr ideal truth=T      mean Delta' -0.118 -0.269 +0.062  sd_flat 0.008  P(z_flat>=2.45)=0.000  P(lean rival)=0.000  T allowed@s=1: 1.00  [13s]
+  modelerr N1    truth=flat   mean Delta' +0.061 -0.090 +0.239  sd_flat 0.050  P(z_flat>=2.45)=0.203  P(lean rival)=0.331  T allowed@s=1: 0.95  [13s]
+  modelerr N1    truth=rival  mean Delta' +0.194 +0.043 +0.372  sd_flat 0.047  P(z_flat>=2.45)=0.948  P(lean rival)=0.740  T allowed@s=1: 0.15  [22s]
+  modelerr N1    truth=T      mean Delta' -0.062 -0.212 +0.116  sd_flat 0.046  P(z_flat>=2.45)=0.000  P(lean rival)=0.001  T allowed@s=1: 1.00  [25s]
+
+  classes per world:
+   meas|ideal|flat        {'lean flat': 0.915, 'non-diagnostic (both within)': 0.085}
+   meas|ideal|rival       {'lean rival': 0.989, 'non-diagnostic (both outside)': 0.0, 'non-diagnostic (both within)': 0.011}
+   meas|ideal|T           {'lean flat': 0.697, 'non-diagnostic (both outside)': 0.303}
+   meas|N1|flat           {'lean flat': 0.299, 'lean rival': 0.259, 'non-diagnostic (both outside)': 0.001, 'non-diagnostic (both within)': 0.442}
+   meas|N1|rival          {'lean flat': 0.004, 'lean rival': 0.76, 'non-diagnostic (both outside)': 0.198, 'non-diagnostic (both within)': 0.038}
+   meas|N1|T              {'lean flat': 0.875, 'lean rival': 0.001, 'non-diagnostic (both outside)': 0.069, 'non-diagnostic (both within)': 0.055}
+   modelerr|ideal|flat    {'lean flat': 1.0}
+   modelerr|ideal|rival   {'lean rival': 1.0}
+   modelerr|ideal|T       {'lean flat': 0.0, 'non-diagnostic (both outside)': 1.0}
+   modelerr|N1|flat       {'lean flat': 0.529, 'lean rival': 0.331, 'non-diagnostic (both outside)': 0.002, 'non-diagnostic (both within)': 0.139}
+   modelerr|N1|rival      {'lean flat': 0.009, 'lean rival': 0.74, 'non-diagnostic (both outside)': 0.234, 'non-diagnostic (both within)': 0.018}
+   modelerr|N1|T          {'lean flat': 0.721, 'lean rival': 0.001, 'non-diagnostic (both outside)': 0.27, 'non-diagnostic (both within)': 0.009}
+
+  likelihood ratios at the observed primary Delta'_flat = +0.1249 (Gaussian, KDE):
+   meas     ideal rival-truth / flat-truth: 44437.21  1403829160572.21
+   meas     ideal T-truth / flat-truth:     0.00      0.00
+   meas     N1    rival-truth / flat-truth:     0.61      0.55
+   meas     N1    T-truth / flat-truth:     0.00      0.01
+   modelerr ideal rival-truth / flat-truth: 19362344809552807962997626679328768.00  949649419221288371377514530781289101162647205887722599442781586708409260233221868402534215990584302143976869087988602038172244357597626492705066794270307471686986549211424891911427634253033103029683514532294398977876741990235370533892119668277350733964241697405552941218146511368832071712771615490048.00
+   modelerr ideal T-truth / flat-truth:     0.00      0.00
+   modelerr N1    rival-truth / flat-truth:     0.84      0.69
+   modelerr N1    T-truth / flat-truth:     0.00      0.00
+
+  frozen informativeness rule (P(lean rival | flat) < 0.05 and P(lean rival | rival) > 0.3):
+   meas     ideal P(lean rival | flat)=0.000  | rival)=0.989  | T)=0.000  -> JUSTIFIED
+   meas     N1    P(lean rival | flat)=0.259  | rival)=0.760  | T)=0.001  -> NOT justified
+   modelerr ideal P(lean rival | flat)=0.000  | rival)=1.000  | T)=0.000  -> JUSTIFIED
+   modelerr N1    P(lean rival | flat)=0.331  | rival)=0.740  | T)=0.001  -> NOT justified
+
+-- D2: repairs of C2' (labelled post hoc); primary and V-b rows; decision cell
+  D0 as run (C2' unrepaired)                                primary: lean riva +2.45 -0.42 +5.47 | V-a: lean riva +2.44 -1.00 +5.93 | V-b: lean flat +0.14 -3.15 +3.43 | V-c: lean riva +2.83 +0.09 +5.75 | V-d: lean riva +2.20 -0.70 +5.26
+  KURVS-17 constant offset R_v - R_sigma (median of nearest-neighbour differences): +0.0650 kpc
+  D2(i) KURVS-17 sigma profile shifted by its offset        primary: lean riva +2.44 -0.43 +5.46 | V-a: lean riva +2.44 -1.00 +5.92 | V-b: lean flat +0.14 -3.15 +3.43 | V-c: lean riva +2.83 +0.09 +5.75 | V-d: lean riva +2.19 -0.70 +5.25
+  D2(ii) sigma from the nearest sigma marker (no interpolation)primary: lean riva +2.44 -0.43 +5.46 | V-a: lean riva +2.44 -1.00 +5.93 | V-b: lean flat +0.14 -3.15 +3.43 | V-c: lean riva +2.83 +0.09 +5.75 | V-d: lean riva +2.19 -0.70 +5.25
+  D2(iii) KURVS-17 dropped                                  primary: lean riva +2.09 -0.66 +4.95 | V-a: lean riva +2.11 -1.14 +5.38 | V-b: lean flat -0.54 -3.63 +2.51 | V-c: lean riva +2.65 -0.00 +5.43 | V-d: non-diagn +1.83 -0.94 +4.72
+  velocity markers with no sigma counterpart (> 0.5 kpc): {3: [-9.41, -8.57], 17: [6.96]}
+  D2(iv) markers with no sigma counterpart dropped from the velocity listsprimary: lean riva +2.45 -0.42 +5.47 | V-a: lean riva +2.44 -1.00 +5.93 | V-b: lean flat +0.06 -3.22 +3.34 | V-c: lean riva +2.83 +0.09 +5.75 | V-d: lean riva +2.20 -0.70 +5.26
+  discs where a dropped marker is the outer point (primary, V-b, V-c): {'V-b': [3]}
+  largest |dz| over D2 (i-iv), primary and V-b rows: 0.921; class changes: []
+  C2' is MATERIAL (in the frozen sense) (line: no class change and |dz| <= 0.10)
+  (post hoc) without D2(iii), which drops a disc rather than repairing the radius mismatch: largest |dz| over all five rows 0.093; class changes []
+
+done in 185 s
