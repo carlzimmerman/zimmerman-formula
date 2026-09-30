@@ -38,12 +38,27 @@ def parse_pipeline_stdout(text):
     return out
 
 
+SELFTEST_RE = re.compile(r"PIPELINE SELF-TEST: (PASS|FAIL)[^\n]*")
+
+
+def interpret_pipeline_run(returncode, stdout, stderr=""):
+    """The pipeline ends with sys.exit(0 if gate_ok else 1): exit 0 = its OWN injection-recovery self-test passed at this seed, exit 1 = it FAILED (the catalogue fit lines are still printed; NOT a crash).
+    Accepted: exit 0 or 1 with both footing lines parsed; records self_test_passed and the printed line.  Anything else (another exit code, unparsable output, an exit code that disagrees with the printed PASS / FAIL) raises."""
+    if returncode not in (0, 1):
+        raise RuntimeError(f"pipeline exit {returncode}: {str(stderr)[-400:]}")
+    out = parse_pipeline_stdout(stdout)
+    m = SELFTEST_RE.search(stdout)
+    if m and (m.group(1) == "PASS") != (returncode == 0):
+        raise RuntimeError(f"the pipeline's exit code {returncode} disagrees with its printed line {m.group(0)[:60]!r}")
+    out["self_test_passed"] = bool(returncode == 0)
+    out["self_test_line"] = m.group(0).strip() if m else None
+    return out
+
+
 def fit_via_pipeline_cli(csv_path, seed=FIT_SEED, timeout=1800):
     """the registered fit path: the pipeline's own `--catalog` run as a subprocess (same on DR3 and on release day)."""
     r = subprocess.run([sys.executable, "-B", str(PIPELINE), "--catalog", str(csv_path), "--seed", str(int(seed))], capture_output=True, text=True, timeout=timeout, cwd=str(REPO))
-    if r.returncode != 0:
-        raise RuntimeError(f"pipeline exit {r.returncode}: {r.stderr[-400:]}")
-    out = parse_pipeline_stdout(r.stdout)
+    out = interpret_pipeline_run(r.returncode, r.stdout, r.stderr)
     out["seed"], out["stdout_sha256"] = int(seed), hashlib.sha256(r.stdout.encode()).hexdigest()
     return out
 
@@ -175,6 +190,8 @@ def main():
             b["fit"] = f_
             P(f"  fit k = {b['k']}: canonical {b['fit']['canonical']['g']:.4f} +- {b['fit']['canonical']['s']:.4f} (kappa {b['fit']['canonical']['kappa']:.4f}); alt {b['fit']['alt']['g']:.4f} +- {b['fit']['alt']['s']:.4f} (kappa {b['fit']['alt']['kappa']:.4f})")
         res["fit_only_control"] = ctl
+        res["fit_only_control_selftest_failed"] = int(sum(1 for c in ctl if not c["self_test_passed"]))
+        P(f"  fit-only control: {len(ctl)} fits at --seed {FIT_SEED} + j; pipeline self-test FAILED at {res['fit_only_control_selftest_failed']} of them (the fits are kept); registered-seed builds with a failed self-test: {sum(1 for b in builds if not b['fit']['self_test_passed'])}")
         sb, st = {}, {}
         for f in ("canonical", "alt"):
             g = [b["fit"][f]["g"] for b in builds]

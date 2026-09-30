@@ -1,0 +1,34 @@
+{
+ "results": {
+  "C1 the driver with no new option and with --seed-offset 0 reproduces the reference DR3 CSV byte for byte, and its own self-test (S0-S6) still passes": true,
+  "C3 the per-block stage-E seeds of builds 0..10 (N_SHIFT 30, 400 blocks) are all distinct; the builder has exactly the four known random-draw sites and the scan catches a planted fifth": true,
+  "C4 vt_error_mc with seed = SEED equals the default call, seed = SEED + 1 differs from it, and patching build_catalog.SEED alone does NOT change the default-seeded output (so G's seed must be passed explicitly)": false,
+  "C5 the builder's sha256 equals the frozen value before and after, and a planted one-character edit of a temporary copy makes the guard raise": true,
+  "C6 build caches: k = 0 is the driver's current per-variant path, k = 1..10 are ten distinct files in seed_k<k>/, none equal to the builder's shared caches": true,
+  "C6b the delta fetch queries only the ids its cache (primed from the primary's file, read-only) lacks, merges into the build's own file, leaves the primary's file byte-identical, and a repeat queries nothing": true,
+  "C7 the parser reproduces gamma-hat, sigma_fit and kappa of both footings for the reference DR3 CSV (canonical 1.0750 / 0.0550 / 1.0232; alt 1.0775 / 0.0512 / 1.0247) and raises when a footing line is missing": true,
+  "C8 two pipeline runs on one CSV with one seed give identical output; a run with --seed 20261217 differs (the forward model and the bootstrap are live)": true,
+  "C15 interpret_pipeline_run: exit 0 + PASS accepted (self_test_passed True); exit 1 + FAIL + both footing lines accepted (False); exit 1 without footing lines, exit 2, and an exit code that disagrees with the printed line all raise; the REAL output of seed 20261228 (its own self-test FAILS, exit 1) is accepted and flagged": true,
+  "C9 MUTATE: K + 1 = 3 builds all run with the IDENTICAL seed set: one final-CSV sha256, zero pair flips, and sigma_build = 0 exactly on both footings": true,
+  "C9b the un-mutated stage-G-only sweep (k = 0, 1, 2): the seed sets are the declared ones, the flips equal a direct set comparison; the per-build sha256 list and sigma_build are reported (stage-G-only builds may flip few or no pairs: a code-path number, NOT the WP2-gamma quantity)": true,
+  "C10 manifest: the seed list was written BEFORE the first build's CSV; afterwards the builder hash before/after equals the frozen value, and every build carries sha256, pair count, uncovered-correlation count, gamma-hat, sigma_fit and kappa; sigma_build is the SD with ddof = 1": true,
+  "C12 the driver with --seed-offset k --stage-dir wp2_gamma_k reproduces WP2-gamma's own final.csv BYTE FOR BYTE for k = 0..9 (an independent implementation of the same seed sets); the per-build uncovered-correlation count is recorded": false,
+  "C13 the ladder post-filter rungs (R_chance < 0.001; separation 3-20 kAU; RUWE < 1.2 on both components) have the pair counts of independent direct counts on the reference CSV, and a planted wrong RUWE threshold changes the count": true,
+  "C14 seed_sets_dr4.json (committed before DR4) equals the seed list the code produces (full E-G rebuilds k = 0..10 and the G-only seeds SEED + k for k = 1..100), carries the frozen builder hash, and its G-only seeds equal the G seeds of the full-rebuild seed sets for k = 1..10": true
+ },
+ "full": false,
+ "mutate": "2",
+ "seconds": 649.7,
+ "uncovered_correlation_ids_wp2_gamma_builds": [
+  4,
+  8,
+  8,
+  6,
+  4,
+  4,
+  10,
+  4,
+  2,
+  4
+ ]
+}

@@ -25,11 +25,15 @@ for f in ("canonical", "alt"):
         bs.append(g[i].std(ddof=1) / s[i].mean())
     lo, hi = np.percentile(bs, [16, 84])
     fo = np.array(M["sigma_build"][f]["fit_only_gammas"])
+    ctl = M["fit_only_control"]
+    ok_ctl = np.array([c[f]["g"] for c in ctl if c.get("self_test_passed", True)])
+    n_bad = sum(1 for c in ctl if not c.get("self_test_passed", True))
     kap = [b["fit"][f]["kappa"] for b in M["builds"]]
     res[f] = dict(n=len(g), sd=float(g.std(ddof=1)), mean_sigma_fit=float(s.mean()), ratio=float(ratio), ratio_16_84=[float(lo), float(hi)], fit_only_sd=float(fo.std(ddof=1)), fit_only_ratio=float(fo.std(ddof=1) / s.mean()), kappa_range=[min(kap), max(kap)],
-                  gamma_mean=float(g.mean()))
+                  gamma_mean=float(g.mean()), fit_only_n_selftest_failed=n_bad, fit_only_sd_passing_only=float(ok_ctl.std(ddof=1)) if len(ok_ctl) > 1 else None)
     out.append(f"  {f:9s}: SD(gamma-hat) over {len(g)} builds {g.std(ddof=1):.4f}; mean sigma_fit {s.mean():.4f}; SD/sigma_fit {ratio:.3f} (bootstrap 16-84%: {lo:.3f} to {hi:.3f}); fit-only SD over {len(fo)} fits {fo.std(ddof=1):.4f} ({fo.std(ddof=1) / s.mean():.3f}); "
                f"kappa {min(kap):.4f}-{max(kap):.4f}; mean gamma-hat {g.mean():.4f}")
+    out.append(f"             fit-only control: {len(ctl)} seeds, {n_bad} with a FAILED pipeline self-test (kept above); SD over the {len(ok_ctl)} passing ones {ok_ctl.std(ddof=1):.4f}")
     out.append(f"             ten-build values quoted from a51d6f8f2: ALL {TEN['ALL']['per_footing'][f]['sd_over_sigma_fit']:.3f}; G-only {TEN['G-only']['per_footing'][f]['sd_over_sigma_fit']:.3f}; EF-only {TEN['EF-only']['per_footing'][f]['sd_over_sigma_fit']:.3f}")
 fl = M["flips_vs_k0"]
 res["flips_mean_one_way"] = float(np.mean([(a + b) / 2 for a, b in fl]))

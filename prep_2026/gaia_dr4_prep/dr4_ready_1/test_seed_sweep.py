@@ -144,6 +144,25 @@ diff = any(f1[f]["g"] != f3[f]["g"] or f1[f]["s"] != f3[f]["s"] for f in EXP)
 K("C8 two pipeline runs on one CSV with one seed give identical output; a run with --seed 20261217 differs (the forward model and the bootstrap are live)", same and diff,
   f"identical: {same}; seed 20261217: canonical {f3['canonical']['g']:.4f} +- {f3['canonical']['s']:.4f}, alt {f3['alt']['g']:.4f} +- {f3['alt']['s']:.4f}")
 
+# ---------------------------------------------------------------- C15 the pipeline's exit code is its own self-test, not a crash
+ok_txt = ("  catalog [a0 canonical]             gamma_inf = 1.0750 +- 0.0550  (chi2/bin=2.13, bins=6, kappa=1.0232)\n  catalog [a0 alt footing]           gamma_inf = 1.0775 +- 0.0512  (chi2/bin=1.85, bins=6, kappa=1.0247)\n")
+i0 = SS.interpret_pipeline_run(0, ok_txt + "PIPELINE SELF-TEST: PASS (x)\n")
+i1 = SS.interpret_pipeline_run(1, ok_txt + "PIPELINE SELF-TEST: FAIL (x)\n")
+def _raises(fn, exc):
+    try:
+        fn(); return False
+    except exc:
+        return True
+r_a = _raises(lambda: SS.interpret_pipeline_run(1, "PIPELINE SELF-TEST: FAIL (x)\n"), ValueError)
+r_b = _raises(lambda: SS.interpret_pipeline_run(2, ok_txt), RuntimeError)
+r_c = _raises(lambda: SS.interpret_pipeline_run(1, ok_txt + "PIPELINE SELF-TEST: PASS (x)\n"), RuntimeError)
+f_real = SS.fit_via_pipeline_cli(ref_csv, 20261228)                                      # a REAL seed whose own self-test FAILS (exit 1, both footing lines printed)
+if MUT == "4":
+    i1["self_test_passed"] = True                                                        # (a planted misread must fail the check)
+K("C15 interpret_pipeline_run: exit 0 + PASS accepted (self_test_passed True); exit 1 + FAIL + both footing lines accepted (False); exit 1 without footing lines, exit 2, and an exit code that disagrees with the printed line all raise; the REAL output of seed 20261228 (its own self-test FAILS, exit 1) is accepted and flagged",
+  i0["self_test_passed"] is True and i1["self_test_passed"] is False and r_a and r_b and r_c and f_real["self_test_passed"] is False and set(("canonical", "alt")) <= set(f_real) and f_real["self_test_line"].startswith("PIPELINE SELF-TEST: FAIL"),
+  f"synthetic: pass {i0['self_test_passed']}, fail {i1['self_test_passed']}; raises: no footing lines {r_a}, exit 2 {r_b}, disagreement {r_c}; real seed 20261228: {f_real['self_test_line'][:45]}, canonical {f_real['canonical']['g']:.4f} +- {f_real['canonical']['s']:.4f}, alt {f_real['alt']['g']:.4f} +- {f_real['alt']['s']:.4f}")
+
 # ---------------------------------------------------------------- C9 MUTATE (identical seeds -> sigma_build = 0) and the un-mutated sweep; C10 manifest
 sweep = HERE / "seed_sweep.py"
 out_dir = ext / "seed_sweep"
