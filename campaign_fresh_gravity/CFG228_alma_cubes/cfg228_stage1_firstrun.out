@@ -1,0 +1,41 @@
+CFG228 Stage 1 -- VELOCITY-FREE measurements from the ALMA products: [CII] flux, continuum flux, sizes, the two tracers' gas masses, d_AB, the class rule, and the static input table.
+ALPINE: six [CII] rotators (PI moment-0 map, continuum image, primary-beam maps, own-cube integration as a cross-check).  SPT0418-47: the authors' de-lensed L_[CII] and mu, our image-plane dust continuum
+and image-plane [CII] (spw27 + spw25) as a differential-lensing check.  NO velocity is fitted here (the integrated-spectrum peak is only a systemic-velocity starting value for Stage 3).
+Compilation; two un-optimised tracers; calibration-limited; not a detection; not a verdict.  LambdaCDM has no a0.  kappa = 1/2 FITTED.
+Frozen criteria: FROZEN_CRITERIA.md here (71ec12282), committed before any pixel value was read.
+MUTATE = none
+
+ALPINE (PI moment-0 map and continuum image, pb-corrected; aperture flux = growth-curve plateau; noise = 200 random apertures)
+  galaxy          z    nu_obs  beam (arcsec)  r_ap  S_CII (Jy km/s)  S/N   R_half(arcsec)   L_CII (Lsun)   logM[CII](a=30)   S_cont (mJy)  S/N  logM_dust T=25/35/45      d_AB
+  CG32          4.4105  351.03  1.06x0.80  2.25    0.003+-0.001     2.3    0.74        2.107e+06        7.80          -0.133+-0.537  -0.2  11.05/10.73/10.58     +nan
+      own-cube [CII] flux 0.003+-0.000 Jy km/s (channels 93-108, dv 25.0 km/s; ratio to the moment-0 flux 0.95); integrated-spectrum peak v = -212 km/s relative to RESTFRQ; R_half 0.74", beam HWHM 0.46" -> R_e,dec 0.57" = 3.91 kpc
+  DC396844      4.5424  343.05  1.31x0.78  1.50    0.003+-0.001     2.6    0.65        1.966e+06        7.77           0.390+-0.209   1.9  10.66/10.34/10.19     +nan
+      own-cube [CII] flux 0.004+-0.000 Jy km/s (channels 93-117, dv 25.0 km/s; ratio to the moment-0 flux 1.20); integrated-spectrum peak v = +88 km/s relative to RESTFRQ; R_half 0.65", beam HWHM 0.50" -> R_e,dec 0.42" = 2.80 kpc
+  DC494057      5.5446  290.60  1.04x0.87  1.25    0.002+-0.001     3.7    0.63        1.865e+06        7.75           0.195+-0.061   3.2  10.35/ 9.99/ 9.82    -2.24
+      own-cube [CII] flux 0.002+-0.000 Jy km/s (channels 99-119, dv 25.0 km/s; ratio to the moment-0 flux 1.17); integrated-spectrum peak v = +230 km/s relative to RESTFRQ; R_half 0.63", beam HWHM 0.48" -> R_e,dec 0.41" = 2.47 kpc
+  DC552206      5.5016  291.76  1.21x0.97  3.25    0.003+-0.001     2.5    0.85        2.700e+06        7.91           0.005+-0.247   0.0  10.92/10.56/10.40     +nan
+      own-cube [CII] flux 0.003+-0.000 Jy km/s (channels 137-155, dv 25.0 km/s; ratio to the moment-0 flux 1.00); integrated-spectrum peak v = -579 km/s relative to RESTFRQ; R_half 0.85", beam HWHM 0.54" -> R_e,dec 0.65" = 3.98 kpc
+  DC881725      4.5778  340.29  1.21x0.77  2.25    0.003+-0.002     1.8    0.65        2.036e+06        7.79           0.265+-0.296   0.9  10.82/10.50/10.34     +nan
+      own-cube [CII] flux 0.003+-0.000 Jy km/s (channels 69-81, dv 25.0 km/s; ratio to the moment-0 flux 1.01); integrated-spectrum peak v = -417 km/s relative to RESTFRQ; R_half 0.65", beam HWHM 0.48" -> R_e,dec 0.44" = 2.96 kpc
+  VC5110377875  4.5506  342.80  1.05x0.80  1.50    0.006+-0.001     3.7    0.64        3.574e+06        8.03           0.128+-0.664   0.2  11.16/10.84/10.69     +nan
+      own-cube [CII] flux 0.005+-0.000 Jy km/s (channels 24-38, dv 25.0 km/s; ratio to the moment-0 flux 0.99); integrated-spectrum peak v = +286 km/s relative to RESTFRQ; R_half 0.64", beam HWHM 0.46" -> R_e,dec 0.44" = 2.98 kpc
+
+SPT0418-47 (the authors' lens model; no lens modelling here)
+  dust: collapsed 357.7 GHz image, aperture 2.2 arcsec around the ring centre: S = 75.99 +- 9.67 mJy (S/N 7.9; nu_obs 357.70 GHz = rest 1.869 THz, 160.4 micron); de-lensed by mu = 32.3: 2.353 mJy
+  gas: [CII] (published de-lensed L_[CII] 1.8e9 Lsun, alpha 30) log M = 10.73; dust (T_d 25 / 35 / 45 K) log M = 11.19 / 10.90 / 10.75; d_AB(35 K) = -0.16
+  image-plane [CII] (spw27 for nu <= 363.74 GHz, spw25 above; linear baseline from |nu - nu_line| > 0.75 GHz; line window +-0.33 GHz = +-272 km/s): S = 40.64 +- 1.76 Jy km/s; L_image-plane = 2.352e+10 Lsun; implied [CII] magnification = 13.1 (dust mu 32.3 +- 2.5)
+
+TWO-TRACER AGREEMENT AND THE CLASS RULE (Stage 1 §2: M2 iff N_both >= 5 and K_AB <= 0.10 and every |d_i - mu_d| <= 2 max(SD, 0.10); otherwise 'tracer disagreement, class downgraded')
+  ALPINE (N_both = 1): mean d_AB = +nan, SD nan, K_AB = nan -> TRACER DISAGREEMENT, CLASS DOWNGRADED
+  ALPINE + SPT0418-47 (N_both = 2): mean d_AB = -1.20, SD 1.47, K_AB = 1.20 -> TRACER DISAGREEMENT, CLASS DOWNGRADED
+  per-galaxy d_AB (dust at 35 K; positive = the [CII] mass exceeds the dust-based mass): CG32 (dust not detected: S/N -0.2, limit), DC396844 (dust not detected: S/N 1.9, limit), DC494057 -2.24, DC552206 (dust not detected: S/N 0.0, limit), DC881725 (dust not detected: S/N 0.9, limit), VC5110377875 (dust not detected: S/N 0.2, limit), SPT0418-47 -0.16
+
+CONTROLS
+  [FAIL] C1 unit identity: a uniform 1 Jy/beam image summed over a 3 arcsec aperture gives area / N_beam to 1e-12, and N_beam = Omega_beam / Omega_pix: 28.953872 vs 29.224505; N_beam 42.999
+  [FAIL] C2 planted source: a 1 Jy km/s Gaussian (1.5 x the beam) injected at 50 random far positions of each moment map is recovered within 15% in the mean and its scatter matches the random-aperture noise to 30%: CG32 mean 0.93 SD 0.082 vs noise 0.001; DC396844 mean 0.94 SD 0.075 vs noise 0.001; DC494057 mean 0.97 SD 0.018 vs noise 0.001; DC552206 mean 0.96 SD 0.028 vs noise 0.001; DC881725 mean 0.95 SD 0.066 vs noise 0.002; VC5110377875 mean 0.94 SD 0.067 vs noise 0.001
+  [PASS] C3 the L_[CII] formula equals its closed form 1.04e-3 S nu D_L^2 to 1e-9 (S = 2 Jy km/s, nu = 351 GHz, D_L = 4e4 Mpc): 1.168128e+09 vs 1.168128e+09
+  [FAIL] C3b the image-plane [CII] luminosity of SPT0418-47 divided by the published de-lensed L_[CII] (implied magnification) is within a factor 2 of the dust mu = 32.3 (a departure is the differential-lensing flag, not a failure): 13.1
+  [PASS] C4 the dust-based gas mass falls as T_d rises, and the CMB contrast correction raises the intrinsic luminosity (flux fixed): log M at 25..45 K: [10.85, 10.65, 10.53, 10.44, 10.37]; with / without CMB at 35 K: 10.528 / 10.516
+  [PASS] C5 the class rule returns 'downgraded' for a planted sample with 0.5 dex scatter and 'M2' for one with 0.05 dex scatter: scatter 0.5: False (K 0.16); scatter 0.05: True (K 0.03)
+
+3/6 controls pass; 5 s
