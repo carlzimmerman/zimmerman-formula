@@ -1,0 +1,33 @@
+CFG223 -- a0 over cosmic time: the implied a0 scale of real data against four laws (flat, a LambdaCDM effective-a0 PROXY, a0 ~ H(z), a0 ~ sqrt(rho_DE) with the record's DESI CPL values).
+*** LambdaCDM has no a0: the proxy is an effective-a0 PROXY, not LambdaCDM.  Author decompositions, gas-route-limited; NOT a detection.  kappa = 1/2 is FITTED, NOT DERIVED. ***
+Frozen criteria: FROZEN_CRITERIA.md here (1f243e9e9), committed before any implied-a0 value was computed.  No sentence says the data favour a law or a framework.
+The estimator (new): s* = the a0 scale (relative to the footing's local a0) that sets the median over a point's galaxies of delta_i(s) = log10[D_i / nu(g_bar,i / (a0 s))] to zero.
+
+CONTROLS
+  RC100 z-quartile edges (committed table, 100 rows): 0.6100, 0.9725, 1.5300, 2.1900, 2.5200; bin sizes (corrected) [25, 22, 26, 27]; CRISTAL point sizes [12, 6, 6, 6]
+  [PASS] C1 law values: Z1's F(2.5) = 2.16 +- 0.02; M-DEC R(0, 1, 2, 3) = 1, 0.990, 0.874, 0.775 (+- 0.002, the record's header); DESY5 / Union3 R(2) = 0.862 / 0.854 (+- 0.005); E(1), E(2) = 1.790, 3.032; M-DEC(w0 = -1, wa = 0) = 1: F(2.5) 2.157; R 1.000 0.9889 0.8739 0.7750; DESY5 0.8620; Union3 0.8543; E 1.7903 3.0315
+  [PASS] C2a estimator identity: a mock placed ON the flat law (RC100 through V_c, R_e, f_DM and the loader, both tables, every bin; CRISTAL at the row level) returns s* = 1, four cells: max |log10 s*| 9.2e-16
+  [PASS] C2b a mock on the proxy / H(z) / M-DEC law with one z per point returns that law's F(z) (four cells, every point): max |s* - F| 4.4e-15
+  [PASS] C2c a mock on each law with the real z_i returns s* inside [min F(z_i), max F(z_i)] (four cells, every point, three laws): 144/144
+  [PASS] C3a this lane's RC100 per-galaxy delta under the flat law has CFG216's committed FLAT slope (both tables, four cells): max |difference| 0.0e+00
+  [PASS] C3b the four CRISTAL points' median delta at s = 1 (flat) equals CFG222's committed median (primary cell): max |difference| 0.0e+00
+  [PASS] C4 bootstrap coverage on flat-truth mocks, n = 6 (CRISTAL R_out independent), scatter 0.25 dex, K = 400, B = 1,000: 68% interval in [0.55, 0.80], 95% interval >= 0.88: 68%: 0.635, 95%: 0.938
+  [PASS] C4 bootstrap coverage on flat-truth mocks, n = 12 (CRISTAL R_e fit), scatter 0.25 dex, K = 400, B = 1,000: 68% interval in [0.55, 0.80], 95% interval >= 0.88: 68%: 0.677, 95%: 0.935
+  [PASS] C4 bootstrap coverage on flat-truth mocks, n = 25 (RC100 corrected, first quartile), scatter 0.25 dex, K = 400, B = 1,000: 68% interval in [0.55, 0.80], 95% interval >= 0.88: 68%: 0.605, 95%: 0.932
+  [PASS] C5 band direction: a flat mock with baryons over-estimated by +0.15 dex returns s* < 1, under-estimated returns s* > 1, at every point (and s*(0) = 1): (s*(+0.15), s*(-0.15)) per point [(0.001, 2.281), (0.001, 2.43), (0.001, 2.741), (0.001, 2.717), (0.001, 3.832), (0.001, 2.563), (0.001, 3.384), (0.001, 2.563), (0.001, 2.281), (0.001, 2.43), (0.001, 2.741), (0.001, 2.717)]
+  [PASS] C5b (ADDED after the first run, not in the frozen list: C5 at +-0.15 dex returns the bracket floor on the over-estimated side because the median D falls below 1) the same direction check at +-0.03 dex with a finite root on both sides at every point: (s*(+0.03), s*(-0.03)) per point [(0.793, 1.221), (0.762, 1.248), (0.676, 1.308), (0.682, 1.303), (0.408, 1.563), (0.726, 1.272), (0.526, 1.45), (0.726, 1.272), (0.793, 1.221), (0.762, 1.248), (0.676, 1.308), (0.682, 1.303)]
+
+MUTATE: D x 1.5 injected into every row of every point (the 95% interval is the UNMUTATED bootstrap interval)
+  RC100 corr Q1  s* 1.838 [95% 0.979, 2.451] -> mutated 6.981  (x 3.80) bites
+  RC100 corr Q2  s* 2.101 [95% 0.890, 3.376] -> mutated 8.064  (x 3.84) bites
+  RC100 corr Q3  s* 1.573 [95% 0.996, 2.388] -> mutated 7.129  (x 4.53) bites
+  RC100 corr Q4  s* 0.994 [95% 0.624, 1.378] -> mutated 4.366  (x 4.39) bites
+  CR R_e fit     s* 1.867 [95% 1.161, 5.650] -> mutated 9.848  (x 5.28) bites
+  CR R_out fit   s* 1.211 [95% 0.258, 3.968] -> mutated 4.624  (x 3.82) bites
+  CR R_e ind     s* 2.905 [95% 0.001, 18.923] -> mutated 11.189  (x 3.85) DOES NOT BITE
+  CR R_out ind   s* 2.292 [95% 0.042, 9.378] -> mutated 7.728  (x 3.37) DOES NOT BITE
+  RC100 comm Q1  s* 1.838 [95% 0.979, 2.451] -> mutated 6.981  (x 3.80) bites
+  RC100 comm Q2  s* 2.031 [95% 0.929, 3.376] -> mutated 8.064  (x 3.97) bites
+  RC100 comm Q3  s* 1.573 [95% 0.996, 2.388] -> mutated 7.129  (x 4.53) bites
+  RC100 comm Q4  s* 0.994 [95% 0.624, 1.378] -> mutated 4.366  (x 4.39) bites
+  [FAIL] MUTATE every s* rises by a factor of at least 2.0 and leaves its own unmutated 95% interval: False
