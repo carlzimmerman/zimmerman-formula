@@ -1,5 +1,23 @@
 # Saved research handoff
 
+## Latest checkpoint: coefficient selection obstruction
+
+VACUUM_OFFSET_SELECTION_RESULTS.md proves that the current linear-lambda
+trial family retains an arbitrary additive vacuum energy. Its unique positive
+de Sitter vacuum and the previously established local linear stability
+conditions survive for every V0>−2√(AB), while the conditional bare ratio
+Lambda/a0bare² varies strictly with V0. Independently, changing Kc leaves
+the vacuum and quadratic action unchanged and changes that ratio by Kc².
+Seven exact symbolic identities pass in vacuum_offset_selection.py; output is
+saved in vacuum_offset_selection_checks.json. This closes stability alone as
+a coefficient selector in this family, not all possible theories. Exact 32π
+and the observed galaxy acceleration dictionary remain unresolved. The next
+priority is a physical principle that removes/determines the vacuum offset and
+links the remaining galaxy coupling to cosmology; source matching alone cannot
+supply the missing prediction. A preliminary self-tuning literature search
+was not completed or used as evidence. User requested this checkpoint be pushed
+to preserve progress while tokens are low.
+
 The exact 32π coefficient remains unresolved. The completed derivations, audit contracts, scripts, and recorded computations are in this folder. The latest completed result is `CLOCK_CONE_RESULTS.md`, committed as 04ea72785: the exact extrapolated retarded clock response fails the finite-cone analyticity test. This does not establish an instability at real spatial momentum or exclude a bounded effective theory with additional high-frequency physics.
 
 The canonical-clock construction in `CANONICAL_CLOCK_RESULTS.md` links the vacuum and galaxy scales, but leaves a free dimensionless combination. It does not derive 32π without imposing it.
