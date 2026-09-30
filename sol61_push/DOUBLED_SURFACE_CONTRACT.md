@@ -1,0 +1,5 @@
+# Doubled surface audit contract
+
+Exact Hermitian Pauli-string basis of a collocated eight-component, free, first-order surface Hamiltonian, in units c=hbar=1. Test kinetic/polarization symmetry actions and classify all homogeneous constant Hermitian perturbations under the specified antiunitary time reversal T, spectral particle-hole C, inversion P and internal flavor rotations. The coefficient domain is real coefficients multiplying 64 Hermitian basis matrices. Each operation is diagonal in this basis; testing every basis member therefore determines the full real linear subspace, not a sampled family.
+
+The compensated-pocket calculation uses independent free cones, global chemical potential zero and constant opposite offsets delta, at zero temperature. No interacting ground state, microscopic charge-conjugation implementation, wall embedding, inhomogeneous protection, selected coupling, vacuum stress, observational completion or exact 32pi is claimed. Pass means exact matrix identities and free-band algebra; mismatch requires correction or abandonment. Timeout 30 seconds; one numerical-library thread; no randomness.
