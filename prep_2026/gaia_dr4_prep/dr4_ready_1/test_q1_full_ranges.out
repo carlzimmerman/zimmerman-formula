@@ -1,0 +1,14 @@
+synthetic archive: 127,435 sources (1506 real local-extract ones) for 300 pairs; brute-force truth: 193,876 (pair, comp, source) rows; 5139 planned ranges
+run A ended with: CRASH after 20 calls; the cache holds 17 accepted batches
+run B (resume) ended with: None; 244 new calls; manifest queries_total 261; truncated by the endpoint in total 34
+T1 the fetch (crash + resume) equals the brute-force truth (missing 0, spurious 0): PASS
+T2 the truncation path was exercised (34 truncated results in total): PASS
+T3 no truncated result reached the output (manifest counts 34 discarded, endpoint truncated 34): PASS
+T4 every local-extract source in the cones is in the output (missing 0 of 2557): PASS
+T6 the flaky query was retried (hit 1): PASS
+T7 the hung query was cut by the client timeout and retried (hit 1): PASS
+T8 the crashed run A left a cache (17 batches) and run B RESUMED from it (batches_resumed_from_cache 17) with fewer queries than a fresh run needs (261 in total): PASS
+T9 a cache that belongs to a different plan is refused: PASS
+T5 the accepted-bytes cap stops the run, writes the reason and keeps the cache (STOPPED: accepted 0.32 MB (4,113 rows) after 8 queries against the 0 M): PASS
+T5b the transfer cap stops the run (STOPPED: received 0.43 MB in 10 queries against the 0 MB transfer cap ): PASS
+RESULT: all checks behave as required
