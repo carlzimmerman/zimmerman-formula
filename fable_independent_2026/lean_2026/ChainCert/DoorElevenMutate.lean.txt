@@ -1,0 +1,16 @@
+import ChainCert.DoorEleven
+-- Each theorem below is a FALSE variant of the corresponding DoorEleven theorem, "proved" by the original's proof term.
+-- Lean must reject every one (6 errors expected, one per mutation).
+open Matrix DoorEleven
+-- boosted_flux: sign flipped
+theorem d01 (γ β ρ p : ℝ) : (boost2 γ β * fluidRest ρ p * (boost2 γ β)ᵀ) 0 1 = (ρ + p) * γ ^ 2 * β := boosted_flux γ β ρ p
+-- vacuum_no_flux: claimed for dust (p = 0) instead of w = -1
+theorem d02 (γ β ρ : ℝ) : (boost2 γ β * fluidRest ρ 0 * (boost2 γ β)ᵀ) 0 1 = 0 := vacuum_no_flux γ β ρ
+-- flux_zero_iff: w = +1 instead of w = -1
+theorem d03 {γ β : ℝ} (hγ : γ ≠ 0) (hβ : β ≠ 0) (ρ p : ℝ) : (boost2 γ β * fluidRest ρ p * (boost2 γ β)ᵀ) 0 1 = 0 ↔ p = ρ := flux_zero_iff hγ hβ ρ p
+-- vacuum_boost_invariant: claimed for dust
+theorem d04 {γ β : ℝ} (hL : γ ^ 2 * (1 - β ^ 2) = 1) (ρ : ℝ) : boost2 γ β * fluidRest ρ 0 * (boost2 γ β)ᵀ = fluidRest ρ 0 := vacuum_boost_invariant hL ρ
+-- eta4_mul_self: eta squared is eta
+theorem d05 : eta4 * eta4 = eta4 := eta4_mul_self
+-- vacuum_momentum_density_zero: for a SPACELIKE unit u (u.eta.u = +1), where the density is -2 rho u
+theorem d06 (ρ : ℝ) (u : Fin 4 → ℝ) (hu : dotProduct (eta4 *ᵥ u) u = 1) : momDensity ((-ρ) • eta4) u = 0 := vacuum_momentum_density_zero ρ u hu

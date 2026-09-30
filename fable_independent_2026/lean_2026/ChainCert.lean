@@ -9,3 +9,7 @@ import ChainCert.Gauss
 import ChainCert.Separation
 import ChainCert.Exchange
 import ChainCert.Footing
+import ChainCert.Ownership
+import ChainCert.Theory
+import ChainCert.A0Numeric
+import ChainCert.DoorEleven

@@ -1,0 +1,120 @@
+ChainCert/TheoryMutate.lean:6:120: error: Type mismatch
+  CandidateB.a0_eq B z
+has type
+  B.chain.a0 z = 1 / 2 * B.chain.c * √(B.chain.G * B.chain.ρΛ z)
+but is expected to have type
+  B.chain.a0 z = B.chain.c * √(B.chain.G * B.chain.ρΛ z)
+ChainCert/TheoryMutate.lean:8:88: error: Type mismatch
+  CandidateB.a0_flat B z
+has type
+  B.chain.a0 z = B.chain.a0 0
+but is expected to have type
+  B.chain.a0 z = 2 * B.chain.a0 0
+ChainCert/TheoryMutate.lean:10:252: error: Type mismatch
+  CandidateB.btfr B hM z
+has type
+  Tendsto (fun r => (B.chain.G * M / r * B.ν (B.chain.G * M / (r ^ 2 * B.chain.a0 z))) ^ 2) atTop
+    (𝓝 (B.chain.G * M * (1 / 2 * B.chain.c * √(B.chain.G * B.chain.ρΛ 0))))
+but is expected to have type
+  Tendsto (fun r => (B.chain.G * M / r * B.ν (B.chain.G * M / (r ^ 2 * B.chain.a0 z))) ^ 2) atTop
+    (𝓝 (B.chain.G * M * (B.chain.c * √(B.chain.G * B.chain.ρΛ 0))))
+ChainCert/TheoryMutate.lean:12:213: error: Type mismatch
+  CandidateB.rival_separates B hm hΛ hsum
+has type
+  StrictMonoOn (Efun Ωm ΩΛ) (Set.Ici 0) ∧ ∀ (z : ℝ), 0 < z → B.chain.a0 z / B.chain.a0 0 = 1 ∧ 1 < Efun Ωm ΩΛ z
+but is expected to have type
+  StrictMonoOn (Efun Ωm ΩΛ) (Set.Ici 0) ∧ ∀ (z : ℝ), 0 < z → B.chain.a0 z / B.chain.a0 0 = 1 ∧ Efun Ωm ΩΛ z < 1
+ChainCert/TheoryMutate.lean:14:340: error: Type mismatch
+  CandidateB.a0_numeric B hc hG hρ hH hΩ z
+has type
+  924e-13 < B.chain.a0 z ∧ B.chain.a0 z < 948e-13
+but is expected to have type
+  93e-12 < B.chain.a0 z ∧ B.chain.a0 z < 948e-13
+ChainCert/TheoryMutate.lean:16:149: error: Type mismatch
+  CandidateB.owned_boost_one B hp hgN gext
+has type
+  B.accel i gN gext / gN = 1
+but is expected to have type
+  1 < B.accel i gN gext / gN
+ChainCert/TheoryMutate.lean:18:285: error: Type mismatch
+  CandidateB.gammaHat_one B s pair gN gext w howned hgN hW
+has type
+  (∑ k ∈ s, w k * (B.accel (pair k) (gN k) (gext k) / gN k)) / ∑ k ∈ s, w k = 1
+but is expected to have type
+  (∑ k ∈ s, w k * (B.accel (pair k) (gN k) (gext k) / gN k)) / ∑ k ∈ s, w k = 1.16
+ChainCert/TheoryMutate.lean:20:110: error: Type mismatch
+  CandidateB.merged_law_has_EFE B
+has type
+  ¬Ownership.EFEFreeRay fun gN => B.ν (gN / B.chain.a0 0) * gN
+but is expected to have type
+  Ownership.EFEFreeRay fun gN => B.ν (gN / B.chain.a0 0) * gN
+ChainCert/TheoryMutate.lean:22:136: error: Type mismatch
+  CandidateB.merged_vecLaw_has_EFE B
+has type
+  ¬Ownership.EFEFree (Ownership.vecLaw B.ν (B.chain.a0 0))
+but is expected to have type
+  Ownership.EFEFree (Ownership.vecLaw B.ν (B.chain.a0 0))
+ChainCert/TheoryMutate.lean:24:167: error: Type mismatch
+  CandidateB.ownership_nonlocal B hi hj
+has type
+  ¬∃ F, ∀ (k : ι) (g ge : ℝ), B.accel k g ge = F g ge
+but is expected to have type
+  ∃ F, ∀ (k : ι) (g ge : ℝ), B.accel k g ge = F g ge
+ChainCert/TheoryMutate.lean:26:126: error: Type mismatch
+  CandidateB.cold_budget B Mcoll
+has type
+  (1 - B.Ωb / (B.Ωb + B.Ωc)) * Mcoll = B.Ωc / (B.Ωb + B.Ωc) * Mcoll
+but is expected to have type
+  (1 - B.Ωb / (B.Ωb + B.Ωc)) * Mcoll = B.Ωb / (B.Ωb + B.Ωc) * Mcoll
+ChainCert/TheoryMutate.lean:28:160: error: Type mismatch
+  CandidateB.cold_edge_mass B hMph hMcoll
+has type
+  B.darkEdge Mph Mcoll = max Mph (B.Ωc / (B.Ωb + B.Ωc) * Mcoll)
+but is expected to have type
+  B.darkEdge Mph Mcoll = Mph + B.Ωc / (B.Ωb + B.Ωc) * Mcoll
+ChainCert/TheoryMutate.lean:30:175: error: Application type mismatch: The argument
+  h₁
+has type
+  0 < M₁
+but is expected to have type
+  0 < M₂
+in the application
+  CandidateB.cold_edge_monotone B hMph h₁
+ChainCert/TheoryMutate.lean:32:708: error: Type mismatch
+  CandidateB.predictions B
+has type
+  (∀ (M z : ℝ),
+      0 < M →
+        Tendsto (fun r => (B.chain.G * M / r * B.ν (B.chain.G * M / (r ^ 2 * B.chain.a0 z))) ^ 2) atTop
+          (𝓝 (B.chain.G * M * (1 / 2 * B.chain.c * √(B.chain.G * B.chain.ρΛ 0))))) ∧
+    (∀ (z : ℝ), B.chain.a0 z = B.chain.a0 0) ∧
+      (∀ (Ωm ΩΛ : ℝ),
+          0 < Ωm →
+            0 ≤ ΩΛ →
+              Ωm + ΩΛ = 1 →
+                StrictMonoOn (Efun Ωm ΩΛ) (Set.Ici 0) ∧
+                  ∀ (z : ℝ), 0 < z → B.chain.a0 z / B.chain.a0 0 = 1 ∧ 1 < Efun Ωm ΩΛ z) ∧
+        (∀ (i p : ι) (gN gext : ℝ), B.H.parent i = some p → 0 < gN → B.accel i gN gext / gN = 1) ∧
+          (¬Ownership.EFEFreeRay fun gN => B.ν (gN / B.chain.a0 0) * gN) ∧
+            ∀ (Mph Mcoll : ℝ), 0 ≤ Mph → 0 < Mcoll → B.darkEdge Mph Mcoll = max Mph (B.Ωc / (B.Ωb + B.Ωc) * Mcoll)
+but is expected to have type
+  (∀ (M z : ℝ),
+      0 < M →
+        Tendsto (fun r => (B.chain.G * M / r * B.ν (B.chain.G * M / (r ^ 2 * B.chain.a0 z))) ^ 2) atTop
+          (𝓝 (B.chain.G * M * (1 / 2 * B.chain.c * √(B.chain.G * B.chain.ρΛ 0))))) ∧
+    (∀ (z : ℝ), B.chain.a0 z = 2 * B.chain.a0 0) ∧
+      (∀ (Ωm ΩΛ : ℝ),
+          0 < Ωm →
+            0 ≤ ΩΛ →
+              Ωm + ΩΛ = 1 →
+                StrictMonoOn (Efun Ωm ΩΛ) (Set.Ici 0) ∧
+                  ∀ (z : ℝ), 0 < z → B.chain.a0 z / B.chain.a0 0 = 1 ∧ 1 < Efun Ωm ΩΛ z) ∧
+        (∀ (i p : ι) (gN gext : ℝ), B.H.parent i = some p → 0 < gN → B.accel i gN gext / gN = 1) ∧
+          (¬Ownership.EFEFreeRay fun gN => B.ν (gN / B.chain.a0 0) * gN) ∧
+            ∀ (Mph Mcoll : ℝ), 0 ≤ Mph → 0 < Mcoll → B.darkEdge Mph Mcoll = max Mph (B.Ωc / (B.Ωb + B.Ωc) * Mcoll)
+ChainCert/TheoryMutate.lean:34:46: error: Type mismatch
+  CandidateB.nonempty_fin2
+has type
+  Nonempty (CandidateB (Fin 2))
+but is expected to have type
+  IsEmpty (CandidateB (Fin 2))

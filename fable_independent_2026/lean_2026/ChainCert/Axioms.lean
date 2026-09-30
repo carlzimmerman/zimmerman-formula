@@ -7,6 +7,10 @@ import ChainCert.Gauss
 import ChainCert.Separation
 import ChainCert.Exchange
 import ChainCert.Footing
+import ChainCert.Ownership
+import ChainCert.Theory
+import ChainCert.A0Numeric
+import ChainCert.DoorEleven
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -183,3 +187,50 @@ import ChainCert.Footing
 #print axioms foot_lambda_of_rise
 #print axioms foot_rise_of_lambda
 #print axioms foot_lambda_of_Omeff
+#print axioms Ownership.owned_internal_newton
+#print axioms Ownership.top_internal_law
+#print axioms Ownership.owned_boost_one
+#print axioms Ownership.wideBinary_gammaHat_one
+#print axioms Ownership.top_boost_gt_one_nuMono
+#print axioms Ownership.top_boost_gt_one_P2
+#print axioms Ownership.ownership_distinguishes
+#print axioms Ownership.ownership_not_field_local
+#print axioms Ownership.noEFE_continuousLinear
+#print axioms Ownership.noEFE_linear_R3
+#print axioms Ownership.noEFE_linear_real
+#print axioms Ownership.noEFE_linear_ray
+#print axioms Ownership.nonlinear_not_efeFree_real
+#print axioms Ownership.nonlinear_not_efeFree
+#print axioms Ownership.deep_not_efeFreeRay
+#print axioms Ownership.deep_kernel_ne_one
+#print axioms Ownership.law_not_efeFreeRay
+#print axioms Ownership.nuMono_law_has_EFE
+#print axioms Ownership.P2_law_has_EFE
+#print axioms Ownership.P2_sqrt_law_has_EFE
+#print axioms Ownership.vecLaw_not_efeFree
+#print axioms Ownership.vecLaw_R3_not_efeFree
+#print axioms CandidateB.a0_eq
+#print axioms CandidateB.a0_flat
+#print axioms CandidateB.btfr
+#print axioms CandidateB.rival_separates
+#print axioms CandidateB.a0_numeric
+#print axioms CandidateB.owned_boost_one
+#print axioms CandidateB.gammaHat_one
+#print axioms CandidateB.merged_law_has_EFE
+#print axioms CandidateB.merged_vecLaw_has_EFE
+#print axioms CandidateB.ownership_nonlocal
+#print axioms CandidateB.cold_budget
+#print axioms CandidateB.cold_edge_mass
+#print axioms CandidateB.cold_edge_monotone
+#print axioms CandidateB.predictions
+#print axioms CandidateB.nonempty_fin2
+#print axioms A0Numeric.a0_of_rhoLambda
+#print axioms A0Numeric.a0num_interval
+#print axioms A0Numeric.a0_interval
+#print axioms A0Numeric.a0_point
+#print axioms DoorEleven.boosted_flux
+#print axioms DoorEleven.vacuum_no_flux
+#print axioms DoorEleven.flux_zero_iff
+#print axioms DoorEleven.vacuum_boost_invariant
+#print axioms DoorEleven.eta4_mul_self
+#print axioms DoorEleven.vacuum_momentum_density_zero

@@ -1,0 +1,48 @@
+import ChainCert.Ownership
+-- Each theorem below is a FALSE (or hypothesis-weakened, hence false) variant of the corresponding Ownership theorem,
+-- "proved" by the original's proof term.  Lean must reject every one (22 errors expected, one per mutation).
+open Filter Topology Ownership
+-- owned_internal_newton: an owned system uses the law instead of Newton
+theorem m01 {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i p : ι} (hp : H.parent i = some p) (gN gext : ℝ) : internalAccel ν a0 H i gN gext = ν (gN / a0) * gN := owned_internal_newton ν a0 H hp gN gext
+-- top_internal_law: a top-level system is Newtonian
+theorem m02 {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i : ι} (hi : H.parent i = none) (gN gext : ℝ) : internalAccel ν a0 H i gN gext = gN := top_internal_law ν a0 H hi gN gext
+-- owned_boost_one: an owned system is boosted
+theorem m03 {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i p : ι} (hp : H.parent i = some p) {gN : ℝ} (hgN : 0 < gN) (gext : ℝ) : 1 < boost ν a0 H i gN gext := owned_boost_one ν a0 H hp hgN gext
+-- wideBinary_gammaHat_one: the owned population mean exceeds 1
+theorem m04 {ι κ : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) (s : Finset κ) (pair : κ → ι) (gN gext w : κ → ℝ) (howned : ∀ k ∈ s, ∃ p, H.parent (pair k) = some p) (hgN : ∀ k ∈ s, 0 < gN k) (hW : 0 < ∑ k ∈ s, w k) : 1 < (∑ k ∈ s, w k * boost ν a0 H (pair k) (gN k) (gext k)) / ∑ k ∈ s, w k := wideBinary_gammaHat_one ν a0 H s pair gN gext w howned hgN hW
+-- top_boost_gt_one_nuMono: the bare nu_mono law gives no boost
+theorem m05 {ι : Type*} {a0 : ℝ} (ha : 0 < a0) (H : Hierarchy ι) {i : ι} (hi : H.parent i = none) {gN : ℝ} (hgN : 0 < gN) (gext : ℝ) : boost nuMono a0 H i gN gext ≤ 1 := top_boost_gt_one_nuMono ha H hi hgN gext
+-- top_boost_gt_one_P2: the bare P2 law gives boost exactly 1
+theorem m06 {ι : Type*} {a0 : ℝ} (ha : 0 < a0) (H : Hierarchy ι) {i : ι} (hi : H.parent i = none) {gN : ℝ} (hgN : 0 < gN) (gext : ℝ) : boost (fun y => Real.sqrt (1 + 1 / y)) a0 H i gN gext = 1 := top_boost_gt_one_P2 ha H hi hgN gext
+-- ownership_distinguishes: top and owned systems agree
+theorem m07 {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i j p : ι} (hi : H.parent i = none) (hj : H.parent j = some p) {gN : ℝ} (hgN : gN ≠ 0) (hν : ν (gN / a0) ≠ 1) (gext : ℝ) : internalAccel ν a0 H i gN gext = internalAccel ν a0 H j gN gext := ownership_distinguishes ν a0 H hi hj hgN hν gext
+-- ownership_not_field_local: ownership IS a function of the field data
+theorem m08 {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i j p : ι} (hi : H.parent i = none) (hj : H.parent j = some p) {gN : ℝ} (hgN : gN ≠ 0) (hν : ν (gN / a0) ≠ 1) : ∃ F : ℝ → ℝ → ℝ, ∀ k g ge, internalAccel ν a0 H k g ge = F g ge := ownership_not_field_local ν a0 H hi hj hgN hν
+-- noEFE_continuousLinear WITHOUT continuity (false: discontinuous additive maps exist)
+theorem m09 {E V : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [ContinuousSMul ℝ E] [AddCommGroup V] [Module ℝ V] [TopologicalSpace V] [ContinuousSMul ℝ V] [T2Space V] {F : E → V} (h : EFEFree F) : ∃ L : E →L[ℝ] V, ⇑L = F := noEFE_continuousLinear (by assumption) h
+-- noEFE_linear_R3: a continuous EFE-free law is constant
+theorem m10 {F : EuclideanSpace ℝ (Fin 3) → EuclideanSpace ℝ (Fin 3)} (hc : Continuous F) (h : EFEFree F) : ∃ c, ∀ x, F x = c := noEFE_linear_R3 hc h
+-- noEFE_linear_real: an offset survives
+theorem m11 {F : ℝ → ℝ} (hc : Continuous F) (h : EFEFree F) (z : ℝ) : F z = F 1 * z + 1 := noEFE_linear_real hc h z
+-- noEFE_linear_ray: quadratic on the ray
+theorem m12 {F : ℝ → ℝ} (hF : ContinuousOn F (Set.Ioi 0)) (h : EFEFreeRay F) : ∀ z, 0 < z → F z = F 1 * z ^ 2 := noEFE_linear_ray hF h
+-- nonlinear_not_efeFree_real: a nonlinear continuous law IS EFE-free
+theorem m13 {F : ℝ → ℝ} (hc : Continuous F) (hnl : ∀ k : ℝ, ∃ z, F z ≠ k * z) : EFEFree F := nonlinear_not_efeFree_real hc hnl
+-- nonlinear_not_efeFree: same, vector form
+theorem m14 {E V : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [ContinuousSMul ℝ E] [AddCommGroup V] [Module ℝ V] [TopologicalSpace V] [ContinuousSMul ℝ V] [T2Space V] {F : E → V} (hc : Continuous F) (hnl : ∀ L : E →L[ℝ] V, ∃ z, F z ≠ L z) : EFEFree F := nonlinear_not_efeFree hc hnl
+-- deep_not_efeFreeRay: a law with MOND's square-root pull IS EFE-free
+theorem m15 (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : EFEFreeRay (fun y => ν y * y) := deep_not_efeFreeRay ν hν
+-- deep_kernel_ne_one: the kernel is never 1 on the ray
+theorem m16 (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : ∀ y, 0 < y → ν y ≠ 1 := deep_kernel_ne_one ν hν
+-- law_not_efeFreeRay with a0 ≠ 0 only (false for a0 < 0: the ray then probes nu off the deep branch)
+theorem m17 {a0 : ℝ} (ha : a0 ≠ 0) (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : ¬ EFEFreeRay (fun gN => ν (gN / a0) * gN) := law_not_efeFreeRay ha ν hν
+-- nuMono_law_has_EFE: nu_mono merged locally is EFE-free
+theorem m18 {a0 : ℝ} (ha : 0 < a0) : EFEFreeRay (fun gN => nuMono (gN / a0) * gN) := nuMono_law_has_EFE ha
+-- P2_law_has_EFE: P2 merged locally is EFE-free
+theorem m19 {a0 : ℝ} (ha : 0 < a0) : EFEFreeRay (fun gN => nuBeta 1 (gN / a0) * gN) := P2_law_has_EFE ha
+-- P2_sqrt_law_has_EFE: same, explicit form
+theorem m20 {a0 : ℝ} (ha : 0 < a0) : EFEFreeRay (fun gN => Real.sqrt (1 + 1 / (gN / a0)) * gN) := P2_sqrt_law_has_EFE ha
+-- vecLaw_not_efeFree WITHOUT nontriviality (false: on the zero space every law with F 0 = 0 is EFE-free)
+theorem m21 {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] {a0 : ℝ} (ha : 0 < a0) (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : ¬ EFEFree (vecLaw (E := E) ν a0) := vecLaw_not_efeFree ha ν hν
+-- vecLaw_R3_not_efeFree: the R^3 law IS EFE-free
+theorem m22 {a0 : ℝ} (ha : 0 < a0) (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : EFEFree (vecLaw (E := EuclideanSpace ℝ (Fin 3)) ν a0) := vecLaw_R3_not_efeFree ha ν hν

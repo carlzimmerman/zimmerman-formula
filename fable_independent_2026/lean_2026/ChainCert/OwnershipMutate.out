@@ -1,0 +1,142 @@
+ChainCert/OwnershipMutate.lean:6:169: error: Type mismatch
+  owned_internal_newton ν a0 H hp gN gext
+has type
+  internalAccel ν a0 H i gN gext = gN
+but is expected to have type
+  internalAccel ν a0 H i gN gext = ν (gN / a0) * gN
+ChainCert/OwnershipMutate.lean:8:151: error: Type mismatch
+  top_internal_law ν a0 H hi gN gext
+has type
+  internalAccel ν a0 H i gN gext = ν (gN / a0) * gN
+but is expected to have type
+  internalAccel ν a0 H i gN gext = gN
+ChainCert/OwnershipMutate.lean:10:167: error: Type mismatch
+  owned_boost_one ν a0 H hp hgN gext
+has type
+  boost ν a0 H i gN gext = 1
+but is expected to have type
+  1 < boost ν a0 H i gN gext
+ChainCert/OwnershipMutate.lean:12:296: error: Type mismatch
+  wideBinary_gammaHat_one ν a0 H s pair gN gext w howned hgN hW
+has type
+  (∑ k ∈ s, w k * boost ν a0 H (pair k) (gN k) (gext k)) / ∑ k ∈ s, w k = 1
+but is expected to have type
+  1 < (∑ k ∈ s, w k * boost ν a0 H (pair k) (gN k) (gext k)) / ∑ k ∈ s, w k
+ChainCert/OwnershipMutate.lean:14:170: error: Type mismatch
+  top_boost_gt_one_nuMono ha H hi hgN gext
+has type
+  1 < boost nuMono a0 H i gN gext
+but is expected to have type
+  boost nuMono a0 H i gN gext ≤ 1
+ChainCert/OwnershipMutate.lean:16:196: error: Type mismatch
+  top_boost_gt_one_P2 ha H hi hgN gext
+has type
+  1 < boost (fun y => √(1 + 1 / y)) a0 H i gN gext
+but is expected to have type
+  boost (fun y => √(1 + 1 / y)) a0 H i gN gext = 1
+ChainCert/OwnershipMutate.lean:18:254: error: Type mismatch
+  ownership_distinguishes ν a0 H hi hj hgN hν gext
+has type
+  internalAccel ν a0 H i gN gext ≠ internalAccel ν a0 H j gN gext
+but is expected to have type
+  internalAccel ν a0 H i gN gext = internalAccel ν a0 H j gN gext
+ChainCert/OwnershipMutate.lean:20:243: error: Type mismatch
+  ownership_not_field_local ν a0 H hi hj hgN hν
+has type
+  ¬∃ F, ∀ (k : ι) (g ge : ℝ), internalAccel ν a0 H k g ge = F g ge
+but is expected to have type
+  ∃ F, ∀ (k : ι) (g ge : ℝ), internalAccel ν a0 H k g ge = F g ge
+ChainCert/OwnershipMutate.lean:22:266: error: Tactic `assumption` failed
+
+E : Type u_1
+V : Type u_2
+inst✝⁸ : AddCommGroup E
+inst✝⁷ : Module ℝ E
+inst✝⁶ : TopologicalSpace E
+inst✝⁵ : ContinuousSMul ℝ E
+inst✝⁴ : AddCommGroup V
+inst✝³ : Module ℝ V
+inst✝² : TopologicalSpace V
+inst✝¹ : ContinuousSMul ℝ V
+inst✝ : T2Space V
+F : E → V
+h : EFEFree F
+⊢ Continuous[inst✝⁶, inst✝²] F
+ChainCert/OwnershipMutate.lean:24:129: error: Type mismatch
+  noEFE_linear_R3 hc h
+has type
+  ∃ (L : EuclideanSpace ℝ (Fin 3) →L[ℝ] EuclideanSpace ℝ (Fin 3)), ⇑L = F
+but is expected to have type
+  ∃ (c : EuclideanSpace ℝ (Fin 3)), ∀ (x : EuclideanSpace ℝ (Fin 3)), F x = c
+ChainCert/OwnershipMutate.lean:26:91: error: Type mismatch
+  noEFE_linear_real hc h z
+has type
+  F z = F 1 * z
+but is expected to have type
+  F z = F 1 * z + 1
+ChainCert/OwnershipMutate.lean:28:113: error: Type mismatch
+  noEFE_linear_ray hF h
+has type
+  ∀ (z : ℝ), 0 < z → F z = F 1 * z
+but is expected to have type
+  ∀ (z : ℝ), 0 < z → F z = F 1 * z ^ 2
+ChainCert/OwnershipMutate.lean:30:93: error: Type mismatch
+  nonlinear_not_efeFree_real hc hnl
+has type
+  ¬EFEFree F
+but is expected to have type
+  EFEFree F
+ChainCert/OwnershipMutate.lean:32:269: error: Type mismatch
+  nonlinear_not_efeFree hc hnl
+has type
+  ¬EFEFree F
+but is expected to have type
+  EFEFree F
+ChainCert/OwnershipMutate.lean:34:118: error: Type mismatch
+  deep_not_efeFreeRay ν hν
+has type
+  ¬EFEFreeRay fun y => ν y * y
+but is expected to have type
+  EFEFreeRay fun y => ν y * y
+ChainCert/OwnershipMutate.lean:36:109: error: Type mismatch
+  deep_kernel_ne_one ν hν
+has type
+  ∃ y, 0 < y ∧ ν y ≠ 1
+but is expected to have type
+  ∀ (y : ℝ), 0 < y → ν y ≠ 1
+ChainCert/OwnershipMutate.lean:38:172: error: Application type mismatch: The argument
+  ha
+has type
+  a0 ≠ 0
+but is expected to have type
+  0 < a0
+in the application
+  law_not_efeFreeRay ha
+ChainCert/OwnershipMutate.lean:40:85: error: Type mismatch
+  nuMono_law_has_EFE ha
+has type
+  ¬EFEFreeRay fun gN => nuMono (gN / a0) * gN
+but is expected to have type
+  EFEFreeRay fun gN => nuMono (gN / a0) * gN
+ChainCert/OwnershipMutate.lean:42:87: error: Type mismatch
+  P2_law_has_EFE ha
+has type
+  ¬EFEFreeRay fun gN => nuBeta 1 (gN / a0) * gN
+but is expected to have type
+  EFEFreeRay fun gN => nuBeta 1 (gN / a0) * gN
+ChainCert/OwnershipMutate.lean:44:98: error: Type mismatch
+  P2_sqrt_law_has_EFE ha
+has type
+  ¬EFEFreeRay fun gN => √(1 + 1 / (gN / a0)) * gN
+but is expected to have type
+  EFEFreeRay fun gN => √(1 + 1 / (gN / a0)) * gN
+ChainCert/OwnershipMutate.lean:46:197: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  Nontrivial E
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+ChainCert/OwnershipMutate.lean:48:165: error: Type mismatch
+  vecLaw_R3_not_efeFree ha ν hν
+has type
+  ¬EFEFree (vecLaw ν a0)
+but is expected to have type
+  EFEFree (vecLaw ν a0)

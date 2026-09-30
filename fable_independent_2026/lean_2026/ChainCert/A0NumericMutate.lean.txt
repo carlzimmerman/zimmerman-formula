@@ -1,0 +1,12 @@
+import ChainCert.A0Numeric
+-- Each theorem below is a FALSE variant of the corresponding A0Numeric theorem, "proved" by the original's proof term.
+-- Lean must reject every one (4 errors expected, one per mutation).
+open Real A0Numeric
+-- a0_of_rhoLambda: a spurious factor 2 in Omega
+theorem n01 {κ c G H Ω : ℝ} (hG : 0 < G) (hH : 0 ≤ H) : κ * c * Real.sqrt (G * (3 * H ^ 2 * Ω / (8 * π * G))) = a0num κ c H (2 * Ω) := a0_of_rhoLambda hG hH
+-- a0num_interval: the upper bound taken at H_lo
+theorem n02 {κ c H Ω Hlo Hhi Ωlo Ωhi slo shi : ℝ} (hκ : 0 < κ) (hc : 0 < c) (hHlo : 0 < Hlo) (hH : Hlo ≤ H ∧ H ≤ Hhi) (hΩ : Ωlo ≤ Ω ∧ Ω ≤ Ωhi) (hslo : 0 ≤ slo) (hshi : 0 ≤ shi) (hlo : slo ^ 2 * (8 * π) ≤ 3 * Ωlo) (hhi : 3 * Ωhi ≤ shi ^ 2 * (8 * π)) : κ * c * Hlo * slo ≤ a0num κ c H Ω ∧ a0num κ c H Ω ≤ κ * c * Hlo * shi := a0num_interval hκ hc hHlo hH hΩ hslo hshi hlo hhi
+-- a0_interval: a lower bound the inputs do not support (a0 = 9.2412e-11 at the low corner)
+theorem n03 {H0 ΩΛ : ℝ} (hH : 66.9 ≤ H0 ∧ H0 ≤ 67.9) (hΩ : 0.6774 ≤ ΩΛ ∧ ΩΛ ≤ 0.6920) : 9.3e-11 < (1 / 2) * cSI * Real.sqrt (GSI * (3 * (H0 * 1000 / Mpc) ^ 2 * ΩΛ / (8 * π * GSI))) ∧ (1 / 2) * cSI * Real.sqrt (GSI * (3 * (H0 * 1000 / Mpc) ^ 2 * ΩΛ / (8 * π * GSI))) < 9.48e-11 := a0_interval hH hΩ
+-- a0_point: the point value is 9.3603e-11, not above 9.37e-11
+theorem n04 : 9.37e-11 < (1 / 2) * cSI * Real.sqrt (GSI * (3 * (67.4 * 1000 / Mpc) ^ 2 * 0.6847 / (8 * π * GSI))) ∧ (1 / 2) * cSI * Real.sqrt (GSI * (3 * (67.4 * 1000 / Mpc) ^ 2 * 0.6847 / (8 * π * GSI))) < 9.38e-11 := a0_point

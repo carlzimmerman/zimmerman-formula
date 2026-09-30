@@ -1,0 +1,34 @@
+import ChainCert.Theory
+-- Each theorem below is a FALSE variant of the corresponding CandidateB theorem, "proved" by the original's proof term.
+-- Lean must reject every one (15 errors expected, one per mutation).
+open Filter Topology
+-- a0_eq: kappa = 1 instead of the fitted 1/2
+theorem t01 {ι : Type*} (B : CandidateB ι) (z : ℝ) : B.chain.a0 z = B.chain.c * Real.sqrt (B.chain.G * B.chain.ρΛ z) := B.a0_eq z
+-- a0_flat: a0 doubles
+theorem t02 {ι : Type*} (B : CandidateB ι) (z : ℝ) : B.chain.a0 z = 2 * B.chain.a0 0 := B.a0_flat z
+-- btfr: zero point without the kappa = 1/2
+theorem t03 {ι : Type*} (B : CandidateB ι) {M : ℝ} (hM : 0 < M) (z : ℝ) : Tendsto (fun r : ℝ => ((B.chain.G * M / r) * B.ν (B.chain.G * M / (r ^ 2 * B.chain.a0 z))) ^ 2) atTop (𝓝 (B.chain.G * M * (B.chain.c * Real.sqrt (B.chain.G * B.chain.ρΛ 0)))) := B.btfr hM z
+-- rival_separates: the rival falls below 1
+theorem t04 {ι : Type*} (B : CandidateB ι) {Ωm ΩΛ : ℝ} (hm : 0 < Ωm) (hΛ : 0 ≤ ΩΛ) (hsum : Ωm + ΩΛ = 1) : StrictMonoOn (Efun Ωm ΩΛ) (Set.Ici 0) ∧ ∀ z, 0 < z → B.chain.a0 z / B.chain.a0 0 = 1 ∧ Efun Ωm ΩΛ z < 1 := B.rival_separates hm hΛ hsum
+-- a0_numeric: a lower bound the inputs do not support (a0 = 9.2412e-11 at the low corner)
+theorem t05 {ι : Type*} (B : CandidateB ι) (hc : B.chain.c = A0Numeric.cSI) (hG : B.chain.G = A0Numeric.GSI) {H0 ΩΛ : ℝ} (hρ : B.chain.ρΛ 0 = 3 * (H0 * 1000 / A0Numeric.Mpc) ^ 2 * ΩΛ / (8 * Real.pi * A0Numeric.GSI)) (hH : 66.9 ≤ H0 ∧ H0 ≤ 67.9) (hΩ : 0.6774 ≤ ΩΛ ∧ ΩΛ ≤ 0.6920) (z : ℝ) : 9.3e-11 < B.chain.a0 z ∧ B.chain.a0 z < 9.48e-11 := B.a0_numeric hc hG hρ hH hΩ z
+-- owned_boost_one: owned systems boosted
+theorem t06 {ι : Type*} (B : CandidateB ι) {i p : ι} (hp : B.H.parent i = some p) {gN : ℝ} (hgN : 0 < gN) (gext : ℝ) : 1 < B.accel i gN gext / gN := B.owned_boost_one hp hgN gext
+-- gammaHat_one: B predicts the merged-law Arm A value 1.16
+theorem t07 {ι κ : Type*} (B : CandidateB ι) (s : Finset κ) (pair : κ → ι) (gN gext w : κ → ℝ) (howned : ∀ k ∈ s, ∃ p, B.H.parent (pair k) = some p) (hgN : ∀ k ∈ s, 0 < gN k) (hW : 0 < ∑ k ∈ s, w k) : (∑ k ∈ s, w k * (B.accel (pair k) (gN k) (gext k) / gN k)) / ∑ k ∈ s, w k = 1.16 := B.gammaHat_one s pair gN gext w howned hgN hW
+-- merged_law_has_EFE: B's kernel merged locally IS EFE-free
+theorem t08 {ι : Type*} (B : CandidateB ι) : Ownership.EFEFreeRay (fun gN => B.ν (gN / B.chain.a0 0) * gN) := B.merged_law_has_EFE
+-- merged_vecLaw_has_EFE: same, R^3
+theorem t09 {ι : Type*} (B : CandidateB ι) : Ownership.EFEFree (Ownership.vecLaw (E := EuclideanSpace ℝ (Fin 3)) B.ν (B.chain.a0 0)) := B.merged_vecLaw_has_EFE
+-- ownership_nonlocal: B's rule IS a function of the field data
+theorem t10 {ι : Type*} (B : CandidateB ι) {i j p : ι} (hi : B.H.parent i = none) (hj : B.H.parent j = some p) : ∃ F : ℝ → ℝ → ℝ, ∀ k g ge, B.accel k g ge = F g ge := B.ownership_nonlocal hi hj
+-- cold_budget: the baryon share instead of the cold share
+theorem t11 {ι : Type*} (B : CandidateB ι) (Mcoll : ℝ) : (1 - B.Ωb / (B.Ωb + B.Ωc)) * Mcoll = B.Ωb / (B.Ωb + B.Ωc) * Mcoll := B.cold_budget Mcoll
+-- cold_edge_mass: double counting (sum instead of max)
+theorem t12 {ι : Type*} (B : CandidateB ι) {Mph Mcoll : ℝ} (hMph : 0 ≤ Mph) (hMcoll : 0 < Mcoll) : B.darkEdge Mph Mcoll = Mph + B.Ωc / (B.Ωb + B.Ωc) * Mcoll := B.cold_edge_mass hMph hMcoll
+-- cold_edge_monotone: reversed
+theorem t13 {ι : Type*} (B : CandidateB ι) {Mph M₁ M₂ : ℝ} (hMph : 0 ≤ Mph) (h₁ : 0 < M₁) (h₁₂ : M₁ ≤ M₂) : B.darkEdge Mph M₂ ≤ B.darkEdge Mph M₁ := B.cold_edge_monotone hMph h₁ h₁₂
+-- predictions: conjunct (2) replaced by a0(z) = 2 a0(0)
+theorem t14 {ι : Type*} (B : CandidateB ι) : (∀ M z : ℝ, 0 < M → Tendsto (fun r : ℝ => ((B.chain.G * M / r) * B.ν (B.chain.G * M / (r ^ 2 * B.chain.a0 z))) ^ 2) atTop (𝓝 (B.chain.G * M * (1 / 2 * B.chain.c * Real.sqrt (B.chain.G * B.chain.ρΛ 0))))) ∧ (∀ z, B.chain.a0 z = 2 * B.chain.a0 0) ∧ (∀ Ωm ΩΛ : ℝ, 0 < Ωm → 0 ≤ ΩΛ → Ωm + ΩΛ = 1 → StrictMonoOn (Efun Ωm ΩΛ) (Set.Ici 0) ∧ ∀ z, 0 < z → B.chain.a0 z / B.chain.a0 0 = 1 ∧ 1 < Efun Ωm ΩΛ z) ∧ (∀ (i p : ι) (gN gext : ℝ), B.H.parent i = some p → 0 < gN → B.accel i gN gext / gN = 1) ∧ ¬ Ownership.EFEFreeRay (fun gN => B.ν (gN / B.chain.a0 0) * gN) ∧ (∀ Mph Mcoll : ℝ, 0 ≤ Mph → 0 < Mcoll → B.darkEdge Mph Mcoll = max Mph (B.Ωc / (B.Ωb + B.Ωc) * Mcoll)) := B.predictions
+-- nonempty_fin2: the premises are contradictory
+theorem t15 : IsEmpty (CandidateB (Fin 2)) := CandidateB.nonempty_fin2
