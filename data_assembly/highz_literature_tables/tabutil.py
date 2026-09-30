@@ -8,6 +8,7 @@ def rows(s, tid):
     return [[flat(c) for c in re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", r, flags=re.S)] for r in re.findall(r"<tr[^>]*>(.*?)</tr>", s[i:j], flags=re.S)]
 def val(x):
     """(value, err_lo, err_hi, flag) flag in '', '<', '>', 'missing', 'unparsed:...'"""
+    x = re.sub(r"\\hphantom\{[^}]*\}", "", x); x = re.sub(r"^(?:0\s+)+(?=[-+\d\[<])", "", x.strip())   # hidden-zero artefacts and \hphantom in some LaTeXML tables
     t = x.replace("[", "").replace("]", "").replace("\\rm", "").replace("\\,", "").replace("−", "-").strip()
     if t in ("", "…", "...", "-", "–", "—"): return (None, None, None, "missing")
     lim = "<" if t.startswith("<") else (">" if t.startswith(">") else ""); t = t.lstrip("<>").strip()
