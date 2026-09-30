@@ -20,3 +20,7 @@ The gate list was frozen before any assembly attempt, so the assembly cannot mov
 **Update 2026-09-28 (CFG70).** The enclosed-mass exchange written as a causal, reciprocal Schwinger–Keldysh memory-kernel action returns CFG48's reaction (0.06–22 g_law) and energy demand (23–72× the baryons' orbital energy) for every retarded kernel: memory reshapes only the transient. It passes only with an unfunded reservoir or an untied coupling (the pressure-slaved bound is about 0.3 down to 0.005 for time scales of 0.01 to 10 free-fall times; below 1% only for time scales at or above one free-fall time, CFG70 README). (`../CFG70_memory_kernel_exchange/`)
 
 **Update 2026-09-28 (CFG72).** A spatial light-cone version of CFG70's exchange (a Gauss-law scalar mediator; one completion) leaves the late-time reaction and energy unchanged, extended baryons change the figures not the verdict, and a bath-slaved fluid has growing modes under the declared operator. Scoped; see GAPS_1_2_JOINT_STATUS.md. (`../CFG72_lightcone_exchange/`)
+
+
+## Erratum (2026-09-29, after CFG230, 1b859cbf5)
+The CFG43 update's cap window of "about one decade" is superseded: the corrected window is 11× up to 1e4–1e5. CFG230 (the requirements synthesis) is the current summary of which requirements are THEOREM, SCOPED or DECLARED. No scored row meets the hard-core set R03–R12 as a mechanism.

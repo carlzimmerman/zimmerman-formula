@@ -405,3 +405,7 @@ CFG50_tidal_closure/D2_wellposed_nogo.py [MUTATE=b] rc=1 diff=0
 ## Addendum after CFG173 (appended 2026-09-29; the rows and addenda above are unchanged)
 
 - **Door 11, variant 11B' (the owner's directional flowing vacuum):** CFG173 (e415659c7): a scoped no-go — no massless directional-flow reading passes G1 as a mechanism. A w = −1 medium cannot flow (no rest frame, no flux; sympy); the flow's own gravity supplies at most 1.2e-6 of the phantom; a push is Le Sage gravity (sign-changing, linear in mass, absorbing 10⁵–10⁷ × the orbital energy, saturated in stars and planets); and the only flow law that reproduces the target is AQUAL written as a flux with a sink (the same object as door 11A, CFG171), which needs ~10⁷ × too much energy and has an imaginary sound speed, while the directional stream adds a 12% side-to-side dipole at x = 30 for a galaxy moving at 600 km/s. Candidate B's law and its a₀ tie are untouched; this door does not supply B's missing mechanism.
+
+
+## Erratum (2026-09-29, after the CFG230 requirements synthesis, 1b859cbf5; the table above is left as first written)
+Row 5.12's "ν_mono departs by up to 2%" is stale. CFG230 recomputes R(1) = 1.4565 against CFG44's 1.4629, so the size of the departure should be read from CFG230's output, not from this row.
