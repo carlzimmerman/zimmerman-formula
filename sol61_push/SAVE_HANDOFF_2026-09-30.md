@@ -16,3 +16,7 @@ Consequently D exceeds the positive root of D(1+D)^2=48π, and the cosmological-
 An observational exclusion has NOT been completed. Before claiming one, verify the BBN-only interval in Alvey et al., arXiv:1910.10730, and its transfer assumptions: constant couplings during BBN, unchanged particle and nuclear physics, negligible extra clock or surface radiation, and the stated local Newton calibration. A CMB-derived bound cannot be imported automatically into preferred-foliation gravity. Additional radiation or evolving couplings require a separate calculation.
 
 Next priority: finish that conditional observational test, then investigate a causal completion that also fixes the remaining coefficient. Do not describe either task as solved or claim global novelty from repository searches.
+
+## Subsequent completed check
+
+The previously unfinished source transfer is now documented in CLOCK_BBN_RESULTS.md. Equation (9) of the checked primary source gives the BBN-only interval [0.92,1.04] at 95.4% confidence. Under the explicit standard-radiation, constant-coupling transfer assumptions, the candidate's entire R<0.8238741 range is outside it. Twelve computation checks and execution provenance are saved. This closes that restricted observational branch; evolving couplings or additional radiation are separate, unverified modifications. Exact 32π remains unresolved.

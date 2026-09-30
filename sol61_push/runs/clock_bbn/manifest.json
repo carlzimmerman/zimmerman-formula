@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CLOCK_BBN",
+  "repository": {
+    "commit": "3a9a40eb533dde4007201da325266c23e538b0a8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/clock_bbn.py",
+    "--output",
+    "sol61_push/runs/clock_bbn/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional canonical-clock ratio bound and ideal radiation compensation; no abundance likelihood computed",
+    "coefficient_domain": "Double precision positive real parameters",
+    "conventions": "CLOCK_BBN_RESULTS.md",
+    "inputs": [
+      "sol61_push/clock_bbn.py"
+    ],
+    "bounds": {
+      "D_samples": [
+        "Dmin+0.01",
+        5,
+        10,
+        100
+      ],
+      "root_bracket": [
+        0,
+        10
+      ],
+      "root_absolute_tolerance": 1e-13,
+      "BBN_interval": [
+        0.92,
+        1.04
+      ],
+      "neutrino_baseline": 3
+    },
+    "non_claims": [
+      "No new BBN likelihood",
+      "No exclusion with evolving couplings or extra radiation",
+      "No exact 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T20:49:02.132117+00:00",
+    "runtime_seconds": 0.207208,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/clock_bbn.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/clock_bbn.py",
+      "sha256": "dd8f2640a6a57b6eac9aae907f069a1f9640f46e28c04a90d3d00d21e1068d92",
+      "sha256_after": "dd8f2640a6a57b6eac9aae907f069a1f9640f46e28c04a90d3d00d21e1068d92"
+    }
+  ],
+  "output_directory": "sol61_push/runs/clock_bbn",
+  "declared_results": [
+    "sol61_push/runs/clock_bbn/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/clock_bbn/stdout.txt",
+      "sha256": "50999c91bd0543d3144a995a4f3453d09a12867f06f68a3a154a9800ce0c5739",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/clock_bbn/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/clock_bbn/results.json",
+      "sha256": "596f029787b851044a45c39f58cc7aa96b8e29ee76eb85ae24c7326055c77f58",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
