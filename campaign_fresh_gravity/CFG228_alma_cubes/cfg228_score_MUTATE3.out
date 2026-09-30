@@ -1,0 +1,135 @@
+CFG228 -- SCORING: g_obs, g_bar, D, the Newtonian-floor status, delta_L for FLAT / PROXY / H(z) / M-DEC, the pooled statistic, and the IMPLIED a0 with its error budget, for the six ALPINE [CII] rotators (rotation from our own
+forward model, Stage 3) and SPT0418-47 (the authors' published source-plane curve).  The blind pre-flight (0c4c5778d) was committed before Stage 3 existed and GATES every wording.
+Compilation; two un-optimised tracers; calibration-limited; not blind to the published kinematics; not a detection; not a verdict.  LambdaCDM has no a0: the proxy is an effective-a0 PROXY.  kappa = 1/2 FITTED.
+Frozen criteria: FROZEN_CRITERIA.md (71ec12282).
+MUTATE = 3 (gas / 1.36)
+
+BASELINE (ALPINE: thin exponential disc with stars + gas at R_e,[CII]; SPT0418-47: stars a point mass, gas a thin disc with R_d = R_gas = 0.9 kpc; V_c^2 = V_rot^2 + alpha sigma^2 with alpha = 2 R_out/R_d (ALPINE) and 0 (SPT0418-47))
+  galaxy          z     R_out   V_rot (+-)      sigma  alpha   g_obs (m/s2)  g_bar (m/s2)   y=g_bar/a0    D=g_obs/g_bar   gas class   gas share
+  CG32         4.410   7.82   114.1 +-  66.0    116   6.71   4.291e-10   9.817e-11        1.05        4.371      S         0.58
+  DC396844     4.542   5.60    70.6 +-  38.8    113   6.71   5.242e-10   1.943e-10        2.08        2.698      S         0.67
+  DC494057     5.545   4.94   139.7 +-  26.6     72   6.71   3.544e-10   1.371e-10        1.47        2.585      S/L       0.53
+  DC552206     5.502   7.97   181.0 +-   9.6     78   6.71   2.986e-10   1.552e-10        1.66        1.923      S         0.60
+  DC881725     4.578   5.92   123.9 +-  51.1     83   6.71   3.392e-10   1.314e-10        1.40        2.581      S         0.66
+  VC5110377875 4.551   5.96   136.7 +-   8.5     59   6.71   2.306e-10   2.462e-10        2.63        0.937      S         0.71
+  SPT0418-47   4.225   3.60   252.5 +-  10.0     18   0.00   5.740e-10   7.145e-10        7.63        0.803      S/L       0.83
+
+DELTA_L = log10[g_obs / (g_bar nu_mono(g_bar / (a0 F_L(z))))]  (canonical footing; the alt footing and P2 beside)
+  galaxy          FLAT     PROXY    H(z)     M-DEC     | alt footing: FLAT  H(z)   | P2 kernel: FLAT  H(z)
+  CG32         +0.447   +0.228   +0.144   +0.494     | +0.423 +0.110   | +0.495 +0.195
+  DC396844     +0.314   +0.121   +0.046   +0.349     | +0.295 +0.014   | +0.346 +0.102
+  DC494057     +0.259   -0.005   -0.075   +0.309     | +0.237 -0.109   | +0.299 -0.023
+  DC552206     +0.144   -0.110   -0.180   +0.191     | +0.123 -0.213   | +0.182 -0.127
+  DC881725     +0.253   +0.038   -0.041   +0.297     | +0.231 -0.074   | +0.295 +0.012
+  VC5110377875 -0.124   -0.304   -0.376   -0.095     | -0.141 -0.406   | -0.098 -0.319
+  SPT0418-47   -0.132   -0.224   -0.279   -0.121     | -0.139 -0.303   | -0.122 -0.233
+
+NEWTONIAN FLOOR (D < 1 is a baryon-model inconsistency for ANY law): PASS if D >= 1; BAND-DEPENDENT if D < 1 but D >= 1 at the most favourable corner of the declared bands and variants (gas -outer, stars -0.30, R_out 1.5 / 2 / 3 R_e, pressure, geometry, inclination - 1 sigma); ROBUST FAIL otherwise
+  CG32         D =  4.371; most favourable corner D_best = 65.922 -> PASS
+  DC396844     D =  2.698; most favourable corner D_best = 83.882 -> PASS
+  DC494057     D =  2.585; most favourable corner D_best = 21.834 -> PASS
+  DC552206     D =  1.923; most favourable corner D_best = 21.022 -> PASS
+  DC881725     D =  2.581; most favourable corner D_best = 32.252 -> PASS
+  VC5110377875 D =  0.937; most favourable corner D_best =  8.769 -> BAND-DEPENDENT
+  SPT0418-47   D =  0.803; most favourable corner D_best =  4.607 -> BAND-DEPENDENT
+  => PASS 5, BAND-DEPENDENT 2, ROBUST FAIL 0
+
+POOLED (median delta with the 10,000-resample galaxy bootstrap 95% interval; DESCRIPTIVE; the pre-flight gate decides what may be said)
+  ALPINE6      (N = 6): FLAT +0.256 [+0.010, +0.381]   PROXY +0.017 [-0.207, +0.174]   H(z) -0.058 [-0.278, +0.095]   M-DEC +0.303 [+0.048, +0.422]   | median(FLAT - H(z)) = +0.299; median D = 2.583
+  ALL7         (N = 7): FLAT +0.253 [-0.124, +0.314]   PROXY -0.005 [-0.224, +0.121]   H(z) -0.075 [-0.279, +0.046]   M-DEC +0.297 [-0.095, +0.349]   | median(FLAT - H(z)) = +0.295; median D = 2.581
+  PASS subset  (N = 5): FLAT +0.259 [+0.144, +0.447]   PROXY +0.038 [-0.110, +0.228]   H(z) -0.041 [-0.180, +0.144]   M-DEC +0.309 [+0.191, +0.494]   | median(FLAT - H(z)) = +0.303; median D = 2.585
+
+BANDS (per-galaxy delta_FLAT at the corners: gas inner +-0.213 / outer +-0.671; stars inner +-0.20 / outer +-0.30; joint = same sign)
+  band                CG32    DC396844    DC494057    DC552206    DC881725  VC51103778  SPT0418-47   median ALPINE6
+  gas -outer        +0.630      +0.557      +0.426      +0.344      +0.476      +0.148      +0.291   +0.451
+  gas -inner        +0.525      +0.414      +0.331      +0.229      +0.346      -0.014      +0.027   +0.339
+  gas +inner        +0.348      +0.190      +0.164      +0.037      +0.139      -0.259      -0.308   +0.152
+  gas +outer        +0.064      -0.150      -0.118      -0.272      -0.178      -0.618      -0.724   -0.164
+  stars -outer      +0.519      +0.373      +0.344      +0.216      +0.313      -0.071      -0.102   +0.328
+  stars -inner      +0.499      +0.357      +0.320      +0.196      +0.296      -0.085      -0.116   +0.308
+  stars +inner      +0.379      +0.254      +0.179      +0.074      +0.194      -0.179      -0.153   +0.186
+  stars +outer      +0.337      +0.217      +0.131      +0.031      +0.157      -0.214      -0.185   +0.144
+  joint -outer      +0.767      +0.684      +0.578      +0.485      +0.602      +0.268      +0.375   +0.590
+  joint -inner      +0.591      +0.471      +0.408      +0.296      +0.403      +0.038      +0.051   +0.405
+  joint +inner      +0.295      +0.145      +0.100      -0.018      +0.094      -0.300      -0.322   +0.097
+  joint +outer      +0.019      -0.185      -0.175      -0.318      -0.215      -0.649      -0.738   -0.200
+
+SENSITIVITIES (delta_FLAT / delta_H(z) per galaxy; beside the baseline, never substituted)
+  variant                                        CG32   DC396844   DC494057   DC552206   DC881725   VC511037   SPT0418-
+  pressure alpha = 0                       -0.45/-0.76 -0.95/-1.21 -0.18/-0.52 -0.21/-0.53 -0.35/-0.65 -0.48/-0.73 -0.13/-0.28   median ALPINE6 -0.402/-0.689
+  pressure alpha = 3.36                    +0.20/-0.10 +0.04/-0.23 +0.09/-0.24 +0.00/-0.32 +0.05/-0.25 -0.27/-0.52 -0.12/-0.27   median ALPINE6 +0.043/-0.244
+  R_e x 1.5                                +0.53/+0.21 +0.40/+0.12 +0.34/-0.01 +0.23/-0.11 +0.34/+0.03 -0.03/-0.30 -0.07/-0.23   median ALPINE6 +0.342/+0.012
+  R_e / 1.5                                +0.43/+0.13 +0.30/+0.03 +0.24/-0.09 +0.13/-0.19 +0.24/-0.06 -0.14/-0.39 -0.13/-0.27   median ALPINE6 +0.239/-0.072
+  stars at 0.5 R_e,gas                     +0.45/+0.14 +0.31/+0.05 +0.26/-0.08 +0.14/-0.18 +0.25/-0.04 -0.12/-0.38 -0.13/-0.28   median ALPINE6 +0.255/-0.059
+  spherical enclosed mass                  +0.54/+0.22 +0.41/+0.12 +0.35/-0.00 +0.24/-0.10 +0.34/+0.03 -0.02/-0.30 -0.04/-0.21   median ALPINE6 +0.348/+0.017
+  R_out = 1.5 R_e (SPT: 2 R_gas)           +0.32/+0.04 +0.18/-0.06 +0.12/-0.18 +0.06/-0.23 +0.12/-0.14 -0.22/-0.43 -0.23/-0.30   median ALPINE6 +0.125/-0.162
+  R_out = 3 R_e (SPT: 5 R_gas)             +0.66/+0.32 +0.55/+0.24 +0.48/+0.10 +0.31/-0.06 +0.47/+0.13 +0.06/-0.24 -0.06/-0.25   median ALPINE6 +0.472/+0.117
+  dust at T_d = 25 K (gas log-mean where detected) +0.45/+0.14 +0.31/+0.05 +0.18/-0.14 +0.14/-0.18 +0.25/-0.04 -0.12/-0.38 -0.25/-0.37   median ALPINE6 +0.216/-0.090
+  dust at T_d = 45 K (gas log-mean where detected) +0.45/+0.14 +0.31/+0.05 +0.29/-0.05 +0.14/-0.18 +0.25/-0.04 -0.12/-0.38 -0.07/-0.23   median ALPINE6 +0.271/-0.046
+  own-cube [CII] flux (mass x cube/moment-0) +0.46/+0.15 +0.27/+0.01 +0.24/-0.09 +0.14/-0.18 +0.25/-0.04 -0.12/-0.37 -0.13/-0.28   median ALPINE6 +0.248/-0.064
+  gas = [CII] only                         +0.45/+0.14 +0.31/+0.05 +0.17/-0.14 +0.14/-0.18 +0.25/-0.04 -0.12/-0.38 -0.07/-0.23   median ALPINE6 +0.213/-0.092
+  inclination - 1 sigma (ALPINE)           +0.74/+0.43 +0.88/+0.61 +0.32/-0.01 +0.34/+0.02 +0.44/+0.14 -0.04/-0.29 -0.13/-0.28   median ALPINE6 +0.390/+0.081
+  inclination + 1 sigma (ALPINE)           +0.31/+0.01 +0.16/-0.10 +0.20/-0.13 +0.05/-0.28 +0.13/-0.17 -0.19/-0.44 -0.13/-0.28   median ALPINE6 +0.147/-0.147
+  POST HOC: rotation-curve shape R_t fixed at 0.2 kpc (refit) +0.42/+0.12 +0.31/+0.05 +0.16/-0.17 +0.14/-0.18 +0.19/-0.10 -0.12/-0.38 -0.13/-0.28   median ALPINE6 +0.176/-0.138
+  POST HOC: rotation-curve shape R_t fixed at 1.0 kpc (refit) +0.43/+0.12 +0.32/+0.05 +0.20/-0.14 +0.21/-0.11 +0.21/-0.08 -0.06/-0.32 -0.13/-0.28   median ALPINE6 +0.211/-0.098
+  POST HOC: rotation-curve shape R_t fixed at 3.0 kpc (refit) +0.45/+0.14 +0.33/+0.06 +0.26/-0.07 +0.32/-0.00 +0.25/-0.04 -0.01/-0.26 -0.13/-0.28   median ALPINE6 +0.290/-0.022
+
+PRE-FLIGHT GATE (cfg228_preflight.py, committed before Stage 3; read from its results JSON)
+  ALPINE6: flat vs H(z) outer / gas-only / inner = False / False / False; flat vs PROXY = False / False / False  (True = POSSIBLE)
+  ALL7: flat vs H(z) outer / gas-only / inner = False / False / False; flat vs PROXY = False / False / False  (True = POSSIBLE)
+  => NOT POSSIBLE in any set at the joint outer band (S/L gas +-0.671, stars +-0.30): NO sentence of this lane may say any law is separated, preferred or disfavoured; the delta table is descriptive
+
+IMPLIED a0 (descriptive, not a verdict).  s* = the root of median_i log10[D_i / nu_mono(g_bar,i/(a0 s))] = 0 (CFG223's estimator); a0_implied = s* x 9.3603e-11 m/s^2 (footing-independent); alt footing ratio s*/1.2085
+  z ~ 0 reference (QUOTED from the record, no SPARC analysis here): canonical 9.3603e-11 and alt 1.1312e-10 m/s^2 (CFG4_common.A0); SPARC fits both at equal quality at fixed Upsilon (CFG0 F9); a0 and Upsilon degenerate (CFG4 H2b: best free a0 1.37e-10 for nu_mono, 1.78e-10 for P2 at Upsilon 0.50)
+
+  s* per galaxy and pooled set; 'no root' = no a0 in [1e-3, 1e3] x the footing zeroes the median delta (D <= 1)
+  set            s*       a0 (1e-10 m/s2)   s*/alt      lever     slope    statistical (log10 s*: 16 / 50 / 84%, no-root fraction)            INFORMATIVE?
+  CG32             15.5          14.547          12.9       -1.3   0.287   [+0.88, +1.25, +1.83]  no-root 0.02 (MC (V fit erro)   UNINFORMATIVE: the joint outer band moves log s* by > 1 dex
+  DC396844         9.68           9.059          8.01       -1.5   0.223   [+0.66, +1.10, +1.92]  no-root 0.07 (MC (V fit erro)   UNINFORMATIVE: the joint outer band removes the root
+  DC494057         6.12           5.729          5.06       -1.6   0.257   [+0.49, +0.78, +1.03]  no-root 0.00 (MC (V fit erro)   UNINFORMATIVE: the joint outer band removes the root
+  DC552206         3.08           2.883          2.55       -2.0   0.245   [+0.16, +0.55, +1.08]  no-root 0.01 (MC (V fit erro)   UNINFORMATIVE: the joint outer band removes the root
+  DC881725         5.84           5.471          4.84       -1.6   0.261   [+0.34, +0.80, +1.30]  no-root 0.01 (MC (V fit erro)   UNINFORMATIVE: the joint outer band removes the root
+  VC5110377875  no root         no root             -        n/a   0.193   [-0.79, -0.23, +0.17]  no-root 0.62 (MC (V fit erro)   UNINFORMATIVE: no root; the joint outer band removes the root; the joint outer band moves log s* by > 1 dex
+  SPT0418-47    no root         no root             -        n/a   0.078   [-0.96, -0.42, +0.01]  no-root 0.96 (MC (V fit erro)   UNINFORMATIVE: no root; the joint outer band removes the root; the joint outer band moves log s* by > 1 dex
+  ALPINE6          5.98           5.598          4.95       -1.6   0.251   [+0.63, +0.78, +0.89]  no-root 0.01 (galaxy bootstr)   UNINFORMATIVE: the joint outer band removes the root
+  ALL7             5.84           5.471          4.84       -1.6   0.245   [+0.49, +0.77, +0.79]  no-root 0.11 (galaxy bootstr)   UNINFORMATIVE: the joint outer band removes the root
+  PASS subset      6.12           5.729          5.06       -1.6   0.257   [+0.77, +0.79, +0.99]  no-root 0.00 (galaxy bootstr)   UNINFORMATIVE: the joint outer band removes the root
+
+  systematic bars: s* at the band corners (gas inner +-0.213 / outer +-0.671; stars inner +-0.20 / outer +-0.30; joint = same sign)
+  CG32         gas -inner: 21.4  gas +inner: 10.2  gas -outer: 32.4  gas +outer: 2.04  stars -inner: 19.2  stars +inner: 11.6  stars -outer: 20.8  stars +outer: 9.69  joint -inner: 27.8  joint +inner: 7.98  joint -outer: 55.5  joint +outer: 1.3
+  DC396844     gas -inner: 15  gas +inner: 5.23  gas -outer: 26.6  gas +outer: no root  stars -inner: 11.7  stars +inner: 7.29  stars -outer: 12.6  stars +outer: 6.03  joint -inner: 18.9  joint +inner: 4.01  joint -outer: 43.6  joint +outer: no root
+  DC494057     gas -inner: 8.61  gas +inner: 3.71  gas -outer: 13  gas +outer: no root  stars -inner: 8.17  stars +inner: 4.03  stars -outer: 9.11  stars +outer: 3.04  joint -inner: 12  joint +inner: 2.48  joint -outer: 24.3  joint +outer: no root
+  DC552206     gas -inner: 4.9  gas +inner: 1.44  gas -outer: 8.46  gas +outer: no root  stars -inner: 4.13  stars +inner: 1.94  stars -outer: 4.6  stars +outer: 1.37  joint -inner: 6.79  joint +inner: 0.786  joint -outer: 15.5  joint +outer: no root
+  DC881725     gas -inner: 9.01  gas +inner: 3.14  gas -outer: 15.8  gas +outer: no root  stars -inner: 7.19  stars +inner: 4.3  stars -outer: 7.76  stars +outer: 3.5  joint -inner: 11.6  joint +inner: 2.34  joint -outer: 26.4  joint +outer: no root
+  VC5110377875 gas -inner: 0.868  gas +inner: no root  gas -outer: 2.89  gas +outer: no root  stars -inner: 0.162  stars +inner: no root  stars -outer: 0.313  stars +outer: no root  joint -inner: 1.4  joint +inner: no root  joint -outer: 5.4  joint +outer: no root
+  SPT0418-47   gas -inner: 1.59  gas +inner: no root  gas -outer: 9.19  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: 2.06  joint +inner: no root  joint -outer: 13.4  joint +outer: no root
+  ALPINE6      gas -inner: 8.81  gas +inner: 3.42  gas -outer: 14.3  gas +outer: no root  stars -inner: 7.66  stars +inner: 4.17  stars -outer: 8.41  stars +outer: 3.27  joint -inner: 11.8  joint +inner: 2.41  joint -outer: 25.3  joint +outer: no root
+  ALL7         gas -inner: 8.61  gas +inner: 3.14  gas -outer: 13  gas +outer: no root  stars -inner: 7.19  stars +inner: 4.03  stars -outer: 7.76  stars +outer: 3.04  joint -inner: 11.6  joint +inner: 2.34  joint -outer: 24.3  joint +outer: no root
+  PASS subset  gas -inner: 9.01  gas +inner: 3.71  gas -outer: 15.8  gas +outer: no root  stars -inner: 8.17  stars +inner: 4.3  stars -outer: 9.11  stars +outer: 3.5  joint -inner: 12  joint +inner: 2.48  joint -outer: 26.4  joint +outer: no root
+
+  variants (s*): pressure, geometry, R_out, dust temperature, own-cube flux, inclination, rotation-curve shape (post hoc), P2 kernel
+  CG32         alpha 0: no root  alpha 3.36: 3.87  R_e x1.5: 21.8  R_e /1.5: 14.5  stars 0.5R_e: 15.5  spherical: 22.3  R_out 1.5R_e: 9.19  R_out 3R_e: 36.2  T_d 25 K: 15.5  T_d 45 K: 15.5  own-cube flux: 16.1  incl -1sig: 66.8  incl +1sig: 7.32  R_t=0.2 (post hoc): 13.3  R_t=1.0 (post hoc): 13.9  R_t=3.0 (post hoc): 15.5  P2 kernel: 19
+  DC396844     alpha 0: no root  alpha 3.36: 1.42  R_e x1.5: 14.3  R_e /1.5: 8.91  stars 0.5R_e: 9.65  spherical: 14.7  R_out 1.5R_e: 4.96  R_out 3R_e: 25.7  T_d 25 K: 9.68  T_d 45 K: 9.68  own-cube flux: 7.92  incl -1sig: 182  incl +1sig: 3.79  R_t=0.2 (post hoc): 9.68  R_t=1.0 (post hoc): 9.96  R_t=3.0 (post hoc): 10.6  P2 kernel: 13
+  DC494057     alpha 0: no root  alpha 3.36: 2.08  R_e x1.5: 9.14  R_e /1.5: 5.62  stars 0.5R_e: 6.1  spherical: 9.39  R_out 1.5R_e: 2.93  R_out 3R_e: 15.7  T_d 25 K: 4.04  T_d 45 K: 7.09  own-cube flux: 5.72  incl -1sig: 8.82  incl +1sig: 4.39  R_t=0.2 (post hoc): 3.34  R_t=1.0 (post hoc): 4.18  R_t=3.0 (post hoc): 6.12  P2 kernel: 8.32
+  DC552206     alpha 0: no root  alpha 3.36: 1.03  R_e x1.5: 4.96  R_e /1.5: 2.77  stars 0.5R_e: 3.07  spherical: 5.12  R_out 1.5R_e: 1.88  R_out 3R_e: 6.9  T_d 25 K: 3.08  T_d 45 K: 3.08  own-cube flux: 3.07  incl -1sig: 10.5  incl +1sig: 1.5  R_t=0.2 (post hoc): 3.08  R_t=1.0 (post hoc): 4.75  R_t=3.0 (post hoc): 9.24  P2 kernel: 4.48
+  DC881725     alpha 0: no root  alpha 3.36: 1.5  R_e x1.5: 8.73  R_e /1.5: 5.37  stars 0.5R_e: 5.83  spherical: 8.97  R_out 1.5R_e: 2.88  R_out 3R_e: 15.1  T_d 25 K: 5.84  T_d 45 K: 5.84  own-cube flux: 5.79  incl -1sig: 16.3  incl +1sig: 2.67  R_t=0.2 (post hoc): 4.01  R_t=1.0 (post hoc): 4.55  R_t=3.0 (post hoc): 5.84  P2 kernel: 7.95
+  VC5110377875 alpha 0: no root  alpha 3.36: no root  R_e x1.5: 0.704  R_e /1.5: no root  stars 0.5R_e: no root  spherical: 0.766  R_out 1.5R_e: no root  R_out 3R_e: 1.61  T_d 25 K: no root  T_d 45 K: no root  own-cube flux: no root  incl -1sig: 0.554  incl +1sig: no root  R_t=0.2 (post hoc): no root  R_t=1.0 (post hoc): 0.296  R_t=3.0 (post hoc): 0.892  P2 kernel: no root
+  SPT0418-47   alpha 0: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 0.5R_e: no root  spherical: 0.0569  R_out 1.5R_e: no root  R_out 3R_e: no root  T_d 25 K: no root  T_d 45 K: no root  own-cube flux: no root  incl -1sig: no root  incl +1sig: no root  R_t=0.2 (post hoc): no root  R_t=1.0 (post hoc): no root  R_t=3.0 (post hoc): no root  P2 kernel: no root
+  ALPINE6      alpha 0: no root  alpha 3.36: 1.46  R_e x1.5: 8.93  R_e /1.5: 5.49  stars 0.5R_e: 5.96  spherical: 9.18  R_out 1.5R_e: 2.9  R_out 3R_e: 15.4  T_d 25 K: 4.89  T_d 45 K: 6.44  own-cube flux: 5.75  incl -1sig: 13.1  incl +1sig: 3.17  R_t=0.2 (post hoc): 3.66  R_t=1.0 (post hoc): 4.64  R_t=3.0 (post hoc): 7.53  P2 kernel: 8.13
+  ALL7         alpha 0: no root  alpha 3.36: 1.42  R_e x1.5: 8.73  R_e /1.5: 5.37  stars 0.5R_e: 5.83  spherical: 8.97  R_out 1.5R_e: 2.88  R_out 3R_e: 15.1  T_d 25 K: 4.04  T_d 45 K: 5.84  own-cube flux: 5.72  incl -1sig: 10.5  incl +1sig: 2.67  R_t=0.2 (post hoc): 3.34  R_t=1.0 (post hoc): 4.55  R_t=3.0 (post hoc): 6.12  P2 kernel: 7.95
+  PASS subset  alpha 0: no root  alpha 3.36: 1.5  R_e x1.5: 9.14  R_e /1.5: 5.62  stars 0.5R_e: 6.1  spherical: 9.39  R_out 1.5R_e: 2.93  R_out 3R_e: 15.7  T_d 25 K: 5.84  T_d 45 K: 7.09  own-cube flux: 5.79  incl -1sig: 16.3  incl +1sig: 3.79  R_t=0.2 (post hoc): 4.01  R_t=1.0 (post hoc): 4.75  R_t=3.0 (post hoc): 9.24  P2 kernel: 8.32
+
+  expected s* if each law were true (pre-flight, noise-free, nominal baryons; FLAT/PROXY/H(z)/M-DEC): ALPINE6: 1.00/4.62/7.41/0.66; ALL7: 1.00/4.60/7.39/0.66
+
+LITERATURE CHECK (reported, not a control): our V_rot at Jones+21's outer-ring radius against their published outer-ring V_rot
+  CG32          R_J 3.50 kpc: ours   81.7 +-  47.3 vs Jones  115.0 +-  27.0  (-0.61 sigma)
+  DC396844      R_J 3.75 kpc: ours   69.8 +-  38.4 vs Jones   80.4 +-  17.7  (-0.25 sigma)
+  DC494057      R_J 3.13 kpc: ours  109.9 +-  21.0 vs Jones   80.3 +-  12.8  (+1.21 sigma)
+  DC552206      R_J 5.53 kpc: ours  179.7 +-   9.5 vs Jones  172.8 +-  27.6  (+0.24 sigma)
+  DC881725      R_J 3.44 kpc: ours   96.0 +-  39.6 vs Jones   62.1 +-  12.5  (+0.82 sigma)
+  VC5110377875  R_J 3.84 kpc: ours  135.1 +-   8.4 vs Jones  102.8 +-  19.8  (+1.50 sigma)
+
+CONTROLS
+  [PASS] MUTATE 3: the gas divided by 1.36 gives the expected g_bar (to 1e-9) and raises every delta: max |g_bar - expected| 0.0e+00; shifts [0.06, 0.074, 0.057, 0.065, 0.069, 0.082, 0.109]
+
+1/1 controls pass; 2 s
