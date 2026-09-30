@@ -1,0 +1,66 @@
+CFG220 -- the CRISTAL outer-radius decomposition on the INDEPENDENT baryon route (SED M* + dust gas), class A only (the six dust detections), and the shared gas calibration that would reverse it.
+Frozen criteria: FROZEN_CRITERIA.md here (2e025c40e), committed before the independent-route numbers.  kappa = 1/2 FITTED, NOT DERIVED.  Author decompositions, not a direct a0 measurement.
+No sentence says the data favour a framework.  Reuses CFG213's data block and functions (cfg213_two_sided.py exec'd read-only up to its BINS definition).
+
+CONTROLS
+    table_Rout: n = 12, flat +0.019, rival -0.283 (CFG213: +0.019, -0.283)
+    outermost_data_marker: n = 12, flat +0.023, rival -0.258 (CFG213: +0.023, -0.258)
+  [PASS] C1 with rho = 1 and CFG213's twelve-disc sample the outer-radius medians equal CFG213's committed values: max |difference| 4.9e-04
+  [PASS] C2 rho = 1 when M_ind = M_fit: D_ind equals D_fit (synthetic row through the route arithmetic): rho 1.000000000000000, |D_ind - D_fit| 0.0e+00
+
+SAMPLE: the six dust DETECTIONS 02, 03, 07a, 11, 19, 20;  upper-limit discs (one-sided bounds only) 08, 12, 23b
+  route factors rho = M_ind / M_fit (log10): 02 +0.04, 03 +0.06, 07a +0.04, 11 -0.35, 19 -0.47, 20 +0.09
+
+INDEPENDENT route (SED M* + dust gas): median delta [95% CI] -> verdict; outcome class
+  table_Rout             nu_mono canonical n = 6: flat +0.106 [-0.138, +0.343] CONSISTENT         rival -0.203 [-0.477, +0.029] CONSISTENT         -> BOTH-CONSISTENT
+  table_Rout             nu_mono alt       n = 6: flat +0.082 [-0.156, +0.320] CONSISTENT         rival -0.235 [-0.513, -0.004] DISFAVOURED-under  -> FLAT-SUPPORTED
+  table_Rout             P2      canonical n = 6: flat +0.153 [-0.103, +0.387] CONSISTENT         rival -0.150 [-0.431, +0.080] CONSISTENT         -> BOTH-CONSISTENT
+  table_Rout             P2      alt       n = 6: flat +0.132 [-0.119, +0.368] CONSISTENT         rival -0.183 [-0.469, +0.045] CONSISTENT         -> BOTH-CONSISTENT
+  outermost_data_marker  nu_mono canonical n = 6: flat +0.104 [-0.126, +0.351] CONSISTENT         rival -0.185 [-0.461, +0.046] CONSISTENT         -> BOTH-CONSISTENT
+  outermost_data_marker  nu_mono alt       n = 6: flat +0.081 [-0.143, +0.329] CONSISTENT         rival -0.216 [-0.496, +0.013] CONSISTENT         -> BOTH-CONSISTENT
+  outermost_data_marker  P2      canonical n = 6: flat +0.149 [-0.095, +0.392] CONSISTENT         rival -0.131 [-0.414, +0.099] CONSISTENT         -> BOTH-CONSISTENT
+  outermost_data_marker  P2      alt       n = 6: flat +0.129 [-0.109, +0.374] CONSISTENT         rival -0.163 [-0.452, +0.064] CONSISTENT         -> BOTH-CONSISTENT
+
+FIT route (the authors M_bary), the same six discs, for reference: median delta [95% CI] -> verdict; outcome class
+  table_Rout             nu_mono canonical n = 6: flat +0.019 [-0.109, +0.172] CONSISTENT         rival -0.283 [-0.440, -0.109] DISFAVOURED-under  -> FLAT-SUPPORTED
+  table_Rout             nu_mono alt       n = 6: flat +0.000 [-0.131, +0.153] CONSISTENT         rival -0.314 [-0.476, -0.141] DISFAVOURED-under  -> FLAT-SUPPORTED
+  table_Rout             P2      canonical n = 6: flat +0.054 [-0.070, +0.207] CONSISTENT         rival -0.226 [-0.396, -0.057] DISFAVOURED-under  -> FLAT-SUPPORTED
+  table_Rout             P2      alt       n = 6: flat +0.038 [-0.088, +0.191] CONSISTENT         rival -0.257 [-0.434, -0.090] DISFAVOURED-under  -> FLAT-SUPPORTED
+  outermost_data_marker  nu_mono canonical n = 6: flat +0.023 [-0.096, +0.167] CONSISTENT         rival -0.258 [-0.424, -0.101] DISFAVOURED-under  -> FLAT-SUPPORTED
+  outermost_data_marker  nu_mono alt       n = 6: flat +0.006 [-0.116, +0.149] CONSISTENT         rival -0.288 [-0.459, -0.132] DISFAVOURED-under  -> FLAT-SUPPORTED
+  outermost_data_marker  P2      canonical n = 6: flat +0.055 [-0.059, +0.198] CONSISTENT         rival -0.202 [-0.379, -0.048] DISFAVOURED-under  -> FLAT-SUPPORTED
+  outermost_data_marker  P2      alt       n = 6: flat +0.041 [-0.076, +0.184] CONSISTENT         rival -0.231 [-0.417, -0.080] DISFAVOURED-under  -> FLAT-SUPPORTED
+
+HEADLINE (independent route, table_Rout, nu_mono, canonical): BOTH-CONSISTENT; across the eight cells: ['BOTH-CONSISTENT', 'FLAT-SUPPORTED'] -> KERNEL/FOOTING/RADIUS-DEPENDENT
+  leave-one-out (headline cell): drop 02: flat +0.232, rival -0.102 -> BOTH-CONSISTENT; drop 03: flat +0.232, rival -0.102 -> BOTH-CONSISTENT; drop 07a: flat -0.021, rival -0.304 -> BOTH-CONSISTENT; drop 11: flat -0.021, rival -0.304 -> FLAT-SUPPORTED; drop 19: flat -0.021, rival -0.304 -> BOTH-CONSISTENT; drop 20: flat +0.232, rival -0.102 -> BOTH-CONSISTENT
+  -> NOT LOO-ROBUST
+
+PER DISC (independent route, table_Rout, nu_mono, canonical): g_bar/A0, D_ind, D_fit, delta_flat, delta_rival
+  02    z 5.294  R 8.10 kpc  g_bar/A0   0.77 (fit   0.69)  D_ind 1.030 (D_fit 1.140)  delta_flat -0.221  delta_rival -0.582
+  03    z 5.689  R 3.45 kpc  g_bar/A0   4.40 (fit   3.83)  D_ind 1.015 (D_fit 1.167)  delta_flat -0.054  delta_rival -0.304
+  07a   z 5.154  R 4.20 kpc  g_bar/A0   1.10 (fit   1.00)  D_ind 2.624 (D_fit 2.905)  delta_flat +0.232  delta_rival -0.102
+  11    z 4.439  R 4.35 kpc  g_bar/A0   1.58 (fit   3.54)  D_ind 3.208 (D_fit 1.428)  delta_flat +0.360  delta_rival +0.079
+  19    z 5.233  R 3.91 kpc  g_bar/A0   0.96 (fit   2.80)  D_ind 3.393 (D_fit 1.157)  delta_flat +0.326  delta_rival -0.021
+  20    z 5.545  R 5.25 kpc  g_bar/A0   1.08 (fit   0.89)  D_ind 1.475 (D_fit 1.797)  delta_flat -0.021  delta_rival -0.373
+
+CALIBRATION FLIP: a uniform gas-mass offset tau (dex) on all six detections, M_ind(tau) = M* + M_gas 10^tau; headline cell
+  tau*_flat (the gas-mass offset at which the median delta_flat is 0): +0.327 dex
+  [PASS] C3 at tau*_flat the median delta is 0: 6.9e-12
+  tau*_rival (the gas-mass offset at which the median delta_rival is 0): none in [-2, +2]
+  class at tau = 0: BOTH-CONSISTENT; class changes first at tau = +0.07 dex (to FLAT-SUPPORTED), i.e. 0.3 x the 0.25 dex baseline
+  -> CALIBRATION-LIMITED (class unchanged for every |tau| <= 0.25 dex: False)
+  class along tau (from -1.0 to +1.0): -1.00: BOTH-CONSISTENT; +0.07: FLAT-SUPPORTED; +0.54: BOTH-DISFAVOURED
+
+COMPARISON WITH THE FORECAST (CFG219, R_out, six discs, tau = 0.25; a description, not a test: a thin-disc model baryon curve there, the fit's here)
+  forecast, flat TRUE: (delta_flat, delta_rival) = (0, -0.341) with total scatter 0.099 on the rival's delta;  rival TRUE: (+0.283, 0) with scatter 0.117 on the flat delta
+  realised (independent route): (delta_flat, delta_rival) = (+0.106, -0.203)
+  distance to flat-true: flat +0.91 and rival +1.39 scatters;  to rival-true: flat -1.52 and rival -2.05 scatters
+
+ONE-SIDED BOUNDS (upper-limit discs, table f_molgas used as if a value: a LOWER bound on delta), headline cell; the six-disc medians are above
+  CRISTAL-08   z 4.430: delta_flat >= +0.328, delta_rival >= -0.024
+  CRISTAL-12   z 5.572: delta_flat >= -0.076, delta_rival >= -0.443
+  CRISTAL-23b  z 4.562: delta_flat >= -0.209, delta_rival >= -0.403
+  bounds above the six-disc median: flat 1 of 3, rival 1 of 3 (a bound is never entered in a median)
+  [PASS] C4 for each upper-limit disc delta falls monotonically as the gas mass rises (the bound direction): True
+
+4/4 controls pass
