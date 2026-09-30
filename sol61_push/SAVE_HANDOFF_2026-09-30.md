@@ -2,6 +2,19 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Latest coupled checkpoint: EXPANSION_BRIDGE_RADIAL_RESULTS.md closes the
+necessary radial vacuum system with C'=D P'+R−2C/r and P'=−R/D. Three
+symbolic identities pass. A finite weak annulus matches the reduced force
+after de Sitter-background subtraction to <6.6e−7 and keeps normalized lapse
+and shift residuals <1e−15. This is an IVP, not a conserved source or full
+covariant/global solution. Extending zero-offset trace data approaches D=0
+near r=0.00107214 with nonzero R; cutoff refinement makes P' grow by factors
+of ten. Tiny initial trace offsets avoid that event through r=0.01 but give
+different, nondecaying outer P profiles. Next: shoot trace/shift data for
+D=R=0 compatibility and cosmological matching at fixed beta, before asking
+whether regularity could select a coupling. Beta=10 and U were prescribed in
+this finite experiment; exact 32π and vacuum-energy protection remain open.
+
 Newest positive reduction: EXPANSION_BRIDGE_MOND_RESULTS.md eliminates the
 weak spherical spatial metric and polarization at leading Theta=3H. Its
 reduced action derives b=g−P=GM/r², P²=a0 b and a0=2H/beta, hence the

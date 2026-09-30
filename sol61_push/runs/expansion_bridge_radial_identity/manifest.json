@@ -1,0 +1,119 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EXPANSION_BRIDGE_RADIAL_IDENTITY",
+  "repository": {
+    "commit": "5a027c670a79823f7bc7d68030809e8898bafc17",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/expansion_bridge_radial_identity.py",
+    "--output",
+    "sol61_push/runs/expansion_bridge_radial_identity/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Three exact identities for the radial metric equation, gradient identity and constraint derivative closure",
+    "coefficient_domain": "Exact SymPy real functions and rational expressions",
+    "conventions": "EXPANSION_BRIDGE_RADIAL_RESULTS.md",
+    "inputs": [
+      "sol61_push/expansion_bridge_radial_identity.py"
+    ],
+    "bounds": {
+      "identities": 3,
+      "excluded_denominators": "N, r, Theta, lambda-1+2beta P^3/Theta^3"
+    },
+    "non_claims": [
+      "No complete covariant solution or stability proof",
+      "No 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T22:52:30.822821+00:00",
+    "runtime_seconds": 2.0796,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/expansion_bridge_radial_identity.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/expansion_bridge_radial_identity.py",
+      "sha256": "fbd6910a5917ff47e62356ca74327e2495c148473c29c91de8ef5458e6c3c7cf",
+      "sha256_after": "fbd6910a5917ff47e62356ca74327e2495c148473c29c91de8ef5458e6c3c7cf"
+    }
+  ],
+  "output_directory": "sol61_push/runs/expansion_bridge_radial_identity",
+  "declared_results": [
+    "sol61_push/runs/expansion_bridge_radial_identity/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/expansion_bridge_radial_identity/stdout.txt",
+      "sha256": "6faab5fa3f8648085be1bbe0e87ba511897d0116487137de1d3b390a984b2a1e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_radial_identity/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_radial_identity/results.json",
+      "sha256": "6faab5fa3f8648085be1bbe0e87ba511897d0116487137de1d3b390a984b2a1e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
