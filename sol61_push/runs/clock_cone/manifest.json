@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CLOCK_CONE",
+  "repository": {
+    "commit": "0c4c5778d8056bd619ff6c1055102650126b1f79",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/clock_cone.py",
+    "--output",
+    "sol61_push/runs/clock_cone/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Analytic complex-momentum poles of the extrapolated retarded clock and formal heat-kernel limit; universal finite-cone obstruction is in separate proof",
+    "coefficient_domain": "Exact symbolic identity and double precision quadrature/bracketed roots",
+    "conventions": "CLOCK_CONE_CONTRACT.md",
+    "inputs": [
+      "sol61_push/clock_cone.py"
+    ],
+    "bounds": {
+      "gamma": 1,
+      "v": [
+        0.2,
+        1
+      ],
+      "kappa": [
+        3,
+        10,
+        30
+      ],
+      "angular_relative_tolerance": 1e-10,
+      "root_relative_tolerance": 1e-10,
+      "unit_speed_tube_kappa": 4,
+      "heat_benchmark_radius": [
+        1,
+        3,
+        10
+      ]
+    },
+    "non_claims": [
+      "No real-momentum growing instability",
+      "No exclusion of UV repair",
+      "No proof of physical applicability beyond EFT range",
+      "No 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T20:36:28.641441+00:00",
+    "runtime_seconds": 1.032177,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/clock_cone.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/clock_cone.py",
+      "sha256": "17e0f21bfceacd5e95fe963d1fb16c88dcecbab8a7da4970730eca135223d652",
+      "sha256_after": "17e0f21bfceacd5e95fe963d1fb16c88dcecbab8a7da4970730eca135223d652"
+    }
+  ],
+  "output_directory": "sol61_push/runs/clock_cone",
+  "declared_results": [
+    "sol61_push/runs/clock_cone/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/clock_cone/stdout.txt",
+      "sha256": "3605b5e218588d96a1aeecfd6b64b1a6b18409e425c4bde9332a2857068715fd",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/clock_cone/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/clock_cone/results.json",
+      "sha256": "fc48b59cdaf5e9c304481ec2c7552a3de219f6e2df54e94919ca2de027764255",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
