@@ -1,0 +1,105 @@
+CFG197 -- the gas-floor lemma (phase 1, pure mathematics: no data, no M_dyn, no velocity).
+
+Claim.  For an algebraic law g_obs = nu(g_bar/a0) g_bar, write x = g_star(r)/a0 and mu = g_gas(r)/g_star(r) >= 0 at the radius r.
+The predicted ratio of the dynamical to the stellar acceleration (= M_dyn(<r)/M_star(<r) in spherical-equivalent units) is
+      F(mu; x) = g_obs/g_star = (1 + mu) nu((1 + mu) x) = Phi((1 + mu) x)/x,        Phi(y) = y nu(y)  (= g_obs/a0).
+  L0  dF/dmu = Phi'((1 + mu) x).  So F is non-decreasing in mu for every x > 0 iff Phi is non-decreasing on (0, inf), and then
+      F(mu; x) >= F(0; x) = nu(x): the gas-free prediction is a FLOOR for ANY unknown gas amount.  For a general law the floor is
+      inf_{y >= x} Phi(y)/x, which can be < nu(x).
+  L1  P2 (nu = sqrt(1 + 1/y)): Phi = sqrt(y^2 + y), Phi' = (2y + 1)/(2 sqrt(y^2 + y)) > 1 > 0.
+  L2  nu_mono (FP1 / L340): Phi = y + h(y), h' = max(h_RAR', 0.05 H_P/(y + Y_P)) > 0, so Phi' > 1.  Checked on the committed table.
+  L3  Corollary (the record's own L340 A1 health condition C_L = Phi' - 1 > 0): F(mu; x) >= nu(x) + mu.  Holds for P2 and nu_mono;
+      nu_RAR satisfies L0 (Phi' > 0) but NOT the corollary (its phantom falls past Y_P).  Newton: F = 1 + mu exactly.
+  L4  The M_star rescaling each law requires: s_req = Phi^-1(x R)/x (R the observed ratio); closed forms for Newton and P2; s_req
+      increases with x, so at fixed data the rival a0 = a0 E(z) (smaller x) ALWAYS requires a smaller s_req than the flat law:
+      the floor can single out the rival, never the flat law (the flat law can only lose together with the rival, or to Newton).
+  L5  Where it fails: a law whose boost switches off above a threshold, h(y) = 1/(1 + (y/y_c)^n): Phi'(y_c) = 1 - n/(4 y_c) < 0 for
+      n > 4 y_c; then adding gas LOWERS the predicted ratio and the nu(x) floor is not a bound.
+Premises (declared, not derived): the algebraic relation holds locally at r (no external field, no non-local phantom correction);
+the gas's own radial pull at r is non-negative (g_gas(r) >= 0: exact in spherical symmetry; for a disc it fails only for a gas
+distribution with a central depression, e.g. a ring outside r); the stellar term g_star(r) is computed in a declared geometry.
+
+======================================================================================================================
+L0  GENERAL: dF/dmu = Phi'((1 + mu) x) for an arbitrary kernel nu
+======================================================================================================================
+  dF/dmu            = x*(mu + 1)*Subs(Derivative(nu(_xi_1), _xi_1), _xi_1, x*(mu + 1)) + nu(x*(mu + 1))
+  Phi'((1+mu)x)     = x*(mu + 1)*Subs(Derivative(nu(_xi_1), _xi_1), _xi_1, x*(mu + 1)) + nu(x*(mu + 1))
+  [PASS] L0a dF/dmu - Phi'((1 + mu) x) = 0 identically (symbolic, nu arbitrary)
+         difference = 0
+  [PASS] L0b F(0; x) = nu(x) (the gas-free prediction)
+         F(0) = nu(x)
+  => if Phi' > 0 on (0, inf), F(mu) >= F(0) = nu(x) for every mu >= 0 and x > 0 (monotone in mu).  Conversely, if Phi'(y0) < 0,
+     take x = y0: F decreases for small mu > 0, so nu(x) is not a floor.  The general floor is inf_{y >= x} Phi(y)/x.
+
+======================================================================================================================
+L1  P2: nu = sqrt(1 + 1/y)
+======================================================================================================================
+  [PASS] L1a Phi_P2 = sqrt(y^2 + y) for y > 0
+         Phi^2 - (y^2 + y) = 0; Phi = sqrt(y)*sqrt(y + 1)
+  [PASS] L1b Phi_P2' = (2y + 1)/(2 sqrt(y^2 + y)) > 0 for y > 0 (numerator and denominator positive)
+         Phi' = (y + 1/2)/(sqrt(y)*sqrt(y + 1));  numerator 2*y + 1 positive: True;  denominator 2*sqrt(y)*sqrt(y + 1) positive: True
+  [PASS] L1c Phi_P2' > 1 (the record's C_L > 0): (2y + 1)^2 - 4(y^2 + y) = 1 > 0
+         = 1
+  [PASS] L1d nu_P2 is strictly decreasing (so a larger a0 raises the floor): dnu/dy < 0
+         dnu/dy = -1/(2*y**(3/2)*sqrt(y + 1))
+
+======================================================================================================================
+L2  nu_mono (FP1's committed construction, exec'd read-only through CFG4_common)
+======================================================================================================================
+  h' = Max(h_RAR', 0.05 H_P/(y + Y_P)).  Case h_RAR' = floor + u:  h' - floor = u;   case h_RAR' = floor - u:  h' - floor = 0   (u >= 0)
+  [PASS] L2a in both exhaustive cases h' - floor >= 0, and the floor 0.05 H_P/(y + Y_P) > 0, so Phi' = 1 + h' >= 1 + floor > 1
+         case above: u (nonnegative: True); case below: 0; floor positive: True;  Phi' >= H_P/(20*(Y_P + y)) + 1
+  [PASS] (reported) L2b the RAR phantom's peak from sympy equals FP1's committed constants (Y_P, H_P)
+         sympy Y_P = 2.539638, H_P = 0.647610;  FP1 Y_P = 2.539638
+  [PASS] L2c the committed nu_mono table: Phi = y nu_mono(y) is strictly increasing on y = 1e-12..1e12 (24001 log points; min secant slope > 0)
+         min secant slope dPhi/dy = 1.000000
+  [PASS] L2d the committed table satisfies the corollary condition C_L = Phi' - 1 > 0 on y = 1e-6..1e3 (FP1 B4's resolvable range)
+         min C_L = +3.230e-05
+
+======================================================================================================================
+REFERENCE  Newton and nu_RAR
+======================================================================================================================
+  [PASS] (reported) R1 Newton: Phi = y, Phi' = 1 > 0; F(mu) = 1 + mu exactly (floor 1)
+         trivial
+  [PASS] (reported) R2 nu_RAR (reference only): dPhi/ds = s(2 - (2 + s)e^-s)/(1 - e^-s)^2 and 2 - (2 + s)e^-s = e^-s g(s), g(s) = 2e^s - 2 - s: g(0) = 0 and g'(s) = 2e^s - 1 > 0, so Phi' > 0 (L0 holds for nu_RAR)
+         identity residual 0; g(0) = 0; g'(s) = 2*exp(s) - 1
+  [PASS] (reported) R3 nu_RAR violates the corollary: C_L < 0 somewhere (its phantom decreases past Y_P), so F(mu) >= nu(x) + mu fails for nu_RAR although F(mu) >= nu(x) holds
+         min C_L = -0.0324 at y = 6.64
+
+======================================================================================================================
+L3  NUMERIC CONFIRMATION: min over the gas amount mu of the predicted ratio equals nu(x) (and >= nu(x) + mu)
+======================================================================================================================
+  [PASS] L3 P2: min_mu F(mu; x)/nu(x) - 1 >= -1e-12 on x = 1e-4..1e4, mu = 0..1e3; and F - (nu(x) + mu) >= -1e-9
+         min ratio - 1 = +0.00e+00;  min F - (nu + mu) = +0.00e+00
+  [PASS] L3 nu_mono: min_mu F(mu; x)/nu(x) - 1 >= -1e-12 on x = 1e-4..1e4, mu = 0..1e3; and F - (nu(x) + mu) >= -1e-9
+         min ratio - 1 = +0.00e+00;  min F - (nu + mu) = +0.00e+00
+
+======================================================================================================================
+L4  THE REQUIRED M_STAR RESCALING s_req, AND THE STRUCTURAL ASYMMETRY BETWEEN THE FLAT LAW AND THE RIVAL
+======================================================================================================================
+  If the true stellar mass is s M_star: x -> s x and the observed ratio R -> R/s.  The law needs R/s >= nu(s x), i.e. Phi(s x) <= x R,
+  so s <= s_req = Phi^-1(x R)/x.  log s_req < 0 means M_star must be LOWERED (overestimated) for the law to survive with ANY gas.
+  [PASS] L4a P2 closed form s_req = (sqrt(1 + 4 x^2 R^2) - 1)/(2x) solves Phi(s x)/x = R; Newton s_req = R
+         residual 0
+  [PASS] L4b ds_req/dx > 0 for P2 (so the rival, x_rival = x_flat/E(z) < x_flat, always needs a SMALLER s_req than the flat law at the same data): symbolic derivative, and its minimum on x = 1e-4..1e4, R = 0.1..100
+         ds/dx = 1/(2*x**2) - 1/(2*x**2*sqrt(4*R**2*x**2 + 1));  min on grid = 4.998e-09
+  [PASS] L4c P2 limits: s_req -> x R^2 (deep regime; so s_req scales as 1/a0 and the rival/flat ratio is 1/E(z)) and s_req -> R (Newtonian regime; the laws coincide)
+         lim s/(x R^2) as x->0 = 1;  lim (s - R) as x->oo = 0
+  Planted galaxy R = 1 (M_dyn = M_star): Newton s_req = 1 (on the floor); P2 s_req = (sqrt(4*x**2 + 1) - 1)/(2*x) < 1 for every x > 0.
+  [PASS] L4d a planted galaxy with M_dyn/M_star = 1 lies BELOW the P2 floor at every x (s_req < 1), i.e. it is flagged against both the flat law and the rival; Newton's s_req is exactly 1
+         P2 s_req at x = 0.01, 0.1, 1, 10, 100: [0.01, 0.09902, 0.61803, 0.95125, 0.99501]
+
+======================================================================================================================
+L5  WHERE THE BOUND FAILS: a law whose boost switches off above a threshold (Phi non-monotone)
+======================================================================================================================
+  [PASS] L5a switch law h(y) = 1/(1 + (y/y_c)^n) (nu = 1 + h/y): Phi'(y_c) = 1 - n/(4 y_c), negative for n > 4 y_c
+         Phi'(y_c) = (-n/4 + y_c)/y_c
+  n = 8, y_c = 1.0: Phi'(y_c) = -1.00.  Largest violation of the nu(x) 'floor':
+    x = 0.770: nu(x) = 2.1559, but with gas mu = 0.562 the predicted ratio is 1.8034 (-0.078 dex)
+  [PASS] L5b the switch law violates the nu(x) floor for x below the end of Phi's decreasing stretch (adding gas lowers the predicted ratio), so the gas-floor test does NOT apply to such laws; the general floor inf_{y >= x} Phi(y)/x must be used instead
+         71 of 71 x values in [0.5, 1.2] violate it; worst -0.078 dex
+  Record relevance: P2 and nu_mono satisfy L0 and the corollary (both pass the record's C_L > 0 health condition, FP1 B4);
+  any candidate whose boost is switched off by the baryons above a threshold must first be checked for a decreasing stretch of
+  Phi before this floor is applied to it.
+
+  21/21 checks pass; load-bearing failures: 0

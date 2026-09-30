@@ -1,0 +1,236 @@
+CFG197 pre-flight -- can the gas-floor test discriminate the flat a0 from a0 proportional to H(z) at all?
+
+Frozen criteria: campaign_fresh_gravity/CFG197_FROZEN_CRITERIA.md (written before this script ran).
+PHASE 1 ONLY: uses M_star, the radius r and z (plus catalogue flags and, for Roman-Oliveira, the measured H2 mass).
+NO dynamical mass, rotation velocity, dispersion or f_DM value is read: a column guard refuses them at load time.
+
+For each galaxy and law L in {flat, rival (a0 E(z))}: x_L = g_star(r)/a0_L(z); the law's gas-free FLOOR nu(x_L) on M_dyn/M_star.
+Discriminability (frozen rule): D0 = -median log s_req^rival(R_hyp), R_hyp = nu_P2(x_flat) (a gas-free population sitting on
+the flat floor); CAN if D0 >= 0.30 in both footings, MARGINAL if 0.20 <= D0 < 0.30, CANNOT if D0 < 0.20.  D_mu repeats it for
+flat-law populations with gas mu inside r (mu = 0.5, 1, 2).  Also the floor separation against the 0.2-0.3 dex M_star systematic.
+Roman-Oliveira: the gas-only predicted floor on g_obs (stars only add), as a minimum circular speed per law -- no velocity used.
+Controls C1-C7; MUTATE=1 forces E(z) = 1 and swaps the lemma check to L5's switch law: C6 and C7 must then FAIL (exit 1).
+
+======================================================================================================================
+SAMPLES (M_star, r, z and catalogue flags only)
+======================================================================================================================
+  z>3.5 pooled (Danhaive + CRISTAL)      N =  53   z 3.80-5.82 (median 4.41, E = 7.11)   log M* 8.01-10.68   r 0.84-3.50 kpc   flagged 19
+    Halpha sub-bin: Danhaive gold        N =  41   z 3.80-5.82 (median 4.17, E = 6.65)   log M* 8.01-10.68   r 0.84-3.42 kpc   flagged 17
+    Halpha, V-lim (sigma0 detected)      N =  24   z 3.80-5.82 (median 4.17, E = 6.64)   log M* 8.38-10.60   r 0.84-2.39 kpc   flagged 0
+    [CII] sub-bin: CRISTAL               N =  12   z 4.43-5.69 (median 5.19, E = 8.69)   log M* 9.19-10.46   r 1.20-3.50 kpc   flagged 2
+  comparison: MSA-3D (all 30)            N =  30   z 0.58-1.68 (median 1.14, E = 1.94)   log M* 9.01-11.06   r 1.59-7.63 kpc   flagged 5
+    MSA-3D golden                        N =  23   z 0.58-1.68 (median 1.10, E = 1.90)   log M* 9.01-11.06   r 1.59-7.63 kpc   flagged 2
+  comparison: KURVS (10, r = R_eff)      N =  10   z 1.33-1.61 (median 1.53, E = 2.41)   log M* 9.55-10.68   r 2.40-5.90 kpc   flagged 1
+    KURVS at 3 R_D (sensitivity)         N =  10   z 1.33-1.61 (median 1.53, E = 2.41)   log M* 9.55-10.68   r 4.29-10.55 kpc   flagged 0
+  CRISTAL modelled discs excluded for no SED M* (their M* = M_dyn - M_gas would be circular): ['10a-E', '23c']
+  [PASS] C0 (phase-1 rule) no dynamical-mass, velocity, dispersion or f_DM column was loaded (the guard refuses them; only the listed columns were read)
+         danhaive2025_gold.csv: ['jades_id', 'z', 'logMstar', 'logMstar_errhi', 'logMstar_errlo', 'logMstar_lim', 're_kpc', 're_kpc_lim', 'logMdyn_lim', 'sigma0_kms_lim']; cristal2025_sample.csv: ['id', 'z_cii', 'logMstar']; cristal2025_dynamics.csv: ['id', 'Re_disk_kpc', 'Re_disk_kpc_errhi']; msa3d_galaxies.csv: ['id', 'sample', 'z', 'logMstar', 'footnote']; msa3d_kinematics.csv: ['id', 're_disk_kpc', 'sigma0_kms_flag']; kurvs2023_integrated.csv: ['kurvs_id', 'z_halpha', 'logMstar', 'reff_kpc']; kurvs2023_fdm.csv: ['kurvs_id', 'flag_star']
+  [PASS] C0b sample counts match the frozen in/out rules (Danhaive 41 with no limit flags on M*, r_e or M_dyn and 17 sigma0 limits; CRISTAL 12 = 14 minus 10a-E and 23c; MSA-3D 30 / 23 golden; KURVS 10)
+         Danhaive 41 (all in: True), sigma0 limits 17; CRISTAL 12 (excluded ['10a-E', '23c']); MSA-3D 30 / 23; KURVS 10
+
+======================================================================================================================
+GEOMETRY CONSTANTS (data-free)
+======================================================================================================================
+  thin exponential disc at R_e: g/(G (M/2)/R_e^2) = 1.2503;  thick q0 = 0.2 (2/k_tot) = 1.1111;  sphere = 1
+  compact stars (half-mass radius r/1.58): M(<r)/M = 0.7425 (sphere);  M(<3 R_D)/M = 0.8009
+  [PASS] C0c the frozen geometry constants are reproduced (thin 1.2503, compact 0.7425, 3 R_D 0.8009)
+         1.2503, 0.7425, 0.8009
+
+======================================================================================================================
+PER-GALAXY FLOORS, z > 3.5 (P2, canonical footing, primary variant: sphere, mass follows light)
+======================================================================================================================
+  sample           id     z  logM*  r kpc  E(z)  x_flat x_rival floor_f floor_r   dlog D0_gal  flags
+  danhaive    1028887  5.19   9.56   1.12  8.69   2.155   0.248   1.210   2.243  0.268  0.475  
+  danhaive    1002030  5.18   9.48   1.37  8.67   1.198   0.138   1.355   2.869  0.326  0.610  
+  danhaive     191250  5.39  10.17   2.45  9.11   1.835   0.201   1.243   2.442  0.293  0.532  sigma0<
+  danhaive    1002222  5.29   9.47   0.98  8.90   2.288   0.257   1.199   2.211  0.266  0.469  
+  danhaive     214966  5.54   9.54   1.41  9.43   1.299   0.138   1.330   2.874  0.334  0.627  
+  danhaive    1025527  5.30   9.39   1.06  8.92   1.627   0.182   1.271   2.546  0.302  0.553  
+  danhaive    1001674  5.18   9.92   1.60  8.67   2.419   0.279   1.189   2.141  0.255  0.445  
+  danhaive     201125  5.82   9.96   1.86 10.04   1.963   0.196   1.229   2.472  0.304  0.553  
+  danhaive    1094616  4.06   9.40   1.35  6.44   1.026   0.159   1.405   2.698  0.283  0.523  
+  danhaive    1000989  3.97   9.07   0.87  6.28   1.156   0.184   1.366   2.536  0.269  0.489  sigma0<
+  danhaive    1088814  4.41  10.60   2.39  7.11   5.189   0.729   1.092   1.540  0.149  0.219  
+  danhaive    1087148  4.38   8.24   1.05  7.06   0.117   0.017   3.086   7.818  0.404  0.801  sigma0<
+  danhaive    1015956  4.02   9.54   1.40  6.37   1.317   0.207   1.326   2.416  0.260  0.469  sigma0<
+  danhaive    1085659  4.06  10.17   1.47  6.44   5.096   0.791   1.094   1.505  0.139  0.200  
+  danhaive    1083165  4.15   9.78   1.12  6.61   3.577   0.541   1.131   1.688  0.174  0.271  
+  danhaive    1065488  4.15   8.01   1.10  6.61   0.063   0.010   4.109  10.298  0.399  0.795  sigma0<
+  danhaive    1025101  4.91   8.99   1.19  8.11   0.514   0.063   1.716   4.097  0.378  0.734  
+  danhaive    1090526  3.96   9.93   2.47  6.26   1.039   0.166   1.401   2.650  0.277  0.509  sigma0<
+  danhaive    1077545  4.42   9.27   0.87  7.13   1.832   0.257   1.243   2.212  0.250  0.440  
+  danhaive    1089583  3.93   9.01   1.16  6.20   0.566   0.091   1.663   3.457  0.318  0.607  
+  danhaive    1077261  3.92   9.36   1.12  6.18   1.360   0.220   1.317   2.355  0.252  0.451  
+  danhaive    1095186  4.02   9.37   1.92  6.37   0.473   0.074   1.764   3.802  0.333  0.643  
+  danhaive    1091580  4.80   8.09   0.88  7.89   0.118   0.015   3.075   8.227  0.427  0.849  sigma0<
+  danhaive    1086992  4.04   9.37   3.42  6.41   0.149   0.023   2.775   6.628  0.378  0.748  sigma0<
+  danhaive    1090054  4.82   9.62   1.27  7.93   1.924   0.243   1.233   2.263  0.264  0.468  
+  danhaive    1014130  4.38   8.49   1.32  7.06   0.132   0.019   2.928   7.378  0.401  0.796  sigma0<
+  danhaive    1082948  3.91  10.68   2.25  6.16   7.039   1.142   1.069   1.370  0.108  0.144  sigma0<
+  danhaive    1000110  4.06   9.52   1.66  6.44   0.895   0.139   1.455   2.864  0.294  0.548  
+  danhaive    1091153  4.07  10.37   1.85  6.46   5.100   0.789   1.094   1.506  0.139  0.200  sigma0<
+  danhaive    1094903  3.87  10.34   2.06  6.09   3.839   0.630   1.123   1.608  0.156  0.236  
+  danhaive    1079264  4.05   8.73   2.24  6.43   0.080   0.012   3.681   9.035  0.390  0.776  sigma0<
+  danhaive    1086406  4.41   9.46   0.91  7.11   2.593   0.365   1.177   1.935  0.216  0.361  sigma0<
+  danhaive    1013488  3.80   9.57   1.07  5.96   2.416   0.405   1.189   1.862  0.195  0.319  
+  danhaive    1028072  4.40   9.17   1.66  7.09   0.400   0.056   1.871   4.330  0.364  0.710  sigma0<
+  danhaive    1090742  4.62   9.37   1.34  7.53   0.972   0.129   1.424   2.957  0.317  0.596  sigma0<
+  danhaive    1091236  4.17   9.34   0.84  6.65   2.309   0.347   1.197   1.970  0.216  0.364  
+  danhaive    1009935  4.89   9.65   1.02  8.07   3.197   0.396   1.146   1.877  0.214  0.354  sigma0<
+  danhaive    1085494  4.06   8.90   1.06  6.44   0.526   0.082   1.703   3.639  0.330  0.634  
+  danhaive    1090891  3.92   9.74   1.55  6.18   1.703   0.275   1.260   2.152  0.233  0.404  
+  danhaive    1008197  4.40   8.76   1.11  7.09   0.348   0.049   1.969   4.626  0.371  0.725  sigma0<
+  danhaive    1029814  4.16   8.38   1.28  6.63   0.109   0.016   3.190   7.864  0.392  0.778  
+  cristal          02  5.29  10.30   2.70  8.91   2.038   0.229   1.221   2.317  0.278  0.498  
+  cristal          03  5.69  10.40   1.50  9.75   8.312   0.853   1.058   1.474  0.144  0.205  
+  cristal         06b  4.56   9.19   1.80  7.41   0.356   0.048   1.952   4.672  0.379  0.741  
+  cristal         07a  5.15  10.00   3.00  8.61   0.827   0.096   1.486   3.378  0.357  0.682  
+  cristal          08  4.43   9.85   3.40  7.15   0.456   0.064   1.787   4.085  0.359  0.697  
+  cristal          09  5.58   9.84   1.20  9.50   3.577   0.376   1.131   1.912  0.228  0.380  
+  cristal          11  4.44   9.68   1.50  7.17   1.584   0.221   1.277   2.351  0.265  0.474  
+  cristal          12  5.57   9.30   1.50  9.50   0.660   0.070   1.586   3.922  0.393  0.763  Re_fixed
+  cristal          15  4.58   9.69   1.70  7.45   1.262   0.169   1.339   2.627  0.293  0.538  Re_fixed
+  cristal          19  5.23   9.51   2.30  8.78   0.455   0.052   1.788   4.502  0.401  0.784  
+  cristal          20  5.54  10.11   3.50  9.44   0.783   0.083   1.509   3.613  0.379  0.730  
+  cristal         23b  4.56  10.46   1.40  7.41  10.956   1.478   1.045   1.295  0.093  0.119  
+
+======================================================================================================================
+BIN SUMMARY (primary variant).  dlog = log floor_rival - log floor_flat;  D_mu = -median log s_req^rival for a flat-law population with gas mu (D0 = gas-free).  [16-84] = bootstrap of the median
+======================================================================================================================
+
+  z>3.5 pooled (Danhaive + CRISTAL)  (N = 53)
+    P2      canonical x_flat  1.299  x_rival  0.182  floors flat 1.330 rival 2.546  dlog 0.293 [0.269-0.304]  D0 0.532 [0.489-0.553]  D0.5 0.264  D1 0.074  D2 -0.195  gal D0>=0.30: 85%
+    P2      alt       x_flat  1.075  x_rival  0.151  floors flat 1.389 rival 2.761  dlog 0.308 [0.288-0.320]  D0 0.577 [0.526-0.600]  D0.5 0.304  D1 0.119  D2 -0.154  gal D0>=0.30: 87%
+    nu_mono canonical x_flat  1.299  x_rival  0.182  floors flat 1.471 rival 2.877  dlog 0.301 [0.292-0.317]  D0 0.518 [0.495-0.551]  D0.5 0.291  D1 0.116  D2 -0.130  gal D0>=0.30: 87%
+    nu_mono alt       x_flat  1.075  x_rival  0.151  floors flat 1.550 rival 3.106  dlog 0.312 [0.303-0.325]  D0 0.545 [0.524-0.580]  D0.5 0.316  D1 0.151  D2 -0.100  gal D0>=0.30: 92%
+    => frozen rule (P2, both footings): D0 = 0.532 / 0.577  ->  CAN.   With mu = 1 (gas = stars inside r): D1 = 0.074 / 0.119 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+    Halpha sub-bin: Danhaive gold  (N = 41)
+    P2      canonical x_flat  1.317  x_rival  0.184  floors flat 1.326 rival 2.536  dlog 0.283 [0.268-0.302]  D0 0.523 [0.475-0.553]  D0.5 0.255  D1 0.065  D2 -0.197  gal D0>=0.30: 85%
+    P2      alt       x_flat  1.090  x_rival  0.152  floors flat 1.385 rival 2.750  dlog 0.298 [0.286-0.320]  D0 0.558 [0.520-0.596]  D0.5 0.302  D1 0.106  D2 -0.156  gal D0>=0.30: 88%
+    nu_mono canonical x_flat  1.317  x_rival  0.184  floors flat 1.465 rival 2.866  dlog 0.293 [0.285-0.312]  D0 0.502 [0.490-0.551]  D0.5 0.273  D1 0.108  D2 -0.139  gal D0>=0.30: 88%
+    nu_mono alt       x_flat  1.090  x_rival  0.152  floors flat 1.543 rival 3.094  dlog 0.306 [0.298-0.324]  D0 0.528 [0.514-0.573]  D0.5 0.298  D1 0.134  D2 -0.102  gal D0>=0.30: 93%
+    => frozen rule (P2, both footings): D0 = 0.523 / 0.558  ->  CAN.   With mu = 1 (gas = stars inside r): D1 = 0.065 / 0.106 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+    Halpha, V-lim (sigma0 detected)  (N = 24)
+    P2      canonical x_flat  1.767  x_rival  0.231  floors flat 1.252 rival 2.309  dlog 0.267 [0.258-0.294]  D0 0.472 [0.454-0.538]  D0.5 0.198  D1 0.007  D2 -0.250  gal D0>=0.30: 83%
+    P2      alt       x_flat  1.462  x_rival  0.191  floors flat 1.298 rival 2.497  dlog 0.287 [0.275-0.308]  D0 0.518 [0.492-0.577]  D0.5 0.243  D1 0.050  D2 -0.214  gal D0>=0.30: 88%
+    nu_mono canonical x_flat  1.767  x_rival  0.231  floors flat 1.360 rival 2.621  dlog 0.290 [0.284-0.294]  D0 0.496 [0.477-0.518]  D0.5 0.249  D1 0.069  D2 -0.182  gal D0>=0.30: 88%
+    nu_mono alt       x_flat  1.462  x_rival  0.191  floors flat 1.426 rival 2.824  dlog 0.300 [0.296-0.306]  D0 0.525 [0.508-0.540]  D0.5 0.283  D1 0.105  D2 -0.147  gal D0>=0.30: 96%
+    => frozen rule (P2, both footings): D0 = 0.472 / 0.518  ->  CAN.   With mu = 1 (gas = stars inside r): D1 = 0.007 / 0.050 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+    [CII] sub-bin: CRISTAL  (N = 12)
+    P2      canonical x_flat  1.045  x_rival  0.133  floors flat 1.413 rival 3.003  dlog 0.325 [0.278-0.359]  D0 0.610 [0.498-0.706]  D0.5 0.348  D1 0.157  D2 -0.113  gal D0>=0.30: 83%
+    P2      alt       x_flat  0.864  x_rival  0.110  floors flat 1.484 rival 3.268  dlog 0.339 [0.298-0.371]  D0 0.646 [0.543-0.720]  D0.5 0.390  D1 0.201  D2 -0.069  gal D0>=0.30: 83%
+    nu_mono canonical x_flat  1.045  x_rival  0.133  floors flat 1.578 rival 3.358  dlog 0.322 [0.291-0.351]  D0 0.578 [0.515-0.634]  D0.5 0.347  D1 0.178  D2 -0.065  gal D0>=0.30: 83%
+    nu_mono alt       x_flat  0.864  x_rival  0.110  floors flat 1.670 rival 3.636  dlog 0.332 [0.303-0.360]  D0 0.599 [0.545-0.657]  D0.5 0.374  D1 0.207  D2 -0.033  gal D0>=0.30: 92%
+    => frozen rule (P2, both footings): D0 = 0.610 / 0.646  ->  CAN.   With mu = 1 (gas = stars inside r): D1 = 0.157 / 0.201 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+  comparison: MSA-3D (all 30)  (N = 30)
+    P2      canonical x_flat  0.229  x_rival  0.114  floors flat 2.319 rival 3.149  dlog 0.109 [0.100-0.117]  D0 0.194 [0.188-0.209]  D0.5 -0.004  D1 -0.147  D2 -0.348  gal D0>=0.30: 10%
+    P2      alt       x_flat  0.189  x_rival  0.094  floors flat 2.508 rival 3.432  dlog 0.112 [0.104-0.121]  D0 0.207 [0.193-0.218]  D0.5 0.007  D1 -0.136  D2 -0.335  gal D0>=0.30: 10%
+    nu_mono canonical x_flat  0.229  x_rival  0.114  floors flat 2.632 rival 3.514  dlog 0.106 [0.099-0.113]  D0 0.181 [0.168-0.192]  D0.5 -0.010  D1 -0.145  D2 -0.342  gal D0>=0.30: 3%
+    nu_mono alt       x_flat  0.189  x_rival  0.094  floors flat 2.836 rival 3.808  dlog 0.109 [0.102-0.115]  D0 0.186 [0.171-0.200]  D0.5 -0.004  D1 -0.138  D2 -0.331  gal D0>=0.30: 3%
+    => frozen rule (P2, both footings): D0 = 0.194 / 0.207  ->  CANNOT.   With mu = 1 (gas = stars inside r): D1 = -0.147 / -0.136 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+    MSA-3D golden  (N = 23)
+    P2      canonical x_flat  0.217  x_rival  0.098  floors flat 2.369 rival 3.347  dlog 0.116 [0.105-0.118]  D0 0.204 [0.189-0.217]  D0.5 -0.002  D1 -0.145  D2 -0.347  gal D0>=0.30: 13%
+    P2      alt       x_flat  0.179  x_rival  0.081  floors flat 2.564 rival 3.651  dlog 0.118 [0.109-0.123]  D0 0.217 [0.198-0.224]  D0.5 0.012  D1 -0.135  D2 -0.331  gal D0>=0.30: 13%
+    nu_mono canonical x_flat  0.217  x_rival  0.098  floors flat 2.686 rival 3.720  dlog 0.109 [0.101-0.114]  D0 0.190 [0.172-0.193]  D0.5 -0.002  D1 -0.142  D2 -0.339  gal D0>=0.30: 4%
+    nu_mono alt       x_flat  0.179  x_rival  0.081  floors flat 2.896 rival 4.035  dlog 0.111 [0.104-0.116]  D0 0.198 [0.178-0.202]  D0.5 0.007  D1 -0.132  D2 -0.330  gal D0>=0.30: 4%
+    => frozen rule (P2, both footings): D0 = 0.204 / 0.217  ->  MARGINAL.   With mu = 1 (gas = stars inside r): D1 = -0.145 / -0.135 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+  comparison: KURVS (10, r = R_eff)  (N = 10)
+    P2      canonical x_flat  0.622  x_rival  0.254  floors flat 1.615 rival 2.223  dlog 0.134 [0.129-0.141]  D0 0.227 [0.226-0.250]  D0.5 0.014  D1 -0.139  D2 -0.352  gal D0>=0.30: 0%
+    P2      alt       x_flat  0.515  x_rival  0.210  floors flat 1.715 rival 2.401  dlog 0.141 [0.135-0.146]  D0 0.245 [0.242-0.268]  D0.5 0.032  D1 -0.120  D2 -0.335  gal D0>=0.30: 0%
+    nu_mono canonical x_flat  0.622  x_rival  0.254  floors flat 1.833 rival 2.527  dlog 0.135 [0.127-0.137]  D0 0.223 [0.214-0.235]  D0.5 0.022  D1 -0.122  D2 -0.325  gal D0>=0.30: 0%
+    nu_mono alt       x_flat  0.515  x_rival  0.210  floors flat 1.953 rival 2.721  dlog 0.138 [0.130-0.141]  D0 0.234 [0.223-0.242]  D0.5 0.034  D1 -0.110  D2 -0.313  gal D0>=0.30: 0%
+    => frozen rule (P2, both footings): D0 = 0.227 / 0.245  ->  MARGINAL.   With mu = 1 (gas = stars inside r): D1 = -0.139 / -0.120 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+    KURVS at 3 R_D (sensitivity)  (N = 10)
+    P2      canonical x_flat  0.312  x_rival  0.127  floors flat 2.051 rival 2.977  dlog 0.155 [0.147-0.158]  D0 0.288 [0.274-0.294]  D0.5 0.078  D1 -0.074  D2 -0.287  gal D0>=0.30: 30%
+    P2      alt       x_flat  0.258  x_rival  0.105  floors flat 2.208 rival 3.241  dlog 0.158 [0.150-0.164]  D0 0.300 [0.284-0.303]  D0.5 0.095  D1 -0.056  D2 -0.270  gal D0>=0.30: 60%
+    nu_mono canonical x_flat  0.312  x_rival  0.127  floors flat 2.337 rival 3.334  dlog 0.146 [0.139-0.152]  D0 0.260 [0.238-0.263]  D0.5 0.064  D1 -0.078  D2 -0.279  gal D0>=0.30: 0%
+    nu_mono alt       x_flat  0.258  x_rival  0.105  floors flat 2.511 rival 3.610  dlog 0.149 [0.141-0.156]  D0 0.267 [0.252-0.273]  D0.5 0.074  D1 -0.067  D2 -0.267  gal D0>=0.30: 0%
+    => frozen rule (P2, both footings): D0 = 0.288 / 0.300  ->  MARGINAL.   With mu = 1 (gas = stars inside r): D1 = -0.074 / -0.056 (BELOW 0.30: a gas-rich flat-law population would not push the rival past the line)
+
+======================================================================================================================
+VARIANT GRID: D0 (P2) in every declared geometry / radius variant (canonical | alt)
+======================================================================================================================
+  bin                                    sph/mlf      thick/mlf      thin/mlf      sph/compact  thick/compact  thin/compact
+  z>3.5 pooled (Danhaive + CRISTAL)        0.532|0.577    0.506|0.552    0.478|0.524    0.443|0.482    0.420|0.460    0.376|0.420
+                                         range over variants and footings: 0.376-0.577
+    Halpha sub-bin: Danhaive gold          0.523|0.558    0.502|0.539    0.477|0.516    0.434|0.481    0.408|0.455    0.367|0.408
+                                         range over variants and footings: 0.367-0.558
+    Halpha, V-lim (sigma0 detected)        0.472|0.518    0.446|0.492    0.417|0.463    0.376|0.421    0.351|0.396    0.308|0.351
+                                         range over variants and footings: 0.308-0.518
+    [CII] sub-bin: CRISTAL                 0.610|0.646    0.589|0.627    0.564|0.603    0.526|0.568    0.503|0.545    0.459|0.503
+                                         range over variants and footings: 0.459-0.646
+  comparison: MSA-3D (all 30)              0.194|0.207    0.187|0.200    0.183|0.192    0.173|0.183    0.165|0.178    0.154|0.165
+                                         range over variants and footings: 0.154-0.207
+    MSA-3D golden                          0.204|0.217    0.196|0.210    0.188|0.201    0.175|0.189    0.167|0.181    0.156|0.167
+                                         range over variants and footings: 0.156-0.217
+  comparison: KURVS (10, r = R_eff)        0.227|0.245    0.218|0.235    0.207|0.224    0.191|0.209    0.181|0.199    0.163|0.181
+                                         range over variants and footings: 0.163-0.245
+    KURVS at 3 R_D (sensitivity)           0.288|0.300    0.280|0.294    0.264|0.280    0.275|0.290    0.266|0.282    0.254|0.271
+                                         range over variants and footings: 0.254-0.300
+
+======================================================================================================================
+ROMAN-OLIVEIRA (measured CO gas): the gas-only predicted floor on g_obs (stars only add) -- no velocity used
+======================================================================================================================
+  kinematic sources (ids only read from the kinematics table): BRI1335-0417, J081740, SGP38326-1, SGP38326-2
+  stellar mass on disk: none for any kinematic source (AzTEC1's ~1e11 is in the text, but AzTEC1 has no kinematics: a likely merger)
+  id                 z r_out kpc      M_H2  f_g foot      g_gas/a0   V_floor km/s:  Newton    flat   rival  rival/flat
+  BRI1335-0417   4.407      4.60  1.00e+11 0.50 canonical     3.51                  216.1   230.1   285.0  1.239
+  BRI1335-0417   4.407      4.60  1.00e+11 0.50 alt           2.91                  216.1   232.7   294.5  1.265
+  BRI1335-0417   4.407      4.60  1.00e+11 0.25 canonical     1.76                  152.8   171.1   229.1  1.339
+  BRI1335-0417   4.407      4.60  1.00e+11 0.25 alt           1.45                  152.8   174.2   238.1  1.367
+  J081740        4.260      3.15  8.80e+10 0.50 canonical     6.61                  245.2   254.0   292.7  1.153
+  J081740        4.260      3.15  8.80e+10 0.50 alt           5.47                  245.2   255.7   300.2  1.174
+  J081740        4.260      3.15  8.80e+10 0.25 canonical     3.30                  173.4   185.2   229.4  1.239
+  J081740        4.260      3.15  8.80e+10 0.25 alt           2.73                  173.4   187.4   237.0  1.265
+  SGP38326-1     4.424      3.98  1.90e+11 0.50 canonical     8.94                  320.5   329.1   371.2  1.128
+  SGP38326-1     4.424      3.98  1.90e+11 0.50 alt           7.40                  320.5   330.8   379.5  1.147
+  SGP38326-1     4.424      3.98  1.90e+11 0.25 canonical     4.47                  226.6   238.4   287.7  1.207
+  SGP38326-1     4.424      3.98  1.90e+11 0.25 alt           3.70                  226.6   240.6   296.5  1.232
+  SGP38326-2     4.427      2.04  7.60e+10 0.50 canonical    13.60                  283.1   288.1   314.6  1.092
+  SGP38326-2     4.427      2.04  7.60e+10 0.50 alt          11.25                  283.1   289.1   320.1  1.107
+  SGP38326-2     4.427      2.04  7.60e+10 0.25 canonical     6.80                  200.1   207.1   239.5  1.156
+  SGP38326-2     4.427      2.04  7.60e+10 0.25 alt           5.63                  200.1   208.5   245.7  1.178
+  (P2 kernel.  Phase 2 compares these minimum circular speeds with sqrt(V_ext^2 + alpha sigma_ext^2); the upper side needs M*.)
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 E(z) = 1 makes the rival identical to the flat law (the same pipeline re-run with E forced to 1: max |dlog floor| and |dlog s_req| over all bins, variants, kernels, footings and gas amounts)
+         0.0e+00
+  [PASS] C2 a planted galaxy with M_dyn/M_star = 1 at each bin's median x is BELOW both laws' floors (log s_req < 0; both kernels and footings) and exactly ON Newton's (log s_req = 0)
+         largest log s_req over 64 cases = -0.1213 (('  Halpha, V-lim (sigma0 detected)', 'canonical', 'P2', 'flat')); Newton +0.0e+00
+  [PASS] C3 a galaxy exactly on a law's own floor (R = nu(x)) has log s_req = 0 (to 1e-9), P2 closed form and nu_mono inversion
+         max |log s_req| = 5.8e-16
+  [PASS] C3b the generic bisection inverse reproduces P2's closed-form s_req (x = 1e-3..1e3, R = 0.3..30)
+         max diff 8.9e-16 dex
+  [PASS] C4 a planted flat-law galaxy with gas mu = 1 inside r is CONSISTENT with the flat law (log s_req > 0) for every real x
+         min log s_req = +0.3010
+  [PASS] C5 the rival's log s_req never exceeds the flat law's (L4: the floor can single out the rival, never the flat law)
+         max (rival - flat) = -9.74e-03
+  [PASS] C6 the lemma at every real x (and x = 0.5-1.2): min over gas mu of the predicted ratio equals the gas-free floor nu(x)
+         P2: min ratio - 1 = +0.00e+00; nu_mono: min ratio - 1 = +0.00e+00
+  [PASS] C7 the floors separate (median dlog > 0) in every bin (all bins have z > 0)
+         z>3.5 pooled (Danhaive + C: 0.293; Halpha sub-bin: Danhaive g: 0.283; Halpha, V-lim (sigma0 dete: 0.267; [CII] sub-bin: CRISTAL: 0.325; comparison: MSA-3D (all 30: 0.109; MSA-3D golden: 0.116; comparison: KURVS (10, r =: 0.134; KURVS at 3 R_D (sensitivit: 0.155
+
+======================================================================================================================
+PRE-FLIGHT BOTTOM LINE (the frozen rule, P2, primary variant, both footings)
+======================================================================================================================
+  z>3.5 pooled (Danhaive + CRISTAL)      CAN       D0 0.53/0.58  D1 0.07/0.12  floor sep 0.29/0.31 dex  (D0 over variants 0.38-0.58)
+    Halpha sub-bin: Danhaive gold        CAN       D0 0.52/0.56  D1 0.07/0.11  floor sep 0.28/0.30 dex  (D0 over variants 0.37-0.56)
+    Halpha, V-lim (sigma0 detected)      CAN       D0 0.47/0.52  D1 0.01/0.05  floor sep 0.27/0.29 dex  (D0 over variants 0.31-0.52)
+    [CII] sub-bin: CRISTAL               CAN       D0 0.61/0.65  D1 0.16/0.20  floor sep 0.32/0.34 dex  (D0 over variants 0.46-0.65)
+  comparison: MSA-3D (all 30)            CANNOT    D0 0.19/0.21  D1 -0.15/-0.14  floor sep 0.11/0.11 dex  (D0 over variants 0.15-0.21)
+    MSA-3D golden                        MARGINAL  D0 0.20/0.22  D1 -0.14/-0.13  floor sep 0.12/0.12 dex  (D0 over variants 0.16-0.22)
+  comparison: KURVS (10, r = R_eff)      MARGINAL  D0 0.23/0.25  D1 -0.14/-0.12  floor sep 0.13/0.14 dex  (D0 over variants 0.16-0.25)
+    KURVS at 3 R_D (sensitivity)         MARGINAL  D0 0.29/0.30  D1 -0.07/-0.06  floor sep 0.15/0.16 dex  (D0 over variants 0.25-0.30)
+  Against the 0.2-0.3 dex M_star systematic: CAN means a gas-free flat-law population would put the rival past -0.30 dex.
+  Structural (L4): the test can single out the rival, never the flat law; the flat law can only fail with the rival or to Newton.
+
+  11/11 checks pass; load-bearing failures: 0
