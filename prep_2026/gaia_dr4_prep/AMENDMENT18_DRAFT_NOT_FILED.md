@@ -1,4 +1,4 @@
-# AMENDMENT 18 — DRAFT, NOT FILED (written 2026-09-30, revision 3; filing needs the owner's explicit go)
+# AMENDMENT 18 — DRAFT, NOT FILED (written 2026-09-30, revision 4; filing needs the owner's explicit go)
 
 This is a draft. `PREREGISTRATION_DR4.md` and every `*_HASH.txt` are untouched. If the owner approves, the text below the line is appended verbatim (append-only) after Amendment 17, with a new `AMENDMENT18_HASH.txt`.
 
@@ -8,6 +8,12 @@ This is a draft. `PREREGISTRATION_DR4.md` and every `*_HASH.txt` are untouched. 
 - The build-only part is 0.24 / 0.32 σ_fit.
 
 The primary DR4 build is deterministic, because its seeds are frozen. But the seed choice carries a noise term that σ_tot = √(σ_fit² + 0.02²) does not include, and its size at DR4's N is not measured.
+
+**Revision 4 (after the 51-build G-only sweep Q-G50, question frozen in 62b165001, answered in 3cf5ee699; the full test run 17/17, 768df3802, with its MUTATE runs failing where they must, 768df3802 / 2643b1c98; the label rehearsal L8, 8/8). The orchestrator re-ran the G50 summary and the label test from the committed state (identical) and recomputed the statistics from the committed manifest.**
+- **The measured spread is larger than 0.3 σ_fit.** SD(γ̂) over the 51 G-only builds is 0.0249 canonical / 0.0211 alt, which is 0.44 / 0.41 of the mean σ_fit. The ten-build values were 0.32 / 0.28 (all streams) and 0.41 / 0.22 (G-only), each ±24%. The sweep cannot say whether G-only and full rebuilds differ or whether the ten-build values were low.
+- **(f) is corrected:** it now quotes the measured range 0.3 to 0.44 and an understatement of about 2% to 5% at DR4's expected σ_fit (about 4% to 8% at DR3's N).
+- **The DR3 primary is one draw among its builds.** It sits 1.4 σ_build below the mean of its own G-only builds on the canonical footing (1.0750 against 1.1088) and 0.4 σ_build below on the alt footing. At B's kill edge 1.084, 10 of the 50 further canonical builds fall below and 40 at or above (DR3, a code-path test, Amendment 7(e)).
+- **The pipeline's own self-test depends on the fit seed.** Its injection-recovery self-test fails at 15 of 50 alternative fit seeds; the registered seed 20261216 passes. "The self-test passed" is therefore a statement about the registered seed only. Added to (f).
 
 **Revision 3 (after the edge table and the label were built from the code, 676cbbec2 / 416530b57, controls L1–L7 7/7, re-run identical by the orchestrator from the committed state; and after the first code reading by an independent referee, CFG239, criteria 8f549fbd8). The corrections:**
 - **(e) The chain ceiling is removed from the edge list.** Amendment 14's chain ceiling (1.0725 / 1.0900) is not a constant in the frozen pipeline, so a code-extracted table cannot contain it. The table lists it under "not in code", and the text now says the label does not see it. σ_sys = 0.02 is likewise read from the pre-registration text, not from a code constant.
@@ -83,7 +89,8 @@ The measured DR3 correlation-cache coverage per build (the uncovered ids) was ch
 >
 > **(f) Against interest.**
 > - The label can caveat a verdict favourable to the framework as well as an unfavourable one.
-> - Keeping σ_tot unchanged keeps the frozen thresholds. If σ_build ≈ 0.3 σ_fit at DR4's N, as the DR3 N-scaling suggests (a constant ratio, with no extrapolation claimed), σ_tot understates the total error by about 2% at DR4's expected σ_fit = 0.019 (about 4% at DR3's N). The label is the only protection. That is stated here before the data exist.
+> - Keeping σ_tot unchanged keeps the frozen thresholds. On DR3, σ_build measured 0.3 to 0.44 σ_fit (ten builds per stream family; 51 G-only builds), with no trend over a factor of 4 in N and no extrapolation claimed. At that ratio, σ_tot understates the total error by about 2% to 5% at DR4's expected σ_fit = 0.019 (about 4% to 8% at DR3's N). The label's width, max(σ_build, 0.3 σ_fit), then follows σ_build.
+> - The frozen pipeline's injection-recovery self-test is itself seed-dependent: on DR3 it failed at 15 of 50 alternative fit seeds and passes at the registered seed. Its pass at release is a statement about the registered seed only. That is stated here; no rule changes. The label is the only protection. That is stated here before the data exist.
 > - The primary is sensitive to any change of stage G's pair array, including ones the other amendments treat as inert. This amendment measures that sensitivity; it does not remove it.
 > - Per-pair seeding of the Monte Carlo would remove the sensitivity to changes of the pair array, but not the seed-to-seed noise itself. It would also change the frozen builder, so it is not adopted.
 > - If time does not allow K_G ≥ 50 G-only builds, the number run is recorded. The label requires K_G ≥ 10 further builds (11 γ̂ including the primary); below that it reads "NOT APPLICABLE (K < 10)".
