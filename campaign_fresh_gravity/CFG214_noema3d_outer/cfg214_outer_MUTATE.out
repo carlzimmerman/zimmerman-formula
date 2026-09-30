@@ -1,0 +1,46 @@
+CFG214 -- NOEMA3D (z ~ 1.1-1.6, measured CO gas): a0 from the OUTERMOST measured rotation point, flat vs rival.
+Frozen criteria: FROZEN_CRITERIA.md here (8340f3750 + addendum 1, 68916b51e), committed before any curve value.
+kappa = 1/2 FITTED, NOT DERIVED.  Nothing here says the data favour the framework.
+Inputs: data_assembly/noema3d/noema3d_per_galaxy.csv and the data chat's digitised Fig. 5 (hash-checked; path set below).
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 thin exponential disc: V^2 R / (GM) at 50 R_d is Keplerian within 0.5%; the shape normalisation S(R_e)/S(R_e) = 1
+         1.00181
+  [PASS] C2 a synthetic galaxy placed exactly on each law returns delta = 0 to 1e-12
+         max 0.0e+00
+
+======================================================================================================================
+C3 hashes of the digitised inputs
+======================================================================================================================
+  [PASS] C3a the digitised files used match the hashes the data chat sent (and SHA256SUMS where it lists them)
+         mismatched: none
+  the data chat's raster control (V3/C4), as reported: {"panel": "G4_38065 velocity", "markers_and_model": {"natural": {"n_A": 13, "n_B": 13, "n_matched": 13, "rms_dR_kpc": 0.023, "rms_dV_kms": 0.146, "max_dV_kms": 0.476}, "robust5": {"n_A": 20, "n_B": 20, "n_matched": 20, "rms_dR_kpc": 0.0207, "rms_dV_kms": 0.181, "max_dV_kms": 0.571}, "model_natural": {"rms_dV_kms": 0.151, "max_dV_kms": 0.571, "grid_kpc": [-11.17, 10.99]}, "model_robust5": {"rms_dV_kms": 0.068, "max_dV
+
+======================================================================================================================
+VALIDATION GATE (frozen): the digitised MODEL V at R_e,disk / sin i must match Table 3's V_c within 5%
+======================================================================================================================
+  the drawn model line is the best-fit 3D cube read out like the data, i.e. the BEAM-SMEARED observed projection (data chat, README); the gate compares it with Table 3's intrinsic V_c as frozen.
+  MUTATE=1: every digitised model V x 1.1
+  G4_38065   series natural  model V(R_e,disk)/sin i =  352.4 km/s (sides 352) vs Table 3 V_c 299: +17.8%  FAIL (excluded)
+  G4_38232   series taper    model V(R_e,disk)/sin i =  259.7 km/s (sides 158, 362) vs Table 3 V_c 234: +11.0%  FAIL (excluded)
+  G4_20371   series natural  model V(R_e,disk)/sin i =  222.5 km/s (sides 226, 219) vs Table 3 V_c 263: -15.4%  FAIL (excluded)
+  G4_23011   series natural  model V(R_e,disk)/sin i =  235.3 km/s (sides 237, 234) vs Table 3 V_c 295: -20.3%  FAIL (excluded)
+  GN4_24517  series natural  model V(R_e,disk)/sin i =  270.5 km/s (sides 240, 301) vs Table 3 V_c 333: -18.8%  FAIL (excluded)
+  GN4_18574  series robust5  model V(R_e,disk)/sin i =  155.8 km/s (sides 109, 202) vs Table 3 V_c 197: -20.9%  FAIL (excluded)
+  G4_24078   series robust5  model V(R_e,disk)/sin i =  207.6 km/s (sides 181, 234) vs Table 3 V_c 339: -38.8%  FAIL (excluded)
+  GN4_32842  series taper    model V(R_e,disk)/sin i =  347.5 km/s (sides 349, 346) vs Table 3 V_c 379: -8.3%  FAIL (excluded)
+  G4_17555   series natural  model V(R_e,disk)/sin i =  149.0 km/s (sides 134, 164) vs Table 3 V_c 249: -40.2%  FAIL (excluded)
+  G4_37375   series tapered  model V(R_e,disk)/sin i =  212.7 km/s (sides 198, 227) vs Table 3 V_c 248: -14.2%  FAIL (excluded)
+  [PASS] (reported) C3b the frozen gate recomputed here agrees with the data chat's V2 (same pass / fail per galaxy)  [MUTATE: model V x 1.1, not applicable; reported]
+         passes 0/10; agreement False
+
+======================================================================================================================
+FROZEN OUTCOME
+======================================================================================================================
+  -> GATE-LIMITED: NON-DIAGNOSTIC AS FROZEN. Only 0 of 10 galaxies pass the 5% gate, so no median delta with a bootstrap CI can be formed; every other galaxy is excluded, as frozen. No law verdict is given.
+  [PASS] MUTATE: every model V x 1.1 multiplies (1 + deviation) by 1.1 in every galaxy to 1e-9, and changes the pass set
+         max |difference| 2.2e-16; passes 0 vs unmutated 1
+
+  5/5 checks pass; load-bearing failures: 0   (0 s)
