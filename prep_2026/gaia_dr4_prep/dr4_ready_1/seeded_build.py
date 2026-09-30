@@ -155,23 +155,27 @@ def rebuild_EF(ext, work, k, n_shift=None, reuse=False):
     return E, F, time.time() - t0
 
 
-def seed_list(K=10, n_shift=None, B=None):
-    """the pre-registered seed list of Amendment 18 (k = 0..K) with the builder's hash: a pure function of the rule, to be committed BEFORE the data are opened."""
+def seed_list(K=10, n_shift=None, B=None, K_G=100):
+    """the pre-registered seed list of Amendment 18 (draft rev 2) with the builder's hash: a pure function of the rule, to be committed BEFORE the data are opened.
+    G-only sweep (sigma_build): build k = 1..K_G re-seeds ONLY stage G, SEED + k, passed explicitly (stages A-F are the primary's).  Full E-G rebuilds (confirmation): build k = 1..K re-seeds the stage-E shifts
+    r + 1 + 100 k and the stage-E mask, the stage-F fold and stage G with SEED + k.  k = 0 is the frozen builder in both."""
     B = B or import_builder()
-    return dict(about="Amendment 18 (draft, NOT FILED) seed list: build k re-seeds stage-E shifts r + 1 + 100 k, and the stage-E mask, the stage-F fold and stage G with SEED + k (G passed explicitly); k = 0 is the frozen builder",
-                builder_sha256=assert_builder_frozen("seed list"), SEED=int(B.SEED), n_shift=int(B.N_SHIFT if n_shift is None else n_shift), K=int(K), fit_seed=20261216,
-                fit_only_control_seeds=[20261216 + j for j in range(1, K + 1)], seed_sets=[seed_set(k, n_shift, B) for k in range(K + 1)])
+    return dict(about="Amendment 18 (draft rev 2, NOT FILED) seed list: G-only sweep k = 1..K_G (stage G seed SEED + k, explicit); full E-G rebuilds k = 1..K (stage-E shifts r + 1 + 100 k; stage-E mask, stage-F fold and stage G SEED + k); k = 0 is the frozen builder",
+                builder_sha256=assert_builder_frozen("seed list"), SEED=int(B.SEED), n_shift=int(B.N_SHIFT if n_shift is None else n_shift), K=int(K), K_G=int(K_G), fit_seed=20261216,
+                fit_only_control_seeds=[20261216 + j for j in range(1, max(K, 50) + 1)], g_only_stage_G_seeds=[int(B.SEED) + k for k in range(1, K_G + 1)],
+                seed_sets=[seed_set(k, n_shift, B) for k in range(K + 1)])
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, default=1)
     ap.add_argument("--write-list", default=None, help="write the seed list for k = 0..K to this JSON file and exit")
-    ap.add_argument("--K", type=int, default=10)
+    ap.add_argument("--K", type=int, default=10, help="full E-G rebuilds k = 1..K")
+    ap.add_argument("--K-G", type=int, default=100, help="G-only builds k = 1..K_G")
     a = ap.parse_args()
     B = import_builder()
     if a.write_list:
-        Path(a.write_list).write_text(json.dumps(seed_list(a.K, None, B), indent=1) + "\n")
+        Path(a.write_list).write_text(json.dumps(seed_list(a.K, None, B, a.K_G), indent=1) + "\n")
         print("wrote", a.write_list)
         sys.exit(0)
     print("builder sha256", assert_builder_frozen("print"))

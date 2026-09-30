@@ -201,8 +201,9 @@ K("C13 the ladder post-filter rungs (R_chance < 0.001; separation 3-20 kAU; RUWE
 
 # ---------------------------------------------------------------- C14 the committed seed list
 sl = json.load(open(HERE / "seed_sets_dr4.json"))
-K("C14 seed_sets_dr4.json (committed before DR4) equals the seed list the code produces for k = 0..10 and carries the frozen builder hash", sl == json.loads(json.dumps(SB.seed_list(10, None, B))) and sl["builder_sha256"] == SB.FROZEN_BUILDER_SHA256 and sl["K"] == 10,
-  f"{len(sl['seed_sets'])} seed sets; builder {sl['builder_sha256'][:16]}; fit seed {sl['fit_seed']}; control seeds {sl['fit_only_control_seeds'][:3]} ...")
+K("C14 seed_sets_dr4.json (committed before DR4) equals the seed list the code produces (full E-G rebuilds k = 0..10 and the G-only seeds SEED + k for k = 1..100), carries the frozen builder hash, and its G-only seeds equal the G seeds of the full-rebuild seed sets for k = 1..10",
+  sl == json.loads(json.dumps(SB.seed_list(10, None, B, 100))) and sl["builder_sha256"] == SB.FROZEN_BUILDER_SHA256 and sl["K"] == 10 and sl["K_G"] == 100 and all(sl["g_only_stage_G_seeds"][k - 1] == sl["seed_sets"][k]["stage_G_velocity_mc"] for k in range(1, 11)),
+  f"{len(sl['seed_sets'])} full-rebuild seed sets; {len(sl['g_only_stage_G_seeds'])} G-only seeds ({sl['g_only_stage_G_seeds'][0]} ... {sl['g_only_stage_G_seeds'][-1]}); builder {sl['builder_sha256'][:16]}; fit seed {sl['fit_seed']}; control seeds {sl['fit_only_control_seeds'][:3]} ...")
 
 # ---------------------------------------------------------------- C2, C2b, C11 (FULL)
 if FULL:
