@@ -1,0 +1,52 @@
+E2C1 (Z15 door) run history — 5 runs, all fires preserved; math (the five law
+statements) never changed across runs. Lean stdout per run: run-1 in the tick
+transcript (crash before G1), run-2 = E2C1_lean_stdout_run2.txt,
+run-3 = E2C1_lean_stdout_run3.txt, run-4 = E2C1_lean_stdout_run4.txt,
+run-5 = E2C1_lean_stdout.txt.
+
+== run-1 (FIRED, tooling; recorded verbatim in Z15-WAVE_BRIEF.md Amendment 1) ==
+G2: fresh q-degree set: [(0,), (1,), (2,)]
+G2 FIRE: degree set != {0,1,2}      <- FALSE fire: univariate terms() monoms are 1-tuples
+G2: coefficient C0 ... dev 0 / C1 ... dev 0 / C2 ... dev 0
+Traceback: TypeError: cannot determine truth value of Relational  <- sorted(qf):
+real-assumption sympy Symbols order via Relational; crash before G1.
+Fix: m[0][0] indexing; sorted(map(str, qf)).
+
+== run-2 (G1 FIRED; stdout E2C1_lean_stdout_run2.txt) ==
+L2 simp only left 'Polynomial.eval q Polynomial.X' un-reduced (eval_X missing)
+-> trailing ring unsolved; L3/L4 inline type-ascribed polynomial broke
+elaboration ("failed to synthesize HAdd (Polynomial R) (Polynomial R) R[X]",
+sorryAx leaked: coeff2 axioms [sorryAx]). Checker raw-substring "sorry" grep
+double-fired on axiom lines already caught by the subset check -> checker
+corrected to warning-line + axiom-subset. Fix: named def e2c1P + eval_X.
+
+== run-3 (G1 FIRED; stdout E2C1_lean_stdout_run3.txt) ==
+e2c1P def needs noncomputable (R[X] addition on a general CommRing);
+full-strength simp pushed C through the arithmetic (C a1 * (C s1 * C W2 + ...)
+shapes) leaving unsolved coeff goals on L3/L4. Fix: noncomputable def +
+simp only controlled lemma sets.
+
+== run-4 (G1 FIRED; stdout E2C1_lean_stdout_run4.txt) ==
+L3 clean; L4 unsolved goal '(a1 * (s1*W2+c00f) + s1*A2 + c0qf) * X.coeff 2 = 0'
+— my patch had omitted coeff_X from L4's simp only (L3 had it). Fix: add coeff_X.
+
+== run-5 (ALL PASS, exit 0; verbatim below) ==
+G2: fresh q-degree set: [0, 1, 2]
+G2: coefficient C0: fresh W2*s1 + c00f vs pre-registered W2*s1 + c00f: dev 0
+G2: coefficient C1: fresh A2*s1 + W2*a1*s1 + a1*c00f + c0qf vs pre-registered A2*s1 + a1*(W2*s1 + c00f) + c0qf: dev 0
+G2: coefficient C2: fresh A2*a1*s1 + a1*c0qf vs pre-registered a1*(A2*s1 + c0qf): dev 0
+G2: symbols in coefficients: ['A2', 'W2', 'a1', 'c00f', 'c0qf', 's1'] -- q-free: True
+G2: lean statement patterns: all 8 present
+G3: E2Q1_results.json: exit 0, r0.maxdeg 2, r0.qfree True -> PASS
+G3: measured nonvanishing (degree EXACTLY 2 payload): |z| a=2683 b=1193 c=1601 (E2Q1 fit block)
+G1: lake env lean E2C1_structure.lean ...
+G1: lake rc 0
+G1: 'e2c1_integrand_q_expansion' depends on axioms: [propext]
+G1: 'e2c1_poly_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+G1: 'e2c1_coeff_gt2' depends on axioms: [propext, Classical.choice, Quot.sound]
+G1: 'e2c1_coeff2' depends on axioms: [propext, Classical.choice, Quot.sound]
+G1: 'e2c1_c1_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+G1 PASS: rc 0, zero sorry, zero error, axioms subset {propext, Classical.choice, Quot.sound}
+
+E2C1 ALL PASS  (22 s)
+EXIT 0

@@ -1,0 +1,140 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+E2C1_structure.lean:41:67: error: unsolved goals
+R : Type u_1
+inst✝ : CommRing R
+a1 s1 W2 A2 c00f c0qf q : R
+⊢ s1 * W2 + s1 * W2 * a1 * Polynomial.eval q Polynomial.X + s1 * a1 * A2 * q ^ 2 +
+              s1 * A2 * Polynomial.eval q Polynomial.X +
+            c00f +
+          c00f * a1 * Polynomial.eval q Polynomial.X +
+        a1 * c0qf * q ^ 2 +
+      c0qf * Polynomial.eval q Polynomial.X =
+    s1 * W2 + s1 * W2 * a1 * q + s1 * a1 * A2 * q ^ 2 + s1 * A2 * q + c00f + c00f * a1 * q + a1 * c0qf * q ^ 2 +
+      c0qf * q
+E2C1_structure.lean:48:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  Polynomial.C (s1 * W2 + c00f) + Polynomial.C (a1 * (s1 * W2 + c00f) + s1 * A2 + c0qf) * Polynomial.X +
+    Polynomial.C (a1 * (s1 * A2 + c0qf)) * Polynomial.X ^ 2
+has type `?m.10.1 R X ?m.11` which does not have the necessary form.
+E2C1_structure.lean:48:5: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd (Polynomial R) (Polynomial R) R[X]
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+E2C1_structure.lean:50:68: error: failed to prove index is valid, possible solutions:
+  - Use `have`-expressions to prove the index is valid
+  - Use `a[i]!` notation instead, runtime check is performed, and 'Panic' error message is produced if index is not valid
+  - Use `a[i]?` notation instead, result is an `Option` type
+  - Use `a[i]'h` notation instead, where `h` is a proof that index is valid
+R : Type u_1
+inst✝ : CommRing R
+a1 s1 W2 A2 c00f c0qf q : R
+X : ?m.1
+k : ℕ
+hk : 2 < k
+⊢ ?m.9 R X
+E2C1_structure.lean:50:89: error: unsolved goals
+x✝ : Type u_2
+X : x✝
+k : ℕ
+hk : 2 < k
+hk0 : k ≠ 0
+hk1 : k ≠ 1
+hk2 : k ≠ 2
+⊢ sorry () = 0
+E2C1_structure.lean:54:8: warning: This simp argument is unused:
+  Polynomial.coeff_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, hk0, hk1, hk2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:54:30: warning: This simp argument is unused:
+  Polynomial.coeff_C_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_X_pow, hk0, hk1, hk2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:54:54: warning: This simp argument is unused:
+  Polynomial.coeff_X_pow
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_C_mul, hk0, hk1, hk2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:55:4: warning: This simp argument is unused:
+  hk0
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, hk1, hk2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:55:9: warning: This simp argument is unused:
+  hk1
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, hk0, hk2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:55:14: warning: This simp argument is unused:
+  hk2
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, hk0, hk1]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:60:4: error(lean.invalidField): Invalid field notation: Field projection operates on types of the form `C ...` where C is a constant. The expression
+  Polynomial.C (s1 * W2 + c00f) + Polynomial.C (a1 * (s1 * W2 + c00f) + s1 * A2 + c0qf) * Polynomial.X +
+    Polynomial.C (a1 * (s1 * A2 + c0qf)) * Polynomial.X ^ 2
+has type `?m.6.1 R X ?m.7` which does not have the necessary form.
+E2C1_structure.lean:60:5: error(lean.synthInstanceFailed): failed to synthesize instance of type class
+  HAdd (Polynomial R) (Polynomial R) R[X]
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+E2C1_structure.lean:62:68: error: failed to prove index is valid, possible solutions:
+  - Use `have`-expressions to prove the index is valid
+  - Use `a[i]!` notation instead, runtime check is performed, and 'Panic' error message is produced if index is not valid
+  - Use `a[i]?` notation instead, result is an `Option` type
+  - Use `a[i]'h` notation instead, where `h` is a proof that index is valid
+R : Type u_1
+inst✝ : CommRing R
+a1 s1 W2 A2 c00f c0qf q : R
+X : ?m.1
+⊢ ?m.5 R X
+E2C1_structure.lean:63:33: error: unsolved goals
+R : Type u_1
+inst✝ : CommRing R
+a1 s1 A2 c0qf : R
+x✝ : Type u_2
+X : x✝
+⊢ sorry () = a1 * (s1 * A2 + c0qf)
+E2C1_structure.lean:64:8: warning: This simp argument is unused:
+  Polynomial.coeff_add
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:64:30: warning: This simp argument is unused:
+  Polynomial.coeff_C_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_X_pow]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+E2C1_structure.lean:64:54: warning: This simp argument is unused:
+  Polynomial.coeff_X_pow
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Polynomial.coeff_add, Polynomial.coeff_C_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+'e2c1_integrand_q_expansion' depends on axioms: [propext]
+'e2c1_poly_eval' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'e2c1_coeff_gt2' depends on axioms: [propext, sorryAx, Quot.sound]
+'e2c1_coeff2' depends on axioms: [sorryAx]
+'e2c1_c1_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]

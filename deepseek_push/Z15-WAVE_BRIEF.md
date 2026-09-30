@@ -72,3 +72,40 @@ E2C1_structure.py / .out / E2C1_results.json (exit inside), E2C1_lean_stdout.txt
 E2C1_structure.lean; register row appended by the conductor on landing;
 commit work+math only (house rule 6; raw data untouched; astra_spawn_ideas and
 tmp probes untouched, house rule 8).
+
+## Amendment 1 (conductor, run-1 honest fire, preserved verbatim)
+Run-1 crashed with two tooling bugs, math untouched (the R0 content had already
+printed PASS-equivalent values before the crash): (a) degree-set comparison
+fired because univariate sp.Poly.terms() monoms are 1-tuples ([(0,),(1,),(2,)]
+vs [0,1,2] — the same class as E2Q1 run-1's monom-tuple TypeError); (b) crash
+`TypeError: cannot determine truth value of Relational` in sorted(qf) —
+real-assumption sympy Symbols order via Relational, not bool. Fixed forward:
+m[0][0] indexing and sorted(map(str, qf)). The spurious G2 FIRE line
+"degree set != {0,1,2}" is a FALSE fire from the comparison bug, recorded here
+verbatim: G2: fresh q-degree set: [(0,), (1,), (2,)] / G2 FIRE: degree set !=
+{0,1,2} / G2: coefficient C0 ... dev 0 / C1 dev 0 / C2 dev 0 / traceback
+relational.py __bool__ at the qf sort line.
+
+## Amendment 2 (conductor, runs 2-3 honest fires, preserved verbatim)
+Run-2 G1 fires (stdout saved E2C1_lean_stdout_run2.txt): L2 `simp only` left
+`Polynomial.eval q Polynomial.X` un-reduced (eval_X missing from the set) so
+the trailing `ring` could not close; L3/L4's inline type-ascribed polynomial
+`( ... : R[X]).coeff k` broke elaboration ("failed to synthesize HAdd
+(Polynomial R) (Polynomial R) R[X]", sorryAx leaked). Fix: named def e2c1P +
+eval_X added; checker's sorry-fire corrected to the warning line + axiom
+subset only (run-2's sorryAx lines were already caught by the subset check —
+the raw-substring grep double-fired). Run-3 G1 fires (stdout saved
+E2C1_lean_stdout_run3.txt): the e2c1P def needs `noncomputable` (R[X] addition
+on a general CommRing is noncomputable); full-strength `simp` pushed C through
+the arithmetic (C a1 * (C s1 * C W2 + ...) shapes) and left unsolved coeff
+goals on L3/L4. Fix: noncomputable def + `simp only` controlled lemma sets
+(coeff_add, coeff_C, coeff_C_mul, coeff_X_pow, coeff_X) + trailing default
+simp. Math (the five law statements) never changed across runs 1-4.
+
+## Amendment 3 (conductor, runs 4-5)
+Run-4 G1 fire: L3 clean, L4 unsolved goal (a1*(s1*W2+c00f)+s1*A2+c0qf)*X.coeff 2
+= 0 — the run-3 patch omitted coeff_X from L4's simp only (L3 had it). Fixed.
+Run-5 (final): lake rc 0, zero sorry, zero error, all five axiom lines subsets
+of {propext, Classical.choice, Quot.sound}; G2 fresh sympy dev 0 on all three
+coefficients, q-free True, all 8 lean statement patterns present; G3 loaded
+E2Q1 exit 0 / maxdeg 2 / qfree True. E2C1 ALL PASS, exit 0.
