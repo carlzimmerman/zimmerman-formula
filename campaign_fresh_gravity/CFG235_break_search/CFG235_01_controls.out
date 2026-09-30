@@ -1,0 +1,54 @@
+CFG235_01_controls: MUTATE = 0 | synthetic rows only; repo = <repo>
+  PASS  C0.sample_counts: {'D': 41, 'C': 14, 'R': 4, 'A': 2, 'P': 1}
+  PASS  C1.analytic_vs_MC_L1(<=0.02): max |dz| 0.0056
+  PASS  C2.kernels(P2<=1e-12, mono<=1e-9): P2 0.00e+00 mono-vs-CFG5 0.00e+00
+  PASS  C3.lemma_floor_monotone_in_gas: {'P2': 0.0, 'mono': 0.0}
+  PASS  C4a.HMF_vs_on_disk(<=1%): max rel diff 1.69e-04
+  PASS  C4b.DM14_vs_on_disk_z0(<=1e-3 dex): max diff 1.96e-04 dex (on-disk h = 0.671 vs 0.674 here)
+  PASS  C5a.T2_false_positive_rate_on_null(<=7%): 0.015 over 400 null samples (400 perms each)
+  FAIL  C5b.T2_fires_on_planted_5sigma_residual(median sigma): adjusted p = 0.518 (planted row has the median sigma)
+  PASS  C5c.(reported)T2_on_planted_5sigma_residual_with_the_smallest_sigma: adjusted p = 0.0172 (informational; not a frozen control)
+  PASS  C6.(reported)L2_reach_noise_free_max_z_rob_in_range: max z_rob(L2) over M200,need in 1e12..1e15 with zero noise = 3.06 at M200 = 3e+14 (z_rob > 3 is unreachable in range if < 3)
+
+planted targets (R_obs, x_*): P1: R=0.03 x=5; P2: R=1 x=0.0001; P3: R=4.605 x=5; P4: R=3.674 x=2; P5: R=0.5028 x=2; P6: R=1.254 x=0.01; P7: R=0.3 x=2; P9: R=0.1 x=2; P10: R=300 x=0.0001; P11: R=2.075 x=0.01; P3b: R=6.393 x=5
+control sample: 74 rows (62 synthetic background + plants); Bonferroni m = 74; z_B = 3.205
+  PASS  P1.L1_T0: z_rob L1 3.84
+  PASS  P1.F1_T0_all_cells: z_rob F1 4.18
+  FAIL  P1.L1_T2(frozen expectation): T1=True p_wy=0.97275
+  PASS  P1.label_T0_both: both
+  PASS  P2.F1_T0: z_rob F1 6.77
+  PASS  P2.L1_not_T0: z_rob L1 -0.00
+  PASS  P2.label_T0_framework_only: framework-only
+  FAIL  P3.L2_T0: z_rob L2 -0.08
+  PASS  P3.L1_F1_not_T0: 
+  FAIL  P3.label_T0_LCDM_only: neither
+  PASS  P4.no_flag_any_tier: neither
+  PASS  P5.no_T0: z_primary F1 1.50 z_rob 1.11
+  PASS  P6.F1_T0_fired: z_rob 3.050
+  PASS  P6.F1_T1_NOT_fired: z_B 3.205
+  PASS  P6.not_confirmed_(T2): 
+  PASS  P7.L1_T0_not_fired(tier S): z_rob 1.32
+  PASS  P7.SG_cell_reported_fired: S+G L1 z 10.88
+  PASS  P8.duplicate_listed: [('C_08', 'SYN_P8', 0.0, 'ECDFS/GOODS-S')]
+  PASS  P8.m_stays: m fixed by construction (M_TRIALS)
+  PASS  P9.not_testable: 
+  PASS  P10.no_flag(f_DM-inconsistent row; V_c route): F1 z_rob -3.23
+  PASS  P11.fragile_no_T0(z_primary>3, z_rob<3): z_primary 3.40 z_rob 2.31
+  PASS  P3b.L2_z_primary<=2.0(V_ref): z_primary L2 1.83, z_rob 0.46
+  PASS  BG.no_flags_in_background: 
+  PASS  STRUCT.every_L1_T0_is_F1_T0: 
+    SYN_P1    L1 z_rob=   3.84 F1 z_rob=   4.18 L2 z_rob=   0.00 | labels T0/T1/T2: both/both/neither
+    SYN_P2    L1 z_rob=  -0.00 F1 z_rob=   6.77 L2 z_rob=    nan | labels T0/T1/T2: framework-only/framework-only/neither
+    SYN_P3    L1 z_rob=  -2.82 F1 z_rob=  -2.83 L2 z_rob=  -0.08 | labels T0/T1/T2: neither/neither/neither
+    SYN_P4    L1 z_rob=  -2.42 F1 z_rob=  -2.32 L2 z_rob=  -3.87 | labels T0/T1/T2: neither/neither/neither
+    SYN_P5    L1 z_rob=   0.75 F1 z_rob=   1.11 L2 z_rob=   0.00 | labels T0/T1/T2: neither/neither/neither
+    SYN_P6    L1 z_rob=  -0.43 F1 z_rob=   3.05 L2 z_rob=    nan | labels T0/T1/T2: framework-only/neither/neither
+    SYN_P7    L1 z_rob=   1.32 F1 z_rob=   1.74 L2 z_rob=   0.00 | labels T0/T1/T2: neither/neither/neither
+    SYN_P8    L1 z_rob=  -2.58 F1 z_rob=  -2.50 L2 z_rob=  -3.45 | labels T0/T1/T2: neither/neither/neither
+    SYN_P9    L1 z_rob=    nan F1 z_rob=    nan L2 z_rob=    nan | labels T0/T1/T2: neither/neither/neither
+    SYN_P10   L1 z_rob= -10.66 F1 z_rob=  -3.23 L2 z_rob=    nan | labels T0/T1/T2: neither/neither/neither
+    SYN_P11   L1 z_rob=  -1.37 F1 z_rob=   2.31 L2 z_rob=    nan | labels T0/T1/T2: neither/neither/neither
+    SYN_P3b   L1 z_rob=  -3.45 F1 z_rob=  -3.53 L2 z_rob=   0.46 | labels T0/T1/T2: neither/neither/neither
+
+FAILED controls: ['C5b.T2_fires_on_planted_5sigma_residual(median sigma)', 'P1.L1_T2(frozen expectation)', 'P3.L2_T0', 'P3.label_T0_LCDM_only']
+exit 1

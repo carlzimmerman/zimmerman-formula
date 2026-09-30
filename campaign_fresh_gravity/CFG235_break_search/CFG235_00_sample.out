@@ -1,0 +1,173 @@
+CFG235_00_sample: repo = <repo>; kappa = 1/2 is FITTED; nothing here is a test statistic
+frozen criteria file: <repo>/campaign_fresh_gravity/CFG235_FROZEN_CRITERIA.md sha256 d70dad70f0964a645ae5963bb55db762a607ace212a4a404dac31b261137d9ba
+frozen-file hash matches the committed criteria (commit bfc86d36d)
+
+N per source: {'D': 41, 'C': 14, 'R': 4, 'A': 2, 'P': 1}  total rows 62
+sample counts equal the frozen N (41, 14, 4, 2, 1; 62)
+
+CRISTAL ID mapping (frozen: dynamics id X joined to sample/kinematics row X, else X+'a'):
+      02  mapped-by-'a'=False  finite M*=True  z=5.294  field=COSMOS  dust-detection set=yes
+      03  mapped-by-'a'=False  finite M*=True  z=5.689  field=COSMOS  dust-detection set=yes
+     06b  mapped-by-'a'=False  finite M*=True  z=4.562  field=COSMOS  dust-detection set=no
+     07a  mapped-by-'a'=False  finite M*=True  z=5.154  field=COSMOS  dust-detection set=yes
+      08  mapped-by-'a'=False  finite M*=True  z=4.43  field=ECDFS  dust-detection set=no
+      09  mapped-by-'a'=True   finite M*=True  z=5.575  field=COSMOS  dust-detection set=no
+   10a-E  mapped-by-'a'=False  finite M*=False  z=5.671  field=COSMOS  dust-detection set=no
+      11  mapped-by-'a'=False  finite M*=True  z=4.439  field=COSMOS  dust-detection set=yes
+      12  mapped-by-'a'=False  finite M*=True  z=5.572  field=GOODS-S  dust-detection set=no
+      15  mapped-by-'a'=False  finite M*=True  z=4.58  field=COSMOS  dust-detection set=no
+      19  mapped-by-'a'=False  finite M*=True  z=5.233  field=COSMOS  dust-detection set=yes
+      20  mapped-by-'a'=False  finite M*=True  z=5.545  field=COSMOS  dust-detection set=yes
+     23b  mapped-by-'a'=False  finite M*=True  z=4.562  field=COSMOS  dust-detection set=no
+     23c  mapped-by-'a'=False  finite M*=False  z=4.565  field=COSMOS  dust-detection set=no
+  CONFLICT: the data note says CRISTAL-09 has no SED M* in the sample table; under the frozen mapping 09 -> 09a the sample table carries a finite M* (finite: True). Not resolved by hand: the frozen mapping is used, and the 09 row is flagged 'mapping-assumption' in every table.
+  rows with NO finite M* (L1/F1 UNDEFINED, counted in m): ['C_10a-E', 'C_23c']
+
+Limit-flag reading (table flag columns):
+  Danhaive sigma0 '<' (upper limit) rows: 17 of 41 ; logMstar_lim / logMdyn_lim non-empty: 0
+  frozen rule 3.5: M_dyn upper limit -> face value; sigma0 limits already inside the table's M_dyn (no variant changes a label);
+  M* upper limit -> not testable; M_dyn lower limit -> not testable for a break. Rows affected by the last two: 0
+  ALPAKA ID 28 sigma_ext flag: < (upper limit; face value in V_c^2 = V_ext^2 + 3.36 sigma^2, conservative)
+  Roman-Oliveira SGP38326-1/-2: gas error missing in the table -> 0.3 dex stand-in (phase-2 reading, as CFG197)
+
+Duplicate check (frozen 2.4: same field AND |dz| <= 0.02 where one lacks coordinates => POSSIBLE duplicate):
+  POSSIBLE DUPLICATE (z and field only; Danhaive has no coordinates on disk): ('C_08', 'D_1088814', 0.02, 'ECDFS/GOODS')
+  POSSIBLE DUPLICATE (z and field only; Danhaive has no coordinates on disk): ('C_08', 'D_1077545', 0.01, 'ECDFS/GOODS')
+  POSSIBLE DUPLICATE (z and field only; Danhaive has no coordinates on disk): ('C_08', 'D_1086406', 0.02, 'ECDFS/GOODS')
+  POSSIBLE DUPLICATE (z and field only; Danhaive has no coordinates on disk): ('A_065.1', 'C_08', 0.015, 'ECDFS/ECDFS')
+  pairs found: 4 | CRISTAL-08 and -12 are the GOODS-S/ECDFS CRISTAL rows; ALESS (ECDFS by name, from memory, unverified)
+  treatment (frozen): both rows kept and scored; counted once in 'unique'; m stays 62
+  same-system pairs kept as separate rows: CRISTAL 23b/23c; SGP38326-1/-2
+
+SAMPLE TABLE (inputs only):
+id               src tier      z field      r_kpc r/re  logM* logMdyn,enc  logM_b  V/sig flags
+D_1028887        D   S     5.190 GOODS      1.120  1.0   9.56        9.63    9.56   0.30 dispersion-dominated(V/sigma<1)
+D_1002030        D   S     5.180 GOODS      1.370  1.0   9.48       10.24    9.48   0.60 dispersion-dominated(V/sigma<1)
+D_191250         D   S     5.390 GOODS      2.450  1.0  10.17       10.54   10.17  13.90 
+D_1002222        D   S     5.290 GOODS      0.980  1.0   9.47        9.65    9.47   0.50 dispersion-dominated(V/sigma<1)
+D_214966         D   S     5.540 GOODS      1.410  1.0   9.54       10.15    9.54   0.50 dispersion-dominated(V/sigma<1)
+D_1025527        D   S     5.300 GOODS      1.060  1.0   9.39       10.34    9.39   1.90 
+D_1001674        D   S     5.180 GOODS      1.600  1.0   9.92       10.74    9.92   0.50 dispersion-dominated(V/sigma<1)
+D_201125         D   S     5.820 GOODS      1.860  1.0   9.96       10.54    9.96   0.80 dispersion-dominated(V/sigma<1)
+D_1094616        D   S     4.060 GOODS      1.350  1.0   9.40       10.75    9.40   1.30 
+D_1000989        D   S     3.970 GOODS      0.870  1.0   9.07        9.51    9.07   5.40 
+D_1088814        D   S     4.410 GOODS      2.390  1.0  10.60       10.35   10.60   1.50 
+D_1087148        D   S     4.380 GOODS      1.050  1.0   8.24        9.57    8.24   2.40 
+D_1015956        D   S     4.020 GOODS      1.400  1.0   9.54        8.82    9.54   1.70 known-before-freezing
+D_1085659        D   S     4.060 GOODS      1.470  1.0  10.17        9.50   10.17   0.30 known-before-freezing dispersion-dominated(V/sigma<1)
+D_1083165        D   S     4.150 GOODS      1.120  1.0   9.78       10.04    9.78   0.60 dispersion-dominated(V/sigma<1)
+D_1065488        D   S     4.150 GOODS      1.100  1.0   8.01        9.68    8.01   2.10 
+D_1025101        D   S     4.910 GOODS      1.190  1.0   8.99       10.54    8.99   1.90 
+D_1090526        D   S     3.960 GOODS      2.470  1.0   9.93        9.84    9.93   1.40 
+D_1077545        D   S     4.420 GOODS      0.870  1.0   9.27        9.61    9.27   1.10 
+D_1089583        D   S     3.930 GOODS      1.160  1.0   9.01       10.04    9.01   2.20 
+D_1077261        D   S     3.920 GOODS      1.120  1.0   9.36        9.75    9.36   0.50 dispersion-dominated(V/sigma<1)
+D_1095186        D   S     4.020 GOODS      1.920  1.0   9.37       10.05    9.37   1.10 
+D_1091580        D   S     4.800 GOODS      0.880  1.0   8.09        9.19    8.09   1.00 
+D_1086992        D   S     4.040 GOODS      3.420  1.0   9.37        9.58    9.37   4.70 
+D_1090054        D   S     4.820 GOODS      1.270  1.0   9.62       10.35    9.62   3.40 
+D_1014130        D   S     4.380 GOODS      1.320  1.0   8.49        9.53    8.49   1.90 
+D_1082948        D   S     3.910 GOODS      2.250  1.0  10.68        8.61   10.68   1.40 known-before-freezing
+D_1000110        D   S     4.060 GOODS      1.660  1.0   9.52       10.55    9.52   1.50 
+D_1091153        D   S     4.070 GOODS      1.850  1.0  10.37       10.04   10.37   1.40 
+D_1094903        D   S     3.870 GOODS      2.060  1.0  10.34       10.55   10.34   0.50 dispersion-dominated(V/sigma<1)
+D_1079264        D   S     4.050 GOODS      2.240  1.0   8.73        8.98    8.73   1.60 
+D_1086406        D   S     4.410 GOODS      0.910  1.0   9.46        9.23    9.46   6.30 
+D_1013488        D   S     3.800 GOODS      1.070  1.0   9.57       10.24    9.57   1.40 
+D_1028072        D   S     4.400 GOODS      1.660  1.0   9.17        9.50    9.17   3.70 
+D_1090742        D   S     4.620 GOODS      1.340  1.0   9.37        9.35    9.37   3.70 
+D_1091236        D   S     4.170 GOODS      0.840  1.0   9.34        9.74    9.34   0.90 dispersion-dominated(V/sigma<1)
+D_1009935        D   S     4.890 GOODS      1.020  1.0   9.65        8.73    9.65   2.10 known-before-freezing
+D_1085494        D   S     4.060 GOODS      1.060  1.0   8.90        9.59    8.90   1.60 
+D_1090891        D   S     3.920 GOODS      1.550  1.0   9.74       10.64    9.74   1.10 
+D_1008197        D   S     4.400 GOODS      1.110  1.0   8.76        9.51    8.76   3.90 
+D_1029814        D   S     4.160 GOODS      1.280  1.0   8.38        9.95    8.38   3.20 
+C_02             C   S     5.294 COSMOS     2.700  1.0  10.30       10.32   10.30   1.92 known-before-freezing dust-detection(S+G reported)
+C_03             C   S     5.689 COSMOS     1.500  1.0  10.40       10.25   10.40   2.12 known-before-freezing dust-detection(S+G reported)
+C_06b            C   S     4.562 COSMOS     1.800  1.0   9.19       10.25    9.19   1.69 
+C_07a            C   S     5.154 COSMOS     3.000  1.0  10.00       10.36   10.00   2.10 dust-detection(S+G reported)
+C_08             C   S     4.430 ECDFS      3.400  1.0   9.85       10.59    9.85   2.94 
+C_09             C   S     5.575 COSMOS     1.200  1.0   9.84       10.22    9.84   1.64 known-seen-in-READMEs mapping-assumption table-vs-figure-mismatch
+C_10a-E          C   S     5.671 COSMOS     1.300  1.0    nan       10.04     nan   1.41 
+C_11             C   S     4.439 COSMOS     1.500  1.0   9.68       10.38    9.68   1.49 dust-detection(S+G reported)
+C_12             C   S     5.572 GOODS-S    1.500  1.0   9.30        9.71    9.30   1.44 
+C_15             C   S     4.580 COSMOS     1.700  1.0   9.69       10.31    9.69   1.17 known-seen-in-READMEs table-vs-figure-mismatch
+C_19             C   S     5.233 COSMOS     2.300  1.0   9.51       10.37    9.51   2.22 dust-detection(S+G reported)
+C_20             C   S     5.545 COSMOS     3.500  1.0  10.11       10.29   10.11   1.61 dust-detection(S+G reported)
+C_23b            C   S     4.562 COSMOS     1.400  1.0  10.46        9.90   10.46   1.40 known-before-freezing same-system-pair
+C_23c            C   S     4.565 COSMOS     0.400  1.0    nan        9.36     nan   2.02 same-system-pair
+R_BRI1335-0417   R   G     4.407 none       4.092  1.0    nan       10.42   10.52   2.20 known-seen-in-READMEs tier-G(gas-only)
+R_J081740        R   G     4.260 none       2.699  1.0    nan       10.62   10.47   7.60 tier-G(gas-only)
+R_SGP38326-1     R   G     4.424 none       3.536  1.0    nan       11.40   10.80  11.80 same-system-pair tier-G(gas-only)
+R_SGP38326-2     R   G     4.427 none       1.632  1.0    nan       10.82   10.40  10.20 same-system-pair tier-G(gas-only)
+A_065.1          A   S     4.445 ECDFS      2.857  2.0  10.48       10.96   10.48  10.51 
+A_071.1          A   S     3.709 ECDFS      7.047  2.0  12.31       11.38   12.31   5.49 SED-AGN-suspect
+P_28             P   S     3.630 none       4.363  1.0  11.11       11.27   11.12   4.68 
+
+SEPARABILITY INDEX S_i = log10 nu(x_*) / sigma_tot,primary  (x_* from central inputs, GS geometry, canonical a0, P2 kernel;
+sigma_tot,primary = sd of the primary-cell Delta_L1 from 20,000 draws; NO test statistic is printed)
+  D_1028887        x_*=     2.16  log10 nu= 0.083  sigma=0.369  S_i=  0.22  (framework-only NOT reachable)
+  D_1002030        x_*=      1.2  log10 nu= 0.132  sigma=0.412  S_i=  0.32  (framework-only NOT reachable)
+  D_191250         x_*=     1.83  log10 nu= 0.095  sigma=0.312  S_i=  0.30  (framework-only NOT reachable)
+  D_1002222        x_*=     2.29  log10 nu= 0.079  sigma=0.536  S_i=  0.15  (framework-only NOT reachable)
+  D_214966         x_*=      1.3  log10 nu= 0.124  sigma=0.387  S_i=  0.32  (framework-only NOT reachable)
+  D_1025527        x_*=     1.62  log10 nu= 0.104  sigma=0.674  S_i=  0.15  (framework-only NOT reachable)
+  D_1001674        x_*=     2.42  log10 nu= 0.075  sigma=0.350  S_i=  0.21  (framework-only NOT reachable)
+  D_201125         x_*=     1.96  log10 nu= 0.089  sigma=0.343  S_i=  0.26  (framework-only NOT reachable)
+  D_1094616        x_*=     1.02  log10 nu= 0.148  sigma=0.466  S_i=  0.32  (framework-only NOT reachable)
+  D_1000989        x_*=     1.15  log10 nu= 0.135  sigma=0.400  S_i=  0.34  (framework-only NOT reachable)
+  D_1088814        x_*=     5.17  log10 nu= 0.038  sigma=0.482  S_i=  0.08  (framework-only NOT reachable)
+  D_1087148        x_*=    0.118  log10 nu= 0.489  sigma=0.839  S_i=  0.58  (framework-only NOT reachable)
+  D_1015956        x_*=     1.32  log10 nu= 0.123  sigma=0.623  S_i=  0.20  (framework-only NOT reachable)
+  D_1085659        x_*=     5.08  log10 nu= 0.039  sigma=0.554  S_i=  0.07  (framework-only NOT reachable)
+  D_1083165        x_*=     3.58  log10 nu= 0.054  sigma=0.330  S_i=  0.16  (framework-only NOT reachable)
+  D_1065488        x_*=   0.0631  log10 nu= 0.613  sigma=0.381  S_i=  1.61  (framework-only NOT reachable)
+  D_1025101        x_*=    0.514  log10 nu= 0.235  sigma=0.403  S_i=  0.58  (framework-only NOT reachable)
+  D_1090526        x_*=     1.04  log10 nu= 0.147  sigma=0.525  S_i=  0.28  (framework-only NOT reachable)
+  D_1077545        x_*=     1.83  log10 nu= 0.095  sigma=0.510  S_i=  0.19  (framework-only NOT reachable)
+  D_1089583        x_*=    0.566  log10 nu= 0.221  sigma=0.491  S_i=  0.45  (framework-only NOT reachable)
+  D_1077261        x_*=     1.36  log10 nu= 0.120  sigma=0.390  S_i=  0.31  (framework-only NOT reachable)
+  D_1095186        x_*=    0.474  log10 nu= 0.246  sigma=0.423  S_i=  0.58  (framework-only NOT reachable)
+  D_1091580        x_*=    0.118  log10 nu= 0.488  sigma=0.518  S_i=  0.94  (framework-only NOT reachable)
+  D_1086992        x_*=    0.149  log10 nu= 0.444  sigma=0.639  S_i=  0.69  (framework-only NOT reachable)
+  D_1090054        x_*=     1.92  log10 nu= 0.091  sigma=0.302  S_i=  0.30  (framework-only NOT reachable)
+  D_1014130        x_*=    0.132  log10 nu= 0.466  sigma=0.630  S_i=  0.74  (framework-only NOT reachable)
+  D_1082948        x_*=     7.03  log10 nu= 0.029  sigma=0.553  S_i=  0.05  (framework-only NOT reachable)
+  D_1000110        x_*=    0.895  log10 nu= 0.163  sigma=0.305  S_i=  0.53  (framework-only NOT reachable)
+  D_1091153        x_*=      5.1  log10 nu= 0.039  sigma=0.406  S_i=  0.10  (framework-only NOT reachable)
+  D_1094903        x_*=     3.83  log10 nu= 0.050  sigma=0.378  S_i=  0.13  (framework-only NOT reachable)
+  D_1079264        x_*=   0.0796  log10 nu= 0.566  sigma=0.603  S_i=  0.94  (framework-only NOT reachable)
+  D_1086406        x_*=     2.59  log10 nu= 0.071  sigma=0.513  S_i=  0.14  (framework-only NOT reachable)
+  D_1013488        x_*=     2.41  log10 nu= 0.075  sigma=0.448  S_i=  0.17  (framework-only NOT reachable)
+  D_1028072        x_*=      0.4  log10 nu= 0.272  sigma=0.488  S_i=  0.56  (framework-only NOT reachable)
+  D_1090742        x_*=    0.972  log10 nu= 0.154  sigma=0.508  S_i=  0.30  (framework-only NOT reachable)
+  D_1091236        x_*=      2.3  log10 nu= 0.078  sigma=0.584  S_i=  0.13  (framework-only NOT reachable)
+  D_1009935        x_*=      3.2  log10 nu= 0.059  sigma=0.565  S_i=  0.10  (framework-only NOT reachable)
+  D_1085494        x_*=    0.527  log10 nu= 0.231  sigma=0.350  S_i=  0.66  (framework-only NOT reachable)
+  D_1090891        x_*=      1.7  log10 nu= 0.100  sigma=0.367  S_i=  0.27  (framework-only NOT reachable)
+  D_1008197        x_*=    0.348  log10 nu= 0.294  sigma=0.511  S_i=  0.57  (framework-only NOT reachable)
+  D_1029814        x_*=    0.109  log10 nu= 0.503  sigma=0.462  S_i=  1.09  (framework-only NOT reachable)
+  C_02             x_*=     2.05  log10 nu= 0.086  sigma=0.334  S_i=  0.26  (framework-only NOT reachable)
+  C_03             x_*=     8.44  log10 nu= 0.024  sigma=0.421  S_i=  0.06  (framework-only NOT reachable)
+  C_06b            x_*=    0.359  log10 nu= 0.289  sigma=0.371  S_i=  0.78  (framework-only NOT reachable)
+  C_07a            x_*=    0.833  log10 nu= 0.171  sigma=0.357  S_i=  0.48  (framework-only NOT reachable)
+  C_08             x_*=    0.459  log10 nu= 0.251  sigma=0.359  S_i=  0.70  (framework-only NOT reachable)
+  C_09             x_*=     3.59  log10 nu= 0.053  sigma=0.382  S_i=  0.14  (framework-only NOT reachable)
+  C_10a-E          undefined (no finite stellar/baryon floor)
+  C_11             x_*=      1.6  log10 nu= 0.105  sigma=0.366  S_i=  0.29  (framework-only NOT reachable)
+  C_12             x_*=     0.66  log10 nu= 0.200  sigma=0.379  S_i=  0.53  (framework-only NOT reachable)
+  C_15             x_*=     1.26  log10 nu= 0.127  sigma=0.353  S_i=  0.36  (framework-only NOT reachable)
+  C_19             x_*=    0.457  log10 nu= 0.252  sigma=0.351  S_i=  0.72  (framework-only NOT reachable)
+  C_20             x_*=    0.788  log10 nu= 0.178  sigma=0.348  S_i=  0.51  (framework-only NOT reachable)
+  C_23b            x_*=       11  log10 nu= 0.019  sigma=0.311  S_i=  0.06  (framework-only NOT reachable)
+  C_23c            undefined (no finite stellar/baryon floor)
+  R_BRI1335-0417   x_*=     2.96  log10 nu= 0.063  sigma=0.323  S_i=  0.20  (framework-only NOT reachable)
+  R_J081740        x_*=     5.99  log10 nu= 0.034  sigma=0.359  S_i=  0.09  (framework-only NOT reachable)
+  R_SGP38326-1     x_*=     7.52  log10 nu= 0.027  sigma=0.429  S_i=  0.06  (framework-only NOT reachable)
+  R_SGP38326-2     x_*=     14.1  log10 nu= 0.015  sigma=0.426  S_i=  0.03  (framework-only NOT reachable)
+  A_065.1          x_*=     4.69  log10 nu= 0.042  sigma=0.368  S_i=  0.11  (framework-only NOT reachable)
+  A_071.1          x_*=     52.1  log10 nu= 0.004  sigma=0.304  S_i=  0.01  (framework-only NOT reachable)
+  P_28             x_*=     5.07  log10 nu= 0.039  sigma=0.403  S_i=  0.10  (framework-only NOT reachable)
+  rows with S_i >= 3: []
+
+CFG235_00_sample: exit 0
