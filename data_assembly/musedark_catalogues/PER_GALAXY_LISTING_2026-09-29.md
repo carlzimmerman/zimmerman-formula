@@ -22,3 +22,14 @@ Read on the owner's go ("read the per-galaxy folder listing"). **Only directory 
 1. Pilot: the five small text files of ID0003 only (about 6 KB): `DC14_3_galaxy_parameters.txt/.dat`, `DC14_3_derived_parameters.txt/.dat`, `DC14_3_run_parameters.txt`, to see whether they hold M_disk, M_gas and halo parameters.
 2. If they do: the same four to five files for all 126 galaxies (about 1 MB, ~630 small files).
 3. Rotation curves: `DC14_<id>_rotcurve.pdf` (about 50 KB each, ~6 MB in all) for a vector-geometry read like the KURVS figures, if the PDFs are vector.
+
+## Addendum (later 2026-09-29): all 126 galaxies' `RC_decomp`, `RC_obs` and `galpak_run_DC14` listings read (directory listings only; sizes are the listings' rounded KB/MB values)
+| what | count | total size |
+|---|---|---|
+| `RC_decomp/` | 126 folders, one PNG each | 16.6 MB |
+| `RC_obs/` | 125 folders with one PNG each (ID0859 lists none) | 8.5 MB |
+| `galpak_run_DC14/` | 4,112 files in 126 folders (37 distinct file-name patterns; 65 of the 126 have the extra `mcmc`, `geweke`, `images`, `obs_maps` and `convergence` files) | 558 MB in all, of which the MCMC chains (`DC14_<id>_chain.dat`) are 232 MB |
+| **`DC14_<id>_true_Vrot.dat`** (numeric table, one per galaxy) | 126 | about 2–5 KB each, **0.3 MB in all** (HEAD for ID0003: 2,964 bytes; contents not read). By its name it is the model's "true" (deconvolved) rotation velocity vs radius; **not confirmed** |
+| parameter tables: `DC14_<id>_galaxy_parameters.txt/.dat`, `derived_parameters.txt/.dat`, `run_parameters.txt`, `model.txt`, `instrument.txt`, `stats.dat` | 126 each | about 0.9 MB in all by the rounded listing sizes (ID0003 exact: 921 + 1,530 + 1,300 + 2,215 B) |
+| `DC14_<id>_rotcurve.pdf` / `.png` (plots) | 126 each | 4.8 MB / about 12 MB |
+Observed and decomposed rotation curves are still only plots (`RC_decomp_*.png`, `RC_URC_*.png`, `rotcurve.pdf/png`). The one numeric per-radius file in the listing is `true_Vrot.dat`. Whether it or the parameter tables hold the baryon (disc, gas) components or per-radius accelerations is **not known** without opening them. Fetching the numeric set (`true_Vrot.dat` + the four parameter tables + `run_parameters.txt`) for all 126 galaxies would be about 1.3 MB in total (about 630 small files); a pilot for ID0003 is about 10 KB.
