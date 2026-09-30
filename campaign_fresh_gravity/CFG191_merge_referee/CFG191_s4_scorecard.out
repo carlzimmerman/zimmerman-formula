@@ -1,0 +1,91 @@
+==============================================================================================================
+CFG191_s4_scorecard -- item (d): the 9/14 vs 6/14 scorecard, recounted
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+input: <repo>/campaign_fresh_gravity/CFG7_hierarchy_fg001.out (H0 block); sigma values as printed; pass line 2.0 sigma as CFG7 states
+
+--------------------------------------------------------------------------------------------------------------
+D1 control
+--------------------------------------------------------------------------------------------------------------
+  canonical: 14 rows parsed; printed TOTAL (9, 6)
+  alt: 14 rows parsed; printed TOTAL (9, 6)
+  [PASS] D1a 14 rows parsed on each footing
+  all 14 rows, 2.0 sigma (as CFG7)                               canonical: ownership 9 vs rival 6
+  all 14 rows, 2.0 sigma (as CFG7)                               alt      : ownership 9 vs rival 6
+  13 physical rows (G1 dropped)                                  canonical: ownership 8 vs rival 6
+  13 physical rows (G1 dropped)                                  alt      : ownership 8 vs rival 6
+  [PASS] D1b parsed counts reproduce 9/14 vs 6/14 on both footings (from sigmas and the 2-sigma line, not from the printed TOTAL)
+  [PASS] D1c 13 physical rows give 8 vs 6 on both footings
+
+--------------------------------------------------------------------------------------------------------------
+D2 row classification from the printed sigmas
+--------------------------------------------------------------------------------------------------------------
+  G1  Cassini (no screening constant)                own  0.00/ 0.00  rival   inf/  inf   ownership-only
+  G2  outer-halo globular clusters (M/L_V)           own  0.00/ 0.00  rival  0.00/ 0.11   tie-pass
+  G3  tidal dwarf galaxies (6, Lelli+15)             own  0.00/ 0.00  rival  0.86/ 1.24   tie-pass
+  G4  MW classical dSphs                             own  1.06/ 0.74  rival  3.53/ 3.34   ownership-only
+  G5  M31 dwarfs (LVD)                               own  2.60/ 2.16  rival  5.96/ 5.70   tie-fail
+  G6  M31 dwarfs (Collins+13)                        own  2.54/ 2.32  rival  5.80/ 5.58   tie-fail
+  G7  MW ultra-faints                                own  7.97/ 7.52  rival 13.19/12.82   tie-fail
+  G8  LV dwarfs' host statistic                      own  1.71/ 1.71  rival  3.92/ 3.96   ownership-only
+  G9  cluster-infall BTFR slope                      own  0.11/ 0.11  rival  2.35/ 2.38   ownership-only
+  G10 cluster-infall BTFR zero point                 own  1.30/ 1.30  rival  0.77/ 0.79   tie-pass
+  G11 NGC 1052-DF2                                   own  0.01/ 0.01  rival  2.95/ 3.12   ownership-only
+  G12 NGC 1052-DF4                                   own  0.78/ 0.78  rival  1.45/ 1.49   tie-pass
+  G13 Chae D1 (143 galaxies)                         own  4.08/ 4.08  rival  0.76/ 0.76   rival-only
+  G14 Chae D2 (90 galaxies)                          own  4.29/ 4.29  rival  0.00/ 0.00   rival-only
+  tie-pass ['G2', 'G3', 'G10', 'G12']; tie-fail ['G5', 'G6', 'G7']; discriminating ['G1', 'G4', 'G8', 'G9', 'G11', 'G13', 'G14']
+  [PASS] D2 classification agrees between footings and gives 4 tie-pass, 3 tie-fail, 7 discriminating (5 ownership-only, 2 rival-only)
+
+--------------------------------------------------------------------------------------------------------------
+D3 flags (frozen)
+--------------------------------------------------------------------------------------------------------------
+  F-conv: ['G1']
+  F-dup(second of pair): ['G6', 'G10', 'G12', 'G14']
+  F-best-variant rival: ['G8', 'G9', 'G10', 'G11']
+  F-post: only H8 (fossil gas) is stated post hoc in the record and it is not among the 14; whether the class-A rule was formed after h43 / f13 was NOT checkable from the documents I read (not scored).
+  G1 rival 'inf' is a declared convention (the strict law fails Cassini by construction); ownership's G1 pass is by construction (the Sun owns no phantom).
+
+--------------------------------------------------------------------------------------------------------------
+D4 recounts (each footing)
+--------------------------------------------------------------------------------------------------------------
+  discriminating rows only (7)                                   canonical: ownership 5 vs rival 2
+  discriminating rows, G1 dropped (6)                            canonical: ownership 4 vs rival 2
+  dedup (drop G6, G10, G12, G14): 10 rows                        canonical: ownership 7 vs rival 3
+  dedup and G1 dropped: 9 rows                                   canonical: ownership 6 vs rival 3
+  threshold 2.5 sigma (both columns)                             canonical: ownership 9 vs rival 7
+  threshold 3.0 sigma (both columns)                             canonical: ownership 11 vs rival 8
+  threshold 3.0 sigma, G1 dropped                                canonical: ownership 10 vs rival 8
+  column swap (control)                                          canonical: ownership 6 vs rival 9
+  leave-one-row-out (ownership minus rival): 2 to 4
+  [ADDED after the freeze, not a frozen variant] all flagged rows out (G1, G6, G10, G12, G14, G8, G9, G11): 6 rows canonical: ownership 3 vs rival 3
+  discriminating rows only (7)                                   alt      : ownership 5 vs rival 2
+  discriminating rows, G1 dropped (6)                            alt      : ownership 4 vs rival 2
+  dedup (drop G6, G10, G12, G14): 10 rows                        alt      : ownership 7 vs rival 3
+  dedup and G1 dropped: 9 rows                                   alt      : ownership 6 vs rival 3
+  threshold 2.5 sigma (both columns)                             alt      : ownership 11 vs rival 7
+  threshold 3.0 sigma (both columns)                             alt      : ownership 11 vs rival 7
+  threshold 3.0 sigma, G1 dropped                                alt      : ownership 10 vs rival 7
+  column swap (control)                                          alt      : ownership 6 vs rival 9
+  leave-one-row-out (ownership minus rival): 2 to 4
+  [ADDED after the freeze, not a frozen variant] all flagged rows out (G1, G6, G10, G12, G14, G8, G9, G11): 6 rows alt      : ownership 3 vs rival 3
+  one-sided sign test on the 7 discriminating rows: 5 of 7 favour ownership, p = 0.227; on the 6 physical ones: 4 of 6, p = 0.344
+  [ADDED after the freeze, reported as a finding] with every flagged row out the count is a tie: {'canonical': (3, 3), 'alt': (3, 3)}; it is not a reversal.
+  variants where ownership is NOT strictly ahead: none
+  [PASS] D4 ownership is strictly ahead of the rival in every FROZEN recount variant (all 14, 13, discriminating, dedup, thresholds 2.5/3.0) on both footings
+
+--------------------------------------------------------------------------------------------------------------
+D5 README double-count audit
+--------------------------------------------------------------------------------------------------------------
+  README list item -> scorecard rows: Chae -> ['G13', 'G14']; Solar System (Cassini) -> ['G1']; Coma UDGs -> []; DR4 -> []
+  [PASS] D5 Chae = G13+G14, Solar System = G1; Coma UDGs and DR4 are not scorecard rows (two of the README's 'against committed tests' items are also inside the 9/14 vs 6/14)
+  R8 note: the rival column is the record's 1-D QUMOND EFE recipe (h43 / Famaey-McGaugh 2012 eq 60; read in CFG7_common/h43 headers) -- not E7 and not exactly F(z+ze)-F(ze).
+
+--------------------------------------------------------------------------------------------------------------
+VERDICT (frozen rule)
+--------------------------------------------------------------------------------------------------------------
+  FINDING (d) scorecard: AGREES WITH QUALIFICATION
+         9/14 vs 6/14 reproduced; 8 vs 6 without G1. Only 7 rows differ (5 ownership, 2 rival; sign test p=0.227); 4 tie-pass, 3 tie-fail. Dedup 7 vs 3 of 10; all flagged rows out (3, 3). Threshold 3.0: (11, 8) canonical / (11, 7) alt. G1 is a declared convention; G13/G14 (Chae) and G1 (Cassini) are counted twice in the README's list. The order never reverses in any variant run (a tie appears in one variant added after the freeze), but the margin is threshold- and row-dependent and the rival is the QUMOND-1D recipe, not E7.
+
+==============================================================================================================
+CHECKS: 6/6 pass; load-bearing failures: 0  (0 s)

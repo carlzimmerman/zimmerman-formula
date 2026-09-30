@@ -1,0 +1,95 @@
+==============================================================================================================
+CFG191_s5b_pipeline_tier2 -- item (e) tier 2: P2 merge value through the frozen wide-binary estimator
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+frozen pipeline imported read-only from <repo>/prep_2026/gaia_dr4_prep/wide_binary_pipeline.py
+
+--------------------------------------------------------------------------------------------------------------
+solver controls (own code)
+--------------------------------------------------------------------------------------------------------------
+  nu_RAR  isolated limit (y_ext=1e-6): QUMOND max|B/nu-1| = 1.01e-03, AQUAL 2.84e-03 (Picard 100 its, max dB 6.6e-03)
+  [PASS] S1 nu_RAR: isolated-limit reproduction of B(y) = nu(y): QUMOND < 3e-3, AQUAL < 6e-3 over 5e-3 < r < 50 r_M
+  P2      isolated limit (y_ext=1e-6): QUMOND max|B/nu-1| = 1.02e-03, AQUAL 2.86e-03 (Picard 100 its, max dB 6.6e-03)
+  [PASS] S1 P2: isolated-limit reproduction of B(y) = nu(y): QUMOND < 3e-3, AQUAL < 6e-3 over 5e-3 < r < 50 r_M
+
+--------------------------------------------------------------------------------------------------------------
+exact isolated QUMOND two-body benchmark f_tm(y) (own)
+--------------------------------------------------------------------------------------------------------------
+  nu_RAR : quadrature control (q->0): |exact/nu-1| = 0.0004 (y=1), 0.0001 (y=10); f_tm(y) = 1.60, 1.68, 1.74, 1.69, 1.41 at y = 3.162, 5.62, 10, 17.8, 31.6
+  [PASS] S2 nu_RAR: two-body quadrature control within 1% (y=1) and 5% (y=10), f_tm > 1 at the anchor
+  P2     : quadrature control (q->0): |exact/nu-1| = 0.0015 (y=1), 0.0002 (y=10); f_tm(y) = 1.46, 1.46, 1.46, 1.46, 1.46 at y = 3.162, 5.62, 10, 17.8, 31.6
+  [PASS] S2 P2: two-body quadrature control within 1% (y=1) and 5% (y=10), f_tm > 1 at the anchor
+  the registered (Route A) benchmark, for comparison, is f_tm ~ 1.4-1.8 (Amendment 10); mine is the nu_RAR row above.
+
+--------------------------------------------------------------------------------------------------------------
+solver tables for 4 cases x 2 footings
+--------------------------------------------------------------------------------------------------------------
+  table nu_RAR  canonical g_ext=1.778e-10: y_extN=1.2893 nu0=1.4733 L0=0.3675; Picard 140 its max dB 1.9e-03; saturated B_par 1.4743 (analytic 1.4733), B_perp 1.2592 (analytic 1.2599)
+  table nu_RAR  alt       g_ext=1.778e-10: y_extN=0.9924 nu0=1.5855 L0=0.4117; Picard 140 its max dB 2.4e-03; saturated B_par 1.5865 (analytic 1.5855), B_perp 1.3335 (analytic 1.3344)
+  table P2      canonical g_ext=1.778e-10: y_extN=1.4643 nu0=1.2973 L0=0.2545; Picard 140 its max dB 3.6e-03; saturated B_par 1.2978 (analytic 1.2973), B_perp 1.1582 (analytic 1.1582)
+  table P2      alt       g_ext=1.778e-10: y_extN=1.1510 nu0=1.3670 L0=0.3028; Picard 140 its max dB 6.4e-04; saturated B_par 1.3672 (analytic 1.3670), B_perp 1.1973 (analytic 1.1977)
+  table nu_RAR  canonical g_ext=2.146e-10: y_extN=1.6608 nu0=1.3805 L0=0.3248; Picard 140 its max dB 1.2e-03; saturated B_par 1.3816 (analytic 1.3805), B_perp 1.1990 (analytic 1.1994)
+  table nu_RAR  alt       g_ext=2.146e-10: y_extN=1.2889 nu0=1.4735 L0=0.3675; Picard 140 its max dB 1.4e-03; saturated B_par 1.4744 (analytic 1.4735), B_perp 1.2593 (analytic 1.2600)
+  table P2      canonical g_ext=2.146e-10: y_extN=1.8466 nu0=1.2416 L0=0.2131; Picard 140 its max dB 1.2e-03; saturated B_par 1.2422 (analytic 1.2416), B_perp 1.1273 (analytic 1.1273)
+  table P2      alt       g_ext=2.146e-10: y_extN=1.4638 nu0=1.2974 L0=0.2546; Picard 140 its max dB 4.0e-04; saturated B_par 1.2979 (analytic 1.2974), B_perp 1.1582 (analytic 1.1583)
+  [PASS] S3 saturated solver tensors match the linear-response analytic tensors (par to 2%, perp to 2%) in every table
+  elapsed 41 s
+
+--------------------------------------------------------------------------------------------------------------
+pipeline runs (frozen estimator, my injection); one master + model per footing per seed
+--------------------------------------------------------------------------------------------------------------
+  canonical seed 4242: done (46 s elapsed)
+  canonical seed 1111: done (51 s elapsed)
+  canonical seed 2222: done (56 s elapsed)
+  canonical seed 3333: done (60 s elapsed)
+  canonical seed 5555: done (65 s elapsed)
+  canonical seed 7777: done (69 s elapsed)
+  alt       seed 4242: done (76 s elapsed)
+  alt       seed 1111: done (83 s elapsed)
+  alt       seed 2222: done (90 s elapsed)
+  alt       seed 3333: done (95 s elapsed)
+  alt       seed 5555: done (100 s elapsed)
+  alt       seed 7777: done (105 s elapsed)
+
+--------------------------------------------------------------------------------------------------------------
+RESULTS: debiased gamma-hat (mean over seeds; rms), floor = total-mass grade, top = benchmark-corrected grade
+--------------------------------------------------------------------------------------------------------------
+  kernel  footing       g_ext |   floor    rms |     top    rms | point sqrt(nu0) | kappa range
+  nu_RAR  canonical 1.778e-10 |  1.1596 0.0117 |  1.1842 0.0122 | 1.2138 | 0.995-1.035
+  nu_RAR  alt       1.778e-10 |  1.2046 0.0120 |  1.2262 0.0094 | 1.2592 | 0.989-1.035
+  P2      canonical 1.778e-10 |  1.0890 0.0071 |  1.1023 0.0102 | 1.1390 | 1.004-1.036
+  P2      alt       1.778e-10 |  1.1113 0.0040 |  1.1267 0.0084 | 1.1692 | 0.999-1.040
+  nu_RAR  canonical 2.146e-10 |  1.1212 0.0088 |  1.1424 0.0081 | 1.1749 | 1.002-1.038
+  nu_RAR  alt       2.146e-10 |  1.1468 0.0064 |  1.1722 0.0034 | 1.2139 | 0.996-1.042
+  P2      canonical 2.146e-10 |  1.0630 0.0082 |  1.0772 0.0066 | 1.1143 | 1.010-1.042
+  P2      alt       2.146e-10 |  1.0794 0.0062 |  1.0990 0.0100 | 1.1390 | 1.002-1.043
+
+--------------------------------------------------------------------------------------------------------------
+CONTROL: reproduction of the registered Arm A anchors (nu_RAR, g_ext 1.778e-10)
+--------------------------------------------------------------------------------------------------------------
+  canonical: mine floor 1.1596 / top 1.1842  vs registered 1.1614 / 1.1814   (deviations -0.0018 / +0.0028)
+  alt      : mine floor 1.2046 / top 1.2262  vs registered 1.1917 / 1.2267   (deviations +0.0129 / -0.0005)
+  [PASS] C-ARM-A my nu_RAR runs reproduce the four registered Arm A anchors within 0.020 (mean of the battery)
+
+--------------------------------------------------------------------------------------------------------------
+THE P2 MERGE VALUE (small table)
+--------------------------------------------------------------------------------------------------------------
+  kernel = P2 = sqrt(1 + a0/g_N); nu_RAR beside it for the kernel dependence; Arm A registered band: canonical 1.1614-1.1814, alt 1.1917-1.2267
+  kernel  a0 footing  g_ext [m/s2]   floor     top  sqrt(nu0) point   distance of floor/top below Arm A floor (sigma_fit 0.019)
+  P2      canonical      1.778e-10  1.0890  1.1023           1.1390   +3.8 / +3.1
+  nu_RAR  canonical      1.778e-10  1.1596  1.1842           1.2138   +0.1 / -1.2
+  P2      alt            1.778e-10  1.1113  1.1267           1.1692   +4.2 / +3.4
+  nu_RAR  alt            1.778e-10  1.2046  1.2262           1.2592   -0.7 / -1.8
+  P2      canonical      2.146e-10  1.0630  1.0772           1.1143   +5.2 / +4.4
+  nu_RAR  canonical      2.146e-10  1.1212  1.1424           1.1749   +2.1 / +1.0
+  P2      alt            2.146e-10  1.0794  1.0990           1.1390   +5.9 / +4.9
+  nu_RAR  alt            2.146e-10  1.1468  1.1722           1.2139   +2.4 / +1.0
+  [PASS] T2-a P2 merge (canonical, primary g_ext) sits below Arm A's floor 1.1614 by more than 1 sigma_fit (0.019)
+         if this fails the crude-transfer flag of s5 is not supported
+  [PASS] T2-b P2 merge (alt, primary g_ext) sits below Arm A's alt floor 1.1917 by more than 1 sigma_fit
+  FINDING (e) tier 2 P2 merge value: COMPUTED
+         P2 at g_ext 1.778e-10: canonical 1.0890-1.1023, alt 1.1113-1.1267; nu_RAR (control kernel) canonical 1.1596-1.1842, alt 1.2046-1.2262.
+  total elapsed 105 s
+
+==============================================================================================================
+CHECKS: 8/8 pass; load-bearing failures: 0  (105 s)

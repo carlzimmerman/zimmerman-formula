@@ -1,0 +1,233 @@
+{
+ "name": "CFG191_s1_theorem",
+ "mutate": true,
+ "checks": [
+  {
+   "label": "A1a F=c z satisfies P3 exactly (sympy)",
+   "ok": true,
+   "lb": true,
+   "detail": "residual = 0"
+  },
+  {
+   "label": "A1b P2 is strictly concave (F''<0 for z>0, sympy) and F'(0+)=infinity",
+   "ok": true,
+   "lb": true,
+   "detail": "F''=-1/(4 (z^2+z)^(3/2)); strict concavity with F(0)=0 gives STRICT sub-additivity, so the residual has one sign (suppression) for every strictly concave F"
+  },
+  {
+   "label": "A1c P2 = inverse of the framework mu-form M(x)=(sqrt(1+4x^2)-1)/2 to 1e-40",
+   "ok": true,
+   "lb": true,
+   "detail": "max |M(F(z))-z| = 1.71e-49"
+  },
+  {
+   "label": "A1d P2 residual is negative at all six declared points (sympy) and the two evaluations agree to 1e-30",
+   "ok": true,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A1e [M1] merged P2 rivers interact under the composition rule as run: residual nonzero at all six points",
+   "ok": false,
+   "lb": true,
+   "detail": "under the ownership mutant the residual is identically 0"
+  },
+  {
+   "label": "A2a control: linear F=2z has |r|<1e-40 everywhere",
+   "ok": true,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A2b P2: max r < 0 on the whole grid",
+   "ok": false,
+   "lb": true,
+   "detail": "max r = 0.0"
+  },
+  {
+   "label": "A2b nu_RAR z: max r < 0 on the whole grid  (kernel is NOT concave on the sampled range; check is informational)",
+   "ok": false,
+   "lb": false,
+   "detail": "max r = 0.0"
+  },
+  {
+   "label": "A2b nu_simple z: max r < 0 on the whole grid",
+   "ok": false,
+   "lb": true,
+   "detail": "max r = 0.0"
+  },
+  {
+   "label": "A3a [M2 i] the vector test detects non-additivity (min ratio > 1e-6) -- must FAIL for the linear map",
+   "ok": false,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A3a' [M2 ii] the P2 residual is detected with the trivial pair set (min ratio > 1e-6) -- must FAIL",
+   "ok": false,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A4a only the ownership composition has residual 0 together with a sqrt small-z regime",
+   "ok": true,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A4b at least two further escape classes pass the residual test (linear anisotropic; linear-kernel; screened at small r/xi) but have no sqrt regime at that scale",
+   "ok": true,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A4c the screened law's residual tends to 0 as r/xi->0 and to the P2 residual as r/xi->infinity",
+   "ok": true,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A4d E7 also has an EFE (ratio<1 at all tested (b,g_ext))",
+   "ok": true,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A5a 1-D survival ratios within 0.02 of the README values (five rows)",
+   "ok": false,
+   "lb": true,
+   "detail": ""
+  },
+  {
+   "label": "A5b E7 survival ratios within 0.02 of the README values (five rows)",
+   "ok": true,
+   "lb": false,
+   "detail": ""
+  }
+ ],
+ "findings": [
+  {
+   "item": "(a) theorem",
+   "verdict": "see checks",
+   "detail": "Theorem reproduced with premises P1-P6. Within CFG179's own scope (a law that keeps a sqrt regime at the scale in question) only an ownership-type nonlocal composition escapes: A4a. The wording 'only B escapes' omits that laws which are Newtonian/linear at the scale (screened, r-dependent laws such as Arm B and the chain; linear-in-source laws) also have zero residual; they escape by not having the sqrt pull there. It also omits premise P2 (universal free fall / difference rule): E7 is a composition outside P2 and still has an EFE (A4d)."
+  }
+ ],
+ "data": {
+  "six_points": [
+   {
+    "z": "0.01",
+    "ze": "0.1",
+    "r_sympy": -0.08273313105362592,
+    "r_root": -0.08273313105362592,
+    "r_run": 0.0
+   },
+   {
+    "z": "0.01",
+    "ze": "1",
+    "r_sympy": -0.0898965410186567,
+    "r_root": -0.0898965410186567,
+    "r_run": 0.0
+   },
+   {
+    "z": "0.1",
+    "ze": "0.1",
+    "r_sympy": -0.17342700951444434,
+    "r_root": -0.17342700951444434,
+    "r_run": 0.0
+   },
+   {
+    "z": "0.1",
+    "ze": "1",
+    "r_sympy": -0.22600762605156868,
+    "r_root": -0.22600762605156868,
+    "r_run": 0.0
+   },
+   {
+    "z": "1",
+    "ze": "0.1",
+    "r_sympy": -0.22600762605156868,
+    "r_root": -0.22600762605156868,
+    "r_run": 0.0
+   },
+   {
+    "z": "1",
+    "ze": "1",
+    "r_sympy": -0.378937381963012,
+    "r_root": -0.378937381963012,
+    "r_run": 0.0
+   }
+  ],
+  "A2": {
+   "P2": {
+    "max": 0.0,
+    "min": 0.0,
+    "concave": true
+   },
+   "nu_RAR z": {
+    "max": 0.0,
+    "min": 0.0,
+    "concave": false
+   },
+   "nu_simple z": {
+    "max": 0.0,
+    "min": 0.0,
+    "concave": true
+   },
+   "linear 2z (control)": {
+    "max": 0.0,
+    "min": 0.0,
+    "concave": false
+   }
+  },
+  "catalogue": [
+   {
+    "law": "(i) ownership composition g_int=F(z), F=P2",
+    "maxrel": 0.0,
+    "slope": 0.5000005024953046,
+    "note": "nonlocal (acts on the system's own field)"
+   },
+   {
+    "law": "(ii) anisotropic linear G=Ax (scalar cut along x)",
+    "maxrel": 0.0,
+    "slope": 1.0,
+    "note": "local, linear, no BTFR"
+   },
+   {
+    "law": "(iii) linear-in-source, non-Newtonian kernel, F=c z",
+    "maxrel": 3.7932620008026184e-14,
+    "slope": 1.0,
+    "note": "local, linear, V^2~M"
+   },
+   {
+    "law": "(iv) screened F=z+(P2-z)s(r/xi), r/xi=0.01",
+    "maxrel": 0.0009039656243981915,
+    "slope": 0.9546481327067361,
+    "note": "r-dependent (Arm B / chain class)"
+   },
+   {
+    "law": "(iv) screened F=z+(P2-z)s(r/xi), r/xi=0.3",
+    "maxrel": 0.42761432155136775,
+    "slope": 0.5055085395070003,
+    "note": "r-dependent (Arm B / chain class)"
+   },
+   {
+    "law": "(iv) screened F=z+(P2-z)s(r/xi), r/xi=3",
+    "maxrel": 0.8905376242797569,
+    "slope": 0.500056190192475,
+    "note": "r-dependent (Arm B / chain class)"
+   },
+   {
+    "law": "(iv) screened F=z+(P2-z)s(r/xi), r/xi=100",
+    "maxrel": 0.9003744213909579,
+    "slope": 0.5000005526198392,
+    "note": "r-dependent (Arm B / chain class)"
+   },
+   {
+    "law": "(vi) P2 difference rule (the law refereed)",
+    "maxrel": 0.9003833804513118,
+    "slope": 0.5000005024953046,
+    "note": "local; EFE present"
+   }
+  ]
+ }
+}

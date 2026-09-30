@@ -1,0 +1,66 @@
+==============================================================================================================
+CFG191_s5b_pipeline_tier2 -- item (e) tier 2: P2 merge value through the frozen wide-binary estimator   [MUTATE=1]
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+frozen pipeline imported read-only from <repo>/prep_2026/gaia_dr4_prep/wide_binary_pipeline.py
+MUTATE: the CONTROL (Arm A reproduction) is run with P2 in place of nu_RAR
+
+--------------------------------------------------------------------------------------------------------------
+solver controls (own code)
+--------------------------------------------------------------------------------------------------------------
+  nu_RAR  isolated limit (y_ext=1e-6): QUMOND max|B/nu-1| = 1.01e-03, AQUAL 2.84e-03 (Picard 100 its, max dB 6.6e-03)
+  [PASS] S1 nu_RAR: isolated-limit reproduction of B(y) = nu(y): QUMOND < 3e-3, AQUAL < 6e-3 over 5e-3 < r < 50 r_M
+  P2      isolated limit (y_ext=1e-6): QUMOND max|B/nu-1| = 1.02e-03, AQUAL 2.86e-03 (Picard 100 its, max dB 6.6e-03)
+  [PASS] S1 P2: isolated-limit reproduction of B(y) = nu(y): QUMOND < 3e-3, AQUAL < 6e-3 over 5e-3 < r < 50 r_M
+
+--------------------------------------------------------------------------------------------------------------
+exact isolated QUMOND two-body benchmark f_tm(y) (own)
+--------------------------------------------------------------------------------------------------------------
+  nu_RAR : quadrature control (q->0): |exact/nu-1| = 0.0004 (y=1), 0.0001 (y=10); f_tm(y) = 1.60, 1.68, 1.74, 1.69, 1.41 at y = 3.162, 5.62, 10, 17.8, 31.6
+  [PASS] S2 nu_RAR: two-body quadrature control within 1% (y=1) and 5% (y=10), f_tm > 1 at the anchor
+  P2     : quadrature control (q->0): |exact/nu-1| = 0.0015 (y=1), 0.0002 (y=10); f_tm(y) = 1.46, 1.46, 1.46, 1.46, 1.46 at y = 3.162, 5.62, 10, 17.8, 31.6
+  [PASS] S2 P2: two-body quadrature control within 1% (y=1) and 5% (y=10), f_tm > 1 at the anchor
+  the registered (Route A) benchmark, for comparison, is f_tm ~ 1.4-1.8 (Amendment 10); mine is the nu_RAR row above.
+
+--------------------------------------------------------------------------------------------------------------
+solver tables for 1 cases x 2 footings
+--------------------------------------------------------------------------------------------------------------
+  table P2      canonical g_ext=1.778e-10: y_extN=1.4643 nu0=1.2973 L0=0.2545; Picard 140 its max dB 3.6e-03; saturated B_par 1.2978 (analytic 1.2973), B_perp 1.1582 (analytic 1.1582)
+  table P2      alt       g_ext=1.778e-10: y_extN=1.1510 nu0=1.3670 L0=0.3028; Picard 140 its max dB 6.4e-04; saturated B_par 1.3672 (analytic 1.3670), B_perp 1.1973 (analytic 1.1977)
+  [PASS] S3 saturated solver tensors match the linear-response analytic tensors (par to 2%, perp to 2%) in every table
+  elapsed 22 s
+
+--------------------------------------------------------------------------------------------------------------
+pipeline runs (frozen estimator, my injection); one master + model per footing per seed
+--------------------------------------------------------------------------------------------------------------
+  canonical seed 4242: done (27 s elapsed)
+  canonical seed 1111: done (31 s elapsed)
+  canonical seed 2222: done (38 s elapsed)
+  canonical seed 3333: done (44 s elapsed)
+  canonical seed 5555: done (51 s elapsed)
+  canonical seed 7777: done (56 s elapsed)
+  alt       seed 4242: done (63 s elapsed)
+  alt       seed 1111: done (70 s elapsed)
+  alt       seed 2222: done (78 s elapsed)
+  alt       seed 3333: done (85 s elapsed)
+  alt       seed 5555: done (94 s elapsed)
+  alt       seed 7777: done (104 s elapsed)
+
+--------------------------------------------------------------------------------------------------------------
+RESULTS: debiased gamma-hat (mean over seeds; rms), floor = total-mass grade, top = benchmark-corrected grade
+--------------------------------------------------------------------------------------------------------------
+  kernel  footing       g_ext |   floor    rms |     top    rms | point sqrt(nu0) | kappa range
+  P2      canonical 1.778e-10 |  1.0869 0.0046 |  1.1027 0.0070 | 1.1390 | 1.006-1.036
+  P2      alt       1.778e-10 |  1.1117 0.0055 |  1.1296 0.0070 | 1.1692 | 0.998-1.039
+
+--------------------------------------------------------------------------------------------------------------
+CONTROL: reproduction of the registered Arm A anchors (nu_RAR, g_ext 1.778e-10) -- MUTATE: with P2 in place of nu_RAR
+--------------------------------------------------------------------------------------------------------------
+  canonical: mine floor 1.0869 / top 1.1027  vs registered 1.1614 / 1.1814   (deviations -0.0745 / -0.0787)
+  alt      : mine floor 1.1117 / top 1.1296  vs registered 1.1917 / 1.2267   (deviations -0.0800 / -0.0971)
+  [FAIL] C-ARM-A my nu_RAR runs reproduce the four registered Arm A anchors within 0.020 (mean of the battery) [MUTATE: with the P2 kernel this must FAIL]
+  total elapsed 104 s
+
+==============================================================================================================
+CHECKS: 5/6 pass; load-bearing failures: 1  (104 s)
+MUTATE control BITES (exit 1): C-ARM-A my nu_RAR runs reproduce the four registered Arm A anchors within 0.020 (mean of the battery) [MUTATE: with the P2 kernel this must FAIL]

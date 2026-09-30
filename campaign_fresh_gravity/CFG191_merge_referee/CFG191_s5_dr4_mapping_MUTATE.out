@@ -1,0 +1,97 @@
+==============================================================================================================
+CFG191_s5_dr4_mapping -- item (e): the DR4 mapping against the preregistration   [MUTATE=1]
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+preregistration <repo>/prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md read-only; sha256 now 97aa97c4...d3ad25 (at phase-1 writing: 97aa97c4...d3ad25)
+  [PASS] (not load-bearing) preregistration file hash unchanged since phase 1 (informational; the file is append-only)
+
+--------------------------------------------------------------------------------------------------------------
+quotes (each asserted present in the frozen text)
+--------------------------------------------------------------------------------------------------------------
+  missing quotes: none
+  [PASS] E0 every quoted preregistration string is present in the frozen file
+  Arm A definition (Amendment 11(a)): 'the full nonlinear AQUAL-EFE solve of the frozen kernel taken as modified gravity with no coherence length'; the solve's docstring (aqual_efe_full_solve_2026.py) names the kernel: Route A, nu_RAR = 1/(1-exp(-sqrt y)), y_extN = 1.28903/0.99240.
+  [PASS] E0b the solve file names the Route A / nu_RAR kernel and y_extN 1.28903 / 0.99240
+
+--------------------------------------------------------------------------------------------------------------
+E1  control: distances of the registered arms from 1.000 in sigma_tot = 0.028 (sqrt(0.019^2+0.02^2) = 0.0276)
+--------------------------------------------------------------------------------------------------------------
+  Arm A floor can                  1.1614  z from Newton =  5.76 sigma_tot
+  Arm A top can                    1.1814  z from Newton =  6.48 sigma_tot
+  Arm A floor alt                  1.1917  z from Newton =  6.85 sigma_tot
+  Arm A top alt                    1.2267  z from Newton =  8.10 sigma_tot
+  MI alpha=1 (Amdt 2, retired)     1.0799  z from Newton =  2.85 sigma_tot
+  MI alpha=2 (Amdt 4, in force)    1.0310  z from Newton =  1.11 sigma_tot
+  chain ceiling can                1.0725  z from Newton =  2.59 sigma_tot
+  chain ceiling alt                1.0900  z from Newton =  3.21 sigma_tot
+  Arm B                            1.0000  z from Newton =  0.00 sigma_tot
+  Arm C                            1.0000  z from Newton =  0.00 sigma_tot
+  [PASS] E1 distances 5.76, 6.48, 6.85, 8.10, 2.85 reproduce the README's 5.8-6.5 / 6.8-8.1 / 2.9 (to its 0.06 rounding)
+
+--------------------------------------------------------------------------------------------------------------
+E2  kernel identity: linear-response tensors for a point mass in a uniform field (own derivation)
+--------------------------------------------------------------------------------------------------------------
+  QUMOND (Poisson-solved): Phi_Q(k) = nu0 (1 + L k_z^2/k^2) Phi_N(k), L = dln nu/dln y at the Newtonian external field y_e.
+    real space: Phi_Q = -GM nu0 [ (1 + L/2)/r - (L/2) z^2/r^3 ]  =>  radial boost B_r(theta) = nu0 [1 + (L/2) sin^2 theta]; B_par = nu0, B_perp = nu0 (1 + L/2); sphere average nu0 (1 + L/3).
+  AQUAL: operator mu0 [lap + L0 d_z^2] phi = 4 pi G rho with L0 = dln mu/dln x (x = observed field/a0); rescaled Green's function gives B_par = 1/mu0 = nu0, B_perp = nu0/sqrt(1+L0).
+  algebraic / local (MI-type) tensor: perpendicular perturbation nu0, parallel perturbation d(y nu)/dy = nu0 (1+L).
+  [PASS] E2a sympy: lap(r) = 2/r, so F^-1[1/k^4] = -r/(8 pi) solves lap f = -1/(4 pi r)*(... ) as used (checks the k_z^2/k^4 -> (1/8pi)(1/r - z^2/r^3) step)
+  kernel  footing     x_ext   y_extN     nu0        L      L0 | AQUAL par/perp | QUMOND par/perp | algebraic(MI) par/perp | sqrt(nu0)
+  nu_RAR  canonical  1.8996  1.28930  1.4733  -0.2687  0.3675 | 1.4733/1.2599 | 1.4733/1.2754 | 1.0774/1.4733 | 1.2138
+  nu_RAR  alt        1.5735  0.99240  1.5855  -0.2916  0.4117 | 1.5855/1.3344 | 1.5855/1.3543 | 1.1231/1.5855 | 1.2592
+  P2      canonical  1.8996  1.46427  1.2973  -0.2029  0.2545 | 1.2973/1.1582 | 1.2973/1.1657 | 1.0341/1.2973 | 1.1390
+  P2      alt        1.5735  1.15098  1.3670  -0.2325  0.3028 | 1.3670/1.1977 | 1.3670/1.2082 | 1.0493/1.3670 | 1.1692
+  [PASS] E2b [control] nu_RAR: y_extN 1.28903/0.99240 (to 5e-3), sqrt(nu(y_extN)) 1.2139/1.2592 (to 1e-3), B_par 1.4732, B_perp 1.2598 (to 3e-3 relative)
+  [PASS] E2c [control] P2: y_extN 1.4647 / 1.1513 (to 5e-3) and sqrt(nu) = 1.1390 (to 1e-3) -- the frozen section-1.1 numbers
+  the two kernels differ: y_extN 1.289 (nu_RAR) vs 1.464 (P2) canonical; sqrt(nu0) 1.2138 vs 1.1390
+  NOTE: CFG179's quoted P2 'perpendicular 1.139 / parallel 1.017' are the ALGEBRAIC (MI-type) eigenvalues (perp=nu0, par=nu0(1+L)); the Poisson-solved MG tensor (Arm A's structure, QUMOND or AQUAL) has the LARGE axis PARALLEL (B_par = nu0).
+
+--------------------------------------------------------------------------------------------------------------
+E3  transfer to the estimator: crude, labelled
+--------------------------------------------------------------------------------------------------------------
+  canonical: nu_RAR AQUAL sphere-avg 1.1537, P2 1.0975; transfer T1 (band/sqrt(nu0)) 0.957-0.973 -> P2 1.0897-1.1085; T2 (band/sphere-avg) 1.007-1.024 -> P2 1.1048-1.1239   (Arm A band 1.1614-1.1814)
+  alt      : nu_RAR AQUAL sphere-avg 1.1908, P2 1.1199; transfer T1 (band/sqrt(nu0)) 0.946-0.974 -> P2 1.1065-1.1390; T2 (band/sphere-avg) 1.001-1.030 -> P2 1.1207-1.1536   (Arm A band 1.1917-1.2267)
+  MUTATE M7: P2's tensors replaced by Route A's (kernel swap) before the transfer
+  canonical: P2 crude range 1.1613-1.1814; below Arm A floor 1.1614 by -0.0200-0.0001 = -1.1-0.0 sigma_fit = -0.7-0.0 sigma_tot
+  alt      : P2 crude range 1.1917-1.2267; below Arm A floor 1.1917 by -0.0350-0.0000 = -1.8-0.0 sigma_fit = -1.2-0.0 sigma_tot
+  [FAIL] E3 [M7 bites here] a P2 merge, transferred through Arm A's own band-to-point-field ratios, sits below Arm A's floor by more than 1 sigma_fit (0.019) on both footings
+  Crude means: the ratios T1/T2 are Route A's, applied to P2 without re-solving. The pipeline-grade P2 number is CFG191_s5b_pipeline_tier2.py.
+
+--------------------------------------------------------------------------------------------------------------
+E4  arm table on a grid of gamma-hat (frozen z-rule, sigma_tot 0.028): which readings are consistent (|z|<2) / disfavoured (|z|>3)
+--------------------------------------------------------------------------------------------------------------
+  gamma-hat | Arm A (floor,canonical | Arm A (top,canonical)  | P2 merge, crude transf | chain ceiling (canonic | MI alpha=2 in force    | Arm B / Arm C / Newton
+     0.950  | z= -7.6 DISF           | z= -8.3 DISF           | z= -5.6 DISF           | z= -4.4 DISF           | z= -2.9 2-3s           | z= -1.8 cons          
+     1.000  | z= -5.8 DISF           | z= -6.5 DISF           | z= -3.8 DISF           | z= -2.6 2-3s           | z= -1.1 cons           | z= +0.0 cons          
+     1.030  | z= -4.7 DISF           | z= -5.4 DISF           | z= -2.7 2-3s           | z= -1.5 cons           | z= -0.0 cons           | z= +1.1 cons          
+     1.060  | z= -3.6 DISF           | z= -4.3 DISF           | z= -1.7 cons           | z= -0.4 cons           | z= +1.0 cons           | z= +2.1 2-3s          
+     1.084  | z= -2.8 2-3s           | z= -3.5 DISF           | z= -0.8 cons           | z= +0.4 cons           | z= +1.9 cons           | z= +3.0 DISF          
+     1.100  | z= -2.2 2-3s           | z= -2.9 2-3s           | z= -0.2 cons           | z= +1.0 cons           | z= +2.5 2-3s           | z= +3.6 DISF          
+     1.130  | z= -1.1 cons           | z= -1.8 cons           | z= +0.8 cons           | z= +2.1 2-3s           | z= +3.5 DISF           | z= +4.6 DISF          
+     1.160  | z= -0.1 cons           | z= -0.8 cons           | z= +1.9 cons           | z= +3.1 DISF           | z= +4.6 DISF           | z= +5.7 DISF          
+     1.200  | z= +1.4 cons           | z= +0.7 cons           | z= +3.3 DISF           | z= +4.6 DISF           | z= +6.0 DISF           | z= +7.1 DISF          
+     1.250  | z= +3.2 DISF           | z= +2.4 2-3s           | z= +5.1 DISF           | z= +6.3 DISF           | z= +7.8 DISF           | z= +8.9 DISF          
+  pairwise separation |dv|/sigma_tot:
+   Arm A (floor,canonical)               0.0   0.7   2.0   3.2   4.7   5.8
+   Arm A (top,canonical)                 0.7   0.0   2.7   3.9   5.4   6.5
+   P2 merge, crude transfer (canonical)  2.0   2.7   0.0   1.2   2.7   3.8
+   chain ceiling (canonical)             3.2   3.9   1.2   0.0   1.5   2.6
+   MI alpha=2 in force                   4.7   5.4   2.7   1.5   0.0   1.1
+   Arm B / Arm C / Newton                5.8   6.5   3.8   2.6   1.1   0.0
+  reading: DR4 separates the unscreened strict law (Arm A) from Arm B / Arm C by 5.8-6.5 sigma_tot; Arm B and Arm C are the SAME number; the chain (a P2-kernel merge with screening) sits 2.6 sigma_tot above 1.000 at its ceiling and falls onto Newton at larger xi.
+  So a Newtonian result kills Arm A only; a HIGH result (>= 1.084 with the frozen stability conditions) kills Arm C and Arm B (not the chain below 1.157). 'DR4 decides merge vs ownership' holds only for {unscreened strict merge} vs {ownership, screened merges, Newton}.
+
+--------------------------------------------------------------------------------------------------------------
+mapping claims (frozen 'what would falsify' check)
+--------------------------------------------------------------------------------------------------------------
+  MUTATE M8: the merge is mapped to Arm B (1.000) instead of Arm A
+  [FAIL] E5 [M8 bites here] CFG179's mapped merge value (Arm A floor) exceeds the frozen 3-sigma_tot-from-Newton edge 1 + 3*0.028 = 1.084
+  [PASS] E6 every CFG179 DR4 number equals an already-registered value (Arm A band, MI alpha=1 1.0799, Arm C 1.000): the mapping adds no new decision row
+
+--------------------------------------------------------------------------------------------------------------
+VERDICT (frozen rule)
+--------------------------------------------------------------------------------------------------------------
+
+==============================================================================================================
+CHECKS: 8/10 pass; load-bearing failures: 2  (0 s)
+MUTATE control BITES (exit 1): E3 [M7 bites here] a P2 merge, transferred through Arm A's own band-to-point-field ratios, sits below Arm A's floor by more than 1 sigma_fit (0.019) on both footings; E5 [M8 bites here] CFG179's mapped merge value (Arm A floor) exceeds the frozen 3-sigma_tot-from-Newton edge 1 + 3*0.028 = 1.084

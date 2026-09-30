@@ -1,0 +1,108 @@
+==============================================================================================================
+CFG191_s1_theorem -- item (a): the linearity theorem, its premises and its escapes
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+
+--------------------------------------------------------------------------------------------------------------
+PREMISES (frozen before derivation)
+--------------------------------------------------------------------------------------------------------------
+  P1 local single-argument law: observed field g = F(z_tot), z_tot the total Newtonian field (units a0)
+  P2 difference rule (universal free fall): g_int = F(z+ze) - F(ze)
+  P3 'no EFE' := g_int = F(z) for ALL z, ze >= 0
+  P4 regularity: F monotone (or measurable, or bounded on an interval); differentiability NOT needed
+  P5 aligned 1-D fields suffice for the scalar statement; the vector statement needs P3 for every direction pair
+  P6 F(0)=0 (follows from z=ze=0)
+
+--------------------------------------------------------------------------------------------------------------
+A1  symbolic derivation
+--------------------------------------------------------------------------------------------------------------
+  step 0: z=ze=0 in P3 gives F(0)=F(0)+F(0), so F(0)=0 (P6).
+  step 1: P3 is Cauchy additivity F(x+y)=F(x)+F(y) on the half-line; by induction F(n x)=n F(x), then F(q x)=q F(x) for rational q>0.
+  step 2: with P4 (monotone, or bounded on an interval, or measurable), F(x)=F(1) x for every real x>0 (sandwich x between rationals for monotone F).
+          Without P4, Hamel-basis solutions exist (non-measurable; from memory, unverified as a citation); the observed field is monotone in the Newtonian field, so P4 holds.
+  step 3 (if C1): d/d ze of P3 gives F'(z+ze)=F'(ze); ze->0+ gives F' constant, the same result.
+  [PASS] A1a F=c z satisfies P3 exactly (sympy)
+         residual = 0
+  P2: F' = (z + 1/2)/(sqrt(z)*sqrt(z + 1));  F'' = -1/(4*z**(3/2)*(z + 1)**(3/2))
+  F'(0+) = oo
+  [PASS] A1b P2 is strictly concave (F''<0 for z>0, sympy) and F'(0+)=infinity
+         F''=-1/(4 (z^2+z)^(3/2)); strict concavity with F(0)=0 gives STRICT sub-additivity, so the residual has one sign (suppression) for every strictly concave F
+  [PASS] A1c P2 = inverse of the framework mu-form M(x)=(sqrt(1+4x^2)-1)/2 to 1e-40
+         max |M(F(z))-z| = 1.71e-49
+  six declared points: r(z,ze)=F(z+ze)-F(ze)-F(z)   [sympy exact->40 digits | root-finding of M(x)=z | rule as run]
+    z= 0.01 ze= 0.1:      -0.082733131053626 |     -0.082733131053626 |     -0.082733131053626
+    z= 0.01 ze=   1:      -0.089896541018657 |     -0.089896541018657 |     -0.089896541018657
+    z=  0.1 ze= 0.1:       -0.17342700951444 |      -0.17342700951444 |      -0.17342700951444
+    z=  0.1 ze=   1:       -0.22600762605157 |      -0.22600762605157 |      -0.22600762605157
+    z=    1 ze= 0.1:       -0.22600762605157 |      -0.22600762605157 |      -0.22600762605157
+    z=    1 ze=   1:       -0.37893738196301 |      -0.37893738196301 |      -0.37893738196301
+  [PASS] A1d P2 residual is negative at all six declared points (sympy) and the two evaluations agree to 1e-30
+  [PASS] A1e [M1] merged P2 rivers interact under the composition rule as run: residual nonzero at all six points
+         under the ownership mutant the residual is identically 0
+
+--------------------------------------------------------------------------------------------------------------
+A2  strict sub-additivity on a 200 x 200 log grid, mpmath 50 digits
+--------------------------------------------------------------------------------------------------------------
+  P2                    : max r =     -0.01851  min r =      -0.4998   F''<0 on the grid sample: True
+  nu_RAR z              : max r =   -3.693e-11  min r =      -0.7549   F''<0 on the grid sample: False
+  nu_simple z           : max r =     -0.01852  min r =      -0.9985   F''<0 on the grid sample: True
+  linear 2z (control)   : max r =    2.737e-48  min r =   -2.737e-48   F''<0 on the grid sample: False
+  [PASS] A2a control: linear F=2z has |r|<1e-40 everywhere
+  [PASS] A2b P2: max r < 0 on the whole grid
+         max r = -0.01851
+  [PASS] (not load-bearing) A2b nu_RAR z: max r < 0 on the whole grid  (kernel is NOT concave on the sampled range; check is informational)
+         max r = -3.693e-11
+  [PASS] A2b nu_simple z: max r < 0 on the whole grid
+         max r = -0.01852
+  nu_mono: closed form not unambiguous from the documents I read; NOT RUN (declared).
+
+--------------------------------------------------------------------------------------------------------------
+A3  the 3D-vector form
+--------------------------------------------------------------------------------------------------------------
+  P2 vector law, 188876 pairs (|b|/|a|>=1e-2): min |R|/|G(a)| = 1.612e-04, median 2.620e-01; fraction < 1e-6: 0.0000
+  [PASS] A3a P2: min |G(a+b)-G(b)-G(a)|/|G(a)| > 1e-6 over all sampled pairs (incl. parallel, anti-parallel, perpendicular)
+  [PASS] A3b aligned pairs reproduce the 1-D residual exactly
+         max diff 6.11e-15
+  perpendicular pairs: min ratio 8.921e-03; anti-parallel pairs: min ratio 8.150e-03
+  symbolic step: additive+continuous G:R^3->R^3 => G(x)=A x (Cauchy applied along a basis); G(Rx)=R G(x) for all rotations R => A commutes with SO(3) => A=c*Id.
+  without the isotropy premise every linear map A survives (anisotropic linear laws); none is sqrt-like (V^2 ~ M).
+
+--------------------------------------------------------------------------------------------------------------
+A4  escape catalogue: residual test and deep-regime scaling (V^4 ~ M requires F ~ z^(1/2) at small z)
+--------------------------------------------------------------------------------------------------------------
+  law                                                      max |r|/F(z)  small-z slope  note
+  (i) ownership composition g_int=F(z), F=P2                  0.000e+00          0.500  nonlocal (acts on the system's own field)
+  (ii) anisotropic linear G=Ax (scalar cut along x)           0.000e+00          1.000  local, linear, no BTFR
+  (iii) linear-in-source, non-Newtonian kernel, F=c z         3.793e-14          1.000  local, linear, V^2~M
+  (iv) screened F=z+(P2-z)s(r/xi), r/xi=0.01                  9.040e-04          0.955  r-dependent (Arm B / chain class)
+  (iv) screened F=z+(P2-z)s(r/xi), r/xi=0.3                   4.276e-01          0.506  r-dependent (Arm B / chain class)
+  (iv) screened F=z+(P2-z)s(r/xi), r/xi=3                     8.905e-01          0.500  r-dependent (Arm B / chain class)
+  (iv) screened F=z+(P2-z)s(r/xi), r/xi=100                   9.004e-01          0.500  r-dependent (Arm B / chain class)
+  (vi) P2 difference rule (the law refereed)                  9.004e-01          0.500  local; EFE present
+  (vi') E7 (MI worldline composition) x_E7(b,e7)/F_P2(b) with e7=sqrt2 g_ext: b=0.01 g=0.048: 0.722; b=0.01 g=0.845: 0.149; b=0.01 g=1.9: 0.120; b=0.1 g=0.048: 0.913; b=0.1 g=0.845: 0.434; b=0.1 g=1.9: 0.360; b=1.0 g=0.048: 0.988; b=1.0 g=0.845: 0.868; b=1.0 g=1.9: 0.806
+  laws with residual 0 (no EFE): (i) ownership composition g_int=F(z), F=P2 | (ii) anisotropic linear G=Ax (scalar cut along x) | (iii) linear-in-source, non-Newtonian kernel, F=c z
+  laws with residual 0 AND a sqrt regime (slope 0.5) at the same scale: (i) ownership composition g_int=F(z), F=P2
+  [PASS] A4a only the ownership composition has residual 0 together with a sqrt small-z regime
+  [PASS] A4b at least two further escape classes pass the residual test (linear anisotropic; linear-kernel; screened at small r/xi) but have no sqrt regime at that scale
+  [PASS] A4c the screened law's residual tends to 0 as r/xi->0 and to the P2 residual as r/xi->infinity
+  [PASS] A4d E7 also has an EFE (ratio<1 at all tested (b,g_ext))
+
+--------------------------------------------------------------------------------------------------------------
+A5  size of the EFE for P2: survival x_merge/x_iso (1-D) and E7 -- README line T
+--------------------------------------------------------------------------------------------------------------
+  MW Sun 1.9   b=0.01 : 1-D 0.103 (README 0.10)   E7 0.120 (README 0.12)
+  MW Sun 1.9   b=0.1  : 1-D 0.311 (README 0.31)   E7 0.360 (README 0.36)
+  MW Sun 1.9   b=1.0  : 1-D 0.723 (README 0.72)   E7 0.806 (README 0.81)
+  Coma 0.845   b=0.01 : 1-D 0.115 (README 0.12)   E7 0.149 (README 0.15)
+  SPARC 0.048  b=0.01 : 1-D 0.633 (README 0.63)   E7 0.722 (README 0.72)
+  [PASS] A5a 1-D survival ratios within 0.02 of the README values (five rows)
+  [PASS] (not load-bearing) A5b E7 survival ratios within 0.02 of the README values (five rows)
+
+--------------------------------------------------------------------------------------------------------------
+VERDICT (frozen rule)
+--------------------------------------------------------------------------------------------------------------
+  FINDING (a) theorem: AGREES WITH QUALIFICATION
+         Theorem reproduced with premises P1-P6. Within CFG179's own scope (a law that keeps a sqrt regime at the scale in question) only an ownership-type nonlocal composition escapes: A4a. The wording 'only B escapes' omits that laws which are Newtonian/linear at the scale (screened, r-dependent laws such as Arm B and the chain; linear-in-source laws) also have zero residual; they escape by not having the sqrt pull there. It also omits premise P2 (universal free fall / difference rule): E7 is a composition outside P2 and still has an EFE (A4d).
+
+==============================================================================================================
+CHECKS: 17/17 pass; load-bearing failures: 0  (2 s)

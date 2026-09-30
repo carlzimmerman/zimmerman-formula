@@ -1,0 +1,70 @@
+==============================================================================================================
+CFG191_s3_solar_q2 -- item (c): Solar-System quadrupole Q2 of a point Sun in the Galactic field (QUMOND)   [MUTATE=1]
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+quoted inputs (in-repo, second-hand for me): Q2 ceiling 5.2e-27 s^-2 (Park+2026 1.6+-1.8e-27, 2 sigma); published anchors q(1)=0.094, q(1.5)=0.159, q(2)=0.221 for nu_RAR (Desmond+2024 Fig.1 caption, via <repo>/hunt_2026/g04_verify_cassini_q2_adversarial.out)
+  Q2 definition: Q2 = 3 G I2 with I2 = int rho_ph P2(cos)/r^3 d^3x (the record's frozen convention, read in the CFG3 header); eq (10): Q2 = -(3 a0^{3/2}/(2 sqrt(GM))) q.
+
+--------------------------------------------------------------------------------------------------------------
+C1  control: nu_RAR anchors and the two routes
+--------------------------------------------------------------------------------------------------------------
+  etilde=1.0: published q 0.094 | R2 by-parts 0.09471 (+0.76%) | R1 direct-divergence 0.09471 (-0.00% vs R2)
+  etilde=1.5: published q 0.159 | R2 by-parts 0.15949 (+0.31%) | R1 direct-divergence 0.15949 (-0.00% vs R2)
+  etilde=2.0: published q 0.221 | R2 by-parts 0.22100 (-0.00%) | R1 direct-divergence 0.22100 (+0.00% vs R2)
+  [PASS] C1a my by-parts route reproduces the published q anchors within 1% with NO fitted constant (Q2 normalisation = eq 10)
+         worst 0.76%
+  [PASS] C1b my direct-divergence route (independent integrand) agrees with the by-parts route within 3% at the three anchors
+  [PASS] C1c the quoted g04 reference row (canonical 9.360e-11 ... 3.0015e-26 5.772) is present in its committed .out
+  nu_RAR, g_ext=2.146e-10, a0=9.360e-11: Q2/ceiling = 5.772 (g04 committed 5.772)
+  nu_RAR, g_ext=2.146e-10, a0=1.130e-10: Q2/ceiling = 6.286 (g04 committed 6.286)
+  [PASS] C1d my nu_RAR ratios at g04's inputs (g_ext 2.146e-10, a0 9.36e-11 / 1.13e-10) reproduce g04's 5.772 / 6.286 within 1.5%
+  convergence (P2, etilde=1.9): by-parts vmax 200/1000/3000 -> 0.16000, 0.16000, 0.16000; nx 120/240/480 -> 0.16000, 0.16000, 0.16000
+
+--------------------------------------------------------------------------------------------------------------
+C2  HEADLINE TABLE: Q2 / 5.2e-27 s^-2 (QUMOND point Sun)
+--------------------------------------------------------------------------------------------------------------
+  MUTATE M5: g_ext scaled by 0.2
+  kernel  footing           a0      g_ext  etilde     e_N        q   Q2 [s^-2]  /ceiling
+  P2      canonical 9.3603e-11 3.5560e-11   0.380   0.128  0.02337   2.755e-27      0.53
+  P2      canonical 9.3603e-11 4.2920e-11   0.459   0.178  0.03137   3.700e-27      0.71
+  P2      alt       1.1312e-10 3.5560e-11   0.314   0.091  0.01708   2.675e-27      0.51
+  P2      alt       1.1312e-10 4.2920e-11   0.379   0.128  0.02332   3.653e-27      0.70
+  nu_RAR  canonical 9.3603e-11 3.5560e-11   0.380   0.105  0.02139   2.522e-27      0.48
+  nu_RAR  canonical 9.3603e-11 4.2920e-11   0.459   0.145  0.02922   3.445e-27      0.66
+  nu_RAR  alt       1.1312e-10 3.5560e-11   0.314   0.076  0.01548   2.425e-27      0.47
+  nu_RAR  alt       1.1312e-10 4.2920e-11   0.379   0.105  0.02134   3.343e-27      0.64
+  P2 range 0.51-0.71; nu_RAR range 0.47-0.66; union 0.47-0.71; README/GATES 4.0-5.7
+  [FAIL] C2a every P2 entry lies in [3.0, 6.5] and > 1 (FAIL of the strict law stands for QUMOND EFE)
+  [FAIL] (not load-bearing) C2b the union over the eight rows covers 4.0-5.7 to +-10% (min <= 4.4 and max >= 5.13)
+  a single kernel alone spans both 4.0 and 5.7 (within 10%)? False
+
+--------------------------------------------------------------------------------------------------------------
+C3  natural-scale arithmetic: a0/r_M
+--------------------------------------------------------------------------------------------------------------
+  canonical: r_M = 7959 AU, a0/r_M = 7.861e-26 s^-2 = 15.1 x ceiling (README 15.1)
+  [PASS] (not load-bearing) C3 canonical natural scale 15.1 x (README 15.1) reproduced
+  alt: r_M = 7240 AU, a0/r_M = 1.044e-25 s^-2 = 20.1 x ceiling (README 20.1)
+  [PASS] (not load-bearing) C3 alt natural scale 20.1 x (README 20.1) reproduced
+
+--------------------------------------------------------------------------------------------------------------
+C4  rescue field: g_ext (fraction of V^2/R0 = 2.146e-10) at which Q2 = ceiling
+--------------------------------------------------------------------------------------------------------------
+  P2      canonical: g_ext fraction 0.253 (g04 for nu_RAR canonical: 0.259)
+  P2      alt      : g_ext fraction 0.251 (g04 for nu_RAR canonical: 0.259)
+  nu_RAR  canonical: g_ext fraction 0.259 (g04 for nu_RAR canonical: 0.259)
+  nu_RAR  alt      : g_ext fraction 0.261 (g04 for nu_RAR canonical: 0.259)
+
+--------------------------------------------------------------------------------------------------------------
+C5  dependence audit
+--------------------------------------------------------------------------------------------------------------
+  ratio spread across kernel x footing x g_ext: 0.47-0.71 (a factor 1.53); the quoted '4.0-5.7' is not one number.
+  NOT COVERED: AQUAL (vs QUMOND) Q2; E7's Q2 (no field equation); Jupiter (0.05%, quoted); the 3-D field geometry; ownership (Sun owns no phantom => host tide 1.6-2.6e-31, not recomputed here).
+  Unrelated quantities: the P2 alpha=1 monopole a0/2 (1279 x the Earth bound) and the host tide.
+
+--------------------------------------------------------------------------------------------------------------
+VERDICT (frozen rule)
+--------------------------------------------------------------------------------------------------------------
+
+==============================================================================================================
+CHECKS: 6/8 pass; load-bearing failures: 1  (5 s)
+MUTATE control BITES (exit 1): C2a every P2 entry lies in [3.0, 6.5] and > 1 (FAIL of the strict law stands for QUMOND EFE)

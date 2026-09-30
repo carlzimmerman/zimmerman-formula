@@ -1,0 +1,108 @@
+==============================================================================================================
+CFG191_s2_coma_udg -- item (b): Coma UDGs under the E7 merge
+repo = <repo>   (read-only inputs; nothing is written into the repo)
+==============================================================================================================
+inputs: <repo>/real_research/data/freundlich2022_coma_udgs.tsv (measured columns + Freundlich+2022 model columns), <repo>/fable_independent_2026/L23_udg_verify.out (field table, budget; quoted)
+11 galaxies; weights 1/(elgobs^2+elgbar^2) normalised (L23's estimator)
+
+--------------------------------------------------------------------------------------------------------------
+classification of inputs (frozen before any number)
+--------------------------------------------------------------------------------------------------------------
+  MEASURED: sigma_obs (esig), R_e, L, projected distance.   MODEL-DEPENDENT: M/L (SSP fits), the sigma->g estimator (3 sigma^2/r_1/2, r_1/2 = 4 R_e/3, g_bar = G M_*/2 / r_1/2^2),
+  the 3-D position (van der Burg Einasto), the Coma mass profile and hence g_ext (beta model + closure inversion, L23), E7's theta_0 = sqrt 2 (postulated), the kernel (P2), the 0.235-dex budget.
+
+--------------------------------------------------------------------------------------------------------------
+B1  control: my g_bar, g_obs from (L, M/L, R_e, sigma)
+--------------------------------------------------------------------------------------------------------------
+  max |dlog g_bar| = 0.0163 dex, max |dlog g_obs| = 0.0124 dex
+  [PASS] B1 reconstruction matches the tsv columns to <= 0.02 dex
+
+--------------------------------------------------------------------------------------------------------------
+B2  control: isolated stars-only nu_RAR offset, a0 = 9.3619e-11 (L23 C1: +0.3965)
+--------------------------------------------------------------------------------------------------------------
+  tsv columns: +0.3962; my reconstruction: +0.3965
+  [PASS] B2 isolated nu_RAR offset +0.3965 +- 0.003 (tsv columns)
+
+--------------------------------------------------------------------------------------------------------------
+B3  E7 cubic: re-derived and solved
+--------------------------------------------------------------------------------------------------------------
+  squared equation / (-4(x+e)) simplifies to: -b**2*e - b**2*x - b*x + e*x**2 + x**3
+  [PASS] B3a sympy: clearing the radical gives x^3 + e x^2 - b(b+1) x - b^2 e = 0
+  [PASS] B3b unique positive root (Descartes) and it solves M(x+e) x/(x+e) = b to 1e-9
+         max residual 2.2e-16
+  [PASS] B3c e=0 gives x = sqrt(b^2+b) (the isolated P2 law)
+  [PASS] L23 quoted strings present in its committed .out (field table 1.059/0.845/0.427; budget 0.227 / 0.062; 4.9 sigma; 2.7 sigma)
+  budget quadrature: systematic 0.2272, with statistic 0.2355 (L23: 0.227, 0.235)
+  [PASS] B7a 0.235 = sqrt(0.227^2 + 0.062^2) recomputed from L23's seven entries
+
+--------------------------------------------------------------------------------------------------------------
+B4  HEADLINE: E7 (P2) offset, weighted mean, single field 0.845 a0 (beta model at 1.13 Mpc)
+--------------------------------------------------------------------------------------------------------------
+  canonical a0=9.3603e-11: g_ext/a0 = 0.8451; E7 offset +1.3076 dex = 5.55 sigma  (README +1.309 / 5.6)   isolated P2 +0.4132 = 1.75 sigma
+  alt       a0=1.1312e-10: g_ext/a0 = 0.6993; E7 offset +1.2736 dex = 5.41 sigma  (README +1.275 / 5.4)   isolated P2 +0.3723 = 1.58 sigma
+  [PASS] B4a E7 offset within 0.03 dex of README (+1.309 / +1.275) on both footings
+  [PASS] B4b significance within 0.15 sigma of README (5.6 / 5.4) on both footings
+  [PASS] B4c 'fails' as a statement: E7 significance >= 5 sigma on both footings (this is the load-bearing cell M3/M4 flip)
+
+--------------------------------------------------------------------------------------------------------------
+B5  ownership: P2 isolated stars-only
+--------------------------------------------------------------------------------------------------------------
+  canonical +0.4132 dex (1.75 sigma of 0.235); alt +0.3723 (1.58)
+  E7 minus isolated (the EFE term) canonical: +0.8944 dex
+  nu_RAR isolated: canonical +0.3962, alt +0.3568
+
+--------------------------------------------------------------------------------------------------------------
+B6  field sweep (L23 first-infall rows and the beta-model bracket), both footings
+--------------------------------------------------------------------------------------------------------------
+  g_ext = 0.112 a0(L23): canonical +0.763 = 3.24 sigma | alt +0.698 = 2.96 sigma
+  g_ext = 0.168 a0(L23): canonical +0.882 = 3.75 sigma | alt +0.815 = 3.46 sigma
+  g_ext = 0.252 a0(L23): canonical +1.009 = 4.29 sigma | alt +0.945 = 4.01 sigma
+  g_ext = 0.427 a0(L23): canonical +1.162 = 4.94 sigma | alt +1.109 = 4.71 sigma
+  g_ext = 0.653 a0(L23): canonical +1.261 = 5.35 sigma | alt +1.219 = 5.18 sigma
+  g_ext = 0.845 a0(L23): canonical +1.308 = 5.55 sigma | alt +1.274 = 5.41 sigma
+  g_ext = 1.059 a0(L23): canonical +1.341 = 5.70 sigma | alt +1.313 = 5.58 sigma
+  README M6 bracket over 0.427-1.059: 4.7-5.7 sigma
+  [PASS] (not load-bearing) B6a equilibrium rows (0.427-1.059) all >= 4.5 sigma on both footings
+
+--------------------------------------------------------------------------------------------------------------
+B7  error-budget attack: the same offset over different budgets
+--------------------------------------------------------------------------------------------------------------
+  E7 offset +1.308: over statistic only 0.062 -> 21.1 sigma; over the full 0.235 -> 5.55; EFE term alone (+0.894) over sqrt(0.112^2+0.062^2)=0.128 -> 6.99 sigma
+  Reading: the '5.6 sigma' is offset / a DECLARED systematic budget (dominated by M/L 0.148 and aperture 0.120); it moves by a factor 3.8 between statistic-only and full budget. It is not a measured significance.
+
+--------------------------------------------------------------------------------------------------------------
+B8  per-galaxy fields (each galaxy at its dmean_kpc; log-log interpolation of L23's table)
+--------------------------------------------------------------------------------------------------------------
+  per-galaxy g_ext (a0 L23): 0.428, 0.496, 0.845, 0.839, 0.828, 0.873, 0.973, 1.059, 0.646, 0.920, 0.648
+  canonical: E7 offset +1.2653 = 5.37 sigma  (single-field row +1.3076)
+  alt      : E7 offset +1.2256 = 5.20 sigma  (single-field row +1.2736)
+
+--------------------------------------------------------------------------------------------------------------
+B9  resampling (canonical, single field)
+--------------------------------------------------------------------------------------------------------------
+  jackknife (drop one): offset range +1.235 to +1.331 -> 5.24 to 5.65 sigma
+  drop DF44: +1.330
+  Chilingarian nine only: +1.346;  DF44+DFX1 only: +1.212
+  bootstrap weighted: +1.302 +- 0.074;  unweighted: +1.240 +- 0.061 (statistical only; the budget is coherent and does not average down)
+
+--------------------------------------------------------------------------------------------------------------
+B10  M/L closing factor for the E7 offset
+--------------------------------------------------------------------------------------------------------------
+  the offset closes at an M_* multiplier 21.5 (L23: 14.4 for its recipe); SSP M/L range 0.37-1.48 would become 8.0-31.9
+
+--------------------------------------------------------------------------------------------------------------
+B11  kernel dependence and control against L23's committed EFE rows (sphere-averaged nu(1+L/3) at y_extN, per-galaxy Einasto field)
+--------------------------------------------------------------------------------------------------------------
+  canonical: nu_RAR sphere-coupling +1.155 (L23 committed +1.159) | P2 sphere-coupling +1.240 | E7 P2 per-galaxy +1.265
+  alt      : nu_RAR sphere-coupling +1.106 (L23 committed +1.112) | P2 sphere-coupling +1.194 | E7 P2 per-galaxy +1.226
+  [PASS] (not load-bearing) B11a control: my nu_RAR sphere-coupling row reproduces L23's committed +1.159 / +1.112 to 0.05 dex
+         L23's alt a0 is 1.13e-10; a difference of the field re-expression convention would show here
+
+--------------------------------------------------------------------------------------------------------------
+VERDICT (frozen rule)
+--------------------------------------------------------------------------------------------------------------
+  FINDING (b) Coma UDG E7: AGREES WITH QUALIFICATION
+         E7+P2 at 0.845 a0: +1.308/+1.274 dex = 5.55/5.41 sigma over the declared 0.235 budget. Qualifications: (1) sigma = offset/declared systematic budget (statistic-only would be ~21); (2) first-infall field (0.112 a0) gives 3.24/2.96 sigma; (3) ownership (isolated P2) is 1.75 sigma without infall gas; (4) per-galaxy fields give 5.37/5.20; (5) E7's theta_0 is postulated.
+
+==============================================================================================================
+CHECKS: 12/12 pass; load-bearing failures: 0  (0 s)
