@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CRITICAL_ISOTROPIC_RESPONSE",
+  "repository": {
+    "commit": "1138d817f8262a7266408fcbe18262788425e4e7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/critical_response.py",
+    "--output",
+    "sol61_push/runs/critical_response/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Auxiliary polarization elimination, analytic versus nonanalytic deep response, regulated gapless integrals and counterterm dependence",
+    "coefficient_domain": "Exact symbolic positive real algebra and deterministic quadrature",
+    "conventions": "CRITICAL_RESPONSE_CONTRACT.md; static normalized energy, (-+++) only for prior gravity convention; 2D fermion energy per area, 3D thermal boson energy per volume",
+    "inputs": [
+      "sol61_push/critical_response.py"
+    ],
+    "bounds": {
+      "fermion_cutoff_over_mass": [
+        2,
+        10,
+        100
+      ],
+      "mass": [
+        0.3,
+        1,
+        2
+      ],
+      "quadrature_absolute_tolerance": 1e-11,
+      "quadrature_relative_tolerance": 1e-11,
+      "local_constitutive_elimination_only": true
+    },
+    "non_claims": [
+      "No covariant completion",
+      "No microscopic vector mass representation",
+      "No sheet density selected",
+      "Critical cancellation imposed",
+      "No 32pi solution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T10:49:00.053596+00:00",
+    "runtime_seconds": 1.035047,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/critical_response.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/critical_response.py",
+      "sha256": "adbae7fc3af52a7944a0722d770a2df91087e7cbb97e31fc8249831fda9f973c",
+      "sha256_after": "adbae7fc3af52a7944a0722d770a2df91087e7cbb97e31fc8249831fda9f973c"
+    }
+  ],
+  "output_directory": "sol61_push/runs/critical_response",
+  "declared_results": [
+    "sol61_push/runs/critical_response/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/critical_response/stdout.txt",
+      "sha256": "0bbc3b3611dc3d73eaeb50c88902e52b470204b95ce2093ea5b468bce9455086",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/critical_response/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/critical_response/results.json",
+      "sha256": "1ed9615e3ea0295bdfd1f6d63bffff7f6d05d6301298b70b71eb631f4a12f61b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

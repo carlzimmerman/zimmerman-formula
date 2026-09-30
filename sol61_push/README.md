@@ -16,4 +16,6 @@ The original goal remains OPEN. A new partial result is not a completed theory.
 
 - [Shared scale and coupling selection](SHARED_SCALE_RESULTS.md): coupled gravitational feedback, vacuum stabilization, horizon regularity, four-gradient stress, and a tested one-loop ratio-selection mechanism. 47 new checks; the coefficient remains open. Its [contract](SHARED_SCALE_CONTRACT.md) separates the models and their assumptions.
 
+- [Critical polarization and gapless modes](CRITICAL_RESPONSE_RESULTS.md): isotropic state selection, a fermionic cubic term, and the spatial kernel that must be retained. The [contract](CRITICAL_RESPONSE_CONTRACT.md) keeps the original coefficient target open.
+
 All work in this folder is by this Codex session. Existing research files are read-only inputs. No paper, deposited version, shared ledger, or other session's working changes are edited.

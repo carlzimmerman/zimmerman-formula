@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CRITICAL_FINITE_MASS",
+  "repository": {
+    "commit": "970b4201a385bee8e297d0a71ebf229a8bf2b4d2",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/critical_finite_mass.py",
+    "--output",
+    "sol61_push/runs/critical_finite_mass/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite uniform-mass longitudinal and transverse two-point kernels, massless and derivative limits",
+    "coefficient_domain": "Exact symbolic positive real algebra and deterministic quadrature",
+    "conventions": "CRITICAL_RESPONSE_CONTRACT.md; static normalized energy, (-+++) only for prior gravity convention; 2D fermion energy per area, 3D thermal boson energy per volume",
+    "inputs": [
+      "sol61_push/critical_finite_mass.py"
+    ],
+    "bounds": {
+      "q_over_m": [
+        0.01,
+        0.1,
+        1,
+        10,
+        100
+      ],
+      "y": 1,
+      "mass": 1,
+      "four_band_flavors": 1,
+      "zero_temperature": true,
+      "uniform_background": true
+    },
+    "non_claims": [
+      "No finite-mass nonuniform determinant",
+      "No covariant completion or sheet density selection",
+      "Scale estimate not fractional derivative evaluation",
+      "No 32pi solution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T10:53:08.212134+00:00",
+    "runtime_seconds": 0.599048,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/critical_finite_mass.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/critical_finite_mass.py",
+      "sha256": "1fbefa75756cf45d51278ad9d4c4096134807a38a9c5c907ffe387e0ee6f4c56",
+      "sha256_after": "1fbefa75756cf45d51278ad9d4c4096134807a38a9c5c907ffe387e0ee6f4c56"
+    }
+  ],
+  "output_directory": "sol61_push/runs/critical_finite_mass",
+  "declared_results": [
+    "sol61_push/runs/critical_finite_mass/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/critical_finite_mass/stdout.txt",
+      "sha256": "eb363e3546936e2d766b0bd3caad6df55fd7b8f0c4eb5e64050cac3b5f7907a9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/critical_finite_mass/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/critical_finite_mass/results.json",
+      "sha256": "0984511a0abc4855e2227fb70956b2e505b4f87a4478efac5a45580e20c8e95f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
