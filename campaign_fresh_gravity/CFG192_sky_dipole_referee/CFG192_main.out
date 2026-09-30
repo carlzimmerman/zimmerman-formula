@@ -1,0 +1,104 @@
+
+==============================================================================================================
+CFG192 main: primary reproduction of the CFG182 headline (independent code)   repo=<repo>
+==============================================================================================================
+
+==============================================================================================================
+1. sample
+==============================================================================================================
+usable (>= 5 points) galaxies: 171; Q <= 2 and Inc >= 30: 149; points 3150
+by distance method (f_D: count): 1: 81, 2: 37, 3: 3, 4: 26, 5: 2
+all-usable sample size (Q <= 3, no Inc cut): 171
+  [PASS] sample count = 149 (frozen line)  |  149
+  [PASS] points = 3150 +/- 30  |  3150
+  [PASS] method counts 81/37/3/2/26  |  [81, 37, 3, 2, 26]
+  [PASS] coordinates: Galactic centre -> (0, 0) within 0.01 deg  |  (0.0002, 0.0001)
+  [PASS] coordinates: NGP -> b = 90 within 0.01 deg  |  b = 89.9995
+footprint: |<n>| = 0.599 toward (l, b) = (142, 54); galaxies at b > 0: 117 of 149
+
+==============================================================================================================
+2. no-dipole and dipole fit
+==============================================================================================================
+  [primary] N = 149, points = 3150; no-dipole a0 = 1.1289e-10 (log -9.947); chi2(A=0) = 3334.34
+  [primary] best dipole A = 0.2371 toward (l, b) = (239.1, -45.7); log a0bar = -9.909; Delta chi2 = 10.49 (3 par); |D| bound hit: False
+  [primary] Fisher sigma_A along the fitted direction 0.081; rms component 0.078; galaxies clamped at grid edge: 0
+Birge factor median 1.718; Delta chi2 = 1 half-width median 0.243 dex; per-galaxy best log a0 16/84%: -10.52 / -9.59; MAD scatter 0.386 dex
+  [PASS] single-start vs 5-start agreement over 100 permutations (max |dA| < 1e-4)  |  2.57e-08
+  [PASS] no-residual exact recovery (Gaussian curves centred on the model return the injected D to 1e-4)  |  |dD| = 2.64e-13
+  [PASS] analytic gradient vs finite differences  |  9.97e-05
+
+==============================================================================================================
+3. nulls (permutation simple + block, N = 5000) and bootstrap (2000)
+==============================================================================================================
+  [primary] permutation (simple, N = 5000): p_A = 0.7706; null A-hat median 0.348, 68% 0.428, 95% 0.647; p(Delta chi2) = 0.7247
+  [primary] permutation (block, N = 5000): p_A = 0.7564; null A-hat median 0.333, 68% 0.407, 95% 0.629; p(Delta chi2) = 0.7435
+  [primary] bootstrap (2000): std(A-hat) = 0.161; rms component sigma = 0.198; mean A-hat = 0.391; cones 68% 58 deg, 95% 115 deg
+pass-line p (larger of simple 0.7706 and block 0.7564) = 0.7706
+
+==============================================================================================================
+4. footprint and cone-free alignment
+==============================================================================================================
+angle between the fitted axis and the footprint axis: 50.9 deg (95% bootstrap cone 115 deg; 68% 58)
+cone-free alignment statistic: fraction of permuted fits with an axis at least as close to the footprint axis = 0.284 (median null angle 64.5 deg)
+Fisher covariance of D: sigma along eigen-axes 0.046 / 0.071 / 0.106; least-constrained direction (l, b) = (192, -8), 74.6 deg from the footprint axis, 55.7 deg from the fit
+correlation of (log a0bar, D along the footprint vector) in the Fisher covariance: -0.813
+
+==============================================================================================================
+5. distance-method split (S2), inclination split, fixed directions
+==============================================================================================================
+  H: N = 81; A = 0.474 toward (263, 48); along the full-sample direction A_fix = -0.300 +/- 0.308 (-0.97 sigma)
+  I: N = 42; A = 0.428 toward (183, -61); along the full-sample direction A_fix = +0.370 +/- 0.236 (+1.57 sigma)
+  UMa: N = 26; A = 0.950 toward (263, -73); along the full-sample direction A_fix = +0.950 +/- 0.339 (+2.80 sigma)
+  H vs I vectors: chi2 = 7.16 (3 dof), p = 0.067
+  inclination split at median 63 deg: A = 0.601 / 0.121; vectors differ p = 0.379
+  fixed direction CMB    (264, 48): A_fix = -0.071 +/- 0.145; 95% upper end 0.21
+  fixed direction bulk   (304, 6): A_fix = +0.014 +/- 0.180; 95% upper end 0.37
+  fixed direction Chang  (171, -15): A_fix = +0.107 +/- 0.220; 95% upper end 0.54
+  fixed direction Zhou   (176, -6): A_fix = +0.058 +/- 0.237; 95% upper end 0.52
+  fixed direction Virgo  (284, 74): A_fix = -0.106 +/- 0.144; 95% upper end 0.18
+  fixed direction UMa    (146, 66): A_fix = -0.146 +/- 0.163; 95% upper end 0.17
+
+==============================================================================================================
+6. hemisphere statistic (Zhou-style; 3072-point Fibonacci axes, not HEALPix)
+==============================================================================================================
+  [PASS] hemisphere scan: matmul vs einsum agree (Accelerate warnings are spurious)  |  max |dH| = 0.00e+00
+  H_max = 0.604 toward (303, 6); permutation (N = 5000) null median 0.515, 95% 0.752; p = 0.247
+  at the Zhou axis (175.5, -6.5): H = +0.111 +/- 0.228 (bootstrap 500); fixed-axis permutation p(H >= obs) = 0.345
+
+==============================================================================================================
+7. peculiar-velocity template (Hubble-flow galaxies) and distance trend
+==============================================================================================================
+  Hubble-flow only (N = 81): bulk flow W = 238 km/s toward (10, -44); Delta chi2 = 11.39; the dipole's Delta chi2 on the same galaxies = 24.32
+  PV template permutation p (N = 1000, positions permuted among the Hubble-flow galaxies) = 0.605
+  distance trend: beta = +0.062 dex/dex, Delta chi2 = 3.37; the dipole with beta free: A = 0.258 toward (246, -46)
+
+==============================================================================================================
+8. Neyman A95 (random direction), 1000 trials per cell, grid 0-0.9 step 0.025
+==============================================================================================================
+  simple: A95 = 0.400; P(A-hat >= 0.237) at A_inj = 0: 0.778 (the permutation p); monotone: True
+  block: A95 = 0.400; P(A-hat >= 0.237) at A_inj = 0: 0.761 (the permutation p); monotone: True
+
+==============================================================================================================
+9. signal lines and class line vs the CFG182 README (targets read, not blind)
+==============================================================================================================
+  S1 (p < 0.003, larger of simple/block): p = 0.7706 -> FAIL
+  S2 (H/I vectors agree p > 0.05 AND A_fix >= 1 sigma in both): p = 0.067, z_H = -0.97, z_I = +1.57 -> FAIL
+  S3 (footprint axis outside the 95% cone): axis angle 50.9 vs cone 115 -> FAIL
+  verdict: NULL
+  OK  A-hat: mine 0.2371  README 0.238  (tol 0.03)
+  OK  direction: mine (239.1, -45.7), README (237.2, -44.2): 2.0 deg apart (tol 15)
+  OK  p_A (larger of simple, block): mine 0.7706  README 0.774  (tol 0.05)
+  OK  a0bar (1e-10): mine 1.129  README 1.13  (tol 0.0565)
+  MISS sigma_A bootstrap std(A-hat): mine 0.1607  README 0.201  (tol 0.03)
+  OK  sigma_A bootstrap rms component (alternative definition): mine 0.1984  README 0.201  (tol 0.03)
+  OK  null median: mine 0.3478  README 0.34  (tol 0.03)
+  OK  null 95%: mine 0.6471  README 0.62  (tol 0.05)
+  OK  A95: mine 0.4  README 0.425  (tol 0.06)
+  OK  Delta chi2 (3 par): mine 10.49  README 10.3  (tol 1.0)
+  OK  cone 68%: mine 58.37  README 59  (tol 10)
+  OK  cone 95%: mine 114.8  README 115  (tol 15)
+
+  CLASS: PARTIAL   (misses among the core rows: ['sigma_A bootstrap std(A-hat)']; among all classified rows: ['sigma_A bootstrap std(A-hat)'])
+
+  9/9 checks pass; load-bearing failures 0; class PARTIAL
+rc = 0

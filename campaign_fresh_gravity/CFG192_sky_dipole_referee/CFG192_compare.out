@@ -1,0 +1,116 @@
+
+==============================================================================================================
+CFG192 compare (phase 2): CFG192 vs CFG182's README rows   repo=<repo>
+==============================================================================================================
+
+==============================================================================================================
+0. shared-element cross-checks (independence stops here)
+==============================================================================================================
+  [PASS] nu_mono (own implementation from the FP1 definition) vs the repo's nu_mono: max relative difference < 1e-6  |  0.00e+00
+  [PASS] positions: own (l, b) vs sparc_cosmicweb_match.csv, all resolved galaxies within 0.5 deg  |  165 galaxies, max 0.028 deg, median 0.0002 deg
+  [PASS] (reported) rotmod-header distance = master-table D (1%)  |  0 mismatches: []
+
+==============================================================================================================
+1. README rows (primary analysis)
+==============================================================================================================
+  OK   clean-sample N                                             mine   149.0000  CFG182   149.0000  |d| 0.0000 (tol 0)   
+  OK   points                                                     mine  3150.0000  CFG182  3150.0000  |d| 0.0000 (tol 0)   
+  OK   a0bar no dipole (1e-10)                                    mine     1.1289  CFG182     1.1317  |d| 0.0028 (tol 0.005)   
+  OK   Birge factor median                                        mine     1.7178  CFG182     1.7200  |d| 0.0022 (tol 0.01)   
+  DIFF median per-galaxy Delta chi2 = 1 half-width (dex)          mine     0.2428  CFG182     0.2640  |d| 0.0212 (tol 0.01)  [definition] CFG182 averages the two sides of the first Delta chi2 = 1 crossing and caps at 1 dex; mine is (right - left)/2 with linear crossings
+  OK   |<n>|                                                      mine     0.5985  CFG182     0.5990  |d| 0.0005 (tol 0.002)   
+  OK   A-hat                                                      mine     0.2371  CFG182     0.2380  |d| 0.0009 (tol 0.03)   
+  OK   direction angle apart (deg)                                mine     1.9770  CFG182     0.0000  |d| 1.9770 (tol 15.0)   
+  OK   Delta chi2 (3 params)                                      mine    10.4926  CFG182    10.2681  |d| 0.2245 (tol 0.5)   cubic-spline vs their Catmull-Rom interpolation of the curves
+  OK   Fisher sigma_A along the fitted direction                  mine     0.0810  CFG182     0.0822  |d| 0.0012 (tol 0.005)   
+  OK   Fisher best-constrained sigma                              mine     0.0455  CFG182     0.0456  |d| 0.0001 (tol 0.003)   
+  OK   Fisher least-constrained sigma                             mine     0.1057  CFG182     0.1058  |d| 0.0002 (tol 0.005)   
+  OK   least-constrained axis angle to CFG182's (deg)             mine     0.5193  CFG182     0.0000  |d| 0.5193 (tol 10.0)   
+  OK   bootstrap sigma_A ALONG the fitted direction (CFG182's definition) mine     0.2008  CFG182     0.2013  |d| 0.0004 (tol 0.03)   
+  DIFF bootstrap std of |D-hat| (my first-read definition)        mine     0.1607  CFG182     0.2013  |d| 0.0405 (tol 0.03)  [definition] the README's 'sigma_A' is sqrt(d^T Sigma d), the component along the fitted direction, NOT the std of the amplitude
+  OK   bootstrap rms component                                    mine     0.1984  CFG182     0.2013  |d| 0.0029 (tol 0.03)   
+  OK   bootstrap sigma of D_x                                     mine     0.2268  CFG182     0.2253  |d| 0.0014 (tol 0.03)   
+  OK   bootstrap sigma of D_y                                     mine     0.1955  CFG182     0.1969  |d| 0.0014 (tol 0.03)   
+  OK   bootstrap sigma of D_z                                     mine     0.1686  CFG182     0.1663  |d| 0.0023 (tol 0.03)   
+  OK   cone 68% (deg)                                             mine    58.3705  CFG182    58.8575  |d| 0.4870 (tol 5)   
+  OK   cone 95% (deg)                                             mine   114.7984  CFG182   115.4420  |d| 0.6436 (tol 5)   
+  (CFG182 permutation keys: ['A_obs', 'pA_simple', 'pA_block', 'pA', 'p_dchi_simple', 'p_dchi_block', 'A_obs_block', 'null_A_simple_p50_p95_p997', 'null_A_block_p50_p95'])
+  OK   permutation p simple                                       mine     0.7706  CFG182     0.7716  |d| 0.0010 (tol 0.05)   
+  OK   permutation p block                                        mine     0.7564  CFG182     0.7742  |d| 0.0178 (tol 0.05)   CFG182 compares the block null with its own A_obs = 0.231 (UMa members collapsed to their mean position); mine compares the block null with the true-position 0.237
+  OK   permutation p, larger of the two                           mine     0.7706  CFG182     0.7742  |d| 0.0036 (tol 0.05)   
+  OK   permutation null A-hat median (simple)                     mine     0.3478  CFG182     0.3390  |d| 0.0088 (tol 0.015)   mine 2.4 sigma(MC) higher; unexplained at this level, no effect on p
+  DIFF permutation null A-hat 95% quantile (simple)               mine     0.6471  CFG182     0.6150  |d| 0.0321 (tol 0.03)  [numerical] 
+  OK   permutation null A-hat 99.7% quantile (simple)             mine     0.9253  CFG182     0.8490  |d| 0.0763 (tol 0.1)   
+
+==============================================================================================================
+2. fixed directions (A_fix +/- bootstrap sigma)
+==============================================================================================================
+  (CFG182 fixed_directions keys: ['CMB dipole (264.0, 48.3)', 'bulk flow, Carrick+2015 (304, 6), from memory', 'Chang+2018 (171.30, -15.41)', 'Zhou+2017 max hemisphere (175.5, -6.5)', 'Virgo (283.8, 74.5), from memory', "Ursa Major members' mean (145.5, 65.9)", 'footprint axis <n>', 'least-constrained Fisher direction'])
+  OK   A_fix CMB                                                  mine    -0.0714  CFG182    -0.0680  |d| 0.0034 (tol 0.03)   
+  OK   sigma of A_fix CMB                                         mine     0.1446  CFG182     0.1550  |d| 0.0104 (tol 0.03)   500 vs 1000 bootstrap resamples: MC noise ~5-10%
+  OK   A_fix bulk                                                 mine     0.0140  CFG182     0.0140  |d| 0.0000 (tol 0.03)   
+  OK   sigma of A_fix bulk                                        mine     0.1800  CFG182     0.1750  |d| 0.0050 (tol 0.03)   500 vs 1000 bootstrap resamples: MC noise ~5-10%
+  OK   A_fix Chang                                                mine     0.1066  CFG182     0.1100  |d| 0.0034 (tol 0.03)   
+  OK   sigma of A_fix Chang                                       mine     0.2200  CFG182     0.2260  |d| 0.0060 (tol 0.03)   500 vs 1000 bootstrap resamples: MC noise ~5-10%
+  OK   A_fix Zhou                                                 mine     0.0584  CFG182     0.0660  |d| 0.0076 (tol 0.03)   
+  OK   sigma of A_fix Zhou                                        mine     0.2374  CFG182     0.2370  |d| 0.0004 (tol 0.03)   500 vs 1000 bootstrap resamples: MC noise ~5-10%
+  OK   A_fix Virgo                                                mine    -0.1059  CFG182    -0.1020  |d| 0.0039 (tol 0.03)   
+  OK   sigma of A_fix Virgo                                       mine     0.1438  CFG182     0.1510  |d| 0.0072 (tol 0.03)   500 vs 1000 bootstrap resamples: MC noise ~5-10%
+  OK   A_fix UMa                                                  mine    -0.1455  CFG182    -0.1410  |d| 0.0045 (tol 0.03)   
+  OK   sigma of A_fix UMa                                         mine     0.1630  CFG182     0.1700  |d| 0.0070 (tol 0.03)   500 vs 1000 bootstrap resamples: MC noise ~5-10%
+
+==============================================================================================================
+3. hemisphere, splits, PV template, distance trend, variants
+==============================================================================================================
+  OK   H_max                                                      mine     0.6043  CFG182     0.5954  |d| 0.0089 (tol 0.02)   3072-point Fibonacci axes vs HEALPix nside 16 (declared deviation)
+  OK   H at the Zhou axis                                         mine     0.1112  CFG182     0.1463  |d| 0.0351 (tol 0.05)   hemisphere of the exact axis vs the axis snapped to a HEALPix pixel (not read)
+  (CFG182 split_distance keys: ['H', 'I', 'UMa', 'chi2', 'p', 'S2a', 'S2b'])
+  OK   H vs I vectors p (S2a)                                     mine     0.0671  CFG182     0.1080  |d| 0.0409 (tol 0.06)   bootstrap covariances of 1000 resamples each, different seeds; both above 0.05
+  OK   H: along-direction z (S2b)                                 mine    -0.9721  CFG182    -0.7600  |d| 0.2121 (tol 0.25)   
+  OK   I: along-direction z (S2b)                                 mine     1.5695  CFG182     1.4100  |d| 0.1595 (tol 0.25)   
+  OK   inclination split p                                        mine     0.3786  CFG182     0.4230  |d| 0.0444 (tol 0.06)   tie handling at Inc = 63 deg: mine puts Inc == median in the low half, CFG182 in the high half
+  OK   footprint axis angle to the fit (deg)                      mine    50.8846  CFG182    52.8552  |d| 1.9706 (tol 3.0)   
+  OK   PV template |W| (km/s)                                     mine   237.9230  CFG182   209.0000  |d| 28.9230 (tol 40)   different optimiser and bounds; both ~200-240 km/s
+  OK   PV template Delta chi2                                     mine    11.3897  CFG182    12.2300  |d| 0.8403 (tol 1.5)   
+  OK   distance trend beta with the dipole                        mine     0.0620  CFG182     0.0470  |d| 0.0150 (tol 0.03)   
+  OK   no-Birge variant A-hat                                     mine     0.5836  CFG182     0.6050  |d| 0.0214 (tol 0.05)   
+  OK   no-Birge variant p                                         mine     0.1528  CFG182     0.1199  |d| 0.0329 (tol 0.05)   
+  OK   all-usable (171) variant A-hat                             mine     0.3062  CFG182     0.3080  |d| 0.0018 (tol 0.03)   
+  OK   all-usable (171) variant p                                 mine     0.6034  CFG182     0.5872  |d| 0.0162 (tol 0.06)   
+  kernel P2 / simple variants: NOT run in CFG192 (not in the frozen attack list); CFG182 gives A = 0.228 / 0.215, p = 0.78 / 0.84
+
+==============================================================================================================
+4. Neyman limit and recovery table (their B9)
+==============================================================================================================
+  (CFG182 upper_limit keys: ['A95', 'A95_simple', 'A95_block', 'grid', 'detail'])
+  OK   A95 (larger of simple/block), 1000-trial 6-run max         mine     0.4250  CFG182     0.4250  |d| 0.0000 (tol 0.06)   
+  OK   A95 simple (mean of 3 seeds)                               mine     0.4000  CFG182     0.4250  |d| 0.0250 (tol 0.06)   
+  OK   A95 block (mean of 3 seeds)                                mine     0.4083  CFG182     0.3750  |d| 0.0333 (tol 0.06)   
+  OK   <A-hat> at A_inj = 0.1                                     mine     0.3673  CFG182     0.3720  |d| 0.0047 (tol 0.03)   
+  OK   <A-hat> at A_inj = 0.2                                     mine     0.4113  CFG182     0.3910  |d| 0.0203 (tol 0.03)   
+  OK   <A-hat> at A_inj = 0.3                                     mine     0.4445  CFG182     0.4540  |d| 0.0095 (tol 0.03)   
+  OK   <A-hat> at A_inj = 0.5                                     mine     0.5802  CFG182     0.5900  |d| 0.0098 (tol 0.03)   
+  OK   median direction error at A_inj = 0.2 (deg)                mine    53.1966  CFG182    55.0000  |d| 1.8034 (tol 6)   
+  OK   median direction error at A_inj = 0.3 (deg)                mine    42.2303  CFG182    41.0000  |d| 1.2303 (tol 6)   
+  OK   median direction error at A_inj = 0.5 (deg)                mine    26.8500  CFG182    26.0000  |d| 0.8500 (tol 6)   
+
+==============================================================================================================
+5. MUTATE (their point-level injection A = 0.20 toward (114.6, -41.9))
+==============================================================================================================
+  (CFG182 mutate keys: ['D_inj', 'D_unmutated', 'D_mutated', 'move_amp', 'move_angle', 'M1', 'sigA_real_500', 'M2_required', 'pA_mutated'])
+  my point-level injection of A = 0.20 toward (114.6, -41.9) with a0ref = 1.2e-10: change vector 0.152, 22.3 deg from the injection (CFG182: 0.151, 22 deg)
+  OK   change-vector amplitude for THEIR injection                mine     0.1519  CFG182     0.1510  |d| 0.0009 (tol 0.03)   same injection recipe, own code
+  OK   change-vector angle for THEIR injection (deg)              mine    22.3324  CFG182    22.0000  |d| 0.3324 (tol 6.0)   
+  recovery of the change vector, 4 tetrahedral directions, point level mult: 0.906 (CFG182's single direction: 0.755); curve-level real sky 0.955
+
+==============================================================================================================
+6. post hoc (CFG182's cfg182_e_posthoc): Hubble-flow subsample toward the CMB dipole
+==============================================================================================================
+  CFG192: Hubble-flow-only dipole A = 0.474 toward (263, 48); 1.2 deg from the CMB dipole (CFG182 post hoc: 4 deg; A along CMB +0.47 +/- 0.23)
+  CFG192: Hubble-flow amplitude along the CMB direction: +0.473
+
+  rows compared: 65; within tolerance: 62; differing rows: ['median per-galaxy Delta chi2 = 1 half-width (dex)', 'bootstrap std of |D-hat| (my first-read definition)', 'permutation null A-hat 95% quantile (simple)']
+  classes of the differing rows: {'definition': 2, 'numerical': 1}
+
+  3/3 checks pass; load-bearing failures 0; 
+rc = 0

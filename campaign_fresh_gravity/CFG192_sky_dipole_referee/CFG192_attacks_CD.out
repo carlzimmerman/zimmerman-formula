@@ -1,0 +1,135 @@
+
+==============================================================================================================
+CFG192 attacks C and D   repo=<repo>
+==============================================================================================================
+primary: N = 149; A-hat = 0.2371; no-dipole log a0 = -9.947
+
+==============================================================================================================
+C1. analytic footprint response (weights 1/half-width^2 of the Birge-scaled curves)
+==============================================================================================================
+  weighted-footprint sigma_D along the eigen-axes (analytic, curve widths only): 0.045 (best) / 0.086 / 0.099 (worst); ratio worst/best 2.18
+  least-constrained direction (analytic): (26, +8); 82 deg from the footprint axis (142, 54), 47 deg from the fit
+  numerical Fisher: sigma along eigen-axes 0.046 / 0.071 / 0.106; worst direction (192, -8), 75 deg from the footprint axis
+  |<n>| = 0.599; corr(log a0bar, D along the footprint vector) = -0.813 (Fisher); the footprint vector's own sigma = 0.066 vs best axis 0.046
+
+==============================================================================================================
+C2. curve-level injection on position-permuted real curves (N = 1000 per A_inj; control N = 5000)
+==============================================================================================================
+  A_inj = 0 control (5000): A-hat median 0.346, mean 0.361; 95/99/99.7% thresholds 0.653 / 0.814 / 0.937
+  A_inj  meanA  medA   recovery(ratio)  ang_med  ang_68   power(>95%)  power(>99%)  power(>99.7%)
+  0.10  0.367  0.356    0.881           71.7    91.5     0.051        0.012        0.004
+  0.20  0.411  0.386    1.005           53.2    71.3     0.087        0.021        0.011
+  0.30  0.445  0.436    0.962           42.2    55.4     0.107        0.021        0.004
+  0.50  0.580  0.576    0.983           26.9    35.3     0.341        0.080        0.023
+  nested detection power: 200 mocks x 499 permutations each, power at p < 0.05 (and at p < 0.01):
+    A_inj = 0.1: power(p<0.05) = 0.040; power(p<0.01) = 0.005
+    A_inj = 0.2: power(p<0.05) = 0.090; power(p<0.01) = 0.015
+    A_inj = 0.3: power(p<0.05) = 0.090; power(p<0.01) = 0.030
+    A_inj = 0.5: power(p<0.05) = 0.290; power(p<0.01) = 0.055
+
+==============================================================================================================
+C3. curve-level injection on the REAL sky realisation (real positions, real curves), N = 1000 per A_inj
+==============================================================================================================
+  observed D-hat = (-0.085, -0.142, -0.170), A = 0.237
+  A_inj = 0.1: mean A-hat 0.246; recovery ratio of the CHANGE (D-hat - D_obs).d / A_inj = 0.951; median angle of the change to d = 7.5 deg
+  A_inj = 0.2: mean A-hat 0.278; recovery ratio of the CHANGE (D-hat - D_obs).d / A_inj = 0.950; median angle of the change to d = 7.6 deg
+  A_inj = 0.3: mean A-hat 0.351; recovery ratio of the CHANGE (D-hat - D_obs).d / A_inj = 0.955; median angle of the change to d = 7.5 deg
+  A_inj = 0.5: mean A-hat 0.517; recovery ratio of the CHANGE (D-hat - D_obs).d / A_inj = 0.951; median angle of the change to d = 7.6 deg
+
+==============================================================================================================
+C4. form attenuation (the README's explanation of the ~0.77 recovery), curve level, A_inj = 0.3, N = 1000, position-permuted base
+==============================================================================================================
+  inject mult   fit mult  : recovery ratio (vs the expected small-amplitude conversion 1.000 x A_inj) = 0.983; mean A-hat 0.448
+  inject loglin fit loglin: recovery ratio (vs the expected small-amplitude conversion 1.000 x A_inj) = 0.997; mean A-hat 0.331
+  inject mult   fit loglin: recovery ratio (vs the expected small-amplitude conversion 0.434 x A_inj) = 1.012; mean A-hat 0.199
+  inject loglin fit mult  : recovery ratio (vs the expected small-amplitude conversion 2.303 x A_inj) = 0.857; mean A-hat 0.662
+  point level (real positions, injection into V_obs, rebuild at grid step 0.02; recovery of the change vector, 4 tetrahedral directions):
+    form mult  : point-level recovery (mean of 4 dirs) 0.906 [1.09, 0.89, 0.71, 0.94]; curve-level on the same data 0.950
+    form loglin: point-level recovery (mean of 4 dirs) 0.946 [0.98, 0.93, 0.91, 0.96]; curve-level on the same data 1.000
+
+==============================================================================================================
+C5. footprint dependence: fixed injection directions, position-permuted base, N = 500
+==============================================================================================================
+  A_inj = 0.3: footprint axis      : recovery ratio 1.070; median angle  45.6; power(>95% thr) 0.212; power(>99.7% thr) 0.024
+  A_inj = 0.3: footprint antipode  : recovery ratio 0.962; median angle  38.5; power(>95% thr) 0.030; power(>99.7% thr) 0.000
+  A_inj = 0.3: S Galactic pole     : recovery ratio 0.974; median angle  44.6; power(>95% thr) 0.040; power(>99.7% thr) 0.000
+  A_inj = 0.3: l=60,b=0            : recovery ratio 0.998; median angle  41.2; power(>95% thr) 0.168; power(>99.7% thr) 0.012
+  A_inj = 0.3: l=150,b=0           : recovery ratio 1.016; median angle  42.1; power(>95% thr) 0.200; power(>99.7% thr) 0.024
+  A_inj = 0.3: l=240,b=0           : recovery ratio 1.006; median angle  37.8; power(>95% thr) 0.110; power(>99.7% thr) 0.006
+  A_inj = 0.3: l=330,b=0           : recovery ratio 0.876; median angle  38.3; power(>95% thr) 0.058; power(>99.7% thr) 0.000
+  A_inj = 0.3: CMB dipole          : recovery ratio 1.019; median angle  45.5; power(>95% thr) 0.120; power(>99.7% thr) 0.004
+  A_inj = 0.5: footprint axis      : recovery ratio 0.989; median angle  32.0; power(>95% thr) 0.434; power(>99.7% thr) 0.028
+  A_inj = 0.5: footprint antipode  : recovery ratio 0.984; median angle  22.5; power(>95% thr) 0.208; power(>99.7% thr) 0.000
+  A_inj = 0.5: S Galactic pole     : recovery ratio 0.989; median angle  25.0; power(>95% thr) 0.196; power(>99.7% thr) 0.000
+  A_inj = 0.5: l=60,b=0            : recovery ratio 0.978; median angle  24.7; power(>95% thr) 0.368; power(>99.7% thr) 0.024
+  A_inj = 0.5: l=150,b=0           : recovery ratio 0.955; median angle  28.8; power(>95% thr) 0.404; power(>99.7% thr) 0.080
+  A_inj = 0.5: l=240,b=0           : recovery ratio 1.016; median angle  25.9; power(>95% thr) 0.370; power(>99.7% thr) 0.022
+  A_inj = 0.5: l=330,b=0           : recovery ratio 0.962; median angle  22.4; power(>95% thr) 0.292; power(>99.7% thr) 0.002
+  A_inj = 0.5: CMB dipole          : recovery ratio 0.989; median angle  29.3; power(>95% thr) 0.356; power(>99.7% thr) 0.012
+  recovery ratio range across directions 0.88-1.07; power(A_inj = 0.5) range 0.20-0.43
+
+==============================================================================================================
+C6. synthetic mock skies (Gaussian curves with the real half-widths, tau = 0.34 dex intrinsic scatter, positions bootstrapped from the footprint), N = 2000
+==============================================================================================================
+  A_inj = 0: A-hat median 0.419; 95% 0.768; 99.7% 0.950
+  A_inj = 0.1: mean A-hat 0.432; power(>95%) 0.052; power(>99.7%) 0.003
+  A_inj = 0.2: mean A-hat 0.463; power(>95%) 0.067; power(>99.7%) 0.004
+  A_inj = 0.3: mean A-hat 0.495; power(>95%) 0.086; power(>99.7%) 0.006
+  A_inj = 0.5: mean A-hat 0.601; power(>95%) 0.195; power(>99.7%) 0.011
+
+==============================================================================================================
+C verdicts (frozen meaning)
+==============================================================================================================
+  recovery ratio (C2, mean over A_inj 0.1-0.5) = 0.958; per A_inj: 0.1: 0.88, 0.2: 1.00, 0.3: 0.96, 0.5: 0.98 (README ~0.77; frozen window [0.6, 0.95])
+  power at p<0.05 (nested): 0.1: 0.04, 0.2: 0.09, 0.3: 0.09, 0.5: 0.29
+  'cannot see a dipole below about 40%' CONFIRMED iff power(0.3) < 0.5 and power(0.5) > 0.2: power(0.3) = 0.09, power(0.5) = 0.29 -> CONFIRMED
+  estimator FOOTPRINT-SENSITIVE iff C5 recovery ratios differ by > 0.15 or power by > 2x between best/worst direction: ratio spread 0.19, power ratio 2.21
+
+==============================================================================================================
+D1. Neyman A95 (random direction): 1000 trials per cell, 3 seeds x (simple, block), grid 0-0.9 step 0.025
+==============================================================================================================
+  simple seed 19204: A95 = 0.400; P(A-hat >= A_obs | A_inj = 0) = 0.778; monotone (within 0.03): True
+  simple seed 19205: A95 = 0.400; P(A-hat >= A_obs | A_inj = 0) = 0.787; monotone (within 0.03): True
+  simple seed 19206: A95 = 0.400; P(A-hat >= A_obs | A_inj = 0) = 0.785; monotone (within 0.03): True
+  block  seed 19204: A95 = 0.400; P(A-hat >= A_obs | A_inj = 0) = 0.761; monotone (within 0.03): True
+  block  seed 19205: A95 = 0.400; P(A-hat >= A_obs | A_inj = 0) = 0.763; monotone (within 0.03): True
+  block  seed 19206: A95 = 0.425; P(A-hat >= A_obs | A_inj = 0) = 0.756; monotone (within 0.03): True
+  A95 over 6 runs: mean 0.404, min 0.400, max 0.425; simple mean 0.400, block mean 0.408
+  finer grid (step 0.0125, 0.30-0.50, simple, new seed): A95 = 0.3875
+
+==============================================================================================================
+D2. does the limit procedure cover? (each mock's own A95 from the D1 table; must be >= 0.95)
+==============================================================================================================
+  random-direction ensemble, A_true = 0.1: coverage = 0.938; median mock A95 = 0.575
+  random-direction ensemble, A_true = 0.2: coverage = 0.971; median mock A95 = 0.600
+  random-direction ensemble, A_true = 0.3: coverage = 0.954; median mock A95 = 0.700
+  random-direction ensemble, A_true = 0.5: coverage = 0.961; median mock A95 = 0.775
+  fixed direction footprint axis    , A_true = 0.3: coverage = 0.982
+  fixed direction footprint axis    , A_true = 0.5: coverage = 0.964
+  fixed direction footprint antipode, A_true = 0.3: coverage = 0.964
+  fixed direction footprint antipode, A_true = 0.5: coverage = 0.984
+  fixed direction S Galactic pole   , A_true = 0.3: coverage = 0.982
+  fixed direction S Galactic pole   , A_true = 0.5: coverage = 0.988
+  fixed direction CMB dipole        , A_true = 0.3: coverage = 0.992
+  fixed direction CMB dipole        , A_true = 0.5: coverage = 0.984
+  verdict: random-direction coverage min 0.938 -> VALID (>= 0.93); fixed-direction ensembles below 0.90: []
+
+==============================================================================================================
+D3. alternative limit definitions next to A95
+==============================================================================================================
+  (i) likelihood-ratio ordering (Delta chi2_obs = 10.49), grid step 0.05, 1000 trials: limit = 0.400
+  (ii) bootstrap percentile one-sided: A-hat + 1.645 sigma: std definition 0.506; rms-component definition 0.573; 95th percentile of the bootstrap A-hat 0.663
+  (iii) Maxwell / noncentral-chi3 with sigma_comp = null-median/1.5382 = 0.225: A95 = 0.436; the permutation null has 95% quantile 0.653 vs Maxwell 0.629
+  spread across (Neyman, i, ii(std), iii) = 0.106 -> consistent (<= 0.15)
+
+==============================================================================================================
+D4. direction-specific intervals A_fix +/- 1.96 sigma and their coverage under injection (A_true = 0.3, N = 500; sigma fixed at the observed bootstrap value)
+==============================================================================================================
+  CMB   : A_fix = -0.071 +/- 0.161; 95% upper end 0.24; injected 0.3 along it: recovery 0.95, interval coverage 0.974
+  bulk  : A_fix = +0.014 +/- 0.177; 95% upper end 0.36; injected 0.3 along it: recovery 0.92, interval coverage 0.910
+  Chang : A_fix = +0.107 +/- 0.245; 95% upper end 0.59; injected 0.3 along it: recovery 1.03, interval coverage 0.930
+  Zhou  : A_fix = +0.058 +/- 0.232; 95% upper end 0.51; injected 0.3 along it: recovery 1.05, interval coverage 0.884
+  Virgo : A_fix = -0.106 +/- 0.161; 95% upper end 0.21; injected 0.3 along it: recovery 1.02, interval coverage 0.968
+
+  0/0 checks pass; load-bearing failures 0; 
+rc = 0

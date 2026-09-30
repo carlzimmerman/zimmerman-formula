@@ -1,0 +1,105 @@
+
+==============================================================================================================
+CFG192 attacks A and B   repo=<repo>
+==============================================================================================================
+
+==============================================================================================================
+A1. sample ladder (Birge scaling, LML profiles as primary; N_perm 1000, N_boot 500)
+==============================================================================================================
+  primary Q<=2, Inc>=30              N=149 A=0.237 (239,-46) dchi2= 10.5 Fis=0.078 sig(std/comp)=0.161/0.199 p=0.798 nullmed=0.343
+  Q=1 only, Inc>=30                  N= 93 A=0.347 (282,-46) dchi2= 15.4 Fis=0.090 sig(std/comp)=0.160/0.188 p=0.504 nullmed=0.349
+  Q<=2, Inc>=45                      N=126 A=0.291 (220,-35) dchi2= 11.1 Fis=0.083 sig(std/comp)=0.185/0.222 p=0.682 nullmed=0.370
+  Q<=2, Inc>=60                      N= 87 A=0.360 (180,-17) dchi2=  9.2 Fis=0.107 sig(std/comp)=0.208/0.243 p=0.674 nullmed=0.453
+  Q<=2, no Inc cut                   N=159 A=0.244 (239,-43) dchi2= 10.5 Fis=0.078 sig(std/comp)=0.144/0.190 p=0.748 nullmed=0.345
+  Q<=3, no Inc cut (all usable)      N=171 A=0.306 (256,-43) dchi2= 21.4 Fis=0.073 sig(std/comp)=0.153/0.193 p=0.603 nullmed=0.344
+  primary, >= 10 points              N=115 A=0.146 (223,-16) dchi2=  1.9 Fis=0.089 sig(std/comp)=0.168/0.214 p=0.933 nullmed=0.329
+  primary, drop UMa                  N=123 A=0.218 (240,-44) dchi2=  7.6 Fis=0.080 sig(std/comp)=0.161/0.205 p=0.844 nullmed=0.373
+  primary, drop Hubble-flow          N= 68 A=0.421 (184,-56) dchi2= 33.2 Fis=0.102 sig(std/comp)=0.228/0.271 p=0.679 nullmed=0.530
+  primary, drop TRGB/Ceph/SNIa       N=107 A=0.419 (265,+23) dchi2= 18.1 Fis=0.130 sig(std/comp)=0.203/0.241 p=0.538 nullmed=0.438
+  primary, drop bulge galaxies       N=118 A=0.335 (250,+4) dchi2= 14.3 Fis=0.104 sig(std/comp)=0.245/0.257 p=0.626 nullmed=0.390
+  primary, |b| > 10                  N=148 A=0.263 (233,-43) dchi2= 12.0 Fis=0.078 sig(std/comp)=0.154/0.200 p=0.703 nullmed=0.341
+  smallest p_perm over the 12 sample cells: 0.504; largest A-hat 0.421
+  A1 verdict: NULL ROBUST across the ladder (no cell p < 0.01)
+
+==============================================================================================================
+A2. leave-one-galaxy-out jackknife and pull-based removal
+==============================================================================================================
+  largest single-galaxy shifts of D-hat: NGC2915 0.176, NGC6503 0.121, NGC7814 0.115, UGCA444 0.109, NGC0891 0.094
+  max shift 0.176; median 0.0052
+  |pull| (curve-only widths) > 3: 24 of 149; > 2: 43
+  drop 10 most influential           N=139 A=0.406 (247,-14) dchi2= 15.9 Fis=0.087 sig(std/comp)=0.146/0.152 p=0.251 nullmed=0.300
+  drop 10 largest |pull|             N=139 A=0.232 (272,-61) dchi2= 12.7 Fis=0.077 sig(std/comp)=0.142/0.172 p=0.613 nullmed=0.273
+
+==============================================================================================================
+A3. remove each of 12 equal-area sky sectors (nearest of 12 Fibonacci centres)
+==============================================================================================================
+  remove sector  0 ( 21 galaxies): A = 0.326 toward (190, -51); p = 0.595
+  remove sector  1 ( 72 galaxies): A = 0.174 toward (233, +40); p = 0.960
+  remove sector  2 (  3 galaxies): A = 0.218 toward (246, -48); p = 0.870
+  remove sector  3 (  7 galaxies): A = 0.224 toward (235, -48); p = 0.802
+  remove sector  4 ( 13 galaxies): A = 0.355 toward (241, -25); p = 0.569
+  remove sector  5 (  1 galaxies): A = 0.241 toward (232, -45); p = 0.750
+  remove sector  6 (  2 galaxies): A = 0.284 toward (229, -42); p = 0.677
+  remove sector  7 (  3 galaxies): A = 0.239 toward (240, -40); p = 0.750
+  remove sector  8 (  2 galaxies): A = 0.220 toward (180, -27); p = 0.804
+  remove sector  9 ( 15 galaxies): A = 0.169 toward (251, -25); p = 0.898
+  remove sector 10 (  4 galaxies): A = 0.302 toward (263, -49); p = 0.703
+  remove sector 11 (  6 galaxies): A = 0.414 toward (275, -52); p = 0.401
+  A-hat range 0.169-0.414; max angle between sector-removed directions 99 deg; min p 0.401
+
+==============================================================================================================
+B. nuisance treatments (each rebuilt at grid step 0.02 for the 149 primary galaxies)
+==============================================================================================================
+  P02 primary, step 0.02             N=149 A=0.237 (239,-46) dchi2= 10.5 Fis=0.078 sig(std/comp)=0.163/0.192 p=0.761 nullmed=0.346 hw_med=0.243 birge_med=1.72
+  B1 fixed nuisances                 N=149 A=0.480 (193,+2) dchi2=1205.0 Fis=0.012 sig(std/comp)=0.187/0.209 p=0.233 nullmed=0.364 hw_med=0.041 birge_med=2.74
+  B2 profile Y only                  N=149 A=0.724 (184,-1) dchi2=865.4 Fis=0.023 sig(std/comp)=0.187/0.182 p=0.022 nullmed=0.397 hw_med=0.085 birge_med=1.84
+  B3 profile D and Inc only          N=149 A=0.382 (250,-26) dchi2= 33.2 Fis=0.047 sig(std/comp)=0.204/0.283 p=0.625 nullmed=0.444 hw_med=0.184 birge_med=2.36
+  B4a Y sigma 0.2 dex                N=149 A=0.308 (214,-26) dchi2= 10.7 Fis=0.081 sig(std/comp)=0.178/0.195 p=0.561 nullmed=0.330 hw_med=0.258 birge_med=1.44
+  B4b Y sigma 0.3 dex                N=149 A=0.336 (211,-22) dchi2= 11.5 Fis=0.080 sig(std/comp)=0.169/0.192 p=0.512 nullmed=0.340 hw_med=0.278 birge_med=1.40
+  B4c D, Inc sigma x2                N=149 A=0.243 (267,-55) dchi2=  6.5 Fis=0.108 sig(std/comp)=0.181/0.230 p=0.863 nullmed=0.429 hw_med=0.302 birge_med=1.71
+  B4d all looser (Y 0.2, D/Inc x2)   N=149 A=0.398 (213,-32) dchi2=  9.4 Fis=0.116 sig(std/comp)=0.204/0.232 p=0.544 nullmed=0.420 hw_med=0.352 birge_med=1.44
+  B4e Y sigma 0.05 dex (tighter)     N=149 A=0.277 (302,-44) dchi2= 19.5 Fis=0.068 sig(std/comp)=0.144/0.202 p=0.773 nullmed=0.399 hw_med=0.210 birge_med=2.06
+  B7e e_V x sin(i)/sin(i')           N=149 A=0.352 (216,-31) dchi2= 14.1 Fis=0.076 sig(std/comp)=0.191/0.226 p=0.624 nullmed=0.415 hw_med=0.219 birge_med=1.56
+
+==============================================================================================================
+B1/B7 Birge variants (fixed-nuisance step-0.02 curves and primary step-0.01 curves)
+==============================================================================================================
+  fixed Birge none                   N=149 A=0.717 (170,-6) dchi2=23543.3 Fis=0.005 sig(std/comp)=0.219/0.201 p=0.091 nullmed=0.455
+  fixed Birge vel                    N=149 A=0.480 (193,+2) dchi2=1205.0 Fis=0.012 sig(std/comp)=0.176/0.201 p=0.243 nullmed=0.377
+  fixed Birge dofN                   N=149 A=0.472 (193,+2) dchi2=1211.8 Fis=0.012 sig(std/comp)=0.181/0.207 p=0.213 nullmed=0.357
+  fixed Birge primary cap3           N=149 A=0.656 (176,-8) dchi2=7329.6 Fis=0.009 sig(std/comp)=0.199/0.201 p=0.119 nullmed=0.450
+  primary Birge none                 N=149 A=0.584 (213,-14) dchi2= 86.5 Fis=0.051 sig(std/comp)=0.203/0.220 p=0.153 nullmed=0.394
+  primary Birge vel                  N=149 A=0.224 (232,-39) dchi2=  8.6 Fis=0.075 sig(std/comp)=0.164/0.197 p=0.795 nullmed=0.343
+  primary Birge dofN                 N=149 A=0.234 (242,-46) dchi2= 10.8 Fis=0.077 sig(std/comp)=0.170/0.200 p=0.781 nullmed=0.341
+  primary Birge primary cap3         N=149 A=0.426 (223,-28) dchi2= 26.6 Fis=0.071 sig(std/comp)=0.176/0.206 p=0.359 nullmed=0.365
+
+==============================================================================================================
+B5. simple per-galaxy a0 fit (fixed nuisances) + regression of log a0_i on log10(1 + D.n_i)
+==============================================================================================================
+  weighted (1/hw^2)   : A = 0.268 toward (191, -10); Fisher rms sigma 0.012; bootstrap std/comp 0.158/0.181; permutation p = 0.584; scatter of residuals 0.350 dex
+  unweighted          : A = 0.418 toward (267, -26); Fisher rms sigma 0.131; bootstrap std/comp 0.132/0.132; permutation p = 0.108; scatter of residuals 0.342 dex
+
+==============================================================================================================
+B6. random-effects likelihood on the primary Birge-scaled curves (fitted tau)
+==============================================================================================================
+  A = 0: tau = 0.330 dex, log a0 = -10.018; with dipole: A = 0.469 toward (263, -16); tau = 0.325; LR = 6.65
+  permutation (N = 300): p(LR) = 0.093; p(A-hat) = 0.176; null A-hat median 0.317
+
+==============================================================================================================
+B8. degeneracy diagnostics on the primary (step-0.01) profile
+==============================================================================================================
+  Spearman(best log a0, log D) = -0.00 (p 0.978); with Inc = +0.24 (p 0.003); with Y_d pull = -0.36; D pull = -0.58; i pull = -0.52
+  fraction of galaxies with a nuisance at its bound at the minimum: Y_d 0.01, D 0.01, i 0.07
+  median |pull|: Y_d 1.27, D 0.33, i 0.14; fraction with |pull| > 2: 0.31, 0.09, 0.03
+  median d ln D' / d log10 a0 along the profile near the minimum = -0.611 (a0 <-> D degeneracy: at fixed data the deep-regime law V^2 ∝ a0^(1/2) D' gives a0 ∝ D'^-2, i.e. -1.15 for full degeneracy; the prior on D' pulls the profile away from it)
+
+==============================================================================================================
+Verdicts (frozen meaning)
+==============================================================================================================
+  B p-values (permutation): P02 primary, step 0.02: 0.761; B1 fixed nuisances: 0.233; B2 profile Y only: 0.022; B3 profile D and Inc only: 0.625; B4a Y sigma 0.2 dex: 0.561; B4b Y sigma 0.3 dex: 0.512; B4c D, Inc sigma x2: 0.863; B4d all looser (Y 0.2, D/Inc x2): 0.544; B4e Y sigma 0.05 dex (tighter): 0.773; B7e e_V x sin(i)/sin(i'): 0.624; fixed Birge none: 0.091; fixed Birge vel: 0.243; fixed Birge dofN: 0.213; fixed Birge primary cap3: 0.119; primary Birge none: 0.153; primary Birge vel: 0.795; primary Birge dofN: 0.781; primary Birge primary cap3: 0.359; B5 weighted (1/hw^2): 0.584; B5 unweighted: 0.108; B6 random effects: 0.093
+  NULL SURVIVES iff p > 0.05 in all B cells: False; NUISANCE-DEPENDENT (any p < 0.01): False; smallest p 0.022 (B2 profile Y only)
+  like-for-like (bootstrap vs bootstrap, rms component): fixed nuisances 0.209 vs profiled 0.192 (ratio 0.92): the bootstrap error does NOT shrink when the nuisances are fixed; the frozen literal rule below compares a fixed-nuisance FISHER error with a profiled BOOTSTRAP error and so overstates it
+  '5x errors' claim (frozen literal rule): fixed-nuisance Fisher sigma 0.012 vs profiled bootstrap sigma 0.192 (ratio 16.1); B5 weighted Fisher 0.012; published-size (<= 0.08) reachable: True; confirmed iff ratio >= 2 and reachable: True
+
+  0/0 checks pass; load-bearing failures 0; 
+rc = 0
