@@ -1,0 +1,30 @@
+SEED SWEEP MARGINAL PAIRS (DR3 PRIMARY base, N_SHIFT = 30; DR3 numbers are code-path tests, never results)
+
+M1 inclusion frequency over the ten final tables of a family
+  ALL    : core (in all ten) 5,721; marginal (in 1 to 9) 905; ever 6,626; marginal / mean final size 0.146; in-exactly-c-builds histogram {1: 125, 2: 100, 3: 103, 4: 72, 5: 57, 6: 61, 7: 74, 8: 105, 9: 208, 10: 5721}
+  G-only : core (in all ten) 5,747; marginal (in 1 to 9) 848; ever 6,595; marginal / mean final size 0.137; in-exactly-c-builds histogram {1: 139, 2: 85, 3: 57, 4: 66, 5: 62, 6: 65, 7: 73, 8: 86, 9: 215, 10: 5747}
+
+M2 cut-13 candidates (pass every cut except A_V, vtilde error and 13) and final flips, build k against k = 0
+  k = 1: candidates 10,209; in k only 12, in k = 0 only 34; FINAL pairs in k = 0 only 164, in k only 150
+  k = 2: candidates 10,228; in k only 16, in k = 0 only 19; FINAL pairs in k = 0 only 165, in k only 136
+  k = 3: candidates 10,229; in k only 18, in k = 0 only 20; FINAL pairs in k = 0 only 160, in k only 162
+  k = 4: candidates 10,233; in k only 22, in k = 0 only 20; FINAL pairs in k = 0 only 150, in k only 148
+  k = 5: candidates 10,220; in k only 16, in k = 0 only 27; FINAL pairs in k = 0 only 159, in k only 148
+  k = 6: candidates 10,223; in k only 30, in k = 0 only 38; FINAL pairs in k = 0 only 166, in k only 164
+  k = 7: candidates 10,230; in k only 20, in k = 0 only 21; FINAL pairs in k = 0 only 175, in k only 159
+  k = 8: candidates 10,231; in k only 21, in k = 0 only 21; FINAL pairs in k = 0 only 159, in k only 146
+  k = 9: candidates 10,231; in k only 19, in k = 0 only 19; FINAL pairs in k = 0 only 166, in k only 164
+  mean candidate-membership difference (both ways) 43.7 against mean final-flip count (both ways) 315.7
+
+M3 stream alignment: vt_error_mc on a 2,000-pair slice
+  one pair removed at position    0: sigma_vt changed for 1999 of 1999 other pairs; median relative change 0.049
+  one pair removed at position 1000: sigma_vt changed for 1999 of 1999 other pairs; median relative change 0.048
+  one pair removed at position 1999: sigma_vt changed for 1999 of 1999 other pairs; median relative change 0.048
+  the same pairs in reversed order: sigma_vt changed for 2000 of 2000 pairs; median relative change 0.047 (a pair's sigma_vt depends on its position in the array and on the array's membership)
+
+M4 threshold margin: 10,230 pairs enter stage G's MC; ten seeds SEED + k (k = 0..9) on the extract's own stage F
+  median relative scatter of sigma_vt across the ten seeds 0.050 (Gaussian expectation 0.049)
+  pairs passing the vtilde-error cut in some seeds and failing in others (and A_V ok): 848; their mean r = sigma_vt / threshold ranges 0.381 to 1.984
+  model: sum over pairs of p (1 - p), p = the pass fraction over the ten seeds = 133.5 predicted one-way flips between two independent draws; observed G-only one-way flips (mean over k = 1..9) 142.3
+
+9 s
