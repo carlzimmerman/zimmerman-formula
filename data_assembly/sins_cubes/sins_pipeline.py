@@ -13,6 +13,7 @@ def model(lam, v, sig, aha, an2, c0, c1, lam_ref):
         out = out + a * np.exp(-0.5 * ((lam - lc) / s) ** 2)
     return out
 z_glob = [0.0]
+VBOUND = 1500.0
 def smooth_cube(data, noise, fwhm):
     s = fwhm / 2.3548 / PIX; d = np.empty_like(data); 
     for k in range(data.shape[0]): d[k] = gaussian_filter(np.nan_to_num(data[k]), s)
@@ -35,14 +36,21 @@ def fit_spaxel(lam, spec, err, z, sig0, v0=0.0):
     f_ = lambda x, v, s, a, an, c0, c1: model(x, v, s, a, an, c0, c1 * 100.0, lref)
     try:
         p, cov = curve_fit(f_, l, y, p0=p0, sigma=e, absolute_sigma=True, maxfev=4000, x_scale=[50, 30, max(amp, 1), max(amp, 1), max(abs(cont), 1), 1.0],
-                           bounds=([-1500, 15, 0, 0, -np.inf, -np.inf], [1500, 600, np.inf, np.inf, np.inf, np.inf]))
+                           bounds=([-VBOUND, 15, 0, 0, -np.inf, -np.inf], [VBOUND, 600, np.inf, np.inf, np.inf, np.inf]))
     except Exception: return None
     p = np.array(p); 
     er = np.sqrt(np.diag(cov))
     if not np.all(np.isfinite(er)): return None
     return dict(v=p[0], sig=p[1], aha=p[2] * sc, an=p[3] * sc, ev=er[0], esig=er[1], eaha=er[2] * sc)
-def process(data, noise, wave, z, sigma_tot, sini, fwhm=0.15, snr_cut=5.0, centre=None, strip=0.15, step=0.15):
+def empirical_noise(d, wave, z, vexcl=2500.0):
+    # amendment 1: robust rms of the smoothed spectrum of each spaxel in channels more than vexcl km/s from Halpha
+    far = np.abs((wave / (LHA * (1 + z)) - 1) * C) > vexcl
+    x = d[far]; mad = np.median(np.abs(x - np.median(x, axis=0)), axis=0) * 1.4826
+    return np.broadcast_to(mad[None], d.shape).copy()
+def process(data, noise, wave, z, sigma_tot, sini, fwhm=0.15, snr_cut=5.0, centre=None, strip=0.15, step=0.15, amend1=False):
     d, n = smooth_cube(data, noise, fwhm); ny, nx = d.shape[1:]
+    if amend1: n = empirical_noise(d, wave, z)
+    global VBOUND; VBOUND = 700.0 if amend1 else 1500.0
     if centre is None: centre = (nx / 2.0, ny / 2.0)
     # spaxels with a preliminary peak signal to noise above 2.5 are fitted
     lref = LHA * (1 + z); win = np.abs((wave / lref - 1) * C) < 1800

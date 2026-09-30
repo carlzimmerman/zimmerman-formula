@@ -23,8 +23,14 @@ for l0, a in ((P.LHA, 1.0), (P.LN2, 0.35), (P.LN1, 0.35 / 3)):
 cube = np.array([gaussian_filter(c, 0.2 / 2.3548 / PIX) for c in cube])
 # scale signal so that the peak Halpha S/N per spaxel is about 15 with the real noise level, then add noise
 peak = cube.max(); cube *= (15 * nlev) / peak
-noisy = cube + rng.normal(0, nlev, cube.shape); noise = np.full(cube.shape, nlev)
-out = P.process(noisy, noise, wave, z, 100.0, np.sin(inc), fwhm=0.15, snr_cut=5.0, centre=(30, 30))
+import os
+CORR = len(sys.argv) > 1 and sys.argv[1] == 'corr'
+if CORR:   # white noise smoothed with the 0.2 arcsec beam kernel, rescaled to the real per-channel noise level (correlated pixels)
+    w = rng.normal(0, 1, cube.shape); w = np.array([gaussian_filter(c, 0.2 / 2.3548 / PIX) for c in w]); w *= nlev / w.std()
+    noisy = cube + w
+else: noisy = cube + rng.normal(0, nlev, cube.shape)
+noise = np.full(cube.shape, nlev)
+out = P.process(noisy, noise, wave, z, 100.0, np.sin(inc), fwhm=0.15, snr_cut=5.0, centre=(30, 30), amend1=CORR)
 print("status", out["status"], "accepted", out["nacc"], "theta recovered %.1f (true %.1f)" % (out.get("theta_cube", np.nan), pa_true))
 if out["status"] == "ok":
     res = []
@@ -36,4 +42,4 @@ if out["status"] == "ok":
         res.append((s, vin, p["Vlos"], p["eVlos"]))
     res = np.array(res); rel = (res[:, 2] - res[:, 1]); print("bins", len(res)); print(np.round(res, 1))
     rms = float(np.sqrt(np.mean(rel ** 2))); scale = float(np.sqrt(np.mean(res[:, 1] ** 2))); print("rms difference %.2f km/s; rms of input %.1f km/s; fractional %.3f" % (rms, scale, rms / scale))
-    json.dump(dict(accepted=out["nacc"], theta_recovered=out["theta_cube"], theta_true=pa_true, rms=rms, rms_input=scale, frac=rms / scale, pass_10pct=bool(rms / scale < 0.10)), open("C2_injection_result.json", "w"), indent=1)
+    json.dump(dict(accepted=out["nacc"], theta_recovered=out["theta_cube"], theta_true=pa_true, rms=rms, rms_input=scale, frac=rms / scale, pass_10pct=bool(rms / scale < 0.10)), open("C2_injection_result_corr_AMEND1.json" if CORR else "C2_injection_result.json", "w"), indent=1)

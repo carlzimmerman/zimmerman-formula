@@ -11,6 +11,7 @@ MAIN = {"ZC400569": "ZC400569", "ZC407376": "ZC407376"}       # tables hold N/S 
 def num(x):
     try: return float(x)
     except Exception: return np.nan
+AMEND = len(sys.argv) > 1 and sys.argv[1] == 'amend1'; SUF = '_AMEND1' if AMEND else '_FROZENRULE'
 rows, profs = [], []
 for f in sorted(glob.glob(D + "*_data_cut.fits")):
     name = os.path.basename(f).split("_")[0]; pa_inf = float(re.search(r"PA([+-]\d+)", f).group(1))
@@ -21,7 +22,7 @@ for f in sorted(glob.glob(D + "*_data_cut.fits")):
     kpc = Planck18.kpc_proper_per_arcmin(z).value / 60.0
     res = {}
     for var, fw, snr in (("A", 0.15, 5.0), ("B", 0.10, 4.0)):
-        try: res[var] = P.process(data, noise, wave, z, sig if np.isfinite(sig) else 100.0, sini, fwhm=fw, snr_cut=snr, centre=centre)
+        try: res[var] = P.process(data, noise, wave, z, sig if np.isfinite(sig) else 100.0, sini, fwhm=fw, snr_cut=snr, centre=centre, amend1=AMEND)
         except Exception as e: res[var] = dict(status="error: %s" % e, nacc=0)
         r = res[var]
         for p in r.get("profile", []):
@@ -42,10 +43,9 @@ for f in sorted(glob.glob(D + "*_data_cut.fits")):
         pa_, pb_ = pd.DataFrame(a["profile"]).set_index("R_arcsec").Vlos, pd.DataFrame(res["B"]["profile"]).set_index("R_arcsec").Vlos
         com = pa_.index.intersection(pb_.index)
         if len(com) >= 2:
-            # common bins; the two variants may orient the axis oppositely, compare with the sign that gives the smaller rms
-            d = pa_.loc[com].values; e = pb_.loc[com].values; rms = float(min(np.sqrt(np.mean((d - e) ** 2)), np.sqrt(np.mean((d + e[::-1] * 0 + e) ** 2)) if False else np.inf))
+            d = pa_.loc[com].values; e = pb_.loc[com].values; rms = float(np.sqrt(np.mean((d - e) ** 2)))
     rows.append(dict(galaxy=name, PASINF=pa_inf, z=z, kpc_per_arcsec=kpc, sigma_tot=sig, sini=sini, statusA=a.get("status"), nacc_A=a.get("nacc"), statusB=res["B"].get("status"), nacc_B=res["B"].get("nacc"), nbins_A=len(prof), thin=thin,
                      irregular=("Irr" in " ".join(str(v) for v in t6.loc[name].values)), vsys_A=a.get("vsys", np.nan), theta_cube_A=th, PA_sky_plusPASINF=pa_sky, PA_sky_minusPASINF=pa_sky2, PA_pub=pakin, dPA_best=np.nanmin([d1, d2]) if np.isfinite(d1) or np.isfinite(d2) else np.nan,
                      half_dV_mine=vhalf, half_dV_pub=dv, C1_ratio=vhalf / dv if np.isfinite(dv) and dv > 0 else np.nan, C3_rms_AB=rms, Rout_arcsec=float(prof.R_arcsec.abs().max()) if len(prof) else np.nan))
     print(name, "A:", a.get("status"), a.get("nacc"), "B:", res["B"].get("status"), res["B"].get("nacc"), "half_dV mine %.1f pub %s" % (vhalf, dv), flush=True)
-pd.DataFrame(rows).to_csv("sins_ao_per_galaxy.csv", index=False); pd.DataFrame(profs).to_csv("sins_ao_profiles.csv", index=False)
+pd.DataFrame(rows).to_csv("sins_ao_per_galaxy%s.csv" % SUF, index=False); pd.DataFrame(profs).to_csv("sins_ao_profiles%s.csv" % SUF, index=False)
