@@ -164,23 +164,73 @@
   }
  },
  "cut12_nss": {
-  "_rule": "declare counted_tables and a written reason for every excluded table BEFORE opening any id file (cut12_stub refuses otherwise). A two-source table (rows with source_id and source_id_secondary) must go through cut12_nss_union.run_a17, which searches both id columns; run() refuses it. Query text: cut12_nss_union.adql_nss().",
+  "_rule": "declare counted_tables and a written reason for every excluded table BEFORE opening any id file (cut12_stub refuses otherwise). A two-source table (rows with source_id and source_id_secondary) must go through cut12_nss_union.run_a17, which searches both id columns; run() refuses it. Query text: cut12_nss_union.adql_nss(). Amendment 17 (filed, ab9557d58) fixes the reading: see 'a17_filed_ab9557d58'.",
   "counted_tables": null,
-  "excluded": {},
+  "excluded": {
+   "nss_epoch_flags": "DataLink-only, not TAP; per-transit flags with a model label, no solution parameters (A17 (a))"
+  },
   "id_files": {},
   "row_counts": null,
-  "two_source_tables": null,
+  "two_source_tables": [
+   "nss_resolved_pair",
+   "optical_pair"
+  ],
   "solution_types_recorded": null,
-  "diagnostic": null,
-  "readings": null,
-  "primary_reading": null,
-  "a17_draft_candidates_NOT_FILED": {
-   "_status": "Amendment 17 is a DRAFT, NOT FILED (AMENDMENT17_DRAFT_NOT_FILED.md revision 2, 6bc58d468). Copy into the fields above only if the owner files it; otherwise the pre-amendment reading applies. Table names: draft 2026-06-26, confirm on release day.",
+  "diagnostic": {
+   "uncounted_tables": [
+    "nss_masses",
+    "nss_multiplicity"
+   ],
+   "optical_pair_table": "optical_pair",
+   "optical_pair_flag_column": "acceleration_flag"
+  },
+  "readings": {
+   "A17_primary": {
+    "counted_tables": [
+     "nss_acceleration_astro",
+     "nss_multiple_orbits",
+     "nss_non_linear_spectro",
+     "nss_resolved_pair",
+     "nss_two_body_orbit",
+     "nss_vim_fl"
+    ],
+    "own_pair_exempt": {
+     "nss_resolved_pair": [
+      "ResolvedPairFixed",
+      "ResolvedPairLinear"
+     ]
+    }
+   },
+   "V17a": {
+    "counted_tables": [
+     "nss_acceleration_astro",
+     "nss_multiple_orbits",
+     "nss_non_linear_spectro",
+     "nss_resolved_pair",
+     "nss_two_body_orbit",
+     "nss_vim_fl"
+    ],
+    "own_pair_exempt": {}
+   },
+   "V17b": {
+    "counted_tables": [
+     "nss_acceleration_astro",
+     "nss_multiple_orbits",
+     "nss_non_linear_spectro",
+     "nss_two_body_orbit",
+     "nss_vim_fl"
+    ],
+    "own_pair_exempt": {}
+   }
+  },
+  "primary_reading": "A17_primary",
+  "a17_filed_ab9557d58": {
+   "_status": "Amendment 17 is FILED, on the owner's explicit go: ab9557d58 (prereg sha256 97aa97c4 -> 7fd0b36b; AMENDMENT17_HASH.txt). cut12_nss_union.run_a17 with the reading 'A17_primary' is the binding cut-12 reading; V17a and V17b are reported variants (A17 (c)). Table names: draft 2026-06-26, confirm on release day. The stored solution_type strings of nss_resolved_pair are NOT printed in the draft: record them in 'solution_types_recorded' on release day, BEFORE opening any id file (A17 (d)); run_a17 raises until they are recorded.",
    "two_source_tables": [
     "nss_resolved_pair",
     "optical_pair"
    ],
-   "solution_types_recorded": {
+   "solution_types_recorded_on_release_day": {
     "nss_resolved_pair": "record the stored strings on release day, before opening (A17 (d)); the draft names ResolvedPairFixed, ResolvedPairLinear, ResolvedPairAcceleration, ResolvedPairJerk, DiverseAcceleration, DiverseJerk"
    },
    "diagnostic": {
@@ -232,7 +282,8 @@
      ],
      "own_pair_exempt": {}
     }
-   }
+   },
+   "primary_reading": "A17_primary"
   }
  },
  "cut13_third_star": {

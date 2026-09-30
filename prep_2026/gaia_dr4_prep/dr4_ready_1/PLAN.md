@@ -119,3 +119,9 @@ Row and size figures are estimates from the stellar density at |b| > 10° to G =
   - `test_wp4_a17.py`: 19/19 pass, and all three MUTATE controls are caught. The harness had two bugs of its own, kept and disclosed: the first run is in `test_wp4_a17_firstrun.out`.
   - `manifest_template_dr4.json` now carries the draft data model's names (every one "draft 2026-06-26, confirm on release day") and the A17 draft's readings as NOT-FILED candidates.
   - The template's `join_by_source_id` key is renamed to `join_file`, the key the driver actually reads. This was a latent mismatch in this template, found while editing it.
+- **Amendment 17 FILED (added 2026-09-29).**
+  - The owner filed it in the orchestrator's chat: ab9557d58, append-only, prereg sha256 97aa97c4 → 7fd0b36b, with `AMENDMENT17_HASH.txt`. Its text equals draft revision 2.
+  - `cut12_nss_union.run_a17` with the reading `A17_primary` is now the binding cut-12 reading. V17a and V17b are the reported variants.
+  - `manifest_template_dr4.json` now carries the filed reading in `cut12_nss` (`primary_reading`, `readings`, `two_source_tables`, `diagnostic`, `excluded`), with the block renamed `a17_filed_ab9557d58`.
+  - `solution_types_recorded` stays null until release day (A17 (d)); `run_a17` refuses an exemption until it is filled.
+  - Nothing in `run_a17` or `test_wp4_a17.py` changed.
