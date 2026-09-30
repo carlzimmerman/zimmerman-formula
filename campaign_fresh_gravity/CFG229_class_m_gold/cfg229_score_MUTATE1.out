@@ -1,0 +1,139 @@
+CFG229 -- SCORING: g_obs, g_bar, D, the Newtonian-floor status, delta_L for FLAT / PROXY / H(z) / M-DEC, the pooled class-M statistic, and the IMPLIED a0 (Addendum 1) with its error budget,
+for the seven class-M galaxies.  Read the pre-flight first: cfg229_preflight.py was committed (e3f30dee5) before this script existed and is the GATE for every wording.
+Compilation; class-M gas; calibration-limited; not blind for the ALPAKA order of magnitude; not a detection.  LambdaCDM has no a0: the proxy is an effective-a0 PROXY.  kappa = 1/2 FITTED.
+No sentence of this lane says the data favour a law; the implied a0 is descriptive, not a verdict.
+Frozen criteria: FROZEN_CRITERIA.md (5c131c037) + Addendum 1 (7e3b14d20).
+MUTATE = 1 (g_obs x 1.5)
+
+BASELINE (thin exponential disc for stars + gas with one R_e; gas = 1.36 x 10^logMH2; the source's own velocity convention)
+  galaxy        z      R (kpc)  V (km/s)  sigma  g_obs (m/s2)  g_bar (m/s2)  y=g_bar/a0   D=g_obs/g_bar   gas share (mass)   R/beam
+  ALPAKA15     2.225     1.52    375.0     99  4.494e-09   1.471e-08      157.18        0.305        0.20          0.71
+  ALPAKA18     2.407     4.97    466.0     30  2.122e-09   5.099e-09       54.47        0.416        0.85          2.74
+  ALPAKA19     2.494     2.97    282.0     42  1.302e-09   2.954e-09       31.56        0.441        0.67          1.13
+  ALPAKA20     2.504     3.49    276.0     38  1.061e-09   2.448e-09       26.16        0.433        0.14          1.33
+  ALPAKA22     2.935     1.42    409.0     52  5.723e-09   1.416e-08      151.24        0.404        0.73          1.03
+  SINS_BX610   2.211     4.50    268.0     64  7.761e-10   1.134e-09       12.11        0.685        0.62          2.21
+  ALESS_122.1  2.024    10.63    533.0    157  1.299e-09   4.533e-10        4.84        2.866        0.76          nan
+
+DELTA_L = log10[g_obs / (g_bar nu_mono(g_bar / (a0 F_L(z))))]  (canonical footing; the alt footing and P2 below)
+  galaxy        FLAT     PROXY    H(z)     M-DEC     | alt footing: FLAT  H(z)   | P2 kernel: FLAT  H(z)
+  ALPAKA15     -0.517   -0.519   -0.522   -0.517     | -0.518 -0.523   | -0.516 -0.520
+  ALPAKA18     -0.387   -0.392   -0.400   -0.386     | -0.388 -0.404   | -0.385 -0.395
+  ALPAKA19     -0.366   -0.376   -0.389   -0.364     | -0.367 -0.396   | -0.363 -0.380
+  ALPAKA20     -0.375   -0.387   -0.403   -0.373     | -0.377 -0.411   | -0.371 -0.393
+  ALPAKA22     -0.396   -0.399   -0.402   -0.395     | -0.396 -0.404   | -0.395 -0.400
+  SINS_BX610   -0.188   -0.208   -0.236   -0.185     | -0.193 -0.250   | -0.182 -0.217
+  ALESS_122.1  +0.402   +0.364   +0.312   +0.408     | +0.391 +0.291   | +0.416 +0.351
+
+DIAGNOSTIC (POST HOC, added after the first scoring run and labelled as such): which baryon component exceeds the dynamics?  M_dyn(<R) = V^2 R / G (spherical shortcut); D restricted to the stars or to the gas alone
+  galaxy        log M*   log M_gas(He)  log M_dyn(<R)   M*/M_dyn   M_bar/M_dyn   D (stars only)   D (gas only)
+  ALPAKA15      11.40      10.81         10.70          5.03         6.32            0.38           1.50
+  ALPAKA18      11.08      11.82         11.40          0.48         3.09            2.69           0.49
+  ALPAKA19      10.90      11.21         10.74          1.46         4.38            1.32           0.66
+  ALPAKA20      11.51      10.72         10.79          5.18         6.03            0.50           3.07
+  ALPAKA22      10.85      11.29         10.74          1.27         4.77            1.52           0.55
+  SINS_BX610    11.00      11.21         10.88          1.33         3.51            1.80           1.10
+  ALESS_122.1   10.89      11.39         11.85          0.11         0.46           11.96           3.77
+
+NEWTONIAN FLOOR (every law has nu >= 1, so D < 1 is a baryon-model inconsistency for ANY of them): status PASS if D >= 1; BAND-DEPENDENT if D < 1 but D >= 1 at the most favourable corner of the declared outer bands (gas -0.093, stars -0.30, geometry, pressure, ALPAKA ring and inclination variants); ROBUST FAIL otherwise
+  ALPAKA15     D =  0.305; most favourable corner D_best =  2.591 (V_ext@R_mean, i_alt, alpha 3.36, stars 2Re) -> BAND-DEPENDENT
+  ALPAKA18     D =  0.416; most favourable corner D_best =  7.177 (V_ring@R_ext, i_used-1sig, alpha 3.36, spherical) -> BAND-DEPENDENT
+  ALPAKA19     D =  0.441; most favourable corner D_best =  1.740 (V_ext@R_mean, i_used-1sig, alpha 3.36, thin Re x1.5) -> BAND-DEPENDENT
+  ALPAKA20     D =  0.433; most favourable corner D_best =  3.558 (V_ext@R_mean, i_used-1sig, alpha 3.36, stars 2Re) -> BAND-DEPENDENT
+  ALPAKA22     D =  0.404; most favourable corner D_best =  2.826 (V_ext@R_mean, i_used-1sig, alpha 3.36, thin Re x1.5) -> BAND-DEPENDENT
+  SINS_BX610   D =  0.685; most favourable corner D_best =  1.830 (V_ext@R_ext, i_used, alpha 3.36, thin Re x1.5) -> BAND-DEPENDENT
+  ALESS_122.1  D =  2.866; most favourable corner D_best =  6.746 (V_ext@R_ext, i_used, alpha 3.36, spherical) -> PASS
+  => PASS 1, BAND-DEPENDENT 6, ROBUST FAIL 0
+
+POOLED CLASS-M RESULT (this lane's own rule N_M >= 5; median delta with the 10,000-resample galaxy bootstrap 95% interval; DESCRIPTIVE; the pre-flight gate below decides what may be said)
+  ALL7         (N = 7): FLAT -0.375 [-0.396, -0.188]   PROXY -0.387 [-0.399, -0.208]   H(z) -0.400 [-0.403, -0.236]   M-DEC -0.373 [-0.395, -0.185]   | median(FLAT - H(z)) = +0.024; median D = 0.433
+  ALPAKA5      (N = 5): FLAT -0.387 [-0.517, -0.366]   PROXY -0.392 [-0.519, -0.376]   H(z) -0.402 [-0.522, -0.389]   M-DEC -0.386 [-0.517, -0.364]   | median(FLAT - H(z)) = +0.014; median D = 0.416
+  BX610+ALESS  (N = 2): FLAT +0.107 [-0.188, +0.402]   PROXY +0.078 [-0.208, +0.364]   H(z) +0.038 [-0.236, +0.312]   M-DEC +0.112 [-0.185, +0.408]   | median(FLAT - H(z)) = +0.069; median D = 1.775
+  PASS subset: N = 1 (< 2): no pooled statistic
+
+BANDS: the median-free per-galaxy delta_FLAT at the band corners (gas inner +-0.03 / outer +-0.093; stars inner +-1 sigma / outer +-0.30; joint = same sign), and the set medians
+  band            ALPAKA15    ALPAKA18    ALPAKA19    ALPAKA20    ALPAKA22  SINS_BX610  ALESS_122.   median ALL7
+  gas -outer        -0.500      -0.310      -0.307      -0.363      -0.330      -0.136      +0.462   -0.310
+  gas -inner        -0.511      -0.362      -0.346      -0.371      -0.374      -0.171      +0.422   -0.362
+  gas +inner        -0.523      -0.412      -0.385      -0.379      -0.418      -0.206      +0.381   -0.385
+  gas +outer        -0.538      -0.465      -0.429      -0.389      -0.465      -0.245      +0.337   -0.429
+  stars -outer      -0.299      -0.352      -0.289      -0.140      -0.334      -0.102      +0.450   -0.289
+  stars -inner      -0.450      -0.372      -0.333      -0.286      -0.366      -0.126      +0.439   -0.333
+  stars +inner      -0.587      -0.405      -0.404      -0.467      -0.432      -0.271      +0.348   -0.405
+  stars +outer      -0.770      -0.448      -0.487      -0.638      -0.497      -0.321      +0.319   -0.487
+  joint -outer      -0.270      -0.269      -0.218      -0.120      -0.257      -0.038      +0.518   -0.218
+  joint -inner      -0.443      -0.346      -0.312      -0.281      -0.343      -0.106      +0.460   -0.312
+  joint +inner      -0.593      -0.429      -0.422      -0.471      -0.452      -0.286      +0.330   -0.429
+  joint +outer      -0.781      -0.517      -0.536      -0.646      -0.553      -0.364      +0.265   -0.536
+
+SENSITIVITIES (delta_FLAT / delta_H(z) per galaxy; beside the baseline, never substituted)
+  variant                                        ALPAKA15   ALPAKA18   ALPAKA19   ALPAKA20   ALPAKA22   SINS_BX6   ALESS_12
+  pressure alpha = 0.0 (V^2 = V_noP^2 + alpha sigma^2) -0.52/-0.52 -0.39/-0.40 -0.37/-0.39 -0.37/-0.40 -0.40/-0.40 -0.28/-0.33 +0.40/+0.31   median -0.375/-0.400
+  pressure alpha = 1.68 (V^2 = V_noP^2 + alpha sigma^2) -0.47/-0.47 -0.38/-0.40 -0.35/-0.37 -0.36/-0.39 -0.38/-0.39 -0.23/-0.28 +0.46/+0.37   median -0.361/-0.390
+  pressure alpha = 3.36 (V^2 = V_noP^2 + alpha sigma^2) -0.43/-0.43 -0.38/-0.39 -0.33/-0.36 -0.35/-0.38 -0.37/-0.38 -0.19/-0.24 +0.51/+0.42   median -0.348/-0.376
+  R_e x 1.5                                    -0.29/-0.29 -0.39/-0.41 -0.14/-0.18 -0.11/-0.16 -0.16/-0.18 +0.06/-0.02 +0.50/+0.40   median -0.139/-0.176
+  R_e / 1.5                                    -0.66/-0.66 -0.35/-0.37 -0.51/-0.52 -0.57/-0.59 -0.54/-0.54 -0.37/-0.40 +0.38/+0.29   median -0.506/-0.524
+  stars at 2 R_e                               -0.21/-0.22 -0.38/-0.40 -0.26/-0.29 +0.00/-0.06 -0.32/-0.32 -0.07/-0.13 +0.45/+0.35   median -0.211/-0.220
+  spherical enclosed mass                      -0.40/-0.41 -0.31/-0.33 -0.25/-0.28 -0.29/-0.32 -0.28/-0.29 -0.10/-0.16 +0.51/+0.40   median -0.282/-0.291
+  no helium factor (gas = 10^logMH2)           -0.49/-0.50 -0.28/-0.30 -0.28/-0.31 -0.36/-0.39 -0.30/-0.31 -0.11/-0.17 +0.49/+0.38   median -0.283/-0.311
+  Dunne table ad (gas, with He)                +nan/+nan -0.39/-0.40 -0.37/-0.39 -0.37/-0.40 -0.40/-0.40 -0.18/-0.23 +0.40/+0.31   median +nan/+nan
+  Dunne table dax (gas, with He)               +nan/+nan +nan/+nan +nan/+nan +nan/+nan +nan/+nan -0.19/-0.24 +nan/+nan   median +nan/+nan
+  Dunne table xa (gas, with He)                +nan/+nan +nan/+nan +nan/+nan +nan/+nan +nan/+nan -0.13/-0.19 +nan/+nan   median +nan/+nan
+  Dunne table xd (gas, with He)                -0.52/-0.52 +nan/+nan +nan/+nan +nan/+nan +nan/+nan -0.26/-0.30 +nan/+nan   median +nan/+nan
+  ALPAKA: outermost digitised ring V at R_ext  -0.42/-0.43 -0.35/-0.36 -0.35/-0.38 -0.57/-0.60 -0.36/-0.37 -0.19/-0.24 +0.40/+0.31   median -0.351/-0.371
+  ALPAKA: V_ext at the mean radius of the last two rings -0.46/-0.46 -0.46/-0.47 -0.31/-0.33 -0.27/-0.30 -0.34/-0.35 -0.19/-0.24 +0.40/+0.31   median -0.308/-0.326
+  ALPAKA inclination: the other of (i_HST, i_ALMA) -0.29/-0.30 -0.42/-0.43 -0.48/-0.50 -0.50/-0.53 -1.03/-1.04 -0.19/-0.24 +0.40/+0.31   median -0.417/-0.431
+  ALPAKA inclination: i_used - 1 sigma         -0.47/-0.47 +0.61/+0.60 -0.31/-0.33 -0.24/-0.27 -0.07/-0.07 -0.19/-0.24 +0.40/+0.31   median -0.188/-0.236
+  ALPAKA inclination: i_used + 1 sigma         -0.56/-0.56 -0.79/-0.80 -0.41/-0.44 -0.48/-0.51 -0.62/-0.62 -0.19/-0.24 +0.40/+0.31   median -0.477/-0.505
+
+PRE-FLIGHT GATE (cfg229_preflight.py, committed before this script; read from cfg229_preflight_results.json)
+  flat vs H(z) / vs PROXY at the JOINT OUTER band: ALL7: NOT POSSIBLE; ALPAKA5: NOT POSSIBLE; BX610+ALESS: NOT POSSIBLE
+  => NOT POSSIBLE in any set, so NO sentence of this lane may say any law is separated, preferred or disfavoured; the delta table is descriptive
+  the floor-PASS subset has N = 1 (< 3): no pooled law statement is possible from it
+
+IMPLIED a0 (Addendum 1; descriptive, not a verdict).  s* = the root of median_i log10[D_i / nu_mono(g_bar,i/(a0 s))] = 0 (CFG223's estimator); a0_implied = s* x 9.3603e-11 m/s^2 (footing-independent); the alt footing 1.1312e-10 gives the ratio s*/1.2085
+  z ~ 0 reference (QUOTED from the record, no SPARC analysis here): canonical 9.3603e-11 and alt 1.1312e-10 m/s^2 (CFG4_common.A0), which SPARC fits at equal quality at fixed Upsilon (CFG0 F9: 0.108 dex at the canonical footing, Upsilon 0.70); a0 and Upsilon are degenerate (CFG4 H2b: best free a0 1.37e-10 for nu_mono and 1.78e-10 for P2 at Upsilon 0.50); a free SPARC fit gives kappa ~ 0.46 at the canonical footing (CFG0 F7)
+
+  s* (a0 scale vs the canonical footing) per galaxy and pooled set; 'no root' = no a0 in [1e-3, 1e3] x the footing zeroes the median delta (D <= 1 or D at the edge)
+  set            s*       a0 (1e-10 m/s2)   s*/alt      lever     slope    statistical (log10 s*: 16 / 50 / 84%, no-root fraction)            INFORMATIVE?
+  ALPAKA15      no root         no root             -        n/a   0.005   [+nan, +nan, +nan]  no-root 1.00 (MC (V, inclination, )   UNINFORMATIVE: no root; the joint outer band removes the root
+  ALPAKA18      no root         no root             -        n/a   0.013   [+1.14, +1.89, +2.60]  no-root 0.83 (MC (V, inclination, )   UNINFORMATIVE: no root; the joint outer band removes the root
+  ALPAKA19      no root         no root             -        n/a   0.021   [+nan, +nan, +nan]  no-root 1.00 (MC (V, inclination, )   UNINFORMATIVE: no root; the joint outer band removes the root
+  ALPAKA20      no root         no root             -        n/a   0.025   [+0.20, +0.77, +1.29]  no-root 0.97 (MC (V, inclination, )   UNINFORMATIVE: no root; the joint outer band removes the root
+  ALPAKA22      no root         no root             -        n/a   0.005   [+1.27, +1.95, +2.55]  no-root 0.90 (MC (V, inclination, )   UNINFORMATIVE: no root; the joint outer band removes the root
+  SINS_BX610    no root         no root             -        n/a   0.051   [-0.11, +0.53, +0.94]  no-root 0.82 (MC (V, inclination, )   UNINFORMATIVE: no root; the joint outer band removes the root
+  ALESS_122.1      26.3          24.614          21.8       -1.5   0.116   [+1.17, +1.40, +1.60]  no-root 0.00 (MC (V, inclination, )   INFORMATIVE
+  ALL7          no root         no root             -        n/a   0.021   [+1.42, +1.42, +1.42]  no-root 0.99 (galaxy bootstrap (CF)   UNINFORMATIVE: no root; the joint outer band removes the root
+  ALPAKA5       no root         no root             -        n/a   0.013   [+nan, +nan, +nan]  no-root 1.00 (galaxy bootstrap (CF)   UNINFORMATIVE: no root; the joint outer band removes the root
+  BX610+ALESS       4.7           4.395          3.89       -3.2   0.084   [+0.67, +0.67, +1.42]  no-root 0.25 (galaxy bootstrap (CF)   UNINFORMATIVE: the joint outer band removes the root
+
+  systematic bars: s* at the band corners (gas inner +-0.03 / outer +-0.093; stars inner +-1 sigma / outer +-0.30; joint = same sign)
+  ALPAKA15     gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  ALPAKA18     gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  ALPAKA19     gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  ALPAKA20     gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  ALPAKA22     gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  SINS_BX610   gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  ALESS_122.1  gas -inner: 28.4  gas +inner: 24.3  gas -outer: 33.1  gas +outer: 20.3  stars -inner: 30.3  stars +inner: 21.2  stars -outer: 31.6  stars +outer: 18.7  joint -inner: 32.9  joint +inner: 19.7  joint -outer: 40.6  joint +outer: 14.7
+  ALL7         gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  ALPAKA5      gas -inner: no root  gas +inner: no root  gas -outer: no root  gas +outer: no root  stars -inner: no root  stars +inner: no root  stars -outer: no root  stars +outer: no root  joint -inner: no root  joint +inner: no root  joint -outer: no root  joint +outer: no root
+  BX610+ALESS  gas -inner: 5.39  gas +inner: 4  gas -outer: 6.91  gas +outer: 2.56  stars -inner: 6.63  stars +inner: 2.29  stars -outer: 7.4  stars +outer: 0.955  joint -inner: 7.53  joint +inner: 1.75  joint -outer: 10.6  joint +outer: no root
+
+  variants (s*): pressure, geometry, inclination (ALPAKA), ring (ALPAKA), no He, P2 kernel
+  ALPAKA15     alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  ALPAKA18     alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: 708  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  ALPAKA19     alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  ALPAKA20     alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: 1.04  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  ALPAKA22     alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  SINS_BX610   alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: 2.68  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  ALESS_122.1  alpha 0.0: 26.3  alpha 1.68: 36.7  alpha 3.36: 48.8  R_e x1.5: 38.6  R_e /1.5: 24.3  stars 2R_e: 31  spherical: 39.6  no He: 36.2  incl alt: 26.3  incl -1sig: 26.3  incl +1sig: 26.3  ring V_ring@R_ext: 26.3  ring V_ext@R_mean: 26.3  P2 kernel: 34.9
+  ALL7         alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  ALPAKA5      alpha 0.0: no root  alpha 1.68: no root  alpha 3.36: no root  R_e x1.5: no root  R_e /1.5: no root  stars 2R_e: no root  spherical: no root  no He: no root  incl alt: no root  incl -1sig: no root  incl +1sig: no root  ring V_ring@R_ext: no root  ring V_ext@R_mean: no root  P2 kernel: no root
+  BX610+ALESS  alpha 0.0: 2.85  alpha 1.68: 5.04  alpha 3.36: 7.59  R_e x1.5: 13  R_e /1.5: 1.24  stars 2R_e: 8.1  spherical: 8.93  no He: 7.93  incl alt: 4.7  incl -1sig: 4.7  incl +1sig: 4.7  ring V_ring@R_ext: 4.7  ring V_ext@R_mean: 4.7  P2 kernel: 6.98
+
+  expected s* if each law were true (from the pre-flight, noise-free, nominal baryons): ALL7: 1.00/2.08/3.63/0.83; ALESS_122.1: 1.00/1.79/3.07/0.87  (FLAT/PROXY/H(z)/M-DEC)
+
+CONTROLS
+  [PASS] MUTATE 1: g_obs x 1.5 shifts every delta_L by +0.17609 to 1e-9 and leaves g_bar unchanged: shifts [0.176091, 0.176091, 0.176091, 0.176091, 0.176091, 0.176091, 0.176091]; max |g_bar change| 0.0e+00
+
+1/1 controls pass; 2 s
