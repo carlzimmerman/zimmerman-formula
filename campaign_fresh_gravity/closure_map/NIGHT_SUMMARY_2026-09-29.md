@@ -51,3 +51,6 @@ No breakthrough. κ = ½ stays FITTED. Nothing here says the theory is closed or
 - Amendment 17 FILED on the owner's go (ab9557d58; append-only; sha 97aa97c4 → 7fd0b36b).
 - DR4-READY-1 is code-complete and verified (WP3 join, WP1/WP4 offline, WP5 driver, the A17 readings).
 - The DR3 pilots are blocked at ESA's archive: the async queue hangs, and sync is capped at 2,000 rows. A sync range-fetch replacement awaits the owner's go in the calculation chat.
+
+## Addendum (2026-09-30)
+CFG233 is committed (c5adc0f82). The orchestrating session re-ran it in a scratch copy on both tables: 59 outputs, differing only in timing lines. The CFG217 vs CFG233 tilt-table gap (about 0.1 dex) was the referee's own row exclusion; with no exclusion the two agree to 0.03σ, and the flat law reaches 3.6σ at a baryon tilt of −0.242 / −0.252 dex (committed / corrected table). The RC100 verdict stands: gas-route-limited, and not separable independently of the authors' gas trend.
