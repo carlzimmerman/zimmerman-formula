@@ -2,6 +2,22 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Newest horizon/dynamics obstruction: EXPANSION_BRIDGE_GAP_CONES_RESULTS.md
+derives cs²=(p*/a0,b)(lambda−1)/(3lambda−1) in the local quadratic
+principal sector of the subtracted gapped action. Fourteen exact checks pass
+with a validated bounded-run manifest. Equating the conditional scalar
+de Sitter cone radius to 1/(2a0,b) at Cb=32pi requires p*/a0,b>8pi,
+incompatible with the finite MOND window. The vacuum metric horizon instead
+has Lambda r²=3; the chosen homogeneous clock has u·K=−1, so the stationary
+universal-horizon condition has no locus on that branch. These are scoped
+tests, not a full causal proof or an exclusion of every horizon mechanism.
+The preceding EXPANSION_BRIDGE_GAP_CHECKPOINT.md shows that an un-subtracted
+self-sourcing gap operator also loses the MOND window at the target ratio.
+Neither route selects 32pi. Next: an independent vacuum/coefficient selector
+with a verified radius definition, followed by conserved-source matching and
+full dynamical and observational tests. Defining the radius from a0 or adding
+a freely chosen propagation coupling does not close the selection gap.
+
 Newest source obstruction: EXPANSION_BRIDGE_SOURCE_CENTER_RESULTS.md derives
 a covariant zero-current stationary fluid source including its pressure and
 preferred-frame momentum. Fifteen exact identities pass. A regular finite-
