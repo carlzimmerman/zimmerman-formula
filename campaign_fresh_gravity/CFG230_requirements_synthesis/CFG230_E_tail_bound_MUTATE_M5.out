@@ -1,0 +1,14 @@
+CFG230 E. repo=<repo> mode=M5 band=+-0.2 target kernel=P2
+  P2: maximise f(y) = eps sqrt(y^2+y) - y (sympy); the two stationary points are compared numerically with the closed form at eps = 0.3, 0.5, 0.8, 0.9, 0.95 (the sympy expressions do not auto-simplify)
+  [PASS] (CROSS-CHECK) closed form h(eps) = (1 - sqrt(1 - eps^2))/2 (CFG188) 
+  closed form at bands 10/20/50%: {0.1: 0.2820550528229664, 0.2: 0.20000000000000007, 0.5: 0.0669872981077807}
+  P2: forced tail band10 = 0.28205 a0 at y_N = 0.646; band20 0.2000; band50 0.0670; restricted to the G1 range y_N in [1.1e-3,100]: 0.28206
+  simple: forced tail band10 = 0.46754 a0 at y_N = 1.479; band20 0.3056; band50 0.0858; restricted to the G1 range y_N in [1.1e-3,100]: 0.46754
+  nu_mono: forced tail band10 = 0.42405 a0 at y_N = 1.057; band20 0.2904; band50 0.0849; restricted to the G1 range y_N in [1.1e-3,100]: 0.42405
+  [PASS] (CROSS-CHECK) (y q)' = 1 - 2y/sqrt(1+4y^2) > 0 for all y (P2 stable channel; CFG188 row 6) min 1.250e-13 at y = 1e6 (-> 1/(8 y^2) = 1.25e-13)
+  Saturn 9.58 AU: Q2 ratio for the isolated P2 tail a0/2: 6.280e+03; for the minimal tail 0.2000 a0: 2.512e+03
+  Saturn 9.54 AU: Q2 ratio for the isolated P2 tail a0/2: 6.306e+03; for the minimal tail 0.2000 a0: 2.523e+03
+  nu_mono anomaly (nu-1) y_N at y_N = 1e6 (y_N = 1.000e+06): 1.0430 a0
+  nu_mono anomaly (nu-1) y_N at Earth (Sun at 1 AU) (y_N = 6.336e+07): 1.1773 a0
+CONTROL BITES: R09 tail 0.282 -> 0.200 a0 when the band widens to 20% (closed form 0.200); R05, R06 numbers unaffected
+SUMMARY CFG230_E_tail_bound_MUTATE_M5: 2 checks, 0 MISS; repo=<repo>

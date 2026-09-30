@@ -1,0 +1,55 @@
+CFG230 B. repo=<repo> mode=M5 band=+-0.2
+
+== constants (canonical footing kappa = 1/2, H0 = 67.4, Omega_L = 0.6847)
+  a0 = 9.36032e-11 m/s^2 (Lean A0Numeric: 9.36e-11 < a0 < 9.361e-11)
+  [PASS] (CROSS-CHECK) a0 canonical in (9.36e-11, 9.361e-11) 9.36032e-11
+  [PASS] (EXPECT) E5 inner column a0/(2 pi G) = 106.8-106.9 Msun/pc^2 106.878
+  [PASS] (EXPECT) E5 a0/(4 pi G) = 53.4 Msun/pc^2 53.439
+
+== R01 lemma: linear response with a fixed kernel
+  C_model ~ M^2, C_target ~ M^1; R = C_model/C_target = 4*pi*G*M*r*K(r)/a0  (exponent in M at fixed r: 1)
+  [PASS] (NEW-DERIVATION) E4: C_model ~ M^2, C_target ~ M, R ~ M^1 at fixed r 
+  hypothesis (stated, not derived): rho_model linear in M_b with a fixed kernel AND g_tot linear in M_b (Newton plus a linear phantom).
+  CITATION: CFG120 sympy, CFG151 reproduces exponents 2.000000/1.000000 (grade S+R).
+  tolerance window |p - 1/2| <= log10((1+b)/(1-b))/(3k): outer 0.0587, inner 0.0293 (band +-0.2)
+  LP (log space, 260 (M, x) points, one universal K(r)): minimal worst-case |ln R| = 3.45388 -> factor 31.6228
+  [PASS] (CROSS-CHECK) universal-kernel residual = sqrt(1000) = 31.6228 (CFG120, CFG151) 31.622777
+  single-kernel mass window M_max/M_min <= (1+b)/(1-b) = 1.5000 (CFG120: 1.222 against the 1.1 line at b = 0.1)
+
+== R01 exponent table (spread over 1e9-1e12: 10^(3|dp|) for a scale, same for a mass-dependent amplitude power)
+  D01 fixed kernel length (p = 0): |dp| = 0.5000; full spread in s = 31.623; in s^2 = 1000.00
+  D09 fixed length 1/m (p = 0): |dp| = 0.5000; full spread in s = 31.623; in s^2 = 1000.00
+  D06 turnaround (p = 1/3): |dp| = 0.1667; full spread in s = 3.162; in s^2 = 10.00
+  D02 Verlinde (p = 1/2): |dp| = 0.0000; full spread in s = 1.000; in s^2 = 1.00
+  [PASS] (CROSS-CHECK) D01 spread 10^1.5 = 31.62 matches CFG120's sqrt(1000) 
+  [PASS] (CROSS-CHECK) D04 amplitude M^(1/2) over 1e3: 31.62 (CFG122 analytic 31.62) 
+  [PASS] (EXPECT) E3 D06: 3.16 in s and 10 in s^2 
+  scale factor s = 1.778: M_c(s x)/M_c(x) at x = 1: 2.511; at x = 28: 1.806
+  scale factor s = 0.562: M_c(s x)/M_c(x) at x = 1: 0.356; at x = 28: 0.547
+  scale factor s = 3.162: M_c(s x)/M_c(x) at x = 1: 5.593; at x = 28: 3.240
+  (with a free pivot the D06 turnaround scale gives a factor up to ~3 spread each way at x ~ 1, the same order as CFG118's 1.0-4.2x; not a match, an order-of-magnitude consistency.)
+
+== R02a: Buckingham-pi nullspace (own derivation; the committed Lean Dimension module states the monomial case, grade L in Amendment 1)
+  {G,M,c,H} length ~ M^(1/2): solutions = {(1/2, 1/2, -1/2, -1/2)}
+  {G,M,H} length ~ M^(1/3): solutions = {(1/3, 1/3, -2/3)}
+  {G,M,H} length ~ M^(1/2): solutions = EmptySet
+  {G,M,c} length ~ M^(1/2): solutions = EmptySet
+  {G,M,c,hbar} length ~ M^(1/2): solutions = {(3/4, 1/2, -7/4, 1/4)}
+  [PASS] (NEW-DERIVATION) E1: exactly one exponent vector for M^(1/2) from {G,M,c,H}: (GM/(cH))^(1/2) [(1/2, 1/2, -1/2, -1/2)]
+  [PASS] (NEW-DERIVATION) E1: exactly one exponent vector for M^(1/3) from {G,M,H}: (GM/H^2)^(1/3) [(1/3, 1/3, -2/3)]
+  [PASS] (NEW-DERIVATION) no M^(1/2) length from {G,M,H} (no c) 
+  [PASS] (NEW-DERIVATION) no M^(1/2) length from {G,M,c} (agrees with the committed Lean no_sqrtM_length_GMc) 
+  [PASS] (NEW-DERIVATION) hbar admissible: G^(3/4) M^(1/2) c^(-7/4) hbar^(1/4) (agrees with the committed Lean hbar_admissible) [(3/4, 1/2, -7/4, 1/4)]
+  [PASS] (EXPECT) E15 hbar length at 1e10 Msun ~ 1.5e-11 m 1.545e-11 m = 5.01e-31 kpc
+  [PASS] (EXPECT) E14 (kappa sqrt(3/8pi))^(1/2) = 0.416 at kappa = 1/2 0.4156; r_M/(GM/(cH))^(1/2) = 2.406
+  [PASS] (NEW-DERIVATION) numeric: r_M / (GM/(c H_Lambda))^(1/2) = 2.41 (H_Lambda = H0 sqrt(Omega_L)); inverse 0.416 (GM/(c H_L))^(1/2)/r_M = 0.4156
+  [PASS] (CITATION-AUDIT) LEDGER CFG158 row carries r_ta = 236, 508, 1094, 2358 kpc 
+  x_ta = r_ta/r_M at 1e9..1e12: ['193.4', '131.6', '89.7', '61.1']; log-slope -0.1668 (expected -1/6 = -0.1667); spread 3.165 (HAND 10^0.5 = 3.16)
+  [PASS] (EXPECT) x_ta ~ M^(-1/6): slope -0.1667 +- 0.005, spread 3.16 slope -0.1668, spread 3.165
+
+== R03 hook: the sf01 B3 free function F(z) = (1/2) sqrt(z) sqrt(1+4z) + (1/4) asinh(2 sqrt z) - sqrt z and the P2 mu
+  F'(z) - mu_P2(sqrt z) symbolic residual: 0; numeric at z = 0.01,0.3,1,7,100: ['-8.88e-16', '-5.55e-17', '0.00e+00', '2.95e-126', '0.00e+00']
+  [PASS] (CROSS-CHECK) F'(z) = mu_P2(sqrt z) (AQUAL density (a0^2/8piG) F(g^2/a0^2), mu = F') 
+  [PASS] (NEW-DERIVATION) E12: (y q)' = 1 - 2y/sqrt(1+4y^2) for P2 -2*y/sqrt(4*y**2 + 1) + 1
+CONTROL BITES: scale window 0.0291 -> 0.0587 outer when the band widens to +-20% (hand 0.059)
+SUMMARY CFG230_B_scaling_lemma_MUTATE_M5: 20 checks, 0 MISS; repo=<repo>

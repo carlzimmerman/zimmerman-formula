@@ -1,0 +1,46 @@
+CFG230 F. repo=<repo> mode=M2
+
+== baseline (frozen matrix)
+  hard-core set H = ['R03', 'R04', 'R05', 'R06', 'R07', 'R08', 'R09', 'R10', 'R11', 'R12'] (|H| = 10); HAND expectation H = R03..R12 (10)
+  [PASS] (EXPECT) |H| = 10 and H = R03..R12 ['R03', 'R04', 'R05', 'R06', 'R07', 'R08', 'R09', 'R10', 'R11', 'R12']
+  failed rows (>= 1 F): 16 of 17: ['D01', 'D02', 'D03', 'D04', 'D06', 'D07', 'D08', 'D09', 'D10', 'D11A', 'D11B', 'D11Ca', 'D11Cb', 'D11Cc', 'D11Cd1', 'D11Cd2']
+  exhaustive minimum cover of the failed rows by requirements they violate (2^12 subsets): size 2, 1 minimum cover(s)
+    R03, R06
+  [MISS] (EXPECT) minimum cover size 3-4 (HAND) size 2
+  minimum cover using only requirements with a THEOREM core ['R01', 'R02', 'R04', 'R06', 'R07', 'R08', 'R09', 'R12']: size 3: [['R01', 'R04', 'R09'], ['R01', 'R06', 'R09'], ['R01', 'R09', 'R12'], ['R02', 'R06', 'R09'], ['R02', 'R09', 'R12'], ['R04', 'R06', 'R09'], ['R04', 'R09', 'R12']]
+  minimum cover excluding the DECLARED-CHOICE requirement R03: size 3: [['R01', 'R04', 'R09'], ['R01', 'R05', 'R09'], ['R01', 'R06', 'R09'], ['R01', 'R09', 'R12'], ['R02', 'R05', 'R09'], ['R02', 'R06', 'R09'], ['R02', 'R09', 'R12'], ['R04', 'R05', 'R09']]
+  reading: the cover is a statement about which requirement labels explain the scored failures, not about which are necessary or sufficient for a mechanism; a small cover shows heavy overlap between requirements.
+  support (rows with F) per requirement:
+    R01: 11 rows ['D01', 'D04', 'D06', 'D07', 'D09', 'D10', 'D11B', 'D11Cb', 'D11Cc', 'D11Cd1', 'D11Cd2']  theorem-core=True
+    R02: 5 rows ['D01', 'D06', 'D07', 'D08', 'D09']  theorem-core=True
+    R03: 10 rows ['D01', 'D02', 'D03', 'D04', 'D06', 'D07', 'D09', 'D10', 'D11Cd1', 'D11Cd2']  theorem-core=False
+    R04: 5 rows ['D03', 'D04', 'D06', 'D07', 'D08']  theorem-core=True
+    R05: 11 rows ['D01', 'D03', 'D07', 'D08', 'D09', 'D10', 'D11B', 'D11Ca', 'D11Cb', 'D11Cc', 'D11Cd2']  theorem-core=False
+    R06: 10 rows ['D03', 'D04', 'D08', 'D10', 'D11A', 'D11B', 'D11Ca', 'D11Cb', 'D11Cc', 'D11Cd2']  theorem-core=True
+    R07: 4 rows ['D03', 'D10', 'D11Cd1', 'D11Cd2']  theorem-core=True
+    R08: 0 rows []  theorem-core=True
+    R09: 10 rows ['D01', 'D02', 'D04', 'D09', 'D10', 'D11A', 'D11B', 'D11Ca', 'D11Cb', 'D11Cd1']  theorem-core=True
+    R10: 2 rows ['D11B', 'D11Cb']  theorem-core=False
+    R11: 8 rows ['D04', 'D09', 'D10', 'D11A', 'D11B', 'D11Cb', 'D11Cc', 'D11Cd2']  theorem-core=False
+    R12: 10 rows ['D01', 'D03', 'D04', 'D07', 'D08', 'D09', 'D10', 'D11B', 'D11Cc', 'D11Cd2']  theorem-core=True
+  rows where a requirement is the ONLY F of the row: none
+  FRAGILE (support <= 2 rows and no THEOREM core): ['R10']
+  zero-support requirements (no scored row shows an F): ['R08']: they rest on their theorem core, not on door failures
+  [PASS] (EXPECT) stop condition of the frozen plan: not more than three requirements UNSUPPORTED or FRAGILE fragile: ['R10']
+
+== 4.5 pincers (documentary; gap sizes as printed by the lanes)
+  [R01xR06/R02] formation-funded gets M^(1/3); r_M needs c through an acceleration scale; anchor present
+  [R05xR04] cold at z>~10 vs hot in halos; gap(s) 4300 (+3.63 dex), 130000 (+5.11 dex) anchor present
+  [R05xR04(D03)] medium budget vs growth; gap(s) 860 (+2.93 dex), 115 (+2.06 dex) anchor present
+  [R09xR11] (yq)'>=0 forces tail >= 0.282 a0; gap(s) 0.282 (-0.55 dex) anchor present
+  [R03xR09] P2 shape carries the a0/2 tail; gap(s) 0.5 (-0.30 dex) anchor present
+  [R01/R03xR10(D11Cb)] G1 t<=1.2e-6 vs G6/G7 t>=4e6; gap(s) 3e+12 (+12.48 dex), 8.7e+09 (+9.94 dex) anchor present
+  [R07xR06] nonlocal gate stable but bilocal; exchange costs 23-318x orbital energy; gap(s) 23 (+1.36 dex), 318 (+2.50 dex) anchor present
+  [R05xR12(d)] Q!=0 makes a0 flow; flat only |xi|<0.0275; gap(s) 0.0275 (-1.56 dex) anchor present
+  [R12(b)xR04] cap P_cap=a0^2/(8 pi G) vs target pressure ratio 1/x^2; anchor present
+  [PASS] (CITATION-AUDIT) every pincer anchor present in its source 9/9
+  [PASS] (EXPECT) E10 pincer arithmetic: 4e6/1.2e-6 = 3.3e12; 3.72e6/1.24e-6 = 3.0e12; 140/0.16 = 875; 140/1.2 = 117 3.33e+12, 3e+12, 875, 117
+  pincer (R12(b) x R04): P_target/P_cap = 1/x^2, computed in script D (E13); the P43 window (11x up to 1e4-1e5 against ~1e4) is cited.
+  M2 (placebo) drop D06: H = ['R03', 'R04', 'R05', 'R06', 'R07', 'R08', 'R09', 'R10', 'R11', 'R12']; requirements still listed = 12 (baseline 12); support R01 11 -> 10; R02 theorem core intact = True
+CONTROL DOES NOT BITE: expected NOT to bite: the requirement list and H do not depend on D06 (R02a is a theorem independent of it)
+SUMMARY CFG230_F_incidence_pincers_MUTATE_M2: 5 checks, 1 MISS; repo=<repo>

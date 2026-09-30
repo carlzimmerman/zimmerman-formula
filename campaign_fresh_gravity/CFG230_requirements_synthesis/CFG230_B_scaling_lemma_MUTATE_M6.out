@@ -1,0 +1,20 @@
+CFG230 B. repo=<repo> mode=M6 band=+-0.1
+
+== constants (canonical footing kappa = 1/2, H0 = 67.4, Omega_L = 0.6847)
+  a0 = 9.36032e-11 m/s^2 (Lean A0Numeric: 9.36e-11 < a0 < 9.361e-11)
+  [PASS] (CROSS-CHECK) a0 canonical in (9.36e-11, 9.361e-11) 9.36032e-11
+  [PASS] (EXPECT) E5 inner column a0/(2 pi G) = 106.8-106.9 Msun/pc^2 106.878
+  [PASS] (EXPECT) E5 a0/(4 pi G) = 53.4 Msun/pc^2 53.439
+
+== R01 lemma: linear response with a fixed kernel
+  C_model ~ M^2, C_target ~ M^1; R = C_model/C_target = 4*pi*G*M*r*K(r)/a0  (exponent in M at fixed r: 1)
+  [PASS] (NEW-DERIVATION) E4: C_model ~ M^2, C_target ~ M, R ~ M^1 at fixed r 
+  hypothesis (stated, not derived): rho_model linear in M_b with a fixed kernel AND g_tot linear in M_b (Newton plus a linear phantom).
+  CITATION: CFG120 sympy, CFG151 reproduces exponents 2.000000/1.000000 (grade S+R).
+  tolerance window |p - 1/2| <= log10((1+b)/(1-b))/(3k): outer 0.0291, inner 0.0145 (band +-0.1)
+  [PASS] (EXPECT) E2 window 0.0291 (outer) / 0.0145 (inner) at +-10% 0.0291 / 0.0145
+  LP (log space, 260 (M, x) points, one universal K(r)): minimal worst-case |ln R| = 3.45388 -> factor 31.6228
+  [PASS] (CROSS-CHECK) universal-kernel residual = sqrt(1000) = 31.6228 (CFG120, CFG151) 31.622777
+  M6: 'same constants at every mass' dropped (a kernel per mass): minimal worst-case |ln R| = 0.000e+00
+CONTROL BITES: R01 spread 31.62 -> 1.0000: with a per-mass kernel any door passes G1 by fitting, so R01 is conditional on that clause
+SUMMARY CFG230_B_scaling_lemma_MUTATE_M6: 6 checks, 0 MISS; repo=<repo>

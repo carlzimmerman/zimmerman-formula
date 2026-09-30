@@ -1,0 +1,49 @@
+CFG230 G. repo=<repo> mode=main
+  hard-core set H (from the frozen matrix) = ['R03', 'R04', 'R05', 'R06', 'R07', 'R08', 'R09', 'R10', 'R11', 'R12']; theorem-core requirements = ['R01', 'R02', 'R04', 'R06', 'R07', 'R08', 'R09', 'R12']
+
+== tier X (excluded by theorem: a cell F[T]): C07 Scale-dependent G (RG-improved), C14 Weyl / conformal gravity
+
+== tier Y ranked by the frozen rule (S over H, then fewer F, more M, name)
+  rank  id   S   nF nM  class
+    1   C13   1   0  1  Galileon / Vainshtein scalar   M-cells: ['R09']  F-cells: []
+    2   C10   0   0  0  Disformal couplings   M-cells: []  F-cells: []
+    3   C04   0   0  0  Einstein-aether MOND   M-cells: []  F-cells: []
+    4   C03   0   0  0  Khronon / Horava-type MOND   M-cells: []  F-cells: []
+    5   C02   0   1  1  AeST   M-cells: ['R05']  F-cells: ['R12[m]']
+    6   C08   0   3  1  MOG / STVG   M-cells: ['R10']  F-cells: ['R01[m]', 'R02[m]', 'R12[m]']
+    7   C12  -1   1  1  Modified inertia   M-cells: ['R02']  F-cells: ['R12[m]']
+    8   C09  -1   1  0  Cuscuton   M-cells: []  F-cells: ['R04[s]']
+    9   C05  -1   1  0  TeVeS   M-cells: []  F-cells: ['R12[m]']
+   10   C06  -2   2  0  Nonlocal metric MOND (DEFW)   M-cells: []  F-cells: ['R09[s]', 'R11[s]']
+   11   C11  -2   3  3  AQUAL / QUMOND   M-cells: ['R01', 'R02', 'R11']  F-cells: ['R07[s]', 'R09[s]', 'R12[m]']
+
+== rule item 5
+  classes with M on every requirement of H: none
+  classes (tier Y) with no F on any requirement: [('C13', 'Galileon / Vainshtein scalar'), ('C10', 'Disformal couplings'), ('C04', 'Einstein-aether MOND'), ('C03', 'Khronon / Horava-type MOND')]
+  STATEMENT: NO KNOWN CLASS MEETS ALL OF THESE (no class has M on every requirement of H; most cells are U because the requirements are about mechanisms, not class labels).
+  the 'exactly one open class' branch of the rule is NOT triggered: 4 classes carry no F, all of them only because their cells are U (undecided by structure) or N; this does not isolate an open class.
+  [PASS] (EXPECT) hand expectation 6: the ranking is coarse (few distinct S values) and no class meets all of H distinct S over tier Y: [1, 0, -1, -2]
+
+== scored-door controls (labels from the matrix rows: P->M, p*->U, F->F[s], U->U, N->N; C15's R01 carries [T])
+  C15 Mashhoon kernel (D01): S(H) = -4, F cells over H = 4, tier X
+  C16 Verlinde (D02): S(H) = -2, F cells over H = 2, tier Y
+  C17 superfluid (D04): S(H) = -6, F cells over H = 6, tier Y
+  C18 Deser-Woodard (D09): S(H) = -5, F cells over H = 5, tier Y
+  [PASS] (EXPECT) controls reproduce their door rows: S(H) = -(number of F over H); C15 in tier X 
+
+== sensitivities (not chosen among)
+  base:                       ['C13', 'C10', 'C04', 'C03', 'C02', 'C08', 'C12', 'C09', 'C05', 'C06', 'C11']
+  THEOREM-core doubled:       ['C13', 'C10', 'C04', 'C03', 'C02', 'C08', 'C12', 'C09', 'C05', 'C06', 'C11']  changes: []
+  all twelve requirements:    ['C13', 'C10', 'C04', 'C03', 'C02', 'C12', 'C11', 'C09', 'C05', 'C06', 'C08']  changes: ['C08', 'C12', 'C11']
+  top three under each weighting: {'base': ['C13', 'C10', 'C04'], 'doubled': ['C13', 'C10', 'C04'], 'all12': ['C13', 'C10', 'C04']}
+
+== Amendment 2 (post-freeze): C13 labels after reading the record's galileon scaling scripts
+  ran galileon_mond_scaling_nogo.py: exit 0
+  ran galileon_scaling_theorem.py: exit 0
+  [PASS] (CITATION-AUDIT) no single power n gives the MOND deep limit (mass exponent n=2, radius exponent n=3/2): mutually inconsistent in-lane sympy (grade S), not refereed
+  [PASS] (CITATION-AUDIT) Galileon helicity-0 spherical scaling never gives r^-1 (n = 3/2 not an integer operator) 
+  [PASS] (CITATION-AUDIT) regime inversion: nonlinearity acts near the source (screening inward), MOND needs it far away 
+  amended ranking (tier Y): [('C10', 0), ('C04', 0), ('C03', 0), ('C02', 0), ('C13', 0), ('C08', 0), ('C12', -1), ('C09', -1), ('C05', -1), ('C06', -2), ('C11', -2)]
+  C13 rank 1 -> 5; top three now ['C10', 'C04', 'C03']
+  Amendment 2 cell: C13 R03 U -> F[s] (the no-go is about the deep-MOND SHAPE from one dominant Galileon term, in-lane sympy, not refereed). C13's R09 M (Vainshtein screening, MEMORY) stands and is the same mechanism that inverts the regime.
+SUMMARY CFG230_G_screening: 5 checks, 0 MISS; repo=<repo>

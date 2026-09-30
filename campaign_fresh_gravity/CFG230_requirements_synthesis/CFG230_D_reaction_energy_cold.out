@@ -1,0 +1,55 @@
+CFG230 D. repo=<repo>
+
+== R04: barotropic exponent e(x): required c_s^2 at fixed density scales as M^e (CFG44 B2)
+  derived e(x) = (2*x**4 + 4*x**2 + 1)/(4*x**4 + 4*x**2 + 1);  CFG44's (2x^4+4x^2+1)/(4x^4+4x^2+1); difference simplifies to 0
+  [PASS] (CROSS-CHECK) e(x) equals CFG44's closed form and runs from 1 (Newtonian) to 1/2 (deep) e(1e-3, 1, 1e3) = [0.999999999998, 0.7777777777777778, 0.500000499999625]
+  [PASS] (CROSS-CHECK) spread >= 1e3 over M = 1e8-1e14 for e >= 1/2 10^(0.5*6) = 1000
+
+== R06: exchange reaction F = 4 pi s^2 dE/dM_enc (point mass, P2), CFG48 G4 / referee R4
+  P-slaved F = 3*a0/4 ; sigma-slaved F(x) = 3*a0*(xx**2 + 2)/(8*(xx**2 + 1))
+  [PASS] (CROSS-CHECK) P-slaved reaction = (3/4) a0 
+  [PASS] (CROSS-CHECK) sigma-slaved reaction = (3/8) a0 (2+x^2)/(1+x^2) 
+  [PASS] (CROSS-CHECK) reaction/g_law at x = 0.3 (sigma-slaved) = 0.0620 vs lane 0.062 
+  [PASS] (CROSS-CHECK) reaction/g_law at x = 1.0 (sigma-slaved) = 0.3977 vs lane 0.398 
+  [PASS] (CROSS-CHECK) reaction/g_law at x = 30.0 (sigma-slaved) = 11.2562 vs lane 11.26 
+  [PASS] (CROSS-CHECK) reaction/g_law at x = 1.0 (P-slaved) = 0.5303 vs lane 0.53 
+  [PASS] (CROSS-CHECK) reaction/g_law at x = 30.0 (P-slaved) = 22.4875 vs lane 22.49 
+  [PASS] (CROSS-CHECK) reaction/g_law at x = 0.3 (P-slaved) = 0.0647 vs lane 0.065 
+  [PASS] (EXPECT) E6 needed coefficient reduction 225x (P-slaved, x in [0.3,30], line 0.10) 224.9
+  [PASS] (CITATION-AUDIT) CFG48 referee R4 quotes 0.062, 0.398, 11.26 (sigma) and 0.53, 22.49 (P) 
+
+== R06 energy: E_int = (3/4) a0 M (r_e - r_i); E_orb depends on the baryons' own radius R_b, not on r_e
+  E_int = 3*M*a0*(re - ri)/4
+  [PASS] (CITATION-AUDIT) GAPS/STANDING quote 57 / 179 / 318x at 1e12 / 1e10 / 1e9 (B's committed r_ta) 
+  x_e = 0.4 r_ta/r_M with the CFG118/CFG158 r_ta table (a DIFFERENT convention from B's committed r_ta; used only for scaling): {1000000000.0: 77.4, 10000000000.0: 52.7, 100000000000.0: 35.9, 1000000000000.0: 24.4}
+  lane energy ratio / x_e^2 (1e9, 1e10, 1e12): {1000000000.0: 0.0531, 10000000000.0: 0.0646, 1000000000000.0: 0.0954}
+  [PASS] (EXPECT) E11 coefficient lane/x_e^2 within 0.05-0.10 {1000000000.0: 0.053, 10000000000.0: 0.065, 1000000000000.0: 0.095}
+  [MISS] (EXPECT) E11 coefficient constant within 10% (the frozen text expected imperfect) spread of the coefficient 1.80
+  observed scaling exponent of the lane's energy ratio between 1e9 and 1e12: -0.249; x_e^2 predicts -0.334
+  [MISS] (EXPECT) E11 structural: lane ratio ~ x_e^2 (exponent within 0.03) a MISS means the frozen 'scales as x_e^2' is not what the lanes' numbers do
+  NOTE (wrong expectation kept): E_orb of the baryons is set by their own radius R_b (E_orb ~ G M^2/(2 R_b)), so E_int/E_orb ~ (3/2) x_e (R_b/r_M), linear in x_e at fixed baryon compactness, not x_e^2; the frozen 'x_e^2' was HAND and imprecise. The lanes' conventions for E_orb and r_ta are not fully recoverable from the READMEs, so no number-level reproduction is claimed.
+
+== R05: halo dispersion versus the growth bound
+  [PASS] (CROSS-CHECK) sigma^2/c^2 at 1e+09 = 1.961e-08 vs CFG156 1.963e-08 V_f = 59.4 km/s; ratio to 4.608e-12 = 4.26e+03
+  [PASS] (CROSS-CHECK) sigma^2/c^2 at 1e+12 = 6.201e-07 vs CFG156 6.207e-07 V_f = 333.9 km/s; ratio to 4.608e-12 = 1.35e+05
+  [PASS] (EXPECT) E7 ratio 4.3e3 (1e9) and 1.3e5 (1e12) 
+  [PASS] (CITATION-AUDIT) CFG156 README prints c_s^2 = 4.608e-12 
+
+== R07a: Gauss negative shell M_b (sqrt(1+x_e^2) - 1); infer x_e from CFG48's printed shell masses
+  inferred x_e (CFG48 convention): {10000000000.0: 33.08, 100000000000.0: 22.55, 1000000000000.0: 15.36}
+  [PASS] (CROSS-CHECK) x_e ~ M^(-1/6) in CFG48's convention (edge 0.4 r_ta, r_ta ~ M^(1/3)) slope -0.1667
+  [PASS] (CITATION-AUDIT) CFG48 referee quotes the shell masses 3.21e11, 2.157e12, 1.439e13 
+
+== R12(b) x R04 (E13): target pressure over the CFG43 cap
+  [PASS] (CROSS-CHECK) P_cap = (kappa^2/8pi) rho_L c^2 = a0^2/(8 pi G) 5.2232e-12 Pa
+  x = 0.1: P_target/P_cap = 100.0000 (1/x^2 = 100.0000)
+  x = 1.0: P_target/P_cap = 1.0000 (1/x^2 = 1.0000)
+  x = 10.0: P_target/P_cap = 0.0100 (1/x^2 = 0.0100)
+  [PASS] (EXPECT) E13 P_target/P_cap = 1/x^2 (100 at x = 0.1, 1 at x = 1) 
+
+== R12(a): column budget arithmetic (CFG174; referee CFG181 reproduces to 0.55%)
+  swept column rho_L c t0 = 365.2 Msun/pc^2 (t0 = 13.8 Gyr); law column 106.88; R = 0.2926
+  [PASS] (CROSS-CHECK) swept column ~ 365 and R ~ 0.293 (CFG174; my t0 = 13.8 Gyr, H0 = 67.4) 365.2, 0.2926
+  [PASS] (NEW-DERIVATION) R = kappa/(2 pi t0 sqrt(G rho_L)) identity 
+  needed factor: 0.293/0.078 = 3.76 (DESI DR2 + NEC caps a flowing medium at 0.078 of the vacuum column; cited, not recomputed)
+SUMMARY CFG230_D_reaction_energy_cold: 26 checks, 2 MISS; repo=<repo>
