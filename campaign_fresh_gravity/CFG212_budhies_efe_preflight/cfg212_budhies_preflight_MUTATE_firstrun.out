@@ -1,0 +1,30 @@
+CFG212 -- BUDHIES external-field POWER pre-flight: can HI widths near A963 / A2192 separate an EFE-merge law from B's isolated law?
+Frozen criteria: FROZEN_CRITERIA.md here (6df482512), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.
+Uses positions, HI redshifts and published cluster masses only.  The W20 / W50 columns are NEVER read by this script.
+S_opt = sqrt(sum Delta_i^2) / sigma is an UPPER bound on any real test's separation (optimal known-template test).
+  MUTATE=1: A963 mass x 100
+  166 HI detections read (columns cluster, rah, ram, ras, de_sign, ded, dem, des, z_hi, mhi_1e9msun; W20/W50 not read)
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 with the cluster masses set to 0 every Delta = 0 (no external field)
+         delta(0.3, y_ext = 0) = 0.0
+  [PASS] C2 kernel limits nu(1e9) -> 1, sqrt(y) nu(y) -> 1 at y = 1e-9; strong-field EFE ratio -> nu(y_ext)/nu(y_int)
+         [('P2', 1.0000000005, 1.0000000005), ('nu_mono', 1.000000001266682, 1.0000158147486282)]; strong-field Delta -0.159205 vs -0.159205
+  [PASS] C3 R_proj of the table's first galaxy: haversine vs astropy's separation, times D_A, agree to 1e-6 Mpc
+         6.258117131 vs 6.258117131 Mpc
+  A963: 127 detections in its field; members (|dv| < 3 sigma) 94; members within 1 / 2 Mpc projected: 8 / 30; median R of members 2.58 Mpc (D_A 696 Mpc)
+  A2192: 39 detections in its field; members (|dv| < 3 sigma) 24; members within 1 / 2 Mpc projected: 3 / 8; median R of members 2.61 Mpc (D_A 648 Mpc)
+
+======================================================================================================================
+POWER
+======================================================================================================================
+  PRIMARY cell (M200 primary, r = sqrt(1.5) R, y_int 0.3, sigma 0.20, perpendicular, P2, canonical): S_opt = 6.55; median Delta over members -0.1339, min -0.1515 dex; share of sum Delta^2 from members within 1 Mpc 0.11
+  OPTIMISTIC cell (M high, r = R, y_int 0.1, sigma 0.15, A963 membership sigma 1350, perpendicular, P2, canonical): S_opt = 16.77; min Delta -0.2541 dex
+  full grid: 768 cells; S_opt max 19.62 at {'mass': 'M_opt', 'deproj': 1.0, 'y_int': 0.1, 'sigma': 0.15, 'form': 'par', 'kernel': 'nu_mono', 'footing': 'canonical', 'A2192_alt_centre': True, 'membership': 'sig_opt', 'S': 19.616612602407425}; cells with S_opt >= 3: 738; >= 2: 768
+
+  -> P2: a W50 test may be frozen next (S_opt >= 3 in the primary cell)
+  Note (from the data chat's note): the HI-mass limit (2e9 Msun at the field centres) rises away from the field centres, so the outer members are the more massive HI discs; HI-deficient cluster cores lower the number of inner members.
+
+  3/3 checks pass; load-bearing failures: 0   (18 s)
