@@ -80,3 +80,14 @@
    - The Σ_HI = 0 row's route (ii) moved from −0.106 [−0.499, +0.325] (nothing excluded) to −0.182 [−0.640, +0.233] (E(z) and III's law excluded). The Σ_HI = 15 row moved from +0.165 to +0.106 (nothing excluded either way).
    - The second main run is kept as `*_secondrun*`. The first MUTATE run is kept as `*_MUTATE_firstrun*`: it failed its control because of this bug (b_i fell by 0.31 instead of rising).
    - The fixed MUTATE run passes: b_i +0.789 → +1.126, and Δb −0.939 → −1.315.
+
+## Correction after CFG199 (appended 2026-09-29; the text above is unchanged)
+
+- **The "Against interest" level statement above is WITHDRAWN.**
+  - CFG199 (`../CFG199_musedark_level_pressure/`) used the model's own rotation velocity at R_e from the 126 `true_Vrot.dat` files. The total that CFG198 reconstructed (D × its thin-disc g_bar) is 3–7 times larger in acceleration: median log₁₀ ratio −0.75 in reading (a) and −0.49 in reading (b).
+  - On the model's own velocity, the no-pressure lower bound on the z ≈ 0.52 level is −10.38 [−10.71, −10.12] in reading (a), below both footings, and −10.14 [−10.45, −9.94] in reading (b), consistent with them. The v22 variant above was also below the footings (−10.33).
+  - The 0.25–0.65 dex excess was a property of CFG198's g_obs scale, not of the data.
+- **The slope findings stand.** On the model's own velocity:
+  - Route (i) rises by +0.63 to +0.65. That is now consistent with III's law, so R0's overshoot was also partly the g_obs scale.
+  - Route (ii) is −0.20 to −0.22.
+  - Δb = −1.03 [−1.34, −0.74].

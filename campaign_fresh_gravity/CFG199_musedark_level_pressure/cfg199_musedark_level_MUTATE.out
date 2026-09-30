@@ -1,0 +1,58 @@
+CFG199 -- MUSE-DARK: is CFG198's against-interest a0 level real?  a0 at R_e from the model's own rotation profile
+(true_Vrot.dat), which brackets the pressure term from below.  Frozen criteria: FROZEN_CRITERIA.md here (997e5047a),
+committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.  Nothing here is graded as support for the framework.
+
+Two readings of the file's v, never pooled: (a) v_perp = v (deprojected, before the drift term; the papers' text),
+(b) v_perp = v / sin i (projected).  g_perp = v_perp^2 / R_e is a lower bound on the model's total at R_e when the
+pressure term is non-negative; route (i) a0 = (1 - fDM) g_perp / y*(1/(1 - fDM)) is then a lower bound on III's route.
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 every true_Vrot.dat sha256 matches the data chat's manifest
+         126 files in the manifest; mismatched or missing: []
+  [PASS] C2 interpolation: a synthetic antisymmetric linear profile v = 57 R/R_e gives v(R_e) = 57 to 1e-12 (both sides)
+         v_f(R_e) = 57.0 from 2 sides
+
+  sample S (CFG198's): 109 galaxies
+  [PASS] C4 the copied CFG198 formulas reproduce CFG198's committed primary route-(i) slope +0.789 (to the printed 3 decimals)
+         b_i = +0.788910
+  CFG198's lowest-z third of route (i): 36 galaxies, median z 0.523
+  MUTATE=1: v_f -> 0.8 v_f
+  v_f(R_e) available for 109 of 109 (both sides 105, one side 4, none 0)
+  [PASS] C3 route identity: with M*_SED := M_fit and mu_mol := 0, routes (ii) and (iii) equal route (i) to 1e-12
+         max |ratio - 1| = 1.11e-15 over 108
+
+======================================================================================================================
+READING a: v_perp = v_file
+======================================================================================================================
+  L1 route (i) lowest-z third (n = 36, median z 0.523): median log10 a0 = -10.570, 95% CI [-10.901, -10.317]; footings -10.029 / -9.946; CFG198's value there -9.646; median log10(g_perp / g_obs,CFG198) = -0.947
+  -> L1: BELOW both footings at the lower bound
+  lowest-third medians, routes ii / iii (reported): -10.492 / -10.347
+  L2 route i  : n = 108  b = +0.646 [+0.245, +1.080]  inside ['E(z)', 'III law']  undefined low/high z [1, 0]
+  L2 route ii : n =  85  b = -0.201 [-0.744, +0.361]  inside ['flat', 'E(z)', 'III law']  undefined low/high z [9, 15]
+  L2 route iii: n =  99  b = -0.127 [-0.546, +0.279]  inside ['flat', 'E(z)']  undefined low/high z [5, 5]
+  L2 paired db = b_ii - b_i = -1.027 [-1.323, -0.745] (n = 84)
+  -> CFG198's slope finding (route i rises; route ii not significantly rising; db < 0) SURVIVES under this reading
+  L3 (reported): Spearman rho(v_perp / v_c,CFG198, sin i) = +0.401; share s = 1 - g_perp/g_obs,CFG198: median 0.896, 16-84% 0.765 to 0.953
+
+======================================================================================================================
+READING b: v_perp = v_file / sin i
+======================================================================================================================
+  L1 route (i) lowest-z third (n = 36, median z 0.523): median log10 a0 = -10.337, 95% CI [-10.643, -10.136]; footings -10.029 / -9.946; CFG198's value there -9.646; median log10(g_perp / g_obs,CFG198) = -0.685
+  -> L1: BELOW both footings at the lower bound
+  lowest-third medians, routes ii / iii (reported): -10.332 / -10.139
+  L2 route i  : n = 108  b = +0.633 [+0.250, +0.996]  inside ['E(z)', 'III law']  undefined low/high z [1, 0]
+  L2 route ii : n =  85  b = -0.216 [-0.773, +0.297]  inside ['flat', 'E(z)']  undefined low/high z [9, 15]
+  L2 route iii: n =  99  b = -0.124 [-0.533, +0.262]  inside ['flat', 'E(z)']  undefined low/high z [5, 5]
+  L2 paired db = b_ii - b_i = -1.031 [-1.338, -0.739] (n = 84)
+  -> CFG198's slope finding (route i rises; route ii not significantly rising; db < 0) SURVIVES under this reading
+  L3 (reported): Spearman rho(v_perp / v_c,CFG198, sin i) = -0.008; share s = 1 - g_perp/g_obs,CFG198: median 0.840, 16-84% 0.684 to 0.923
+
+======================================================================================================================
+MUTATE RESPONSE
+======================================================================================================================
+  [PASS] MUTATE: v_f x 0.8 shifts the route-(i) level by 2 log10 0.8 = -0.1938 +- 0.001 dex
+         shift -0.1938
+
+  5/5 checks pass; load-bearing failures: 0   (14 s)
