@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EXPANSION_BRIDGE_MOND_REDUCTION",
+  "repository": {
+    "commit": "26426b7efec99cd38b6808d4ea4b78419fe0fef5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/expansion_bridge_mond_reduction.py",
+    "--output",
+    "sol61_push/runs/expansion_bridge_mond_reduction/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Nine exact reduced-action and force identities, and illustrative ordering diagnostics for three beta values",
+    "coefficient_domain": "Exact symbolic algebra plus numpy float64 profiles",
+    "conventions": "EXPANSION_BRIDGE_MOND_RESULTS.md; natural units, spherical exterior flux",
+    "inputs": [
+      "sol61_push/expansion_bridge_mond_reduction.py"
+    ],
+    "bounds": {
+      "symbolic_identities": 9,
+      "H": 1,
+      "GM": 1e-16,
+      "beta": [
+        2,
+        10,
+        20
+      ],
+      "r_min": 1e-06,
+      "r_max": 1e-05,
+      "points": 32
+    },
+    "non_claims": [
+      "No full ADM solution or uniform approximation error bound",
+      "No source equilibrium or observational fit",
+      "No selected beta or 32pi coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T22:41:40.901459+00:00",
+    "runtime_seconds": 1.139657,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/expansion_bridge_mond_reduction.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/expansion_bridge_mond_reduction.py",
+      "sha256": "3ef0efbeb7c1ca3cdbcd1d7d52b5e9646988e3af22aeaf6f46313e56e974bf1c",
+      "sha256_after": "3ef0efbeb7c1ca3cdbcd1d7d52b5e9646988e3af22aeaf6f46313e56e974bf1c"
+    }
+  ],
+  "output_directory": "sol61_push/runs/expansion_bridge_mond_reduction",
+  "declared_results": [
+    "sol61_push/runs/expansion_bridge_mond_reduction/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/expansion_bridge_mond_reduction/stdout.txt",
+      "sha256": "29067cfb0ebf594cb85d853db839df17de802e68bb7797bf9c8cd8babbcc3e6e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_mond_reduction/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_mond_reduction/results.json",
+      "sha256": "29067cfb0ebf594cb85d853db839df17de802e68bb7797bf9c8cd8babbcc3e6e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

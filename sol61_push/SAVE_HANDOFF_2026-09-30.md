@@ -2,6 +2,18 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Newest positive reduction: EXPANSION_BRIDGE_MOND_RESULTS.md eliminates the
+weak spherical spatial metric and polarization at leading Theta=3H. Its
+reduced action derives b=g−P=GM/r², P²=a0 b and a0=2H/beta, hence the
+deep spherical scaling v_c^4=GMa0 under the stated orbital ordering. Nine
+symbolic identities pass, with three illustrative beta profiles and validated
+provenance. This is conditional on a full matched weak source and trace
+boundary condition, not an interacting solution or error theorem. It leaves
+C=Lambda/a0²=3beta²/4 unselected. The requested r_star²Lambda=8π uses
+r_star=c²/(2a0) and is the same target condition; the vacuum metric horizon
+has r_dS²Lambda=3. Next obligations: prove the coupled source/trace dictionary
+and independently determine beta and U. Exact 32π remains unresolved.
+
 Latest source test: EXPANSION_BRIDGE_RESULTS.md derives necessary lapse,
 shift and polarization equations for the beta M²P³/Theta action. Theta
 variation adds a cubic shift current and doubles its lapse contribution.
