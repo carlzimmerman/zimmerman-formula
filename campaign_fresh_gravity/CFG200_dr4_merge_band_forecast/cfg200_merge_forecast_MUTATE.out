@@ -1,0 +1,168 @@
+CFG200 -- the DR4 separation forecast with the corrected P2 merge band (relayed from CFG191, re-run pending).
+Frozen criteria: FROZEN_CRITERIA.md here (7a5f6a314), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.
+A forecast from frozen budgets: no data are scored, nothing in the preregistration is changed, and no verdict language is
+added (row labels are quoted from the frozen text).  CFG63's algebra is reused (its script is read only, not imported).
+  [PASS] C0 every cited (file, line) contains its cited text; prereg sha256 prefix as frozen (97aa97c40fc1be25)
+         23 citations; failures none; sha256 97aa97c40fc1be25
+  MUTATE=1: every P2-merge value set to 1.000
+
+======================================================================================================================
+C1  CFG63'S COMMITTED ROWS, REPRODUCED WITH THE SAME ALGEBRA
+======================================================================================================================
+  [PASS] C1 B vs Arm A floor: S(30,000) = 5.85, N(3s) = 4,342; chain vs Newton: N(3s) = 58,850 canonical / 21,660 alt
+         S = 5.851, N3 = 4,342; chain N3 = 58,850 / 21,660
+  sigma_tot(30,000) frozen = 0.02759;  DR3-like: at 10,624 = 0.04031, at 30,000 = 0.02888
+
+======================================================================================================================
+SEPARATIONS  (S at N; N for 2 and 3 sigma; cap = Delta / sigma_sys at infinite N)
+======================================================================================================================
+
+  -- canonical footing (chain ceiling 1.0725, Arm A floor 1.1614) --
+  (c) chain ceiling vs ownership 1.000 [canonical]                   Delta 0.0725  S(30k)  2.63  S(DR3-like: 10,624 / 30k)  1.80 /  2.51  N2    11,848  N3    58,850  (DR3-like    70,720)  cap 3.63
+  (a) P2-merge floor 1.000 vs ownership [g_ext 1.778e-10 (primary)]  Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge floor 1.000 vs chain ceiling 1.0725 [g_ext 1.778e-10 (primary)] Delta 0.0725  S(30k)  2.63  S(DR3-like: 10,624 / 30k)  1.80 /  2.51  N2    11,848  N3    58,850  (DR3-like    70,720)  cap 3.63
+  (d) P2-merge floor 1.000 vs Arm A floor 1.1614 [g_ext 1.778e-10 (primary)] Delta 0.1614  S(30k)  5.85  S(DR3-like: 10,624 / 30k)  4.00 /  5.59  N2     1,772  N3     4,342  (DR3-like     5,217)  cap 8.07
+  (a) P2-merge top 1.000 vs ownership [g_ext 1.778e-10 (primary)]    Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge top 1.000 vs chain ceiling 1.0725 [g_ext 1.778e-10 (primary)] Delta 0.0725  S(30k)  2.63  S(DR3-like: 10,624 / 30k)  1.80 /  2.51  N2    11,848  N3    58,850  (DR3-like    70,720)  cap 3.63
+  (d) P2-merge top 1.000 vs Arm A floor 1.1614 [g_ext 1.778e-10 (primary)] Delta 0.1614  S(30k)  5.85  S(DR3-like: 10,624 / 30k)  4.00 /  5.59  N2     1,772  N3     4,342  (DR3-like     5,217)  cap 8.07
+  (a) P2-merge floor 1.000 vs ownership [g_ext 2.146e-10]            Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge floor 1.000 vs chain ceiling 1.0725 [g_ext 2.146e-10] Delta 0.0725  S(30k)  2.63  S(DR3-like: 10,624 / 30k)  1.80 /  2.51  N2    11,848  N3    58,850  (DR3-like    70,720)  cap 3.63
+  (d) P2-merge floor 1.000 vs Arm A floor 1.1614 [g_ext 2.146e-10]   Delta 0.1614  S(30k)  5.85  S(DR3-like: 10,624 / 30k)  4.00 /  5.59  N2     1,772  N3     4,342  (DR3-like     5,217)  cap 8.07
+  (a) P2-merge top 1.000 vs ownership [g_ext 2.146e-10]              Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge top 1.000 vs chain ceiling 1.0725 [g_ext 2.146e-10]   Delta 0.0725  S(30k)  2.63  S(DR3-like: 10,624 / 30k)  1.80 /  2.51  N2    11,848  N3    58,850  (DR3-like    70,720)  cap 3.63
+  (d) P2-merge top 1.000 vs Arm A floor 1.1614 [g_ext 2.146e-10]     Delta 0.1614  S(30k)  5.85  S(DR3-like: 10,624 / 30k)  4.00 /  5.59  N2     1,772  N3     4,342  (DR3-like     5,217)  cap 8.07
+
+  -- alt footing (chain ceiling 1.09, Arm A floor 1.1917) --
+  (c) chain ceiling vs ownership 1.000 [alt]                         Delta 0.0900  S(30k)  3.26  S(DR3-like: 10,624 / 30k)  2.23 /  3.12  N2     6,665  N3    21,660  (DR3-like    26,029)  cap 4.50
+  (a) P2-merge floor 1.000 vs ownership [g_ext 1.778e-10 (primary)]  Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge floor 1.000 vs chain ceiling 1.09 [g_ext 1.778e-10 (primary)] Delta 0.0900  S(30k)  3.26  S(DR3-like: 10,624 / 30k)  2.23 /  3.12  N2     6,665  N3    21,660  (DR3-like    26,029)  cap 4.50
+  (d) P2-merge floor 1.000 vs Arm A floor 1.1917 [g_ext 1.778e-10 (primary)] Delta 0.1917  S(30k)  6.95  S(DR3-like: 10,624 / 30k)  4.76 /  6.64  N2     1,232  N3     2,940  (DR3-like     3,533)  cap 9.58
+  (a) P2-merge top 1.000 vs ownership [g_ext 1.778e-10 (primary)]    Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge top 1.000 vs chain ceiling 1.09 [g_ext 1.778e-10 (primary)] Delta 0.0900  S(30k)  3.26  S(DR3-like: 10,624 / 30k)  2.23 /  3.12  N2     6,665  N3    21,660  (DR3-like    26,029)  cap 4.50
+  (d) P2-merge top 1.000 vs Arm A floor 1.1917 [g_ext 1.778e-10 (primary)] Delta 0.1917  S(30k)  6.95  S(DR3-like: 10,624 / 30k)  4.76 /  6.64  N2     1,232  N3     2,940  (DR3-like     3,533)  cap 9.58
+  (a) P2-merge floor 1.000 vs ownership [g_ext 2.146e-10]            Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge floor 1.000 vs chain ceiling 1.09 [g_ext 2.146e-10]   Delta 0.0900  S(30k)  3.26  S(DR3-like: 10,624 / 30k)  2.23 /  3.12  N2     6,665  N3    21,660  (DR3-like    26,029)  cap 4.50
+  (d) P2-merge floor 1.000 vs Arm A floor 1.1917 [g_ext 2.146e-10]   Delta 0.1917  S(30k)  6.95  S(DR3-like: 10,624 / 30k)  4.76 /  6.64  N2     1,232  N3     2,940  (DR3-like     3,533)  cap 9.58
+  (a) P2-merge top 1.000 vs ownership [g_ext 2.146e-10]              Delta 0.0000  S(30k)  0.00  S(DR3-like: 10,624 / 30k)  0.00 /  0.00  N2       inf  N3       inf  (DR3-like       inf)  cap 0.00
+  (b) P2-merge top 1.000 vs chain ceiling 1.09 [g_ext 2.146e-10]     Delta 0.0900  S(30k)  3.26  S(DR3-like: 10,624 / 30k)  2.23 /  3.12  N2     6,665  N3    21,660  (DR3-like    26,029)  cap 4.50
+  (d) P2-merge top 1.000 vs Arm A floor 1.1917 [g_ext 2.146e-10]     Delta 0.1917  S(30k)  6.95  S(DR3-like: 10,624 / 30k)  4.76 /  6.64  N2     1,232  N3     2,940  (DR3-like     3,533)  cap 9.58
+
+======================================================================================================================
+LANDING  (gamma-hat ~ N(T, sigma_tot(30,000)); contamination NOT modelled; row labels quoted from the frozen text)
+======================================================================================================================
+
+  -- canonical footing (DECIDES) --
+    T = 1.0000  ownership 1.000
+      z at T: z to 1.000 +0.00, z to chain -2.63, z to Arm A floor -5.85, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0725  chain ceiling 1.0725
+      z at T: z to 1.000 +2.63, z to chain +0.00, z to Arm A floor -3.22, z to 1.09 -0.63, z to 1.137 -2.34
+      [illustrative] sec 1.5: <= 1.007  0.9%  1.007-1.083 63.9%  1.083-1.23 35.2%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.0%  0.916-0.944  0.0%  0.944-1.056 27.5%  1.056-1.084 38.7%  1.084-1.23 33.8%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 50.0%  ceiling-(+3s) 49.9%  (+3s)-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007  0.9%  1.007-1.083 63.6%  1.083-1.23 35.5%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.0%  0.916-0.944  0.0%  0.944-1.056 26.5%  1.056-1.084 38.0%  1.084-1.23 35.5%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 50.0%  ceiling-(+3s) 49.9%  (+3s)-1.23  0.1%  > 1.23  0.0%
+    T = 1.0000  P2-merge floor 1.000 [g_ext 1.778e-10 (primary)]
+      z at T: z to 1.000 +0.00, z to chain -2.63, z to Arm A floor -5.85, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0000  P2-merge top 1.000 [g_ext 1.778e-10 (primary)]
+      z at T: z to 1.000 +0.00, z to chain -2.63, z to Arm A floor -5.85, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0000  P2-merge floor 1.000 [g_ext 2.146e-10]
+      z at T: z to 1.000 +0.00, z to chain -2.63, z to Arm A floor -5.85, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0000  P2-merge top 1.000 [g_ext 2.146e-10]
+      z at T: z to 1.000 +0.00, z to chain -2.63, z to Arm A floor -5.85, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.6%  ceiling-(+3s)  0.4%  (+3s)-1.23  0.0%  > 1.23  0.0%
+
+  -- alt footing (reported) --
+    T = 1.0000  ownership 1.000
+      z at T: z to 1.000 +0.00, z to chain -3.26, z to Arm A floor -6.95, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0900  chain ceiling 1.09
+      z at T: z to 1.000 +3.26, z to chain +0.00, z to Arm A floor -3.69, z to 1.09 +0.00, z to 1.137 -1.70
+      [illustrative] sec 1.5: <= 1.007  0.1%  1.007-1.083 39.9%  1.083-1.23 60.0%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.0%  0.916-0.944  0.0%  0.944-1.056 10.9%  1.056-1.084 30.5%  1.084-1.23 58.6%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 50.0%  ceiling-(+3s) 49.9%  (+3s)-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007  0.1%  1.007-1.083 39.5%  1.083-1.23 60.4%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.0%  0.916-0.944  0.0%  0.944-1.056 10.3%  1.056-1.084 29.3%  1.084-1.23 60.4%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 50.0%  ceiling-(+3s) 49.9%  (+3s)-1.23  0.1%  > 1.23  0.0%
+    T = 1.0000  P2-merge floor 1.000 [g_ext 1.778e-10 (primary)]
+      z at T: z to 1.000 +0.00, z to chain -3.26, z to Arm A floor -6.95, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0000  P2-merge top 1.000 [g_ext 1.778e-10 (primary)]
+      z at T: z to 1.000 +0.00, z to chain -3.26, z to Arm A floor -6.95, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0000  P2-merge floor 1.000 [g_ext 2.146e-10]
+      z at T: z to 1.000 +0.00, z to chain -3.26, z to Arm A floor -6.95, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+    T = 1.0000  P2-merge top 1.000 [g_ext 2.146e-10]
+      z at T: z to 1.000 +0.00, z to chain -3.26, z to Arm A floor -6.95, z to 1.09 -3.26, z to 1.137 -4.97
+      [illustrative] sec 1.5: <= 1.007 60.0%  1.007-1.083 39.9%  1.083-1.23  0.1%  > 1.23  0.0%
+      [illustrative] Arm C  : <= 0.916  0.1%  0.916-0.944  2.0%  0.944-1.056 95.8%  1.056-1.084  2.0%  1.084-1.23  0.1%  > 1.23  0.0%
+      [illustrative] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+      [z-rule      ] sec 1.5: <= 1.007 60.4%  1.007-1.083 39.5%  1.083-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] Arm C  : <= 0.916  0.1%  0.916-0.944  2.1%  0.944-1.056 95.4%  1.056-1.084  2.1%  1.084-1.23  0.1%  > 1.23  0.0%
+      [z-rule      ] chain  : <= ceiling 99.9%  ceiling-(+3s)  0.1%  (+3s)-1.23  0.0%  > 1.23  0.0%
+
+  row labels (frozen text, quoted): sec 1.5 <= 1.007: supports Newtonian over framework-MI; 1.007-1.083: no hypothesis separation ... undecided; 1.083-1.23: framework-band, arm NOT decided (Amendment 11(d)); > 1.23: contamination-guard zone, no verdict
+                                    Arm C   <= 0.916: disfavored (z_C <= -3); 0.916-0.944: 2-3 sigma below, not a kill; 0.944-1.056: consistent; 1.056-1.084: disfavored at 2-3 sigma, not a kill; 1.084-1.23: falsified if the stability requirements pass; > 1.23: no verdict
+                                    chain   <= ceiling: consistent, at or below the ceiling; ceiling-(+3s): above the ceiling, within 3 sigma: not a kill; (+3s)-1.23: falsified at every allowed xi, if the stability requirements pass; > 1.23: no verdict
+  [PASS] C2 every landing distribution sums to 1 within 1e-12
+         72 distributions
+
+======================================================================================================================
+HEADLINE CHECK (load-bearing; must FAIL under MUTATE)
+======================================================================================================================
+  [FAIL] H P2-merge floor vs ownership (canonical, primary g_ext): S(30,000) > 0 and N(3 sigma) finite
+         S = 0.000, N3 = inf
+  [PASS] (reported) MUTATE: with merge = 1.000, every (b) row equals (c) (reported)
+         True
+
+  4/5 checks pass; load-bearing failures: 1   (0 s)
