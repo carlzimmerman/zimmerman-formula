@@ -1,0 +1,27 @@
+CFG225 -- EXPLORATORY: the change in gamma-hat attributable to the frozen radial-velocity screen (cut 11) on the in-repo DR3 wide-binary build, and the fraction of pairs it flags.
+Frozen criteria: FROZEN_CRITERIA.md here (fd4a2a7a7) and its Addendum 1 (17e1d4c97), committed before any DESI RV was combined with any pair.  The DR3 gamma-hat has already been seen (pre-registration 1.6); Amendment 7(e): DR3 numbers are code-path tests, never results;
+no verdict words; not a test of any law.  Gaia DR3 radial velocities (about 1 to 5 km/s) cannot measure orbits, only screen triples.  NO NETWORK (socket guard).  NEW file: wp2_variant_full_dr3.py's machinery is exec'd
+READ-ONLY up to its main block (three text substitutions: the work dir, the stage-E shift seed offset, writing final.csv); build_catalog.py's frozen_cuts is wrapped IN MEMORY to disable the RV screen; nothing frozen is edited.
+
+BEFORE set (as the primary): 6,342 pairs
+DESI matches: 331 rows; 291 pass the recommended cuts; 287 distinct components with a good RV
+S_RV (Gaia on both components): 3,886; S_RV+ (Gaia or DESI on both): 3,983 (gain 97; pairs using at least one DESI RV: 97)
+extended screen flags 140 of 3983 = 3.51% (Gaia-only primary: 135 of 3886 = 3.47%); flagged pairs that use a DESI RV: 5 of 97
+  with the 2 km/s floor for every DESI RV: flags 138; flagged pairs that use a DESI RV 3
+single-epoch stars with >= 2 good epochs: 131; RV-variable candidates (chi2/dof > 3 at a 1 km/s floor): 22
+pairs with a variable component: 20 of the BEFORE set; in S_RV+: 14; also RV-flagged: 1
+  [PASS] C1 on the pairs with Gaia RVs on both components the variant's flags equal the primary's exactly: True (3886 pairs)
+
+gamma-hat on S_RV+ (the pipeline's estimator, DR3-noise forward model, NON-SCORING)
+  canonical  before (N = 3983): 1.1050 +- 0.0675;  after the extended screen (N = 3843): 1.1050 +- 0.0650 (change +0.0000);  after screen + variable flag (N = 3830): 1.1200 +- 0.0687 (change +0.0150)
+  alt        before (N = 3983): 1.1025 +- 0.0600;  after the extended screen (N = 3843): 1.0950 +- 0.0587 (change -0.0075);  after screen + variable flag (N = 3830): 1.1050 +- 0.0687 (change +0.0025)
+  floor sensitivity (2 km/s for every DESI RV; S_RV+ N = 3983): canonical change after the extended screen +0.0000, after screen + variable +0.0150; alt +0.0025, +0.0025
+
+paired bootstrap of the changes (B = 100 resamples of the S_RV+ pairs)
+  canonical  extended screen: change +0.0000 (bootstrap SD 0.0239; +0.000 sigma_fit; +0.00 SD);  screen + variable flag: change +0.0150 (SD 0.0235; +0.222 sigma_fit; +0.64 SD)
+  alt        extended screen: change -0.0075 (bootstrap SD 0.0252; -0.125 sigma_fit; -0.30 SD);  screen + variable flag: change +0.0025 (SD 0.0228; +0.042 sigma_fit; +0.11 SD)
+  [PASS] C2 planted triples among S_RV+ (10% of the unflagged pairs, dRV offset N(0, 3 km/s), 20 repeats): the empirical flagged fraction equals the analytic mean within 3 binomial SE: empirical 0.1510, analytic 0.1448, SE 0.0034
+  [FAIL] C3 the variable rule: synthetic constant-RV stars (scatter = tabulated error + 1 km/s floor) are flagged in fewer than 5% on average over 2 to 5 epochs, and a planted 5 km/s semi-amplitude in at least 90% with 3 to 5 epochs: false-positive rate by epochs 2/3/4/5: [0.079, 0.044, 0.033, 0.018] (mean 0.043); detection 3/4/5 epochs [0.804, 0.878, 0.939]
+
+2/3 controls pass (MUTATE is the separate run); 41 s
+Reading: EXPLORATORY; the DR3 gamma-hat was already seen; these are code-path numbers on a few thousand pairs with the pipeline's DR3-noise forward model; the DESI top-up adds few pairs and its RVs (systematic floor 1 to 2 km/s) cannot measure orbits; the variable flag is a candidate list; no verdict words.
