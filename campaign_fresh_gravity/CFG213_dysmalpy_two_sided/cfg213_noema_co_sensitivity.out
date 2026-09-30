@@ -1,0 +1,64 @@
+NOEMA3D CO-mass sensitivity of the committed lanes that use the measured-CO independent route (CFG213's Z1.4 bin, CFG215's NOEMA3D series, CFG218's NOEMA3D sample).
+Why: the data chat's multi-tracer compilation (f5769b7d2, data_assembly/MULTI_TRACER_GAS_2026-09-30.md) found that Table 1's CO masses of the four CO(3-2) galaxies are 0.24 to 0.26 dex LOWER than the
+paper's stated R_13 = 1.8 recipe gives from the tabulated fluxes, and G4_23011 (CO(4-3)) is 0.149 dex lower (the CO control of the reconstruction FAILS for exactly these five).  The committed lanes read the
+same CO masses (logMgas_CO_P1 = Table 1 for these five).  Here each lane is re-run UNCHANGED except that the five galaxies' CO gas masses are raised by the reconstruction's residual (recipe minus table).
+CFG214 (the gate compares digitised model curves with Table 3's V_c) and CFG222 (RC100 + CRISTAL only) use no NOEMA3D gas mass and are not re-run.  The scripts are exec'd read-only with ONE text substitution
+(the logMgas read) and their outputs redirected to a scratch folder; committed files are not touched.  Control: with no offset every lane reproduces its committed results JSON to 1e-9.
+No verdict words: a cell is reported as moved only if its committed label changes.  kappa = 1/2 FITTED; author decompositions; not a detection.
+
+CO offsets applied (dex on the CO gas mass, reconstruction minus Table 1): G4_23011 +0.149, G4_24078 +0.255, GN4_32842 +0.246, G4_17555 +0.247, G4_37375 +0.240
+
+[PASS] CONTROL CFG213: with no offset the re-run reproduces the committed results JSON (numeric differences 0, label differences 0, missing keys 0; 0 s)
+
+CFG213: with the five CO masses raised: 72 numeric leaves move (max |change| 0.075), 0 label leaves change, 0 keys missing  (0 s)
+    numeric leaves with NOEMA3D in their key: 72 (of 72 that move); largest 6 by |change|:
+      Z1.4 (NOEMA3D)/0.0|route|P2|alt|rival/hi: +0.1560 -> +0.0812
+      Z1.4 (NOEMA3D)/3.36|route|nu_mono|canonical|rival/hi: +0.1490 -> +0.0753
+      Z1.4 (NOEMA3D)/1.68|route|nu_mono|canonical|rival/hi: +0.1384 -> +0.0647
+      Z1.4 (NOEMA3D)/0.0|route|nu_mono|canonical|rival/hi: +0.1276 -> +0.0538
+      Z1.4 (NOEMA3D)/1.68|route|P2|alt|rival/hi: +0.1637 -> +0.0920
+      Z1.4 (NOEMA3D)/3.36|route|P2|alt|rival/hi: +0.1712 -> +0.1026
+
+[PASS] CONTROL CFG215: with no offset the re-run reproduces the committed results JSON (numeric differences 0, label differences 0, missing keys 0; 4 s)
+
+CFG215: with the five CO masses raised: 36 numeric leaves move (max |change| 0.071), 1 label leaves change, 0 keys missing  (5 s)
+    LABEL T2/flat/label: 'no significant across-sample trend' -> 'sample-heterogeneity-limited'
+    numeric leaves with NOEMA3D in their key: 25 (of 36 that move); largest 6 by |change|:
+      table/primary|NOEMA3D|rival|nu_mono|canonical/hi: +0.1490 -> +0.0776
+      table/primary|NOEMA3D|rival|P2|alt/hi: +0.1712 -> +0.1026
+      table/primary|NOEMA3D|rival|nu_mono|alt/hi: +0.1227 -> +0.0614
+      table/primary|NOEMA3D|rival|P2|canonical/hi: +0.1840 -> +0.1243
+      table/primary|NOEMA3D|flat|nu_mono|canonical/lo: -0.0814 -> -0.1240
+      table/primary|NOEMA3D|flat|P2|alt/lo: -0.0772 -> -0.1191
+
+  CFG215 T1 / T2 (primary series, nu_mono canonical), committed -> with the five CO masses raised:
+    T2 flat : across-sample slope +0.134 [-0.0045, +0.356] -> +0.196 [+0.0028, +0.349];  label 'no significant across-sample trend' -> 'sample-heterogeneity-limited'
+    T2 rival: across-sample slope +0.061 [-0.0510, +0.338] -> +0.118 [-0.0439, +0.326];  label 'no significant across-sample trend' -> 'no significant across-sample trend'
+    T1 primary: [] -> [];  verdicts flat ['DISFAVOURED-under', 'DISFAVOURED-over', 'CONSISTENT', 'CONSISTENT'] -> ['DISFAVOURED-under', 'DISFAVOURED-over', 'CONSISTENT', 'CONSISTENT'];  rival ['DISFAVOURED-under', 'CONSISTENT', 'CONSISTENT', 'CONSISTENT'] -> ['DISFAVOURED-under', 'CONSISTENT', 'CONSISTENT', 'CONSISTENT']
+    mock/bias/NOEMA3D: +0.0484 -> +0.0740
+
+[PASS] CONTROL CFG218: with no offset the re-run reproduces the committed results JSON (numeric differences 0, label differences 0, missing keys 0; 0 s)
+
+CFG218: with the five CO masses raised: 8 numeric leaves move (max |change| 15.000), 1 label leaves change, 0 keys missing  (0 s)
+    LABEL ladder/NOEMA3D/cls: 'statistics-limited' -> 'systematic-limited'
+    numeric leaves with NOEMA3D in their key: 8 (of 8 that move); largest 6 by |change|:
+      ladder/NOEMA3D/n_needed: +210.0000 -> +225.0000
+      ladder/NOEMA3D/b: +0.0484 -> +0.0740
+      ladder/NOEMA3D/S_sys: +0.0430 -> +0.0660
+      ladder/NOEMA3D/Sq: +0.0867 -> +0.0779
+      ladder/NOEMA3D/stat: +0.1432 -> +0.1480
+      ladder/NOEMA3D/e_q: +0.0335 -> +0.0301
+
+[PASS] CONTROL CFG218 [corrected RC100]: with no offset the re-run reproduces the committed results JSON (numeric differences 0, label differences 0, missing keys 0; 0 s)
+
+CFG218 [corrected RC100]: with the five CO masses raised: 8 numeric leaves move (max |change| 15.000), 1 label leaves change, 0 keys missing  (0 s)
+    LABEL ladder/NOEMA3D/cls: 'statistics-limited' -> 'systematic-limited'
+    numeric leaves with NOEMA3D in their key: 8 (of 8 that move); largest 6 by |change|:
+      ladder/NOEMA3D/n_needed: +210.0000 -> +225.0000
+      ladder/NOEMA3D/b: +0.0484 -> +0.0740
+      ladder/NOEMA3D/S_sys: +0.0430 -> +0.0660
+      ladder/NOEMA3D/Sq: +0.0867 -> +0.0779
+      ladder/NOEMA3D/stat: +0.1432 -> +0.1480
+      ladder/NOEMA3D/e_q: +0.0335 -> +0.0301
+
+CFG214: no gas mass enters (the gate compares the digitised model V with Table 3's V_c): unchanged.  CFG222: no NOEMA3D row is scored: unchanged.
