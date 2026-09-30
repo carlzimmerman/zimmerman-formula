@@ -1,0 +1,32 @@
+<repo> = <repo> | <scratch> = <scratch> | DATA = CORRECTED ( data_assembly/rc100_provenance/rc100_table3_six_fields_paper_values.csv )
+=== c1: expected slopes by kernel and footing (inversion definition) and the hold-g_bar definition
+  canonical/nu_mono: obs -0.030/-0.091 | s_R +0.0725 (hold-g_bar +0.0609) -s_F -0.0591 (hold -0.0609) | tension flat-slope vs rival-exp -5.3 (hold -4.7), rival-slope vs 0 -4.7
+  canonical/P2     : obs -0.033/-0.085 | s_R +0.0579 (hold-g_bar +0.0493) -s_F -0.0453 (hold -0.0493) | tension flat-slope vs rival-exp -4.5 (hold -4.1), rival-slope vs 0 -4.4
+  canonical/simple : obs -0.032/-0.089 | s_R +0.0691 (hold-g_bar +0.0570) -s_F -0.0564 (hold -0.0570) | tension flat-slope vs rival-exp -5.2 (hold -4.6), rival-slope vs 0 -4.7
+  alt      /nu_mono: obs -0.029/-0.093 | s_R +0.0775 (hold-g_bar +0.0647) -s_F -0.0643 (hold -0.0647) | tension flat-slope vs rival-exp -5.6 (hold -4.9), rival-slope vs 0 -4.7
+  alt      /P2     : obs -0.032/-0.089 | s_R +0.0664 (hold-g_bar +0.0545) -s_F -0.0514 (hold -0.0545) | tension flat-slope vs rival-exp -4.9 (hold -4.3), rival-slope vs 0 -4.7
+  alt      /simple : obs -0.031/-0.092 | s_R +0.0748 (hold-g_bar +0.0612) -s_F -0.0612 (hold -0.0612) | tension flat-slope vs rival-exp -5.4 (hold -4.7), rival-slope vs 0 -4.7
+  largest change of either rival tension across {P2, simple, alt, hold-g_bar} vs the primary: 1.18 sigma; line: > 1 sigma -> 'not robust to the expected-slope definition': NOT ROBUST
+  analytic deep-MOND ceiling 0.5 log10 E(z) slope on the sample's z: +0.1123 (observed-sample expected s_R +0.0725); ceiling/sample = 1.55
+
+=== c1: expected slopes vs mass range and g_bar distribution (nu_mono canonical; subsets defined on the observed sample)
+  logM tercile 1 (low)  : n= 34 s_R +0.0843  -s_F -0.0709  | obs flat -0.0276 rival -0.0960
+  logM tercile 2        : n= 33 s_R +0.0769  -s_F -0.0629  | obs flat -0.0442 rival -0.1020
+  logM tercile 3 (high) : n= 33 s_R +0.0705  -s_F -0.0574  | obs flat -0.0232 rival -0.0793
+  g_bar tercile 1 (low) : n= 33 s_R +0.0913  -s_F -0.0788  | obs flat -0.0712 rival -0.1495
+  g_bar tercile 2       : n= 34 s_R +0.0782  -s_F -0.0652  | obs flat -0.0223 rival -0.0864
+  g_bar tercile 3 (high): n= 33 s_R +0.0702  -s_F -0.0573  | obs flat -0.0228 rival -0.0753
+  g_bar < 3 a0          : n= 67 s_R +0.0798  -s_F -0.0671  | obs flat -0.0360 rival -0.1054
+  g_bar < a0            : n= 21 s_R +0.0978  -s_F -0.0860  | obs flat -0.0647 rival -0.1472
+
+=== c2: joint bootstrap of (observed slope - expected slope) with the expected slope recomputed on each resample (N=10000, seed 233)
+  flat slope - rival-true expectation: -0.1029; SD const-expected 0.0195 -> -5.27 sigma; joint SD 0.0206 -> -4.99 sigma; corr(obs, exp) -0.08
+  rival slope - flat-true expectation: -0.0324; SD const-expected 0.0192 -> -1.68 sigma; joint SD 0.0182 -> -1.78 sigma; corr +0.32
+  rival slope vs 0 (rival-true expectation is 0): -4.76 sigma; flat slope vs 0: -1.56
+
+=== c3: noise propagation (Monte Carlo N=4000, seed 233): z sd 0.01, f_DM sd (RC41 median), V_c 5%, R_e 5%; observed AND expected slopes recomputed
+  sigma_f used 0.130. flat slope: mean -0.0283 SD 0.0118 (mean shift from noise +0.0022); expected s_R: mean +0.0723 SD 0.0012; SD of (obs - exp) 0.0120
+  rival slope: mean -0.0876 SD 0.0116; expected -s_F: mean -0.0592; SD of (obs - exp) 0.0114
+  note: this Monte Carlo treats the MAP values as if they were noisy with the RC41 posterior widths; the noise here is independent across galaxies, which the galaxy bootstrap already includes (added in quadrature it would double count); it is a check that measurement noise does not bias either slope.
+
+analytic d delta/d f = (1-s)/((1-f) ln10): max |num/ana - 1| = 1.10e-09; s_bar = 0.221 (range 0.04-0.40); naive independent-error overstatement sqrt(1+s^2)/(1-s) at s_bar = 1.32

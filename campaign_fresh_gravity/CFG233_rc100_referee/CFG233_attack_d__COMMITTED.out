@@ -1,0 +1,46 @@
+<repo> = <repo> | <scratch> = <scratch> | DATA = COMMITTED ( real_research/data/rc100_nestorshachar2023_table3.csv )
+=== d1 reproduce
+  non-RC41 (62)                     : n= 62 flat -0.055 [-0.099,-0.007] rival -0.112 [-0.154,-0.067] class W-mixed
+  RC41 matched (38)                 : n= 38 flat +0.005 [-0.060,+0.067] rival -0.056 [-0.124,+0.013] class W-none
+
+=== d2 selection: cuts on the 62 (nu_mono canonical, B=10000)
+  logM >= 10.0                      : n= 58 flat -0.050 [-0.092,-0.005] rival -0.104 [-0.150,-0.057] class W-mixed
+  logM >= 10.3                      : n= 53 flat -0.055 [-0.100,-0.009] rival -0.111 [-0.160,-0.061] class W-mixed
+  logM >= 10.6                      : n= 42 flat -0.048 [-0.097,-0.000] rival -0.106 [-0.154,-0.052] class W-mixed
+  z >= 0.8                          : n= 58 flat -0.042 [-0.089,+0.004] rival -0.098 [-0.144,-0.051] class W-flat
+  z <= 2.3                          : n= 55 flat -0.049 [-0.104,+0.010] rival -0.109 [-0.161,-0.053] class W-flat
+  0.05<=f<=0.95                     : n= 59 flat -0.060 [-0.104,-0.010] rival -0.123 [-0.167,-0.081] class W-mixed
+  g_bar < 3 a0                      : n= 42 flat -0.069 [-0.126,+0.002] rival -0.132 [-0.192,-0.063] class W-flat
+  f_DM >= 0.10                      : n= 50 flat -0.036 [-0.098,+0.020] rival -0.106 [-0.159,-0.052] class W-flat
+  KS tests, non-RC41 (62) vs RC41 (38): p-values
+    z: KS D=0.13 p=0.756; medians 1.53 vs 1.57
+    logM_bar: KS D=0.13 p=0.722; medians 10.8 vs 10.9
+    log g_bar: KS D=0.11 p=0.920; medians -9.74 vs -9.73
+    R_e: KS D=0.18 p=0.353; medians 5.25 vs 5.88
+    sigma0: KS D=0.29 p=0.027; medians 40.5 vs 53.5
+    f_DM: KS D=0.18 p=0.359; medians 0.27 vs 0.33
+    log V_c: KS D=0.18 p=0.363; medians 2.33 vs 2.37
+  by z tercile (full sample): n(62)/n(38), median logM_bar (62 / 38), median log g_bar/a0 (62 / 38)
+    low z: 19/14, logM 10.85/10.67, log g/a0 +0.14/+0.06
+    mid z: 25/9, logM 10.76/11.03, log g/a0 +0.33/+0.58
+    high z: 18/15, logM 10.66/10.95, log g/a0 +0.36/+0.30
+  correlation of z with logM_bar in the 62: -0.09 ; with log g_bar: 0.23 ; in the 38: 0.23 ; 0.18
+
+=== d3 RC41 definition by (|dz|<=0.01 and |logM_bar,RC100 - logMbar_1D| <= 0.05)
+  alternative RC41 set n=19 (by name: 38); overlap 15; name-only 23; alt-only 4
+  complement of alt RC41 set        : n= 81 flat -0.029 [-0.079,+0.017] rival -0.087 [-0.133,-0.041] class W-flat
+
+=== d4(i) delta on log g_bar, log M_bar; partial z-slope
+  all 100: TS slope of delta on log g_bar -0.053 CI (-0.11688141304160311, 0.010874323604912747), on log M_bar -0.021; OLS z-slope alone -0.027, OLS z-slope with log g_bar in the model -0.020 CI (-0.058,+0.018); OLS coefficient of log g_bar -0.054; TS z-slope of residual -0.027
+  non-RC41 62: TS slope of delta on log g_bar -0.063 CI (-0.1356606641656002, 0.03695827341093591), on log M_bar -0.038; OLS z-slope alone -0.047, OLS z-slope with log g_bar in the model -0.038 CI (-0.080,+0.006); OLS coefficient of log g_bar -0.060; TS z-slope of residual -0.047
+  analytic attenuation of delta-vs-log g_bar slope from noise sigma_eps=0.12: -(1-s)sigma^2/(var(x)+sigma^2) = -0.068 (NOT the z-slope)
+
+=== d4(ii) flat-truth mocks on the 62 galaxies (their z, R_e, g_obs), errors as in attack b, three selection rules; N=4000, seeds 233 and 234
+  observed 62-galaxy flat slope -0.0546; robust SD 0.100; sigma_M 0.120; calibrated sigma_int 0.071
+  seed 233 rule none          : mock flat slope mean +0.0013 sd 0.0222; P(<= -0.010) 0.304; P(<= -0.027) 0.104; P(<= observed -0.055) 0.006
+  seed 233 rule gbar_in_range : mock flat slope mean +0.0013 sd 0.0224; P(<= -0.010) 0.307; P(<= -0.027) 0.105; P(<= observed -0.055) 0.006
+  seed 233 rule drop_f<0.01   : mock flat slope mean +0.0047 sd 0.0249; P(<= -0.010) 0.273; P(<= -0.027) 0.105; P(<= observed -0.055) 0.010
+  seed 234 rule none          : mock flat slope mean +0.0017 sd 0.0221; P(<= -0.010) 0.302; P(<= -0.027) 0.099; P(<= observed -0.055) 0.006
+  seed 234 rule gbar_in_range : mock flat slope mean +0.0017 sd 0.0223; P(<= -0.010) 0.303; P(<= -0.027) 0.100; P(<= observed -0.055) 0.006
+  seed 234 rule drop_f<0.01   : mock flat slope mean +0.0048 sd 0.0247; P(<= -0.010) 0.268; P(<= -0.027) 0.101; P(<= observed -0.055) 0.010
+  verdict rule: explained if some mechanism gives slope <= -0.027 in >= 50% of mocks (max seen 0.105); partly explained if the mean lies in [-0.027,-0.010) (means: [0.0013, 0.0013, 0.0047, 0.0017, 0.0017, 0.0048]) -> UNEXPLAINED (kept)

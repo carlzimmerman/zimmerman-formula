@@ -1,0 +1,109 @@
+<repo> = <repo> | <scratch> = <scratch> | DATA = COMMITTED ( real_research/data/rc100_nestorshachar2023_table3.csv )
+base: {'n': 100, 'slope_flat': -0.0293, 'slope_rival': -0.0916, 'exp_R_flat': 0.0727, 'exp_F_rival': -0.0596, 'ci_flat': (-0.0712195877221951, 0.0022878196976167373), 'ci_rival': (-0.1288713557289651, -0.053102014696801675), 'sd_flat': 0.0185, 'sd_rival': 0.0188, 'cls': 'W-flat', 'T_flat_vs_rival': -5.5137, 'T_rival_vs_rival': -4.8646, 'T_flat_vs_flat': -1.5848, 'T_rival_vs_flat': -1.7018}
+a1: log g_bar(f_DM) - log g_bar(Freeman, M_bar table): median -0.010, SD 0.219, 16-84% -0.102..+0.095
+    OLS log gbar_f = 0.762 log g_geom + -2.314; residual SD 0.192 dex; corr 0.870
+    TS slope of (log gbar_f - log g_geom) vs z: -0.0296 CI (-0.06608980537084871, 0.0019251092929453517)
+    corr(delta_flat, log M_bar) = -0.113 ; corr(delta_flat, log V_c) = 0.324 ; corr(delta_flat, log g_bar) = -0.207 ; corr(delta_flat, z) = -0.145
+a2: 38 matched galaxies, same-galaxy comparison (median [16,84]) and TS slope vs z of each difference (95% boot CI)
+    f_DM RC100-RC41: -0.050 [-0.141,-0.009]; slope +0.012 CI (-0.026,+0.034)
+    logMbar RC100-RC41: -0.005 [-0.070,+0.082]; slope -0.039 CI (-0.074,+0.010)
+    Re RC100-RC41 kpc: -0.330 [-1.036,+0.246]; slope -0.049 CI (-0.569,+0.427)
+    sigma0 RC100-RC41: -2.655 [-12.255,+0.834]; slope -0.152 CI (-3.432,+3.950)
+    logMbar RC100 - log(M*+Mgas): -0.100 [-0.476,+0.114]; slope -0.097 CI (-0.204,+0.056)
+    logMbar RC41-1D - log(M*+Mgas): -0.047 [-0.333,+0.055]; slope -0.041 CI (-0.138,+0.065)
+G1: log10(M_gas/M*) = -0.454 + +0.285 z (RC41 own columns, n=38); slope 95% boot CI (+0.144,+0.417); residual SD 0.263
+mu_G1(z=0.61, 1.5, 2.52) = [0.524, 0.938, 1.83]  mu_G2 = [0.464, 0.775, 1.132]
+sigma(log M_bar) RC41 median of (lo,hi): 0.12 ; sigma(f_DM): 0.13
+PHIBSS (n=52, z 1.00-2.43, clean rows): log10(mmol/M*) = -0.150 + +0.091 z, SE 0.116; level at z=1.5 mu_mol = 0.97 ; RC41 G1 at z=1.5 mu_gas = 0.94
+data-informed tilt t_data = b_PHIBSS - b_auth = -0.193 +/- 0.136 dex per unit z
+
+=== gas grid G1: rows = c (true gas / authors' gas), cols = tilt t; entries: flat slope | rival slope | tension of BOTH slopes vs rival expectation (min) | class | excluded
+  G1 c=0.25 t=-0.30: flat +0.080 rival -0.001 | exp_R +0.073 | T_flat-vs-R 0.4 T_rival-vs-R 0.0 min 0.0 | T_flat-vs-F 4.3 T_rival-vs-F 3.0 | W-rival | excl 0
+  G1 c=0.25 t=-0.15: flat +0.059 rival -0.020 | exp_R +0.073 | T_flat-vs-R 0.8 T_rival-vs-R 1.0 min 0.8 | T_flat-vs-F 3.2 T_rival-vs-F 2.0 | W-rival | excl 0
+  G1 c=0.25 t=+0.00: flat +0.035 rival -0.041 | exp_R +0.073 | T_flat-vs-R 2.0 T_rival-vs-R 2.1 min 2.0 | T_flat-vs-F 1.9 T_rival-vs-F 1.0 | W-flat | excl 0
+  G1 c=0.25 t=+0.15: flat +0.008 rival -0.063 | exp_R +0.073 | T_flat-vs-R 3.4 T_rival-vs-R 3.2 min 3.2 | T_flat-vs-F 0.4 T_rival-vs-F 0.2 | W-flat | excl 0
+  G1 c=0.25 t=+0.30: flat -0.018 rival -0.087 | exp_R +0.073 | T_flat-vs-R 4.8 T_rival-vs-R 4.3 min 4.3 | T_flat-vs-F 1.0 T_rival-vs-F 1.4 | W-flat | excl 0
+  G1 c= 0.5 t=-0.30: flat +0.083 rival +0.005 | exp_R +0.073 | T_flat-vs-R 0.5 T_rival-vs-R 0.2 min 0.2 | T_flat-vs-F 4.4 T_rival-vs-F 3.3 | W-rival | excl 0
+  G1 c= 0.5 t=-0.15: flat +0.046 rival -0.029 | exp_R +0.073 | T_flat-vs-R 1.4 T_rival-vs-R 1.5 min 1.4 | T_flat-vs-F 2.5 T_rival-vs-F 1.6 | W-rival | excl 0
+  G1 c= 0.5 t=+0.00: flat +0.008 rival -0.062 | exp_R +0.073 | T_flat-vs-R 3.5 T_rival-vs-R 3.2 min 3.2 | T_flat-vs-F 0.4 T_rival-vs-F 0.1 | W-flat | excl 0
+  G1 c= 0.5 t=+0.15: flat -0.033 rival -0.099 | exp_R +0.073 | T_flat-vs-R 5.7 T_rival-vs-R 5.0 min 5.0 | T_flat-vs-F 1.8 T_rival-vs-F 2.0 | W-mixed | excl 0
+  G1 c= 0.5 t=+0.30: flat -0.080 rival -0.139 | exp_R +0.073 | T_flat-vs-R 7.9 T_rival-vs-R 7.0 min 7.0 | T_flat-vs-F 4.1 T_rival-vs-F 4.0 | W-mixed | excl 0
+  G1 c= 1.0 t=-0.30: flat +0.058 rival -0.007 | exp_R +0.069 | T_flat-vs-R 0.5 T_rival-vs-R 0.3 min 0.3 | T_flat-vs-F 2.7 T_rival-vs-F 2.2 | W-rival | excl 10
+  G1 c= 1.0 t=-0.15: flat +0.018 rival -0.048 | exp_R +0.072 | T_flat-vs-R 2.7 T_rival-vs-R 2.5 min 2.5 | T_flat-vs-F 0.9 T_rival-vs-F 0.6 | W-flat | excl 4
+  G1 c= 1.0 t=+0.00: flat -0.029 rival -0.092 | exp_R +0.073 | T_flat-vs-R 5.5 T_rival-vs-R 4.8 min 4.8 | T_flat-vs-F 1.6 T_rival-vs-F 1.7 | W-flat | excl 0
+  G1 c= 1.0 t=+0.15: flat -0.063 rival -0.129 | exp_R +0.078 | T_flat-vs-R 6.8 T_rival-vs-R 6.0 min 6.0 | T_flat-vs-F 3.0 T_rival-vs-F 3.0 | W-mixed | excl 11
+  G1 c= 1.0 t=+0.30: flat -0.082 rival -0.140 | exp_R +0.073 | T_flat-vs-R 6.6 T_rival-vs-R 6.0 min 6.0 | T_flat-vs-F 3.5 T_rival-vs-F 3.4 | W-mixed | excl 22
+  G1 c= 2.0 t=-0.30: flat -0.005 rival -0.061 | exp_R +0.071 | T_flat-vs-R 3.3 T_rival-vs-R 3.0 min 3.0 | T_flat-vs-F 0.2 T_rival-vs-F 0.2 | W-flat | excl 44
+  G1 c= 2.0 t=-0.15: flat +0.005 rival -0.059 | exp_R +0.072 | T_flat-vs-R 2.4 T_rival-vs-R 2.3 min 2.3 | T_flat-vs-F 0.2 T_rival-vs-F 0.0 | W-flat | excl 49
+  G1 c= 2.0 t=+0.00: flat -0.026 rival -0.085 | exp_R +0.068 | T_flat-vs-R 3.8 T_rival-vs-R 3.1 min 3.1 | T_flat-vs-F 1.0 T_rival-vs-F 1.1 | W-flat | excl 54
+  G1 c= 2.0 t=+0.15: flat -0.055 rival -0.110 | exp_R +0.071 | T_flat-vs-R 4.1 T_rival-vs-R 3.4 min 3.4 | T_flat-vs-F 1.8 T_rival-vs-F 1.6 | W-flat | excl 57
+  G1 c= 2.0 t=+0.30: flat -0.073 rival -0.122 | exp_R +0.072 | T_flat-vs-R 4.0 T_rival-vs-R 3.5 min 3.5 | T_flat-vs-F 2.0 T_rival-vs-F 1.8 | W-mixed | excl 54
+  G1 c= 4.0 t=-0.30: flat +0.083 rival +0.014 | exp_R +0.086 | T_flat-vs-R 0.1 T_rival-vs-R 0.2 min 0.1 | T_flat-vs-F 2.0 T_rival-vs-F 1.3 | W-rival | excl 87
+  G1 c= 4.0 t=-0.15: flat +0.001 rival -0.071 | exp_R +0.087 | T_flat-vs-R 2.0 T_rival-vs-R 1.6 min 1.6 | T_flat-vs-F 0.0 T_rival-vs-F 0.1 | W-flat | excl 86
+  G1 c= 4.0 t=+0.00: flat -0.072 rival -0.128 | exp_R +0.083 | T_flat-vs-R 2.0 T_rival-vs-R 1.7 min 1.7 | T_flat-vs-F 0.9 T_rival-vs-F 0.7 | W-mixed | excl 86
+  G1 c= 4.0 t=+0.15: flat -0.133 rival -0.186 | exp_R +0.084 | T_flat-vs-R 1.2 T_rival-vs-R 1.0 min 1.0 | T_flat-vs-F 0.7 T_rival-vs-F 0.6 | W-none | excl 85
+  G1 c= 4.0 t=+0.30: flat -0.179 rival -0.206 | exp_R +0.079 | T_flat-vs-R 0.9 T_rival-vs-R 0.7 min 0.7 | T_flat-vs-F 0.6 T_rival-vs-F 0.4 | W-none | excl 82
+
+=== gas grid G2: rows = c (true gas / authors' gas), cols = tilt t; entries: flat slope | rival slope | tension of BOTH slopes vs rival expectation (min) | class | excluded
+  G2 c=0.25 t=-0.30: flat +0.048 rival -0.029 | exp_R +0.073 | T_flat-vs-R 1.3 T_rival-vs-R 1.5 min 1.3 | T_flat-vs-F 2.5 T_rival-vs-F 1.6 | W-rival | excl 0
+  G2 c=0.25 t=-0.15: flat +0.030 rival -0.044 | exp_R +0.073 | T_flat-vs-R 2.3 T_rival-vs-R 2.3 min 2.3 | T_flat-vs-F 1.6 T_rival-vs-F 0.8 | W-flat | excl 0
+  G2 c=0.25 t=+0.00: flat +0.012 rival -0.060 | exp_R +0.073 | T_flat-vs-R 3.2 T_rival-vs-R 3.1 min 3.1 | T_flat-vs-F 0.6 T_rival-vs-F 0.0 | W-flat | excl 0
+  G2 c=0.25 t=+0.15: flat -0.008 rival -0.077 | exp_R +0.073 | T_flat-vs-R 4.3 T_rival-vs-R 3.9 min 3.9 | T_flat-vs-F 0.4 T_rival-vs-F 0.9 | W-flat | excl 0
+  G2 c=0.25 t=+0.30: flat -0.030 rival -0.097 | exp_R +0.073 | T_flat-vs-R 5.5 T_rival-vs-R 4.8 min 4.8 | T_flat-vs-F 1.6 T_rival-vs-F 1.8 | W-flat | excl 0
+  G2 c= 0.5 t=-0.30: flat +0.058 rival -0.017 | exp_R +0.073 | T_flat-vs-R 0.7 T_rival-vs-R 0.9 min 0.7 | T_flat-vs-F 3.1 T_rival-vs-F 2.1 | W-rival | excl 0
+  G2 c= 0.5 t=-0.15: flat +0.028 rival -0.045 | exp_R +0.073 | T_flat-vs-R 2.4 T_rival-vs-R 2.3 min 2.3 | T_flat-vs-F 1.5 T_rival-vs-F 0.8 | W-flat | excl 0
+  G2 c= 0.5 t=+0.00: flat -0.005 rival -0.074 | exp_R +0.073 | T_flat-vs-R 4.1 T_rival-vs-R 3.8 min 3.8 | T_flat-vs-F 0.3 T_rival-vs-F 0.7 | W-flat | excl 0
+  G2 c= 0.5 t=+0.15: flat -0.039 rival -0.103 | exp_R +0.073 | T_flat-vs-R 6.0 T_rival-vs-R 5.3 min 5.3 | T_flat-vs-F 2.1 T_rival-vs-F 2.2 | W-mixed | excl 0
+  G2 c= 0.5 t=+0.30: flat -0.078 rival -0.136 | exp_R +0.073 | T_flat-vs-R 8.0 T_rival-vs-R 7.0 min 7.0 | T_flat-vs-F 4.1 T_rival-vs-F 3.9 | W-mixed | excl 0
+  G2 c= 1.0 t=-0.30: flat +0.047 rival -0.018 | exp_R +0.070 | T_flat-vs-R 1.1 T_rival-vs-R 0.8 min 0.8 | T_flat-vs-F 2.2 T_rival-vs-F 1.8 | W-rival | excl 8
+  G2 c= 1.0 t=-0.15: flat +0.011 rival -0.055 | exp_R +0.072 | T_flat-vs-R 3.1 T_rival-vs-R 2.8 min 2.8 | T_flat-vs-F 0.5 T_rival-vs-F 0.2 | W-flat | excl 4
+  G2 c= 1.0 t=+0.00: flat -0.029 rival -0.092 | exp_R +0.073 | T_flat-vs-R 5.5 T_rival-vs-R 4.8 min 4.8 | T_flat-vs-F 1.6 T_rival-vs-F 1.7 | W-flat | excl 0
+  G2 c= 1.0 t=+0.15: flat -0.059 rival -0.122 | exp_R +0.077 | T_flat-vs-R 6.6 T_rival-vs-R 5.7 min 5.7 | T_flat-vs-F 2.8 T_rival-vs-F 2.7 | W-mixed | excl 10
+  G2 c= 1.0 t=+0.30: flat -0.075 rival -0.135 | exp_R +0.075 | T_flat-vs-R 6.3 T_rival-vs-R 5.6 min 5.6 | T_flat-vs-F 3.2 T_rival-vs-F 3.0 | W-mixed | excl 21
+  G2 c= 2.0 t=-0.30: flat -0.001 rival -0.062 | exp_R +0.071 | T_flat-vs-R 3.3 T_rival-vs-R 3.1 min 3.1 | T_flat-vs-F 0.0 T_rival-vs-F 0.2 | W-flat | excl 40
+  G2 c= 2.0 t=-0.15: flat +0.011 rival -0.053 | exp_R +0.073 | T_flat-vs-R 2.3 T_rival-vs-R 2.0 min 2.0 | T_flat-vs-F 0.4 T_rival-vs-F 0.3 | W-flat | excl 47
+  G2 c= 2.0 t=+0.00: flat -0.011 rival -0.071 | exp_R +0.067 | T_flat-vs-R 3.0 T_rival-vs-R 2.6 min 2.6 | T_flat-vs-F 0.4 T_rival-vs-F 0.6 | W-flat | excl 49
+  G2 c= 2.0 t=+0.15: flat -0.036 rival -0.095 | exp_R +0.072 | T_flat-vs-R 3.7 T_rival-vs-R 3.1 min 3.1 | T_flat-vs-F 1.2 T_rival-vs-F 1.1 | W-flat | excl 55
+  G2 c= 2.0 t=+0.30: flat -0.064 rival -0.117 | exp_R +0.077 | T_flat-vs-R 4.1 T_rival-vs-R 3.4 min 3.4 | T_flat-vs-F 1.8 T_rival-vs-F 1.5 | W-flat | excl 53
+  G2 c= 4.0 t=-0.30: flat +0.085 rival +0.004 | exp_R +0.076 | T_flat-vs-R 0.2 T_rival-vs-R 0.1 min 0.1 | T_flat-vs-F 2.2 T_rival-vs-F 1.3 | W-rival | excl 85
+  G2 c= 4.0 t=-0.15: flat +0.010 rival -0.050 | exp_R +0.078 | T_flat-vs-R 2.9 T_rival-vs-R 1.6 min 1.6 | T_flat-vs-F 0.4 T_rival-vs-F 0.6 | W-none | excl 82
+  G2 c= 4.0 t=+0.00: flat -0.073 rival -0.137 | exp_R +0.087 | T_flat-vs-R 2.0 T_rival-vs-R 1.7 min 1.7 | T_flat-vs-F 0.9 T_rival-vs-F 0.8 | W-mixed | excl 84
+  G2 c= 4.0 t=+0.15: flat -0.142 rival -0.189 | exp_R +0.084 | T_flat-vs-R 2.3 T_rival-vs-R 2.0 min 2.0 | T_flat-vs-F 1.4 T_rival-vs-F 1.2 | W-flat | excl 83
+  G2 c= 4.0 t=+0.30: flat -0.169 rival -0.215 | exp_R +0.080 | T_flat-vs-R 2.1 T_rival-vs-R 1.8 min 1.8 | T_flat-vs-F 1.4 T_rival-vs-F 1.2 | W-none | excl 77
+G1: plausible band (9 cells): rival tension of BOTH slopes >= 3 sigma in 6/9 cells -> WEAKENED (line: >=80% survive, <60% fail)
+G2: plausible band (9 cells): rival tension of BOTH slopes >= 3 sigma in 5/9 cells -> FAILS (line: >=80% survive, <60% fail)
+data-informed t_data = -0.193: flat +0.026 rival -0.038 T_flat-vs-R 2.2 T_rival-vs-R 1.9 class W-none excl 7
+data-informed t_data-1se = -0.329: flat +0.069 rival +0.002 T_flat-vs-R 0.0 T_rival-vs-R 0.1 class W-rival excl 10
+data-informed t_data+1se = -0.058: flat -0.009 rival -0.074 T_flat-vs-R 4.5 T_rival-vs-R 4.0 class W-flat excl 1
+
+=== break-evens: value of a systematic at which the observed flat slope equals the rival-true expectation (+0.0727)
+gas tilt t* (G1, c=1): (-0.3398194296660222, None, None)
+   zero true gas at all z (G1): flat slope +0.0756 (excluded 0); shift +0.1049; needed +0.1020
+   total log10(1+mu) change z_lo->z_hi under G1: +0.269 dex (max Delta log M_bar tilt gas can supply over the range, at zero true gas)
+gas tilt t* (G2, c=1): (-0.40703467430103046, None, None)
+   zero true gas at all z (G2): flat slope +0.0341 (excluded 0); shift +0.0634; needed +0.1020
+   total log10(1+mu) change z_lo->z_hi under G2: +0.163 dex (max Delta log M_bar tilt gas can supply over the range, at zero true gas)
+M_bar tilt tau* (dex per unit z; k=10^(tau dz)): (0.1722586120295091, None, None) -> total over z range: 0.3290139489763624 dex
+V_c tilt q* (dex per unit z on V_c, D_obs shifts 2q): (0.06642653620356212, None, None) -> total over range 0.12687468414880365 dex
+
+=== M_bar (baryon-mass) tilt scan; total dex over z 0.61-2.52 (POST-FREEZE display for the CFG217 question); tau = total/1.91
+  total 0.00 dex (baryons over-assumed at high z): flat -0.029 [-0.073,+0.002] rival -0.092 | T_flat-vs-rival-exp -5.5, T_rival-vs-0 -4.8, T_flat-vs-0 -1.6, T_rival-vs-flat-exp -1.7 | W-flat | excl 0
+  total 0.05 dex (baryons over-assumed at high z): flat -0.011 [-0.052,+0.017] rival -0.076 | T_flat-vs-rival-exp -4.6, T_rival-vs-0 -4.1, T_flat-vs-0 -0.6, T_rival-vs-flat-exp -0.9 | W-flat | excl 1
+  total 0.10 dex (baryons over-assumed at high z): flat +0.003 [-0.039,+0.034] rival -0.062 | T_flat-vs-rival-exp -3.7, T_rival-vs-0 -3.4, T_flat-vs-0 +0.1, T_rival-vs-flat-exp -0.2 | W-flat | excl 3
+  total 0.15 dex (baryons over-assumed at high z): flat +0.011 [-0.027,+0.047] rival -0.051 | T_flat-vs-rival-exp -2.9, T_rival-vs-0 -2.5, T_flat-vs-0 +0.5, T_rival-vs-flat-exp +0.3 | W-flat | excl 7
+  total 0.20 dex (baryons over-assumed at high z): flat +0.031 [-0.007,+0.068] rival -0.033 | T_flat-vs-rival-exp -1.9, T_rival-vs-0 -1.6, T_flat-vs-0 +1.5, T_rival-vs-flat-exp +1.2 | W-none | excl 7
+  total 0.25 dex (baryons over-assumed at high z): flat +0.041 [+0.004,+0.085] rival -0.022 | T_flat-vs-rival-exp -1.3, T_rival-vs-0 -1.0, T_flat-vs-0 +1.9, T_rival-vs-flat-exp +1.5 | W-rival | excl 10
+  total 0.26 dex (baryons over-assumed at high z): flat +0.045 [+0.008,+0.089] rival -0.019 | T_flat-vs-rival-exp -1.1, T_rival-vs-0 -0.8, T_flat-vs-0 +2.1, T_rival-vs-flat-exp +1.7 | W-rival | excl 10
+  total 0.30 dex (baryons over-assumed at high z): flat +0.061 [+0.023,+0.104] rival -0.004 | T_flat-vs-rival-exp -0.4, T_rival-vs-0 -0.2, T_flat-vs-0 +2.9, T_rival-vs-flat-exp +2.3 | W-rival | excl 10
+  total 0.40 dex (baryons over-assumed at high z): flat +0.096 [+0.057,+0.142] rival +0.026 | T_flat-vs-rival-exp +1.2, T_rival-vs-0 +1.2, T_flat-vs-0 +4.4, T_rival-vs-flat-exp +3.6 | W-rival | excl 11
+
+=== a3 pressure axis: V_c'^2 = V_c^2 - (1 - s/3) P, P = 3.356 sigma_0^2 (Price+2021's stated constant-sigma exponential-disc asymmetric drift; s=3 = table as given)
+   P/V_c^2: median 0.140; z<=1.53: 0.092; z>1.53: 0.208; sigma0 median low/high z: 35/56 km/s
+  s= 0.0: flat -0.043 [-0.094,+0.002] rival -0.105 | exp_R +0.075 | T_flat-vs-R -4.9 T_rival-vs-0 -4.3 | W-flat | excl 30
+  s= 1.0: flat -0.047 [-0.094,-0.005] rival -0.107 | exp_R +0.073 | T_flat-vs-R -5.3 T_rival-vs-0 -4.7 | W-mixed | excl 21
+  s=1.42: flat -0.039 [-0.083,-0.000] rival -0.102 | exp_R +0.076 | T_flat-vs-R -5.5 T_rival-vs-0 -4.6 | W-mixed | excl 16
+  s=1.62: flat -0.044 [-0.088,-0.009] rival -0.109 | exp_R +0.078 | T_flat-vs-R -5.9 T_rival-vs-0 -5.2 | W-mixed | excl 13
+  s=1.69: flat -0.041 [-0.086,-0.007] rival -0.107 | exp_R +0.077 | T_flat-vs-R -5.9 T_rival-vs-0 -5.1 | W-mixed | excl 13
+  s= 3.0: flat -0.029 [-0.073,+0.002] rival -0.092 | exp_R +0.073 | T_flat-vs-R -5.5 T_rival-vs-0 -4.8 | W-flat | excl 0
+   s=1 (Kretschmer-like) shifts the flat slope by -0.0174 = -0.94 sigma_slope; fail line: > 1 sigma_slope -> PASS
+done

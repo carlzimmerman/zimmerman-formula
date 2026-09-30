@@ -1,0 +1,42 @@
+<repo> = <repo> | <scratch> = <scratch> | DATA = COMMITTED ( real_research/data/rc100_nestorshachar2023_table3.csv )
+primary slopes {'flat': -0.029320891431451345, 'rival': -0.09162924995859273} expected {'flat': (0.0, -0.059574122920559636), 'rival': (0.07269043410254777, 0.0)}
+
+=== e1 sensitivity map (243 cells, B=2000, seed 233); class per cell
+  cells 243; usable (n>=15) 172; class shares: W-flat 115 (0.67), W-none 56 (0.33), W-mixed 1 (0.01), W-rival 0 (0.00)
+  flat slope negative in 168/172 usable cells; rival slope CI<0 in 116/172
+  share W-flat or W-none: 0.99; W-rival cells: 0; cells whose class differs from the primary W-flat: 57 (0.33)
+  cells with n>=90: {'z0.61-2.52|fall|gall|Mnone': (100, 'W-flat', -0.029), 'z0.61-2.52|f0.05-0.95|gall|Mnone': (95, 'W-flat', -0.031), 'z0.8-2.52|fall|gall|Mnone': (91, 'W-flat', -0.027)}
+  W-rival cells: []
+  time 31.9
+
+=== e2 leave-one-out (100 fits, B=1000, seed 235)
+  flat slope over LOO: -0.0337 .. -0.0252 (primary -0.0293); max |change| 0.0044; classes: {'W-flat': 93, 'W-mixed': 7}; share not W-flat 0.07
+  5 most influential (flat slope on removal): [('EGS4 21351', -0.0337), ('COS4 19753', -0.0252), ('U4 20688', -0.0254), ('U3 05138', -0.033), ('U3 21388', -0.0257)]
+  with all 5 removed: flat -0.0249, rival -0.0855
+  mean of LOO CI upper edges (flat): 0.0033134752351460755 ; share with upper edge > 0: 0.93
+
+=== e3 bootstrap over discs (N=10000; seeds 233 and 234)
+  seed 233: flat CI (-0.0712,+0.0023) rival CI (-0.1289,-0.0531) class W-flat; share flat slope > 0: 0.0325; share rival slope > -0.030: 0.0003; SD 0.0185/0.0188
+  seed 234: flat CI (-0.0715,+0.0015) rival CI (-0.1287,-0.0537) class W-flat; share flat slope > 0: 0.0290; share rival slope > -0.030: 0.0008; SD 0.0185/0.0188
+  flat-slope difference (62 non-RC41 minus 38 RC41): -0.0597, bootstrap SD 0.0400 -> -1.49 sigma; 95% CI (-0.137,+0.018)
+
+=== e4 permutation null (N=20000, seed 236)
+  flat slope -0.0293: two-sided p (axis shuffled) 0.0991; null SD 0.0176
+  rival slope -0.0916: two-sided p vs axis-shuffled null (mean -0.0002, SD 0.0217) 0.00000; vs full-shuffle null (mean -0.0643, SD 0.0187, the mechanical -0.5 log E term stays) 0.1441
+  RC41-split label permutation (N=4000): observed difference -0.0597; two-sided p 0.117
+
+=== e5 honest total significance: declared Gaussian priors on the analysis's own inputs (N=20000, seed 233)
+  sigma_t=0.00 dex/z (q~N(0,0.02), tau~N(0,0.02), s~U[1,3]): modified flat slope mean -0.0486 SD 0.0390; total tension flat-slope-vs-rival-exp 2.36, rival-slope-vs-0 2.12; P(both > 3) 0.908, P(both > 4) 0.808 (flat side alone > 3: 0.945); clipped fraction 0.128
+  sigma_t=0.05 dex/z (q~N(0,0.02), tau~N(0,0.02), s~U[1,3]): modified flat slope mean -0.0478 SD 0.0420; total tension flat-slope-vs-rival-exp 2.22, rival-slope-vs-0 2.02; P(both > 3) 0.891, P(both > 4) 0.788 (flat side alone > 3: 0.931); clipped fraction 0.131
+  sigma_t=0.10 dex/z (q~N(0,0.02), tau~N(0,0.02), s~U[1,3]): modified flat slope mean -0.0461 SD 0.0493; total tension flat-slope-vs-rival-exp 1.94, rival-slope-vs-0 1.79; P(both > 3) 0.848, P(both > 4) 0.747 (flat side alone > 3: 0.886); clipped fraction 0.139
+  sigma_t=0.20 dex/z (q~N(0,0.02), tau~N(0,0.02), s~U[1,3]): modified flat slope mean -0.0411 SD 0.0688; total tension flat-slope-vs-rival-exp 1.43, rival-slope-vs-0 1.37; P(both > 3) 0.758, P(both > 4) 0.677 (flat side alone > 3: 0.788); clipped fraction 0.160
+  central prior with the pressure scale fixed at the table (s=3): SD 0.0522; total tension flat 1.84
+  POST-FREEZE decomposition of the modified-slope SD by source (one source active at a time; flat slope):
+    gas tilt t ~ N(0,0.10)    : mean -0.0268, SD 0.0355 (clipped fraction 0.047); tension if it were the only systematic: 2.55
+    V_c tilt q ~ N(0,0.02)    : mean -0.0288, SD 0.0379 (clipped fraction 0.036); tension if it were the only systematic: 2.42
+    M* tilt tau ~ N(0,0.02)   : mean -0.0290, SD 0.0152 (clipped fraction 0.015); tension if it were the only systematic: 4.26
+    pressure s ~ U[1,3]       : mean -0.0499, SD 0.0119 (clipped fraction 0.111); tension if it were the only systematic: 4.64
+
+  central prior (sigma_t 0.10): total tension 1.94 / 1.79 sigma; map share W-flat|W-none 0.99; W-rival cells 0; rule: survives if tension >= 4 AND share >= 0.70 AND no W-rival: FAILS
+  class stability: map cells not W-flat 0.33 (line 0.40); LOO fits not W-flat 0.07 (line 0.30)
+total time 166.9
