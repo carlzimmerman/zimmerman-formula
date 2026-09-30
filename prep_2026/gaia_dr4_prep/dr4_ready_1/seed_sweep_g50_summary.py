@@ -10,7 +10,8 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-M = json.load(open(REPO / "real_research" / "data" / "widebinaries" / "dr3_extract" / "seed_sweep" / "seed_sweep_manifest_g50.json"))
+_TRACKED = HERE / "seed_sweep_manifest_g50_dr3.json"                     # the committed copy (the extract directory is gitignored)
+M = json.load(open(_TRACKED if _TRACKED.exists() else REPO / "real_research" / "data" / "widebinaries" / "dr3_extract" / "seed_sweep" / "seed_sweep_manifest_g50.json"))
 TEN = json.load(open(HERE / "seed_sweep_streams_dr3.json"))["QS"]
 rng = np.random.default_rng(50)
 out = ["Q-G50: stage-G-only spread on %d builds (DR3 PRIMARY base, registered fit path; DR3 numbers are code-path tests, never results)" % len(M["builds"])]

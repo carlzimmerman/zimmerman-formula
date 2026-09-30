@@ -6,6 +6,16 @@ SEED LABEL: controls L1-L8 (DR3 numbers are code-path tests, never results)
   [PASS] L5 stability: kappa crossing 1.05 in some builds is labelled 'seed-sensitive' (2 fail, 3 pass), all inside is 'stable'; a ladder rung whose shift crosses 1 sigma_fit in some builds is labelled, one that never does is 'stable'  -- {'passes': 3, 'fails': 2, 'label': 'seed-sensitive'}; {'passes': 4, 'fails': 1, 'label': 'seed-sensitive'}; stable, stable
   [PASS] L6 fewer than 10 further G-only builds gives 'NOT APPLICABLE (K < 10)' and no label; with 10 the label applies  -- K = 9: NOT APPLICABLE (K < 10); K = 10: seed-sensitive
   [PASS] L7 a primary at 1.137 is NOT labelled by the extracted table (the stale target is excluded) but IS labelled when the stale 1.137 is planted as an edge: the label bites on the list  -- extracted table: not seed-sensitive at the edges of the table (nearest edges within the width: []); with the stale edge: seed-sensitive (['GAMMA_MG_STALE'])
-  [not run here] L8 DR3 rehearsal (needs the 51-build G-only manifest seed_sweep_manifest_g50.json)
+  [PASS] L8 DR3 rehearsal: the label report is produced from the 51-build G-only manifest with the ten all-stream builds beside, for both footings, with the stability conditions  -- canonical: seed-sensitive (3 edges within the width); alt: seed-sensitive (3 edges within the width)
+      canonical: seed-sensitive; primary gamma-hat 1.0750, sigma_fit 0.0550, sigma_tot 0.0585, sigma_build 0.0249 (full-rebuild SD 0.0178); width 0.0249 set by sigma_build; K = 50
+          edge GAMMA_TARGET_TOP - 2 sigma_tot = 1.0644 (distance 0.0106): 1 builds below, 50 at or above; full rebuilds 0 / 10
+          edge GAMMA_A_FALSIFIED_BELOW = 1.0560 (distance 0.0190): 1 builds below, 50 at or above; full rebuilds 0 / 10
+          edge GAMMA_B_KILL = 1.0840 (distance 0.0090): 11 builds below, 40 at or above; full rebuilds 2 / 8
+          stability kappa window: 51 pass, 0 fail -> stable
+      alt      : seed-sensitive; primary gamma-hat 1.0775, sigma_fit 0.0512, sigma_tot 0.0550, sigma_build 0.0211 (full-rebuild SD 0.0141); width 0.0211 set by sigma_build; K = 50
+          edge GAMMA_TARGET_ALT - 2 sigma_tot = 1.0818 (distance 0.0043): 19 builds below, 32 at or above; full rebuilds 5 / 5
+          edge GAMMA_TARGET_ALT_TOP - 3 sigma_tot = 1.0618 (distance 0.0157): 8 builds below, 43 at or above; full rebuilds 1 / 9
+          edge GAMMA_B_KILL = 1.0840 (distance 0.0065): 27 builds below, 24 at or above; full rebuilds 7 / 3
+          stability kappa window: 51 pass, 0 fail -> stable
 
-7/7 checks pass -> ALL PASS  (0 s)
+8/8 checks pass -> ALL PASS  (0 s)

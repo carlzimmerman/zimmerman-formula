@@ -121,7 +121,9 @@ K("L7 a primary at 1.137 is NOT labelled by the extracted table (the stale targe
   f"extracted table: {a_['label']} (nearest edges within the width: {[e['edge'] for e in a_['flagged']]}); with the stale edge: {b_['label']} ({[e['edge'] for e in b_['flagged']]})")
 
 # ---------------------------------------------------------------- L8 DR3 rehearsal on the 51-build G-only sweep (if present)
-mg = REPO / "real_research" / "data" / "widebinaries" / "dr3_extract" / "seed_sweep" / "seed_sweep_manifest_g50.json"
+mg = HERE / "seed_sweep_manifest_g50_dr3.json"                                              # the committed copy; falls back to the extract directory (gitignored)
+if not mg.exists():
+    mg = REPO / "real_research" / "data" / "widebinaries" / "dr3_extract" / "seed_sweep" / "seed_sweep_manifest_g50.json"
 if mg.exists():
     Ms = json.load(open(HERE / "seed_sweep_streams_dr3.json"))["QS"]["ALL"]["per_footing"]
     pseudo = {"builds": [{"fit": {f: {"g": Ms[f]["gammas"][k], "s": Ms[f]["sigma_fits"][k]} for f in ("canonical", "alt")}} for k in range(10)]}
