@@ -1,0 +1,36 @@
+CFG211 -- does CFG112's ten-population 2-sigma intersection (one debris fraction phi for all populations) open when SLUGGS's
+U5d prediction uses a constant GC orbital anisotropy beta (CFG113's Jeans machinery)?  Published slopes, unshifted.
+Frozen criteria: FROZEN_CRITERIA.md here (0f0fdcea8), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.
+PRIMARY beta (measured-anchored): NGC 5846 +0.275; NGC 1407, NGC 4486 and the other 13: 0.  Sensitivity: +0.25 / +0.5 for all.
+Machinery: CFG112's script exec'd read-only up to its controls (MUTATE forced 0, output captured); the one change is beta in
+sigma_r2 / sigma_los (CFG55/h50's functions, which take a constant beta).
+
+  *** MUTATE=1: beta = 0 for every galaxy (the lane's one change undone) -- H1 must FAIL, reproducing CFG112 ***
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 beta = 0 for all reproduces CFG112's committed U5d scan (o, e; 101 points; both footings) to 1e-9
+         max |difference| 0.0e+00
+  [PASS] C2 beta = +0.5 for all: U5d at phi = 0 / 1 reproduces CFG113's committed law / rule means and errors at beta = +0.5 (both footings) to 1e-6
+         max |difference| 0.0e+00; canonical law +0.073793+-0.021824 (CFG113 +0.073793+-0.021824); canonical rule +0.010980+-0.019631 (CFG113 +0.010980+-0.019631); alt law +0.063585+-0.021720 (CFG113 +0.063585+-0.021720); alt rule +0.013063+-0.018839 (CFG113 +0.013063+-0.018839)
+  [PASS] C3 CFG75's intersection without SLUGGS reproduced ([0.23, 0.71] canonical, [0.21, 0.66] alt)
+         canonical [0.23, 0.71] (49 pts); alt [0.21, 0.66] (46 pts)
+  [PASS] K_open / K_close: with U5d's o set to 0 the intersection equals C3's set; with o = 5e it is empty (both footings)
+         open True, close True
+
+======================================================================================================================
+PRIMARY (measured-anchored): beta = 0 for all
+======================================================================================================================
+    canonical: U5d o/e at phi = 0, 0.25, 0.5, 0.71, 1: +0.0821/0.0228 (+3.60), +0.0609/0.0195 (+3.13), +0.0468/0.0183 (+2.56), +0.0378/0.0179 (+2.11), +0.0276/0.0178 (+1.55)
+        U5d 2-sigma set [(0.77, 1.0)]; ten-population 2-sigma intersection empty; populations disjoint from SLUGGS: U4
+    alt: U5d o/e at phi = 0, 0.25, 0.5, 0.71, 1: +0.0728/0.0226 (+3.22), +0.0562/0.0197 (+2.85), +0.0449/0.0185 (+2.43), +0.0376/0.0180 (+2.09), +0.0289/0.0176 (+1.64)
+        U5d 2-sigma set [(0.77, 1.0)]; ten-population 2-sigma intersection empty; populations disjoint from SLUGGS: U4
+
+======================================================================================================================
+DECISION ROWS
+======================================================================================================================
+  [FAIL] H1 [HEADLINE] with the PRIMARY (measured-anchored) beta the ten-population 2-sigma intersection is non-empty on both footings  [MUTATE: beta = 0]
+         canonical: empty; alt: empty  -> the clause stands under measured-anchored anisotropy
+
+  4/5 checks pass; load-bearing failures: 1   (223 s)
