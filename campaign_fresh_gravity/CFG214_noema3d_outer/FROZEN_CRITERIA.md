@@ -78,3 +78,14 @@ R_last is the outermost data marker. If both sides are shown, it is the mean rad
 
 - At R_e both laws fit. At R_last, g_bar falls by a factor of about 3–5, and the laws' D predictions spread apart.
 - I do not know which way the data go. The CO gas is measured, but only the molecular phase; HI is not included in either route.
+
+## Addendum 1 (2026-09-29, before any curve value was seen; appended at the orchestrator's request)
+
+- **C4: raster-digitisation error control.**
+  - The data chat re-reads one full panel twice, independently. It also digitises that panel's own axis ticks as test points of known value.
+  - It reports the rms difference between the two reads, and the tick residuals, in km/s and kpc.
+  - Each marker's velocity uncertainty is then max(the plotted error bar, the digitisation rms), and the same rule applies to the radius.
+  - If the rms exceeds 5% of the median V_c(R_e,disk), the verdict row is labelled "digitisation-limited" and still reported.
+- **Unchanged:**
+  - the pressure-term sensitivity (α ∈ {3.36, 1.68} for robustness; α = 0 reported);
+  - the INDEPENDENT route, with measured CO gas, as the primary route for the verdict.
