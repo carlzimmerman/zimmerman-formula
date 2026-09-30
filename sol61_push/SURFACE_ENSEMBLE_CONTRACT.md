@@ -1,0 +1,7 @@
+# Closed-surface ensemble contract
+
+Base: f9290e8d48ab3f9a6e3702c4c4442121d8ea644d; preceding goal turn is progress (closed-sphere proof, run and push). Consider independent neutral free round-sphere modes with the same mode-by-mode quadratic subtraction as CLOSED_SURFACE_RESULTS.md. Their area/coupling weights are fixed as P varies. The total positive cubic capacity is finite. A finite radius with finite positive speed and finite nonzero coupling has positive polarization gap g=v/(yR).
+
+The universal claim is a dominated-convergence reduction: the exact cubic coefficient equals the capacity assigned to genuinely gapless support, not a continuous accumulation of positive gaps. The proof is separate from the finite computation. Exceptions include field-dependent weights, interactions, divergent total capacity, zero speed and singular couplings; none is resolved here.
+
+Computation: Mellin coefficient for gap distributions beta*g^(beta-1)/g0^beta, beta in {0.25,0.5,0.75}; independent t-integral quadrature against the beta-function formula with absolute tolerance 1e-9. Check scaled individual spectral terms for n={1,2,7}, beta=0.5. Evaluate the radius-tail response at delta=P/g0={1e-2,1e-4,1e-6} with a six-term alternating subtraction series and record the first omitted term as its analytic error bound (floating error separate). No randomness, 30-second timeout, one thread. No physical Lambda, coefficient selection, galaxy profile or interacting network is claimed.

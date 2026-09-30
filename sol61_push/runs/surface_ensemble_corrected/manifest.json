@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SURFACE_ENSEMBLE_CORRECTED",
+  "repository": {
+    "commit": "62ead29c5e7696474130c19491169af67ca753af",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/surface_ensemble_corrected.py",
+    "--output",
+    "sol61_push/runs/surface_ensemble_corrected/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent Mellin integral and radius-tail scaling for fixed finite-capacity sphere ensembles; universal inference is in the separate proof",
+    "coefficient_domain": "Real exact integral formulas and double precision quadrature",
+    "conventions": "SURFACE_ENSEMBLE_CONTRACT.md",
+    "inputs": [
+      "sol61_push/surface_ensemble_corrected.py"
+    ],
+    "bounds": {
+      "beta": [
+        0.25,
+        0.5,
+        0.75
+      ],
+      "delta": [
+        0.01,
+        0.0001,
+        1e-06
+      ],
+      "individual_modes": [
+        1,
+        2,
+        7
+      ],
+      "quadrature_absolute_tolerance": 1e-09,
+      "series_terms": 6,
+      "asymptotic_check": "first derived correction with analytic O(delta^3) bound, plus floating allowance 1e-13 times leading value"
+    },
+    "non_claims": [
+      "No universal proof from finite checks",
+      "No field-dependent network",
+      "No physical Lambda",
+      "No 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T19:47:18.496625+00:00",
+    "runtime_seconds": 0.279148,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/surface_ensemble_corrected.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/surface_ensemble_corrected.py",
+      "sha256": "1a44c4f171afa524b57fe79ea0b0e57b9a0c04303873702f0294d0a9cc8fe636",
+      "sha256_after": "1a44c4f171afa524b57fe79ea0b0e57b9a0c04303873702f0294d0a9cc8fe636"
+    }
+  ],
+  "output_directory": "sol61_push/runs/surface_ensemble_corrected",
+  "declared_results": [
+    "sol61_push/runs/surface_ensemble_corrected/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/surface_ensemble_corrected/stdout.txt",
+      "sha256": "3605b5e218588d96a1aeecfd6b64b1a6b18409e425c4bde9332a2857068715fd",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/surface_ensemble_corrected/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/surface_ensemble_corrected/results.json",
+      "sha256": "9f5d2371d5aef5dff16556c2cbf17d3c420742f8c6b66f3d26b577de4e305c3b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
