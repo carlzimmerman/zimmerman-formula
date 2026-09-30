@@ -1,0 +1,13 @@
+CFG226 -- the record's exact nonlocal point-source relation  G M = v^4/a0 + (pi beta/2) v^2  (sol61_push/CORE_REVIEW_2026-09-30.md section 3; beta a length) against SPARC's baryonic Tully-Fisher relation.
+Frozen criteria: FROZEN_CRITERIA.md here (893dbe507), committed before this script existed.  The relation is the far-field amplitude of an IDEAL POINT SOURCE in a declared phenomenological model:
+this tests that amplitude relation only.  kappa = 1/2 FITTED; no law verdict.
+
+SPARC Table 1 rows parsed: 175
+
+CONTROLS
+  [PASS] C4 algebra: A solves A^2/a0 + (pi beta/2)A = GM and A^2/(GM a0) equals the record's closed form to 1e-12 (the closed form evaluated in its algebraically identical stable form 1/(sqrt(1+eta^2)+eta)^2); the local slope equals its numerical derivative to 1e-6: max relative deviation 7.2e-16; slope 1.3e-09
+  sample (Vflat > 0, Q <= 2, Inc >= 30, e_V/V <= 0.10): N = 121; gas-dominated subsample N = 44
+  [FAIL] C1 the plain power-law BTFR slope of this sample lies in the literature window [3.6, 4.2]: N = 121, slope 3.597, intrinsic scatter 0.149 dex
+
+MUTATE: noise-free M = M_model(v; 1.2e-10, 0.50 kpc) on the real v and errors: F1 beta_hat 0.5239 kpc, a0 1.216e-10; -2lnL F1 -451.1, plain BTFR -373.4 (difference 77.7)
+  [FAIL] MUTATE F1 returns beta = 0.500 kpc to 1e-3 and the plain BTFR is worse by more than 100 in -2 ln L: beta_hat 0.5239; delta 77.7
