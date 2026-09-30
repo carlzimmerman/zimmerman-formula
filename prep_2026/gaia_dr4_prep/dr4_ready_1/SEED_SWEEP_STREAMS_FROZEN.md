@@ -1,0 +1,20 @@
+# SEED SWEEP — FROZEN QUESTIONS: which stream carries the build-to-build noise, and how does it scale with N (DR3, registered fit path)
+
+Written 2026-09-30 and committed BEFORE the script that answers it exists or runs. **DR3 numbers are code-path tests, never results (Amendment 7(e)); NON-SCORING; no verdict words; no threshold.** Nothing frozen is touched (the builder's sha256 is checked; `wide_binary_pipeline.py` is run as a subprocess). Requested by the orchestrator (the σ_build-versus-N question) and by the first observation of the seed-sweep tooling (`seed_sweep.py`, design `SEED_SWEEP_DESIGN_FROZEN.md` + Addendum 1): in a stage-G-only smoke sweep (k = 0, 1, 2; only the velocity-error Monte Carlo re-seeded; the stage-E/F outputs fixed) 148 + 133 and 137 + 141 pairs flipped against k = 0 (about 2.3% each way), as many as WP2-gamma's all-stream rebuilds (mean 157.8 one-way flips), and the fits moved (canonical gamma-hat 1.0750, 1.1175, 1.0800). That was seen BEFORE this file; the questions below are therefore not blind to it.
+
+## Why
+WP2-gamma varied the three Monte Carlo streams together and left "the one-stream-at-a-time decomposition" unrun (its Limits). The Amendment 18 draft (revision 1) makes every extra build re-run stages E, F and G (about 880 s per build at DR3 scale, several times that at DR4). If the noise sits in one stream, the cost and the wording of the amendment change.
+
+## Q-S (stream decomposition at DR3's N, PRIMARY base, N_SHIFT = 30)
+Ten builds per family, k = 0..9 (k = 0 is the frozen build and is shared by the families), every final CSV fitted by the pipeline's own `--catalog` run (registered path, seed 20261216, the same for every build):
+- **ALL**: all four seed uses re-seeded = WP2-gamma's ten builds (driver `--seed-offset k --stage-dir dr3_extract/wp2_gamma_k`; control C12 shows it reproduces their `final.csv` byte for byte).
+- **G-only**: stage F fixed at k = 0's (the extract's own), stage G seeded SEED + k (driver `--seed-offset k`).
+- **EF-only**: stage F of build k (`wp2_gamma_k/stage_F.npz`), stage G at the frozen seed (driver `--seed-offset 0 --stage-dir dr3_extract/wp2_gamma_k`).
+**Fit-only control:** the k = 0 CSV refitted with `--seed 20261216 + j`, j = 1..10 (in the pipeline that seed feeds the forward-model population and the bootstrap).
+**Reported, nothing else:** per family the final pair count (mean, SD), the one-way flips against k = 0 (mean over k = 1..9), gamma-hat and sigma_fit per footing, SD(gamma-hat) (ddof = 1), SD/mean sigma_fit and SD/mean sigma_tot (sigma_tot = sqrt(sigma_fit^2 + 0.02^2)), the kappa range; the fit-only SD and its ratio; SD_G-only^2 / SD_ALL^2 and SD_EF-only^2 / SD_ALL^2 (not additive in general: stated).
+
+## Q-N (sigma_build against N, from the ten ALL-family builds, registered fit path)
+Each build's final table restricted to a build-independent subset of its pairs: bucket = first byte of sha256(str(source_id1)) modulo 4. **N about 1,550:** the four disjoint buckets {0}, {1}, {2}, {3}; **N about 3,100:** {0, 1} and {2, 3}; **N about 6,200:** all (the Q-S ALL numbers). For each subset the ten builds' subset CSVs are fitted (registered path), SD(gamma-hat) over the ten builds is computed; per N the SDs of the disjoint subsets are pooled as sqrt(mean of variances); sigma_fit is the mean of the subsets' mean sigma_fit. Reported: SD, SD/sigma_fit, the pooled value and the spread between subsets, and the fit-only control (the k = 0 subset refitted with 10 other seeds) at each N; no extrapolation is stated as a measurement (DR4's N is about 30,000, about 4.8 times the largest N here).
+
+## Declared limits (before the run)
+Ten builds give an SD with a relative error of about 24% per subset; the four small subsets are not independent draws of the sky's pair population beyond being disjoint; at N about 1,550 the pipeline's bins hold few pairs and its fit is noisy; the same fit seed in every build (common random numbers) makes the spread across builds build-only but can understate the total when the fit's own noise interacts with the catalogue; all three families share the frozen build k = 0.
