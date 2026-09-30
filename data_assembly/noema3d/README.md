@@ -25,3 +25,6 @@ Files: `noema3d_per_galaxy.csv` (10 rows, both papers merged), `noema3d_observat
 
 ## Source PDFs (downloaded 2026-09-29 on the owner's go)
 `~/new_physics/_external_data/noema3d/` (not committed): arXiv:2604.18503v2 (14,839,160 B) and arXiv:2604.18504v2 (5,663,104 B); sha256 in `manifest.json`. **The rotation curves are a single raster image** (paper 1 PDF Fig. 5, page 15, 3862 x 2376 px; the HTML numbers it Fig. 6), not vector, so extraction is raster digitisation, not the exact vector read used for KURVS and CRISTAL. No curve value has been extracted or read; extraction waits for the calc thread's frozen criteria, and a control against Table 3 V_c(R_e,disk) is planned.
+
+## Rotation-curve digitisation (2026-09-29)
+The curves, dispersion and CO flux profiles of Fig. 5 (raster) are digitised in `curves/` (see `curves/README.md` for definitions, validation and limits). The V2 gate against Table 3 V_c(R_e,disk) passes for 1 of 10 galaxies against the beam-smeared drawn model.
