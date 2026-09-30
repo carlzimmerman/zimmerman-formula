@@ -1,0 +1,95 @@
+{
+ "title": "LR9 R0 audit: W3 survival law S(q) rationals",
+ "pre_registration": "Z13-WAVE_BRIEF.md LR9 door",
+ "verdict": "LR9 LANDED (exit 0): the W3 survival law S(q) = 1/3 + (1/3)q + (46/525)q^2 is now CERTIFICATE-GRADE. R0a fresh monomial-basis derivation (independent of W3's sp.integrate) reproduces the banked rationals exactly -- run-1 FIRED honestly (w-moment used 2/(2j+1) instead of 2/(j+1) and dropped the (3/2) density prefactor: [8/45, 49/270, 1369/28350]; fixed in the checker, math law untouched, fire verbatim in .out). STRUCTURAL RESULT: only EVEN-m U-class cores appear (odd-m coefficients cancel exactly): C00 = 2*core(1/6); C01 = 4*core(1/6) - (8/3)*core(1/8); C02 = 2*(1/6) - (8/3)*(1/8) + (92/105)*(1/10). R0b quadrature-clean (mp dps=40 GL(300): devs 3.3e-16/5.9e-16/1.05e-15; float64 GL(600)xGL(140)xGL(140): 3.4e-14/2.5e-14/1.9e-14, gate 1e-12). R0c MC-consistent at FRESH seed 20260930 (z = 0.44/0.12/0.18, n=2e7, gate 5). G1 LEAN (fable_independent_2026/lean_2026/LR9_sq_law.lean): generic core_U (int_0^1 x(1-x^2)^j dx = 1/(2j+2), U_deriv primitive) + s00_law/s01_law/s02_law as exact-rational assemblies over the CORE INTEGRALS -- lake rc 0, ZERO sorry tactics, axioms of core_U/s00_law/s01_law/s02_law all \u2286 {propext, Classical.choice, Quot.sound} (LR9_lean_stdout.txt; the lone docstring 'zero-sorry' grep hit is the Z7 LR4b checker trap, tactic-level grep = 0). G2 mechanical PASS (LR9_g2_check.py, exit 0): fresh re-extraction == Lean constants; assembly values == W3 banked rationals. HONEST SCOPE (Lean header, LR3b/LR4c/LR7/LR8 precedent): 1D cores + rational assembly CERTIFIED zero-sorry; the geometric reduction leg (v-integration to the wall, cylindrical density, odd-w cancellation) is numeric-audited (R0), not probability-space-certified.",
+ "exit": 0,
+ "elapsed_s": 17.0,
+ "log": [
+  "[    0.1s] W3 banked rationals LOADED from W3_results.json: [1/3, 1/3, 46/525]",
+  "[    0.1s] R0a: fresh monomial-basis derivation of C00, C01, C02",
+  "[    0.1s] R0a: C0 fresh = 1/3",
+  "[    0.2s] R0a: C1 fresh = 1/3",
+  "[    0.2s] R0a: C2 fresh = 46/525",
+  "[    0.2s] R0a PASS: W3 banked rationals reproduced by the independent monomial path",
+  "[    0.2s] R0a: alpha[q^0]: {'m=4 (1/6, U)': '2'}",
+  "[    0.2s] R0a: alpha[q^1]: {'m=4 (1/6, U)': '4', 'm=6 (1/8, U)': '-8/3'}",
+  "[    0.2s] R0a: alpha[q^2]: {'m=4 (1/6, U)': '2', 'm=6 (1/8, U)': '-8/3', 'm=8 (1/10, U)': '92/105'}",
+  "[    3.9s] R0b: S(0): exact 0.3333333333  mp dev 3.33e-16  gl dev 3.36e-14 (gate 1e-12)",
+  "[    7.8s] R0b: S(1): exact 0.7542857143  mp dev 5.89e-16  gl dev 2.47e-14 (gate 1e-12)",
+  "[   11.8s] R0b: S(3): exact 2.1219047619  mp dev 1.05e-15  gl dev 1.86e-14 (gate 1e-12)",
+  "[   11.8s] R0b PASS",
+  "[   11.8s] R0c: MC of S(q), n=2e7, FRESH seed 20260930",
+  "[   14.6s] R0c: q=0: 0.333286 +- 0.000107 vs exact 0.333333  z=0.44 (gate 5)",
+  "[   15.8s] R0c: q=1: 0.754259 +- 0.000219 vs exact 0.754286  z=0.12 (gate 5)",
+  "[   17.0s] R0c: q=3: 2.122008 +- 0.000580 vs exact 2.121905  z=0.18 (gate 5)",
+  "[   17.0s] R0c PASS"
+ ],
+ "alpha": {
+  "0": {
+   "core_4": "2"
+  },
+  "1": {
+   "core_4": "4",
+   "core_6": "-8/3"
+  },
+  "2": {
+   "core_4": "2",
+   "core_6": "-8/3",
+   "core_8": "92/105"
+  }
+ },
+ "devs": {
+  "0.0": [
+   3.3306690738754696e-16,
+   3.3639757646142243e-14
+  ],
+  "1.0": [
+   5.887546342709164e-16,
+   2.472769463937849e-14
+  ],
+  "3.0": [
+   1.0464400142337651e-15,
+   1.8626632253361018e-14
+  ]
+ },
+ "mcS": {
+  "0.0": {
+   "mean": 0.33328604229746944,
+   "se": 0.00010660563782614598,
+   "z": 0.4436072690732848
+  },
+  "1.0": {
+   "mean": 0.7542594241840782,
+   "se": 0.00021880934816578582,
+   "z": 0.12015072416420718
+  },
+  "3.0": {
+   "mean": 2.1220082876499617,
+   "se": 0.000579776088575531,
+   "z": 0.17856159858871964
+  }
+ },
+ "g1": {
+  "lean_file": "fable_independent_2026/lean_2026/LR9_sq_law.lean",
+  "stdout": "LR9_lean_stdout.txt",
+  "rc": 0,
+  "sorry_tactics": 0,
+  "axioms": [
+   "propext",
+   "Classical.choice",
+   "Quot.sound"
+  ],
+  "theorems": [
+   "core_U",
+   "s00_law",
+   "s01_law",
+   "s02_law"
+  ]
+ },
+ "g2": {
+  "script": "LR9_g2_check.py",
+  "exit": 0,
+  "verdict": "PASS: fresh alpha == Lean constants; assembly == W3 banked"
+ },
+ "lean_compile_history": "run-1 rc 1 (3 mechanical fires: Nat.add_sub_cancel exponent residue, field_simp/ring ordering, -0- -1=1 residue) -- tooling only, math untouched; run-2 rc 0 clean"
+}
