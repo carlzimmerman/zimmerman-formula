@@ -159,3 +159,21 @@ Every script runs in under 1.3 s. Every script exits 0 in main mode and 1 under 
 - **E7** is the equation book's MI worldline composition, KEEP-NOVEL-CONDITIONAL. It is used because the task names it; it is not a flow law.
 
 Nothing here says the theory is closed. κ = ½ stays FITTED.
+
+
+## Corrections after the independent referee CFG191 (appended 2026-09-29; the text above is left as first written)
+The independent referee CFG191 (6eced32e2; frozen criteria 157894552; re-run in place by the Opus chat and again in a scratch copy by the orchestrating session, with every results JSON identical) reproduces this lane's arithmetic but corrects its framing:
+1. **The DR4 merge value was mislabelled.** Arm A's committed band 1.1614–1.1814 (canonical) and 1.1917–1.2267 (alt) uses the ν_RAR kernel, 1/(1 − e^(−√y)), not P2. The referee computed a P2 merge (√(1 + a₀/g_N)) with the frozen estimator. Floor / top, mean of the 6-seed battery, the ν_RAR control reproducing Arm A's anchors within 0.013:
+   - canonical: **1.089 / 1.102** at the preregistration's primary g_ext 1.778e-10; 1.063 / 1.077 at 2.146e-10;
+   - alt: 1.111 / 1.127 and 1.079 / 1.099.
+   The P2 merge lands 3.1–4.2 σ_fit below Arm A's floor, in the frozen "arm not decided" row.
+2. **"1.08 in the MI form" is the retired α = 1 value.** The MI value in force is 1.0310 (Amendment 4).
+3. **"DR4 decides" holds only against the unscreened law.** The screened Arm B (1.000) and the derivation chain (ceiling 1.0725 / 1.0900, Amendment 14) are also registered. CFG200 (2debf33cd) gives the separations at N = 30,000 (canonical):
+   - P2-merge vs ownership: 3.2–3.7σ at the primary field, 2.3–2.8σ at the variant field;
+   - P2-merge vs the chain ceiling: 0.2–1.1σ, never 3σ at any N;
+   - chain vs ownership: 2.6σ.
+4. **"Only B escapes" fails as worded.** Anisotropic linear laws, linear-in-source laws and screened laws also escape the no-EFE theorem. The theorem itself (a continuous EFE-free law is linear, including in vector form) reproduces and is Lean-certified in ChainCert `Ownership` (b8d8b1ba5, pointwise laws only).
+5. **The scorecard 9/14 vs 6/14 is weak.** Only 7 of 14 rows discriminate (5 for ownership, 2 for merge; sign-test p = 0.227). G1 is a declared convention, and Chae and Cassini also appear. With every flagged row removed the count is 3 vs 3, a variant added after the freeze.
+6. **Coma UDG E7 merge (5.55 / 5.41σ) reproduces.** It is an offset over L23's declared 0.235-dex budget. At the first-infall field it is 2.96–3.24σ, and ownership alone is 1.75σ.
+7. **The Solar-System Q₂ FAIL reproduces.** The "4.0–5.7×" range mixes kernels and g_ext conventions: P2 gives 3.63–4.81×, ν_RAR 4.74–6.29×.
+Not refereed: the swirl half of CFG179, and the real DR4 catalogue.
