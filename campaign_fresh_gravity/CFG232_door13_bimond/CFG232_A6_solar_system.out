@@ -1,0 +1,27 @@
+# CFG232_A6_solar_system   repo = <repo>   mode = main
+
+====================================================================================================
+gamma_PPN at Saturn from the designed slip (Psi'/Phi' - 1) and the Cassini window (2.1 +- 2.3)e-5 (2 sigma)
+====================================================================================================
+  canonical P2      : y = g_N/a0 = 6.965e+05, Psi'/Phi' - 1 = -4.786e-07
+  canonical nu_mono : y = g_N/a0 = 6.965e+05, Psi'/Phi' - 1 = -9.871e-07
+  alt       P2      : y = g_N/a0 = 5.764e+05, Psi'/Phi' - 1 = -5.783e-07
+  alt       nu_mono : y = g_N/a0 = 5.764e+05, Psi'/Phi' - 1 = -1.186e-06
+  [PASS] (result) G5b gamma: |Psi'/Phi' - 1| at Saturn inside the Cassini 2-sigma window (2.1 +- 2.3)e-5   (values ['-4.8e-07', '-9.9e-07', '-5.8e-07', '-1.2e-06'], window [-2.5e-05, +6.7e-05])
+
+====================================================================================================
+Q2: (a) the Sun's own phantom at Saturn (isolated, no external field), (b) the Milky Way's phantom tide at the Sun (CFG7 H1 recipe)
+====================================================================================================
+  canonical P2      : (a) Sun@Saturn Q2/bound = 6.308e+03 (kernel 6.308e+03);  (b) MW@Sun Q2/bound = 2.997e-05 (kernel 2.997e-05)
+  canonical nu_mono : (a) Sun@Saturn Q2/bound = 1.301e+04 (kernel 1.301e+04);  (b) MW@Sun Q2/bound = 4.240e-05 (kernel 4.240e-05)
+  alt       P2      : (a) Sun@Saturn Q2/bound = 7.624e+03 (kernel 7.624e+03);  (b) MW@Sun Q2/bound = 3.524e-05 (kernel 3.524e-05)
+  alt       nu_mono : (a) Sun@Saturn Q2/bound = 1.563e+04 (kernel 1.563e+04);  (b) MW@Sun Q2/bound = 4.929e-05 (kernel 4.929e-05)
+  [PASS] (control) C6a reproduces CFG7 H1's committed MW phantom-tide numbers (canonical P2 g_N(R0) = 1.055e-10, tide 1.56e-31 s^-2; nu_mono 2.20e-31; alt 1.83e-31 / 2.56e-31)   ({'canonical/P2': '1.558e-31', 'canonical/nu_mono': '2.205e-31', 'alt/P2': '1.832e-31', 'alt/nu_mono': '2.563e-31'})
+  [FAIL] (control) C6 (AS FROZEN) 'the strict-law MW ratio is 4.0-5.7x the ceiling' -- NOT what the H1 recipe gives (6e-5 x the bound); the 4.0-5.7 of gate 4.01 is a different quantity; KEPT as a failed expectation (declared: my frozen sentence was wrong, as in CFG172's C5)   (H1-recipe MW@Sun / bound = 3.00e-05)
+  [PASS] (control) the designed BIMOND law's phantom equals the strict kernel's to 1e-3 at Solar-System and Milky-Way accelerations (so Q2 is a property of the law, not of the mechanism)   (max ratio deviation < 1e-3)
+  [PASS] (result) G5b Q2 (a) Sun's own phantom at Saturn (isolated, no ownership): exceeds the 5.2e-27 s^-2 ceiling by >= 1e3 for both kernels and footings   (6.31e+03..1.56e+04 x bound)
+  [PASS] (result) G5b Q2 (b) MW phantom tide at the Sun: below the ceiling (passes only if the Sun's OWN phantom is absent = ownership, which BIMOND does not supply)   (4.9e-05 x bound)
+  >>> VERDICT G5b Q2 (13a/13b/13c as a bare law): FAIL -- the Sun's own field at Saturn is 6e3..1.6e4 x the bound; the MW-tide reading passes only under an ownership rule that no sub-variant contains (Gap 1). A full 3D external-field solution is not computed.
+  >>> VERDICT G5b gamma: PASS -- Psi'/Phi' - 1 = -4.8e-07 (P2, canonical) inside the window
+
+RESULT: 6 checks, 1 control failure(s): C6 (AS FROZEN) 'the strict-law MW ratio is 4.0-5.7x the ceiling' -- NOT what the H1 recipe gives (6e-5 x the bound); the 4.0-5.7 of gate 4.01 is a different quantity; KEPT as a failed expectation (declared: my frozen sentence was wrong, as in CFG172's C5)

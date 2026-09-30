@@ -1,0 +1,128 @@
+{
+ "slug": "CFG232_A5_lambda_tie",
+ "mutate": "",
+ "runtime_s": 0.83,
+ "checks": [
+  {
+   "name": "13b-ii the symmetric (g = g-hat) de Sitter vacuum sourced by the interaction's constant part exists only for beta = gamma (Z2 of the Planck weights): gamma/beta is NOT free in 13b-ii",
+   "ok": true,
+   "detail": "difference = F0*a02*sigma_s*(beta - gamma)/(6*beta*gamma)",
+   "kind": "control"
+  },
+  {
+   "name": "13b-ii derived tie: kappa^2 = -16 pi beta/(sigma_s M0) (sign: needs sigma_s M0 < 0); at beta = 1, kappa = 1/2 <=> sigma_s M0 = -64 pi = -201.06. This agrees with the record's quotation of Milgrom's eq. 87 (kappa^2 = 16 pi/(-M0~), O(1) 'unfixed') in this normalisation",
+   "ok": true,
+   "detail": "kappa^2 = -16*pi*beta/(F0*sigma_s)",
+   "kind": "control"
+  },
+  {
+   "name": "13b-i rule T: a0 = kappa c^2 sqrt(Lambdah/8pi) with Lambdah = Lambda_g = 3 H0^2 Omega_Lambda/c^2 reproduces the canonical a0 to 1e-3",
+   "ok": true,
+   "detail": "9.35477e-11",
+   "kind": "control"
+  },
+  {
+   "name": "P_cap identity: a0^2/(8 pi G) = (kappa^2/8 pi) rho_Lambda c^2 (the CFG43 tie: it is the definition of a0, so the tie is a stated equivalent, not a derivation)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "13b-i the tie makes c H_Lambdah / a0 = sqrt(8 pi/3)/kappa = 5.79 exactly (rule-T consequence)",
+   "ok": true,
+   "detail": "5.7888",
+   "kind": "control"
+  },
+  {
+   "name": "inert-window: gamma/beta in {1/3,1,3} leaves every gate verdict unchanged (G1-law after re-design, G1-C, G5a)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "a0 is NOT inert: doubling or halving the a0 the interaction uses (target fixed) flips G1-law to FAIL",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  }
+ ],
+ "numbers": {
+  "M0_for_kappa_half": -201.06192982974676,
+  "cH_Lambdah_over_a0": 5.788810036466141,
+  "ledger": {
+   "13a": {
+    "strict": [
+     "a0 (free)",
+     "gamma/beta",
+     "u1/u0"
+    ],
+    "relation_written_in": []
+   },
+   "13b-i": {
+    "strict": [
+     "gamma/beta",
+     "u1/u0"
+    ],
+    "relation_written_in": [
+     "a0 := kappa c^2 sqrt(Lambdah/8pi)",
+     "Lambdah = Lambda_g"
+    ]
+   },
+   "13b-ii": {
+    "strict": [
+     "u1/u0",
+     "M0 (= kappa, fitted)"
+    ],
+    "relation_written_in": [
+     "gamma = beta forced by the vacuum",
+     "continuation of M to Q<0 (a new free FUNCTION, needed for any FRW background)"
+    ]
+   },
+   "13c": {
+    "strict": [
+     "a0 (free)",
+     "coupling normalisation"
+    ],
+    "relation_written_in": []
+   }
+  },
+  "strict_count": {
+   "13a": 3,
+   "13b-i": 2,
+   "13b-ii": 2,
+   "13c": 2
+  },
+  "inert_window_count": {
+   "13a": 1,
+   "13b-i": 0,
+   "13b-ii": 0,
+   "13c": 1
+  },
+  "verdicts": {
+   "G4 13a": {
+    "status": "FAIL",
+    "why": "a0 is a free constant (also gamma/beta and u1/u0 in the strict count)"
+   },
+   "G4 13b-i strict": {
+    "status": "FAIL",
+    "why": "gamma/beta and u1/u0 remain; the a0 tie is WRITTEN IN (rule T) plus Lambdah = Lambda_g by hand: an equivalent of the CFG43 tie, not a derivation; kappa stays fitted"
+   },
+   "G4 13b-i tie": {
+    "status": "PASS as a stated equivalent (written in)",
+    "why": "a0^2/8piG = (kappa^2/8pi) rho_Lambda c^2 by definition; nothing in the bimetric structure forces Lambdah = Lambda_g"
+   },
+   "G4 13b-ii strict": {
+    "status": "FAIL",
+    "why": "u1/u0 remains, plus a required continuation of M to Q<0 (a new free function) that the ledger does not contain; gamma = beta is forced (not free)"
+   },
+   "G4 13b-ii tie": {
+    "status": "PASS as a native but INVERTED relation (a0 primary, Lambda derived), with kappa replaced by the value of a dimensionless function at zero argument",
+    "why": "kappa^2 = -16 pi beta/(sigma_s M0): derived here, not derived FROM anything: M0 is fitted; the vacuum energy exists only on the symmetric branch, which has no solution with matter in g only (A4)"
+   },
+   "G4 13c": {
+    "status": "FAIL",
+    "why": "a0 free; conformal coupling normalisation"
+   }
+  }
+ }
+}

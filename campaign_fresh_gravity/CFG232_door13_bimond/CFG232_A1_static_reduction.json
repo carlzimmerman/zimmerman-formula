@@ -1,0 +1,455 @@
+{
+ "slug": "CFG232_A1_static_reduction",
+ "mutate": "",
+ "runtime_s": 41.16,
+ "checks": [
+  {
+   "name": "C2 (sqrt(-g)R)_2 = 2(|dPsi|^2 - 2 dPhi.dPsi) up to a total derivative: per 1/16piG weight beta this is beta(|dPsi|^2-2dPhi.dPsi) per 1/8piG, the frozen normalisation",
+   "ok": true,
+   "detail": "k1 = [2]",
+   "kind": "control"
+  },
+  {
+   "name": "C2 Newtonian limit: EL_Psi => Psi'' = Phi''; EL_Phi => 2 Psi'' = 8 pi G rho (i.e. lap Psi = 4 pi G rho)",
+   "ok": true,
+   "detail": "EL_Phi = -8*pi*G*rho(z) + 2*Derivative(Psi(z), (z, 2))",
+   "kind": "control"
+  },
+  {
+   "name": "C4 static coefficients a = -4u0-2u1, b = -8(u0+u1), x = 8u1 (the record's values, re-derived with own code)",
+   "ok": true,
+   "detail": "a=-4*u0 - 2*u1, b=-8*u0 - 8*u1, x=8*u1",
+   "kind": "control"
+  },
+  {
+   "name": "T4-T1 static = -4(p^2 + 2 q^2): Q = -T/a0^2 = 4(|d dPhi|^2 + 2|d dPsi|^2)/a0^2 (frozen 1.1)",
+   "ok": true,
+   "detail": "T4-T1 = -4*p**2 - 8*q**2",
+   "kind": "control"
+  },
+  {
+   "name": "A.3 the hand expressions for dL/df' (with m = M'(Q)) equal sympy's derivative of the reduced Lagrangian for all four fields",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "H1/D: delta Psi' * D(x) = gN/beta with D = 1 - 4x - 32x^2, x = sigma m (1/beta + 1/gamma) (symbolic solution of the four first integrals)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "dPhi' = dPsi'(1 + 8x)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "Phi' = [gN + 4 sigma m dPsi'(3 + 8x)]/beta (H3 formula)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "H1 degeneracy roots x = 1/8 and x = -1/4",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "H6 decoupled end Phi' = gN/beta",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "H6 locked end Psi' = Phi' = gN/(beta+gamma)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "H4 the designed-x quadratic 32(k+1)x^2+(4k+12)x-k=0, k=(nu-1)(1+beta/gamma), is (up to a nonzero factor) exactly Phi'/gN = nu",
+   "ok": true,
+   "detail": "ratio = -gamma",
+   "kind": "control"
+  },
+  {
+   "name": "H1 numerical: designed M'(0) = m0 = beta*gamma/[8(beta+gamma)] = 1/16 (beta=gamma=1, sigma=+1, branch A)",
+   "ok": true,
+   "detail": "m(y->0) = 0.06249583 (grid floor y=1e-8; tolerance 1e-4 set by me, the frozen text gave none)",
+   "kind": "control"
+  },
+  {
+   "name": "H2 Newtonian end m -> 0 (decoupled) on branch A",
+   "ok": true,
+   "detail": "m(y=1e8) = 4.167e-10",
+   "kind": "control"
+  },
+  {
+   "name": "legality (branch A, all kernels and gamma/beta): Q(g_N) monotone, m>0 non-increasing (dg_obs/dg_bar>0), D>0",
+   "ok": true,
+   "detail": "result",
+   "kind": "result"
+  },
+  {
+   "name": "C3 forward solve of the designed system reproduces Phi' = nu(y) g_N on 41 log-spaced y in [1e-5, 1e5] for P2 and nu_mono, gamma/beta in {1/3,1,3}",
+   "ok": true,
+   "detail": "max |Phi'/target - 1| = 1.54e-06 (table interpolation)",
+   "kind": "control"
+  },
+  {
+   "name": "G1-LAW (13a/13b/13c share the static law): max |g/g_target - 1| <= 0.10 over x in [0.1,30], seven masses, point + exponential sphere, both footings, P2 and nu_mono (function designed by inversion: P-declared)",
+   "ok": true,
+   "detail": "max = 1.48e-06",
+   "kind": "result"
+  },
+  {
+   "name": "G1-LAW read against CFG44's C(r) target (profile-dependent): FAILS on the exponential sphere at low mass because the BIMOND static law is a function of g_N alone while C(r) depends on M_b(<r) and r; the frozen text's 'equivalent for P2' was wrong for extended profiles",
+   "ok": false,
+   "detail": "max = 0.542",
+   "kind": "result"
+  },
+  {
+   "name": "D2/H3 numerical: (Phi'-g_N)/(Psi'-g_N) -> 2 in the deep regime",
+   "ok": true,
+   "detail": "2.00059",
+   "kind": "control"
+  },
+  {
+   "name": "phantom mass of the designed law equals CFG44's M_c = M(sqrt(1+x^2)-1) for the P2 point mass (by construction; the stress is field-side, not a fluid's)",
+   "ok": true,
+   "detail": "max rel diff 1.88e-06",
+   "kind": "control"
+  },
+  {
+   "name": "C10 (H6): with M'(0)=0 the smallest-|dPsi'| branch is Newtonian G/beta at low gradient (Phi'/g_N -> 1 at y=1e-10) for every lambda tried, so no MOND regime (my first check at y=1e-6 with tolerance 1e-3 was too strict for lambda=100: 1.006 there; the crossover scale is y_c ~ 1/lambda^2)",
+   "ok": true,
+   "detail": "Phi'/g_N at y=1e-10: [1.0, 1.0, 1.0, 1.000001]",
+   "kind": "control"
+  },
+  {
+   "name": "H6/C10 an untuned constant m gives a scale-free constant enhancement (1+..), not an r^-1 regime: Phi'/g_N is the same at y=1e-6 and y=1e-3",
+   "ok": true,
+   "detail": "-5.162393 vs -5.162393",
+   "kind": "control"
+  },
+  {
+   "name": "C8 a prescribed Phi' := g_P2 passes G1-law trivially and must be graded M0 (a profile is prescribed), not a mechanism",
+   "ok": true,
+   "detail": "graded M0 by rule",
+   "kind": "control"
+  }
+ ],
+ "numbers": {
+  "legality": {
+   "('P2', 0.3333333333333333, 1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": true,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.031248958260995618,
+    "m_newton": 4.166666581140186e-10,
+    "x_deep": 0.12499583304398247,
+    "x_newton": 1.6666666324560745e-09
+   },
+   "('P2', 0.3333333333333333, -1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": false,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.0625005208781841,
+    "m_newton": 0.0937499991666667,
+    "x_deep": -0.2500020835127364,
+    "x_newton": -0.3749999966666668
+   },
+   "('P2', 1.0, 1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": true,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.06249583317131186,
+    "m_newton": 4.166666553417913e-10,
+    "x_deep": 0.12499166634262372,
+    "x_newton": 8.333333106835826e-10
+   },
+   "('P2', 1.0, -1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": false,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.12500208348379624,
+    "m_newton": 0.18749999916666665,
+    "x_deep": -0.2500041669675925,
+    "x_newton": -0.3749999983333333
+   },
+   "('P2', 3.0, 1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": true,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.09374062492192643,
+    "m_newton": 4.1666667754736173e-10,
+    "x_deep": 0.12498749989590191,
+    "x_newton": 5.555555700631489e-10
+   },
+   "('P2', 3.0, -1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": false,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.1875046877734274,
+    "m_newton": 0.28124999916666676,
+    "x_deep": -0.25000625036456986,
+    "x_newton": -0.37499999888888896
+   },
+   "('nu_mono', 0.3333333333333333, 1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": true,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.031248958313082664,
+    "m_newton": 9.934359874521224e-10,
+    "x_deep": 0.12499583325233066,
+    "x_newton": 3.9737439498084895e-09
+   },
+   "('nu_mono', 0.3333333333333333, -1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": false,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.06250052085213971,
+    "m_newton": 0.09374999801312807,
+    "x_deep": -0.25000208340855884,
+    "x_newton": -0.3749999920525123
+   },
+   "('nu_mono', 1.0, 1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": true,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.06249583337964729,
+    "m_newton": 9.934360180769776e-10,
+    "x_deep": 0.12499166675929459,
+    "x_newton": 1.9868720361539553e-09
+   },
+   "('nu_mono', 1.0, -1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": false,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.12500208337962154,
+    "m_newton": 0.18749999801312803,
+    "x_deep": -0.2500041667592431,
+    "x_newton": -0.37499999602625605
+   },
+   "('nu_mono', 3.0, 1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": true,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.09374062539065253,
+    "m_newton": 9.934360051556174e-10,
+    "x_deep": 0.12498750052087004,
+    "x_newton": 1.3245813402074897e-09
+   },
+   "('nu_mono', 3.0, -1)": {
+    "Q_monotone": true,
+    "m_nonincreasing": false,
+    "D_sign_ok": true,
+    "m_positive": true,
+    "m_deep": 0.18750468753904093,
+    "m_newton": 0.28124999801312806,
+    "x_deep": -0.25000625005205457,
+    "x_newton": -0.3749999973508374
+   }
+  },
+  "roundtrip_max": 1.5390209986421155e-06,
+  "G1_law_table": {
+   "P2|canonical|point": 1.453249052763006e-06,
+   "P2|canonical|exp": 1.4795950734614038e-06,
+   "P2|alt|point": 1.4532490528740283e-06,
+   "P2|alt|exp": 1.4769799205893719e-06,
+   "nu_mono|canonical|point": 1.3119943410577761e-06,
+   "nu_mono|canonical|exp": 1.3138133655443696e-06,
+   "nu_mono|alt|point": 1.3119943409467538e-06,
+   "nu_mono|alt|exp": 1.3120001305377826e-06
+  },
+  "verdicts": {
+   "G1-law": {
+    "status": "PASS (P-declared by inversion, grade M1-inv)",
+    "why": "max deviation 1.48e-06; the function is solved for from the target, so this is a restatement of the kernel, not a derivation"
+   },
+   "G1-mechanism": {
+    "status": "M1-inv (P-declared; M' is an OUTPUT of the target by inversion); M2 not reached",
+    "why": "the interaction function is read off the answer; no structure fixes it"
+   }
+  },
+  "law_vs_C_target_expsphere": {
+   "1000000000.0": 0.4990796375226929,
+   "100000000000.0": 0.017711337475436517,
+   "1000000000000.0": 0.0003218435595968572
+  },
+  "G1_law_vs_Ctarget": {
+   "P2|point|1000000000.0": 2.1898546997967117e-07,
+   "nu_mono|point|1000000000.0": 0.14038811615776803,
+   "P2|exp|1000000000.0": 0.4990796375226929,
+   "nu_mono|exp|1000000000.0": 0.5418216369934734,
+   "P2|point|3162277660.1683793": 2.189855214940195e-07,
+   "nu_mono|point|3162277660.1683793": 0.14038811615698954,
+   "P2|exp|3162277660.1683793": 0.4092375180526644,
+   "nu_mono|exp|3162277660.1683793": 0.49565353089625286,
+   "P2|point|10000000000.0": 2.1898579483092817e-07,
+   "nu_mono|point|10000000000.0": 0.1403881161574545,
+   "P2|exp|10000000000.0": 0.26077402706626285,
+   "nu_mono|exp|10000000000.0": 0.40364873469947393,
+   "P2|point|31622776601.683792": 2.1898619995130986e-07,
+   "nu_mono|point|31622776601.683792": 0.14038811615713898,
+   "P2|exp|31622776601.683792": 0.09949959707348,
+   "nu_mono|exp|31622776601.683792": 0.2516254864897747,
+   "P2|point|100000000000.0": 2.1898537894138315e-07,
+   "nu_mono|point|100000000000.0": 0.14038811615744629,
+   "P2|exp|100000000000.0": 0.017711337475436517,
+   "nu_mono|exp|100000000000.0": 0.14960234903105252,
+   "P2|point|316227766016.83795": 2.1898540636389185e-07,
+   "nu_mono|point|316227766016.83795": 0.14038811615872904,
+   "P2|exp|316227766016.83795": 0.0020964421062588112,
+   "nu_mono|exp|316227766016.83795": 0.14167399296378846,
+   "P2|point|1000000000000.0": 2.1898543178799912e-07,
+   "nu_mono|point|1000000000000.0": 0.14038811615920954,
+   "P2|exp|1000000000000.0": 0.00032201118418417884,
+   "nu_mono|exp|1000000000000.0": 0.14053344837152126
+  },
+  "C10": {
+   "0.1": [
+    [
+     1e-10,
+     1.0000000006235383,
+     1
+    ],
+    [
+     1e-06,
+     1.0000062354693091,
+     3
+    ],
+    [
+     0.0001,
+     1.000624404030483,
+     3
+    ],
+    [
+     0.01,
+     1.0732326010714088,
+     3
+    ],
+    [
+     1.0,
+     0.16175924751885884,
+     1
+    ],
+    [
+     100.0,
+     0.4677083430513696,
+     1
+    ]
+   ],
+   "1.0": [
+    [
+     1e-10,
+     1.0000000062353829,
+     1
+    ],
+    [
+     1e-06,
+     1.0000623624708087,
+     3
+    ],
+    [
+     0.0001,
+     1.0063235579542478,
+     3
+    ],
+    [
+     0.01,
+     -0.8795833682442489,
+     1
+    ],
+    [
+     1.0,
+     0.3974111321914053,
+     1
+    ],
+    [
+     100.0,
+     "nan",
+     0
+    ]
+   ],
+   "10.0": [
+    [
+     1e-10,
+     1.0000000623538376,
+     1
+    ],
+    [
+     1e-06,
+     1.0006244040304832,
+     3
+    ],
+    [
+     0.0001,
+     1.0732326010714088,
+     3
+    ],
+    [
+     0.01,
+     0.1617592475188587,
+     1
+    ],
+    [
+     1.0,
+     0.4677083430513695,
+     1
+    ],
+    [
+     100.0,
+     "nan",
+     0
+    ]
+   ],
+   "100.0": [
+    [
+     1e-10,
+     1.0000006235391548,
+     1
+    ],
+    [
+     1e-06,
+     1.0063235579542478,
+     3
+    ],
+    [
+     0.0001,
+     -0.8795833682442489,
+     1
+    ],
+    [
+     0.01,
+     0.39741113219140534,
+     1
+    ],
+    [
+     1.0,
+     "nan",
+     0
+    ],
+    [
+     100.0,
+     "nan",
+     0
+    ]
+   ]
+  }
+ }
+}

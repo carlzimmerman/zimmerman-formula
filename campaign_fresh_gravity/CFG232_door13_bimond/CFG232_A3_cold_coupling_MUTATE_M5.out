@@ -1,0 +1,60 @@
+# CFG232_A3_cold_coupling_MUTATE_M5   repo = <repo>   mode = M5
+
+====================================================================================================
+Hand check (frozen 1.6): (c-g) at the target profile, point mass: g_tot/g_target = nu(g_target/a0)
+====================================================================================================
+  x =   0.100: g_tot/g_target = 1.0050   nu(g_target) = 1.0050
+  x =   0.400: g_tot/g_target = 1.0717   nu(g_target) = 1.0717
+  x =   0.483: g_tot/g_target = 1.1000   nu(g_target) = 1.1000
+  x =   0.500: g_tot/g_target = 1.1062   nu(g_target) = 1.1062
+  x =   1.000: g_tot/g_target = 1.3066   nu(g_target) = 1.3066
+  x =   3.000: g_tot/g_target = 1.9611   nu(g_target) = 1.9611
+  x =  30.000: g_tot/g_target = 5.5663   nu(g_target) = 5.5663
+  [PASS] (control) (c-g) hand identity g_tot/g_target = nu(g_target/a0) holds numerically for the designed BIMOND law (point mass, cold at the target profile)   (max diff 5.65e-06)
+  the 10% line g_tot/g_target = 1.10 is crossed at x = 0.483 (frozen hand: 0.48)
+
+====================================================================================================
+G1-C: total force on the baryons with the cold component at the target profile; 7 masses x 2 profiles x P2/nu_mono; x in [0.1, 30]
+====================================================================================================
+  P2       point: max|g_tot/g_C - 1|:  (c-g) 4.566 | (c-gh) 5.405 (min of g_tot/g_C - 1 = -5.41) | 13c (c-chi) 4.566 | 13c (c-Einstein) 0.967
+  P2       exp  : max|g_tot/g_C - 1|:  (c-g) 4.607 | (c-gh) 5.442 (min of g_tot/g_C - 1 = -5.44) | 13c (c-chi) 4.607 | 13c (c-Einstein) 1.409
+  nu_mono  point: max|g_tot/g_C - 1|:  (c-g) 4.991 | (c-gh) 5.804 (min of g_tot/g_C - 1 = -5.80) | 13c (c-chi) 4.991 | 13c (c-Einstein) 0.983
+  nu_mono  exp  : max|g_tot/g_C - 1|:  (c-g) 5.032 | (c-gh) 5.841 (min of g_tot/g_C - 1 = -5.84) | 13c (c-chi) 5.032 | 13c (c-Einstein) 1.452
+  [PASS] (result) G1-C (13a/13b, cold coupled to g): FAILS the 10% line for every kernel and profile (double counting by nu(g_target))   (smallest max-deviation over the cases = 4.566)
+  [PASS] (result) G1-C (13a/13b, cold coupled to g-hat): FAILS the 10% line for every kernel and profile   (smallest = 5.405; most negative g_tot/g_C - 1 = -5.84)
+  [PASS] (result) G1-C (13c, cold conformal like baryons): FAILS the 10% line   (smallest = 4.566)
+  [PASS] (result) G1-C (13c, cold in the Einstein frame, kernel-blind): FAILS the 10% line   (smallest = 0.967)
+  >>> VERDICT G1-C 13a/13b (c-g): FAIL -- max deviation 4.57..5.03 across cases
+  >>> VERDICT G1-C 13a/13b (c-gh): FAIL -- twin-type coupling reduces the force and can reverse its sign
+  >>> VERDICT G1-C 13c: FAIL -- both couplings
+
+====================================================================================================
+C7: my reduction with a test mass in g-hat: F_TM = dPhi'/d(g-hat_N) at fixed baryon source, against the record's theorem F_TM = 1 - nu(y)
+====================================================================================================
+  y_b =    0.01: F_TM (mine) =  -4.0810   record 1-nu =  -9.0499   F_b = 10.0499 (nu = 10.0499)   F_b+F_TM = 5.9688
+  y_b =    0.10: F_TM (mine) =  -0.8110   record 1-nu =  -2.3166   F_b = 3.3166 (nu = 3.3166)   F_b+F_TM = 2.5056
+  y_b =    1.00: F_TM (mine) =  -0.0609   record 1-nu =  -0.4142   F_b = 1.4142 (nu = 1.4142)   F_b+F_TM = 1.3533
+  y_b =   10.00: F_TM (mine) =  -0.0011   record 1-nu =  -0.0488   F_b = 1.0488 (nu = 1.0488)   F_b+F_TM = 1.0477
+  y_b =  100.00: F_TM (mine) =  -0.0000   record 1-nu =  -0.0050   F_b = 1.0050 (nu = 1.0050)   F_b+F_TM = 1.0050
+  [PASS] (result) C7b (result, my reduction's FULL nonlinear response): F_TM = 1 - nu(y) does NOT hold once M'(Q) is allowed to respond to the twin source: |F_TM| is smaller than |1 - nu| (record's theorem is a fixed-Q statement)   (y=0.01: -4.081 vs -9.050; y=0.1: -0.811 vs -2.317; y=1: -0.061 vs -0.414; y=10: -0.001 vs -0.049; y=100: -0.000 vs -0.005)
+  fixed-m response y_b =    0.01: F_TM =  -9.0499   1 - nu =  -9.0499
+  fixed-m response y_b =    0.10: F_TM =  -2.3166   1 - nu =  -2.3166
+  fixed-m response y_b =    1.00: F_TM =  -0.4142   1 - nu =  -0.4142
+  fixed-m response y_b =   10.00: F_TM =  -0.0488   1 - nu =  -0.0488
+  fixed-m response y_b =  100.00: F_TM =  -0.0050   1 - nu =  -0.0050
+  [PASS] (control) C7a Route 6 theorem reproduced in my reduction at FIXED interaction argument: dPhi'/d(g-hat_N)|_m = 1 - nu = -(Phi'/g_N - 1) for beta = gamma, kernel-blind (symbolically: -4x(3+8x)/(s beta D gamma...))   (agree)
+
+====================================================================================================
+G3 reaction: force on the baryons from the cold component beyond the law, over x in [0.3, 30]
+====================================================================================================
+  (c-gh): max |g_b(with twin-coupled cold) - g_b(without)| / g_law over x in [0.3,30] (point mass) = 5.405   (pass line 0.10)
+  [FAIL] (result) G3 reaction (c-gh): reaction <= 0.10 g_law over x in [0.3, 30]   (5.405)
+  >>> VERDICT G3 reaction (c-g / c-chi / c-Einstein): PASS* (by the frozen definition: zero force beyond -grad Phi; the cold pull is the ordinary Newtonian/law pull, whose excess is the G1-C overshoot) -- field-side law acts on baryons directly
+  >>> VERDICT G3 reaction (c-gh): FAIL -- max 5.405
+
+====================================================================================================
+MUTATE M5: swap (c-g) -> (c-gh)
+====================================================================================================
+  x=3: (c-g) g_tot/g_target - 1 = +0.961 (overshoot); (c-gh) = -1.403 (undershoot / reversal)
+
+MUTATE M5: control BITES (exit 1)

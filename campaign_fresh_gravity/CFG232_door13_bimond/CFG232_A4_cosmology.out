@@ -1,0 +1,87 @@
+# CFG232_A4_cosmology   repo = <repo>   mode = main
+
+====================================================================================================
+Part 1  T4-T1 on a generic FRW pair, and with a static source moving through it (own Christoffel code from metric jets)
+====================================================================================================
+  [PASS] (control) T4-T1 = 3 (B + 2 w q)^2 - 4 p^2 - 8 q^2 with B = (2 H nn - Hh (nn^2+rr^2))/nn: the cosmological (timelike) part is +3B^2 (positive), the static (spacelike) part -4p^2-8q^2 (negative), and the boost enters only as B -> B + 2 w q   (T = -(-12*H**2*nn**2 + 12*H*Hh*nn**3 + 12*H*Hh*nn*rr**2 - 24*H*nn**2*q*w - 3*Hh**2*nn**4 - 6*Hh**2*nn**2*rr**2 - 3*Hh**2*rr**4 + 12*Hh*nn**3*q*w + 12*Hh*nn*q*rr**2*w + 4*nn**2*p**2 - 12*nn**2*q**2*w**2 + 8*nn**2*q**2)/nn**2)
+  [PASS] (control) static limit -4(p^2+2q^2) and FRW limit 3B^2 recovered; B = 0 on the symmetric branch (H = Hh, rr = nn = 1)
+  => Q = -T/a0^2 = [4p^2 + 8q^2 - 3 (B + 2 w q)^2]/a0^2: a cosmological relative expansion enters the local argument with the OPPOSITE sign to a static gradient
+
+====================================================================================================
+Part 2  no B = 0 FRW solution with matter in g only (symbolic, from the minisuperspace Lagrangian)
+====================================================================================================
+  E_N  on the symmetric ansatz: -2*Omega3 + a02*sigma_s*(a(t)**2)**(3/2)*F(0) + 2*beta*(3*Hs**2 - Lambda)*a(t)**3
+  E_Nh on the symmetric ansatz: a02*sigma_s*(a(t)**2)**(3/2)*F(0) + 2*gamma*(3*Hs**2 - Lambdah)*a(t)**3
+  (Hubble rate common Hs; both equations contain only F(0) through the sqrt(N Nh) prefactor, since dQ/dN = dQ/dNh = 0 at B = 0)
+  H^2 from E_N = [Lambda/3 + Omega3/(3*asym**3*beta) - a02*sigma_s*F(0)/(6*beta)];  H^2 from E_Nh = [Lambdah/3 - a02*sigma_s*F(0)/(6*gamma)]
+  difference of the two Friedmann relations: Lambda/3 - Lambdah/3 + Omega3/(3*asym**3*beta) + a02*sigma_s*F(0)/(6*gamma) - a02*sigma_s*F(0)/(6*beta)
+  ... at beta = gamma: Lambda/3 - Lambdah/3 + Omega3/(3*asym**3*beta)
+  [PASS] (control) Part 2: with matter (Omega3 != 0) in g only, the two constraints cannot both hold on the symmetric branch B = 0 for all a: their difference is the dust term Omega3/a^3 (plus beta(Lambda - Lambdah)), which is not a constant   (difference at Lambda = Lambdah: Omega3/(3*asym**3*beta))
+
+====================================================================================================
+Part 3  background estimate (constraints only, nn = 1, prescribed rr_i = 1 at z_i = 30) under the declared mirror continuation M(Q<0) := M(|Q|)
+====================================================================================================
+  c H0 / a0 = canonical: 6.9917, alt: 5.7854
+  13a: z, H/H_LCDM - 1, Hh/H0, rr = ah/a, |Q_bg|, m(|Q_bg|)
+     z=  0.0: H/H_LCDM - 1 =  -0.6019, Hh = 0.4340, rr = 0.0497, |Q| = 1.914e+01, m = 2.657e-02  (solver flag: constraints not solved)
+     z=  0.5: H/H_LCDM - 1 =  -0.4240, Hh = 0.4647, rr = 0.0522, |Q| = 1.640e+02, m = 1.052e-02  (solver flag: constraints not solved)
+     z=  1.0: H/H_LCDM - 1 =  -0.1317, Hh = 0.3986, rr = 0.0645, |Q| = 1.077e+03, m = 4.284e-03  (solver flag: constraints not solved)
+     z=  2.0: H/H_LCDM - 1 =  -0.0071, Hh = 0.1920, rr = 0.0968, |Q| = 4.982e+03, m = 2.020e-03  (solver flag: constraints not solved)
+     z=  3.0: H/H_LCDM - 1 =  -0.0024, Hh = 0.1216, rr = 0.1291, |Q| = 1.185e+04, m = 1.315e-03  (solver flag: constraints not solved)
+     z= 10.0: H/H_LCDM - 1 =  +0.0000, Hh = 0.0173, rr = 0.3549, |Q| = 2.463e+05, m = 2.903e-04  (solver flag: constraints not solved)
+     z= 30.0: H/H_LCDM - 1 =  +0.0000, Hh = 0.0173, rr = 1.0000, |Q| = 5.508e+06, m = 6.148e-05  (solver flag: constraints not solved)
+  13b-i: z, H/H_LCDM - 1, Hh/H0, rr = ah/a, |Q_bg|, m(|Q_bg|)
+     z=  0.0: H/H_LCDM - 1 =  -0.4457, Hh = 0.7568, rr = 0.0341, |Q| = 1.806e+01, m = 2.715e-02  (solver flag: constraints not solved)
+     z=  0.5: H/H_LCDM - 1 =  -0.2574, Hh = 0.4892, rr = 0.0511, |Q| = 3.185e+02, m = 7.703e-03  (solver flag: constraints not solved)
+     z=  1.0: H/H_LCDM - 1 =  -0.0094, Hh = 0.3225, rr = 0.0678, |Q| = 1.524e+03, m = 3.616e-03  (solver flag: constraints not solved)
+     z=  2.0: H/H_LCDM - 1 =  -0.0070, Hh = 0.1861, rr = 0.0977, |Q| = 4.994e+03, m = 2.018e-03  (solver flag: constraints not solved)
+     z=  3.0: H/H_LCDM - 1 =  -0.0008, Hh = 0.1186, rr = 0.1301, |Q| = 1.190e+04, m = 1.313e-03  (solver flag: constraints not solved)
+     z= 10.0: H/H_LCDM - 1 =  -0.0001, Hh = 0.0130, rr = 0.3549, |Q| = 2.463e+05, m = 2.903e-04  (solver flag: constraints not solved)
+     z= 30.0: H/H_LCDM - 1 =  +0.0001, Hh = -0.0117, rr = 1.0000, |Q| = 5.513e+06, m = 6.145e-05  (solver flag: constraints not solved)
+  13b-ii: z, H/H_LCDM - 1, Hh/H0, rr = ah/a, |Q_bg|, m(|Q_bg|)
+     z=  0.0: H/H_LCDM - 1 =  -0.0577, Hh = 59.9214, rr = 0.0000, |Q| = 4.940e+05, m = 2.051e-04  (solver flag: constraints not solved)
+     z=  0.5: H/H_LCDM - 1 =  -0.2199, Hh = 60.0999, rr = 0.0000, |Q| = 4.940e+05, m = 2.051e-04
+     z=  1.0: H/H_LCDM - 1 =  -0.1131, Hh = 59.8167, rr = 0.0003, |Q| = 4.705e+05, m = 2.102e-04
+     z=  2.0: H/H_LCDM - 1 =  -0.0376, Hh = 8.4297, rr = 0.0441, |Q| = 9.978e+02, m = 4.446e-03
+     z=  3.0: H/H_LCDM - 1 =  -0.0160, Hh = 4.7253, rr = 0.0934, |Q| = 2.615e+03, m = 2.775e-03
+     z= 10.0: H/H_LCDM - 1 =  -0.0005, Hh = 1.0024, rr = 0.3527, |Q| = 2.330e+05, m = 2.985e-04
+     z= 30.0: H/H_LCDM - 1 =  +0.0001, Hh = -0.0120, rr = 1.0000, |Q| = 5.513e+06, m = 6.145e-05  (solver flag: constraints not solved)
+
+====================================================================================================
+Part 4  quasi-static growth coupling under R-add with the mirror continuation (G2), from PRESCRIBED backgrounds (the Part 3 constraint solver did not converge)
+====================================================================================================
+  Part 3 solver flags (constraints not solved) per variant: 13a: 7/7, 13b-i: 7/7, 13b-ii: 2/7  -> the Part 3 numbers are NOT used for any verdict (deviations of tens of percent at z <~ 1 and Hh ~ 60 in 13b-ii are solver artefacts of the rr = ah/a -> 0 amplification (a/ah)^{3/2}, i.e. of the arbitrary initial ratio rr_i = 1 at z = 30; reported, not repaired)
+  13a (prescribed: H = H_LCDM, g-hat static): G_eff/G - 1 at z = 0.0: +0.0749, 0.5: +0.0560, 1.0: +0.0409, 2.0: +0.0239, 3.0: +0.0158, 10.0: +0.0035, 30.0: +0.0007   (k-independent in this quasi-static reduction)
+  13b-i (prescribed: H = H_LCDM, g-hat dS with Hh = H_Lambda, rr = 0.07): G_eff/G - 1 at z = 0.0: +0.1327, 0.5: +0.0830, 1.0: +0.0537, 2.0: +0.0278, 3.0: +0.0174, 10.0: +0.0036, 30.0: +0.0007   (k-independent in this quasi-static reduction)
+  13a: max |G_eff/G - 1| over z = 0.075 (pass line 0.05)
+  13b-i: max |G_eff/G - 1| over z = 0.133 (pass line 0.05)
+  >>> VERDICT G2 (13a/13b): existence of the background: UNDEFINED -- with matter in g only the symmetric (Q = 0) branch has no solution (Part 2) and on every solution T4-T1 = +3B^2 > 0, i.e. Q < 0, where the static design of A1 says nothing: the FRW background needs a continuation of M to Q<0 that the frozen class does not contain
+  >>> VERDICT G2 background H(z) (13a/13b): UNDEFINED -- the constraints-only solver did not converge at z <~ 1 (flags above); the initial ratio rr_i = ah/a at z = 30 is an extra free datum
+  >>> VERDICT G2 growth estimate 13a (declared mirror continuation, prescribed background): FAIL on the estimate -- max |G_eff/G-1| = 0.075 (>5% at z <~ 1 because the relative expansion c(H - Hh)/a0 ~ 5-7 puts m(|Q_bg|) at the percent level); CMB part UNDEFINED (no Boltzmann run)
+  >>> VERDICT G2 growth estimate 13b-i (declared mirror continuation, prescribed background): FAIL on the estimate -- max |G_eff/G-1| = 0.133 (>5% at z <~ 1 because the relative expansion c(H - Hh)/a0 ~ 5-7 puts m(|Q_bg|) at the percent level); CMB part UNDEFINED (no Boltzmann run)
+  >>> VERDICT G2 13b-ii: UNDEFINED -- the vacuum branch has no solution with matter in g only, and the mirror estimate needs the (unsolved) ghat evolution
+
+====================================================================================================
+Part 5  G7: dependence of the local argument on the cosmological relative expansion and on the boost
+====================================================================================================
+  13a (g-hat static, Hh=0), z=0 (H = H0 from LCDM): B = 2.0000 H0, |Q_bg| = 3B^2/a0^2 = 586.6; local Q = 12 y^2 at y = 1, 0.1, 0.01: 12, 0.12, 0.0012 -> R-add total Q = local - |Q_bg| < 0 for y <= 1
+  13b-i (Hh=H_Lambda, rr=1), z=0 (H = H0 from LCDM): B = 0.3451 H0, |Q_bg| = 3B^2/a0^2 = 17.5; local Q = 12 y^2 at y = 1, 0.1, 0.01: 12, 0.12, 0.0012 -> R-add total Q = local - |Q_bg| < 0 for y <= 1
+  13b-i (Hh=H_Lambda, rr=0.07), z=0 (H = H0 from LCDM): B = 1.1685 H0, |Q_bg| = 3B^2/a0^2 = 200.2; local Q = 12 y^2 at y = 1, 0.1, 0.01: 12, 0.12, 0.0012 -> R-add total Q = local - |Q_bg| < 0 for y <= 1
+  [PASS] (result) G7 (R-add): at z = 0 the cosmological term 3B^2/a0^2 exceeds the local static argument 12 y^2 for every y <= 1 for the three prescriptions of g-hat (static; dS with rr = 1; dS with rr = 0.07): the total argument is negative and M is undefined there   (12 cases)
+  R-static boost effect: T -> T(1 + w^2) at fixed potentials: relative shift of Q = 4.01e-06 at 600 km/s (a0_eff shift 2.0e-06, pass line 0.10)
+  13a (g-hat static, Hh=0) (R-add boost cross term 12 q w B relative to the local argument): y=1: 0.028, y=0.1: 0.280, y=0.01: 2.799, y=0.001: 27.986
+  13b-i (Hh=H_Lambda, rr=1) (R-add boost cross term 12 q w B relative to the local argument): y=1: 0.005, y=0.1: 0.048, y=0.01: 0.483, y=0.001: 4.829
+  13b-i (Hh=H_Lambda, rr=0.07) (R-add boost cross term 12 q w B relative to the local argument): y=1: 0.016, y=0.1: 0.164, y=0.01: 1.635, y=0.001: 16.351
+  >>> VERDICT G7 (i) boost, R-static: PASS -- relative change of Q at 600 km/s = 4.0e-06
+  >>> VERDICT G7 (ii) z-dependence, R-static: PASS (trivial: no background enters) -- the local law is z-independent when B = 0 locally
+  >>> VERDICT G7 under R-add: FAIL (argument negative at z=0; boost cross term 12 q w B is 3% at y=1 and >100% at y<=0.03) -- reading-dependent: R-static passes only if g-hat locally follows g's static frame, which is the unsolved matching problem
+  >>> VERDICT G7 (frozen rule: differs between readings): UNDEFINED -- recorded U, not P
+
+====================================================================================================
+Part 6  vector operator on the FRW background of 13b: principal (four-derivative) symbol via jets, own code
+====================================================================================================
+  four-derivative symbol of the vector operator on FRW (scale factor a): -(aa*omega - kappa)**2*(aa*omega + kappa)**2/aa**2
+  [PASS] (control) G5a on the FRW background: the vector operator's principal part is (kappa^2/a^2 - omega^2)^2 (up to a positive power of a) times the coefficient M'(Q_arg): fourth order at every M' != 0, exactly as on the flat and static-MOND backgrounds   (symbol = -(aa*omega - kappa)**2*(aa*omega + kappa)**2/aa**2)
+  >>> VERDICT G5a (13b, FRW background: NEW): FAIL -- same fourth-order vector operator, coefficient M'(Q_arg) != 0 at every finite argument (prescribed-background m(|Q_bg|) at z = 0: 13a 5.75e-03)
+
+RESULT: 5 checks, 0 control failure(s): none

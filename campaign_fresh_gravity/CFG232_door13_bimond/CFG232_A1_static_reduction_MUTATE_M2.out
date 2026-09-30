@@ -1,0 +1,130 @@
+# CFG232_A1_static_reduction_MUTATE_M2   repo = <repo>   mode = M2
+
+====================================================================================================
+PART A.1  C2: Einstein-Hilbert normalisation against the Newtonian limit (linearised Einstein tensor, own code)
+====================================================================================================
+  (sqrt(-g)R)_2 static Euler-Lagrange equals that of k1(Psi'^2 - 2 Phi'Psi') with k1 = [2]
+  [PASS] (control) C2 (sqrt(-g)R)_2 = 2(|dPsi|^2 - 2 dPhi.dPsi) up to a total derivative: per 1/16piG weight beta this is beta(|dPsi|^2-2dPhi.dPsi) per 1/8piG, the frozen normalisation   (k1 = [2])
+  with matter: EL_Phi = -8*pi*G*rho(z) + 2*Derivative(Psi(z), (z, 2)),  EL_Psi = 2*Derivative(Phi(z), (z, 2)) - 2*Derivative(Psi(z), (z, 2))   (Psi=Phi from EL_Psi; lap Psi = 4 pi G rho from EL_Phi)
+  [PASS] (control) C2 Newtonian limit: EL_Psi => Psi'' = Phi''; EL_Phi => 2 Psi'' = 8 pi G rho (i.e. lap Psi = 4 pi G rho)   (EL_Phi = -8*pi*G*rho(z) + 2*Derivative(Psi(z), (z, 2)))
+
+====================================================================================================
+PART A.2  the five invariants T1..T5 (own Christoffel code): static weak-field values and the tuned subspace (part of C4)
+====================================================================================================
+  T1(static) = 3*p**2 + 7*q**2   [p = d dPhi, q = d dPsi]
+  T2(static) = p**2 - 2*p*q + q**2   [p = d dPhi, q = d dPsi]
+  T3(static) = p**2 - 6*p*q + 9*q**2   [p = d dPhi, q = d dPsi]
+  T4(static) = -p**2 - q**2   [p = d dPhi, q = d dPsi]
+  T5(static) = -p**2 + 4*p*q - 3*q**2   [p = d dPhi, q = d dPsi]
+  tuned family: T_tuned(static) = (-4*u0 - 2*u1) p^2 + (-8*u0 - 8*u1) q^2 + (8*u1) p q
+  [PASS] (control) C4 static coefficients a = -4u0-2u1, b = -8(u0+u1), x = 8u1 (the record's values, re-derived with own code)   (a=-4*u0 - 2*u1, b=-8*u0 - 8*u1, x=8*u1)
+  [PASS] (control) T4-T1 static = -4(p^2 + 2 q^2): Q = -T/a0^2 = 4(|d dPhi|^2 + 2|d dPsi|^2)/a0^2 (frozen 1.1)   (T4-T1 = -4*p**2 - 8*q**2)
+
+====================================================================================================
+PART A.3  spherical Euler-Lagrange for (Phi, Psi, Phih, Psih), first integrals, H1-H6 (sympy)
+====================================================================================================
+  dL/dPhi' equals the hand first-integral expression: True
+  dL/dPsi' equals the hand first-integral expression: True
+  dL/dPhih' equals the hand first-integral expression: True
+  dL/dPsih' equals the hand first-integral expression: True
+  [PASS] (control) A.3 the hand expressions for dL/df' (with m = M'(Q)) equal sympy's derivative of the reduced Lagrangian for all four fields
+  solved Psi' = gN*(-beta*gamma**2 + 4*beta*gamma*m*sigma + 32*beta*m**2*sigma**2 + 32*gamma*m**2*sigma**2)/(-beta**2*gamma**2 + 4*beta**2*gamma*m*sigma + 32*beta**2*m**2*sigma**2 + 4*beta*gamma**2*m*sigma + 64*beta*gamma*m**2*sigma**2 + 32*gamma**2*m**2*sigma**2);  delta Psi' = -beta*gN*gamma**2/(-beta**2*gamma**2 + 4*beta**2*gamma*m*sigma + 32*beta**2*m**2*sigma**2 + 4*beta*gamma**2*m*sigma + 64*beta*gamma*m**2*sigma**2 + 32*gamma**2*m**2*sigma**2)
+  [PASS] (control) H1/D: delta Psi' * D(x) = gN/beta with D = 1 - 4x - 32x^2, x = sigma m (1/beta + 1/gamma) (symbolic solution of the four first integrals)
+  [PASS] (control) dPhi' = dPsi'(1 + 8x)
+  [PASS] (control) Phi' = [gN + 4 sigma m dPsi'(3 + 8x)]/beta (H3 formula)
+  D(x)=0 roots: [-1/4, 1/8]  (H1: x = 1/8, -1/4)
+  [PASS] (control) H1 degeneracy roots x = 1/8 and x = -1/4
+  H6: m->0: Phi' = gN/beta ; m s->inf: Psi' -> gN/(beta + gamma), Phi' -> gN/(beta + gamma)
+  [PASS] (control) H6 decoupled end Phi' = gN/beta
+  [PASS] (control) H6 locked end Psi' = Phi' = gN/(beta+gamma)
+  H3: (Phi'-gN/beta)/(Psi'-gN/beta) as a function of x = (8*x + 3)/(8*x + 1); limit x -> 1/8 (branch A): 2
+  branch B (x -> -1/4): (Phi'-gN/beta)/(Psi'-gN/beta) -> -1
+  H4: numerator of (Phi'/gN - nu) / [32(k+1)x^2+(4k+12)x-k] = -gamma
+  [PASS] (control) H4 the designed-x quadratic 32(k+1)x^2+(4k+12)x-k=0, k=(nu-1)(1+beta/gamma), is (up to a nonzero factor) exactly Phi'/gN = nu   (ratio = -gamma)
+
+====================================================================================================
+PART B.1  design by inversion (H4) and legality
+====================================================================================================
+  ('P2', 0.3333333333333333, 1): Q_monotone=True, m_nonincreasing=True, D_sign_ok=True, m_positive=True, m_deep=0.03125, m_newton=4.167e-10, x_deep=0.125, x_newton=1.667e-09
+  ('P2', 0.3333333333333333, -1): Q_monotone=True, m_nonincreasing=False, D_sign_ok=True, m_positive=True, m_deep=0.0625, m_newton=0.09375, x_deep=-0.25, x_newton=-0.375
+  ('P2', 1.0, 1): Q_monotone=True, m_nonincreasing=True, D_sign_ok=True, m_positive=True, m_deep=0.0625, m_newton=4.167e-10, x_deep=0.125, x_newton=8.333e-10
+  ('P2', 1.0, -1): Q_monotone=True, m_nonincreasing=False, D_sign_ok=True, m_positive=True, m_deep=0.125, m_newton=0.1875, x_deep=-0.25, x_newton=-0.375
+  ('P2', 3.0, 1): Q_monotone=True, m_nonincreasing=True, D_sign_ok=True, m_positive=True, m_deep=0.09374, m_newton=4.167e-10, x_deep=0.125, x_newton=5.556e-10
+  ('P2', 3.0, -1): Q_monotone=True, m_nonincreasing=False, D_sign_ok=True, m_positive=True, m_deep=0.1875, m_newton=0.2812, x_deep=-0.25, x_newton=-0.375
+  ('nu_mono', 0.3333333333333333, 1): Q_monotone=True, m_nonincreasing=True, D_sign_ok=True, m_positive=True, m_deep=0.03125, m_newton=9.934e-10, x_deep=0.125, x_newton=3.974e-09
+  ('nu_mono', 0.3333333333333333, -1): Q_monotone=True, m_nonincreasing=False, D_sign_ok=True, m_positive=True, m_deep=0.0625, m_newton=0.09375, x_deep=-0.25, x_newton=-0.375
+  ('nu_mono', 1.0, 1): Q_monotone=True, m_nonincreasing=True, D_sign_ok=True, m_positive=True, m_deep=0.0625, m_newton=9.934e-10, x_deep=0.125, x_newton=1.987e-09
+  ('nu_mono', 1.0, -1): Q_monotone=True, m_nonincreasing=False, D_sign_ok=True, m_positive=True, m_deep=0.125, m_newton=0.1875, x_deep=-0.25, x_newton=-0.375
+  ('nu_mono', 3.0, 1): Q_monotone=True, m_nonincreasing=True, D_sign_ok=True, m_positive=True, m_deep=0.09374, m_newton=9.934e-10, x_deep=0.125, x_newton=1.325e-09
+  ('nu_mono', 3.0, -1): Q_monotone=True, m_nonincreasing=False, D_sign_ok=True, m_positive=True, m_deep=0.1875, m_newton=0.2812, x_deep=-0.25, x_newton=-0.375
+  [PASS] (control) H1 numerical: designed M'(0) = m0 = beta*gamma/[8(beta+gamma)] = 1/16 (beta=gamma=1, sigma=+1, branch A)   (m(y->0) = 0.06249583 (grid floor y=1e-8; tolerance 1e-4 set by me, the frozen text gave none))
+  [PASS] (control) H2 Newtonian end m -> 0 (decoupled) on branch A   (m(y=1e8) = 4.167e-10)
+  [PASS] (result) legality (branch A, all kernels and gamma/beta): Q(g_N) monotone, m>0 non-increasing (dg_obs/dg_bar>0), D>0   (result)
+  branch B (sigma_s=-1): ('P2', 0.3333333333333333, -1): Dsign=True, m_newton=0.0937, m_deep=0.0625; ('P2', 1.0, -1): Dsign=True, m_newton=0.187, m_deep=0.125; ('P2', 3.0, -1): Dsign=True, m_newton=0.281, m_deep=0.188; ('nu_mono', 0.3333333333333333, -1): Dsign=True, m_newton=0.0937, m_deep=0.0625; ('nu_mono', 1.0, -1): Dsign=True, m_newton=0.187, m_deep=0.125; ('nu_mono', 3.0, -1): Dsign=True, m_newton=0.281, m_deep=0.188
+
+====================================================================================================
+PART B.2  C3 round trip: the designed M' applied forward returns nu
+====================================================================================================
+  [PASS] (control) C3 forward solve of the designed system reproduces Phi' = nu(y) g_N on 41 log-spaced y in [1e-5, 1e5] for P2 and nu_mono, gamma/beta in {1/3,1,3}   (max |Phi'/target - 1| = 1.54e-06 (table interpolation))
+
+====================================================================================================
+PART B.3  G1-law: 7 masses (1e9..1e12) x {point mass, h=2 kpc exponential sphere} x both footings x P2/nu_mono; x in [0.1, 30]
+====================================================================================================
+  P2       canonical point: max over 7 masses x 61 radii of |g/g_target - 1| = 1.45e-06
+  P2       canonical exp  : max over 7 masses x 61 radii of |g/g_target - 1| = 1.48e-06
+  P2       alt       point: max over 7 masses x 61 radii of |g/g_target - 1| = 1.45e-06
+  P2       alt       exp  : max over 7 masses x 61 radii of |g/g_target - 1| = 1.48e-06
+  nu_mono  canonical point: max over 7 masses x 61 radii of |g/g_target - 1| = 1.31e-06
+  nu_mono  canonical exp  : max over 7 masses x 61 radii of |g/g_target - 1| = 1.31e-06
+  nu_mono  alt       point: max over 7 masses x 61 radii of |g/g_target - 1| = 1.31e-06
+  nu_mono  alt       exp  : max over 7 masses x 61 radii of |g/g_target - 1| = 1.31e-06
+  [FAIL] (result) G1-LAW (13a/13b/13c share the static law): max |g/g_target - 1| <= 0.10 over x in [0.1,30], seven masses, point + exponential sphere, both footings, P2 and nu_mono (function designed by inversion: P-declared)   (max = 1.48e-06)
+  >>> VERDICT G1-law: PASS (P-declared by inversion, grade M1-inv) -- max deviation 1.48e-06; the function is solved for from the target, so this is a restatement of the kernel, not a derivation
+
+  Extended profile: law target nu(g_N) g_N versus CFG44's C(r)-target u/r^2 (cold_mass 'encl'); reported, not gated
+    M_b = 1e+09: max |g_law/g_C(r) - 1| over x in [0.1,30] = 0.499
+    M_b = 1e+11: max |g_law/g_C(r) - 1| over x in [0.1,30] = 0.018
+    M_b = 1e+12: max |g_law/g_C(r) - 1| over x in [0.1,30] = 0.000
+
+====================================================================================================
+PART B.3b  G1-law against CFG44's C(r) = rho_c r^3 g = (a0/4 pi) M_b(<r) target (cold_mass 'encl'), 7 masses, exponential sphere and point mass
+====================================================================================================
+  P2       point: max over x of |g_law/g_C - 1| by mass (1e9..1e12): 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
+  P2       exp  : max over x of |g_law/g_C - 1| by mass (1e9..1e12): 0.499, 0.409, 0.261, 0.099, 0.018, 0.002, 0.000
+  nu_mono  point: max over x of |g_law/g_C - 1| by mass (1e9..1e12): 0.140, 0.140, 0.140, 0.140, 0.140, 0.140, 0.140
+  nu_mono  exp  : max over x of |g_law/g_C - 1| by mass (1e9..1e12): 0.542, 0.496, 0.404, 0.252, 0.150, 0.142, 0.141
+  [FAIL] (result) G1-LAW read against CFG44's C(r) target (profile-dependent): FAILS on the exponential sphere at low mass because the BIMOND static law is a function of g_N alone while C(r) depends on M_b(<r) and r; the frozen text's 'equivalent for P2' was wrong for extended profiles   (max = 0.542)
+
+====================================================================================================
+PART B.4  D2 lensing/dynamics ratio Phi'/Psi' along the design; phantom mass vs CFG44's cold mass (point mass)
+====================================================================================================
+  deep regime (y<1e-3, P2, beta=gamma=1): (Phi'-g_N)/(Psi'-g_N) -> 2.00059 (H3: 2);  Phi'/Psi' at y=1e-3: 1.9485
+  [PASS] (control) D2/H3 numerical: (Phi'-g_N)/(Psi'-g_N) -> 2 in the deep regime   (2.00059)
+  [PASS] (control) phantom mass of the designed law equals CFG44's M_c = M(sqrt(1+x^2)-1) for the P2 point mass (by construction; the stress is field-side, not a fluid's)   (max rel diff 1.88e-06)
+
+====================================================================================================
+PART B.5  C10: the record's representative M = lambda Q^{3/2} (M'(0)=0): does the reduced system give an r^-1 regime?
+====================================================================================================
+  lambda=   0.1: y=1e-10: Phi'/g_N=1 (roots 1); y=1e-06: Phi'/g_N=1 (roots 3); y=1e-04: Phi'/g_N=1.001 (roots 3); y=1e-02: Phi'/g_N=1.073 (roots 3); y=1e+00: Phi'/g_N=0.1618 (roots 1); y=1e+02: Phi'/g_N=0.4677 (roots 1)
+  lambda=   1.0: y=1e-10: Phi'/g_N=1 (roots 1); y=1e-06: Phi'/g_N=1 (roots 3); y=1e-04: Phi'/g_N=1.006 (roots 3); y=1e-02: Phi'/g_N=-0.8796 (roots 1); y=1e+00: Phi'/g_N=0.3974 (roots 1); y=1e+02: Phi'/g_N=nan (roots 0)
+  lambda=  10.0: y=1e-10: Phi'/g_N=1 (roots 1); y=1e-06: Phi'/g_N=1.001 (roots 3); y=1e-04: Phi'/g_N=1.073 (roots 3); y=1e-02: Phi'/g_N=0.1618 (roots 1); y=1e+00: Phi'/g_N=0.4677 (roots 1); y=1e+02: Phi'/g_N=nan (roots 0)
+  lambda= 100.0: y=1e-10: Phi'/g_N=1 (roots 1); y=1e-06: Phi'/g_N=1.006 (roots 3); y=1e-04: Phi'/g_N=-0.8796 (roots 1); y=1e-02: Phi'/g_N=0.3974 (roots 1); y=1e+00: Phi'/g_N=nan (roots 0); y=1e+02: Phi'/g_N=nan (roots 0)
+  [PASS] (control) C10 (H6): with M'(0)=0 the smallest-|dPsi'| branch is Newtonian G/beta at low gradient (Phi'/g_N -> 1 at y=1e-10) for every lambda tried, so no MOND regime (my first check at y=1e-6 with tolerance 1e-3 was too strict for lambda=100: 1.006 there; the crossover scale is y_c ~ 1/lambda^2)   (Phi'/g_N at y=1e-10: [1.0, 1.0, 1.0, 1.000001])
+  all roots at y=1e-4 (lambda=10): x = [0.01127, 0.11428, 0.13413] (x=1/8 is the degeneracy; a root near it has D~0, a constant-force branch, not r^-1)
+  untuned constant m=0.07 (>m0=1/16, x=0.14 beyond the degeneracy): Phi'/g_N = -5.1624, -5.1624, -5.1624  (a constant NEGATIVE factor: my frozen text said 'a constant enhancement (1+..)'; the sign was wrong, the scale-free-constant statement stands)
+  untuned constant m=0.06 (<m0): Phi'/g_N = 17.0541, 17.0541, 17.0541  (a constant positive enhancement)
+  [PASS] (control) H6/C10 an untuned constant m gives a scale-free constant enhancement (1+..), not an r^-1 regime: Phi'/g_N is the same at y=1e-6 and y=1e-3   (-5.162393 vs -5.162393)
+
+====================================================================================================
+PART B.6  C8 positive control of the pass logic, G1-mechanism grade
+====================================================================================================
+  [PASS] (control) C8 a prescribed Phi' := g_P2 passes G1-law trivially and must be graded M0 (a profile is prescribed), not a mechanism   (graded M0 by rule)
+  >>> VERDICT G1-mechanism: M1-inv (P-declared; M' is an OUTPUT of the target by inversion); M2 not reached -- the interaction function is read off the answer; no structure fixes it
+
+====================================================================================================
+MUTATE M2
+====================================================================================================
+  baryons on g-hat (beta<->gamma) at gamma/beta=3: max dev 0.786;  at gamma/beta=1 (a symmetry, must NOT bite): 1.47e-06
+  [PASS] (control) M2 at gamma/beta=1 the swap is a relabelling: no change
+
+MUTATE M2: control BITES (exit 1)

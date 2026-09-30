@@ -1,0 +1,33 @@
+# CFG232_A7_scalar_tensor_13c   repo = <repo>   mode = main
+  P2: h(y) increasing = True; h(y->0) ~ sqrt(y): h(1e-8)/sqrt(1e-8) = 0.9999; h(y=1e8) = 0.5000 (P2 wall: 1/2)
+      mu_chi > 0: True;  d(mu h)/dh = dy/dh > 0: True;  radial sound speed c_r^2 = 1/(1 + dln mu/dln h): min 2.546e-09, max 0.500
+      at the Solar-System acceleration y = 6.98e+05: c_r^2 = 3.580e-07 (hand: 1/(4y) = 3.58e-07 for P2)
+  nu_mono: h(y) increasing = True; h(y->0) ~ sqrt(y): h(1e-8)/sqrt(1e-8) = 1.0000; h(y=1e8) = 1.1921 (P2 wall: 1/2)
+      mu_chi > 0: True;  d(mu h)/dh = dy/dh > 0: True;  radial sound speed c_r^2 = 1/(1 + dln mu/dln h): min 2.410e-02, max 0.500
+      at the Solar-System acceleration y = 6.98e+05: c_r^2 = 3.140e-02 (hand: 1/(4y) = 3.58e-07 for P2)
+
+====================================================================================================
+13c static law by inversion (round trip), legality, sound speed
+====================================================================================================
+  [PASS] (control) 13c G1-law round trip: g_b = g_N + |grad chi| with the designed mu_chi reproduces nu g_N to the table accuracy (P2)   (max dev 1.6e-06)
+  [PASS] (result) G1-LAW 13c (P2, designed by inversion): max |g/g_target - 1| <= 0.10, 7 masses x point + exponential sphere   (max = 2.3e-06 (P-declared, M1-inv))
+  >>> VERDICT G1-law 13c: PASS (P-declared by inversion, M1-inv) -- max deviation 2.3e-06; against CFG44's C(r) target the exponential sphere fails at low mass exactly as in 13a (the law depends on g_N alone)
+  [PASS] (result) 13c legality: mu_chi > 0, d(mu h)/dh > 0 (F_X + 2X F_XX > 0), 0 < c_r^2 <= 1 (subluminal) on the whole designed branch, P2 and nu_mono   (result)
+  the P2 kinetic function is a DBI-like wall: |grad chi| <= a0/2 for every source acceleration, mu_chi -> 2y -> infinity; radial sound speed c_r^2 = 1/(4y) -> 3.6e-07 at Saturn: subluminal but strongly coupled (very small sound speed) in the Solar System
+  >>> VERDICT G5a 13c (static branch): PASS on the conditions checked (mu > 0, F_X + 2X F_XX > 0, 0 < c_r^2 <= 1) -- time-dependent stability beyond the radial/tangential sound-speed conditions, superluminality of nonlinear solutions and the strong-coupling scale c_r^2 ~ 1e-7 are not analysed
+  D2 (13c): Psi' = g_N (no scalar in the lensing potential), Phi' = nu g_N: M_dyn/M_lens = nu (2 -> lensing sees Newtonian mass only): the Bekenstein-Sanders deficit, as the record's N1
+
+====================================================================================================
+G2 (13c): nonlinear quasi-static estimate G_eff/G = nu(y_lin), y_lin = (3/2) Omega_m(z) H(z)^2 delta /(k_phys a0), delta = 1 (upper bound on y_lin)
+====================================================================================================
+  z=   0: G_eff/G - 1 at k = 0.1..30 /Mpc: 10.6, 19.1, 35.7, 62.6, 115, 200
+  z= 0.5: G_eff/G - 1 at k = 0.1..30 /Mpc: 6.8, 12.4, 23.5, 41.4, 76.3, 133
+  z=   1: G_eff/G - 1 at k = 0.1..30 /Mpc: 4.89, 9.1, 17.4, 30.8, 57, 99.5
+  z=   2: G_eff/G - 1 at k = 0.1..30 /Mpc: 2.99, 5.77, 11.3, 20.2, 37.7, 66
+  z=   3: G_eff/G - 1 at k = 0.1..30 /Mpc: 2.07, 4.12, 8.23, 14.9, 28, 49.2
+  z=  10: G_eff/G - 1 at k = 0.1..30 /Mpc: 0.453, 1.08, 2.48, 4.86, 9.59, 17.3
+  z=  30: G_eff/G - 1 at k = 0.1..30 /Mpc: 0.0677, 0.192, 0.549, 1.28, 2.87, 5.56
+  [FAIL] (result) G2 (13c, local law applied to linear structure, delta = 1): |G_eff/G - 1| <= 0.05 at every k and z tabulated   (max = 200)
+  >>> VERDICT G2 13c: FAIL on the nonlinear quasi-static estimate -- G_eff/G - 1 up to 2.0e+02; the linear perturbation theory of chi is strongly coupled at chi' = 0 (mu_chi(0) = 0): UNDEFINED as a linear theory; CMB UNDEFINED
+
+RESULT: 4 checks, 0 control failure(s): none

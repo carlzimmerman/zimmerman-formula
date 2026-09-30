@@ -1,0 +1,82 @@
+# CFG232_A2_spectrum   repo = <repo>   mode = main
+
+====================================================================================================
+C9  calibration of the detector: gauge invariance, Stueckelberg vanishing of EH, Fierz-Pauli healthy vector
+====================================================================================================
+  [PASS] (control) C9 EH quadratic form is invariant under d -> d + k A + A k + k k pi (gauge): zero on the pure-gauge directions
+  FP vector (A_x): L = -Ax**2*m2*(kappa - omega)*(kappa + omega)/2   (healthy iff the omega^2 coefficient is positive: -(m2/4)*... see sign)
+  [PASS] (control) C9 Fierz-Pauli control: the helicity-1 Stueckelberg vector has a SECOND-order operator with POSITIVE omega^2 coefficient (healthy)   (omega^2 coeff = Ax**2*m2/2)
+  FP det K = 3*m2**5*(kappa**2 + m2 - omega**2)**5/16   degree in omega = 10 (5 dof <-> 10)
+  [PASS] (control) C9 FP control: det of the 10x10 kinetic matrix has omega-degree 10 (five dof: massive graviton)   (degree 10)
+
+====================================================================================================
+Part 1  relative-sector quadratic form K(delta) = L_EH + mu T2, tuned family (c1..c5) = (-u0,-u1/2,-u1/2,u0,u1)
+====================================================================================================
+  static (omega=0) 2x2 kinetic matrix in (dPhi, dPsi), tuned family: det = 4*kappa**4*(4*mu*u0 + 1)*(2*mu*u0 + 3*mu*u1 - 1)
+  T4-T1 (u0=1,u1=0): static determinant vanishes at mu = [-1/4, 1/2]   (A1: sigma_s m0 = b/8 -> mu = -2 sigma_s m0 / b = -1/4;  or sigma_s m0 = -b/4 -> mu = +1/2)
+  [PASS] (control) static degeneracy of the relative sector at mu = -1/4 and mu = +1/2 (units b=1): agrees with A1's D(x)=0 roots x = 1/8, -1/4 (mu = -2x)   ([-1/4, 1/2])
+
+====================================================================================================
+Part 2  vector (helicity-1) and scalar (helicity-0) Stueckelberg sectors on the flat background: is there a higher-derivative mode?
+====================================================================================================
+  L_A1(omega,kappa) = -Ax**2*mu*(kappa - omega)**2*(kappa + omega)**2*(2*u0 + u1)/2
+  L_A1 / [mu (2u0+u1) (kappa^2-omega^2)^2 A_x^2] = -1/2
+  [PASS] (control) C4/G5a: the helicity-1 Stueckelberg vector has a FOURTH-order operator (omega-degree 4) proportional to (2u0+u1)(kappa^2-omega^2)^2, i.e. to the static MOND coefficient a = -2(2u0+u1) (record's WF2/L70 structure, fresh code)   (omega-degree 4, ratio -1/2)
+  a fourth-order operator (kappa^2-omega^2)^2 is a dipole ghost (Ostrogradsky) for either sign of its coefficient: no sign choice of mu removes it while a != 0
+  helicity-0 Stueckelberg 3x3 form (A0, Az, pi) row for pi: [0, 0, 0]
+  [PASS] (control) C4: on the tuned subspace the pure-pi row and column of the helicity-0 Stueckelberg form vanish identically (record: 'removes the leading pure-helicity-0 term')   (T4-T1)
+  det of the 3x3 helicity-0 form = 0
+
+====================================================================================================
+Part 3  TT branch dispersion (c_T) and the whole u1/u0 line
+====================================================================================================
+  L_TT(cross polarisation) = -hx**2*(kappa - omega)*(kappa + omega)*(4*mu*u0 + 1)/2
+  omega solutions: [-kappa, kappa]
+    (u0,u1)=(1,0), mu=-1/4 (b=1): L_TT = 0 ; omega^2/kappa^2 = []
+    (u0,u1)=(0,1), mu=-1/4 (b=1): L_TT = -(kappa - omega)*(kappa + omega)/2 ; omega^2/kappa^2 = [1, 1]
+    (u0,u1)=(1,1), mu=-1/4 (b=1): L_TT = 0 ; omega^2/kappa^2 = []
+    (u0,u1)=(1,-1), mu=-1/4 (b=1): L_TT = 0 ; omega^2/kappa^2 = []
+    (u0,u1)=(2,-1), mu=-1/4 (b=1): L_TT = (kappa - omega)*(kappa + omega)/2 ; omega^2/kappa^2 = [1, 1]
+    (u0,u1)=(1,3), mu=-1/4 (b=1): L_TT = 0 ; omega^2/kappa^2 = []
+  L_TT(relative) = -(kappa - omega)*(kappa + omega)*(4*mu*u0 + 1)/2  -> for any mu with 1 + 4 mu u0 != 0 the dispersion is omega^2 = kappa^2 (c_T = 1); at the H1 degeneracy mu = -1/(4 u0) (u1 = 0) the relative TT kinetic term VANISHES
+  [PASS] (control) C4/G5c: for a non-degenerate mu the relative TT dispersion is omega^2 = kappa^2 exactly (c_T = 1), as the record states (record: c_T^2 = 1 at T4-T1)
+
+====================================================================================================
+Part 4  lapse-velocity tuning on a generic FRW background (own derivation) and the two-lapse Hessian (M8 target)
+====================================================================================================
+  lapse-velocity-free conditions on (c1..c5) for generic FRW: [{c1: -c4, c2: -c5/2, c3: -c5/2}]
+  free parameters: [c4, c5]
+  [PASS] (control) C4: the record's tuned family (-u0,-u1/2,-u1/2,u0,u1) removes every lapse-velocity term on a generic FRW background, and the solution space of the lapse-velocity-free conditions is 2-dimensional (own derivation)   (holds=True, dim=2, sol={c1: -c4, c2: -c5/2, c3: -c5/2})
+  M8 target: an off-line point (T1 alone) has lapse-velocity terms: [-1/Ns**4, 2/(Nhs*Ns**3), -1/(Nhs**2*Ns**2)]
+
+====================================================================================================
+Part 5  nonlinear static-MOND background: exact pulled-back metric g' = phi*g for xi^x = eps A(t,z), g-hat = eta (own code)
+====================================================================================================
+  background T(T4-T1) at z=0 (exact in p,q): -4*(p**2 + 2*q**2)
+  [PASS] (control) C4: background value T4-T1 = -4(p^2 + 2q^2) and vanishing first-order variation of T (record: T-bar = -4(p^2+2q^2), delta T = 0)   (delta T_1 = 0)
+  second-jet quadratic form of T_2 (exact in p,q): -Att**2 + 2*Atz**2 - Azz**2
+  four-derivative symbol of the vector operator on the static-MOND background: -(kappa - omega)**2*(kappa + omega)**2
+  [PASS] (control) Part 5: on the static-MOND background the vector operator's principal part is (kappa^2-omega^2)^2 times a coefficient independent of the background gradients p,q (the interaction contributes L2 = -sigma_s M'(Qbar) T_2): still fourth order at every M' != 0   (symbol = -(kappa - omega)**2*(kappa + omega)**2)
+  first-jet part of T_2 (background dependent): 0
+
+====================================================================================================
+Part 6  full 10x10 determinant: degree in omega and dof count for the tuned relative sector (mu = -1/4, u=(1,0))
+====================================================================================================
+  full 10x10 form for generic mu, T4-T1: det = 0   (identically zero: a residual gauge-like null direction, the pure-pi direction d = k k pi, on which K vanishes: pi row = 0 above)
+  9x9 form after fixing d_zz=0: det = 2*kappa**4*mu**3*(kappa - omega)**7*(kappa + omega)**7*(2*mu - 1)*(4*mu + 1)**5
+  omega-degree of the 9x9 determinant (generic mu) = 14  -> dof = 7 counting an Ostrogradsky vector as 2
+  9x9 at the tuned mu = -1/4: det = 0
+
+====================================================================================================
+DC-018 control C5: helicity-0 Galileon spherical flux
+====================================================================================================
+  [PASS] (control) C5 DC-018: r^(3-n)(pi')^n ~ GM => pi' ~ r^(1-3/n); pi' ~ r^-1 requires n = 3/2 (not an integer Galileon order)
+
+====================================================================================================
+G5a / G5c verdicts
+====================================================================================================
+  >>> VERDICT G5a (13a/13b, flat and static-MOND: REPRODUCTION): FAIL -- the helicity-1 Stueckelberg vector has a fourth-order operator whose coefficient is the MOND coefficient; a != 0 <=> higher-derivative vector (dipole ghost for either sign)
+  >>> VERDICT G5c (T4-T1, branch A): UNDEFINED for the relative TT modes (their kinetic term vanishes exactly at the tuned value: strong coupling); the sum graviton has c_T = 1 -- L_TT(relative) = -(hx^2/2)(kappa^2-omega^2)(1+4 mu u0): zero at mu = -1/(4u0), which is the H1 degeneracy needed for MOND; the record's c_T^2 = 1 was at a non-degenerate lambda
+  >>> VERDICT G5a (13c single scalar): see A7 -- 
+
+RESULT: 11 checks, 0 control failure(s): none

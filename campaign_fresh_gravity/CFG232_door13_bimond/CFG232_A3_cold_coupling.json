@@ -1,0 +1,173 @@
+{
+ "slug": "CFG232_A3_cold_coupling",
+ "mutate": "",
+ "runtime_s": 19.1,
+ "checks": [
+  {
+   "name": "(c-g) hand identity g_tot/g_target = nu(g_target/a0) holds numerically for the designed BIMOND law (point mass, cold at the target profile)",
+   "ok": true,
+   "detail": "max diff 5.65e-06",
+   "kind": "control"
+  },
+  {
+   "name": "G1-C (13a/13b, cold coupled to g): FAILS the 10% line for every kernel and profile (double counting by nu(g_target))",
+   "ok": true,
+   "detail": "smallest max-deviation over the cases = 4.566",
+   "kind": "result"
+  },
+  {
+   "name": "G1-C (13a/13b, cold coupled to g-hat): FAILS the 10% line for every kernel and profile",
+   "ok": true,
+   "detail": "smallest = 5.405; most negative g_tot/g_C - 1 = -5.84",
+   "kind": "result"
+  },
+  {
+   "name": "G1-C (13c, cold conformal like baryons): FAILS the 10% line",
+   "ok": true,
+   "detail": "smallest = 4.566",
+   "kind": "result"
+  },
+  {
+   "name": "G1-C (13c, cold in the Einstein frame, kernel-blind): FAILS the 10% line",
+   "ok": true,
+   "detail": "smallest = 0.967",
+   "kind": "result"
+  },
+  {
+   "name": "C7b (result, my reduction's FULL nonlinear response): F_TM = 1 - nu(y) does NOT hold once M'(Q) is allowed to respond to the twin source: |F_TM| is smaller than |1 - nu| (record's theorem is a fixed-Q statement)",
+   "ok": true,
+   "detail": "y=0.01: -4.081 vs -9.050; y=0.1: -0.811 vs -2.317; y=1: -0.061 vs -0.414; y=10: -0.001 vs -0.049; y=100: -0.000 vs -0.005",
+   "kind": "result"
+  },
+  {
+   "name": "C7a Route 6 theorem reproduced in my reduction at FIXED interaction argument: dPhi'/d(g-hat_N)|_m = 1 - nu = -(Phi'/g_N - 1) for beta = gamma, kernel-blind (symbolically: -4x(3+8x)/(s beta D gamma...))",
+   "ok": true,
+   "detail": "agree",
+   "kind": "control"
+  },
+  {
+   "name": "G3 reaction (c-gh): reaction <= 0.10 g_law over x in [0.3, 30]",
+   "ok": false,
+   "detail": "5.405",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "G1C": {
+   "P2|point": {
+    "cg": 4.5662630464912946,
+    "cgh": 5.405155882898292,
+    "cgh_min": -5.405155882898292,
+    "chi": 4.566268694509537,
+    "ein": 0.9666851688034366
+   },
+   "P2|exp": {
+    "cg": 4.606747380119488,
+    "cgh": 5.441809391453046,
+    "cgh_min": -5.441809391453046,
+    "chi": 4.606751709297238,
+    "ein": 1.4090903088751907
+   },
+   "nu_mono|point": {
+    "cg": 4.990910191749412,
+    "cgh": 5.803848719986177,
+    "cgh_min": -5.803848719986177,
+    "chi": 4.990915485418418,
+    "ein": 0.9828800351622031
+   },
+   "nu_mono|exp": {
+    "cg": 5.031945721895237,
+    "cgh": 5.840606211323934,
+    "cgh_min": -5.840606211323934,
+    "chi": 5.031949779031593,
+    "ein": 1.4518323083459714
+   }
+  },
+  "verdicts": {
+   "G1-C 13a/13b (c-g)": {
+    "status": "FAIL",
+    "why": "max deviation 4.57..5.03 across cases"
+   },
+   "G1-C 13a/13b (c-gh)": {
+    "status": "FAIL",
+    "why": "twin-type coupling reduces the force and can reverse its sign"
+   },
+   "G1-C 13c": {
+    "status": "FAIL",
+    "why": "both couplings"
+   },
+   "G3 reaction (c-g / c-chi / c-Einstein)": {
+    "status": "PASS* (by the frozen definition: zero force beyond -grad Phi; the cold pull is the ordinary Newtonian/law pull, whose excess is the G1-C overshoot)",
+    "why": "field-side law acts on baryons directly"
+   },
+   "G3 reaction (c-gh)": {
+    "status": "FAIL",
+    "why": "max 5.405"
+   }
+  },
+  "C7a_rows": [
+   [
+    0.01,
+    -9.049875619726588,
+    -9.04987562112089
+   ],
+   [
+    0.1,
+    -2.3166247903327886,
+    -2.3166247903554
+   ],
+   [
+    1.0,
+    -0.4142135623386167,
+    -0.41421356237309515
+   ],
+   [
+    10.0,
+    -0.048808847985526434,
+    -0.04880884817015163
+   ],
+   [
+    100.0,
+    -0.004987562078895281,
+    -0.00498756211208895
+   ]
+  ],
+  "C7_rows": [
+   [
+    0.01,
+    -4.0810487322850975,
+    -9.04987562112089,
+    10.04987562112091,
+    10.04987562112089
+   ],
+   [
+    0.1,
+    -0.8110451543696939,
+    -2.3166247903554,
+    3.316624790355399,
+    3.3166247903554
+   ],
+   [
+    1.0,
+    -0.06088876469689808,
+    -0.41421356237309515,
+    1.414213562373095,
+    1.4142135623730951
+   ],
+   [
+    10.0,
+    -0.001140586114445341,
+    -0.04880884817015163,
+    1.0488088481701516,
+    1.0488088481701516
+   ],
+   [
+    100.0,
+    -1.243279257323593e-05,
+    -0.00498756211208895,
+    1.004987562112089,
+    1.004987562112089
+   ]
+  ]
+ }
+}

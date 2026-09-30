@@ -1,0 +1,121 @@
+{
+ "slug": "CFG232_A2_spectrum_MUTATE_M3",
+ "mutate": "M3",
+ "runtime_s": 1.41,
+ "checks": [
+  {
+   "name": "C9 EH quadratic form is invariant under d -> d + k A + A k + k k pi (gauge): zero on the pure-gauge directions",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "C9 Fierz-Pauli control: the helicity-1 Stueckelberg vector has a SECOND-order operator with POSITIVE omega^2 coefficient (healthy)",
+   "ok": true,
+   "detail": "omega^2 coeff = Ax**2*m2/2",
+   "kind": "control"
+  },
+  {
+   "name": "C9 FP control: det of the 10x10 kinetic matrix has omega-degree 10 (five dof: massive graviton)",
+   "ok": true,
+   "detail": "degree 10",
+   "kind": "control"
+  },
+  {
+   "name": "static degeneracy of the relative sector at mu = -1/4 and mu = +1/2 (units b=1): agrees with A1's D(x)=0 roots x = 1/8, -1/4 (mu = -2x)",
+   "ok": true,
+   "detail": "[-1/4, 1/2]",
+   "kind": "control"
+  },
+  {
+   "name": "C4/G5a: the helicity-1 Stueckelberg vector has a FOURTH-order operator (omega-degree 4) proportional to (2u0+u1)(kappa^2-omega^2)^2, i.e. to the static MOND coefficient a = -2(2u0+u1) (record's WF2/L70 structure, fresh code)",
+   "ok": true,
+   "detail": "omega-degree 4, ratio -1/2",
+   "kind": "control"
+  },
+  {
+   "name": "C4: on the tuned subspace the pure-pi row and column of the helicity-0 Stueckelberg form vanish identically (record: 'removes the leading pure-helicity-0 term')",
+   "ok": true,
+   "detail": "T4-T1",
+   "kind": "control"
+  },
+  {
+   "name": "C4/G5c: for a non-degenerate mu the relative TT dispersion is omega^2 = kappa^2 exactly (c_T = 1), as the record states (record: c_T^2 = 1 at T4-T1)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "C4: the record's tuned family (-u0,-u1/2,-u1/2,u0,u1) removes every lapse-velocity term on a generic FRW background, and the solution space of the lapse-velocity-free conditions is 2-dimensional (own derivation)",
+   "ok": true,
+   "detail": "holds=True, dim=2, sol={c1: -c4, c2: -c5/2, c3: -c5/2}",
+   "kind": "control"
+  },
+  {
+   "name": "C4: background value T4-T1 = -4(p^2 + 2q^2) and vanishing first-order variation of T (record: T-bar = -4(p^2+2q^2), delta T = 0)",
+   "ok": true,
+   "detail": "delta T_1 = 0",
+   "kind": "control"
+  },
+  {
+   "name": "Part 5: on the static-MOND background the vector operator's principal part is (kappa^2-omega^2)^2 times a coefficient independent of the background gradients p,q (the interaction contributes L2 = -sigma_s M'(Qbar) T_2): still fourth order at every M' != 0",
+   "ok": true,
+   "detail": "symbol = -(kappa - omega)**2*(kappa + omega)**2",
+   "kind": "control"
+  },
+  {
+   "name": "C5 DC-018: r^(3-n)(pi')^n ~ GM => pi' ~ r^(1-3/n); pi' ~ r^-1 requires n = 3/2 (not an integer Galileon order)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  }
+ ],
+ "numbers": {
+  "L_A1": "-Ax**2*mu*(kappa - omega)**2*(kappa + omega)**2*(2*u0 + u1)/2",
+  "cT_line": {
+   "(1, 0)": [],
+   "(0, 1)": [
+    "1",
+    "1"
+   ],
+   "(1, 1)": [],
+   "(1, -1)": [],
+   "(2, -1)": [
+    "1",
+    "1"
+   ],
+   "(1, 3)": []
+  },
+  "lapse_terms_off_line": [
+   "-1/Ns**4",
+   "2/(Nhs*Ns**3)",
+   "-1/(Nhs**2*Ns**2)"
+  ],
+  "vector_background": {
+   "sym4": "-(kappa - omega)**2*(kappa + omega)**2",
+   "first": "0",
+   "second_jets": "-Att**2 + 2*Atz**2 - Azz**2"
+  },
+  "det9": {
+   "generic": "2*kappa**4*mu**3*(kappa - omega)**7*(kappa + omega)**7*(2*mu - 1)*(4*mu + 1)**5",
+   "tuned": "0",
+   "deg_generic": 14,
+   "deg_tuned": -1
+  },
+  "verdicts": {
+   "G5a (13a/13b, flat and static-MOND: REPRODUCTION)": {
+    "status": "FAIL",
+    "why": "the helicity-1 Stueckelberg vector has a fourth-order operator whose coefficient is the MOND coefficient; a != 0 <=> higher-derivative vector (dipole ghost for either sign)"
+   },
+   "G5c (T4-T1, branch A)": {
+    "status": "UNDEFINED for the relative TT modes (their kinetic term vanishes exactly at the tuned value: strong coupling); the sum graviton has c_T = 1",
+    "why": "L_TT(relative) = -(hx^2/2)(kappa^2-omega^2)(1+4 mu u0): zero at mu = -1/(4u0), which is the H1 degeneracy needed for MOND; the record's c_T^2 = 1 was at a non-degenerate lambda"
+   },
+   "G5a (13c single scalar)": {
+    "status": "see A7",
+    "why": ""
+   }
+  }
+ },
+ "control_bites": false
+}

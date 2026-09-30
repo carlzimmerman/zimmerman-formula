@@ -1,0 +1,105 @@
+{
+ "slug": "CFG232_A6_solar_system",
+ "mutate": "",
+ "runtime_s": 0.14,
+ "checks": [
+  {
+   "name": "G5b gamma: |Psi'/Phi' - 1| at Saturn inside the Cassini 2-sigma window (2.1 +- 2.3)e-5",
+   "ok": true,
+   "detail": "values ['-4.8e-07', '-9.9e-07', '-5.8e-07', '-1.2e-06'], window [-2.5e-05, +6.7e-05]",
+   "kind": "result"
+  },
+  {
+   "name": "C6a reproduces CFG7 H1's committed MW phantom-tide numbers (canonical P2 g_N(R0) = 1.055e-10, tide 1.56e-31 s^-2; nu_mono 2.20e-31; alt 1.83e-31 / 2.56e-31)",
+   "ok": true,
+   "detail": "{'canonical/P2': '1.558e-31', 'canonical/nu_mono': '2.205e-31', 'alt/P2': '1.832e-31', 'alt/nu_mono': '2.563e-31'}",
+   "kind": "control"
+  },
+  {
+   "name": "C6 (AS FROZEN) 'the strict-law MW ratio is 4.0-5.7x the ceiling' -- NOT what the H1 recipe gives (6e-5 x the bound); the 4.0-5.7 of gate 4.01 is a different quantity; KEPT as a failed expectation (declared: my frozen sentence was wrong, as in CFG172's C5)",
+   "ok": false,
+   "detail": "H1-recipe MW@Sun / bound = 3.00e-05",
+   "kind": "control"
+  },
+  {
+   "name": "the designed BIMOND law's phantom equals the strict kernel's to 1e-3 at Solar-System and Milky-Way accelerations (so Q2 is a property of the law, not of the mechanism)",
+   "ok": true,
+   "detail": "max ratio deviation < 1e-3",
+   "kind": "control"
+  },
+  {
+   "name": "G5b Q2 (a) Sun's own phantom at Saturn (isolated, no ownership): exceeds the 5.2e-27 s^-2 ceiling by >= 1e3 for both kernels and footings",
+   "ok": true,
+   "detail": "6.31e+03..1.56e+04 x bound",
+   "kind": "result"
+  },
+  {
+   "name": "G5b Q2 (b) MW phantom tide at the Sun: below the ceiling (passes only if the Sun's OWN phantom is absent = ownership, which BIMOND does not supply)",
+   "ok": true,
+   "detail": "4.9e-05 x bound",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "gamma_saturn": {
+   "canonical/P2": -4.785536826812375e-07,
+   "canonical/nu_mono": -9.87060161494746e-07,
+   "alt/P2": -5.783359167121915e-07,
+   "alt/nu_mono": -1.1857766749612253e-06
+  },
+  "Q2_a_sun_saturn": {
+   "canonical/P2": {
+    "ref": 6308.397898069057,
+    "bimond": 6308.397898775366
+   },
+   "canonical/nu_mono": {
+    "ref": 13011.654463244055,
+    "bimond": 13011.654356036259
+   },
+   "alt/P2": {
+    "ref": 7623.750487337432,
+    "bimond": 7623.750484954694
+   },
+   "alt/nu_mono": {
+    "ref": 15631.188024114923,
+    "bimond": 15631.187928298346
+   }
+  },
+  "Q2_b_mw_sun": {
+   "canonical/P2": {
+    "ref": 2.996804670519372e-05,
+    "bimond": 2.996803908565347e-05,
+    "tide": 1.5583384286700735e-31,
+    "gN": 1.0545405565814039e-10
+   },
+   "canonical/nu_mono": {
+    "ref": 4.239610860087871e-05,
+    "bimond": 4.239608701686133e-05,
+    "tide": 2.204597647245693e-31,
+    "gN": 1.0545405565814039e-10
+   },
+   "alt/P2": {
+    "ref": 3.524015352279673e-05,
+    "bimond": 3.5240109818014696e-05,
+    "tide": 1.8324879831854302e-31,
+    "gN": 1.0545405565814039e-10
+   },
+   "alt/nu_mono": {
+    "ref": 4.928708387134203e-05,
+    "bimond": 4.9286977129300726e-05,
+    "tide": 2.562928361309786e-31,
+    "gN": 1.0545405565814039e-10
+   }
+  },
+  "verdicts": {
+   "G5b Q2 (13a/13b/13c as a bare law)": {
+    "status": "FAIL",
+    "why": "the Sun's own field at Saturn is 6e3..1.6e4 x the bound; the MW-tide reading passes only under an ownership rule that no sub-variant contains (Gap 1). A full 3D external-field solution is not computed."
+   },
+   "G5b gamma": {
+    "status": "PASS",
+    "why": "Psi'/Phi' - 1 = -4.8e-07 (P2, canonical) inside the window"
+   }
+  }
+ }
+}

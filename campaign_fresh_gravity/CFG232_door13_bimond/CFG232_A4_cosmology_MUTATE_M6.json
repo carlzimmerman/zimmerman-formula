@@ -1,0 +1,120 @@
+{
+ "slug": "CFG232_A4_cosmology_MUTATE_M6",
+ "mutate": "M6",
+ "runtime_s": 0.35,
+ "checks": [
+  {
+   "name": "T4-T1 = 3 (B + 2 w q)^2 - 4 p^2 - 8 q^2 with B = (2 H nn - Hh (nn^2+rr^2))/nn: the cosmological (timelike) part is +3B^2 (positive), the static (spacelike) part -4p^2-8q^2 (negative), and the boost enters only as B -> B + 2 w q",
+   "ok": true,
+   "detail": "T = -(-12*H**2*nn**2 + 12*H*Hh*nn**3 + 12*H*Hh*nn*rr**2 - 24*H*nn**2*q*w - 3*Hh**2*nn**4 - 6*Hh**2*nn**2*rr**2 - 3*Hh**2*rr**4 + 12*Hh*nn**3*q*w + 12*Hh*nn*q*rr**2*w + 4*nn**2*p**2 - 12*nn**2*q**2*w**2 + 8*nn**2*q**2)/nn**2",
+   "kind": "control"
+  },
+  {
+   "name": "static limit -4(p^2+2q^2) and FRW limit 3B^2 recovered; B = 0 on the symmetric branch (H = Hh, rr = nn = 1)",
+   "ok": true,
+   "detail": "",
+   "kind": "control"
+  },
+  {
+   "name": "Part 2: with matter (Omega3 != 0) in g only, the two constraints cannot both hold on the symmetric branch B = 0 for all a: their difference is the dust term Omega3/a^3 (plus beta(Lambda - Lambdah)), which is not a constant",
+   "ok": true,
+   "detail": "difference at Lambda = Lambdah: Omega3/(3*asym**3*beta)",
+   "kind": "control"
+  },
+  {
+   "name": "G7 (R-add): at z = 0 the cosmological term 3B^2/a0^2 exceeds the local static argument 12 y^2 for every y <= 1 for the three prescriptions of g-hat (static; dS with rr = 1; dS with rr = 0.07): the total argument is negative and M is undefined there",
+   "ok": true,
+   "detail": "12 cases",
+   "kind": "result"
+  },
+  {
+   "name": "G5a on the FRW background: the vector operator's principal part is (kappa^2/a^2 - omega^2)^2 (up to a positive power of a) times the coefficient M'(Q_arg): fourth order at every M' != 0, exactly as on the flat and static-MOND backgrounds",
+   "ok": true,
+   "detail": "symbol = -(aa*omega - kappa)**2*(aa*omega + kappa)**2/aa**2",
+   "kind": "control"
+  }
+ ],
+ "numbers": {
+  "background_estimate": {
+   "13a": {},
+   "13b-i": {},
+   "13b-ii": {}
+  },
+  "G2_prescribed": {
+   "G_eff": {
+    "13a": {
+     "0.0": 0.07487002478394798,
+     "0.5": 0.055965191081506535,
+     "1.0": 0.04094849104375752,
+     "2.0": 0.023928420939517168,
+     "3.0": 0.01580862971725757,
+     "10.0": 0.003495511583885775,
+     "30.0": 0.0007381814356899753
+    },
+    "13b-i": {
+     "0.0": 0.1326833705074212,
+     "0.5": 0.08298498285984,
+     "1.0": 0.05374972520632722,
+     "2.0": 0.02779578751708447,
+     "3.0": 0.017408727416044906,
+     "10.0": 0.003568021116946596,
+     "30.0": 0.0007413630660211122
+    },
+    "13b-ii": {}
+   },
+   "worst": {
+    "13a": 0.07487002478394798,
+    "13b-i": 0.1326833705074212,
+    "13b-ii": "nan"
+   },
+   "part3_solver_flags": {
+    "13a": 0,
+    "13b-i": 0,
+    "13b-ii": 0
+   }
+  },
+  "verdicts": {
+   "G2 (13a/13b): existence of the background": {
+    "status": "UNDEFINED",
+    "why": "with matter in g only the symmetric (Q = 0) branch has no solution (Part 2) and on every solution T4-T1 = +3B^2 > 0, i.e. Q < 0, where the static design of A1 says nothing: the FRW background needs a continuation of M to Q<0 that the frozen class does not contain"
+   },
+   "G2 background H(z) (13a/13b)": {
+    "status": "UNDEFINED",
+    "why": "the constraints-only solver did not converge at z <~ 1 (flags above); the initial ratio rr_i = ah/a at z = 30 is an extra free datum"
+   },
+   "G2 growth estimate 13a (declared mirror continuation, prescribed background)": {
+    "status": "FAIL on the estimate",
+    "why": "max |G_eff/G-1| = 0.075 (>5% at z <~ 1 because the relative expansion c(H - Hh)/a0 ~ 5-7 puts m(|Q_bg|) at the percent level); CMB part UNDEFINED (no Boltzmann run)"
+   },
+   "G2 growth estimate 13b-i (declared mirror continuation, prescribed background)": {
+    "status": "FAIL on the estimate",
+    "why": "max |G_eff/G-1| = 0.133 (>5% at z <~ 1 because the relative expansion c(H - Hh)/a0 ~ 5-7 puts m(|Q_bg|) at the percent level); CMB part UNDEFINED (no Boltzmann run)"
+   },
+   "G2 13b-ii": {
+    "status": "UNDEFINED",
+    "why": "the vacuum branch has no solution with matter in g only, and the mirror estimate needs the (unsolved) ghat evolution"
+   },
+   "G7 (i) boost, R-static": {
+    "status": "PASS",
+    "why": "relative change of Q at 600 km/s = 4.0e-06"
+   },
+   "G7 (ii) z-dependence, R-static": {
+    "status": "PASS (trivial: no background enters)",
+    "why": "the local law is z-independent when B = 0 locally"
+   },
+   "G7 under R-add": {
+    "status": "FAIL (argument negative at z=0; boost cross term 12 q w B is 3% at y=1 and >100% at y<=0.03)",
+    "why": "reading-dependent: R-static passes only if g-hat locally follows g's static frame, which is the unsolved matching problem"
+   },
+   "G7 (frozen rule: differs between readings)": {
+    "status": "UNDEFINED",
+    "why": "recorded U, not P"
+   },
+   "G5a (13b, FRW background: NEW)": {
+    "status": "FAIL",
+    "why": "same fourth-order vector operator, coefficient M'(Q_arg) != 0 at every finite argument (prescribed-background m(|Q_bg|) at z = 0: 13a 5.75e-03)"
+   }
+  }
+ },
+ "control_bites": true
+}
