@@ -27,6 +27,13 @@ AMENDMENT 18 TOOLING (added 2026-09-30, NEW CODE ONLY; every default reproduces 
   --stage-dir DIR   the directory holding this build's stage_F.npz (default: the extract, i.e. the primary's own);
   --out-csv PATH    write the final catalogue (the default prints the report only).
   Online (--allow-network) a build k > 0 fetches only the correlation ids its cache (primed from the primary's file, read-only) lacks (fetch_correlations_delta).
+
+CONES-BASED CUT 13 (added 2026-09-30, NEW CODE ONLY, OFFLINE; design CONES_CUT13_DESIGN_FROZEN.md, 9ea1d20e7; every default unchanged):
+  --cut13 cones-literal | cones-orbit   the WP1 all-source search on neighbour cones (cones_cut13.ConeTable) instead of the extract stand-ins: literal = PRIMARY (Amendment 16(b)), orbit-aware = VARIANT
+  --neighbours FITS  --neighbour-pairs CSV   (repeatable, matched in order) the Q1 neighbour table(s) and the pairs file whose row index is their pair_id
+  --missing-cones error | extract-fallback   a pair that reaches cut 13 without a cone raises ConeCoverageError (default); 'extract-fallback' (a labelled DR3 code-path option) uses the builder's own flags for it and reports the counts
+  --dump-candidates PATH   write the pairs that reach cut 13 (source_id1, source_id2) so a Q1 can be planned on them
+  The report gains a 'cut13_cones' block only when a cones kind is used.
 """
 import sys
 sys.dont_write_bytecode = True
@@ -167,11 +174,16 @@ def apply_manifest_columns(S, manifest, report):
     return S
 
 
-def stage_g(S, F, ext, variant, release, third, correlations_note, allow_network, seed_offset=0, cache_path=None):
+def stage_g(S, F, ext, variant, release, third, correlations_note, allow_network, seed_offset=0, cache_path=None, candidates_out=None):
     """frozen stage G as build_catalog.main() runs it (COPIED), with `third` supplied (cut 13) and the per-variant cache."""
     extra = {"third": np.zeros(len(F["a"]), bool)}
     pre, _, _ = B.frozen_cuts(S, F["a"], F["b"], F["R"], extra)
     idx = np.flatnonzero(pre)
+    if candidates_out is not None:                                                  # the pairs that reach cut 13 (new option only)
+        with open(candidates_out, "w") as fh:
+            fh.write("source_id1,source_id2\n")
+            for x, y in zip(S["source_id"][F["a"][idx]].tolist(), S["source_id"][F["b"][idx]].tolist()):
+                fh.write(f"{int(x)},{int(y)}\n")
     extra["third"][idx] = third(S, F["a"][idx], F["b"][idx])
     pre2, _, tab0 = B.frozen_cuts(S, F["a"], F["b"], F["R"], extra)
     idx2 = np.flatnonzero(pre2)
@@ -203,16 +215,27 @@ def stage_g(S, F, ext, variant, release, third, correlations_note, allow_network
     return buf.getvalue().encode(), flow
 
 
-def third_function(kind, S):
+def third_function(kind, S, cones=None, missing="error"):
     """cut 13 source: 'extract-builder' (the frozen builder's own function), 'extract-orbit' / 'extract-literal' (cut13.py on
     the extract as a stand-in neighbour catalogue: code path only; the real search is WP1's all-source cones)."""
+    if kind in ("cones-literal", "cones-orbit"):
+        if cones is None:
+            raise ValueError("a cones kind needs a ConeTable (--neighbours / --neighbour-pairs)")
+        mode = "literal" if kind == "cones-literal" else "orbit"
+
+        def fn(S_, a, b):
+            flags, info = cones.flags(S_, a, b, mode=mode, missing=missing, fallback=lambda S__, a_, b_: B.third_star_flags(S__, a_, b_))
+            fn.info = info
+            return flags
+        fn.info = None
+        return fn
     if kind == "extract-builder":
         return lambda S_, a, b: B.third_star_flags(S_, a, b)
     fn = cut13.third_star_orbit_aware if kind == "extract-orbit" else cut13.third_star_literal
     return lambda S_, a, b: fn(S_, a, b).flags
 
 
-def run(release, variant, cut13_kind, manifest, allow_network, seed_offset=0, stage_dir=None):
+def run(release, variant, cut13_kind, manifest, allow_network, seed_offset=0, stage_dir=None, cones=None, missing_cones="error", dump_candidates=None):
     ext = extract_dir(release, variant)
     cache_path = corr_cache_path_k(ext, variant, seed_offset) if seed_offset else None
     report = {"release": release, "variant": variant, "cut13": cut13_kind, "extract": ext.name,
@@ -225,8 +248,11 @@ def run(release, variant, cut13_kind, manifest, allow_network, seed_offset=0, st
     F = dict(np.load(Path(stage_dir or ext) / "stage_F.npz"))
     S = apply_manifest_columns(S, manifest, report)
     note = []
+    third_fn = third_function(cut13_kind, S, cones, missing_cones)
     with contextlib.redirect_stdout(io.StringIO()):
-        csv_bytes, flow = stage_g(S, F, ext, variant, release, third_function(cut13_kind, S), note, allow_network, seed_offset=seed_offset, cache_path=cache_path)
+        csv_bytes, flow = stage_g(S, F, ext, variant, release, third_fn, note, allow_network, seed_offset=seed_offset, cache_path=cache_path, candidates_out=dump_candidates)
+    if getattr(third_fn, "info", None) is not None:                                 # only for a cones kind
+        report["cut13_cones"] = third_fn.info
     report.update(n_pairs=csv_bytes.count(b"\n") - 1, sha256=hashlib.sha256(csv_bytes).hexdigest(), cut_flow=flow,
                   correlations=note)
     return csv_bytes, report
@@ -306,7 +332,11 @@ def main():
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--release", choices=("dr3", "dr4"), default="dr3")
     ap.add_argument("--variant", choices=("primary", "allsource_15c"), default="primary")
-    ap.add_argument("--cut13", choices=("extract-builder", "extract-orbit", "extract-literal"), default="extract-literal")
+    ap.add_argument("--cut13", choices=("extract-builder", "extract-orbit", "extract-literal", "cones-literal", "cones-orbit"), default="extract-literal")
+    ap.add_argument("--neighbours", action="append", default=[], help="Q1 neighbour FITS (repeatable, matched in order with --neighbour-pairs)")
+    ap.add_argument("--neighbour-pairs", action="append", default=[], help="pairs CSV (source_id1, source_id2) whose row index is the FITS pair_id")
+    ap.add_argument("--missing-cones", choices=("error", "extract-fallback"), default="error")
+    ap.add_argument("--dump-candidates", default=None, help="write the pairs that reach cut 13 here")
     ap.add_argument("--manifest", default=None)
     ap.add_argument("--allow-network", action="store_true", help="off by default: without it every connection raises")
     ap.add_argument("--seed-offset", type=int, default=0, help="Amendment 18 seed sweep: build k (stage-G seed SEED + k, own correlation cache); 0 = the frozen seeds, unchanged")
@@ -317,7 +347,14 @@ def main():
     if args.self_test:
         return self_test()
     manifest = json.loads(Path(args.manifest).read_text()) if args.manifest else None
-    csv_bytes, report = run(args.release, args.variant, args.cut13, manifest, args.allow_network, seed_offset=args.seed_offset, stage_dir=args.stage_dir)
+    cones = None
+    if args.cut13.startswith("cones-"):
+        import cones_cut13
+        if not args.neighbours or len(args.neighbours) != len(args.neighbour_pairs):
+            raise SystemExit("a cones kind needs --neighbours and --neighbour-pairs, repeated the same number of times")
+        cones = cones_cut13.ConeTable.from_files(zip(args.neighbours, args.neighbour_pairs))
+    csv_bytes, report = run(args.release, args.variant, args.cut13, manifest, args.allow_network, seed_offset=args.seed_offset, stage_dir=args.stage_dir, cones=cones, missing_cones=args.missing_cones,
+                            dump_candidates=args.dump_candidates)
     if args.out_csv:
         Path(args.out_csv).write_bytes(csv_bytes)
     print(json.dumps(report, indent=1, default=str))
