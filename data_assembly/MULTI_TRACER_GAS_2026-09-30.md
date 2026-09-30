@@ -72,4 +72,19 @@ Not parsed: ALPINE Dessauges-Zavadsky+2020 (no per-galaxy table; 11 galaxies wit
 Plus abstract-level (not parsed): GN20 (z 4.06, CO + dust), REBELS-25 (z 7.31, CO + [CII]), CRISTAL-22 (dust + VLA CO(2-1)), the ACE survey (up to 17 at z 2-2.5).
 **With gas MASSES from >= 2 tracers (not luminosities or fluxes only): Stripe82 78 (z < 0.2), Bourne 9 (z 0.84-1.22), Kirkpatrick 12 (z 1.65-2.93, not independent), NOEMA3D 5 validated of 10 (z 1.12-1.25, reconstructed) and the four singles: about 108 independent or semi-independent galaxies, of which about 27 are at z > 1 (Bourne 6, Kirkpatrick 12, NOEMA3D 5, singles 4).** The z > 2 sample with two independent mass tracers is small (singles 4, plus Kirkpatrick 9 that share alpha_CO) and its calibration is tested by luminosities only in the SMG and SPT sets.
 
+
+## 6. Added later on 2026-09-30 (my user: "keep downloading"): Dunne+22 per-galaxy CDS catalogue and the ACE survey
+**Dunne+2022 per-galaxy catalogue** (VizieR J/MNRAS/517/962 "Metal-rich galaxies dust, CO and [CI]", fetched through the VizieR ASU interface: 207,141 B, sha256 62df37b6a19b1b0e...; `multitracer_gas/dunne2022/`, script `parse_dunne2022_cds.py`). The earlier note that the paper has no per-galaxy table is superseded: **the paper's data availability statement points to CDS, and the catalogue has 408 rows** (master: z, D_L, log L_IR, log L'_CI, log L'_CO, dust flux S_cont at lambda_obs, T_d, T_mw, log L_850, K_850, sample flags SMG/MS/SLUGs/B19/VALES/S16/V20, names) **and four optimisation tables with the per-galaxy optimised conversion factors and log M_H2**: opt_dax (dust+CO+[CI], 114 rows), opt_xa (CO+[CI], 121), opt_xd (dust+[CI], 152), opt_ad (CO+dust, 335). Counts by redshift from the master table (a galaxy counts for a tracer if its luminosity or flux is tabulated):
+| z bin | all sources | >= 2 tracers | all three (CO, [CI], dust) | CO + dust | CO + [CI] | [CI] + dust |
+|---|---|---|---|---|---|---|
+| 0-0.1 | 193 | 178 | 60 | 173 | 60 | 65 |
+| 0.1-0.5 | 44 | 44 | 12 | 44 | 12 | 12 |
+| 0.5-1 | 3 | 3 | 0 | 0 | 0 | 3 |
+| 1-2 | 41 | 39 | 8 | 19 | 17 | 19 |
+| 2-3 | 79 | 77 | 24 | 74 | 24 | 27 |
+| 3-5 | 40 | 40 | 12 | 24 | 12 | 28 |
+| 5-10 | 8 | 8 | 0 | 8 | 0 | 0 |
+**Total: 408 sources, 389 with >= 2 tracers, 116 with all three.** Above z = 1.6 the numbers of galaxies with >= 2 tracers are in the tens (z 2-3: 77, z 3-5: 40, z > 5: 8), and with all three at z 2-3 and 3-5: 24 and 12.
+**ACE survey** (ALMA Chemical Evolution Large Program, z = 2.09-2.49, CO(3-2) and Band 7 dust continuum of 25 galaxies plus one more row; arXiv:2609.21604, 2609.21072, 2609.20926, 2609.21040; `ace_*.csv`, `build_ace.py`, `ace_merged_per_galaxy.csv`): **26 galaxies, 17 CO detections and 18 dust detections (15 with both)**, with CO-based M_mol, dust masses and 12+log(O/H). Conversions: CO(3-2) to CO(1-0) with r31 = 0.77 +- 0.14 (Boogaard+2020) and a metallicity-dependent alpha_CO (the ACE calibration); dust single-band Band 7, optically thin, beta = 2.08, kappa = 0.4 m2/kg at 250 micron. The paper's own summary: mean log(M_dust/M_mol) = -2.37 +- 0.05 at mean 12+log(O/H) = 8.45 for the detected galaxies (from the dust-to-gas paper's abstract).
+
 Nothing here is an acceleration, an a0 or a verdict. Nothing in the repo was changed except new files in `multitracer_gas/` and this note.
