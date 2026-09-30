@@ -1,0 +1,25 @@
+# CFG226 — FROZEN CRITERIA: the record's exact nonlocal point-source relation against the SPARC baryonic Tully–Fisher relation
+
+> **The relation:** G M = v⁴/a₀ + (π β / 2) v², equivalently A²/a₀ + (πβ/2) A = GM with v² = A (`sol61_push/CORE_REVIEW_2026-09-30.md` §3, commits ea962ad3a and 7c99d3f30: the exact point-source solution of the declared phenomenological isotropic nonlocal functional W = |g|²/2 − g·p + |p|²/2 + α|p|³ + (β/2) p·|∇|p, a₀ = 1/(3α), α, β > 0). β is a LENGTH (the term (πβ/2)v² must have the dimension of GM). Large M gives the MOND mass–speed limit v⁴ = GM a₀; small M gives v² = 2GM/(πβ), a mass–speed slope of 2; the slope lies strictly between 2 and 4; the acceleration inferred from v⁴/(GM) is a₀(1 + …): a₀,inf/a₀ = (√(1+η²) − η)², η = πβ√a₀ / (4√(GM)). **That record derives and proves these properties but never confronts them with data.** The review itself says the massless static toy "does not give an exact universal BTFR at finite β". This lane asks what SPARC's BTFR says about β. κ = ½ is FITTED. Author-independent data; no law verdict.
+
+Written 2026-09-30 and committed BEFORE the script exists. Origin: the owner posted the relation as an idea prompt; mapped to the record first (sol61_push), then made runnable here.
+
+## Data and model (fixed here)
+- **SPARC Table 1** (`real_research/data/SPARC_Lelli2016c.mrt`, fixed-width as its byte-by-byte header; NOT `SPARC_table.txt`, a committed 404 page). **Sample:** Vflat > 0, quality Q ≤ 2, inclination ≥ 30°, e_Vflat/Vflat ≤ 0.10. **M_bar = Υ L[3.6] + 1.33 M_HI** with Υ = 0.5 (fiducial); sensitivities Υ = 0.35 and 0.70 (about ±0.15 dex) and the gas-dominated subsample (M_gas/M_bar > 0.5, Υ = 0.5).
+- **Uncertainties:** σ_logM² = (2·0.4343 e_D/D)² + (0.4343 Υ e_L/M_bar)² + (0.4343·0.1·1.33 M_HI/M_bar)² (distance on both L and M_HI, the luminosity error, and a declared 10% on M_HI); σ_log v = 0.4343 e_Vflat/Vflat.
+- **Likelihood (effective variance):** per galaxy r_i = log₁₀ M_i − log₁₀ M_model(v_i; a₀, β) with M_model = (v⁴/a₀ + (πβ/2)v²)/G, σ_i² = σ_M,i² + (s_i σ_v,i)² + σ_int², s_i = d log M_model/d log v at v_i (the model's own local slope, between 2 and 4), −2 ln L = Σ [r²/σ² + ln σ²]. **Free: a₀, β ≥ 0, σ_int.** Optimiser: L-BFGS-B on (log a₀, log β or β = 0, σ_int) from five declared starts; the minimum of the five.
+
+## What is reported (and nothing else)
+1. **Fits:** (F1) a₀ free, β free ≥ 0; (F2) a₀ fixed at the canonical footing 9.3603e-11, β free; (F3) a₀ fixed at the alt footing 1.1312e-10, β free; (F4) β = 0 (the plain BTFR), a₀ free. For each: best parameters, −2 ln L, the change in −2 ln L against β = 0, the **profile interval of β** (Δ(−2 ln L) = 1 for a 68% interval when β̂ > 0; **the one-sided 95% upper limit at Δ = 2.71 above the minimum**), in kpc.
+2. **Derived:** the crossover speed v_c = √((π/2) β a₀) and mass M_c = 2 v_c⁴/(G a₀) at β̂ and at the 95% upper limit; the predicted a₀,inf/a₀ at M_bar = 1e7, 1e8, 1e9, 1e10, 1e11 M☉ (closed form); **y = π c² /(4 β a₀) (SI) of the review's conditional sheet dictionary β a₀ = π/(4y)** as a lower limit from the β upper limit. The plain power-law fit of the same sample (log M = s log v + c, same effective-variance treatment, σ_int free) for the slope s.
+3. **Sensitivities:** Υ = 0.35 and 0.70; the gas-dominated subsample; each re-fit as F1 and F4.
+
+## Controls (all reported; a failure is reported plainly)
+- **C1 data sanity:** the sample size is reported and the plain power-law slope lies in the literature window [3.6, 4.2].
+- **C2 recovery on mocks:** model mocks on the real (v_i, errors) with (a₀, β, σ_int) = (1.2e-10, 0.30 kpc, 0.10): the F1 fit recovers β within its own 68% interval in at least 60% of 200 mocks; with β = 0 the one-sided 95% limit covers 0 in at least 90% of 200 mocks.
+- **C3 optimiser:** the five starts agree on −2 ln L to 1e-6 (F1, Υ = 0.5).
+- **C4 algebra:** A from the quadratic's positive root satisfies A²/a₀ + (πβ/2)A = GM to 1e-12; a₀,inf/a₀ from A²/(GM a₀) equals the record's closed form (√(1+η²) − η)² to 1e-12; the local slope equals 2/(d log A/d log M) of the record's expression to 1e-10.
+- **MUTATE (`MUTATE=1`, outputs `*_MUTATE`):** every M_i replaced by M_model(v_i; 1.2e-10, 0.50 kpc) exactly (noise-free): F1 returns β̂ = 0.500 kpc to 1e-3 and the plain BTFR (F4) is worse by more than 100 in −2 ln L.
+
+## Limits (written before the run)
+The relation is the exact far-field amplitude of an IDEAL POINT SOURCE in a declared phenomenological model; SPARC discs are extended and the review says finite boundaries change a nonlocal operator globally, so this tests the far-field amplitude relation only. Υ and gas masses carry systematics that the declared bands only sample. The SPARC BTFR at v < 40 km/s rests on a few tens of galaxies; the lower masses where the relation departs most (LITTLE THINGS, Lelli+2019) are not on disk and would need a download (the owner's go). A slope below 4 can have other causes (Υ, distances, inclination); β̂ > 0 would not single out this model.
