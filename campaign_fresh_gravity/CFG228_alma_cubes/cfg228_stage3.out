@@ -1,0 +1,33 @@
+CFG228 Stage 3 -- the ROTATION of the six ALPINE rotators from the cubes: a thin-disc forward model through the header's beam, fitted to the sub-cube (Stage 1 §3 of the frozen criteria).
+Run ONLY after the blind pre-flight (0c4c5778d) was committed.  Exponential [CII] brightness with R_d = R_e,[CII]/1.678 fixed from Stage 1; V(R) = (2/pi) V_a arctan(R/R_t); constant sigma_0; PA, systemic velocity, V_a, R_t, sigma_0 and the
+line flux FREE; the inclination FIXED at the corpus value (marginalised at the scoring stage).  Each channel model is convolved with the header's elliptical Gaussian beam (FFT).  chi^2 over the voxels inside the moment-0 S/N > 2 mask, per-voxel noise from the
+line-free channels, parameter errors from the (J^T J)^-1 inflated by N_beam (beam-correlated noise) and by max(1, chi^2/n).  Planted-rotation recovery (C-ext) on the galaxy's OWN geometry, beam and noise.
+Compilation; calibration-limited; not a detection; not a verdict.  LambdaCDM has no a0.  kappa = 1/2 FITTED.
+Frozen criteria: FROZEN_CRITERIA.md here (71ec12282).
+MUTATE = none
+  [PASS] C-beam a point source through the model convolution returns the header's beam FWHM to 3% (VC5110377875): major 1.052 vs 1.052, minor 0.802 vs 0.802 arcsec
+
+FORWARD-MODEL FITS (thin disc, arctan rotation curve, inclination FIXED at the corpus value; parameter errors inflated by N_beam and max(1, chi2/n))
+  galaxy          inc   PA      v_sys-v_peak  V_a (km/s)   R_t (kpc)  sigma_0 (km/s)   flux (Jy km/s; Stage 1)   chi2/n   V_rot(R_out) +- err   [R_out kpc]   V_rot(Jones R) [R_J]   Jones outer ring V +- err   on bound
+  CG32            55   259.5     +27.8        148.9       3.00       116.1         1.93 (1.62)         1.43     114.1 +-  66.0   [ 7.82]        81.7 [3.50]          115.0 +-  27.0        Rt
+  DC396844        57   174.8     +44.1         72.2       0.20       113.0         2.15 (1.82)         2.02      70.6 +-  38.8   [ 5.60]        69.8 [3.75]           80.4 +-  17.7        Rt
+  DC494057        46   187.0     -25.8        214.1       3.00        71.7         1.05 (0.91)         2.40     139.7 +-  26.6   [ 4.94]       109.9 [3.13]           80.3 +-  12.8        Rt
+  DC552206        61   309.6     -12.8        184.0       0.20        77.8         1.96 (1.96)         1.54     181.0 +-   9.6   [ 7.97]       179.7 [5.53]          172.8 +-  27.6        Rt
+  DC881725        48   329.8     +34.7        176.7       3.00        83.3         1.54 (1.32)         2.12     123.9 +-  51.1   [ 5.92]        96.0 [3.44]           62.1 +-  12.5        Rt
+  VC5110377875    50   155.2     +68.7        139.7       0.20        59.4         2.86 (2.75)         2.40     136.7 +-   8.5   [ 5.96]       135.1 [3.84]          102.8 +-  19.8        Rt
+
+PLANTED-ROTATION RECOVERY (C-ext): 50 mocks per galaxy, planted V_a 150 km/s, R_t 1.0 kpc, sigma_0 40 km/s, the galaxy's own corpus inclination, beam, geometry and REAL line-free-channel noise; the recovered V(R_out) must lie within 15% of the input in >= 90% of the mocks and its mean bias must be below 10%
+  CG32          fits 50/50: within 15% in 0.90, mean bias +0.004, SD of V_fit/V_true 0.103; mean quoted error 40.1 km/s
+  DC396844      fits 50/50: within 15% in 0.96, mean bias +0.005, SD of V_fit/V_true 0.062; mean quoted error 29.6 km/s
+  DC494057      fits 50/50: within 15% in 0.86, mean bias -0.013, SD of V_fit/V_true 0.095; mean quoted error 20.6 km/s
+  DC552206      fits 50/50: within 15% in 0.98, mean bias -0.012, SD of V_fit/V_true 0.064; mean quoted error 14.3 km/s
+  DC881725      fits 50/50: within 15% in 0.88, mean bias +0.016, SD of V_fit/V_true 0.097; mean quoted error 36.5 km/s
+  VC5110377875  fits 50/50: within 15% in 0.98, mean bias +0.002, SD of V_fit/V_true 0.038; mean quoted error 13.1 km/s
+  [PASS] C-ext CG32: the recovered V(R_out) lies within 15% of the input in >= 90% of the mocks and the mean bias is below 10%: within 15%: 0.90; bias +0.004
+  [PASS] C-ext DC396844: the recovered V(R_out) lies within 15% of the input in >= 90% of the mocks and the mean bias is below 10%: within 15%: 0.96; bias +0.005
+  [FAIL] C-ext DC494057: the recovered V(R_out) lies within 15% of the input in >= 90% of the mocks and the mean bias is below 10%: within 15%: 0.86; bias -0.013
+  [PASS] C-ext DC552206: the recovered V(R_out) lies within 15% of the input in >= 90% of the mocks and the mean bias is below 10%: within 15%: 0.98; bias -0.012
+  [FAIL] C-ext DC881725: the recovered V(R_out) lies within 15% of the input in >= 90% of the mocks and the mean bias is below 10%: within 15%: 0.88; bias +0.016
+  [PASS] C-ext VC5110377875: the recovered V(R_out) lies within 15% of the input in >= 90% of the mocks and the mean bias is below 10%: within 15%: 0.98; bias +0.002
+
+5/7 controls pass; 357 s
