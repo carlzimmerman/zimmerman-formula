@@ -1,0 +1,267 @@
+
+======================================================================================================================
+CFG196 pre-flight: a0 at z ~ 2.2, SINS/zC-SINF AO x PHIBSS 2013 -- a FORECAST from baryons only   [MUTATE=1: rival E(z) -> 1]
+======================================================================================================================
+  a0 canonical 9.3603e-11, alt 1.1312e-10 m/s^2 (kappa = 1/2 FITTED); A0 = 2888.3 / 3490.5 (km/s)^2/kpc; G = 4.30105e-06 kpc (km/s)^2/Msun
+  rival: a = a0 E(z), E = sqrt(0.315 (1+z)^3 + 0.685); E(2.2) = 3.318 (Omega_m = 0.3 would give 3.245)  -- MUTATE sets E = 1
+  error budget (declared): stat LOS ((1.0, 10.0), (2.0, 15.0), (3.0, 25.0)) km/s at R/R_e (two-side avg; /sin i; x sqrt2 per side in 'dense'), di = +/-5.0 deg (coherent), sigma0 = 50.0 +/- 10.0 km/s (coherent, via alpha), bs 5.0, non-circ 10.0 km/s
+  [PASS] C7 no kinematic column loaded (PHIBSS vrot, FS2009 velocities/dispersions/Mdyn are never read)
+         measured: loaded columns: ['co_upper_limit', 'comp', 'mmol_msun', 'mstar_1e10msun', 'mstar_msun', 'name', 'r_half_halpha_kpc', 'rh_co_kpc', 'rh_opt_kpc', 'type', 'z_co', 'z_halpha']; kinematic-looking: []
+
+  SINS AO galaxies: 35; PHIBSS rows: 73; name matches: 6
+    Q1623-BX599   comp='' type=Merger/Disk     CO_UL=0 R1=True R2=False 
+    Q2343-BX389   comp='' type=Disk(A)         CO_UL=1 R1=False R2=True 
+    Q2343-BX513   comp='' type=Disp.Dominated  CO_UL=0 R1=True R2=False 
+    Q2343-BX610   comp='' type=Disk(A)         CO_UL=0 R1=True R2=True 
+    Q2346-BX482   comp='se' type=Disk(A)         CO_UL=0 R1=False R2=True Tacconi+13 Fig.5 caption: CO mostly from the fainter source BX482se
+    ZC406690      comp='' type=Disk(A)         CO_UL=0 R1=True R2=True 
+  [PASS] C0 the name match reproduces the frozen table (6 matches; PRIMARY by R1 and R2 = {ZC406690, Q2343-BX610})
+         measured: matches=['Q1623-BX599', 'Q2343-BX389', 'Q2343-BX513', 'Q2343-BX610', 'Q2346-BX482', 'ZC406690']; primary=['Q2343-BX610', 'ZC406690']
+  [PASS] C1 P2 limits: g_pred/sqrt(g a) - 1 < 1e-5 at y = 1e-12, g_pred/g - 1 < 1e-5 at y = 1e12
+         measured: 5.00e-13, 5.00e-13
+         nu_mono (reported): 5.03e-07, 1.49e-12
+  [PASS] C2 Freeman disc: V^2 peaks at R = 2.15 +/- 0.02 R_d with V^2 R_d/(GM) = 0.387 +/- 0.004; V^2 R/(GM) = 1 +/- 0.01 at 50 R_d
+         measured: peak R = 2.1501 R_d, V^2 R_d/GM = 0.38705; at 50 R_d 1.00181
+
+======================================================================================================================
+Inputs per galaxy (PHIBSS table values; header geometry; PSF FWHM from the PSF image)
+======================================================================================================================
+  [PASS] C6 Halpha at z lies inside every cut cube's wavelength range (header only)
+         measured: Q1623-BX599 2.1860 in [2.0645,2.3095]; Q2343-BX389 2.0831 in [1.9609,2.2059]; Q2343-BX513 2.0409 in [1.9668,2.2118]; Q2343-BX610 2.1079 in [1.9854,2.2304]; Q2346-BX482 2.1427 in [2.0155,2.2605]; ZC406690 2.0980 in [1.9746,2.2196]
+
+  galaxy         role      z      zsrc   E(z)   M*/1e10 Mmol/1e10 R_e  R_e,gas(src)  kpc/"  PSF FWHM " (area) kpc   R_inside/R_corner kpc  PASINF
+  Q1623-BX599   reported 2.330 z_CO   1.000    5.70     5.00   1.7   1.7(rh_opt)  8.19  0.289 (0.276) 2.36     9.0 /  13.6   +00
+      variant: PHIBSS as tabulated
+  Q1623-BX599   reported 2.330 z_CO   1.000    5.70     5.00   2.8   2.8(rh_opt)  8.19  0.289 (0.276) 2.36     9.0 /  13.6   +00
+      variant: size variant: FS2009 r1/2(Halpha) = 2.8 kpc
+  Q2343-BX389   reported 2.173 FS2009 1.000    4.10    12.00   4.2   4.2(rh_opt)  8.28  0.212 (0.113) 1.76     9.0 /  13.9   -45
+      variant: PHIBSS; gas = 3-sigma UPPER LIMIT
+  Q2343-BX389   reported 2.173 FS2009 1.000    4.10     0.00   4.2   4.2(rh_opt)  8.28  0.212 (0.113) 1.76     9.0 /  13.9   -45
+      variant: PHIBSS; gas = 0 (lower bracket)
+  Q2343-BX513   reported 2.109 z_CO   1.000    2.70     3.20   2.1   2.1(rh_opt)  8.32  0.179 (0.195) 1.49     9.1 /  14.0   +00
+      variant: PHIBSS as tabulated
+  Q2343-BX513   reported 2.109 z_CO   1.000    2.70     3.20   2.6   2.6(rh_opt)  8.32  0.179 (0.195) 1.49     9.1 /  14.0   +00
+      variant: size variant: FS2009 r1/2(Halpha) = 2.6 kpc
+  Q2343-BX610   PRIMARY  2.211 z_CO   1.000   10.00    23.00   4.6   3.8(rh_co)  8.26  0.264 (0.259) 2.18     8.5 /  14.3   +20
+      variant: PHIBSS as tabulated
+  Q2346-BX482   reported 2.264 z_CO   1.000    0.60     8.10   2.4   2.4(rh_opt)  8.23  0.202 (0.195) 1.67     9.7 /  18.1   +00
+      variant: PHIBSS row 'se' as tabulated (component BX482se: NOT the main disc's baryons)
+  Q2346-BX482   reported 2.264 z_CO   1.000    1.69     0.00   4.2   4.2(rh_opt)  8.23  0.202 (0.195) 1.67     9.7 /  18.1   +00
+      variant: main disc: FS2009 M*, r1/2(Halpha); gas = 0 (none measured)
+  ZC406690      PRIMARY  2.196 z_CO   1.000    4.00     8.20   6.3   6.3(rh_opt)  8.27  0.193 (0.169) 1.60     9.1 /  13.7   +00
+      variant: PHIBSS as tabulated
+
+======================================================================================================================
+The requested table: V_c at 1, 2, 3 R_e -- P2 kernel, canonical footing, i = 45 deg, PS-B budget
+  bands = min..max over the 9 mass cells (M* +/- 0.2 dex x Mmol x/ 1.5); reach: in = inside the cut cube, corner = corner only, out = beyond; res = R >= 1 PSF FWHM
+======================================================================================================================
+
+  Q1623-BX599 [reported] -- PHIBSS as tabulated
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     1.7  in/UNRES    34.46   411   414 [ 335- 514]    414 [ 335- 514]    0.0    40.6    0.00    40.4    YES       5.7
+      2     3.4  in/res      15.64   392   398 [ 323- 492]    398 [ 323- 492]    0.0    43.0    0.00    42.3    YES      13.3
+      3     5.1  in/res       7.33   329   339 [ 277- 417]    339 [ 277- 417]    0.0    49.7    0.00    47.7    YES      25.9
+    P2      alt      : V_flat [415, 399, 341] [335-514, 324-493, 280-419]  V_rival [415, 399, 341] [335-514, 324-493, 280-419]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [416, 400, 343] [336-515, 326-494, 282-421]  V_rival [416, 400, 343] [336-515, 326-494, 282-421]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [416, 402, 346] [337-515, 328-496, 286-423]  V_rival [416, 402, 346] [337-515, 328-496, 286-423]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q1623-BX599 [reported] -- size variant: FS2009 r1/2(Halpha) = 2.8 kpc
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     2.8  in/res      12.70   321   327 [ 265- 403]    327 [ 265- 403]    0.0    34.1    0.00    33.8    YES       7.3
+      2     5.6  in/res       5.76   305   318 [ 261- 390]    318 [ 261- 390]    0.0    38.2    0.00    36.9    YES      16.9
+      3     8.4  in/res       2.70   256   277 [ 231- 336]    277 [ 231- 336]    0.0    47.8    0.00    44.7    YES      32.4
+    P2      alt      : V_flat [328, 320, 281] [267-404, 264-392, 235-339]  V_rival [328, 320, 281] [267-404, 264-392, 235-339]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [329, 322, 285] [268-405, 266-394, 241-342]  V_rival [329, 322, 285] [268-405, 266-394, 241-342]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [331, 326, 291] [270-407, 270-396, 246-347]  V_rival [331, 326, 291] [270-407, 270-396, 246-347]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2343-BX389 [reported] -- PHIBSS; gas = 3-sigma UPPER LIMIT
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     4.2  in/res       8.49   321   330 [ 271- 403]    330 [ 271- 403]    0.0    34.4    0.00    34.1    YES       7.2
+      2     8.4  in/res       3.85   306   324 [ 269- 392]    324 [ 269- 392]    0.0    38.5    0.00    37.3    YES      16.5
+      3    12.6  corner/res   1.81   256   286 [ 242- 342]    286 [ 242- 342]    0.0    48.0    0.00    45.1    YES      31.3
+    P2      alt      : V_flat [332, 327, 291] [273-405, 273-395, 248-346]  V_rival [332, 327, 291] [273-405, 273-395, 248-346]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [333, 331, 298] [275-406, 278-398, 255-352]  V_rival [333, 331, 298] [275-406, 278-398, 255-352]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [336, 336, 305] [278-408, 284-402, 262-358]  V_rival [336, 336, 305] [278-408, 284-402, 262-358]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2343-BX389 [reported] -- PHIBSS; gas = 0 (lower bracket)
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     4.2  in/res       2.16   162   178 [ 148- 217]    178 [ 148- 217]    0.0    25.6    0.00    24.2    YES      13.7
+      2     8.4  in/res       0.98   154   184 [ 156- 220]    184 [ 156- 220]    0.0    34.1    0.00    29.7    YES      31.0
+      3    12.6  corner/res   0.46   129   173 [ 149- 202]    173 [ 149- 202]    0.0    49.5    0.00    41.2    YES      59.1
+    P2      alt      : V_flat [181, 189, 179] [151-220, 161-224, 155-208]  V_rival [181, 189, 179] [151-220, 161-224, 155-208]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [185, 195, 184] [155-223, 166-230, 159-215]  V_rival [185, 195, 184] [155-223, 166-230, 159-215]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [189, 200, 191] [159-226, 171-236, 165-222]  V_rival [189, 200, 191] [159-226, 171-236, 165-222]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2343-BX513 [reported] -- PHIBSS as tabulated
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     2.1  in/res      12.45   275   280 [ 228- 345]    280 [ 228- 345]    0.0    31.0    0.00    30.5    YES       8.5
+      2     4.2  in/res       5.65   262   273 [ 224- 334]    273 [ 224- 334]    0.0    36.0    0.00    34.1    YES      19.9
+      3     6.3  in/res       2.65   220   238 [ 198- 288]    238 [ 198- 288]    0.0    47.5    0.00    43.1    YES      38.7
+    P2      alt      : V_flat [281, 275, 241] [229-346, 227-336, 202-291]  V_rival [281, 275, 241] [229-346, 227-336, 202-291]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [282, 277, 245] [231-347, 229-337, 207-293]  V_rival [282, 277, 245] [231-347, 229-337, 207-293]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [284, 280, 250] [232-348, 233-340, 212-298]  V_rival [284, 280, 250] [232-348, 233-340, 212-298]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2343-BX513 [reported] -- size variant: FS2009 r1/2(Halpha) = 2.6 kpc
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     2.6  in/res       8.12   247   254 [ 208- 312]    254 [ 208- 312]    0.0    29.3    0.00    28.7    YES       9.4
+      2     5.2  in/res       3.69   235   250 [ 207- 304]    250 [ 207- 304]    0.0    35.1    0.00    32.8    YES      21.9
+      3     7.8  in/res       1.73   197   221 [ 187- 265]    221 [ 187- 265]    0.0    47.6    0.00    42.5    YES      42.3
+    P2      alt      : V_flat [256, 253, 225] [210-314, 210-306, 191-269]  V_rival [256, 253, 225] [210-314, 210-306, 191-269]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [257, 255, 231] [211-315, 214-308, 197-273]  V_rival [257, 255, 231] [211-315, 214-308, 197-273]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [259, 259, 236] [214-316, 218-312, 202-278]  V_rival [259, 259, 236] [214-316, 218-312, 202-278]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2343-BX610 [PRIMARY] -- PHIBSS as tabulated
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     4.6  in/res      17.10   477   483 [ 395- 594]    483 [ 395- 594]    0.0    46.0    0.00    45.9    YES       4.9
+      2     9.2  corner/res   6.82   426   440 [ 363- 538]    440 [ 363- 538]    0.0    45.9    0.00    45.4    YES      12.0
+      3    13.8  corner/res   3.03   347   373 [ 311- 451]    373 [ 311- 451]    0.0    51.2    0.00    49.5    YES      23.4
+    P2      alt      : V_flat [485, 443, 378] [396-595, 366-540, 317-455]  V_rival [485, 443, 378] [396-595, 366-540, 317-455]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [486, 446, 383] [398-596, 369-542, 324-459]  V_rival [486, 446, 383] [398-596, 369-542, 324-459]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [488, 450, 390] [400-597, 374-546, 331-464]  V_rival [488, 450, 390] [400-597, 374-546, 331-464]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2346-BX482 [reported] -- PHIBSS row 'se' as tabulated (component BX482se: NOT the main disc's baryons)
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     2.4  in/res      14.06   312   318 [ 261- 388]    318 [ 261- 388]    0.0    33.5    0.00    33.1    YES       7.5
+      2     4.8  in/res       6.38   297   308 [ 256- 374]    308 [ 256- 374]    0.0    37.7    0.00    36.3    YES      17.4
+      3     7.2  in/res       2.99   249   268 [ 225- 322]    268 [ 225- 322]    0.0    47.7    0.00    44.3    YES      33.7
+    P2      alt      : V_flat [319, 311, 271] [262-388, 258-376, 229-325]  V_rival [319, 311, 271] [262-388, 258-376, 229-325]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [320, 313, 275] [263-389, 260-378, 234-328]  V_rival [320, 313, 275] [263-389, 260-378, 234-328]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [321, 315, 280] [265-391, 264-380, 239-332]  V_rival [321, 315, 280] [265-391, 264-380, 239-332]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  Q2346-BX482 [reported] -- main disc: FS2009 M*, r1/2(Halpha); gas = 0 (none measured)
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     4.2  in/res       0.89   104   126 [ 107- 150]    126 [ 107- 150]    0.0    25.0    0.00    21.9    YES      20.4
+      2     8.4  in/res       0.40    99   135 [ 117- 158]    135 [ 117- 158]    0.0    36.5    0.00    28.3    YES      46.7
+      3    12.6  corner/res   0.19    83   131 [ 115- 151]    131 [ 115- 151]    0.0    54.5    0.00    40.8    YES      40.7  [PS-B: V_rot->0 at sigma0=50]
+    P2      alt      : V_flat [129, 140, 137] [110-153, 122-163, 120-157]  V_rival [129, 140, 137] [110-153, 122-163, 120-157]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [133, 144, 140] [114-157, 125-168, 122-161]  V_rival [133, 144, 140] [114-157, 125-168, 122-161]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [137, 149, 145] [117-161, 130-173, 127-167]  V_rival [137, 149, 145] [117-161, 130-173, 127-167]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+  ZC406690 [PRIMARY] -- PHIBSS as tabulated
+    R/R_e  R kpc  reach      gN/a0   V_N   V_flat [band]       V_rival [band]      dV    sig_V(B)  dV/sig  sig_V(K)  overlap  PS-B-PS-K
+      1     6.3  in/res       2.86   228   246 [ 205- 297]    246 [ 205- 297]    0.0    28.8    0.00    28.2    YES       9.8
+      2    12.6  corner/res   1.30   217   251 [ 214- 298]    251 [ 214- 298]    0.0    35.1    0.00    32.9    YES      21.8
+      3    18.9  out/res      0.61   182   232 [ 202- 270]    232 [ 202- 270]    0.0    47.5    0.00    42.9    YES      39.8
+    P2      alt      : V_flat [249, 256, 240] [209-300, 219-303, 209-277]  V_rival [249, 256, 240] [209-300, 219-303, 209-277]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono canonical: V_flat [253, 264, 248] [214-303, 227-309, 216-286]  V_rival [253, 264, 248] [214-303, 227-309, 216-286]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+    nu_mono alt      : V_flat [257, 271, 256] [219-306, 233-316, 223-295]  V_rival [257, 271, 256] [219-306, 233-316, 223-295]  dV [0.0, 0.0, 0.0]  dV/sig [0.0, 0.0, 0.0]
+
+======================================================================================================================
+Separations per galaxy: Z_nom (nominal masses), Z_prof (masses profiled under Gaussian priors 0.2 dex / log10 1.5), Z_band (worst case inside the bands)
+  point sets: 3pt_all (1,2,3 R_e, if reached), 3pt_reach, dense (every FWHM to the inside radius, both sides)
+======================================================================================================================
+  galaxy          variant                                   set        n   i=30: Znom Zprof Zband   i=45: Znom Zprof Zband   i=60: Znom Zprof Zband
+  Q1623-BX599    PHIBSS as tabulated                       3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q1623-BX599    PHIBSS as tabulated                       3pt_reach   2    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q1623-BX599    PHIBSS as tabulated                       dense       6    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q1623-BX599    size variant: FS2009 r1/2(Halpha) = 2.8   3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q1623-BX599    size variant: FS2009 r1/2(Halpha) = 2.8   3pt_reach   3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q1623-BX599    size variant: FS2009 r1/2(Halpha) = 2.8   dense       6    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2343-BX389    PHIBSS; gas = 3-sigma UPPER LIMIT         3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX389    PHIBSS; gas = 3-sigma UPPER LIMIT         3pt_reach   2    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX389    PHIBSS; gas = 3-sigma UPPER LIMIT         dense      10    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2343-BX389    PHIBSS; gas = 0 (lower bracket)           3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX389    PHIBSS; gas = 0 (lower bracket)           3pt_reach   2    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX389    PHIBSS; gas = 0 (lower bracket)           dense      10    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2343-BX513    PHIBSS as tabulated                       3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX513    PHIBSS as tabulated                       3pt_reach   3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX513    PHIBSS as tabulated                       dense      12    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2343-BX513    size variant: FS2009 r1/2(Halpha) = 2.6   3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX513    size variant: FS2009 r1/2(Halpha) = 2.6   3pt_reach   3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX513    size variant: FS2009 r1/2(Halpha) = 2.6   dense      12    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2343-BX610    PHIBSS as tabulated                       3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX610    PHIBSS as tabulated                       3pt_reach   1    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2343-BX610    PHIBSS as tabulated                       dense       6    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2346-BX482    PHIBSS row 'se' as tabulated (component   3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2346-BX482    PHIBSS row 'se' as tabulated (component   3pt_reach   3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2346-BX482    PHIBSS row 'se' as tabulated (component   dense      10    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  Q2346-BX482    main disc: FS2009 M*, r1/2(Halpha); gas   3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2346-BX482    main disc: FS2009 M*, r1/2(Halpha); gas   3pt_reach   2    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  Q2346-BX482    main disc: FS2009 M*, r1/2(Halpha); gas   dense      10    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+  ZC406690       PHIBSS as tabulated                       3pt_all     3    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  ZC406690       PHIBSS as tabulated                       3pt_reach   1    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+  ZC406690       PHIBSS as tabulated                       dense      10    0.00  0.00  0.00        0.00  0.00  0.00        0.00  0.00  0.00   
+      dense i=45 nu_mono canonical PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      alt       PS-B: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+      dense i=45 P2      canonical PS-K: Znom  0.00  Zprof  0.00  Zband  0.00   (mimicry: flat needs dM* +0.00 dex, dMmol +0.00 dex to look like the nominal rival)
+
+======================================================================================================================
+Sample level (PRIMARY = ZC406690 + Q2343-BX610, PHIBSS as tabulated): the feasibility gate H0
+======================================================================================================================
+  H0 (declared: dense, reachable, P2, canonical, PS-B budget, i = 45, independent nuisances): Z_nom = 0.00, Z_prof = 0.00  ->  CANNOT discriminate (forecast, < 2)
+    variant i=30                                                : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant i=60                                                : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant nu_mono                                             : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant alt footing                                         : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant PS-K budget                                         : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant 3pt_reach                                           : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant 3pt_all (optimistic: if 1-3 R_e were all reached)   : Z_nom  0.00  Z_prof  0.00  -> CANNOT discriminate (forecast, < 2)
+    variant coherent: one shared (dM*, dMmol) for both galaxies : Z_prof  0.00 (rival-truth mimicked by flat at dM* +0.00, dMmol +0.00 dex) -> CANNOT discriminate (forecast, < 2)
+
+======================================================================================================================
+Stress rows (reported, never in the verdict grid): primary galaxies, dense, P2, canonical, i = 45, PS-B
+======================================================================================================================
+  nominal                                 : sample Z_prof  0.00 | dV(1 R_e), V_N(1 R_e): Q2343-BX610 +0.0, 477 km/s; ZC406690 +0.0, 228 km/s
+  alpha_CO ULIRG-like (Mmol x 0.8/4.36)   : sample Z_prof  0.00 | dV(1 R_e), V_N(1 R_e): Q2343-BX610 +0.0, 299 km/s; ZC406690 +0.0, 153 km/s
+  stellar R_e = rh_opt/1.3                : sample Z_prof  0.00 | dV(1 R_e), V_N(1 R_e): Q2343-BX610 +0.0, 498 km/s; ZC406690 +0.0, 241 km/s
+  HI h = 0.5 at 2x gas scale              : sample Z_prof  0.00 | dV(1 R_e), V_N(1 R_e): Q2343-BX610 +0.0, 508 km/s; ZC406690 +0.0, 240 km/s
+  spherical shortcut geometry             : sample Z_prof  0.00 | dV(1 R_e), V_N(1 R_e): Q2343-BX610 +0.0, 420 km/s; ZC406690 +0.0, 204 km/s
+
+======================================================================================================================
+POST-HOC diagnostic (added after the first run; reported only; H0 above is unchanged)
+  (i) near-perfect kinematics: C = (1 km/s)^2 I, no inclination or sigma0 term, mass priors as declared -- does the
+      rival/flat SHAPE difference survive the mass freedom? (1 km/s is unphysical; this is a limit, not a forecast)
+  (ii) masses known exactly: Z_nom with the declared kinematic budget
+  (iii) ablation: the declared-set sample Z_prof with ONE budget term changed at a time
+======================================================================================================================
+  dense   : sample Z_prof (perfect kinematics, priors 0.2 dex / log10 1.5) = 0.00  -> CANNOT discriminate (forecast, < 2); Q2343-BX610 0.00 (n=6, masses shift dM* +0.00, dMmol +0.00); ZC406690 0.00 (n=10, masses shift dM* +0.00, dMmol +0.00)
+  3pt_all : sample Z_prof (perfect kinematics, priors 0.2 dex / log10 1.5) = 0.00  -> CANNOT discriminate (forecast, < 2); Q2343-BX610 0.00 (n=3, masses shift dM* +0.00, dMmol +0.00); ZC406690 0.00 (n=3, masses shift dM* +0.00, dMmol +0.00)
+  (ii) masses known exactly, declared budget, dense: sample Z_nom = 0.00; 3pt_all: 0.00
+  (iii) declared (reference)                      : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) inclination error 0 (i known exactly)     : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) inclination error 2 deg                   : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) sigma0 error 0 (sigma0 known exactly)     : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) statistical error 0                       : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) non-circular floor 0                      : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) beam-smearing residual 0                  : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) inclination AND sigma0 known exactly      : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) mass priors halved (0.1 dex; x/1.22)      : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+  (iii) i and sigma0 exact + mass priors halved   : dense Z_nom  0.00 Z_prof  0.00 | 3pt_all (if reached) Z_nom  0.00 Z_prof  0.00
+
+======================================================================================================================
+Headline S1 [MUTATE must change it]
+======================================================================================================================
+  [FAIL] S1 the rival and flat predictions differ: dV > 0 at every radius of every galaxy row, and Z_nom > 0
+         measured: min dV = 0.000e+00 km/s over 30 points; min Z_nom (3pt_all, i=45) = 0.000e+00
+  [FAIL] (reported) H0 the test CAN discriminate at >= 2 sigma (forecast; declared set)
+         measured: Z_prof = 0.00 -> CANNOT discriminate (forecast, < 2)
+
+  5/7 checks pass; load-bearing failures: 1; wrote CFG196_preflight_MUTATE_results.json (1.4 s)
+rc = 1
