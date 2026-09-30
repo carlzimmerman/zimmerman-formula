@@ -2,6 +2,18 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Subsequent source/bridge check: SELF_TUNING_GALAXY_BRIDGE_RESULTS.md verifies
+arXiv:2009.01720v1 Secs. 2 and 5.1. Its well-tempered construction cancels
+vacuum energy with a rolling scalar but contains the de Sitter scale in the
+action. A schematic direct linear identification of that scalar with the
+cubic galaxy coefficient fails vacuum-shift invariance by −Kc epsilon P³
+and generally makes the coefficient time dependent. Six exact identities and
+a bounded execution manifest are saved. This is a restricted compatibility
+test, not a no-go theorem for all self-tuning. Next: a derivative-dependent,
+shift-invariant galaxy bridge in one action, including re-derived degeneracy
+and source equations. No such combined action has yet been established; no
+32π prediction is claimed.
+
 VACUUM_OFFSET_SELECTION_RESULTS.md proves that the current linear-lambda
 trial family retains an arbitrary additive vacuum energy. Its unique positive
 de Sitter vacuum and the previously established local linear stability
