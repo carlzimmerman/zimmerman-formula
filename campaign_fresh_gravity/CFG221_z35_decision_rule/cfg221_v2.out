@@ -1,0 +1,70 @@
+CFG221 v2 -- the SECONDARY decision rule for the pooled z > 3.5 two-sided test, and its operating characteristics on mocks.
+Frozen criteria: FROZEN_CRITERIA_V2.md here (e0a9be1b4), committed before v2 was run on anything; v1 (FROZEN_CRITERIA.md + addenda, lane 251985c27) stays the PRIMARY rule.
+v2 changes the verdict only: the primary cell (nu_mono, canonical) alone; a ONE-SIDED 5% marginal bound per law (the 95th percentile of the resampled medians below 0 = DISFAVOURED-under,
+the 5th percentile above 0 = DISFAVOURED-over); B = 10,000 everywhere; the other three kernel/footing cells and the leave-one-out fits are REPORTED, not conditions.
+Both verdicts are always shown side by side and v1 governs any headline.  Judged by the SAME controls, C2 above all; if v2 fails C2 that is recorded and the iteration stops (no v3).
+kappa = 1/2 FITTED, NOT DERIVED.  A description of THIS rule on THIS template, not a claim about any real sample.  No sentence says the data favour a framework.
+
+CONTROLS
+    noise-free, truth FLAT  N =  6: v2 verdict LO   (primary cell flat not, rival under); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth FLAT  N = 13: v2 verdict LO   (primary cell flat not, rival under); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth FLAT  N = 20: v2 verdict LO   (primary cell flat not, rival under); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth FLAT  N = 36: v2 verdict LO   (primary cell flat not, rival under); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth FLAT  N = 50: v2 verdict LO   (primary cell flat not, rival under); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth H(z)  N =  6: v2 verdict HI   (primary cell flat over, rival not); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth H(z)  N = 13: v2 verdict HI   (primary cell flat over, rival not); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth H(z)  N = 20: v2 verdict HI   (primary cell flat over, rival not); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth H(z)  N = 36: v2 verdict HI   (primary cell flat over, rival not); all four cells agree: True; leave-one-out survives: True
+    noise-free, truth H(z)  N = 50: v2 verdict HI   (primary cell flat over, rival not); all four cells agree: True; leave-one-out survives: True
+  [PASS] C2 noise-free mock (no noise, no extra scatter, true offset 0): the v2 verdict is the correct separation at every N for both truths: 10/10
+  [PASS] C4 at sigma = 0 the v2 machinery reproduces CFG220's headline medians to 1e-9 and its two-sided 95% CI edges to 0.01 (the one-sided verdict thresholds are reported beside): medians +0.106, -0.203 (max diff 8.3e-17); CI edges max diff 0.000; one-sided statuses at sigma = 0: flat not, rival under
+
+ILLUSTRATION (the six real CRISTAL detections at table R_out; NOT blind, no verdict; sigma_dust = 0.30, B = 10,000): v2 NO-SEPARATION
+    nu_mono canonical flat not   rival not  
+    nu_mono alt       flat not   rival not  
+    P2      canonical flat not   rival not  
+    P2      alt       flat not   rival not  
+
+OPERATING CHARACTERISTICS (v2): 88 cells x 100 mocks, B = 10000, 16 cores
+[1648 s]
+
+  v2, scenario REAL: P(correct separation) / P(WRONG separation), by truth, true offset c (dex on the gas mass) and N =         6        13        20        36        50
+    FLAT  c = 0.0     0.81/0.00 0.98/0.00 0.98/0.00 1.00/0.00 1.00/0.00
+    FLAT  c = 0.3     0.70/0.00 0.82/0.00 0.94/0.00 0.82/0.00 0.92/0.00
+    FLAT  c = -0.3    0.66/0.03 0.91/0.00 0.96/0.01 0.98/0.00 0.99/0.00
+    FLAT  c = 0.6     0.56/0.00 0.39/0.00 0.35/0.00 0.17/0.00 0.15/0.00
+    FLAT  c = -0.6    0.54/0.10 0.59/0.10 0.65/0.10 0.59/0.01 0.61/0.00
+    FLAT  c = PRIOR   0.69/0.02 0.89/0.01 0.93/0.00 0.91/0.00 0.90/0.00
+    H(z)  c = 0.0     0.39/0.04 0.51/0.02 0.73/0.02 0.69/0.02 0.85/0.01
+    H(z)  c = 0.3     0.07/0.13 0.07/0.12 0.02/0.10 0.00/0.13 0.00/0.10
+    H(z)  c = -0.3    0.82/0.02 0.84/0.00 0.98/0.00 1.00/0.00 1.00/0.00
+    H(z)  c = 0.6     0.00/0.44 0.01/0.43 0.00/0.57 0.00/0.68 0.00/0.84
+    H(z)  c = -0.6    0.83/0.01 0.79/0.00 0.80/0.00 0.68/0.00 0.66/0.00
+    H(z)  c = PRIOR   0.42/0.06 0.48/0.06 0.52/0.08 0.57/0.13 0.58/0.15
+
+  REPORTED robustness of the v2 separations (REAL, c = 0): of the mocks with the CORRECT v2 separation, the share in which all four cells agree / the leave-one-out survives
+    FLAT  N=6: 66/81 cells, 54/81 LOO; N=13: 92/98 cells, 96/98 LOO; N=20: 92/98 cells, 97/98 LOO; N=36: 99/100 cells, 100/100 LOO; N=50: 100/100 cells, 100/100 LOO
+    H(z)  N=6: 33/43 cells, 14/43 LOO; N=13: 45/53 cells, 43/53 LOO; N=20: 66/75 cells, 63/75 LOO; N=36: 63/71 cells, 62/71 LOO; N=50: 78/86 cells, 77/86 LOO
+
+  sensitivities (P(correct)/P(wrong)): OPT c = 0; MISMATCH (truth from P2, alt); prior-width scale 0.5 (sigma_dust = sigma_CO = 0.15 dex)
+    FLAT  OPT c=0: N=13 1.00/0.00, N=36 1.00/0.00  | MISMATCH c=0: N=20 1.00/0.00, N=36 0.98/0.00; PRIOR: N=20 0.89/0.00, N=36 0.90/0.00
+    H(z)  OPT c=0: N=13 0.80/0.00, N=36 0.97/0.00  | MISMATCH c=0: N=20 0.56/0.03, N=36 0.70/0.01; PRIOR: N=20 0.41/0.12, N=36 0.54/0.18
+    scale 0.5 FLAT  c = 0.0    N = 13 / 20 / 36 / 50: 0.89/0.00 0.94/0.00 0.97/0.00 0.99/0.00
+    scale 0.5 FLAT  c = PRIOR  N = 13 / 20 / 36 / 50: 0.82/0.00 0.90/0.00 0.86/0.00 0.89/0.00
+    scale 0.5 H(z)  c = 0.0    N = 13 / 20 / 36 / 50: 0.81/0.02 0.91/0.01 0.98/0.00 0.95/0.00
+    scale 0.5 H(z)  c = PRIOR  N = 13 / 20 / 36 / 50: 0.68/0.07 0.80/0.04 0.94/0.03 0.84/0.02
+
+  [FAIL] C1 FALSE-SEPARATION-CONTROLLED (v2): the WRONG-separation rate at c = 0, +-0.30 and PRIOR is <= 0.094 for every N and both truths (REAL): worst 0.15 at ('H(z)', 'PRIOR', 50)
+
+  FEASIBLE (v2; REAL, c = 0, P(correct) >= 0.8 for both truths): N_feasible = 50
+    N =  6: v2 REAL c = 0: FLAT 0.81, H(z) 0.39
+    N = 13: v2 REAL c = 0: FLAT 0.98, H(z) 0.51
+    N = 20: v2 REAL c = 0: FLAT 0.98, H(z) 0.73
+    N = 36: v2 REAL c = 0: FLAT 1.00, H(z) 0.69
+    N = 50: v2 REAL c = 0: FLAT 1.00, H(z) 0.85
+
+  SIDE BY SIDE, REAL, c = 0, P(correct separation): v1 (the PRIMARY rule, governs any headline) | v2 (SECONDARY), N =    6   13   20   36   50
+    FLAT  v1 0.24 0.71 0.91 0.96 1.00  |  v2 0.81 0.98 0.98 1.00 1.00
+    H(z)  v1 0.08 0.10 0.13 0.13 0.07  |  v2 0.39 0.51 0.73 0.69 0.85
+
+2/3 controls pass; 1648 s
