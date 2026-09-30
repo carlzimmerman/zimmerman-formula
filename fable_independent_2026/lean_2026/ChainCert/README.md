@@ -93,3 +93,7 @@ NOT certified (still open):
 - That the theory is closed or derived.
 
 Script note: `verify_chain.sh` accepts only the exact axiom list `[propext, Classical.choice, Quot.sound]`, so a theorem that depends on a strict subset (for example `[propext]` alone) is reported as non-standard. The one such helper (EFE-free ⇒ additive, a one-line `sub_eq_iff_eq_add`) is therefore inlined into its two uses rather than listed.
+
+
+### Clarification on the ownership hierarchy (2026-09-29, orchestrator; no theorem changed)
+In `Ownership` and `CandidateB`, which systems count as "owned" is the INPUT hierarchy `H`. It must not be read as "every bound subsystem of a larger system". Under candidate B's FG001 reading, members of a bound group keep their own cold components as lumps inside the group's phantom (CFG11, T5). A galaxy in a group is therefore top-level for its own internal dynamics. "Owned" (Newtonian internally, ratio 1) applies to systems that carry no cold component of their own, such as a wide binary inside a galaxy, which is DR4's Arm C. The rule that decides which systems collect their own cold component (Gap 1, the legal switch) is NOT formalised here, and no committed action supplies it. The theorems hold for any `H`; their physical content depends on `H` being chosen by that unformalised rule. Separately, the "Arm A 1.16–1.18" mentioned in the Ownership row is the ν_RAR-kernel band. The P2 merge is 1.063–1.127 (CFG191, 6eced32e2).
