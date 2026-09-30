@@ -2,6 +2,20 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Latest source test: EXPANSION_BRIDGE_RESULTS.md derives necessary lapse,
+shift and polarization equations for the beta M²P³/Theta action. Theta
+variation adds a cubic shift current and doubles its lapse contribution.
+Constant-expansion slices of the GR mass geometry exist kinematically, but
+the C=0 frozen GR ansatz fails the interacting shift equation by
+−beta A P²P'/(3H²); its nonconstant clock acceleration forces nonconstant P.
+Eleven symbolic identities pass in expansion_bridge_constraints_v2.py with
+validated provenance. This excludes a shortcut, not general source solutions.
+Read-only review of the N1/N2/N3 puzzle lane summaries found no established
+selector to import; their scripts/data were not independently audited here.
+Next: coupled source matching if pursuing this branch, while independently
+fixing beta and U. No beta selection, self-tuning implementation or exact
+32π result has been established.
+
 Next completed audit: DERIVATIVE_BRIDGE_RESULTS.md derives the f(X) bridge's
 polarization equation, new lapse stress, scalar current and properly relaxed
 local kinetic coefficient. Eight exact identities and four finite sign checks

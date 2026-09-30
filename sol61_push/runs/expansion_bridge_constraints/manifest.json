@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EXPANSION_BRIDGE_CONSTRAINTS",
+  "repository": {
+    "commit": "e1354bea98a9b9a2cfc0965b29572cb28676708f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/expansion_bridge_constraints.py",
+    "--output",
+    "sol61_push/runs/expansion_bridge_constraints/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Ten symbolic identities: three reduced ADM Euler equations, constant-expansion slice controls and free-fall trace identities",
+    "coefficient_domain": "Exact symbolic real functions and positive parameters",
+    "conventions": "EXPANSION_BRIDGE_RESULTS.md; Theta=-T/N>0, stationary areal gauge",
+    "inputs": [
+      "sol61_push/expansion_bridge_constraints.py"
+    ],
+    "bounds": {
+      "identities": 10,
+      "CMC_static_patch": "F>0, A2>0",
+      "excluded_denominator": "T=0"
+    },
+    "non_claims": [
+      "No interacting sourced solution",
+      "No full angular/foliation equations or stability proof",
+      "No beta or 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T22:34:47.243075+00:00",
+    "runtime_seconds": 0.989579,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/expansion_bridge_constraints.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/expansion_bridge_constraints.py",
+      "sha256": "e90395a2903ef7b3f9e0a05fa6514db81cd6d3a1c696c9c63adcf4af7056654e",
+      "sha256_after": "e90395a2903ef7b3f9e0a05fa6514db81cd6d3a1c696c9c63adcf4af7056654e"
+    }
+  ],
+  "output_directory": "sol61_push/runs/expansion_bridge_constraints",
+  "declared_results": [
+    "sol61_push/runs/expansion_bridge_constraints/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/expansion_bridge_constraints/stdout.txt",
+      "sha256": "167babcc1fba312ebadf54e8608b644ab09c56966a53b69a13173e8ae8a0c2f3",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_constraints/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_constraints/results.json",
+      "sha256": "167babcc1fba312ebadf54e8608b644ab09c56966a53b69a13173e8ae8a0c2f3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
