@@ -1,0 +1,165 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_RETARDED_CLOCK",
+  "repository": {
+    "commit": "71ec122825c9539d6c1dac2843fa397651f00ec0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/retarded_clock.py",
+    "--output",
+    "sol61_push/runs/retarded_clock/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Retarded planar mass bubble, isotropic orientation continuum, dressed-clock principal kernel and continued resonance",
+    "coefficient_domain": "Exact real/complex formulas and double precision quadrature/roots",
+    "conventions": "RETARDED_CLOCK_CONTRACT.md",
+    "inputs": [
+      "sol61_push/retarded_clock.py"
+    ],
+    "bounds": {
+      "real_r": [
+        0.01,
+        0.2,
+        0.8,
+        1,
+        1.2
+      ],
+      "upper_half_plane_r": [
+        [
+          0.2,
+          0.1
+        ],
+        [
+          1.2,
+          0.1
+        ],
+        [
+          -0.5,
+          0.2
+        ],
+        [
+          0,
+          0.4
+        ]
+      ],
+      "t": [
+        0.001,
+        0.01,
+        0.1,
+        0.3
+      ],
+      "quadrature_absolute_tolerance": 1e-09,
+      "root_residual_tolerance": 1e-10,
+      "leading_coefficient_relative_tolerance": 0.005
+    },
+    "non_claims": [
+      "No finite-cone spatial causality proof",
+      "No de Sitter mode audit",
+      "No microscopic action for orientation ensemble",
+      "No 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T20:26:03.380134+00:00",
+    "runtime_seconds": 0.976419,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/retarded_clock.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/retarded_clock.py",
+      "sha256": "4129f5498ce21bddc78b3045af35d3f50ee9acc374d951d1bf100aca9d4c5bb4",
+      "sha256_after": "4129f5498ce21bddc78b3045af35d3f50ee9acc374d951d1bf100aca9d4c5bb4"
+    }
+  ],
+  "output_directory": "sol61_push/runs/retarded_clock",
+  "declared_results": [
+    "sol61_push/runs/retarded_clock/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/retarded_clock/stdout.txt",
+      "sha256": "2764ca80802e3a00f6f68b2adf3361451d2b425393da4ace530bba35a523b7b3",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/retarded_clock/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/retarded_clock/results.json",
+      "sha256": "ced4109aef95f83324bb218f4a7f7d121cafc2c317e8d5cc7754d3f20818ed82",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,9 @@
+# Retarded surface-loop and collective-clock contract
+
+Base 71ec122825c9539d6c1dac2843fa397651f00ec0. Previous goal turn was progress. Use the neutral, zero-temperature free planar Dirac mass vertex from SLOW_WALL_RESULTS.md, positive-band degeneracy nu, speed v and coupling y. Constant analytic loop subtraction and critical clock matching remain assumed. Independent orientations have a uniform distribution of plane normals, equal positive area weights, and no interactions between planes. The canonical-clock reduction is local relative to background curvature; it is not the full de Sitter response.
+
+Derive the Euclidean bubble and retarded square root, the exact angular average J(r), and a dressed scalar inverse propagator F=omega^2-gamma*k^2*B(omega,k), with positive gamma. Set the additional R3^2 stabilizer to zero to distinguish loop stabilization from the prior k^4 probe. Universal upper-half-plane pole exclusion is an analytic sign argument, not a sampled search.
+
+Finite computations: real angular ratios r={0.01,0.2,0.8,1,1.2}, complex upper-half-plane ratios {(0.2,0.1),(1.2,0.1),(-0.5,0.2),(0,0.4)}; quadrature absolute agreement 1e-9. Find lower-sheet resonance roots for t=gamma*k/v={1e-3,1e-2,0.1,0.3} with residual 1e-10; at t=1e-3 test the leading frequency and damping coefficients within 0.5%. A resonance root uses continuation of the retarded real-axis boundary, not the principal square root in the lower half-plane. Thirty-second timeout, one thread, no randomness.
+
+Pass supports the specified bubble and reduction. It does not establish compact-support spatial causality, a local microscopic clock completion, interactions, finite temperature/density, de Sitter stability, critical protection, vacuum matching or 32pi. Positivity and analyticity in frequency are distinct from a finite signal cone in space.
