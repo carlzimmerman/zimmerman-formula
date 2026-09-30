@@ -1,0 +1,110 @@
+CFG213 -- a two-sided a0 test on DysmalPy disc-halo decompositions: NOEMA3D (z ~ 1.4, measured CO gas) and ALMA-CRISTAL
+(z ~ 5, dust-based gas).  D = 1/(1 - f_DM(R_e)) against nu(g_bar / a0(z)) for the flat law and the rival a0 ~ H(z).
+Frozen criteria: FROZEN_CRITERIA.md here (03da24231), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.
+The mass route (the fits' baryonic mass; CRISTAL's prior is 1 dex wide) is the headline limitation; the independent route
+(SED + gas) is reported beside the primary, never substituted.  No sentence says the data favour the framework.
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 kernel round trip nu(y*(D)) = D to 1e-9 (nu_mono, P2)
+         {'nu_mono': 7.771561172376096e-15, 'P2': 7.105427357601002e-15}
+  [PASS] C2 a synthetic galaxy placed exactly on each law returns delta = 0 to 1e-12
+         max |delta| 0.0e+00
+  CRISTAL: 14 dynamical disks; z present for 14; excluded from the primary: ['09', '15']; NOEMA3D: 10 galaxies
+
+======================================================================================================================
+Z1.4 (NOEMA3D)
+======================================================================================================================
+  n = 10; z 1.12-1.63
+  per galaxy (primary: alpha 3.36, fit route): id, z, g_bar/A0_canonical, D_obs, D_pred flat / rival (nu_mono, canonical)
+     G4_38065  z 1.115  g_bar/A0    2.31  D_obs 1.220  D_flat 1.280  D_rival 1.501
+     G4_38232  z 1.116  g_bar/A0    3.63  D_obs 1.042  D_flat 1.180  D_rival 1.337
+     G4_20371  z 1.117  g_bar/A0    4.84  D_obs 1.099  D_flat 1.136  D_rival 1.256
+     G4_23011  z 1.192  g_bar/A0    5.72  D_obs 1.316  D_flat 1.116  D_rival 1.227
+    GN4_24517  z 1.241  g_bar/A0    4.18  D_obs 2.174  D_flat 1.157  D_rival 1.317
+    GN4_18574  z 1.246  g_bar/A0    3.49  D_obs 1.042  D_flat 1.188  D_rival 1.375
+     G4_24078  z 1.359  g_bar/A0   12.40  D_obs 1.042  D_flat 1.055  D_rival 1.118
+    GN4_32842  z 1.523  g_bar/A0    3.98  D_obs 2.000  D_flat 1.165  D_rival 1.380
+     G4_17555  z 1.537  g_bar/A0    2.01  D_obs 2.222  D_flat 1.319  D_rival 1.670
+     G4_37375  z 1.633  g_bar/A0    3.73  D_obs 1.515  D_flat 1.176  D_rival 1.424
+
+  FLAT: median delta [95% CI] -> verdict  (rows: kernel / footing; columns: alpha 3.36 | 1.68 | 0 (reported); fit route)
+    nu_mono canonical | +0.033 [-0.034, +0.226] CONSISTENT | +0.023 [-0.042, +0.216] CONSISTENT | +0.013 [-0.065, +0.205] CONSISTENT
+    nu_mono alt       | +0.026 [-0.046, +0.207] CONSISTENT | +0.016 [-0.057, +0.196] CONSISTENT | +0.006 [-0.078, +0.186] CONSISTENT
+    P2      canonical | +0.046 [-0.014, +0.252] CONSISTENT | +0.040 [-0.027, +0.241] CONSISTENT | +0.033 [-0.046, +0.228] CONSISTENT
+    P2      alt       | +0.038 [-0.025, +0.244] CONSISTENT | +0.030 [-0.034, +0.232] CONSISTENT | +0.023 [-0.055, +0.219] CONSISTENT
+    ROUTE (SED + gas) nu_mono canonical alpha 3.36: n = 10, +0.046 [-0.081, +0.205] CONSISTENT
+    ROUTE (SED + gas) nu_mono alt       alpha 3.36: n = 10, +0.033 [-0.090, +0.195] CONSISTENT
+    ROUTE (SED + gas) P2      canonical alpha 3.36: n = 10, +0.067 [-0.072, +0.224] CONSISTENT
+    ROUTE (SED + gas) P2      alt       alpha 3.36: n = 10, +0.057 [-0.077, +0.212] CONSISTENT
+
+  RIVAL: median delta [95% CI] -> verdict  (rows: kernel / footing; columns: alpha 3.36 | 1.68 | 0 (reported); fit route)
+    nu_mono canonical | -0.002 [-0.090, +0.124] CONSISTENT | -0.012 [-0.100, +0.113] CONSISTENT | -0.022 [-0.114, +0.103] CONSISTENT
+    nu_mono alt       | -0.017 [-0.113, +0.098] CONSISTENT | -0.027 [-0.118, +0.088] CONSISTENT | -0.037 [-0.131, +0.077] CONSISTENT
+    P2      canonical | +0.018 [-0.053, +0.176] CONSISTENT | +0.008 [-0.064, +0.165] CONSISTENT | -0.002 [-0.085, +0.154] CONSISTENT
+    P2      alt       | +0.009 [-0.067, +0.152] CONSISTENT | -0.001 [-0.081, +0.142] CONSISTENT | -0.011 [-0.100, +0.131] CONSISTENT
+    ROUTE (SED + gas) nu_mono canonical alpha 3.36: n = 10, -0.011 [-0.124, +0.149] CONSISTENT
+    ROUTE (SED + gas) nu_mono alt       alpha 3.36: n = 10, -0.031 [-0.141, +0.123] CONSISTENT
+    ROUTE (SED + gas) P2      canonical alpha 3.36: n = 10, +0.020 [-0.096, +0.184] CONSISTENT
+    ROUTE (SED + gas) P2      alt       alpha 3.36: n = 10, +0.007 [-0.109, +0.171] CONSISTENT
+
+  ROBUST: flat CONSISTENT (route-stable); rival CONSISTENT (route-stable)
+  -> no robust separation
+
+======================================================================================================================
+Z5 (CRISTAL primary)
+======================================================================================================================
+  n = 12; z 4.43-5.69
+  per galaxy (primary: alpha 3.36, fit route): id, z, g_bar/A0_canonical, D_obs, D_pred flat / rival (nu_mono, canonical)
+           02  z 5.294  g_bar/A0    3.79  D_obs 1.075  D_flat 1.173  D_rival 2.087  [Disk]
+           03  z 5.689  g_bar/A0   10.01  D_obs 1.099  D_flat 1.068  D_rival 1.570  [Best Disk]
+          06b  z 4.562  g_bar/A0    7.17  D_obs 1.087  D_flat 1.093  D_rival 1.597  [Disk]
+          07a  z 5.154  g_bar/A0    1.36  D_obs 2.632  D_flat 1.453  D_rival 3.051  [Disk]
+           08  z 4.430  g_bar/A0    2.29  D_obs 2.083  D_flat 1.283  D_rival 2.315  [Best Disk]
+        10a-E  z 5.671  g_bar/A0    8.49  D_obs 1.053  D_flat 1.079  D_rival 1.646  [Disk]
+           11  z 4.439  g_bar/A0   13.45  D_obs 1.111  D_flat 1.051  D_rival 1.341  [Best Disk]
+           12  z 5.572  g_bar/A0    1.68  D_obs 1.754  D_flat 1.377  D_rival 2.914  [Disk]
+           19  z 5.233  g_bar/A0    5.05  D_obs 1.220  D_flat 1.131  D_rival 1.880  [Best Disk]
+           20  z 5.545  g_bar/A0    1.26  D_obs 1.754  D_flat 1.483  D_rival 3.268  [Best Disk]
+          23b  z 4.562  g_bar/A0    2.52  D_obs 2.326  D_flat 1.257  D_rival 2.263  [Disk]
+          23c  z 4.565  g_bar/A0    9.69  D_obs 2.128  D_flat 1.070  D_rival 1.468  [Best Disk]
+
+  FLAT: median delta [95% CI] -> verdict  (rows: kernel / footing; columns: alpha 3.36 | 1.68 | 0 (reported); fit route)
+    nu_mono canonical | +0.053 [+0.005, +0.234] DISFAVOURED-over | -0.068 [-0.136, +0.124] CONSISTENT | -0.258 [-0.330, -0.078] DISFAVOURED-under
+    nu_mono alt       | +0.036 [-0.001, +0.214] CONSISTENT | -0.085 [-0.141, +0.106] CONSISTENT | -0.272 [-0.342, -0.098] DISFAVOURED-under
+    P2      canonical | +0.082 [+0.014, +0.267] DISFAVOURED-over | -0.039 [-0.127, +0.152] CONSISTENT | -0.232 [-0.315, -0.047] DISFAVOURED-under
+    P2      alt       | +0.069 [+0.009, +0.254] DISFAVOURED-over | -0.052 [-0.132, +0.139] CONSISTENT | -0.244 [-0.323, -0.059] DISFAVOURED-under
+    ROUTE (SED + gas) nu_mono canonical alpha 3.36: n = 9, +0.043 [-0.076, +0.377] CONSISTENT
+    ROUTE (SED + gas) nu_mono alt       alpha 3.36: n = 9, +0.023 [-0.088, +0.355] CONSISTENT
+    ROUTE (SED + gas) P2      canonical alpha 3.36: n = 9, +0.075 [-0.059, +0.419] CONSISTENT
+    ROUTE (SED + gas) P2      alt       alpha 3.36: n = 9, +0.061 [-0.068, +0.401] CONSISTENT
+
+  RIVAL: median delta [95% CI] -> verdict  (rows: kernel / footing; columns: alpha 3.36 | 1.68 | 0 (reported); fit route)
+    nu_mono canonical | -0.161 [-0.207, -0.055] DISFAVOURED-under | -0.273 [-0.370, -0.162] DISFAVOURED-under | -0.453 [-0.596, -0.353] DISFAVOURED-under
+    nu_mono alt       | -0.186 [-0.237, -0.087] DISFAVOURED-under | -0.299 [-0.399, -0.194] DISFAVOURED-under | -0.478 [-0.624, -0.382] DISFAVOURED-under
+    P2      canonical | -0.112 [-0.155, -0.001] DISFAVOURED-under | -0.221 [-0.318, -0.107] DISFAVOURED-under | -0.407 [-0.542, -0.303] DISFAVOURED-under
+    P2      alt       | -0.134 [-0.185, -0.035] DISFAVOURED-under | -0.245 [-0.347, -0.141] DISFAVOURED-under | -0.431 [-0.568, -0.332] DISFAVOURED-under
+    ROUTE (SED + gas) nu_mono canonical alpha 3.36: n = 9, -0.198 [-0.321, +0.107] CONSISTENT
+    ROUTE (SED + gas) nu_mono alt       alpha 3.36: n = 9, -0.222 [-0.354, +0.074] CONSISTENT
+    ROUTE (SED + gas) P2      canonical alpha 3.36: n = 9, -0.153 [-0.269, +0.161] CONSISTENT
+    ROUTE (SED + gas) P2      alt       alpha 3.36: n = 9, -0.173 [-0.305, +0.126] CONSISTENT
+
+  ROBUST: flat NOT robust (CONSISTENT, DISFAVOURED-over) (route-dependent); rival DISFAVOURED-under (route-dependent)
+  -> the decompositions SEPARATE the laws: rival is robustly DISFAVOURED-under
+
+======================================================================================================================
+REPORTED: CRISTAL-09 / -15, Best Disk subset, the vector's outer radii, C3
+======================================================================================================================
+  excluded 09: z 5.575, g_bar/A0 13.97, D_obs 1.087, D_flat 1.049, D_rival 1.423
+  excluded 15: z 4.580, g_bar/A0 8.08, D_obs 1.205, D_flat 1.083, D_rival 1.545
+  Best Disk subset (n = 6), flat, nu_mono canonical: +0.053 [+0.018, +0.255] DISFAVOURED-over
+  Best Disk subset (n = 6), rival, nu_mono canonical: -0.118 [-0.229, +0.058] CONSISTENT
+  vector at table_Rout (n = 12; model curves, extrapolated beyond the last marker), flat, nu_mono canonical: +0.019 [-0.037, +0.225] CONSISTENT
+  vector at table_Rout (n = 12; model curves, extrapolated beyond the last marker), rival, nu_mono canonical: -0.283 [-0.350, -0.109] DISFAVOURED-under
+  vector at outermost_data_marker (n = 12; model curves, extrapolated beyond the last marker), flat, nu_mono canonical: +0.023 [-0.026, +0.221] CONSISTENT
+  vector at outermost_data_marker (n = 12; model curves, extrapolated beyond the last marker), rival, nu_mono canonical: -0.258 [-0.321, -0.101] DISFAVOURED-under
+  [PASS] (reported) C3 (reported) vector at R_e vs table: D ratio and V_circ ratio (median, min, max)
+         D_vec/D_tab median 1.010 [0.926, 1.047]; V_vec/V_tab median 0.997 [0.803, 1.039] over 12 disks
+
+  3/3 checks pass; load-bearing failures: 0   (1 s)

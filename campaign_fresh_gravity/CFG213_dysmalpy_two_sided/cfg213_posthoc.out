@@ -1,0 +1,31 @@
+CFG213 POST HOC diagnostics (written AFTER the main run's numbers were seen; reported only, never a verdict).
+Why: in the z ~ 5 bin the rival is DISFAVOURED-under on the fit route (n = 12) but CONSISTENT on the SED + gas route (n = 9).
+  (a) Is the flip the SAMPLE (12 -> 9) or the MASS SWAP?  The fit route recomputed on exactly the route's 9 galaxies.
+  (b) Leave-one-out on the fit route (n = 12): the range of the median delta and whether any single galaxy carries it.
+  (c) The per-galaxy route factor M_ind / M_fit (SED + dust gas over the fitted M_bary) for the 9.
+Imports the lane's main script read-only (its functions and data), with MUTATE forced off.
+
+(a) the route's 9: ['02', '03', '07a', '08', '11', '12', '19', '20', '23b']
+  nu_mono canonical flat : FIT route on the 9: +0.073 [+0.013, +0.258] DISFAVOURED-over  | SED+gas route on the 9: +0.043 [-0.076, +0.377] CONSISTENT
+  nu_mono canonical rival: FIT route on the 9: -0.155 [-0.270, -0.046] DISFAVOURED-under | SED+gas route on the 9: -0.198 [-0.321, +0.107] CONSISTENT
+  nu_mono alt       flat : FIT route on the 9: +0.050 [+0.007, +0.235] DISFAVOURED-over  | SED+gas route on the 9: +0.023 [-0.088, +0.355] CONSISTENT
+  nu_mono alt       rival: FIT route on the 9: -0.179 [-0.305, -0.077] DISFAVOURED-under | SED+gas route on the 9: -0.222 [-0.354, +0.074] CONSISTENT
+  P2      canonical flat : FIT route on the 9: +0.117 [+0.020, +0.294] DISFAVOURED-over  | SED+gas route on the 9: +0.075 [-0.059, +0.419] CONSISTENT
+  P2      canonical rival: FIT route on the 9: -0.107 [-0.220, +0.011] CONSISTENT        | SED+gas route on the 9: -0.153 [-0.269, +0.161] CONSISTENT
+  P2      alt       flat : FIT route on the 9: +0.098 [+0.016, +0.281] DISFAVOURED-over  | SED+gas route on the 9: +0.061 [-0.068, +0.401] CONSISTENT
+  P2      alt       rival: FIT route on the 9: -0.128 [-0.257, -0.021] DISFAVOURED-under | SED+gas route on the 9: -0.173 [-0.305, +0.126] CONSISTENT
+
+(b) leave-one-out, fit route, n = 12 -> 11, nu_mono canonical, alpha 3.36:
+  flat: leave-one-out median delta ranges +0.033 (dropping 07a) to +0.073 (dropping 02)
+  rival: leave-one-out median delta ranges -0.167 (dropping 03) to -0.155 (dropping 02)
+
+(c) route factor M_ind / M_fit (SED M* / (1 - f_molgas) over the fitted M_bary), per galaxy:
+      02: log M_fit 10.50, log M_ind 10.54, factor 1.11 (f_molgas 0.43)
+      03: log M_fit 10.40, log M_ind 10.46, factor 1.15 (f_molgas 0.13)
+     07a: log M_fit 10.20, log M_ind 10.24, factor 1.11 (f_molgas 0.43)
+      08: log M_fit 10.50, log M_ind 10.28, factor 0.61 (f_molgas 0.63)
+      11: log M_fit 10.60, log M_ind 10.25, factor 0.45 (f_molgas 0.73)
+      12: log M_fit 9.70, log M_ind 9.78, factor 1.21 (f_molgas 0.67)
+      19: log M_fit 10.50, log M_ind 10.03, factor 0.34 (f_molgas 0.70)
+      20: log M_fit 10.30, log M_ind 10.39, factor 1.22 (f_molgas 0.47)
+     23b: log M_fit 9.80, log M_ind 10.58, factor 6.09 (f_molgas 0.25)
