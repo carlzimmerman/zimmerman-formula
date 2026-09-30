@@ -56,3 +56,18 @@
 - **f_DM(R_e) is fitted with a flat prior on [0, 1],** from 1.6 to 5.5 beams at R_out. The statistic uses MAP values without the per-galaxy posterior widths, so the bootstrap over galaxies carries the scatter but not each fit's own uncertainty.
 - **The pressure term matters.** The flat law's verdict flips between α = 3.36 and 1.68. The authors adopt 3.36 and note that moderate terms (Dalcanton–Stilp, Kretschmer) are also in use.
 - **Scope.** Nothing here says the data favour the framework. The bare flat law is not robustly consistent at z ≈ 5 either, and B's cold component is not modelled.
+
+## Reconciliation with the data chat's z > 3.5 list (appended 2026-09-30; the text above is unchanged)
+
+- **Which nine.** The "9 disks that have both" (an SED M★ and dust-based gas) are CRISTAL-02, -03, -07a, -08, -11, -12, -19, -20 and -23b: the primary set's disks with a finite SED M★, f_molgas and fitted M_bary (-09 and -15 are excluded as frozen). The data chat counts **six** with a dust *detection*: 02, 03, 07a, 11, 19, 20. **The three extra are 08, 12 and 23b, whose f_molgas are dust UPPER LIMITS** (the CRISTAL paper's own note lists 01a, 08, 12, 14, 15, 16, 23b and 23c as upper limits, dust continuum below the S/N threshold). The route used their table values as values in M_ind = M★ / (1 − f_molgas). That was wrong for those three, and this README should have said so.
+- **Recomputed** (`cfg213_route_detected.py`; its control reproduces the committed n = 9 route medians exactly, max difference 0; MUTATE shifts them by log10 1.5 as it must):
+
+| SED + gas route, α = 3.36, ν_mono, canonical | n | flat | rival |
+|---|---|---|---|
+| the lane's nine (three upper limits used as values) | 9 | +0.043 [−0.076, +0.377] CONSISTENT | −0.198 [−0.321, +0.107] CONSISTENT |
+| the six dust detections only | 6 | +0.117 [−0.060, +0.384] CONSISTENT | −0.144 [−0.319, +0.141] CONSISTENT |
+| fit route (the authors' M_bary), the same six | 6 | +0.028 [−0.013, +0.165] CONSISTENT | −0.171 [−0.279, −0.073] DISFAVOURED-under |
+
+  - Both laws are CONSISTENT in all four kernel/footing cells of the detections-only route. On the same six discs the fit route keeps the rival DISFAVOURED-under in all four cells (the flat law is CONSISTENT; P2 canonical is borderline at +0.039 [+0.000, +0.209]). So the route dependence in the bottom line stands on the detections alone, on n = 6 with wide intervals; it is not a separation.
+  - **The three upper limits, as one-sided bounds.** An upper limit on the gas is a LOWER bound on δ here, because D = g_obs / g_bar also falls as g_bar rises. CRISTAL-08: δ_flat ≥ +0.377, δ_rival ≥ +0.088; -12: ≥ +0.043, ≥ −0.269; -23b: ≥ −0.437, ≥ −0.536 (ν_mono, canonical). The route factor of 6.09 quoted for CRISTAL-23b in the post hoc block belongs to an upper-limit disc, so it is itself a bound.
+- **For any later use of this sample** (CFG219 and the data chat's class A/B split): CRISTAL discs enter as class A only with a dust detection (02, 03, 07a, 11, 19, 20); 08, 12, 15 and 23b enter as one-sided limits, never as values.

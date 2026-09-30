@@ -1,0 +1,54 @@
+CFG213 POST HOC (a reconciliation asked for by the orchestrator, 2026-09-30, after the data chat's z > 3.5 list HIGHZ_INDEPENDENT_BARYON_DISCS_2026-09-30.md counted SIX CRISTAL
+discs with an SED M* and a dust-DETECTED gas mass where this lane's README says 'the 9 disks that have both'; written after the frozen numbers were seen; reported only).
+Which nine, and what they are: the lane's SED + gas route needs a finite SED M*, a finite f_molgas and a finite fitted M_bary.  Among the CRISTAL disks of the primary set (CRISTAL-09 and
+-15 are excluded as frozen) that is 02, 03, 07a, 08, 11, 12, 19, 20 and 23b.  The CRISTAL paper (arXiv:2507.11600, its f_molgas note in the gas-fraction section) says that for CRISTAL-01a,
+08, 12, 14, 15, 16, 23b and 23c the measured f_molgas are UPPER LIMITS (the dust continuum is below the S/N threshold).  So six of the nine (02, 03, 07a, 11, 19, 20) are dust
+detections and THREE (08, 12, 23b) are upper limits that the lane's route used as values, M_ind = M*/(1 - f_molgas).  This script (i) reproduces the lane's committed n = 9 route
+medians (control), (ii) recomputes the route on the six detections alone (and the fit route on the same six), (iii) reports the three upper-limit discs as ONE-SIDED bounds: an upper
+limit on f_molgas is an upper limit on M_ind and on g_bar; in this lane D = g_obs / g_bar also depends on g_bar, so delta = log10(D) - log10 nu(g_bar / a0) FALLS as g_bar rises
+(d delta / d ln g_bar = -1 - d ln nu / d ln y < 0 because y nu(y) rises), and each delta below is therefore a LOWER bound on that disc's true delta under either law.
+Reuses the lane's functions (cfg213_two_sided.py exec'd read-only up to its BINS definition).  MUTATE=1 passes through (D x 1.5): the n = 9 route medians must then shift by
+log10(1.5) = +0.1761 against the committed values; outputs are named *_MUTATE.
+
+  the lane's route sample (finite SED M*, f_molgas and fitted M_bary, primary set): ['02', '03', '07a', '08', '11', '12', '19', '20', '23b'] (n = 9)
+  dust DETECTIONS (6): 02, 03, 07a, 11, 19, 20;  dust UPPER LIMITS used as values (3): 08, 12, 23b  (f_molgas table values: 08 0.63, 12 0.67, 23b 0.25)
+
+  PASS  control: the n = 9 route medians (2 kernels x 2 footings x 2 laws) equal the committed values: max |difference| 0.0e+00
+
+  SED + gas route, the lane's nine (3 of them dust upper limits used as values) (n = 9); median delta [95% CI, 10,000 resamples] -> verdict; alpha = 3.36
+    flat  nu_mono canonical +0.043 [-0.076, +0.377] CONSISTENT
+    flat  nu_mono alt       +0.023 [-0.088, +0.355] CONSISTENT
+    flat  P2      canonical +0.075 [-0.059, +0.419] CONSISTENT
+    flat  P2      alt       +0.061 [-0.068, +0.401] CONSISTENT
+    rival nu_mono canonical -0.198 [-0.321, +0.107] CONSISTENT
+    rival nu_mono alt       -0.222 [-0.354, +0.074] CONSISTENT
+    rival P2      canonical -0.153 [-0.269, +0.161] CONSISTENT
+    rival P2      alt       -0.173 [-0.305, +0.126] CONSISTENT
+
+  SED + gas route, the six dust DETECTIONS only (n = 6); median delta [95% CI, 10,000 resamples] -> verdict; alpha = 3.36
+    flat  nu_mono canonical +0.117 [-0.060, +0.384] CONSISTENT
+    flat  nu_mono alt       +0.096 [-0.068, +0.370] CONSISTENT
+    flat  P2      canonical +0.157 [-0.048, +0.409] CONSISTENT
+    flat  P2      alt       +0.140 [-0.054, +0.398] CONSISTENT
+    rival nu_mono canonical -0.144 [-0.319, +0.141] CONSISTENT
+    rival nu_mono alt       -0.173 [-0.350, +0.112] CONSISTENT
+    rival P2      canonical -0.095 [-0.264, +0.194] CONSISTENT
+    rival P2      alt       -0.123 [-0.297, +0.165] CONSISTENT
+
+  fit route (the authors' M_bary), the same six (n = 6); median delta [95% CI, 10,000 resamples] -> verdict; alpha = 3.36
+    flat  nu_mono canonical +0.028 [-0.013, +0.165] CONSISTENT
+    flat  nu_mono alt       +0.021 [-0.022, +0.143] CONSISTENT
+    flat  P2      canonical +0.039 [+0.000, +0.209] DISFAVOURED-over
+    flat  P2      alt       +0.033 [-0.006, +0.190] CONSISTENT
+    rival nu_mono canonical -0.171 [-0.279, -0.073] DISFAVOURED-under
+    rival nu_mono alt       -0.198 [-0.311, -0.100] DISFAVOURED-under
+    rival P2      canonical -0.120 [-0.226, -0.030] DISFAVOURED-under
+    rival P2      alt       -0.144 [-0.259, -0.055] DISFAVOURED-under
+
+  the three upper-limit discs, per disc (nu_mono, canonical, alpha = 3.36): delta_route is a LOWER bound on that disc's delta under the law shown
+    CRISTAL-08   z 4.430  f_molgas <= 0.63:  delta_flat >= +0.377, delta_rival >= +0.088   (fit route: +0.211, -0.046)
+    CRISTAL-12   z 5.572  f_molgas <= 0.67:  delta_flat >= +0.043, delta_rival >= -0.269   (fit route: +0.105, -0.220)
+    CRISTAL-23b  z 4.562  f_molgas <= 0.25:  delta_flat >= -0.437, delta_rival >= -0.536   (fit route: +0.267, +0.012)
+    -> discs whose lower bound is above 0: flat 2 of 3, rival 1 of 3 (a lower bound above 0 means the law UNDER-predicts that disc's mass discrepancy whatever the true, smaller, gas mass)
+
+  the lane's 'SED + gas: both laws CONSISTENT for the 9 disks that have both' rests on six detections and three upper limits used as values; the six-detection cells and the one-sided bounds are above
