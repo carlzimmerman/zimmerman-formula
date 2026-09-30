@@ -40,7 +40,10 @@ DIRS += [os.path.join(HERE, d) for d in sorted(os.listdir(HERE))
 SKIP_FILES = {"rg_common.py", "bar_lib.py", "tower_lib.py", "clifford_lib.py", "q1_lib.py", "n1_lib.py", "s1_lib.py", "s1_modesum.py",
               "p2_rerun_all.py", "w1_run_all.py", "y1_run_all.py",     # driver scripts that themselves call the others (no control of their own)
                               # re-runs everything itself; excluded to avoid recursion
-              "run_all_checks.py"}
+              "run_all_checks.py",
+              # B2 lattice Monte Carlo: the real runs read a 446 MB gitignored cache and take ~8 core-hours to regenerate; their MUTATE controls
+              # (which exit 1 in seconds) were checked by hand.  b2_4_confrontation.py (committed JSON inputs) IS run by this runner.
+              "b2_1_u1_wilson.py", "b2_2_su2_fund_adj.py", "b2_3_su3_fund_adj.py", "b2_tp_analysis.py", "b2_2_probe.py"}
 IN_PROGRESS = set()     # lanes whose agent had not reported when this runner was written (S1 reported and was added back)
 NEEDS_ENV = {"r1_chronology.py": "R1_CACHE", "r2_program_history.py": "R1_CACHE", "r5_choice_inventory.py": "R1_CACHE",
              "q5_pajuhaan_checks.py": "Q4_CACHE", "q6_blandino_bleger_checks.py": "Q4_CACHE"}

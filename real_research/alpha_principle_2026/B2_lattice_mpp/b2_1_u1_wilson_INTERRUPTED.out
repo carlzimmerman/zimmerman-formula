@@ -1,0 +1,27 @@
+B2.1 U(1) Wilson  (MUTATE=False)  jobs=76
+Traceback (most recent call last):
+  File "b2_1_u1_wilson.py", line 45, in <module>
+    paths = B.run_many(jobs, NW, verbose=False)
+  File "b2_lib.py", line 57, in run_many
+    list(ex.map(work, range(len(jobs))))
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "b2_lib.py", line 53, in work
+    res[i] = run_one(exe, args, tag)
+             ~~~~~~~^^^^^^^^^^^^^^^^
+  File "b2_lib.py", line 43, in run_one
+    os.replace(tmp, out)
+    ~~~~~~~~~~^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'cache/u1_da12d5e915.bin.tmp' -> 'cache/u1_da12d5e915.bin'
