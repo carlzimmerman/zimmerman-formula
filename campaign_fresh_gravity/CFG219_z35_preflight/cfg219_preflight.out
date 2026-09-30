@@ -1,0 +1,228 @@
+CFG219 -- a pre-flight power forecast for the z > 3.5 decisive test, on the data chat's class-A independent-baryon discs.
+Frozen criteria: FROZEN_CRITERIA.md here (e62ce4cff), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.  A forecast, not a measurement: no sentence says the data favour a framework.
+Inputs per disc: z, radius, baryon masses and errors ONLY (no velocities, no f_DM).  Laws (Z1, 1138d817f, imported read-only): FLAT, H(z), particle HORIZON, LCDM-NATIVE.
+Statistic: the lanes' -- median delta over discs, galaxy bootstrap (B = 300) inside each of 500 mocks; a gas-calibration systematic c_k ~ N(0, tau) shared by every disc of a tracer class.
+
+CONTROLS
+  [PASS] C1 Z1 reproduction: at z = 2.5 the ratios 1 / 3.77 / 6.05 / 2.16 and the horizon law at z = 5 (13.7): H(z) 3.767, horizon 6.055, LCDM-native 2.157, horizon(5) 13.684
+  [PASS] C0 the disc formula reproduces Freeman's peak V^2 = 0.3872 G M / R_d (V_max = 0.622 sqrt(G M / R_d); the first run compared with 0.6238, the square root, an error of the check): 0.3870
+  [PASS] C2 (through D = g_obs/g_bar and nu) with no noise the true law's own delta is 0 for every disc, law, kernel and footing: max |delta| 9.6e-17
+  [PASS] C2b the OTHER laws' deltas are non-zero (>= 1e-3 for >= 90% of disc-law pairs): 100%
+  [PASS] C3 the noiseless median shift equals the analytic per-disc separation log10 nu(y_T)/nu(y_L): max |difference| 5.6e-17
+  [PASS] C4 an injected +0.20 dex offset on every baryon mass lowers EVERY disc's delta, with |d delta / d log g_bar| between 0.5 and 1 (deep MOND to Newtonian): per-disc slopes 0.614 to 0.867
+
+PER-DISC INPUTS AND THE EXPECTED SEPARATIONS (nu_mono, canonical, R_e; noiseless; s = log10 nu(y_T)/nu(y_L), the median of these is the expected shift)
+  disc                                            z   R_e  log M_b sig_logMb  g_bar/A0 | a0(z)/a0(0):        FLAT        H(z)     HORIZON LCDM-NATIVE
+  CRISTAL-02                                  5.294   2.7    10.54      0.15      4.47 |                      1.00        8.90       14.72        5.83
+  CRISTAL-03                                  5.689   1.5    10.46      0.14     11.94 |                      1.00        9.74       16.14        6.56
+  CRISTAL-07a                                 5.154   3.0    10.24      0.19      1.81 |                      1.00        8.61       14.22        5.59
+  CRISTAL-11                                  4.439   1.5    10.25      0.28      7.33 |                      1.00        7.17       11.79        4.43
+  CRISTAL-19                                  5.233   2.3    10.03      0.28      1.90 |                      1.00        8.77       14.50        5.72
+  CRISTAL-20                                  5.545   3.5    10.39      0.23      1.85 |                      1.00        9.43       15.62        6.29
+  GN20 (provisional)                          4.055   3.6    11.41      0.16     18.67 |                      1.00        6.43       10.55        3.88
+  REBELS-25 (provisional; R_e placeholder)    7.306   1.5    11.03      0.16     44.67 |                      1.00       13.46       22.44       10.03
+  separations s_i (dex) by pair (first-named law true, second tested), S8 discs in the order above:
+    FLAT        -> H(z)       : -0.235 -0.150 -0.303 -0.158 -0.303 -0.318 -0.072 -0.071   median S6 -0.269, S8 -0.197
+    FLAT        -> HORIZON    : -0.313 -0.215 -0.392 -0.225 -0.392 -0.407 -0.118 -0.115   median S6 -0.352, S8 -0.269
+    FLAT        -> LCDM-NATIVE: -0.174 -0.106 -0.231 -0.102 -0.233 -0.249 -0.040 -0.053   median S6 -0.203, S8 -0.140
+    H(z)        -> HORIZON    : -0.079 -0.065 -0.088 -0.067 -0.088 -0.089 -0.046 -0.043   median S6 -0.083, S8 -0.073
+    H(z)        -> LCDM-NATIVE: +0.060 +0.044 +0.072 +0.056 +0.071 +0.068 +0.032 +0.018   median S6 +0.064, S8 +0.058
+    HORIZON     -> LCDM-NATIVE: +0.139 +0.108 +0.160 +0.123 +0.159 +0.158 +0.077 +0.062   median S6 +0.148, S8 +0.131
+
+[S6 primary cell done in 25 s]
+[S8 scenario cell done in 25 s]
+[sensitivity cells done, 82 s in total]
+
+RESULT 1 -- the expected separation (dex; the mean over mocks of the median delta of the tested law, tau = 0), FIRST-named law true; then z_med = the typical realised significance n_sigma, min over the two directions
+
+  set S6; nu_mono, canonical, R_e
+    pair                      mu A->B  mu B->A | n_sigma at N =     6     13     16     20     30   (tau = 0)
+    FLAT vs H(z)               -0.266   +0.220 |                 2.54   3.56   3.85   4.40   5.43
+    FLAT vs HORIZON            -0.349   +0.303 |                 3.35   4.31   5.56   5.91   7.12
+    FLAT vs LCDM-NATIVE        -0.207   +0.159 |                 1.80   2.75   2.90   3.44   4.00
+    H(z) vs HORIZON            -0.092   +0.063 |                 1.00   1.46   1.74   1.75   2.29
+    H(z) vs LCDM-NATIVE        +0.048   -0.082 |                 0.77   0.97   1.13   1.23   1.43
+    HORIZON vs LCDM-NATIVE     +0.121   -0.160 |                 1.82   2.45   3.07   3.38   4.14
+
+  set S8 (PROVISIONAL inputs for GN20 and REBELS-25); nu_mono, canonical, R_e
+    pair                      mu A->B  mu B->A | n_sigma at N =     8     13     16     20     30   (tau = 0)
+    FLAT vs H(z)               -0.221   +0.183 |                 2.32   2.70   3.08   3.41   3.99
+    FLAT vs HORIZON            -0.292   +0.251 |                 2.71   3.47   3.76   4.32   5.31
+    FLAT vs LCDM-NATIVE        -0.168   +0.127 |                 1.72   1.93   2.26   2.48   3.05
+    H(z) vs HORIZON            -0.085   +0.060 |                 1.11   1.29   1.42   1.64   1.84
+    H(z) vs LCDM-NATIVE        +0.038   -0.069 |                 0.69   0.80   1.01   1.03   1.24
+    HORIZON vs LCDM-NATIVE     +0.112   -0.136 |                 1.83   2.09   2.49   2.73   3.32
+
+RESULT 2 -- the same at the BASELINE gas calibration tau = 0.25 dex (shared per tracer class) and the grid
+
+  set S6: n_sigma at tau = 0.00 0.10 0.25 0.40 (dex), for N = 6 | 13 | 20 | 100
+    FLAT vs H(z)               2.5   2.5   2.2   2.7 |   3.6   3.3   3.4   3.6 |   4.4   4.6   4.3   4.6 |   9.8  10.0   9.9  10.1
+    FLAT vs HORIZON            3.4   3.3   3.1   3.1 |   4.3   4.6   4.7   4.4 |   5.9   5.8   6.1   6.0 |  13.0  12.9  12.9  13.3
+    FLAT vs LCDM-NATIVE        1.8   1.8   2.1   1.8 |   2.8   2.6   2.5   2.6 |   3.4   3.2   3.0   3.1 |   7.3   7.1   7.4   7.5
+    H(z) vs HORIZON            1.0   1.0   1.1   1.0 |   1.5   1.4   1.3   1.4 |   1.7   1.8   1.7   1.7 |   4.1   4.2   4.0   3.5
+    H(z) vs LCDM-NATIVE        0.8   0.7   0.7   0.7 |   1.0   0.9   0.9   0.9 |   1.2   1.3   1.3   1.1 |   2.8   2.9   2.8   2.9
+    HORIZON vs LCDM-NATIVE     1.8   1.7   1.9   2.0 |   2.4   2.6   2.5   2.7 |   3.4   3.4   3.4   3.2 |   7.6   7.6   7.8   7.0
+
+  set S8: n_sigma at tau = 0.00 0.10 0.25 0.40 (dex), for N = 8 | 13 | 20 | 100
+    FLAT vs H(z)               2.3   2.1   2.1   1.9 |   2.7   2.6   2.6   2.4 |   3.4   3.3   3.3   3.0 |   7.1   7.1   6.6   6.2
+    FLAT vs HORIZON            2.7   2.8   2.6   2.7 |   3.5   3.5   3.3   3.1 |   4.3   4.3   4.2   4.0 |   9.3   9.6   8.9   8.7
+    FLAT vs LCDM-NATIVE        1.7   1.6   1.6   1.3 |   1.9   1.9   1.6   1.4 |   2.5   2.3   2.2   2.3 |   5.5   5.5   4.9   5.3
+    H(z) vs HORIZON            1.1   1.0   1.0   1.0 |   1.3   1.3   1.2   1.1 |   1.6   1.6   1.3   1.5 |   3.6   3.5   3.1   3.2
+    H(z) vs LCDM-NATIVE        0.7   0.7   0.6   0.4 |   0.8   0.7   0.7   0.8 |   1.0   1.2   0.8   0.5 |   2.3   2.2   2.5   1.9
+    HORIZON vs LCDM-NATIVE     1.8   1.8   1.6   1.2 |   2.1   2.1   2.0   1.9 |   2.7   3.0   2.5   2.6 |   6.4   6.2   5.7   5.4
+
+RESULT 3 -- N needed for 3 sigma and the calibration that a sample can tolerate
+
+  set S6: N for n_sigma >= 3 at tau = 0 / 0.10 / 0.25 / 0.40;  tau_max (dex on the gas mass) at N = 6 / 13 / 20 / 100
+    FLAT vs H(z)             N_3sigma: 9 / 10 / 10 / 8     tau_max: none / >0.40 / >0.40 / >0.40
+    FLAT vs HORIZON          N_3sigma: 6 / 6 / 6 / 6     tau_max: >0.40 / >0.40 / >0.40 / >0.40
+    FLAT vs LCDM-NATIVE      N_3sigma: 17 / 16 / 19 / 14     tau_max: none / none / >0.40 / >0.40
+    H(z) vs HORIZON          N_3sigma: 54 / 53 / 56 / 42     tau_max: none / none / none / >0.40
+    H(z) vs LCDM-NATIVE      N_3sigma: none / none / none / none     tau_max: none / none / none / none
+    HORIZON vs LCDM-NATIVE   N_3sigma: 16 / 16 / 17 / 16     tau_max: none / none / >0.40 / >0.40
+
+  set S8: N for n_sigma >= 3 at tau = 0 / 0.10 / 0.25 / 0.40;  tau_max (dex on the gas mass) at N = 8 / 13 / 20 / 100
+    FLAT vs H(z)             N_3sigma: 15 / 17 / 17 / 20     tau_max: none / none / 0.39 / >0.40
+    FLAT vs HORIZON          N_3sigma: 10 / 9 / 11 / 12     tau_max: none / >0.40 / >0.40 / >0.40
+    FLAT vs LCDM-NATIVE      N_3sigma: 29 / 30 / 32 / 34     tau_max: none / none / none / >0.40
+    H(z) vs HORIZON          N_3sigma: 67 / 74 / 91 / 88     tau_max: none / none / none / >0.40
+    H(z) vs LCDM-NATIVE      N_3sigma: none / none / none / none     tau_max: none / none / none / none
+    HORIZON vs LCDM-NATIVE   N_3sigma: 24 / 21 / 26 / 26     tau_max: none / none / none / >0.40
+
+RESULT 4 -- decision classes (frozen)
+  FLAT vs H(z)             S6: n_sigma(tau = 0, N = 6)  2.54 -> STAT-UNDERPOWERED; n_sigma(tau = 0.25, N = 6)  2.16 -> CALIBRATION-LIMITED;  N_3sigma(tau = 0) 8.5, N_3sigma(tau = 0.25) 10.3
+  FLAT vs HORIZON          S6: n_sigma(tau = 0, N = 6)  3.35 -> STAT-POWERED; n_sigma(tau = 0.25, N = 6)  3.07 -> CALIBRATION-ROBUST;  N_3sigma(tau = 0) 6.0, N_3sigma(tau = 0.25) 6.0
+  FLAT vs LCDM-NATIVE      S6: n_sigma(tau = 0, N = 6)  1.80 -> STAT-UNDERPOWERED; n_sigma(tau = 0.25, N = 6)  2.10 -> CALIBRATION-LIMITED;  N_3sigma(tau = 0) 16.7, N_3sigma(tau = 0.25) 18.8
+  H(z) vs HORIZON          S6: n_sigma(tau = 0, N = 6)  1.00 -> STAT-UNDERPOWERED; n_sigma(tau = 0.25, N = 6)  1.13 -> CALIBRATION-LIMITED;  N_3sigma(tau = 0) 53.7, N_3sigma(tau = 0.25) 56.2
+  H(z) vs LCDM-NATIVE      S6: n_sigma(tau = 0, N = 6)  0.77 -> STAT-UNDERPOWERED; n_sigma(tau = 0.25, N = 6)  0.67 -> CALIBRATION-LIMITED;  N_3sigma(tau = 0) not reached by N = 100, N_3sigma(tau = 0.25) not reached by N = 100
+  HORIZON vs LCDM-NATIVE   S6: n_sigma(tau = 0, N = 6)  1.82 -> STAT-UNDERPOWERED; n_sigma(tau = 0.25, N = 6)  1.92 -> CALIBRATION-LIMITED;  N_3sigma(tau = 0) 15.6, N_3sigma(tau = 0.25) 16.8
+
+  the 13-20 disc summary (S6 inputs resampled; n_sigma >= 3?)  tau = 0 | tau = 0.25:
+    FLAT vs H(z)             N = 13:  3.56 (yes) |  3.37 (yes);   N = 20:  4.40 (yes) |  4.27 (yes)
+    FLAT vs HORIZON          N = 13:  4.31 (yes) |  4.74 (yes);   N = 20:  5.91 (yes) |  6.08 (yes)
+    FLAT vs LCDM-NATIVE      N = 13:  2.75 (no) |  2.51 (no);   N = 20:  3.44 (yes) |  3.03 (yes)
+    H(z) vs HORIZON          N = 13:  1.46 (no) |  1.33 (no);   N = 20:  1.75 (no) |  1.66 (no)
+    H(z) vs LCDM-NATIVE      N = 13:  0.97 (no) |  0.92 (no);   N = 20:  1.23 (no) |  1.34 (no)
+    HORIZON vs LCDM-NATIVE   N = 13:  2.45 (no) |  2.53 (no);   N = 20:  3.38 (yes) |  3.43 (yes)
+
+RESULT 5 -- sensitivities (n_sigma; primary cell shown first)  N = 6 | 13 | 20  at tau = 0 and tau = 0.25
+
+  S6 nu_mono canonical R = Re
+    FLAT vs H(z)             tau = 0:  2.54 |  3.56 |  4.40     tau = 0.25:  2.16 |  3.37 |  4.27
+    FLAT vs HORIZON          tau = 0:  3.35 |  4.31 |  5.91     tau = 0.25:  3.07 |  4.74 |  6.08
+    FLAT vs LCDM-NATIVE      tau = 0:  1.80 |  2.75 |  3.44     tau = 0.25:  2.10 |  2.51 |  3.03
+    H(z) vs HORIZON          tau = 0:  1.00 |  1.46 |  1.75     tau = 0.25:  1.13 |  1.33 |  1.66
+    H(z) vs LCDM-NATIVE      tau = 0:  0.77 |  0.97 |  1.23     tau = 0.25:  0.67 |  0.92 |  1.34
+    HORIZON vs LCDM-NATIVE   tau = 0:  1.82 |  2.45 |  3.38     tau = 0.25:  1.92 |  2.53 |  3.43
+
+  S6 nu_mono alt R = Re
+    FLAT vs H(z)             tau = 0:  2.72 |  3.77 |  4.81     tau = 0.25:  2.50 |  3.80 |  4.51
+    FLAT vs HORIZON          tau = 0:  3.55 |  5.05 |  6.46     tau = 0.25:  3.50 |  4.80 |  6.30
+    FLAT vs LCDM-NATIVE      tau = 0:  1.98 |  2.94 |  3.79     tau = 0.25:  2.23 |  2.85 |  3.88
+    H(z) vs HORIZON          tau = 0:  1.11 |  1.45 |  1.88     tau = 0.25:  1.09 |  1.52 |  1.99
+    H(z) vs LCDM-NATIVE      tau = 0:  0.77 |  1.09 |  1.41     tau = 0.25:  0.62 |  0.95 |  1.31
+    HORIZON vs LCDM-NATIVE   tau = 0:  1.90 |  2.88 |  3.55     tau = 0.25:  1.75 |  2.58 |  3.55
+
+  S6 P2 canonical R = Re
+    FLAT vs H(z)             tau = 0:  2.17 |  2.73 |  3.54     tau = 0.25:  1.96 |  2.63 |  3.46
+    FLAT vs HORIZON          tau = 0:  2.69 |  3.70 |  4.86     tau = 0.25:  2.56 |  3.56 |  4.97
+    FLAT vs LCDM-NATIVE      tau = 0:  1.46 |  1.94 |  2.55     tau = 0.25:  1.37 |  1.86 |  2.46
+    H(z) vs HORIZON          tau = 0:  1.03 |  1.37 |  1.87     tau = 0.25:  0.85 |  1.37 |  1.81
+    H(z) vs LCDM-NATIVE      tau = 0:  0.63 |  0.89 |  1.28     tau = 0.25:  0.68 |  0.85 |  1.22
+    HORIZON vs LCDM-NATIVE   tau = 0:  1.64 |  2.46 |  3.13     tau = 0.25:  1.68 |  2.68 |  3.33
+
+  S6 P2 alt R = Re
+    FLAT vs H(z)             tau = 0:  2.35 |  3.16 |  4.13     tau = 0.25:  2.09 |  3.02 |  4.09
+    FLAT vs HORIZON          tau = 0:  2.75 |  4.18 |  5.39     tau = 0.25:  2.99 |  3.91 |  5.22
+    FLAT vs LCDM-NATIVE      tau = 0:  1.54 |  2.63 |  2.89     tau = 0.25:  1.57 |  2.21 |  3.03
+    H(z) vs HORIZON          tau = 0:  1.23 |  1.48 |  1.97     tau = 0.25:  0.98 |  1.57 |  1.96
+    H(z) vs LCDM-NATIVE      tau = 0:  0.69 |  0.99 |  1.39     tau = 0.25:  0.77 |  0.88 |  1.20
+    HORIZON vs LCDM-NATIVE   tau = 0:  1.89 |  2.64 |  3.51     tau = 0.25:  1.79 |  2.46 |  3.34
+
+  S6 nu_mono canonical R = Rout
+    FLAT vs H(z)             tau = 0:  3.91 |  5.26 |  7.34     tau = 0.25:  3.94 |  4.88 |  7.10
+    FLAT vs HORIZON          tau = 0:  4.95 |  6.99 |  9.13     tau = 0.25:  5.03 |  6.52 |  8.99
+    FLAT vs LCDM-NATIVE      tau = 0:  2.99 |  4.35 |  5.51     tau = 0.25:  3.07 |  4.28 |  5.38
+    H(z) vs HORIZON          tau = 0:  1.22 |  1.80 |  2.25     tau = 0.25:  1.32 |  1.95 |  2.27
+    H(z) vs LCDM-NATIVE      tau = 0:  1.00 |  1.39 |  1.81     tau = 0.25:  0.89 |  1.28 |  1.70
+    HORIZON vs LCDM-NATIVE   tau = 0:  2.50 |  3.40 |  4.56     tau = 0.25:  2.66 |  3.56 |  4.17
+
+  class stability across the sensitivity cells (SP/SU = stat powered/underpowered, CR/CL = calibration robust/limited; cells: mono-can-Re, mono-alt-Re, P2-can-Re, P2-alt-Re, mono-can-Rout):
+    FLAT vs H(z)             KERNEL/FOOTING/RADIUS-DEPENDENT (SUCL, SUCL, SUCL, SUCL, SPCR)
+    FLAT vs HORIZON          KERNEL/FOOTING/RADIUS-DEPENDENT (SPCR, SPCR, SUCL, SUCL, SPCR)
+    FLAT vs LCDM-NATIVE      KERNEL/FOOTING/RADIUS-DEPENDENT (SUCL, SUCL, SUCL, SUCL, SUCR)
+    H(z) vs HORIZON          consistent across cells
+    H(z) vs LCDM-NATIVE      consistent across cells
+    HORIZON vs LCDM-NATIVE   consistent across cells
+
+  input sensitivities, primary pair FLAT vs H(z) (n_sigma = min over the two directions), nu_mono, canonical, R_e:
+    sigma_star 0.10                  N = 6: tau = 0:  2.51;  tau = 0.25:  2.79
+    sigma_star 0.25                  N = 6: tau = 0:  2.22;  tau = 0.25:  2.07
+    S6 baseline sigma_star 0.15      N = 6: tau = 0:  2.40;  tau = 0.25:  2.20
+    S8, REBELS-25 R_e x 0.5          N = 8: tau = 0:  2.09;  tau = 0.25:  1.91
+    S8, REBELS-25 R_e x 2            N = 8: tau = 0:  2.44;  tau = 0.25:  2.14
+    S8 baseline R_e 1.5              N = 8: tau = 0:  2.15;  tau = 0.25:  1.95
+
+RESULT 6 -- POST HOC (written after the frozen numbers were seen; reported only): the frozen z_med is BLIND to the shared calibration systematic
+  The frozen n_sigma is the MEDIAN over mocks of |median delta| / (the bootstrap sd inside the mock). A calibration offset shared by every disc shifts the mock's median delta by the same amount in all discs but is not in the
+  bootstrap sd, and its sign is symmetric across mocks, so the median over mocks does not move (Result 2 is flat in tau by construction; the frozen class 'CALIBRATION-ROBUST' is therefore NOT evidence of robustness).
+  The systematic-inclusive measure used here: n_tot = |mu| / sd_mock, mu the mean and sd_mock the standard deviation over mocks of the pooled median delta (baryon noise + the shared tau + the composition scatter), min over the two directions.
+
+  set S6, R = Re: n_tot at tau = 0.00 0.10 0.25 0.40 (dex), for N = 6 | 13 | 20 | 100
+    FLAT vs H(z)               2.8   2.5   1.6   1.1 |   3.5   2.9   1.9   1.1 |   4.6   3.7   1.9   1.2 |   9.8   5.0   2.4   1.1
+    FLAT vs HORIZON            3.9   3.3   2.1   1.5 |   4.6   3.9   2.6   1.6 |   5.9   4.5   2.8   1.7 |  13.1   6.8   3.1   1.7
+    FLAT vs LCDM-NATIVE        2.0   1.8   1.3   0.7 |   2.8   2.2   1.5   0.8 |   3.9   2.7   1.3   0.7 |   7.1   3.6   1.5   0.8
+    H(z) vs HORIZON            1.0   1.0   0.6   0.3 |   1.5   1.2   0.7   0.3 |   1.9   1.5   0.6   0.3 |   4.5   1.9   0.7   0.3
+    H(z) vs LCDM-NATIVE        0.8   0.6   0.3   0.1 |   1.0   0.8   0.4   0.2 |   1.2   0.9   0.5   0.1 |   2.7   1.4   0.4   0.1
+    HORIZON vs LCDM-NATIVE     1.9   1.8   1.2   0.7 |   2.4   2.3   1.2   0.8 |   3.5   2.6   1.5   0.7 |   7.0   3.5   1.6   0.7
+  set S6, R = Re: N for n_tot >= 3 at tau = 0 / 0.10 / 0.25 / 0.40 ('systematic-limited' = not reached by N = 100);  tau_max at N = 6 / 13 / 20 / 100
+    FLAT vs H(z)             N_3sigma: 8 / 14 / systematic-limited / systematic-limited     tau_max: none / 0.08 / 0.16 / 0.21
+    FLAT vs HORIZON          N_3sigma: 6 / 6 / 80 / systematic-limited     tau_max: 0.14 / 0.20 / 0.23 / 0.26
+    FLAT vs LCDM-NATIVE      N_3sigma: 15 / 25 / systematic-limited / systematic-limited     tau_max: none / none / 0.08 / 0.14
+    H(z) vs HORIZON          N_3sigma: 45 / systematic-limited / systematic-limited / systematic-limited     tau_max: none / none / none / 0.06
+    H(z) vs LCDM-NATIVE      N_3sigma: systematic-limited / systematic-limited / systematic-limited / systematic-limited     tau_max: none / none / none / none
+    HORIZON vs LCDM-NATIVE   N_3sigma: 16 / 31 / systematic-limited / systematic-limited     tau_max: none / none / 0.06 / 0.14
+
+  set S6, R = Rout: n_tot at tau = 0.00 0.10 0.25 0.40 (dex), for N = 6 | 13 | 20 | 100
+    FLAT vs H(z)               4.2   3.8   2.4   1.5 |   5.7   4.6   2.4   1.8 |   7.3   5.5   3.1   1.8 |  15.8   7.8   3.2   1.7
+    FLAT vs HORIZON            5.4   5.0   3.3   2.1 |   7.0   5.9   3.7   2.3 |   9.0   7.6   3.8   2.3 |  19.8  10.1   4.4   2.8
+    FLAT vs LCDM-NATIVE        3.3   2.9   2.0   1.2 |   4.3   3.7   2.2   1.2 |   5.4   4.1   2.2   1.2 |  12.0   5.9   2.4   1.4
+    H(z) vs HORIZON            1.4   1.2   0.8   0.4 |   1.9   1.5   0.9   0.4 |   2.3   1.8   1.0   0.4 |   5.4   2.6   1.0   0.4
+    H(z) vs LCDM-NATIVE        1.0   1.0   0.5   0.2 |   1.4   1.2   0.6   0.3 |   1.9   1.3   0.6   0.4 |   4.1   1.8   0.6   0.2
+    HORIZON vs LCDM-NATIVE     2.7   2.2   1.6   0.9 |   3.6   2.8   1.9   0.9 |   4.5   3.6   1.9   1.1 |   9.4   4.9   2.2   1.0
+  set S6, R = Rout: N for n_tot >= 3 at tau = 0 / 0.10 / 0.25 / 0.40 ('systematic-limited' = not reached by N = 100);  tau_max at N = 6 / 13 / 20 / 100
+    FLAT vs H(z)             N_3sigma: 6 / 6 / 16 / systematic-limited     tau_max: 0.19 / 0.21 / 0.26 / 0.27
+    FLAT vs HORIZON          N_3sigma: 6 / 6 / 6 / systematic-limited     tau_max: 0.29 / 0.32 / 0.33 / 0.38
+    FLAT vs LCDM-NATIVE      N_3sigma: 6 / 7 / systematic-limited / systematic-limited     tau_max: 0.07 / 0.17 / 0.19 / 0.23
+    H(z) vs HORIZON          N_3sigma: 29 / systematic-limited / systematic-limited / systematic-limited     tau_max: none / none / none / 0.09
+    H(z) vs LCDM-NATIVE      N_3sigma: 59 / systematic-limited / systematic-limited / systematic-limited     tau_max: none / none / none / 0.05
+    HORIZON vs LCDM-NATIVE   N_3sigma: 8 / 15 / systematic-limited / systematic-limited     tau_max: none / 0.07 / 0.15 / 0.20
+
+  set S8, R = Re: n_tot at tau = 0.00 0.10 0.25 0.40 (dex), for N = 8 | 13 | 20 | 100
+    FLAT vs H(z)               2.6   2.1   1.6   1.1 |   2.7   2.3   1.6   1.0 |   3.3   2.9   2.0   1.1 |   7.2   4.2   1.9   1.3
+    FLAT vs HORIZON            3.4   2.9   2.0   1.6 |   3.6   3.1   2.1   1.5 |   4.5   3.8   2.3   1.5 |   9.6   5.9   2.8   1.7
+    FLAT vs LCDM-NATIVE        1.9   1.6   1.2   0.7 |   2.0   1.8   1.0   0.6 |   2.4   2.0   1.2   0.8 |   5.4   3.0   1.3   0.8
+    H(z) vs HORIZON            1.1   0.9   0.6   0.3 |   1.2   1.1   0.6   0.4 |   1.6   1.2   0.6   0.4 |   3.5   1.8   0.8   0.3
+    H(z) vs LCDM-NATIVE        0.7   0.6   0.3   0.1 |   0.8   0.6   0.4   0.2 |   1.1   1.0   0.3   0.1 |   2.3   1.2   0.5   0.2
+    HORIZON vs LCDM-NATIVE     2.0   1.8   1.2   0.6 |   2.3   1.9   1.2   0.8 |   2.8   2.3   1.4   0.9 |   6.6   3.6   1.5   0.8
+  set S8, R = Re: N for n_tot >= 3 at tau = 0 / 0.10 / 0.25 / 0.40 ('systematic-limited' = not reached by N = 100);  tau_max at N = 8 / 13 / 20 / 100
+    FLAT vs H(z)             N_3sigma: 17 / 23 / systematic-limited / systematic-limited     tau_max: none / none / 0.07 / 0.18
+    FLAT vs HORIZON          N_3sigma: 8 / 11 / systematic-limited / systematic-limited     tau_max: 0.08 / 0.11 / 0.18 / 0.24
+    FLAT vs LCDM-NATIVE      N_3sigma: 28 / 86 / systematic-limited / systematic-limited     tau_max: none / none / none / 0.10
+    H(z) vs HORIZON          N_3sigma: 70 / systematic-limited / systematic-limited / systematic-limited     tau_max: none / none / none / 0.03
+    H(z) vs LCDM-NATIVE      N_3sigma: systematic-limited / systematic-limited / systematic-limited / systematic-limited     tau_max: none / none / none / none
+    HORIZON vs LCDM-NATIVE   N_3sigma: 22 / 54 / systematic-limited / systematic-limited     tau_max: none / none / none / 0.14
+
+  the 13-20 disc summary, systematic-inclusive (S6 inputs resampled, R_e; n_tot >= 3?)  tau = 0 | tau = 0.25:
+    FLAT vs H(z)             N = 13:  3.54 (yes) |  1.95 (no);   N = 20:  4.57 (yes) |  1.90 (no)
+    FLAT vs HORIZON          N = 13:  4.62 (yes) |  2.60 (no);   N = 20:  5.88 (yes) |  2.79 (no)
+    FLAT vs LCDM-NATIVE      N = 13:  2.79 (no) |  1.46 (no);   N = 20:  3.87 (yes) |  1.31 (no)
+    H(z) vs HORIZON          N = 13:  1.51 (no) |  0.67 (no);   N = 20:  1.85 (no) |  0.59 (no)
+    H(z) vs LCDM-NATIVE      N = 13:  0.96 (no) |  0.36 (no);   N = 20:  1.20 (no) |  0.48 (no)
+    HORIZON vs LCDM-NATIVE   N = 13:  2.41 (no) |  1.21 (no);   N = 20:  3.49 (yes) |  1.47 (no)
+
+  [PASS] C5b (post hoc; discriminating) the systematic-inclusive n_tot saturates: at N = 100 it falls by >= 20% between tau = 0 and 0.25 for at least five of the six pairs, and never rises at N = 13: the six pairs, S6, R_e
+
+  [PASS] C5 saturation: n_sigma at tau = 0.25 never exceeds n_sigma at tau = 0 (N = 6, S6, primary cell) by more than 0.3 (MC error): all six pairs
+
+8/8 controls pass; 82 s

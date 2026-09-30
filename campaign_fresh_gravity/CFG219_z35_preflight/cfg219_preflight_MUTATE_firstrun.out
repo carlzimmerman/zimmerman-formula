@@ -1,0 +1,18 @@
+CFG219 -- a pre-flight power forecast for the z > 3.5 decisive test, on the data chat's class-A independent-baryon discs.
+Frozen criteria: FROZEN_CRITERIA.md here (e62ce4cff), committed before any number.  kappa = 1/2 FITTED, NOT DERIVED.  A forecast, not a measurement: no sentence says the data favour a framework.
+Inputs per disc: z, radius, baryon masses and errors ONLY (no velocities, no f_DM).  Laws (Z1, 1138d817f, imported read-only): FLAT, H(z), particle HORIZON, LCDM-NATIVE.
+Statistic: the lanes' -- median delta over discs, galaxy bootstrap (B = 300) inside each of 500 mocks; a gas-calibration systematic c_k ~ N(0, tau) shared by every disc of a tracer class.
+
+CONTROLS
+  [PASS] C1 Z1 reproduction: at z = 2.5 the ratios 1 / 3.77 / 6.05 / 2.16 and the horizon law at z = 5 (13.7): H(z) 3.767, horizon 6.055, LCDM-native 2.157, horizon(5) 13.684
+  [FAIL] C0 the disc formula reproduces Freeman's peak V^2 = 0.6238 G M / R_d: 0.3870
+  [PASS] C2 (through D = g_obs/g_bar and nu) with no noise the true law's own delta is 0 for every disc, law, kernel and footing: max |delta| 9.6e-17
+  [PASS] C2b the OTHER laws' deltas are non-zero (>= 1e-3 for >= 90% of disc-law pairs): 100%
+  [PASS] C3 the noiseless median shift equals the analytic per-disc separation log10 nu(y_T)/nu(y_L): max |difference| 5.6e-17
+  [PASS] C4 an injected +0.20 dex offset on every baryon mass lowers EVERY disc's delta, with |d delta / d log g_bar| between 0.5 and 1 (deep MOND to Newtonian): per-disc slopes 0.614 to 0.867
+
+MUTATE=1: every mock carries a +0.20 dex offset on the measured baryon masses; the noiseless separation and the primary pair at N = 6, tau = 0 follow.
+  FLAT true, H(z) tested: mean median-delta -0.266 -> -0.399 (shift -0.133; the independent per-disc bound: between -0.200 and -0.100)
+  [PASS] MUTATE the offset moves the mock's mean median delta down by 0.5-1 x 0.20 dex (within MC error 0.02): -0.133
+  H(z) true, FLAT tested: mean median-delta +0.220 -> +0.052 (shift -0.168; the independent per-disc bound: between -0.200 and -0.100)
+  [PASS] MUTATE the offset moves the mock's mean median delta down by 0.5-1 x 0.20 dex (within MC error 0.02): -0.168
