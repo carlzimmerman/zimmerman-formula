@@ -1,0 +1,15 @@
+synthetic archive: 503,500 rows over 12 chunks; tested chunks (2, 11); rows to fetch (no G, passing the WHERE): chunk 2: 7, chunk 11: 2978
+first run completed
+fetch: 73 queries, 17 truncated by the endpoint
+T1 chunk 2: the union equals the rows the approved query would return (missing 0, spurious 0): PASS
+T3 chunk 2: the union starts with the 18,677 frozen rows unchanged and its 7 appended rows all lack G: PASS
+T4 chunk 2: column names, order and dtypes equal the frozen file's: PASS
+T1 chunk 11: the union equals the rows the approved query would return (missing 0, spurious 0): PASS
+T3 chunk 11: the union starts with the 18,819 frozen rows unchanged and its 2,978 appended rows all lack G: PASS
+T4 chunk 11: column names, order and dtypes equal the frozen file's: PASS
+T2 the truncation path was exercised (17 truncated results; the manifests count 17 discarded): PASS
+T6 the dropped connection was retried (hit 1, run completed): PASS
+T7 the hung query was cut by the client timeout and retried (hangs 1, run completed): PASS
+T8 a second run skips the finished chunks (queries 0, ended with None): PASS
+T5 the per-chunk byte cap stops the run and writes nothing for the chunk (STOPPED: chunk 11 received 0.03 MB after 4 queries against t; output present: False): PASS
+RESULT: all checks behave as required
