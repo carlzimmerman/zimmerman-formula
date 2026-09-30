@@ -1,0 +1,75 @@
+[y04_principle_table] PREDECLARED.md sha256 = 77fd9f5398faa909f7328988f697379acbf98c44f984f6095a97df476d5cb9b7  (matches the stored hash)
+  [OK] pre-declared file unchanged since it was hashed
+
+== checks that the closed forms equal the root-based numerics of cmetric.py ==
+  [OK] four_mu(theta_0) and a_ext(theta_0) reproduce the numerical string force and horizon area on the extremal boundary (max error 5.34e-23)
+  [OK] limits: a_ext -> 1/3 as A/H -> 0 (Nariai SdS: horizon radius L/sqrt 3, area 4 pi L^2/3) and -> 0 as A/H -> infinity
+
+== C6 area formula: as H -> 0 at fixed s, H^2 Area/(4 pi) -> 1 - 4 mu (a straight string through a dS horizon removes the solid-angle fraction 4 mu) ==
+  [OK] s = 0.03: a(h = 1e-12) = 0.885964554804, 1 - 4 mu = 0.885964554804
+  [OK] s = 0.1: a(h = 1e-12) = 0.63916496803, 1 - 4 mu = 0.63916496803
+  [OK] s = 0.17: a(h = 1e-12) = 0.325917047037, 1 - 4 mu = 0.325917047037
+  [OK] and a(m = 0) = 1: horizon area 4 pi L^2 (checked at s -> 0, h = 1)
+  [OK] CONTROL (wrong claim must be rejected): control: a(s = 0.1, h -> 0) is NOT 1 (the string does change the horizon area)
+
+== R1 + C6 + C4: force balance 4 mu = 6 a on the extremal boundary ==
+   theta_0* = 0.258529139169871908482098179887   q* = A/H = 2.44811125333193949659371554743   s* = mA = 0.17815982656791588726   string force/F_max = 0.7350889359326482672
+  [OK] the balance has exactly one solution on the boundary (sign change of 4 mu - 6 a between A/H -> 0 (value -2) and A/H -> infinity (value +1): f(0+) = -2.0, f(inf) = 1.0); strictly monotone on 60 grid points
+  [OK] balance residual 1.34e-51 at the root (50-digit arithmetic); root also confirmed by the independent root-based numerics: 4 mu(s*) = 0.735088935933
+  [OK] outcome FIXED-NON-TARGET: q* = 2.44811125333194 matches none of the targets or decoys (T6 0.1667, T2 0.5, TF 0.1727: it is 14x, 4.9x, 14x larger)
+  [OK] CONTROL (wrong claim must be rejected): control: a percent-level or 1e-3-level coincidence is not a hit; q* is not sqrt 6 = 2.449489743 (differs by 0.00138), not any of the tested constants
+   mpmath.findpoly(q*, degree <= 6, maxcoeff 5000) = None
+
+== R1 + C6 alone: zero set of 4 mu - 6 a in the interior (s, h) ==
+  [OK] s at mu = 3/14 lies inside the family, 0 < s < 1/sqrt 27
+  [OK] H -> 0 end of the curve: mu = 3/14 exactly (4 mu = 6(1 - 4 mu) => mu = 3/14), s = mA = 0.188664133216; string force = 6/7 F_max
+   s = 0.18813892   h = 0.10525486   q = A/H = 9.5007487   (extremal h_max = 0.21530154)
+   s = 0.18656327   h = 0.20315653   q = A/H = 4.9223129   (extremal h_max = 0.253187)
+   s = 0.18446241   h = 0.27711086   q = A/H = 3.608664   (extremal h_max = 0.29745598)
+   s = 0.18236155   h = 0.32996704   q = A/H = 3.0306057   (extremal h_max = 0.3371999)
+   s = 0.18026069   h = 0.3723957   q = A/H = 2.6853157   (extremal h_max = 0.37391781)
+   s = 0.17868504   h = 0.39992076   q = A/H = 2.5004953   (extremal h_max = 0.40000618)
+  [OK] the balance holds on a whole curve q_bal(s): q runs from infinity at (mu = 3/14) down to q* at the extremal boundary; P_bal alone leaves A/H FREE (label FAMILY)
+
+== R1 + C3 (+C6): saturation ==
+  [OK] R1 + C3 + C6: at s = 1/sqrt 27 and h = 0.05 the maximum of F(y) over y in [0, 6) is -0.0025042 < 0 (= -h^2 at y = 1/(3s)): no horizon, no area, no balance: EMPTY. At h = 0 the force is F_max while F_Lambda = 0
+
+== Control (a): Lambda = 0 ==
+  [OK] h = 0: the extremal condition 27 s^2 (1 + h^2) = 1 coincides with saturation 27 s^2 = 1 (P_ext <=> P_sat), and A is NOT constrained at all: the principles fix m A, never A alone
+  [OK] A/H -> infinity: the largest static string force -> F_max (the Lambda = 0 saturation) and A/H -> 0: -> 0 (SdS Nariai: no string)
+
+== Control (c): mutations of the ingredients move the balance point ==
+   base (deficit 8 pi G mu, rho = Lambda/8 pi, area 4 pi)                      q* = 2.44811125333
+   deficit 4 pi G mu (tension 2 mu for the same geometry): balance 4 mu = 3 a  q* = 1.25769670072
+   rho = Lambda/(4 pi): balance 4 mu = 12 a                                    q* = 4.78183183769
+   horizon area 2 pi (instead of 4 pi): balance 4 mu = 3 a                     q* = 1.25769670072
+   period of z doubled (kappa -> 2 kappa, area x2): balance 4 mu = 12 a        q* = 4.78183183769
+  [OK] CONTROL (wrong claim must be rejected): mutation 'rho = Lambda/(4 pi)' leaves q* unchanged
+  [OK] CONTROL (wrong claim must be rejected): mutation 'deficit 4 pi G mu' leaves q* unchanged
+  [OK] mutations 'rho = Lambda/4 pi' and 'period doubled' coincide (both multiply a by 2), 'deficit 4 pi' and 'area 2 pi' coincide (both halve the ratio): the algebra behaves as it should
+   (note: the purely geometric outcomes C3 saturation s = 1/sqrt 27 and the C4 extremal curve do not contain the tension-normalisation constants, so those mutations are not controls for them)
+
+== Principle table ==
+    R1 | FAMILY | q free | two parameters (m A, A/H); nothing fixes them
+    R1 + C2 (P_none) | EMPTY (m A != 0) / q FREE at m A = 0 | - | no string and no strut is possible only without mass or acceleration
+    R1 + C3 (P_sat) | ENDPOINT | q = infinity | saturation 27 m^2 A^2 = 1 leaves no static region at Lambda > 0
+    R1 + C4 (P_ext) | FAMILY (curve) | q in (0, infinity) | largest force F_max [1 - sin th/sin(2 pi/3 - th)], th = (pi - 2 arctan(A/H))/3
+    R1 + C3 + C4 | ENDPOINT | q = infinity | only as H -> 0
+    R1 + C5 (P_eq) | = C4 (boundary only) | - | T_bh > T_(acc/cosm) strictly in the interior
+    R1 + C6 (P_bal) | FAMILY (curve) | q in (2.44811, infinity) | curve ends at mu = 3/14 (H -> 0) and at the extremal point
+    R1 + C6 + C4 | FIXED-NON-TARGET | q* = 2.44811125333194 | string force 0.7350889359 F_max, mA = 0.1781598266
+    R1 + C6 + C3 | EMPTY | - | no horizon at saturation for h > 0
+
+== Census of every FIXED output (S3 masses and the one fixed C-metric point) against targets and decoys ==
+   S3 M_a         q =              0.5   target hits ['T2']   decoy hits []
+   S3 M_b         q =             0.25   target hits []   decoy hits ['1/4']
+   S3 M_c         q =    1.29903810568   target hits []   decoy hits []
+   S3 M_d         q =             0.25   target hits []   decoy hits ['1/4']
+   S3 M_e         q =   0.166666666667   target hits ['T6']   decoy hits []
+   S3 M_f         q =   0.212206590789   target hits []   decoy hits []
+   S3 M_g         q =   0.106103295395   target hits []   decoy hits []
+   C  R1+C6+C4    q =    2.44811125333   target hits []   decoy hits []
+  [OK] census: 8 fixed outputs, 2 target hits (M_a -> T2 = the Hubble-sphere field; M_e -> T6, void because M_e was built after the target), 2 decoy hits (1/4 twice); zero target hits among the C-metric outputs; TF never
+  [OK] no hit comes from an exact construction with all parameters fixed by a declared principle and a non-restated mass: DERIVATION criterion NOT met
+
+RESULT y04_principle_table: 23/23 checks pass

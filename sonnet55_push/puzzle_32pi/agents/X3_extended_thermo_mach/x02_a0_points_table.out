@@ -1,0 +1,104 @@
+== cross-check against lane L's published numbers (README of L, not re-run here) ==
+  ok   P1: r_b/L = 0.522632, r_c/L = 0.630391, M/M_N = 0.986952 x=0.52263231 y=0.630390973 mu=0.986952391
+  ok   P2: r_c/L = 0.637797?, mu = 0.982984 (kappa_c = a0) y=0.637797027 mu=0.982984039
+  ok   exact P1 closed form x_b = (sqrt(1+32 pi)-1)/sqrt(96 pi) 
+  ok   P1: S_b/S_dS = 0.273145, S_tot/S_dS = 0.670537, T_c/T_b = 0.882376 
+
+== A5 table (puzzle Z = sqrt(32 pi/3)) ==
+  P1:
+     x              = 0.52263231005817
+     y              = 0.63039097254277
+     mu             = 0.98695239140969
+     V_over_VdS     = 0.14275415748635
+     V_over_Veff    = 1.3247580676565
+     PV_over_M      = -0.37578933276338
+     TS_over_M      = 0.12421066723662
+     U_over_M       = 1.3757893327634
+     G_over_M       = 0.87578933276338
+     F_over_M       = 1.2515786655268
+     CP_over_S      = -0.19848639267807
+     S_over_SdS     = 0.27314453151674
+     T_over_TdS     = 0.17274707473567
+     Stot_over_SdS  = 0.67053730978016
+     Tc_over_Tb     = 0.88237611393595
+     R_iso          = 0.58112905580488
+     dG_pair        = 0.4461206687577
+  P2:
+     x              = 0.51471483516387
+     y              = 0.63779702654861
+     mu             = 0.9829840391638
+     V_over_VdS     = 0.2594462934684
+     V_over_Veff    = 2.1079109053022
+     PV_over_M      = -0.68572959104956
+     TS_over_M      = 0.18572959104956
+     G_over_M       = -1.1857295910496
+     CP_over_S      = 0.19848639267807
+     S_over_SdS     = 0.40678504707425
+     T_over_TdS     = 0.17274707473567
+     Stot_over_SdS  = 0.67171640861202
+     Tb_over_Tc     = 1.1539380462528
+     R_iso          = 0.60693021872351
+     dG_pair        = 0.43845890430763
+  P3:
+     V_over_VdS     = 24.248110778119
+     PV_over_M      = -8.3775804095728
+     TS_over_M      = 0.5
+     U_over_M       = 9.3775804095728
+     G_over_M       = 0.5
+     F_over_M       = 0.5
+     CP_over_S      = -2.0
+     S_over_SdS     = 8.3775804095728
+     T_over_TdS     = 0.17274707473567
+  P4:
+     M_over_L       = -10.676852879943
+     V_over_VdS     = 24.248110778119
+     PV_over_M      = 1.1355457947571
+     TS_over_M      = -1.6355457947571
+     G_over_M       = 0.63554579475711
+     CP_over_S      = 1.8469353075136
+     S_over_SdS     = 8.3775804095728
+     T_over_TdS     = 4.1688604526139
+     kappa_over_a0  = 24.132741228718
+
+== identities of the flat probe (P3): exact, and they restate rho_L r_s^2 = 1 ==
+  ok   P3: PV/M = -8 pi/3, U/M = 1 + 8 pi/3, S/S_dS = V/V_dS^(2/3) = 8 pi/3, TS/M = F/M = G/M = 1/2 (Smarr of Schwarzschild) 
+  ok   P4: kappa_c/a0 = 8 pi - 1 exactly, T_c/T_dS = (8 pi - 1)/Z 
+  ok   P4: M/L = (Z/4)(1 - 8 pi/3) < 0 (a negative-mass 'SdS': the puzzle horizon is a cosmological horizon of a naked-singularity spacetime) 
+  ctrl-ok  mutation: P4 kappa_c = a0 (i.e. the puzzle object is an ordinary cosmological horizon of surface gravity a0) 
+
+== A6 closed-form scan: puzzle vs decoys (tolerance 1e-9, family (p/q) pi^a sqrt3^b) ==
+  ok   scan control: recovers planted 7 pi/24 
+  ctrl-ok  scan control: does not 'find' e 
+  ctrl-ok  scan control: does not 'find' sqrt(1+32 pi) 
+   quantities tested at the puzzle point: 50; closed-form hits: 7
+     P3 PV_over_M      = (-8/3) pi^1 sqrt3^0   (same test hits 3/6 decoy points)
+     P3 TS_over_M      = (1/2) pi^0 sqrt3^0   (same test hits 6/6 decoy points)
+     P3 G_over_M       = (1/2) pi^0 sqrt3^0   (same test hits 6/6 decoy points)
+     P3 F_over_M       = (1/2) pi^0 sqrt3^0   (same test hits 6/6 decoy points)
+     P3 CP_over_S      = (-2/1) pi^0 sqrt3^0   (same test hits 6/6 decoy points)
+     P3 S_over_SdS     = (8/3) pi^1 sqrt3^0   (same test hits 3/6 decoy points)
+     P4 S_over_SdS     = (8/3) pi^1 sqrt3^0   (same test hits 3/6 decoy points)
+  ok   P1/P2 (the genuine SdS a0-points): zero closed-form hits among the tested quantities 0 hits
+   hits absent at ALL decoys (would count under the A6 rule): []
+   spurious-hit calibration (definitional T/T_dS = 1/Z' excluded; it hits 8 decoy points by construction): 0 hits in 180 decoy tests on P1/P2
+  ok   decoy P1/P2 spurious hits are essentially absent (<= 1) 
+
+== P5: Bousso-Hawking normalisation existence check for kappa = a0 = H/Z ==
+  ok   BH-norm: kappa_b >= sqrt(3) H on the whole family (min 1.732081); kappa_c >= H (min 1.000050) => no horizon has kappa = H/Z = 0.1727 
+  ctrl-ok  mutation: BH-norm horizon with kappa < H exists 
+  ok   f-norm: kappa_b spans (0, inf) and kappa_c spans (0, 1] on the family (so kappa = H/Z is attained once on each) 
+  ok   TS/M is unchanged when M and T are both rescaled by the normalisation (identity, not a result) 
+  ok   x = 0.2: f-norm first law dM = T dS holds; BH-norm dE = T_BH dS with E = M/N fails (residual 0.361 of dE) 
+  ok   x = 0.4: f-norm first law dM = T dS holds; BH-norm dE = T_BH dS with E = M/N fails (residual 0.779 of dE) 
+  ok   x = 0.52: f-norm first law dM = T dS holds; BH-norm dE = T_BH dS with E = M/N fails (residual 0.972 of dE) 
+
+== structure: every P1/P2 number is a generic function of K = kappa/H (no feature at K = 1/Z) ==
+   P1 C_P/S   = 2*((K - sqrt(K**2 + 3))**2 - 3)/((K - sqrt(K**2 + 3))**2 + 3)
+   P2 C_P/S   = 2*((K + sqrt(K**2 + 3))**2 - 3)/((K + sqrt(K**2 + 3))**2 + 3)
+   P1 PV/M    = (K - sqrt(K**2 + 3))**2/((K - sqrt(K**2 + 3))**2 - 9)
+   P1 TS/M    = 3*((K - sqrt(K**2 + 3))**2 - 3)/(2*((K - sqrt(K**2 + 3))**2 - 9))
+   P1 G/M     = (-(K - sqrt(K**2 + 3))**2 - 9)/(2*((K - sqrt(K**2 + 3))**2 - 9))
+  ok   C_P/S at kappa_b = K equals -2K/sqrt(K^2+3) and at kappa_c = K equals +2K/sqrt(K^2+3) for EVERY K (so at K = 1/Z: -/+ 2/sqrt(1+32 pi) = -/+0.19849) 
+  ok   the G/M = 1/2 - PV/M and TS/M = 1/2 + PV/M identities hold at P1 (Smarr; not a result) 
+
+== TOTAL: 18 pass, 0 fail; controls rejected 4, not rejected 0 ==

@@ -1,0 +1,47 @@
+[x02] PREDECLARED_MENU.md sha256 = 62c2343459982c26ca29248c811e8a4ca770865670ab5b0791963cdafe50b1fb  (matches the stored hash)
+  [OK] pre-declared menu file unchanged since it was hashed
+E1  Schwarzschild-de Sitter (Kottler) is an exact vacuum + Lambda solution
+  [OK] E1a  G_mn + Lambda g_mn = 0 for f = 1 - 2GM/r - Lambda r^2/3
+  [OK] CONTROL (wrong claim must be rejected): E1b-mut  f = 1 - 2GM/r - Lambda r^2/2 is also a solution
+
+E2  the O(M) part, and the vacuum's exact linear response
+  [OK] E2a  d/d(eps)[G_mn + Lambda g_mn] = 0 at eps = 0 : the linear-in-M perturbation solves the vacuum + Lambda equations
+  [OK] E2b  delta G_mn = -Lambda h_mn exactly  (so the vacuum's linear response must be delta T_mn = -rho_Lambda h_mn, i.e. delta rho = delta p = 0)
+  [OK] CONTROL (wrong claim must be rejected): E2c-mut  delta G_mn = -(3/2) Lambda h_mn (a different vacuum susceptibility)
+  [OK] E2d  Phi = (f-1)/2 = -GM/r - Lambda r^2/6: the 1/r term carries coefficient exactly 1 (GM), independent of Lambda
+
+E3  exact TOV with rho = const, p = -rho
+  [OK] E3a  Phi' from TOV equals (1/2) d ln f/dr for f = 1 - 2 G m(r)/r  (consistent static metric)
+  [OK] E3b  hydrostatic equation p' = -(rho+p) Phi' is satisfied identically (0 = 0): the pressure is unconstrained by the potential when rho + p = 0
+  [OK] E3c  f = 1 - 2GM/r - (8 pi/3) G rho r^2 = SdS with Lambda = 8 pi G rho
+
+E4  background field of the vacuum vs. the same density as dust
+  [OK] E4a  laplacian Phi_dust = 4 pi G rho,  laplacian Phi_vac = -8 pi G rho
+  [OK] E4b  Phi_vac / Phi_dust = -2 = (rho+3p)/rho: the Newtonian 'Jeans swindle' background subtraction is exact and sign-reversed for the vacuum
+
+E5  small departure from p = -rho: hydrostatic + Poisson response
+  [OK] E5a  (nabla^2 + k^2)(-GM cos(kr)/r) = 0 for r > 0,  r^2 phi' -> +GM as r -> 0 (point source 4 pi G M delta^3)
+  [OK] E5b  (nabla^2 - m^2)(-GM exp(-mr)/r) = 0 for r > 0,  r^2 phi' -> +GM as r -> 0
+  [OK] CONTROL (wrong claim must be rejected): E5c-mut  cos(kr) with the wrong sign, (nabla^2 - k^2), also solves it
+  [OK] E5d  as k -> 0 (rho + p -> 0) or m -> 0 both potentials reduce to -GM/r
+  [OK] E5e  forces: g_osc = GM[cos(kr)/r^2 + k sin(kr)/r],  g_yuk = GM (1 + m r) e^{-m r}/r^2
+  [OK] E5f  anti-screened force: r g/(GM k) = sin(kr) + cos(kr)/(kr): a 1/r force with envelope amplitude G M k, oscillating in sign (zero mean)
+  [OK] E5g  Poisson + hydrostatic response is solved by phi_osc with k^2 = 4 pi G (rho+p)/c_s^2 (c_s^2 > 0) and by phi_yuk with m^2 = 4 pi G (rho+p)/|c_s^2| (c_s^2 < 0)
+  [OK] CONTROL (wrong claim must be rejected): E5h-mut  k^2 = 8 pi G (rho+p)/c_s^2 also solves it
+
+E6  mass scaling of the force: linear response vs MOND
+  [OK] E6a  d ln g / d ln M = 1 for the anti-screened and Yukawa forces (linearity)
+  [OK] E6b  d ln g / d ln M = 1/2 for deep MOND
+  [OK] CONTROL (wrong claim must be rejected): E6c-mut  the anti-screened force has slope 1/2
+   ==> a linear-response medium gives v_flat^2 ~ M (baryonic Tully-Fisher slope 2); deep MOND has v^4 = G M a0 (slope 4).  a0 is a NONLINEARITY scale, not a susceptibility.
+
+E7  exact numbers fixed by p = -rho (nothing chosen)
+   rho + p                = 0
+   (rho+3p)/rho           = -2
+   c_s^2 = w              = -1
+   H^2/(4 pi G rho)       = 2/3
+  [OK] E7a  the list is {0, -2, -1, 2/3}
+   The only response coefficient in the list that enters a static field equation with a length is (rho+p)/c_s^2 = 0 (k_J^2 = 0).  -2 sets the SIGN and size of the
+   Newton-Hooke background field (E4), not a length; -1 is a sound speed, not a length.  No exact number fixed by p = -rho produces a length, hence no 1/r force.
+
+RESULT x02: 24/24 checks pass

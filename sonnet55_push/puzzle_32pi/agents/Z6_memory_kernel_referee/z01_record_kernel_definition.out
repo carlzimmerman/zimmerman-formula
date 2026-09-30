@@ -1,0 +1,42 @@
+== K1: the rapidity gap and its short-lag limit (record eqs 3-6) ==
+  ok   cosh(theta) - 1 = -u.u' - 1 exactly (definition of the rapidity gap) 
+  ok   theta(s) -> |a| s as s -> 0 with |a| = gamma^2 Omega v (proper acceleration = rate of rapidity accumulation) 
+
+== K2: support, normalisation and moments of the record's kernel ==
+   (declared, not a check) support: s in (0, inf) in PROPER-TIME lag along the particle's own worldline (causal by fiat); dimension of K = 1/time because Theta is dimensionless
+  ok   zeroth moment M0 = int K ds = N (a free dimensionless weight, NOT fixed to 1) 
+  ok   first moment  M1 = int s K ds = N lambda (record: M1 = N lambda; N = M1/lambda) 
+  ok   gamma-2 kernel N s e^{-s/lam}/lam^2: M0 = N, M1 = 2 N lam 
+  ok   box kernel N/T on [0,T]: M0 = N, M1 = N T/2 
+
+== K3: the two regimes of Theta on a circular orbit (record eq 8; non-relativistic theta = 2 (v/c)|sin(Omega s/2)|) ==
+   x =  0.05: quadrature 4.99687695191e-5  closed form (8) 4.99687695191e-5
+   x =   1.0: quadrature 0.000802993498558  closed form (8) 0.000802993498558
+   x =   3.0: quadrature 0.00118234898866  closed form (8) 0.00118234898866
+  ok   closed form (8) Theta = (4 N v/c) x coth(pi/x)/(4 + x^2) reproduced by direct quadrature of the kernel against the exact rapidity gap (x = 0.05, 1, 3) 
+  ok   short memory x -> 0: Theta -> N lambda Omega v/c = M1 |a|/c  (only M1 survives) 
+  ok   long memory x -> oo: Theta -> (4 N/pi)(v/c) (a function of SPEED; only M0 = N survives) 
+  ctrl-ok  mutation: long-memory limit 2N/pi instead of 4N/pi 
+  ctrl-ok  mutation: closed form with (2 + x^2) in the denominator agrees with the quadrature 
+
+== K4: where the (2/3) in M1 = (2/3) c/a0 comes from: the memory-force renormalisation of the ACTION (not of the kernel) ==
+  ok   deep limit: mu_2 -> Y (deep MOND) and mu_eff = mu + (Y/2) mu' -> (3/2) Y, hence g_obs^2 = (2/3) a0 g_bar 
+  ctrl-ok  mutation: without the memory force (mu_eff = mu) the deep-limit coefficient is 3/2 
+  ok   newtonian limit preserved: mu_eff -> 1 as Y -> oo 
+  ok   the renormalised requirement is M1 = (2/3) c/a0 [a0_eff = (2/3) c/M1 must equal a0]; the pre-correction requirement (record v1/v2) was M1 = c/a0 
+
+== K5: numbers (record constants) and the iff ==
+   a0 = 9.3619e-11 m/s^2 ; t_Lambda = 50.7377 Gyr ; M1 = (2/3)c/a0 = 2.13484e+18 s = 67.6503 Gyr ; c/a0 = 3.20226e+18 s = 101.475 Gyr
+  ok   M1 = (4/3) t_Lambda exactly (record iff: kappa = 1/2) 
+  ok   c/a0 = 2 t_Lambda, i.e. the Rindler distance c^2/a0 = 2 R*, R* = c t_Lambda = c/sqrt(G rho_Lambda) 
+
+== K6: N = M0 is the kernel WEIGHT; reproduce the record's N >= 2.1e6 (ephemeris) to fix the reading of the normalisation ==
+   Mercury : g = 0.03957 m/s^2, Theta_min = 428.74, N_min = 2.1315e+6
+   Earth   : g = 0.00593 m/s^2, Theta_min = 266.75, N_min = 2.1087e+6
+   Mars    : g = 0.002554 m/s^2, Theta_min = 216.1, N_min = 2.1133e+6
+   Saturn  : g = 6.52e-5 m/s^2, Theta_min = 86.379, N_min = 2.1011e+6
+  ok   tightest planet is Mercury and N_min = 2.1e6 (record: N >= 2.1e6, lambda <= 1.0e12 s = 3.2e4 yr): the record's kernel has weight N = M0 >> 1 N_min(Mercury) = 2.13146e+6
+  ok   hence lambda_max = M1/N_min = 1.0e12 s = 3.2e4 yr 1.0016e+12 s = 31739.0 yr
+  ctrl-ok  mutation: unit weight N = 1 would satisfy the ephemeris bound 
+
+== TOTAL: 16 pass, 0 fail; controls rejected 4, not rejected 0 ==

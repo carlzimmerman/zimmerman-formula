@@ -1,0 +1,79 @@
+[x01] PREDECLARED_MENU.md sha256 = 62c2343459982c26ca29248c811e8a4ca770865670ab5b0791963cdafe50b1fb  (matches the stored hash)
+  [OK] pre-declared menu file unchanged since it was hashed
+
+B1  second-order equation from the first-order (delta, v) system
+   A = -calH*(3*w - 1)
+   B = -S*w - S - 9*calH**2*cs2**2 + 9*calH**2*cs2*w + 3*calH**2*cs2 - 3*calH**2*w + 3*calHp*cs2 - 3*calHp*w + cs2*k**2
+  [OK] B1a  adiabatic (cs2 = w): A = calH(1-3w),  B = w k^2 - (1+w) S
+  [OK] B1b  dust (w = cs2 = 0): delta'' + calH delta' - S delta = 0
+  [OK] B1c  radiation (w = cs2 = 1/3): delta'' + (k^2/3) delta - (4/3) S delta = 0  (the Hu-Sugiyama form, S = 4 pi G a^2 rho)
+  [OK] CONTROL (wrong claim must be rejected): B1c-mut  radiation with the coupling S instead of (1+w) S gives B = k^2/3 - S  (must NOT equal the correct k^2/3 - (4/3) S)
+
+B2  clustering (c_s = 0) fluid with constant w in an Einstein-de Sitter background: exact solution delta_X = C delta_m
+  [OK] B2a  dust growing mode delta_m ~ a solves delta'' + calH delta' - (3/2) calH^2 delta = 0
+   solving v' equation for C: [(-w - 1)/(3*w - 1)]
+  [OK] B2b  C = (1+w)/(1-3w)
+   mutated coupling (no (1+w)) gives C = [-1/(3*w - 1)]
+  [OK] CONTROL (wrong claim must be rejected): B2c-mut  with the coupling lacking (1+w) the ratio would not vanish at w = -1; the mutated C must differ from (1+w)/(1-3w)
+  [OK] B2d  w = 0 gives C = 1 (dust follows dust) and w = -1 gives C = 0 (the vacuum does not cluster)
+
+B3  where does gravity enter?  matrix M of (delta, v):  d/deta (delta, v) = M (delta, v)
+  [OK] B3a  d(det M)/dS = -(1+w)
+  [OK] B3b  at w = -1 the whole matrix is independent of S (= 4 pi G a^2 rho): the vacuum's own perturbations feel no self-gravity
+  [OK] CONTROL (wrong claim must be rejected): B3b-mut  mutated coupling (no (1+w)) would keep S in the vacuum matrix
+  [OK] B3c  frozen (calH -> 0) dispersion omega^2 = det M = c_s^2 k^2 - (1+w) S
+  [OK] B3d  marginal wavenumber k_J^2 = (1+w) S / c_s^2 = 4 pi G a^2 (rho+p)/c_s^2
+   ==> k_J^2 = 4 pi G (rho+p)/c_s^2 :  the 'gravitational plasma frequency' of a fluid is 4 pi G (rho+p), not 4 pi G rho.
+       For the vacuum rho + p = 0 EXACTLY: no Jeans frequency, no Jeans/Debye length; 4 pi G rho_Lambda is not an eigenfrequency of anything in the vacuum.
+
+B4  the vacuum as a fluid: (w = -1) with a chosen sound speed; no rate involves G
+   c_s^2 = -1 (delta p = -delta rho, the barotropic vacuum): eigenvalues at calH -> 0: [-k, k]
+   c_s^2 = +1 (k-essence-like): eigenvalues at calH -> 0: [-I*k, I*k]
+  [OK] B4a  c_s^2 = -1: eigenvalues +-k (real: exponential growth at EVERY wavenumber, ill-posed; no acceleration scale)
+  [OK] B4b  c_s^2 = +1: eigenvalues +-i k (oscillation, no G, no scale)
+  [OK] B4c  neither contains S (G rho)
+
+C1  Heath growth integral: dust in dust + Lambda; the vacuum enters only through H(a)
+   max |residual| (correct 3/2 coefficient) = 1.26e-29;  with 1 instead of 3/2: 4.99
+  [OK] C1a  Heath D(a) = (5/2) Om H(a) int da/(aH)^3 satisfies D'' + (3/a + E'/E) D' - (3/2) Om a^-5 E^-2 D = 0 (|res| < 1e-20)
+  [OK] CONTROL (wrong claim must be rejected): C1b-mut  the same D with coefficient 1 instead of 3/2 has residual < 1e-3
+  [OK] C1c  pure dS (Om -> 0, H const): delta'' + 2H delta' = 0 has exponents {0, -2H}: growth frozen (delta = const, e^{-2Ht})
+
+C2  local exponents of a dust component in dust + vacuum: delta'' + 2H delta' - 4 pi G rho_c delta = 0 (frozen coefficients)
+  [OK] C2a  s+/H = -1 + sqrt(1 + 3X/2)  with X = rho_c/rho_Lambda
+  [OK] C2b  X = 0: s+ = 0 (frozen); X = 2: s+ = H exactly (rate H); X -> large: s+ -> sqrt(4 pi G rho_c)
+   ==> the exponent depends on the free ratio X = rho_c/rho_Lambda; there is no X-independent combination of 4 pi G rho_c and 4 pi G rho_Lambda that is a rate.
+       For X = 2 (rho_c = 2 rho_Lambda: mean density at the zero-gravity radius) s+ = H_Lambda = sqrt(8 pi/3) sqrt(G rho_Lambda) = 5.79 a0.
+
+D1  active gravitational mass of the vacuum and Newton-Hooke acceleration
+  [OK] D1a  4 pi G (rho + 3p) at p = -rho equals -8 pi G rho_Lambda = -Lambda   (the task's '-2 Lambda' is a slip: it would need Lambda = 4 pi G rho)
+  [OK] CONTROL (wrong claim must be rejected): D1a-mut  4 pi G (rho+3p) = -2 Lambda with Lambda = 8 pi G rho
+  [OK] D1b  static patch: Phi = -H^2 r^2/2, acceleration g = +H^2 r (repulsive, Newton-Hooke), H^2 = Lambda/3 = 8 pi G rho_Lambda/3
+  [OK] D1c  Poisson: laplacian Phi = -3 H^2 = -Lambda = 4 pi G (rho + 3p) at p = -rho
+
+D2  Einstein static universe (dust + Lambda) instability rate
+  [OK] D2a  static condition 4 pi G rho_c = Lambda  (rho_c = 2 rho_Lambda)
+  [OK] D2b  linearised d^2 (delta a)/dt^2 = Lambda delta a: instability rate sqrt(Lambda)  (Eddington)
+   note: only the homogeneous mode of the static universe; Kiessling's justification of the Jeans swindle (astro-ph/9910247, abstract opened)
+   uses a static universe with a cosmological constant; that the matching relation is Lambda = 4 pi G rho_c is derived here, not read from that abstract.
+
+D4  where sqrt(2 Lambda) (menu V3, task-listed) lives: the Nariai limit of Schwarzschild-de Sitter (G = 1)
+  [OK] D4a  Nariai point: f(r_N) = f'(r_N) = 0 at r_N = 1/sqrt(Lambda), M_N = 1/(3 sqrt(Lambda)); f''(r_N) = -2 Lambda
+  [OK] D4b  KS linearisation d^2(delta r)/dtau^2 = -(f''/2) delta r = Lambda delta r: growth rate sqrt(Lambda) (= menu V2, not V3)
+  [OK] CONTROL (wrong claim must be rejected): D4b-mut  growth rate^2 = 2 Lambda
+  [OK] D4c  on dS_2 (F = eps0 - Lambda x^2, curvature radius 1/sqrt(Lambda)) the static radius perturbation delta r = x obeys box(delta r) = -2 Lambda delta r: tachyon |m| = sqrt(2 Lambda) (= menu V3)
+  [OK] CONTROL (wrong claim must be rejected): D4c-mut  box(delta r) = -Lambda delta r
+   ==> sqrt(2 Lambda) is the tachyonic MASS of the Nariai radius mode (m^2 = -2 Lambda on dS_2); its growth RATE is sqrt(Lambda) (dS_2: Delta(1-Delta) = m^2/H_2^2 = -2 => growing exponent H_2 = sqrt(Lambda)).
+      Both are algebraic multiples of H_Lambda: V2 = sqrt(3) H_Lambda, V3 = sqrt(6) H_Lambda.
+
+D3  menu entries in units of s = sqrt(G rho_Lambda)
+  [OK] D3a  V1 = sqrt(8 pi/3) s, V2 = sqrt(8 pi) s, V4 = 2 sqrt(pi) s (as used in x04)
+  [OK] D3b  1/t_ff: sqrt(3 pi/(32 G rho)) = (pi/2)/sqrt(8 pi G rho/3) (both forms in the task agree)
+  [OK] D3c  omega_J^2 = (3/2) H_Lambda^2 exactly (the 4 pi G rho_Lambda 'plasma rate' is 3/2 of the dS Hubble rate squared)
+
+SUMMARY (x01)
+  * fluid with (w, c_s^2): k_J^2 = 4 pi G (rho+p)/c_s^2;  vacuum: rho + p = 0 => no self-gravity in its own perturbations (B3b).
+  * vacuum enters dust dynamics only through H (C1); local dust exponent s = -H + sqrt(H^2 + 4 pi G rho_c) (C2).
+  * every genuine rate of this linear system is an algebraic number times H_Lambda (for algebraic w, c_s^2, X) or, for X free, a chosen input.
+
+RESULT x01: 36/36 checks pass

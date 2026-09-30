@@ -1,0 +1,33 @@
+== 1. main modules (build order) ==
+P1_wall_dS: exit 0, headline #print axioms: 15, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P2_sds_surface_gravity: exit 0, headline #print axioms: 14, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P3_record_iff: exit 0, headline #print axioms: 20, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P4_macdowell_mansouri: exit 0, headline #print axioms: 10, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P5_ext_thermo: exit 0, headline #print axioms: 17, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P6_dimension: exit 0, headline #print axioms: 12, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P7_offset_family: exit 0, headline #print axioms: 25, errors: 0, sorry mentions: 0, non-standard axioms: 0
+P8_omega_lambda: exit 0, headline #print axioms: 4, errors: 0, sorry mentions: 0, non-standard axioms: 0
+PuzzleChain: exit 0, headline #print axioms: 25, errors: 0, sorry mentions: 0, non-standard axioms: 0
+== 2. source scan for sorry / admit / axiom / native_decide in the main files ==
+matches: 0
+== 3. full axiom audit: every theorem of the 9 modules ==
+203 theorems
+theorems: 203, audited: 203, non-standard: 0, errors: 0
+== 4. MUTATE controls (false variants must FAIL; refutation twins must COMPILE) ==
+P1_wall_dS_MUTATE: false variants 8, failed to compile 8; refutation twins 8, compiled 8; error lines: 9
+P2_sds_surface_gravity_MUTATE: false variants 14, failed to compile 14; refutation twins 14, compiled 14; error lines: 18
+P3_record_iff_MUTATE: false variants 14, failed to compile 14; refutation twins 14, compiled 14; error lines: 20
+P4_macdowell_mansouri_MUTATE: false variants 8, failed to compile 8; refutation twins 8, compiled 8; error lines: 9
+P5_ext_thermo_MUTATE: false variants 14, failed to compile 14; refutation twins 14, compiled 14; error lines: 16
+P6_dimension_MUTATE: false variants 9, failed to compile 9; refutation twins 9, compiled 9; error lines: 10
+P7_offset_family_MUTATE: false variants 18, failed to compile 18; refutation twins 18, compiled 18; error lines: 23
+P8_omega_lambda_MUTATE: false variants 5, failed to compile 5; refutation twins 5, compiled 5; error lines: 8
+PuzzleChain_MUTATE: false variants 13, failed to compile 13; refutation twins 13, compiled 13; error lines: 13
+total false variants: 103 (all must fail); total refutation twins: 103 (all must compile)
+-- own-failure check: every false variant must contain a Lean error inside its OWN lines (not inherit a sorry); every twin must be error-free --
+false variants with an error inside their own lines: 103 checked; twins error-free: 103 checked; problems: 0
+== 5. Mathlib check: is the transcendence of pi available? ==
+not in Mathlib (only Lindemann/AnalyticalPart); the conditional theorems use irrational_pi + an explicit hypothesis Transcendental Q pi
+== 6. independent numerical / symbolic cross-check (mpmath / sympy / numpy) ==
+h2_numeric_crosscheck.py: exit 0, 85/85 checks+controls passed
+VERIFY: PASS

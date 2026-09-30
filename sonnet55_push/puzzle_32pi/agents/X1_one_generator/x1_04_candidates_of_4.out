@@ -1,0 +1,72 @@
+PASS D0 slot values at D = 4: graviton 4, Tangherlini 4, MM-shift 4, convention-N graviton 4 (all four equal 4 at D = 4 only)
+
+  D-lift table (D = 4,5,6,7,8):
+   c1 TRACE         ['4', '5', '6', '7', '8']                    S1 False  S2 False  S3 False  S6(G_N) False
+   c2 SPIN2         ['4', '4', '4', '4', '4']                    S1 True  S2 False  S3 False  S6(G_N) False
+   c3 POL           ['4', '25', '81', '196', '400']              S1 False  S2 False  S3 False  S6(G_N) False
+   c4 SPHERE/DISC   ['4', '3*pi/2', '16/3', '15*pi/8', '32/5']   S1 False  S2 False  S3 False  S6(G_N) False
+   c5 THERMO        ['4', '4', '4', '4', '4']                    S1 True  S2 False  S3 False  S6(G_N) False
+   c6 QUAD-EH       ['4', '4', '4', '4', '4']                    S1 True  S2 False  S3 False  S6(G_N) False
+   c7 HORIZON       ['4', '1', '4/9', '1/4', '4/25']             S1 False  S2 True  S3 False  S6(G_N) False
+   c8 CHANNELS      ['4', '7', '11', '16', '22']                 S1 False  S2 False  S3 False  S6(G_N) False
+   c9 GB-SHIFT      ['4', '12', '24', '40', '60']                S1 False  S2 False  S3 True  S6(G_N) False
+   c10 RESPONSE     ['4', '4', '4', '4', '4']                    S1 True  S2 False  S3 False  S6(G_N) False
+PASS D1 every candidate equals 4 at D = 4 (by construction: the exercise cannot separate them at D = 4)
+PASS D2 S1 (graviton/BH constant-4 slot): passed by c2, c5, c6, c10 (all D-independent), failed by c1, c3, c4, c7, c8, c9
+PASS D3 S2 (Tangherlini slot): passed only by c7 (its own definition); S3 (MM slot): only by c9 (its own definition)
+PASS D4b S6': with the 4 pi-normalised Poisson constant (Lap Phi = 4 pi G_N' rho) the sphere/disc ratio agrees with the graviton slot 2(D-2)/(D-3) at D = [4] only (the D = 5 coincidence is convention-dependent)
+PASS D4 S6: in the Newton-G convention the sphere/disc ratio equals kappa_g^2/(8 pi G_N) at D = [4, 5] only (D = 5 is a coincidence: Vol(B^3) = 2 pi (D-3)/(D-2)); it fails for D = 6, 7, 8
+PASS CONTROL D4 CONTROL: c1 (N = D) is not the graviton 4 at D = 5
+   => no candidate other than the D-independent class {c2, c5, c6, c10} survives the one-generator premise (puzzle 4 = graviton 4 in every D); c4 survives only in convention N at D = 4, 5.
+
+  S4  a0(z)/a0(0) under three readings of the variable held fixed (flat LCDM, Om_m = 0.315, radiation neglected):
+      z      Lambda-alone(flat)   trace of total stress-energy (c1 on the whole source)   a0 ~ H(z)
+      0.0    1.000                1.000                                                  1.000
+      0.5    1.000                1.116                                                  1.322
+      1.0    1.000                1.312                                                  1.790
+      2.0    1.000                1.919                                                  3.032
+      2.5    1.000                2.306                                                  3.767
+      3.0    1.000                2.738                                                  4.566
+PASS S4 c1 read on the total source (trace = rho_m + 4 rho_Lambda) predicts an EVOLVING a0: a0(2.5)/a0(0) = 2.31 (H(z)-tracking gives 3.77); read on Lambda alone it is flat (1.00)
+      at z = 0 the total-trace reading is larger than the Lambda-only reading by sqrt(1 + Om_m/(4 Om_L)) = 1.0559 (a 5% shift of the fitted coefficient)
+      (other candidates fix only the COEFFICIENT, not which density enters; they are silent on a0(z).  The framework's own law is the flat column.)
+PASS S5a Kerr-Newman: (r_+^2 + a^2) - (r_+ - r_-)^2 = a^2 + r_-(2 r_+ - r_-) >= 0 for 0 <= r_- <= r_+, with equality iff a = 0 and r_- = 0 (Schwarzschild):  a**2 + r_p**2 - (r_m - r_p)**2
+PASS S5a numerically (2e5 random KN horizons, r_+ = 1): max A kappa^2/pi = 0.999485 <= 1, sup attained by the neutral static member
+PASS CONTROL S5a CONTROL: the bound A kappa^2/pi <= 1/2 would be violated (the sample maximum is 0.999): the scan can fail
+PASS S5a => with Kbar = 4 pi/A (2-d Gauss-Bonnet, any topological S^2), A kappa^2 <= pi reads  kappa <= (1/2) sqrt(Kbar)  (G = c = 1):  a0 = (1/2) sqrt(rho_Lambda) is the SUP of kappa over KN horizons with Kbar = rho_Lambda
+PASS S5b RN D=4: kappa r_+ = (D-3)(1 - q^2)/2 = 1/2 - q2/2; A kappa^(D-2) = pi*(q2 - 1)**2 decreasing in q^2 in [0,1], maximal at q = 0 (Tangherlini)
+PASS S5b RN D=5: kappa r_+ = (D-3)(1 - q^2)/2 = 1 - q2; A kappa^(D-2) = -2*pi**2*(q2 - 1)**3 decreasing in q^2 in [0,1], maximal at q = 0 (Tangherlini)
+PASS S5b RN D=6: kappa r_+ = (D-3)(1 - q^2)/2 = 3/2 - 3*q2/2; A kappa^(D-2) = 27*pi**2*(q2 - 1)**4/2 decreasing in q^2 in [0,1], maximal at q = 0 (Tangherlini)
+PASS CONTROL S5c Myers-Perry D=4 Smarr identity (D-3)M = (D-2)(kappa A/8pi + Omega_H J) holds for the quoted kappa, A (and would fail with kappa doubled): validates the formulas
+PASS S5c Myers-Perry single spin D=4: A kappa^(D-2) never exceeds its a = 0 (Tangherlini) value 3.1416 over the tested spins (max 3.1416): True; declared expectation: extremum at Tangherlini (Kerr/Tangherlini limits True)
+PASS CONTROL S5c Myers-Perry D=5 Smarr identity (D-3)M = (D-2)(kappa A/8pi + Omega_H J) holds for the quoted kappa, A (and would fail with kappa doubled): validates the formulas
+PASS S5c Myers-Perry single spin D=5: A kappa^(D-2) never exceeds its a = 0 (Tangherlini) value 19.7392 over the tested spins (max 19.7392): True; declared expectation: extremum at Tangherlini (Kerr/Tangherlini limits True)
+PASS CONTROL S5c Myers-Perry D=6 Smarr identity (D-3)M = (D-2)(kappa A/8pi + Omega_H J) holds for the quoted kappa, A (and would fail with kappa doubled): validates the formulas
+PASS S5c Myers-Perry single spin D=6: A kappa^(D-2) never exceeds its a = 0 (Tangherlini) value 133.2397 over the tested spins (max 16464.1490): False; declared expectation: FAILS (ultraspinning branch: A grows at fixed kappa) (Kerr/Tangherlini limits True)
+PASS CONTROL S5c Myers-Perry D=7 Smarr identity (D-3)M = (D-2)(kappa A/8pi + Omega_H J) holds for the quoted kappa, A (and would fail with kappa doubled): validates the formulas
+PASS S5c Myers-Perry single spin D=7: A kappa^(D-2) never exceeds its a = 0 (Tangherlini) value 992.2009 over the tested spins (max 310248.8355): False; declared expectation: FAILS (ultraspinning branch: A grows at fixed kappa) (Kerr/Tangherlini limits True)
+      => the 'neutral static horizon maximises A kappa^(D-2)' statement holds for KN (D=4), RN (D=4,5,6) and single-spin MP at D = 4, 5, and FAILS for MP at D = 6, 7 (ultraspinning): the 'sup kappa' reading of c7 is a D <= 5 statement, and Kbar = 4 pi/A is topological only at D = 4.
+
+  DECOY control: pool of 355 pre-declared D-formulas c*(D+a)^e [*(D+b)^f], c in {1/4,1/2,1,2,4}: how many hit each target at D = 4, and are non-constant?
+      target 2   :  26 formulas equal it at D = 4, of which  25 are D-dependent
+      target 3   :   9 formulas equal it at D = 4, of which   9 are D-dependent
+      target 4   :  26 formulas equal it at D = 4, of which  25 are D-dependent
+      target 6   :   8 formulas equal it at D = 4, of which   8 are D-dependent
+      target 8   :  21 formulas equal it at D = 4, of which  21 are D-dependent
+      target 12  :   8 formulas equal it at D = 4, of which   8 are D-dependent
+PASS X1 agreement at D = 4 is cheap: 26 pre-declared D-formulas (25 of them D-dependent) equal 4 at D = 4, and the decoy targets 2, 3, 6, 8, 12 are hit [26, 9, 8, 21, 8] times: 4 is not special
+      (this pool is a control for how weak D = 4 evidence is; it is NOT used to select a candidate.  The candidate list itself was written knowing the target.)
+
+  SCORE TABLE (S1 const-4 slot, S2 Tangherlini slot, S3 MM slot, S4 total-source a0(z), S5 extremal, S6 G_N-slot)
+   c1 TRACE         S1 FAIL, S2 FAIL, S3 FAIL, S6 FAIL;  S4: total-trace reading contradicts the flat law (a0(2.5)/a0(0) = 2.31), Lambda-only reading is flat.  -> orphan at D != 4
+   c2 SPIN2         S1 pass (D-independent);  S2-S3 n/a;  no mechanism (spin does not enter any coefficient)
+   c3 POL           S1-S3, S6 FAIL -> orphan
+   c4 SPHERE/DISC   S1 FAIL; S6 pass only at D = 4, 5 (coincidence), fails D >= 6; its horizon reading is c7 (S5)
+   c5 THERMO        S1 pass (D-independent; Wald S = A/4G in every D);  the same 8 pi/2 pi that gives T = kappa/2 pi and S = A/4
+   c6 QUAD-EH       S1 pass (D-independent; TT quarter computed D = 4..8)
+   c7 HORIZON       S2 pass (own slot); S1 FAIL; S5: neutral static horizon extremises A kappa^(D-2) for KN (D=4), RN (D=4,5,6), MP (D=4,5) but NOT MP at D = 6, 7
+   c8 CHANNELS      S1-S3, S6 FAIL -> orphan; no coefficient in any action counts Killing generators
+   c9 GB-SHIFT      S3 pass (own slot); S1 FAIL; the MM closure exists only at D = 4 (x1_02 L8)
+   c10 RESPONSE     S1 pass (constant 4); n/a otherwise; equals the record d-lock (kappa = 1/2 in every d)
+
+24/24 checks and controls behave as declared  (1.8 s)

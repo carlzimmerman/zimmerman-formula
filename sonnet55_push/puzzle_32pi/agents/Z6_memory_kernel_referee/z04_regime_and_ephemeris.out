@@ -1,0 +1,60 @@
+== R1: the sharp r dr kernel: short-memory M1|a|/c, long-memory (4N/pi) v/c, with an explicit error bound ==
+  ok   short memory (Omega T = 1e-3, 0.1): Theta = M1 |a|/c with M1 = (2/3) T to O((Omega T)^2) 
+  ok   long memory: Theta = (4 N/pi) v/c up to a relative error <= 2/(Omega T) (scanned 20 phases of T, Omega T from 10 to 1e5) max error x (Omega T) = 1.364
+  ctrl-ok  control: the long-memory value is 2N/pi (a wrong limit) -- detected 
+
+== R2: the record's regime variable x = (kernel width) x Omega for the identified kernel T = c/a0 ==
+   T = c/a0 = 3.20226e+18 s = 101.475 Gyr = 2 t_Lambda
+   Mercury                      Omega = 8.267e-7 /s   x = T Omega = 2.647e+12
+   Earth                        Omega = 1.991e-7 /s   x = T Omega = 6.376e+11
+   MW 1 kpc (v=100 km/s)        Omega = 3.241e-15 /s   x = T Omega = 1.038e+4
+   MW 8 kpc (v=220 km/s)        Omega = 8.912e-16 /s   x = T Omega = 2854.0
+   outer 30 kpc (v=180 km/s)    Omega = 1.944e-16 /s   x = T Omega = 622.7
+  ok   the record's short-memory criterion x = lambda Omega <= 0.1 across the galactic range gives lambda <= 0.98 Myr (record: 0.98 Myr) -- reproduced lambda_max = 0.9778 Myr
+  ok   the identified kernel (T = c/a0 = 101 Gyr) exceeds the record's galactic width bound by 1e5 (x = 2.9e3 at 8 kpc, 6e2 at 30 kpc): it sits in the LONG-memory branch in every galaxy T/lambda_max = 1.038e+5
+  ctrl-ok  control: the record's own viable kernel (exponential, lambda = 1.0e12 s) is in the LONG-memory branch in the MW (x > 1) (x = 0.000891)
+  ok   long-memory branch: matching deep MOND with an inertia that depends on speed alone forces f'(v) = v^3/(r a0), which depends on r at fixed v: STRUCTURALLY excluded (record D4, recomputed) 
+
+== R3: the ephemeris bound for the identified kernels (record's mu_2, mu_eff, Delta = g (1 - mu_eff) <= 3.66e-14) ==
+  ok   record's residual: 1 - mu_eff = 1/(32 Theta^4) [1 + 1/(2 Theta^2) + ...] for the alpha = 2 kernel (sympy series; leading term = record eq. 15/22) 
+  ok   Delta implementation: with the exact mu_2 and mu_eff, Delta(g, Theta_min)/bound = 1 + 1/(2 Theta_min^2) to 1e-7 for all four planets (the record's leading asymptote plus the series correction) 
+  ctrl-ok  control: the OLD uncancelled residual g/(4 Theta^2) at Theta_min gives the bound 
+   A: X3 (unit weight N=1, T=c/a0)
+      Mercury  Theta =  0.0002011 (need >= 428.7)  Delta/bound = 1.081e+12
+      Earth    Theta =  0.0001265 (need >= 266.8)  Delta/bound = 1.62e+11
+      Mars     Theta =  0.0001023 (need >= 216.1)  Delta/bound = 6.978e+10
+      Saturn   Theta =   4.111e-5 (need >= 86.38)  Delta/bound = 1.781e+9
+   B: physical Sciama strength at T=c/a0 (N=8 pi)
+      Mercury  Theta =   0.005055 (need >= 428.7)  Delta/bound = 1.073e+12
+      Earth    Theta =   0.003179 (need >= 266.8)  Delta/bound = 1.613e+11
+      Mars     Theta =    0.00257 (need >= 216.1)  Delta/bound = 6.952e+10
+      Saturn   Theta =   0.001033 (need >= 86.38)  Delta/bound = 1.779e+9
+   C: physical strength + requirement (N=2.93, T=0.683 t_L)
+      Mercury  Theta =  0.0005892 (need >= 428.7)  Delta/bound = 1.08e+12
+      Earth    Theta =  0.0003705 (need >= 266.8)  Delta/bound = 1.619e+11
+      Mars     Theta =  0.0002995 (need >= 216.1)  Delta/bound = 6.976e+10
+      Saturn   Theta =  0.0001204 (need >= 86.38)  Delta/bound = 1.781e+9
+   D: record's viable kernel (N=2.13e6, exp lambda=1e12 s)
+      Mercury  Theta =      428.4 (need >= 428.7)  Delta/bound = 1.003
+      Earth    Theta =      269.4 (need >= 266.8)  Delta/bound = 0.9607
+      Mars     Theta =      217.8 (need >= 216.1)  Delta/bound = 0.9691
+      Saturn   Theta =      87.57 (need >= 86.38)  Delta/bound = 0.9469
+  ok   family A (X3's identified kernel): Theta(Mercury) = 2.0e-4 << 1, the mu-argument is deep in the MOND branch at Mercury: Delta/bound ~ 1e12 (killed) Mercury 1.08e+12, Saturn 1.78e+9
+  ok   family B (Sciama's physical strength at T=c/a0, N = 8 pi): killed as well, by 1e11-1e12 Mercury 1.07e+12
+  ok   family C (physical strength + M1 requirement): killed Mercury 1.08e+12
+  ok   Theta shortfall at Mercury: needed 428.7, identified kernel 2.0e-4 => 2.1e6 = the record's N_min (the 'six orders' the record quotes for unit weight): the Sciama-shaped kernel is the record's already-killed unit-weight candidate shortfall = 2.131e+6
+  ctrl-ok  control: the record's viable kernel D also fails the bound at Mercury by > 10x D/bound at Mercury = 1.003
+  ok   control that passes: D (N = 2.13e6, lambda = 1e12 s) sits at the bound at Mercury (Delta/bound within [0.5, 1.5]) and below it elsewhere: the machinery reproduces the record's surviving edge Mercury 1.003
+  ctrl-ok  control: family A satisfies the bound 
+
+== R4: what a Sciama-strength kernel would have to be to sit where the record needs it ==
+   record: N >= 2.1315e+6 ; with M1 = (2/3) N T = (2/3) c/a0 the sharp kernel has T = (c/a0)/N = 1.502e+12 s, R_c = c T = 14.6 kpc
+   Sciama strength N = 2 pi G rho T^2  =>  rho_required = 2.252e-9 kg/m^3 = 3.853e+17 x rho_Lambda (5.844e-27 kg/m^3)
+  ok   the record's kernel needs N/T^2 = 2 pi G rho with rho = 4e17 rho_Lambda (analytic: N^3/(8 pi) = 3.7e17): Sciama's cosmological strength is ~17 orders too weak at the required width ratio 3.853e+17 vs N^3/(8 pi) = 3.853e+17
+   context (order of magnitude, not a record number): solar-neighbourhood stellar+gas density ~ 0.1 Msun/pc^3 = 6.77e-21 kg/m^3, i.e. still 3.33e+11 x below the required rho
+  ctrl-ok  control: the required density is comparable to the cosmological matter density (rho_m ~ 0.45 rho_Lambda) 
+
+== R5: consistency of R3/R4 with the record's OWN earlier verdict on the same class ==
+  ok   record's own 'vacuum free-fall time at O(1) weight' kernel (exp, lambda = t_L, N = 4/3) has Theta(Mercury) = 2.7e-4: the same order as the Sciama-shaped kernel (2.0e-4) -> same verdict, same 1e6 shortfall 0.0002682 vs 0.0002011
+
+== TOTAL: 14 pass, 0 fail; controls rejected 6, not rejected 0 ==

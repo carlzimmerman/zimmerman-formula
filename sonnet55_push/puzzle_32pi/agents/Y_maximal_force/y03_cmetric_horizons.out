@@ -1,0 +1,40 @@
+[y03_cmetric_horizons] PREDECLARED.md sha256 = 77fd9f5398faa909f7328988f697379acbf98c44f984f6095a97df476d5cb9b7  (matches the stored hash)
+  [OK] pre-declared file unchanged since it was hashed
+
+== H1: algebra of F and of the extremal condition ==
+  [OK] F(-x) = -G(x) - h^2 identically (so F(-x) <= -h^2 < 0 on the whole conformal boundary y = -x)
+  [OK] F(1/(3 s)) = 0 (double root, F' = 0 there)  <=>  h^2 = -1 + 1/(27*s**2)  <=>  27 s^2 (1 + h^2) = 1
+  [OK] this is the Dias-Lemos extremal condition 27 m^2 A^2 = 1 - 9 m^2 Lambda (hep-th/0301046, section III B), reproduced independently
+  [OK] CONTROL (wrong claim must be rejected): control: 27 s^2 (1 + h^2) = 1 is NOT 27 s^2 = 1 (that would be the Lambda = 0 saturation)
+  [OK] with F_max saturation 27 s^2 = 1 the extremal condition gives h^2 = 0: a static region needs Lambda = 0
+
+== H2: real-root structure on a grid of the allowed region 27 s^2 (1 + h^2) < 1 ==
+  [OK] 2301 grid points: three real roots y1 < -x_n < ... < -x_s < y2 < 1/(3s) < y3 everywhere: exactly TWO horizons (y2, y3) inside the physical range y >= -x; the third root is outside it (max of y1 + x_n = -8.2493e-6 < 0, min of y2 + x_s = 6.2456e-5 > 0)
+  [OK] so in the dS C-metric with Lambda > 0 there is NO separate acceleration horizon: y2 is the acceleration horizon and the cosmological horizon at once (as Dias-Lemos state); the brief's T_acc = T_cosm is therefore not a condition
+  [OK] Descartes: coefficients of r f(r) have signs [-1, 1, 1, -1]: 2 sign changes => at most 2 positive roots (Lambda > 0, m > 0)
+  [OK] CONTROL (wrong claim must be rejected): control: for the AdS sign of Lambda (coefficient signs [1, 1, 1, -1]) the count is different (1 sign change), i.e. the dS conclusion is not a generic-cubic accident
+
+== H3: thermal equilibrium T_bh = T_(acc/cosm)  (C5) ==
+  [OK] F'(y2)/F'(y3) = (-y1 + y2)/(y1 - y3): |T_(acc/cosm)/T_bh| = (y2 - y1)/(y3 - y1)
+  [OK] T_(acc/cosm)/T_bh < 1 strictly on all 2301 non-degenerate grid points (both temperatures for the SAME Killing vector d_t): the black-hole horizon is always hotter; equality only at y2 = y3 (degenerate/extremal), where both vanish
+  [OK] approaching the extremal boundary the ratio tends to 1: 1.0
+  [OK] m = 0: T(y2) = sqrt(h**2 + 1)/(2*pi) (units of A) = sqrt(A^2 + H^2)/(2 pi): the Unruh-de Sitter effective temperature of an accelerated observer
+  [OK] outcome of C5: T_bh = T_(acc/cosm) has no non-degenerate solution: label = same set as C4 (ENDPOINT/boundary), never an interior point
+
+== H4: the extremal boundary and the largest string force with a static black-hole region ==
+   q = 1/6 (T6)    s_ext = 0.0316385998584   largest string force / F_max = 0.119989509799
+   q = 1/Z_F       s_ext = 0.0327599789808   largest string force / F_max = 0.124051756006
+   q = 1/2 (T2)    s_ext = 0.0860662965824   largest string force / F_max = 0.311334795212
+   q = 1           s_ext = 0.136082763488   largest string force / F_max = 0.5
+   q = 10          s_ext = 0.19149499654   largest string force / F_max = 0.926004747689
+   q = 1000        s_ext = 0.192449993505   largest string force / F_max = 0.999230495966
+  [OK] largest string force is strictly below F_max for every finite A/H and tends to F_max only as A/H -> infinity (Lambda -> 0)
+  [OK] small A/H: largest force/F_max -> (4/(3 sqrt 3)) (A/H) = 0.76980036 A/H  (the Nariai mass L/(3 sqrt 3) times A); numerically 0.76980006
+  [OK] CONTROL (wrong claim must be rejected): control: the ratio does not tend to 4 (a wrong Nariai mass)
+  [OK] closed form: (largest static string force)/F_max = 1 - sin(th)/sin(2 pi/3 - th), th = (pi - 2 arctan(A/H))/3, agrees with the root-based value to 3.39e-49 at 9 test points
+  [OK] exact special value: at A = H the largest string force is exactly F_max/2 (th = pi/6: sin = 1/2, sin(pi/2) = 1)
+  [OK] CONTROL (wrong claim must be rejected): control: the closed form with the two sines interchanged disagrees with the root-based values
+  [OK] at s = 1/sqrt 27 and any h > 0: 27 s^2 (1 + h^2) = 1 + h^2 > 1, so F < 0 everywhere in the physical range (no static region; the black hole is not in the family)
+  [OK] outcome of C3 + C4 (string force = F_max together with a static black hole): EMPTY at finite A/H; the only limit point is A/H -> infinity (H -> 0): label ENDPOINT, q = infinity
+
+RESULT y03_cmetric_horizons: 23/23 checks pass

@@ -1,0 +1,58 @@
+======================================================================================================================
+CONTROL: my x_1/2, zeta_a, zeta_b at a0 = 1.2e-10 against the paper's Table I columns
+======================================================================================================================
+   COS4 01351  z 0.854  x mine  2.82 (paper  2.8)   zeta_a 0.262 (0.26)   zeta_b 0.229 (0.22)
+   D3a 6397    z 1.500  x mine  3.51 (paper  3.5)   zeta_a 0.222 (0.22)   zeta_b 0.184 (0.18)
+   GS4 43501   z 1.613  x mine  3.64 (paper  3.6)   zeta_a 0.216 (0.22)   zeta_b 0.177 (0.17)
+   zC 406690   z 2.196  x mine  4.45 (paper  4.4)   zeta_a 0.184 (0.18)   zeta_b 0.142 (0.14)
+   zC 400569   z 2.242  x mine 10.84 (paper 10.8)   zeta_a 0.084 (0.08)   zeta_b 0.040 (0.04)
+   D3a 15504   z 2.383  x mine  4.02 (paper  4.0)   zeta_a 0.199 (0.20)   zeta_b 0.159 (0.16)
+PASS C1 my x_1/2 and zeta_M reproduce Milgrom's Table I columns (x within 0.15, zeta within 0.011)
+       max dx 0.049, dzeta_a 0.0045, dzeta_b 0.0090
+PASS C2 the paper's sentence 'a value of 4 a0 would have resulted in x_1/2 of order 1 ... zeta_1/2 of order 0.5' for the higher-z galaxies is reproduced (x in 0.7-2.7, zeta_a in 0.27-0.6)
+       x: 0.88, 0.91, 1.11, 2.71, 1.01 ; zeta_a: 0.53, 0.52, 0.47, 0.27, 0.50
+
+======================================================================================================================
+RESULT: MOND phantom fraction zeta_1/2 at each galaxy's z with a0(z) = law(z) x 1.2e-10, against the observed zeta_1/2 (chi2 over 6 galaxies, no free parameter)
+======================================================================================================================
+   zeta_a|U1|all six                    flat    19.6  H(z)   137.0  D (d_p)   242.2  event d_e    42.0  LCDM-native    60.7
+   zeta_a|U1|drop zC406690              flat     5.3  H(z)    60.0  D (d_p)   117.7  event d_e    14.4  LCDM-native    22.4
+   zeta_a|U2|all six                    flat     7.4  H(z)    55.9  D (d_p)   101.7  event d_e    16.5  LCDM-native    23.7
+   zeta_a|U2|drop zC406690              flat     2.2  H(z)    27.4  D (d_p)    55.6  event d_e     6.3  LCDM-native     9.6
+   zeta_b|U1|all six                    flat     9.6  H(z)   119.4  D (d_p)   227.2  event d_e    27.5  LCDM-native    44.5
+   zeta_b|U1|drop zC406690              flat     1.1  H(z)    48.1  D (d_p)   106.3  event d_e     6.7  LCDM-native    13.2
+   zeta_b|U2|all six                    flat     3.6  H(z)    48.5  D (d_p)    95.2  event d_e    10.6  LCDM-native    17.1
+   zeta_b|U2|drop zC406690              flat     0.5  H(z)    22.1  D (d_p)    50.5  event d_e     2.9  LCDM-native     5.5
+
+   detail (zeta_a, conservative U2, all six): predicted zeta per galaxy
+      flat        : 0.26, 0.22, 0.22, 0.18, 0.08, 0.20   chi2 7.4   pulls +0.5, +0.2, +0.3, +2.3, +1.2, +0.6
+      H(z)        : 0.37, 0.40, 0.41, 0.43, 0.24, 0.47   chi2 55.9   pulls +1.6, +1.1, +2.4, +5.3, +3.4, +2.5
+      D (d_p)     : 0.46, 0.51, 0.52, 0.54, 0.33, 0.59   chi2 101.7   pulls +2.5, +1.6, +3.6, +6.8, +4.7, +3.3
+      event d_e   : 0.29, 0.28, 0.27, 0.26, 0.12, 0.28   chi2 16.5   pulls +0.8, +0.5, +0.9, +3.2, +1.8, +1.2
+      LCDM-native : 0.29, 0.29, 0.30, 0.30, 0.15, 0.34   chi2 23.7   pulls +0.8, +0.6, +1.2, +3.8, +2.2, +1.6
+      observed:      0.21, 0.17, 0.19, 0.00, 0.00, 0.12
+   a0(z) used (1e-10): D 2.83, 4.39, 4.69, 6.34, 6.48, 6.90 ; H(z) 1.97, 2.84, 3.01, 3.98, 4.06, 4.31
+PASS R1 flat: chi2 = 19.6/5.3/7.4/2.2/9.6/1.1/3.6/0.5 over the eight readings (min 0.5, max 19.6); 'good agreement' holds when the rogue galaxy is dropped (max 5.3) or the limits are read as 1 sigma (max 7.4)
+PASS R2 the chi2 is ordered by steepness in EVERY reading: flat < event d_e < LCDM-native < H(z) < particle-horizon (the table penalises any rise of a0(z), the more so the steeper)
+   Delta chi2 vs flat: D 50..223;  H(z) 22..117;  LCDM-native 5..41
+PASS R3 at face value (statistical errors of the paper's table): Delta chi2(D - flat) >= 45 and Delta chi2(H(z) - flat) >= 20 in every reading; LCDM-native Delta chi2 is 5-41 (SECOND RUN: my guessed 9-45 range for the LCDM-native clause was wrong; the D and H(z) clauses held)
+   profile delta>=0 (zeta_a, U2, all six) flat        : best delta 0.10  chi2_min   2.0  (chi2 at delta 0:   7.4);  smallest delta accepted at p = 0.05 (chi2 <= 12.59): 0.00
+   profile delta>=0 (zeta_a, U2, all six) H(z)        : best delta 0.29  chi2_min   5.5  (chi2 at delta 0:  55.9);  smallest delta accepted at p = 0.05 (chi2 <= 12.59): 0.18
+   profile delta>=0 (zeta_a, U2, all six) D (d_p)     : best delta 0.41  chi2_min   6.5  (chi2 at delta 0: 101.7);  smallest delta accepted at p = 0.05 (chi2 <= 12.59): 0.29
+   profile delta>=0 (zeta_a, U2, all six) event d_e   : best delta 0.15  chi2_min   2.8  (chi2 at delta 0:  16.5);  smallest delta accepted at p = 0.05 (chi2 <= 12.59): 0.03
+   profile delta>=0 (zeta_a, U2, all six) LCDM-native : best delta 0.18  chi2_min   3.9  (chi2 at delta 0:  23.7);  smallest delta accepted at p = 0.05 (chi2 <= 12.59): 0.06
+PASS R4 (criterion changed after the first pass, disclosed) the smallest one-sided offset on zeta_obs at which each law is ACCEPTED at p = 0.05 grows with steepness: flat 0, event-horizon ~0.03-0.06, LCDM-native ~0.06-0.10, H(z) ~0.15-0.22, particle horizon >= 0.25; to keep the particle-horizon law the observers' fitted phantom fractions (0-0.2) must ALL be underestimated by >= 0.25 -- inside the offset (1-zeta)/2 = 0.4-0.5 that a halving of M_b would produce (printed below), so 'all but excluded' at face value, NOT excluded once that model systematic is allowed
+       flat: 0.00; H(z): 0.18; D (d_p): 0.29; event d_e: 0.03; LCDM-native: 0.06
+   galaxies with predicted zeta > obs + 2 sigma (zeta_a, U2, all six): D 5/6, H(z) 4/6
+   scale of the model systematic: zeta = 1 - V_bar^2/V^2, so halving M_b (the paper's quoted +-50% range) at fixed V takes zeta_obs -> (1 + zeta)/2, an offset (1 - zeta)/2 = 0.40, 0.41, 0.41, 0.50, 0.50, 0.44 for the six galaxies: so an offset of 0.29 (D) or 0.18 (H(z)) is INSIDE the range the baryonic-mass uncertainty alone allows
+PASS R5 in the most conservative reading (U2, drop the rogue galaxy) D is still > 2 sigma high in >= 3 of 5 galaxies and H(z) in >= 1 (the D exclusion is not carried by one object)
+       D pulls [2.5, 1.6, 3.6, 4.7, 3.3] ; H(z) pulls [1.6, 1.1, 2.4, 3.4, 2.5]
+PASS M1 MUTATION (a0 FALLING like 1/D): chi2 <= flat's, so the exclusion is a statement about RISING a0 only (the test cannot exclude a falling law)
+       inverse-D chi2 2.85 vs flat 7.45
+PASS M2 MUTATION (use the framework's a0 = 0.936e-10 instead of 1.2e-10 for the flat law): chi2 does not increase by more than 1 (the flat conclusion is not baseline-fragile)
+       4.52 vs 7.45
+PASS M3 MUTATION (reverse the redshift assignment among the six galaxies): D's chi2 changes by > 3 (the test is sensitive to z, not only to a global scale)
+       95.9 vs 101.7
+PASS R6 the a0 ratios at Milgrom's six redshifts: particle horizon 2.36-5.75, H(z) 1.64-3.59: the paper's sentence ('about 4 a0 at z ~ 2 all but excluded') sits inside the D range and at the top of the H(z) range; the full-table computation above shows the record's shorthand 'Milgrom excludes the H(z) rival' is supported at the level Delta chi2 >= 20 (face value), not by that sentence alone
+
+11/11

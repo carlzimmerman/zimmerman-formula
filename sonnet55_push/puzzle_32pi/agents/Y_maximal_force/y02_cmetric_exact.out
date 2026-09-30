@@ -1,0 +1,37 @@
+[y02_cmetric_exact] PREDECLARED.md sha256 = 77fd9f5398faa909f7328988f697379acbf98c44f984f6095a97df476d5cb9b7  (matches the stored hash)
+  [OK] pre-declared file unchanged since it was hashed
+
+== C0: Einstein equation R_mu nu = Lambda g_mu nu, Lambda = 3/ell^2, for the Dias-Lemos dS C-metric ==
+  [OK] R_mu nu - Lambda g_mu nu = 0 identically in (m, A, ell, x, y)
+  [OK] CONTROL (wrong claim must be rejected): wrong sign of the 1/(ell^2 A^2) term in F (that is Lambda -> -Lambda) fails for Lambda = +3/ell^2
+  [OK] CONTROL (wrong claim must be rejected): wrong cubic coefficient in G fails
+  [OK] m = 0: Kretschmann = 24/ell**4 = 24/ell^4 (constant curvature, i.e. it is de Sitter with radius ell)
+
+== a_4 = A at m = 0 (the origin y -> infinity) ==
+  [OK] proper acceleration squared of the origin (y -> infinity, any x): A**2  => a_4 = A, exactly, independent of ell
+  [OK] CONTROL (wrong claim must be rejected): control: a_4 is NOT sqrt(A^2 + 1/ell^2) (that is the 5D/embedding acceleration)
+
+== C1: deficits at the poles, checked numerically against the proper circumference/radius ==
+  [OK] three real roots x_- < x_s < 0 < x_n of G at s = 0.1: -4.7812838, -1.1378052, 0.919089
+  [OK] G > 0 on the whole open interval (x_s, x_n) (200 sample points) and G < 0 just outside it
+  [OK] north pole regular by the choice kappa = 2/|G'(x_n)|: circumference/(2 pi radius) = (1.0 + 1.6789906e-20j) -> 1
+  [OK] south pole: circumference/(2 pi radius) = (0.63916497 + 1.0793396e-20j) matches (kappa/2)|G'(x_s)| = 0.63916497
+  [OK] CONTROL (wrong claim must be rejected): control: the south pole is NOT also regular for this kappa (a strut/string is unavoidable)
+  [OK] string tension on the south axis mu = (1 - |G'(x_s)|/|G'(x_n)|)/4 = 0.09020875799 > 0 (a string, not a strut); force 0.360835 F_max
+  [OK] G(x) contains no ell (the conical structure and the tension depend on s = m A only, not on Lambda)
+  [OK] small s: mu(s)/s = 0.999800125 -> 1  (force = m A, Newton's second law)
+  [OK] small s: mu(s)/s = 0.999998 -> 1  (force = m A, Newton's second law)
+  [OK] CONTROL (wrong claim must be rejected): control: mu(s)/s does not tend to 2 (the deficit-angle mutation 4 pi G mu would double it)
+
+== C2: P_none, no string and no strut on either axis ==
+  [OK] |G'(x_n)| - |G'(x_s)| > 0 on all 999 grid points of 0 < s < 1/sqrt 27 (min 0.0015396): both poles can never be regular simultaneously
+  [OK] the outcome of P_none is: only s = 0 (Schwarzschild-de Sitter or pure dS) is regular on both axes; the C-metric with acceleration and mass needs a string or a strut. Label: EMPTY for A m != 0
+  [OK] s = 0: G = 1 - x^2 has |G'| = 2 at both poles, so kappa = 1 makes both regular for EVERY A (pure dS observer, no mass, no string): P_none leaves A free at s = 0
+
+== C3: P_sat, string force = F_max ==
+  [OK] mu(s) is strictly increasing on 0 < s < 1/sqrt 27 (99 grid points) and stays below 1/4
+  [OK] mu -> 1/4 as s -> 1/sqrt 27: mu(1 - 1e-12 of it) = 0.249999727835
+  [OK] discriminant of G in x is -4*(27*s**2 - 1); it vanishes iff 27 s^2 = 1 (s > 0)
+  [OK] CONTROL (wrong claim must be rejected): mutation (kappa/2)|G'| -> (kappa/4)|G'| changes the tension at s = 0.1 (so the saturation point is not insensitive to it)
+
+RESULT y02_cmetric_exact: 24/24 checks pass

@@ -1,0 +1,33 @@
+== S1: Sciama's force is LINEAR in the acceleration history; only M0 acts on a steady acceleration, M1 multiplies the JERK ==
+  ok   int w(u) a(t-u) du = M0 a - M1 adot + (M2/2) addot  (exact for a quadratic a(t); w = C u on [0,T]) 
+  ok   M0 = C T^2/2, M1 = C T^3/3: for a STEADY acceleration F/(m a) = -M0 (= -I): the response is a constant, independent of |a| 
+  ok   record: steady-state Theta = M1 |a|/c, and the inertia ratio mu_2(Theta) DOES depend on |a| (d mu/d Theta != 0): the a0 of the record is the point where the NONLINEAR mu(Theta) crosses over 
+  ctrl-ok  control: the Sciama response ratio F/(m a) has a crossover in |a| (d/d|a| != 0) 
+   => for a steady acceleration Sciama's kernel never sees M1 (the moment that defines the record's a0 = (2/3)c/M1); M1/M0 is the mean retardation, which enters only through adot
+
+== S2: how the two objects are related for the SAME kernel: Sciama's force contains d/dt of the record-type Theta, not Theta ==
+  ok   identity: Sciama's force  int K_S a(t-s) ds = M0 a(t) - dTheta_S/dt  where Theta_S = int K_S [phi(t) - phi(t-s)] ds is the record's functional evaluated with K = K_S 
+  ok   steady acceleration (v = a t): Theta_S = M1 a and dTheta_S/dt = 0, so the record's Theta drops out of Sciama's force 
+  ctrl-ok  control: the identity holds with M1 in place of M0 
+   => Sciama: force = -m (M0 a - dTheta/dt);  record: inertia = m mu(Theta).  Same kernel, different functionals: M0 controls the steady inertia in one, M1 controls the threshold in the other.
+
+== S3: step responses.  X3: Sciama inertia builds as (t/T)^2.  The record's Theta (exact rapidity gap) builds LINEARLY in t ==
+  ok   Sciama step: F/(m a) = 2 pi G rho t^2 for t < T (quadratic in the duration; a-independent) 
+  ok   record's Theta after a step of acceleration a for duration t < T (exact rapidity gap): Theta = M0 a (t - t^3/(3 T^2)) -- LINEAR in t at small t 
+  ok   relative to its steady value M1 a: Theta(t)/Theta_DC = (3/2)(t/T)(1 - t^2/(3 T^2)) -> (3/2)(t/T) for t << T 
+  ok   for t << T: Theta -> M0 a t = M0 x (speed gained): the record's mu-argument is a function of the SPEED (long-memory branch), not of |a|/a0 
+  ctrl-ok  control: the record's step response is quadratic in t at small t (as Sciama's), i.e. Theta/t^2 stays finite 
+   (the record's own midpoint form Theta = (1/c) int K s |a(tau - s/2)| ds is a small-lag expansion and is NOT used for a step; the exact gap is)
+
+== S4: dimensionally, the record's kernel K and Sciama's weight w_S are both 1/time; the record's 'a0' comes from the RAPIDITY (c), Sciama's mean lag gives only a frequency ==
+  ok   Sciama kernel: the jerk term equals the steady term at omega_c = 1/(mean lag) = 3/(2T): a FREQUENCY threshold, linear in the response 
+  ok   with T = c/a0 the frequency threshold is an acceleration a_c = (3/2)(v/c) a0: velocity dependent (1e-3 a0 at galactic speeds); the record's a0 has no v/c 
+  ctrl-ok  control: the crossover acceleration of the Sciama kernel is independent of v 
+
+== S5: what the identification does and does not say ==
+   TRUE (arithmetic): the mean lag M1/M0 of the normalised sharp r dr weight on [0,T] is (2/3)T (z02 M5).
+   TRUE (conditional): for a record kernel of that SHAPE, unit weight M0 = 1 and T = c/a0, M1 = (2/3)c/a0 (z02 M1).
+   NOT TRUE: 'the record's kernel is Sciama's kernel': (i) Sciama's strength at T = c/a0 is M0 = 8 pi, not 1 (z02 M5a); (ii) the record's action has no G, no rho, no dV (z01);
+             (iii) Theta and Sciama's force are different functionals of a kernel (S2, S3); (iv) the record's shape is invisible (z02 M4), the requirement fixes only M1 (z02 M1).
+
+== TOTAL: 11 pass, 0 fail; controls rejected 4, not rejected 0 ==

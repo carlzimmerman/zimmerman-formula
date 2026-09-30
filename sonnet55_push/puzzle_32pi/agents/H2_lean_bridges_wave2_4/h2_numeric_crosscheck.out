@@ -1,0 +1,87 @@
+PASS P1 wall worldline (numerical derivatives): eta U U = -1, eta A A = 1/R^2, tangential acceleration^2 = 1/R^2 - 1/L^2 (4 cases, err 3.9e-31)
+PASS control: acceleration^2 = 1/R^2 (the p06 identification) is false for a wall in dS
+PASS P1 static observer at r = c: acceleration^2 = (c/L^2)^2/(1 - c^2/L^2) (Christoffel symbols)
+PASS P1 ... equals 1/R^2 - 1/L^2 with R^2 = L^2 - c^2
+PASS P1 Israel: numerically solved (A, B) = DeltaP/(3 sigma) +- 2 pi sigma (20 random cases, err 4.2e-31)
+PASS P1 mean of the two sides = DeltaP/(3 sigma) and 1/R^2 = H_in^2 + A^2 = H_out^2 + B^2 (err 1.6e-30)
+PASS control: A = DeltaP/(3 sigma) + pi sigma is false
+PASS P1 probe target: r = 3/(2 sqrt2) gives r E/3 = H_out/Z (E = 1)
+PASS control: r = 3/2 does not give r E/3 = H_out/Z
+PASS P2 kappa = f'/2 = (1 - 3 r^2/L^2)/(2 r) at both horizons of SdS (numerical derivative, err 9.9e-32)
+PASS control: kappa_b = (1 - r^2/L^2)/(2r) (the naive formula) is false
+PASS P2 root x_b = (sqrt(1 + 3Z^2) - 1)/(3Z) = 0.52263231 solves kappa_b L = 1/Z
+PASS control: the brief's root -1/Z + sqrt(1 + 1/Z^2) does NOT solve kappa_b L = 1/Z
+PASS P2 ... it solves the naive equation (1 - x^2)/(2x) = 1/Z instead
+PASS P2 cosmological root x_c = 0.63779703 solves kappa_c L = 1/Z, x_c < 1 (Z > 1)
+PASS P2 M*/M_Nariai = 0.9869524 (audit 0.98695), area x Lambda = 12 pi x_b^2 = 10.2973 (audit 10.3)
+PASS P2 BH normalisation: kappa_b^2/f(r*) >= 3 (min over the scan 3.0032693)
+PASS P2 BH normalisation: 1 < kappa_c^2/f(r*) <= 3 (range 1.00932 .. 2.9967373)
+PASS control: kappa_b^2/f(r*) >= 4 is false (it approaches 3 at Nariai)
+PASS control: kappa_c^2/f(r*) <= 2 is false
+PASS P3 M1(kappa = 1/2) = (4/3) t_Lambda, M1(2/3) = t_Lambda, M1(1/3) = 2 t_Lambda (family M1 = (1 + w) t, kappa = 2/(3(1 + w)))
+PASS control: M1(kappa = 1/2) = t_Lambda is false
+PASS P3 sharp kernel 2 tau/T^2: total weight 1, first moment 2T/3 (quad)
+PASS control: first moment is T/2 for the sharp kernel
+PASS P3 Sciama I(R) = 2 pi G rho R^2/c^2: I(R_H) = 3/4, I(R*) = 2 pi, I(2R*) = 8 pi
+PASS P3 potential of a uniform ball at the centre: int 4 pi r^2 (1/r) dr = 2 pi R^2
+PASS P3 Rindler conversion a_c^2/(G rho c^2): R_H -> 8 pi/3, R_S -> 2 pi, R* -> 1, 2R* -> 1/4; closure I(R_S) = 1
+PASS control: Rindler ratio at 2R* is 1/2
+PASS P3 mu(g) = 1 - (1 - p)^N, p = (g/s)/(1 + g/s): mu'(0) = N/s (finite difference)
+PASS P3 offset integral int 2x (1 + x/N)^(-N) dx = 2N^2/((N-1)(N-2)) at N = 3.0 (9.0)
+PASS P3 offset integral int 2x (1 + x/N)^(-N) dx = 2N^2/((N-1)(N-2)) at N = 2.5 (16.666667)
+PASS P3 offset integral int 2x (1 + x/N)^(-N) dx = 2N^2/((N-1)(N-2)) at N = 4.0 (5.3333333)
+PASS P3 offset integral int 2x (1 + x/N)^(-N) dx = 2N^2/((N-1)(N-2)) at N = 7.0 (3.2666667)
+PASS P3 N = 2: partial integrals grow without bound and equal 8(ln((2+T)/2) + 2/(2+T) - 1) (23.611, 60.141, 96.979)
+PASS P4 Vol(S^4_L) by sine-power quadrature = 8 pi^2 L^4/3; (12/L^4) Vol = 32 pi^2
+PASS P4 S_dS/hbar = pi L^2/(hbar G) = 2 x 8 pi^2/g^2 with 1/g^2 = L^2/(16 pi hbar G)
+PASS P4 YM action density/rho_Lambda per chirality = 1/2, pair = 1 (0.5)
+PASS P4 with the Lagrangian's 1/4 omitted the pair ratio is 4
+PASS control: per-chirality ratio is 1
+PASS P4 (1/4) ig |F|^2 Vol = 8 pi^2 ig per chirality
+PASS P5 first law: dM/dr = T dS/dr (-0.62540645), dM/dP = V (numerical derivatives)
+PASS P5 Smarr M = 2TS - 2PV and U = M - PV = r/2
+PASS control: Smarr with -PV (not -2PV) is false
+PASS P5 at P = -3/(8 pi L^2): M(r, P) = r(1 - r^2/L^2)/2, T = kappa/(2 pi), Gibbs M - TS = (r/4)(1 + r^2/L^2)
+PASS P5 kappa^2/|P| = 2 pi (1 - X)^2/X with X = 3 r^2/L^2
+PASS P5 the puzzle condition 8 pi (1 - X)^2 = X has two roots 0.81943359, 1.2203551 = 3 x_b^2, 3 x_c^2 of P2 (both horizons)
+PASS control: X = 1/3 (the T_b = T_dS point) solves the puzzle condition
+PASS P5 flat probe: |P|V/M = r^2/L^2 = S/S_dS = 8 pi/3 at r = Z L/2
+PASS P5 T_b = T_dS at x = 1/3 gives a0^2/(G rho_L) = 8 pi/3 (kappa^2 = 8 pi/3: Z = 1, NOT the kappa = 1 kernel)
+PASS P5 X3 table P1 (black-hole a0-horizon): PV/M = -0.37579 (lane -0.37579), TS/M = 0.12421 (0.12421), G/M = 0.87579 (0.87579), S/S_dS = 0.27314 (0.27314), V/V_dS = 0.14275 (0.14275), C_P/S = -0.19849 (-0.19849)
+PASS P5 X3 table P2 (cosmological a0-horizon): PV/M = -0.68573 (lane -0.68573), TS/M = 0.18573 (0.18573), G/M = -1 - TS/M = -1.1857 (-1.18573), S/S_dS = 0.40679 (0.40679), V/V_dS = 0.25945 (0.25945), C_P/S(cosm.) = 0.19849 (+0.19849)
+PASS P5 C_P/S = -/+ 2/sqrt(1 + 32 pi) = 0.19848639 exactly at the two a0-horizons (CP_puzzle_values)
+PASS control: C_P/S = -1/sqrt(1 + 32 pi) at the black-hole a0-horizon
+PASS P5 barrier height of the off-shell free energy at T_b = T_dS: G_b = (r/4)(1 + x^2) at x = 1/3 equals 5 L/54
+PASS P6 d = 2: G_00 = d(d-1)/2 H^2 (so H^2 = 16 pi G rho/(d(d-1)) from G_00 = 8 pi G rho)
+PASS P6 d = 2: addot/a = -8 pi G ((d-2) rho + d p)/(d(d-1))
+PASS P6 d = 3: G_00 = d(d-1)/2 H^2 (so H^2 = 16 pi G rho/(d(d-1)) from G_00 = 8 pi G rho)
+PASS P6 d = 3: addot/a = -8 pi G ((d-2) rho + d p)/(d(d-1))
+PASS P6 d = 3: the coefficient is the 4D law -8 pi G (rho + 3p)/6 = -(4 pi G/3)(rho + 3p)
+PASS P6 d = 4: G_00 = d(d-1)/2 H^2 (so H^2 = 16 pi G rho/(d(d-1)) from G_00 = 8 pi G rho)
+PASS P6 d = 4: addot/a = -8 pi G ((d-2) rho + d p)/(d(d-1))
+PASS control: d = 4: the 'Tolman count' rho + d p (without the (d-2)) does not reproduce the law
+PASS P6 d = 5: G_00 = d(d-1)/2 H^2 (so H^2 = 16 pi G rho/(d(d-1)) from G_00 = 8 pi G rho)
+PASS P6 d = 5: addot/a = -8 pi G ((d-2) rho + d p)/(d(d-1))
+PASS P6 Z_V(d) = d(d-1)/(d-2): 6, 6, 20/3 at d = 3, 4, 5
+PASS P6 Euler units (4 pi)^n n! = 32 pi^2, 384 pi^3, 6144 pi^4 (n = 2, 3, 4); Chern (2 pi)^n n! = 8 pi^2, 48 pi^3, 384 pi^4
+PASS control: (4 pi)^2 2! = 16 pi^2
+PASS P7 bathtub: sharp mu = min(x, 1): c = 1/3 exactly (quad over [0, T], T >= 1)
+PASS P7 steep mu = min(2x, 1) (slope 2 > 1): c = 1/12 < 1/3
+PASS P7 c >= 1/3 for slope <= 1 concave shapes (OR N = 3, 5, 11; exponential; Milgrom n = 4): 9.0, 4.1667, 2.6889, 2.0, 0.59907
+PASS control: c >= 1/2 for all slope <= 1 shapes is false (sharp gives 1/3)
+PASS P7 N* = (3 + sqrt(1 + 1/pi))/2 = 2.0740884: (N-1)(N-2) = 1/(4 pi), c(N*) = 8 pi N*^2, kappa* = 1/N* = 0.48214 (not 1/2)
+PASS P7 W: zero-force sphere of the Newtonian Lambda force has mean density 2 rho_Lambda
+PASS P7 W: outermost stable circular orbit (dL^2/dr = 0) has mean density 8 rho_Lambda
+PASS P7 W: rho_Lambda A_dS = 3/(8 pi L^2) x 4 pi L^2 = 3/2 = 6 F_max (F_max = 1/4)
+PASS P8 Omega_pred = 0.905789 (audit 0.906) with H0 = 67.4 km/s/Mpc = 2.18429e-18 1/s
+PASS P8 a0 needed for Omega = 0.685: a0'/a0 = 0.86962 (-13.0%)
+PASS control: Omega_pred with 8 pi in place of 32 pi is 0.906
+PASS Chain family Z' = 1.0: all seven quantities hit their targets iff Z' = sqrt(32 pi/3): none hit
+PASS Chain family Z' = 2.89441: all seven quantities hit their targets iff Z' = sqrt(32 pi/3): none hit
+PASS Chain family Z' = 5.78881: all seven quantities hit their targets iff Z' = sqrt(32 pi/3): all hit
+PASS Chain family Z' = 6.0: all seven quantities hit their targets iff Z' = sqrt(32 pi/3): none hit
+PASS Chain family Z' = 6.28319: all seven quantities hit their targets iff Z' = sqrt(32 pi/3): none hit
+PASS Chain Z^2 kappa^2 = 8 pi/3 in the family (kappa = a0/sqrt(rho), Z = 1/a0 at H = 1)
+PASS control: Z^2 kappa^2 = 32 pi/3 is false
+
+85/85

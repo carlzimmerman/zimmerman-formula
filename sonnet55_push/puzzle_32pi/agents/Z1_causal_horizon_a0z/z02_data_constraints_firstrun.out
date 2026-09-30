@@ -1,0 +1,37 @@
+==============================================================================================================
+A. MUSE-DARK III (Ciocan et al., arXiv:2604.22613): a0(z) = a0(0) + a1 z, a0(0) = 1.0 +- 0.04, a1 = 1.59 +- 0.10 (x1e-10); a0(0.87) = 2.38 +- 0.10
+==============================================================================================================
+   measured log10 a0(0.87)/a0(0) = +0.377 +- 0.0252 (errors as quoted, 1 sigma reading);  0.0126 if the quoted errors are 95% CIs (the record's CFG-audit reading)
+   flat         predicts +0.000  pull   -14.9 (quoted-as-1sigma)     -29.9 (quoted-as-95%CI)
+   H(z)         predicts +0.219  pull    -6.2 (quoted-as-1sigma)     -12.5 (quoted-as-95%CI)
+   D (d_p)      predicts +0.378  pull    +0.1 (quoted-as-1sigma)      +0.1 (quoted-as-95%CI)
+   event d_e    predicts +0.068  pull   -12.3 (quoted-as-1sigma)     -24.5 (quoted-as-95%CI)
+   LCDM-native  predicts +0.073  pull   -12.0 (quoted-as-1sigma)     -24.1 (quoted-as-95%CI)
+   T=t/t0       predicts -0.333  pull   -28.2 (quoted-as-1sigma)     -56.3 (quoted-as-95%CI)
+PASS A0 CONTROL: flat and H(z) pulls against MUSE-III reproduce the record's CFG190 (-14.9 and -6.2)
+       flat -14.95, H(z) -6.24
+PASS A1 (declared expectation a) the particle-horizon law is the ONLY candidate within 2 sigma of MUSE-III's headline (a0(0.87)/a0(0)), at either error reading; flat, H(z), event-horizon, LCDM-native and T are excluded at face value
+       D pull +0.05 / +0.10
+   ABSOLUTE (a coincidence to be weighed, not a result): the diameter law's own a0(0) = 1.029 vs MUSE-III intercept 1.00 +- 0.04 (+0.7 sigma); its a0(0.87) = 2.457 vs 2.38 +- 0.10 (+0.8 sigma)
+   the H0-footing H(z) law cH(z)/Z: a0(0) = 1.131, a0(0.87) = 1.874 (-5.1 sigma);  the flat 2R* law: 0.936 and 0.936 (-14.4 sigma)
+   shape across III's range vs its linear fit 1.0 + 1.59 z (sigma_line = sqrt(0.04^2 + (0.10 z)^2), correlation ignored as in CFG190):
+      flat         ratio at z = 0.33, 0.6, 0.87, 1.2, 1.44: 1.00, 1.00, 1.00, 1.00, 1.00   chi2 (5 pts, no free parameter) = 948.3
+      H(z)         ratio at z = 0.33, 0.6, 0.87, 1.2, 1.44: 1.19, 1.41, 1.66, 2.01, 2.29   chi2 (5 pts, no free parameter) = 250.8
+      D (d_p)      ratio at z = 0.33, 0.6, 0.87, 1.2, 1.44: 1.47, 1.91, 2.39, 3.03, 3.53   chi2 (5 pts, no free parameter) = 5.0
+      LCDM-native  ratio at z = 0.33, 0.6, 0.87, 1.2, 1.44: 1.05, 1.10, 1.18, 1.32, 1.43   chi2 (5 pts, no free parameter) = 693.9
+      III's line:  1.52, 1.95, 2.38, 2.91, 3.29
+FAIL A2 across III's whole z range the particle-horizon law tracks the linear fit to chi2 < 5 for 5 points (flat and H(z) are at chi2 > 40 / > 10): the shape match is real at the level of III's published line
+       chi2 {'flat': 948.3299211656902, 'H(z)': 250.78148963319552, 'D (d_p)': 5.015137224406759, 'LCDM-native': 693.8854406522252}
+
+==============================================================================================================
+B. CFG198 (record; MUSE-DARK per-galaxy a0 at R_e, slopes in dex per unit z, 95% bootstrap CIs): do the laws' reference slopes lie inside the route CIs?
+==============================================================================================================
+   sample (CFG198's frozen selection): rows 126 -> 124 -> disc-only 110 -> 109   z in [0.28, 1.44], median 0.86
+   reference slopes over the sample's z (OLS of log10 law on z): flat -0.000, H(z) +0.258, D (d_p) +0.342, event d_e +0.088, LCDM-native +0.123, T=t/t0 -0.319, III linear +0.298
+PASS B0 CONTROL: my reference slopes reproduce CFG198's (H(z) +0.258, III +0.298) to 0.005 on the same frozen sample
+       n = 109; H(z) 0.2577 vs 0.2577; III 0.2980 vs 0.2993
+Traceback (most recent call last):
+  File "~/new_physics/<repo>/sonnet55_push/puzzle_32pi/agents/Z1_causal_horizon_a0z/z02_data_constraints.py", line 114, in <module>
+    cis[f"route ii, {row}"] = v["ci"]["ii"]
+                              ~^^^^^^
+KeyError: 'ci'

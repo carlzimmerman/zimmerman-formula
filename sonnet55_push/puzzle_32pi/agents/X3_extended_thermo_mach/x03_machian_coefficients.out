@@ -1,0 +1,49 @@
+== B-S: Sciama's toy, Phi = -G rho int_{r<R} dV/r ==
+  ok   Phi(R) = -2 pi G rho R^2 (uniform density, 1/r kernel) 
+  ok   I(R_H) = 3/4 for any flat universe (R_H = c/H, H^2 = 8 pi G rho/3): the pi's cancel 
+  ok   I(R*) = 2 pi (R* = c/sqrt(G rho)) 
+  ok   Sciama closure radius R_S/R_H = 2/sqrt3 (1.1547) and R_S/R* = 1/sqrt(2 pi) 
+  ok   R_H/R* = sqrt(3/(8 pi)) = 0.3455 (the puzzle horizon radius R* is 2.894 Hubble radii) 
+  ctrl-ok  mutation: Sciama's closure I = 1 is met at the Hubble radius 
+  ok   premise flag: the GR active density of vacuum energy is rho + 3p = -2 rho_L, so the toy potential of the vacuum is +4 pi G rho_L R^2 > 0 (negative inertia), opposite in sign and twice the size of the potential with +rho_L (which the puzzle uses) 
+
+== B-BD: Brans-Dicke static uniform ball (weak-field derivation from the field equations) ==
+  ok   R_00 (BD linearised, static) = [8 pi rho + 4 pi T (2 omega + 2)/(2 omega + 3)]/phi0 
+  ok   dust: G = (2 omega + 4)/((2 omega + 3) phi0)  (Brans-Dicke's relation, derived) 
+  ok   GR limit omega -> infinity: G phi0 -> 1 
+  ctrl-ok  mutation: the Newtonian potential obeys nabla^2 Phi = 8 pi G rho (would change G by 2) 
+  ok   phi(0) = 4 pi rho R^2/(2 omega + 3) for a uniform dust ball 
+  ok   phi(0) = 16 pi rho_L R^2/(2 omega + 3) when the source is the vacuum-energy trace T = -4 rho_L 
+  ok   Mach relation, dust source:   G rho R^2/c^2 = (omega + 2)/(2 pi) 
+  ok   Mach relation, vacuum trace:  G rho_L R^2/c^2 = (omega + 2)/(8 pi) 
+   (the 'ball' coefficient carries one 1/pi; Friedmann's G rho_L R_H^2 = 3/(8 pi) carries the same 1/pi)
+   omega needed so that the Mach relation holds at each cutoff:
+     R_H (Hubble)                               dust: omega = -5/4 = -1.25000    vacuum-trace: omega = 1 = 1.00000
+     R* = c/sqrt(G rho_L)                       dust: omega = -2 + 2*pi = 4.28319    vacuum-trace: omega = -2 + 8*pi = 23.13274
+     2 R* = c^2/a0 (Rindler distance of a0)     dust: omega = -2 + 8*pi = 23.13274    vacuum-trace: omega = -2 + 32*pi = 98.53096
+  ok   Hubble cutoff needs a RATIONAL omega: dust -5/4, vacuum-trace +1 (the pi's cancel) 
+  ok   cutoff R* needs omega = 2 pi - 2 (dust) or 8 pi - 2 (trace): irrational 
+  ok   cutoff 2R* (the a0 Rindler distance) needs omega = 8 pi - 2 (dust) or 32 pi - 2 (trace) 
+   needed omegas that are in the declared list: [('R_H (Hubble)', 'trace', 1)];  in the PRINCIPLED sub-list: []
+  ok   no needed omega lies in the principled sub-list {-3/2,-4/3,-1,-1/2,0} (the one list hit, omega = +1, carries no principle and is a Hubble-cutoff/Friedmann-class rational) 
+  ok   R_c/R_H = sqrt(4 (omega+2)/3) (dust) or sqrt((omega+2)/3) (vacuum trace): the pi's cancel 
+  ok   for every rational omega tested R_c/R_H is algebraic, whereas the puzzle needs R_c/R_H = Z = sqrt(32 pi/3), transcendental (sympy: not algebraic) 
+  ok   with a_c = c^2/R_c: a_c^2/(G rho_L c^2) = 8 pi/(omega+2) (vacuum trace) or 2 pi/(omega+2) (dust); = 1/4 iff omega = 32 pi - 2 or 8 pi - 2 
+  ctrl-ok  mutation: a rational omega gives a_c^2/(G rho_L c^2) = 1/4 
+
+== B-E: the same integral in an expanding universe (arXiv:2308.04503 Appendix A; opened) ==
+   luminosity-distance version: EdS 0.5, LCDM(0.27/0.73, Or=8.24e-5) 0.41610305, pure Lambda 0.25
+  ok   reproduces the paper's LCDM value 0.416 (luminosity distance) from its stated integrand 
+  ok   EdS (matter-dominated) gives exactly 1/2 from the same integrand, NOT the paper's stated 'exactly 1' (paper statement not reproduced; factor 2) 
+  ok   pure Lambda (luminosity distance) gives exactly 1/4 = (3/2)(1/6): finite, rational; proper distance diverges log at a -> 0 
+  ok   proper-distance version on pure Lambda diverges logarithmically (1.5 * ln(1/a_min) growth) ['5.42276', '12.3157', '19.2233']
+   => the coefficient of Sciama's integral in an expanding universe depends on the distance measure (luminosity vs proper), on the matter content and on the lower cutoff:
+      3/4 (sharp Hubble sphere), 0.416 (LCDM, luminosity), 1/2 (EdS, luminosity), 1/4 (Lambda, luminosity), diverges (proper, Lambda). None is 1; none contains a0.
+
+== premise counts (each premise = something not implied by the formulation's field equations) ==
+   B-S Sciama toy: 5 premises: gravito-electromagnetic analogy with the force law F = G m1 m2 a/(c^2 r) (coefficient 1); uniform density rho (which one: matter? vacuum with which sign, Tolman rho+3p?); cutoff radius (Hubble sphere c/H); Newtonian retarded integral in an expanding, non-static universe; the closure postulate |Phi| = c^2 (I = 1)
+   B-BD Brans-Dicke: 5 premises: omega (free); static uniform ball (no expansion, no Lambda-background solution); cutoff radius; which stress-energy trace sources phi (dust vs vacuum p = -rho); Mach postulate G phi = (2 omega + 4)/(2 omega + 3) with phi the cosmic value
+   B-E expanding-universe integral: 4 premises: distance measure (luminosity vs proper); lower cutoff (a -> 0 divergence for matter); weights a^4 rho/r (not derived from a field equation in that paper); closure I = 1
+   (bookkeeping only: not counted as a check)
+
+== TOTAL: 24 pass, 0 fail; controls rejected 3, not rejected 0 ==

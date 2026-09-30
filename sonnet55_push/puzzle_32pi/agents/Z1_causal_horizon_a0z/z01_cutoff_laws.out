@@ -1,0 +1,76 @@
+Planck-like LCDM+radiation (H0 67.4, Om 0.315, Or 9.1e-05): today, in units c/H0 and Gly:
+   particle horizon R_p    3.1807 c/H0 =   46.14 Gly   a0 = c^2/R = 2.0588e-10   / SPARC = 1.912
+   event horizon R_e       1.1497 c/H0 =   16.68 Gly   a0 = c^2/R = 5.6959e-10   / SPARC = 5.291
+   Hubble radius           1.0000 c/H0 =   14.51 Gly   a0 = c^2/R = 6.5483e-10   / SPARC = 6.082
+   R*                      3.4971 c/H0 =   50.73 Gly   a0 = c^2/R = 1.8725e-10   / SPARC = 1.739
+   2R*                     6.9943 c/H0 =  101.47 Gly   a0 = c^2/R = 9.3624e-11   / SPARC = 0.870
+
+--- controls (analytic limits; p11 reproduction) ---
+PASS C1 reproduces p11: R_p = 46.14 Gly, R_e = 16.68 Gly, and the diameter law 1.74/2.63/6.05/13.68 at z = 0.5/1/2.5/5
+       D(z): z0.5: 1.740, z1.0: 2.633, z2.5: 6.055, z5.0: 13.684
+PASS C2 EdS limit: d_p = 2c/H(z) (numeric horizon integral vs analytic, to the truncation 2 sqrt(a_min) = 2e-12), hence the particle-horizon law equals the H(z) law (1+z)^(3/2) in a matter-only universe
+       max |d_p - 2c/H| = 1.33e-12
+PASS C3 de Sitter limit: the event horizon is c/H0 at every time (event-horizon law exactly flat there)
+       max |d_e - c/H0| = 4.44e-16
+PASS C4 radiation-only limit: d_p = c/H exactly (a ~ t^(1/2): d_p = 2ct = c/H)
+       max |d_p - c/H| = 5.00e-13
+PASS C5 MUTATION (drop the factor a: use the comoving horizon): C2 would FAIL, so C2 does detect a wrong horizon definition
+       comoving error vs 2c/H = 0.750
+PASS C6 radiation matters for the horizon law at <= 5% for z <= 5 and moves it in the expected direction (radiation shortens d_p, raising a0(z)): reported
+       with/without radiation: z0.5: 1.740/1.735, z1.0: 2.633/2.618, z2.0: 4.803/4.751, z2.5: 6.055/5.975, z3.0: 7.405/7.292, z5.0: 13.684/13.373
+
+--- THE TABLE: a0(z)/a0(0) (ratio; dex in brackets) ---
+law                                                   z=0.5    z=1.0    z=2.0    z=2.5    z=3.0    z=5.0  
+flat (R*, 2R*: z-independent)                           1.000    1.000    1.000    1.000    1.000    1.000
+                                                       +0.000   +0.000   +0.000   +0.000   +0.000   +0.000
+Hubble radius c/H(z)  [a0 = cH(z)/Z]                    1.322    1.790    3.032    3.768    4.568    8.296
+                                                       +0.121   +0.253   +0.482   +0.576   +0.660   +0.919
+particle horizon d_p (radius OR diameter)               1.740    2.633    4.803    6.055    7.405   13.684
+                                                       +0.241   +0.420   +0.682   +0.782   +0.870   +1.136
+event horizon d_e at t(z)                               1.086    1.201    1.472    1.615    1.760    2.350
+                                                       +0.036   +0.080   +0.168   +0.208   +0.246   +0.371
+LambdaCDM-native emergent (L274, DM14, 1e12)            1.079    1.232    1.771    2.157    2.624    5.324
+                                                       +0.033   +0.091   +0.248   +0.334   +0.419   +0.726
+T = t(z)/t0 (CFG175 accumulation law; falls)            0.622    0.424    0.237    0.189    0.155    0.085
+                                                       -0.206   -0.373   -0.625   -0.723   -0.809   -1.071
+MUSE-DARK III linear 1 + 1.59 z (fit, z<=1.44)          1.795    2.590    4.180    4.975    5.770    8.950
+                                                       +0.254   +0.413   +0.621   +0.697   +0.761   +0.952
+
+--- absolute a0 (units 1e-10 m/s^2) if the law is normalised by its OWN candidate at z = 0 (the level problem, separate from the shape) ---
+   d_p radius: c^2/d_p                z=0:  2.059 (SPARC x1.912);   z = 0.5: 3.582, 1.0: 5.421, 2.0: 9.889, 2.5: 12.465, 3.0: 15.245, 5.0: 28.172
+   d_p diameter: c^2/(2 d_p)          z=0:  1.029 (SPARC x0.956);   z = 0.5: 1.791, 1.0: 2.710, 2.0: 4.945, 2.5: 6.233, 3.0: 7.622, 5.0: 14.086
+   event horizon: c^2/d_e             z=0:  5.696 (SPARC x5.291);   z = 0.5: 6.184, 1.0: 6.841, 2.0: 8.382, 2.5: 9.198, 3.0: 10.027, 5.0: 13.383
+   R*: c^2/R*  (flat)                 z=0:  1.872 (SPARC x1.739);   z = 0.5: 1.872, 1.0: 1.872, 2.0: 1.872, 2.5: 1.872, 3.0: 1.872, 5.0: 1.872
+   2R*: c^2/(2R*) (premise, flat)     z=0:  0.936 (SPARC x0.870);   z = 0.5: 0.936, 1.0: 0.936, 2.0: 0.936, 2.5: 0.936, 3.0: 0.936, 5.0: 0.936
+   c/H0: cH0  (unnormalised)          z=0:  6.548 (SPARC x6.082);   z = 0.5: 8.658, 1.0: 11.724, 2.0: 19.857, 2.5: 24.676, 3.0: 29.910, 5.0: 54.325
+   cH0/Z (the H0-footing law, Z = 5.7888): z=0: 1.131 (x1.051);   z = 0.5: 1.496, 1.0: 2.025, 2.0: 3.430, 2.5: 4.263, 3.0: 5.167, 5.0: 9.384
+PASS C7 the framework's two footings: a0 = cH_L/Z = 0.936e-10 (H_L = H0 sqrt(OL)) and cH0/Z = 1.131e-10; 2R* premise = the first
+
+--- structure (each computed) ---
+PASS S1 the particle-horizon law lies ABOVE the H(z) law at every tabulated z > 0 (steeper than the rival footing), by x1.46 at z = 1 and x1.60 at z = 2.5
+       D/E: z0.5: 1.316, z1.0: 1.471, z2.0: 1.584, z2.5: 1.607, z3.0: 1.621, z5.0: 1.649
+   d_p H / c : z=0.0: 3.181, z=1.0: 2.163, z=2.5: 1.980, z=10.0: 1.895, z=50.0: 1.785, z=1000.0: 1.357
+PASS S2 d_p H/c = 3.18 today, falls to 2.2 at z = 1 and to about 1.8 at z = 50 (matter era 2, radiation lowers it; radiation era 1): the D/E ratio is (3.18 / (d_p H/c)) and is NOT constant
+   event-horizon law: z=0.5: 1.086, z=1.0: 1.201, z=2.0: 1.472, z=2.5: 1.615, z=3.0: 1.760, z=5.0: 2.350
+PASS S3 the event-horizon law RISES with z too (d_e shrinks toward the past) but much less steeply than the H(z) law at z <= 3
+PASS S4 today's slopes d ln a0/dz at z = 0: particle horizon = 1 + c/(H0 d_p) = 1.314; H(z) law = 3 Om/2 = 0.4725; flat 0 (analytic vs numerical derivative)
+       D slope numeric 1.3143 vs analytic 1.3144; E slope 0.4726
+
+--- cosmology sensitivity of the shape (H0 cancels: both the horizon law and R* scale as c/H0) ---
+   Om 0.280 Or 0.0e+00:  D(1) 2.596  D(2.5) 5.913 (+0.772 dex)   E(2.5) 3.567
+   Om 0.280 Or 9.1e-05:  D(1) 2.612  D(2.5) 5.995 (+0.778 dex)   E(2.5) 3.569
+   Om 0.300 Or 0.0e+00:  D(1) 2.609  D(2.5) 5.949 (+0.774 dex)   E(2.5) 3.683
+   Om 0.300 Or 9.1e-05:  D(1) 2.624  D(2.5) 6.030 (+0.780 dex)   E(2.5) 3.684
+   Om 0.315 Or 0.0e+00:  D(1) 2.618  D(2.5) 5.975 (+0.776 dex)   E(2.5) 3.767
+   Om 0.315 Or 9.1e-05:  D(1) 2.633  D(2.5) 6.055 (+0.782 dex)   E(2.5) 3.768
+   Om 0.340 Or 0.0e+00:  D(1) 2.632  D(2.5) 6.015 (+0.779 dex)   E(2.5) 3.904
+   Om 0.340 Or 9.1e-05:  D(1) 2.647  D(2.5) 6.093 (+0.785 dex)   E(2.5) 3.905
+PASS S5 the particle-horizon law at z = 2.5 stays in [5.91, 6.09] over Om 0.28-0.34 and radiation on/off (i.e. +0.77..+0.78 dex): the shape is a robust prediction of the candidate
+   aside (DESY5-like w0 -0.752, wa -0.86, Om 0.319): D(2.5) = 6.037 (+0.781 dex); E(2.5) = 3.757
+PASS S6 a DESI-like evolving dark energy moves the particle-horizon law at z = 2.5 by < 8% relative to LCDM (it is a matter/radiation-era integral): the shape does not depend on the Lambda sector
+       ratio 0.997
+   d_p(0) vs the lower limit a_min of the integral (c/H0): 1e-06: 3.18059, 1e-09: 3.18069, 1e-12: 3.18069, 1e-20: 3.18069, 1e-30: 3.18069
+PASS S7 the horizon integral converges at early times as a_min/sqrt(Or) (radiation era): 1e-4 c/H0 at a_min = 1e-6, < 1e-7 at 1e-9, none below; well defined for a hot-big-bang start, undefined (much larger) if inflation precedes it -- a conceptual, not numerical, caveat
+       shortfall vs a_min -> 0: 1e-06: 1.05e-04 (a/sqrt(Or) = 1.05e-04), 1e-09: 1.05e-07 (a/sqrt(Or) = 1.05e-07), 1e-12: 1.05e-10 (a/sqrt(Or) = 1.05e-10)
+
+14/14

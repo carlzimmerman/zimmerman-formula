@@ -1,0 +1,75 @@
+Planck-like: R_p = 3.1807 c/H0, R* = 3.4971 c/H0, R*/R_p = 1.0995
+PASS C1 R*/R_p = 1.0995 reproduces p11 (R* = 50.73 Gly, R_p = 46.14 Gly)
+       1.0995 vs 1.0995
+PASS C2 identity R* = sqrt(8 pi/3) c/H_L (H_L = H0 sqrt(OL)) to 1e-13 (G rho_L = 3 H_L^2/(8 pi)); R_p is 2.632 de Sitter-Hubble radii c/H_L (R* is 2.894)
+
+--- F1: H0 cancels ---
+   H0 =  55.0:  R*/R_p = 1.099493148666
+   H0 =  67.4:  R*/R_p = 1.099493148666
+   H0 =  73.0:  R*/R_p = 1.099493148666
+   H0 =  85.0:  R*/R_p = 1.099493148666
+PASS F1 R*/R_p is independent of H0 at fixed density parameters to 1e-12 (both lengths scale as c/H0); its only inputs are (Om, OL, Or, Ok)
+PASS F1m MUTATION (freeze rho_Lambda at the Planck H0 but change H0 in R_p): the ratio then moves by >= 20%, so F1's cancellation test can detect an inconsistent input
+       ['0.897', '1.387']
+
+--- F3: R*/R_p over the plausible parameter range ---
+   OL      R*/R_p (radiation on)   (radiation off)
+   0.5500    1.4154                  1.3943
+   0.6000    1.2923                  1.2716
+   0.6500    1.1770                  1.1566
+   0.6850    1.0995                  1.0793
+   0.7000    1.0669                  1.0467
+   0.7027    1.0610                  1.0409
+   0.7189    1.0261                  1.0060
+   0.7500    0.9595                  0.9394
+   0.8000    0.8521                  0.8317
+PASS F3a the ratio increases monotonically with OL over 0.55-0.80 (more Lambda: R* falls as 1/sqrt(OL) but R_p falls faster) and is 0.98-1.26 over OL in [0.60, 0.75]; it is NOT pinned near 1
+       monotone: False; range over [0.60, 0.75]: 0.960-1.292
+   d(R*/R_p)/dOL at 0.685 = -2.185;  Planck 2018 sigma(OL) ~ 0.007 -> sigma(R*/R_p) ~ 0.015
+   R*/R_p = 1 exactly at OL = 0.7311  (Om = 0.2689); the measured 0.685 is 6.6 Planck sigma from it
+PASS F3b R*/R_p = 1 would need OL = 0.731, 7 Planck sigmas from the measured value: the 10% match is robustly a 10% mismatch, not equality (declared (a))
+   values at the record's Om choices (flat, radiation on):
+      Planck 2018              Om 0.3150: R*/R_p = 1.0995
+      DESI DR2 + CMB (L274)    Om 0.3027: R*/R_p = 1.0727
+      DESI DR2 BAO alone       Om 0.2975: R*/R_p = 1.0615
+      CFG174                   Om 0.3111: R*/R_p = 1.0910
+      forecast script          Om 0.3137: R*/R_p = 1.0967
+      Om = 0.34 (high)         Om 0.3400: R*/R_p = 1.1546
+   curvature sensitivity (Ok = -0.01, 0, +0.01 at fixed OL = 0.685): -0.01: 1.1106, +0.00: 1.0995, +0.01: 1.0882
+FAIL F3c the whole set of the record's Om values gives R*/R_p in [1.08, 1.11] (a 3% spread), curvature +-0.01 moves it by < 3%: the mismatch is robustly ~9-10% for every current parameter set
+       1.099, 1.073, 1.061, 1.091, 1.097, 1.155
+   aside: DESY5-like w0wa (rho_DE(0) in R*): R*/R_p = 1.1105 (Om 0.319)
+
+--- F4: the ratio at other times (proper d_p at t(z); z < 0 = the future) ---
+   z = -0.30:  d_p =  5.0003 c/H0,  R*/d_p =  0.6994   (future)
+   z = -0.20:  d_p =  4.2371 c/H0,  R*/d_p =  0.8254   (future)
+   z = -0.10:  d_p =  3.6478 c/H0,  R*/d_p =  0.9587   (future)
+   z = -0.05:  d_p =  3.4013 c/H0,  R*/d_p =  1.0282   (future)
+   z = +0.00:  d_p =  3.1807 c/H0,  R*/d_p =  1.0995   (now)
+   z = +0.50:  d_p =  1.8280 c/H0,  R*/d_p =  1.9131   (past)
+   z = +1.00:  d_p =  1.2080 c/H0,  R*/d_p =  2.8949   (past)
+   z = +2.50:  d_p =  0.5253 c/H0,  R*/d_p =  6.6570   (past)
+   z = +5.00:  d_p =  0.2324 c/H0,  R*/d_p = 15.0455   (past)
+   crossing d_p = R*: z* = -0.0701, a* = 1.0754, i.e. 1.07 Gyr in the FUTURE (age now 13.79 Gyr)
+PASS F4a (declared (c)) the crossing d_p(t) = R* lies in the FUTURE at a* = 1.075, 1.07 Gyr from now (8% of the current age)
+       a* = 1.0754, dt = 1.072 Gyr
+   local rate: d ln(R*/d_p)/dt = 8.6% per Gyr (falling)
+PASS F4b R*/d_p is NOT constant in time: 1.10 now, 1.91 at z = 0.5, 2.89 at z = 1, 15.05 at z = 5, and it falls through 1 at a* (declared (b))
+PASS F4m MUTATION (compare the COMOVING particle horizon with R* instead of the proper one): the crossing moves to a_c = 1.42 (vs a* = 1.075), so 'now is close to the crossing' depends on the proper-length prescription; chi_p(inf) = 4.330 c/H0 = R_p + R_e
+       chi_p(inf) = 4.3304, R_p + R_e = 4.3304
+
+--- F5: how special is 'now' compared with the record's other coincidence, Omega_m = Omega_Lambda ---
+   Omega_m(a) = Omega_Lambda at a = 0.7719 (z = 0.296), 3.50 Gyr ago; the R* = d_p crossing is 1.07 Gyr ahead: |ln a| = 0.073 vs 0.259
+PASS F5 the R* = d_p crossing is CLOSER to today (|ln a| = 0.073) than the matter-Lambda equality (|ln a| = 0.259): a 'why now' coincidence of the same kind, slightly tighter -- and it inherits the same anthropic-style explanations (or none)
+   the ratio is within 10% of 1 for OL in [0.685, 0.777] (width 0.092); the measured OL = 0.685 is inside, at the edge (ratio 1.0995): a match this loose is generic over a ~23% of the OL in 0.5-0.9
+
+--- F6: can a LOW-z observable tell the flat law from the particle-horizon law? ---
+   with both normalised at 2x (flat: c^2/(2R*); D: c^2/(2 d_p)) the ratio a0_D(z)/a0_flat = R*/d_p(z): 1.0995 today, 1.19 at z = 0.1, ...
+   z=0.0: 1.099, z=0.02: 1.129, z=0.05: 1.173, z=0.1: 1.248, z=0.3: 1.566, z=0.5: 1.913
+   LEVEL today: flat 0.936e-10, D 1.029e-10, SPARC 1.0766e-10 (5.4% stat, ~12% analysis): the 9.95% level difference is 1.8 sigma (stat) / 0.8 (analysis): a snapshot at z = 0 cannot tell them apart
+PASS F6a the level difference today is 9.95% = 1.8 sigma of SPARC's statistical error and 0.8 sigma of its analysis scatter: NO z = 0 observable separates the flat and particle-horizon laws
+   the SHAPE difference across the SPARC / HI-sample depth (z <~ 0.05): 6.7%; across the lensing window z = 0.15 -> 0.45: 37.7% (a0_D(0.45)/a0_D(0.15) - 1 = 37.7%)
+PASS F6b the lowest-z observable that separates them is the z-binned a0 at z ~ 0.15-0.45 (a 38% change across the window vs 0): the record's lensing-RAR forecast (z05) gives 2.2 / 3.5 / 6.7 sigma for KiDS-now / combined / LSST-Euclid; nothing at z < 0.1 does
+PASS F6c the two laws AGREE exactly at a* (the crossing): a0_D(a*) = a0_flat, so in the far future (a > a*) D FALLS BELOW flat and keeps falling like 1/a (d_p ~ a): D predicts a0 -> 0 as the universe expands, flat predicts a constant: the laws differ qualitatively in the future, not only in the past
+
+13/14

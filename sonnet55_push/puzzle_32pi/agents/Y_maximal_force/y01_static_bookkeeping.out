@@ -1,0 +1,50 @@
+[y01_static_bookkeeping] PREDECLARED.md sha256 = 77fd9f5398faa909f7328988f697379acbf98c44f984f6095a97df476d5cb9b7  (matches the stored hash)
+  [OK] pre-declared file unchanged since it was hashed
+
+== S1: vacuum tension across the de Sitter horizon, in units of F_max ==
+  [OK] F_Lambda = P * A_H = 3*c**4/(2*G) = 6 F_max
+  [OK] F_Lambda has no Lambda left (Lambda cancels between rho ~ Lambda and A ~ 1/Lambda)
+  [OK] (c, G, Lambda) have independent dimensions (det = -2): NO dimensionless combination, so any force built from them is a pure number x c^4/G
+  [OK] CONTROL (wrong claim must be rejected): control: adding hbar WOULD allow a dimensionless combination (Planck) -- the claim 'no combination' is about (c,G,Lambda) only
+  [OK] F_Lambda = 6 F_max  <=>  rho = 3*H**2*c**2/(8*pi*G)  i.e. H^2 = 8 pi G rho/(3 c^2) (the Friedmann relation): S1 carries no information beyond Einstein's 8 pi and the sphere's 4 pi
+  [OK] CONTROL (wrong claim must be rejected): mutation rho_L = Lambda/(4 pi) must NOT still give 6 (gives 12)
+  [OK] CONTROL (wrong claim must be rejected): mutation area 4 pi -> 2 pi must NOT still give 6 (gives 3)
+  [OK] CONTROL (wrong claim must be rejected): mutation F_max -> c^4/(2G) (deficit 4 pi G mu) must NOT still give 6 (gives 3)
+   F_Lambda / (c^4/4G) in D dimensions: {4: 6, 5: 6*pi*L, 6: 40*pi*L**2/3}
+  [OK] D = 4: pure number 6; D = 5, 6: carry L^(D-4) (no pure number), as Gibbons notes for n > 4 (bound only on F/D^(n-4))
+
+== S2: Hubble-radius mass and its field ==
+  [OK] Schwarzschild mass of r_s = L: M_H = c^2 L/(2G) = c^3/(2 G H)
+  [OK] g_H = G M_H/L^2 = c H/2
+  [OK] F_max/M_H = c H/2
+  [OK] M_H = rho_L (4 pi/3) L^3 / c^2 (vacuum mass of the Hubble ball)
+  [OK] CONTROL (wrong claim must be rejected): control: g_H is NOT c H/6
+
+== S3: the fixed mass menu, q = F_max/(M c H) ==
+  [OK] static-patch slice volume = pi^2 L^3 (sympy integral gives pi**2)
+   M_a  rho (4pi/3) L^3 (Hubble-ball vacuum mass)                         M = 1/2 L/G   q = 1/2  = 0.500000   Z = 2 = 2.00000
+   M_b  Komar mass of the dS horizon kappa*A/(4 pi) = L                   M = 1 L/G   q = 1/4  = 0.250000   Z = 4 = 4.00000
+   M_c  Nariai mass L/(3 sqrt 3)                                          M = sqrt(3)/9 L/G   q = 3*sqrt(3)/4  = 1.299038   Z = 4*sqrt(3)/9 = 0.76980
+   M_d  Lambda zero-force sphere at r = L: M = Lambda L^3/3               M = 1 L/G   q = 1/4  = 0.250000   Z = 4 = 4.00000
+   M_e  rho A_H L (built after noting q = 1/6; VOID as evidence)          M = 3/2 L/G   q = 1/6  = 0.166667   Z = 6 = 6.00000
+   M_f  rho x proper volume of the static-patch slice (pi^2 L^3)          M = 3*pi/8 L/G   q = 2/(3*pi)  = 0.212207   Z = 3*pi/2 = 4.71239
+   M_g  rho x volume of the full S^3 (2 pi^2 L^3)                         M = 3*pi/4 L/G   q = 1/(3*pi)  = 0.106103   Z = 3*pi = 9.42478
+  [OK] M_a gives q = 1/2
+  [OK] M_b and M_d give q = 1/4 (Komar horizon mass = zero-force mass = 2 M_H)
+  [OK] M_c (Nariai) gives q = 3 sqrt 3/4 = 1.299 (acceleration above H)
+  [OK] M_e gives q = 1/6 exactly, and M_e = F_Lambda L/c^2 = 3 M_H  (a0 = c H F_max/F_Lambda: the '6' is F_Lambda/F_max, so the mass is the input)
+  [OK] M_f gives q = 2/(3 pi) (Z = 3 pi/2 = 4.712) and M_g gives q = 1/(3 pi) (Z = 3 pi = 9.42): the proper-volume masses carry pi and hit no target
+   target/decoy hits per entry: [('M_a', ['T2'], []), ('M_b', [], ['1/4']), ('M_c', [], []), ('M_d', [], ['1/4']), ('M_e', ['T6'], []), ('M_f', [], []), ('M_g', [], [])]
+  [OK] S3 census: 4 of 7 masses give a rational q (1/2, 1/4, 1/4, 1/6 ...), 2 give pi-rational q, 1 gives an irrational algebraic q; exactly one target hit (M_e, void as evidence), one T2 hit (M_a = the trivial g_H), decoy hit 1/4 twice
+  [OK] CONTROL (wrong claim must be rejected): control: no menu entry gives TF (a transcendental sqrt(3/32 pi)): the menu is a rational/pi-rational list
+  [OK] CONTROL (wrong claim must be rejected): control: no entry gives the decoy 1/7 or 1/5 (a decoy hit at the same rate would signal a menu that hits anything)
+
+== S4: Verlinde's a_M/a0 = (d-3)/((d-2)(d-1)) from eqs (1.5)-(1.7) of 1611.02269 ==
+  [OK] a_M/a0 = (d - 3)/((d - 2)*(d - 1))  (matches (1.7))
+  [OK] the 8 pi G of (1.5) and of (1.6) cancel: a_M/a0 is pi-free and G-free (the 6 is (d-2)(d-1)/(d-3) at d = 4)
+   a_M/a0 for d = 3..7: {3: 0, 4: 1/6, 5: 1/6, 6: 3/20, 7: 2/15}
+  [OK] d = 4 gives 1/6 exactly; d = 5 also gives 1/6 (the d-dependence does not single out d = 4 by itself); d = 3 gives 0
+  [OK] CONTROL (wrong claim must be rejected): control: a_M/a0 at d = 4 is NOT 1/2 (the 'Hubble-sphere field' value); the two 'rationals' are different objects
+  [OK] Verlinde's Z_V(d) = (d-1)(d-2)/(d-3) equals the horizon-force number (D-1)(D-2) only at d = 4 (agreement set in 3..8: [4]); F_Lambda/F_max = 6 has no D>4 analogue as a pure number
+
+RESULT y01_static_bookkeeping: 29/29 checks pass
