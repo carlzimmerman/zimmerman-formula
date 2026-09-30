@@ -59,3 +59,14 @@
 - RC41's g_bar comes from my disc + bulge geometry (R_e,bulge 1 kpc declared) at one radius.
 - All four use MAP fit values. The fits' own posterior widths are not propagated.
 - Nothing here says the data favour the framework. The flat law is disfavoured in two of four samples on the primary series, and the rival in one.
+
+## Correction after CFG216's cross-check (appended 2026-09-29; the text above is unchanged)
+
+- **RC41's flat verdict is geometry-sensitive.** CFG216 (`../CFG216_rc100_within_sample/`) found 38 of the 41 RC41 galaxies in RC100 by name.
+  - For them, the median of [δ_flat from RC100's own V_c and f_DM − δ_flat from this lane's disc + bulge geometry] is −0.042 dex (range −0.35 to +0.03).
+  - On RC100's own V_c and f_DM, the RC41 subset gives δ_flat +0.041 [+0.004, +0.109], not this lane's +0.102 [+0.058, +0.145].
+  - So "flat DISFAVOURED-over at RC41, robust in all four cells" should read "borderline: +0.04 to +0.10, depending on whether g_bar comes from the fit's velocities or from a disc + bulge geometry".
+- **What stands:**
+  - the route-mixing mock's NON-DIAGNOSTIC verdict for the across-sample slope;
+  - the other samples' numbers.
+- **T1 is unchanged in form:** no law fits all four samples, since MUSE-DARK's independent route disfavours both.
