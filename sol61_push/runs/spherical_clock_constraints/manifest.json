@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SPHERICAL_CLOCK_CONSTRAINTS",
+  "repository": {
+    "commit": "eb89124db3cbc81b2420a2e7e50d23ba42e727f1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/spherical_clock_constraints.py",
+    "--output",
+    "sol61_push/runs/spherical_clock_constraints/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact necessary stationary spherical Euler equations, constraint identity, de Sitter and GR mass benchmarks, weak clock response and stationary-shell source/orbit dictionaries",
+    "coefficient_domain": "Symbolic positive parameters and stationary positive lapse/scalar branch",
+    "conventions": "SPHERICAL_CLOCK_CONSTRAINTS_RESULTS.md",
+    "inputs": [
+      "sol61_push/spherical_clock_constraints.py"
+    ],
+    "bounds": {
+      "spatial_geometry": "areal radius with h_rr=exp(2 sigma)",
+      "kappa": 0,
+      "lambda": "1+ell q",
+      "potential": "A/q^2+Bq^2",
+      "timelike_stationary_source": "N^2-exp(2sigma)V^2>0",
+      "weak_expansion_order": 1,
+      "benchmarks": [
+        "de Sitter V=-Hr",
+        "GR control V=-sqrt(H^2 r^2+2m/r) with ell=0",
+        "constant-lapse shift V=-Hr+C/r^2"
+      ]
+    },
+    "non_claims": [
+      "No complete angular-equation or global matching audit",
+      "No conserved supported-source construction",
+      "No full nonlinear galaxy solution",
+      "No inferred observed a0 or Newton constant",
+      "No nonlocal fermion or causal completion",
+      "No exact 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T21:57:52.686483+00:00",
+    "runtime_seconds": 2.761485,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/spherical_clock_constraints.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/spherical_clock_constraints.py",
+      "sha256": "112348c974d4b83f094455f3bf388c793a2d0e14fa7741457c7d6e52aead61df",
+      "sha256_after": "112348c974d4b83f094455f3bf388c793a2d0e14fa7741457c7d6e52aead61df"
+    }
+  ],
+  "output_directory": "sol61_push/runs/spherical_clock_constraints",
+  "declared_results": [
+    "sol61_push/runs/spherical_clock_constraints/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/spherical_clock_constraints/stdout.txt",
+      "sha256": "3e83cca451b12b5e73e63d7ec81fc11c9720b37cc414760b6de544248ff44e9a",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/spherical_clock_constraints/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/spherical_clock_constraints/results.json",
+      "sha256": "678a3fdeee7f98c53e170757d6f97c85e093a02a54a27cfd199869ae4a0f82ee",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
