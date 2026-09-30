@@ -52,3 +52,8 @@ The kernel and the footing move n_σ by about ±0.3σ (P2 is lower); the frozen 
 ## Chart
 
 `cfg219_power_forecast.png`, from `cfg219_plot.py` (no new statistic): the systematic-inclusive significance against N for flat vs H(z) and flat vs horizon at each shared gas calibration τ (R_e solid, R_out dashed), and the largest τ that keeps 3σ for every pair.
+
+## Post hoc note from CFG220 (appended 2026-09-30; the text above is unchanged)
+
+- The first real-data use of these six discs at the outer radius on the independent route (`../CFG220_cristal_outer_independent/`, lane bfb27770a) gives a disc-to-disc scatter of the realised δ of **0.24 to 0.25 dex**, against **0.14 per disc** from this forecast's baryon-error-only noise at R_out (the rms of the per-disc noise over the six discs, plus the 0.04 spread of the noiseless separations): about **1.8× larger**. The excess is what the forecast omitted (velocity and f_DM errors, bulge, geometry, the fit's baryon shape). **Read every number of discs for 3σ above as a lower bound;** if the excess is random the N grows by about 1.8² ≈ 3. Six discs make the ratio uncertain by about ±30%.
+- The realised pooled δ at R_out (flat +0.106, rival −0.203) lies between the forecast's flat-true (0, −0.34) and rival-true (+0.28, 0) points, closer to flat-true; the independent route at that radius is BOTH-CONSISTENT and calibration-limited (the class flips at a +0.07 dex gas-mass offset).
