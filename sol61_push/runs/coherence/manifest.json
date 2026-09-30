@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_COHERENCE",
+  "repository": {
+    "commit": "5b6b786262cd06a6cc5541a17d10bec84a041251",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/coherence_audit.py",
+    "--output",
+    "sol61_push/runs/coherence/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent leading oscillator solution; finite-time agreement, dephasing and amplitude-selection obligation",
+    "coefficient_domain": "Symbolic real algebra and IEEE float64; positive Newtonian branches",
+    "conventions": "Script docstrings and RESULTS_2026-09-29.md; dimensionless normalized units where specified",
+    "inputs": [
+      "sol61_push/coherence_audit.py",
+      "sol61_push/nonabelian_results.json"
+    ],
+    "bounds": {
+      "omega": [
+        0.3,
+        1,
+        1.002
+      ],
+      "window_start": 100,
+      "window_ends": [
+        600,
+        6000,
+        60000,
+        600000
+      ],
+      "g": [
+        0.0002,
+        0.0004,
+        0.0008
+      ],
+      "leading_order_only": true
+    },
+    "non_claims": [
+      "No completed theory",
+      "No universal nonlinear stability",
+      "No dynamical stream-selected coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T01:45:13.680282+00:00",
+    "runtime_seconds": 0.139451,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/coherence_audit.py",
+    "sol61_push/nonabelian_results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/coherence_audit.py",
+      "sha256": "120f50719f9348a86f616f06ff2aa7de6b0c4cd80cdbde6e6573b4ffe8a7a397",
+      "sha256_after": "120f50719f9348a86f616f06ff2aa7de6b0c4cd80cdbde6e6573b4ffe8a7a397"
+    },
+    {
+      "path": "sol61_push/nonabelian_results.json",
+      "sha256": "3d5cba910f5a5748ce6f92ddd0f043ae138866e003d0aa0e7877715549cbe543",
+      "sha256_after": "3d5cba910f5a5748ce6f92ddd0f043ae138866e003d0aa0e7877715549cbe543"
+    }
+  ],
+  "output_directory": "sol61_push/runs/coherence",
+  "declared_results": [
+    "sol61_push/runs/coherence/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/coherence/stdout.txt",
+      "sha256": "ff049f518731cc51cbb776a406835cb812ffc745fb8f2e25dac52c2ed580134f",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/coherence/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/coherence/results.json",
+      "sha256": "9d89bdf64a70f0462bbd39b2d2b03ee8833486974da44c7e47ed2c80fcd17a3f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

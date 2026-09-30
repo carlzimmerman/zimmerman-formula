@@ -1,0 +1,20 @@
+PASS flux_residence_time_density: rhoinf*sqrt(2*G*M + V**2*r)/(V*sqrt(r))
+PASS conservative_stream_is_unbound: E=V_infinity^2/2 > 0; gravity alone does not bind a tracer orbit
+FAIL residence_quadrature_z=0.001: found=1, expected=1.0004999
+FAIL residence_quadrature_z=0.01: found=1, expected=1.0049876
+FAIL residence_quadrature_z=0.1: found=1, expected=1.0488088
+FAIL residence_quadrature_z=1: found=1, expected=1.4142136
+FAIL residence_quadrature_z=10: found=1, expected=3.3166248
+FAIL residence_quadrature_z=100: found=1, expected=10.049876
+FAIL residence_quadrature_z=1000: found=1, expected=31.638584
+PASS excess_density_slope: dln(delta_rho)/dlnr=-(1+1/sqrt(1+z))/2, between -1 and -1/2
+PASS fails_deep_target_shape: P2 point-mass halo tends to r^-2; ballistic stream excess is never steeper than r^-1
+PASS mass_scaling_canonical_v=100: r_focus/rM spread=31.622777; constant external V gives r_focus proportional to M
+PASS mass_scaling_canonical_v=300: r_focus/rM spread=31.622777; constant external V gives r_focus proportional to M
+PASS mass_scaling_canonical_v=600: r_focus/rM spread=31.622777; constant external V gives r_focus proportional to M
+PASS mass_scaling_alt_v=100: r_focus/rM spread=31.622777; constant external V gives r_focus proportional to M
+PASS mass_scaling_alt_v=300: r_focus/rM spread=31.622777; constant external V gives r_focus proportional to M
+PASS mass_scaling_alt_v=600: r_focus/rM spread=31.622777; constant external V gives r_focus proportional to M
+PASS matching_scale_inserts_BTFR: r_focus=rM iff V_infinity^2=sqrt(G M a0)
+PASS Newtonian_not_flow_acceleration: gravity sourced by real density; bodies are not assumed to be carried by the stream
+12/19 checks pass; 7 failures. Theory completion OPEN.
