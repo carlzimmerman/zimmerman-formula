@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CANONICAL_CLOCK",
+  "repository": {
+    "commit": "96293d60c3f6ce11d1e97ca63293558392ddfc14",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/canonical_clock.py",
+    "--output",
+    "sol61_push/runs/canonical_clock/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Canonical density vacuum, preferred-clock principal scalar dispersion, geometric-curvature coefficient and leading static gradient tail",
+    "coefficient_domain": "Exact real symbolic algebra and double precision evaluation",
+    "conventions": "CANONICAL_CLOCK_CONTRACT.md",
+    "inputs": [
+      "sol61_push/canonical_clock.py"
+    ],
+    "bounds": {
+      "lambda": [
+        1.1,
+        2,
+        5
+      ],
+      "kappa": [
+        0.1,
+        1
+      ],
+      "k_over_Mstar": [
+        0.01,
+        0.1
+      ],
+      "Mstar": 1,
+      "static_series_order": "first inverse-radius current correction",
+      "dispersion_scope": "local principal part, not complete de Sitter perturbations"
+    },
+    "non_claims": [
+      "No strong-coupling control",
+      "No all-background stability",
+      "No UV completion or observational verification",
+      "No microscopic parameter selection",
+      "No 32pi derivation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T20:14:16.094794+00:00",
+    "runtime_seconds": 0.555285,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/canonical_clock.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/canonical_clock.py",
+      "sha256": "a0acd016a9d3e23cd63b85c9afc47872c64f2364c1abccffebb0b3b17260abe0",
+      "sha256_after": "a0acd016a9d3e23cd63b85c9afc47872c64f2364c1abccffebb0b3b17260abe0"
+    }
+  ],
+  "output_directory": "sol61_push/runs/canonical_clock",
+  "declared_results": [
+    "sol61_push/runs/canonical_clock/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/canonical_clock/stdout.txt",
+      "sha256": "77798766464549c6c4b08aa96a3364082620215428a36a42b773e21fa9eb5a61",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/canonical_clock/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/canonical_clock/results.json",
+      "sha256": "ba291dc7f1ff57970959b524671f98b0bc84d954d99768b0b4f6c894c72fd06d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
