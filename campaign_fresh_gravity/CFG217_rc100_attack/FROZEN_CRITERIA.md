@@ -89,3 +89,13 @@ RC100's table has no separate M★ or gas. So M★ is reconstructed per galaxy b
 - **C-recon.** As above, reported.
 - **C4 (mock machinery).** In the flat-truth mock at β = 0, the slopes are exactly (0, −0.060) (CFG216's expectations). At a known β, the mock's g_bar,analysis / g_bar,true equals the injected factor to 1e-12.
 - **MUTATE=1.** D_obs × 10^(0.2 (z − z_med)) in the baseline. The baseline δ_flat slope must move by +0.2 to 1e-9, and the variants' slopes must move by amounts within 0.05 of it. Outputs are written separately.
+
+## Addendum 1 (2026-09-29, before any CFG217 number): an erratum in D3, and how it is resolved
+
+- **The error.** D3 as written says "attack-broken if any of those fails; attack-mixed otherwise". "Any fails" leaves "mixed" unreachable.
+- **The resolution, declared before the run:**
+  - **attack-broken** iff the M2 mock produces the pattern at a plausible |ΔlogM|, OR the rival's deficit fails to survive any of V2–V5 or G3.
+  - **attack-mixed** iff it fails only V1 (the stress variant, in which gas fractions are held fixed with z), G7 or G2. Each failed item is named.
+  - **attack-robust** iff none of the above fails.
+- **Seed.** The bootstrap seed is 216, the same as CFG216, so that the baseline confidence intervals reproduce it exactly.
+- **What is unchanged:** everything else in the criteria.
