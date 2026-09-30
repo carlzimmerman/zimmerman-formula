@@ -1,0 +1,26 @@
+CFG223 POST HOC robustness check (written after an independent brentq recomputation showed the 68% bootstrap edges move between seeds; reported only, not frozen).
+The bootstrap distribution of a median at n = 6 to 27 is discrete, so the 16th / 84th percentile edges can jump by one atom when the seed changes.  Here: the same estimator and B = 10,000
+with ten other seeds; the spread of each edge across seeds next to the committed (seed 223) value.  LambdaCDM has no a0; author decompositions; not a detection; kappa = 1/2 FITTED.
+
+  point            n   68% lower edge: committed | range over 10 seeds        68% upper edge: committed | range          95% lower: committed | range        95% upper: committed | range
+  RC100 corr Q1  25   1.440 | 1.164 to 1.440            2.046 | 2.046 to 2.046            0.979 | 0.979 to 0.979          2.451 | 2.451 to 2.451
+  RC100 corr Q2  22   1.481 | 1.481 to 1.487            2.794 | 2.717 to 2.794            0.890 | 0.529 to 0.952          3.376 | 3.311 to 3.456
+  RC100 corr Q3  26   1.251 | 1.251 to 1.251            2.044 | 2.056 to 2.056            0.996 | 0.964 to 0.996          2.388 | 2.355 to 2.388
+  RC100 corr Q4  27   0.804 | 0.804 to 0.854            1.142 | 1.216 to 1.216            0.624 | 0.624 to 0.624          1.378 | 1.378 to 1.378
+  CR R_e fit     12   1.704 | 1.699 to 1.704            3.731 | 3.564 to 3.737            1.161 | 1.161 to 1.161          5.650 | 5.650 to 5.650
+  CR R_out fit    6   0.800 | 0.800 to 0.800            1.726 | 1.726 to 1.726            0.258 | 0.258 to 0.258          3.968 | 3.968 to 3.968
+  CR R_e ind      6   0.757 | 0.757 to 0.757            9.119 | 9.119 to 9.119            0.001 | 0.001 to 0.001          18.923 | 18.923 to 18.923
+  CR R_out ind    6   0.626 | 0.626 to 0.626            6.166 | 6.166 to 6.166            0.042 | 0.042 to 0.042          9.378 | 9.378 to 9.378
+
+  Is the caption rule's 95% flag (the law's expected ratio inside the 95% interval) the same in all 11 draws (committed seed + ten others)?  count inside / 11; a count other than 0 or 11 is seed-sensitive:
+  point             FLAT   PROXY    H(z)   M-DEC
+  RC100 corr Q1       11      11      11      11
+  RC100 corr Q2       11      11      11      10
+  RC100 corr Q3       11      11       0       0
+  RC100 corr Q4       11       0       0      11
+  CR R_e fit           0       0       0       0
+  CR R_out fit        11       0       0      11
+  CR R_e ind          11      11      11      11
+  CR R_out ind        11      11      11      11
+
+  Seed-sensitive flags: RC100 corr Q2 / M-DEC: inside in 10 of 11 draws
