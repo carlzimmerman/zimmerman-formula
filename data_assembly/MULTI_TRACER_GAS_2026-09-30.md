@@ -69,7 +69,7 @@ Not parsed: ALPINE Dessauges-Zavadsky+2020 (no per-galaxy table; 11 galaxies wit
 | singles (PKS0529, MD94, D49, J081740) | 4 | 0 | 0 | 2 | 2 | 0 |
 | **total parsed** | **175** | **94** | **20** | **24** | **37** | **0** |
 
-Plus abstract-level (not parsed): GN20 (z 4.06, CO + dust), REBELS-25 (z 7.31, CO + [CII]), CRISTAL-22 (dust + VLA CO(2-1)), PKS-like ACE survey (up to 17 at z 2-2.5).
-**With gas MASSES from >= 2 tracers (not luminosities or fluxes only): Stripe82 78 (z < 0.2), Bourne 9 (z 0.84-1.22), Kirkpatrick 12 (z 1.65-2.93, not independent), NOEMA3D 5 validated of 10 (z 1.12-1.25, reconstructed) and the four singles: about 108 independent or semi-independent galaxies, of which only ~14 are at z > 1.** The z > 2 sample with two independent mass tracers is small (singles 4, plus Kirkpatrick 9 that share alpha_CO) and its calibration is tested by luminosities only in the SMG and SPT sets.
+Plus abstract-level (not parsed): GN20 (z 4.06, CO + dust), REBELS-25 (z 7.31, CO + [CII]), CRISTAL-22 (dust + VLA CO(2-1)), the ACE survey (up to 17 at z 2-2.5).
+**With gas MASSES from >= 2 tracers (not luminosities or fluxes only): Stripe82 78 (z < 0.2), Bourne 9 (z 0.84-1.22), Kirkpatrick 12 (z 1.65-2.93, not independent), NOEMA3D 5 validated of 10 (z 1.12-1.25, reconstructed) and the four singles: about 108 independent or semi-independent galaxies, of which about 27 are at z > 1 (Bourne 6, Kirkpatrick 12, NOEMA3D 5, singles 4).** The z > 2 sample with two independent mass tracers is small (singles 4, plus Kirkpatrick 9 that share alpha_CO) and its calibration is tested by luminosities only in the SMG and SPT sets.
 
 Nothing here is an acceleration, an a0 or a verdict. Nothing in the repo was changed except new files in `multitracer_gas/` and this note.
