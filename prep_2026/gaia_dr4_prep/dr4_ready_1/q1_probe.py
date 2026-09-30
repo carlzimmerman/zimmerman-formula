@@ -21,6 +21,10 @@ OUT = WB / "dr3_extract" / "dr4_ready_1"
 ap = argparse.ArgumentParser()
 ap.add_argument("--n", type=int, default=3)
 ap.add_argument("--owner-go-recorded", action="store_true")
+ap.add_argument("--constant-radius", action="store_true",
+                help="use ONE literal radius (the maximum of the pairs' cones) in CIRCLE() instead of the per-row u.radius_deg: the archive's documented "
+                     "upload cone-join form, expected to use the spatial index; the result is a superset of the exact cones (re-filtered locally)")
+ap.add_argument("--tag", default="probe")
 a = ap.parse_args()
 if not a.owner_go_recorded or a.n > 10:
     raise SystemExit("refused: needs --owner-go-recorded (the Q1 pilot go) and n <= 10")
@@ -33,10 +37,17 @@ pick, sa, sb = Z["pick"][: a.n], Z["source_id_a"][: a.n], Z["source_id_b"][: a.n
 row = lambda s: order[np.searchsorted(S["source_id"][order], s)]
 ia, ib = row(sa), row(sb)
 upt = W1.upload_table(pick, S["ra"][ia], S["dec"][ia], S["ra"][ib], S["dec"][ib], S["parallax"][ia])
-up = OUT / "q1_probe_upload.xml"
-Table(upt).write(up, format="votable", overwrite=True)
-q = W1.adql_cones("gaiadr3.gaia_source", upload="pairs")
-p = OUT / "q1_probe_neighbours.fits"
+up = OUT / f"q1_{a.tag}_upload.xml"
+if a.constant_radius:
+    rmax = float(upt["radius_deg"].max())
+    Table({k: v for k, v in upt.items() if k != "radius_deg"}).write(up, format="votable", overwrite=True)
+    cols = ", ".join(f"s.{c}" for c in W1.COLS)
+    q = (f"SELECT u.pair_id, u.comp, {cols}, s.phot_g_mean_mag AS phot_g_mean_mag FROM tap_upload.pairs AS u JOIN gaiadr3.gaia_source AS s "
+         f"ON 1 = CONTAINS(POINT('ICRS', s.ra, s.dec), CIRCLE('ICRS', u.ra, u.dec, {rmax:.6f}))")
+else:
+    Table(upt).write(up, format="votable", overwrite=True)
+    q = W1.adql_cones("gaiadr3.gaia_source", upload="pairs")
+p = OUT / f"q1_{a.tag}_neighbours.fits"
 t0 = time.time()
 job = Gaia.launch_job_async(q, upload_resource=str(up), upload_table_name="pairs", dump_to_file=True, output_file=str(p), output_format="fits")
 jid = getattr(job, "jobid", None)
@@ -45,5 +56,6 @@ dt = time.time() - t0
 rec = dict(n_pairs=int(a.n), n_cones=int(len(upt["pair_id"])), radius_arcsec=[float(upt["radius_deg"].min() * 3600), float(upt["radius_deg"].max() * 3600)],
            rows=int(len(res)), seconds=round(dt, 1), sha256=hashlib.sha256(open(p, "rb").read()).hexdigest(), query=q, jobid=str(jid),
            note="timing probe for the approved Q1 pilot (owner's go, 2026-09-29): the same pairs and ADQL as the pilot's first pairs")
-(HERE / "manifest_q1_probe.json").write_text(json.dumps(rec, indent=1) + "\n")
+rec["constant_radius_deg"] = float(rmax) if a.constant_radius else None
+(HERE / f"manifest_q1_{a.tag}.json").write_text(json.dumps(rec, indent=1) + "\n")
 print(json.dumps({k: v for k, v in rec.items() if k != "query"}))
