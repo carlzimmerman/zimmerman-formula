@@ -3,7 +3,7 @@
 Method: web searches plus arXiv HTML pages read through a summariser, no downloads. Everything is UNVERIFIED beyond the pages read. Four rows appended to `sample_ledger.csv` (now 42 samples).
 
 ## Worth attention
-**NOEMA3D** (Jolly+2026, arXiv:2604.18503 and arXiv:2604.18504): 10 massive main-sequence galaxies at z = 1.12-1.63, from the PHIBSS extension (8 in GOODS-N, 2 in the Extended Groth Strip; names G4_/GN4_ in paper 1's sample table).
+**NOEMA3D** (Jolly+2026, arXiv:2604.18503 and arXiv:2604.18504): 10 massive main-sequence galaxies at z = 1.12-1.63, from the PHIBSS extension: 7 in the Extended Groth Strip and 3 in GOODS-N (by the Table 2 coordinates; the first version of this note said 8 and 2, from a summariser reading, and was wrong). Tables parsed in `noema3d/`.
 - Resolved CO(4-3)/(3-2) rotation curves, 0.47 arcsec, mean extent 2.74 R_e, one curve per galaxy (Fig. 6, figure only).
 - Table 3 (paper 1): Vc at R_e 197-379 km/s, baryonic mass log 10.68-11.52, f_DM(R_e) 0.04-0.55.
 - Paper 2: three independent gas masses per galaxy (CO with alpha_CO 4.36, dust, [CI] with alpha 18.7) and resolved dust/CO/[CI] radial profiles (figures only). Stellar masses log 10.45-11.43.
