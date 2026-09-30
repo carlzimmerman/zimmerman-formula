@@ -27,6 +27,14 @@ Request (orchestrator thread): which PUBLIC data could pin alpha_CO / delta_GDR 
 - The rms of the 19 tabulated points about the paper's quoted relation is **0.64 dex** (median absolute residual 0.33); recomputing alpha from Eq. 3 gives 0.59 dex (median 0.39). I could not reproduce "0.2 dex". Only the 4 objects within |log Z| < 0.4 scatter at 0.25 dex. The paper's scatter may be defined differently (a fit with intrinsic scatter, or the error on the relation); I have not checked the published erratum if there is one.
 - Fit sensitivity: unweighted slope -0.93, intercept 1.35; error-weighted (floor 0.05) slope -1.20, intercept 1.49; with Eq. 3 values -1.01, 1.19 (unweighted) and -1.19, 1.44 (weighted). The solar-metallicity alpha_[CI] therefore ranges 10^1.19 to 10^1.49 = 15 to 31 (paper: 10^1.33 = 21; Dunne+22 adopt 17): a spread of about 0.3 dex from fit choices alone.
 
+## 2b. Original-source check of the two suspect rows (added after a peer request; page reads only, no contact with authors)
+Read as text from PDFs the fetch tool cached outside the repo: Albornoz Vasquez+14 (arXiv:1310.8569, 1.9 MB), Srianand+05 (arXiv:astro-ph/0506555, 0.87 MB), Noterdaeme+08 (arXiv:0801.3682, 0.32 MB).
+| row | H&W columns | original source | Eq. 3 from the ORIGINAL columns | H&W tabulated log alpha_[CI] |
+|---|---|---|---|---|
+| J0643-5041 (z 2.659) | log N(H2) 18.54+-0.01, log N(CI*) 12.47+-0.06, log Z -0.91+-0.09 | Albornoz+14 Table 3: log N(H2) 18.540+-0.005 (text), log N(CI*) 12.47+-0.06; [Zn/H] = -0.91+-0.09 | **2.18** (2.24 if the text value log N(CI*) = 12.41+-0.14 is used: the source is internally inconsistent, table 12.47 vs text 12.41) | **0.20+-0.23** |
+| J0551-3638 (z 1.962) | log N(H2) 17.42+-0.45, log N(CI*) 13.33+-0.05, log Z -0.35+-0.08 | Srianand+05 Table 3: components z=1.96168, 1.96214, 1.96221 have log N(H2) 15.80, 17.40, 15.58 and log N(CI*) 12.84, 12.69, 12.98; their sums are **17.42** and **13.33**; Noterdaeme+08 lists N(H2) = 17.42 (+0.53/-0.73) and [Zn/H] = -0.35+-0.08 | **0.20** | **2.25+-0.12** |
+Result: **the column densities and metallicities of both rows match the original papers** (H&W's H2 error for J0551 is written 0.45 against the source's +0.53/-0.73). **The tabulated log alpha_[CI] is the error**: the J0551 row carries about the value that belongs to J0643 (2.25 vs 2.18-2.24) and the J0643 row carries exactly the value that belongs to J0551 (0.20). The error columns do not swap cleanly (0.12 and 0.23 tabulated against about 0.06 and 0.45 from Eq. 3), so this is a transcription mix-up of the alpha column, not something the original data support. This confirms the swap hypothesis for these two rows only; the other five non-reproducing rows (120815A, 150403A, 190114A, J1232+0815, J1444+0126) were not traced to sources. Whether the published fit used the tabulated or the recomputed values is not known; with the two rows corrected the rms about the paper's relation is 0.53 dex (my and the peer's re-run agree).
+
 ## 3. Dunne+22 objects that also have an independent metallicity (verified overlaps only)
 | object (Dunne+22 name) | tracers on disk | independent Z | rotation data |
 |---|---|---|---|
@@ -42,7 +50,7 @@ Name matching is by the SPT catalogue names and the BX610 name; other Dunne+22 o
 ## 5. Sizes and what would need the owner's go
 | item | size | status |
 |---|---|---|
-| the four PDFs above | 0.9-2.7 MB each | already fetched into the tool cache by the page reads; not in the repo |
+| the four PDFs above, plus Albornoz+14 1.9 MB, Srianand+05 0.87 MB, Noterdaeme+08 0.32 MB | 0.3-2.7 MB each | already fetched into the tool cache by the page reads; not in the repo |
 | De Cia+16 Table data (VizieR/journal) | not checked | would need a go; needed to read delta_GDR or DTM(Z) |
 | Heintz+21, Kaur+24, Kanekar+20 full text | not checked | read only through the page reader; a verbatim read would need a fetch |
 | Kaur+24 CO cubes, JWST TEMPLATES NIRSpec IFU (MAST), Rizzo+20 cubes | not checked (SPT0418-47 ALMA cubes are already on disk, 9.48 GB) | no go requested |
