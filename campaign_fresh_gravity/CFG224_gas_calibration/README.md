@@ -36,3 +36,6 @@ Per-galaxy tables for Dunne+22 (407 galaxies, z 0 to 6, CO + [CI] + dust; CDS), 
 
 ## Files
 `FROZEN_CRITERIA.md`, `cfg224_gas_calibration.py` (+ `.out`, `_MUTATE.out`, `_firstrun.out`, `_results.json`, `_firstrun_results.json`), `cfg224_plot.py`, `cfg224_tracer_offsets_vs_z.png`. Run: `python3 campaign_fresh_gravity/CFG224_gas_calibration/cfg224_gas_calibration.py` (about 5 s) then `cfg224_plot.py`.
+
+## Addendum B (2026-09-30, later)
+The per-galaxy Dunne+22 tables and ACE (data chat, 6c18c4204) put tens of galaxies in the z > 1.6 bins: see `README_B.md` (criteria `FROZEN_CRITERIA_B.md`, 3b1c554e0). Headline: the optimised conversions are stable in z at fixed luminosity to about +-0.05 dex, and ACE shows un-optimised local prescriptions disagree by 0.2 to 0.7 dex at z ~ 2.2.
