@@ -20,3 +20,5 @@ Next priority: finish that conditional observational test, then investigate a ca
 ## Subsequent completed check
 
 The previously unfinished source transfer is now documented in CLOCK_BBN_RESULTS.md. Equation (9) of the checked primary source gives the BBN-only interval [0.92,1.04] at 95.4% confidence. Under the explicit standard-radiation, constant-coupling transfer assumptions, the candidate's entire R<0.8238741 range is outside it. Twelve computation checks and execution provenance are saved. This closes that restricted observational branch; evolving couplings or additional radiation are separate, unverified modifications. Exact 32π remains unresolved.
+
+The subsequent CLOCK_COEFFICIENT_BOUND.md proves the all-parameter obstruction C>(2/3)R/(1−R)^3. With the same conditional R>=0.92 lower endpoint, C>1197.9167, nearly twelve times 32π. An additive constant would have to cancel more than 91.6% of U0. Changing existing parameters alone cannot rescue this branch. Thirteen symbolic/sample checks and provenance are saved; no independent likelihood was computed.

@@ -1,0 +1,140 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CLOCK_COEFFICIENT_BOUND",
+  "repository": {
+    "commit": "ca2cf74982e7c4111962d351a4c9d07e570a32e7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/clock_coefficient_bound.py",
+    "--output",
+    "sol61_push/runs/clock_coefficient_bound/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Symbolic coupling elimination and coefficient endpoint identities with nine admissible samples",
+    "coefficient_domain": "Symbolic positive real D,R and numerical 0<R<1",
+    "conventions": "CLOCK_COEFFICIENT_BOUND.md",
+    "inputs": [
+      "sol61_push/clock_coefficient_bound.py"
+    ],
+    "bounds": {
+      "R": [
+        0.92,
+        0.95,
+        0.99
+      ],
+      "D_over_endpoint": [
+        1.01,
+        2,
+        10
+      ]
+    },
+    "non_claims": [
+      "No independent observational likelihood",
+      "No exact 32pi mechanism",
+      "No proof of microscopic action or all-background health"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T20:51:11.147665+00:00",
+    "runtime_seconds": 0.281564,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/clock_coefficient_bound.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/clock_coefficient_bound.py",
+      "sha256": "730089d0132347ec344c652b688af5f8aca627d6d770b4d5c3b0e8cd3581b518",
+      "sha256_after": "730089d0132347ec344c652b688af5f8aca627d6d770b4d5c3b0e8cd3581b518"
+    }
+  ],
+  "output_directory": "sol61_push/runs/clock_coefficient_bound",
+  "declared_results": [
+    "sol61_push/runs/clock_coefficient_bound/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/clock_coefficient_bound/stdout.txt",
+      "sha256": "8547b5fb28cbad519681f75c155edac9a43aa6a5478f2869411afa8738523aef",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/clock_coefficient_bound/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/clock_coefficient_bound/results.json",
+      "sha256": "7152bc790dae550858b4ec7e1b3757495b62c631b844bf3208d15e59904bee51",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
