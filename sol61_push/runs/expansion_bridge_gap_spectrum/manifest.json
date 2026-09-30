@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EXPANSION_BRIDGE_GAP_SPECTRUM",
+  "repository": {
+    "commit": "00ee88eeca1fdcfbdc52916c403b7729e3ea167e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/expansion_bridge_gap_spectrum.py",
+    "--output",
+    "sol61_push/runs/expansion_bridge_gap_spectrum/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eighteen exact gap-moment, two-gap matching, vacuum kinetic and free Dirac integral identities; nine reduced-force samples",
+    "coefficient_domain": "Exact symbolic positive variables; rational sample parameters and evaluated algebraic radicals",
+    "conventions": "EXPANSION_BRIDGE_GAP_SPECTRUM_RESULTS.md; c=hbar=1; positive capacities sum to one",
+    "inputs": [
+      "sol61_push/expansion_bridge_gap_spectrum.py"
+    ],
+    "bounds": {
+      "identities": 18,
+      "beta_samples": [
+        2,
+        10,
+        20
+      ],
+      "P_samples": [
+        0.001,
+        0.003,
+        0.01
+      ],
+      "fixed_sample_parameters": {
+        "H": 1,
+        "lambda": 2,
+        "light_gap": 1e-08,
+        "heavy_gap": 10000
+      },
+      "domain": "Moment proofs require positive normalized capacities, finite first and third moments; inverse Theta vacuum branch Theta>0"
+    },
+    "non_claims": [
+      "No universal microscopic realization or renormalization selection",
+      "No global source, dynamics, exact infrared MOND or observational proof",
+      "No 32pi coefficient prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T23:56:16.154055+00:00",
+    "runtime_seconds": 0.987217,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/expansion_bridge_gap_spectrum.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/expansion_bridge_gap_spectrum.py",
+      "sha256": "539a2c84b05c1a33dbd2de68928ab70b4a710927794eaa4d18ea1a428fc8c2f1",
+      "sha256_after": "539a2c84b05c1a33dbd2de68928ab70b4a710927794eaa4d18ea1a428fc8c2f1"
+    }
+  ],
+  "output_directory": "sol61_push/runs/expansion_bridge_gap_spectrum",
+  "declared_results": [
+    "sol61_push/runs/expansion_bridge_gap_spectrum/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/expansion_bridge_gap_spectrum/stdout.txt",
+      "sha256": "2b7238ad80678b5e19e5b77c89579f204e301ec4b6bfaebb8dcbf5eae4f38459",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_gap_spectrum/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_gap_spectrum/results.json",
+      "sha256": "794e84990a7b493952fa3eff92a330717bcc83a76404c1ef8dd5e34e60d361bd",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -2,6 +2,15 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+User requested stopping to conserve weekly usage. Latest saved result:
+EXPANSION_BRIDGE_GAP_SPECTRUM_RESULTS.md shows a positive two-gap spectrum
+can evade the earlier single-gap vacuum bound through mu1³/mu3→0.
+Eighteen exact identities and nine reduced-force samples pass with provenance.
+The unsubtracted vacuum term also shifts lambda to lambda+S/6 locally.
+This is a scoped loophole, not a coefficient prediction: the weights and beta
+remain unselected, and full source/dynamics/observational requirements are open.
+Research is paused; resume only on user instruction. No 32pi solution claimed.
+
 Newest horizon/dynamics obstruction: EXPANSION_BRIDGE_GAP_CONES_RESULTS.md
 derives cs²=(p*/a0,b)(lambda−1)/(3lambda−1) in the local quadratic
 principal sector of the subtracted gapped action. Fourteen exact checks pass
