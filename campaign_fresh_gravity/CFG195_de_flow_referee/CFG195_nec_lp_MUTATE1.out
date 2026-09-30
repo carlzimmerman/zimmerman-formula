@@ -1,0 +1,57 @@
+CFG195_nec_lp  mutate=1  repo=<repo>
+mode: flipped
+
+== II-2 LP maximum of g/e at fixed 1+w_iso ==
+  1+w_iso= 0.02: LP status 2 (no optimum)
+  1+w_iso= 0.05: LP status 2 (no optimum)
+  1+w_iso= 0.10: LP status 2 (no optimum)
+  1+w_iso= 0.25: LP status 2 (no optimum)
+  1+w_iso= 0.50: LP status 2 (no optimum)
+  1+w_iso= 1.00: LP status 2 (no optimum)
+  [FAIL] II-2 g_max/(1+w_iso) = sqrt(3)/2 = 0.86603 within 1e-3 at six values of 1+w_iso
+         measured: {}
+  [PASS] II-2b g_max = 0 exactly at w_iso = -1 (every NEC tensor with w_iso=-1 has zero momentum)
+         measured: status 0, g_max -0.0
+  [FAIL] II-2c LP infeasible for 1+w_iso<0 (phantom is NEC-violating at rest)
+         measured: status 0 (2=infeasible)
+
+== II-3 type IV: T = -rho g + flux (w=-1 medium with energy flux q) ==
+  [PASS] II-3 eigenvalues of the (t,x) block are -rho +/- i q and min over null k of T_kk = -2q < 0
+         measured: eig [-1.+0.1j -1.-0.1j], min T_kk -0.199951 (expect -0.2)
+
+== II-5 random NEC-compliant tensors (N=1000, seed 195003) ==
+  [PASS] II-5a no random NEC-compliant tensor exceeds the LP optimum 0.8660 g/(1+w) (maximum found)
+         measured: max 0.7357, quantile 99% 0.6059, n=1000, repair violations 0
+  [FAIL] (reported) II-5a' random tensors reach >=0.99 of the optimum (frozen expectation; random sampling rarely does)
+         measured: max/opt = 0.849
+  [PASS] II-5b null dust + Lambda (type II) is NEC-compliant and has g/e = (3/4)(1+w_iso) exactly
+         measured: min T_kk 2.45e-08, g/e/(1+w_iso)=0.750000
+
+== II-6 type III family, N=5000, seed 195004 ==
+  [PASS] (reported) II-6 every member of the type-III family violates the NEC (min over null k of T_kk < 0)
+         measured: 5000/5000 violate
+
+== A6 compensated two-component (epoch-by-epoch, e_tot=1) ==
+  w_ph >= -1.0, total 1+w = 0.000: R not reachable
+  w_ph >= -1.0, total 1+w = 0.050: R not reachable
+  w_ph >= -1.0, total 1+w = 0.162: R not reachable
+  w_ph >= -1.0, total 1+w = 0.333: R not reachable
+  w_ph >= -1.5, total 1+w = 0.000: smallest phantom fraction e_ph = 0.6762 (flowing component 1+w_f = 1.044)
+  w_ph >= -1.5, total 1+w = 0.050: smallest phantom fraction e_ph = 0.5762 (flowing component 1+w_f = 0.798)
+  w_ph >= -1.5, total 1+w = 0.162: smallest phantom fraction e_ph = 0.3522 (flowing component 1+w_f = 0.522)
+  w_ph >= -1.5, total 1+w = 0.333: smallest phantom fraction e_ph = 0.0102 (flowing component 1+w_f = 0.342)
+  w_ph >= -2.0, total 1+w = 0.000: smallest phantom fraction e_ph = 0.3381 (flowing component 1+w_f = 0.511)
+  w_ph >= -2.0, total 1+w = 0.050: smallest phantom fraction e_ph = 0.2881 (flowing component 1+w_f = 0.475)
+  w_ph >= -2.0, total 1+w = 0.162: smallest phantom fraction e_ph = 0.1761 (flowing component 1+w_f = 0.410)
+  w_ph >= -2.0, total 1+w = 0.333: smallest phantom fraction e_ph = 0.0051 (flowing component 1+w_f = 0.340)
+  w_ph >= -3.0, total 1+w = 0.000: smallest phantom fraction e_ph = 0.1691 (flowing component 1+w_f = 0.407)
+  w_ph >= -3.0, total 1+w = 0.050: smallest phantom fraction e_ph = 0.1441 (flowing component 1+w_f = 0.395)
+  w_ph >= -3.0, total 1+w = 0.162: smallest phantom fraction e_ph = 0.0881 (flowing component 1+w_f = 0.371)
+  w_ph >= -3.0, total 1+w = 0.333: smallest phantom fraction e_ph = 0.0026 (flowing component 1+w_f = 0.339)
+  [PASS] (reported) A6 control: with no phantom compensator (w_lim=1) R is never reached for total 1+w <= 0.333
+         measured: True
+  [PASS] (reported) A6 with a compensator w_ph>=-2, R is reachable at total 1+w=0.05 with e_ph<=0.45 (expectation E: 'bites')
+         measured: (0.2881, 0.47492625368731567)
+
+7/10 checks pass; load-bearing failures: ['II-2 g_max/(1+w_iso) = sqrt(3)/2 = 0.86603 within 1e-3 at six values of 1+w_iso', 'II-2c LP infeasible for 1+w_iso<0 (phantom is NEC-violating at rest)']
+MUTATE=1: control BITES; exit 1

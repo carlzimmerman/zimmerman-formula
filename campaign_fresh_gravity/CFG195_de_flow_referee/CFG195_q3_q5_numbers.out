@@ -1,0 +1,53 @@
+CFG195_q3_q5_numbers  mutate=none  repo=<repo>
+rho_L (H0=67.4, Omega_L=0.6847) = 5.8424e-27 kg/m^3
+
+== IV-4 C = rho_c/rho_L and |beta| >= 2 C Omega_L, by footing ==
+  [PASS] IV-4a rho_c = a0/(4 sqrt2 pi G r_M) equals the P2 phantom density (1/4 pi G r^2) d(r^2 g_ph)/dr at r = r_M (numerical derivative)
+         measured: max rel diff 8.2e-12
+  canonical M=1e+09 Msun: r_M=  1.22 kpc  rho_c=2.096e-21  C=3.587e+05  |beta|>=4.912e+05  compression C^(1/0.25)=1.66e+22
+  canonical M=1e+10 Msun: r_M=  3.86 kpc  rho_c=6.627e-22  C=1.134e+05  |beta|>=1.553e+05  compression C^(1/0.25)=1.66e+20
+  canonical M=1e+11 Msun: r_M= 12.20 kpc  rho_c=2.096e-22  C=3.587e+04  |beta|>=4.912e+04  compression C^(1/0.25)=1.66e+18
+  canonical M=1e+12 Msun: r_M= 38.59 kpc  rho_c=6.627e-23  C=1.134e+04  |beta|>=1.553e+04  compression C^(1/0.25)=1.66e+16
+  alt       M=1e+09 Msun: r_M=  1.11 kpc  rho_c=2.784e-21  C=4.766e+05  |beta|>=6.526e+05  compression C^(1/0.25)=5.16e+22
+  alt       M=1e+10 Msun: r_M=  3.51 kpc  rho_c=8.805e-22  C=1.507e+05  |beta|>=2.064e+05  compression C^(1/0.25)=5.16e+20
+  alt       M=1e+11 Msun: r_M= 11.10 kpc  rho_c=2.784e-22  C=4.766e+04  |beta|>=6.526e+04  compression C^(1/0.25)=5.16e+18
+  alt       M=1e+12 Msun: r_M= 35.10 kpc  rho_c=8.805e-23  C=1.507e+04  |beta|>=2.064e+04  compression C^(1/0.25)=5.16e+16
+  C range all footings 1.134e+04 - 4.766e+05; canonical only 1.134e+04 - 3.587e+05
+  |beta| range canonical only 1.553e+04 - 4.912e+05; both footings 1.553e+04 - 6.526e+05
+  [PASS] IV-4b C range 1.1e4-4.8e5 spans BOTH footings (canonical 1e12 lowest, alt 1e9 highest) within 5%
+         measured: 1.134e+04-4.766e+05
+  [PASS] IV-4c |beta| range: README 1.6e4-4.9e5 equals the CANONICAL-only range (upper end 3.6e5 x 2 x 0.6847); the both-footings upper end is 6.5e5 (LABEL mismatch with C's range)
+         measured: canonical 1.553e+04-4.912e+05; both 1.553e+04-6.526e+05
+  [PASS] IV-4d volume compression C^(1/0.25) = 10^16-10^23 (1.7e16 ... 5e22)
+         measured: 1.66e+16-5.16e+22
+
+== IV-5 Q5 numbers ==
+  negative-energy cross-term density at r_M / rho_L (H_L = H0 sqrt(Omega_L)): [1233.6, 693.7, 390.1, 219.4]; pull/a0: [0.0008, 0.0014, 0.0026, 0.0046]
+  [PASS] IV-5c linear-superposition negative density 219-1230 rho_L and pull 0.001-0.005 a0 (1e9-1e12 Msun, canonical)
+         measured: 219-1234; 0.0008-0.0046
+  null flow canonical: Omega_null=0.202; dominates matter before z=0.542; H(2.5) x1.777; x2208 of CMB+nu density (standard T_CMB, N_eff; reported only)
+  null flow alt: Omega_null=0.244; dominates matter before z=0.276; H(2.5) x1.900; x2669 of CMB+nu density (standard T_CMB, N_eff; reported only)
+  [PASS] IV-5d null flow: Omega_null 0.20/0.24, z_dom 0.54/0.28, H(2.5) x1.77/x1.89
+         measured: [(0.202, 0.542, 1.777), (0.244, 0.276, 1.9)]
+
+== IV-6 accumulation reading, density tie: rho_DE ~ t^2 (flat, no radiation, Om=0.3111) ==
+  H0 t0 = 1.0302; w0 = -1.6471; CPL fit (a in [1/3.5,1]) = (-1.703, -0.516); H(0.5)/H_LCDM(0.5) - 1 = -0.131; log10 a0(z)/a0(0) at z=0.85/1.5/2.5: [-0.339, -0.533, -0.752]
+  Mahalanobis distance of the model CPL / of LCDM (-1,0) from each chain; chain weight with w0 <= model w0: {'DESY5': (36.058, 4.315, 0.0), 'Pantheon+': (33.951, 3.015, 0.0), 'Union3': (27.476, 3.809, 0.0)}
+  [PASS] IV-6a H0 t0 = 1.030+/-0.003 and w0 = -1.647+/-0.01 (self-consistent solve; consistency w0 = -1-2/(3 H0 t0))
+         measured: H0t0 1.0302, w0 -1.6471
+  [PASS] IV-6b CPL fit (-1.70+/-0.03, -0.52+/-0.05); H(0.5) 13% below LCDM +/-2%
+         measured: [-1.703 -0.516], -0.131
+  [PASS] IV-6c a0(z)/a0(0) = -0.34/-0.53/-0.75 dex at z=0.85/1.5/2.5 within 0.02 dex
+         measured: [-0.339, -0.533, -0.752]
+  [PASS] IV-6d Gaussian-proxy distance 27-36 sigma (model) vs 3.0-4.3 sigma (LCDM); chain weight with w0 <= model = 0
+         measured: {'DESY5': (36.1, 4.31, 0.0), 'Pantheon+': (34.0, 3.02, 0.0), 'Union3': (27.5, 3.81, 0.0)}
+
+== I-6a exponential-potential thawing field (CLW system, dust + field, frozen at z=30), best node per chain ==
+  DESY5      best lambda 0.80 (grid of 20 on [0.1,2]); CPL-equivalent (-0.908,-0.130); Mahalanobis distance to chain mean 3.34; F(k=3/4) = 0.0299; F(k=sqrt3/2) = 0.0345
+  Pantheon+  best lambda 0.60 (grid of 20 on [0.1,2]); CPL-equivalent (-0.948,-0.074); Mahalanobis distance to chain mean 2.71; F(k=3/4) = 0.0163; F(k=sqrt3/2) = 0.0188
+  Union3     best lambda 0.80 (grid of 20 on [0.1,2]); CPL-equivalent (-0.910,-0.127); Mahalanobis distance to chain mean 3.38; F(k=3/4) = 0.0291; F(k=sqrt3/2) = 0.0336
+  [PASS] I-6a NEC-respecting thawing field best node: F(k=3/4) < 0.07 (well below R) for all three chains
+         measured: {'DESY5': 0.0299, 'Pantheon+': 0.0163, 'Union3': 0.0291}
+
+11/11 checks pass; load-bearing failures: []
+main run: exit 0

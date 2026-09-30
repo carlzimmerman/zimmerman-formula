@@ -1,0 +1,34 @@
+CFG195_freeform  mutate=none  repo=<repo>
+== A3: max F (k=sqrt3/2) over NEC-respecting free-form rho_DE(z) (nodes z=0,.3,.6,1,1.5,2.5,5; piecewise linear; w in [-1,1]) that reproduces a chain sample's E(z_j), D_C(z) within eps ==
+  DESY5      chain mean    (w0,wa,Om)=(-0.752,-0.862,0.3191); CPL target rho(z_j)/rho0 = [1.    1.12  1.109 1.016 0.873 0.631 0.318]; smallest achievable eps with w>=-1: 0.0023
+      eps=0.01: F_max(k=sqrt3/2) = 0.5047  (Omega_m'=0.3081, rho nodes [1.    1.18  1.217 1.221 1.268 1.709 9.032])
+      eps=0.02: F_max(k=sqrt3/2) = 0.6570  (Omega_m'=0.3081, rho nodes [ 1.     1.223  1.277  1.316  1.432  2.123 11.22 ])
+  DESY5      F97.5 sample  (w0,wa,Om)=(-0.603,-1.457,0.3295); CPL target rho(z_j)/rho0 = [1.    1.19  1.155 0.981 0.747 0.422 0.128]; smallest achievable eps with w>=-1: 0.0031
+      eps=0.01: F_max(k=sqrt3/2) = 0.6663  (Omega_m'=0.3081, rho nodes [ 1.     1.266  1.293  1.293  1.37   2.152 11.376])
+      eps=0.02: F_max(k=sqrt3/2) = 0.8222  (Omega_m'=0.3081, rho nodes [ 1.     1.31   1.37   1.39   1.536  2.575 13.611])
+  Pantheon+  chain mean    (w0,wa,Om)=(-0.838,-0.617,0.3114); CPL target rho(z_j)/rho0 = [1.    1.071 1.054 0.979 0.869 0.678 0.405]; smallest achievable eps with w>=-1: 0.0008
+      eps=0.01: F_max(k=sqrt3/2) = 0.5083  (Omega_m'=0.3003, rho nodes [1.    1.13  1.159 1.181 1.259 1.742 9.208])
+      eps=0.02: F_max(k=sqrt3/2) = 0.6555  (Omega_m'=0.3003, rho nodes [ 1.     1.171  1.217  1.273  1.417  2.143 11.327])
+  Pantheon+  F97.5 sample  (w0,wa,Om)=(-0.794,-0.531,0.3202); CPL target rho(z_j)/rho0 = [1.    1.118 1.149 1.128 1.063 0.919 0.656]; smallest achievable eps with w>=-1: 0.0001
+      eps=0.01: F_max(k=sqrt3/2) = 0.8005  (Omega_m'=0.3003, rho nodes [ 1.     1.191  1.293  1.418  1.642  2.523 13.334])
+      eps=0.02: F_max(k=sqrt3/2) = 0.9523  (Omega_m'=0.3003, rho nodes [ 1.     1.233  1.353  1.515  1.808  2.939 15.535])
+  Union3     chain mean    (w0,wa,Om)=(-0.665,-1.090,0.3276); CPL target rho(z_j)/rho0 = [1.    1.174 1.175 1.066 0.892 0.605 0.263]; smallest achievable eps with w>=-1: 0.0006
+      eps=0.01: F_max(k=sqrt3/2) = 0.6411  (Omega_m'=0.3107, rho nodes [ 1.     1.243  1.309  1.334  1.42   2.064 10.911])
+      eps=0.02: F_max(k=sqrt3/2) = 0.7974  (Omega_m'=0.3107, rho nodes [ 1.     1.287  1.372  1.432  1.589  2.49  13.161])
+  Union3     F97.5 sample  (w0,wa,Om)=(-0.491,-1.581,0.3527); CPL target rho(z_j)/rho0 = [1.    1.285 1.306 1.153 0.904 0.527 0.164]; smallest achievable eps with w>=-1: 0.0005
+      eps=0.01: F_max(k=sqrt3/2) = 1.1823  (Omega_m'=0.3107, rho nodes [ 1.     1.369  1.543  1.674  1.978  3.556 18.795])
+      eps=0.02: F_max(k=sqrt3/2) = 1.3488  (Omega_m'=0.3107, rho nodes [ 1.     1.435  1.61   1.779  2.157  4.011 21.202])
+  [FAIL] A3 every feasible NEC-respecting free-form fit (eps=1%,2%) has F_max(k=sqrt3/2) < R (0.2928)
+         measured: {'DESY5|chain mean': {'eps_min': 0.0023009350893425816, 'F_eps0.01': 0.5047111105133408, 'F_eps0.02': 0.656971529469877}, 'DESY5|F97.5 sample': {'eps_min': 0.00307610731950423, 'F_eps0.01': 0.6662852383909013, 'F_eps0.02': 0.8221940402741659}, 'Pantheon+|chain mean': {'eps_min': 0.000789063524039334, 'F_eps0.01': 0.5083304707673869, 'F_eps0.02': 0.6554910470634842}, 'Pantheon+|F97.5 sample': {'eps_min': 0.00011895712757685535, 'F_eps0.01': 0.800515664219743, 'F_eps0.02': 0.9522806017303493}, 'Union3|chain mean': {'eps_min': 0.0006293295500517946, 'F_eps0.01': 0.6411059357766833, 'F_eps0.02': 0.7973761337462568}, 'Union3|F97.5 sample': {'eps_min': 0.0004929446475376921, 'F_eps0.01': 1.182335299160352, 'F_eps0.02': 1.3488201346390536}}
+  [PASS] (reported) A3b a NEC-respecting rho(z) reproduces the CPL background within 1% at every tested sample (if not: the CPL H(z) cannot come from w>=-1, so the clip-and-keep-CPL use in the README is not a NEC-respecting model)
+         measured: infeasible at 1% for: []; eps_min: [('DESY5|chain mean', 0.0023), ('DESY5|F97.5 sample', 0.0031), ('Pantheon+|chain mean', 0.0008), ('Pantheon+|F97.5 sample', 0.0001), ('Union3|chain mean', 0.0006), ('Union3|F97.5 sample', 0.0005)]
+
+== A7 local vs cosmic: a medium compacted to C rho_L needs only 1+w_loc >= 2R/C for the same column, but compaction needs 1+w ==
+  C=1.134e+04: local NEC needs 1+w_loc >= 5.16e-05; with that 1+w the compression n^(1+w) = C needs log10(n) = 7.85e+04
+  C=4.766e+05: local NEC needs 1+w_loc >= 1.23e-06; with that 1+w the compression n^(1+w) = C needs log10(n) = 4.62e+06
+  1+w needed to reach C by volume compression n_max (rho ~ n^(1+w)): {'C=1.1e+04,n=1e+01': 4.05, 'C=1.1e+04,n=1e+03': 1.35, 'C=1.1e+04,n=1e+06': 0.68, 'C=4.8e+05,n=1e+01': 5.68, 'C=4.8e+05,n=1e+03': 1.89, 'C=4.8e+05,n=1e+06': 0.95}
+  [FAIL] (reported) A7 the local momentum requirement (1+w_loc >= 2R/C ~ 1e-6-5e-5) is tiny, the compaction requirement (1+w ~ 0.8-5 for n<=1e6) is not: the two cosmic-mean/local conclusions rest on the compaction, not on the momentum column
+         measured: [5.164021164021164e-05, 1.228703315148972e-06]
+
+1/3 checks pass; load-bearing failures: ['A3 every feasible NEC-respecting free-form fit (eps=1%,2%) has F_max(k=sqrt3/2) < R (0.2928)']
+main run: exit 1

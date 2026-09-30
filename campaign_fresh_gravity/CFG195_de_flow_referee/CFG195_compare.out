@@ -1,0 +1,62 @@
+CFG195_compare  mutate=none  repo=<repo>
+== Q0 controls and Q4 (DESI inputs, the 0.078) ==
+  OK R canonical / alt                                              CFG176 [0.2928, 0.35386]  CFG195 [0.29284, 0.35389]  max rel diff 1.09e-04  -> REPRODUCES
+  OK 1+w0 97.5th pct                                                CFG176 [0.36217, 0.27379, 0.51108]  CFG195 [0.36217, 0.27379, 0.51108]  max rel diff 0.00e+00  -> REPRODUCES
+  OK 1+w0 median                                                    CFG176 [0.24675, 0.16143, 0.33419]  CFG195 [0.24675, 0.16143, 0.33419]  max rel diff 0.00e+00  -> REPRODUCES
+  OK today 3/4(1+w0) 97.5th                                         CFG176 [0.27163, 0.20535, 0.38331]  CFG195 [0.27163, 0.20535, 0.38331]  max rel diff 0.00e+00  -> REPRODUCES
+  OK p(3(1+w0)/4 >= R) canonical (today's rate alone)               CFG176 [0.00883, 0.00014, 0.25991]  CFG195 [0.00878, 0.00014, 0.25988]  max abs diff 4.67e-05  -> REPRODUCES
+  OK F(k=1/2, isotropic) 97.5th                                     CFG176 [0.03267, 0.02301, 0.0521]  CFG195 [0.03267, 0.02301, 0.05209]  max rel diff 1.00e-05  -> REPRODUCES
+  OK F(k=3/4, perfect fluid) 97.5th   [THE 0.049 / 0.035 / 0.078]   CFG176 [0.04901, 0.03452, 0.07814]  CFG195 [0.04901, 0.03452, 0.07814]  max rel diff 1.00e-05  -> REPRODUCES
+  OK F(k=3/4) median                                                CFG176 [0.03139, 0.01824, 0.04667]  CFG195 [0.03139, 0.01824, 0.04667]  max rel diff 6.42e-06  -> REPRODUCES
+  (crossing) README/CFG6 B5: 0.9998@0.41, 0.9978@0.36, 0.9998@0.44  vs CFG195: [(0.9998, 0.405), (0.9978, 0.356), (0.9998, 0.444)] -> agree at the README's two-decimal rounding; my frozen line demanded 0.36 <= z <= 0.44 unrounded (0.356 and 0.444 miss by 0.004): LABEL/rounding, kept as a FAIL of my own I-3 line
+
+== thawing best nodes (NEC-respecting healthy field) ==
+  !! F(k=3/4), best thawing node                                    CFG176 [0.03894, 0.01637, 0.01944]  CFG195 [0.02987, 0.01631, 0.02911]  max rel diff 4.98e-01  -> LABEL   [node selection: CFG6 conditions on a 3-d Gaussian in (w0,wa,Omega_m) over an Omega_m x lambda grid; CFG195 uses the best chi^2 node in (w0,wa) at the chain-mean Omega_m on a 20-point lambda grid. Pantheon+ agrees (0.0164 vs 0.0163)]
+  CFG176 lam: [0.9, 0.6, 0.65]  CFG195 lam: [0.8, 0.6, 0.8]
+
+== Q1 numbers ==
+  OK 2R (NEC, w_par)                                                CFG176 [0.58561, 0.70771]  CFG195 [0.58567, 0.70779]  max rel diff 1.09e-04  -> REPRODUCES
+  OK 4R/3 (perfect fluid CMB frame)                                 CFG176 [0.39041, 0.47181]  CFG195 [0.39045, 0.47186]  max rel diff 1.09e-04  -> REPRODUCES
+  OK C = rho_c/rho_L (8 footing x mass cells)                       CFG176 [358715.70891, 113435.86726, 35871.57089, 11343.58673, 476567.95676, 150704.02032, 47656.79568, 15070.40203]  CFG195 [358712.88885, 113434.97548, 35871.28888, 11343.49755, 476564.2102, 150702.83556, 47656.42102, 15070.28356]  max rel diff 7.86e-06  -> REPRODUCES
+  OK attraction threshold beta at w=-0.752                          CFG176 [0.8467]  CFG195 [0.8467]  max rel diff 4.12e-06  -> REPRODUCES
+  OK |beta| needed (2 C Omega_L), 1e9..1e12 canonical               CFG176 [491225.29178, 155339.07663, 49122.52918, 15533.90766]  CFG195 [491221.42999, 155337.85543, 49122.143, 15533.78554]  max rel diff 7.86e-06  -> REPRODUCES
+
+== Q2 ==  CFG176 S6 (H^2 = 8 pi G rho/[3(1+beta/2)], beta = c1+3c2+c3, w_flow = w_total) vs CFG195 IV-1: identical (sympy, both); see the CFG195 checks IV-1a..d, IV-2
+
+== Q3-I ==
+  OK H0 t0, w0                                                      CFG176 [1.03017, -1.64714]  CFG195 [1.03017, -1.64714]  max rel diff 1.08e-12  -> REPRODUCES
+  OK CPL fit (w0,wa)                                                CFG176 [-1.70281, -0.51593]  CFG195 [-1.70281, -0.51593]  max rel diff 1.22e-09  -> REPRODUCES
+  OK a0(z)/a0(0) dex at 0.85/1.5/2.5                                CFG176 [-0.33933, -0.53289, -0.75162]  CFG195 [-0.33933, -0.53289, -0.75162]  max rel diff 4.17e-10  -> REPRODUCES
+  OK H(0.5)/H_LCDM - 1                                              CFG176 [-0.13131]  CFG195 [-0.13131]  max rel diff 3.84e-11  -> REPRODUCES
+  OK Mahalanobis distance of the model CPL (3 chains)               CFG176 [36.05755, 33.95121, 27.47573]  CFG195 [36.058, 33.951, 27.476]  max rel diff 1.26e-05  -> REPRODUCES
+
+== Q5 ==
+  OK Omega_null, z_dom (canonical)                                  CFG176 [0.20171, 0.54229]  CFG195 [0.202, 0.542]  max rel diff 1.43e-03  -> REPRODUCES
+  OK PG cross-term rho_x/rho_L (1e9..1e12)                          CFG176 [1233.65387, 693.73455, 390.11561, 219.37813]  CFG195 [1233.6, 693.7, 390.1, 219.4]  max rel diff 9.97e-05  -> REPRODUCES
+  OK PG cross-term pull/a0                                          CFG176 [0.00081, 0.00144, 0.00256, 0.00456]  CFG195 [0.0008, 0.0014, 0.0026, 0.0046]  max rel diff 2.88e-02  -> REPRODUCES
+
+== E8/E9 (hand estimates from Phase 1): fraction of each posterior whose TODAY momentum limit reaches R, by bound ==
+  k=1/2 (w_par = w_iso)            DESY5 0.0000  Pantheon+ 0.0000  Union3 0.0034
+  k=3/4 (perfect fluid)            DESY5 0.0088  Pantheon+ 0.0001  Union3 0.2599
+  k=sqrt3/2 (NEC-only maximum)     DESY5 0.0614  Pantheon+ 0.0006  Union3 0.4803
+
+== Bianchi I coefficient (reported by CFG176, not scored) ==
+  CFG195 ODE: D(t0)/H0 = 0.5547 x (p_par - p_perp)/rho; the component sigma_1 = H_x - Hbar = (2/3) D -> 0.3698; CFG176 coefficient 0.3698 (their 2 Omega_L int a^2/E da at Om=0.3111 = 0.3698)
+  OK Bianchi coefficient sigma_1/H0 per unit Delta (Om=0.3111)      CFG176 [0.36978]  CFG195 [0.36978]  max rel diff 1.25e-11  -> REPRODUCES
+  CFG176's Delta_req = 1.5(2R - eps_max), eps_max = 97.5th pct of TODAY'S 1+w0 (0.511): the '4-11% anisotropy' closes the TODAY-rate shortfall (2R = 0.586 vs 0.511), NOT the integrated 3.8x shortfall (0.078 vs 0.293): SCOPE (wording in the README's bottom line)
+
+== MUTATE cross-check ==
+  OK CFG176 MUTATE=1 vs CFG195 M3 (dust inertia): F 97.5th pct at k=3/4-equivalent CFG176 [0.74308, 0.74192, 0.76154]  CFG195 [0.74308, 0.74192, 0.76154]  max rel diff 8.07e-07  -> REPRODUCES
+
+== What CFG195 adds, none of which is in CFG176 (classification of the differences of substance) ==
+  SCOPE  NEC-only maximum of g/e is (sqrt3/2)(1+w_iso) (CFG195 LP: 0.86603), not the perfect-fluid 3/4: the 97.5th pct of F becomes [0.0566, 0.0399, 0.0902] (x1.1547); CFG176's own inequality g/e <= (1+w_par)/2 is true but not sufficient
+  SCOPE  the bound assumes a single NEC-respecting component; with a phantom compensator (w_ph >= -2) R is reachable at total 1+w = 0.05 with phantom fraction ~0.29 (CFG195 A6)
+  SCOPE  the CPL posterior is phantom (NEC-violating at rest) for 65-71% of cosmic time (CFG195 A4a) and CFG176 clips those epochs to zero; a free-form NEC-respecting rho_DE(z) that mimics the CPL background within 1-2% can carry F_max above R when Omega_m is left free (CFG195 A3), and near R at 2% with Omega_m fixed: tolerance- and parameterisation-dependent
+  LABEL  C range 1.13e4-4.77e5 spans both footings, |beta| range printed 1.6e4-4.9e5 is canonical only (both footings: 1.55e4-6.53e5)
+
+25/27 rows reproduce; others classified above
+  [PASS] compare: the load-bearing README numbers (F 97.5th, 1+w0, C, Q3-I) reproduce within tolerance
+         measured: 25/27
+
+1/1 checks pass; load-bearing failures: []
+main run: exit 0

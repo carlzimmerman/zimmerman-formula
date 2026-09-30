@@ -1,0 +1,73 @@
+CFG195_desi_bound  mutate=2  repo=<repo>
+chains: rows {'DESY5': 15292, 'Pantheon+': 25230, 'Union3': 27181}  weight sums {'DESY5': 42824.0, 'Pantheon+': 71723.0, 'Union3': 77023.0}
+MUTATE=2: chain (w0,wa) shifted by (+0.45,+0.5)
+  [PASS] (reported) Q0 own quadrature vs scipy.quad (12 random Union3 rows, k=3/4)
+         measured: max rel diff 0.00e+00 over 12 rows
+
+== I-1 chain statistics vs the paper values quoted in the repo's L273/L275 docstrings ==
+  DESY5      w0 -0.302+/-0.057  wa -0.362+/-0.223  rho -0.907  Om 0.3191  (paper -0.752, -0.86, Om 0.3191)
+  Pantheon+  w0 -0.388+/-0.055  wa -0.117+/-0.209  rho -0.895  Om 0.3114  (paper -0.838, -0.62, Om 0.3114)
+  Union3     w0 -0.215+/-0.089  wa -0.590+/-0.294  rho -0.933  Om 0.3276  (paper -0.667, -1.09, Om 0.3275)
+  [FAIL] I-1 chain means within 0.02 (w0), 0.05 (wa) of the paper values
+         measured: False
+
+== I-2 / I-3 percentiles, crossing ==
+  DESY5      1+w0 pct(2.5,16,50,84,97.5) [0.587 0.641 0.697 0.755 0.812]; 97.5th of wa +0.063; p(w0<-1)=0.00e+00; p(wa>0)=4.57e-02; today 3/4(1+w0) 97.5th 0.609; crossing frac 0.0002; median z_cross 2.027
+  Pantheon+  1+w0 pct(2.5,16,50,84,97.5) [0.506 0.557 0.611 0.667 0.724]; 97.5th of wa +0.273; p(w0<-1)=0.00e+00; p(wa>0)=2.97e-01; today 3/4(1+w0) 97.5th 0.543; crossing frac 0.0000; median z_cross nan
+  Union3     1+w0 pct(2.5,16,50,84,97.5) [0.614 0.696 0.784 0.873 0.961]; 97.5th of wa -0.041; p(w0<-1)=0.00e+00; p(wa>0)=1.72e-02; today 3/4(1+w0) 97.5th 0.721; crossing frac 0.0063; median z_cross 2.237
+  [FAIL] I-2 1+w0 97.5th pct within 0.01 of 0.36/0.27/0.51; today 3/4(1+w0) 97.5th within 0.011 of 0.27/0.21/0.38; wa<0 at 97.5th
+         measured: False
+  [FAIL] I-3 crossing fraction >=99.5% and median z_cross in 0.36-0.44 (README B5)
+         measured: False
+
+== I-4 integrated carried column F (k=3/4; README definition) ==
+  control R (CFG174 definition): canonical 0.2928  alt 0.3539   [CFG174 README: 0.293 / 0.354]
+  DESY5      mean 991207789414.8094  16/50/84 1.2297/2.6991/49.6065  97.5th 1242403.2515 (bootstrap se 337694.2971, 95% [878017.0447,2221045.1307])  README target 0.049  frac(F>=R) 1.0000   R/mean = 0.0  R/97.5th = 0.00
+  Pantheon+  mean 275278883093788.2188  16/50/84 2.2763/34.1733/809023.0138  97.5th 24453755130.4841 (bootstrap se 3993658916.3448, 95% [17661547672.5129,33477248512.7842])  README target 0.035  frac(F>=R) 1.0000   R/mean = 0.0  R/97.5th = 0.00
+  Union3     mean 2450118679746.1992  16/50/84 0.9253/1.5886/5.0211  97.5th 6898.4545 (bootstrap se 1524.4807, 95% [4871.5817,10899.3374])  README target 0.078  frac(F>=R) 1.0000   R/mean = 0.0  R/97.5th = 0.00
+  [FAIL] I-4 F(k=3/4) 97.5th pct within max(10%, 2 se) of README 0.049/0.035/0.078
+         measured: False
+  [FAIL] I-4b F(k=3/4) 97.5th pct < R (0.293) and weight fraction with F>=R < 0.5% for every combination
+         measured: False
+  [FAIL] A8 README's 0.078 lies inside my bootstrap 95% interval of Union3's 97.5th pct (or my value within 10%)
+         measured: [4871.5817,10899.3374]
+
+== I-5 treatment dependence: 97.5th percentile of F ==
+  k=1/2 (w_par = w_iso)                                      DESY5=828268.8343  Pantheon+=16302503420.3227  Union3=4598.9697
+  k=3/4 (perfect fluid, beta->1) [README]                    DESY5=1242403.2515  Pantheon+=24453755130.4841  Union3=6898.4545
+  k=sqrt3/2 (NEC-only maximum, see CFG195_nec_lp)            DESY5=1434603.7034  Pantheon+=28236764214.5644  Union3=7965.6491
+  k=sqrt3/2, rho weight 1 (constant rho_L)                   DESY5=0.5499  Pantheon+=0.5623  Union3=0.5440
+  k=sqrt3/2, only epochs z<=3                                DESY5=1.5926  Pantheon+=1.6668  Union3=1.5716
+  k=sqrt3/2, only epochs z<=1                                DESY5=0.6372  Pantheon+=0.6051  Union3=0.7039
+  k=sqrt3/2, fixed Omega_m=0.3111                            DESY5=1439003.3525  Pantheon+=28093751026.3670  Union3=8045.3661
+  (NOT a bound) no clip |1+w|, k=3/4  [phantom epochs carry] DESY5=1242403.2515  Pantheon+=24453755130.4841  Union3=6898.4545
+  [FAIL] I-5 the NEC-only (k=sqrt3/2) 97.5th pct < R/2 (margin >=2x) for every combination and variant c-e
+         measured: False
+         note: max over variants 28236764214.5644; R=0.2928
+  ratio k=sqrt3/2 / k=3/4 = 1.1547 (deterministic: the factor multiplies the whole integrand)
+
+== A4(a) phantom fraction ==
+  DESY5      weighted mean cosmic-time fraction with 1+w<0 0.001; at chain-mean params 0.000; weight with a phantom epoch at z<=2.5 0.0002
+  Pantheon+  weighted mean cosmic-time fraction with 1+w<0 0.000; at chain-mean params 0.000; weight with a phantom epoch at z<=2.5 0.0000
+  Union3     weighted mean cosmic-time fraction with 1+w<0 0.011; at chain-mean params 0.000; weight with a phantom epoch at z<=2.5 0.0063
+  [PASS] (reported) A4a phantom epoch present at z<=2.5 in >=99.5% of the weight and time fraction 0.5-0.8 (E11 expected 0.62-0.72)
+         measured: False
+
+== I-8 R recomputed with each combination's own (H0, Omega_DE, t0) ==
+  DESY5      H0t0 0.8284  t0 12.14 Gyr  rho_DE0 5.6972e-27  R canonical 0.3412 alt 0.4123
+  Pantheon+  H0t0 0.8346  t0 12.09 Gyr  rho_DE0 5.8950e-27  R canonical 0.3311 alt 0.4001
+  Union3     H0t0 0.8201  t0 12.17 Gyr  rho_DE0 5.4863e-27  R canonical 0.3535 alt 0.4272
+  [PASS] I-1c R control 0.2927/0.3534 within 1% of CFG174 README values
+         measured: 0.2928/0.3539
+  [FAIL] (reported) I-8 R recomputed per combination stays within 10% of 0.293 (no change of verdict)
+         measured: False
+
+== A1 nearest (w0,wa) with F >= R, in the chain's own Mahalanobis metric (Omega_m fixed at the chain mean) ==
+  DESY5      nearest point with F>=R: k=3/4 0.04 sigma at (w0,wa)=(-0.29999999999999993, -0.3700000000000001);  k=sqrt3/2 0.04 sigma at (-0.29999999999999993, -0.3700000000000001)
+  Pantheon+  nearest point with F>=R: k=3/4 0.04 sigma at (w0,wa)=(-0.39, -0.10999999999999988);  k=sqrt3/2 0.04 sigma at (-0.39, -0.10999999999999988)
+  Union3     nearest point with F>=R: k=3/4 0.01 sigma at (w0,wa)=(-0.21499999999999997, -0.5899999999999999);  k=sqrt3/2 0.01 sigma at (-0.21499999999999997, -0.5899999999999999)
+  [FAIL] A1 the region F(k=3/4)>=R is >=2.5 Mahalanobis sigma from every chain mean
+         measured: False
+
+3/12 checks pass; load-bearing failures: ['I-1 chain means within 0.02 (w0), 0.05 (wa) of the paper values', 'I-2 1+w0 97.5th pct within 0.01 of 0.36/0.27/0.51; today 3/4(1+w0) 97.5th within 0.011 of 0.27/0.21/0.38; wa<0 at 97.5th', 'I-3 crossing fraction >=99.5% and median z_cross in 0.36-0.44 (README B5)', 'I-4 F(k=3/4) 97.5th pct within max(10%, 2 se) of README 0.049/0.035/0.078', 'I-4b F(k=3/4) 97.5th pct < R (0.293) and weight fraction with F>=R < 0.5% for every combination', "A8 README's 0.078 lies inside my bootstrap 95% interval of Union3's 97.5th pct (or my value within 10%)", 'I-5 the NEC-only (k=sqrt3/2) 97.5th pct < R/2 (margin >=2x) for every combination and variant c-e', 'A1 the region F(k=3/4)>=R is >=2.5 Mahalanobis sigma from every chain mean']
+MUTATE=2: control BITES; exit 1

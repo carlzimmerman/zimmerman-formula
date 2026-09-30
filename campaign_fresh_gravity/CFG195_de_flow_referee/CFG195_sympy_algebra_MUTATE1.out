@@ -1,0 +1,66 @@
+CFG195_sympy_algebra  mutate=1  repo=<repo>
+== II-1 NEC => |T^{0n}| <= (T^{00}+T^{nn})/2 ==
+  signature -+++: T_kk = T00 - 2*T0x*s + Txx*s**2 ; null condition k.k = s**2 - 1 (=0 for s^2=1)
+  signature +---: T_kk = T00 - 2*T0x*s + Txx*s**2 ; null condition: 1 - s**2
+  [FAIL] II-1 T_kk = T00 -+ 2 T0x + Txx in both signatures (identical) and the NEC gives |T0x| <= (T00+Txx)/2
+         measured: identity True, sum-rule 0, derived direction '|T0x| ge (T00+Txx)/2' (README: le)
+
+== II-4 perfect fluid moving at beta ==
+  [PASS] II-4 CMB-frame 1+w_eff = R(1/beta+beta/3) and rest-frame 1+w = R(1-beta^2)/[beta(1-R beta)] (sympy, exact)
+         measured: residuals 0,0,0,0
+  d/dbeta [R(1/beta+beta/3)] = R/3 - R/beta**2 (<0 on (0,1]: minimum 4R/3 at beta=1)
+  [PASS] II-4b numbers: min 4R/3 = 0.390/0.472; 1+w at 600 km/s = 146; DEC (1+w<=2) needs beta >= 0.15/0.18
+         measured: 4R/3 0.390/0.472; 1+w(600km/s) 146.4/177.0; beta_DEC 0.150/0.183
+  [PASS] II-4c active density T00+sum T^ii = rho gamma^2[(1+beta^2)+w(3-beta^2)]; attraction at w=-0.75 needs beta > 0.845
+         measured: residual 0; threshold [0.8451542547285166]
+
+== II-8 Lambda + flowing component ==
+  [PASS] II-8 (1/2)(1+w_f)e_f = (1/2)(1+w_tot)e_tot: adding a static Lambda does not weaken the bound
+         measured: difference 0
+
+== III energy equation, vacuum rigidity, exchange ==
+  [PASS] III-1 u_nu grad_mu T^{mu nu} = -[u.grad rho + (rho+p) div u] (1+1 flat, sympy) and, with the number current conserved, rho = K n^{1+w} solves it
+         measured: residuals 0, 0
+  [PASS] III-2 T = -rho g: div T^nu = -d^nu rho, so separate conservation (P1) <=> rho locally constant
+         measured: residuals [0, 0, 0, 0]
+  [PASS] A5 dust with exchange: P^{nu}_sigma div T_m^{sigma..} = rho_m a^nu; hence total conservation with T_DE = -rho(x) g requires a^nu = P d rho / rho_m: a gradient (fifth-force-like) exchange, nothing else
+         measured: residual Matrix([[0, 0]])
+
+== A9 Bianchi I shear equation ==
+  [PASS] A9 G^x_x - G^y_y = D' + 3 H D with D = H_x - H_y (Bianchi I, sympy): so D' + 3 H D = 8 pi G (p_x - p_y)
+         measured: residual 0
+  LCDM (Om=0.3153): D(t0)/H0 = 0.5504 x (p_par - p_perp)/rho_DE ; shear scalar sigma = D/sqrt3 -> sigma/H0 = 0.3177 x (p_par - p_perp)/rho_DE
+
+== IV-1 Einstein-aether minisuperspace from the covariant action ==
+  K^{ab}_{mn} grad u grad u = 3*(c1 + 3*c2 + c3)*Derivative(a(t), t)**2/(N(t)**2*a(t)**2) ; K1,K2,K3,K4 (coefficients of H^2): [3, 9, 3, 0]
+  [PASS] IV-1a K1=3H^2, K2=9H^2, K3=3H^2, K4=0 (H=a'/(aN))
+         measured: [3, 9, 3, 0]
+  E_N|_{N=1} / [(1+beta/2) 3H^2 - 8 pi G (rho_m+rho_L)] = a(t)**3/(8*pi*G)
+  [PASS] IV-1b Friedmann constraint: E_N is proportional (by a factor with no c_i, no H) to (1+beta/2) 3H^2 - 8 pi G (rho_m+rho_Lambda), beta = c1+3c2+c3
+         measured: ratio a(t)**3/(8*pi*G)
+  [PASS] IV-1c acceleration equation is the time derivative of the constraint (Bianchi identity holds with the same beta)
+         measured: residual 0
+  aether energy density rho_ae = -(beta/2) 3H^2/(8 pi G); w_ae = w_total (proved below for dust+Lambda)
+  [PASS] IV-1d w_aether = p_ae/rho_ae = p_m/rho_m = w_total
+         measured: 0
+  [PASS] IV-2 E(z)^2 / E_LCDM(z)^2 = 1/(1+beta/2) for all z (H(z) shape is LCDM)
+         measured: beta=0.3: {0.869565217391}
+
+== IV-3 generalized aether F(K): is the Friedmann shape still LCDM-like? ==
+  n=1: constraint (E_N normalised) = 16*pi*G*rho_L - 3*Hh**2*bq - 6*Hh**2 + 16*pi*G*M_d/A**3
+  n=3/2: constraint (E_N normalised) = 16*pi*G*rho_L - 6*sqrt(3)*Hh**3*bq**(3/2)/sqrt(M2) - 6*Hh**2 + 16*pi*G*M_d/A**3
+  n=2: constraint (E_N normalised) = 16*pi*G*rho_L - 27*Hh**4*bq**2/M2 - 6*Hh**2 + 16*pi*G*M_d/A**3
+  n=1: H^2/H^2_(GR,G) at a = [1.0, 0.5, 0.25, 0.1]: [0.8 0.8 0.8 0.8]
+  n=3/2: H^2/H^2_(GR,G) at a = [1.0, 0.5, 0.25, 0.1]: [0.66667 0.55214 0.37126 0.17927]
+  n=2: H^2/H^2_(GR,G) at a = [1.0, 0.5, 0.25, 0.1]: [0.59787 0.40721 0.18727 0.05199]
+  [PASS] (reported) IV-3 F(K)=K (n=1) gives a constant rescaling of the LCDM H(z); F=K^{3/2}, K^2 do not (w_DE=-1 in H(z) shape is a theorem only for the constant-c_i aether)
+         measured: n=1 constant True; n=3/2,2 vary [True, True]
+
+== IV-5 Painleve-Gullstrand river ==
+  [PASS] IV-5a PG river: 8 pi G rho = (r v^2)'/r^2 and p_r = -rho (sympy, general v(r))
+         measured: rho residual 0, p_r+rho 0
+  [PASS] IV-5b pure Lambda: v=H_L r gives 8 pi G rho = 3 H_L^2; v^2 = 2GM/r gives 0; the linear superposition v = -sqrt(2GM/r)+H_L r adds -3 H_L sqrt(2GM) r^{-3/2}
+         measured: Lambda 3*H_L**2; Newton 0; cross term (-3*H_L**2*r**3 - 2*r**(3/2)*(3*H_L/2 - (-sqrt(2)*sqrt(G)*sqrt(M) + H_L*r**(3/2))/(2*r**(3/2)))*(sqrt(2)*sqrt(G)*sqrt(M) - H_L*r**(3/2)) + (sqrt(2)*sqrt(G)*sqrt(M) - H_L*r**(3/2))**2)/r**3
+
+16/17 checks pass; load-bearing failures: ['II-1 T_kk = T00 -+ 2 T0x + Txx in both signatures (identical) and the NEC gives |T0x| <= (T00+Txx)/2']
+MUTATE=1: control BITES; exit 1
