@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_EXPANSION_BRIDGE_CRITICAL_POINTS",
+  "repository": {
+    "commit": "a92c1c1a1dee6cb676461b810c0bbabd5cfacfe3",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/expansion_bridge_critical_points.py",
+    "--output",
+    "sol61_push/runs/expansion_bridge_critical_points/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Seven exact scaled normal-form identities; six finite C=D=R roots and finite-slope candidate checks",
+    "coefficient_domain": "Exact SymPy normal form plus scipy/numpy double precision and complex-step derivatives",
+    "conventions": "EXPANSION_BRIDGE_CRITICAL_RESULTS.md",
+    "inputs": [
+      "sol61_push/expansion_bridge_critical_points.py",
+      "sol61_push/expansion_bridge_radial_ivp.py"
+    ],
+    "bounds": {
+      "beta": [
+        2,
+        10,
+        20
+      ],
+      "r": [
+        0.001,
+        0.002
+      ],
+      "H": 1,
+      "lambda": 2,
+      "deltaW": 0,
+      "complex_step": 1e-30,
+      "scaled_root_tolerance": 1e-10
+    },
+    "non_claims": [
+      "No constructed smooth crossing or global/source match",
+      "No full covariant completeness or stability proof",
+      "No selected 32pi"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T23:08:21.071627+00:00",
+    "runtime_seconds": 0.678212,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/expansion_bridge_critical_points.py",
+    "sol61_push/expansion_bridge_radial_ivp.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/expansion_bridge_critical_points.py",
+      "sha256": "65d5fbf176b29aa669fd4fe1ed56946ace45d08fffdd6fe503f5709089739577",
+      "sha256_after": "65d5fbf176b29aa669fd4fe1ed56946ace45d08fffdd6fe503f5709089739577"
+    },
+    {
+      "path": "sol61_push/expansion_bridge_radial_ivp.py",
+      "sha256": "e36db73c74b54bced39addf2110d88fa6e0f381bc714f8c62a1232a05e4f6c52",
+      "sha256_after": "e36db73c74b54bced39addf2110d88fa6e0f381bc714f8c62a1232a05e4f6c52"
+    }
+  ],
+  "output_directory": "sol61_push/runs/expansion_bridge_critical_points",
+  "declared_results": [
+    "sol61_push/runs/expansion_bridge_critical_points/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/expansion_bridge_critical_points/stdout.txt",
+      "sha256": "ebf4bec7aff05ac8ef119a754c516e0a8ec2d2c2b86d07ba8f936365d9997971",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_critical_points/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/expansion_bridge_critical_points/results.json",
+      "sha256": "9b02e1b71817d90f0769291f8ecbf4aeb39d8d66444b1c4818e60fefc5f9dd6d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

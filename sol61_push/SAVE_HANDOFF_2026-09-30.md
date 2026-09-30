@@ -2,6 +2,20 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Newest critical checkpoint: EXPANSION_BRIDGE_CRITICAL_RESULTS.md proves a
+local C=D=R critical-state family for every beta>0, using the scaled map
+and Jacobian det=8beta(3lambda−1)>0. Seven symbolic identities and six
+finite roots pass. The candidate slopes are asymptotically
+S H³r/[beta(lambda−1)] times (2±sqrt(11)); these do not select 32π.
+Six two-sided negative-slope offset integrations at beta=10 reach inner
+r=1e−6 and outer r=0.1, with endpoint differences reducing by about four
+when the gap is halved. The actual critical point remains excluded: no
+rigorous smooth crossing or global boundary match is claimed. The inner
+preferred-flow mode is appreciable and the outer trace constant has not
+been set by a boundary condition. Next: local invariant-manifold proof and
+critical W/radius shooting against a conserved source and outer foliation.
+Beta, U, full health and exact 32π remain unresolved.
+
 Newest boundary work: EXPANSION_BRIDGE_OUTER_RESULTS.md derives the outer
 linear modes from the full necessary radial equations (13 exact identities).
 For the specifically normalized flat-spatial de Sitter boundary, Ctheta=0
