@@ -23,3 +23,9 @@
 
 ## What the owner's direction did not change
 κ = ½ stays FITTED; no lane says the theory is closed or that the data favour the framework; failures of the owner's ideas are recorded as failures.
+
+## Addendum (2026-09-30)
+- **The CMB cold mass as compacted dark energy:** CFG253. Continuous transfer can make at most about 3% of the cold mass; an early transfer reduces to CDM with a vacuum origin story. No mechanism results.
+- **An outside contact with dark energy / recombination as a surface (owner-directed):** CFG254, running.
+- **The headline a₀(z) figure:** CFG223. Its frozen caption rule did NOT release "consistent with a constant a₀", because the baryon-calibration bands dominate.
+- **The symmetric break search:** CFG235. INCONCLUSIVE: no trials-corrected break for either theory.

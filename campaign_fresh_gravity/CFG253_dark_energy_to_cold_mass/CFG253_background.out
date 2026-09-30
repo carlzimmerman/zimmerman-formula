@@ -1,0 +1,203 @@
+CFG253 background (MUTATE=0)
+CFG253_FROZEN_CRITERIA.md sha256 = 08cebfaf3c36e5037c0e3095f9ec0a3df7d6a00d24955da4ee4ba1467bdc813b ; matches the recorded hash: True
+kappa = 1/2 FITTED (never derived).  The mass is still required.  Nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+S  sympy: closed forms and identities
+======================================================================================================================
+  [PASS] S1 A1 (Q = xi H rho_DE): rho_DE = Omega_L a^-xi and rho_c a^3 = Omega_c - xi Omega_L (1 - a^(3-xi))/(3-xi) solve the exchange equations
+         measured: residuals 0, 0, 0
+  [PASS] S2 A2 (Q = xi H rho_c): rho_c = Omega_c a^(xi-3), rho_DE = Omega_L + xi Omega_c (a^(xi-3) - 1)/(3 - xi); at early times rho_DE/rho_c -> xi/(3 - xi)
+         measured: residuals 0, 0; limit 1/29
+  [PASS] S3 A3 (Q = xi H_L rho_DE, H_L = sqrt(rho_DE) in H0 units): d(rho_DE^-1/2)/dt = xi/2, so a0(z)/a0(0) = 1/(1 + xi sqrt(Omega_L)(t_z - t0)/2) (CFG131's closed form)
+         measured: residual 0
+  [PASS] S4 G1 identity: d(rho_c a^3)/dln a = (Q/H) a^3, so rho_c a^3 constant on an interval <=> Q = 0 there (a transfer that keeps LCDM's a^-3 history exactly makes nothing)
+         measured: residual 0
+  [PASS] S5 B-pow: with rho_DE continuous (= Omega_L at z_t) and Q = xi H rho_DE (xi < 3) before z_t, the cold density created by z_t is xi Omega_L/(3 - xi) (a_i -> 0)
+         measured: residual (xi = 1/2) 0
+  [PASS] S6 B-step (sharp transfer at z_t with rate K H): created rho_c a^3 = rho_X a_t^3 K/(K - 3), i.e. the instantaneous bound rho_X(before) >= rho_c(z_t) is reached as K -> oo
+         measured: residual 0 (K > 3)
+
+======================================================================================================================
+A  continuous transfer, ongoing to today (today's Omega_c, Omega_L fixed; backward integration to z_BBN)
+======================================================================================================================
+
+Controls
+  [PASS] K1 numerics reproduce the A1 and A2 closed forms to <= 1e-7
+         measured: A1 8.9e-16 / 2.1e-11 ; A2 3.7e-11 / 2.2e-11
+  [PASS] K2 numerics reproduce A3's closed form a0(z)/a0(0) = 1/(1 + xi sqrt(Omega_L)(t_z - t0)/2) at xi = 0.1, z = 2.5 to <= 1e-7
+         measured: rel. diff 2.7e-15
+  [PASS] K3 Q = 0 reproduces LCDM (rho_DE constant, rho_c a^3 constant) to <= 1e-10
+         measured: max rel. diff 5.7e-11
+  [PASS] K4 A3's 1% flat-a0 line reproduces CFG131's |xi| < 0.0275 within 5% (CFG131 anchors rho_c a^3 at z = 999, this lane today)
+         measured: xi(1%) = 0.0274 vs 0.0275 (-0.3%)
+
+Reading A: xi at each G1 target F_made (fraction of today's cold mass created after z_rec = 1090) and the a0 curve it implies
+  form F_made  xi         a0(z)/a0(0) at z = 0.5, 1, 1.4, 2.5, 4.5, 5, 5.5 | maxdev<=5 maxdex  | phi1   phi2.5 phi5   phi1090 | G2a / G2b
+  A1   0.03    0.034418   1.0070  1.0120  1.0152  1.0218  1.0298  1.0313  1.0327 | 0.0313    0.0134  | 0.020  0.016  0.015  0.012  | FAIL(>=1%) / FLAT-LIKE
+       G1 PASS  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9885 wa -0.0101 | H/H_LCDM-1 at z=1: -0.0061, 2.5: -0.0107, 1090: -0.0096 | D_M(1090) +9.21e-03 | f_DE rec 1.65e-09, max[1e3,1e5] 2.18e-09, DE/rad at BBN 4.36e-31
+  A1   0.1     0.11174    1.0229  1.0395  1.0501  1.0725  1.0999  1.1053  1.1102 | 0.1053    0.0435  | 0.066  0.053  0.047  0.039  | FAIL(>=1%) / FLAT-LIKE
+       G1 PASS(0.10 sens.)  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9628 wa -0.0320 | H/H_LCDM-1 at z=1: -0.0202, 2.5: -0.0359, 1090: -0.0325 | D_M(1090) +3.19e-02 | f_DE rec 2.97e-09, max[1e3,1e5] 3.89e-09, DE/rad at BBN 2.03e-30
+  A1   0.5     0.48624    1.1036  1.1835  1.2372  1.3560  1.5135  1.5459  1.5763 | 0.5459    0.1892  | 0.289  0.230  0.206  0.169  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.8379 wa -0.1234 | H/H_LCDM-1 at z=1: -0.0984, 2.5: -0.1890, 1090: -0.1753 | D_M(1090) +2.08e-01 | f_DE rec 5.62e-08, max[1e3,1e5] 7.18e-08, DE/rad at BBN 3.47e-27
+  A1   0.9     0.77477    1.1701  1.3080  1.4037  1.6247  1.9356  2.0019  2.0650 | 1.0019    0.3014  | 0.461  0.366  0.328  0.270  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.7418 wa -0.1677 | H/H_LCDM-1 at z=1: -0.1729, 2.5: -0.3648, 1090: -0.3486 | D_M(1090) +5.90e-01 | f_DE rec 6.77e-07, max[1e3,1e5] 8.61e-07, DE/rad at BBN 1.08e-24
+  A1   1.000   0.83684    1.1849  1.3365  1.4424  1.6891  2.0407  2.1164  2.1885 | 1.1164    0.3256  | 0.498  0.395  0.354  0.291  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.7211 wa -0.1727 | H/H_LCDM-1 at z=1: -0.1911, 2.5: -0.4146, 1090: -0.3997 | D_M(1090) +7.99e-01 | f_DE rec 1.23e-06, max[1e3,1e5] 1.57e-06, DE/rad at BBN 3.70e-24
+  A2   0.03    0.0043545  1.0007  1.0020  1.0036  1.0116  1.0451  1.0583  1.0736 | 0.0583    0.0246  | 0.003  0.009  0.027  0.670  | FAIL(>=1%) / FLAT-LIKE
+       G1 PASS  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9994 wa +0.0039 | H/H_LCDM-1 at z=1: -0.0006, 2.5: -0.0016, 1090: -0.0092 | D_M(1090) +2.83e-03 | f_DE rec 9.19e-04, max[1e3,1e5] 9.38e-04, DE/rad at BBN 9.03e-09
+  A2   0.1     0.015063   1.0023  1.0067  1.0123  1.0393  1.1466  1.1868  1.2326 | 0.1868    0.0744  | 0.012  0.029  0.081  0.728  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 PASS(0.10 sens.)  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9981 wa +0.0131 | H/H_LCDM-1 at z=1: -0.0020, 2.5: -0.0056, 1090: -0.0310 | D_M(1090) +9.82e-03 | f_DE rec 3.09e-03, max[1e3,1e5] 3.16e-03, DE/rad at BBN 2.53e-08
+  A2   0.5     0.099094   1.0147  1.0419  1.0744  1.2195  1.6863  1.8376  2.0004 | 0.8376    0.2643  | 0.070  0.150  0.288  0.794  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9872 wa +0.0739 | H/H_LCDM-1 at z=1: -0.0129, 2.5: -0.0356, 1090: -0.1687 | D_M(1090) +6.59e-02 | f_DE rec 1.58e-02, max[1e3,1e5] 1.63e-02, DE/rad at BBN 3.23e-08
+  A2   0.9     0.32918    1.0455  1.1207  1.2027  1.5185  2.3406  2.5812  2.8326 | 1.5812    0.4118  | 0.196  0.315  0.448  0.778  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9576 wa +0.1658 | H/H_LCDM-1 at z=1: -0.0409, 2.5: -0.1097, 1090: -0.3426 | D_M(1090) +2.21e-01 | f_DE rec 1.82e-02, max[1e3,1e5] 1.96e-02, DE/rad at BBN 1.20e-09
+  A2   0.99    0.65837    1.0827  1.2011  1.3176  1.7133  2.6042  2.8483  3.0987 | 1.8483    0.4546  | 0.314  0.406  0.495  0.704  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9151 wa +0.1911 | H/H_LCDM-1 at z=1: -0.0768, 2.5: -0.1975, 1090: -0.3929 | D_M(1090) +4.15e-01 | f_DE rec 4.88e-03, max[1e3,1e5] 5.45e-03, DE/rad at BBN 3.94e-12
+  A3   0.03    0.051515   1.0077  1.0118  1.0139  1.0168  1.0187  1.0190  1.0192 | 0.0190    0.0082  | 0.020  0.013  0.009  0.002  | FAIL(>=1%) / FLAT-LIKE
+       G1 PASS  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9858 wa -0.0193 | H/H_LCDM-1 at z=1: -0.0068, 2.5: -0.0112, 1090: -0.0096 | D_M(1090) +9.48e-03 | f_DE rec 1.35e-09, max[1e3,1e5] 1.79e-09, DE/rad at BBN 2.29e-31
+  A3   0.1     0.16556    1.0253  1.0393  1.0463  1.0566  1.0637  1.0646  1.0653 | 0.0646    0.0272  | 0.066  0.042  0.030  0.007  | FAIL(>=1%) / FLAT-LIKE
+       G1 PASS(0.10 sens.)  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.9543 wa -0.0604 | H/H_LCDM-1 at z=1: -0.0225, 2.5: -0.0377, 1090: -0.0325 | D_M(1090) +3.28e-02 | f_DE rec 1.56e-09, max[1e3,1e5] 2.06e-09, DE/rad at BBN 2.53e-31
+  A3   0.5     0.67815    1.1139  1.1899  1.2330  1.3051  1.3610  1.3685  1.3748 | 0.3685    0.1363  | 0.298  0.201  0.148  0.035  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.8129 wa -0.1991 | H/H_LCDM-1 at z=1: -0.1093, 2.5: -0.2007, 1090: -0.1753 | D_M(1090) +2.15e-01 | f_DE rec 3.81e-09, max[1e3,1e5] 5.08e-09, DE/rad at BBN 4.48e-31
+  A3   0.9     1.0071     1.1809  1.3213  1.4127  1.5963  1.7785  1.8068  1.8308 | 0.8068    0.2569  | 0.478  0.352  0.280  0.071  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 2.65e-01)  G5 PASS  | w0 -0.7222 wa -0.2102 | H/H_LCDM-1 at z=1: -0.1858, 2.5: -0.3875, 1090: -0.3486 | D_M(1090) +6.15e-01 | f_DE rec 1.26e-08, max[1e3,1e5] 1.72e-08, DE/rad at BBN 9.27e-31
+  A3   1.000   1.0652     1.1937  1.3487  1.4531  1.6750  1.9201  1.9609  1.9962 | 0.9609    0.2925  | 0.513  0.389  0.318  0.085  | FAIL(>=1%) / BETWEEN (NON-DIAGNOSTIC)
+       G1 FAIL  G3 PASS (min rho_c 5.19e-04)  G5 PASS  | w0 -0.7062 wa -0.1995 | H/H_LCDM-1 at z=1: -0.2020, 2.5: -0.4371, 1090: -0.3997 | D_M(1090) +8.35e-01 | f_DE rec 1.95e-08, max[1e3,1e5] 2.67e-08, DE/rad at BBN 1.22e-30
+
+  CFG131's 1%% flat-a0 line in each form (xi and the F_made it allows):
+   A1: xi = 0.01111 -> F_made = 0.00961 (0.96% of today's cold mass made after recombination)
+   A2: xi = 0.00073 -> F_made = 0.00506 (0.51% of today's cold mass made after recombination)
+   A3: xi = 0.02742 -> F_made = 0.01585 (1.59% of today's cold mass made after recombination)
+
+======================================================================================================================
+A-claims
+======================================================================================================================
+  [PASS] H-A1 at the G1 tolerance (F_made = 0.03) every form's transfer leaves a nonzero a0 rise (> 1e-4) at z <= 5
+         measured: A1 maxdev 0.0313; A2 maxdev 0.0583; A3 maxdev 0.0190
+  [PASS] H-A2 at the G1 tolerance (F_made = 0.03) every form is FLAT-LIKE (max |log10 a0 ratio| <= 0.05 dex at z <= 5)
+         measured: A1 0.0134 dex (FLAT-LIKE); A2 0.0246 dex (FLAT-LIKE); A3 0.0082 dex (FLAT-LIKE)
+  [PASS] H-A3 at the G1 tolerance every form FAILS CFG131's 1% line (the transfer is visible in a0 at the 1% level before it is visible in G1 at 3%)
+         measured: A1 0.0313; A2 0.0583; A3 0.0190
+
+======================================================================================================================
+E*  'making the cold mass from dark energy turns a0 into roughly the rival a0 ~ H(z)'
+======================================================================================================================
+  G1-passing rows that make >= half the cold mass: 0
+  rows with phi >= 0.8 at z = 2.5 and 5: none
+  maximal making, A1 (F_made 1.0000, xi 0.8368): phi(1) 0.498, phi(2.5) 0.395, phi(5) 0.354, phi(10) 0.332, phi(100) 0.304, phi(1090) 0.291; a0(2.5)/a0(0) = 1.689 vs rival E(2.5) = 3.769; a0(5)/a0(0) = 2.116 vs E(5) = 8.297
+  maximal making, A2 (F_made 0.9900, xi 0.6584): phi(1) 0.314, phi(2.5) 0.406, phi(5) 0.495, phi(10) 0.567, phi(100) 0.675, phi(1090) 0.704; a0(2.5)/a0(0) = 1.713 vs rival E(2.5) = 3.769; a0(5)/a0(0) = 2.848 vs E(5) = 8.297
+  maximal making, A3 (F_made 1.0000, xi 1.0652): phi(1) 0.513, phi(2.5) 0.389, phi(5) 0.318, phi(10) 0.257, phi(100) 0.134, phi(1090) 0.085; a0(2.5)/a0(0) = 1.675 vs rival E(2.5) = 3.769; a0(5)/a0(0) = 1.961 vs E(5) = 8.297
+  E* label: PARTIAL-SHAPE
+
+======================================================================================================================
+B  early transfer, completed before recombination (after z_t rho_DE = rho_L0, a0 flat at z < z_t)
+======================================================================================================================
+  horizon entry of k = 0.2/Mpc (radiation era, computed): z = 9.33e+04
+
+B-inst (all of today's cold mass created at z_t; the minimum pre-transfer vacuum rho_DE = Omega_L + Omega_c (1+z_t)^3):
+  z_t       rhoDE/rho_c0 f_EDE(z_t) DE/rad     DE/baryon  remnant     ln(1/rem)   G5-EDE    DE/rad@BBN G5-BBN    
+  1100      1.000e+00   6.383e-01  2.645e+00  5.300e+00  1.937e-09   20.06       FAIL(0.64) 1.14e-22   PASS      
+  3423      1.000e+00   4.229e-01  8.505e-01  5.300e+00  6.439e-11   23.47       FAIL(0.42) 3.42e-21   PASS      
+  1e+04     1.000e+00   2.163e-01  2.912e-01  5.300e+00  2.584e-12   26.68       FAIL(0.22) 8.52e-20   PASS      
+  7e+04     1.000e+00   3.964e-02  4.160e-02  5.300e+00  7.536e-15   32.52       PASS(0.04) 2.92e-17   PASS      
+  1e+05     1.000e+00   2.815e-02  2.912e-02  5.300e+00  2.585e-15   33.59       PASS(0.028) 8.52e-17   PASS      
+  1e+06     1.000e+00   2.902e-03  2.912e-03  5.300e+00  2.585e-18   40.50       PASS(7.3e-17) 8.52e-14   PASS      
+  1e+08     1.000e+00   2.912e-05  2.912e-05  5.300e+00  2.585e-24   54.31       PASS(7.3e-17) 8.52e-08   PASS      
+  4.3e+08   1.000e+00   6.772e-06  6.772e-06  5.300e+00  3.251e-26   58.69       PASS(7.3e-17) 2.20e-31   PASS      
+  1e+09     1.000e+00   2.912e-06  2.912e-06  5.300e+00  2.585e-27   61.22       PASS(7.3e-17) 2.20e-31   PASS      
+  1e+10     1.000e+00   2.912e-07  2.912e-07  5.300e+00  2.585e-30   68.13       PASS(7.3e-17) 2.20e-31   PASS      
+  (f_EDE(z_t) = rho_DE/(rho_DE + rho_b + rho_r) just before the transfer, no cold matter yet; 'remnant' = rho_L0/rho_DE(z_t), the fraction of the
+   pre-transfer vacuum a single-vacuum reading must leave behind, exactly; ln(1/rem) = the integrated decay rate int Gamma dt it must hit)
+
+  B-step (Gamma = 2000 H_LCDM(z_t)) z_t = 1.1e+03: rho_X(before)/[Omega_c (1+z_t)^3] = 0.99850 (sympy, constant K = Gamma/H: 1 - 3/K = 0.99850)
+  B-step (Gamma = 2000 H_LCDM(z_t)) z_t = 1e+05: rho_X(before)/[Omega_c (1+z_t)^3] = 0.99850 (sympy, constant K = Gamma/H: 1 - 3/K = 0.99850)
+  B-step (Gamma = 2000 H_LCDM(z_t)) z_t = 1e+08: rho_X(before)/[Omega_c (1+z_t)^3] = 0.99850 (sympy, constant K = Gamma/H: 1 - 3/K = 0.99850)
+  [PASS] K5 a sharp numerical transfer reproduces the instantaneous bound rho_DE(before) = rho_c(z_t) within 2%
+         measured: max |ratio - 1| = 0.0015
+
+B-exp (an extra vacuum rho_X, w = -1, decaying at constant Gamma = H_LCDM(z_G); the remnant Omega_L is a SEPARATE constant):
+  (fDE max over z >= 50; 'made>rec' of order 1e-11 or below is solver noise, i.e. zero; 'made<z_k' = fraction of today's cold mass made after z_k = 9.33e+04,
+   the horizon entry of k = 0.2/Mpc: those Planck-scale modes entered with less or no cold matter; the mode-level CMB effect is NOT computed)
+  z_G      rho_X,i/Om_L rho_X,i/rc(zG) fDE max    at z       made>rec    made<z_k    z_50%      z_99%      G1        G5       
+  1.1e+03  1.813e+08    0.351        2.676e-01  718        9.376e-01   1.000e+00   505        221        FAIL      FAIL(0.22)
+  3.42e+03 4.628e+09    0.298        1.881e-01  1.97e+03   1.560e-01   1.000e+00   1.58e+03   738        FAIL      FAIL(0.19)
+  1e+04    1.067e+11    0.276        1.064e-01  5.38e+03   1.036e-10   1.000e+00   4.7e+03    2.33e+03   PASS      FAIL(0.11)
+  7e+04    3.543e+13    0.267        2.207e-02  3.52e+04   -4.821e-12  9.894e-01   3.34e+04   1.77e+04   PASS      PASS(0.022)
+  1e+05    1.032e+14    0.267        1.582e-02  5.04e+04   -1.067e-12  9.491e-01   4.78e+04   2.54e+04   PASS      PASS(0.016)
+  1e+06    1.029e+17    0.266        1.666e-03  5.05e+05   -8.216e-15  -8.216e-15  4.79e+05   2.57e+05   PASS      PASS(1.7e-09)
+  1e+08    1.029e+23    0.266        1.677e-05  5.03e+07   -2.731e-14  -2.731e-14  4.79e+07   2.57e+07   PASS      PASS(1.7e-09)
+  [PASS] H-B1 B: a vacuum amount exists that makes today's Omega_c from the vacuum for every tested epoch (the energy is available if the vacuum was that large)
+         measured: B-exp shooting converged for all z_G
+
+B-pow (a single vacuum, Q = xi H rho_DE before z_t, off after; rho_DE continuous = Omega_L at z_t):
+  z_t = 1.1e+03: created rho_c(z_t)/needed = 3.87e-10 (xi 0.5), 9.68e-10 (xi 1.0), 3.87e-09 (xi 2.0), 5.62e-08 (xi 2.9)
+  z_t = 1e+05: created rho_c(z_t)/needed = 5.17e-16 (xi 0.5), 1.29e-15 (xi 1.0), 5.17e-15 (xi 2.0), 7.50e-14 (xi 2.9)
+  z_t = 1e+08: created rho_c(z_t)/needed = 5.17e-25 (xi 0.5), 1.29e-24 (xi 1.0), 5.17e-24 (xi 2.0), 7.50e-23 (xi 2.9)
+  [PASS] K6 B-pow numerics reproduce created rho_c(z_t) = xi Omega_L/(3 - xi) (xi = 1, z_t = 1e5)
+         measured: 3.425000e-01 vs 3.425000e-01
+  [PASS] H-B2 B-pow cannot make the mass: created/needed < 1e-6 for every tested (z_t, xi < 3)
+         measured: max 5.62e-08
+
+B, a0(z): after z_t rho_DE = Omega_L exactly, so a0(z)/a0(0) = 1 for all z < z_t (G2a PASS, G2b FLAT-LIKE) -- the framework's own constant rho_L,
+  i.e. a PASS-AS-RESTATEMENT.  Before z_t, a0 ~ sqrt(rho_DE) would be sqrt(1/remnant) larger (2.27e+04 at z_t = 1100, 6.22e+11 at 1e8); no galaxies exist then,
+  and the record's cosmology notes that a0 enters no linear coefficient (CFG4_cosmology.out header, XR26 part 1): not scored.
+
+======================================================================================================================
+C  clusters: a transfer localised in bound systems
+======================================================================================================================
+  vacuum energy inside R500 / mean density inside R500 = Omega_L/500 = 1.370e-03; cold fraction needed (6.8x baryons) = 0.872
+  -> converting ALL the vacuum energy in the volume gives 1.57e-03 of the cold mass: 636x short
+  an inflow at c through the R500 sphere (R = 1.0 Mpc, over 5 Gyr) must carry a fraction eps = 0.138 of the vacuum energy flux rho_L c
+  an inflow at c through the R500 sphere (R = 1.0 Mpc, over 10 Gyr) must carry a fraction eps = 0.069 of the vacuum energy flux rho_L c
+  an inflow at c through the R500 sphere (R = 1.4 Mpc, over 5 Gyr) must carry a fraction eps = 0.194 of the vacuum energy flux rho_L c
+  an inflow at c through the R500 sphere (R = 1.4 Mpc, over 10 Gyr) must carry a fraction eps = 0.097 of the vacuum energy flux rho_L c
+  compare CFG176: a w = -1 vacuum carries NO flux (eps = 0 exactly); a NEC-respecting non-Lambda medium carries at most 0.078 of the cosmic
+  column (0.090 NEC-only, CFG195), a cosmic-mean, perfect-fluid, integrated number, not a per-cluster convergent inflow.
+  CFG131 D1: for a Lorentz-invariant vacuum, d_mu rho_L = Q u_mu, so rho_L is uniform on the cold fluid's slices and Q cannot be localised;
+  CFG131 A5: in a stationary halo the energy equation forces Q = 0.
+  [PASS] H-C1 the vacuum energy inside R500 is < 1% of the cluster's cold mass (a local, non-flowing conversion cannot supply it)
+         measured: 1.57e-03
+
+======================================================================================================================
+VERDICTS (per the frozen gates; never pooled)
+======================================================================================================================
+  (A)
+     G1        PASS only for F_made <= 0.03: the transfer makes <= 3% of the cold mass; the other >= 97% must pre-exist at recombination (so (A) is not the cold mass); making >= half FAILS G1
+     G2        at the G1 tolerance: A1 FAIL(>=1%) / FLAT-LIKE (max 0.0134 dex at z <= 5); A2 FAIL(>=1%) / FLAT-LIKE (max 0.0246 dex at z <= 5); A3 FAIL(>=1%) / FLAT-LIKE (max 0.0082 dex at z <= 5)
+     G3        PASS for Q >= 0 while rho_c >= 0 (vacuum stress w = -1 saturates the NEC); separate conservation (CFG195 P1) broken by construction; no committed action (CFG131 D2: Q != 0 breaks the HT shift symmetry)
+     G4        +1 (xi) per form; Omega_c not replaced
+     G5        PASS at the G1 tolerance (EDE and BBN negligible)
+     Estar     PARTIAL-SHAPE
+  (B)
+     G1        PASS-AS-RESTATEMENT for z_t high enough that <= 3% is made after z_rec (B-inst by construction); the amount = the pre-transfer vacuum, one-for-one with Omega_c
+     G2        PASS-AS-RESTATEMENT: a0 exactly flat at z < z_t (the framework's constant rho_L)
+     G3        PASS (Q >= 0, rho >= 0); no action
+     G4        +1 (z_t or Gamma) plus either a separate remnant vacuum constant (B-exp) or a tuned endpoint (single vacuum: remnant 1e-9 at z_t = 1100 to 1e-24 at 1e8)
+     G5        FAIL (EDE) for z_t <~ 1e4-3e4; PASS above (conditional on the UNVERIFIED bounds); BBN never binding for B-inst
+     coldness  PASS BY ASSUMPTION (Q^mu || u_c, Q independent of rho_c -> c_s^2 = 0 allowed, CFG131 D1); not derived
+     overall   REDUCES-TO CDM with a vacuum origin story: NON-DIAGNOSTIC in linear cosmology (GDM) when z_t >~ 1e5; testable only where it fails (low z_t)
+  (C)
+     overall   FAIL under the premise (Lorentz-invariant w = -1 vacuum): Q cannot be localised (CFG131 D1), is zero in a stationary halo (A5), and the vacuum in the volume is ~636x short; a flowing non-Lambda medium REDUCES-TO door 11 (CFG176/CFG195). Under (B) the cluster cold mass is the cosmic cold fluid that fell in, as in CDM.
+
+======================================================================================================================
+Hand predictions (frozen section 5), scored as reported checks
+======================================================================================================================
+  [PASS] P1 A1 at F_made 0.03: xi ~ 0.035, a0(5)/a0(0) ~ 1.03
+         measured: xi 0.0344, a0(5) 1.0313
+  [PASS] P2 A2 at F_made 0.03: xi ~ 0.0042, a0(5)/a0(0) in 1.05-1.06
+         measured: xi 0.00435, a0(5) 1.0583
+  [PASS] P3 A1 makes all the cold mass at xi ~ 0.84 with phi(5) in 0.35-0.40
+         measured: xi 0.8368, phi(5) 0.354
+  [PASS] P4 B-inst f_EDE ~ 0.64 / 0.42 / 0.03 / 3e-5 at z_t = 1100 / 3423 / 1e5 / 1e8; remnant ~ 2e-9 (1100), 3e-24 (1e8)
+         measured: 0.638 / 0.423 / 0.028 / 2.9e-05; 1.9e-09, 2.6e-24
+  [PASS] P5 B-pow with xi < 3 cannot make the mass
+         measured: max created/needed 5.62e-08
+  [PASS] P6 E* = PARTIAL-SHAPE (only outside G1); every (A) row at the G1 tolerance FLAT-LIKE
+         measured: E* PARTIAL-SHAPE; G2b at tolerance ['FLAT-LIKE', 'FLAT-LIKE', 'FLAT-LIKE']
+  [PASS] P7 (B) passes G1 and G5 (as restatement) for z_t >~ 3e4 (B-exp: smallest passing z_G in the grid)
+         measured: smallest passing z_G = 7e+04
+  [PASS] P8 (C) vacuum inside R500 ~ 1e-3 of the cold mass
+         measured: 1.57e-03
+
+SUMMARY (MUTATE=0): 26/26 checks pass; load-bearing failures = 0

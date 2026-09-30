@@ -1,0 +1,131 @@
+CFG253 background (MUTATE=1)
+CFG253_FROZEN_CRITERIA.md sha256 = 08cebfaf3c36e5037c0e3095f9ec0a3df7d6a00d24955da4ee4ba1467bdc813b ; matches the recorded hash: True
+kappa = 1/2 FITTED (never derived).  The mass is still required.  Nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+S  sympy: closed forms and identities
+======================================================================================================================
+  [PASS] S1 A1 (Q = xi H rho_DE): rho_DE = Omega_L a^-xi and rho_c a^3 = Omega_c - xi Omega_L (1 - a^(3-xi))/(3-xi) solve the exchange equations
+         measured: residuals 0, 0, 0
+  [PASS] S2 A2 (Q = xi H rho_c): rho_c = Omega_c a^(xi-3), rho_DE = Omega_L + xi Omega_c (a^(xi-3) - 1)/(3 - xi); at early times rho_DE/rho_c -> xi/(3 - xi)
+         measured: residuals 0, 0; limit 1/29
+  [PASS] S3 A3 (Q = xi H_L rho_DE, H_L = sqrt(rho_DE) in H0 units): d(rho_DE^-1/2)/dt = xi/2, so a0(z)/a0(0) = 1/(1 + xi sqrt(Omega_L)(t_z - t0)/2) (CFG131's closed form)
+         measured: residual 0
+  [PASS] S4 G1 identity: d(rho_c a^3)/dln a = (Q/H) a^3, so rho_c a^3 constant on an interval <=> Q = 0 there (a transfer that keeps LCDM's a^-3 history exactly makes nothing)
+         measured: residual 0
+  [PASS] S5 B-pow: with rho_DE continuous (= Omega_L at z_t) and Q = xi H rho_DE (xi < 3) before z_t, the cold density created by z_t is xi Omega_L/(3 - xi) (a_i -> 0)
+         measured: residual (xi = 1/2) 0
+  [PASS] S6 B-step (sharp transfer at z_t with rate K H): created rho_c a^3 = rho_X a_t^3 K/(K - 3), i.e. the instantaneous bound rho_X(before) >= rho_c(z_t) is reached as K -> oo
+         measured: residual 0 (K > 3)
+
+======================================================================================================================
+A  continuous transfer, ongoing to today (today's Omega_c, Omega_L fixed; backward integration to z_BBN)
+======================================================================================================================
+
+Controls
+  [PASS] K3 Q = 0 reproduces LCDM (rho_DE constant, rho_c a^3 constant) to <= 1e-10
+         measured: max rel. diff 5.7e-11
+
+Reading A: xi at each G1 target F_made (fraction of today's cold mass created after z_rec = 1090) and the a0 curve it implies
+  form F_made  xi         a0(z)/a0(0) at z = 0.5, 1, 1.4, 2.5, 4.5, 5, 5.5 | maxdev<=5 maxdex  | phi1   phi2.5 phi5   phi1090 | G2a / G2b
+  A1   0.03    no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A1   0.1     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A1   0.5     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A1   0.9     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A1   all     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A2   0.03    no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A2   0.1     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A2   0.5     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A2   0.9     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A2   0.99    no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A3   0.03    no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A3   0.1     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A3   0.5     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A3   0.9     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+  A3   all     no xi reaches this F_made (Q = 0 in MUTATE=1, or beyond the form)
+
+  CFG131's 1%% flat-a0 line in each form (xi and the F_made it allows):
+
+======================================================================================================================
+A-claims
+======================================================================================================================
+  [FAIL] H-A1 at the G1 tolerance (F_made = 0.03) every form's transfer leaves a nonzero a0 rise (> 1e-4) at z <= 5
+         measured: MUTATED (Q = 0): no xi reaches F_made = 0.03
+
+======================================================================================================================
+E*  'making the cold mass from dark energy turns a0 into roughly the rival a0 ~ H(z)'
+======================================================================================================================
+
+======================================================================================================================
+B  early transfer, completed before recombination (after z_t rho_DE = rho_L0, a0 flat at z < z_t)
+======================================================================================================================
+  horizon entry of k = 0.2/Mpc (radiation era, computed): z = 9.33e+04
+
+B-inst (all of today's cold mass created at z_t; the minimum pre-transfer vacuum rho_DE = Omega_L + Omega_c (1+z_t)^3):
+  z_t       rhoDE/rho_c0 f_EDE(z_t) DE/rad     DE/baryon  remnant     ln(1/rem)   G5-EDE    DE/rad@BBN G5-BBN    
+  1100      1.000e+00   6.383e-01  2.645e+00  5.300e+00  1.937e-09   20.06       FAIL(0.64) 1.14e-22   PASS      
+  3423      1.000e+00   4.229e-01  8.505e-01  5.300e+00  6.439e-11   23.47       FAIL(0.42) 3.42e-21   PASS      
+  1e+04     1.000e+00   2.163e-01  2.912e-01  5.300e+00  2.584e-12   26.68       FAIL(0.22) 8.52e-20   PASS      
+  7e+04     1.000e+00   3.964e-02  4.160e-02  5.300e+00  7.536e-15   32.52       PASS(0.04) 2.92e-17   PASS      
+  1e+05     1.000e+00   2.815e-02  2.912e-02  5.300e+00  2.585e-15   33.59       PASS(0.028) 8.52e-17   PASS      
+  1e+06     1.000e+00   2.902e-03  2.912e-03  5.300e+00  2.585e-18   40.50       PASS(7.3e-17) 8.52e-14   PASS      
+  1e+08     1.000e+00   2.912e-05  2.912e-05  5.300e+00  2.585e-24   54.31       PASS(7.3e-17) 8.52e-08   PASS      
+  4.3e+08   1.000e+00   6.772e-06  6.772e-06  5.300e+00  3.251e-26   58.69       PASS(7.3e-17) 2.20e-31   PASS      
+  1e+09     1.000e+00   2.912e-06  2.912e-06  5.300e+00  2.585e-27   61.22       PASS(7.3e-17) 2.20e-31   PASS      
+  1e+10     1.000e+00   2.912e-07  2.912e-07  5.300e+00  2.585e-30   68.13       PASS(7.3e-17) 2.20e-31   PASS      
+  (f_EDE(z_t) = rho_DE/(rho_DE + rho_b + rho_r) just before the transfer, no cold matter yet; 'remnant' = rho_L0/rho_DE(z_t), the fraction of the
+   pre-transfer vacuum a single-vacuum reading must leave behind, exactly; ln(1/rem) = the integrated decay rate int Gamma dt it must hit)
+
+
+B-exp (an extra vacuum rho_X, w = -1, decaying at constant Gamma = H_LCDM(z_G); the remnant Omega_L is a SEPARATE constant):
+  (fDE max over z >= 50; 'made>rec' of order 1e-11 or below is solver noise, i.e. zero; 'made<z_k' = fraction of today's cold mass made after z_k = 9.33e+04,
+   the horizon entry of k = 0.2/Mpc: those Planck-scale modes entered with less or no cold matter; the mode-level CMB effect is NOT computed)
+  z_G      rho_X,i/Om_L rho_X,i/rc(zG) fDE max    at z       made>rec    made<z_k    z_50%      z_99%      G1        G5       
+  1.1e+03  no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  3.42e+03 no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  1e+04    no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  7e+04    no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  1e+05    no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  1e+06    no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  1e+08    no vacuum amount makes Omega_c (Q = 0 in MUTATE=1)
+  [FAIL] H-B1 B: a vacuum amount exists that makes today's Omega_c from the vacuum for every tested epoch (the energy is available if the vacuum was that large)
+         measured: no vacuum amount makes Omega_c (Q = 0)
+
+B-pow (a single vacuum, Q = xi H rho_DE before z_t, off after; rho_DE continuous = Omega_L at z_t):
+  z_t = 1.1e+03: created rho_c(z_t)/needed = 3.87e-10 (xi 0.5), 9.68e-10 (xi 1.0), 3.87e-09 (xi 2.0), 5.62e-08 (xi 2.9)
+  z_t = 1e+05: created rho_c(z_t)/needed = 5.17e-16 (xi 0.5), 1.29e-15 (xi 1.0), 5.17e-15 (xi 2.0), 7.50e-14 (xi 2.9)
+  z_t = 1e+08: created rho_c(z_t)/needed = 5.17e-25 (xi 0.5), 1.29e-24 (xi 1.0), 5.17e-24 (xi 2.0), 7.50e-23 (xi 2.9)
+
+B, a0(z): after z_t rho_DE = Omega_L exactly, so a0(z)/a0(0) = 1 for all z < z_t (G2a PASS, G2b FLAT-LIKE) -- the framework's own constant rho_L,
+  i.e. a PASS-AS-RESTATEMENT.  Before z_t, a0 ~ sqrt(rho_DE) would be sqrt(1/remnant) larger (2.27e+04 at z_t = 1100, 6.22e+11 at 1e8); no galaxies exist then,
+  and the record's cosmology notes that a0 enters no linear coefficient (CFG4_cosmology.out header, XR26 part 1): not scored.
+
+======================================================================================================================
+C  clusters: a transfer localised in bound systems
+======================================================================================================================
+  vacuum energy inside R500 / mean density inside R500 = Omega_L/500 = 1.370e-03; cold fraction needed (6.8x baryons) = 0.872
+  -> converting ALL the vacuum energy in the volume gives 1.57e-03 of the cold mass: 636x short
+  an inflow at c through the R500 sphere (R = 1.0 Mpc, over 5 Gyr) must carry a fraction eps = 0.138 of the vacuum energy flux rho_L c
+  an inflow at c through the R500 sphere (R = 1.0 Mpc, over 10 Gyr) must carry a fraction eps = 0.069 of the vacuum energy flux rho_L c
+  an inflow at c through the R500 sphere (R = 1.4 Mpc, over 5 Gyr) must carry a fraction eps = 0.194 of the vacuum energy flux rho_L c
+  an inflow at c through the R500 sphere (R = 1.4 Mpc, over 10 Gyr) must carry a fraction eps = 0.097 of the vacuum energy flux rho_L c
+  compare CFG176: a w = -1 vacuum carries NO flux (eps = 0 exactly); a NEC-respecting non-Lambda medium carries at most 0.078 of the cosmic
+  column (0.090 NEC-only, CFG195), a cosmic-mean, perfect-fluid, integrated number, not a per-cluster convergent inflow.
+  CFG131 D1: for a Lorentz-invariant vacuum, d_mu rho_L = Q u_mu, so rho_L is uniform on the cold fluid's slices and Q cannot be localised;
+  CFG131 A5: in a stationary halo the energy equation forces Q = 0.
+  [PASS] H-C1 the vacuum energy inside R500 is < 1% of the cluster's cold mass (a local, non-flowing conversion cannot supply it)
+         measured: 1.57e-03
+
+======================================================================================================================
+VERDICTS (per the frozen gates; never pooled)
+======================================================================================================================
+
+======================================================================================================================
+Hand predictions (frozen section 5), scored as reported checks
+======================================================================================================================
+  [PASS] M1 MUTATE=1 (Q = 0): rho_DE constant and a0 flat to 1e-10 at nominal xi = 0.1 in every form
+         measured: max |a0 ratio - 1| = 0.0e+00
+
+SUMMARY (MUTATE=1): 9/11 checks pass; load-bearing failures = 2
+   failed: H-A1 (load-bearing)
+   failed: H-B1 (load-bearing)
