@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SHARED_SCALE_CLOSURE",
+  "repository": {
+    "commit": "36b434cb39e79124d62872fa900e959e3e0203ad",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/shared_scale_closure.py",
+    "--output",
+    "sol61_push/runs/shared_scale/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Coupled nonminimal scalar vacuum residual, Einstein-frame local signs, Euclidean regularity, and four-gradient stress/Hessian",
+    "coefficient_domain": "Exact symbolic real algebra and deterministic finite parameter substitutions",
+    "conventions": "SHARED_SCALE_CONTRACT.md and shared_scale_closure.py; metric scalar-tensor formulation, signature (-+++), c=1",
+    "inputs": [
+      "sol61_push/shared_scale_closure.py"
+    ],
+    "bounds": {
+      "constant_scalar_vacuum": true,
+      "positive_parameters": [
+        "xi",
+        "lambda",
+        "A",
+        "v",
+        "gamma"
+      ],
+      "counterfamily_coefficients": [
+        "16pi",
+        "32pi",
+        "64pi"
+      ],
+      "four_free_scalars_local_stress_only": true,
+      "Euclidean_round_four_sphere": true
+    },
+    "non_claims": [
+      "No derived MOND response; a0 is assigned",
+      "Tensor coupling not full measured G with scalar exchange",
+      "No full galaxy/cosmology completion",
+      "Local four-gradient calculation not global de Sitter solution",
+      "No quantum measure supplied",
+      "No general impossibility theorem or 32pi solution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T03:45:00.871397+00:00",
+    "runtime_seconds": 0.434465,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/shared_scale_closure.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/shared_scale_closure.py",
+      "sha256": "7da5faecbe98f408aa2bf4c71ab1f916fee98ed3231c608582f31abe52390eac",
+      "sha256_after": "7da5faecbe98f408aa2bf4c71ab1f916fee98ed3231c608582f31abe52390eac"
+    }
+  ],
+  "output_directory": "sol61_push/runs/shared_scale",
+  "declared_results": [
+    "sol61_push/runs/shared_scale/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/shared_scale/stdout.txt",
+      "sha256": "0f38635d818ffe7c647900fc80e3938871b80fdc4de6f1473accba9405b77275",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/shared_scale/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/shared_scale/results.json",
+      "sha256": "d0cfe2c83ef3f8fa729fd57a72cefced69e280a6703ac785499d51af9c71144c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

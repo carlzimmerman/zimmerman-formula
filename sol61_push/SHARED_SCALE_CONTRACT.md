@@ -1,0 +1,15 @@
+# Shared dynamical scale: coefficient closure test
+
+Base: 8c3efb5510. Continuing the user's request to solve the puzzle, with the original target Lambda/a0²=32pi in c=1 units. All writes stay under sol61_push.
+
+First uncertain implication: could promoting the response scale to a dynamical scalar shared with the gravitational coupling remove the remaining vacuum-height freedom? The previous pressure-lock test did not include nonminimal gravitational feedback. Test the full constant-scalar metric/scalar equations, not the scalar minimum at a fixed metric.
+
+Route A: use S=int sqrt(-g)[F(chi)R/2-(grad chi)²/2-U(chi)], F=xi chi²>0, U=chi⁴[lambda+A(chi²/v²-1)²]. The assigned response coupling a0=gamma chi is explicitly an input, not a derived MOND mechanism. Test whether the on-shell equations or local Einstein-frame scalar/tensor signs select lambda/(xi gamma²). A continuum with fixed scalar vacuum and tensor coupling but variable positive Lambda disproves selection by these requirements only. It is not a full galaxy model or a general impossibility theorem.
+
+Route B: test whether Euclidean de Sitter regularity supplies the lost condition on that same family. Evaluate the on-shell four-sphere action and period for the complete constant-scalar solutions. Regularity for all positive lambda leaves the ratio free. Lambda is a coupling; differentiating with respect to it is only a diagnostic for an additional proposed extremization, not a legitimate field equation by default.
+
+Route C: test the apparent factor-four explanation based on four equal scalar-gradient components. Derive the stress tensor by metric variation, including the determinant term. Compare positive internal kinetic metric with Lorentzian internal metric and inspect time-derivative Hessians. This is a local four-free-scalar stress calculation; neither a global de Sitter solution nor higher-derivative condensates are included.
+
+Retain exact coefficients, primary conventions, positivity ranges and scoped failures. No finite pass count can establish the desired coefficient or a completed theory. Existing scale/trace/topology lanes are nearest failures; the new discriminator is the coupled on-shell shared-scalar equation and its stabilized vacuum, rather than a new number census.
+
+Continuation D, after the shared-field test: try actual coupling-ratio selection in the standard one-loop Gross-Neveu-Yukawa model, using Fei et al., PTEP 2016 12C105, Eqs (2.1)-(2.3), N=4N_f. This is an independent flat-space massless model, not the beta functions of the stabilized nonminimal action above. Derive the quartic/Yukawa ratio flow, test infrared attraction in a reparametrized RG time, and distinguish a fixed ratio from a nonzero four-dimensional fixed point. Mapping this ratio to Lambda/a0² requires unproved scale/vacuum dictionaries; no fermion-mass scale is to be silently called a MOND scale. Test whether the simplest mapping predicts 32pi or leaves the gravitational coupling free. Higher-loop, gravitational and threshold corrections are outside this run.

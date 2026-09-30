@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_GNY_RATIO_SELECTION",
+  "repository": {
+    "commit": "c5adc0f82b4edff6c00c619091608ef70f0d77b1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/rg_ratio_selection.py",
+    "--output",
+    "sol61_push/runs/rg_ratio/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "One-loop GNY quartic/Yukawa ratio polynomial, bounds and independent coupling-flow integration",
+    "coefficient_domain": "Exact symbolic real algebra and finite deterministic double precision ODE",
+    "conventions": "Fei et al arxiv1607.05316v3 Eq2.1, N=4Nf, d=4, lambda4 sigma^4/24",
+    "inputs": [
+      "sol61_push/rg_ratio_selection.py"
+    ],
+    "bounds": {
+      "N": [
+        4,
+        8,
+        40,
+        400
+      ],
+      "initial_ratio": [
+        0.5,
+        10.0
+      ],
+      "Y_initial": 0.05,
+      "RG_time": [
+        0,
+        -100000
+      ],
+      "rtol": 2e-11,
+      "atol": 2e-13
+    },
+    "non_claims": [
+      "No MOND derivation",
+      "No gravity beta function",
+      "Independent model not coupled stabilized scalar",
+      "One loop only",
+      "No nonzero four dimensional interacting fixed point",
+      "No 32pi solution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T03:53:03.724620+00:00",
+    "runtime_seconds": 1.137429,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/rg_ratio_selection.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/rg_ratio_selection.py",
+      "sha256": "98c2fa6d488ee3be79c1e4aefc062775784984d98426b6520ff3a425c272a5c3",
+      "sha256_after": "98c2fa6d488ee3be79c1e4aefc062775784984d98426b6520ff3a425c272a5c3"
+    }
+  ],
+  "output_directory": "sol61_push/runs/rg_ratio",
+  "declared_results": [
+    "sol61_push/runs/rg_ratio/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/rg_ratio/stdout.txt",
+      "sha256": "6b3ed2a07a47f4df6401026a9e59d3ec6738fff757f05a5d9100f36bbf855fb5",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/rg_ratio/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/rg_ratio/results.json",
+      "sha256": "88dfc1a1174b5ecbd1b8339787568f26550c31e262e103c8900823432589609a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

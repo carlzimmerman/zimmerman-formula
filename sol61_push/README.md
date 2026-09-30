@@ -14,4 +14,6 @@ The original goal remains OPEN. A new partial result is not a completed theory.
 - [Continued state-selection investigation](SELECTION_RESULTS_2026-09-29.md): a nonlinear stream-energy pump, longitudinal dipole/field modes and the missing conversion into gravitational density. Its [contract](SELECTION_CONTRACT.md) fixes the extensions and non-claims.
 - [Focused overnight coefficient investigation](TONIGHT_32PI_RESULTS.md): a fluctuation-response audit, an exact inverse distribution for P2, and the remaining vacuum normalization freedom. Its [contract](TONIGHT_32PI_CONTRACT.md) retains the original success criterion. 32pi remains open.
 
+- [Shared scale and coupling selection](SHARED_SCALE_RESULTS.md): coupled gravitational feedback, vacuum stabilization, horizon regularity, four-gradient stress, and a tested one-loop ratio-selection mechanism. 47 new checks; the coefficient remains open. Its [contract](SHARED_SCALE_CONTRACT.md) separates the models and their assumptions.
+
 All work in this folder is by this Codex session. Existing research files are read-only inputs. No paper, deposited version, shared ledger, or other session's working changes are edited.
