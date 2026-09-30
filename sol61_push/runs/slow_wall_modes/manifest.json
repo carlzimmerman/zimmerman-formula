@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SLOW_WALL",
+  "repository": {
+    "commit": "6c18c4204a241afc32f0922c6f6f80aa2357377e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/slow_wall_modes.py",
+    "--output",
+    "sol61_push/runs/slow_wall_modes/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local domain-wall mode projection, velocity scaling, leading gradient response and wall-stress obstruction",
+    "coefficient_domain": "Exact complex matrices and real symbolic expressions; double precision bubble quadrature",
+    "conventions": "SLOW_WALL_CONTRACT.md",
+    "inputs": [
+      "sol61_push/slow_wall_modes.py"
+    ],
+    "bounds": {
+      "Clifford_dimension": 8,
+      "bubble_speed": [
+        0.1,
+        0.01
+      ],
+      "q_over_m": [
+        0.01,
+        0.1,
+        1,
+        10
+      ],
+      "absolute_bubble_tolerance": 1e-11,
+      "gradient_order": 2
+    },
+    "non_claims": [
+      "No covariant gravity theory",
+      "No complete nonuniform determinant",
+      "No physical Lambda from wall stress",
+      "No coefficient selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T18:43:31.242050+00:00",
+    "runtime_seconds": 1.304431,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/slow_wall_modes.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/slow_wall_modes.py",
+      "sha256": "118136de27c351a00717ec58d6fcf446d7f3145a6ee2a49c4fe39099946ac995",
+      "sha256_after": "118136de27c351a00717ec58d6fcf446d7f3145a6ee2a49c4fe39099946ac995"
+    }
+  ],
+  "output_directory": "sol61_push/runs/slow_wall_modes",
+  "declared_results": [
+    "sol61_push/runs/slow_wall_modes/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/slow_wall_modes/stdout.txt",
+      "sha256": "881c4c96a86160a35fc17f068f2a75797e2d7838d55f1a729b05fa0725bd44e1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/slow_wall_modes/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/slow_wall_modes/results.json",
+      "sha256": "4129626b910a0743d69ca81893eaece581aa4f917b53dafb79bd1154824dca36",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
