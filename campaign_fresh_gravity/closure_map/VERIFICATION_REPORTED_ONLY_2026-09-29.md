@@ -43,3 +43,7 @@
   - the lanes appended after adoption. Those have their own independent re-derivations: CFG100, CFG104–108 and LEDGER_VERIFICATION Part 7.
 
 A re-run checks that the committed scripts reproduce their committed outputs. It does not check the models or their hypotheses. κ = ½ stays fitted. Nothing here says the theory is closed.
+
+
+## Addendum 1: the κ like-for-like note re-run (2026-09-29, evening)
+`real_research/reviews/mi_a0_profile_likelihood_milgrom_footing_2026.py` (commit 97f30b36c) writes to stdout only. Two sessions ran it independently in place: the calculation chat and the orchestrating session. Each time, stdout differs from the committed `.out` by 0 lines (exit 0, 80–86 s), and nothing was written to the repo. The note is now RE-RUN-CLEAN. Its reading is unchanged: Milgrom's cH₀/2π footing fits SPARC as well as the framework does (Δχ² 5.34 vs 7.04 alt), and "beats 1/2π" holds only on the ρ_Λ footing. κ = ½ stays fitted.
