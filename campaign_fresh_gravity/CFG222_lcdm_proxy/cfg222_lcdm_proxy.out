@@ -1,0 +1,82 @@
+CFG222 -- a LambdaCDM effective-a0 PROXY scored on real data with the machinery used for flat and H(z).
+*** LambdaCDM has no a0.  This is an effective-a0 PROXY, not LambdaCDM.  A fair LambdaCDM test uses simulated galaxies. ***
+Frozen criteria: FROZEN_CRITERIA.md here (35e3df460), committed before any proxy number.  kappa = 1/2 FITTED, NOT DERIVED.  Author decompositions, not a direct a0 measurement.
+No sentence says the data favour a framework or LambdaCDM.  Laws: FLAT; H(z); the PRIMARY proxy = Z1's lcdm_native (puzzle_32pi, 1138d817f); sensitivities = the record's own a0(z)-lane
+estimates (M-LCDM-DM14 = '+0.33 dex', D08, MAG) and Z1's M / dlogc variants.  Data: RC100 (committed and corrected tables) and CRISTAL z ~ 5 (CFG213 / CFG220 machinery).
+
+CONTROLS
+  [PASS] C1 law values: Z1's F(2.5) = 2.16 +- 0.02; the a0(z) lane's DM14 / D08 / MAG ratios at z = 1 / 2 / 2.5 / 3.25 to 0.005: Z1 F(2.5) 2.157; max |difference| 0.0005
+  [PASS] C2a RC100: the FLAT and H(z) slopes of delta on z (both tables, four cells) equal CFG216's committed values: max |difference| 0.0e+00
+  [PASS] C2b CRISTAL R_e, fit route, the twelve discs: the FLAT and H(z) medians (four cells) equal CFG213's committed values: max |difference| 0.0e+00
+  [PASS] C2c CRISTAL R_out, both routes, the six: the FLAT and H(z) medians (four cells) equal CFG220's committed values: max |difference| 0.0e+00
+  [PASS] C2d CRISTAL R_e, independent route, the six: this lane's g_bar and D equal CFG213's galaxy_rows(route=True): max relative difference 0.0e+00
+  [PASS] C3 non-vacuous placement: synthetic rows on each law (FLAT, H(z), the proxy, its 7 sensitivities) through V_c, R_e, f_DM, read by the loader and scored by the machinery: |delta| < 1e-9 and >= 90% of the other-law deltas > 1e-3: max |delta| 2.9e-16; other-law sensitivity 93%
+  [PASS] C4 expectation identity: a sample built under truth T (through the observables and the loader) has an observed slope of delta_L equal to the expected slope e(L|T) for all nine (L, T): max |difference| 6.9e-16
+
+MAIN TABLE: ONE row per data set and route; for each law the observed statistic [95% CI], z vs its OWN expectation, z vs the FLAT-true expectation (primary cell: nu_mono, canonical)
+  statistic: RC100 = Theil-Sen slope of delta on z (per unit z); CRISTAL = median delta.  z = (observed - expected)/bootstrap sd; 'window' = the gas-calibration range over which the law is CONSISTENT with 0
+
+  RC100 committed (n = 100)  [gas route: M_bary is the authors' fit, prior-anchored to SED + Tacconi-type gas scalings that grow with z; the window column is CFG217's tilt of the analysis baryon mass between z = 0.6 and 2.5]
+    FLAT        slope -0.029 [-0.072, +0.002]  expected if FLAT true +0.000  z(own) -1.57  z(flat-true) -1.57 (per-resample expectation -1.57);  tilt t* -0.073 dex; slope CI includes 0 for t in [-0.15, +0.00]
+    LCDM-PROXY  slope -0.067 [-0.108, -0.033]  expected if FLAT true -0.035  z(own) -3.55  z(flat-true) -1.70 (per-resample expectation -1.75);  tilt t* -0.177 dex; slope CI includes 0 for t in [-0.25, -0.10]
+    H(z)        slope -0.092 [-0.129, -0.054]  expected if FLAT true -0.060  z(own) -4.80  z(flat-true) -1.68 (per-resample expectation -1.79);  tilt t* -0.251 dex; slope CI includes 0 for t in [-0.35, -0.20]
+
+  RC100 corrected (n = 100)  [gas route: M_bary is the authors' fit, prior-anchored to SED + Tacconi-type gas scalings that grow with z; the window column is CFG217's tilt of the analysis baryon mass between z = 0.6 and 2.5]
+    FLAT        slope -0.030 [-0.074, +0.002]  expected if FLAT true +0.000  z(own) -1.55  z(flat-true) -1.55 (per-resample expectation -1.55);  tilt t* -0.076 dex; slope CI includes 0 for t in [-0.15, +0.00]
+    LCDM-PROXY  slope -0.069 [-0.111, -0.033]  expected if FLAT true -0.035  z(own) -3.53  z(flat-true) -1.74 (per-resample expectation -1.79);  tilt t* -0.179 dex; slope CI includes 0 for t in [-0.25, -0.10]
+    H(z)        slope -0.091 [-0.130, -0.055]  expected if FLAT true -0.059  z(own) -4.70  z(flat-true) -1.67 (per-resample expectation -1.77);  tilt t* -0.250 dex; slope CI includes 0 for t in [-0.35, -0.20]
+
+  CRISTAL R_e, fit route, n = 12  [gas route: M_bary is the authors' fit (a 1-dex Gaussian prior fitted jointly with the halo); no independent gas calibration enters]
+    FLAT        median +0.053 [+0.005, +0.234] DISFAVOURED-over   expected if FLAT true +0.000  z(own) +0.90  z(flat-true) +0.90;  n/a (fit route: no calibration enters)
+    LCDM-PROXY  median -0.110 [-0.148, +0.020] CONSISTENT         expected if FLAT true -0.140  z(own) -2.32  z(flat-true) +0.65;  n/a (fit route: no calibration enters)
+    H(z)        median -0.161 [-0.207, -0.055] DISFAVOURED-under  expected if FLAT true -0.202  z(own) -3.53  z(flat-true) +0.90;  n/a (fit route: no calibration enters)
+
+  CRISTAL R_e, independent route, six class-A  [gas route: SED M* + dust gas (Scoville-type, single-band T_d); the window column is the uniform gas-mass offset tau (dex) that would move the verdict]
+    FLAT        median +0.117 [-0.060, +0.384] CONSISTENT         expected if FLAT true +0.000  z(own) +0.87  z(flat-true) +0.87;  tau* +0.318 dex; CONSISTENT for tau in [-0.30, +0.55]
+    LCDM-PROXY  median -0.085 [-0.253, +0.207] CONSISTENT         expected if FLAT true -0.175  z(own) -0.64  z(flat-true) +0.68;  tau* -0.952 dex; CONSISTENT for tau in [-1.00, +0.35]
+    H(z)        median -0.144 [-0.319, +0.141] CONSISTENT         expected if FLAT true -0.236  z(own) -1.13  z(flat-true) +0.72;  tau* none in [-3, 3]; CONSISTENT for tau in [-1.00, +0.25]
+
+  CRISTAL R_out, fit route, six  [gas route: M_bary is the authors' fit (a 1-dex Gaussian prior fitted jointly with the halo); no independent gas calibration enters]
+    FLAT        median +0.019 [-0.109, +0.172] CONSISTENT         expected if FLAT true +0.000  z(own) +0.32  z(flat-true) +0.32;  n/a (fit route: no calibration enters)
+    LCDM-PROXY  median -0.220 [-0.364, -0.037] DISFAVOURED-under  expected if FLAT true -0.216  z(own) -2.99  z(flat-true) -0.06;  n/a (fit route: no calibration enters)
+    H(z)        median -0.283 [-0.440, -0.109] DISFAVOURED-under  expected if FLAT true -0.284  z(own) -3.79  z(flat-true) +0.01;  n/a (fit route: no calibration enters)
+
+  CRISTAL R_out, independent route, six  [gas route: SED M* + dust gas (Scoville-type, single-band T_d); the window column is the uniform gas-mass offset tau (dex) that would move the verdict]
+    FLAT        median +0.106 [-0.138, +0.343] CONSISTENT         expected if FLAT true +0.000  z(own) +0.74  z(flat-true) +0.74;  tau* +0.327 dex; CONSISTENT for tau in [-1.00, +0.50]
+    LCDM-PROXY  median -0.136 [-0.402, +0.107] CONSISTENT         expected if FLAT true -0.216  z(own) -0.98  z(flat-true) +0.58;  tau* none in [-3, 3]; CONSISTENT for tau in [-1.00, +0.20]
+    H(z)        median -0.203 [-0.477, +0.029] CONSISTENT         expected if FLAT true -0.284  z(own) -1.51  z(flat-true) +0.60;  tau* none in [-3, 3]; CONSISTENT for tau in [-1.00, +0.05]
+
+  Extrapolation flags: DM14 is fitted to z <= 5 (the CRISTAL discs reach z = 5.69: slightly above), Duffy+2008 to z <~ 2 and the Magneticum rise to z <~ 2-3 (both EXTRAPOLATED at CRISTAL's z); the primary proxy's values: F(1.0) = 1.23, F(2.0) = 1.77, F(2.5) = 2.16, F(4.5) = 4.52, F(5.5) = 6.20
+
+TABLE 2: z vs OWN expectation in the other three kernel/footing cells (slope for RC100, median for CRISTAL)
+  row                                          cell                           FLAT   LCDM-PROXY         H(z)
+  RC100 committed (n = 100)                    nu_mono alt                   -1.54        -3.75        -4.86
+  RC100 committed (n = 100)                    P2 canonical                  -1.65        -3.23        -4.43
+  RC100 committed (n = 100)                    P2 alt                        -1.63        -3.44        -4.76
+  RC100 corrected (n = 100)                    nu_mono alt                   -1.51        -3.68        -4.72
+  RC100 corrected (n = 100)                    P2 canonical                  -1.63        -3.14        -4.42
+  RC100 corrected (n = 100)                    P2 alt                        -1.59        -3.33        -4.70
+  CRISTAL R_e, fit route, n = 12               nu_mono alt                   +0.67        -2.78        -4.04
+  CRISTAL R_e, fit route, n = 12               P2 canonical                  +1.21        -1.51        -2.61
+  CRISTAL R_e, fit route, n = 12               P2 alt                        +1.07        -1.92        -3.11
+  CRISTAL R_e, independent route, six class-A  nu_mono alt                   +0.71        -0.85        -1.37
+  CRISTAL R_e, independent route, six class-A  P2 canonical                  +1.15        -0.29        -0.74
+  CRISTAL R_e, independent route, six class-A  P2 alt                        +1.03        -0.48        -0.98
+  CRISTAL R_out, fit route, six                nu_mono alt                   +0.00        -3.31        -4.14
+  CRISTAL R_out, fit route, six                P2 canonical                  +0.87        -2.22        -2.95
+  CRISTAL R_out, fit route, six                P2 alt                        +0.62        -2.52        -3.28
+  CRISTAL R_out, independent route, six        nu_mono alt                   +0.58        -1.21        -1.75
+  CRISTAL R_out, independent route, six        P2 canonical                  +1.03        -0.59        -1.12
+  CRISTAL R_out, independent route, six        P2 alt                        +0.91        -0.82        -1.37
+
+TABLE 3: the proxy sensitivities on the primary cell: z vs OWN expectation (z vs flat-true in brackets)
+  row                                            DM14 (a0(z) lane                D08     MAG (1+z)^0.92        Z1 M = 1e11        Z1 M = 1e13    Z1 dlogc = +0.1    Z1 dlogc = -0.1
+  RC100 committed (n = 100)                      -3.52 ( -1.72)     -4.35 ( -1.72)     -3.90 ( -1.75)     -2.95 ( -1.64)     -4.17 ( -1.74)     -3.46 ( -1.72)     -3.67 ( -1.71)  
+  RC100 corrected (n = 100)                      -3.48 ( -1.74)     -4.28 ( -1.72)     -3.82 ( -1.72)     -2.86 ( -1.61)     -4.12 ( -1.76)     -3.42 ( -1.73)     -3.61 ( -1.70)  
+  CRISTAL R_e, fit route, n = 12                 -2.23 ( +0.64)     -2.69 ( +0.79)     -2.38 ( +0.85)     -1.45 ( +0.56)     -3.17 ( +0.70)     -2.20 ( +0.63)     -2.46 ( +0.66)  
+  CRISTAL R_e, independent route, six class-A    -0.60 ( +0.68)     -0.76 ( +0.70)     -0.58 ( +0.71)     -0.23 ( +0.67)     -1.11 ( +0.68)     -0.59 ( +0.68)     -0.71 ( +0.68)  
+  CRISTAL R_out, fit route, six                  -2.92 ( -0.06)     -3.23 ( -0.01)     -3.00 ( +0.02)     -2.30 ( -0.06)     -3.62 ( -0.06)     -2.90 ( -0.06)     -3.08 ( -0.05)  
+  CRISTAL R_out, independent route, six          -0.93 ( +0.58)     -1.12 ( +0.60)     -0.92 ( +0.63)     -0.51 ( +0.60)     -1.47 ( +0.55)     -0.92 ( +0.58)     -1.05 ( +0.58)  
+
+7/7 controls pass; 68 s
+Reading rule: these are descriptions of where the data sit against each law's expectation given the gas route; LambdaCDM has no a0 and a fair LambdaCDM test uses simulated galaxies; no sentence says the data favour a framework or LambdaCDM.
