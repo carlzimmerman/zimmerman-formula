@@ -1,0 +1,205 @@
+CFG250 slope theory -- the mass-free a0 estimator from the local log-slope of V_c^2, its point-mass bias for an exponential
+disc (+ a gas disc), and how a pressure-support correction shifts the slope.  PHASE 1, THEORY ONLY.
+
+No measured KURVS velocity or dispersion is read.  The 'typical KURVS-like disc' uses only catalogue columns
+(kurvs2023_integrated.csv: z_halpha, logMstar, reff_kpc) and the f_DM table's kurvs_id column (which ten discs).
+
+T1  sympy: Phi(y) = y nu(y); s = d ln V_c^2 / d ln R = 1 - 2 dlnPhi/dlny for a point mass; P2 closed forms; nu_mono numerically;
+    the inversion y(s); the sensitivity d ln a0 / ds; the kernel dependence of a0 at fixed (s, g_obs).
+T2  flat a0 vs the rival a0 x E(z): E(1.5) exactly; the slope gap between the two laws at fixed g_obs.
+T3  the point-mass bias: the full thin-disc (stars R_d + gas at a declared scale) slope vs the point-mass formula at the same g_obs,
+    at R = 2, 3, 4, 6 R_d, for flat and rival, P2 and nu_mono; gas and mass brackets.  The generalisation that removes it: at a
+    radius where the baryon SHAPE has Newtonian log-slope s_N, s = 1 + D(y)(s_N - 1) with D = dlnPhi/dlny, so
+    D = (1 - s)/(1 - s_N) (s_N = -1 is the point mass): still free of the mass normalisation, but it needs the baryon shape.
+T4  the pressure correction V_c^2 = V^2 + k sigma^2 R/R_d (k = 2 primary; k = 1; Kretschmer+2021 alpha(x); none): the slope shift
+    s_a - s_c = (dP/V_a^2)(s_dP - s_c), the pressure fraction, and the resulting shift of the point-mass a0.
+T5  what slope accuracy the test needs; the MUTATE analogue (V x R^0.1).
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour any law.
+
+==============================================================================================================
+T1  the point-mass slope law s(y) and its inversion
+==============================================================================================================
+  P2: Phi(y) = y nu(y) = sqrt(y**2 + y);  s(y) = 1 - 2 dlnPhi/dlny = -y/(y + 1)
+  inversion: y(s) = -s/(s + 1)   (domain -1 < s < 0)
+  dlnPhi/dlny at y(s) = 1/2 - s/2;  a0 = g_obs / Phi(y(s))  =>  d ln a0 / ds |_g = (s - 1)/(2*s*(s + 1))
+  limits: deep MOND y -> 0: s -> 0;  Newton y -> oo: s -> -1
+  [PASS] T1a P2 closed form: s(y) = -y/(1+y) and y(s) = -s/(1+s)
+         measured: s = -y/(y + 1); y = -s/(s + 1)
+  [PASS] T1b P2 limits: s -> 0 (deep MOND) and s -> -1 (Newton)
+         measured: 0, -1
+  [PASS] T1c nu_mono: Phi(y) monotone and s(y) strictly decreasing on 1e-9 < y < 1e8 (so y(s) is single-valued)
+         measured: Phi monotone True; s decreasing True (the table clamps above 1e8.9)
+
+  s(y) for the two kernels (point mass):
+     y      s_P2     s_mono   | at fixed s: y_P2   y_mono   log10(a0_mono/a0_P2) at the same g_obs
+    0.01  -0.0099  -0.0492   |   0.0100   0.0004   +0.700
+    0.03  -0.0291  -0.0841   |   0.0300   0.0035   +0.463
+    0.10  -0.0909  -0.1498   |   0.1000   0.0352   +0.207
+    0.30  -0.2308  -0.2490   |   0.3000   0.2536   -0.011
+    1.00  -0.5000  -0.4180   |   1.0000   1.5786   -0.193
+    3.00  -0.7500  -0.6530   |   3.0000   4.4453   -0.168
+   10.00  -0.9091  -0.8779   |  10.0000  13.8069   -0.140
+  reading: nu_mono approaches deep MOND as s ~ -sqrt(y)/2 (sub-leading g_bar/2 term), P2 as s ~ -y; at fixed (s, g_obs) the two
+  kernels infer a0 differing by the last column, so the estimator is kernel-conditional (P2 primary, nu_mono reported).
+
+==============================================================================================================
+T2  the two laws: flat a0 vs a0 x E(z)
+==============================================================================================================
+  E(z) = sqrt(0.315 (1+z)^3 + 0.685):  E(1.5) = 2.36788  (log10 0.3744);  the ten discs' median z = 1.529: E = 2.4042 (log10 0.3810); range over the ten 2.166-2.511
+  (the task text's 'E(1.5) ~ 2.2' is approximate; the exact value for Om = 0.315 is 2.3679)
+  [PASS] T2a E(1.5) = sqrt(0.315 x 2.5^3 + 0.685) exactly
+         measured: 2.367884
+
+  the point-mass slope gap between the laws at fixed g_obs (P2, canonical a0 = 9.36e-11):
+   g_obs/a0   s_flat    s_rival(z_med)   gap
+     0.30   -0.077    -0.015          +0.062
+     0.50   -0.172    -0.040          +0.132
+     1.00   -0.382    -0.131          +0.251
+     2.00   -0.610    -0.320          +0.290
+     4.00   -0.779    -0.553          +0.226
+
+==============================================================================================================
+T3  point-mass bias for an exponential disc (+ gas disc): full-disc slope vs the point-mass formula at the same g_obs
+==============================================================================================================
+  typical KURVS-like disc (catalogue medians of the ten f_DM discs): log M* = 10.14, R_d = R_eff/1.68 = 2.29 kpc, z = 1.529
+  law: g_obs = nu(g_N/a) g_N in the disc plane (algebraic form), a = a0 (flat) or a0 E(z) (rival); thin exponential discs;
+  gas = mu M* in an exponential disc of scale R_gas (declared 2 R_d primary, as CFG140). s_disc = dlnV_c^2/dlnR numerically;
+  a0_PM = g_obs / Phi(y(s)) is what the point-mass estimator returns; bias = log10(a0_hat / a_true).
+
+  (a) the Newtonian log-slope s_N = dlnV_N^2/dlnR of the baryon shape (point mass: -1), independent of M and of the law:
+     mu   R_gas/R_d |  R/R_d = 2       3       4       6
+    0.25   2.0      |  +0.151  -0.360  -0.715  -1.051
+    0.67   1.0      |  +0.093  -0.458  -0.846  -1.188
+    0.67   2.0      |  +0.230  -0.237  -0.561  -0.909
+    0.67   3.0      |  +0.189  -0.273  -0.564  -0.795
+    1.50   2.0      |  +0.340  -0.080  -0.383  -0.764
+    4.00   2.0      |  +0.508  +0.131  -0.168  -0.613
+
+  (b) bias = log10(a0_hat / a_true) at R = 2, 3, 4, 6 R_d, typical disc; PM = point-mass estimator (the idea as stated);
+      DS = shape-aware estimator with the analyst's DECLARED shape (mu 0.67, R_gas 2 R_d) whatever the truth is.
+      +inf = the observed slope is too shallow for any finite a0 under that assumed shape (s >= 0 for PM).
+  kernel  law    mu  Rg/Rd |  PM:  2R_d    3R_d    4R_d    6R_d   |  DS(declared):  2R_d    3R_d    4R_d    6R_d
+  P2      flat  0.25 2.0  |   +inf    +inf  +0.360 -0.057 | -0.199 -0.171 -0.164 -0.150
+  P2      flat  0.67 1.0  |   +inf  +0.706 +0.143 -0.168 | -0.515 -0.367 -0.313 -0.250
+  P2      flat  0.67 2.0  |   +inf    +inf  +0.868 +0.109 | +0.000 +0.000 +0.000 -0.000
+  P2      flat  0.67 3.0  |   +inf    +inf    +inf  +0.373 | -0.099 -0.050 -0.003 +0.163
+  P2      flat  1.50 2.0  |   +inf    +inf    +inf  +0.289 | +0.283 +0.239 +0.217 +0.162
+  P2      flat  4.00 2.0  |   +inf    +inf    +inf  +0.423 | +0.980 +0.684 +0.546 +0.310
+  P2      rival 0.25 2.0  |   +inf    +inf    +inf  -0.092 | -0.171 -0.176 -0.197 -0.218
+  P2      rival 0.67 1.0  |   +inf    +inf  +0.211 -0.227 | -0.311 -0.292 -0.306 -0.317
+  P2      rival 0.67 2.0  |   +inf    +inf    +inf  +0.236 | +0.000 +0.000 +0.000 -0.000
+  P2      rival 0.67 3.0  |   +inf    +inf    +inf    +inf  | -0.090 -0.056 -0.004 +0.541
+  P2      rival 1.50 2.0  |   +inf    +inf    +inf    +inf  | +0.297 +0.297 +0.335 +0.345
+  P2      rival 4.00 2.0  |   +inf    +inf    +inf    +inf  |   +inf    +inf    +inf  +0.682
+  nu_mono flat  0.25 2.0  |   +inf    +inf  +0.617 -0.085 | -0.251 -0.249 -0.257 -0.228
+  nu_mono flat  0.67 1.0  |   +inf  +2.180 +0.240 -0.264 | -0.382 -0.403 -0.438 -0.388
+  nu_mono flat  0.67 2.0  |   +inf    +inf  +1.864 +0.168 | +0.000 -0.000 +0.000 +0.000
+  nu_mono flat  0.67 3.0  |   +inf    +inf    +inf  +0.497 | -0.132 -0.077 -0.005 +0.240
+  nu_mono flat  1.50 2.0  |   +inf    +inf    +inf  +0.482 | +0.422 +0.388 +0.370 +0.269
+  nu_mono flat  4.00 2.0  |   +inf    +inf    +inf  +0.803 |   +inf  +1.392 +1.048 +0.552
+  nu_mono rival 0.25 2.0  |   +inf    +inf  +1.435 -0.109 | -0.266 -0.277 -0.296 -0.279
+  nu_mono rival 0.67 1.0  |   +inf    +inf  +0.317 -0.315 | -0.427 -0.441 -0.471 -0.449
+  nu_mono rival 0.67 2.0  |   +inf    +inf    +inf  +0.235 | -0.000 -0.000 -0.000 +0.000
+  nu_mono rival 0.67 3.0  |   +inf    +inf    +inf  +1.002 | -0.143 -0.089 -0.007 +0.355
+  nu_mono rival 1.50 2.0  |   +inf    +inf    +inf  +0.842 | +0.529 +0.510 +0.513 +0.383
+  nu_mono rival 4.00 2.0  |   +inf    +inf    +inf    +inf  |   +inf    +inf    +inf  +0.895
+  [PASS] T3a control: the shape-aware estimator with the TRUE baryon shape returns a_true exactly (|bias| < 1e-4 dex, every row)
+         measured: max |bias| = 7.45e-06 dex over 96 cases
+  [PASS] T3b control: on a true point-mass field the point-mass estimator returns a0 exactly (|bias| < 1e-6 dex)
+         measured: ['+5.7e-10', '-3.3e-10', '-7.7e-10', '-1.2e-09']
+
+  (c) the slopes themselves (P2, declared shape mu 0.67, R_gas 2 R_d) and the signal between the laws:
+   R = 2 R_d (4.6 kpc): s_N +0.230 | flat s +0.428 (g/a0 1.35) | rival s +0.507 (g/a0 1.77) | gap +0.078 | PM bias flat   +inf 
+   R = 3 R_d (6.9 kpc): s_N -0.237 | flat s +0.144 (g/a0 1.01) | rival s +0.254 (g/a0 1.38) | gap +0.110 | PM bias flat   +inf 
+   R = 4 R_d (9.2 kpc): s_N -0.561 | flat s -0.011 (g/a0 0.77) | rival s +0.104 (g/a0 1.09) | gap +0.114 | PM bias flat +0.868
+   R = 6 R_d (13.8 kpc): s_N -0.909 | flat s -0.117 (g/a0 0.50) | rival s -0.029 (g/a0 0.73) | gap +0.087 | PM bias flat +0.109
+
+  (d) the shape (gas) systematic of the DS estimator: the spread of its bias over the six declared shapes, P2, per radius:
+   flat  R = 2 R_d: finite in 6/6 shapes; bias range -0.515 .. +0.980 dex
+   flat  R = 3 R_d: finite in 6/6 shapes; bias range -0.367 .. +0.684 dex
+   flat  R = 4 R_d: finite in 6/6 shapes; bias range -0.313 .. +0.546 dex
+   flat  R = 6 R_d: finite in 6/6 shapes; bias range -0.250 .. +0.310 dex
+   rival R = 2 R_d: finite in 5/6 shapes; bias range -0.311 .. +0.297 dex; 1 out of domain
+   rival R = 3 R_d: finite in 5/6 shapes; bias range -0.292 .. +0.297 dex; 1 out of domain
+   rival R = 4 R_d: finite in 5/6 shapes; bias range -0.306 .. +0.335 dex; 1 out of domain
+   rival R = 6 R_d: finite in 6/6 shapes; bias range -0.317 .. +0.682 dex
+
+  mass bracket (P2, flat, declared shape): the PM bias depends on the mass (regime); the DS bias with the true shape is 0 at any mass
+   log M*  9.64: PM   +inf    +inf    +inf  +0.365
+   log M* 10.14: PM   +inf    +inf  +0.868 +0.109
+   log M* 10.64: PM   +inf  +1.141 +0.456 +0.082
+
+  READING T3: at 2-4 R_d a KURVS-like disc with gas at 2 R_d still has a RISING Newtonian curve (s_N > 0), so the MOND curve
+  there is flat or rising and the point-mass estimator (which assumes s_N = -1) reads a0 -> infinity. Only near 6 R_d does the
+  PM bias fall to ~0.1 dex (flat) / ~0.2 dex (rival), still with the rival's sign and gas-dependent. The shape-aware (DS) form
+  removes the bias exactly for the right shape; its residual systematic is the unmeasured gas shape (d).
+
+==============================================================================================================
+T4  the pressure correction and the slope
+==============================================================================================================
+  observed V^2 = V_c^2 - P_true; the analyst reconstructs V_a^2 = V^2 + P_a.  With dP = P_a - P_true:
+     s_a - s_c = (dP / V_a^2) (s_dP - s_c),  s_dP = dln dP/dlnR  (= 1 for k sigma^2 R/R_d with constant sigma).
+  Kretschmer+2021: alpha(x) sigma^2 with x = R/R_e - 1; its log-slope is alpha'(x) (x+1)/alpha(x):
+     R/R_e = 2 (R/R_d = 3.36): alpha = 2.533, dln(alpha)/dlnR = 0.720; k=2 equivalent alpha = 2 R/R_d = 6.72
+     R/R_e = 3 (R/R_d = 5.04): alpha = 3.299, dln(alpha)/dlnR = 0.564; k=2 equivalent alpha = 2 R/R_d = 10.08
+     R/R_e = 4 (R/R_d = 6.72): alpha = 3.773, dln(alpha)/dlnR = 0.348; k=2 equivalent alpha = 2 R/R_d = 13.44
+  [PASS] T4a the slope-shift formula s_a - s_c = (dP/V_a^2)(1 - s_c) matches the numerical slope for every k-type pair (1e-5)
+         measured: 195 pairs; max |diff| 6.7e-07
+
+  pressure fraction f = P_k2/V_c^2 (truth k = 2) and V_obs/sigma, typical disc, mu 0.67, P2:
+   flat  sigma   30: 2R_d f 0.20, V/sig 3.98 | 3R_d f 0.27, V/sig 4.03 | 4R_d f 0.35, V/sig 3.82 | 6R_d f 0.55, V/sig 3.15
+   flat  sigma   45: 2R_d f 0.45, V/sig 2.19 | 3R_d f 0.61, V/sig 1.97 | 4R_d f 0.80, V/sig 1.43 | 6R_d pressure-dominated (V_c^2 < P)
+   flat  sigma   60: 2R_d f 0.81, V/sig 0.98 | 3R_d pressure-dominated (V_c^2 < P) | 4R_d pressure-dominated (V_c^2 < P) | 6R_d pressure-dominated (V_c^2 < P)
+   rival sigma   30: 2R_d f 0.15, V/sig 4.69 | 3R_d f 0.20, V/sig 4.93 | 4R_d f 0.25, V/sig 4.89 | 6R_d f 0.37, V/sig 4.51
+   rival sigma   45: 2R_d f 0.35, V/sig 2.75 | 3R_d f 0.44, V/sig 2.74 | 4R_d f 0.56, V/sig 2.49 | 6R_d f 0.84, V/sig 1.53
+   rival sigma   60: 2R_d f 0.61, V/sig 1.58 | 3R_d f 0.79, V/sig 1.26 | 4R_d pressure-dominated (V_c^2 < P) | 6R_d pressure-dominated (V_c^2 < P)
+
+  slope shift ds and the DS a0 shift in dex (declared shape; analyst prescription vs truth; typical disc, mu 0.67):
+   law    truth -> analyst  sigma  |  R/R_d = 2               3                 4                 6
+   flat   k1     -> k2       30   | +0.052 (+0.215)  +0.102 (+0.279)  +0.152 (+0.411)  +0.240 (  +inf)
+   flat   k1     -> k2       45   | +0.106 (+0.456)  +0.199 (+0.695)  +0.288 (  +inf)  +0.425 (  +inf)
+   flat   k1     -> k2       60   | +0.164 (+0.873)  +0.300 (  +inf)  +0.419 (  +inf)     P-dominated   
+   flat   K21x1  -> k2       30   | +0.074 (+0.297)  +0.144 (+0.408)  +0.221 (+0.953)  +0.374 (  +inf)
+   flat   K21x1  -> k2       45   | +0.148 (+0.687)  +0.275 (  +inf)  +0.405 (  +inf)  +0.626 (  +inf)
+   flat   K21x1  -> k2       60   | +0.227 (  +inf)  +0.405 (  +inf)  +0.569 (  +inf)  +0.819 (  +inf)
+   flat   k2     -> k1       30   | -0.064 (-0.280)  -0.134 (-0.348)  -0.217 (-0.446)  -0.420 (-0.744)
+   flat   k2     -> k1       45   | -0.168 (-1.059)  -0.373 (-2.084)  -0.668 (  -inf)     P-dominated   
+   flat   k2     -> k1       60   | -0.387 (  -inf)     P-dominated        P-dominated        P-dominated   
+   flat   k2     -> K21x1    30   | -0.094 (-0.420)  -0.201 (-0.538)  -0.352 (-0.755)  -0.838 (  -inf)
+   flat   k2     -> K21x1    45   | -0.253 (  -inf)  -0.601 (  -inf)  -1.251 (  -inf)     P-dominated   
+   flat   k2     -> K21x1    60   | -0.621 (  -inf)     P-dominated        P-dominated        P-dominated   
+   flat   k2     -> none     30   | -0.145 (-0.786)  -0.317 (-1.094)  -0.553 (  -inf)  -1.347 (  -inf)
+   flat   k2     -> none     45   | -0.475 (  -inf)  -1.325 (  -inf)  -3.934 (  -inf)     P-dominated   
+   flat   k2     -> none     60   | -2.395 (  -inf)     P-dominated        P-dominated        P-dominated   
+   rival  k1     -> k2       30   | +0.035 (+0.170)  +0.067 (+0.259)  +0.100 (+0.546)  +0.161 (  +inf)
+   rival  k1     -> k2       45   | +0.073 (+0.413)  +0.136 (  +inf)  +0.197 (  +inf)  +0.303 (  +inf)
+   rival  k1     -> k2       60   | +0.116 (  +inf)  +0.211 (  +inf)  +0.299 (  +inf)  +0.439 (  +inf)
+   rival  K21x1  -> k2       30   | +0.052 (+0.253)  +0.098 (+0.445)  +0.150 (  +inf)  +0.261 (  +inf)
+   rival  K21x1  -> k2       45   | +0.106 (+1.058)  +0.194 (  +inf)  +0.288 (  +inf)  +0.467 (  +inf)
+   rival  K21x1  -> k2       60   | +0.167 (  +inf)  +0.296 (  +inf)  +0.424 (  +inf)  +0.645 (  +inf)
+   rival  k2     -> k1       30   | -0.041 (-0.174)  -0.082 (-0.232)  -0.128 (-0.314)  -0.235 (-0.532)
+   rival  k2     -> k1       45   | -0.103 (-0.430)  -0.213 (-0.570)  -0.352 (-0.774)  -0.739 (-1.551)
+   rival  k2     -> k1       60   | -0.219 (-1.077)  -0.488 (-2.775)     P-dominated        P-dominated   
+   rival  k2     -> K21x1    30   | -0.062 (-0.248)  -0.125 (-0.331)  -0.208 (-0.462)  -0.445 (-0.857)
+   rival  k2     -> K21x1    45   | -0.158 (-0.660)  -0.339 (-0.929)  -0.615 (-1.714)  -1.783 (  -inf)
+   rival  k2     -> K21x1    60   | -0.349 (  -inf)  -0.849 (  -inf)     P-dominated        P-dominated   
+   rival  k2     -> none     30   | -0.090 (-0.373)  -0.184 (-0.493)  -0.300 (-0.663)  -0.609 (-1.193)
+   rival  k2     -> none     45   | -0.261 (-1.677)  -0.598 (  -inf)  -1.159 (  -inf)  -5.246 (  -inf)
+   rival  k2     -> none     60   | -0.787 (  -inf)  -2.820 (  -inf)     P-dominated        P-dominated   
+  READING T4: a mis-specified pressure term moves s by (dP/V_a^2)(1 - s_c); an OVER-correction (truth weaker than k = 2)
+  steepens the reconstructed curve upward and reads as a LARGER a0 (the rival's direction); an under-correction the reverse.
+  sigma-gradient: with a local sigma(R) ~ R^gamma in k sigma^2 R/R_d the pressure term's own slope is 1 + 2 gamma instead of 1.
+
+==============================================================================================================
+T5  what slope accuracy the test needs (P2, DS estimator with the declared shape, flat truth)
+==============================================================================================================
+   R = 2 R_d: s = +0.428, s_N = +0.230; a coherent slope error of +0.109 mimics the whole flat->rival gap (0.381 dex); MUTATE V x R^0.1 (ds = +0.2) moves a0 by +inf dex
+   R = 3 R_d: s = +0.144, s_N = -0.237; a coherent slope error of +0.156 mimics the whole flat->rival gap (0.381 dex); MUTATE V x R^0.1 (ds = +0.2) moves a0 by +0.583 dex
+   R = 4 R_d: s = -0.011, s_N = -0.561; a coherent slope error of +0.163 mimics the whole flat->rival gap (0.381 dex); MUTATE V x R^0.1 (ds = +0.2) moves a0 by +0.578 dex
+   R = 6 R_d: s = -0.117, s_N = -0.909; a coherent slope error of +0.125 mimics the whole flat->rival gap (0.381 dex); MUTATE V x R^0.1 (ds = +0.2) moves a0 by +inf dex
+  READING T5: a coherent slope error of about +0.1 is the entire separation of the two laws at KURVS radii. The point-mass bias
+  (T3, 0.1 to >1 dex) and a mis-specified pressure term (T4) are each of that size or larger, so the estimator needs the
+  baryon SHAPE (gas extent) and the pressure prescription controlled to ~0.05 in slope before the stack can separate the laws.
+
+  7/7 checks pass; load-bearing failures: 0; wrote CFG250_slope_theory_results.json
+rc = 0

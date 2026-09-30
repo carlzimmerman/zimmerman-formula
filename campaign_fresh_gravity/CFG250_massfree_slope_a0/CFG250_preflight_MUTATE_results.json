@@ -1,0 +1,428 @@
+{
+ "mutate": true,
+ "checks": [
+  {
+   "name": "C1 CONTROL: a noise-free POINT-MASS mock (no pressure, no smearing) is recovered by the PM estimator (|dLambda| < 2e-3 dex)",
+   "measured": "flat +4.6e-01, rival (vs log10 E(z_med)) +5.5e-01 dex -- the rival's per-disc E(z_i) spread makes the rival residual non-zero by construction; flat is the exact test",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C1b CONTROL: a noise-free DISC mock with the declared shape (mu 0.67, R_gas 2 R_d) is recovered by the DS estimator (|dLambda| < 2e-3 dex)",
+   "measured": "flat +6.1e-01 dex; the PM estimator on the same mock gives +1.500 (edge True)",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: a pure-Newtonian point-mass mock gives s = -1, y -> infinity, i.e. only an UPPER limit on a0: the PM stack sits at the grid's lower edge (Lambda <= -1.49)",
+   "measured": "Lambda_hat -0.690, edge False",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 RECOVERY [MUTATE must fail it]: smearing-free matched mock, flat truth: the DS stack is unbiased, |mean Lambda_hat| < 0.25 x sd",
+   "measured": "mean -0.132, sd 0.193",
+   "ok": false,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 COVERAGE: smearing-free matched cell, flat truth: the scatter of Lambda_hat over mocks agrees with the median reported sigma within a factor [0.67, 1.5] (reported: made non-load-bearing after the first mock run, disclosed in the README)",
+   "measured": "sd/median sigma = 0.66 (sd 0.193, median sigma 0.294); below 1 = the reported sigma is conservative",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "H0 FEASIBILITY (the frozen gate; reported, not an exit-code check): on seeing-limited KURVS-like mocks (sigma 45) the frozen primary returns a usable stack (edge or rejected in < 50%) AND separates the laws by >= 2 sigma including sigma_sys",
+   "measured": "unusable fraction flat 1.00, rival 1.00; S_tot n/a; smearing-free S_stat 2.70, S_tot 0.68; P(lean rival | flat truth, smearing-free marginal) 0.00",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "geometry": [
+   {
+    "id": 3,
+    "z": 1.541,
+    "Rd": 2.5,
+    "fwhm_kpc": 4.827267489990058,
+    "Rin": 5.0,
+    "n": 12,
+    "span": 0.6644520716500004,
+    "ok": true
+   },
+   {
+    "id": 7,
+    "z": 1.518,
+    "Rd": 2.678571428571429,
+    "fwhm_kpc": 4.825494918061169,
+    "Rin": 5.357142857142858,
+    "n": 11,
+    "span": 0.7362727995371856,
+    "ok": true
+   },
+   {
+    "id": 8,
+    "z": 1.54,
+    "Rd": 1.4880952380952381,
+    "fwhm_kpc": 4.827202329584602,
+    "Rin": 4.827202329584602,
+    "n": 11,
+    "span": 0.782515979985074,
+    "ok": true
+   },
+   {
+    "id": 9,
+    "z": 1.54,
+    "Rd": 2.9761904761904763,
+    "fwhm_kpc": 4.827202329584602,
+    "Rin": 5.9523809523809526,
+    "n": 7,
+    "span": 0.4060562993757526,
+    "ok": true
+   },
+   {
+    "id": 11,
+    "z": 1.384,
+    "Rd": 3.5119047619047623,
+    "fwhm_kpc": 4.80256571336463,
+    "Rin": 7.023809523809525,
+    "n": 8,
+    "span": 0.5254589055562522,
+    "ok": true
+   },
+   {
+    "id": 13,
+    "z": 1.334,
+    "Rd": 2.0238095238095237,
+    "fwhm_kpc": 4.787719685665617,
+    "Rin": 4.787719685665617,
+    "n": 14,
+    "span": 0.8152121658463845,
+    "ok": true
+   },
+   {
+    "id": 15,
+    "z": 1.613,
+    "Rd": 2.261904761904762,
+    "fwhm_kpc": 4.8292796329498655,
+    "Rin": 4.8292796329498655,
+    "n": 11,
+    "span": 0.6189458319121319,
+    "ok": true
+   },
+   {
+    "id": 16,
+    "z": 1.569,
+    "Rd": 2.3214285714285716,
+    "fwhm_kpc": 4.828666481498123,
+    "Rin": 4.828666481498123,
+    "n": 10,
+    "span": 0.7047565983798716,
+    "ok": true
+   },
+   {
+    "id": 17,
+    "z": 1.353,
+    "Rd": 1.4285714285714286,
+    "fwhm_kpc": 4.793807425814654,
+    "Rin": 4.793807425814654,
+    "n": 5,
+    "span": 0.4211939944817682,
+    "ok": true
+   },
+   {
+    "id": 21,
+    "z": 1.382,
+    "Rd": 1.6666666666666665,
+    "fwhm_kpc": 4.802043275537468,
+    "Rin": 4.802043275537468,
+    "n": 11,
+    "span": 0.9434748625563967,
+    "ok": true
+   }
+  ],
+  "C2b_newton_disc": {
+   "DS": -0.5741900678091815,
+   "PM": 0.35860715601280263
+  },
+  "beam_smearing_slope_bias": {
+   "primary: FWHM 0.57'', bin 0.6'', H-alpha R_d": [
+    0.9996383819661384,
+    0.8151813862159789,
+    1.24444088366027,
+    0.7184731296610943,
+    0.5704341906284912,
+    0.9208962047669613,
+    1.1017901608027183,
+    1.0114916852684366,
+    1.6276661563712367,
+    1.0715642672869934
+   ],
+   "bin 0.1'' (no adaptive binning)": [
+    0.6824963320022863,
+    0.5807341080340516,
+    0.821055803947833,
+    0.48942983621078073,
+    0.4230563352185145,
+    0.6083830423252717,
+    0.76227280220329,
+    0.7133605676141797,
+    1.1699823971833752,
+    0.6997151315404271
+   ],
+   "bin 0.1'', H-alpha 1.5 R_d (optimistic)": [
+    0.5644034293374206,
+    0.5389350750941199,
+    0.6493261563023442,
+    0.41588850237993225,
+    0.4165633986452837,
+    0.4866681759399314,
+    0.6174732827317243,
+    0.6273330081824982,
+    0.8993347586966242,
+    0.5687805425216396
+   ],
+   "pessimistic: FWHM 0.82'', bin 0.9''": [
+    1.6695462790769635,
+    1.4225239598266337,
+    2.006895670676274,
+    1.326689871989162,
+    1.0853790157566525,
+    1.648907656363935,
+    1.6883434577577006,
+    1.628620832487659,
+    2.072936393436332,
+    1.934080646778877
+   ],
+   "AO-like: FWHM 0.15'', bin 0.15''": [
+    0.06523742518004043,
+    0.16184060717180596,
+    0.11302711027940728,
+    0.051613884464583926,
+    0.0963690129609224,
+    0.05332664431774506,
+    0.06954368471262806,
+    0.14790293671885207,
+    0.08977979255814841,
+    0.06752123472958524
+   ]
+  },
+  "sigma_sys_smearing_free": {
+   "DS": {
+    "A_s20": 0.07209952250644242,
+    "A_s20_nfinite": 8,
+    "A_s30": 0.23767634583881606,
+    "A_s30_nfinite": 8,
+    "A_s45": 0.38620480214105707,
+    "A_s45_nfinite": 6,
+    "A_s60": 0.3032438904801689,
+    "A_s60_nfinite": 6,
+    "B": 0.4947152599486362,
+    "B_nfinite": 12,
+    "D": 0.025817127985103064,
+    "total": {
+     "20": 0.5006076843887866,
+     "30": 0.5494540543983076,
+     "45": 0.6281431856832158,
+     "60": 0.5808326520065781
+    }
+   },
+   "PM": {
+    "A_s20": "nan",
+    "A_s20_nfinite": 0,
+    "A_s30": "nan",
+    "A_s30_nfinite": 1,
+    "A_s45": 0.2786989871504082,
+    "A_s45_nfinite": 2,
+    "A_s60": "nan",
+    "A_s60_nfinite": 2,
+    "B": 0.05789285023278129,
+    "B_nfinite": 5,
+    "D": 0.0014758809494014313,
+    "total": {
+     "20": "nan",
+     "30": "nan",
+     "45": 0.2846522189818928,
+     "60": "nan"
+    }
+   }
+  },
+  "separation": {
+   "seeing_limited_primary_DS": null,
+   "smearing_free_DS_s20": {
+    "delta": 0.31169686133665325,
+    "s_stat": 3.2593628964115187,
+    "s_tot": 0.6115779538536616,
+    "sd": 0.09563122341480419,
+    "sig_sys": 0.5006076843887866,
+    "bias_flat": 0.34760781473550656,
+    "bias_rival": 0.27833509175831983,
+    "usable_flat": 0.6733333333333333,
+    "usable_rival": 0.07999999999999996
+   },
+   "smearing_free_DS_s30": {
+    "delta": 0.4067612902252285,
+    "s_stat": 2.6257803546074188,
+    "s_tot": 0.712523830579638,
+    "sd": 0.15491063047657067,
+    "sig_sys": 0.5494540543983076,
+    "bias_flat": 0.1252396504242969,
+    "bias_rival": 0.14853717317393456,
+    "usable_flat": 0.94,
+    "usable_rival": 0.23333333333333328
+   },
+   "smearing_free_DS_s45": {
+    "delta": 0.438044638848248,
+    "s_stat": 2.7036997231759594,
+    "s_tot": 0.67526407709836,
+    "sd": 0.16201674878809744,
+    "sig_sys": 0.6281431856832158,
+    "bias_flat": -0.15543720097897296,
+    "bias_rival": -0.1008563296063158,
+    "usable_flat": 0.8666666666666667,
+    "usable_rival": 0.98
+   },
+   "smearing_free_DS_s60": {
+    "delta": 0.03670823853281649,
+    "s_stat": 0.2679882988690661,
+    "s_tot": 0.06151198021125244,
+    "sd": 0.13697701984649496,
+    "sig_sys": 0.5808326520065781,
+    "bias_flat": 0.14193971066350317,
+    "bias_rival": -0.19982045060868814,
+    "usable_flat": 0.15333333333333332,
+    "usable_rival": 0.8333333333333334
+   },
+   "smearing_free_PM_s20": null,
+   "smearing_free_PM_s30": null,
+   "smearing_free_PM_s45": null,
+   "smearing_free_PM_s60": null
+  },
+  "decision_rule_DS": {
+   "seeing-limited primary | flat truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.0,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 1.0
+   },
+   "seeing-limited primary | rival truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.0,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 1.0
+   },
+   "smearing-free, truth k = 2, declared shape | flat truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.8666666666666667,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.13333333333333333
+   },
+   "smearing-free, truth k = 2, declared shape | rival truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.98,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.02
+   },
+   "smearing-free, marginal over axes A and B | flat truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.452,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.548
+   },
+   "smearing-free, marginal over axes A and B | rival truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.464,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.536
+   }
+  },
+  "remedies_DS": {
+   "A_k2_s45": {
+    "note": "smearing-free, sigma 45 (pressure + shape + inclination systematics)",
+    "delta": 0.438044638848248,
+    "s_stat": 2.7036997231759594,
+    "s_tot": 0.67526407709836,
+    "sd": 0.16201674878809744,
+    "sig_sys": 0.6281431856832158,
+    "bias_flat": -0.15543720097897296,
+    "bias_rival": -0.1008563296063158,
+    "usable_flat": 0.8666666666666667,
+    "usable_rival": 0.98
+   },
+   "X1A_k2": {
+    "note": "cold tracer sigma 10 km/s (pressure axis re-run at sigma 10)",
+    "delta": 0.2410203608262242,
+    "s_stat": 2.6645848108518186,
+    "s_tot": 0.47824749344043577,
+    "sd": 0.0904532517954174,
+    "sig_sys": 0.49578190272780975,
+    "bias_flat": 0.4090921779659265,
+    "bias_rival": 0.2691429544783107,
+    "usable_flat": 0.38,
+    "usable_rival": 0.06666666666666665
+   },
+   "X1A_k2 (shape measured)": {
+    "note": "cold tracer AND the gas shape measured (shape axis removed)",
+    "delta": 0.2410203608262242,
+    "s_stat": 2.6645848108518186,
+    "s_tot": 2.507597121534023,
+    "sd": 0.0904532517954174,
+    "sig_sys": 0.03250394816573455,
+    "bias_flat": 0.4090921779659265,
+    "bias_rival": 0.2691429544783107,
+    "usable_flat": 0.38,
+    "usable_rival": 0.06666666666666665
+   },
+   "X2_AO_psf0.15_forward_modelled": {
+    "note": "AO-like PSF 0.15'' through the forward model, sigma 45",
+    "delta": 0.3633281449934165,
+    "s_stat": 2.3530541263268674,
+    "s_tot": 0.5616947979428689,
+    "sd": 0.1544070495142303,
+    "sig_sys": 0.6281431856832158,
+    "bias_flat": 0.11425920463264794,
+    "bias_rival": 0.09412358215047356,
+    "usable_flat": 0.9666666666666667,
+    "usable_rival": 0.92
+   },
+   "X2c_AO_cold": {
+    "note": "AO-like PSF, cold tracer, gas shape measured",
+    "sig_sys": 0.03250394816573455
+   },
+   "X4_radii_to_10Rd": {
+    "note": "markers continued to 10 R_d (twice the median error), sigma 45",
+    "delta": 0.4697407141723482,
+    "s_stat": 3.417792014381647,
+    "s_tot": 0.7305414007494145,
+    "sd": 0.1374398185131621,
+    "sig_sys": 0.6281431856832158,
+    "bias_flat": -0.1897408169484127,
+    "bias_rival": -0.10346387025165538,
+    "usable_flat": 0.9933333333333333,
+    "usable_rival": 1.0
+   },
+   "X14_cold_radii_to_10Rd": {
+    "note": "cold tracer, gas shape measured, radii to 10 R_d",
+    "sig_sys": 0.03250394816573455
+   }
+  },
+  "H0": {
+   "seeing_limited_S_tot": null,
+   "seeing_limited_unusable": {
+    "flat": 1.0,
+    "rival": 1.0
+   },
+   "passes": false,
+   "smearing_free_S_stat": 2.7036997231759594,
+   "smearing_free_S_tot": 0.67526407709836,
+   "P_lean_rival_given_flat_marginal": 0.0,
+   "P_lean_flat_given_rival_marginal": 0.0
+  }
+ }
+}

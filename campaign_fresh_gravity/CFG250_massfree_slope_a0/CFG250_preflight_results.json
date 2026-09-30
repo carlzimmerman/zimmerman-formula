@@ -1,0 +1,444 @@
+{
+ "mutate": false,
+ "checks": [
+  {
+   "name": "C1 CONTROL: a noise-free POINT-MASS mock (no pressure, no smearing) is recovered by the PM estimator (|dLambda| < 2e-3 dex)",
+   "measured": "flat -5.4e-06, rival (vs log10 E(z_med)) -1.6e-02 dex -- the rival's per-disc E(z_i) spread makes the rival residual non-zero by construction; flat is the exact test",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C1b CONTROL: a noise-free DISC mock with the declared shape (mu 0.67, R_gas 2 R_d) is recovered by the DS estimator (|dLambda| < 2e-3 dex)",
+   "measured": "flat +9.5e-06 dex; the PM estimator on the same mock gives +1.500 (edge True)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 CONTROL: a pure-Newtonian point-mass mock gives s = -1, y -> infinity, i.e. only an UPPER limit on a0: the PM stack sits at the grid's lower edge (Lambda <= -1.49)",
+   "measured": "Lambda_hat -1.500, edge True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 RECOVERY [MUTATE must fail it]: smearing-free matched mock, flat truth: the DS stack is unbiased, |mean Lambda_hat| < 0.25 x sd",
+   "measured": "mean +0.013, sd 0.174",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 COVERAGE: smearing-free matched cell, flat truth: the scatter of Lambda_hat over mocks agrees with the median reported sigma within a factor [0.67, 1.5] (reported: made non-load-bearing after the first mock run, disclosed in the README)",
+   "measured": "sd/median sigma = 0.66 (sd 0.174, median sigma 0.264); below 1 = the reported sigma is conservative",
+   "ok": false,
+   "load_bearing": false
+  },
+  {
+   "name": "H0 FEASIBILITY (the frozen gate; reported, not an exit-code check): on seeing-limited KURVS-like mocks (sigma 45) the frozen primary returns a usable stack (edge or rejected in < 50%) AND separates the laws by >= 2 sigma including sigma_sys",
+   "measured": "unusable fraction flat 1.00, rival 1.00; S_tot n/a; smearing-free S_stat 2.12, S_tot 0.65; P(lean rival | flat truth, smearing-free marginal) 0.00",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "geometry": [
+   {
+    "id": 3,
+    "z": 1.541,
+    "Rd": 2.5,
+    "fwhm_kpc": 4.827267489990058,
+    "Rin": 5.0,
+    "n": 12,
+    "span": 0.6644520716500004,
+    "ok": true
+   },
+   {
+    "id": 7,
+    "z": 1.518,
+    "Rd": 2.678571428571429,
+    "fwhm_kpc": 4.825494918061169,
+    "Rin": 5.357142857142858,
+    "n": 11,
+    "span": 0.7362727995371856,
+    "ok": true
+   },
+   {
+    "id": 8,
+    "z": 1.54,
+    "Rd": 1.4880952380952381,
+    "fwhm_kpc": 4.827202329584602,
+    "Rin": 4.827202329584602,
+    "n": 11,
+    "span": 0.782515979985074,
+    "ok": true
+   },
+   {
+    "id": 9,
+    "z": 1.54,
+    "Rd": 2.9761904761904763,
+    "fwhm_kpc": 4.827202329584602,
+    "Rin": 5.9523809523809526,
+    "n": 7,
+    "span": 0.4060562993757526,
+    "ok": true
+   },
+   {
+    "id": 11,
+    "z": 1.384,
+    "Rd": 3.5119047619047623,
+    "fwhm_kpc": 4.80256571336463,
+    "Rin": 7.023809523809525,
+    "n": 8,
+    "span": 0.5254589055562522,
+    "ok": true
+   },
+   {
+    "id": 13,
+    "z": 1.334,
+    "Rd": 2.0238095238095237,
+    "fwhm_kpc": 4.787719685665617,
+    "Rin": 4.787719685665617,
+    "n": 14,
+    "span": 0.8152121658463845,
+    "ok": true
+   },
+   {
+    "id": 15,
+    "z": 1.613,
+    "Rd": 2.261904761904762,
+    "fwhm_kpc": 4.8292796329498655,
+    "Rin": 4.8292796329498655,
+    "n": 11,
+    "span": 0.6189458319121319,
+    "ok": true
+   },
+   {
+    "id": 16,
+    "z": 1.569,
+    "Rd": 2.3214285714285716,
+    "fwhm_kpc": 4.828666481498123,
+    "Rin": 4.828666481498123,
+    "n": 10,
+    "span": 0.7047565983798716,
+    "ok": true
+   },
+   {
+    "id": 17,
+    "z": 1.353,
+    "Rd": 1.4285714285714286,
+    "fwhm_kpc": 4.793807425814654,
+    "Rin": 4.793807425814654,
+    "n": 5,
+    "span": 0.4211939944817682,
+    "ok": true
+   },
+   {
+    "id": 21,
+    "z": 1.382,
+    "Rd": 1.6666666666666665,
+    "fwhm_kpc": 4.802043275537468,
+    "Rin": 4.802043275537468,
+    "n": 11,
+    "span": 0.9434748625563967,
+    "ok": true
+   }
+  ],
+  "C2b_newton_disc": {
+   "DS": -1.5,
+   "PM": -0.15823595899809106
+  },
+  "beam_smearing_slope_bias": {
+   "primary: FWHM 0.57'', bin 0.6'', H-alpha R_d": [
+    0.9996383819661384,
+    0.8151813862159789,
+    1.24444088366027,
+    0.7184731296610943,
+    0.5704341906284912,
+    0.9208962047669613,
+    1.1017901608027183,
+    1.0114916852684366,
+    1.6276661563712367,
+    1.0715642672869934
+   ],
+   "bin 0.1'' (no adaptive binning)": [
+    0.6824963320022863,
+    0.5807341080340516,
+    0.821055803947833,
+    0.48942983621078073,
+    0.4230563352185145,
+    0.6083830423252717,
+    0.76227280220329,
+    0.7133605676141797,
+    1.1699823971833752,
+    0.6997151315404271
+   ],
+   "bin 0.1'', H-alpha 1.5 R_d (optimistic)": [
+    0.5644034293374206,
+    0.5389350750941199,
+    0.6493261563023442,
+    0.41588850237993225,
+    0.4165633986452837,
+    0.4866681759399314,
+    0.6174732827317243,
+    0.6273330081824982,
+    0.8993347586966242,
+    0.5687805425216396
+   ],
+   "pessimistic: FWHM 0.82'', bin 0.9''": [
+    1.6695462790769635,
+    1.4225239598266337,
+    2.006895670676274,
+    1.326689871989162,
+    1.0853790157566525,
+    1.648907656363935,
+    1.6883434577577006,
+    1.628620832487659,
+    2.072936393436332,
+    1.934080646778877
+   ],
+   "AO-like: FWHM 0.15'', bin 0.15''": [
+    0.06523742518004043,
+    0.16184060717180596,
+    0.11302711027940728,
+    0.051613884464583926,
+    0.0963690129609224,
+    0.05332664431774506,
+    0.06954368471262806,
+    0.14790293671885207,
+    0.08977979255814841,
+    0.06752123472958524
+   ]
+  },
+  "sigma_sys_smearing_free": {
+   "DS": {
+    "A_s20": 0.09936623205980875,
+    "A_s20_nfinite": 10,
+    "A_s30": 0.2057263581213399,
+    "A_s30_nfinite": 10,
+    "A_s45": 0.2978902035967529,
+    "A_s45_nfinite": 5,
+    "A_s60": 0.28490712076799984,
+    "A_s60_nfinite": 5,
+    "B": 0.3993085504942715,
+    "B_nfinite": 12,
+    "D": 0.06059259807037077,
+    "total": {
+     "20": 0.4159235861459619,
+     "30": 0.4532572292469514,
+     "45": 0.5018539178263617,
+     "60": 0.49425787692566453
+    }
+   },
+   "PM": {
+    "A_s20": 0.019471376437422833,
+    "A_s20_nfinite": 3,
+    "A_s30": "nan",
+    "A_s30_nfinite": 1,
+    "A_s45": "nan",
+    "A_s45_nfinite": 1,
+    "A_s60": 0.11441537316568809,
+    "A_s60_nfinite": 3,
+    "B": "nan",
+    "B_nfinite": 2,
+    "D": "nan",
+    "total": {
+     "20": "nan",
+     "30": "nan",
+     "45": "nan",
+     "60": "nan"
+    }
+   }
+  },
+  "separation": {
+   "seeing_limited_primary_DS": null,
+   "smearing_free_DS_s20": {
+    "delta": 0.29300709945704095,
+    "s_stat": 2.2572671067610623,
+    "s_tot": 0.6724839512372158,
+    "sd": 0.1298061264346668,
+    "sig_sys": 0.4159235861459619,
+    "bias_flat": 0.03168289700757479,
+    "bias_rival": -0.056279587849224266,
+    "usable_flat": 0.96,
+    "usable_rival": 0.6799999999999999
+   },
+   "smearing_free_DS_s30": {
+    "delta": 0.3689234547955692,
+    "s_stat": 2.389985857402505,
+    "s_tot": 0.7704826063086126,
+    "sd": 0.15436219158071682,
+    "sig_sys": 0.4532572292469514,
+    "bias_flat": -0.0043821912603297245,
+    "bias_rival": -0.018922503940351387,
+    "usable_flat": 0.9733333333333334,
+    "usable_rival": 0.6599999999999999
+   },
+   "smearing_free_DS_s45": {
+    "delta": 0.341035581303127,
+    "s_stat": 2.1249414412823087,
+    "s_tot": 0.6472592434185391,
+    "sd": 0.16049175505623675,
+    "sig_sys": 0.5018539178263617,
+    "bias_flat": -0.01432930149269272,
+    "bias_rival": -0.05675748766515659,
+    "usable_flat": 0.9866666666666667,
+    "usable_rival": 0.8466666666666667
+   },
+   "smearing_free_DS_s60": {
+    "delta": 0.22469710056443504,
+    "s_stat": 1.9819825004722083,
+    "s_tot": 0.44310803813105026,
+    "sd": 0.1133698710815564,
+    "sig_sys": 0.49425787692566453,
+    "bias_flat": 0.05773166950656467,
+    "bias_rival": -0.09603962973400809,
+    "usable_flat": 0.20666666666666667,
+    "usable_rival": 0.5133333333333333
+   },
+   "smearing_free_PM_s20": null,
+   "smearing_free_PM_s30": null,
+   "smearing_free_PM_s45": null,
+   "smearing_free_PM_s60": null
+  },
+  "decision_rule_DS": {
+   "seeing-limited primary | flat truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.0,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 1.0
+   },
+   "seeing-limited primary | rival truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.0,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 1.0
+   },
+   "smearing-free, truth k = 2, declared shape | flat truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.9866666666666667,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.013333333333333334
+   },
+   "smearing-free, truth k = 2, declared shape | rival truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.8466666666666667,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.15333333333333332
+   },
+   "smearing-free, marginal over axes A and B | flat truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.554,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.446
+   },
+   "smearing-free, marginal over axes A and B | rival truth": {
+    "lean flat": 0.0,
+    "lean rival": 0.0,
+    "both allowed": 0.446,
+    "neither": 0.0,
+    "non-diag (limit or model rejected)": 0.554
+   }
+  },
+  "remedies_DS": {
+   "A_k2_s45": {
+    "note": "smearing-free, sigma 45 (pressure + shape + inclination systematics)",
+    "delta": 0.341035581303127,
+    "s_stat": 2.1249414412823087,
+    "s_tot": 0.6472592434185391,
+    "sd": 0.16049175505623675,
+    "sig_sys": 0.5018539178263617,
+    "bias_flat": -0.01432930149269272,
+    "bias_rival": -0.05675748766515659,
+    "usable_flat": 0.9866666666666667,
+    "usable_rival": 0.8466666666666667
+   },
+   "X1A_k2": {
+    "note": "cold tracer sigma 10 km/s (pressure axis re-run at sigma 10)",
+    "delta": 0.29154326702353656,
+    "s_stat": 2.2454475332770505,
+    "s_tot": 0.6847436572591854,
+    "sd": 0.1298374879407904,
+    "sig_sys": 0.40549016014146744,
+    "bias_flat": 0.02794059762387544,
+    "bias_rival": -0.06148571966642796,
+    "usable_flat": 0.9733333333333334,
+    "usable_rival": 0.7
+   },
+   "X1A_k2 (shape measured)": {
+    "note": "cold tracer AND the gas shape measured (shape axis removed)",
+    "delta": 0.29154326702353656,
+    "s_stat": 2.2454475332770505,
+    "s_tot": 1.9730997720163415,
+    "sd": 0.1298374879407904,
+    "sig_sys": 0.07053333590378916,
+    "bias_flat": 0.02794059762387544,
+    "bias_rival": -0.06148571966642796,
+    "usable_flat": 0.9733333333333334,
+    "usable_rival": 0.7
+   },
+   "X2_AO_psf0.15_forward_modelled": {
+    "note": "AO-like PSF 0.15'' through the forward model, sigma 45",
+    "delta": 0.2639506803473276,
+    "s_stat": 1.994785029486206,
+    "s_tot": 0.5085707402806418,
+    "sd": 0.13232036357086208,
+    "sig_sys": 0.5018539178263617,
+    "bias_flat": 0.19858378597374846,
+    "bias_rival": 0.07907069884548523,
+    "usable_flat": 0.8733333333333333,
+    "usable_rival": 0.6799999999999999
+   },
+   "X2c_AO_cold": {
+    "note": "AO-like PSF, cold tracer, gas shape measured",
+    "delta": 0.26460555953380266,
+    "s_stat": 2.872278340949227,
+    "s_tot": 2.280593551744813,
+    "sd": 0.09212392676621867,
+    "sig_sys": 0.07053333590378916,
+    "bias_flat": 0.24043067402677804,
+    "bias_rival": 0.12406664924674071,
+    "usable_flat": 0.9133333333333333,
+    "usable_rival": 0.21999999999999997
+   },
+   "X4_radii_to_10Rd": {
+    "note": "markers continued to 10 R_d (twice the median error), sigma 45",
+    "delta": 0.36468649233037354,
+    "s_stat": 2.747563138782703,
+    "s_tot": 0.702523026771825,
+    "sd": 0.13273088693857876,
+    "sig_sys": 0.5018539178263617,
+    "bias_flat": 0.017444947264141746,
+    "bias_rival": -0.0013323278810755679,
+    "usable_flat": 1.0,
+    "usable_rival": 0.9533333333333334
+   },
+   "X14_cold_radii_to_10Rd": {
+    "note": "cold tracer, gas shape measured, radii to 10 R_d",
+    "delta": 0.36220332378441494,
+    "s_stat": 4.121568682075698,
+    "s_tot": 3.2143080942913307,
+    "sd": 0.08787996797423321,
+    "sig_sys": 0.07053333590378916,
+    "bias_flat": 0.08392355502594313,
+    "bias_rival": 0.06515729449651808,
+    "usable_flat": 1.0,
+    "usable_rival": 0.9866666666666667
+   }
+  },
+  "H0": {
+   "seeing_limited_S_tot": null,
+   "seeing_limited_unusable": {
+    "flat": 1.0,
+    "rival": 1.0
+   },
+   "passes": false,
+   "smearing_free_S_stat": 2.1249414412823087,
+   "smearing_free_S_tot": 0.6472592434185391,
+   "P_lean_rival_given_flat_marginal": 0.0,
+   "P_lean_flat_given_rival_marginal": 0.0
+  }
+ }
+}

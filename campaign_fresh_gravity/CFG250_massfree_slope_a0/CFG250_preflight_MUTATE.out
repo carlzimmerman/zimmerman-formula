@@ -1,0 +1,322 @@
+CFG250 pre-flight -- the mass-free slope estimator of a0 run on MOCK KURVS-like discs ONLY.  PHASE 1.
+
+NO measured KURVS velocity or dispersion is read.  Columns read, and nothing else:
+  kurvs2023_integrated.csv      kurvs_id, z_halpha, logMstar, reff_kpc, inc_sfr_deg, inc_star_deg
+  kurvs2023_fdm.csv             kurvs_id, flag_star                     (which ten discs; the f_DM values are NOT read)
+  kurvs2023_kinematics.csv      kurvs_id, flag_star                     (sigma0 / V/sigma0 are NOT read)
+  kurvs_rc_points.csv           kurvs_id, R_kpc, err_up_kms, err_lo_kms, clipped_white_marker     (v_obs_kms is NOT read)
+  kurvs_sigma_profiles.csv      kurvs_id, R_kpc, err_up_kms, err_lo_kms, clipped_white_marker     (sigma_obs_kms is NOT read)
+The mock discs take M*, R_d = R_eff/1.68, z and inclination from the catalogue, the marker radii and error bars from the figures'
+digitisation, and velocities/dispersions from the LAWS: g = nu(g_N/a) g_N in the plane of thin exponential discs (stars R_d, gas
+mu M* at R_gas), a = a0 (flat) or a0 E(z) (rival), a constant intrinsic sigma with a declared pressure law, a Gaussian-PSF x box-bin
+beam-smearing forward model (CFG184's geometry, re-implemented), correlated marker noise, and a +-5 deg inclination error.
+
+The estimator is the one frozen in ../CFG250_FROZEN_CRITERIA.md: window |R| >= max(2 R_d, FWHM), both sides pooled, V = v sgn(R)/sin i,
+sigma_win = weighted mean of the window's sigma markers, V_c^2 = V^2 + 2 sigma_win^2 |R|/R_d, a weighted fit of ln V_c^2 on ln|R|
+(formal errors x sqrt 6), g_obs at the weighted pivot; the stacked common-a0 chi^2 over the sample with the slope predicted by the
+same fit applied to the law's curve for a declared baryon SHAPE (DS, primary: stars R_d + gas mu = 0.67 at 2 R_d; no mass enters) or
+for a point mass (PM, the idea as stated).  Statistic Lambda = log10 a0_hat, flat Lambda_F = log10 a0, rival Lambda_F + log10 E(z_med).
+Sections: G geometry; C noise-free controls; B the slope bias beam smearing alone produces in the frozen window; P the frozen primary
+on SEEING-LIMITED mocks (the H0 gate); I/S/H the SMEARING-FREE track (the limit an AO or smearing-forward-modelled analysis would
+approach): recovery, coverage, the systematic axes A (pressure truth x sigma), B (baryon shape), D (inclination), the separation and
+the decision rule; V variants and remedies (cold tracer, AO through the forward model, radii to 10 R_d, gas shape measured).
+MUTATE=1 multiplies every mock analyst velocity by (|R|/1 kpc)^0.1 and writes *_MUTATE outputs; the recovery control must then fail.
+kappa = 1/2 and Omega_c h^2 stay fitted.  Nothing here says the data favour any law; this is a feasibility study on mocks.
+
+==============================================================================================================
+G  the mock discs: catalogue values, windows and marker counts (radii and error bars only)
+==============================================================================================================
+  primary sample: the ten f_DM discs [3, 7, 8, 9, 11, 13, 15, 16, 17, 21];  '*'-flagged rows in the f_DM/kinematics tables: [10, 21]
+   id   z      logM*  R_d   FWHM_kpc  R_in   n_win  lnR span  med e_los  sigma-mean err (km/s)
+     3 1.541  10.64  2.50   4.83     5.00   12    0.66      14.4      7.1   
+     7 1.518  10.24  2.68   4.83     5.36   11    0.74      15.3      6.3   
+     8 1.540   9.58  1.49   4.83     4.83   11    0.78      11.2      5.5   
+     9 1.540  10.12  2.98   4.83     5.95    7    0.41       9.3      8.3   
+    11 1.384  10.68  3.51   4.80     7.02    8    0.53       6.4      3.9   
+    13 1.334   9.62  2.02   4.79     4.79   14    0.82      14.3      3.9   
+    15 1.613  10.07  2.26   4.83     4.83   11    0.62       4.7      2.8   
+    16 1.569  10.16  2.32   4.83     4.83   10    0.70       7.6      3.4   
+    17 1.353   9.55  1.43   4.79     4.79    5    0.42       8.0      7.2   
+    21 1.382  10.17  1.67   4.80     4.80   11    0.94       4.2      2.8   
+  sample median z = 1.529: rival - flat = log10 E = +0.3810 dex
+
+==============================================================================================================
+C  controls (noise-free unless stated)
+==============================================================================================================
+  [FAIL] C1 CONTROL: a noise-free POINT-MASS mock (no pressure, no smearing) is recovered by the PM estimator (|dLambda| < 2e-3 dex)
+         measured: flat +4.6e-01, rival (vs log10 E(z_med)) +5.5e-01 dex -- the rival's per-disc E(z_i) spread makes the rival residual non-zero by construction; flat is the exact test
+  [FAIL] C1b CONTROL: a noise-free DISC mock with the declared shape (mu 0.67, R_gas 2 R_d) is recovered by the DS estimator (|dLambda| < 2e-3 dex)
+         measured: flat +6.1e-01 dex; the PM estimator on the same mock gives +1.500 (edge True)
+  [FAIL] C2 CONTROL: a pure-Newtonian point-mass mock gives s = -1, y -> infinity, i.e. only an UPPER limit on a0: the PM stack sits at the grid's lower edge (Lambda <= -1.49)
+         measured: Lambda_hat -0.690, edge False
+  reported: a pure-Newtonian DISC mock (declared shape) -> DS Lambda_hat -0.574 (edge False); PM Lambda_hat +0.359 (edge False): the point-mass form reads a spurious finite a0 off a Newtonian disc
+
+==============================================================================================================
+B  what seeing does to the SLOPE: noise-free, no pressure, flat law, declared shape; the frozen window
+==============================================================================================================
+  ds_bs = slope of ln V_bs^2 minus slope of ln V_c^2 over each disc's frozen window (smearing only; the pressure term is off)
+   primary: FWHM 0.57'', bin 0.6'', H-alpha R_d: per disc +1.00 +0.82 +1.24 +0.72 +0.57 +0.92 +1.10 +1.01 +1.63 +1.07 | mean +1.008
+   bin 0.1'' (no adaptive binning)           : per disc +0.68 +0.58 +0.82 +0.49 +0.42 +0.61 +0.76 +0.71 +1.17 +0.70 | mean +0.695
+   bin 0.1'', H-alpha 1.5 R_d (optimistic)   : per disc +0.56 +0.54 +0.65 +0.42 +0.42 +0.49 +0.62 +0.63 +0.90 +0.57 | mean +0.578
+   pessimistic: FWHM 0.82'', bin 0.9''       : per disc +1.67 +1.42 +2.01 +1.33 +1.09 +1.65 +1.69 +1.63 +2.07 +1.93 | mean +1.648
+   AO-like: FWHM 0.15'', bin 0.15''          : per disc +0.07 +0.16 +0.11 +0.05 +0.10 +0.05 +0.07 +0.15 +0.09 +0.07 | mean +0.092
+  (compare: a coherent slope error of about +0.1 equals the whole flat -> rival separation; CFG250_slope_theory T5)
+
+==============================================================================================================
+P  the FROZEN primary on seeing-limited mocks: truth k = 2 (matched), declared shape, sigma 45 km/s, smearing 0.57''/0.6'', noise correlated over 6 markers, +-5 deg inclination error
+==============================================================================================================
+  N = 150 realisations per law per cell; Lambda = log10(a0_hat / 9.3603e-11); flat 0, rival +0.381
+   P_primary                  flat  n_disc  7  dropped 0.36 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 6.30
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 16.62   (s>=0 per-disc 1.00)
+   P_primary                  rival n_disc  7  dropped 0.30 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 13.68
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 27.53   (s>=0 per-disc 1.00)
+   P_bs_optimistic            flat  n_disc  7  dropped 0.36 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.07  chi2/dof 1.49
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 7.44   (s>=0 per-disc 0.97)
+   P_bs_optimistic            rival n_disc  7  dropped 0.30 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.66  chi2/dof 3.28
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 10.99   (s>=0 per-disc 0.99)
+   P_bs_pessimistic           flat  n_disc  7  dropped 0.36 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 22.83
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 48.08   (s>=0 per-disc 1.00)
+   P_bs_pessimistic           rival n_disc  7  dropped 0.30 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 52.61
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 86.68   (s>=0 per-disc 1.00)
+   P_sigma20                  flat  n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 8.36
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 13.97   (s>=0 per-disc 0.99)
+   P_sigma20                  rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 12.69
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 20.28   (s>=0 per-disc 1.00)
+   P_window_1.5fwhm           flat  n_disc  4  dropped 0.43 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.00  chi2/dof 0.83
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.30  chi2/dof 2.93   (s>=0 per-disc 0.89)
+   P_window_1.5fwhm           rival n_disc  5  dropped 0.34 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.06  chi2/dof 1.88
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.79  chi2/dof 4.39   (s>=0 per-disc 0.95)
+
+==============================================================================================================
+I  the SMEARING-FREE track (bs = None: the limit an AO or forward-modelled analysis would approach); the analyst is otherwise the frozen primary
+==============================================================================================================
+   I_matched                  flat  n_disc  7  dropped 0.36 | DS mean -0.132  sd 0.193  med sigma 0.294  edge 0.08  reject 0.01  chi2/dof 0.58
+                                                      | PM mean +0.538  sd 0.051  med sigma 0.547  edge 0.98  reject 0.01  chi2/dof 0.98   (s>=0 per-disc 0.58)
+   I_matched                  rival n_disc  7  dropped 0.30 | DS mean +0.274  sd 0.162  med sigma 0.203  edge 0.03  reject 0.00  chi2/dof 0.66
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.23  chi2/dof 2.16   (s>=0 per-disc 0.78)
+  [FAIL] C3 RECOVERY [MUTATE must fail it]: smearing-free matched mock, flat truth: the DS stack is unbiased, |mean Lambda_hat| < 0.25 x sd
+         measured: mean -0.132, sd 0.193
+  [FAIL] (reported) C4 COVERAGE: smearing-free matched cell, flat truth: the scatter of Lambda_hat over mocks agrees with the median reported sigma within a factor [0.67, 1.5] (reported: made non-load-bearing after the first mock run, disclosed in the README)
+         measured: sd/median sigma = 0.66 (sd 0.193, median sigma 0.294); below 1 = the reported sigma is conservative
+
+  axis A (pressure truth; analyst k = 2), per sigma:
+   A_k1_s20                   flat  n_disc 10  dropped 0.00 | DS mean +0.490  sd 0.085  med sigma 0.329  edge 0.63  reject 0.01  chi2/dof 0.49
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.05  chi2/dof 1.47   (s>=0 per-disc 0.82)
+   A_k1_s20                   rival n_disc 10  dropped 0.00 | DS mean +0.645  sd 0.103  med sigma 0.309  edge 0.97  reject 0.00  chi2/dof 0.51
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.48  chi2/dof 2.39   (s>=0 per-disc 0.91)
+   A_k2_s20                   flat  n_disc 10  dropped 0.00 | DS mean +0.348  sd 0.121  med sigma 0.266  edge 0.33  reject 0.00  chi2/dof 0.40
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.01  chi2/dof 1.12   (s>=0 per-disc 0.75)
+   A_k2_s20                   rival n_disc 10  dropped 0.00 | DS mean +0.659  sd 0.060  med sigma 0.392  edge 0.92  reject 0.00  chi2/dof 0.49
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.27  chi2/dof 1.97   (s>=0 per-disc 0.88)
+   A_K21x0.6_s20              flat  n_disc 10  dropped 0.00 | DS mean +0.492  sd 0.104  med sigma 0.301  edge 0.84  reject 0.00  chi2/dof 0.52
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.17  chi2/dof 1.64   (s>=0 per-disc 0.87)
+   A_K21x0.6_s20              rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.00  chi2/dof 0.70
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.79  chi2/dof 2.89   (s>=0 per-disc 0.94)
+   A_K21x1_s20                flat  n_disc 10  dropped 0.00 | DS mean +0.489  sd 0.105  med sigma 0.310  edge 0.82  reject 0.00  chi2/dof 0.45
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.12  chi2/dof 1.52   (s>=0 per-disc 0.86)
+   A_K21x1_s20                rival n_disc 10  dropped 0.00 | DS mean +0.639  sd 0.053  med sigma 0.253  edge 0.97  reject 0.01  chi2/dof 0.64
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.69  chi2/dof 2.68   (s>=0 per-disc 0.93)
+   A_K21x1.4_s20              flat  n_disc 10  dropped 0.00 | DS mean +0.451  sd 0.123  med sigma 0.292  edge 0.73  reject 0.00  chi2/dof 0.44
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.09  chi2/dof 1.45   (s>=0 per-disc 0.85)
+   A_K21x1.4_s20              rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.00  chi2/dof 0.58
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.55  chi2/dof 2.46   (s>=0 per-disc 0.91)
+   A_k1_s30                   flat  n_disc 10  dropped 0.00 | DS mean +0.469  sd 0.092  med sigma 0.267  edge 0.65  reject 0.01  chi2/dof 0.55
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.12  chi2/dof 1.58   (s>=0 per-disc 0.83)
+   A_k1_s30                   rival n_disc 10  dropped 0.00 | DS mean +0.670  sd 0.079  med sigma 0.320  edge 0.97  reject 0.00  chi2/dof 0.57
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.62  chi2/dof 2.71   (s>=0 per-disc 0.92)
+   A_k2_s30                   flat  n_disc  9  dropped 0.08 | DS mean +0.125  sd 0.189  med sigma 0.233  edge 0.06  reject 0.01  chi2/dof 0.50
+                                                      | PM mean +0.545  sd 0.038  med sigma 0.282  edge 0.98  reject 0.03  chi2/dof 1.20   (s>=0 per-disc 0.68)
+   A_k2_s30                   rival n_disc 10  dropped 0.00 | DS mean +0.532  sd 0.110  med sigma 0.281  edge 0.77  reject 0.00  chi2/dof 0.51
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.16  chi2/dof 1.82   (s>=0 per-disc 0.80)
+   A_K21x0.6_s30              flat  n_disc 10  dropped 0.00 | DS mean +0.601  sd 0.099  med sigma 0.336  edge 0.95  reject 0.01  chi2/dof 0.67
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.39  chi2/dof 2.25   (s>=0 per-disc 0.91)
+   A_K21x0.6_s30              rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.01  chi2/dof 0.83
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.97  chi2/dof 3.59   (s>=0 per-disc 0.95)
+   A_K21x1_s30                flat  n_disc 10  dropped 0.00 | DS mean +0.571  sd 0.090  med sigma 0.377  edge 0.91  reject 0.00  chi2/dof 0.65
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.38  chi2/dof 2.11   (s>=0 per-disc 0.90)
+   A_K21x1_s30                rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.00  chi2/dof 0.79
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.84  chi2/dof 3.29   (s>=0 per-disc 0.95)
+   A_K21x1.4_s30              flat  n_disc 10  dropped 0.00 | DS mean +0.523  sd 0.104  med sigma 0.316  edge 0.89  reject 0.00  chi2/dof 0.58
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.17  chi2/dof 1.78   (s>=0 per-disc 0.90)
+   A_K21x1.4_s30              rival n_disc 10  dropped 0.00 | DS mean +0.674  sd nan  med sigma 0.283  edge 0.99  reject 0.00  chi2/dof 0.70
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.81  chi2/dof 3.17   (s>=0 per-disc 0.94)
+   A_k1_s45                   flat  n_disc  8  dropped 0.13 | DS mean +0.524  sd 0.099  med sigma 0.241  edge 0.73  reject 0.01  chi2/dof 0.51
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.36  chi2/dof 2.27   (s>=0 per-disc 0.90)
+   A_k1_s45                   rival n_disc 10  dropped 0.02 | DS mean +0.749  sd 0.037  med sigma 0.247  edge 0.98  reject 0.00  chi2/dof 0.64
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.83  chi2/dof 3.21   (s>=0 per-disc 0.94)
+   A_k2_s45                   flat  n_disc  7  dropped 0.36 | DS mean -0.155  sd 0.170  med sigma 0.309  edge 0.13  reject 0.01  chi2/dof 0.54
+                                                      | PM mean +0.522  sd 0.056  med sigma 0.452  edge 0.95  reject 0.01  chi2/dof 0.90   (s>=0 per-disc 0.57)
+   A_k2_s45                   rival n_disc  7  dropped 0.30 | DS mean +0.283  sd 0.153  med sigma 0.203  edge 0.02  reject 0.00  chi2/dof 0.66
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.22  chi2/dof 2.12   (s>=0 per-disc 0.78)
+   A_K21x0.6_s45              flat  n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.25  chi2/dof 1.66
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 5.05   (s>=0 per-disc 0.97)
+   A_K21x0.6_s45              rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.31  chi2/dof 2.02
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 6.51   (s>=0 per-disc 0.97)
+   A_K21x1_s45                flat  n_disc 10  dropped 0.00 | DS mean -0.079  sd nan  med sigma 0.177  edge 0.99  reject 0.31  chi2/dof 1.98
+                                                      | PM mean -0.036  sd nan  med sigma 0.189  edge 0.99  reject 0.99  chi2/dof 5.19   (s>=0 per-disc 0.95)
+   A_K21x1_s45                rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.19  chi2/dof 1.62
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 5.54   (s>=0 per-disc 0.98)
+   A_K21x1.4_s45              flat  n_disc  9  dropped 0.09 | DS mean +0.617  sd 0.045  med sigma 0.310  edge 0.97  reject 0.02  chi2/dof 0.77
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.78  chi2/dof 3.43   (s>=0 per-disc 0.95)
+   A_K21x1.4_s45              rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.11  chi2/dof 1.38
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 4.83   (s>=0 per-disc 0.97)
+   A_k1_s60                   flat  n_disc  7  dropped 0.34 | DS mean +0.613  sd 0.094  med sigma 0.251  edge 0.59  reject 0.00  chi2/dof 0.55
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.71  chi2/dof 3.39   (s>=0 per-disc 0.92)
+   A_k1_s60                   rival n_disc  8  dropped 0.24 | DS mean +0.709  sd 0.134  med sigma 0.262  edge 0.99  reject 0.02  chi2/dof 0.63
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.99  chi2/dof 5.10   (s>=0 per-disc 0.97)
+   A_k2_s60                   flat  n_disc  3  dropped 0.71 | DS mean +0.142  sd 0.065  med sigma 0.838  edge 0.85  reject 0.00  chi2/dof 0.28
+                                                      | PM mean +0.460  sd 0.122  med sigma 0.516  edge 0.98  reject 0.00  chi2/dof 0.54   (s>=0 per-disc 0.66)
+   A_k2_s60                   rival n_disc  6  dropped 0.47 | DS mean +0.179  sd 0.183  med sigma 0.346  edge 0.17  reject 0.00  chi2/dof 0.42
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.03  chi2/dof 1.21   (s>=0 per-disc 0.82)
+   A_K21x0.6_s60              flat  n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 8.28
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 17.08   (s>=0 per-disc 0.99)
+   A_K21x0.6_s60              rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.99  chi2/dof 5.48
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 13.55   (s>=0 per-disc 0.99)
+   A_K21x1_s60                flat  n_disc  7  dropped 0.26 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.51  chi2/dof 2.89
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.99  chi2/dof 9.92   (s>=0 per-disc 0.97)
+   A_K21x1_s60                rival n_disc 10  dropped 0.02 | DS mean +0.376  sd nan  med sigma 0.218  edge 0.99  reject 0.97  chi2/dof 5.05
+                                                      | PM mean +0.383  sd nan  med sigma 0.196  edge 0.99  reject 1.00  chi2/dof 13.18   (s>=0 per-disc 0.99)
+   A_K21x1.4_s60              flat  n_disc  7  dropped 0.32 | DS mean +0.748  sd nan  med sigma 0.296  edge 0.99  reject 0.18  chi2/dof 1.52
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.99  chi2/dof 7.61   (s>=0 per-disc 0.96)
+   A_K21x1.4_s60              rival n_disc  7  dropped 0.25 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.45  chi2/dof 2.64
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 10.08   (s>=0 per-disc 0.99)
+  scenario: no pressure support at all (truth 'none', analyst k = 2), sigma 45:
+   A_none_s45                 flat  n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.30  chi2/dof 2.01
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 5.93   (s>=0 per-disc 0.97)
+   A_none_s45                 rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.49  chi2/dof 2.38
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 7.47   (s>=0 per-disc 0.98)
+  axis B (baryon shape truth; DS declares mu 0.67, R_gas 2 R_d):
+   B_mu0.25_rg2.0             flat  n_disc  6  dropped 0.41 | DS mean -0.229  sd 0.158  med sigma 0.483  edge 0.50  reject 0.00  chi2/dof 0.51
+                                                      | PM mean +0.406  sd 0.083  med sigma 0.453  edge 0.98  reject 0.00  chi2/dof 0.57   (s>=0 per-disc 0.53)
+   B_mu0.25_rg2.0             rival n_disc  7  dropped 0.34 | DS mean +0.114  sd 0.146  med sigma 0.224  edge 0.00  reject 0.00  chi2/dof 0.58
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.02  chi2/dof 1.59   (s>=0 per-disc 0.73)
+   B_mu1.5_rg2.0              flat  n_disc  7  dropped 0.33 | DS mean +0.140  sd 0.152  med sigma 0.209  edge 0.00  reject 0.00  chi2/dof 0.60
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.11  chi2/dof 1.81   (s>=0 per-disc 0.74)
+   B_mu1.5_rg2.0              rival n_disc  8  dropped 0.21 | DS mean +0.543  sd 0.118  med sigma 0.210  edge 0.31  reject 0.00  chi2/dof 0.61
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.48  chi2/dof 2.56   (s>=0 per-disc 0.85)
+   B_mu4.0_rg2.0              flat  n_disc  8  dropped 0.16 | DS mean +0.663  sd 0.108  med sigma 0.199  edge 0.15  reject 0.01  chi2/dof 0.77
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.77  chi2/dof 3.15   (s>=0 per-disc 0.83)
+   B_mu4.0_rg2.0              rival n_disc 10  dropped 0.04 | DS mean +0.912  sd 0.075  med sigma 0.238  edge 0.94  reject 0.01  chi2/dof 0.72
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.99  chi2/dof 4.22   (s>=0 per-disc 0.90)
+   B_mu0.67_rg1.0             flat  n_disc  7  dropped 0.35 | DS mean -0.327  sd 0.140  med sigma 0.410  edge 0.77  reject 0.00  chi2/dof 0.58
+                                                      | PM mean +0.453  sd 0.102  med sigma 0.279  edge 0.39  reject 0.06  chi2/dof 1.66   (s>=0 per-disc 0.39)
+   B_mu0.67_rg1.0             rival n_disc  7  dropped 0.26 | DS mean -0.002  sd 0.189  med sigma 0.210  edge 0.03  reject 0.00  chi2/dof 0.64
+                                                      | PM mean +0.685  sd 0.093  med sigma 0.436  edge 0.91  reject 0.27  chi2/dof 2.27   (s>=0 per-disc 0.68)
+   B_mu0.67_rg3.0             flat  n_disc  7  dropped 0.39 | DS mean -0.204  sd 0.169  med sigma 0.329  edge 0.22  reject 0.01  chi2/dof 0.53
+                                                      | PM mean +0.445  sd 0.102  med sigma 0.402  edge 0.97  reject 0.02  chi2/dof 0.89   (s>=0 per-disc 0.56)
+   B_mu0.67_rg3.0             rival n_disc  7  dropped 0.32 | DS mean +0.265  sd 0.167  med sigma 0.220  edge 0.07  reject 0.01  chi2/dof 0.56
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.12  chi2/dof 1.73   (s>=0 per-disc 0.78)
+  axis D (truth inclination = i*, analyst i_SFR):
+   D_inc_star_truth           flat  n_disc  7  dropped 0.36 | DS mean -0.207  sd 0.147  med sigma 0.363  edge 0.31  reject 0.00  chi2/dof 0.85
+                                                      | PM mean +0.519  sd 0.080  med sigma 0.331  edge 0.77  reject 0.01  chi2/dof 1.16   (s>=0 per-disc 0.52)
+   D_inc_star_truth           rival n_disc  7  dropped 0.30 | DS mean +0.250  sd 0.166  med sigma 0.197  edge 0.01  reject 0.00  chi2/dof 0.61
+                                                      | PM mean +0.751  sd nan  med sigma 0.336  edge 0.99  reject 0.15  chi2/dof 1.84   (s>=0 per-disc 0.76)
+
+  sigma_sys (smearing-free track) = quadrature sum over the axes of half the spread of the mock-mean Lambda_hat (the larger of flat/rival; 'nan' = fewer than two finite cells):
+   DS: A (pressure) sigma 20: 0.072 (8/10 finite), sigma 30: 0.238 (8/10 finite), sigma 45: 0.386 (6/10 finite), sigma 60: 0.303 (6/10 finite) | B (shape) 0.495 (12/12) | D (inclination) 0.026
+       total: sigma 20: 0.501 dex, sigma 30: 0.549 dex, sigma 45: 0.628 dex, sigma 60: 0.581 dex
+   PM: A (pressure) sigma 20: nan (0/10 finite), sigma 30: nan (1/10 finite), sigma 45: 0.279 (2/10 finite), sigma 60: nan (2/10 finite) | B (shape) 0.058 (5/12) | D (inclination) 0.001
+       total: sigma 20: nan dex, sigma 30: nan dex, sigma 45: 0.285 dex, sigma 60: nan dex
+
+==============================================================================================================
+H  expected separation between the laws, and the frozen decision rule on mocks
+==============================================================================================================
+  (1) the FROZEN primary, seeing-limited (P_primary):
+      flat  truth: DS stack at a grid edge (a0 limit) in 1.00 of mocks, model rejected (p < 0.01) in 1.00; median chi2/dof 6.3
+      rival truth: DS stack at a grid edge (a0 limit) in 1.00 of mocks, model rejected (p < 0.01) in 1.00; median chi2/dof 13.7
+      decision rule, flat truth: lean flat 0.00; lean rival 0.00; both allowed 0.00; neither 0.00; non-diag (limit or model rejected) 1.00
+      decision rule, rival truth: lean flat 0.00; lean rival 0.00; both allowed 0.00; neither 0.00; non-diag (limit or model rejected) 1.00
+
+  (2) the smearing-free track (truth k = 2 matched), per sigma:
+   DS sigma   20: rival - flat = +0.312 dex (expected +0.381); flat bias +0.348, rival bias +0.278; usable 0.67/0.08; S_stat 3.26; S_tot (sigma_sys 0.501) 0.61
+   DS sigma   30: rival - flat = +0.407 dex (expected +0.381); flat bias +0.125, rival bias +0.149; usable 0.94/0.23; S_stat 2.63; S_tot (sigma_sys 0.549) 0.71
+   DS sigma   45: rival - flat = +0.438 dex (expected +0.381); flat bias -0.155, rival bias -0.101; usable 0.87/0.98; S_stat 2.70; S_tot (sigma_sys 0.628) 0.68
+   DS sigma   60: rival - flat = +0.037 dex (expected +0.381); flat bias +0.142, rival bias -0.200; usable 0.15/0.83; S_stat 0.27; S_tot (sigma_sys 0.581) 0.06
+   PM sigma   20: no finite separation (a stack at a grid edge / too few discs under one law)
+   PM sigma   30: no finite separation (a stack at a grid edge / too few discs under one law)
+   PM sigma   45: no finite separation (a stack at a grid edge / too few discs under one law)
+   PM sigma   60: no finite separation (a stack at a grid edge / too few discs under one law)
+
+  (3) the frozen decision rule on smearing-free mocks (DS, sigma 45):
+   smearing-free, truth k = 2, declared shape, flat truth: lean flat 0.00; lean rival 0.00; both allowed 0.87; neither 0.00; non-diag (limit or model rejected) 0.13
+   smearing-free, truth k = 2, declared shape, rival truth: lean flat 0.00; lean rival 0.00; both allowed 0.98; neither 0.00; non-diag (limit or model rejected) 0.02
+   smearing-free, marginal over axes A and B, flat truth: lean flat 0.00; lean rival 0.00; both allowed 0.45; neither 0.00; non-diag (limit or model rejected) 0.55
+   smearing-free, marginal over axes A and B, rival truth: lean flat 0.00; lean rival 0.00; both allowed 0.46; neither 0.00; non-diag (limit or model rejected) 0.54
+
+==============================================================================================================
+V  variants of the smearing-free track (reported) and what would make the test work
+==============================================================================================================
+   V_noise_w1                 flat  n_disc  7  dropped 0.36 | DS mean -0.140  sd 0.165  med sigma 0.297  edge 0.09  reject 0.00  chi2/dof 0.47
+                                                      | PM mean +0.520  sd 0.045  med sigma 0.365  edge 0.99  reject 0.00  chi2/dof 0.86   (s>=0 per-disc 0.60)
+   V_noise_w1                 rival n_disc  7  dropped 0.30 | DS mean +0.306  sd 0.141  med sigma 0.199  edge 0.01  reject 0.00  chi2/dof 0.56
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.13  chi2/dof 1.97   (s>=0 per-disc 0.81)
+                              coverage sd/med sigma = 0.56
+   V_noise_w9                 flat  n_disc  7  dropped 0.36 | DS mean -0.113  sd 0.158  med sigma 0.282  edge 0.10  reject 0.00  chi2/dof 0.48
+                                                      | PM mean +0.420  sd 0.038  med sigma 0.269  edge 0.99  reject 0.01  chi2/dof 0.89   (s>=0 per-disc 0.60)
+   V_noise_w9                 rival n_disc  7  dropped 0.30 | DS mean +0.303  sd 0.131  med sigma 0.198  edge 0.03  reject 0.00  chi2/dof 0.59
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.17  chi2/dof 2.04   (s>=0 per-disc 0.80)
+                              coverage sd/med sigma = 0.56
+   V_window_3Rd               flat  n_disc  2  dropped 0.67 | DS    (fewer than 3 discs survive)
+   V_window_3Rd               rival n_disc  3  dropped 0.60 | DS mean +0.124  sd 0.230  med sigma 0.238  edge 0.07  reject 0.00  chi2/dof 0.17
+                                                      | PM mean +0.351  sd 0.162  med sigma 0.226  edge 0.31  reject 0.00  chi2/dof 0.30   (s>=0 per-disc 0.44)
+   V_window_2Rd_nobeamguard   flat  n_disc  7  dropped 0.41 | DS mean -0.093  sd 0.182  med sigma 0.234  edge 0.03  reject 0.00  chi2/dof 0.52
+                                                      | PM mean +0.624  sd 0.028  med sigma 0.255  edge 0.97  reject 0.00  chi2/dof 0.80   (s>=0 per-disc 0.64)
+   V_window_2Rd_nobeamguard   rival n_disc  7  dropped 0.27 | DS mean +0.337  sd 0.131  med sigma 0.155  edge 0.01  reject 0.00  chi2/dof 0.60
+                                                      | PM mean +0.811  sd nan  med sigma 0.344  edge 0.99  reject 0.11  chi2/dof 1.89   (s>=0 per-disc 0.83)
+                              coverage sd/med sigma = 0.78
+   V_sample_no21              flat  n_disc  6  dropped 0.34 | DS mean -0.091  sd 0.198  med sigma 0.376  edge 0.26  reject 0.00  chi2/dof 0.54
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.01  chi2/dof 0.80   (s>=0 per-disc 0.65)
+   V_sample_no21              rival n_disc  6  dropped 0.31 | DS mean +0.370  sd 0.130  med sigma 0.385  edge 0.75  reject 0.00  chi2/dof 0.39
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.17  chi2/dof 1.96   (s>=0 per-disc 0.91)
+                              coverage sd/med sigma = 0.53
+   V_sample_all22             flat  n_disc 12  dropped 0.40 | DS mean -0.075  sd 0.204  med sigma 0.259  edge 0.03  reject 0.01  chi2/dof 0.63
+                                                      | PM mean +0.964  sd 0.156  med sigma 0.274  edge 0.99  reject 0.01  chi2/dof 0.69   (s>=0 per-disc 0.54)
+   V_sample_all22             rival n_disc 13  dropped 0.34 | DS mean +0.553  sd 0.137  med sigma 0.265  edge 0.27  reject 0.00  chi2/dof 0.48
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.06  chi2/dof 1.28   (s>=0 per-disc 0.74)
+                              coverage sd/med sigma = 0.79
+   V_kernel_nu_mono           flat  n_disc  7  dropped 0.34 | DS mean -0.185  sd 0.189  med sigma 0.279  edge 0.01  reject 0.00  chi2/dof 0.57
+                                                      | PM mean +0.632  sd 0.062  med sigma 0.491  edge 0.99  reject 0.05  chi2/dof 1.46   (s>=0 per-disc 0.66)
+   V_kernel_nu_mono           rival n_disc  7  dropped 0.25 | DS mean +0.313  sd 0.192  med sigma 0.281  edge 0.06  reject 0.00  chi2/dof 0.68
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.37  chi2/dof 2.49   (s>=0 per-disc 0.80)
+                              coverage sd/med sigma = 0.68
+
+  remedies (on top of the smearing-free track unless stated):
+   X1A_k2                     flat  n_disc 10  dropped 0.00 | DS mean +0.409  sd 0.118  med sigma 0.288  edge 0.62  reject 0.00  chi2/dof 0.44
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.04  chi2/dof 1.13   (s>=0 per-disc 0.80)
+   X1A_k2                     rival n_disc 10  dropped 0.00 | DS mean +0.650  sd 0.050  med sigma 0.341  edge 0.93  reject 0.00  chi2/dof 0.52
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.39  chi2/dof 2.23   (s>=0 per-disc 0.89)
+   X2_AO_psf0.15_forward_modelled flat  n_disc  7  dropped 0.41 | DS mean +0.114  sd 0.184  med sigma 0.223  edge 0.03  reject 0.01  chi2/dof 0.60
+                                                      | PM mean +0.526  sd 0.112  med sigma 0.315  edge 0.99  reject 0.01  chi2/dof 1.21   (s>=0 per-disc 0.75)
+   X2_AO_psf0.15_forward_modelled rival n_disc  7  dropped 0.27 | DS mean +0.478  sd 0.118  med sigma 0.184  edge 0.08  reject 0.00  chi2/dof 0.60
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.30  chi2/dof 2.39   (s>=0 per-disc 0.88)
+   X4_radii_to_10Rd           flat  n_disc  7  dropped 0.63 | DS mean -0.190  sd 0.167  med sigma 0.156  edge 0.01  reject 0.02  chi2/dof 0.82
+                                                      | PM mean +0.421  sd 0.138  med sigma 0.162  edge 0.09  reject 0.05  chi2/dof 1.17   (s>=0 per-disc 0.31)
+   X4_radii_to_10Rd           rival n_disc  7  dropped 0.42 | DS mean +0.280  sd 0.100  med sigma 0.100  edge 0.00  reject 0.12  chi2/dof 1.36
+                                                      | PM mean +0.751  sd 0.083  med sigma 0.240  edge 0.52  reject 0.17  chi2/dof 1.59   (s>=0 per-disc 0.40)
+   X14_cold_radii_to_10Rd     flat  n_disc 10  dropped 0.00 | DS mean +0.660  sd 0.093  med sigma 0.212  edge 0.54  reject 0.13  chi2/dof 1.51
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.93  chi2/dof 4.28   (s>=0 per-disc 0.83)
+   X14_cold_radii_to_10Rd     rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.53  chi2/dof 2.51
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 10.86   (s>=0 per-disc 0.94)
+   X2c_AO_cold                flat  n_disc 10  dropped 0.00 | DS mean +0.563  sd 0.061  med sigma 0.294  edge 0.94  reject 0.00  chi2/dof 0.59
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.61  chi2/dof 2.60   (s>=0 per-disc 0.95)
+   X2c_AO_cold                rival n_disc 10  dropped 0.00 | DS mean +nan  sd nan  med sigma nan  edge 1.00  reject 0.00  chi2/dof 0.98
+                                                      | PM mean +nan  sd nan  med sigma nan  edge 1.00  reject 1.00  chi2/dof 5.04   (s>=0 per-disc 0.98)
+   A_k2_s45                                 S_stat  2.70  sigma_sys 0.628  S_tot  0.68  (flat bias -0.155, rival bias -0.101)  -- smearing-free, sigma 45 (pressure + shape + inclination systematics)
+   X1A_k2                                   S_stat  2.66  sigma_sys 0.496  S_tot  0.48  (flat bias +0.409, rival bias +0.269)  -- cold tracer sigma 10 km/s (pressure axis re-run at sigma 10)
+   X1A_k2 (shape measured)                  S_stat  2.66  sigma_sys 0.033  S_tot  2.51  (flat bias +0.409, rival bias +0.269)  -- cold tracer AND the gas shape measured (shape axis removed)
+   X2_AO_psf0.15_forward_modelled           S_stat  2.35  sigma_sys 0.628  S_tot  0.56  (flat bias +0.114, rival bias +0.094)  -- AO-like PSF 0.15'' through the forward model, sigma 45
+   X2c_AO_cold                             : no finite separation
+   X4_radii_to_10Rd                         S_stat  3.42  sigma_sys 0.628  S_tot  0.73  (flat bias -0.190, rival bias -0.103)  -- markers continued to 10 R_d (twice the median error), sigma 45
+   X14_cold_radii_to_10Rd                  : no finite separation
+   (a sample three times larger scales S_stat by sqrt 3 = 1.73 and leaves sigma_sys unchanged)
+
+==============================================================================================================
+R  pre-flight reading
+==============================================================================================================
+  [FAIL] (reported) H0 FEASIBILITY (the frozen gate; reported, not an exit-code check): on seeing-limited KURVS-like mocks (sigma 45) the frozen primary returns a usable stack (edge or rejected in < 50%) AND separates the laws by >= 2 sigma including sigma_sys
+         measured: unusable fraction flat 1.00, rival 1.00; S_tot n/a; smearing-free S_stat 2.70, S_tot 0.68; P(lean rival | flat truth, smearing-free marginal) 0.00
+
+  wall time 81 s
+
+  0/6 checks pass; load-bearing failures: 4; wrote CFG250_preflight_MUTATE_results.json
+rc = 1
