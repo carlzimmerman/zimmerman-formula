@@ -108,3 +108,7 @@ python3 campaign_fresh_gravity/CFG186_a0_vs_cmb_speed/cfg186_c_pergalaxy_table.p
 - `cfg186_common.py`: loader, velocities, 2D profile, curves, fitter, pool tasks.
 - `cfg186_a_curves.npz` / `_MUTATE.npz`: the coarse 2D curves.
 - `*_results*.json`: every number quoted above.
+
+
+## Disclosure after the independent referee CFG193 (04dcc6b46; appended 2026-09-29; the text above is left as first written)
+NON-DIAGNOSTIC holds; the sample, speeds, Fisher row and lever arm reproduce. One disclosure. The profile fits bound the inclination at ±8 σ_Inc (capped to [5°, 90°]) and the Υ parameters at ±10 prior-σ. The frozen text says only "inclination Gaussian", so these boxes are UNDECLARED implementation choices. For NGC2403 the box binds: the unboxed solution sits at −8.26 σ_Inc. With the box removed, β̂ moves from +0.887 to about +0.49 (p 0.22; 95% upper limit 3.0), and the referee's own fit with the box imposed gives +0.93. The earlier "optimiser stuck in a local minimum" reading is withdrawn by both sides: inside the box, 40 cold starts reproduce the stored values exactly (the orchestrating session checked every x node of NGC2403's t = −4 row, plus F571-8, UGC05764 and UGC00731). β̂ is therefore fragile to an undeclared nuisance bound. Quote both values; no verdict changes. An unexplained residual of about 0.15 in χ² remains in 364 UGC00731 cells.

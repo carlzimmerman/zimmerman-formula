@@ -90,3 +90,12 @@ MUTATE=2 python3 campaign_fresh_gravity/CFG176_dark_energy_flow/CFG176_de_flow.p
 python3 campaign_fresh_gravity/CFG176_dark_energy_flow/CFG176_de_flow.py            # rc 0
 ```
 The script reads CFG6_common.py, CFG6's results JSON, the committed thinned DESI chains and CFG174's results JSON, all read-only. It writes only in this directory and writes no bytecode.
+
+
+## Corrections after the independent referee CFG195 (e6cd64049; re-run in a scratch copy by the orchestrating session, all outputs identical; appended 2026-09-29)
+The referee reproduces this lane's numbers to about 1e-5, including 0.078 (Pantheon+ 0.0490 / DESY5 0.0345 / Union3 0.0781). Corrections to the framing:
+1. **0.078 is a perfect-fluid number.** The null-energy-condition (NEC) maximum is g/e = 0.866 (1 + w_iso), giving 0.057 / 0.040 / 0.090, still 3.2× below the needed 0.293.
+2. **The DESI total w bounds a flow only if every component respects the NEC.** With a phantom compensator (w ≥ −2), R is reached at total 1 + w = 0.05 with a phantom fraction of 0.29. Without one, R is never reached. The CPL posterior is phantom for 65–71% of cosmic time, and those epochs are clipped to zero carrying.
+3. **"A Λ vacuum cannot be compacted"** needs the separate conservation of the dark-energy stress (a premise), which the bottom line did not state.
+4. **The |β| range across both footings** is 1.55e4–6.53e5; the 1.6e4–4.9e5 quoted is canonical-only.
+5. **Two gaps and one counterexample.** The repo holds no DESI-alone or no-SN chain, so that case is untested. The referee's free-form attack A3 finds a NEC-respecting ρ_DE(z) that mimics the CPL background and reaches the needed column when Ω_m is free; it is kept as a failure of this lane's bound.
