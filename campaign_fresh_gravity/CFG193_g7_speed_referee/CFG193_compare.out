@@ -1,0 +1,114 @@
+CFG193_compare (repo = <repo>; CFG186 files read: its .npz / .json / .out only)
+(1) velocities among the 149 clean: CFG186 has 143 with a velocity, mine 142; in both 142; only in CFG186: ['F583-1']; only in mine: []
+    cz_hel differences over the 142 common galaxies: max |dcz| = 0.0 km/s; galaxies with |dcz| > 0.5: []
+    source label differences (mine vs CFG186) among common galaxies: [('NGC3877', 'KT2017', 'KT17'), ('NGC3949', 'KT2017', 'KT17'), ('NGC3953', 'KT2017', 'KT17'), ('NGC4051', 'KT2017', 'KT17'), ('NGC4085', 'KT2017', 'KT17'), ('NGC4138', 'KT2017', 'KT17'), ('NGC4217', 'KT2017', 'KT17'), ('NGC5005', 'KT2017', 'KT17'), ('UGC11914', '2MRS', 'KT17')]
+    velocity source counts, all 175 (README/JSON of CFG186 vs mine): {'UNGC': 20, 'NED': 126, 'none': 11, 'KT17': 16, '2MRS': 2}  vs  {'2MRS': 3, 'KT2017': 12, 'NED': 126, 'None': 14, 'UNGC': 20}
+(2) primary sets: CFG186 68, mine 68; identical: True
+    R2 |u_mine(comoving D) - u_CFG186 (recomputed by its convention: D luminosity, its cz)|: max 8.5, median 1.5 km/s; galaxies > 20 km/s: 0; > 10: 0
+    same with my luminosity-D variant (only the D convention matches): max 0.00, median 0.00 km/s
+    largest 5 |du| (comoving vs CFG186): [('NGC3992', -8.5), ('NGC3726', -4.9), ('NGC3769', -4.9), ('NGC3877', -4.9), ('NGC3893', -4.9)]
+    sigma_u medians (mine vs CFG186 JSON): {'Cepheid': 94.55004558918311, 'SNIa': 128.1385139400218, 'TRGB': 15.567697682194222, 'UMa': 168.7155618237333}  vs  {'TRGB': 15.6, 'Cepheid': 94.7, 'UMa': 169.1, 'SNIa': 128.6}
+    z catalogue sd: mine 0.2357 vs CFG186 0.2351; corr(u, V_LG.n): mine 0.751 vs CFG186 0.755
+(3) curves [my main curves vs CFG186]: 149 galaxies, 213722 cells within dchi2<=25 of the minimum: median (mine - CFG186) = -0.0000, 95% |d| = 0.0006, max |d| = 19.412; galaxies with max|d| > 0.1: 15
+    worst galaxies (max|d|, median d): [('NGC2403', 19.412, 0.0), ('F571-8', 14.815, 0.0), ('UGC05764', 10.787, -0.0), ('UGC01281', 1.977, 1.868), ('NGC0891', 1.039, 0.984), ('UGC11455', 1.037, 0.998)]
+(3) curves [my U2 point-mask variant vs CFG186]: 149 galaxies, 213722 cells within dchi2<=25 of the minimum: median (mine - CFG186) = -0.0000, 95% |d| = 0.0006, max |d| = 19.412; galaxies with max|d| > 0.1: 15
+    worst galaxies (max|d|, median d): [('NGC2403', 19.412, 0.0), ('F571-8', 14.815, 0.0), ('UGC05764', 10.787, -0.0), ('NGC0891', 1.039, 0.984), ('UGC11455', 1.037, 0.998), ('UGC01281', 1.034, 1.006)]
+    primary galaxies whose usable-point set differs between my U1 and the U2 (CFG186-like) mask: [('UGC01281', 25, 23)]
+(4) THEIR curves, THEIR speeds (lum D), MY fitter        beta_hat = +0.874 (L -10.095), tau 0.345, median sigma_i 0.168, Fisher 0.453, dF(0) 2.86 dF(0.5) 0.37 dF(0.887) 0.00
+(4) THEIR curves, MY speeds (comoving D), MY fitter      beta_hat = +0.869 (L -10.095), tau 0.345, median sigma_i 0.168, Fisher 0.451, dF(0) 2.85 dF(0.5) 0.37 dF(0.887) 0.00
+(4) MY curves, THEIR speeds, MY fitter                   beta_hat = +0.498 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.448, dF(0) 1.39 dF(0.5) 0.00 dF(0.887) 0.39
+(4) MY curves, MY speeds, MY fitter                      beta_hat = +0.494 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.447, dF(0) 1.38 dF(0.5) 0.00 dF(0.887) 0.40
+(4) MY U2-mask curves, MY speeds, MY fitter              beta_hat = +0.495 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.447, dF(0) 1.38 dF(0.5) 0.00 dF(0.887) 0.40
+(4) MY U2-mask curves, THEIR speeds, MY fitter           beta_hat = +0.499 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.448, dF(0) 1.39 dF(0.5) 0.00 dF(0.887) 0.39
+(4b) galaxies whose curves differ by > 0.1 anywhere within dchi2<=25 of the minimum: 15
+     F571-8     worst cell t=+3.00 x=-9.00: mine 339.845 | CFG186 354.660 | direct 40-start 339.845 -> CFG186 above the direct minimum (trapped)
+     IC4202     worst cell t=-4.00 x=-9.86: mine 938.099 | CFG186 937.078 | direct 40-start 938.099 -> both at the direct minimum (different point set / model)
+     NGC0891    worst cell t=-1.00 x=-9.80: mine 96.170 | CFG186 95.131 | direct 40-start 96.170 -> both at the direct minimum (different point set / model)
+     NGC2403    worst cell t=-4.00 x=-9.04: mine 751.898 | CFG186 771.310 | direct 40-start 751.898 -> CFG186 above the direct minimum (trapped)
+     NGC7814    worst cell t=-0.25 x=-9.84: mine 32.405 | CFG186 31.373 | direct 40-start 32.405 -> both at the direct minimum (different point set / model)
+     UGC00731   worst cell t=+1.75 x=-11.28: mine 131.338 | CFG186 132.330 | direct 40-start 131.338 -> CFG186 above the direct minimum (trapped)
+     UGC01281   worst cell t=+0.25 x=-10.32: mine 32.004 | CFG186 30.027 | direct 40-start 32.004 -> both at the direct minimum (different point set / model)
+     UGC04278   worst cell t=-2.00 x=-9.32: mine 80.921 | CFG186 80.779 | direct 40-start 80.921 -> both at the direct minimum (different point set / model)
+     UGC05764   worst cell t=+1.50 x=-10.98: mine 177.108 | CFG186 187.896 | direct 40-start 177.108 -> CFG186 above the direct minimum (trapped)
+     UGC05986   worst cell t=+0.75 x=-9.94: mine 65.844 | CFG186 65.697 | direct 40-start 65.844 -> both at the direct minimum (different point set / model)
+     UGC07125   worst cell t=+0.00 x=-11.30: mine 46.309 | CFG186 46.155 | direct 40-start 46.309 -> both at the direct minimum (different point set / model)
+     UGC07151   worst cell t=-0.75 x=-10.92: mine 47.141 | CFG186 47.005 | direct 40-start 47.141 -> both at the direct minimum (different point set / model)
+     UGC08286   worst cell t=+0.25 x=-10.28: mine 72.488 | CFG186 72.328 | direct 40-start 72.488 -> both at the direct minimum (different point set / model)
+     UGC08550   worst cell t=+0.25 x=-10.32: mine 40.345 | CFG186 40.188 | direct 40-start 40.345 -> both at the direct minimum (different point set / model)
+     UGC11455   worst cell t=-1.00 x=-10.02: mine 187.543 | CFG186 186.506 | direct 40-start 187.543 -> both at the direct minimum (different point set / model)
+     primary galaxies among the differing ones: ['NGC0891', 'NGC2403', 'NGC7814', 'UGC01281', 'UGC07151', 'UGC08286']
+(4) THEIR curves, NGC2403 replaced by mine, MY speeds    beta_hat = +0.476 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.447, dF(0) 1.33 dF(0.5) 0.00 dF(0.887) 0.48
+(4) THEIR curves, ['NGC2403'] replaced by mine, MY speeds beta_hat = +0.476 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.447, dF(0) 1.33 dF(0.5) 0.00 dF(0.887) 0.48
+(4) THEIR curves, all 6 differing primaries replaced by mine beta_hat = +0.476 (L -10.037), tau 0.340, median sigma_i 0.170, Fisher 0.447, dF(0) 1.33 dF(0.5) 0.00 dF(0.887) 0.48
+(4) MY curves, NGC2403 replaced by THEIRS, MY speeds     beta_hat = +0.931 (L -10.097), tau 0.345, median sigma_i 0.168, Fisher 0.451, dF(0) 2.90 dF(0.5) 0.41 dF(0.887) 0.00
+(4c) shuffle null on THEIR curves                             beta_hat +0.869; null 16/50/84% = -0.231 / -0.067 / +0.488; p(|beta|>=|obs|) = 0.050 (N=400)
+(4c) shuffle null on THEIR curves + my NGC2403                beta_hat +0.476; null 16/50/84% = -0.231 / -0.130 / +0.570; p(|beta|>=|obs|) = 0.192 (N=400)
+(4c) shuffle null on MY curves                                beta_hat +0.494; null 16/50/84% = -0.231 / -0.130 / +0.588; p(|beta|>=|obs|) = 0.182 (N=400)
+    CFG186's own values: beta_hat = +0.887, tau = 0.344, median sigma_i = 0.168, Fisher 0.453 (dF(0) = 2.83)
+(5) row-by-row: mine (CFG193) vs CFG186; 'within' uses the frozen pass lines
+    Fisher sigma_beta (W1, H0 67.66)               mine 0.4469 | CFG186 0.4528 -> within [0.405, 0.495]
+    median Birge s                                 mine 1.429 | CFG186 1.430
+    median sigma_i (dex)                           mine 0.1705 | CFG186 0.1681
+    tau (dex)                                      mine 0.3397 | CFG186 0.3445
+    L0 (ML, beta = 0)                              mine -10.0812 | CFG186 -10.0799
+    beta_hat (primary)                             mine +0.494 | CFG186 +0.887 -> OUTSIDE [0.74, 1.04]
+    log10 abar0                                    mine -10.0374 | CFG186 -10.0957
+    bootstrap sigma (16-84 half-width)             mine 0.7017 | CFG186 0.6656 -> within [0.6, 0.74]
+    bootstrap 2.5%                                 mine -0.345 | CFG186 -0.047
+    bootstrap 97.5%                                mine +3.880 | CFG186 +3.426
+    speed-shuffle p (two-sided)                    mine 0.2199 | CFG186 0.0785 -> OUTSIDE [0.04, 0.13]
+    speed-shuffle null median                      mine -0.039 | CFG186 -0.021
+    speed-shuffle null 16%                         mine -0.231 | CFG186 -0.497
+    speed-shuffle null 84%                         mine +0.707 | CFG186 +0.500
+    shuffle within method groups p                 mine 0.3313 | CFG186 0.1039
+    noise-injection p (mine: C3 point-level mocks, N=40; CFG186: curve-level mocks) mine 0.4146 | CFG186 0.5614
+    mock sigma_beta at beta = 0 (mine C3; CFG186 curve-level) mine 1.280 | CFG186 2.249
+    beta_det (2 sigma)                             mine 2.56 | CFG186 4.50
+    W2 Fisher sigma_beta                           mine 0.596 | CFG186 0.607
+    H0 = 73 Fisher sigma_beta                      mine 0.402 | CFG186 0.409
+    shuffle-Neyman 95% upper limit                 mine 3.00 | CFG186 2.00
+    bootstrap 95th percentile                      mine 2.81 | CFG186 2.78
+    QUOTED 95% upper limit (largest of construction/bootstrap) mine 3.00 | CFG186 2.78
+    KM1 eps_min                                    mine 8.90e-07 | CFG186 9.60e-07
+    systematics rows: beta (boot sigma; shuffle p) mine | CFG186
+      H0 = 73                             +0.402 (0.705; p 0.267) |  +0.818 (0.703; p 0.068)
+      z frozen at catalogue distance      +0.409 (0.469; p 0.342) |  +0.726 (0.478; p 0.088)
+      I: TRGB + Cepheid + SNIa            +0.355 (0.735; p 0.414) |  +0.796 (0.611; p 0.116)
+      UMa only                           +20.000 (10.183; p 0.027) |  -5.000 (12.500; p 0.513)
+      W2 (coherent LG flow)               -0.249 (0.000; p 0.409) |  -0.449 (0.132; p 0.499)
+      LG-apex hemisphere                  +2.495 (2.422; p 0.025) |  +2.513 (2.961; p 0.020)
+      antapex hemisphere                  -0.371 (0.351; p 0.706) |  -0.036 (0.685; p 0.956)
+      Galactic b > 0                      +0.412 (0.535; p 0.234) |  +0.719 (0.496; p 0.168)
+      Galactic b < 0                      -0.416 (0.000; p 0.713) |  -0.998 (0.192; p 0.457)
+      no tau softening                    +1.545 (1.228; p 0.190) |  +1.522 (1.100; p 0.146)
+      no Birge scaling                    +0.158 (1.112; p 0.848) |  +0.865 (0.828; p 0.080)
+      free dipole: beta +0.130 (boot 0.503), |D| 0.539 | CFG186 +0.312 (0.613), |D| 0.411 (its text)
+      distance term: beta +0.407 gamma -0.104 | CFG186 +0.921, gamma +0.019 (its text)
+      jackknife range: [+0.354, +1.358] | CFG186 [+0.682, +1.288] (its text)
+    CFG186 MUTATE (beta = 0.30 injected): {"d_beta_point": 0.5422776531503515, "d_beta_curve": 0.567293873169435, "gamma_fixed_obs": 0.335175070388312, "z_eff": 0.4862264582486317, "d_beta_composition": 0.4293241877756477}
+    my MU1: beta_hat +0.912; bites = True
+    my MU2: beta_hat +0.494; bites = True
+    my MU3: beta_hat +0.680; bites = True
+    my MU4: beta_hat +0.129; bites = True
+    my MU5: beta_hat +0.495; bites = False
+    my MU6: beta_hat +20.000; bites = True
+(6) ATTACK (e): CFG186 part A first run vs second run vs final
+    quantity                          first     second      final
+    N_primary                            68          68          68
+    z sd (W1)                        0.2351      0.2351      0.2351
+    L0                             -10.0754    -10.0754    -10.0799
+    tau                              0.3534      0.3534      0.3445
+    median sigma_i                   0.1726      0.1726      0.1681
+    Fisher sigma_beta W1             0.4699      0.4699      0.4528
+    mock sigma (beta=0)               5.403       5.175       2.249
+    mock mean beta_hat                5.596       5.212       2.373
+    mock median beta_hat           -      -         1.456
+    beta_det (2 sigma)               10.806      10.349       4.498
+    tau without edge galaxies      -        0.2701      0.2586
+    part B: quantity | first-run | final | MUTATE first | MUTATE final
+      beta_hat                 +0.8866 | +0.8866 | +1.4289 | +1.4289
+      bootstrap sigma          0.6656 | 0.6656 | 0.7726 | 0.7726
+      shuffle p (two-sided)    0.0785 | 0.0785 | 0.0310 | 0.0310
+      noise p                  0.5614 | 0.5614 | 0.4496 | 0.4496
+      beta95 quoted            - | 2.782 | 3.578 | 3.578
+done

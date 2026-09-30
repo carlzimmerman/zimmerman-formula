@@ -1,0 +1,24 @@
+CFG193_d_design  (repo = <repo>)
+D1 check: s = sqrt(median sigma_i^2 + tau^2) = 0.380 dex, N = 68, rms z = 0.236 -> formula sigma_beta = 0.450;  my measured Fisher = 0.447 (ratio 0.99; the formula uses the median sigma_i and the population rms, the Fisher the per-galaxy weights)
+D1 target sigma_beta = 0.05 (2 sigma = G7's 0.10):  N required = (ln10 * s / 0.05)^2 / rms(z)^2
+   s (dex) \ rms z    0.270    0.236    0.500    1.000    1.390    2.000
+            0.430     5379     7060     1569      392      203       98
+            0.380     4202     5515     1225      306      159       77
+            0.300     2618     3436      763      191       99       48
+            0.200     1164     1527      339       85       44       21
+            0.100      291      382       85       21       11        5
+   (SPARC-like s = 0.43, rms z = 0.27 -> N = 5379 galaxies; s = 0.43 and rms z ~ 1 -> N = 392; s = 0.20 and rms z = 1 -> N = 85)
+   at SPARC's actual N = 68 and rms z: sigma_beta(s) = ln10 s/(sqrt(N) rms z): s = 0.43 -> 0.51; s = 0.20 -> 0.24; s = 0.10 -> 0.12  (never reaches 0.05)
+D2 UNGC: 761 rows with position, HRV and Dist; methods: {'TRGB': 242, 'TF': 204, 'mem': 109, 'h': 86, 'BS': 40, 'SBF': 23, 'Cep': 20, 'HB': 13, 'txt': 7, "h'": 4, 'CMD': 4, 'SN': 3, 'RR': 3, 'geom': 1, 'PNLF': 1, 'FP': 1}
+   independent, D <= 40 Mpc                             N= 350  rms z = 0.473  median |u| =   302  max |u| =  1206 km/s;  sigma_u at 5% distance error (median) = 14 km/s
+   independent, D <= 40 Mpc, D >= 3 Mpc                 N= 250  rms z = 0.421  median |u| =   267  max |u| =  1206 km/s;  sigma_u at 5% distance error (median) = 17 km/s
+   independent, 8 < D <= 40 Mpc                         N=  39  rms z = 0.710  median |u| =   236  max |u| =  1206 km/s;  sigma_u at 5% distance error (median) = 33 km/s
+   SPARC-like: TRGB/Cep/SN only, D <= 25                N= 265  rms z = 0.421  median |u| =   302  max |u| =   913 km/s;  sigma_u at 5% distance error (median) = 13 km/s
+   TF (mass-dependent, circular for a0; excluded)       N= 204  rms z = 1.445  median |u| =   389  max |u| =  1922 km/s;  sigma_u at 5% distance error (median) = 31 km/s
+   all rows                                             N= 761  rms z = 0.872  median |u| =   326  max |u| =  1922 km/s;  sigma_u at 5% distance error (median) = 24 km/s
+   UNGC independent-distance set: rms z 0.473 vs SPARC's 0.236 (ratio 2.01); at s = 0.43 dex that set would need N = 1755 (it has 350) for sigma_beta = 0.05; it has no rotation curves (W50 only), so it is a lever-arm census, not an a0 sample
+D2 other repo tables: KT2017 galaxies (HRV only, no distances); KT2017 groups_full (group distances from flow/TF: circular); 2MRS (cz only); ALFALFA tables (flow-model distances: circular); SLACS/SLUGGS/ATLAS3D (ellipticals, not the SPARC a0 estimator).  None gives a redshift-independent-distance sample beyond ~40 Mpc with rotation curves.
+D3 lever-arm ceiling: half the sample at w = 0 and half at 1000 km/s gives z in {0, 2.78}: rms z = 1.39; sigma_u = H0 e_D <= 100 km/s needs D <= 30 Mpc at e_D/D = 5% and D <= 49 Mpc at 3%
+D3 but nearby galaxies co-move with the Local Volume (r(u, V_LG.n) = 0.75 in SPARC): u ~ V_LG.n, so w = 0 relative to the CMB frame is rare inside 40 Mpc; the single component u alone cannot give the 3D w (only 3D flow reconstructions can)
+D4 STATEMENT: SPARC-like N = 68 gives sigma_beta ~ 0.45 (Fisher); a diagnostic sample (sigma_beta <= 0.05) needs N * rms(z)^2 >= (ln10 s / 0.05)^2 = 392 for s = 0.43 dex, i.e. ~392 galaxies with independent distances to ~5% and w spanning 0-1000 km/s (rms z ~ 1), or ~85 if per-galaxy a0 scatter s could be cut to 0.2 dex; no repo table supplies it.
+verdict: done (no pass/fail lines; design arithmetic)

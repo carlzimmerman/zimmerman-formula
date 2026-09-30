@@ -1,0 +1,84 @@
+grids identical: xgrid True tgrid True
+(1)(2) t=-4.00 is TGRID[0]; log a0=-9.04 is XGRID[113] (-9.04): a node. CFG186 value = cfg186_a_curves.npz['chi'][33, 0, 113] (float32) = 771.3100; mine = my CFG193_curves.npz['C'][33,0,113] + t^2 = 751.8985. Direct stored-grid reads; no spline, no interpolation, no CFG186 code run.
+(3) table, NGC2403 (theirs / mine / mine-theirs):
+  t=-4.00  x:    -9.10    -9.08    -9.06    -9.04    -9.02    -9.00
+     theirs     753.28   752.71   753.95   771.31   808.87   867.80
+     mine       753.28   752.71   752.25   751.90   751.66   751.51
+     diff         0.00     0.00    -1.70   -19.41   -57.21  -116.29
+  t=-3.75  x:    -9.10    -9.08    -9.06    -9.04    -9.02    -9.00
+     theirs     753.28   752.76   763.27   793.76   845.36   919.34
+     mine       753.28   752.71   752.26   751.92   751.68   751.54
+     diff         0.00    -0.05   -11.01   -41.84   -93.68  -167.80
+  t=-3.50  x:    -9.10    -9.08    -9.06    -9.04    -9.02    -9.00
+     theirs     753.38   757.65   780.89   824.98   891.14   980.74
+     mine       753.38   752.82   752.38   752.04   751.80   751.66
+     diff         0.00    -4.83   -28.51   -72.94  -139.34  -229.08
+(4) NGC2403 whole grid: cells with theirs>mine by >0.1: 2461, by >1: 2429, by >10: 2287, of 3828 feasible; mine>theirs by >0.1: 0
+   flagged t index range 0..32, x index range 0..115 (x -11.30..-9.00)
+   t=-4.00: max(theirs-mine) = 116.288 at x=-9.00; number of x cells > 0.1: 75
+   t=-3.00: max(theirs-mine) = 381.505 at x=-9.00; number of x cells > 0.1: 74
+   t=-2.00: max(theirs-mine) = 810.285 at x=-9.00; number of x cells > 0.1: 75
+   t=-1.00: max(theirs-mine) = 1412.881 at x=-9.00; number of x cells > 0.1: 75
+   t=+0.00: max(theirs-mine) = 2199.796 at x=-9.00; number of x cells > 0.1: 74
+   t=+1.00: max(theirs-mine) = 3181.598 at x=-9.00; number of x cells > 0.1: 74
+   owner's set (every 5th x, x idx multiple of 5): min(mine-theirs) = -7400.6520 (max excess of theirs); on the other x cells: -6510.494;  x idx of the stated cell = 113, mod 5 = 3
+   flagged x indices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115]; multiples of 5 among them: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 95, 100, 105, 110, 115]
+   the anchor x of CFG186's warm start (-9.92) is index 69
+   F571-8: theirs>mine by >0.1 in 84 cells (>1: 74) of 3480; t idx 23..32, x idx 101..115; flagged x idx multiples of 5: 3 of 15; worst node t=+4.00 (idx 32) x=-9.00 (idx 115): theirs 373.326 mine 351.749; max(mine-theirs) anywhere 0.013
+      row t idx 32, x idx 111..115: theirs [366.17, 367.93, 369.72, 371.51, 373.33] | mine [348.59, 348.99, 349.57, 350.43, 351.75]
+   UGC05764: theirs>mine by >0.1 in 919 cells (>1: 905) of 3016; t idx 7..26, x idx 0..102; flagged x idx multiples of 5: 21 of 103; worst node t=-2.00 (idx 8) x=-11.30 (idx 0): theirs 14597.389 mine 12730.602; max(mine-theirs) anywhere 0.000
+      row t idx 8, x idx 0..4: theirs [14597.39, 14492.5, 14383.8, 14271.23, 14154.8] | mine [12730.6, 12639.02, 12543.94, 12445.24, 12342.83]
+      column x idx 0, t idx 7..9: theirs [17314.91, 14597.39, 12328.07] | mine [15469.42, 12730.6, 10473.16]
+   UGC00731: theirs>mine by >0.1 in 1305 cells (>1: 1239) of 3016; t idx 7..32, x idx 0..115; flagged x idx multiples of 5: 24 of 116; worst node t=+4.00 (idx 32) x=-9.00 (idx 115): theirs 2435.914 mine 294.736; max(mine-theirs) anywhere 0.001
+      row t idx 32, x idx 111..115: theirs [1981.94, 2088.38, 2199.43, 2315.23, 2435.91] | mine [287.52, 289.34, 291.15, 292.95, 294.74]
+   my 60-start minimum at the NGC2403 node (data+priors, t^2 added): 751.8985; parameters: log10 Ups_d = -0.099 (prior sigma units 2.02), log10 Ups_b = -0.155, inclination 38.21 deg (catalogue 63.0 +- 3.0, i.e. -8.26 sigma)
+   CFG186-style bounds (from its README/FROZEN only, not its code): none read here; NGC2403 has bulge flag False
+(5) swap tests use CFG186's stored chi grid nodes (33 t x 116 x) and my stored grid nodes; both are then spline-interpolated in t onto TFINE by MY Curves class (cubic spline along t, same as the main fits).
+   CFG186 curves                      spline-refined t: beta_hat +0.869 ;  restricted to the 33 grid-node t values only (no spline between nodes): beta_hat +0.894
+   CFG186 curves with my NGC2403      spline-refined t: beta_hat +0.476 ;  restricted to the 33 grid-node t values only (no spline between nodes): beta_hat +0.494
+   my curves                          spline-refined t: beta_hat +0.494 ;  restricted to the 33 grid-node t values only (no spline between nodes): beta_hat +0.519
+   my curves with CFG186's NGC2403    spline-refined t: beta_hat +0.931 ;  restricted to the 33 grid-node t values only (no spline between nodes): beta_hat +0.936
+   (x is always interpolated cubically between the 0.02-dex nodes in the fit; at the fit minimum the stated NGC2403 cell is a node in both x and t.)
+(6) recomputing NGC2403, F571-8, UGC05764, UGC00731 with CFG186-style bounds (inclination Inc +- 8 sigma, log10 Upsilon = log10 Upsilon0 +- 1.0) and comparing with its stored grid
+   NGC2403   bounded-recompute minus CFG186 stored: all 3828 cells max|d| = 8.7166, 95% |d| = 7.7851, cells |d|>0.1: 2181;  (my unbounded minus stored: cells theirs>mine by >0.1: 2461)
+      node t=-4.00, x=-9.04: bounded recompute 771.319 | CFG186 stored 771.310 | unbounded 751.898 ; inclination bounds used [39.0, 87.0] deg
+   F571-8    bounded-recompute minus CFG186 stored: all 3480 cells max|d| = 0.0261, 95% |d| = 0.0024, cells |d|>0.1: 0;  (my unbounded minus stored: cells theirs>mine by >0.1: 84)
+   UGC05764  bounded-recompute minus CFG186 stored: all 3016 cells max|d| = 0.0349, 95% |d| = 0.0266, cells |d|>0.1: 0;  (my unbounded minus stored: cells theirs>mine by >0.1: 919)
+   UGC00731  bounded-recompute minus CFG186 stored: all 3016 cells max|d| = 0.1606, 95% |d| = 0.1455, cells |d|>0.1: 364;  (my unbounded minus stored: cells theirs>mine by >0.1: 1305)
+   my curves, primary members of the four (NGC2403 only) recomputed with CFG186-style bounds: beta_hat +0.931 (spline-refined t), +0.936 (nodes only); CFG186's own +0.887
+(7) per-cell solutions (log10 Upsilon0: disk -0.301, bulge -0.155; prior sigma 0.1 dex; inclination prior sigma = e_Inc):
+   NGC2403   t=-4.00 (idx 0) x=-9.04 (idx 113): stored 771.310 | mine (my bounds) 751.898 | mine in CFG186's box 771.306 | grid value of mine 751.898
+      my solution: log10 Ups_d -0.099 (u_d = +2.02 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 38.21 deg = -8.26 sigma_Inc (catalogue 63.0 +- 3.0), t = -4.00 (D' = 2.520 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 16.00)
+      CFG186-box solution: log10 Ups_d -0.133 (u_d +1.68), inclination 39.00 deg (-8.00 sigma); CFG186 box inclination [39.0, 87.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: False
+   F571-8    t=+3.50 (idx 30) x=-9.04 (idx 113): stored 360.308 | mine (my bounds) 343.988 | mine in CFG186's box 360.307 | grid value of mine 343.988
+      my solution: log10 Ups_d -1.532 (u_d = -12.31 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 83.87 deg = -0.23 sigma_Inc (catalogue 85.0 +- 5.0), t = +3.50 (D' = 90.750 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 12.25)
+      CFG186-box solution: log10 Ups_d -1.301 (u_d -10.00), inclination 65.23 deg (-3.95 sigma); CFG186 box inclination [45.0, 90.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: False
+   F571-8    t=+4.00 (idx 32) x=-9.00 (idx 115): stored 373.326 | mine (my bounds) 351.747 | mine in CFG186's box 373.326 | grid value of mine 351.749
+      my solution: log10 Ups_d -1.600 (u_d = -12.99 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 77.98 deg = -1.40 sigma_Inc (catalogue 85.0 +- 5.0), t = +4.00 (D' = 96.100 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 16.00)
+      CFG186-box solution: log10 Ups_d -1.301 (u_d -10.00), inclination 59.66 deg (-5.07 sigma); CFG186 box inclination [45.0, 90.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: False
+   UGC05764  t=+2.50 (idx 26) x=-11.18 (idx 6): stored 168.669 | mine (my bounds) 168.669 | mine in CFG186's box 168.669 | grid value of mine 168.669
+      my solution: log10 Ups_d 0.669 (u_d = +9.70 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 82.75 deg = +2.28 sigma_Inc (catalogue 60.0 +- 10.0), t = +2.50 (D' = 13.070 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 6.25)
+      CFG186-box solution: log10 Ups_d 0.669 (u_d +9.70), inclination 82.75 deg (+2.28 sigma); CFG186 box inclination [5.0, 90.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: True
+   UGC05764  t=-2.00 (idx 8) x=-11.30 (idx 0): stored 14597.389 | mine (my bounds) 12730.602 | mine in CFG186's box 14597.405 | grid value of mine 12730.602
+      my solution: log10 Ups_d 0.800 (u_d = +11.01 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 89.00 deg = +2.90 sigma_Inc (catalogue 60.0 +- 10.0), t = -2.00 (D' = 2.990 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 4.00)
+      CFG186-box solution: log10 Ups_d 0.699 (u_d +10.00), inclination 89.93 deg (+2.99 sigma); CFG186 box inclination [5.0, 90.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: False
+   UGC00731  t=+2.75 (idx 27) x=-11.30 (idx 0): stored 120.513 | mine (my bounds) 120.513 | mine in CFG186's box 120.513 | grid value of mine 120.513
+      my solution: log10 Ups_d 0.634 (u_d = +9.35 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 62.43 deg = +1.81 sigma_Inc (catalogue 57.0 +- 3.0), t = +2.75 (D' = 22.812 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 7.56)
+      CFG186-box solution: log10 Ups_d 0.634 (u_d +9.35), inclination 62.43 deg (+1.81 sigma); CFG186 box inclination [33.0, 81.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: True
+   UGC00731  t=+4.00 (idx 32) x=-9.00 (idx 115): stored 2435.914 | mine (my bounds) 294.736 | mine in CFG186's box 2435.895 | grid value of mine 294.736
+      my solution: log10 Ups_d 0.316 (u_d = +6.17 in 0.1-dex units), log10 Ups_b -0.155 (u_b = +0.00), inclination 18.09 deg = -12.97 sigma_Inc (catalogue 57.0 +- 3.0), t = +4.00 (D' = 27.500 Mpc; not a free parameter: fixed by the grid node; prior t^2 = 16.00)
+      CFG186-box solution: log10 Ups_d -0.940 (u_d -6.39), inclination 33.00 deg (-8.00 sigma); CFG186 box inclination [33.0, 81.0], Ups u in [-10,10] i.e. log10 Ups_d in [-1.301, 0.699]; my solution inside CFG186's box: False
+(5) data points / weights / mask for the four galaxies (mine U1 = the main run; U2 = CFG186-style mask):
+   NGC2403   CFG186 npt 73 | my U1 N 73 | my U2 N 73 | points with Vdisk<0 or Vbul<0 among U1: 0 | points with fiducial baryonic V^2<=0 among U1: 0 | raw file points 73 | eV min 0.21
+   F571-8    CFG186 npt 13 | my U1 N 13 | my U2 N 13 | points with Vdisk<0 or Vbul<0 among U1: 0 | points with fiducial baryonic V^2<=0 among U1: 0 | raw file points 13 | eV min 4.00
+   UGC05764  CFG186 npt 10 | my U1 N 10 | my U2 N 10 | points with Vdisk<0 or Vbul<0 among U1: 0 | points with fiducial baryonic V^2<=0 among U1: 0 | raw file points 10 | eV min 0.37
+   UGC00731  CFG186 npt 12 | my U1 N 12 | my U2 N 12 | points with Vdisk<0 or Vbul<0 among U1: 0 | points with fiducial baryonic V^2<=0 among U1: 0 | raw file points 12 | eV min 2.38
+    weights: both use chi2 = sum((V_obs - V_model)/eV)^2 with the published eV, unscaled inside the profile (Birge scaling is applied afterwards, in the statistic); priors: identical form (Upsilon: (log10 Ups - log10 Ups0)/0.1, inclination: (i' - i)/e_Inc, t^2).
+    model differences: mine signed V_disk|V_disk|, V_bul|V_bul| vs CFG186 V^2 (identical when V >= 0); g_bar floor 1e-16 m/s^2 vs S >= 1e-6 (km/s)^2; kpc = 3.0856776e19 vs 3.0857e19 m (7e-6 relative).
+(8) the cells quoted in the README, solved unbounded (my bounds) and inside CFG186's box:
+   NGC2403   node t idx 0 x idx 113: stored 771.310 | mine unbounded 751.898 (log10 Ups_d -0.099 = u +2.0; inclination 38.21 = -8.26 sigma; inside CFG186 box: False) | mine in CFG186 box 771.306
+   F571-8    node t idx 28 x idx 115: stored 354.660 | mine unbounded 339.845 (log10 Ups_d -1.515 = u -12.1; inclination 84.03 = -0.19 sigma; inside CFG186 box: False) | mine in CFG186 box 354.660
+   UGC05764  node t idx 22 x idx 16: stored 187.896 | mine unbounded 177.108 (log10 Ups_d 0.730 = u +10.3; inclination 83.72 = +2.37 sigma; inside CFG186 box: False) | mine in CFG186 box 187.897
+   UGC00731  node t idx 23 x idx 1: stored 132.330 | mine unbounded 131.338 (log10 Ups_d 0.736 = u +10.4; inclination 65.21 = +2.74 sigma; inside CFG186 box: False) | mine in CFG186 box 132.331
+   NGC2403: cells within Delta chi2 <= 25 of CFG186's minimum: 199; of those theirs>mine by >0.1: 21 (t idx 0..17, x idx 102..113); the neighbours of the stated node on the grid (x idx 111..115 at t idx 0) are: theirs [752.71, 753.95, 771.31, 808.87, 867.8]
+   my unbounded inclination offsets (sigma_Inc units) at a sample of those flagged cells: [-8.08, -8.26, -8.2, -8.13, -8.06, -8.25, -8.18, -8.11, -8.03, -8.22, -8.14, -8.06, -8.25, -8.17, -8.09, -8.19, -8.11, -8.03, -8.13, -8.04, -8.05]
