@@ -29,3 +29,4 @@
 - **An outside contact with dark energy / recombination as a surface (owner-directed):** CFG254, running.
 - **The headline a₀(z) figure:** CFG223. Its frozen caption rule did NOT release "consistent with a constant a₀", because the baryon-calibration bands dominate.
 - **The symmetric break search:** CFG235. INCONCLUSIVE: no trials-corrected break for either theory.
+- **An outside contact / recombination as a paddle on water / nothing before recombination:** CFG254. "Nothing before" is contradicted by BBN, the acoustic peaks and N_eff; a one-time contact is bounded, a continuing drive excluded, and a bubble/brane contact untestable as stated. There are two new testable predictions.

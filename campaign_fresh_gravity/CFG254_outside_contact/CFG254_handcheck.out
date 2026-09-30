@@ -1,0 +1,225 @@
+CFG254 -- an "outside contact" with the dark energy, and "nothing before recombination": a phase-1 hand-check.
+
+Research direction: this lane was directed by the owner (the repository's author), who proposed the idea and asked for it to be tested.
+Frozen criteria: ../CFG254_FROZEN_CRITERIA.md (sha256 in CFG254_CRITERIA_SHA256.txt, recorded before this script existed).
+kappa = 1/2 FITTED, not derived.  Nothing here says the theory is closed or that any data favour any model.
+Literature values not already in a committed file are marked (memory, UNVERIFIED).  No downloads; writes only in this directory.
+
+Readings (scored separately, never pooled):
+  R1-lit  nothing before recombination (no dynamics before z*)          R1-om  "created as if" it had a past (UNTESTABLE-AS-STATED)
+  R2a     a one-time contact at z_c: step (A), pulse (B), and the paddle = recombination (R2a-rec)
+  R2b     a continuing drive: monotone injection (w <= -1), constant-w family, drive-then-leak
+  R3      bubble collision / brane contact (anisotropic)
+Gates: G1 BBN / pre-recombination; G2 expansion history; G3 flat a0 at z <= 5; G4 sky isotropy; G5 constants count.
+
+Run from the repository root:
+  python3 campaign_fresh_gravity/CFG254_outside_contact/CFG254_handcheck.py
+  MUTATE=1 python3 campaign_fresh_gravity/CFG254_outside_contact/CFG254_handcheck.py   (every contact amplitude -> 0, full past restored)
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C0 kappa = 1/2 with H0 = 67.4, Omega_L = 0.6847 reproduces FP0's canonical and alt (rho_total) a0
+         measured: canonical 9.36032e-11 (FP0 9.36032e-11); alt 1.13120e-10 (FP0 1.13120e-10)
+  [PASS] C1 CAMB 1.6.6 at the Planck 2018 best fit (XR26's settings) reproduces XR26's committed r_drag, 100 theta_* and z_*
+         measured: r_drag 147.0491 (XR26 147.0491); 100theta_* 1.041116 (1.041116); z_* 1089.914 (1089.914); Y_He 0.24543
+  [PASS] C3 the lane's copies equal the committed files: DESI DR1 BAO (CFG4), CHW priors and Planck point (XR26), 100theta_* (mi_cmb_camb_run), N_eff (atomos A05), Y_P and D/H (XR26_bbn)
+         measured: BAO True; CHW/P18 True; theta True; N_eff True; BBN obs True
+  [PASS] C2 this lane's CHW 2019 implementation gives XR26's committed LCDM chi^2 at the Planck point
+         measured: 1.66414 (XR26 1.66414)
+  [PASS] C5 the Gauss-Legendre integrator agrees with scipy quad for D_M(z*), D_M(2.33) and r_s(z*), with and without a step at z_c = 1.5
+         measured: max relative difference 2.2e-16
+  [PASS] C4 the r_d spline in (omega_b, omega_c) matches CAMB at five off-grid points, and r_d is independent of h at fixed omegas
+         measured: spline max relative difference 4.0e-07; h +- 5 changes r_d by 9.5e-08
+
+  LCDM profiled on CHW 2019 + DESI DR1 BAO (12, diagonal): chi^2_min = 16.8211 (4 + 12 = 16 numbers, 4 free); omega_b 0.02246, omega_c 0.11892, h 0.67985, n_s 0.9684; Omega_m 0.3073; r_d 147.277 Mpc
+  LCDM onset of acceleration (q = 0) at this fit: z_acc = 0.652 -- a constant dark energy becomes dominant late with no event needed
+
+======================================================================================================================
+R1  'NOTHING BEFORE RECOMBINATION' against the record's numbers (G1)
+======================================================================================================================
+  CAMB (Planck 2018 best fit): r_s(z*) = 144.394 Mpc, D_M(z*) = 13869.14 Mpc, 100theta_* = 1.041116
+  (c) acoustic scale: R1-lit (sound waves start at z*) gives 100theta_* = 0.000000; observed 1.04109 +- 0.0003: pull +3470.3 sigma
+      truncated sound horizon at fixed Planck parameters (illustrative; no re-fit):
+         z_start  r_s kept (Mpc)  fraction  100theta_*      pull
+            1101           0.942   0.00652    0.006790   -3447.7
+            1200           8.930   0.06184    0.064386   -3255.7
+            1500          28.187   0.19521    0.203235   -2792.8
+            2000          50.044   0.34658    0.360830   -2267.5
+            3000          75.404   0.52221    0.543683   -1658.0
+            5000          99.216   0.68712    0.715370   -1085.7
+           1e+04         119.992   0.83100    0.865169    -586.4
+           3e+04         135.762   0.94022    0.978881    -207.4
+           1e+05         141.745   0.98166    1.022018     -63.6
+           1e+06         144.127   0.99815    1.039190      -6.3
+      sound waves must have started before z_start = 5.88e+06 (1 sigma), 2.08e+06 (3 sigma), 1.26e+06 (5 sigma) at fixed parameters (the full-past value itself sits at +0.09 sigma)
+  (d) BAO: the 12 DESI DR1 numbers at Planck 2018 distances imply r_d = 148.64 +- 0.89 Mpc (diagonal; CAMB r_drag 147.05); R1-lit has no sound horizon (r_d = 0): pull 167.2 sigma
+  (a) helium: R1-lit Y_P = 0.0000 vs 0.245 +- 0.003: pull +81.7 sigma   (standard BBN, XR26: 0.2467, -0.57 sigma)
+  (b) deuterium: R1-lit D/H = 0.000e+00 vs 2.547e-05 +- 2.9e-07: pull +87.8 sigma   (standard BBN, XR26 PArthENoPE: 2.5875e-05, -1.39 sigma)
+  (e) neutrino background: R1-lit N_eff = 0.0 vs 2.99 +- 0.17: pull +17.6 sigma (neutrinos decouple at T ~ 1 MeV, z ~ 6e9)
+      helium-by-stars energetics (reported; the concept is memory, UNVERIFIED): fusing 0.245 of all baryons releases 6.590e-14 J/m^3 today-equivalent = 1.58 x the CMB energy density (4.175e-14); released at z_f it is diluted by (1 + z_f).  Stellar helium arrives with metals (dY/dZ ~ 1-3, memory UNVERIFIED) while Y_P is measured at very low metallicity.
+  (f) blackbody (reported, not a pull): FIRAS |mu| < 9e-5, |y| < 1.5e-5 (memory, UNVERIFIED).  A blackbody made in equilibrium at z* is compatible with R1-om; the acoustic phases and the super-horizon TE correlation (memory, UNVERIFIED) are what separate R1-lit from R1-om.
+  G1 classes (R1-lit): (a) Y_P +81.7 sigma CONTRADICTS; (b) D/H +87.8 sigma CONTRADICTS; (c) theta_* +3470.3 sigma CONTRADICTS; (d) BAO r_d +167.2 sigma CONTRADICTS; (e) N_eff +17.6 sigma CONTRADICTS
+  R1-lit: FAILS G1 -> CONTRADICTED
+  R1-om ('created as if' with a past): matches every observation the standard past matches, by construction -> UNTESTABLE-AS-STATED; a restatement of the standard past.
+
+======================================================================================================================
+R2a  A ONE-TIME CONTACT: step (A) and pulse (B) in rho_DE; G2 on CHW 2019 + DESI DR1 BAO (SN not in the repo: not scored)
+======================================================================================================================
+      z_c  dchi2(A=0.5)  dchi2(A=1)      class(A=1)     A95  a0 drop at A95 (dex)   H/H_LCDM at A = 1, z = 0.5/1/2/3/5/10
+      0.1         5.335    1546.027        EXCLUDED   0.370                -0.100   0.8827 1.0069 1.0951 1.1202 1.1338 1.1385
+      0.2        16.192     651.643        EXCLUDED   0.219                -0.054   0.8458 0.9648 1.0493 1.0734 1.0865 1.0911
+      0.3        46.831     508.583        EXCLUDED   0.142                -0.033   0.8251 0.9412 1.0236 1.0472 1.0599 1.0644
+      0.5        49.718     335.517        EXCLUDED   0.117                -0.027   1.1001 0.9242 1.0051 1.0283 1.0408 1.0452
+      0.7         9.920     119.229        EXCLUDED   0.402                -0.111   1.0595 0.9116 0.9914 1.0142 1.0266 1.0310
+        1         1.198      24.305        EXCLUDED   0.564                -0.180   1.0327 1.0265 0.9790 1.0016 1.0138 1.0181
+      1.5        -1.659       1.216         ALLOWED   1.000       a0 -> 0 allowed   1.0152 1.0123 0.9691 0.9914 1.0035 1.0078
+        2        -0.567       0.920  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0079 1.0065 1.0054 0.9876 0.9996 1.0039
+      2.5        -1.222      -2.097  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0049 1.0038 1.0029 0.9853 0.9973 1.0016
+        3        -0.814      -1.495  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0031 1.0024 1.0018 1.0017 0.9964 1.0007
+        4        -0.394      -0.761  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0014 1.0011 1.0008 1.0008 0.9955 0.9999
+        5        -0.213      -0.418  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0008 1.0006 1.0004 1.0004 1.0004 0.9995
+        7        -0.079      -0.157  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0003 1.0002 1.0002 1.0001 1.0001 0.9993
+       10        -0.026      -0.052  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0001 1.0001 1.0001 1.0000 1.0000 1.0000
+       30        -0.001      -0.001  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+      100        -0.000      -0.000  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+     1090         0.000       0.000  NON-DIAGNOSTIC   1.000       a0 -> 0 allowed   1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+
+      z_c  dchi2(B=1)  dchi2(B=5)      class(B=5)     B95  a0 peak/a0(0) at B95
+      0.1      23.226     133.706        EXCLUDED   0.242                1.0376
+      0.2      25.368     136.074        EXCLUDED   0.249                1.0922
+      0.3       7.426      59.994        EXCLUDED   0.655                1.2732
+      0.5      -5.591      55.962        EXCLUDED   1.637                1.6234
+      0.7      17.369     186.578        EXCLUDED   0.440                1.1999
+        1      40.124     286.493        EXCLUDED   0.117                1.0568
+      1.5      11.733     109.177        EXCLUDED   0.333                1.1547
+        2       4.882      44.284        EXCLUDED   0.625                1.2747
+      2.5       2.806      38.472        EXCLUDED   0.978                1.4066
+        3       1.497      11.280        EXCLUDED   1.653                1.6289
+        4       0.790       4.676         TENSION   3.114                2.0283
+        5       0.412       2.280         ALLOWED   5.000                2.4495
+        7       0.149       0.777  NON-DIAGNOSTIC   5.000                2.4495
+       10       0.049       0.247  NON-DIAGNOSTIC   5.000                2.4495
+
+  Step contacts that switch ALL the dark energy on (A = 1) and are not excluded: z_c in [1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 7.0, 10.0, 30.0, 100.0, 1090.0]
+  The largest fractional change of E(z) at z <= z* over the A = 1 fits: 4.559e-01
+  POST HOC (reported only): 110 of 285 grid points fit the compressed data BETTER than LCDM; the lowest is pulse z_c = 0.5, amplitude 0.5: Delta chi^2 = -7.90 (look-elsewhere over 285 points and two shapes; DR1 BAO diagonal, SN not scored, DR2 BAO not in the repo): not a detection
+
+======================================================================================================================
+R2a-rec  THE PADDLE = RECOMBINATION: the injected amount (post-hoc-flagged menu), the missing recombination radiation, the fast-sink kinetics
+======================================================================================================================
+  rho_Lambda c^2 = 5.2509e-10 J/m^3 (FP0: H0 67.4, Omega_L 0.6847); at the CAMB Planck point 5.2370e-10; rho_crit c^2 (alt footing) 7.6689e-10
+  n_H0 = 0.1896 m^-3 (Y_He 0.24543, omega_b 0.022383); z* = 1089.91; x_e(z*) = 0.1316; He/H = 0.08190
+  menu item                                                                    J/m^3  /rho_L c^2 /rho_crit c^2
+  E1 13.6 eV x n_H(z*)                                                    5.3620e-10       1.021        0.6992
+  E2 H binding energy released over the recombination history (PRIMARY)   8.7469e-10       1.666         1.141
+  E3 E2 + helium recombination                                            2.9687e-08       56.54         38.71
+  E4 Lyman-alpha 10.2 eV x n_H(z*)                                        4.0215e-10      0.7659        0.5244
+  E5 gas thermal energy at z*                                             1.8390e-11     0.03502       0.02398
+  E6 photon energy density at z*                                          5.9129e-02   1.126e+08      7.71e+07
+  E7 rho_b(z*) c^2                                                        4.9058e-02   9.343e+07     6.397e+07
+  E8 rho_m(z*) c^2                                                        3.1372e-01   5.975e+08     4.091e+08
+  within a factor 2 of rho_Lambda c^2: 3 of 8 items (E1; E2; E4)
+  look-elsewhere: K = 6 distinct items spanning 10.23 dex; chance that at least one lands within x2 under a log-uniform prior: 0.305
+  PRIMARY E2/rho_Lambda c^2 = 1.6658 (canonical), 1.1406 against rho_crit (alt).  Grade: p* (POST-HOC-FLAGGED, criteria section 0), whatever the ratio.
+  missing recombination radiation: E2 / rho_gamma(z*) = 1.48e-08.  In standard physics this energy ends in photons (the cosmological recombination lines, amplitude of order 1e-9 of the CMB, memory UNVERIFIED), far below FIRAS: UNTESTABLE with present data; a genuine prediction for future spectral-distortion experiments.
+  fast-sink limit (reported, not load-bearing): Saha x_e = 0.5 at z = 1369.0 vs CAMB 1275.6; z* -> 1169.7; 100theta_* -> 0.99254, -162 sigma at fixed parameters (illustrative: a modified recombination code and the Planck likelihood are needed)
+
+======================================================================================================================
+R2b  A CONTINUING DRIVE against the committed DESI DR2 w0-wa chains (CPL)
+======================================================================================================================
+  DESY5      f_mono (w <= -1 for all z in [0, 2.5]) = 0.00e+00; p(w0 < -1) = 0.00e+00; crossing fraction 0.9998, median z_cross 0.405
+  Pantheon+  f_mono (w <= -1 for all z in [0, 2.5]) = 1.12e-03; p(w0 < -1) = 1.30e-03; crossing fraction 0.9978, median z_cross 0.356
+  Union3     f_mono (w <= -1 for all z in [0, 2.5]) = 5.19e-05; p(w0 < -1) = 5.19e-05; crossing fraction 0.9998, median z_cross 0.444
+  [PASS] C6 the chains reproduce CFG195's committed crossing fractions, median z_cross and p(w0 < -1) (same definitions)
+         measured: max |difference| 0.0e+00
+  G2 class R2b-mono (and its members R2b-const): EXCLUDED.  R2b-leak (drive then leakage): the chains' own CPL shape, whose rho_DE maximum is the w = -1 crossing -> CONSISTENT by construction, NON-DIAGNOSTIC (a restatement of the fit), and it needs a phantom epoch (CFG176/CFG195).
+  The committed example of a drive: CFG176's accumulation (a0 ~ t, rho_DE ~ t^2), phantom at every z, excluded at 27-36 sigma (Gaussian proxy).
+  R2b-const w = -1.05: a0(z)/a0(0) = (1+z)^(-0.075) -> z=0.85: -0.020 dex, z=1.5: -0.030 dex, z=2.5: -0.041 dex, z=5.0: -0.058 dex
+  R2b-const w = -1.1: a0(z)/a0(0) = (1+z)^(-0.150) -> z=0.85: -0.040 dex, z=1.5: -0.060 dex, z=2.5: -0.082 dex, z=5.0: -0.117 dex
+  R2b-const w = -1.2: a0(z)/a0(0) = (1+z)^(-0.300) -> z=0.85: -0.080 dex, z=1.5: -0.119 dex, z=2.5: -0.163 dex, z=5.0: -0.233 dex
+  R2b-const w = -1.5: a0(z)/a0(0) = (1+z)^(-0.750) -> z=0.85: -0.200 dex, z=1.5: -0.298 dex, z=2.5: -0.408 dex, z=5.0: -0.584 dex
+
+======================================================================================================================
+G3  THE FLAT a0 AT z <= 5: theory (a0 = kappa c sqrt(G rho_DE), canonical tie) and the data (CFG222 machinery: RC100, CRISTAL)
+======================================================================================================================
+  [PASS] C7 the exec'd CFG222 machinery reproduces CFG222's committed FLAT and H(z) primary-cell statistics and CIs on all six rows
+         measured: max |difference| 0.0e+00
+  primary cell nu_mono canonical; verdict from the bootstrap 95% CI (CFG222's rule); SAME-AS-FLAT laws reuse FLAT's rows
+
+  law                              a0(z)/a0(0) dex at z=0.85/1.5/2.5/5    flat?     RC100 slope        R_e fit        R_e ind      R_out fit      R_out ind  G3-data
+  FLAT                             +0.00/+0.00/+0.00/+0.00                yes           -0.029C        +0.053o        +0.117C        +0.019C        +0.106C  (reference)
+  H(z)                             +0.21/+0.37/+0.58/+0.92                no            -0.092u        -0.161u        -0.144C        -0.283u        -0.203C  (reference)
+  STEP z_c=0.5 A=1                 -9.00/-9.00/-9.00/-9.00                no            -0.055u        +0.165o        +0.267C        +0.111o        +0.294o  WORSE-THAN-FLAT-ROBUST
+  STEP z_c=0.5 A95=0.117           -0.03/-0.03/-0.03/-0.03                yes           -0.029C        +0.058o        +0.124C        +0.025C        +0.113C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  STEP z_c=1.0 A=1                 +0.00/-9.00/-9.00/-9.00                no            +0.029C        +0.165o        +0.267C        +0.111o        +0.294o  WORSE-THAN-FLAT-ROBUST
+  STEP z_c=1.0 A95=0.564           +0.00/-0.18/-0.18/-0.18                no            -0.012C        +0.084o        +0.160C        +0.055C        +0.153C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  STEP z_c=1.5 A=1                 +0.00/+0.00/-9.00/-9.00                no            +0.048o        +0.165o        +0.267C        +0.111o        +0.294o  WORSE-THAN-FLAT-ROBUST
+  STEP z_c=2.0 A=1                 +0.00/+0.00/-9.00/-9.00                no            +0.043o        +0.165o        +0.267C        +0.111o        +0.294o  WORSE-THAN-FLAT-ROBUST
+  STEP z_c=3.0 A=1                 +0.00/+0.00/+0.00/-9.00                no            -0.029C        +0.165o        +0.267C        +0.111o        +0.294o  WORSE-THAN-FLAT-ROBUST
+  STEP z_c=4.0 A=1                 +0.00/+0.00/+0.00/-9.00                no            -0.029C        +0.165o        +0.267C        +0.111o        +0.294o  WORSE-THAN-FLAT-ROBUST
+  STEP z_c=5.0 A=1                 +0.00/+0.00/+0.00/+0.00                yes           -0.029C        +0.148o        +0.255C        +0.074o        +0.265o  WORSE-THAN-FLAT-ROBUST
+  PULSE z_c=1.0 B95=0.117          +0.02/+0.00/+0.00/-0.00                yes           -0.027C        +0.053o        +0.117C        +0.019C        +0.106C  NOT-WORSE
+  PULSE z_c=2.0 B95=0.625          +0.00/+0.02/+0.04/+0.00                yes           -0.041u        +0.053o        +0.117C        +0.019C        +0.106C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  PULSE z_c=3.0 B95=1.653          +0.00/+0.00/+0.11/+0.00                no            -0.038u        +0.053o        +0.117C        +0.019C        +0.106C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  PULSE z_c=5.0 B95=5.000          +0.00/+0.00/+0.00/+0.39                no            -0.029C        -0.004C        +0.024C        -0.061C        +0.004C  NOT-WORSE
+  DRIVE w=-1.05                    -0.02/-0.03/-0.04/-0.06                no            -0.027C        +0.064o        +0.132C        +0.032C        +0.122C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  DRIVE w=-1.1                     -0.04/-0.06/-0.08/-0.12                no            -0.026C        +0.075o        +0.146C        +0.045C        +0.138C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  DRIVE w=-1.2                     -0.08/-0.12/-0.16/-0.23                no            -0.023C        +0.093o        +0.172C        +0.067C        +0.168C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  DRIVE w=-1.5                     -0.20/-0.30/-0.41/-0.58                no            -0.018C        +0.131o        +0.222C        +0.090o        +0.233C  WORSE-THAN-FLAT-ROUTE-DEPENDENT
+  (row entries: statistic then C = CONSISTENT, o = DISFAVOURED-over, u = DISFAVOURED-under; RC100 = slope of delta on z, CRISTAL = median delta)
+  other three kernel/footing cells, z(own) per row, for the non-flat laws:
+    STEP z_c=0.5 A=1                 -2.0,-2.0,-2.0 | +1.8,+1.8,+1.8 | +1.9,+1.9,+1.9 | +1.4,+1.4,+1.4 | +1.8,+1.8,+1.8
+    STEP z_c=0.5 A95=0.117           -1.6,-1.7,-1.6 | +0.8,+1.3,+1.1 | +0.8,+1.2,+1.1 | +0.1,+0.9,+0.7 | +0.6,+1.1,+0.9
+    STEP z_c=1.0 A=1                 +1.7,+0.4,+0.8 | +1.8,+1.8,+1.8 | +1.9,+1.9,+1.9 | +1.4,+1.4,+1.4 | +1.8,+1.8,+1.8
+    STEP z_c=1.0 A95=0.564           -0.5,-1.1,-0.9 | +1.1,+1.4,+1.3 | +1.0,+1.4,+1.3 | +0.7,+1.2,+1.1 | +0.9,+1.3,+1.2
+    STEP z_c=1.5 A=1                 +2.7,+1.0,+1.6 | +1.8,+1.8,+1.8 | +1.9,+1.9,+1.9 | +1.4,+1.4,+1.4 | +1.8,+1.8,+1.8
+    STEP z_c=2.0 A=1                 +2.6,+1.0,+1.5 | +1.8,+1.8,+1.8 | +1.9,+1.9,+1.9 | +1.4,+1.4,+1.4 | +1.8,+1.8,+1.8
+    STEP z_c=3.0 A=1                 -1.5,-1.6,-1.6 | +1.8,+1.8,+1.8 | +1.9,+1.9,+1.9 | +1.4,+1.4,+1.4 | +1.8,+1.8,+1.8
+    STEP z_c=4.0 A=1                 -1.5,-1.6,-1.6 | +1.8,+1.8,+1.8 | +1.9,+1.9,+1.9 | +1.4,+1.4,+1.4 | +1.8,+1.8,+1.8
+    STEP z_c=5.0 A=1                 -1.5,-1.6,-1.6 | +1.8,+1.9,+1.9 | +1.9,+1.9,+1.9 | +0.8,+1.1,+1.0 | +1.9,+2.0,+2.0
+    PULSE z_c=1.0 B95=0.117          -1.4,-1.6,-1.6 | +0.7,+1.2,+1.1 | +0.7,+1.1,+1.0 | +0.0,+0.9,+0.6 | +0.6,+1.0,+0.9
+    PULSE z_c=2.0 B95=0.625          -2.2,-2.1,-2.1 | +0.7,+1.2,+1.1 | +0.7,+1.1,+1.0 | +0.0,+0.9,+0.6 | +0.6,+1.0,+0.9
+    PULSE z_c=3.0 B95=1.653          -2.0,-2.0,-2.1 | +0.7,+1.2,+1.1 | +0.7,+1.1,+1.0 | +0.0,+0.9,+0.6 | +0.6,+1.0,+0.9
+    PULSE z_c=5.0 B95=5.000          -1.5,-1.6,-1.6 | -0.3,+0.4,+0.1 | +0.0,+0.5,+0.3 | -1.4,-0.3,-0.6 | -0.2,+0.4,+0.2
+    DRIVE w=-1.05                    -1.4,-1.6,-1.5 | +0.8,+1.3,+1.2 | +0.8,+1.2,+1.1 | +0.2,+1.0,+0.8 | +0.7,+1.1,+1.0
+    DRIVE w=-1.1                     -1.2,-1.6,-1.4 | +1.0,+1.4,+1.3 | +0.9,+1.3,+1.2 | +0.5,+1.1,+1.0 | +0.8,+1.2,+1.1
+    DRIVE w=-1.2                     -1.0,-1.4,-1.3 | +1.2,+1.5,+1.4 | +1.1,+1.4,+1.3 | +0.9,+1.2,+1.1 | +1.0,+1.3,+1.2
+    DRIVE w=-1.5                     -0.8,-1.2,-1.1 | +1.6,+1.7,+1.6 | +1.5,+1.7,+1.6 | +1.3,+1.3,+1.3 | +1.4,+1.6,+1.5
+
+======================================================================================================================
+R3 / G4  BUBBLE COLLISION / BRANE CONTACT: what the repo can say (no CMB map in the repo)
+======================================================================================================================
+  SPARC: 175 distances read, largest 127.8 Mpc; D_M(z*) = 13869 Mpc
+  local DE contrast across the SPARC volume: a0 ~ sqrt(rho_DE) -> dipole D = eps/2; A95 = 0.43 (0.40) -> eps < 0.86 (0.80)
+  a horizon-scale gradient needs a total contrast eps = 93 (87) to reach A95 at the SPARC depth -> NON-DIAGNOSTIC (> 1)
+  CMB: NOT TESTED BY THE REPO.  Literature (memory, UNVERIFIED): Feeney, Johnson, Mortlock & Peiris 2011 searched WMAP7 for collision discs, flagged four candidates, evidence did not favour collisions (expected number of observable collisions bounded at order 1.6, 68%); follow-ups (Feeney et al. 2013; Osborne, Senatore & Smith 2013 on WMAP9; Planck isotropy papers 2013 XXIII, 2015 XVI, 2018 VII) report no detection; the large-angle anomalies sit at ~2-3 sigma with look-elsewhere caveats.  The owner's R3 names no direction, size, amplitude or time -> UNTESTABLE-AS-STATED.
+
+======================================================================================================================
+LOAD-BEARING CHECKS
+======================================================================================================================
+  [PASS] L1 the contact bites: some R2a grid point (A = 1) changes E(z) by more than 1e-3 at some z <= z*
+         measured: max |E/E_LCDM - 1| = 4.559e-01
+  [PASS] L2 R1-lit contradicts the measured acoustic angle at >= 5 sigma
+         measured: pull +3470.3 sigma
+  [PASS] L3 LCDM is recovered exactly at zero amplitude (A = 0, B = 0, w = -1): Delta chi^2 = 0 and a0(z)/a0(0) = 1
+         measured: max |Delta chi^2| 0.0e+00; max |a0 ratio - 1| 0.0e+00
+
+======================================================================================================================
+VERDICT PER READING (never pooled; restatement is not a pass)
+======================================================================================================================
+  R1-lit     CONTRADICTED (G1: (a) Y_P +82 sigma, (b) D/H +88 sigma, (c) theta_* +3470 sigma, (d) BAO r_d +167 sigma, (e) N_eff +18 sigma)
+  R1-om      UNTESTABLE-AS-STATED (a restatement of the standard past)
+  R2a-step   CONSTRAINED: A = 1 EXCLUDED for z_c in [0.1, 0.2, 0.3, 0.5, 0.7, 1.0]; A95 = 0.37@0.1, 0.22@0.2, 0.14@0.3, 0.12@0.5, 0.40@0.7, 0.56@1, 1.00@1.5, 1.00@2, 1.00@2.5, 1.00@3, 1.00@4, 1.00@5, 1.00@7, 1.00@10, 1.00@30, 1.00@100, 1.00@1090; NON-DIAGNOSTIC/ALLOWED at A = 1 for z_c in [1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 7.0, 10.0, 30.0, 100.0, 1090.0] on the repo's distances; G3: at A = 1 every z_c <= 5 run is WORSE-THAN-FLAT-ROBUST (framework-conditional: the a0 ~ sqrt(rho_DE) tie)
+  R2a-pulse  CONSTRAINED: B95 = 0.24@0.1, 0.25@0.2, 0.65@0.3, 1.64@0.5, 0.44@0.7, 0.12@1, 0.33@1.5, 0.62@2, 0.98@2.5, 1.65@3, 3.11@4, 5.00@5, 5.00@7, 5.00@10
+  R2a-rec    distances NON-DIAGNOSTIC (step at 1090, A = 1: dchi2 4.83e-08); flat a0 kept (restatement below z*); amount E2/rho_L = 1.666: p* (post-hoc); missing recombination radiation: UNTESTABLE now; fast-sink kinetics -162 sigma at fixed parameters (illustrative)
+  R2b-mono   EXCLUDED on the DESI DR2 CPL chains (f_mono = 0.0e+00/1.1e-03/5.2e-05)
+  R2b-leak   NON-DIAGNOSTIC (the CPL fits' own shape; needs a phantom epoch)
+  R3         UNTESTABLE-AS-STATED; the a0 dipole is NON-DIAGNOSTIC for a horizon-scale contact; CMB not in the repo
+  G5 (declared, criteria 4.5): R1 +0; R2a-step +2; R2a-pulse +2; R2a-rec 0 added but its amount is post-hoc (no reduction credited); R2b >= +1; R3 >= +4.  No reading PASSES G5.
+  kappa = 1/2 FITTED.  No reading is graded as supported.
+
+HEADLINE: R1-lit CONTRADICTED (+3470 sigma theta_*, +82 Y_P, +88 D/H); a step contact that switches all DE on is EXCLUDED for z_c in 0.1..1.0 and invisible to the repo's distances above, while on the a0 = kappa c sqrt(G rho_DE) tie the z ~ 5 rows see it for z_c <= 5; R2b-mono EXCLUDED; recombination amount E2/rho_L = 1.666 (p*)
+
+11/11 checks pass; load-bearing failures: 0; 164 s
+rc = 0
