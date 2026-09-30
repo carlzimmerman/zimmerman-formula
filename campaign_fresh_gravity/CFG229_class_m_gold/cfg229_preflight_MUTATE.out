@@ -1,0 +1,109 @@
+CFG229 -- the PRE-FLIGHT (Q1): can the class-M sample separate FLAT from a0 ~ H(z) (or from the PROXY) at the class-M gas band plus a stated stellar band?
+BLIND TO THE VELOCITIES BY CONSTRUCTION: reads only cfg229_inputs_static.csv (z, radii, stellar and gas masses, velocity ERRORS, inclinations); never opens the kinematics file (control C8 proves it).
+Compilation; calibration-limited; not a detection.  LambdaCDM has no a0: the proxy is an effective-a0 PROXY.  kappa = 1/2 FITTED.  No sentence says the data favour a law.
+Frozen criteria: FROZEN_CRITERIA.md here (5c131c037).
+MUTATE = 1 (truth labels FLAT and H(z) swapped in the mock generation)
+
+static inputs: 7 galaxies ['ALPAKA15', 'ALPAKA18', 'ALPAKA19', 'ALPAKA20', 'ALPAKA22', 'SINS_BX610', 'ALESS_122.1']; columns read: 32; the kinematics file is never opened
+
+CONTROLS ON THE DISC FORCE
+  [PASS] C3 Freeman's peak V^2 = 0.3872 G M/R_d to 0.003: 0.38705
+  [PASS] C3 far field g -> GM/r^2 at r = 500 R_d to 1e-4: ratio 1.000006
+  [PASS] C4 independent Hankel-transform disc force agrees with the Bessel closed form at the seven (R, R_d) (H12): max relative difference 4.19e-07
+
+PRE-FLIGHT (mocks on the ACTUAL galaxies; sigma_int = 0.15 dex declared; 1,000 mocks per (set, truth), seed 229; descriptive of THIS sample, never a statement about a real galaxy)
+
+  set            n     SD   signal H(z) [mock | noise-free]   signal PROXY [mock | noise-free]    S_outer  S_gas   S_star  S_inner  S_half   flat vs H(z): outer / gas-only / inner      flat vs PROXY: outer / gas-only / inner
+  ALL7          7  0.110   0.008 | 0.000                   0.008 | 0.010               0.199   0.082   0.134   0.079    0.173    no / no / no                          no / no / no
+  ALPAKA15      1  0.193   0.005 | 0.000                   0.003 | 0.002               0.260   0.022   0.248   0.079    0.256    no / no / no                          no / no / no
+  ALPAKA18      1  0.479   0.074 | 0.000                   0.080 | 0.006               0.131   0.090   0.048   0.054    0.124    no / no / no                          no / no / no
+  ALPAKA19      1  0.190   0.005 | 0.000                   0.005 | 0.010               0.172   0.082   0.101   0.077    0.159    no / no / no                          no / no / no
+  ALPAKA20      1  0.248   0.020 | 0.000                   0.007 | 0.012               0.284   0.040   0.263   0.122    0.263    no / no / no                          no / no / no
+  ALPAKA22      1  0.353   0.028 | 0.000                   0.025 | 0.003               0.151   0.073   0.094   0.060    0.148    no / no / no                          no / no / no
+  SINS_BX610    1  0.233   0.000 | 0.000                   0.020 | 0.020               0.199   0.100   0.134   0.130    0.163    no / no / no                          no / no / no
+  ALESS_122.1   1  0.184   0.013 | 0.000                   0.024 | 0.038               0.206   0.150   0.138   0.148    0.127    no / no / no                          no / no / no
+  ALPAKA5       5  0.136   0.004 | 0.000                   0.003 | 0.006               0.172   0.073   0.101   0.077    0.161    no / no / no                          no / no / no
+  BX610+ALESS   2  0.144   0.003 | 0.000                   0.025 | 0.029               0.203   0.125   0.136   0.139    0.145    no / no / no                          no / no / no
+
+  second statistic, robust to a common baryon offset: within-set OLS slope of delta_FLAT against log10(y), y = g_bar/a0 (sets with n >= 3)
+    ALL7: SD 0.177; signal H(z) 0.033, PROXY 0.054; systematic (outer corners) 0.090; rule: flat vs H(z) no, vs PROXY no
+    ALPAKA5: SD 0.347; signal H(z) 0.038, PROXY 0.049; systematic (outer corners) 0.064; rule: flat vs H(z) no, vs PROXY no
+
+MARGINALISED RUN (20,000 mocks per truth; one common tau_g ~ U(-0.093, +0.093) and one common tau_* ~ U(-0.30, +0.30) per mock move the TRUE baryons; flat vs H(z) separable if the 5th percentile of the H(z)-true set-medians of delta_FLAT exceeds the 95th percentile of the FLAT-true ones)
+  ALL7         [gas+stars] H(z)-true 5th pct -0.224 (95th +0.225), FLAT-true 95th pct +0.253 (5th -0.189): flat vs H(z) not separable; PROXY-true 5th pct -0.208: flat vs proxy not separable
+  ALL7         [gas only ] H(z)-true 5th pct -0.191 (95th +0.176), FLAT-true 95th pct +0.207 (5th -0.158): flat vs H(z) not separable; PROXY-true 5th pct -0.176: flat vs proxy not separable
+  ALPAKA5      [gas+stars] H(z)-true 5th pct -0.274 (95th +0.265), FLAT-true 95th pct +0.279 (5th -0.256): flat vs H(z) not separable; PROXY-true 5th pct -0.267: flat vs proxy not separable
+  ALPAKA5      [gas only ] H(z)-true 5th pct -0.236 (95th +0.213), FLAT-true 95th pct +0.228 (5th -0.221): flat vs H(z) not separable; PROXY-true 5th pct -0.229: flat vs proxy not separable
+  BX610+ALESS  [gas+stars] H(z)-true 5th pct -0.271 (95th +0.261), FLAT-true 95th pct +0.326 (5th -0.200): flat vs H(z) not separable; PROXY-true 5th pct -0.241: flat vs proxy not separable
+  BX610+ALESS  [gas only ] H(z)-true 5th pct -0.263 (95th +0.241), FLAT-true 95th pct +0.308 (5th -0.193): flat vs H(z) not separable; PROXY-true 5th pct -0.234: flat vs proxy not separable
+  ALESS_122.1  [gas+stars] H(z)-true 5th pct -0.322 (95th +0.308), FLAT-true 95th pct +0.394 (5th -0.230): flat vs H(z) not separable; PROXY-true 5th pct -0.284: flat vs proxy not separable
+  ALESS_122.1  [gas only ] H(z)-true 5th pct -0.319 (95th +0.295), FLAT-true 95th pct +0.383 (5th -0.228): flat vs H(z) not separable; PROXY-true 5th pct -0.280: flat vs proxy not separable
+
+PER GALAXY (noise-free at the nominal baryons; total error budget from the mocks)
+  galaxy        y = g_bar/a0   d(flat vs H(z))   d(flat vs proxy)   SD of delta_FLAT (truth FLAT)   S_outer (alone)   |d_Hz| / sqrt(SD^2 + S^2)
+  ALPAKA15        157.18       +0.000           +0.002             0.193                      0.260             0.000
+  ALPAKA18         54.47       +0.000           +0.006             0.479                      0.131             0.000
+  ALPAKA19         31.56       +0.000           +0.010             0.190                      0.172             0.000
+  ALPAKA20         26.16       +0.000           +0.012             0.248                      0.284             0.000
+  ALPAKA22        151.24       +0.000           +0.003             0.353                      0.151             0.000
+  SINS_BX610       12.11       +0.000           +0.020             0.233                      0.199             0.000
+  ALESS_122.1       4.84       +0.000           +0.038             0.184                      0.206             0.000
+
+IMPLIED a0 PRE-FLIGHT (Addendum 1 A5; the estimator of CFG223, s* = the a0 scale that zeroes the set-median delta; descriptive, not a verdict; log10 s* = 0 is the canonical footing 9.3603e-11 m/s^2)
+  expected s* if each law were true (noise-free, nominal baryons; F_L(z) of the law beside it for a single galaxy), the kernel lever lambda = d log10 s*/d(baryon dex) at the nominal g_bar, the kernel slope, and the shift of log10 s* at the OUTER band corners (gas +-0.093 and stars +-0.30, same sign)
+  set            y=g_bar/a0  slope    lambda   s*_FLAT  s*_PROXY  s*_H(z)  s*_M-DEC   shift at outer corners (-,+) [log10 s*]     A3 verdict
+  ALL7             31.56   0.021     -21.4     3.63     2.08     1.00     0.83       +0.83 /   -3.56  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPAKA15        157.18   0.005     -71.4     3.35     1.93     1.00     0.85       +1.60 /   -3.53  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPAKA18         54.47   0.013     -66.1     3.63     2.08     1.00     0.83       +0.83 /   -3.56  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPAKA19         31.56   0.021     -21.4     3.76     2.15     1.00     0.82       +0.72 /   -3.57  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPAKA20         26.16   0.025     -14.2     3.77     2.16     1.00     0.82       +0.90 /   -3.58  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPAKA22        151.24   0.005     -71.6     4.46     2.56     1.00     0.78       +1.20 /   -3.65  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  SINS_BX610       12.11   0.051      -6.2     3.33     1.92     1.00     0.85       +0.51 /   -3.52  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALESS_122.1       4.84   0.116      -3.0     3.07     1.79     1.00     0.87       +0.32 /   -3.49  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPAKA5          54.47   0.013     -66.1     3.76     2.15     1.00     0.82       +0.91 /   -3.57  (root lost)                  UNINFORMATIVE: |lambda| > 10; the outer band removes the root; the outer band moves log s* by > 1 dex
+  BX610+ALESS       8.48   0.084      -4.1     3.16     1.83     1.00     0.87       +0.41 /   -3.50  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+
+  Monte Carlo of the estimator under truth FLAT (s* = 1): median and 16-84% range of log10 s* over the mocks that have a root, and the fraction with NO root or a root at the edge; 'stat' = velocity, inclination and random baryon errors only (the error the DATA estimate will carry); '+ sigma_int' adds the declared 0.15 dex intrinsic scatter
+  set            stat: median [16%, 84%]   no-root     + sigma_int: median [16%, 84%]   no-root
+  ALL7            +0.64 [ +0.14,  +1.08]     0.25         +0.83 [ +0.26,  +1.32]       0.33
+  ALPAKA15        +1.62 [ +1.04,  +1.94]     0.50         +1.90 [ +1.30,  +2.36]       0.50
+  ALPAKA18        +2.06 [ +1.43,  +2.63]     0.42         +2.08 [ +1.43,  +2.63]       0.47
+  ALPAKA19        +0.96 [ +0.46,  +1.31]     0.41         +1.25 [ +0.68,  +1.70]       0.43
+  ALPAKA20        +1.14 [ +0.59,  +1.58]     0.44         +1.29 [ +0.68,  +1.83]       0.47
+  ALPAKA22        +2.09 [ +1.56,  +2.52]     0.53         +2.16 [ +1.59,  +2.68]       0.56
+  SINS_BX610      +0.87 [ +0.37,  +1.34]     0.33         +1.05 [ +0.43,  +1.57]       0.38
+  ALESS_122.1     +0.50 [ +0.12,  +0.80]     0.11         +0.65 [ +0.15,  +1.09]       0.24
+  ALPAKA5         +1.07 [ +0.51,  +1.51]     0.42         +1.30 [ +0.68,  +1.78]       0.44
+  BX610+ALESS     +0.57 [ +0.11,  +0.92]     0.16         +0.67 [ +0.14,  +1.10]       0.23
+  (log10 s* values; 0 = the canonical footing.  A range wider than 1 dex means the implied a0 of that set is undetermined at the stated errors.)
+
+CONTROLS
+  [FAIL] C5 raising the gas (+0.1 dex) or the stellar mass (+0.1 dex) lowers delta_FLAT at every galaxy: gas max +0.020, stars max +0.067
+  [FAIL] C6n noise-free planted-law identity (added after the first MUTATE run, see the README): under truth T the noise-free delta_T is 0 to 1e-9 at every galaxy and delta under each other law is non-zero at every galaxy: max |delta_T(T)| 9.0e-02; min |delta_other| 0.0000
+  [PASS] C6 planted-law recovery, ALL7: the set-median delta under the TRUE law is within 2 SD of 0 in >= 90% of mocks; the other laws' offsets agree with the noise-free ones to 3 SD: recovery FLAT 0.95, H(z) 0.94, PROXY 0.95; offsets vs noise-free -0.008, -0.002 (SD 0.110)
+  [PASS] C6 planted-law recovery, ALPAKA5: the set-median delta under the TRUE law is within 2 SD of 0 in >= 90% of mocks; the other laws' offsets agree with the noise-free ones to 3 SD: recovery FLAT 0.96, H(z) 0.95, PROXY 0.95; offsets vs noise-free -0.004, -0.003 (SD 0.136)
+  [PASS] C6 planted-law recovery, BX610+ALESS: the set-median delta under the TRUE law is within 2 SD of 0 in >= 90% of mocks; the other laws' offsets agree with the noise-free ones to 3 SD: recovery FLAT 0.93, H(z) 0.93, PROXY 0.96; offsets vs noise-free -0.003, -0.003 (SD 0.144)
+  [PASS] C9 the mock SD of delta_FLAT (truth FLAT) for the galaxies without an inclination term equals the finite-difference error propagation (an independent path) to 8%: SINS_BX610 MC 0.233 vs analytic 0.233; ALESS_122.1 MC 0.184 vs analytic 0.182
+  [PASS] C10 the implied-a0 estimator of a0implied.py equals CFG223's original bit for bit on 200 random sets (verbatim copy): identical True
+
+Q3 (POST HOC, not frozen): the common precision d (dex) on stars and gas (random errors AND outer band both set to d) at which flat vs H(z) in ALL7 satisfies signal > S_max + 2 SD; the inherent noise floor is sigma_int, the velocity errors and the ALPAKA inclinations
+    d = 0.300: signal 0.035, SD 0.131 (sigma_int-only floor ~ 0.071), S 0.315 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    d = 0.200: signal 0.019, SD 0.104 (sigma_int-only floor ~ 0.071), S 0.219 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    d = 0.100: signal 0.005, SD 0.084 (sigma_int-only floor ~ 0.071), S 0.121 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    d = 0.050: signal 0.002, SD 0.078 (sigma_int-only floor ~ 0.071), S 0.073 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    d = 0.020: signal 0.004, SD 0.078 (sigma_int-only floor ~ 0.071), S 0.043 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    d = 0.010: signal 0.003, SD 0.078 (sigma_int-only floor ~ 0.071), S 0.034 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    d = 0.005: signal 0.005, SD 0.078 (sigma_int-only floor ~ 0.071), S 0.029 -> not possible  (ALPAKA inclination terms omitted here: a lower bound on the noise)
+    (the noise floor alone, sigma_int = 0.15 over seven galaxies, sets SD ~ 0.07, so a signal below ~0.14 cannot be separated even with perfect baryons)
+
+  radius at which the galaxy would be in the informative regime (y = 3), nominal baryons: R*(y = 3) and the noise-free d(flat vs H(z)) there
+    ALPAKA15     R*(y=3) =  12.61 kpc (8.3 x the stated radius): d(flat vs H(z)) = +0.128
+    ALPAKA18     R*(y=3) =  19.70 kpc (4.0 x the stated radius): d(flat vs H(z)) = +0.138
+    ALPAKA19     R*(y=3) =  11.50 kpc (3.9 x the stated radius): d(flat vs H(z)) = +0.143
+    ALPAKA20     R*(y=3) =  14.57 kpc (4.2 x the stated radius): d(flat vs H(z)) = +0.144
+    ALPAKA22     R*(y=3) =  11.56 kpc (8.1 x the stated radius): d(flat vs H(z)) = +0.167
+    SINS_BX610   R*(y=3) =  12.55 kpc (2.8 x the stated radius): d(flat vs H(z)) = +0.128
+    ALESS_122.1  R*(y=3) =  13.91 kpc (1.3 x the stated radius): d(flat vs H(z)) = +0.117
+  [PASS] C8 blindness: with the kinematics file REMOVED the pre-flight runs to completion and gives the same set statistics bit for bit: child exit 1, identical True
+
+9/11 controls pass; 5 s

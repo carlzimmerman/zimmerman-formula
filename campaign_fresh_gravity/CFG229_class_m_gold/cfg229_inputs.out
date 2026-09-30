@@ -1,0 +1,57 @@
+CFG229 -- inputs for the class-M sample: the class RULE in code (K1-K5), the Dunne+22 helium-convention checks (C2a-c), and the per-galaxy input tables split into a STATIC
+file (no velocity values: the pre-flight reads only this) and a KINEMATICS file (the velocities and dispersions).
+Compilation; conversions as published except one declared factor (He, x1.36 on Dunne's logMH2); calibration-limited; not a detection.  LambdaCDM has no a0.  kappa = 1/2 FITTED.
+Frozen criteria: FROZEN_CRITERIA.md here (5c131c037), committed before any g_bar, g_obs, D or delta of this lane was computed.
+MUTATE = none
+
+Dunne+22 master rows 408; optimisation tables {dax: 114, ad: 335, xa: 121, xd: 152}
+
+Candidate pool: 1001 entries; by set {'KMOS3D': 785, 'RC100': 100, 'SINS': 38, 'CRISTAL': 32, 'ALPAKA': 28, 'S1': 12, 'RomanOliveira': 5, 'Lelli23': 1}
+
+CLASS RULE (K1 SED M*; K2 velocity at a stated radius; K3 a Dunne+22 per-galaxy optimised-conversion row by position <= 2 arcsec and |dz| <= 0.02 or, for tables without coordinates, by name; K4 z >= 2; K5 baryons not fitted with the dynamics)
+  candidates with a Dunne match at z >= 2 and their decision path:
+    ALPAKA        14            Q2343-BX610            z=2.211 <-> BX610     (position, sep 0.17 arcsec, dz -0.001) tables ['dax', 'ad', 'xa', 'xd']  K1=True K2=False K5=True => not class M (STARDUST SED M*; gas not adopted)
+    ALPAKA        15            GS30274                z=2.225 <-> GS30274   (position, sep 0.34 arcsec, dz +0.015) tables ['xd']  K1=True K2=True K5=True => CLASS M
+    ALPAKA        17            HXMM01-b+c             z=2.308 <-> HXMM01    (position, sep 1.92 arcsec, dz +0.000) tables ['ad']  K1=False K2=False K5=True => not class M (STARDUST SED M*; gas not adopted)
+    ALPAKA        18            HATLAS J084933-W       z=2.407 <-> HA08493W  (position, sep 1.28 arcsec, dz +0.003) tables ['ad']  K1=True K2=True K5=True => CLASS M
+    ALPAKA        19            CLJ1001-131077         z=2.494 <-> HCOS02.0  (position, sep 0.08 arcsec, dz +0.010) tables ['ad']  K1=True K2=True K5=True => CLASS M
+    ALPAKA        20            CLJ1001-130949         z=2.504 <-> HCOS02.2  (position, sep 0.10 arcsec, dz +0.000) tables ['ad']  K1=True K2=True K5=True => CLASS M
+    ALPAKA        21            CLJ1001-130891         z=2.513 <-> HCOS02.1  (position, sep 0.02 arcsec, dz -0.009) tables ['ad']  K1=True K2=False K5=True => not class M (STARDUST SED M*; gas not adopted)
+    ALPAKA        22            Gal3                   z=2.935 <-> K19_10    (position, sep 0.23 arcsec, dz -0.001) tables ['ad']  K1=True K2=True K5=True => CLASS M
+    SINS          Q2343-BX610   Q2343-BX610            z=2.211 <-> BX610     (position, sep 0.53 arcsec, dz -0.001) tables ['dax', 'ad', 'xa', 'xd']  K1=True K2=True K5=True => CLASS M
+    S1            122.1         ALESS122               z=2.024 <-> ALESS122  (name, dz -0.004) tables ['ad']  K1=True K2=True K5=True => CLASS M
+    RC100         78            BX610                  z=2.210 <-> BX610     (name, dz +0.000) tables ['dax', 'ad', 'xa', 'xd']  K1=True K2=True K5=False => not class M (M_bary fitted (SED + scaling-gas prior, three-method f_DM): class D by K5)
+    KMOS3D        COS4_03206    COS4_03206             z=2.103 <-> K19_4     (position, sep 0.67 arcsec, dz +0.001) tables ['ad']  K1=True K2=False K5=True => not class M (catalogue only: no tabulated velocity at a stated radius)
+    KMOS3D        GS4_01529     GS4_01529              z=2.122 <-> ALESS67   (position, sep 0.50 arcsec, dz -0.002) tables ['ad']  K1=True K2=False K5=True => not class M (catalogue only: no tabulated velocity at a stated radius)
+    KMOS3D        GS4_29606     GS4_29606              z=2.542 <-> ASPEC.C1  (position, sep 0.56 arcsec, dz -0.002) tables ['ad']  K1=True K2=False K5=True => not class M (catalogue only: no tabulated velocity at a stated radius)
+    KMOS3D        GS4_30274     GS4_30274              z=2.225 <-> GS30274   (position, sep 0.01 arcsec, dz +0.015) tables ['xd']  K1=True K2=False K5=True => not class M (catalogue only: no tabulated velocity at a stated radius)
+  [PASS] C0 the rule returns exactly the expected seven (H1): [('ALPAKA', '15'), ('ALPAKA', '18'), ('ALPAKA', '19'), ('ALPAKA', '20'), ('ALPAKA', '22'), ('S1', '122.1'), ('SINS', 'Q2343-BX610')]
+  [PASS] C0n negative control: +30 arcsec on every declination gives ZERO positional Dunne matches: 0
+  [PASS] C0z redshift control: z x 1.05 (|dz| ~ 0.11) removes every positional match: 0
+
+DUNNE+22 CONVENTION (the paper: its M_mol columns carry a factor 1.36 for He; Table 10 lists M_H2 and M_mol separately: ad (326) alpha_CO 3.2 for M_H2 against 4.3 for M_mol; daX (101) 2.6 and 3.5)
+  ad: JCorr = 0 rows 323: max |logMH2 - (log aCO + logLCO)| = 0.0009; rows with JCorr != 0: 12 (descriptive: residual + JCorr has max |.| 0.0007, i.e. the aperture correction is added)
+  dax: JCorr = 0 rows 87: max |logMH2 - (log aCO + logLCO)| = 0.0008; rows with JCorr != 0: 12 (descriptive: residual + JCorr has max |.| 0.0006, i.e. the aperture correction is added)
+  xa: JCorr = 0 rows 94: max |logMH2 - (log aCO + logLCO)| = 0.0007; rows with JCorr != 0: 12 (descriptive: residual + JCorr has max |.| 0.0009, i.e. the aperture correction is added)
+  [PASS] C2a in every CO-based Dunne row with JCorr = 0, logMH2 = log aCO + logLCO to 0.005 dex: 504 of 504 rows
+  [PASS] C2b in every opt_xd row with JCorr = 0, logMH2 = logLCI + aCI - log10(1.36) to 0.005 dex (aCI = log alpha_CI with He; logMH2 without): 140 of 140 rows (max 0.0005)
+  [PASS] C2c the median aCO of opt_ad is within 0.4 of Table 10's M_H2-column value 3.2 and more than 0.7 from its M_mol-column value 4.3: median 3.262 (daX median 2.591 against Table 10's 2.6 for M_H2 and 3.5 for M_mol)
+  => Dunne's logMH2 is M_H2 WITHOUT helium; the gravitating gas is 1.36 x 10^logMH2 (+0.1335 dex).  HI is neglected (the master's HI/H2 column is empty for all seven).
+
+PER-GALAXY INPUTS (static = no velocity values; the pre-flight reads only the static file)
+  ALPAKA15     z=2.225 R=1.52 kpc R_e=1.27 (R_ext/1.2) log M*=11.40 (+-0.09; STARDUST SED (Kokorev+21), Chabrier, AGN torus t) Dunne GS30274 [xd, 2 tracers] logMH2=10.674+-0.093 -> log M_gas(He) 10.808; i_used 60 (HST); AGN True; R/beam 0.71
+  ALPAKA18     z=2.407 R=4.97 kpc R_e=1.40 (dashed optical R_e) log M*=11.08 (+-0.11; STARDUST SED (Kokorev+21), Chabrier, AGN torus t) Dunne HA08493W [ad, 2 tracers] logMH2=11.683+-0.101 -> log M_gas(He) 11.817; i_used 26 (HST); AGN True; R/beam 2.74
+  ALPAKA19     z=2.494 R=2.97 kpc R_e=2.48 (R_ext/1.2) log M*=10.90 (+-0.11; STARDUST SED (Kokorev+21), Chabrier, AGN torus t) Dunne HCOS02.0 [ad, 2 tracers] logMH2=11.072+-0.100 -> log M_gas(He) 11.206; i_used 56 (HST); AGN False; R/beam 1.13
+  ALPAKA20     z=2.504 R=3.49 kpc R_e=3.72 (dashed optical R_e) log M*=11.51 (+-0.11; STARDUST SED (Kokorev+21), Chabrier, AGN torus t) Dunne HCOS02.2 [ad, 2 tracers] logMH2=10.588+-0.109 -> log M_gas(He) 10.722; i_used 46 (HST); AGN False; R/beam 1.33
+  ALPAKA22     z=2.935 R=1.42 kpc R_e=1.18 (R_ext/1.2) log M*=10.85 (+-0.12; STARDUST SED (Kokorev+21), Chabrier, AGN torus t) Dunne K19_10 [ad, 2 tracers] logMH2=11.154+-0.107 -> log M_gas(He) 11.288; i_used 26 (ALMA); AGN False; R/beam 1.03
+  SINS_BX610   z=2.211 R=4.50 kpc R_e=4.50 (Table 6 R_e) log M*=11.00 (+-0.20; BC03 SED, Chabrier, solar Z, Calzetti, constant ) Dunne BX610 [dax, 3 tracers] logMH2=11.080+-0.087 -> log M_gas(He) 11.214; i_used 59 (fitted (inside the V_c Monte Carlo errors)); AGN True; R/beam 2.21
+  ALESS_122.1  z=2.024 R=10.63 kpc R_e=5.31 (r_e (CO size) x kpc/arcsec) log M*=10.89 (+-0.21; MAGPHYS (da Cunha+15), Chabrier; the source tabl) Dunne ALESS122 [ad, 2 tracers] logMH2=11.258+-0.104 -> log M_gas(He) 11.392; i_used 55 (fitted (inside the V_circ posterior)); AGN False; R/beam nan
+
+BX610 gas-table sensitivity (logMH2, no He): dax 11.080, ad 11.071, xa 10.983, xd 11.188
+
+wrote cfg229_inputs_static.csv (7 rows, columns: gid, set, name, z, R_kpc, Re_kpc, Re_rule, Mstar, e_logMstar_inner, sigV_dex, i_used, e_i_used ...) and cfg229_inputs_kin.csv (7 rows)
+  [PASS] blindness of the static file: no numeric static entry equals any velocity or dispersion value of its own galaxy (value-level test): 0 coincidences []
+  sha256 cfg229_inputs_static.csv: 8fec99e76e0449b5
+  sha256 cfg229_inputs_kin.csv: 72a2102aec741086
+
+7/7 checks pass
