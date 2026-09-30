@@ -32,3 +32,25 @@ Template: the six CRISTAL detections of CFG219 at their R_out (z, R, M★, f_mol
 
 ## Reporting rules
 No sentence says the data favour the framework; the rule is conservative by design (a worst case over the box) and the false-separation control holds only if the true calibration is inside the box; REAL is the primary scenario, OPT the optimistic one; the operating characteristics describe THIS rule on THIS template, not a claim about any real sample; first-run outputs are kept if a check implementation is fixed; outputs named by mode.
+
+---
+
+## ADDENDUM 1 (2026-09-30; committed before ANY run of the rule or of the mocks; requested by the orchestrator: a MARGINALISED gas-calibration prior declared from the literature, and the CFG234 / CFG220 planning inputs)
+Where this addendum and the text above differ, **this addendum governs**; everything not mentioned (sample rule, per-disc statistic, laws, the four cells, LOO, extras, the C2–C4 controls) is unchanged.
+
+**1. Planning inputs, stated.** (a) CFG234 (8222db057, an independent re-derivation of CFG213): flat-truth mocks with the measured route scatter (1.4826 × MAD 0.27 dex at R_e) give **n_50 ≈ 19 and n_80 ≈ 36** discs for flat vs H(z) (19.1 / 36.1 with the route bias +0.044), and **power 0 at every n ≤ 60 if the systematic does not shrink with n and equals its bracket half-range (0.16 to 0.21 dex)**: the rule must therefore be tested out to N = 50 and its calibration prior fixed BEFORE values are read. (b) CFG220 (bfb27770a): the realised per-disc scatter of δ on the real six discs is **0.24 to 0.25 dex, about 1.8× CFG219's baryon-error-only 0.14**: the REAL scenario is primary. (c) CFG219 (b6d76ddb4): the expected pooled shifts and its calibration limit.
+
+**2. N grid** = {6, 13, 20, 30, 36, 50} (the 36 is CFG234's n_80).
+
+**3. The calibration prior is MARGINALISED, not a box, and its width is declared from the literature spread of gas conversions, not from these six discs.** Each tracer class k present gets one shared offset τ_k ~ N(0, σ_k²) on the gas mass: **σ_dust = σ_CO = 0.30 dex, σ_[CII] = 0.40 dex.**
+- On-disk spread (data chat's list, 2ad335eea): the α_CO adopted for high-z discs is 0.8 (Roman-Oliveira+2023), 0.92 ± 0.36 (Amvrosiadis+2025), 2.8 (GN20, NOEMA radiative transfer) and 3.0 (J081740; the REBELS-25 CO paper): **sd of log₁₀ α_CO = 0.29 dex**; GN20's own published M_mol is 5–13 × 10¹⁰ (CO(2-1)) against 2.9 × 10¹¹ (α_CO 2.8), a **0.76 dex** full range for one disc; the [CII] conversion is the least constrained (REBELS-25 α_[CII] = 60 ± 25; SPT0418-47's fitted prior 3.8–238).
+- From memory, UNVERIFIED: the classic α_CO range 0.8 (starburst) to 4.3 (Milky Way) is 0.73 dex, and the single-band dust method's T_d, β and α_850 choices are worth about ±0.2 to 0.3 dex.
+- 0.30 is the round number of the on-disk 0.29; 0.40 for [CII] is a declared wider value. CFG219's 0.25 is dropped as the primary and kept as the NARROW sensitivity (σ = 0.25 for every class).
+
+**4. The rule (replaces the box worst case as the headline).** For each of the four cells and each law: a **marginal bootstrap** of the discs (B = 500 in the operating-characteristics runs, 10,000 on real discs); in every resample draw c_k ~ N(0, σ_k²) for each tracer class present, recompute δ for the resampled discs with M_gas → M_gas 10^c_k, take the median; the **marginal 95% CI is the 2.5 and 97.5 percentiles** of those medians. A law is DISFAVOURED-under if the marginal CI upper edge is below 0, DISFAVOURED-over if the lower edge is above 0, NOT-DISFAVOURED otherwise. FLAT-SEPARATED / RIVAL-SEPARATED and the extras are then as written above (all four cells and LOO, the calibration draws re-made in every leave-one-out fit). The box worst case above is kept as a reported **ROBUST** secondary (ROBUST-FLAT-SEPARATED etc., with the box half-width = the σ above), never the headline.
+
+**5. Operating characteristics.** Truth ∈ {FLAT, H(z)}; true shared offsets **c ∈ {0, +0.30, −0.30, +0.60, −0.60}** (0, ±1σ, ±2σ of the prior) and **PRIOR** (c drawn from the prior in every mock, both classes independent); scenarios OPT (0.14 per disc), **REAL** (0.25), and REAL27 (0.27, CFG234's route scatter; N = 20 and 36 at c = 0 and PRIOR only). K = 100 mocks, seed 221, B = 500, template and everything else as above.
+
+**6. Feasibility and error control.** FEASIBLE at N: under REAL and c = 0, P(correct separation) ≥ 0.8 for both truths. **FALSE-SEPARATION-CONTROLLED**: the rate of the WRONG separation ≤ 0.094 (0.05 + 2√(0.05·0.95/K)) at c = 0, ±0.30 and PRIOR for every N and both truths; the marginalised rule is calibrated only where the prior is right, so ±0.60 is reported, not controlled.
+
+**7. Controls.** C1 is the FALSE-SEPARATION-CONTROLLED line (c = 0, ±0.30, PRIOR); C2 (noise-free, ε = η = 0, c = 0: the correct separation for every N) and C3 (MUTATE D × 1.5 destroys FLAT-SEPARATED in the noise-free flat-truth mock) unchanged; C4 reproduces the CFG220 headline cell's nominal statuses on the six real discs with the calibration collapsed (σ_k = 0): flat +0.106, rival −0.203.
