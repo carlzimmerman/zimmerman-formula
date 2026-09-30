@@ -1,0 +1,54 @@
+CFG227 -- the first compiled radial-acceleration relation (RAR) at z = 2-5 from tabulated kinematics and baryons.  Compilation; conversions as published; calibration-limited; author decompositions and tables;
+not a detection.  LambdaCDM has no a0: the proxy is an effective-a0 PROXY.  kappa = 1/2 FITTED.  No sentence says the data favour a law.
+Frozen criteria: FROZEN_CRITERIA.md here (e09ca6b74), committed before any g_obs, g_bar or delta of this lane was computed.
+
+POINTS: S1 9; S2 30 (groups [12, 6, 6, 6]); S3 9 of 10 ALPAKA discs with z >= 2; S4 41
+gas-calibration bands from CFG224b: inner K_local of alpha_CO B3 0.093, B4 0.067; outer K_ACE 0.340
+
+POINT TABLES are in cfg227_points.csv; GROUP MEDIANS of delta_L (nu_mono, canonical; 95% bootstrap interval; the lower limits of S3 enter no median), with the gas-mass shifts of the bands
+
+  S1 Amvrosiadis  (n = 9, z 2.02 to 4.45; 9 with a gas component for the bands)
+    FLAT   median -0.310 [-0.664, +0.171]   bands: -outer -0.262  -inner -0.294  +inner -0.330  +outer -0.540
+    PROXY  median -0.338 [-0.671, +0.124]   bands: -outer -0.293  -inner -0.322  +inner -0.356  +outer -0.557
+    H(z)   median -0.373 [-0.679, +0.070]   bands: -outer -0.331  -inner -0.358  +inner -0.390  +outer -0.570
+    M-DEC  median -0.306 [-0.663, +0.178]   bands: -outer -0.257  -inner -0.289  +inner -0.326  +outer -0.538
+
+  CRISTAL R_e fit (12)  (n = 12, z 4.43 to 5.69; 10 with a gas component for the bands)
+    FLAT   median +0.053 [+0.005, +0.234]   bands: -outer +0.221  -inner +0.084  +inner +0.026  +outer -0.029
+    PROXY  median -0.110 [-0.148, +0.020]   bands: -outer -0.010  -inner -0.100  +inner -0.113  +outer -0.150
+    H(z)   median -0.161 [-0.207, -0.055]   bands: -outer -0.079  -inner -0.153  +inner -0.164  +outer -0.201
+    M-DEC  median +0.089 [+0.017, +0.270]   bands: -outer +0.241  -inner +0.122  +inner +0.058  +outer -0.013
+
+  CRISTAL R_e independent (6)  (n = 6, z 4.44 to 5.69; 6 with a gas component for the bands)
+    FLAT   median +0.117 [-0.060, +0.384]   bands: -outer +0.207  -inner +0.139  +inner +0.094  +outer -0.008
+    PROXY  median -0.085 [-0.253, +0.207]   bands: -outer -0.038  -inner -0.074  +inner -0.098  +outer -0.166
+    H(z)   median -0.144 [-0.319, +0.141]   bands: -outer -0.099  -inner -0.133  +inner -0.157  +outer -0.221
+    M-DEC  median +0.166 [-0.044, +0.414]   bands: -outer +0.261  -inner +0.189  +inner +0.141  +outer +0.007
+
+  CRISTAL R_out fit (6)  (n = 6, z 4.44 to 5.69; 6 with a gas component for the bands)
+    FLAT   median +0.019 [-0.109, +0.172]   bands: -outer +0.132  -inner +0.035  +inner +0.004  +outer -0.128
+    PROXY  median -0.220 [-0.364, -0.037]   bands: -outer -0.139  -inner -0.202  +inner -0.239  +outer -0.316
+    H(z)   median -0.283 [-0.440, -0.109]   bands: -outer -0.209  -inner -0.266  +inner -0.301  +outer -0.381
+    M-DEC  median +0.062 [-0.062, +0.211]   bands: -outer +0.187  -inner +0.084  +inner +0.037  +outer -0.095
+
+  CRISTAL R_out independent (6)  (n = 6, z 4.44 to 5.69; 6 with a gas component for the bands)
+    FLAT   median +0.106 [-0.138, +0.343]   bands: -outer +0.192  -inner +0.126  +inner +0.083  +outer -0.004
+    PROXY  median -0.136 [-0.402, +0.107]   bands: -outer -0.091  -inner -0.125  +inner -0.148  +outer -0.212
+    H(z)   median -0.203 [-0.477, +0.029]   bands: -outer -0.159  -inner -0.192  +inner -0.215  +outer -0.276
+    M-DEC  median +0.161 [-0.096, +0.392]   bands: -outer +0.252  -inner +0.183  +inner +0.137  +outer +0.028
+
+  S4 RC100 (z >= 2)  (n = 41, z 2.00 to 2.52; 0 with a gas component for the bands)
+    FLAT   median +0.008 [-0.010, +0.064]   (no gas component: no band)
+    PROXY  median -0.045 [-0.075, -0.003]   (no gas component: no band)
+    H(z)   median -0.105 [-0.147, -0.053]   (no gas component: no band)
+    M-DEC  median +0.018 [+0.000, +0.073]   (no gas component: no band)
+
+CONTROLS
+  [PASS] C1 counts: S1 nine; ALPAKA ten discs at z >= 2 of which nine carry M*; CRISTAL groups 12 / 6 / 6 / 6; S4 the RC100 corrected rows at z >= 2 (reported): S1 9; ALPAKA 10 / 9; CRISTAL [12, 6, 6, 6]; S4 41
+  [PASS] C2 non-vacuous placement: S1 galaxies with g_obs set exactly on each law through V and r give delta_L = 0 under their own law and |delta| > 1e-3 under the other laws in >= 90% of the rows: max |delta| 9.6e-17; other-law sensitivity 100%
+  [FAIL] C3 the disc function: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003 and V^2 -> G M / r far away (r = 50 R_d) to 1e-3: peak 0.3870; far field ratio 1.00181
+  [PASS] C4 band direction: raising the gas mass raises g_bar and lowers every delta_L at every S1 point (tau = +0.3 < 0 < -0.3): True
+  [PASS] C5 the CRISTAL group medians of delta_FLAT and delta_H(z) equal CFG222's committed values to 1e-9 and the RC100 corrected loader reproduces CFG216's committed FLAT slope: CRISTAL max |difference| 8.3e-17; RC100 slope difference 0.0e+00
+
+4/5 controls pass; 0 s
+Reading rule: compilation; conversions as published; calibration-limited; the S1 / S3 baryon models are ours (thin exponential discs, the tabulated R_e for stars and gas); ALPAKA points are stars-only lower limits on g_bar; LambdaCDM has no a0; no sentence says the data favour a law.
