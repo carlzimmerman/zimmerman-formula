@@ -41,23 +41,35 @@ Source files: `noema3d/noema3d_per_galaxy.csv` (Tables 1-3), `multitracer_gas/no
 - **Girard+2021 (21 galaxies)**: f_gas of one kind per source (CO for PHIBSS and DYNAMO rows); not multi-tracer in the table read. **Ubler+2018** (EGS_13011166): CO gas from PHIBSS, plus the fitted mass model; no second tracer. **Roman-Oliveira+2023**: literature CO with alpha_CO = 0.8 only. **KURVS-15**: Band 6 dust not detected (upper limit), CO cubes not fetched.
 - **CHILES XI (z 0.22-0.47, 4 galaxies)**: HI plus CO are components of the gas, not two tracers of one mass.
 
-## 4. Compilations that would give many galaxies (per-galaxy tables NOT read; abstract or search-summary level; a parse needs my user's go)
-| paper | sample | tracers | note |
-|---|---|---|---|
-| Dunne+2022, arXiv:2208.01622 | 407 galaxies, z 0-6 (local disks, z~0.35-1, SMGs to z~6) | CO(1-0), [CI](1-0), submm dust; Bayesian calibration: alpha_CO = 4.0, alpha_CI = 17.0, alpha_850 = 6.9e12 W/Hz/Msun, X_CI = 1.6e-5, T_mw 23-30 K | the page read shows no per-galaxy table; data may be in source or online files |
-| arXiv:2306.03153 | 29 lensed SPT DSFGs | [CI], CO, [CII], dust | 6 tables; per-galaxy values implied |
-| arXiv:2404.05596 | 20 unlensed DSFGs, z 2-5 | CO(1-0), [CI](1-0), 3 mm dust | abstract says no per-galaxy mass catalogue; conversion factors not dependent on z or L_IR |
-| Kirkpatrick+2019, arXiv:1905.11417 | 12 galaxies, z~2 | CO(1-0) and dust | masses agree within a factor 2 |
-| Dessauges-Zavadsky+2020 (ALPINE), arXiv:2004.10771 | 11 FIR-continuum-detected non-merger ALPINE galaxies with both | [CII] (Zanella+2018, 0.3 dex), 850 micron dust (T_d 41 K z<5, 43 K z>5, beta 1.8), dynamical; alpha_CO metallicity-dependent from 4.36 | no per-galaxy table in the paper; values sit in Faisst+20, Bethermin+20 and Fujimoto+20 tables |
-| Valentino+2018/2020 (COSMOS z 1.1-1.7), Bourne+2019 (arXiv:1810.01640), arXiv:2111.09067 (z = 0.35), arXiv:1803.08926 (Stripe82, low z), arXiv:2305.00024 (z = 3 MS), arXiv:2109.01684 (Q1700-MD94), arXiv:2509.25167 (Vz-GAL z 1-6), arXiv:2508.09951 | not sized | CO, [CI], dust combinations | named by the search only |
+## 4. Compilations PARSED on 2026-09-30 (my user's go; arXiv HTML pages read by code, sources fetched; sha256 of pages in `multitracer_gas/manifest_multitracer.json`; script `multitracer_gas/build_multitracer.py`; checks in `checks_multitracer.txt`)
+Per-galaxy CSVs are in `multitracer_gas/`. **Independence notes matter:**
+| set (file) | N | z | tracers and what the table holds | independence and conversions |
+|---|---|---|---|---|
+| Stripe82, Bertemes+18 arXiv:1803.08926 (`stripe82_z_lt0.3_CO_dust.csv`) | 78 | 0.03-0.20 | log M_gas,CO and log M_gas,dust for every galaxy, plus M*, SFR, metallicity, T_dust, M_dust, M_dyn, M_HI | CO: alpha_CO,MW = 3.2 times the metallicity factor (geometric mean of G12 and B13); dust: Leroy+2011 metallicity-dependent dust-to-gas. The paper finds 0.17 dex scatter and 0.05 dex offset between the two |
+| H-ATLAS z = 0.35, arXiv:2111.09067 (`hatlas_z035_CI_CO_dust.csv`) | 12 | 0.35 | L'_CI, L'_CO, L_850, M*, L_IR, M_dust, plus per-galaxy X_CI, alpha_CI, alpha_CO, delta_GDR, alpha_850, M_H2 | the conversions are solved jointly per galaxy so the three masses agree **by construction**; the independent content is the three luminosities |
+| Bourne+19 arXiv:1810.01640 (`bourne2019_z1_CI_CO_dust.csv`, `bourne2019_line_fluxes.csv`) | 10 (9 with masses) | 0.84-1.22 | M_dust (SED and continuum), M_mol from [CI] (Q10 = 0.35, X_CI = 3e-5) and from the continuum; [CI], CO(2-1) and continuum fluxes | no CO-based mass column (CO flux only) |
+| Kirkpatrick+19 arXiv:1905.11417 (`kirkpatrick2019_z2_CO_dust.csv`) | 12 | 1.65-2.93 | L'_CO(1-0), L_850, M_mol,CO, M_mol,RJ, M*, SFR, T_cold, M_dust | **alpha_CO = 6.5 is adopted for both, and the RJ method is calibrated to CO with that value, so the two masses are not independent** (the paper tests consistency of the ratio) |
+| SMGs, arXiv:2404.05596 (`smg_CI_CO_3mm_arxiv2404.05596.csv`) | 20 | 2.26-4.78 | I_CI, L'_CI, M_gas,[CI] (X_[CI] = 5.1e-5), L'_CO(1-0) (some estimated from mid-J CO), L_IR, S_3mm | no CO mass and no dust mass column; masses would need a conversion choice |
+| SPT lensed DSFGs, arXiv:2306.03153 (`spt_dsfg_CI_CO_CII_fluxes_arxiv2306.03153.csv`) | 29 | 1.87-4.80 | [CI](1-0), [CI](2-1), CO(7-6), [CII] fluxes | flux table only; per-galaxy masses are not tabulated (the paper's cross-calibration tables give means and slopes) |
+| Dunne+2022 arXiv:2208.01622 (`dunne2022_SampleT_counts.csv`) | 407 | 0-6 | per-sample counts only: high-z SMG 89 CO / 42 [CI] / 114 sub-mm; Local SF 35/19/35; (U)LIRGs 85/19/114; z = 1: 11/18/9; z = 0.35: 12/12/12; 0.04 < z < 0.3 (VALES): 48/0/54; calibration samples: dust+CO+[CI] 101 (90 high-L_IR), CO+[CI] 109 (97), dust+[CI] 140 (128), CO+dust 326 (240) | **the paper has no per-galaxy table** (TeX has none; the data come from the cited surveys). Calibrations: alpha_CO 4.0, alpha_CI 17.0, alpha_850 6.9e12 W/Hz/Msun, X_CI 1.6e-5, T_mw 23-30 K |
+| singles (`singles_multitracer_galaxies.csv`) | 4 | 2.33-4.26 | PKS 0529-549 ([CI], CO, dust; Table 5), Q1700-MD94 (CO, dust, [CI]), D49 (CO, [CI], dust), J081740 (CO, FIR, [CII]) | stated masses and conversions in the file |
+Not parsed: ALPINE Dessauges-Zavadsky+2020 (no per-galaxy table; 11 galaxies with [CII] and dust, values in other papers' tables), Valentino+2018/2020 (not fetched; partly inside Dunne's z = 1 sample), 2509.25167 (Vz-GAL, a 40 MB source), 2508.09951, 2301.12976; they would add tens of galaxies.
 
 ## 5. Counts
-Galaxies with >= 2 tracer masses obtainable NOW (local tables or stated values), by redshift:
-- **z < 1: 0** (candidates only: Dunne+22 local and z~0.35-1 parts, DYNAMO, Stripe82, z = 0.35).
-- **z 1-2: 10** (NOEMA3D, CO + dust); **6** of them CO + [CI] + dust; **5** with the CO reconstruction validated against the paper's Table 1 (G4_38065, G4_38232, G4_20371, GN4_24517, GN4_18574 at z 1.12-1.25).
-- **z 2-3: 1 to ~18** (PKS 0529-549 at 2.57; ACE up to 17, abstract-level, masses not seen).
-- **z 3-5: 3** (J081740 4.26 with three explicit formulas; GN20 4.055; CRISTAL-22, z not read).
-- **z > 5: 1** (REBELS-25, 7.31; abstract-level).
-- Total with numbers I can read now: 15 (10 + 1 + 3 + 1), of which only J081740 and the five validated NOEMA3D galaxies are solid; the compilations in section 4 would add tens to hundreds.
+**Galaxies with >= 2 tracers measured, from per-galaxy tables now on disk, by redshift** (all sets above plus NOEMA3D; SPT fluxes included, Dunne counted only as sample sizes):
+| set | N | z<1 | 1-2 | 2-3 | 3-5 | >5 |
+|---|---|---|---|---|---|---|
+| Stripe82 (CO + dust masses) | 78 | 78 | 0 | 0 | 0 | 0 |
+| H-ATLAS z=0.35 (luminosities, 3 tracers) | 12 | 12 | 0 | 0 | 0 | 0 |
+| Bourne+19 ([CI], CO, dust) | 10 | 4 | 6 | 0 | 0 | 0 |
+| Kirkpatrick+19 (CO and RJ dust masses; not independent) | 12 | 0 | 3 | 9 | 0 | 0 |
+| NOEMA3D (CO, [CI], dust; reconstructed) | 10 | 0 | 10 | 0 | 0 | 0 |
+| SMGs arXiv:2404.05596 ([CI] mass, L_CO, 3 mm flux) | 20 | 0 | 0 | 6 | 14 | 0 |
+| SPT DSFGs arXiv:2306.03153 (fluxes only) | 29 | 0 | 1 | 7 | 21 | 0 |
+| singles (PKS0529, MD94, D49, J081740) | 4 | 0 | 0 | 2 | 2 | 0 |
+| **total parsed** | **175** | **94** | **20** | **24** | **37** | **0** |
 
-Nothing here is an acceleration, an a0 or a verdict. Nothing in the repo was changed.
+Plus abstract-level (not parsed): GN20 (z 4.06, CO + dust), REBELS-25 (z 7.31, CO + [CII]), CRISTAL-22 (dust + VLA CO(2-1)), PKS-like ACE survey (up to 17 at z 2-2.5).
+**With gas MASSES from >= 2 tracers (not luminosities or fluxes only): Stripe82 78 (z < 0.2), Bourne 9 (z 0.84-1.22), Kirkpatrick 12 (z 1.65-2.93, not independent), NOEMA3D 5 validated of 10 (z 1.12-1.25, reconstructed) and the four singles: about 108 independent or semi-independent galaxies, of which only ~14 are at z > 1.** The z > 2 sample with two independent mass tracers is small (singles 4, plus Kirkpatrick 9 that share alpha_CO) and its calibration is tested by luminosities only in the SMG and SPT sets.
+
+Nothing here is an acceleration, an a0 or a verdict. Nothing in the repo was changed except new files in `multitracer_gas/` and this note.
