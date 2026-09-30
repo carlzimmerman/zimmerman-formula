@@ -1,4 +1,4 @@
-# AMENDMENT 18 — DRAFT, NOT FILED (written 2026-09-30, revision 1; filing needs the owner's explicit go)
+# AMENDMENT 18 — DRAFT, NOT FILED (written 2026-09-30, revision 2; filing needs the owner's explicit go)
 
 This is a draft. `PREREGISTRATION_DR4.md` and every `*_HASH.txt` are untouched. If the owner approves, the text below the line is appended verbatim (append-only) after Amendment 17, with a new `AMENDMENT18_HASH.txt`.
 
@@ -8,6 +8,15 @@ This is a draft. `PREREGISTRATION_DR4.md` and every `*_HASH.txt` are untouched. 
 - The build-only part is 0.24 / 0.32 σ_fit.
 
 The primary DR4 build is deterministic, because its seeds are frozen. But the seed choice carries a noise term that σ_tot = √(σ_fit² + 0.02²) does not include, and its size at DR4's N is not measured.
+
+**Revision 2 (after the DR3 rehearsal of the tooling: design be8a6405d + addenda 1a81a6622 / 6da28b334; tooling 7f1ab9542; stream and N-scaling a51d6f8f2; mechanism 2f2354b18; controls 12/12, including byte identity at k = 0 and σ_build = 0 exactly on identical seeds). The measurements change what the text must say.**
+- **The mechanism.** The build-to-build noise comes from the stage-G velocity-error Monte Carlo, which draws one sequential stream over the pair array. ANY change to that array re-rolls every pair's σ(ṽ): even one pair added or removed, or a reordering. About 2.5% of the final pairs then move across the frozen ṽ-error cut.
+  - Each seed stream alone reproduces about the whole spread: G-only 0.41 / 0.22 σ_fit, E/F-only 0.42 / 0.40, all streams 0.32 / 0.28.
+  - The ratio SD/σ_fit shows no trend with N over a factor of 4 (1,550 to 6,200 pairs).
+- **Consequence 1: σ_build is measured by a cheap G-only sweep.** At DR3 scale that costs about 3 s plus a 30 s fit per build, against about 880 s for an E–G rebuild. Full rebuilds are kept as confirmation.
+- **Consequence 2: the primary is deterministic only for its exact pair array.** Upstream details the amendments treat as inert can move about 2.5% of the final pairs: a column mapping, one more cut-13 flag, an NSS table.
+- **Consequence 3: the edges are defined by the frozen pipeline's own in-force decision constants, not by a hand list.** §1.5's targets include 1.137, which the code marks STALE (Amendment 4(i)).
+- The per-build uncovered correlation ids were checked: 2–10 of about 20,450 per build, negligible.
 
 **Revision 1 (after the calculation chat's read-through against the frozen builder, sha256 46452daf…, and dry_run_driver.py; the first draft 3037b034f is in git history).** The first draft's quoted DR3 numbers all matched. Its seed text did not:
 - **Stage-E overlap:** "integers 1–10 added to each base seed" would reuse most stage-E per-block shift realisations across builds (116,000 of 132,000 per-block seeds duplicated), understating σ_build.
@@ -20,7 +29,7 @@ The primary DR4 build is deterministic, because its seeds are frozen. But the se
 - **Manifest:** there was no slot for the seed sets.
 - **Patching:** the release-day checklist forbids a diff touching the builder's seeds, so extra builds must patch in memory.
 
-The measured DR3 correlation-cache coverage per build (the uncovered ids) is being checked separately before the 0.30 σ_fit is relied on. The text below fixes all of these.
+The measured DR3 correlation-cache coverage per build (the uncovered ids) was checked afterwards; see revision 2. The text below fixes all of these.
 
 ---
 
@@ -46,34 +55,35 @@ The measured DR3 correlation-cache coverage per build (the uncovered ids) is bei
 >
 > The pipeline's fit uses its registered RNG seed, 20261216.
 >
-> **(c) The extra builds.** K = 10 further builds, k = 1 … K (the primary is k = 0), are run on release day. In build k:
-> - stage E's shift realisations use r + 1 + 100k in place of r + 1;
-> - the stage-E half-mask, the stage-F fold and stage G use SEED + k, with G's seed passed explicitly;
-> - the fit uses the primary's registered fit path and seed, so the spread across builds is build-only.
+> **(c) The extra builds.**
+> - **σ_build is measured by a G-ONLY sweep of K_G ≥ 50 builds**, k = 1 … K_G, with the primary as k = 0. In build k, stage G's velocity-error Monte Carlo uses SEED + k, passed explicitly. Stages A–F are the primary's. Every build is fitted by the frozen pipeline's own run on its catalogue with the registered fit seed, 20261216, so the spread is build-only.
+> - **A confirmation sweep of K_F = 3 to 10 full E–G rebuilds** is also run, with stage-E per-block seeds r + 1 + 100k and SEED + k for the stage-E half-mask, the stage-F fold and stage G. Its SD is reported beside σ_build.
+> - **A fit-only control** is also run: the primary catalogue refitted with fit seeds 20261216 + j.
+> - **Implementation rules:** the builder's seeds are changed IN MEMORY only, with the frozen builder file's hash checked before and after every build; each build has its own correlation cache.
+> - **The seed list:** `dr4_ready_1/seed_sets_dr4.json`, a pure function of this rule, is committed before DR4 is released.
+> - **Recorded per build:** γ̂, σ_fit, κ and the implemented ladder-rung shifts (R_chance < 0.001; separation 3–20 kAU; RUWE < 1.2 on both components), written to a sweep manifest. Ladder rungs that cannot be implemented on release day are listed as NOT IMPLEMENTED; nothing is substituted.
 >
-> Each build re-runs stages E, F and G on the same stage-A–D inputs. The seeds are changed IN MEMORY: the frozen builder file's hash is checked before and after every build and never edited, as the release-day checklist requires. Each build has its own correlation cache.
->
-> A fit-only control is run and reported alongside: the primary catalogue refitted with fit seeds 20261216 + k.
->
-> The full seed list, the K actually run, and each build's γ̂, σ_fit, κ and ladder-variant shifts are written into the fetch manifest before the data are opened (the list) and after the runs (the values).
->
-> **(d) σ_build, reported only.** σ_build is defined as the SD of γ̂ across the K + 1 builds, on each footing. It is REPORTED ONLY: it does not enter σ_tot and moves no decision edge.
+> **(d) σ_build, reported only.** σ_build is the SD (ddof = 1) of γ̂ across the K_G + 1 G-only builds, on each footing. It is REPORTED ONLY: it does not enter σ_tot and moves no decision edge.
 >
 > **(e) A seed-sensitivity label.**
-> - **The edges:** the decision edges are the operative z-rule edges (each registered target γ ± 2σ_tot and ± 3σ_tot at the primary's realised σ_tot, §1.5) and the hard edges of Amendments 10 (Arm A rows and the 1.23 no-verdict edge), 11(d) as corrected by 12(d) (Arm B kill-from-above 1.084), 13(d) (Arm C rows) and 14(d). All are evaluated at the PRIMARY's σ_tot.
-> - **The label:** if the primary γ̂ lies within max(σ_build, 0.3 σ_fit) of any such edge, the verdict is reported with the label **"seed-sensitive"**, stating how many of the K + 1 builds fall on each side.
-> - **Stability conditions:** the frozen stability conditions (every ladder variant within 1 σ_fit, κ in [0.95, 1.05], the NSS-off direction) are also evaluated for each build. Any condition that changes its pass/fail status across builds is labelled "seed-sensitive" in the same way.
+> - **The decision edges are the in-force decision constants of the frozen `wide_binary_pipeline.py` at release.** That means the named γ̂ edges and anchors, excluding any the code marks STALE: Arm A's band, Arm B's value, A falsified below, B killed at or above, the no-verdict edge and the MOND benchmark. Add the κ window, Amendment 14's chain ceiling, and the §1.5 z-rule's ±2σ_tot and ±3σ_tot around each in-force target at the primary's σ_tot.
+> - **The edge table:** these are extracted by code into a machine-readable edge table, committed before DR4. That table, not this text, is the operative list.
+> - **The label:** if the primary γ̂ lies within max(σ_build, 0.3 σ_fit) of any edge, the verdict is reported with the label **"seed-sensitive"**, stating how many builds fall on each side of that edge.
+> - **Stability conditions:** the frozen stability conditions (every implemented ladder rung within 1 σ_fit, κ in its window) are evaluated for each build. Any condition that changes its pass/fail status across builds is labelled the same way.
 > - The primary's verdict is the one recorded; labels are added, never substituted.
 >
 > **(f) Against interest.**
 > - The label can caveat a verdict favourable to the framework as well as an unfavourable one.
-> - Keeping σ_tot unchanged keeps the frozen thresholds. If σ_build is comparable to σ_fit at DR4's N, the frozen σ_tot understates the total error, and the label is the only protection. That is stated here before the data exist.
-> - The extra builds are costly: each re-runs stages E–G (about 880 s per build at DR3 scale, several times that at DR4) and needs its own correlation fetch. If time does not allow K = 10, the number run is recorded, and at least K = 3 are required for the label.
+> - Keeping σ_tot unchanged keeps the frozen thresholds. If σ_build is comparable to σ_fit at DR4's N, which the DR3 N-scaling (a constant ratio of about 0.3) suggests, σ_tot understates the total error by roughly 5%. The label is the only protection. That is stated here before the data exist.
+> - The primary is sensitive to any change of stage G's pair array, including ones the other amendments treat as inert. This amendment measures that sensitivity; it does not remove it.
+> - Per-pair seeding of the Monte Carlo would remove it, but would change the frozen builder, so it is not adopted.
+> - If time does not allow K_G ≥ 50 G-only builds, the number run is recorded, and at least 10 are required for the label.
 >
 > **Untouched:** the estimator; the cut table; the error model and σ_tot; the strictness ladder; the frozen N = 30,000; both a₀ footings; Arms A, B and C; Amendments 10–17's decision rows and cut choices; the primary build's frozen seeds and the pipeline's registered RNG seed. κ = ½ remains fitted.
 >
 > **Provenance.**
-> - `prep_2026/gaia_dr4_prep/AMENDMENT18_DRAFT_NOT_FILED.md`: the draft, revised once after a read-through against the frozen builder and the driver.
+> - `prep_2026/gaia_dr4_prep/AMENDMENT18_DRAFT_NOT_FILED.md`: the draft, revised twice: once after a read-through against the frozen builder and the driver, and once after the DR3 rehearsal of the tooling (a51d6f8f2, 2f2354b18).
+> - `dr4_ready_1/seed_sets_dr4.json` and the edge table (to be committed before DR4).
 > - `dr4_ready_1/WP2_GAMMA_SPREAD_FROZEN.md` and `wp2_gamma_spread_full_dr3.*` (72f9a7ed4).
 
 ---
