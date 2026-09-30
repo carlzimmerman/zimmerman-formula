@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_VARIABLE_CLOCK_TRAJECTORY_TIGHT_LOGH",
+  "repository": {
+    "commit": "4d7b44787c3ce6875b20181eeae8d6840b05805e",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/variable_clock_trajectory_v2.py",
+    "--output",
+    "sol61_push/runs/variable_clock_trajectory_v2/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Five constrained radiation trajectories plus independently evolved H equation, with fixed endpoint and residual tolerances",
+    "coefficient_domain": "Double precision positive homogeneous scalar, radiation only",
+    "conventions": "VARIABLE_CLOCK_RESULTS.md and future VARIABLE_CLOCK_TRAJECTORY_RESULTS.md",
+    "inputs": [
+      "sol61_push/variable_clock_trajectory_v2.py"
+    ],
+    "bounds": {
+      "ell": [
+        0.1,
+        1,
+        10
+      ],
+      "initial_offsets": [
+        1,
+        0.9,
+        1.1
+      ],
+      "offsets_only_ell": 10,
+      "initial_w": [
+        1.3333333333333333,
+        0
+      ],
+      "rho_initial": 100000000.0,
+      "N_range": [
+        0,
+        12
+      ],
+      "grid_count": 1201,
+      "rtol": 1e-08,
+      "atol": 1e-10,
+      "independent_rtol": 2e-12,
+      "independent_atol": 2e-14,
+      "max_step": 0.02,
+      "late_vacuum_relative_tolerance": 1e-05,
+      "independent_constraint_relative_tolerance": 1e-06,
+      "independent_trajectory_relative_tolerance": 1e-05,
+      "independent_max_step": 0.005
+    },
+    "non_claims": [
+      "No universal basin proof",
+      "No galaxy calibration or matter era",
+      "No BBN abundances",
+      "No inhomogeneous stability or 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T21:02:50.153062+00:00",
+    "runtime_seconds": 5.079362,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/variable_clock_trajectory_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/variable_clock_trajectory_v2.py",
+      "sha256": "d43740c6790ab9004b116656973f78199ae419b0d9dfadba48181bb759ea5a10",
+      "sha256_after": "d43740c6790ab9004b116656973f78199ae419b0d9dfadba48181bb759ea5a10"
+    }
+  ],
+  "output_directory": "sol61_push/runs/variable_clock_trajectory_v2",
+  "declared_results": [
+    "sol61_push/runs/variable_clock_trajectory_v2/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/variable_clock_trajectory_v2/stdout.txt",
+      "sha256": "93d341bf6b089dc50f922e25fb35a69d7633bb879b984d496d02e281b9c292f8",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/variable_clock_trajectory_v2/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/variable_clock_trajectory_v2/results.json",
+      "sha256": "ea1587e310f8f617300118e2cf78205a799f57749959e720df25050dc0e1a615",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
