@@ -1,13 +1,129 @@
-# CFG197 — a gas-floor bound on a₀(z) from z > 3.5 discs (phase 1: lemma, frozen criteria, pre-flight)
+# CFG197 — a gas-floor bound on a₀(z) from z > 3.5 discs
 
-- **Criteria:** `../CFG197_FROZEN_CRITERIA.md`. It was written before any dynamical-mass, velocity or dispersion value was used, and before the pre-flight ran. It is not yet committed; the orchestrator reviews it first.
-- **Scripts:**
-  - `CFG197_bound.py` (sympy, about 1.5 s) → `CFG197_bound.out`. 21 of 21 checks pass.
-  - `CFG197_preflight.py` (about 5 s) → `CFG197_preflight.out` / `_results.json`. 11 of 11 checks pass, exit 0.
-  - `MUTATE=1` → `CFG197_preflight_MUTATE.out` / `_results.json`. C6 and C7 fail as required, exit 1.
-- **Phase 1 uses no M_dyn, V, σ or f_DM.** The pre-flight's loader refuses those columns; check C0 lists every column read.
+- **Criteria:** `../CFG197_FROZEN_CRITERIA.md`, committed in bb91eeb23 before any phase-2 script existed. It was written before any dynamical-mass, velocity or dispersion value was used.
+- **Phase 1 scripts** (these use no M_dyn, V, σ or f_DM):
+  - `CFG197_bound.py` → `CFG197_bound.out`. 21 of 21 checks pass.
+  - `CFG197_preflight.py` → `.out` / `_results.json`. 11 of 11 pass, exit 0.
+  - Its `MUTATE=1` run fails C6 and C7 as required, and exits 1.
+- **Phase 2 script:** `CFG197_phase2.py` (about 5 s) → `CFG197_phase2.out` / `_results.json`. 10 of 10 checks pass, exit 0.
+  - The first run is kept as `CFG197_phase2_firstrun.*`. The script was not changed after it ran, so the copies are byte-identical to the final run.
+  - `MUTATE=1` → `CFG197_phase2_MUTATE.out` / `_results.json`. It exits 1 (see below).
 
-## Bottom line
+## Phase 2 bottom line
+
+- **The gas floor does not separate the flat law from the rival in any bin.**
+- **In the pooled z > 3.5 bin both laws are CONSISTENT.** Both verdicts survive the robustness rule: every variant, both footings, and P2 and ν_mono alike.
+- **The reason is that the discs sit far above both floors.**
+  - The median M_dyn(<r_e)/M★(<r_e) is 5.1.
+  - The floors are about 1.33 (flat) and 2.55 (rival).
+  - So the floor has nothing to bite on.
+- **CONSISTENT is not evidence for either law.**
+  - A CONSISTENT verdict here is the survival of a one-sided bound (L4). It carries no evidential weight for either law.
+  - Both laws still need mass beyond the stars inside r_e: gas or other unseen mass. This one-sided test cannot say whether the measured gas supplies it.
+- **Nowhere does a law come out DISFAVOURED. No bin is ESTIMATOR-LIMITED.** Newton is CONSISTENT in every bin and variant.
+
+## Phase 2 verdicts per bin (frozen labels; P2 is the headline kernel)
+
+"Median log s_req" is the bin median in the primary estimator and variant, for the canonical / alt footing. R_obs = M_dyn(<r)/M★(<r).
+
+| bin | N | Newton median log R_obs (R_obs) | flat, median log s_req | rival, median log s_req | **flat headline** | **rival headline** | ν_mono headlines |
+|---|---|---|---|---|---|---|---|
+| **z > 3.5 pooled** | 53 | +0.71 (5.1) | +0.69 / +0.68 | +0.53 / +0.49 | **CONSISTENT** | **CONSISTENT** | same |
+| Hα sub-bin (Danhaive) | 41 | +0.74 (5.4) | +0.70 / +0.69 | +0.58 / +0.56 | CONSISTENT | CONSISTENT | same |
+| [CII] sub-bin (CRISTAL) | 12 | +0.64 (4.4) | +0.60 / +0.59 | +0.34 / +0.30 | CONSISTENT | **NON-DIAGNOSTIC** (primary only) | same |
+| MSA-3D (z 0.6–1.7) | 30 | +1.06 (11.4) | +0.93 / +0.92 | +0.86 / +0.84 | CONSISTENT | CONSISTENT | same |
+| KURVS (z ≈ 1.5) | 10 | +0.60 (4.0) | +0.52 / +0.50 | +0.41 / +0.37 | CONSISTENT | CONSISTENT | same |
+| MSA-3D golden (reported) | 23 | +1.08 (12.0) | +0.97 / +0.95 | +0.89 / +0.85 | CONSISTENT | CONSISTENT | same |
+
+**Robustness.**
+
+- Every CONSISTENT headline above holds in all declared variants and both footings.
+- The exception is the rival in the [CII] sub-bin.
+  - It is CONSISTENT in the primary.
+  - It is NON-DIAGNOSTIC in 12 of the 24 variant × footing cells, mostly compact-stars, thin-disc and moderate-pressure cells.
+  - Their medians run from +0.08 to −0.20. Either the median falls below −0.10 or the bootstrap 5th percentile falls below −0.30.
+  - None of the 24 cells is DISFAVOURED.
+  - So its headline is NON-DIAGNOSTIC ("primary only").
+- In the pooled bin, the rival's lowest variant median is +0.02 (moderate pressure, thin disc, compact stars, alt footing), still CONSISTENT.
+
+**The other rules.**
+
+- **Pooling rule:** the sub-bins are never opposite.
+- **ESTIMATOR-LIMITED:** never triggered.
+- **External field:** nothing to report, because no primary verdict is DISFAVOURED.
+- **Separation outcome** ("rival DISFAVOURED, flat CONSISTENT"): none.
+- **Flat-law failure against Newton:** none.
+
+**Galaxies below a floor even at 1σ** (primary, canonical, pooled z > 3.5):
+
+- Newton 3/53, flat 3/53, rival 5/53.
+- The five are CRISTAL-23b and four Danhaive galaxies whose catalogue M_dyn is below M★ (R_obs 0.02–0.43): 1082948, 1009935, 1015956 and 1085659.
+  - The Danhaive paper discusses 1082948 by name.
+  - The paper says five systems lie on or above its one-to-one line, but gives no IDs in the text.
+
+## Phase 2: the Roman-Oliveira gas-only over-prediction check (lower side only)
+
+The frozen label is OVER-PREDICTS: the margin (log g_obs − log g_floor)/σ is below −2 in the primary and in every variant (ring radius × f_g × α × footing).
+
+| source | V_ext, σ_ext (km/s) | Newton margin (primary; range) | flat, P2 | rival, P2 | label |
+|---|---|---|---|---|---|
+| BRI1335-0417 | 125, 57 | −1.49 (−1.65 to −0.22) | −1.72 (−1.88 to −0.53) | **−2.63** (−2.78 to −1.65) | none OVER-PREDICTS; the rival falls below −2 only in some variants |
+| J081740 | 249, 33 | −0.14 | −0.21 | −0.56 (−0.75 to +0.22) | none OVER-PREDICTS |
+| SGP38326-1 | 548, 46 | +0.95 | +0.94 | +0.86 | none OVER-PREDICTS |
+| SGP38326-2 | 409, 40 | +0.51 | +0.50 | +0.42 | none OVER-PREDICTS |
+
+- **No source is labelled OVER-PREDICTS for any law.**
+- **BRI1335-0417 is the one near-miss, for the rival.**
+  - The rival's gas-only floor sits 2.6σ above the observed acceleration in the primary (2.9σ with ν_mono), but not in every variant.
+  - Newton itself is at −1.5σ there: V_ext of 125 km/s is below even the Newtonian gas-only speed of about 229 km/s.
+  - So most of that tension is between this quasar host's CO gas mass and its [CII] V_ext, which is shared by every law. It is not a rival-specific result.
+  - The paper models only its approaching side.
+
+## Phase 2 MUTATE (R_obs = 1 everywhere; RO unchanged)
+
+- **The control bites.** V1–V3 (the identities tying R_obs to the catalogues) fail, and the run exits 1.
+- **C2 holds at scale.** With R_obs = 1, every galaxy is below both laws' floors in every variant, and Newton is exactly 0.
+- **The frozen expectation fails, and is kept as written.** The criteria said every bin would come out DISFAVOURED for both laws. It fails for the flat law at z > 3.5.
+  - There the flat law is NON-DIAGNOSTIC.
+  - Across all bins, 18 of the 24 primary cells are DISFAVOURED. The six that are not are the flat law in the three z > 3.5 bins, in both footings.
+  - The KURVS flat headline is also NON-DIAGNOSTIC, although its primary is DISFAVOURED.
+  - The phase-1 threshold table predicted this: at z > 3.5 the flat law's DISFAVOURED line is R_obs 0.73–0.91, below 1.
+- **The test can fail the flat law.** At MSA-3D's low accelerations, R_obs = 1 does make both laws DISFAVOURED ("both disfavoured", with Newton CONSISTENT).
+
+## Phase 2 readings of the frozen text, departures and wrong expectations
+
+**Readings of the frozen text** (none changes a headline):
+
+1. **ESTIMATOR-LIMITED uses the primary variant's Newton median.** This is moot: Newton is CONSISTENT in every variant of every bin.
+2. **The robustness set includes every declared sensitivity:**
+   - Danhaive recomputed at the paper's pressure 3.36;
+   - Danhaive recomputed at the moderate 1.68;
+   - V-lim;
+   - both KURVS 3 R_D pressures (6.0 and 3.0).
+   - In the pooled bin, each of these pairs the 24 σ₀-detected Danhaive rows with CRISTAL at the matching pressure.
+   - MSA-3D golden is reported as its own bin, not as part of MSA-3D's robustness set.
+3. **The pooling rule** is applied to the two sub-bins' primary P2 verdicts, per footing.
+4. **Bootstrap:** one index matrix per bin and estimator variant (seed 197), shared across laws, geometries and footings, so the comparisons are paired.
+5. **Per-galaxy errors.**
+   - 14 missing tabulated errors (13 MSA-3D fields, and KURVS 21's e_fDM) are set to 0.
+   - MSA-3D and KURVS have no M★ error column, so they get the 0.2 dex the criteria assign to CRISTAL.
+   - These errors affect only the per-galaxy below-floor flags.
+6. **Roman-Oliveira.**
+   - SGP38326-1/2 have no quoted gas error; 0.3 dex stands in for it, and the α_CO 0.3 dex is added on top.
+   - Outcomes short of the frozen OVER-PREDICTS are described in plain words, not given a new label.
+   - 3DBarolo's ring convention could not be checked: the only Barolo folder on disk (arXiv:2309.04541) holds PNGs only. Both ring conventions ran as variants.
+
+**Recomputed vs paper M_dyn (reported).** The recomputed Danhaive ratio at α = 3.36 matches the paper's own M_dyn to a median of +0.008 dex (range −0.040 to +0.045) over the 24 rows.
+
+**Wrong expectations, kept:**
+
+- **The frozen phase-2 MUTATE expectation** (above).
+- **The orchestrator note expected NON-DIAGNOSTIC unless the discs are gas-poor.** The outcome is CONSISTENT for both laws.
+  - It is still no separation, as expected.
+  - But the label differs, because the discs are far above both floors rather than near them.
+  - The pre-flight's D0 and D1 framing implicitly assumed populations near the floors.
+
+## Phase 1 bottom line (pre-flight)
 
 - **The lemma holds for both of the framework's kernels.**
   - For P2 and ν_mono, adding gas can only raise the predicted M_dyn/M★. So the gas-free value ν(g★/a₀) is a floor whatever the gas.

@@ -1,0 +1,470 @@
+CFG197 phase 2 -- the gas floor applied: per-galaxy s_req for the flat law, the rival a0 E(z) and Newton, bin verdicts.
+
+Frozen criteria: campaign_fresh_gravity/CFG197_FROZEN_CRITERIA.md (committed in bb91eeb23 before this script existed).
+  R_obs = g_obs(r)/g_star(r) with each paper's own estimator as primary (Danhaive: its M_dyn with k_tot = 1.8; CRISTAL, MSA-3D:
+  V_rot(R_e)^2 + 3.36 sigma0^2 over R_e; KURVS: the paper's f_DM with its own thin-disc baryon model), plus the frozen sensitivities
+  (recomputed / moderate pressure 1.68, KURVS at 3 R_D with alpha 6.0 / 3.0, three geometries, compact stars, V-lim, both footings,
+  P2 and nu_mono).  log s_req = log10(Phi^-1(x R_obs)/x); bin median with a 4000-draw bootstrap (seed 197); the frozen
+  DISFAVOURED / CONSISTENT / NON-DIAGNOSTIC lines, the robustness rule, ESTIMATOR-LIMITED, the pooling rule; the external field
+  that would restore consistency for any DISFAVOURED primary verdict (reported only); the Roman-Oliveira gas-only over-prediction
+  check against V_ext.
+MUTATE=1 sets R_obs = 1 for every galaxy and variant (the RO check is unchanged): V1-V3 (the real-data identities) must FAIL.
+
+*** MUTATE=1: R_obs = 1 for every galaxy and variant.  V1-V3 must FAIL; the run must exit 1. ***
+
+======================================================================================================================
+DATA AND ESTIMATORS (each paper's own estimator is primary)
+======================================================================================================================
+  z>3.5 pooled (Danhaive + CRISTAL)    primary (paper M_dyn + CRISTAL 3.36): N = 53;  V-lim (sigma0 detected): N = 36;  recomputed, paper pressure 3.36: N = 36;  moderate pressure 1.68: N = 36
+  Halpha sub-bin: Danhaive gold        primary (paper M_dyn): N = 41;  V-lim (sigma0 detected): N = 24;  recomputed, paper pressure 3.36: N = 24;  moderate pressure 1.68: N = 24
+  [CII] sub-bin: CRISTAL               primary (3.36): N = 12;  moderate pressure 1.68: N = 12
+  comparison: MSA-3D (all 30)          primary (3.36): N = 30;  moderate pressure 1.68: N = 30
+  comparison: KURVS (10)               primary (paper f_DM): N = 10;  3 R_D, pressure 6.0: N = 10;  3 R_D, moderate 3.0: N = 10
+  reported: MSA-3D golden              primary (3.36): N = 23;  moderate pressure 1.68: N = 23
+  missing tabulated errors set to 0 (reported): 14 -> [('msa3d', '3399', 're_disk_kpc_errlo'), ('msa3d', '3399', 'vrot_re_kms_errlo'), ('msa3d', '3399', 'sigma0_kms_errhi'), ('msa3d', '3399', 'sigma0_kms_errlo'), ('msa3d', '6199', 're_disk_kpc_errhi'), ('msa3d', '6199', 'vrot_re_kms_errhi'), ('msa3d', '6199', 'sigma0_kms_errlo'), ('msa3d', '9960', 're_disk_kpc_errlo'), ('msa3d', '9960', 'vrot_re_kms_errhi'), ('msa3d', '9960', 'vrot_re_kms_errlo'), ('msa3d', '9960', 'sigma0_kms_errlo'), ('msa3d', '9337', 'sigma0_kms_errhi'), ('msa3d', '9337', 'sigma0_kms_errlo'), ('kurvs', '21', 'e_fDM')]
+  no ratio is tabulated as a limit (Danhaive logMdyn_lim, logMstar_lim, re_kpc_lim all empty; asserted) -> no median bracketing is needed
+
+======================================================================================================================
+REAL-DATA IDENTITIES (V1-V3: must FAIL under MUTATE) and ties to phase 1
+======================================================================================================================
+  [FAIL] V1 Danhaive primary R_obs (sphere, mass follows light) = (2/1.8) x 10^(logMdyn - logM*) for all 41 (the paper's own ratio)
+         max relative deviation 5.7e+01
+  [FAIL] V2 KURVS primary R_obs in the paper's thin-disc geometry = (1/0.6)/(1 - f_DM) for all 10
+         max relative deviation 8.1e-01
+  [FAIL] V3 CRISTAL and MSA-3D primary R_obs = 2 (V_rot^2 + 3.36 sigma0^2) R_e/(G M*) (an independent formula) for all 42
+         max relative deviation 9.6e-01
+  [PASS] C0 phase 2's g_star reproduces the committed pre-flight's bin-median x_flat (P2, canonical) in every bin
+         max rel. dev. 0.0e+00
+  [PASS] C0b counts as frozen: Danhaive 41 (24 with sigma0 detected), CRISTAL 12, MSA-3D 30 (23 golden), KURVS 10
+         41, 24, 12, 30 (23), 10
+  (reported) Danhaive recomputed (v/sigma0 x sigma0, alpha 3.36) vs the paper's M_dyn, log g_obs ratio over the 24: median +0.008 dex, range -0.040 to +0.045 (k_tot = 1.8 cancels; posterior medians vs products of medians)
+
+======================================================================================================================
+PER-GALAXY, primary estimator and variant (sphere, mass follows light), P2.  log s_req: Newton | flat c/a | rival c/a.  '*' = BELOW FLOOR even with R_obs raised by 1 sigma
+======================================================================================================================
+
+  z>3.5 pooled (Danhaive + CRISTAL) [primary (paper M_dyn + CRISTAL 3.36)]
+  sample           id     z  logM*     r  R_obs   sig  x_f(c)  Newton  flat c  flat a rival c rival a  flags
+  danhaive    1028887  5.19   9.56  1.12   1.00  0.24   2.155  +0.000  -0.100  -0.120  -0.630* -0.705* 
+  danhaive    1002030  5.18   9.48  1.37   1.00  0.28   1.198  +0.000  -0.176  -0.211  -0.867* -0.947* 
+  danhaive     191250  5.39  10.17  2.45   1.00  0.21   1.835  +0.000  -0.117  -0.141  -0.712* -0.790* sigma0<
+  danhaive    1002222  5.29   9.47  0.98   1.00  0.33   2.288  +0.000  -0.094  -0.113  -0.616* -0.690* 
+  danhaive     214966  5.54   9.54  1.41   1.00  0.26   1.299  +0.000  -0.163  -0.195  -0.869* -0.949* 
+  danhaive    1025527  5.30   9.39  1.06   1.00  0.43   1.627  +0.000  -0.131  -0.158  -0.753  -0.831* 
+  danhaive    1001674  5.18   9.92  1.60   1.00  0.21   2.419  +0.000  -0.089  -0.107  -0.585* -0.658* 
+  danhaive     201125  5.82   9.96  1.86   1.00  0.16   1.963  +0.000  -0.109  -0.132  -0.724* -0.802* 
+  danhaive    1094616  4.06   9.40  1.35   1.00  0.27   1.026  +0.000  -0.204  -0.243  -0.809* -0.888* 
+  danhaive    1000989  3.97   9.07  0.87   1.00  0.23   1.156  +0.000  -0.182  -0.218  -0.749* -0.827* sigma0<
+  danhaive    1088814  4.41  10.60  2.39   1.00  0.30   5.189  +0.000  -0.042  -0.050  -0.278  -0.328  
+  danhaive    1087148  4.38   8.24  1.05   1.00  0.74   0.117  +0.000  -0.936  -1.017  -1.779* -1.861* sigma0<
+  danhaive    1015956  4.02   9.54  1.40   1.00  0.58   1.317  +0.000  -0.161  -0.193  -0.702  -0.779  sigma0<
+  danhaive    1085659  4.06  10.17  1.47   1.00  0.42   5.096  +0.000  -0.043  -0.051  -0.259  -0.306  
+  danhaive    1083165  4.15   9.78  1.12   1.00  0.12   3.577  +0.000  -0.061  -0.073  -0.359* -0.418* 
+  danhaive    1065488  4.15   8.01  1.10   1.00  0.37   0.063  +0.000  -1.203* -1.284* -2.021* -2.104* sigma0<
+  danhaive    1025101  4.91   8.99  1.19   1.00  0.41   0.514  +0.000  -0.374  -0.435  -1.200* -1.282* 
+  danhaive    1090526  3.96   9.93  2.47   1.00  0.42   1.039  +0.000  -0.202  -0.240  -0.791* -0.870* sigma0<
+  danhaive    1077545  4.42   9.27  0.87   1.00  0.37   1.832  +0.000  -0.117  -0.141  -0.617  -0.691* 
+  danhaive    1089583  3.93   9.01  1.16   1.00  0.35   0.566  +0.000  -0.346  -0.403  -1.043* -1.124* 
+  danhaive    1077261  3.92   9.36  1.12   1.00  0.33   1.360  +0.000  -0.156  -0.187  -0.677* -0.754* 
+  danhaive    1095186  4.02   9.37  1.92   1.00  0.26   0.473  +0.000  -0.400  -0.462* -1.131* -1.213* 
+  danhaive    1091580  4.80   8.09  0.88   1.00  0.52   0.118  +0.000  -0.933  -1.013* -1.824* -1.906* sigma0<
+  danhaive    1086992  4.04   9.37  3.42   1.00  0.49   0.149  +0.000  -0.836  -0.915  -1.633* -1.715* sigma0<
+  danhaive    1090054  4.82   9.62  1.27   1.00  0.08   1.924  +0.000  -0.112* -0.134* -0.638* -0.714* 
+  danhaive    1014130  4.38   8.49  1.32   1.00  0.37   0.132  +0.000  -0.887* -0.967* -1.728* -1.810* sigma0<
+  danhaive    1082948  3.91  10.68  2.25   1.00  0.53   7.039  +0.000  -0.031  -0.037  -0.185  -0.220  sigma0<
+  danhaive    1000110  4.06   9.52  1.66   1.00  0.22   0.895  +0.000  -0.232  -0.275  -0.866* -0.945* 
+  danhaive    1091153  4.07  10.37  1.85   1.00  0.33   5.100  +0.000  -0.043  -0.051  -0.259  -0.307  sigma0<
+  danhaive    1094903  3.87  10.34  2.06   1.00  0.18   3.839  +0.000  -0.056  -0.068  -0.316* -0.370* 
+  danhaive    1079264  4.05   8.73  2.24   1.00  0.69   0.080  +0.000  -1.101  -1.183  -1.907* -1.989* sigma0<
+  danhaive    1086406  4.41   9.46  0.91   1.00  0.40   2.593  +0.000  -0.083  -0.100  -0.487  -0.556  sigma0<
+  danhaive    1013488  3.80   9.57  1.07   1.00  0.24   2.416  +0.000  -0.089  -0.108  -0.451* -0.517* 
+  danhaive    1028072  4.40   9.17  1.66   1.00  0.45   0.400  +0.000  -0.455  -0.522  -1.251* -1.332* sigma0<
+  danhaive    1090742  4.62   9.37  1.34   1.00  0.45   0.972  +0.000  -0.215  -0.255  -0.896* -0.976* sigma0<
+  danhaive    1091236  4.17   9.34  0.84   1.00  0.34   2.309  +0.000  -0.093  -0.112  -0.504  -0.574  
+  danhaive    1009935  4.89   9.65  1.02   1.00  0.54   3.197  +0.000  -0.068  -0.082  -0.458  -0.525  sigma0<
+  danhaive    1085494  4.06   8.90  1.06   1.00  0.30   0.526  +0.000  -0.367  -0.427  -1.091* -1.172* 
+  danhaive    1090891  3.92   9.74  1.55   1.00  0.33   1.703  +0.000  -0.126  -0.151  -0.590  -0.663* 
+  danhaive    1008197  4.40   8.76  1.11   1.00  0.47   0.348  +0.000  -0.504  -0.573  -1.311* -1.393* sigma0<
+  danhaive    1029814  4.16   8.38  1.28   1.00  0.37   0.109  +0.000  -0.968* -1.048* -1.784* -1.867* 
+  cristal          02  5.29  10.30  2.70   1.00  0.25   2.038  +0.000  -0.106  -0.127  -0.662* -0.738* 
+  cristal          03  5.69  10.40  1.50   1.00  0.29   8.312  +0.000  -0.026  -0.032  -0.242  -0.287  
+  cristal         06b  4.56   9.19  1.80   1.00  0.38   0.356  +0.000  -0.495  -0.564  -1.320* -1.402* 
+  cristal         07a  5.15  10.00  3.00   1.00  0.33   0.827  +0.000  -0.249  -0.294  -1.021* -1.102* 
+  cristal          08  4.43   9.85  3.40   1.00  0.30   0.456  +0.000  -0.412  -0.475  -1.197* -1.279* 
+  cristal          09  5.58   9.84  1.20   1.00  0.37   3.577  +0.000  -0.061  -0.073  -0.476  -0.544  
+  cristal          11  4.44   9.68  1.50   1.00  0.34   1.584  +0.000  -0.135  -0.162  -0.676* -0.752* 
+  cristal          12  5.57   9.30  1.50   1.00  0.36   0.660  +0.000  -0.304  -0.356  -1.160* -1.242* Re_fixed
+  cristal          15  4.58   9.69  1.70   1.00  0.28   1.262  +0.000  -0.168  -0.201  -0.783* -0.862* Re_fixed
+  cristal          19  5.23   9.51  2.30   1.00  0.31   0.455  +0.000  -0.412  -0.475  -1.286* -1.368* 
+  cristal          20  5.54  10.11  3.50   1.00  0.26   0.783  +0.000  -0.261  -0.309  -1.084* -1.165* 
+  cristal         23b  4.56  10.46  1.40   1.00  0.23  10.956  +0.000  -0.020  -0.024  -0.144  -0.173  
+
+  comparison: MSA-3D (all 30) [primary (3.36)]
+  sample           id     z  logM*     r  R_obs   sig  x_f(c)  Newton  flat c  flat a rival c rival a  flags
+  msa3d          2111  0.58   9.97  5.37   1.00  0.22   0.241  +0.000  -0.641* -0.717* -0.773* -0.852* 
+  msa3d          2145  1.17   9.19  3.38   1.00  0.23   0.101  +0.000  -1.000* -1.081* -1.293* -1.375* 
+  msa3d          2465  1.25   9.30  2.92   1.00  0.21   0.174  +0.000  -0.771* -0.850* -1.077* -1.159* 
+  msa3d          2824  0.98   9.49  3.04   1.00  0.23   0.249  +0.000  -0.629* -0.703* -0.860* -0.940* 
+  msa3d          3399  1.34   9.81  4.13   1.00  0.21   0.282  +0.000  -0.581* -0.654* -0.894* -0.974* 
+  msa3d          4391  1.08   9.48  1.59   1.00  0.23   0.889  +0.000  -0.233  -0.276  -0.399* -0.462* 
+  msa3d          6199  1.59  10.00  5.86   1.00  0.21   0.217  +0.000  -0.683* -0.759* -1.062* -1.143* 
+  msa3d          6430  1.17   9.79  7.63   1.00  0.20   0.079  +0.000  -1.106* -1.187* -1.400* -1.482* 
+  msa3d          7314  1.28   9.55  2.53   1.00  0.31   0.413  +0.000  -0.444  -0.510  -0.723* -0.800* fn_b
+  msa3d          7561  1.03   9.21  1.95   1.00  0.24   0.318  +0.000  -0.537* -0.608* -0.772* -0.850* fn_b
+  msa3d          8365  1.68   9.56  3.94   1.00  0.21   0.174  +0.000  -0.772* -0.850* -1.176* -1.257* 
+  msa3d          8512  1.10  10.32  5.28   1.00  0.24   0.558  +0.000  -0.350  -0.408* -0.565* -0.638* 
+  msa3d          8576  1.57   9.60  3.89   1.00  0.22   0.196  +0.000  -0.724* -0.801* -1.101* -1.183* 
+  msa3d          8942  1.18   9.86  3.67   1.00  0.33   0.400  +0.000  -0.455  -0.521  -0.712* -0.790* 
+  msa3d          9424  0.98   9.76  5.83   1.00  0.20   0.126  +0.000  -0.906* -0.986* -1.150* -1.231* 
+  msa3d          9636  0.74   9.35  4.97   1.00  0.20   0.067  +0.000  -1.173* -1.254* -1.357* -1.439* 
+  msa3d          9812  0.74   9.97  4.98   1.00  0.21   0.280  +0.000  -0.583* -0.656* -0.752* -0.830* 
+  msa3d          9960  1.51  11.06  2.91   1.00  0.20  10.095  +0.000  -0.022  -0.026  -0.051  -0.062  
+  msa3d         10910  0.74   9.57  4.52   1.00  0.21   0.135  +0.000  -0.876* -0.956* -1.057* -1.138* 
+  msa3d         11225  1.05   9.67  5.31   1.00  0.20   0.124  +0.000  -0.915* -0.995* -1.176* -1.258* 
+  msa3d         12015  1.24  10.08  4.36   1.00  0.20   0.471  +0.000  -0.401* -0.464* -0.661* -0.737* 
+  msa3d         18586  0.76   9.01  2.58   1.00  0.21   0.114  +0.000  -0.947* -1.027* -1.134* -1.216* 
+  msa3d         29470  1.04   9.71  4.61   1.00  0.20   0.180  +0.000  -0.759* -0.837* -1.013* -1.094* 
+  msa3d          9337  1.17   9.27  5.66   1.00  0.24   0.043  +0.000  -1.365* -1.447* -1.660* -1.742* fn_b,sigma0_dagger
+  msa3d         10107  1.01  10.01  2.89   1.00  0.20   0.912  +0.000  -0.227  -0.270  -0.379* -0.439* 
+  msa3d         11843  1.46  10.74  5.13   1.00  0.55   1.555  +0.000  -0.137  -0.165  -0.300  -0.352  
+  msa3d         12239  0.89   9.49  3.88   1.00  0.30   0.153  +0.000  -0.826* -0.905* -1.044* -1.125* 
+  msa3d         13182  1.54  10.25  3.86   1.00  0.24   0.889  +0.000  -0.233  -0.276  -0.484* -0.553* fn_a
+  msa3d         13416  1.54  10.76  2.06   1.00  1.10  10.096  +0.000  -0.021  -0.026  -0.052  -0.063  
+  msa3d         18188  0.82   9.56  6.27   1.00  0.27   0.069  +0.000  -1.165* -1.246* -1.370* -1.452* fn_b
+
+  comparison: KURVS (10) [primary (paper f_DM)]
+  sample           id     z  logM*     r  R_obs   sig  x_f(c)  Newton  flat c  flat a rival c rival a  flags
+  kurvs            11  1.38  10.68  5.90   1.00  0.21   1.024  +0.000  -0.204  -0.243  -0.409* -0.472* 
+  kurvs            13  1.33   9.62  3.40   1.00  0.22   0.269  +0.000  -0.599* -0.673* -0.913* -0.994* 
+  kurvs            15  1.61  10.07  3.80   1.00  0.22   0.606  +0.000  -0.327  -0.382* -0.641* -0.716* 
+  kurvs            16  1.57  10.16  3.90   1.00  0.21   0.708  +0.000  -0.286  -0.336* -0.573* -0.645* 
+  kurvs            17  1.35   9.55  2.40   1.00  0.22   0.459  +0.000  -0.410* -0.473* -0.697* -0.774* 
+  kurvs            21  1.38  10.17  2.80   1.00  0.20   1.405  +0.000  -0.151  -0.181  -0.315* -0.369* flag_star
+  kurvs             3  1.54  10.64  4.20   1.00  0.21   1.842  +0.000  -0.116  -0.140  -0.268  -0.316  
+  kurvs             7  1.52  10.24  4.50   1.00  0.22   0.639  +0.000  -0.312  -0.366* -0.601* -0.675* 
+  kurvs             8  1.54   9.58  2.50   1.00  0.22   0.453  +0.000  -0.414* -0.477* -0.742* -0.820* 
+  kurvs             9  1.54  10.12  5.00   1.00  0.21   0.393  +0.000  -0.461* -0.528* -0.801* -0.880* 
+
+======================================================================================================================
+BIN RESULTS, primary estimator and variant: median log s_req [bootstrap p5, p16, p84, p95] -> frozen label; n BELOW FLOOR (1 sigma)
+======================================================================================================================
+
+  z>3.5 pooled (Danhaive + CRISTAL) [primary (paper M_dyn + CRISTAL 3.36)], N = 53
+    Newton                    +0.000 [+0.000, +0.000, +0.000, +0.000] -> CONSISTENT     below floor 0/53   (median R_obs = 1.00)
+    flat  P2      canonical   -0.163 [-0.215, -0.202, -0.135, -0.117] -> NON-DIAGNOSTIC below floor 4/53
+    flat  P2      alt         -0.195 [-0.255, -0.240, -0.162, -0.141] -> NON-DIAGNOSTIC below floor 6/53
+    rival P2      canonical   -0.753 [-0.869, -0.866, -0.702, -0.676] -> DISFAVOURED    below floor 39/53
+    rival P2      alt         -0.831 [-0.949, -0.945, -0.779, -0.752] -> DISFAVOURED    below floor 42/53
+    flat  nu_mono canonical   -0.236 [-0.298, -0.283, -0.199, -0.174] -> NON-DIAGNOSTIC below floor 9/53
+    flat  nu_mono alt         -0.276 [-0.344, -0.327, -0.235, -0.207] -> NON-DIAGNOSTIC below floor 12/53
+    rival nu_mono canonical   -0.811 [-0.916, -0.913, -0.765, -0.741] -> DISFAVOURED    below floor 43/53
+    rival nu_mono alt         -0.882 [-0.990, -0.987, -0.835, -0.810] -> DISFAVOURED    below floor 44/53
+
+  Halpha sub-bin: Danhaive gold [primary (paper M_dyn)], N = 41
+    Newton                    +0.000 [+0.000, +0.000, +0.000, +0.000] -> CONSISTENT     below floor 0/41   (median R_obs = 1.00)
+    flat  P2      canonical   -0.161 [-0.204, -0.182, -0.126, -0.117] -> NON-DIAGNOSTIC below floor 4/41
+    flat  P2      alt         -0.193 [-0.243, -0.218, -0.151, -0.141] -> NON-DIAGNOSTIC below floor 6/41
+    rival P2      canonical   -0.749 [-0.867, -0.809, -0.702, -0.638] -> DISFAVOURED    below floor 30/41
+    rival P2      alt         -0.827 [-0.947, -0.888, -0.779, -0.714] -> DISFAVOURED    below floor 33/41
+    flat  nu_mono canonical   -0.234 [-0.286, -0.260, -0.186, -0.174] -> NON-DIAGNOSTIC below floor 7/41
+    flat  nu_mono alt         -0.273 [-0.330, -0.302, -0.220, -0.207] -> NON-DIAGNOSTIC below floor 9/41
+    rival nu_mono canonical   -0.807 [-0.915, -0.861, -0.765, -0.708] -> DISFAVOURED    below floor 34/41
+    rival nu_mono alt         -0.878 [-0.988, -0.933, -0.835, -0.776] -> DISFAVOURED    below floor 34/41
+
+  [CII] sub-bin: CRISTAL [primary (3.36)], N = 12
+    Newton                    +0.000 [+0.000, +0.000, +0.000, +0.000] -> CONSISTENT     below floor 0/12   (median R_obs = 1.00)
+    flat  P2      canonical   -0.208 [-0.304, -0.276, -0.135, -0.106] -> NON-DIAGNOSTIC below floor 0/12
+    flat  P2      alt         -0.247 [-0.356, -0.325, -0.162, -0.127] -> NON-DIAGNOSTIC below floor 0/12
+    rival P2      canonical   -0.902 [-1.160, -1.091, -0.676, -0.629] -> DISFAVOURED    below floor 9/12
+    rival P2      alt         -0.982 [-1.242, -1.172, -0.752, -0.703] -> DISFAVOURED    below floor 9/12
+    flat  nu_mono canonical   -0.289 [-0.395, -0.366, -0.199, -0.157] -> NON-DIAGNOSTIC below floor 2/12
+    flat  nu_mono alt         -0.334 [-0.447, -0.416, -0.235, -0.188] -> DISFAVOURED    below floor 3/12
+    rival nu_mono canonical   -0.948 [-1.187, -1.122, -0.741, -0.699] -> DISFAVOURED    below floor 9/12
+    rival nu_mono alt         -1.021 [-1.264, -1.199, -0.810, -0.766] -> DISFAVOURED    below floor 10/12
+
+  comparison: MSA-3D (all 30) [primary (3.36)], N = 30
+    Newton                    +0.000 [+0.000, +0.000, +0.000, +0.000] -> CONSISTENT     below floor 0/30   (median R_obs = 1.00)
+    flat  P2      canonical   -0.662 [-0.772, -0.759, -0.583, -0.537] -> DISFAVOURED    below floor 21/30
+    flat  P2      alt         -0.738 [-0.850, -0.837, -0.656, -0.608] -> DISFAVOURED    below floor 22/30
+    rival P2      canonical   -0.954 [-1.077, -1.057, -0.773, -0.752] -> DISFAVOURED    below floor 27/30
+    rival P2      alt         -1.034 [-1.159, -1.138, -0.852, -0.830] -> DISFAVOURED    below floor 27/30
+    flat  nu_mono canonical   -0.729 [-0.828, -0.816, -0.658, -0.616] -> DISFAVOURED    below floor 25/30
+    flat  nu_mono alt         -0.798 [-0.899, -0.887, -0.724, -0.680] -> DISFAVOURED    below floor 26/30
+    rival nu_mono canonical   -0.994 [-1.109, -1.090, -0.829, -0.810] -> DISFAVOURED    below floor 27/30
+    rival nu_mono alt         -1.069 [-1.186, -1.166, -0.901, -0.881] -> DISFAVOURED    below floor 27/30
+
+  comparison: KURVS (10) [primary (paper f_DM)], N = 10
+    Newton                    +0.000 [+0.000, +0.000, +0.000, +0.000] -> CONSISTENT     below floor 0/10   (median R_obs = 1.00)
+    flat  P2      canonical   -0.319 [-0.414, -0.410, -0.286, -0.219] -> DISFAVOURED    below floor 4/10
+    flat  P2      alt         -0.374 [-0.477, -0.473, -0.336, -0.259] -> DISFAVOURED    below floor 7/10
+    rival P2      canonical   -0.621 [-0.742, -0.697, -0.573, -0.444] -> DISFAVOURED    below floor 9/10
+    rival P2      alt         -0.696 [-0.820, -0.774, -0.645, -0.507] -> DISFAVOURED    below floor 9/10
+    flat  nu_mono canonical   -0.411 [-0.503, -0.499, -0.376, -0.299] -> DISFAVOURED    below floor 7/10
+    flat  nu_mono alt         -0.465 [-0.562, -0.558, -0.428, -0.343] -> DISFAVOURED    below floor 8/10
+    rival nu_mono canonical   -0.692 [-0.801, -0.760, -0.649, -0.528] -> DISFAVOURED    below floor 10/10
+    rival nu_mono alt         -0.759 [-0.872, -0.830, -0.714, -0.587] -> DISFAVOURED    below floor 10/10
+
+  reported: MSA-3D golden [primary (3.36)], N = 23
+    Newton                    +0.000 [+0.000, +0.000, +0.000, +0.000] -> CONSISTENT     below floor 0/23   (median R_obs = 1.00)
+    flat  P2      canonical   -0.683 [-0.772, -0.759, -0.629, -0.581] -> DISFAVOURED    below floor 18/23
+    flat  P2      alt         -0.759 [-0.850, -0.837, -0.703, -0.654] -> DISFAVOURED    below floor 19/23
+    rival P2      canonical   -1.013 [-1.101, -1.062, -0.860, -0.772] -> DISFAVOURED    below floor 22/23
+    rival P2      alt         -1.094 [-1.183, -1.143, -0.940, -0.850] -> DISFAVOURED    below floor 22/23
+    flat  nu_mono canonical   -0.748 [-0.828, -0.816, -0.699, -0.656] -> DISFAVOURED    below floor 21/23
+    flat  nu_mono alt         -0.817 [-0.899, -0.887, -0.766, -0.722] -> DISFAVOURED    below floor 22/23
+    rival nu_mono canonical   -1.049 [-1.132, -1.095, -0.908, -0.828] -> DISFAVOURED    below floor 22/23
+    rival nu_mono alt         -1.125 [-1.208, -1.171, -0.981, -0.899] -> DISFAVOURED    below floor 22/23
+
+======================================================================================================================
+VARIANT GRID (P2): median log s_req and label (D = DISFAVOURED, C = CONSISTENT, N = NON-DIAGNOSTIC) in every declared variant
+======================================================================================================================
+
+  z>3.5 pooled (Danhaive + CRISTAL)
+    estimator variant                      geometry           Newton    flat c    flat a   rival c   rival a
+    primary (paper M_dyn + CRISTAL 3.36)   sph/mlf          +0.000 C  -0.163 N  -0.195 N  -0.753 D  -0.831 D
+    primary (paper M_dyn + CRISTAL 3.36)   thick/mlf        +0.000 C  -0.148 N  -0.177 N  -0.710 D  -0.787 D
+    primary (paper M_dyn + CRISTAL 3.36)   thin/mlf         +0.000 C  -0.132 N  -0.158 N  -0.663 D  -0.739 D
+    primary (paper M_dyn + CRISTAL 3.36)   sph/compact      +0.000 C  -0.111 N  -0.134 N  -0.596 D  -0.670 D
+    primary (paper M_dyn + CRISTAL 3.36)   thick/compact    +0.000 C  -0.100 N  -0.121 N  -0.556 D  -0.628 D
+    primary (paper M_dyn + CRISTAL 3.36)   thin/compact     +0.000 C  -0.083 C  -0.100 N  -0.488 D  -0.557 D
+    V-lim (sigma0 detected)                sph/mlf          +0.000 C  -0.133 N  -0.160 N  -0.701 D  -0.778 D
+    V-lim (sigma0 detected)                thick/mlf        +0.000 C  -0.120 N  -0.144 N  -0.659 D  -0.735 D
+    V-lim (sigma0 detected)                thin/mlf         +0.000 C  -0.107 N  -0.129 N  -0.613 D  -0.687 D
+    V-lim (sigma0 detected)                sph/compact      +0.000 C  -0.090 C  -0.109 N  -0.548 D  -0.620 D
+    V-lim (sigma0 detected)                thick/compact    +0.000 C  -0.082 C  -0.098 C  -0.510 D  -0.579 D
+    V-lim (sigma0 detected)                thin/compact     +0.000 C  -0.068 C  -0.082 C  -0.444 D  -0.510 D
+    recomputed, paper pressure 3.36        sph/mlf          +0.000 C  -0.133 N  -0.160 N  -0.701 D  -0.778 D
+    recomputed, paper pressure 3.36        thick/mlf        +0.000 C  -0.120 N  -0.144 N  -0.659 D  -0.735 D
+    recomputed, paper pressure 3.36        thin/mlf         +0.000 C  -0.107 N  -0.129 N  -0.613 D  -0.687 D
+    recomputed, paper pressure 3.36        sph/compact      +0.000 C  -0.090 C  -0.109 N  -0.548 D  -0.620 D
+    recomputed, paper pressure 3.36        thick/compact    +0.000 C  -0.082 C  -0.098 C  -0.510 D  -0.579 D
+    recomputed, paper pressure 3.36        thin/compact     +0.000 C  -0.068 C  -0.082 C  -0.444 D  -0.510 D
+    moderate pressure 1.68                 sph/mlf          +0.000 C  -0.133 N  -0.160 N  -0.701 D  -0.778 D
+    moderate pressure 1.68                 thick/mlf        +0.000 C  -0.120 N  -0.144 N  -0.659 D  -0.735 D
+    moderate pressure 1.68                 thin/mlf         +0.000 C  -0.107 N  -0.129 N  -0.613 D  -0.687 D
+    moderate pressure 1.68                 sph/compact      +0.000 C  -0.090 C  -0.109 N  -0.548 D  -0.620 D
+    moderate pressure 1.68                 thick/compact    +0.000 C  -0.082 C  -0.098 C  -0.510 D  -0.579 D
+    moderate pressure 1.68                 thin/compact     +0.000 C  -0.068 C  -0.082 C  -0.444 D  -0.510 D
+
+  Halpha sub-bin: Danhaive gold
+    estimator variant                      geometry           Newton    flat c    flat a   rival c   rival a
+    primary (paper M_dyn)                  sph/mlf          +0.000 C  -0.161 N  -0.193 N  -0.749 D  -0.827 D
+    primary (paper M_dyn)                  thick/mlf        +0.000 C  -0.146 N  -0.175 N  -0.706 D  -0.783 D
+    primary (paper M_dyn)                  thin/mlf         +0.000 C  -0.130 N  -0.156 N  -0.659 D  -0.735 D
+    primary (paper M_dyn)                  sph/compact      +0.000 C  -0.110 N  -0.132 N  -0.592 D  -0.666 D
+    primary (paper M_dyn)                  thick/compact    +0.000 C  -0.099 C  -0.119 N  -0.553 D  -0.625 D
+    primary (paper M_dyn)                  thin/compact     +0.000 C  -0.082 C  -0.099 C  -0.485 D  -0.553 D
+    V-lim (sigma0 detected)                sph/mlf          +0.000 C  -0.121 N  -0.146 N  -0.658 D  -0.734 D
+    V-lim (sigma0 detected)                thick/mlf        +0.000 C  -0.110 N  -0.132 N  -0.617 D  -0.691 D
+    V-lim (sigma0 detected)                thin/mlf         +0.000 C  -0.098 C  -0.117 N  -0.572 D  -0.645 D
+    V-lim (sigma0 detected)                sph/compact      +0.000 C  -0.082 C  -0.099 C  -0.509 D  -0.578 D
+    V-lim (sigma0 detected)                thick/compact    +0.000 C  -0.074 C  -0.089 C  -0.472 D  -0.539 D
+    V-lim (sigma0 detected)                thin/compact     +0.000 C  -0.062 C  -0.074 C  -0.409 D  -0.472 D
+    recomputed, paper pressure 3.36        sph/mlf          +0.000 C  -0.121 N  -0.146 N  -0.658 D  -0.734 D
+    recomputed, paper pressure 3.36        thick/mlf        +0.000 C  -0.110 N  -0.132 N  -0.617 D  -0.691 D
+    recomputed, paper pressure 3.36        thin/mlf         +0.000 C  -0.098 C  -0.117 N  -0.572 D  -0.645 D
+    recomputed, paper pressure 3.36        sph/compact      +0.000 C  -0.082 C  -0.099 C  -0.509 D  -0.578 D
+    recomputed, paper pressure 3.36        thick/compact    +0.000 C  -0.074 C  -0.089 C  -0.472 D  -0.539 D
+    recomputed, paper pressure 3.36        thin/compact     +0.000 C  -0.062 C  -0.074 C  -0.409 D  -0.472 D
+    moderate pressure 1.68                 sph/mlf          +0.000 C  -0.121 N  -0.146 N  -0.658 D  -0.734 D
+    moderate pressure 1.68                 thick/mlf        +0.000 C  -0.110 N  -0.132 N  -0.617 D  -0.691 D
+    moderate pressure 1.68                 thin/mlf         +0.000 C  -0.098 C  -0.117 N  -0.572 D  -0.645 D
+    moderate pressure 1.68                 sph/compact      +0.000 C  -0.082 C  -0.099 C  -0.509 D  -0.578 D
+    moderate pressure 1.68                 thick/compact    +0.000 C  -0.074 C  -0.089 C  -0.472 D  -0.539 D
+    moderate pressure 1.68                 thin/compact     +0.000 C  -0.062 C  -0.074 C  -0.409 D  -0.472 D
+
+  [CII] sub-bin: CRISTAL
+    estimator variant                      geometry           Newton    flat c    flat a   rival c   rival a
+    primary (3.36)                         sph/mlf          +0.000 C  -0.208 N  -0.247 N  -0.902 D  -0.982 D
+    primary (3.36)                         thick/mlf        +0.000 C  -0.189 N  -0.225 N  -0.858 D  -0.937 D
+    primary (3.36)                         thin/mlf         +0.000 C  -0.169 N  -0.202 N  -0.809 D  -0.888 D
+    primary (3.36)                         sph/compact      +0.000 C  -0.143 N  -0.172 N  -0.739 D  -0.817 D
+    primary (3.36)                         thick/compact    +0.000 C  -0.130 N  -0.155 N  -0.697 D  -0.773 D
+    primary (3.36)                         thin/compact     +0.000 C  -0.108 N  -0.130 N  -0.624 D  -0.697 D
+    moderate pressure 1.68                 sph/mlf          +0.000 C  -0.208 N  -0.247 N  -0.902 D  -0.982 D
+    moderate pressure 1.68                 thick/mlf        +0.000 C  -0.189 N  -0.225 N  -0.858 D  -0.937 D
+    moderate pressure 1.68                 thin/mlf         +0.000 C  -0.169 N  -0.202 N  -0.809 D  -0.888 D
+    moderate pressure 1.68                 sph/compact      +0.000 C  -0.143 N  -0.172 N  -0.739 D  -0.817 D
+    moderate pressure 1.68                 thick/compact    +0.000 C  -0.130 N  -0.155 N  -0.697 D  -0.773 D
+    moderate pressure 1.68                 thin/compact     +0.000 C  -0.108 N  -0.130 N  -0.624 D  -0.697 D
+
+  comparison: MSA-3D (all 30)
+    estimator variant                      geometry           Newton    flat c    flat a   rival c   rival a
+    primary (3.36)                         sph/mlf          +0.000 C  -0.662 D  -0.738 D  -0.954 D  -1.034 D
+    primary (3.36)                         thick/mlf        +0.000 C  -0.621 D  -0.696 D  -0.909 D  -0.989 D
+    primary (3.36)                         thin/mlf         +0.000 C  -0.576 D  -0.649 D  -0.860 D  -0.939 D
+    primary (3.36)                         sph/compact      +0.000 C  -0.513 D  -0.582 D  -0.788 D  -0.867 D
+    primary (3.36)                         thick/compact    +0.000 C  -0.475 D  -0.543 D  -0.745 D  -0.823 D
+    primary (3.36)                         thin/compact     +0.000 C  -0.412 D  -0.475 D  -0.670 D  -0.745 D
+    moderate pressure 1.68                 sph/mlf          +0.000 C  -0.662 D  -0.738 D  -0.954 D  -1.034 D
+    moderate pressure 1.68                 thick/mlf        +0.000 C  -0.621 D  -0.696 D  -0.909 D  -0.989 D
+    moderate pressure 1.68                 thin/mlf         +0.000 C  -0.576 D  -0.649 D  -0.860 D  -0.939 D
+    moderate pressure 1.68                 sph/compact      +0.000 C  -0.513 D  -0.582 D  -0.788 D  -0.867 D
+    moderate pressure 1.68                 thick/compact    +0.000 C  -0.475 D  -0.543 D  -0.745 D  -0.823 D
+    moderate pressure 1.68                 thin/compact     +0.000 C  -0.412 D  -0.475 D  -0.670 D  -0.745 D
+
+  comparison: KURVS (10)
+    estimator variant                      geometry           Newton    flat c    flat a   rival c   rival a
+    primary (paper f_DM)                   sph/mlf          +0.000 C  -0.319 D  -0.374 D  -0.621 D  -0.696 D
+    primary (paper f_DM)                   thick/mlf        +0.000 C  -0.292 N  -0.343 D  -0.581 D  -0.654 D
+    primary (paper f_DM)                   thin/mlf         +0.000 C  -0.263 N  -0.310 D  -0.537 D  -0.608 D
+    primary (paper f_DM)                   sph/compact      +0.000 C  -0.225 N  -0.267 N  -0.475 D  -0.543 D
+    primary (paper f_DM)                   thick/compact    +0.000 C  -0.204 N  -0.243 N  -0.440 D  -0.505 D
+    primary (paper f_DM)                   thin/compact     +0.000 C  -0.171 N  -0.204 N  -0.379 D  -0.440 D
+    3 R_D, pressure 6.0                    sph/mlf          +0.000 C  -0.543 D  -0.615 D  -0.902 D  -0.982 D
+    3 R_D, pressure 6.0                    thick/mlf        +0.000 C  -0.505 D  -0.574 D  -0.858 D  -0.938 D
+    3 R_D, pressure 6.0                    thin/mlf         +0.000 C  -0.439 D  -0.504 D  -0.779 D  -0.857 D
+    3 R_D, pressure 6.0                    sph/compact      +0.000 C  -0.482 D  -0.550 D  -0.831 D  -0.910 D
+    3 R_D, pressure 6.0                    thick/compact    +0.000 C  -0.446 D  -0.512 D  -0.787 D  -0.866 D
+    3 R_D, pressure 6.0                    thin/compact     +0.000 C  -0.404 D  -0.466 D  -0.735 D  -0.812 D
+    3 R_D, moderate 3.0                    sph/mlf          +0.000 C  -0.543 D  -0.615 D  -0.902 D  -0.982 D
+    3 R_D, moderate 3.0                    thick/mlf        +0.000 C  -0.505 D  -0.574 D  -0.858 D  -0.938 D
+    3 R_D, moderate 3.0                    thin/mlf         +0.000 C  -0.439 D  -0.504 D  -0.779 D  -0.857 D
+    3 R_D, moderate 3.0                    sph/compact      +0.000 C  -0.482 D  -0.550 D  -0.831 D  -0.910 D
+    3 R_D, moderate 3.0                    thick/compact    +0.000 C  -0.446 D  -0.512 D  -0.787 D  -0.866 D
+    3 R_D, moderate 3.0                    thin/compact     +0.000 C  -0.404 D  -0.466 D  -0.735 D  -0.812 D
+
+  reported: MSA-3D golden
+    estimator variant                      geometry           Newton    flat c    flat a   rival c   rival a
+    primary (3.36)                         sph/mlf          +0.000 C  -0.683 D  -0.759 D  -1.013 D  -1.094 D
+    primary (3.36)                         thick/mlf        +0.000 C  -0.641 D  -0.717 D  -0.968 D  -1.049 D
+    primary (3.36)                         thin/mlf         +0.000 C  -0.596 D  -0.669 D  -0.918 D  -0.998 D
+    primary (3.36)                         sph/compact      +0.000 C  -0.531 D  -0.602 D  -0.846 D  -0.925 D
+    primary (3.36)                         thick/compact    +0.000 C  -0.494 D  -0.563 D  -0.802 D  -0.881 D
+    primary (3.36)                         thin/compact     +0.000 C  -0.429 D  -0.494 D  -0.725 D  -0.802 D
+    moderate pressure 1.68                 sph/mlf          +0.000 C  -0.683 D  -0.759 D  -1.013 D  -1.094 D
+    moderate pressure 1.68                 thick/mlf        +0.000 C  -0.641 D  -0.717 D  -0.968 D  -1.049 D
+    moderate pressure 1.68                 thin/mlf         +0.000 C  -0.596 D  -0.669 D  -0.918 D  -0.998 D
+    moderate pressure 1.68                 sph/compact      +0.000 C  -0.531 D  -0.602 D  -0.846 D  -0.925 D
+    moderate pressure 1.68                 thick/compact    +0.000 C  -0.494 D  -0.563 D  -0.802 D  -0.881 D
+    moderate pressure 1.68                 thin/compact     +0.000 C  -0.429 D  -0.494 D  -0.725 D  -0.802 D
+
+======================================================================================================================
+HEADLINES under the frozen rules (robustness, ESTIMATOR-LIMITED, pooling).  Kernel P2 is the headline; nu_mono is reported
+======================================================================================================================
+
+  z>3.5 pooled (Danhaive + CRISTAL):  Newton median log R_obs +0.000 -> not estimator-limited; Newton's own label CONSISTENT (robust over variants: CONSISTENT; variant labels ['CONSISTENT'])
+    flat  P2     : NON-DIAGNOSTIC  (primary NON-DIAGNOSTIC)
+    rival P2     : DISFAVOURED     (robust (every variant, both footings))
+    flat  nu_mono: NON-DIAGNOSTIC  (primary NON-DIAGNOSTIC)
+    rival nu_mono: DISFAVOURED     (robust (every variant, both footings))
+
+  Halpha sub-bin: Danhaive gold:  Newton median log R_obs +0.000 -> not estimator-limited; Newton's own label CONSISTENT (robust over variants: CONSISTENT; variant labels ['CONSISTENT'])
+    flat  P2     : NON-DIAGNOSTIC  (primary NON-DIAGNOSTIC)
+    rival P2     : DISFAVOURED     (robust (every variant, both footings))
+    flat  nu_mono: NON-DIAGNOSTIC  (primary NON-DIAGNOSTIC)
+    rival nu_mono: DISFAVOURED     (robust (every variant, both footings))
+
+  [CII] sub-bin: CRISTAL:  Newton median log R_obs +0.000 -> not estimator-limited; Newton's own label CONSISTENT (robust over variants: CONSISTENT; variant labels ['CONSISTENT'])
+    flat  P2     : NON-DIAGNOSTIC  (primary NON-DIAGNOSTIC)
+    rival P2     : DISFAVOURED     (robust (every variant, both footings))
+    flat  nu_mono: NON-DIAGNOSTIC  (footings disagree (NON-DIAGNOSTIC / DISFAVOURED))
+    rival nu_mono: DISFAVOURED     (robust (every variant, both footings))
+
+  comparison: MSA-3D (all 30):  Newton median log R_obs +0.000 -> not estimator-limited; Newton's own label CONSISTENT (robust over variants: CONSISTENT; variant labels ['CONSISTENT'])
+    flat  P2     : DISFAVOURED     (robust (every variant, both footings))
+    rival P2     : DISFAVOURED     (robust (every variant, both footings))
+    flat  nu_mono: DISFAVOURED     (robust (every variant, both footings))
+    rival nu_mono: DISFAVOURED     (robust (every variant, both footings))
+
+  comparison: KURVS (10):  Newton median log R_obs +0.000 -> not estimator-limited; Newton's own label CONSISTENT (robust over variants: CONSISTENT; variant labels ['CONSISTENT'])
+    flat  P2     : NON-DIAGNOSTIC  (primary only (DISFAVOURED); variants give ['DISFAVOURED', 'NON-DIAGNOSTIC'])
+    rival P2     : DISFAVOURED     (robust (every variant, both footings))
+    flat  nu_mono: NON-DIAGNOSTIC  (primary only (DISFAVOURED); variants give ['DISFAVOURED', 'NON-DIAGNOSTIC'])
+    rival nu_mono: DISFAVOURED     (robust (every variant, both footings))
+
+  reported: MSA-3D golden:  Newton median log R_obs +0.000 -> not estimator-limited; Newton's own label CONSISTENT (robust over variants: CONSISTENT; variant labels ['CONSISTENT'])
+    flat  P2     : DISFAVOURED     (robust (every variant, both footings))
+    rival P2     : DISFAVOURED     (robust (every variant, both footings))
+    flat  nu_mono: DISFAVOURED     (robust (every variant, both footings))
+    rival nu_mono: DISFAVOURED     (robust (every variant, both footings))
+  pooling rule (flat): sub-bins opposite (one DISFAVOURED, the other CONSISTENT) in footings none
+  pooling rule (rival): sub-bins opposite (one DISFAVOURED, the other CONSISTENT) in footings none
+
+  z>3.5 pooled (Danhaive + CRISTAL)    pre-flight CAN      headline flat NON-DIAGNOSTIC rival DISFAVOURED    -> no separation
+  Halpha sub-bin: Danhaive gold        pre-flight CAN      headline flat NON-DIAGNOSTIC rival DISFAVOURED    -> no separation
+  [CII] sub-bin: CRISTAL               pre-flight CAN      headline flat NON-DIAGNOSTIC rival DISFAVOURED    -> no separation
+  comparison: MSA-3D (all 30)          pre-flight CANNOT   headline flat DISFAVOURED    rival DISFAVOURED    -> BOTH DISFAVOURED: a failure of the flat law against Newton/LCDM
+  comparison: KURVS (10)               pre-flight MARGINAL headline flat NON-DIAGNOSTIC rival DISFAVOURED    -> no separation
+  reported: MSA-3D golden              pre-flight MARGINAL headline flat DISFAVOURED    rival DISFAVOURED    -> BOTH DISFAVOURED: a failure of the flat law against Newton/LCDM
+
+======================================================================================================================
+EXTERNAL FIELD (reported only; no verdict changes): the e (in units of that law's a0) that lifts the primary median log s_req to -0.10
+======================================================================================================================
+  z>3.5 pooled (Danhaive + CRISTAL)    rival canonical: e = 1.565 a0_law  (median x of the bin 0.182)
+  z>3.5 pooled (Danhaive + CRISTAL)    rival alt      : e = 1.590 a0_law  (median x of the bin 0.151)
+  Halpha sub-bin: Danhaive gold        rival canonical: e = 1.563 a0_law  (median x of the bin 0.184)
+  Halpha sub-bin: Danhaive gold        rival alt      : e = 1.589 a0_law  (median x of the bin 0.152)
+  [CII] sub-bin: CRISTAL               rival canonical: e = 1.605 a0_law  (median x of the bin 0.133)
+  [CII] sub-bin: CRISTAL               rival alt      : e = 1.623 a0_law  (median x of the bin 0.110)
+  comparison: MSA-3D (all 30)          flat  canonical: e = 1.528 a0_law  (median x of the bin 0.229)
+  comparison: MSA-3D (all 30)          flat  alt      : e = 1.559 a0_law  (median x of the bin 0.189)
+  comparison: MSA-3D (all 30)          rival canonical: e = 1.619 a0_law  (median x of the bin 0.114)
+  comparison: MSA-3D (all 30)          rival alt      : e = 1.635 a0_law  (median x of the bin 0.094)
+  comparison: KURVS (10)               flat  canonical: e = 1.215 a0_law  (median x of the bin 0.622)
+  comparison: KURVS (10)               flat  alt      : e = 1.301 a0_law  (median x of the bin 0.515)
+  comparison: KURVS (10)               rival canonical: e = 1.508 a0_law  (median x of the bin 0.254)
+  comparison: KURVS (10)               rival alt      : e = 1.543 a0_law  (median x of the bin 0.210)
+  reported: MSA-3D golden              flat  canonical: e = 1.537 a0_law  (median x of the bin 0.217)
+  reported: MSA-3D golden              flat  alt      : e = 1.567 a0_law  (median x of the bin 0.179)
+  reported: MSA-3D golden              rival canonical: e = 1.632 a0_law  (median x of the bin 0.098)
+  reported: MSA-3D golden              rival alt      : e = 1.645 a0_law  (median x of the bin 0.081)
+
+======================================================================================================================
+ROMAN-OLIVEIRA: gas-only over-prediction check against V_ext (lower side only; no M* on disk).  Unchanged under MUTATE
+======================================================================================================================
+  margin = (log g_obs - log g_floor)/sigma; OVER-PREDICTS needs margin < -2 in the primary AND every variant (ring radius x f_g x alpha x footing)
+  id             V_ext  s_ext law    kernel   primary: r_ext log g_obs log g_fl  sigma  margin   margin range over variants   label
+  BRI1335-0417   125.0   57.0 Newton -                  4.09    -9.907   -9.381  0.355   -1.49    -1.65 to  -0.22              no over-prediction
+  BRI1335-0417   125.0   57.0 flat   P2                 4.09    -9.907   -9.337  0.331   -1.72    -1.88 to  -0.53              no over-prediction
+  BRI1335-0417   125.0   57.0 flat   nu_mono            4.09    -9.907   -9.321  0.323   -1.82    -1.97 to  -0.67              no over-prediction
+  BRI1335-0417   125.0   57.0 rival  P2                 4.09    -9.907   -9.173  0.279   -2.63    -2.78 to  -1.65              over-predicts in some variants only
+  BRI1335-0417   125.0   57.0 rival  nu_mono            4.09    -9.907   -9.118  0.275   -2.87    -3.03 to  -1.88              over-predicts in some variants only
+  J081740        249.0   33.0 Newton -                  2.70    -9.128   -9.075  0.372   -0.14    -0.36 to  +0.71              no over-prediction
+  J081740        249.0   33.0 flat   P2                 2.70    -9.128   -9.052  0.358   -0.21    -0.42 to  +0.64              no over-prediction
+  J081740        249.0   33.0 flat   nu_mono            2.70    -9.128   -9.043  0.353   -0.24    -0.45 to  +0.61              no over-prediction
+  J081740        249.0   33.0 rival  P2                 2.70    -9.128   -8.952  0.313   -0.56    -0.75 to  +0.22              no over-prediction
+  J081740        249.0   33.0 rival  nu_mono            2.70    -9.128   -8.909  0.299   -0.73    -0.92 to  +0.03              no over-prediction
+  SGP38326-1     548.0   46.0 Newton -                  3.54    -8.560   -8.975  0.437   +0.95    +0.82 to  +1.65              no over-prediction
+  SGP38326-1     548.0   46.0 flat   P2                 3.54    -8.560   -8.957  0.420   +0.94    +0.81 to  +1.70              no over-prediction
+  SGP38326-1     548.0   46.0 flat   nu_mono            3.54    -8.560   -8.950  0.415   +0.94    +0.80 to  +1.72              no over-prediction
+  SGP38326-1     548.0   46.0 rival  P2                 3.54    -8.560   -8.869  0.358   +0.86    +0.71 to  +1.69              no over-prediction
+  SGP38326-1     548.0   46.0 rival  nu_mono            3.54    -8.560   -8.830  0.335   +0.80    +0.65 to  +1.59              no over-prediction
+  SGP38326-2     409.0   40.0 Newton -                  1.63    -8.479   -8.701  0.434   +0.51    +0.23 to  +1.23              no over-prediction
+  SGP38326-2     409.0   40.0 flat   P2                 1.63    -8.479   -8.691  0.425   +0.50    +0.21 to  +1.23              no over-prediction
+  SGP38326-2     409.0   40.0 flat   nu_mono            1.63    -8.479   -8.687  0.422   +0.50    +0.21 to  +1.23              no over-prediction
+  SGP38326-2     409.0   40.0 rival  P2                 1.63    -8.479   -8.638  0.382   +0.42    +0.13 to  +1.20              no over-prediction
+  SGP38326-2     409.0   40.0 rival  nu_mono            1.63    -8.479   -8.615  0.362   +0.38    +0.10 to  +1.16              no over-prediction
+  (the primary column is: last-two-ring radius (N - 1) RADSEP, f_g = 0.5, alpha = 0, canonical footing)
+
+======================================================================================================================
+CONTROLS
+======================================================================================================================
+  [PASS] C1 E(z) = 1 makes the rival identical to the flat law on the real R_obs (all bins and estimator variants, two geometries, both kernels and footings)
+         max |dlog s_req| = 0.0e+00
+  [PASS] C2 a planted galaxy with R_obs = 1 at each bin's median x is below both laws' floors (log s_req < 0), Newton exactly 0
+         max law log s_req -0.1611; Newton +0.0e+00
+  [PASS] C3 a planted galaxy exactly on a law's floor has log s_req = 0 (to 1e-9)
+         max |log s_req| = 5.8e-16
+  [PASS] C4 a planted flat-law galaxy with gas mu = 1 has flat log s_req > 0
+         min = +0.3010
+  [PASS] C5 the rival's log s_req never exceeds the flat law's for any real galaxy in any variant (L4)
+         max (rival - flat) = -1.49e-02
+  [PASS] M-C2 (C2 at scale) with R_obs = 1 every galaxy lies below both laws' floors in every variant (log s_req < 0), Newton exactly 0
+         all law values < 0: True; max |Newton| = 0.0e+00
+  [FAIL] (reported) M-EXP (the frozen expectation, kept as written) under R_obs = 1 every bin comes out DISFAVOURED for both laws (primary, P2)
+         18/24 are DISFAVOURED; not: [('z>3.5 pooled (Danhaive + CRISTAL)', 'flat', 'NON-DIAGNOSTIC', 'canonical'), ('z>3.5 pooled (Danhaive + CRISTAL)', 'flat', 'NON-DIAGNOSTIC', 'alt'), ('Halpha sub-bin: Danhaive gold', 'flat', 'NON-DIAGNOSTIC', 'canonical'), ('Halpha sub-bin: Danhaive gold', 'flat', 'NON-DIAGNOSTIC', 'alt'), ('[CII] sub-bin: CRISTAL', 'flat', 'NON-DIAGNOSTIC', 'canonical'), ('[CII] sub-bin: CRISTAL', 'flat', 'NON-DIAGNOSTIC', 'alt')]
+
+======================================================================================================================
+BOTTOM LINE (frozen labels; P2 headline, nu_mono reported)
+======================================================================================================================
+  bin                                  Newton median  flat (P2)      rival (P2)     flat (nu_mono) rival (nu_mono) outcome
+  z>3.5 pooled (Danhaive + CRISTAL)           +0.000  NON-DIAGNOSTIC DISFAVOURED    NON-DIAGNOSTIC DISFAVOURED     no separation
+  Halpha sub-bin: Danhaive gold               +0.000  NON-DIAGNOSTIC DISFAVOURED    NON-DIAGNOSTIC DISFAVOURED     no separation
+  [CII] sub-bin: CRISTAL                      +0.000  NON-DIAGNOSTIC DISFAVOURED    NON-DIAGNOSTIC DISFAVOURED     no separation
+  comparison: MSA-3D (all 30)                 +0.000  DISFAVOURED    DISFAVOURED    DISFAVOURED    DISFAVOURED     both disfavoured
+  comparison: KURVS (10)                      +0.000  NON-DIAGNOSTIC DISFAVOURED    NON-DIAGNOSTIC DISFAVOURED     no separation
+  reported: MSA-3D golden                     +0.000  DISFAVOURED    DISFAVOURED    DISFAVOURED    DISFAVOURED     both disfavoured
+  L4: the floor can single out the rival, never the flat law; a CONSISTENT flat law is the survival of a one-sided bound, not evidence.
+
+  8/12 checks pass; load-bearing failures: 3
