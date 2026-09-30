@@ -62,3 +62,9 @@ Next: use the actual clarified radius in the common-action coefficient audit. Co
 Twenty corrected symbolic checks pass, and an initial factor-two expectation error is retained. These are scoped obstructions and a source-transfer audit, not a universal rejection of entropy-based gravity. The radius clarification remains unanswered; its alternatives are still explicit in HORIZON_8PI_AUDIT.md.
 
 Next executable dependency: classify discrete symmetries of the local wall Clifford model that could forbid the internal-rotation singlet gap while preserving the polarization mass triplet. Check charge neutrality as well as gaplessness; forbidding a mass alone need not exclude a chemical-potential shift. Vacuum-stress and quadratic critical matching are still separate open requirements. Do not call this a complete theory or select couplings by fitting 32pi.
+
+## Surface neutrality update
+
+[SURFACE_NEUTRALITY_RESULTS.md](SURFACE_NEUTRALITY_RESULTS.md) supplies an explicit time-reversal operation preserving the polarization triplet while forbidding the singlet gap. It also derives exact cancellation of the free-band cubic at finite chemical potential below its occupation threshold. Sixteen symbolic/matrix/quadrature checks pass. A central-product argument excludes a specified canonical particle-hole operation in the undoubled quartet. This closes one algebraic gap-protection question conditionally, while identifying cone neutrality as a separate state-selection requirement. Neither a microscopic implementation nor interacting protection is established.
+
+Next: determine whether a physically local doubled construction can enforce cone neutrality without compensated pockets, and whether its symmetry survives the required stream/medium state. Keep the independent vacuum-stress, critical-matching and coefficient-selection obligations. No 32pi solution is claimed.

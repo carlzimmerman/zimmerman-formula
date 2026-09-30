@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_SURFACE_NEUTRALITY",
+  "repository": {
+    "commit": "7ef466bf97444c5a3ccbb9deae74355e8dc69964",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/surface_neutrality.py",
+    "--output",
+    "sol61_push/runs/surface_neutrality/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Free Dirac finite-density cancellation of cubic response and specified time-reversal matrix protection",
+    "coefficient_domain": "Exact symbolic complex matrices and real integrals; independent double precision momentum quadrature",
+    "conventions": "SURFACE_NEUTRALITY_CONTRACT.md",
+    "inputs": [
+      "sol61_push/surface_neutrality.py"
+    ],
+    "bounds": {
+      "matrix_dimension": 4,
+      "zeta": 1,
+      "nu": 2,
+      "v": 0.3,
+      "m": [
+        0,
+        0.2,
+        0.8,
+        1,
+        1.5
+      ],
+      "absolute_tolerance": 1e-11
+    },
+    "non_claims": [
+      "No interacting symmetry protection",
+      "No covariant vacuum stress",
+      "No 32pi selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T19:28:17.082036+00:00",
+    "runtime_seconds": 0.733434,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/surface_neutrality.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/surface_neutrality.py",
+      "sha256": "5380f8cd60ce8fec73c3c7c4741967982b698f4bb0a15b14b0fa0bf63841c61e",
+      "sha256_after": "5380f8cd60ce8fec73c3c7c4741967982b698f4bb0a15b14b0fa0bf63841c61e"
+    }
+  ],
+  "output_directory": "sol61_push/runs/surface_neutrality",
+  "declared_results": [
+    "sol61_push/runs/surface_neutrality/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/surface_neutrality/stdout.txt",
+      "sha256": "f687e30e4baebc49aa6b884c61351945f6f1ed3fceb24b6f5187fb74b60da4bc",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/surface_neutrality/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/surface_neutrality/results.json",
+      "sha256": "608472badffde321229dbdecedae82652d30e0abecbb8a22a6741b982a3e30c8",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
