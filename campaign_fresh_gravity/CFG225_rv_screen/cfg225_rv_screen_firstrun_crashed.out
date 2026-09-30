@@ -1,0 +1,37 @@
+CFG225 -- EXPLORATORY: the change in gamma-hat attributable to the frozen radial-velocity screen (cut 11) on the in-repo DR3 wide-binary build, and the fraction of pairs it flags.
+Frozen criteria: FROZEN_CRITERIA.md here (fd4a2a7a7), committed before any RV value was read.  The DR3 gamma-hat has already been seen (pre-registration 1.6); Amendment 7(e): DR3 numbers are code-path tests, never results;
+no verdict words; not a test of any law.  Gaia DR3 radial velocities (about 1 to 5 km/s) cannot measure orbits, only screen triples.  NO NETWORK (socket guard).  NEW file: wp2_variant_full_dr3.py's machinery is exec'd
+READ-ONLY up to its main block (three text substitutions: the work dir, the stage-E shift seed offset, writing final.csv); build_catalog.py's frozen_cuts is wrapped IN MEMORY to disable the RV screen; nothing frozen is edited.
+
+BEFORE set (real settings, N_SHIFT = 30, frozen seeds, cut 11 disabled): initial pairs 380,438; with R 213,097; FINAL 6,342  (3 s)
+
+BEFORE pairs 6,342; with both Gaia DR3 RVs (S_RV) 3,886 (61.3%)
+  flagged by the screen: 135 of 3886 = 3.47% of S_RV (2.13% of the BEFORE set)
+  S_RV medians: sigma_dRV 2.85 km/s, v_c 0.57 km/s, threshold 8.56 km/s, |dRV| 1.34 km/s; flagged pairs' median |dRV| 24.0 km/s
+  [PASS] C1 the post hoc flags reproduce the builder's own cut 11: frozen_cuts with the RV columns enabled, on the same table, keeps exactly the unflagged pairs: True; builder flow ends at 6207 of 6342 pairs, this lane leaves 6207
+  [PASS] C0 the in-memory (g_N, v_tilde) arrays equal wide_binary_pipeline.ingest_csv on the BEFORE table: max relative difference 0.0e+00
+
+gamma-hat (the pipeline's estimator, DR3-noise forward model, NON-SCORING)
+  canonical  S_RV before (N = 3886): 1.1050 +- 0.0662;  S_RV after (N = 3751): 1.1125 +- 0.0662;  change +0.0075
+             whole BEFORE set (N = 6342): 1.1125 +- 0.0587;  whole AFTER set (N = 6207): 1.1200 +- 0.0612
+  alt        S_RV before (N = 3886): 1.0950 +- 0.0587;  S_RV after (N = 3751): 1.1050 +- 0.0612;  change +0.0100
+             whole BEFORE set (N = 6342): 1.0750 +- 0.0500;  whole AFTER set (N = 6207): 1.0800 +- 0.0537
+prep_2026/gaia_dr4_prep/wide_binary_pipeline.py:342: RuntimeWarning: invalid value encountered in divide
+  k_hat = (Ma*da/sa**2).sum(1)/(Ma**2/sa**2).sum(1)          # per grid pt
+prep_2026/gaia_dr4_prep/wide_binary_pipeline.py:343: RuntimeWarning: divide by zero encountered in divide
+  vk    = 1.0/(Ma**2/sa**2).sum(1)                            # sigma_k^2
+Traceback (most recent call last):
+  File "campaign_fresh_gravity/CFG225_rv_screen/cfg225_rv_screen.py", line 144, in <module>
+    flo = gamma(gN[flag & sel], vt[flag & sel], 20261217)
+  File "campaign_fresh_gravity/CFG225_rv_screen/cfg225_rv_screen.py", line 67, in gamma
+    g, sg, *_ = wbp.run_fit(np.log10(gN / a0v), vt, mod, np.random.default_rng(seed), foot)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "prep_2026/gaia_dr4_prep/wide_binary_pipeline.py", line 424, in run_fit
+    g, sg, chi2, nb, kap = fit_gamma(med_d, sig_d, mod, GRID)
+                           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "prep_2026/gaia_dr4_prep/wide_binary_pipeline.py", line 351, in fit_gamma
+    lo = grid[c <= 1.0].min(); hi = grid[c <= 1.0].max()
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/numpy/core/_methods.py", line 45, in _amin
+    return umr_minimum(a, axis, None, out, keepdims, initial, where)
+ValueError: zero-size array to reduction operation minimum which has no identity
+exit 1

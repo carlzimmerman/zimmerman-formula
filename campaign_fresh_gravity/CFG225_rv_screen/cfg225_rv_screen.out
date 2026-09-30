@@ -1,0 +1,38 @@
+CFG225 -- EXPLORATORY: the change in gamma-hat attributable to the frozen radial-velocity screen (cut 11) on the in-repo DR3 wide-binary build, and the fraction of pairs it flags.
+Frozen criteria: FROZEN_CRITERIA.md here (fd4a2a7a7), committed before any RV value was read.  The DR3 gamma-hat has already been seen (pre-registration 1.6); Amendment 7(e): DR3 numbers are code-path tests, never results;
+no verdict words; not a test of any law.  Gaia DR3 radial velocities (about 1 to 5 km/s) cannot measure orbits, only screen triples.  NO NETWORK (socket guard).  NEW file: wp2_variant_full_dr3.py's machinery is exec'd
+READ-ONLY up to its main block (three text substitutions: the work dir, the stage-E shift seed offset, writing final.csv); build_catalog.py's frozen_cuts is wrapped IN MEMORY to disable the RV screen; nothing frozen is edited.
+
+BEFORE set (real settings, N_SHIFT = 30, frozen seeds, cut 11 disabled): initial pairs 380,438; with R 213,097; FINAL 6,342  (3 s)
+
+BEFORE pairs 6,342; with both Gaia DR3 RVs (S_RV) 3,886 (61.3%)
+  flagged by the screen: 135 of 3886 = 3.47% of S_RV (2.13% of the BEFORE set)
+  S_RV medians: sigma_dRV 2.85 km/s, v_c 0.57 km/s, threshold 8.56 km/s, |dRV| 1.34 km/s; flagged pairs' median |dRV| 24.0 km/s
+  [PASS] C1 the post hoc flags reproduce the builder's own cut 11: frozen_cuts with the RV columns enabled, on the same table, keeps exactly the unflagged pairs: True; builder flow ends at 6207 of 6342 pairs, this lane leaves 6207
+  [PASS] C0 the in-memory (g_N, v_tilde) arrays equal wide_binary_pipeline.ingest_csv on the BEFORE table: max relative difference 0.0e+00
+
+gamma-hat (the pipeline's estimator, DR3-noise forward model, NON-SCORING)
+  canonical  S_RV before (N = 3886): 1.1050 +- 0.0662;  S_RV after (N = 3751): 1.1125 +- 0.0662;  change +0.0075
+             whole BEFORE set (N = 6342): 1.1125 +- 0.0587;  whole AFTER set (N = 6207): 1.1200 +- 0.0612
+  alt        S_RV before (N = 3886): 1.0950 +- 0.0587;  S_RV after (N = 3751): 1.1050 +- 0.0612;  change +0.0100
+             whole BEFORE set (N = 6342): 1.0750 +- 0.0500;  whole AFTER set (N = 6207): 1.0800 +- 0.0537
+  flagged pairs alone (N = 135): the pipeline's binned fit has no admissible grid point at this N (zero-size array to reduction operation minimum which has no ): not fitted
+
+paired bootstrap of the change (B = 100 resamples of the S_RV pairs; both estimators on the same resample)
+  canonical  change +0.0075; bootstrap SD of the change 0.0185; change / sigma_fit(before) +0.113; change / bootstrap SD +0.41
+  alt        change +0.0100; bootstrap SD of the change 0.0239; change / sigma_fit(before) +0.170; change / bootstrap SD +0.42
+  [PASS] C2 planted triples (10% of the unflagged S_RV pairs, dRV offset N(0, 3 km/s), 20 repeats): the empirical flagged fraction of the planted pairs equals the analytic mean within 3 binomial standard errors: empirical 0.1404, analytic 0.1426, SE 0.0034
+      C3 canonical : planted gamma-hat shift (contaminated minus original) -0.0519 +- 0.0223 over 20 repeats; shift left after the screen -0.0462 +- 0.0208; fraction of the shift removed 0.11; screened shift smaller in 65% of repeats
+      C3 alt       : planted gamma-hat shift (contaminated minus original) -0.0482 +- 0.0175 over 20 repeats; shift left after the screen -0.0500 +- 0.0203; fraction of the shift removed -0.04; screened shift smaller in 40% of repeats
+  [FAIL] C3 planted contamination of gamma-hat (plane-of-sky offsets N(0, 3 km/s) on the same planted pairs): the screened shift is smaller than the contaminated shift in at least 90% of 20 repeats, both footings: False
+
+POST HOC (after C3 failed; not frozen): planted offsets N(0, sigma) in dRV and in the plane-of-sky velocity, 20 repeats each
+    sigma    3 km/s, canonical : flagged fraction of the planted pairs 0.14; planted gamma-hat shift -0.0556 +- 0.0192; left after the screen -0.0504 +- 0.0184; fraction removed 0.09; screened shift smaller in 75% of repeats
+    sigma    3 km/s, alt       : flagged fraction of the planted pairs 0.14; planted gamma-hat shift -0.0502 +- 0.0186; left after the screen -0.0519 +- 0.0193; fraction removed -0.03; screened shift smaller in 45% of repeats
+    sigma   10 km/s, canonical : flagged fraction of the planted pairs 0.44; planted gamma-hat shift -0.0136 +- 0.0203; left after the screen -0.0161 +- 0.0185; fraction removed -0.18; screened shift smaller in 45% of repeats
+    sigma   10 km/s, alt       : flagged fraction of the planted pairs 0.44; planted gamma-hat shift -0.0126 +- 0.0199; left after the screen -0.0230 +- 0.0220; fraction removed -0.82; screened shift smaller in 20% of repeats
+    sigma   30 km/s, canonical : flagged fraction of the planted pairs 0.73; planted gamma-hat shift -0.0059 +- 0.0192; left after the screen -0.0056 +- 0.0244; fraction removed 0.04; screened shift smaller in 35% of repeats
+    sigma   30 km/s, alt       : flagged fraction of the planted pairs 0.73; planted gamma-hat shift +0.0007 +- 0.0218; left after the screen -0.0109 +- 0.0188; fraction removed 15.50; screened shift smaller in 65% of repeats
+
+3/4 controls pass (MUTATE is the separate run); 43 s
+Reading: EXPLORATORY; the DR3 gamma-hat was already seen; these are code-path numbers on a few thousand pairs with the pipeline's DR3-noise forward model; the change is the screen's effect on the RV-matched subsample only; the screen removes triples with km/s-scale dRV and cannot measure orbits; no verdict words.
