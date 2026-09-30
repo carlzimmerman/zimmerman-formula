@@ -70,11 +70,10 @@ for c in T.colnames:
         v = np.asarray(col.filled(-1))
     nb[c.lower()] = v
 nb["source_id"] = nb["source_id"].astype(np.int64)
-man_q = json.loads((HERE / "manifest_q_dr3.json").read_text())["queries"]["Q1_pilot"]
+_mq = HERE / "manifest_q1_ranges.json"                     # the Q1 pilot was fetched by q1_pilot_ranges.py (the approved cone-join forms stalled)
+man_q = json.loads(_mq.read_text()) if _mq.exists() else json.loads((HERE / "manifest_q_dr3.json").read_text())["queries"]["Q1_pilot"]
 Z = np.load(Q / "q1_pilot_pairs.npz")
 pick, sa, sb_ = Z["pick"], Z["source_id_a"].astype(np.int64), Z["source_id_b"].astype(np.int64)
-P(f"Q1 pilot: {len(T):,d} rows from {len(pick)} pairs ({man_q['bytes'] / 1e6:.1f} MB, sha256 {man_q['sha256'][:16]}); "
-  f"radius {man_q['radius_arcsec_range'][0]:.0f}-{man_q['radius_arcsec_range'][1]:.0f} arcsec")
 S = np.load(WB / "dr3_extract" / "stage_A.npz")
 sid = S["source_id"]
 order = np.argsort(sid)
@@ -90,6 +89,10 @@ def rows_of(ids):
 ra_, oka = rows_of(sa)
 rb_, okb = rows_of(sb_)
 assert oka.all() and okb.all()
+_rad = W1.radius_arcsec(np.asarray(S["parallax"], float)[ra_])
+man_q.setdefault("radius_arcsec_range", [float(_rad.min()), float(_rad.max())])
+P(f"Q1 pilot: {len(T):,d} rows from {len(pick)} pairs ({man_q['bytes'] / 1e6:.1f} MB, sha256 {man_q['sha256'][:16]}); "
+  f"radius {man_q['radius_arcsec_range'][0]:.0f}-{man_q['radius_arcsec_range'][1]:.0f} arcsec")
 cols = W1.COLS[1:] + ("phot_g_mean_mag",)
 pairs = {"source_id_a": sa, "source_id_b": sb_}
 for suf, r in (("_a", ra_), ("_b", rb_)):
