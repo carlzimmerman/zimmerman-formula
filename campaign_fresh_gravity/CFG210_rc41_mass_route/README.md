@@ -1,3 +1,5 @@
+> **Renumbered CFG201 → CFG210 on 2026-09-29** (numbering blocks; see `RENUMBERED.md`). The files keep the original id inside.
+
 # CFG201 — CFG198's mass-route drift in a prior-anchored sample (Price+2021 RC41)
 
 - **Criteria:** `FROZEN_CRITERIA.md` (8a15e7e48), committed before any number. **κ = ½ FITTED, NOT DERIVED.**
