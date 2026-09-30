@@ -1,0 +1,116 @@
+CFG228 -- the PRE-FLIGHT: can the ALMA sample (six ALPINE rotators + SPT0418-47) separate FLAT from a0 ~ H(z) (or from the PROXY), and is its implied a0 informative?
+BLIND TO EVERY VELOCITY: it reads ONLY cfg228_stage1_static.csv (Stage 1, velocity-free: redshift, sizes, R_out, stellar and gas masses with their class bands, the corpus inclination and its error, the flux errors, and the
+PUBLISHED outer-ring velocity ERROR used as the expected statistical precision).  It never opens a Stage-3 output (control C8).  Committed BEFORE cfg228_stage3.py exists.
+Compilation; two un-optimised tracers; calibration-limited; not a detection; not a verdict.  LambdaCDM has no a0: the proxy is an effective-a0 PROXY.  kappa = 1/2 FITTED.  No sentence says the data favour a law.
+Frozen criteria: FROZEN_CRITERIA.md here (71ec12282); Stage 1 committed at 0694d7fc1.
+MUTATE = 1 (truth labels FLAT and H(z) swapped in the mock generation)
+
+static inputs: 7 galaxies ['CG32', 'DC396844', 'DC494057', 'DC552206', 'DC881725', 'VC5110377875', 'SPT0418-47']; no velocity value and no Stage-3 output is ever opened
+  galaxy          z    R_out(kpc)  R_e(kpc)  log M*   log M_gas (class)        gas band in/out   M* band in/out   inc +- err    expected sigma_V (km/s)   random gas error (dex)
+  CG32         4.410     7.82     3.91    10.20   10.48 (S  )         0.213 / 0.671     0.20 / 0.30      55 +- 19       27.0               0.109
+  DC396844     4.542     5.60     2.80    10.10   10.55 (S  )         0.213 / 0.671     0.20 / 0.30      57 +- 31       17.7               0.087
+  DC494057     5.545     4.94     2.47    10.00   10.18 (S/L)         0.213 / 0.671     0.20 / 0.30      46 +-  4       12.8               0.070
+  DC552206     5.502     7.97     3.98    10.40   10.70 (S  )         0.213 / 0.671     0.20 / 0.30      61 +- 17       27.6               0.098
+  DC881725     4.578     5.92     2.96    10.00   10.41 (S  )         0.213 / 0.671     0.20 / 0.30      48 +- 11       12.5               0.104
+  VC5110377875 4.551     5.96     2.98    10.20   10.73 (S  )         0.213 / 0.671     0.20 / 0.30      50 +-  6       19.8               0.065
+  SPT0418-47   4.225     3.60     1.51     9.98   10.81 (S/L)         0.213 / 0.671     0.14 / 0.30      54 +-  2       10.0               0.041
+
+CONTROLS ON THE DISC FORCE
+  [PASS] C3 Freeman's peak V^2 = 0.3872 G M/R_d to 0.003: 0.38705
+  [PASS] C3 far field g -> GM/r^2 at r = 500 R_d to 1e-4: ratio 1.000006
+  [PASS] C4 independent Hankel-transform disc force agrees with the Bessel closed form at the seven (R, R_d): max relative difference 4.15e-07
+
+PRE-FLIGHT (mocks on the ACTUAL galaxies; sigma_int = 0.15 dex declared; 1,000 mocks per (set, truth), seed 228; the class bands are the S/L bands 0.213 / 0.671 on the gas and 0.20 / 0.30 on the stars; descriptive of THIS sample)
+
+  set            n     SD   signal H(z) [mock | noise-free]   signal PROXY [mock | noise-free]    S_outer  S_gas   S_star  S_inner  S_half   flat vs H(z): outer / gas-only / inner      flat vs PROXY: outer / gas-only / inner
+  ALL7          7  0.102   0.034 | 0.000                   0.151 | 0.204               0.657   0.544   0.330   0.436    0.438    no / no / no                          no / no / no
+  ALPINE6       6  0.106   0.041 | 0.000                   0.170 | 0.208               0.657   0.541   0.341   0.438    0.430    no / no / no                          no / no / no
+  CG32          1  0.346   0.075 | 0.000                   0.144 | 0.211               0.637   0.512   0.352   0.440    0.403    no / no / no                          no / no / no
+  DC396844      1  0.407   0.105 | 0.000                   0.073 | 0.180               0.652   0.538   0.301   0.415    0.465    no / no / no                          no / no / no
+  DC494057      1  0.178   0.006 | 0.000                   0.248 | 0.253               0.666   0.525   0.394   0.475    0.406    no / no / no                          no / no / no
+  DC552206      1  0.250   0.056 | 0.000                   0.181 | 0.242               0.677   0.549   0.370   0.466    0.432    no / no / no                          no / no / no
+  DC881725      1  0.236   0.032 | 0.000                   0.171 | 0.204               0.657   0.544   0.330   0.436    0.438    no / no / no                          no / no / no
+  VC5110377875  1  0.184   0.010 | 0.000                   0.154 | 0.165               0.657   0.550   0.277   0.403    0.488    no / no / no                          no / no / no
+  SPT0418-47    1  0.156   0.011 | 0.000                   0.065 | 0.074               0.662   0.591   0.147   0.313    0.580    no / no / no                          no / no / no
+
+  second statistic, robust to a common baryon offset: within-set OLS slope of delta_FLAT against log10(y) (sets with n >= 3)
+    ALL7: SD 0.281; signal H(z) 0.020, PROXY 0.159; systematic (outer corners) 0.372; rule: flat vs H(z) no, vs PROXY no
+    ALPINE6: SD 0.808; signal H(z) 0.158, PROXY 0.290; systematic (outer corners) 0.381; rule: flat vs H(z) no, vs PROXY no
+
+MARGINALISED RUN (20,000 mocks per truth; one common uniform draw per mock scales each galaxy's gas band (+-0.671) and stellar band (+-0.30) and moves the TRUE baryons; separable if the 5th percentile of the H(z)-true set medians of delta_FLAT exceeds the 95th percentile of the FLAT-true ones)
+  ALL7         [gas+stars] H(z)-true 5th pct -0.395 (95th +0.433), FLAT-true 95th pct +0.604 (5th -0.089): flat vs H(z) not separable; PROXY-true 5th pct -0.168: flat vs proxy not separable
+  ALL7         [gas only ] H(z)-true 5th pct -0.383 (95th +0.429), FLAT-true 95th pct +0.599 (5th -0.079): flat vs H(z) not separable; PROXY-true 5th pct -0.157: flat vs proxy not separable
+  ALPINE6      [gas+stars] H(z)-true 5th pct -0.389 (95th +0.408), FLAT-true 95th pct +0.606 (5th -0.055): flat vs H(z) not separable; PROXY-true 5th pct -0.136: flat vs proxy not separable
+  ALPINE6      [gas only ] H(z)-true 5th pct -0.371 (95th +0.404), FLAT-true 95th pct +0.601 (5th -0.044): flat vs H(z) not separable; PROXY-true 5th pct -0.124: flat vs proxy not separable
+  SPT0418-47   [gas+stars] H(z)-true 5th pct -0.523 (95th +0.606), FLAT-true 95th pct +0.654 (5th -0.317): flat vs H(z) not separable; PROXY-true 5th pct -0.384: flat vs proxy not separable
+  SPT0418-47   [gas only ] H(z)-true 5th pct -0.528 (95th +0.604), FLAT-true 95th pct +0.653 (5th -0.319): flat vs H(z) not separable; PROXY-true 5th pct -0.388: flat vs proxy not separable
+
+PER GALAXY (noise-free at the nominal baryons; total error budget from the mocks)
+  galaxy          y = g_bar/a0 at R_out (1.5 R_e / 3 R_e)   d(flat vs H(z))   d(flat vs proxy)   SD of delta_FLAT (truth FLAT)   S_outer (alone)   |d_Hz| / sqrt(SD^2 + S^2)
+  CG32              1.27  (  1.91 /   0.59)               +0.000           +0.211             0.346                      0.637             0.000
+  DC396844          2.58  (  3.87 /   1.21)               +0.000           +0.180             0.407                      0.652             0.000
+  DC494057          1.74  (  2.62 /   0.82)               +0.000           +0.253             0.178                      0.666             0.000
+  DC552206          2.02  (  3.03 /   0.94)               +0.000           +0.242             0.250                      0.677             0.000
+  DC881725          1.74  (  2.61 /   0.81)               +0.000           +0.204             0.236                      0.657             0.000
+  VC5110377875      3.31  (  4.96 /   1.55)               +0.000           +0.165             0.184                      0.657             0.000
+  SPT0418-47        9.99  ( 27.46 /   6.43)               +0.000           +0.074             0.156                      0.662             0.000
+
+IMPLIED a0 PRE-FLIGHT (the estimator of CFG223; s* = the a0 scale that zeroes the set-median delta; descriptive, not a verdict; log10 s* = 0 is the canonical footing 9.3603e-11 m/s^2)
+  expected s* if each law were true (noise-free, nominal baryons), the kernel lever lambda at the nominal g_bar, the kernel slope, the shift of log10 s* at the OUTER band corners (gas +-0.671 and stars +-0.30, same sign) and the A3 verdict
+  set            y=g_bar/a0  slope    lambda   s*_FLAT  s*_PROXY  s*_H(z)  s*_M-DEC   shift at outer corners (-,+) [log10 s*]     A3 verdict
+  ALL7              2.02   0.226      -1.7     7.39     4.60     1.00     0.66       +0.72 /   -3.87  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  ALPINE6           1.88   0.233      -1.7     7.41     4.62     1.00     0.66       +0.72 /   -3.87  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  CG32              1.27   0.270      -1.5     7.11     4.39     1.00     0.67       +0.63 /   -3.85  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  DC396844          2.58   0.196      -1.7     7.37     4.59     1.00     0.66       +0.72 /   -3.87  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  DC494057          1.74   0.241      -1.5     9.43     6.29     1.00     0.60       +0.61 /   -3.97  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  DC552206          2.02   0.226      -1.5     9.34     6.21     1.00     0.61       +0.65 /   -3.97  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  DC881725          1.74   0.241      -1.6     7.44     4.64     1.00     0.66       +0.68 /   -3.87  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  VC5110377875      3.31   0.160      -1.9     7.39     4.60     1.00     0.66       +0.77 /   -3.87  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+  SPT0418-47        9.99   0.061      -2.9     6.75     4.12     1.00     0.68       +1.01 /   -3.83  (root lost)                  UNINFORMATIVE: the outer band removes the root; the outer band moves log s* by > 1 dex
+
+  Monte Carlo of the estimator under truth FLAT (s* = 1): median and 16-84% range of log10 s* over the mocks that have a root, and the fraction with NO root or a root at the edge; 'stat' = velocity, inclination and random baryon errors only; '+ sigma_int' adds the declared 0.15 dex
+  set            stat: median [16%, 84%]   no-root     + sigma_int: median [16%, 84%]   no-root
+  ALL7            +0.84 [ +0.67,  +0.99]     0.00         +0.80 [ +0.50,  +1.06]       0.00
+  ALPINE6         +0.85 [ +0.63,  +1.01]     0.00         +0.80 [ +0.49,  +1.06]       0.00
+  CG32            +0.82 [ +0.21,  +1.20]     0.11         +0.81 [ +0.16,  +1.33]       0.14
+  DC396844        +0.90 [ +0.27,  +1.21]     0.24         +0.88 [ +0.20,  +1.38]       0.26
+  DC494057        +0.97 [ +0.71,  +1.17]     0.00         +0.98 [ +0.49,  +1.33]       0.02
+  DC552206        +0.90 [ +0.40,  +1.22]     0.06         +0.90 [ +0.28,  +1.36]       0.09
+  DC881725        +0.85 [ +0.35,  +1.22]     0.04         +0.84 [ +0.22,  +1.30]       0.08
+  VC5110377875    +0.84 [ +0.54,  +1.10]     0.02         +0.87 [ +0.34,  +1.33]       0.05
+  SPT0418-47      +0.80 [ +0.60,  +0.97]     0.00         +0.93 [ +0.38,  +1.39]       0.17
+  (log10 s* values; 0 = the canonical footing.  A range wider than 1 dex means the implied a0 of that set is undetermined at the stated errors.)
+
+CONTROLS
+  [FAIL] C5 raising the gas (+0.1 dex) or the stellar mass (+0.1 dex) lowers delta_FLAT at every galaxy: gas max +0.273, stars max +0.289
+  [FAIL] C6n noise-free planted-law identity: under truth T the noise-free delta_T is 0 to 1e-9 at every galaxy and delta under each other law is non-zero at every galaxy: max |delta_T(T)| 3.2e-01; min |delta_other| 0.0000
+  [FAIL] C6 planted-law recovery, ALL7: the set-median delta under the TRUE law is within 2 SD of 0 in >= 90% of mocks; the other laws' offsets agree with the noise-free ones to 3 SD: recovery FLAT 0.43, H(z) 0.18, PROXY 0.96; offsets vs noise-free -0.034, -0.053 (SD 0.102)
+  [FAIL] C6 planted-law recovery, ALPINE6: the set-median delta under the TRUE law is within 2 SD of 0 in >= 90% of mocks; the other laws' offsets agree with the noise-free ones to 3 SD: recovery FLAT 0.39, H(z) 0.14, PROXY 0.95; offsets vs noise-free -0.041, -0.037 (SD 0.106)
+  [PASS] C9 the mock SD of delta_FLAT (truth FLAT) for SPT0418-47 (small inclination error) equals the finite-difference error propagation (an independent path) to 10%: MC 0.156 vs analytic 0.158
+  [PASS] C10 the implied-a0 estimator equals CFG223's original bit for bit on 200 random sets (verbatim copy): identical True
+
+Q3 (POST HOC, not frozen): the common precision d (dex) on stars and gas (random errors AND outer band both set to d) at which flat vs H(z) in the set satisfies signal > S_max + 2 SD (the ALPINE inclination errors are omitted here: a lower bound on the noise)
+    ALPINE6  d = 0.300: signal 0.037, SD 0.115, S 0.501 -> not possible
+    ALPINE6  d = 0.200: signal 0.016, SD 0.094, S 0.432 -> not possible
+    ALPINE6  d = 0.100: signal 0.006, SD 0.080, S 0.360 -> not possible
+    ALPINE6  d = 0.050: signal 0.003, SD 0.075, S 0.324 -> not possible
+    ALPINE6  d = 0.020: signal 0.002, SD 0.073, S 0.302 -> not possible
+    ALPINE6  d = 0.010: signal 0.001, SD 0.072, S 0.294 -> not possible
+    ALL7     d = 0.300: signal 0.036, SD 0.114, S 0.500 -> not possible
+    ALL7     d = 0.200: signal 0.010, SD 0.093, S 0.429 -> not possible
+    ALL7     d = 0.100: signal 0.006, SD 0.081, S 0.356 -> not possible
+    ALL7     d = 0.050: signal 0.005, SD 0.077, S 0.319 -> not possible
+    ALL7     d = 0.020: signal 0.001, SD 0.075, S 0.296 -> not possible
+    ALL7     d = 0.010: signal 0.002, SD 0.075, S 0.289 -> not possible
+
+POST HOC (labelled, arithmetic): the radius at which y = 3 for each galaxy, nominal baryons, and the noise-free d(flat vs H(z)) there
+    CG32         y < 3 already at R_out = 7.82 kpc
+    DC396844     y < 3 already at R_out = 5.60 kpc
+    DC494057     y < 3 already at R_out = 4.94 kpc
+    DC552206     y < 3 already at R_out = 7.97 kpc
+    DC881725     y < 3 already at R_out = 5.92 kpc
+    VC5110377875 R*(y=3) =   6.35 kpc (1.1 x R_out): d(flat vs H(z)) = +0.242
+    SPT0418-47   R*(y=3) =   6.45 kpc (1.8 x R_out): d(flat vs H(z)) = +0.229
+  [PASS] C8 blindness: with a dummy Stage-3 output (absurd velocities) present, the pre-flight runs to completion and gives the same set statistics bit for bit: child exit 1, identical True
+
+6/10 controls pass; 5 s
