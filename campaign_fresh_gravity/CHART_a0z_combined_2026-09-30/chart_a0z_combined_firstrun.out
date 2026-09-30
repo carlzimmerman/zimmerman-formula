@@ -1,0 +1,37 @@
+CHART a0(z) combined -- plot only; reads cfg223_results.json, cfg229_score_results.json, cfg228_score_results.json (all committed); no new analysis
+unit: s = implied a0 / 9.3603e-11 m/s^2 (canonical footing); alt footing = 1.2085 x canonical; quoted z ~ 0 reference: canonical 1, alt 1.209, SPARC best free fits at Upsilon = 0.50: nu_mono 1.464 (1.37e-10), P2 1.902 (1.78e-10) [CFG4_README H2b, quoted]
+lane    object           class       z  z shown       s* a0 (1e-10)               68%               95%  inner band          outer band
+CFG223  RC100 corr Q1    D      0.810    0.810    1.838      1.720     1.44-2.05        0.979-2.45      0.45-4.04   0.001-7.36 (no root at one corner)
+CFG223  RC100 corr Q2    D      1.360    1.360    2.101      1.966     1.48-2.79         0.89-3.38      0.525-4.64   0.001-8.4 (no root at one corner)
+CFG223  RC100 corr Q3    D      2.010    2.010    1.573      1.473     1.25-2.04        0.996-2.39      0.001-4.25 (no root at one corner)   0.001-7.09 (no root at one corner)
+CFG223  RC100 corr Q4    D      2.260    2.260    0.994      0.931    0.804-1.14        0.624-1.38      0.001-2.59 (no root at one corner)   0.001-4.75 (no root at one corner)
+CFG223  CR R_e fit       D      5.194    5.034    1.867      1.747      1.7-3.73         1.16-5.65      0.147-5.66   0.001-11.7 (no root at one corner)
+CFG223  CR R_out fit     D      5.263    5.207    1.211      1.133      0.8-1.73        0.258-3.97      0.001-2.75 (no root at one corner)   0.001-5.14 (no root at one corner)
+CFG223  CR R_e ind       S/L    5.263    5.319    2.905      2.720    0.757-9.12        0.001-18.9      1.03-6.66   0.001-12 (no root at one corner)
+CFG223  CR R_out ind     S/L    5.263    5.423    2.292      2.145    0.626-6.17       0.0423-9.38      0.964-4.65   0.001-8.02 (no root at one corner)
+CFG229  ALPAKA15         M      2.225    2.420  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG229  ALPAKA18         M      2.407    2.520  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG229  ALPAKA19         M      2.494    2.620  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG229  ALPAKA20         M      2.504    2.720  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG229  ALPAKA22         M      2.935    2.950  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG229  SINS_BX610       M      2.211    2.330  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG229  ALESS_122.1      M      2.024    2.100    8.818      8.254      4.2-14.4         1.51-22.6      5.9-11.7   3.72-15.1
+CFG228  CG32             S/L    4.410    4.340   12.088     11.314     5.73-56.4         2.85-341       5.83-22.3   48.4-48.4 (no root at one corner)
+CFG228  DC396844         S/L    4.542    4.470    6.768      6.335     2.99-68.9         1.27-481       2.22-14.2   36.6-36.6 (no root at one corner)
+CFG228  DC494057         S/L    5.545    5.700    4.581      4.288     2.23-8.25        0.866-14.7      1.52-9.57   21.4-21.4 (no root at one corner)
+CFG228  DC552206         S/L    5.502    5.560    2.020      1.891    0.882-9.28        0.205-60.9      5.08-5.08 (no root at one corner)   13.2-13.2 (no root at one corner)
+CFG228  DC881725         S/L    4.578    4.730    4.083      3.822     1.45-15.3        0.348-62.2      1.26-8.72   22.2-22.2 (no root at one corner)
+CFG228  VC5110377875     S/L    4.551    4.600  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG228  SPT0418-47       S/L    4.225    4.200  NO ROOT (D <= 1: no a0 can make nu < 1)
+CFG228  ALPINE6 pooled   S/L    4.564    4.860    4.326      4.049     2.93-5.55        0.322-9.21      1.39-9.14   21.8-21.8 (no root at one corner)
+
+CHECKS
+  [PASS] every plotted CFG228 s* equals 10**s0 of its own JSON entry (tie to the JSON): True
+  [PASS] CFG223: eight figure points (four RC100 z-quartiles, four CRISTAL): 8
+  [PASS] CFG229: seven class-M galaxies, six with no root, ALESS 122.1 the only one with a root (README bottom line 5): 7 objects, root: ['ALESS_122.1']
+  [PASS] CFG228: five galaxies with a root (s* 12.1, 6.77, 4.58, 2.02, 4.08 as in the README), VC5110377875 and SPT0418-47 without; ALPINE6 pooled 4.33: root: ['CG32', 'DC396844', 'DC494057', 'DC552206', 'DC881725']
+  [PASS] both lanes' results files are the real runs (mode = none): '', ''
+  [PASS] the alt-footing ratio equals 1.1312e-10 / 9.3603e-11: 1.20851
+  [FAIL] every plotted displayed z lies within 0.16 of the true z (legibility nudges only): max 0.296
+
+6/7 checks pass
