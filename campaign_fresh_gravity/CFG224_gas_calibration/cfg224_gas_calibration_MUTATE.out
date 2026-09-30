@@ -1,0 +1,96 @@
+CFG224 -- how well is the gas-mass calibration known?  Tracer-to-tracer offsets and scatter against redshift from galaxies with gas masses from two or more tracers,
+against the +-0.15 dex (CFG221) and +-0.05 to 0.10 dex (CFG223) requirements.  Frozen criteria: FROZEN_CRITERIA.md here (99f62160b), committed before any tracer offset was computed.
+Conversions are as each source states them; the data chat's reconstructions (NOEMA3D CO, [CI], dust) are unverified against the papers; a tracer agreement does not prove an absolute mass scale.
+kappa = 1/2 FITTED.  No sentence says the data favour a law.
+
+PRIMARY: independent pairs, pooled per (pair type, bin) as frozen (Kirkpatrick+19 and H-ATLAS are not in ROWS); source rows are supplementary
+  independent rows: 109; transcription of the singles matches the data chat's CSV text: True
+
+  B1 z<0.6
+    CO-DUST  N =  78 (Stripe82): mean +0.232, SD 0.155, SE 0.018, median +0.250, 1.4826 MAD 0.119, 68% boot [+0.214, +0.249], intrinsic SD 0.134;  K = 0.117: between the CFG223 and CFG221 requirements (0.10 <= K < 0.15)
+    headline pair type: CO-DUST (N = 78); K = 0.117
+
+  B2 0.6<=z<1.6
+    CO-CI    N =   5 (NOEMA3D): mean +0.426, SD 0.067, SE 0.030, median +0.449, 1.4826 MAD 0.050;  K = 0.215: at or above the CFG221 requirement (K >= 0.15)
+    CO-DUST  N =   5 (NOEMA3D): mean +0.283, SD 0.134, SE 0.060, median +0.273, 1.4826 MAD 0.123;  K = 0.154: at or above the CFG221 requirement (K >= 0.15)
+    CI-DUST  N =  14 (Bourne+19, NOEMA3D): mean -0.240, SD 0.166, SE 0.044, median -0.229, 1.4826 MAD 0.116, 68% boot [-0.283, -0.197];  K = 0.128: between the CFG223 and CFG221 requirements (0.10 <= K < 0.15)
+    headline pair type: CI-DUST (N = 14); K = 0.128
+
+  B3 1.6<=z<3.0
+    CO-CI    N = 1 (no statistics): singles PKS 0529-549 z 2.572 d -0.628
+    CO-DUST  N = 2 (no statistics): singles PKS 0529-549 z 2.572 d -0.479; singles Q1700-MD94 z 2.333 d +0.385
+    CI-DUST  N = 1 (no statistics): singles PKS 0529-549 z 2.572 d +0.149
+    no pair type with N >= 3: K not estimated
+
+  B4 z>=3.0
+    CO-CII   N = 1 (no statistics): singles J081740 z 4.260 d -0.047
+    CO-DUST  N = 1 (no statistics): singles J081740 z 4.260 d +0.189
+    CII-DUST N = 1 (no statistics): singles J081740 z 4.260 d +0.235
+    no pair type with N >= 3: K not estimated
+
+SUPPLEMENTARY per-source rows (sources are not pooled here; conversions differ between sources)
+    Stripe82                     CO-DUST  N =  78 z 0.03-0.20: mean +0.232, SD 0.155, SE 0.018; K = 0.117
+    Bourne+19                    CI-DUST  N =   9 z 0.91-1.22: mean -0.294, SD 0.178, SE 0.059; K = 0.158
+    NOEMA3D                      CO-CI    N =   5 z 1.12-1.25: mean +0.426, SD 0.067, SE 0.030; K = 0.215
+    NOEMA3D                      CO-DUST  N =   5 z 1.12-1.25: mean +0.283, SD 0.134, SE 0.060; K = 0.154
+    NOEMA3D                      CI-DUST  N =   5 z 1.12-1.25: mean -0.142, SD 0.091, SE 0.041; K = 0.082
+    NOEMA3D-failing(Table1 CO)   CO-DUST  N =   5 z 1.19-1.63: mean +0.065, SD 0.267, SE 0.119; K = 0.124
+    NOEMA3D-failing(recipe CO)   CO-DUST  N =   5 z 1.19-1.63: mean +0.292, SD 0.260, SE 0.116; K = 0.187
+    D49 (z ~ 3): CI-DUST < +0.03 dex (upper limit on the [CI] mass; not in any mean)
+    Kirkpatrick+19 (not independent: RJ dust is calibrated to CO with alpha_CO = 6.5): paper's own CO-RJ ratio check
+      N = 10, log10(M_CO / M_RJ): mean -0.069, SD 0.152 (beside the primary, never in it)
+
+THREE-CORNERED HAT (the five validated NOEMA3D galaxies: CO, CI, DUST)
+    CO    variance +0.0071 (jackknife SE 0.0036): sigma = 0.084 dex
+    CI    variance -0.0027 (jackknife SE 0.0030): NOT CONSTRAINED (negative variance)
+    DUST  variance +0.0110 (jackknife SE 0.0101): sigma = 0.105 dex
+    PKS 0529-549 and J081740 have three tracers each but N = 1: no statistics.
+
+SECONDARY (z > 2, conversion-free luminosity ratios; luminosity-level, NOT a mass test)
+    SMGs: N = 20, z 2.26-4.78: log10(L'_CI / L'_CO(1-0)) mean -0.696, SD 0.288, SE 0.064
+      observed CO J_up = 3: N = 6: mean -0.894, SD 0.346
+      observed CO J_up = 4: N = 11: mean -0.521, SD 0.141
+      observed CO J_up = 5: N = 3: mean -0.940, SD 0.122
+    implied alpha_CO = M_gas,[CI] / L'_CO(1-0) (X_[CI] = 5.1e-5): N = 20, median 0.91, SD of log 0.286 dex
+      alpha_assumed 0.8: offset log10(alpha_assumed L'_CO / M_gas,[CI]) mean -0.008, SD 0.286
+      alpha_assumed 3.6: offset log10(alpha_assumed L'_CO / M_gas,[CI]) mean +0.645, SD 0.286
+      alpha_assumed 4.36: offset log10(alpha_assumed L'_CO / M_gas,[CI]) mean +0.729, SD 0.286
+    SPT: log10(L'_CI21 / L'_CI10): N = 20, mean -0.212, SD 0.207
+    SPT: log10(L'_CII / L'_CI10): N = 10, mean +0.269, SD 0.422
+
+LITERATURE (Dunne+22, parsed from the TeX tables on disk; no download)
+    parsed 9 sample rows of the mean-optimised table
+    daX  Lhi            N =  90: X_CI 1.59: per-galaxy scatter 0.113 dex, error on the mean 0.011 dex; alpha_CO 2.66: per-galaxy scatter 0.133 dex, error on the mean 0.016 dex; kappa_H 1990: per-galaxy scatter 0.148 dex, error on the mean 0.019 dex
+    daX  Llo            N =  12: X_CI 1.18: per-galaxy scatter 0.151 dex, error on the mean 0.048 dex; alpha_CO 2.44: per-galaxy scatter 0.096 dex, error on the mean 0.030 dex; kappa_H 1571: per-galaxy scatter 0.171 dex, error on the mean 0.045 dex
+    Xd   Lhi            N = 128: X_CI 1.59: per-galaxy scatter 0.110 dex, error on the mean 0.011 dex; kappa_H 1946: per-galaxy scatter 0.122 dex, error on the mean 0.012 dex
+    Xd   Llo            N =  12: X_CI 1.24: per-galaxy scatter 0.135 dex, error on the mean 0.046 dex; kappa_H 1503: per-galaxy scatter 0.135 dex, error on the mean 0.042 dex
+    ad   Lhi            N = 240: alpha_CO 3.08: per-galaxy scatter 0.144 dex, error on the mean 0.010 dex; kappa_H 1936: per-galaxy scatter 0.129 dex, error on the mean 0.010 dex
+    ad   Llo            N =  88: alpha_CO 3.52: per-galaxy scatter 0.111 dex, error on the mean 0.012 dex; kappa_H 1718: per-galaxy scatter 0.103 dex, error on the mean 0.011 dex
+    Xa   Lhi            N =  97: X_CI 1.61: per-galaxy scatter 0.094 dex, error on the mean 0.011 dex; alpha_CO 2.57: per-galaxy scatter 0.113 dex, error on the mean 0.014 dex
+    Xa   Llo+CIcor      N =  24: X_CI 1.3: per-galaxy scatter 0.073 dex, error on the mean 0.017 dex; alpha_CO 1.88: per-galaxy scatter 0.086 dex, error on the mean 0.023 dex
+    Xa   Llo            N =  12: X_CI 1.37: per-galaxy scatter 0.104 dex, error on the mean 0.029 dex; alpha_CO 2.11: per-galaxy scatter 0.086 dex, error on the mean 0.031 dex
+    spread of the mean alpha_CO between samples: high-L class 0.079 dex (samples N = 90, 240, 97); low-L class 0.222 dex (N = 12, 88, 12; the CIcor row is not used)
+    empirical calibration table: 5 rows: daX N=101: a850 9.9, aCO 2.6, aCI 12.6; ad (Lhi) N=240: a850 9.1, aCO 3.1, aCI None; ad N=326: a850 8.8, aCO 3.2, aCI None; Xd N=140: a850 9.8, aCO None, aCI 12.7; Xa N=109: a850 None, aCO 2.5, aCI 12.5
+    spread between samples in the empirical table (max over min, dex): alpha_850 0.051, alpha_CO 0.107, alpha_CI 0.007
+
+IMPLICATION (arithmetic with declared inputs, not a forecast): K_needed = (Delta/2) / (|L| f_gas)
+    RC100 corr Q1  z 0.81 (B2 0.6<=z<1.6): lever -4.37, separation 0.204 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.078 / 0.047 / 0.033; measured headline K in the bin: 0.128
+    RC100 corr Q2  z 1.36 (B2 0.6<=z<1.6): lever -2.65, separation 0.342 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.215 / 0.129 / 0.092; measured headline K in the bin: 0.128
+    RC100 corr Q3  z 2.01 (B3 1.6<=z<3.0): lever -3.24, separation 0.484 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.249 / 0.149 / 0.107; measured headline K in the bin: not estimated
+    RC100 corr Q4  z 2.26 (B3 1.6<=z<3.0): lever -4.83, separation 0.532 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.184 / 0.110 / 0.079; measured headline K in the bin: not estimated
+    CR R_e fit     z 5.19 (B4 z>=3.0): lever -4.70, separation 0.939 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.333 / 0.200 / 0.143; measured headline K in the bin: not estimated
+    CR R_out fit   z 5.26 (B4 z>=3.0): lever -3.17, separation 0.946 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.498 / 0.299 / 0.213; measured headline K in the bin: not estimated
+    CR R_e ind     z 5.26 (B4 z>=3.0): lever -3.19, separation 0.946 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.494 / 0.297 / 0.212; measured headline K in the bin: not estimated
+    CR R_out ind   z 5.26 (B4 z>=3.0): lever -2.48, separation 0.946 dex; K_needed at f_gas 0.3 / 0.5 / 0.7: 0.636 / 0.382 / 0.273; measured headline K in the bin: not estimated
+
+CONTROLS
+  [PASS] C1 data counts equal the data chat's checks file (Stripe82 78, Bourne 9 with both masses, Kirkpatrick 12, SMG 20, SPT 29), the NOEMA3D validated set is exactly the five with CO control pass, no non-finite offset: {'kp': 12, 'bo': 9, 'smg': 20, 'spt': 29, 's82': 78}; validated ['G4_20371', 'G4_38065', 'G4_38232', 'GN4_18574', 'GN4_24517']
+  [PASS] C2 estimator identity on synthetic pairs (N = 500, mu = 0.10, s = 0.15): mean, SD and SE recovered to 3 SE and the bootstrap half-interval within 10% of SE: mean 0.101, SD 0.139, SE 0.0062, boot/SE 0.968
+  [PASS] C3 bootstrap coverage of the 68% interval of the mean on Gaussian mocks (K = 2,000): in [0.60, 0.76] at N = 9 and 78: {9: 0.629, 78: 0.6705}
+  [PASS] C4 three-cornered hat: synthetic (0.10, 0.15, 0.20) dex recovered to 15% at N = 300; at N = 5 the fraction of draws with at least one negative variance is REPORTED: N = 300 [True, True, True]; N = 5 fraction with a negative variance 0.539
+  [PASS] C5 independence guard: no Kirkpatrick or H-ATLAS row in any primary statistic (ROWS holds only Stripe82, Bourne, NOEMA3D and the singles): sources in ROWS: ['Bourne+19', 'NOEMA3D', 'NOEMA3D-failing(Table1 CO)', 'NOEMA3D-failing(recipe CO)', 'Stripe82', 'singles']
+  [PASS] C6 the TeX parse reproduces the quoted Dunne+22 values (alpha_CO 2.66 +0.96/-0.70 N = 90; 3.08 +1.32/-0.81 N = 240; 3.52 +0.95/-0.84 N = 88) and the transcribed singles match the data chat's CSV text: True; singles text True
+
+MUTATE: +0.30 dex injected into every CO mass of Stripe82 and the validated NOEMA3D galaxies
+    Stripe82 CO-DUST: mean offset -0.068 -> +0.232; K 0.038 -> 0.117
+  [PASS] MUTATE every CO-containing pair offset shifts by +0.300 to 1e-9, every other pair by 0, and the B1 CO-DUST K rises: True
