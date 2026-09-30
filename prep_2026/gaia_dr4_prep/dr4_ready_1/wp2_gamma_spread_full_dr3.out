@@ -1,0 +1,38 @@
+WP2-gamma: build-to-build scatter of gamma-hat, PRIMARY base, N_SHIFT = 30, ten seed sets (DR3 numbers are code-path tests; no verdict words)
+  build k = 0: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,210  (879 s)
+  build k = 1: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,196  (894 s)
+  build k = 2: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,181  (945 s)
+  build k = 3: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,212  (915 s)
+  build k = 4: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,208  (876 s)
+  build k = 5: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,199  (811 s)
+  build k = 6: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,208  (900 s)
+  build k = 7: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,194  (851 s)
+  build k = 8: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,197  (808 s)
+  build k = 9: initial pairs 380,438; clean 214,002; with R 213,097; FINAL 6,208  (902 s)
+
+  [PASS] C1 the builder's own N_SHIFT default is 30 (used here: 30)
+  [PASS] C2 every build has WP2's stage-C and stage-D counts (380,438 initial, 214,002 clean)
+  [PASS] C4 the flip counter returns exactly 100 when 100 pairs are removed from the k = 0 set
+
+Q1  final pair count and flips
+    final counts: [6210, 6196, 6181, 6212, 6208, 6199, 6208, 6194, 6197, 6208]; mean 6201.3, SD 9.7, range 6181 to 6212
+    one-way flips against k = 0: [(164, 150), (165, 136), (160, 162), (150, 148), (159, 148), (166, 164), (175, 159), (159, 146), (166, 164)]; mean 157.8
+    all ordered pairs of builds, one-way flips: mean 162.3, SD 10.8, range 133 to 187  (fraction of the mean final count: 0.0262)
+
+Q2 / Q3  gamma-hat across the ten builds (pipeline estimator, DR3-noise forward model, NON-SCORING)
+  canonical:
+    gamma-hat per build: 1.0625 1.0875 1.1025 1.0950 1.0675 1.0750 1.0500 1.0750 1.0950 1.0750
+    sigma_fit per build: 0.0550 0.0600 0.0587 0.0500 0.0512 0.0537 0.0537 0.0537 0.0537 0.0637
+    mean gamma-hat 1.0785; SD across builds 0.0164; mean sigma_fit 0.0554; mean sigma_tot 0.0589
+    SD/mean sigma_fit = 0.297;  SD/mean sigma_tot = 0.279
+    fit-only control (k = 0 catalog, ten other fit seeds): SD 0.0094 (SD/mean sigma_fit 0.170); SD_build / SD_fitonly = 1.74; implied build-only SD 0.0134 (0.243 of mean sigma_fit)
+  alt:
+    gamma-hat per build: 1.0450 1.0575 1.0925 1.0750 1.0425 1.0625 1.0600 1.0575 1.0675 1.0925
+    sigma_fit per build: 0.0500 0.0537 0.0525 0.0537 0.0462 0.0487 0.0537 0.0487 0.0512 0.0525
+    mean gamma-hat 1.0652; SD across builds 0.0172; mean sigma_fit 0.0511; mean sigma_tot 0.0549
+    SD/mean sigma_fit = 0.337;  SD/mean sigma_tot = 0.314
+    fit-only control (k = 0 catalog, ten other fit seeds): SD 0.0050 (SD/mean sigma_fit 0.098); SD_build / SD_fitonly = 3.44; implied build-only SD 0.0165 (0.322 of mean sigma_fit)
+
+Reading: these are build-to-build and fit-only spreads of the pipeline's gamma-hat on DR3 at the real N_SHIFT; they are code-path numbers, they say nothing about any law, and the ratio to sigma_fit at DR4's N is not measured here.
+
+3/3 controls pass (C3 is the MUTATE run); 8812 s
