@@ -12,5 +12,6 @@ The original goal remains OPEN. A new partial result is not a completed theory.
 - `runs/` contains bounded reruns with validated computation manifests. Earlier exploratory logs have weaker provenance and are identified as such.
 - [32pi investigation](PUZZLE_32PI_RESULTS.md): exact dipole amplitude bound and stream orientation check, with the coefficient still open. Its [contract](PUZZLE_32PI_CONTRACT.md) pins the target and scope.
 - [Continued state-selection investigation](SELECTION_RESULTS_2026-09-29.md): a nonlinear stream-energy pump, longitudinal dipole/field modes and the missing conversion into gravitational density. Its [contract](SELECTION_CONTRACT.md) fixes the extensions and non-claims.
+- [Focused overnight coefficient investigation](TONIGHT_32PI_RESULTS.md): a fluctuation-response audit, an exact inverse distribution for P2, and the remaining vacuum normalization freedom. Its [contract](TONIGHT_32PI_CONTRACT.md) retains the original success criterion. 32pi remains open.
 
 All work in this folder is by this Codex session. Existing research files are read-only inputs. No paper, deposited version, shared ledger, or other session's working changes are edited.
