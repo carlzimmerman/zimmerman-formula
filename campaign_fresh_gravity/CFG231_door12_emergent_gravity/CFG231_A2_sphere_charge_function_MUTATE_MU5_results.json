@@ -1,0 +1,973 @@
+{
+ "slug": "CFG231_A2_sphere_charge_function_MUTATE_MU5",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "C5 K1 (the P2 phantom) on the two exponential spheres: R ranges agree with CFG44 B1 N5's printed [1.000, 2.279] (compact) and [1.000, 2.484] (diffuse) to 2%",
+   "detail": "mine {'compact': (0.9999999999800959, 2.279124157479739, 0.0), 'diffuse': (0.9999999999896244, 2.48398061192046, 0.0)}; N5 {'compact': (1.0, 2.279), 'diffuse': (1.0, 2.484)}",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C6 core limit: R -> 5/2 (sympy, exact) and numerically 2.5 at x = 1e-4 on the 1e9 sphere; the target's own core has g_T^2 = (2/5) a g_N",
+   "detail": "sympy 5/2; numeric R(1e-4) = 2.4942; g_T^2/(a g_N) = 0.4043",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C8 KODE passes G1 strict on every cell (max|R-1| < 1e-6, ODE identity checked by numerical differentiation of my own solution), and it is M0 (prescribed profile)",
+   "detail": "max|R-1| 1.7e-09",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C8b my ODE solver run from Bcommon's own start reproduces the read-only Bcommon target g_tot on the 1e10 sphere (1e-6)",
+   "detail": "dev 1.2e-10; deep-core start differs from Bcommon by 2.9e-04 (start-point transient, reported)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C10 B2 and K2 give the same charge function (relative difference < 1e-6) on both geometries",
+   "detail": "max rel diff 1.2e-11",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "C5": {
+   "compact": [
+    0.9999999999800959,
+    2.279124157479739,
+    0.0
+   ],
+   "diffuse": [
+    0.9999999999896244,
+    2.48398061192046,
+    0.0
+   ]
+  },
+  "C6": {
+   "R_core": "5/2",
+   "R_K1_1e9": [
+    2.49415166708064,
+    2.48143311312175,
+    2.44068247844209,
+    2.309883345459397
+   ],
+   "gT2_over_a_gN": [
+    0.4042953613326318,
+    0.4139067097277039
+   ]
+  },
+  "C8": {
+   "maxdev": 1.6965824300996246e-09,
+   "dev_deep_start": 0.0002929832635760743,
+   "dev_bcommon_start": 1.1806977617823122e-10
+  },
+  "summary": {
+   "V0": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0,
+      "point_maxdev": 1.0,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.9900743804199785
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0,
+      "point_maxdev": 1.0,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.9904191314389121
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0,
+      "point_maxdev": 1.0,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.9920623545210085
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0,
+      "point_maxdev": 1.0,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.9900743804199783
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0,
+      "point_maxdev": 1.0,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.9884412369747029
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0,
+      "point_maxdev": 1.0,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.9904212436965965
+     }
+    }
+   },
+   "V2": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0000060074115569,
+      "point_maxdev": 1.0000060074115569,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9666852611616953
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0000059037580393,
+      "point_maxdev": 1.0000059037580393,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9660874442224582
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0000053808391212,
+      "point_maxdev": 1.0000053808391212,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9627235911198913
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.000006603356475,
+      "point_maxdev": 1.000006603356475,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9666852702281606
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0000071170541074,
+      "point_maxdev": 1.0000071170541074,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9691449638247998
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0000064887157882,
+      "point_maxdev": 1.0000064887157882,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9660836918172303
+     }
+    }
+   },
+   "B1": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 10.000000000083922,
+      "point_maxdev": 10.000000000083922,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421355794695747
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 9.788536183275392,
+      "point_maxdev": 9.788536183275392,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421343392754717
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 8.734482606651568,
+      "point_maxdev": 8.734482606651568,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.414213520873431
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 10.000000000109274,
+      "point_maxdev": 10.000000000109274,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421355794695747
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 10.964004158913603,
+      "point_maxdev": 10.964004158913603,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.4142135049539464
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 9.787231132049861,
+      "point_maxdev": 9.787231132049861,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421340689960773
+     }
+    }
+   },
+   "B2": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 10.000000000083922,
+      "point_maxdev": 10.000000000083922,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421355794695747
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 9.788536183275392,
+      "point_maxdev": 9.788536183275392,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421343392754717
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 8.734482606651568,
+      "point_maxdev": 8.734482606651568,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.414213520873431
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 10.000000000109274,
+      "point_maxdev": 10.000000000109274,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421355794695747
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 10.964004158913603,
+      "point_maxdev": 10.964004158913603,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.4142135049539464
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 9.787231132049861,
+      "point_maxdev": 9.787231132049861,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421340689960773
+     }
+    }
+   },
+   "B3": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.7293080400238678,
+      "point_maxdev": 1.7293080400238678,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421355794695747
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.6349836039434673,
+      "point_maxdev": 1.6349836039434673,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421343392754717
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.179844436608243,
+      "point_maxdev": 1.179844436608243,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.414213520873431
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.729308040021992,
+      "point_maxdev": 1.729308040021992,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421355794695747
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 2.1846702060410483,
+      "point_maxdev": 2.1846702060410483,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.4142135049539464
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.6345838876405359,
+      "point_maxdev": 1.6345838876405359,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.41421340689960773
+     }
+    }
+   },
+   "B4": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 7,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 2.07378558769733e-11,
+      "point_maxdev": 2.07378558769733e-11,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.900496280979001
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 7,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.03498442804511481,
+      "point_maxdev": 0.03498442804511481,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9022353831875182
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.20148485523572723,
+      "point_maxdev": 0.20148485523572723,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9109949780908186
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 7,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 2.4150903499275955e-11,
+      "point_maxdev": 2.4150903499275955e-11,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9004962809790011
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.16597445489980678,
+      "point_maxdev": 0.16597445489980678,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.8926437622928752
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 7,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.03519871837867927,
+      "point_maxdev": 0.03519871837867927,
+      "sphere_maxdev": "nan",
+      "adm_all": false,
+      "G1P2_worst": 0.9022461348062216
+     }
+    }
+   },
+   "K3": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.9805806761508067,
+      "point_maxdev": 0.9805806761508067,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.15470049617893755
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.9119284696533783,
+      "point_maxdev": 0.9119284696533783,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.15470051659156292
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.5845753430455669,
+      "point_maxdev": 0.5845753430455669,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.1547004732607542
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.980580675962698,
+      "point_maxdev": 0.980580675962698,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.15470049617893755
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.3056745472457418,
+      "point_maxdev": 1.3056745472457418,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.1547005383223068
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.9115078156346945,
+      "point_maxdev": 0.9115078156346945,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 0.15470052512332244
+     }
+    }
+   },
+   "K1": {
+    "HL": {
+     "shape": {
+      "n": 7,
+      "n_pass": 7,
+      "n_Ronly": 7,
+      "n_point_pass": 7,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.4208865195541875e-09,
+      "point_maxdev": 1.4208865195541875e-09,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 6.661338147750939e-16
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 7,
+      "n_Ronly": 7,
+      "n_point_pass": 7,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.034984428943693024,
+      "point_maxdev": 0.034984428943693024,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 5.551115123125783e-16
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.20148485612505762,
+      "point_maxdev": 0.20148485612505762,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 6.661338147750939e-16
+     }
+    },
+    "H0": {
+     "shape": {
+      "n": 7,
+      "n_pass": 7,
+      "n_Ronly": 7,
+      "n_point_pass": 7,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 1.0244654014002208e-09,
+      "point_maxdev": 1.0244654014002208e-09,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 6.661338147750939e-16
+     },
+     "tie_canonical": {
+      "n": 7,
+      "n_pass": 0,
+      "n_Ronly": 0,
+      "n_point_pass": 0,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.1659744558260745,
+      "point_maxdev": 0.1659744558260745,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 5.551115123125783e-16
+     },
+     "tie_alt": {
+      "n": 7,
+      "n_pass": 7,
+      "n_Ronly": 7,
+      "n_point_pass": 7,
+      "n_point": 7,
+      "n_sphere_pass": 0,
+      "n_sphere": 0,
+      "worst_maxdev": 0.03519871935026864,
+      "point_maxdev": 0.03519871935026864,
+      "sphere_maxdev": "nan",
+      "adm_all": true,
+      "G1P2_worst": 5.551115123125783e-16
+     }
+    }
+   }
+  },
+  "sensitivity_h_of_M": {
+   "V0": [
+    0.9999999418740405,
+    1.0,
+    2.547905026022853,
+    21.7065918951997
+   ],
+   "V2": [
+    1.00000000043351,
+    1.000000005345049,
+    1.0000000698667346,
+    1.0000007830909352
+   ],
+   "B1": [
+    9.07230091090205,
+    9.40472084877628,
+    10.761201267868552,
+    14.796678287000601
+   ],
+   "B2": [
+    1.686219081271417,
+    2.045330643816543,
+    3.0894846748779985,
+    5.95015737408906
+   ],
+   "B3": [
+    9.07230091090205,
+    9.40472084877628,
+    10.761201267868552,
+    3.1603349635382516
+   ],
+   "B4": [
+    1.2944271185880694,
+    0.9166068014172104,
+    0.8712682727636872,
+    3.9829492091111085
+   ],
+   "K3": [
+    1.4620700286083639,
+    1.4098411963101376,
+    1.2697021841052902,
+    1.0589911895142037
+   ],
+   "K1": [
+    1.3053385231925758,
+    1.0060868023811294,
+    0.42239908402421666,
+    0.060576023148310565
+   ]
+  },
+  "G1_strict_verdict": {
+   "V0": {
+    "HL": false,
+    "H0": false
+   },
+   "V2": {
+    "HL": false,
+    "H0": false
+   },
+   "B1": {
+    "HL": false,
+    "H0": false
+   },
+   "B2": {
+    "HL": false,
+    "H0": false
+   },
+   "B3": {
+    "HL": false,
+    "H0": false
+   },
+   "B4": {
+    "HL": false,
+    "H0": false
+   },
+   "K3": {
+    "HL": false,
+    "H0": false
+   },
+   "K1": {
+    "HL": false,
+    "H0": false
+   }
+  },
+  "G1_split_by_norm": {
+   "V0": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "V2": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "B1": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "B2": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "B3": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "B4": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "K3": {
+    "HL": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": false,
+     "tie_canonical": false,
+     "tie_alt": false
+    }
+   },
+   "K1": {
+    "HL": {
+     "shape": true,
+     "tie_canonical": true,
+     "tie_alt": false
+    },
+    "H0": {
+     "shape": true,
+     "tie_canonical": false,
+     "tie_alt": true
+    }
+   }
+  },
+  "bites": false
+ }
+}

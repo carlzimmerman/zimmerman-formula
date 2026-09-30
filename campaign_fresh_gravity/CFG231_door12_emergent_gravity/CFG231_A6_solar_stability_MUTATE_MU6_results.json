@@ -1,0 +1,154 @@
+{
+ "slug": "CFG231_A6_solar_stability_MUTATE_MU6",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "C-FCKH (y q)' = (1-y) e^{-y} < 0 for y > 1 (exponential kernel) and 1/(1+y)^2 > 0 (y/(1+y)), reproducing CFG172's control before scoring",
+   "detail": "(1 - y)*exp(-y); (y + 1)**(-2)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C7 Q2 recipe: the P2 tail at Saturn gives tide/bound = 6.3e3 to 3% (CFG172 [R]; the frozen hand value)",
+   "detail": "6.306e+03",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "gate statement: the smoothstep W has W'(0) = W'(1) = 0 and W'' of both signs (the DE12 structure), sympy",
+   "detail": "W'' = 6 - 12*u",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "Q2_isolated_sun": {
+   "K1": {
+    "E": 4.516416064650596e-11,
+    "tide": 3.164609713267265e-23,
+    "ratio": 6085.787910129356
+   },
+   "K2": {
+    "E": 7.671743518598305e-08,
+    "tide": 5.375522978224112e-20,
+    "ratio": 10337544.188892523
+   },
+   "K3": {
+    "E": 9.03282273604462e-11,
+    "tide": 6.32921284476913e-23,
+    "ratio": 12171.563163017558
+   },
+   "K1_alt": {
+    "E": 5.65601754478175e-11,
+    "tide": 3.963117614588311e-23,
+    "ratio": 7621.380028054444
+   },
+   "B3": {
+    "E": 0.0,
+    "tide": 0.0,
+    "ratio": 0.0
+   },
+   "B1": {
+    "E": 7.671743518598305e-08,
+    "tide": 5.375522978224112e-20,
+    "ratio": 10337544.188892523
+   },
+   "B4": {
+    "E": -6.508072973591209e-05,
+    "tide": 9.125683248140724e-17,
+    "ratio": 17549390861.809086
+   },
+   "V0": {
+    "E": 6.515744717109807e-05,
+    "tide": "nan",
+    "ratio": "nan"
+   }
+  },
+  "Q2_MW": {
+   "K1": {
+    "g_N": 1.0545405565814039e-10,
+    "E": 3.8233274944125465e-11,
+    "tide": 1.511043970811634e-31,
+    "ratio": 2.905853790022373e-05
+   },
+   "K2": {
+    "g_N": 1.0545405565814039e-10,
+    "E": 9.759862253564172e-11,
+    "tide": 3.8572633486805587e-31,
+    "ratio": 7.417814132077997e-05
+   },
+   "K3": {
+    "g_N": 1.0545405565814039e-10,
+    "E": 5.8203718966136297e-11,
+    "tide": 2.300309841391399e-31,
+    "ratio": 4.423672771906536e-05
+   }
+  },
+  "G5_table": {
+   "K1": {
+    "Q2_sun": "FAIL x6.09e+03",
+    "Q2_MW": "pass",
+    "stability": "FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold)",
+    "cT": "P",
+    "gamma": "P"
+   },
+   "K2": {
+    "Q2_sun": "FAIL x1.03e+07",
+    "Q2_MW": "pass",
+    "stability": "FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold)",
+    "cT": "P",
+    "gamma": "P"
+   },
+   "K3": {
+    "Q2_sun": "FAIL x1.22e+04",
+    "Q2_MW": "pass",
+    "stability": "FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold)",
+    "cT": "P",
+    "gamma": "P"
+   },
+   "B1": {
+    "Q2_sun": "FAIL x1.03e+07",
+    "Q2_MW": "pass",
+    "stability": "as K2 (no action: UNDEFINED; the vector reading is a ghost)",
+    "cT": "P",
+    "gamma": "P"
+   },
+   "B2": {
+    "Q2_sun": "FAIL x1.03e+07",
+    "Q2_MW": "pass",
+    "stability": "FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold)",
+    "cT": "P",
+    "gamma": "P"
+   },
+   "B3": {
+    "Q2_sun": "pass by the gate (E = 0 at the Sun)",
+    "Q2_MW": "pass (gate ON at the MW Sun position, tide/bound 7.4e-05 as B1)",
+    "stability": "sharp mask: unvaried; a varied gate meets DE12/DE13 (statement)",
+    "cT": "P",
+    "gamma": "P"
+   },
+   "B4": {
+    "Q2_sun": "FAIL (Newtonian force removed; x1.8e+10)",
+    "Q2_MW": "n/a",
+    "stability": "UNDEFINED (no action)",
+    "cT": "P",
+    "gamma": "FAIL (g_tot != g_N)"
+   },
+   "V0": {
+    "Q2_sun": "p* (degenerate with GM)",
+    "Q2_MW": "p*",
+    "stability": "FAIL (ghost sign)",
+    "cT": "P",
+    "gamma": "p*"
+   },
+   "V2": {
+    "Q2_sun": "p* (dark mass ~1e-6 of the needed; nothing to test)",
+    "Q2_MW": "p*",
+    "stability": "FAIL (ghost sign; negative dark mass)",
+    "cT": "P",
+    "gamma": "P"
+   }
+  },
+  "bites": true
+ }
+}

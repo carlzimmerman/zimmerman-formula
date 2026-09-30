@@ -1,0 +1,88 @@
+{
+ "slug": "CFG231_A1_point_mass_algebra",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "C1 CFG44 point-mass identities: R(K1) = 1 exactly, M_c = M(sqrt(1+x^2)-1), g^2 = g_N^2 + a g_N (sympy); numerics and Bcommon target to 1e-6",
+   "detail": "sympy residuals 0, 0; Bcommon dev 7.0e-12; numeric max|R-1| 1.2e-09",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C2 the point-mass condition R = 1 pins (1+f)^2 - x^2 to a constant (sympy); Newtonian limit f(0) = 0 fixes it to 1, i.e. P2 exactly",
+   "detail": "identity residual 0; dsolve branches all have (1+f)^2 - x^2 = const",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C3 Verlinde point mass: M_D = M x, R = (1+x)/x (sympy; numeric at the actual nodes to 1e-6)",
+   "detail": "symbolic ok True; numeric max dev 6.6e-11",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C4 K3 closed form R = 1 + 1/sqrt(1+4x^2) (sympy) and numerics to 1e-9",
+   "detail": "sympy ok True; numeric dev 5.9e-11",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A1.1 the closed-form int D dE (used by V2 and G3) equals quadrature for K1, K2, K3",
+   "detail": "all agree to 1e-9: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A1.2 M2 attempts (i)-(v): Born-Infeld has no deep regime, AQUAL power law has no wall, the walled family reproduces K1 only at its fitted point, dimensional analysis leaves F free, and D = g_N(E) of P2 is P2 itself",
+   "detail": "(i) linear limit 1; (iii) fitted (p, E_w) = (1.0000, 0.5000); (v) P2 inverse = D: True",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C9 V0: E is proportional to g_N (constant ratio to 1e-9 over the grid, so M_D = M_b and no a0 appears); the Yukawa correction (m r)^2/2 is < 1e-6 at 300 kpc",
+   "detail": "ratio E/g_N constant: True; correction 1.6e-09 at 300 kpc, 1.7e-12 at 10 kpc; point-mass R = 0 (rho_D = 0 away from the origin)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "C9b (reported) the frozen hand estimate 'Yukawa effect at galactic r <~ 1e-12' holds",
+   "detail": "(m r)^2/2 at 10 kpc = 1.73e-12 > 1e-12",
+   "ok": false,
+   "load_bearing": false
+  }
+ ],
+ "numbers": {
+  "K3_in_band_from_x": 4.979290826901072,
+  "R_point_mass": {
+   "K1": [
+    0.9999999995583082,
+    0.9999999999927445,
+    1.0000000000018154,
+    0.9999999999961112,
+    0.9999999999930912
+   ],
+   "K2": [
+    10.999999999934428,
+    2.0001582465564693,
+    1.333280592824526,
+    1.1000316518111422,
+    1.0333333333228218
+   ],
+   "K3": [
+    1.9805806756316253,
+    1.4472702088276974,
+    1.1643736787039791,
+    1.0499533836739567,
+    1.0166643523396528
+   ]
+  },
+  "M2_attempts": {
+   "BI_linear_limit": "1",
+   "walled_fit": [
+    1.0,
+    0.5
+   ],
+   "P2_inverse_is_D": true
+  }
+ }
+}

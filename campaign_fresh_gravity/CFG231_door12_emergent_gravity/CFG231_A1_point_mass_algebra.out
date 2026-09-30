@@ -1,0 +1,82 @@
+CFG231 A1 -- point-mass algebra (sympy) and the constitutive-function derivation attempts
+  repo = <repo>   (constants and controls import <repo>/campaign_fresh_gravity/CFG44_fluid_target/Bcommon.py read-only)
+  mode = MAIN;  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2;  H0 = 67.4, Omega_L = 0.685
+  a_V(H_Lambda) = 9.0328e-11, a_V(H0) = 1.0914e-10 m/s^2;  kappa = 1/2 FITTED; nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+A1.0  the point-mass charge function for g_tot = g_N (1 + f(x)),  x = r/r_M,  r_M = sqrt(G M/a)
+======================================================================================================================
+  general:  R(x) = f'(x)(1+f(x))/x = d[(1+f)^2]/d(x^2)
+  sympy dsolve of R = 1:  [Eq(f(x), -sqrt(C1 + x**2) - 1), Eq(f(x), sqrt(C1 + x**2) - 1)]
+  solutions: [-sqrt(C1 + x**2) - 1, sqrt(C1 + x**2) - 1]
+  K1 (P2): f = sqrt(1+x^2)-1      -> R = 1
+  K2/B1/B2 (Verlinde point mass): f = x -> R = (x + 1)/x
+  K3 (simple wall): f = (sqrt(1+4x^2)-1)/2 -> R = 1 + 1/sqrt(4*x**2 + 1)
+  B4 (total-mass reading, point mass): M_tot = M x, g_tot = a/x -> R = 1;  dark mass M(x-1) < 0 for x < 1; g_tot/g_N = x < 1 for x < 1
+
+======================================================================================================================
+C1  CFG44 point-mass identities (sympy, then numerics to 1e-6 against the read-only Bcommon target)
+======================================================================================================================
+  R(K1) - 1 = 0;  M_c/M = sqrt(x**2 + 1) - 1;  (1+f)^2 - (1+x^2) = 0
+  Bcommon target rho_c vs closed form a0/(4 pi G r sqrt(1+x^2)): max rel dev 6.97e-12;  K1 numeric R: max|R-1| = 1.19e-09
+  [PASS] C1 CFG44 point-mass identities: R(K1) = 1 exactly, M_c = M(sqrt(1+x^2)-1), g^2 = g_N^2 + a g_N (sympy); numerics and Bcommon target to 1e-6
+         sympy residuals 0, 0; Bcommon dev 7.0e-12; numeric max|R-1| 1.2e-09
+
+======================================================================================================================
+C2  point-mass uniqueness: R = f'(1+f)/x = 1  <=>  (1+f)^2 = 1 + x^2
+======================================================================================================================
+  identity  d[(1+f)^2]/d(x^2) - f'(1+f)/x = 0
+    (1+f)^2 - x^2 for dsolve branch -sqrt(C1 + x**2) - 1: C1
+    (1+f)^2 - x^2 for dsolve branch sqrt(C1 + x**2) - 1: C1
+  [PASS] C2 the point-mass condition R = 1 pins (1+f)^2 - x^2 to a constant (sympy); Newtonian limit f(0) = 0 fixes it to 1, i.e. P2 exactly
+         identity residual 0; dsolve branches all have (1+f)^2 - x^2 = const
+
+======================================================================================================================
+C3  Verlinde point mass: M_D = M x and R = (1+x)/x (derived independently)
+======================================================================================================================
+  M_D/(M x) = 1;  R(x) = (x + 1)/x
+  numeric K2 R at the nodes nearest x = 0.1, 1, 3, 10, 30 ([0.1, 0.99984, 3.00047, 9.99684, 30.0]): [11.0, 2.000158, 1.333281, 1.100032, 1.033333] ; (1+x)/x at those nodes = [11.0, 2.000158, 1.333281, 1.100032, 1.033333]
+  [PASS] C3 Verlinde point mass: M_D = M x, R = (1+x)/x (sympy; numeric at the actual nodes to 1e-6)
+         symbolic ok True; numeric max dev 6.6e-11
+
+======================================================================================================================
+C4  K3: R = 1 + 1/sqrt(1+4x^2)
+======================================================================================================================
+  R(0.1, 1, 3, 10, 30) = [1.9806, 1.4473, 1.1644, 1.05, 1.0167];  within 10% only for x >= 4.979  (hand: 4.98)
+  [PASS] C4 K3 closed form R = 1 + 1/sqrt(1+4x^2) (sympy) and numerics to 1e-9
+         sympy ok True; numeric dev 5.9e-11
+
+======================================================================================================================
+A1.1  Lagrangians: D(E) = 4 pi G dL/dE  =>  L(E) = (1/4 pi G) int_0^E D dE'   (closed forms, sympy vs quadrature)
+======================================================================================================================
+  K1: D = E**2/(-2*E + a);  int_0^E D dE' = -E**2/4 - E*a/4 + a**2*log(-a)/8 - a**2*log(2*E - a)/8
+  K2: D = E**2/a;  int_0^E D dE' = E**3/(3*a)
+  K3: D = E**2/(-E + a);  int_0^E D dE' = -E**2/2 - E*a + a**2*log(-a) - a**2*log(E - a)
+  [PASS] A1.1 the closed-form int D dE (used by V2 and G3) equals quadrature for K1, K2, K3
+         all agree to 1e-9: True
+  K1: L = (1/4 pi G)[ -E^2/4 - aE/4 - (a^2/8) ln(1 - 2E/a) ]   (a logarithmic barrier at E = a/2; deep limit E^3/(6 a));  K3: barrier at E = a
+
+======================================================================================================================
+A1.2  attempts to DERIVE D(E) = E^2/(a-2E) (grade M2) from stated families (each attempt recorded; failures kept)
+======================================================================================================================
+  (i) Born-Infeld-type: D/E -> 1 as E -> 0 (linear response): E = g_N at small fields: the deep regime g ~ sqrt(a g_N) is absent for every E_m -> FAIL as a derivation
+  (ii) AQUAL power law D = E^p/a^{p-1}: p = 2 gives K2 (deep-only); it has no wall and hence g_D -> sqrt(a g_N) >> g_N at every g_N (no Newtonian regime) -> FAIL for the inner regime
+  (iii) walled power family (E^2/a)/(1-E/E_w)^p: matching K1 at two points gives (p, E_w) = (1.000000, 0.500000) (a = 1), residual at a third point 0.0e+00: the family CONTAINS K1 only at the fitted point (p = 1, E_w = a/2); nothing stated (symmetry, action, Lambda-tie) fixes p or E_w -> declared, M1
+  (iv) dimensional analysis: with one scale a, D(E)/a = F(E/a) for an ARBITRARY F; the Lambda-tie fixes a, not F. No symmetry of the reduced electrostatic action fixes F. -> no M2 derivation.
+  (v) inverting P2 for g_N(E): g_N = E**2/(-2*E + a)  (= D(E)); so D(E) = E^2/(a-2E) is EXACTLY the statement of P2: any derivation of it is a derivation of P2, not of anything independent
+  [PASS] A1.2 M2 attempts (i)-(v): Born-Infeld has no deep regime, AQUAL power law has no wall, the walled family reproduces K1 only at its fitted point, dimensional analysis leaves F free, and D = g_N(E) of P2 is P2 itself
+         (i) linear limit 1; (iii) fitted (p, E_w) = (1.0000, 0.5000); (v) P2 inverse = D: True
+  verdict of A1.2: NO derivation of the constitutive function was found; K1 = M1 (declared), K2, K3 = M1, B-variants = M1/M0; nothing is graded M2.
+
+======================================================================================================================
+C9  the canonical-vector null: a Maxwell/Proca vector has no acceleration scale
+======================================================================================================================
+  Yukawa E r^2 = (m*r + 1)*exp(-m*r);  E r^2 - 1 = -m**2*r**2/2 + ...  (leading correction -(m r)^2/2)
+  m = H_Lambda/c = 1.861e-07 /kpc; at 300 kpc (m r)^2/2 = 1.56e-09
+  (m r)^2/2 at 10 kpc = 1.73e-12  (the frozen hand estimate said <~ 1e-12: WRONG by a factor 1.7; kept, it changes nothing: the correction is inert)
+  [PASS] C9 V0: E is proportional to g_N (constant ratio to 1e-9 over the grid, so M_D = M_b and no a0 appears); the Yukawa correction (m r)^2/2 is < 1e-6 at 300 kpc
+         ratio E/g_N constant: True; correction 1.6e-09 at 300 kpc, 1.7e-12 at 10 kpc; point-mass R = 0 (rho_D = 0 away from the origin)
+  [FAIL] (reported) C9b (reported) the frozen hand estimate 'Yukawa effect at galactic r <~ 1e-12' holds
+         (m r)^2/2 at 10 kpc = 1.73e-12 > 1e-12
+
+  7/8 checks pass; load-bearing failures: 0   (1 s)

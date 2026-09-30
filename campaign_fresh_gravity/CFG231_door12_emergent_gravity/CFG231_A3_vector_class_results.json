@@ -1,0 +1,220 @@
+{
+ "slug": "CFG231_A3_vector_class",
+ "load_bearing_failures": 0,
+ "checks": [
+  {
+   "name": "A3.1 the static reduction is s D(|E|) sgn(E) = eps g_N (from the Euler-Lagrange equation); an attractive drag needs s = -1, i.e. a wrong-sign (ghost) kinetic term for a vector",
+   "detail": "derived symbolically; like charges of a spin-1 field repel; the frozen V1 assumed an attractive drag with eps = 1 and never set the sign of the kinetic term",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3.2 K1, K2, K3 satisfy D' > 0, D/E > 0 with 0 < c_s^2 <= 1/2 on the allowed range (frozen G5 (i)); with the attractive sign s = -1 the kinetic coefficients s D' and s D/E are both negative",
+   "detail": "c_s^2 ranges: K1 [0.0002, 0.5]; K2 [0.5, 0.5]; K3 [0.0001, 0.5]; ghost sign for attraction",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3.3 static electric vector: p_r = -rho exactly and p_t = (s/4 pi G) Lam, so p_t + rho = (s/4 pi G) E D != 0 (the k-essence scalar identity p_t = -rho does not carry over to the vector); deep limit p_t/rho = 1/2",
+   "detail": "p_r = -rho True; K2 p_t/rho = [0.5000000000000001, 0.5000000000000001, 0.5000000000000001]",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3.4 V2's field-energy dark mass is ~1e-6 (or less) of the required density: max |R| over laws, masses and nodes < 1e-4 (the frozen hand estimate said ~1e-6)",
+   "detail": "max |R| = 8.12e-05; sign of M_D is negative for the attractive (ghost) convention: M_D(<30 r_M)/M ~ -8.7e-08",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3.5 V0's Yukawa force on the exponential sphere equals the Coulomb one to < 1e-9: no scale appears (the correction is the O((m r)^2) of A1/C9)",
+   "detail": "deviation -1.69e-12",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3.6 G5 (v): the elastic sector's quadratic action vanishes about E = 0 (UNDEFINED, strongly coupled); the Proca sector with the attractive sign is a ghost; the dS background vector value is not fixed by class V",
+   "detail": "quadratic coefficient E0/a (proportional to E0)",
+   "ok": true,
+   "load_bearing": true
+  },
+  {
+   "name": "A3.7 D-EFE: nu(y) sqrt(y) -> 1 for K1, K2, K3 (sympy limits)",
+   "detail": "{'K1': 1, 'K2': 1, 'K3': 1}",
+   "ok": true,
+   "load_bearing": true
+  }
+ ],
+ "numbers": {
+  "G5_i": {
+   "K1": {
+    "Dprime": "2*E*(-E + a)/(2*E - a)**2",
+    "D_over_E": "E/(-2*E + a)",
+    "c2": "(E - a/2)/(E - a)",
+    "c2_at_0": "1/2",
+    "c2_min": 0.0001999600079983783,
+    "c2_max": 0.49999949999950005,
+    "hyperbolic_subluminal": true
+   },
+   "K2": {
+    "Dprime": "2*E/a",
+    "D_over_E": "E/a",
+    "c2": "1/2",
+    "c2_at_0": "1/2",
+    "c2_min": 0.5,
+    "c2_max": 0.5,
+    "hyperbolic_subluminal": true
+   },
+   "K3": {
+    "Dprime": "E*(-E + 2*a)/(E - a)**2",
+    "D_over_E": "E/(-E + a)",
+    "c2": "(E - a)/(E - 2*a)",
+    "c2_at_0": "1/2",
+    "c2_min": 9.9990000999889e-05,
+    "c2_max": 0.49999974999987495,
+    "hyperbolic_subluminal": true
+   }
+  },
+  "stress_EOS": {
+   "K1": {
+    "E": [
+     0.05,
+     0.2,
+     0.4
+    ],
+    "pt_over_rho": [
+     0.48030621055401207,
+     0.4064504203398279,
+     0.23637924956380849
+    ]
+   },
+   "K2": {
+    "E": [
+     0.05,
+     0.2,
+     0.4
+    ],
+    "pt_over_rho": [
+     0.5000000000000001,
+     0.5000000000000001,
+     0.5000000000000001
+    ]
+   },
+   "K3": {
+    "E": [
+     0.05,
+     0.3,
+     0.8
+    ],
+    "pt_over_rho": [
+     0.49039591565999024,
+     0.43406951124534443,
+     0.23637924956380849
+    ]
+   }
+  },
+  "V2": {
+   "K1": [
+    [
+     1000000000.0,
+     [
+      -1.8997103361821347e-07,
+      -1.3113190456942002e-08,
+      -2.384763447911744e-10,
+      -2.7832081496138755e-11
+     ],
+     -8.67524336387538e-08
+    ],
+    [
+     10000000000.0,
+     [
+      -6.007411556899724e-07,
+      -4.1467547939916836e-08,
+      -7.541283201326808e-10,
+      -8.801275304153779e-11
+     ],
+     -2.743352828610711e-07
+    ],
+    [
+     1000000000000.0,
+     [
+      -6.007411556899726e-06,
+      -4.146753088681643e-07,
+      -7.54127037086202e-09,
+      -8.801253573644665e-10
+     ],
+     -2.7433528286107097e-06
+    ]
+   ],
+   "K2": [
+    [
+     1000000000.0,
+     [
+      -2.5682375820996877e-06,
+      -2.5690503241159103e-08,
+      -2.5698633233316885e-10,
+      -2.8535968954298334e-11
+     ],
+     -1.4648677336851836e-07
+    ],
+    [
+     10000000000.0,
+     [
+      -8.121480331878692e-06,
+      -8.12404940906356e-08,
+      -8.126619298927269e-10,
+      -9.02386285527814e-11
+     ],
+     -4.6323185093341727e-07
+    ],
+    [
+     1000000000000.0,
+     [
+      -8.121480331878694e-05,
+      -8.12403573692509e-07,
+      -8.126591945995374e-09,
+      -9.023825233994478e-10
+     ],
+     -4.632318509334206e-06
+    ]
+   ],
+   "K3": [
+    [
+     1000000000.0,
+     [
+      -3.6934495716466064e-07,
+      -1.7903803311011466e-08,
+      -2.4753908106460713e-10,
+      -2.818164846535679e-11
+     ],
+     -1.0236165148324641e-07
+    ],
+    [
+     10000000000.0,
+     [
+      -1.167971306937653e-06,
+      -5.6616794380739315e-08,
+      -7.827871795092929e-10,
+      -8.911817764378565e-11
+     ],
+     -3.2369596374341185e-07
+    ],
+    [
+     1000000000000.0,
+     [
+      -1.1679713069376532e-05,
+      -5.661675671397371e-07,
+      -7.827855136924377e-09,
+      -8.911791801895201e-10
+     ],
+     -3.236959637434117e-06
+    ]
+   ]
+  },
+  "D_EFE_limits": {
+   "K1": "1",
+   "K2": "1",
+   "K3": "1"
+  }
+ }
+}

@@ -1,0 +1,65 @@
+CFG231 A5 -- G3: reaction and energy
+  repo = <repo>   (constants and controls import <repo>/campaign_fresh_gravity/CFG44_fluid_target/Bcommon.py read-only)
+  mode = MAIN;  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2;  H0 = 67.4, Omega_L = 0.685
+  a_V(H_Lambda) = 9.0328e-11, a_V(H0) = 1.0914e-10 m/s^2;  kappa = 1/2 FITTED; nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+C-rta  reproduce the CFG48 referee's R7 table (P2, z = 0): r_ta convention A -> B (kpc)
+======================================================================================================================
+  M_b = 1e+10: A = 319 (referee 319), B = 1149 (referee 1151)
+  M_b = 1e+11: A = 687 (referee 688), B = 2043 (referee 2047)
+  M_b = 1e+12: A = 1480 (referee 1482), B = 3633 (referee 3639)
+  [PASS] C-rta both r_ta conventions reproduce the CFG48 referee's R7 table to 1% at 1e10, 1e11, 1e12 (A imported from Gcommon, B re-derived)
+         see the rows above
+
+======================================================================================================================
+A5.1  the energy of the vector sector inside r_e = 0.4 r_ta, in units of (1/2) M_b V_f^2   (pass line <= 1; a = a_V(H_Lambda), V_f^2 = sqrt(G M a0_canonical))
+======================================================================================================================
+  point  K1: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 4.62 / conv B 6.28; conv A 4.13 / conv B 5.53; conv A 3.65 / conv B 4.79
+  point  K2: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 13.6 / conv B 15.3; conv A 13.1 / conv B 14.6; conv A 12.6 / conv B 13.8
+  point  K3: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 5.51 / conv B 7.18; conv A 5.02 / conv B 6.43; conv A 4.53 / conv B 5.68
+  point  V0: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 1e+03 / conv B 1e+03; conv A 1e+03 / conv B 1e+03; conv A 1e+03 / conv B 1e+03
+  sphere K1: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 3.44 / conv B 5.1; conv A 3.68 / conv B 5.08; conv A 3.5 / conv B 4.64
+  sphere K2: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 3.95 / conv B 5.63; conv A 4.95 / conv B 6.38; conv A 5.96 / conv B 7.13
+  sphere K3: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 3.68 / conv B 5.35; conv A 4.19 / conv B 5.6; conv A 4.23 / conv B 5.39
+  sphere V0: ratio E_field/((1/2) M V_f^2) at M = 1e10, 1e11, 1e12: conv A 0.573 / conv B 0.595; conv A 1.86 / conv B 1.89; conv A 5.96 / conv B 6
+
+======================================================================================================================
+A5.2  closed-form control: deep-limit K2 energy ratio = (4/3) sqrt(a/a0) ln(r_e/r_in) (point mass); the frozen hand estimate said O(1) r_e/r_M (WRONG)
+======================================================================================================================
+  M = 1e+10: numeric 13.6294, closed form 13.6294; r_e/r_M = 33.0 (the frozen hand estimate 'O(1) x r_e/r_M' would give ~33: an overestimate, kept)
+  M = 1e+12: numeric 12.6241, closed form 12.6241; r_e/r_M = 15.3 (the frozen hand estimate 'O(1) x r_e/r_M' would give ~15: an overestimate, kept)
+  [PASS] A5.2 numeric energy equals the closed form (4/3) sqrt(a/a0) ln(r_e/r_in) for K2 to 0.1%
+         see rows above
+
+======================================================================================================================
+A5.3  sensitivity to the inner cutoff of the point-mass energy (K2 diverges logarithmically): r_in = 1e-2, 1e-3, 1e-4 r_M at 1e10, convention A
+======================================================================================================================
+  r_in = 0.01 r_M: K2 ratio 10.613
+  r_in = 0.001 r_M: K2 ratio 13.629
+  r_in = 0.0001 r_M: K2 ratio 16.645
+  K1 and K3 are finite as r_in -> 0 (E saturates); V0's point mass diverges as 1/r_in (shown by the sphere rows instead).
+
+======================================================================================================================
+A5.4  reaction on the baryons
+======================================================================================================================
+  For a spherical E(r) the drag force f = eps E(r) r-hat is the gradient of phi(r) = -int E dr, i.e. a POTENTIAL force: the part of the force on the baryons beyond the gradient of a potential is identically zero,
+  so the reaction (frozen definition: force beyond -grad Phi from the vector's own field equations, over g_law) is 0 <= 0.10 g_law at every x in [0.3, 30]: recorded p* (by construction), NOT a pass of substance.
+  The Noether momentum balance of the full action would show the field carries the momentum the baryons lose; that is not scored (no time-dependent solution is computed here).
+  [PASS] (reported) A5.4 reaction = 0 by construction for a spherical potential force (curl-free)
+         statement; p*
+
+======================================================================================================================
+G3 verdicts
+======================================================================================================================
+  K1 point: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [3.65, 6.28]  -> FAIL (> 1)
+  K1 sphere: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [3.44, 5.1]  -> FAIL (> 1)
+  K2 point: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [12.6, 15.3]  -> FAIL (> 1)
+  K2 sphere: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [3.95, 7.13]  -> FAIL (> 1)
+  K3 point: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [4.53, 7.18]  -> FAIL (> 1)
+  K3 sphere: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [3.68, 5.6]  -> FAIL (> 1)
+  V0 point: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [1e+03, 1e+03]  -> FAIL (> 1)
+  V0 sphere: energy ratio over M in {1e10, 1e11, 1e12} and both conventions in [0.573, 6]  -> mixed
+  the vector sector's energy inside r_e is a few times to ~10 times the baryons' orbital energy for K1/K2/K3 (logarithmic in r_e/r_M, not linear as the frozen hand estimate assumed).
+
+  3/3 checks pass; load-bearing failures: 0   (0 s)

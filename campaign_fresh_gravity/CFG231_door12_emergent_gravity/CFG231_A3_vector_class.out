@@ -1,0 +1,77 @@
+CFG231 A3 -- the covariant vector class V: reductions, signs, stability, stress components
+  repo = <repo>   (constants and controls import <repo>/campaign_fresh_gravity/CFG44_fluid_target/Bcommon.py read-only)
+  mode = MAIN;  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2;  H0 = 67.4, Omega_L = 0.685
+  a_V(H_Lambda) = 9.0328e-11, a_V(H0) = 1.0914e-10 m/s^2;  kappa = 1/2 FITTED; nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+A3.1  Euler-Lagrange of the reduced electrostatic action and the sign s needed for an ATTRACTIVE drag
+======================================================================================================================
+  Euler-Lagrange expression (branch E = -phi' > 0): r*(-4*pi*G*epsilon*r*rho(r) - r*s*Derivative(phi(r), (r, 2))*Subs(Derivative(Lam(_xi_1), (_xi_1, 2)), _xi_1, -Derivative(phi(r), r)) + 2*s*Subs(Derivative(Lam(_xi_1), _xi_1), _xi_1, -Derivative(phi(r), r)))/G
+  dL/dphi' = -r**2*s*Subs(Derivative(Lam(_xi_1), _xi_1), _xi_1, -Derivative(phi(r), r))/G   (D = Lam')
+  hence  s D(E) = eps g_N  and the force on a like-charge baryon is  f = eps E r-hat  (E = -phi' > 0)
+  * for s = +1 (healthy, positive-energy vector): E > 0 for eps g_N > 0 and the force is +eps E: OUTWARD = REPULSIVE (like charges repel)
+  * an ATTRACTIVE drag (force toward the source, the sign of g_D in every K-law) needs s D(E) = eps g_N with E < 0: on the branch E < 0, |E| enters D as D(|E|) sgn(E) so that s = -1 (D(|E|) > 0)
+  sympy: s (E < 0 branch) = -eps_*gN/Dpos; with the magnitude relation D(|E|) = eps g_N this is s = -1
+  [PASS] A3.1 the static reduction is s D(|E|) sgn(E) = eps g_N (from the Euler-Lagrange equation); an attractive drag needs s = -1, i.e. a wrong-sign (ghost) kinetic term for a vector
+         derived symbolically; like charges of a spin-1 field repel; the frozen V1 assumed an attractive drag with eps = 1 and never set the sign of the kinetic term
+
+======================================================================================================================
+A3.2  second variation of the reduced class about a static electric background: stiffness and speeds (frozen G5 (i)) and the sign s
+======================================================================================================================
+  K1: D' = 2*E*(-E + a)/(2*E - a)**2;  D/E = E/(-2*E + a);  c_s^2 = (D/E)/D' = (E - a/2)/(E - a);  c_s^2(E->0) = 1/2;  over the allowed range c_s^2 in [0.0002, 0.5]  hyperbolic and subluminal: True
+  K2: D' = 2*E/a;  D/E = E/a;  c_s^2 = (D/E)/D' = 1/2;  c_s^2(E->0) = 1/2;  over the allowed range c_s^2 in [0.5, 0.5]  hyperbolic and subluminal: True
+  K3: D' = E*(-E + 2*a)/(E - a)**2;  D/E = E/(-E + a);  c_s^2 = (D/E)/D' = (E - a)/(E - 2*a);  c_s^2(E->0) = 1/2;  over the allowed range c_s^2 in [0.0001, 0.5]  hyperbolic and subluminal: True
+  quadratic Lagrangian for a perturbation: (s/8 pi G)[ D' dE_par^2 + (D/E) dE_perp^2 - (D/E) dB^2 ]  =>  ghost-free iff s D' > 0 and s D/E > 0.
+  The reduced-Gauss-law conditions of the frozen G5 (i) (D' > 0, D/E > 0) HOLD for K1, K2, K3 (hyperbolic, c_s^2 <= 1/2), but with the s = -1 needed for attraction BOTH kinetic coefficients are NEGATIVE: a radial and a transverse GHOST.
+  [PASS] A3.2 K1, K2, K3 satisfy D' > 0, D/E > 0 with 0 < c_s^2 <= 1/2 on the allowed range (frozen G5 (i)); with the attractive sign s = -1 the kinetic coefficients s D' and s D/E are both negative
+         c_s^2 ranges: K1 [0.0002, 0.5]; K2 [0.5, 0.5]; K3 [0.0001, 0.5]; ghost sign for attraction
+
+======================================================================================================================
+A3.3  the vector's static stress components (rho, p_r, p_t) from T_mn = 2 L_X F_ma F_n^a + g_mn L  (flat, spherical), vs the Route-3 'p_t = -rho' theorem (a SCALAR theorem)
+======================================================================================================================
+  X = -1/2 F_mn F^mn = Ef(r)**2  (= E^2)
+  rho = -T^t_t = 2*Ef(r)**2*LX(r) - L(r);  p_r = T^r_r = -2*Ef(r)**2*LX(r) + L(r);  p_t = T^theta_theta = L(r)     (L_X = dL/dX at X = E^2)
+  rho = s*(Dv*Ef(r) - Lamv)/(4*pi*G);  p_r = s*(-Dv*Ef(r) + Lamv)/(4*pi*G);  p_t = Lamv*s/(4*pi*G)     (Dv = D(E), Lamv = int_0^E D)
+  p_r = -rho: True;  p_t + rho = Dv*s*Ef(r)/(4*pi*G)  (= (s/4 pi G) E D, nonzero: the scalar theorem p_t = -rho does NOT hold for the vector)
+  K1: p_t/rho at E/a = [0.05, 0.2, 0.4]: [0.4803, 0.4065, 0.2364]   (deep limit E^3 laws: rho = (2/3) E^3/a, p_t = (1/3) E^3/a  ->  p_t/rho = 1/2)
+  K2: p_t/rho at E/a = [0.05, 0.2, 0.4]: [0.5, 0.5, 0.5]   (deep limit E^3 laws: rho = (2/3) E^3/a, p_t = (1/3) E^3/a  ->  p_t/rho = 1/2)
+  K3: p_t/rho at E/a = [0.05, 0.3, 0.8]: [0.4904, 0.4341, 0.2364]   (deep limit E^3 laws: rho = (2/3) E^3/a, p_t = (1/3) E^3/a  ->  p_t/rho = 1/2)
+  [PASS] A3.3 static electric vector: p_r = -rho exactly and p_t = (s/4 pi G) Lam, so p_t + rho = (s/4 pi G) E D != 0 (the k-essence scalar identity p_t = -rho does not carry over to the vector); deep limit p_t/rho = 1/2
+         p_r = -rho True; K2 p_t/rho = [0.5000000000000001, 0.5000000000000001, 0.5000000000000001]
+
+======================================================================================================================
+A3.4  V2 (the vector's own field energy as the dark mass): how much of the required density does it supply?
+======================================================================================================================
+  V2/K1 point mass: (M, R at x = 0.1, 1, 10, 30; M_D(<30 r_M)/M) = (1e+09, ['-1.90e-07', '-1.31e-08', '-2.38e-10', '-2.78e-11'], -8.68e-08); (1e+10, ['-6.01e-07', '-4.15e-08', '-7.54e-10', '-8.80e-11'], -2.74e-07); (1e+12, ['-6.01e-06', '-4.15e-07', '-7.54e-09', '-8.80e-10'], -2.74e-06)
+  V2/K2 point mass: (M, R at x = 0.1, 1, 10, 30; M_D(<30 r_M)/M) = (1e+09, ['-2.57e-06', '-2.57e-08', '-2.57e-10', '-2.85e-11'], -1.46e-07); (1e+10, ['-8.12e-06', '-8.12e-08', '-8.13e-10', '-9.02e-11'], -4.63e-07); (1e+12, ['-8.12e-05', '-8.12e-07', '-8.13e-09', '-9.02e-10'], -4.63e-06)
+  V2/K3 point mass: (M, R at x = 0.1, 1, 10, 30; M_D(<30 r_M)/M) = (1e+09, ['-3.69e-07', '-1.79e-08', '-2.48e-10', '-2.82e-11'], -1.02e-07); (1e+10, ['-1.17e-06', '-5.66e-08', '-7.83e-10', '-8.91e-11'], -3.24e-07); (1e+12, ['-1.17e-05', '-5.66e-07', '-7.83e-09', '-8.91e-10'], -3.24e-06)
+  hand check of the frozen estimate: a0^2/(8 pi G c^2) = 5.81e-29 kg/m^3 against a0/(4 pi G r) at 10 kpc = 3.62e-23 kg/m^3: ratio 1.6e-06
+  [PASS] A3.4 V2's field-energy dark mass is ~1e-6 (or less) of the required density: max |R| over laws, masses and nodes < 1e-4 (the frozen hand estimate said ~1e-6)
+         max |R| = 8.12e-05; sign of M_D is negative for the attractive (ghost) convention: M_D(<30 r_M)/M ~ -8.7e-08
+
+======================================================================================================================
+A3.5  V0: Green's function of (nabla^2 - m^2) A0 = -q rho_b for the exponential sphere, m = H_Lambda/c (mpmath, exact shell formula)
+======================================================================================================================
+  E_Yukawa / (M_b(<r)/r^2) - 1 at r = 10 kpc for the 1e10, h = 2 sphere: -1.687e-12   (point-charge series: -(m r)^2/2 = -1.73e-12)
+  [PASS] A3.5 V0's Yukawa force on the exponential sphere equals the Coulomb one to < 1e-9: no scale appears (the correction is the O((m r)^2) of A1/C9)
+         deviation -1.69e-12
+
+======================================================================================================================
+A3.6  G5 (v): de Sitter stability of class V (the claim L5 is NOT imported)
+======================================================================================================================
+  elastic (deep) sector: Lam(E0 + dE) = ... + (E0/a) dE^2 + ...   -> the quadratic kinetic coefficient is proportional to E0 and VANISHES on the FRW/dS background E0 = 0: no linear dynamics (strong coupling): the perturbative stability of the elastic sector about dS is UNDEFINED, not stable or unstable
+  canonical Proca sector (V0) about A = 0 in de Sitter, mass m = H_Lambda/c: the quadratic action is (s/(8 pi G))(-1/2 F^2 - m^2 A^2)-type; with the attractive sign s = -1 the transverse and the longitudinal (Stueckelberg) kinetic terms are both wrong-sign, i.e. a ghost about de Sitter; its growth rate is not computed (a ghost is a Hamiltonian-unbounded mode, not by itself an exponential instability)
+  the class's background value of A_mu (the 'vector field in de Sitter' that also gives dark energy) is NOT fixed by class V: for a quadratic mass term the field equation m^2 A^0 = 0 forces A = 0; a nonzero, Lambda-tied background needs a potential V(A^2) that the reconstruction does not specify (L3) -> G5 (v) UNDEFINED as frozen.
+  [PASS] A3.6 G5 (v): the elastic sector's quadratic action vanishes about E = 0 (UNDEFINED, strongly coupled); the Proca sector with the attractive sign is a ghost; the dS background vector value is not fixed by class V
+         quadratic coefficient E0/a (proportional to E0)
+  verdict for G5 (v): UNDEFINED (elastic sector), FAIL (ghost sign, V0/V1). Hossenfelder's claim that perturbations around dS grow (L5) is neither confirmed nor refuted here.
+
+======================================================================================================================
+A3.7  D-EFE: the Lean premise nu(y) sqrt(y) -> 1 (y -> 0+) for the K laws (nu = 1 + psi(g_N)/g_N, y = g_N/a)
+======================================================================================================================
+  limits of nu(y) sqrt(y) as y -> 0+: {'K1': 1, 'K2': 1, 'K3': 1}
+  => the premise of ChainCert.Ownership `deep_not_efeFreeRay` / `law_not_efeFreeRay` holds for K1, K2, K3 as POINTWISE laws; by that theorem (scope: pointwise QUMOND-type laws; field equations are not formalised) each has an external-field effect. D-own: a local action's static law is a function of the local total field, so by `ownership_not_field_local` (plus the [H] bridge) it is not the ownership rule.
+  [PASS] A3.7 D-EFE: nu(y) sqrt(y) -> 1 for K1, K2, K3 (sympy limits)
+         {'K1': 1, 'K2': 1, 'K3': 1}
+
+  7/7 checks pass; load-bearing failures: 0   (0 s)

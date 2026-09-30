@@ -1,0 +1,76 @@
+CFG231 A4 -- G2: linear growth and CMB
+  repo = <repo>   (constants and controls import <repo>/campaign_fresh_gravity/CFG44_fluid_target/Bcommon.py read-only)
+  mode = MAIN;  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2;  H0 = 67.4, Omega_L = 0.685
+  a_V(H_Lambda) = 9.0328e-11, a_V(H0) = 1.0914e-10 m/s^2;  kappa = 1/2 FITTED; nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+G2.1  the equations (declared reading) and the check of the frozen hand values y_lin = g_lin/a0 at k = 30 and 0.1 /Mpc, z = 0, delta = 1
+======================================================================================================================
+  drag reading: baryons source E through the Gauss law D(E) = g_N,b (Newtonian field of the BARYON perturbation g_b = f_b g_lin, f_b = Omega_b/Omega_m = 0.1564) and feel g_N + E;
+  the cold component feels g_N only.  Quasi-static equations (sub-horizon): d''_c + 2H d'_c = 4 pi G rho_m (delta_m) ,  d''_b + 2H d'_b = 4 pi G rho_m delta_m + (div E)/(-1)...:
+  the total-matter growth is changed by  Delta_tot = f_b psi(f_b g_lin)/g_lin  and the baryon force by  Delta_b = psi(g_b)/g_b  (both at fixed delta; the linear theory about E = 0 is strongly coupled, so delta is an INPUT).
+  y_lin(z = 0, delta = 1, k = 30/Mpc) = 2.48e-05 (CFG172's hand value 2.5e-5);  y_lin(k = 0.1/Mpc) = 7.43e-03 (8e-3)
+  [PASS] G2.1 the quasi-static input y_lin reproduces CFG172's hand values (2.5e-5 at k = 30, 8e-3 at k = 0.1) within 10%
+         2.48e-05, 7.43e-03
+
+======================================================================================================================
+G2.2  |G_eff/G - 1| tables (most favourable input delta = 1; smaller delta only makes the response larger); pass iff <= 5% everywhere
+======================================================================================================================
+  K1 [a const (H_Lambda)]: total-matter weighted Delta_tot in [1.01e-05, 12.2] (limit 0.05); baryon force ratio Delta_b in [0.000414, 498]
+  K1 [a = cH(z)/6]: total-matter weighted Delta_tot in [0.0882, 13.4] (limit 0.05); baryon force ratio Delta_b in [3.61, 548]
+  K2 [a const (H_Lambda)]: total-matter weighted Delta_tot in [0.000704, 12.2] (limit 0.05); baryon force ratio Delta_b in [0.0288, 499]
+  K2 [a = cH(z)/6]: total-matter weighted Delta_tot in [0.11, 13.4] (limit 0.05); baryon force ratio Delta_b in [4.5, 549]
+  K3 [a const (H_Lambda)]: total-matter weighted Delta_tot in [2.03e-05, 12.2] (limit 0.05); baryon force ratio Delta_b in [0.000828, 499]
+  K3 [a = cH(z)/6]: total-matter weighted Delta_tot in [0.0984, 13.4] (limit 0.05); baryon force ratio Delta_b in [4.03, 548]
+  Delta_tot table for K1 (rows k = 0.1..30 /Mpc; columns z = [0, 0.5, 1, 2, 3, 10, 30, 1000]) at delta = 1, a constant:
+    k =   0.1:     0.681      0.446      0.329      0.212      0.153     0.0441    0.00893   1.01e-05
+    k =   0.3:       1.2       0.79      0.586      0.383      0.282     0.0892     0.0219   3.04e-05
+    k =     1:       2.2       1.46       1.09      0.719      0.533       0.18     0.0515   0.000101
+    k =     3:      3.84       2.55       1.91       1.26      0.941      0.327      0.102   0.000302
+    k =    10:      7.02       4.67        3.5       2.32       1.74      0.617      0.204   0.000993
+    k =    30:      12.2       8.11       6.08       4.04       3.03       1.09       0.37    0.00287
+  with-cold G2 pass (Delta_tot <= 5% at every (k, z) for delta = 1): False;  smallest Delta_tot anywhere: 1.01e-05
+  [PASS] (reported) G2.2 (result, not a control) the with-cold quasi-static modification exceeds 5% somewhere on the frozen (k, z) table for every K law and both readings of a
+         smallest Delta_tot 1.01e-05
+
+======================================================================================================================
+G2.3  the growth ODE: with-cold growth ratio to LCDM at k = 0.1..30 /Mpc with G_eff = 1 + Delta_tot(k, a, delta = 1)  (a lower bound on the modification)
+======================================================================================================================
+  K1: D(a=1)/D_LCDM at k = [0.1, 0.3, 1, 3, 10, 30] = ['1.22', '1.43', '1.95', '3.11', '7.14', '23.1']   (pass iff within [0.95, 1.05])
+  K2: D(a=1)/D_LCDM at k = [0.1, 0.3, 1, 3, 10, 30] = ['1.27', '1.5', '2.06', '3.3', '7.59', '24.5']   (pass iff within [0.95, 1.05])
+  K3: D(a=1)/D_LCDM at k = [0.1, 0.3, 1, 3, 10, 30] = ['1.24', '1.46', '1.99', '3.2', '7.34', '23.7']   (pass iff within [0.95, 1.05])
+  [PASS] (reported) G2.3 (result) with-cold growth ratio is outside [0.95, 1.05] for every K law at every k of the table
+         min/max ratio 1.22 / 24.5
+
+======================================================================================================================
+G2.4  no-cold reading: baryon-only sourcing in the same background (no emergent force), and the emergent force's own no-cold estimate
+======================================================================================================================
+  growth D(a = 1)/D(a = 1e-3): LCDM (Omega_m = 0.3153) 0.709;  baryon-only source (Omega_b = 0.0493) 0.012;  ratio baryons/LCDM = 0.017
+  The no-cold reading needs the emergent sector to supply cold-like growth from a homogeneous background where E = 0 and the linear stiffness vanishes; no perturbation equation exists in class V about E = 0 (A3.6): UNDEFINED.
+  y_lin(z = 1000, k = 30, delta = 1) = 2.48e+01 (>> 1: the Newtonian regime), so at the CMB epoch the K-law modification is small (Delta_tot = 2.9e-03 for K1 at k = 30); the estimate does NOT by itself exclude the CMB epoch, but no Boltzmann treatment exists, so the CMB part is UNDEFINED. (My first-draft narrative that the force would be 'enormous' at z ~ 1000 was wrong; corrected before this was recorded.)
+
+======================================================================================================================
+G2.5  Verlinde's formula applied to the cosmic MEAN density (the isolated-system prescription outside its domain)
+======================================================================================================================
+  r =      0.1 Mpc: M_D/M_b (derivative form) =   433.827 (hand 2 sqrt(R_H/(3 Om r)) =   433.827);  M_B-only form =   216.914
+  r =        1 Mpc: M_D/M_b (derivative form) =   137.188 (hand 2 sqrt(R_H/(3 Om r)) =   137.188);  M_B-only form =    68.594
+  r =       10 Mpc: M_D/M_b (derivative form) =    43.383 (hand 2 sqrt(R_H/(3 Om r)) =    43.383);  M_B-only form =    21.691
+  r =      100 Mpc: M_D/M_b (derivative form) =    13.719 (hand 2 sqrt(R_H/(3 Om r)) =    13.719);  M_B-only form =     6.859
+  r =     4448 Mpc: M_D/M_b (derivative form) =     2.057 (hand 2 sqrt(R_H/(3 Om r)) =     2.057);  M_B-only form =     1.029
+  [PASS] G2.5 the frozen hand estimate M_D/M_b = 2 sqrt(R_H/(3 Om r)) [~1.4e2 at 1 Mpc] is reproduced by direct evaluation of the formula on the mean density
+         at 1 Mpc: 137.2 vs hand 137.2
+  => applied to the mean density the formula gives a dark-to-baryon mass ratio of ~137 at 1 Mpc (about 69 in the M_B-only form) and ~2.1 at the Hubble radius: a homogeneous universe is NOT the null background of the formula; a covariant theory must state a background response.
+
+======================================================================================================================
+D1  (REPORTED, not scored) a_V(z) = c H(z)/6 against the flat law: a_V(z)/a_V(0)
+======================================================================================================================
+  a_V(z)/a_V(0) = E(z) at z = 0, 1, 2.5, 5: 0: 1.000, 1: 1.791, 2.5: 3.771, 5: 8.301  (the rival a0 ~ H(z) type; the framework's distinctive law is FLAT; a fixed H_Lambda tie gives 1 at every z)
+
+======================================================================================================================
+G2 verdicts (per the frozen readings)
+======================================================================================================================
+  with-cold, K laws: FAIL on the quasi-static estimate for every K law and both readings of a (K1, a constant, delta = 1: Delta_tot = 0.15 to 12 for z <= 3 and k >= 0.1/Mpc; it drops below 0.05 only at z >= 10 for the smallest k and at z = 1000); growth ratio 1.2 to 25.
+  with-cold, V0 (E = g_N,b, the attractive-sign Coulomb drag): total-matter Delta_tot = f_b^2 = 0.0244 (PASSES the literal |G_eff/G - 1| <= 5% line) but the integrated growth ratio to LCDM is 1.0935 (FAILS the 5% growth criterion), and the baryon force ratio is Delta_b = 1; recorded as a SPLIT (literal line P, growth ratio F), headline F; the CMB is UNDEFINED.
+  no-cold: UNDEFINED (strong coupling about E = 0; no CMB treatment).   CMB TT/TE/EE: UNDEFINED.
+
+  4/4 checks pass; load-bearing failures: 0   (0 s)

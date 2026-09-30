@@ -1,0 +1,151 @@
+CFG231 A2 -- G1: the charge function R(x) = 4 pi r^3 rho_D g_tot / (a0 M_b(<r)) on the point mass and the exponential sphere
+  repo = <repo>   (constants and controls import <repo>/campaign_fresh_gravity/CFG44_fluid_target/Bcommon.py read-only)
+  mode = MAIN;  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2;  H0 = 67.4, Omega_L = 0.685
+  a_V(H_Lambda) = 9.0328e-11, a_V(H0) = 1.0914e-10 m/s^2;  kappa = 1/2 FITTED; nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+C5  the P2 law's own phantom (= K1) on the N5 profiles of CFG44 B1: charge-function range vs N5's printed ranges (2%)
+======================================================================================================================
+  compact  exp. sphere M = 1e+10, h = 2: R in [1.000, 2.279]; negative-density fraction 0.000
+  diffuse  exp. sphere M = 1e+08, h = 2: R in [1.000, 2.484]; negative-density fraction 0.000
+  [PASS] C5 K1 (the P2 phantom) on the two exponential spheres: R ranges agree with CFG44 B1 N5's printed [1.000, 2.279] (compact) and [1.000, 2.484] (diffuse) to 2%
+         mine {'compact': (0.9999999999800959, 2.279124157479739, 0.0), 'diffuse': (0.9999999999896244, 2.48398061192046, 0.0)}; N5 {'compact': (1.0, 2.279), 'diffuse': (1.0, 2.484)}
+
+======================================================================================================================
+C6  the core limit R -> 5/2 for a local deep-limit law on a cored sphere (sympy) and its numerical approach
+======================================================================================================================
+  sympy: R_core = 5/2
+  K1 on the 1e9 sphere (h = 2), a = a0: R at x = 1e-4, 1e-3, 1e-2, 0.1 = [2.4942, 2.4814, 2.4407, 2.3099]
+  KODE (the target) in the core: g_T^2/(a g_N) at x = 1e-3, 1e-2 = [0.4043, 0.4139]  (hand: 2/5)
+  [PASS] C6 core limit: R -> 5/2 (sympy, exact) and numerically 2.5 at x = 1e-4 on the 1e9 sphere; the target's own core has g_T^2 = (2/5) a g_N
+         sympy 5/2; numeric R(1e-4) = 2.4942; g_T^2/(a g_N) = 0.4043
+
+======================================================================================================================
+C8  positive control of the pass logic: KODE (the target's own ODE) passes G1 strict on every cell and is graded M0
+======================================================================================================================
+  KODE over 14 cells (canonical a0): max|R-1| = 1.70e-09; min rho_D > 0: True
+  my KODE solver (deep-core start at r0 = 1e-7 kpc) vs Bcommon target g_tot on the 1e10 sphere: max rel dev 2.93e-04
+  my solver started exactly as Bcommon starts (r0 = 1e-3 r_M, w0 = algebraic P2 value): max rel dev vs Bcommon 1.18e-10  => the 2.9e-04 difference is Bcommon's start-point transient (its start value is the P2 algebraic value, not the sphere target's core value), not a solver difference
+  [PASS] C8 KODE passes G1 strict on every cell (max|R-1| < 1e-6, ODE identity checked by numerical differentiation of my own solution), and it is M0 (prescribed profile)
+         max|R-1| 1.7e-09
+  [PASS] C8b my ODE solver run from Bcommon's own start reproduces the read-only Bcommon target g_tot on the 1e10 sphere (1e-6)
+         dev 1.2e-10; deep-core start differs from Bcommon by 2.9e-04 (start-point transient, reported)
+
+======================================================================================================================
+C10  B2 == K2 (the derivative-free elastic reading is the deep-only constitutive law), checked numerically
+======================================================================================================================
+  [PASS] C10 B2 and K2 give the same charge function (relative difference < 1e-6) on both geometries
+         max rel diff 1.2e-11
+
+======================================================================================================================
+A2.1  G1 scan: variants x {point, sphere} x 7 masses x H in {H_Lambda, H0} x normalisations {shape, tie_canonical, tie_alt}
+======================================================================================================================
+  V0  HL shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 105 (point 1, sphere 105); admissible on all cells: True; G1-P2 worst 0.99
+  V0  HL tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 103 (point 1, sphere 103); admissible on all cells: True; G1-P2 worst 0.99
+  V0  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 92.5 (point 1, sphere 92.5); admissible on all cells: True; G1-P2 worst 0.992
+  V0  H0 shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 94.6 (point 1, sphere 94.6); admissible on all cells: True; G1-P2 worst 0.99
+  V0  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 103 (point 1, sphere 103); admissible on all cells: True; G1-P2 worst 0.988
+  V0  H0 tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 92.5 (point 1, sphere 92.5); admissible on all cells: True; G1-P2 worst 0.99
+  V2  HL shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1 (point 1, sphere 1); admissible on all cells: False; G1-P2 worst 0.967
+  V2  HL tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1 (point 1, sphere 1); admissible on all cells: False; G1-P2 worst 0.966
+  V2  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1 (point 1, sphere 1); admissible on all cells: False; G1-P2 worst 0.963
+  V2  H0 shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1 (point 1, sphere 1); admissible on all cells: False; G1-P2 worst 0.967
+  V2  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1 (point 1, sphere 1); admissible on all cells: False; G1-P2 worst 0.969
+  V2  H0 tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1 (point 1, sphere 1); admissible on all cells: False; G1-P2 worst 0.966
+  B1  HL shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 18.5 (point 10, sphere 18.5); admissible on all cells: True; G1-P2 worst 1.18
+  B1  HL tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 18.1 (point 9.79, sphere 18.1); admissible on all cells: True; G1-P2 worst 1.18
+  B1  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 16 (point 8.73, sphere 16); admissible on all cells: True; G1-P2 worst 1.18
+  B1  H0 shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 18.5 (point 10, sphere 18.5); admissible on all cells: True; G1-P2 worst 1.18
+  B1  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 20.5 (point 11, sphere 20.5); admissible on all cells: True; G1-P2 worst 1.17
+  B1  H0 tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 18.1 (point 9.79, sphere 18.1); admissible on all cells: True; G1-P2 worst 1.18
+  B2  HL shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 11.2 (point 10, sphere 11.2); admissible on all cells: True; G1-P2 worst 0.414
+  B2  HL tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 10.9 (point 9.79, sphere 10.9); admissible on all cells: True; G1-P2 worst 0.414
+  B2  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 9.17 (point 8.73, sphere 9.17); admissible on all cells: True; G1-P2 worst 0.414
+  B2  H0 shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 10.7 (point 10, sphere 10.7); admissible on all cells: True; G1-P2 worst 0.414
+  B2  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 12.2 (point 11, sphere 12.2); admissible on all cells: True; G1-P2 worst 0.414
+  B2  H0 tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 10.3 (point 9.79, sphere 10.3); admissible on all cells: True; G1-P2 worst 0.414
+  B3  HL shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 13.5 (point 1.73, sphere 13.5); admissible on all cells: True; G1-P2 worst 1.18
+  B3  HL tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 13 (point 1.63, sphere 13); admissible on all cells: True; G1-P2 worst 1.18
+  B3  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 10.7 (point 1.18, sphere 10.7); admissible on all cells: True; G1-P2 worst 1.18
+  B3  H0 shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 13 (point 1.73, sphere 13); admissible on all cells: True; G1-P2 worst 1.18
+  B3  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 15.2 (point 2.18, sphere 15.2); admissible on all cells: True; G1-P2 worst 1.17
+  B3  H0 tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 12.5 (point 1.63, sphere 12.5); admissible on all cells: True; G1-P2 worst 1.18
+  B4  HL shape         : strict pass  0/14  (R-only  7; point 0/7, sphere 0/7); worst max|R-1| 8.64 (point 2.07e-11, sphere 8.64); admissible on all cells: False; G1-P2 worst 0.9
+  B4  HL tie_canonical : strict pass  0/14  (R-only  7; point 0/7, sphere 0/7); worst max|R-1| 8.5 (point 0.035, sphere 8.5); admissible on all cells: False; G1-P2 worst 0.902
+  B4  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 7.71 (point 0.201, sphere 7.71); admissible on all cells: False; G1-P2 worst 0.911
+  B4  H0 shape         : strict pass  0/14  (R-only  7; point 0/7, sphere 0/7); worst max|R-1| 8.37 (point 2.42e-11, sphere 8.37); admissible on all cells: False; G1-P2 worst 0.9
+  B4  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 9.05 (point 0.166, sphere 9.05); admissible on all cells: False; G1-P2 worst 0.893
+  B4  H0 tie_alt       : strict pass  0/14  (R-only  7; point 0/7, sphere 0/7); worst max|R-1| 8.21 (point 0.0352, sphere 8.21); admissible on all cells: False; G1-P2 worst 0.902
+  K3  HL shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1.46 (point 0.981, sphere 1.46); admissible on all cells: True; G1-P2 worst 0.155
+  K3  HL tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1.38 (point 0.912, sphere 1.38); admissible on all cells: True; G1-P2 worst 0.155
+  K3  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 0.969 (point 0.585, sphere 0.969); admissible on all cells: True; G1-P2 worst 0.155
+  K3  H0 shape         : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1.47 (point 0.981, sphere 1.47); admissible on all cells: True; G1-P2 worst 0.155
+  K3  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1.87 (point 1.31, sphere 1.87); admissible on all cells: True; G1-P2 worst 0.155
+  K3  H0 tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1.38 (point 0.912, sphere 1.38); admissible on all cells: True; G1-P2 worst 0.155
+  K1  HL shape         : strict pass  9/14  (R-only  9; point 7/7, sphere 2/7); worst max|R-1| 1.31 (point 1.42e-09, sphere 1.31); admissible on all cells: True; G1-P2 worst 6.66e-16
+  K1  HL tie_canonical : strict pass 10/14  (R-only 10; point 7/7, sphere 3/7); worst max|R-1| 1.23 (point 0.035, sphere 1.23); admissible on all cells: True; G1-P2 worst 6.66e-16
+  K1  HL tie_alt       : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 0.849 (point 0.201, sphere 0.849); admissible on all cells: True; G1-P2 worst 6.66e-16
+  K1  H0 shape         : strict pass  9/14  (R-only  9; point 7/7, sphere 2/7); worst max|R-1| 1.33 (point 1.02e-09, sphere 1.33); admissible on all cells: True; G1-P2 worst 6.66e-16
+  K1  H0 tie_canonical : strict pass  0/14  (R-only  0; point 0/7, sphere 0/7); worst max|R-1| 1.71 (point 0.166, sphere 1.71); admissible on all cells: True; G1-P2 worst 5.55e-16
+  K1  H0 tie_alt       : strict pass 10/14  (R-only 10; point 7/7, sphere 3/7); worst max|R-1| 1.25 (point 0.0352, sphere 1.25); admissible on all cells: True; G1-P2 worst 6.66e-16
+
+======================================================================================================================
+A2.2  representative R(x) rows (H_Lambda, N-shape): x = 0.1, 1, 3, 10, 30
+======================================================================================================================
+  V0  point|1e+10  : R = [0.0, 0.0, 0.0, 0.0, 0.0]; in band from x = None; admissible True
+  V0  sphere|1e+09 : R = [0.0225, 0.1287, 0.1115, 0.0048, 0.0]; in band from x = None; admissible True
+  V0  sphere|1e+12 : R = [106.2901, 0.0, 0.0, 0.0, 0.0]; in band from x = None; admissible True
+  V2  point|1e+10  : R = [-0.0, -0.0, -0.0, -0.0, -0.0]; in band from x = None; admissible False
+  V2  sphere|1e+09 : R = [-0.0, -0.0, -0.0, -0.0, -0.0]; in band from x = None; admissible False
+  V2  sphere|1e+12 : R = [-0.0, -0.0, -0.0, -0.0, -0.0]; in band from x = None; admissible False
+  B1  point|1e+10  : R = [11.0, 2.0002, 1.3333, 1.1, 1.0333]; in band from x = 10.015860491568482; admissible True
+  B1  sphere|1e+09 : R = [10.0723, 8.5194, 5.1213, 1.058, 1.0332]; in band from x = 9.550928406244958; admissible True
+  B1  sphere|1e+12 : R = [19.4974, 2.0, 1.3333, 1.1, 1.0333]; in band from x = 10.015860491568482; admissible True
+  B2  point|1e+10  : R = [11.0, 2.0002, 1.3333, 1.1, 1.0333]; in band from x = 10.015860491568482; admissible True
+  B2  sphere|1e+09 : R = [2.6297, 2.6362, 2.2108, 1.2368, 1.0333]; in band from x = 14.04960543592177; admissible True
+  B2  sphere|1e+12 : R = [12.1924, 2.0002, 1.3333, 1.1, 1.0333]; in band from x = 10.015860491568482; admissible True
+  B3  point|1e+10  : R = [0.0, 2.0002, 1.3333, 1.1, 1.0333]; in band from x = 10.015860491568482; admissible True
+  B3  sphere|1e+09 : R = [10.0723, 8.5194, 5.1213, 1.058, 1.0332]; in band from x = 9.550928406244958; admissible True
+  B3  sphere|1e+12 : R = [0.0, 2.0, 1.3333, 1.1, 1.0333]; in band from x = 10.015860491568482; admissible True
+  B4  point|1e+10  : R = [1.0, 1.0, 1.0, 1.0, 1.0]; in band from x = 0.1; admissible False
+  B4  sphere|1e+09 : R = [2.2944, 1.8696, 1.5636, 1.1024, 1.0]; in band from x = 10.073152014979824; admissible True
+  B4  sphere|1e+12 : R = [-7.6428, 1.0, 1.0, 1.0, 1.0]; in band from x = 0.4414456415309251; admissible False
+  K3  point|1e+10  : R = [1.9806, 1.4473, 1.1644, 1.05, 1.0167]; in band from x = 4.975400660518794; admissible True
+  K3  sphere|1e+09 : R = [2.4621, 2.253, 1.8872, 1.1696, 1.0167]; in band from x = 11.99859625346346; admissible True
+  K3  sphere|1e+12 : R = [1.9911, 1.4473, 1.1644, 1.05, 1.0167]; in band from x = 4.975400660518794; admissible True
+  K1  point|1e+10  : R = [1.0, 1.0, 1.0, 1.0, 1.0]; in band from x = 0.1; admissible True
+  K1  sphere|1e+09 : R = [2.3053, 1.9289, 1.6144, 1.1047, 1.0]; in band from x = 10.15005081092244; admissible True
+  K1  sphere|1e+12 : R = [1.0066, 1.0, 1.0, 1.0, 1.0]; in band from x = 0.1; admissible True
+
+======================================================================================================================
+A2.3  reported sensitivity: CFG117's h(M) = 2, 3, 4, 5 kpc for M = 1e9..1e12 (H_Lambda, N-shape)
+======================================================================================================================
+  V0 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [1.0, 1.0, 2.548, 21.707]
+  V2 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [1.0, 1.0, 1.0, 1.0]
+  B1 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [9.072, 9.405, 10.761, 14.797]
+  B2 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [1.686, 2.045, 3.089, 5.95]
+  B3 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [9.072, 9.405, 10.761, 3.16]
+  B4 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [1.294, 0.917, 0.871, 3.983]
+  K3 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [1.462, 1.41, 1.27, 1.059]
+  K1 : max|R-1| for (1e9,h2), (1e10,h3), (1e11,h4), (1e12,h5) = [1.305, 1.006, 0.422, 0.061]
+
+======================================================================================================================
+A2.4  the core-limit finding across the K laws (reported): sphere x = 0.1 at 1e9 M_sun, H_Lambda, N-shape
+======================================================================================================================
+  K1: R(0.1) = 2.3053
+  B2: R(0.1) = 2.6297
+  K3: R(0.1) = 2.4621
+  B4: R(0.1) = 2.2944
+
+  G1 strict verdict (all three normalisations, all cells, admissible), per variant and H:
+    V0 : H_Lambda FAIL   H0 FAIL
+    V2 : H_Lambda FAIL   H0 FAIL
+    B1 : H_Lambda FAIL   H0 FAIL
+    B2 : H_Lambda FAIL   H0 FAIL
+    B3 : H_Lambda FAIL   H0 FAIL
+    B4 : H_Lambda FAIL   H0 FAIL
+    K3 : H_Lambda FAIL   H0 FAIL
+    K1 : H_Lambda FAIL   H0 FAIL
+  split by normalisation (H_Lambda): V0: shape False, canon False, alt False; V2: shape False, canon False, alt False; B1: shape False, canon False, alt False; B2: shape False, canon False, alt False; B3: shape False, canon False, alt False; B4: shape False, canon False, alt False; K3: shape False, canon False, alt False; K1: shape False, canon False, alt False
+
+  5/5 checks pass; load-bearing failures: 0   (1 s)

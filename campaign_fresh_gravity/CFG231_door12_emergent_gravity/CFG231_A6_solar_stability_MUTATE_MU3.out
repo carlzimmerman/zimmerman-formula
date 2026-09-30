@@ -1,0 +1,76 @@
+CFG231 A6 -- G5: Q2, stability control, gate statement, gamma and c_T
+  repo = <repo>   (constants and controls import <repo>/campaign_fresh_gravity/CFG44_fluid_target/Bcommon.py read-only)
+  mode = MU3;  a0 footings: canonical 9.3603e-11, alt 1.1312e-10 m/s^2;  H0 = 67.4, Omega_L = 0.685
+  a_V(H_Lambda) = 9.0328e-11, a_V(H0) = 1.0914e-10 m/s^2;  kappa = 1/2 FITTED; nothing here says the theory is closed or that data favour it.
+
+======================================================================================================================
+C-FCKH  the stability-evaluator control: (y q)' for mu = 1 - e^{-y} and for mu = y/(1+y) (q = 1 - mu)
+======================================================================================================================
+  mu = 1 - e^-y: (y q)' = (1 - y)*exp(-y)  -> negative for y > 1: True;   mu = y/(1+y): (y q)' = (y + 1)**(-2) > 0 for all y
+  [PASS] C-FCKH (y q)' = (1-y) e^{-y} < 0 for y > 1 (exponential kernel) and 1/(1+y)^2 > 0 (y/(1+y)), reproducing CFG172's control before scoring
+         (1 - y)*exp(-y); (y + 1)**(-2)
+
+======================================================================================================================
+C7  Q2 recipe control: the isolated-Sun tail of the P2 law (K1 with a = a0 canonical) at Saturn: E -> a0/2, Q2/bound ~ 6.3e3 (CFG172's tail figure)
+======================================================================================================================
+  E(Saturn) = 4.6801e-11 m/s^2 (a0/2 = 4.6802e-11);  tide = 3.279e-23 s^-2;  tide/bound = 6.306e+03
+  [PASS] C7 Q2 recipe: the P2 tail at Saturn gives tide/bound = 6.3e3 to 3% (CFG172 [R]; the frozen hand value)
+         6.306e+03
+
+======================================================================================================================
+G5 Q2 (a) isolated Sun at Saturn (9.54 AU), a = a_V(H_Lambda) unless stated; the gate is tide/bound <= 1
+======================================================================================================================
+  K1: E(Saturn) = 4.516e-11 m/s^2; tide = 3.165e-23 s^-2; tide/bound = 6.086e+03
+  K2: E(Saturn) = 7.672e-08 m/s^2; tide = 5.376e-20 s^-2; tide/bound = 1.034e+07
+  K3: E(Saturn) = 9.033e-11 m/s^2; tide = 6.329e-23 s^-2; tide/bound = 1.217e+04
+  K1 (a = a0 alt): tide/bound = 7.621e+03
+  g_N(Saturn) = 6.516e-05 m/s^2; B3's onset gate switches the dark force off where g_N > 3 a_V = 2.710e-10: dark force ON at Saturn: False  -> E = 0, tide = 0 (passes only by the unvaried mask)
+  B4 (total-mass reading): g_tot/g_N at Saturn = 1.177e-03: the Newtonian force is removed (anomalous acceleration = -6.508e-05); tide/bound = 1.75e+10
+  V0: the anomalous force eps g_N is a 1/R^2 central force = a rescaling of G M_sun: degenerate with the measured GM (no quadrupole beyond the Newtonian tide): Solar-System p* (it is not an a0 law); its gamma/EP consequences are not scored.
+
+======================================================================================================================
+G5 Q2 (b) the Milky-Way tide at the Sun (CFG7 H1's standard MW baryon budget [D]; no EFE)
+======================================================================================================================
+  K1: g_N,MW(R0) = 1.055e-10, E = 3.823e-11 m/s^2; tide = 1.511e-31 s^-2; tide/bound = 2.906e-05  (P2 phantom: CFG7 H1 reports margin >= 1e3 i.e. tide/bound <= 1e-3)
+  K2: g_N,MW(R0) = 1.055e-10, E = 9.760e-11 m/s^2; tide = 3.857e-31 s^-2; tide/bound = 7.418e-05  (P2 phantom: CFG7 H1 reports margin >= 1e3 i.e. tide/bound <= 1e-3)
+  K3: g_N,MW(R0) = 1.055e-10, E = 5.820e-11 m/s^2; tide = 2.300e-31 s^-2; tide/bound = 4.424e-05  (P2 phantom: CFG7 H1 reports margin >= 1e3 i.e. tide/bound <= 1e-3)
+  (with this budget the MW baryons' Newtonian field at the Sun is ~1.06e-10 m/s^2, g_N/a ~ 1.2; the MW phantom tide is far below the bound for all three laws)
+
+======================================================================================================================
+G5 (iii) B3's onset gate: DE12/DE13 structural statement (a smooth on/off gate flat at both ends has W'' of both signs), sympy
+======================================================================================================================
+  W(u) = -2*u**3 + 3*u**2; W'(0) = 0, W'(1) = 0; W'' = 6 - 12*u (>0 on u < 1/2, <0 on u > 1/2)
+  a smooth gate flat at both ends therefore has a wrong-sign second variation on half of every transition layer [R: DE12/DE13; CFG172 sec. 0.5]. B3's onset gate is a SHARP mask (an unvaried mask, the V0 obstruction): stable only because nothing varies it; varied as a term it meets this statement. Scored as a statement.
+  [PASS] gate statement: the smoothstep W has W'(0) = W'(1) = 0 and W'' of both signs (the DE12 structure), sympy
+         W'' = 6 - 12*u
+
+======================================================================================================================
+G5 (iv) c_T = c and gamma (statements)
+======================================================================================================================
+  c_T = c: the class-V action is minimally coupled (no A^mu A^nu R_mu nu, no xi R A^2): the tensor sector is GR's, c_T = 1 [H, statement; P]. Non-minimal couplings are NOT covered.
+  gamma: the drag force acts on baryons as a potential force and leaves the metric unmodified at this order: gamma - 1 = 0 (Cassini P) [H, statement]; but the SAME statement means the vector force does not deflect light (lensing versus dynamics, diagnostic D2: not scored).
+  ghost: A3.1-A3.2 show that the attractive drag needs s = -1 (a ghost) for V0, V1 (K1, K2, K3); V2's dark mass is negative (A3.4).
+
+======================================================================================================================
+G5 verdicts per variant (Q2 (a) isolated Sun, Q2 (b) MW tide, stability, gate, statements)
+======================================================================================================================
+  K1 : Q2(a) FAIL x6.09e+03; Q2(b) pass; stability FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold); c_T P; gamma P
+  K2 : Q2(a) FAIL x1.03e+07; Q2(b) pass; stability FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold); c_T P; gamma P
+  K3 : Q2(a) FAIL x1.22e+04; Q2(b) pass; stability FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold); c_T P; gamma P
+  B1 : Q2(a) FAIL x1.03e+07; Q2(b) pass; stability as K2 (no action: UNDEFINED; the vector reading is a ghost); c_T P; gamma P
+  B2 : Q2(a) FAIL x1.03e+07; Q2(b) pass; stability FAIL (ghost sign for attraction; frozen (i) D'>0, D/E>0 hold); c_T P; gamma P
+  B3 : Q2(a) pass by the gate (E = 0 at the Sun); Q2(b) pass (gate ON at the MW Sun position, tide/bound 7.4e-05 as B1); stability sharp mask: unvaried; a varied gate meets DE12/DE13 (statement); c_T P; gamma P
+  B4 : Q2(a) FAIL (Newtonian force removed; x1.8e+10); Q2(b) n/a; stability UNDEFINED (no action); c_T P; gamma FAIL (g_tot != g_N)
+  V0 : Q2(a) p* (degenerate with GM); Q2(b) p*; stability FAIL (ghost sign); c_T P; gamma p*
+  V2 : Q2(a) p* (dark mass ~1e-6 of the needed; nothing to test); Q2(b) p*; stability FAIL (ghost sign; negative dark mass); c_T P; gamma P
+  B3 gate at the MW Sun position: g_N,MW = 1.055e-10 vs 3 a_V = 2.710e-10 -> gate ON (E != 0)
+
+======================================================================================================================
+MUTATE MU3
+======================================================================================================================
+  healthy (s = +1) sign: the K1 drag becomes REPULSIVE: R(x) at x = 0.1, 1, 10, 30 = [-0.9901, -0.4143, 0.8009, 0.9334]; g_tot < g_N: True
+  stability cell: main ghost (F) -> mutated healthy (P: s D' > 0, s D/E > 0)  (the frozen prediction said P -> F: WRONG direction, kept: the main run is already a ghost)
+  G1 point mass N-shape strict: main True -> mutated False
+  bites = True (G1 flips P -> F by sign); the frozen stability-cell expectation (P -> F) is contradicted: the cell moves F -> P
+
+  3/3 checks pass; load-bearing failures: 0   (0 s)
