@@ -1,0 +1,46 @@
+<repo> = <repo> | <scratch> = <scratch>
+route set (finite SED M*, finite f_molgas, finite fitted M_bary, primary set): ['02', '03', '07a', '08', '11', '12', '19', '20', '23b']
+dust-DETECTED per the data chat list (02 03 07a 11 19 20): ['02', '03', '07a', '11', '19', '20']
+the other three the 9-disc route uses: ['08', '12', '23b'] -> per the data chat list these have gas UPPER LIMITS only (continuum below threshold); the repo's kinematics table carries them as VALUES (f_molgas with errors), with no upper-limit flag column:
+   08: f_molgas 0.63 (+0.29 / -0.13); M* 9.85; route factor 0.605
+   12: f_molgas 0.67 (+0.43 / -0.15); M* 9.3; route factor 1.206
+   23b: f_molgas 0.25 (+0.18 / -0.09); M* 10.46; route factor 6.095
+also excluded/other: 15 (excluded; gas upper limit per the list), 06b (no f_molgas), 10a-E (no M*, no f_molgas), 23c (no M*; gas upper limit per the list), 09 (excluded)
+
+one-sided bounds (an upper limit on M_gas is an upper limit on g_bar,ind; under the recompute reading delta FALLS as g_bar rises, so each delta below is a LOWER bound on the true delta):
+   08: delta_flat >= +0.377, delta_rival >= +0.088   (fit route: +0.211, -0.046); D_ind = D/route factor = 3.443
+   12: delta_flat >= +0.043, delta_rival >= -0.269   (fit route: +0.105, -0.220); D_ind = D/route factor = 1.454
+   23b: delta_flat >= -0.437, delta_rival >= -0.536   (fit route: +0.267, +0.012); D_ind = D/route factor = 0.382
+
+strict CRISTAL class A (six detections), n = 6, mono canonical k=3.36, seed 234, 10,000 resamples:
+   SED + gas route, reading recompute: flat +0.117 [-0.060, +0.384] CONSISTENT (n=6) | rival -0.144 [-0.319, +0.141] CONSISTENT (n=6)
+   SED + gas route, reading hold: flat +0.008 [-0.041, +0.182] CONSISTENT (n=6) | rival -0.206 [-0.316, -0.092] DISFAVOURED-under (n=6)
+   fit route, same six:      flat +0.028 [-0.013, +0.165] CONSISTENT (n=6) | rival -0.171 [-0.279, -0.073] DISFAVOURED-under (n=6)
+   all four kernel/footing cells, recompute reading, rival class: ['CONS', 'CONS', 'CONS', 'CONS']
+   all four kernel/footing cells, recompute reading, flat class : ['CONS', 'CONS', 'CONS', 'CONS']
+
+GN20 (CO) and REBELS-25 (CO, paper not on disk): no per-disc table of V, f_DM/D, R, M*, M_gas exists in the repo (grep of data_assembly and real_research/data finds only the data chat's list and the source table);
+the strict class-A set of 8 therefore cannot be scored here; the CRISTAL six is the part of it that can.
+
+Does the 9-disc verdict rest on the upper limits? drop the three upper-limit discs (n = 6) -> both laws still CONSISTENT (recompute); the rival median moves from -0.198 to -0.144; the fit route on the same six keeps the rival DISFAVOURED-under. The route CONSISTENT label does not depend on them; the size of the interval does (n = 6 bootstrap is wide).
+
+== POST-HOC: per-galaxy route deltas (recompute reading, mono canonical) and leave-one-out of the route class ==
+   02   route factor 1.107  D_ind  0.971  (< 1: baryons exceed the dynamical mass)  delta_flat -0.076  delta_rival -0.317  
+   03   route factor 1.149  D_ind  0.956  (< 1: baryons exceed the dynamical mass)  delta_flat -0.045  delta_rival -0.198  
+   07a  route factor 1.107  D_ind  2.377  delta_flat +0.225  delta_rival -0.090  
+   08   route factor 0.605  D_ind  3.443  delta_flat +0.377  delta_rival +0.088  [dust UPPER LIMIT used as a value]
+   11   route factor 0.445  D_ind  2.495  delta_flat +0.351  delta_rival +0.175  
+   12   route factor 1.206  D_ind  1.454  delta_flat +0.043  delta_rival -0.269  [dust UPPER LIMIT used as a value]
+   19   route factor 0.341  D_ind  3.575  delta_flat +0.417  delta_rival +0.107  
+   20   route factor 1.218  D_ind  1.440  delta_flat +0.010  delta_rival -0.321  
+   23b  route factor 6.095  D_ind  0.382  (< 1: baryons exceed the dynamical mass)  delta_flat -0.437  delta_rival -0.536  [dust UPPER LIMIT used as a value]
+   D_ind < 1 in 3 of 9; 02, 03, 23b
+   leave out 02  : flat +0.134 [-0.045, +0.377] CONSISTENT (n=8) | rival -0.144 [-0.321, +0.107] CONSISTENT (n=8)
+   leave out 03  : flat +0.134 [-0.076, +0.377] CONSISTENT (n=8) | rival -0.180 [-0.321, +0.107] CONSISTENT (n=8)
+   leave out 07a : flat +0.026 [-0.076, +0.377] CONSISTENT (n=8) | rival -0.234 [-0.321, +0.107] CONSISTENT (n=8)
+   leave out 08  : flat +0.026 [-0.076, +0.351] CONSISTENT (n=8) | rival -0.234 [-0.321, +0.107] CONSISTENT (n=8)
+   leave out 11  : flat +0.026 [-0.076, +0.377] CONSISTENT (n=8) | rival -0.234 [-0.321, +0.088] CONSISTENT (n=8)
+   leave out 12  : flat +0.117 [-0.076, +0.377] CONSISTENT (n=8) | rival -0.144 [-0.321, +0.107] CONSISTENT (n=8)
+   leave out 19  : flat +0.026 [-0.076, +0.351] CONSISTENT (n=8) | rival -0.234 [-0.321, +0.088] CONSISTENT (n=8)
+   leave out 20  : flat +0.134 [-0.076, +0.377] CONSISTENT (n=8) | rival -0.144 [-0.317, +0.107] CONSISTENT (n=8)
+   leave out 23b : flat +0.134 [-0.045, +0.377] CONSISTENT (n=8) | rival -0.144 [-0.317, +0.107] CONSISTENT (n=8)

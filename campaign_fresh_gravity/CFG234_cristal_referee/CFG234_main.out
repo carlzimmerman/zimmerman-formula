@@ -1,0 +1,176 @@
+<repo> = <repo> | <scratch> = <scratch>
+C4: {'ok': True, 'y_star': 2.3374124052663294, 'y_peak': 2.5396382821881667, 'max_rel_diff_nu_mono_vs_CFG5': 2.220446049250313e-16, 'max_rel_diff_p2_vs_CFG5': 0.0, 'max_rel_diff_nu_mono_vs_CFG4': 3.286171779137703e-09, 'max_rel_diff_nu_mono_vs_CFG4_y_ge_1e-2': 3.1291438329361654e-09, 'max_rel_diff_p2_vs_CFG4': 0.0, 'a0_CFG4': (9.360324825027975e-11, 1.1312035414413022e-10), 'a0_match': True}
+C4 vs CFG5_common (the record's standing kernel): PASS; vs the older CFG4_common copy: frozen 1e-9 line MISSED (3.29e-09, kept)
+C1 nu round trip (max rel err in y): {'mono': 1.247890679678676e-13, 'p2': 2.2293278334473143e-13}
+C2 synthetic disc on each law: max |delta_own| 0.0e+00, max |other - analytic| 5.6e-17; identity residual on the real sample 5.6e-17
+
+== column classification (measured versus model output) ==
+  z (z_cii): measured ([CII] redshift)
+  logMstar: inferred (SED); missing for 10a-E, 22b, 23c in the dynamics set
+  f_molgas: inferred (gas from a conversion; the repo READMEs say [CII]-based, CFG213 says dust-based T_d = 50 K: unresolved); missing for 06b, 10a-E
+  logMtot: MODEL OUTPUT (fitted M_bary, 1-dex Gaussian prior; reading tested in attack b5)
+  Re_disk_kpc: MODEL OUTPUT (free parameter)
+  fDM_Re: MODEL OUTPUT (flat prior [0,1]; the table's values are posterior medians per the vector README, CFG213's README says MAP)
+  Vrot_Re: MODEL OUTPUT (pressure-free rotation velocity of the fitted model, not a measured velocity)
+  sigma0: MODEL OUTPUT (fitted intrinsic dispersion)
+  observed velocity markers (cristal_points.csv kind=data): the ONLY measured velocities; not used by the test
+  V_tot, V_bary, V_DM curves: model outputs, one drawn model per galaxy; extrapolated beyond the last marker
+D_obs, g_obs, g_bar are 100 % model output of one DysmalPy fit.
+
+== per-galaxy (k = 3.36) ==
+id     z      Re    Vrot   sig   fDM    Vc     g_obs/A0  D_obs  g_bar/A0  D_flat  D_riv   dl_flat  dl_riv  class
+02    5.294  2.70  129.0  67.1 0.07  178.2    4.07  1.075    3.789  1.173  2.087  -0.038  -0.288  Disk
+03    5.689  1.50  165.3  77.8 0.09  218.3   11.00  1.099   10.011  1.068  1.570  +0.013  -0.155  Best Disk
+06b   4.562  1.80  136.3  80.8 0.08  201.3    7.79  1.087    7.169  1.093  1.597  -0.003  -0.167  Disk
+07a   5.154  3.00  132.6  63.1 0.62  176.0    3.57  2.632    1.358  1.453  3.051  +0.258  -0.064  Disk
+08    4.430  3.40  183.6  62.4 0.52  216.3    4.76  2.083    2.287  1.283  2.315  +0.211  -0.046  Best Disk
+09    5.575  1.20  153.1  93.2 0.08  229.4   15.18  1.087   13.969  1.049  1.423  +0.015  -0.117  Disk  (EXCLUDED)
+10a-E 5.671  1.30  111.8  79.2 0.05  183.2    8.94  1.053    8.495  1.079  1.646  -0.011  -0.194  Disk
+11    4.439  1.50  160.3 107.8 0.10  254.4   14.94  1.111   13.449  1.051  1.341  +0.024  -0.082  Best Disk
+12    5.572  1.50   69.6  48.5 0.43  112.9    2.94  1.754    1.677  1.377  2.914  +0.105  -0.220  Disk
+15    4.580  1.70  117.8 100.5 0.17  218.7    9.74  1.205    8.082  1.083  1.545  +0.046  -0.108  Best Disk  (EXCLUDED)
+19    5.233  2.30  156.0  70.3 0.18  202.3    6.16  1.220    5.054  1.131  1.880  +0.033  -0.188  Best Disk
+20    5.545  3.50   98.7  61.2 0.43  149.4    2.21  1.754    1.259  1.483  3.268  +0.073  -0.270  Best Disk
+23b   4.562  1.40   93.3  66.8 0.57  153.9    5.86  2.326    2.520  1.257  2.263  +0.267  +0.012  Disk
+23c   4.565  0.40  114.4  56.5 0.53  154.3   20.61  2.128    9.688  1.070  1.468  +0.299  +0.161  Best Disk
+
+== Z5 primary (12 disks), fit route, all cells, seed 234, 10,000 bootstrap ==
+k=3.36 mono canonical flat : +0.053 [+0.005, +0.234] DISFAVOURED-over (n=12)
+k=3.36 mono canonical rival: -0.161 [-0.207, -0.055] DISFAVOURED-under (n=12)
+k=3.36 mono alt       flat : +0.036 [-0.001, +0.214] CONSISTENT (n=12)
+k=3.36 mono alt       rival: -0.186 [-0.237, -0.087] DISFAVOURED-under (n=12)
+k=3.36 p2   canonical flat : +0.082 [+0.014, +0.267] DISFAVOURED-over (n=12)
+k=3.36 p2   canonical rival: -0.112 [-0.155, -0.001] DISFAVOURED-under (n=12)
+k=3.36 p2   alt       flat : +0.069 [+0.009, +0.254] DISFAVOURED-over (n=12)
+k=3.36 p2   alt       rival: -0.134 [-0.185, -0.035] DISFAVOURED-under (n=12)
+k=1.68 mono canonical flat : -0.068 [-0.136, +0.124] CONSISTENT (n=12)
+k=1.68 mono canonical rival: -0.273 [-0.370, -0.162] DISFAVOURED-under (n=12)
+k=1.68 mono alt       flat : -0.085 [-0.141, +0.106] CONSISTENT (n=12)
+k=1.68 mono alt       rival: -0.299 [-0.399, -0.194] DISFAVOURED-under (n=12)
+k=1.68 p2   canonical flat : -0.039 [-0.127, +0.152] CONSISTENT (n=12)
+k=1.68 p2   canonical rival: -0.221 [-0.318, -0.107] DISFAVOURED-under (n=12)
+k=1.68 p2   alt       flat : -0.052 [-0.132, +0.139] CONSISTENT (n=12)
+k=1.68 p2   alt       rival: -0.245 [-0.347, -0.141] DISFAVOURED-under (n=12)
+k=0.00 mono canonical flat : -0.258 [-0.330, -0.078] DISFAVOURED-under (n=12)
+k=0.00 mono canonical rival: -0.453 [-0.596, -0.353] DISFAVOURED-under (n=12)
+k=0.00 mono alt       flat : -0.272 [-0.342, -0.098] DISFAVOURED-under (n=12)
+k=0.00 mono alt       rival: -0.478 [-0.624, -0.382] DISFAVOURED-under (n=12)
+k=0.00 p2   canonical flat : -0.232 [-0.315, -0.047] DISFAVOURED-under (n=12)
+k=0.00 p2   canonical rival: -0.407 [-0.542, -0.303] DISFAVOURED-under (n=12)
+k=0.00 p2   alt       flat : -0.244 [-0.323, -0.059] DISFAVOURED-under (n=12)
+k=0.00 p2   alt       rival: -0.431 [-0.568, -0.332] DISFAVOURED-under (n=12)
+robust (8 cells): rival ['under', 'under', 'under', 'under', 'under', 'under', 'under', 'under'] | flat ['over', 'CONS', 'over', 'over', 'CONS', 'CONS', 'CONS', 'CONS']
+H1: separation (rival only robustly disfavoured, sign under)
+
+CI-edge stability (nu_mono canonical k=3.36):
+flat {234: (0.053, 0.005, 0.234), 235: (0.053, 0.005, 0.234), 236: (0.053, 0.005, 0.234), '100k': (0.053, 0.005, 0.234)}
+rival {234: (-0.161, -0.207, -0.055), 235: (-0.161, -0.207, -0.055), 236: (-0.161, -0.207, -0.055), '100k': (-0.161, -0.207, -0.055)}
+[P1] N: Z5 12, excluded, route 9, Best-Disk 6: mine=(12, ['09', '15'], 9, 6) | target=12/[09,15]/9/6 | line=exact -> PASS
+[P2] rival mono canonical k=3.36: mine=-0.161 [-0.207, -0.055] DISFAVOURED-under (n=12) | target=-0.161 [-0.207, -0.055] under | line=median 0.01, edges 0.02 -> PASS
+[P3] rival mono alt k=3.36: mine=-0.186 [-0.237, -0.087] DISFAVOURED-under (n=12) | target=-0.186 under | line=median 0.01, class -> PASS
+[P4] rival mono k=1.68 both footings: mine=[-0.273, -0.299] | target=-0.27..-0.30 under | line=each in [-0.31,-0.26] -> PASS
+[P5] rival 8 cells under; P2 k=3.36 medians: mine=(True, [-0.112, -0.134]) | target=8/8 under; P2 in [-0.25,-0.11] | line=8/8; within 0.02 of range -> PASS
+[P6] flat k=3.36: cells over / medians; k=1.68 classes: mine=(3, {'mono/canonical': 'over', 'mono/alt': 'CONS', 'p2/canonical': 'over', 'p2/alt': 'over'}, [0.053, 0.036, 0.082, 0.069], ['CONS', 'CONS', 'CONS', 'CONS']) | target=3 of 4 over, +0.04..+0.08; k=1.68 4/4 CONSISTENT | line=exact 3 of 4; 4/4 -> PASS
+[P7] H1 verdict: mine=separation (rival only robustly disfavoured, sign under) | target=only the rival robustly disfavoured (under); flat not robust | line=label -> PASS
+[P8] k=0 classes (mono, canonical/alt) flat, rival: mine=(['under', 'under'], ['under', 'under']) | target=both laws under | line=class -> PASS
+
+== independent route (SED M* + f_molgas gas); 9 disks ==
+route factors M_ind/M_fit: {'02': 1.107, '03': 1.149, '07a': 1.107, '08': 0.605, '11': 0.445, '12': 1.206, '19': 0.341, '20': 1.218, '23b': 6.095}
+[P11] route factors (nine): mine={'02': 1.107, '03': 1.149, '07a': 1.107, '20': 1.218, '12': 1.206, '08': 0.605, '11': 0.445, '19': 0.341, '23b': 6.095} | target={'02': 1.11, '03': 1.15, '07a': 1.11, '20': 1.22, '12': 1.21, '08': 0.61, '11': 0.45, '19': 0.34, '23b': 6.09} | line=3 % in ratio -> PASS
+route[hold     ] mono canonical flat : +0.095 [-0.032, +0.269] CONSISTENT (n=9)
+route[hold     ] mono canonical rival: -0.177 [-0.272, -0.046] DISFAVOURED-under (n=9)
+route[hold     ] mono alt       flat : +0.074 [-0.043, +0.248] CONSISTENT (n=9)
+route[hold     ] mono alt       rival: -0.202 [-0.302, -0.080] DISFAVOURED-under (n=9)
+route[hold     ] p2   canonical flat : +0.135 [-0.013, +0.309] CONSISTENT (n=9)
+route[hold     ] p2   canonical rival: -0.125 [-0.216, +0.006] CONSISTENT (n=9)
+route[hold     ] p2   alt       flat : +0.118 [-0.023, +0.292] CONSISTENT (n=9)
+route[hold     ] p2   alt       rival: -0.148 [-0.245, -0.029] DISFAVOURED-under (n=9)
+route[recompute] mono canonical flat : +0.043 [-0.076, +0.377] CONSISTENT (n=9)
+route[recompute] mono canonical rival: -0.198 [-0.321, +0.107] CONSISTENT (n=9)
+route[recompute] mono alt       flat : +0.023 [-0.088, +0.355] CONSISTENT (n=9)
+route[recompute] mono alt       rival: -0.222 [-0.354, +0.074] CONSISTENT (n=9)
+route[recompute] p2   canonical flat : +0.075 [-0.059, +0.419] CONSISTENT (n=9)
+route[recompute] p2   canonical rival: -0.153 [-0.269, +0.161] CONSISTENT (n=9)
+route[recompute] p2   alt       flat : +0.061 [-0.068, +0.401] CONSISTENT (n=9)
+route[recompute] p2   alt       rival: -0.173 [-0.305, +0.126] CONSISTENT (n=9)
+same-9 FIT route mono canonical flat : +0.073 [+0.013, +0.258] DISFAVOURED-over (n=9)
+same-9 FIT route mono canonical rival: -0.155 [-0.270, -0.046] DISFAVOURED-under (n=9)
+same-9 FIT route mono alt       flat : +0.050 [+0.007, +0.235] DISFAVOURED-over (n=9)
+same-9 FIT route mono alt       rival: -0.179 [-0.305, -0.077] DISFAVOURED-under (n=9)
+same-9 FIT route p2   canonical flat : +0.117 [+0.020, +0.294] DISFAVOURED-over (n=9)
+same-9 FIT route p2   canonical rival: -0.107 [-0.220, +0.011] CONSISTENT (n=9)
+same-9 FIT route p2   alt       flat : +0.098 [+0.016, +0.281] DISFAVOURED-over (n=9)
+same-9 FIT route p2   alt       rival: -0.128 [-0.257, -0.021] DISFAVOURED-under (n=9)
+[P9-hold] route n=9: both CONSISTENT (mono canonical); rival median in [-0.22,-0.15], CI contains 0: mine=('CONS', 'under', [-0.177, -0.202], 'some cell not CONS') | target=both CONS; rival -0.15..-0.22 | line=class; median 0.01 of range -> FAIL
+[P10-hold] same-9: rival fit / route (mono canonical); P2 canonical fit-route: mine=(-0.155, -0.177, '-0.107 [-0.220, +0.011] CONSISTENT (n=9)') | target=-0.155 / -0.198; P2 -0.107 [-0.220,+0.011] | line=medians 0.01; edges 0.02 -> FAIL
+[P9-recompute] route n=9: both CONSISTENT (mono canonical); rival median in [-0.22,-0.15], CI contains 0: mine=('CONS', 'CONS', [-0.198, -0.222], 'all 8 cells CONS') | target=both CONS; rival -0.15..-0.22 | line=class; median 0.01 of range -> PASS
+[P10-recompute] same-9: rival fit / route (mono canonical); P2 canonical fit-route: mine=(-0.155, -0.198, '-0.107 [-0.220, +0.011] CONSISTENT (n=9)') | target=-0.155 / -0.198; P2 -0.107 [-0.220,+0.011] | line=medians 0.01; edges 0.02 -> PASS
+LOO (12 -> 11, mono canonical k=3.36): rival [-0.155, -0.167, -0.155, -0.167, -0.167, -0.155, -0.167, -0.155, -0.155, -0.155, -0.167, -0.167] flat [0.073, 0.073, 0.073, 0.033, 0.033, 0.073, 0.073, 0.033, 0.073, 0.033, 0.033, 0.033]
+[P12] LOO envelope rival / flat: mine=(-0.167, -0.155, 0.033, 0.073) | target=rival -0.167..-0.155; flat +0.033..+0.073 | line=envelope within 0.01 -> PASS
+
+== vector reads ==
+table_Rout: flat +0.019 [-0.037, +0.225] CONSISTENT (n=12) | rival -0.283 [-0.350, -0.109] DISFAVOURED-under (n=12)
+outermost_data_marker: flat +0.023 [-0.026, +0.221] CONSISTENT (n=12) | rival -0.258 [-0.321, -0.101] DISFAVOURED-under (n=12)
+[P13] outer radii (table_Rout / marker): rival, flat: mine=(-0.283, -0.258, 0.019, 0.023) | target=-0.28, -0.26 under; flat +0.02, +0.02 CONS | line=medians 0.02; classes -> PASS
+Best-Disk (n=6): flat +0.053 [+0.018, +0.255] DISFAVOURED-over (n=6) | rival -0.118 [-0.229, +0.058] CONSISTENT (n=6)
+[P14] Best-Disk n=6 flat / rival (mono canonical): mine=('+0.053 [+0.018, +0.255] DISFAVOURED-over (n=6)', '-0.118 [-0.229, +0.058] CONSISTENT (n=6)') | target=flat +0.053 [+0.018,+0.255] over; rival -0.118 [-0.229,+0.058] CONS | line=medians 0.01; edges 0.02; class -> PASS
+excluded 09: D_obs 1.087, D_flat 1.049, D_rival 1.423; delta flat +0.015, rival -0.117  (README: (1.09, 1.05, 1.42))
+excluded 15: D_obs 1.205, D_flat 1.083, D_rival 1.545; delta flat +0.046, rival -0.108  (README: (1.21, 1.08, 1.55))
+[P15] excluded disks D_obs/flat/rival: mine={'09': [1.087, 1.049, 1.423], '15': [1.205, 1.083, 1.545]} | target=09: 1.09/1.05/1.42; 15: 1.21/1.08/1.55 | line=each within 0.02 -> PASS
+C3 linear-R n=14: D_vec/D_table median 1.002 [16-84 0.929, 1.024; min 0.854, max 1.047]; V_circ ratio median 0.981; f_DM(vec)-f_DM(table) median +0.002
+C3 linear-R n=12: D_vec/D_table median 1.010 [16-84 0.978, 1.029; min 0.926, max 1.047]; V_circ ratio median 0.997; f_DM(vec)-f_DM(table) median +0.007
+C3 log-R n=14: D_vec/D_table median 1.002 [16-84 0.929, 1.024; min 0.854, max 1.047]; V_circ ratio median 0.981; f_DM(vec)-f_DM(table) median +0.002
+C3 log-R n=12: D_vec/D_table median 1.010 [16-84 0.978, 1.029; min 0.926, max 1.047]; V_circ ratio median 0.997; f_DM(vec)-f_DM(table) median +0.007
+[P16] C3 (linear-R, 12 / 14): mine=(1.01, 0.978, 1.029, 0.997, '14:', 1.002, 0.981) | target=D 1.010 [0.93,1.05]; V 0.997 | line=medians 0.01; edges 0.03 -> PASS
+
+P19 signal S (median log10 nu_rival/nu_flat at own g_bar, z): 12 fit-route rows 0.2355; 9 route rows (g_bar,ind) 0.2885; 9 fit-route rows 0.2553
+[P19] signal S: 12 fit rows / 9 route rows: mine=(0.2355, 0.2885) | target=0.2355 / 0.288 | line=0.005 / 0.01 -> PASS
+P20 CFG218 'about 13' from the hypothesis band = 1.96 sigma_9 with sigma_n = sigma_9 sqrt(9/n), 3 sigma_n = S: n = 12.98
+[P20] CFG218 'about 13' arithmetic: mine=12.98 | target=~13 (HYPOTHESIS about its band definition) | line=report -> REPORT (13 reproduced by the hypothesis)
+
+== Z1.4 NOEMA3D (10 galaxies) ==
+NOEMA3D log(M*+Mgas,CO) - log M_bary per galaxy: {'G4_38065': 0.005, 'G4_38232': 0.084, 'G4_20371': 0.018, 'G4_23011': 0.167, 'GN4_24517': 0.078, 'GN4_18574': 0.406, 'G4_24078': -0.317, 'GN4_32842': 0.135, 'G4_17555': -0.036, 'G4_37375': -0.033}
+within 0.1 dex: 6 of 10
+[P18] NOEMA3D route offset: n within 0.1 dex; G4_20371 / GN4_18574: mine=(6, 0.018, 0.406) | target=7 of 10; -0.32; +0.41 | line=exact; 0.01 -> FAIL
+NOEMA3D ('fit', 3.36, 'mono', 'canonical', 'flat') +0.033 [-0.034, +0.226] CONSISTENT (n=10)
+NOEMA3D ('hold', 3.36, 'mono', 'canonical', 'flat') +0.037 [-0.021, +0.218] CONSISTENT (n=10)
+NOEMA3D ('recompute', 3.36, 'mono', 'canonical', 'flat') +0.046 [-0.081, +0.205] CONSISTENT (n=10)
+NOEMA3D ('fit', 3.36, 'mono', 'canonical', 'rival') -0.002 [-0.090, +0.124] CONSISTENT (n=10)
+NOEMA3D ('hold', 3.36, 'mono', 'canonical', 'rival') -0.013 [-0.075, +0.124] CONSISTENT (n=10)
+NOEMA3D ('recompute', 3.36, 'mono', 'canonical', 'rival') -0.011 [-0.134, +0.149] CONSISTENT (n=10)
+NOEMA3D all cells (k 3.36, 1.68 x kernel x footing x law) CONSISTENT by route: {'fit': True, 'hold': True, 'recompute': True}
+NOEMA3D k=0 classes (mono canonical): fit flat/rival CONS CONS
+[P17] NOEMA3D: all cells CONS on both routes; flat / rival (mono canonical, fit): mine=({'fit': True, 'hold': True, 'recompute': True}, '+0.033 [-0.034, +0.226] CONSISTENT (n=10)', '-0.002 [-0.090, +0.124] CONSISTENT (n=10)') | target=all CONS; flat +0.03 [-0.03,+0.23]; rival -0.00 [-0.09,+0.12] | line=class; medians 0.01; edges 0.02 -> PASS
+
+M7 recovery control (n=12 mocks, s = 0.088 dex, N = 2000, B = 300, seed 234):
+{
+ "flat": {
+  "flat_law": {
+   "over": 0.028,
+   "under": 0.0355,
+   "cons": 0.9365
+  },
+  "rival_law": {
+   "over": 0.0,
+   "under": 0.9995,
+   "cons": 0.0005
+  }
+ },
+ "rival": {
+  "flat_law": {
+   "over": 1.0,
+   "under": 0.0,
+   "cons": 0.0
+  },
+  "rival_law": {
+   "over": 0.039,
+   "under": 0.0365,
+   "cons": 0.9245
+  }
+ }
+}
+M7 recovery: PASS
+
+== ledger ==
+{'PASS': 18, 'FAIL': 3, 'REPORT': 1}
+controls: {'C1': True, 'C2': True, 'C4_vs_CFG5': True, 'C4_vs_CFG4_missed': True, 'M7': True}

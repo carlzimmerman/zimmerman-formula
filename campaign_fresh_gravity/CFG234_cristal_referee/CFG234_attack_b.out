@@ -1,0 +1,175 @@
+<repo> = <repo> | <scratch> = <scratch>
+== b4: alias and provenance map (which table row feeds which id) ==
+dyn 02    -> sample/kin 02    | vector 02   | host 'DEIMOS_COSMOS_848185, HZ6, LBG-1' | M* 10.3 f_molgas 0.43 | sibling components in the sample: []
+dyn 03    -> sample/kin 03    | vector 03   | host 'DEIMOS_COSMOS_536534, HZ1' | M* 10.4 f_molgas 0.13 | sibling components in the sample: []
+dyn 06b   -> sample/kin 06b   | vector 06b  | host '\ldots' | M* 9.19 f_molgas nan | sibling components in the sample: ['06a']
+dyn 07a   -> sample/kin 07a   | vector 07a  | host 'DEIMOS_COSMOS_873321, HZ8' | M* 10.0 f_molgas 0.43 | sibling components in the sample: ['07b', '07c']
+dyn 08    -> sample/kin 08    | vector 08   | host 'vuds_efdcs_530029038' | M* 9.85 f_molgas 0.63 | sibling components in the sample: []
+dyn 09    -> sample/kin 09a   | vector 09   | host 'DEIMOS_COSMOS_519281' | M* 9.84 f_molgas 0.74 | sibling components in the sample: []
+dyn 10a-E -> sample/kin 10a-E | vector 10a  | host '\ldots' | M* nan f_molgas nan | sibling components in the sample: ['10a']
+dyn 11    -> sample/kin 11    | vector 11   | host 'DEIMOS_COSMOS_630594' | M* 9.68 f_molgas 0.73 | sibling components in the sample: []
+dyn 12    -> sample/kin 12    | vector 12   | host 'CANDELS_GOODSS_21' | M* 9.3 f_molgas 0.67 | sibling components in the sample: []
+dyn 15    -> sample/kin 15    | vector 15   | host 'vuds_cosmos_5101244930' | M* 9.69 f_molgas 0.41 | sibling components in the sample: []
+dyn 19    -> sample/kin 19    | vector 19   | host 'DEIMOS_COSMOS_494763' | M* 9.51 f_molgas 0.7 | sibling components in the sample: []
+dyn 20    -> sample/kin 20    | vector 20   | host 'DEIMOS_COSMOS_494057, HZ4' | M* 10.11 f_molgas 0.47 | sibling components in the sample: []
+dyn 23b   -> sample/kin 23b   | vector 23b  | host 'DEIMOS_COSMOS_818760' | M* 10.46 f_molgas 0.25 | sibling components in the sample: ['23a', '23c']
+dyn 23c   -> sample/kin 23c   | vector 23c  | host '\ldots' | M* nan f_molgas 0.17 | sibling components in the sample: ['23a', '23b']
+Note: dynamics `10a-E` = vector `10a` (validation.csv R_e and sigma_0 match 10a-E, not sample `10a`); dynamics `09` = sample/kin `09a`.
+23a/23b/23c share one host name (DEIMOS_COSMOS_818760); 04a/04b, 06a/06b, 22a/22b likewise: a per-component SED M* is only as good as the deblending.
+
+== b1: route under both readings (mono canonical, n=9) ==
+reading hold: flat +0.095 [-0.032, +0.269] CONSISTENT (n=9) | rival -0.177 [-0.272, -0.046] DISFAVOURED-under (n=9)
+reading recompute: flat +0.043 [-0.076, +0.377] CONSISTENT (n=9) | rival -0.198 [-0.321, +0.107] CONSISTENT (n=9)
+same 9, fit route: flat +0.073 [+0.013, +0.258] DISFAVOURED-over (n=9) | rival -0.155 [-0.270, -0.046] DISFAVOURED-under (n=9)
+Reading matching CFG213's README (both CONSISTENT on the route; rival -0.15..-0.22): recompute (D_ind = g_obs/g_bar,ind). The literal 'hold f_DM' reading leaves the rival DISFAVOURED-under.
+
+== b2: gas bracket x {1/3,1/2,1,2,3} x M* zero point {-0.2,0,+0.2} dex; mono; both footings; both readings ==
+-- footing canonical, reading recompute: cell = (gas, M*zp): flat median/class | rival median/class
+   g=0.33 zp=-0.2: flat +0.374 over  | rival -0.002 CONS 
+   g=0.50 zp=-0.2: flat +0.319 over  | rival -0.038 CONS 
+   g=1.00 zp=-0.2: flat +0.193 over  | rival -0.057 CONS 
+   g=2.00 zp=-0.2: flat +0.093 CONS  | rival -0.094 CONS 
+   g=3.00 zp=-0.2: flat +0.049 CONS  | rival -0.132 under
+   g=0.33 zp=+0.0: flat +0.234 CONS  | rival -0.117 CONS 
+   g=0.50 zp=+0.0: flat +0.176 CONS  | rival -0.164 CONS 
+   g=1.00 zp=+0.0: flat +0.043 CONS  | rival -0.198 CONS 
+   g=2.00 zp=+0.0: flat -0.095 CONS  | rival -0.237 under
+   g=3.00 zp=+0.0: flat -0.140 CONS  | rival -0.272 under
+   g=0.33 zp=+0.2: flat +0.087 CONS  | rival -0.235 CONS 
+   g=0.50 zp=+0.2: flat +0.025 CONS  | rival -0.283 CONS 
+   g=1.00 zp=+0.2: flat -0.118 CONS  | rival -0.347 under
+   g=2.00 zp=+0.2: flat -0.282 CONS  | rival -0.388 under
+   g=3.00 zp=+0.2: flat -0.333 under | rival -0.425 under
+-- footing canonical, reading hold: cell = (gas, M*zp): flat median/class | rival median/class
+   g=0.33 zp=-0.2: flat -0.001 CONS  | rival -0.346 under
+   g=0.50 zp=-0.2: flat +0.005 CONS  | rival -0.311 under
+   g=1.00 zp=-0.2: flat +0.041 CONS  | rival -0.241 under
+   g=2.00 zp=-0.2: flat +0.087 CONS  | rival -0.179 under
+   g=3.00 zp=-0.2: flat +0.117 CONS  | rival -0.123 under
+   g=0.33 zp=+0.0: flat +0.051 CONS  | rival -0.273 under
+   g=0.50 zp=+0.0: flat +0.065 CONS  | rival -0.240 under
+   g=1.00 zp=+0.0: flat +0.095 CONS  | rival -0.177 under
+   g=2.00 zp=+0.0: flat +0.135 CONS  | rival -0.109 CONS 
+   g=3.00 zp=+0.0: flat +0.158 over  | rival -0.073 CONS 
+   g=0.33 zp=+0.2: flat +0.105 CONS  | rival -0.205 under
+   g=0.50 zp=+0.2: flat +0.116 CONS  | rival -0.176 under
+   g=1.00 zp=+0.2: flat +0.142 CONS  | rival -0.112 CONS 
+   g=2.00 zp=+0.2: flat +0.171 over  | rival -0.062 CONS 
+   g=3.00 zp=+0.2: flat +0.187 over  | rival -0.034 CONS 
+-- footing alt, reading recompute: cell = (gas, M*zp): flat median/class | rival median/class
+   g=0.33 zp=-0.2: flat +0.348 over  | rival -0.038 CONS 
+   g=0.50 zp=-0.2: flat +0.294 over  | rival -0.064 CONS 
+   g=1.00 zp=-0.2: flat +0.170 over  | rival -0.084 CONS 
+   g=2.00 zp=-0.2: flat +0.087 CONS  | rival -0.120 CONS 
+   g=3.00 zp=-0.2: flat +0.043 CONS  | rival -0.165 under
+   g=0.33 zp=+0.0: flat +0.211 CONS  | rival -0.152 CONS 
+   g=0.50 zp=+0.0: flat +0.154 CONS  | rival -0.198 CONS 
+   g=1.00 zp=+0.0: flat +0.023 CONS  | rival -0.222 CONS 
+   g=2.00 zp=+0.0: flat -0.099 CONS  | rival -0.259 under
+   g=3.00 zp=+0.0: flat -0.144 CONS  | rival -0.294 under
+   g=0.33 zp=+0.2: flat +0.066 CONS  | rival -0.268 CONS 
+   g=0.50 zp=+0.2: flat +0.006 CONS  | rival -0.316 CONS 
+   g=1.00 zp=+0.2: flat -0.132 CONS  | rival -0.367 under
+   g=2.00 zp=+0.2: flat -0.290 CONS  | rival -0.407 under
+   g=3.00 zp=+0.2: flat -0.335 under | rival -0.443 under
+-- footing alt, reading hold: cell = (gas, M*zp): flat median/class | rival median/class
+   g=0.33 zp=-0.2: flat -0.028 CONS  | rival -0.378 under
+   g=0.50 zp=-0.2: flat -0.008 CONS  | rival -0.342 under
+   g=1.00 zp=-0.2: flat +0.016 CONS  | rival -0.270 under
+   g=2.00 zp=-0.2: flat +0.065 CONS  | rival -0.206 under
+   g=3.00 zp=-0.2: flat +0.097 CONS  | rival -0.154 under
+   g=0.33 zp=+0.0: flat +0.027 CONS  | rival -0.302 under
+   g=0.50 zp=+0.0: flat +0.041 CONS  | rival -0.269 under
+   g=1.00 zp=+0.0: flat +0.074 CONS  | rival -0.202 under
+   g=2.00 zp=+0.0: flat +0.116 CONS  | rival -0.134 under
+   g=3.00 zp=+0.0: flat +0.143 over  | rival -0.092 CONS 
+   g=0.33 zp=+0.2: flat +0.084 CONS  | rival -0.232 under
+   g=0.50 zp=+0.2: flat +0.096 CONS  | rival -0.202 under
+   g=1.00 zp=+0.2: flat +0.124 CONS  | rival -0.142 CONS 
+   g=2.00 zp=+0.2: flat +0.158 over  | rival -0.081 CONS 
+   g=3.00 zp=+0.2: flat +0.177 over  | rival -0.048 CONS 
+SUMMARY canonical recompute flat: classes over the 15 cells ['CONS', 'over', 'under'] (counts {'CONS': 11, 'over': 3, 'under': 1}); median range [-0.333,+0.374]; shift g 1/2 -> 2 at zp 0: -0.271; half-range of the 15 medians (sigma_sys candidate) 0.354
+SUMMARY canonical recompute rival: classes over the 15 cells ['CONS', 'under'] (counts {'CONS': 9, 'under': 6}); median range [-0.425,-0.002]; shift g 1/2 -> 2 at zp 0: -0.073; half-range of the 15 medians (sigma_sys candidate) 0.211
+SUMMARY canonical hold flat: classes over the 15 cells ['CONS', 'over'] (counts {'CONS': 12, 'over': 3}); median range [-0.001,+0.187]; shift g 1/2 -> 2 at zp 0: +0.070; half-range of the 15 medians (sigma_sys candidate) 0.094
+SUMMARY canonical hold rival: classes over the 15 cells ['CONS', 'under'] (counts {'CONS': 5, 'under': 10}); median range [-0.346,-0.034]; shift g 1/2 -> 2 at zp 0: +0.131; half-range of the 15 medians (sigma_sys candidate) 0.156
+
+b2 fine scan of the gas factor g (zp = 0), mono canonical: class of each law
+  [recompute] g = 0.100: flat over  (+0.336), rival CONS  (-0.034)
+  [recompute] g = 0.224: flat CONS  (+0.278), rival CONS  (-0.081)
+  [recompute] g = 1.778: flat CONS  (-0.084), rival under (-0.229)
+  [recompute] g = 4.467: flat under (-0.199), rival under (-0.336)
+  [hold     ] g = 0.100: flat CONS  (+0.016), rival under (-0.335)
+  [hold     ] g = 1.778: flat CONS  (+0.128), rival CONS  (-0.121)
+  [hold     ] g = 2.239: flat over  (+0.141), rival CONS  (-0.099)
+
+== b3: blended components and upper-limit gas ==
+-- 9 (CFG213 route set) (n=9)
+    fit route : flat +0.073 [+0.013, +0.258] DISFAVOURED-over (n=9) | rival -0.155 [-0.270, -0.046] DISFAVOURED-under (n=9)
+    route recompute: flat +0.043 [-0.076, +0.377] CONSISTENT (n=9) | rival -0.198 [-0.321, +0.107] CONSISTENT (n=9)
+    route hold: flat +0.095 [-0.032, +0.269] CONSISTENT (n=9) | rival -0.177 [-0.272, -0.046] DISFAVOURED-under (n=9)
+    route recompute P2 canonical: flat +0.075 [-0.059, +0.419] CONSISTENT (n=9) | rival -0.153 [-0.269, +0.161] CONSISTENT (n=9)
+    route recompute mono alt: flat +0.023 [-0.088, +0.355] CONSISTENT (n=9) | rival -0.222 [-0.354, +0.074] CONSISTENT (n=9)
+-- 8 (drop 23b: SED M* of a 3-component host, route factor 6.1) (n=8)
+    fit route : flat +0.053 [+0.013, +0.211] DISFAVOURED-over (n=8) | rival -0.171 [-0.270, -0.064] DISFAVOURED-under (n=8)
+    route recompute: flat +0.134 [-0.045, +0.377] CONSISTENT (n=8) | rival -0.144 [-0.317, +0.107] CONSISTENT (n=8)
+    route hold: flat +0.056 [-0.032, +0.159] CONSISTENT (n=8) | rival -0.182 [-0.272, -0.130] DISFAVOURED-under (n=8)
+    route recompute P2 canonical: flat +0.170 [-0.038, +0.419] CONSISTENT (n=8) | rival -0.095 [-0.260, +0.161] CONSISTENT (n=8)
+    route recompute mono alt: flat +0.114 [-0.049, +0.355] CONSISTENT (n=8) | rival -0.173 [-0.346, +0.074] CONSISTENT (n=8)
+-- 6 dust-DETECTED (02 03 07a 11 19 20; post-freeze class-A CRISTAL subset) (n=6)
+    fit route : flat +0.028 [-0.013, +0.165] CONSISTENT (n=6) | rival -0.171 [-0.279, -0.073] DISFAVOURED-under (n=6)
+    route recompute: flat +0.117 [-0.060, +0.384] CONSISTENT (n=6) | rival -0.144 [-0.319, +0.141] CONSISTENT (n=6)
+    route hold: flat +0.008 [-0.041, +0.182] CONSISTENT (n=6) | rival -0.206 [-0.316, -0.092] DISFAVOURED-under (n=6)
+    route recompute P2 canonical: flat +0.157 [-0.048, +0.409] CONSISTENT (n=6) | rival -0.095 [-0.264, +0.194] CONSISTENT (n=6)
+    route recompute mono alt: flat +0.096 [-0.068, +0.370] CONSISTENT (n=6) | rival -0.173 [-0.350, +0.112] CONSISTENT (n=6)
+-- 3 upper-limit-gas discs only (08 12 23b) (n=3)
+    fit route : flat +0.211 [+0.105, +0.267] DISFAVOURED-over (n=3) | rival -0.046 [-0.220, +0.012] CONSISTENT (n=3)
+    route recompute: flat +0.043 [-0.437, +0.377] CONSISTENT (n=3) | rival -0.269 [-0.536, +0.088] CONSISTENT (n=3)
+    route hold: flat +0.159 [+0.124, +0.347] DISFAVOURED-over (n=3) | rival -0.130 [-0.188, +0.249] CONSISTENT (n=3)
+    route recompute P2 canonical: flat +0.075 [-0.432, +0.419] CONSISTENT (n=3) | rival -0.215 [-0.504, +0.142] CONSISTENT (n=3)
+    route recompute mono alt: flat +0.023 [-0.441, +0.355] CONSISTENT (n=3) | rival -0.302 [-0.555, +0.055] CONSISTENT (n=3)
+-- 7 (9 minus 08 and 12) (n=7)
+    fit route : flat +0.033 [+0.013, +0.258] DISFAVOURED-over (n=7) | rival -0.155 [-0.270, -0.064] DISFAVOURED-under (n=7)
+    route recompute: flat +0.010 [-0.076, +0.351] CONSISTENT (n=7) | rival -0.198 [-0.321, +0.107] CONSISTENT (n=7)
+    route hold: flat +0.016 [-0.032, +0.269] CONSISTENT (n=7) | rival -0.177 [-0.272, -0.046] DISFAVOURED-under (n=7)
+    route recompute P2 canonical: flat +0.049 [-0.059, +0.364] CONSISTENT (n=7) | rival -0.153 [-0.269, +0.161] CONSISTENT (n=7)
+    route recompute mono alt: flat -0.012 [-0.088, +0.343] CONSISTENT (n=7) | rival -0.222 [-0.354, +0.074] CONSISTENT (n=7)
+-- 8 (9 minus 08) (n=8)
+    fit route : flat +0.053 [+0.013, +0.258] DISFAVOURED-over (n=8) | rival -0.171 [-0.270, -0.064] DISFAVOURED-under (n=8)
+    route recompute: flat +0.026 [-0.076, +0.351] CONSISTENT (n=8) | rival -0.234 [-0.321, +0.107] CONSISTENT (n=8)
+    route hold: flat +0.056 [-0.032, +0.269] CONSISTENT (n=8) | rival -0.182 [-0.272, -0.046] DISFAVOURED-under (n=8)
+    route recompute P2 canonical: flat +0.062 [-0.059, +0.364] CONSISTENT (n=8) | rival -0.184 [-0.269, +0.161] CONSISTENT (n=8)
+    route recompute mono alt: flat +0.006 [-0.088, +0.343] CONSISTENT (n=8) | rival -0.262 [-0.354, +0.074] CONSISTENT (n=8)
+-- 8 (9 minus 12) (n=8)
+    fit route : flat +0.053 [+0.013, +0.258] DISFAVOURED-over (n=8) | rival -0.118 [-0.270, -0.046] DISFAVOURED-under (n=8)
+    route recompute: flat +0.117 [-0.076, +0.377] CONSISTENT (n=8) | rival -0.144 [-0.321, +0.107] CONSISTENT (n=8)
+    route hold: flat +0.056 [-0.032, +0.269] CONSISTENT (n=8) | rival -0.157 [-0.272, -0.046] DISFAVOURED-under (n=8)
+    route recompute P2 canonical: flat +0.157 [-0.059, +0.419] CONSISTENT (n=8) | rival -0.095 [-0.269, +0.161] CONSISTENT (n=8)
+    route recompute mono alt: flat +0.096 [-0.088, +0.355] CONSISTENT (n=8) | rival -0.173 [-0.354, +0.074] CONSISTENT (n=8)
+
+== b5: is logMtot the fitted baryon mass? vector V_bary^2 R / G against 10^logMtot ==
+  02   : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.96; at the curve end (R =  34.2 kpc)  0.87; peak over R  0.97
+  03   : V_bary^2 R/G at the outermost marker / 10^logMtot =  1.14; at the curve end (R =  22.5 kpc)  1.13; peak over R  1.27
+  06b  : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.62; at the curve end (R =  10.8 kpc)  0.63; peak over R  0.65
+  07a  : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.61; at the curve end (R =  34.2 kpc)  0.95; peak over R  1.05
+  08   : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.97; at the curve end (R =  22.5 kpc)  0.89; peak over R  0.98
+  09   : V_bary^2 R/G at the outermost marker / 10^logMtot =  1.83; at the curve end (R =  10.8 kpc)  2.75; peak over R  2.82
+  10a-E: V_bary^2 R/G at the outermost marker / 10^logMtot =  0.54; at the curve end (R =  34.2 kpc)  0.47; peak over R  0.54
+  11   : V_bary^2 R/G at the outermost marker / 10^logMtot =  1.12; at the curve end (R =  22.5 kpc)  1.00; peak over R  1.13
+  12   : V_bary^2 R/G at the outermost marker / 10^logMtot =  1.26; at the curve end (R =  10.8 kpc)  2.23; peak over R  2.25
+  15   : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.52; at the curve end (R =  34.2 kpc)  0.50; peak over R  0.54
+  19   : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.83; at the curve end (R =  22.5 kpc)  1.09; peak over R  1.17
+  20   : V_bary^2 R/G at the outermost marker / 10^logMtot =  0.80; at the curve end (R =  10.8 kpc)  1.12; peak over R  1.12
+  23b  : V_bary^2 R/G at the outermost marker / 10^logMtot =  1.09; at the curve end (R =  34.2 kpc)  1.01; peak over R  1.14
+  23c  : V_bary^2 R/G at the outermost marker / 10^logMtot =  1.12; at the curve end (R =  22.5 kpc)  1.09; peak over R  1.22
+median ratio at the outermost marker: 14 0.97, 12 0.97; at the curve end: 14 1.00, 12 1.00
+frozen line: reading supported if median (outermost marker) in [0.4, 1.3]: True | refuted if outside [0.3, 1.5]: False
+
+== b6: NOEMA3D gas bracket (M_gas,CO x {1/2,1,2}), both readings ==
+  gas x0.5 [recompute]: : flat +0.110 [-0.023, +0.265] CONSISTENT (n=10) | rival +0.052 [-0.077, +0.208] CONSISTENT (n=10)
+  gas x0.5 [hold     ]: : flat +0.029 [-0.030, +0.197] CONSISTENT (n=10) | rival -0.030 [-0.092, +0.114] CONSISTENT (n=10)
+  gas x1.0 [recompute]: : flat +0.046 [-0.081, +0.205] CONSISTENT (n=10) | rival -0.011 [-0.134, +0.149] CONSISTENT (n=10)
+  gas x1.0 [hold     ]: : flat +0.037 [-0.021, +0.218] CONSISTENT (n=10) | rival -0.013 [-0.075, +0.124] CONSISTENT (n=10)
+  gas x2.0 [recompute]: : flat -0.027 [-0.212, +0.106] CONSISTENT (n=10) | rival -0.089 [-0.245, +0.056] CONSISTENT (n=10)
+  gas x2.0 [hold     ]: : flat +0.047 [-0.011, +0.247] CONSISTENT (n=10) | rival +0.010 [-0.054, +0.153] CONSISTENT (n=10)
+
+b-summary: the route bias implied by the bracket (median shift of delta_rival per 0.30 dex in gas) : {'recompute': -0.07330485884068305, 'hold': 0.13102268336471606}

@@ -1,0 +1,22 @@
+<repo> = <repo> | <scratch> = <scratch>
+cells compared: 96; class labels different: 0
+largest |mine - CFG213| over all cells: median 9.70e-10, CI lower edge 1.80e-02, CI upper edge 1.36e-09
+where: {'med': ('Z5 (CRISTAL primary)', '0.0|fit|nu_mono|alt|rival'), 'lo': ('Z1.4 (NOEMA3D)', '0.0|route|P2|alt|rival'), 'hi': ('Z5 (CRISTAL primary)', '1.68|route|nu_mono|alt|rival')}
+(bootstrap: mine default_rng seed 234, its default_rng seed 213 with one index array per n; the CI-edge differences are Monte Carlo, the medians are deterministic.)
+
+CFG213's C2 as written:
+c2 = []
+for k, nu in KER.items():
+    for foot in A0F:
+        for z in (1.4, 5.0):
+            for law, a0 in (("flat", A0F[foot]), ("rival", A0F[foot] * E(z))):
+                gb = 3.3 * A0F[foot]
+                Dexact = nu1(nu, gb / a0)
+                c2.append(abs(math.log10(Dexact / nu1(nu, gb / a0))))
+check("C2 a synthetic galaxy placed exactly on each law returns delta = 0 to 1e-12", f"max |delta| {max(c2):.1e}", max(c2) < 1e-12)
+
+# ------------------------------------------------------------------------------------------------ data
+dyn = {r["id"]: r for r in rd(os.path.join(AT, "cristal2025_dynamics.csv"))}
+smp = {r["id"]
+-> Dexact and the compared prediction are both nu1(nu, gb / a0) at the SAME argument: log10(x / x) = 0 by construction, so the check cannot fail (the same construction as CFG216's C1, CFG233 section 3 / CFG217).
+   Its C1 (kernel round trip through ystar) is a real check; its C3 is 'reported' with load_bearing=False and a hard-coded True; its MUTATE (every D x 1.5 raises every median by log10 1.5) is an identity of the median and cannot fail.

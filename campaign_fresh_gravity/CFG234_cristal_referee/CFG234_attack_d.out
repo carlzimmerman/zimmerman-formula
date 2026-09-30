@@ -1,0 +1,61 @@
+<repo> = <repo> | <scratch> = <scratch>
+== d1: C3 by id at the table R_e (linear-R) ==
+id     D_table  D_vec   ratio | Vcirc_table  V_tot,vec  ratio | fDM_table fDM_vec
+02       1.075   1.094  1.018 |    178.2     172.3  0.967 | 0.07 0.086
+03       1.099   1.102  1.002 |    218.3     218.4  1.000 | 0.09 0.092
+06b      1.087   1.114  1.025 |    201.3     183.9  0.914 | 0.08 0.103
+07a      2.632   2.613  0.993 |    176.0     176.0  1.000 | 0.62 0.618
+08       2.083   1.930  0.926 |    216.3     203.0  0.939 | 0.52 0.482
+09       1.087   1.017  0.935 |    229.4     179.2  0.781 | 0.08 0.016   (EXCLUDED)
+10a-E    1.053   1.071  1.017 |    183.2     184.9  1.009 | 0.05 0.066
+11       1.111   1.158  1.042 |    254.4     261.8  1.029 | 0.10 0.136
+12       1.754   1.791  1.021 |    112.9      90.6  0.803 | 0.43 0.442
+15       1.205   1.029  0.854 |    218.7     211.8  0.969 | 0.17 0.029   (EXCLUDED)
+19       1.220   1.133  0.929 |    202.3     187.5  0.927 | 0.18 0.117
+20       1.754   1.756  1.001 |    149.4     149.6  1.001 | 0.43 0.431
+23b      2.326   2.314  0.995 |    153.9     152.9  0.993 | 0.57 0.568
+23c      2.128   2.227  1.047 |    154.3     160.4  1.039 | 0.53 0.551
+
+== d2: input-error scan from cristal_validation.csv (deviations in the table's own sigmas) ==
+  02   : sigma_0   -1.07, R_e   -0.53, f_DM  +0.05  max|dev|   1.07  (in the 12)
+  03   : sigma_0   +0.00, R_e   -0.01, f_DM  +0.01  max|dev|   0.01  (in the 12)
+  06b  : sigma_0   -1.51, R_e   -0.42, f_DM  +0.05  max|dev|   1.51  (in the 12)
+  07a  : sigma_0   +0.01, R_e   -0.01, f_DM  -0.01  max|dev|   0.01  (in the 12)
+  08   : sigma_0   -0.09, R_e   -0.16, f_DM  -0.13  max|dev|   0.16  (in the 12)
+  09   : sigma_0   +0.50, R_e   +7.03, f_DM  -0.91  max|dev|   7.03  <-- > 2  (excluded / not in the 12)
+  10a-E: sigma_0   -0.31, R_e    +nan, f_DM  +0.06  max|dev|   0.31  (in the 12)
+  11   : sigma_0   +0.19, R_e   +0.05, f_DM  +0.13  max|dev|   0.19  (in the 12)
+  12   : sigma_0   +0.33, R_e    +nan, f_DM  +0.10  max|dev|   0.33  (in the 12)
+  15   : sigma_0  -33.00, R_e    +nan, f_DM  -0.88  max|dev|  33.00  <-- > 2  (excluded / not in the 12)
+  19   : sigma_0   -0.68, R_e   +0.43, f_DM  -0.48  max|dev|   0.68  (in the 12)
+  20   : sigma_0   +0.00, R_e   -0.02, f_DM  +0.01  max|dev|   0.02  (in the 12)
+  23b  : sigma_0   +0.02, R_e   +0.15, f_DM  -0.02  max|dev|   0.15  (in the 12)
+  23c  : sigma_0   +0.00, R_e   -0.42, f_DM  +0.09  max|dev|   0.42  (in the 12)
+flagged > 2 table-sigmas: ['09', '15'] | of which in the 12: []
+  leave out 02 (max|dev| 1.07): flat +0.073 [+0.013, +0.258] DISFAVOURED-over (n=11) | rival -0.155 [-0.194, -0.046] DISFAVOURED-under (n=11)
+  leave out 06b (max|dev| 1.51): flat +0.073 [+0.013, +0.258] DISFAVOURED-over (n=11) | rival -0.155 [-0.220, -0.046] DISFAVOURED-under (n=11)
+
+== d3: include the two excluded discs ==
+  k=3.36 mono canonical flat : n=12 +0.053 [+0.005, +0.234] DISFAVOURED-over (n=12) -> n=14 +0.040 [+0.013, +0.182] DISFAVOURED-over (n=14)
+  k=3.36 mono canonical rival: n=12 -0.161 [-0.207, -0.055] DISFAVOURED-under (n=12) -> n=14 -0.136 [-0.194, -0.064] DISFAVOURED-under (n=14)
+  k=3.36 mono alt       flat : n=12 +0.036 [-0.001, +0.214] CONSISTENT (n=12) -> n=14 +0.031 [+0.007, +0.160] DISFAVOURED-over (n=14)   CLASS CHANGES
+  k=3.36 mono alt       rival: n=12 -0.186 [-0.237, -0.087] DISFAVOURED-under (n=12) -> n=14 -0.159 [-0.220, -0.098] DISFAVOURED-under (n=14)
+  k=3.36 p2   canonical flat : n=12 +0.082 [+0.014, +0.267] DISFAVOURED-over (n=12) -> n=14 +0.051 [+0.020, +0.218] DISFAVOURED-over (n=14)
+  k=3.36 p2   canonical rival: n=12 -0.112 [-0.155, -0.001] DISFAVOURED-under (n=12) -> n=14 -0.092 [-0.143, -0.018] DISFAVOURED-under (n=14)
+  k=3.36 p2   alt       flat : n=12 +0.069 [+0.009, +0.254] DISFAVOURED-over (n=12) -> n=14 +0.045 [+0.016, +0.204] DISFAVOURED-over (n=14)
+  k=3.36 p2   alt       rival: n=12 -0.134 [-0.185, -0.035] DISFAVOURED-under (n=12) -> n=14 -0.111 [-0.166, -0.049] DISFAVOURED-under (n=14)
+classes that change when 09 and 15 are included (16 cells): 1
+n=14 robustness: rival ['under', 'under', 'under', 'under', 'under', 'under', 'under', 'under'] | flat ['over', 'over', 'over', 'over', 'CONS', 'CONS', 'CONS', 'CONS']
+H1 with n=14: separation (rival only robustly under)
+frozen rule: exclusion HARMLESS iff the primary-cell classes of both laws are unchanged: True
+
+  d3b: n=14 with the vector's drawn models at the figure's own R_e line (D = (V_tot/V_bary)^2, g_bar = V_bary^2 / R):
+   n=12: flat +0.028 [+0.003, +0.214] DISFAVOURED-over (n=12) | rival -0.134 [-0.254, -0.064] DISFAVOURED-under (n=12)
+   n=14: flat +0.009 [-0.001, +0.165] CONSISTENT (n=14) | rival -0.134 [-0.239, -0.063] DISFAVOURED-under (n=14)
+   09: table R_e 1.2 vs figure R_e 2.60 kpc; figure D 1.010 (table 1.087); delta flat -0.034, rival -0.229
+   15: table R_e 1.7 vs figure R_e 0.50 kpc; figure D 1.010 (table 1.205); delta flat -0.002, rival -0.040
+
+== d5: all-vector version at the TABLE R_e (D_vec, g_bar,vec) against the table version, per galaxy ==
+  flat: median |vector - table| delta, 12 disks 0.005, max 0.044; 14: max 0.066 (argmax 15)
+  rival: median |vector - table| delta, 12 disks 0.012, max 0.073; 14: max 0.080 (argmax 09)
+  all-vector (table R_e) 12 disks: flat +0.052 [-0.002, +0.214] CONSISTENT (n=12) | rival -0.169 [-0.251, -0.064] DISFAVOURED-under (n=12)

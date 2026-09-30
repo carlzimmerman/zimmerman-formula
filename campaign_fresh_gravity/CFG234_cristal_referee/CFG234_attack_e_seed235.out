@@ -1,0 +1,66 @@
+<repo> = <repo> | <scratch> = <scratch>
+sample route9: n=9; observed delta_flat median +0.043, MAD-sigma 0.270, std 0.276; signal S (median rival-vs-flat separation at own g_bar,z) 0.2885
+sample route6_detected: n=6; observed delta_flat median +0.117, MAD-sigma 0.263, std 0.213; signal S (median rival-vs-flat separation at own g_bar,z) 0.2753
+sample route8_no23b: n=8; observed delta_flat median +0.134, MAD-sigma 0.288, std 0.203; signal S (median rival-vs-flat separation at own g_bar,z) 0.2992
+sample fit12: n=12; observed delta_flat median +0.053, MAD-sigma 0.088, std 0.122; signal S (median rival-vs-flat separation at own g_bar,z) 0.2355
+
+== e1: CFG218 arithmetic under the HYPOTHESIS that its statistical band is a 1.96-sigma width, scaling 1/sqrt(n) ==
+  S_CFG218 (0.288, route 9): S = 0.288: n for 3 sigma = 13.0; after subtracting CFG218's S_sys 0.038: 17.2
+  S route9 (mine): S = 0.288: n for 3 sigma = 12.9; after subtracting CFG218's S_sys 0.038: 17.2
+  S detected-6 (mine): S = 0.275: n for 3 sigma = 14.2; after subtracting CFG218's S_sys 0.038: 19.1
+  S route8 no 23b (mine): S = 0.299: n for 3 sigma = 12.0; after subtracting CFG218's S_sys 0.038: 15.8
+  at n = 6: sigma_n = 0.141; S/sigma_n (S = 0.288) = 2.04; (S = detected-6 0.275) = 1.95
+  at n = 8: sigma_n = 0.122; S/sigma_n (S = 0.288) = 2.35; (S = detected-6 0.275) = 2.25
+  at n = 9: sigma_n = 0.115; S/sigma_n (S = 0.288) = 2.50; (S = detected-6 0.275) = 2.39
+  at n = 13: sigma_n = 0.096; S/sigma_n (S = 0.288) = 3.00; (S = detected-6 0.275) = 2.87
+
+== e2: flat-truth mocks, seed 235, N_mock 2000, B 300: power = P(median delta_rival / sd_boot < -3) ==
+  route9 s=0.270 b=+0.000: n6:0.22 n8:0.26 n9:0.25 n11:0.32 n13:0.34 n15:0.42 n17:0.46 n20:0.57 n25:0.62 n30:0.75 n40:0.86 n60:0.97 | n_50 = 18.149532710280376, n_80 = 34.48598130841122
+  route9 s=0.270 b=+0.044: n6:0.19 n8:0.23 n9:0.22 n11:0.29 n13:0.33 n15:0.39 n17:0.44 n20:0.53 n25:0.62 n30:0.71 n40:0.85 n60:0.96 | n_50 = 19.11864406779661, n_80 = 36.48550724637681
+  route9 s=0.270 b=-0.044: n6:0.22 n8:0.28 n9:0.26 n11:0.30 n13:0.40 n15:0.43 n17:0.49 n20:0.58 n25:0.66 n30:0.79 n40:0.89 n60:0.98 | n_50 = 17.426395939086294, n_80 = 30.7
+  route9 s=0.270 b=+0.100: n6:0.18 n8:0.21 n9:0.21 n11:0.26 n13:0.32 n15:0.35 n17:0.41 n20:0.52 n25:0.56 n30:0.67 n40:0.83 n60:0.94 | n_50 = 19.557603686635943, n_80 = 38.307210031347964
+  route9 s=0.270 b=-0.100: n6:0.22 n8:0.30 n9:0.28 n11:0.33 n13:0.39 n15:0.45 n17:0.48 n20:0.62 n25:0.69 n30:0.80 n40:0.91 n60:0.98 | n_50 = 17.414545454545454, n_80 = 30.047393364928915
+  route9 s=0.270 b=+0.200: n6:0.16 n8:0.18 n9:0.18 n11:0.21 n13:0.26 n15:0.30 n17:0.34 n20:0.42 n25:0.49 n30:0.60 n40:0.72 n60:0.90 | n_50 = 25.233644859813083, n_80 = 48.90173410404625
+  route9 s=0.270 b=-0.200: n6:0.26 n8:0.33 n9:0.31 n11:0.37 n13:0.44 n15:0.48 n17:0.56 n20:0.66 n25:0.72 n30:0.84 n40:0.92 n60:0.99 | n_50 = 15.51764705882353, n_80 = 28.18565400843882
+  route9 s(fit12)=0.088 b=+0.000: n6:0.81 n8:0.90 n9:0.89 n11:0.93 n13:0.96 n15:0.98 n17:0.99 n20:1.00 n25:1.00 n30:1.00 n40:1.00 n60:1.00 | n_50 = 6, n_80 = 6
+  [extra, not frozen] route9 s(std)=0.276 b=+0.000: n6:0.21 n8:0.26 n9:0.24 n11:0.29 n13:0.34 n15:0.39 n17:0.46 n20:0.55 n25:0.62 n30:0.72 n40:0.85 n60:0.96 | n_50 = 18.396825396825395, n_80 = 36.12648221343874
+  route9 s(fit12)=0.088 b=+0.044: n6:0.80 n8:0.89 n9:0.87 n11:0.93 n13:0.97 n15:0.98 n17:0.99 n20:1.00 n25:1.00 n30:1.00 n40:1.00 n60:1.00 | n_50 = 6, n_80 = 6
+  [extra, not frozen] route9 s(std)=0.276 b=+0.044: n6:0.20 n8:0.23 n9:0.21 n11:0.26 n13:0.33 n15:0.36 n17:0.43 n20:0.53 n25:0.60 n30:0.71 n40:0.83 n60:0.95 | n_50 = 19.206349206349206, n_80 = 37.673469387755105
+  fit12 s=0.088 b=+0.000: n6:0.76 n8:0.86 n9:0.84 n11:0.91 n13:0.94 n15:0.97 n17:0.98 n20:1.00 n25:1.00 n30:1.00 n40:1.00 n60:1.00 | n_50 = 6, n_80 = 6.710000000000001
+  fit12 s=0.088 b=+0.044: n6:0.78 n8:0.85 n9:0.84 n11:0.91 n13:0.95 n15:0.96 n17:0.98 n20:0.99 n25:1.00 n30:1.00 n40:1.00 n60:1.00 | n_50 = 6, n_80 = 6.625000000000001
+  fit12 s=0.088 b=-0.044: n6:0.79 n8:0.86 n9:0.86 n11:0.92 n13:0.95 n15:0.97 n17:0.98 n20:1.00 n25:1.00 n30:1.00 n40:1.00 n60:1.00 | n_50 = 6, n_80 = 6.344827586206899
+  [post-freeze] route6_detected s=0.263 b=+0.000: n6:0.24 n8:0.29 n9:0.30 n11:0.32 n13:0.40 n15:0.47 n17:0.50 n20:0.64 n25:0.71 n30:0.81 n40:0.90 n60:0.98 | n_50 = 16.941176470588236, n_80 = 29.70430107526882
+  [post-freeze] route6_detected s=0.263 b=+0.044: n6:0.22 n8:0.27 n9:0.27 n11:0.34 n13:0.36 n15:0.45 n17:0.48 n20:0.60 n25:0.69 n30:0.78 n40:0.90 n60:0.98 | n_50 = 17.435897435897438, n_80 = 31.572052401746728
+  [post-freeze] route6_detected s=0.263 b=-0.044: n6:0.27 n8:0.32 n9:0.30 n11:0.34 n13:0.41 n15:0.47 n17:0.54 n20:0.66 n25:0.72 n30:0.83 n40:0.92 n60:0.99 | n_50 = 15.907692307692308, n_80 = 28.75
+  [post-freeze] route8_no23b s=0.288 b=+0.000: n6:0.21 n8:0.27 n9:0.26 n11:0.33 n13:0.40 n15:0.42 n17:0.47 n20:0.61 n25:0.66 n30:0.78 n40:0.89 n60:0.98 | n_50 = 17.633217993079587, n_80 = 32.045454545454554
+  [post-freeze] route8_no23b s=0.288 b=+0.044: n6:0.20 n8:0.26 n9:0.24 n11:0.30 n13:0.36 n15:0.41 n17:0.46 n20:0.56 n25:0.61 n30:0.75 n40:0.86 n60:0.97 | n_50 = 18.23880597014925, n_80 = 34.38356164383562
+  [post-freeze] route8_no23b s=0.288 b=-0.044: n6:0.23 n8:0.30 n9:0.28 n11:0.34 n13:0.41 n15:0.45 n17:0.52 n20:0.63 n25:0.71 n30:0.79 n40:0.90 n60:0.97 | n_50 = 16.484848484848484, n_80 = 31.234042553191493
+
+  analytic cross-check n_norm = (3 * 1.2533 * s / (S_eff))^2, S_eff = S - b (rival median expected -S + b):
+    route9: s 0.270, S 0.288, b +0.000: n_norm = 12.4
+    route9: s 0.270, S 0.288, b +0.044: n_norm = 17.3
+    route9: s 0.270, S 0.288, b +0.100: n_norm = 29.1
+    route6_detected: s 0.263, S 0.275, b +0.000: n_norm = 12.9
+    route6_detected: s 0.263, S 0.275, b +0.044: n_norm = 18.3
+    route6_detected: s 0.263, S 0.275, b +0.100: n_norm = 31.9
+    route8_no23b: s 0.288, S 0.299, b +0.000: n_norm = 13.1
+    route8_no23b: s 0.288, S 0.299, b +0.044: n_norm = 18.0
+    route8_no23b: s 0.288, S 0.299, b +0.100: n_norm = 29.5
+    fit12: s 0.088, S 0.235, b +0.000: n_norm = 2.0
+    fit12: s 0.088, S 0.235, b +0.044: n_norm = 3.0
+    fit12: s 0.088, S 0.235, b +0.100: n_norm = 6.0
+
+== e3: with sigma_sys not shrinking with n (z_tot = median / sqrt(sd^2 + sigma_sys^2)); route9, s = MAD, b = +0.044 ==
+  sigma_sys = 0.038 (CFG218 S_sys 0.038): n6:0.17 n8:0.23 n9:0.18 n11:0.23 n13:0.26 n15:0.31 n17:0.34 n20:0.41 n25:0.49 n30:0.59 n40:0.70 n60:0.88 | n_50 = 25.544554455445546, n_80 = 51.296829971181566
+     cap at n -> infinity: S / sigma_sys = 7.59 (S route9 = 0.288; S - b = 0.244 -> 6.43)
+  sigma_sys = 0.156 (b2 half-range hold/rival 0.156): n6:0.00 n8:0.00 n9:0.00 n11:0.00 n13:0.00 n15:0.00 n17:0.00 n20:0.00 n25:0.00 n30:0.00 n40:0.00 n60:0.00 | n_50 = None, n_80 = None
+     cap at n -> infinity: S / sigma_sys = 1.85 (S route9 = 0.288; S - b = 0.244 -> 1.57)
+  sigma_sys = 0.211 (b2 half-range recompute/rival 0.211): n6:0.00 n8:0.00 n9:0.00 n11:0.00 n13:0.00 n15:0.00 n17:0.00 n20:0.00 n25:0.00 n30:0.00 n40:0.00 n60:0.00 | n_50 = None, n_80 = None
+     cap at n -> infinity: S / sigma_sys = 1.37 (S route9 = 0.288; S - b = 0.244 -> 1.16)
+
+== e4: rival-truth mocks: P(rival excluded at 3 sigma) (must be < 1 %) ==
+  route9: n6:0.013 n8:0.011 n9:0.006 n11:0.008 n13:0.004 n15:0.004 n17:0.003 n20:0.009 n25:0.006 n30:0.004 n40:0.005 n60:0.005 | max 0.013
+  route6_detected: n6:0.008 n8:0.011 n9:0.005 n11:0.006 n13:0.011 n15:0.008 n17:0.007 n20:0.009 n25:0.004 n30:0.004 n40:0.004 n60:0.004 | max 0.011
+e4 control: FAIL
+
+run time 67 s
