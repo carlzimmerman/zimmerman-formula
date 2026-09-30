@@ -54,3 +54,12 @@
 - **M_bar is prior-anchored** to SED plus gas, and the gas scaling grows with z. Any z-dependence of that prior, or of the sample selection, enters the slopes. Variant (d) gives the same sign but uses the same M_bar column.
 - **f_DM and V_c are model outputs** (an NFW halo, with the authors' pressure correction already applied). The statistic uses MAP values, and the fits' own uncertainties are not propagated.
 - Nothing here says the data favour the framework. The result is that this sample shows no rival-like z-dependence.
+
+## Post hoc: the a₀(z) power-law index RC100 prefers (appended 2026-09-29, after the frozen run; reported only)
+
+- `cfg216_posthoc_index.py` solves for a₀(z) = a₀,can × 10^c × (1 + z)^p such that the median δ = 0 and the Theil–Sen slope of δ on z = 0, with a galaxy bootstrap (2,000 resamples).
+- **Result (ν_mono, canonical): p = −0.72 [−1.49, +0.14] (σ 0.42), c = +0.44 dex.**
+  - Flat (p = 0) is 1.7σ away and the rival (p = 1.29 over this z range) is 4.8σ away.
+  - The alt footing gives the same p (−0.72 [−1.47, +0.16]).
+  - The wide interval reflects D's weak dependence on a₀ at these accelerations: δ = +0.03 corresponds to about ×1.4 in a₀.
+- **Caveat from CFG217.** A differential baryon-mass systematic of about 0.15 to 0.25 dex between z ≈ 0.6 and 2.5 moves p by about 1 to 1.5. So the index inherits the gas-route limit and should be quoted with it.
