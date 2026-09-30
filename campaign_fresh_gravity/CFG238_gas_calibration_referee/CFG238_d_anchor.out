@@ -1,0 +1,28 @@
+# CFG238 attack d (absolute anchors on disk; common-mode bias)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+
+== d1. Stripe82 (z < 0.2): dynamical-mass inequality  q = log Mdyn - log(M* + M_CO,gas + M_HI)
+  N 78; q median -0.10 16th pct -0.30 min -0.71; share with q < 0: 0.679; share violating at 2 sigma (q + 2 sigma_Mdyn < 0): 0.167 (Mdyn errors 0.14-0.26 dex)
+  common upward shift of the CO gas mass at which 16% of the galaxies violate q < 0: -1.0 dex (the allowed one-sided common-mode scale)
+  without HI: share with q<0 0.474
+  share violating q < 0 versus a common shift of the CO gas mass (dex): {-1.0: 0.5897435897435898, -0.5: 0.6025641025641025, 0.0: 0.6794871794871795, 0.3: 0.7564102564102564, 0.6: 0.8461538461538461}; note: Stripe82's M_dyn is the mass enclosed in the CO-emitting region while M* and the integrated HI are galaxy totals (aperture mismatch), so the inequality is not a clean bound
+  [PASS] H-C17b Stripe82 share with M* + M_CO + M_HI > M_dyn: 0.679 (estimate: at least 0.10)
+
+== d1b. Stripe82 gas phase (D15): d = logM_CO - logM_gas,dust (H2+He vs total gas); d' adds the HI to the CO side
+  d: N 78 mean -0.068 SD 0.155; d' (CO + HI vs dust gas): N 78 mean +0.421 SD 0.199 SE 0.023; K(d') 0.212
+  HI share of (CO + HI) gas: median 0.63; HI > CO in 0.77 of the galaxies
+  [PASS] H-C25 d' mean +0.421 (opposite sign to d = -0.068, |d'| > 0.10)
+
+== d2. Amvrosiadis+25 (z 2-4; CO gas at alpha_CO = 0.92): q = log Mdyn(<10 kpc) - log(M* + M_gas)
+  N 12 sources with Mdyn in bestfit table (parent has 30 rows; bestfit has 12); q median +0.14 min -0.79; share q<0: 0.333; per source: 007.1:-0.37, 017.1:+0.02, 022.1:-0.29, 041.1:-0.25, 049.1:+0.64, 062.2:+0.64, 065.1:+0.53, 066.1:+0.06, 071.1:-0.79, 075.1:+0.68, 098.1:+0.21, 122.1:+0.37
+  common shift of the gas mass at which 16% violate: -1.0 dex; shift at which all N violate: 0.855
+  share violating q < 0 versus a common shift of the gas mass (dex): {-1.0: 0.3333333333333333, -0.5: 0.3333333333333333, 0.0: 0.3333333333333333, 0.3: 0.5, 0.6: 0.6666666666666666}; share with M* alone above M_dyn (no gas): 0.333
+  [PASS] H-C18 Amvrosiadis share with M* + M_gas > M_dyn: 0.333 (estimate 0.35 +- 0.15)
+
+== d3. NOEMA3D: log(M* + M_CO) vs the DysmalPy log M_bary (model parameter)
+  N 10 mean +0.05 SD 0.18; within 0.1 dex: 6 of 10; values [0.01, 0.08, 0.02, 0.17, 0.08, 0.41, -0.32, 0.13, -0.04, -0.03]
+
+== d4. Normalisation anchors named by Dunne+22 (text only): X_CI = 1.6e-5 (absorption-line; from memory, unverified: Heintz and Watson 2020) and kappa_H = 1884 (local metal-rich discs and dust models): LOCAL values assumed to hold at z > 1.6; nothing on disk tests that.
+
+  Verdict inputs: one-sided dynamical bounds exist at z < 0.2 (shift16 -1.0 dex) and z 2-4 (shift16 -1.0 dex, N 12); both use dynamical masses that are model outputs of the lane under test.
+  [PASS] H-C17a no anchor on disk bounds a common-mode bias to better than +-0.3 dex at z >= 1.6 independently of the dynamics under test (by construction of the list d1-d4: d2 is the only z >= 1.6 bound and it is one-sided, N 12, and dynamics-dependent)

@@ -1,0 +1,41 @@
+# CFG238 attack f (provenance, hashes, parse spot-checks, conventions)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+
+== 1. sha256 verification against the repo manifests
+  manifest_multitracer.json: 11 entries checked
+  manifest_ace.json: 4 entries checked
+  HTML pages in raw_small: 15; verified 15; all match: True
+  Dunne TSV location <ext>/dunne2022_J_MNRAS_517_962_asu.tsv exists: True (outside the repo; not committed)
+  Dunne TSV: sha256 62df37b6a19b1b0e... (manifest 62df37b6a19b1b0e...), bytes 207141 (manifest 207141): MATCH
+  [PASS] H-C23a all manifest hashes and the Dunne TSV sha256 and size match
+
+== 2. Independent re-parse of the Dunne TSV and comparison with the committed CSVs
+  master: TSV rows 408 CSV rows 408 (same); 20 random rows: 660/660 cells equal
+  opt_xa: TSV rows 121 CSV rows 121 (same); 20 random rows: 260/260 cells equal
+  opt_xd: TSV rows 152 CSV rows 152 (same); 20 random rows: 340/340 cells equal
+  opt_dax: TSV rows 114 CSV rows 114 (same); 20 random rows: 260/260 cells equal
+  opt_ad: TSV rows 335 CSV rows 335 (same); 20 random rows: 340/340 cells equal
+  [PASS] H-C23b committed Dunne CSVs equal an independent re-parse of the TSV (row counts, 20 random rows per table)
+
+== 3. Spot-check of parsed values against the fetched HTML (heuristic: token within 600 characters after the row identifier; chance baseline from another row's values)
+  Stripe82: sampled rows 10: cells found 50/50; chance baseline (another row's values in the same windows) 14/50; rows with no identifier hit in the text: 0; unmatched cells: []
+  Bourne+19: sampled rows 5: cells found 4/15; chance baseline (another row's values in the same windows) 3/15; rows with no identifier hit in the text: 0; unmatched cells: [('C.16172', 'Mmol_CI_1e9', '26.0'), ('C.16172', 'Mmol_cont_1e9', '50.0'), ('C.15066', 'z', '1.22'), ('C.15066', 'Mmol_CI_1e9', '34.0')]
+  H-ATLAS z=0.35: sampled rows 5: cells found 20/20; chance baseline (another row's values in the same windows) 10/20; rows with no identifier hit in the text: 0; unmatched cells: []
+  Kirkpatrick+19: sampled rows 5: cells found 15/15; chance baseline (another row's values in the same windows) 12/15; rows with no identifier hit in the text: 0; unmatched cells: []
+  SMGs 2404.05596: sampled rows 5: cells found 20/20; chance baseline (another row's values in the same windows) 5/20; rows with no identifier hit in the text: 0; unmatched cells: []
+  SPT 2306.03153: sampled rows 5: cells found 15/15; chance baseline (another row's values in the same windows) 3/15; rows with no identifier hit in the text: 0; unmatched cells: []
+  ACE 2609.20926: sampled rows 5: cells found 20/20; chance baseline (another row's values in the same windows) 5/20; rows with no identifier hit in the text: 0; unmatched cells: []
+  ACE 2609.21040: sampled rows 5: cells found 15/15; chance baseline (another row's values in the same windows) 3/15; rows with no identifier hit in the text: 0; unmatched cells: []
+  ACE 2609.21072: sampled rows 5: cells found 15/15; chance baseline (another row's values in the same windows) 5/15; rows with no identifier hit in the text: 0; unmatched cells: []
+  ACE 2609.21604: sampled rows 5: cells found 10/10; chance baseline (another row's values in the same windows) 6/10; rows with no identifier hit in the text: 0; unmatched cells: []
+  TOTAL cells found 184/195 (0.94); chance baseline 66/195 (0.34)
+  [INFO] post hoc: of the unmatched cells, 2 are integer-valued floats printed in the CSV as 'N.0' but as 'N' in the page text (format artefact of the frozen token rule); with them counted the found share is 0.95
+  [MISS] H-C23c HTML spot-check found 0.94 of sampled key cells (estimate >= 0.95); chance baseline 0.34
+  [INFO] Bourne+19 mass pair pattern 'M_[CI] +- e  M_cont +- e' found for 9/9 rows (post hoc targeted check; the general token rule could not reach that table)
+
+== 4. Convention table (sources: repo HTML and CSV headers; 'not stated' where the repo does not say)
+  Stripe82: CO mass: 3.2 L' x metallicity factor x 1.36 (He) [repo HTML eq. 11]; dust gas mass = M_dust + 2 - 0.85 (Z - 8.67) [eq. 13], M_dust = 1.2e15 SFR T^-5.5 (Genzel+15) [eq. 12]; dust gas = total H2 + HI (Leroy+11), CO = H2 only  => gas phases differ; dust mass is a formula of SFR and T_dust
+  Bourne+19: [CI] mass H2 + He, Q10 = 0.35, X_CI = 3e-5; dust kappa_850 = 0.077 m2/kg; continuum gas-mass convention (He, dust-to-gas) NOT stated on disk  => He treatment of the continuum mass unresolved (0.134 dex)
+  NOEMA3D: alpha_CO 4.36 (incl. He), alpha_850 6.7e12 (Scoville), alpha_CI 18.7 (Dunne+22); dust at the CO tuning frequency, T_d 25 K, beta 1.8 (the data chat's assumption)  => CO control validates the CO branch only
+  Dunne+22 CDS: logMH2, aCO, XCI, GDR exclude He; log aCI, log a850 include 1.36 (identity residual -0.134 confirmed in section 1 of attack b); JCorr = additive log correction to the CO and CI line luminosities  => He constant cancels in slopes
+  ACE: alpha_CO = 1.36 x Accurso+17 (Z) (implied to 0.01 dex, attack c); r31 = 0.77; dust single band 873 um, T_d 25 K, beta 2.08, kappa 0.4 m2/kg at 250 um (recipe reproduced to 0.011 dex, attack c)  => kappa_850 equivalent 0.031 m2/kg: 0.35 dex below Dunne+22, 0.39 below Bourne+19

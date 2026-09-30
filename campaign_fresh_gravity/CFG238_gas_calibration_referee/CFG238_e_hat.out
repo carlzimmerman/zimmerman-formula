@@ -1,0 +1,68 @@
+# CFG238 attack e (three-cornered hat N=5, exact bootstrap, mocks, pair-type confound, NOEMA3D sensitivities)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+N validated = 5 of 10: ['G4_38065', 'G4_38232', 'G4_20371', 'GN4_24517', 'GN4_18574']; z [1.1151, 1.1159, 1.1165, 1.2411, 1.2463]; groups ['1 (CO(4-3))'] (all group 1, CO(4-3), R_14 = 2.4)
+  G4_38065: CO-dust -0.110  CO-CI +0.031  CI-dust -0.141
+  G4_38232: CO-dust -0.158  CO-CI +0.083  CI-dust -0.241
+  G4_20371: CO-dust +0.188  CO-CI +0.182  CI-dust +0.006
+  GN4_24517: CO-dust +0.023  CO-CI +0.183  CI-dust -0.160
+  GN4_18574: CO-dust -0.027  CO-CI +0.149  CI-dust -0.176
+  means: CO-dust -0.0168 CO-CI +0.1256 CI-dust -0.1424; SD 0.1344 0.0667 0.0911
+  95% t-interval (4 dof) of the mean CO-dust: -0.017 +- 0.167  -> [-0.184, +0.150]
+  N needed (t-based, SD 0.134) for a 95% half-width of 0.10 / 0.05 / 0.03 dex: {0.1: 10, 0.05: 31, 0.03: 80}
+  hat variances: CO 0.00711  CI -0.00266  dust 0.01096  (sigma: 0.084, -0.052, 0.105)
+  jackknife SE of the variances: CO 0.00355 CI 0.00304 dust 0.01010  -> relative to |estimate|: [0.5, 1.14, 0.92]
+  exact bootstrap: 3125 equally likely sequences, 126 distinct multisets (degenerate all-same: 5 sequences, variances 0)
+   sigma_CO^2: point +0.00711  exact-bootstrap median +0.00554; 68% [+0.00273, +0.00832]; 95% [+0.00051, +0.01110]; fraction negative 0.019
+   sigma_CI^2: point -0.00266  exact-bootstrap median -0.00243; 68% [-0.00405, +0.00010]; 95% [-0.00659, +0.00106]; fraction negative 0.819
+   sigma_dust^2: point +0.01096  exact-bootstrap median +0.01055; 68% [+0.00149, +0.01549]; 95% [-0.00075, +0.02186]; fraction negative 0.067
+   fraction of exact-bootstrap resamples with at least one negative variance 0.906
+   sigma_CO (signed sqrt): 95% bootstrap interval [+0.023, +0.105], 68% [+0.052, +0.091]
+   sigma_CI (signed sqrt): 95% bootstrap interval [-0.081, +0.033], 68% [-0.064, +0.010]
+   sigma_dust (signed sqrt): 95% bootstrap interval [-0.027, +0.148], 68% [+0.039, +0.124]
+  random bootstrap check (20000, seed 238): fraction negative CO 0.019 CI 0.819 dust 0.067
+  [PASS] H-C19a fraction with sigma_CI^2 < 0 in the exact bootstrap 0.819 (estimate > 0.5)
+  [MISS] H-C19b 95% interval of sigma_CO^2 [+0.00051, +0.01110] includes 0 (estimate: yes)
+  [PASS] H-C19c 95% interval of sigma_dust^2 [-0.00075, +0.02186] includes 0 (estimate: yes, P 0.5)
+
+== mocks (seed 2385, K = 20000): estimator behaviour at N = 5 and 10
+  truth (0.084, 0.05, 0.105) N 5: negative fraction CO/CI/dust [0.137, 0.34, 0.059]; any negative 0.536; median(sigma^2-hat)/sigma^2 [0.8, 0.74, 0.81]
+  truth (0.084, 0.05, 0.105) N 10: negative fraction CO/CI/dust [0.043, 0.255, 0.008]; any negative 0.306; median(sigma^2-hat)/sigma^2 [0.9, 0.9, 0.92]
+  truth (0.084, 0.084, 0.105) N 5: negative fraction CO/CI/dust [0.19, 0.194, 0.099]; any negative 0.483; median(sigma^2-hat)/sigma^2 [0.79, 0.78, 0.79]
+  truth (0.084, 0.084, 0.105) N 10: negative fraction CO/CI/dust [0.089, 0.088, 0.026]; any negative 0.203; median(sigma^2-hat)/sigma^2 [0.91, 0.9, 0.91]
+  truth (0.1, 0.1, 0.1) N 5: negative fraction CO/CI/dust [0.155, 0.154, 0.15]; any negative 0.459; median(sigma^2-hat)/sigma^2 [0.78, 0.8, 0.8]
+  truth (0.1, 0.1, 0.1) N 10: negative fraction CO/CI/dust [0.059, 0.06, 0.06]; any negative 0.180; median(sigma^2-hat)/sigma^2 [0.91, 0.91, 0.9]
+  [MISS] H-A5 N=5 equal-sigma mock, at least one negative variance 0.459 (estimate 0.55 +- 0.05; README '54%')
+  correlated-error mocks (shared component between CO and dust; truth sigma (0.10, 0.15, 0.20)):
+   rho -0.3 N 300: median sigma-hat / true (CO, CI, dust) [1.261, 0.855, 1.07]; any negative 0.000
+   rho -0.3 N 5: median sigma-hat / true (CO, CI, dust) [1.124, 0.753, 0.969]; any negative 0.525
+   rho +0.0 N 300: median sigma-hat / true (CO, CI, dust) [0.999, 0.999, 0.999]; any negative 0.000
+   rho +0.0 N 5: median sigma-hat / true (CO, CI, dust) [0.871, 0.894, 0.908]; any negative 0.535
+   rho +0.3 N 300: median sigma-hat / true (CO, CI, dust) [0.63, 1.125, 0.92]; any negative 0.024
+   rho +0.3 N 5: median sigma-hat / true (CO, CI, dust) [0.56, 1.007, 0.832]; any negative 0.564
+   rho +0.5 N 300: median sigma-hat / true (CO, CI, dust) [-0.08, 1.201, 0.866]; any negative 0.512
+   rho +0.5 N 5: median sigma-hat / true (CO, CI, dust) [-0.124, 1.092, 0.782]; any negative 0.624
+
+== independence audit: distances, cosmology, dust frequency (transcription of the recipes read in the data chat script)
+  transcription rebuild (Planck18) vs data chat CSV: CO: N 10 max |diff| 0.0004 dex (CSV rounding 0.001)
+  transcription rebuild (Planck18) vs data chat CSV: CI: N 6 max |diff| 0.0005 dex (CSV rounding 0.001)
+  transcription rebuild (Planck18) vs data chat CSV: dust: N 10 max |diff| 0.0005 dex (CSV rounding 0.001)
+  [PASS] T-rebuild transcription rebuild reproduces the CSV masses to 0.0005 dex (recipe shared, NOT independent)
+  CO control (rebuild - Table 1): G4_38065:-0.002, G4_38232:-0.005, G4_20371:-0.000, G4_23011:+0.149, GN4_24517:-0.005, GN4_18574:-0.004, G4_24078:+0.255, GN4_32842:+0.246, G4_17555:+0.247, G4_37375:+0.240
+  five validated: CO(Table1)-dust -0.017 [Planck18], +0.007 [H0=70]; CI-dust -0.142 / -0.142  (distance is common-mode: CO rebuild uses the same D_L^2)
+  dust-recipe sensitivity over T_d 20-35 K x beta 1.6-2.0 x dust frequency +-10% (36 cells): CO-dust mean spans -0.191 to +0.173 (span 0.363); CI-dust spans -0.316 to +0.047
+    at the nominal dust frequency only (12 cells): CO-dust -0.054 to +0.022 (span 0.076); frequency +-10% alone at T 25 K, beta 1.8: -0.169 / +0.118 vs nominal -0.017
+  [PASS] H-C22 CO-dust span over the dust-recipe grid 0.363 (estimate >= 0.15)
+
+== pair-type confound: K by pair type, source and bin
+  B1 z<0.2   CO-dust    Stripe82      : N  78 mean -0.068 SE 0.018 K 0.038
+  B2 z~1     [CI]-dust  Bourne+19     : N   9 mean -0.294 SE 0.059 K 0.158
+  B2 z~1.2   [CI]-dust  NOEMA3D five  : N   5 mean -0.142 SE 0.041 K 0.082
+  B2 z~1.2   CO-dust    NOEMA3D five  : N   5 mean -0.017 SE 0.060 K 0.061
+  like-for-like CO-dust, NOEMA3D five minus Stripe82: +0.052 +- 0.063 (+0.83 sigma)
+  [CI]-dust, NOEMA3D five minus Bourne+19: +0.151 +- 0.072 (+2.11 sigma)
+  [PASS] H-C20 CO-dust like-for-like +0.052 +- 0.063 (hand +0.051 +- 0.063)
+  [PASS] H-C21 [CI]-dust source difference +0.151 +- 0.072 (hand 0.152 +- 0.072)
+  labelled He sensitivity (Bourne continuum mass + He (x1.36): Bourne offset shifted by -0.134): Bourne mean -0.427; pooled N 14 mean -0.326 SE 0.055 K 0.172
+  labelled He sensitivity (Bourne [CI] mass without He: Bourne offset shifted by -0.134): Bourne mean -0.427; pooled N 14 mean -0.326 SE 0.055 K 0.172
+  labelled He sensitivity (Bourne continuum without He: Bourne offset shifted by +0.134): Bourne mean -0.160; pooled N 14 mean -0.154 SE 0.040 K 0.087
+  He treatment of Bourne's continuum mass is not stated on disk; [CI] is H2 + He per the repo HTML of 1810.01640.

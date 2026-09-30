@@ -1,0 +1,294 @@
+# CFG238 main (CFG224 + CFG224b pinned numbers; controls)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+
+== A. CFG224 pair offsets
+Stripe82 CO-dust: N 78 mean -0.0685 SD 0.1549 SE 0.0175 median -0.0500 1.4826MAD 0.1186 intrinsic SD 0.1338 K 0.0385 [below the CFG223 range]; boot68 (-0.08589743589743584, -0.05102564102564103)
+  [PASS] H-A1a Stripe82 N: mine 78 README 78
+  [PASS] H-A2a S82 mean: mine -0.0685 README -0.068 (tol 0.01)
+  [PASS] H-A2b S82 SD: mine 0.1549 README 0.155 (tol 0.01)
+  [PASS] H-A2c S82 SE: mine 0.0175 README 0.018 (tol 0.01)
+  [PASS] H-A2d S82 K: mine 0.0385 README 0.038 (tol 0.01)
+  [PASS] H-A2e S82 intrinsic SD: mine 0.1338 README 0.134 (tol 0.01)
+Bourne [CI]-dust: N 9 mean -0.2937 SD 0.1776 SE 0.0592 K 0.1583; boot68 (-0.35056248024420494, -0.23832458421967428)
+NOEMA3D validated CO_dust: N 5 mean -0.0168 SD 0.1344 SE 0.0601 K 0.0607
+NOEMA3D validated CO_CI: N 5 mean 0.1256 SD 0.0667 SE 0.0298 K 0.0695
+NOEMA3D validated CI_dust: N 5 mean -0.1424 SD 0.0911 SE 0.0407 K 0.0820
+  [PASS] H-A1b Bourne N: mine 9 README 9
+  [PASS] H-A1c NOEMA3D validated N: mine 5 README 5
+  [PASS] H-A3a Bourne mean: mine -0.2937 README -0.294 (tol 0.01)
+  [PASS] H-A3b Bourne SE: mine 0.0592 README 0.059 (tol 0.01)
+  [PASS] H-A3c Bourne K: mine 0.1583 README 0.158 (tol 0.01)
+  [PASS] H-A3d NOEMA3D [CI]-dust mean: mine -0.1424 README -0.142 (tol 0.01)
+  [PASS] H-A3e NOEMA3D [CI]-dust SE: mine 0.0407 README 0.041 (tol 0.01)
+  [PASS] H-A3f NOEMA3D [CI]-dust K: mine 0.082 README 0.082 (tol 0.01)
+pooled [CI]-dust: N 14 mean -0.2397 SD 0.1662 SE 0.0444 K 0.1278 [between CFG223 and CFG221]
+  [PASS] H-A3g pooled N: mine 14 README 14
+  [PASS] H-A3h pooled mean: mine -0.2397 README -0.24 (tol 0.01)
+  [PASS] H-A3i pooled SD: mine 0.1662 README 0.166 (tol 0.01)
+  [PASS] H-A3j pooled SE: mine 0.0444 README 0.044 (tol 0.01)
+  [PASS] H-A3k pooled K: mine 0.1278 README 0.128 (tol 0.01)
+  [PASS] H-A4a NOEMA3D CO-dust mean: mine -0.0168 README -0.017 (tol 0.01)
+  [PASS] H-A4b NOEMA3D CO-dust SE: mine 0.0601 README 0.06 (tol 0.01)
+  [PASS] H-A4c NOEMA3D CO-dust K: mine 0.0607 README 0.061 (tol 0.01)
+  [PASS] H-A4d NOEMA3D CO-CI mean: mine 0.1256 README 0.126 (tol 0.01)
+  [PASS] H-A4e NOEMA3D CO-CI SE: mine 0.0298 README 0.03 (tol 0.01)
+  [PASS] H-A4f NOEMA3D CO-CI K: mine 0.0695 README 0.07 (tol 0.01)
+hat variances: CO 0.00711 CI -0.00266 dust 0.01096; sigma CO 0.0843 CI -0.0516 dust 0.1047
+  [PASS] H-A4g hat sigma_CO: mine 0.0843 README 0.084 (tol 0.01)
+  [PASS] H-A4h hat sigma_dust: mine 0.1047 README 0.105 (tol 0.01)
+  [PASS] H-A4i sigma_CI^2 negative: -0.00266
+NOEMA3D failing five CO-dust (Table 1 CO): N 5 mean -0.2352 SD 0.2666 K 0.1675
+NOEMA3D failing five CO-dust (recipe CO): N 5 mean -0.0078 SD 0.2598 K 0.1162
+  [PASS] H-A4j fail5 CO-dust Table1 mean: mine -0.2352 README -0.235 (tol 0.01)
+  [PASS] H-A4k fail5 CO-dust recipe mean: mine -0.0078 README -0.008 (tol 0.01)
+singles (stated masses, own conversions):
+  pks_CO_CI -0.628
+  pks_CO_dust -0.479
+  pks_CI_dust +0.149
+  md94_CO_dust +0.385
+  j_CO_CII -0.047
+  j_CO_dust +0.189
+  j_CII_dust +0.235
+  d49_CI_dust_bound +0.030
+  [PASS] H-A6:pks_CO_CI pks_CO_CI: mine -0.628 README -0.63 (tol 0.01)
+  [PASS] H-A6:pks_CO_dust pks_CO_dust: mine -0.4791 README -0.48 (tol 0.01)
+  [PASS] H-A6:pks_CI_dust pks_CI_dust: mine 0.1489 README 0.15 (tol 0.01)
+  [PASS] H-A6:md94_CO_dust md94_CO_dust: mine 0.3854 README 0.39 (tol 0.01)
+  [PASS] H-A6:j_CO_CII j_CO_CII: mine -0.0467 README -0.05 (tol 0.01)
+  [PASS] H-A6:j_CO_dust j_CO_dust: mine 0.1886 README 0.19 (tol 0.01)
+  [PASS] H-A6:j_CII_dust j_CII_dust: mine 0.2354 README 0.24 (tol 0.01)
+SMG log L'CI/L'CO(1-0): N 20 mean -0.696 SD 0.288 SE 0.064
+  [PASS] H-A1d SMG N: mine 20 README 20
+  [PASS] H-A7a SMG mean r: mine -0.696 README -0.7 (tol 0.01)
+  [PASS] H-A7b SMG SD r: mine 0.2881 README 0.29 (tol 0.01)
+  [PASS] H-A7c SMG SE r: mine 0.0644 README 0.064 (tol 0.01)
+  Jup=3: N 6 mean -0.894
+  [PASS] H-A7d:J3N N Jup=3: mine 6 README 6
+  [PASS] H-A7d:J3 mean Jup=3: mine -0.8939 README -0.89 (tol 0.01)
+  Jup=4: N 11 mean -0.521
+  [PASS] H-A7d:J4N N Jup=4: mine 11 README 11
+  [PASS] H-A7d:J4 mean Jup=4: mine -0.5215 README -0.52 (tol 0.01)
+  Jup=5: N 3 mean -0.940
+  [PASS] H-A7d:J5N N Jup=5: mine 3 README 3
+  [PASS] H-A7d:J5 mean Jup=5: mine -0.9403 README -0.94 (tol 0.01)
+implied alpha_CO: median 0.914 SD(log) 0.286
+  [PASS] H-A7e implied alpha median: mine 0.9136 README 0.91 (tol 0.01)
+  [PASS] H-A7f implied alpha SD log: mine 0.2856 README 0.29 (tol 0.01)
+  offset alpha_assumed 0.8: mean -0.008 SD 0.286
+  [PASS] H-A7g:0.8 SMG offset at 0.8: mine -0.0078 README -0.008 (tol 0.01)
+  offset alpha_assumed 3.6: mean 0.645 SD 0.286
+  [PASS] H-A7g:3.6 SMG offset at 3.6: mine 0.6454 README 0.645 (tol 0.01)
+  offset alpha_assumed 4.36: mean 0.729 SD 0.286
+  [PASS] H-A7g:4.36 SMG offset at 4.36: mine 0.7286 README 0.729 (tol 0.01)
+SPT [CI]2-1/1-0: N 20 mean -0.212 SD 0.207; [CII]/[CI]1-0: N 10 mean 0.269 SD 0.422
+  [PASS] H-A1e SPT rows with flux table: mine 29 README 29
+  [PASS] H-A7h SPT CI21/CI10 mean: mine -0.2123 README -0.21 (tol 0.01)
+  [PASS] H-A7i SPT CI21/CI10 SD: mine 0.2075 README 0.21 (tol 0.01)
+  [PASS] H-A7j SPT CII/CI mean: mine 0.2689 README 0.27 (tol 0.01)
+  [PASS] H-A7k SPT CII/CI SD: mine 0.4219 README 0.42 (tol 0.01)
+  [PASS] H-A7l SPT N CI21/CI10: mine 20 README 20
+  [PASS] H-A7m SPT N CII/CI: mine 10 README 10
+Kirkpatrick (beside, not independent): N 10 mean -0.069 SD 0.152
+  [PASS] H-A1f Kirkpatrick rows: mine 12 README 12
+  [PASS] H-A7n Kirkpatrick mean: mine -0.0694 README -0.069 (tol 0.01)
+  [PASS] H-A7o Kirkpatrick SD: mine 0.1519 README 0.152 (tol 0.01)
+
+== B. CFG224b joins, bins, drifts, slopes
+join ad: table 335 joined 318 unmatched 17 ambiguous 0
+  [PASS] H-B1:ad join ad: mine 318 README 318
+join dax: table 114 joined 99 unmatched 15 ambiguous 0
+  [PASS] H-B1:dax join dax: mine 99 README 99
+join xa: table 121 joined 106 unmatched 15 ambiguous 0
+  [PASS] H-B1:xa join xa: mine 106 README 106
+join xd: table 152 joined 137 unmatched 15 ambiguous 0
+  [PASS] H-B1:xd join xd: mine 137 README 137
+
+ad:aCO (alpha_CO): N=318
+  B1: N 196 mean log10 0.528 SD 0.118 SE 0.008
+  B2: N 16 mean log10 0.427 SD 0.106 SE 0.027
+  B3: N 74 mean log10 0.438 SD 0.177 SE 0.021
+  B4: N 32 mean log10 0.470 SD 0.182 SE 0.032
+  drift B2: -0.101 +- 0.028  K_direct 0.027 (below the CFG223 range) K_local 0.105 (between CFG223 and CFG221)
+  drift B3: -0.090 +- 0.022  K_direct 0.021 (below the CFG223 range) K_local 0.093 (inside the CFG223 range)
+  drift B4: -0.058 +- 0.033  K_direct 0.032 (below the CFG223 range) K_local 0.067 (inside the CFG223 range)
+  [PASS] H-B2:ad:aCO:B2 drift: mine -0.101 README -0.101 (tol 0.01)
+  [PASS] H-B2:ad:aCO:B2se drift SE: mine 0.0279 README 0.028 (tol 0.01)
+  [PASS] H-B2:ad:aCO:B3 drift: mine -0.0903 README -0.09 (tol 0.01)
+  [PASS] H-B2:ad:aCO:B3se drift SE: mine 0.0222 README 0.022 (tol 0.01)
+  [PASS] H-B2:ad:aCO:B4 drift: mine -0.0583 README -0.058 (tol 0.01)
+  [PASS] H-B2:ad:aCO:B4se drift SE: mine 0.0332 README 0.033 (tol 0.01)
+  [PASS] H-B2:ad:NB1 N B1: mine 196 README 196
+  [PASS] H-B2:ad:meanB1 mean B1: mine 0.5282 README 0.528 (tol 0.01)
+  [PASS] H-B2:ad:NB2 N B2: mine 16 README 16
+  [PASS] H-B2:ad:meanB2 mean B2: mine 0.4272 README 0.427 (tol 0.01)
+  [PASS] H-B2:ad:NB3 N B3: mine 74 README 74
+  [PASS] H-B2:ad:meanB3 mean B3: mine 0.4379 README 0.438 (tol 0.01)
+  [PASS] H-B2:ad:NB4 N B4: mine 32 README 32
+  [PASS] H-B2:ad:meanB4 mean B4: mine 0.4699 README 0.47 (tol 0.01)
+  [PASS] H-B2:ad:KdB3 K_direct: mine 0.0205 README 0.021 (tol 0.01)
+  [PASS] H-B2:ad:KlB3 K_local: mine 0.093 README 0.093 (tol 0.01)
+  [PASS] H-B2:ad:KdB4 K_direct: mine 0.0321 README 0.032 (tol 0.01)
+  [PASS] H-B2:ad:KlB4 K_local: mine 0.0671 README 0.067 (tol 0.01)
+  [PASS] H-B2:ad:KlB2 K_local: mine 0.1048 README 0.105 (tol 0.01)
+  slope WITH L_IR (seed 238): N 305 b +0.048 boot SD 0.051 [-0.051,+0.150] ols SE 0.052; c -0.060 +- 0.013
+    seed 239: b +0.048 SD 0.052 [-0.056,+0.147]
+  [PASS] H-B3 ad:aCO b +0.048 vs +0.056; SD 0.051 vs 0.05 [PASS]; edges mine [-0.051,+0.150] vs derived [-0.042,+0.154] [PASS]
+  slope WITHOUT L_IR: b -0.124 boot SD 0.032 (-3.9 sigma)
+  [PASS] H-B4 ad:aCO: b -0.124 vs -0.124, |sigma| 3.9 >= 2; SD 0.032 vs 0.032
+  [PASS] H-B5 L_IR coefficient alpha_CO ad: mine -0.0601 README -0.058 (tol 0.01)
+  [PASS] H-B5sd L_IR coeff SD: mine 0.0126 README 0.012 (tol 0.01)
+
+dax:aCO (alpha_CO): N=99
+  B1: N 57 mean log10 0.411 SD 0.107 SE 0.014
+  B2: N 8 mean log10 0.318 SD 0.109 SE 0.038
+  B3: N 22 mean log10 0.371 SD 0.164 SE 0.035
+  B4: N 12 mean log10 0.474 SD 0.141 SE 0.041
+  drift B2: -0.092 +- 0.041  K_direct 0.038 (below the CFG223 range) K_local 0.101 (between CFG223 and CFG221)
+  drift B3: -0.040 +- 0.038  K_direct 0.035 (below the CFG223 range) K_local 0.055 (inside the CFG223 range)
+  drift B4: +0.064 +- 0.043  K_direct 0.041 (below the CFG223 range) K_local 0.077 (inside the CFG223 range)
+  [PASS] H-B2:dax:aCO:B4 drift: mine 0.0637 README 0.064 (tol 0.01)
+  [PASS] H-B2:dax:aCO:B4se drift SE: mine 0.043 README 0.043 (tol 0.01)
+  slope WITH L_IR (seed 238): N 99 b +0.004 boot SD 0.071 [-0.145,+0.134] ols SE 0.076; c +0.004 +- 0.018
+    seed 239: b +0.004 SD 0.072 [-0.148,+0.137]
+  [PASS] H-B3 dax:aCO b +0.004 vs +0.004; SD 0.071 vs 0.072 [PASS]; edges mine [-0.145,+0.134] vs derived [-0.137,+0.145] [PASS]
+  slope WITHOUT L_IR: b +0.016 boot SD 0.049 (+0.3 sigma)
+
+xa:aCO (alpha_CO): N=106
+  B1: N 57 mean log10 0.357 SD 0.122 SE 0.016
+  B2: N 15 mean log10 0.348 SD 0.103 SE 0.027
+  B3: N 22 mean log10 0.391 SD 0.118 SE 0.025
+  B4: N 12 mean log10 0.461 SD 0.132 SE 0.038
+  drift B2: -0.009 +- 0.031  K_direct 0.027 (below the CFG223 range) K_local 0.032 (below the CFG223 range)
+  drift B3: +0.034 +- 0.030  K_direct 0.025 (below the CFG223 range) K_local 0.045 (below the CFG223 range)
+  drift B4: +0.104 +- 0.041  K_direct 0.038 (below the CFG223 range) K_local 0.112 (between CFG223 and CFG221)
+  [PASS] H-B2:xa:aCO:B4 drift: mine 0.1044 README 0.104 (tol 0.01)
+  [PASS] H-B2:xa:aCO:B4se drift SE: mine 0.0413 README 0.041 (tol 0.01)
+  slope WITH L_IR (seed 238): N 106 b -0.002 boot SD 0.067 [-0.142,+0.119] ols SE 0.067; c +0.039 +- 0.017
+    seed 239: b -0.002 SD 0.067 [-0.145,+0.118]
+  [PASS] H-B3 xa:aCO b -0.002 vs -0.002; SD 0.067 vs 0.066 [PASS]; edges mine [-0.142,+0.119] vs derived [-0.131,+0.127] [PASS]
+  slope WITHOUT L_IR: b +0.110 boot SD 0.042 (+2.6 sigma)
+
+dax:XCI (X_CI): N=99
+  B1: N 57 mean log10 -4.876 SD 0.141 SE 0.019
+  B2: N 8 mean log10 -4.863 SD 0.169 SE 0.060
+  B3: N 22 mean log10 -4.783 SD 0.096 SE 0.021
+  B4: N 12 mean log10 -4.741 SD 0.122 SE 0.035
+  drift B2: +0.013 +- 0.062  K_direct 0.060 (inside the CFG223 range) K_local 0.064 (inside the CFG223 range)
+  drift B3: +0.093 +- 0.028  K_direct 0.021 (below the CFG223 range) K_local 0.097 (inside the CFG223 range)
+  drift B4: +0.135 +- 0.040  K_direct 0.035 (below the CFG223 range) K_local 0.141 (between CFG223 and CFG221)
+  [PASS] H-B2:dax:XCI:B4 drift: mine 0.1348 README 0.135 (tol 0.01)
+  [PASS] H-B2:dax:XCI:B4se drift SE: mine 0.04 README 0.04 (tol 0.01)
+  slope WITH L_IR (seed 238): N 99 b -0.039 boot SD 0.079 [-0.205,+0.104] ols SE 0.071; c +0.076 +- 0.020
+    seed 239: b -0.039 SD 0.081 [-0.215,+0.103]
+  [PASS] H-B3 dax:XCI b -0.039 vs -0.039; SD 0.079 vs 0.08 [PASS]; edges mine [-0.205,+0.104] vs derived [-0.196,+0.118] [PASS]
+  slope WITHOUT L_IR: b +0.181 boot SD 0.043 (+4.2 sigma)
+  [PASS] H-B4 dax:XCI: b +0.181 vs +0.181, |sigma| 4.2 >= 2; SD 0.043 vs 0.043
+
+xa:XCI (X_CI): N=106
+  B1: N 57 mean log10 -4.822 SD 0.097 SE 0.013
+  B2: N 15 mean log10 -4.872 SD 0.108 SE 0.028
+  B3: N 22 mean log10 -4.804 SD 0.090 SE 0.019
+  B4: N 12 mean log10 -4.728 SD 0.104 SE 0.030
+  drift B2: -0.050 +- 0.031  K_direct 0.028 (below the CFG223 range) K_local 0.058 (inside the CFG223 range)
+  drift B3: +0.019 +- 0.023  K_direct 0.019 (below the CFG223 range) K_local 0.030 (below the CFG223 range)
+  drift B4: +0.094 +- 0.033  K_direct 0.030 (below the CFG223 range) K_local 0.100 (inside the CFG223 range)
+  [PASS] H-B2:xa:XCI:B4 drift: mine 0.094 README 0.094 (tol 0.01)
+  slope WITH L_IR (seed 238): N 106 b -0.026 boot SD 0.063 [-0.164,+0.086] ols SE 0.057; c +0.037 +- 0.015
+    seed 239: b -0.026 SD 0.063 [-0.165,+0.084]
+  [PASS] H-B3 xa:XCI b -0.026 vs -0.026; SD 0.063 vs 0.064 [PASS]; edges mine [-0.164,+0.086] vs derived [-0.151,+0.099] [PASS]
+  slope WITHOUT L_IR: b +0.081 boot SD 0.035 (+2.3 sigma)
+
+xd:XCI (X_CI): N=137
+  B1: N 62 mean log10 -4.856 SD 0.131 SE 0.017
+  B2: N 22 mean log10 -4.816 SD 0.133 SE 0.028
+  B3: N 27 mean log10 -4.766 SD 0.108 SE 0.021
+  B4: N 26 mean log10 -4.806 SD 0.135 SE 0.026
+  drift B2: +0.040 +- 0.033  K_direct 0.028 (below the CFG223 range) K_local 0.052 (inside the CFG223 range)
+  drift B3: +0.090 +- 0.027  K_direct 0.021 (below the CFG223 range) K_local 0.094 (inside the CFG223 range)
+  drift B4: +0.051 +- 0.031  K_direct 0.026 (below the CFG223 range) K_local 0.059 (inside the CFG223 range)
+  [PASS] H-B2:xd:XCI:B4 drift: mine 0.0506 README 0.051 (tol 0.01)
+  slope WITH L_IR (seed 238): N 137 b -0.104 boot SD 0.064 [-0.232,+0.020] ols SE 0.059; c +0.079 +- 0.018
+    seed 239: b -0.104 SD 0.065 [-0.233,+0.020]
+  [PASS] H-B3 xd:XCI b -0.104 vs -0.104; SD 0.064 vs 0.066 [PASS]; edges mine [-0.232,+0.020] vs derived [-0.233,+0.025] [PASS]
+  slope WITHOUT L_IR: b +0.109 boot SD 0.038 (+2.8 sigma)
+
+ad:kappaH (kappa_H): N=318
+  B1: N 196 mean log10 3.228 SD 0.112 SE 0.008
+  B2: N 16 mean log10 3.312 SD 0.099 SE 0.025
+  B3: N 74 mean log10 3.313 SD 0.154 SE 0.018
+  B4: N 32 mean log10 3.288 SD 0.149 SE 0.026
+  drift B2: +0.084 +- 0.026  K_direct 0.025 (below the CFG223 range) K_local 0.088 (inside the CFG223 range)
+  drift B3: +0.085 +- 0.020  K_direct 0.018 (below the CFG223 range) K_local 0.087 (inside the CFG223 range)
+  drift B4: +0.060 +- 0.028  K_direct 0.026 (below the CFG223 range) K_local 0.066 (inside the CFG223 range)
+  [PASS] H-B2:ad:kappaH:B2 drift: mine 0.0837 README 0.084 (tol 0.01)
+  [PASS] H-B2:ad:kappaH:B3 drift: mine 0.0849 README 0.085 (tol 0.01)
+  [PASS] H-B2:ad:kappaH:B4 drift: mine 0.0599 README 0.06 (tol 0.01)
+  slope WITH L_IR (seed 238): N 305 b -0.049 boot SD 0.044 [-0.136,+0.035] ols SE 0.047; c +0.057 +- 0.011
+    seed 239: b -0.049 SD 0.044 [-0.134,+0.037]
+  [PASS] H-B3 ad:kappaH b -0.049 vs -0.056; SD 0.044 vs 0.042 [PASS]; edges mine [-0.136,+0.035] vs derived [-0.138,+0.026] [PASS]
+  slope WITHOUT L_IR: b +0.117 boot SD 0.027 (+4.3 sigma)
+  [PASS] H-B4 ad:kappaH: b +0.117 vs +0.117, |sigma| 4.3 >= 2; SD 0.027 vs 0.028
+
+dax:GDR (GDR): N=99
+  B1: N 57 mean log10 3.207 SD 0.134 SE 0.018
+  B2: N 8 mean log10 3.353 SD 0.087 SE 0.031
+  B3: N 22 mean log10 3.377 SD 0.193 SE 0.041
+  B4: N 12 mean log10 3.297 SD 0.102 SE 0.029
+  drift B2: +0.146 +- 0.035  K_direct 0.031 (below the CFG223 range) K_local 0.151 (at or above the CFG221 requirement)
+  drift B3: +0.170 +- 0.045  K_direct 0.041 (below the CFG223 range) K_local 0.176 (at or above the CFG221 requirement)
+  drift B4: +0.091 +- 0.034  K_direct 0.029 (below the CFG223 range) K_local 0.097 (inside the CFG223 range)
+  [PASS] H-B2:dax:GDR:B2 drift: mine 0.1465 README 0.146 (tol 0.01)
+  [PASS] H-B2:dax:GDR:B3 drift: mine 0.17 README 0.17 (tol 0.01)
+  [PASS] H-B2:dax:GDR:B4 drift: mine 0.0908 README 0.091 (tol 0.01)
+  slope WITH L_IR (seed 238): N 99 b -0.025 boot SD 0.079 [-0.184,+0.125] ols SE 0.080; c +0.083 +- 0.022
+    seed 239: b -0.025 SD 0.080 [-0.189,+0.124]
+  [PASS] H-B3 dax:GDR b -0.025 vs -0.025; SD 0.079 vs 0.078 [PASS]; edges mine [-0.184,+0.125] vs derived [-0.178,+0.128] [PASS]
+  slope WITHOUT L_IR: b +0.216 boot SD 0.053 (+4.1 sigma)
+  [PASS] H-B4 dax:GDR: b +0.216 vs +0.216, |sigma| 4.1 >= 2; SD 0.053 vs 0.052
+
+xd:GDR (GDR): N=137
+  B1: N 62 mean log10 3.211 SD 0.141 SE 0.018
+  B2: N 22 mean log10 3.282 SD 0.092 SE 0.020
+  B3: N 27 mean log10 3.340 SD 0.145 SE 0.028
+  B4: N 26 mean log10 3.284 SD 0.128 SE 0.025
+  drift B2: +0.070 +- 0.027  K_direct 0.020 (below the CFG223 range) K_local 0.075 (inside the CFG223 range)
+  drift B3: +0.128 +- 0.033  K_direct 0.028 (below the CFG223 range) K_local 0.133 (between CFG223 and CFG221)
+  drift B4: +0.072 +- 0.031  K_direct 0.025 (below the CFG223 range) K_local 0.078 (inside the CFG223 range)
+  [PASS] H-B2:xd:GDR:B2 drift: mine 0.0704 README 0.07 (tol 0.01)
+  [PASS] H-B2:xd:GDR:B3 drift: mine 0.1284 README 0.128 (tol 0.01)
+  [PASS] H-B2:xd:GDR:B4 drift: mine 0.0722 README 0.072 (tol 0.01)
+  slope WITH L_IR (seed 238): N 137 b -0.084 boot SD 0.064 [-0.214,+0.040] ols SE 0.061; c +0.088 +- 0.020
+    seed 239: b -0.084 SD 0.064 [-0.213,+0.039]
+  [PASS] H-B3 xd:GDR b -0.084 vs -0.084; SD 0.064 vs 0.066 [PASS]; edges mine [-0.214,+0.040] vs derived [-0.213,+0.045] [PASS]
+  slope WITHOUT L_IR: b +0.154 boot SD 0.041 (+3.8 sigma)
+
+== C. ACE offset to Stripe82 (peer's frozen definition)
+  [PASS] H-B1:ACE ACE both-detected N: mine 15 README 15
+ACE R: N 15 mean -2.369 SD 0.179; mean 12+logOH 8.461 (8.29-8.61)
+  [PASS] H-B6a ACE R mean: mine -2.3689 README -2.37 (tol 0.01)
+  [PASS] H-B6b ACE R SD: mine 0.1794 README 0.18 (tol 0.01)
+S82 OLS R = a + b Z: a 2.449 b -0.490 +- 0.376 (analytic 0.328) residual SD 0.141; N 78; Z range 8.65-8.86, mean 8.769
+  [PASS] H-B7a S82 OLS slope: mine -0.4902 README -0.49 (tol 0.03)
+  [MISS] H-B7b S82 OLS slope SD: mine 0.3756 README 0.33 (tol 0.03)
+  offset OLS: -0.671  K(SE ACE only) 0.339  K(SE incl S82 residual) 0.339
+  [PASS] H-B6:OLS offset OLS (sign: ACE below): mine -0.6709 README -0.67 (tol 0.01)
+  offset slope 0: -0.520  K(SE ACE only) 0.264  K(SE incl S82 residual) 0.265
+  [PASS] H-B6:slope 0 offset slope 0 (sign: ACE below): mine -0.5203 README -0.52 (tol 0.01)
+  offset slope +1: -0.213  K(SE ACE only) 0.116  K(SE incl S82 residual) 0.117
+  [PASS] H-B6:slope +1 offset slope +1 (sign: ACE below): mine -0.213 README -0.21 (tol 0.01)
+  [PASS] H-B6:K_ols K OLS: mine 0.3386 README 0.34 (tol 0.01)
+  [PASS] H-B6:K_0 K slope 0: mine 0.2642 README 0.26 (tol 0.01)
+  [PASS] H-B6:K_p1 K slope +1: mine 0.1162 README 0.11 (tol 0.01)
+
+== D. Controls
+[PASS] C1 counts (H-A1*, H-B1*) all equal
+[PASS] C2 estimator identity: mean 0.0948 SD 0.1487 SE 0.0066 boot half-width 0.0068
+[PASS] C3 bootstrap 68% coverage {9: 0.622, 14: 0.642, 40: 0.642, 78: 0.666} (K=2000 mocks, B=1000)
+[PASS] C4 planted (b,c)=(0.30,-0.10) recovered b 0.278 c -0.096 (boot SD 0.050, 0.014); null (0,-0.06): |b/SE|<2 in 0.961 of 2000
+[PASS] C5 hat recovery N=300: [0.108, 0.161, 0.195] vs [0.1, 0.15, 0.2]
+[INFO] C5b N=5 mock truth (0.10,0.10,0.10): fraction with at least one negative variance 0.469; each 0.157
+[INFO] C8b dust detections by table: 2609.20926 flags 17; 2609.21040 flags 18
+[FAIL] C8 ACE flags: rows 26 CO det 17 dust det 17 both 15 z (2.086, 2.494)
+[PASS] C9 no ambiguous join, no duplicated name in any table
+
+SUMMARY pass lines: 145 PASS / 1 MISS of 146; controls 6/7 pass

@@ -1,0 +1,87 @@
+# CFG238 attack b (identity, raw-ratio slopes, shuffle control, toy optimiser, per-galaxy errors, cross-table differences)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+
+== 1. Identity: is each catalogue mass exactly (factor x luminosity)?  residual = logMH2 - (log factor + log L)
+  ad CO: logMH2 - (log aCO + logLCO): N 335 median -0.0000 SD 0.0811 fraction within 0.01 of the median 0.964
+  ad CO with +JCorr (log): N 335 median -0.0001 SD 0.0003 fraction within 0.01 of the median 1.000
+  ad CO with -JCorr (log): N 335 median -0.0000 SD 0.1621 fraction within 0.01 of the median 0.964
+  JCorr nonzero rows in ad: 12; residual (no J) on those rows: mean +0.4039, SD 0.1597; on J=0 rows: SD 0.00032
+  ad dust: logMH2 - (logL850 - loga850): N 335 median -0.1340 SD 0.0005 fraction within 0.01 of the median 1.000
+  log10(1.36) = 0.1335 (the He factor the dust residual is expected to equal if alpha_850 includes He)
+  dax CO: logMH2 - (log aCO + logLCO): N 99 median +0.0000 SD 0.1438 fraction within 0.01 of the median 0.879
+  dax CO: logMH2 - (log aCO + logLCO + JCorr): N 99 median -0.0001 SD 0.0003 fraction within 0.01 of the median 1.000
+  dax CI: logMH2 - (log aCI + logLCI): N 99 median -0.1340 SD 0.1441 fraction within 0.01 of the median 0.869
+  dax CI: logMH2 - (log aCI + logLCI + JCorr): N 99 median -0.1340 SD 0.0151 fraction within 0.01 of the median 0.990
+  dax dust: logMH2 - (logL850py - log a850): N 99 median -0.1340 SD 0.0520 fraction within 0.01 of the median 0.949
+  xa CO: logMH2 - (log aCO + logLCO): N 106 median +0.0001 SD 0.1394 fraction within 0.01 of the median 0.887
+  xa CO: logMH2 - (log aCO + logLCO + JCorr): N 106 median -0.0001 SD 0.0003 fraction within 0.01 of the median 1.000
+  xa CI: logMH2 - (log aCI + logLCI): N 106 median -0.1330 SD 0.1397 fraction within 0.01 of the median 0.877
+  xa CI: logMH2 - (log aCI + logLCI + JCorr): N 106 median -0.1340 SD 0.0145 fraction within 0.01 of the median 0.991
+  xd CI: logMH2 - (log aCI + logLCI): N 137 median -0.1340 SD 0.1240 fraction within 0.01 of the median 0.912
+  xd CI: logMH2 - (log aCI + logLCI + JCorr): N 137 median -0.1340 SD 0.0005 fraction within 0.01 of the median 1.000
+  xd dust: logMH2 - (logL850 - log asub): N 137 median -0.1340 SD 0.0005 fraction within 0.01 of the median 1.000
+  [PASS] H-C7a ad CO identity SD with JCorr added (frozen D10 variant) 0.00032 < 0.01; without JCorr 0.0811 (fails on the 12 rows with JCorr != 0)
+  [PASS] H-C7b ad dust identity SD 0.00049 < 0.01 (constant offset allowed)
+
+== 2. Raw luminosity ratios versus z at fixed L_IR (no conversion, no optimisation) and the optimised-factor slopes
+  ad raw log(L850/L'CO) WITHOUT the JCorr line correction: with L_IR b +0.119 +- 0.082 (the 12 JCorr rows move the slope by +0.047)
+  ad raw log(L850/L'CO): N 318 with L_IR b +0.072 +- 0.081; without L_IR b -0.001 +- 0.051
+  ad log alpha_CO (opt): N 318 with L_IR b +0.056 +- 0.050; without L_IR b -0.124 +- 0.032
+  ad log alpha_850 (opt): N 318 with L_IR b +0.016 +- 0.037; without L_IR b +0.123 +- 0.022
+  identity check of slopes: slope(alpha_CO) + slope(alpha_850) = +0.072050 vs slope(raw ratio, line luminosity with JCorr) = +0.072271 (difference -2.21e-04; He constant absorbed)
+  prior share: slope(alpha_CO)/slope(raw) = 0.78
+  raw ratio with JCorr == 0 only: N 306 b +0.087 +- 0.080
+  xd raw log(L'CI/L850): N 137 with L_IR b -0.127 +- 0.117
+  master raw log(CI/CO): N 125 with L_IR b -0.282 +- 0.689 (-0.4 sigma); without b +0.746 +- 0.450
+  master raw log(850/CO): N 329 with L_IR b -0.200 +- 0.349 (-0.6 sigma); without b -0.597 +- 0.251
+  master raw log(850/CI): N 154 with L_IR b +0.113 +- 0.113 (+1.0 sigma); without b -0.126 +- 0.067
+  [PASS] H-C9a raw ratio slope +0.072 +- 0.081 (+0.90 sigma)
+  [PASS] H-C9b raw-ratio slope SE 0.081 in [0.04, 0.10]
+  [PASS] H-C9c |slope alpha_CO| 0.056 <= |slope raw| 0.072
+
+== 3. Shuffle control (random partner tracer at matched L_IR) and the toy optimiser
+  ad: log(L850/L'CO): N 318; within-L_IR-bin SD real 0.233; shuffled-partner (300 shuffles, seed 2386) mean 0.448 (2.5-97.5%: 0.418-0.470); fully random partner 0.844; ratio real/shuffled 0.52
+  xd: log(L'CI/L850): N 137; within-L_IR-bin SD real 0.236; shuffled-partner (300 shuffles, seed 2386) mean 0.471 (2.5-97.5%: 0.426-0.507); fully random partner 0.868; ratio real/shuffled 0.50
+  [PASS] H-C8a ad real within-bin SD 0.233 in [0.15, 0.30]
+  [PASS] H-C8b ad real/shuffled 0.52 < 0.8
+  toy w=0.25: max |mass_a - mass_b| 0.0e+00; relative drift 0.20 per unit x in tracer a -> factor-a slope -0.0500 (expect -0.0500), factor-b slope +0.1500 (expect +0.1500); common-mode 0.30/x on both: factor slopes +3.5e-17, -1.1e-16; mass slopes +0.300
+  toy w=0.5: max |mass_a - mass_b| 0.0e+00; relative drift 0.20 per unit x in tracer a -> factor-a slope -0.1000 (expect -0.1000), factor-b slope +0.1000 (expect +0.1000); common-mode 0.30/x on both: factor slopes +2.5e-17, -2.5e-17; mass slopes +0.300
+  toy w=0.75: max |mass_a - mass_b| 0.0e+00; relative drift 0.20 per unit x in tracer a -> factor-a slope -0.1500 (expect -0.1500), factor-b slope +0.0500 (expect +0.0500); common-mode 0.30/x on both: factor slopes -1.4e-16, +4.7e-17; mass slopes +0.300
+[PASS] C6 toy optimiser: masses agree to <1e-12 for any input; a relative drift d appears as -w d and (1-w) d; a common-mode drift shifts the masses but not the factors
+
+== 4. Per-galaxy uncertainty: catalogue e_logMH2 and factor scatter by z bin
+  ad B1: N 196 median e_logMH2 0.110  share <= 0.10: 0.01  84th pct 0.116
+  ad B2: N 16 median e_logMH2 0.107  share <= 0.10: 0.06  84th pct 0.117
+  ad B3: N 74 median e_logMH2 0.107  share <= 0.10: 0.12  84th pct 0.114
+  ad B4: N 32 median e_logMH2 0.108  share <= 0.10: 0.06  84th pct 0.112
+  dax B1: N 57 median e_logMH2 0.083  share <= 0.10: 1.00  84th pct 0.087
+  dax B2: N 8 median e_logMH2 0.089  share <= 0.10: 0.88  84th pct 0.097
+  dax B3: N 22 median e_logMH2 0.083  share <= 0.10: 1.00  84th pct 0.087
+  dax B4: N 12 median e_logMH2 0.087  share <= 0.10: 1.00  84th pct 0.091
+  xa B1: N 57 median e_logMH2 0.100  share <= 0.10: 0.53  84th pct 0.111
+  xa B2: N 15 median e_logMH2 0.111  share <= 0.10: 0.20  84th pct 0.139
+  xa B3: N 22 median e_logMH2 0.099  share <= 0.10: 0.64  84th pct 0.106
+  xa B4: N 12 median e_logMH2 0.106  share <= 0.10: 0.17  84th pct 0.117
+  xd B1: N 62 median e_logMH2 0.098  share <= 0.10: 0.65  84th pct 0.106
+  xd B2: N 22 median e_logMH2 0.104  share <= 0.10: 0.32  84th pct 0.124
+  xd B3: N 27 median e_logMH2 0.098  share <= 0.10: 0.56  84th pct 0.109
+  xd B4: N 26 median e_logMH2 0.104  share <= 0.10: 0.27  84th pct 0.112
+  SD of log aCO (ad) per bin: B1 0.118, B2 0.106, B3 0.177, B4 0.182
+  SD of log aCO (dax) per bin: B1 0.107, B2 0.109, B3 0.164, B4 0.141
+  SD of log aCO (xa) per bin: B1 0.122, B2 0.103, B3 0.118, B4 0.132
+  SD of log XCI (dax) per bin: B1 0.141, B2 0.169, B3 0.096, B4 0.122
+  SD of log XCI (xa) per bin: B1 0.097, B2 0.108, B3 0.090, B4 0.104
+  SD of log XCI (xd) per bin: B1 0.131, B2 0.133, B3 0.108, B4 0.135
+  SD of log kappaH (ad) per bin: B1 0.112, B2 0.099, B3 0.154, B4 0.149
+  SD of log GDR (dax) per bin: B1 0.134, B2 0.087, B3 0.193, B4 0.102
+  SD of log GDR (xd) per bin: B1 0.141, B2 0.092, B3 0.145, B4 0.128
+  [PASS] H-C10a median e_logMH2 per (table, bin) in [0.07, 0.13]: {'ad:B1': 0.11, 'ad:B2': 0.107, 'ad:B3': 0.107, 'ad:B4': 0.108, 'dax:B1': 0.083, 'dax:B2': 0.089, 'dax:B3': 0.083, 'dax:B4': 0.087, 'xa:B1': 0.1, 'xa:B2': 0.111, 'xa:B3': 0.099, 'xa:B4': 0.106, 'xd:B1': 0.098, 'xd:B2': 0.104, 'xd:B3': 0.098, 'xd:B4': 0.104}
+  [MISS] H-C10b SD of log aCO (ad) per bin {'B1': 0.118, 'B2': 0.106, 'B3': 0.177, 'B4': 0.182} within 0.14 +- 0.03
+  claim check: per-galaxy uncertainty above 0.10 dex in any (table, bin)? ['ad:B1', 'ad:B2', 'ad:B3', 'ad:B4', 'xa:B2', 'xa:B4', 'xd:B2', 'xd:B4']
+
+== 5. Cross-table differences for the same galaxy (the three optimisation routes)
+  alpha_CO: log(dax/ad) N 99 mean -0.041 SD 0.084; slope vs log10(1+z) +0.118 +- 0.026; by bin (N, mean) {'B1': (57, -0.06825787241439528), 'B2': (8, -0.029216593363012324), 'B3': (22, -0.004060370154736414), 'B4': (12, 0.01025617765792855)}
+  alpha_CO: log(dax/xa) N 99 mean +0.025 SD 0.078; slope vs log10(1+z) -0.097 +- 0.026; by bin (N, mean) {'B1': (57, 0.05370191302589065), 'B2': (8, -0.037724175258254784), 'B3': (22, -0.020356851636498623), 'B4': (12, 0.012982480076950256)}
+  alpha_CO: log(xa/ad) N 99 mean -0.066 SD 0.150; slope vs log10(1+z) +0.215 +- 0.047; by bin (N, mean) {'B1': (57, -0.1219597854402859), 'B2': (8, 0.008507581895242464), 'B3': (22, 0.016296481481762208), 'B4': (12, -0.002726302419021706)}
+  X_CI: log(dax/xa) N 99 mean -0.025 SD 0.078; slope vs log10(1+z) +0.098 +- 0.026; by bin (N, mean) {'B1': (57, -0.053745876034805504), 'B2': (8, 0.037732163153441856), 'B3': (22, 0.020370806838991153), 'B4': (12, -0.0129736850720202)}
+  X_CI: log(xd/dax) N 99 mean +0.013 SD 0.058; slope vs log10(1+z) -0.006 +- 0.021; by bin (N, mean) {'B1': (57, 0.007610498871637661), 'B2': (8, 0.06307079164471796), 'B3': (22, 0.026730225380276484), 'B4': (12, -0.0229538475886731)}

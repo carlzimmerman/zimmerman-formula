@@ -1,0 +1,11 @@
+# CFG238 MUTATE M1
+repo=<repo> scratch=<scratch> ext=<ext> mutate=1
+M1: add 0.25 log10(1+z) to every log alpha_CO of the ad and daX tables
+ ('ad', 'aCO'): b +0.056180 -> +0.306180 (shift +0.250000000; OLS linearity predicts +0.25); SD 0.050; |b/SD| 6.2; c unchanged: True
+  [BITE (line fails)] slope-consistent-with-zero:('ad', 'aCO'): |b/SD| = 6.2 >= 2
+ ('dax', 'aCO'): b +0.004470 -> +0.254470 (shift +0.250000000; OLS linearity predicts +0.25); SD 0.070; |b/SD| 3.7; c unchanged: True
+  [BITE (line fails)] slope-consistent-with-zero:('dax', 'aCO'): |b/SD| = 3.7 >= 2
+  [BITE (line fails)] identity-residual-SD<0.01: ad CO identity SD 0.00031 -> 0.0693 with the injected factor drift
+
+M1: lines that fail as frozen (bites): ["slope-consistent-with-zero:('ad', 'aCO')", "slope-consistent-with-zero:('dax', 'aCO')", 'identity-residual-SD<0.01']; lines expected to hold that failed: []
+M1 control BITES (exit 1)

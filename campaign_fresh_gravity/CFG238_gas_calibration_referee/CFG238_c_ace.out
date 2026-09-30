@@ -1,0 +1,87 @@
+# CFG238 attack c (ACE offset: slope, range, prescriptions, conversion-free ratio, internal consistency)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+ACE N 15: R mean -2.369 SD 0.179; Z mean 8.461 range 8.29-8.61
+Stripe82 N 78: R mean -1.849; Z mean 8.769 range 8.65-8.86; OLS slope -0.490 (analytic SE 0.328, bootstrap SD 0.376), residual SD 0.141
+EXTRAPOLATION: fraction of ACE galaxies with 12+log(O/H) below the lowest Stripe82 value (8.65): 1.00; ACE mean is 0.19 dex below the lowest S82 galaxy; S82 covers 0.21 dex, ACE covers 0.32 dex
+
+== 1. Offset and K against the assumed metallicity slope s of the local relation (S82 mean intercept)
+  s=OLS: offset -0.671  K 0.339 [at or above the CFG221 requirement]
+  s=0.0: offset -0.520  K 0.264 [at or above the CFG221 requirement]
+  s=0.5: offset -0.367  K 0.189 [at or above the CFG221 requirement]
+  s=0.85: offset -0.259  K 0.138 [between CFG223 and CFG221]
+  s=1.0: offset -0.213  K 0.116 [between CFG223 and CFG221]
+  s=1.2: offset -0.152  K 0.089 [inside the CFG223 range]
+  s=1.7: offset +0.002  K 0.046 [below the CFG223 range]
+  s=2.0: offset +0.094  K 0.066 [inside the CFG223 range]
+  algebra check Delta(s) = Delta(0) + s x (Zbar_S82 - Zbar_ACE): slope coefficient 0.3073; Delta(1) -0.2130 vs -0.2130; zero crossing s = 1.693
+  S82 OLS slope -0.49 differs from 0.85 (Leroy+11 (Stripe82's own dust-to-gas, eq.13)) by 4.1 sigma (analytic) / 3.6 sigma (bootstrap)
+  S82 OLS slope -0.49 differs from 1.0 (proportional to Z) by 4.5 sigma (analytic) / 4.0 sigma (bootstrap)
+  S82 OLS slope -0.49 differs from 1.2 (ACE's own slope) by 5.2 sigma (analytic) / 4.5 sigma (bootstrap)
+  [PASS] H-C12a s=1.2 offset -0.152 (estimate -0.15), K 0.089 (estimate 0.09)
+  [PASS] H-C12b zero crossing 1.69 (estimate 1.68)
+  [PASS] H-C13a S82 OLS slope negative and > 4 sigma below +1: -4.5 sigma (analytic)
+  S82 subsample Z <= 8.85: N 77 OLS slope -0.65 +- 0.33 (boot 0.36); offset to ACE -0.717 K 0.361
+  S82 subsample Z >= 8.70: N 72 OLS slope -0.67 +- 0.39 (boot 0.46); offset to ACE -0.732 K 0.369
+  S82 subsample Z >= 8.75: N 53 OLS slope +0.09 +- 0.67 (boot 0.74); offset to ACE -0.470 K 0.240
+  [PASS] H-C13b slope for Z >= 8.70 is -0.67 (estimate: still negative)
+
+== 2. ACE internal consistency and recipe recomputation
+  M_mol (table 2609.20926 'logMmol') vs M_mol (table 2609.21072): N 15 median |diff| 0.003 max 0.005
+  M_dust (2609.20926) vs M_dust (2609.21040): N 15 median |diff| 0.002 max 0.006; signed mean +0.001
+  [PASS] H-C14a median |diff| of the two M_mol tables 0.003 <= 0.05
+  [PASS] H-C14b median |diff| of the two M_dust tables 0.002 <= 0.10
+  implied alpha_CO (from file M_mol, r31 = 0.77, L'CO32): median 11.21; log alpha implied minus Accurso(no Delta MS): mean +0.128 SD 0.019 (the Delta MS term is 0.062 log Delta MS)
+  [post hoc] log alpha implied minus (Accurso no Delta MS + log 1.36): mean -0.005 SD 0.019: the file's alpha_CO equals the Accurso formula times the He factor 1.36 (log 1.36 = 0.1335) to 0.01 dex on average
+  recompute M_dust from logLnu873, T_d = 25 K, beta = 2.08, kappa = 0.4 m2/kg at 250 um (rest = obs x (1+z)): mine - file median -0.011 SD 0.005
+  recompute M_dust from logLnu873, T_d = 25 K, beta = 2.08, kappa = 0.4 m2/kg at 250 um (rest = obs): mine - file median +1.713 SD 0.050
+  [PASS] H-C15 best recipe (rest = obs x (1+z)): median difference -0.011, SD 0.005 (estimate: within 0.05 median)
+  kappa_850 equivalent of the ACE kappa (0.4 m2/kg at 250 um, beta 2.08): 0.0314 m2/kg; Dunne+22 0.071, Bourne+19 0.077 -> mass-scale difference 0.35 / 0.39 dex
+
+== 3. Prescription swap: ACE-minus-Stripe82 offset (R_ACE' - local relation) under alternative ACE alpha_CO and dust recipes (Stripe82 side unchanged)
+  cells: alpha_CO variant x dust variant -> offsets at slope OLS / 0 / +1 (negative = ACE below Stripe82)
+   file (Accurso + Delta MS)              | T=25 K, kappa_ACE (file)     | OLS -0.671  s0 -0.520  s+1 -0.213
+   file (Accurso + Delta MS)              | T=20 K, kappa_ACE            | OLS -0.411  s0 -0.261  s+1 +0.047
+   file (Accurso + Delta MS)              | T=30 K, kappa_ACE            | OLS -0.854  s0 -0.703  s+1 -0.396
+   file (Accurso + Delta MS)              | T=35 K, kappa_ACE            | OLS -0.992  s0 -0.842  s+1 -0.535
+   file (Accurso + Delta MS)              | T=25 K, kappa_850 = 0.071    | OLS -1.025  s0 -0.875  s+1 -0.568
+   file (Accurso + Delta MS)              | T=25 K, kappa_850 = 0.077    | OLS -1.061  s0 -0.910  s+1 -0.603
+   Accurso, no Delta MS                   | T=25 K, kappa_ACE (file)     | OLS -0.543  s0 -0.392  s+1 -0.085
+   Accurso, no Delta MS                   | T=20 K, kappa_ACE            | OLS -0.283  s0 -0.132  s+1 +0.175
+   Accurso, no Delta MS                   | T=30 K, kappa_ACE            | OLS -0.726  s0 -0.575  s+1 -0.268
+   Accurso, no Delta MS                   | T=35 K, kappa_ACE            | OLS -0.864  s0 -0.713  s+1 -0.406
+   Accurso, no Delta MS                   | T=25 K, kappa_850 = 0.071    | OLS -0.897  s0 -0.747  s+1 -0.439
+   Accurso, no Delta MS                   | T=25 K, kappa_850 = 0.077    | OLS -0.932  s0 -0.782  s+1 -0.475
+   Accurso x 1.36 (He), no Delta MS [post | T=25 K, kappa_ACE (file)     | OLS -0.676  s0 -0.526  s+1 -0.218
+   Accurso x 1.36 (He), no Delta MS [post | T=20 K, kappa_ACE            | OLS -0.417  s0 -0.266  s+1 +0.041
+   Accurso x 1.36 (He), no Delta MS [post | T=30 K, kappa_ACE            | OLS -0.859  s0 -0.708  s+1 -0.401
+   Accurso x 1.36 (He), no Delta MS [post | T=35 K, kappa_ACE            | OLS -0.998  s0 -0.847  s+1 -0.540
+   Accurso x 1.36 (He), no Delta MS [post | T=25 K, kappa_850 = 0.071    | OLS -1.031  s0 -0.880  s+1 -0.573
+   Accurso x 1.36 (He), no Delta MS [post | T=25 K, kappa_850 = 0.077    | OLS -1.066  s0 -0.915  s+1 -0.608
+   constant 4.35 (MW incl. He)            | T=25 K, kappa_ACE (file)     | OLS -0.238  s0 -0.087  s+1 +0.220
+   constant 4.35 (MW incl. He)            | T=20 K, kappa_ACE            | OLS +0.022  s0 +0.172  s+1 +0.479
+   constant 4.35 (MW incl. He)            | T=30 K, kappa_ACE            | OLS -0.421  s0 -0.270  s+1 +0.037
+   constant 4.35 (MW incl. He)            | T=35 K, kappa_ACE            | OLS -0.559  s0 -0.409  s+1 -0.102
+   constant 4.35 (MW incl. He)            | T=25 K, kappa_850 = 0.071    | OLS -0.593  s0 -0.442  s+1 -0.135
+   constant 4.35 (MW incl. He)            | T=25 K, kappa_850 = 0.077    | OLS -0.628  s0 -0.477  s+1 -0.170
+   G12-like 4.35 x 10^(-1.3 (Z-8.67)) [fr | T=25 K, kappa_ACE (file)     | OLS -0.509  s0 -0.359  s+1 -0.051
+   G12-like 4.35 x 10^(-1.3 (Z-8.67)) [fr | T=20 K, kappa_ACE            | OLS -0.250  s0 -0.099  s+1 +0.208
+   G12-like 4.35 x 10^(-1.3 (Z-8.67)) [fr | T=30 K, kappa_ACE            | OLS -0.692  s0 -0.542  s+1 -0.234
+   G12-like 4.35 x 10^(-1.3 (Z-8.67)) [fr | T=35 K, kappa_ACE            | OLS -0.831  s0 -0.680  s+1 -0.373
+   G12-like 4.35 x 10^(-1.3 (Z-8.67)) [fr | T=25 K, kappa_850 = 0.071    | OLS -0.864  s0 -0.713  s+1 -0.406
+   G12-like 4.35 x 10^(-1.3 (Z-8.67)) [fr | T=25 K, kappa_850 = 0.077    | OLS -0.899  s0 -0.748  s+1 -0.441
+  range of the offset across the 30 prescription cells: OLS -1.066 to +0.022 (span 1.09); slope 0 -0.915 to +0.172 (span 1.09); slope +1 -0.608 to +0.479 (span 1.09)
+  constant-MW alpha_CO only (dust as in the file): offset to S82 mean -0.087 (frozen comparison: -0.520)
+  [PASS] H-C11 ACE with constant MW alpha_CO: offset to S82 mean -0.087 (estimate: shrinks below 0.30 from 0.52)
+  disagreement (i): offset moves by more than 0.3 dex across the prescription swaps at fixed slope? OLS 1.09, s0 1.09, s+1 1.09  ->  True
+
+== 4. Conversion-free luminosity ratio: ACE log(L_850,rest / L'CO(1-0)) vs local Dunne CO+dust galaxies (z < 0.6)
+  NOTE: 5 of the 217 local rows have non-positive log L'CO (catalogue placeholders, log L'CO down to -9.4: implausible as luminosities); the frozen rule (all finite) is scored; the rows with log L'CO > 0 are a labelled POST HOC variant: N 212 mean 13.500 SD 0.225 median 13.503
+  local (master z<0.6, L850py and L'CO both): N 217 mean 13.928 SD 2.808 SE 0.191 (log of L850[W/Hz]/L'CO[K km/s pc2])
+  ACE frame moved to rest 850 um at T = 20 K, beta 2.08: log(L850/L'CO10) mean 13.534 SD 0.176 (r31 0.77); ACE minus local (frozen, all finite) -0.394 +- 0.196; POST HOC (log L'CO > 0) +0.034 +- 0.048
+  ACE frame moved to rest 850 um at T = 25 K, beta 2.08: log(L850/L'CO10) mean 13.413 SD 0.178 (r31 0.77); ACE minus local (frozen, all finite) -0.516 +- 0.196; POST HOC (log L'CO > 0) -0.087 +- 0.048
+  ACE frame moved to rest 850 um at T = 30 K, beta 2.08: log(L850/L'CO10) mean 13.336 SD 0.179 (r31 0.77); ACE minus local (frozen, all finite) -0.592 +- 0.196; POST HOC (log L'CO > 0) -0.164 +- 0.049
+  ACE frame moved to rest 850 um at T = 35 K, beta 2.08: log(L850/L'CO10) mean 13.283 SD 0.180 (r31 0.77); ACE minus local (frozen, all finite) -0.645 +- 0.196; POST HOC (log L'CO > 0) -0.216 +- 0.049
+  [MISS] H-C16 ACE minus local conversion-free ratio at T 25 K -0.516 (estimate within 0.25); range over T 20-35 K: -0.645 to -0.394
+  [INFO] H-C16post (post hoc, rows with log L'CO > 0): ACE minus local at 25 K -0.087; over T 20-35 K -0.216 to +0.034; within 0.25: True
+  within ACE: observable log(Lnu873/L'CO32) versus 12+log(O/H): slope -0.61 (ACE abstract-level statement: nearly constant)
+  what the 0.21-0.67 means: a mass-level offset between two prescription sets; the conversion-free ratio comparison above is the part that does not depend on alpha_CO or dust opacity.

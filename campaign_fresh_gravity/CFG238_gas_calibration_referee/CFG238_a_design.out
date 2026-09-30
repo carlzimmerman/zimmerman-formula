@@ -1,0 +1,233 @@
+# CFG238 attack a (design anatomy, overlap and sample-flag estimators, permutation nulls, power, selection mocks)
+repo=<repo> scratch=<scratch> ext=<ext> mutate=0
+
+=== ad:aCO  (N with L_IR, master-else-opt fallback: 318; master-only N 305)
+  r(x, L_IR) +0.840  VIF(x | L_IR) 3.40; L range z<0.6 (8.9, 12.57), z>=1.6 (12.0, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[47, 0, 0], [48, 0, 0], [61, 3, 0], [29, 5, 0], [10, 4, 17], [1, 4, 89]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): [4]  (number 1)
+  sample flags (rows): {'SMG': 140, 'MS': 178, 'SLUGs': 91, 'B19': 13, 'VALES': 48, 'S16local': 57, 'S16SMG': 23, 'V20': 2}; by z bin: {'B1': {'SMG': 32, 'MS': 164, 'SLUGs': 91, 'B19': 0, 'VALES': 48, 'S16local': 57, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 4, 'MS': 12, 'SLUGs': 0, 'B19': 10, 'VALES': 0, 'S16local': 0, 'S16SMG': 1, 'V20': 2}, 'B3': {'SMG': 72, 'MS': 2, 'SLUGs': 0, 'B19': 3, 'VALES': 0, 'S16local': 0, 'S16SMG': 20, 'V20': 0}, 'B4': {'SMG': 32, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 2, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'VALES', 'S16local', 'S16SMG', 'V20']; VIF(x | L_IR + flags) 17.72
+  README-model slope on this set: b +0.056 +- 0.050 (README +0.056 +- 0.05); +1.13 sigma
+  overlap-bin FE estimator (1 bins, N 31): b -0.036 boot SD 0.085 (-0.42 sigma); analytic SE 0.095
+  contrast (z>=1.6 minus z<0.6) per overlap bin: bin4: -0.015+-0.053 (dx 0.56)
+  inverse-variance combined contrast -0.015 +- 0.053 (-0.28 sigma); mean dx 0.56 -> slope-equivalent -0.026 +- 0.094
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'VALES', 'S16local', 'S16SMG', 'V20']): b +0.219 boot SD 0.142 (+1.55 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 104, x spans 0.46-0.87): slope with L_IR +0.199 +- 0.179 (+1.1 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b +0.0324 SD 0.042; mean |b/SE|>2: 0.056; README-set bootstrap SD 0.050
+  global shuffle null (seed 2383): mean b -0.0003 SD 0.027; |b/SE|>2: 0.039
+  [MISS] H-C3:ad:aCO:mean ad:aCO permutation null mean +0.0324
+  [PASS] H-C3:ad:aCO:sd ad:aCO null SD 0.042 vs bootstrap SD 0.050 (ratio 0.84)
+  power README-model: b=0: 0.04 (bhat +0.001), b=0.05: 0.17 (bhat +0.053), b=0.1: 0.47 (bhat +0.100), b=0.15: 0.82 (bhat +0.151), b=0.2: 0.97 (bhat +0.199), b=0.3: 1.00 (bhat +0.300); min detectable b at 80% (interp) 0.14646393210749648
+  power grid-FE: b=0: 0.04 (bhat -0.015), b=0.05: 0.08 (bhat +0.032), b=0.1: 0.22 (bhat +0.082), b=0.15: 0.51 (bhat +0.132), b=0.2: 0.80 (bhat +0.186), b=0.3: 0.99 (bhat +0.284); min detectable b at 80% (interp) 0.2025706940874036
+  analytic: SE(README model) 0.052 -> 2.8 SE = 0.145; SE(grid FE) 0.066 -> 2.8 SE = 0.184; residual SD 0.138
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.43, 0.1: 0.95, 0.15: 1.00
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.193, b_grid -0.052; c2=-0.03: b_lin -0.096, b_grid -0.034; c2=+0.00: b_lin -0.000, b_grid -0.016; c2=+0.03: b_lin +0.096, b_grid +0.002; c2=+0.06: b_lin +0.193, b_grid +0.020   (README SE 0.050)
+  selection mock S2 (offset on SMG-flag rows, N SMG 140 of 318): delta=0: b_with -0.000, b_without -0.180; delta=0.05: b_with +0.016, b_without -0.114; delta=0.1: b_with +0.031, b_without -0.049; delta=0.15: b_with +0.047, b_without +0.017
+  [PASS] H-C5:ad:aCO curvature |b_lin| at c2=+-0.06: 0.193/0.193 > 0.5 SE 0.025 (expected, P 0.45)
+  [MISS] H-C6:ad:aCO sample offset 0.05 -> spurious b_with +0.016; 0.10 -> +0.031 (hand estimate ~0.10 for 0.05 dex)
+
+=== dax:aCO  (N with L_IR, master-else-opt fallback: 99; master-only N 99)
+  r(x, L_IR) +0.788  VIF(x | L_IR) 2.64; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [17, 1, 0], [11, 4, 0], [4, 1, 6], [1, 2, 28]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 53, 'MS': 46, 'SLUGs': 14, 'B19': 5, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 2}; by z bin: {'B1': {'SMG': 18, 'MS': 39, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 1, 'MS': 7, 'SLUGs': 0, 'B19': 5, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 2}, 'B3': {'SMG': 22, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 12, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']; VIF(x | L_IR + flags) 20.47
+  README-model slope on this set: b +0.004 +- 0.071 (README +0.004 +- 0.072); +0.06 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']): b +0.691 boot SD 0.205 (+3.37 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 34, x spans 0.48-0.76): slope with L_IR +0.716 +- 0.257 (+2.8 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0206 SD 0.059; mean |b/SE|>2: 0.017; README-set bootstrap SD 0.071
+  global shuffle null (seed 2383): mean b +0.0021 SD 0.047; |b/SE|>2: 0.050
+  [MISS] H-C3:dax:aCO:mean dax:aCO permutation null mean -0.0206
+  [PASS] H-C3:dax:aCO:sd dax:aCO null SD 0.059 vs bootstrap SD 0.071 (ratio 0.84)
+  power README-model: b=0: 0.06 (bhat -0.003), b=0.05: 0.10 (bhat +0.051), b=0.1: 0.25 (bhat +0.099), b=0.15: 0.47 (bhat +0.149), b=0.2: 0.75 (bhat +0.200), b=0.3: 0.97 (bhat +0.301); min detectable b at 80% (interp) 0.2228506787330317
+  power grid-FE: b=0: 0.05 (bhat -0.001), b=0.05: 0.09 (bhat +0.051), b=0.1: 0.19 (bhat +0.100), b=0.15: 0.37 (bhat +0.151), b=0.2: 0.55 (bhat +0.197), b=0.3: 0.90 (bhat +0.305); min detectable b at 80% (interp) 0.27114285714285713
+  analytic: SE(README model) 0.076 -> 2.8 SE = 0.213; SE(grid FE) 0.092 -> 2.8 SE = 0.258; residual SD 0.131
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.23, 0.1: 0.68, 0.15: 0.95
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.153, b_grid -0.018; c2=-0.03: b_lin -0.076, b_grid -0.009; c2=+0.00: b_lin -0.000, b_grid +0.000; c2=+0.03: b_lin +0.076, b_grid +0.009; c2=+0.06: b_lin +0.153, b_grid +0.018   (README SE 0.071)
+  selection mock S2 (offset on SMG-flag rows, N SMG 53 of 99): delta=0: b_with -0.000, b_without +0.012; delta=0.05: b_with -0.000, b_without +0.065; delta=0.1: b_with -0.001, b_without +0.118; delta=0.15: b_with -0.001, b_without +0.171
+  [PASS] H-C5:dax:aCO curvature |b_lin| at c2=+-0.06: 0.153/0.153 > 0.5 SE 0.035 (expected, P 0.45)
+  [MISS] H-C6:dax:aCO sample offset 0.05 -> spurious b_with -0.000; 0.10 -> -0.001 (hand estimate ~0.10 for 0.05 dex)
+
+=== xa:aCO  (N with L_IR, master-else-opt fallback: 106; master-only N 106)
+  r(x, L_IR) +0.784  VIF(x | L_IR) 2.59; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [17, 2, 0], [11, 7, 0], [4, 4, 6], [1, 2, 28]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 53, 'MS': 53, 'SLUGs': 14, 'B19': 7, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 7}; by z bin: {'B1': {'SMG': 18, 'MS': 39, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 1, 'MS': 14, 'SLUGs': 0, 'B19': 7, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 7}, 'B3': {'SMG': 22, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 12, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']; VIF(x | L_IR + flags) 20.58
+  README-model slope on this set: b -0.002 +- 0.067 (README -0.002 +- 0.066); -0.02 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']): b +0.504 boot SD 0.174 (+2.89 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 34, x spans 0.48-0.76): slope with L_IR +0.471 +- 0.208 (+2.3 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0675 SD 0.056; mean |b/SE|>2: 0.135; README-set bootstrap SD 0.067
+  global shuffle null (seed 2383): mean b +0.0003 SD 0.042; |b/SE|>2: 0.046
+  [MISS] H-C3:xa:aCO:mean xa:aCO permutation null mean -0.0675
+  [PASS] H-C3:xa:aCO:sd xa:aCO null SD 0.056 vs bootstrap SD 0.067 (ratio 0.84)
+  power README-model: b=0: 0.06 (bhat -0.002), b=0.05: 0.12 (bhat +0.053), b=0.1: 0.31 (bhat +0.100), b=0.15: 0.59 (bhat +0.149), b=0.2: 0.83 (bhat +0.199), b=0.3: 0.99 (bhat +0.301); min detectable b at 80% (interp) 0.19369834710743802
+  power grid-FE: b=0: 0.05 (bhat +0.006), b=0.05: 0.08 (bhat +0.050), b=0.1: 0.25 (bhat +0.102), b=0.15: 0.50 (bhat +0.156), b=0.2: 0.73 (bhat +0.204), b=0.3: 0.97 (bhat +0.302); min detectable b at 80% (interp) 0.22942430703624736
+  analytic: SE(README model) 0.067 -> 2.8 SE = 0.189; SE(grid FE) 0.078 -> 2.8 SE = 0.219; residual SD 0.118
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.28, 0.1: 0.78, 0.15: 0.98
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.141, b_grid -0.015; c2=-0.03: b_lin -0.071, b_grid -0.005; c2=+0.00: b_lin +0.000, b_grid +0.004; c2=+0.03: b_lin +0.071, b_grid +0.014; c2=+0.06: b_lin +0.141, b_grid +0.024   (README SE 0.067)
+  selection mock S2 (offset on SMG-flag rows, N SMG 53 of 106): delta=0: b_with +0.000, b_without +0.112; delta=0.05: b_with -0.003, b_without +0.162; delta=0.1: b_with -0.007, b_without +0.213; delta=0.15: b_with -0.010, b_without +0.263
+  [PASS] H-C5:xa:aCO curvature |b_lin| at c2=+-0.06: 0.141/0.141 > 0.5 SE 0.033 (expected, P 0.45)
+  [MISS] H-C6:xa:aCO sample offset 0.05 -> spurious b_with -0.003; 0.10 -> -0.007 (hand estimate ~0.10 for 0.05 dex)
+
+=== dax:XCI  (N with L_IR, master-else-opt fallback: 99; master-only N 99)
+  r(x, L_IR) +0.788  VIF(x | L_IR) 2.64; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [17, 1, 0], [11, 4, 0], [4, 1, 6], [1, 2, 28]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 53, 'MS': 46, 'SLUGs': 14, 'B19': 5, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 2}; by z bin: {'B1': {'SMG': 18, 'MS': 39, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 1, 'MS': 7, 'SLUGs': 0, 'B19': 5, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 2}, 'B3': {'SMG': 22, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 12, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']; VIF(x | L_IR + flags) 20.47
+  README-model slope on this set: b -0.039 +- 0.079 (README -0.039 +- 0.08); -0.50 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']): b +0.280 boot SD 0.184 (+1.53 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 34, x spans 0.48-0.76): slope with L_IR +0.225 +- 0.209 (+1.1 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0704 SD 0.060; mean |b/SE|>2: 0.136; README-set bootstrap SD 0.079
+  global shuffle null (seed 2383): mean b +0.0003 SD 0.044; |b/SE|>2: 0.045
+  [MISS] H-C3:dax:XCI:mean dax:XCI permutation null mean -0.0704
+  [PASS] H-C3:dax:XCI:sd dax:XCI null SD 0.060 vs bootstrap SD 0.079 (ratio 0.76)
+  power README-model: b=0: 0.06 (bhat -0.003), b=0.05: 0.10 (bhat +0.051), b=0.1: 0.27 (bhat +0.099), b=0.15: 0.52 (bhat +0.149), b=0.2: 0.80 (bhat +0.200), b=0.3: 0.99 (bhat +0.301); min detectable b at 80% (interp) 0.19929078014184398
+  power grid-FE: b=0: 0.05 (bhat +0.007), b=0.05: 0.10 (bhat +0.058), b=0.1: 0.22 (bhat +0.107), b=0.15: 0.43 (bhat +0.158), b=0.2: 0.63 (bhat +0.204), b=0.3: 0.94 (bhat +0.312); min detectable b at 80% (interp) 0.25422077922077924
+  analytic: SE(README model) 0.071 -> 2.8 SE = 0.200; SE(grid FE) 0.086 -> 2.8 SE = 0.242; residual SD 0.123
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.25, 0.1: 0.74, 0.15: 0.97
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.153, b_grid -0.010; c2=-0.03: b_lin -0.076, b_grid -0.001; c2=+0.00: b_lin +0.000, b_grid +0.008; c2=+0.03: b_lin +0.076, b_grid +0.017; c2=+0.06: b_lin +0.153, b_grid +0.026   (README SE 0.079)
+  selection mock S2 (offset on SMG-flag rows, N SMG 53 of 99): delta=0: b_with +0.000, b_without +0.220; delta=0.05: b_with -0.000, b_without +0.273; delta=0.1: b_with -0.001, b_without +0.326; delta=0.15: b_with -0.001, b_without +0.380
+  [PASS] H-C5:dax:XCI curvature |b_lin| at c2=+-0.06: 0.153/0.153 > 0.5 SE 0.039 (expected, P 0.45)
+  [MISS] H-C6:dax:XCI sample offset 0.05 -> spurious b_with -0.000; 0.10 -> -0.001 (hand estimate ~0.10 for 0.05 dex)
+
+=== xa:XCI  (N with L_IR, master-else-opt fallback: 106; master-only N 106)
+  r(x, L_IR) +0.784  VIF(x | L_IR) 2.59; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [17, 2, 0], [11, 7, 0], [4, 4, 6], [1, 2, 28]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 53, 'MS': 53, 'SLUGs': 14, 'B19': 7, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 7}; by z bin: {'B1': {'SMG': 18, 'MS': 39, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 1, 'MS': 14, 'SLUGs': 0, 'B19': 7, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 7}, 'B3': {'SMG': 22, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 12, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']; VIF(x | L_IR + flags) 20.58
+  README-model slope on this set: b -0.026 +- 0.063 (README -0.026 +- 0.064); -0.41 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']): b +0.455 boot SD 0.147 (+3.09 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 34, x spans 0.48-0.76): slope with L_IR +0.470 +- 0.171 (+2.8 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0364 SD 0.052; mean |b/SE|>2: 0.083; README-set bootstrap SD 0.063
+  global shuffle null (seed 2383): mean b +0.0002 SD 0.035; |b/SE|>2: 0.048
+  [MISS] H-C3:xa:XCI:mean xa:XCI permutation null mean -0.0364
+  [PASS] H-C3:xa:XCI:sd xa:XCI null SD 0.052 vs bootstrap SD 0.063 (ratio 0.82)
+  power README-model: b=0: 0.06 (bhat -0.002), b=0.05: 0.14 (bhat +0.053), b=0.1: 0.41 (bhat +0.100), b=0.15: 0.74 (bhat +0.150), b=0.2: 0.94 (bhat +0.199), b=0.3: 1.00 (bhat +0.300); min detectable b at 80% (interp) 0.16403061224489798
+  power grid-FE: b=0: 0.05 (bhat +0.005), b=0.05: 0.10 (bhat +0.051), b=0.1: 0.32 (bhat +0.103), b=0.15: 0.64 (bhat +0.156), b=0.2: 0.86 (bhat +0.204), b=0.3: 0.99 (bhat +0.302); min detectable b at 80% (interp) 0.18676470588235294
+  analytic: SE(README model) 0.057 -> 2.8 SE = 0.159; SE(grid FE) 0.066 -> 2.8 SE = 0.185; residual SD 0.099
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.37, 0.1: 0.90, 0.15: 1.00
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.141, b_grid -0.015; c2=-0.03: b_lin -0.071, b_grid -0.006; c2=+0.00: b_lin -0.000, b_grid +0.004; c2=+0.03: b_lin +0.071, b_grid +0.014; c2=+0.06: b_lin +0.141, b_grid +0.023   (README SE 0.063)
+  selection mock S2 (offset on SMG-flag rows, N SMG 53 of 106): delta=0: b_with -0.000, b_without +0.107; delta=0.05: b_with -0.003, b_without +0.158; delta=0.1: b_with -0.007, b_without +0.208; delta=0.15: b_with -0.010, b_without +0.259
+  [PASS] H-C5:xa:XCI curvature |b_lin| at c2=+-0.06: 0.141/0.141 > 0.5 SE 0.032 (expected, P 0.45)
+  [MISS] H-C6:xa:XCI sample offset 0.05 -> spurious b_with -0.003; 0.10 -> -0.007 (hand estimate ~0.10 for 0.05 dex)
+
+=== xd:XCI  (N with L_IR, master-else-opt fallback: 137; master-only N 137)
+  r(x, L_IR) +0.792  VIF(x | L_IR) 2.68; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [18, 4, 0], [13, 12, 0], [6, 4, 10], [1, 2, 43]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 76, 'MS': 61, 'SLUGs': 14, 'B19': 14, 'VALES': 0, 'S16local': 48, 'S16SMG': 1, 'V20': 7}; by z bin: {'B1': {'SMG': 21, 'MS': 41, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 48, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 2, 'MS': 20, 'SLUGs': 0, 'B19': 14, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 7}, 'B3': {'SMG': 27, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 26, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 1, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'S16SMG', 'V20']; VIF(x | L_IR + flags) 21.21
+  README-model slope on this set: b -0.104 +- 0.064 (README -0.104 +- 0.066); -1.61 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'S16SMG', 'V20']): b -0.051 boot SD 0.160 (-0.32 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 53, x spans 0.48-0.76): slope with L_IR -0.135 +- 0.186 (-0.7 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0597 SD 0.051; mean |b/SE|>2: 0.142; README-set bootstrap SD 0.064
+  global shuffle null (seed 2383): mean b +0.0008 SD 0.037; |b/SE|>2: 0.049
+  [MISS] H-C3:xd:XCI:mean xd:XCI permutation null mean -0.0597
+  [PASS] H-C3:xd:XCI:sd xd:XCI null SD 0.051 vs bootstrap SD 0.064 (ratio 0.79)
+  power README-model: b=0: 0.04 (bhat +0.001), b=0.05: 0.13 (bhat +0.051), b=0.1: 0.38 (bhat +0.101), b=0.15: 0.68 (bhat +0.149), b=0.2: 0.91 (bhat +0.201), b=0.3: 1.00 (bhat +0.301); min detectable b at 80% (interp) 0.17559912854030502
+  power grid-FE: b=0: 0.05 (bhat +0.012), b=0.05: 0.14 (bhat +0.061), b=0.1: 0.38 (bhat +0.115), b=0.15: 0.65 (bhat +0.164), b=0.2: 0.88 (bhat +0.212), b=0.3: 1.00 (bhat +0.312); min detectable b at 80% (interp) 0.1832589285714286
+  analytic: SE(README model) 0.059 -> 2.8 SE = 0.166; SE(grid FE) 0.067 -> 2.8 SE = 0.187; residual SD 0.120
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.35, 0.1: 0.88, 0.15: 1.00
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.111, b_grid +0.007; c2=-0.03: b_lin -0.055, b_grid +0.010; c2=+0.00: b_lin -0.000, b_grid +0.013; c2=+0.03: b_lin +0.055, b_grid +0.016; c2=+0.06: b_lin +0.111, b_grid +0.019   (README SE 0.064)
+  selection mock S2 (offset on SMG-flag rows, N SMG 76 of 137): delta=0: b_with -0.000, b_without +0.213; delta=0.05: b_with -0.003, b_without +0.264; delta=0.1: b_with -0.005, b_without +0.314; delta=0.15: b_with -0.008, b_without +0.365
+  [PASS] H-C5:xd:XCI curvature |b_lin| at c2=+-0.06: 0.111/0.111 > 0.5 SE 0.032 (expected, P 0.45)
+  [MISS] H-C6:xd:XCI sample offset 0.05 -> spurious b_with -0.003; 0.10 -> -0.005 (hand estimate ~0.10 for 0.05 dex)
+
+=== ad:kappaH  (N with L_IR, master-else-opt fallback: 318; master-only N 305)
+  r(x, L_IR) +0.840  VIF(x | L_IR) 3.40; L range z<0.6 (8.9, 12.57), z>=1.6 (12.0, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[47, 0, 0], [48, 0, 0], [61, 3, 0], [29, 5, 0], [10, 4, 17], [1, 4, 89]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): [4]  (number 1)
+  sample flags (rows): {'SMG': 140, 'MS': 178, 'SLUGs': 91, 'B19': 13, 'VALES': 48, 'S16local': 57, 'S16SMG': 23, 'V20': 2}; by z bin: {'B1': {'SMG': 32, 'MS': 164, 'SLUGs': 91, 'B19': 0, 'VALES': 48, 'S16local': 57, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 4, 'MS': 12, 'SLUGs': 0, 'B19': 10, 'VALES': 0, 'S16local': 0, 'S16SMG': 1, 'V20': 2}, 'B3': {'SMG': 72, 'MS': 2, 'SLUGs': 0, 'B19': 3, 'VALES': 0, 'S16local': 0, 'S16SMG': 20, 'V20': 0}, 'B4': {'SMG': 32, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 2, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'VALES', 'S16local', 'S16SMG', 'V20']; VIF(x | L_IR + flags) 17.72
+  README-model slope on this set: b -0.056 +- 0.042 (README -0.056 +- 0.042); -1.33 sigma
+  overlap-bin FE estimator (1 bins, N 31): b +0.018 boot SD 0.069 (+0.26 sigma); analytic SE 0.071
+  contrast (z>=1.6 minus z<0.6) per overlap bin: bin4: +0.003+-0.042 (dx 0.56)
+  inverse-variance combined contrast +0.003 +- 0.042 (+0.08 sigma); mean dx 0.56 -> slope-equivalent +0.006 +- 0.074
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'VALES', 'S16local', 'S16SMG', 'V20']): b -0.221 boot SD 0.123 (-1.80 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 104, x spans 0.46-0.87): slope with L_IR -0.202 +- 0.152 (-1.3 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0198 SD 0.035; mean |b/SE|>2: 0.027; README-set bootstrap SD 0.042
+  global shuffle null (seed 2383): mean b +0.0005 SD 0.025; |b/SE|>2: 0.045
+  [MISS] H-C3:ad:kappaH:mean ad:kappaH permutation null mean -0.0198
+  [PASS] H-C3:ad:kappaH:sd ad:kappaH null SD 0.035 vs bootstrap SD 0.042 (ratio 0.83)
+  power README-model: b=0: 0.04 (bhat +0.001), b=0.05: 0.19 (bhat +0.052), b=0.1: 0.56 (bhat +0.100), b=0.15: 0.89 (bhat +0.150), b=0.2: 0.99 (bhat +0.199), b=0.3: 1.00 (bhat +0.300); min detectable b at 80% (interp) 0.13622526636225268
+  power grid-FE: b=0: 0.05 (bhat +0.017), b=0.05: 0.19 (bhat +0.065), b=0.1: 0.46 (bhat +0.114), b=0.15: 0.79 (bhat +0.164), b=0.2: 0.96 (bhat +0.218), b=0.3: 1.00 (bhat +0.316); min detectable b at 80% (interp) 0.1521021021021021
+  analytic: SE(README model) 0.046 -> 2.8 SE = 0.130; SE(grid FE) 0.059 -> 2.8 SE = 0.165; residual SD 0.124
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.52, 0.1: 0.98, 0.15: 1.00
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.193, b_grid -0.020; c2=-0.03: b_lin -0.096, b_grid -0.002; c2=+0.00: b_lin -0.000, b_grid +0.016; c2=+0.03: b_lin +0.096, b_grid +0.034; c2=+0.06: b_lin +0.193, b_grid +0.052   (README SE 0.042)
+  selection mock S2 (offset on SMG-flag rows, N SMG 140 of 318): delta=0: b_with -0.000, b_without +0.172; delta=0.05: b_with +0.016, b_without +0.238; delta=0.1: b_with +0.031, b_without +0.304; delta=0.15: b_with +0.047, b_without +0.369
+  [PASS] H-C5:ad:kappaH curvature |b_lin| at c2=+-0.06: 0.193/0.193 > 0.5 SE 0.021 (expected, P 0.45)
+  [MISS] H-C6:ad:kappaH sample offset 0.05 -> spurious b_with +0.016; 0.10 -> +0.031 (hand estimate ~0.10 for 0.05 dex)
+
+=== dax:GDR  (N with L_IR, master-else-opt fallback: 99; master-only N 99)
+  r(x, L_IR) +0.788  VIF(x | L_IR) 2.64; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [17, 1, 0], [11, 4, 0], [4, 1, 6], [1, 2, 28]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 53, 'MS': 46, 'SLUGs': 14, 'B19': 5, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 2}; by z bin: {'B1': {'SMG': 18, 'MS': 39, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 43, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 1, 'MS': 7, 'SLUGs': 0, 'B19': 5, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 2}, 'B3': {'SMG': 22, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 12, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']; VIF(x | L_IR + flags) 20.47
+  README-model slope on this set: b -0.025 +- 0.079 (README -0.025 +- 0.078); -0.32 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'V20']): b -0.425 boot SD 0.226 (-1.88 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 34, x spans 0.48-0.76): slope with L_IR -0.512 +- 0.285 (-1.8 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0631 SD 0.066; mean |b/SE|>2: 0.085; README-set bootstrap SD 0.079
+  global shuffle null (seed 2383): mean b -0.0018 SD 0.050; |b/SE|>2: 0.050
+  [MISS] H-C3:dax:GDR:mean dax:GDR permutation null mean -0.0631
+  [PASS] H-C3:dax:GDR:sd dax:GDR null SD 0.066 vs bootstrap SD 0.079 (ratio 0.85)
+  power README-model: b=0: 0.06 (bhat -0.003), b=0.05: 0.09 (bhat +0.051), b=0.1: 0.23 (bhat +0.099), b=0.15: 0.43 (bhat +0.149), b=0.2: 0.70 (bhat +0.200), b=0.3: 0.96 (bhat +0.301); min detectable b at 80% (interp) 0.23977055449330786
+  power grid-FE: b=0: 0.05 (bhat +0.007), b=0.05: 0.09 (bhat +0.059), b=0.1: 0.18 (bhat +0.108), b=0.15: 0.36 (bhat +0.159), b=0.2: 0.53 (bhat +0.205), b=0.3: 0.88 (bhat +0.313); min detectable b at 80% (interp) 0.2771509167842031
+  analytic: SE(README model) 0.080 -> 2.8 SE = 0.225; SE(grid FE) 0.097 -> 2.8 SE = 0.273; residual SD 0.139
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.21, 0.1: 0.63, 0.15: 0.93
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.153, b_grid -0.010; c2=-0.03: b_lin -0.076, b_grid -0.001; c2=+0.00: b_lin -0.000, b_grid +0.008; c2=+0.03: b_lin +0.076, b_grid +0.017; c2=+0.06: b_lin +0.153, b_grid +0.026   (README SE 0.079)
+  selection mock S2 (offset on SMG-flag rows, N SMG 53 of 99): delta=0: b_with -0.000, b_without +0.242; delta=0.05: b_with -0.000, b_without +0.295; delta=0.1: b_with -0.001, b_without +0.348; delta=0.15: b_with -0.001, b_without +0.401
+  [PASS] H-C5:dax:GDR curvature |b_lin| at c2=+-0.06: 0.153/0.153 > 0.5 SE 0.039 (expected, P 0.45)
+  [MISS] H-C6:dax:GDR sample offset 0.05 -> spurious b_with -0.000; 0.10 -> -0.001 (hand estimate ~0.10 for 0.05 dex)
+
+=== xd:GDR  (N with L_IR, master-else-opt fallback: 137; master-only N 137)
+  r(x, L_IR) +0.792  VIF(x | L_IR) 2.68; L range z<0.6 (8.99, 12.57), z>=1.6 (12.01, 13.86)
+  L_IR bin x z-group counts (rows: <10.5,10.5-11,11-11.5,11.5-12,12-12.5,>=12.5; cols: z<0.6, 0.6-1.6, >=1.6): [[12, 0, 0], [12, 0, 0], [18, 4, 0], [13, 12, 0], [6, 4, 10], [1, 2, 43]]
+  overlap bins (>=8 at z<0.6 AND >=8 at z>=1.6): []  (number 0)
+  sample flags (rows): {'SMG': 76, 'MS': 61, 'SLUGs': 14, 'B19': 14, 'VALES': 0, 'S16local': 48, 'S16SMG': 1, 'V20': 7}; by z bin: {'B1': {'SMG': 21, 'MS': 41, 'SLUGs': 14, 'B19': 0, 'VALES': 0, 'S16local': 48, 'S16SMG': 0, 'V20': 0}, 'B2': {'SMG': 2, 'MS': 20, 'SLUGs': 0, 'B19': 14, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 7}, 'B3': {'SMG': 27, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 0, 'V20': 0}, 'B4': {'SMG': 26, 'MS': 0, 'SLUGs': 0, 'B19': 0, 'VALES': 0, 'S16local': 0, 'S16SMG': 1, 'V20': 0}}
+  flags kept after rank test: ['SMG', 'SLUGs', 'B19', 'S16local', 'S16SMG', 'V20']; VIF(x | L_IR + flags) 21.21
+  README-model slope on this set: b -0.084 +- 0.064 (README -0.084 +- 0.066); -1.31 sigma
+  no overlap bin: the fixed-luminosity comparison is an extrapolation of the linear L_IR term
+  sample-flag estimator (L_IR + ['SMG', 'SLUGs', 'B19', 'S16local', 'S16SMG', 'V20']): b -0.125 boot SD 0.168 (-0.75 sigma)
+  POST HOC within SMG-flag rows at z >= 1.6 only (N 53, x spans 0.48-0.76): slope with L_IR -0.214 +- 0.192 (-1.1 sigma)
+  permutation null within L_IR bins (5000, seed 2382): mean b -0.0636 SD 0.051; mean |b/SE|>2: 0.151; README-set bootstrap SD 0.064
+  global shuffle null (seed 2383): mean b +0.0005 SD 0.038; |b/SE|>2: 0.045
+  [MISS] H-C3:xd:GDR:mean xd:GDR permutation null mean -0.0636
+  [PASS] H-C3:xd:GDR:sd xd:GDR null SD 0.051 vs bootstrap SD 0.064 (ratio 0.80)
+  power README-model: b=0: 0.04 (bhat +0.001), b=0.05: 0.12 (bhat +0.051), b=0.1: 0.36 (bhat +0.101), b=0.15: 0.66 (bhat +0.149), b=0.2: 0.89 (bhat +0.201), b=0.3: 1.00 (bhat +0.301); min detectable b at 80% (interp) 0.1803347280334728
+  power grid-FE: b=0: 0.05 (bhat +0.014), b=0.05: 0.14 (bhat +0.062), b=0.1: 0.36 (bhat +0.116), b=0.15: 0.63 (bhat +0.166), b=0.2: 0.85 (bhat +0.214), b=0.3: 0.99 (bhat +0.313); min detectable b at 80% (interp) 0.18778280542986428
+  analytic: SE(README model) 0.061 -> 2.8 SE = 0.172; SE(grid FE) 0.069 -> 2.8 SE = 0.194; residual SD 0.124
+  power to see a real change of 0.05/0.10/0.15 dex across z=0->2.5 (b = dex/0.54, README model, analytic): 0.05: 0.33, 0.1: 0.86, 0.15: 0.99
+  selection mock S1 (curvature c2 per dex^2, no z trend): c2=-0.06: b_lin -0.111, b_grid +0.009; c2=-0.03: b_lin -0.055, b_grid +0.012; c2=+0.00: b_lin +0.000, b_grid +0.015; c2=+0.03: b_lin +0.055, b_grid +0.018; c2=+0.06: b_lin +0.111, b_grid +0.021   (README SE 0.064)
+  selection mock S2 (offset on SMG-flag rows, N SMG 76 of 137): delta=0: b_with +0.000, b_without +0.238; delta=0.05: b_with -0.003, b_without +0.289; delta=0.1: b_with -0.005, b_without +0.340; delta=0.15: b_with -0.008, b_without +0.390
+  [PASS] H-C5:xd:GDR curvature |b_lin| at c2=+-0.06: 0.111/0.111 > 0.5 SE 0.032 (expected, P 0.45)
+  [MISS] H-C6:xd:GDR sample offset 0.05 -> spurious b_with -0.003; 0.10 -> -0.005 (hand estimate ~0.10 for 0.05 dex)
+
+== Summary of attack a
+  ad:aCO: overlap bins 1; overlap-FE b/SD -0.42; flag-estimator b/SD +1.55; README-model +1.13; MDB80 (README model, grid) 0.14646393210749648, 0.2025706940874036; analytic 2.8SE 0.145
+  dax:aCO: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD +3.37; README-model +0.06; MDB80 (README model, grid) 0.2228506787330317, 0.27114285714285713; analytic 2.8SE 0.213
+  xa:aCO: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD +2.89; README-model -0.02; MDB80 (README model, grid) 0.19369834710743802, 0.22942430703624736; analytic 2.8SE 0.189
+  dax:XCI: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD +1.53; README-model -0.50; MDB80 (README model, grid) 0.19929078014184398, 0.25422077922077924; analytic 2.8SE 0.200
+  xa:XCI: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD +3.09; README-model -0.41; MDB80 (README model, grid) 0.16403061224489798, 0.18676470588235294; analytic 2.8SE 0.159
+  xd:XCI: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD -0.32; README-model -1.61; MDB80 (README model, grid) 0.17559912854030502, 0.1832589285714286; analytic 2.8SE 0.166
+  ad:kappaH: overlap bins 1; overlap-FE b/SD +0.26; flag-estimator b/SD -1.80; README-model -1.33; MDB80 (README model, grid) 0.13622526636225268, 0.1521021021021021; analytic 2.8SE 0.130
+  dax:GDR: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD -1.88; README-model -0.32; MDB80 (README model, grid) 0.23977055449330786, 0.2771509167842031; analytic 2.8SE 0.225
+  xd:GDR: overlap bins 0; overlap-FE b/SD n/a; flag-estimator b/SD -0.75; README-model -1.31; MDB80 (README model, grid) 0.1803347280334728, 0.18778280542986428; analytic 2.8SE 0.172
+  disagreement (i): any overlap or flag estimator >= 2 SD from zero: True (max 3.37)
+  overlap-bin counts per (table:factor): {'ad:aCO': 1, 'dax:aCO': 0, 'xa:aCO': 0, 'dax:XCI': 0, 'xa:XCI': 0, 'xd:XCI': 0, 'ad:kappaH': 1, 'dax:GDR': 0, 'xd:GDR': 0}
+  disagreement (iii): fewer than two overlap bins in: ['ad:aCO', 'dax:aCO', 'xa:aCO', 'dax:XCI', 'xa:XCI', 'xd:XCI', 'ad:kappaH', 'dax:GDR', 'xd:GDR']
+  [MISS] H-C1 ad alpha_CO overlap bins 1 (estimate 2, P 0.45)
+  [PASS] H-C2a ad alpha_CO overlap-FE consistent with 0 at 2 sigma: -0.036 +- 0.085
+  [PASS] H-C2b overlap SE 0.085 >= 1.3 x 0.050
+  [PASS] H-C4a ad alpha_CO min detectable (2.8 SE) 0.145 vs 0.14
+  [PASS] H-C4b daX/xa/xd min detectable in [0.15, 0.25]: {'dax:aCO': 0.213, 'xa:aCO': 0.189, 'xa:XCI': 0.159, 'xd:XCI': 0.166, 'dax:XCI': 0.2}
+  [PASS] H-C4c ad alpha_CO power for a 0.05 dex change across z 0->2.5: 0.43 (estimate 0.45)
