@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_CORE_COEFFICIENT_AUDIT",
+  "repository": {
+    "commit": "e62ce4cffbfb78bbd7bf473c981517bcc7072390",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/core_coefficient_audit.py",
+    "--output",
+    "sol61_push/runs/core_coefficient_audit/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Core density conventions, P2 versus simple, CFG43 cap EOS signs and free epsilon",
+    "coefficient_domain": "Exact positive real algebra and deterministic local substitutions",
+    "conventions": "CORE_AND_NONLOCAL_CONTRACT.md, c=1, Mp2=1/(8piG), actual CFG43 rho(n,Lambda)",
+    "inputs": [
+      "sol61_push/core_coefficient_audit.py"
+    ],
+    "bounds": {
+      "cap_C": [
+        16,
+        32,
+        64
+      ],
+      "cap_C_units": "pi",
+      "x": [
+        0.001,
+        0.1,
+        1,
+        10,
+        1000
+      ],
+      "nu_s": 1
+    },
+    "non_claims": [
+      "No full constraint audit",
+      "No galaxy closure",
+      "Other action health findings documentary only",
+      "No 32pi prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T11:05:17.309505+00:00",
+    "runtime_seconds": 0.481142,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/core_coefficient_audit.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/core_coefficient_audit.py",
+      "sha256": "30a000f04d21e659d967df40257b13853895fc38460d2ad2fcc72c92ba2fa1db",
+      "sha256_after": "30a000f04d21e659d967df40257b13853895fc38460d2ad2fcc72c92ba2fa1db"
+    }
+  ],
+  "output_directory": "sol61_push/runs/core_coefficient_audit",
+  "declared_results": [
+    "sol61_push/runs/core_coefficient_audit/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/core_coefficient_audit/stdout.txt",
+      "sha256": "00ea4d857d1a741964b287b7e24e3dba285e93a3da9f8dd874f3aa96ae3a5373",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/core_coefficient_audit/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/core_coefficient_audit/results.json",
+      "sha256": "33e5d114ce99b2d376f3f25aa3aaf3d73f9552a4f1a0f26f3fea97f2b9e65c5b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_BULK_SPATIAL_KERNEL_REFINED",
+  "repository": {
+    "commit": "b6d76ddb423f39b25fbbdd6a56679856bd41c48b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/bulk_spatial_kernel_refined.py",
+    "--output",
+    "sol61_push/runs/bulk_spatial_kernel_refined/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eight-band Clifford, positive subtracted massless bubble, finite converging quadrature and scaling",
+    "coefficient_domain": "Exact positive real algebra and deterministic radial quadrature",
+    "conventions": "CORE_AND_NONLOCAL_CONTRACT.md; 3D occupied-band zero point energy, c=hbar=1",
+    "inputs": [
+      "sol61_push/bulk_spatial_kernel_refined.py"
+    ],
+    "bounds": {
+      "Gauss_Legendre_orders": [
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "momentum": [
+        1,
+        0.5,
+        2
+      ],
+      "trace_dimension": 8,
+      "dispersion_z": 1.5,
+      "mu": 1,
+      "y": 1,
+      "last_refinement_tolerance": 0.0001,
+      "scaling_tolerance": 0.0002,
+      "radial_map": "k=(t/(1-t))²"
+    },
+    "non_claims": [
+      "No exact certified numeric coefficient",
+      "No finite-mass or nonuniform kernel",
+      "No UV causal completion",
+      "No critical tuning or 32pi prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T11:12:59.357003+00:00",
+    "runtime_seconds": 0.491969,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/bulk_spatial_kernel_refined.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/bulk_spatial_kernel_refined.py",
+      "sha256": "7e616f40e9f3a09cb590b22cb77040cd0ddfa4e44f18b9248815e223ce872eff",
+      "sha256_after": "7e616f40e9f3a09cb590b22cb77040cd0ddfa4e44f18b9248815e223ce872eff"
+    }
+  ],
+  "output_directory": "sol61_push/runs/bulk_spatial_kernel_refined",
+  "declared_results": [
+    "sol61_push/runs/bulk_spatial_kernel_refined/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/bulk_spatial_kernel_refined/stdout.txt",
+      "sha256": "f2541760287a8a3c2168ffc819a26670684fb7db461e47d15fd0700e3b8395a9",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_spatial_kernel_refined/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_spatial_kernel_refined/results.json",
+      "sha256": "51bc62a1989e64fa4bacc54edd4893cf1f31f700f1fc7dc2f104627e916c46be",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_BULK_SPATIAL_KERNEL",
+  "repository": {
+    "commit": "a29512e5137da718a6903500cf7a1e090ca4bec5",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/bulk_spatial_kernel.py",
+    "--output",
+    "sol61_push/runs/bulk_spatial_kernel/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eight-band Clifford, positive subtracted massless bubble, finite converging quadrature and scaling",
+    "coefficient_domain": "Exact positive real algebra and deterministic radial quadrature",
+    "conventions": "CORE_AND_NONLOCAL_CONTRACT.md; 3D occupied-band zero point energy, c=hbar=1",
+    "inputs": [
+      "sol61_push/bulk_spatial_kernel.py"
+    ],
+    "bounds": {
+      "Gauss_Legendre_orders": [
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "momentum": [
+        1,
+        0.5,
+        2
+      ],
+      "trace_dimension": 8,
+      "dispersion_z": 1.5,
+      "mu": 1,
+      "y": 1,
+      "last_refinement_tolerance": 0.0001,
+      "scaling_tolerance": 0.0002
+    },
+    "non_claims": [
+      "No exact certified numeric coefficient",
+      "No finite-mass or nonuniform kernel",
+      "No UV causal completion",
+      "No critical tuning or 32pi prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T11:11:39.620365+00:00",
+    "runtime_seconds": 0.673345,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/bulk_spatial_kernel.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/bulk_spatial_kernel.py",
+      "sha256": "fafec7805de4bbdb4e686e2f44860978c13e4204741a013648cfde4bcabbf42c",
+      "sha256_after": "fafec7805de4bbdb4e686e2f44860978c13e4204741a013648cfde4bcabbf42c"
+    }
+  ],
+  "output_directory": "sol61_push/runs/bulk_spatial_kernel",
+  "declared_results": [
+    "sol61_push/runs/bulk_spatial_kernel/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/bulk_spatial_kernel/stdout.txt",
+      "sha256": "9d2bcad2d42627cc85085c0999821bece3608d4a6e9fea993201b38bc393eed1",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_spatial_kernel/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_spatial_kernel/results.json",
+      "sha256": "8ba2e2193e57145f6d2ea253d9bc37c4df0bed52de2b89aa487cfee5fb021426",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

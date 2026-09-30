@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_BULK_CUBIC_SPECTRUM",
+  "repository": {
+    "commit": "e62ce4cffbfb78bbd7bf473c981517bcc7072390",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/bulk_cubic_spectrum.py",
+    "--output",
+    "sol61_push/runs/bulk_cubic_spectrum/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Three-dimensional z=3/2 regulated spectrum gives positive cubic; counterterm and causality limits",
+    "coefficient_domain": "Exact positive real algebra and deterministic radial quadrature",
+    "conventions": "CORE_AND_NONLOCAL_CONTRACT.md; 3D occupied-band zero point energy, c=hbar=1",
+    "inputs": [
+      "sol61_push/bulk_cubic_spectrum.py"
+    ],
+    "bounds": {
+      "energy_cutoff_over_mass": [
+        2,
+        10,
+        100
+      ],
+      "mass": [
+        0.5,
+        1,
+        2
+      ],
+      "mu": 1,
+      "nu": 1,
+      "quadrature_tolerance": 1e-11
+    },
+    "non_claims": [
+      "No local or covariant completion",
+      "No UV causality",
+      "No critical tuning protection",
+      "No 32pi prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T11:03:13.667473+00:00",
+    "runtime_seconds": 0.556243,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/bulk_cubic_spectrum.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/bulk_cubic_spectrum.py",
+      "sha256": "cf63403786dcf1cd32e216fcbfe6cc1d49e46212f5e0ca25b91b6b61e8688510",
+      "sha256_after": "cf63403786dcf1cd32e216fcbfe6cc1d49e46212f5e0ca25b91b6b61e8688510"
+    }
+  ],
+  "output_directory": "sol61_push/runs/bulk_cubic_spectrum",
+  "declared_results": [
+    "sol61_push/runs/bulk_cubic_spectrum/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/bulk_cubic_spectrum/stdout.txt",
+      "sha256": "7b5943aa3fcb838d24e27134f31d8334cdc4193a18a67b4b94e66675b5e9a09e",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_cubic_spectrum/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_cubic_spectrum/results.json",
+      "sha256": "176ead7ea845d9a1ef383565c5cfc5ea3c358ed5271776cfa5a469d6895cf482",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
