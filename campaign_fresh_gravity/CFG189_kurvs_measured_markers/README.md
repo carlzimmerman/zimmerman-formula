@@ -89,3 +89,20 @@
   - P0 is the uncorrected table, not a neutral null;
   - the s = 1 exclusion label is not informative in mocks.
 - **Wording for T in this lane:** under Kretschmer at the decision cell, T under-predicts by 5.5σ with the measured markers; its gas status there is not robust to the gas ceiling, the sample or the calibration.
+
+
+## Corrections after the independent referee CFG194 (255cf12d6; appended 2026-09-29; the text above is left as first written)
+The referee re-derived this lane with independent code and REPRODUCES every pass line P1–P8: per-disc inputs identical, 0 of 75 status labels differ. The orchestrating session re-ran the referee's `run_all.sh` in a scratch copy, and every output is identical apart from timing lines. Five sentences above are not supported, or only partly:
+1. **"The lean weakens because the markers carry larger errors and scatter about the model."** About half of the drop in z comes from the larger errors, which carry no information: χ² = 2.3 for 10 dof. About 29% comes from the marker-minus-model value, which is noise (p = 0.26). The largest single piece, about 55%, is the change of radius and σ at R_out, mostly KURVS-17.
+2. **"Trades radius for cancelling any centring offset."** Centring is not what changes the class. The farther side alone at the same radius gives the same class, so the radius is the whole effect.
+3. **"Rests on a calibration, gas and radius choice the data cannot fix."** This is supported, and it is stronger than stated:
+   - 12 of 19 pre-declared marker choices leave the class;
+   - the lean disappears for a coherent 4.5% lower V;
+   - the frozen mock informativeness rule fails once gas and α are uncertain: P(lean rival | flat truth) = 0.26.
+4. **"1 of 5 variants flips"** understates the fragility. The lean rival sits 0.45σ above its class edge, and which radius counts as "outer" decides the class.
+5. **Omitted above:**
+   - Under the measured markers the P0 class changes from non-diagnostic to lean flat (flat −1.94σ).
+   - T's s = 1 gas-status change (excluded → allowed) is robust in leave-one-out and bootstrap.
+   - The KURVS-17 wording should be "19 markers at 0.065 kpc plus one unpaired clipped marker".
+
+**Standing wording after the referee:** "at z ≈ 1.5 the KURVS measured markers give a fragile lean toward a₀ ∝ H(z) that turns on which radius counts as outer and on the gas and α calibration; not informative once those are uncertain; not a detection; flat a₀ not refuted."
