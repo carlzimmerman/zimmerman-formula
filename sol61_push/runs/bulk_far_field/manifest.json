@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_BULK_FAR_FIELD",
+  "repository": {
+    "commit": "d4d278ad53b25dcb91ceb6468a926f7df979a5a0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/bulk_far_field.py",
+    "--output",
+    "sol61_push/runs/bulk_far_field/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Radial Euler variation, formal far-field correction, gap hierarchy and internal linear-symmetry obstruction",
+    "coefficient_domain": "Exact symbolic positive real algebra and limits",
+    "conventions": "BULK_FINITE_MASS_CONTRACT.md; magnitude P and internal radial hedgehog n; fermion-loop coefficients only",
+    "inputs": [
+      "sol61_push/bulk_far_field.py"
+    ],
+    "bounds": {
+      "leading_two_derivative_energy": true,
+      "r_to_infinity": true,
+      "positive_P_branch": true,
+      "symmetry_scope": "linear internal cubic-norm-preserving"
+    },
+    "non_claims": [
+      "No global nonuniform determinant",
+      "No finite-energy or dynamic stability proof",
+      "Bare derivative coefficients independent",
+      "No vacuum energy or 32pi prediction"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-30T17:13:11.768695+00:00",
+    "runtime_seconds": 22.88412,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/bulk_far_field.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/bulk_far_field.py",
+      "sha256": "107b534afed450db923a29b0bbdf3a0466058abd52d4e2e3f963cb541708e395",
+      "sha256_after": "107b534afed450db923a29b0bbdf3a0466058abd52d4e2e3f963cb541708e395"
+    }
+  ],
+  "output_directory": "sol61_push/runs/bulk_far_field",
+  "declared_results": [
+    "sol61_push/runs/bulk_far_field/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/bulk_far_field/stdout.txt",
+      "sha256": "cae2978e00998302028007fb8600d6dc3fb314b427fc7f1535a464a3671f7331",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_far_field/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/bulk_far_field/results.json",
+      "sha256": "3c4c80b1ab3c374ec23163810140aa8ae9a619c569873cb7d9a301933597fa09",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

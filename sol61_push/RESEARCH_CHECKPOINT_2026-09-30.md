@@ -25,3 +25,10 @@ Closed only under tested assumptions:
 - Exact P2 auxiliary potential remains an inverse construction. Its local success cannot select vacuum energy.
 
 The next report must preserve these distinctions and the unresolved original target. No result here warrants “theory complete” or “32pi solved.”
+
+
+## Finite-mass continuation update (base ea962ad3a)
+
+The uniform finite-mass bulk kernels and exact small-q coefficients are now calculated in BULK_FINITE_MASS_RESULTS.md. The loop stiffness ratio is 43/51; both coefficients are positive. A formal leading-gradient radial branch preserves A=sqrt(GM a0), with a subleading r^(-5/3) polarization correction. This is not the full nonuniform determinant, a global finite-energy state or a covariant health proof. The full-action stiffness can differ if additional bare operators or interactions are included.
+
+The prior active item 1 is therefore advanced to a bounded uniform-background result and formal derivative expansion, not closed as a galaxy theory. Items 2 and 3 remain open: norm-preserving linear internal symmetry does not forbid the critical p² term, and absolute vacuum energy is independent. The current next discriminator is an explicit protection or state-selection mechanism for critical cancellation, followed by an error-controlled nonuniform calculation. Do not treat the new rational ratio as a prediction of 32pi. Two new principal runs pass 38 checks; an initial solver-domain failure is retained with its corrected real-domain run.

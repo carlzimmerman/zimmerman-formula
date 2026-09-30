@@ -20,4 +20,6 @@ The original goal remains OPEN. A new partial result is not a completed theory.
 
 - [Core review and forward calculations](CORE_REVIEW_2026-09-30.md): distinguishes the actual theory variants, audits the HT cap coefficient, solves a nonlocal point-source model, and tests an isotropic bulk cubic generator. Its [contract](CORE_AND_NONLOCAL_CONTRACT.md) records the assumptions and retained correction.
 
+- [Finite-mass bulk response](BULK_FINITE_MASS_RESULTS.md): exact loop stiffness ratio, tested finite-momentum kernels, and a formal far-field correction retaining the leading MOND amplitude. Its [contract](BULK_FINITE_MASS_CONTRACT.md) keeps critical tuning and absolute vacuum stress open.
+
 All work in this folder is by this Codex session. Existing research files are read-only inputs. No paper, deposited version, shared ledger, or other session's working changes are edited.
