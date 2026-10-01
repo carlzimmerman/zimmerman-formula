@@ -41,3 +41,8 @@ Two untested exits are now scoped no-gos on their frozen classes. Each was run s
 - **It cannot be the cosmic cold component:** at z = 1100 nothing has turned around, so the shortfall is 10^1376.
 - **Gap 2's object must exist before structure forms.** Gap 1's ownership must be a separate, memory-carrying assignment on that early fluid.
 - **Scope correction:** "the ledger is not the obstacle" applies to the heat ledger only. For created rest mass the ledger fails.
+
+## Appended 2026-10-01: CFG244 (bound part of an early cold fluid; 50c8c7267, re-run by the orchestrator, identical)
+- **The bound subset of secondary infall scales as M^0.33–0.34, not M^½,** so it fails the amount gate by a factor of about 3. It reduces to ΛCDM plus the a₀–Λ coincidence.
+- **At satellites the data lean (non-binding, power 0.28) toward bound cores over "own nothing".**
+- **The closure target after CFG242–244:** an early cold fluid present before structure (CFG243), with a memory-carrying ownership (CFG242), whose distribution carries the acceleration scale ∝ M^½ itself (CFG118/244). Not a free-falling bound remnant. The one unscored ingredient is a baryon-coupled relaxation.
