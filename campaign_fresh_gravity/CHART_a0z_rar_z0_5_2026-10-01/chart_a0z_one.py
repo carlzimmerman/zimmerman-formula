@@ -44,12 +44,11 @@ alp_none = [alp[i] for i in ("13", "23", "24", "25", "28")]          # CFG237: n
 DA = os.path.join(ROOT, "data_assembly")   # data-front cube products (50d8c274e SINS, ff6633985 KMOS3D): no a0 computed there
 sins = [float(r["z"]) for r in csv.DictReader(open(os.path.join(DA, "sins_cubes", "sins_ao_per_galaxy_AMEND1.csv")))]
 k3d = [float(r["Z"]) for r in csv.DictReader(open(os.path.join(DA, "kmos3d_cubes", "k3d_fits_main_final_flags.csv")))]
-amv = [float(r["z"]) for r in rar if r["class"] == "S" and r["id"] != "122.1"]   # 122.1 has a class-M a0 (CFG229)
+A274 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG274_amvrosiadis_eight_discs", "cfg274_points_stageB.csv"))) if "pooled" not in r["object"]]   # CFG274 255f07244
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
     ("MIGHTEE-HI survey", 0.02, 0.09, "mock forecast only"),
     (f"SINS AO cubes ({len(sins)})", min(sins), max(sins), "curves extracted; method failed validation"),
     (f"KMOS3D cubes ({len(k3d)})", min(k3d), max(k3d), "curves fitted; no baryons attached"),
-    (f"Amvrosiadis+25 ({len(amv)})", min(amv), max(amv), "baryons exceed rotation in most"),
     (f"ALPAKA ({len(alp_none)})", min(alp_none), max(alp_none), "curves digitised; gas not tabulated"),
     ("Lelli+23 (1)", 2.24, 2.24, "mean speed only"),
     ("PKS 0529-549 (1)", 2.57, 2.57, "no radius / stellar mass"),
@@ -64,7 +63,7 @@ check("ALESS 122.1 plotted a0 equals CFG229 a0_imp", abs(f(pts["ALESS_122.1"], "
 check("ALPINE6 plotted a0 equals CFG228 a0_imp", abs(f(pts["ALPINE6 pooled"], "a0_1e-10_m_s2") * 1e-10 - J228["IMPL"]["ALPINE6"]["a0_imp"]) < 1e-14)
 check("Danhaive gold: 41 discs at z 3.80-5.82", len(dan) == 41 and abs(min(dan) - 3.80) < 1e-6 and abs(max(dan) - 5.82) < 1e-6, f"({len(dan)}, {min(dan)}-{max(dan)})")
 check("Roman-Oliveira with kinematics: 4", len(ro) == 4, f"({len(ro)}: {[i for i, _ in ro]})")
-check("Amvrosiadis without an a0: 8", len(amv) == 8, f"({len(amv)})")
+check("CFG274 Amvrosiadis: 7 of 8 no root, ALESS 075.1 s* 6.89 (255f07244)", sum(r["no_root"] == "1" for r in A274) == 7 and any(r["no_root"] == "0" and abs(float(r["s_star"]) - 6.887) < 0.01 for r in A274), f"({sum(r['no_root'] == '1' for r in A274)} no root)")
 nr = [o for o in ("ALPAKA15", "ALPAKA18", "ALPAKA19", "ALPAKA20", "ALPAKA22", "SINS_BX610", "VC5110377875", "SPT0418-47") if pts[o]["no_root"] == "1"]
 check("DESI CPL curve is nearly flat: about 0.87 x local at z = 2", abs(np.interp(2.0, Zc, cur["M-DEC"]) - 0.87) < 0.01, f"({np.interp(2.0, Zc, cur['M-DEC']):.3f})")
 check("SINS AO 35 and KMOS3D 192 cube products on disk", len(sins) == 35 and len(k3d) == 192, f"({len(sins)}, {len(k3d)})")
@@ -132,7 +131,16 @@ NRX = {"SINS_BX610": 2.16, "ALPAKA15": 2.27, "ALPAKA18": 2.40, "ALPAKA19": 2.49,
        "SPT0418-47": 4.22, "VC5110377875": 4.52}
 for o, x in NRX.items():
     ax.scatter([x], [0.215], marker="v", s=70, color=COL["M"] if not o.startswith(("SPT", "VC")) else COL["ALMA"], zorder=6, edgecolor="white", lw=0.6)
-ax.text(0.12, 0.222, "calculated, but no $a_0$ fits (8 galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
+AMV = "#6c5b7b"
+for r in A274:
+    if r["no_root"] == "1":
+        ax.scatter([f(r, "z")], [0.188], marker="v", s=60, color=AMV, zorder=6, edgecolor="white", lw=0.6)
+    else:
+        zz = f(r, "z"); ax.plot([zz, zz], [f(r, "stat68_lo") * U, f(r, "stat68_hi") * U], color=AMV, lw=3.2, zorder=5, solid_capstyle="butt")
+        ax.scatter([zz], [f(r, "s_star") * U], marker="h", s=80, facecolor="white", edgecolor=AMV, linewidth=1.8, zorder=6)
+        ax.text(zz + 0.08, f(r, "s_star") * U * 1.04, "ALESS 075.1 (Amvrosiadis)\nnear-Newtonian, ill-conditioned", color=AMV, fontsize=8.5, va="center")
+N_NR = 8 + sum(r["no_root"] == "1" for r in A274)
+ax.text(0.12, 0.222, f"calculated, but no $a_0$ fits ({N_NR} galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
 # MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
 # best-supported reading). Routes are separate series and are never pooled; all inputs are one DC14 fit plus an SED mass.
@@ -150,7 +158,7 @@ for rt, st in RSTY.items():
             ax.add_patch(plt.Rectangle((xx - 0.02, lo * U), 0.04, (hi - lo) * U, color=COL_MD, alpha=0.10, lw=0, zorder=3))
         ax.plot([xx, xx], [f(r, "stat68_lo") * U, f(r, "stat68_hi") * U], color=COL_MD, lw=2.6, zorder=5, solid_capstyle="butt")
         ax.scatter([xx], [yy], marker=st["mk"], s=46, facecolor=st["fc"], edgecolor=COL_MD, linewidth=1.4, zorder=6)
-lx, ly = 2.35, 21.0
+lx, ly = 2.72, 21.0
 ax.text(lx - 0.05, ly * 1.22, "MUSE-DARK, by baryon route", color=COL_MD, fontsize=9.5, fontweight="bold", ha="left")
 for k, (rt, st) in enumerate(RSTY.items()):
     yy = ly / (1.27 ** k)
@@ -194,7 +202,7 @@ for i, (lab, z0, z1, note) in enumerate(TODO):
         sx.add_patch(plt.Rectangle((z0, i - 0.27), z1 - z0, 0.54, fill=False, ec=INK, lw=1.2, ls=(0, (3, 2)), zorder=3))
     else:
         sx.scatter([z0], [i], s=60, facecolor="white", edgecolor=INK, lw=1.2, linestyle=(0, (2, 1.5)), zorder=3)
-    right = not lab.startswith(("Amvrosiadis", "Danhaive", "GN20", "Roman", "HZ9"))
+    right = not lab.startswith(("Danhaive", "GN20", "Roman", "HZ9"))
     xp = z1 + 0.07 if right else z0 - 0.07
     t = sx.text(xp, i, lab, ha="left" if right else "right", va="center", fontsize=9.8, color=INK, fontweight="bold")
     tb = t.get_window_extent(fig.canvas.get_renderer()); inv = sx.transData.inverted()
@@ -212,7 +220,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); CFG261 KiDS (absolute, by lens colour) and CFG262 MUSE-DARK (by route); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229, CFG274 (calculated); CFG261 KiDS (absolute, by lens colour) and CFG262 MUSE-DARK (by route); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
