@@ -1,0 +1,45 @@
+CFG272 -- implied-a0 bounds (or no-root floors) for the five ALPAKA I discs without a gas mass or an a0: IDs 13, 23, 24, 25, 28 (z 2.10-3.63).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG272_alpaka_five_discs/FROZEN_CRITERIA.md (e06a91b8a).
+  baryons   LOWER LIMITS: B0 = stars only (headline), B1 = stars + a gas floor (alpha_CO,min = 0.8, r_J1 = 1; alpha_[CI],min = 1.0 for ID 13), B2 = conventional gas (sensitivity).
+  g_obs     V_ext^2 / R_ext (a rotation speed, pressure term is a knob); inclination as adopted by the paper, in the Monte Carlo.
+  STAGE=A   the blind pre-flight: no velocity column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V x 2); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE B
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038; velocity columns loaded: True
+rows: 13 COSMOS 3182 z 2.103 line [CI](2-1) R_ext 3.18 kpc R_e 2.65 (R_ext/1.2) M* 1.20e+11 i 37 (i_HST); 23 ADF22.1 z 3.089 line CO(3-2) R_ext 6.34 kpc R_e 5.28 (R_ext/1.2) M* 5.30e+11 i 70 (i_ALMA); 24 ADF22.5 z 3.094 line CO(3-2) R_ext 3.55 kpc R_e 2.96 (R_ext/1.2) M* nan i 75 (i_ALMA); 25 ADF22.7 z 3.088 line CO(3-2) R_ext 3.94 kpc R_e 3.28 (R_ext/1.2) M* 1.10e+11 i 74 (i_ALMA); 28 W0410-0913 z 3.630 line CO(6-5) R_ext 4.36 kpc R_e 1.86 (dashed) M* 1.30e+11 i 53 (i_HST)
+
+STAGE B  THE MEASUREMENT
+  13 COSMOS 3182: z 2.103  g_obs 5.672e-10  g_bar(B0) 1.284e-09  D 0.442  delta_FLAT -0.376 [-0.613, -0.067]  y 13.7  NO ROOT  MC rooted 68 % [1.71, 55.7] (draws without a root 0.87)
+      B1 (gas floor): D 0.411 NO ROOT;  B2 (conventional gas): D 0.256 NO ROOT;  baryon +-0.15 [0.001, 0.001] (no-root corner)  +-0.30 [0.001, 0.001] (no-root corner)
+      Delta_floor -0.355 dex; baryon shift for s* = 1: -0.405; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 1/12; recipe half-width nan
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e --; R_e x1.5 -- (variant has no root); R_e /1.5 -- (variant has no root); spherical -- (variant has no root); pressure +1.68 sigma^2 -- (variant has no root); pressure +3.36 sigma^2 -- (variant has no root); inclination: the other of (i_HST, i_ALMA) -- (variant has no root); inclination -1 sigma -- (variant has no root); inclination +1 sigma -- (variant has no root); V_ext at R_mean of the last two rings -- (variant has no root); kernel P2 -- (variant has no root); ID 13: JWST R_e 3.34 kpc, gas disc 5.1 kpc -- (variant has no root)
+  23 ADF22.1: z 3.089  g_obs 1.222e-09  g_bar(B0) 1.428e-09  D 0.856  delta_FLAT -0.087 [-0.327, +0.147]  y 15.3  NO ROOT  MC rooted 68 % [1.74, 14.4] (draws without a root 0.61)
+      B1 (gas floor): D 0.797 NO ROOT;  B2 (conventional gas): D 0.610 NO ROOT;  baryon +-0.15 [0.001, 3.46] (no-root corner)  +-0.30 [0.001, 9.85] (no-root corner)
+      Delta_floor -0.068 dex; baryon shift for s* = 1: -0.091; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 3/10; recipe half-width nan
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e --; R_e x1.5 --; R_e /1.5 -- (variant has no root); spherical --; pressure +1.68 sigma^2 -- (variant has no root); pressure +3.36 sigma^2 -- (variant has no root); inclination -1 sigma -- (variant has no root); inclination +1 sigma -- (variant has no root); V_ext at R_mean of the last two rings -- (variant has no root); kernel P2 -- (variant has no root)
+  25 ADF22.7: z 3.088  g_obs 9.679e-10  g_bar(B0) 7.680e-10  D 1.260  delta_FLAT +0.066 [-0.120, +0.252]  y 8.2  s* <= 3.3 (a0 <= 3.09e-10)  MC rooted 68 % [2.01, 13.9] (draws without a root 0.31)
+      B1 (gas floor): D 1.047 s* <= 0.677;  B2 (conventional gas): D 1.047 s* = 0.677;  baryon +-0.15 [0.001, 8.54] (no-root corner)  +-0.30 [0.001, 16] (no-root corner)
+      Delta_floor +0.100 dex; baryon shift for s* = 1: +0.071; lever (noiseless) -20.1 ILL-CONDITIONED; knobs with a root 9/10; recipe half-width 0.953
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.895; R_e x1.5 +0.573; R_e /1.5 -- (variant has no root); spherical +0.334; pressure +1.68 sigma^2 +0.104; pressure +3.36 sigma^2 +0.193; inclination -1 sigma +0.104; inclination +1 sigma -0.090; V_ext at R_mean of the last two rings +0.175; kernel P2 +0.166
+  28 W0410-0913: z 3.630  g_obs 1.177e-09  g_bar(B0) 1.129e-09  D 1.043  delta_FLAT -0.006 [-0.215, +0.213]  y 12.1  s* <= 0.743 (a0 <= 0.696e-10)  MC rooted 68 % [2.18, 18.2] (draws without a root 0.45)
+      B1 (gas floor): D 0.694 NO ROOT;  B2 (conventional gas): D 0.694 NO ROOT;  baryon +-0.15 [0.001, 6.61] (no-root corner)  +-0.30 [0.001, 14.1] (no-root corner)
+      Delta_floor +0.018 dex; baryon shift for s* = 1: -0.007; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 9/11; recipe half-width 1.502
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +1.062; R_e x1.5 +0.718; R_e /1.5 +0.119; spherical +0.856; pressure +1.68 sigma^2 +0.477; pressure +3.36 sigma^2 +0.702; inclination: the other of (i_HST, i_ALMA) +0.230; inclination -1 sigma +0.784; inclination +1 sigma -- (variant has no root); V_ext at R_mean of the last two rings -- (variant has no root); kernel P2 +0.149
+  24 ADF22.5: NO M*: no point; gas-floor-only diagnostic: g_obs 8.379e-10, g_bar(B1 gas only) 2.062e-10 (D 4.06), g_bar(B2) 1.124e-09 (D 0.75): the baryon lower limit is made of the gas alone, uninformative
+  P4 (13, 23, 25, 28; z_med 3.088): median D 0.949  NO ROOT; bootstrap rooted 68 % [0.595, 2.17] (resamples without a root 0.62); baryon +-0.15 [0.001, 5] +-0.30 [0.001, 11.9]; Delta_floor -0.023
+  [PASS] M5 CROSS-CHECK: ALPAKA 15 through this lane's functions with CFG229's committed inputs reproduces CFG229's committed g_obs, g_bar and D to 5e-5 relative
+         relative deviations g_obs 0.0e+00, g_bar 0.0e+00, D 0.0e+00
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (2 rows with a root)
+  [PASS] M3 P4 holds four members, the rows with an M*
+         P4 4 = [13, 23, 25, 28]
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg272_points_stageB.csv (6 rows)
+
+4/4 checks pass; load-bearing failures: 0   (4 s)

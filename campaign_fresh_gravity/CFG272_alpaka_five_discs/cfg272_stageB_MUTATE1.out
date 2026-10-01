@@ -1,0 +1,41 @@
+CFG272 -- implied-a0 bounds (or no-root floors) for the five ALPAKA I discs without a gas mass or an a0: IDs 13, 23, 24, 25, 28 (z 2.10-3.63).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG272_alpaka_five_discs/FROZEN_CRITERIA.md (e06a91b8a).
+  baryons   LOWER LIMITS: B0 = stars only (headline), B1 = stars + a gas floor (alpha_CO,min = 0.8, r_J1 = 1; alpha_[CI],min = 1.0 for ID 13), B2 = conventional gas (sensitivity).
+  g_obs     V_ext^2 / R_ext (a rotation speed, pressure term is a knob); inclination as adopted by the paper, in the Monte Carlo.
+  STAGE=A   the blind pre-flight: no velocity column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V x 2); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE B  *** MUTATE=1: every V_ext x 2 (g_obs x 4) ***
+sha256: alpaka1_sample.csv 77e58a33402af3cd, alpaka1_properties.csv cf3317bac8dc5225, alpaka1_geometry.csv e756a6345f572f1e, alpaka1_alma_obs.csv 70010984b909623e, alpaka1_outer_summary.csv f3a76cd37ec83038; velocity columns loaded: True
+rows: 13 COSMOS 3182 z 2.103 line [CI](2-1) R_ext 3.18 kpc R_e 2.65 (R_ext/1.2) M* 1.20e+11 i 37 (i_HST); 23 ADF22.1 z 3.089 line CO(3-2) R_ext 6.34 kpc R_e 5.28 (R_ext/1.2) M* 5.30e+11 i 70 (i_ALMA); 24 ADF22.5 z 3.094 line CO(3-2) R_ext 3.55 kpc R_e 2.96 (R_ext/1.2) M* nan i 75 (i_ALMA); 25 ADF22.7 z 3.088 line CO(3-2) R_ext 3.94 kpc R_e 3.28 (R_ext/1.2) M* 1.10e+11 i 74 (i_ALMA); 28 W0410-0913 z 3.630 line CO(6-5) R_ext 4.36 kpc R_e 1.86 (dashed) M* 1.30e+11 i 53 (i_HST)
+
+STAGE B  THE MEASUREMENT (MUTATE: V x 2)
+  13 COSMOS 3182: z 2.103  g_obs 2.269e-09  g_bar(B0) 1.284e-09  D 1.767  delta_FLAT +0.226 [-0.011, +0.536]  y 13.7  s* <= 19.7 (a0 <= 18.4e-10)  MC rooted 68 % [6.07, 123] (draws without a root 0.18)
+      B1 (gas floor): D 1.644 s* <= 16.8;  B2 (conventional gas): D 1.023 s* = 0.77;  baryon +-0.15 [7.5, 37.1]  +-0.30 [0.001, 61.8] (no-root corner)
+      Delta_floor +0.247 dex; baryon shift for s* = 1: +0.234; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 12/12; recipe half-width 1.143
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.681; R_e x1.5 +0.401; R_e /1.5 -0.393; spherical +0.215; pressure +1.68 sigma^2 +0.011; pressure +3.36 sigma^2 +0.022; inclination: the other of (i_HST, i_ALMA) +0.891; inclination -1 sigma +0.737; inclination +1 sigma -0.774; V_ext at R_mean of the last two rings +0.139; kernel P2 +0.170; ID 13: JWST R_e 3.34 kpc, gas disc 5.1 kpc +0.230
+  23 ADF22.1: z 3.089  g_obs 4.889e-09  g_bar(B0) 1.428e-09  D 3.423  delta_FLAT +0.515 [+0.275, +0.750]  y 15.3  s* <= 128 (a0 <= 120e-10)  MC rooted 68 % [52.9, 268] (draws without a root 0.02)
+      B1 (gas floor): D 3.187 s* <= 116;  B2 (conventional gas): D 2.440 s* = 77;  baryon +-0.15 [76.1, 201]  +-0.30 [39.8, 305]
+      Delta_floor +0.534 dex; baryon shift for s* = 1: +0.527; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 10/10; recipe half-width 0.555
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.539; R_e x1.5 +0.298; R_e /1.5 -0.214; spherical +0.152; pressure +1.68 sigma^2 +0.001; pressure +3.36 sigma^2 +0.002; inclination -1 sigma +0.043; inclination +1 sigma -0.037; V_ext at R_mean of the last two rings +0.063; kernel P2 +0.107
+  25 ADF22.7: z 3.088  g_obs 3.872e-09  g_bar(B0) 7.680e-10  D 5.041  delta_FLAT +0.668 [+0.482, +0.854]  y 8.2  s* <= 168 (a0 <= 157e-10)  MC rooted 68 % [88.6, 302] (draws without a root 0.00)
+      B1 (gas floor): D 4.188 s* <= 133;  B2 (conventional gas): D 4.188 s* = 133;  baryon +-0.15 [107, 254]  +-0.30 [64.5, 375]
+      Delta_floor +0.703 dex; baryon shift for s* = 1: +0.693; lever (noiseless) -20.1 ILL-CONDITIONED; knobs with a root 10/10; recipe half-width 0.527
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.503; R_e x1.5 +0.274; R_e /1.5 -0.185; spherical +0.137; pressure +1.68 sigma^2 +0.013; pressure +3.36 sigma^2 +0.025; inclination -1 sigma +0.050; inclination +1 sigma -0.037; V_ext at R_mean of the last two rings +0.124; kernel P2 +0.077
+  28 W0410-0913: z 3.630  g_obs 4.706e-09  g_bar(B0) 1.129e-09  D 4.170  delta_FLAT +0.596 [+0.387, +0.815]  y 12.1  s* <= 160 (a0 <= 150e-10)  MC rooted 68 % [69.1, 355] (draws without a root 0.01)
+      B1 (gas floor): D 2.776 s* <= 90.8;  B2 (conventional gas): D 2.776 s* = 90.8;  baryon +-0.15 [99.6, 247]  +-0.30 [56.8, 369]
+      Delta_floor +0.620 dex; baryon shift for s* = 1: +0.611; lever (noiseless) +nan ILL-CONDITIONED; knobs with a root 11/11; recipe half-width 0.312
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.240; R_e x1.5 +0.100; R_e /1.5 +0.007; spherical +0.148; pressure +1.68 sigma^2 +0.019; pressure +3.36 sigma^2 +0.037; inclination: the other of (i_HST, i_ALMA) +0.027; inclination -1 sigma +0.174; inclination +1 sigma -0.143; V_ext at R_mean of the last two rings +0.001; kernel P2 +0.091
+  24 ADF22.5: NO M*: no point; gas-floor-only diagnostic: g_obs 3.352e-09, g_bar(B1 gas only) 2.062e-10 (D 16.26), g_bar(B2) 1.124e-09 (D 2.98): the baryon lower limit is made of the gas alone, uninformative
+  P4 (13, 23, 25, 28; z_med 3.088): median D 3.797  s* <= 143; bootstrap rooted 68 % [53.1, 164] (resamples without a root 0.00); baryon +-0.15 [87.3, 223] +-0.30 [47.9, 336]; Delta_floor +0.579
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity without needing a main-run root): every V_ext x 2; rows with a root satisfy the closed-form inversion of their own (D, g_bar) to 1e-6 dex and their number is at least the main run's
+         rows with a root: mutated 4, main 2; max |d log10 s*| against the independent inversion 8.9e-16
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg272_points_stageB_MUTATE1.csv (6 rows)
+
+2/2 checks pass; load-bearing failures: 0   (3 s)
