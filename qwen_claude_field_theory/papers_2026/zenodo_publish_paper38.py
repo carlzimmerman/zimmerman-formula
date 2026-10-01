@@ -3,6 +3,7 @@
 Reads ZENODO_ACCESS_TOKEN from the .env one directory above the repository -- NEVER printed.
 Deposited on the owner's explicit go: v1.1 PUBLISHED 2026-10-01, DOI 10.5281/zenodo.23073072 (concept 23073071); the owner ran this script.
 v1.2 PUBLISHED 2026-10-01 as a new version: DOI 10.5281/zenodo.23085582 (concept 23073071); the owner ran: python3 zenodo_publish_paper38.py --newversion 23073072
+v1.3 (DR4-paragraph correction, NOT yet deposited): python3 zenodo_publish_paper38.py --newversion 23085582
 Usage: python zenodo_publish_paper38.py   (run from qwen_claude_field_theory/papers_2026/)
 """
 import json, os, sys, time, urllib.request, urllib.error

@@ -54,6 +54,11 @@ SRC = {
     "GAS": "data_assembly/GAS_ANCHOR_SCOPING_2026-09-30.md",
     "LENS": "real_research/reviews/lensing_rar/A0Z_LENSING_ZBIN_2026.md",
     "R240": CFG + "CFG240_calibration_wall/README.md",
+    "D11": CFG + "closure_map/DOOR11_RESULT_2026-09-29.md",
+    "R63": CFG + "CFG63_discrimination_forecast/README.md",
+    "R200": CFG + "CFG200_dr4_merge_band_forecast/README.md",
+    "PRE": "prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md",
+    "EDGE": "prep_2026/gaia_dr4_prep/dr4_ready_1/edge_table_dr4.json",
     # v1.2 sources (the CFG241 referee lane and the CFG216 input-correction note; committed at HEAD)
     "R241": CFG + "CFG241_paper38_referee/README.md",
     "O241P": CFG + "CFG241_paper38_referee/CFG241_physics.out",
@@ -376,12 +381,26 @@ R("B39", "1.3 to 8", "R229", r"at 11 to 20 kpc, (1\.3 to 8) × the stated ones",
 # ---------------------------------------------------------------- B40 Gaia DR4
 R("B40", "2 Dec 2026", "STAND", r"\*\*Gaia DR4 wide binaries, (2 Dec 2026)\.\*\*", "2 Dec 2026")
 R("B40", "1.000", "STAND", r"B predicts γ̂ = (1\.000); the bare", r"\hat\gamma=1.000")
-R("B40", "1.161", "STAND", r"the bare law's floor is (1\.161) \(alt 1\.192\)", "1.161")
-R("B40", "1.192", "STAND", r"floor is 1\.161 \(alt (1\.192)\)", "alt 1.192")
+R("B40", "ν_RAR", "D11", r"uses the (ν_RAR) kernel", r"\nu_{\rm RAR}")
+R("B40", "1.1614", "EDGE", r'"name": "Arm A band floor \(Amdt 10\), canonical",\s*"gamma": (1\.1614)', "floor at 1.1614")
+R("B40", "1.1917", "EDGE", r'"name": "Arm A band floor \(Amdt 10\), alt footing",\s*"gamma": (1\.1917)', "(alt 1.1917)")
 R("B40", "0.02", "STAND", r"frozen σ_sys = (0\.02)", r"\sigma_{\rm sys}=0.02")
-R("B40", "4,300", "STAND", r"3σ needs about (4,300) pairs", "4,300 pairs")
-R("B40", "2,900", "STAND", r"\(alt (2,900)\)", "alt 2,900")
+R("B40", "8.1", "R63", r"Arm A floor \(1\.1614; alt 1\.1917\) \| 0\.1614 \| 0\.020 \| \*\*(8\.1)\*\*", r"capped at 8.1\sigma")
+R("B40", "4,342", "R63", r"\| \*\*(4,342) pairs\*\* \(alt 2,940\)", "4,342 pairs")
+R("B40", "2,940", "R63", r"\| \*\*4,342 pairs\*\* \(alt (2,940)\)", "alt 2,940")
 R("B40", "30,000", "STAND", r"out of ~(30,000) expected", "30,000 expected")
+R("B40", "1.063", "R200", r"\| \(a\) P2-merge floor (1\.063) vs ownership \(g_ext 2\.146e-10\)", "1.063--1.102")
+R("B40", "1.102", "R200", r"\| \(a\) P2-merge top (1\.102) vs ownership \|", "1.063--1.102")
+R("B40", "1.079", "D11", r"alt: 1\.111 / 1\.127 and (1\.079) / 1\.099", "1.079--1.127")
+R("B40", "1.127", "D11", r"alt: 1\.111 / (1\.127) and 1\.079 / 1\.099", "1.079--1.127")
+R("B40", "2.3–3.7", "R200", r"separation from ownership is (2\.3–3\.7)σ canonical", r"2.3--3.7$\sigma$")
+R("B40", "2.86", "R200", r"and (2\.86) / 3\.59 for 2\.146e-10", "2.86--4.60")
+R("B40", "4.60", "R200", r"\(a\) is 4\.02 / (4\.60) for the primary g_ext", "2.86--4.60")
+R("B40", "14,000–264,000", "R200", r"it needs (14,000–264,000) pairs for 3σ", "14,000--264,000 pairs")
+R("B40", "0.2–1.1", "D11", r"P2-merge vs the chain ceiling: (0\.2–1\.1)σ, never 3σ at any N", r"0.2--1.1$\sigma$")
+R("B40", "1.084", "PRE", r"\| (1\.084) – 1\.23 \| \*\*falsified\*\* \(z_C ≥ 3\) \*\*if\*\* the frozen stability requirements pass", r"1.084\le\hat\gamma")
+R("B40", "1.23", "PRE", r"\| 1\.084 – (1\.23) \| \*\*falsified\*\* \(z_C ≥ 3\) \*\*if\*\*", r"\hat\gamma\le1.23")
+R("B40", "the frozen stability requirements pass", "PRE", r"\*\*if\*\* (the frozen stability requirements pass): every ladder variant", "if the frozen stability requirements pass")
 R("B40", "1.000", "STAND", r"or Newton, which both predict (1\.000)", "both predict 1.000")
 R("B40", "For B it is a survival test, never a confirmation.", "STAND", r"(For B it is a survival test, never a confirmation\.)", "for B it is a survival test, never a confirmation")
 # ---------------------------------------------------------------- B41 limitations (wording carried from the lanes)
