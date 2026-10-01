@@ -1,4 +1,4 @@
-# AMENDMENT 18 — DRAFT, NOT FILED (written 2026-09-30, revision 4; filing needs the owner's explicit go)
+# AMENDMENT 18 — DRAFT, NOT FILED (written 2026-09-30, revision 5; filing needs the owner's explicit go)
 
 This is a draft. `PREREGISTRATION_DR4.md` and every `*_HASH.txt` are untouched. If the owner approves, the text below the line is appended verbatim (append-only) after Amendment 17, with a new `AMENDMENT18_HASH.txt`.
 
@@ -8,6 +8,16 @@ This is a draft. `PREREGISTRATION_DR4.md` and every `*_HASH.txt` are untouched. 
 - The build-only part is 0.24 / 0.32 σ_fit.
 
 The primary DR4 build is deterministic, because its seeds are frozen. But the seed choice carries a noise term that σ_tot = √(σ_fit² + 0.02²) does not include, and its size at DR4's N is not measured.
+
+**Revision 5 (after the independent referee CFG239, 7f102a38f: criteria 8f549fbd8, re-run identical by its session; the orchestrator re-ran its mechanism and flip scripts). Its verdicts:**
+- **The mechanism is CONFIRMED.** A single sequential stream drives 1,272 draws (6 × 212). Removing, reversing or permuting one pair leaves 0.000% of the other pairs bit-identical, and a one-pair removal is indistinguishable from a different seed (KS p = 0.71).
+- **The other items are PARTIAL. No sentence of this amendment is refuted, and the registered procedure is unchanged.** The wording changes made here:
+  - **"Flip"** is now defined as half the symmetric difference of two builds' final pair sets. This definition reproduces 157.8 / 142.3 / 151.8 and 147.1.
+  - **The stream families are not independent confirmations.** The E/F-only spread rides on the stage-G stream: with a per-pair G stream, E/F-only flips fall from 157 to 8.
+  - **The N-trend statement is scoped.** It comes from thinning ONE DR3 sample. The canonical slope +0.13 (95% interval −0.02 to +0.27) is consistent with no trend, but the alt slope +0.13 (−0.11 to +0.34) does not exclude one. Nothing is measured at DR4's N.
+  - **The σ_build range is confirmed** at 0.3 to 0.44 σ_fit (CFG239: K = 100 G-only 0.36 / 0.33; 151 pooled builds 0.38 / 0.36). The σ_tot understatement in (f) is consistent with CFG239's arithmetic: 4.7–8.1% at DR3's N and 2.6–4.4% at the pre-registered DR4 σ_fit.
+  - **A correction to revision 3's note:** its "+4.4% at DR3's N" omitted σ_sys. With σ_sys = 0.02 the figure is 3.9%.
+- **A new finding, reported only:** a row shuffle of the identical pair set alone gives 0.12 / 0.09 σ_fit. The spread is therefore an estimator-response level, not proportional to the number of flipped pairs. The frozen build k = 0 sits 1.77 SD below the mean of 100 G-only builds (canonical).
 
 **Revision 4 (after the 51-build G-only sweep Q-G50, question frozen in 62b165001, answered in 3cf5ee699; the full test run 17/17, 768df3802, with its MUTATE runs failing where they must, 768df3802 / 2643b1c98; the label rehearsal L8, 8/8). The orchestrator re-ran the G50 summary and the label test from the committed state (identical) and recomputed the statistics from the committed manifest.**
 - **The measured spread is larger than 0.3 σ_fit.** SD(γ̂) over the 51 G-only builds is 0.0249 canonical / 0.0211 alt, which is 0.44 / 0.41 of the mean σ_fit. The ten-build values were 0.32 / 0.28 (all streams) and 0.41 / 0.22 (G-only), each ±24%. The sweep cannot say whether G-only and full rebuilds differ or whether the ten-build values were low.
@@ -54,7 +64,7 @@ The measured DR3 correlation-cache coverage per build (the uncovered ids) was ch
 > **κ = ½ FITTED, NOT DERIVED.**
 >
 > **What was found.** On DR3 (a code-path test; Amendment 7(e)), rebuilding the primary base with ten seed sets for the builder's random draws (N_SHIFT = 30) gave the following:
-> - about 2.6% of the final pairs flip between builds (a flip is a one-way count: a pair in the final sample of one build and not of the other);
+> - about 2.6% of the final pairs flip between builds (a flip count is half the symmetric difference of two builds' final pair sets);
 > - γ̂'s build-to-build SD is 0.30 σ_fit (canonical) and 0.34 σ_fit (alt);
 > - the build-only part is 0.24 / 0.32 σ_fit.
 >
@@ -89,16 +99,16 @@ The measured DR3 correlation-cache coverage per build (the uncovered ids) was ch
 >
 > **(f) Against interest.**
 > - The label can caveat a verdict favourable to the framework as well as an unfavourable one.
-> - Keeping σ_tot unchanged keeps the frozen thresholds. On DR3, σ_build measured 0.3 to 0.44 σ_fit (ten builds per stream family; 51 G-only builds), with no trend over a factor of 4 in N and no extrapolation claimed. At that ratio, σ_tot understates the total error by about 2% to 5% at DR4's expected σ_fit = 0.019 (about 4% to 8% at DR3's N). The label's width, max(σ_build, 0.3 σ_fit), then follows σ_build.
+> - Keeping σ_tot unchanged keeps the frozen thresholds. On DR3, σ_build measured 0.3 to 0.44 σ_fit (ten builds per stream family; 51 and 100 G-only builds). Thinning that one sample over a factor of 4 in N showed no trend on the canonical footing, while a rising trend is not excluded on the alt footing. Nothing is measured at DR4's N. At that ratio, σ_tot understates the total error by about 2% to 5% at DR4's expected σ_fit = 0.019 (about 4% to 8% at DR3's N). The label's width, max(σ_build, 0.3 σ_fit), then follows σ_build.
 > - The frozen pipeline's injection-recovery self-test is itself seed-dependent: on DR3 it failed at 15 of 50 alternative fit seeds and passes at the registered seed. Its pass at release is a statement about the registered seed only. That is stated here; no rule changes. The label is the only protection. That is stated here before the data exist.
-> - The primary is sensitive to any change of stage G's pair array, including ones the other amendments treat as inert. This amendment measures that sensitivity; it does not remove it.
+> - The primary is sensitive to any change of stage G's pair array, including ones the other amendments treat as inert. This amendment measures that sensitivity; it does not remove it. The seed streams of stages E/F and G are not independent sources of the spread: the E/F spread acts through stage G's stream (CFG239).
 > - Per-pair seeding of the Monte Carlo would remove the sensitivity to changes of the pair array, but not the seed-to-seed noise itself. It would also change the frozen builder, so it is not adopted.
 > - If time does not allow K_G ≥ 50 G-only builds, the number run is recorded. The label requires K_G ≥ 10 further builds (11 γ̂ including the primary); below that it reads "NOT APPLICABLE (K < 10)".
 >
 > **Untouched:** the estimator; the cut table; the error model and σ_tot; the strictness ladder; the frozen N = 30,000; both a₀ footings; Arms A, B and C; Amendments 10–17's decision rows and cut choices; the primary build's frozen seeds and the pipeline's registered RNG seed. κ = ½ remains fitted.
 >
 > **Provenance.**
-> - `prep_2026/gaia_dr4_prep/AMENDMENT18_DRAFT_NOT_FILED.md`: the draft, revised three times: after a read-through against the frozen builder and the driver; after the DR3 rehearsal of the tooling (a51d6f8f2, 2f2354b18); and after the code-extracted edge table (676cbbec2).
+> - `prep_2026/gaia_dr4_prep/AMENDMENT18_DRAFT_NOT_FILED.md`: the draft, revised four times: after a read-through against the frozen builder and the driver; after the DR3 rehearsal of the tooling (a51d6f8f2, 2f2354b18); after the code-extracted edge table (676cbbec2) and Q-G50 (3cf5ee699); and after the independent referee CFG239 (7f102a38f).
 > - `dr4_ready_1/seed_sets_dr4.json` (416530b57), and the edge table `dr4_ready_1/edge_table_dr4.json` with `seed_label.py` (676cbbec2).
 > - `dr4_ready_1/WP2_GAMMA_SPREAD_FROZEN.md` and `wp2_gamma_spread_full_dr3.*` (72f9a7ed4).
 
