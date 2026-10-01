@@ -1,0 +1,141 @@
+CFG259 -- re-score candidate B's ultra-faint offset (CFG28/29 statistic and error model, exactly) and CFG244's Gate H bound-core lean under five
+data variants of the 40 ultra-faint dispersions (DV0 committed LVD; DV1 DEIMOS where matched; DV2 Arroyo-Polonio+26 free-f log ratio on the eight;
+DV3 f = 0.7 ratio; DV4 = DV1 then DV2).  Frozen criteria: FROZEN_CRITERIA.md (committed cd8aa9856), written before this script and before any variant number.
+The record's code is exec'd READ-ONLY (CFG28's prefix: FG001's loader and estimator, offsets, Kaplan-Meier, bootstrap; CFG244 Gate H's prefix: the readings,
+the scoring, the classes); the inputs are the committed CFG257 tables.  Nothing is downloaded; no record file is written.
+
+  mode: main
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] (control) C1 CONTROL (reproduction at DV0): S1 = CFG28's committed RES, S2 = CFG29's committed rows, S3 = CFG244's committed Gate H (both kernels, classes) to 1e-9; CFG28's and CFG244's samples identical
+         max |d|: S1 0.0e+00, S2 0.0e+00, S3 0.0e+00; classes P2 H2 / RAR H4 / final H4 (committed H2 / H4 / H4); samples identical: True
+  [PASS] (control) C2 CONTROL (the data build): DV1 exactly the 19 matched rows with agreeing status and the six named changes; DV2 / DV3 move exactly the eight by log10(sig_free (sig_f07) / sig_f0), equal to an independent recomputation (1e-12) and to the scoping's medians and ranges (0.002); DV4 = DV1 + DV2
+         DV1: 19 matched (15 resolved + 4 limits), changed ['Aquarius III', 'Bootes I', 'Bootes III', 'Draco II', 'Eridanus IV', 'Willman 1'] (13 equal: 13); DV2: moved 8 systems (the eight: True); max |d| to the independent log10(sig_free/sig_f0) 5.6e-17 (0 of 8 differ by > 1e-6); median -0.068 (scoping -0.068), range -0.168 to -0.018 (scoping -0.168 to -0.018); DV3: moved 8 systems (the eight: True); max |d| to the independent log10(sig_f07/sig_f0) 0.0e+00 (0 of 8 differ by > 1e-6); median -0.104 (scoping -0.104), range -0.238 to -0.053 (scoping -0.238 to -0.053); DV4: per-system change = DV1's + DV2's, max |d| 8.3e-17
+  [PASS] (control) C3 CONTROL (reactivity, the CFG219 lesson): a uniform plant c on every ultra-faint shifts B's KM median by exactly c and leaves the bootstrap error and the floor unchanged (1e-9)
+         c -0.05 canonical: median shift - c 1.4e-17, error change 0.0e+00, floor change -5.6e-17; c -0.05 alt: median shift - c 6.9e-17, error change 6.9e-18, floor change 0.0e+00; c -0.10 canonical: median shift - c -2.8e-17, error change 0.0e+00, floor change -2.8e-17; c -0.10 alt: median shift - c 2.8e-17, error change 0.0e+00, floor change 1.4e-17 ...
+  [PASS] (control) C4 CONTROL (seed determinism and liveness): the same seed returns the identical Gate H deltas, a different seed does not
+         same seed identical: True; different seed differs: True
+
+==============================================================================================================
+THE FIVE VARIANTS (each: S1 = candidate B with the CFG28 / CFG29 statistic and error model; S3 = CFG244 Gate H)
+==============================================================================================================
+
+  per-system log10 changes against DV0 (dex; only systems that change):
+   DV1 (DEIMOS (Geha 2026) where matched (19 rows)): Bootes I -0.098, Bootes III +0.494, Eridanus IV -0.127, Willman 1 -0.073, Aquarius III +0.018, Draco II +0.007
+   DV2 (Arroyo-Polonio+26 free-f log ratio on the eight): Bootes I -0.068, Carina II -0.068, Hydrus I -0.059, Leo IV -0.168, Leo V -0.018, Reticulum II -0.155, Segue 1 -0.073, Willman 1 -0.039
+   DV3 (Arroyo-Polonio+26 f = 0.7 log ratio on the eight): Bootes I -0.112, Carina II -0.104, Hydrus I -0.095, Leo IV -0.238, Leo V -0.053, Reticulum II -0.178, Segue 1 -0.104, Willman 1 -0.053
+   DV4 (DV1 then DV2): Bootes I -0.166, Bootes III +0.494, Carina II -0.068, Eridanus IV -0.127, Hydrus I -0.059, Leo IV -0.168, Leo V -0.018, Reticulum II -0.155, Segue 1 -0.073, Willman 1 -0.112, Aquarius III +0.018, Draco II +0.007
+
+  CANDIDATE B (CFG28 T1 + T5): KM median (dex) +- bootstrap error, systematic floor, z, status by D-B; shift against DV0 and the binary share
+  variant footing     median    err  floor     z   n+lim  dMedian   share   status
+  DV0    canonical  +0.3245  0.038  0.077  3.77  31+9    +0.0000   -0.0%   
+  DV0    alt        +0.3045  0.038  0.077  3.55  31+9    +0.0000   -0.0%   SURVIVES
+  DV1    canonical  +0.3291  0.037  0.076  3.89  31+9    +0.0046   -1.4%   
+  DV1    alt        +0.3088  0.037  0.076  3.66  31+9    +0.0043   -1.4%   SURVIVES
+  DV2    canonical  +0.3216  0.037  0.077  3.77  31+9    -0.0029   +0.9%   
+  DV2    alt        +0.3015  0.037  0.076  3.54  31+9    -0.0030   +1.0%   SURVIVES
+  DV3    canonical  +0.3216  0.042  0.077  3.68  31+9    -0.0029   +0.9%   
+  DV3    alt        +0.3015  0.042  0.076  3.46  31+9    -0.0030   +1.0%   SURVIVES
+  DV4    canonical  +0.3245  0.035  0.077  3.84  31+9    +0.0000   -0.0%   
+  DV4    alt        +0.3045  0.035  0.077  3.61  31+9    +0.0000   -0.0%   SURVIVES
+
+  CFG29 headline rows (predicted sigma >= 1.5 / >= 2.0 / < 1.5 km/s; the variant's own floor): median +- error (z)
+  DV0    canonical pred >= 1.5: +0.313 +- 0.031 (3.8sigma, 19+2); pred >= 2.0: +0.229 +- 0.146 (1.4sigma, 5+0); pred < 1.5: +0.475 +- 0.082 (4.2sigma, 12+7); median binary floor needed 3.37 km/s
+  DV0    alt       pred >= 1.5: +0.293 +- 0.031 (3.5sigma, 19+2); pred >= 2.0: +0.295 +- 0.122 (2.0sigma, 7+1); pred < 1.5: +0.455 +- 0.082 (4.0sigma, 12+7); median binary floor needed 3.33 km/s
+  DV1    canonical pred >= 1.5: +0.315 +- 0.028 (3.9sigma, 19+2); pred >= 2.0: +0.315 +- 0.111 (2.3sigma, 5+0); pred < 1.5: +0.475 +- 0.076 (4.4sigma, 12+7); median binary floor needed 3.39 km/s
+  DV1    alt       pred >= 1.5: +0.295 +- 0.028 (3.7sigma, 19+2); pred >= 2.0: +0.334 +- 0.083 (3.0sigma, 7+1); pred < 1.5: +0.455 +- 0.076 (4.2sigma, 12+7); median binary floor needed 3.37 km/s
+  DV2    canonical pred >= 1.5: +0.295 +- 0.047 (3.3sigma, 19+2); pred >= 2.0: +0.161 +- 0.140 (1.0sigma, 5+0); pred < 1.5: +0.436 +- 0.097 (3.5sigma, 12+7); median binary floor needed 3.26 km/s
+  DV2    alt       pred >= 1.5: +0.275 +- 0.047 (3.1sigma, 19+2); pred >= 2.0: +0.295 +- 0.133 (1.9sigma, 7+1); pred < 1.5: +0.415 +- 0.097 (3.4sigma, 12+7); median binary floor needed 3.25 km/s
+  DV3    canonical pred >= 1.5: +0.260 +- 0.055 (2.8sigma, 19+2); pred >= 2.0: +0.117 +- 0.141 (0.7sigma, 5+0); pred < 1.5: +0.436 +- 0.100 (3.5sigma, 12+7); median binary floor needed 3.02 km/s
+  DV3    alt       pred >= 1.5: +0.241 +- 0.055 (2.6sigma, 19+2); pred >= 2.0: +0.295 +- 0.142 (1.8sigma, 7+1); pred < 1.5: +0.415 +- 0.100 (3.3sigma, 12+7); median binary floor needed 3.01 km/s
+  DV4    canonical pred >= 1.5: +0.315 +- 0.041 (3.6sigma, 19+2); pred >= 2.0: +0.315 +- 0.134 (2.0sigma, 5+0); pred < 1.5: +0.436 +- 0.090 (3.7sigma, 12+7); median binary floor needed 3.33 km/s
+  DV4    alt       pred >= 1.5: +0.295 +- 0.041 (3.4sigma, 19+2); pred >= 2.0: +0.334 +- 0.100 (2.7sigma, 7+1); pred < 1.5: +0.415 +- 0.090 (3.5sigma, 12+7); median binary floor needed 3.31 km/s
+
+  CFG244 GATE H (P2 kernel primary; RAR kernel cross-check): ultra-faint offsets and Delta chi2 = chi2_a - chi2_b; class per kernel; FINAL (cautious) class; D-G
+  variant foot             (a1) P1        (b) V1 P1        (b) V2 P1 |  P2 d_V1  P2 d_V2 RAR d_V1 RAR d_V2
+  DV0    canonical +0.329 (+3.90) +0.080 (+0.61) +0.080 (+1.47) |   +13.58   +11.68   +12.45   +10.55
+  DV0    alt       +0.309 (+3.66) +0.080 (+0.61) +0.080 (+1.47) |   +11.32    +9.42   +10.50    +8.60
+  DV0    classes: P2 H2, RAR H4, FINAL H4;  (b) acceptable (P2): True;  D-G: INTACT
+  DV1    canonical +0.331 (+3.96) +0.080 (+0.61) +0.080 (+1.47) |   +14.05   +12.16   +13.44   +11.55
+  DV1    alt       +0.310 (+3.72) +0.080 (+0.61) +0.080 (+1.47) |   +11.74    +9.84   +11.36    +9.46
+  DV1    classes: P2 H2, RAR H2, FINAL H2;  (b) acceptable (P2): True;  D-G: STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)
+  DV2    canonical +0.325 (+3.91) +0.073 (+0.59) +0.073 (+1.12) |   +13.66   +12.64   +12.72   +11.70
+  DV2    alt       +0.305 (+3.66) +0.073 (+0.59) +0.073 (+1.12) |   +11.37   +10.35   +10.71    +9.70
+  DV2    classes: P2 H2, RAR H2, FINAL H2;  (b) acceptable (P2): True;  D-G: STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)
+  DV3    canonical +0.325 (+3.81) +0.073 (+0.62) +0.073 (+1.04) |   +12.87   +12.07   +11.96   +11.16
+  DV3    alt       +0.305 (+3.57) +0.073 (+0.62) +0.073 (+1.04) |   +10.67    +9.87   +10.04    +9.24
+  DV3    classes: P2 H2, RAR H2, FINAL H2;  (b) acceptable (P2): True;  D-G: STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)
+  DV4    canonical +0.329 (+4.00) +0.073 (+0.59) +0.073 (+1.12) |   +14.38   +13.36   +13.16   +12.13
+  DV4    alt       +0.309 (+3.75) +0.073 (+0.59) +0.073 (+1.12) |   +12.03   +11.01   +11.14   +10.11
+  DV4    classes: P2 H2, RAR H2, FINAL H2;  (b) acceptable (P2): True;  D-G: STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)
+
+==============================================================================================================
+REPORTED ROWS (none changes a verdict)
+==============================================================================================================
+
+  THE BOO I CONFLICT (multi-epoch 4.0 km/s, Sandford+26, the LVD value; Arroyo-Polonio's single-epoch free-f value 2.18; DEIMOS 3.19), stated without picking a side.
+  Boo I = the variant's own value / 4.0 / 2.18 / dropped.  B's KM median (canonical | alt) and z; reading (b) P1 offset and P2 Delta chi2_V2 (canonical | alt) and class (P2 kernel only)
+   DV0 Boo I own  : B +0.3245 (3.77sigma) | +0.3045 (3.55sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +11.68 | +9.42  class H2
+   DV0 Boo I 4.0  : B +0.3245 (3.77sigma) | +0.3045 (3.55sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +11.68 | +9.42  class H2
+   DV0 Boo I 2.18 : B +0.3245 (3.77sigma) | +0.3045 (3.54sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +11.67 | +9.41  class H2
+   DV0 Boo I drop : B +0.3245 (3.73sigma) | +0.3045 (3.51sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +11.00 | +8.80  class H4
+   DV1 Boo I own  : B +0.3291 (3.89sigma) | +0.3088 (3.66sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +12.16 | +9.84  class H2
+   DV1 Boo I 4.0  : B +0.3291 (3.90sigma) | +0.3088 (3.66sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +12.16 | +9.84  class H2
+   DV1 Boo I 2.18 : B +0.3291 (3.89sigma) | +0.3088 (3.66sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +12.16 | +9.84  class H2
+   DV1 Boo I drop : B +0.3291 (3.85sigma) | +0.3088 (3.61sigma);  (b) V2 +0.0803 | +0.0803;  d_V2 +11.49 | +9.23  class H2
+   DV2 Boo I own  : B +0.3216 (3.77sigma) | +0.3015 (3.54sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.64 | +10.35  class H2
+   DV2 Boo I 4.0  : B +0.3216 (3.78sigma) | +0.3015 (3.55sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.69 | +10.39  class H2
+   DV2 Boo I 2.18 : B +0.3216 (3.77sigma) | +0.3015 (3.54sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.65 | +10.36  class H2
+   DV2 Boo I drop : B +0.3216 (3.79sigma) | +0.3015 (3.56sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.35 | +10.08  class H2
+   DV3 Boo I own  : B +0.3216 (3.68sigma) | +0.3015 (3.46sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.07 | +9.87  class H2
+   DV3 Boo I 4.0  : B +0.3216 (3.70sigma) | +0.3015 (3.47sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.17 | +9.95  class H2
+   DV3 Boo I 2.18 : B +0.3216 (3.68sigma) | +0.3015 (3.46sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.07 | +9.87  class H2
+   DV3 Boo I drop : B +0.3216 (3.70sigma) | +0.3015 (3.47sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +11.89 | +9.70  class H2
+   DV4 Boo I own  : B +0.3245 (3.84sigma) | +0.3045 (3.61sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +13.36 | +11.01  class H2
+   DV4 Boo I 4.0  : B +0.3245 (3.85sigma) | +0.3045 (3.62sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +13.37 | +11.02  class H2
+   DV4 Boo I 2.18 : B +0.3245 (3.84sigma) | +0.3045 (3.61sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +13.36 | +11.01  class H2
+   DV4 Boo I drop : B +0.3245 (3.82sigma) | +0.3045 (3.59sigma);  (b) V2 +0.0732 | +0.0732;  d_V2 +12.96 | +10.65  class H2
+
+  BOO III KEPT AT ITS LVD VALUE (1.69 km/s; a tidally disrupting system matched to DEIMOS by name at 0.34 deg), DV1b / DV4b:
+   DV1b: B +0.3245 (3.75) | +0.3045 (3.53);  (b) V2 +0.0803;  P2 d_V2 +11.53 | +9.29, P2 H2 RAR H4 FINAL H4  D-B SURVIVES  D-G INTACT
+   DV4b: B +0.3216 (3.76) | +0.3015 (3.53);  (b) V2 +0.0732;  P2 d_V2 +12.47 | +10.20, P2 H2 RAR H2 FINAL H2  D-B SURVIVES  D-G STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)
+
+  THE EIGHT ALONE (a planted c on the eight Arroyo systems at DV0): B's KM median (canonical | alt) and shift against DV0
+   c +0.00: +0.3245 | +0.3045   shift +0.0000 | +0.0000
+   c -0.10: +0.3245 | +0.3045   shift +0.0000 | +0.0000
+   c -0.20: +0.3216 | +0.3015   shift -0.0029 | -0.0030
+   c -0.33: +0.3164 | +0.2964   shift -0.0081 | -0.0081
+   c -0.50: +0.2535 | +0.2333   shift -0.0710 | -0.0712
+
+  20-SEED STABILITY of the P2-kernel Gate H (seeds 259001-259020): fraction of seeds with class H2, mean +- SD of Delta chi2_V2 (canonical | alt), min of alt
+   DV0: H2 in 20 of 20; d_V2 canonical +11.58 +- 0.13; alt +9.34 +- 0.11 (min +9.20); classes {'H1': 0, 'H2': 20, 'H3': 0, 'H4': 0}
+   DV1: H2 in 20 of 20; d_V2 canonical +12.01 +- 0.13; alt +9.72 +- 0.11 (min +9.51); classes {'H1': 0, 'H2': 20, 'H3': 0, 'H4': 0}
+   DV2: H2 in 20 of 20; d_V2 canonical +12.45 +- 0.13; alt +10.19 +- 0.12 (min +9.92); classes {'H1': 0, 'H2': 20, 'H3': 0, 'H4': 0}
+   DV3: H2 in 20 of 20; d_V2 canonical +11.89 +- 0.12; alt +9.71 +- 0.10 (min +9.48); classes {'H1': 0, 'H2': 20, 'H3': 0, 'H4': 0}
+   DV4: H2 in 20 of 20; d_V2 canonical +13.22 +- 0.14; alt +10.89 +- 0.12 (min +10.64); classes {'H1': 0, 'H2': 20, 'H3': 0, 'H4': 0}
+
+  CFG29 H2 SYSTEMS (beyond the 4.5 km/s single-epoch binary ceiling, far from the Milky Way): sigma per variant
+   Eridanus II: DV0 6.90, DV1 6.90, DV2 6.90, DV3 6.90, DV4 6.90
+   Ursa Major I: DV0 7.16, DV1 7.16, DV2 7.16, DV3 7.16, DV4 7.16
+
+==============================================================================================================
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 3; scored by code)
+==============================================================================================================
+  HE1: PASS  dMedian: DV1 +0.0046 | +0.0043; DV2 -0.0029 | -0.0030; DV3 -0.0029 | -0.0030; DV4 +0.0000 | +0.0000
+  HE2: PASS  D-B ['SURVIVES', 'SURVIVES', 'SURVIVES', 'SURVIVES']; lowest z 3.46
+  HE3: PASS  DV0/can +0.0e+00, drop +0.0000, (b) +0.0e+00; DV0/alt +0.0e+00, drop +0.0000, (b) +0.0e+00; DV1/can +0.0e+00, drop +0.0000, (b) +0.0e+00; DV1/alt +0.0e+00, drop +0.0000, (b) +0.0e+00; DV2/can +0.0e+00, drop +0.0000, (b) +0.0e+00; DV2/alt +0.0e+00, drop +0.0000, (b) +0.0e+00 ...
+  HE4: PASS  (b) P1 offset (P2, canonical): DV0 +0.0803, DV1 +0.0803, DV2 +0.0732, DV3 +0.0732, DV4 +0.0732
+  HE5: MISS  largest |d Delta| 1.68; final classes ['H4', 'H2', 'H2', 'H2', 'H2']; D-G ['STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)', 'STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)', 'STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)', 'STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)']
+  HE6: PASS  DV0: H2 in 1.00 of seeds; SD of alt d_V2 0.11
+  HE9: MISS  largest shift of the pred >= 1.5 median 0.0529
+  HE7 (MUTATE=1) and HE8 (MUTATE=2) are scored in those runs.
+
+==============================================================================================================
+READING (declared before the run: D-B and D-G of FROZEN_CRITERIA.md section 2)
+==============================================================================================================
+  candidate B's UFD failure (CFG28 H1: median > 0.2 dex and z > 3, both footings): DV0 SURVIVES; DV1 SURVIVES; DV2 SURVIVES; DV3 SURVIVES; DV4 SURVIVES
+  CFG244's lean toward the bound core (Gate H): DV1 STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed); DV2 STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed); DV3 STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed); DV4 STRONGER (not named in the frozen lines: P2 class H2 kept, final class changed)  (DV0: P2 H2, RAR H4, final H4)
+
+  4/4 controls pass  (45 s)

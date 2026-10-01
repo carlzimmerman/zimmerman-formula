@@ -1,0 +1,38 @@
+CFG259 -- re-score candidate B's ultra-faint offset (CFG28/29 statistic and error model, exactly) and CFG244's Gate H bound-core lean under five
+data variants of the 40 ultra-faint dispersions (DV0 committed LVD; DV1 DEIMOS where matched; DV2 Arroyo-Polonio+26 free-f log ratio on the eight;
+DV3 f = 0.7 ratio; DV4 = DV1 then DV2).  Frozen criteria: FROZEN_CRITERIA.md (committed cd8aa9856), written before this script and before any variant number.
+The record's code is exec'd READ-ONLY (CFG28's prefix: FG001's loader and estimator, offsets, Kaplan-Meier, bootstrap; CFG244 Gate H's prefix: the readings,
+the scoring, the classes); the inputs are the committed CFG257 tables.  Nothing is downloaded; no record file is written.
+
+  mode: MUTATE=1
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] (control) C1 CONTROL (reproduction at DV0): S1 = CFG28's committed RES, S2 = CFG29's committed rows, S3 = CFG244's committed Gate H (both kernels, classes) to 1e-9; CFG28's and CFG244's samples identical
+         max |d|: S1 0.0e+00, S2 0.0e+00, S3 0.0e+00; classes P2 H2 / RAR H4 / final H4 (committed H2 / H4 / H4); samples identical: True
+  [PASS] (control) C2 CONTROL (the data build): DV1 exactly the 19 matched rows with agreeing status and the six named changes; DV2 / DV3 move exactly the eight by log10(sig_free (sig_f07) / sig_f0), equal to an independent recomputation (1e-12) and to the scoping's medians and ranges (0.002); DV4 = DV1 + DV2
+         DV1: 19 matched (15 resolved + 4 limits), changed ['Aquarius III', 'Bootes I', 'Bootes III', 'Draco II', 'Eridanus IV', 'Willman 1'] (13 equal: 13); DV2: moved 8 systems (the eight: True); max |d| to the independent log10(sig_free/sig_f0) 5.6e-17 (0 of 8 differ by > 1e-6); median -0.068 (scoping -0.068), range -0.168 to -0.018 (scoping -0.168 to -0.018); DV3: moved 8 systems (the eight: True); max |d| to the independent log10(sig_f07/sig_f0) 0.0e+00 (0 of 8 differ by > 1e-6); median -0.104 (scoping -0.104), range -0.238 to -0.053 (scoping -0.238 to -0.053); DV4: per-system change = DV1's + DV2's, max |d| 8.3e-17
+  [PASS] (control) C3 CONTROL (reactivity, the CFG219 lesson): a uniform plant c on every ultra-faint shifts B's KM median by exactly c and leaves the bootstrap error and the floor unchanged (1e-9)
+         c -0.05 canonical: median shift - c 1.4e-17, error change 0.0e+00, floor change -5.6e-17; c -0.05 alt: median shift - c 6.9e-17, error change 6.9e-18, floor change 0.0e+00; c -0.10 canonical: median shift - c -2.8e-17, error change 0.0e+00, floor change -2.8e-17; c -0.10 alt: median shift - c 2.8e-17, error change 0.0e+00, floor change 1.4e-17 ...
+  [PASS] (control) C4 CONTROL (seed determinism and liveness): the same seed returns the identical Gate H deltas, a different seed does not
+         same seed identical: True; different seed differs: True
+
+==============================================================================================================
+MUTATE=1: a -0.33 dex correction planted on EVERY ultra-faint dispersion and limit (on top of each variant): B's offset must vanish and the Gate H lean must flip
+==============================================================================================================
+  variant foot        median      z  (unplanted) shift-0.33 |  P2 d_V1  P2 d_V2 RAR d_V2  class P2/RAR/FINAL  (b) V2 P1
+  DV0    canonical  -0.0055  -0.06      +0.3245   +0.0e+00 |    -4.82   -22.24   -22.45  H4/H4/H4  -0.250
+  DV0    alt        -0.0255  -0.30      +0.3045   +0.0e+00 |    -5.19   -22.62   -22.64  H4/H4/H4  -0.250
+  DV1    canonical  -0.0009  -0.01      +0.3291   +0.0e+00 |    -4.81   -22.16   -22.36  H4/H4/H4  -0.250
+  DV1    alt        -0.0212  -0.25      +0.3088   +0.0e+00 |    -5.20   -22.54   -22.58  H4/H4/H4  -0.250
+  DV2    canonical  -0.0084  -0.10      +0.3216   -5.6e-17 |    -5.54   -16.86   -17.06  H4/H4/H4  -0.257
+  DV2    alt        -0.0285  -0.33      +0.3015   +0.0e+00 |    -5.89   -17.21   -17.23  H4/H4/H4  -0.257
+  DV3    canonical  -0.0084  -0.10      +0.3216   -5.6e-17 |    -6.02   -14.62   -14.83  H4/H4/H4  -0.257
+  DV3    alt        -0.0285  -0.33      +0.3015   +0.0e+00 |    -6.37   -14.98   -15.01  H4/H4/H4  -0.257
+  DV4    canonical  -0.0055  -0.07      +0.3245   +0.0e+00 |    -5.55   -16.92   -17.12  H4/H4/H4  -0.257
+  DV4    alt        -0.0255  -0.30      +0.3045   +0.0e+00 |    -5.92   -17.29   -17.31  H4/H4/H4  -0.257
+
+  HE7: PASS  DV0: B -0.0055 | -0.0255; P2 d_V2 -22.24 | -22.62; d_V1 -4.82 | -5.19; class H4
+
+  [MUTATE CONTROL] MUTATE=1: the planted -0.33 dex BITES: B vanishes (|median| < 0.05, z < 1.5) and the P2 lean flips sign (d_V2 < 0, class not H2) in every variant; controls 4/4 pass

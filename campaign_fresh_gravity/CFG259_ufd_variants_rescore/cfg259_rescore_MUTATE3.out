@@ -1,0 +1,21 @@
+CFG259 -- re-score candidate B's ultra-faint offset (CFG28/29 statistic and error model, exactly) and CFG244's Gate H bound-core lean under five
+data variants of the 40 ultra-faint dispersions (DV0 committed LVD; DV1 DEIMOS where matched; DV2 Arroyo-Polonio+26 free-f log ratio on the eight;
+DV3 f = 0.7 ratio; DV4 = DV1 then DV2).  Frozen criteria: FROZEN_CRITERIA.md (committed cd8aa9856), written before this script and before any variant number.
+The record's code is exec'd READ-ONLY (CFG28's prefix: FG001's loader and estimator, offsets, Kaplan-Meier, bootstrap; CFG244 Gate H's prefix: the readings,
+the scoring, the classes); the inputs are the committed CFG257 tables.  Nothing is downloaded; no record file is written.
+
+  mode: MUTATE=3
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] (control) C1 CONTROL (reproduction at DV0): S1 = CFG28's committed RES, S2 = CFG29's committed rows, S3 = CFG244's committed Gate H (both kernels, classes) to 1e-9; CFG28's and CFG244's samples identical
+         max |d|: S1 0.0e+00, S2 0.0e+00, S3 0.0e+00; classes P2 H2 / RAR H4 / final H4 (committed H2 / H4 / H4); samples identical: True
+  (MUTATE=3: the build uses sig_lit as the denominator) C2 on the mutated build: FAIL
+         DV1: 19 matched (15 resolved + 4 limits), changed ['Aquarius III', 'Bootes I', 'Bootes III', 'Draco II', 'Eridanus IV', 'Willman 1'] (13 equal: 13); DV2: moved 8 systems (the eight: True); max |d| to the independent log10(sig_free/sig_f0) 1.5e-01 (8 of 8 differ by > 1e-6); median -0.034 (scoping -0.068), range -0.136 to +0.025 (scoping -0.168 to -0.018); DV3: moved 8 systems (the eight: True); max |d| to the independent log10(sig_f07/sig_f0) 1.5e-01 (8 of 8 differ by > 1e-6); median -0.091 (scoping -0.104), range -0.171 to +0.012 (scoping -0.238 to -0.053); DV4: per-system change = DV1's + DV2's, max |d| 8.3e-17
+  [PASS] (control) C4 CONTROL (seed determinism and liveness): the same seed returns the identical Gate H deltas, a different seed does not
+         same seed identical: True; different seed differs: True
+  DV2 with the wrong denominator sig_lit: 8 of 8 per-system log changes differ from the independent recomputation by more than 1e-6 (needs >= 5)
+  DV3 with the wrong denominator sig_lit: 8 of 8 per-system log changes differ from the independent recomputation by more than 1e-6 (needs >= 5)
+
+  [MUTATE CONTROL] MUTATE=3: C2 FAILS on the mutated build (the control BITES); other controls 2/2 pass

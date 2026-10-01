@@ -1,0 +1,29 @@
+CFG259 -- re-score candidate B's ultra-faint offset (CFG28/29 statistic and error model, exactly) and CFG244's Gate H bound-core lean under five
+data variants of the 40 ultra-faint dispersions (DV0 committed LVD; DV1 DEIMOS where matched; DV2 Arroyo-Polonio+26 free-f log ratio on the eight;
+DV3 f = 0.7 ratio; DV4 = DV1 then DV2).  Frozen criteria: FROZEN_CRITERIA.md (committed cd8aa9856), written before this script and before any variant number.
+The record's code is exec'd READ-ONLY (CFG28's prefix: FG001's loader and estimator, offsets, Kaplan-Meier, bootstrap; CFG244 Gate H's prefix: the readings,
+the scoring, the classes); the inputs are the committed CFG257 tables.  Nothing is downloaded; no record file is written.
+
+  mode: MUTATE=2
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] (control) C1 CONTROL (reproduction at DV0): S1 = CFG28's committed RES, S2 = CFG29's committed rows, S3 = CFG244's committed Gate H (both kernels, classes) to 1e-9; CFG28's and CFG244's samples identical
+         max |d|: S1 0.0e+00, S2 0.0e+00, S3 0.0e+00; classes P2 H2 / RAR H4 / final H4 (committed H2 / H4 / H4); samples identical: True
+  [PASS] (control) C2 CONTROL (the data build): DV1 exactly the 19 matched rows with agreeing status and the six named changes; DV2 / DV3 move exactly the eight by log10(sig_free (sig_f07) / sig_f0), equal to an independent recomputation (1e-12) and to the scoping's medians and ranges (0.002); DV4 = DV1 + DV2
+         DV1: 19 matched (15 resolved + 4 limits), changed ['Aquarius III', 'Bootes I', 'Bootes III', 'Draco II', 'Eridanus IV', 'Willman 1'] (13 equal: 13); DV2: moved 8 systems (the eight: True); max |d| to the independent log10(sig_free/sig_f0) 5.6e-17 (0 of 8 differ by > 1e-6); median -0.068 (scoping -0.068), range -0.168 to -0.018 (scoping -0.168 to -0.018); DV3: moved 8 systems (the eight: True); max |d| to the independent log10(sig_f07/sig_f0) 0.0e+00 (0 of 8 differ by > 1e-6); median -0.104 (scoping -0.104), range -0.238 to -0.053 (scoping -0.238 to -0.053); DV4: per-system change = DV1's + DV2's, max |d| 8.3e-17
+  [PASS] (control) C4 CONTROL (seed determinism and liveness): the same seed returns the identical Gate H deltas, a different seed does not
+         same seed identical: True; different seed differs: True
+
+==============================================================================================================
+MUTATE=2: a planted c on the eight Arroyo systems ONLY (DV0): the KM median must fall monotonically with |c|, strictly at c = -0.5; each of the eight shifts by c, the other 32 by 0
+==============================================================================================================
+  c -0.10: B +0.3245 | +0.3045   shift +0.0000 | +0.0000   (per-system change error 5.6e-17)
+  c -0.20: B +0.3216 | +0.3015   shift -0.0029 | -0.0030   (per-system change error 0.0e+00)
+  c -0.33: B +0.3164 | +0.2964   shift -0.0081 | -0.0081   (per-system change error 5.6e-17)
+  c -0.50: B +0.2535 | +0.2333   shift -0.0710 | -0.0712   (per-system change error 0.0e+00)
+
+  HE8: MISS  shifts at c = -0.33: 0.0081 | 0.0081; at c = -0.5: 0.0710 | 0.0712
+
+  [MUTATE CONTROL] MUTATE=2: monotone True, exact per-system shifts True, drop at c = -0.5 0.0710 | 0.0712 (>= 0.005): the control BITES; controls 3/3 pass
