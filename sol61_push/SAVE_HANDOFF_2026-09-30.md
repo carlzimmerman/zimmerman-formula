@@ -2,6 +2,14 @@
 
 ## Latest checkpoint: coefficient selection obstruction
 
+Final user-requested usage-limited sprint: FINAL_5_PERCENT_SPRINT.md tests
+microscopic counting and an actual finite-temperature surface state. Eight
+exact checks pass. Integer degeneracy leaves a continuous y interaction:
+at fixed vacuum curvature the reduced ratio scales as y^6. A thermal state
+removes the strict infrared cubic; the conditional T=H/(2pi) bridge supplies
+a cutoff but no coefficient selector. No 32pi solution was found. Research
+stops here to conserve usage; resume only on user instruction.
+
 User requested stopping to conserve weekly usage. Latest saved result:
 EXPANSION_BRIDGE_GAP_SPECTRUM_RESULTS.md shows a positive two-gap spectrum
 can evade the earlier single-gap vacuum bound through mu1³/mu3→0.

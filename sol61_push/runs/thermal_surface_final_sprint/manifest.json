@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOL61_THERMAL_SURFACE_FINAL_SPRINT",
+  "repository": {
+    "commit": "63fea681727b011216c43f26da129a881abe49b4",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "sol61_push/thermal_surface_final_sprint.py",
+    "--output",
+    "sol61_push/runs/thermal_surface_final_sprint/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Eight exact thermal-response, normalization and coupling-rescaling identities",
+    "coefficient_domain": "Exact positive symbolic m,T,d,v,P,y,H,beta,M2,nu,t",
+    "conventions": "FINAL_5_PERCENT_SPRINT.md; neutral planar free fermions; c=hbar=1",
+    "inputs": [
+      "sol61_push/thermal_surface_final_sprint.py"
+    ],
+    "bounds": {
+      "identities": 8,
+      "domain": "T>0 for infrared series; separately one-sided T to zero; actual surface temperature, not inferred detector occupation"
+    },
+    "non_claims": [
+      "No identification of de Sitter detector thermality with a physical surface gas",
+      "No complete covariant vacuum or dynamics",
+      "No 32pi derivation or global novelty"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-10-01T00:02:53.460732+00:00",
+    "runtime_seconds": 0.565283,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "sol61_push/thermal_surface_final_sprint.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "sol61_push/thermal_surface_final_sprint.py",
+      "sha256": "7e201b49a45a284ee8a91746b875ede27c0b8c144d5de16293f7afb6d7d77c11",
+      "sha256_after": "7e201b49a45a284ee8a91746b875ede27c0b8c144d5de16293f7afb6d7d77c11"
+    }
+  ],
+  "output_directory": "sol61_push/runs/thermal_surface_final_sprint",
+  "declared_results": [
+    "sol61_push/runs/thermal_surface_final_sprint/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "sol61_push/runs/thermal_surface_final_sprint/stdout.txt",
+      "sha256": "00040353acad15d1de565378f5a8c74c484cca17ceffcb1c8c501bdf48673901",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/thermal_surface_final_sprint/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "sol61_push/runs/thermal_surface_final_sprint/results.json",
+      "sha256": "4064384411cacd3bc2be309f6fe68ab7ad1e9d1403b3026dcfd9186b37c581b0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
