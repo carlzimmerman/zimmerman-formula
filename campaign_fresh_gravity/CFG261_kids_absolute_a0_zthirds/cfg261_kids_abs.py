@@ -30,8 +30,9 @@ MUTATE = os.environ.get("MUTATE", "0") == "1"
 SELFTEST = os.environ.get("SELFTEST", "0") == "1"
 assert STAGE in ("A", "B"), "set STAGE=A or STAGE=B"
 assert not ((MUTATE or SELFTEST) and STAGE == "A") and not (MUTATE and SELFTEST), "MUTATE / SELFTEST apply to stage B, one at a time"
-SFX = f"_stage{STAGE}" + ("_MUTATE1" if MUTATE else "") + ("_SELFTEST" if SELFTEST else "")
+SFX = f"_stage{STAGE}" + ("_MUTATE1" if MUTATE else "") + ("_SELFTEST" if SELFTEST else "") + ("_noiseless" if (SELFTEST and os.environ.get("SELFTEST_NOISE", "1") == "0") else "")
 S_TRUE_SELF = float(os.environ.get("SELFTEST_S", "1.7"))
+SELF_NOISE = float(os.environ.get("SELFTEST_NOISE", "1"))            # SELFTEST only: 0 = noiseless fabricated data (a weighting-bias check)
 CACHE = os.environ.get("CFG261_CACHE", os.path.join(HERE, "_cache"))
 os.makedirs(CACHE, exist_ok=True)
 LOG, CHK, NUM = [], [], {}
@@ -322,7 +323,7 @@ if SELFTEST:
         mk = typ == c
         RRc = RowData(mk, WG0)                    # only its jackknife sigma and weight sums are used (nothing of the real signal is printed or kept)
         tau = RRc.sig / (np.sqrt((RRc.Sw ** 2).sum(0)) / RRc.Sw.sum(0))         # per-bin tau so that Var(d) = sigma^2 at the class level
-        xi = rng.standard_normal((NPAT, len(K1)))
+        xi = SELF_NOISE * rng.standard_normal((NPAT, len(K1)))
         for ki, k in enumerate(K1):
             WGd[mk, k] = WGd[mk, k] + KG * tau[ki] * WW[mk, k] * xi[patch[mk], ki]
     P(f"SELFTEST: fabricated WG = WW x KG x m_cell(s_true = {S_TRUE_SELF}) plus per-(patch, bin) noise at the class jackknife variance (the real jackknife variances are used; no real ESD is)")
@@ -693,7 +694,8 @@ if STAGE == "B":
               all(abs(v - 0.30103) <= 0.02 for v in sh.values()))
         NUM["mutate_shift"] = sh
     else:
-        check("M3 (reported) the thirds' difference d per class agrees with 2 x (A_data - A_FLAT) of CFG255's committed stage B within 1 sigma_diff (different estimators)",
+        if not SELFTEST:
+            check("M3 (reported) the thirds' difference d per class agrees with 2 x (A_data - A_FLAT) of CFG255's committed stage B within 1 sigma_diff (different estimators)",
               "; ".join(f"{cn}: d {M3[cn]['d']:+.3f} vs 2(A - A_FLAT) {M3[cn]['from255']:+.3f}, sigma_diff {M3[cn]['sd']:.3f}" for cn in M3), all(abs(M3[cn]["d"] - M3[cn]["from255"]) <= M3[cn]["sd"] for cn in M3), load_bearing=False)
         hull = all(min(RES[a]["ls"], RES[b]["ls"]) - 2 * max(RES[a]["itv"]["sd"], RES[b]["itv"]["sd"]) <= RES[j]["ls"] <= max(RES[a]["ls"], RES[b]["ls"]) + 2 * max(RES[a]["itv"]["sd"], RES[b]["itv"]["sd"])
                    for j, (a, b) in JOINT.items())

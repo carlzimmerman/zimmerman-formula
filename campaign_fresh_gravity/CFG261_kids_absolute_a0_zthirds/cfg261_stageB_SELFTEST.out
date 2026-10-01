@@ -1,0 +1,94 @@
+CFG261 -- the ABSOLUTE implied-a0 level of the KiDS-1000 lensing RAR in lens-redshift thirds (z ~ 0.2 and 0.4), M* calibration named as the dominant systematic.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG261_kids_absolute_a0_zthirds/FROZEN_CRITERIA.md (ec413346f).
+  data     cfg110_perlens.npz (WG, WW, NN per lens and g_bar bin), lr_lenses.npz, the 50 June patches; K1 = bins 8-14.
+  rows     CFG255's per-class thirds (T-*), a mass-matched window 10.3 <= log M* < 10.9 (MM-*), two joint one-s rows (J-*).
+  model    CFG61/CFG255's L law stack with EVERY profile rebuilt at a0 * s (turnaround radius and truncation included); s-grid log10 s = -1..+1.25 (spline);
+           "true baryon mass" shifts (bands, scenarios) multiply M_gal in the profile and the point term only; the g_bar binning keeps the nominal M_gal.
+  fit      inverse-variance least squares in s on K1 (jackknife variances), patch bootstrap B = 10,000, jackknife SD beside it.
+  STAGE=A  the blind pre-flight: controls, levers, mocks, precision, calibration dominance, decisions; no row's level, amplitude or difference is printed.
+  STAGE=B  the measurement (run once, after stage A and this script are committed); STAGE=B MUTATE=1 plants s = 2 (reactivity); STAGE=B SELFTEST=1 fabricates data.
+
+STAGE B  *** SELFTEST: FABRICATED data at s_true = 1.7; no real ESD is used; debugging only ***
+data sha256 prefixes: cfg110_perlens.npz 276e43b893f0d4d6, lr_lenses.npz bdca008b9c8259c8, lr_esd_jackknife.npz 981ad437ad0b92b5
+SELFTEST: fabricated WG = WW x KG x m_cell(s_true = 1.7) plus per-(patch, bin) noise at the class jackknife variance (the real jackknife variances are used; no real ESD is)
+
+rows: T-late-LO N=31133 z_med=0.205; T-late-HI N=31133 z_med=0.400; T-early-LO N=29360 z_med=0.232; T-early-HI N=29360 z_med=0.378; MM-late-LO N=14736 z_med=0.289; MM-late-HI N=14736 z_med=0.421; MM-early-LO N=21675 z_med=0.237; MM-early-HI N=21675 z_med=0.364; J-LO N=60493 z_med=0.217; J-HI N=60493 z_med=0.389
+  thirds z-quantiles (class late/early): Q1 0.257/0.276, Q2 0.353/0.343; window thirds Q1 0.331/0.274, Q2 0.389/0.332
+
+STAGE B  THE MEASUREMENT (SELFTEST: fabricated data)
+  tables ready (46 s)
+  T-late-LO   N  31133 z 0.205:  s* = 1.816 (a0 = 1.700e-10)  68% [1.563, 2.086]  95% [1.325, 2.367]  (SD 0.064, jackknife 0.063 dex; unbounded 0.000)
+      baryon +-0.15 [1.234, 2.638]  +-0.30 [0.823, 3.800] (lever -1.100; baryon shift that gives s* = 1: +0.229 dex);  recipe half-width 0.109 dex;  chi2(s*) 8.7/6 (p 0.192), chi2(s=1) 24.6/7 (p 0.00088)
+      knobs (Delta log10 s*): kernel P2 +0.036; truncation -0.002/+0.000; weights WW +0.000; cold gas +0.088/-0.075; K1 +0.038/+0.011; estimator +0.034/-0.037
+      hot gas f_hot 0.5 / 1.0: -0.198 / -0.345;  drift eps +0.10 / -0.10: +0.046 / -0.049;  HI-style z drift +0.02 / +0.05: -0.022 / -0.055
+  T-late-HI   N  31133 z 0.400:  s* = 1.791 (a0 = 1.676e-10)  68% [1.549, 2.053]  95% [1.315, 2.302]  (SD 0.062, jackknife 0.062 dex; unbounded 0.000)
+      baryon +-0.15 [1.218, 2.601]  +-0.30 [0.812, 3.745] (lever -1.099; baryon shift that gives s* = 1: +0.224 dex);  recipe half-width 0.072 dex;  chi2(s*) 9.3/6 (p 0.16), chi2(s=1) 25.3/7 (p 0.00067)
+      knobs (Delta log10 s*): kernel P2 +0.036; truncation -0.011/+0.001; weights WW +0.000; cold gas +0.036/-0.033; K1 +0.034/+0.023; estimator +0.037/-0.027
+      hot gas f_hot 0.5 / 1.0: -0.197 / -0.345;  drift eps +0.10 / -0.10: -0.027 / +0.027;  HI-style z drift +0.02 / +0.05: -0.022 / -0.055
+  T-early-LO  N  29360 z 0.232:  s* = 1.321 (a0 = 1.237e-10)  68% [1.158, 1.492]  95% [1.009, 1.669]  (SD 0.055, jackknife 0.056 dex; unbounded 0.000)
+      baryon +-0.15 [0.894, 1.925]  +-0.30 [0.592, 2.779] (lever -1.110; baryon shift that gives s* = 1: +0.103 dex);  recipe half-width 0.066 dex;  chi2(s*) 9.0/6 (p 0.172), chi2(s=1) 11.1/7 (p 0.136)
+      knobs (Delta log10 s*): kernel P2 +0.039; truncation -0.008/+0.001; weights WW +0.000; cold gas +0.043/-0.040; K1 -0.013/-0.017; estimator -0.025/+0.013
+      hot gas f_hot 0.5 / 1.0: -0.200 / -0.350;  drift eps +0.10 / -0.10: -0.014 / +0.014;  HI-style z drift +0.02 / +0.05: -0.022 / -0.056
+  T-early-HI  N  29360 z 0.378:  s* = 1.332 (a0 = 1.247e-10)  68% [1.170, 1.505]  95% [1.020, 1.675]  (SD 0.055, jackknife 0.056 dex; unbounded 0.000)
+      baryon +-0.15 [0.901, 1.942]  +-0.30 [0.596, 2.802] (lever -1.111; baryon shift that gives s* = 1: +0.106 dex);  recipe half-width 0.057 dex;  chi2(s*) 8.4/6 (p 0.21), chi2(s=1) 11.2/7 (p 0.132)
+      knobs (Delta log10 s*): kernel P2 +0.039; truncation -0.016/+0.001; weights WW +0.000; cold gas +0.030/-0.028; K1 -0.011/-0.016; estimator -0.016/+0.012
+      hot gas f_hot 0.5 / 1.0: -0.200 / -0.350;  drift eps +0.10 / -0.10: -0.041 / +0.040;  HI-style z drift +0.02 / +0.05: -0.022 / -0.056
+  MM-late-LO  N  14736 z 0.289:  s* = 1.815 (a0 = 1.699e-10)  68% [1.570, 2.082]  95% [1.347, 2.335]  (SD 0.061, jackknife 0.062 dex; unbounded 0.000)
+      baryon +-0.15 [1.234, 2.636]  +-0.30 [0.823, 3.797] (lever -1.099; baryon shift that gives s* = 1: +0.229 dex);  recipe half-width 0.080 dex;  chi2(s*) 8.3/6 (p 0.217), chi2(s=1) 24.6/7 (p 0.0009)
+      knobs (Delta log10 s*): kernel P2 +0.036; truncation -0.003/+0.000; weights WW +0.000; cold gas +0.047/-0.043; K1 +0.039/+0.012; estimator +0.031/-0.037
+      hot gas f_hot 0.5 / 1.0: -0.197 / -0.345;  drift eps +0.10 / -0.10: -0.005 / +0.004;  HI-style z drift +0.02 / +0.05: -0.022 / -0.055
+  MM-late-HI  N  14736 z 0.421:  s* = 1.771 (a0 = 1.658e-10)  68% [1.529, 2.028]  95% [1.302, 2.293]  (SD 0.063, jackknife 0.062 dex; unbounded 0.000)
+      baryon +-0.15 [1.204, 2.572]  +-0.30 [0.803, 3.703] (lever -1.098; baryon shift that gives s* = 1: +0.220 dex);  recipe half-width 0.071 dex;  chi2(s*) 10.3/6 (p 0.112), chi2(s=1) 25.0/7 (p 0.00076)
+      knobs (Delta log10 s*): kernel P2 +0.036; truncation -0.011/+0.001; weights WW +0.000; cold gas +0.036/-0.034; K1 +0.036/+0.033; estimator +0.032/-0.026
+      hot gas f_hot 0.5 / 1.0: -0.197 / -0.344;  drift eps +0.10 / -0.10: -0.025 / +0.025;  HI-style z drift +0.02 / +0.05: -0.022 / -0.055
+  MM-early-LO N  21675 z 0.237:  s* = 1.317 (a0 = 1.233e-10)  68% [1.155, 1.490]  95% [1.005, 1.667]  (SD 0.056, jackknife 0.056 dex; unbounded 0.000)
+      baryon +-0.15 [0.891, 1.919]  +-0.30 [0.590, 2.769] (lever -1.111; baryon shift that gives s* = 1: +0.101 dex);  recipe half-width 0.067 dex;  chi2(s*) 9.6/6 (p 0.144), chi2(s=1) 11.3/7 (p 0.127)
+      knobs (Delta log10 s*): kernel P2 +0.039; truncation -0.008/+0.001; weights WW +0.000; cold gas +0.042/-0.039; K1 -0.015/-0.015; estimator -0.029/+0.016
+      hot gas f_hot 0.5 / 1.0: -0.200 / -0.350;  drift eps +0.10 / -0.10: -0.015 / +0.014;  HI-style z drift +0.02 / +0.05: -0.022 / -0.056
+  MM-early-HI N  21675 z 0.364:  s* = 1.315 (a0 = 1.231e-10)  68% [1.152, 1.488]  95% [1.002, 1.661]  (SD 0.056, jackknife 0.057 dex; unbounded 0.000)
+      baryon +-0.15 [0.889, 1.918]  +-0.30 [0.588, 2.768] (lever -1.113; baryon shift that gives s* = 1: +0.100 dex);  recipe half-width 0.058 dex;  chi2(s*) 7.7/6 (p 0.26), chi2(s=1) 10.0/7 (p 0.186)
+      knobs (Delta log10 s*): kernel P2 +0.040; truncation -0.015/+0.001; weights WW +0.000; cold gas +0.033/-0.031; K1 -0.010/-0.013; estimator -0.017/+0.012
+      hot gas f_hot 0.5 / 1.0: -0.201 / -0.351;  drift eps +0.10 / -0.10: -0.032 / +0.031;  HI-style z drift +0.02 / +0.05: -0.022 / -0.056
+  J-LO        N  60493 z 0.217:  s* = 1.471 (a0 = 1.377e-10)  68% [1.343, 1.607]  95% [1.223, 1.738]  (SD 0.039, jackknife 0.040 dex; unbounded 0.000)
+      baryon +-0.15 [0.997, 2.141]  +-0.30 [0.661, 3.087] (lever -1.107; baryon shift that gives s* = 1: +0.145 dex);  recipe half-width 0.073 dex;  chi2(s*) 23.9/13 (p 0.0323), chi2(s=1) 40.7/14 (p 0.0002)
+      knobs (Delta log10 s*): kernel P2 +0.038; truncation -0.005/+0.000; weights WW +0.000; cold gas +0.055/-0.050; K1 +0.004/-0.010; estimator +0.025/-0.008
+      hot gas f_hot 0.5 / 1.0: -0.199 / -0.348;  drift eps +0.10 / -0.10: +0.002 / -0.006;  HI-style z drift +0.02 / +0.05: -0.022 / -0.056
+  J-HI        N  60493 z 0.389:  s* = 1.474 (a0 = 1.380e-10)  68% [1.347, 1.607]  95% [1.232, 1.739]  (SD 0.038, jackknife 0.039 dex; unbounded 0.000)
+      baryon +-0.15 [0.999, 2.146]  +-0.30 [0.663, 3.094] (lever -1.106; baryon shift that gives s* = 1: +0.146 dex);  recipe half-width 0.060 dex;  chi2(s*) 24.8/13 (p 0.0245), chi2(s=1) 43.1/14 (p 8.36e-05)
+      knobs (Delta log10 s*): kernel P2 +0.038; truncation -0.016/+0.001; weights WW +0.000; cold gas +0.032/-0.030; K1 +0.004/-0.004; estimator +0.029/+0.005
+      hot gas f_hot 0.5 / 1.0: -0.199 / -0.348;  drift eps +0.10 / -0.10: -0.037 / +0.036;  HI-style z drift +0.02 / +0.05: -0.022 / -0.056
+
+THE THIRDS' DIFFERENCE d = log10 s*(HI) - log10 s*(LO) per class (jackknife sigma; the drift scenarios on d)
+  T-late : d = -0.006 +- 0.010 dex (H(z) expects +0.049; FLAT 0)   drift scenarios on d: eps +0.10 -0.073; eps -0.10 +0.076; HI drift +0.02 -0.022; HI drift +0.05 -0.055
+  T-early: d = +0.004 +- 0.008 dex (H(z) expects +0.037; FLAT 0)   drift scenarios on d: eps +0.10 -0.026; eps -0.10 +0.027; HI drift +0.02 -0.022; HI drift +0.05 -0.056
+  MM-late : d = -0.011 +- 0.011 dex (H(z) expects +0.034; FLAT 0)   drift scenarios on d: eps +0.10 -0.021; eps -0.10 +0.021; HI drift +0.02 -0.022; HI drift +0.05 -0.055
+  MM-early: d = -0.001 +- 0.009 dex (H(z) expects +0.032; FLAT 0)   drift scenarios on d: eps +0.10 -0.017; eps -0.10 +0.017; HI drift +0.02 -0.022; HI drift +0.05 -0.056
+
+FLAGS PER LAW (in the statistical 95 % interval / in its hull with the inner baryon band / with the outer band) and agreements
+  T-late-LO   FLAT: s_L 1.000 nnY  H(z): s_L 1.112 nnY  PROXY: s_L 1.030 nnY
+  T-late-HI   FLAT: s_L 1.000 nnY  H(z): s_L 1.244 nYY  PROXY: s_L 1.059 nnY
+  T-early-LO  FLAT: s_L 1.000 nYY  H(z): s_L 1.129 YYY  PROXY: s_L 1.033 YYY
+  T-early-HI  FLAT: s_L 1.000 nYY  H(z): s_L 1.229 YYY  PROXY: s_L 1.055 YYY
+  MM-late-LO  FLAT: s_L 1.000 nnY  H(z): s_L 1.166 nnY  PROXY: s_L 1.041 nnY
+  MM-late-HI  FLAT: s_L 1.000 nnY  H(z): s_L 1.260 nYY  PROXY: s_L 1.063 nnY
+  MM-early-LO FLAT: s_L 1.000 nYY  H(z): s_L 1.132 YYY  PROXY: s_L 1.034 YYY
+  MM-early-HI FLAT: s_L 1.000 nYY  H(z): s_L 1.219 YYY  PROXY: s_L 1.053 YYY
+  J-LO        FLAT: s_L 1.000 nYY  H(z): s_L 1.119 nYY  PROXY: s_L 1.032 nYY
+  J-HI        FLAT: s_L 1.000 nYY  H(z): s_L 1.237 YYY  PROXY: s_L 1.057 nYY
+  class agreement T-LO: late [0.823, 3.800] vs early [0.592, 2.779] (95 % widened by the outer band): consistent within the outer band
+  class agreement T-HI: late [0.812, 3.745] vs early [0.596, 2.802] (95 % widened by the outer band): consistent within the outer band
+  class agreement MM-LO: late [0.823, 3.797] vs early [0.590, 2.769] (95 % widened by the outer band): consistent within the outer band
+  class agreement MM-HI: late [0.803, 3.703] vs early [0.588, 2.768] (95 % widened by the outer band): consistent within the outer band
+
+CONTROLS (stage B)
+  [PASS] M5 each joint row's log10 s* lies in the hull of its two class rows (within 2 bootstrap SD)
+         J-LO: +0.168 in [+0.121, +0.259]; J-HI: +0.169 in [+0.125, +0.253]
+  [PASS] SELFTEST: every single row returns the fabricated truth inside its 95 % interval (+-0.05 dex allowance for the weighting difference)
+         T-late-LO 1.816; T-late-HI 1.791; T-early-LO 1.321; T-early-HI 1.332; MM-late-LO 1.815; MM-late-HI 1.771; MM-early-LO 1.317; MM-early-HI 1.315 (truth 1.7)
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg261_points_stageB_SELFTEST.csv (10 rows)
+
+3/3 checks pass; load-bearing failures: 0   (47 s)
