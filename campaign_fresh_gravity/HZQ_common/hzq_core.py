@@ -84,6 +84,19 @@ def s_val(ls, unb):
     return FLOOR if unb else 10 ** ls
 
 
+def s_status(D, gb, nu=NU, a0=A0C):
+    """(log10 s*, status): 'root' (inside the solver bracket log10 s in [-3, +3]), 'floor' (no root, the median D <= 1: the baryons exceed the dynamics) or
+    'ceiling' (no root because the median D > 1 puts s* above 1000: a vacuous upper bound).  Added after CFG273, where the bracket mislabelled two ceiling rows 'no root'."""
+    ls, unb = s_star(D, gb, nu, a0)
+    if not unb:
+        return ls, "root"
+    return ls, ("floor" if float(np.median(np.asarray(D, float))) <= 1.0 else "ceiling")
+
+
+def s_val_status(ls, status):
+    return {"root": 10 ** ls, "floor": FLOOR, "ceiling": 1000.0}[status]
+
+
 def lever1(D, gb, nu=NU, a0=A0C):
     lv, fl = AI.lever(np.asarray(D, float), np.asarray(gb, float), nu, a0)
     return (float("nan") if bool(fl[0]) else float(lv[0])), bool(fl[0])

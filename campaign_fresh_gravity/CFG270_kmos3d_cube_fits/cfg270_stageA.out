@@ -1,0 +1,55 @@
+CFG270 -- implied-a0 upper bounds (or floor / ceiling markers) from the 192 KMOS3D cube fits (z 2.00-2.68): stars-only baryons (a lower limit), class D (no gas).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG270_kmos3d_cube_fits/FROZEN_CRITERIA.md (b35c2f5c3).
+  r         2.2 r_d = 1.31 RHALF (the radius of the fit's V_22); g_obs = (V_22^2 + 4.4 sigma0^2) / r (pressure-corrected); g_bar  B0 = stars only (H-band RHALF exponential disc), B2 = scaling gas (sensitivity).
+  STAGE=A   the blind pre-flight: no velocity column is loaded; no g_obs, D, delta or s* is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_22 and sigma0 x 2); STAGE=B SELFTEST=1 (fabricated V_22 on the law at s = 2).
+
+STAGE A
+fits k3d_fits_main_final_flags.csv sha256 71ce04edfb790a25; catalogue kmos3d_catalog.csv sha256 18e76b3df142cf0c; velocity columns loaded: False; rows 192
+tiers: T1 72, T2 62, T0 192; PT1 z terciles (cuts 2.192, 2.314): PT1z1 24, PT1z2 24, PT1z3 24; RC100 matches 18 (T1: 14); SINS overlap 5
+
+STAGE A  THE BLIND PRE-FLIGHT (no velocity column is loaded; no g_obs, D, delta or s* is formed)
+  [PASS] C1 CONTROL: 192 rows, one-to-one join, finite z / LMSTAR / RHALF / Q / PSF; T1 = 72 and T2 <= 69; z range 1.996-2.675
+         N 192; T1 72; T2 62; z [1.996, 2.675]; unique IDs 192; rows with a catalogue match 192
+  [PASS] C2 CONTROL: Freeman's peak V^2 = 0.3872 G M / R_d to 0.003, g -> G M / r^2 far from a compact mass to 1e-3, and gdisc equals CFG229's on 200 random inputs to 1e-12
+         peak 0.3870; far-field ratio 1.00064; max deviation 0.0e+00
+  [PASS] C3 CONTROL (counts): the data chat's flag counts: edge 128, r_t lower 68, V_a upper 25, V_a lower 1, r_t upper 21, sigma0 lower 14, upper 3, position 12, badchi 4, highSN 120
+         {'edge': 128, 'rt_lo': 68, 'Va_hi': 25, 'Va_lo': 1, 'rt_hi': 21, 'sig_lo': 14, 'sig_hi': 3, 'pos': 12, 'badchi': 4}; highSN 120
+  [PASS] C4 CONTROL: the imported estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D = nu(g_bar / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5 on every row's stars-only baryon side
+         max |d log10 s| 5.6e-14
+
+A1 / A2  BARYON SIDE AND THE CFG240 READING (noiseless world; B0 = stars only at r = 2.2 r_d; ILL-CONDITIONED iff |lever| >= 10 or not computable)
+    T0: n 192, y(B0) 16/50/84 % 0.87 / 2.26 / 9.07 (min 0.03, max 475.24); y(B2) median 5.27; rows y < 0.3: 6, y > 6: 46, y > 8: 37; ILL-CONDITIONED 48 (25 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.043 dex
+    T1: n 72, y(B0) 16/50/84 % 1.08 / 2.20 / 5.00 (min 0.41, max 65.23); y(B2) median 4.60; rows y < 0.3: 0, y > 6: 9, y > 8: 7; ILL-CONDITIONED 10 (14 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.071 dex
+    T2: n 62, y(B0) 16/50/84 % 1.04 / 2.11 / 4.37 (min 0.55, max 26.18); y(B2) median 4.38; rows y < 0.3: 0, y > 6: 5, y > 8: 4; ILL-CONDITIONED 6 (10 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.076 dex
+    PT1z1: n 24, y(B0) 16/50/84 % 1.01 / 2.36 / 4.51 (min 0.66, max 44.85); y(B2) median 4.54; rows y < 0.3: 0, y > 6: 3, y > 8: 3; ILL-CONDITIONED 3 (12 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.122 dex
+    PT1z2: n 24, y(B0) 16/50/84 % 0.94 / 1.79 / 5.32 (min 0.41, max 24.43); y(B2) median 4.27; rows y < 0.3: 0, y > 6: 3, y > 8: 2; ILL-CONDITIONED 4 (17 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.122 dex
+    PT1z3: n 24, y(B0) 16/50/84 % 1.36 / 2.22 / 4.85 (min 0.96, max 65.23); y(B2) median 5.14; rows y < 0.3: 0, y > 6: 3, y > 8: 2; ILL-CONDITIONED 3 (12 %); T4 floor 3 sigma/sqrt(N) at sigma = 0.2 dex 0.122 dex
+    PSF ratio 2.2 r_d / (PSF/2): T1 median 2.28; rows with 2.2 r_d < PSF/2: T0 24, T1 7 (10 %)
+    RC100 overlap by the frozen name recipe: 18 rows (T1: 14; the data card's 22 also counts three matches made through SINS positions and one doubtful row, which the name recipe does not reproduce); SINS overlap by name: 5 rows (T1: 4, ids ['COS4_08515', 'GS4_29868', 'GS4_33639', 'GS4_40218', 'GS4_42930'])
+    median log M* T1 10.50, r_d (kpc) median 2.01, r median 4.41 kpc; RC100 rows inside T1: ['COS4_02672', 'COS4_05433', 'COS4_06079', 'COS4_08775', 'COS4_10347', 'COS4_13174', 'COS4_19753', 'GS4_01529', 'GS4_24110', 'GS4_42930', 'U4_09825', 'U4_13704', 'U4_20704', 'U4_34138']
+
+C6  COVERAGE (noiseless world on each row's B0 baryons; declared 0.15 dex on g_obs; declared 0.20 dex on M*; 100 mock datasets, B = 1,000; T1 rows only)
+    T1 coverage 68 %: median 0.68 (conditioned rows 0.71); 95 %: median 0.96 (conditioned 0.96)
+  [PASS] C6 (reported; load-bearing for the conditioned rows): the median coverage of the conditioned T1 rows is >= 60 % (68 %) and >= 88 % (95 %)
+         conditioned T1 rows 62: 68 % 0.71, 95 % 0.96
+
+A3  KNOB EFFECTS ON g_bar (dex relative to B0; T1 median / min / max)
+    R_e x1.5: median -0.215, min -0.215, max -0.215
+    R_e /1.5: median +0.122, min +0.122, max +0.122
+    spherical: median -0.120, min -0.120, max -0.120
+    mu_mol (T1) median 1.23, B2/B0 g_bar median 2.23
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C5)
+  PF-D2 ILL-CONDITIONED rows: T0 48 of 192, T1 10 of 72, T2 6 of 62
+  PF-D3 DRAWABLE as an upper bound: T1 62 of 72 rows (every drawable row is an upper bound on s*, never a measurement)
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored (HE3-HE7 are scored at stage B):
+    HE1: hit
+    HE2: hit
+
+6/6 checks pass; load-bearing failures: 0   (74 s)
