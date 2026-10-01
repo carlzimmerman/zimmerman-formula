@@ -1,0 +1,72 @@
+CFG262 -- MUSE-DARK implied-a0 levels (CFG223's s*) in redshift thirds, by baryon route (i fitted DC14 masses / ii SED + H2 / iii SED) and velocity reading (b: no pressure, a LOWER bound; bD: with the asymmetric-drift term).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG262_musedark_zthirds_by_route/FROZEN_CRITERIA.md (1c1e4fe44) + ADDENDUM_1.md.
+  data      the CFG236 chain (S = 109) and the 126 external true_Vrot.dat files (read-only; hash-checked); equal-count thirds of S by z (37 / 36 / 36).
+  machinery CFG236_common (routes in the R199 construction, gperp_reading, thirds, load_dat, verify_hashes, boot_median) and CFG229's a0implied.implied (CFG223's estimator, verbatim), nu_mono, canonical a0.
+  STAGE=A   the blind pre-flight: no g_perp, D, s* or median a0 of any third is printed or formed from the real velocities.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 plants the law at s = 2; STAGE=B SELFTEST=1 fabricates g_perp.
+
+STAGE A
+S = 109 galaxies; thirds z1 N=37 z_med=0.523; z2 N=36 z_med=0.878; z3 N=36 z_med=1.204
+
+STAGE A  THE BLIND PRE-FLIGHT (no g_perp, D, s* or median a0 of any third is formed from the real velocities)
+  [PASS] C1 CONTROL: the 882 run files and 9 catalogue files match their manifests (882 / 882, 9 / 9)
+         files ok 882/882 (bad 0, missing 0); catalogue ok 9 (bad 0, missing 0)
+  [PASS] C2 CONTROL: the sample chain counts 126 / 124 / 14 (15 in 126) / 110 / 109 and the thirds N = 37 / 36 / 36
+         {'n_rows': 126, 'n_finite': 124, 'bulge_all': 15, 'bulge_in_finite': 14, 'n_disc': 110, 'n_S': 109}; thirds [37, 36, 36]
+  [PASS] C3 CONTROL: route identity -- with M*_SED := M_fit and mu := 0, routes (ii) and (iii) equal route (i) (rho = 1 exactly)
+         max relative deviation 0.0e+00
+  [PASS] C4 CONTROL: the imported implied-a0 estimator equals CFG223's original bit for bit on 200 random sets
+         identical True
+  [PASS] C5 CONTROL: the noiseless world D_i = nu(g_bar,i / (a0 s_true)) returns s_true to 1e-6 dex for s_true = 0.5, 1, 2.5, each route's baryon side and each third
+         max |d log10 s| 1.7e-16
+  C6 counts only (no value printed): finite v_f(R_e) / sigma_1 / inclination / D1 reading per third: z1: 37/37/37/37 of 37; z2: 36/36/36/36 of 36; z3: 36/36/36/36 of 36
+  [PASS] C6 CONTROL (counts): the D1 reading is finite for every galaxy of S (109 of 109) -- if not, the rows' N is reported per third
+         109 of 109
+  [PASS] C7 CONTROL: bootstrap coverage (400 draws of N = 36, noiseless world + 0.3 dex scatter on g_obs): >= 60 % at 68 % and >= 88 % at 95 %
+         68 %: 0.670, 95 %: 0.943 (draws with a root 400)
+
+A1  BARYON LEVER d log10 s*/d(baryon dex) in the noiseless world (law at s = 1 on each route's baryon side; y quantiles 16/50/84)
+    route (i  ) z1: y = [0.019, 0.075, 0.347]  lever -1.302
+    route (i  ) z2: y = [0.007, 0.047, 0.313]  lever -1.234
+    route (i  ) z3: y = [0.002, 0.018, 0.103]  lever -1.140
+    route (ii ) z1: y = [0.097, 0.292, 0.943]  lever -1.654
+    route (ii ) z2: y = [0.18, 0.49, 1.478]  lever -1.900
+    route (ii ) z3: y = [0.332, 1.002, 3.063]  lever -2.449
+    route (iii) z1: y = [0.055, 0.137, 0.413]  lever -1.422
+    route (iii) z2: y = [0.096, 0.185, 0.71]  lever -1.498
+    route (iii) z3: y = [0.107, 0.354, 1.152]  lever -1.734
+
+A2  NO-ROOT FORECAST: the impossibility proxy (half the route's disc mass + pi R_e^2 Sigma_HI above the model's log_Mdyn; log_Mdyn read as the mass within R_e, unverified); rule NO ROOT LIKELY iff >= 0.50
+    route (i  ): fraction by third 0.03 / 0.06 / 0.03   -> z1: root expected, z2: root expected, z3: root expected
+    route (ii ): fraction by third 0.32 / 0.31 / 0.58   -> z1: root expected, z2: root expected, z3: NO ROOT LIKELY
+    route (iii): fraction by third 0.19 / 0.14 / 0.28   -> z1: root expected, z2: root expected, z3: root expected
+
+A3  PRECISION FORECAST (planning scatter 0.6 dex per galaxy, N = 36): SD of log10 s* = 0.125 dex
+
+A4  CALIBRATION DRIFTS on the thirds' relative levels (noiseless world at s = 1; the analyst's baryons carry tau = +-0.25 dex/z (SED mass) or t_H = +-0.3 dex/z (H2 tilt); d = log s*(z3) - log s*(z1))
+    route (ii ) tau+0.25 : log10 s* per third [-0.098, 0.005, 0.136]  d(z3 - z1) = +0.234
+    route (ii ) tau-0.25 : log10 s* per third [0.087, -0.005, -0.168]  d(z3 - z1) = -0.255
+    route (ii ) tH+0.3   : log10 s* per third [0.068, -0.005, -0.17]  d(z3 - z1) = -0.238
+    route (ii ) tH-0.3   : log10 s* per third [-0.081, 0.005, 0.124]  d(z3 - z1) = +0.205
+    route (iii) tau+0.25 : log10 s* per third [-0.093, 0.003, 0.121]  d(z3 - z1) = +0.213
+    route (iii) tau-0.25 : log10 s* per third [0.083, -0.003, -0.144]  d(z3 - z1) = -0.228
+
+A5  FLAT versus H(z) from the thirds' levels (the rival's expected change in log10 s* from z1 to z3 against 2 sqrt(2 SD^2 + drift^2))
+    route (i  ): rival d = +0.177; max |drift| 0.000; threshold 0.354; POSSIBLE_STAT False; POSSIBLE_SYS False
+    route (ii ): rival d = +0.177; max |drift| 0.255; threshold 0.621; POSSIBLE_STAT False; POSSIBLE_SYS False
+    route (iii): rival d = +0.177; max |drift| 0.228; threshold 0.577; POSSIBLE_STAT False; POSSIBLE_SYS False
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True
+  PF-D2 ROOT FORECAST: (i, z1) root; (i, z2) root; (i, z3) root; (ii, z1) root; (ii, z2) root; (ii, z3) NO ROOT LIKELY; (iii, z1) root; (iii, z2) root; (iii, z3) root
+  PF-D3 DRAWABLE rows: (i, z1), (i, z2), (i, z3), (ii, z1), (ii, z2), (iii, z1), (iii, z2), (iii, z3); floor triangles: (ii, z3)
+  PF-D4 FLAT versus H(z) from the thirds' levels: route (i) NOT POSSIBLE; route (ii) NOT POSSIBLE; route (iii) NOT POSSIBLE
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 8) scored (HE3, HE6-HE8 are scored at stage B):
+    HE1: hit
+    HE2: hit
+    HE4: hit
+    HE5: MISS (kept as it falls)
+
+7/7 checks pass; load-bearing failures: 0   (108 s)
