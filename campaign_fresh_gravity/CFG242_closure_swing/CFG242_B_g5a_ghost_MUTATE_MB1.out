@@ -1,0 +1,37 @@
+# CFG242_B_g5a_ghost_MUTATE_MB1   repo = <repo>   mode = MB1
+CFG242_B_g5a_ghost -- route B (L13), G5a: ghost, hyperbolicity and signal speeds of the foliated (lapse-free) bimetric interaction on FLAT space
+(frozen plan section 4.3, gate order 1: 'cheapest decisive, 3 h').
+
+FROZEN: 'G5a ghost / hyperbolicity of the foliated quadratic action: ghost-free, strongly hyperbolic, all speeds <= c on flat space AND on the exact static MOND
+background operator.'  Shared G5 (verbatim): 'No ghost, no gradient instability, hyperbolic/causal (the DE12/DE13/XC criteria); Solar System safe (Cassini) by an explicit statement.'
+Class 13d: the interaction is the record's tuned five-invariant direction T4 - T1 built from the SPATIAL connection difference of a shared foliation (CFG242_B_algebra.py, 'FOL').
+Primary point: mu/b = -1/4, the record's tuned degeneracy value (CFG232 A2: sigma_s m0 = b/8, mu = -b/4), taken as the frozen reading; whether the FOLIATED class has its
+own degeneracy value is NOT established here (that needs a foliated static reduction, the analogue of CFG232 A1, not run).  The whole line mu/b is scanned and REPORTED, never used
+for the verdict.  The foliation scalar (khronon) decouples from the relative sector at quadratic order around FLAT space (the induced spatial metrics of g and g-hat on the same
+slice differ by delta_ij at first order); it matters on a background with nonzero connection difference, which this script does NOT treat (see the MOND-background cell).
+CELLS (all scored at the primary point):  GHOST  every propagating mode has a positive residue of the inverse kinetic matrix and no mode is higher-order (Ostrogradsky);
+ SPEEDS  every c_i^2 in [0, 1] (no gradient instability, no superluminal mode);  HYPERBOLIC  the first-order reduction of every sector is diagonalisable with real
+ eigenvalues (strongly hyperbolic);  DETERMINED  the quadratic action has no residual gauge zero modes (every mode is fixed by it);  BACKGROUND  the exact static MOND background.
+MUTATE: MB1 restore the 4D (lapse-dependent) five-invariant interaction (scored at mu/b = -0.1, away from its degenerate tuned point) -> the GHOST cell flips PASS -> FAIL;
+ MB2 flip the sign of the interaction (CFG232's erratum) -> the SPEEDS cell flips PASS -> FAIL;  MB3 independent foliations for g and g-hat -> the HYPERBOLIC cell: does NOT bite at
+ quadratic order about flat space (the induced spatial metric difference is unchanged at first order): a declared control failure.
+
+  interaction class: 4D;  mu/b = -1/10
+  helicity 2: M_TT(omega, kappa) = -3*(kappa - omega)*(kappa + omega)/5
+      dispersion omega^2 = c_T^2 kappa^2 with c_T^2 = 1   (coefficient of omega^2: 3/5)
+  helicity 1 (d01, d13): det = 3*(kappa - omega)**2*(kappa + omega)**2/25   (degree in omega: 4)
+  full 10 x 10 kinetic matrix at a generic (omega, kappa): rank 9, nullity 1 (zero modes of the quadratic action)
+  the helicity-0 Stueckelberg directions d = k A + A k + k k pi (A along t and z): M d = 0 ? False
+  TT first-order reduction: c_T^2 = 1; eigenvalues [ 1. -1.]; diagonalisable with real eigenvalues (strongly hyperbolic): False
+
+====================================================================================================
+cells at the primary point (frozen reading mu/b = -1/4) [MUTATED]
+====================================================================================================
+  [FAIL] (result) GHOST: positive residues, no higher-order mode   (TT residue 5/3, helicity-1 determinant degree in omega 4  (4D class: a fourth-order vector, the WF2/L70 Ostrogradsky mode))
+  [PASS] (result) SPEEDS: every c_i^2 in [0, 1]   (c_T^2 = 1)
+  [FAIL] (result) HYPERBOLIC: strongly hyperbolic (diagonalisable first-order reduction, real eigenvalues)   (c_T^2 = 1: the TT system is d_t^2 h = c_T^2 k^2 h)
+  [FAIL] (result) DETERMINED: the quadratic action has no residual gauge zero modes   (nullity 1)
+  [NOT ADDRESSED] BACKGROUND: the exact static MOND background operator -- the stop rule ends route B at the first binding FAIL (HYPERBOLIC, flat space); the khronon would also have to be included
+  >>> G5a (route B, flat space, frozen point) [MUTATED]: FAIL -- ghost F; speeds P (c_T^2 = 1); hyperbolic F; determined F (nullity 1); background NOT ADDRESSED
+
+MUTATE MB1: control BITES (exit 1)

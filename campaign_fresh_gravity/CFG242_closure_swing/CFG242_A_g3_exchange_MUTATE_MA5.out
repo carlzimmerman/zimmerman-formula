@@ -1,0 +1,60 @@
+# CFG242_A_g3_exchange_MUTATE_MA5   repo = <repo>   mode = MA5
+CFG242_A_g3_exchange -- route A (L14a), G3: reciprocity and energy of the latch-gated exchange (frozen plan section 4.2, gate order 3 and 4).
+
+FROZEN (shared G3, verbatim): 'The reaction on the baryons <= 0.10 g_law over x in [0.3, 30] and the energy the mechanism must supply <= the baryons'
+orbital energy, in BOTH r_ta conventions (CFG48 G4's pass lines).'  Two readings, NEVER pooled (the amended G3, declared in the frozen file):
+  STRICT  (every arm): the shared line as written.  Arm A1 (iota = 0, r = 1, tau_bar free) is the strict arm; its stop is G3 strict.
+  FUNDED  (A2, A3 only; a declared departure, labelled in every output): reaction <= 0.10 g_law over x in [0.3, 30] with the reservoir identified
+          inside the action, energy <= the vacuum energy available in the causal region (a c t_f ball), and |delta a0/a0| <= 1%.
+          A funded pass is 'a pass of the amended G3', never of the shared G3.
+Order in the frozen plan: G0 legality (CFG242_A_g0_legality.py) came first for A2/A3 and FAILED there (B3), so under the stop rule arms A2 and A3
+STOP at G0 and the FUNDED reading below is a POST-HOC CONTINUATION (labelled), run for information on the frozen equations E1-E4 with the E3
+defect set aside; the STRICT reading on arm A1 is the arm's own gate and is a MAIN result.
+
+MODEL.  Closed forms of the retarded exchange (derived in CFG70 by sympy; reproduced as controls in CFG242_A_controls.py): a/theta^T_M(t) = r Theta_K(t)
+ + eps_c (Thetabar * mdot)(t), Theta_K = int_0^t K, K = exp(-s/tau_bar)/tau_bar, Thetabar = 1 - Theta_K, m(t) = smoothstep(t/t_f); reaction on the
+ baryons a = theta^T_M(u) x that ratio, theta^T_M = (3/4) a0 (pressure-slaved) or (3/8) a0 (2+x^2)/(1+x^2) (sigma-slaved).  eps_c = c theta^T_full is the
+ free-energy stiffness in units of the full target; the frozen file does not fix it: it is declared at CFG70's N6 value eps_c = 1 (a DEPARTURE, disclosed; any
+ other value is a new constant).  tau_bar = tau_L = 1/(kappa sqrt(G rho_Lambda)) (tied; computed from the tie, about 101 Gyr canonical).
+ Ledger: E_c(<r_e) = 1.5 (r_e/r_M) (1/2) M_b V_f^2 (V_f^4 = G M_b a0, r_e = 0.4 r_ta) against the vacuum energy rho_Lambda c^2 (4 pi/3) r_e^3 of the ball
+ the heat is drawn from; the local a0 shift is (1/2) E_c / E_vac (a0 proportional to sqrt(rho_Lambda)).
+MUTATE: MA3 drops the reaction partner (the baryons feel no reaction): the FUNDED reaction cell flips FAIL -> trivially PASS (and CFG242_A_g0_legality's
+ symmetry cell fails).  MA5 removes the vacuum ledger (an unfunded reservoir): the FUNDED ledger cell flips to UNDEFINED.
+
+====================================================================================================
+G3 STRICT, arm A1 (iota = 0, r = 1; kernel-independent late-time limit)  [MAIN]
+====================================================================================================
+    P-slaved: max over x in [0.3, 30] of reaction/g_law = 22.49 (at x = 30); crosses the 0.10 line at x = 0.378
+    S-slaved: max over x in [0.3, 30] of reaction/g_law = 11.26 (at x = 30); crosses the 0.10 line at x = 0.396
+  [FAIL] (result) G3 STRICT reaction <= 0.10 g_law over x in [0.3, 30] (A1: r = 1, any kernel)   (pressure-slaved max 22.49, sigma-slaved 11.26; line crossed at x = 0.38 / 0.40)
+    M_b 1e+09: energy the exchange must supply / (1/2 M_b V_f^2): CFG48 r_ta    72.8, B's committed r_ta   318.4
+    M_b 1e+10: energy the exchange must supply / (1/2 M_b V_f^2): CFG48 r_ta    49.6, B's committed r_ta   179.1
+    M_b 1e+11: energy the exchange must supply / (1/2 M_b V_f^2): CFG48 r_ta    33.8, B's committed r_ta   100.8
+    M_b 1e+12: energy the exchange must supply / (1/2 M_b V_f^2): CFG48 r_ta    23.0, B's committed r_ta    56.7
+  [FAIL] (result) G3 STRICT energy <= the baryons' orbital energy in BOTH r_ta conventions   (min ratio 23.0 (every ratio exceeds 1 by >= 23x))
+  >>> G3 strict (arm A1): FAIL -- reaction 22.5 g_law (line 0.10) and energy 23-318 x orbital (line 1)
+
+====================================================================================================
+G3 FUNDED reading, arms A2/A3 [POST-HOC CONTINUATION: the arms stopped at G0]: r = 0, eps_c = 1, tau_bar = tau_L
+====================================================================================================
+    tau_L = 1/(kappa sqrt(G rho_Lambda)) = 101.5 Gyr (canonical tie; rho_Lambda = 86.33 Msun/kpc^3);  age 13.79 Gyr
+    t_f =    1 Gyr: peak of (Thetabar * mdot) = 0.9950;  max reaction/g_law over x in [0.3, 30]: P 22.38, S 11.20;  eps_c needed for the 0.10 line: P 0.0045, S 0.0089
+    t_f =   10 Gyr: peak of (Thetabar * mdot) = 0.9529;  max reaction/g_law over x in [0.3, 30]: P 21.43, S 10.73;  eps_c needed for the 0.10 line: P 0.0047, S 0.0093
+  [FAIL] (result) G3 FUNDED reaction <= 0.10 g_law over x in [0.3, 30] (r = 0, eps_c = 1, tau_bar = tau_L, t_f = 1 and 10 Gyr)   (max reaction 22.38 g_law (pressure-slaved); the line needs eps_c <= 0.0045 (an untied coupling))
+    tracking (REPORTED, G1 not addressed): with tau_bar = tau_L the fluid's heat store reaches 0.118 of its target by t = 13.79 Gyr for a 1-Gyr formation (the G1 line is 10%)
+
+====================================================================================================
+Vacuum ledger (FUNDED reading, POST-HOC): energy the heat needs against the vacuum energy of the ball it is drawn from
+====================================================================================================
+    M_b 1e+09 CFG48       : r_e =    59.2 kpc   E_c/E_vac(<r_e) = 1.90e-05   local a0 shift = 9.51e-06   c t_f(1 Gyr)/r_e = 4952
+    M_b 1e+09 B_committed : r_e =   259.0 kpc   E_c/E_vac(<r_e) = 9.94e-07   local a0 shift = 4.97e-07   c t_f(1 Gyr)/r_e = 1132
+    M_b 1e+10 CFG48       : r_e =   127.5 kpc   E_c/E_vac(<r_e) = 4.10e-05   local a0 shift = 2.05e-05   c t_f(1 Gyr)/r_e = 2299
+    M_b 1e+10 B_committed : r_e =   460.7 kpc   E_c/E_vac(<r_e) = 3.14e-06   local a0 shift = 1.57e-06   c t_f(1 Gyr)/r_e = 636
+    M_b 1e+11 CFG48       : r_e =   274.7 kpc   E_c/E_vac(<r_e) = 8.83e-05   local a0 shift = 4.42e-05   c t_f(1 Gyr)/r_e = 1067
+    M_b 1e+11 B_committed : r_e =   819.8 kpc   E_c/E_vac(<r_e) = 9.92e-06   local a0 shift = 4.96e-06   c t_f(1 Gyr)/r_e = 358
+    M_b 1e+12 CFG48       : r_e =   591.9 kpc   E_c/E_vac(<r_e) = 1.90e-04   local a0 shift = 9.51e-05   c t_f(1 Gyr)/r_e = 495
+    M_b 1e+12 B_committed : r_e =  1459.6 kpc   E_c/E_vac(<r_e) = 3.13e-05   local a0 shift = 1.56e-05   c t_f(1 Gyr)/r_e = 201
+  [FAIL] (result) G3 FUNDED ledger (reservoir identified, energy within the available vacuum, |delta a0/a0| <= 1%) [MA5: no ledger, an unfunded reservoir]   (UNDEFINED: with no ledger there is no reservoir to check)
+  >>> G3 funded (arms A2/A3, post-hoc continuation): FAIL -- reaction FAIL; ledger UNDEFINED/FAIL
+
+MUTATE MA5: control BITES (exit 1)

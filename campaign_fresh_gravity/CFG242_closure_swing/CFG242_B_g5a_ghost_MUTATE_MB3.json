@@ -1,0 +1,49 @@
+{
+ "slug": "CFG242_B_g5a_ghost_MUTATE_MB3",
+ "mutate": "MB3",
+ "runtime_s": 0.11,
+ "checks": [
+  {
+   "name": "GHOST: positive residues, no higher-order mode",
+   "ok": true,
+   "detail": "TT residue 1, helicity-1 determinant degree in omega 0",
+   "kind": "result"
+  },
+  {
+   "name": "SPEEDS: every c_i^2 in [0, 1]",
+   "ok": true,
+   "detail": "c_T^2 = 0",
+   "kind": "result"
+  },
+  {
+   "name": "HYPERBOLIC: strongly hyperbolic (diagonalisable first-order reduction, real eigenvalues) [MB3 independent foliations: Hessian unchanged]",
+   "ok": false,
+   "detail": "c_T^2 = 0: the TT system is d_t^2 h = c_T^2 k^2 h = 0: a Jordan block (h grows linearly in t)",
+   "kind": "result"
+  },
+  {
+   "name": "DETERMINED: the quadratic action has no residual gauge zero modes",
+   "ok": false,
+   "detail": "nullity 2; the zero modes are the Stueckelberg directions of the relative time diffeo and the longitudinal spatial diffeo: True",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "flat": {
+   "kind": "FOL",
+   "mu_over_b": "-1/4",
+   "cT2": 0.0,
+   "residue_TT": "1",
+   "helicity1_det": "kappa**4/2",
+   "nullity": 2,
+   "stueckelberg_null": true
+  },
+  "verdicts": {
+   "G5a (route B, flat space, frozen point) [MUTATED]": {
+    "status": "FAIL",
+    "why": "ghost P; speeds P (c_T^2 = 0); hyperbolic F; determined F (nullity 2); background NOT ADDRESSED"
+   }
+  }
+ },
+ "control_bites": false
+}

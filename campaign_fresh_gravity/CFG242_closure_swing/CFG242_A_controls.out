@@ -1,0 +1,39 @@
+# CFG242_A_controls   repo = <repo>   mode = main
+CFG242_A_controls -- route A (L14a), stage 0: the REPRODUCTION CONTROLS of the frozen plan (CFG242_FROZEN_CRITERIA.md, section 4.2, gate order 0).
+
+Frozen control (arm A1): late reaction/g_law 0.065 / 0.53 / 2.13 / 7.46 / 22.5 at x = 0.3 / 1 / 3 / 10 / 30 (pressure-slaved) and energy ratio
+72.8 / 49.6 / 23.0 (CFG48 r_ta) and 318 / 179 / 57 (B's committed r_ta) at 1e9 / 1e10 / 1e12 Msun, within 1%; plus the CFG72 light-cone
+width -> 0 control.  A failed control stops the arm.
+
+This script recomputes the closed forms (a/g_law = theta^T_M / g_law with theta^T_M = (3/4) a0 [pressure] or (3/8) a0 (2+x^2)/(1+x^2)
+[sigma], g_law = g_N sqrt(1+x^2) = a0 sqrt(1+x^2)/x^2; E_c/((1/2) M_b V_f^2) = 1.5 r_e/r_M with r_e = 0.4 r_ta, V_f^4 = G M_b a0) and compares
+them with (i) the numbers frozen in section 4.2, (ii) the COMMITTED CFG72 / CFG70 results JSON (read-only; those lanes are not re-run here;
+the committed numbers are the reference), and (iii) a forward-marched fluid equation (retarded exponential kernel, step target) for the
+static limit.  Both footings are carried where it matters (the closed forms depend on a0 only through x).
+MUTATE: not used here (the controls are reference checks).
+
+====================================================================================================
+C-A1  late-time reaction on the baryons, closed forms (r = 1 closed ledger)
+====================================================================================================
+    x                 0.3       1.0       3.0      10.0      30.0
+    pressure       0.0647    0.5303    2.1345    7.4628   22.4875     (frozen: 0.065 / 0.53 / 2.13 / 7.46 / 22.5)
+    sigma          0.0620    0.3977    1.1740    3.7683   11.2562
+  [PASS] (control) C-A1 pressure-slaved reaction/g_law reproduces the frozen numbers to 1%   (max rel dev 5.33e-03)
+  [PASS] (control) C-A1b the closed forms equal the COMMITTED CFG72 'reaction_table' point-mass rows (the light-cone width -> 0 limit, 1e-13 in CFG72), P and S   (max rel dev P 2.2e-16, S 2.2e-16  (CFG72 committed values read, not re-run))
+
+====================================================================================================
+C-A2  energy ratio E_c(<r_e)/((1/2) M_b V_f^2) = 1.5 r_e/r_M in both r_ta conventions
+====================================================================================================
+    M_b 1e+09: CFG48   72.76 (frozen 72.8)   committed r_ta: nu_mono   318.4, P2   318.2 (frozen 318.0)
+    M_b 1e+10: CFG48   49.57 (frozen 49.6)   committed r_ta: nu_mono   179.1, P2   178.9 (frozen 179.0)
+    M_b 1e+12: CFG48   23.01 (frozen 23.0)   committed r_ta: nu_mono    56.7, P2    56.6 (frozen 57.0)
+  [PASS] (control) C-A2 energy ratios in CFG48's r_ta reproduce 72.8 / 49.6 / 23.0 to 1%   ({'1e+09': 72.76, '1e+10': 49.57, '1e+12': 23.01})
+  [PASS] (control) C-A2b energy ratios in B's committed r_ta reproduce 318 / 179 / 57 to 1% (nu_mono or P2 kernel, as in CFG70's own wording)   ({'1e+09': (318.4, 318.2), '1e+10': (179.1, 178.9), '1e+12': (56.7, 56.6)})
+
+====================================================================================================
+C-A3  forward-marched fluid equation: retarded exponential kernel, step target, static limit (theta' = (theta^T - theta - r/c)/tau)
+====================================================================================================
+  [PASS] (control) C-A3 late-time reaction / theta^T_M = r (r = 1)   (1.00000000)
+  [PASS] (control) C-A3 late-time reaction / theta^T_M = r (r = 0)   (0.00000000)
+
+RESULT: 6 checks, 0 control failure(s): none   (3 s)

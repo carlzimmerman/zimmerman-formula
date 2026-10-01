@@ -1,0 +1,49 @@
+{
+ "slug": "CFG242_A_g5_solar_stability",
+ "mutate": "",
+ "runtime_s": 0.0,
+ "checks": [
+  {
+   "name": "G5 Q2 arm A2 (iota = 0): the Sun's own latch leaves Q2 <= 5.2e-27 s^-2",
+   "ok": false,
+   "detail": "needs n <= 1.6e-04; the shell latch gives n >= 0.1473",
+   "kind": "result"
+  },
+  {
+   "name": "G5 Q2 arm A3 (inhibitor): the Sun forms inside the latched Milky Way, n_Sun = 0",
+   "ok": true,
+   "detail": "PASS BY CONSTRUCTION of the inhibitor (embedded collapse n <= 1e-6, CFG242_A_g0_legality H(i), post-hoc E3''); the host's own phantom tide passes (CFG230: 2.9e-5-7.4e-5 of the bound)",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "Q2": {
+   "canonical": {
+    "g_N": 6.517384207502038e-05,
+    "x2": 1.4362050328758485e-06,
+    "dg_over_a0": 0.4999998204349026,
+    "Q2": 3.2797478912382125e-23,
+    "ratio": 6307.207483150408,
+    "n_max": 0.00015854877180931213
+   },
+   "alt": {
+    "g_N": 6.517384207502038e-05,
+    "x2": 1.7356656658324623e-06,
+    "dg_over_a0": 0.4999997830373383,
+    "Q2": 3.963602167745519e-23,
+    "ratio": 7622.311861049075,
+    "n_max": 0.0001311937924122627
+   }
+  },
+  "verdicts": {
+   "G5 arm A2 (post-hoc)": {
+    "status": "FAIL",
+    "why": "Q2 = n x 6.3e+03 x the bound (canonical; alt 7.6e+03); stability NOT ADDRESSED"
+   },
+   "G5 arm A3 (post-hoc)": {
+    "status": "UNDEFINED",
+    "why": "Q2 passes only through the inhibitor (by construction); stability NOT ADDRESSED"
+   }
+  }
+ }
+}

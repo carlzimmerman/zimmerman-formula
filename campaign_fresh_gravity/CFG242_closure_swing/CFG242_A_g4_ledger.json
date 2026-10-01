@@ -1,0 +1,47 @@
+{
+ "slug": "CFG242_A_g4_ledger",
+ "mutate": "",
+ "runtime_s": 0.0,
+ "checks": [
+  {
+   "name": "G4a arm A1: the memory time is tied (no)",
+   "ok": false,
+   "detail": "tau_bar is scanned over a grid, not tied",
+   "kind": "result"
+  },
+  {
+   "name": "G4a arm A2: the memory time is tied to tau_L = 1/(kappa sqrt(G rho_Lambda))",
+   "ok": true,
+   "detail": "101.5 Gyr",
+   "kind": "result"
+  },
+  {
+   "name": "G4b arm A2: no other constant appears (eps_c = 1 is a number put in by hand; STRICT reading)",
+   "ok": false,
+   "detail": "eps_c untied; the lenient reading (a declared normalisation) would pass",
+   "kind": "result"
+  },
+  {
+   "name": "G4 arm A3: beta = 1 untied",
+   "ok": false,
+   "detail": "FAIL by the frozen line",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "verdicts": {
+   "G4 arm A1 (main)": {
+    "status": "FAIL",
+    "why": "tau_bar untied (grid); eps_c declared; binding at G4 in the frozen order (G3 strict is evaluated anyway: CFG242_A_g3_exchange.py)"
+   },
+   "G4 arm A2 (post-hoc continuation)": {
+    "status": "FAIL (strict) / PASS (lenient on eps_c)",
+    "why": "G4a tied PASS; G4b eps_c untied; reported both readings, strict is the verdict"
+   },
+   "G4 arm A3 (post-hoc continuation)": {
+    "status": "FAIL",
+    "why": "beta = 1 untied (frozen line) plus eps_c"
+   }
+  }
+ }
+}

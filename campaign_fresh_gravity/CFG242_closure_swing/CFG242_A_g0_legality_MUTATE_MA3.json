@@ -1,0 +1,132 @@
+{
+ "slug": "CFG242_A_g0_legality_MUTATE_MA3",
+ "mutate": "MA3",
+ "runtime_s": 9.55,
+ "checks": [
+  {
+   "name": "D1 test data lie on the polynomial branch of the smoothstep (0 < u < 1 at every step)",
+   "ok": true,
+   "detail": "u = [0.4 0.4 0.4 0.4 0.4]",
+   "kind": "control"
+  },
+  {
+   "name": "R1n reciprocity-symmetry cell (numeric Jacobian of the action's residual; line 1e-6): the cross blocks dR^q/dtheta and dR^theta/dq are symmetric",
+   "ok": false,
+   "detail": "max |asymmetry| 2.46e-02   (main would be 1.2e-10; the dropped-partner action gives 2.5e-02)",
+   "kind": "result"
+  },
+  {
+   "name": "C1 causal band (c_adv < 1e-12 at N = 200 and N = 400)",
+   "ok": true,
+   "detail": "c_adv(200_A2) = 0.00e+00; c_adv(400_A2) = 0.00e+00; c_adv(200_A3) = 0.00e+00",
+   "kind": "result"
+  },
+  {
+   "name": "C2a characteristic speed c_m sqrt(1+beta)/c <= 1",
+   "ok": true,
+   "detail": "1.000000000000",
+   "kind": "result"
+  },
+  {
+   "name": "C2b retarded Green function outside the cone <= 1e-12",
+   "ok": true,
+   "detail": "0.0e+00",
+   "kind": "result"
+  },
+  {
+   "name": "C2c control: the elliptic stencil has support outside the cone (the check can fail)",
+   "ok": true,
+   "detail": "3.49e-01",
+   "kind": "control"
+  },
+  {
+   "name": "B1 FRW background (theta_b = 3H): n <= 1e-6 for all t (n(0) = 0)",
+   "ok": true,
+   "detail": "max n = 0.00e+00   (reported: from n(0) = 1e-3 the latch decays below 1e-6 at t = 16.0 t_dyn)",
+   "kind": "result"
+  },
+  {
+   "name": "B2 outgoing positive-energy shell: n <= 1e-6, exchange force on the baryons <= 1e-6 g_law, fluid heat <= 1e-6 of the target store",
+   "ok": true,
+   "detail": "max n = 0.00e+00; force = c_f(th - n thT) n thT' = 0 at n = 0 (r = 0); heat = n thT = 0",
+   "kind": "result"
+  },
+  {
+   "name": "B3 a bound shell after its own turnaround: n >= 0.99 within one free-fall time and it stays there (frozen E3)",
+   "ok": false,
+   "detail": "n(t_ff) = 0.791; min over t >= t_ff = 0.143; late-time mean 0.310 (the shell contracts for half of each orbit; E3's decay term acts whenever theta_b >= 0, including theta_b = 0)",
+   "kind": "result"
+  },
+  {
+   "name": "B4 inertness: where n < 1e-6 the force on the baryons and the heat exchange vanish (r = 0: both are proportional to n)",
+   "ok": true,
+   "detail": "force = -c_f (th - n thT) n thT'(q) and the heat target n thT(q) are identically 0 at n = 0; exact (not a tolerance)",
+   "kind": "result"
+  },
+  {
+   "name": "H(i) (REPORTED, post-hoc E3'' arm A3 with inhibitor): an embedded collapse inside a latched host gets n <= 1e-6",
+   "ok": true,
+   "detail": "max n_sub = 0.00e+00 (inhibitor off: 1.000)",
+   "kind": "result"
+  },
+  {
+   "name": "H(i-frozen) (REPORTED, frozen E3, arm A3 with inhibitor): embedded n <= 1e-6",
+   "ok": true,
+   "detail": "max n_sub = 0.00e+00",
+   "kind": "result"
+  },
+  {
+   "name": "B3' (POST-HOC, E3'') n >= 0.99 within one free-fall time and it stays",
+   "ok": false,
+   "detail": "n(t_ff) = 0.791, t(n>=0.99) = 5.6 = 5.0 t_ff",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "D1_reciprocity_exact_asym": 0,
+  "c_adv": {
+   "200_A2": 0.0,
+   "400_A2": 0.0,
+   "200_A3": 0.0
+  },
+  "B3": {
+   "n_at_tff": 0.7909942720099473,
+   "n_min_after_tff": 0.1429428223338371,
+   "late_mean": 0.30950234511157115
+  },
+  "hier_E3_noinh": {
+   "embedded_max": 0.8468292716653297,
+   "accreted_min": 0.1468844448653271,
+   "accreted_mean": 0.2960094051918391
+  },
+  "hier_E3_inh": {
+   "embedded_max": 0.0,
+   "accreted_min": 1.1013506977959282e-07,
+   "accreted_mean": 2.6388454870045722e-05
+  },
+  "hier_E3pp_noinh": {
+   "embedded_max": 0.9999999999787851,
+   "accreted_min": 0.9999719822484402,
+   "accreted_mean": 0.9999999960105123
+  },
+  "hier_E3pp_inh": {
+   "embedded_max": 0.0,
+   "accreted_min": 0.9999719822484402,
+   "accreted_mean": 0.9999719822484402
+  },
+  "posthoc_E3pp": {
+   "B1": 0.0,
+   "B2": 0.0,
+   "n_tff": 0.7909943978351551,
+   "n_min_after": 0.7909943978351551,
+   "t99": 5.565
+  },
+  "verdicts": {
+   "G0 (arms A2, A3; frozen E3)": {
+    "status": "FAIL",
+    "why": "C1 P (c_adv 0.0e+00); C2 P; B1 P; B2 P; B3 F (n(t_ff) = 0.791, min after = 0.143); B4 P"
+   }
+  }
+ },
+ "control_bites": true
+}

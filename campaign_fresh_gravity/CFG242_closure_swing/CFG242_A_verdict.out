@@ -1,0 +1,18 @@
+ROUTE A (L14a): a causal ownership latch with a vacuum-funded exchange.  Cells cite their script.  MAIN = the frozen stop-rule verdicts; POST-HOC = a labelled continuation after the stop.
+
+arm A1 (strict; iota = 0, r = 1; kernel time free):
+  controls PASS (CFG242_A_controls.py) | G4 FAIL (tau_bar scanned, untied; CFG242_A_g4_ledger.py) -> STOP (frozen order puts G4 before G3) | G3 strict FAIL (reaction 22.5 g_law, energy 23-318 x orbital; CFG242_A_g3_exchange.py, evaluated anyway) | G5, G1, G2 NOT ADDRESSED
+arms A2 and A3 (funded; iota = 0 / inhibitor):
+  G0 legality (frozen E3): FAIL -- C1 P (c_adv 0.0e+00); C2 P; B1 P; B2 P; B3 F (n(t_ff) = 0.791, min after = 0.143); B4 P   -> STOP
+  G4, G3 funded, G5, G1, G2: NOT ADDRESSED in the MAIN run (stop rule at G0)
+Gate cells by script (each tagged MAIN or POST-HOC; POST-HOC = a labelled continuation after the stop, frozen equations with the E3 defect set aside, NOT a result of the frozen class):
+  [MAIN (arm A1, own gate)] G4 arm A1 (main): FAIL -- tau_bar untied (grid); eps_c declared; binding at G4 in the frozen order (G3 strict is evaluated anyway: CFG242_A_g3_exchange.py)
+  [POST-HOC] G4 arm A2 (post-hoc continuation): FAIL (strict) / PASS (lenient on eps_c) -- G4a tied PASS; G4b eps_c untied; reported both readings, strict is the verdict
+  [POST-HOC] G4 arm A3 (post-hoc continuation): FAIL -- beta = 1 untied (frozen line) plus eps_c
+  [MAIN (arm A1, own gate)] G3 strict (arm A1): FAIL -- reaction 22.5 g_law (line 0.10) and energy 23-318 x orbital (line 1)
+  [POST-HOC] G3 funded (arms A2/A3, post-hoc continuation): FAIL -- reaction FAIL; ledger ok
+  [POST-HOC] G5 arm A2 (post-hoc): FAIL -- Q2 = n x 6.3e+03 x the bound (canonical; alt 7.6e+03); stability NOT ADDRESSED
+  [POST-HOC] G5 arm A3 (post-hoc): UNDEFINED -- Q2 passes only through the inhibitor (by construction); stability NOT ADDRESSED
+  [MAIN (selectivity; G1 not addressed)] G1 arms A1, A2, A3: NOT ADDRESSED -- stop rule; and P-derived is impossible by construction (target supplied): any G1 pass would be P-declared / p*
+
+BINDING FAILURE (route A, main): G0 legality, row B3: under the frozen latch equation E3 a bound shell after its own turnaround has n(t_ff) = 0.791 and min n(t >= t_ff) = 0.143 (line: >= 0.99 within one free-fall time and stays); the decay term acts whenever theta_b >= 0 (a static bound system has no memory); causality C1 (c_adv 0) and the mediator C2 pass, bound-only B1, B2, B4 pass.

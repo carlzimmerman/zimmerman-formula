@@ -1,0 +1,154 @@
+{
+ "slug": "CFG242_A_g3_exchange_MUTATE_MA5",
+ "mutate": "MA5",
+ "runtime_s": 3.53,
+ "checks": [
+  {
+   "name": "G3 STRICT reaction <= 0.10 g_law over x in [0.3, 30] (A1: r = 1, any kernel)",
+   "ok": false,
+   "detail": "pressure-slaved max 22.49, sigma-slaved 11.26; line crossed at x = 0.38 / 0.40",
+   "kind": "result"
+  },
+  {
+   "name": "G3 STRICT energy <= the baryons' orbital energy in BOTH r_ta conventions",
+   "ok": false,
+   "detail": "min ratio 23.0 (every ratio exceeds 1 by >= 23x)",
+   "kind": "result"
+  },
+  {
+   "name": "G3 FUNDED reaction <= 0.10 g_law over x in [0.3, 30] (r = 0, eps_c = 1, tau_bar = tau_L, t_f = 1 and 10 Gyr)",
+   "ok": false,
+   "detail": "max reaction 22.38 g_law (pressure-slaved); the line needs eps_c <= 0.0045 (an untied coupling)",
+   "kind": "result"
+  },
+  {
+   "name": "G3 FUNDED ledger (reservoir identified, energy within the available vacuum, |delta a0/a0| <= 1%) [MA5: no ledger, an unfunded reservoir]",
+   "ok": false,
+   "detail": "UNDEFINED: with no ledger there is no reservoir to check",
+   "kind": "result"
+  }
+ ],
+ "numbers": {
+  "strict": {
+   "reaction": {
+    "P": {
+     "max": 22.48751040703097,
+     "at_x30": 22.48751040703097,
+     "x_cross": 0.377895640040142
+    },
+    "S": {
+     "max": 11.256234399079878,
+     "at_x30": 11.256234399079878,
+     "x_cross": 0.39575098694207145
+    }
+   },
+   "energy": {
+    "1e+09": {
+     "CFG48": 72.76097147965409,
+     "B_committed": 318.35262037755103
+    },
+    "1e+10": {
+     "CFG48": 49.57147280604085,
+     "B_committed": 179.08841174484172
+    },
+    "1e+11": {
+     "CFG48": 33.77265127427803,
+     "B_committed": 100.77433647630349
+    },
+    "1e+12": {
+     "CFG48": 23.00903946422587,
+     "B_committed": 56.73499729154043
+    }
+   }
+  },
+  "verdicts": {
+   "G3 strict (arm A1)": {
+    "status": "FAIL",
+    "why": "reaction 22.5 g_law (line 0.10) and energy 23-318 x orbital (line 1)"
+   },
+   "G3 funded (arms A2/A3, post-hoc continuation)": {
+    "status": "FAIL",
+    "why": "reaction FAIL; ledger UNDEFINED/FAIL"
+   }
+  },
+  "funded": {
+   "table": {
+    "t_f=1": {
+     "peak": 0.9950340949505702,
+     "max_reaction": {
+      "P": 22.37583956555159,
+      "S": 11.200337007839922
+     },
+     "eps_max": {
+      "P": 0.00446910605106204,
+      "S": 0.008928302776068507
+     }
+    },
+    "t_f=10": {
+     "peak": 0.9529009076915935,
+     "max_reaction": {
+      "P": 21.42836907858397,
+      "S": 10.726075976072554
+     },
+     "eps_max": {
+      "P": 0.004666710734413401,
+      "S": 0.009323073994914576
+     }
+    }
+   },
+   "tracking_fraction": 0.1184038345823143,
+   "tau_L_Gyr": 101.49086818892114
+  },
+  "ledger": {
+   "1e+09/CFG48": {
+    "r_e_kpc": 59.192627407351296,
+    "Ec_over_Evac": 1.9023840799538087e-05,
+    "a0_shift": 9.511920399769044e-06,
+    "light_ball_over_r_e": 4952.2169633335025
+   },
+   "1e+09/B_committed": {
+    "r_e_kpc": 258.98675703404604,
+    "Ec_over_Evac": 9.937527032221958e-07,
+    "a0_shift": 4.968763516110979e-07,
+    "light_ball_over_r_e": 1131.8522109315018
+   },
+   "1e+10/CFG48": {
+    "r_e_kpc": 127.52664988052969,
+    "Ec_over_Evac": 4.098562255616873e-05,
+    "a0_shift": 2.0492811278084364e-05,
+    "light_ball_over_r_e": 2298.6154958636566
+   },
+   "1e+10/B_committed": {
+    "r_e_kpc": 460.71952051143074,
+    "Ec_over_Evac": 3.1402209816916234e-06,
+    "a0_shift": 1.5701104908458117e-06,
+    "light_ball_over_r_e": 636.2542078216367
+   },
+   "1e+11/CFG48": {
+    "r_e_kpc": 274.7478384061635,
+    "Ec_over_Evac": 8.830084702756319e-05,
+    "a0_shift": 4.4150423513781596e-05,
+    "light_ball_over_r_e": 1066.922801837005
+   },
+   "1e+11/B_committed": {
+    "r_e_kpc": 819.8210702743136,
+    "Ec_over_Evac": 9.917341909932892e-06,
+    "a0_shift": 4.958670954966446e-06,
+    "light_ball_over_r_e": 357.5594043379262
+   },
+   "1e+12/CFG48": {
+    "r_e_kpc": 591.9262740735129,
+    "Ec_over_Evac": 0.000190238407995381,
+    "a0_shift": 9.51192039976905e-05,
+    "light_ball_over_r_e": 495.2216963333503
+   },
+   "1e+12/B_committed": {
+    "r_e_kpc": 1459.553998704146,
+    "Ec_over_Evac": 3.128910235342247e-05,
+    "a0_shift": 1.5644551176711234e-05,
+    "light_ball_over_r_e": 200.83856699459025
+   }
+  }
+ },
+ "control_bites": true
+}

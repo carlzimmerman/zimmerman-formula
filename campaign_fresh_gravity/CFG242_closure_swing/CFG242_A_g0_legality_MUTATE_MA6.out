@@ -1,0 +1,86 @@
+# CFG242_A_g0_legality_MUTATE_MA6   repo = <repo>   mode = MA6
+CFG242_A_g0_legality -- route A (L14a), G0: the LEGALITY test of the ownership latch (frozen plan section 4.1 and 4.2; gate order 1), arms A2 and A3.
+
+FROZEN LINES (CFG242_FROZEN_CRITERIA.md, section 4.1):
+  Causal  C1  the discrete closed-time-path (doubled-field) action on N = 200 and N = 400 steps: the Euler-Lagrange residual R_k depends on the
+              variables of steps j > k + 1 with a Jacobian <= 1e-12 (banded), on the physical shell (difference fields zero).
+          C2  any spatial mediator: characteristic speed <= c and the retarded Green function outside the cone <= 1e-12 (an elliptic stencil is the
+              failing control).
+  Bound-only  B1 the cosmological background (FRW, theta_b = 3H > 0): n <= 1e-6 for all t.   B2 an outgoing positive-energy shell: n <= 1e-6, the
+              exchange force on the baryons <= 1e-6 g_law and the fluid heat <= 1e-6 of the target store.   B3 a bound shell after its own turnaround:
+              n >= 0.99 within one free-fall time and it stays there.   B4 inertness: where n < 1e-6 every force and the heat exchange vanish to the same tolerance.
+  Hierarchy (REPORTED, never part of the legality verdict): (i) embedded collapse inside a latched host: n <= 1e-6 (needs the inhibitor, Arm A3);
+              (ii) an accreted, previously latched satellite keeps n >= 0.99.
+  G0 PASSES iff B1-B4 and C1-C2.  A legality FAIL is a binding FAIL for the arm (stop).
+
+MODEL (frozen E1-E4).  Reduced action, fields q (probe baryon shell), theta (fluid heat store), n (latch), doubled (+/-) = Sigma +/- Delta/2:
+  S = int dt { (m/2)(qdot_+^2 - qdot_-^2) - m[Phi(q_+) - Phi(q_-)] - [F(q_+,th_+,n_+) - F(q_-,th_-,n_-)] }
+      - int int th_D(t) Gamma(t-t') thdot_S(t') + int dt n_D { tau_n ndot_S - s(-theta_b/3H)(1 - n_S)(1 - iota) + [1 - s(-theta_b/3H)] n_S },
+  F = r th + (c_f/2)(th - n thT(q))^2   (r = 0 in the funded arms A2/A3; r = 1 is the closed arm A1),  theta_b = 3 qdot/q,
+  tau_n = 1/sqrt(G rho_loc) -> q^(3/2) (function of fields), s = C^1 smoothstep 3u^2 - 2u^3 on [0,1], Gamma retarded = exp(-s/tau_G)/tau_G,
+  iota = 0 (A2) or a smoothed step of the retarded enclosed latched mass of an EXTERNAL host (A3).  The test numbers (m, c_f, dt, tau_G, H,
+  softening, the random Sigma data, seeds) are numerical test data, not model numbers.  The Delta-variations are taken by COMPLEX STEP on the
+  action itself (exact to rounding), and validated against a sympy derivation of the same action at N = 5 (D1).
+
+MUTATE modes (each exits 1 iff the named cell flips):  MA1 symmetrise the memory kernel in time  -> C1 flips PASS -> FAIL.
+  MA2 replace the latch source -theta_b by |theta_b|  -> B1 flips PASS -> FAIL.   MA3 drop the reaction partner (F's q-coupling prescribed from q_S)
+  -> the reciprocity-symmetry cell flips PASS -> FAIL.   MA6 switch the inhibitor off  -> the hierarchy row (i) (post-hoc E3'' arm) flips PASS -> FAIL.
+POST-HOC (labelled, never part of the frozen verdict): E3'' = the latch's decay driven by the baryon-shell ENERGY (decay only if E > 0),
+because the frozen E3 has no memory at theta_b = 0 (see B3).
+
+  *** MUTATE=MA6 ***
+
+====================================================================================================
+D1  the numpy complex-step action reproduces the sympy-derived Euler-Lagrange residual (N = 5), and the exact Jacobian structure
+====================================================================================================
+  [PASS] (control) D1 test data lie on the polynomial branch of the smoothstep (0 < u < 1 at every step)   (u = [0.4 0.4 0.4 0.4 0.4])
+  [PASS] (result) R1n reciprocity-symmetry cell (numeric Jacobian of the action's residual; line 1e-6): the cross blocks dR^q/dtheta and dR^theta/dq are symmetric   (max |asymmetry| 1.25e-10   (main would be 1.2e-10; the dropped-partner action gives 2.5e-02))
+
+====================================================================================================
+C1  causal band of the doubled discrete action (N = 200 and 400): dR_i/dx_j for j > i + 1
+====================================================================================================
+    N = 200, arm A2:  c_adv = max_{i<=J-2}|dR_i| / max|dR| over 12 cut points J = 0.000e+00
+    N = 400, arm A2:  c_adv = max_{i<=J-2}|dR_i| / max|dR| over 12 cut points J = 0.000e+00
+    N = 200, arm A3:  c_adv = max_{i<=J-2}|dR_i| / max|dR| over 12 cut points J = 0.000e+00
+  [PASS] (result) C1 causal band (c_adv < 1e-12 at N = 200 and N = 400)   (c_adv(200_A2) = 0.00e+00; c_adv(400_A2) = 0.00e+00; c_adv(200_A3) = 0.00e+00)
+
+====================================================================================================
+C2  the spatial mediator (CFG72's Gauss-law scalar on the half-line): characteristic speed and the retarded Green function outside the cone
+====================================================================================================
+    leapfrog Green function: max |G| outside the numerical cone / max |G| after 600 steps = 0.0e+00;  elliptic stencil (same ratio): 3.49e-01 (the failing control; CFG72 got 0.25 for its stencil)
+  [PASS] (result) C2a characteristic speed c_m sqrt(1+beta)/c <= 1   (1.000000000000)
+  [PASS] (result) C2b retarded Green function outside the cone <= 1e-12   (0.0e+00)
+  [PASS] (control) C2c control: the elliptic stencil has support outside the cone (the check can fail)   (3.49e-01)
+
+====================================================================================================
+B1-B4  bound-only and inertness: the physical latch equation E3 coupled to the probe shell (arm A2: r = 0, iota = 0)
+====================================================================================================
+  [PASS] (result) B1 FRW background (theta_b = 3H): n <= 1e-6 for all t (n(0) = 0)   (max n = 0.00e+00   (reported: from n(0) = 1e-3 the latch decays below 1e-6 at t = 16.0 t_dyn))
+  [PASS] (result) B2 outgoing positive-energy shell: n <= 1e-6, exchange force on the baryons <= 1e-6 g_law, fluid heat <= 1e-6 of the target store   (max n = 0.00e+00; force = c_f(th - n thT) n thT' = 0 at n = 0 (r = 0); heat = n thT = 0)
+    B3 (frozen E3): n at one free-fall time = 0.7910; min n for t >= t_ff = 0.1429; mean n over the last 30 t_dyn = 0.3095 (min 0.1473, max 0.8484)
+  [FAIL] (result) B3 a bound shell after its own turnaround: n >= 0.99 within one free-fall time and it stays there (frozen E3)   (n(t_ff) = 0.791; min over t >= t_ff = 0.143; late-time mean 0.310 (the shell contracts for half of each orbit; E3's decay term acts whenever theta_b >= 0, including theta_b = 0))
+    static bound system (theta_b = 0): E3 reduces to tau_n dn/dt = -n; n(t)/n(0) = exp(-t/2.05) -> the latch has no memory at theta_b = 0
+  [PASS] (result) B4 inertness: where n < 1e-6 the force on the baryons and the heat exchange vanish (r = 0: both are proportional to n)   (force = -c_f (th - n thT) n thT'(q) and the heat target n thT(q) are identically 0 at n = 0; exact (not a tolerance))
+
+====================================================================================================
+Hierarchy rows (REPORTED, not part of the legality verdict), frozen E3 and the post-hoc E3'' 
+====================================================================================================
+    E3-frozen    inhibitor=off: (i) embedded: max n_sub = 0.847   (ii) accreted: late min n = 0.147, late mean 0.296
+    E3-frozen    inhibitor=on : (i) embedded: max n_sub = 0.000   (ii) accreted: late min n = 0.000, late mean 0.000
+    E3-post-hoc  inhibitor=off: (i) embedded: max n_sub = 1.000   (ii) accreted: late min n = 1.000, late mean 1.000
+    E3-post-hoc  inhibitor=on : (i) embedded: max n_sub = 0.000   (ii) accreted: late min n = 1.000, late mean 1.000
+  [PASS] (result) H(i) (REPORTED, post-hoc E3'' arm A3 with inhibitor): an embedded collapse inside a latched host gets n <= 1e-6   (max n_sub = 0.00e+00 (inhibitor off: 1.000))
+  [PASS] (result) H(i-frozen) (REPORTED, frozen E3, arm A3 with inhibitor): embedded n <= 1e-6   (max n_sub = 0.00e+00)
+
+====================================================================================================
+POST-HOC (labelled, not the frozen verdict): E3'' = energy-driven decay, same B1-B3 lines
+====================================================================================================
+    E3'': B1 max n = 0.0e+00; B2 max n = 0.0e+00; B3 n(t_ff) = 0.791, min over t >= t_ff = 0.791, first time n >= 0.99 = 5.6 t_dyn (5.0 free-fall times)
+  [FAIL] (result) B3' (POST-HOC, E3'') n >= 0.99 within one free-fall time and it stays   (n(t_ff) = 0.791, t(n>=0.99) = 5.6 = 5.0 t_ff)
+
+====================================================================================================
+G0 verdict (frozen)
+====================================================================================================
+  >>> G0 (arms A2, A3; frozen E3): FAIL -- C1 P (c_adv 0.0e+00); C2 P; B1 P; B2 P; B3 F (n(t_ff) = 0.791, min after = 0.143); B4 P
+
+MUTATE MA6: control BITES (exit 1)

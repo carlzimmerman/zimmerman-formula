@@ -1,0 +1,29 @@
+# CFG242_B_controls   repo = <repo>   mode = main
+CFG242_B_controls -- route B (L13), stage 0: the REPRODUCTION CONTROLS (frozen plan section 4.3, gate order 0): 'Controls (13c reproduction, EH calibration C2 of CFG232)'.
+A failed control stops the route.
+  C-B1  EH calibration (fresh code): the relative-sector Einstein-Hilbert quadratic form is invariant under d -> d + kA + Ak + kk pi (gauge) -- the analogue of CFG232's C9/C2.
+  C-B2  the 4D five-invariant class (the record's, direction T4 - T1) reproduces WF2/L70 on flat space: c_T^2 = 1 and a FOURTH-ORDER transverse vector, helicity-1 determinant
+        proportional to mu (b + 4 mu) (kappa^2 - omega^2)^2 (CFG232's L_A1 = -(lambda/2)(2u0 + u1)(kappa^2 - omega^2)^2 A_1^2: the same (kappa^2 - omega^2)^2 structure).
+  C-B3  the 13c reproduction: the COMMITTED CFG232_A7 script (13c, the conformally coupled AQUAL-type scalar) is copied to a scratch directory and re-run there (the repository is not
+        written); its verdict statuses and G1-law number must equal the committed CFG232_A7_scalar_tensor_13c.json.
+
+====================================================================================================
+C-B1  gauge invariance of the EH quadratic form
+====================================================================================================
+  [PASS] (control) C-B1 EHquad(k A + A k + k k pi) = 0   (sympy residual 0)
+
+====================================================================================================
+C-B2  the 4D class on flat space: WF2/L70's fourth-order vector and c_T^2 = 1
+====================================================================================================
+    helicity-1 determinant (4D, T4 - T1): -2*mu*(b + 4*mu)*(kappa - omega)**2*(kappa + omega)**2
+    TT (d12) entry: -(b + 4*mu)*(kappa - omega)*(kappa + omega)
+  [PASS] (control) C-B2a helicity-1 determinant = -2 mu (b + 4 mu)(kappa - omega)^2 (kappa + omega)^2: degree 4 in omega (an Ostrogradsky vector)   (degree in omega 4)
+  [PASS] (control) C-B2b TT entry proportional to (omega^2 - kappa^2): c_T^2 = 1 exactly   (WF2/L70: c_T^2 = 1 at T4 - T1)
+
+====================================================================================================
+C-B3  13c reproduction: re-run the committed CFG232_A7 in a scratch copy and compare with the committed JSON
+====================================================================================================
+    scratch re-run exit code 0; verdict statuses identical: True; every check name and outcome identical: True
+  [PASS] (control) C-B3 13c row: the re-run of the committed CFG232_A7 reproduces its committed verdicts and checks   (3 verdicts, 4 checks)
+
+RESULT: 4 checks, 0 control failure(s): none   (0 s)

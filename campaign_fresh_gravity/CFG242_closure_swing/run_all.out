@@ -1,0 +1,60 @@
+ROUTE A (L14a): a causal ownership latch with a vacuum-funded exchange.  Cells cite their script.  MAIN = the frozen stop-rule verdicts; POST-HOC = a labelled continuation after the stop.
+
+arm A1 (strict; iota = 0, r = 1; kernel time free):
+  controls PASS (CFG242_A_controls.py) | G4 FAIL (tau_bar scanned, untied; CFG242_A_g4_ledger.py) -> STOP (frozen order puts G4 before G3) | G3 strict FAIL (reaction 22.5 g_law, energy 23-318 x orbital; CFG242_A_g3_exchange.py, evaluated anyway) | G5, G1, G2 NOT ADDRESSED
+arms A2 and A3 (funded; iota = 0 / inhibitor):
+  G0 legality (frozen E3): FAIL -- C1 P (c_adv 0.0e+00); C2 P; B1 P; B2 P; B3 F (n(t_ff) = 0.791, min after = 0.143); B4 P   -> STOP
+  G4, G3 funded, G5, G1, G2: NOT ADDRESSED in the MAIN run (stop rule at G0)
+Gate cells by script (each tagged MAIN or POST-HOC; POST-HOC = a labelled continuation after the stop, frozen equations with the E3 defect set aside, NOT a result of the frozen class):
+  [MAIN (arm A1, own gate)] G4 arm A1 (main): FAIL -- tau_bar untied (grid); eps_c declared; binding at G4 in the frozen order (G3 strict is evaluated anyway: CFG242_A_g3_exchange.py)
+  [POST-HOC] G4 arm A2 (post-hoc continuation): FAIL (strict) / PASS (lenient on eps_c) -- G4a tied PASS; G4b eps_c untied; reported both readings, strict is the verdict
+  [POST-HOC] G4 arm A3 (post-hoc continuation): FAIL -- beta = 1 untied (frozen line) plus eps_c
+  [MAIN (arm A1, own gate)] G3 strict (arm A1): FAIL -- reaction 22.5 g_law (line 0.10) and energy 23-318 x orbital (line 1)
+  [POST-HOC] G3 funded (arms A2/A3, post-hoc continuation): FAIL -- reaction FAIL; ledger ok
+  [POST-HOC] G5 arm A2 (post-hoc): FAIL -- Q2 = n x 6.3e+03 x the bound (canonical; alt 7.6e+03); stability NOT ADDRESSED
+  [POST-HOC] G5 arm A3 (post-hoc): UNDEFINED -- Q2 passes only through the inhibitor (by construction); stability NOT ADDRESSED
+  [MAIN (selectivity; G1 not addressed)] G1 arms A1, A2, A3: NOT ADDRESSED -- stop rule; and P-derived is impossible by construction (target supplied): any G1 pass would be P-declared / p*
+
+BINDING FAILURE (route A, main): G0 legality, row B3: under the frozen latch equation E3 a bound shell after its own turnaround has n(t_ff) = 0.791 and min n(t >= t_ff) = 0.143 (line: >= 0.99 within one free-fall time and stays); the decay term acts whenever theta_b >= 0 (a static bound system has no memory); causality C1 (c_adv 0) and the mediator C2 pass, bound-only B1, B2, B4 pass.
+ROUTE B (L13): BIMOND with a lapse-free, preferred-foliation interaction.  Cells cite their script.  MAIN = the frozen stop-rule verdict.
+
+controls: 4/4 PASS (CFG242_B_controls.py: EH gauge invariance, 4D class reproduces WF2/L70, 13c row reproduces CFG232's committed row)
+G5a flat space at mu/b = -1/4 (CFG242_B_g5a_ghost.py):
+  [PASS] GHOST: positive residues, no higher-order mode  (TT residue 1, helicity-1 determinant degree in omega 0)
+  [PASS] SPEEDS: every c_i^2 in [0, 1]  (c_T^2 = 0)
+  [FAIL] HYPERBOLIC: strongly hyperbolic (diagonalisable first-order reduction, real eigenvalues)  (c_T^2 = 0: the TT system is d_t^2 h = c_T^2 k^2 h = 0: a Jordan block (h grows linearly in t))
+  [FAIL] DETERMINED: the quadratic action has no residual gauge zero modes  (nullity 2; the zero modes are the Stueckelberg directions of the relative time diffeo and the longitudinal spatial diffeo: True)
+  BACKGROUND (exact static MOND background): NOT ADDRESSED (stop rule)
+  verdict: FAIL   -> STOP
+G4, G0 legality, G3, G5b, G1, G2: NOT ADDRESSED in the MAIN run (stop rule at G5a)
+POST-HOC continuation (labelled): G4 route B -- FAIL (gamma/beta, mu/b and the direction are constants beyond kappa and Omega_c h^2)
+
+BINDING FAILURE (route B, main): G5a, cell HYPERBOLIC: at the frozen point mu/b = -1/4 the TT dispersion is omega^2 = c_T^2 kappa^2 with c_T^2 = 0: the system is d_t^2 h = 0 (a Jordan block, linear growth), not strongly hyperbolic; also DETERMINED fails (nullity 2: the relative time diffeo and the longitudinal spatial diffeo are unbroken at quadratic order, helicity-0 undetermined).
+route A: main runs (exit 0 expected)
+  A_controls                 exit 0     4.2s  ok
+  A_g0_legality              exit 0    10.2s  ok
+  A_g4_ledger                exit 0     0.3s  ok
+  A_g3_exchange              exit 0     3.8s  ok
+  A_g5_solar_stability       exit 0     0.2s  ok
+  A_g1_target                exit 0     0.2s  ok
+route A: MUTATE runs (exit 1 = bites; expected shown)
+  A_g0_legality              MUTATE=MA1  exit 1 (expected 1)    10.1s  ok
+  A_g0_legality              MUTATE=MA2  exit 1 (expected 1)    10.1s  ok
+  A_g0_legality              MUTATE=MA3  exit 1 (expected 1)    10.0s  ok
+  A_g0_legality              MUTATE=MA6  exit 1 (expected 1)    10.1s  ok
+  A_g4_ledger                MUTATE=MA4  exit 1 (expected 1)     0.2s  ok
+  A_g3_exchange              MUTATE=MA3  exit 1 (expected 1)     3.7s  ok
+  A_g3_exchange              MUTATE=MA5  exit 1 (expected 1)     3.8s  ok
+  A_g1_target                MUTATE=MA7  exit 0 (expected 0)     0.3s  ok
+route B: main runs (exit 0 expected)
+  B_controls                 exit 0     0.9s  ok
+  B_g5a_ghost                exit 0     0.6s  ok
+  B_g4_ledger                exit 0     0.3s  ok
+  B_not_reached              exit 0     0.3s  ok
+route B: MUTATE runs (exit 1 = bites; expected shown)
+  B_g5a_ghost                MUTATE=MB1  exit 1 (expected 1)     0.6s  ok
+  B_g5a_ghost                MUTATE=MB2  exit 1 (expected 1)     0.6s  ok
+  B_g5a_ghost                MUTATE=MB3  exit 0 (expected 0)     0.5s  ok
+  B_not_reached              MUTATE=MB4  exit 0 (expected 0)     0.2s  ok
+  B_not_reached              MUTATE=MB5  exit 0 (expected 0)     0.2s  ok
+unexpected outcomes: 0
