@@ -38,10 +38,14 @@ ro_kin = {r[next(iter(r))] for r in csv.DictReader(open(os.path.join(TAB, "roman
 ro = [(r["id"], float(r["z"])) for r in csv.DictReader(open(os.path.join(TAB, "romanoliveira2023_sample.csv"))) if r["id"] in ro_kin]
 alp = {r["id"]: float(r["z"]) for r in csv.DictReader(open(os.path.join(TAB, "alpaka1_digitised", "alpaka1_outer_summary.csv")))}
 alp_none = [alp[i] for i in ("13", "23", "24", "25", "28")]          # CFG237: no class-M gas mass on disk
+DA = os.path.join(ROOT, "data_assembly")   # data-front cube products (50d8c274e SINS, ff6633985 KMOS3D): no a0 computed there
+sins = [float(r["z"]) for r in csv.DictReader(open(os.path.join(DA, "sins_cubes", "sins_ao_per_galaxy_AMEND1.csv")))]
+k3d = [float(r["Z"]) for r in csv.DictReader(open(os.path.join(DA, "kmos3d_cubes", "k3d_fits_main_final_flags.csv")))]
 amv = [float(r["z"]) for r in rar if r["class"] == "S" and r["id"] != "122.1"]   # 122.1 has a class-M a0 (CFG229)
 TODO = [  # (label, zmin, zmax, short note)       sources: CFG227 'Listed, no point' + CFG237 + CFG258 + L328
     ("MIGHTEE-HI survey", 0.02, 0.09, "mock forecast only"),
-    ("KMOS3D / SINS cubes", 0.6, 2.6, "on disk, unprocessed"),
+    (f"SINS AO cubes ({len(sins)})", min(sins), max(sins), "curves extracted; method failed validation"),
+    (f"KMOS3D cubes ({len(k3d)})", min(k3d), max(k3d), "curves fitted; no baryons attached"),
     (f"Amvrosiadis+25 ({len(amv)})", min(amv), max(amv), "baryons exceed rotation in most"),
     (f"ALPAKA ({len(alp_none)})", min(alp_none), max(alp_none), "no multi-tracer gas"),
     ("Lelli+23 (1)", 2.24, 2.24, "mean speed only"),
@@ -60,6 +64,7 @@ check("Roman-Oliveira with kinematics: 4", len(ro) == 4, f"({len(ro)}: {[i for i
 check("Amvrosiadis without an a0: 8", len(amv) == 8, f"({len(amv)})")
 nr = [o for o in ("ALPAKA15", "ALPAKA18", "ALPAKA19", "ALPAKA20", "ALPAKA22", "SINS_BX610", "VC5110377875", "SPT0418-47") if pts[o]["no_root"] == "1"]
 check("DESI CPL curve is nearly flat: about 0.87 x local at z = 2", abs(np.interp(2.0, Zc, cur["M-DEC"]) - 0.87) < 0.01, f"({np.interp(2.0, Zc, cur['M-DEC']):.3f})")
+check("SINS AO 35 and KMOS3D 192 cube products on disk", len(sins) == 35 and len(k3d) == 192, f"({len(sins)}, {len(k3d)})")
 check("eight calculated galaxies with no a0 solution (6 class M + 2 ALMA)", len(nr) == 8, f"({len(nr)})")
 for lab, z0, z1, note in TODO: P(f"  no-a0-yet row: {lab:28s} z {z0:.2f}-{z1:.2f}  {note}")
 
@@ -72,7 +77,7 @@ COL = {"RC100": "#1f5aa6", "CRISTAL": "#e07b00", "M": "#8a5a00", "ALMA": "#2e8b3
 
 fig = plt.figure(figsize=(14, 10.2), dpi=170)
 ax = fig.add_axes([0.075, 0.33, 0.885, 0.50])
-sx = fig.add_axes([0.075, 0.118, 0.885, 0.2], sharex=ax)
+sx = fig.add_axes([0.075, 0.118, 0.885, 0.215], sharex=ax)
 XLO, XHI, YLO, YHI = -0.12, 6.0, 0.17, 30
 
 # ---------------- main: calculated a0 ----------------
@@ -136,7 +141,7 @@ top.set_xlabel("age of the universe (billion years)", fontsize=10, color=MUTED, 
 ax.text(0.008, 0.975, "a₀ CALCULATED", transform=ax.transAxes, fontsize=10.5, color=INK, fontweight="bold", ha="left", va="top")
 
 # ---------------- strip: data in hand, no a0 value yet ----------------
-sx.set_ylim(len(TODO) - 0.4, -0.75); sx.set_yticks([]); sx.spines["left"].set_visible(False)
+sx.set_ylim(len(TODO) - 0.4, -0.8); sx.set_yticks([]); sx.spines["left"].set_visible(False)
 sx.spines["top"].set_visible(True); sx.spines["top"].set_color("#bbb"); sx.spines["top"].set_linestyle((0, (3, 3)))
 for i, (lab, z0, z1, note) in enumerate(TODO):
     if z1 - z0 > 0.04:
