@@ -1,0 +1,76 @@
+CFG260 MEASUREMENT: the implied a0 (CFG223's s*) of the BUDHIES HI sample at z ~ 0.2 from the HI line widths, under the frozen protocol (FROZEN_CRITERIA.md section 7 + Addenda 1 and 2).
+RUN ONCE, after the pre-flight (04dbf45d4) and this script are committed.  The first run is the result; nothing is re-run to change it.  A lower-quality row (PF-D2 NOT DRAWABLE): the selection bias of the
+pre-flight is one-directional (LOW), so a measured s* is a lower bound on the implied a0 within the other systematics.  kappa = 1/2 FITTED; no sentence says the data favour a law or a framework.
+SELFTEST=1 fabricates widths from the NON-width inputs (isotropic inclinations at s = 1, no selection) and never reads a real width: it exists to debug this script blind.
+Outputs: cfg260_measure.out, cfg260_results.json, cfg260_points.csv (chart_a0z_points.csv shape + recipe-band columns).
+
+  mode: SELFTEST (fabricated widths; no real width read)
+
+==============================================================================================================
+CONTROLS
+==============================================================================================================
+  [PASS] (control) M3 CONTROL: every tabulated width is finite and positive (SELFTEST: fabricated)
+         min 78.5, max 2220.5 km/s; N = 166
+  [PASS] (control) M2 CONTROL: the set sizes equal the pre-flight's (P 110, PC 32, PC125 13, PC15 7)
+         {'PC': 32, 'PC075': 63, 'PC125': 13, 'PC15': 7, 'P': 110, 'S1': 30, 'S2': 38, 'S3': 72, 'S4': 14, 'S5': 45, 'S6': 128, 'S7': 82, 'S8': 103}
+
+==============================================================================================================
+RESULTS (s* = the a0 scale relative to canonical 9.3603e-11; 68 / 95 % galaxy-bootstrap intervals, B = 10,000)
+==============================================================================================================
+  PC     [observed] N  32  z 0.202: s* = 0.387  68% [0.235, 0.630]  95% [0.179, 0.880]  a0 = 0.363e-10;  baryon +-0.15 [0.201, 0.650]  +-0.30 [0.071, 1.003];  recipe +-0.416 dex;  BTFR route 0.635;  y median 0.068 (y<0.3: 1.00)
+  PC     [rest    ] N  32  z 0.202: s* = 0.877  68% [0.582, 1.385]  95% [0.378, 2.072]  a0 = 0.821e-10;  baryon +-0.15 [0.521, 1.389]  +-0.30 [0.285, 2.115];  recipe +-0.335 dex;  BTFR route 1.249;  y median 0.068 (y<0.3: 1.00)
+  PC075  [observed] N  63  z 0.203: s* = 0.602  68% [0.396, 0.744]  95% [0.235, 0.952]  a0 = 0.564e-10;  baryon +-0.15 [0.336, 1.017]  +-0.30 [0.150, 1.537];  recipe +-0.384 dex;  BTFR route 0.920;  y median 0.081 (y<0.3: 0.97)
+  PC075  [rest    ] N  63  z 0.203: s* = 1.385  68% [0.906, 1.774]  95% [0.582, 2.082]  a0 = 1.297e-10;  baryon +-0.15 [0.884, 2.170]  +-0.30 [0.498, 3.317];  recipe +-0.315 dex;  BTFR route 1.910;  y median 0.081 (y<0.3: 0.97)
+  PC125  [observed] N  13  z 0.207: s* = 0.380  68% [0.120, 0.675]  95% [0.067, 0.744]  a0 = 0.356e-10;  baryon +-0.15 [0.219, 0.609]  +-0.30 [0.107, 0.933];  recipe +-0.312 dex;  BTFR route 0.557;  y median 0.060 (y<0.3: 1.00)
+  PC125  [rest    ] N  13  z 0.207: s* = 0.796  68% [0.372, 1.442]  95% [0.199, 1.774]  a0 = 0.745e-10;  baryon +-0.15 [0.495, 1.224]  +-0.30 [0.282, 1.829];  recipe +-0.279 dex;  BTFR route 1.040;  y median 0.060 (y<0.3: 1.00)
+  PC15   [observed] N   7  z 0.207: s* = 0.630  68% [0.120, 0.675]  95% [0.067, 0.744]  a0 = 0.589e-10;  baryon +-0.15 [0.353, 1.022]  +-0.30 [0.160, 1.579];  recipe +-0.366 dex;  BTFR route 0.923;  y median 0.072 (y<0.3: 1.00)
+  PC15   [rest    ] N   7  z 0.207: s* = 1.385  68% [0.372, 1.442]  95% [0.199, 1.774]  a0 = 1.297e-10;  baryon +-0.15 [0.884, 2.096]  +-0.30 [0.498, 3.101];  recipe +-0.292 dex;  BTFR route 1.727;  y median 0.072 (y<0.3: 1.00)
+  P      [observed] N 110  z 0.203: s* = 0.807  68% [0.653, 1.016]  95% [0.502, 1.118]  a0 = 0.756e-10;  baryon +-0.15 [0.473, 1.318]  +-0.30 [0.247, 2.059];  recipe +-0.351 dex;  BTFR route 1.225;  y median 0.088 (y<0.3: 0.93)
+  P      [rest    ] N 110  z 0.203: s* = 1.959  68% [1.558, 2.277]  95% [1.373, 2.631]  a0 = 1.834e-10;  baryon +-0.15 [1.190, 3.050]  +-0.30 [0.688, 4.536];  recipe +-0.309 dex;  BTFR route 2.475;  y median 0.088 (y<0.3: 0.93)
+  S1     [observed] N  30  z 0.207: s* = 1.254  68% [1.126, 1.395]  95% [1.006, 1.474]  a0 = 1.174e-10;  baryon +-0.15 [0.774, 1.933]  +-0.30 [0.449, 2.964];  recipe +-0.308 dex;  BTFR route 1.728;  y median 0.082 (y<0.3: 0.93)
+  S1     [rest    ] N  30  z 0.207: s* = 2.930  68% [2.698, 3.222]  95% [2.329, 3.448]  a0 = 2.743e-10;  baryon +-0.15 [1.907, 4.392]  +-0.30 [1.181, 6.450];  recipe +-0.281 dex;  BTFR route 3.546;  y median 0.082 (y<0.3: 0.93)
+  S2     [observed] N  38  z 0.176: s* = 0.640  68% [0.332, 0.858]  95% [0.166, 1.135]  a0 = 0.599e-10;  baryon +-0.15 [0.345, 1.042]  +-0.30 [0.105, 1.704];  recipe +-0.432 dex;  BTFR route 1.020;  y median 0.088 (y<0.3: 0.92)
+  S2     [rest    ] N  38  z 0.176: s* = 1.373  68% [0.758, 1.925]  95% [0.439, 2.482]  a0 = 1.285e-10;  baryon +-0.15 [0.839, 2.246]  +-0.30 [0.463, 3.358];  recipe +-0.334 dex;  BTFR route 1.912;  y median 0.088 (y<0.3: 0.92)
+  S3     [observed] N  72  z 0.204: s* = 0.976  68% [0.749, 1.089]  95% [0.601, 1.277]  a0 = 0.913e-10;  baryon +-0.15 [0.590, 1.507]  +-0.30 [0.280, 2.236];  recipe +-0.336 dex;  BTFR route 1.284;  y median 0.089 (y<0.3: 0.93)
+  S3     [rest    ] N  72  z 0.204: s* = 2.138  68% [1.774, 2.687]  95% [1.454, 2.845]  a0 = 2.001e-10;  baryon +-0.15 [1.375, 3.218]  +-0.30 [0.837, 4.753];  recipe +-0.289 dex;  BTFR route 2.692;  y median 0.089 (y<0.3: 0.93)
+  S4     [observed] N  14  z 0.202: s* = 0.118  68% [0.056, 0.163]  95% [0.001, 0.538]  a0 = 0.111e-10;  baryon +-0.15 [0.001, 0.249]  +-0.30 [0.001, 0.448];  recipe +-0.315 dex (no-root knobs excluded: tau_ms,rdex);  BTFR route 0.348;  y median 0.188 (y<0.3: 0.93)
+  S4     [rest    ] N  14  z 0.202: s* = 0.372  68% [0.230, 0.572]  95% [0.001, 1.442]  a0 = 0.348e-10;  baryon +-0.15 [0.192, 0.631]  +-0.30 [0.021, 1.030];  recipe +-0.485 dex;  BTFR route 0.690;  y median 0.188 (y<0.3: 0.93)
+  S5     [observed] N  45  z 0.203: s* = 0.675  68% [0.601, 0.830]  95% [0.321, 1.144]  a0 = 0.632e-10;  baryon +-0.15 [0.398, 1.054]  +-0.30 [0.160, 1.648];  recipe +-0.374 dex;  BTFR route 1.007;  y median 0.120 (y<0.3: 0.89)
+  S5     [rest    ] N  45  z 0.203: s* = 1.566  68% [1.385, 1.982]  95% [0.848, 2.677]  a0 = 1.466e-10;  baryon +-0.15 [0.933, 2.465]  +-0.30 [0.530, 3.737];  recipe +-0.330 dex;  BTFR route 2.162;  y median 0.120 (y<0.3: 0.89)
+  S6     [observed] N 128  z 0.203: s* = 0.807  68% [0.671, 1.000]  95% [0.601, 1.091]  a0 = 0.756e-10;  baryon +-0.15 [0.444, 1.318]  +-0.30 [0.231, 2.059];  recipe +-0.358 dex;  BTFR route 1.225;  y median 0.088 (y<0.3: 0.93)
+  S6     [rest    ] N 128  z 0.203: s* = 1.959  68% [1.561, 2.206]  95% [1.373, 2.481]  a0 = 1.834e-10;  baryon +-0.15 [1.190, 3.021]  +-0.30 [0.688, 4.448];  recipe +-0.309 dex;  BTFR route 2.415;  y median 0.088 (y<0.3: 0.93)
+  S7     [observed] N  82  z 0.203: s* = 0.640  68% [0.497, 0.787]  95% [0.363, 1.031]  a0 = 0.599e-10;  baryon +-0.15 [0.373, 1.036]  +-0.30 [0.148, 1.612];  recipe +-0.391 dex;  BTFR route 1.025;  y median 0.094 (y<0.3: 0.93)
+  S7     [rest    ] N  82  z 0.203: s* = 1.514  68% [1.360, 1.982]  95% [0.877, 2.350]  a0 = 1.417e-10;  baryon +-0.15 [0.919, 2.360]  +-0.30 [0.521, 3.598];  recipe +-0.331 dex;  BTFR route 2.068;  y median 0.094 (y<0.3: 0.93)
+  S8     [observed] N 103  z 0.203: s* = 0.862  68% [0.744, 1.073]  95% [0.602, 1.144]  a0 = 0.807e-10;  baryon +-0.15 [0.532, 1.372]  +-0.30 [0.262, 2.065];  recipe +-0.335 dex;  BTFR route 1.226;  y median 0.091 (y<0.3: 0.93)
+  S8     [rest    ] N 103  z 0.203: s* = 2.010  68% [1.566, 2.407]  95% [1.395, 2.707]  a0 = 1.882e-10;  baryon +-0.15 [1.307, 3.062]  +-0.30 [0.701, 4.591];  recipe +-0.295 dex;  BTFR route 2.628;  y median 0.091 (y<0.3: 0.93)
+
+==============================================================================================================
+PULLS AND FLAGS (primary set PC; statistics-only pull, recipe-widened pull; flags: in the 95 % interval / recipe-widened / +-0.15 band-widened / +-0.30 band-widened)
+==============================================================================================================
+  PC [observed] vs FLAT: expected s*_L = 1.000; pull -2.12 (recipe-widened -0.90); flags nYnY
+  PC [observed] vs RIVAL: expected s*_L = 1.105; pull -2.34 (recipe-widened -0.99); flags nYnn
+  PC [rest] vs FLAT: expected s*_L = 1.000; pull -0.32 (recipe-widened -0.15); flags YYYY
+  PC [rest] vs RIVAL: expected s*_L = 1.105; pull -0.56 (recipe-widened -0.26); flags YYYY
+
+==============================================================================================================
+THE COMPLETENESS LADDER (observed-frame branch, then rest-frame; median s* against the completeness threshold; the pre-flight's mock biases are the interpretive table)
+==============================================================================================================
+  [observed] P (N 110) 0.807 [0.65, 1.02]; PC075 (N 63) 0.602 [0.40, 0.74]; PC (N 32) 0.387 [0.24, 0.63]; PC125 (N 13) 0.380 [0.12, 0.68]; PC15 (N 7) 0.630 [0.12, 0.68]
+  [rest] P (N 110) 1.959 [1.56, 2.28]; PC075 (N 63) 1.385 [0.91, 1.77]; PC (N 32) 0.877 [0.58, 1.39]; PC125 (N 13) 0.796 [0.37, 1.44]; PC15 (N 7) 1.385 [0.37, 1.44]
+
+==============================================================================================================
+DIAGNOSTICS (reported after the widths were read; no decision depends on them)
+==============================================================================================================
+  empirical detection ratio S_int / (W50 x S_thr(f = 1)) over all 165 galaxies (excluding E0): min 0.07, 1% 0.21, 5% 0.41, 25% 0.63, median 0.98 (the lower envelope estimates the survey's effective f)
+  PC: x = (W_c/2)/V_pred (observed frame) quantiles 10/25/50/75/90/100: [0.35, 0.54, 0.72, 0.89, 0.97, 1.01]; detection-ratio quantiles 0/5/25/50/75/100: [1.04, 1.14, 1.35, 1.87, 2.58, 4.3]; W50 quantiles 5/25/50/75/95: [134.0, 226.0, 296.0, 339.0, 468.0]; median tabulated error 15.0 km/s
+  PC125: x = (W_c/2)/V_pred (observed frame) quantiles 10/25/50/75/90/100: [0.38, 0.51, 0.7, 0.81, 0.94, 1.01]; detection-ratio quantiles 0/5/25/50/75/100: [1.35, 1.38, 1.97, 2.35, 3.57, 4.3]; W50 quantiles 5/25/50/75/95: [122.0, 227.0, 285.0, 353.0, 465.0]; median tabulated error 15.0 km/s
+  PC15: x = (W_c/2)/V_pred (observed frame) quantiles 10/25/50/75/90/100: [0.46, 0.55, 0.79, 0.8, 0.87, 0.95]; detection-ratio quantiles 0/5/25/50/75/100: [1.97, 2.03, 2.25, 2.49, 3.63, 4.02]; W50 quantiles 5/25/50/75/95: [160.0, 261.0, 353.0, 409.0, 480.0]; median tabulated error 15.0 km/s
+  P: x = (W_c/2)/V_pred (observed frame) quantiles 10/25/50/75/90/100: [0.42, 0.61, 0.83, 0.94, 0.99, 1.09]; detection-ratio quantiles 0/5/25/50/75/100: [0.12, 0.43, 0.72, 1.02, 1.56, 4.99]; W50 quantiles 5/25/50/75/95: [132.0, 270.0, 323.0, 399.0, 542.0]; median tabulated error 15.0 km/s
+  [PASS] (control) M1 CONTROL: the alt footing implies the same absolute a0 (s*_alt a0_alt = s*_canonical a0_canonical) in every row
+         max |d log10| = 2.2e-16
+  [PASS] (control) M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg260_points_SELFTEST.csv (6 rows)
+
+  4/4 controls pass  (361 s)
