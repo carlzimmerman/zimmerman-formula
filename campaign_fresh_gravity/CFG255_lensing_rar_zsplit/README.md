@@ -12,7 +12,7 @@ Data: on disk only (CFG110's per-lens sums of the June KiDS-1000 estimator over 
 
 ## Bottom line
 1. **KiDS cannot test a₀ ∝ H(z) by a lens-redshift split.**
-   - The available lever is the extreme photo-z thirds, median z 0.21 against 0.39 (late) and 0.23 against 0.38 (early).
+   - The available lever is the extreme photo-z thirds, median z 0.20 against 0.40 (late) and 0.23 against 0.38 (early); corrected from "0.21 against 0.39" after the calculation chat's re-run, which the stage-A output confirms: 0.2045 / 0.3996.
    - Over that lever the rival predicts an amplitude change of **+0.018 dex**; the flat law predicts +0.001.
    - The jackknife error on the combined amplitude is **0.038 dex**.
    - The power is **Δχ²_pred = 0.14 (canonical) / 0.17 (alt)**, against the 9 required. Stage A: **POSSIBLE_STAT false; POSSIBLE_SYS false** at every declared stellar-mass drift scenario (0.02, 0.05 dex).
@@ -48,3 +48,9 @@ Phase 1a found no public isolated-lens sample with stellar masses beyond z = 0.5
 - `cfg255_stageB_MUTATE1.out` and `cfg255_stageB_MUTATE1_results.json`
 - `PROPOSAL.md`, `FROZEN_CRITERIA.md`
 - `PHASE1A_DATA_SCOPING_2026-09-30.md` (data chat)
+
+## Independent re-run (calculation chat, 314e55909)
+- **Byte-identical:** the results JSONs of stage A, stage B and MUTATE=1 match the committed ones.
+- **Independent code:** a separate re-implementation of the measurement side (`cfg255_rerun_xcheck.py`, no shared code) agrees on A_data and σ_A to about 1e-15.
+- **Analytic checks:** the deep-limit rival shift is +0.0187 / +0.0204 against the stack's +0.0188, and the analytic power is 0.151 against 0.14 / 0.17.
+- **Mirror note:** a re-run mirror needs `hunt_2026/` at the repo root (CFG61's prefix chain reads it).
