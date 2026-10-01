@@ -160,8 +160,7 @@ for k_ in "abc":
             arg = logs[0].args[0]
             assert arg in (1-rr, 1+rr), "G-T3: unexpected log arg %s in term %d" % (arg, i)
             if arg == 1+rr:
-                pf = [f for f in sp.Mul.make_args(term) if f.is_Pow and f.base == rr]
-                pexp = int(pf[0].exp) if pf else 0
+                pexp = int(sp.Mul.make_args(term) int(term.as_powers_dict().get(rr, 0))
                 assert pexp % 2 == 1, "G-T3 PARITY: log(1+r) at even r-power %d in term %d: %s" % (pexp, i, term)
         # G-T1: term integral vs independent quad
         iv = sp.simplify(sp.integrate(term, (rr, 0, 1)))

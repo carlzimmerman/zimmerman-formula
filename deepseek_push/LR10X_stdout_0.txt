@@ -25,3 +25,4 @@ LR10X_diag (same tick, diagnostic follow-up to localize the kill):
   - Structural reading: Fa/Fb contain ONLY single logs; every log(1+r) term sits at an ODD r-power (ln2 coefficient [1-(-1)^(p+1)]/(p+1) vanishes at odd p); log(1-r) integrals are pure rational for all p => a, b, c are ALL exactly rational; E2F1's c-form atoms (pi^2, zeta(3), ln2) are suspected artifacts of the same misfire.
   - E2F1's own caution (register Z16 row: 'b sits 3.6e-13 from the rational 701/1050 -- rational-only nsimplify would have MISFIRED; the derived form is authoritative') is INVERTED by the evidence: the rational is exact; the derived form is the misfire.
 
+LR10X run-5 fire (preserved verbatim): AssertionError G-T3 PARITY 'log(1+r) at even r-power 0 in term 7: 57*r*log(r+1)/80' -- detection bug: a bare r factor (power 1, odd) is a Symbol not a Pow, misread as pexp 0. Fix: exponent from term.as_powers_dict()[rr] (tooling, no math change).
