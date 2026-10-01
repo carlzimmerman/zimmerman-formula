@@ -1,0 +1,97 @@
+CFG262 -- MUSE-DARK implied-a0 levels (CFG223's s*) in redshift thirds, by baryon route (i fitted DC14 masses / ii SED + H2 / iii SED) and velocity reading (b: no pressure, a LOWER bound; bD: with the asymmetric-drift term).
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG262_musedark_zthirds_by_route/FROZEN_CRITERIA.md (1c1e4fe44) + ADDENDUM_1.md.
+  data      the CFG236 chain (S = 109) and the 126 external true_Vrot.dat files (read-only; hash-checked); equal-count thirds of S by z (37 / 36 / 36).
+  machinery CFG236_common (routes in the R199 construction, gperp_reading, thirds, load_dat, verify_hashes, boot_median) and CFG229's a0implied.implied (CFG223's estimator, verbatim), nu_mono, canonical a0.
+  STAGE=A   the blind pre-flight: no g_perp, D, s* or median a0 of any third is printed or formed from the real velocities.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 plants the law at s = 2; STAGE=B SELFTEST=1 fabricates g_perp.
+
+STAGE B  *** MUTATE=1: the law at s = 2 planted on every galaxy's own baryons (D scaled by nu(y/2)/nu(y)) ***
+S = 109 galaxies; thirds z1 N=37 z_med=0.523; z2 N=36 z_med=0.878; z3 N=36 z_med=1.204
+
+STAGE B  THE MEASUREMENT (MUTATE: planted s = 2)
+  routes built (0 s)
+  z1-routei-bD       N 37 z 0.523:  s* = 2.420 (a0 = 2.265e-10)  68% [2.116, 3.131]  95% [1.738, 3.733]  (SD 0.081 dex; unbounded 0.000; median D 5.72; D<1 0, D<=1.05 0)
+      baryon +-0.15 [1.567, 3.642] +-0.30 [0.965, 5.430] (lever -1.21); recipe half-width 0.296 dex (without the natural-log mu reading: 0.296); historical level -9.93 [-10.05, -9.74] (n 36, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.072; historical estimator -0.287
+  z2-routei-bD       N 36 z 0.878:  s* = 5.896 (a0 = 5.518e-10)  68% [5.024, 6.112]  95% [3.159, 7.276]  (SD 0.078 dex; unbounded 0.000; median D 6.88; D<1 0, D<=1.05 0)
+      baryon +-0.15 [3.540, 8.602] +-0.30 [2.072, 12.578] (lever -1.14); recipe half-width 0.292 dex (without the natural-log mu reading: 0.292); historical level -9.55 [-9.82, -9.46] (n 36, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.052; historical estimator -0.287
+  z3-routei-bD       N 36 z 1.204:  s* = 8.585 (a0 = 8.036e-10)  68% [7.830, 9.514]  95% [7.347, 10.533]  (SD 0.046 dex; unbounded 0.000; median D 10.94; D<1 0, D<=1.05 0)
+      baryon +-0.15 [5.770, 12.564] +-0.30 [3.931, 18.257] (lever -1.12); recipe half-width 0.282 dex (without the natural-log mu reading: 0.282); historical level -9.37 [-9.45, -9.29] (n 36, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.048; historical estimator -0.278
+  z1-routeii-bD      N 37 z 0.523:  s* = 1.000 (a0 = 0.936e-10)  68% [0.879, 2.735]  95% [0.670, 3.167]  (SD 0.203 dex; unbounded 0.000; median D 3.95; D<1 3, D<=1.05 3)
+      baryon +-0.15 [0.592, 2.079] +-0.30 [0.330, 3.488] (lever -1.91); recipe half-width 1.290 dex (without the natural-log mu reading: 0.756); historical level -9.89 [-10.41, -9.71] (n 31, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.166; gas (b) -0.349/-0.209/-0.341/-0.197; H2 (b2) -0.071/-0.634; natlog (d) -1.046; historical estimator +0.141;  drifts: tau+0.25 -0.422; tau-0.25 -0.162; tH+0.3 -0.235; tH-0.3 -0.430
+  z2-routeii-bD      N 36 z 0.878:  s* = 2.031 (a0 = 1.901e-10)  68% [1.866, 2.186]  95% [1.532, 2.668]  (SD 0.067 dex; unbounded 0.000; median D 3.39; D<1 4, D<=1.05 4)
+      baryon +-0.15 [1.220, 3.212] +-0.30 [0.665, 4.841] (lever -1.35); recipe half-width 1.250 dex (without the natural-log mu reading: 0.845); historical level -10.00 [-10.05, -9.75] (n 31, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.106; gas (b) -0.415/-0.217/-0.328/-0.209; H2 (b2) -0.085/-0.673; natlog (d) -0.920; historical estimator -0.279;  drifts: tau+0.25 -0.284; tau-0.25 -0.317; tH+0.3 -0.322; tH-0.3 -0.290
+  z3-routeii-bD      N 36 z 1.204:  s* = 0.754 (a0 = 0.705e-10)  68% [0.432, 0.993]  95% [0.303, 1.567]  (SD 0.179 dex; unbounded 0.000; median D 2.14; D<1 8, D<=1.05 8)
+      baryon +-0.15 [0.427, 1.173] +-0.30 [0.110, 1.900] (lever -1.35); recipe half-width 1.334 dex (without the natural-log mu reading: 1.138); historical level -10.11 [-10.39, -9.73] (n 23, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.098; gas (b) --/-0.081/-0.625/-0.100; H2 (b2) -0.061/-0.946; natlog (d) -0.695; historical estimator +0.038;  drifts: tau+0.25 -0.237; tau-0.25 -0.489; tH+0.3 -0.486; tH-0.3 -0.210
+  z1-routeiii-bD     N 37 z 0.523:  s* = 3.105 (a0 = 2.906e-10)  68% [2.769, 4.037]  95% [2.329, 6.328]  (SD 0.099 dex; unbounded 0.000; median D 8.12; D<1 2, D<=1.05 3)
+      baryon +-0.15 [2.048, 4.609] +-0.30 [1.302, 6.777] (lever -1.22); recipe half-width 0.426 dex (without the natural-log mu reading: 0.426); historical level -9.80 [-9.92, -9.49] (n 34, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.065; gas (b) -0.231/-0.331/-0.271/-0.327; historical estimator -0.261;  drifts: tau+0.25 -0.384; tau-0.25 -0.210
+  z2-routeiii-bD     N 36 z 0.878:  s* = 6.359 (a0 = 5.952e-10)  68% [5.288, 7.690]  95% [3.705, 9.204]  (SD 0.095 dex; unbounded 0.000; median D 8.34; D<1 3, D<=1.05 3)
+      baryon +-0.15 [3.915, 9.338] +-0.30 [2.454, 13.486] (lever -1.27); recipe half-width 0.355 dex (without the natural-log mu reading: 0.355); historical level -9.44 [-9.61, -9.33] (n 33, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.045; gas (b) -0.274/-0.254/-0.277/-0.253; historical estimator -0.217;  drifts: tau+0.25 -0.264; tau-0.25 -0.284
+  z3-routeiii-bD     N 36 z 1.204:  s* = 3.336 (a0 = 3.123e-10)  68% [2.823, 3.698]  95% [2.248, 5.651]  (SD 0.089 dex; unbounded 0.000; median D 5.24; D<1 2, D<=1.05 2)
+      baryon +-0.15 [2.175, 5.044] +-0.30 [1.274, 7.460] (lever -1.20); recipe half-width 0.522 dex (without the natural-log mu reading: 0.522); historical level -9.75 [-9.89, -9.47] (n 32, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.069; gas (b) -0.454/-0.213/-0.387/-0.210; historical estimator -0.247;  drifts: tau+0.25 -0.195; tau-0.25 -0.407
+  z1-routei-b        N 37 z 0.523:  s* = 1.382 (a0 = 1.294e-10)  68% [0.985, 1.984]  95% [0.792, 2.392]  (SD 0.126 dex; unbounded 0.000; median D 5.76; D<1 0, D<=1.05 0)
+      baryon +-0.15 [0.908, 2.052] +-0.30 [0.517, 3.000] (lever -1.18); recipe half-width 0.262 dex (without the natural-log mu reading: 0.262); historical level -10.14 [-10.45, -9.94] (n 36, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.061; historical estimator -0.255
+  z2-routei-b        N 36 z 0.878:  s* = 3.124 (a0 = 2.924e-10)  68% [2.154, 4.910]  95% [1.666, 5.461]  (SD 0.167 dex; unbounded 0.000; median D 6.77; D<1 0, D<=1.05 0)
+      baryon +-0.15 [1.870, 4.958] +-0.30 [1.054, 7.442] (lever -1.41); recipe half-width 0.285 dex (without the natural-log mu reading: 0.285); historical level -9.80 [-10.11, -9.57] (n 36, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.097; historical estimator -0.268
+  z3-routei-b        N 36 z 1.204:  s* = 5.090 (a0 = 4.765e-10)  68% [4.654, 6.608]  95% [2.974, 7.492]  (SD 0.095 dex; unbounded 0.000; median D 11.03; D<1 0, D<=1.05 0)
+      baryon +-0.15 [3.469, 7.382] +-0.30 [2.322, 10.619] (lever -1.09); recipe half-width 0.293 dex (without the natural-log mu reading: 0.293); historical level -9.61 [-9.85, -9.43] (n 36, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.035; historical estimator -0.291
+  z1-routeii-b       N 37 z 0.523:  s* = 0.704 (a0 = 0.659e-10)  68% [0.518, 1.480]  95% [0.371, 2.548]  (SD 0.218 dex; unbounded 0.000; median D 3.99; D<1 3, D<=1.05 3)
+      baryon +-0.15 [0.431, 1.430] +-0.30 [0.241, 2.089] (lever -1.94); recipe half-width 1.300 dex (without the natural-log mu reading: 0.783); historical level -10.16 [-10.64, -9.78] (n 31, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.179; gas (b) -0.435/-0.263/-0.371/-0.267; H2 (b2) -0.093/-0.626; natlog (d) -1.038; historical estimator +0.016;  drifts: tau+0.25 -0.426; tau-0.25 -0.184; tH+0.3 -0.239; tH-0.3 -0.434
+  z2-routeii-b       N 36 z 0.878:  s* = 1.219 (a0 = 1.141e-10)  68% [0.879, 1.547]  95% [0.784, 1.836]  (SD 0.115 dex; unbounded 0.000; median D 3.45; D<1 4, D<=1.05 4)
+      baryon +-0.15 [0.659, 1.852] +-0.30 [0.339, 2.721] (lever -1.38); recipe half-width 1.350 dex (without the natural-log mu reading: 0.928); historical level -10.18 [-10.40, -9.86] (n 31, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.073; gas (b) -0.533/-0.232/-0.443/-0.209; H2 (b2) -0.104/-0.718; natlog (d) -0.980; historical estimator -0.235;  drifts: tau+0.25 -0.294; tau-0.25 -0.354; tH+0.3 -0.358; tH-0.3 -0.286
+  z3-routeii-b       N 36 z 1.204:  s* = 0.339 (a0 = 0.318e-10)  68% [0.182, 0.507]  95% [0.094, 1.293]  (SD 0.255 dex; unbounded 0.000; median D 2.16; D<1 8, D<=1.05 8)
+      baryon +-0.15 [0.213, 0.519] +-0.30 [0.049, 0.839] (lever -1.28); recipe half-width 1.339 dex (without the natural-log mu reading: 1.139); historical level -10.20 [-10.77, -9.91] (n 23, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.086; gas (b) --/-0.098/-0.606/-0.079; H2 (b2) -0.109/-0.913; natlog (d) -0.705; historical estimator +0.298;  drifts: tau+0.25 -0.281; tau-0.25 -0.410; tH+0.3 -0.445; tH-0.3 -0.271
+  z1-routeiii-b      N 37 z 0.523:  s* = 2.101 (a0 = 1.966e-10)  68% [1.686, 3.255]  95% [1.110, 3.958]  (SD 0.138 dex; unbounded 0.000; median D 8.17; D<1 2, D<=1.05 3)
+      baryon +-0.15 [1.237, 3.111] +-0.30 [0.808, 4.539] (lever -1.17); recipe half-width 0.465 dex (without the natural-log mu reading: 0.465); historical level -9.97 [-10.19, -9.65] (n 34, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.058; gas (b) -0.249/-0.372/-0.276/-0.382; historical estimator -0.259;  drifts: tau+0.25 -0.413; tau-0.25 -0.216
+  z2-routeiii-b      N 36 z 0.878:  s* = 3.878 (a0 = 3.630e-10)  68% [3.451, 4.617]  95% [1.618, 5.198]  (SD 0.101 dex; unbounded 0.000; median D 8.39; D<1 3, D<=1.05 3)
+      baryon +-0.15 [2.612, 5.648] +-0.30 [1.692, 8.150] (lever -1.11); recipe half-width 0.419 dex (without the natural-log mu reading: 0.419); historical level -9.72 [-9.79, -9.58] (n 33, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.040; gas (b) -0.310/-0.295/-0.283/-0.302; historical estimator -0.279;  drifts: tau+0.25 -0.269; tau-0.25 -0.313
+  z3-routeiii-b      N 36 z 1.204:  s* = 1.464 (a0 = 1.370e-10)  68% [1.166, 1.945]  95% [0.914, 3.613]  (SD 0.144 dex; unbounded 0.000; median D 5.27; D<1 2, D<=1.05 2)
+      baryon +-0.15 [0.939, 2.207] +-0.30 [0.562, 3.259] (lever -1.23); recipe half-width 0.552 dex (without the natural-log mu reading: 0.552); historical level -10.07 [-10.27, -9.58] (n 32, a0 in log10 m s^-2; canonical -10.029)
+      knobs (Delta log10 s*): kernel P2 +0.067; gas (b) -0.506/-0.241/-0.383/-0.235; historical estimator -0.210;  drifts: tau+0.25 -0.231; tau-0.25 -0.420
+
+SENSITIVITY ROWS: reading a (v_perp = v_f) and aD (a plus D1); s* per route and third (no bootstrap; never drawn)
+  reading a  route (i  ): s* z1 / z2 / z3 = 0.435 / 0.984 / 1.676
+  reading a  route (ii ): s* z1 / z2 / z3 = 0.223 / 0.310 / 0.103
+  reading a  route (iii): s* z1 / z2 / z3 = 0.660 / 1.263 / 0.527
+  reading aD route (i  ): s* z1 / z2 / z3 = 0.919 / 2.319 / 3.450
+  reading aD route (ii ): s* z1 / z2 / z3 = 0.420 / 0.827 / 0.283
+  reading aD route (iii): s* z1 / z2 / z3 = 1.284 / 2.611 / 1.493
+
+THE ROUTES' CONTRAST (log10 s*(route) - log10 s*(i), rows with a root in both) and THE THIRDS' DIFFERENCES (z3 - z1, with sqrt(sd1^2 + sd3^2))
+  reading bD: contrast (ii - i) -0.384 / -0.463 / -1.057; (iii - i) +0.108 / +0.033 / -0.410
+  reading b: contrast (ii - i) -0.293 / -0.409 / -1.176; (iii - i) +0.182 / +0.094 / -0.541
+  reading bD route (i  ): d(z3 - z1) = +0.550 +- 0.093 dex (H(z) expects +0.177; FLAT 0)
+  reading bD route (ii ): d(z3 - z1) = -0.123 +- 0.270 dex (H(z) expects +0.177; FLAT 0)
+  reading bD route (iii): d(z3 - z1) = +0.031 +- 0.133 dex (H(z) expects +0.177; FLAT 0)
+  reading b route (i  ): d(z3 - z1) = +0.566 +- 0.157 dex (H(z) expects +0.177; FLAT 0)
+  reading b route (ii ): d(z3 - z1) = -0.317 +- 0.335 dex (H(z) expects +0.177; FLAT 0)
+  reading b route (iii): d(z3 - z1) = -0.157 +- 0.200 dex (H(z) expects +0.177; FLAT 0)
+
+FLAGS PER LAW (95 % / inner-widened / outer-widened), reading bD: z1-routei nnY/nnY/nnY; z2-routei nnn/nnn/nnn; z3-routei nnn/nnn/nnn; z1-routeii YYY/YYY/YYY; z2-routeii nnY/YYY/nnY; z3-routeii YYY/nnn/YYY; z1-routeiii nnn/nnY/nnn; z2-routeiii nnn/nnn/nnn; z3-routeiii nnn/nnY/nnY
+
+CONTROLS (stage B)
+  [PASS] M2 MUTATE=1 (reactivity): the planted law at s = 2 moves every row with a root in both runs by +0.301 +- 0.05 dex
+         z1-routei-bD +0.297; z2-routei-bD +0.287; z3-routei-bD +0.277; z1-routeii-bD +0.334; z2-routeii-bD +0.301; z3-routeii-bD +0.326; z1-routeiii-bD +0.294; z2-routeiii-bD +0.283; z3-routeiii-bD +0.289; z1-routei-b +0.306; z2-routei-b +0.284; z3-routei-b +0.291; z1-routeii-b +0.326; z2-routeii-b +0.316; z3-routeii-b +0.331; z1-routeiii-b +0.300; z2-routeiii-b +0.294; z3-routeiii-b +0.307
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg262_points_stageB_MUTATE1.csv (18 rows)
+
+2/2 checks pass; load-bearing failures: 0   (53 s)
