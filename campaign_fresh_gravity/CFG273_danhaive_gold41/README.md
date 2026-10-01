@@ -1,0 +1,43 @@
+# CFG273 — the 41 Danhaive+25 gold JADES discs: with stars-only baryons the dynamics exceed the stars by a median factor 4, so the upper bounds on s\* are almost all vacuous; seven discs sit at the Newtonian floor
+
+> **κ = ½ FITTED. a₀(z) FLAT is the framework's distinctive law, a₀ ∝ H(z) the rival, ΛCDM has no a₀ (PROXY = CFG223's effective-a₀ curve). The table carries NO gas, NO inclination and NO velocity column: the baryons used are a LOWER LIMIT (stars only) and the dynamics are the authors' own M_dyn, so a root is an UPPER BOUND on s\* and a floor NO ROOT is robust against any added gas. Class D: no law statement is made. No sentence says the data favour a law. NOT blind: CFG197 / CFG235 held the gas-free floor result.**
+> Hashes: criteria **92a868901** · stage A pre-flight **cd1ca795e** · SELFTEST **124897d9d** · measurement, MUTATE, post hoc files and this README: the commit that carries this file. Data on disk only (`danhaive2025_gold.csv`); nothing fetched.
+
+## Bottom line
+1. **D = g_obs/g_bar,\* at r_e is far above 1 for most discs:** median **4.35** (16–84 %: 1.08–17.3; range 0.014–75.7). **δ_FLAT(stars only) is positive for 31 of the 41 discs** (median +0.52): the stars alone fall short of the dynamics the canonical law would need, which is what missing gas (or any other missing baryons) looks like; nothing here excludes FLAT, H(z) or PROXY.
+2. **Rows by outcome (headline B0 = stars only):**
+   - **7 discs at the Newtonian FLOOR (D ≤ 1, no root, robust against any added gas):** 1088814 (D = 0.89; a CRISTAL-08 z-candidate), 1015956 (0.31), 1085659 (0.35), 1082948 (0.014), 1091153 (0.76), 1086406 (0.93; a CRISTAL-08 z-candidate), 1009935 (0.19). They include **all four rows the record flagged for M_dyn < M\*** (1082948, 1009935, 1015956, 1085659) and five of the 17 σ₀-limit discs; four of the seven (1088814, 1085659, 1082948, 1091153) are the ILL-CONDITIONED massive discs of stage A.
+   - **2 CEILING rows (D = 35 and 57: 1094616, 1025101):** the frozen estimator's bracket (s ≤ 1000) flags them "no root", but the root lies above it (closed form ≳ 1e3): **not floor cases; the upper bound on s\* is vacuous.** A labelled post hoc file relabels exactly these two rows (`cfg273_points_stageB_relabelled.csv`).
+   - **32 discs have a root with stars only: an UPPER bound on s\*.** Only **three bounds lie below the canonical scale** — **1079264 (s\* ≤ 0.55), 1090526 (≤ 0.64), 1086992 (≤ 0.81)** — and **all three are σ₀-upper-limit rows whose M_dyn is used at face value** (prior-influenced); the next smallest are 1090742 (1.1, also a σ₀ limit), 1028072 (4.3), 1028887 (4.5), 1002222 (10), and the rest range up to 460.
+3. **Pooled rows (galaxy bootstrap; stars-only upper bounds):**
+
+| row | n | z median | median D | s\* (upper bound; 68 %) | gas-to-stars ratio required for s\* = 1 | B2 scaling gas: s\* |
+|---|---|---|---|---|---|---|
+| PALL | 41 | 4.17 | 4.35 | ≤ 29 (21–36) | 2.9 | 0.77 |
+| PDET (σ₀ detected) | 24 | 4.17 | 7.57 | ≤ 67 (36–133) | 5.7 | 11.8 |
+| Pz1 (3.8 ≤ z < 4.2) | 21 | 4.04 | 4.06 | ≤ 26 (20–36) | 2.8 | no root |
+| Pz2 (4.2 ≤ z < 5.0) | 12 | 4.42 | 5.97 | ≤ 25 (4.3–47) | 3.8 | no root |
+| Pz3 (z ≥ 5.0) | 8 | 5.30 | 6.30 | ≤ 67 (26–116) | 4.9 | 12.1 |
+| P38 (no CRISTAL-08 z-candidates) | 38 | 4.16 | 6.30 | ≤ 34 (25–52) | 4.9 | 1.37 |
+
+   **FLAT at the canonical scale needs extra baryons of 2.8–5.7 × M\* (as gas) in the pooled rows (per-galaxy median 5.2 among the 32 rooted discs), i.e. total baryon masses 3.8–6.7 × M\*.**
+4. **The class-D scaling-relation gas (B2: μ_mol, a z ≲ 4 relation extrapolated to z 3.8–5.8; median μ_mol ≈ 3.5, g_bar × 2–15) brings D(B2) to a median 1.11 (16–84 %: 0.34–3.36):** the pooled B2 level is 0.77 (PALL) and 1.37 (P38) but 11.8 (PDET) and 12.1 (Pz3), and Pz1 and Pz2 have no root; **B2 removes the root of 13 of the 32 rooted discs.** The result depends on which discs are pooled and on an extrapolated scaling relation: **class D, no law statement.**
+5. **The regime was conditioned for 37 of 41 discs and seven had deep points (y < 0.3)** (stage A), unlike lanes C and E; but the conditioning concerns a lower limit: the upper bounds are weak because the missing baryons are large. CFG240's T4 floor (σ(log a₀) ≥ 3σ/√N, calibration free) is 0.09–0.21 dex for these N before any gas assumption.
+
+## Controls and MUTATE (nothing hidden)
+- **Stage A (cd1ca795e): C1–C5 pass**; the conditioned rows' noiseless coverage is 0.71 (68 %) and 0.94 (95 %).
+- **Stage B: M1 (alt footing 9e-16), M3 (pooled memberships 41, 24, 21, 12, 8, 38) and M4 (header) pass.**
+- **M5 FAILS AS FROZEN:** the rebuilt V = (v/σ₀)σ₀ with v_c² = V² + 3.36 σ₀² reproduces the published M_dyn on the 24 σ₀-detected rows with a **median |Δ log M_dyn| = 0.0258 against the frozen ≤ 0.02** (median signed **+0.0082**, the CFG197 value +0.008; maximum 0.045). The table prints v/σ₀ and σ₀ with few digits, which this scatter reflects; the frozen tolerance was set from CFG197's signed median and is too tight for the absolute one. Reported as printed; the script exits 1 on it.
+- **M2 MUTATE=1 FAILS its count clause and passes its identity clause:** with every M_dyn × 4 the rows with a root are 24 against 32 in the main run (the frozen clause demanded at least the main run's), while every rooted row equals the independent closed-form inversion to 1.3e-15. **Cause (post hoc, `cfg273_posthoc_mutate_bracket.py`): 15 of the 17 rows without a root in the mutated run have a closed-form s\* above the solver's bracket (1000); the other two have D ≤ 1.** The control assumed D stays inside the bracket, true in lanes C and E (D ≤ 2.6) but not here (D up to 75). Reported as printed.
+- **SELFTEST (124897d9d):** a world exactly on the law at s_true = 2 with 0.15 dex scatter on every row's stars-only baryons is recovered by the conditioned rows (≥ 80 % inside their 95 % interval) and by the pooled PALL (1.78, 68 % 1.4–2.6): this lane's estimator works in the conditioned regime.
+
+## Hand estimates (frozen before any number; kept as they fall)
+- **Stage A:** HE1, HE2 hit. **Stage B:** **HE3 hits** (all four known low rows have no root; 9 rows in all, 4–10; 7 floor + 2 ceiling). **HE4 misses** (PALL s\* ≤ 29, not between 1 and 10; the three z-bin rows do have roots). **HE5 hits** (median δ_FLAT +0.52). **HE6 misses** (M5). **HE7 misses on both clauses** (the median required gas ratio is 5.2, not 0.3–3; B2 removes the root in 13 of 32 = 41 %, not at least half).
+
+## Disclosures
+- **σ₀ upper limits (17 rows) enter at face value** (CFG235's rule 3.5): the three tightest upper bounds and five of the seven floor rows are σ₀-limit rows whose M_dyn is prior-influenced; `v_over_sigma0_lim` is empty for all rows although the paper marks v/σ₀ a lower limit where σ₀ is a limit.
+- **The stat columns of the points file** hold percentiles of the Monte Carlo draws that have a root (per galaxy) or the full bootstrap including floor draws (pooled); for a floor row they are meaningless and the chart should draw triangles at s = 0.001; for the two ceiling rows use the relabelled file.
+- M\* is a Prospector value with an unstated IMF (outshining biases it low); r_e is the Hα size, held fixed in the Monte Carlo (the stellar scale is tied to it); the three CRISTAL-08 z-candidates are flagged and handled by P38 only; one run; no re-run to change a result.
+
+## Files
+`FROZEN_CRITERIA.md`, `PREFLIGHT_RESULTS.md`, `cfg273_danhaive_gold41.py`; `cfg273_stageA.out` / `_results.json`, `cfg273_stageB.out` / `_results.json`, **`cfg273_points_stageB.csv`** (chart shape; 47 rows: 41 discs, PALL, PDET, Pz1–3, P38; extra columns y, lever, D, δ_FLAT, Δ_floor, baryon shift and gas ratio for s\* = 1, star bands, `s_B2`, flags, quality), **`cfg273_points_stageB_relabelled.csv`** (post hoc: the two ceiling rows relabelled), `cfg273_stageB_MUTATE1.*`, `cfg273_stageB_SELFTEST*.*`, `cfg273_posthoc_mutate_bracket.py/.out`, `cfg273_posthoc_relabel.py/.out`. Run: `STAGE=A python3 cfg273_danhaive_gold41.py`, then `STAGE=B` (and `STAGE=B MUTATE=1`); about 1 minute.
