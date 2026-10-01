@@ -1,0 +1,115 @@
+CFG265 physics re-derivations (frozen list P2-P9, P13)  [MUTATE: P2 exponent 0.45]
+
+P2 dimension theorem (monomials G^a M^b c^d X^e with b = 1/2 a length)
+  (G, M, c) length: unique exponents [{a: 1, b: 1, d: -2}] -> G M / c^2, a length proportional to M^1, so no M^(1/2) length
+  [PASS] self-control dimension: (G,M,c) length is GM/c^2 
+  X = a0 (accel)           M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp -1  {a: 1/2, d: 0, e: -1/2}
+  X = hbar                 M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp +2  {a: 3/4, d: -7/4, e: 1/4}
+  X = Lambda (1/L^2)       M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp -2  {a: 1/2, d: -1, e: -1/4}
+  X = rho_Lambda           M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp -2  {a: 1/4, d: -1/2, e: -1/4}
+  X = H0 (1/T)             M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp -1  {a: 1/2, d: -1/2, e: -1/2}
+  X = a length             M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp +1  {a: 1/2, d: -1, e: 1/2}
+  X = a mass               M^(1/2) length exists: True   (G,c,X) give an acceleration: True   massExp +1  {a: 1, d: -2, e: 1/2}
+  X = a velocity           M^(1/2) length exists: False  (G,c,X) give an acceleration: False  massExp +0  
+  X = G itself             M^(1/2) length exists: False  (G,c,X) give an acceleration: False  massExp +0  
+  X = Planck force c^4/G   M^(1/2) length exists: False  (G,c,X) give an acceleration: False  massExp +0  
+  AGREES P2 "exists iff (G,c,X) form an acceleration scale; hbar admissible": iff holds for all 10 X tried; hbar exponents {a: 3/4, d: -7/4, e: 1/4}
+
+P3 AQUAL mu(x) = (sqrt(1+4x^2) - 1)/(2x) -> kernel
+  x mu(x) = sqrt(4*x**2 + 1)/2 - 1/2 ; root x(y) = [sqrt(y)*sqrt(y + 1)] ; nu(y) = x/y = sqrt(y + 1)/sqrt(y)
+  d(x mu)/dx = 2*x/sqrt(4*x**2 + 1)  (positive for x > 0); limits x mu -> 0 at 0+, -> oo at oo: 0 oo
+  [PASS] self-control AQUAL mu gives nu = sqrt(1+1/y) (the P2 kernel) sqrt(y + 1)/sqrt(y)
+  [FAIL] self-control P2 deep limit nu*sqrt(y) -> 1 0.398107
+  [PASS] self-control P2 Newtonian limit nu -> 1 1.000000004
+  AGREES P3 "P2 kernel follows from mu = (sqrt(1+4x^2)-1)/(2x); x mu increasing onto (0,oo)": nu = sqrt(y + 1)/sqrt(y)
+
+P4 Milgrom a0 = c H0/(2 pi) written as kappa c sqrt(G rho)
+  rho = rho_crit = 3H0^2/(8 pi G): kappa = sqrt(2/(3 pi)) = 0.4607
+  rho = rho_Lambda = Omega_L rho_crit (Omega_L = 0.6847, the A0Numeric point): kappa = sqrt(2/(3 pi Omega_L)) = 0.5567
+  the law is written a0 = kappa c sqrt(G rho_Lambda) everywhere in the draft; Footing.lean uses rho = 3H^2/(8 pi G) (the critical, total density).
+  AGREES P4 "In the kappa c sqrt(G rho) convention Milgrom's value is sqrt(2/(3 pi))": true for rho = rho_crit (Footing.lean); in the draft's own rho_Lambda convention Milgrom's cH0/2pi is kappa = 0.557 (undeclared choice)
+
+P5 the 32 pi bookkeeping (c, G explicit)
+  R*^2 Lambda = 8*pi ; a0 = c^2/(2R*) = sqrt(G)*c*sqrt(rho)/2 -> kappa = 1/2
+  C = Lambda c^4 / a0^2 = 32*pi (a pure number only with Lambda_geom = Lambda c^4; with c = 1 it is Lambda/a0^2)
+  G rho_Lambda / (a0^2/c^2) = 4 (the "rational 4"; G rho = 4 a0^2 in c = 1 units)
+  de Sitter horizon radius sqrt(3/Lambda); R*/R_H = 2*sqrt(6)*sqrt(pi)/3 = 2.8944: R* lies outside the static-patch horizon, so R* is not a horizon
+  horizon surface gravity c^2/R_H vs a0 = c^2/(2R*): a0/(c^2/R_H) = sqrt(6)/(8*sqrt(pi)) = 0.1727
+  [PASS] self-control R*^2 Lambda = 8 pi, C = 32 pi, rational 4 
+  AGREES P5 "R*^2 Lambda = 8 pi, a0 = c^2/(2R*): the algebra is correct; R* is not a horizon": R*/R_H = 2.894
+
+P6 kappa and BBN arithmetic
+  Unruh n = 2: (1.447 - 0.465)/0.076 = 12.92 sigma (draft 12.9)
+  AGREES P6 12.9 sigma: 12.92
+  1/2 inside 0.465 +- 0.076: pull +0.46; inside 0.547 +- 0.175: pull -0.27
+  BBN: R < 0.824 vs G_BBN/G0 = 0.98 +- 0.06: gap 0.156 = 2.6 sigma if +-0.06 is 1 sigma; 5.2 sigma if +-0.06 is the 95.4% (2 sigma) half-width (STANDING: "at 95.4%")
+  A20 abstract (WebFetch 2026-10-01): BBN+CMB 0.99 +0.06/-0.05 at 2 sigma -> (0.99 - 0.824)/0.025 = 6.6 sigma
+  footing likelihood (committed .out lines 75-80): Delta chi2 vs free best fit: kappa=1/2 canonical 63.90, 1/2pi (Milgrom 2020) 154.29, alt footing 7.04, Milgrom cH0/2pi own footing 5.34
+  -> Milgrom cH0/2pi fits better than BOTH framework footings (5.34 < 7.04 < 63.90); "as well as the framework (5.34 against 7.04 alt)" compares only to the alt footing
+
+P7 DR4 (frozen sigma_sys = 0.02; per-pair constant fixed by 4,342 pairs at floor 1.1614)
+  per-pair constant c = 3.2910; sigma_fit(30k) = 0.0190; sigma_tot(30k) = 0.02759 (CFG200: 0.02759; prereg table 0.028)
+  [PASS] self-control DR4 constant reproduces CFG200 sigma_tot 0.02759 within 2e-4 0.02759
+  alt floor 1.1917: N3sigma = 2941 (draft/STANDING 2,900; WHAT_WOULD_DECIDE 2,940)
+  cap (1.1614 - 1)/0.02 = 8.07 (draft 8.1); separation at 30k = 5.85 (record 5.8)
+  sigma_tot 0.028 (prereg table convention): B kill 1 + 3s = 1.0840 (draft 1.084); Arm A 3-sigma edge 1.1614 - 3s = 1.0774 (draft "kills the bare law" 1.077)
+  sigma_tot 0.02759 (computed): B kill 1 + 3s = 1.0828 (draft 1.084); Arm A 3-sigma edge 1.1614 - 3s = 1.0786 (draft "kills the bare law" 1.077)
+  preregistration (edge_table_dr4.json hard edges): Arm A FALSIFIED below 1.056 (Amdt 11(d)); 1.056-1.084 Arm A "disfavored (2.8-3.8 sigma_tot)";
+    Arm B/C killed at >= 1.084 only if the frozen stability checks pass (else "systematic-limited, no verdict"); > 1.23 no verdict
+  P2 merge canonical variant floor 1.063     vs ownership 1.000: 2.28 sigma_tot at N = 30,000
+  P2 merge canonical variant top 1.077       vs ownership 1.000: 2.79 sigma_tot at N = 30,000
+  P2 merge canonical primary floor 1.089     vs ownership 1.000: 3.23 sigma_tot at N = 30,000
+  P2 merge canonical primary top 1.102       vs ownership 1.000: 3.70 sigma_tot at N = 30,000
+  P2 merge alt variant floor 1.079           vs ownership 1.000: 2.86 sigma_tot at N = 30,000
+  P2 merge alt primary floor 1.111           vs ownership 1.000: 4.02 sigma_tot at N = 30,000
+  P2 merge alt primary top 1.127             vs ownership 1.000: 4.60 sigma_tot at N = 30,000
+  Arm A canonical 1.1614                     vs ownership 1.000: 5.85 sigma_tot at N = 30,000
+  Arm A canonical top 1.1814                 vs ownership 1.000: 6.58 sigma_tot at N = 30,000
+  chain ceiling 1.0725                       vs ownership 1.000: 2.63 sigma_tot at N = 30,000
+  P2 merge vs chain ceiling 1.0725: 0.16 to 1.07 sigma (never 3)
+  CONTRADICTS P7 "1.063-1.127 separates from ownership by 2.3-3.7 sigma": the band 1.063-1.127 spans 2.28-4.60 sigma; 2.3-3.7 is the CANONICAL footing only (1.063-1.102); the alt top 1.127 is 4.60 sigma
+  CONTRADICTS P7 "gamma <= 1.077 kills the bare law": 1.077 is Arm A (nu_RAR merge) floor minus 3 x 0.028 (a z-rule "disfavored" edge, CFG63 "frozen-rounded"); the preregistered falsification edge is 1.056; and 1.077 is the TOP of the P2 merge at the variant field, so it cannot kill a P2 bare law
+  AGREES P7 "gamma >= 1.084 kills B": 1 + 3 x 0.028 = 1.084 (frozen); requires the stability checks (prereg Amdt 13(d))
+  AGREES P7 cap 8.1 and 4,300 pairs: cap 8.07, N3 4342 by construction
+
+P8 satellites arithmetic
+  0.3245 / sqrt(0.038^2 + 0.077^2) = 3.78 (draft 3.77; CFG259 DV0 3.77)
+  AGREES P8 3.77 sigma: 3.779
+  corrections as fractions of the offset: 0.068/0.3245 = 0.21, 0.104/0.3245 = 0.32 ("a fifth to a third")
+  DV3 RAR alt Delta chi2_V2 = 9.24 -> 0.24 above 9; DV0 RAR alt 8.60 -> 0.40 below 9 ("+8.60 ... falls")
+  without the ultra-faints: CFG244 "Delta about -1.3"; CFG259 "-1.3 to -1.8 at DV0" (draft "about -1.3")
+  "capped near 2.5 sigma" (Section 7) is the cap on separating the bare law from B's derived cold-mass RULE (WHAT_WOULD_DECIDE 3: Delta 0.38 dex, floors 0.077 + 0.133);
+    B's isolated-law failure (3.5-3.9 sigma, Section 5) is a different statistic: the two are consistent only once that is said
+
+P9 internal arithmetic
+  A01 22+2+1 = 25                                                             OK
+  A02 0+11+5+27+11 = 54                                                       OK
+  A03 219+62 = 281                                                            OK
+  A04 281+50 = 331                                                            OK
+  A05 219 - 47 = 172, the library before the first of the three steps         OK
+  A06 sqrt(1000) = 31.62 (1e9..1e12)                                          OK
+  A07 12.9 sigma                                                              OK
+  A08 3.77 sigma                                                              OK
+  A09 cap 8.1                                                                 OK
+  A10 kill B 1+3(0.028) = 1.084                                               OK
+  A11 Arm A 1.1614-3(0.028) = 1.077                                           OK
+  A12 fifth/third                                                             OK
+  A13 Gamma tau 0.787 x 5.37 = 4.23 and 0.787 x 5.17 = 4.07 (the "4.1-4.2")   OK
+  A14 window 1.73-1.93 overlaps (generous bracket), "nearly meet" is the GAPS wording OK
+  A15 R*^2 Lambda = 8 pi                                                      OK
+  A16 kappa_M = sqrt(2/(3pi)) = 0.4607                                        OK
+  A17 (1.447-0.465)/0.076 = 12.9                                              OK
+  A18 9.24 - 9 = 0.24                                                         OK
+  A19 p = 0.327-0.343 -> "0.33-0.34"                                          OK
+  A20 x = 3 r_M point mass P2: nu = sqrt(10) = 3.162 ("up to 3.16")           OK
+  A21 ten doors re-derived = nine referee lanes (CFG151-159) + door 2 none    OK
+  A22 band 1.063-1.127 vs 2.3-3.7 sigma at 30k (see P7)                       FAILS
+
+P13 QUMOND local phantom C_loc = rho_ph r^3 g_tot against the CFG44 target (a0/4pi) M_b(<r)
+  [FAIL] self-control P2 point mass: C_loc = C_44 at every x (ratio 1) max |R-1| = 5.44e-01
+  P2                                   max over x in [0.1,30] of C_loc/C_44: 0.90 - 1.39 (16 cells: 1e9-1e12 Msun x h = 2-5 kpc)
+  nu_RAR (sensitivity; not nu_mono)    max over x in [0.1,30] of C_loc/C_44: 1.63 - 2.49 (16 cells: 1e9-1e12 Msun x h = 2-5 kpc)
+  CONTRADICTS P13 "ratio up to 2.33 for P2" (CFG245 on CFG118's spheres): this lane's generic exponential spheres give a P2 maximum 1.39; the exact value depends on the profile (CFG118's h per mass); order and sign agree
+  isolated-law internal/Newtonian ratio for a point mass (P2): x = 0.3, 1, 3 -> 1.040, 1.366, 2.818 (draft "up to 3.16")
+
+self-controls: 5 of 7 pass

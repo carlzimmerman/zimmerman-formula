@@ -1,0 +1,66 @@
+repo <repo>; ChainCert read at 53f374ae2 (text only; no lake build, no verify_chain.sh run)
+theorem/lemma declarations per module: {'A0Numeric': 4, 'Action': 34, 'Axioms': 0, 'CalibrationWall': 50, 'Certificates': 15, 'Chain': 5, 'Cusp': 42, 'Dimension': 22, 'DoorEleven': 6, 'Exchange': 30, 'Fluid': 5, 'FluidLink': 6, 'Footing': 11, 'Gauss': 7, 'Kernel': 3, 'Ownership': 22, 'PointMass': 24, 'Profile': 23, 'Separation': 7, 'Theory': 15}
+sum over all modules: 331 (the verifier counts the theorems it #print-axioms; see Axioms.out)
+  step 1 (Ownership, Theory, A0Numeric, DoorEleven)  modules sum  47  (draft 47, cumulative 219)  OK
+  step 2 (Action, Dimension, FluidLink)              modules sum  62  (draft 62, cumulative 281)  OK
+  step 3 (CalibrationWall)                           modules sum  50  (draft 50, cumulative 331)  OK
+verify_chain.out: ['theorems checked: 331; with non-standard axioms: 0; sorry mentions: 0', 'VERIFY: PASS']
+verify_chain_MUTATE.out: ['theorems checked: 2; with non-standard axioms: 1; sorry mentions: 2', 'VERIFY: FAIL']
+Axioms.out: 331 "depends on axioms" lines; lines with an axiom list other than [propext, Classical.choice, Quot.sound]: 0
+
+[Ownership] theorem ownership_distinguishes {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i j p : ι} (hi : H.parent i = none) (hj : H.parent j = some p) {gN : ℝ} (hgN : gN ≠ 0) (hν : ν (gN / a0) ≠ 1) (gext : ℝ) : internalAccel ν a0 H i gN gext ≠ internalAccel ν a0 H j gN gext
+
+[Ownership] theorem ownership_not_field_local {ι : Type*} (ν : ℝ → ℝ) (a0 : ℝ) (H : Hierarchy ι) {i j p : ι} (hi : H.parent i = none) (hj : H.parent j = some p) {gN : ℝ} (hgN : gN ≠ 0) (hν : ν (gN / a0) ≠ 1) : ¬ ∃ F : ℝ → ℝ → ℝ, ∀ k g ge, internalAccel ν a0 H k g ge = F g ge
+
+[Ownership] theorem noEFE_continuousLinear {E V : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [ContinuousSMul ℝ E] [AddCommGroup V] [Module ℝ V] [TopologicalSpace V] [ContinuousSMul ℝ V] [T2Space V] {F : E → V} (hc : Continuous F) (h : EFEFree F) : ∃ L : E →L[ℝ] V, ⇑L = F
+
+[Ownership] theorem deep_not_efeFreeRay (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : ¬ EFEFreeRay (fun y => ν y * y)
+
+[Ownership] theorem law_not_efeFreeRay {a0 : ℝ} (ha : 0 < a0) (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : ¬ EFEFreeRay (fun gN => ν (gN / a0) * gN)
+
+[Ownership] theorem vecLaw_not_efeFree {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [Nontrivial E] {a0 : ℝ} (ha : 0 < a0) (ν : ℝ → ℝ) (hν : Tendsto (fun y => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) : ¬ EFEFree (vecLaw (E
+
+[Theory] theorem ownership_nonlocal {i j p : ι} (hi : B.H.parent i = none) (hj : B.H.parent j = some p) : ¬ ∃ F : ℝ → ℝ → ℝ, ∀ k g ge, B.accel k g ge = F g ge
+
+[Dimension] theorem no_sqrtM_length_GMc : ¬ ∃ a d : ℚ, mono a (1 / 2) d = dLen
+
+[Dimension] theorem sqrtM_length_iff (x : Dim) : (∃ a d e : ℚ, mono a (1 / 2) d + e • x = dLen) ↔ massExp x ≠ 0
+
+[Dimension] theorem acc_from_GcX_iff (x : Dim) : (∃ u v w : ℚ, u • x + v • dG + w • dc = dAcc) ↔ massExp x ≠ 0
+
+[Dimension] theorem sqrtM_length_iff_acc (x : Dim) : (∃ a d e : ℚ, mono a (1 / 2) d + e • x = dLen) ↔ (∃ u v w : ℚ, u • x + v • dG + w • dc = dAcc)
+
+[Dimension] theorem hbar_admissible : mono (3 / 4) (1 / 2) (-7 / 4) + (1 / 4 : ℚ) • dHbar = dLen
+
+[Dimension] theorem not_only_accelerations : ∃ x : Dim, (∃ a d e : ℚ, mono a (1 / 2) d + e • x = dLen) ∧ ¬ ∃ j k : ℚ, x = j • dAcc + k • dc
+
+[Action] theorem gauss_form {μ g gN M ρ : ℝ → ℝ} {G a0 : ℝ} (hEL : ∀ r, 0 < r → HasDerivAt (fun s => s ^ 2 * (μ (g s / a0) * g s)) (G * (4 * Real.pi * r ^ 2 * ρ r)) r) (hN : ∀ r, r ≠ 0 → gN r = G * M r / r ^ 2) (hM : ∀ r, 0 < r → HasDerivAt M (4 * Real.pi * r ^ 2 * ρ r) r) (hreg : Tendsto (fun r => r ^ 2 * (μ (g r / a0) * g r - gN r)) (𝓝[>] 0) (𝓝 0)) : ∀ r, 0 < r → μ (g r / a0) * g r = gN r
+
+[Action] theorem gauss_iff_kernel {a0 gN g : ℝ} (ha : 0 < a0) (hg : 0 < g) (hgN : 0 < gN) : A.μ (g / a0) * g = gN ↔ g = A.nu (gN / a0) * gN
+
+[Action] theorem spherical_kernel {g gN M ρ : ℝ → ℝ} {G a0 : ℝ} (ha : 0 < a0) (hEL : ∀ r, 0 < r → HasDerivAt (fun s => s ^ 2 * (A.μ (g s / a0) * g s)) (G * (4 * Real.pi * r ^ 2 * ρ r)) r) (hN : ∀ r, r ≠ 0 → gN r = G * M r / r ^ 2) (hM : ∀ r, 0 < r → HasDerivAt M (4 * Real.pi * r ^ 2 * ρ r) r) (hreg : Tendsto (fun r => r ^ 2 * (A.μ (g r / a0) * g r - gN r)) (𝓝[>] 0) (𝓝 0)) (hg : ∀ r, 0 < r → 0 < g r) : ∀ r, 0 < r → g r = A.nu (gN r / a0) * gN r
+
+[Action] noncomputable def muP2Aqual : AqualMu
+
+[Action] theorem nuP2_of_action {y : ℝ} (hy : 0 < y) : muP2Aqual.nu y = Real.sqrt (1 + 1 / y)
+
+[CalibrationWall] theorem T1_deep_iff {f a0 f' a0' : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') : (∀ g : ℝ, 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) ↔ f * a0 = f' * a0'
+
+[CalibrationWall] theorem T2a_P2_injective {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1) (h2 : gObs nuP2 f a0 g2 = gObs nuP2 f' a0' g2) : f = f' ∧ a0 = a0'
+
+[CalibrationWall] theorem T2a_one_point_fails {f a0 g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg : 0 < g) : ∃ f' a0' : ℝ, 0 < f' ∧ 0 < a0' ∧ f' ≠ f ∧ gObs nuP2 f' a0' g = gObs nuP2 f a0 g
+
+[CalibrationWall] theorem T4_design_bound {n : ℕ} (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1 / 2) : 9 * ∑ i, ∑ j, (b i - b j) ^ 2 ≤ 2 * n * ∑ i, (1 - b i) ^ 2
+
+[CalibrationWall] theorem T4_sigma_floor {n : ℕ} (hn : 0 < n) {σ : ℝ} (hσ : 0 < σ) (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1 / 2) (hdet : 0 < fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2) : 9 * σ ^ 2 / n ≤ fisher11 σ b / (fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2)
+
+[Footing] theorem footing_kappaM_iff {κ : ℝ} : κ * Real.sqrt (3 / (8 * π)) = 1 / (2 * π) ↔ κ = Real.sqrt (2 / (3 * π))
+
+README row: | ownership is non-local | if ν(g_N/a₀) ≠ 1, a top-level and an owned system with the same internal and external fields get different internal accelerations. So no function of the field data, and hence none of the local total field, reproduces the rule (`ownership_distinguishes`, `ownership_not_field_local`). A kernel with the deep limit is ≠ 1 somewhere (`deep_kernel_ne_one`), so this holds for B's kernel on any hierarchy with a top-level and an owned system (`CandidateB.ownership_nonlocal`) | **certified** | `Ownership` (a), `Theory` |
+
+README row: | why an acceleration scale must exist (dimensional analysis on monomials) | uses C1's framework (`C1_in_framework` restates C1 via `C1_a0_form_iff`). A length G^a M^b c^d has (a, b, d) = (1, 1, −2) (`length_GMc_iff`), so no (G, M, c) monomial is a length ∝ M^½ (`no_sqrtM_length_GMc`). The only velocity is c, so none is ∝ M^¼ (`velocity_GMc_iff`, `no_quarterM_velocity_GMc`). With ONE extra constant X, a length G^a M^½ c^d X^e exists iff X is not dimensionally a monomial in G and c, i.e. iff massExp X := X_L + X_T + X_M ≠ 0 (`sqrtM_length_iff`, `GcSpan_iff`, `basis_decomp`). Equivalently, iff (G, c, X) can form an acceleration (`acc_from_GcX_iff`, `sqrtM_length_iff_acc`). Every such length is
+
+README row: | action → kernel | the action premise `AqualMu`: x μ(x) is positive, strictly increasing and continuous on (0, ∞), and onto (0, ∞). Define ν(y) := x(y)/y, where x(y) is the unique positive root of x μ(x) = y. Then for g, g_N, a₀ > 0: μ(g/a₀) g = g_N ⇔ g = ν(g_N/a₀) g_N (`kernel_of_gauss`, `gauss_of_kernel`, `gauss_iff_kernel`; composed with the Gauss step in `spherical_kernel`). Also μ(x) ν(x μ(x)) = 1 (`mu_mul_nu`) | **certified** | `Action` |
+
+README row: | spherical Gauss step | PREMISES: the reduced Euler–Lagrange equation d/dr[r² μ(g/a₀) g] = 4πG r² ρ; g_N = G M/r² with M′ = 4πr²ρ (the Newtonian side reuses `gauss_flux_deriv`); regularity r²(μ(g/a₀) g − g_N) → 0 as r → 0⁺. CONCLUSION: μ(g/a₀) g = g_N at every r > 0 (`gauss_form`) | **certified, conditional** on the reduced equation and the regularity premise. Deriving the Euler–Lagrange equation from the action is not formalised | `Action` |
+
