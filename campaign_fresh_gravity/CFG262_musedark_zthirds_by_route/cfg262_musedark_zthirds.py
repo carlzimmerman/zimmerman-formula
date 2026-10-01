@@ -305,6 +305,7 @@ if STAGE == "B":
                     hmed = hlo = hhi = float("nan")
                 kn["historical estimator"] = [None if (u0 or not np.isfinite(hmed)) else hmed - math.log10(A0C) - ls0]
                 half = math.sqrt(sum(max([abs(x) for x in v if x is not None] + [0.0]) ** 2 for v in kn.values()))
+                half_nn = math.sqrt(sum(max([abs(x) for x in v if x is not None] + [0.0]) ** 2 for k_, v in kn.items() if k_ != "natlog (d)"))   # reported alternative (Addendum 2)
                 # drifts (routes ii, iii)
                 dr = {}
                 if r in ("ii", "iii"):
@@ -313,15 +314,30 @@ if STAGE == "B":
                         D2, g2, _, _ = row_levels(rd, r, k, cfgv); l2, u2 = s_star(D2, g2); dr[nm] = (l2, u2)
                 med_D = float(np.median(D)); n_lt1 = int((D < 1).sum()); n_le105 = int((D <= 1.05).sum())
                 RES[lab] = dict(rd=rd, route=r, third=k, n=len(D), z=ZMED[k], ls=ls0, s=s_of(ls0, u0), no_root=u0, itv=itv, band={s_: dict(ls=v[0], s=s_of(*v), unb=v[1]) for s_, v in band.items()},
-                                lever=(float(lv[0]) if not lf[0] else float("nan")), knobs=kn, recipe_half=half, hist=dict(med=hmed, lo=float(hlo), hi=float(hhi), n=len(Lh)),
+                                lever=(float(lv[0]) if not lf[0] else float("nan")), knobs=kn, recipe_half=half, recipe_half_no_natlog=half_nn, hist=dict(med=hmed, lo=float(hlo), hi=float(hhi), n=len(Lh)),
                                 drift={nm: dict(ls=v[0], unb=v[1]) for nm, v in dr.items()}, median_D=med_D, n_D_lt1=n_lt1, n_D_le_105=n_le105)
                 R_ = RES[lab]
                 P(f"  {lab:18s} N {R_['n']:2d} z {R_['z']:.3f}:  " + (f"NO ROOT (median D {med_D:.2f}; D<1: {n_lt1}/{R_['n']})" if u0 else f"s* = {10 ** ls0:.3f} (a0 = {10 ** ls0 * 0.93603:.3f}e-10)")
                   + f"  68% [{s_of(itv['lo68'], False):.3f}, {s_of(itv['hi68'], False):.3f}]  95% [{s_of(itv['lo95'], False):.3f}, {s_of(itv['hi95'], False):.3f}]  (SD {itv['sd']:.3f} dex; unbounded {itv['unb_frac']:.3f}; median D {med_D:.2f}; D<1 {n_lt1}, D<=1.05 {n_le105})")
                 b15 = sorted([R_["band"]["-0.15"]["s"], R_["band"]["+0.15"]["s"]]); b30 = sorted([R_["band"]["-0.30"]["s"], R_["band"]["+0.30"]["s"]])
-                P(f"      baryon +-0.15 [{b15[0]:.3f}, {b15[1]:.3f}] +-0.30 [{b30[0]:.3f}, {b30[1]:.3f}] (lever {R_['lever']:+.2f}); recipe half-width {half:.3f} dex; historical level {hmed:.2f} [{hlo:.2f}, {hhi:.2f}] (n {len(Lh)}, a0 in log10 m s^-2; canonical -10.029)")
+                P(f"      baryon +-0.15 [{b15[0]:.3f}, {b15[1]:.3f}] +-0.30 [{b30[0]:.3f}, {b30[1]:.3f}] (lever {R_['lever']:+.2f}); recipe half-width {half:.3f} dex (without the natural-log mu reading: {half_nn:.3f}); historical level {hmed:.2f} [{hlo:.2f}, {hhi:.2f}] (n {len(Lh)}, a0 in log10 m s^-2; canonical -10.029)")
                 P("      knobs (Delta log10 s*): " + "; ".join(f"{k_} " + "/".join('--' if x is None else f"{x:+.3f}" for x in v) for k_, v in kn.items()) + (";  drifts: " + "; ".join(f"{nm} {'no root' if v[1] else format(v[0] - ls0, '+.3f')}" for nm, v in dr.items()) if dr and not u0 else ""))
 
+    # ---------------------------------------------------------------- reading (a) and (aD): sensitivity rows (reported, never points)
+    P("\nSENSITIVITY ROWS: reading a (v_perp = v_f) and aD (a plus D1); s* per route and third (no bootstrap; never drawn)")
+    SENS = {}
+    for rd in ("a", "aD"):
+        Ra = routes_of(gperp_of(rd, datx))
+        for r in ROUTES:
+            vals = []
+            for k in THN:
+                t = THN[k]; D = Ra["D_" + r][t]; gb = Ra["gb_" + r][t] * CONV
+                ok = np.isfinite(D) & np.isfinite(gb) & (gb > 0) & (D > 0)
+                ls_, u_ = s_star(D[ok], gb[ok])
+                SENS[f"{k}-route{r}-{rd}"] = dict(ls=ls_, no_root=u_, s=s_of(ls_, u_), n=int(ok.sum()))
+                vals.append("no root" if u_ else f"{10 ** ls_:.3f}")
+            P(f"  reading {rd:2s} route ({r:3s}): s* z1 / z2 / z3 = " + " / ".join(vals))
+    NUM["sensitivity"] = SENS
     # ---------------------------------------------------------------- route contrast and the thirds' differences
     P("\nTHE ROUTES' CONTRAST (log10 s*(route) - log10 s*(i), rows with a root in both) and THE THIRDS' DIFFERENCES (z3 - z1, with sqrt(sd1^2 + sd3^2))")
     CON = {}
@@ -390,7 +406,7 @@ if STAGE == "B":
 
     # ---------------------------------------------------------------- the points file
     cols = ["lane", "object", "gas_class", "z", "z_shown", "no_root", "s_star", "a0_1e-10_m_s2", "stat68_lo", "stat68_hi", "stat95_lo", "stat95_hi", "inner_lo", "inner_hi", "inner_noroot_corner", "outer_lo", "outer_hi", "outer_noroot_corner",
-            "recipe_half_dex", "recipe_lo", "recipe_hi", "n", "route", "reading", "third", "median_D", "n_D_lt1", "quality", "flags_FLAT", "flags_H(z)", "flags_PROXY", "hist_level_log10", "hist_lo95", "hist_hi95"]
+            "recipe_half_dex", "recipe_lo", "recipe_hi", "n", "route", "reading", "third", "median_D", "n_D_lt1", "quality", "flags_FLAT", "flags_H(z)", "flags_PROXY", "hist_level_log10", "hist_lo95", "hist_hi95", "recipe_half_no_natlog"]
     ref = os.path.join(CFG, "CHART_a0z_combined_2026-09-30", "chart_a0z_points.csv")
     ref_cols = open(ref).readline().strip().split(",")
     check("M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header", f"{ref_cols == cols[:18]}", ref_cols == cols[:18])
@@ -407,7 +423,7 @@ if STAGE == "B":
                         f"{b15[0]:.6f}", f"{b15[1]:.6f}", nr15, f"{b30[0]:.6f}", f"{b30[1]:.6f}", nr30,
                         f"{R_['recipe_half']:.4f}", f"{R_['s'] * 10 ** (-R_['recipe_half']):.6f}", f"{R_['s'] * 10 ** R_['recipe_half']:.6f}", R_["n"], R_["route"], R_["rd"], R_["third"],
                         f"{R_['median_D']:.3f}", R_["n_D_lt1"], q, *["".join("Y" if fl[L][kk] else "n" for kk in ("in95", "in15", "in30")) for L in LAWS],
-                        f"{R_['hist']['med']:.4f}", f"{R_['hist']['lo']:.4f}", f"{R_['hist']['hi']:.4f}"])
+                        f"{R_['hist']['med']:.4f}", f"{R_['hist']['lo']:.4f}", f"{R_['hist']['hi']:.4f}", f"{R_['recipe_half_no_natlog']:.4f}"])
     P(f"\n  points written: cfg262_points{SFX}.csv ({len(RES)} rows)")
 
 nf = sum(1 for _, ok, lb in CHK if lb and not ok)

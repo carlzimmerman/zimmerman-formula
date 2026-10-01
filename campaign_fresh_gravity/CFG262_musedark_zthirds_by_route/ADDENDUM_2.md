@@ -1,0 +1,7 @@
+# CFG262 — ADDENDUM 2 (written after the SELFTEST of the stage-B code and BEFORE the real measurement; no real level has been computed)
+
+Two reported-only additions to the script; no frozen line, threshold or decision is changed, and the frozen recipe half-width keeps its frozen definition.
+
+1. **A second recipe half-width without the natural-log μ_mol reading, reported beside the frozen one (`recipe_half_no_natlog`, last column of the points file).** The SELFTEST (fabricated g_perp, no real velocity) showed that knob (d) of §4 — the natural-log reading of the μ_mol formula, CFG236's sensitivity — changes the H₂ mass of route (ii) by factors 1.8 (z ≈ 1.2) to 3.5 (z ≈ 0.5) and so dominates route (ii)'s frozen half-width (0.7–0.9 dex). The frozen half-width is unchanged and is the one the points file carries as `recipe_half_dex`; the alternative is for the reader.
+2. **Reading (a) and its drift variant (aD) are reported as sensitivity rows** (s\* per route and third, no bootstrap, never drawn) as §2 of the frozen criteria says; the first script version computed the readings only for the M3 control.
+3. The SELFTEST (fabricated g_perp: route (iii) on the law at s_true = 1.7 with 0.3 dex scatter, σ_1 = 0 so bD ≡ b) returned the truth inside the 95 % interval for all six route-(iii) rows (1.753 / 1.711 / 1.765) and passed M1, M3 (applied only to real data), M4, M5; its outputs are `cfg262_stageB_SELFTEST*`.
