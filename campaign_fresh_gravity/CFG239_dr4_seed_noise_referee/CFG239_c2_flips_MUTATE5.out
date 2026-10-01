@@ -1,0 +1,26 @@
+CFG239 c2 flips | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 5
+array U = 10230, U' (A_V ok) = 9182; seeds: frozen SEED+0..9, estimation SEED+1000..1199, validation SEED+5000..5009
+MC runs: 220 in 123 s
+
+Estimators of the expected one-way flips between two independent draws
+  E1 (ten seeds SEED+0..9, p-hat steps of 0.1, A_V ok) = 133.4    [all U incl. A_V-failing: 149.7]
+  E2 = E1 x 10/9 = 148.2
+  E3 (K=200 disjoint seeds, x K/(K-1)) = 151.2    [all U: 169.3]
+  number of pairs with 0 < p-hat < 1 (E3): 1984;  ten-seed marginal pairs: 848
+
+Observed one-way flips
+  frozen seeds, reference k=0, k=1..9: [148, 137, 136, 155, 140, 145, 142, 159, 145]  mean 145.2 (reverse direction mean 139.3); final counts [6210, 6195, 6214, 6221, 6192, 6212, 6209, 6198, 6190, 6206]
+  validation seeds: 90 ordered counts mean 151.3 SD 14.4; reference=val0 k=1..9 mean 153.3; final counts [6195, 6217, 6183, 6211, 6195, 6193, 6165, 6219, 6176, 6211]
+  as fraction of final pairs (6210): frozen-set mean one-way 2.34%  (symmetric difference ~ 4.68%)
+
+Null (Poisson-binomial from E3 p-hat; 4000 reps of 10 independent builds)
+  mean over k=1..9 of N(0->k): null mean 150.4, SD 7.3;  observed frozen 145.2: z=-0.71, p=0.482
+  mean over all 90 ordered pairs: null mean 150.5, SD 2.3;  observed validation 151.3: z=+0.37, p=0.715
+  the calc chat's numbers: 133.5 (their p-hat, ten seeds) vs 142.3 observed: difference 8.8 = 1.20 null SD of the mean (frozen-structure statistic)
+  what a 10/9 correction does: 133.5 x 10/9 = 148.3 vs 142.3: difference +6.0 = +0.83 SD
+
+Pair-level calibration (validation flips, 90 ordered counts)
+  share of flips in pairs with p-hat in (0.02,0.98): 94.6%   (line >= 95%)
+  pairs with p-hat(1-p-hat)>0.1: observed flips/count 114.2 vs predicted 115.0 (ratio 0.993; line within 15%)
+  MU5 (p-hat shuffled across pairs): share in mid 12.5%, ratio 0.090 -> calibration FAILS (control bites)
+MUTATE5: control bites (exit 1)

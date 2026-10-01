@@ -1,0 +1,325 @@
+>>> python3 -B CFG239_c1_mechanism.py
+CFG239 c1 mechanism | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+guard ok: builder 46452daf1f2e pipeline 7c884e0e0a4c
+  built array k0: 10230 pairs (2 s)
+array U: 10230 pairs; uncovered correlation id entries (zero-filled): 14
+
+[C1a] dummy-RNG stamp trace on a 50-pair slice
+  calls: 1272 (expect 6 x 212 = 1272); first trial: [('standard_normal', (50, 3)), ('standard_normal', (50, 3)), ('random', (50,)), ('choice', (50,)), ('standard_normal', (50,)), ('standard_normal', (50,))]
+  call order/shapes as read from the source: True
+  remove first pair: slots with identical stamp 0/62328 = 0.00000; pairs with >=1 changed slot 49/49
+  remove middle pair: slots with identical stamp 25/62328 = 0.00040; pairs with >=1 changed slot 49/49
+  remove last pair: slots with identical stamp 49/62328 = 0.00079; pairs with >=1 changed slot 49/49
+  reverse the 50 pairs: identical-stamp slots 0/63600 = 0.00000 (palindromic centre only)
+
+[C1b] real stream (seed SEED), one-pair removal / reversal / permutation
+  predicted (independent re-draw): median 0.0464, p90 0.1132
+  slice2000 remove first : bit-identical 0.000%  median |rel| 0.0484  p90 0.1327
+  slice2000 remove middle: bit-identical 0.000%  median |rel| 0.0522  p90 0.1327
+  slice2000 remove last  : bit-identical 0.000%  median |rel| 0.0521  p90 0.1380
+  slice2000 reversed     : bit-identical 0.000%  median 0.0495  p90 0.1331
+  slice2000 permuted     : bit-identical 0.050%  median 0.0518  p90 0.1326
+  full      remove first : bit-identical 0.000%  median |rel| 0.0508  p90 0.1314
+  full      remove middle: bit-identical 0.000%  median |rel| 0.0502  p90 0.1325
+  full      remove last  : bit-identical 0.000%  median |rel| 0.0515  p90 0.1330
+  full      reversed     : bit-identical 0.000%  median 0.0514  p90 0.1350
+  full      permuted     : bit-identical 0.000%  median 0.0512  p90 0.1322
+
+[C1c] removal change vs a different global seed (SEED+1) on the full array
+  seed change: median 0.0510 p90 0.1346; removal: median 0.0502 p90 0.1325; KS D=0.0098 p=0.708
+
+[C1d] final-pair flips caused by removing ONE pair (same seed) vs by a seed change
+  remove first : one-way flips 141, reverse 130
+  remove middle: one-way flips 160, reverse 137
+  remove last  : one-way flips 167, reverse 143
+  seed SEED+1 (no removal): one-way 148, reverse 133; final counts 6210 / 6195
+
+[C1e] per-pair stream (SeedSequence([G, id1, id2])): removal / permutation / global seed
+  per-pair MC on the full array: 1 s
+  pairs whose sigma_vt changed: removal first/middle/last [0, 0, 0] permutation 0 (expect 0 everywhere)
+  one-way flips vs a different GLOBAL seed (k=1..6): per-pair [147, 139, 148, 132, 137, 149] mean 142.0; sequential [148, 137, 136, 155, 140, 145] mean 143.5
+
+[C1f] determinism: same seed/array, thread settings
+  in-process twice bit-identical: True
+  child hashes: {'default': '3d52261c5a59', 'threads1': '3d52261c5a59', 'omp8': '3d52261c5a59'} | in-process 3d52261c5a59
+  bit-identical across threads/processes: True
+
+ASSERTIONS
+  [PASS] C1a order
+  [PASS] C1b >=99.9% changed (all removals, reverse, permute; slice and full)
+  [PASS] C1b median within 10% of 0.0465 (full, middle)
+  [PASS] C1c KS p>=0.05
+  [PASS] C1d one-pair removal flips ~ seed-change level (>=100)
+  [PASS] C1e per-pair removal/permutation changed == 0
+  [PASS] C1e global-seed flips persist (per-pair mean >= 100)
+  [PASS] C1f determinism
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c1_mechanism.py
+CFG239 c1 mechanism | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 2
+guard ok: builder 46452daf1f2e pipeline 7c884e0e0a4c
+array U: 10230 pairs; uncovered correlation id entries (zero-filled): 14
+MUTATE2: sequential stream, changed fraction = 1.0000; assertion 'no other pair changes'  FAILS
+control bites (exit 1)
+exit=1
+>>> python3 -B CFG239_c1_mechanism.py
+CFG239 c1 mechanism | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 3
+guard ok: builder 46452daf1f2e pipeline 7c884e0e0a4c
+array U: 10230 pairs; uncovered correlation id entries (zero-filled): 14
+MUTATE3: sequential stream, changed fraction = 0.9950; assertion 'no other pair changes'  FAILS
+control bites (exit 1)
+exit=1
+>>> python3 -B CFG239_c2_flips.py
+CFG239 c2 flips | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+array U = 10230, U' (A_V ok) = 9182; seeds: frozen SEED+0..9, estimation SEED+1000..1199, validation SEED+5000..5009
+MC runs: 220 in 128 s
+
+Estimators of the expected one-way flips between two independent draws
+  E1 (ten seeds SEED+0..9, p-hat steps of 0.1, A_V ok) = 133.4    [all U incl. A_V-failing: 149.7]
+  E2 = E1 x 10/9 = 148.2
+  E3 (K=200 disjoint seeds, x K/(K-1)) = 151.2    [all U: 169.3]
+  number of pairs with 0 < p-hat < 1 (E3): 1984;  ten-seed marginal pairs: 848
+
+Observed one-way flips
+  frozen seeds, reference k=0, k=1..9: [148, 137, 136, 155, 140, 145, 142, 159, 145]  mean 145.2 (reverse direction mean 139.3); final counts [6210, 6195, 6214, 6221, 6192, 6212, 6209, 6198, 6190, 6206]
+  validation seeds: 90 ordered counts mean 151.3 SD 14.4; reference=val0 k=1..9 mean 153.3; final counts [6195, 6217, 6183, 6211, 6195, 6193, 6165, 6219, 6176, 6211]
+  as fraction of final pairs (6210): frozen-set mean one-way 2.34%  (symmetric difference ~ 4.68%)
+
+Null (Poisson-binomial from E3 p-hat; 4000 reps of 10 independent builds)
+  mean over k=1..9 of N(0->k): null mean 150.4, SD 7.3;  observed frozen 145.2: z=-0.71, p=0.482
+  mean over all 90 ordered pairs: null mean 150.5, SD 2.3;  observed validation 151.3: z=+0.37, p=0.715
+  the calc chat's numbers: 133.5 (their p-hat, ten seeds) vs 142.3 observed: difference 8.8 = 1.20 null SD of the mean (frozen-structure statistic)
+  what a 10/9 correction does: 133.5 x 10/9 = 148.3 vs 142.3: difference +6.0 = +0.83 SD
+
+Pair-level calibration (validation flips, 90 ordered counts)
+  share of flips in pairs with p-hat in (0.02,0.98): 94.6%   (line >= 95%)
+  pairs with p-hat(1-p-hat)>0.1: observed flips/count 114.2 vs predicted 115.0 (ratio 0.993; line within 15%)
+  MU5 (p-hat shuffled across pairs): share in mid 12.5%, ratio 0.090 -> calibration FAILS (control bites)
+
+Threshold-distance analysis (r = 200-seed mean sigma_vt / threshold)
+  share of validation flips with |ln r| <= 0.25: 93.2%   (line >= 90%);  <= 0.15: 87.8%;  <= 0.10: 81.5%
+  flips per pair: |ln r|<0.05 (428 pairs) 18.404; |ln r|>0.30 (6559 pairs) 0.1086; ratio 170  (line >= 20)
+  per-pair relative scatter of sigma_vt over 200 seeds: median 0.0507 (Gaussian 0.0487), p90 0.1538; near-threshold pairs (|ln r|<0.1) median 0.0502
+
+MU4 n_trials x4: mean one-way flips between independent draws 151.3 (212) -> 88.7 (848), ratio 0.586 (band [0.40,0.65]); median relative seed-to-seed change 0.0508 -> 0.0262 (ratio 0.516, sqrt law 0.5)
+
+ASSERTIONS (frozen pass lines)
+  [PASS] (i) observed frozen-seed mean within 2 null SD of E3 and ratio in [0.90,1.10]
+  [PASS] (ii) observed frozen-seed mean within max(10, 2 SD) of 142.3
+  [FAIL] (iii-a) pair-level calibration (95% in mid-p, hi-q within 15%)
+  [PASS] (iii-b) threshold-distance (90% within |ln r|<=0.25; ratio >= 20)
+  [PASS] MU4 n_trials x4 flips ratio in [0.40,0.65]
+  [PASS] MU5 shuffled p-hat breaks calibration
+  [PASS] E1 replicates 133.5 within +-3
+  [PASS] E3 in [135,160]
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c2_flips.py
+CFG239 c2 flips | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 4
+array U = 10230, U' (A_V ok) = 9182; seeds: frozen SEED+0..9, estimation SEED+1000..1199, validation SEED+5000..5009
+MUTATE4: flips(212, other seeds)/flips(212) = 0.993; assertion ratio in [0.40,0.65]  FAILS
+exit=1
+>>> python3 -B CFG239_c2_flips.py
+CFG239 c2 flips | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 5
+array U = 10230, U' (A_V ok) = 9182; seeds: frozen SEED+0..9, estimation SEED+1000..1199, validation SEED+5000..5009
+MC runs: 220 in 123 s
+
+Estimators of the expected one-way flips between two independent draws
+  E1 (ten seeds SEED+0..9, p-hat steps of 0.1, A_V ok) = 133.4    [all U incl. A_V-failing: 149.7]
+  E2 = E1 x 10/9 = 148.2
+  E3 (K=200 disjoint seeds, x K/(K-1)) = 151.2    [all U: 169.3]
+  number of pairs with 0 < p-hat < 1 (E3): 1984;  ten-seed marginal pairs: 848
+
+Observed one-way flips
+  frozen seeds, reference k=0, k=1..9: [148, 137, 136, 155, 140, 145, 142, 159, 145]  mean 145.2 (reverse direction mean 139.3); final counts [6210, 6195, 6214, 6221, 6192, 6212, 6209, 6198, 6190, 6206]
+  validation seeds: 90 ordered counts mean 151.3 SD 14.4; reference=val0 k=1..9 mean 153.3; final counts [6195, 6217, 6183, 6211, 6195, 6193, 6165, 6219, 6176, 6211]
+  as fraction of final pairs (6210): frozen-set mean one-way 2.34%  (symmetric difference ~ 4.68%)
+
+Null (Poisson-binomial from E3 p-hat; 4000 reps of 10 independent builds)
+  mean over k=1..9 of N(0->k): null mean 150.4, SD 7.3;  observed frozen 145.2: z=-0.71, p=0.482
+  mean over all 90 ordered pairs: null mean 150.5, SD 2.3;  observed validation 151.3: z=+0.37, p=0.715
+  the calc chat's numbers: 133.5 (their p-hat, ten seeds) vs 142.3 observed: difference 8.8 = 1.20 null SD of the mean (frozen-structure statistic)
+  what a 10/9 correction does: 133.5 x 10/9 = 148.3 vs 142.3: difference +6.0 = +0.83 SD
+
+Pair-level calibration (validation flips, 90 ordered counts)
+  share of flips in pairs with p-hat in (0.02,0.98): 94.6%   (line >= 95%)
+  pairs with p-hat(1-p-hat)>0.1: observed flips/count 114.2 vs predicted 115.0 (ratio 0.993; line within 15%)
+  MU5 (p-hat shuffled across pairs): share in mid 12.5%, ratio 0.090 -> calibration FAILS (control bites)
+MUTATE5: control bites (exit 1)
+exit=1
+>>> python3 -B CFG239_c3_fits.py --part g100
+CFG239 c3 fits | part g100 | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+  built 101 G-only catalogues in 59 s; final counts mean 6201.1 SD 11.9
+  one-way flips vs frozen k=0: mean 151.6 SD 8.4 (as % of final 2.44%)
+  fitted 101 builds (468 s)
+  G-only K=100 (+k0) [can] n=101 mean gamma-hat 1.1103  SD 0.0204  mean sigma_fit 0.0568  SD/sigma_fit 0.358  (boot 16-84: 0.336-0.378)  kappa 1.002-1.026
+  G-only K=100 (+k0) [alt] n=101 mean gamma-hat 1.0867  SD 0.0171  mean sigma_fit 0.0514  SD/sigma_fit 0.333  (boot 16-84: 0.309-0.352)  kappa 1.012-1.032
+  G-only 100 new builds (k0 excluded) [can] n=100 mean gamma-hat 1.1106  SD 0.0201  mean sigma_fit 0.0568  SD/sigma_fit 0.355  (boot 16-84: 0.331-0.372)  kappa 1.002-1.026
+  G-only 100 new builds (k0 excluded) [alt] n=100 mean gamma-hat 1.0867  SD 0.0171  mean sigma_fit 0.0514  SD/sigma_fit 0.334  (boot 16-84: 0.311-0.352)  kappa 1.012-1.032
+  fit-only control (k0 CSV, fit seeds +0..50) [can] n=51 mean gamma-hat 1.0779  SD 0.0096  mean sigma_fit 0.0531  SD/sigma_fit 0.182  (boot 16-84: 0.163-0.195)  kappa 1.017-1.032
+  fit-only control (k0 CSV, fit seeds +0..50) [alt] n=51 mean gamma-hat 1.0773  SD 0.0073  mean sigma_fit 0.0511  SD/sigma_fit 0.143  (boot 16-84: 0.129-0.154)  kappa 1.020-1.031
+  [can] fit-only SD / mean sigma_fit 0.170; build-only SD = sqrt(SD^2 - fitonly^2) = 0.0179 = 0.316 sigma_fit
+  [alt] fit-only SD / mean sigma_fit 0.142; build-only SD = sqrt(SD^2 - fitonly^2) = 0.0154 = 0.301 sigma_fit
+  [can] frozen build k=0 gamma-hat 1.0750 vs mean of 100 builds 1.1106: z = -1.77 SD_build
+  [alt] frozen build k=0 gamma-hat 1.0775 vs mean of 100 builds 1.0867: z = -0.54 SD_build
+  seed averaging: SD of group means of m builds (non-overlapping groups of the 100 new builds)
+    [can] m=1: SD 0.0201 x sqrt(m)/SD1 = 1.00; m=2: SD 0.0156 x sqrt(m)/SD1 = 1.09; m=5: SD 0.0087 x sqrt(m)/SD1 = 0.97; m=10: SD 0.0058 x sqrt(m)/SD1 = 0.91; m=20: SD 0.0029 x sqrt(m)/SD1 = 0.64
+    [alt] m=1: SD 0.0171 x sqrt(m)/SD1 = 1.00; m=2: SD 0.0125 x sqrt(m)/SD1 = 1.03; m=5: SD 0.0074 x sqrt(m)/SD1 = 0.96; m=10: SD 0.0034 x sqrt(m)/SD1 = 0.63; m=20: SD 0.0010 x sqrt(m)/SD1 = 0.26
+    consensus catalogue (p-hat>0.5 over the 100 builds, N=6212) [can] gamma-hat 1.1275: distance from mean of builds +0.297 sigma_fit (line |d|<=0.15)
+    consensus catalogue (p-hat>0.5 over the 100 builds, N=6212) [alt] gamma-hat 1.0775: distance from mean of builds -0.180 sigma_fit (line |d|<=0.15)
+  hand estimate of SD/sigma_fit if flipped pairs were average pairs: 0.156
+done in 699 s
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c3_fits.py --part ladder
+CFG239 c3 fits | part ladder | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+  built 30 builds x 7 subsets (210 fits) in 20 s; bucket sizes of k0: [1647, 1522, 1474, 1570]
+  fitted in 811 s
+  [can] N~1550: N=1551 pooled SD 0.0336 / sigma_fit 0.1170 = 0.287
+  [can] N~3100: N=3101 pooled SD 0.0224 / sigma_fit 0.0825 = 0.271
+  [can] N~6200: N=6202 pooled SD 0.0195 / sigma_fit 0.0570 = 0.342
+  [can] slope of ln(ratio) on ln N = +0.126; bootstrap 95% interval (-0.016, +0.269); contains 0: True; inside (-0.30,+0.30): True
+      N~1550 per-subset SD/mean sigma_fit: 0.275, 0.265, 0.311, 0.231
+      N~3100 per-subset SD/mean sigma_fit: 0.239, 0.296
+      N~6200 per-subset SD/mean sigma_fit: 0.342
+  [alt] N~1550: N=1551 pooled SD 0.0280 / sigma_fit 0.1070 = 0.262
+  [alt] N~3100: N=3101 pooled SD 0.0264 / sigma_fit 0.0816 = 0.324
+  [alt] N~6200: N=6202 pooled SD 0.0161 / sigma_fit 0.0511 = 0.315
+  [alt] slope of ln(ratio) on ln N = +0.133; bootstrap 95% interval (-0.108, +0.339); contains 0: True; inside (-0.30,+0.30): False
+      N~1550 per-subset SD/mean sigma_fit: 0.235, 0.000, 0.255, 0.239
+      N~3100 per-subset SD/mean sigma_fit: 0.285, 0.363
+      N~6200 per-subset SD/mean sigma_fit: 0.315
+done in 812 s
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c3_fits.py --part mu1
+CFG239 c3 fits | part mu1 | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+  seeds identical (SEED x3): csv sha ['6fff64d964ebaa72', '6fff64d964ebaa72', '6fff64d964ebaa72']; flips 0, 0; sigma_build canonical 0.0 alt 0.0
+done in 2 s
+guard after run ok
+MU1 main: identical seeds -> identical csv, sigma_build exactly 0 on both footings: True
+exit=0
+>>> python3 -B CFG239_c3_fits.py
+CFG239 c3 fits | part mu1 | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 1
+  seeds DISTINCT (mutated): csv sha ['2ba4869f96d048c2', '38d060fd3e6779b9', '37edefe099f8b2c5']; flips 153, 160; sigma_build canonical 0.008660254037844458 alt 0.005773502691896263
+done in 2 s
+guard after run ok
+MUTATE1: assertion 'distinct seeds give sigma_build = 0' FAILS -> control bites (exit 1)
+exit=1
+>>> python3 -B CFG239_c3_fits.py --part thin
+CFG239 c3 fits | part thin | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+  thinning f=0.05 [can] n=30 mean gamma-hat 1.0958  SD 0.0203  mean sigma_fit 0.0584  SD/sigma_fit 0.348  (boot 16-84: 0.298-0.380)  kappa 1.006-1.025
+  thinning f=0.05 [alt] n=30 mean gamma-hat 1.0788  SD 0.0145  mean sigma_fit 0.0522  SD/sigma_fit 0.278  (boot 16-84: 0.243-0.304)  kappa 1.015-1.033
+    predicted SD/sigma_fit = sqrt(f/(1-f)) = 0.229
+  thinning f=0.02 [can] n=30 mean gamma-hat 1.0852  SD 0.0201  mean sigma_fit 0.0559  SD/sigma_fit 0.360  (boot 16-84: 0.301-0.406)  kappa 1.004-1.035
+  thinning f=0.02 [alt] n=30 mean gamma-hat 1.0754  SD 0.0136  mean sigma_fit 0.0510  SD/sigma_fit 0.266  (boot 16-84: 0.229-0.287)  kappa 1.016-1.033
+    predicted SD/sigma_fit = sqrt(f/(1-f)) = 0.143
+done in 226 s
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c3_fits.py
+CFG239 c3 fits | part thin | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 6
+  thinning f=0.0 [can] n=3 mean gamma-hat 1.0750  SD 0.0000  mean sigma_fit 0.0550  SD/sigma_fit 0.000  (boot 16-84: 0.000-0.000)  kappa 1.023-1.023
+  thinning f=0.0 [alt] n=3 mean gamma-hat 1.0775  SD 0.0000  mean sigma_fit 0.0512  SD/sigma_fit 0.000  (boot 16-84: 0.000-0.000)  kappa 1.025-1.025
+    predicted SD/sigma_fit = sqrt(f/(1-f)) = 0.000
+done in 1 s
+guard after run ok
+MUTATE6: f=0 thinning, assertion 'harness detects build noise (ratio>0.10)' FAILS -> control bites (exit 1)
+exit=1
+>>> python3 -B CFG239_c4_streams.py
+CFG239 c4 streams | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+  built array wp2g1: 10208 pairs (2 s)
+  built array wp2g2: 10227 pairs (2 s)
+  built array wp2g3: 10228 pairs (2 s)
+  built array wp2g4: 10232 pairs (2 s)
+  built array wp2g5: 10219 pairs (2 s)
+  built array wp2g6: 10222 pairs (2 s)
+  built array wp2g7: 10229 pairs (2 s)
+  built array wp2g8: 10230 pairs (2 s)
+  built array wp2g9: 10230 pairs (2 s)
+pair array sizes U_k: [10230, 10208, 10227, 10228, 10232, 10219, 10222, 10229, 10230, 10230] | uncovered corr id entries (zero-filled): [14, 16, 18, 16, 12, 12, 18, 14, 10, 12]
+membership of the MC array U_k against U_0 (both directions, k=1..9): [46, 35, 38, 42, 43, 68, 41, 42, 38] mean 43.7; A_V-ok part: mean 39.1
+
+Flips against k=0 of the same family (one-way = in k=0, absent from k)
+  ALL                        one-way [164, 165, 160, 150, 159, 166, 175, 159, 166] mean 162.7; final counts mean 6201.3 SD 9.7; of which pair not in U_k at all (membership) mean 8.2
+  G-only                     one-way [148, 137, 136, 155, 140, 145, 142, 159, 145] mean 145.2; final counts mean 6204.7 SD 10.4; of which pair not in U_k at all (membership) mean 0.4
+  EF-only (sequential G)     one-way [164, 159, 186, 152, 156, 159, 154, 141, 141] mean 156.9; final counts mean 6200.8 SD 15.5; of which pair not in U_k at all (membership) mean 8.2
+  EF-only (per-pair G)       one-way [18, 6, 7, 6, 7, 11, 6, 6, 7] mean 8.2; final counts mean 6193.5 SD 4.8; of which pair not in U_k at all (membership) mean 8.2
+
+Fits (pipeline's own --catalog run, registered seed), 10 builds per family
+fits done
+  ALL [can] n=10 mean gamma-hat 1.1005  SD 0.0178  mean sigma_fit 0.0557  SD/sigma_fit 0.320  (boot 16-84: 0.257-0.344)  kappa 1.011-1.023
+  ALL [alt] n=10 mean gamma-hat 1.0825  SD 0.0141  mean sigma_fit 0.0511  SD/sigma_fit 0.276  (boot 16-84: 0.182-0.333)  kappa 1.017-1.030
+    SD/sigma_tot: can 0.301, alt 0.257
+  G-only [can] n=10 mean gamma-hat 1.1105  SD 0.0221  mean sigma_fit 0.0569  SD/sigma_fit 0.389  (boot 16-84: 0.277-0.450)  kappa 1.007-1.023
+  G-only [alt] n=10 mean gamma-hat 1.0900  SD 0.0111  mean sigma_fit 0.0505  SD/sigma_fit 0.220  (boot 16-84: 0.188-0.229)  kappa 1.018-1.025
+    SD/sigma_tot: can 0.367, alt 0.205
+  EF-only (sequential G) [can] n=10 mean gamma-hat 1.0995  SD 0.0231  mean sigma_fit 0.0554  SD/sigma_fit 0.417  (boot 16-84: 0.295-0.477)  kappa 1.010-1.029
+  EF-only (sequential G) [alt] n=10 mean gamma-hat 1.0707  SD 0.0204  mean sigma_fit 0.0511  SD/sigma_fit 0.400  (boot 16-84: 0.307-0.441)  kappa 1.018-1.035
+    SD/sigma_tot: can 0.392, alt 0.373
+  EF-only (per-pair G) [can] n=10 mean gamma-hat 1.0900  SD 0.0076  mean sigma_fit 0.0551  SD/sigma_fit 0.139  (boot 16-84: 0.082-0.166)  kappa 1.017-1.023
+  EF-only (per-pair G) [alt] n=10 mean gamma-hat 1.0907  SD 0.0096  mean sigma_fit 0.0521  SD/sigma_fit 0.184  (boot 16-84: 0.143-0.202)  kappa 1.018-1.025
+    SD/sigma_tot: can 0.130, alt 0.172
+
+PASS LINES (family alone 'reproduces the whole spread': flips within [0.75,1.25] x ALL and SD ratio within a factor 2 of ALL)
+  G-only: flips ratio to ALL 0.89 (ok); SD-ratio vs ALL can 1.22 alt 0.80 (ok)
+  EF-only (sequential G): flips ratio to ALL 0.96 (ok); SD-ratio vs ALL can 1.30 alt 1.45 (ok)
+  EF-only per-pair G flips 8.2 vs sequential 156.9: ratio 0.05 (line: < 0.50 means the EF stream's own noise is small; the sequential EF-only spread rides on claim 1)
+  [can] SD/sigma_fit: ALL 0.320, G-only 0.389, EF-seq 0.417, EF-per-pair 0.139
+  [alt] SD/sigma_fit: ALL 0.276, G-only 0.220, EF-seq 0.400, EF-per-pair 0.184
+  [PASS] G-only
+  [PASS] EF-only (sequential G)
+  [PASS] MU7 per-pair < 50% of sequential
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c4_streams.py
+CFG239 c4 streams | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 7
+pair array sizes U_k: [10230, 10208, 10227, 10228, 10232, 10219, 10222, 10229, 10230, 10230] | uncovered corr id entries (zero-filled): [14, 16, 18, 16, 12, 12, 18, 14, 10, 12]
+MUTATE7: EF-only with the SEQUENTIAL stream in the per-pair slot: flips 156.9 vs sequential 156.9; assertion '< 50%'  FAILS
+exit=1
+>>> python3 -B CFG239_c3_fits.py --part thin2
+CFG239 c3 fits | part thin2 | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+  POST HOC thinning f=0.001 (6 pairs dropped) [can] n=20 mean gamma-hat 1.0761  SD 0.0031  mean sigma_fit 0.0530  SD/sigma_fit 0.058  (boot 16-84: 0.043-0.069)  kappa 1.023-1.027
+  POST HOC thinning f=0.001 (6 pairs dropped) [alt] n=20 mean gamma-hat 1.0765  SD 0.0015  mean sigma_fit 0.0520  SD/sigma_fit 0.029  (boot 16-84: 0.024-0.032)  kappa 1.024-1.026
+  POST HOC thinning f=0.005 (31 pairs dropped) [can] n=20 mean gamma-hat 1.0806  SD 0.0080  mean sigma_fit 0.0541  SD/sigma_fit 0.148  (boot 16-84: 0.110-0.172)  kappa 1.017-1.028
+  POST HOC thinning f=0.005 (31 pairs dropped) [alt] n=20 mean gamma-hat 1.0756  SD 0.0107  mean sigma_fit 0.0509  SD/sigma_fit 0.210  (boot 16-84: 0.165-0.240)  kappa 1.021-1.032
+  POST HOC thinning f=0.01 (62 pairs dropped) [can] n=20 mean gamma-hat 1.0847  SD 0.0053  mean sigma_fit 0.0548  SD/sigma_fit 0.097  (boot 16-84: 0.078-0.108)  kappa 1.018-1.025
+  POST HOC thinning f=0.01 (62 pairs dropped) [alt] n=20 mean gamma-hat 1.0786  SD 0.0104  mean sigma_fit 0.0512  SD/sigma_fit 0.203  (boot 16-84: 0.163-0.233)  kappa 1.017-1.030
+  POST HOC identical pair set, rows shuffled (20 orders) [can] n=20 mean gamma-hat 1.0806  SD 0.0061  mean sigma_fit 0.0528  SD/sigma_fit 0.115  (boot 16-84: 0.094-0.130)  kappa 1.020-1.025
+  POST HOC identical pair set, rows shuffled (20 orders) [alt] n=20 mean gamma-hat 1.0805  SD 0.0044  mean sigma_fit 0.0500  SD/sigma_fit 0.088  (boot 16-84: 0.065-0.101)  kappa 1.022-1.026
+done in 317 s
+guard after run ok
+exit=0
+>>> python3 -B CFG239_c5_posthoc.py
+CFG239 c5 POST HOC | repo <repo> | DR3 = code-path test only (Amdt 7(e))
+(a) frozen seeds SEED+0..9: one-direction mean N(0->k) 145.22; reverse 139.33; half-symmetric difference mean 142.28
+    (the quoted '142.3 one-way' of the calc chat is reproduced by the half-symmetric-difference definition: see the post-run compare)
+    null (E3 p-hat, 4000 reps): mean 150.5 SD 4.1; observed 142.3: z = -2.03
+    their predictor sum p(1-p) over ten seeds (E1) = 133.4: observed - E1 = +8.9 = +2.18 null SD; E3 = 151.2: observed - E3 = -9.0 = -2.20 SD
+(b) seed averaging, random m-subsets of the 100 G-only builds (2000 draws each); ratio = SD_m / [SD_1 sqrt((N-m)/((N-1) m))] (1 = independent builds)
+    [can] m=2: 0.99; m=5: 0.99; m=10: 1.02; m=20: 0.99; m=50: 0.97
+    [alt] m=2: 1.00; m=5: 1.00; m=10: 0.94; m=20: 0.98; m=50: 1.00
+(c) pooled G-only builds (101 distinct seeds; WITHOUT the SEED+1..50 set)
+  pooled G-only [can] n=101 mean gamma-hat 1.1103  SD 0.0204  mean sigma_fit 0.0568  SD/sigma_fit 0.358  (boot 16-84: 0.336-0.376)  kappa 1.002-1.026
+  pooled G-only [alt] n=101 mean gamma-hat 1.0867  SD 0.0171  mean sigma_fit 0.0514  SD/sigma_fit 0.333  (boot 16-84: 0.309-0.353)  kappa 1.012-1.032
+    [can] gamma-hat distribution over builds: skew -0.08, excess kurtosis -0.74; quantisation step of gamma-hat 0.0025 (distinct values 22)
+    [alt] gamma-hat distribution over builds: skew -0.38, excess kurtosis -0.30; quantisation step of gamma-hat 0.0025 (distinct values 15)
+guard after run ok
+exit=0
+>>> python3 -B CFG239_post_compare.py
+CFG239 POST-RUN compare | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | opened only after my own runs were saved
+G-only builds SEED+k, k=0..50 against the calc chat's final_g50.csv: present 51, missing 0
+  pair-set differences (mine-only, theirs-only): identical in 46 of 51; max mine-only 1, max theirs-only 2; total mine-only 1, theirs-only 6
+  builds that differ (k, (mine-only, theirs-only, n_mine, n_theirs)): [(4, (1, 0, 6192, 6191)), (8, (0, 2, 6190, 6192)), (10, (0, 1, 6195, 6196)), (42, (0, 1, 6196, 6197)), (48, (0, 2, 6193, 6195))]
+
+my 51 G-only builds on seeds SEED+0..50 (the calc chat's G50 seed set), registered fit path:
+  G-only SEED+0..50 [can] n=51 mean gamma-hat 1.1086  SD 0.0247  mean sigma_fit 0.0564  SD/sigma_fit 0.437  (boot 16-84: 0.395-0.466)  kappa 1.002-1.033
+  G-only SEED+0..50 [alt] n=51 mean gamma-hat 1.0852  SD 0.0207  mean sigma_fit 0.0514  SD/sigma_fit 0.402  (boot 16-84: 0.363-0.430)  kappa 1.012-1.034
+
+half-symmetric-difference flips (the definition that reproduces the committed 157.8 / 142.3 / 151.8), k=1..9 against k=0:
+  ALL     : half-sym-diff mean 157.8 (one direction 162.7)   committed: ALL 157.8, G-only 142.3, EF-only 151.8
+  G-only  : half-sym-diff mean 142.3 (one direction 145.2)   committed: ALL 157.8, G-only 142.3, EF-only 151.8
+  EF-only : half-sym-diff mean 151.8 (one direction 156.9)   committed: ALL 157.8, G-only 142.3, EF-only 151.8
+  also identical to the committed: membership difference 43.7, ten-seed marginal pairs 848, final-count SD 9.7 (see c4/c2 outputs)
+guard after run ok
+exit=0

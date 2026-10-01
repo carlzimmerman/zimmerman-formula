@@ -1,0 +1,35 @@
+CFG239 c4 streams | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | MUTATE = 0
+pair array sizes U_k: [10230, 10208, 10227, 10228, 10232, 10219, 10222, 10229, 10230, 10230] | uncovered corr id entries (zero-filled): [14, 16, 18, 16, 12, 12, 18, 14, 10, 12]
+membership of the MC array U_k against U_0 (both directions, k=1..9): [46, 35, 38, 42, 43, 68, 41, 42, 38] mean 43.7; A_V-ok part: mean 39.1
+
+Flips against k=0 of the same family (one-way = in k=0, absent from k)
+  ALL                        one-way [164, 165, 160, 150, 159, 166, 175, 159, 166] mean 162.7; final counts mean 6201.3 SD 9.7; of which pair not in U_k at all (membership) mean 8.2
+  G-only                     one-way [148, 137, 136, 155, 140, 145, 142, 159, 145] mean 145.2; final counts mean 6204.7 SD 10.4; of which pair not in U_k at all (membership) mean 0.4
+  EF-only (sequential G)     one-way [164, 159, 186, 152, 156, 159, 154, 141, 141] mean 156.9; final counts mean 6200.8 SD 15.5; of which pair not in U_k at all (membership) mean 8.2
+  EF-only (per-pair G)       one-way [18, 6, 7, 6, 7, 11, 6, 6, 7] mean 8.2; final counts mean 6193.5 SD 4.8; of which pair not in U_k at all (membership) mean 8.2
+
+Fits (pipeline's own --catalog run, registered seed), 10 builds per family
+fits done
+  ALL [can] n=10 mean gamma-hat 1.1005  SD 0.0178  mean sigma_fit 0.0557  SD/sigma_fit 0.320  (boot 16-84: 0.257-0.344)  kappa 1.011-1.023
+  ALL [alt] n=10 mean gamma-hat 1.0825  SD 0.0141  mean sigma_fit 0.0511  SD/sigma_fit 0.276  (boot 16-84: 0.182-0.333)  kappa 1.017-1.030
+    SD/sigma_tot: can 0.301, alt 0.257
+  G-only [can] n=10 mean gamma-hat 1.1105  SD 0.0221  mean sigma_fit 0.0569  SD/sigma_fit 0.389  (boot 16-84: 0.277-0.450)  kappa 1.007-1.023
+  G-only [alt] n=10 mean gamma-hat 1.0900  SD 0.0111  mean sigma_fit 0.0505  SD/sigma_fit 0.220  (boot 16-84: 0.188-0.229)  kappa 1.018-1.025
+    SD/sigma_tot: can 0.367, alt 0.205
+  EF-only (sequential G) [can] n=10 mean gamma-hat 1.0995  SD 0.0231  mean sigma_fit 0.0554  SD/sigma_fit 0.417  (boot 16-84: 0.295-0.477)  kappa 1.010-1.029
+  EF-only (sequential G) [alt] n=10 mean gamma-hat 1.0707  SD 0.0204  mean sigma_fit 0.0511  SD/sigma_fit 0.400  (boot 16-84: 0.307-0.441)  kappa 1.018-1.035
+    SD/sigma_tot: can 0.392, alt 0.373
+  EF-only (per-pair G) [can] n=10 mean gamma-hat 1.0900  SD 0.0076  mean sigma_fit 0.0551  SD/sigma_fit 0.139  (boot 16-84: 0.082-0.166)  kappa 1.017-1.023
+  EF-only (per-pair G) [alt] n=10 mean gamma-hat 1.0907  SD 0.0096  mean sigma_fit 0.0521  SD/sigma_fit 0.184  (boot 16-84: 0.143-0.202)  kappa 1.018-1.025
+    SD/sigma_tot: can 0.130, alt 0.172
+
+PASS LINES (family alone 'reproduces the whole spread': flips within [0.75,1.25] x ALL and SD ratio within a factor 2 of ALL)
+  G-only: flips ratio to ALL 0.89 (ok); SD-ratio vs ALL can 1.22 alt 0.80 (ok)
+  EF-only (sequential G): flips ratio to ALL 0.96 (ok); SD-ratio vs ALL can 1.30 alt 1.45 (ok)
+  EF-only per-pair G flips 8.2 vs sequential 156.9: ratio 0.05 (line: < 0.50 means the EF stream's own noise is small; the sequential EF-only spread rides on claim 1)
+  [can] SD/sigma_fit: ALL 0.320, G-only 0.389, EF-seq 0.417, EF-per-pair 0.139
+  [alt] SD/sigma_fit: ALL 0.276, G-only 0.220, EF-seq 0.400, EF-per-pair 0.184
+  [PASS] G-only
+  [PASS] EF-only (sequential G)
+  [PASS] MU7 per-pair < 50% of sequential
+guard after run ok

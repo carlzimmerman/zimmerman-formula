@@ -1,0 +1,15 @@
+CFG239 POST-RUN compare | repo <repo> | DR3 = code-path test only (Amdt 7(e)) | opened only after my own runs were saved
+G-only builds SEED+k, k=0..50 against the calc chat's final_g50.csv: present 51, missing 0
+  pair-set differences (mine-only, theirs-only): identical in 46 of 51; max mine-only 1, max theirs-only 2; total mine-only 1, theirs-only 6
+  builds that differ (k, (mine-only, theirs-only, n_mine, n_theirs)): [(4, (1, 0, 6192, 6191)), (8, (0, 2, 6190, 6192)), (10, (0, 1, 6195, 6196)), (42, (0, 1, 6196, 6197)), (48, (0, 2, 6193, 6195))]
+
+my 51 G-only builds on seeds SEED+0..50 (the calc chat's G50 seed set), registered fit path:
+  G-only SEED+0..50 [can] n=51 mean gamma-hat 1.1086  SD 0.0247  mean sigma_fit 0.0564  SD/sigma_fit 0.437  (boot 16-84: 0.395-0.466)  kappa 1.002-1.033
+  G-only SEED+0..50 [alt] n=51 mean gamma-hat 1.0852  SD 0.0207  mean sigma_fit 0.0514  SD/sigma_fit 0.402  (boot 16-84: 0.363-0.430)  kappa 1.012-1.034
+
+half-symmetric-difference flips (the definition that reproduces the committed 157.8 / 142.3 / 151.8), k=1..9 against k=0:
+  ALL     : half-sym-diff mean 157.8 (one direction 162.7)   committed: ALL 157.8, G-only 142.3, EF-only 151.8
+  G-only  : half-sym-diff mean 142.3 (one direction 145.2)   committed: ALL 157.8, G-only 142.3, EF-only 151.8
+  EF-only : half-sym-diff mean 151.8 (one direction 156.9)   committed: ALL 157.8, G-only 142.3, EF-only 151.8
+  also identical to the committed: membership difference 43.7, ten-seed marginal pairs 848, final-count SD 9.7 (see c4/c2 outputs)
+guard after run ok
