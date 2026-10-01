@@ -59,6 +59,7 @@ check("Danhaive gold: 41 discs at z 3.80-5.82", len(dan) == 41 and abs(min(dan) 
 check("Roman-Oliveira with kinematics: 4", len(ro) == 4, f"({len(ro)}: {[i for i, _ in ro]})")
 check("Amvrosiadis without an a0: 8", len(amv) == 8, f"({len(amv)})")
 nr = [o for o in ("ALPAKA15", "ALPAKA18", "ALPAKA19", "ALPAKA20", "ALPAKA22", "SINS_BX610", "VC5110377875", "SPT0418-47") if pts[o]["no_root"] == "1"]
+check("DESI CPL curve is nearly flat: about 0.87 x local at z = 2", abs(np.interp(2.0, Zc, cur["M-DEC"]) - 0.87) < 0.01, f"({np.interp(2.0, Zc, cur['M-DEC']):.3f})")
 check("eight calculated galaxies with no a0 solution (6 class M + 2 ALMA)", len(nr) == 8, f"({len(nr)})")
 for lab, z0, z1, note in TODO: P(f"  no-a0-yet row: {lab:28s} z {z0:.2f}-{z1:.2f}  {note}")
 
@@ -66,12 +67,12 @@ for lab, z0, z1, note in TODO: P(f"  no-a0-yet row: {lab:28s} z {z0:.2f}-{z1:.2f
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11, "axes.spines.top": False, "axes.spines.right": False,
                      "axes.edgecolor": "#555", "xtick.color": "#444", "ytick.color": "#444"})
 INK, MUTED = "#16202c", "#6b7480"
-LAW = {"FLAT": "#111111", "H(z)": "#d1342f", "PROXY": "#7b3fbf"}
+LAW = {"FLAT": "#111111", "H(z)": "#d1342f", "PROXY": "#7b3fbf", "M-DEC": "#1b9aaa"}
 COL = {"RC100": "#1f5aa6", "CRISTAL": "#e07b00", "M": "#8a5a00", "ALMA": "#2e8b3e"}
 
 fig = plt.figure(figsize=(14, 10.2), dpi=170)
 ax = fig.add_axes([0.075, 0.33, 0.885, 0.50])
-sx = fig.add_axes([0.075, 0.098, 0.885, 0.215], sharex=ax)
+sx = fig.add_axes([0.075, 0.118, 0.885, 0.2], sharex=ax)
 XLO, XHI, YLO, YHI = -0.12, 6.0, 0.17, 30
 
 # ---------------- main: calculated a0 ----------------
@@ -81,6 +82,13 @@ for x0, x1, t in ((0.6, 2.6, "cosmic noon"), (4.0, 6.0, "first 1.5 billion years
     ax.text((x0 + x1) / 2, 23, t, ha="center", color="#8a94a0", fontsize=10, style="italic")
 ax.axhspan(YLO, 0.30, color="#f6f2ea", zorder=0, lw=0)
 m = Zc <= XHI
+lo_b = np.minimum(np.array(cur["DESI DESY5"]), np.array(cur["DESI Union3"]))[m] * U
+hi_b = np.maximum(np.array(cur["DESI DESY5"]), np.array(cur["DESI Union3"]))[m] * U
+ax.fill_between(Zc[m], lo_b, hi_b, color=LAW["M-DEC"], alpha=0.13, lw=0, zorder=1)
+md = np.array(cur["M-DEC"])[m] * U; zz = Zc[m]
+ax.plot(zz[zz <= 2.5], md[zz <= 2.5], color=LAW["M-DEC"], lw=2.2, zorder=2)
+ax.plot(zz[zz >= 2.5], md[zz >= 2.5], color=LAW["M-DEC"], lw=2.2, ls=(0, (1.2, 2.2)), zorder=2)
+ax.text(2.95, 0.53, r"$a_0 \propto \sqrt{\rho_{DE}}$ (DESI dark energy)", color=LAW["M-DEC"], fontsize=11, ha="left", fontweight="bold")
 for k, kw in (("PROXY", dict(lw=2.2, ls=(0, (5, 3)))), ("H(z)", dict(lw=2.8)), ("FLAT", dict(lw=2.8))):
     ax.plot(Zc[m], np.array(cur[k])[m] * U, color=LAW[k], zorder=2, **kw)
 ax.text(5.95, 10.6, r"$a_0$ grows with $H(z)$", color=LAW["H(z)"], fontsize=12.5, ha="right", fontweight="bold")
@@ -152,8 +160,8 @@ fig.text(0.075, 0.955, "Is $a_0$ constant across 12 billion years?  Not decidabl
 fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from one that grows with $H(z)$: at z > 1 the gas masses are uncertain by 0.2-0.7 dex,\n"
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
-fig.text(0.075, 0.008, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); "
+fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); "
          "CFG197, CFG235, CFG258, L328 (tests that gave no $a_0$ value).  Some points nudged in z for legibility.  Plot only: chart_a0z_one.py.",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
