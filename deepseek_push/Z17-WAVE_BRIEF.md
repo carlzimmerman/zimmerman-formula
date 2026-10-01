@@ -52,3 +52,11 @@ closed forms (loaded-not-transcribed from E2F1_results.json `symbolic`) against
 ## House rules 1-10 apply verbatim (LOOP_CONDUCTOR.md). No git commits by the
 lane; conductor commits work+math only (LR10X_* + Z17-WAVE_BRIEF.md + register
 row). Raw data untouched; astra_spawn_ideas + _g208 probes untouched (rule 8).
+
+## AMENDMENT 1 (pre-run, before LR10X run-1)
+E2F1's `rint` used a term cache keyed on srepr[:120] — a runtime optimization with
+a real collision risk (two distinct terms sharing a 120-char srepr prefix would
+collapse). LR10X reproduces the S4/S5 chain VERBATIM except: the term cache is
+DROPPED (straight Add over all terms) — tooling only, no math change; if the cache
+did collapse terms in E2F1's tot, the G-X1/G-X2/G-X3 gates will fire and that is
+E2F1 tooling verdict, recorded honestly.
