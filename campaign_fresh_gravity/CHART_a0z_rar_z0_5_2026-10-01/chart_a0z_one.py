@@ -28,10 +28,9 @@ pts = {r["object"]: r for r in csv.DictReader(open(os.path.join(CFG, "CHART_a0z_
 J223 = json.load(open(os.path.join(CFG, "CFG223_a0_over_cosmic_time", "cfg223_results.json")))
 J228 = json.load(open(os.path.join(CFG, "CFG228_alma_cubes", "cfg228_score_results.json")))
 J229 = json.load(open(os.path.join(CFG, "CFG229_class_m_gold", "cfg229_score_results.json")))
+M262 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG262_musedark_zthirds_by_route", "cfg262_points_stageB.csv"))) if r["reading"] == "bD"]
 K261 = [r for r in csv.DictReader(open(os.path.join(CFG, "CFG261_kids_absolute_a0_zthirds", "cfg261_points_stageB.csv"))) if r["set"] == "T"]
 J255 = json.load(open(os.path.join(CFG, "CFG255_lensing_rar_zsplit", "cfg255_stageB_results.json")))["numbers"]
-J199 = json.load(open(os.path.join(CFG, "CFG199_musedark_level_pressure", "cfg199_musedark_level_results.json")))["numbers"]["readings"]
-MD = J199["b: v_perp = v_file / sin i"]["L1"]     # reading (b), the better-supported one (CFG199 README); a LOWER bound (no pressure term)
 rar = list(csv.DictReader(open(os.path.join(CFG, "CFG227_rar_z2_5", "cfg227_points.csv"))))
 cur = J223["curves"]; Zc = np.array(cur["z"])
 f = lambda r, k: float(r[k]) if r[k] not in ("", "nan") else np.nan
@@ -71,7 +70,7 @@ check("DESI CPL curve is nearly flat: about 0.87 x local at z = 2", abs(np.inter
 check("SINS AO 35 and KMOS3D 192 cube products on disk", len(sins) == 35 and len(k3d) == 192, f"({len(sins)}, {len(k3d)})")
 check("CFG261 class rows: late 1.67 / 0.68, early 2.48 / 4.12 (80fd3d666)", len(K261) == 4 and [round(float(r["s_star"]), 2) for r in K261] == [1.67, 0.68, 2.48, 4.12], f"({[round(float(r['s_star']), 2) for r in K261]})")
 check("KiDS split: A = +0.060 +- 0.038 dex, FLAT +0.001, RIVAL +0.019 (CFG255 stage B)", abs(J255["A_data"] - 0.0595) < 1e-3 and abs(J255["sigma_A"] - 0.0383) < 1e-3, f"(A {J255['A_data']:.4f}, sigma {J255['sigma_A']:.4f})")
-check("MUSE-DARK lower bound at z~0.52, reading (b): log a0 >= -10.14 [-10.45, -9.94], n = 36", abs(MD["median"] + 10.143) < 2e-3 and MD["n"] == 36, f"({MD['median']:.3f}, n {MD['n']})")
+check("CFG262 bD rows: route i 1.22/3.05/4.53, ii 0.46/1.02/0.36, iii 1.58/3.32/1.71 (fb24a5922)", sorted(round(float(r["s_star"]), 2) for r in M262) == sorted([1.22, 3.05, 4.53, 0.46, 1.02, 0.36, 1.58, 3.32, 1.71]), f"({len(M262)} rows)")
 check("eight calculated galaxies with no a0 solution (6 class M + 2 ALMA)", len(nr) == 8, f"({len(nr)})")
 for lab, z0, z1, note in TODO: P(f"  no-a0-yet row: {lab:28s} z {z0:.2f}-{z1:.2f}  {note}")
 
@@ -135,12 +134,30 @@ for o, x in NRX.items():
     ax.scatter([x], [0.215], marker="v", s=70, color=COL["M"] if not o.startswith(("SPT", "VC")) else COL["ALMA"], zorder=6, edgecolor="white", lw=0.6)
 ax.text(0.12, 0.222, "calculated, but no $a_0$ fits (8 galaxies):\nthe stars + gas already exceed what the rotation needs  ▸",
         fontsize=9.5, color="#7a5a1a", va="center")
-# MUSE-DARK (CFG199): no-pressure LOWER bound on the level at z ~ 0.52; the true a0 lies above it
-COL_MD = "#b0548f"; zmd = 0.52; lb = 10 ** MD["median"] / 1e-10; lo, hi = (10 ** c / 1e-10 for c in MD["ci"])
-ax.plot([zmd, zmd], [lo, hi], color=COL_MD, lw=4.6, solid_capstyle="butt", zorder=5, alpha=0.55)
-ax.annotate("", xy=(zmd, lb * 2.3), xytext=(zmd, lb), arrowprops=dict(arrowstyle="-|>", color=COL_MD, lw=2.0), zorder=6)
-ax.plot([zmd - 0.07, zmd + 0.07], [lb, lb], color=COL_MD, lw=2.6, zorder=6)
-ax.text(zmd + 0.07, 0.345, "MUSE-DARK lower bound (36 galaxies)", color=COL_MD, fontsize=9.5, ha="left", va="center", fontweight="bold")
+# MUSE-DARK (CFG262, fb24a5922): implied a0 in z-thirds BY BARYON ROUTE, reading bD (projected + asymmetric drift, CFG236's
+# best-supported reading). Routes are separate series and are never pooled; all inputs are one DC14 fit plus an SED mass.
+COL_MD = "#b0548f"
+RSTY = {"i": dict(dx=-0.045, mk="^", ls="-", fc=COL_MD, lab="(i) fitted masses"),
+        "ii": dict(dx=0.0, mk="s", ls=(0, (4, 2)), fc="white", lab="(ii) SED + H$_2$  (H$_2$-limited)"),
+        "iii": dict(dx=0.045, mk="D", ls=(0, (1, 1.6)), fc="#e3b3d1", lab="(iii) SED stars")}
+for rt, st in RSTY.items():
+    rows = sorted([r for r in M262 if r["route"] == rt], key=lambda r: f(r, "z"))
+    xs = [f(r, "z") + st["dx"] for r in rows]; ys = [f(r, "s_star") * U for r in rows]
+    ax.plot(xs, ys, color=COL_MD, lw=1.1, ls=st["ls"], zorder=4, alpha=0.8)
+    for r, xx, yy in zip(rows, xs, ys):
+        if rt == "ii":
+            lo, hi = max(f(r, "outer_lo"), 0.30 / U), f(r, "outer_hi")   # clipped at the floor zone
+            ax.add_patch(plt.Rectangle((xx - 0.02, lo * U), 0.04, (hi - lo) * U, color=COL_MD, alpha=0.10, lw=0, zorder=3))
+        ax.plot([xx, xx], [f(r, "stat68_lo") * U, f(r, "stat68_hi") * U], color=COL_MD, lw=2.6, zorder=5, solid_capstyle="butt")
+        ax.scatter([xx], [yy], marker=st["mk"], s=46, facecolor=st["fc"], edgecolor=COL_MD, linewidth=1.4, zorder=6)
+lx, ly = 2.35, 21.0
+ax.text(lx - 0.05, ly * 1.22, "MUSE-DARK, by baryon route", color=COL_MD, fontsize=9.5, fontweight="bold", ha="left")
+for k, (rt, st) in enumerate(RSTY.items()):
+    yy = ly / (1.27 ** k)
+    ax.plot([lx, lx + 0.14], [yy, yy], color=COL_MD, lw=1.1, ls=st["ls"])
+    ax.scatter([lx + 0.07], [yy], marker=st["mk"], s=40, facecolor=st["fc"], edgecolor=COL_MD, linewidth=1.3, zorder=6)
+    ax.text(lx + 0.2, yy, st["lab"], color=COL_MD, fontsize=9, va="center")
+ax.text(lx - 0.05, ly / (1.27 ** 3), "route-dependent, not an independent $a_0$", color=COL_MD, fontsize=8.5, style="italic", va="center")
 # KiDS lensing (CFG261, 80fd3d666): absolute implied-a0 levels in the CFG255 lens-z thirds, by colour class (the class rows
 # T-*; the joint rows are never headlines, CFG261 README). M* zero point dominates (lever -1.1); classes disagree at the high-z third.
 KCOL = "#2a6f97"
@@ -195,7 +212,7 @@ fig.text(0.075, 0.905, "None of these samples can separate a constant $a_0$ from
          "and a 0.05 dex error in the baryon mass moves the implied $a_0$ by ×1.5-1.8.  The dashed sets at the bottom are data in hand with no $a_0$ value yet.",
          fontsize=11.5, color="#3d4651", va="center")
 fig.text(0.075, 0.004, "Bars: thick 68 %, thin 95 % statistical; shaded: baryon-mass calibration band.  Descriptive compilation, not a verdict; "
-         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); CFG261 KiDS (absolute, by lens colour) and CFG199 MUSE-DARK (low z); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
+         "ΛCDM has no $a_0$ (purple is an effective-$a_0$ proxy); κ = ½ fitted.\nTeal: $a_0 \\propto \\sqrt{\\rho_{DE}}$ with the DESI DR2 CPL fit ($w_0, w_a$) = (-0.838, -0.62), dotted beyond z = 2.5; band = DESY5 and Union3.  Points nudged in z for legibility; plot only: chart_a0z_one.py.\nSources: CFG223, CFG227 + CFG237, CFG228, CFG229 (calculated); CFG261 KiDS (absolute, by lens colour) and CFG262 MUSE-DARK (by route); CFG197, CFG235, CFG258, L328 (no $a_0$ value).",
          fontsize=8.6, color="#7a828c")
 fig.savefig(os.path.join(HERE, "chart_a0z_one_2026-10-01.png"), dpi=170)
 P(f"{sum(CHECKS)}/{len(CHECKS)} checks pass; wrote chart_a0z_one_2026-10-01.png")
