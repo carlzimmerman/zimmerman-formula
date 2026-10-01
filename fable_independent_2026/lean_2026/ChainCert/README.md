@@ -127,3 +127,29 @@ NOT certified (still open):
 - Λ = 8πGρ_Λ/c² in `FluidLink`. It is a premise, and ρ_Λ being constant is still the premise `hflat`.
 - Every empirical fit and number.
 - That the theory is closed or derived.
+
+
+## Added 2026-09-30: `CalibrationWall` (CFG240: the baryon-calibration wall; 50 theorems, 331 in the library)
+
+`verify_chain.sh`: PASS, 331 theorems checked, standard axioms only, no `sorry`, no `axiom` declarations; `MUTATE=1` fails as required. `CalibrationWallMutate` 41/41 false variants rejected (`CalibrationWallMutate.lean.txt`, `CalibrationWallMutate.out`). Frozen criteria: `campaign_fresh_gravity/CFG240_FROZEN_CRITERIA.md`; numeric companion and the break-even table: `campaign_fresh_gravity/CFG240_calibration_wall/`. All 36 statements of the frozen list are proved as frozen; 14 more are added (two on T4's covariance form, twelve helpers).
+
+The law is DECLARED: `gObs ν f a0 g = (f g) ν((f g)/a0)`, f > 0 one multiplicative calibration of g_bar, the same f and a0 at every point.
+
+| link | statement | status | where |
+|---|---|---|---|
+| T1 deep wall | for ν = 1/√y, g_obs = √(f a0 g) (`T1_deep_law`); equal g_obs for all g iff f a0 = f' a0' (`T1_deep_equal_products`, `T1_deep_iff`); a drift in log f or log a0 moves log g_obs by half (`T1_deep_drift`) | **certified** | `CalibrationWall` |
+| T1 for P2 | g_obs² = f²g² + (f a0)g (`P2_sq`, `P2_sq_y`); for f a0 = f' a0' the exact ratio g_obs'²(f²g + f a0) = g_obs²(f'²g + f a0) (`T1_P2_ratio`), i.e. (1 + ρ²y)/(1 + y) with ρ = f'/f, y = f g/a0; the bound `|g_obs'² − g_obs²| f a0 ≤ |f'² − f²| g g_obs²` (`T1_P2_bound`); g_obs'/g_obs → 1 as g → 0⁺ (`T1_P2_limit`) | **certified** | `CalibrationWall` |
+| T1 any kernel | if ν(y)√y → 1 as y → 0⁺ (C2's premise) then g_obs/√(f a0 g) → 1 and, for equal products, g_obs'/g_obs → 1 (`T1_general_limit`, `T1_general_equal_products_limit`) | **certified** | `CalibrationWall` |
+| T2a, P2 | for f, f', a0, a0' > 0 and g1 ≠ g2 positive, equal g_obs at both points forces f = f', a0 = a0' (`T2a_P2_injective`; inversion `T2a_inversion`: f² = (A1/g1 − A2/g2)/(g1 − g2)). One point is not enough even for P2 (`T2a_one_point_fails`). No "not deep" hypothesis is needed | **certified** | `CalibrationWall` |
+| T2b | the deep kernel is not injective: (1, 1) and (2, ½) agree at every g (`T2b_deep_not_injective`) | **certified** | `CalibrationWall` |
+| T2c conditioning | with s = log f, t = log a0, y = f g/a0: ∂ log g_obs/∂s = (1 + 2y)/(2(1 + y)), ∂/∂t = 1/(2(1 + y)) (`T2c_dlogf`, `T2c_dloga`); rows (1 − b, b), b = 1/(2(1 + y)) (`T2c_rows`); the two-point Jacobian determinant is (y1 − y2)/(2(1 + y1)(1 + y2)) = b(y2) − b(y1) (`T2c_det`, `T2c_det_general`), nonzero iff y1 ≠ y2 (`T2c_det_ne_zero_iff`), at most |y1 − y2|/2 and 1/(2(1 + min y)) and below ½ (`T2c_det_bounds`); the N-point Fisher determinant is (1/2)Σ(b_i − b_j)²/σ⁴, zero iff all b_i are equal (`T2c_fisher_det`, `T2c_fisher_singular_iff`) | **certified** | `CalibrationWall` |
+| T2e kernel-general | if log(eᵘ ν(eᵘ)) is strictly convex then two distinct positive g_bar determine (f, a0) (`T2e_injective_of_strictConvex`). The premise is a THEOREM for ν_mono (`nuMono_logslope_strictConvex`, hence `T2e_nuMono_injective`) and for P2 (`nuP2_logslope_strictConvex`) | **certified**; the frozen "not formalisable cleanly" test for ν_mono was passed, the fallback was not used | `CalibrationWall` |
+| T3 | for any ν → 1 at ∞: g_obs/g → f and g_obs(a0)/g_obs(a0') → 1 (`T3_newton_limit`, `T3_newton_limit_a0`; `nuP2_tendsto_one`, `nuMono_tendsto_one`) | **certified** | `CalibrationWall` |
+| T4 design bound | for rows (1 − b_i, b_i) with 0 ≤ b_i ≤ ½: 9 Σ_ij (b_i − b_j)² ≤ 2N Σ(1 − b_i)² (`T4_design_bound`); on the covariance, for σ > 0, N ≥ 1 and det F > 0, (F⁻¹)₂₂ = F₁₁/det F ≥ 9σ²/N (`T4_sigma_floor`; Fisher entries `fisher11/12/22`; closed form `T4_var_a0_closed_form`): σ(log a0) ≥ 3σ/√N for any sample with f free | **certified, conditional** on `0 ≤ b_i ≤ ½`, which is a HYPOTHESIS (for P2 it follows from b = 1/(2(1 + y)); for ν_mono it is checked numerically in the companion, not in Lean). Equality (2/3 of the points deep, 1/3 Newtonian) is numeric only | `CalibrationWall` |
+
+NOT certified (this is a statement about what the declared law CAN identify):
+- That any survey has a calibration factor f, its size or redshift dependence; that a0 is common to the points.
+- That nature follows P2 or ν_mono.
+- Any statistic beyond the algebra of the Fisher matrix as defined (the break-even table, ρ, cond(F), the prior on log f are numeric: `campaign_fresh_gravity/CFG240_calibration_wall/`).
+- Other systematics (selection, M/L, gas, non-circular motion); non-multiplicative calibrations (offsets, g-dependent f).
+- Any empirical fit and number. κ = ½ remains FITTED. That the theory is closed or derived.

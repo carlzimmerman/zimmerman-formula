@@ -14,6 +14,7 @@ import ChainCert.DoorEleven
 import ChainCert.Action
 import ChainCert.Dimension
 import ChainCert.FluidLink
+import ChainCert.CalibrationWall
 
 /-! `lake build ChainCert.Axioms` prints the axioms of every theorem in the library; every line must show only
     [propext, Classical.choice, Quot.sound] (checked by `verify_chain.sh`). -/
@@ -299,3 +300,53 @@ import ChainCert.FluidLink
 #print axioms FluidLink.link_sq
 #print axioms FluidLink.link_flat
 #print axioms CandidateB.fluid_cap_a0
+#print axioms CalibrationWall.nuP2_eq_nuBeta
+#print axioms CalibrationWall.T1_deep_law
+#print axioms CalibrationWall.T1_deep_equal_products
+#print axioms CalibrationWall.T1_deep_iff
+#print axioms CalibrationWall.T1_deep_drift
+#print axioms CalibrationWall.gObs_nuP2_pos
+#print axioms CalibrationWall.P2_sq
+#print axioms CalibrationWall.P2_sq_y
+#print axioms CalibrationWall.T1_P2_ratio
+#print axioms CalibrationWall.T1_P2_bound
+#print axioms CalibrationWall.T1_general_limit
+#print axioms CalibrationWall.T1_general_equal_products_limit
+#print axioms CalibrationWall.nuP2_deep
+#print axioms CalibrationWall.T1_P2_limit
+#print axioms CalibrationWall.T2a_inversion
+#print axioms CalibrationWall.T2a_P2_injective
+#print axioms CalibrationWall.T2a_one_point_fails
+#print axioms CalibrationWall.T2b_deep_not_injective
+#print axioms CalibrationWall.log_gObs_nuP2
+#print axioms CalibrationWall.T2c_dlogf
+#print axioms CalibrationWall.T2c_dloga
+#print axioms CalibrationWall.T2c_rows
+#print axioms CalibrationWall.T2c_det
+#print axioms CalibrationWall.T2c_det_ne_zero_iff
+#print axioms CalibrationWall.T2c_det_bounds
+#print axioms CalibrationWall.T2c_yratio
+#print axioms CalibrationWall.T2c_det_general
+#print axioms CalibrationWall.fisher_sum_id
+#print axioms CalibrationWall.sum_one_sub_sq
+#print axioms CalibrationWall.T2c_fisher_det
+#print axioms CalibrationWall.T2c_fisher_singular_iff
+#print axioms CalibrationWall.T4_design_bound
+#print axioms CalibrationWall.T3_newton_limit
+#print axioms CalibrationWall.T3_newton_limit_a0
+#print axioms CalibrationWall.nuP2_tendsto_one
+#print axioms CalibrationWall.T4_var_a0_closed_form
+#print axioms CalibrationWall.T4_sigma_floor
+#print axioms CalibrationWall.convex_increment
+#print axioms CalibrationWall.two_point_core
+#print axioms CalibrationWall.log_gObs_general
+#print axioms CalibrationWall.T2e_injective_of_strictConvex
+#print axioms CalibrationWall.nuMono_pos
+#print axioms CalibrationWall.nuMono_tendsto_one
+#print axioms CalibrationWall.Lmono_eq
+#print axioms CalibrationWall.LmonoF_hasDeriv
+#print axioms CalibrationWall.nuMono_logslope_strictConvex
+#print axioms CalibrationWall.T2e_nuMono_injective
+#print axioms CalibrationWall.LP2_eq
+#print axioms CalibrationWall.LP2F_hasDeriv
+#print axioms CalibrationWall.nuP2_logslope_strictConvex

@@ -1,0 +1,18 @@
+CFG240 Fisher companion MUTATE=4
+law: g_obs=(f g) nu((f g)/a0); theta=(log10 f, log10 a0); y=f0 g/a0 at the TRUE f0 (argument of nu); closed form rows (1-b, b)
+[PASS] PL1 analytic Fisher == finite-difference Fisher of gObs (rel <= 1e-8) worst rel 4.75e-13
+[PASS] PL2 closed form == sympy (derivatives at 20 y per kernel <= 1e-12; covariance/prior/det identities symbolic = 0) worst rel 5.58e-15; symbolic residuals ['0', '0', '0', '0', '0', '0']
+   sympy P2 d(log g_obs)/d(log f) = (g*exp(s) + exp(t)/2)/(g*exp(s) + exp(t)) ; d/d(log a0) = exp(t)/(2*(g*exp(s) + exp(t)))
+-- T1: deep-limit factorisation through f*a0
+[PASS] PL3a deep kernel: g_obs equal for equal products (rel <= 1e-14) worst 0.00e+00
+[PASS] PL3b P2: (g'^2-g^2)/g^2 = (rho^2-1) y/(1+y) (mpmath 50 digits, rel <= 1e-12), bound |1-rho^2| y holds max rel err 1.99e-16
+[PASS] PL3c P2: relative difference is linear in y as y -> 0 (log-log slope 1 +- 0.01) slope 0.9999
+[PASS] PL3d nu_mono: equal-product g_obs ratio -> 1 (value at y=1e-6 < 0.05 x value at y=1e-2) ratio 1.001e-02 (expected ~1e-2: O(sqrt y))
+[FAIL] PL4 rho < 0 in EVERY grid cell; single-y design rho = -1 (1e-12); deep corner rho < -0.999 all negative: False; single-y rho [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]; corner rho [1.0, 1.0]
+[PASS] PL5 design bound sigma(log a0) >= 3 sigma/sqrt(N): 0 violations in random designs; equality at the 2/3-deep two-cluster design (1e-12) designs 19505, violations 0, min ratio sigma_a0/(c sigma/sqrtN) = 1.134630, equality-design err 2.22e-16
+[PASS] PL6 two-point Jacobian det = b(y2)-b(y1) (1e-14), |det| < 1/2 on 200x200 y grid, P2 closed form (y1-y2)/(2(1+y1)(1+y2)), FD det (1e-9) worst 1.1e-16, P2 closed form 1.8e-16, max|det| 0.4995, fd_ok True
+[PASS] PL7 sigma_marg exactly linear in sigma; k-fold replicated design scales as 1/sqrt(k) (1e-12) [('P2', 0.0, 5.551115123125783e-17), ('nu_mono', 0.0, 0.0)]
+[PASS] PL8 eta = 1-b strictly increasing (grid, not a proof) with eta(-20)>1/2, eta(3.5)<1; b(1e4): P2 = 5e-5, nu_mono < 1e-30; T3 numeric limits b(1e4) P2 5.000e-05, nu_mono 1.9e-42, T3 True
+[PASS] PL9 break-even logic: first <= stable; sigma<target at first; never below the T4 floor (N=5,sigma=0.1 and N=20,sigma=0.2 return none) 
+[FAIL] PL10 README break-even table agrees with the JSON-derived table (README block missing or different; the generated table is in CFG240_break_even_table.md)
+MUTATE 4: CONTROL BITES (expected ['PL4'] all failed; all failed lines: ['PL4', 'PL10'])

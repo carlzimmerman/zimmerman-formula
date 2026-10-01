@@ -1,0 +1,87 @@
+import ChainCert.CalibrationWall
+-- Each theorem below is a FALSE variant of the corresponding CalibrationWall theorem, "proved" by the original's proof term
+-- (variants that drop a hypothesis still apply the original term to it). Lean must reject every one (one error per variant).
+open CalibrationWall
+open Filter Topology
+-- nuP2_eq_nuBeta: nuBeta 2
+theorem m01 {y : ℝ} (hy : 0 < y) : nuP2 y = nuBeta 2 y := nuP2_eq_nuBeta hy
+-- T1_deep_law: sqrt(f g), no a0
+theorem m02 {f a0 g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg : 0 < g) : gObs nuDeep f a0 g = Real.sqrt (f * g) := T1_deep_law hf ha hg
+-- T1_deep_equal_products: WRONG product, f / a0 = f' / a0'
+theorem m03 {f a0 f' a0' g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg : 0 < g) (hp : f / a0 = f' / a0') : gObs nuDeep f a0 g = gObs nuDeep f' a0' g := T1_deep_equal_products hf ha hf' ha' hg hp
+-- T1_deep_equal_products: WRONG product, f + a0 = f' + a0'
+theorem m04 {f a0 f' a0' g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg : 0 < g) (hp : f + a0 = f' + a0') : gObs nuDeep f a0 g = gObs nuDeep f' a0' g := T1_deep_equal_products hf ha hf' ha' hg hp
+-- T1_deep_iff: the injectivity claim in the deep regime
+theorem m05 {f a0 f' a0' : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') : (∀ g : ℝ, 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) ↔ (f = f' ∧ a0 = a0') := T1_deep_iff hf ha hf' ha'
+-- T1_deep_drift: log c instead of log c / 2
+theorem m06 {f a0 c g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hc : 0 < c) (hg : 0 < g) : gObs nuDeep (c * f) a0 g = Real.sqrt c * gObs nuDeep f a0 g ∧ gObs nuDeep f (c * a0) g = Real.sqrt c * gObs nuDeep f a0 g ∧ Real.log (gObs nuDeep (c * f) a0 g) = Real.log (gObs nuDeep f a0 g) + Real.log c ∧ Real.log (gObs nuDeep f (c * a0) g) = Real.log (gObs nuDeep f a0 g) + Real.log c := T1_deep_drift hf ha hc hg
+-- P2_sq: cross term (f a0) g^2
+theorem m07 {f a0 g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg : 0 < g) : gObs nuP2 f a0 g ^ 2 = f ^ 2 * g ^ 2 + (f * a0) * g ^ 2 := P2_sq hf ha hg
+-- P2_sq_y: (1 + f g a0)
+theorem m08 {f a0 g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg : 0 < g) : gObs nuP2 f a0 g ^ 2 = (f * a0) * g * (1 + f * g * a0) := P2_sq_y hf ha hg
+-- T1_P2_ratio: claims exact equality for unequal-f pairs (f' replaced by f on the right)
+theorem m09 {f a0 f' a0' g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg : 0 < g) (hp : f * a0 = f' * a0') : gObs nuP2 f' a0' g ^ 2 * (f ^ 2 * g + f * a0) = gObs nuP2 f a0 g ^ 2 * (f ^ 2 * g + f * a0) := T1_P2_ratio hf ha hf' ha' hg hp
+-- T1_P2_bound: |f' - f| instead of |f'^2 - f^2|
+theorem m10 {f a0 f' a0' g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg : 0 < g) (hp : f * a0 = f' * a0') : |gObs nuP2 f' a0' g ^ 2 - gObs nuP2 f a0 g ^ 2| * (f * a0) ≤ |f' - f| * g * gObs nuP2 f a0 g ^ 2 := T1_P2_bound hf ha hf' ha' hg hp
+-- T1_P2_limit: limit 2
+theorem m11 {f a0 f' a0' : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hp : f * a0 = f' * a0') : Tendsto (fun g : ℝ => gObs nuP2 f' a0' g / gObs nuP2 f a0 g) (𝓝[>] 0) (𝓝 2) := T1_P2_limit hf ha hf' ha' hp
+-- T1_general_limit: wrong deep premise (nu -> 1 instead of nu sqrt -> 1)
+theorem m12 (ν : ℝ → ℝ) (hν : Tendsto ν (𝓝[>] 0) (𝓝 1)) {f a0 : ℝ} (hf : 0 < f) (ha : 0 < a0) : Tendsto (fun g : ℝ => gObs ν f a0 g / Real.sqrt (f * a0 * g)) (𝓝[>] 0) (𝓝 1) := T1_general_limit ν hν hf ha
+-- T1_general_equal_products_limit: hp replaced by f = f'
+theorem m13 (ν : ℝ → ℝ) (hν : Tendsto (fun y : ℝ => ν y * Real.sqrt y) (𝓝[>] 0) (𝓝 1)) {f a0 f' a0' : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hp : f = f') : Tendsto (fun g : ℝ => gObs ν f' a0' g / gObs ν f a0 g) (𝓝[>] 0) (𝓝 1) := T1_general_equal_products_limit ν hν hf ha hf' ha' hp
+-- T2a_inversion: f instead of f^2
+theorem m14 {f a0 g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg1 : 0 < g1) (hg2 : 0 < g2) : gObs nuP2 f a0 g1 ^ 2 / g1 - gObs nuP2 f a0 g2 ^ 2 / g2 = f * (g1 - g2) := T2a_inversion hf ha hg1 hg2
+-- T2a_P2_injective: the deep kernel in place of P2 (injectivity claim must FAIL; T2b refutes it)
+theorem m15 {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs nuDeep f a0 g1 = gObs nuDeep f' a0' g1) (h2 : gObs nuDeep f a0 g2 = gObs nuDeep f' a0' g2) : f = f' ∧ a0 = a0' := T2a_P2_injective hf ha hf' ha' hg1 hg2 hne h1 h2
+-- T2a_P2_injective: the hypothesis g1 != g2 DROPPED
+theorem m16 {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (h1 : gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1) (h2 : gObs nuP2 f a0 g2 = gObs nuP2 f' a0' g2) : f = f' ∧ a0 = a0' := T2a_P2_injective hf ha hf' ha' hg1 hg2 hne h1 h2
+-- T2a_P2_injective: the positivity f' > 0 DROPPED
+theorem m17 {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1) (h2 : gObs nuP2 f a0 g2 = gObs nuP2 f' a0' g2) : f = f' ∧ a0 = a0' := T2a_P2_injective hf ha hf' ha' hg1 hg2 hne h1 h2
+-- T2a_P2_injective: ONE point only (h2 dropped)
+theorem m18 {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1) : f = f' ∧ a0 = a0' := T2a_P2_injective hf ha hf' ha' hg1 hg2 hne h1 h2
+-- T2a_one_point_fails: reversed into the one-point injectivity claim
+theorem m19 {f a0 g : ℝ} (hf : 0 < f) (ha : 0 < a0) (hg : 0 < g) : ∀ f' a0' : ℝ, 0 < f' → 0 < a0' → gObs nuP2 f' a0' g = gObs nuP2 f a0 g → f' = f := T2a_one_point_fails hf ha hg
+-- T2b_deep_not_injective: negated (injectivity asserted for the deep kernel)
+theorem m20 : ∀ f a0 f' a0' : ℝ, 0 < f → 0 < a0 → 0 < f' → 0 < a0' → (∀ g : ℝ, 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) → f = f' := T2b_deep_not_injective
+-- T2c_det: (y1 + y2)
+theorem m21 {y1 y2 : ℝ} (h1 : 0 < y1) (h2 : 0 < y2) : dlogf y1 * dloga y2 - dloga y1 * dlogf y2 = (y1 + y2) / (2 * (1 + y1) * (1 + y2)) ∧ dlogf y1 * dloga y2 - dloga y1 * dlogf y2 = (1 / (1 + y2) - 1 / (1 + y1)) / 2 := T2c_det h1 h2
+-- T2c_det_ne_zero_iff: iff y1 = y2
+theorem m22 {y1 y2 : ℝ} (h1 : 0 < y1) (h2 : 0 < y2) : dlogf y1 * dloga y2 - dloga y1 * dlogf y2 ≠ 0 ↔ y1 = y2 := T2c_det_ne_zero_iff h1 h2
+-- T2c_det_bounds: sup bound 1/4 instead of 1/2
+theorem m23 {y1 y2 : ℝ} (h1 : 0 < y1) (h2 : 0 < y2) : |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ |y1 - y2| / 2 ∧ |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ 1 / (2 * (1 + min y1 y2)) ∧ |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| < 1 / 4 := T2c_det_bounds h1 h2
+-- T2c_dlogf: the derivative of log f is claimed to be dloga (swapped partials)
+theorem m24 (s t g : ℝ) (hg : 0 < g) : HasDerivAt (fun s' : ℝ => Real.log (gObs nuP2 (Real.exp s') (Real.exp t) g)) (dloga (yOf s t g)) s := T2c_dlogf s t g hg
+-- T2c_rows: dlogf = dloga
+theorem m25 {y : ℝ} (hy : 0 < y) : dlogf y = dloga y := T2c_rows hy
+-- T2c_yratio: inverted
+theorem m26 {s t g1 g2 : ℝ} (hg2 : 0 < g2) : yOf s t g1 / yOf s t g2 = g2 / g1 := T2c_yratio hg2
+-- T2c_det_general: sign flipped
+theorem m27 (b1 b2 : ℝ) : (1 - b1) * b2 - b1 * (1 - b2) = b1 - b2 := T2c_det_general b1 b2
+-- T2c_fisher_det: factor 1 instead of 1/2
+theorem m28 {n : ℕ} (b : Fin n → ℝ) : (∑ i, (1 - b i) ^ 2) * (∑ i, b i ^ 2) - (∑ i, (1 - b i) * b i) ^ 2 = (1 : ℝ) * ∑ i, ∑ j, (b i - b j) ^ 2 := T2c_fisher_det b
+-- T2c_fisher_singular_iff: singular iff some pair differs
+theorem m29 {n : ℕ} (b : Fin n → ℝ) : (∑ i, (1 - b i) ^ 2) * (∑ i, b i ^ 2) - (∑ i, (1 - b i) * b i) ^ 2 = 0 ↔ ∃ i j, b i ≠ b j := T2c_fisher_singular_iff b
+-- T3_newton_limit: the limit is a0
+theorem m30 (ν : ℝ → ℝ) (hν : Tendsto ν atTop (𝓝 1)) {f a0 : ℝ} (hf : 0 < f) (ha : 0 < a0) : Tendsto (fun g : ℝ => gObs ν f a0 g / g) atTop (𝓝 a0) := T3_newton_limit ν hν hf ha
+-- T3_newton_limit_a0: the ratio tends to a0/a0'
+theorem m31 (ν : ℝ → ℝ) (hν : Tendsto ν atTop (𝓝 1)) {f a0 a0' : ℝ} (hf : 0 < f) (ha : 0 < a0) (ha' : 0 < a0') : Tendsto (fun g : ℝ => gObs ν f a0 g / gObs ν f a0' g) atTop (𝓝 (a0 / a0')) := T3_newton_limit_a0 ν hν hf ha ha'
+-- nuP2_tendsto_one: limit 2
+theorem m32 : Tendsto nuP2 atTop (𝓝 2) := nuP2_tendsto_one
+-- nuMono_tendsto_one: limit 0
+theorem m33 : Tendsto nuMono atTop (𝓝 0) := nuMono_tendsto_one
+-- T4_design_bound: constant 10 instead of 9 (the two-cluster design attains 9)
+theorem m34 {n : ℕ} (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1 / 2) : 10 * ∑ i, ∑ j, (b i - b j) ^ 2 ≤ 2 * n * ∑ i, (1 - b i) ^ 2 := T4_design_bound b h0 h1
+-- T4_design_bound: the range b_i <= 1 (instead of 1/2)
+theorem m35 {n : ℕ} (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1) : 9 * ∑ i, ∑ j, (b i - b j) ^ 2 ≤ 2 * n * ∑ i, (1 - b i) ^ 2 := T4_design_bound b h0 h1
+-- T4_sigma_floor: 10 sigma^2 / n
+theorem m36 {n : ℕ} (hn : 0 < n) {σ : ℝ} (hσ : 0 < σ) (b : Fin n → ℝ) (h0 : ∀ i, 0 ≤ b i) (h1 : ∀ i, b i ≤ 1 / 2) (hdet : 0 < fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2) : 10 * σ ^ 2 / n ≤ fisher11 σ b / (fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2) := T4_sigma_floor hn hσ b h0 h1 hdet
+-- T2e_injective_of_strictConvex: ConvexOn (non-strict) instead of StrictConvexOn
+theorem m37 (ν : ℝ → ℝ) (hν : ∀ y : ℝ, 0 < y → 0 < ν y) (hL : ConvexOn ℝ Set.univ (fun u : ℝ => Real.log (Real.exp u * ν (Real.exp u)))) {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs ν f a0 g1 = gObs ν f' a0' g1) (h2 : gObs ν f a0 g2 = gObs ν f' a0' g2) : f = f' ∧ a0 = a0' := T2e_injective_of_strictConvex ν hν hL hf ha hf' ha' hg1 hg2 hne h1 h2
+-- nuMono_pos: negative
+theorem m38 {y : ℝ} (hy : 0 < y) : nuMono y < 0 := nuMono_pos hy
+-- nuMono_logslope_strictConvex: strictly CONCAVE
+theorem m39 : StrictConcaveOn ℝ Set.univ (fun u : ℝ => Real.log (Real.exp u * nuMono (Real.exp u))) := nuMono_logslope_strictConvex
+-- T2e_nuMono_injective: the P2 kernel in the hypotheses of the nu_mono theorem
+theorem m40 {f a0 f' a0' g1 g2 : ℝ} (hf : 0 < f) (ha : 0 < a0) (hf' : 0 < f') (ha' : 0 < a0') (hg1 : 0 < g1) (hg2 : 0 < g2) (hne : g1 ≠ g2) (h1 : gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1) (h2 : gObs nuP2 f a0 g2 = gObs nuP2 f' a0' g2) : f = f' ∧ a0 = a0' := T2e_nuMono_injective hf ha hf' ha' hg1 hg2 hne h1 h2
+-- nuP2_logslope_strictConvex: strictly CONCAVE
+theorem m41 : StrictConcaveOn ℝ Set.univ (fun u : ℝ => Real.log (Real.exp u * nuP2 (Real.exp u))) := nuP2_logslope_strictConvex

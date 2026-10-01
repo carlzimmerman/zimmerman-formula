@@ -1,0 +1,261 @@
+ChainCert/CalibrationWallMutate.lean:7:58: error: Type mismatch
+  nuP2_eq_nuBeta hy
+has type
+  nuP2 y = nuBeta 1 y
+but is expected to have type
+  nuP2 y = nuBeta 2 y
+ChainCert/CalibrationWallMutate.lean:9:109: error: Type mismatch
+  T1_deep_law hf ha hg
+has type
+  gObs nuDeep f a0 g = √(f * a0 * g)
+but is expected to have type
+  gObs nuDeep f a0 g = √(f * g)
+ChainCert/CalibrationWallMutate.lean:11:215: error: Application type mismatch: The argument
+  hp
+has type
+  f / a0 = f' / a0'
+but is expected to have type
+  f * a0 = f' * a0'
+in the application
+  T1_deep_equal_products hf ha hf' ha' hg hp
+ChainCert/CalibrationWallMutate.lean:13:215: error: Application type mismatch: The argument
+  hp
+has type
+  f + a0 = f' + a0'
+but is expected to have type
+  f * a0 = f' * a0'
+in the application
+  T1_deep_equal_products hf ha hf' ha' hg hp
+ChainCert/CalibrationWallMutate.lean:15:176: error: Type mismatch
+  T1_deep_iff hf ha hf' ha'
+has type
+  (∀ (g : ℝ), 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) ↔ f * a0 = f' * a0'
+but is expected to have type
+  (∀ (g : ℝ), 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) ↔ f = f' ∧ a0 = a0'
+ChainCert/CalibrationWallMutate.lean:17:373: error: Type mismatch
+  T1_deep_drift hf ha hc hg
+has type
+  gObs nuDeep (c * f) a0 g = √c * gObs nuDeep f a0 g ∧
+    gObs nuDeep f (c * a0) g = √c * gObs nuDeep f a0 g ∧
+      Real.log (gObs nuDeep (c * f) a0 g) = Real.log (gObs nuDeep f a0 g) + Real.log c / 2 ∧
+        Real.log (gObs nuDeep f (c * a0) g) = Real.log (gObs nuDeep f a0 g) + Real.log c / 2
+but is expected to have type
+  gObs nuDeep (c * f) a0 g = √c * gObs nuDeep f a0 g ∧
+    gObs nuDeep f (c * a0) g = √c * gObs nuDeep f a0 g ∧
+      Real.log (gObs nuDeep (c * f) a0 g) = Real.log (gObs nuDeep f a0 g) + Real.log c ∧
+        Real.log (gObs nuDeep f (c * a0) g) = Real.log (gObs nuDeep f a0 g) + Real.log c
+ChainCert/CalibrationWallMutate.lean:19:126: error: Type mismatch
+  P2_sq hf ha hg
+has type
+  gObs nuP2 f a0 g ^ 2 = f ^ 2 * g ^ 2 + f * a0 * g
+but is expected to have type
+  gObs nuP2 f a0 g ^ 2 = f ^ 2 * g ^ 2 + f * a0 * g ^ 2
+ChainCert/CalibrationWallMutate.lean:21:125: error: Type mismatch
+  P2_sq_y hf ha hg
+has type
+  gObs nuP2 f a0 g ^ 2 = f * a0 * g * (1 + f * g / a0)
+but is expected to have type
+  gObs nuP2 f a0 g ^ 2 = f * a0 * g * (1 + f * g * a0)
+ChainCert/CalibrationWallMutate.lean:23:225: error: Type mismatch
+  T1_P2_ratio hf ha hf' ha' hg hp
+has type
+  gObs nuP2 f' a0' g ^ 2 * (f ^ 2 * g + f * a0) = gObs nuP2 f a0 g ^ 2 * (f' ^ 2 * g + f * a0)
+but is expected to have type
+  gObs nuP2 f' a0' g ^ 2 * (f ^ 2 * g + f * a0) = gObs nuP2 f a0 g ^ 2 * (f ^ 2 * g + f * a0)
+ChainCert/CalibrationWallMutate.lean:25:230: error: Type mismatch
+  T1_P2_bound hf ha hf' ha' hg hp
+has type
+  |gObs nuP2 f' a0' g ^ 2 - gObs nuP2 f a0 g ^ 2| * (f * a0) ≤ |f' ^ 2 - f ^ 2| * g * gObs nuP2 f a0 g ^ 2
+but is expected to have type
+  |gObs nuP2 f' a0' g ^ 2 - gObs nuP2 f a0 g ^ 2| * (f * a0) ≤ |f' - f| * g * gObs nuP2 f a0 g ^ 2
+ChainCert/CalibrationWallMutate.lean:27:194: error: Type mismatch
+  T1_P2_limit hf ha hf' ha' hp
+has type
+  Tendsto (fun g => gObs nuP2 f' a0' g / gObs nuP2 f a0 g) (𝓝[>] 0) (𝓝 1)
+but is expected to have type
+  Tendsto (fun g => gObs nuP2 f' a0' g / gObs nuP2 f a0 g) (𝓝[>] 0) (𝓝 2)
+ChainCert/CalibrationWallMutate.lean:29:195: error: Application type mismatch: The argument
+  hν
+has type
+  Tendsto ν (𝓝[>] 0) (𝓝 1)
+but is expected to have type
+  Tendsto (fun y => ν y * √y) (𝓝[>] 0) (𝓝 1)
+in the application
+  @T1_general_limit ν hν
+ChainCert/CalibrationWallMutate.lean:31:303: error: Application type mismatch: The argument
+  hp
+has type
+  f = f'
+but is expected to have type
+  f * a0 = f' * a0'
+in the application
+  T1_general_equal_products_limit ν hν hf ha hf' ha' hp
+ChainCert/CalibrationWallMutate.lean:33:163: error: Type mismatch
+  T2a_inversion hf ha hg1 hg2
+has type
+  gObs nuP2 f a0 g1 ^ 2 / g1 - gObs nuP2 f a0 g2 ^ 2 / g2 = f ^ 2 * (g1 - g2)
+but is expected to have type
+  gObs nuP2 f a0 g1 ^ 2 / g1 - gObs nuP2 f a0 g2 ^ 2 / g2 = f * (g1 - g2)
+ChainCert/CalibrationWallMutate.lean:35:308: error: Application type mismatch: The argument
+  h1
+has type
+  gObs nuDeep f a0 g1 = gObs nuDeep f' a0' g1
+but is expected to have type
+  gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1
+in the application
+  T2a_P2_injective hf ha hf' ha' hg1 hg2 hne h1
+ChainCert/CalibrationWallMutate.lean:37:280: error(lean.unknownIdentifier): Unknown identifier `hne`
+ChainCert/CalibrationWallMutate.lean:39:265: error(lean.unknownIdentifier): Unknown identifier `hf'`
+ChainCert/CalibrationWallMutate.lean:41:256: error(lean.unknownIdentifier): Unknown identifier `h2`
+ChainCert/CalibrationWallMutate.lean:43:150: error: Type mismatch
+  T2a_one_point_fails hf ha hg
+has type
+  ∃ f' a0', 0 < f' ∧ 0 < a0' ∧ f' ≠ f ∧ gObs nuP2 f' a0' g = gObs nuP2 f a0 g
+but is expected to have type
+  ∀ (f' a0' : ℝ), 0 < f' → 0 < a0' → gObs nuP2 f' a0' g = gObs nuP2 f a0 g → f' = f
+ChainCert/CalibrationWallMutate.lean:45:142: error: Type mismatch
+  T2b_deep_not_injective
+has type
+  ∃ f a0 f' a0',
+    0 < f ∧ 0 < a0 ∧ 0 < f' ∧ 0 < a0' ∧ f ≠ f' ∧ ∀ (g : ℝ), 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g
+but is expected to have type
+  ∀ (f a0 f' a0' : ℝ),
+    0 < f → 0 < a0 → 0 < f' → 0 < a0' → (∀ (g : ℝ), 0 < g → gObs nuDeep f a0 g = gObs nuDeep f' a0' g) → f = f'
+ChainCert/CalibrationWallMutate.lean:47:219: error: Type mismatch
+  T2c_det h1 h2
+has type
+  dlogf y1 * dloga y2 - dloga y1 * dlogf y2 = (y1 - y2) / (2 * (1 + y1) * (1 + y2)) ∧
+    dlogf y1 * dloga y2 - dloga y1 * dlogf y2 = (1 / (1 + y2) - 1 / (1 + y1)) / 2
+but is expected to have type
+  dlogf y1 * dloga y2 - dloga y1 * dlogf y2 = (y1 + y2) / (2 * (1 + y1) * (1 + y2)) ∧
+    dlogf y1 * dloga y2 - dloga y1 * dlogf y2 = (1 / (1 + y2) - 1 / (1 + y1)) / 2
+ChainCert/CalibrationWallMutate.lean:49:113: error: Type mismatch
+  T2c_det_ne_zero_iff h1 h2
+has type
+  dlogf y1 * dloga y2 - dloga y1 * dlogf y2 ≠ 0 ↔ y1 ≠ y2
+but is expected to have type
+  dlogf y1 * dloga y2 - dloga y1 * dlogf y2 ≠ 0 ↔ y1 = y2
+ChainCert/CalibrationWallMutate.lean:51:245: error: Type mismatch
+  T2c_det_bounds h1 h2
+has type
+  |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ |y1 - y2| / 2 ∧
+    |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ 1 / (2 * (1 + min y1 y2)) ∧
+      |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| < 1 / 2
+but is expected to have type
+  |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ |y1 - y2| / 2 ∧
+    |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| ≤ 1 / (2 * (1 + min y1 y2)) ∧
+      |dlogf y1 * dloga y2 - dloga y1 * dlogf y2| < 1 / 4
+ChainCert/CalibrationWallMutate.lean:53:141: error: Type mismatch
+  T2c_dlogf s t g hg
+has type
+  HasDerivAt (fun s' => Real.log (gObs nuP2 (Real.exp s') (Real.exp t) g)) (dlogf (yOf s t g)) s
+but is expected to have type
+  HasDerivAt (fun s' => Real.log (gObs nuP2 (Real.exp s') (Real.exp t) g)) (dloga (yOf s t g)) s
+ChainCert/CalibrationWallMutate.lean:55:56: error: Type mismatch
+  T2c_rows hy
+has type
+  dlogf y = 1 - dloga y
+but is expected to have type
+  dlogf y = dloga y
+ChainCert/CalibrationWallMutate.lean:57:82: error: Type mismatch
+  T2c_yratio hg2
+has type
+  yOf ?m.14 ?m.15 ?m.16 / yOf ?m.14 ?m.15 g2 = ?m.16 / g2
+but is expected to have type
+  yOf s t g1 / yOf s t g2 = g2 / g1
+ChainCert/CalibrationWallMutate.lean:59:69: error: Type mismatch
+  T2c_det_general b1 b2
+has type
+  (1 - b1) * b2 - b1 * (1 - b2) = b2 - b1
+but is expected to have type
+  (1 - b1) * b2 - b1 * (1 - b2) = b1 - b2
+ChainCert/CalibrationWallMutate.lean:61:146: error: Type mismatch
+  T2c_fisher_det b
+has type
+  (∑ i, (1 - b i) ^ 2) * ∑ i, b i ^ 2 - (∑ i, (1 - b i) * b i) ^ 2 = 1 / 2 * ∑ i, ∑ j, (b i - b j) ^ 2
+but is expected to have type
+  (∑ i, (1 - b i) ^ 2) * ∑ i, b i ^ 2 - (∑ i, (1 - b i) * b i) ^ 2 = 1 * ∑ i, ∑ j, (b i - b j) ^ 2
+ChainCert/CalibrationWallMutate.lean:63:131: error: Type mismatch
+  T2c_fisher_singular_iff b
+has type
+  (∑ i, (1 - b i) ^ 2) * ∑ i, b i ^ 2 - (∑ i, (1 - b i) * b i) ^ 2 = 0 ↔ ∀ (i j : Fin n), b i = b j
+but is expected to have type
+  (∑ i, (1 - b i) ^ 2) * ∑ i, b i ^ 2 - (∑ i, (1 - b i) * b i) ^ 2 = 0 ↔ ∃ i j, b i ≠ b j
+ChainCert/CalibrationWallMutate.lean:65:150: error: Type mismatch
+  T3_newton_limit ν hν hf ha
+has type
+  Tendsto (fun g => gObs ν f a0 g / g) atTop (𝓝 f)
+but is expected to have type
+  Tendsto (fun g => gObs ν f a0 g / g) atTop (𝓝 a0)
+ChainCert/CalibrationWallMutate.lean:67:191: error: Type mismatch
+  T3_newton_limit_a0 ν hν hf ha ha'
+has type
+  Tendsto (fun g => gObs ν f a0 g / gObs ν f a0' g) atTop (𝓝 1)
+but is expected to have type
+  Tendsto (fun g => gObs ν f a0 g / gObs ν f a0' g) atTop (𝓝 (a0 / a0'))
+ChainCert/CalibrationWallMutate.lean:69:42: error: Type mismatch
+  nuP2_tendsto_one
+has type
+  Tendsto nuP2 atTop (𝓝 1)
+but is expected to have type
+  Tendsto nuP2 atTop (𝓝 2)
+ChainCert/CalibrationWallMutate.lean:71:44: error: Type mismatch
+  nuMono_tendsto_one
+has type
+  Tendsto nuMono atTop (𝓝 1)
+but is expected to have type
+  Tendsto nuMono atTop (𝓝 0)
+ChainCert/CalibrationWallMutate.lean:73:145: error: Type mismatch
+  T4_design_bound b h0 h1
+has type
+  9 * ∑ i, ∑ j, (b i - b j) ^ 2 ≤ 2 * ↑n * ∑ i, (1 - b i) ^ 2
+but is expected to have type
+  10 * ∑ i, ∑ j, (b i - b j) ^ 2 ≤ 2 * ↑n * ∑ i, (1 - b i) ^ 2
+ChainCert/CalibrationWallMutate.lean:75:161: error: Application type mismatch: The argument
+  h1
+has type
+  ∀ (i : Fin n), b i ≤ 1
+but is expected to have type
+  ∀ (i : Fin n), b i ≤ 1 / 2
+in the application
+  T4_design_bound b h0 h1
+ChainCert/CalibrationWallMutate.lean:77:260: error: Type mismatch
+  T4_sigma_floor hn hσ b h0 h1 hdet
+has type
+  9 * σ ^ 2 / ↑n ≤ fisher11 σ b / (fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2)
+but is expected to have type
+  10 * σ ^ 2 / ↑n ≤ fisher11 σ b / (fisher11 σ b * fisher22 σ b - fisher12 σ b ^ 2)
+ChainCert/CalibrationWallMutate.lean:79:405: error: Application type mismatch: The argument
+  hL
+has type
+  ConvexOn ℝ Set.univ fun u => Real.log (Real.exp u * ν (Real.exp u))
+but is expected to have type
+  StrictConvexOn ℝ Set.univ fun u => Real.log (Real.exp u * ν (Real.exp u))
+in the application
+  @T2e_injective_of_strictConvex ν hν hL
+ChainCert/CalibrationWallMutate.lean:81:51: error: Type mismatch
+  nuMono_pos hy
+has type
+  0 < nuMono y
+but is expected to have type
+  nuMono y < 0
+ChainCert/CalibrationWallMutate.lean:83:103: error: Type mismatch
+  nuMono_logslope_strictConvex
+has type
+  StrictConvexOn ℝ Set.univ fun u => Real.log (Real.exp u * nuMono (Real.exp u))
+but is expected to have type
+  StrictConcaveOn ℝ Set.univ fun u => Real.log (Real.exp u * nuMono (Real.exp u))
+ChainCert/CalibrationWallMutate.lean:85:304: error: Application type mismatch: The argument
+  h1
+has type
+  gObs nuP2 f a0 g1 = gObs nuP2 f' a0' g1
+but is expected to have type
+  gObs nuMono f a0 g1 = gObs nuMono f' a0' g1
+in the application
+  T2e_nuMono_injective hf ha hf' ha' hg1 hg2 hne h1
+ChainCert/CalibrationWallMutate.lean:87:101: error: Type mismatch
+  nuP2_logslope_strictConvex
+has type
+  StrictConvexOn ℝ Set.univ fun u => Real.log (Real.exp u * nuP2 (Real.exp u))
+but is expected to have type
+  StrictConcaveOn ℝ Set.univ fun u => Real.log (Real.exp u * nuP2 (Real.exp u))
