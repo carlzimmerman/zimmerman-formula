@@ -1,0 +1,67 @@
+CFG244 Gate D -- DISTINCTNESS (where does the route differ from LambdaCDM?)  *** POST-HOC EXTRA ***
+Gate A failed (the first binding FAIL under the frozen stop rule), so Gate D is NOT part of the verdict: this script runs the frozen
+list D1-D7 as a clearly labelled post-hoc extra, with the frozen estimate compared.  File names carry _POSTHOC.
+Frozen criteria: ../CFG244_FROZEN_CRITERIA.md (committed 84e100c47, sha256 944adc80...).
+Operational meaning (frozen): REDUCES TO LAMBDACDM PLUS A COINCIDENCE iff every observable D1-D7 has |P_route - P_LCDM| below its stated threshold
+(2 sigma_cap of the cited forecast, or 0.05 dex for a model-to-model comparison with no cap), and the only content the route adds is the numerical
+statement a0 = kappa c sqrt(G rho_Lambda), kappa FITTED, which enters no equation of the class.  DISTINCT iff at least one observable is DISTINCT
+from LambdaCDM with the route's value derived (Gates A / H), not tuned.
+Inputs: the Gate A and Gate H outputs of this lane (JSON) and the committed forecast numbers (cited in the output; read from the committed READMEs and
+closure_map files, transcribed here with their sources).  Nothing is fitted.
+
+  repo: <repo>   POST-HOC EXTRA (Gate A already bound; nothing here is a verdict input)
+
+  OBSERVABLE TABLE (route value from this lane's Gate A / Gate H outputs; LambdaCDM values committed or marked (memory))
+  D1: the tie as a coincidence: spread of the effective a0 (3 G M_b / R_s^2) over 1e9-1e12 Msun (dex)
+      route: 0.9798
+      lcdm_frozen_text: 0.9798
+      lcdm_shmr_comparator: 1.113
+      bound: 0.048
+      threshold: 0.05
+      extra: route x_Rs = [1.7065994660866464, 1.2241875951930348, 0.8441258533597472, 0.5621547101351592]; SHMR comparator x_Rs = [2.074648772957688, 2.006592530137403, 1.2129370873844645, 0.5758843311527057], exponent 0.311
+  D2: a0 at z about 2.5 (dex)
+      route: 0.334
+      lcdm: 0.334
+      flat_B: 0
+      Hz: 0.58
+      cap_sigma_vs_lcdm: 1.3
+      source: closure_map/GATES.md row 3.10 (flat 0.00, LCDM-native +0.334); WHAT_WOULD_DECIDE section 2 (H(z) +0.58; cap 1.3 sigma vs LCDM-native, 2.3 vs H(z)); CFG222
+      note: route value = the LCDM-native expectation by the class's structure (no acceleration scale in the class; CFG230 R02's Newtonian-only half: the only length is M^(1/3)(G/H^2)^(1/3), so the effective scale follows H(z)); argued, not computed from simulations at z = 2.5
+  D3: satellites: route (b) minus LCDM comparator offsets (dex), P1/P2/P3
+      route: [0.08034091040781162, -0.02905870526959644, -0.06169577955221401]
+      lcdm: [0.08034091040781162, -0.02905870526959644, -0.06169577955221401]
+      note: reading (b) IS the record's LCDM comparator (CFG69): identical by construction (control C-H1 reproduces its numbers)
+  D4: RAR scatter at fixed g_bar: scatter of log10(C_bound/C_target) over 12 (q, M) cases (dex)
+      route: {1.12: {'std_dex': 0.2600978564663923, 'range_dex': 0.7507966781709254}, 28.2: {'std_dex': 0.11852094889035895, 'range_dex': 0.43811268885182786}}
+      bound: 0.048
+      lcdm: (memory, unverified) published LambdaCDM-based RAR scatters are of order 0.1 dex or more
+      threshold: 0.05
+  D5: profile slopes of the bound rho_c (q = 0.1, point cores)
+      route: {'1e+09|outer': -2.3538055739712966, '1e+09|inner': -1.725673426983675, '1e+12|outer': -2.709192729791585, '1e+12|inner': -1.9052646729442952, '1e+11|outer': -2.7034253034442557, '1e+11|inner': -1.8565147094639736, '1e+10|outer': -2.4727463675268644, '1e+10|inner': -1.6988434956931466}
+      target: 1/r inside r_M, 1/r^2 outside (CFG44 point mass)
+      lcdm: NFW: -1 inner, -3 beyond r_s (memory); EdS self-similar -9/4 (CFG118 C2)
+      note: the route's profile IS the collapse profile of a cold collisionless fluid without feedback; the difference from the NFW slope is the finite range and the baryon core, not a prediction beyond LCDM
+  D6: Gaia DR4 wide binaries gamma-hat
+      route: 1
+      lcdm: 1
+      B_armC: 1
+      bare_law: 1.161
+      source: WHAT_WOULD_DECIDE section 1 (CFG63)
+  D7: KiDS early-minus-late colour split at fixed g_bar
+      route: halo mass follows stellar mass and colour (LCDM-like)
+      lcdm: fits with colour-split Moster (chi2 6.5/7, CFG67)
+      B_and_any_negligible_difference_model: fails at face value (28.1/7, CFG77)
+      source: WHAT_WOULD_DECIDE section 4
+
+  JUDGEMENT per observable (frozen thresholds): DISTINCT from LambdaCDM?
+  D1: NOT DISTINCT -- route 0.98 dex vs the committed RAR bound 0.048 dex; the route's value equals LambdaCDM's by the frozen text (same fluid); the SHMR comparator differs (1.11 dex) because it contains baryon loss/feedback the route lacks, which is a disagreement of two cold-collapse models, not a prediction beyond LambdaCDM
+  D2: NOT DISTINCT -- route = LCDM-native (+0.334 dex) by the class's structure; distinct from flat B (0.33 dex), not from LCDM
+  D3: NOT DISTINCT -- (b) is the LCDM comparator; distinct from B, not from LCDM
+  D4: NOT DISTINCT -- Gate A failed: the route's scatter is the infall's, comparable to or above LCDM's; not B-like
+  D5: NOT DISTINCT -- collapse profile of a cold fluid without feedback; no prediction beyond LCDM
+  D6: NOT DISTINCT -- all of route, LCDM, B (Arm C) predict 1.000; only the bare law differs
+  D7: NOT DISTINCT -- route follows LCDM's halo-mass dependence
+
+  GATE D (post-hoc): REDUCES TO LAMBDACDM PLUS A COINCIDENCE
+  The only content the route adds to the LambdaCDM comparator is the numerical statement a0 = kappa c sqrt(G rho_Lambda) with kappa = 1/2 FITTED; it enters no equation of the class (the class has no acceleration scale: D2's argument), so it is a coincidence the route neither explains nor tests.
+  This is a statement about THIS class (a bound early cold fluid with no extra coupling); it is not a statement about candidate B, whose flat a0(z) and tight RAR are what the class does not make.

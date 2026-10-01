@@ -1,0 +1,192 @@
+CFG244 Gate H -- HIERARCHY (satellites): (a) "satellites own nothing" (best of three variants) against (b) "satellites keep their bound
+core" (the record's LambdaCDM comparator), scored by ONE rule on N = 88 systems (MW ultra-faints 40 = 31 resolved + 9 limits by
+Kaplan-Meier, MW classical dSphs 14, M31 LVD 34), in two views (V1 = the record's error model, V2 = equal floors), on both footings.
+Frozen criteria: ../CFG244_FROZEN_CRITERIA.md (committed 84e100c47, sha256 944adc80...), written before this script.
+Outcome classes (frozen wording):
+  H1 binding FAIL: Delta_V1 <= -9 on both footings (satellites own nothing is preferred).
+  H3 binding FAIL ("neither"): Delta_V2 >= 9 on both footings but (b) not acceptable on its own (some |z_b| >= 2 in V1 canonical, or chi2_b(V1) > 11.34).
+  H2 PASS, the route is a DIFFERENT LAW from B at satellites: Delta_V2 >= 9 on both footings and (b) acceptable.
+  H4 PASS, AMBIGUOUS: anything else (incl. mixed footings or kernel disagreement).
+
+  repo: <repo>   mode: main
+
+==============================================================================================================
+CONTROLS (C-H1..C-H5): the record's committed numbers reproduced with the record's own kernel and recipe
+==============================================================================================================
+  record (CFG42 / CFG69 READMEs)  vs  reproduced (RAR kernel, nb = 1000, seed 42):
+    a1 canonical P1: committed +0.325   here +0.3245   z here +3.77
+    a1 alt       P1: committed +0.304   here +0.3045   z here +3.55
+    a1 canonical P2: committed +0.027   here +0.0270   z here +0.32
+    a1 alt       P2: committed +0.008   here +0.0076   z here +0.09
+    a1 canonical P3: committed +0.044   here +0.0435   z here +0.60
+    a1 alt       P3: committed +0.031   here +0.0308   z here +0.42
+    b canonical P1: committed +0.080   here +0.0803   z here +0.61
+    b canonical P2: committed -0.029   here -0.0291   z here -0.38
+    b canonical P3: committed -0.062   here -0.0617   z here -1.34
+  [PASS] (control) C-H1 the record's isolated-law and LambdaCDM-comparator offsets reproduced to 0.005 dex
+         max |d| = 0.0005 dex
+  [PASS] (control) C-H1b the record's UFD significance (3.77 / 3.55 sigma) reproduced to 0.1
+         here 3.77 / 3.55
+  [PASS] (control) C-H2 Newtonian limit: (b) with M_coll -> 0 and (a0) equal the closed form
+         (b)/(closed) - 1 = 0.0e+00; (a0)/(closed) - 1 = 0.0e+00
+  [PASS] (control) C-H3 deep-MOND limit of (a1) (P2): sigma^2 = sqrt(a0 g_N) r / 3
+         ratio - 1 = 9.4e-11
+  [PASS] (control) C-H4 EFE limits: host -> 0 returns (a1) to 1e-12; host -> infinity returns the Newtonian value (nu -> 1)
+         host off: 0.0e+00; huge host: sigma_a2/sigma_Newton - 1 = 0.0e+00
+
+==============================================================================================================
+PRIMARY SCORING  (kernel P2; recipe: the record's committed (CFG42); bootstrap 2000 resamples, seed 244001)
+==============================================================================================================
+
+  GATE H TABLE (P2 kernel): per population offset (dex) / error / z / chi2  (a) variants (V-independent) and (b) in V1 and V2
+
+  --- footing canonical (a0 = 9.36e-11 m/s^2) ---
+  population                 reading        offset   error       z    chi2   (error parts: stat / Upsilon / collapse-mass floor)
+  MW ultra-faints (40)       (a) a0         +1.078   0.158   +6.83   46.62   0.047 / 0.151 / 0
+  MW ultra-faints (40)       (a) a1         +0.329   0.084   +3.90   15.21   0.038 / 0.075 / 0
+  MW ultra-faints (40)       (a) a2         +0.656   0.168   +3.90   15.23   0.075 / 0.150 / 0
+  MW ultra-faints (40)       (b) V1         +0.080   0.132   +0.61    0.37   0.055 / 0.000 / 0.121
+  MW ultra-faints (40)       (b) V2         +0.080   0.055   +1.47    2.16   0.055 / 0.000 / 0.000
+  MW classical dSphs (14)    (a) a0         +0.515   0.136   +3.78   14.28   0.111 / 0.079 / 0
+  MW classical dSphs (14)    (a) a1         +0.036   0.083   +0.44    0.19   0.063 / 0.054 / 0
+  MW classical dSphs (14)    (a) a2         +0.115   0.098   +1.18    1.38   0.071 / 0.068 / 0
+  MW classical dSphs (14)    (b) V1         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  MW classical dSphs (14)    (b) V2         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  M31 LVD (34)               (a) a0         +0.610   0.123   +4.95   24.53   0.076 / 0.097 / 0
+  M31 LVD (34)               (a) a1         +0.049   0.071   +0.69    0.48   0.047 / 0.054 / 0
+  M31 LVD (34)               (a) a2         +0.160   0.096   +1.67    2.79   0.061 / 0.073 / 0
+  M31 LVD (34)               (b) V1         -0.062   0.046   -1.34    1.79   0.043 / 0.013 / 0.011
+  M31 LVD (34)               (b) V2         -0.062   0.045   -1.38    1.90   0.043 / 0.013 / 0.000
+  chi2 totals over the three populations: (a0) 85.43, (a1) 15.88, (a2) 19.41  -> (a) = best = a1  chi2_a = 15.88
+  V1: chi2_b = 2.30   Delta chi2 = chi2_a - chi2_b = +13.58
+  V2: chi2_b = 4.20   Delta chi2 = chi2_a - chi2_b = +11.68
+
+  --- footing alt (a0 = 1.13e-10 m/s^2) ---
+  population                 reading        offset   error       z    chi2   (error parts: stat / Upsilon / collapse-mass floor)
+  MW ultra-faints (40)       (a) a0         +1.078   0.158   +6.83   46.62   0.047 / 0.151 / 0
+  MW ultra-faints (40)       (a) a1         +0.309   0.084   +3.66   13.39   0.038 / 0.075 / 0
+  MW ultra-faints (40)       (a) a2         +0.637   0.168   +3.79   14.34   0.075 / 0.150 / 0
+  MW ultra-faints (40)       (b) V1         +0.080   0.132   +0.61    0.37   0.055 / 0.000 / 0.121
+  MW ultra-faints (40)       (b) V2         +0.080   0.055   +1.47    2.16   0.055 / 0.000 / 0.000
+  MW classical dSphs (14)    (a) a0         +0.515   0.136   +3.78   14.28   0.111 / 0.079 / 0
+  MW classical dSphs (14)    (a) a1         +0.016   0.082   +0.20    0.04   0.063 / 0.053 / 0
+  MW classical dSphs (14)    (a) a2         +0.095   0.097   +0.98    0.95   0.070 / 0.068 / 0
+  MW classical dSphs (14)    (b) V1         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  MW classical dSphs (14)    (b) V2         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  M31 LVD (34)               (a) a0         +0.610   0.123   +4.95   24.53   0.076 / 0.097 / 0
+  M31 LVD (34)               (a) a1         +0.031   0.071   +0.44    0.19   0.046 / 0.054 / 0
+  M31 LVD (34)               (a) a2         +0.139   0.095   +1.46    2.14   0.061 / 0.073 / 0
+  M31 LVD (34)               (b) V1         -0.062   0.046   -1.34    1.79   0.043 / 0.013 / 0.011
+  M31 LVD (34)               (b) V2         -0.062   0.045   -1.38    1.90   0.043 / 0.013 / 0.000
+  chi2 totals over the three populations: (a0) 85.43, (a1) 13.62, (a2) 17.44  -> (a) = best = a1  chi2_a = 13.62
+  V1: chi2_b = 2.30   Delta chi2 = chi2_a - chi2_b = +11.32
+  V2: chi2_b = 4.20   Delta chi2 = chi2_a - chi2_b = +9.42
+
+  (b) acceptable (all |z_b| < 2 in V1 canonical and chi2_b(V1) <= 11.34): True; z_b: P1 +0.61, P2 -0.38, P3 -1.34
+  OUTCOME CLASS: H2
+
+==============================================================================================================
+KERNEL CROSS-CHECK (the record's exponential RAR kernel) -- if the category differs the lane reports AMBIGUOUS (H4)
+==============================================================================================================
+
+  GATE H TABLE (RAR kernel): per population offset (dex) / error / z / chi2  (a) variants (V-independent) and (b) in V1 and V2
+
+  --- footing canonical (a0 = 9.36e-11 m/s^2) ---
+  population                 reading        offset   error       z    chi2   (error parts: stat / Upsilon / collapse-mass floor)
+  MW ultra-faints (40)       (a) a0         +1.078   0.158   +6.83   46.62   0.047 / 0.151 / 0
+  MW ultra-faints (40)       (a) a1         +0.325   0.086   +3.78   14.29   0.038 / 0.077 / 0
+  MW ultra-faints (40)       (a) a2         +0.637   0.168   +3.79   14.34   0.075 / 0.150 / 0
+  MW ultra-faints (40)       (b) V1         +0.080   0.132   +0.61    0.37   0.055 / 0.000 / 0.121
+  MW ultra-faints (40)       (b) V2         +0.080   0.055   +1.47    2.16   0.055 / 0.000 / 0.000
+  MW classical dSphs (14)    (a) a0         +0.515   0.136   +3.78   14.28   0.111 / 0.079 / 0
+  MW classical dSphs (14)    (a) a1         +0.027   0.085   +0.32    0.10   0.064 / 0.055 / 0
+  MW classical dSphs (14)    (a) a2         +0.103   0.103   +1.00    1.00   0.072 / 0.073 / 0
+  MW classical dSphs (14)    (b) V1         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  MW classical dSphs (14)    (b) V2         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  M31 LVD (34)               (a) a0         +0.610   0.123   +4.95   24.53   0.076 / 0.097 / 0
+  M31 LVD (34)               (a) a1         +0.044   0.072   +0.60    0.36   0.047 / 0.055 / 0
+  M31 LVD (34)               (a) a2         +0.148   0.097   +1.53    2.35   0.061 / 0.075 / 0
+  M31 LVD (34)               (b) V1         -0.062   0.046   -1.34    1.79   0.043 / 0.013 / 0.011
+  M31 LVD (34)               (b) V2         -0.062   0.045   -1.38    1.90   0.043 / 0.013 / 0.000
+  chi2 totals over the three populations: (a0) 85.43, (a1) 14.75, (a2) 17.69  -> (a) = best = a1  chi2_a = 14.75
+  V1: chi2_b = 2.30   Delta chi2 = chi2_a - chi2_b = +12.45
+  V2: chi2_b = 4.20   Delta chi2 = chi2_a - chi2_b = +10.55
+
+  --- footing alt (a0 = 1.13e-10 m/s^2) ---
+  population                 reading        offset   error       z    chi2   (error parts: stat / Upsilon / collapse-mass floor)
+  MW ultra-faints (40)       (a) a0         +1.078   0.158   +6.83   46.62   0.047 / 0.151 / 0
+  MW ultra-faints (40)       (a) a1         +0.304   0.086   +3.55   12.62   0.038 / 0.077 / 0
+  MW ultra-faints (40)       (a) a2         +0.619   0.168   +3.67   13.50   0.076 / 0.150 / 0
+  MW ultra-faints (40)       (b) V1         +0.080   0.132   +0.61    0.37   0.055 / 0.000 / 0.121
+  MW ultra-faints (40)       (b) V2         +0.080   0.055   +1.47    2.16   0.055 / 0.000 / 0.000
+  MW classical dSphs (14)    (a) a0         +0.515   0.136   +3.78   14.28   0.111 / 0.079 / 0
+  MW classical dSphs (14)    (a) a1         +0.008   0.084   +0.09    0.01   0.064 / 0.055 / 0
+  MW classical dSphs (14)    (a) a2         +0.083   0.102   +0.82    0.67   0.072 / 0.072 / 0
+  MW classical dSphs (14)    (b) V1         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  MW classical dSphs (14)    (b) V2         -0.029   0.077   -0.38    0.14   0.075 / 0.015 / 0.000
+  M31 LVD (34)               (a) a0         +0.610   0.123   +4.95   24.53   0.076 / 0.097 / 0
+  M31 LVD (34)               (a) a1         +0.031   0.073   +0.42    0.18   0.047 / 0.057 / 0
+  M31 LVD (34)               (a) a2         +0.129   0.097   +1.34    1.79   0.061 / 0.075 / 0
+  M31 LVD (34)               (b) V1         -0.062   0.046   -1.34    1.79   0.043 / 0.013 / 0.011
+  M31 LVD (34)               (b) V2         -0.062   0.045   -1.38    1.90   0.043 / 0.013 / 0.000
+  chi2 totals over the three populations: (a0) 85.43, (a1) 12.80, (a2) 15.96  -> (a) = best = a1  chi2_a = 12.80
+  V1: chi2_b = 2.30   Delta chi2 = chi2_a - chi2_b = +10.50
+  V2: chi2_b = 4.20   Delta chi2 = chi2_a - chi2_b = +8.60
+
+  (b) acceptable (all |z_b| < 2 in V1 canonical and chi2_b(V1) <= 11.34): True; z_b: P1 +0.61, P2 -0.38, P3 -1.34
+  OUTCOME CLASS: H4
+
+  P2 outcome H2; RAR-kernel outcome H4; FINAL OUTCOME CLASS (more cautious on disagreement): H4
+  [PASS] (control) C-H5 swapping the readings' labels changes the sign of every Delta
+         canonical/V1: +13.27 -> -13.27; canonical/V2: +11.59 -> -11.59; alt/V1: +11.05 -> -11.05; alt/V2: +9.37 -> -9.37
+
+  (a2) minus (a1) UFD median offset, canonical: host on +0.3270 dex, host off +0.0000 dex
+
+==============================================================================================================
+ROBUSTNESS ROWS (reported; none changes the verdict).  Delta chi2 = chi2_a - chi2_b; entries V1/V2 canonical | V1/V2 alt
+==============================================================================================================
+  baseline (nb = 500)                                        Delta  +13.47/ +11.73 |  +11.22/  +9.49   chi2_b(V1)  2.30  -> H2  (b ok True)
+  (b) collapse mass x0.1                                     Delta  +11.13/  -1.11 |   +8.89/  -3.36   chi2_b(V1)  4.63  -> H4  (b ok True)
+  (b) collapse mass x0.3                                     Delta  +14.42/  +9.03 |  +12.17/  +6.79   chi2_b(V1)  1.35  -> H4  (b ok True)
+  (b) collapse mass x3.0                                     Delta  +10.83/ +10.69 |   +8.59/  +8.45   chi2_b(V1)  4.93  -> H4  (b ok True)
+  (b) collapse mass x10.0                                    Delta   +4.61/  +4.27 |   +2.37/  +2.02   chi2_b(V1) 11.15  -> H4  (b ok False)
+  (b) Dutton-Maccio concentration                            Delta   +8.29/  +7.83 |   +6.04/  +5.59   chi2_b(V1)  7.48  -> H4  (b ok False)
+  (b) Duffy relaxed concentration                            Delta  +10.78/ +10.67 |   +8.53/  +8.43   chi2_b(V1)  4.99  -> H4  (b ok True)
+  CFG91 recipe (bootstrap SE + Upsilon propagated into halo and gas) Delta  +14.18/ +12.53 |  +12.12/ +10.47   chi2_b(V1)  1.33  -> H2  (b ok True)
+  (b) floors on P1 only (frozen letter)                      Delta  +13.36/ +11.73 |  +11.12/  +9.49   chi2_b(V1)  2.40  -> H2  (b ok True)
+  record kernel (RAR)                                        Delta  +12.36/ +10.62 |  +10.42/  +8.69   chi2_b(V1)  2.30  -> H4  (b ok True)
+
+  clamp scan of (b) (every satellite with M_* < 1e5 set to the collapse mass), canonical, P1 KM median / V2 z:
+    M_coll = 100000000.0: KM median +0.204
+    M_coll = 300000000.0: KM median +0.143
+    M_coll = 1000000000.0: KM median +0.080
+    M_coll = 3000000000.0: KM median +0.023
+    M_coll = 10000000000.0: KM median -0.037
+    M_coll = Moster (clamped 1e9): KM median +0.080
+  Upsilon_V = 1 central offsets canonical: a1 P1 +0.405, P2 +0.084, P3 +0.109 | b P1 +0.080, P2 -0.022, P3 -0.041
+  Upsilon_V = 4 central offsets canonical: a1 P1 +0.254, P2 -0.023, P3 +0.002 | b P1 +0.080, P2 -0.052, P3 -0.067
+
+  leave-one-population-out Delta chi2 (primary, V1 | V2, canonical and alt):
+    without P1: can V1 -1.26 V2 -1.37 | alt V1 -1.70 V2 -1.81
+    without P2: can V1 +13.53 V2 +11.63 | alt V1 +11.42 V2 +9.52
+    without P3: can V1 +14.89 V2 +13.09 | alt V1 +12.91 V2 +11.12
+
+  M31 Collins+13 (14; 13 shared with P3) in place of P3 (primary scoring, canonical V1 | V2):
+    Collins alone: offsets a1 +0.078, b +0.058; Delta (P1+P2+Collins) V1 +15.42, V2 +13.63
+
+  UFD offset against M_V (resolved only, Spearman rho, p) under each reading (CFG83 flagged only; model-independent ordering):
+    a1: rho = +0.45  p = 0.011  (n = 31)
+    a2: rho = +0.64  p = 0.000  (n = 31)
+    b: rho = +0.31  p = 0.089  (n = 31)
+
+  the record's own EFE rule (h43's a_int; RAR kernel; labelled, not a frozen variant), canonical medians:
+    MW ultra-faints (40)       a2rec +0.764   a1 (RAR) +0.325
+    MW classical dSphs (14)    a2rec +0.196   a1 (RAR) +0.027
+    M31 LVD (34)               a2rec +0.248   a1 (RAR) +0.044
+
+  the record's sum rule S (law + collapse debris; hybrid, not a reading of this class; CFG42's sigma_rule with its collapse-mass convention), canonical medians:
+    MW ultra-faints (40)       S median -0.059
+    MW classical dSphs (14)    S median -0.118
+    M31 LVD (34)               S median -0.107
+
+  GATE H RESULT: outcome class H4   (5 s)
