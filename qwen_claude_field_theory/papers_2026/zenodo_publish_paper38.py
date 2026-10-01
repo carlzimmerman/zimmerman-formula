@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Publish PAPER38 (the baryon-calibration wall for a0(z)) to Zenodo (production), gated on PAPER38_audit.py passing.
 Reads ZENODO_ACCESS_TOKEN from the .env one directory above the repository -- NEVER printed.
-Deposited on the owner's explicit go (2026-09-30).
+Deposited on the owner's explicit go: PUBLISHED 2026-10-01, DOI 10.5281/zenodo.23073072 (concept 23073071); the owner ran this script.
 Usage: python zenodo_publish_paper38.py   (run from qwen_claude_field_theory/papers_2026/)
 """
 import json, os, sys, time, urllib.request, urllib.error

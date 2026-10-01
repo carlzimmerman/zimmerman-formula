@@ -69,7 +69,7 @@ interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compa
   - No public dynamics-independent gas anchor reaches the 0.10 dex needed. The best one, Heintz & Watson 2020's α_[CI](Z), scatters 0.64 dex about its own relation in its own table, and four of its tabulated values are shifted between rows.
   - A KiDS-1000 lensing split by lens redshift, which would cancel a common-mode calibration, is not possible (power 0.14 against the 9 needed; CFG255).
   - Lean theorems (CFG240; the ChainCert library now holds 331) show a₀ is identifiable in principle but ill-conditioned: with the calibration free, σ(log a₀) ≥ 3σ/√N, and a sample must reach g_bar/a₀ ≈ 8 and include deep points.
-  - Write-up: PAPER38, "Measuring the MOND Acceleration Scale at High Redshift: The Baryon-Calibration Wall" (audit 293/293; deposit pending).
+  - Write-up: PAPER38, "Measuring the MOND Acceleration Scale at High Redshift: The Baryon-Calibration Wall" (audit 293/293; [DOI 10.5281/zenodo.23073072](https://doi.org/10.5281/zenodo.23073072)).
 - **One route to the 32π coefficient is excluded.** Under constant couplings and standard radiation, the canonical-clock branch is excluded by the BBN-only bound on G (Alvey et al. 2020). The factor 4 in Gρ_Λ = 4a₀² remains underived.
 - **Unchanged:** κ = ½ is fitted; the cold mass (Ω_c h² ≈ 0.12) is still required; no data set prefers the framework over ΛCDM.
 
@@ -266,7 +266,7 @@ decisive power. Any robust a₀ evolution below z ~ 5 falsifies the law — eith
 - No public dynamics-independent gas anchor reaches 0.10 dex.
 - A KiDS-1000 lens-redshift split is not possible: a stellar-mass drift δ mimics an a₀ drift by δ/2.
 - Lean theorems give the requirement (σ(log a₀) ≥ 3σ/√N with the calibration free).
-- Write-up: PAPER38 (`qwen_claude_field_theory/papers_2026/PAPER38_a0z_calibration_wall_2026.pdf`, audit 293/293). Lanes: `campaign_fresh_gravity/CFG223_*`–`CFG229_*`, `CFG238_*`, `CFG240_calibration_wall/`, `CFG255_lensing_rar_zsplit/`.
+- Write-up: PAPER38, [DOI 10.5281/zenodo.23073072](https://doi.org/10.5281/zenodo.23073072) (`qwen_claude_field_theory/papers_2026/PAPER38_a0z_calibration_wall_2026.pdf`, audit 293/293). Lanes: `campaign_fresh_gravity/CFG223_*`–`CFG229_*`, `CFG238_*`, `CFG240_calibration_wall/`, `CFG255_lensing_rar_zsplit/`.
 
 ### 6 · Structural theorems (MI era, kept for the record)
 Seven machine-verified results on the closed modified-inertia arm; five are prohibitions.
@@ -298,6 +298,7 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
+[![The Baryon-Calibration Wall](https://img.shields.io/badge/The%20Baryon--Calibration%20Wall%20for%20a0(z)%20(Oct%201%202026)-10.5281%2Fzenodo.23073072-blue)](https://doi.org/10.5281/zenodo.23073072)
 [![DESI DR1 Growth Check](https://img.shields.io/badge/Hubble--Kernel%20Equation%20vs%20DESI%20DR1%20(Sep%2011%202026)-10.5281%2Fzenodo.22708060-blue)](https://doi.org/10.5281/zenodo.22708060)
 [![Clock Stability Theorem](https://img.shields.io/badge/The%20Clock%20Stability%20Theorem%20(Sep%2011%202026)-10.5281%2Fzenodo.22717950-blue)](https://doi.org/10.5281/zenodo.22717950)
 [![Ledger Geometry](https://img.shields.io/badge/The%20Ledger%20Is%20Geometry%20(Sep%2011%202026)-10.5281%2Fzenodo.22718357-blue)](https://doi.org/10.5281/zenodo.22718357)
@@ -379,6 +380,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-10-01 | [10.5281/zenodo.23073072](https://doi.org/10.5281/zenodo.23073072) (concept 23073071) | Measuring the MOND Acceleration Scale at High Redshift: The Baryon-Calibration Wall | v1.1 (PAPER38; audit 293/293, `PAPER38_audit.py`) |
 | 2026-09-28 | [10.5281/zenodo.23025372](https://doi.org/10.5281/zenodo.23025372) (concept 23025371) | The Cold Component Keeps Its Collapse Mass: A Derived Dark-Sector Rule for a Lambda-Tied MOND Law, Tested with Weak-Lensing Collapse Masses | v1 (PAPER36; lanes CFG35-CFG39; audit `qwen_claude_field_theory/papers_2026/PAPER36_audit.py` 48/48) |
 | 2026-09-26 | [10.5281/zenodo.22984587](https://doi.org/10.5281/zenodo.22984587) (concept 22977899) | A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer | v2 (scope notes: L372/L392 same-cell, MS1 switch leak, DE1 gate cap, GP5 high z; v1's results stand) |
 | 2026-09-26 | [10.5281/zenodo.22977900](https://doi.org/10.5281/zenodo.22977900) (concept 22977899) | A Dark Sector the MOND Kernel Cannot See: Reciprocity, Bound-Region Kernels, and the Cosmic-Shear Pincer | v1 (PAPER34; audit lane `real_research/paper34_audit_2026/`) |
