@@ -1,0 +1,201 @@
+{
+ "inputs": {
+  "N": 32,
+  "subsets": {
+   "P": 110,
+   "S1": 30,
+   "S2": 38,
+   "S3": 72,
+   "S4": 14,
+   "S5": 45,
+   "S6": 128,
+   "S7": 82,
+   "S8": 103,
+   "PC": 32,
+   "PC125": 13,
+   "PC15": 7
+  },
+  "y_q": [
+   0.02872200472682035,
+   0.04242802165171609,
+   0.06761730390551762,
+   0.1135415845821727,
+   0.2074985121769628
+  ],
+  "frac_y03": 1.0,
+  "frac_y01": 0.6875,
+  "z_med": 0.20190999999999998,
+  "ms_over_mg": 1.9023456525812974
+ },
+ "noiseless": {
+  "flat": -7.204523436166177e-17,
+  "rival_s": 1.104952786430631
+ },
+ "levers": {
+  "baryon_per_dex": -1.2949812883522211,
+  "frame": 0.3521092026916399,
+  "half": {
+   "A": {
+    "tau_ms": 0.08946716367895888,
+    "tau_gas": 0.02310063265934923,
+    "tau_w": 0.030564044932277115,
+    "tau_i": 0.039958341516929466,
+    "tau_r": 0.015286219253618984,
+    "tau_d": 0.019980425739983973
+   },
+   "B": {
+    "tau_ms": 0.24628931740578708,
+    "tau_gas": 0.07557529303463581,
+    "tau_w": 0.07439284215132969,
+    "tau_i": 0.12165012068031009,
+    "tau_r": 0.05368617408509878,
+    "tau_d": 0.06100881565634893
+   }
+  },
+  "S_joint": {
+   "A": 0.21835682778111765,
+   "B": 0.6326025630135104
+  }
+ },
+ "recipe_band_noiseless": {
+  "rows": {
+   "delta": {
+    "label": "width correction (km/s)",
+    "brackets": [
+     16.0,
+     40.0
+    ],
+    "log_s": [
+     0.070997894678686,
+     -0.07439284215132969
+    ],
+    "half": 0.07269536841500784
+   },
+   "sini": {
+    "label": "sin i_eff",
+    "brackets": [
+     0.8,
+     0.92
+    ],
+    "log_s": [
+     0.15554224550548407,
+     -0.12114443775043732
+    ],
+    "half": 0.1383433416279607
+   },
+   "tau_ms": {
+    "label": "M* zero point (dex)",
+    "brackets": [
+     -0.25,
+     0.25
+    ],
+    "log_s": [
+     0.1810318965389035,
+     -0.24628931740578708
+    ],
+    "half": 0.2136606069723453
+   },
+   "kscale": {
+    "label": "K-correction scale",
+    "brackets": [
+     0.5,
+     1.5
+    ],
+    "log_s": [
+     -0.06381549499429015,
+     0.05750703149070448
+    ],
+    "half": 0.060661263242497314
+   },
+   "rdex": {
+    "label": "R scale (dex)",
+    "brackets": [
+     -0.15,
+     0.15
+    ],
+    "log_s": [
+     -0.05368617408509878,
+     0.03480821242056749
+    ],
+    "half": 0.044247193252833134
+   },
+   "hubble": {
+    "label": "H0 (distance scale)",
+    "brackets": [
+     67.4,
+     73.0
+    ],
+    "log_s": [
+     -0.037600056226575154,
+     0.041436047266667844
+    ],
+    "half": 0.0395180517466215
+   }
+  },
+  "half": 0.277981350303133,
+  "single": {
+   "H2 (M_H2 = 0.3 M_HI added)": -0.042189600075590514,
+   "P2 kernel": 0.08709607090509125,
+   "other frame (k flipped)": 0.3521092026916399
+  }
+ },
+ "campaign": {
+  "FLAT|f1.25|none": {
+   "median": -0.49864043749965353,
+   "mean": -0.5184436916862869,
+   "sd": 0.1495929374254095,
+   "p5": -0.7820791006407404,
+   "p95": -0.31876209596241534,
+   "bias_median": -0.49864043749965353,
+   "unb": 0.0,
+   "truth": 0.0
+  }
+ },
+ "bites": false,
+ "checks": [
+  {
+   "name": "C1 CONTROL: membership (CFG212's rule and constants) reproduces CFG212's counts: A963 94 / 8 / 30, A2192 24 / 3 / 8 (members / < 1 Mpc / < 2 Mpc)",
+   "detail": "{'A963': (94, 8, 30), 'A2192': (24, 3, 8)}",
+   "ok": true,
+   "kind": "control"
+  },
+  {
+   "name": "C2 CONTROL: the table's D_L equals flat LCDM (H0 70, Om 0.3) to 0.5 %",
+   "detail": "max |D_L / D_L(z) - 1| = 0.0023",
+   "ok": true,
+   "kind": "control"
+  },
+  {
+   "name": "C3 CONTROL: M_HI x (1+z) / (2.356e5 D_L^2 S_int) in [0.99, 1.01] for every galaxy (S_int is in observed-frame velocity units: the frame evidence)",
+   "detail": "range 0.9968 to 1.0092",
+   "ok": true,
+   "kind": "control"
+  },
+  {
+   "name": "C6 CONTROL (blind loader): the loader returns no width key, and this pre-flight's source contains the width column names nowhere (they live only in cfg260_core's forbidden list)",
+   "detail": "keys ['R', 'bmag', 'c', 'cl', 'dl', 'dv', 'e0', 'esint', 'idx', 'inner', 'mem', 'mhi', 'pb', 'ptype', 'rmag', 'sdss', 'sint', 'theta', 'wedge', 'z']; width-like keys []; occurrences of the width column names in this source: 0",
+   "ok": true,
+   "kind": "control"
+  },
+  {
+   "name": "C9 CONTROL (Addendum 2 counts, non-width): the completeness-limited sets have the sizes the addendum states (PC 32, PC125 13, PC15 7)",
+   "detail": "PC 32, PC125 13, PC15 7",
+   "ok": true,
+   "kind": "control"
+  },
+  {
+   "name": "C4 CONTROL (noiseless identity): known inclination, no scatter or selection, nominal recipe: s* = s_true to 1e-6 for F = 1; for the RIVAL a value in [min F, max F] equal to an independent brentq of the median condition to 1e-9",
+   "detail": "FLAT: log10 s* = -7.20e-17; RIVAL: s* = 1.1050 (F in [1.0835, 1.1147]), brentq difference 8.3e-17",
+   "ok": true,
+   "kind": "control"
+  },
+  {
+   "name": "C5 CONTROL: the solver equals CFG223's `implied` (exec'd from its source) on a test vector to 1e-12",
+   "detail": "max |d| = 0.0e+00",
+   "ok": true,
+   "kind": "control"
+  }
+ ],
+ "seconds": 0.8,
+ "set": "PC"
+}

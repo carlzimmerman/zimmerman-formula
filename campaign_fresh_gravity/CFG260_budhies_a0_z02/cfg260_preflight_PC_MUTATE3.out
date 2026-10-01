@@ -1,0 +1,57 @@
+CFG260 PRE-FLIGHT v2 (mocks only; reads NO HI line width): what the BUDHIES completeness-limited primary set PC could say about the implied a0 at z ~ 0.2, and whether FLAT can be told from a0 ~ H(z).
+Frozen criteria: FROZEN_CRITERIA.md (00f20121d) + Addendum 1 (2b8a8e4c7) + Addendum 2 (committed before this run; it follows the FIRST run, kept as cfg260_preflight_v1.*).
+The real inputs are the non-width columns (z, D_L, M_HI, S_int, B, R, membership, R_proj, beam position); the widths are MOCK.  The loader (cfg260_core.load_galaxies) cannot return a width unless widths=True,
+which only the measurement script passes.  kappa = 1/2 FITTED; no sentence says the data favour a law.
+
+  mode: MUTATE=3; primary set under test: PC (PRIMARY (Addendum 2): P with completeness ratio c >= 1.0)
+
+==============================================================================================================
+CONTROLS (inputs)
+==============================================================================================================
+  [PASS] (control) C1 CONTROL: membership (CFG212's rule and constants) reproduces CFG212's counts: A963 94 / 8 / 30, A2192 24 / 3 / 8 (members / < 1 Mpc / < 2 Mpc)
+         {'A963': (94, 8, 30), 'A2192': (24, 3, 8)}
+  [PASS] (control) C2 CONTROL: the table's D_L equals flat LCDM (H0 70, Om 0.3) to 0.5 %
+         max |D_L / D_L(z) - 1| = 0.0023
+  [PASS] (control) C3 CONTROL: M_HI x (1+z) / (2.356e5 D_L^2 S_int) in [0.99, 1.01] for every galaxy (S_int is in observed-frame velocity units: the frame evidence)
+         range 0.9968 to 1.0092
+  [PASS] (control) C6 CONTROL (blind loader): the loader returns no width key, and this pre-flight's source contains the width column names nowhere (they live only in cfg260_core's forbidden list)
+         keys ['R', 'bmag', 'c', 'cl', 'dl', 'dv', 'e0', 'esint', 'idx', 'inner', 'mem', 'mhi', 'pb', 'ptype', 'rmag', 'sdss', 'sint', 'theta', 'wedge', 'z']; width-like keys []; occurrences of the width column names in this source: 0
+  [PASS] (control) C9 CONTROL (Addendum 2 counts, non-width): the completeness-limited sets have the sizes the addendum states (PC 32, PC125 13, PC15 7)
+         PC 32, PC125 13, PC15 7
+
+==============================================================================================================
+THE REAL NON-WIDTH INPUTS
+==============================================================================================================
+  subset sizes: P 110; S1 30; S2 38; S3 72; S4 14; S5 45; S6 128; S7 82; S8 103; PC 32; PC125 13; PC15 7
+  PC: N = 32; log M_HI quantiles [9.75, 9.85, 9.94, 10.12, 10.3]; log M* [9.32, 9.93, 10.34, 10.82, 11.1]; M*/M_gas median 1.90
+  y = g_bar/a0 at R_HI quantiles [0.029, 0.042, 0.068, 0.114, 0.207]; fraction y < 0.3: 1.000; y < 0.1: 0.688; z median 0.202 (range 0.165-0.218); completeness ratio c median 1.21; beam attenuation median 0.77; cluster members 21, field 11
+
+==============================================================================================================
+CONTROLS (estimator)
+==============================================================================================================
+  [PASS] (control) C4 CONTROL (noiseless identity): known inclination, no scatter or selection, nominal recipe: s* = s_true to 1e-6 for F = 1; for the RIVAL a value in [min F, max F] equal to an independent brentq of the median condition to 1e-9
+         FLAT: log10 s* = -7.20e-17; RIVAL: s* = 1.1050 (F in [1.0835, 1.1147]), brentq difference 8.3e-17
+  [PASS] (control) C5 CONTROL: the solver equals CFG223's `implied` (exec'd from its source) on a test vector to 1e-12
+         max |d| = 0.0e+00
+
+==============================================================================================================
+NOISELESS LEVERS (analyst's knobs on the identity sample; dex of log10 s* per knob step)
+==============================================================================================================
+  baryon lever: d log10 s* / d(dex of the analyst's baryon masses) = -1.295   (1 - 1/eta = -1.33 at y ~ 0.09; -1 in the deep limit)
+  frame lever: analyst k = 0 on observed-frame widths: +0.352 dex  (the analyst of the other frame reads s* higher by this; the misreading the other way is the negative)
+  level A: |shift| at the half-range: tau_ms 0.089, tau_gas 0.023, tau_w 0.031, tau_i 0.040, tau_r 0.015, tau_d 0.020  -> aligned worst case S_joint = 0.218 dex
+  level B: |shift| at the half-range: tau_ms 0.246, tau_gas 0.076, tau_w 0.074, tau_i 0.122, tau_r 0.054, tau_d 0.061  -> aligned worst case S_joint = 0.633 dex
+  recipe-band knobs on the identity sample (frozen brackets; half-difference of log10 s*): width correction (km/s) 0.073; sin i_eff 0.138; M* zero point (dex) 0.214; K-correction scale 0.061; R scale (dex) 0.044; H0 (distance scale) 0.040  -> quadrature half-width 0.278 dex
+  singly reported: H2 (M_H2 = 0.3 M_HI added) -0.042; P2 kernel +0.087; other frame (k flipped) +0.352
+
+==============================================================================================================
+MOCK CAMPAIGN (M = 2,000 mocks per cell; analyst = nominal recipe with sin i_eff 0.70 (MUTATE=3); truth frame k = 1; detection at the galaxy's beam position, f x threshold)
+==============================================================================================================
+  1 cells in 1 s
+
+==============================================================================================================
+MUTATE=3 (set PC, detection scenario f1.25)
+==============================================================================================================
+  median log10 s* shift against the main run's baseline cell (same seed): +0.439 (expected +0.43 +- 0.07)
+
+  [MUTATE CONTROL] MUTATE=3: the control BITES
