@@ -194,7 +194,6 @@ def form_mp(form_str):
     ex = sp.expand(ex)
     val = mp.mpf(0)
     for term in sp.Add.make_args(ex):
-        c_, atoms = sp.Mul.make_args(term) if term != 1 else (sp.Integer(1), [])
         rat = sp.Rational(1); rest = []
         for f in sp.Mul.make_args(term) if term != 1 else []:
             if f.is_Rational: rat *= sp.Rational(f)
