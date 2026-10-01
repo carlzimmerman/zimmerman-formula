@@ -1,0 +1,27 @@
+CFG255 independent re-run, part 2: a fresh re-implementation of the measurement side and of the deep-limit forecast   *** MUTATE=2: the patch labels permuted (X3 must FAIL) ***
+inputs: cfg110_perlens.npz (WG, WW, NN), lr_lenses.npz (z, typ), lr_esd_jackknife.npz (patch); compared against the committed cfg255_stageA/B_results.json
+
+class 0 (late): z cuts 0.2574 / 0.3526; N lo 31133, N hi 31133; median z lo 0.2045 hi 0.3996; mean z lo 0.1989 hi 0.4050
+         A_data = -0.1597 +- 0.1181 (weights fixed) / +- 0.1181 (weights re-formed per leave-one-out)
+class 1 (early): z cuts 0.2760 / 0.3426; N lo 29360, N hi 29360; median z lo 0.2318 hi 0.3785; mean z lo 0.2217 hi 0.3838
+         A_data = +0.0956 +- 0.0422 (weights fixed) / +- 0.0422 (weights re-formed per leave-one-out)
+combined: A_data = +0.0667 +- 0.0397 (weights fixed); +0.0667 +- 0.0398 (re-formed)
+
+  [PASS] X1 the class photo-z thirds (1/3 and 2/3 quantiles) equal stage A's recorded quantiles to 1e-12
+         class 0: 0.257385 / 0.352557 (recorded 0.257385 / 0.352557); class 1: 0.275969 / 0.342569 (recorded 0.275969 / 0.342569)
+  [FAIL] X2 per-class A_data and the inverse-variance combination equal stage B's to 1e-9
+         max |dA| per class 4.2e-16; combined +0.066667 (recorded +0.059475), difference 7.2e-03
+  [FAIL] X3 the jackknife sigma per class and the combined sigma_A equal the recorded values to 1e-6 relative (weights fixed, as the script does)
+         max relative difference per class 1.6e-01; combined sigma_A 0.039744 (recorded 0.038339), 3.7e-02; sensitivity: re-forming the pair weights per leave-one-out gives 0.039757 (+3.2e-04)
+  (MUTATE: X2 / X3 are expected to FAIL as noted in the header; X4 / X5 use only z and the recorded sigma and are unaffected)
+deep-limit forecast of the rival (a0 ~ E(z)):  Delta log g_obs = 0.5 log10[E(z_hi)/E(z_lo)] at fixed g_bar, the same in every deep-regime bin
+  median z: late +0.0237, early +0.0178; combined with the data's inverse-variance weights +0.0185
+  mean z: late +0.0250, early +0.0197; combined with the data's inverse-variance weights +0.0203
+  [PASS] X4 the analytic deep-limit rival amplitude (median-z and mean-z versions) lies within 0.004 dex of stage A's A_RIVAL [band fixed after the first print]
+         median z +0.0185, mean z +0.0203; stage A A_RIVAL +0.0188 (A_FLAT +0.0009, gap +0.0179)
+  [PASS] X5 the analytic power (gap / sigma_A)^2 x Hartlap lies in [0.10, 0.25] [band fixed after the first print]
+         (+0.0179 / 0.0383)^2 x 0.694 = 0.151; stage A power 0.14 canonical / 0.17 alt (GLS on the 14 bins, so not identical)
+
+[MUTATE CONTROL] X3 FAILED as designed
+
+3/5 checks pass; MUTATE=2 bites: True   (1 s)
