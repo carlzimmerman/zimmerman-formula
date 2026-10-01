@@ -56,6 +56,8 @@ CL = {"A963": dict(z=0.206, ra=hms(10, 17, 14.22), dec=dms(" ", 39, 1, 22.1), si
       "A2192": dict(z=0.188, ra=hms(16, 26, 36.99), dec=dms(" ", 42, 40, 10.1), sig=653.0)}
 DA_CL = {k: DA_mpc(v["z"]) for k, v in CL.items()}
 R_INNER = 2.0                                                           # Mpc, frozen
+PB_FWHM_ARCMIN = 61.0 * math.sqrt(math.log(2) / math.log(4))           # WSRT primary beam: FWQM 61' at 1190 MHz (BUDHIES IV via the data chat's summariser read, UNVERIFIED) -> FWHM 43.1'; pointing taken at the cluster centre
+C_MIN = 1.0                                                             # Addendum 2: completeness ratio of the PRIMARY set PC
 M_HI_CUT = 3.0e9                                                        # Msun, frozen
 
 
@@ -79,6 +81,17 @@ def load_galaxies(widths=False):
         if widths:
             g["w50"] = float(r["w50_kms"]); g["e_w50"] = float(r["e_w50"])
         gals.append(g)
+    # Addendum 2: the completeness ratio c = (S_int / W_edge) PB(theta) / S_lim,pk, from NON-WIDTH inputs only (W_edge = predicted edge-on width, nominal recipe, a0 canonical)
+    a = Arr(gals)
+    _, _, Mb, Rm = baryons(a, REC0)
+    gb = G * Mb * MSUN / Rm ** 2
+    go = gb * nuv(NU, gb / A0["canonical"])
+    Wedge = 2 * np.sqrt(go * Rm) / 1e3 * (1 + a.z) + REC0["delta"]
+    theta = np.array([g["R"] / DA_CL[g["cl"]] * (180 / math.pi) * 60 for g in gals])
+    pb = np.exp(-4 * math.log(2) * (theta / PB_FWHM_ARCMIN) ** 2)
+    c = (a.sint / Wedge) * pb / a.spk_lim
+    for g, th, p_, c_, we in zip(gals, theta, pb, c, Wedge):
+        g["theta"], g["pb"], g["c"], g["wedge"] = float(th), float(p_), float(c_), float(we)
     return gals
 
 
@@ -92,10 +105,14 @@ SUBSETS = {
     "S6": lambda g: (not g["e0"]) and (not g["inner"]),
     "S7": lambda g: (not g["e0"]) and (not g["inner"]) and g["mhi"] >= 5.0e9,
     "S8": lambda g: SUBSETS["P"](g) and (not g["sdss"]),
+    "PC":    lambda g: SUBSETS["P"](g) and g["c"] >= C_MIN,
+    "PC125": lambda g: SUBSETS["P"](g) and g["c"] >= 1.25,
+    "PC15":  lambda g: SUBSETS["P"](g) and g["c"] >= 1.5,
 }
-SUBSET_LABEL = {"P": "PRIMARY (outside 2 Mpc or non-member; M_HI >= 3e9)", "S1": "inner members (< 2 Mpc), M_HI >= 3e9", "S2": "field only (non-members), M_HI >= 3e9",
+SUBSET_LABEL = {"P": "P-all (outside 2 Mpc or non-member; M_HI >= 3e9; selection-biased)", "S1": "inner members (< 2 Mpc), M_HI >= 3e9", "S2": "field only (non-members), M_HI >= 3e9",
                 "S3": "members beyond 2 Mpc, M_HI >= 3e9", "S4": "primary, profile type 1 only", "S5": "primary, types 1 and 3", "S6": "primary without the M_HI cut",
-                "S7": "primary with M_HI >= 5e9", "S8": "primary without the SDSS-converted magnitudes"}
+                "S7": "primary with M_HI >= 5e9", "S8": "primary without the SDSS-converted magnitudes",
+                "PC": "PRIMARY (Addendum 2): P with completeness ratio c >= 1.0", "PC125": "P with c >= 1.25", "PC15": "P with c >= 1.5"}
 
 
 def select(gals, key):
@@ -110,6 +127,8 @@ class Arr:
         for key in ("z", "dl", "mhi", "bmag", "rmag", "sint", "R", "esint"):
             setattr(self, key, np.array([g[key] for g in gals], float))
         self.spk_lim = (2.0e9 * (1 + self.z) / (2.356e5 * self.dl ** 2)) * 1e3 / 150.0      # mJy: S_int,lim (2e9 Msun) / 150 km/s, field centre
+        self.pb = np.array([g.get("pb", 1.0) for g in gals], float)                         # primary-beam attenuation (Addendum 2)
+        self.spk_thr = self.spk_lim / self.pb                                               # the detection threshold at the galaxy's position, f = 1
 
 
 # ------------------------------------------------------------------------------------------------ the recipe (frozen, section 3)

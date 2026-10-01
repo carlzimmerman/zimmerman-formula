@@ -1,0 +1,107 @@
+CFG260 PRE-FLIGHT (mocks only; reads NO HI line width): what the BUDHIES primary set (outside 2 Mpc, M_HI >= 3e9) could say about the implied a0 at z ~ 0.2, and whether FLAT can be told from a0 ~ H(z).
+Frozen criteria: FROZEN_CRITERIA.md (00f20121d) + Addendum 1 (2b8a8e4c7), committed before this script.  The real inputs are the non-width columns (z, D_L, M_HI, S_int, B, R, membership, R_proj); the widths are MOCK.
+The loader (cfg260_core.load_galaxies) cannot return a width unless widths=True, which only the measurement script passes.  kappa = 1/2 FITTED; no sentence says the data favour a law.
+
+  mode: main
+
+==============================================================================================================
+CONTROLS (inputs)
+==============================================================================================================
+  [PASS] (control) C1 CONTROL: membership (CFG212's rule and constants) reproduces CFG212's counts: A963 94 / 8 / 30, A2192 24 / 3 / 8 (members / < 1 Mpc / < 2 Mpc)
+         {'A963': (94, 8, 30), 'A2192': (24, 3, 8)}
+  [PASS] (control) C2 CONTROL: the table's D_L equals flat LCDM (H0 70, Om 0.3) to 0.5 %
+         max |D_L / D_L(z) - 1| = 0.0023
+  [PASS] (control) C3 CONTROL: M_HI x (1+z) / (2.356e5 D_L^2 S_int) in [0.99, 1.01] for every galaxy (S_int is in observed-frame velocity units: the frame evidence)
+         range 0.9968 to 1.0092
+  [PASS] (control) C6 CONTROL (blind loader): the loader returns no width key, and this pre-flight's source contains the width column names nowhere (they live only in cfg260_core's forbidden list)
+         keys ['R', 'bmag', 'cl', 'dl', 'dv', 'e0', 'esint', 'idx', 'inner', 'mem', 'mhi', 'ptype', 'rmag', 'sdss', 'sint', 'z']; width-like keys []; occurrences of the width column names in this source: 0
+
+==============================================================================================================
+THE REAL NON-WIDTH INPUTS
+==============================================================================================================
+  subset sizes: P 110; S1 30; S2 38; S3 72; S4 14; S5 45; S6 128; S7 82; S8 103
+  PRIMARY N = 110; log M_HI quantiles [9.54, 9.7, 9.83, 9.97, 10.26]; log M* [9.44, 9.95, 10.4, 10.81, 11.23]; M*/M_gas median 2.78
+  y = g_bar/a0 at R_HI quantiles [0.029, 0.053, 0.088, 0.171, 0.357]; fraction y < 0.3: 0.927; y < 0.1: 0.591; z median 0.203 (range 0.165-0.224)
+
+==============================================================================================================
+CONTROLS (estimator)
+==============================================================================================================
+  [PASS] (control) C4 CONTROL (noiseless identity): known inclination, no scatter or selection, nominal recipe: s* = s_true to 1e-6 for F = 1; for the RIVAL a value in [min F, max F] equal to an independent brentq of the median condition to 1e-9
+         FLAT: log10 s* = -7.20e-17; RIVAL: s* = 1.1054 (F in [1.0835, 1.1181]), brentq difference 1.4e-17
+  [PASS] (control) C5 CONTROL: the solver equals CFG223's `implied` (exec'd from its source) on a test vector to 1e-12
+         max |d| = 0.0e+00
+
+==============================================================================================================
+NOISELESS LEVERS (analyst's knobs on the identity sample; dex of log10 s* per knob step)
+==============================================================================================================
+  baryon lever: d log10 s* / d(dex of the analyst's baryon masses) = -1.342   (1 - 1/eta = -1.33 at y ~ 0.09; -1 in the deep limit)
+  frame lever: analyst k = 0 on observed-frame widths: +0.355 dex  (the analyst of the other frame reads s* higher by this; the misreading the other way is the negative)
+  level A: |shift| at the half-range: tau_ms 0.103, tau_gas 0.018, tau_w 0.032, tau_i 0.041, tau_r 0.018, tau_d 0.020  -> aligned worst case S_joint = 0.233 dex
+  level B: |shift| at the half-range: tau_ms 0.285, tau_gas 0.061, tau_w 0.079, tau_i 0.124, tau_r 0.063, tau_d 0.062  -> aligned worst case S_joint = 0.673 dex
+  recipe-band knobs on the identity sample (frozen brackets; half-difference of log10 s*): width correction (km/s) 0.077; sin i_eff 0.141; M* zero point (dex) 0.249; K-correction scale 0.074; R scale (dex) 0.051; H0 (distance scale) 0.040  -> quadrature half-width 0.312 dex
+  singly reported: H2 (M_H2 = 0.3 M_HI added) -0.034; P2 kernel +0.096; other frame (k flipped) +0.355
+
+==============================================================================================================
+MOCK CAMPAIGN (M = 2,000 mocks per cell; analyst = nominal recipe; truth frame k = 1)
+==============================================================================================================
+  26 cells in 60 s
+
+  truth  selection shared | median bias      SD       P5      P95   (log10 s* minus the truth value, dex)
+  FLAT   none      none   |      -0.060   0.068   -0.178   +0.038
+  FLAT   none      A      |      -0.058   0.089   -0.214   +0.077
+  FLAT   none      B      |      -0.046   0.166   -0.336   +0.209
+  FLAT   f1        none   |      -0.264   0.090   -0.431   -0.138
+  FLAT   f1        A      |      -0.272   0.098   -0.451   -0.125
+  FLAT   f1        B      |      -0.275   0.136   -0.518   -0.065
+  FLAT   f1.5      none   |      -0.994   0.175   -1.328   -0.757
+  FLAT   f1.5      A      |      -0.995   0.176   -1.305   -0.753
+  FLAT   f1.5      B      |      -0.999   0.174   -1.323   -0.764
+  FLAT   f2        none   |      -3.000   0.234   -3.000   -2.320
+  FLAT   f2        A      |      -3.000   0.243   -3.000   -2.246
+  FLAT   f2        B      |      -3.000   0.244   -3.000   -2.252
+  RIVAL  none      none   |      -0.062   0.065   -0.177   +0.033
+  RIVAL  none      A      |      -0.054   0.086   -0.206   +0.077
+  RIVAL  none      B      |      -0.059   0.165   -0.332   +0.219
+  RIVAL  f1        none   |      -0.280   0.095   -0.460   -0.143
+  RIVAL  f1        A      |      -0.285   0.099   -0.467   -0.142
+  RIVAL  f1        B      |      -0.284   0.130   -0.508   -0.086
+  RIVAL  f1.5      none   |      -1.035   0.168   -1.345   -0.797
+  RIVAL  f1.5      A      |      -1.028   0.180   -1.362   -0.784
+  RIVAL  f1.5      B      |      -1.039   0.177   -1.368   -0.792
+  RIVAL  f2        none   |      -3.044   0.234   -3.044   -2.351
+  RIVAL  f2        A      |      -3.044   0.233   -3.044   -2.362
+  RIVAL  f2        B      |      -3.044   0.237   -3.044   -2.388
+  (the s_true = 2 and 0.5 cells: s2 median bias -1.297, SD 0.181; s0.5 median bias -0.757, SD 0.178)
+
+  BTFR-route (V^4 / G M_b) minus the RAR-at-R_HI route, same mocks (FLAT, f = 1.5): median +0.393 dex (the regime effect y nu^2 at y ~ 0.05-0.2)
+  [FAIL] (control) C7 CONTROL (bootstrap coverage on FLAT mocks, K = 300, B = 1,000): the 68 % interval covers in [0.55, 0.80], the 95 % interval in >= 0.88
+         68%: 0.000, 95%: 0.000; median bootstrap SD of log10 s*: 0.265
+  [FAIL] (control) C8 CONTROL (reactivity, the CFG219 / CFG258 lesson): a planted shared baryon offset of +0.15 dex shifts the median s* by the noiseless lever x 0.15 (within 20 %), the analyst's +-0.30 dex baryon band contains s_true in >= 95 % of mocks, and the level-B total SD exceeds the within-mock bootstrap SD by >= 1.5
+         shift +0.006 vs lever x 0.15 = +0.201; outer-band containment 0.000; level-B SD 0.174 vs bootstrap SD 0.265 (ratio 0.66)
+
+==============================================================================================================
+DECISIONS (frozen section 4; selection f = 1.5 as the primary detection scenario)
+==============================================================================================================
+  level A: SD_tot (FLAT mocks) 0.176 dex; P5[RIVAL] -1.318 vs P95[FLAT] -0.753 -> R1 False; Delta (RIVAL - FLAT, no shared) +0.002 vs S_joint 0.233 + 2 SD_stat 0.349 -> R2 False
+  level B: SD_tot (FLAT mocks) 0.174 dex; P5[RIVAL] -1.325 vs P95[FLAT] -0.764 -> R1 False; Delta (RIVAL - FLAT, no shared) +0.002 vs S_joint 0.673 + 2 SD_stat 0.349 -> R2 False
+  PF-D1 (FLAT vs a0 ~ H(z) at z ~ 0.2): NOT POSSIBLE   [required total precision Delta / 3.29 = 0.001 dex; stat-only separation 0.01 sigma; level-B separation 0.01 sigma]
+  PF-D2 (is a coverage point drawable?): NOT DRAWABLE   [N = 110 (>= 60: True); |median bias| 0.994 (<= 0.10: False); SD_stat 0.175 (<= 0.12: False); fraction y < 0.3 0.927 (>= 0.80: True)]
+  PF-D3 (the frame): the analyst of the other frame reads s* +0.355 dex higher on the same widths (k = 0 on observed-frame widths); the misreading the other way costs -0.355; BOTH branches will be reported by the measurement.
+  detection-selection bias (FLAT, no shared draw): none -0.060; f1 -0.264; f1.5 -0.994; f2 -3.000
+
+==============================================================================================================
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 5; scored by code)
+==============================================================================================================
+  HE1: PASS  N(P) = 110
+  HE2: PASS  median y 0.088; fraction below 0.3 0.927
+  HE3: MISS  no-systematics bias at f = 1.5: -0.994 dex
+  HE4: MISS  SD_stat 0.175 dex
+  HE5: MISS  coverage 0.000 / 0.000
+  HE6: PASS  baryon lever -1.342
+  HE7: PASS  frame lever +0.355
+  HE8: MISS  SD_tot level B 0.174, level A 0.176
+  HE9: PASS  PF-D1 NOT POSSIBLE; A: R1 False R2 False; B: R1 False R2 False; Delta/SD_B 0.01
+  HE10: MISS  selection bias f1 -0.264, f2 -3.000
+  HE11: MISS  PF-D2 NOT DRAWABLE
+
+  6/8 controls pass -> CONTROL FAILURES  (95 s)
