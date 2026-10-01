@@ -60,3 +60,12 @@ collapse). LR10X reproduces the S4/S5 chain VERBATIM except: the term cache is
 DROPPED (straight Add over all terms) — tooling only, no math change; if the cache
 did collapse terms in E2F1's tot, the G-X1/G-X2/G-X3 gates will fire and that is
 E2F1 tooling verdict, recorded honestly.
+
+## AMENDMENT 2 (pre-run-2, after LR10X run-1 fire)
+Run-1 fired honestly: uncaught KeyError 'g3' — E2F1's G3 numeric pipeline values
+were never saved to E2F1_results.json (log lines only); fire verbatim in
+LR10X_stdout_0.txt. Fix forward (gate VALUES unchanged): G-X3 now = G-X3a (fresh
+verbatim re-run of the E2F1 S1 numeric pipeline, GL(90,70,70) + GL(140,110,110)
+rule-doubling gate 1e-11, vs N(tot,50) at <= 1e-12) + G-X3b (numeric values parsed
+from the G3 lines of E2F1_results.json's own log — loaded-not-transcribed, 12-digit
+precision on disk — vs tot at <= 2e-12, the parse-precision floor).
