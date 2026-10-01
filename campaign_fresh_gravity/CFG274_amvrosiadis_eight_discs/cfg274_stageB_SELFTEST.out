@@ -1,0 +1,53 @@
+CFG274 -- implied-a0 points (or no-root / ill-conditioned markers) for the eight Amvrosiadis+25 sub-mm discs without an a0: ALESS 007.1, 022.1, 041.1, 049.1, 065.1, 066.1, 071.1, 075.1.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG274_amvrosiadis_eight_discs/FROZEN_CRITERIA.md (a7c4f7eef).
+  model     CFG227's class-S rule: g_obs = V_circ(2 r_e)^2 / (2 r_e) (pressure included once); g_bar = one thin exponential disc (R_d = r_e / 1.678) of M* + M_gas at r = 2 r_e.
+  estimator CFG223's median-residual s* (CFG229's a0implied), nu_mono, canonical a0; a root exists only if the row's median D > 1.
+  STAGE=A   the blind pre-flight: the velocity columns are NOT loaded; no g_obs, D, delta or s* of any disc is formed.
+  STAGE=B   the measurement (once, after stage A and this script are committed); STAGE=B MUTATE=1 (V_circ x 2); STAGE=B SELFTEST=1 (fabricated V on the law at s = 2).
+
+STAGE B  *** SELFTEST: FABRICATED V on the law at s_true = 2 (+0.15 dex scatter); debugging only ***
+parent amvrosiadis_parent.csv sha256 b1da2ddb4166e42e; best-fit amvrosiadis_bestfit.csv sha256 232bdb33dd4b794e; velocity columns loaded: True
+rows: 007.1 z 2.692 R_e 4.96 kpc log M* 11.87 log Mgas 11.22 SNR 9.9 i 34 2r_e/beam 0.68; 022.1 z 2.263 R_e 3.71 kpc log M* 11.67 log Mgas 10.89 SNR 13.5 i 34 2r_e/beam 0.49; 041.1 z 2.547 R_e 2.39 kpc log M* 11.83 log Mgas 10.57 SNR 29.1 i 69 2r_e/beam 0.47; 049.1 z 2.945 R_e 1.51 kpc log M* 10.58 log Mgas 10.89 SNR 27.9 i 90 2r_e/beam 0.31; 065.1 z 4.445 R_e 1.43 kpc log M* 10.48 log Mgas 11.05 SNR 10.4 i 58 2r_e/beam 0.42; 066.1 z 2.553 R_e 3.54 kpc log M* 11.42 log Mgas 10.83 SNR 13.3 i 52 2r_e/beam 1.00; 071.1 z 3.709 R_e 3.52 kpc log M* 12.31 log Mgas 11.20 SNR 17.6 i 71 2r_e/beam 0.83; 075.1 z 2.552 R_e 2.63 kpc log M* 10.48 log Mgas 10.84 SNR 38.7 i 55 2r_e/beam 0.52
+
+STAGE B  THE MEASUREMENT (SELFTEST)
+SELFTEST: V fabricated from the law at s_true = 2 on each galaxy's own baryons (+0.15 dex scatter on g_obs); the real velocities are not used
+  007.1: z 2.692  g_obs 1.845e-09  g_bar 1.460e-09  D 1.264  delta_FLAT +0.083 [-0.008, +0.168]  y 15.6  s* = 6.36 (a0 = 5.95e-10)  MC rooted 68 % [2.79, 15] (draws without a root 0.14)
+      baryon +-0.15 [0.001, 16.4] (no-root corner)  +-0.30 [0.001, 30.6] (no-root corner);  Delta_floor +0.102 dex; baryon shift for s* = 1: +0.085; lever -4.1; knobs with a root 7/8; recipe half-width 0.645; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.507; R_e x1.5 +0.340; R_e /1.5 -0.104; spherical +0.360; pressure P- -- (variant has no root); pressure P+ (double count) +0.338; helium x1.36 -0.129; kernel P2 +0.166
+  022.1: z 2.263  g_obs 3.239e-09  g_bar 1.566e-09  D 2.069  delta_FLAT +0.298 [+0.182, +0.401]  y 16.7  s* = 38.3 (a0 = 35.9e-10)  MC rooted 68 % [18.5, 67.5] (draws without a root 0.01)
+      baryon +-0.15 [17.9, 67.5]  +-0.30 [1.76, 109];  Delta_floor +0.316 dex; baryon shift for s* = 1: +0.305; lever -1.8; knobs with a root 8/8; recipe half-width 0.485; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.334; R_e x1.5 +0.197; R_e /1.5 -0.043; spherical +0.210; pressure P- -0.313; pressure P+ (double count) +0.225; helium x1.36 -0.041; kernel P2 +0.156
+  041.1: z 2.547  g_obs 7.201e-09  g_bar 4.943e-09  D 1.457  delta_FLAT +0.157 [-0.028, +0.326]  y 52.8  s* = 39.2 (a0 = 36.7e-10)  MC rooted 68 % [17.5, 114] (draws without a root 0.19)
+      baryon +-0.15 [3.33, 84.4]  +-0.30 [0.001, 149] (no-root corner);  Delta_floor +0.163 dex; baryon shift for s* = 1: +0.158; lever -2.8; knobs with a root 8/8; recipe half-width 0.729; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.488; R_e x1.5 +0.271; R_e /1.5 -0.067; spherical +0.288; pressure P- -0.511; pressure P+ (double count) +0.283; helium x1.36 -0.023; kernel P2 +0.179
+  049.1: z 2.945  g_obs 1.969e-09  g_bar 2.014e-09  D 0.977  delta_FLAT -0.024 [-0.141, +0.069]  y 21.5  NO ROOT  MC rooted 68 % [1.26, 10.7] (draws without a root 0.56)
+      baryon +-0.15 [0.001, 9.18] (no-root corner)  +-0.30 [0.001, 20.9] (no-root corner);  Delta_floor -0.010 dex; baryon shift for s* = 1: -0.025; lever +nan; knobs with a root 4/8; recipe half-width nan; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e --; R_e x1.5 --; R_e /1.5 -- (variant has no root); spherical --; pressure P- -- (variant has no root); pressure P+ (double count) --; helium x1.36 -- (variant has no root); kernel P2 -- (variant has no root)
+  065.1: z 4.445  g_obs 4.602e-09  g_bar 2.768e-09  D 1.662  delta_FLAT +0.210 [+0.096, +0.305]  y 29.6  s* = 34.9 (a0 = 32.7e-10)  MC rooted 68 % [15.2, 65.2] (draws without a root 0.03)
+      baryon +-0.15 [11.3, 68]  +-0.30 [0.001, 115] (no-root corner);  Delta_floor +0.221 dex; baryon shift for s* = 1: +0.212; lever -2.3; knobs with a root 8/8; recipe half-width 0.577; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.094; R_e x1.5 +0.234; R_e /1.5 -0.054; spherical +0.249; pressure P- -0.385; pressure P+ (double count) +0.253; helium x1.36 -0.304; kernel P2 +0.174
+  066.1: z 2.553  g_obs 1.034e-09  g_bar 1.043e-09  D 0.991  delta_FLAT -0.030 [-0.361, +0.228]  y 11.1  NO ROOT  MC rooted 68 % [2.26, 16.8] (draws without a root 0.52)
+      baryon +-0.15 [0.001, 5.03] (no-root corner)  +-0.30 [0.001, 11.3] (no-root corner);  Delta_floor -0.004 dex; baryon shift for s* = 1: -0.032; lever +nan; knobs with a root 4/8; recipe half-width nan; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e --; R_e x1.5 --; R_e /1.5 -- (variant has no root); spherical --; pressure P- -- (variant has no root); pressure P+ (double count) --; helium x1.36 -- (variant has no root); kernel P2 -- (variant has no root)
+  071.1: z 3.709  g_obs 5.603e-09  g_bar 7.028e-09  D 0.797  delta_FLAT -0.103 [-0.193, -0.020]  y 75.1  NO ROOT  MC rooted 68 % [2.05, 18.5] (draws without a root 0.88)
+      baryon +-0.15 [0.001, 10.1] (no-root corner)  +-0.30 [0.001, 38.4] (no-root corner);  Delta_floor -0.098 dex; baryon shift for s* = 1: -0.106; lever +nan; knobs with a root 3/8; recipe half-width nan; noiseless-world lever +nan (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e --; R_e x1.5 --; R_e /1.5 -- (variant has no root); spherical --; pressure P- -- (variant has no root); pressure P+ (double count) -- (variant has no root); helium x1.36 -- (variant has no root); kernel P2 -- (variant has no root)
+  075.1: z 2.552  g_obs 9.073e-10  g_bar 5.662e-10  D 1.602  delta_FLAT +0.159 [+0.061, +0.244]  y 6.0  s* = 6.32 (a0 = 5.92e-10)  MC rooted 68 % [2.91, 11.6] (draws without a root 0.03)
+      baryon +-0.15 [1.74, 12.6]  +-0.30 [0.001, 21.5] (no-root corner);  Delta_floor +0.205 dex; baryon shift for s* = 1: +0.173; lever -2.4; knobs with a root 8/8; recipe half-width 0.585; noiseless-world lever -11.5 (ILL-CONDITIONED)
+      knobs (Delta log10 s*; -- = no root): stars at 2 R_e +0.140; R_e x1.5 +0.243; R_e /1.5 -0.057; spherical +0.258; pressure P- -0.406; pressure P+ (double count) +0.260; helium x1.36 -0.283; kernel P2 +0.176
+  P8 (n 8, z_med 2.623): median D 1.360  s* = 6.34  bootstrap rooted 68 % [3.85, 34.9] (resamples without a root 0.14);  baryon +-0.15 [0.001, 14.3] +-0.30 [0.001, 33.7]; Delta_floor +0.134
+  P6 (n 6, z_med 2.819): median D 1.360  s* = 14.7  bootstrap rooted 68 % [6.36, 36.7] (resamples without a root 0.09);  baryon +-0.15 [0.001, 35.5] +-0.30 [0.001, 69.8]; Delta_floor +0.134
+
+CONTROLS (stage B)
+  [PASS] M1 CONTROL: the alt footing implies the same absolute a0 in every row with a root
+         max |d log10| = 1.1e-16 (5 rows with a root)
+  [PASS] M3 the pooled rows hold 8 and 6 members and P6 is a subset of P8
+         P8 8, P6 6
+  SELFTEST: every row is ILL-CONDITIONED (or has no root): the truth-recovery check is not applicable; intervals: 007.1 s* 6.36; 022.1 s* 38.3; 041.1 s* 39.2; 049.1 s* no root; 065.1 s* 34.9; 066.1 s* no root; 071.1 s* no root; 075.1 s* 6.32
+  [PASS] M4 CONTROL: the first 18 columns of the points file equal chart_a0z_points.csv's header
+         True
+
+  points written: cfg274_points_stageB_SELFTEST.csv (10 rows)
+
+3/3 checks pass; load-bearing failures: 0   (7 s)
