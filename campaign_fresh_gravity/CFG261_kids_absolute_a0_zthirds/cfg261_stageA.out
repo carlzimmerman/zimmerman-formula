@@ -1,0 +1,125 @@
+CFG261 -- the ABSOLUTE implied-a0 level of the KiDS-1000 lensing RAR in lens-redshift thirds (z ~ 0.2 and 0.4), M* calibration named as the dominant systematic.
+
+Criteria frozen and committed before this script existed: campaign_fresh_gravity/CFG261_kids_absolute_a0_zthirds/FROZEN_CRITERIA.md (ec413346f).
+  data     cfg110_perlens.npz (WG, WW, NN per lens and g_bar bin), lr_lenses.npz, the 50 June patches; K1 = bins 8-14.
+  rows     CFG255's per-class thirds (T-*), a mass-matched window 10.3 <= log M* < 10.9 (MM-*), two joint one-s rows (J-*).
+  model    CFG61/CFG255's L law stack with EVERY profile rebuilt at a0 * s (turnaround radius and truncation included); s-grid log10 s = -1..+1.25 (spline);
+           "true baryon mass" shifts (bands, scenarios) multiply M_gal in the profile and the point term only; the g_bar binning keeps the nominal M_gal.
+  fit      inverse-variance least squares in s on K1 (jackknife variances), patch bootstrap B = 10,000, jackknife SD beside it.
+  STAGE=A  the blind pre-flight: controls, levers, mocks, precision, calibration dominance, decisions; no row's level, amplitude or difference is printed.
+  STAGE=B  the measurement (run once, after stage A and this script are committed); STAGE=B MUTATE=1 plants s = 2 (reactivity); STAGE=B SELFTEST=1 fabricates data.
+
+STAGE A
+data sha256 prefixes: cfg110_perlens.npz 276e43b893f0d4d6, lr_lenses.npz bdca008b9c8259c8, lr_esd_jackknife.npz 981ad437ad0b92b5
+
+rows: T-late-LO N=31133 z_med=0.205; T-late-HI N=31133 z_med=0.400; T-early-LO N=29360 z_med=0.232; T-early-HI N=29360 z_med=0.378; MM-late-LO N=14736 z_med=0.289; MM-late-HI N=14736 z_med=0.421; MM-early-LO N=21675 z_med=0.237; MM-early-HI N=21675 z_med=0.364; J-LO N=60493 z_med=0.217; J-HI N=60493 z_med=0.389
+  thirds z-quantiles (class late/early): Q1 0.257/0.276, Q2 0.353/0.343; window thirds Q1 0.331/0.274, Q2 0.389/0.332
+
+STAGE A  THE BLIND PRE-FLIGHT (controls, model levers, mocks and precision; no row's level, amplitude or difference is printed)
+  [PASS] C1 CONTROL: per-lens sums reproduce the June per-patch sums to 1e-9 relative
+         max relative deviation 3.1e-11
+  [PASS] C2 CONTROL: the thirds are disjoint and hold 1/3 of their class to 1 %; the MM counts equal the frozen table (14,736 / 21,675 per third)
+         T-late-LO 31133; T-late-HI 31133; T-early-LO 29360; T-early-HI 29360; MM-late-LO 14736; MM-late-HI 14736; MM-early-LO 21675; MM-early-HI 21675; z cuts class late 0.257/0.353, early 0.276/0.343
+
+building the model tables (16 sets x 10 s-nodes; cached in /Users/carlzimmerman/new_physics/zimmerman-formula/campaign_fresh_gravity/CFG261_kids_absolute_a0_zthirds/_cache)
+  set base    ready  (40 s)
+  set b-30    ready  (40 s)
+  set b-15    ready  (39 s)
+  set b+15    ready  (40 s)
+  set b+30    ready  (39 s)
+  set hot0.5  ready  (41 s)
+  set hot1.0  ready  (39 s)
+  set dz0.02  ready  (39 s)
+  set dz0.05  ready  (39 s)
+  set kernP2  ready  (37 s)
+  set tf0.20  ready  (38 s)
+  set tf0.80  ready  (39 s)
+  set gf0.50  ready  (39 s)
+  set gf1.50  ready  (39 s)
+  set epP     ready  (41 s)
+  set epM     ready  (41 s)
+  [PASS] C3 CONTROL: the generalised stack at (s = 1, no shift, nu_mono, truncation 0.40, nominal gas, M_gal weights) reproduces CFG61's committed law stacks (full classes) and CFG255's law_stack (all 8 sets), all 15 bins, to 1e-9
+         max relative deviation 8.9e-16
+  [PASS] C4 CONTROL: the s-spline reproduces a direct rebuild at off-grid log10 s = -0.625, +0.125, +0.875 to 1e-3 relative in every K1 bin of every row
+         max relative deviation 8.9e-04
+  [PASS] C5 CONTROL: the alt footing at s' = s x (9.3603e-11 / 1.1312e-10) gives the canonical tables (the model depends on a0 only through a0 x s), 15 bins, all cells
+         max relative deviation 0.0e+00
+  [PASS] C6 CONTROL: noiseless data = model(s_true) returns s_true to 1e-4 dex in every row (and both joint rows) for s_true = 0.5, 1, 2.5
+         max |d log10 s| 5.8e-07
+
+C8 / A2  MOCKS (noise N(0, C_row), C_row = the row's jackknife covariance; 2,000 mocks per row and truth)
+  [PASS] C8 CONTROL: mocks recover the planted level without bias (|mean| <= 0.2 SD) and the analytic linearised sigma is within 15 % of the mock SD, all rows, s_true = 1 and 2.5
+         T-late-LO: bias -0.006/-0.001, SD 0.142/0.088, lin 0.136/0.086; T-late-HI: bias -0.017/-0.007, SD 0.157/0.096, lin 0.149/0.094; T-early-LO: bias -0.007/-0.003, SD 0.087/0.055, lin 0.084/0.053; T-early-HI: bias -0.001/+0.000, SD 0.091/0.057, lin 0.090/0.057; MM-late-LO: bias -0.014/-0.004, SD 0.193/0.118, lin 0.181/0.114; MM-late-HI: bias -0.040/-0.016, SD 0.264/0.157, lin 0.237/0.149; MM-early-LO: bias -0.006/-0.002, SD 0.104/0.065, lin 0.103/0.065; MM-early-HI: bias -0.005/-0.002, SD 0.104/0.065, lin 0.103/0.065; J-LO: bias -0.002/-0.000, SD 0.076/0.047, lin 0.073/0.046; J-HI: bias -0.004/-0.002, SD 0.082/0.052, lin 0.081/0.051
+  [PASS] C7 CONTROL (blind error calibration): for 200 random pairs of disjoint class thirds, mean(Delta / sigma_Delta) in [-0.25, 0.25] and SD in [0.8, 1.25] (only these aggregates are printed; the jackknife sigma of the difference of the two thirds' log s*)
+         mean -0.003, SD 1.014, N 200
+
+A1  LEVERS (noiseless: data = the base model at s = 1; each variant solves against it)
+  baryon lever L_b = d log10 s*/d(baryon dex) and the band edges in log10 s* (shift -0.30 / -0.15 / +0.15 / +0.30):
+    T-late-LO   L_b -1.132   bands +0.327 +0.166 -0.174 -0.359   half-widths inner 0.170 outer 0.343 dex
+    T-late-HI   L_b -1.136   bands +0.328 +0.166 -0.174 -0.361   half-widths inner 0.170 outer 0.344 dex
+    T-early-LO  L_b -1.132   bands +0.327 +0.166 -0.174 -0.359   half-widths inner 0.170 outer 0.343 dex
+    T-early-HI  L_b -1.147   bands +0.330 +0.168 -0.176 -0.366   half-widths inner 0.172 outer 0.348 dex
+    MM-late-LO  L_b -1.128   bands +0.326 +0.166 -0.173 -0.357   half-widths inner 0.169 outer 0.342 dex
+    MM-late-HI  L_b -1.143   bands +0.329 +0.167 -0.176 -0.364   half-widths inner 0.171 outer 0.347 dex
+    MM-early-LO L_b -1.139   bands +0.328 +0.167 -0.175 -0.362   half-widths inner 0.171 outer 0.345 dex
+    MM-early-HI L_b -1.139   bands +0.329 +0.167 -0.175 -0.362   half-widths inner 0.171 outer 0.345 dex
+    J-LO        L_b -1.132   bands +0.327 +0.166 -0.174 -0.359   half-widths inner 0.170 outer 0.343 dex
+    J-HI        L_b -1.142   bands +0.329 +0.167 -0.175 -0.364   half-widths inner 0.171 outer 0.346 dex
+  recipe knobs (model against model; Delta log10 s*):
+    T-late-LO   kernel P2 +0.046  trunc 0.20/0.80 -0.004/+0.000  weights WW +0.000  cold gas x0.5/x1.5 +0.091/-0.077
+    T-late-HI   kernel P2 +0.047  trunc 0.20/0.80 -0.024/+0.002  weights WW +0.000  cold gas x0.5/x1.5 +0.037/-0.035
+    T-early-LO  kernel P2 +0.046  trunc 0.20/0.80 -0.015/+0.001  weights WW +0.000  cold gas x0.5/x1.5 +0.044/-0.040
+    T-early-HI  kernel P2 +0.050  trunc 0.20/0.80 -0.024/+0.002  weights WW +0.000  cold gas x0.5/x1.5 +0.031/-0.029
+    MM-late-LO  kernel P2 +0.045  trunc 0.20/0.80 -0.013/+0.001  weights WW +0.000  cold gas x0.5/x1.5 +0.048/-0.044
+    MM-late-HI  kernel P2 +0.049  trunc 0.20/0.80 -0.020/+0.001  weights WW +0.000  cold gas x0.5/x1.5 +0.037/-0.035
+    MM-early-LO kernel P2 +0.047  trunc 0.20/0.80 -0.014/+0.001  weights WW +0.000  cold gas x0.5/x1.5 +0.043/-0.040
+    MM-early-HI kernel P2 +0.048  trunc 0.20/0.80 -0.022/+0.001  weights WW +0.000  cold gas x0.5/x1.5 +0.034/-0.032
+    J-LO        kernel P2 +0.046  trunc 0.20/0.80 -0.012/+0.001  weights WW +0.000  cold gas x0.5/x1.5 +0.056/-0.051
+    J-HI        kernel P2 +0.049  trunc 0.20/0.80 -0.024/+0.002  weights WW +0.000  cold gas x0.5/x1.5 +0.033/-0.031
+  hot-gas scenarios on the early rows (Delta log10 s*; f_hot = 0.5 / 1.0): T-early-LO -0.205/-0.360; T-early-HI -0.208/-0.367; MM-early-LO -0.206/-0.363; MM-early-HI -0.206/-0.364
+  mass-dependent drift eps = +0.10 (level shift of each row, then the shift of d = log s*(HI) - log s*(LO) per class):
+    T-late: levels LO +0.047 HI -0.028; d shift eps=+0.10 -0.076, eps=-0.10 +0.078; HI-only drift +0.02 / +0.05: -0.023 / -0.057
+    MM-late: levels LO -0.005 HI -0.026; d shift eps=+0.10 -0.022, eps=-0.10 +0.021; HI-only drift +0.02 / +0.05: -0.023 / -0.057
+    T-early: levels LO -0.015 HI -0.042; d shift eps=+0.10 -0.027, eps=-0.10 +0.028; HI-only drift +0.02 / +0.05: -0.023 / -0.058
+    MM-early: levels LO -0.015 HI -0.033; d shift eps=+0.10 -0.017, eps=-0.10 +0.017; HI-only drift +0.02 / +0.05: -0.023 / -0.057
+
+A2 / A3  PRECISION AND CALIBRATION DOMINANCE (mock SD of log10 s* at s_true = 1 = the 68 % half-width; R_cal = 0.15 |L_b| / SD)
+    T-late-LO   SD 0.142 dex (analytic 0.136)   R_cal 1.19   CALIBRATION-LIMITED
+    T-late-HI   SD 0.157 dex (analytic 0.149)   R_cal 1.09   CALIBRATION-LIMITED
+    T-early-LO  SD 0.087 dex (analytic 0.084)   R_cal 1.95   CALIBRATION-LIMITED
+    T-early-HI  SD 0.091 dex (analytic 0.090)   R_cal 1.90   CALIBRATION-LIMITED
+    MM-late-LO  SD 0.193 dex (analytic 0.181)   R_cal 0.88   statistics-limited
+    MM-late-HI  SD 0.264 dex (analytic 0.237)   R_cal 0.65   statistics-limited
+    MM-early-LO SD 0.104 dex (analytic 0.103)   R_cal 1.64   CALIBRATION-LIMITED
+    MM-early-HI SD 0.104 dex (analytic 0.103)   R_cal 1.64   CALIBRATION-LIMITED
+    J-LO        SD 0.076 dex (analytic 0.073)   R_cal 2.25   CALIBRATION-LIMITED
+    J-HI        SD 0.082 dex (analytic 0.081)   R_cal 2.08   CALIBRATION-LIMITED
+
+A4  THE THIRDS' DIFFERENCE (jackknife sigma of d = log s*(HI) - log s*(LO); no value of d is printed)
+    T-late: sigma_diff 0.222 dex; H(z) expects d = +0.049 (PROXY +0.012) at z 0.205 -> 0.400; POSSIBLE_STAT False; POSSIBLE_SYS at delta 0.02 / 0.05: False / False
+    T-early: sigma_diff 0.074 dex; H(z) expects d = +0.037 (PROXY +0.009) at z 0.232 -> 0.378; POSSIBLE_STAT False; POSSIBLE_SYS at delta 0.02 / 0.05: False / False
+    MM-late: sigma_diff 0.408 dex; H(z) expects d = +0.034 (PROXY +0.009) at z 0.289 -> 0.421; POSSIBLE_STAT False; POSSIBLE_SYS at delta 0.02 / 0.05: False / False
+    MM-early: sigma_diff 0.075 dex; H(z) expects d = +0.032 (PROXY +0.008) at z 0.237 -> 0.364; POSSIBLE_STAT False; POSSIBLE_SYS at delta 0.02 / 0.05: False / False
+
+DECISIONS (the frozen map)
+  PF-D1 ESTIMATOR VALIDATED: True (controls C1-C8; failed ones listed in the check lines above)
+  PF-D2 CALIBRATION-LIMITED rows: T-late-LO (1.19), T-late-HI (1.09), T-early-LO (1.95), T-early-HI (1.90), MM-early-LO (1.64), MM-early-HI (1.64), J-LO (2.25), J-HI (2.08); statistics-limited: MM-late-LO (0.88), MM-late-HI (0.65)
+  PF-D3 FLAT versus H(z) from the thirds' levels (T rows): POSSIBLE_STAT False; POSSIBLE_SYS at delta 0.02 False / 0.05 False  (NOT POSSIBLE if any False)
+  PF-D4 DRAWABLE as a calibration-limited level (needs PF-D1): True
+
+HAND ESTIMATES (frozen in FROZEN_CRITERIA.md section 9) scored:
+    HE1: hit
+    HE2: MISS (kept as it falls)
+    HE3: hit
+    HE4: hit
+    HE5: hit
+    HE6: MISS (kept as it falls)
+    HE7: hit
+    HE8: MISS (kept as it falls)
+    HE9: MISS (kept as it falls)
+    HE10: hit
+    HE11: hit
+    HE12: hit
+    HE13: hit
+
+8/8 checks pass; load-bearing failures: 0   (719 s)
