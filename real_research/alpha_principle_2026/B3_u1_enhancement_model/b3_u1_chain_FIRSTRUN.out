@@ -1,0 +1,153 @@
+B3: U(1) chain of the Multiple Point Principle, link by link   (MUTATE=False)
+  Y1 target 1/alpha_Y(M_P) = 55.234 +- 0.127 at M_P = 1.22089e+19 GeV
+  [PASS] C1 Y1 target equals the pre-registered 55.234 to 0.01 
+  pass windows (2 sigma): wide (stated MPP uncertainty 4.5) = +-9.00; sharp (Y1 error only) = +-0.254
+
+CK1  L3 base factor: hexagonal identification lattice, enumerate Gram-matrix sign classes (independent algebra)
+    signs (g12,g13,g23) = ('+', '+', '+'): positive definite=True, nearest neighbours=12, |diag|^2/|nn|^2=6.000, S3-symmetric=True
+    signs (g12,g13,g23) = ('+', '+', '-'): positive definite=False
+    signs (g12,g13,g23) = ('+', '-', '+'): positive definite=False
+    signs (g12,g13,g23) = ('+', '-', '-'): positive definite=True, nearest neighbours=12, |diag|^2/|nn|^2=2.000, S3-symmetric=False
+    signs (g12,g13,g23) = ('-', '+', '+'): positive definite=False
+    signs (g12,g13,g23) = ('-', '+', '-'): positive definite=True, nearest neighbours=12, |diag|^2/|nn|^2=2.000, S3-symmetric=False
+    signs (g12,g13,g23) = ('-', '-', '+'): positive definite=True, nearest neighbours=12, |diag|^2/|nn|^2=2.000, S3-symmetric=False
+    signs (g12,g13,g23) = ('-', '-', '-'): positive definite=False
+  [PASS] CK1 the S3-symmetric, positive-definite, 12-nearest-neighbour class is unique and gives diagonal ratio exactly 6 ([((1, 1, 1), 6.0)])
+    non-S3-symmetric admissible classes give other diagonal ratios [2.0]: S3 symmetry is what selects 6 (premise: the three U(1) factors are permutation-equivalent)
+    general N: N=2: 3, N=3: 6, N=4: 10, N=5: 15 = N(N+1)/2;  cubic (no interaction terms) lattice: ratio N = 3
+  [PASS] CK1b the chain function L3_base_factor() agrees with the lattice algebra (real run: 6; MUTATE: 3) 
+
+CK2  L5 inputs: Z2 and Z3 critical couplings by exact 4D self-duality, e^J = 1 + sqrt(N), J = beta (1 - cos(2 pi/N))
+    Z2: beta_c(duality) = 0.4407   printed 0.44
+    Z3: beta_c(duality) = 0.6700   printed 0.67
+  [PASS] CK2 duality reproduces the printed Z2 and Z3 critical couplings within 0.005 
+
+CK3  L5 Delta gamma_eff: eq (122) from the printed inputs, and the reconstructed 'improved' values
+    Z2: computed 0.04732  printed 0.0473   (without the xi term: 0.04840)
+    Z3: computed 0.03931  printed 0.0393   (without the xi term: 0.04169)
+  [PASS] CK3a eq (122) reproduces Table 4 (0.0473, 0.0393) within 0.0003 
+    xi = 0 changes the sum 0.0866 -> 0.0901 (+4.0%): the graphically estimated xi is a minor input
+    reconstructed improved Delta gamma (iterated cos-power factor) vs printed Table 7; the Villain conf. <cos> is not given in the source (0.623 used):
+      Wilson   Z2 only    reconstructed 0.06041  printed 0.06000  (+0.7%)
+      Wilson   Z2+Z3      reconstructed 0.11021  printed 0.10940  (+0.7%)
+      Wilson   (Z2+Z3)/2  reconstructed 0.05660  printed 0.05615  (+0.8%)
+      Wilson   Z2/2+Z3    reconstructed 0.08173  printed 0.08108  (+0.8%)
+      Villain  Z2 only    reconstructed 0.04309  printed 0.04318  (-0.2%)
+      Villain  Z2+Z3      reconstructed 0.08107  printed 0.08119  (-0.1%)
+      Villain  (Z2+Z3)/2  reconstructed 0.04038  printed 0.04044  (-0.1%)
+      Villain  Z2/2+Z3    reconstructed 0.05934  printed 0.05941  (-0.1%)
+    8 of 8 reconstructed within 3% (REPORTED; the procedure is underspecified in the source; not a hard check)
+
+CK4  L2/L3/L7 re-derivation: all eight Table 7 rows and eight Table 6 rows from the chain functions
+  [PASS] CK4 every printed row reproduced: 1/alpha_cont within 0.02, enhancement within 0.006, prediction within 0.25 (max deviations 0.004, 0.0013, 0.049; bad rows: [])
+  [PASS] CK4b mean of the four Table 7 starred rows = 56.25 (the abstract's 56) (56.250)
+    viewpoint-a centre under the Table 6 star set (Wilson 1/2 Z2+Z3 and both Villain 1/2 rows): 56.57; under the Table 7 star set: 56.25; Y1 55.23  -> selection of star set moves the centre by -0.32
+    star sets differ between Table 6 and Table 7 for the Wilson (Z2+Z3)/2 row; the printed text does not say when each star was assigned
+
+Chain at the Table 7 Wilson (Z2+Z3)/2 row: Dgamma = 0.05615, 1/alpha_cont = 8.072, enhancement = 6.662, 1/alpha_Y = 53.78  (Y1 55.234)
+  without any discrete-subgroup correction (Dgamma = 0): 1/alpha_cont = 5.000 = 1/0.2;  x6 = 30.0 (the table's 'independent monopole approx. 30')
+  [PASS] CK4c Dgamma = 0 with enhancement 6 gives the printed 'independent monopole approx.' 30 (Table 8) within 0.5 
+
+CK5  stale inputs replaced by modern lattice values [CQ02]: beta_c 1.0106 -> 1.0111331, plaquette gap at gamma=0 0.016 -> 0.026721 (reported shifts, no pass/fail)
+    Wilson Z2 only   : paper inputs 54.730;  modern beta_c only 54.724;  modern gap only 54.759;  both 54.752
+    Wilson Z2+Z3     : paper inputs 66.196;  modern beta_c only 66.185;  modern gap only 66.219;  both 66.207
+    Wilson (Z2+Z3)/2 : paper inputs 53.779;  modern beta_c only 53.772;  modern gap only 53.808;  both 53.802
+    Wilson Z2/2+Z3   : paper inputs 59.749;  modern beta_c only 59.740;  modern gap only 59.774;  both 59.765
+    effect of the stale inputs is below 0.1 in 1/alpha_Y: not a driver.
+
+CK6  L4 normalisation alternatives (the lattice unit charge identified with a different particle's charge), applied to the starred centre 56.25
+    positron unit y/2=1 (used; Q_our = Q_max/6, q=1)        1/alpha_Y =     56.25   z =    +0.23   within wide window
+    q=2 (Q_our = Q_max/12: 'wasting' fewer monopoles)       1/alpha_Y =    225.00   z =   +37.71   excluded
+    q=3                                                     1/alpha_Y =    506.25   z =  +100.19   excluded
+    left-handed quark doublet as the unit (y/2=1/6)         1/alpha_Y =   2025.00   z =  +437.55   excluded
+    coupling to Y instead of Y/2 (g'/2)                     1/alpha_Y =    225.00   z =   +37.71   excluded
+    coupling to Y/4                                         1/alpha_Y =    900.00   z =  +187.65   excluded
+    unit = 1/Z6 smaller charge, i.e. no Z6 quotient         1/alpha_Y =      1.56   z =   -11.92   excluded
+    (the SU(5)-normalised coupling 5/3 g'^2 is the same physics with a 3/5 factor on both sides; not an alternative)
+
+SENSITIVITY SCAN (pre-registered grid)
+  (a) 1/alpha_Y at each printed Delta gamma (Table 7 values) for external enhancement factors; W = inside wide window, S = inside sharp window
+      action   variant       Dgamma | own interpolation |     3.000     4.000     6.000     6.500     6.662     8.040
+      Wilson   Z2 only     0.0600 |     54.73W        |    24.59-    32.79-    49.18W    53.28W    54.61W    65.91-
+      Wilson   Z2+Z3       0.1094 |     66.20-        |    29.09-    38.79-    58.18W    63.03W    64.60-    77.97-
+      Wilson   (Z2+Z3)/2   0.0561 |     53.78W        |    24.22-    32.29-    48.43W    52.47W    53.78W    64.90-
+      Wilson   Z2/2+Z3     0.0811 |     59.75W        |    26.56-    35.42-    53.13W    57.55W    58.99W    71.19-
+      Villain  Z2 only     0.0432 |     52.93W        |    24.66-    32.88-    49.31W    53.42W    54.75W    66.08-
+      Villain  Z2+Z3       0.0812 |     69.28-        |    31.83-    42.45-    63.67W    68.97-    70.69-    85.32-
+      Villain  (Z2+Z3)/2   0.0404 |     51.81W        |    24.17-    32.22-    48.33W    52.36W    53.67W    64.77-
+      Villain  Z2/2+Z3     0.0594 |     59.67W        |    27.61-    36.81-    55.22S    59.82W    61.31W    74.00-
+  (b) Wilson, beta_c = 1.0106: required Delta gamma_eff to hit Y1 for each external enhancement (sharp = exact; wide = edge of +-9.0 window)
+      enhancement  3.000: Dgamma_eff(sharp) = 0.3892;  wide window Dgamma in [0.3005, 0.4687]
+      enhancement  4.000: Dgamma_eff(sharp) = 0.2493;  wide window Dgamma in [0.1735, 0.3205]
+      enhancement  6.000: Dgamma_eff(sharp) = 0.0928;  wide window Dgamma in [0.0452, 0.1441]
+      enhancement  6.500: Dgamma_eff(sharp) = 0.0695;  wide window Dgamma in [0.0290, 0.1157]
+      enhancement  6.662: Dgamma_eff(sharp) = 0.0629;  wide window Dgamma in [0.0247, 0.1075]
+      enhancement  8.040: Dgamma_eff(sharp) = 0.0230;  wide window Dgamma in [0.0034, 0.0536]
+      with the model's own interpolation (tau=0.79): Dgamma_eff(sharp) = 0.0621; the starred printed values are 0.05615 and 0.08108, the mid value (0.0686) of the two is 56.82
+      sensitivity d(1/alpha_Y)/d(Dgamma) at the own-interpolation solution: 244 per unit; per 0.01: 2.44
+  (c) pass volume on the declared grids (Wilson, beta_c = 1.0106, external enhancement)
+      grid A (Dgamma 0.04-0.11, enhancement 6/6.5/6.662/8.04; the range the papers print): 45 of 60 cells in the wide window (75%), 1 in the sharp window (2%)
+      grid B (Dgamma 0-0.12, enhancement 3/4/6/6.5/6.662/8.04): 60 of 150 cells in the wide window (40%)
+      grid B 1/alpha_Y range: 15.0 to 80.5 (spread factor 5.4); wide window width 18.0
+      grid A 1/alpha_Y range: 45.1 to 78.1
+      the model's own interpolation, all 8 rows x tau in (0.79, 1): 12 of 16 in the wide window; range 51.1 to 69.3
+  (d) Dgamma_eff composition (weights on the Table 4 pieces; uncorrected pieces, Wilson, enhancement from own interpolation):
+      w(Z2)=0.0 w(Z3)=0.0: Dgamma = 0.0000  1/alpha_Y =  30.55  outside  (not a weighting the source supports)
+      w(Z2)=0.0 w(Z3)=0.5: Dgamma = 0.0197  1/alpha_Y =  43.48  outside  (not a weighting the source supports)
+      w(Z2)=0.0 w(Z3)=1.0: Dgamma = 0.0393  1/alpha_Y =  49.41  in wide window  (not a weighting the source supports)
+      w(Z2)=0.5 w(Z3)=0.0: Dgamma = 0.0237  1/alpha_Y =  44.81  outside  (not a weighting the source supports)
+      w(Z2)=0.5 w(Z3)=0.5: Dgamma = 0.0433  1/alpha_Y =  50.48  in wide window  (principled: Z2 weight 1/2 by direction count; Z3 weight 1 or 1/2 undecided in the source)
+      w(Z2)=0.5 w(Z3)=1.0: Dgamma = 0.0630  1/alpha_Y =  55.46  in wide window  (principled: Z2 weight 1/2 by direction count; Z3 weight 1 or 1/2 undecided in the source)
+      w(Z2)=1.0 w(Z3)=0.0: Dgamma = 0.0473  1/alpha_Y =  51.54  in wide window  (not a weighting the source supports)
+      w(Z2)=1.0 w(Z3)=0.5: Dgamma = 0.0670  1/alpha_Y =  56.42  in wide window  (not a weighting the source supports)
+      w(Z2)=1.0 w(Z3)=1.0: Dgamma = 0.0866  1/alpha_Y =  61.03  in wide window  (not a weighting the source supports)
+  (e) action and beta_c: Wilson beta_c 1.0106 / 1.01113 at the starred rows (own interpolation):
+      (Z2+Z3)/2 : 53.779 / 53.772
+      Z2/2+Z3   : 59.749 / 59.740
+
+LINK TABLE (reported; classification by the criteria of the pre-registration)
+  DERIVED-INDEP  L1 lattice beta_c
+                  measured on the lattice; B2 re-measured Wilson 1.0113(10); modern 1.0111331(21) [CQ02]; moves 1/alpha_Y by 0.01
+  DERIVED-ARITH  L2 beta_c -> alpha_cont (Luck-Jersak fit, 0.20/0.24/0.39; 0.33/0.52)
+                  form is a fit to Coulomb-potential Monte Carlo data of other authors; arithmetic reproduced (CK4); not re-measured; steep: 1/alpha_cont = 5.0 at Dgamma=0, 8.1 at 0.056
+  DERIVED-INDEP  L3a base factor 6 = N(N+1)/2
+                  CK1: lattice algebra, unique under S3 symmetry; premises: SMG^3, hexagonal (tightest-packing) lattice, independent-monopole approximation. Order of events: 'phenomenologically desirable' (1993) and 'roughly 6 ... needed' precede the derivation
+  UNDETERMINED   L3b volume factor 1.34 (B4, B6 terms)
+                  extra 4th/6th order action terms introduced to reach the multiple point; not reproducible from the text here
+  CHOSEN         L3c linear interpolation 6 -> 8.04 with eta/tau, DW=0.252 dg^(1/3), tau 0.79/1
+                  the text says 'we estimate ... linearly interpolating'; arithmetic reproduced (CK4); modest effect (6 -> 6.5)
+  CHOSEN         L4 normalisation: lattice unit = positron charge (U(1)/Z6), q = 1
+                  stated principle (Z_Nmax factor-group rule) plus a self-described speculative 'no wasted monopoles' argument for q = 1; alternatives are excluded by 1 to 3 orders of magnitude (CK6)
+  DERIVED-INDEP  L5a Z2, Z3 critical couplings 0.44, 0.67
+                  CK2: exact self-duality
+  UNDETERMINED   L5b plaquette jumps DeltaS_Z2 0.44, Z3 0.56; xi = 0.04
+                  literature values / graphical estimate; xi is a 4% effect; jumps not re-measured (CK7 not run)
+  DERIVED-ARITH  L5c eq (122) assembly of Dgamma_eff
+                  CK3a: Table 4 reproduced from the inputs
+  UNDETERMINED   L5d 'improved' Dgamma (iterated cos power), Table 7
+                  reconstruction reported in CK3; procedure underspecified
+  CHOSEN         L5e weights: Z2 x 1/2 (3 of 6 directions), Z3 x 1 or 1/2
+                  Z2 weight by a counting argument; Z3 left open in the text; the starred set differs between Tables 6 and 7
+  CHOSEN         L6 action Wilson vs Villain
+                  both printed and both starred; 51.8 to 59.7 in the starred set
+  UNDETERMINED   L8 Planck scale identification and matching
+                  inherited from B1: M_P not stated; factor 3 in scale = 1.2 in 1/alpha_Y
+Traceback (most recent call last):
+  File "<script>", line 360, in <module>
+    json.dump(out, open(os.path.join(HERE, "b3_results.json"), "w"), indent=1)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/json/encoder.py", line 433, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/json/encoder.py", line 407, in _iterencode_dict
+    yield from chunks
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/json/encoder.py", line 440, in _iterencode
+    o = _default(o)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type int64 is not JSON serializable
