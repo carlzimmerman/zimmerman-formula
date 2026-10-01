@@ -1,0 +1,13 @@
+LR10X run-1 (2026-10-01, conductor tick Z17) -- PRESERVED VERBATIM (uncaught-exception fire)
+[    0.0s] loading E2F1_results.json (loaded-not-transcribed)
+Traceback (most recent call last):
+  File "deepseek_push/LR10X_exact_check.py", line 55, in <module>
+    NUMP  = {k: E["g3"][k]["num"] for k in "abc"}
+KeyError: 'g3'
+NOTE: E2F1_results.json top-level keys = title, pre_registration, verdict, exit,
+elapsed_s, log, symbolic, g0, g0b, g1_size, g2, g2b_size, g4, g5, rule_dev -- the
+G3 gate values were NOT saved to the results JSON (only to the in-file log lines).
+Fix forward (AMENDMENT 2): G-X3 recomputed from a verbatim re-run of the E2F1 S1
+numeric pipeline (fresh, at higher precision) + cross-check against the G3 numeric
+values parsed from E2F1_results.json's own log (loaded-not-transcribed, 12-digit
+precision on disk). Gate VALUES unchanged; no math touched.
