@@ -1,0 +1,22 @@
+# KMOS3D rotation curves at z >= 1.9 from the raw cubes (data front, 2026-09-30)
+
+Criteria: FROZEN_CRITERIA_2026-09-30.md (d73236046, written before any cube pixel was read). Code: `k3d_fit.py` (3-D forward model: beam-convolved exponential disk, arctan rotation curve, per-spaxel linear continuum, empirical noise scale), `k3d_injection.py` (C2, C2b), `k3d_run_all.py` (`main`, `alt`, `... redo`), `k3d_controls.py`. **No a0, g_bar or RAR is computed here.** Fits are in `k3d_fits_main_final.csv` (q0 = 0.2) and `k3d_fits_alt_final.csv` (the C3 variant); `k3d_fits_main_final_flags.csv` adds the bound-hit flags; `SHA256SUMS.txt`.
+
+## Controls against the frozen pass lines
+| control | result | verdict |
+|---|---|---|
+| C1: fitted V_2.2 against the published SINS V_rot, 5 shared galaxies (K20-ID6 0.97, K20-ID7 0.70, GMASS-2303 1.00, GMASS-2363 1.00, ZC410041 0.93) | 5 of 5 within 30% (line: 4 of 5) | PASS (n = 5, and K20-ID7 sits exactly on the 30% edge; the SINS values are themselves quoted 20-30% uncertain) |
+| C2: injection, the galaxy's own PSF and empirical noise | 8 cubes: median recovered/true V_2.2 0.964, rms 0.064 (line: median 0.9-1.1, rms < 0.2) | PASS |
+| C2b: wrong shape (flat r_t = 0.1 arcsec / slow rise r_t = 1.2 arcsec) | medians 1.001 and 0.957 (line: within 20%) | PASS |
+| C3: q0 = 0.1 and shifted starts, highSN galaxies | 120 galaxies, 0.8% change V_2.2 by more than 20% (line: < 20%) | PASS |
+| C4: model integrated sigma against the catalogue HAFIT_SIG (descriptive, not independent) | 57% within 25% (176 galaxies) | no pass line |
+**Stage verdict by the frozen rule: VALIDATED for the METHOD (C1, C2, C2b).** Read the caveats; the per-galaxy results are a different statement.
+
+## Caveats (all measured, none used to move a pass line)
+- **The injection test cannot see model-family errors.** It injects the same exponential disk, inclination from Q, and arctan law that the fit assumes; only the rotation-curve shape is mutated (C2b). C1 is the only independent check and has n = 5.
+- **Many individual fits sit at a parameter bound** (flagged `edge`, 128 of 192): the rise radius r_t at its lower bound 0.02 arcsec in 68 (the rise is unresolved at about 0.4-0.5 arcsec seeing, so the fit is a flat curve), V_a at its upper bound 800 km/s in 25 (V_a and r_t are degenerate when the curve is still rising; those galaxies have median V_2.2 = 146 km/s, so V_2.2 is the better constrained quantity), sigma_0 at its lower bound in 14, a position bound in 12. Among the 120 `highSN` galaxies, **82 have no bound hit apart from possibly r_t at its lower bound and chi^2_red <= 3** (median V_2.2 170 km/s, median error 8.9 km/s, last detection radius median 1.03 arcsec against a median half-light radius 0.38 arcsec); 42 have no bound hit at all. This subset is not a selection on the velocity (it uses bound flags and chi^2), but it was defined after seeing them, so it is a description, not a validated sample.
+- **V(r) is the intrinsic circular law of an assumed arctan shape.** Pressure support and the shape dependence belong to the later a0 lane; the model-dependence caveat travels with every V_2.2.
+- **Fixes after the first full pass** (code bugs, none tuned on a velocity): 18 galaxies had SPEC_RES = 0 in the catalogue (division by zero): the median positive K-band value 3870 was used; U3_10584's catalogue position lies far outside its cube (the header reference position differs): the cube reference pixel was used. These 19 were re-run (`redo`); 16 rows carry a `notes` entry. 3 galaxies still have too few usable channels or pixels and carry no fit.
+- **Implementation points not in the frozen text**: the model grid is 0.1 arcsec; V_a bounded to 5-800 km/s; the 8 starts run 30 evaluations and the best two are polished to convergence; the catalogue flux (1e-17 erg/s/cm2) is converted to the cube unit (1e-17 W/m2) by 1e-3 (a unit-conversion error in the first injection attempt, fixed before any real cube was fitted, gave an unphysically high S/N); a NaN-filled PSF border (zeroed) and a channel-mask test that required every pixel finite (changed to at least half finite) were also fixed before any real cube was fitted.
+- **The injection set is 8 cubes, not 12**: the deterministic rule (indices 0, 15, 30, ... of the 118-galaxy highSN K-band z >= 2 list) yields 8.
+- 19 of the 195 catalogue rows have no Halpha catalogue entry (cat_SN = NaN); they are fitted and labelled `lowSN`.
